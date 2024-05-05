@@ -1,0 +1,27 @@
+<map id="carla::client::World::GetActors" name="carla::client::World::GetActors">
+<area shape="rect" id="Node000001" title="Return a list with all the actors currently present in the world." alt="" coords="905,172,1035,215"/>
+<area shape="rect" id="Node000002" href="$df/def/classcarla_1_1client_1_1TrafficLight.html#a87df8506179eda17a5502ce9364b3970" title="Return all traffic lights in the group this one belongs to." alt="" coords="671,5,830,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="946,161,908,110,883,84,855,62,829,48,832,44,858,58,886,80,912,106,950,158"/>
+<area shape="rect" id="Node000003" href="$db/d1f/classcarla_1_1client_1_1World.html#a4772c8468347fcee02678a9a6a8396d1" title=" " alt="" coords="685,72,816,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="923,166,856,129,815,114,817,109,858,124,926,162"/>
+<area shape="rect" id="Node000005" href="$db/d1f/classcarla_1_1client_1_1World.html#ae95977f3a764f0d7e669e84630565447" title=" " alt="" coords="644,139,857,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="889,184,857,179,857,174,890,179"/>
+<area shape="rect" id="Node000007" href="$db/d1f/classcarla_1_1client_1_1World.html#ad6366a7909dc11fc8ebb883a3434a551" title=" " alt="" coords="685,205,816,248"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="890,208,816,219,816,214,889,203"/>
+<area shape="rect" id="Node000008" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a8c7f3e09bcf07520a2af441a7de06092" title="the acutal sensor tick callback function" alt="" coords="670,272,831,315"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="926,225,858,262,829,274,827,269,856,258,923,220"/>
+<area shape="rect" id="Node000009" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#a0a506446f6810014b6da12d0dcba0748" title=" " alt="" coords="678,339,823,381"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="950,229,912,280,886,306,858,329,825,346,823,341,855,324,883,302,908,277,946,226"/>
+<area shape="rect" id="Node000004" href="$db/d1f/classcarla_1_1client_1_1World.html#a965fcaf99f563c9634c40f3b8e2910b5" title=" " alt="" coords="392,72,596,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="671,96,597,96,597,91,671,91"/>
+<area shape="rect" id="Node000006" href="$db/d1f/classcarla_1_1client_1_1World.html#a82a6e3a2fe7a3d8ccd5de3aa95049788" title=" " alt="" coords="406,139,583,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="630,163,583,163,583,157,630,157"/>
+<area shape="rect" id="Node000010" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="Initiates thread to run the TrafficManager sequentially." alt="" coords="407,339,582,381"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="663,363,582,363,582,357,663,357"/>
+<area shape="rect" id="Node000011" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="To start the TrafficManager." alt="" coords="199,331,344,389"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="392,363,345,363,345,357,392,357"/>
+<area shape="rect" id="Node000012" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="5,289,151,348"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="184,344,151,337,152,332,185,339"/>
+<area shape="rect" id="Node000013" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="5,372,151,431"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="185,381,152,388,151,383,184,376"/>
+</map>

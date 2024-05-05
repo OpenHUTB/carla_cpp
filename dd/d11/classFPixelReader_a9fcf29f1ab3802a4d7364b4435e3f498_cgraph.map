@@ -1,0 +1,26 @@
+<map id="FPixelReader::SendPixelsInRenderThread" name="FPixelReader::SendPixelsInRenderThread">
+<area shape="rect" id="Node000001" title="Convenience function to enqueue a render command that sends the pixels down the Sensor&#39;s data stream." alt="" coords="5,211,179,253"/>
+<area shape="poly" id="edge10_Node000001_Node000001" title=" " alt="" coords="47,211,45,201,52,192,68,186,92,184,119,187,134,194,132,198,117,192,92,189,69,191,55,196,50,202,52,210"/>
+<area shape="rect" id="Node000002" href="$db/db8/classcarla_1_1BufferView.html#a4eefa5dd2893554424512814e6de0c9e" title=" " alt="" coords="269,56,395,99"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,208,159,158,191,132,225,108,254,95,256,100,228,113,194,136,163,162,114,212"/>
+<area shape="rect" id="Node000008" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html#a2edd9e9111f8f91b47791baec38c5829" title=" " alt="" coords="240,123,424,165"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="143,208,226,175,245,168,247,173,228,180,145,213"/>
+<area shape="rect" id="Node000009" href="$dc/d49/classFCarlaEngine.html#a2b0720522df3521eb48575585568dfe1" title=" " alt="" coords="227,189,437,216"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="179,219,212,215,212,220,180,224"/>
+<area shape="rect" id="Node000010" href="$d8/d78/classcarla_1_1ros2_1_1ROS2.html#a2cec6f14ee2b8e025b585575508d77f1" title=" " alt="" coords="265,240,399,283"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="180,240,251,249,250,254,179,245"/>
+<area shape="rect" id="Node000011" href="$d3/d81/classcarla_1_1sensor_1_1CompositeSerializer.html#a69dc7c61b631b59bcc50ffb08f4a6972" title="Serialize the arguments provided into a Buffer by calling to the serializer registered for the given ..." alt="" coords="249,307,415,349"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="137,251,228,292,246,299,244,304,226,297,135,256"/>
+<area shape="rect" id="Node000012" href="$dd/d11/classFPixelReader.html#ac4bc1e9f5907e2400c215950a1a44774" title="Copy the pixels in RenderTarget into Buffer." alt="" coords="245,373,419,416"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="112,252,161,306,193,334,228,359,238,364,235,369,225,364,190,338,157,309,108,256"/>
+<area shape="rect" id="Node000003" href="$db/db8/classcarla_1_1BufferView.html#ab2dfa752fa10fcc6693b27f7bd663479" title="Make a boost::asio::buffer from this buffer." alt="" coords="485,23,611,65"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="395,65,470,53,470,59,396,70"/>
+<area shape="rect" id="Node000007" href="$db/db8/classcarla_1_1BufferView.html#a6b5d5cde7bc06e5296c0a1312721411a" title=" " alt="" coords="485,89,611,132"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="396,84,470,96,470,101,395,90"/>
+<area shape="rect" id="Node000004" href="$db/db8/classcarla_1_1BufferView.html#a7f789d855f7596a0874eb91fd913c5a7" title="Make a boost::asio::buffer from this buffer." alt="" coords="659,23,786,65"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="612,41,644,41,644,47,612,47"/>
+<area shape="rect" id="Node000005" href="$d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf" title="Direct access to the allocated memory or nullptr if no memory is allocated." alt="" coords="834,5,957,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="786,32,819,27,819,32,787,37"/>
+<area shape="rect" id="Node000006" href="$d0/d0a/classcarla_1_1Buffer.html#a3edea2e44a05d9806312e5f9e52315e4" title=" " alt="" coords="834,56,957,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="787,51,820,56,819,61,786,56"/>
+</map>

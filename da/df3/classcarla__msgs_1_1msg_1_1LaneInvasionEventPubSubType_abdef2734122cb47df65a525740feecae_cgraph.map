@@ -1,0 +1,17 @@
+<map id="carla_msgs::msg::LaneInvasionEventPubSubType::getSerializedSizeProvider" name="carla_msgs::msg::LaneInvasionEventPubSubType::getSerializedSizeProvider">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,64,242,123"/>
+<area shape="rect" id="Node000002" href="$d0/de1/classcarla__msgs_1_1msg_1_1LaneInvasionEvent.html#a6bdfb92f9fba44d0deb3f2419c8463a8" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="290,72,493,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,91,275,91,275,96,242,96"/>
+<area shape="rect" id="Node000003" href="$d0/de1/classcarla__msgs_1_1msg_1_1LaneInvasionEvent.html#a33a941e9ee7c472df9388e1833db255b" title="This function copies the value in member crossed_lane_markings." alt="" coords="541,5,744,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="474,69,545,50,547,55,475,74"/>
+<area shape="rect" id="Node000004" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#ae439639025ac66880a861f521fd84016" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="563,72,723,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="493,91,548,91,548,96,493,96"/>
+<area shape="rect" id="Node000008" href="$d0/de1/classcarla__msgs_1_1msg_1_1LaneInvasionEvent.html#adcf4451e0dc59f0d0ff34fb71df314b9" title="This function copies the value in member header." alt="" coords="541,139,744,181"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="475,113,547,132,545,137,474,118"/>
+<area shape="rect" id="Node000005" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a9bd973b4690fefb807fb231f496831d4" title="This function copies the value in member frame_id." alt="" coords="822,5,982,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="723,70,807,48,808,53,724,75"/>
+<area shape="rect" id="Node000006" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#abdf1cc0285c53ceeb6c4eae36acd3c0f" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="792,72,1012,115"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="723,91,777,91,777,96,723,96"/>
+<area shape="rect" id="Node000007" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a2ac0c277be6d5edc09d17126767290c9" title="This function copies the value in member stamp." alt="" coords="822,139,982,181"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="724,111,808,133,807,138,723,117"/>
+</map>

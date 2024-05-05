@@ -1,0 +1,41 @@
+<map id="ACarlaWheeledVehicle::CloseDoorPhys" name="ACarlaWheeledVehicle::CloseDoorPhys">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1454,205,1609,248"/>
+<area shape="rect" id="Node000002" href="$d5/d70/classACarlaWheeledVehicle.html#a7ecd71cdb09a88755098c9b127464f0c" title=" " alt="" coords="1252,172,1406,215"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1440,214,1406,209,1407,203,1440,209"/>
+<area shape="rect" id="Node000003" href="$d5/d70/classACarlaWheeledVehicle.html#a80344597cc1f76c5759bf9b813bb346f" title=" " alt="" coords="1252,239,1406,281"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1440,244,1407,250,1406,245,1440,239"/>
+<area shape="rect" id="Node000004" href="$d5/d70/classACarlaWheeledVehicle.html#a3e610d951ef26385950981f732fa9f42" title=" " alt="" coords="1011,172,1204,215"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1241,237,1180,218,1182,213,1243,231"/>
+<area shape="rect" id="Node000017" href="$d5/d70/classACarlaWheeledVehicle.html#a3d0d084ca4b3bf7b7ad245ebe4178952" title=" " alt="" coords="1030,239,1185,281"/>
+<area shape="poly" id="edge20_Node000003_Node000017" title=" " alt="" coords="1237,263,1185,263,1185,257,1237,257"/>
+<area shape="rect" id="Node000018" href="$d5/d70/classACarlaWheeledVehicle.html#a86be464d6d4b13d4a8baf07cb878de43" title=" " alt="" coords="1030,305,1185,348"/>
+<area shape="poly" id="edge21_Node000003_Node000018" title=" " alt="" coords="1243,289,1182,307,1180,302,1241,283"/>
+<area shape="rect" id="Node000005" href="$d5/d70/classACarlaWheeledVehicle.html#a0eb752614da592e60b34079ca09d0331" title=" " alt="" coords="757,172,963,215"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="995,196,963,196,963,191,995,191"/>
+<area shape="rect" id="Node000006" href="$d2/dea/classUCarSimManagerComponent.html#a2efa8eb19aced754f167875bb25bd92c" title=" " alt="" coords="507,105,696,148"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="760,170,686,151,688,146,761,165"/>
+<area shape="rect" id="Node000012" href="$d2/d48/classUBaseCarlaMovementComponent.html#ac579e7fcca58d6d306b9959861db99c4" title=" " alt="" coords="494,205,709,248"/>
+<area shape="poly" id="edge13_Node000005_Node000012" title=" " alt="" coords="743,211,710,215,710,210,742,206"/>
+<area shape="rect" id="Node000007" href="$d2/dea/classUCarSimManagerComponent.html#a9f864770d706d0172e8f18abda5fd2ef" title=" " alt="" coords="253,5,443,48"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="538,101,445,62,414,51,416,46,447,58,540,96"/>
+<area shape="rect" id="Node000008" href="$d2/dea/classUCarSimManagerComponent.html#a6f66e5242961cd5ff69bc92ddae1848a" title=" " alt="" coords="253,72,443,115"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="492,115,443,108,443,103,493,110"/>
+<area shape="rect" id="Node000011" href="$d2/dea/classUCarSimManagerComponent.html#a89f7bf19417dc86844ed50773dbf463b" title=" " alt="" coords="253,139,443,181"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="493,144,443,150,443,145,492,138"/>
+<area shape="rect" id="Node000009" href="$d2/dea/classUCarSimManagerComponent.html#ac7676e1c859f6052d4caf7ae7527eb85" title=" " alt="" coords="9,139,198,181"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="254,122,185,141,184,135,252,117"/>
+<area shape="rect" id="Node000010" href="$d2/dea/classUCarSimManagerComponent.html#a45740a056d6402af67508d404ec0e1a8" title=" " alt="" coords="9,72,198,115"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="238,96,199,96,199,91,238,91"/>
+<area shape="poly" id="edge11_Node000011_Node000009" title=" " alt="" coords="238,163,199,163,199,157,238,157"/>
+<area shape="poly" id="edge12_Node000011_Node000010" title=" " alt="" coords="252,137,184,118,185,113,254,132"/>
+<area shape="rect" id="Node000013" href="$dd/d96/classUChronoMovementComponent.html#a856b9866205a366212dcb5ba6bac0983" title=" " alt="" coords="250,272,446,315"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="504,255,432,274,431,269,503,250"/>
+<area shape="rect" id="Node000014" href="$dd/d96/classUChronoMovementComponent.html#ac1f51975e9728b663fe48af80bb7d4e7" title=" " alt="" coords="5,205,202,248"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="252,270,184,251,185,246,254,265"/>
+<area shape="rect" id="Node000015" href="$dd/d96/classUChronoMovementComponent.html#a5bf531862d814571930b4950ebc11db9" title=" " alt="" coords="5,272,202,315"/>
+<area shape="poly" id="edge16_Node000013_Node000015" title=" " alt="" coords="235,305,202,305,202,300,235,300"/>
+<area shape="rect" id="Node000016" href="$dd/d96/classUChronoMovementComponent.html#ab5366fe07b3700649f48e6ec2c79663a" title=" " alt="" coords="5,339,202,381"/>
+<area shape="poly" id="edge18_Node000013_Node000016" title=" " alt="" coords="282,322,203,345,201,339,280,317"/>
+<area shape="poly" id="edge17_Node000015_Node000013" title=" " alt="" coords="217,282,249,282,249,287,217,287"/>
+<area shape="poly" id="edge19_Node000016_Node000013" title=" " alt="" coords="170,331,249,309,250,314,172,336"/>
+</map>

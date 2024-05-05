@@ -1,0 +1,15 @@
+<map id="carla::traffic_manager::ALSM::Reset" name="carla::traffic_manager::ALSM::Reset">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,68,151,111"/>
+<area shape="rect" id="Node000002" href="$db/d1f/classcarla_1_1client_1_1World.html#a259343e4a40aba854336762e415a4397" title="Return a snapshot of the world at this moment." alt="" coords="226,35,357,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,75,211,66,212,71,152,81"/>
+<area shape="rect" id="Node000007" href="$d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html#a52ead59d048a20a519b7c78519648c4f" title="Get timestamp of this snapshot." alt="" coords="199,101,384,144"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="152,98,184,103,183,109,151,103"/>
+<area shape="rect" id="Node000003" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="432,35,602,77"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,53,417,53,417,59,357,59"/>
+<area shape="rect" id="Node000004" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="662,5,790,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="603,41,647,35,648,40,603,47"/>
+<area shape="rect" id="Node000006" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="650,72,802,99"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="603,65,636,70,635,75,603,71"/>
+<area shape="rect" id="Node000005" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="850,5,1006,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="790,24,835,24,835,29,790,29"/>
+</map>

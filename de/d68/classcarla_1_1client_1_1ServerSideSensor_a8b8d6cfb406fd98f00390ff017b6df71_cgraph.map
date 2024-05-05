@@ -1,0 +1,38 @@
+<map id="carla::client::ServerSideSensor::Destroy" name="carla::client::ServerSideSensor::Destroy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,139,164,181"/>
+<area shape="rect" id="Node000002" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#aa98c1565c9edcf133148109c52023819" title=" " alt="" coords="440,72,613,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,135,211,124,321,108,424,97,425,103,322,113,212,129,162,141"/>
+<area shape="rect" id="Node000003" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ad858521d3577ad3ab384f4652aa8a526" title="Return whether this Sensor instance is currently listening to the associated sensor in the simulator." alt="" coords="447,5,605,48"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,136,165,115,211,96,325,63,432,40,433,45,326,68,213,101,167,120,126,140"/>
+<area shape="rect" id="Node000004" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="468,389,584,416"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="113,180,159,218,213,258,312,324,358,349,419,375,454,386,453,391,417,380,355,353,309,329,210,262,155,222,109,184"/>
+<area shape="rect" id="Node000006" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ac50a567c3bfd01261f06f9743afef84a" title="Stop listening for new measurements." alt="" coords="212,139,370,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="164,157,197,157,197,163,164,163"/>
+<area shape="rect" id="Node000013" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#af9ff392aec23bfad361e211dcd85fd9f" title="Stop listening for a specific gbuffer stream." alt="" coords="212,205,370,248"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="153,179,210,198,208,203,152,184"/>
+<area shape="rect" id="Node000005" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="691,323,825,365"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="584,387,634,375,676,364,677,369,635,380,585,392"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="368,136,433,117,435,122,369,141"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="313,136,359,96,417,58,432,50,434,55,419,62,362,101,316,140"/>
+<area shape="poly" id="edge13_Node000006_Node000004" title=" " alt="" coords="359,180,372,192,388,216,395,240,395,287,393,310,395,332,403,354,420,375,436,387,455,395,453,400,433,392,416,379,399,356,390,333,388,310,389,287,390,241,383,218,368,195,355,184"/>
+<area shape="rect" id="Node000007" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="443,139,610,181"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="370,157,428,157,428,163,370,163"/>
+<area shape="rect" id="Node000008" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="441,205,611,248"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="369,179,435,198,433,203,368,184"/>
+<area shape="rect" id="Node000012" href="$d9/d36/namespacecarla.html#aca0bf2b2b37178b5e39c9bdbb5fadeb6" title=" " alt="" coords="464,272,589,299"/>
+<area shape="poly" id="edge14_Node000006_Node000012" title=" " alt="" coords="354,180,372,191,387,209,396,226,404,243,420,258,450,272,448,277,416,262,400,246,391,229,383,212,368,195,351,184"/>
+<area shape="rect" id="Node000009" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="694,176,822,219"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="611,213,679,205,680,210,612,219"/>
+<area shape="rect" id="Node000011" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="682,243,834,269"/>
+<area shape="poly" id="edge12_Node000008_Node000011" title=" " alt="" coords="612,235,668,242,667,247,611,240"/>
+<area shape="rect" id="Node000010" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="882,176,1038,219"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="822,195,867,195,867,200,822,200"/>
+<area shape="poly" id="edge15_Node000012_Node000005" title=" " alt="" coords="589,297,635,308,677,319,676,324,634,313,587,302"/>
+<area shape="poly" id="edge18_Node000013_Node000002" title=" " alt="" coords="351,202,368,191,383,175,391,158,400,141,416,125,425,119,428,124,420,129,404,144,396,161,388,178,372,195,354,207"/>
+<area shape="poly" id="edge21_Node000013_Node000004" title=" " alt="" coords="311,247,372,323,420,375,455,390,453,395,416,380,368,326,307,250"/>
+<area shape="poly" id="edge19_Node000013_Node000007" title=" " alt="" coords="368,202,433,183,435,189,369,207"/>
+<area shape="poly" id="edge20_Node000013_Node000008" title=" " alt="" coords="370,224,426,224,426,229,370,229"/>
+<area shape="poly" id="edge22_Node000013_Node000012" title=" " alt="" coords="371,245,419,257,451,265,450,271,417,263,370,250"/>
+<area shape="rect" id="Node000014" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a90f08c22df7ff985404f5ed89199391c" title=" " alt="" coords="418,323,634,365"/>
+<area shape="poly" id="edge17_Node000013_Node000014" title=" " alt="" coords="321,246,366,278,419,308,433,314,431,319,417,313,363,282,318,251"/>
+</map>

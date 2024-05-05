@@ -1,0 +1,26 @@
+<map id="carla::client::World::GetTrafficLightsInJunction" name="carla::client::World::GetTrafficLightsInJunction">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,183,115"/>
+<area shape="rect" id="Node000002" href="$dd/dc6/classcarla_1_1road_1_1Junction.html#a06e69c28cc3dfc106f906dbb7a75140f" title=" " alt="" coords="268,5,406,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,69,253,47,254,52,175,74"/>
+<area shape="rect" id="Node000003" href="$db/d1f/classcarla_1_1client_1_1World.html#a90f244a1df3efaa63331813736a199a6" title="Return the map that describes this world." alt="" coords="272,72,402,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,91,257,91,257,96,183,96"/>
+<area shape="rect" id="Node000008" href="$db/d1f/classcarla_1_1client_1_1World.html#ae95977f3a764f0d7e669e84630565447" title=" " alt="" coords="231,153,443,196"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="161,113,258,146,256,151,159,118"/>
+<area shape="rect" id="Node000004" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="695,87,866,129"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="402,93,681,102,680,107,402,98"/>
+<area shape="rect" id="Node000005" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="926,57,1053,100"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="866,93,911,87,912,92,867,99"/>
+<area shape="rect" id="Node000007" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="914,124,1065,151"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="867,117,899,122,899,127,866,123"/>
+<area shape="rect" id="Node000006" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="1113,57,1269,100"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1053,76,1098,76,1098,81,1053,81"/>
+<area shape="rect" id="Node000009" href="$db/d1f/classcarla_1_1client_1_1World.html#a04a22f65ea5ccd3e93b833503dda6d65" title="Return a list with all the actors currently present in the world." alt="" coords="504,116,634,159"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="443,155,489,147,490,153,444,160"/>
+<area shape="rect" id="Node000010" href="$dc/d5c/classcarla_1_1client_1_1TrafficSign.html#a4da25f7dd11cdf6c92401145cb50ffba" title=" " alt="" coords="491,183,647,225"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="444,185,476,190,476,195,443,191"/>
+<area shape="rect" id="Node000012" href="$de/d93/classcarla_1_1StringUtil.html#a42f81d32011bf4575fa71e593596b1f3" title="Match str with the Unix shell&#45;style wildcard_pattern." alt="" coords="510,249,628,292"/>
+<area shape="poly" id="edge12_Node000008_Node000012" title=" " alt="" coords="391,194,503,241,501,246,389,199"/>
+<area shape="poly" id="edge9_Node000009_Node000004" title=" " alt="" coords="634,126,680,119,681,125,635,131"/>
+<area shape="rect" id="Node000011" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="697,183,864,225"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="648,201,682,201,682,207,648,207"/>
+</map>

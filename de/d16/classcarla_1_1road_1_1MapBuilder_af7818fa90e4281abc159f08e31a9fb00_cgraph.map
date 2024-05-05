@@ -1,0 +1,13 @@
+<map id="carla::road::MapBuilder::GetEdgeLanePointer" name="carla::road::MapBuilder::GetEdgeLanePointer">
+<area shape="rect" id="Node000001" title="Return the pointer to a lane object." alt="" coords="5,139,161,181"/>
+<area shape="rect" id="Node000002" href="$da/d3b/classcarla_1_1road_1_1MapData.html#acc4bd7e8be09ba14390e504be5216d3f" title=" " alt="" coords="219,5,361,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,136,151,97,207,58,216,53,219,57,210,62,154,102,109,140"/>
+<area shape="rect" id="Node000003" href="$dd/de6/classcarla_1_1road_1_1Road.html#ae4e3c1ad71021067f9a444b98f78b335" title="Get the end section (from road coordinates s) given a lane id." alt="" coords="226,72,354,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,136,211,116,213,121,152,141"/>
+<area shape="rect" id="Node000004" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a44408c7b07c60926a0bd77731ee7b723" title=" " alt="" coords="209,139,371,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="161,157,194,157,194,163,161,163"/>
+<area shape="rect" id="Node000005" href="$da/d3b/classcarla_1_1road_1_1MapData.html#a7b4838408fa475389a01b2d451b662e7" title=" " alt="" coords="219,205,361,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="152,179,209,198,207,203,150,184"/>
+<area shape="rect" id="Node000006" href="$dd/de6/classcarla_1_1road_1_1Road.html#a6c90082d65eb8e2fbb8d9db51136563a" title="Get the start section (from road coordinates s) given a lane id." alt="" coords="226,272,354,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="109,180,154,218,210,258,219,263,216,267,207,262,151,223,105,184"/>
+</map>

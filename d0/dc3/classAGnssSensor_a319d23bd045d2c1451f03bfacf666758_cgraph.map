@@ -1,0 +1,39 @@
+<map id="AGnssSensor::PostPhysTick" name="AGnssSensor::PostPhysTick">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,264,197,291"/>
+<area shape="poly" id="edge12_Node000001_Node000001" title=" " alt="" coords="58,265,50,255,56,245,73,239,101,237,134,240,149,248,147,253,132,246,101,243,74,245,59,250,56,255,62,262"/>
+<area shape="rect" id="Node000002" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html#a2edd9e9111f8f91b47791baec38c5829" title=" " alt="" coords="265,5,449,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,263,122,223,151,167,191,109,216,81,243,58,250,53,253,57,246,62,220,85,196,112,155,170,127,225,110,265"/>
+<area shape="rect" id="Node000003" href="$d3/d01/classASensor.html#a8fa217c0d68d5c774510d5e941ae0ade" title="Return the FDataStream associated with this sensor." alt="" coords="272,72,442,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="108,262,127,230,157,188,197,145,243,108,257,101,259,106,246,113,200,149,162,192,132,233,112,265"/>
+<area shape="rect" id="Node000004" href="$d8/d78/classcarla_1_1ros2_1_1ROS2.html#a2cec6f14ee2b8e025b585575508d77f1" title=" " alt="" coords="290,123,424,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="117,261,171,219,243,175,275,162,277,167,246,180,174,224,120,266"/>
+<area shape="rect" id="Node000005" href="$d7/d1e/classUCarlaStatics.html#a8137f56360aa59de44591fce99608dc4" title=" " alt="" coords="263,189,451,232"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="155,261,258,234,259,239,156,266"/>
+<area shape="rect" id="Node000008" href="$d2/d4b/classURandomEngine.html#a794f6be8c1517dba34b61f2b753cb4d3" title=" " alt="" coords="263,256,451,299"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="197,275,248,275,248,280,197,280"/>
+<area shape="rect" id="Node000009" href="$d4/d9c/classFDataStreamTmpl.html#a8350f93ef64dc8931d1c9b9de49ac09e" title=" " alt="" coords="245,323,469,349"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="162,289,245,308,281,316,280,322,244,313,161,294"/>
+<area shape="rect" id="Node000010" href="$d3/d01/classASensor.html#a66fce49debf0145d15f810fd78775e9d" title="Return the token that allows subscribing to this sensor&#39;s stream." alt="" coords="289,373,425,400"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="123,289,176,324,246,359,276,369,274,374,244,364,174,328,120,293"/>
+<area shape="rect" id="Node000011" href="$d9/d4b/classALargeMapManager.html#adc28142d65c3bdb83f5a6a6db9deee81" title=" " alt="" coords="262,424,452,467"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="115,289,167,347,205,381,246,410,256,415,254,420,243,414,201,385,164,351,111,293"/>
+<area shape="rect" id="Node000013" href="$d3/df4/classcarla_1_1geom_1_1GeoLocation.html#a51aadebcf64689d1729e8b20e461485b" title="Transform the given location to a GeoLocation using this as geo&#45;reference." alt="" coords="272,491,442,533"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="110,290,128,327,158,378,197,431,221,455,246,477,260,485,257,489,243,481,217,459,193,434,153,380,124,330,106,292"/>
+<area shape="rect" id="Node000006" href="$d7/d1e/classUCarlaStatics.html#acf94832c60579b6d161b66447719efbc" title=" " alt="" coords="518,168,715,195"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="451,197,503,192,503,197,451,203"/>
+<area shape="rect" id="Node000007" href="$db/de5/classACarlaGameModeBase.html#a6a66e9a979a5dfbdb292f8eb3f89149c" title=" " alt="" coords="538,219,695,261"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="451,219,523,227,523,232,451,224"/>
+<area shape="rect" id="Node000012" href="$de/d7a/structFDVector.html#afcef01413fad4ebae06ee468bee88a9c" title=" " alt="" coords="545,432,689,459"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="452,443,529,443,529,448,452,448"/>
+<area shape="rect" id="Node000014" href="$dc/dda/namespacecarla_1_1geom.html#ab563ac51c2d53544481217df7e8e6a35" title="Adds meters dx/dy to given lat/lon and returns new lat/lon." alt="" coords="517,499,716,525"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="442,509,502,509,502,515,442,515"/>
+<area shape="rect" id="Node000015" href="$dc/dda/namespacecarla_1_1geom.html#a4d327b593c8f26a8e7c03f13816366e6" title="Converts lat/lon/scale to mx/my (mx/my in meters if correct scale is given)." alt="" coords="764,448,966,475"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="685,495,782,476,783,481,686,501"/>
+<area shape="rect" id="Node000017" href="$dc/dda/namespacecarla_1_1geom.html#a3c277daefc89cfd431359716d8190551" title="Convert latitude to scale, which is needed by mercator transformations." alt="" coords="784,499,946,525"/>
+<area shape="poly" id="edge17_Node000014_Node000017" title=" " alt="" coords="717,509,769,509,769,515,717,515"/>
+<area shape="rect" id="Node000018" href="$dc/dda/namespacecarla_1_1geom.html#a812320ece05307ebf6e8ec577cbbc05f" title="Converts mx/my/scale to lat/lon (mx/my in meters if correct scale is given)." alt="" coords="764,549,966,576"/>
+<area shape="poly" id="edge19_Node000014_Node000018" title=" " alt="" coords="686,523,783,543,782,548,685,529"/>
+<area shape="rect" id="Node000016" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="1014,465,1148,508"/>
+<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="966,471,999,474,999,480,966,476"/>
+<area shape="poly" id="edge18_Node000017_Node000016" title=" " alt="" coords="946,500,999,494,999,499,947,505"/>
+</map>

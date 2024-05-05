@@ -1,0 +1,33 @@
+<map id="carla::client::Map::CookInMemoryMap" name="carla::client::Map::CookInMemoryMap">
+<area shape="rect" id="Node000001" title="Cooks InMemoryMap used by the traffic manager." alt="" coords="5,255,147,297"/>
+<area shape="rect" id="Node000002" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#a4863f21fabc688a516b77e78cc8df5bb" title=" " alt="" coords="195,255,344,297"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,273,180,273,180,279,147,279"/>
+<area shape="rect" id="Node000003" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#ae3741c5462f13434f40a3459ae6f58d4" title=" " alt="" coords="396,97,543,140"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="296,252,428,147,431,151,300,256"/>
+<area shape="rect" id="Node000008" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#a7217fb548cea753e9040417ec7327e36" title="This method constructs the local map with a resolution of sampling_resolution." alt="" coords="392,379,547,421"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="307,296,423,369,420,373,304,300"/>
+<area shape="rect" id="Node000004" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#adf7b3b090e975a8430f12d05cfe29d7c" title=" " alt="" coords="607,5,807,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="512,94,594,58,614,51,615,56,596,62,515,99"/>
+<area shape="rect" id="Node000005" href="$d9/d36/namespacecarla.html#a7673dfc76e17f5856b798de6d0384b56" title=" " alt="" coords="653,72,761,99"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="544,106,638,92,639,98,544,111"/>
+<area shape="rect" id="Node000007" href="$df/d1a/classcarla_1_1traffic__manager_1_1CachedSimpleWaypoint.html#a8dfb1dd47c4ee5a5a18a68ff9eae7d12" title=" " alt="" coords="623,123,791,181"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="544,126,609,136,608,141,544,132"/>
+<area shape="rect" id="Node000006" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="898,64,1031,107"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="761,83,883,83,883,88,761,88"/>
+<area shape="rect" id="Node000009" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#a3e468ba555815640c939fc4177fc1ca1" title="This method is used to find and place lane change links." alt="" coords="597,205,817,264"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="486,377,531,326,561,298,594,274,602,269,605,273,597,278,565,302,535,330,490,380"/>
+<area shape="rect" id="Node000011" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#a48007e7aa2ad8ec38845255703f5fdec" title=" " alt="" coords="597,312,817,355"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="547,376,614,357,615,362,549,381"/>
+<area shape="rect" id="Node000012" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#a63c19485bf29b92fdf0c4bd5dbcd266d" title="Computes the segment id of a given waypoint." alt="" coords="606,379,808,421"/>
+<area shape="poly" id="edge12_Node000008_Node000012" title=" " alt="" coords="548,397,591,397,591,403,548,403"/>
+<area shape="rect" id="Node000013" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#ab88c2b88f37910624630ca076f7803af" title=" " alt="" coords="602,469,812,512"/>
+<area shape="poly" id="edge13_Node000008_Node000013" title=" " alt="" coords="529,419,637,461,635,466,527,424"/>
+<area shape="rect" id="Node000014" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#a00c5115b7475716c54f4a5443be65044" title=" " alt="" coords="595,536,819,579"/>
+<area shape="poly" id="edge15_Node000008_Node000014" title=" " alt="" coords="489,420,534,471,564,498,597,522,606,527,604,532,594,526,561,502,530,475,485,423"/>
+<area shape="rect" id="Node000015" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#a28d753b850c90268246911a785dc72db" title=" " alt="" coords="597,603,817,645"/>
+<area shape="poly" id="edge16_Node000008_Node000015" title=" " alt="" coords="482,421,498,457,523,503,556,549,597,589,603,593,600,597,594,593,552,553,518,506,493,460,477,423"/>
+<area shape="rect" id="Node000010" href="$da/d07/classcarla_1_1traffic__manager_1_1InMemoryMap.html#ac803a9af9504a69b695244881581279a" title="This method returns the closest waypoint to a given location on the map." alt="" coords="867,213,1062,256"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="817,232,852,232,852,237,817,237"/>
+<area shape="poly" id="edge11_Node000011_Node000011" title=" " alt="" coords="662,312,660,302,668,293,683,287,707,285,734,288,749,295,747,300,732,293,707,291,685,293,671,297,665,303,667,311"/>
+<area shape="poly" id="edge14_Node000013_Node000013" title=" " alt="" coords="662,469,660,459,668,450,683,445,707,443,734,445,749,452,747,457,732,450,707,448,685,450,671,455,665,461,667,468"/>
+</map>

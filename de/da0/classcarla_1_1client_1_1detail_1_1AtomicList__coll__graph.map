@@ -1,0 +1,15 @@
+<map id="carla::client::detail::AtomicList&lt; T &gt;" name="carla::client::detail::AtomicList&lt; T &gt;">
+<area shape="rect" id="Node000001" title="Holds an atomic pointer to a list." alt="" coords="129,293,256,336"/>
+<area shape="rect" id="Node000002" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="Inherit (privately) to suppress copy/move construction and assignment." alt="" coords="5,195,140,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,229,171,291,167,295,96,233"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="164,195,221,221"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,236,195,293,190,293,190,236"/>
+<area shape="rect" id="Node000004" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html" title=" " alt="" coords="245,187,401,229"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,241,220,295,217,291,284,237"/>
+<area shape="rect" id="Node000005" href="$de/d07/classstd_1_1shared__ptr_3_01const_01ListT_01_4.html" title=" " alt="" coords="174,96,344,123"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="278,134,312,185,307,188,273,137"/>
+<area shape="rect" id="Node000006" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html" title="A very simple atomic shared ptr with release&#45;acquire memory order." alt="" coords="368,96,556,123"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="433,134,354,188,351,184,430,129"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="405,5,519,32"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="465,47,465,95,459,95,459,47"/>
+</map>

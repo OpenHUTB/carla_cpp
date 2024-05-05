@@ -1,0 +1,40 @@
+<map id="AOpenDriveGenerator::BeginPlay" name="AOpenDriveGenerator::BeginPlay">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,187,152,229"/>
+<area shape="rect" id="Node000002" href="$d1/db0/classAOpenDriveGenerator.html#ac2724dde02c2a8ea7b25f11107f734a7" title=" " alt="" coords="203,187,350,229"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,205,188,205,188,211,152,211"/>
+<area shape="rect" id="Node000013" href="$d1/d1b/classUOpenDrive.html#a6970e61734505fd6ee9f58041fe49dc0" title="Return the OpenDrive XML associated to MapName, or empty if the file is not found." alt="" coords="200,56,353,83"/>
+<area shape="poly" id="edge18_Node000001_Node000013" title=" " alt="" coords="109,184,242,89,245,94,112,188"/>
+<area shape="rect" id="Node000016" href="$d1/db0/classAOpenDriveGenerator.html#a052d772feb975aa904bc6825f50379b7" title="Set the OpenDRIVE information as string and generates the queryable map structure." alt="" coords="203,253,350,296"/>
+<area shape="poly" id="edge22_Node000001_Node000016" title=" " alt="" coords="145,227,198,246,197,251,143,232"/>
+<area shape="rect" id="Node000003" href="$d1/db0/classAOpenDriveGenerator.html#a390a0a0d121c673c46da71a992a1da7b" title="Generates pole meshes based on the OpenDRIVE information." alt="" coords="407,220,553,263"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="350,217,393,224,392,230,349,223"/>
+<area shape="rect" id="Node000007" href="$d1/db0/classAOpenDriveGenerator.html#a694d4a1aa944fdb39620d8c06ddb11b5" title="Generates the road and sidewalk mesh based on the OpenDRIVE information." alt="" coords="407,325,553,368"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="333,228,354,239,405,276,448,313,445,317,402,280,352,244,331,232"/>
+<area shape="rect" id="Node000012" href="$d1/db0/classAOpenDriveGenerator.html#aee04fefe736484cf24f7df698cb8dfd3" title="Generates spawn points along the road." alt="" coords="401,153,559,196"/>
+<area shape="poly" id="edge14_Node000002_Node000012" title=" " alt="" coords="349,193,386,187,387,193,350,199"/>
+<area shape="rect" id="Node000004" href="$d1/db0/classAOpenDriveGenerator.html#aee26074d7f6778838ad645d7eeb93b76" title="Checks if the OpenDrive has been loaded and it&#39;s valid." alt="" coords="653,216,799,259"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="554,237,638,236,638,241,554,243"/>
+<area shape="rect" id="Node000005" href="$d7/d1e/classUCarlaStatics.html#acf94832c60579b6d161b66447719efbc" title=" " alt="" coords="893,140,1090,167"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="795,213,932,169,934,174,797,218"/>
+<area shape="rect" id="Node000006" href="$db/de5/classACarlaGameModeBase.html#ae2c2de515bd6ad674844fde59cbfbf3d" title=" " alt="" coords="913,216,1070,259"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="800,235,898,235,898,240,800,240"/>
+<area shape="poly" id="edge11_Node000007_Node000004" title=" " alt="" coords="516,323,606,275,639,262,641,267,608,280,518,327"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="553,325,607,312,676,304,731,303,783,296,812,286,843,269,859,254,867,238,876,220,891,202,914,185,939,171,942,176,917,189,894,206,880,223,872,240,863,257,846,273,814,291,785,301,732,308,676,309,608,317,554,330"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="554,346,690,340,768,330,844,312,897,291,945,264,947,269,900,295,845,317,769,335,691,345,554,351"/>
+<area shape="rect" id="Node000008" href="$d7/d1e/classUCarlaStatics.html#a35e7cb760a58848081a618e7fa8201e2" title=" " alt="" coords="619,384,833,411"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="554,359,644,378,643,383,553,364"/>
+<area shape="rect" id="Node000009" href="$da/d55/classUCarlaGameInstance.html#aa5f3f582b18797589eb1cfbc0b71bec1" title=" " alt="" coords="607,435,845,477"/>
+<area shape="poly" id="edge10_Node000007_Node000009" title=" " alt="" coords="514,366,558,394,608,420,625,427,623,432,606,425,555,399,511,371"/>
+<area shape="rect" id="Node000010" href="$d9/d36/namespacecarla.html#aca0bf2b2b37178b5e39c9bdbb5fadeb6" title=" " alt="" coords="663,501,789,528"/>
+<area shape="poly" id="edge12_Node000007_Node000010" title=" " alt="" coords="496,367,541,428,572,460,609,487,650,503,648,508,606,492,569,464,537,431,492,370"/>
+<area shape="rect" id="Node000011" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="925,493,1058,536"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="789,512,910,512,910,517,789,517"/>
+<area shape="poly" id="edge17_Node000012_Node000004" title=" " alt="" coords="560,192,639,213,638,218,559,197"/>
+<area shape="poly" id="edge15_Node000012_Node000005" title=" " alt="" coords="560,162,607,157,748,151,878,150,878,155,748,157,608,163,560,167"/>
+<area shape="poly" id="edge16_Node000012_Node000006" title=" " alt="" coords="560,175,694,184,845,201,899,212,898,217,844,207,693,189,560,180"/>
+<area shape="poly" id="edge21_Node000013_Node000005" title=" " alt="" coords="321,53,418,29,481,17,550,8,624,3,699,5,774,14,846,34,884,52,919,77,971,127,968,131,915,81,881,57,844,39,773,20,698,10,624,9,551,13,482,22,419,34,323,58"/>
+<area shape="rect" id="Node000014" href="$db/de5/classACarlaGameModeBase.html#a623a6e5b3163f78232dfb114b1524833" title=" " alt="" coords="402,48,559,91"/>
+<area shape="poly" id="edge19_Node000013_Node000014" title=" " alt="" coords="353,67,386,67,386,72,353,72"/>
+<area shape="rect" id="Node000015" href="$db/de5/classACarlaGameModeBase.html#a9ced4d2a49bb02fcb2937d03b4ea267f" title=" " alt="" coords="647,48,805,91"/>
+<area shape="poly" id="edge20_Node000014_Node000015" title=" " alt="" coords="559,67,632,67,632,72,559,72"/>
+</map>

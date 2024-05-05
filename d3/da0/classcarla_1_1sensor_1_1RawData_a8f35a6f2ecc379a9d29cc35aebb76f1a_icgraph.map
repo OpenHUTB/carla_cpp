@@ -1,0 +1,17 @@
+<map id="carla::sensor::RawData::GetHeader" name="carla::sensor::RawData::GetHeader">
+<area shape="rect" id="Node000001" title=" " alt="" coords="820,105,976,148"/>
+<area shape="rect" id="Node000002" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#a05811048140e7bef5312fe59f5aa734c" title="Frame count when the data was generated." alt="" coords="615,5,772,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="844,100,770,62,746,51,748,46,773,58,846,96"/>
+<area shape="rect" id="Node000003" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#ac21d598f8e97d06b37084cf369df83c7" title="Sensor&#39;s transform when the data was generated." alt="" coords="615,72,772,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="804,114,771,109,772,103,805,109"/>
+<area shape="rect" id="Node000004" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#adc7be4d18ab65e9462b6e8d385c143a9" title="Type&#45;id of the sensor that generated the data." alt="" coords="615,139,772,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="805,144,772,150,771,145,804,139"/>
+<area shape="rect" id="Node000008" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#aac13e510ffbaa5917391f618d6b4811d" title="Timestamp when the data was generated." alt="" coords="615,205,772,248"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="846,158,773,196,748,207,746,202,770,191,844,153"/>
+<area shape="rect" id="Node000005" href="$d3/d81/classcarla_1_1sensor_1_1CompositeSerializer.html#ac3830f23f11eb475290d6dfb00b4ebf1" title="Deserializes a Buffer by calling the &quot;Deserialize&quot; function of the serializer that generated the Buff..." alt="" coords="401,139,567,181"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="601,163,568,163,568,157,601,157"/>
+<area shape="rect" id="Node000006" href="$d5/d46/classcarla_1_1sensor_1_1Deserializer.html#a718d97708b670faeba94b6cd4bd0a350" title=" " alt="" coords="181,139,353,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="386,163,354,163,354,157,386,157"/>
+<area shape="rect" id="Node000007" href="$d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#afa2c9d4a111adf6575e39980cfc4b8c3" title=" " alt="" coords="5,139,133,181"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="166,163,133,163,133,157,166,157"/>
+</map>

@@ -1,0 +1,24 @@
+<map id="carla::sensor::data::SemanticLidarData::GetChannelCount" name="carla::sensor::data::SemanticLidarData::GetChannelCount">
+<area shape="rect" id="Node000001" title=" " alt="" coords="926,72,1065,131"/>
+<area shape="rect" id="Node000002" href="$dd/da3/classcarla_1_1sensor_1_1data_1_1LidarData.html#a8b3186d7962d7b4acb620d20f774f70a" title=" " alt="" coords="704,5,878,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="911,73,851,51,852,46,912,68"/>
+<area shape="rect" id="Node000004" href="$d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a23bc8131f054d14ec065d6df84c7c121" title=" " alt="" coords="721,155,861,213"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="913,137,862,158,860,153,911,133"/>
+<area shape="rect" id="Node000009" href="$d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a0a138b447dea31ffa9256b2d2314d5f4" title=" " alt="" coords="720,72,862,131"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="911,104,862,104,862,99,911,99"/>
+<area shape="rect" id="Node000003" href="$d5/de4/classARayCastLidar.html#ae73bcd2ee46691bd0df561b33d0d17ba" title="This method uses all the saved FHitResults, compute the RawDetections and then send it to the LidarDa..." alt="" coords="464,43,655,85"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="690,46,656,51,655,46,689,40"/>
+<area shape="rect" id="Node000005" href="$d8/d15/classARayCastSemanticLidar.html#a1ea2612be9cab1e5f6fedeb6ffc7c5f6" title="This method uses all the saved FHitResults, compute the RawDetections and then send it to the LidarDa..." alt="" coords="462,117,656,160"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="706,170,656,160,657,155,707,165"/>
+<area shape="rect" id="Node000006" href="$d8/d15/classARayCastSemanticLidar.html#a2ce1c9dce8ad65372bc7f4e2a19e0c28" title="Updates LidarMeasurement with the points read in DeltaTime." alt="" coords="251,117,414,160"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="447,141,414,141,414,136,447,136"/>
+<area shape="poly" id="edge10_Node000006_Node000006" title=" " alt="" coords="370,105,356,98,332,96,311,98,298,103,293,109,294,116,289,117,288,107,295,98,310,93,332,91,358,93,372,100"/>
+<area shape="rect" id="Node000007" href="$d5/de4/classARayCastLidar.html#abfd04fd0fb58051afae805f0b94f5923" title=" " alt="" coords="5,84,203,111"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="235,124,181,114,182,109,236,119"/>
+<area shape="rect" id="Node000008" href="$d8/d15/classARayCastSemanticLidar.html#a74775c31724f8cf3467765ae3583be5b" title=" " alt="" coords="22,159,186,201"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="236,159,186,168,186,163,235,153"/>
+<area shape="poly" id="edge7_Node000007_Node000007" title=" " alt="" coords="144,72,131,65,104,63,80,65,67,69,64,75,70,82,66,85,59,75,63,65,79,59,104,57,133,60,147,68"/>
+<area shape="poly" id="edge9_Node000008_Node000008" title=" " alt="" coords="142,146,128,140,104,137,82,139,69,144,64,150,66,158,61,159,59,149,66,140,81,134,104,132,130,135,144,142"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="706,90,655,82,656,77,707,85"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="706,118,657,126,656,120,705,112"/>
+</map>

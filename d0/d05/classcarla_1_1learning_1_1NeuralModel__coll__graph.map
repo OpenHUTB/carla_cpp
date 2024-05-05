@@ -1,0 +1,24 @@
+<map id="carla::learning::NeuralModel" name="carla::learning::NeuralModel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="848,161,1031,188"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="571,95,753,137"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="768,136,874,158,872,163,767,141"/>
+<area shape="rect" id="Node000003" href="$dd/dd6/structcarla_1_1learning_1_1Inputs.html" title=" " alt="" coords="590,161,735,188"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="750,172,848,172,848,177,750,177"/>
+<area shape="rect" id="Node000004" href="$db/d80/structcarla_1_1learning_1_1WheelInput.html" title=" " alt="" coords="294,161,470,188"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="485,172,589,172,589,177,485,177"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="38,77,76,104"/>
+<area shape="poly" id="edge7_Node000003_Node000005" title=" " alt="" coords="91,85,192,77,327,73,395,74,458,79,510,88,549,103,559,114,562,126,565,137,573,147,591,158,589,163,569,151,560,139,557,127,554,117,545,108,509,93,457,84,395,79,327,78,193,82,91,90"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="91,95,265,135,341,158,340,163,264,140,90,100"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="34,265,80,292"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="94,277,260,273,367,264,474,245,562,217,632,186,634,191,564,222,476,251,368,269,260,279,94,282"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="93,269,132,261,199,252,228,247,264,236,287,223,354,186,356,191,290,228,266,241,229,252,200,257,133,267,94,274"/>
+<area shape="rect" id="Node000009" href="$de/dec/structcarla_1_1learning_1_1WheelOutput.html" title=" " alt="" coords="289,381,475,408"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="70,305,94,352,112,374,134,391,181,408,232,414,281,412,325,406,326,411,282,418,232,420,180,414,131,396,108,378,89,355,65,307"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="359,5,405,32"/>
+<area shape="poly" id="edge8_Node000003_Node000007" title=" " alt="" coords="420,13,451,14,485,20,519,31,549,51,558,64,562,76,562,101,561,125,565,136,573,147,591,160,588,164,569,151,560,139,556,126,557,101,557,77,554,66,545,55,517,36,484,25,450,20,419,19"/>
+<area shape="rect" id="Node000008" href="$d4/d43/structcarla_1_1learning_1_1Outputs.html" title=" " alt="" coords="584,288,740,315"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="705,279,907,186,909,191,708,284"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="489,375,546,359,596,337,638,313,640,318,598,341,548,364,490,380"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="5,428,109,455"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="124,444,192,445,264,437,311,424,352,406,354,411,313,429,265,443,192,450,124,450"/>
+</map>

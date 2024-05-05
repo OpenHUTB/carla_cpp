@@ -1,0 +1,21 @@
+<map id="carla::nav::VehicleCollisionInfo" name="carla::nav::VehicleCollisionInfo">
+<area shape="rect" id="Node000001" title="struct to send info about vehicles to the crowd" alt="" coords="86,407,283,433"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,316,73,343"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,348,165,404,162,408,71,353"/>
+<area shape="rect" id="Node000003" href="$de/da4/classcarla_1_1geom_1_1Transform.html" title=" " alt="" coords="295,316,450,343"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="333,352,212,408,210,404,331,347"/>
+<area shape="rect" id="Node000004" href="$de/d23/classcarla_1_1geom_1_1Location.html" title=" " alt="" coords="179,225,326,252"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="257,266,261,279,268,290,285,304,304,313,302,318,282,308,264,294,256,281,252,267"/>
+<area shape="rect" id="Node000008" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html" title=" " alt="" coords="97,316,272,343"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="203,262,188,277,183,296,184,315,179,316,178,296,184,275,199,258"/>
+<area shape="rect" id="Node000005" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html" title=" " alt="" coords="177,139,328,165"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="255,180,255,225,250,225,250,180"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="196,174,159,195,142,209,129,227,125,238,125,250,134,274,152,296,170,314,167,318,148,300,130,277,120,251,120,237,125,224,138,206,155,191,194,169"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="303,5,348,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="314,46,262,140,257,137,309,44"/>
+<area shape="rect" id="Node000007" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html" title=" " alt="" coords="349,225,494,252"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="339,45,419,224,414,226,335,47"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="410,266,382,317,377,314,405,264"/>
+<area shape="poly" id="edge11_Node000008_Node000007" title=" " alt="" coords="378,261,341,278,316,294,246,318,244,313,314,290,339,274,376,256"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="187,358,187,406,182,406,182,358"/>
+</map>

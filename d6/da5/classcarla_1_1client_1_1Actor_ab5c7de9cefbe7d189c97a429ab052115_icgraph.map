@@ -1,0 +1,20 @@
+<map id="carla::client::Actor::GetTransform" name="carla::client::Actor::GetTransform">
+<area shape="rect" id="Node000001" title="Return the current transform of the actor." alt="" coords="706,105,834,148"/>
+<area shape="rect" id="Node000002" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aa459f0697881ce1bf6ffa1f7c998910f" title="Create the RSS world model." alt="" coords="233,5,376,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="727,99,694,79,657,63,584,44,509,33,438,28,376,27,377,22,438,23,510,28,585,39,659,57,697,74,730,94"/>
+<area shape="rect" id="Node000004" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a076f17bcb321e9536ca59ee06bfab858" title="calculate the speed from the actor" alt="" coords="488,72,631,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="692,117,631,107,632,102,692,112"/>
+<area shape="rect" id="Node000007" href="$df/def/classcarla_1_1client_1_1TrafficLight.html#ae658ff882df9b877a9730c879c028ba9" title=" " alt="" coords="480,139,638,181"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="692,142,639,150,638,145,692,136"/>
+<area shape="rect" id="Node000008" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#afe634e278e1245d60e7e77d457657e2e" title=" " alt="" coords="460,205,658,248"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="726,159,659,196,632,207,630,202,657,191,723,154"/>
+<area shape="rect" id="Node000003" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7ddb47aaeb4d941c95e5b2fce91186b7" title="main function to trigger the RSS check at a certain point in time" alt="" coords="5,39,149,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="219,42,150,52,149,47,218,37"/>
+<area shape="rect" id="Node000005" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aaaf0a0f73759f525137e227af98f5074" title="calculate ego vehicle dynamics on the route" alt="" coords="197,72,412,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="472,96,412,96,412,91,472,91"/>
+<area shape="rect" id="Node000006" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65ed15e5c2d160f84d6ae5872f8cf878" title="default constructor with default internal default actor constellation callback" alt="" coords="233,139,376,181"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="474,118,377,144,376,139,472,113"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="182,78,149,73,150,68,183,73"/>
+<area shape="rect" id="Node000009" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a8c7f3e09bcf07520a2af441a7de06092" title="the acutal sensor tick callback function" alt="" coords="224,205,385,248"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="445,229,385,229,385,224,445,224"/>
+</map>

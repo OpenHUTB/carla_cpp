@@ -1,0 +1,110 @@
+<map id="FCarlaEngine::OnPostTick" name="FCarlaEngine::OnPostTick">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,1832,181,1859"/>
+<area shape="rect" id="Node000002" href="$da/d9b/classFWorldObserver.html#ad866b204499b7d2252661e39bcff1811" title="Send a message to every connected client with the info about the given Episode." alt="" coords="231,1123,436,1149"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,1831,320,1163,325,1164,101,1833"/>
+<area shape="rect" id="Node000035" href="$de/db4/classFFrameData.html#af566d45c0a7cd17a7bf5350808c2c8f5" title=" " alt="" coords="268,1689,399,1716"/>
+<area shape="poly" id="edge7_Node000001_Node000035" title=" " alt="" coords="104,1829,154,1779,189,1750,227,1726,253,1715,255,1720,230,1730,192,1754,158,1783,108,1833"/>
+<area shape="rect" id="Node000053" href="$dc/d49/classFCarlaEngine.html#aec396a55c54866b5795f57c53179b327" title=" " alt="" coords="248,1740,419,1783"/>
+<area shape="poly" id="edge25_Node000001_Node000053" title=" " alt="" coords="129,1829,228,1792,248,1785,249,1790,230,1797,130,1834"/>
+<area shape="rect" id="Node000054" href="$dc/d84/classUCarlaEpisode.html#a0f30c981f6ef8b51f3755e6c6d3c8bfd" title=" " alt="" coords="233,1807,434,1833"/>
+<area shape="poly" id="edge26_Node000001_Node000054" title=" " alt="" coords="181,1833,218,1829,218,1835,181,1839"/>
+<area shape="rect" id="Node000055" href="$de/db4/classFFrameData.html#a13396099d7e1c32df563893f7d0b35be" title=" " alt="" coords="240,363,427,389"/>
+<area shape="poly" id="edge27_Node000001_Node000055" title=" " alt="" coords="93,1831,103,1683,128,1416,168,1084,195,910,226,739,249,641,275,545,320,403,325,404,280,547,254,643,231,741,200,911,174,1084,133,1417,109,1684,98,1832"/>
+<area shape="rect" id="Node000110" href="$dc/d84/classUCarlaEpisode.html#acd8f127e6956d2625c5d4d579e4d8635" title=" " alt="" coords="239,1857,428,1884"/>
+<area shape="poly" id="edge44_Node000001_Node000110" title=" " alt="" coords="181,1852,225,1857,224,1862,181,1857"/>
+<area shape="rect" id="Node000111" href="$dc/d84/classUCarlaEpisode.html#ace331f1d8a5d65e3b0dd7d4a72cdc1c7" title=" " alt="" coords="245,1908,422,1951"/>
+<area shape="poly" id="edge45_Node000001_Node000111" title=" " alt="" coords="130,1857,230,1893,249,1900,248,1905,228,1899,129,1862"/>
+<area shape="rect" id="Node000112" href="$db/df0/classUCarlaLightSubsystem.html#ab2ad8afab94443de2a75348a8684cd41" title=" " alt="" coords="256,1975,411,2017"/>
+<area shape="poly" id="edge46_Node000001_Node000112" title=" " alt="" coords="109,1857,159,1907,193,1936,230,1960,244,1967,242,1972,227,1965,190,1940,155,1911,105,1861"/>
+<area shape="rect" id="Node000113" href="$d1/de4/classFSensorManager.html#a9a064bd436faebfb1ba0cf2316632cbe" title=" " alt="" coords="229,2041,438,2068"/>
+<area shape="poly" id="edge47_Node000001_Node000113" title=" " alt="" coords="103,1858,120,1892,147,1939,184,1987,206,2008,230,2027,239,2033,237,2037,227,2032,203,2012,180,1990,143,1942,115,1895,98,1860"/>
+<area shape="rect" id="Node000114" href="$dc/d49/classFCarlaEngine.html#a32a445711601028d6a98ab037901294a" title=" " alt="" coords="232,2092,435,2135"/>
+<area shape="poly" id="edge48_Node000001_Node000114" title=" " alt="" coords="101,1858,116,1901,142,1960,180,2023,204,2053,230,2078,236,2082,232,2086,227,2082,200,2056,176,2027,137,1963,111,1903,96,1860"/>
+<area shape="rect" id="Node000115" href="$dd/db9/classACarlaRecorder.html#a1074f19dfe5b16a9e10b24ef35b26abc" title=" " alt="" coords="253,776,414,803"/>
+<area shape="poly" id="edge49_Node000001_Node000115" title=" " alt="" coords="94,1831,136,1551,176,1334,226,1110,276,942,319,816,324,818,281,944,231,1111,182,1335,142,1552,99,1832"/>
+<area shape="rect" id="Node000312" href="$de/db4/classFFrameData.html#a2dcc2eba9b975813bef54b3bb464220e" title=" " alt="" coords="267,2159,400,2185"/>
+<area shape="poly" id="edge58_Node000001_Node000312" title=" " alt="" coords="99,1859,109,1913,132,1990,149,2032,171,2074,198,2112,230,2145,255,2159,252,2163,227,2149,194,2115,167,2076,145,2035,127,1992,104,1914,94,1860"/>
+<area shape="rect" id="Node000003" href="$d9/de7/WorldObserver_8cpp.html#a55e677eb5bd393082eef8383920b2fde" title=" " alt="" coords="513,997,684,1024"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="350,1120,407,1077,445,1054,485,1034,505,1026,507,1031,487,1038,448,1058,410,1082,353,1124"/>
+<area shape="rect" id="Node000032" href="$dc/d84/classUCarlaEpisode.html#a773152c8a02ce0d36133abfd81df4045" title="Game seconds since the start of this episode." alt="" coords="507,1048,690,1091"/>
+<area shape="poly" id="edge4_Node000002_Node000032" title=" " alt="" coords="389,1119,496,1092,498,1097,390,1125"/>
+<area shape="rect" id="Node000033" href="$d4/d9c/classFDataStreamTmpl.html#a48912b942909afe80419e68702e4e7da" title=" " alt="" coords="506,1115,692,1157"/>
+<area shape="poly" id="edge5_Node000002_Node000033" title=" " alt="" coords="437,1133,491,1133,491,1139,437,1139"/>
+<area shape="rect" id="Node000034" href="$d4/d9c/classFDataStreamTmpl.html#adee3ac7dede93789a35ecc2a3313c888" title="Create a FAsyncDataStream object." alt="" coords="497,1181,700,1224"/>
+<area shape="poly" id="edge6_Node000002_Node000034" title=" " alt="" coords="390,1147,498,1175,496,1180,389,1153"/>
+<area shape="rect" id="Node000027" href="$dc/d84/classUCarlaEpisode.html#acd82b87ea8d4e7d815922614e6e245ef" title=" " alt="" coords="759,645,975,672"/>
+<area shape="poly" id="edge3_Node000003_Node000027" title=" " alt="" coords="683,998,710,983,743,951,772,913,796,872,816,829,844,748,858,686,864,687,849,750,821,831,801,874,777,916,747,954,713,987,686,1002"/>
+<area shape="rect" id="Node000036" href="$da/d46/classCarlaRecorderAnimBikers.html#a2b929431292f3d4a91a1cff2a7a09af1" title=" " alt="" coords="514,1915,684,1957"/>
+<area shape="poly" id="edge8_Node000035_Node000036" title=" " alt="" coords="400,1705,421,1713,440,1726,457,1748,465,1770,465,1815,466,1859,473,1880,488,1901,502,1912,499,1916,484,1905,468,1882,460,1859,460,1815,459,1771,452,1751,436,1730,419,1718,399,1710"/>
+<area shape="rect" id="Node000037" href="$da/dd4/classCarlaRecorderAnimVehicles.html#a6d2b08c2e39e51d0214fd2000c98baad" title=" " alt="" coords="507,1981,690,2024"/>
+<area shape="poly" id="edge9_Node000035_Node000037" title=" " alt="" coords="401,1704,422,1713,440,1726,461,1757,470,1787,470,1818,465,1848,461,1878,461,1908,468,1938,488,1968,496,1975,492,1979,484,1971,463,1940,455,1909,456,1878,460,1848,464,1818,464,1788,456,1759,436,1730,419,1717,399,1709"/>
+<area shape="rect" id="Node000038" href="$d6/dd8/classCarlaRecorderAnimVehicleWheels.html#a5e12d228f157227e6fbff8bdace1163a" title=" " alt="" coords="511,2048,687,2091"/>
+<area shape="poly" id="edge10_Node000035_Node000038" title=" " alt="" coords="400,1704,422,1712,440,1726,455,1746,466,1765,475,1804,473,1843,466,1882,458,1920,456,1958,464,1996,474,2015,488,2034,499,2044,496,2048,484,2038,469,2018,459,1998,451,1958,453,1919,460,1881,468,1842,470,1805,461,1767,451,1749,436,1730,419,1717,398,1709"/>
+<area shape="rect" id="Node000039" href="$de/d09/classCarlaRecorderAnimWalkers.html#a7bd5f67da9b9f9f4fde9cb94db76a096" title=" " alt="" coords="508,2115,689,2157"/>
+<area shape="poly" id="edge11_Node000035_Node000039" title=" " alt="" coords="401,1704,422,1712,440,1726,458,1750,470,1774,477,1798,480,1821,476,1868,466,1915,455,1961,451,2008,453,2031,460,2054,471,2077,488,2101,498,2110,494,2114,484,2104,466,2080,455,2056,448,2032,446,2008,450,1960,461,1914,471,1867,475,1821,472,1799,465,1776,454,1753,436,1730,419,1717,399,1709"/>
+<area shape="rect" id="Node000040" href="$d1/d74/classCarlaRecorderActorBoundingBoxes.html#ab833d799fcb233c3d1f1587a1d90ce7d" title=" " alt="" coords="505,2181,693,2224"/>
+<area shape="poly" id="edge12_Node000035_Node000040" title=" " alt="" coords="400,1704,422,1712,440,1726,461,1754,475,1782,483,1810,485,1838,480,1893,466,1948,452,2003,446,2057,448,2085,456,2112,468,2140,488,2168,495,2174,491,2178,484,2171,464,2142,451,2114,443,2085,441,2057,447,2002,461,1947,474,1892,480,1838,477,1811,470,1784,456,1757,436,1730,419,1717,398,1709"/>
+<area shape="rect" id="Node000041" href="$d8/d4c/classCarlaRecorderActorTriggerVolumes.html#a0016eaad01ffc6bff1876eae9824df44" title=" " alt="" coords="512,2248,685,2291"/>
+<area shape="poly" id="edge13_Node000035_Node000041" title=" " alt="" coords="400,1703,422,1712,440,1726,452,1746,461,1770,469,1831,469,1903,465,1981,461,2059,461,2132,469,2192,477,2216,488,2234,501,2246,498,2250,484,2238,472,2218,464,2193,456,2132,456,2059,460,1981,464,1903,464,1831,456,1771,448,1748,436,1730,419,1716,398,1708"/>
+<area shape="rect" id="Node000042" href="$da/d6e/classCarlaRecorderCollisions.html#aad347a76afefaea2883a6b7c382e1165" title=" " alt="" coords="519,2315,678,2357"/>
+<area shape="poly" id="edge14_Node000035_Node000042" title=" " alt="" coords="400,1703,422,1712,440,1726,454,1748,463,1776,472,1845,471,1927,466,2015,460,2103,459,2184,467,2253,475,2280,488,2301,507,2317,504,2321,484,2304,471,2282,462,2254,453,2185,455,2103,460,2014,466,1926,467,1845,458,1777,449,1751,436,1730,419,1716,398,1708"/>
+<area shape="rect" id="Node000043" href="$dd/dd4/classCarlaRecorderEventsAdd.html#a2bb750cb0efc0ffdf2907c5bda890890" title=" " alt="" coords="516,1248,681,1291"/>
+<area shape="poly" id="edge15_Node000035_Node000043" title=" " alt="" coords="333,1689,342,1620,365,1516,384,1458,410,1401,443,1348,484,1301,501,1288,504,1293,488,1305,447,1351,415,1404,389,1460,370,1517,347,1621,338,1689"/>
+<area shape="rect" id="Node000044" href="$dd/d8e/classCarlaRecorderEventsDel.html#a45a160f3eb963ef7e547cae7033ee671" title=" " alt="" coords="518,1315,679,1357"/>
+<area shape="poly" id="edge16_Node000035_Node000044" title=" " alt="" coords="334,1688,346,1630,373,1543,393,1496,418,1449,448,1405,484,1367,503,1355,506,1359,488,1371,452,1409,422,1452,398,1498,378,1545,352,1631,339,1689"/>
+<area shape="rect" id="Node000045" href="$dd/d35/classCarlaRecorderEventsParent.html#a1307b5ad46d6596d286424ea7b4ef907" title=" " alt="" coords="509,1381,689,1424"/>
+<area shape="poly" id="edge17_Node000035_Node000045" title=" " alt="" coords="336,1688,352,1640,381,1572,425,1498,453,1464,484,1434,494,1427,497,1432,488,1438,457,1467,429,1501,386,1574,357,1642,341,1690"/>
+<area shape="rect" id="Node000046" href="$dc/ded/classCarlaRecorderActorsKinematics.html#a6e947c42e6304c288dad09147318d2ec" title=" " alt="" coords="496,1448,702,1491"/>
+<area shape="poly" id="edge18_Node000035_Node000046" title=" " alt="" coords="339,1688,358,1651,390,1600,433,1547,457,1522,484,1500,493,1495,495,1500,488,1505,461,1526,437,1550,395,1603,363,1653,343,1690"/>
+<area shape="rect" id="Node000047" href="$d0/d93/structCarlaRecorderLightScenes.html#ab1431e10aa89c16c716f10125f620c34" title=" " alt="" coords="511,1515,686,1557"/>
+<area shape="poly" id="edge19_Node000035_Node000047" title=" " alt="" coords="345,1687,401,1629,441,1596,485,1567,496,1561,498,1566,487,1572,444,1600,405,1633,348,1691"/>
+<area shape="rect" id="Node000048" href="$df/d7b/structCarlaRecorderLightVehicles.html#aa315ad3c63f66527d5dc883902ed4ce4" title=" " alt="" coords="508,1581,689,1624"/>
+<area shape="poly" id="edge20_Node000035_Node000048" title=" " alt="" coords="362,1686,485,1634,505,1627,507,1632,487,1638,364,1691"/>
+<area shape="rect" id="Node000049" href="$dd/dd1/classCarlaRecorderPhysicsControls.html#a5d033a2797548f2d713f7390c80e3ff0" title=" " alt="" coords="500,1648,698,1691"/>
+<area shape="poly" id="edge21_Node000035_Node000049" title=" " alt="" coords="399,1692,484,1681,485,1686,400,1697"/>
+<area shape="rect" id="Node000050" href="$da/df1/classCarlaRecorderPositions.html#a48992efd36d90d87e3edff6fd88ce623" title=" " alt="" coords="520,1715,677,1757"/>
+<area shape="poly" id="edge22_Node000035_Node000050" title=" " alt="" coords="400,1708,506,1722,505,1727,399,1714"/>
+<area shape="rect" id="Node000051" href="$d2/da3/classCarlaRecorderStates.html#a379f7d3ecb31f16e4b921784b2e37e88" title=" " alt="" coords="528,1781,669,1824"/>
+<area shape="poly" id="edge23_Node000035_Node000051" title=" " alt="" coords="400,1711,439,1726,454,1736,464,1747,473,1757,487,1767,515,1780,513,1784,485,1772,470,1761,460,1750,451,1740,437,1730,398,1716"/>
+<area shape="rect" id="Node000052" href="$dc/d3e/classCarlaRecorderTrafficLightTimes.html#a5641376de2c47ce4838e3527d0353909" title=" " alt="" coords="516,1848,681,1891"/>
+<area shape="poly" id="edge24_Node000035_Node000052" title=" " alt="" coords="400,1707,421,1714,440,1726,452,1739,459,1753,465,1781,470,1808,476,1821,488,1834,504,1846,501,1850,484,1838,472,1824,465,1810,460,1782,454,1755,448,1742,436,1730,419,1719,399,1712"/>
+<area shape="poly" id="edge41_Node000055_Node000027" title=" " alt="" coords="346,388,400,457,441,497,487,530,518,545,546,554,596,561,648,565,712,580,776,607,831,635,828,640,773,612,710,585,647,570,596,566,545,559,516,550,485,534,437,501,396,460,342,391"/>
+<area shape="rect" id="Node000056" href="$de/db4/classFFrameData.html#aa414c2187b709351471a6f62f80df8c8" title=" " alt="" coords="489,107,709,133"/>
+<area shape="poly" id="edge28_Node000055_Node000056" title=" " alt="" coords="337,361,354,319,385,259,428,196,455,168,484,143,493,138,496,142,488,148,458,172,432,200,389,262,359,321,342,363"/>
+<area shape="rect" id="Node000061" href="$de/db4/classFFrameData.html#a800126fd645b244128944bab5af9acfc" title=" " alt="" coords="498,157,700,184"/>
+<area shape="poly" id="edge29_Node000055_Node000061" title=" " alt="" coords="340,361,360,326,392,281,434,234,485,194,496,188,498,192,487,198,438,237,397,284,365,329,344,363"/>
+<area shape="rect" id="Node000064" href="$de/db4/classFFrameData.html#a2f68334284edda61421273395e9bb325" title=" " alt="" coords="494,275,703,301"/>
+<area shape="poly" id="edge30_Node000055_Node000064" title=" " alt="" coords="363,360,419,335,485,311,513,303,515,308,487,316,421,340,365,365"/>
+<area shape="rect" id="Node000010" href="$dc/dde/classFCarlaActor.html#a31ab39eb2088af21d9c85c47424f56b4" title=" " alt="" coords="778,245,956,272"/>
+<area shape="poly" id="edge42_Node000055_Node000010" title=" " alt="" coords="334,361,347,308,374,232,394,192,418,154,449,120,485,92,544,65,570,59,597,58,650,68,713,92,759,121,799,158,831,197,853,231,849,234,826,201,795,162,756,125,710,97,649,73,596,63,571,64,545,70,487,97,452,124,423,157,398,195,379,234,352,309,340,363"/>
+<area shape="rect" id="Node000080" href="$de/db4/classFFrameData.html#af1cb1a1751af8708255aeecfa9918045" title=" " alt="" coords="506,325,692,368"/>
+<area shape="poly" id="edge33_Node000055_Node000080" title=" " alt="" coords="427,363,490,356,491,361,427,368"/>
+<area shape="rect" id="Node000086" href="$de/db4/classFFrameData.html#a5f5d2e536798d5e505749766112d6342" title=" " alt="" coords="486,392,711,419"/>
+<area shape="poly" id="edge34_Node000055_Node000086" title=" " alt="" coords="427,384,471,389,471,394,427,389"/>
+<area shape="rect" id="Node000091" href="$de/db4/classFFrameData.html#a6647f23cd64de2599ed5e31d2c04235b" title=" " alt="" coords="501,443,696,469"/>
+<area shape="poly" id="edge35_Node000055_Node000091" title=" " alt="" coords="370,387,487,428,516,436,515,441,485,433,368,392"/>
+<area shape="rect" id="Node000095" href="$de/db4/classFFrameData.html#a4b746433bc48707916f2dd4424fa5adb" title=" " alt="" coords="493,208,704,251"/>
+<area shape="poly" id="edge36_Node000055_Node000095" title=" " alt="" coords="348,360,405,312,444,284,485,260,498,254,501,259,487,265,446,289,408,316,351,364"/>
+<area shape="rect" id="Node000102" href="$de/db4/classFFrameData.html#a8846d260f27ad4e042108b1ad8048ddf" title=" " alt="" coords="487,493,710,520"/>
+<area shape="poly" id="edge38_Node000055_Node000102" title=" " alt="" coords="352,388,409,433,447,458,487,479,506,486,504,491,485,484,444,462,406,437,349,392"/>
+<area shape="rect" id="Node000106" href="$df/db5/classFActorRegistry.html#a508c75b527763f59e6a2345553e9fd69" title=" " alt="" coords="525,595,672,621"/>
+<area shape="poly" id="edge39_Node000055_Node000106" title=" " alt="" coords="343,388,363,425,394,476,436,529,461,553,487,574,513,587,510,592,485,578,457,557,432,532,390,479,358,428,339,391"/>
+<area shape="rect" id="Node000107" href="$df/db5/classFActorRegistry.html#ae7f8a317634734568769d6369349dd51" title=" " alt="" coords="530,645,667,672"/>
+<area shape="poly" id="edge40_Node000055_Node000107" title=" " alt="" coords="341,389,357,436,386,502,429,572,456,604,487,631,517,646,514,651,485,636,453,608,425,575,381,505,352,438,336,391"/>
+<area shape="rect" id="Node000108" href="$de/db4/classFFrameData.html#ac87d62116370ca1902d6b5f89aae2694" title=" " alt="" coords="497,5,701,32"/>
+<area shape="poly" id="edge43_Node000055_Node000108" title=" " alt="" coords="334,362,347,304,374,220,394,174,418,128,448,86,484,49,503,36,506,41,488,53,452,89,423,131,398,176,379,222,352,305,340,363"/>
+<area shape="poly" id="edge31_Node000064_Node000027" title=" " alt="" coords="695,300,713,311,749,347,779,388,804,432,823,478,851,564,864,630,859,631,845,566,818,480,799,434,774,391,745,350,710,315,692,304"/>
+<area shape="poly" id="edge32_Node000064_Node000010" title=" " alt="" coords="704,274,763,267,764,273,704,279"/>
+<area shape="poly" id="edge37_Node000095_Node000010" title=" " alt="" coords="705,238,763,245,763,250,705,244"/>
+<area shape="poly" id="edge55_Node000115_Node000027" title=" " alt="" coords="414,780,554,761,633,745,711,725,772,702,826,677,829,682,774,707,712,731,634,751,555,766,415,785"/>
+<area shape="poly" id="edge56_Node000115_Node000010" title=" " alt="" coords="367,773,485,731,520,723,552,720,607,721,632,719,657,714,682,702,710,682,751,638,784,586,810,530,829,473,843,417,853,366,862,287,867,287,858,366,849,418,835,475,815,532,789,589,755,641,713,686,685,707,658,719,632,724,607,726,552,726,521,728,487,736,369,778"/>
+<area shape="poly" id="edge53_Node000115_Node000106" title=" " alt="" coords="342,774,396,705,437,665,485,631,510,620,512,625,487,636,441,669,400,709,346,777"/>
+<area shape="poly" id="edge54_Node000115_Node000107" title=" " alt="" coords="350,773,408,732,485,688,522,674,524,679,487,693,411,736,353,778"/>
+<area shape="poly" id="edge57_Node000115_Node000115" title=" " alt="" coords="293,777,286,767,291,757,307,751,333,749,364,752,378,760,376,764,362,757,333,755,308,757,294,761,291,767,297,774"/>
+<area shape="rect" id="Node000116" href="$dd/db9/classACarlaRecorder.html#a46c58a35bd666e47104a6f5e40493690" title=" " alt="" coords="512,864,686,907"/>
+<area shape="poly" id="edge50_Node000115_Node000116" title=" " alt="" coords="367,801,487,850,508,857,506,862,485,854,365,806"/>
+<area shape="rect" id="Node000119" href="$dd/db9/classACarlaRecorder.html#a910b8341bc60fc21e9b98b9c82798afc" title=" " alt="" coords="512,931,686,973"/>
+<area shape="poly" id="edge51_Node000115_Node000119" title=" " alt="" coords="349,801,405,857,445,889,487,916,499,922,497,927,485,921,441,893,402,861,345,805"/>
+<area shape="rect" id="Node000121" href="$dd/db9/classACarlaRecorder.html#aed2e519fae4c16f4cb96cd0a73e9ee66" title=" " alt="" coords="512,797,686,840"/>
+<area shape="poly" id="edge52_Node000115_Node000121" title=" " alt="" coords="415,796,497,805,496,810,414,801"/>
+</map>

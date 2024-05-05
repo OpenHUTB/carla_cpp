@@ -1,0 +1,45 @@
+<map id="ASensor" name="ASensor">
+<area shape="rect" id="Node000001" title="Base class for sensors." alt="" coords="115,259,186,285"/>
+<area shape="rect" id="Node000003" href="$d8/de9/classACollisionSensor.html" title="A sensor to register collisions." alt="" coords="263,5,383,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,244,158,200,172,146,195,90,212,65,232,42,261,25,264,30,236,46,216,68,200,93,177,147,163,201,156,245"/>
+<area shape="rect" id="Node000004" href="$de/d1f/classACustomV2XSensor.html" title=" " alt="" coords="254,56,393,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,243,164,209,179,168,202,128,232,93,252,80,255,85,236,97,206,131,184,170,169,210,160,245"/>
+<area shape="rect" id="Node000005" href="$d0/dc3/classAGnssSensor.html" title="Gnss sensor representation The actual position calculation is done one server side." alt="" coords="272,107,374,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="160,244,188,192,208,166,232,143,251,133,271,125,272,130,253,137,236,147,212,169,192,195,165,246"/>
+<area shape="rect" id="Node000006" href="$d5/de0/classAInertialMeasurementUnit.html" title=" " alt="" coords="238,157,408,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="171,246,198,218,233,194,259,182,261,187,235,198,202,223,174,249"/>
+<area shape="rect" id="Node000007" href="$d0/d57/classALaneInvasionSensor.html" title="LaneInvasion sensor representation The actual position calculation is done one client side." alt="" coords="251,208,396,235"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="200,254,233,244,272,233,274,238,235,249,201,259"/>
+<area shape="rect" id="Node000008" href="$d3/d93/classAObstacleDetectionSensor.html" title="A sensor to register collisions." alt="" coords="234,259,412,285"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="201,269,234,269,234,275,201,275"/>
+<area shape="rect" id="Node000009" href="$d9/d27/classARadar.html" title="A ray&#45;cast based Radar sensor." alt="" coords="291,309,355,336"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="201,285,235,295,291,311,290,316,233,300,200,290"/>
+<area shape="rect" id="Node000010" href="$d8/d15/classARayCastSemanticLidar.html" title="A ray&#45;cast based Lidar sensor." alt="" coords="242,360,405,387"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="174,295,202,321,235,346,261,357,259,362,233,350,198,326,171,298"/>
+<area shape="rect" id="Node000012" href="$d3/ded/classARssSensor.html" title="RSS sensor representation The actual calculation is done one client side." alt="" coords="276,411,370,437"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="165,298,192,349,212,375,236,397,255,407,277,415,275,420,253,412,232,401,208,378,188,352,160,300"/>
+<area shape="rect" id="Node000013" href="$d4/d60/classASceneCaptureSensor.html" title="Base class for sensors using a USceneCaptureComponent2D for rendering the scene." alt="" coords="247,461,400,488"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="160,299,169,334,184,374,206,413,236,447,253,458,250,463,232,451,202,416,179,376,164,335,155,301"/>
+<area shape="rect" id="Node000022" href="$d3/dd4/classAV2XSensor.html" title=" " alt="" coords="276,512,370,539"/>
+<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="156,299,163,343,177,397,200,451,216,476,236,498,255,510,277,518,275,523,252,515,232,502,212,479,195,454,172,398,158,344,151,300"/>
+<area shape="rect" id="Node000002" href="$d1/da4/classAActor.html" title=" " alt="" coords="5,259,67,285"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,269,114,269,114,275,82,275"/>
+<area shape="rect" id="Node000011" href="$d5/de4/classARayCastLidar.html" title="A ray&#45;cast based Lidar sensor." alt="" coords="481,360,589,387"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="420,371,481,371,481,376,420,376"/>
+<area shape="rect" id="Node000014" href="$da/dd3/classAShaderBasedSensor.html" title="A sensor that produces data by applying post&#45;process materials (shaders) to a scene capture image." alt="" coords="460,461,610,488"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="414,472,460,472,460,477,414,477"/>
+<area shape="rect" id="Node000015" href="$d2/daf/classADVSCamera.html" title="Sensor that produce Dynamic Vision Events." alt="" coords="712,309,814,336"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="558,448,608,397,630,369,640,357,656,346,683,334,711,326,712,332,685,339,659,350,644,361,634,372,612,400,562,452"/>
+<area shape="rect" id="Node000016" href="$db/d36/classADepthCamera.html" title="Sensor that produces &quot;depth&quot; images." alt="" coords="708,360,818,387"/>
+<area shape="poly" id="edge15_Node000014_Node000016" title=" " alt="" coords="564,450,607,422,657,396,707,380,708,386,659,401,609,427,567,455"/>
+<area shape="rect" id="Node000017" href="$d9/d25/classAInstanceSegmentationCamera.html" title="Sensor that produces &quot;Instance segmentation&quot; images." alt="" coords="661,411,865,437"/>
+<area shape="poly" id="edge16_Node000014_Node000017" title=" " alt="" coords="612,455,699,435,700,441,613,460"/>
+<area shape="rect" id="Node000018" href="$d3/d49/classANormalsCamera.html" title="Sensor that produces &quot;normals&quot; images." alt="" coords="701,461,825,488"/>
+<area shape="poly" id="edge17_Node000014_Node000018" title=" " alt="" coords="624,472,701,472,701,477,624,477"/>
+<area shape="rect" id="Node000019" href="$d0/d61/classAOpticalFlowCamera.html" title="Sensor that produces &quot;optical flow&quot; images." alt="" coords="691,512,835,539"/>
+<area shape="poly" id="edge18_Node000014_Node000019" title=" " alt="" coords="613,489,700,509,699,514,612,494"/>
+<area shape="rect" id="Node000020" href="$d8/d68/classASceneCaptureCamera.html" title="A sensor that captures images from the scene." alt="" coords="684,563,842,589"/>
+<area shape="poly" id="edge19_Node000014_Node000020" title=" " alt="" coords="567,494,609,522,659,548,692,560,690,565,657,553,607,527,564,499"/>
+<area shape="rect" id="Node000021" href="$d6/dad/classASemanticSegmentationCamera.html" title="Sensor that produces &quot;semantic segmentation&quot; images." alt="" coords="658,613,868,640"/>
+<area shape="poly" id="edge20_Node000014_Node000021" title=" " alt="" coords="556,498,599,550,627,577,659,599,684,610,682,615,656,604,624,581,595,554,552,502"/>
+</map>

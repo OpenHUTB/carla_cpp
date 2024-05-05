@@ -1,0 +1,15 @@
+<map id="carla::client::Client::LoadWorldIfDifferent" name="carla::client::Client::LoadWorldIfDifferent">
+<area shape="rect" id="Node000001" title="Return (and load) a new world (map) only when the requested map is different from the current one." alt="" coords="5,68,150,111"/>
+<area shape="rect" id="Node000002" href="$db/d1f/classcarla_1_1client_1_1World.html#a90f244a1df3efaa63331813736a199a6" title="Return the map that describes this world." alt="" coords="198,35,328,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,74,183,68,184,73,150,79"/>
+<area shape="rect" id="Node000007" href="$d6/d8c/classcarla_1_1client_1_1Client.html#a5dab21b8e474241e722426de6cfe830b" title="Return an instance of the world currently active in the simulator." alt="" coords="198,101,328,144"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="150,100,184,106,183,111,150,105"/>
+<area shape="rect" id="Node000003" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="376,35,546,77"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="328,53,361,53,361,59,328,59"/>
+<area shape="rect" id="Node000004" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="606,5,734,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="547,41,591,35,592,40,547,47"/>
+<area shape="rect" id="Node000006" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="594,72,746,99"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="547,65,580,70,579,75,547,71"/>
+<area shape="rect" id="Node000005" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="794,5,950,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="734,24,779,24,779,29,734,29"/>
+</map>

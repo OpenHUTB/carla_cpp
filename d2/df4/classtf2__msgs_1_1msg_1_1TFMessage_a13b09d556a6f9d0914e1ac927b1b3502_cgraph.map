@@ -1,0 +1,31 @@
+<map id="tf2_msgs::msg::TFMessage::getCdrSerializedSize" name="tf2_msgs::msg::TFMessage::getCdrSerializedSize">
+<area shape="rect" id="Node000001" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="5,309,189,352"/>
+<area shape="rect" id="Node000002" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#a4222cca48a2ef9582346b5644584e5b9" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="255,264,402,323"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,313,239,305,240,310,189,319"/>
+<area shape="rect" id="Node000015" href="$d2/df4/classtf2__msgs_1_1msg_1_1TFMessage.html#a7735c866b9ec842adbf688b23656c14b" title="This function copies the value in member transforms." alt="" coords="237,347,420,389"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="189,343,222,348,221,353,188,348"/>
+<area shape="rect" id="Node000003" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#aaabafeeb5083f4525db1dc6d37e6c065" title="This function copies the value in member child_frame_id." alt="" coords="502,89,649,148"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="352,262,402,210,433,182,467,158,487,146,490,151,469,162,436,186,406,214,356,266"/>
+<area shape="rect" id="Node000004" href="$d6/d5a/classgeometry__msgs_1_1msg_1_1Transform.html#a2c265f59d89d3b05d617dc948d9c19b9" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="468,172,683,215"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="401,261,506,218,508,223,403,266"/>
+<area shape="rect" id="Node000009" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#ae439639025ac66880a861f521fd84016" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="496,272,656,315"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="402,291,480,291,480,296,402,296"/>
+<area shape="rect" id="Node000013" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#abf590cca246791b55267967051efc7a4" title="This function copies the value in member header." alt="" coords="502,339,649,397"/>
+<area shape="poly" id="edge12_Node000002_Node000013" title=" " alt="" coords="403,313,488,339,487,344,402,318"/>
+<area shape="rect" id="Node000014" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#a79a685ff268b47b2a1a8f04b4dfc8da2" title="This function copies the value in member transform." alt="" coords="502,421,649,480"/>
+<area shape="poly" id="edge13_Node000002_Node000014" title=" " alt="" coords="404,320,422,333,438,352,446,371,454,389,470,407,490,421,487,425,466,411,450,392,441,373,434,355,418,337,401,324"/>
+<area shape="rect" id="Node000005" href="$d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html#a42b051b07b2e83df416c8ebfc76a306c" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="731,5,953,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="665,169,682,158,692,146,699,134,705,109,711,84,718,71,730,58,735,54,738,58,733,62,722,74,716,86,710,111,704,136,697,149,685,162,668,174"/>
+<area shape="rect" id="Node000006" href="$df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html#a3f4f6b078e23dd8bbd3a400a1c8a6209" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="740,72,944,115"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="655,169,682,158,706,141,730,124,744,118,746,123,733,129,709,145,685,162,657,174"/>
+<area shape="rect" id="Node000007" href="$d6/d5a/classgeometry__msgs_1_1msg_1_1Transform.html#a9a1459664ad7860be84baf60265516bc" title="This function copies the value in member rotation." alt="" coords="768,139,916,181"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="684,177,753,168,754,174,684,182"/>
+<area shape="rect" id="Node000008" href="$d6/d5a/classgeometry__msgs_1_1msg_1_1Transform.html#a6edb54feae3a094afdb701e1fd3c1fd1" title="This function copies the value in member translation." alt="" coords="765,205,919,248"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="684,204,750,213,750,218,684,209"/>
+<area shape="rect" id="Node000010" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a9bd973b4690fefb807fb231f496831d4" title="This function copies the value in member frame_id." alt="" coords="762,272,922,315"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="656,291,747,291,747,296,656,296"/>
+<area shape="rect" id="Node000011" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#abdf1cc0285c53ceeb6c4eae36acd3c0f" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="732,339,952,381"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="657,311,741,332,740,337,656,316"/>
+<area shape="rect" id="Node000012" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a2ac0c277be6d5edc09d17126767290c9" title="This function copies the value in member stamp." alt="" coords="762,405,922,448"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="658,310,685,325,701,342,710,359,718,375,733,391,749,401,747,406,730,395,713,378,705,361,697,345,682,329,655,314"/>
+</map>

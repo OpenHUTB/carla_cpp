@@ -1,0 +1,16 @@
+<map id="carla::client::Vehicle::SetAutopilot" name="carla::client::Vehicle::SetAutopilot">
+<area shape="rect" id="Node000001" title="Switch on/off this vehicle&#39;s autopilot." alt="" coords="5,72,145,115"/>
+<area shape="rect" id="Node000002" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="219,5,386,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,70,212,50,214,55,146,76"/>
+<area shape="rect" id="Node000003" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#ad51d67c1ba30bd5feeb315f11bcdd84c" title="This method registers a vehicle with the traffic manager." alt="" coords="193,72,412,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,91,178,91,178,96,145,96"/>
+<area shape="rect" id="Node000006" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a35f4d0908c91a970fbdf0f71da24366a" title="This method unregisters a vehicle from traffic manager." alt="" coords="212,139,393,197"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="143,113,199,131,197,136,142,118"/>
+<area shape="rect" id="Node000004" href="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a765537526aaa8d388508d6956b51cd9e" title=" " alt="" coords="460,109,620,152"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="413,108,445,113,445,118,412,113"/>
+<area shape="rect" id="Node000005" href="$dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#a4e6696dfe8fab9c35470583673ac0243" title="This method registers a vehicle with the traffic manager." alt="" coords="465,27,616,85"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="412,73,450,67,450,73,413,79"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="392,151,445,143,446,148,393,156"/>
+<area shape="rect" id="Node000007" href="$dc/d92/classcarla_1_1traffic__manager_1_1TrafficManagerBase.html#aed1acc65dd9ad3eaa025a678377a4851" title="This method unregisters a vehicle from traffic manager." alt="" coords="465,176,616,235"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="393,180,450,189,449,194,392,185"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="sensor_msgs::msg::PointCloud2PubSubType::getSerializedSizeProvider" name="sensor_msgs::msg::PointCloud2PubSubType::getSerializedSizeProvider">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,139,256,181"/>
+<area shape="rect" id="Node000002" href="$d8/da2/classsensor__msgs_1_1msg_1_1PointCloud2.html#aa9aef76d2156e1d9cb0b7cd2da0b3955" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="304,139,514,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,157,288,157,288,163,256,163"/>
+<area shape="rect" id="Node000003" href="$d8/da2/classsensor__msgs_1_1msg_1_1PointCloud2.html#a97b2ae36041827ed6c9bc4748099af78" title="This function copies the value in member data." alt="" coords="562,5,772,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="436,136,492,97,561,58,575,51,577,56,563,62,495,101,439,141"/>
+<area shape="rect" id="Node000004" href="$d8/da2/classsensor__msgs_1_1msg_1_1PointCloud2.html#a62f6eefd9bc96571dd68168a61d1f15c" title="This function copies the value in member fields." alt="" coords="562,72,772,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="494,135,567,116,568,122,495,141"/>
+<area shape="rect" id="Node000005" href="$d4/d87/classsensor__msgs_1_1msg_1_1PointField.html#a8dcd851ee5bc79a9d73b779f86794051" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="568,139,766,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="515,157,553,157,553,163,515,163"/>
+<area shape="rect" id="Node000007" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#ae439639025ac66880a861f521fd84016" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="587,205,747,248"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="495,179,573,200,572,205,494,185"/>
+<area shape="rect" id="Node000011" href="$d8/da2/classsensor__msgs_1_1msg_1_1PointCloud2.html#af8c432df9d705afdd47086f7dc619486" title="This function copies the value in member header." alt="" coords="562,272,772,315"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="439,179,495,219,563,258,577,264,575,269,561,262,492,223,436,184"/>
+<area shape="rect" id="Node000006" href="$d4/d87/classsensor__msgs_1_1msg_1_1PointField.html#a9af638b4180b9e3deb8cd7cf0ec2b4ee" title="This function copies the value in member name." alt="" coords="831,105,1029,148"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="767,145,816,138,816,144,767,150"/>
+<area shape="rect" id="Node000008" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a9bd973b4690fefb807fb231f496831d4" title="This function copies the value in member frame_id." alt="" coords="850,172,1010,215"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="748,214,835,203,835,208,748,219"/>
+<area shape="rect" id="Node000009" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#abdf1cc0285c53ceeb6c4eae36acd3c0f" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="820,239,1040,281"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="748,234,806,242,805,247,748,239"/>
+<area shape="rect" id="Node000010" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a2ac0c277be6d5edc09d17126767290c9" title="This function copies the value in member stamp." alt="" coords="850,305,1010,348"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="747,246,774,258,798,275,822,291,837,298,835,303,819,296,795,279,771,262,744,251"/>
+</map>

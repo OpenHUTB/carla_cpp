@@ -1,0 +1,32 @@
+<map id="UTrafficLightController" name="UTrafficLightController">
+<area shape="rect" id="Node000001" title="Maps a controller from OpenDrive." alt="" coords="808,272,955,299"/>
+<area shape="rect" id="Node000002" href="$df/def/classUObject.html" title=" " alt="" coords="477,5,546,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="560,8,611,5,670,8,731,21,759,33,786,50,811,74,832,103,848,134,860,166,876,227,882,271,877,272,870,228,855,168,843,136,827,106,807,78,782,54,757,38,729,26,669,13,611,10,560,14"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="480,56,543,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="558,64,608,65,668,72,729,89,758,102,786,118,805,134,822,154,850,197,868,239,879,271,874,272,863,241,845,199,818,157,801,138,782,122,756,106,727,94,667,78,608,71,558,69"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="95,141,134,168"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="148,150,257,147,417,153,508,161,601,175,695,196,785,224,828,246,864,269,861,274,826,250,783,229,694,201,600,181,507,167,416,158,257,153,148,155"/>
+<area shape="rect" id="Node000008" href="$dd/d12/classATrafficLightGroup.html" title="Class which implements the state changing of traffic lights." alt="" coords="448,221,575,248"/>
+<area shape="poly" id="edge12_Node000008_Node000004" title=" " alt="" coords="148,161,248,187,448,223,447,228,247,192,147,166"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="418,272,605,299"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="620,283,808,283,808,288,620,288"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="397,323,626,349"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="641,322,784,304,822,297,823,302,784,309,641,328"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="431,373,592,400"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="607,380,694,368,739,358,783,344,827,322,862,297,865,301,830,326,785,349,741,363,695,373,607,385"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="590,239,784,263,818,269,817,274,784,268,590,244"/>
+<area shape="rect" id="Node000009" href="$d1/da4/classAActor.html" title=" " alt="" coords="84,207,145,233"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="160,219,447,230,447,235,160,224"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="88,257,141,284"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="155,266,372,249,447,241,447,246,373,255,156,271"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="43,308,186,335"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="200,320,286,310,330,298,371,282,383,270,395,258,420,247,446,240,448,245,422,252,398,262,387,274,374,286,331,303,287,315,201,325"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="5,359,224,385"/>
+<area shape="poly" id="edge11_Node000008_Node000012" title=" " alt="" coords="238,381,273,378,309,370,342,357,371,338,378,329,382,320,382,300,383,279,387,268,395,258,419,243,447,234,448,239,421,247,398,262,391,271,388,280,388,301,387,321,383,332,374,342,344,362,310,375,274,383,239,386"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="92,409,137,436"/>
+<area shape="poly" id="edge13_Node000008_Node000013" title=" " alt="" coords="152,430,202,439,260,442,290,439,320,432,347,420,371,403,383,387,388,371,383,334,378,296,382,277,395,258,419,241,447,233,448,238,421,246,399,262,387,279,383,297,389,334,393,371,388,390,375,407,349,425,321,437,291,444,260,447,201,444,152,435"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="489,424,534,451"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="549,437,598,438,658,433,722,421,783,396,812,375,837,348,871,298,875,301,842,351,816,379,785,401,724,426,659,439,598,443,549,443"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="450,475,573,501"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="588,495,635,496,686,491,736,479,783,456,803,440,820,421,847,376,865,332,875,298,880,300,870,334,852,378,824,424,806,444,785,461,738,484,687,496,635,501,588,500"/>
+</map>

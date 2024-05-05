@@ -1,0 +1,24 @@
+<map id="carla::client::detail::Simulator" name="carla::client::detail::Simulator">
+<area shape="rect" id="Node000001" title="Connects and controls a CARLA Simulator." alt="" coords="572,256,699,299"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="249,5,410,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="425,37,490,59,521,75,550,95,583,133,606,177,623,220,632,255,627,256,618,222,602,180,578,136,546,99,519,79,488,63,423,42"/>
+<area shape="rect" id="Node000003" href="$df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html" title=" " alt="" coords="255,72,404,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="418,90,485,102,519,114,550,131,579,159,602,192,619,226,630,255,625,257,614,228,598,195,575,162,546,135,517,119,484,107,418,96"/>
+<area shape="rect" id="Node000004" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="Inherit (privately) to suppress copy/move construction and assignment." alt="" coords="5,140,140,167"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,146,240,146,341,155,448,176,500,192,549,214,581,233,610,253,607,258,578,237,547,218,498,197,446,181,341,160,240,152,155,151"/>
+<area shape="rect" id="Node000005" href="$dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html" title="Provides communication with the rpc and streaming servers of a CARLA simulator." alt="" coords="266,189,393,232"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="150,168,266,194,265,199,149,173"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="408,223,549,253,572,259,571,264,547,259,407,229"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="6,192,139,251"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="153,219,206,217,265,214,265,219,206,223,154,224"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="250,256,409,299"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="423,275,572,275,572,280,423,280"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="250,323,409,365"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="422,323,547,296,571,291,572,296,549,301,423,328"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="230,389,429,416"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="415,383,481,363,547,336,578,317,607,297,610,301,581,322,549,341,482,368,416,388"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="250,440,409,483"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="422,444,486,424,518,410,546,393,571,371,592,346,621,298,626,301,596,349,575,375,550,397,520,415,488,429,424,449"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="303,507,356,533"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="370,516,411,511,457,501,504,483,546,457,578,419,602,376,618,333,627,299,633,300,623,335,607,378,583,423,550,461,507,488,459,506,412,516,371,521"/>
+</map>

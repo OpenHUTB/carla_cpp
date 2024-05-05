@@ -1,0 +1,54 @@
+<map id="carla::traffic_manager::SimulationState::GetVelocity" name="carla::traffic_manager::SimulationState::GetVelocity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1890,333,2087,376"/>
+<area shape="rect" id="Node000002" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#af2212b193efb6ce0220de24c3cb327a3" title=" " alt="" coords="1651,88,1837,147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1966,322,1914,246,1879,205,1840,167,1814,149,1817,145,1844,163,1883,201,1918,243,1970,319"/>
+<area shape="rect" id="Node000003" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a7a57d649d96daccb2e2ee9780f24c4ec" title=" " alt="" coords="1388,108,1566,151"/>
+<area shape="poly" id="edge22_Node000001_Node000003" title=" " alt="" coords="1961,323,1910,265,1877,236,1841,212,1802,199,1732,183,1566,149,1567,143,1733,177,1803,194,1843,207,1880,232,1914,261,1965,320"/>
+<area shape="rect" id="Node000008" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a868ceb22e38362b0c6d01bf0d5ea36cc" title=" " alt="" coords="1646,304,1842,347"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1875,344,1842,340,1843,334,1876,338"/>
+<area shape="rect" id="Node000012" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#ac446efd585519bce8de5740158758158" title=" " alt="" coords="622,363,783,405"/>
+<area shape="poly" id="edge23_Node000001_Node000012" title=" " alt="" coords="1875,368,1690,380,1478,387,1208,387,784,387,784,381,1208,381,1478,381,1689,375,1875,362"/>
+<area shape="rect" id="Node000013" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a890933fec8a10a86d9eb67c91b21abe1" title=" " alt="" coords="1646,221,1842,280"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="1922,329,1841,294,1814,283,1817,278,1843,290,1924,325"/>
+<area shape="rect" id="Node000014" href="$d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html#aa00b9cb996fe9e14e9894cafdb9dc002" title="This controls all vehicle&#39;s interactions at non signalized junctions." alt="" coords="1646,421,1842,480"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="1920,384,1822,423,1820,418,1918,379"/>
+<area shape="rect" id="Node000016" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a60113b8270c6591384d85da7fdc12471" title=" " alt="" coords="1649,5,1839,64"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="1975,320,1957,267,1928,203,1890,136,1866,106,1840,78,1825,67,1829,62,1844,74,1870,102,1894,133,1933,200,1962,265,1980,318"/>
+<area shape="rect" id="Node000017" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#acf066b922ba5c21c6b6ee23d35731d91" title=" " alt="" coords="859,493,1041,536"/>
+<area shape="poly" id="edge24_Node000001_Node000017" title=" " alt="" coords="1966,390,1915,446,1881,474,1843,494,1775,513,1685,526,1578,533,1462,535,1229,532,1041,523,1041,518,1229,526,1462,530,1578,527,1684,520,1774,508,1841,490,1878,469,1911,442,1962,386"/>
+<area shape="rect" id="Node000018" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#aaac16328f1c46481fc16f634edaa9ea4" title=" " alt="" coords="1671,555,1817,597"/>
+<area shape="poly" id="edge26_Node000001_Node000018" title=" " alt="" coords="1970,390,1918,464,1883,503,1844,538,1812,556,1810,552,1840,534,1879,499,1914,460,1965,387"/>
+<area shape="rect" id="Node000021" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#ae8adfaa2936b29a0454ab04a44171a93" title=" " alt="" coords="1663,621,1825,664"/>
+<area shape="poly" id="edge30_Node000001_Node000021" title=" " alt="" coords="1979,391,1960,440,1931,499,1893,559,1870,587,1844,611,1826,623,1823,618,1840,607,1866,583,1888,556,1927,497,1955,438,1974,389"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1637,125,1566,128,1566,123,1636,119"/>
+<area shape="rect" id="Node000004" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="Initiates thread to run the TrafficManager sequentially." alt="" coords="392,429,567,472"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1374,141,1220,162,1127,179,1026,201,922,229,816,263,714,304,617,353,557,392,508,431,505,427,554,388,614,348,712,299,815,258,920,223,1025,196,1126,173,1219,156,1374,136"/>
+<area shape="rect" id="Node000005" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="To start the TrafficManager." alt="" coords="199,421,344,480"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="377,453,344,453,344,448,377,448"/>
+<area shape="rect" id="Node000006" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="5,380,151,439"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="184,435,151,428,152,422,185,429"/>
+<area shape="rect" id="Node000007" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="5,463,151,521"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="185,472,152,479,151,474,184,467"/>
+<area shape="rect" id="Node000009" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a45e850204e542a9c51cf202fc0bc5854" title=" " alt="" coords="1379,237,1575,296"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1631,303,1575,291,1576,286,1632,298"/>
+<area shape="rect" id="Node000010" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a383f31bbf925c84040ef66592dd6e56e" title=" " alt="" coords="1110,263,1308,321"/>
+<area shape="poly" id="edge13_Node000008_Node000010" title=" " alt="" coords="1630,325,1356,311,1309,306,1309,301,1357,305,1631,320"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1364,280,1309,285,1308,280,1364,275"/>
+<area shape="rect" id="Node000011" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#af9c0740908fbcb2f077fb513224b2b4e" title=" " alt="" coords="838,271,1062,313"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1095,295,1062,295,1062,289,1095,289"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="878,321,763,365,761,360,876,316"/>
+<area shape="poly" id="edge12_Node000012_Node000004" title=" " alt="" coords="616,413,554,431,553,426,614,407"/>
+<area shape="poly" id="edge15_Node000013_Node000009" title=" " alt="" coords="1631,260,1576,263,1575,258,1631,255"/>
+<area shape="poly" id="edge16_Node000013_Node000011" title=" " alt="" coords="1631,232,1597,228,1460,219,1353,219,1246,230,1111,253,1026,273,1025,267,1109,248,1246,225,1353,214,1460,213,1598,223,1632,227"/>
+<area shape="rect" id="Node000015" href="$d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html#a3566443b6d621479786b1906f76094d4" title=" " alt="" coords="615,429,790,472"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="1631,453,790,453,790,448,1631,448"/>
+<area shape="poly" id="edge19_Node000015_Node000004" title=" " alt="" coords="600,453,568,453,568,448,600,448"/>
+<area shape="poly" id="edge21_Node000016_Node000003" title=" " alt="" coords="1646,72,1541,110,1539,105,1645,67"/>
+<area shape="poly" id="edge25_Node000017_Node000004" title=" " alt="" coords="844,512,733,502,615,487,560,475,561,470,616,481,734,497,844,506"/>
+<area shape="rect" id="Node000019" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#ad15f10c71f3da095c15de0aab2c4462d" title=" " alt="" coords="1356,555,1598,597"/>
+<area shape="poly" id="edge27_Node000018_Node000019" title=" " alt="" coords="1656,579,1598,579,1598,573,1656,573"/>
+<area shape="rect" id="Node000020" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#a0a506446f6810014b6da12d0dcba0748" title=" " alt="" coords="1137,555,1282,597"/>
+<area shape="poly" id="edge28_Node000019_Node000020" title=" " alt="" coords="1342,579,1282,579,1282,573,1342,573"/>
+<area shape="poly" id="edge29_Node000020_Node000004" title=" " alt="" coords="1121,579,1017,575,890,565,751,545,682,531,615,513,565,495,521,475,523,470,567,490,616,508,683,526,752,540,890,560,1018,570,1122,574"/>
+<area shape="poly" id="edge31_Node000021_Node000019" title=" " alt="" coords="1648,621,1565,601,1566,595,1649,616"/>
+</map>

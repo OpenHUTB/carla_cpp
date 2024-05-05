@@ -1,0 +1,27 @@
+<map id="ARadar::PostPhysTick" name="ARadar::PostPhysTick">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,197,159,224"/>
+<area shape="poly" id="edge6_Node000001_Node000001" title=" " alt="" coords="45,198,39,189,43,179,58,173,82,171,109,173,122,181,120,185,107,179,82,176,59,178,47,183,44,188,50,195"/>
+<area shape="rect" id="Node000002" href="$d9/d27/classARadar.html#a8eb26415e270f8c940ba15ca2b35c99f" title=" " alt="" coords="214,5,383,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,195,133,130,166,92,205,58,212,53,215,58,208,62,170,96,137,134,93,198"/>
+<area shape="rect" id="Node000003" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html#a2edd9e9111f8f91b47791baec38c5829" title=" " alt="" coords="207,72,390,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="99,195,146,160,205,124,217,119,219,124,208,129,149,165,102,199"/>
+<area shape="rect" id="Node000004" href="$d3/d01/classASensor.html#a8fa217c0d68d5c774510d5e941ae0ade" title="Return the FDataStream associated with this sensor." alt="" coords="214,139,383,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,194,232,167,233,172,135,199"/>
+<area shape="rect" id="Node000005" href="$d8/d78/classcarla_1_1ros2_1_1ROS2.html#a2cec6f14ee2b8e025b585575508d77f1" title=" " alt="" coords="232,189,365,232"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="159,208,217,208,217,213,159,213"/>
+<area shape="rect" id="Node000006" href="$d3/d01/classASensor.html#a66fce49debf0145d15f810fd78775e9d" title="Return the token that allows subscribing to this sensor&#39;s stream." alt="" coords="231,256,366,283"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="135,222,233,249,232,254,133,227"/>
+<area shape="rect" id="Node000007" href="$d5/d13/classcarla_1_1sensor_1_1data_1_1RadarData.html#a3650e821d2d77b89bf8f3e6c43fce344" title="Deletes the current detections." alt="" coords="232,307,365,349"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="102,222,149,256,208,292,219,298,217,303,205,297,146,261,99,227"/>
+<area shape="rect" id="Node000008" href="$d9/d27/classARadar.html#a63bf9a00a351065e212a7cd5d3dfd9cf" title=" " alt="" coords="216,397,381,424"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="94,223,139,286,172,324,208,359,253,388,250,393,205,363,168,328,135,289,90,226"/>
+<area shape="poly" id="edge12_Node000008_Node000008" title=" " alt="" coords="262,398,255,389,260,379,274,373,298,371,325,373,339,381,336,385,324,379,298,376,276,378,263,383,261,388,266,395"/>
+<area shape="rect" id="Node000009" href="$d9/d27/classARadar.html#a333216a4a3a3948da61c65ac8be47ed8" title=" " alt="" coords="448,289,619,332"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="325,394,437,342,453,335,455,340,439,346,327,399"/>
+<area shape="rect" id="Node000010" href="$d2/d4b/classURandomEngine.html#a7619cfcce2fd1e172a4210e0c5645e8d" title=" " alt="" coords="438,356,629,399"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="381,396,423,390,424,396,381,402"/>
+<area shape="rect" id="Node000011" href="$d2/d4b/classURandomEngine.html#a80b759d343ee9888162591063d5715e1" title=" " alt="" coords="438,423,629,465"/>
+<area shape="poly" id="edge11_Node000008_Node000011" title=" " alt="" coords="381,420,424,426,423,431,381,425"/>
+<area shape="rect" id="Node000012" href="$d5/d13/classcarla_1_1sensor_1_1data_1_1RadarData.html#aeb50962ae01e24ac427a24f516d21b0c" title="Adds a new detection." alt="" coords="442,489,626,532"/>
+<area shape="poly" id="edge13_Node000008_Node000012" title=" " alt="" coords="327,422,439,475,455,481,453,486,437,480,325,427"/>
+</map>

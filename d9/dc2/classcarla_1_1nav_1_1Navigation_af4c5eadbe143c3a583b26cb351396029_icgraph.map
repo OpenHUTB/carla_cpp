@@ -1,0 +1,9 @@
+<map id="carla::nav::Navigation::AddOrUpdateVehicle" name="carla::nav::Navigation::AddOrUpdateVehicle">
+<area shape="rect" id="Node000001" title="create a new vehicle in crowd to be avoided by walkers" alt="" coords="682,13,833,56"/>
+<area shape="rect" id="Node000002" href="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#a6b7d72d6c0d11bd88a5b9fae3e230ed2" title="add/update/delete vehicles in crowd" alt="" coords="491,13,634,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="667,37,635,37,635,32,667,32"/>
+<area shape="rect" id="Node000003" href="$d1/d83/classcarla_1_1client_1_1detail_1_1WalkerNavigation.html#a109552fa675fe65e281e3ed6f3c75204" title="add/update/delete all vehicles in crowd" alt="" coords="215,5,443,64"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="476,37,443,37,443,32,476,32"/>
+<area shape="rect" id="Node000004" href="$d1/d83/classcarla_1_1client_1_1detail_1_1WalkerNavigation.html#a74b3b9c4a9c27f6ffb4f8b0fae1c3c87" title=" " alt="" coords="5,13,167,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="200,37,167,37,167,32,200,32"/>
+</map>

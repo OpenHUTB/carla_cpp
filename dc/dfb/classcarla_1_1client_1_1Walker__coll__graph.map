@@ -1,0 +1,51 @@
+<map id="carla::client::Walker" name="carla::client::Walker">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1753,404,1890,431"/>
+<area shape="rect" id="Node000002" href="$d6/da5/classcarla_1_1client_1_1Actor.html" title="Represents an actor in the simulation." alt="" coords="1576,139,1703,165"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1661,177,1813,402,1809,405,1656,180"/>
+<area shape="rect" id="Node000003" href="$da/d05/classEnableSharedFromThis.html" title=" " alt="" coords="1370,31,1527,73"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1517,78,1528,83,1618,136,1616,140,1525,88,1515,82"/>
+<area shape="rect" id="Node000004" href="$df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html" title=" " alt="" coords="1374,97,1523,140"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1538,132,1576,138,1575,144,1537,137"/>
+<area shape="rect" id="Node000005" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html" title="Internal state of an Actor." alt="" coords="1385,164,1512,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="1526,169,1575,160,1576,166,1527,174"/>
+<area shape="rect" id="Node000006" href="$d7/d55/classcarla_1_1MovableNonCopyable.html" title="Inherit (privately) to suppress copy construction and assignment." alt="" coords="1065,201,1246,228"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1261,201,1384,189,1385,194,1261,207"/>
+<area shape="rect" id="Node000007" href="$db/dfd/classcarla_1_1rpc_1_1Actor.html" title=" " alt="" coords="1099,252,1213,279"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="1227,250,1346,221,1393,205,1395,210,1347,227,1228,255"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="524,164,592,191"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="607,185,747,211,940,238,1098,257,1098,262,939,243,746,216,606,190"/>
+<area shape="rect" id="Node000009" href="$d6/d11/classcarla_1_1rpc_1_1ActorDescription.html" title=" " alt="" coords="747,92,926,119"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="606,163,781,117,782,122,607,168"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="942,104,994,118,1019,131,1041,147,1050,159,1054,171,1054,194,1054,217,1057,228,1065,238,1081,250,1099,257,1097,262,1078,254,1061,242,1052,230,1048,218,1049,194,1049,172,1045,162,1037,151,1016,135,992,123,940,109"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="531,29,585,56"/>
+<area shape="poly" id="edge22_Node000005_Node000010" title=" " alt="" coords="599,35,712,24,874,18,966,19,1061,24,1156,35,1249,53,1303,69,1325,82,1348,102,1357,115,1361,127,1364,139,1372,150,1387,161,1384,166,1368,154,1359,141,1356,129,1352,117,1344,106,1322,86,1301,74,1248,59,1155,41,1060,29,965,24,874,23,712,30,599,40"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="600,49,774,89,773,94,598,54"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="481,92,635,135"/>
+<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="650,111,723,109,746,108,746,114,723,115,650,116"/>
+<area shape="rect" id="Node000012" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html" title=" " alt="" coords="749,324,924,351"/>
+<area shape="poly" id="edge12_Node000007_Node000012" title=" " alt="" coords="937,318,1038,297,1111,277,1113,282,1040,303,938,324"/>
+<area shape="rect" id="Node000013" href="$de/d23/classcarla_1_1geom_1_1Location.html" title=" " alt="" coords="485,377,631,404"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="645,375,722,361,779,349,780,354,723,367,646,380"/>
+<area shape="rect" id="Node000014" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html" title=" " alt="" coords="131,349,282,376"/>
+<area shape="poly" id="edge16_Node000012_Node000014" title=" " alt="" coords="297,354,306,353,749,337,749,342,306,359,297,359"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="297,367,452,379,485,382,484,387,451,384,297,372"/>
+<area shape="rect" id="Node000021" href="$d7/d1b/classcarla_1_1rpc_1_1WalkerControl.html" title=" " alt="" coords="475,429,641,456"/>
+<area shape="poly" id="edge25_Node000021_Node000014" title=" " alt="" coords="252,380,307,399,380,413,475,428,474,434,379,419,305,404,251,385"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="5,349,51,376"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="66,360,130,360,130,365,66,365"/>
+<area shape="rect" id="Node000016" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html" title=" " alt="" coords="306,256,451,283"/>
+<area shape="poly" id="edge18_Node000016_Node000015" title=" " alt="" coords="43,335,56,320,73,307,131,283,192,269,252,263,306,262,306,267,253,268,193,275,133,288,76,312,60,324,47,339"/>
+<area shape="poly" id="edge26_Node000021_Node000015" title=" " alt="" coords="45,387,79,437,104,461,132,479,184,497,239,505,294,506,349,500,449,479,522,454,524,459,450,484,350,506,294,511,238,510,182,502,130,484,100,465,75,441,41,391"/>
+<area shape="poly" id="edge17_Node000012_Node000016" title=" " alt="" coords="467,274,588,288,723,308,782,321,781,326,722,313,588,293,466,280"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="777,273,896,300"/>
+<area shape="poly" id="edge19_Node000007_Node000017" title=" " alt="" coords="910,279,1098,266,1099,272,911,284"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="756,143,917,169"/>
+<area shape="poly" id="edge20_Node000007_Node000018" title=" " alt="" coords="932,163,988,178,1041,205,1049,213,1053,222,1057,230,1065,238,1099,254,1097,259,1061,242,1053,233,1049,224,1045,216,1037,209,986,183,930,168"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="1063,68,1248,111"/>
+<area shape="poly" id="edge21_Node000005_Node000019" title=" " alt="" coords="1246,113,1347,145,1391,161,1389,166,1345,151,1244,118"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="1079,135,1233,177"/>
+<area shape="poly" id="edge23_Node000005_Node000020" title=" " alt="" coords="1248,162,1385,176,1384,182,1247,168"/>
+<area shape="poly" id="edge24_Node000001_Node000021" title=" " alt="" coords="656,435,835,431,1641,431,1752,424,1752,429,1641,436,835,436,656,440"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="184,427,229,453"/>
+<area shape="poly" id="edge27_Node000021_Node000022" title=" " alt="" coords="244,439,306,441,475,441,475,447,306,447,244,444"/>
+</map>

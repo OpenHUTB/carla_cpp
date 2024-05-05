@@ -1,0 +1,51 @@
+<map id="carla::client::Landmark" name="carla::client::Landmark">
+<area shape="rect" id="Node000001" title="Class containing a reference to RoadInfoSignal." alt="" coords="1678,510,1831,536"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="783,22,836,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="850,23,922,11,1017,3,1070,4,1122,9,1175,19,1224,36,1319,86,1409,148,1491,217,1565,289,1629,359,1681,421,1746,508,1741,511,1677,425,1625,362,1561,293,1487,221,1405,152,1317,91,1222,41,1173,25,1122,14,1069,9,1018,8,923,16,850,28"/>
+<area shape="rect" id="Node000005" href="$d5/d51/classcarla_1_1road_1_1element_1_1RoadInfoSignal.html" title=" " alt="" coords="1420,568,1557,611"/>
+<area shape="poly" id="edge8_Node000005_Node000002" title=" " alt="" coords="850,31,948,34,1006,40,1064,51,1112,64,1149,77,1183,95,1225,122,1280,160,1322,193,1356,232,1388,290,1395,315,1397,348,1396,426,1397,502,1402,533,1412,555,1423,566,1419,570,1407,558,1397,534,1392,502,1391,426,1392,348,1389,316,1383,292,1352,235,1318,196,1277,164,1222,126,1181,99,1146,82,1110,69,1062,56,1005,45,948,39,850,36"/>
+<area shape="rect" id="Node000010" href="$da/da8/classcarla_1_1road_1_1Signal.html" title=" " alt="" coords="1092,287,1218,314"/>
+<area shape="poly" id="edge12_Node000010_Node000002" title=" " alt="" coords="850,45,976,88,1033,110,1065,126,1099,166,1125,211,1143,254,1153,286,1148,287,1138,255,1120,213,1095,169,1061,130,1031,115,974,93,849,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="1409,435,1568,478"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1583,477,1699,506,1697,512,1581,482"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="1411,502,1566,544"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1581,520,1677,520,1677,526,1581,526"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1571,566,1697,534,1699,539,1572,571"/>
+<area shape="rect" id="Node000006" href="$d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html" title=" " alt="" coords="1087,812,1223,855"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1238,829,1275,824,1313,815,1350,801,1384,781,1404,763,1421,742,1449,695,1468,648,1480,611,1485,612,1473,650,1454,697,1426,745,1408,766,1387,785,1352,806,1314,820,1276,830,1238,835"/>
+<area shape="rect" id="Node000007" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="Inherit (privately) to suppress copy/move construction and assignment." alt="" coords="742,912,877,939"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="876,905,1086,849,1087,854,877,910"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="780,803,839,830"/>
+<area shape="poly" id="edge28_Node000001_Node000008" title=" " alt="" coords="853,829,952,857,1016,871,1087,881,1162,886,1238,884,1313,872,1384,848,1447,816,1507,775,1562,730,1612,683,1693,596,1741,535,1745,538,1697,599,1616,687,1565,734,1510,780,1450,820,1386,853,1314,877,1238,889,1161,892,1086,886,1015,876,951,862,852,834"/>
+<area shape="poly" id="edge26_Node000005_Node000008" title=" " alt="" coords="854,810,950,798,1062,776,1157,752,1228,727,1297,696,1384,651,1454,609,1457,614,1387,656,1300,701,1230,732,1158,757,1064,782,951,803,854,815"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="854,821,924,830,1008,833,1086,833,1086,838,1008,838,924,835,854,826"/>
+<area shape="poly" id="edge15_Node000010_Node000008" title=" " alt="" coords="852,802,971,761,1027,736,1047,723,1061,711,1074,691,1081,673,1083,637,1081,599,1084,552,1119,412,1147,313,1152,315,1124,413,1090,553,1086,599,1089,637,1086,674,1079,693,1065,714,1051,727,1029,741,973,766,854,807"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="783,555,836,582"/>
+<area shape="poly" id="edge9_Node000005_Node000009" title=" " alt="" coords="851,567,1420,585,1420,590,851,572"/>
+<area shape="poly" id="edge14_Node000010_Node000009" title=" " alt="" coords="851,565,968,556,1025,546,1046,538,1061,530,1085,507,1105,479,1120,448,1131,416,1145,357,1150,314,1156,314,1150,358,1136,418,1125,450,1109,481,1089,510,1065,534,1048,543,1026,551,969,561,851,570"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="1177,323,1216,371,1271,432,1337,496,1411,554,1430,565,1428,570,1408,558,1334,500,1267,435,1212,374,1173,327"/>
+<area shape="rect" id="Node000011" href="$d7/d55/classcarla_1_1MovableNonCopyable.html" title="Inherit (privately) to suppress copy construction and assignment." alt="" coords="719,214,900,240"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="915,234,988,245,1064,262,1125,284,1123,289,1062,267,987,250,914,239"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="776,107,843,134"/>
+<area shape="poly" id="edge25_Node000005_Node000012" title=" " alt="" coords="858,112,902,109,955,110,1010,116,1064,131,1174,177,1218,200,1256,226,1290,257,1323,293,1355,338,1388,392,1398,416,1401,438,1397,477,1395,515,1399,534,1411,555,1423,566,1419,569,1407,558,1395,536,1389,516,1392,477,1395,438,1392,417,1383,395,1350,341,1319,296,1287,260,1253,230,1215,205,1172,182,1062,136,1009,122,954,115,902,114,858,117"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="858,130,925,147,964,153,997,155,1028,161,1064,178,1094,203,1119,233,1150,285,1145,288,1114,236,1090,207,1062,182,1027,166,996,160,964,158,923,152,857,135"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="735,315,884,358"/>
+<area shape="poly" id="edge16_Node000010_Node000013" title=" " alt="" coords="899,329,1063,314,1091,309,1092,315,1063,319,899,334"/>
+<area shape="rect" id="Node000014" href="$de/da4/classcarla_1_1geom_1_1Transform.html" title=" " alt="" coords="732,382,887,408"/>
+<area shape="poly" id="edge17_Node000010_Node000014" title=" " alt="" coords="901,384,980,371,1062,348,1100,331,1132,312,1135,317,1102,336,1064,353,981,376,901,389"/>
+<area shape="rect" id="Node000015" href="$de/d23/classcarla_1_1geom_1_1Location.html" title=" " alt="" coords="475,352,622,379"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="637,373,732,384,731,389,636,378"/>
+<area shape="rect" id="Node000016" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html" title=" " alt="" coords="131,348,282,375"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="297,360,475,362,475,367,297,365"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="5,387,51,414"/>
+<area shape="poly" id="edge20_Node000016_Node000017" title=" " alt="" coords="64,389,74,387,138,373,139,378,75,392,66,394"/>
+<area shape="rect" id="Node000018" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html" title=" " alt="" coords="306,419,451,446"/>
+<area shape="poly" id="edge22_Node000018_Node000017" title=" " alt="" coords="50,422,76,441,107,451,141,457,208,460,272,454,325,444,326,449,273,459,208,465,140,462,106,456,73,445,47,427"/>
+<area shape="poly" id="edge21_Node000014_Node000018" title=" " alt="" coords="466,422,732,399,732,404,466,427"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="759,163,860,190"/>
+<area shape="poly" id="edge23_Node000010_Node000019" title=" " alt="" coords="874,185,980,207,1064,231,1107,257,1141,284,1137,288,1104,261,1062,236,979,212,873,190"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="787,264,832,291"/>
+<area shape="poly" id="edge24_Node000010_Node000020" title=" " alt="" coords="847,277,1092,293,1091,299,847,283"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="1091,638,1219,680"/>
+<area shape="poly" id="edge27_Node000005_Node000021" title=" " alt="" coords="1233,648,1307,637,1385,622,1428,609,1429,614,1386,627,1308,643,1234,653"/>
+</map>

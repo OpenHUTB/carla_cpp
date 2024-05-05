@@ -1,0 +1,13 @@
+<map id="carla::sensor::Deserializer::Deserialize" name="carla::sensor::Deserializer::Deserialize">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,178,56"/>
+<area shape="rect" id="Node000002" href="$d3/d81/classcarla_1_1sensor_1_1CompositeSerializer.html#ac3830f23f11eb475290d6dfb00b4ebf1" title="Deserializes a Buffer by calling the &quot;Deserialize&quot; function of the serializer that generated the Buff..." alt="" coords="226,13,392,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,32,211,32,211,37,178,37"/>
+<area shape="rect" id="Node000003" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#adc7be4d18ab65e9462b6e8d385c143a9" title="Type&#45;id of the sensor that generated the data." alt="" coords="440,13,596,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="392,32,425,32,425,37,392,37"/>
+<area shape="rect" id="Node000004" href="$d3/da0/classcarla_1_1sensor_1_1RawData.html#a8f35a6f2ecc379a9d29cc35aebb76f1a" title=" " alt="" coords="644,13,801,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="597,32,630,32,630,37,597,37"/>
+<area shape="rect" id="Node000005" href="$dc/df4/classcarla_1_1sensor_1_1s11n_1_1SensorHeaderSerializer.html#af3ebc96297846620c976c770d4c047ea" title=" " alt="" coords="849,5,1014,64"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="801,32,833,32,833,37,801,37"/>
+<area shape="rect" id="Node000006" href="$d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf" title="Direct access to the allocated memory or nullptr if no memory is allocated." alt="" coords="1062,21,1185,48"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1014,32,1047,32,1047,37,1014,37"/>
+</map>

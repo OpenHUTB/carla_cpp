@@ -1,0 +1,15 @@
+<map id="geometry_msgs::msg::TwistWithCovariancePubSubType::getSerializedSizeProvider" name="geometry_msgs::msg::TwistWithCovariancePubSubType::getSerializedSizeProvider">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,101,210,160"/>
+<area shape="rect" id="Node000002" href="$d2/d2f/classgeometry__msgs_1_1msg_1_1TwistWithCovariance.html#ae69e0ab3d6d949df7d8ad7ea644b3361" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="258,101,408,160"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,128,243,128,243,133,210,133"/>
+<area shape="rect" id="Node000003" href="$d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html#a8d53a43431d10642ea8f337aea881c5d" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="456,72,644,115"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="408,115,441,109,442,115,409,120"/>
+<area shape="rect" id="Node000007" href="$d2/d2f/classgeometry__msgs_1_1msg_1_1TwistWithCovariance.html#af2a6d7529b881ceefd87993f0967a411" title="This function copies the value in member twist." alt="" coords="476,139,625,197"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="409,141,461,150,460,155,408,146"/>
+<area shape="rect" id="Node000004" href="$d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html#a1d1544d42efef9cd548f4558a891fcf2" title="This function copies the value in member angular." alt="" coords="720,5,868,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="630,69,705,48,706,53,632,74"/>
+<area shape="rect" id="Node000005" href="$df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html#a3f4f6b078e23dd8bbd3a400a1c8a6209" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="692,72,896,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="645,91,677,91,677,96,645,96"/>
+<area shape="rect" id="Node000006" href="$d0/d19/classgeometry__msgs_1_1msg_1_1Twist.html#a8bcf50e62a2a87c222cd7c6f6f9db003" title="This function copies the value in member linear." alt="" coords="720,139,868,181"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="632,113,706,133,705,139,630,118"/>
+</map>

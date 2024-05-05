@@ -1,0 +1,17 @@
+<map id="geometry_msgs::msg::PoseWithCovariancePubSubType::getSerializedSizeProvider" name="geometry_msgs::msg::PoseWithCovariancePubSubType::getSerializedSizeProvider">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,131,210,189"/>
+<area shape="rect" id="Node000002" href="$df/d34/classgeometry__msgs_1_1msg_1_1PoseWithCovariance.html#a3f9c9fa80336e1b0890e10ea8e3d10fa" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="258,131,408,189"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,157,243,157,243,163,210,163"/>
+<area shape="rect" id="Node000003" href="$d1/d6d/classgeometry__msgs_1_1msg_1_1Pose.html#a9be008daeb586df4db015bcea404847c" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="456,105,644,148"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="408,146,441,141,442,146,409,151"/>
+<area shape="rect" id="Node000008" href="$df/d34/classgeometry__msgs_1_1msg_1_1PoseWithCovariance.html#addd038e4a024339c5911ee0e7e0da5d1" title="This function copies the value in member pose." alt="" coords="458,172,643,215"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="409,169,443,174,442,179,408,174"/>
+<area shape="rect" id="Node000004" href="$d5/dd5/classgeometry__msgs_1_1msg_1_1Point.html#a2191b6dd2591f2568bfca97baac89c08" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="709,5,897,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="592,102,691,58,710,51,712,56,693,62,594,107"/>
+<area shape="rect" id="Node000005" href="$d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html#a42b051b07b2e83df416c8ebfc76a306c" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="692,72,914,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="644,112,677,107,678,113,645,117"/>
+<area shape="rect" id="Node000006" href="$d1/d6d/classgeometry__msgs_1_1msg_1_1Pose.html#aa249af8516f0049d54456e3a0c768a0d" title="This function copies the value in member orientation." alt="" coords="729,139,877,181"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="645,136,715,146,714,151,644,142"/>
+<area shape="rect" id="Node000007" href="$d1/d6d/classgeometry__msgs_1_1msg_1_1Pose.html#ada84129cd4ba510ef94b1cb387facc31" title="This function copies the value in member position." alt="" coords="729,205,877,248"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="620,146,646,158,670,175,694,191,716,201,714,206,691,196,667,179,643,162,618,151"/>
+</map>

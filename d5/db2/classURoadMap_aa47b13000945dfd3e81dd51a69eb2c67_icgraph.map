@@ -1,0 +1,9 @@
+<map id="URoadMap::SaveAsPNG" name="URoadMap::SaveAsPNG">
+<area shape="rect" id="Node000001" title="Save the current map as PNG with the pixel data encoded as color." alt="" coords="388,47,553,73"/>
+<area shape="rect" id="Node000002" href="$d1/ddb/classACityMapGenerator.html#a9ce09c4586724fe3e446cbb12712adf3" title="Generate the road map image and save to disk if requested." alt="" coords="197,39,340,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="373,63,340,63,340,57,373,57"/>
+<area shape="rect" id="Node000003" href="$d1/ddb/classACityMapGenerator.html#a5627a0935def8c92d8ae226b10238f2c" title=" " alt="" coords="5,5,149,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="181,48,148,42,149,37,182,42"/>
+<area shape="rect" id="Node000004" href="$d1/ddb/classACityMapGenerator.html#a5ad53319596101e96076a12eab41b9c1" title="Here does nothing, implement in derived classes." alt="" coords="5,72,149,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="182,78,149,83,148,78,181,72"/>
+</map>

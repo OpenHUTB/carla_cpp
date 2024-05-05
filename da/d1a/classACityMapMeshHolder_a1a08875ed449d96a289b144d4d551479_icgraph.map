@@ -1,0 +1,13 @@
+<map id="ACityMapMeshHolder::GetTileLocation" name="ACityMapMeshHolder::GetTileLocation">
+<area shape="rect" id="Node000001" title="Return the 3D world location (relative to this actor) of the given 2D tile." alt="" coords="587,39,735,81"/>
+<area shape="rect" id="Node000002" href="$da/d1a/classACityMapMeshHolder.html#a8612476d1ea6286618432bdd28488157" title="Add an instance of a mesh with a given tile location." alt="" coords="392,80,539,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="573,81,541,88,539,83,572,76"/>
+<area shape="rect" id="Node000003" href="$da/d1a/classACityMapMeshHolder.html#a3adde104855d44465b0f1ce3910dd84f" title="Add an instance of a mesh with a given tile location and rotation." alt="" coords="197,5,344,48"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="573,50,539,47,344,33,345,27,540,41,573,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="498,68,486,61,466,59,447,61,436,65,432,71,433,79,428,80,427,70,433,61,446,55,466,53,488,56,500,63"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="393,77,327,51,329,46,395,72"/>
+<area shape="rect" id="Node000004" href="$d1/ddb/classACityMapGenerator.html#a67d7489265a1921069709a71b15efd0c" title="Add the road meshes to the scene based on the current DCEL." alt="" coords="199,80,342,123"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="377,104,342,104,342,99,377,99"/>
+<area shape="rect" id="Node000005" href="$d1/ddb/classACityMapGenerator.html#a5ad53319596101e96076a12eab41b9c1" title="Here does nothing, implement in derived classes." alt="" coords="5,80,149,123"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="183,104,149,104,149,99,183,99"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="URoadMap::IsValid" name="URoadMap::IsValid">
+<area shape="rect" id="Node000001" title=" " alt="" coords="601,31,734,57"/>
+<area shape="rect" id="Node000002" href="$d5/db2/classURoadMap.html#a2d9cb2dfd43f8fb469f320ca6b0b81ca" title="Clamps value if lies outside map limits." alt="" coords="394,5,548,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="586,36,548,31,549,26,587,31"/>
+<area shape="rect" id="Node000003" href="$d5/db2/classURoadMap.html#aa47b13000945dfd3e81dd51a69eb2c67" title="Save the current map as PNG with the pixel data encoded as color." alt="" coords="388,56,553,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="587,57,554,61,554,56,586,52"/>
+<area shape="rect" id="Node000004" href="$d1/ddb/classACityMapGenerator.html#a9ce09c4586724fe3e446cbb12712adf3" title="Generate the road map image and save to disk if requested." alt="" coords="197,48,340,91"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="373,72,340,72,340,67,373,67"/>
+<area shape="rect" id="Node000005" href="$d1/ddb/classACityMapGenerator.html#a5627a0935def8c92d8ae226b10238f2c" title=" " alt="" coords="5,15,149,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="181,57,148,51,149,46,182,52"/>
+<area shape="rect" id="Node000006" href="$d1/ddb/classACityMapGenerator.html#a5ad53319596101e96076a12eab41b9c1" title="Here does nothing, implement in derived classes." alt="" coords="5,81,149,124"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="182,87,149,93,148,88,181,82"/>
+</map>

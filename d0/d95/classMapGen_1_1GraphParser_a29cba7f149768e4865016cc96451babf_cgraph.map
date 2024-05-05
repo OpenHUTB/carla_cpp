@@ -1,0 +1,49 @@
+<map id="MapGen::GraphParser::GraphParser" name="MapGen::GraphParser::GraphParser">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,307,157,349"/>
+<area shape="rect" id="Node000002" href="$d3/dc4/classMapGen_1_1CityAreaDescription.html#a6aa2001fdf5f19d278e1f3e6678cde8f" title=" " alt="" coords="208,21,433,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,306,94,255,116,187,132,152,151,117,175,85,203,58,209,53,212,58,206,62,179,89,156,120,136,154,121,189,99,256,88,307"/>
+<area shape="rect" id="Node000003" href="$d6/d23/classMapGen_1_1RoadSegmentBuilder.html#a2a1c2abec3305901c97cc124d2babc05" title=" " alt="" coords="205,72,436,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="86,306,101,265,125,213,159,161,180,136,203,115,225,102,227,107,206,119,183,140,163,164,130,216,106,267,91,307"/>
+<area shape="rect" id="Node000004" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a801df47ea999c7f42a3bc829ad6b71b4" title=" " alt="" coords="742,115,953,157"/>
+<area shape="poly" id="edge24_Node000001_Node000004" title=" " alt="" coords="88,305,104,271,129,230,162,190,203,159,245,144,300,133,439,122,591,121,728,126,728,131,591,127,439,127,301,138,246,149,206,164,166,194,133,233,109,274,93,307"/>
+<area shape="rect" id="Node000007" href="$d6/d23/classMapGen_1_1RoadSegmentBuilder.html#a41aaf36e6392f40a0e04663e20efbdc0" title=" " alt="" coords="220,173,421,216"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="102,304,146,264,203,226,216,219,219,224,206,230,149,269,105,308"/>
+<area shape="rect" id="Node000008" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#afe7d824795a7447e9783340ebd69ca0e" title=" " alt="" coords="215,240,426,283"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="156,304,227,285,228,290,158,309"/>
+<area shape="rect" id="Node000009" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#acd6671bd2d667c927f006ae5b6f38949" title=" " alt="" coords="215,307,426,349"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="157,325,200,325,200,331,157,331"/>
+<area shape="rect" id="Node000010" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a96c63da29d204af66c79ec4f601fe822" title=" " alt="" coords="215,373,426,416"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="158,347,228,366,227,371,156,352"/>
+<area shape="rect" id="Node000011" href="$d2/de5/namespaceMapGen.html#a61ea18de27aac306fc04cf4ebf8038c3" title=" " alt="" coords="244,440,397,467"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="104,348,149,388,176,409,206,426,231,435,229,440,204,430,173,413,145,392,101,352"/>
+<area shape="rect" id="Node000021" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a136da6784ab2306f9743a1f10a87cc22" title=" " alt="" coords="215,491,426,533"/>
+<area shape="poly" id="edge21_Node000001_Node000021" title=" " alt="" coords="96,348,140,412,170,447,206,476,214,481,212,486,203,481,167,451,135,416,92,351"/>
+<area shape="rect" id="Node000022" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a488e82de16efab151f153f6dc859dc2a" title=" " alt="" coords="215,557,426,600"/>
+<area shape="poly" id="edge22_Node000001_Node000022" title=" " alt="" coords="91,349,105,391,129,443,163,497,183,522,206,543,212,547,209,552,203,547,179,525,158,500,124,446,101,392,86,351"/>
+<area shape="rect" id="Node000023" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#ac627583ef2e4635a82d5582ddf6d61c2" title=" " alt="" coords="215,624,426,667"/>
+<area shape="poly" id="edge23_Node000001_Node000023" title=" " alt="" coords="88,349,99,402,120,473,136,510,155,547,178,580,206,610,211,614,207,618,203,614,174,584,150,549,131,512,115,475,93,404,83,350"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="437,91,695,115,727,118,727,124,694,120,436,97"/>
+<area shape="rect" id="Node000005" href="$d6/d23/classMapGen_1_1RoadSegmentBuilder.html#ad298052003c229ecf121ced2dcec903f" title="Insert both half&#45;edges only if they haven&#39;t been visited yet." alt="" coords="489,5,689,48"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="385,69,474,49,475,54,386,74"/>
+<area shape="rect" id="Node000006" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a4f54bc71299907adf32a741ecf12af97" title=" " alt="" coords="742,5,953,48"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="690,24,728,24,728,29,690,29"/>
+<area shape="rect" id="Node000012" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a3932fa65377660f9cbfa829cf068ae08" title="Return the angle [&#45;pi, pi] of the half&#45;edge." alt="" coords="484,236,694,279"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="397,444,417,437,434,426,446,414,453,402,460,376,465,348,482,318,502,300,524,284,527,289,505,304,486,322,470,350,465,377,458,404,450,417,438,430,419,442,399,449"/>
+<area shape="rect" id="Node000015" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a4dbc77e3d93cbf0f03a5e3cd19e505de" title=" " alt="" coords="484,332,694,375"/>
+<area shape="poly" id="edge15_Node000011_Node000015" title=" " alt="" coords="396,440,435,426,449,416,458,406,468,395,483,384,494,379,496,383,485,389,471,399,462,410,452,420,437,430,398,445"/>
+<area shape="rect" id="Node000016" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a9f467156051c0f025ef147b87330b9ea" title=" " alt="" coords="484,399,694,441"/>
+<area shape="poly" id="edge16_Node000011_Node000016" title=" " alt="" coords="397,441,469,432,470,437,398,446"/>
+<area shape="rect" id="Node000017" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a47309b6d9a344423a0aa8a2ec1389177" title=" " alt="" coords="484,465,694,508"/>
+<area shape="poly" id="edge17_Node000011_Node000017" title=" " alt="" coords="398,460,470,469,469,474,397,465"/>
+<area shape="rect" id="Node000018" href="$d2/de5/namespaceMapGen.html#ae6f4a94c2e0b61eb86e11a40c22dfa46" title=" " alt="" coords="517,532,661,559"/>
+<area shape="poly" id="edge18_Node000011_Node000018" title=" " alt="" coords="398,462,437,476,452,487,462,497,471,508,485,518,504,526,502,531,483,522,468,512,458,501,449,491,435,481,396,467"/>
+<area shape="poly" id="edge13_Node000012_Node000004" title=" " alt="" coords="636,233,786,162,788,166,638,238"/>
+<area shape="rect" id="Node000013" href="$de/d6b/structMapGen_1_1DoublyConnectedEdgeList_1_1Node.html#a1404bf5477f16a79bcadd8300c64fa37" title=" " alt="" coords="742,207,953,249"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="695,243,727,239,728,244,695,248"/>
+<area shape="rect" id="Node000014" href="$d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html#a492040546af8e497cddc5263a939405a" title=" " alt="" coords="742,273,953,316"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="695,270,728,275,727,280,694,275"/>
+<area shape="rect" id="Node000019" href="$d2/de5/namespaceMapGen.html#a4427036f189a4b930d19c68b2d7f377a" title=" " alt="" coords="773,507,922,533"/>
+<area shape="poly" id="edge19_Node000018_Node000019" title=" " alt="" coords="661,536,758,526,758,531,662,541"/>
+<area shape="rect" id="Node000020" href="$d3/d33/Simplify_8h.html#a50798148e5016c5b85087d4009824f27" title=" " alt="" coords="826,557,869,584"/>
+<area shape="poly" id="edge20_Node000018_Node000020" title=" " alt="" coords="662,550,812,565,811,570,661,555"/>
+</map>

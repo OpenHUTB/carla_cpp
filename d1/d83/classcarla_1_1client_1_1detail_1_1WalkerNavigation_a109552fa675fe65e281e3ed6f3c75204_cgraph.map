@@ -1,0 +1,17 @@
+<map id="carla::client::detail::WalkerNavigation::UpdateVehiclesInCrowd" name="carla::client::detail::WalkerNavigation::UpdateVehiclesInCrowd">
+<area shape="rect" id="Node000001" title="add/update/delete all vehicles in crowd" alt="" coords="5,31,234,89"/>
+<area shape="rect" id="Node000002" href="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#afcead7bb9bd7ef89f99feb2e7b6126ec" title=" " alt="" coords="282,5,425,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,41,266,36,267,42,234,46"/>
+<area shape="rect" id="Node000003" href="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#a6b7d72d6c0d11bd88a5b9fae3e230ed2" title="add/update/delete vehicles in crowd" alt="" coords="282,72,425,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,74,267,78,266,84,234,79"/>
+<area shape="rect" id="Node000004" href="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#af4c5eadbe143c3a583b26cb351396029" title="create a new vehicle in crowd to be avoided by walkers" alt="" coords="473,39,623,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="425,78,458,73,459,78,426,84"/>
+<area shape="rect" id="Node000007" href="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#a273cfd565ff7a8376f165105a192e2e1" title="remove an agent" alt="" coords="477,105,620,148"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="426,103,463,109,462,115,425,108"/>
+<area shape="rect" id="Node000005" href="$d2/d8c/namespacecarla_1_1logging.html#abd90157c295f4863aaaa7d66f18ae0fa" title=" " alt="" coords="697,47,821,73"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="623,57,683,57,683,63,623,63"/>
+<area shape="rect" id="Node000006" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="895,39,1028,81"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="821,57,880,57,880,63,821,63"/>
+<area shape="rect" id="Node000008" href="$dd/d5b/classcarla_1_1nav_1_1WalkerManager.html#a020f1ac3386d56709e702fb2c826a4bc" title="remove a walker route" alt="" coords="671,105,847,148"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="620,124,657,124,657,129,620,129"/>
+</map>

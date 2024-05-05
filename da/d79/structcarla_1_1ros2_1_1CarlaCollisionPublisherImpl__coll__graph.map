@@ -1,0 +1,34 @@
+<map id="carla::ros2::CarlaCollisionPublisherImpl" name="carla::ros2::CarlaCollisionPublisherImpl">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1117,149,1286,192"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="825,5,962,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="977,30,1036,48,1094,74,1143,110,1182,147,1178,151,1140,114,1091,78,1034,53,975,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="851,56,936,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="951,77,1020,92,1094,115,1162,146,1160,151,1092,120,1018,98,950,82"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="863,107,924,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="939,123,1093,147,1117,151,1116,156,1092,152,939,129"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="847,157,940,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="954,168,1116,168,1116,173,954,173"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="846,208,941,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="955,210,1092,189,1116,185,1117,190,1093,195,956,216"/>
+<area shape="rect" id="Node000007" href="$d9/d48/classcarla_1_1ros2_1_1CarlaListener.html" title=" " alt="" coords="810,259,977,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="987,252,1039,239,1092,223,1162,190,1164,195,1094,228,1041,245,988,258"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="462,227,628,269"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="643,252,810,264,810,269,643,257"/>
+<area shape="rect" id="Node000009" href="$d5/d0c/classcarla__msgs_1_1msg_1_1CarlaCollisionEvent.html" title="This class represents the structure CarlaCollisionEvent defined by the user in the IDL file." alt="" coords="789,325,998,368"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="980,317,1036,295,1091,266,1140,228,1179,191,1182,194,1144,232,1094,270,1039,300,982,322"/>
+<area shape="rect" id="Node000010" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html" title="This class represents the structure Header defined by the user in the IDL file." alt="" coords="465,360,625,387"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="640,370,765,363,789,360,789,365,766,368,640,375"/>
+<area shape="rect" id="Node000011" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html" title="This class represents the structure Time defined by the user in the IDL file." alt="" coords="192,383,310,425"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="325,394,464,379,465,384,325,399"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="9,359,69,385"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="84,376,191,392,191,398,83,381"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="5,429,73,456"/>
+<area shape="poly" id="edge14_Node000009_Node000013" title=" " alt="" coords="88,441,190,440,310,435,539,414,638,399,765,375,805,366,806,371,766,380,639,404,539,419,310,440,190,445,88,446"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="87,431,191,412,192,417,88,437"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="224,332,278,359"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="293,347,465,363,464,368,292,352"/>
+<area shape="rect" id="Node000015" href="$df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html" title="This class represents the structure Vector3 defined by the user in the IDL file." alt="" coords="472,293,619,336"/>
+<area shape="poly" id="edge15_Node000009_Node000015" title=" " alt="" coords="634,320,789,334,789,340,633,325"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="221,281,281,308"/>
+<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="295,295,471,307,471,312,295,300"/>
+</map>

@@ -1,0 +1,33 @@
+<map id="carla::geom::Rotation::RotateVector" name="carla::geom::Rotation::RotateVector">
+<area shape="rect" id="Node000001" title=" " alt="" coords="657,265,803,308"/>
+<area shape="rect" id="Node000002" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html#a858af2968614ab6cad088aeb9f9d02ee" title="Returns the positions of the 8 vertices of this BoundingBox in local space." alt="" coords="435,64,609,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="694,257,544,109,548,105,698,253"/>
+<area shape="rect" id="Node000005" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#a1ce6d71b431ea93b5a13cf764467fe1c" title=" " alt="" coords="450,232,595,275"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="642,275,595,268,596,262,643,270"/>
+<area shape="rect" id="Node000006" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a3cc49b5e9c8293dec0c89a1cac2ceae8" title="Applies this transformation to in_point (first translation then rotation)." alt="" coords="445,299,599,341"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="643,303,600,310,599,305,642,298"/>
+<area shape="rect" id="Node000015" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a2f3ddb328045ed66d37c22679fb9bf35" title="Applies this transformation to in_vector (rotation only)." alt="" coords="445,365,599,408"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="682,318,610,356,584,367,582,362,608,351,679,313"/>
+<area shape="rect" id="Node000003" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html#ae79d81bd427678144a5bd3d704fc7a71" title="Returns the positions of the 8 vertices of this BoundingBox in world space." alt="" coords="213,5,387,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="425,62,383,51,384,46,426,57"/>
+<area shape="rect" id="Node000004" href="$d6/dd9/test__geom_8cpp.html#af19ccf43393a04631a4ad7e305673fdb" title=" " alt="" coords="58,72,112,99"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="420,88,112,88,112,83,420,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="206,55,113,81,111,76,205,50"/>
+<area shape="poly" id="edge10_Node000006_Node000004" title=" " alt="" coords="436,291,433,288,420,272,413,256,409,223,405,192,398,178,385,163,353,140,317,122,279,108,240,98,168,89,112,87,112,82,168,83,241,93,280,103,319,117,356,135,389,159,402,175,410,191,415,223,419,254,425,269,437,285,440,287"/>
+<area shape="rect" id="Node000007" href="$d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished." alt="" coords="220,173,380,216"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="440,293,433,289,418,274,409,259,400,244,385,230,367,219,369,214,389,226,404,241,413,256,422,270,437,285,443,289"/>
+<area shape="rect" id="Node000009" href="$df/def/classcarla_1_1client_1_1TrafficLight.html#ae658ff882df9b877a9730c879c028ba9" title=" " alt="" coords="221,240,379,283"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="430,298,379,285,380,280,431,293"/>
+<area shape="rect" id="Node000010" href="$d6/dd9/test__geom_8cpp.html#a147a9b02e2e1830ff8e51ce9091b48ac" title=" " alt="" coords="273,307,327,333"/>
+<area shape="poly" id="edge11_Node000006_Node000010" title=" " alt="" coords="430,323,327,323,327,317,430,317"/>
+<area shape="rect" id="Node000011" href="$d6/dd9/test__geom_8cpp.html#a29ec1f95f3bb8073faf95c9c008539e5" title=" " alt="" coords="273,357,327,384"/>
+<area shape="poly" id="edge12_Node000006_Node000011" title=" " alt="" coords="431,343,328,367,327,362,430,338"/>
+<area shape="rect" id="Node000012" href="$d6/dd9/test__geom_8cpp.html#acfbdbb2cd19d012a24efb35615b59025" title=" " alt="" coords="273,408,327,435"/>
+<area shape="poly" id="edge13_Node000006_Node000012" title=" " alt="" coords="445,351,436,356,423,366,413,377,403,388,388,398,358,411,328,419,326,414,356,406,386,394,400,384,409,373,419,362,434,351,443,346"/>
+<area shape="rect" id="Node000013" href="$d6/dd9/test__geom_8cpp.html#adcd30219ef2a89d2ed06c3ec69411789" title=" " alt="" coords="273,459,327,485"/>
+<area shape="poly" id="edge14_Node000006_Node000013" title=" " alt="" coords="441,352,437,355,420,378,414,401,407,425,389,449,358,465,328,472,326,467,357,460,385,445,402,423,409,400,416,376,433,352,438,348"/>
+<area shape="rect" id="Node000014" href="$d6/dd9/test__geom_8cpp.html#aefc69fef9bdc5597b8580ba3020fc554" title=" " alt="" coords="273,509,327,536"/>
+<area shape="poly" id="edge15_Node000006_Node000014" title=" " alt="" coords="440,352,437,355,424,373,417,390,414,426,411,463,403,481,389,499,359,517,327,524,326,519,357,512,385,495,399,478,406,461,409,426,412,389,419,370,433,352,436,349"/>
+<area shape="rect" id="Node000008" href="$d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" title="Buids a mesh of all crosswalks based on the OpenDRIVE." alt="" coords="5,173,165,216"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="206,197,165,197,165,192,206,192"/>
+</map>

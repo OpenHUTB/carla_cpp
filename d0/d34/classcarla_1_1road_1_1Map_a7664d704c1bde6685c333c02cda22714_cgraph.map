@@ -1,0 +1,13 @@
+<map id="carla::road::Map::GetLeft" name="carla::road::Map::GetLeft">
+<area shape="rect" id="Node000001" title="Return a waypoint at the lane of waypoint&#39;s left lane." alt="" coords="5,80,171,107"/>
+<area shape="rect" id="Node000002" href="$de/d26/namespacecarla_1_1road.html#a7ecd44cf0915faa4721092185974318d" title="Assumes road_id and section_id are valid." alt="" coords="219,80,392,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,91,204,91,204,96,171,96"/>
+<area shape="rect" id="Node000003" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a9478348b133c1ec7b072b3b4c18223c0" title=" " alt="" coords="440,5,602,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="351,77,435,50,436,56,352,82"/>
+<area shape="rect" id="Node000004" href="$dd/de6/classcarla_1_1road_1_1Road.html#afc2ce3f2de8825413a827d46c62c197b" title=" " alt="" coords="451,72,591,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="392,91,436,91,436,96,392,96"/>
+<area shape="rect" id="Node000006" href="$da/d3b/classcarla_1_1road_1_1MapData.html#a7b4838408fa475389a01b2d451b662e7" title=" " alt="" coords="450,139,592,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="352,105,436,131,435,136,351,110"/>
+<area shape="rect" id="Node000005" href="$d9/dab/classcarla_1_1road_1_1LaneSectionMap.html#afd0eebe15809491819f1335b7c7157e9" title=" " alt="" coords="650,72,813,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="592,91,635,91,635,96,592,96"/>
+</map>

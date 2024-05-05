@@ -1,0 +1,15 @@
+<map id="carla::client::Vehicle::GetTrafficLight" name="carla::client::Vehicle::GetTrafficLight">
+<area shape="rect" id="Node000001" title="Retrieve the traffic light actor currently affecting this vehicle." alt="" coords="5,72,145,115"/>
+<area shape="rect" id="Node000002" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="194,5,362,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,69,196,51,198,56,143,74"/>
+<area shape="rect" id="Node000003" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#ac98d447f3db74c88b3b43e80435042bc" title=" " alt="" coords="201,72,355,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,91,186,91,186,96,145,96"/>
+<area shape="rect" id="Node000004" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="193,139,363,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="143,113,198,131,196,136,141,118"/>
+<area shape="rect" id="Node000005" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="423,109,550,152"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="363,145,408,139,409,144,364,151"/>
+<area shape="rect" id="Node000007" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="411,176,562,203"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="364,169,397,174,396,179,363,175"/>
+<area shape="rect" id="Node000006" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="610,109,767,152"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="550,128,595,128,595,133,550,133"/>
+</map>

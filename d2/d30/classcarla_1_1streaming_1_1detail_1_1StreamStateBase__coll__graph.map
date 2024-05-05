@@ -1,0 +1,25 @@
+<map id="carla::streaming::detail::StreamStateBase" name="carla::streaming::detail::StreamStateBase">
+<area shape="rect" id="Node000001" title="Shared state among all the copies of a stream." alt="" coords="792,149,946,192"/>
+<area shape="rect" id="Node000002" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="Inherit (privately) to suppress copy/move construction and assignment." alt="" coords="528,99,662,125"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="676,126,792,152,791,157,674,132"/>
+<area shape="rect" id="Node000003" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html" title="Serializes a stream endpoint." alt="" coords="518,149,671,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="686,168,792,168,792,173,686,173"/>
+<area shape="rect" id="Node000004" href="$d9/da8/structcarla_1_1streaming_1_1detail_1_1token__data.html" title=" " alt="" coords="274,149,427,192"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="442,168,517,168,517,173,442,173"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="41,5,108,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="123,23,186,38,219,50,251,66,277,84,300,106,336,147,332,151,296,109,273,88,248,70,217,55,184,43,122,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,56,144,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="159,84,251,112,316,146,314,151,249,117,157,89"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="41,107,108,133"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="123,125,250,147,274,151,273,157,249,152,122,130"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="41,157,108,184"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="123,168,273,168,273,173,123,173"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="41,208,108,235"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="122,211,249,189,273,185,274,190,250,195,123,217"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="32,259,117,285"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="131,259,189,244,249,224,314,190,316,195,251,229,190,249,132,264"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="32,309,117,336"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="131,312,190,297,248,271,273,253,296,232,332,191,336,194,300,236,277,257,251,276,191,302,132,317"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="530,216,660,259"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="674,216,791,187,792,192,675,221"/>
+</map>

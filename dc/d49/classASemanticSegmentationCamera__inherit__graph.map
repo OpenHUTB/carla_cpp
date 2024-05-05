@@ -1,0 +1,11 @@
+<map id="ASemanticSegmentationCamera" name="ASemanticSegmentationCamera">
+<area shape="rect" id="Node000001" title="Sensor that produces &quot;semantic segmentation&quot; images." alt="" coords="5,304,216,331"/>
+<area shape="rect" id="Node000002" href="$da/dd3/classAShaderBasedSensor.html" title="A sensor that produces data by applying post&#45;process materials (shaders) to a scene capture image." alt="" coords="36,229,185,256"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,271,113,304,108,304,108,271"/>
+<area shape="rect" id="Node000003" href="$d4/d60/classASceneCaptureSensor.html" title="Base class for sensors using a USceneCaptureComponent2D for rendering the scene." alt="" coords="34,155,187,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,196,113,229,108,229,108,196"/>
+<area shape="rect" id="Node000004" href="$d3/d01/classASensor.html" title="Base class for sensors." alt="" coords="75,80,146,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,122,113,154,108,154,108,122"/>
+<area shape="rect" id="Node000005" href="$d1/da4/classAActor.html" title=" " alt="" coords="80,5,141,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="113,47,113,80,108,80,108,47"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="carla::client::Waypoint::Waypoint" name="carla::client::Waypoint::Waypoint">
+<area shape="rect" id="Node000001" title=" " alt="" coords="522,172,673,215"/>
+<area shape="rect" id="Node000002" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#ad76e1411cf92f89ac9e44050ad5729b2" title="Returns a list of landmarks from the current position to a certain distance." alt="" coords="271,5,461,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="572,162,529,110,502,84,473,62,451,51,453,46,475,58,506,80,533,107,576,158"/>
+<area shape="rect" id="Node000004" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#a22a12f784f18516e6b9de47c5ce3e840" title="Returns a list of landmarks from the current position to a certain distance Filters by specified type..." alt="" coords="258,72,474,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="547,167,473,129,443,118,445,113,475,124,550,162"/>
+<area shape="rect" id="Node000005" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#a1ee308d768a33dbb32ac7e9204b0d870" title=" " alt="" coords="290,139,442,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="507,183,442,174,442,168,508,178"/>
+<area shape="rect" id="Node000006" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#acff17f316612e13309190ea8f0c6637f" title=" " alt="" coords="290,205,442,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="508,209,442,218,442,213,507,204"/>
+<area shape="rect" id="Node000008" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#ab72859cf2d4dd542de939d12ef5773d4" title=" " alt="" coords="290,272,442,315"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="550,225,475,262,443,275,441,270,473,258,547,220"/>
+<area shape="rect" id="Node000010" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#a3576b05df58af68e50cc5d7bb0ddb606" title=" " alt="" coords="290,339,442,381"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="576,228,533,280,506,306,475,329,443,345,441,340,473,324,502,302,529,276,572,225"/>
+<area shape="rect" id="Node000003" href="$db/d1f/classcarla_1_1client_1_1World.html#a965fcaf99f563c9634c40f3b8e2910b5" title=" " alt="" coords="5,5,210,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="256,29,210,29,210,24,256,24"/>
+<area shape="rect" id="Node000007" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#ad5c3e3ad6a455ce99d5aa51a9d501231" title="Returns a list of waypoints separated by distance from the current waypoint to the end of the lane." alt="" coords="30,205,185,248"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="275,229,185,229,185,224,275,224"/>
+<area shape="rect" id="Node000009" href="$dd/dff/classcarla_1_1client_1_1Waypoint.html#ae6383bb17e6c195721874090166bddeb" title="Returns a list of waypoints separated by distance from the current waypoint to the start of the lane." alt="" coords="17,272,198,315"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="275,296,199,296,199,291,275,291"/>
+</map>

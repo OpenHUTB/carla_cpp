@@ -1,0 +1,20 @@
+<map id="carla::geom::Mesh::IsValid" name="carla::geom::Mesh::IsValid">
+<area shape="rect" id="Node000001" title="Check if the mesh can be valid or not." alt="" coords="761,172,899,215"/>
+<area shape="rect" id="Node000002" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a233c4f4f48c88e6ac2afc79155dca87c" title="Merges two meshes into a single mesh." alt="" coords="521,5,658,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="806,161,766,110,741,84,712,62,686,49,658,40,660,35,688,44,715,58,744,80,770,106,810,158"/>
+<area shape="rect" id="Node000003" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5744e75d34e0a3514892d4a9b7906652" title=" " alt="" coords="476,72,703,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="782,166,712,129,681,118,683,113,714,124,785,161"/>
+<area shape="rect" id="Node000006" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aad2ea408b3032e959e384431becd860b" title=" " alt="" coords="466,139,713,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="747,185,714,180,714,175,747,179"/>
+<area shape="rect" id="Node000007" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a1e84afee1b87e881ced8e8e6b19a3749" title="Returns a string containing the mesh encoded in OBJ." alt="" coords="521,205,658,248"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="747,207,659,220,658,215,747,202"/>
+<area shape="rect" id="Node000008" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a8949815059008e05cd22747265421b27" title="Returns a string containing the mesh encoded in OBJ." alt="" coords="510,272,669,315"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="785,225,714,262,671,278,669,273,712,258,782,221"/>
+<area shape="rect" id="Node000009" href="$d0/d02/classcarla_1_1geom_1_1Mesh.html#a3d337881b9d8e2e322eef9efe4580247" title="Returns a string containing the mesh encoded in PLY." alt="" coords="521,339,658,381"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="810,229,770,280,744,307,715,329,688,342,660,352,658,347,686,337,712,324,741,303,766,277,806,225"/>
+<area shape="rect" id="Node000004" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a6228f1a0673c73589a0816085fbc2900" title=" " alt="" coords="230,105,418,148"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="462,112,419,118,418,112,461,107"/>
+<area shape="rect" id="Node000005" href="$d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" title="Buids a list of meshes related with LineMarkings." alt="" coords="5,105,182,148"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="215,129,182,129,182,124,215,124"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="451,145,418,141,419,136,451,140"/>
+</map>

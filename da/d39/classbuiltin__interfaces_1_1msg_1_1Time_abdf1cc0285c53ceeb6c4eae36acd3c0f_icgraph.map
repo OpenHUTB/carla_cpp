@@ -1,0 +1,57 @@
+<map id="builtin_interfaces::msg::Time::getCdrSerializedSize" name="builtin_interfaces::msg::Time::getCdrSerializedSize">
+<area shape="rect" id="Node000001" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="1063,436,1282,479"/>
+<area shape="rect" id="Node000002" href="$d7/dea/classrosgraph_1_1msg_1_1Clock.html#ad87a9b854de32e35b6b6e57145681b90" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="851,212,1002,255"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1135,428,950,257,953,253,1138,424"/>
+<area shape="rect" id="Node000004" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#ae439639025ac66880a861f521fd84016" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="846,436,1007,479"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1048,460,1007,460,1007,455,1048,455"/>
+<area shape="rect" id="Node000028" href="$d6/d56/classbuiltin__interfaces_1_1msg_1_1TimePubSubType.html#a291b6a45892fa6bf7b60f79a643e65f7" title=" " alt="" coords="838,503,1015,561"/>
+<area shape="poly" id="edge27_Node000001_Node000028" title=" " alt="" coords="1086,486,1016,508,1015,503,1085,481"/>
+<area shape="rect" id="Node000003" href="$d4/df0/classrosgraph_1_1msg_1_1ClockPubSubType.html#aab4c5992b9f8a0196500d89689bfeab8" title=" " alt="" coords="571,53,775,96"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="896,202,849,155,820,131,789,110,765,99,767,94,792,106,823,126,852,151,900,199"/>
+<area shape="rect" id="Node000005" href="$d5/d0c/classcarla__msgs_1_1msg_1_1CarlaCollisionEvent.html#abed4f4b9c6a6e2ca2620093bca955f01" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="569,120,777,163"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="907,424,839,275,788,176,772,165,775,161,792,173,844,273,912,421"/>
+<area shape="rect" id="Node000007" href="$dd/d4d/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControl.html#a2b0d654fd54696bdc7ae331d50d000da" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="556,187,790,229"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="910,423,892,381,865,333,831,284,789,243,770,232,773,227,792,239,835,281,870,330,897,379,915,421"/>
+<area shape="rect" id="Node000009" href="$d0/de1/classcarla__msgs_1_1msg_1_1LaneInvasionEvent.html#a6bdfb92f9fba44d0deb3f2419c8463a8" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="572,253,775,296"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="901,425,854,366,823,336,789,310,767,299,769,294,792,306,827,332,858,362,905,422"/>
+<area shape="rect" id="Node000011" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#a4222cca48a2ef9582346b5644584e5b9" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="600,320,747,379"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="870,431,789,393,746,376,748,371,791,388,872,426"/>
+<area shape="rect" id="Node000015" href="$d3/d69/classnav__msgs_1_1msg_1_1Odometry.html#abeb384ad22595b0a91148a24a52bdc6e" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="585,403,762,445"/>
+<area shape="poly" id="edge14_Node000004_Node000015" title=" " alt="" coords="832,448,762,438,763,433,832,442"/>
+<area shape="rect" id="Node000017" href="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#af13edf9e037b3b75d3ceaac9e4f844b5" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="581,469,766,512"/>
+<area shape="poly" id="edge16_Node000004_Node000017" title=" " alt="" coords="832,472,767,481,766,476,831,467"/>
+<area shape="rect" id="Node000019" href="$d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a5e09e00c244303b1c1fa4f3ba9c16e49" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="586,536,761,579"/>
+<area shape="poly" id="edge18_Node000004_Node000019" title=" " alt="" coords="851,487,840,493,816,510,792,526,762,538,760,533,789,522,813,506,837,488,848,483"/>
+<area shape="rect" id="Node000021" href="$d2/d06/classsensor__msgs_1_1msg_1_1Imu.html#af8d4e4c514f1102dde56914e99918012" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="593,603,754,645"/>
+<area shape="poly" id="edge20_Node000004_Node000021" title=" " alt="" coords="844,489,840,493,830,505,823,517,817,542,811,567,804,580,792,593,756,613,753,608,789,589,800,577,806,565,812,541,818,515,825,502,836,489,841,485"/>
+<area shape="rect" id="Node000023" href="$d8/d4d/classsensor__msgs_1_1msg_1_1NavSatFix.html#ac382f03c8e5d648a6a47f867b3892807" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="583,669,764,712"/>
+<area shape="poly" id="edge22_Node000004_Node000023" title=" " alt="" coords="843,490,840,492,826,513,819,533,818,575,816,617,808,638,792,659,766,677,763,673,788,655,804,636,811,616,813,575,814,533,821,511,836,489,839,486"/>
+<area shape="rect" id="Node000025" href="$d8/da2/classsensor__msgs_1_1msg_1_1PointCloud2.html#aa9aef76d2156e1d9cb0b7cd2da0b3955" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="568,736,778,779"/>
+<area shape="poly" id="edge24_Node000004_Node000025" title=" " alt="" coords="842,490,840,492,822,522,815,551,815,579,818,608,822,637,821,667,813,696,792,726,779,737,775,733,788,722,808,694,816,666,816,637,813,609,809,580,809,550,817,520,836,489,838,487"/>
+<area shape="rect" id="Node000027" href="$d2/dde/classstd__msgs_1_1msg_1_1HeaderPubSubType.html#a8d7c341bdb9eee2b1f307bdc837f3f25" title=" " alt="" coords="560,803,787,845"/>
+<area shape="poly" id="edge26_Node000004_Node000027" title=" " alt="" coords="842,490,841,492,818,530,810,568,812,605,819,642,825,679,826,716,817,754,792,792,779,804,775,800,788,789,812,752,821,716,820,679,813,643,807,605,805,567,813,529,836,489,838,487"/>
+<area shape="rect" id="Node000006" href="$d8/db8/classcarla__msgs_1_1msg_1_1CarlaCollisionEventPubSubType.html#af86845367006125d6ae21fd127add9ab" title=" " alt="" coords="265,5,501,64"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="570,117,555,110,530,94,507,78,481,67,483,62,509,74,533,90,557,106,572,112"/>
+<area shape="rect" id="Node000008" href="$d2/d09/classcarla__msgs_1_1msg_1_1CarlaEgoVehicleControlPubSubType.html#a3ada1f37e7ae9a9621dd7f8168f69670" title=" " alt="" coords="292,88,474,147"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="579,185,555,177,473,150,475,145,557,172,581,179"/>
+<area shape="rect" id="Node000010" href="$da/df3/classcarla__msgs_1_1msg_1_1LaneInvasionEventPubSubType.html#abdef2734122cb47df65a525740feecae" title=" " alt="" coords="265,171,501,229"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="572,252,499,232,500,227,574,246"/>
+<area shape="rect" id="Node000012" href="$d2/df4/classtf2__msgs_1_1msg_1_1TFMessage.html#a13b09d556a6f9d0914e1ac927b1b3502" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="291,253,475,296"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="584,329,468,299,469,294,586,324"/>
+<area shape="rect" id="Node000014" href="$d0/d21/classgeometry__msgs_1_1msg_1_1TransformStampedPubSubType.html#a4d69517b613ea26907147e05d28d29d3" title=" " alt="" coords="277,320,489,379"/>
+<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="585,352,490,352,490,347,585,347"/>
+<area shape="rect" id="Node000013" href="$d4/d71/classtf2__msgs_1_1msg_1_1TFMessagePubSubType.html#a2b6367ac8ee0956eae0ace0181ecdfb3" title=" " alt="" coords="5,245,210,304"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="277,277,210,277,210,272,277,272"/>
+<area shape="rect" id="Node000016" href="$dc/dc5/classnav__msgs_1_1msg_1_1OdometryPubSubType.html#a0b4cb75674ddd79517eaa3f9c8afa802" title=" " alt="" coords="269,403,497,445"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="570,427,497,427,497,421,570,421"/>
+<area shape="rect" id="Node000018" href="$d4/d4d/classsensor__msgs_1_1msg_1_1CameraInfoPubSubType.html#a01f54894701250d259d24a7f7f447e8c" title=" " alt="" coords="284,469,482,528"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="566,496,483,499,482,493,566,491"/>
+<area shape="rect" id="Node000020" href="$d2/d1e/classsensor__msgs_1_1msg_1_1ImagePubSubType.html#a7bf283f05a876416bdf502c53860a638" title=" " alt="" coords="269,552,497,595"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="571,566,497,570,497,564,570,560"/>
+<area shape="rect" id="Node000022" href="$d5/dcf/classsensor__msgs_1_1msg_1_1ImuPubSubType.html#a2b6239826e7a5ce54d42d23981e44b87" title=" " alt="" coords="269,619,497,661"/>
+<area shape="poly" id="edge21_Node000021_Node000022" title=" " alt="" coords="578,632,497,636,497,631,577,627"/>
+<area shape="rect" id="Node000024" href="$d9/dc9/classsensor__msgs_1_1msg_1_1NavSatFixPubSubType.html#af361c0a5bdb20213f5470d5aa9f2846e" title=" " alt="" coords="285,685,481,744"/>
+<area shape="poly" id="edge23_Node000023_Node000024" title=" " alt="" coords="568,702,482,709,481,704,567,697"/>
+<area shape="rect" id="Node000026" href="$d8/dd0/classsensor__msgs_1_1msg_1_1PointCloud2PubSubType.html#a217c43f6d12e5c89d4906982e397c43c" title=" " alt="" coords="258,768,508,811"/>
+<area shape="poly" id="edge25_Node000025_Node000026" title=" " alt="" coords="553,773,509,778,508,773,553,768"/>
+</map>

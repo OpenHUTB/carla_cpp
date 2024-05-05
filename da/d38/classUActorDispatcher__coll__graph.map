@@ -1,0 +1,21 @@
+<map id="UActorDispatcher" name="UActorDispatcher">
+<area shape="rect" id="Node000001" title="Object in charge of binding ActorDefinitions to spawn functions, as well as keeping the registry of a..." alt="" coords="668,107,791,133"/>
+<area shape="rect" id="Node000002" href="$df/def/classUObject.html" title=" " alt="" coords="386,5,454,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="469,20,553,33,600,44,645,60,684,81,714,104,711,109,681,86,643,65,598,49,551,38,468,25"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="332,56,508,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="523,77,644,96,678,103,677,109,644,101,522,83"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="320,107,520,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="535,117,667,117,667,123,535,123"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="347,157,493,200"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="507,163,643,139,675,131,676,137,645,144,507,169"/>
+<area shape="rect" id="Node000006" href="$df/db5/classFActorRegistry.html" title="A registry of all the Carla actors." alt="" coords="366,224,474,251"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="488,225,564,207,643,179,681,156,712,132,715,136,684,160,645,184,566,212,489,230"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="7,144,180,171"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="195,167,246,179,297,195,321,210,366,224,364,229,319,214,295,200,245,184,194,173"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="7,195,180,221"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="195,214,365,230,365,235,194,220"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="5,245,182,288"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="196,255,365,240,365,245,197,260"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="65,312,122,339"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="136,314,295,276,379,249,381,254,296,281,137,320"/>
+</map>

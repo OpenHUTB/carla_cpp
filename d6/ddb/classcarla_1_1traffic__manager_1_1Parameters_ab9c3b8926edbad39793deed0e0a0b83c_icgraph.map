@@ -1,0 +1,25 @@
+<map id="carla::traffic_manager::Parameters::GetSynchronousMode" name="carla::traffic_manager::Parameters::GetSynchronousMode">
+<area shape="rect" id="Node000001" title="Method to get synchronous mode." alt="" coords="850,147,1083,189"/>
+<area shape="rect" id="Node000002" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="Initiates thread to run the TrafficManager sequentially." alt="" coords="399,143,574,185"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="835,170,575,167,575,162,835,164"/>
+<area shape="rect" id="Node000006" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#af626f21c43ce83169f44af05697df005" title="Method to switch traffic manager into synchronous execution." alt="" coords="633,72,791,131"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="868,145,790,124,792,119,869,140"/>
+<area shape="rect" id="Node000007" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ad2b17f923adfa432e90f5d88cbce7d17" title="To stop the TrafficManager." alt="" coords="622,288,802,331"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="926,201,869,240,803,278,778,290,776,285,800,274,866,235,923,196"/>
+<area shape="rect" id="Node000010" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a94043366fbfc809256e8698edc010727" title="Method to provide synchronous tick." alt="" coords="639,205,785,264"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="869,196,786,218,784,213,868,191"/>
+<area shape="rect" id="Node000011" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a7a57d649d96daccb2e2ee9780f24c4ec" title=" " alt="" coords="623,5,801,48"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="923,140,866,101,800,62,776,51,778,46,803,58,869,96,926,135"/>
+<area shape="rect" id="Node000003" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="To start the TrafficManager." alt="" coords="202,135,348,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="384,167,348,167,348,161,384,161"/>
+<area shape="rect" id="Node000004" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="5,251,151,309"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="207,203,200,208,127,253,124,248,197,203,205,199"/>
+<area shape="rect" id="Node000005" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="5,135,151,193"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="187,167,151,167,151,161,187,161"/>
+<area shape="rect" id="Node000008" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#af750d1f01eacaa0c0db21339d9e6fe05" title="To release the traffic manager." alt="" coords="414,280,559,339"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="607,312,560,312,560,307,607,307"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="399,306,151,288,151,283,400,300"/>
+<area shape="rect" id="Node000009" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#ab0cb2f23e9d532bcb3256977e0117b8c" title="Destructor." alt="" coords="199,217,351,276"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="399,286,351,272,352,267,400,281"/>
+<area shape="poly" id="edge12_Node000011_Node000002" title=" " alt="" coords="634,57,624,62,563,103,513,144,510,140,559,99,621,58,632,52"/>
+</map>

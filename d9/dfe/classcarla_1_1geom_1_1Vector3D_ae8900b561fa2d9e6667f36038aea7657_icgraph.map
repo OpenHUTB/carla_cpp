@@ -1,0 +1,60 @@
+<map id="carla::geom::Vector3D::Vector3D" name="carla::geom::Vector3D::Vector3D">
+<area shape="rect" id="Node000001" title=" " alt="" coords="2091,211,2243,253"/>
+<area shape="rect" id="Node000002" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a92373bacc43cbba94e5cc4ced79054af" title=" " alt="" coords="1861,160,2043,187"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2076,210,2003,190,2004,185,2077,205"/>
+<area shape="rect" id="Node000003" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a21f9cb00ea207d0f5304fad1c40b20e7" title=" " alt="" coords="1877,211,2028,253"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="2076,235,2028,235,2028,229,2076,229"/>
+<area shape="rect" id="Node000019" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html#a15ae9cc36cd1e3fd34c1398acc897f68" title=" " alt="" coords="1877,457,2028,500"/>
+<area shape="poly" id="edge25_Node000001_Node000019" title=" " alt="" coords="2140,266,1974,459,1970,455,2136,263"/>
+<area shape="rect" id="Node000004" href="$d0/db7/namespacecarla_1_1traffic__manager.html#a89337c3161330c2e9a7d5ed0905310ff" title="Returns the cross product (z component value) between the vehicle&#39;s heading vector and the vector alo..." alt="" coords="1630,5,1791,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1863,204,1859,200,1846,183,1838,166,1834,133,1830,101,1823,85,1811,69,1786,51,1790,46,1815,65,1828,82,1835,99,1839,132,1844,165,1850,181,1863,197,1866,200"/>
+<area shape="rect" id="Node000005" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a7a57d649d96daccb2e2ee9780f24c4ec" title=" " alt="" coords="1373,56,1550,99"/>
+<area shape="poly" id="edge24_Node000003_Node000005" title=" " alt="" coords="1864,204,1859,201,1842,177,1836,154,1829,132,1822,122,1811,113,1781,96,1749,83,1681,68,1613,64,1551,67,1550,61,1613,59,1681,63,1751,78,1784,91,1815,108,1826,119,1834,130,1841,152,1847,175,1863,197,1867,200"/>
+<area shape="rect" id="Node000010" href="$d0/db7/namespacecarla_1_1traffic__manager.html#af3c2122d4e257fe9e2a2529ce4fc0ba0" title="Returns the dot product between the vehicle&#39;s heading vector and the vector along the direction to th..." alt="" coords="1637,123,1784,165"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="1876,207,1770,168,1772,163,1878,202"/>
+<area shape="rect" id="Node000012" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a868ceb22e38362b0c6d01bf0d5ea36cc" title=" " alt="" coords="1612,240,1809,283"/>
+<area shape="poly" id="edge13_Node000003_Node000012" title=" " alt="" coords="1862,246,1809,252,1809,247,1862,240"/>
+<area shape="rect" id="Node000013" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a45e850204e542a9c51cf202fc0bc5854" title=" " alt="" coords="1363,173,1560,232"/>
+<area shape="poly" id="edge20_Node000003_Node000013" title=" " alt="" coords="1862,229,1560,211,1560,206,1862,224"/>
+<area shape="rect" id="Node000015" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#af9c0740908fbcb2f077fb513224b2b4e" title=" " alt="" coords="845,219,1069,261"/>
+<area shape="poly" id="edge21_Node000003_Node000015" title=" " alt="" coords="1903,263,1860,283,1814,297,1764,304,1693,308,1506,309,1298,301,1117,284,1028,265,1029,259,1117,279,1299,296,1506,304,1693,303,1764,299,1812,292,1858,278,1900,258"/>
+<area shape="rect" id="Node000017" href="$dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a58f8877006e58047271127055ae9086e" title=" " alt="" coords="1608,357,1813,400"/>
+<area shape="poly" id="edge22_Node000003_Node000017" title=" " alt="" coords="1918,265,1870,304,1814,341,1776,359,1774,354,1812,336,1867,299,1915,261"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1616,48,1551,62,1550,57,1615,43"/>
+<area shape="rect" id="Node000006" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="Initiates thread to run the TrafficManager sequentially." alt="" coords="392,115,567,157"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1358,76,1212,74,1027,75,821,85,616,105,558,117,557,111,615,100,821,79,1027,70,1212,68,1358,71"/>
+<area shape="rect" id="Node000007" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="To start the TrafficManager." alt="" coords="199,107,344,165"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="377,139,344,139,344,133,377,133"/>
+<area shape="rect" id="Node000008" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="5,65,151,124"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="184,120,151,113,152,108,185,115"/>
+<area shape="rect" id="Node000009" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="5,148,151,207"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="185,157,152,164,151,159,184,152"/>
+<area shape="poly" id="edge10_Node000010_Node000005" title=" " alt="" coords="1622,123,1543,102,1545,97,1624,118"/>
+<area shape="rect" id="Node000011" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#acf066b922ba5c21c6b6ee23d35731d91" title=" " alt="" coords="615,115,797,157"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="1622,146,797,139,797,134,1622,141"/>
+<area shape="poly" id="edge12_Node000011_Node000006" title=" " alt="" coords="601,139,568,139,568,133,601,133"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="1602,239,1559,228,1561,223,1604,233"/>
+<area shape="rect" id="Node000014" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a383f31bbf925c84040ef66592dd6e56e" title=" " alt="" coords="1117,211,1315,269"/>
+<area shape="poly" id="edge19_Node000012_Node000014" title=" " alt="" coords="1597,259,1316,247,1316,242,1598,254"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="1349,222,1316,228,1315,222,1348,217"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="1102,243,1069,243,1069,237,1102,237"/>
+<area shape="rect" id="Node000016" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#ac446efd585519bce8de5740158758158" title=" " alt="" coords="625,193,787,236"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="829,230,787,225,787,220,830,225"/>
+<area shape="poly" id="edge18_Node000016_Node000006" title=" " alt="" coords="628,190,542,160,544,155,629,185"/>
+<area shape="rect" id="Node000018" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a49a4e44139e9b01e4a16aa1f87ebf828" title="Spawns an actor into the simulation." alt="" coords="1380,357,1543,400"/>
+<area shape="poly" id="edge23_Node000017_Node000018" title=" " alt="" coords="1593,381,1543,381,1543,376,1593,376"/>
+<area shape="rect" id="Node000020" href="$d0/d34/classcarla_1_1road_1_1Map.html#a17e65cd8e5fb3d61bf5a732bf225710d" title=" " alt="" coords="1622,424,1799,467"/>
+<area shape="poly" id="edge26_Node000019_Node000020" title=" " alt="" coords="1862,469,1799,460,1799,455,1863,464"/>
+<area shape="rect" id="Node000021" href="$d5/de4/classARayCastLidar.html#a6847345acfcf8e52cf8c1a4cfb93e2bc" title=" " alt="" coords="1616,491,1805,533"/>
+<area shape="poly" id="edge27_Node000019_Node000021" title=" " alt="" coords="1863,494,1806,502,1805,496,1862,488"/>
+<area shape="rect" id="Node000023" href="$d0/d34/classcarla_1_1road_1_1Map.html#a1653a470bdf6e93b0471773b2e079847" title=" " alt="" coords="1613,559,1808,585"/>
+<area shape="poly" id="edge29_Node000019_Node000023" title=" " alt="" coords="1899,510,1814,548,1773,561,1771,556,1812,543,1897,505"/>
+<area shape="rect" id="Node000022" href="$d5/de4/classARayCastLidar.html#ae73bcd2ee46691bd0df561b33d0d17ba" title="This method uses all the saved FHitResults, compute the RawDetections and then send it to the LidarDa..." alt="" coords="1366,488,1557,531"/>
+<area shape="poly" id="edge28_Node000021_Node000022" title=" " alt="" coords="1601,513,1558,513,1558,508,1601,508"/>
+<area shape="rect" id="Node000024" href="$d0/d34/classcarla_1_1road_1_1Map.html#accf4f345bb9db4bcd6cdd9e6fec322cc" title=" " alt="" coords="1373,555,1550,597"/>
+<area shape="poly" id="edge30_Node000023_Node000024" title=" " alt="" coords="1598,576,1550,577,1550,572,1598,571"/>
+<area shape="rect" id="Node000025" href="$d0/d34/classcarla_1_1road_1_1Map.html#aa51550af7f6efc7df8691eb41225beec" title=" " alt="" coords="1128,555,1304,597"/>
+<area shape="poly" id="edge31_Node000024_Node000025" title=" " alt="" coords="1359,579,1305,579,1305,573,1359,573"/>
+<area shape="rect" id="Node000026" href="$d0/d34/classcarla_1_1road_1_1Map.html#ac77235567699cc2853177c441390fd14" title=" " alt="" coords="849,555,1065,597"/>
+<area shape="poly" id="edge32_Node000025_Node000026" title=" " alt="" coords="1113,579,1066,579,1066,573,1113,573"/>
+</map>

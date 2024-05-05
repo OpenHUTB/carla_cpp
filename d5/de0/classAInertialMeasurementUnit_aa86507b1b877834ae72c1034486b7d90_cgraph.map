@@ -1,0 +1,31 @@
+<map id="AInertialMeasurementUnit::PostPhysTick" name="AInertialMeasurementUnit::PostPhysTick">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,260,176,303"/>
+<area shape="poly" id="edge15_Node000001_Node000001" title=" " alt="" coords="44,260,42,250,50,241,66,235,91,233,118,236,134,243,131,248,117,241,90,239,67,241,53,245,47,251,49,259"/>
+<area shape="rect" id="Node000002" href="$d5/de0/classAInertialMeasurementUnit.html#acb126bb232bae1d7d8b2470ed85b9ffc" title="Accelerometer: measures linear acceleration in m/s^2." alt="" coords="251,31,421,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,258,116,221,143,173,178,125,222,83,236,74,239,79,225,87,182,128,147,176,121,223,103,261"/>
+<area shape="rect" id="Node000006" href="$d5/de0/classAInertialMeasurementUnit.html#a01cd59bbd1a52c3a138ff031e5e45697" title="Magnetometer: orientation with respect to the North in rad." alt="" coords="251,97,421,140"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="106,258,154,204,187,175,222,150,236,143,238,147,225,154,190,179,158,208,110,262"/>
+<area shape="rect" id="Node000007" href="$d5/de0/classAInertialMeasurementUnit.html#aa74f616bf7d03f2f8a7642ab073d2561" title="Gyroscope: measures angular velocity in rad/sec." alt="" coords="251,164,421,207"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="133,257,223,216,242,209,244,214,225,221,135,262"/>
+<area shape="rect" id="Node000010" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html#a2edd9e9111f8f91b47791baec38c5829" title=" " alt="" coords="244,231,428,273"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="176,269,229,262,230,267,176,274"/>
+<area shape="rect" id="Node000011" href="$d3/d01/classASensor.html#a8fa217c0d68d5c774510d5e941ae0ade" title="Return the FDataStream associated with this sensor." alt="" coords="251,297,421,324"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="176,289,237,296,236,301,176,294"/>
+<area shape="rect" id="Node000012" href="$d8/d78/classcarla_1_1ros2_1_1ROS2.html#a2cec6f14ee2b8e025b585575508d77f1" title=" " alt="" coords="269,348,403,391"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="142,301,225,333,256,344,254,349,223,339,140,306"/>
+<area shape="rect" id="Node000013" href="$d4/d9c/classFDataStreamTmpl.html#a8350f93ef64dc8931d1c9b9de49ac09e" title=" " alt="" coords="224,415,448,441"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="111,301,159,352,190,378,225,400,239,407,237,412,222,405,187,382,155,356,107,305"/>
+<area shape="rect" id="Node000014" href="$d3/d01/classASensor.html#a66fce49debf0145d15f810fd78775e9d" title="Return the token that allows subscribing to this sensor&#39;s stream." alt="" coords="268,465,404,492"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="105,302,123,336,150,376,184,417,225,451,255,465,253,470,222,456,180,421,146,379,118,338,100,304"/>
+<area shape="rect" id="Node000003" href="$d5/de0/classAInertialMeasurementUnit.html#a63d8f805a045b32e9ff31343a4eb0780" title=" " alt="" coords="498,5,696,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="421,41,483,35,484,40,422,46"/>
+<area shape="rect" id="Node000005" href="$d7/d1e/classUCarlaStatics.html#acf94832c60579b6d161b66447719efbc" title=" " alt="" coords="499,72,696,99"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="422,60,484,68,483,74,421,66"/>
+<area shape="rect" id="Node000004" href="$d2/d4b/classURandomEngine.html#a794f6be8c1517dba34b61f2b753cb4d3" title=" " alt="" coords="746,64,935,107"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="689,46,735,57,734,62,688,51"/>
+<area shape="rect" id="Node000008" href="$d5/de0/classAInertialMeasurementUnit.html#a5f1b18b10c2c4a24254642f7499cb315" title=" " alt="" coords="509,123,686,165"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="421,169,493,158,494,163,422,174"/>
+<area shape="rect" id="Node000009" href="$d7/d78/InertialMeasurementUnit_8cpp.html#af4975d0785257be624de10365d21740d" title=" " alt="" coords="496,189,698,232"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="422,191,481,197,481,202,421,196"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="686,120,734,108,736,113,687,125"/>
+</map>

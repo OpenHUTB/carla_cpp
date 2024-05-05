@@ -1,0 +1,14 @@
+<map id="carla::Buffer::copy_from" name="carla::Buffer::copy_from">
+<area shape="rect" id="Node000001" title="Copy source into this buffer leaving at the front an offset of offset bytes uninitialized." alt="" coords="5,68,164,95"/>
+<area shape="rect" id="Node000002" href="$d0/d0a/classcarla_1_1Buffer.html#a7826c8e4e69af01ed0598986049aca64" title="Make a boost::asio::buffer from this buffer." alt="" coords="226,31,356,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,65,211,56,212,61,162,70"/>
+<area shape="rect" id="Node000006" href="$d0/d0a/classcarla_1_1Buffer.html#a58ec7fcf4a9a2f70edb139f9671ebd00" title="Copy source into this buffer. Allocates memory if necessary." alt="" coords="212,105,370,132"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="162,93,199,99,198,105,161,98"/>
+<area shape="rect" id="Node000003" href="$d0/d0a/classcarla_1_1Buffer.html#adee1ec29f3597f8585fc842072f0dcca" title="Make a boost::asio::buffer from this buffer." alt="" coords="418,31,554,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="356,41,404,41,404,47,356,47"/>
+<area shape="rect" id="Node000004" href="$d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf" title="Direct access to the allocated memory or nullptr if no memory is allocated." alt="" coords="602,5,726,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="554,32,588,27,588,32,555,37"/>
+<area shape="rect" id="Node000005" href="$d0/d0a/classcarla_1_1Buffer.html#a3edea2e44a05d9806312e5f9e52315e4" title=" " alt="" coords="603,56,725,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="555,51,588,56,588,61,554,56"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="258,106,252,97,256,87,269,81,291,79,315,82,327,89,325,93,314,87,291,84,270,86,259,91,257,96,262,103"/>
+</map>

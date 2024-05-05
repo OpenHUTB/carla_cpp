@@ -1,0 +1,117 @@
+<map id="carla::log_debug" name="carla::log_debug">
+<area shape="rect" id="Node000001" title=" " alt="" coords="752,1173,869,1200"/>
+<area shape="rect" id="Node000002" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" title="Checks signals overlapping driving lanes and emits a warning." alt="" coords="506,1499,669,1541"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="810,1215,803,1272,786,1346,773,1384,756,1422,733,1458,706,1489,690,1501,671,1510,669,1505,687,1496,703,1485,729,1454,751,1420,768,1382,781,1344,798,1271,805,1215"/>
+<area shape="rect" id="Node000022" href="$d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a22a1c258bce01b70fc09ec4189230acd" title=" " alt="" coords="477,56,699,99"/>
+<area shape="poly" id="edge4_Node000001_Node000022" title=" " alt="" coords="806,1159,797,938,778,605,763,436,746,287,726,174,714,135,702,112,690,101,694,97,706,109,719,133,731,172,752,286,769,436,783,605,802,938,811,1158"/>
+<area shape="rect" id="Node000023" href="$da/dda/classcarla_1_1multigpu_1_1Primary.html#adf9f8d2fd7a5f1f7ca1937bcedd714bc" title=" " alt="" coords="508,123,667,165"/>
+<area shape="poly" id="edge5_Node000001_Node000023" title=" " alt="" coords="805,1159,795,952,774,643,760,486,743,348,724,243,713,207,702,186,686,171,667,160,669,156,689,167,706,183,718,205,729,242,749,347,765,486,780,643,800,952,811,1158"/>
+<area shape="rect" id="Node000024" href="$d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a27baf23c0170b8129887425bc9bd75ff" title=" " alt="" coords="486,307,690,349"/>
+<area shape="poly" id="edge6_Node000001_Node000024" title=" " alt="" coords="807,1159,805,998,792,762,780,639,761,527,735,434,720,397,702,370,681,352,685,348,706,366,725,395,741,432,766,526,785,639,798,761,810,998,812,1159"/>
+<area shape="rect" id="Node000025" href="$d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#a506c21da6ede5e6189fa7713a14d13c2" title="Starts the session and calls on_opened after successfully reading the stream id, and on_closed once t..." alt="" coords="239,240,416,283"/>
+<area shape="poly" id="edge35_Node000001_Node000025" title=" " alt="" coords="806,1159,797,958,778,661,765,511,747,380,726,281,715,249,702,230,665,206,623,192,579,188,532,192,487,201,444,214,373,242,371,237,442,209,486,196,532,187,579,183,625,187,668,201,706,226,720,246,732,279,753,379,770,510,784,660,803,958,811,1158"/>
+<area shape="rect" id="Node000026" href="$d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#af5255361ee0fd1c54d54faf759f21da4" title="Writes some data to the socket." alt="" coords="239,332,416,375"/>
+<area shape="poly" id="edge64_Node000001_Node000026" title=" " alt="" coords="807,1159,806,1004,795,779,782,663,763,557,737,471,721,438,703,414,690,407,665,400,592,386,416,364,417,359,593,381,666,395,692,402,706,410,725,436,742,469,768,556,787,662,800,778,811,1004,812,1158"/>
+<area shape="rect" id="Node000028" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html#ac719b9c4f090204a28e6b85fefb30a69" title=" " alt="" coords="501,424,675,467"/>
+<area shape="poly" id="edge9_Node000001_Node000028" title=" " alt="" coords="806,1159,801,1019,786,818,772,714,755,619,731,541,718,510,702,487,689,475,674,466,677,461,693,471,706,484,722,508,736,539,760,618,778,713,791,817,806,1018,811,1159"/>
+<area shape="rect" id="Node000031" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aff760041c9642a988880c1ff39739fe2" title=" " alt="" coords="511,632,664,675"/>
+<area shape="poly" id="edge11_Node000001_Node000031" title=" " alt="" coords="804,1159,793,1057,773,918,759,848,743,784,724,731,702,695,685,680,663,670,666,665,688,676,706,692,729,729,748,782,765,847,778,917,799,1056,809,1159"/>
+<area shape="rect" id="Node000032" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#aaa78ca2b7195a84a9b0db792fa88ab79" title=" " alt="" coords="251,565,404,608"/>
+<area shape="poly" id="edge44_Node000001_Node000032" title=" " alt="" coords="807,1159,804,1023,791,832,778,735,759,647,734,577,719,550,703,531,663,508,620,496,573,496,526,503,479,516,436,533,366,567,364,563,434,528,478,511,525,498,573,490,620,491,666,503,706,527,724,547,739,574,764,646,783,734,796,832,809,1023,812,1158"/>
+<area shape="rect" id="Node000034" href="$d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#aaab0c5043124a4940bcae3a6eee0b600" title=" " alt="" coords="471,541,704,584"/>
+<area shape="poly" id="edge18_Node000001_Node000034" title=" " alt="" coords="805,1159,798,1039,780,870,767,784,749,706,728,641,716,617,702,598,689,587,693,583,706,594,720,614,733,639,755,704,772,783,786,870,803,1038,811,1159"/>
+<area shape="rect" id="Node000035" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html#a50aeb50a5aace90649a55905e71e820e" title=" " alt="" coords="485,965,690,1008"/>
+<area shape="poly" id="edge19_Node000001_Node000035" title=" " alt="" coords="797,1161,783,1129,762,1091,736,1054,703,1022,684,1011,687,1006,706,1018,740,1050,767,1088,787,1126,802,1159"/>
+<area shape="rect" id="Node000036" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html#a40392b3c5f815abf0336a06cf5ae34f2" title=" " alt="" coords="243,749,412,792"/>
+<area shape="poly" id="edge53_Node000001_Node000036" title=" " alt="" coords="804,1159,795,1062,775,935,762,871,745,814,725,768,703,739,664,717,622,705,577,701,532,704,487,713,444,725,374,752,372,747,443,720,485,708,531,699,577,696,623,699,667,712,706,735,730,766,750,812,767,870,781,934,800,1062,810,1158"/>
+<area shape="rect" id="Node000039" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a8b8d6cfb406fd98f00390ff017b6df71" title=" " alt="" coords="248,1992,407,2035"/>
+<area shape="poly" id="edge21_Node000001_Node000039" title=" " alt="" coords="810,1215,799,1385,777,1632,763,1756,746,1864,728,1946,717,1973,706,1990,685,2003,655,2013,577,2023,489,2025,407,2022,407,2017,489,2020,576,2018,653,2008,683,1998,702,1986,713,1971,722,1944,741,1863,758,1755,772,1632,794,1385,805,1215"/>
+<area shape="rect" id="Node000040" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#ae6feb4d03375b8d6610be9abfa8c8b9a" title=" " alt="" coords="504,816,672,859"/>
+<area shape="poly" id="edge22_Node000001_Node000040" title=" " alt="" coords="806,1159,800,1100,783,1022,770,982,753,942,730,905,703,873,671,853,674,849,706,869,735,902,757,940,775,980,789,1021,805,1099,811,1159"/>
+<area shape="rect" id="Node000041" href="$d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#a30d9ec04e8423fcbb2268f034406720d" title=" " alt="" coords="486,883,689,941"/>
+<area shape="poly" id="edge23_Node000001_Node000041" title=" " alt="" coords="801,1159,790,1115,771,1060,742,1004,724,978,703,955,688,944,691,940,706,951,728,975,747,1001,776,1058,795,1113,807,1158"/>
+<area shape="rect" id="Node000042" href="$da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a5c69feeed4dba60dbf699c444a0ac401" title=" " alt="" coords="508,1032,667,1075"/>
+<area shape="poly" id="edge24_Node000001_Node000042" title=" " alt="" coords="788,1164,751,1125,703,1089,666,1073,668,1068,706,1084,754,1121,791,1160"/>
+<area shape="rect" id="Node000044" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html#aefb9ac7e0751ffa0bd005631ed8f8823" title=" " alt="" coords="510,1299,665,1341"/>
+<area shape="poly" id="edge27_Node000001_Node000044" title=" " alt="" coords="791,1213,754,1252,706,1289,667,1306,665,1301,703,1284,751,1248,788,1210"/>
+<area shape="rect" id="Node000048" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ad9cbca9c2bc3d5762df81970696bdc81" title="Register a callback to be executed each time a new measurement is received." alt="" coords="509,1099,667,1141"/>
+<area shape="poly" id="edge29_Node000001_Node000048" title=" " alt="" coords="752,1171,704,1156,665,1145,667,1140,705,1151,753,1166"/>
+<area shape="rect" id="Node000049" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#af2dcc2b1ee4a52dbc8e1e7727e3653c4" title="Register a callback to be executed each time a new measurement is received." alt="" coords="508,1165,668,1208"/>
+<area shape="poly" id="edge30_Node000001_Node000049" title=" " alt="" coords="738,1189,668,1189,668,1184,738,1184"/>
+<area shape="rect" id="Node000050" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a8d2f2ded63362c44925f7e5c7c64adcf" title="Listen fr." alt="" coords="507,1232,669,1275"/>
+<area shape="poly" id="edge31_Node000001_Node000050" title=" " alt="" coords="753,1208,705,1223,667,1234,665,1229,704,1218,752,1203"/>
+<area shape="rect" id="Node000051" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html#a5f3261c348de9d2f7275b07a8a4c34b1" title=" " alt="" coords="501,1365,674,1408"/>
+<area shape="poly" id="edge32_Node000001_Node000051" title=" " alt="" coords="802,1215,787,1247,767,1285,740,1323,706,1356,676,1372,674,1367,703,1351,736,1320,762,1282,783,1245,797,1213"/>
+<area shape="rect" id="Node000060" href="$df/dbe/classcarla_1_1opendrive_1_1parser_1_1ControllerParser.html#ad8c8dafcbbfac40ca1fd43ca6ef70412" title=" " alt="" coords="245,1565,410,1608"/>
+<area shape="poly" id="edge36_Node000001_Node000060" title=" " alt="" coords="809,1215,799,1308,779,1432,766,1493,749,1549,729,1593,706,1622,676,1641,649,1651,622,1654,595,1651,539,1637,470,1623,407,1611,408,1606,472,1618,540,1632,596,1646,622,1649,647,1646,674,1637,703,1618,725,1590,744,1547,761,1492,774,1431,794,1308,804,1214"/>
+<area shape="rect" id="Node000061" href="$dd/d61/classcarla_1_1opendrive_1_1parser_1_1SignalParser.html#a715780b50d4cd22256482e1d1dd590ef" title=" " alt="" coords="250,85,405,128"/>
+<area shape="poly" id="edge38_Node000001_Node000061" title=" " alt="" coords="806,1159,801,924,785,567,771,387,754,228,731,108,717,69,702,46,684,32,664,21,620,10,573,9,525,18,478,32,435,50,364,87,362,83,432,45,477,27,524,13,573,4,621,5,666,16,687,27,706,42,722,66,736,107,759,227,777,386,790,567,806,924,811,1159"/>
+<area shape="rect" id="Node000062" href="$db/dd5/namespacecarla_1_1opendrive_1_1parser.html#a8dad6b9e5e958cdeca4463f6c94d6c24" title=" " alt="" coords="510,1432,665,1475"/>
+<area shape="poly" id="edge40_Node000001_Node000062" title=" " alt="" coords="807,1215,796,1260,777,1316,748,1373,729,1399,706,1422,687,1435,667,1444,665,1439,685,1430,703,1418,724,1396,743,1370,772,1314,791,1259,802,1214"/>
+<area shape="rect" id="Node000064" href="$df/d7f/structcarla_1_1image_1_1io_1_1detail_1_1io__resolver.html#a1be4ebd755e4ffa5591fb24944686b75" title=" " alt="" coords="505,1565,670,1608"/>
+<area shape="poly" id="edge43_Node000001_Node000064" title=" " alt="" coords="812,1216,809,1284,795,1375,782,1424,763,1471,738,1516,706,1555,690,1568,672,1577,669,1572,687,1563,702,1552,734,1513,758,1469,777,1422,790,1374,804,1283,807,1215"/>
+<area shape="rect" id="Node000065" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html#aa7340146973ea784ca8ec4c4c9e53237" title=" " alt="" coords="491,749,685,792"/>
+<area shape="poly" id="edge45_Node000001_Node000065" title=" " alt="" coords="807,1158,805,1088,792,993,779,942,760,893,735,847,702,806,684,792,687,788,706,802,739,844,765,891,784,941,797,992,811,1087,813,1158"/>
+<area shape="rect" id="Node000066" href="$d0/d0a/classcarla_1_1Buffer.html#a23578a522b5ce30a6e821255a8f0ff5e" title="Reset the size of this buffer." alt="" coords="524,1683,651,1709"/>
+<area shape="poly" id="edge47_Node000001_Node000066" title=" " alt="" coords="809,1215,799,1315,778,1450,765,1518,748,1580,729,1631,706,1666,681,1684,653,1694,651,1689,679,1679,702,1662,724,1628,743,1578,759,1517,773,1449,793,1314,804,1215"/>
+<area shape="rect" id="Node000073" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#aa21c177524bc15fb56b45fa3c87dd91b" title="Send data via this sensor." alt="" coords="509,1733,667,1776"/>
+<area shape="poly" id="edge51_Node000001_Node000073" title=" " alt="" coords="810,1215,801,1326,782,1478,768,1555,751,1625,731,1683,706,1723,689,1738,668,1747,666,1742,686,1733,702,1720,726,1681,746,1624,763,1554,777,1477,796,1325,805,1215"/>
+<area shape="rect" id="Node000074" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a49a4e44139e9b01e4a16aa1f87ebf828" title="Spawns an actor into the simulation." alt="" coords="507,1800,669,1843"/>
+<area shape="poly" id="edge52_Node000001_Node000074" title=" " alt="" coords="811,1215,804,1337,786,1509,773,1597,755,1678,733,1744,721,1770,706,1790,690,1804,670,1813,668,1809,687,1799,702,1786,716,1767,728,1742,750,1676,768,1596,781,1508,798,1336,805,1214"/>
+<area shape="rect" id="Node000075" href="$da/dda/classcarla_1_1multigpu_1_1Primary.html#a0e9ec401af75f35cac8cd02237aec81d" title=" " alt="" coords="508,1867,667,1909"/>
+<area shape="poly" id="edge54_Node000001_Node000075" title=" " alt="" coords="811,1215,806,1350,790,1542,777,1640,759,1731,736,1805,722,1834,706,1857,689,1871,669,1881,667,1876,686,1866,702,1853,717,1831,731,1803,754,1729,772,1639,785,1541,801,1350,806,1215"/>
+<area shape="rect" id="Node000076" href="$d6/d51/classcarla_1_1streaming_1_1detail_1_1tcp_1_1ServerSession.html#ac176f4d8a841129d212d7e95e6f1bf6c" title=" " alt="" coords="485,240,691,283"/>
+<area shape="poly" id="edge55_Node000001_Node000076" title=" " alt="" coords="805,1159,794,972,772,698,758,560,741,438,722,346,712,315,702,296,689,285,693,281,706,293,717,313,727,345,746,438,763,559,777,698,799,972,810,1158"/>
+<area shape="rect" id="Node000077" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ac50a567c3bfd01261f06f9743afef84a" title="Stop listening for new measurements." alt="" coords="509,1933,667,1976"/>
+<area shape="poly" id="edge57_Node000001_Node000077" title=" " alt="" coords="812,1215,808,1362,794,1574,781,1683,763,1783,738,1866,723,1898,706,1923,689,1938,669,1948,666,1943,686,1933,702,1920,719,1896,733,1864,758,1782,776,1682,789,1573,803,1362,806,1215"/>
+<area shape="rect" id="Node000079" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a84708b0cda6793b54a1df34c90050962" title="Stop listening for new measurements." alt="" coords="508,2051,668,2093"/>
+<area shape="poly" id="edge59_Node000001_Node000079" title=" " alt="" coords="812,1215,811,1380,799,1624,787,1752,768,1869,742,1966,725,2004,706,2034,690,2049,670,2060,667,2055,686,2045,702,2030,720,2002,736,1964,763,1868,781,1751,794,1624,806,1380,807,1215"/>
+<area shape="rect" id="Node000081" href="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html#af9ff392aec23bfad361e211dcd85fd9f" title="Stop listening for a specific gbuffer stream." alt="" coords="509,2117,667,2160"/>
+<area shape="poly" id="edge60_Node000001_Node000081" title=" " alt="" coords="810,1215,799,1406,778,1689,764,1832,747,1958,728,2054,718,2087,706,2107,689,2122,668,2132,666,2127,686,2118,702,2104,713,2085,723,2052,742,1957,758,1831,773,1689,794,1406,805,1215"/>
+<area shape="rect" id="Node000082" href="$da/d83/classcarla_1_1streaming_1_1low__level_1_1Client.html#ae9846cf795cf3af78e9a4aa6c157445c" title=" " alt="" coords="500,2184,676,2227"/>
+<area shape="poly" id="edge62_Node000001_Node000082" title=" " alt="" coords="811,1215,801,1419,780,1723,766,1877,749,2013,729,2116,718,2152,706,2174,693,2186,678,2195,675,2190,690,2182,702,2170,713,2150,724,2115,744,2012,761,1876,775,1723,795,1418,805,1215"/>
+<area shape="rect" id="Node000084" href="$d1/d43/classcarla_1_1streaming_1_1detail_1_1MultiStreamState.html#ad92ae721b7b7b4ae750e32d0ff0a8f1a" title=" " alt="" coords="503,2251,672,2293"/>
+<area shape="poly" id="edge63_Node000001_Node000084" title=" " alt="" coords="811,1216,802,1432,782,1757,768,1922,751,2068,731,2179,719,2217,706,2240,691,2254,674,2263,671,2259,688,2250,702,2237,714,2215,725,2178,746,2067,763,1921,777,1757,796,1431,806,1215"/>
+<area shape="rect" id="Node000085" href="$df/d7f/structcarla_1_1image_1_1io_1_1detail_1_1io__resolver.html#a52326957ed6cc706a788e39076fe0a48" title=" " alt="" coords="510,2317,666,2360"/>
+<area shape="poly" id="edge65_Node000001_Node000085" title=" " alt="" coords="811,1215,803,1443,784,1790,770,1966,753,2122,732,2241,720,2282,706,2307,688,2323,667,2333,665,2328,686,2318,702,2304,715,2280,727,2240,748,2121,765,1966,779,1790,798,1443,806,1215"/>
+<area shape="rect" id="Node000003" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a7b0bb12125e15fd246924aee12327e7e" title=" " alt="" coords="250,1499,405,1541"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="491,1523,405,1523,405,1517,491,1517"/>
+<area shape="rect" id="Node000004" href="$de/d5a/classcarla_1_1opendrive_1_1OpenDriveParser.html#a599fd6174f30aaee59590c16503afd8a" title=" " alt="" coords="5,1465,184,1508"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="234,1510,184,1502,184,1497,235,1504"/>
+<area shape="poly" id="edge7_Node000024_Node000025" title=" " alt="" coords="487,305,413,286,414,281,488,300"/>
+<area shape="poly" id="edge8_Node000024_Node000026" title=" " alt="" coords="471,342,417,347,416,342,470,337"/>
+<area shape="rect" id="Node000029" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html#a2368e51d7a4e2da02613fe9591b7f3b9" title=" " alt="" coords="237,424,418,467"/>
+<area shape="poly" id="edge10_Node000028_Node000029" title=" " alt="" coords="486,448,418,448,418,443,486,443"/>
+<area shape="poly" id="edge12_Node000031_Node000031" title=" " alt="" coords="625,620,611,613,588,611,567,613,554,617,549,623,551,631,545,632,544,622,551,613,565,607,588,605,613,608,627,615"/>
+<area shape="poly" id="edge13_Node000031_Node000032" title=" " alt="" coords="496,641,384,611,385,606,497,636"/>
+<area shape="rect" id="Node000033" href="$dc/d96/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Client.html#a2d95ef9bb8a629f93278bbd3f9deb7a6" title=" " alt="" coords="248,632,407,675"/>
+<area shape="poly" id="edge16_Node000031_Node000033" title=" " alt="" coords="496,665,407,664,407,659,496,659"/>
+<area shape="poly" id="edge14_Node000032_Node000031" title=" " alt="" coords="419,599,532,629,530,634,418,604"/>
+<area shape="poly" id="edge15_Node000032_Node000032" title=" " alt="" coords="366,553,352,547,327,544,305,546,292,551,287,557,288,564,283,565,281,555,289,546,304,541,327,539,353,541,368,548"/>
+<area shape="poly" id="edge17_Node000033_Node000031" title=" " alt="" coords="421,642,510,642,510,648,421,647"/>
+<area shape="poly" id="edge20_Node000035_Node000036" title=" " alt="" coords="478,961,469,956,425,917,387,873,358,829,337,794,342,791,362,826,391,870,429,914,473,951,480,956"/>
+<area shape="rect" id="Node000043" href="$da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html#a68a8f8ee0216b21fc3a337464b22fb01" title=" " alt="" coords="236,1032,419,1075"/>
+<area shape="poly" id="edge25_Node000042_Node000043" title=" " alt="" coords="493,1056,419,1056,419,1051,493,1051"/>
+<area shape="poly" id="edge26_Node000043_Node000043" title=" " alt="" coords="366,1020,352,1013,327,1011,305,1013,292,1017,287,1023,288,1031,283,1032,281,1022,289,1013,304,1007,327,1005,353,1008,368,1015"/>
+<area shape="rect" id="Node000045" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html#a8236b6272c75d88305ca2aced02b802e" title=" " alt="" coords="247,1248,408,1291"/>
+<area shape="poly" id="edge28_Node000044_Node000045" title=" " alt="" coords="495,1305,408,1288,409,1283,496,1300"/>
+<area shape="rect" id="Node000052" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html#af0197baff1d5393af4962cf7a4026f10" title=" " alt="" coords="238,1315,417,1357"/>
+<area shape="poly" id="edge33_Node000051_Node000052" title=" " alt="" coords="486,1370,417,1356,418,1351,487,1365"/>
+<area shape="rect" id="Node000059" href="$d3/d36/test__streaming_8cpp.html#af96e4c48bd89c8e763b4140df650e8bf" title=" " alt="" coords="301,1381,354,1408"/>
+<area shape="poly" id="edge34_Node000051_Node000059" title=" " alt="" coords="486,1393,355,1397,355,1391,486,1387"/>
+<area shape="poly" id="edge37_Node000060_Node000004" title=" " alt="" coords="246,1562,231,1556,136,1511,138,1506,233,1551,248,1557"/>
+<area shape="poly" id="edge39_Node000061_Node000004" title=" " alt="" coords="295,141,262,181,234,229,217,280,201,344,173,501,151,685,133,880,109,1243,99,1465,94,1465,104,1243,127,880,145,685,168,501,196,343,212,279,229,227,257,178,291,137"/>
+<area shape="rect" id="Node000063" href="$d1/dae/classcarla_1_1opendrive_1_1parser_1_1GeoReferenceParser.html#abbd0edc0b3507042c5a0af753473192b" title=" " alt="" coords="232,1432,423,1475"/>
+<area shape="poly" id="edge41_Node000062_Node000063" title=" " alt="" coords="495,1456,423,1456,423,1451,495,1451"/>
+<area shape="poly" id="edge42_Node000063_Node000004" title=" " alt="" coords="217,1472,185,1477,184,1471,216,1467"/>
+<area shape="poly" id="edge46_Node000065_Node000036" title=" " alt="" coords="476,773,413,773,413,768,476,768"/>
+<area shape="rect" id="Node000067" href="$d1/db1/classcarla_1_1multigpu_1_1IncomingMessage.html#a309c03dd0f7e8f820aea44b9912e710d" title=" " alt="" coords="244,1632,411,1675"/>
+<area shape="poly" id="edge48_Node000066_Node000067" title=" " alt="" coords="509,1686,410,1670,411,1664,510,1681"/>
+<area shape="rect" id="Node000068" href="$de/d76/classcarla_1_1streaming_1_1detail_1_1tcp_1_1IncomingMessage.html#af8c4700ae3177aa338f02d7b43856d6f" title=" " alt="" coords="247,1699,408,1757"/>
+<area shape="poly" id="edge49_Node000066_Node000068" title=" " alt="" coords="510,1708,408,1721,408,1716,509,1703"/>
+<area shape="rect" id="Node000069" href="$d0/d0a/classcarla_1_1Buffer.html#aa493f65be70cf3449f93db99f94bf57c" title="Copy source into this buffer leaving at the front an offset of offset bytes uninitialized." alt="" coords="248,1781,407,1808"/>
+<area shape="poly" id="edge50_Node000066_Node000069" title=" " alt="" coords="511,1709,472,1724,458,1735,449,1747,440,1759,424,1772,398,1783,396,1778,422,1767,436,1756,445,1744,454,1731,470,1719,509,1704"/>
+<area shape="poly" id="edge56_Node000076_Node000025" title=" " alt="" coords="470,264,417,264,417,259,470,259"/>
+<area shape="poly" id="edge58_Node000077_Node000039" title=" " alt="" coords="494,1978,408,1998,407,1993,493,1973"/>
+<area shape="poly" id="edge61_Node000081_Node000039" title=" " alt="" coords="494,2117,470,2108,407,2073,355,2037,358,2033,410,2068,472,2103,496,2112"/>
+</map>

@@ -1,0 +1,22 @@
+<map id="carla::traffic_manager::Parameters::GetOSMMode" name="carla::traffic_manager::Parameters::GetOSMMode">
+<area shape="rect" id="Node000001" title="Method to get Open Street Map mode." alt="" coords="1103,93,1290,136"/>
+<area shape="rect" id="Node000002" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a4cce09a8116d4faf0f718fb24d1c3191" title=" " alt="" coords="848,5,1052,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1120,90,1011,51,1013,46,1122,85"/>
+<area shape="rect" id="Node000003" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#acf066b922ba5c21c6b6ee23d35731d91" title=" " alt="" coords="615,77,797,120"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="1088,114,797,104,797,99,1088,108"/>
+<area shape="rect" id="Node000008" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a22a54c0476fface2f2838a56a75fbc90" title=" " alt="" coords="845,123,1055,165"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1089,130,1056,134,1055,129,1088,125"/>
+<area shape="rect" id="Node000009" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#a0a506446f6810014b6da12d0dcba0748" title=" " alt="" coords="633,156,779,199"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="1146,146,1103,165,1056,180,983,191,909,194,779,189,779,183,909,189,982,185,1054,175,1101,160,1144,141"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="862,55,782,79,780,74,860,50"/>
+<area shape="rect" id="Node000004" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="Initiates thread to run the TrafficManager sequentially." alt="" coords="392,123,567,165"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="601,122,568,129,567,124,600,117"/>
+<area shape="rect" id="Node000005" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="To start the TrafficManager." alt="" coords="199,115,344,173"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="377,147,344,147,344,141,377,141"/>
+<area shape="rect" id="Node000006" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="5,73,151,132"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="184,128,151,121,152,116,185,123"/>
+<area shape="rect" id="Node000007" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="5,156,151,215"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="185,165,152,172,151,167,184,160"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="829,124,797,118,798,113,830,119"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="618,167,567,160,568,154,619,162"/>
+</map>

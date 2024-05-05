@@ -1,0 +1,15 @@
+<map id="ACityMapMeshHolder::PostInitializeComponents" name="ACityMapMeshHolder::PostInitializeComponents">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,182,99"/>
+<area shape="rect" id="Node000002" href="$d2/d40/TrafficLightBase_8cpp.html#a1459952e95242b0c926376d0bb4692b8" title=" " alt="" coords="273,5,334,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,53,258,28,260,33,173,58"/>
+<area shape="rect" id="Node000003" href="$da/d1a/classACityMapMeshHolder.html#a70d8a7d221376c2781cefd0205f3b39a" title="Here does nothing, implement in derived classes." alt="" coords="230,56,377,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,75,215,75,215,80,182,80"/>
+<area shape="rect" id="Node000004" href="$da/d1a/classACityMapMeshHolder.html#acea07429098292a4bad0105cd4220b00" title="Set the scale to the dimensions of the base mesh." alt="" coords="230,123,377,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="163,97,221,115,219,120,162,102"/>
+<area shape="rect" id="Node000005" href="$d6/d33/classCityMapMeshTag.html#aad4b8e932e054f8fb58d8a8b0c2dcd8e" title="Return the base mesh. The base mesh defines the unit tile for map scaling." alt="" coords="425,72,659,99"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="376,121,424,108,459,100,460,105,426,113,378,126"/>
+<area shape="rect" id="Node000006" href="$da/d1a/classACityMapMeshHolder.html#ac5db4ee9f869b579ffc0412cac90093f" title="Return the static mesh corresponding to Tag." alt="" coords="469,123,616,165"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="377,141,453,141,453,147,377,147"/>
+<area shape="rect" id="Node000007" href="$d6/d33/classCityMapMeshTag.html#a8cedcb3f29363cfa5df176e09e1c0408" title="Get Tag name as FString." alt="" coords="453,189,631,216"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="378,162,426,175,460,183,459,188,424,180,376,167"/>
+</map>

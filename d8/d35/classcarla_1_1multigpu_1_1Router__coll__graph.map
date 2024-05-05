@@ -1,0 +1,40 @@
+<map id="carla::multigpu::Router" name="carla::multigpu::Router">
+<area shape="rect" id="Node000001" title=" " alt="" coords="837,277,990,304"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="553,5,696,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="711,35,765,53,792,66,815,83,837,106,856,131,884,186,902,238,912,276,907,278,897,240,879,188,851,134,833,109,812,87,789,71,763,58,710,41"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="596,72,653,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="668,87,740,104,779,119,815,141,849,173,876,211,909,276,904,278,872,214,845,177,812,145,777,124,739,109,667,92"/>
+<area shape="rect" id="Node000004" href="$da/d72/classcarla_1_1ThreadPool.html" title="A thread pool based on Boost.Asio&#39;s io context." alt="" coords="563,123,685,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="700,150,758,169,815,196,866,237,903,275,899,279,862,241,812,201,756,174,699,155"/>
+<area shape="rect" id="Node000005" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="Inherit (privately) to suppress copy/move construction and assignment." alt="" coords="9,56,143,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="158,62,234,62,324,66,420,77,515,97,539,108,573,120,571,125,537,113,513,103,420,82,324,71,234,67,158,68"/>
+<area shape="rect" id="Node000008" href="$db/d71/classcarla_1_1ThreadGroup.html" title=" " alt="" coords="265,97,397,124"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="158,80,265,97,264,103,158,85"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="290,148,372,175"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="386,160,448,159,514,155,562,147,563,152,514,160,448,164,386,165"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="307,199,355,225"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="369,210,438,204,477,195,513,182,524,171,536,159,562,147,564,152,540,164,528,175,515,186,478,200,439,209,370,215"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="412,115,563,128,562,133,411,120"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="5,116,147,143"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="161,128,224,125,264,120,265,126,225,131,161,133"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="589,173,659,200"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="675,198,711,209,814,244,884,274,882,279,812,249,710,215,673,203"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="554,224,694,283"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="710,262,837,278,837,284,709,267"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="556,307,692,349"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="706,315,836,298,837,303,707,320"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="591,373,658,400"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="671,374,739,357,812,334,884,302,886,307,814,338,740,362,673,379"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="538,424,710,515"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="723,428,768,405,812,379,861,339,898,302,902,306,865,343,815,384,771,410,725,433"/>
+<area shape="rect" id="Node000015" href="$da/da8/classcarla_1_1multigpu_1_1PrimaryCommands.html" title=" " alt="" coords="545,539,704,581"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="699,530,709,524,764,489,811,444,841,406,867,367,903,303,908,306,872,370,846,409,815,447,768,493,712,529,702,534"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="266,464,396,507"/>
+<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="411,503,545,537,544,542,409,508"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="250,531,412,589"/>
+<area shape="poly" id="edge17_Node000015_Node000017" title=" " alt="" coords="427,557,544,557,544,563,427,563"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="249,613,413,672"/>
+<area shape="poly" id="edge18_Node000015_Node000018" title=" " alt="" coords="427,613,545,579,546,585,428,618"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="555,605,693,632"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="702,598,761,573,788,555,811,533,833,504,852,473,880,407,898,347,907,304,912,305,903,348,885,408,856,475,838,507,815,536,791,559,763,577,704,603"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="FPixelReader::SavePixelsToDisk" name="FPixelReader::SavePixelsToDisk">
+<area shape="rect" id="Node000001" title="Asynchronously save the pixels in RenderTarget to disk." alt="" coords="601,68,773,111"/>
+<area shape="poly" id="edge6_Node000001_Node000001" title=" " alt="" coords="723,56,710,49,687,47,667,49,654,53,649,59,651,67,646,68,644,58,651,49,665,43,687,41,711,44,725,51"/>
+<area shape="rect" id="Node000002" href="$d5/db2/classURoadMap.html#aa47b13000945dfd3e81dd51a69eb2c67" title="Save the current map as PNG with the pixel data encoded as color." alt="" coords="388,47,553,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="586,78,553,74,554,69,587,73"/>
+<area shape="rect" id="Node000006" href="$d4/d60/classASceneCaptureSensor.html#a007ae1b3ba7fa4233dc2562e75a2a33e" title="Use for debugging purposes only." alt="" coords="394,97,547,140"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="587,106,548,111,547,106,587,100"/>
+<area shape="rect" id="Node000003" href="$d1/ddb/classACityMapGenerator.html#a9ce09c4586724fe3e446cbb12712adf3" title="Generate the road map image and save to disk if requested." alt="" coords="197,39,340,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="373,63,340,63,340,57,373,57"/>
+<area shape="rect" id="Node000004" href="$d1/ddb/classACityMapGenerator.html#a5627a0935def8c92d8ae226b10238f2c" title=" " alt="" coords="5,5,149,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="181,48,148,42,149,37,182,42"/>
+<area shape="rect" id="Node000005" href="$d1/ddb/classACityMapGenerator.html#a5ad53319596101e96076a12eab41b9c1" title="Here does nothing, implement in derived classes." alt="" coords="5,72,149,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="182,78,149,83,148,78,181,72"/>
+</map>

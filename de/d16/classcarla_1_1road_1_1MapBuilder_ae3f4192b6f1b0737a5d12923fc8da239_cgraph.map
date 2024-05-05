@@ -1,0 +1,40 @@
+<map id="carla::road::MapBuilder::CreatePointersBetweenRoadSegments" name="carla::road::MapBuilder::CreatePointersBetweenRoadSegments">
+<area shape="rect" id="Node000001" title="Create the pointers between RoadSegments based on the ids." alt="" coords="5,445,260,488"/>
+<area shape="rect" id="Node000002" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ad84a5423baee8d92269aab9d8723c68a" title="Return a list of pointers to all lanes from a lane (using road and junction info)." alt="" coords="308,445,463,488"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,464,293,464,293,469,260,469"/>
+<area shape="rect" id="Node000003" href="$da/d3b/classcarla_1_1road_1_1MapData.html#acc4bd7e8be09ba14390e504be5216d3f" title=" " alt="" coords="731,5,874,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="386,444,395,383,415,299,431,253,452,209,477,166,509,129,556,92,609,66,664,47,716,35,717,40,666,52,612,71,559,97,513,133,482,169,456,211,436,255,420,300,400,384,391,445"/>
+<area shape="rect" id="Node000004" href="$d9/dab/classcarla_1_1road_1_1LaneSectionMap.html#afd0eebe15809491819f1335b7c7157e9" title=" " alt="" coords="511,312,673,355"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="408,443,453,404,510,364,519,359,521,364,512,369,456,408,411,447"/>
+<area shape="rect" id="Node000005" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a2a83bca663a2b7b6388daebed95704a9" title=" " alt="" coords="511,379,673,421"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="453,442,509,424,511,429,454,447"/>
+<area shape="rect" id="Node000006" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af7818fa90e4281abc159f08e31a9fb00" title="Return the pointer to a lane object." alt="" coords="515,143,670,185"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="389,444,403,396,428,333,462,265,484,233,509,203,523,191,527,196,513,207,488,236,467,268,432,335,409,398,394,446"/>
+<area shape="rect" id="Node000008" href="$dd/d80/classcarla_1_1road_1_1LaneSection.html#a44408c7b07c60926a0bd77731ee7b723" title=" " alt="" coords="721,205,884,248"/>
+<area shape="poly" id="edge13_Node000002_Node000008" title=" " alt="" coords="391,444,406,405,430,355,465,306,486,284,510,266,556,242,607,228,658,220,706,218,707,223,659,226,608,233,558,247,512,270,489,288,469,310,435,358,411,407,396,446"/>
+<area shape="rect" id="Node000009" href="$da/d3b/classcarla_1_1road_1_1MapData.html#a7b4838408fa475389a01b2d451b662e7" title=" " alt="" coords="731,272,874,315"/>
+<area shape="poly" id="edge18_Node000002_Node000009" title=" " alt="" coords="393,444,409,409,434,368,468,329,488,312,510,298,561,279,615,270,668,270,717,274,716,279,668,275,615,276,562,284,512,302,491,316,472,332,439,372,414,412,398,446"/>
+<area shape="rect" id="Node000011" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a9f7acb42642bed1a1bf1a21c2b1c9931" title=" " alt="" coords="515,445,670,488"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="463,464,500,464,500,469,463,469"/>
+<area shape="rect" id="Node000013" href="$dd/de6/classcarla_1_1road_1_1Road.html#a7e9150dc29a3ab8b9a529ffb11205980" title=" " alt="" coords="528,512,656,555"/>
+<area shape="poly" id="edge14_Node000002_Node000013" title=" " alt="" coords="454,486,515,506,513,511,453,491"/>
+<area shape="rect" id="Node000014" href="$df/d85/classcarla_1_1road_1_1Lane.html#a80044b7e6e4d0412983b1a1208ff14a2" title=" " alt="" coords="529,579,655,621"/>
+<area shape="poly" id="edge15_Node000002_Node000014" title=" " alt="" coords="411,486,456,525,512,564,521,569,519,574,510,569,453,529,408,490"/>
+<area shape="rect" id="Node000015" href="$dd/de6/classcarla_1_1road_1_1Road.html#a0d4daeed04d8276c84e7db24a36dbff6" title=" " alt="" coords="528,645,656,688"/>
+<area shape="poly" id="edge16_Node000002_Node000015" title=" " alt="" coords="400,487,444,557,476,596,513,631,518,635,515,639,509,635,472,600,440,560,396,490"/>
+<area shape="rect" id="Node000016" href="$dd/de6/classcarla_1_1road_1_1Road.html#a242d8d41927bee937a2ac46247a78c5c" title=" " alt="" coords="528,712,656,755"/>
+<area shape="poly" id="edge17_Node000002_Node000016" title=" " alt="" coords="395,488,410,531,434,587,468,646,489,674,513,698,518,702,514,706,509,702,485,677,464,649,430,590,405,533,390,489"/>
+<area shape="rect" id="Node000017" href="$df/d85/classcarla_1_1road_1_1Lane.html#aac55d0ad269a34c3ed1bc80795fa36cc" title=" " alt="" coords="529,779,655,821"/>
+<area shape="poly" id="edge19_Node000002_Node000017" title=" " alt="" coords="392,488,404,542,426,616,461,695,485,732,513,765,518,770,515,774,509,769,481,735,457,698,421,618,399,544,387,489"/>
+<area shape="rect" id="Node000018" href="$dd/de6/classcarla_1_1road_1_1Road.html#a56ce24902d4e496e30f9260718d4a376" title=" " alt="" coords="528,845,656,888"/>
+<area shape="poly" id="edge20_Node000002_Node000018" title=" " alt="" coords="391,488,398,554,418,645,434,694,454,744,481,790,513,832,518,836,514,840,509,835,476,793,450,746,429,696,413,646,393,554,385,489"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="614,140,661,100,720,58,729,53,732,57,723,62,664,104,618,144"/>
+<area shape="rect" id="Node000007" href="$dd/de6/classcarla_1_1road_1_1Road.html#ae4e3c1ad71021067f9a444b98f78b335" title="Get the end section (from road coordinates s) given a lane id." alt="" coords="738,72,867,115"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="657,140,724,117,725,122,659,145"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="667,183,715,198,714,203,665,188"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="620,184,667,220,723,258,732,263,729,267,720,262,663,225,617,188"/>
+<area shape="rect" id="Node000010" href="$dd/de6/classcarla_1_1road_1_1Road.html#a6c90082d65eb8e2fbb8d9db51136563a" title="Get the start section (from road coordinates s) given a lane id." alt="" coords="738,139,867,181"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="670,160,724,159,724,164,670,165"/>
+<area shape="rect" id="Node000012" href="$da/d3b/classcarla_1_1road_1_1MapData.html#af580facf9de3fe646c8984dc2365301d" title=" " alt="" coords="731,445,874,488"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="670,464,716,464,716,469,670,469"/>
+</map>

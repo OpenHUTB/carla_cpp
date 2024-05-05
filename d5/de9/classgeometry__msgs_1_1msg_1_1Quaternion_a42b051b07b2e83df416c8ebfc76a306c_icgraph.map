@@ -1,0 +1,33 @@
+<map id="geometry_msgs::msg::Quaternion::getCdrSerializedSize" name="geometry_msgs::msg::Quaternion::getCdrSerializedSize">
+<area shape="rect" id="Node000001" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="1080,279,1301,321"/>
+<area shape="rect" id="Node000002" href="$d1/d6d/classgeometry__msgs_1_1msg_1_1Pose.html#a9be008daeb586df4db015bcea404847c" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="830,121,1018,164"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1139,273,961,167,963,162,1141,268"/>
+<area shape="rect" id="Node000008" href="$d6/d5a/classgeometry__msgs_1_1msg_1_1Transform.html#a2c265f59d89d3b05d617dc948d9c19b9" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="816,245,1032,288"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1064,287,1032,283,1032,278,1065,282"/>
+<area shape="rect" id="Node000014" href="$d2/d06/classsensor__msgs_1_1msg_1_1Imu.html#af8d4e4c514f1102dde56914e99918012" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="843,312,1005,355"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="1065,318,1005,326,1005,321,1065,313"/>
+<area shape="rect" id="Node000016" href="$d5/d1a/classgeometry__msgs_1_1msg_1_1QuaternionPubSubType.html#a01947888d942801a28c970a94475f3d1" title=" " alt="" coords="836,379,1012,437"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="1126,330,1033,369,1004,380,1002,376,1031,364,1124,325"/>
+<area shape="rect" id="Node000003" href="$df/d34/classgeometry__msgs_1_1msg_1_1PoseWithCovariance.html#a3f9c9fa80336e1b0890e10ea8e3d10fa" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="580,31,730,89"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="837,119,730,86,731,81,839,114"/>
+<area shape="rect" id="Node000007" href="$d1/dc0/classgeometry__msgs_1_1msg_1_1PosePubSubType.html#a3c7d7c79d376a409efa5b9b805bb5570" title=" " alt="" coords="547,113,763,172"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="815,145,763,145,763,140,815,140"/>
+<area shape="rect" id="Node000004" href="$d3/d69/classnav__msgs_1_1msg_1_1Odometry.html#abeb384ad22595b0a91148a24a52bdc6e" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="298,5,476,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="565,52,476,40,476,35,565,46"/>
+<area shape="rect" id="Node000006" href="$dd/d2f/classgeometry__msgs_1_1msg_1_1PoseWithCovariancePubSubType.html#a61923f4903b5af93ce590f5a31e9bc58" title=" " alt="" coords="285,72,489,131"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="565,76,490,88,489,83,564,71"/>
+<area shape="rect" id="Node000005" href="$dc/dc5/classnav__msgs_1_1msg_1_1OdometryPubSubType.html#a0b4cb75674ddd79517eaa3f9c8afa802" title=" " alt="" coords="5,5,233,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="283,29,233,29,233,24,283,24"/>
+<area shape="rect" id="Node000009" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#a4222cca48a2ef9582346b5644584e5b9" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="581,196,728,255"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="801,250,729,239,729,234,802,245"/>
+<area shape="rect" id="Node000013" href="$d7/d54/classgeometry__msgs_1_1msg_1_1TransformPubSubType.html#aaa86e1ea74d90d1bff2eaaf656590341" title=" " alt="" coords="567,279,743,337"/>
+<area shape="poly" id="edge12_Node000008_Node000013" title=" " alt="" coords="802,288,744,297,743,292,801,283"/>
+<area shape="rect" id="Node000010" href="$d2/df4/classtf2__msgs_1_1msg_1_1TFMessage.html#a13b09d556a6f9d0914e1ac927b1b3502" title="This function returns the serialized size of a data depending on the buffer alignment." alt="" coords="295,163,479,205"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="566,214,478,201,479,195,567,209"/>
+<area shape="rect" id="Node000012" href="$d0/d21/classgeometry__msgs_1_1msg_1_1TransformStampedPubSubType.html#a4d69517b613ea26907147e05d28d29d3" title=" " alt="" coords="281,229,493,288"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="567,239,494,248,493,243,566,234"/>
+<area shape="rect" id="Node000011" href="$d4/d71/classtf2__msgs_1_1msg_1_1TFMessagePubSubType.html#a2b6367ac8ee0956eae0ace0181ecdfb3" title=" " alt="" coords="17,155,221,213"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="280,187,222,187,222,181,280,181"/>
+<area shape="rect" id="Node000015" href="$d5/dcf/classsensor__msgs_1_1msg_1_1ImuPubSubType.html#a2b6239826e7a5ce54d42d23981e44b87" title=" " alt="" coords="541,361,768,404"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="830,353,769,364,768,359,829,348"/>
+</map>

@@ -1,0 +1,25 @@
+<map id="carla::StringUtil::StartsWith" name="carla::StringUtil::StartsWith">
+<area shape="rect" id="Node000001" title=" " alt="" coords="886,229,1004,272"/>
+<area shape="rect" id="Node000002" href="$d8/d4b/classcarla_1_1client_1_1detail_1_1ActorFactory.html#a35ca6b1f59d086fa27630c9f818cf843" title="Create an Actor based on the provided actor_description." alt="" coords="662,229,838,272"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="871,253,838,253,838,248,871,248"/>
+<area shape="rect" id="Node000003" href="$d4/dad/classcarla_1_1client_1_1detail_1_1ActorVariant.html#a25d6826097625e7966794a60332994f5" title=" " alt="" coords="442,163,614,205"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="662,227,601,209,603,203,664,222"/>
+<area shape="rect" id="Node000010" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a5127db735834f03f44930d0edf65527a" title="Creates an actor instance out of a description of an existing actor." alt="" coords="451,229,606,272"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="648,253,606,253,606,248,648,248"/>
+<area shape="rect" id="Node000012" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a49a4e44139e9b01e4a16aa1f87ebf828" title="Spawns an actor into the simulation." alt="" coords="447,296,609,339"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="664,279,603,298,601,293,662,274"/>
+<area shape="rect" id="Node000004" href="$d4/dad/classcarla_1_1client_1_1detail_1_1ActorVariant.html#ae07a22b0b638b4fdd580987307e13c94" title=" " alt="" coords="244,163,375,205"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="427,187,375,187,375,181,427,181"/>
+<area shape="rect" id="Node000005" href="$d5/dae/classcarla_1_1sensor_1_1data_1_1CollisionEvent.html#abb9c71fb02bc8648993e48722c4f145b" title="Get &quot;self&quot; actor. Actor that measured the collision." alt="" coords="6,5,176,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="278,153,232,107,175,62,154,51,157,46,178,58,236,103,282,150"/>
+<area shape="rect" id="Node000006" href="$d3/d28/classcarla_1_1sensor_1_1data_1_1ObstacleDetectionEvent.html#a198a7f860ac4f380a3d8915fa37b927d" title="Get &quot;self&quot; actor. Actor that measured the collision." alt="" coords="7,72,175,131"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="236,159,170,134,171,129,238,154"/>
+<area shape="rect" id="Node000007" href="$d5/dae/classcarla_1_1sensor_1_1data_1_1CollisionEvent.html#a699477ab96a078f6353f32c2f22c5dd8" title="Get the actor to which we collided." alt="" coords="5,155,177,213"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="229,187,177,187,177,181,229,181"/>
+<area shape="rect" id="Node000008" href="$d3/d28/classcarla_1_1sensor_1_1data_1_1ObstacleDetectionEvent.html#a4f1286d12ee3cc98dee95923e2790d53" title="Get the actor to which we collided." alt="" coords="7,237,175,296"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="238,214,171,239,170,234,236,209"/>
+<area shape="rect" id="Node000009" href="$db/d80/classcarla_1_1traffic__manager_1_1TrafficManagerServer.html#ab33d2169176015f73a380153c05dad9b" title="Here RPCPort is the traffic manager local instance RPC server port where it can listen to remote traf..." alt="" coords="16,320,166,379"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="233,214,227,219,210,241,203,263,196,286,179,310,164,322,161,317,175,306,191,284,198,261,205,239,223,215,230,210"/>
+<area shape="rect" id="Node000011" href="$df/df3/classcarla_1_1client_1_1detail_1_1Simulator.html#a961f59d6b4998debd50c4d5aa931806c" title=" " alt="" coords="225,229,394,272"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="435,253,395,253,395,248,435,248"/>
+</map>

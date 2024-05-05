@@ -1,0 +1,19 @@
+<map id="carla::client::ServerSideSensor::Listen" name="carla::client::ServerSideSensor::Listen">
+<area shape="rect" id="Node000001" title="Register a callback to be executed each time a new measurement is received." alt="" coords="5,105,164,148"/>
+<area shape="rect" id="Node000002" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#aa98c1565c9edcf133148109c52023819" title=" " alt="" coords="212,5,385,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,102,211,58,224,52,226,57,213,62,126,107"/>
+<area shape="rect" id="Node000003" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="215,72,382,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,112,200,106,201,111,164,117"/>
+<area shape="rect" id="Node000004" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="213,139,384,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,136,199,142,198,147,163,142"/>
+<area shape="rect" id="Node000008" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="240,205,357,232"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="124,146,213,191,231,198,229,203,211,196,121,151"/>
+<area shape="rect" id="Node000005" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="445,80,572,123"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="376,136,430,120,432,125,378,141"/>
+<area shape="rect" id="Node000007" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="433,147,584,173"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="384,157,419,157,419,163,384,163"/>
+<area shape="rect" id="Node000006" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="632,80,789,123"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="572,99,617,99,617,104,572,104"/>
+<area shape="rect" id="Node000009" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="442,197,575,240"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="357,216,427,216,427,221,357,221"/>
+</map>

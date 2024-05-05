@@ -1,0 +1,11 @@
+<map id="carla::client::Actor::GetVelocity" name="carla::client::Actor::GetVelocity">
+<area shape="rect" id="Node000001" title="Return the current 3D velocity of the actor." alt="" coords="651,39,779,81"/>
+<area shape="rect" id="Node000002" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a076f17bcb321e9536ca59ee06bfab858" title="calculate the speed from the actor" alt="" coords="460,39,603,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="636,63,604,63,604,57,636,57"/>
+<area shape="rect" id="Node000003" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aaaf0a0f73759f525137e227af98f5074" title="calculate ego vehicle dynamics on the route" alt="" coords="197,5,412,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="445,50,412,45,413,40,446,45"/>
+<area shape="rect" id="Node000005" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65ed15e5c2d160f84d6ae5872f8cf878" title="default constructor with default internal default actor constellation callback" alt="" coords="233,72,376,115"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="446,75,377,85,376,80,446,70"/>
+<area shape="rect" id="Node000004" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a7ddb47aaeb4d941c95e5b2fce91186b7" title="main function to trigger the RSS check at a certain point in time" alt="" coords="5,5,149,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="182,29,149,29,149,24,182,24"/>
+</map>

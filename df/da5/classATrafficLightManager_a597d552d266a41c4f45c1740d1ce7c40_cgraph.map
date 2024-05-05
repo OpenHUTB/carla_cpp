@@ -1,0 +1,76 @@
+<map id="ATrafficLightManager::InitializeTrafficLights" name="ATrafficLightManager::InitializeTrafficLights">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,421,151,464"/>
+<area shape="rect" id="Node000002" href="$df/da5/classATrafficLightManager.html#ae473e1bb0e60e5c2db5684efc72a1e89" title=" " alt="" coords="199,488,381,547"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,462,192,480,190,485,140,467"/>
+<area shape="rect" id="Node000013" href="$df/da5/classATrafficLightManager.html#a94926005e8cd881102dec94e331b70b4" title=" " alt="" coords="909,261,1052,304"/>
+<area shape="poly" id="edge42_Node000001_Node000013" title=" " alt="" coords="120,418,212,373,342,317,494,262,573,240,652,223,708,213,753,210,798,212,854,223,894,235,931,252,929,257,892,240,853,228,797,218,753,215,709,219,653,228,574,245,495,267,344,322,215,378,122,423"/>
+<area shape="rect" id="Node000016" href="$d9/d36/namespacecarla.html#aca0bf2b2b37178b5e39c9bdbb5fadeb6" title=" " alt="" coords="690,429,816,456"/>
+<area shape="poly" id="edge43_Node000001_Node000016" title=" " alt="" coords="151,440,676,440,676,445,151,445"/>
+<area shape="rect" id="Node000003" href="$df/da5/classATrafficLightManager.html#a0be8c83af42f6123735072b55b2d38ef" title=" " alt="" coords="429,500,604,543"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="381,516,414,517,414,522,381,522"/>
+<area shape="rect" id="Node000005" href="$df/da5/classATrafficLightManager.html#a1ed532138f13a06c64aaa7b513114832" title=" " alt="" coords="446,320,588,363"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="328,485,474,370,478,374,331,490"/>
+<area shape="rect" id="Node000019" href="$df/da5/classATrafficLightManager.html#a86d8da5023cf7523924fa33e0feb2e0f" title=" " alt="" coords="446,613,588,656"/>
+<area shape="poly" id="edge20_Node000002_Node000019" title=" " alt="" coords="350,545,462,604,460,609,347,550"/>
+<area shape="rect" id="Node000004" href="$df/da5/classATrafficLightManager.html#ab4d5e1d6563154d8dc3f6d5aef753238" title=" " alt="" coords="672,504,834,547"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="604,520,657,521,657,526,604,525"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="710,504,708,494,715,485,730,479,753,477,778,480,793,487,791,492,777,485,753,483,732,485,718,489,713,495,715,503"/>
+<area shape="rect" id="Node000006" href="$d6/d3f/TrafficLightManager_8cpp.html#aaa56f1ec425cb3f851461d5c8bc73752" title=" " alt="" coords="664,109,842,136"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="536,318,651,203,721,143,725,147,654,207,540,321"/>
+<area shape="rect" id="Node000012" href="$d7/d1e/classUCarlaStatics.html#acf94832c60579b6d161b66447719efbc" title=" " alt="" coords="1107,504,1304,531"/>
+<area shape="poly" id="edge12_Node000005_Node000012" title=" " alt="" coords="588,335,685,335,805,344,869,353,935,366,999,384,1060,407,1095,425,1129,448,1182,492,1178,496,1126,452,1093,430,1058,412,997,389,933,371,868,358,804,349,685,341,588,340"/>
+<area shape="poly" id="edge13_Node000005_Node000013" title=" " alt="" coords="539,317,588,279,618,261,652,247,715,235,781,235,844,242,899,254,898,260,843,248,781,240,716,240,653,252,621,265,591,283,542,322"/>
+<area shape="rect" id="Node000015" href="$db/de5/classACarlaGameModeBase.html#a968e6a94c33bd32539cb5aa370e66580" title=" " alt="" coords="902,613,1059,656"/>
+<area shape="poly" id="edge16_Node000005_Node000015" title=" " alt="" coords="589,348,738,374,808,393,855,415,883,447,913,495,965,598,961,601,909,498,879,450,852,419,806,398,737,380,588,353"/>
+<area shape="poly" id="edge17_Node000005_Node000016" title=" " alt="" coords="557,361,653,408,690,422,688,427,651,413,555,365"/>
+<area shape="rect" id="Node000018" href="$db/d47/classcarla_1_1road_1_1SignalType.html#ab9350ca7ad1259136511a7327cf21554" title=" " alt="" coords="676,261,830,304"/>
+<area shape="poly" id="edge19_Node000005_Node000018" title=" " alt="" coords="587,321,661,303,662,308,589,326"/>
+<area shape="rect" id="Node000007" href="$da/da8/classcarla_1_1road_1_1Signal.html#a0ffeb7cf50f3c1d3cc4685905b136727" title=" " alt="" coords="917,131,1044,173"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="842,131,903,139,902,145,841,137"/>
+<area shape="rect" id="Node000008" href="$d6/d3f/TrafficLightManager_8cpp.html#a31882059bb96dfbe85ab9477b6f0e53b" title=" " alt="" coords="907,80,1054,107"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="841,109,892,102,892,107,842,114"/>
+<area shape="rect" id="Node000009" href="$da/da8/classcarla_1_1road_1_1Signal.html#a0bd58413ec6a58e3d541488306231eb6" title=" " alt="" coords="1143,139,1269,181"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="1029,105,1129,135,1127,140,1028,110"/>
+<area shape="rect" id="Node000010" href="$d3/df1/classATrafficSignBase.html#a34ada790558e6d464287442ad849e29b" title=" " alt="" coords="1114,5,1297,48"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="1028,77,1117,50,1118,55,1029,82"/>
+<area shape="rect" id="Node000011" href="$da/da8/classcarla_1_1road_1_1Signal.html#a1bdb1868b94be5dd038cbc0a5dcd3187" title=" " alt="" coords="1143,72,1269,115"/>
+<area shape="poly" id="edge11_Node000008_Node000011" title=" " alt="" coords="1055,91,1128,91,1128,96,1055,96"/>
+<area shape="poly" id="edge14_Node000013_Node000012" title=" " alt="" coords="1034,302,1061,321,1103,362,1140,409,1192,489,1188,492,1136,412,1099,366,1057,325,1031,307"/>
+<area shape="rect" id="Node000014" href="$db/de5/classACarlaGameModeBase.html#ae2c2de515bd6ad674844fde59cbfbf3d" title=" " alt="" coords="1127,261,1284,304"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="1052,280,1112,280,1112,285,1052,285"/>
+<area shape="rect" id="Node000017" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="914,421,1047,464"/>
+<area shape="poly" id="edge18_Node000016_Node000017" title=" " alt="" coords="816,440,899,440,899,445,816,445"/>
+<area shape="poly" id="edge21_Node000019_Node000012" title=" " alt="" coords="542,654,591,693,621,711,653,724,708,737,752,739,853,724,960,708,1005,693,1058,666,1097,637,1132,604,1184,541,1189,545,1136,608,1100,641,1060,670,1007,698,962,713,854,729,752,744,707,742,652,729,618,715,588,697,539,659"/>
+<area shape="poly" id="edge22_Node000019_Node000013" title=" " alt="" coords="588,620,748,589,816,571,852,556,867,540,876,523,883,490,887,452,899,408,926,359,953,315,957,318,930,361,904,410,892,453,889,491,881,525,871,543,855,561,818,576,749,594,589,625"/>
+<area shape="poly" id="edge23_Node000019_Node000015" title=" " alt="" coords="588,632,887,632,887,637,588,637"/>
+<area shape="poly" id="edge25_Node000019_Node000016" title=" " alt="" coords="544,611,574,584,602,553,616,529,623,508,632,487,651,466,675,452,677,457,654,470,636,489,628,509,621,531,606,556,577,588,548,615"/>
+<area shape="rect" id="Node000020" href="$db/d47/classcarla_1_1road_1_1SignalType.html#aa4bab3287ce92cf7e1ba04767775ebf0" title=" " alt="" coords="676,672,830,715"/>
+<area shape="poly" id="edge24_Node000019_Node000020" title=" " alt="" coords="589,650,662,668,661,673,587,655"/>
+<area shape="rect" id="Node000021" href="$df/da5/classATrafficLightManager.html#a32e1423d001b738bddbe695a983789ae" title=" " alt="" coords="652,789,854,848"/>
+<area shape="poly" id="edge26_Node000019_Node000021" title=" " alt="" coords="537,654,587,710,619,741,654,769,671,780,668,784,651,773,616,745,583,713,533,658"/>
+<area shape="poly" id="edge31_Node000021_Node000012" title=" " alt="" coords="853,787,980,748,1030,730,1058,718,1102,677,1140,629,1169,582,1190,543,1195,545,1174,584,1144,632,1106,680,1060,722,1032,735,982,753,855,792"/>
+<area shape="poly" id="edge32_Node000021_Node000013" title=" " alt="" coords="796,787,827,759,851,725,870,681,880,642,883,606,882,571,880,498,886,456,899,408,923,358,951,315,955,318,928,361,904,410,891,457,886,498,887,571,888,606,885,643,875,683,856,728,830,763,800,791"/>
+<area shape="poly" id="edge33_Node000021_Node000015" title=" " alt="" coords="789,787,939,664,943,668,793,791"/>
+<area shape="rect" id="Node000022" href="$dd/d12/classATrafficLightGroup.html#ab1d735d9af5288b89b586a5403be1392" title=" " alt="" coords="917,789,1044,832"/>
+<area shape="poly" id="edge27_Node000021_Node000022" title=" " alt="" coords="854,812,902,811,902,816,854,818"/>
+<area shape="rect" id="Node000024" href="$d3/d08/classUTrafficLightController.html#ad6fd2ff47ab36f7862315075b87c15e6" title=" " alt="" coords="907,856,1054,899"/>
+<area shape="poly" id="edge29_Node000021_Node000024" title=" " alt="" coords="855,842,893,852,892,857,854,847"/>
+<area shape="rect" id="Node000025" href="$dd/d12/classATrafficLightGroup.html#aa6bd0ac6f72526455184a9395fd5e998" title=" " alt="" coords="917,923,1044,965"/>
+<area shape="poly" id="edge30_Node000021_Node000025" title=" " alt="" coords="800,846,903,908,913,914,911,918,900,913,797,851"/>
+<area shape="rect" id="Node000026" href="$dd/d12/classATrafficLightGroup.html#a610a6e9c2616a616f0b4774c93210120" title=" " alt="" coords="917,989,1044,1032"/>
+<area shape="poly" id="edge34_Node000021_Node000026" title=" " alt="" coords="778,847,831,910,866,945,903,975,910,980,907,984,900,979,862,949,827,914,774,850"/>
+<area shape="rect" id="Node000031" href="$d3/d08/classUTrafficLightController.html#af0b760acc56572446cbcc07b48701776" title=" " alt="" coords="1132,1053,1279,1096"/>
+<area shape="poly" id="edge39_Node000021_Node000031" title=" " alt="" coords="767,848,785,893,814,947,853,1000,877,1023,903,1042,954,1065,1010,1078,1066,1083,1117,1082,1117,1088,1065,1088,1009,1083,953,1070,900,1046,873,1027,849,1003,809,949,781,895,762,850"/>
+<area shape="rect" id="Node000023" href="$d3/d08/classUTrafficLightController.html#a1e10d26cf7fc365712074b5c53da9947" title=" " alt="" coords="1132,789,1279,832"/>
+<area shape="poly" id="edge28_Node000022_Node000023" title=" " alt="" coords="1044,808,1117,808,1117,813,1044,813"/>
+<area shape="rect" id="Node000027" href="$d3/d08/classUTrafficLightController.html#abccad600709c8fdae5100e6e976f80f3" title=" " alt="" coords="1132,987,1279,1029"/>
+<area shape="poly" id="edge35_Node000026_Node000027" title=" " alt="" coords="1044,1007,1117,1006,1117,1012,1044,1013"/>
+<area shape="rect" id="Node000028" href="$d3/d08/classUTrafficLightController.html#a88c0f7514305f9b0e3a0830d4a38de3f" title=" " alt="" coords="1353,987,1501,1029"/>
+<area shape="poly" id="edge36_Node000027_Node000028" title=" " alt="" coords="1280,1005,1338,1005,1338,1011,1280,1011"/>
+<area shape="rect" id="Node000029" href="$d3/d08/classUTrafficLightController.html#a1714a76c5f33a9a2068ea45f02bc2301" title=" " alt="" coords="1352,1053,1502,1096"/>
+<area shape="poly" id="edge37_Node000027_Node000029" title=" " alt="" coords="1279,1027,1341,1046,1339,1051,1278,1032"/>
+<area shape="rect" id="Node000030" href="$d3/d08/classUTrafficLightController.html#a52b062901f578f35ec44cb340d169885" title=" " alt="" coords="1550,1053,1700,1096"/>
+<area shape="poly" id="edge38_Node000029_Node000030" title=" " alt="" coords="1502,1072,1535,1072,1535,1077,1502,1077"/>
+<area shape="poly" id="edge40_Node000031_Node000028" title=" " alt="" coords="1278,1050,1339,1032,1341,1037,1279,1055"/>
+<area shape="poly" id="edge41_Node000031_Node000029" title=" " alt="" coords="1280,1072,1337,1072,1337,1077,1280,1077"/>
+</map>

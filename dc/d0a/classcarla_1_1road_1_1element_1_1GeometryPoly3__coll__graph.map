@@ -1,0 +1,28 @@
+<map id="carla::road::element::GeometryPoly3" name="carla::road::element::GeometryPoly3">
+<area shape="rect" id="Node000001" title=" " alt="" coords="970,215,1106,257"/>
+<area shape="rect" id="Node000002" href="$d6/db0/classcarla_1_1road_1_1element_1_1Geometry.html" title=" " alt="" coords="719,60,856,103"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="842,108,886,134,1006,212,1003,217,883,138,840,113"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="391,5,497,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="513,25,667,51,720,62,719,67,666,56,512,30"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="415,192,474,219"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="489,204,686,210,946,224,969,226,969,231,945,229,686,215,489,209"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="488,194,571,175,665,144,747,101,750,106,667,149,573,180,489,200"/>
+<area shape="rect" id="Node000008" href="$d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html" title="Describes a Cubic Polynomial so: f(x) = a + bx + cx^2 + dx^3." alt="" coords="690,253,885,280"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="489,218,560,237,690,257,690,262,559,243,487,223"/>
+<area shape="rect" id="Node000005" href="$de/d23/classcarla_1_1geom_1_1Location.html" title=" " alt="" coords="371,56,517,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="532,70,719,76,719,82,532,75"/>
+<area shape="rect" id="Node000006" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html" title=" " alt="" coords="113,56,265,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="279,67,370,67,370,72,279,72"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,56,51,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="66,67,113,67,113,72,66,72"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="899,250,969,242,969,247,900,256"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="369,275,519,301"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="534,288,666,284,714,278,714,283,667,289,534,293"/>
+<area shape="rect" id="Node000010" href="$d0/d6f/classcarla_1_1geom_1_1SegmentCloudRtree.html" title=" " alt="" coords="696,320,879,363"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="853,311,984,256,986,260,855,316"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="110,337,268,396"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="282,360,696,342,696,348,283,365"/>
+<area shape="rect" id="Node000012" href="$d0/d6f/classcarla_1_1geom_1_1SegmentCloudRtree.html" title="Rtree class working with 3D segment clouds." alt="" coords="353,389,535,432"/>
+<area shape="poly" id="edge14_Node000012_Node000011" title=" " alt="" coords="283,380,353,392,352,398,282,385"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="550,394,666,373,716,361,717,366,667,379,551,400"/>
+</map>

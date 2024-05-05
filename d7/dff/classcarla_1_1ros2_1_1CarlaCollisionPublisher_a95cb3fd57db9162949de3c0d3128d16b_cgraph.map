@@ -1,0 +1,17 @@
+<map id="carla::ros2::CarlaCollisionPublisher::SetData" name="carla::ros2::CarlaCollisionPublisher::SetData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,205,175,248"/>
+<area shape="rect" id="Node000002" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a9bd973b4690fefb807fb231f496831d4" title="This function copies the value in member frame_id." alt="" coords="223,5,383,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,203,148,133,182,93,221,58,227,54,230,58,224,62,186,97,153,136,106,206"/>
+<area shape="rect" id="Node000003" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#aa198ef63c135b5c7856d7f917dee4ba4" title="This function sets a value in member nanosec." alt="" coords="229,72,377,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,203,162,164,221,124,230,119,233,124,224,129,166,168,118,207"/>
+<area shape="rect" id="Node000004" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#af90f1d1163f805c9e8af9546399d75b2" title="This function sets a value in member sec." alt="" coords="243,139,363,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="159,202,228,180,230,185,161,207"/>
+<area shape="rect" id="Node000005" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a2ac0c277be6d5edc09d17126767290c9" title="This function copies the value in member stamp." alt="" coords="223,205,383,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="175,224,208,224,208,229,175,229"/>
+<area shape="rect" id="Node000006" href="$df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html#a5f81cb0ca4f9b9c6564a2485ea05f228" title="This function sets a value in member x." alt="" coords="229,272,377,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="161,246,219,264,218,269,159,251"/>
+<area shape="rect" id="Node000007" href="$df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html#aa4ca65c3f1e448cf782ba6fcfba3cc79" title="This function sets a value in member y." alt="" coords="229,339,377,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="118,247,166,285,224,324,233,329,230,334,221,329,162,289,114,251"/>
+<area shape="rect" id="Node000008" href="$df/d66/classgeometry__msgs_1_1msg_1_1Vector3.html#a7fed6c5ae7e121e3e62c1eecce7b3637" title="This function sets a value in member z." alt="" coords="229,405,377,448"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="106,247,153,317,186,356,224,391,230,395,227,400,221,395,182,360,148,320,101,250"/>
+</map>

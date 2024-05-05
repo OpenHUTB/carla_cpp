@@ -1,0 +1,32 @@
+<map id="carla::client::RssSensor::Listen" name="carla::client::RssSensor::Listen">
+<area shape="rect" id="Node000001" title="Register a callback to be executed each time a new measurement is received." alt="" coords="5,277,166,320"/>
+<area shape="rect" id="Node000002" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#aa98c1565c9edcf133148109c52023819" title=" " alt="" coords="214,5,387,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,276,105,231,130,173,165,112,187,83,212,58,216,54,220,59,215,62,191,87,170,115,135,176,110,233,95,278"/>
+<area shape="rect" id="Node000003" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="217,72,384,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="95,276,140,203,173,161,212,125,218,120,221,125,215,129,177,165,144,206,100,279"/>
+<area shape="rect" id="Node000004" href="$db/d1f/classcarla_1_1client_1_1World.html#a90f244a1df3efaa63331813736a199a6" title="Return the map that describes this world." alt="" coords="235,139,366,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="110,275,156,237,212,198,233,186,236,191,215,202,159,241,113,279"/>
+<area shape="rect" id="Node000005" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="435,189,605,232"/>
+<area shape="poly" id="edge11_Node000001_Node000005" title=" " alt="" coords="136,274,213,248,319,227,420,215,421,220,320,233,214,253,137,279"/>
+<area shape="rect" id="Node000008" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="653,256,805,283"/>
+<area shape="poly" id="edge16_Node000001_Node000008" title=" " alt="" coords="166,292,639,271,639,276,166,298"/>
+<area shape="rect" id="Node000009" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a77b201455dd52b51bb3b1834ccf87ccc" title=" " alt="" coords="221,307,380,349"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="166,307,207,313,206,318,165,312"/>
+<area shape="rect" id="Node000010" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#ac98d447f3db74c88b3b43e80435042bc" title=" " alt="" coords="223,373,378,416"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="130,318,215,359,229,365,226,370,213,364,128,323"/>
+<area shape="rect" id="Node000011" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#a4de185e37508b6932b1f4a017726ca71" title="Return whether this Sensor instance is currently listening to the associated sensor in the simulator." alt="" coords="220,440,381,483"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="105,318,151,371,182,400,215,426,223,431,220,435,212,430,178,404,148,375,101,322"/>
+<area shape="rect" id="Node000012" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="242,507,359,533"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="97,319,114,357,139,404,173,452,215,493,230,501,227,506,212,497,169,455,135,407,109,359,93,322"/>
+<area shape="rect" id="Node000014" href="$d9/d36/namespacecarla.html#a7673dfc76e17f5856b798de6d0384b56" title=" " alt="" coords="247,557,354,584"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="94,320,108,366,132,427,167,490,190,518,215,543,234,555,231,559,212,547,186,522,163,493,127,429,103,368,89,321"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="366,172,421,185,420,190,365,178"/>
+<area shape="rect" id="Node000006" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="665,189,793,232"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="606,208,651,208,651,213,606,213"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="599,230,666,249,664,254,598,235"/>
+<area shape="rect" id="Node000007" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="853,189,1009,232"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="793,208,838,208,838,213,793,213"/>
+<area shape="rect" id="Node000013" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="454,524,587,567"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="359,524,439,533,438,539,358,529"/>
+<area shape="poly" id="edge15_Node000014_Node000013" title=" " alt="" coords="354,562,438,552,439,557,355,567"/>
+</map>

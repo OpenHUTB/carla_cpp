@@ -1,0 +1,20 @@
+<map id="carla::geom::Mesh::AddUVs" name="carla::geom::Mesh::AddUVs">
+<area shape="rect" id="Node000001" title="Appends uvs." alt="" coords="989,60,1126,103"/>
+<area shape="rect" id="Node000002" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a307f715a3e409fd5db0ce50f45c40478" title=" " alt="" coords="767,27,941,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="973,70,941,65,941,60,974,65"/>
+<area shape="rect" id="Node000003" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation." alt="" coords="767,93,941,136"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="974,98,941,103,941,98,973,92"/>
+<area shape="rect" id="Node000004" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="Generates a mesh that defines a lane section." alt="" coords="519,5,719,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="780,90,677,51,679,46,782,85"/>
+<area shape="rect" id="Node000005" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" title="Generates a list of meshes that defines a lane_section with a maximum length." alt="" coords="270,31,471,73"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="752,104,471,68,472,62,753,99"/>
+<area shape="rect" id="Node000006" href="$d0/d34/classcarla_1_1road_1_1Map.html#accf4f345bb9db4bcd6cdd9e6fec322cc" title=" " alt="" coords="531,123,707,165"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="753,130,708,136,708,130,752,125"/>
+<area shape="rect" id="Node000009" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" title="Generates a mesh that defines the whole lane with bigger tesselation." alt="" coords="533,189,706,232"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="798,145,720,180,690,191,688,186,718,175,796,140"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="504,41,472,44,471,39,504,36"/>
+<area shape="rect" id="Node000007" href="$d0/d34/classcarla_1_1road_1_1Map.html#aa51550af7f6efc7df8691eb41225beec" title=" " alt="" coords="282,123,459,165"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="516,147,459,147,459,141,516,141"/>
+<area shape="rect" id="Node000008" href="$d0/d34/classcarla_1_1road_1_1Map.html#ac77235567699cc2853177c441390fd14" title=" " alt="" coords="5,123,222,165"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="267,147,222,147,222,141,267,141"/>
+</map>

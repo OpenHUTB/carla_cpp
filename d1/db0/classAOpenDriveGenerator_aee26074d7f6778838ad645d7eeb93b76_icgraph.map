@@ -1,0 +1,15 @@
+<map id="AOpenDriveGenerator::IsOpenDriveValid" name="AOpenDriveGenerator::IsOpenDriveValid">
+<area shape="rect" id="Node000001" title="Checks if the OpenDrive has been loaded and it&#39;s valid." alt="" coords="600,72,747,115"/>
+<area shape="rect" id="Node000002" href="$d1/db0/classAOpenDriveGenerator.html#a390a0a0d121c673c46da71a992a1da7b" title="Generates pole meshes based on the OpenDRIVE information." alt="" coords="400,5,546,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="593,69,539,51,541,46,595,64"/>
+<area shape="rect" id="Node000005" href="$d1/db0/classAOpenDriveGenerator.html#a694d4a1aa944fdb39620d8c06ddb11b5" title="Generates the road and sidewalk mesh based on the OpenDRIVE information." alt="" coords="400,72,546,115"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="585,96,547,96,547,91,585,91"/>
+<area shape="rect" id="Node000006" href="$d1/db0/classAOpenDriveGenerator.html#aee04fefe736484cf24f7df698cb8dfd3" title="Generates spawn points along the road." alt="" coords="394,139,552,181"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="595,122,541,141,539,135,593,117"/>
+<area shape="rect" id="Node000003" href="$d1/db0/classAOpenDriveGenerator.html#ac2724dde02c2a8ea7b25f11107f734a7" title=" " alt="" coords="200,72,346,115"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="394,56,340,74,339,69,393,51"/>
+<area shape="rect" id="Node000004" href="$d1/db0/classAOpenDriveGenerator.html#aab0452237a38c80a16bc5e96018e6819" title=" " alt="" coords="5,72,152,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="185,96,152,96,152,91,185,91"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="385,96,347,96,347,91,385,91"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="393,136,339,118,340,113,394,131"/>
+</map>

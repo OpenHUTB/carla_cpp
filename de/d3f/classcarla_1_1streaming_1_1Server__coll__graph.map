@@ -1,0 +1,58 @@
+<map id="carla::streaming::Server" name="carla::streaming::Server">
+<area shape="rect" id="Node000001" title="A streaming server." alt="" coords="1689,263,1848,289"/>
+<area shape="rect" id="Node000002" href="$da/d72/classcarla_1_1ThreadPool.html" title="A thread pool based on Boost.Asio&#39;s io context." alt="" coords="1465,107,1587,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1562,139,1747,260,1744,264,1559,144"/>
+<area shape="rect" id="Node000003" href="$d4/d8b/classcarla_1_1NonCopyable.html" title="Inherit (privately) to suppress copy/move construction and assignment." alt="" coords="848,105,982,132"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="997,116,1464,117,1464,123,997,122"/>
+<area shape="rect" id="Node000006" href="$db/d71/classcarla_1_1ThreadGroup.html" title=" " alt="" coords="1136,56,1267,83"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="996,102,1135,78,1136,83,997,107"/>
+<area shape="rect" id="Node000009" href="$df/d4d/classcarla_1_1streaming_1_1detail_1_1tcp_1_1Server.html" title=" " alt="" coords="1125,239,1278,281"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="972,135,992,141,1048,157,1072,165,1102,179,1144,207,1179,236,1175,240,1141,211,1099,184,1071,170,1047,162,991,147,971,140"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="1161,157,1242,184"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1257,169,1339,165,1430,152,1493,131,1495,136,1432,157,1340,170,1257,174"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="1177,5,1226,32"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="1241,19,1329,32,1381,44,1432,60,1474,81,1508,104,1505,108,1471,86,1430,65,1380,49,1328,37,1240,24"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="1282,77,1431,100,1465,106,1464,111,1431,105,1281,83"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="844,29,986,56"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="1001,48,1136,61,1135,66,1000,53"/>
+<area shape="rect" id="Node000008" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html" title=" " alt="" coords="1455,316,1596,375"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="1609,319,1718,287,1720,293,1611,324"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="1293,281,1455,324,1454,329,1292,286"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="868,273,962,300"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="977,281,1100,271,1124,268,1124,273,1101,276,977,286"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="879,324,951,351"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="965,328,1030,316,1100,299,1152,279,1154,284,1101,304,1031,321,966,333"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="848,156,982,199"/>
+<area shape="poly" id="edge13_Node000009_Node000012" title=" " alt="" coords="997,193,1101,221,1143,236,1142,241,1100,227,995,198"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="892,223,938,249"/>
+<area shape="poly" id="edge14_Node000009_Node000013" title=" " alt="" coords="953,236,1125,251,1124,256,952,242"/>
+<area shape="rect" id="Node000014" href="$d1/d16/classcarla_1_1streaming_1_1detail_1_1Dispatcher.html" title="Keeps the mapping between streams and sessions." alt="" coords="838,375,992,417"/>
+<area shape="poly" id="edge15_Node000008_Node000014" title=" " alt="" coords="1006,386,1454,348,1455,354,1007,391"/>
+<area shape="rect" id="Node000026" href="$d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html" title="A low&#45;level streaming server." alt="" coords="1131,423,1272,465"/>
+<area shape="poly" id="edge29_Node000026_Node000014" title=" " alt="" coords="1007,409,1131,430,1130,435,1006,414"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="580,324,637,351"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="652,342,815,372,838,377,837,382,814,377,651,347"/>
+<area shape="rect" id="Node000016" href="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html" title="Serializes a stream endpoint." alt="" coords="532,375,685,417"/>
+<area shape="poly" id="edge17_Node000014_Node000016" title=" " alt="" coords="700,393,838,393,838,399,700,399"/>
+<area shape="rect" id="Node000017" href="$d9/da8/structcarla_1_1streaming_1_1detail_1_1token__data.html" title=" " alt="" coords="274,375,427,417"/>
+<area shape="poly" id="edge18_Node000016_Node000017" title=" " alt="" coords="442,393,531,393,531,399,442,399"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="41,231,108,257"/>
+<area shape="poly" id="edge19_Node000017_Node000018" title=" " alt="" coords="123,247,186,262,220,274,251,290,277,308,301,330,336,373,332,376,297,334,274,313,248,294,217,279,185,267,122,253"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="5,281,144,308"/>
+<area shape="poly" id="edge20_Node000017_Node000019" title=" " alt="" coords="159,308,205,320,251,336,318,372,315,377,249,341,203,325,158,313"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="41,332,108,359"/>
+<area shape="poly" id="edge21_Node000017_Node000020" title=" " alt="" coords="123,350,250,372,274,377,273,382,249,377,122,355"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="41,383,108,409"/>
+<area shape="poly" id="edge22_Node000017_Node000021" title=" " alt="" coords="123,393,273,393,273,399,123,399"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="41,433,108,460"/>
+<area shape="poly" id="edge23_Node000017_Node000022" title=" " alt="" coords="122,437,249,415,273,410,274,415,250,420,123,442"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="32,484,117,511"/>
+<area shape="poly" id="edge24_Node000017_Node000023" title=" " alt="" coords="131,484,189,470,249,450,314,416,316,420,251,454,190,475,132,489"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="32,535,117,561"/>
+<area shape="poly" id="edge25_Node000017_Node000024" title=" " alt="" coords="131,537,190,522,248,496,273,478,296,457,332,416,336,419,300,461,277,483,251,501,191,527,132,542"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="518,441,698,500"/>
+<area shape="poly" id="edge26_Node000014_Node000025" title=" " alt="" coords="712,443,837,412,838,417,714,448"/>
+<area shape="poly" id="edge27_Node000008_Node000026" title=" " alt="" coords="1286,438,1358,427,1430,407,1460,392,1487,373,1490,378,1463,396,1432,412,1359,433,1287,443"/>
+<area shape="rect" id="Node000027" title=" " alt="" coords="896,444,934,471"/>
+<area shape="poly" id="edge28_Node000026_Node000027" title=" " alt="" coords="949,456,1101,453,1130,451,1130,456,1101,459,949,461"/>
+</map>

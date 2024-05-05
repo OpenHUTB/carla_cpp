@@ -1,0 +1,37 @@
+<map id="carla::rss::RssCheck::CalculateEgoDynamicsOnRoute" name="carla::rss::RssCheck::CalculateEgoDynamicsOnRoute">
+<area shape="rect" id="Node000001" title="calculate ego vehicle dynamics on the route" alt="" coords="5,72,221,115"/>
+<area shape="rect" id="Node000002" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a25f1eac0cc58d2c2c0b409832b59960a" title="calculate the heading change from the actor" alt="" coords="269,72,412,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,91,254,91,254,96,221,96"/>
+<area shape="rect" id="Node000009" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a076f17bcb321e9536ca59ee06bfab858" title="calculate the speed from the actor" alt="" coords="269,172,412,215"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="165,113,278,163,276,168,163,118"/>
+<area shape="rect" id="Node000014" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65e61e10af7c201cf90f4960335d58c2" title="calculate the steering angle from the actor" alt="" coords="269,5,412,48"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="187,69,254,49,256,54,189,74"/>
+<area shape="rect" id="Node000003" href="$d6/da5/classcarla_1_1client_1_1Actor.html#a92e136a99a6e8a24ffe66bf984eab769" title="Return the current 3D angular velocity of the actor." alt="" coords="462,72,603,115"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="412,91,447,91,447,96,412,96"/>
+<area shape="rect" id="Node000004" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="655,72,822,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="604,91,640,91,640,96,604,96"/>
+<area shape="rect" id="Node000005" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="653,139,824,181"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="601,113,657,131,655,136,600,118"/>
+<area shape="rect" id="Node000006" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="884,109,1011,152"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="824,145,869,139,870,144,825,151"/>
+<area shape="rect" id="Node000008" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="872,176,1023,203"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="825,169,857,174,857,179,824,175"/>
+<area shape="rect" id="Node000007" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="1071,109,1227,152"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1011,128,1056,128,1056,133,1011,133"/>
+<area shape="rect" id="Node000010" href="$d6/da5/classcarla_1_1client_1_1Actor.html#ab5c7de9cefbe7d189c97a429ab052115" title="Return the current transform of the actor." alt="" coords="469,205,596,248"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="413,203,455,211,454,216,412,208"/>
+<area shape="rect" id="Node000011" href="$d6/da5/classcarla_1_1client_1_1Actor.html#a77affb99965a3c4a127fc9f3737b2734" title="Return the current 3D velocity of the actor." alt="" coords="469,139,596,181"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="412,178,454,171,455,176,413,184"/>
+<area shape="rect" id="Node000012" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#ad4d8bc301fba5c24b1acdc190a848703" title=" " alt="" coords="460,272,605,315"/>
+<area shape="poly" id="edge15_Node000009_Node000012" title=" " alt="" coords="380,213,461,258,471,263,469,267,459,262,377,217"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="587,203,604,191,618,175,627,158,635,142,652,125,657,121,660,125,655,129,640,145,631,161,623,178,607,195,590,207"/>
+<area shape="poly" id="edge11_Node000010_Node000005" title=" " alt="" coords="596,204,656,184,657,189,597,209"/>
+<area shape="poly" id="edge13_Node000011_Node000004" title=" " alt="" coords="596,137,656,117,657,122,597,142"/>
+<area shape="poly" id="edge14_Node000011_Node000005" title=" " alt="" coords="597,157,638,157,638,163,597,163"/>
+<area shape="rect" id="Node000013" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="671,272,806,315"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="606,291,656,291,656,296,606,296"/>
+<area shape="rect" id="Node000015" href="$d9/dc6/classcarla_1_1client_1_1Vehicle.html#a8971090df25077db3759e0bdeae8ac0d" title="Return the control last applied to this vehicle." alt="" coords="463,5,602,48"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="412,24,448,24,448,29,412,29"/>
+<area shape="poly" id="edge19_Node000015_Node000004" title=" " alt="" coords="601,46,657,64,655,69,600,51"/>
+<area shape="poly" id="edge20_Node000015_Node000005" title=" " alt="" coords="590,46,607,58,623,76,631,92,640,109,655,125,660,128,657,133,652,129,635,112,627,95,618,79,604,62,587,51"/>
+</map>

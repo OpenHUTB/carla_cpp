@@ -1,0 +1,17 @@
+<map id="FAsyncDataStreamTmpl::SerializeAndSend" name="FAsyncDataStreamTmpl::SerializeAndSend">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,89,169,132"/>
+<area shape="rect" id="Node000002" href="$db/db8/classcarla_1_1BufferView.html#a4eefa5dd2893554424512814e6de0c9e" title=" " alt="" coords="237,56,363,99"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,95,221,87,222,92,169,101"/>
+<area shape="rect" id="Node000008" href="$d3/d81/classcarla_1_1sensor_1_1CompositeSerializer.html#a69dc7c61b631b59bcc50ffb08f4a6972" title="Serialize the arguments provided into a Buffer by calling to the serializer registered for the given ..." alt="" coords="217,123,383,165"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="169,121,202,126,202,131,169,126"/>
+<area shape="rect" id="Node000003" href="$db/db8/classcarla_1_1BufferView.html#ab2dfa752fa10fcc6693b27f7bd663479" title="Make a boost::asio::buffer from this buffer." alt="" coords="431,23,557,65"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="363,64,416,55,417,60,364,69"/>
+<area shape="rect" id="Node000007" href="$db/db8/classcarla_1_1BufferView.html#a6b5d5cde7bc06e5296c0a1312721411a" title=" " alt="" coords="431,89,557,132"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="364,86,417,95,416,100,363,91"/>
+<area shape="rect" id="Node000004" href="$db/db8/classcarla_1_1BufferView.html#a7f789d855f7596a0874eb91fd913c5a7" title="Make a boost::asio::buffer from this buffer." alt="" coords="605,23,732,65"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="558,41,590,41,590,47,558,47"/>
+<area shape="rect" id="Node000005" href="$d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf" title="Direct access to the allocated memory or nullptr if no memory is allocated." alt="" coords="780,5,903,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="732,32,765,27,765,32,733,37"/>
+<area shape="rect" id="Node000006" href="$d0/d0a/classcarla_1_1Buffer.html#a3edea2e44a05d9806312e5f9e52315e4" title=" " alt="" coords="780,56,903,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="733,51,766,56,765,61,732,56"/>
+</map>

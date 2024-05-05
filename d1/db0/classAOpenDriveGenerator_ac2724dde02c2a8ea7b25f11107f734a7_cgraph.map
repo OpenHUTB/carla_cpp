@@ -1,0 +1,29 @@
+<map id="AOpenDriveGenerator::GenerateAll" name="AOpenDriveGenerator::GenerateAll">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,78,152,120"/>
+<area shape="rect" id="Node000002" href="$d1/db0/classAOpenDriveGenerator.html#a390a0a0d121c673c46da71a992a1da7b" title="Generates pole meshes based on the OpenDRIVE information." alt="" coords="206,78,352,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,96,191,96,191,102,152,102"/>
+<area shape="rect" id="Node000006" href="$d1/db0/classAOpenDriveGenerator.html#a694d4a1aa944fdb39620d8c06ddb11b5" title="Generates the road and sidewalk mesh based on the OpenDRIVE information." alt="" coords="206,179,352,222"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="124,119,223,169,221,174,122,123"/>
+<area shape="rect" id="Node000011" href="$d1/db0/classAOpenDriveGenerator.html#aee04fefe736484cf24f7df698cb8dfd3" title="Generates spawn points along the road." alt="" coords="200,11,358,54"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="144,75,198,56,200,61,145,80"/>
+<area shape="rect" id="Node000003" href="$d1/db0/classAOpenDriveGenerator.html#aee26074d7f6778838ad645d7eeb93b76" title="Checks if the OpenDrive has been loaded and it&#39;s valid." alt="" coords="452,70,598,112"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="352,94,436,91,436,97,353,99"/>
+<area shape="rect" id="Node000004" href="$d7/d1e/classUCarlaStatics.html#acf94832c60579b6d161b66447719efbc" title=" " alt="" coords="691,107,889,134"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="599,96,677,105,676,110,598,102"/>
+<area shape="rect" id="Node000005" href="$db/de5/classACarlaGameModeBase.html#ae2c2de515bd6ad674844fde59cbfbf3d" title=" " alt="" coords="711,40,869,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="598,80,696,69,697,75,599,86"/>
+<area shape="poly" id="edge10_Node000006_Node000003" title=" " alt="" coords="314,176,405,129,438,115,440,120,407,133,317,181"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="352,196,488,188,566,179,643,166,693,153,740,137,741,142,695,158,644,171,567,184,489,193,353,202"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="352,178,405,166,473,154,526,149,578,142,642,122,666,108,690,93,704,86,706,91,693,97,669,113,644,127,579,147,527,155,474,160,407,171,353,184"/>
+<area shape="rect" id="Node000007" href="$d7/d1e/classUCarlaStatics.html#a35e7cb760a58848081a618e7fa8201e2" title=" " alt="" coords="418,238,632,264"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="353,213,442,231,441,237,352,218"/>
+<area shape="rect" id="Node000008" href="$da/d55/classUCarlaGameInstance.html#aa5f3f582b18797589eb1cfbc0b71bec1" title=" " alt="" coords="406,339,643,382"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="298,220,343,273,374,301,407,325,418,330,415,335,405,329,370,305,340,277,294,224"/>
+<area shape="rect" id="Node000009" href="$d9/d36/namespacecarla.html#aca0bf2b2b37178b5e39c9bdbb5fadeb6" title=" " alt="" coords="462,288,587,315"/>
+<area shape="poly" id="edge11_Node000006_Node000009" title=" " alt="" coords="311,220,355,248,407,274,449,287,447,292,405,279,353,253,308,224"/>
+<area shape="rect" id="Node000010" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="723,280,857,323"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="588,299,708,299,708,304,588,304"/>
+<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="359,49,438,68,436,73,358,54"/>
+<area shape="poly" id="edge14_Node000011_Node000004" title=" " alt="" coords="358,22,422,21,495,24,571,34,644,55,660,64,670,74,679,83,693,93,708,99,706,104,690,97,675,88,666,77,656,68,642,60,570,40,494,29,422,26,359,28"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="358,16,492,4,568,4,644,11,684,20,723,32,722,37,683,25,643,16,568,9,492,9,359,22"/>
+</map>

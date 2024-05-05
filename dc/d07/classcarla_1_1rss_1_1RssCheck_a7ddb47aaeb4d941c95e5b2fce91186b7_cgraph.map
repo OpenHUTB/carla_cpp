@@ -1,0 +1,58 @@
+<map id="carla::rss::RssCheck::CheckObjects" name="carla::rss::RssCheck::CheckObjects">
+<area shape="rect" id="Node000001" title="main function to trigger the RSS check at a certain point in time" alt="" coords="5,368,149,411"/>
+<area shape="rect" id="Node000002" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a73d96c9761c90f072d74f1a36bb6292d" title="Analyse the RSS check results." alt="" coords="226,135,383,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,367,98,328,121,280,153,230,195,187,211,177,214,181,198,191,158,234,126,283,102,330,88,369"/>
+<area shape="rect" id="Node000003" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aaaf0a0f73759f525137e227af98f5074" title="calculate ego vehicle dynamics on the route" alt="" coords="197,201,412,244"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,366,132,310,162,280,195,254,204,249,206,253,198,258,165,284,137,314,94,369"/>
+<area shape="rect" id="Node000018" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aa459f0697881ce1bf6ffa1f7c998910f" title="Create the RSS world model." alt="" coords="233,268,376,311"/>
+<area shape="poly" id="edge23_Node000001_Node000018" title=" " alt="" coords="111,365,196,320,218,311,220,316,198,325,114,370"/>
+<area shape="rect" id="Node000021" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#acd7e97540e3d4e7bbce5dce1c70deeef" title="drop the current route" alt="" coords="233,335,376,377"/>
+<area shape="poly" id="edge27_Node000001_Node000021" title=" " alt="" coords="148,376,218,366,218,371,149,382"/>
+<area shape="rect" id="Node000022" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#ad3b645959ac8e39bcea3ac5bc503e984" title="calculate the map matched object from the actor" alt="" coords="233,401,376,444"/>
+<area shape="poly" id="edge28_Node000001_Node000022" title=" " alt="" coords="149,397,218,407,218,413,148,402"/>
+<area shape="rect" id="Node000023" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#adf4f19a6644dab7a021d69637cfe44c9" title="Perform the actual RSS check." alt="" coords="233,468,376,511"/>
+<area shape="poly" id="edge29_Node000001_Node000023" title=" " alt="" coords="114,409,198,454,220,462,218,467,196,458,111,414"/>
+<area shape="rect" id="Node000024" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#af5f3f5dcadacba5f1974de32474838a2" title=" " alt="" coords="209,535,400,577"/>
+<area shape="poly" id="edge30_Node000001_Node000024" title=" " alt="" coords="94,409,137,465,165,495,198,520,206,525,204,530,195,525,162,499,132,469,90,413"/>
+<area shape="rect" id="Node000025" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a9b5193c0633fca116bcbbd468c900ea9" title="update the desired ego vehicle route" alt="" coords="233,601,376,644"/>
+<area shape="poly" id="edge31_Node000001_Node000025" title=" " alt="" coords="88,410,102,448,126,496,158,545,198,587,221,601,218,605,195,591,153,548,121,499,98,450,83,412"/>
+<area shape="rect" id="Node000004" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a25f1eac0cc58d2c2c0b409832b59960a" title="calculate the heading change from the actor" alt="" coords="491,141,634,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="398,198,476,180,477,185,400,203"/>
+<area shape="rect" id="Node000011" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a076f17bcb321e9536ca59ee06bfab858" title="calculate the speed from the actor" alt="" coords="491,73,634,116"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="390,199,410,187,425,173,434,158,443,143,458,127,476,117,479,121,462,131,447,146,438,161,430,176,414,191,393,203"/>
+<area shape="rect" id="Node000016" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a65e61e10af7c201cf90f4960335d58c2" title="calculate the steering angle from the actor" alt="" coords="491,263,634,305"/>
+<area shape="poly" id="edge19_Node000003_Node000016" title=" " alt="" coords="398,242,477,261,476,266,397,247"/>
+<area shape="rect" id="Node000005" href="$d6/da5/classcarla_1_1client_1_1Actor.html#a92e136a99a6e8a24ffe66bf984eab769" title="Return the current 3D angular velocity of the actor." alt="" coords="715,139,857,181"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="634,159,701,158,701,164,634,164"/>
+<area shape="rect" id="Node000006" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa" title=" " alt="" coords="908,139,1076,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="857,157,894,157,894,163,857,163"/>
+<area shape="rect" id="Node000007" href="$d1/dd3/classcarla_1_1client_1_1detail_1_1EpisodeProxyImpl.html#aaca857645fbeb6546b4a03a663bb65af" title="Same as TryLock but never return nullptr." alt="" coords="907,205,1077,248"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="855,179,910,198,909,203,853,184"/>
+<area shape="rect" id="Node000008" href="$d8/dcd/namespacecarla_1_1client_1_1detail.html#aa47f72a521d97fe3574a56e808b509d8" title=" " alt="" coords="1137,176,1264,219"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1077,212,1122,206,1123,211,1078,217"/>
+<area shape="rect" id="Node000010" href="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd" title=" " alt="" coords="1125,243,1276,269"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="1078,236,1111,241,1110,246,1077,241"/>
+<area shape="rect" id="Node000009" href="$d2/dcf/classcarla_1_1AtomicSharedPtr.html#a7bb0b8af178b36c923fedac384b3aad4" title=" " alt="" coords="1324,176,1481,219"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1264,195,1309,195,1309,200,1264,200"/>
+<area shape="rect" id="Node000012" href="$d6/da5/classcarla_1_1client_1_1Actor.html#ab5c7de9cefbe7d189c97a429ab052115" title="Return the current transform of the actor." alt="" coords="722,205,850,248"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="636,110,667,127,683,143,692,159,700,175,715,191,720,195,717,199,712,195,696,178,687,162,679,147,664,131,634,115"/>
+<area shape="rect" id="Node000013" href="$d6/da5/classcarla_1_1client_1_1Actor.html#a77affb99965a3c4a127fc9f3737b2734" title="Return the current 3D velocity of the actor." alt="" coords="722,72,850,115"/>
+<area shape="poly" id="edge14_Node000011_Node000013" title=" " alt="" coords="634,92,708,91,708,96,634,97"/>
+<area shape="rect" id="Node000014" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#ad4d8bc301fba5c24b1acdc190a848703" title=" " alt="" coords="713,5,859,48"/>
+<area shape="poly" id="edge17_Node000011_Node000014" title=" " alt="" coords="634,70,699,50,700,55,635,76"/>
+<area shape="poly" id="edge12_Node000012_Node000006" title=" " alt="" coords="849,204,909,184,911,189,851,209"/>
+<area shape="poly" id="edge13_Node000012_Node000007" title=" " alt="" coords="850,224,891,224,891,229,850,229"/>
+<area shape="poly" id="edge15_Node000013_Node000006" title=" " alt="" coords="851,111,911,131,909,136,849,116"/>
+<area shape="poly" id="edge16_Node000013_Node000007" title=" " alt="" coords="844,113,860,125,876,142,885,159,893,175,908,191,913,195,910,199,905,195,889,178,880,162,872,145,857,129,841,117"/>
+<area shape="rect" id="Node000015" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="925,5,1059,48"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="859,24,910,24,910,29,859,29"/>
+<area shape="rect" id="Node000017" href="$d9/dc6/classcarla_1_1client_1_1Vehicle.html#a8971090df25077db3759e0bdeae8ac0d" title="Return the control last applied to this vehicle." alt="" coords="716,272,856,315"/>
+<area shape="poly" id="edge20_Node000016_Node000017" title=" " alt="" coords="635,284,702,287,702,292,634,290"/>
+<area shape="poly" id="edge21_Node000017_Node000006" title=" " alt="" coords="841,269,857,258,872,241,880,225,889,208,905,191,910,187,913,192,908,195,893,211,885,228,876,244,860,262,844,274"/>
+<area shape="poly" id="edge22_Node000017_Node000007" title=" " alt="" coords="853,269,909,251,910,256,855,274"/>
+<area shape="poly" id="edge26_Node000018_Node000012" title=" " alt="" coords="376,266,460,248,590,233,707,226,708,231,591,238,460,253,377,271"/>
+<area shape="rect" id="Node000019" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a35c060a790ddd30277dfb2f5b6ceef12" title="collect the green traffic lights on the current route" alt="" coords="460,396,665,439"/>
+<area shape="poly" id="edge24_Node000018_Node000019" title=" " alt="" coords="378,303,414,320,430,336,438,352,447,367,462,382,469,386,466,391,458,386,442,370,434,355,425,339,410,325,375,307"/>
+<area shape="rect" id="Node000020" href="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a1affb3c32be5ebbacff4200f46cd38ec" title=" " alt="" coords="498,329,628,372"/>
+<area shape="poly" id="edge25_Node000018_Node000020" title=" " alt="" coords="377,304,483,329,482,334,376,309"/>
+</map>

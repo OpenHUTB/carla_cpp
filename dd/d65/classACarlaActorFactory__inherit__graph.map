@@ -1,0 +1,17 @@
+<map id="ACarlaActorFactory" name="ACarlaActorFactory">
+<area shape="rect" id="Node000001" title="Base class for Carla actor factories." alt="" coords="115,132,250,159"/>
+<area shape="rect" id="Node000003" href="$db/d37/classAAIControllerFactory.html" title="Factory in charge of spawning AI Controllers." alt="" coords="321,5,462,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,119,244,80,297,42,324,30,326,35,299,46,247,84,206,123"/>
+<area shape="rect" id="Node000004" href="$d3/ddb/classACarlaActorFactoryBlueprint.html" title="Base class for Blueprints implementing ACarlaActorFactory interface." alt="" coords="298,56,484,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="224,123,297,92,333,81,335,86,299,97,226,128"/>
+<area shape="rect" id="Node000005" href="$df/d9e/classASensorFactory.html" title="Factory in charge of spawning sensors." alt="" coords="334,107,449,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="264,133,333,124,333,130,265,138"/>
+<area shape="rect" id="Node000006" href="$da/d98/classAStaticMeshFactory.html" title="Factory in charge of spawning static meshes." alt="" coords="321,157,461,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="265,153,321,159,320,165,265,158"/>
+<area shape="rect" id="Node000007" href="$d0/df9/classATriggerFactory.html" title="Factory in charge of spawning sensors." alt="" coords="335,208,448,235"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="226,163,299,193,335,205,333,210,297,199,224,168"/>
+<area shape="rect" id="Node000008" href="$d7/de9/classAUtilActorFactory.html" title="Factory in charge of spawning static meshes." alt="" coords="329,259,453,285"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="206,167,247,207,299,244,330,257,328,262,297,249,244,211,203,171"/>
+<area shape="rect" id="Node000002" href="$d1/da4/classAActor.html" title=" " alt="" coords="5,132,67,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,143,115,143,115,148,82,148"/>
+</map>

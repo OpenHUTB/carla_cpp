@@ -1,0 +1,17 @@
+<map id="carla::nav::WalkerManager::RemoveWalker" name="carla::nav::WalkerManager::RemoveWalker">
+<area shape="rect" id="Node000001" title="remove a walker route" alt="" coords="955,109,1130,152"/>
+<area shape="rect" id="Node000002" href="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#a273cfd565ff7a8376f165105a192e2e1" title="remove an agent" alt="" coords="763,109,907,152"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="940,133,907,133,907,128,940,128"/>
+<area shape="rect" id="Node000003" href="$d1/d83/classcarla_1_1client_1_1detail_1_1WalkerNavigation.html#a78b4f67c9dbe1543212c05e263543caf" title="check a few walkers and if they don&#39;t exist then remove from the crowd" alt="" coords="239,5,419,64"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="774,106,715,85,638,68,559,56,419,42,420,37,560,51,639,63,716,80,776,101"/>
+<area shape="rect" id="Node000004" href="$d1/d83/classcarla_1_1client_1_1detail_1_1WalkerNavigation.html#a74b3b9c4a9c27f6ffb4f8b0fae1c3c87" title=" " alt="" coords="5,80,167,123"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="748,130,167,107,167,102,748,125"/>
+<area shape="rect" id="Node000005" href="$d1/d83/classcarla_1_1client_1_1detail_1_1WalkerNavigation.html#aa140c6f8079169e01cf2d6512208e6bf" title=" " alt="" coords="491,139,715,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="749,144,716,148,715,143,748,139"/>
+<area shape="rect" id="Node000006" href="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#a6b7d72d6c0d11bd88a5b9fae3e230ed2" title="add/update/delete vehicles in crowd" alt="" coords="532,205,675,248"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="785,162,716,196,676,210,674,205,714,191,783,157"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="225,66,167,82,166,77,223,61"/>
+<area shape="rect" id="Node000007" href="$d1/d83/classcarla_1_1client_1_1detail_1_1WalkerNavigation.html#a109552fa675fe65e281e3ed6f3c75204" title="add/update/delete all vehicles in crowd" alt="" coords="215,168,443,227"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="517,220,443,212,444,207,517,215"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="239,165,141,126,143,121,241,160"/>
+</map>

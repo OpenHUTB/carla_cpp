@@ -1,0 +1,74 @@
+<map id="ACityMapGenerator::GenerateRoadMap" name="ACityMapGenerator::GenerateRoadMap">
+<area shape="rect" id="Node000001" title="Generate the road map image and save to disk if requested." alt="" coords="5,207,149,249"/>
+<area shape="rect" id="Node000002" href="$da/d1a/classACityMapMeshHolder.html#ab58d75b5e6a67bb4042174256a4c5128" title=" " alt="" coords="260,5,408,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,205,101,172,125,132,157,92,195,58,219,45,245,36,247,41,221,50,198,62,161,95,130,135,106,175,90,207"/>
+<area shape="rect" id="Node000003" href="$d6/d33/classCityMapMeshTag.html#ae546ef66912146409f0b1d176406aa7b" title="Get the size in tiles of a road intersection side." alt="" coords="197,72,471,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="92,205,134,155,163,130,195,108,210,102,212,106,198,113,166,134,138,159,96,208"/>
+<area shape="rect" id="Node000004" href="$da/d1a/classACityMapMeshHolder.html#ac51e2220f2416299f49b17a106807254" title="Return the tag corresponding to StaticMesh." alt="" coords="260,123,408,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="123,204,196,175,245,161,246,166,198,180,125,209"/>
+<area shape="rect" id="Node000005" href="$d9/d8e/CityMapGenerator_8cpp.html#a193739b04edaead14e56871068ea0af3" title=" " alt="" coords="295,189,373,216"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="149,218,280,205,281,211,149,224"/>
+<area shape="rect" id="Node000007" href="$d5/db2/classURoadMap.html#a253822dc340f1a75a441b373e599f6bc" title="Resets current map an initializes an empty map of the given size." alt="" coords="270,240,398,267"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="149,232,256,243,255,248,149,238"/>
+<area shape="rect" id="Node000008" href="$d5/db2/classURoadMap.html#aa47b13000945dfd3e81dd51a69eb2c67" title="Save the current map as PNG with the pixel data encoded as color." alt="" coords="251,463,417,489"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="102,248,310,450,306,454,99,251"/>
+<area shape="rect" id="Node000019" href="$d5/db2/classURoadMap.html#a4d82906248621ab21ccaeff669ebfdab" title=" " alt="" coords="256,291,412,317"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="124,247,197,276,242,287,241,292,196,281,122,252"/>
+<area shape="rect" id="Node000026" href="$da/d86/classATagger.html#ad1bff091221672f7af2ba6c02fb99f75" title="Set the tag of every actor in level." alt="" coords="246,631,422,657"/>
+<area shape="poly" id="edge28_Node000001_Node000026" title=" " alt="" coords="87,249,128,360,160,431,199,500,225,534,253,567,307,619,303,623,249,571,220,538,194,503,155,434,123,362,82,251"/>
+<area shape="rect" id="Node000006" href="$da/d86/classATagger.html#aa2c691267d7bedb210f4d0884a00d00c" title="Return true if Component has been tagged with the given Tag." alt="" coords="519,148,698,175"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="373,194,504,174,505,180,373,200"/>
+<area shape="rect" id="Node000009" href="$d9/d74/structFRoadMapPixelData.html#aebe28ea4770184cb32da9305211ffeee" title=" " alt="" coords="535,484,683,527"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="417,482,520,493,519,499,417,487"/>
+<area shape="rect" id="Node000013" href="$d5/db2/classURoadMap.html#aa0d3000af01cde25fde6ba931a54f0c5" title=" " alt="" coords="533,433,684,460"/>
+<area shape="poly" id="edge12_Node000008_Node000013" title=" " alt="" coords="417,465,518,454,519,459,417,470"/>
+<area shape="rect" id="Node000014" href="$d5/db2/classURoadMap.html#aa578c4ca2edaa3e4aa79969a948a3bc1" title=" " alt="" coords="535,551,683,577"/>
+<area shape="poly" id="edge13_Node000008_Node000014" title=" " alt="" coords="375,487,520,536,544,544,543,549,518,541,373,492"/>
+<area shape="rect" id="Node000015" href="$d5/db2/classURoadMap.html#a35fa959e7b508a718906b5137aa52f59" title=" " alt="" coords="543,383,675,409"/>
+<area shape="poly" id="edge14_Node000008_Node000015" title=" " alt="" coords="381,460,518,419,543,411,545,417,520,424,382,465"/>
+<area shape="rect" id="Node000016" href="$dd/d11/classFPixelReader.html#ada445b4ee415b134a18c03429139352b" title="Asynchronously save the pixels in RenderTarget to disk." alt="" coords="523,625,694,668"/>
+<area shape="poly" id="edge15_Node000008_Node000016" title=" " alt="" coords="359,488,562,615,559,619,356,492"/>
+<area shape="rect" id="Node000010" href="$d9/d74/structFRoadMapPixelData.html#a22230decf6a0370ff085b7453db07250" title="Get the azimuth angle [&#45;PI, PI] of the road direction (in spherical coordinates) at this pixel." alt="" coords="752,504,937,547"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="683,509,737,514,737,519,683,514"/>
+<area shape="rect" id="Node000011" href="$d9/d74/structFRoadMapPixelData.html#a459ad7b2bb32fbd2bd19658363ff3efc" title="Whether this pixel has a direction defined (e.g." alt="" coords="770,437,919,480"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="683,488,755,474,756,479,684,493"/>
+<area shape="rect" id="Node000012" href="$d9/d74/structFRoadMapPixelData.html#ab1de611abe87fdf3a01824052cf28328" title="Whether this pixel lies in&#45;road." alt="" coords="770,371,919,413"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="676,481,697,470,711,458,720,447,730,435,745,423,756,417,758,422,748,428,734,439,724,450,715,462,700,474,678,486"/>
+<area shape="poly" id="edge18_Node000016_Node000016" title=" " alt="" coords="564,625,562,615,570,606,585,601,609,599,635,601,650,608,648,613,634,606,609,604,586,606,573,611,567,617,569,624"/>
+<area shape="rect" id="Node000017" href="$dd/d11/classFPixelReader.html#aafcd002853bb8dff7881ae341474d9a2" title="Dump the pixels in RenderTarget." alt="" coords="756,604,933,631"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="695,633,740,628,741,633,695,639"/>
+<area shape="rect" id="Node000018" href="$dd/d11/classFPixelReader.html#a7b7dcebd2d155ed24686e65d0c420c7e" title="Copy the pixels in RenderTarget into BitMap." alt="" coords="991,596,1165,639"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="934,615,976,615,976,620,934,620"/>
+<area shape="rect" id="Node000020" href="$d9/d74/structFRoadMapPixelData.html#a9d463fa41ea9ba6c7657499a5e56e2ee" title=" " alt="" coords="535,316,683,359"/>
+<area shape="poly" id="edge20_Node000019_Node000020" title=" " alt="" coords="412,311,520,324,519,329,412,316"/>
+<area shape="rect" id="Node000022" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#af3b9aeecb1d8a5a29aac264ea2b780dc" title=" " alt="" coords="536,249,681,292"/>
+<area shape="poly" id="edge24_Node000019_Node000022" title=" " alt="" coords="412,292,521,279,522,284,412,297"/>
+<area shape="rect" id="Node000025" href="$d5/db2/classURoadMap.html#a250b1af8dd299a4191239ecfa1404660" title=" " alt="" coords="536,199,681,225"/>
+<area shape="poly" id="edge27_Node000019_Node000025" title=" " alt="" coords="411,294,441,287,470,276,484,267,493,257,503,246,518,235,531,229,533,234,520,240,506,250,497,260,487,271,472,281,443,292,413,299"/>
+<area shape="poly" id="edge22_Node000020_Node000011" title=" " alt="" coords="680,357,700,369,715,383,724,397,733,410,748,423,758,429,756,434,745,427,729,414,720,400,711,386,697,373,677,361"/>
+<area shape="poly" id="edge23_Node000020_Node000012" title=" " alt="" coords="684,352,756,369,755,374,683,357"/>
+<area shape="rect" id="Node000021" href="$d2/de5/RoadMap_8cpp.html#a3de92448513538942b780f5eee1eb26f" title=" " alt="" coords="760,320,929,347"/>
+<area shape="poly" id="edge21_Node000020_Node000021" title=" " alt="" coords="683,333,745,332,745,338,683,339"/>
+<area shape="rect" id="Node000023" href="$d0/dea/classcarla_1_1geom_1_1Math.html#aafbb2dc8a60aa6e86cc7fe1ad2872beb" title="Compute the unit vector pointing towards the X&#45;axis of rotation." alt="" coords="777,249,912,292"/>
+<area shape="poly" id="edge25_Node000022_Node000023" title=" " alt="" coords="682,268,762,268,762,273,682,273"/>
+<area shape="rect" id="Node000024" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a2bd79912876dfbab9354c0bb841320e4" title=" " alt="" coords="1011,249,1145,292"/>
+<area shape="poly" id="edge26_Node000023_Node000024" title=" " alt="" coords="912,268,996,268,996,273,912,273"/>
+<area shape="rect" id="Node000027" href="$da/d86/classATagger.html#ad0a7c11b5b6a58abecd4a7b5587eeb6a" title="Set the tag of an actor." alt="" coords="544,756,673,783"/>
+<area shape="poly" id="edge29_Node000026_Node000027" title=" " alt="" coords="366,655,565,747,563,752,364,660"/>
+<area shape="rect" id="Node000028" href="$da/d86/classATagger.html#ad30a07f35f3db9d174589bb8abddd11f" title=" " alt="" coords="749,655,940,681"/>
+<area shape="poly" id="edge30_Node000027_Node000028" title=" " alt="" coords="630,753,681,722,745,691,766,683,768,689,747,696,684,727,632,758"/>
+<area shape="rect" id="Node000030" href="$da/d86/classATagger.html#aad05d5a21390b4353006636903dcde06" title="Method that computes the label corresponding to an specific object using the folder path in which it ..." alt="" coords="758,756,931,783"/>
+<area shape="poly" id="edge32_Node000027_Node000030" title=" " alt="" coords="674,767,743,767,743,772,674,772"/>
+<area shape="rect" id="Node000031" href="$da/d86/classATagger.html#a2b8ab63680928bbd944deecb7e87ec23" title="Retrieve the tags of an already tagged actor." alt="" coords="760,807,929,833"/>
+<area shape="poly" id="edge33_Node000027_Node000031" title=" " alt="" coords="674,781,765,800,764,806,673,786"/>
+<area shape="rect" id="Node000032" href="$d2/d40/TrafficLightBase_8cpp.html#a1459952e95242b0c926376d0bb4692b8" title=" " alt="" coords="1048,883,1108,909"/>
+<area shape="poly" id="edge34_Node000027_Node000032" title=" " alt="" coords="631,781,682,813,747,843,824,864,903,879,1033,892,1033,897,902,884,823,869,745,848,680,818,628,786"/>
+<area shape="rect" id="Node000033" href="$d8/d9f/classUTaggedComponent.html#a996f100e6eead478883b85cbb1d54569" title=" " alt="" coords="746,908,943,935"/>
+<area shape="poly" id="edge35_Node000027_Node000033" title=" " alt="" coords="624,781,675,832,710,862,748,887,776,900,773,905,745,892,707,866,671,836,620,785"/>
+<area shape="rect" id="Node000034" href="$da/d86/classATagger.html#ac21f239b285add6402af8245dc2f53cd" title=" " alt="" coords="759,705,930,732"/>
+<area shape="poly" id="edge37_Node000027_Node000034" title=" " alt="" coords="673,753,764,733,765,738,674,758"/>
+<area shape="rect" id="Node000029" href="$d2/d35/Tagger_8cpp.html#a71868d020d0298e901136dde7c5a62a5" title=" " alt="" coords="1037,684,1119,711"/>
+<area shape="poly" id="edge31_Node000028_Node000029" title=" " alt="" coords="941,677,1022,688,1022,693,940,683"/>
+<area shape="poly" id="edge36_Node000033_Node000032" title=" " alt="" coords="943,908,1033,898,1033,903,944,913"/>
+<area shape="poly" id="edge38_Node000034_Node000029" title=" " alt="" coords="930,708,1021,700,1022,705,930,714"/>
+</map>

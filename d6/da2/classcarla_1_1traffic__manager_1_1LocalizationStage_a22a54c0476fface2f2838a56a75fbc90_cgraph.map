@@ -1,0 +1,28 @@
+<map id="carla::traffic_manager::LocalizationStage::ImportRoute" name="carla::traffic_manager::LocalizationStage::ImportRoute">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,180,216,223"/>
+<area shape="rect" id="Node000002" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a471d15917c1e5a13fbdf2a6787443c1d" title="Method to get Open Street Map mode." alt="" coords="287,9,475,52"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,178,184,120,222,89,262,62,274,56,276,61,265,66,225,93,188,124,132,181"/>
+<area shape="rect" id="Node000003" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a3e50f584f400b7510b411933fc36130c" title="Method to get if we are uploading a route." alt="" coords="281,76,481,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,177,263,132,293,121,295,126,265,137,160,182"/>
+<area shape="rect" id="Node000006" href="$d0/db7/namespacecarla_1_1traffic__manager.html#a281d807c2cff6298b79020c8ff78e19d" title=" " alt="" coords="308,147,454,189"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="216,186,293,176,294,181,216,191"/>
+<area shape="rect" id="Node000008" href="$d0/db7/namespacecarla_1_1traffic__manager.html#a7c957d0e5acd15d14a29cf41959e0d37" title=" " alt="" coords="308,213,454,256"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="216,212,294,221,293,227,216,217"/>
+<area shape="rect" id="Node000010" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a81b479b6de75d12338af05f0221c2b84" title="Method to remove a route." alt="" coords="264,280,498,323"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="158,221,265,266,285,273,284,278,263,270,156,226"/>
+<area shape="rect" id="Node000012" href="$d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html#a5d3d88964cd7b988585d3276e692cfa2" title="Method to update an already set route." alt="" coords="266,347,496,389"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="133,221,189,277,225,307,265,332,277,338,274,343,262,337,222,311,185,281,129,225"/>
+<area shape="rect" id="Node000004" href="$d7/d02/classcarla_1_1traffic__manager_1_1AtomicMap.html#a8225c0bae4d9cfecae85b18f1381d951" title=" " alt="" coords="567,5,721,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="463,73,552,49,553,54,464,78"/>
+<area shape="rect" id="Node000005" href="$d7/d02/classcarla_1_1traffic__manager_1_1AtomicMap.html#a4b0173a942fafecaa838fd3cb5539189" title=" " alt="" coords="566,72,723,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="481,93,551,92,551,97,481,98"/>
+<area shape="rect" id="Node000007" href="$d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aaa605ab90a2903ac80fae61f3eb5c159" title=" " alt="" coords="546,139,742,197"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="454,165,531,165,531,171,454,171"/>
+<area shape="rect" id="Node000009" href="$d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#a00e9170a04217225fce8d48a596f31a6" title="Methods to update, remove and retrieve vehicles passing through a waypoint." alt="" coords="549,221,740,280"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="454,236,534,241,534,247,454,242"/>
+<area shape="rect" id="Node000011" href="$d7/d02/classcarla_1_1traffic__manager_1_1AtomicMap.html#a450dd65aa7fda58fb16d265d355bc8c9" title=" " alt="" coords="554,304,734,347"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="499,309,539,313,539,318,498,315"/>
+<area shape="poly" id="edge13_Node000012_Node000011" title=" " alt="" coords="496,347,539,340,540,345,497,352"/>
+<area shape="rect" id="Node000013" href="$d7/d02/classcarla_1_1traffic__manager_1_1AtomicMap.html#aca33e055f34df3291e1e438db4b6ee95" title=" " alt="" coords="566,371,723,413"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="496,376,551,381,550,386,496,381"/>
+</map>

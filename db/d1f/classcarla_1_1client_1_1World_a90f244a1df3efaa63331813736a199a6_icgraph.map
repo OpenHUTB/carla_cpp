@@ -1,0 +1,15 @@
+<map id="carla::client::World::GetMap" name="carla::client::World::GetMap">
+<area shape="rect" id="Node000001" title="Return the map that describes this world." alt="" coords="424,105,554,148"/>
+<area shape="rect" id="Node000002" href="$db/d1f/classcarla_1_1client_1_1World.html#a82a6e3a2fe7a3d8ccd5de3aa95049788" title=" " alt="" coords="199,5,376,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="441,99,375,62,349,51,351,46,377,58,443,95"/>
+<area shape="rect" id="Node000003" href="$d7/db6/classcarla_1_1client_1_1RssSensor.html#af2dcc2b1ee4a52dbc8e1e7727e3653c4" title="Register a callback to be executed each time a new measurement is received." alt="" coords="207,72,368,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="409,116,368,109,368,104,410,111"/>
+<area shape="rect" id="Node000004" href="$d6/d8c/classcarla_1_1client_1_1Client.html#a6564b923a8f809edfa01ca9ce2f88cb6" title="Return (and load) a new world (map) only when the requested map is different from the current one." alt="" coords="215,139,360,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="410,142,360,151,359,145,409,137"/>
+<area shape="rect" id="Node000005" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1f4a6c4d8eb4de7d68c742fa5496919a" title="Method to setup InMemoryMap." alt="" coords="215,205,360,264"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="442,158,377,196,355,207,352,203,375,191,439,154"/>
+<area shape="rect" id="Node000006" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="5,164,151,223"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="200,220,151,210,152,205,201,215"/>
+<area shape="rect" id="Node000007" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="5,247,151,305"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="201,254,152,264,151,259,200,249"/>
+</map>

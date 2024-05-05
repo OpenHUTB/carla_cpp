@@ -1,0 +1,23 @@
+<map id="carla::traffic_manager::TrafficManagerLocal::UnregisterVehicles" name="carla::traffic_manager::TrafficManagerLocal::UnregisterVehicles">
+<area shape="rect" id="Node000001" title="This method unregisters a vehicle from traffic manager." alt="" coords="5,239,151,297"/>
+<area shape="rect" id="Node000002" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#a33160b538ce38f9ec4a0942f9fa53d86" title=" " alt="" coords="199,247,349,289"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,265,184,265,184,271,151,271"/>
+<area shape="rect" id="Node000003" href="$d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#ad3f8304d51ae8e9bcf278ec1fc1caa73" title="Method to delete actor data from tracking." alt="" coords="421,13,592,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="280,245,295,207,320,159,353,109,395,66,406,58,409,63,399,70,357,112,324,161,300,209,285,247"/>
+<area shape="rect" id="Node000005" href="$d6/d8c/classcarla_1_1traffic__manager_1_1AtomicActorSet.html#a399b072da8a4d3d1f1edf7f489915b57" title=" " alt="" coords="419,80,594,123"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="287,245,331,189,362,158,396,132,405,127,407,132,398,137,365,162,335,192,292,248"/>
+<area shape="rect" id="Node000006" href="$d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html#abd6d5f7ae637fa2397500b2816988bbf" title=" " alt="" coords="404,147,610,189"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="309,244,396,199,413,192,415,197,398,204,312,249"/>
+<area shape="rect" id="Node000007" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#ac69f7735fddbf606208d2c41bb3c8800" title=" " alt="" coords="400,213,613,256"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="349,255,385,249,386,255,350,260"/>
+<area shape="rect" id="Node000008" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a5d5ca6bdac732d7326d72417653e07da" title=" " alt="" coords="408,280,605,323"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="350,276,394,282,393,288,349,281"/>
+<area shape="rect" id="Node000009" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#ad7a1474f31986f1613ccc6451d4b759d" title=" " alt="" coords="398,347,615,389"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="312,287,398,332,415,339,413,344,396,337,309,292"/>
+<area shape="rect" id="Node000010" href="$d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html#a5b4416ca8de96b8a42a88bb8a96f1436" title=" " alt="" coords="402,413,612,456"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="292,288,335,344,365,374,398,399,407,404,405,409,396,404,362,378,331,347,287,291"/>
+<area shape="rect" id="Node000011" href="$dd/de2/classcarla_1_1traffic__manager_1_1VehicleLightStage.html#a0d073272da94024056ba076e7fe9055b" title=" " alt="" coords="397,480,616,523"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="285,289,300,327,324,375,357,424,399,466,405,470,401,474,395,470,353,427,320,377,295,329,280,291"/>
+<area shape="rect" id="Node000004" href="$d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html#aaa605ab90a2903ac80fae61f3eb5c159" title=" " alt="" coords="664,5,861,64"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="593,32,649,32,649,37,593,37"/>
+</map>

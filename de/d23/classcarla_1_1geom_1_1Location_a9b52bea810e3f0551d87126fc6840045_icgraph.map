@@ -1,0 +1,17 @@
+<map id="carla::geom::Location::Distance" name="carla::geom::Location::Distance">
+<area shape="rect" id="Node000001" title=" " alt="" coords="847,72,993,115"/>
+<area shape="rect" id="Node000002" href="$dc/d04/classcarla_1_1traffic__manager_1_1SimpleWaypoint.html#a9e9a225875409c967b7bf3842aebc259" title="Calculates the distance from the object&#39;s waypoint to the passed location." alt="" coords="615,5,799,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="835,70,777,51,778,46,837,65"/>
+<area shape="rect" id="Node000003" href="$dc/d04/classcarla_1_1traffic__manager_1_1SimpleWaypoint.html#a4375a209041eb4ea7a952dced3d4b664" title="Calculates the distance the other SimpleWaypoint object." alt="" coords="615,72,799,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="832,96,799,96,799,91,832,91"/>
+<area shape="rect" id="Node000004" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a7a57d649d96daccb2e2ee9780f24c4ec" title=" " alt="" coords="618,139,796,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="837,122,778,141,777,135,835,117"/>
+<area shape="rect" id="Node000005" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="Initiates thread to run the TrafficManager sequentially." alt="" coords="392,139,567,181"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="604,163,568,163,568,157,604,157"/>
+<area shape="rect" id="Node000006" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="To start the TrafficManager." alt="" coords="199,131,344,189"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="377,163,344,163,344,157,377,157"/>
+<area shape="rect" id="Node000007" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="5,89,151,148"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="184,144,151,137,152,132,185,139"/>
+<area shape="rect" id="Node000008" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="5,172,151,231"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="185,181,152,188,151,183,184,176"/>
+</map>

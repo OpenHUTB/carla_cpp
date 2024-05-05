@@ -1,0 +1,17 @@
+<map id="carla::Buffer::resize" name="carla::Buffer::resize">
+<area shape="rect" id="Node000001" title="Resize the buffer, a new block of size size is allocated if the capacity is not enough and the data i..." alt="" coords="5,105,139,132"/>
+<area shape="rect" id="Node000002" href="$d0/d0a/classcarla_1_1Buffer.html#a58ec7fcf4a9a2f70edb139f9671ebd00" title="Copy source into this buffer. Allocates memory if necessary." alt="" coords="187,29,345,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,102,186,66,204,59,206,64,188,70,103,107"/>
+<area shape="rect" id="Node000003" href="$d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf" title="Direct access to the allocated memory or nullptr if no memory is allocated." alt="" coords="204,80,328,107"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="139,107,189,101,190,106,139,113"/>
+<area shape="rect" id="Node000004" href="$d0/d0a/classcarla_1_1Buffer.html#a23578a522b5ce30a6e821255a8f0ff5e" title="Reset the size of this buffer." alt="" coords="202,131,330,157"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="139,125,188,131,187,136,139,130"/>
+<area shape="rect" id="Node000007" href="$d0/d0a/classcarla_1_1Buffer.html#a3edea2e44a05d9806312e5f9e52315e4" title=" " alt="" coords="393,181,515,208"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="99,130,140,150,187,167,286,185,379,191,378,197,286,190,186,172,138,155,97,135"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="234,30,228,21,232,11,245,5,266,3,289,6,301,13,298,17,288,11,266,8,246,10,236,15,233,20,238,27"/>
+<area shape="rect" id="Node000005" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="396,131,512,157"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="330,141,381,141,381,147,330,147"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="319,155,389,174,387,180,318,161"/>
+<area shape="rect" id="Node000006" href="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8" title=" " alt="" coords="563,123,697,165"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="513,141,549,141,549,147,513,147"/>
+</map>

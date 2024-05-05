@@ -1,0 +1,38 @@
+<map id="ACarlaGameModeBase::GetMap" name="ACarlaGameModeBase::GetMap">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1090,168,1247,211"/>
+<area shape="rect" id="Node000002" href="$d1/db0/classAOpenDriveGenerator.html#a694d4a1aa944fdb39620d8c06ddb11b5" title="Generates the road and sidewalk mesh based on the OpenDRIVE information." alt="" coords="651,5,797,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1142,158,1099,109,1071,85,1041,66,980,44,915,31,853,25,798,25,798,19,853,20,916,26,981,39,1043,62,1075,81,1103,105,1146,154"/>
+<area shape="rect" id="Node000005" href="$d1/db0/classAOpenDriveGenerator.html#aee04fefe736484cf24f7df698cb8dfd3" title="Generates spawn points along the road." alt="" coords="645,139,803,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1075,186,803,168,804,163,1075,181"/>
+<area shape="rect" id="Node000006" href="$df/da5/classATrafficLightManager.html#a94926005e8cd881102dec94e331b70b4" title=" " alt="" coords="886,197,1029,240"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="1076,205,1029,211,1028,206,1075,200"/>
+<area shape="rect" id="Node000012" href="$d1/db0/classAOpenDriveGenerator.html#aee26074d7f6778838ad645d7eeb93b76" title="Checks if the OpenDrive has been loaded and it&#39;s valid." alt="" coords="884,76,1031,119"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="1104,164,1007,122,1010,117,1106,159"/>
+<area shape="rect" id="Node000014" href="$dc/d36/classFTrafficSignData.html#af1c26d2a9c7b29859dfeaeff7785f5f3" title=" " alt="" coords="873,264,1042,307"/>
+<area shape="poly" id="edge20_Node000001_Node000014" title=" " alt="" coords="1115,220,1043,254,1016,266,1014,261,1041,250,1112,215"/>
+<area shape="rect" id="Node000015" href="$d5/d59/classFTrafficLightData.html#a33b6bfb7f3080da9b6b47f89c3ffaf99" title=" " alt="" coords="894,331,1021,373"/>
+<area shape="poly" id="edge21_Node000001_Node000015" title=" " alt="" coords="1144,224,1100,273,1044,321,1022,333,1020,328,1040,316,1096,269,1140,221"/>
+<area shape="rect" id="Node000003" href="$d1/db0/classAOpenDriveGenerator.html#ac2724dde02c2a8ea7b25f11107f734a7" title=" " alt="" coords="429,72,575,115"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="638,55,577,74,575,69,636,50"/>
+<area shape="rect" id="Node000004" href="$d1/db0/classAOpenDriveGenerator.html#aab0452237a38c80a16bc5e96018e6819" title=" " alt="" coords="217,72,363,115"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="414,96,363,96,363,91,414,91"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="636,137,575,118,577,113,638,131"/>
+<area shape="rect" id="Node000007" href="$df/da5/classATrafficLightManager.html#a597d552d266a41c4f45c1740d1ce7c40" title=" " alt="" coords="5,231,151,273"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="872,223,574,232,199,247,151,249,151,244,199,241,574,226,872,218"/>
+<area shape="rect" id="Node000008" href="$df/da5/classATrafficLightManager.html#a32e1423d001b738bddbe695a983789ae" title=" " alt="" coords="623,357,825,416"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="879,251,875,254,858,275,851,296,843,318,827,341,802,359,799,355,823,337,839,315,846,294,853,272,871,250,875,246"/>
+<area shape="rect" id="Node000009" href="$df/da5/classATrafficLightManager.html#a86d8da5023cf7523924fa33e0feb2e0f" title=" " alt="" coords="431,323,573,365"/>
+<area shape="poly" id="edge14_Node000006_Node000009" title=" " alt="" coords="889,248,825,271,692,306,574,333,573,327,691,301,824,265,888,243"/>
+<area shape="rect" id="Node000011" href="$df/da5/classATrafficLightManager.html#a1ed532138f13a06c64aaa7b513114832" title=" " alt="" coords="431,256,573,299"/>
+<area shape="poly" id="edge12_Node000006_Node000011" title=" " alt="" coords="872,234,825,240,574,272,573,266,824,235,871,228"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="608,367,573,360,574,355,609,362"/>
+<area shape="rect" id="Node000010" href="$df/da5/classATrafficLightManager.html#ae473e1bb0e60e5c2db5684efc72a1e89" title=" " alt="" coords="199,256,381,315"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="416,323,381,313,382,308,417,318"/>
+<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="184,271,150,266,151,261,185,266"/>
+<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="416,283,382,285,381,279,416,278"/>
+<area shape="poly" id="edge18_Node000012_Node000002" title=" " alt="" coords="870,74,796,51,798,46,871,69"/>
+<area shape="poly" id="edge19_Node000012_Node000005" title=" " alt="" coords="870,123,805,141,803,136,869,118"/>
+<area shape="rect" id="Node000013" href="$d1/db0/classAOpenDriveGenerator.html#a390a0a0d121c673c46da71a992a1da7b" title="Generates pole meshes based on the OpenDRIVE information." alt="" coords="651,72,797,115"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="869,98,798,97,798,92,869,93"/>
+<area shape="poly" id="edge17_Node000013_Node000003" title=" " alt="" coords="636,96,576,96,576,91,636,91"/>
+</map>

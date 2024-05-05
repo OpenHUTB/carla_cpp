@@ -1,0 +1,106 @@
+<map id="carla::geom::Math::Square" name="carla::geom::Math::Square">
+<area shape="rect" id="Node000001" title=" " alt="" coords="2170,407,2305,449"/>
+<area shape="rect" id="Node000002" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a8bd4b72e239a23e9eb0bca4604dfa63e" title=" " alt="" coords="1987,319,2121,361"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2177,402,2099,364,2101,359,2179,397"/>
+<area shape="rect" id="Node000022" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a16bbc81c150eccc1f9407be9d9651766" title=" " alt="" coords="1986,469,2122,512"/>
+<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="2160,457,2119,471,2117,466,2159,452"/>
+<area shape="rect" id="Node000003" href="$d0/dea/classcarla_1_1geom_1_1Math.html#adc0c40d67bed1ab82405838c7981aff1" title=" " alt="" coords="1798,201,1932,244"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="2005,313,1899,247,1902,242,2008,308"/>
+<area shape="rect" id="Node000019" href="$de/d23/classcarla_1_1geom_1_1Location.html#ac06b9a6659a134b7acd91eb488c25248" title=" " alt="" coords="1792,319,1938,361"/>
+<area shape="poly" id="edge18_Node000002_Node000019" title=" " alt="" coords="1972,343,1939,343,1939,337,1972,337"/>
+<area shape="rect" id="Node000004" href="$dc/dda/namespacecarla_1_1geom.html#a43ac23a0344278fa3a045fc4b486a3ec" title=" " alt="" coords="1556,48,1744,91"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1827,193,1742,125,1691,94,1694,89,1745,120,1831,189"/>
+<area shape="rect" id="Node000009" href="$de/d23/classcarla_1_1geom_1_1Location.html#a9b52bea810e3f0551d87126fc6840045" title=" " alt="" coords="1577,135,1723,177"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="1783,200,1721,181,1722,175,1784,195"/>
+<area shape="rect" id="Node000017" href="$dd/de6/classcarla_1_1road_1_1Road.html#ab2b49cb7ce0697c34d49e20dfa40692b" title="Returns a pointer to the nearest lane, given s relative to Road and a location." alt="" coords="1586,201,1714,244"/>
+<area shape="poly" id="edge16_Node000003_Node000017" title=" " alt="" coords="1783,225,1715,225,1715,220,1783,220"/>
+<area shape="rect" id="Node000018" href="$d6/dd9/test__geom_8cpp.html#a44cd75a38bbced6dfd1c0f48d59f505e" title=" " alt="" coords="1623,268,1677,295"/>
+<area shape="poly" id="edge17_Node000003_Node000018" title=" " alt="" coords="1785,247,1744,259,1678,277,1677,272,1743,253,1783,242"/>
+<area shape="rect" id="Node000005" href="$dc/dda/namespacecarla_1_1geom.html#ae6035db55f0c02c510bfb23ddb37c4f3" title=" " alt="" coords="1273,27,1508,69"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1541,63,1508,60,1509,55,1542,58"/>
+<area shape="rect" id="Node000006" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a4460bce35a9b41600577c057264db969" title=" " alt="" coords="1039,27,1212,69"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1258,51,1212,51,1212,45,1258,45"/>
+<area shape="rect" id="Node000007" href="$d0/d34/classcarla_1_1road_1_1Map.html#ab62e74383d9f1ef5a2b38951ba1d1c94" title=" " alt="" coords="785,56,962,99"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1024,62,962,70,962,64,1024,57"/>
+<area shape="rect" id="Node000008" href="$d0/d34/classcarla_1_1road_1_1Map.html#af8d495dd39272f46df76884d237409e8" title="Buids a mesh based on the OpenDRIVE." alt="" coords="769,5,978,32"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="1024,39,978,33,978,28,1024,34"/>
+<area shape="rect" id="Node000010" href="$dc/d04/classcarla_1_1traffic__manager_1_1SimpleWaypoint.html#a9e9a225875409c967b7bf3842aebc259" title="Calculates the distance from the object&#39;s waypoint to the passed location." alt="" coords="1299,93,1482,136"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1562,145,1482,132,1483,127,1563,139"/>
+<area shape="rect" id="Node000011" href="$dc/d04/classcarla_1_1traffic__manager_1_1SimpleWaypoint.html#a4375a209041eb4ea7a952dced3d4b664" title="Calculates the distance the other SimpleWaypoint object." alt="" coords="1299,160,1482,203"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="1562,167,1483,175,1483,170,1562,162"/>
+<area shape="rect" id="Node000012" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a7a57d649d96daccb2e2ee9780f24c4ec" title=" " alt="" coords="1302,227,1479,269"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="1572,186,1557,192,1509,217,1477,229,1475,224,1507,212,1555,187,1570,181"/>
+<area shape="rect" id="Node000013" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="Initiates thread to run the TrafficManager sequentially." alt="" coords="1038,227,1213,269"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="1287,251,1214,251,1214,245,1287,245"/>
+<area shape="rect" id="Node000014" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="To start the TrafficManager." alt="" coords="801,219,946,277"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1023,251,946,251,946,245,1023,245"/>
+<area shape="rect" id="Node000015" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="560,260,705,319"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="787,266,706,279,705,274,786,260"/>
+<area shape="rect" id="Node000016" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="560,177,705,236"/>
+<area shape="poly" id="edge15_Node000014_Node000016" title=" " alt="" coords="786,236,705,222,706,217,787,230"/>
+<area shape="rect" id="Node000020" href="$dd/d5b/classcarla_1_1nav_1_1WalkerManager.html#aa7e5aca74ef87c717532ef2099da6da2" title="return the trafficlight affecting that position" alt="" coords="1562,319,1738,361"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="1776,343,1738,343,1738,337,1776,337"/>
+<area shape="rect" id="Node000021" href="$d6/d38/classcarla_1_1nav_1_1WalkerEventVisitor.html#a0df9ddaf3a46f74775cf7ad544684811" title=" " alt="" coords="1294,293,1488,336"/>
+<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="1547,333,1488,327,1488,321,1548,327"/>
+<area shape="rect" id="Node000023" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a71f0667271df699e511124559f61665e" title=" " alt="" coords="1798,469,1932,512"/>
+<area shape="poly" id="edge22_Node000022_Node000023" title=" " alt="" coords="1971,493,1932,493,1932,488,1971,488"/>
+<area shape="rect" id="Node000027" href="$d0/dea/classcarla_1_1geom_1_1Math.html#ab65c2226be8bc15f3ea8aab7ffa27443" title="Returns a pair containing:" alt="" coords="1566,528,1734,571"/>
+<area shape="poly" id="edge54_Node000022_Node000027" title=" " alt="" coords="1972,519,1938,527,1833,541,1735,549,1735,544,1832,536,1938,521,1971,514"/>
+<area shape="rect" id="Node000024" href="$d0/dea/classcarla_1_1geom_1_1Math.html#afe602ce38a646f5a2223fa01b80dda74" title="Returns a pair containing:" alt="" coords="1582,411,1718,453"/>
+<area shape="poly" id="edge23_Node000023_Node000024" title=" " alt="" coords="1783,471,1718,453,1719,448,1784,466"/>
+<area shape="poly" id="edge26_Node000023_Node000027" title=" " alt="" coords="1785,515,1731,530,1730,525,1783,510"/>
+<area shape="rect" id="Node000052" href="$d0/d34/classcarla_1_1road_1_1Map.html#a39f0ccacb98f62b339de96c69621543b" title=" " alt="" coords="1026,477,1225,504"/>
+<area shape="poly" id="edge53_Node000023_Node000052" title=" " alt="" coords="1783,493,1225,493,1225,488,1783,488"/>
+<area shape="rect" id="Node000025" href="$d2/d63/classcarla_1_1road_1_1element_1_1GeometryArc.html#a180909471d37c5408bbaa8004c9fc47e" title="Returns a pair containing:" alt="" coords="1301,411,1480,453"/>
+<area shape="poly" id="edge24_Node000024_Node000025" title=" " alt="" coords="1567,435,1481,435,1481,429,1567,429"/>
+<area shape="rect" id="Node000026" href="$d6/dd9/test__geom_8cpp.html#a28ca4536866c48d0fd9578ec931a14da" title=" " alt="" coords="1364,360,1417,387"/>
+<area shape="poly" id="edge25_Node000024_Node000026" title=" " alt="" coords="1567,415,1508,401,1417,381,1418,376,1509,396,1568,410"/>
+<area shape="rect" id="Node000028" href="$d2/da7/classcarla_1_1road_1_1element_1_1GeometryLine.html#ae8861cb73fba28809082514d0aeda20f" title="Returns a pair containing:" alt="" coords="1299,645,1482,688"/>
+<area shape="poly" id="edge27_Node000027_Node000028" title=" " alt="" coords="1607,581,1561,610,1509,636,1479,647,1477,642,1507,631,1558,605,1604,577"/>
+<area shape="rect" id="Node000029" href="$d0/d34/classcarla_1_1road_1_1Map.html#a37ba4f58b767002274b6f4d86258986a" title="========================================================================" alt="" coords="1297,528,1485,571"/>
+<area shape="poly" id="edge28_Node000027_Node000029" title=" " alt="" coords="1551,552,1485,552,1485,547,1551,547"/>
+<area shape="rect" id="Node000059" href="$d6/dd9/test__geom_8cpp.html#a4c4e7eb15fe04d55f337f192a13c69e5" title=" " alt="" coords="1364,595,1417,621"/>
+<area shape="poly" id="edge52_Node000027_Node000059" title=" " alt="" coords="1552,575,1509,585,1418,605,1417,600,1508,580,1550,570"/>
+<area shape="rect" id="Node000030" href="$d2/d60/classcarla_1_1road_1_1element_1_1LaneCrossingCalculator.html#a589511f573df9e9c46c55a7a46c02cd6" title=" " alt="" coords="549,477,715,536"/>
+<area shape="poly" id="edge29_Node000029_Node000030" title=" " alt="" coords="1282,574,1174,589,1045,599,906,597,836,590,769,577,721,561,679,539,681,534,723,556,770,572,837,585,906,592,1044,594,1173,584,1281,569"/>
+<area shape="rect" id="Node000032" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" title="Checks signals overlapping driving lanes and emits a warning." alt="" coords="1044,664,1207,707"/>
+<area shape="poly" id="edge31_Node000029_Node000032" title=" " alt="" coords="1288,579,1274,585,1250,601,1227,621,1161,666,1158,661,1223,617,1247,597,1272,580,1286,574"/>
+<area shape="poly" id="edge42_Node000029_Node000052" title=" " alt="" coords="1281,528,1189,507,1190,502,1282,523"/>
+<area shape="rect" id="Node000058" href="$d0/d34/classcarla_1_1road_1_1Map.html#a1653a470bdf6e93b0471773b2e079847" title=" " alt="" coords="776,536,971,563"/>
+<area shape="poly" id="edge51_Node000029_Node000058" title=" " alt="" coords="1282,552,972,552,972,547,1282,547"/>
+<area shape="rect" id="Node000031" href="$d0/d34/classcarla_1_1road_1_1Map.html#a4d3427dc449d9555dc1a02865d110e76" title=" " alt="" coords="294,481,471,524"/>
+<area shape="poly" id="edge30_Node000030_Node000031" title=" " alt="" coords="534,508,472,507,472,501,534,502"/>
+<area shape="rect" id="Node000033" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a7b0bb12125e15fd246924aee12327e7e" title=" " alt="" coords="796,717,951,760"/>
+<area shape="poly" id="edge32_Node000032_Node000033" title=" " alt="" coords="1030,708,952,725,951,720,1029,703"/>
+<area shape="rect" id="Node000034" href="$de/d5a/classcarla_1_1opendrive_1_1OpenDriveParser.html#a599fd6174f30aaee59590c16503afd8a" title=" " alt="" coords="543,748,721,791"/>
+<area shape="poly" id="edge33_Node000033_Node000034" title=" " alt="" coords="782,753,722,761,721,755,781,748"/>
+<area shape="rect" id="Node000035" href="$d0/d2d/classAOpenDriveActor.html#ac8678af2b371c3a3faca8775ab1e4816" title=" " alt="" coords="283,916,482,943"/>
+<area shape="poly" id="edge34_Node000034_Node000035" title=" " alt="" coords="608,805,560,858,530,884,496,906,469,918,467,913,494,902,527,880,557,854,604,801"/>
+<area shape="rect" id="Node000036" href="$d8/dfe/classUOpenDriveMap.html#a0ce422ee1f79211e6957bab1d2048348" title="Load this map with an OpenDrive (XODR) file." alt="" coords="307,967,458,993"/>
+<area shape="poly" id="edge35_Node000034_Node000036" title=" " alt="" coords="618,805,598,841,571,882,537,923,496,957,459,973,457,968,494,952,533,919,567,879,593,838,613,802"/>
+<area shape="rect" id="Node000039" href="$dc/d84/classUCarlaEpisode.html#a3eeed56e0cc3cf04d266b86c5a88c3ed" title="Load a new map generating the mesh from OpenDRIVE data and start a new episode." alt="" coords="270,548,495,591"/>
+<area shape="poly" id="edge36_Node000034_Node000039" title=" " alt="" coords="609,737,562,669,530,635,494,605,473,593,475,589,496,600,534,631,566,666,614,734"/>
+<area shape="rect" id="Node000042" href="$d2/daf/namespacecarla_1_1client.html#a228b83c6429f8e3406a93a1b41eb1565" title=" " alt="" coords="306,615,459,641"/>
+<area shape="poly" id="edge37_Node000034_Node000042" title=" " alt="" coords="600,739,553,695,524,674,494,656,459,643,461,638,496,651,527,669,556,691,604,735"/>
+<area shape="rect" id="Node000043" href="$df/da5/classATrafficLightManager.html#a212893f28dfefd3883c68be7e9a7d835" title=" " alt="" coords="286,665,479,724"/>
+<area shape="poly" id="edge38_Node000034_Node000043" title=" " alt="" coords="544,746,478,726,480,721,545,741"/>
+<area shape="rect" id="Node000044" href="$db/de5/classACarlaGameModeBase.html#aa1cc7f6d077f3a4dcf7b1d523c9f5d2f" title=" " alt="" coords="304,748,461,791"/>
+<area shape="poly" id="edge39_Node000034_Node000044" title=" " alt="" coords="528,772,462,772,462,767,528,767"/>
+<area shape="rect" id="Node000046" href="$d1/dc0/test__opendrive_8cpp.html#a95337c8716f4e9d4e8bba560dbde9e34" title=" " alt="" coords="356,815,409,841"/>
+<area shape="poly" id="edge40_Node000034_Node000046" title=" " alt="" coords="529,797,496,805,410,825,409,820,494,800,528,792"/>
+<area shape="rect" id="Node000047" href="$d1/dc0/test__opendrive_8cpp.html#a21ad6143dcb9642d77c0dfc031f41b2a" title=" " alt="" coords="356,865,409,892"/>
+<area shape="poly" id="edge41_Node000034_Node000047" title=" " alt="" coords="592,801,547,830,496,856,451,870,410,878,409,873,450,865,494,851,544,825,589,797"/>
+<area shape="rect" id="Node000053" href="$d0/d34/classcarla_1_1road_1_1Map.html#accf4f345bb9db4bcd6cdd9e6fec322cc" title=" " alt="" coords="544,411,720,453"/>
+<area shape="poly" id="edge43_Node000052_Node000053" title=" " alt="" coords="1057,476,977,460,843,445,721,437,721,432,843,440,978,455,1058,471"/>
+<area shape="rect" id="Node000056" href="$d0/d34/classcarla_1_1road_1_1Map.html#a047f3fd871248ef6cea3d7057e38830b" title="Generate the minimum set of waypoints that define the topology of map." alt="" coords="785,352,962,395"/>
+<area shape="poly" id="edge46_Node000052_Node000056" title=" " alt="" coords="1086,472,977,416,934,398,936,393,979,411,1089,468"/>
+<area shape="rect" id="Node000057" href="$df/dc1/namespacecarla_1_1road_1_1element.html#ad4397b3938f0a721ad5208f14912b744" title=" " alt="" coords="805,469,942,512"/>
+<area shape="poly" id="edge47_Node000052_Node000057" title=" " alt="" coords="1011,493,942,493,942,488,1011,488"/>
+<area shape="poly" id="edge49_Node000052_Node000058" title=" " alt="" coords="1052,510,935,538,933,533,1050,505"/>
+<area shape="rect" id="Node000054" href="$d0/d34/classcarla_1_1road_1_1Map.html#aa51550af7f6efc7df8691eb41225beec" title=" " alt="" coords="294,411,471,453"/>
+<area shape="poly" id="edge44_Node000053_Node000054" title=" " alt="" coords="529,435,471,435,471,429,529,429"/>
+<area shape="rect" id="Node000055" href="$d0/d34/classcarla_1_1road_1_1Map.html#ac77235567699cc2853177c441390fd14" title=" " alt="" coords="5,411,222,453"/>
+<area shape="poly" id="edge45_Node000054_Node000055" title=" " alt="" coords="280,435,222,435,222,429,280,429"/>
+<area shape="poly" id="edge48_Node000057_Node000030" title=" " alt="" coords="791,499,716,504,716,498,791,493"/>
+<area shape="poly" id="edge50_Node000058_Node000053" title=" " alt="" coords="778,532,768,526,752,512,743,497,734,482,720,467,701,456,703,452,723,463,738,479,747,494,756,508,771,522,781,527"/>
+</map>

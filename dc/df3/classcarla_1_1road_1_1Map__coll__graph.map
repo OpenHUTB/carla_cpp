@@ -1,0 +1,29 @@
+<map id="carla::road::Map" name="carla::road::Map">
+<area shape="rect" id="Node000001" title=" " alt="" coords="885,177,1001,204"/>
+<area shape="rect" id="Node000002" href="$d7/d55/classcarla_1_1MovableNonCopyable.html" title="Inherit (privately) to suppress copy construction and assignment." alt="" coords="264,5,446,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="460,22,563,39,667,70,767,108,915,174,913,179,765,113,665,75,561,44,460,28"/>
+<area shape="rect" id="Node000004" href="$da/d3b/classcarla_1_1road_1_1MapData.html" title=" " alt="" coords="606,152,748,179"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="448,33,506,50,563,74,621,112,664,149,660,153,618,116,561,78,504,55,447,38"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="651,203,703,229"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="718,215,785,215,861,209,896,202,897,207,862,215,785,221,718,220"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="763,171,885,183,885,188,763,176"/>
+<area shape="rect" id="Node000005" href="$d3/df4/classcarla_1_1geom_1_1GeoLocation.html" title=" " alt="" coords="270,56,440,83"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="434,84,563,119,644,149,642,154,561,124,433,89"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="55,56,114,83"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="129,67,269,67,269,72,129,72"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="272,107,438,149"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="453,137,606,154,605,160,452,142"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="273,173,437,216"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="451,186,562,177,605,172,606,178,562,183,452,192"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="274,240,436,299"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="450,247,506,230,561,207,585,188,613,177,615,182,587,193,563,212,508,235,451,252"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="273,323,437,381"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="450,328,509,303,536,285,560,264,570,245,571,227,572,208,584,189,604,175,607,180,588,193,578,210,576,228,575,247,564,267,539,289,511,308,452,333"/>
+<area shape="rect" id="Node000011" href="$d0/d6f/classcarla_1_1geom_1_1SegmentCloudRtree.html" title=" " alt="" coords="586,400,768,443"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="712,388,924,202,928,206,716,392"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="5,417,164,476"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="179,440,585,423,586,428,179,445"/>
+<area shape="rect" id="Node000013" href="$d0/d6f/classcarla_1_1geom_1_1SegmentCloudRtree.html" title="Rtree class working with 3D segment clouds." alt="" coords="264,469,446,512"/>
+<area shape="poly" id="edge14_Node000013_Node000012" title=" " alt="" coords="179,459,264,473,263,478,178,464"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="460,473,561,453,608,441,610,446,563,459,461,478"/>
+</map>

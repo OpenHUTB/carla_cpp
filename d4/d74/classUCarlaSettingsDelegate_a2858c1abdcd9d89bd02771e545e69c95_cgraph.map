@@ -1,0 +1,30 @@
+<map id="UCarlaSettingsDelegate::ApplyQualityLevelPostRestart" name="UCarlaSettingsDelegate::ApplyQualityLevelPostRestart">
+<area shape="rect" id="Node000001" title="After loading a level, apply the current settings." alt="" coords="5,239,207,281"/>
+<area shape="rect" id="Node000002" href="$d4/d74/classUCarlaSettingsDelegate.html#a49b127a6a6b42898ba84b11f471101a4" title="Check that the world, instance and settings are valid and save the CarlaSettings instance." alt="" coords="277,5,437,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,237,136,199,166,151,206,101,253,58,262,52,265,56,256,62,210,105,171,154,140,202,120,240"/>
+<area shape="rect" id="Node000005" href="$d7/d1e/classUCarlaSettings.html#a76b400377bae7bd7cd081bedd822dfe3" title=" " alt="" coords="268,72,446,115"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="124,236,179,181,215,151,253,124,264,119,266,123,256,129,218,155,182,185,128,240"/>
+<area shape="rect" id="Node000006" href="$d4/d74/classUCarlaSettingsDelegate.html#a40c096d5ac315a99668bbe186ce70e97" title="Execute engine commands to apply the epic quality level to the world." alt="" coords="255,139,459,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="152,236,254,191,271,184,273,189,256,196,154,240"/>
+<area shape="rect" id="Node000007" href="$d4/d74/classUCarlaSettingsDelegate.html#a18c593beaee083ccf9c47a1f11a4ae6f" title="Execute engine commands to apply the low quality level to the world." alt="" coords="256,205,458,248"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="207,244,241,239,242,245,208,249"/>
+<area shape="rect" id="Node000008" href="$d4/d74/classUCarlaSettingsDelegate.html#a828bac6fa9a095bd3b9980084779184c" title=" " alt="" coords="266,272,448,315"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="208,271,251,277,250,282,207,276"/>
+<area shape="rect" id="Node000010" href="$d4/d74/classUCarlaSettingsDelegate.html#abedaaf9ed1efaafd12350748f3d17e29" title=" " alt="" coords="544,327,703,369"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="146,279,197,304,255,324,326,338,398,345,529,349,529,355,398,351,325,343,254,329,195,309,144,284"/>
+<area shape="rect" id="Node000011" href="$d4/d74/classUCarlaSettingsDelegate.html#a00694d985799c3d8509066c50e4e9c89" title=" " alt="" coords="544,393,703,436"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="134,279,188,319,221,339,256,355,325,377,397,393,529,408,529,414,396,398,324,382,254,360,218,343,185,323,131,284"/>
+<area shape="rect" id="Node000012" href="$d4/d74/classUCarlaSettingsDelegate.html#a0073181cd20b9f89f2183505325b9dcc" title=" " alt="" coords="518,460,729,503"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="124,280,177,344,214,379,256,407,316,434,380,453,444,465,503,473,503,479,443,471,379,458,314,439,253,412,211,383,173,348,120,284"/>
+<area shape="rect" id="Node000003" href="$d4/d74/classUCarlaSettingsDelegate.html#a52c80af75a38e9952d69aedaa5107ab6" title=" " alt="" coords="544,5,703,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="437,24,529,24,529,29,437,29"/>
+<area shape="rect" id="Node000004" href="$d2/d40/TrafficLightBase_8cpp.html#a1459952e95242b0c926376d0bb4692b8" title=" " alt="" coords="788,301,849,328"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="431,46,460,58,544,94,609,125,670,162,742,218,776,253,802,287,798,291,772,256,739,222,667,166,607,129,542,99,458,62,429,51"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="423,269,506,245,573,234,626,226,678,228,741,246,773,264,799,288,795,292,770,268,739,250,677,233,626,231,573,239,508,251,424,274"/>
+<area shape="rect" id="Node000009" href="$d4/d74/classUCarlaSettingsDelegate.html#aec8ef3763d169c8ca4632395f8f3d219" title=" " alt="" coords="507,260,740,303"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="448,287,492,285,492,290,448,292"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="741,299,774,304,773,310,740,304"/>
+<area shape="poly" id="edge12_Node000010_Node000004" title=" " alt="" coords="703,332,773,320,774,325,704,337"/>
+<area shape="poly" id="edge14_Node000011_Node000004" title=" " alt="" coords="703,394,739,379,768,359,793,337,797,340,772,363,742,384,705,399"/>
+<area shape="poly" id="edge16_Node000012_Node000004" title=" " alt="" coords="721,457,739,446,762,422,781,395,806,341,811,343,786,397,766,426,742,450,724,462"/>
+</map>

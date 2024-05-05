@@ -1,0 +1,22 @@
+<map id="ARayCastSemanticLidar::ComputeAndSaveDetections" name="ARayCastSemanticLidar::ComputeAndSaveDetections">
+<area shape="rect" id="Node000001" title="This method uses all the saved FHitResults, compute the RawDetections and then send it to the LidarDa..." alt="" coords="5,220,200,263"/>
+<area shape="rect" id="Node000002" href="$d8/d15/classARayCastSemanticLidar.html#a9b240e26d15f17ca30654c39e3f23935" title="Compute all raw detection information." alt="" coords="248,104,411,147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,217,246,156,258,151,261,155,249,161,140,222"/>
+<area shape="rect" id="Node000007" href="$d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a23bc8131f054d14ec065d6df84c7c121" title=" " alt="" coords="260,171,399,229"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="200,221,244,213,245,218,201,226"/>
+<area shape="rect" id="Node000009" href="$d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a0a138b447dea31ffa9256b2d2314d5f4" title=" " alt="" coords="259,253,400,312"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="201,256,245,265,244,270,200,262"/>
+<area shape="rect" id="Node000010" href="$d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#aa7e40c05ed9cc6700f690d40577ab206" title=" " alt="" coords="260,336,399,395"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="142,261,249,322,257,326,255,331,246,326,139,266"/>
+<area shape="rect" id="Node000003" href="$df/db5/classFActorRegistry.html#aad0e91aea1c0849ca9917af82d4ec0d1" title=" " alt="" coords="481,5,652,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,101,458,58,475,51,477,56,460,62,370,106"/>
+<area shape="rect" id="Node000004" href="$dc/dde/classFCarlaActor.html#aca3d1a4bfcb5e0ae1974b7206933d665" title=" " alt="" coords="487,72,647,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="411,109,471,99,472,104,412,114"/>
+<area shape="rect" id="Node000005" href="$dc/d84/classUCarlaEpisode.html#acd82b87ea8d4e7d815922614e6e245ef" title=" " alt="" coords="459,123,674,149"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="412,126,444,128,444,133,411,132"/>
+<area shape="rect" id="Node000006" href="$d3/d01/classASensor.html#adfbd2b80613e8936e27f29436d62812c" title=" " alt="" coords="493,173,640,200"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="408,145,460,159,492,167,490,172,458,164,406,150"/>
+<area shape="rect" id="Node000008" href="$d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html#a432e1ad9a42f6469c4fea8b68cbca3b2" title=" " alt="" coords="497,233,636,292"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="400,216,483,238,482,243,398,221"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="400,274,482,267,482,272,401,279"/>
+</map>

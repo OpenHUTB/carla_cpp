@@ -1,0 +1,11 @@
+<map id="carla::road::ForEachDrivableLaneImpl" name="carla::road::ForEachDrivableLaneImpl">
+<area shape="rect" id="Node000001" title="Return a waypoint for each drivable lane on lane_section." alt="" coords="490,39,674,81"/>
+<area shape="rect" id="Node000002" href="$de/d26/namespacecarla_1_1road.html#a3a42ef4bdbd89afe9f2ca742b102a288" title="Return a waypoint for each drivable lane on each lane section of road." alt="" coords="230,16,442,43"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="475,49,442,45,443,40,475,44"/>
+<area shape="rect" id="Node000004" href="$de/d26/namespacecarla_1_1road.html#a849b3a1a27392303ff947dcf312f1fd3" title="Return a waypoint for each drivable lane at distance on road." alt="" coords="244,68,428,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="476,75,429,81,428,76,475,70"/>
+<area shape="rect" id="Node000003" href="$d0/d34/classcarla_1_1road_1_1Map.html#a047f3fd871248ef6cea3d7057e38830b" title="Generate the minimum set of waypoints that define the topology of map." alt="" coords="5,5,182,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="215,31,182,30,182,25,215,25"/>
+<area shape="rect" id="Node000005" href="$d0/d34/classcarla_1_1road_1_1Map.html#abdfe3af22dc12687c9d71decb7316fb2" title="Generate all the waypoints in map separated by approx_distance." alt="" coords="5,72,182,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="229,94,182,95,182,89,229,88"/>
+</map>

@@ -1,0 +1,54 @@
+<map id="carla::road::LaneSection::GetLane" name="carla::road::LaneSection::GetLane">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1921,77,2083,120"/>
+<area shape="rect" id="Node000002" href="$d1/dc0/test__opendrive_8cpp.html#abf3b27156775448afb3a631bf7351e4d" title=" " alt="" coords="1722,25,1869,52"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1912,75,1843,55,1845,50,1914,70"/>
+<area shape="rect" id="Node000005" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af7818fa90e4281abc159f08e31a9fb00" title="Return the pointer to a lane object." alt="" coords="1718,77,1873,120"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1906,101,1873,101,1873,96,1906,96"/>
+<area shape="rect" id="Node000006" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ad84a5423baee8d92269aab9d8723c68a" title="Return a list of pointers to all lanes from a lane (using road and junction info)." alt="" coords="1514,136,1670,179"/>
+<area shape="poly" id="edge27_Node000001_Node000006" title=" " alt="" coords="1911,127,1873,135,1767,149,1670,156,1670,151,1767,143,1873,129,1910,122"/>
+<area shape="rect" id="Node000003" href="$d1/dc0/test__opendrive_8cpp.html#a150bee03ecfb9362ac5a63f334562723" title=" " alt="" coords="1298,17,1380,44"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1707,40,1381,34,1381,29,1707,34"/>
+<area shape="rect" id="Node000004" href="$d1/dc0/test__opendrive_8cpp.html#aa6244d8f18c32ca7e6f0b3de79354dda" title=" " alt="" coords="595,5,648,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1283,32,649,22,649,16,1283,27"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1706,127,1669,138,1668,133,1705,122"/>
+<area shape="rect" id="Node000007" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ae3f4192b6f1b0737a5d12923fc8da239" title="Create the pointers between RoadSegments based on the ids." alt="" coords="1212,220,1466,263"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1513,186,1407,222,1405,217,1511,181"/>
+<area shape="rect" id="Node000008" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a7b0bb12125e15fd246924aee12327e7e" title=" " alt="" coords="1009,261,1164,304"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1198,267,1165,273,1164,267,1197,262"/>
+<area shape="rect" id="Node000009" href="$de/d5a/classcarla_1_1opendrive_1_1OpenDriveParser.html#a599fd6174f30aaee59590c16503afd8a" title=" " alt="" coords="782,283,961,325"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="994,294,961,298,961,292,994,289"/>
+<area shape="poly" id="edge24_Node000009_Node000004" title=" " alt="" coords="859,269,843,218,818,157,781,97,759,70,733,46,713,35,691,27,648,21,649,16,692,22,715,30,736,42,762,66,786,94,823,155,848,216,864,267"/>
+<area shape="rect" id="Node000010" href="$d0/d2d/classAOpenDriveActor.html#ac8678af2b371c3a3faca8775ab1e4816" title=" " alt="" coords="523,56,721,83"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="855,270,836,229,810,182,775,136,733,97,712,86,714,81,736,92,779,132,814,179,841,227,860,268"/>
+<area shape="rect" id="Node000011" href="$d8/dfe/classUOpenDriveMap.html#a0ce422ee1f79211e6957bab1d2048348" title="Load this map with an OpenDrive (XODR) file." alt="" coords="547,107,697,133"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="848,271,801,207,769,175,733,148,696,132,698,128,736,143,773,171,805,204,852,268"/>
+<area shape="rect" id="Node000014" href="$dc/d84/classUCarlaEpisode.html#a3eeed56e0cc3cf04d266b86c5a88c3ed" title="Load a new map generating the mesh from OpenDRIVE data and start a new episode." alt="" coords="509,157,734,200"/>
+<area shape="poly" id="edge13_Node000009_Node000014" title=" " alt="" coords="831,276,785,244,733,214,705,203,707,198,735,210,788,239,834,272"/>
+<area shape="rect" id="Node000017" href="$d2/daf/namespacecarla_1_1client.html#a228b83c6429f8e3406a93a1b41eb1565" title=" " alt="" coords="545,224,698,251"/>
+<area shape="poly" id="edge16_Node000009_Node000017" title=" " alt="" coords="787,280,734,265,687,254,689,249,735,260,788,275"/>
+<area shape="rect" id="Node000018" href="$df/da5/classATrafficLightManager.html#a212893f28dfefd3883c68be7e9a7d835" title=" " alt="" coords="526,275,718,333"/>
+<area shape="poly" id="edge17_Node000009_Node000018" title=" " alt="" coords="768,307,718,307,718,301,768,301"/>
+<area shape="rect" id="Node000019" href="$db/de5/classACarlaGameModeBase.html#aa1cc7f6d077f3a4dcf7b1d523c9f5d2f" title=" " alt="" coords="543,357,700,400"/>
+<area shape="poly" id="edge18_Node000009_Node000019" title=" " alt="" coords="785,333,735,348,697,359,695,354,734,343,784,328"/>
+<area shape="rect" id="Node000021" href="$d1/dc0/test__opendrive_8cpp.html#a95337c8716f4e9d4e8bba560dbde9e34" title=" " alt="" coords="595,424,648,451"/>
+<area shape="poly" id="edge21_Node000009_Node000021" title=" " alt="" coords="841,338,794,378,735,414,691,430,649,437,648,432,689,425,733,410,790,374,837,334"/>
+<area shape="rect" id="Node000022" href="$d1/dc0/test__opendrive_8cpp.html#a21ad6143dcb9642d77c0dfc031f41b2a" title=" " alt="" coords="595,475,648,501"/>
+<area shape="poly" id="edge22_Node000009_Node000022" title=" " alt="" coords="852,340,805,404,773,437,736,465,691,482,649,489,648,484,690,477,733,460,769,433,801,401,848,337"/>
+<area shape="rect" id="Node000023" href="$d1/dc0/test__opendrive_8cpp.html#ad3c77eb93e568426e72ddb84a31031a7" title=" " alt="" coords="595,525,648,552"/>
+<area shape="poly" id="edge23_Node000009_Node000023" title=" " alt="" coords="860,340,841,381,814,429,779,476,736,516,715,527,692,534,649,541,648,536,690,529,713,522,733,511,775,472,810,426,836,379,855,338"/>
+<area shape="rect" id="Node000024" href="$d1/dc0/test__opendrive_8cpp.html#ac8d924b4ffb05114a054b94c74cffa78" title=" " alt="" coords="595,576,648,603"/>
+<area shape="poly" id="edge25_Node000009_Node000024" title=" " alt="" coords="864,341,848,392,823,453,786,514,762,542,736,566,715,578,692,586,649,592,648,587,691,581,713,573,733,562,759,538,781,511,818,451,843,390,859,339"/>
+<area shape="rect" id="Node000025" href="$d1/dc0/test__opendrive_8cpp.html#a47478715c88bbf3920c5566107f97b94" title=" " alt="" coords="595,627,648,653"/>
+<area shape="poly" id="edge26_Node000009_Node000025" title=" " alt="" coords="868,340,855,401,831,476,813,515,792,552,766,587,736,617,715,629,692,637,649,643,648,638,691,632,713,625,733,613,762,583,788,549,809,512,826,474,850,400,863,339"/>
+<area shape="rect" id="Node000012" href="$d1/d1b/classUOpenDrive.html#ac05b8dc3f340e373582945f9215081d9" title="Load OpenDriveMap associated to the given MapName." alt="" coords="252,105,461,132"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="532,122,462,122,462,117,532,117"/>
+<area shape="rect" id="Node000013" href="$d1/d1b/classUOpenDrive.html#a4486c7ee9d4a8bf6cd2a7ca5ad7e4ece" title="Load OpenDriveMap associated to the currently loaded map." alt="" coords="5,96,204,139"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="237,121,204,121,204,115,237,115"/>
+<area shape="rect" id="Node000015" href="$d7/d97/classFCarlaServer_1_1FPimpl.html#a675a6b572112a21e8bc011dddfd0de86" title=" " alt="" coords="284,160,429,203"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="494,183,429,183,429,178,494,177"/>
+<area shape="rect" id="Node000016" href="$d7/d97/classFCarlaServer_1_1FPimpl.html#ab9ff29fc81bd2f9a14677941c7f7b62d" title=" " alt="" coords="32,163,177,205"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="269,185,177,186,177,181,269,180"/>
+<area shape="rect" id="Node000020" href="$db/de5/classACarlaGameModeBase.html#a5caddc59713354578997de90542ddd93" title=" " alt="" coords="278,357,435,400"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="528,381,436,381,436,376,528,376"/>
+<area shape="poly" id="edge20_Node000020_Node000020" title=" " alt="" coords="398,345,383,338,356,336,332,338,318,343,312,349,314,356,309,357,307,347,315,338,331,333,356,331,384,333,400,340"/>
+</map>

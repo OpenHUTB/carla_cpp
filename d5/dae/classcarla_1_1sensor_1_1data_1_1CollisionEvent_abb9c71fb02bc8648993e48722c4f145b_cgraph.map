@@ -1,0 +1,15 @@
+<map id="carla::sensor::data::CollisionEvent::GetActor" name="carla::sensor::data::CollisionEvent::GetActor">
+<area shape="rect" id="Node000001" title="Get &quot;self&quot; actor. Actor that measured the collision." alt="" coords="5,72,176,115"/>
+<area shape="rect" id="Node000002" href="$d4/dad/classcarla_1_1client_1_1detail_1_1ActorVariant.html#ae07a22b0b638b4fdd580987307e13c94" title=" " alt="" coords="245,39,375,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,78,229,69,230,75,177,83"/>
+<area shape="rect" id="Node000007" href="$df/d8c/classcarla_1_1sensor_1_1SensorData.html#a71cc95690632431ec4959d13408ce2c8" title=" " alt="" coords="224,105,396,148"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="177,104,209,109,209,114,176,109"/>
+<area shape="rect" id="Node000003" href="$d4/dad/classcarla_1_1client_1_1detail_1_1ActorVariant.html#a25d6826097625e7966794a60332994f5" title=" " alt="" coords="444,39,616,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="375,57,429,57,429,63,375,63"/>
+<area shape="rect" id="Node000004" href="$d8/d4b/classcarla_1_1client_1_1detail_1_1ActorFactory.html#a35ca6b1f59d086fa27630c9f818cf843" title="Create an Actor based on the provided actor_description." alt="" coords="664,39,840,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="617,57,649,57,649,63,617,63"/>
+<area shape="rect" id="Node000005" href="$db/dfd/classcarla_1_1rpc_1_1Actor.html#a427ab77ca916ac215a38a6e984356326" title=" " alt="" coords="888,5,1010,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="840,42,873,37,874,42,841,48"/>
+<area shape="rect" id="Node000006" href="$de/d93/classcarla_1_1StringUtil.html#afa9750d2d007ece06fb6f51311a4d7ba" title=" " alt="" coords="890,72,1008,115"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="841,72,875,78,875,84,840,78"/>
+</map>

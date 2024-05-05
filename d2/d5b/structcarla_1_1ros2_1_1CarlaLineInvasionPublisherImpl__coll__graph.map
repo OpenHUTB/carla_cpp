@@ -1,0 +1,31 @@
+<map id="carla::ros2::CarlaLineInvasionPublisherImpl" name="carla::ros2::CarlaLineInvasionPublisherImpl">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1125,149,1315,192"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="836,5,972,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="978,34,1006,41,1055,54,1102,74,1155,110,1198,147,1195,151,1152,114,1099,78,1054,59,1005,47,977,39"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="862,56,946,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="961,77,1029,93,1102,115,1176,146,1174,151,1100,120,1027,98,960,83"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="873,107,935,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="950,124,1101,147,1124,151,1124,156,1100,152,949,129"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="858,157,950,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="965,168,1124,168,1124,173,965,173"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="857,208,951,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="965,210,1100,189,1124,185,1124,191,1101,195,966,215"/>
+<area shape="rect" id="Node000007" href="$d9/d48/classcarla_1_1ros2_1_1CarlaListener.html" title=" " alt="" coords="821,259,987,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="993,252,1100,223,1176,190,1178,195,1102,228,994,257"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="429,251,595,293"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="610,269,820,269,820,275,610,275"/>
+<area shape="rect" id="Node000009" href="$d0/de1/classcarla__msgs_1_1msg_1_1LaneInvasionEvent.html" title="This class represents the structure LaneInvasionEvent defined by the user in the IDL file." alt="" coords="802,309,1006,352"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1011,302,1056,286,1099,266,1153,229,1196,190,1199,194,1156,233,1102,270,1058,291,1013,307"/>
+<area shape="rect" id="Node000010" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html" title="This class represents the structure Header defined by the user in the IDL file." alt="" coords="432,317,592,344"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="607,328,802,328,802,333,607,333"/>
+<area shape="rect" id="Node000011" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html" title="This class represents the structure Time defined by the user in the IDL file." alt="" coords="192,277,310,320"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="325,305,432,318,431,323,324,310"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="9,260,69,287"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="84,276,191,289,191,294,83,281"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="5,311,73,337"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="87,317,167,308,191,305,192,310,168,313,88,322"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="224,344,278,371"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="292,354,405,348,445,342,445,347,405,353,292,360"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="453,368,571,395"/>
+<area shape="poly" id="edge14_Node000009_Node000015" title=" " alt="" coords="586,372,778,349,802,346,802,351,779,355,586,377"/>
+</map>

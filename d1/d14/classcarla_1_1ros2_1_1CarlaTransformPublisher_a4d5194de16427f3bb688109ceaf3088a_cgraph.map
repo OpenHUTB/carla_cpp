@@ -1,0 +1,21 @@
+<map id="carla::ros2::CarlaTransformPublisher::SetData" name="carla::ros2::CarlaTransformPublisher::SetData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,304,183,347"/>
+<area shape="rect" id="Node000002" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#aaabafeeb5083f4525db1dc6d37e6c065" title="This function copies the value in member child_frame_id." alt="" coords="237,5,385,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,303,117,257,144,197,181,132,229,74,231,72,235,76,233,78,186,135,149,199,122,259,105,305"/>
+<area shape="rect" id="Node000003" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a9bd973b4690fefb807fb231f496831d4" title="This function copies the value in member frame_id." alt="" coords="231,88,391,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,302,152,225,187,180,229,141,234,137,237,141,232,145,191,184,156,228,109,305"/>
+<area shape="rect" id="Node000004" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#abf590cca246791b55267967051efc7a4" title="This function copies the value in member header." alt="" coords="237,155,385,213"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="121,301,170,263,229,223,236,219,239,223,232,228,173,268,124,305"/>
+<area shape="rect" id="Node000005" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#aa198ef63c135b5c7856d7f917dee4ba4" title="This function sets a value in member nanosec." alt="" coords="237,237,385,280"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="165,301,225,282,226,287,166,306"/>
+<area shape="rect" id="Node000006" href="$d6/d5a/classgeometry__msgs_1_1msg_1_1Transform.html#a9a1459664ad7860be84baf60265516bc" title="This function copies the value in member rotation." alt="" coords="237,304,385,347"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="183,323,222,323,222,328,183,328"/>
+<area shape="rect" id="Node000007" href="$da/d39/classbuiltin__interfaces_1_1msg_1_1Time.html#af90f1d1163f805c9e8af9546399d75b2" title="This function sets a value in member sec." alt="" coords="251,371,371,413"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="166,345,237,367,236,372,165,350"/>
+<area shape="rect" id="Node000008" href="$d8/d15/classstd__msgs_1_1msg_1_1Header.html#a2ac0c277be6d5edc09d17126767290c9" title="This function copies the value in member stamp." alt="" coords="231,437,391,480"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="123,345,172,384,232,423,242,428,239,433,229,428,169,388,119,349"/>
+<area shape="rect" id="Node000009" href="$dc/d01/classgeometry__msgs_1_1msg_1_1TransformStamped.html#a79a685ff268b47b2a1a8f04b4dfc8da2" title="This function copies the value in member transform." alt="" coords="237,504,385,563"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="111,346,160,415,194,454,232,490,237,493,233,498,229,494,190,458,156,418,107,349"/>
+<area shape="rect" id="Node000010" href="$d6/d5a/classgeometry__msgs_1_1msg_1_1Transform.html#a6edb54feae3a094afdb701e1fd3c1fd1" title="This function copies the value in member translation." alt="" coords="234,587,388,629"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="104,346,120,392,147,453,184,517,207,546,232,573,236,576,233,580,229,577,203,550,180,520,142,455,115,394,99,348"/>
+</map>

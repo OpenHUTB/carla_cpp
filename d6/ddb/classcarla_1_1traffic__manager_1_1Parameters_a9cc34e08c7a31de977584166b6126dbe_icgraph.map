@@ -1,0 +1,18 @@
+<map id="carla::traffic_manager::Parameters::GetRespawnDormantVehicles" name="carla::traffic_manager::Parameters::GetRespawnDormantVehicles">
+<area shape="rect" id="Node000001" title="Method to retrieve if we are automatically respawning vehicles." alt="" coords="1130,47,1357,105"/>
+<area shape="rect" id="Node000002" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a7a57d649d96daccb2e2ee9780f24c4ec" title=" " alt="" coords="615,21,793,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1115,71,793,51,793,45,1116,65"/>
+<area shape="rect" id="Node000007" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#ad15f10c71f3da095c15de0aab2c4462d" title=" " alt="" coords="841,84,1082,127"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1115,92,1083,95,1082,90,1115,87"/>
+<area shape="rect" id="Node000003" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637" title="Initiates thread to run the TrafficManager sequentially." alt="" coords="392,55,567,97"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="601,61,568,66,568,60,600,55"/>
+<area shape="rect" id="Node000004" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0" title="To start the TrafficManager." alt="" coords="199,47,344,105"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="377,79,344,79,344,73,377,73"/>
+<area shape="rect" id="Node000005" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755" title="To reset the traffic manager." alt="" coords="5,5,151,64"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="184,60,151,53,152,48,185,55"/>
+<area shape="rect" id="Node000006" href="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a" title="Private constructor for singleton lifecycle management." alt="" coords="5,88,151,147"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="185,97,152,104,151,99,184,92"/>
+<area shape="rect" id="Node000008" href="$d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html#a0a506446f6810014b6da12d0dcba0748" title=" " alt="" coords="631,88,777,131"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="826,110,777,111,777,106,825,105"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="616,99,567,92,568,86,617,94"/>
+</map>
