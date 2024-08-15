@@ -1,110 +1,110 @@
 <map id="WheeledVehicleAIController.cpp" name="WheeledVehicleAIController.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5416,5,5623,32"/>
-<area shape="rect" id="Node000002" href="$d7/d7d/Carla_8h.html" title=" " alt="" coords="296,80,359,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="5416,24,3678,45,980,83,374,94,374,88,979,77,3678,40,5416,19"/>
-<area shape="rect" id="Node000006" href="$d2/d29/WheeledVehicleAIController_8h.html" title=" " alt="" coords="992,80,1186,107"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="5415,24,1201,93,1200,88,5415,19"/>
-<area shape="rect" id="Node000014" href="$da/d50/RoadMap_8h.html" title=" " alt="" coords="5197,80,5338,107"/>
-<area shape="poly" id="edge11_Node000001_Node000014" title=" " alt="" coords="5476,35,5326,78,5325,73,5475,30"/>
-<area shape="rect" id="Node000018" href="$d3/d24/RoutePlanner_8h.html" title=" " alt="" coords="5643,80,5791,107"/>
-<area shape="poly" id="edge15_Node000001_Node000018" title=" " alt="" coords="5555,30,5670,72,5668,77,5553,35"/>
-<area shape="rect" id="Node000023" href="$d3/d00/CarlaWheeledVehicle_8h.html" title=" " alt="" coords="3145,80,3348,107"/>
-<area shape="poly" id="edge20_Node000001_Node000023" title=" " alt="" coords="5416,26,3363,91,3362,86,5415,21"/>
-<area shape="rect" id="Node000048" title=" " alt="" coords="4750,253,5001,280"/>
-<area shape="poly" id="edge58_Node000001_Node000048" title=" " alt="" coords="5416,30,5320,43,5210,66,5153,83,5096,103,5042,128,4990,157,4947,194,4899,244,4895,240,4944,191,4987,152,5039,123,5094,98,5151,78,5209,61,5319,37,5415,24"/>
-<area shape="rect" id="Node000061" href="$d0/da2/CityMapGenerator_8h.html" title=" " alt="" coords="6142,80,6313,107"/>
-<area shape="poly" id="edge47_Node000001_Node000061" title=" " alt="" coords="5624,28,6127,79,6127,84,5623,33"/>
-<area shape="rect" id="Node000076" href="$d6/daa/RandomEngine_8h.html" title=" " alt="" coords="6338,80,6515,107"/>
-<area shape="poly" id="edge54_Node000001_Node000076" title=" " alt="" coords="5623,24,5932,45,6323,77,6323,83,5932,50,5623,29"/>
-<area shape="rect" id="Node000079" title=" " alt="" coords="6538,80,6637,107"/>
-<area shape="poly" id="edge56_Node000001_Node000079" title=" " alt="" coords="5624,19,5794,23,6016,33,6267,51,6524,77,6523,82,6267,56,6016,39,5793,29,5624,24"/>
-<area shape="rect" id="Node000080" title=" " alt="" coords="6661,80,6829,107"/>
-<area shape="poly" id="edge57_Node000001_Node000080" title=" " alt="" coords="5624,20,6065,38,6352,55,6647,77,6646,83,6352,60,6064,44,5623,26"/>
-<area shape="rect" id="Node000003" href="$d4/d57/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2NonCopyable_8h.html" title=" " alt="" coords="5,163,138,189"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="297,107,127,160,125,155,295,102"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="162,163,307,189"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="315,109,261,155,258,151,311,105"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="331,163,508,189"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="344,105,397,151,393,155,340,109"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="811,163,868,189"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1037,110,963,130,882,157,878,159,876,154,880,152,961,125,1035,105"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="892,163,1083,189"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="1075,109,1016,156,1013,151,1071,105"/>
-<area shape="rect" id="Node000009" href="$df/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Traffic_2TrafficLightState_8h.html" title=" " alt="" coords="1107,163,1271,189"/>
-<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="1106,105,1164,151,1161,156,1103,109"/>
-<area shape="rect" id="Node000011" href="$d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h.html" title=" " alt="" coords="1426,253,1589,280"/>
-<area shape="poly" id="edge9_Node000006_Node000011" title=" " alt="" coords="1148,105,1214,124,1283,152,1313,173,1341,195,1399,223,1456,245,1454,250,1397,228,1338,200,1309,178,1281,157,1212,129,1146,110"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="532,163,787,189"/>
-<area shape="poly" id="edge10_Node000006_Node000013" title=" " alt="" coords="1022,110,742,162,741,157,1021,105"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="5001,163,5174,189"/>
-<area shape="poly" id="edge12_Node000014_Node000015" title=" " alt="" coords="5240,110,5130,159,5128,154,5238,105"/>
-<area shape="rect" id="Node000016" href="$d4/d83/CityMapMeshTag_8h.html" title=" " alt="" coords="5457,253,5643,280"/>
-<area shape="poly" id="edge13_Node000014_Node000016" title=" " alt="" coords="5259,109,5247,128,5235,151,5231,175,5233,186,5239,196,5251,206,5270,216,5320,233,5381,245,5443,254,5442,259,5380,250,5319,238,5267,221,5248,211,5235,199,5228,187,5226,175,5230,149,5242,125,5255,106"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="5249,163,5398,189"/>
-<area shape="poly" id="edge14_Node000014_Node000017" title=" " alt="" coords="5278,106,5309,149,5304,152,5274,109"/>
-<area shape="rect" id="Node000019" title=" " alt="" coords="6075,253,6241,280"/>
-<area shape="poly" id="edge16_Node000018_Node000019" title=" " alt="" coords="5792,99,5944,119,6015,134,6065,152,6091,171,6113,194,6146,239,6142,242,6109,197,6087,175,6062,157,6013,139,5943,125,5791,104"/>
-<area shape="rect" id="Node000020" title=" " alt="" coords="5618,163,5816,189"/>
-<area shape="poly" id="edge17_Node000018_Node000020" title=" " alt="" coords="5720,107,5720,148,5714,148,5714,107"/>
-<area shape="rect" id="Node000021" title=" " alt="" coords="5841,163,6052,189"/>
-<area shape="poly" id="edge18_Node000018_Node000021" title=" " alt="" coords="5754,105,5898,155,5896,160,5752,110"/>
-<area shape="rect" id="Node000022" title=" " alt="" coords="5422,163,5593,189"/>
-<area shape="poly" id="edge19_Node000018_Node000022" title=" " alt="" coords="5685,110,5555,160,5553,155,5683,105"/>
-<area shape="poly" id="edge29_Node000023_Node000011" title=" " alt="" coords="3144,97,2717,97,2144,103,1867,110,1631,121,1462,136,1410,146,1385,157,1378,169,1377,180,1383,192,1393,204,1425,226,1462,245,1460,250,1423,231,1390,208,1378,195,1372,181,1373,167,1382,153,1408,141,1461,131,1631,115,1867,104,2144,97,2717,91,3144,91"/>
-<area shape="rect" id="Node000024" title=" " alt="" coords="1395,163,1521,189"/>
-<area shape="poly" id="edge21_Node000023_Node000024" title=" " alt="" coords="3144,98,2801,101,2336,111,1872,129,1679,141,1533,157,1513,161,1512,156,1532,152,1679,136,1872,123,2336,106,2801,96,3144,93"/>
-<area shape="rect" id="Node000025" href="$d0/d4d/AckermannController_8h.html" title=" " alt="" coords="2713,163,2913,189"/>
-<area shape="poly" id="edge22_Node000023_Node000025" title=" " alt="" coords="3178,110,2896,162,2895,157,3177,105"/>
-<area shape="rect" id="Node000026" href="$df/d92/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2AckermannControllerSettings_8h.html" title=" " alt="" coords="2649,245,2838,288"/>
-<area shape="poly" id="edge26_Node000023_Node000026" title=" " alt="" coords="3144,101,3016,108,2878,120,2762,136,2723,146,2703,157,2695,174,2696,193,2705,213,2718,233,2713,236,2700,216,2691,194,2689,173,2699,153,2721,141,2761,131,2877,114,3016,103,3144,96"/>
-<area shape="rect" id="Node000028" href="$d7/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleAckermannControl_8h.html" title=" " alt="" coords="2976,245,3154,288"/>
-<area shape="poly" id="edge28_Node000023_Node000028" title=" " alt="" coords="3249,108,3244,151,3237,176,3223,199,3195,224,3163,242,3161,237,3192,219,3219,196,3232,174,3239,150,3244,107"/>
-<area shape="rect" id="Node000030" href="$d7/dab/CarlaWheeledVehicleState_8h.html" title=" " alt="" coords="1790,155,1982,197"/>
-<area shape="poly" id="edge27_Node000023_Node000030" title=" " alt="" coords="3144,98,2936,101,2654,109,2329,127,1997,157,1996,152,2329,122,2653,104,2936,95,3144,92"/>
-<area shape="rect" id="Node000032" href="$d6/d6c/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleLightState_8h.html" title=" " alt="" coords="2006,163,2188,189"/>
-<area shape="poly" id="edge30_Node000023_Node000032" title=" " alt="" coords="3144,99,2966,103,2731,113,2466,130,2200,157,2169,162,2168,157,2199,152,2466,125,2730,108,2966,98,3144,93"/>
-<area shape="rect" id="Node000034" href="$db/d8b/VehicleInputPriority_8h.html" title=" " alt="" coords="2212,163,2403,189"/>
-<area shape="poly" id="edge31_Node000023_Node000034" title=" " alt="" coords="3144,101,2819,119,2618,135,2416,157,2383,162,2383,157,2415,152,2617,130,2819,114,3144,96"/>
-<area shape="rect" id="Node000037" href="$d3/d90/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehiclePhysicsControl_8h.html" title=" " alt="" coords="2428,163,2638,189"/>
-<area shape="poly" id="edge32_Node000023_Node000037" title=" " alt="" coords="3145,106,2921,127,2657,157,2622,162,2621,157,2656,152,2920,122,3144,101"/>
-<area shape="rect" id="Node000041" href="$d6/df3/VehicleVelocityControl_8h.html" title=" " alt="" coords="4414,163,4577,189"/>
-<area shape="poly" id="edge33_Node000023_Node000041" title=" " alt="" coords="3348,92,3544,95,3805,103,4102,121,4253,135,4401,152,4430,157,4429,162,4400,157,4253,140,4102,127,3805,109,3543,100,3348,97"/>
-<area shape="rect" id="Node000044" title=" " alt="" coords="4489,253,4593,280"/>
-<area shape="poly" id="edge43_Node000023_Node000044" title=" " alt="" coords="3348,93,3665,97,4067,107,4258,114,4420,124,4536,137,4572,144,4591,153,4598,164,4601,175,4596,200,4583,224,4566,244,4562,241,4578,221,4591,198,4595,176,4593,166,4587,157,4570,149,4535,142,4420,130,4258,120,4067,112,3665,102,3348,98"/>
-<area shape="rect" id="Node000046" title=" " alt="" coords="2937,163,3209,189"/>
-<area shape="poly" id="edge35_Node000023_Node000046" title=" " alt="" coords="3220,110,3114,159,3112,154,3218,105"/>
-<area shape="rect" id="Node000047" href="$d0/d34/WheeledVehicleMovementComponentNW_8h.html" title=" " alt="" coords="4652,163,4926,189"/>
-<area shape="poly" id="edge36_Node000023_Node000047" title=" " alt="" coords="3348,93,3897,109,4262,126,4633,152,4687,158,4686,163,4633,157,4262,131,3897,114,3348,99"/>
-<area shape="rect" id="Node000051" title=" " alt="" coords="3284,163,3438,189"/>
-<area shape="poly" id="edge38_Node000023_Node000051" title=" " alt="" coords="3266,105,3333,152,3330,156,3263,109"/>
-<area shape="rect" id="Node000052" title=" " alt="" coords="3462,155,3681,197"/>
-<area shape="poly" id="edge39_Node000023_Node000052" title=" " alt="" coords="3298,105,3474,148,3473,153,3297,110"/>
-<area shape="rect" id="Node000053" href="$d6/d10/BaseCarlaMovementComponent_8h.html" title=" " alt="" coords="1545,155,1766,197"/>
-<area shape="poly" id="edge40_Node000023_Node000053" title=" " alt="" coords="3144,97,2904,100,2568,108,2180,126,1979,140,1781,157,1781,152,1979,134,2180,121,2568,103,2904,94,3144,92"/>
-<area shape="rect" id="Node000056" title=" " alt="" coords="3704,155,3890,197"/>
-<area shape="poly" id="edge42_Node000023_Node000056" title=" " alt="" coords="3349,104,3505,124,3690,152,3689,157,3505,130,3348,109"/>
-<area shape="rect" id="Node000057" title=" " alt="" coords="3913,163,3966,189"/>
-<area shape="poly" id="edge44_Node000023_Node000057" title=" " alt="" coords="3349,97,3646,116,3795,132,3902,152,3907,154,3905,159,3900,157,3794,137,3646,122,3348,102"/>
-<area shape="rect" id="Node000058" href="$d6/dac/VehicleFailureState_8h.html" title=" " alt="" coords="3990,155,4148,197"/>
-<area shape="poly" id="edge45_Node000023_Node000058" title=" " alt="" coords="3348,96,3627,114,3799,130,3976,152,3975,157,3799,135,3627,119,3348,101"/>
-<area shape="rect" id="Node000060" title=" " alt="" coords="4172,163,4390,189"/>
-<area shape="poly" id="edge46_Node000023_Node000060" title=" " alt="" coords="3348,95,3707,113,3933,130,4160,152,4198,157,4197,162,4159,157,3932,135,3707,119,3348,101"/>
-<area shape="poly" id="edge25_Node000025_Node000011" title=" " alt="" coords="2719,193,2650,200,2351,224,2056,242,1604,264,1604,259,2056,237,2351,218,2650,195,2718,187"/>
-<area shape="poly" id="edge23_Node000025_Node000026" title=" " alt="" coords="2805,192,2771,235,2767,232,2801,188"/>
-<area shape="poly" id="edge24_Node000025_Node000028" title=" " alt="" coords="2850,187,2993,238,2992,243,2848,192"/>
-<area shape="poly" id="edge34_Node000041_Node000044" title=" " alt="" coords="4504,189,4530,239,4525,241,4500,191"/>
-<area shape="poly" id="edge37_Node000047_Node000048" title=" " alt="" coords="4803,188,4855,241,4851,245,4799,192"/>
-<area shape="poly" id="edge41_Node000053_Node000011" title=" " alt="" coords="1622,200,1542,248,1540,243,1619,196"/>
-<area shape="rect" id="Node000062" href="$de/d3c/CityMapMeshHolder_8h.html" title=" " alt="" coords="6126,163,6329,189"/>
-<area shape="poly" id="edge48_Node000061_Node000062" title=" " alt="" coords="6230,107,6230,148,6225,148,6225,107"/>
-<area shape="rect" id="Node000064" href="$d8/db3/DoublyConnectedEdgeList_8h.html" title=" " alt="" coords="6352,155,6559,197"/>
-<area shape="poly" id="edge51_Node000061_Node000064" title=" " alt="" coords="6264,105,6384,147,6382,152,6262,110"/>
-<area shape="rect" id="Node000072" href="$dc/d6a/GraphParser_8h.html" title=" " alt="" coords="6583,163,6741,189"/>
-<area shape="poly" id="edge52_Node000061_Node000072" title=" " alt="" coords="6305,105,6571,152,6592,156,6591,162,6570,157,6304,110"/>
-<area shape="rect" id="Node000075" title=" " alt="" coords="6766,163,6964,189"/>
-<area shape="poly" id="edge53_Node000061_Node000075" title=" " alt="" coords="6314,103,6326,104,6540,126,6753,152,6784,157,6784,162,6752,157,6539,131,6326,109,6313,108"/>
-<area shape="poly" id="edge50_Node000062_Node000016" title=" " alt="" coords="6130,193,5658,254,5658,249,6130,187"/>
-<area shape="poly" id="edge49_Node000062_Node000019" title=" " alt="" coords="6220,192,6179,243,6175,240,6215,188"/>
-<area shape="rect" id="Node000077" title=" " alt="" coords="6989,163,7053,189"/>
-<area shape="poly" id="edge55_Node000076_Node000077" title=" " alt="" coords="6515,103,6526,104,6653,114,6753,117,6852,126,6976,152,6983,154,6982,159,6975,157,6851,131,6753,122,6653,119,6526,109,6515,108"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5654,5,5861,32"/>
+<area shape="rect" id="Node000002" href="$d7/d7d/Carla_8h.html" title=" " alt="" coords="322,80,385,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="5653,24,3851,45,1043,83,400,94,399,88,1043,77,3851,40,5653,18"/>
+<area shape="rect" id="Node000006" href="$d2/d29/WheeledVehicleAIController_8h.html" title=" " alt="" coords="1056,80,1249,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="5653,24,1264,93,1264,88,5653,19"/>
+<area shape="rect" id="Node000014" href="$da/d50/RoadMap_8h.html" title=" " alt="" coords="5443,80,5584,107"/>
+<area shape="poly" id="edge11_Node000001_Node000014" title=" " alt="" coords="5716,35,5571,78,5569,73,5714,30"/>
+<area shape="rect" id="Node000018" href="$d3/d24/RoutePlanner_8h.html" title=" " alt="" coords="5867,80,6016,107"/>
+<area shape="poly" id="edge15_Node000001_Node000018" title=" " alt="" coords="5791,30,5897,72,5895,77,5789,35"/>
+<area shape="rect" id="Node000023" href="$d3/d00/CarlaWheeledVehicle_8h.html" title=" " alt="" coords="3107,80,3310,107"/>
+<area shape="poly" id="edge20_Node000001_Node000023" title=" " alt="" coords="5653,26,3325,91,3324,86,5653,20"/>
+<area shape="rect" id="Node000050" title=" " alt="" coords="4943,253,5194,280"/>
+<area shape="poly" id="edge58_Node000001_Node000050" title=" " alt="" coords="5654,28,5550,41,5428,64,5365,81,5302,102,5241,127,5183,157,5139,194,5091,244,5087,240,5136,190,5180,152,5238,122,5300,97,5364,76,5427,59,5549,35,5653,23"/>
+<area shape="rect" id="Node000063" href="$d0/da2/CityMapGenerator_8h.html" title=" " alt="" coords="6187,80,6358,107"/>
+<area shape="poly" id="edge48_Node000001_Node000063" title=" " alt="" coords="5848,30,6172,75,6171,81,5847,35"/>
+<area shape="rect" id="Node000078" href="$d6/daa/RandomEngine_8h.html" title=" " alt="" coords="6382,80,6560,107"/>
+<area shape="poly" id="edge55_Node000001_Node000078" title=" " alt="" coords="5862,27,6368,77,6367,82,5861,32"/>
+<area shape="rect" id="Node000081" title=" " alt="" coords="6583,80,6681,107"/>
+<area shape="poly" id="edge56_Node000001_Node000081" title=" " alt="" coords="5862,21,6174,38,6369,54,6568,77,6568,82,6369,60,6174,43,5861,26"/>
+<area shape="rect" id="Node000082" title=" " alt="" coords="6706,80,6873,107"/>
+<area shape="poly" id="edge57_Node000001_Node000082" title=" " alt="" coords="5862,22,6224,42,6455,57,6691,77,6691,82,6454,63,6224,47,5861,27"/>
+<area shape="rect" id="Node000003" href="$d4/d57/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Util_2NonCopyable_8h.html" title=" " alt="" coords="206,163,338,189"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="343,109,297,154,293,150,339,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="362,163,508,189"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="368,105,414,150,410,154,364,109"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,163,182,189"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="323,107,149,160,147,155,321,102"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1213,163,1270,189"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1168,105,1219,151,1216,155,1164,109"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="532,163,722,189"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="1057,110,735,157,707,162,706,157,734,152,1056,105"/>
+<area shape="rect" id="Node000009" href="$df/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Traffic_2TrafficLightState_8h.html" title=" " alt="" coords="747,163,910,189"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="1102,110,894,161,893,156,1101,105"/>
+<area shape="rect" id="Node000011" href="$d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h.html" title=" " alt="" coords="1568,253,1731,280"/>
+<area shape="poly" id="edge9_Node000006_Node000011" title=" " alt="" coords="1186,105,1233,125,1283,152,1308,175,1318,185,1333,195,1388,217,1445,234,1553,254,1553,260,1444,239,1386,222,1331,200,1315,190,1304,179,1280,157,1231,130,1184,110"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="934,163,1189,189"/>
+<area shape="poly" id="edge10_Node000006_Node000013" title=" " alt="" coords="1140,109,1088,155,1084,151,1136,105"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="5366,163,5538,189"/>
+<area shape="poly" id="edge12_Node000014_Node000015" title=" " alt="" coords="5506,109,5472,153,5468,149,5502,106"/>
+<area shape="rect" id="Node000016" href="$d4/d83/CityMapMeshTag_8h.html" title=" " alt="" coords="5735,253,5921,280"/>
+<area shape="poly" id="edge13_Node000014_Node000016" title=" " alt="" coords="5523,106,5554,150,5577,174,5603,195,5634,212,5667,227,5734,247,5732,252,5665,232,5632,217,5600,200,5573,178,5550,153,5519,109"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="5194,163,5342,189"/>
+<area shape="poly" id="edge14_Node000014_Node000017" title=" " alt="" coords="5476,110,5321,160,5320,155,5474,105"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="6266,253,6433,280"/>
+<area shape="poly" id="edge16_Node000018_Node000019" title=" " alt="" coords="6016,93,6071,97,6133,108,6197,125,6256,152,6282,171,6305,194,6338,239,6333,242,6300,198,6279,175,6253,157,6195,130,6132,113,6071,103,6016,98"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="5613,163,5811,189"/>
+<area shape="poly" id="edge17_Node000018_Node000020" title=" " alt="" coords="5907,110,5762,160,5761,155,5905,105"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="5836,163,6047,189"/>
+<area shape="poly" id="edge18_Node000018_Node000021" title=" " alt="" coords="5944,107,5944,148,5939,148,5939,107"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="6072,163,6243,189"/>
+<area shape="poly" id="edge19_Node000018_Node000022" title=" " alt="" coords="5976,105,6111,155,6109,160,5974,110"/>
+<area shape="poly" id="edge29_Node000023_Node000011" title=" " alt="" coords="3106,97,2838,98,2492,105,2316,113,2152,124,2013,138,1907,157,1882,166,1863,176,1820,200,1697,250,1695,245,1818,195,1861,171,1880,161,1906,152,2012,133,2152,118,2315,107,2491,100,2838,93,3106,91"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="1933,163,2059,189"/>
+<area shape="poly" id="edge21_Node000023_Node000024" title=" " alt="" coords="3106,100,2573,120,2283,136,2164,146,2073,157,2052,161,2051,156,2072,152,2163,141,2283,131,2573,114,3106,95"/>
+<area shape="rect" id="Node000025" href="$d0/d4d/AckermannController_8h.html" title=" " alt="" coords="2084,163,2284,189"/>
+<area shape="poly" id="edge22_Node000023_Node000025" title=" " alt="" coords="3106,101,2750,119,2527,135,2303,157,2266,162,2266,157,2303,152,2527,130,2750,113,3106,95"/>
+<area shape="rect" id="Node000026" href="$df/d92/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2AckermannControllerSettings_8h.html" title=" " alt="" coords="1875,245,2064,288"/>
+<area shape="poly" id="edge26_Node000023_Node000026" title=" " alt="" coords="3106,98,2801,103,2418,113,2082,131,1972,143,1939,150,1923,157,1915,174,1917,193,1927,214,1942,233,1937,236,1923,216,1912,195,1910,173,1920,153,1937,144,1971,137,2082,125,2418,108,2801,98,3106,93"/>
+<area shape="rect" id="Node000028" href="$d7/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleAckermannControl_8h.html" title=" " alt="" coords="2164,245,2341,288"/>
+<area shape="poly" id="edge28_Node000023_Node000028" title=" " alt="" coords="3106,100,2907,107,2672,119,2464,135,2390,145,2348,157,2333,169,2314,188,2277,235,2273,232,2310,185,2329,165,2346,152,2389,140,2463,130,2671,113,2907,102,3106,95"/>
+<area shape="rect" id="Node000030" href="$d7/dab/CarlaWheeledVehicleState_8h.html" title=" " alt="" coords="2359,155,2551,197"/>
+<area shape="poly" id="edge27_Node000023_Node000030" title=" " alt="" coords="3106,104,2864,124,2566,157,2565,152,2863,118,3106,99"/>
+<area shape="rect" id="Node000032" href="$d6/d6c/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleLightState_8h.html" title=" " alt="" coords="2575,163,2756,189"/>
+<area shape="poly" id="edge30_Node000023_Node000032" title=" " alt="" coords="3106,110,2947,130,2769,157,2742,162,2741,157,2768,152,2947,125,3106,104"/>
+<area shape="rect" id="Node000034" href="$db/d8b/VehicleInputPriority_8h.html" title=" " alt="" coords="2781,163,2972,189"/>
+<area shape="poly" id="edge31_Node000023_Node000034" title=" " alt="" coords="3157,110,2943,161,2942,156,3155,105"/>
+<area shape="rect" id="Node000037" href="$d3/d90/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehiclePhysicsControl_8h.html" title=" " alt="" coords="2996,163,3207,189"/>
+<area shape="poly" id="edge32_Node000023_Node000037" title=" " alt="" coords="3193,109,3131,156,3128,152,3190,105"/>
+<area shape="rect" id="Node000041" href="$de/dcb/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleTelemetryData_8h.html" title=" " alt="" coords="3231,155,3399,197"/>
+<area shape="poly" id="edge33_Node000023_Node000041" title=" " alt="" coords="3226,105,3277,143,3274,148,3223,109"/>
+<area shape="rect" id="Node000043" href="$d6/df3/VehicleVelocityControl_8h.html" title=" " alt="" coords="3423,163,3586,189"/>
+<area shape="poly" id="edge34_Node000023_Node000043" title=" " alt="" coords="3255,105,3444,156,3443,161,3254,110"/>
+<area shape="rect" id="Node000046" title=" " alt="" coords="3511,253,3615,280"/>
+<area shape="poly" id="edge44_Node000023_Node000046" title=" " alt="" coords="3310,93,3393,98,3479,108,3553,126,3580,138,3600,153,3609,175,3607,199,3597,222,3585,243,3580,240,3593,220,3602,197,3604,176,3595,156,3578,142,3551,131,3478,113,3393,103,3310,99"/>
+<area shape="rect" id="Node000048" title=" " alt="" coords="3661,163,3932,189"/>
+<area shape="poly" id="edge36_Node000023_Node000048" title=" " alt="" coords="3301,105,3689,157,3689,163,3300,110"/>
+<area shape="rect" id="Node000049" href="$d0/d34/WheeledVehicleMovementComponentNW_8h.html" title=" " alt="" coords="4845,163,5118,189"/>
+<area shape="poly" id="edge37_Node000023_Node000049" title=" " alt="" coords="3310,92,3575,95,3952,104,4388,122,4832,152,4884,158,4883,163,4832,157,4388,128,3952,110,3575,101,3310,98"/>
+<area shape="rect" id="Node000053" title=" " alt="" coords="3956,163,4111,189"/>
+<area shape="poly" id="edge39_Node000023_Node000053" title=" " alt="" coords="3311,96,3597,114,3771,130,3945,152,3969,156,3968,162,3944,157,3770,135,3596,119,3310,101"/>
+<area shape="rect" id="Node000054" title=" " alt="" coords="4135,155,4353,197"/>
+<area shape="poly" id="edge40_Node000023_Node000054" title=" " alt="" coords="3310,95,3665,113,3890,130,4120,152,4120,157,3889,135,3664,119,3310,101"/>
+<area shape="rect" id="Node000055" href="$d6/d10/BaseCarlaMovementComponent_8h.html" title=" " alt="" coords="1344,155,1566,197"/>
+<area shape="poly" id="edge41_Node000023_Node000055" title=" " alt="" coords="3106,97,2842,98,2467,105,2029,123,1803,138,1580,157,1580,152,1803,133,2029,118,2467,100,2842,92,3106,91"/>
+<area shape="rect" id="Node000058" title=" " alt="" coords="4377,155,4562,197"/>
+<area shape="poly" id="edge43_Node000023_Node000058" title=" " alt="" coords="3310,93,3504,96,3763,105,4060,123,4363,152,4362,157,4059,128,3763,111,3503,101,3310,98"/>
+<area shape="rect" id="Node000059" title=" " alt="" coords="4586,163,4638,189"/>
+<area shape="poly" id="edge45_Node000023_Node000059" title=" " alt="" coords="3310,94,4008,113,4367,130,4497,141,4574,152,4580,154,4578,159,4573,157,4496,146,4367,136,4008,118,3310,99"/>
+<area shape="rect" id="Node000060" href="$d6/dac/VehicleFailureState_8h.html" title=" " alt="" coords="4663,155,4820,197"/>
+<area shape="poly" id="edge46_Node000023_Node000060" title=" " alt="" coords="3311,94,3978,112,4359,129,4521,140,4648,152,4648,157,4520,145,4358,134,3978,117,3310,99"/>
+<area shape="rect" id="Node000062" title=" " alt="" coords="1590,163,1808,189"/>
+<area shape="poly" id="edge47_Node000023_Node000062" title=" " alt="" coords="3106,98,2877,101,2559,111,2196,128,1827,157,1785,163,1784,157,1827,152,2195,123,2559,105,2876,96,3106,93"/>
+<area shape="poly" id="edge25_Node000025_Node000011" title=" " alt="" coords="2114,193,2071,200,1745,253,1744,248,2070,195,2113,187"/>
+<area shape="poly" id="edge23_Node000025_Node000026" title=" " alt="" coords="2154,192,2034,242,2032,237,2152,187"/>
+<area shape="poly" id="edge24_Node000025_Node000028" title=" " alt="" coords="2196,188,2230,232,2225,235,2192,192"/>
+<area shape="poly" id="edge35_Node000043_Node000046" title=" " alt="" coords="3515,188,3549,239,3544,242,3510,191"/>
+<area shape="poly" id="edge38_Node000049_Node000050" title=" " alt="" coords="4996,188,5048,241,5044,245,4992,192"/>
+<area shape="poly" id="edge42_Node000055_Node000011" title=" " alt="" coords="1502,196,1610,244,1607,249,1499,200"/>
+<area shape="rect" id="Node000064" href="$de/d3c/CityMapMeshHolder_8h.html" title=" " alt="" coords="6318,163,6520,189"/>
+<area shape="poly" id="edge49_Node000063_Node000064" title=" " alt="" coords="6296,105,6385,153,6382,158,6294,110"/>
+<area shape="rect" id="Node000066" href="$d8/db3/DoublyConnectedEdgeList_8h.html" title=" " alt="" coords="6544,155,6750,197"/>
+<area shape="poly" id="edge52_Node000063_Node000066" title=" " alt="" coords="6332,105,6537,148,6536,154,6331,110"/>
+<area shape="rect" id="Node000074" href="$dc/d6a/GraphParser_8h.html" title=" " alt="" coords="6774,163,6933,189"/>
+<area shape="poly" id="edge53_Node000063_Node000074" title=" " alt="" coords="6358,102,6762,152,6786,157,6785,162,6761,157,6358,108"/>
+<area shape="rect" id="Node000077" title=" " alt="" coords="6957,163,7155,189"/>
+<area shape="poly" id="edge54_Node000063_Node000077" title=" " alt="" coords="6359,103,6371,104,6532,118,6658,125,6784,134,6945,152,6977,157,6977,162,6944,157,6783,139,6658,131,6532,123,6371,109,6358,108"/>
+<area shape="poly" id="edge51_Node000064_Node000016" title=" " alt="" coords="6335,193,5928,253,5927,248,6334,187"/>
+<area shape="poly" id="edge50_Node000064_Node000019" title=" " alt="" coords="6411,192,6370,243,6366,240,6407,188"/>
 </map>

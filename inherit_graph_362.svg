@@ -11,10 +11,10 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="d0/d7a/classcarla_1_1streaming_1_1low__level_1_1Server.html" target="_top" xlink:title="A low&#45;level streaming server.">
+<g id="a_Node000000"><a xlink:href="da/d83/classcarla_1_1streaming_1_1low__level_1_1Client.html" target="_top" xlink:title="A client able to subscribe to multiple streams.">
 <polygon fill="white" stroke="#666666" points="106,-32 0,-32 0,0 106,0 106,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::streaming::low</text>
-<text text-anchor="middle" x="53" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">_level::Server&lt; T &gt;</text>
+<text text-anchor="middle" x="53" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">_level::Client&lt; T &gt;</text>
 </a>
 </g>
 </g>

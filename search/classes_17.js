@@ -24,6 +24,7 @@ var searchData=
   ['wheelinput_21',['WheelInput',['../db/d80/structcarla_1_1learning_1_1WheelInput.html',1,'carla::learning']]],
   ['wheeloutput_22',['WheelOutput',['../de/dec/structcarla_1_1learning_1_1WheelOutput.html',1,'carla::learning']]],
   ['wheelphysicscontrol_23',['WheelPhysicsControl',['../d5/d9b/classcarla_1_1rpc_1_1WheelPhysicsControl.html',1,'carla::rpc']]],
-  ['world_24',['World',['../db/d1f/classcarla_1_1client_1_1World.html',1,'carla::client']]],
-  ['worldsnapshot_25',['WorldSnapshot',['../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html',1,'carla::client']]]
+  ['wheeltelemetrydata_24',['WheelTelemetryData',['../dd/d8d/classcarla_1_1rpc_1_1WheelTelemetryData.html',1,'carla::rpc']]],
+  ['world_25',['World',['../db/d1f/classcarla_1_1client_1_1World.html',1,'carla::client']]],
+  ['worldsnapshot_26',['WorldSnapshot',['../d4/dc6/classcarla_1_1client_1_1WorldSnapshot.html',1,'carla::client']]]
 ];

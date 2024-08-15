@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$da/d2a/structcarla_1_1traffic__manager_1_1StaticAttributes.html" title=" " alt="" coords="5,5,151,48"/>
+<area shape="rect" id="Node000000" href="$d2/dcf/classcarla_1_1traffic__manager_1_1Stage.html" title="Stage type interface." alt="" coords="5,139,151,181"/>
+<area shape="rect" id="Node000001" href="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html" title="This class has functionality to detect potential collision with a nearby actor." alt="" coords="199,5,344,48"/>
+<area shape="poly" id="edge132_Node000000_Node000001" title=" " alt="" coords="110,126,151,92,197,58,218,46,220,51,200,62,154,96,114,130"/>
+<area shape="rect" id="Node000002" href="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html" title="This class has functionality to maintain a horizon of waypoints ahead of the vehicle for it to follow..." alt="" coords="199,72,344,115"/>
+<area shape="poly" id="edge133_Node000000_Node000002" title=" " alt="" coords="154,131,207,113,208,118,156,136"/>
+<area shape="rect" id="Node000003" href="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html" title=" " alt="" coords="199,139,344,181"/>
+<area shape="poly" id="edge134_Node000000_Node000003" title=" " alt="" coords="165,157,198,157,198,163,165,163"/>
+<area shape="rect" id="Node000004" href="$d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html" title="This class has functionality for responding to traffic lights and managing entry into non&#45;signalized ..." alt="" coords="199,205,344,248"/>
+<area shape="poly" id="edge135_Node000000_Node000004" title=" " alt="" coords="156,184,208,202,207,207,154,189"/>
+<area shape="rect" id="Node000005" href="$dd/de2/classcarla_1_1traffic__manager_1_1VehicleLightStage.html" title="This class has functionality for turning on/off the vehicle lights according to the current vehicle s..." alt="" coords="199,272,344,315"/>
+<area shape="poly" id="edge136_Node000000_Node000005" title=" " alt="" coords="114,190,154,224,200,258,220,269,218,274,197,262,151,228,110,194"/>
 </map>

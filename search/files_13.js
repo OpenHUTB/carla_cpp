@@ -24,13 +24,14 @@ var searchData=
   ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fvehicle_2fvehiclecontrol_2eh_21',['VehicleControl.h',['../d4/dbd/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleControl_8h.html',1,'']]],
   ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fvehicle_2fvehiclelightstate_2eh_22',['VehicleLightState.h',['../d6/d6c/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleLightState_8h.html',1,'']]],
   ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fvehicle_2fvehiclephysicscontrol_2eh_23',['VehiclePhysicsControl.h',['../d3/d90/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehiclePhysicsControl_8h.html',1,'']]],
-  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fvehicle_2fwheelphysicscontrol_2eh_24',['WheelPhysicsControl.h',['../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h.html',1,'']]],
-  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fwalker_2fwalkerbonecontrolin_2eh_25',['WalkerBoneControlIn.h',['../de/dbf/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Walker_2WalkerBoneControlIn_8h.html',1,'']]],
-  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fwalker_2fwalkerbonecontrolout_2eh_26',['WalkerBoneControlOut.h',['../dd/d6e/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Walker_2WalkerBoneControlOut_8h.html',1,'']]],
-  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fwalker_2fwalkercontrol_2eh_27',['WalkerControl.h',['../da/d26/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Walker_2WalkerControl_8h.html',1,'']]],
-  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fweather_2fweatherparameters_2eh_28',['WeatherParameters.h',['../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h.html',1,'']]],
-  ['usdimporteractor_2ecpp_29',['USDImporterActor.cpp',['../d2/d50/USDImporterActor_8cpp.html',1,'']]],
-  ['usdimporteractor_2eh_30',['USDImporterActor.h',['../db/d39/USDImporterActor_8h.html',1,'']]],
-  ['utilactorfactory_2ecpp_31',['UtilActorFactory.cpp',['../dc/df0/UtilActorFactory_8cpp.html',1,'']]],
-  ['utilactorfactory_2eh_32',['UtilActorFactory.h',['../df/db0/UtilActorFactory_8h.html',1,'']]]
+  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fvehicle_2fvehicletelemetrydata_2eh_24',['VehicleTelemetryData.h',['../de/dcb/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2VehicleTelemetryData_8h.html',1,'']]],
+  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fvehicle_2fwheelphysicscontrol_2eh_25',['WheelPhysicsControl.h',['../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h.html',1,'']]],
+  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fwalker_2fwalkerbonecontrolin_2eh_26',['WalkerBoneControlIn.h',['../de/dbf/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Walker_2WalkerBoneControlIn_8h.html',1,'']]],
+  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fwalker_2fwalkerbonecontrolout_2eh_27',['WalkerBoneControlOut.h',['../dd/d6e/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Walker_2WalkerBoneControlOut_8h.html',1,'']]],
+  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fwalker_2fwalkercontrol_2eh_28',['WalkerControl.h',['../da/d26/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Walker_2WalkerControl_8h.html',1,'']]],
+  ['unreal_2fcarlaue4_2fplugins_2fcarla_2fsource_2fcarla_2fweather_2fweatherparameters_2eh_29',['WeatherParameters.h',['../dc/d22/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Weather_2WeatherParameters_8h.html',1,'']]],
+  ['usdimporteractor_2ecpp_30',['USDImporterActor.cpp',['../d2/d50/USDImporterActor_8cpp.html',1,'']]],
+  ['usdimporteractor_2eh_31',['USDImporterActor.h',['../db/d39/USDImporterActor_8h.html',1,'']]],
+  ['utilactorfactory_2ecpp_32',['UtilActorFactory.cpp',['../dc/df0/UtilActorFactory_8cpp.html',1,'']]],
+  ['utilactorfactory_2eh_33',['UtilActorFactory.h',['../df/db0/UtilActorFactory_8h.html',1,'']]]
 ];

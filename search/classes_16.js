@@ -19,11 +19,12 @@ var searchData=
   ['vehiclelightstage_16',['VehicleLightStage',['../dd/de2/classcarla_1_1traffic__manager_1_1VehicleLightStage.html',1,'carla::traffic_manager']]],
   ['vehiclelightstate_17',['VehicleLightState',['../db/d60/classcarla_1_1rpc_1_1VehicleLightState.html',1,'carla::rpc']]],
   ['vehiclephysicscontrol_18',['VehiclePhysicsControl',['../da/d3f/classcarla_1_1rpc_1_1VehiclePhysicsControl.html',1,'carla::rpc']]],
-  ['vertex_19',['Vertex',['../d8/dea/structSimplify_1_1Vertex.html',1,'Simplify']]],
-  ['vertexinfo_20',['VertexInfo',['../de/d74/structcarla_1_1geom_1_1VertexInfo.html',1,'carla::geom']]],
-  ['vertexneighbors_21',['VertexNeighbors',['../dd/d2c/structcarla_1_1geom_1_1VertexNeighbors.html',1,'carla::geom']]],
-  ['vertexweight_22',['VertexWeight',['../d4/de7/structcarla_1_1geom_1_1VertexWeight.html',1,'carla::geom']]],
-  ['verticalacceleration_23',['VerticalAcceleration',['../de/d6b/structITSContainer_1_1VerticalAcceleration.html',1,'ITSContainer']]],
-  ['visitor_24',['Visitor',['../d6/d78/structcarla_1_1client_1_1detail_1_1ActorVariant_1_1Visitor.html',1,'carla::client::detail::ActorVariant']]],
-  ['void_5ftype_25',['void_type',['../d9/d48/structFSensorDefinitionGatherer_1_1void__type.html',1,'FSensorDefinitionGatherer']]]
+  ['vehicletelemetrydata_19',['VehicleTelemetryData',['../d1/d26/classcarla_1_1rpc_1_1VehicleTelemetryData.html',1,'carla::rpc']]],
+  ['vertex_20',['Vertex',['../d8/dea/structSimplify_1_1Vertex.html',1,'Simplify']]],
+  ['vertexinfo_21',['VertexInfo',['../de/d74/structcarla_1_1geom_1_1VertexInfo.html',1,'carla::geom']]],
+  ['vertexneighbors_22',['VertexNeighbors',['../dd/d2c/structcarla_1_1geom_1_1VertexNeighbors.html',1,'carla::geom']]],
+  ['vertexweight_23',['VertexWeight',['../d4/de7/structcarla_1_1geom_1_1VertexWeight.html',1,'carla::geom']]],
+  ['verticalacceleration_24',['VerticalAcceleration',['../de/d6b/structITSContainer_1_1VerticalAcceleration.html',1,'ITSContainer']]],
+  ['visitor_25',['Visitor',['../d6/d78/structcarla_1_1client_1_1detail_1_1ActorVariant_1_1Visitor.html',1,'carla::client::detail::ActorVariant']]],
+  ['void_5ftype_26',['void_type',['../d9/d48/structFSensorDefinitionGatherer_1_1void__type.html',1,'FSensorDefinitionGatherer']]]
 ];

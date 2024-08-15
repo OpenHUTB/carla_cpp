@@ -130,12 +130,12 @@ var searchBox = new SearchBox("searchBox", "../../search/",'.html');
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  ReadValue&lt;uint32_t&gt;(InFile, <a class="code hl_variable" href="../../d0/de7/structCarlaRecorderAnimWheels.html#ab38a1768bdeeee838b436e483c122d93">DatabaseId</a>);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  uint32_t NumWheels = 0;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  ReadValue&lt;uint32_t&gt;(InFile, NumWheels);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_variable" href="../../d0/de7/structCarlaRecorderAnimWheels.html#a6f9857a8a7b458719d61296c7383f04b">WheelValues</a>.reserve(NumWheels);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_variable" href="../../d0/de7/structCarlaRecorderAnimWheels.html#a6f9857a8a7b458719d61296c7383f04b">WheelValues</a>.resize(NumWheels);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; NumWheels; ++i)</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  {</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_struct" href="../../d0/d48/structWheelInfo.html">WheelInfo</a> Wheel;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    Wheel.<a class="code hl_function" href="../../d0/d48/structWheelInfo.html#a20ad133bd4904baff1db06d898ce363c">Read</a>(InFile);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_variable" href="../../d0/de7/structCarlaRecorderAnimWheels.html#a6f9857a8a7b458719d61296c7383f04b">WheelValues</a>.push_back(Wheel);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_variable" href="../../d0/de7/structCarlaRecorderAnimWheels.html#a6f9857a8a7b458719d61296c7383f04b">WheelValues</a>[i] = Wheel;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  }</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
 </div>
