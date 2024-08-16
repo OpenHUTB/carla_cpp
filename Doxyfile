@@ -1,5 +1,9 @@
+# 项目名称, 将显示为标题
 PROJECT_NAME            =  CARLA
+# 文档生成目录
 OUTPUT_DIRECTORY        =  Doxygen
+# 输出语言
+OUTPUT_LANGUAGE         =  Chinese
 CREATE_SUBDIRS          =  YES
 FULL_PATH_NAMES         =  NO
 JAVADOC_AUTOBRIEF       =  YES
@@ -11,9 +15,11 @@ CASE_SENSE_NAMES        =  YES
 SORT_BRIEF_DOCS         =  YES
 WARN_IF_UNDOCUMENTED    =  NO
 WARN_LOGFILE            =  Doxygen/warnings.log
+# 扫描哪些文件
 INPUT                   =  Unreal/CarlaUE4/Source Unreal/CarlaUE4/Plugins/Carla/Source LibCarla/source
 FILE_PATTERNS           =  *.cpp *.h *.hpp *.cc
 EXCLUDE                 =  LibCarla/source/carla/Version.h
+# 递归扫描
 RECURSIVE               =  YES
 SOURCE_BROWSER          =  YES
 STRIP_CODE_COMMENTS     =  NO
