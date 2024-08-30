@@ -1,9 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
-//
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
-
+// 城市场景中对象的标签类
 #include "Carla.h"
 #include "Tagger.h"
 #include "TaggedComponent.h"
@@ -80,13 +75,19 @@ bool ATagger::IsThing(const crp::CityObjectLabel &Label)
           Label == crp::CityObjectLabel::TrafficLight);
 }
 
+/**
+ * @brief 获得实例分割中参与者所标注的颜色
+ * @param Actor 所需要判断显示颜色的参与者
+ * @param Label 
+ * @return 
+*/
 FLinearColor ATagger::GetActorLabelColor(const AActor &Actor, const crp::CityObjectLabel &Label)
 {
   uint32 id = Actor.GetUniqueID();
   // TODO: Warn if id > 0xffff.
 
-  // Encode label and id like semantic segmentation does
-  // TODO: Steal bits from R channel and maybe A channel?
+  // 像语义分割一样编码标签和 id
+  // TODO: 从红色R通道和可能的A通道借用比特？
   FLinearColor Color(0.0f, 0.0f, 0.0f, 1.0f);
   Color.R = CastEnum(Label) / 255.0f;
   Color.G = ((id & 0x00ff) >> 0) / 255.0f;

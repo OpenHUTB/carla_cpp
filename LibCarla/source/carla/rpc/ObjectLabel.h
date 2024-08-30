@@ -15,7 +15,7 @@ namespace rpc {
 
   enum class CityObjectLabel : uint8_t {
     None         =    0u,
-    // cityscape labels
+    // 城市场景中目标的标签总和
     Roads        =    1u,
     Sidewalks    =    2u,
     Buildings    =    3u,
@@ -35,7 +35,7 @@ namespace rpc {
     Train        =   17u,
     Motorcycle   =   18u,
     Bicycle      =   19u,
-    // custom
+    // 自定义标签
     Static       =   20u,
     Dynamic      =   21u,
     Other        =   22u,
