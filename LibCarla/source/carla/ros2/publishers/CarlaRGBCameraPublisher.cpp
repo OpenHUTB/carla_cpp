@@ -14,11 +14,13 @@
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/topic/TypeSupport.hpp>
 
+// 服务质量 (QoS) 
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
 
+// RTPS规范，全称为实时发布/订阅 协议DDS互操作规范（The Real-Time Publish-Subscribe Protocol (RTPS) DDS Interoperability Wire Protocol Specification）
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
@@ -28,6 +30,8 @@
 namespace carla {
 namespace ros2 {
 
+  // eProsima Fast DDS是 DDS（数据分发服务）规范的 C++ 实现
+  // eProsima Fast DDS库提供应用程序编程接口 (API) 和通信协议，用于部署 以数据为中心的发布者-订阅者 (Data-Centric Publish-Subscribe, DCPS) 模型，目的是在实时系统之间建立高效可靠的信息分发。
   namespace efd = eprosima::fastdds::dds;
   using erc = eprosima::fastrtps::types::ReturnCode_t;
 
@@ -231,6 +235,7 @@ namespace ros2 {
 
   bool CarlaRGBCameraPublisher::PublishInfo() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+	// 执行信息的发布动作
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl_info->_datawriter->write(&_impl_info->_info, instance_handle);
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;

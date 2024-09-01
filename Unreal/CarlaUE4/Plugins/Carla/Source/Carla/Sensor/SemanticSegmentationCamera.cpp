@@ -1,3 +1,4 @@
+// 语义分割相机
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
@@ -20,6 +21,7 @@ ASemanticSegmentationCamera::ASemanticSegmentationCamera(
     const FObjectInitializer &ObjectInitializer)
   : Super(ObjectInitializer)
 {
+  // 语义分割Camera传感器用了两个后处理材质：物理畸变模型、GroundTruth标注
   AddPostProcessingMaterial(
       TEXT("Material'/Carla/PostProcessingMaterials/PhysicLensDistortion.PhysicLensDistortion'"));
   AddPostProcessingMaterial(

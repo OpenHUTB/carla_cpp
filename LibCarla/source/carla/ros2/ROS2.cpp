@@ -44,10 +44,10 @@
 namespace carla {
 namespace ros2 {
 
-// static fields
+// 静态字段
 std::shared_ptr<ROS2> ROS2::_instance;
 
-// list of sensors (should be equal to the list of SensorsRegistry
+// 传感器列表（应该等同于SensorsRegistry列表）
 enum ESensors {
   CollisionSensor,
   DepthCamera,
@@ -195,7 +195,7 @@ std::pair<std::shared_ptr<CarlaPublisher>, std::shared_ptr<CarlaTransformPublish
       transform = it_transforms->second;
     }
   } else {
-    //Sensor not found, creating one of the given type
+    // 没找到传感器，创建一个给定类型
     const std::string string_id = std::to_string(id);
     std::string ros_name = GetActorRosName(actor);
     std::string parent_ros_name = GetActorParentRosName(actor);

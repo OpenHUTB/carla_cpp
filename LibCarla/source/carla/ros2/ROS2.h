@@ -17,7 +17,7 @@
 #include <memory>
 #include <vector>
 
-// forward declarations
+// 前置声明
 class AActor;
 namespace carla {
   namespace geom {
@@ -46,7 +46,7 @@ class ROS2
 {
   public:
 
-  // deleting copy constructor for singleton
+  // 删除单例的复制构造函数
   ROS2(const ROS2& obj) = delete;
   static std::shared_ptr<ROS2> GetInstance() {
     if (!_instance)
@@ -54,14 +54,14 @@ class ROS2
     return _instance;
   }
 
-  // general
+  // 通用函数
   void Enable(bool enable);
   void Shutdown();
   bool IsEnabled() { return _enabled; }
   void SetFrame(uint64_t frame);
   void SetTimestamp(double timestamp);
 
-  // ros_name managing
+  // ros_name 管理函数
   void AddActorRosName(void *actor, std::string ros_name);
   void AddActorParentRosName(void *actor, void* parent);
   void RemoveActorRosName(void *actor);
@@ -69,16 +69,16 @@ class ROS2
   std::string GetActorRosName(void *actor);
   std::string GetActorParentRosName(void *actor);
 
-  // callbacks
+  // 回调函数
   void AddActorCallback(void* actor, std::string ros_name, ActorCallback callback);
   void RemoveActorCallback(void* actor);
 
-  // enabling streams to publish
+  // 允许流发布
   void EnableStream(carla::streaming::detail::stream_id_type id) { _publish_stream.insert(id); }
   bool IsStreamEnabled(carla::streaming::detail::stream_id_type id) { return _publish_stream.count(id) > 0; }
   void ResetStreams() { _publish_stream.clear(); }
 
-  // receiving data to publish
+  // 接收要发布的数据
   void ProcessDataFromCamera(
       uint64_t sensor_type,
       carla::streaming::detail::stream_id_type stream_id,
@@ -144,7 +144,7 @@ void ProcessDataFromCollisionSensor(
   private:
   std::pair<std::shared_ptr<CarlaPublisher>, std::shared_ptr<CarlaTransformPublisher>> GetOrCreateSensor(int type, carla::streaming::detail::stream_id_type id, void* actor);
 
-  // sigleton
+  // 单例
   ROS2() {};
 
   static std::shared_ptr<ROS2> _instance;

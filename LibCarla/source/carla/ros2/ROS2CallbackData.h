@@ -7,11 +7,11 @@
 #pragma once
 
 #ifdef _MSC_VER
-#pragma warning(push)
+#pragma warning(push)                   // 保存当前的编译器警告状态
 #pragma warning(disable:4583)
 #pragma warning(disable:4582)
-#include <boost/variant2/variant.hpp>
-#pragma warning(pop)
+#include <boost/variant2/variant.hpp>   // 这样在编译这行代码时，4583、4582 两个警告将不会出现
+#pragma warning(pop)                    // 恢复原先的警告状态
 #else
 #include <boost/variant2/variant.hpp>
 #endif
@@ -21,13 +21,13 @@ namespace ros2 {
 
   struct VehicleControl
   {
-    float   throttle;
-    float   steer;
-    float   brake;
-    bool    hand_brake;
-    bool    reverse;
-    int32_t gear;
-    bool    manual_gear_shift;
+    float   throttle;           // 油门
+    float   steer;              // 方向盘
+    float   brake;              // 刹车
+    bool    hand_brake;         // 手刹
+    bool    reverse;            // 倒档
+    int32_t gear;               // 档位
+    bool    manual_gear_shift;  // 手动档位换
   };
 
   using ROS2CallbackData = boost::variant2::variant<VehicleControl>;

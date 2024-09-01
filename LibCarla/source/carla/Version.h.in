@@ -1,3 +1,5 @@
+// 执行cmake配置构建系统后，将会自动生成文件：Version.h，
+// 其中${CARLA_VERSION}将会被替换为对应的值。
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
