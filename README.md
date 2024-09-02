@@ -61,7 +61,7 @@ git rm -rf .
 
 
 ## 贡献者列表
-[nongfugengxia](https://github.com/nongfugengxia) 、[donghaiwang](https://github.com/donghaiwang) 。
+[nongfugengxia](https://github.com/nongfugengxia) 、[donghaiwang](https://github.com/donghaiwang) 、
 [QEYY060506](https://github.com/QEYY060506) 
 
 
