@@ -104,7 +104,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction.">
+<g id="a_Node000005"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction">
 <polygon fill="white" stroke="#666666" points="1095,-382 940.25,-382 940.25,-350 1095,-350 1095,-382"/>
 <text text-anchor="start" x="948.25" y="-368.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="1017.62" y="-356.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CreateJunctionBoundingBoxes</text>
@@ -569,7 +569,7 @@
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning.">
+<g id="a_Node000030"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning">
 <polygon fill="white" stroke="#666666" points="1078.88,-432 956.38,-432 956.38,-400 1078.88,-400 1078.88,-432"/>
 <text text-anchor="start" x="964.38" y="-418.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="1017.62" y="-406.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CheckSignalsOnRoads</text>

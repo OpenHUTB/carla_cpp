@@ -212,7 +212,7 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="../../d5/de4/classARayCastLidar.html#a44f45120fa5ff9d7a3d2fe0634adc98c" target="_top" xlink:title="Compute the received intensity of the point.">
+<g id="a_Node000016"><a xlink:href="../../d5/de4/classARayCastLidar.html#a44f45120fa5ff9d7a3d2fe0634adc98c" target="_top" xlink:title="Compute the received intensity of the point">
 <polygon fill="white" stroke="#666666" points="1590,-433 1427,-433 1427,-413 1590,-413 1590,-433"/>
 <text text-anchor="middle" x="1508.5" y="-419.5" font-family="Helvetica,sans-Serif" font-size="10.00">ARayCastLidar::ComputeIntensity</text>
 </a>
@@ -268,7 +268,7 @@
 <!-- Node22 -->
 <g id="Node000022" class="node">
 <title>Node22</title>
-<g id="a_Node000022"><a xlink:href="../../d0/dea/classcarla_1_1geom_1_1Math.html#a6553b235b169efa70b899d41f3b568ba" target="_top" xlink:title="Returns the angle between 2 vectors in radians.">
+<g id="a_Node000022"><a xlink:href="../../d0/dea/classcarla_1_1geom_1_1Math.html#a6553b235b169efa70b899d41f3b568ba" target="_top" xlink:title="Returns the angle between 2 vectors in radians">
 <polygon fill="white" stroke="#666666" points="1558.88,-210 1458.12,-210 1458.12,-178 1558.88,-178 1558.88,-210"/>
 <text text-anchor="start" x="1466.12" y="-196.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Math::</text>
 <text text-anchor="middle" x="1508.5" y="-184.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetVectorAngle</text>
@@ -536,7 +536,7 @@
 <!-- Node14 -->
 <g id="Node000014" class="node">
 <title>Node14</title>
-<g id="a_Node000014"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" target="_top" xlink:title="Buids a list of meshes related with LineMarkings.">
+<g id="a_Node000014"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" target="_top" xlink:title="Buids a list of meshes related with LineMarkings">
 <polygon fill="white" stroke="#666666" points="969,-232 836.75,-232 836.75,-200 969,-200 969,-232"/>
 <text text-anchor="start" x="844.75" y="-218.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::Generate</text>
 <text text-anchor="middle" x="902.88" y="-206.5" font-family="Helvetica,sans-Serif" font-size="10.00">LineMarkings</text>

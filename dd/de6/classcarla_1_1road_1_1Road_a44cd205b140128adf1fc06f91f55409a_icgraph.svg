@@ -198,7 +198,7 @@ var sectionId = 'dynsection-21';
 <!-- Node39 -->
 <g id="Node000039" class="node">
 <title>Node39</title>
-<g id="a_Node000039"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction.">
+<g id="a_Node000039"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction">
 <polygon fill="white" stroke="#666666" points="1650.75,-583 1506.5,-583 1506.5,-551 1650.75,-551 1650.75,-583"/>
 <text text-anchor="start" x="1514.5" y="-569.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetJunction</text>
 <text text-anchor="middle" x="1578.62" y="-557.5" font-family="Helvetica,sans-Serif" font-size="10.00">Waypoints</text>
@@ -412,7 +412,7 @@ var sectionId = 'dynsection-21';
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning.">
+<g id="a_Node000009"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning">
 <polygon fill="white" stroke="#666666" points="1078.88,-391 956.38,-391 956.38,-359 1078.88,-359 1078.88,-391"/>
 <text text-anchor="start" x="964.38" y="-377.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="1017.62" y="-365.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CheckSignalsOnRoads</text>
@@ -431,7 +431,7 @@ var sectionId = 'dynsection-21';
 <!-- Node29 -->
 <g id="Node000029" class="node">
 <title>Node29</title>
-<g id="a_Node000029"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction.">
+<g id="a_Node000029"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction">
 <polygon fill="white" stroke="#666666" points="1095,-693 940.25,-693 940.25,-661 1095,-661 1095,-693"/>
 <text text-anchor="start" x="948.25" y="-679.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="1017.62" y="-667.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CreateJunctionBoundingBoxes</text>
@@ -469,7 +469,7 @@ var sectionId = 'dynsection-21';
 <!-- Node33 -->
 <g id="Node000033" class="node">
 <title>Node33</title>
-<g id="a_Node000033"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished.">
+<g id="a_Node000033"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished">
 <polygon fill="white" stroke="#666666" points="1077.38,-555 957.88,-555 957.88,-523 1077.38,-523 1077.38,-555"/>
 <text text-anchor="start" x="965.88" y="-541.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="1017.62" y="-529.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkZones</text>
@@ -950,7 +950,7 @@ var sectionId = 'dynsection-21';
 <!-- Node34 -->
 <g id="Node000034" class="node">
 <title>Node34</title>
-<g id="a_Node000034"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" target="_top" xlink:title="Buids a mesh of all crosswalks based on the OpenDRIVE.">
+<g id="a_Node000034"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" target="_top" xlink:title="Buids a mesh of all crosswalks based on the OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="890.75,-611 771.25,-611 771.25,-579 890.75,-579 890.75,-611"/>
 <text text-anchor="start" x="779.25" y="-597.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="831" y="-585.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkMesh</text>

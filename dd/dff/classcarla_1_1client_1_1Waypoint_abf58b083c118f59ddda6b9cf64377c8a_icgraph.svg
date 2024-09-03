@@ -31,7 +31,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../dd/dff/classcarla_1_1client_1_1Waypoint.html#ad5c3e3ad6a455ce99d5aa51a9d501231" target="_top" xlink:title="Returns a list of waypoints separated by distance from the current waypoint to the end of the lane.">
+<g id="a_Node000002"><a xlink:href="../../dd/dff/classcarla_1_1client_1_1Waypoint.html#ad5c3e3ad6a455ce99d5aa51a9d501231" target="_top" xlink:title="Returns a list of waypoints separated by distance from the current waypoint to the end of the lane">
 <polygon fill="white" stroke="#666666" points="125.88,-82 10.12,-82 10.12,-50 125.88,-50 125.88,-82"/>
 <text text-anchor="start" x="18.12" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Waypoint</text>
 <text text-anchor="middle" x="68" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GetNextUntilLaneEnd</text>
@@ -50,7 +50,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="../../dd/dff/classcarla_1_1client_1_1Waypoint.html#ae6383bb17e6c195721874090166bddeb" target="_top" xlink:title="Returns a list of waypoints separated by distance from the current waypoint to the start of the lane.">
+<g id="a_Node000003"><a xlink:href="../../dd/dff/classcarla_1_1client_1_1Waypoint.html#ae6383bb17e6c195721874090166bddeb" target="_top" xlink:title="Returns a list of waypoints separated by distance from the current waypoint to the start of the lane">
 <polygon fill="white" stroke="#666666" points="136,-32 0,-32 0,0 136,0 136,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Waypoint</text>
 <text text-anchor="middle" x="68" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GetPreviousUntilLaneStart</text>

@@ -57,7 +57,7 @@ var sectionId = 'dynsection-4';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Computes the location of the edges given a s.">
+<g id="a_Node000001"><a xlink:title="Computes the location of the edges given a s">
 <polygon fill="#999999" stroke="#666666" points="100.75,-236 0,-236 0,-204 100.75,-204 100.75,-236"/>
 <text text-anchor="start" x="8" y="-222.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="50.38" y="-210.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetCornerPositions</text>
@@ -201,7 +201,7 @@ var sectionId = 'dynsection-4';
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a34da073c1da719b3455c4dd8f7b441c9" target="_top" xlink:title="Returns the total lane width given a s.">
+<g id="a_Node000015"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a34da073c1da719b3455c4dd8f7b441c9" target="_top" xlink:title="Returns the total lane width given a s">
 <polygon fill="white" stroke="#666666" points="248,-120 153.25,-120 153.25,-88 248,-88 248,-120"/>
 <text text-anchor="start" x="161.25" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="200.62" y="-94.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetWidth</text>
@@ -304,7 +304,7 @@ var sectionId = 'dynsection-4';
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000009"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="428.25,-296 313.25,-296 313.25,-264 428.25,-264 428.25,-296"/>
 <text text-anchor="start" x="321.25" y="-282.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="370.75" y="-270.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>

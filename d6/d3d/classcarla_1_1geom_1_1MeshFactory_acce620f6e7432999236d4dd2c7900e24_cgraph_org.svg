@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Generates a list of meshes that defines a lane_section with a maximum length.">
+<g id="a_Node000001"><a xlink:title="Generates a list of meshes that defines a lane_section with a maximum length">
 <polygon fill="#999999" stroke="#666666" points="151,-347 0,-347 0,-315 151,-315 151,-347"/>
 <text text-anchor="start" x="8" y="-333.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="75.5" y="-321.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateOrderedWithMaxLen</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" target="_top" xlink:title="Generates a mesh that defines a lane section.">
+<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" target="_top" xlink:title="Generates a mesh that defines a lane section">
 <polygon fill="white" stroke="#666666" points="337.25,-391 187,-391 187,-359 337.25,-359 337.25,-391"/>
 <text text-anchor="start" x="195" y="-377.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="262.12" y="-365.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateLaneSectionOrdered</text>
@@ -78,7 +78,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" target="_top" xlink:title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation.">
+<g id="a_Node000005"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" target="_top" xlink:title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation">
 <polygon fill="white" stroke="#666666" points="503.25,-300 373.25,-300 373.25,-268 503.25,-268 503.25,-300"/>
 <text text-anchor="start" x="381.25" y="-286.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="438.25" y="-274.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateTesselated</text>
@@ -303,7 +303,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" target="_top" xlink:title="Computes the location of the edges given a s.">
+<g id="a_Node000011"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" target="_top" xlink:title="Computes the location of the edges given a s">
 <polygon fill="white" stroke="#666666" points="650.5,-400 549.75,-400 549.75,-368 650.5,-368 650.5,-400"/>
 <text text-anchor="start" x="557.75" y="-386.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="600.12" y="-374.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetCornerPositions</text>
@@ -521,7 +521,7 @@
 <!-- Node25 -->
 <g id="Node000025" class="node">
 <title>Node25</title>
-<g id="a_Node000025"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a34da073c1da719b3455c4dd8f7b441c9" target="_top" xlink:title="Returns the total lane width given a s.">
+<g id="a_Node000025"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a34da073c1da719b3455c4dd8f7b441c9" target="_top" xlink:title="Returns the total lane width given a s">
 <polygon fill="white" stroke="#666666" points="808.25,-397 713.5,-397 713.5,-365 808.25,-365 808.25,-397"/>
 <text text-anchor="start" x="721.5" y="-383.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="760.88" y="-371.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetWidth</text>
@@ -624,7 +624,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000019"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="988.5,-573 873.5,-573 873.5,-541 988.5,-541 988.5,-573"/>
 <text text-anchor="start" x="881.5" y="-559.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="931" y="-547.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>

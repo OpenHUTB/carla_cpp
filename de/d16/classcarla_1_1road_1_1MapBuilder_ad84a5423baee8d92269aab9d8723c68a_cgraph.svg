@@ -323,7 +323,7 @@ var sectionId = 'dynsection-62';
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#ae4e3c1ad71021067f9a444b98f78b335" target="_top" xlink:title="Get the end section (from road coordinates s) given a lane id.">
+<g id="a_Node000006"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#ae4e3c1ad71021067f9a444b98f78b335" target="_top" xlink:title="Get the end section (from road coordinates s) given a lane id">
 <polygon fill="white" stroke="#666666" points="419.25,-612 323,-612 323,-580 419.25,-580 419.25,-612"/>
 <text text-anchor="start" x="331" y="-598.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Road::</text>
 <text text-anchor="middle" x="371.12" y="-586.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetEndSection</text>
@@ -360,7 +360,7 @@ var sectionId = 'dynsection-62';
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6c90082d65eb8e2fbb8d9db51136563a" target="_top" xlink:title="Get the start section (from road coordinates s) given a lane id.">
+<g id="a_Node000009"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6c90082d65eb8e2fbb8d9db51136563a" target="_top" xlink:title="Get the start section (from road coordinates s) given a lane id">
 <polygon fill="white" stroke="#666666" points="419.25,-562 323,-562 323,-530 419.25,-530 419.25,-562"/>
 <text text-anchor="start" x="331" y="-548.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Road::</text>
 <text text-anchor="middle" x="371.12" y="-536.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetStartSection</text>

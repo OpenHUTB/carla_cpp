@@ -1,5 +1,5 @@
 <map id="carla::road::Map::GetAllCrosswalkZones" name="carla::road::Map::GetAllCrosswalkZones">
-<area shape="rect" id="Node000001" title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished." alt="" coords="5,700,165,743"/>
+<area shape="rect" id="Node000001" title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished" alt="" coords="5,700,165,743"/>
 <area shape="rect" id="Node000002" href="$d0/d34/classcarla_1_1road_1_1Map.html#ab92716131e75fa9760042389d14f56a2" title=" " alt="" coords="213,633,388,676"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,697,214,678,216,684,157,702"/>
 <area shape="rect" id="Node000028" href="$da/d3b/classcarla_1_1road_1_1MapData.html#a55f640e9a3f5930e5d1d8fd4e07f1e9e" title=" " alt="" coords="229,700,372,743"/>
@@ -35,7 +35,7 @@
 <area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="807,140,886,127,887,132,808,145"/>
 <area shape="rect" id="Node000009" href="$dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e" title=" " alt="" coords="904,161,1033,204"/>
 <area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="807,159,889,170,889,175,807,164"/>
-<area shape="rect" id="Node000011" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="Returns single info given a type and a distance (s) from the start of the road." alt="" coords="892,240,1045,283"/>
+<area shape="rect" id="Node000011" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="Returns single info given a type and a distance (s) from the start of the road" alt="" coords="892,240,1045,283"/>
 <area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="803,173,828,184,876,214,909,231,907,236,873,218,825,189,800,178"/>
 <area shape="rect" id="Node000008" href="$d3/d33/Simplify_8h.html#a50798148e5016c5b85087d4009824f27" title=" " alt="" coords="1170,103,1212,129"/>
 <area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1036,113,1155,113,1155,119,1036,119"/>

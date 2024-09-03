@@ -1,5 +1,5 @@
 <map id="carla::road::InformationSet::GetInfo" name="carla::road::InformationSet::GetInfo">
-<area shape="rect" id="Node000001" title="Returns single info given a type and a distance (s) from the start of the road." alt="" coords="2041,859,2194,901"/>
+<area shape="rect" id="Node000001" title="Returns single info given a type and a distance (s) from the start of the road" alt="" coords="2041,859,2194,901"/>
 <area shape="rect" id="Node000002" href="$dd/de6/classcarla_1_1road_1_1Road.html#abe77139bd9cba13e5c068c6f78b5196c" title="Returns a directed point on the center of the road (lane 0), with the corresponding laneOffset and el..." alt="" coords="1824,897,1954,940"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2027,898,1955,910,1954,905,2026,893"/>
 <area shape="rect" id="Node000059" href="$dd/de6/classcarla_1_1road_1_1Road.html#add5e8cae755c9981a715426d29f14887" title="Returns a directed point on the center of the road (lane 0), with the corresponding laneOffset and el..." alt="" coords="1785,409,1993,452"/>
@@ -12,9 +12,9 @@
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1809,896,1714,865,1716,860,1811,891"/>
 <area shape="rect" id="Node000043" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5744e75d34e0a3514892d4a9b7906652" title=" " alt="" coords="981,1331,1208,1373"/>
 <area shape="poly" id="edge34_Node000002_Node000043" title=" " alt="" coords="1871,954,1819,1033,1740,1136,1692,1189,1638,1240,1579,1284,1516,1321,1478,1337,1439,1349,1359,1363,1280,1369,1208,1367,1209,1362,1280,1363,1358,1358,1438,1343,1476,1332,1513,1316,1576,1280,1634,1235,1688,1185,1736,1133,1815,1030,1866,951"/>
-<area shape="rect" id="Node000045" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" title="Computes the location of the edges given a s." alt="" coords="1582,897,1717,940"/>
+<area shape="rect" id="Node000045" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" title="Computes the location of the edges given a s" alt="" coords="1582,897,1717,940"/>
 <area shape="poly" id="edge37_Node000002_Node000045" title=" " alt="" coords="1809,921,1717,921,1717,916,1809,916"/>
-<area shape="rect" id="Node000058" href="$dd/de6/classcarla_1_1road_1_1Road.html#ab2b49cb7ce0697c34d49e20dfa40692b" title="Returns a pointer to the nearest lane, given s relative to Road and a location." alt="" coords="1585,964,1714,1007"/>
+<area shape="rect" id="Node000058" href="$dd/de6/classcarla_1_1road_1_1Road.html#ab2b49cb7ce0697c34d49e20dfa40692b" title="Returns a pointer to the nearest lane, given s relative to Road and a location" alt="" coords="1585,964,1714,1007"/>
 <area shape="poly" id="edge58_Node000002_Node000058" title=" " alt="" coords="1810,943,1715,970,1713,965,1809,938"/>
 <area shape="rect" id="Node000004" href="$d0/d34/classcarla_1_1road_1_1Map.html#ab92716131e75fa9760042389d14f56a2" title=" " alt="" coords="1303,559,1478,601"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1615,811,1411,604,1415,600,1618,807"/>
@@ -28,13 +28,13 @@
 <area shape="poly" id="edge15_Node000004_Node000006" title=" " alt="" coords="1325,555,1217,516,1149,498,1095,488,970,465,903,450,904,445,971,460,1096,482,1150,493,1219,511,1327,550"/>
 <area shape="rect" id="Node000008" href="$d2/d60/classcarla_1_1road_1_1element_1_1LaneCrossingCalculator.html#a589511f573df9e9c46c55a7a46c02cd6" title=" " alt="" coords="501,513,667,572"/>
 <area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="1375,546,1353,494,1320,434,1274,376,1247,352,1217,332,1172,315,1112,301,1042,293,967,289,893,291,824,298,766,312,723,332,709,344,700,357,694,386,690,419,685,437,676,456,651,488,623,515,620,511,647,484,671,453,680,435,685,418,688,385,695,355,704,341,720,327,764,307,823,293,893,286,967,284,1042,288,1112,296,1173,309,1219,327,1250,347,1278,372,1324,431,1358,492,1379,544"/>
-<area shape="rect" id="Node000010" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" title="Checks signals overlapping driving lanes and emits a warning." alt="" coords="1013,592,1176,635"/>
+<area shape="rect" id="Node000010" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" title="Checks signals overlapping driving lanes and emits a warning" alt="" coords="1013,592,1176,635"/>
 <area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="1288,594,1176,607,1176,602,1287,589"/>
-<area shape="rect" id="Node000030" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" title="Create the bounding boxes of each junction." alt="" coords="991,525,1198,568"/>
+<area shape="rect" id="Node000030" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" title="Create the bounding boxes of each junction" alt="" coords="991,525,1198,568"/>
 <area shape="poly" id="edge13_Node000004_Node000030" title=" " alt="" coords="1287,571,1197,561,1198,556,1288,566"/>
 <area shape="rect" id="Node000031" href="$d0/d34/classcarla_1_1road_1_1Map.html#accf4f345bb9db4bcd6cdd9e6fec322cc" title=" " alt="" coords="496,760,672,803"/>
 <area shape="poly" id="edge16_Node000004_Node000031" title=" " alt="" coords="1328,610,1275,631,1219,649,1144,668,1080,680,970,693,860,706,797,717,722,735,644,762,642,757,721,729,795,712,860,700,970,688,1079,675,1143,663,1217,644,1274,626,1326,605"/>
-<area shape="rect" id="Node000034" href="$d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished." alt="" coords="1015,341,1174,384"/>
+<area shape="rect" id="Node000034" href="$d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished" alt="" coords="1015,341,1174,384"/>
 <area shape="poly" id="edge19_Node000004_Node000034" title=" " alt="" coords="1364,548,1303,472,1262,432,1217,398,1173,380,1175,375,1219,394,1266,428,1307,468,1369,545"/>
 <area shape="rect" id="Node000036" href="$d0/d34/classcarla_1_1road_1_1Map.html#a39f0ccacb98f62b339de96c69621543b" title=" " alt="" coords="995,811,1194,837"/>
 <area shape="poly" id="edge21_Node000004_Node000036" title=" " alt="" coords="1373,616,1348,657,1313,705,1270,753,1219,794,1179,813,1177,808,1217,790,1266,750,1309,702,1343,654,1368,613"/>
@@ -56,7 +56,7 @@
 <area shape="poly" id="edge17_Node000031_Node000032" title=" " alt="" coords="481,783,447,783,447,778,481,778"/>
 <area shape="rect" id="Node000033" href="$d0/d34/classcarla_1_1road_1_1Map.html#ac77235567699cc2853177c441390fd14" title=" " alt="" coords="5,696,222,739"/>
 <area shape="poly" id="edge18_Node000032_Node000033" title=" " alt="" coords="258,757,199,742,200,737,259,752"/>
-<area shape="rect" id="Node000035" href="$d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" title="Buids a mesh of all crosswalks based on the OpenDRIVE." alt="" coords="742,341,902,384"/>
+<area shape="rect" id="Node000035" href="$d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" title="Buids a mesh of all crosswalks based on the OpenDRIVE" alt="" coords="742,341,902,384"/>
 <area shape="poly" id="edge20_Node000034_Node000035" title=" " alt="" coords="1000,365,902,365,902,360,1000,360"/>
 <area shape="poly" id="edge22_Node000036_Node000031" title=" " alt="" coords="998,845,972,858,958,873,950,889,941,905,924,918,869,940,823,946,776,938,720,918,680,895,645,865,617,832,597,804,601,801,621,829,649,861,683,891,722,914,777,933,823,941,868,935,921,914,937,901,945,886,953,870,969,854,996,840"/>
 <area shape="rect" id="Node000037" href="$d0/d34/classcarla_1_1road_1_1Map.html#a047f3fd871248ef6cea3d7057e38830b" title="Generate the minimum set of waypoints that define the topology of map." alt="" coords="734,861,910,904"/>
@@ -67,7 +67,7 @@
 <area shape="poly" id="edge25_Node000038_Node000008" title=" " alt="" coords="739,798,720,785,699,760,690,737,683,712,671,683,604,574,608,571,676,680,688,710,695,735,704,758,723,781,742,794"/>
 <area shape="poly" id="edge27_Node000039_Node000031" title=" " alt="" coords="710,771,673,775,672,770,709,766"/>
 <area shape="poly" id="edge31_Node000040_Node000033" title=" " alt="" coords="1299,800,1176,771,1021,737,848,707,673,684,584,680,495,684,382,687,270,696,222,702,222,697,269,691,382,682,495,679,584,675,674,679,849,701,1022,732,1178,765,1300,794"/>
-<area shape="rect" id="Node000041" href="$d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" title="Buids a list of meshes related with LineMarkings." alt="" coords="496,1143,672,1185"/>
+<area shape="rect" id="Node000041" href="$d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" title="Buids a list of meshes related with LineMarkings" alt="" coords="496,1143,672,1185"/>
 <area shape="poly" id="edge30_Node000040_Node000041" title=" " alt="" coords="1300,838,1096,875,972,902,957,913,948,924,938,937,924,951,845,1011,763,1065,628,1144,625,1140,761,1060,842,1006,921,947,934,934,943,921,953,909,970,898,1095,870,1299,833"/>
 <area shape="poly" id="edge32_Node000040_Node000042" title=" " alt="" coords="1301,848,1267,862,1244,879,1219,896,1175,914,1173,909,1217,891,1240,874,1265,858,1299,843"/>
 <area shape="rect" id="Node000044" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a6228f1a0673c73589a0816085fbc2900" title=" " alt="" coords="728,1264,916,1307"/>
@@ -76,38 +76,38 @@
 <area shape="poly" id="edge57_Node000045_Node000042" title=" " alt="" coords="1568,923,1183,934,1183,928,1567,918"/>
 <area shape="rect" id="Node000046" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a512234aafe71530fd0cff32d9a27a4e4" title=" " alt="" coords="1293,1264,1487,1307"/>
 <area shape="poly" id="edge38_Node000045_Node000046" title=" " alt="" coords="1572,946,1564,954,1544,985,1536,1016,1534,1046,1537,1076,1541,1106,1541,1138,1534,1172,1517,1207,1502,1225,1484,1241,1445,1266,1442,1261,1480,1237,1498,1221,1512,1204,1529,1170,1536,1138,1536,1107,1532,1076,1529,1046,1530,1015,1539,983,1560,950,1568,942"/>
-<area shape="rect" id="Node000048" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a1e3c826505f82d1ddffd9f40c39cfa2a" title="Generates a mesh that defines a lane from a given s start and end." alt="" coords="1304,123,1477,165"/>
+<area shape="rect" id="Node000048" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a1e3c826505f82d1ddffd9f40c39cfa2a" title="Generates a mesh that defines a lane from a given s start and end" alt="" coords="1304,123,1477,165"/>
 <area shape="poly" id="edge42_Node000045_Node000048" title=" " alt="" coords="1573,890,1560,876,1546,848,1537,813,1530,728,1533,629,1541,522,1548,416,1549,319,1545,275,1539,237,1528,205,1512,179,1496,165,1476,155,1478,150,1499,160,1516,176,1533,202,1544,236,1551,275,1554,319,1553,417,1546,523,1538,629,1535,728,1542,812,1551,846,1565,873,1577,887"/>
-<area shape="rect" id="Node000049" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" title="Generates a wall&#45;like mesh at the left side of the lane." alt="" coords="1304,189,1477,232"/>
+<area shape="rect" id="Node000049" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" title="Generates a wall&#45;like mesh at the left side of the lane" alt="" coords="1304,189,1477,232"/>
 <area shape="poly" id="edge43_Node000045_Node000049" title=" " alt="" coords="1573,890,1560,876,1547,850,1539,819,1532,742,1534,652,1540,556,1546,460,1546,372,1536,298,1526,269,1512,246,1496,232,1476,222,1479,217,1499,227,1516,242,1531,267,1542,297,1551,372,1551,460,1545,556,1539,652,1537,742,1544,818,1552,849,1565,873,1577,887"/>
-<area shape="rect" id="Node000052" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" title="Generates a wall&#45;like mesh at the right side of the lane." alt="" coords="1304,256,1477,299"/>
+<area shape="rect" id="Node000052" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" title="Generates a wall&#45;like mesh at the right side of the lane" alt="" coords="1304,256,1477,299"/>
 <area shape="poly" id="edge47_Node000045_Node000052" title=" " alt="" coords="1574,890,1560,876,1535,833,1522,793,1518,756,1519,719,1525,641,1522,597,1512,547,1486,475,1456,405,1402,300,1406,298,1460,402,1491,473,1517,546,1527,596,1530,641,1524,719,1523,755,1527,792,1540,831,1564,873,1577,887"/>
 <area shape="rect" id="Node000053" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a307f715a3e409fd5db0ce50f45c40478" title=" " alt="" coords="1304,967,1477,1009"/>
 <area shape="poly" id="edge50_Node000045_Node000053" title=" " alt="" coords="1568,943,1473,969,1472,963,1567,938"/>
-<area shape="rect" id="Node000054" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation." alt="" coords="1304,1033,1477,1076"/>
+<area shape="rect" id="Node000054" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation" alt="" coords="1304,1033,1477,1076"/>
 <area shape="poly" id="edge51_Node000045_Node000054" title=" " alt="" coords="1571,949,1564,954,1549,971,1541,988,1533,1006,1516,1023,1478,1042,1476,1037,1513,1019,1528,1003,1536,986,1544,968,1561,950,1568,945"/>
 <area shape="poly" id="edge39_Node000046_Node000043" title=" " alt="" coords="1279,1313,1193,1333,1192,1327,1278,1308"/>
 <area shape="rect" id="Node000047" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aad2ea408b3032e959e384431becd860b" title=" " alt="" coords="971,1264,1218,1307"/>
 <area shape="poly" id="edge40_Node000046_Node000047" title=" " alt="" coords="1278,1288,1218,1288,1218,1283,1278,1283"/>
 <area shape="poly" id="edge41_Node000047_Node000044" title=" " alt="" coords="956,1288,917,1288,917,1283,956,1283"/>
-<area shape="rect" id="Node000050" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" title="Genrates a mesh representing a wall on the road corners to avoid cars falling down." alt="" coords="1008,173,1181,216"/>
+<area shape="rect" id="Node000050" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" title="Genrates a mesh representing a wall on the road corners to avoid cars falling down" alt="" coords="1008,173,1181,216"/>
 <area shape="poly" id="edge44_Node000049_Node000050" title=" " alt="" coords="1288,208,1181,202,1182,197,1288,203"/>
-<area shape="rect" id="Node000051" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" title="Generates a list of meshes that defines a lane_section safety wall with a maximum length." alt="" coords="728,173,916,216"/>
+<area shape="rect" id="Node000051" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" title="Generates a list of meshes that defines a lane_section safety wall with a maximum length" alt="" coords="728,173,916,216"/>
 <area shape="poly" id="edge46_Node000049_Node000051" title=" " alt="" coords="1291,187,1265,180,1241,171,1217,164,1149,155,1095,153,971,164,906,175,905,170,970,159,1095,147,1149,150,1219,159,1243,166,1267,175,1292,182"/>
 <area shape="poly" id="edge45_Node000050_Node000051" title=" " alt="" coords="993,197,917,197,917,192,993,192"/>
 <area shape="poly" id="edge48_Node000052_Node000050" title=" " alt="" coords="1293,254,1265,247,1169,219,1171,214,1267,241,1294,249"/>
 <area shape="poly" id="edge49_Node000052_Node000051" title=" " alt="" coords="1289,271,1138,255,970,231,913,219,914,214,971,225,1139,249,1289,266"/>
 <area shape="poly" id="edge55_Node000054_Node000031" title=" " alt="" coords="1288,1034,1218,1020,1141,1010,1075,1009,960,1013,905,1012,849,1004,788,985,720,952,702,938,692,923,671,888,602,805,606,802,676,885,696,920,706,934,723,947,790,980,850,999,905,1007,960,1008,1075,1003,1142,1005,1218,1015,1289,1029"/>
-<area shape="rect" id="Node000055" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="Generates a mesh that defines a lane section." alt="" coords="994,1096,1195,1139"/>
+<area shape="rect" id="Node000055" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="Generates a mesh that defines a lane section" alt="" coords="994,1096,1195,1139"/>
 <area shape="poly" id="edge52_Node000054_Node000055" title=" " alt="" coords="1289,1079,1196,1099,1195,1093,1288,1073"/>
-<area shape="rect" id="Node000056" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" title="Generates a list of meshes that defines a lane_section with a maximum length." alt="" coords="721,1109,923,1152"/>
+<area shape="rect" id="Node000056" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" title="Generates a list of meshes that defines a lane_section with a maximum length" alt="" coords="721,1109,923,1152"/>
 <area shape="poly" id="edge54_Node000054_Node000056" title=" " alt="" coords="1350,1087,1290,1124,1255,1141,1219,1153,1142,1166,1064,1169,989,1164,923,1155,924,1150,990,1159,1064,1163,1142,1161,1217,1148,1253,1136,1288,1119,1347,1083"/>
-<area shape="rect" id="Node000057" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" title="Generates a mesh that defines the whole lane with bigger tesselation." alt="" coords="1008,1029,1181,1072"/>
+<area shape="rect" id="Node000057" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" title="Generates a mesh that defines the whole lane with bigger tesselation" alt="" coords="1008,1029,1181,1072"/>
 <area shape="poly" id="edge56_Node000054_Node000057" title=" " alt="" coords="1288,1056,1182,1055,1182,1049,1288,1051"/>
 <area shape="poly" id="edge53_Node000055_Node000056" title=" " alt="" coords="980,1126,923,1128,923,1123,979,1120"/>
 <area shape="rect" id="Node000060" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a59c3796375f1ca76276763f94b923afc" title=" " alt="" coords="1562,64,1737,107"/>
 <area shape="poly" id="edge60_Node000059_Node000060" title=" " alt="" coords="1868,397,1812,297,1775,237,1735,179,1703,141,1672,109,1676,105,1707,138,1739,176,1779,234,1817,294,1872,395"/>
-<area shape="rect" id="Node000061" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" title="Solves the signal references in the road." alt="" coords="1266,5,1514,48"/>
+<area shape="rect" id="Node000061" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" title="Solves the signal references in the road" alt="" coords="1266,5,1514,48"/>
 <area shape="poly" id="edge61_Node000060_Node000061" title=" " alt="" coords="1547,65,1487,51,1488,46,1548,60"/>
 <area shape="poly" id="edge62_Node000061_Node000011" title=" " alt="" coords="1252,37,1179,51,1103,75,1067,91,1032,111,1001,135,973,163,948,200,937,235,935,270,938,304,943,340,945,379,941,419,925,464,910,490,891,514,852,552,849,548,887,510,905,487,920,462,935,418,940,378,938,341,933,305,930,270,932,234,943,198,969,160,997,131,1029,107,1064,87,1101,70,1177,46,1251,32"/>
 <area shape="poly" id="edge70_Node000062_Node000036" title=" " alt="" coords="1328,1145,1293,1121,1264,1090,1249,1064,1242,1039,1240,994,1237,949,1230,926,1216,902,1198,882,1176,865,1131,840,1134,836,1179,860,1201,878,1220,898,1235,924,1243,948,1245,993,1247,1038,1254,1061,1268,1086,1297,1117,1331,1141"/>
@@ -120,7 +120,7 @@
 <area shape="poly" id="edge67_Node000063_Node000064" title=" " alt="" coords="1006,1235,939,1233,864,1224,789,1203,753,1186,720,1166,689,1140,664,1108,642,1074,624,1039,599,973,586,926,591,925,604,972,629,1037,646,1072,668,1105,693,1136,723,1162,755,1182,790,1198,865,1219,939,1228,1006,1230"/>
 <area shape="poly" id="edge68_Node000064_Node000027" title=" " alt="" coords="558,890,493,816,471,779,462,764,445,749,415,733,385,725,386,720,417,728,449,744,466,761,476,777,497,813,562,887"/>
 <area shape="poly" id="edge72_Node000065_Node000003" title=" " alt="" coords="1809,844,1715,844,1715,839,1809,839"/>
-<area shape="rect" id="Node000066" href="$df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" title="Checks whether the geometry is straight or not." alt="" coords="1586,189,1713,232"/>
+<area shape="rect" id="Node000066" href="$df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" title="Checks whether the geometry is straight or not" alt="" coords="1586,189,1713,232"/>
 <area shape="poly" id="edge73_Node000065_Node000066" title=" " alt="" coords="1872,807,1656,233,1661,231,1877,805"/>
 <area shape="poly" id="edge74_Node000066_Node000006" title=" " alt="" coords="1616,181,1570,143,1543,126,1513,113,1461,101,1393,93,1315,90,1232,93,1151,101,1077,115,1015,136,991,149,973,163,952,191,943,218,943,247,947,276,951,306,952,336,944,367,925,398,905,414,901,409,921,394,939,365,947,336,946,306,942,277,938,247,938,218,947,188,969,159,988,144,1013,131,1076,110,1150,95,1232,87,1315,85,1393,88,1462,96,1515,108,1545,121,1573,139,1619,177"/>
 <area shape="poly" id="edge75_Node000066_Node000048" title=" " alt="" coords="1571,193,1475,168,1477,163,1573,188"/>

@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Generate waypoints on each lane at the start of each road.">
+<g id="a_Node000001"><a xlink:title="Generate waypoints on each lane at the start of each road">
 <polygon fill="#999999" stroke="#666666" points="132.25,-32 0,-32 0,0 132.25,0 132.25,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::Generate</text>
 <text text-anchor="middle" x="66.12" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">WaypointsOnRoadEntries</text>

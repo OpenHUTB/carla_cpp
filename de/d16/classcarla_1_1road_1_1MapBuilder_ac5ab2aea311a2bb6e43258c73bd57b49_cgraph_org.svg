@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Generates a default validity field for signal references with missing validity record in OpenDRIVE.">
+<g id="a_Node000001"><a xlink:title="Generates a default validity field for signal references with missing validity record in OpenDRIVE">
 <polygon fill="#999999" stroke="#666666" points="145.75,-88 0,-88 0,-44 145.75,-44 145.75,-88"/>
 <text text-anchor="start" x="8" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="start" x="8" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateDefaultValiditiesFor</text>
@@ -41,7 +41,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#acbea6fe4d600f5f2a84d7ae16390aee3" target="_top" xlink:title="Get all lanes from all lane sections in a specific s.">
+<g id="a_Node000003"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#acbea6fe4d600f5f2a84d7ae16390aee3" target="_top" xlink:title="Get all lanes from all lane sections in a specific s">
 <polygon fill="white" stroke="#666666" points="312.12,-82 203.88,-82 203.88,-50 312.12,-50 312.12,-82"/>
 <text text-anchor="start" x="211.88" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Road::</text>
 <text text-anchor="middle" x="258" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetLanesByDistance</text>

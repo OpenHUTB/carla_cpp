@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Update the weather parameters and notifies it to the blueprint&#39;s event.">
+<g id="a_Node000001"><a xlink:title="Update the weather parameters and notifies it to the blueprint&#39;s event">
 <polygon fill="#999999" stroke="#666666" points="281,-26 154,-26 154,-6 281,-6 281,-26"/>
 <text text-anchor="middle" x="217.5" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">AWeather::ApplyWeather</text>
 </a>

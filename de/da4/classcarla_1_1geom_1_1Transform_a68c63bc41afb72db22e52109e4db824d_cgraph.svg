@@ -57,7 +57,7 @@ var sectionId = 'dynsection-3';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Computes the 4&#45;matrix form of the inverse transformation.">
+<g id="a_Node000001"><a xlink:title="Computes the 4&#45;matrix form of the inverse transformation">
 <polygon fill="#999999" stroke="#666666" points="115.75,-32 0,-32 0,0 115.75,0 115.75,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Transform</text>
 <text text-anchor="middle" x="57.88" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GetInverseMatrix</text>
@@ -67,7 +67,7 @@ var sectionId = 'dynsection-3';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a92a9a6fdd66eea2d1ec03b14378c7e50" target="_top" xlink:title="Applies the inverse of this transformation to in_point.">
+<g id="a_Node000002"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a92a9a6fdd66eea2d1ec03b14378c7e50" target="_top" xlink:title="Applies the inverse of this transformation to in_point">
 <polygon fill="white" stroke="#666666" points="269,-54 151.75,-54 151.75,-22 269,-22 269,-54"/>
 <text text-anchor="start" x="159.75" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Transform</text>
 <text text-anchor="middle" x="210.38" y="-28.5" font-family="Helvetica,sans-Serif" font-size="10.00">::InverseTransformPoint</text>

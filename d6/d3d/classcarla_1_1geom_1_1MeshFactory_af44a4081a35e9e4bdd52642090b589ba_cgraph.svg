@@ -67,7 +67,7 @@ var sectionId = 'dynsection-8';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae664312708449aa9f126ac91cf44c6b6" target="_top" xlink:title="Generates a list of meshes that defines a road with a maximum length.">
+<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae664312708449aa9f126ac91cf44c6b6" target="_top" xlink:title="Generates a list of meshes that defines a road with a maximum length">
 <polygon fill="white" stroke="#666666" points="349.25,-48 198.25,-48 198.25,-16 349.25,-16 349.25,-48"/>
 <text text-anchor="start" x="206.25" y="-34.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="273.75" y="-22.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateOrderedWithMaxLen</text>

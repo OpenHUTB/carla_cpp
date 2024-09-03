@@ -192,7 +192,7 @@
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#ab3790dbde952495c568dda20e99ec9f0" target="_top" xlink:title="Apply Ackermann control settings to this vehicle.">
+<g id="a_Node000010"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#ab3790dbde952495c568dda20e99ec9f0" target="_top" xlink:title="Apply Ackermann control settings to this vehicle">
 <polygon fill="white" stroke="#666666" points="305,-1982 131.5,-1982 131.5,-1950 305,-1950 305,-1982"/>
 <text text-anchor="start" x="139.5" y="-1968.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Vehicle</text>
 <text text-anchor="middle" x="218.25" y="-1956.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ApplyAckermannControllerSettings</text>
@@ -401,7 +401,7 @@
 <!-- Node25 -->
 <g id="Node000025" class="node">
 <title>Node25</title>
-<g id="a_Node000025"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#a3e52559e55b5c6a8bb8c3caa41ebec53" target="_top" xlink:title="Close a door in this vehicle.">
+<g id="a_Node000025"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#a3e52559e55b5c6a8bb8c3caa41ebec53" target="_top" xlink:title="Close a door in this vehicle">
 <polygon fill="white" stroke="#666666" points="270.5,-1432 166,-1432 166,-1400 270.5,-1400 270.5,-1432"/>
 <text text-anchor="start" x="174" y="-1418.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Vehicle</text>
 <text text-anchor="middle" x="218.25" y="-1406.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CloseDoor</text>
@@ -479,7 +479,7 @@
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a15cf46217d58e16fd40a41f8e094772d" target="_top" xlink:title="Disable the constant velocity mode.">
+<g id="a_Node000030"><a xlink:href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a15cf46217d58e16fd40a41f8e094772d" target="_top" xlink:title="Disable the constant velocity mode">
 <polygon fill="white" stroke="#666666" points="282.5,-1220 154,-1220 154,-1188 282.5,-1188 282.5,-1220"/>
 <text text-anchor="start" x="162" y="-1206.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Actor</text>
 <text text-anchor="middle" x="218.25" y="-1194.5" font-family="Helvetica,sans-Serif" font-size="10.00">::DisableConstantVelocity</text>
@@ -498,7 +498,7 @@
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ad803ed6a7a4541224ede9d371100b36e" target="_top" xlink:title="Disable this sensor for ROS2 publishing.">
+<g id="a_Node000031"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ad803ed6a7a4541224ede9d371100b36e" target="_top" xlink:title="Disable this sensor for ROS2 publishing">
 <polygon fill="white" stroke="#666666" points="278.38,-1170 158.12,-1170 158.12,-1138 278.38,-1138 278.38,-1170"/>
 <text text-anchor="start" x="166.12" y="-1156.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::ServerSide</text>
 <text text-anchor="middle" x="218.25" y="-1144.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensor::DisableForROS</text>
@@ -535,7 +535,7 @@
 <!-- Node42 -->
 <g id="Node000042" class="node">
 <title>Node42</title>
-<g id="a_Node000042"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a" target="_top" xlink:title="Enables CarSim simulation if it is availiable.">
+<g id="a_Node000042"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a" target="_top" xlink:title="Enables CarSim simulation if it is availiable">
 <polygon fill="white" stroke="#666666" points="270.5,-1082 166,-1082 166,-1050 270.5,-1050 270.5,-1082"/>
 <text text-anchor="start" x="174" y="-1068.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Vehicle</text>
 <text text-anchor="middle" x="218.25" y="-1056.5" font-family="Helvetica,sans-Serif" font-size="10.00">::EnableCarSim</text>
@@ -573,7 +573,7 @@
 <!-- Node44 -->
 <g id="Node000044" class="node">
 <title>Node44</title>
-<g id="a_Node000044"><a xlink:href="../../d6/da5/classcarla_1_1client_1_1Actor.html#aa56d845bdc7b09118c831dc530f9908c" target="_top" xlink:title="Enable a constant velocity mode.">
+<g id="a_Node000044"><a xlink:href="../../d6/da5/classcarla_1_1client_1_1Actor.html#aa56d845bdc7b09118c831dc530f9908c" target="_top" xlink:title="Enable a constant velocity mode">
 <polygon fill="white" stroke="#666666" points="281.38,-982 155.12,-982 155.12,-950 281.38,-950 281.38,-982"/>
 <text text-anchor="start" x="163.12" y="-968.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Actor</text>
 <text text-anchor="middle" x="218.25" y="-956.5" font-family="Helvetica,sans-Serif" font-size="10.00">::EnableConstantVelocity</text>
@@ -611,7 +611,7 @@
 <!-- Node46 -->
 <g id="Node000046" class="node">
 <title>Node46</title>
-<g id="a_Node000046"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a6bbbfb631ec68bd00b412c1c49a4b393" target="_top" xlink:title="Enable this sensor for ROS2 publishing.">
+<g id="a_Node000046"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a6bbbfb631ec68bd00b412c1c49a4b393" target="_top" xlink:title="Enable this sensor for ROS2 publishing">
 <polygon fill="white" stroke="#666666" points="277.62,-882 158.88,-882 158.88,-850 277.62,-850 277.62,-882"/>
 <text text-anchor="start" x="166.88" y="-868.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::ServerSide</text>
 <text text-anchor="middle" x="218.25" y="-856.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensor::EnableForROS</text>

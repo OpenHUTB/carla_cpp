@@ -1,5 +1,5 @@
 <map id="carla::geom::LatToScale" name="carla::geom::LatToScale">
-<area shape="rect" id="Node000001" title="Convert latitude to scale, which is needed by mercator transformations." alt="" coords="2340,84,2502,111"/>
+<area shape="rect" id="Node000001" title="Convert latitude to scale, which is needed by mercator transformations" alt="" coords="2340,84,2502,111"/>
 <area shape="rect" id="Node000002" href="$dc/dda/namespacecarla_1_1geom.html#ab563ac51c2d53544481217df7e8e6a35" title="Adds meters dx/dy to given lat/lon and returns new lat/lon." alt="" coords="2092,84,2292,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2325,100,2292,100,2292,95,2325,95"/>
 <area shape="rect" id="Node000003" href="$d3/df4/classcarla_1_1geom_1_1GeoLocation.html#a51aadebcf64689d1729e8b20e461485b" title="Transform the given location to a GeoLocation using this as geo&#45;reference." alt="" coords="1874,76,2044,119"/>

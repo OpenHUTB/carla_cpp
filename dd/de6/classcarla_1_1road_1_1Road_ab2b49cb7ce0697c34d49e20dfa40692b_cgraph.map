@@ -1,12 +1,12 @@
 <map id="carla::road::Road::GetNearestLane" name="carla::road::Road::GetNearestLane">
-<area shape="rect" id="Node000001" title="Returns a pointer to the nearest lane, given s relative to Road and a location." alt="" coords="5,188,134,231"/>
+<area shape="rect" id="Node000001" title="Returns a pointer to the nearest lane, given s relative to Road and a location" alt="" coords="5,188,134,231"/>
 <area shape="rect" id="Node000002" href="$df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a058ad3be7f22229ea802e569ab0e8b7e" title=" " alt="" coords="364,72,551,131"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,187,181,173,349,127,350,132,182,179,135,193"/>
 <area shape="rect" id="Node000003" href="$d0/dea/classcarla_1_1geom_1_1Math.html#adc0c40d67bed1ab82405838c7981aff1" title=" " alt="" coords="182,27,316,69"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,186,180,106,211,77,215,81,183,110,96,190"/>
 <area shape="rect" id="Node000006" href="$dd/de6/classcarla_1_1road_1_1Road.html#abe77139bd9cba13e5c068c6f78b5196c" title="Returns a directed point on the center of the road (lane 0), with the corresponding laneOffset and el..." alt="" coords="184,188,314,231"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="134,207,169,207,169,212,134,212"/>
-<area shape="rect" id="Node000012" href="$dd/de6/classcarla_1_1road_1_1Road.html#a6134bb923498e21fb6f52ccd5a929227" title="Get all lanes at a given s." alt="" coords="185,344,313,387"/>
+<area shape="rect" id="Node000012" href="$dd/de6/classcarla_1_1road_1_1Road.html#a6134bb923498e21fb6f52ccd5a929227" title="Get all lanes at a given s" alt="" coords="185,344,313,387"/>
 <area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="97,229,214,332,211,336,94,233"/>
 <area shape="rect" id="Node000016" href="$d9/d36/namespacecarla.html#a2dc539ffbcff452958f707dc7b0db4d6" title=" " alt="" coords="606,457,744,484"/>
 <area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="79,230,92,268,113,314,144,359,162,379,183,396,232,424,284,445,339,460,394,470,501,478,591,477,591,482,501,484,393,475,338,465,282,450,229,429,180,401,158,383,139,363,109,316,87,270,74,232"/>
@@ -19,7 +19,7 @@
 <area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="315,217,377,227,376,232,314,222"/>
 <area shape="rect" id="Node000009" href="$dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e" title=" " alt="" coords="394,288,522,331"/>
 <area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="285,229,365,274,381,280,379,285,363,278,282,233"/>
-<area shape="rect" id="Node000011" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="Returns single info given a type and a distance (s) from the start of the road." alt="" coords="381,155,534,197"/>
+<area shape="rect" id="Node000011" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="Returns single info given a type and a distance (s) from the start of the road" alt="" coords="381,155,534,197"/>
 <area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="314,196,365,188,366,193,315,202"/>
 <area shape="rect" id="Node000008" href="$d3/d33/Simplify_8h.html#a50798148e5016c5b85087d4009824f27" title=" " alt="" coords="654,223,696,249"/>
 <area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="525,238,639,234,639,240,525,243"/>

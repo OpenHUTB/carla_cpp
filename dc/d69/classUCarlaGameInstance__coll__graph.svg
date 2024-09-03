@@ -335,7 +335,7 @@ var sectionId = 'dynsection-1';
 <!-- Node42 -->
 <g id="Node000042" class="node">
 <title>Node42</title>
-<g id="a_Node000042"><a xlink:href="../../dd/db9/classACarlaRecorder.html" target="_top" xlink:title="Recorder for the simulation.">
+<g id="a_Node000042"><a xlink:href="../../dd/db9/classACarlaRecorder.html" target="_top" xlink:title="Recorder for the simulation">
 <polygon fill="#fff0f0" stroke="red" points="845.88,-637.86 761.62,-637.86 761.62,-617.86 845.88,-617.86 845.88,-637.86"/>
 <text text-anchor="middle" x="803.75" y="-624.36" font-family="Helvetica,sans-Serif" font-size="10.00">ACarlaRecorder</text>
 </a>
@@ -355,7 +355,7 @@ var sectionId = 'dynsection-1';
 <!-- Node141 -->
 <g id="Node000141" class="node">
 <title>Node141</title>
-<g id="a_Node000141"><a xlink:href="../../d6/d2e/structcarla_1_1rpc_1_1OpendriveGenerationParameters.html" target="_top" xlink:title="Seting for map generation from opendrive without additional geometry.">
+<g id="a_Node000141"><a xlink:href="../../d6/d2e/structcarla_1_1rpc_1_1OpendriveGenerationParameters.html" target="_top" xlink:title="Seting for map generation from opendrive without additional geometry">
 <polygon fill="#fff0f0" stroke="red" points="349.25,-1586.86 196.75,-1586.86 196.75,-1554.86 349.25,-1554.86 349.25,-1586.86"/>
 <text text-anchor="start" x="204.75" y="-1573.36" font-family="Helvetica,sans-Serif" font-size="10.00">carla::rpc::OpendriveGeneration</text>
 <text text-anchor="middle" x="273" y="-1561.36" font-family="Helvetica,sans-Serif" font-size="10.00">Parameters</text>

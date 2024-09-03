@@ -57,7 +57,7 @@ var sectionId = 'dynsection-4';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Disable this sensor for ROS2 publishing.">
+<g id="a_Node000001"><a xlink:title="Disable this sensor for ROS2 publishing">
 <polygon fill="#999999" stroke="#666666" points="120.25,-73 0,-73 0,-41 120.25,-41 120.25,-73"/>
 <text text-anchor="start" x="8" y="-59.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::ServerSide</text>
 <text text-anchor="middle" x="60.12" y="-47.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensor::DisableForROS</text>

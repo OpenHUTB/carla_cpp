@@ -57,7 +57,7 @@ var sectionId = 'dynsection-37';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Create the bounding boxes of each junction.">
+<g id="a_Node000001"><a xlink:title="Create the bounding boxes of each junction">
 <polygon fill="#999999" stroke="#666666" points="154.75,-233 0,-233 0,-201 154.75,-201 154.75,-233"/>
 <text text-anchor="start" x="8" y="-219.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="77.38" y="-207.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CreateJunctionBoundingBoxes</text>
@@ -123,7 +123,7 @@ var sectionId = 'dynsection-37';
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction.">
+<g id="a_Node000031"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction">
 <polygon fill="white" stroke="#666666" points="335,-233 190.75,-233 190.75,-201 335,-201 335,-233"/>
 <text text-anchor="start" x="198.75" y="-219.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetJunction</text>
 <text text-anchor="middle" x="262.88" y="-207.5" font-family="Helvetica,sans-Serif" font-size="10.00">Waypoints</text>
@@ -434,7 +434,7 @@ var sectionId = 'dynsection-37';
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000011"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="1204.75,-412 1089.75,-412 1089.75,-380 1204.75,-380 1204.75,-412"/>
 <text text-anchor="start" x="1097.75" y="-398.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="1147.25" y="-386.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>

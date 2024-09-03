@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Update the weather parameters and notifies it to the blueprint&#39;s event.">
+<g id="a_Node000001"><a xlink:title="Update the weather parameters and notifies it to the blueprint&#39;s event">
 <polygon fill="#999999" stroke="#666666" points="127,-58 0,-58 0,-38 127,-38 127,-58"/>
 <text text-anchor="middle" x="63.5" y="-44.5" font-family="Helvetica,sans-Serif" font-size="10.00">AWeather::ApplyWeather</text>
 </a>
@@ -57,7 +57,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="../../de/d75/classAWeather.html#a1d5e23c1fd032babebd0a258aa555cdf" target="_top" xlink:title="Update the weather parameters without notifing it to the blueprint&#39;s event.">
+<g id="a_Node000005"><a xlink:href="../../de/d75/classAWeather.html#a1d5e23c1fd032babebd0a258aa555cdf" target="_top" xlink:title="Update the weather parameters without notifing it to the blueprint&#39;s event">
 <polygon fill="white" stroke="#666666" points="296.75,-20 179.5,-20 179.5,0 296.75,0 296.75,-20"/>
 <text text-anchor="middle" x="238.12" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">AWeather::SetWeather</text>
 </a>

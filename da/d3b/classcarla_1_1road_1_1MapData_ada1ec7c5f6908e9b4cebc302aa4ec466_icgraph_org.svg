@@ -59,7 +59,7 @@
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction.">
+<g id="a_Node000024"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction">
 <polygon fill="white" stroke="#666666" points="1105.12,-270 950.38,-270 950.38,-238 1105.12,-238 1105.12,-270"/>
 <text text-anchor="start" x="958.38" y="-256.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="1027.75" y="-244.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CreateJunctionBoundingBoxes</text>
@@ -116,7 +116,7 @@
 <!-- Node29 -->
 <g id="Node000029" class="node">
 <title>Node29</title>
-<g id="a_Node000029"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#af8d495dd39272f46df76884d237409e8" target="_top" xlink:title="Buids a mesh based on the OpenDRIVE.">
+<g id="a_Node000029"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#af8d495dd39272f46df76884d237409e8" target="_top" xlink:title="Buids a mesh based on the OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="1105.88,-120 949.62,-120 949.62,-100 1105.88,-100 1105.88,-120"/>
 <text text-anchor="middle" x="1027.75" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GenerateMesh</text>
 </a>

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Method to set the automatic management of the vehicle lights.">
+<g id="a_Node000001"><a xlink:title="Method to set the automatic management of the vehicle lights">
 <polygon fill="#999999" stroke="#666666" points="325.25,-75 205,-75 205,-31 325.25,-31 325.25,-75"/>
 <text text-anchor="start" x="213" y="-61.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::traffic_manager</text>
 <text text-anchor="start" x="213" y="-49.5" font-family="Helvetica,sans-Serif" font-size="10.00">::TrafficManagerBase::</text>
@@ -22,7 +22,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a835b79043572ce254fae28c14b308d91" target="_top" xlink:title="Set the automatic management of the vehicle lights.">
+<g id="a_Node000002"><a xlink:href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html#a835b79043572ce254fae28c14b308d91" target="_top" xlink:title="Set the automatic management of the vehicle lights">
 <polygon fill="white" stroke="#666666" points="169,-106 0,-106 0,-62 169,-62 169,-106"/>
 <text text-anchor="start" x="8" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::traffic_manager</text>
 <text text-anchor="start" x="8" y="-80.5" font-family="Helvetica,sans-Serif" font-size="10.00">::TrafficManager::SetUpdateVehicle</text>

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Generates a mesh that defines the whole lane.">
+<g id="a_Node000001"><a xlink:title="Generates a mesh that defines the whole lane">
 <polygon fill="#999999" stroke="#666666" points="130,-85 0,-85 0,-53 130,-53 130,-85"/>
 <text text-anchor="start" x="8" y="-71.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="65" y="-59.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Generate</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a7d1496ea84aecdf1fd4fe405a2c4da6c" target="_top" xlink:title="Generates a mesh that defines a road.">
+<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a7d1496ea84aecdf1fd4fe405a2c4da6c" target="_top" xlink:title="Generates a mesh that defines a road">
 <polygon fill="white" stroke="#666666" points="296,-130 166,-130 166,-98 296,-98 296,-130"/>
 <text text-anchor="start" x="174" y="-116.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="231" y="-104.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Generate</text>

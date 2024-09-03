@@ -1,5 +1,5 @@
 <map id="carla::road::Road::GetStartSection" name="carla::road::Road::GetStartSection">
-<area shape="rect" id="Node000001" title="Get the start section (from road coordinates s) given a lane id." alt="" coords="1921,336,2049,379"/>
+<area shape="rect" id="Node000001" title="Get the start section (from road coordinates s) given a lane id" alt="" coords="1921,336,2049,379"/>
 <area shape="rect" id="Node000002" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af7818fa90e4281abc159f08e31a9fb00" title="Return the pointer to a lane object." alt="" coords="1718,336,1873,379"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1906,360,1874,360,1874,355,1906,355"/>
 <area shape="rect" id="Node000003" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ad84a5423baee8d92269aab9d8723c68a" title="Return a list of pointers to all lanes from a lane (using road and junction info)." alt="" coords="1514,336,1670,379"/>

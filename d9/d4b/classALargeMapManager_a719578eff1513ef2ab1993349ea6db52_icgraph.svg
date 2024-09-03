@@ -57,7 +57,7 @@ var sectionId = 'dynsection-32';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="From a given location it retrieves the TileID that covers that area.">
+<g id="a_Node000001"><a xlink:title="From a given location it retrieves the TileID that covers that area">
 <polygon fill="#999999" stroke="#666666" points="2331.25,-220 2182.5,-220 2182.5,-200 2331.25,-200 2331.25,-220"/>
 <text text-anchor="middle" x="2256.88" y="-206.5" font-family="Helvetica,sans-Serif" font-size="10.00">ALargeMapManager::GetTileID</text>
 </a>

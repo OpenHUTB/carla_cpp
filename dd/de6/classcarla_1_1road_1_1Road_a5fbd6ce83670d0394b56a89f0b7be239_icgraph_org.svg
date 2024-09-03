@@ -578,7 +578,7 @@
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction.">
+<g id="a_Node000031"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction">
 <polygon fill="white" stroke="#666666" points="1240,-44 1095.75,-44 1095.75,-12 1240,-12 1240,-44"/>
 <text text-anchor="start" x="1103.75" y="-30.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetJunction</text>
 <text text-anchor="middle" x="1167.88" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Waypoints</text>
@@ -615,7 +615,7 @@
 <!-- Node32 -->
 <g id="Node000032" class="node">
 <title>Node32</title>
-<g id="a_Node000032"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction.">
+<g id="a_Node000032"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction">
 <polygon fill="white" stroke="#666666" points="1059.75,-47 905,-47 905,-15 1059.75,-15 1059.75,-47"/>
 <text text-anchor="start" x="913" y="-33.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="982.38" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CreateJunctionBoundingBoxes</text>

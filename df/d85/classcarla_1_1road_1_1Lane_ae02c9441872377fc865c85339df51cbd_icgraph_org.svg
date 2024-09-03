@@ -59,7 +59,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a74986f0ff4c63da7c50b479dd2d0fc0e" target="_top" xlink:title="Generates a mesh that defines the whole lane.">
+<g id="a_Node000006"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a74986f0ff4c63da7c50b479dd2d0fc0e" target="_top" xlink:title="Generates a mesh that defines the whole lane">
 <polygon fill="white" stroke="#666666" points="1104.75,-955 974.75,-955 974.75,-923 1104.75,-923 1104.75,-955"/>
 <text text-anchor="start" x="982.75" y="-941.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="1039.75" y="-929.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Generate</text>
@@ -78,7 +78,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a1e3c826505f82d1ddffd9f40c39cfa2a" target="_top" xlink:title="Generates a mesh that defines a lane from a given s start and end.">
+<g id="a_Node000007"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a1e3c826505f82d1ddffd9f40c39cfa2a" target="_top" xlink:title="Generates a mesh that defines a lane from a given s start and end">
 <polygon fill="white" stroke="#666666" points="719.88,-510 589.88,-510 589.88,-478 719.88,-478 719.88,-510"/>
 <text text-anchor="start" x="597.88" y="-496.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="654.88" y="-484.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Generate</text>
@@ -97,7 +97,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" target="_top" xlink:title="Generates a wall&#45;like mesh at the left side of the lane.">
+<g id="a_Node000008"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" target="_top" xlink:title="Generates a wall&#45;like mesh at the left side of the lane">
 <polygon fill="white" stroke="#666666" points="719.88,-762 589.88,-762 589.88,-730 719.88,-730 719.88,-762"/>
 <text text-anchor="start" x="597.88" y="-748.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="654.88" y="-736.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateLeftWall</text>
@@ -116,7 +116,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" target="_top" xlink:title="Generates a wall&#45;like mesh at the right side of the lane.">
+<g id="a_Node000011"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" target="_top" xlink:title="Generates a wall&#45;like mesh at the right side of the lane">
 <polygon fill="white" stroke="#666666" points="719.88,-812 589.88,-812 589.88,-780 719.88,-780 719.88,-812"/>
 <text text-anchor="start" x="597.88" y="-798.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="654.88" y="-786.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateRightWall</text>
@@ -173,7 +173,7 @@
 <!-- Node14 -->
 <g id="Node000014" class="node">
 <title>Node14</title>
-<g id="a_Node000014"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" target="_top" xlink:title="Generates a mesh that defines the whole lane with bigger tesselation.">
+<g id="a_Node000014"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" target="_top" xlink:title="Generates a mesh that defines the whole lane with bigger tesselation">
 <polygon fill="white" stroke="#666666" points="529.12,-1075 399.12,-1075 399.12,-1043 529.12,-1043 529.12,-1075"/>
 <text text-anchor="start" x="407.12" y="-1061.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="464.12" y="-1049.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateTesselated</text>
@@ -192,7 +192,7 @@
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" target="_top" xlink:title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation.">
+<g id="a_Node000015"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" target="_top" xlink:title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation">
 <polygon fill="white" stroke="#666666" points="719.88,-932 589.88,-932 589.88,-900 719.88,-900 719.88,-932"/>
 <text text-anchor="start" x="597.88" y="-918.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="654.88" y="-906.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateTesselated</text>
@@ -305,7 +305,7 @@
 <!-- Node79 -->
 <g id="Node000079" class="node">
 <title>Node79</title>
-<g id="a_Node000079"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" target="_top" xlink:title="Checks whether the geometry is straight or not.">
+<g id="a_Node000079"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" target="_top" xlink:title="Checks whether the geometry is straight or not">
 <polygon fill="white" stroke="#666666" points="902,-589 807.25,-589 807.25,-557 902,-557 902,-589"/>
 <text text-anchor="start" x="815.25" y="-575.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="854.62" y="-563.5" font-family="Helvetica,sans-Serif" font-size="10.00">IsStraight</text>
@@ -324,7 +324,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" target="_top" xlink:title="Buids a list of meshes related with LineMarkings.">
+<g id="a_Node000003"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" target="_top" xlink:title="Buids a list of meshes related with LineMarkings">
 <polygon fill="white" stroke="#666666" points="721,-1119 588.75,-1119 588.75,-1087 721,-1087 721,-1119"/>
 <text text-anchor="start" x="596.75" y="-1105.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::Generate</text>
 <text text-anchor="middle" x="654.88" y="-1093.5" font-family="Helvetica,sans-Serif" font-size="10.00">LineMarkings</text>
@@ -371,7 +371,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" target="_top" xlink:title="Genrates a mesh representing a wall on the road corners to avoid cars falling down.">
+<g id="a_Node000009"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" target="_top" xlink:title="Genrates a mesh representing a wall on the road corners to avoid cars falling down">
 <polygon fill="white" stroke="#666666" points="529.12,-787 399.12,-787 399.12,-755 529.12,-755 529.12,-787"/>
 <text text-anchor="start" x="407.12" y="-773.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="464.12" y="-761.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateWalls</text>
@@ -390,7 +390,7 @@
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" target="_top" xlink:title="Generates a list of meshes that defines a lane_section safety wall with a maximum length.">
+<g id="a_Node000010"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" target="_top" xlink:title="Generates a list of meshes that defines a lane_section safety wall with a maximum length">
 <polygon fill="white" stroke="#666666" points="346.25,-787 205,-787 205,-755 346.25,-755 346.25,-787"/>
 <text text-anchor="start" x="213" y="-773.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="275.62" y="-761.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateWallsWithMaxLen</text>
@@ -445,7 +445,7 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" target="_top" xlink:title="Generates a mesh that defines a lane section.">
+<g id="a_Node000016"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" target="_top" xlink:title="Generates a mesh that defines a lane section">
 <polygon fill="white" stroke="#666666" points="539.25,-976 389,-976 389,-944 539.25,-944 539.25,-976"/>
 <text text-anchor="start" x="397" y="-962.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="464.12" y="-950.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateLaneSectionOrdered</text>
@@ -464,7 +464,7 @@
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" target="_top" xlink:title="Generates a list of meshes that defines a lane_section with a maximum length.">
+<g id="a_Node000017"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" target="_top" xlink:title="Generates a list of meshes that defines a lane_section with a maximum length">
 <polygon fill="white" stroke="#666666" points="351.12,-966 200.12,-966 200.12,-934 351.12,-934 351.12,-966"/>
 <text text-anchor="start" x="208.12" y="-952.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="275.62" y="-940.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateOrderedWithMaxLen</text>
@@ -594,7 +594,7 @@
 <!-- Node25 -->
 <g id="Node000025" class="node">
 <title>Node25</title>
-<g id="a_Node000025"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction.">
+<g id="a_Node000025"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction">
 <polygon fill="white" stroke="#666666" points="536.25,-322 392,-322 392,-290 536.25,-290 536.25,-322"/>
 <text text-anchor="start" x="400" y="-308.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetJunction</text>
 <text text-anchor="middle" x="464.12" y="-296.5" font-family="Helvetica,sans-Serif" font-size="10.00">Waypoints</text>
@@ -631,7 +631,7 @@
 <!-- Node26 -->
 <g id="Node000026" class="node">
 <title>Node26</title>
-<g id="a_Node000026"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction.">
+<g id="a_Node000026"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction">
 <polygon fill="white" stroke="#666666" points="353,-322 198.25,-322 198.25,-290 353,-290 353,-322"/>
 <text text-anchor="start" x="206.25" y="-308.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="275.62" y="-296.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CreateJunctionBoundingBoxes</text>
@@ -1108,7 +1108,7 @@
 <!-- Node73 -->
 <g id="Node000073" class="node">
 <title>Node73</title>
-<g id="a_Node000073"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a34da073c1da719b3455c4dd8f7b441c9" target="_top" xlink:title="Returns the total lane width given a s.">
+<g id="a_Node000073"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a34da073c1da719b3455c4dd8f7b441c9" target="_top" xlink:title="Returns the total lane width given a s">
 <polygon fill="white" stroke="#666666" points="1087.12,-817 992.38,-817 992.38,-785 1087.12,-785 1087.12,-817"/>
 <text text-anchor="start" x="1000.38" y="-803.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="1039.75" y="-791.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetWidth</text>
@@ -1246,7 +1246,7 @@
 <!-- Node74 -->
 <g id="Node000074" class="node">
 <title>Node74</title>
-<g id="a_Node000074"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" target="_top" xlink:title="Computes the location of the edges given a s.">
+<g id="a_Node000074"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" target="_top" xlink:title="Computes the location of the edges given a s">
 <polygon fill="#fff0f0" stroke="red" points="905,-803 804.25,-803 804.25,-771 905,-771 905,-803"/>
 <text text-anchor="start" x="812.25" y="-789.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="854.62" y="-777.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetCornerPositions</text>

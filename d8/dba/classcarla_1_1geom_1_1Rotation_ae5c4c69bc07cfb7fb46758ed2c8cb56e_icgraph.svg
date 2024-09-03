@@ -198,7 +198,7 @@ var sectionId = 'dynsection-11';
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished.">
+<g id="a_Node000007"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished">
 <polygon fill="white" stroke="#666666" points="280.62,-272 161.12,-272 161.12,-240 280.62,-240 280.62,-272"/>
 <text text-anchor="start" x="169.12" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="220.88" y="-246.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkZones</text>
@@ -326,7 +326,7 @@ var sectionId = 'dynsection-11';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" target="_top" xlink:title="Buids a mesh of all crosswalks based on the OpenDRIVE.">
+<g id="a_Node000008"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" target="_top" xlink:title="Buids a mesh of all crosswalks based on the OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="119.5,-272 0,-272 0,-240 119.5,-240 119.5,-272"/>
 <text text-anchor="start" x="8" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="59.75" y="-246.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkMesh</text>

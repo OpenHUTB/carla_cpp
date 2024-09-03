@@ -105,7 +105,7 @@ var sectionId = 'dynsection-2';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5d270a76228a4f47ae0bcfc2c866f5cd" target="_top" xlink:title="Evaluates f(x) = a + bx + cx^2 + dx^3.">
+<g id="a_Node000003"><a xlink:href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5d270a76228a4f47ae0bcfc2c866f5cd" target="_top" xlink:title="Evaluates f(x) = a + bx + cx^2 + dx^3">
 <polygon fill="white" stroke="#666666" points="547.5,-132 401.75,-132 401.75,-100 547.5,-100 547.5,-132"/>
 <text text-anchor="start" x="409.75" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::CubicPolynomial</text>
 <text text-anchor="middle" x="474.62" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Evaluate</text>
@@ -143,7 +143,7 @@ var sectionId = 'dynsection-2';
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a6b32ca488e26ca238a28d67fd411528b" target="_top" xlink:title="Evaluates the tangent using df/dx = b + 2cx + 3dx^2.">
+<g id="a_Node000005"><a xlink:href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a6b32ca488e26ca238a28d67fd411528b" target="_top" xlink:title="Evaluates the tangent using df/dx = b + 2cx + 3dx^2">
 <polygon fill="white" stroke="#666666" points="547.5,-32 401.75,-32 401.75,0 547.5,0 547.5,-32"/>
 <text text-anchor="start" x="409.75" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::CubicPolynomial</text>
 <text text-anchor="middle" x="474.62" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Tangent</text>

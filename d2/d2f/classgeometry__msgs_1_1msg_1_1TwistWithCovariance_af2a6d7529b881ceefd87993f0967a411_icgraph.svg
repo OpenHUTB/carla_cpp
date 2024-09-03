@@ -57,7 +57,7 @@ var sectionId = 'dynsection-9';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="This function copies the value in member twist.">
+<g id="a_Node000001"><a xlink:title="This function copies the value in member twist">
 <polygon fill="#999999" stroke="#666666" points="656.5,-72 544.5,-72 544.5,-28 656.5,-28 656.5,-72"/>
 <text text-anchor="start" x="552.5" y="-58.5" font-family="Helvetica,sans-Serif" font-size="10.00">geometry_msgs::msg</text>
 <text text-anchor="start" x="552.5" y="-46.5" font-family="Helvetica,sans-Serif" font-size="10.00">::TwistWithCovariance</text>

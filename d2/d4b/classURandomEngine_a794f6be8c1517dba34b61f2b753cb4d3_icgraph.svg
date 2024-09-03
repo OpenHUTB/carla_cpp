@@ -379,7 +379,7 @@ var sectionId = 'dynsection-5';
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="../../d5/de0/classAInertialMeasurementUnit.html#acb126bb232bae1d7d8b2470ed85b9ffc" target="_top" xlink:title="Accelerometer: measures linear acceleration in m/s^2.">
+<g id="a_Node000009"><a xlink:href="../../d5/de0/classAInertialMeasurementUnit.html#acb126bb232bae1d7d8b2470ed85b9ffc" target="_top" xlink:title="Accelerometer: measures linear acceleration in m/s^2">
 <polygon fill="white" stroke="#666666" points="1380.12,-441 1252.38,-441 1252.38,-409 1380.12,-409 1380.12,-441"/>
 <text text-anchor="start" x="1260.38" y="-427.5" font-family="Helvetica,sans-Serif" font-size="10.00">AInertialMeasurementUnit</text>
 <text text-anchor="middle" x="1316.25" y="-415.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ComputeAccelerometer</text>
@@ -592,7 +592,7 @@ var sectionId = 'dynsection-5';
 <!-- Node21 -->
 <g id="Node000021" class="node">
 <title>Node21</title>
-<g id="a_Node000021"><a xlink:href="../../d5/de0/classAInertialMeasurementUnit.html#aa74f616bf7d03f2f8a7642ab073d2561" target="_top" xlink:title="Gyroscope: measures angular velocity in rad/sec.">
+<g id="a_Node000021"><a xlink:href="../../d5/de0/classAInertialMeasurementUnit.html#aa74f616bf7d03f2f8a7642ab073d2561" target="_top" xlink:title="Gyroscope: measures angular velocity in rad/sec">
 <polygon fill="white" stroke="#666666" points="1380.12,-391 1252.38,-391 1252.38,-359 1380.12,-359 1380.12,-391"/>
 <text text-anchor="start" x="1260.38" y="-377.5" font-family="Helvetica,sans-Serif" font-size="10.00">AInertialMeasurementUnit</text>
 <text text-anchor="middle" x="1316.25" y="-365.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ComputeGyroscope</text>

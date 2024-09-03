@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Convert latitude to scale, which is needed by mercator transformations.">
+<g id="a_Node000001"><a xlink:title="Convert latitude to scale, which is needed by mercator transformations">
 <polygon fill="#999999" stroke="#666666" points="121.75,-26 0,-26 0,-6 121.75,-6 121.75,-26"/>
 <text text-anchor="middle" x="60.88" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::LatToScale</text>
 </a>

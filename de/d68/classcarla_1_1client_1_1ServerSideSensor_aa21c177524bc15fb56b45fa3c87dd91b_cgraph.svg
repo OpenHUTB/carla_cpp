@@ -57,7 +57,7 @@ var sectionId = 'dynsection-10';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Send data via this sensor.">
+<g id="a_Node000001"><a xlink:title="Send data via this sensor">
 <polygon fill="#999999" stroke="#666666" points="118.75,-133 0,-133 0,-101 118.75,-101 118.75,-133"/>
 <text text-anchor="start" x="8" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::ServerSide</text>
 <text text-anchor="middle" x="59.38" y="-107.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensor::Send</text>

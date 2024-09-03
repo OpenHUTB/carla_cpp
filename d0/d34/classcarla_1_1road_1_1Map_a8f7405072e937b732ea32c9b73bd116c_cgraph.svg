@@ -85,7 +85,7 @@ var sectionId = 'dynsection-2';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adbe392014331d03ee16e479c94088e6b" target="_top" xlink:title="Helper Functions for constructing the rtree element list.">
+<g id="a_Node000003"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adbe392014331d03ee16e479c94088e6b" target="_top" xlink:title="Helper Functions for constructing the rtree element list">
 <polygon fill="white" stroke="#666666" points="638.88,-431 493.12,-431 493.12,-399 638.88,-399 638.88,-431"/>
 <text text-anchor="start" x="501.12" y="-417.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::AddElement</text>
 <text text-anchor="middle" x="566" y="-405.5" font-family="Helvetica,sans-Serif" font-size="10.00">ToRtree</text>
@@ -253,7 +253,7 @@ var sectionId = 'dynsection-2';
 <!-- Node48 -->
 <g id="Node000048" class="node">
 <title>Node48</title>
-<g id="a_Node000048"><a xlink:href="../../d0/dea/classcarla_1_1geom_1_1Math.html#a6553b235b169efa70b899d41f3b568ba" target="_top" xlink:title="Returns the angle between 2 vectors in radians.">
+<g id="a_Node000048"><a xlink:href="../../d0/dea/classcarla_1_1geom_1_1Math.html#a6553b235b169efa70b899d41f3b568ba" target="_top" xlink:title="Returns the angle between 2 vectors in radians">
 <polygon fill="white" stroke="#666666" points="427.5,-82 326.75,-82 326.75,-50 427.5,-50 427.5,-82"/>
 <text text-anchor="start" x="334.75" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Math::</text>
 <text text-anchor="middle" x="377.12" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetVectorAngle</text>
@@ -291,7 +291,7 @@ var sectionId = 'dynsection-2';
 <!-- Node53 -->
 <g id="Node000053" class="node">
 <title>Node53</title>
-<g id="a_Node000053"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" target="_top" xlink:title="Checks whether the geometry is straight or not.">
+<g id="a_Node000053"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" target="_top" xlink:title="Checks whether the geometry is straight or not">
 <polygon fill="white" stroke="#666666" points="797.75,-784 703,-784 703,-752 797.75,-752 797.75,-784"/>
 <text text-anchor="start" x="711" y="-770.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="750.38" y="-758.5" font-family="Helvetica,sans-Serif" font-size="10.00">IsStraight</text>
@@ -574,7 +574,7 @@ var sectionId = 'dynsection-2';
 <!-- Node14 -->
 <g id="Node000014" class="node">
 <title>Node14</title>
-<g id="a_Node000014"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000014"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="1146.25,-591 1031.25,-591 1031.25,-559 1146.25,-559 1146.25,-591"/>
 <text text-anchor="start" x="1039.25" y="-577.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="1088.75" y="-565.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>
@@ -1178,7 +1178,7 @@ var sectionId = 'dynsection-2';
 <!-- Node55 -->
 <g id="Node000055" class="node">
 <title>Node55</title>
-<g id="a_Node000055"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#abf1e4615805f6876dac8d37b8141319d" target="_top" xlink:title="Return all infos given a type from the start of the road.">
+<g id="a_Node000055"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#abf1e4615805f6876dac8d37b8141319d" target="_top" xlink:title="Return all infos given a type from the start of the road">
 <polygon fill="white" stroke="#666666" points="1146.25,-906 1031.25,-906 1031.25,-874 1146.25,-874 1146.25,-906"/>
 <text text-anchor="start" x="1039.25" y="-892.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="1088.75" y="-880.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfos</text>

@@ -26,19 +26,19 @@
 <area shape="poly" id="edge80_Node000001_Node000175" title=" " alt="" coords="184,1262,506,1272,506,1277,184,1267"/>
 <area shape="rect" id="Node000179" href="$d8/d46/classcarla_1_1opendrive_1_1parser_1_1TrafficGroupParser.html#a1f8040a6a96040f4be70a7c498ac4368" title=" " alt="" coords="238,1584,417,1627"/>
 <area shape="poly" id="edge89_Node000001_Node000179" title=" " alt="" coords="102,1283,114,1340,138,1417,156,1458,177,1499,203,1537,234,1570,237,1573,234,1577,230,1574,199,1540,173,1501,151,1460,133,1419,109,1341,97,1284"/>
-<area shape="rect" id="Node000003" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" title="Checks signals overlapping driving lanes and emits a warning." alt="" coords="517,605,680,648"/>
+<area shape="rect" id="Node000003" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" title="Checks signals overlapping driving lanes and emits a warning" alt="" coords="517,605,680,648"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="371,546,472,591,503,601,501,606,470,596,369,551"/>
 <area shape="rect" id="Node000051" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a681b6b968d9fc6a9477dca966ec3e09e" title="Compute the conflicts of the roads (intersecting roads)" alt="" coords="494,405,703,448"/>
 <area shape="poly" id="edge5_Node000002_Node000051" title=" " alt="" coords="369,502,470,458,491,450,493,455,472,463,371,507"/>
-<area shape="rect" id="Node000059" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" title="Create the bounding boxes of each junction." alt="" coords="495,472,701,515"/>
+<area shape="rect" id="Node000059" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" title="Create the bounding boxes of each junction" alt="" coords="495,472,701,515"/>
 <area shape="poly" id="edge6_Node000002_Node000059" title=" " alt="" coords="405,515,480,505,480,511,406,520"/>
 <area shape="rect" id="Node000069" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ae3f4192b6f1b0737a5d12923fc8da239" title="Create the pointers between RoadSegments based on the ids." alt="" coords="471,539,725,581"/>
 <area shape="poly" id="edge7_Node000002_Node000069" title=" " alt="" coords="406,534,456,540,455,545,405,539"/>
-<area shape="rect" id="Node000083" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#aa01b79061fa5fc167617bc32272a2bb7" title="Removes signal references with lane validity equal to [0,0] as they have no effect on any road." alt="" coords="495,805,702,864"/>
+<area shape="rect" id="Node000083" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#aa01b79061fa5fc167617bc32272a2bb7" title="Removes signal references with lane validity equal to [0,0] as they have no effect on any road" alt="" coords="495,805,702,864"/>
 <area shape="poly" id="edge8_Node000002_Node000083" title=" " alt="" coords="337,548,353,598,380,663,420,732,444,764,473,791,483,799,480,804,469,795,440,767,415,735,375,666,348,600,332,549"/>
-<area shape="rect" id="Node000085" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a76406231d5de92bdeda1b869d0da7eab" title="Solve the references between Controllers and Juntions." alt="" coords="476,272,720,315"/>
+<area shape="rect" id="Node000085" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a76406231d5de92bdeda1b869d0da7eab" title="Solve the references between Controllers and Juntions" alt="" coords="476,272,720,315"/>
 <area shape="poly" id="edge10_Node000002_Node000085" title=" " alt="" coords="336,504,355,465,384,416,422,367,469,325,478,319,480,324,473,329,426,370,388,419,360,467,340,506"/>
-<area shape="rect" id="Node000086" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" title="Solves the signal references in the road." alt="" coords="474,339,722,381"/>
+<area shape="rect" id="Node000086" href="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" title="Solves the signal references in the road" alt="" coords="474,339,722,381"/>
 <area shape="poly" id="edge11_Node000002_Node000086" title=" " alt="" coords="344,503,396,447,431,417,470,391,482,385,484,390,472,396,434,421,400,451,348,507"/>
 <area shape="rect" id="Node000049" href="$d9/d36/namespacecarla.html#afb6ca911605d1ec35bdf563de2814dba" title=" " alt="" coords="820,680,937,707"/>
 <area shape="poly" id="edge3_Node000003_Node000049" title=" " alt="" coords="681,644,806,674,805,679,680,649"/>

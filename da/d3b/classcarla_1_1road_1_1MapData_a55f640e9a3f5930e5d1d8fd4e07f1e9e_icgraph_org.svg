@@ -59,7 +59,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" target="_top" xlink:title="Buids a list of meshes related with LineMarkings.">
+<g id="a_Node000005"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" target="_top" xlink:title="Buids a list of meshes related with LineMarkings">
 <polygon fill="white" stroke="#666666" points="330.5,-590 198.25,-590 198.25,-558 330.5,-558 330.5,-590"/>
 <text text-anchor="start" x="206.25" y="-576.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::Generate</text>
 <text text-anchor="middle" x="264.38" y="-564.5" font-family="Helvetica,sans-Serif" font-size="10.00">LineMarkings</text>
@@ -116,7 +116,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#af8d495dd39272f46df76884d237409e8" target="_top" xlink:title="Buids a mesh based on the OpenDRIVE.">
+<g id="a_Node000009"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#af8d495dd39272f46df76884d237409e8" target="_top" xlink:title="Buids a mesh based on the OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="522.75,-408 366.5,-408 366.5,-388 522.75,-388 522.75,-408"/>
 <text text-anchor="middle" x="444.62" y="-394.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GenerateMesh</text>
 </a>
@@ -210,7 +210,7 @@
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ab28691ad337f01c94ecbc313f1f61a24" target="_top" xlink:title="Generate waypoints at the entry of each lane of the specified road.">
+<g id="a_Node000015"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ab28691ad337f01c94ecbc313f1f61a24" target="_top" xlink:title="Generate waypoints at the entry of each lane of the specified road">
 <polygon fill="white" stroke="#666666" points="510.75,-182 378.5,-182 378.5,-150 510.75,-150 510.75,-182"/>
 <text text-anchor="start" x="386.5" y="-168.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::Generate</text>
 <text text-anchor="middle" x="444.62" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">WaypointsInRoad</text>
@@ -229,7 +229,7 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#a3bb963eff2647baf39c911a0c1dbfa5c" target="_top" xlink:title="Generate waypoints on each lane at the start of each road.">
+<g id="a_Node000016"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#a3bb963eff2647baf39c911a0c1dbfa5c" target="_top" xlink:title="Generate waypoints on each lane at the start of each road">
 <polygon fill="white" stroke="#666666" points="510.75,-132 378.5,-132 378.5,-100 510.75,-100 510.75,-132"/>
 <text text-anchor="start" x="386.5" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::Generate</text>
 <text text-anchor="middle" x="444.62" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">WaypointsOnRoadEntries</text>
@@ -248,7 +248,7 @@
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished.">
+<g id="a_Node000017"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished">
 <polygon fill="white" stroke="#666666" points="504.38,-82 384.88,-82 384.88,-50 504.38,-50 504.38,-82"/>
 <text text-anchor="start" x="392.88" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="444.62" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkZones</text>
@@ -267,7 +267,7 @@
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf12dcdebb92196aca2c8e08a0251f62" target="_top" xlink:title="Return all RoadInfoSignal in the map.">
+<g id="a_Node000019"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf12dcdebb92196aca2c8e08a0251f62" target="_top" xlink:title="Return all RoadInfoSignal in the map">
 <polygon fill="white" stroke="#666666" points="504.38,-32 384.88,-32 384.88,0 504.38,0 504.38,-32"/>
 <text text-anchor="start" x="392.88" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="444.62" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">SignalReferences</text>
@@ -378,7 +378,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" target="_top" xlink:title="Buids a mesh of all crosswalks based on the OpenDRIVE.">
+<g id="a_Node000018"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#a82b38e5be122b3dd8d155175265f6e88" target="_top" xlink:title="Buids a mesh of all crosswalks based on the OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="324.12,-82 204.62,-82 204.62,-50 324.12,-50 324.12,-82"/>
 <text text-anchor="start" x="212.62" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="264.38" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkMesh</text>

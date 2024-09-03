@@ -67,7 +67,7 @@ var sectionId = 'dynsection-4';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adbe392014331d03ee16e479c94088e6b" target="_top" xlink:title="Helper Functions for constructing the rtree element list.">
+<g id="a_Node000002"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adbe392014331d03ee16e479c94088e6b" target="_top" xlink:title="Helper Functions for constructing the rtree element list">
 <polygon fill="white" stroke="#666666" points="327.5,-245 181.75,-245 181.75,-213 327.5,-213 327.5,-245"/>
 <text text-anchor="start" x="189.75" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::AddElement</text>
 <text text-anchor="middle" x="254.62" y="-219.5" font-family="Helvetica,sans-Serif" font-size="10.00">ToRtree</text>
@@ -379,7 +379,7 @@ var sectionId = 'dynsection-4';
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000012"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="820.25,-377 705.25,-377 705.25,-345 820.25,-345 820.25,-377"/>
 <text text-anchor="start" x="713.25" y="-363.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="762.75" y="-351.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>

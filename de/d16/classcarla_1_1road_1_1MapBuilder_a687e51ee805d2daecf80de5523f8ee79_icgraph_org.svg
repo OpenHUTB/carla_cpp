@@ -40,7 +40,7 @@
 <!-- Node22 -->
 <g id="Node000022" class="node">
 <title>Node22</title>
-<g id="a_Node000022"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ac5ab2aea311a2bb6e43258c73bd57b49" target="_top" xlink:title="Generates a default validity field for signal references with missing validity record in OpenDRIVE.">
+<g id="a_Node000022"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ac5ab2aea311a2bb6e43258c73bd57b49" target="_top" xlink:title="Generates a default validity field for signal references with missing validity record in OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="1273,-215 1127.25,-215 1127.25,-171 1273,-171 1273,-215"/>
 <text text-anchor="start" x="1135.25" y="-201.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="start" x="1135.25" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateDefaultValiditiesFor</text>
@@ -421,7 +421,7 @@
 <!-- Node23 -->
 <g id="Node000023" class="node">
 <title>Node23</title>
-<g id="a_Node000023"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" target="_top" xlink:title="Solves the signal references in the road.">
+<g id="a_Node000023"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" target="_top" xlink:title="Solves the signal references in the road">
 <polygon fill="white" stroke="#666666" points="1091.25,-212 905,-212 905,-180 1091.25,-180 1091.25,-212"/>
 <text text-anchor="start" x="913" y="-198.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="998.12" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SolveSignalReferencesAndTransforms</text>

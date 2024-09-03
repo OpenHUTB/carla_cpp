@@ -57,7 +57,7 @@ var sectionId = 'dynsection-26';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Get all lanes from all lane sections in a specific s.">
+<g id="a_Node000001"><a xlink:title="Get all lanes from all lane sections in a specific s">
 <polygon fill="#999999" stroke="#666666" points="1417.25,-238 1309,-238 1309,-206 1417.25,-206 1417.25,-238"/>
 <text text-anchor="start" x="1317" y="-224.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Road::</text>
 <text text-anchor="middle" x="1363.12" y="-212.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetLanesByDistance</text>
@@ -67,7 +67,7 @@ var sectionId = 'dynsection-26';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ac5ab2aea311a2bb6e43258c73bd57b49" target="_top" xlink:title="Generates a default validity field for signal references with missing validity record in OpenDRIVE.">
+<g id="a_Node000002"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ac5ab2aea311a2bb6e43258c73bd57b49" target="_top" xlink:title="Generates a default validity field for signal references with missing validity record in OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="1273,-244 1127.25,-244 1127.25,-200 1273,-200 1273,-244"/>
 <text text-anchor="start" x="1135.25" y="-230.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="start" x="1135.25" y="-218.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateDefaultValiditiesFor</text>
@@ -87,7 +87,7 @@ var sectionId = 'dynsection-26';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" target="_top" xlink:title="Solves the signal references in the road.">
+<g id="a_Node000003"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" target="_top" xlink:title="Solves the signal references in the road">
 <polygon fill="white" stroke="#666666" points="1091.25,-238 905,-238 905,-206 1091.25,-206 1091.25,-238"/>
 <text text-anchor="start" x="913" y="-224.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="998.12" y="-212.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SolveSignalReferencesAndTransforms</text>

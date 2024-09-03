@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Computes the 4&#45;matrix form of the transformation.">
+<g id="a_Node000001"><a xlink:title="Computes the 4&#45;matrix form of the transformation">
 <polygon fill="#999999" stroke="#666666" points="115.75,-32 0,-32 0,0 115.75,0 115.75,-32"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Transform</text>
 <text text-anchor="middle" x="57.88" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GetMatrix</text>

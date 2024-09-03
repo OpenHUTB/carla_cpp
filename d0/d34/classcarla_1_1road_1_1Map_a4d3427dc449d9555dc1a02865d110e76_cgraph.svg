@@ -455,7 +455,7 @@ var sectionId = 'dynsection-6';
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000012"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="1392.5,-858 1277.5,-858 1277.5,-826 1392.5,-826 1392.5,-858"/>
 <text text-anchor="start" x="1285.5" y="-844.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="1335" y="-832.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>
@@ -1078,7 +1078,7 @@ var sectionId = 'dynsection-6';
 <!-- Node47 -->
 <g id="Node000047" class="node">
 <title>Node47</title>
-<g id="a_Node000047"><a xlink:href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5d270a76228a4f47ae0bcfc2c866f5cd" target="_top" xlink:title="Evaluates f(x) = a + bx + cx^2 + dx^3.">
+<g id="a_Node000047"><a xlink:href="../../d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5d270a76228a4f47ae0bcfc2c866f5cd" target="_top" xlink:title="Evaluates f(x) = a + bx + cx^2 + dx^3">
 <polygon fill="white" stroke="#666666" points="833,-414 687.25,-414 687.25,-382 833,-382 833,-414"/>
 <text text-anchor="start" x="695.25" y="-400.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::CubicPolynomial</text>
 <text text-anchor="middle" x="760.12" y="-388.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Evaluate</text>

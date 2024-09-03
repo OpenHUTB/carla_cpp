@@ -181,7 +181,7 @@ var sectionId = 'dynsection-26';
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#ab2b49cb7ce0697c34d49e20dfa40692b" target="_top" xlink:title="Returns a pointer to the nearest lane, given s relative to Road and a location.">
+<g id="a_Node000017"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#ab2b49cb7ce0697c34d49e20dfa40692b" target="_top" xlink:title="Returns a pointer to the nearest lane, given s relative to Road and a location">
 <polygon fill="white" stroke="#666666" points="1281.62,-594 1185.38,-594 1185.38,-562 1281.62,-562 1281.62,-594"/>
 <text text-anchor="start" x="1193.38" y="-580.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Road::</text>
 <text text-anchor="middle" x="1233.5" y="-568.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetNearestLane</text>
@@ -275,7 +275,7 @@ var sectionId = 'dynsection-26';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#af8d495dd39272f46df76884d237409e8" target="_top" xlink:title="Buids a mesh based on the OpenDRIVE.">
+<g id="a_Node000008"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#af8d495dd39272f46df76884d237409e8" target="_top" xlink:title="Buids a mesh based on the OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="729.25,-741 573,-741 573,-721 729.25,-721 729.25,-741"/>
 <text text-anchor="middle" x="651.12" y="-727.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GenerateMesh</text>
 </a>
@@ -664,7 +664,7 @@ var sectionId = 'dynsection-26';
 <!-- Node32 -->
 <g id="Node000032" class="node">
 <title>Node32</title>
-<g id="a_Node000032"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning.">
+<g id="a_Node000032"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning">
 <polygon fill="white" stroke="#666666" points="901.25,-247 778.75,-247 778.75,-215 901.25,-215 901.25,-247"/>
 <text text-anchor="start" x="786.75" y="-233.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="840" y="-221.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CheckSignalsOnRoads</text>

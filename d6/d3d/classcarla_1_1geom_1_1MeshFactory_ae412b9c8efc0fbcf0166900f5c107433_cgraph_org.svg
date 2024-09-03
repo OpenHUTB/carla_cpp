@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Generates a chunked road with all the features needed for simulation.">
+<g id="a_Node000001"><a xlink:title="Generates a chunked road with all the features needed for simulation">
 <polygon fill="#999999" stroke="#666666" points="130,-82 0,-82 0,-50 130,-50 130,-82"/>
 <text text-anchor="start" x="8" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="65" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateAllWithMaxLen</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5bb7825a0c5633404a348ccddcce20f7" target="_top" xlink:title="Generates a list of meshes that defines a road safety wall with a maximum length.">
+<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5bb7825a0c5633404a348ccddcce20f7" target="_top" xlink:title="Generates a list of meshes that defines a road safety wall with a maximum length">
 <polygon fill="white" stroke="#666666" points="307.25,-150 166,-150 166,-118 307.25,-118 307.25,-150"/>
 <text text-anchor="start" x="174" y="-136.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="236.62" y="-124.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateWallsWithMaxLen</text>
@@ -40,7 +40,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae4ed344f3d9ed1020d78d720400bbc3a" target="_top" xlink:title="Generates a list of meshes that defines a road with a maximum length.">
+<g id="a_Node000006"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae4ed344f3d9ed1020d78d720400bbc3a" target="_top" xlink:title="Generates a list of meshes that defines a road with a maximum length">
 <polygon fill="white" stroke="#666666" points="301.62,-82 171.62,-82 171.62,-50 301.62,-50 301.62,-82"/>
 <text text-anchor="start" x="179.62" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="236.62" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateWithMaxLen</text>

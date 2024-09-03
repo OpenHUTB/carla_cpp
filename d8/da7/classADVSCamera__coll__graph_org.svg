@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Sensor that produce Dynamic Vision Events.">
+<g id="a_Node000001"><a xlink:title="Sensor that produce Dynamic Vision Events">
 <polygon fill="#999999" stroke="#666666" points="1712.5,-924.54 1635.75,-924.54 1635.75,-904.54 1712.5,-904.54 1712.5,-924.54"/>
 <text text-anchor="middle" x="1674.12" y="-911.04" font-family="Helvetica,sans-Serif" font-size="10.00">ADVSCamera</text>
 </a>
@@ -110,7 +110,7 @@
 <!-- Node41 -->
 <g id="Node000041" class="node">
 <title>Node41</title>
-<g id="a_Node000041"><a xlink:href="../../dd/db9/classACarlaRecorder.html" target="_top" xlink:title="Recorder for the simulation.">
+<g id="a_Node000041"><a xlink:href="../../dd/db9/classACarlaRecorder.html" target="_top" xlink:title="Recorder for the simulation">
 <polygon fill="#fff0f0" stroke="red" points="943,-636.54 858.75,-636.54 858.75,-616.54 943,-616.54 943,-636.54"/>
 <text text-anchor="middle" x="900.88" y="-623.04" font-family="Helvetica,sans-Serif" font-size="10.00">ACarlaRecorder</text>
 </a>
@@ -344,7 +344,7 @@
 <!-- Node149 -->
 <g id="Node000149" class="node">
 <title>Node149</title>
-<g id="a_Node000149"><a xlink:href="../../de/d22/structdvs_1_1Config.html" target="_top" xlink:title="DVS Configuration structure.">
+<g id="a_Node000149"><a xlink:href="../../de/d22/structdvs_1_1Config.html" target="_top" xlink:title="DVS Configuration structure">
 <polygon fill="white" stroke="#666666" points="381.12,-1180.54 317.88,-1180.54 317.88,-1160.54 381.12,-1160.54 381.12,-1180.54"/>
 <text text-anchor="middle" x="349.5" y="-1167.04" font-family="Helvetica,sans-Serif" font-size="10.00">dvs::Config</text>
 </a>

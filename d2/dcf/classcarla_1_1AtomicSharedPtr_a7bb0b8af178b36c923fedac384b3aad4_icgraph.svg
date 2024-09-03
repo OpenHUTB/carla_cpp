@@ -333,7 +333,7 @@ var sectionId = 'dynsection-2';
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#ab3790dbde952495c568dda20e99ec9f0" target="_top" xlink:title="Apply Ackermann control settings to this vehicle.">
+<g id="a_Node000015"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#ab3790dbde952495c568dda20e99ec9f0" target="_top" xlink:title="Apply Ackermann control settings to this vehicle">
 <polygon fill="white" stroke="#666666" points="305,-1732 131.5,-1732 131.5,-1700 305,-1700 305,-1732"/>
 <text text-anchor="start" x="139.5" y="-1718.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Vehicle</text>
 <text text-anchor="middle" x="218.25" y="-1706.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ApplyAckermannControllerSettings</text>
@@ -542,7 +542,7 @@ var sectionId = 'dynsection-2';
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#a3e52559e55b5c6a8bb8c3caa41ebec53" target="_top" xlink:title="Close a door in this vehicle.">
+<g id="a_Node000030"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#a3e52559e55b5c6a8bb8c3caa41ebec53" target="_top" xlink:title="Close a door in this vehicle">
 <polygon fill="white" stroke="#666666" points="270.5,-1182 166,-1182 166,-1150 270.5,-1150 270.5,-1182"/>
 <text text-anchor="start" x="174" y="-1168.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Vehicle</text>
 <text text-anchor="middle" x="218.25" y="-1156.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CloseDoor</text>
@@ -620,7 +620,7 @@ var sectionId = 'dynsection-2';
 <!-- Node35 -->
 <g id="Node000035" class="node">
 <title>Node35</title>
-<g id="a_Node000035"><a xlink:href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a15cf46217d58e16fd40a41f8e094772d" target="_top" xlink:title="Disable the constant velocity mode.">
+<g id="a_Node000035"><a xlink:href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a15cf46217d58e16fd40a41f8e094772d" target="_top" xlink:title="Disable the constant velocity mode">
 <polygon fill="white" stroke="#666666" points="282.5,-970 154,-970 154,-938 282.5,-938 282.5,-970"/>
 <text text-anchor="start" x="162" y="-956.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Actor</text>
 <text text-anchor="middle" x="218.25" y="-944.5" font-family="Helvetica,sans-Serif" font-size="10.00">::DisableConstantVelocity</text>
@@ -639,7 +639,7 @@ var sectionId = 'dynsection-2';
 <!-- Node36 -->
 <g id="Node000036" class="node">
 <title>Node36</title>
-<g id="a_Node000036"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ad803ed6a7a4541224ede9d371100b36e" target="_top" xlink:title="Disable this sensor for ROS2 publishing.">
+<g id="a_Node000036"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#ad803ed6a7a4541224ede9d371100b36e" target="_top" xlink:title="Disable this sensor for ROS2 publishing">
 <polygon fill="white" stroke="#666666" points="278.38,-920 158.12,-920 158.12,-888 278.38,-888 278.38,-920"/>
 <text text-anchor="start" x="166.12" y="-906.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::ServerSide</text>
 <text text-anchor="middle" x="218.25" y="-894.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensor::DisableForROS</text>
@@ -676,7 +676,7 @@ var sectionId = 'dynsection-2';
 <!-- Node47 -->
 <g id="Node000047" class="node">
 <title>Node47</title>
-<g id="a_Node000047"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a" target="_top" xlink:title="Enables CarSim simulation if it is availiable.">
+<g id="a_Node000047"><a xlink:href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html#a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a" target="_top" xlink:title="Enables CarSim simulation if it is availiable">
 <polygon fill="white" stroke="#666666" points="270.5,-832 166,-832 166,-800 270.5,-800 270.5,-832"/>
 <text text-anchor="start" x="174" y="-818.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Vehicle</text>
 <text text-anchor="middle" x="218.25" y="-806.5" font-family="Helvetica,sans-Serif" font-size="10.00">::EnableCarSim</text>
@@ -714,7 +714,7 @@ var sectionId = 'dynsection-2';
 <!-- Node49 -->
 <g id="Node000049" class="node">
 <title>Node49</title>
-<g id="a_Node000049"><a xlink:href="../../d6/da5/classcarla_1_1client_1_1Actor.html#aa56d845bdc7b09118c831dc530f9908c" target="_top" xlink:title="Enable a constant velocity mode.">
+<g id="a_Node000049"><a xlink:href="../../d6/da5/classcarla_1_1client_1_1Actor.html#aa56d845bdc7b09118c831dc530f9908c" target="_top" xlink:title="Enable a constant velocity mode">
 <polygon fill="white" stroke="#666666" points="281.38,-732 155.12,-732 155.12,-700 281.38,-700 281.38,-732"/>
 <text text-anchor="start" x="163.12" y="-718.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Actor</text>
 <text text-anchor="middle" x="218.25" y="-706.5" font-family="Helvetica,sans-Serif" font-size="10.00">::EnableConstantVelocity</text>
@@ -752,7 +752,7 @@ var sectionId = 'dynsection-2';
 <!-- Node51 -->
 <g id="Node000051" class="node">
 <title>Node51</title>
-<g id="a_Node000051"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a6bbbfb631ec68bd00b412c1c49a4b393" target="_top" xlink:title="Enable this sensor for ROS2 publishing.">
+<g id="a_Node000051"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a6bbbfb631ec68bd00b412c1c49a4b393" target="_top" xlink:title="Enable this sensor for ROS2 publishing">
 <polygon fill="white" stroke="#666666" points="277.62,-632 158.88,-632 158.88,-600 277.62,-600 277.62,-632"/>
 <text text-anchor="start" x="166.88" y="-618.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::ServerSide</text>
 <text text-anchor="middle" x="218.25" y="-606.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensor::EnableForROS</text>

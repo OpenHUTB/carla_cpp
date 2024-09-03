@@ -442,7 +442,7 @@ var sectionId = 'dynsection-10';
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning.">
+<g id="a_Node000009"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning">
 <polygon fill="#fff0f0" stroke="red" points="587.12,-1262 464.62,-1262 464.62,-1230 587.12,-1230 587.12,-1262"/>
 <text text-anchor="start" x="472.62" y="-1248.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="525.88" y="-1236.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CheckSignalsOnRoads</text>
@@ -480,7 +480,7 @@ var sectionId = 'dynsection-10';
 <!-- Node64 -->
 <g id="Node000064" class="node">
 <title>Node64</title>
-<g id="a_Node000064"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction.">
+<g id="a_Node000064"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction">
 <polygon fill="#fff0f0" stroke="red" points="603.25,-1462 448.5,-1462 448.5,-1430 603.25,-1430 603.25,-1462"/>
 <text text-anchor="start" x="456.5" y="-1448.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="525.88" y="-1436.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CreateJunctionBoundingBoxes</text>
@@ -518,7 +518,7 @@ var sectionId = 'dynsection-10';
 <!-- Node88 -->
 <g id="Node000088" class="node">
 <title>Node88</title>
-<g id="a_Node000088"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#aa01b79061fa5fc167617bc32272a2bb7" target="_top" xlink:title="Removes signal references with lane validity equal to [0,0] as they have no effect on any road.">
+<g id="a_Node000088"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#aa01b79061fa5fc167617bc32272a2bb7" target="_top" xlink:title="Removes signal references with lane validity equal to [0,0] as they have no effect on any road">
 <polygon fill="white" stroke="#666666" points="603.62,-1212 448.12,-1212 448.12,-1168 603.62,-1168 603.62,-1212"/>
 <text text-anchor="start" x="456.12" y="-1198.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="start" x="456.12" y="-1186.5" font-family="Helvetica,sans-Serif" font-size="10.00">::RemoveZeroLaneValiditySignal</text>
@@ -538,7 +538,7 @@ var sectionId = 'dynsection-10';
 <!-- Node90 -->
 <g id="Node000090" class="node">
 <title>Node90</title>
-<g id="a_Node000090"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#a76406231d5de92bdeda1b869d0da7eab" target="_top" xlink:title="Solve the references between Controllers and Juntions.">
+<g id="a_Node000090"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#a76406231d5de92bdeda1b869d0da7eab" target="_top" xlink:title="Solve the references between Controllers and Juntions">
 <polygon fill="white" stroke="#666666" points="617.5,-1362 434.25,-1362 434.25,-1330 617.5,-1330 617.5,-1362"/>
 <text text-anchor="start" x="442.25" y="-1348.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="525.88" y="-1336.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SolveControllerAndJuntionReferences</text>
@@ -557,7 +557,7 @@ var sectionId = 'dynsection-10';
 <!-- Node91 -->
 <g id="Node000091" class="node">
 <title>Node91</title>
-<g id="a_Node000091"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" target="_top" xlink:title="Solves the signal references in the road.">
+<g id="a_Node000091"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" target="_top" xlink:title="Solves the signal references in the road">
 <polygon fill="#fff0f0" stroke="red" points="619,-1312 432.75,-1312 432.75,-1280 619,-1280 619,-1312"/>
 <text text-anchor="start" x="440.75" y="-1298.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="525.88" y="-1286.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SolveSignalReferencesAndTransforms</text>

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Generates a wall&#45;like mesh at the right side of the lane.">
+<g id="a_Node000001"><a xlink:title="Generates a wall&#45;like mesh at the right side of the lane">
 <polygon fill="#999999" stroke="#666666" points="130,-397.21 0,-397.21 0,-365.21 130,-365.21 130,-397.21"/>
 <text text-anchor="start" x="8" y="-383.71" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="65" y="-371.71" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateRightWall</text>
@@ -78,7 +78,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" target="_top" xlink:title="Computes the location of the edges given a s.">
+<g id="a_Node000008"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" target="_top" xlink:title="Computes the location of the edges given a s">
 <polygon fill="white" stroke="#666666" points="267.88,-397.21 167.12,-397.21 167.12,-365.21 267.88,-365.21 267.88,-397.21"/>
 <text text-anchor="start" x="175.12" y="-383.71" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="217.5" y="-371.71" font-family="Helvetica,sans-Serif" font-size="10.00">GetCornerPositions</text>
@@ -173,7 +173,7 @@
 <!-- Node28 -->
 <g id="Node000028" class="node">
 <title>Node28</title>
-<g id="a_Node000028"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" target="_top" xlink:title="Checks whether the geometry is straight or not.">
+<g id="a_Node000028"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" target="_top" xlink:title="Checks whether the geometry is straight or not">
 <polygon fill="white" stroke="#666666" points="416.25,-134.21 321.5,-134.21 321.5,-102.21 416.25,-102.21 416.25,-134.21"/>
 <text text-anchor="start" x="329.5" y="-120.71" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="368.88" y="-108.71" font-family="Helvetica,sans-Serif" font-size="10.00">IsStraight</text>
@@ -372,7 +372,7 @@
 <!-- Node22 -->
 <g id="Node000022" class="node">
 <title>Node22</title>
-<g id="a_Node000022"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a34da073c1da719b3455c4dd8f7b441c9" target="_top" xlink:title="Returns the total lane width given a s.">
+<g id="a_Node000022"><a xlink:href="../../df/d85/classcarla_1_1road_1_1Lane.html#a34da073c1da719b3455c4dd8f7b441c9" target="_top" xlink:title="Returns the total lane width given a s">
 <polygon fill="white" stroke="#666666" points="416.25,-234.21 321.5,-234.21 321.5,-202.21 416.25,-202.21 416.25,-234.21"/>
 <text text-anchor="start" x="329.5" y="-220.71" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Lane::</text>
 <text text-anchor="middle" x="368.88" y="-208.71" font-family="Helvetica,sans-Serif" font-size="10.00">GetWidth</text>
@@ -475,7 +475,7 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000016"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="760.25,-334.21 645.25,-334.21 645.25,-302.21 760.25,-302.21 760.25,-334.21"/>
 <text text-anchor="start" x="653.25" y="-320.71" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="702.75" y="-308.71" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>
@@ -678,7 +678,7 @@
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#abf1e4615805f6876dac8d37b8141319d" target="_top" xlink:title="Return all infos given a type from the start of the road.">
+<g id="a_Node000031"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#abf1e4615805f6876dac8d37b8141319d" target="_top" xlink:title="Return all infos given a type from the start of the road">
 <polygon fill="white" stroke="#666666" points="760.25,-111.21 645.25,-111.21 645.25,-79.21 760.25,-79.21 760.25,-111.21"/>
 <text text-anchor="start" x="653.25" y="-97.71" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="702.75" y="-85.71" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfos</text>

@@ -1,4 +1,4 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<map id="类继承关系图" name="类继承关系图">
 <area shape="rect" id="Node000000" href="$df/def/classUObject.html" title=" " alt="" coords="5,233,74,260"/>
 <area shape="rect" id="Node000001" href="$d7/d90/classUActorDispatcher.html" title="Object in charge of binding ActorDefinitions to spawn functions, as well as keeping the registry of a..." alt="" coords="140,5,263,32"/>
 <area shape="poly" id="edge358_Node000000_Node000001" title=" " alt="" coords="42,219,50,180,64,132,87,84,120,42,138,30,141,34,123,46,91,87,69,134,55,181,47,220"/>
@@ -10,7 +10,7 @@
 <area shape="poly" id="edge361_Node000000_Node000004" title=" " alt="" coords="71,222,121,194,149,182,151,187,123,198,73,227"/>
 <area shape="rect" id="Node000005" href="$d2/d5b/classUObjectRegister.html" title=" " alt="" coords="143,208,260,235"/>
 <area shape="poly" id="edge362_Node000000_Node000005" title=" " alt="" coords="88,236,142,228,143,233,89,242"/>
-<area shape="rect" id="Node000006" href="$d8/dfe/classUOpenDriveMap.html" title="Helper class for exposing CARLA OpenDrive API to blueprints." alt="" coords="144,259,259,285"/>
+<area shape="rect" id="Node000006" href="$d8/dfe/classUOpenDriveMap.html" title="将 CARLA OpenDrive API 公开给蓝图的辅助类。" alt="" coords="144,259,259,285"/>
 <area shape="poly" id="edge363_Node000000_Node000006" title=" " alt="" coords="89,252,145,260,144,266,88,257"/>
 <area shape="rect" id="Node000007" href="$d2/d4b/classURandomEngine.html" title=" " alt="" coords="142,309,261,336"/>
 <area shape="poly" id="edge364_Node000000_Node000007" title=" " alt="" coords="73,266,123,295,151,306,149,311,121,300,71,271"/>

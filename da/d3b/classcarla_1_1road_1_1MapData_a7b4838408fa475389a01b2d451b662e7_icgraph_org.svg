@@ -115,7 +115,7 @@
 <!-- Node29 -->
 <g id="Node000029" class="node">
 <title>Node29</title>
-<g id="a_Node000029"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction.">
+<g id="a_Node000029"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" target="_top" xlink:title="Generate waypoints of the junction">
 <polygon fill="white" stroke="#666666" points="773.5,-696 629.25,-696 629.25,-664 773.5,-664 773.5,-696"/>
 <text text-anchor="start" x="637.25" y="-682.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetJunction</text>
 <text text-anchor="middle" x="701.38" y="-670.5" font-family="Helvetica,sans-Serif" font-size="10.00">Waypoints</text>
@@ -358,7 +358,7 @@
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" target="_top" xlink:title="Solves the signal references in the road.">
+<g id="a_Node000024"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ae08e6f0bdd3b6efe2e30ca19effd3a97" target="_top" xlink:title="Solves the signal references in the road">
 <polygon fill="white" stroke="#666666" points="581.25,-950 395,-950 395,-918 581.25,-918 581.25,-950"/>
 <text text-anchor="start" x="403" y="-936.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="488.12" y="-924.5" font-family="Helvetica,sans-Serif" font-size="10.00">::SolveSignalReferencesAndTransforms</text>
@@ -423,7 +423,7 @@
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction.">
+<g id="a_Node000030"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ab0d9fe008defb1501769cf62f8cadf14" target="_top" xlink:title="Create the bounding boxes of each junction">
 <polygon fill="white" stroke="#666666" points="341,-787 186.25,-787 186.25,-755 341,-755 341,-787"/>
 <text text-anchor="start" x="194.25" y="-773.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="263.62" y="-761.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CreateJunctionBoundingBoxes</text>
@@ -767,7 +767,7 @@
 <!-- Node41 -->
 <g id="Node000041" class="node">
 <title>Node41</title>
-<g id="a_Node000041"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning.">
+<g id="a_Node000041"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning">
 <polygon fill="white" stroke="#666666" points="549.38,-850 426.88,-850 426.88,-818 549.38,-818 549.38,-850"/>
 <text text-anchor="start" x="434.88" y="-836.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="488.12" y="-824.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CheckSignalsOnRoads</text>
@@ -805,7 +805,7 @@
 <!-- Node45 -->
 <g id="Node000045" class="node">
 <title>Node45</title>
-<g id="a_Node000045"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished.">
+<g id="a_Node000045"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished">
 <polygon fill="#fff0f0" stroke="red" points="547.88,-686 428.38,-686 428.38,-654 547.88,-654 547.88,-686"/>
 <text text-anchor="start" x="436.38" y="-672.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="488.12" y="-660.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkZones</text>
@@ -1040,7 +1040,7 @@
 <!-- Node64 -->
 <g id="Node000064" class="node">
 <title>Node64</title>
-<g id="a_Node000064"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ac5ab2aea311a2bb6e43258c73bd57b49" target="_top" xlink:title="Generates a default validity field for signal references with missing validity record in OpenDRIVE.">
+<g id="a_Node000064"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#ac5ab2aea311a2bb6e43258c73bd57b49" target="_top" xlink:title="Generates a default validity field for signal references with missing validity record in OpenDRIVE">
 <polygon fill="white" stroke="#666666" points="774.25,-1110 628.5,-1110 628.5,-1066 774.25,-1066 774.25,-1110"/>
 <text text-anchor="start" x="636.5" y="-1096.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="start" x="636.5" y="-1084.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateDefaultValiditiesFor</text>
@@ -1136,7 +1136,7 @@
 <!-- Node69 -->
 <g id="Node000069" class="node">
 <title>Node69</title>
-<g id="a_Node000069"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#aa01b79061fa5fc167617bc32272a2bb7" target="_top" xlink:title="Removes signal references with lane validity equal to [0,0] as they have no effect on any road.">
+<g id="a_Node000069"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#aa01b79061fa5fc167617bc32272a2bb7" target="_top" xlink:title="Removes signal references with lane validity equal to [0,0] as they have no effect on any road">
 <polygon fill="white" stroke="#666666" points="341.38,-906 185.88,-906 185.88,-862 341.38,-862 341.38,-906"/>
 <text text-anchor="start" x="193.88" y="-892.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="start" x="193.88" y="-880.5" font-family="Helvetica,sans-Serif" font-size="10.00">::RemoveZeroLaneValiditySignal</text>

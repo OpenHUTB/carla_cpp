@@ -1,8 +1,8 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<map id="类继承关系图" name="类继承关系图">
 <area shape="rect" id="Node000000" title=" " alt="" coords="263,317,394,360"/>
 <area shape="rect" id="Node000001" href="$d7/d3c/classcarla_1_1BufferPool.html" title="A pool of Buffer." alt="" coords="528,5,644,32"/>
 <area shape="poly" id="edge207_Node000000_Node000001" title=" " alt="" coords="334,302,348,244,374,174,392,137,413,102,439,70,468,42,496,27,526,19,528,24,498,32,472,46,443,74,418,105,397,140,379,176,353,246,339,303"/>
-<area shape="rect" id="Node000002" href="$db/db8/classcarla_1_1BufferView.html" title="Creating a constant view from an existing buffer." alt="" coords="527,56,645,83"/>
+<area shape="rect" id="Node000002" href="$db/db8/classcarla_1_1BufferView.html" title="Creating a constant view from an existing buffer" alt="" coords="527,56,645,83"/>
 <area shape="poly" id="edge208_Node000000_Node000002" title=" " alt="" coords="337,302,355,254,382,197,420,140,443,115,469,92,496,78,526,70,527,75,498,83,471,97,446,118,424,143,387,200,360,256,342,304"/>
 <area shape="rect" id="Node000003" href="$d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html" title="Holds the current episode, and the current episode state." alt="" coords="522,592,649,635"/>
 <area shape="poly" id="edge209_Node000000_Node000003" title=" " alt="" coords="366,369,396,402,424,441,434,462,439,481,443,515,450,547,458,562,472,578,495,594,523,604,521,609,493,599,468,582,454,565,445,549,438,516,434,482,429,464,420,444,392,406,362,372"/>
@@ -91,13 +91,13 @@
 <area shape="poly" id="edge258_Node000055_Node000076" title=" " alt="" coords="613,1895,660,1951,684,1987,704,2026,717,2068,721,2107,715,2176,713,2209,716,2241,728,2273,751,2308,768,2321,788,2331,786,2336,765,2326,747,2311,723,2276,711,2242,708,2209,710,2176,715,2107,712,2069,699,2028,679,1990,656,1955,609,1898"/>
 <area shape="rect" id="Node000077" href="$d3/d28/classcarla_1_1sensor_1_1data_1_1ObstacleDetectionEvent.html" title="A registered detection." alt="" coords="771,1372,940,1415"/>
 <area shape="poly" id="edge259_Node000055_Node000077" title=" " alt="" coords="683,1858,699,1845,719,1819,732,1794,740,1768,742,1743,738,1691,725,1639,712,1587,706,1534,709,1507,716,1480,728,1452,747,1425,769,1407,773,1411,751,1428,733,1455,721,1482,714,1508,712,1534,717,1586,730,1638,743,1690,748,1743,745,1769,737,1795,724,1822,703,1849,687,1862"/>
-<area shape="rect" id="Node000078" href="$da/d3a/classcarla_1_1sensor_1_1data_1_1RssResponse.html" title="A RSS Response." alt="" coords="791,1439,920,1481"/>
+<area shape="rect" id="Node000078" href="$da/d3a/classcarla_1_1sensor_1_1data_1_1RssResponse.html" title="A RSS Response" alt="" coords="791,1439,920,1481"/>
 <area shape="poly" id="edge260_Node000055_Node000078" title=" " alt="" coords="683,1857,699,1845,716,1823,728,1802,734,1781,737,1759,734,1716,725,1672,715,1628,711,1583,714,1561,720,1538,731,1515,747,1492,767,1476,789,1466,791,1471,769,1480,751,1495,735,1517,725,1539,719,1561,717,1583,720,1627,730,1671,739,1715,742,1759,739,1782,732,1804,721,1826,703,1849,687,1862"/>
 <area shape="rect" id="Node000057" href="$d5/d7c/classcarla_1_1sensor_1_1data_1_1CAMEvent.html" title=" " alt="" coords="1041,1505,1170,1548"/>
 <area shape="poly" id="edge239_Node000056_Node000057" title=" " alt="" coords="957,1524,1040,1524,1040,1529,957,1529"/>
 <area shape="rect" id="Node000059" href="$dc/df1/classcarla_1_1sensor_1_1data_1_1CustomV2XEvent.html" title=" " alt="" coords="1041,1572,1170,1615"/>
 <area shape="poly" id="edge241_Node000058_Node000059" title=" " alt="" coords="976,1591,1040,1591,1040,1596,976,1596"/>
-<area shape="rect" id="Node000061" href="$df/dc1/classcarla_1_1sensor_1_1data_1_1DVSEventArray.html" title="An array of DVS Events in an image structure HxW." alt="" coords="1041,1639,1170,1681"/>
+<area shape="rect" id="Node000061" href="$df/dc1/classcarla_1_1sensor_1_1data_1_1DVSEventArray.html" title="An array of DVS Events in an image structure HxW" alt="" coords="1041,1639,1170,1681"/>
 <area shape="poly" id="edge243_Node000060_Node000061" title=" " alt="" coords="942,1657,1040,1657,1040,1663,942,1663"/>
 <area shape="rect" id="Node000063" href="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html" title="Templated image for any type of pixel." alt="" coords="1029,1705,1182,1748"/>
 <area shape="poly" id="edge245_Node000062_Node000063" title=" " alt="" coords="935,1724,1029,1724,1029,1729,935,1729"/>

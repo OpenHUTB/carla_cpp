@@ -236,7 +236,7 @@ var sectionId = 'dynsection-8';
 <!-- Node19 -->
 <g id="Node000019" class="node">
 <title>Node19</title>
-<g id="a_Node000019"><a xlink:href="../../d8/d15/classARayCastSemanticLidar.html#ac76cb91d3d9eb70eeeb73ecf10ccfdef" target="_top" xlink:title="Clear the recorded data structure.">
+<g id="a_Node000019"><a xlink:href="../../d8/d15/classARayCastSemanticLidar.html#ac76cb91d3d9eb70eeeb73ecf10ccfdef" target="_top" xlink:title="Clear the recorded data structure">
 <polygon fill="white" stroke="#666666" points="466.12,-294 343.62,-294 343.62,-262 466.12,-262 466.12,-294"/>
 <text text-anchor="start" x="351.62" y="-280.5" font-family="Helvetica,sans-Serif" font-size="10.00">ARayCastSemanticLidar</text>
 <text text-anchor="middle" x="404.88" y="-268.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ResetRecordedHits</text>
@@ -332,7 +332,7 @@ var sectionId = 'dynsection-8';
 <!-- Node24 -->
 <g id="Node000024" class="node">
 <title>Node24</title>
-<g id="a_Node000024"><a xlink:href="../../d8/d15/classARayCastSemanticLidar.html#a6c6152f75224aff64bd70c5afc76d806" target="_top" xlink:title="Saving the hits the raycast returns per channel.">
+<g id="a_Node000024"><a xlink:href="../../d8/d15/classARayCastSemanticLidar.html#a6c6152f75224aff64bd70c5afc76d806" target="_top" xlink:title="Saving the hits the raycast returns per channel">
 <polygon fill="white" stroke="#666666" points="466.12,-32 343.62,-32 343.62,0 466.12,0 466.12,-32"/>
 <text text-anchor="start" x="351.62" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">ARayCastSemanticLidar</text>
 <text text-anchor="middle" x="404.88" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">::WritePointAsync</text>
@@ -351,7 +351,7 @@ var sectionId = 'dynsection-8';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="../../d8/d15/classARayCastSemanticLidar.html#a9b240e26d15f17ca30654c39e3f23935" target="_top" xlink:title="Compute all raw detection information.">
+<g id="a_Node000008"><a xlink:href="../../d8/d15/classARayCastSemanticLidar.html#a9b240e26d15f17ca30654c39e3f23935" target="_top" xlink:title="Compute all raw detection information">
 <polygon fill="white" stroke="#666666" points="636.25,-543 513.75,-543 513.75,-511 636.25,-511 636.25,-543"/>
 <text text-anchor="start" x="521.75" y="-529.5" font-family="Helvetica,sans-Serif" font-size="10.00">ARayCastSemanticLidar</text>
 <text text-anchor="middle" x="575" y="-517.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ComputeRawDetection</text>

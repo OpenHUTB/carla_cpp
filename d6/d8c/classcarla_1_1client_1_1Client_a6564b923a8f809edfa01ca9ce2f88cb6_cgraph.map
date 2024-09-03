@@ -1,5 +1,5 @@
 <map id="carla::client::Client::LoadWorldIfDifferent" name="carla::client::Client::LoadWorldIfDifferent">
-<area shape="rect" id="Node000001" title="Return (and load) a new world (map) only when the requested map is different from the current one." alt="" coords="5,68,150,111"/>
+<area shape="rect" id="Node000001" title="Return (and load) a new world (map) only when the requested map is different from the current one" alt="" coords="5,68,150,111"/>
 <area shape="rect" id="Node000002" href="$db/d1f/classcarla_1_1client_1_1World.html#a90f244a1df3efaa63331813736a199a6" title="Return the map that describes this world." alt="" coords="198,35,328,77"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,74,183,68,184,73,150,79"/>
 <area shape="rect" id="Node000007" href="$d6/d8c/classcarla_1_1client_1_1Client.html#a5dab21b8e474241e722426de6cfe830b" title="Return an instance of the world currently active in the simulator." alt="" coords="198,101,328,144"/>

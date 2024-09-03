@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Accelerometer: measures linear acceleration in m/s^2.">
+<g id="a_Node000001"><a xlink:title="Accelerometer: measures linear acceleration in m/s^2">
 <polygon fill="#999999" stroke="#666666" points="127.75,-48 0,-48 0,-16 127.75,-16 127.75,-48"/>
 <text text-anchor="start" x="8" y="-34.5" font-family="Helvetica,sans-Serif" font-size="10.00">AInertialMeasurementUnit</text>
 <text text-anchor="middle" x="63.88" y="-22.5" font-family="Helvetica,sans-Serif" font-size="10.00">::ComputeAccelerometer</text>

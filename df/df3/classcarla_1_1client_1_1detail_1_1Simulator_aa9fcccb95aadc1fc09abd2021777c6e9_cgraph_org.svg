@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Query to know if a Traffic Manager is running on port.">
+<g id="a_Node000001"><a xlink:title="Query to know if a Traffic Manager is running on port">
 <polygon fill="#999999" stroke="#666666" points="139.75,-44 0,-44 0,0 139.75,0 139.75,-44"/>
 <text text-anchor="start" x="8" y="-30.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::detail</text>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Simulator::IsTrafficManager</text>
@@ -22,7 +22,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a7d41d865dda4ebe68c5b65e05ca940ab" target="_top" xlink:title="Querry to know if a Traffic Manager is running on port.">
+<g id="a_Node000002"><a xlink:href="../../dd/ddd/classcarla_1_1client_1_1detail_1_1Client.html#a7d41d865dda4ebe68c5b65e05ca940ab" target="_top" xlink:title="Querry to know if a Traffic Manager is running on port">
 <polygon fill="white" stroke="#666666" points="334.25,-38 175.75,-38 175.75,-6 334.25,-6 334.25,-38"/>
 <text text-anchor="start" x="183.75" y="-24.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::detail</text>
 <text text-anchor="middle" x="255" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Client::IsTrafficManagerRunning</text>

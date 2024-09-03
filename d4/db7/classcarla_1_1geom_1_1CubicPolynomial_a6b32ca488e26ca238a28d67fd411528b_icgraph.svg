@@ -57,7 +57,7 @@ var sectionId = 'dynsection-3';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Evaluates the tangent using df/dx = b + 2cx + 3dx^2.">
+<g id="a_Node000001"><a xlink:title="Evaluates the tangent using df/dx = b + 2cx + 3dx^2">
 <polygon fill="#999999" stroke="#666666" points="530.25,-100 384.5,-100 384.5,-68 530.25,-68 530.25,-100"/>
 <text text-anchor="start" x="392.5" y="-86.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::CubicPolynomial</text>
 <text text-anchor="middle" x="457.38" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Tangent</text>

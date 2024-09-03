@@ -57,7 +57,7 @@ var sectionId = 'dynsection-29';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Get a random location from the pedestrians navigation mesh.">
+<g id="a_Node000001"><a xlink:title="Get a random location from the pedestrians navigation mesh">
 <polygon fill="#999999" stroke="#666666" points="177.25,-48 0,-48 0,-16 177.25,-16 177.25,-48"/>
 <text text-anchor="start" x="8" y="-34.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::World</text>
 <text text-anchor="middle" x="88.62" y="-22.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GetRandomLocationFromNavigation</text>

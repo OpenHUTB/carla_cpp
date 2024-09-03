@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Generates a list of meshes that defines a road safety wall with a maximum length.">
+<g id="a_Node000001"><a xlink:title="Generates a list of meshes that defines a road safety wall with a maximum length">
 <polygon fill="#999999" stroke="#666666" points="141.25,-48 0,-48 0,-16 141.25,-16 141.25,-48"/>
 <text text-anchor="start" x="8" y="-34.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="70.62" y="-22.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateWallsWithMaxLen</text>

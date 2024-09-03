@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Returns a pointer to the nearest lane, given s relative to Road and a location.">
+<g id="a_Node000001"><a xlink:title="Returns a pointer to the nearest lane, given s relative to Road and a location">
 <polygon fill="#999999" stroke="#666666" points="96.25,-222 0,-222 0,-190 96.25,-190 96.25,-222"/>
 <text text-anchor="start" x="8" y="-208.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Road::</text>
 <text text-anchor="middle" x="48.12" y="-196.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetNearestLane</text>
@@ -79,7 +79,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6134bb923498e21fb6f52ccd5a929227" target="_top" xlink:title="Get all lanes at a given s.">
+<g id="a_Node000012"><a xlink:href="../../dd/de6/classcarla_1_1road_1_1Road.html#a6134bb923498e21fb6f52ccd5a929227" target="_top" xlink:title="Get all lanes at a given s">
 <polygon fill="white" stroke="#666666" points="230.75,-105 134.5,-105 134.5,-73 230.75,-73 230.75,-105"/>
 <text text-anchor="start" x="142.5" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Road::</text>
 <text text-anchor="middle" x="182.62" y="-79.5" font-family="Helvetica,sans-Serif" font-size="10.00">GetLanesAt</text>
@@ -201,7 +201,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000011"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="396.75,-247 281.75,-247 281.75,-215 396.75,-215 396.75,-247"/>
 <text text-anchor="start" x="289.75" y="-233.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="339.25" y="-221.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>

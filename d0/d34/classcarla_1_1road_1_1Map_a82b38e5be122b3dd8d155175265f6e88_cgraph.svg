@@ -57,7 +57,7 @@ var sectionId = 'dynsection-31';
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Buids a mesh of all crosswalks based on the OpenDRIVE.">
+<g id="a_Node000001"><a xlink:title="Buids a mesh of all crosswalks based on the OpenDRIVE">
 <polygon fill="#999999" stroke="#666666" points="119.5,-260 0,-260 0,-228 119.5,-228 119.5,-260"/>
 <text text-anchor="start" x="8" y="-246.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="59.75" y="-234.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkMesh</text>
@@ -124,7 +124,7 @@ var sectionId = 'dynsection-31';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished.">
+<g id="a_Node000008"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished">
 <polygon fill="white" stroke="#666666" points="275,-107 155.5,-107 155.5,-75 275,-75 275,-107"/>
 <text text-anchor="start" x="163.5" y="-93.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="215.25" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkZones</text>
@@ -540,7 +540,7 @@ var sectionId = 'dynsection-31';
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road.">
+<g id="a_Node000018"><a xlink:href="../../d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" target="_top" xlink:title="Returns single info given a type and a distance (s) from the start of the road">
 <polygon fill="white" stroke="#666666" points="935.25,-427 820.25,-427 820.25,-395 935.25,-395 935.25,-427"/>
 <text text-anchor="start" x="828.25" y="-413.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Information</text>
 <text text-anchor="middle" x="877.75" y="-401.5" font-family="Helvetica,sans-Serif" font-size="10.00">Set::GetInfo</text>

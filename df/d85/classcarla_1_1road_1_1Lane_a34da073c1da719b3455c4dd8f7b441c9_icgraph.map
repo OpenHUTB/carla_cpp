@@ -1,20 +1,20 @@
 <map id="carla::road::Lane::GetWidth" name="carla::road::Lane::GetWidth">
-<area shape="rect" id="Node000001" title="Returns the total lane width given a s." alt="" coords="1239,356,1365,399"/>
-<area shape="rect" id="Node000002" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" title="Computes the location of the edges given a s." alt="" coords="1057,289,1191,332"/>
+<area shape="rect" id="Node000001" title="Returns the total lane width given a s" alt="" coords="1239,356,1365,399"/>
+<area shape="rect" id="Node000002" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae0d376fa422b14e54af3a702e1b8385a" title="Computes the location of the edges given a s" alt="" coords="1057,289,1191,332"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1229,353,1182,335,1184,330,1231,348"/>
 <area shape="rect" id="Node000021" href="$d0/d34/classcarla_1_1road_1_1Map.html#a17e65cd8e5fb3d61bf5a732bf225710d" title=" " alt="" coords="823,456,1000,499"/>
 <area shape="poly" id="edge26_Node000001_Node000021" title=" " alt="" coords="1225,400,999,458,997,453,1224,394"/>
 <area shape="rect" id="Node000003" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a512234aafe71530fd0cff32d9a27a4e4" title=" " alt="" coords="814,56,1009,99"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1109,276,1094,238,1072,194,1043,151,1007,113,990,101,993,97,1010,109,1047,147,1076,192,1098,236,1114,274"/>
-<area shape="rect" id="Node000008" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a1e3c826505f82d1ddffd9f40c39cfa2a" title="Generates a mesh that defines a lane from a given s start and end." alt="" coords="825,123,998,165"/>
+<area shape="rect" id="Node000008" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a1e3c826505f82d1ddffd9f40c39cfa2a" title="Generates a mesh that defines a lane from a given s start and end" alt="" coords="825,123,998,165"/>
 <area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="1099,279,1060,228,1035,202,1007,180,987,168,990,164,1010,175,1039,198,1064,224,1104,276"/>
-<area shape="rect" id="Node000009" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" title="Generates a wall&#45;like mesh at the left side of the lane." alt="" coords="825,189,998,232"/>
+<area shape="rect" id="Node000009" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" title="Generates a wall&#45;like mesh at the left side of the lane" alt="" coords="825,189,998,232"/>
 <area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="1076,284,1008,246,980,235,982,230,1010,242,1078,279"/>
-<area shape="rect" id="Node000012" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" title="Generates a wall&#45;like mesh at the right side of the lane." alt="" coords="825,256,998,299"/>
+<area shape="rect" id="Node000012" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" title="Generates a wall&#45;like mesh at the right side of the lane" alt="" coords="825,256,998,299"/>
 <area shape="poly" id="edge13_Node000002_Node000012" title=" " alt="" coords="1041,300,998,294,999,288,1042,295"/>
 <area shape="rect" id="Node000013" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a307f715a3e409fd5db0ce50f45c40478" title=" " alt="" coords="825,323,998,365"/>
 <area shape="poly" id="edge16_Node000002_Node000013" title=" " alt="" coords="1042,326,999,333,998,328,1041,321"/>
-<area shape="rect" id="Node000014" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation." alt="" coords="825,389,998,432"/>
+<area shape="rect" id="Node000014" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="Generates a mesh that defines a lane from a given s start and end with bigger tesselation" alt="" coords="825,389,998,432"/>
 <area shape="poly" id="edge17_Node000002_Node000014" title=" " alt="" coords="1078,342,1010,380,982,391,980,386,1008,375,1076,338"/>
 <area shape="poly" id="edge25_Node000002_Node000021" title=" " alt="" coords="1097,345,1010,446,990,458,987,453,1007,442,1093,342"/>
 <area shape="rect" id="Node000004" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5744e75d34e0a3514892d4a9b7906652" title=" " alt="" coords="529,5,756,48"/>
@@ -23,23 +23,23 @@
 <area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="799,87,767,89,767,83,799,81"/>
 <area shape="rect" id="Node000005" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a6228f1a0673c73589a0816085fbc2900" title=" " alt="" coords="276,39,465,81"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="514,45,465,51,464,46,514,40"/>
-<area shape="rect" id="Node000006" href="$d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" title="Buids a list of meshes related with LineMarkings." alt="" coords="25,39,202,81"/>
+<area shape="rect" id="Node000006" href="$d0/d34/classcarla_1_1road_1_1Map.html#ad84d5990ccd301600bdf6863ed04dcdd" title="Buids a list of meshes related with LineMarkings" alt="" coords="25,39,202,81"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="262,63,202,63,202,57,262,57"/>
 <area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="504,79,465,74,465,69,504,74"/>
-<area shape="rect" id="Node000010" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" title="Genrates a mesh representing a wall on the road corners to avoid cars falling down." alt="" coords="556,201,729,244"/>
+<area shape="rect" id="Node000010" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" title="Genrates a mesh representing a wall on the road corners to avoid cars falling down" alt="" coords="556,201,729,244"/>
 <area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="810,218,730,221,730,216,810,213"/>
-<area shape="rect" id="Node000011" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" title="Generates a list of meshes that defines a lane_section safety wall with a maximum length." alt="" coords="276,201,465,244"/>
+<area shape="rect" id="Node000011" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" title="Generates a list of meshes that defines a lane_section safety wall with a maximum length" alt="" coords="276,201,465,244"/>
 <area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="810,197,766,192,642,184,588,186,519,192,454,203,453,198,519,187,588,180,643,179,767,187,810,191"/>
 <area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="541,225,465,225,465,220,541,220"/>
 <area shape="poly" id="edge14_Node000012_Node000010" title=" " alt="" coords="810,259,729,243,731,238,811,254"/>
 <area shape="poly" id="edge15_Node000012_Node000011" title=" " alt="" coords="810,279,671,273,519,259,457,247,458,242,519,253,672,268,810,274"/>
-<area shape="rect" id="Node000015" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="Generates a mesh that defines a lane section." alt="" coords="543,327,743,369"/>
+<area shape="rect" id="Node000015" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="Generates a mesh that defines a lane section" alt="" coords="543,327,743,369"/>
 <area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="810,390,737,373,738,367,811,385"/>
-<area shape="rect" id="Node000016" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" title="Generates a list of meshes that defines a lane_section with a maximum length." alt="" coords="270,352,471,395"/>
+<area shape="rect" id="Node000016" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" title="Generates a list of meshes that defines a lane_section with a maximum length" alt="" coords="270,352,471,395"/>
 <area shape="poly" id="edge20_Node000014_Node000016" title=" " alt="" coords="810,406,471,383,472,378,810,401"/>
 <area shape="rect" id="Node000017" href="$d0/d34/classcarla_1_1road_1_1Map.html#accf4f345bb9db4bcd6cdd9e6fec322cc" title=" " alt="" coords="555,444,731,487"/>
 <area shape="poly" id="edge21_Node000014_Node000017" title=" " alt="" coords="811,434,732,450,731,445,810,429"/>
-<area shape="rect" id="Node000020" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" title="Generates a mesh that defines the whole lane with bigger tesselation." alt="" coords="556,511,729,553"/>
+<area shape="rect" id="Node000020" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" title="Generates a mesh that defines the whole lane with bigger tesselation" alt="" coords="556,511,729,553"/>
 <area shape="poly" id="edge24_Node000014_Node000020" title=" " alt="" coords="824,441,816,446,801,459,793,473,784,487,768,501,731,518,729,513,765,496,780,484,788,470,797,456,813,442,821,437"/>
 <area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="528,361,472,367,471,361,528,356"/>
 <area shape="rect" id="Node000018" href="$d0/d34/classcarla_1_1road_1_1Map.html#aa51550af7f6efc7df8691eb41225beec" title=" " alt="" coords="282,444,459,487"/>

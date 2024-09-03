@@ -59,7 +59,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="../../d6/d8c/classcarla_1_1client_1_1Client.html#a6564b923a8f809edfa01ca9ce2f88cb6" target="_top" xlink:title="Return (and load) a new world (map) only when the requested map is different from the current one.">
+<g id="a_Node000004"><a xlink:href="../../d6/d8c/classcarla_1_1client_1_1Client.html#a6564b923a8f809edfa01ca9ce2f88cb6" target="_top" xlink:title="Return (and load) a new world (map) only when the requested map is different from the current one">
 <polygon fill="white" stroke="#666666" points="265.62,-125 157.38,-125 157.38,-93 265.62,-93 265.62,-125"/>
 <text text-anchor="start" x="165.38" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::Client</text>
 <text text-anchor="middle" x="211.5" y="-99.5" font-family="Helvetica,sans-Serif" font-size="10.00">::LoadWorldIfDifferent</text>

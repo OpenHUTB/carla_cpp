@@ -1,12 +1,12 @@
 <map id="carla::road::MapBuilder::CreateJunctionBoundingBoxes" name="carla::road::MapBuilder::CreateJunctionBoundingBoxes">
-<area shape="rect" id="Node000001" title="Create the bounding boxes of each junction." alt="" coords="5,591,212,633"/>
+<area shape="rect" id="Node000001" title="Create the bounding boxes of each junction" alt="" coords="5,591,212,633"/>
 <area shape="rect" id="Node000002" href="$d0/d34/classcarla_1_1road_1_1Map.html#ab92716131e75fa9760042389d14f56a2" title=" " alt="" coords="519,385,694,428"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,588,266,571,328,549,391,522,450,488,465,476,474,464,483,451,498,438,508,433,510,437,502,442,487,454,478,467,469,480,454,493,394,526,330,554,267,576,210,593"/>
 <area shape="rect" id="Node000028" href="$d0/d34/classcarla_1_1road_1_1Map.html#a8d751e36728ece2bd00ce58b945864aa" title=" " alt="" coords="511,759,703,785"/>
 <area shape="poly" id="edge30_Node000001_Node000028" title=" " alt="" coords="206,631,362,669,453,694,469,707,478,720,487,733,501,744,514,751,511,755,499,749,483,736,474,723,465,710,451,698,360,674,204,637"/>
 <area shape="rect" id="Node000030" href="$da/d3b/classcarla_1_1road_1_1MapData.html#ada1ec7c5f6908e9b4cebc302aa4ec466" title=" " alt="" coords="285,708,427,751"/>
 <area shape="poly" id="edge32_Node000001_Node000030" title=" " alt="" coords="151,631,261,687,288,699,286,704,259,692,149,636"/>
-<area shape="rect" id="Node000031" href="$d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" title="Generate waypoints of the junction." alt="" coords="260,591,452,633"/>
+<area shape="rect" id="Node000031" href="$d0/d34/classcarla_1_1road_1_1Map.html#adf1b3cb75595be020adbdbd325298638" title="Generate waypoints of the junction" alt="" coords="260,591,452,633"/>
 <area shape="poly" id="edge33_Node000001_Node000031" title=" " alt="" coords="212,609,245,609,245,615,212,615"/>
 <area shape="rect" id="Node000041" href="$d0/d34/classcarla_1_1road_1_1Map.html#a83541de08e4b515768c211f1cdbecd4f" title="Return the list of waypoints at distance such that a vehicle at waypoint could drive to." alt="" coords="270,452,442,479"/>
 <area shape="poly" id="edge54_Node000001_Node000041" title=" " alt="" coords="145,588,318,484,321,489,148,592"/>
@@ -39,7 +39,7 @@
 <area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="1368,283,1453,294,1453,299,1367,288"/>
 <area shape="rect" id="Node000009" href="$dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e" title=" " alt="" coords="1471,219,1599,261"/>
 <area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="1367,264,1456,250,1456,255,1368,270"/>
-<area shape="rect" id="Node000011" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="Returns single info given a type and a distance (s) from the start of the road." alt="" coords="1458,352,1612,395"/>
+<area shape="rect" id="Node000011" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="Returns single info given a type and a distance (s) from the start of the road" alt="" coords="1458,352,1612,395"/>
 <area shape="poly" id="edge11_Node000006_Node000011" title=" " alt="" coords="1369,297,1395,308,1443,338,1455,343,1453,348,1440,342,1392,313,1366,302"/>
 <area shape="rect" id="Node000008" href="$d3/d33/Simplify_8h.html#a50798148e5016c5b85087d4009824f27" title=" " alt="" coords="1737,293,1779,320"/>
 <area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1602,304,1722,304,1722,309,1602,309"/>

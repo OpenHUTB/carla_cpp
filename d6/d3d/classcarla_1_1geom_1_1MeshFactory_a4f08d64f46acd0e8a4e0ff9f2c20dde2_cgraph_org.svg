@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Generates a list of meshes that defines a lane_section with a maximum length.">
+<g id="a_Node000001"><a xlink:title="Generates a list of meshes that defines a lane_section with a maximum length">
 <polygon fill="#999999" stroke="#666666" points="130,-107 0,-107 0,-75 130,-75 130,-107"/>
 <text text-anchor="start" x="8" y="-93.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="65" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GenerateWithMaxLen</text>
@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a7d1496ea84aecdf1fd4fe405a2c4da6c" target="_top" xlink:title="Generates a mesh that defines a road.">
+<g id="a_Node000002"><a xlink:href="../../d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a7d1496ea84aecdf1fd4fe405a2c4da6c" target="_top" xlink:title="Generates a mesh that defines a road">
 <polygon fill="white" stroke="#666666" points="296,-182 166,-182 166,-150 296,-150 296,-182"/>
 <text text-anchor="start" x="174" y="-168.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::MeshFactory</text>
 <text text-anchor="middle" x="231" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Generate</text>

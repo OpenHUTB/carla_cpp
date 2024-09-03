@@ -1,4 +1,4 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<map id="类继承关系图" name="类继承关系图">
 <area shape="rect" id="Node000000" href="$d1/da4/classAActor.html" title=" " alt="" coords="5,664,67,691"/>
 <area shape="rect" id="Node000001" href="$d2/d2a/classAActorWithRandomEngine.html" title="Base class for actors containing a random engine with a fixed seed." alt="" coords="120,56,296,83"/>
 <area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="34,649,36,530,46,364,55,279,69,202,88,137,99,112,113,93,127,81,130,85,117,96,104,115,93,139,74,203,60,280,51,365,41,530,40,649"/>
@@ -6,7 +6,7 @@
 <area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="35,649,38,539,49,388,58,312,72,242,90,184,113,144,129,130,133,135,117,147,95,186,77,243,64,313,54,389,43,540,40,649"/>
 <area shape="rect" id="Node000003" href="$d8/d84/classACarlaActorFactory.html" title="Base class for Carla actor factories." alt="" coords="140,157,276,184"/>
 <area shape="poly" id="edge4_Node000000_Node000003" title=" " alt="" coords="35,649,40,548,52,413,62,344,75,282,92,230,113,194,138,177,141,182,117,198,97,232,80,283,67,345,57,413,45,549,41,649"/>
-<area shape="rect" id="Node000010" href="$dd/db9/classACarlaRecorder.html" title="Recorder for the simulation." alt="" coords="152,208,264,235"/>
+<area shape="rect" id="Node000010" href="$dd/db9/classACarlaRecorder.html" title="Recorder for the simulation" alt="" coords="152,208,264,235"/>
 <area shape="poly" id="edge11_Node000000_Node000010" title=" " alt="" coords="36,649,42,558,55,438,65,377,78,322,94,276,113,245,130,232,151,224,152,229,133,236,117,248,98,279,83,323,70,378,61,438,47,559,41,649"/>
 <area shape="rect" id="Node000011" href="$da/d1a/classACityMapMeshHolder.html" title="Holds the static meshes and instances necessary for building a city map." alt="" coords="134,259,282,285"/>
 <area shape="poly" id="edge12_Node000000_Node000011" title=" " alt="" coords="37,649,44,568,59,463,81,362,95,323,113,296,132,281,135,286,117,299,100,325,86,364,64,464,50,569,42,650"/>
@@ -34,7 +34,7 @@
 <area shape="poly" id="edge44_Node000000_Node000043" title=" " alt="" coords="49,703,75,754,93,780,116,802,136,813,133,818,113,806,89,784,70,757,45,706"/>
 <area shape="rect" id="Node000044" href="$da/d86/classATagger.html" title="Sets actors&#39; custom depth stencil value for semantic segmentation according to their meshes." alt="" coords="173,867,243,893"/>
 <area shape="poly" id="edge45_Node000000_Node000044" title=" " alt="" coords="44,705,53,739,67,779,87,819,116,853,143,868,173,875,172,880,142,873,113,857,83,822,62,781,48,741,39,706"/>
-<area shape="rect" id="Node000045" href="$dd/d12/classATrafficLightGroup.html" title="Class which implements the state changing of traffic lights." alt="" coords="144,917,272,944"/>
+<area shape="rect" id="Node000045" href="$dd/d12/classATrafficLightGroup.html" title="Class which implements the state changing of traffic lights" alt="" coords="144,917,272,944"/>
 <area shape="poly" id="edge46_Node000000_Node000045" title=" " alt="" coords="41,705,47,749,59,802,82,857,97,882,116,903,145,920,143,925,113,907,93,885,77,859,54,804,41,749,36,705"/>
 <area shape="rect" id="Node000046" href="$df/da5/classATrafficLightManager.html" title="Class In charge of creating and assigning traffic light groups, controllers and components." alt="" coords="137,968,279,995"/>
 <area shape="poly" id="edge47_Node000000_Node000046" title=" " alt="" coords="39,706,42,758,52,825,62,860,76,894,94,926,116,954,138,968,135,973,113,958,89,929,71,897,57,862,47,826,37,759,34,706"/>
@@ -68,11 +68,11 @@
 <area shape="poly" id="edge23_Node000021_Node000022" title=" " alt="" coords="257,722,280,714,299,701,316,676,324,652,325,627,322,602,320,576,321,550,329,524,347,498,363,486,380,479,382,484,365,491,351,502,334,526,326,551,325,576,328,601,330,627,329,653,321,679,303,705,282,719,259,727"/>
 <area shape="rect" id="Node000023" href="$de/d1f/classACustomV2XSensor.html" title=" " alt="" coords="373,512,512,539"/>
 <area shape="poly" id="edge24_Node000021_Node000023" title=" " alt="" coords="258,721,280,714,299,701,313,683,320,665,322,627,325,588,332,568,347,549,371,534,373,538,351,553,337,571,330,589,328,627,325,666,318,685,303,705,282,718,259,726"/>
-<area shape="rect" id="Node000024" href="$d0/dc3/classAGnssSensor.html" title="Gnss sensor representation The actual position calculation is done one server side." alt="" coords="391,563,493,589"/>
+<area shape="rect" id="Node000024" href="$d0/dc3/classAGnssSensor.html" title="Gnss sensor representation The actual position calculation is done one server side" alt="" coords="391,563,493,589"/>
 <area shape="poly" id="edge25_Node000021_Node000024" title=" " alt="" coords="257,720,279,713,299,701,310,689,317,677,322,651,328,625,335,612,347,599,367,587,390,579,391,584,370,592,351,603,340,615,333,627,328,653,322,679,315,692,303,705,282,717,259,725"/>
 <area shape="rect" id="Node000025" href="$d5/de0/classAInertialMeasurementUnit.html" title=" " alt="" coords="357,613,527,640"/>
 <area shape="poly" id="edge26_Node000021_Node000025" title=" " alt="" coords="257,717,300,700,314,688,323,676,332,663,348,650,373,638,375,643,350,654,336,666,327,679,318,692,302,705,259,722"/>
-<area shape="rect" id="Node000026" href="$d0/d57/classALaneInvasionSensor.html" title="LaneInvasion sensor representation The actual position calculation is done one client side." alt="" coords="370,664,515,691"/>
+<area shape="rect" id="Node000026" href="$d0/d57/classALaneInvasionSensor.html" title="LaneInvasion sensor representation The actual position calculation is done one client side" alt="" coords="370,664,515,691"/>
 <area shape="poly" id="edge27_Node000021_Node000026" title=" " alt="" coords="257,715,376,689,378,694,258,720"/>
 <area shape="rect" id="Node000027" href="$d3/d93/classAObstacleDetectionSensor.html" title="A sensor to register collisions." alt="" coords="353,715,531,741"/>
 <area shape="poly" id="edge28_Node000021_Node000027" title=" " alt="" coords="258,725,353,725,353,731,258,731"/>
@@ -80,7 +80,7 @@
 <area shape="poly" id="edge29_Node000021_Node000028" title=" " alt="" coords="258,736,410,769,409,774,257,741"/>
 <area shape="rect" id="Node000029" href="$d8/d15/classARayCastSemanticLidar.html" title="A ray&#45;cast based Lidar sensor." alt="" coords="361,816,524,843"/>
 <area shape="poly" id="edge30_Node000021_Node000029" title=" " alt="" coords="259,734,302,751,318,764,327,777,336,790,350,802,375,813,373,818,348,806,332,793,323,780,314,768,300,756,257,739"/>
-<area shape="rect" id="Node000031" href="$d3/ded/classARssSensor.html" title="RSS sensor representation The actual calculation is done one client side." alt="" coords="395,867,489,893"/>
+<area shape="rect" id="Node000031" href="$d3/ded/classARssSensor.html" title="RSS sensor representation The actual calculation is done one client side" alt="" coords="395,867,489,893"/>
 <area shape="poly" id="edge32_Node000021_Node000031" title=" " alt="" coords="259,731,282,739,303,751,315,764,322,777,328,803,333,829,340,841,351,853,372,865,395,873,394,878,370,870,347,857,335,844,328,831,322,805,317,779,310,767,299,755,279,743,257,736"/>
 <area shape="rect" id="Node000032" href="$d4/d60/classASceneCaptureSensor.html" title="Base class for sensors using a USceneCaptureComponent2D for rendering the scene." alt="" coords="366,917,519,944"/>
 <area shape="poly" id="edge33_Node000021_Node000032" title=" " alt="" coords="259,730,282,738,303,751,318,771,325,790,328,829,330,867,337,885,351,903,367,915,364,919,347,907,332,888,325,868,322,829,320,791,313,773,299,755,280,742,258,735"/>
@@ -90,7 +90,7 @@
 <area shape="poly" id="edge31_Node000029_Node000030" title=" " alt="" coords="539,827,604,827,604,832,539,832"/>
 <area shape="rect" id="Node000033" href="$da/dd3/classAShaderBasedSensor.html" title="A sensor that produces data by applying post&#45;process materials (shaders) to a scene capture image." alt="" coords="583,917,733,944"/>
 <area shape="poly" id="edge34_Node000032_Node000033" title=" " alt="" coords="534,928,583,928,583,933,534,933"/>
-<area shape="rect" id="Node000034" href="$d2/daf/classADVSCamera.html" title="Sensor that produce Dynamic Vision Events." alt="" coords="835,765,937,792"/>
+<area shape="rect" id="Node000034" href="$d2/daf/classADVSCamera.html" title="Sensor that produce Dynamic Vision Events" alt="" coords="835,765,937,792"/>
 <area shape="poly" id="edge35_Node000033_Node000034" title=" " alt="" coords="681,904,731,853,753,825,763,813,779,802,806,790,834,782,835,788,808,795,782,806,767,817,757,828,735,856,685,908"/>
 <area shape="rect" id="Node000035" href="$db/d36/classADepthCamera.html" title="Sensor that produces &quot;depth&quot; images." alt="" coords="831,816,941,843"/>
 <area shape="poly" id="edge36_Node000033_Node000035" title=" " alt="" coords="687,906,730,878,780,852,830,836,831,842,782,857,732,883,690,911"/>

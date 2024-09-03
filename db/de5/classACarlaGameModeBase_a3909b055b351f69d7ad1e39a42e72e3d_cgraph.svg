@@ -67,7 +67,7 @@ var sectionId = 'dynsection-3';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../de/d75/classAWeather.html#a68bfc749cd33e48219c3d7839cc8ddee" target="_top" xlink:title="Update the weather parameters and notifies it to the blueprint&#39;s event.">
+<g id="a_Node000002"><a xlink:href="../../de/d75/classAWeather.html#a68bfc749cd33e48219c3d7839cc8ddee" target="_top" xlink:title="Update the weather parameters and notifies it to the blueprint&#39;s event">
 <polygon fill="white" stroke="#666666" points="293.75,-1025 166.75,-1025 166.75,-1005 293.75,-1005 293.75,-1025"/>
 <text text-anchor="middle" x="230.25" y="-1011.5" font-family="Helvetica,sans-Serif" font-size="10.00">AWeather::ApplyWeather</text>
 </a>
@@ -385,7 +385,7 @@ var sectionId = 'dynsection-3';
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="../../de/d75/classAWeather.html#a1d5e23c1fd032babebd0a258aa555cdf" target="_top" xlink:title="Update the weather parameters without notifing it to the blueprint&#39;s event.">
+<g id="a_Node000006"><a xlink:href="../../de/d75/classAWeather.html#a1d5e23c1fd032babebd0a258aa555cdf" target="_top" xlink:title="Update the weather parameters without notifing it to the blueprint&#39;s event">
 <polygon fill="white" stroke="#666666" points="491.25,-1006 374,-1006 374,-986 491.25,-986 491.25,-1006"/>
 <text text-anchor="middle" x="432.62" y="-992.5" font-family="Helvetica,sans-Serif" font-size="10.00">AWeather::SetWeather</text>
 </a>

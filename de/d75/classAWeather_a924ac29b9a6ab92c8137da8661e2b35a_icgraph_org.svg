@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../de/d75/classAWeather.html#a68bfc749cd33e48219c3d7839cc8ddee" target="_top" xlink:title="Update the weather parameters and notifies it to the blueprint&#39;s event.">
+<g id="a_Node000002"><a xlink:href="../../de/d75/classAWeather.html#a68bfc749cd33e48219c3d7839cc8ddee" target="_top" xlink:title="Update the weather parameters and notifies it to the blueprint&#39;s event">
 <polygon fill="white" stroke="#666666" points="281,-73 154,-73 154,-53 281,-53 281,-73"/>
 <text text-anchor="middle" x="217.5" y="-59.5" font-family="Helvetica,sans-Serif" font-size="10.00">AWeather::ApplyWeather</text>
 </a>
@@ -39,7 +39,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="../../de/d75/classAWeather.html#a9f4a4457b661e01f69aa787457203e4d" target="_top" xlink:title="Notifing the weather to the blueprint&#39;s event.">
+<g id="a_Node000004"><a xlink:href="../../de/d75/classAWeather.html#a9f4a4457b661e01f69aa787457203e4d" target="_top" xlink:title="Notifing the weather to the blueprint&#39;s event">
 <polygon fill="white" stroke="#666666" points="281,-32 154,-32 154,-12 281,-12 281,-32"/>
 <text text-anchor="middle" x="217.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">AWeather::NotifyWeather</text>
 </a>

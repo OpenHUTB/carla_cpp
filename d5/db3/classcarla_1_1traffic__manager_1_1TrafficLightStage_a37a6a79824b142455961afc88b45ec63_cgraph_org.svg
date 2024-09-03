@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Get current affected junction id for the vehicle.">
+<g id="a_Node000001"><a xlink:title="Get current affected junction id for the vehicle">
 <polygon fill="#999999" stroke="#666666" points="151,-44 0,-44 0,0 151,0 151,-44"/>
 <text text-anchor="start" x="8" y="-30.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::traffic_manager</text>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">::TrafficLightStage::GetAffected</text>

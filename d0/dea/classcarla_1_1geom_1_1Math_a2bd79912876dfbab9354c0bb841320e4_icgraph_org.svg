@@ -40,7 +40,7 @@
 <!-- Node26 -->
 <g id="Node000026" class="node">
 <title>Node26</title>
-<g id="a_Node000026"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a68c63bc41afb72db22e52109e4db824d" target="_top" xlink:title="Computes the 4&#45;matrix form of the inverse transformation.">
+<g id="a_Node000026"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a68c63bc41afb72db22e52109e4db824d" target="_top" xlink:title="Computes the 4&#45;matrix form of the inverse transformation">
 <polygon fill="white" stroke="#666666" points="455.62,-980 339.88,-980 339.88,-948 455.62,-948 455.62,-980"/>
 <text text-anchor="start" x="347.88" y="-966.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Transform</text>
 <text text-anchor="middle" x="397.75" y="-954.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GetInverseMatrix</text>
@@ -59,7 +59,7 @@
 <!-- Node27 -->
 <g id="Node000027" class="node">
 <title>Node27</title>
-<g id="a_Node000027"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a03dbbaf6feb4b0450cb18ad17ec5b657" target="_top" xlink:title="Computes the 4&#45;matrix form of the transformation.">
+<g id="a_Node000027"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a03dbbaf6feb4b0450cb18ad17ec5b657" target="_top" xlink:title="Computes the 4&#45;matrix form of the transformation">
 <polygon fill="white" stroke="#666666" points="833.38,-282 717.62,-282 717.62,-250 833.38,-250 833.38,-282"/>
 <text text-anchor="start" x="725.62" y="-268.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Transform</text>
 <text text-anchor="middle" x="775.5" y="-256.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GetMatrix</text>
@@ -153,7 +153,7 @@
 <!-- Node56 -->
 <g id="Node000056" class="node">
 <title>Node56</title>
-<g id="a_Node000056"><a xlink:href="../../dc/dda/namespacecarla_1_1geom.html#a3c277daefc89cfd431359716d8190551" target="_top" xlink:title="Convert latitude to scale, which is needed by mercator transformations.">
+<g id="a_Node000056"><a xlink:href="../../dc/dda/namespacecarla_1_1geom.html#a3c277daefc89cfd431359716d8190551" target="_top" xlink:title="Convert latitude to scale, which is needed by mercator transformations">
 <polygon fill="white" stroke="#666666" points="836.38,-144 714.62,-144 714.62,-124 836.38,-124 836.38,-144"/>
 <text text-anchor="middle" x="775.5" y="-130.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::LatToScale</text>
 </a>
@@ -579,7 +579,7 @@
 <!-- Node41 -->
 <g id="Node000041" class="node">
 <title>Node41</title>
-<g id="a_Node000041"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a92a9a6fdd66eea2d1ec03b14378c7e50" target="_top" xlink:title="Applies the inverse of this transformation to in_point.">
+<g id="a_Node000041"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a92a9a6fdd66eea2d1ec03b14378c7e50" target="_top" xlink:title="Applies the inverse of this transformation to in_point">
 <polygon fill="white" stroke="#666666" points="647.88,-930 530.62,-930 530.62,-898 647.88,-898 647.88,-930"/>
 <text text-anchor="start" x="538.62" y="-916.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Transform</text>
 <text text-anchor="middle" x="589.25" y="-904.5" font-family="Helvetica,sans-Serif" font-size="10.00">::InverseTransformPoint</text>
@@ -877,7 +877,7 @@
 <!-- Node63 -->
 <g id="Node000063" class="node">
 <title>Node63</title>
-<g id="a_Node000063"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished.">
+<g id="a_Node000063"><a xlink:href="../../d0/d34/classcarla_1_1road_1_1Map.html#ad5c36d945ee852b47b55e7d3210a20d0" target="_top" xlink:title="Returns a list of locations defining 2d areas, when a location is repeated an area is finished">
 <polygon fill="#fff0f0" stroke="red" points="457.5,-578 338,-578 338,-546 457.5,-546 457.5,-578"/>
 <text text-anchor="start" x="346" y="-564.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::Map::GetAll</text>
 <text text-anchor="middle" x="397.75" y="-552.5" font-family="Helvetica,sans-Serif" font-size="10.00">CrosswalkZones</text>

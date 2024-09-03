@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Method to get if the vehicle lights should be updates automatically.">
+<g id="a_Node000001"><a xlink:title="Method to get if the vehicle lights should be updates automatically">
 <polygon fill="#999999" stroke="#666666" points="788,-75 631,-75 631,-31 788,-31 788,-75"/>
 <text text-anchor="start" x="639" y="-61.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::traffic_manager</text>
 <text text-anchor="start" x="639" y="-49.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Parameters::GetUpdateVehicle</text>

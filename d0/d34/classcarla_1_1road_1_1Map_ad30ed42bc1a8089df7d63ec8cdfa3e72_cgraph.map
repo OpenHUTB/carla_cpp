@@ -1,6 +1,6 @@
 <map id="carla::road::Map::CreateRtree" name="carla::road::Map::CreateRtree">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,809,167,852"/>
-<area shape="rect" id="Node000002" href="$d0/d34/classcarla_1_1road_1_1Map.html#adbe392014331d03ee16e479c94088e6b" title="Helper Functions for constructing the rtree element list." alt="" coords="467,483,661,525"/>
+<area shape="rect" id="Node000002" href="$d0/d34/classcarla_1_1road_1_1Map.html#adbe392014331d03ee16e479c94088e6b" title="Helper Functions for constructing the rtree element list" alt="" coords="467,483,661,525"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,808,96,752,117,676,134,637,155,599,181,564,213,535,240,519,269,506,330,489,393,483,452,485,452,490,393,489,331,495,271,511,242,523,216,539,185,568,159,602,139,639,123,678,101,753,92,809"/>
 <area shape="rect" id="Node000003" href="$d0/d34/classcarla_1_1road_1_1Map.html#a36af7faea3211dab99511c59e06c52c2" title=" " alt="" coords="215,549,409,592"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="94,808,138,721,172,669,213,622,246,598,249,602,216,626,176,672,142,724,99,810"/>
@@ -18,11 +18,11 @@
 <area shape="poly" id="edge56_Node000001_Node000045" title=" " alt="" coords="167,815,708,730,709,736,168,821"/>
 <area shape="rect" id="Node000046" href="$da/d3b/classcarla_1_1road_1_1MapData.html#a55f640e9a3f5930e5d1d8fd4e07f1e9e" title=" " alt="" coords="241,1087,383,1129"/>
 <area shape="poly" id="edge60_Node000001_Node000046" title=" " alt="" coords="95,852,110,897,134,957,169,1019,191,1047,216,1073,229,1082,226,1086,213,1077,187,1051,165,1022,129,959,105,899,90,853"/>
-<area shape="rect" id="Node000047" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a6553b235b169efa70b899d41f3b568ba" title="Returns the angle between 2 vectors in radians." alt="" coords="245,1153,379,1196"/>
+<area shape="rect" id="Node000047" href="$d0/dea/classcarla_1_1geom_1_1Math.html#a6553b235b169efa70b899d41f3b568ba" title="Returns the angle between 2 vectors in radians" alt="" coords="245,1153,379,1196"/>
 <area shape="poly" id="edge61_Node000001_Node000047" title=" " alt="" coords="93,852,103,909,125,986,142,1027,162,1068,187,1106,216,1139,233,1152,230,1156,213,1143,183,1109,157,1071,137,1030,120,988,98,910,87,853"/>
 <area shape="rect" id="Node000051" href="$d0/d6f/classcarla_1_1geom_1_1SegmentCloudRtree.html#af79d90725572af8439944784c8958cc7" title=" " alt="" coords="221,1220,403,1263"/>
 <area shape="poly" id="edge65_Node000001_Node000051" title=" " alt="" coords="91,852,98,920,117,1015,133,1066,155,1117,182,1164,217,1206,219,1209,216,1213,213,1210,178,1167,150,1119,128,1068,112,1016,93,921,86,853"/>
-<area shape="rect" id="Node000052" href="$df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" title="Checks whether the geometry is straight or not." alt="" coords="746,276,873,319"/>
+<area shape="rect" id="Node000052" href="$df/d85/classcarla_1_1road_1_1Lane.html#a046ae843bd1a4d5da97903da529fe09d" title="Checks whether the geometry is straight or not" alt="" coords="746,276,873,319"/>
 <area shape="poly" id="edge66_Node000001_Node000052" title=" " alt="" coords="87,809,96,747,116,662,133,616,154,571,180,529,213,491,272,443,338,404,408,372,480,347,551,328,618,315,731,299,732,305,619,320,552,333,482,352,410,377,340,409,275,448,217,495,185,532,159,574,138,618,122,664,101,748,92,809"/>
 <area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="394,546,466,527,467,532,396,551"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="410,568,461,568,461,573,410,573"/>
@@ -54,7 +54,7 @@
 <area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="1082,233,1168,274,1184,280,1182,285,1166,278,1080,238"/>
 <area shape="rect" id="Node000011" href="$dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e" title=" " alt="" coords="1197,221,1325,264"/>
 <area shape="poly" id="edge11_Node000008_Node000011" title=" " alt="" coords="1100,219,1182,230,1181,235,1099,224"/>
-<area shape="rect" id="Node000013" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="Returns single info given a type and a distance (s) from the start of the road." alt="" coords="1184,72,1337,115"/>
+<area shape="rect" id="Node000013" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49" title="Returns single info given a type and a distance (s) from the start of the road" alt="" coords="1184,72,1337,115"/>
 <area shape="poly" id="edge12_Node000008_Node000013" title=" " alt="" coords="1062,189,1110,157,1166,124,1179,118,1181,123,1168,129,1113,161,1065,194"/>
 <area shape="poly" id="edge15_Node000015_Node000013" title=" " alt="" coords="1098,93,1169,92,1169,97,1098,98"/>
 <area shape="rect" id="Node000018" href="$df/d85/classcarla_1_1road_1_1Lane.html#ae02c9441872377fc865c85339df51cbd" title=" " alt="" coords="1198,724,1324,767"/>
@@ -119,6 +119,6 @@
 <area shape="poly" id="edge72_Node000052_Node000020" title=" " alt="" coords="873,285,927,280,990,279,1056,285,1120,302,1136,310,1146,320,1155,330,1168,340,1185,349,1182,353,1166,345,1151,334,1142,324,1132,314,1118,306,1055,290,990,284,927,285,873,290"/>
 <area shape="rect" id="Node000053" href="$dd/de6/classcarla_1_1road_1_1Road.html#a05c267d25ff4e898efc2d042f065356f" title=" " alt="" coords="970,8,1098,51"/>
 <area shape="poly" id="edge69_Node000052_Node000053" title=" " alt="" coords="816,274,833,230,861,173,899,113,921,86,947,61,956,54,959,58,950,65,925,89,903,117,865,176,838,232,821,276"/>
-<area shape="rect" id="Node000054" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#abf1e4615805f6876dac8d37b8141319d" title="Return all infos given a type from the start of the road." alt="" coords="1184,5,1337,48"/>
+<area shape="rect" id="Node000054" href="$d4/d28/classcarla_1_1road_1_1InformationSet.html#abf1e4615805f6876dac8d37b8141319d" title="Return all infos given a type from the start of the road" alt="" coords="1184,5,1337,48"/>
 <area shape="poly" id="edge70_Node000053_Node000054" title=" " alt="" coords="1098,26,1169,25,1169,30,1098,31"/>
 </map>

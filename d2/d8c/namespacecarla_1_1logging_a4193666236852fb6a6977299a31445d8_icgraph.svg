@@ -426,7 +426,7 @@ var sectionId = 'dynsection-2';
 <!-- Node28 -->
 <g id="Node000028" class="node">
 <title>Node28</title>
-<g id="a_Node000028"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning.">
+<g id="a_Node000028"><a xlink:href="../../de/d16/classcarla_1_1road_1_1MapBuilder.html#af3773de062a9e9aec4310f024f19ba28" target="_top" xlink:title="Checks signals overlapping driving lanes and emits a warning">
 <polygon fill="#fff0f0" stroke="red" points="317.75,-420 195.25,-420 195.25,-388 317.75,-388 317.75,-420"/>
 <text text-anchor="start" x="203.25" y="-406.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::road::MapBuilder</text>
 <text text-anchor="middle" x="256.5" y="-394.5" font-family="Helvetica,sans-Serif" font-size="10.00">::CheckSignalsOnRoads</text>
@@ -769,7 +769,7 @@ var sectionId = 'dynsection-2';
 <!-- Node76 -->
 <g id="Node000076" class="node">
 <title>Node76</title>
-<g id="a_Node000076"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a8d2f2ded63362c44925f7e5c7c64adcf" target="_top" xlink:title="Listen fr.">
+<g id="a_Node000076"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#a8d2f2ded63362c44925f7e5c7c64adcf" target="_top" xlink:title="Listen fr">
 <polygon fill="white" stroke="#666666" points="317.38,-132 195.62,-132 195.62,-100 317.38,-100 317.38,-132"/>
 <text text-anchor="start" x="203.62" y="-118.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::ServerSide</text>
 <text text-anchor="middle" x="256.5" y="-106.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensor::ListenToGBuffer</text>
@@ -920,7 +920,7 @@ var sectionId = 'dynsection-2';
 <!-- Node99 -->
 <g id="Node000099" class="node">
 <title>Node99</title>
-<g id="a_Node000099"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#aa21c177524bc15fb56b45fa3c87dd91b" target="_top" xlink:title="Send data via this sensor.">
+<g id="a_Node000099"><a xlink:href="../../de/d68/classcarla_1_1client_1_1ServerSideSensor.html#aa21c177524bc15fb56b45fa3c87dd91b" target="_top" xlink:title="Send data via this sensor">
 <polygon fill="white" stroke="#666666" points="315.88,-32 197.12,-32 197.12,0 315.88,0 315.88,-32"/>
 <text text-anchor="start" x="205.12" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::client::ServerSide</text>
 <text text-anchor="middle" x="256.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensor::Send</text>

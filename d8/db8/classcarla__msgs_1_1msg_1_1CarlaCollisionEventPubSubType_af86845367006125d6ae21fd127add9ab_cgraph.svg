@@ -125,7 +125,7 @@ var sectionId = 'dynsection-5';
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="../../d5/d0c/classcarla__msgs_1_1msg_1_1CarlaCollisionEvent.html#aac52c2e08a728341a081dc47afcd0e72" target="_top" xlink:title="This function copies the value in member header.">
+<g id="a_Node000008"><a xlink:href="../../d5/d0c/classcarla__msgs_1_1msg_1_1CarlaCollisionEvent.html#aac52c2e08a728341a081dc47afcd0e72" target="_top" xlink:title="This function copies the value in member header">
 <polygon fill="white" stroke="#666666" points="561.75,-82 405.5,-82 405.5,-50 561.75,-50 561.75,-82"/>
 <text text-anchor="start" x="413.5" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla_msgs::msg::CarlaCollision</text>
 <text text-anchor="middle" x="483.62" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">Event::header</text>
@@ -144,7 +144,7 @@ var sectionId = 'dynsection-5';
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="../../d5/d0c/classcarla__msgs_1_1msg_1_1CarlaCollisionEvent.html#a1c83be8988b2ee130f6eb0d8b216070c" target="_top" xlink:title="This function copies the value in member normal_impulse.">
+<g id="a_Node000009"><a xlink:href="../../d5/d0c/classcarla__msgs_1_1msg_1_1CarlaCollisionEvent.html#a1c83be8988b2ee130f6eb0d8b216070c" target="_top" xlink:title="This function copies the value in member normal_impulse">
 <polygon fill="white" stroke="#666666" points="561.75,-32 405.5,-32 405.5,0 561.75,0 561.75,-32"/>
 <text text-anchor="start" x="413.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla_msgs::msg::CarlaCollision</text>
 <text text-anchor="middle" x="483.62" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Event::normal_impulse</text>
@@ -163,7 +163,7 @@ var sectionId = 'dynsection-5';
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="../../d8/d15/classstd__msgs_1_1msg_1_1Header.html#a9bd973b4690fefb807fb231f496831d4" target="_top" xlink:title="This function copies the value in member frame_id.">
+<g id="a_Node000005"><a xlink:href="../../d8/d15/classstd__msgs_1_1msg_1_1Header.html#a9bd973b4690fefb807fb231f496831d4" target="_top" xlink:title="This function copies the value in member frame_id">
 <polygon fill="white" stroke="#666666" points="740.12,-182 619.88,-182 619.88,-150 740.12,-150 740.12,-182"/>
 <text text-anchor="start" x="627.88" y="-168.5" font-family="Helvetica,sans-Serif" font-size="10.00">std_msgs::msg::Header</text>
 <text text-anchor="middle" x="680" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">::frame_id</text>
@@ -201,7 +201,7 @@ var sectionId = 'dynsection-5';
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="../../d8/d15/classstd__msgs_1_1msg_1_1Header.html#a2ac0c277be6d5edc09d17126767290c9" target="_top" xlink:title="This function copies the value in member stamp.">
+<g id="a_Node000007"><a xlink:href="../../d8/d15/classstd__msgs_1_1msg_1_1Header.html#a2ac0c277be6d5edc09d17126767290c9" target="_top" xlink:title="This function copies the value in member stamp">
 <polygon fill="white" stroke="#666666" points="740.12,-82 619.88,-82 619.88,-50 740.12,-50 740.12,-82"/>
 <text text-anchor="start" x="627.88" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">std_msgs::msg::Header</text>
 <text text-anchor="middle" x="680" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::stamp</text>

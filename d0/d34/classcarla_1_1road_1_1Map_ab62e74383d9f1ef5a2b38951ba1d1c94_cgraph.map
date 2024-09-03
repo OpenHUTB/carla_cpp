@@ -1,8 +1,8 @@
 <map id="carla::road::Map::GenerateChunkedMesh" name="carla::road::Map::GenerateChunkedMesh">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,244,182,287"/>
-<area shape="rect" id="Node000002" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a7d1496ea84aecdf1fd4fe405a2c4da6c" title="Generates a mesh that defines a road." alt="" coords="482,29,655,72"/>
+<area shape="rect" id="Node000002" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a7d1496ea84aecdf1fd4fe405a2c4da6c" title="Generates a mesh that defines a road" alt="" coords="482,29,655,72"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,241,167,202,228,163,288,134,337,116,450,81,474,74,476,79,452,87,338,121,290,139,231,168,171,207,121,246"/>
-<area shape="rect" id="Node000006" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae412b9c8efc0fbcf0166900f5c107433" title="Generates a chunked road with all the features needed for simulation." alt="" coords="230,177,403,220"/>
+<area shape="rect" id="Node000006" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae412b9c8efc0fbcf0166900f5c107433" title="Generates a chunked road with all the features needed for simulation" alt="" coords="230,177,403,220"/>
 <area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="166,241,228,222,229,227,168,246"/>
 <area shape="rect" id="Node000010" href="$da/d3b/classcarla_1_1road_1_1MapData.html#ada1ec7c5f6908e9b4cebc302aa4ec466" title=" " alt="" coords="245,244,388,287"/>
 <area shape="poly" id="edge14_Node000001_Node000010" title=" " alt="" coords="182,263,230,263,230,268,182,268"/>
@@ -17,9 +17,9 @@
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="892,131,955,123,955,128,893,136"/>
 <area shape="rect" id="Node000005" href="$d9/d36/namespacecarla.html#a2dc539ffbcff452958f707dc7b0db4d6" title=" " alt="" coords="992,157,1130,184"/>
 <area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="893,147,977,157,976,163,892,152"/>
-<area shape="rect" id="Node000007" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5bb7825a0c5633404a348ccddcce20f7" title="Generates a list of meshes that defines a road safety wall with a maximum length." alt="" coords="475,120,663,163"/>
+<area shape="rect" id="Node000007" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5bb7825a0c5633404a348ccddcce20f7" title="Generates a list of meshes that defines a road safety wall with a maximum length" alt="" coords="475,120,663,163"/>
 <area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="403,176,459,163,460,169,404,182"/>
-<area shape="rect" id="Node000008" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae4ed344f3d9ed1020d78d720400bbc3a" title="Generates a list of meshes that defines a road with a maximum length." alt="" coords="482,211,655,253"/>
+<area shape="rect" id="Node000008" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae4ed344f3d9ed1020d78d720400bbc3a" title="Generates a list of meshes that defines a road with a maximum length" alt="" coords="482,211,655,253"/>
 <area shape="poly" id="edge10_Node000006_Node000008" title=" " alt="" coords="404,207,468,216,467,221,403,213"/>
 <area shape="rect" id="Node000009" href="$dd/de6/classcarla_1_1road_1_1Road.html#af59728d624635d195db846b08c1f32c7" title=" " alt="" coords="505,277,633,320"/>
 <area shape="poly" id="edge13_Node000006_Node000009" title=" " alt="" coords="380,218,404,230,428,247,452,263,491,278,490,283,450,268,425,251,402,234,378,223"/>

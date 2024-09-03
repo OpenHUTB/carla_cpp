@@ -40,7 +40,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a92a9a6fdd66eea2d1ec03b14378c7e50" target="_top" xlink:title="Applies the inverse of this transformation to in_point.">
+<g id="a_Node000006"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a92a9a6fdd66eea2d1ec03b14378c7e50" target="_top" xlink:title="Applies the inverse of this transformation to in_point">
 <polygon fill="white" stroke="#666666" points="458.25,-95 341,-95 341,-63 458.25,-63 458.25,-95"/>
 <text text-anchor="start" x="349" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Transform</text>
 <text text-anchor="middle" x="399.62" y="-69.5" font-family="Helvetica,sans-Serif" font-size="10.00">::InverseTransformPoint</text>
@@ -135,7 +135,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a68c63bc41afb72db22e52109e4db824d" target="_top" xlink:title="Computes the 4&#45;matrix form of the inverse transformation.">
+<g id="a_Node000008"><a xlink:href="../../de/da4/classcarla_1_1geom_1_1Transform.html#a68c63bc41afb72db22e52109e4db824d" target="_top" xlink:title="Computes the 4&#45;matrix form of the inverse transformation">
 <polygon fill="white" stroke="#666666" points="282.12,-70 166.38,-70 166.38,-38 282.12,-38 282.12,-70"/>
 <text text-anchor="start" x="174.38" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::geom::Transform</text>
 <text text-anchor="middle" x="224.25" y="-44.5" font-family="Helvetica,sans-Serif" font-size="10.00">::GetInverseMatrix</text>

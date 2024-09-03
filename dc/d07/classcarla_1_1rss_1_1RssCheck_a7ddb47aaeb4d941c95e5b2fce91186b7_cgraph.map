@@ -1,16 +1,16 @@
 <map id="carla::rss::RssCheck::CheckObjects" name="carla::rss::RssCheck::CheckObjects">
 <area shape="rect" id="Node000001" title="main function to trigger the RSS check at a certain point in time" alt="" coords="5,368,149,411"/>
-<area shape="rect" id="Node000002" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a73d96c9761c90f072d74f1a36bb6292d" title="Analyse the RSS check results." alt="" coords="226,135,383,177"/>
+<area shape="rect" id="Node000002" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#a73d96c9761c90f072d74f1a36bb6292d" title="Analyse the RSS check results" alt="" coords="226,135,383,177"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,367,98,328,121,280,153,230,195,187,211,177,214,181,198,191,158,234,126,283,102,330,88,369"/>
 <area shape="rect" id="Node000003" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aaaf0a0f73759f525137e227af98f5074" title="calculate ego vehicle dynamics on the route" alt="" coords="197,201,412,244"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,366,132,310,162,280,195,254,204,249,206,253,198,258,165,284,137,314,94,369"/>
-<area shape="rect" id="Node000018" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aa459f0697881ce1bf6ffa1f7c998910f" title="Create the RSS world model." alt="" coords="233,268,376,311"/>
+<area shape="rect" id="Node000018" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#aa459f0697881ce1bf6ffa1f7c998910f" title="Create the RSS world model" alt="" coords="233,268,376,311"/>
 <area shape="poly" id="edge23_Node000001_Node000018" title=" " alt="" coords="111,365,196,320,218,311,220,316,198,325,114,370"/>
 <area shape="rect" id="Node000021" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#acd7e97540e3d4e7bbce5dce1c70deeef" title="drop the current route" alt="" coords="233,335,376,377"/>
 <area shape="poly" id="edge27_Node000001_Node000021" title=" " alt="" coords="148,376,218,366,218,371,149,382"/>
 <area shape="rect" id="Node000022" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#ad3b645959ac8e39bcea3ac5bc503e984" title="calculate the map matched object from the actor" alt="" coords="233,401,376,444"/>
 <area shape="poly" id="edge28_Node000001_Node000022" title=" " alt="" coords="149,397,218,407,218,413,148,402"/>
-<area shape="rect" id="Node000023" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#adf4f19a6644dab7a021d69637cfe44c9" title="Perform the actual RSS check." alt="" coords="233,468,376,511"/>
+<area shape="rect" id="Node000023" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#adf4f19a6644dab7a021d69637cfe44c9" title="Perform the actual RSS check" alt="" coords="233,468,376,511"/>
 <area shape="poly" id="edge29_Node000001_Node000023" title=" " alt="" coords="114,409,198,454,220,462,218,467,196,458,111,414"/>
 <area shape="rect" id="Node000024" href="$dc/d07/classcarla_1_1rss_1_1RssCheck.html#af5f3f5dcadacba5f1974de32474838a2" title=" " alt="" coords="209,535,400,577"/>
 <area shape="poly" id="edge30_Node000001_Node000024" title=" " alt="" coords="94,409,137,465,165,495,198,520,206,525,204,530,195,525,162,499,132,469,90,413"/>
