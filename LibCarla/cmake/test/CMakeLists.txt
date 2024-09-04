@@ -1,21 +1,29 @@
+# LibCarla的单元测试
 cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-unit-tests)
 
+# 进行客户端的测试
 if (CMAKE_BUILD_TYPE STREQUAL "Client")
   set(carla_config client)
+# 进行服务端的测试
 elseif (CMAKE_BUILD_TYPE STREQUAL "Server")
   set(carla_config server)
 endif ()
+# 是否构建责任敏感安全库
 if (BUILD_RSS_VARIANT)
   set(carla_target_postfix "_rss")
 else()
   set(carla_target_postfix "")
 endif()
 
+# 需要添加到链接库搜索路径的目录：
+# 远程过程调用(Remote Procedure Call, RPC)、Google Test 库
 link_directories(
     ${RPCLIB_LIB_PATH}
     ${GTEST_LIB_PATH})
 
+# GLOB 会产生一个由所有匹配表达式的文件组成的列表，并将其保存到libcarla_test_sources变量中
+# 包括 性能剖析器 和 测试模块（客户端/服务端）中的所有C++代码
 file(GLOB libcarla_test_sources
     "${libcarla_source_path}/carla/profiler/*.cpp"
     "${libcarla_source_path}/carla/profiler/*.h"
@@ -28,15 +36,17 @@ file(GLOB libcarla_test_sources
 
 file(GLOB libcarla_test_client_sources "")
 
+# 如果LibCarla使用调试版本，则libcarla_test也是用调试版本
 if (LIBCARLA_BUILD_DEBUG)
   list(APPEND build_targets libcarla_test_${carla_config}_debug)
 endif()
 
+# 如果LibCarla使用发布版本，则libcarla_test也是用发布版本
 if (LIBCARLA_BUILD_RELEASE)
   list(APPEND build_targets libcarla_test_${carla_config}_release)
 endif()
 
-# Create targets for debug and release in the same build type.
+# 以相同的构建类型创建调试和发布的对象
 foreach(target ${build_targets})
 
   add_executable(${target} ${libcarla_test_sources})
@@ -67,6 +77,7 @@ foreach(target ${build_targets})
   install(TARGETS ${target} DESTINATION test OPTIONAL)
 endforeach(target)
 
+# 构建调试版本
 if (LIBCARLA_BUILD_DEBUG)
   # Specific options for debug.
   set_target_properties(libcarla_test_${carla_config}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
@@ -77,6 +88,7 @@ if (LIBCARLA_BUILD_DEBUG)
   endif()
 endif()
 
+# 构建发布版本
 if (LIBCARLA_BUILD_RELEASE)
   # Specific options for release.
   set_target_properties(libcarla_test_${carla_config}_release PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
