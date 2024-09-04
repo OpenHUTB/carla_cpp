@@ -71,3 +71,4 @@ git rm -rf .
 [Candela-best](https://github.com/Candela-best)
 [karry-tang](https://github.com/karry-tang)
 [wenli-xiong](https://github.com/wenli-xiong)
+[IHateTheWorld-Zhou](https://github.com/IHateTheWorld-Zhou)
