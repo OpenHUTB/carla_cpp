@@ -13,7 +13,7 @@ git clone https://github.com/OpenHUTB/carla_cpp.git
 ```shell script
 doxygen
 ```
-进入`carla_cpp\Doxygen\html`目录下，双击或使用浏览器打开`dir_b14cdd661f9a7048a44f1771cd402401.html`、`dir_8fc34afb5f07a67966c78bf5319f94ae.html`或`index.html`查看修改后的效果。包括的文档：
+进入`carla_cpp\Doxygen\html`目录下，双击或使用浏览器打开`dir_b14cdd661f9a7048a44f1771cd402401.html`、`dir_8fc34afb5f07a67966c78bf5319f94ae.html`或`index.html`，HTML仅仅用于查看，需要改的是.cpp文件并提交.cpp和.h文件。包括的文档：
 - LibCarla/source/carla：[Doxygen/html/dir_b14cdd661f9a7048a44f1771cd402401.html](https://openhutb.github.io/carla_cpp/dir_b14cdd661f9a7048a44f1771cd402401.html) 
 
 - CarlaUE4：[Doxygen/html/dir_8fc34afb5f07a67966c78bf5319f94ae.html](https://openhutb.github.io/carla_cpp/dir_8fc34afb5f07a67966c78bf5319f94ae.html) 
@@ -63,5 +63,8 @@ git rm -rf .
 ## 贡献者列表
 [nongfugengxia](https://github.com/nongfugengxia) 、[donghaiwang](https://github.com/donghaiwang) 、
 [QEYY060506](https://github.com/QEYY060506) 、[Xiedao](https://github.com/Xiedao) 、[zzz479](https://github.com/zzz479) 、[ifthen865](https://github.com/ifthen865) 、[zuo664](https://github.com/zuo664)、[Allen-Tang0014](https://github.com/Allen-Tang0014)、[BcyWind](https://github.com/BcyWind) 、
-[Nananxuan](https://github.com/Nananxuan)。
-
+[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)、[Muyunshui](https://github.com/Muyunshui)
+[jun-72](https://github.com/jun-72)
+[xiushuowang](https://github.com/xiushuowang)
+[gongguixuan](https://github.com/gongguixuan)[Hyz12345678](https://github.com/Hyz12345678)
+[M-3399](https://github.com/M-3399)

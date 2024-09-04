@@ -31,7 +31,7 @@ else ()
   message(FATAL_ERROR "Unknown build type '${CMAKE_BUILD_TYPE}'")
 endif ()
 
-# GTest is not compiled on Windows.
+# GTest 没有在 Windows 上进行编译（Build\gtest-install目录下有编译好的文件？）
 if ((LIBCARLA_BUILD_TEST) AND (NOT WIN32) AND (NOT (CMAKE_BUILD_TYPE STREQUAL "Pytorch")) AND (NOT (CMAKE_BUILD_TYPE STREQUAL "ros2")))
   add_subdirectory("test")
 endif()
