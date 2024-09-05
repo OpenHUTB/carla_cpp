@@ -63,5 +63,22 @@ git rm -rf .
 ## 贡献者列表
 [nongfugengxia](https://github.com/nongfugengxia) 、[donghaiwang](https://github.com/donghaiwang) 、
 [QEYY060506](https://github.com/QEYY060506) 、[Xiedao](https://github.com/Xiedao) 、[zzz479](https://github.com/zzz479) 、[ifthen865](https://github.com/ifthen865) 、[zuo664](https://github.com/zuo664)、[Allen-Tang0014](https://github.com/Allen-Tang0014)、[BcyWind](https://github.com/BcyWind) 、
-[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)。
+[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)、[Muyunshui](https://github.com/Muyunshui)
+[jun-72](https://github.com/jun-72)
+[xiushuowang](https://github.com/xiushuowang)
+[gongguixuan](https://github.com/gongguixuan)[Hyz12345678](https://github.com/Hyz12345678)
+[M-3399](https://github.com/M-3399)
+[Candela-best](https://github.com/Candela-best)
+[karry-tang](https://github.com/karry-tang)
+[wenli-xiong](https://github.com/wenli-xiong)
+[leixing1](https://github.com/leixing1)
+[IHateTheWorld-Zhou](https://github.com/IHateTheWorld-Zhou)
+[Mamba321857](https://github.com/Mamba321857)
+[gyqss](https://github.com/gyqss)
+[liujue0](https://github.com/liujue0)
+[yyyyy1026](https://github.com/yyyyy1026)
+[sematic9527](https://github.com/sematic9527)
+[yuxiyu666](https://github.com/yuxiyu666)
+[xjc548](https://github.com/xjc548)
+[Yuuydz](https://github.com/Yuuydz)
 
