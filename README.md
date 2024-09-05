@@ -74,7 +74,11 @@ git rm -rf .
 [leixing1](https://github.com/leixing1)
 [IHateTheWorld-Zhou](https://github.com/IHateTheWorld-Zhou)
 [Mamba321857](https://github.com/Mamba321857)
-[gyqss](https://github.com/gyqss)、[Yuuydz](https://github.com/Yuuydz)
-
-
+[gyqss](https://github.com/gyqss)
+[liujue0](https://github.com/liujue0)
+[yyyyy1026](https://github.com/yyyyy1026)
+[sematic9527](https://github.com/sematic9527)
+[yuxiyu666](https://github.com/yuxiyu666)
+[xjc548](https://github.com/xjc548)
+[Yuuydz](https://github.com/Yuuydz)
 

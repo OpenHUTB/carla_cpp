@@ -8,14 +8,14 @@
 
 #include <type_traits>
 
-namespace carla {
+namespace carla {//定义一个叫做carla的类 
 
   template <typename... Ts>
   struct are_same;
 
   template <typename T0, typename T1, typename... Ts>
   struct are_same<T0, T1, Ts...> {
-    static constexpr bool value = std::is_same<T0, T1>::value && are_same<T0, Ts...>::value;
+    static constexpr bool value = std::is_same<T0, T1>::value && are_same<T0, Ts...>::value;//定义一个静态常量布尔成员变量 
   };
 
   template <typename T0, typename T1>
