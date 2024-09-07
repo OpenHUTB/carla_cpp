@@ -63,7 +63,7 @@ git rm -rf .
 ## 贡献者列表
 [nongfugengxia](https://github.com/nongfugengxia) 、[donghaiwang](https://github.com/donghaiwang) 、
 [QEYY060506](https://github.com/QEYY060506) 、[Xiedao](https://github.com/Xiedao) 、[zzz479](https://github.com/zzz479) 、[ifthen865](https://github.com/ifthen865) 、[zuo664](https://github.com/zuo664)、[Allen-Tang0014](https://github.com/Allen-Tang0014)、[BcyWind](https://github.com/BcyWind) 、
-[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)、[Muyunshui](https://github.com/Muyunshui)
+[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)、[Muyunshui](https://github.com/Muyunshui)、[Wen-511](https://github.com/Wen-511)、[juanexuan](https://github.com/juanexuan)
 [jun-72](https://github.com/jun-72)
 [xiushuowang](https://github.com/xiushuowang)
 [gongguixuan](https://github.com/gongguixuan)[Hyz12345678](https://github.com/Hyz12345678)
@@ -78,4 +78,17 @@ git rm -rf .
 [liujue0](https://github.com/liujue0)
 [yyyyy1026](https://github.com/yyyyy1026)
 [sematic9527](https://github.com/sematic9527)
-
+[yuxiyu666](https://github.com/yuxiyu666)
+[xjc548](https://github.com/xjc548)
+[Yuuydz](https://github.com/Yuuydz)
+[zreo141271](https://github.com/zero141271)、[zxy-125](https://github.com/zxy-125)、[fx-hj](https://github.com/fx-hj)
+[A-0-A-0-A](https://github.com/A-0-A-0-A) 。
+[xuuu-1](https://github.com/xuuu-1) 
+[minghao-lee](https://github.com/minghao-lee) 。
+[Lhb106](https://github.com/Lhb106)、
+[52Herze](https://github.com/52Herze) 
+[HuBigmouse](https://github.com/HuBigmouse)
+[lujianjjjj](https://github.com/lujianjjjj)
+[chen-18](https://github.com/18-chen).
+[smile947](https://github.com/smile947).
+[cm1106-ai](https://github.com/cm1106-ai).
