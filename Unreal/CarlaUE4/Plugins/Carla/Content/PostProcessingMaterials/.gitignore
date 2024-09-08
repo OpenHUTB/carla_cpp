@@ -1,8 +1,8 @@
-# These files are changed when doing the "import" command
-# due to Unreal's automatic checking/cooking ".uasset" files.
+# 执行"import"命令时会更改这些文件
+# 由于虚幻引擎自动检查/编译“.uasset”文件。
 
-# This is why we ignore all the shader files in this folder
-# since they are rarely changed:
+# 这就是为什么我们忽略这个文件夹中的所有着色器文件的原因。
+# 因为它们很少发生更改：
 
 *
 !.gitignore
