@@ -9,25 +9,26 @@
 #include <memory>
  
 namespace carla {
- 
-    /// AtomicSharedPtrÊÇÒ»¸ö·Ç³£¼òµ¥µÄÔ­×Ó²Ù×÷ÖÇÄÜÖ¸ÕëÀà£¬Ö§³ÖÏß³Ì°²È«µÄ¹²ÏíÖ¸Õë²Ù×÷£¬Ê¹ÓÃÁËrelease-acquireÄÚ´æË³Ğò¡£
+
+  /// AtomicSharedPtræ˜¯ä¸€ä¸ªéå¸¸ç®€å•çš„åŸå­æ“ä½œæ™ºèƒ½æŒ‡é’ˆç±»ï¼Œæ”¯æŒçº¿ç¨‹å®‰å…¨çš„å…±äº«æŒ‡é’ˆæ“ä½œï¼Œä½¿ç”¨äº†release-acquireå†…å­˜é¡ºåºã€‚
+  //Release-Acquireç¡®ä¿ä¸€ä¸ªçº¿ç¨‹çš„å†…å­˜å†™æ“ä½œï¼ˆreleaseï¼‰åœ¨å¦ä¸€ä¸ªçº¿ç¨‹çš„è¯»æ“ä½œï¼ˆacquireï¼‰ä¹‹å‰å®Œæˆã€‚å®ƒä¿è¯çº¿ç¨‹ä¹‹é—´çš„æ•°æ®åŒæ­¥ï¼Œé¿å…å‡ºç°è¯»å†™é¡ºåºé”™è¯¯ï¼Œç¡®ä¿ä¸€ä¸ªçº¿ç¨‹çœ‹åˆ°çš„æ•°æ®æ˜¯å¦ä¸€ä¸ªçº¿ç¨‹å·²ç»æ›´æ–°è¿‡çš„ã€‚
   template <typename T>
   class AtomicSharedPtr {
   public:
   	
- 	// ¹¹Ôìº¯Êı£¬Ê¹ÓÃ×ª·¢²ÎÊı°ü½«´«Èë²ÎÊıÍêÃÀ×ª·¢¸øshared_ptr½øĞĞ³õÊ¼»¯
+ 	// æ„é€ å‡½æ•°ï¼Œä½¿ç”¨è½¬å‘å‚æ•°åŒ…å°†ä¼ å…¥å‚æ•°å®Œç¾è½¬å‘ç»™shared_ptrè¿›è¡Œåˆå§‹åŒ–
     template <typename... Args>
     explicit AtomicSharedPtr(Args &&... args)
       : _ptr(std::forward<Args>(args)...) {}
       
- 	// ¿½±´¹¹Ôìº¯Êı£¬Ê¹ÓÃload()º¯ÊıÀ´»ñÈ¡µ±Ç°ÖÇÄÜÖ¸ÕëµÄÖµ²¢³õÊ¼»¯
+ 	// æ‹·è´æ„é€ å‡½æ•°ï¼Œä½¿ç”¨load()å‡½æ•°æ¥è·å–å½“å‰æ™ºèƒ½æŒ‡é’ˆçš„å€¼å¹¶åˆå§‹åŒ–
     AtomicSharedPtr(const AtomicSharedPtr &rhs)
       : _ptr(rhs.load()) {}
       
- 	 // É¾³ıÒÆ¶¯¹¹Ôìº¯Êı£¬²»ÔÊĞí¶ÔÏóµÄÒÆ¶¯²Ù×÷
+ 	 // åˆ é™¤ç§»åŠ¨æ„é€ å‡½æ•°ï¼Œä¸å…è®¸å¯¹è±¡çš„ç§»åŠ¨æ“ä½œ
     AtomicSharedPtr(AtomicSharedPtr &&) = delete;
     
- 	// ´æ´¢ĞÂÖ¸Õë£¬Ê¹ÓÃreleaseÄÚ´æË³Ğò£¬±£Ö¤ËùÓĞĞ´²Ù×÷ÔÚÕâ¸ö´æ´¢²Ù×÷Ö®Ç°Íê³É
+ 	// å­˜å‚¨æ–°æŒ‡é’ˆï¼Œä½¿ç”¨releaseå†…å­˜é¡ºåºï¼Œä¿è¯æ‰€æœ‰å†™æ“ä½œåœ¨è¿™ä¸ªå­˜å‚¨æ“ä½œä¹‹å‰å®Œæˆ
     void store(std::shared_ptr<T> ptr) noexcept {
       std::atomic_store_explicit(&_ptr, ptr, std::memory_order_release);
     }
@@ -36,12 +37,12 @@ namespace carla {
       store(ptr);
     }
     
- 	// ¼ÓÔØÖ¸ÕëµÄµ±Ç°Öµ£¬Ê¹ÓÃacquireÄÚ´æË³Ğò
+ 	// åŠ è½½æŒ‡é’ˆçš„å½“å‰å€¼ï¼Œä½¿ç”¨acquireå†…å­˜é¡ºåº
     std::shared_ptr<T> load() const noexcept {
       return std::atomic_load_explicit(&_ptr, std::memory_order_acquire);
     }
  	
- 	// Ô­×Ó±È½Ï²¢½»»»²Ù×÷£¬Èç¹ûµ±Ç°Ö¸ÕëÖµÓëÔ¤ÆÚÖµÆ¥Åä£¬ÔòÌæ»»ÎªdesiredÖµ
+ 	// åŸå­æ¯”è¾ƒå¹¶äº¤æ¢æ“ä½œï¼Œå¦‚æœå½“å‰æŒ‡é’ˆå€¼ä¸é¢„æœŸå€¼åŒ¹é…ï¼Œåˆ™æ›¿æ¢ä¸ºdesiredå€¼
     bool compare_exchange(std::shared_ptr<T> *expected, std::shared_ptr<T> desired) noexcept {
       return std::atomic_compare_exchange_strong_explicit(
           &_ptr,
