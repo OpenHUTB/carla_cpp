@@ -11,7 +11,7 @@
 
 #include "AIControllerFactory.generated.h"
 
-/// Factory in charge of spawning AI Controllers.
+/// 负责生成AI控制器的工厂
 UCLASS()
 class CARLA_API AAIControllerFactory final : public ACarlaActorFactory
 {
