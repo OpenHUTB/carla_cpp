@@ -47,7 +47,7 @@ namespace UOpenDriveMap_Private {
         [](auto &&Item) { return T{Item}; });
   }
 
-} // namespace UOpenDriveMap_Private
+} // 以UOpenDriveMap_Private命名的命名空间，命名空间作用是防止同名函数的冲突，并且使程序员更好的区分同名函数。
 
 UOpenDriveMap::UOpenDriveMap(const FObjectInitializer &ObjectInitializer)
   : Super(ObjectInitializer) {}
