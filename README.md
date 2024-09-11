@@ -13,7 +13,7 @@ git clone https://github.com/OpenHUTB/carla_cpp.git
 ```shell script
 doxygen
 ```
-进入`carla_cpp\Doxygen\html`目录下，双击或使用浏览器打开`dir_b14cdd661f9a7048a44f1771cd402401.html`、`dir_8fc34afb5f07a67966c78bf5319f94ae.html`或`index.html`，HTML仅仅用于查看，需要改的是.cpp文件并提交.cpp和.h文件。包括的文档：
+进入`carla_cpp\Doxygen\html`目录下，双击或使用浏览器打开`dir_b14cdd661f9a7048a44f1771cd402401.html`、`dir_8fc34afb5f07a67966c78bf5319f94ae.html`或`index.html`，HTML仅仅用于查看，不需要提交，需要改和提交的是.cpp和.h文件。包括的文档：
 - LibCarla/source/carla：[Doxygen/html/dir_b14cdd661f9a7048a44f1771cd402401.html](https://openhutb.github.io/carla_cpp/dir_b14cdd661f9a7048a44f1771cd402401.html) 
 
 - CarlaUE4：[Doxygen/html/dir_8fc34afb5f07a67966c78bf5319f94ae.html](https://openhutb.github.io/carla_cpp/dir_8fc34afb5f07a67966c78bf5319f94ae.html) 
@@ -21,7 +21,7 @@ doxygen
 4.修改并本地测试没问题后，提交代码：
 ```shell script
 git add .
-git commit -m update
+git commit -m "update"
 git push
 ```
 
