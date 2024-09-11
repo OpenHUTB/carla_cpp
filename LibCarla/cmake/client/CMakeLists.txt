@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-client)
 
-# Enable/Install RSS VARIANT
+# 启用/安装 RSS VARIANT
 option (BUILD_RSS_VARIANT "Enables ad-rss-lib based RSS components" OFF)
 set(carla_target_postfix "")
 if (BUILD_RSS_VARIANT)
@@ -28,7 +28,7 @@ if (BUILD_RSS_VARIANT)
   install(FILES ${proj_lib} DESTINATION lib)
   list(APPEND ADRSS_LIBS ${proj_lib})
 
-  # as long as the libosm2odr uses the same odrSprial interface it is enough to copy the built static library
+  # 只要 libosm2odr 使用相同的 odrSpiral 接口，复制构建的静态库就足够了
   set(odr_lib ${ADRSS_INSTALL_DIR}/../src/ad-rss-lib/dependencies/map/dependencies/odrSpiral/lib/libodrSpiral.a)
   install(FILES ${odr_lib} DESTINATION lib)
   list(APPEND ADRSS_LIBS ${odr_lib})
@@ -38,7 +38,7 @@ if (BUILD_RSS_VARIANT)
     install(FILES ${${ad_lib}_file} DESTINATION lib)
     list(APPEND ADRSS_LIBS ${${ad_lib}_file})
 
-    # Install corresponding python libs if available
+    # 如果可用，请安装相应的 Python 库
     file(GLOB ${ad_lib}_python_libs "${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}_python*.a")
     foreach(ad_python_lib ${${ad_lib}_python_libs})
       if (EXISTS ${ad_python_lib})
@@ -53,35 +53,35 @@ if (BUILD_RSS_VARIANT)
   endforeach()
 endif()
 
-# Install Recast&Detour libraries
+# 安装 Recast&Detour 库
 install(DIRECTORY "${RECAST_INCLUDE_PATH}/recast" DESTINATION include/system)
 file(GLOB libcarla_carla_recastlib "${RECAST_LIB_PATH}/*.*")
 install(FILES ${libcarla_carla_recastlib} DESTINATION lib)
 
-# Install rpclib (install in system folder to avoid extra warnings).
+#安装 rpclib（安装在系统文件夹中以避免额外的警告）
 install(DIRECTORY "${RPCLIB_INCLUDE_PATH}/rpc" DESTINATION include/system)
 file(GLOB libcarla_carla_rpclib "${RPCLIB_LIB_PATH}/*.*")
 install(FILES ${libcarla_carla_rpclib} DESTINATION lib)
 
-# Install boost headers (install in system folder to avoid extra warnings).
-# @todo Remove boost from public interface of LibCarla.client.
+# 安装 Boost 头文件（安装在系统文件夹中以避免额外的警告）
+# 待办：从 LibCarla.client 的公共接口中移除 Boost
 install(DIRECTORY "${BOOST_INCLUDE_PATH}/boost" DESTINATION include/system)
 file(GLOB boost_libraries "${BOOST_LIB_PATH}/*.*")
 install(FILES ${boost_libraries} DESTINATION lib)
 
-# Windows need libpng alongside with zlib to be installed
+# Windows 需要安装 libpng 以及 zlib。
 if (WIN32)
-    # Install zlib headers.
+    # 安装 zlib 头文件
     file(GLOB zlib_includes "${ZLIB_INCLUDE_PATH}/*")
     install(FILES ${zlib_includes} DESTINATION include)
-    # Install zlib lib.
+    # 安装 zlib 库
     file(GLOB zlib_libraries "${ZLIB_LIB_PATH}/*")
     install(FILES ${zlib_libraries} DESTINATION lib)
 
-    # Install libpng headers.
+    # 安装 libpng 头文件
     file(GLOB pnglib_includes "${LIBPNG_INCLUDE_PATH}/*")
     install(FILES ${pnglib_includes} DESTINATION include)
-    # Install zlib lib.
+    # 安装 zlib 库.
     file(GLOB libpng_libraries "${LIBPNG_LIB_PATH}/*")
     install(FILES ${libpng_libraries} DESTINATION lib)
 else ()
