@@ -92,7 +92,7 @@ git rm -rf .
 [chen-18](https://github.com/18-chen).
 [smile947](https://github.com/smile947).
 [cm1106-ai](https://github.com/cm1106-ai).
-[pengwenzhuo6](https://github.com/pengwenzhuo6).
+[pengwenzhuo6](https://github.com/pengwenzhuo6)、
 [789waa](https://github.com/789waa)
 [Rinco520](https://github.com/Rinco520)、[yanpeng0902](https://github.com/yanpeng0902)
 [zxxzyy](https://github.com/zxxzyy)
@@ -125,5 +125,5 @@ git rm -rf .
 [lyj510](https://github.com/lyj510/carla_cpp)
 [YPPBTC](https://github.com/YPPBTC)、[mjyy22](https://github.com/mjyy22)
 [DanandVVa](https://github.com/DanandVVa/carla_cpp.git)
-[yuanshen6666666](https://github.com/yuanshen6666666/carla_cpp.git)
+[yuanshen6666666](https://github.com/yuanshen6666666/carla_cpp.git)。
 
