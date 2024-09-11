@@ -120,4 +120,10 @@ git rm -rf .
 [tushuguanL](https://github.com/tushuguanL)
 [18692223518](https://github.com/18692223518)
 [tellwhat](https://https://github.com/tellwhat)
-[Mikecbk](https://https://github.com/Mikecbk)
+[Mikecbk](https://https://github.com/Mikecbk)、[ZLW523523](https://github.com/ZLW523523)
+[ovsehun](https://https://github.com/ovsehun)
+[lyj510](https://github.com/lyj510/carla_cpp)
+[YPPBTC](https://github.com/YPPBTC)、[mjyy22](https://github.com/mjyy22)
+[DanandVVa](https://github.com/DanandVVa/carla_cpp.git)
+[yuanshen6666666](https://github.com/yuanshen6666666/carla_cpp.git)
+
