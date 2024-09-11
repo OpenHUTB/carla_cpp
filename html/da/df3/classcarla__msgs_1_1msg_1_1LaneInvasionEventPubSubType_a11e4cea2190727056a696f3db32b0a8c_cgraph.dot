@@ -1,0 +1,14 @@
+digraph "carla_msgs::msg::LaneInvasionEventPubSubType::getKey"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla_msgs::msg::LaneInvasion\lEventPubSubType::getKey",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla_msgs::msg::LaneInvasion\lEvent::getKeyMaxCdrSerializedSize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/de1/classcarla__msgs_1_1msg_1_1LaneInvasionEvent.html#aadfb2f8abe5192dc3a397ce6b66f551d",tooltip="This function returns the maximum serialized size of the Key of an object depending on the buffer ali..."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla_msgs::msg::LaneInvasion\lEvent::serializeKey",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/de1/classcarla__msgs_1_1msg_1_1LaneInvasionEvent.html#acf5076a6948c2d73f436843051fb6120",tooltip="This function serializes the key members of an object using CDR serialization."];
+}

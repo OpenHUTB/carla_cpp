@@ -1,0 +1,10 @@
+digraph "类继承关系图"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="carla::traffic_manager\l::TrafficManager",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html",tooltip="This class integrates all the various stages of the traffic manager appropriately using messengers."];
+}

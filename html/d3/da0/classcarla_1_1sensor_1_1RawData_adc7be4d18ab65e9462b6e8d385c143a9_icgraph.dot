@@ -1,0 +1,16 @@
+digraph "carla::sensor::RawData::GetSensorTypeId"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="carla::sensor::RawData\l::GetSensorTypeId",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Type-id of the sensor that generated the data."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::sensor::Composite\lSerializer::Deserialize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d81/classcarla_1_1sensor_1_1CompositeSerializer.html#ac3830f23f11eb475290d6dfb00b4ebf1",tooltip="Deserializes a Buffer by calling the \"Deserialize\" function of the serializer that generated the Buff..."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::sensor::Deserializer\l::Deserialize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/d46/classcarla_1_1sensor_1_1Deserializer.html#a718d97708b670faeba94b6cd4bd0a350",tooltip=" "];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::client::detail\l::Episode::Listen",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d1/db6/classcarla_1_1client_1_1detail_1_1Episode.html#afa2c9d4a111adf6575e39980cfc4b8c3",tooltip=" "];
+}

@@ -1,0 +1,2429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: UActorBlueprintFunctionLibrary类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="../../d9/dc9/classUActorBlueprintFunctionLibrary-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">UActorBlueprintFunctionLibrary类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html">ActorBlueprintFunctionLibrary.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 UActorBlueprintFunctionLibrary 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> UActorBlueprintFunctionLibrary 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:afa4aba6393bb016000f71bd60d2e2f12" id="r_afa4aba6393bb016000f71bd60d2e2f12"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa4aba6393bb016000f71bd60d2e2f12">CheckActorDefinition</a> (const <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;ActorDefinitions)</td></tr>
+<tr class="memdesc:afa4aba6393bb016000f71bd60d2e2f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the actor definition is valid. Prints all the errors found.  <br /></td></tr>
+<tr class="separator:afa4aba6393bb016000f71bd60d2e2f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbc517c6b70dc38dcc9573ba48b77f17" id="r_abbc517c6b70dc38dcc9573ba48b77f17"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbc517c6b70dc38dcc9573ba48b77f17">CheckActorDefinitions</a> (const TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;ActorDefinitions)</td></tr>
+<tr class="memdesc:abbc517c6b70dc38dcc9573ba48b77f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the list of actor definitions is valid.  <br /></td></tr>
+<tr class="separator:abbc517c6b70dc38dcc9573ba48b77f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0868b514cddf92d49758bc605e511c1" id="r_ae0868b514cddf92d49758bc605e511c1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0868b514cddf92d49758bc605e511c1">MakeGenericDefinition</a> (const FString &amp;Category, const FString &amp;Type, const FString &amp;Id)</td></tr>
+<tr class="separator:ae0868b514cddf92d49758bc605e511c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac586f27c6e47e3aee9427dd89d01bb9e" id="r_ac586f27c6e47e3aee9427dd89d01bb9e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac586f27c6e47e3aee9427dd89d01bb9e">MakeGenericSensorDefinition</a> (const FString &amp;Type, const FString &amp;Id)</td></tr>
+<tr class="separator:ac586f27c6e47e3aee9427dd89d01bb9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73179ac899a1f87c07ab2ae222f0a9ec" id="r_a73179ac899a1f87c07ab2ae222f0a9ec"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73179ac899a1f87c07ab2ae222f0a9ec">MakeCameraDefinition</a> (const FString &amp;Id, bool bEnableModifyingPostProcessEffects=false)</td></tr>
+<tr class="separator:a73179ac899a1f87c07ab2ae222f0a9ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a472a14c750c6c5dc66b38cfeaea82ccc" id="r_a472a14c750c6c5dc66b38cfeaea82ccc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a472a14c750c6c5dc66b38cfeaea82ccc">MakeCameraDefinition</a> (const FString &amp;Id, bool bEnableModifyingPostProcessEffects, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a472a14c750c6c5dc66b38cfeaea82ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8420b32e8a4dd64fd80c3c0a2b771e" id="r_a9c8420b32e8a4dd64fd80c3c0a2b771e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c8420b32e8a4dd64fd80c3c0a2b771e">MakeNormalsCameraDefinition</a> ()</td></tr>
+<tr class="separator:a9c8420b32e8a4dd64fd80c3c0a2b771e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab49a876cfbacc4ffedbb09362fc9b180" id="r_ab49a876cfbacc4ffedbb09362fc9b180"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab49a876cfbacc4ffedbb09362fc9b180">MakeNormalsCameraDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:ab49a876cfbacc4ffedbb09362fc9b180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c005a41d0d198f79318a439ecd61c26" id="r_a3c005a41d0d198f79318a439ecd61c26"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c005a41d0d198f79318a439ecd61c26">MakeLidarDefinition</a> (const FString &amp;Id)</td></tr>
+<tr class="separator:a3c005a41d0d198f79318a439ecd61c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abffeca8ba8f30edadcc4897ad8a21bc9" id="r_abffeca8ba8f30edadcc4897ad8a21bc9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abffeca8ba8f30edadcc4897ad8a21bc9">MakeLidarDefinition</a> (const FString &amp;Id, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:abffeca8ba8f30edadcc4897ad8a21bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a71771b91e3e1f62080441653ccec34" id="r_a5a71771b91e3e1f62080441653ccec34"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a71771b91e3e1f62080441653ccec34">MakeGnssDefinition</a> ()</td></tr>
+<tr class="separator:a5a71771b91e3e1f62080441653ccec34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43f8e76c64459f72e679f073462f5983" id="r_a43f8e76c64459f72e679f073462f5983"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43f8e76c64459f72e679f073462f5983">MakeGnssDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a43f8e76c64459f72e679f073462f5983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a027542870b02494a58d594e9c0036a84" id="r_a027542870b02494a58d594e9c0036a84"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a027542870b02494a58d594e9c0036a84">MakeIMUDefinition</a> ()</td></tr>
+<tr class="separator:a027542870b02494a58d594e9c0036a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8113a5e0efff9740fde3c53ed9994b6e" id="r_a8113a5e0efff9740fde3c53ed9994b6e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8113a5e0efff9740fde3c53ed9994b6e">MakeIMUDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a8113a5e0efff9740fde3c53ed9994b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ede5e06388e0ae507170f1364755eb8" id="r_a9ede5e06388e0ae507170f1364755eb8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ede5e06388e0ae507170f1364755eb8">MakeRadarDefinition</a> ()</td></tr>
+<tr class="separator:a9ede5e06388e0ae507170f1364755eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb67a9669278274d94d01473c82da45" id="r_a8eb67a9669278274d94d01473c82da45"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eb67a9669278274d94d01473c82da45">MakeRadarDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a8eb67a9669278274d94d01473c82da45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8b6e7f68d88556a2db3305b4d80cab2" id="r_ad8b6e7f68d88556a2db3305b4d80cab2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8b6e7f68d88556a2db3305b4d80cab2">MakeV2XDefinition</a> ()</td></tr>
+<tr class="separator:ad8b6e7f68d88556a2db3305b4d80cab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a397901fd012ae8ee40c9cc223cb3ff9b" id="r_a397901fd012ae8ee40c9cc223cb3ff9b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a397901fd012ae8ee40c9cc223cb3ff9b">MakeV2XDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a397901fd012ae8ee40c9cc223cb3ff9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e718e1315f87e4cf556a5994e774c0" id="r_a43e718e1315f87e4cf556a5994e774c0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43e718e1315f87e4cf556a5994e774c0">MakeCustomV2XDefinition</a> ()</td></tr>
+<tr class="separator:a43e718e1315f87e4cf556a5994e774c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a975ca515c0b9d64bf8600dc1eeb699" id="r_a6a975ca515c0b9d64bf8600dc1eeb699"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a975ca515c0b9d64bf8600dc1eeb699">MakeCustomV2XDefinition</a> (bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a6a975ca515c0b9d64bf8600dc1eeb699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e83afa97bb195943c3a8a3b9a897c87" id="r_a5e83afa97bb195943c3a8a3b9a897c87"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e83afa97bb195943c3a8a3b9a897c87">MakeVehicleDefinition</a> (const <a class="el" href="../../d0/db7/structFVehicleParameters.html">FVehicleParameters</a> &amp;Parameters, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a5e83afa97bb195943c3a8a3b9a897c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affd8df709504c5a38b3fc636d1748590" id="r_affd8df709504c5a38b3fc636d1748590"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affd8df709504c5a38b3fc636d1748590">MakeVehicleDefinitions</a> (const TArray&lt; <a class="el" href="../../d0/db7/structFVehicleParameters.html">FVehicleParameters</a> &gt; &amp;ParameterArray, TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;Definitions)</td></tr>
+<tr class="separator:affd8df709504c5a38b3fc636d1748590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab457df342c04ac42c785ef1c845fe5e0" id="r_ab457df342c04ac42c785ef1c845fe5e0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab457df342c04ac42c785ef1c845fe5e0">MakePedestrianDefinition</a> (const <a class="el" href="../../d9/db1/structFPedestrianParameters.html">FPedestrianParameters</a> &amp;Parameters, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:ab457df342c04ac42c785ef1c845fe5e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae19224c46ae864cf29547f20a98a3137" id="r_ae19224c46ae864cf29547f20a98a3137"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae19224c46ae864cf29547f20a98a3137">MakePedestrianDefinitions</a> (const TArray&lt; <a class="el" href="../../d9/db1/structFPedestrianParameters.html">FPedestrianParameters</a> &gt; &amp;ParameterArray, TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;Definitions)</td></tr>
+<tr class="separator:ae19224c46ae864cf29547f20a98a3137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cddd62ff32e8276bcad25389a47ab74" id="r_a5cddd62ff32e8276bcad25389a47ab74"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cddd62ff32e8276bcad25389a47ab74">MakeTriggerDefinitions</a> (const TArray&lt; FString &gt; &amp;ParameterArray, TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;Definitions)</td></tr>
+<tr class="separator:a5cddd62ff32e8276bcad25389a47ab74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0213b0fbf5dcf2339ba8a54ea11f95d4" id="r_a0213b0fbf5dcf2339ba8a54ea11f95d4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0213b0fbf5dcf2339ba8a54ea11f95d4">MakeTriggerDefinition</a> (const FString &amp;Id, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a0213b0fbf5dcf2339ba8a54ea11f95d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a673c0d82c938a146db8bbfb6f29c6ab4" id="r_a673c0d82c938a146db8bbfb6f29c6ab4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a673c0d82c938a146db8bbfb6f29c6ab4">MakePropDefinition</a> (const <a class="el" href="../../db/d61/structFPropParameters.html">FPropParameters</a> &amp;Parameters, bool &amp;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:a673c0d82c938a146db8bbfb6f29c6ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ce0991bf4d63ef8a19655e3c7a78f8" id="r_a00ce0991bf4d63ef8a19655e3c7a78f8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00ce0991bf4d63ef8a19655e3c7a78f8">MakePropDefinitions</a> (const TArray&lt; <a class="el" href="../../db/d61/structFPropParameters.html">FPropParameters</a> &gt; &amp;ParameterArray, TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;Definitions)</td></tr>
+<tr class="separator:a00ce0991bf4d63ef8a19655e3c7a78f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa6590208ad245d841cf5a03546d8ad8" id="r_afa6590208ad245d841cf5a03546d8ad8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa6590208ad245d841cf5a03546d8ad8">MakeObstacleDetectorDefinitions</a> (const FString &amp;Type, const FString &amp;Id, <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;Definition)</td></tr>
+<tr class="separator:afa6590208ad245d841cf5a03546d8ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00e042d3bf321bb8a8a03df5609e9844" id="r_a00e042d3bf321bb8a8a03df5609e9844"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00e042d3bf321bb8a8a03df5609e9844">ActorAttributeToBool</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, bool Default)</td></tr>
+<tr class="memdesc:a00e042d3bf321bb8a8a03df5609e9844"><td class="mdescLeft">&#160;</td><td class="mdescRight">============================================================================  <br /></td></tr>
+<tr class="separator:a00e042d3bf321bb8a8a03df5609e9844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6896b87d5fb6381abeec9b2ce40b868" id="r_ac6896b87d5fb6381abeec9b2ce40b868"><td class="memItemLeft" align="right" valign="top">static int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6896b87d5fb6381abeec9b2ce40b868">ActorAttributeToInt</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, int32 Default)</td></tr>
+<tr class="separator:ac6896b87d5fb6381abeec9b2ce40b868"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2705e7880e0aaf440b869e95732c841a" id="r_a2705e7880e0aaf440b869e95732c841a"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2705e7880e0aaf440b869e95732c841a">ActorAttributeToFloat</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, float Default)</td></tr>
+<tr class="separator:a2705e7880e0aaf440b869e95732c841a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e9c596e2e9b14f14f6448123e11dfd" id="r_a89e9c596e2e9b14f14f6448123e11dfd"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89e9c596e2e9b14f14f6448123e11dfd">ActorAttributeToString</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, const FString &amp;Default)</td></tr>
+<tr class="separator:a89e9c596e2e9b14f14f6448123e11dfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69f5f4f392900d879487ed425d5f285e" id="r_a69f5f4f392900d879487ed425d5f285e"><td class="memItemLeft" align="right" valign="top">static FColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69f5f4f392900d879487ed425d5f285e">ActorAttributeToColor</a> (const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;ActorAttribute, const FColor &amp;Default)</td></tr>
+<tr class="separator:a69f5f4f392900d879487ed425d5f285e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e9b8e2c941f8665b7130e0f7f9844c" id="r_ae7e9b8e2c941f8665b7130e0f7f9844c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7e9b8e2c941f8665b7130e0f7f9844c">RetrieveActorAttributeToBool</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, bool Default)</td></tr>
+<tr class="separator:ae7e9b8e2c941f8665b7130e0f7f9844c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a133abaff7dac1fe73845d942c9305427" id="r_a133abaff7dac1fe73845d942c9305427"><td class="memItemLeft" align="right" valign="top">static int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a133abaff7dac1fe73845d942c9305427">RetrieveActorAttributeToInt</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, int32 Default)</td></tr>
+<tr class="separator:a133abaff7dac1fe73845d942c9305427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9df033f51ecd7f941548826451bddb74" id="r_a9df033f51ecd7f941548826451bddb74"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9df033f51ecd7f941548826451bddb74">RetrieveActorAttributeToFloat</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, float Default)</td></tr>
+<tr class="separator:a9df033f51ecd7f941548826451bddb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b7a13caca875b188c8eb5106e9a36ad" id="r_a7b7a13caca875b188c8eb5106e9a36ad"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b7a13caca875b188c8eb5106e9a36ad">RetrieveActorAttributeToString</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, const FString &amp;Default)</td></tr>
+<tr class="separator:a7b7a13caca875b188c8eb5106e9a36ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93ef1bca2720f7ddc783338a1d46d4e9" id="r_a93ef1bca2720f7ddc783338a1d46d4e9"><td class="memItemLeft" align="right" valign="top">static FColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93ef1bca2720f7ddc783338a1d46d4e9">RetrieveActorAttributeToColor</a> (const FString &amp;Id, const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;Attributes, const FColor &amp;Default)</td></tr>
+<tr class="separator:a93ef1bca2720f7ddc783338a1d46d4e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a1fcb0b47cb61691281c6ca5693908f" id="r_a6a1fcb0b47cb61691281c6ca5693908f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a1fcb0b47cb61691281c6ca5693908f">SetCamera</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d4/d60/classASceneCaptureSensor.html">ASceneCaptureSensor</a> *Camera)</td></tr>
+<tr class="separator:a6a1fcb0b47cb61691281c6ca5693908f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f912961f6922c092175f02f6a47ed9f" id="r_a7f912961f6922c092175f02f6a47ed9f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f912961f6922c092175f02f6a47ed9f">SetCamera</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../da/dd3/classAShaderBasedSensor.html">AShaderBasedSensor</a> *Camera)</td></tr>
+<tr class="separator:a7f912961f6922c092175f02f6a47ed9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ac14016bd271f575f9eb78ea3dc8cd3" id="r_a0ac14016bd271f575f9eb78ea3dc8cd3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ac14016bd271f575f9eb78ea3dc8cd3">SetLidar</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../de/d6f/structFLidarDescription.html">FLidarDescription</a> &amp;Lidar)</td></tr>
+<tr class="separator:a0ac14016bd271f575f9eb78ea3dc8cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a064afaa3154f81c475048ff14f699486" id="r_a064afaa3154f81c475048ff14f699486"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a064afaa3154f81c475048ff14f699486">SetGnss</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d0/dc3/classAGnssSensor.html">AGnssSensor</a> *Gnss)</td></tr>
+<tr class="separator:a064afaa3154f81c475048ff14f699486"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa8a0128f536d34d052c54c93ff3629" id="r_affa8a0128f536d34d052c54c93ff3629"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affa8a0128f536d34d052c54c93ff3629">SetIMU</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d5/de0/classAInertialMeasurementUnit.html">AInertialMeasurementUnit</a> *IMU)</td></tr>
+<tr class="separator:affa8a0128f536d34d052c54c93ff3629"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e5fb47e9351d11a1f9da3b9af8512af" id="r_a0e5fb47e9351d11a1f9da3b9af8512af"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e5fb47e9351d11a1f9da3b9af8512af">SetRadar</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d9/d27/classARadar.html">ARadar</a> *Radar)</td></tr>
+<tr class="separator:a0e5fb47e9351d11a1f9da3b9af8512af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a664347ac38a83e63948914b13cdabd78" id="r_a664347ac38a83e63948914b13cdabd78"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a664347ac38a83e63948914b13cdabd78">SetV2X</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../d3/dd4/classAV2XSensor.html">AV2XSensor</a> *V2X)</td></tr>
+<tr class="separator:a664347ac38a83e63948914b13cdabd78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ef7e7573d6e6798475a6e497458a11" id="r_ac5ef7e7573d6e6798475a6e497458a11"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5ef7e7573d6e6798475a6e497458a11">SetCustomV2X</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;Description, <a class="el" href="../../de/d1f/classACustomV2XSensor.html">ACustomV2XSensor</a> *V2X)</td></tr>
+<tr class="separator:ac5ef7e7573d6e6798475a6e497458a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html">ActorBlueprintFunctionLibrary.h</a> 第 <a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html#l00031">31</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a00e042d3bf321bb8a8a03df5609e9844" name="a00e042d3bf321bb8a8a03df5609e9844"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e042d3bf321bb8a8a03df5609e9844">&#9670;&#160;</a></span>ActorAttributeToBool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UActorBlueprintFunctionLibrary::ActorAttributeToBool </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ActorAttribute</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>============================================================================ </p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+@}</h1>
+<h1><a class="anchor" id="autotoc_md9"></a>
+@name Helpers to retrieve attribute values</h1>
+<h1><a class="anchor" id="autotoc_md2"></a>
+&ndash; Helpers to retrieve attribute values ---------------------------------&mdash;</h1>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01746">1746</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4ac26f15e86e3de4c398a8273272aba034">Bool</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00066">FActorAttribute::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00069">FActorAttribute::Type</a> , 以及 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00072">FActorAttribute::Value</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01836">RetrieveActorAttributeToBool()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01904">SetCamera()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a69f5f4f392900d879487ed425d5f285e" name="a69f5f4f392900d879487ed425d5f285e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69f5f4f392900d879487ed425d5f285e">&#9670;&#160;</a></span>ActorAttributeToColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FColor UActorBlueprintFunctionLibrary::ActorAttributeToColor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ActorAttribute</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FColor &amp;</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01794">1794</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00066">FActorAttribute::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4aee34f4e29a9cd1703c2829d753c76e5d">RGBColor</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00069">FActorAttribute::Type</a> , 以及 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00072">FActorAttribute::Value</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01876">RetrieveActorAttributeToColor()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2705e7880e0aaf440b869e95732c841a" name="a2705e7880e0aaf440b869e95732c841a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2705e7880e0aaf440b869e95732c841a">&#9670;&#160;</a></span>ActorAttributeToFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float UActorBlueprintFunctionLibrary::ActorAttributeToFloat </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ActorAttribute</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01770">1770</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00066">FActorAttribute::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00069">FActorAttribute::Type</a> , 以及 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00072">FActorAttribute::Value</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a> , 以及 <a class="el" href="../../d7/d16/Sensor_8cpp_source.html#l00035">ASensor::Set()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac6896b87d5fb6381abeec9b2ce40b868" name="ac6896b87d5fb6381abeec9b2ce40b868"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6896b87d5fb6381abeec9b2ce40b868">&#9670;&#160;</a></span>ActorAttributeToInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32 UActorBlueprintFunctionLibrary::ActorAttributeToInt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ActorAttribute</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01758">1758</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00066">FActorAttribute::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00069">FActorAttribute::Type</a> , 以及 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00072">FActorAttribute::Value</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">RetrieveActorAttributeToInt()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a89e9c596e2e9b14f14f6448123e11dfd" name="a89e9c596e2e9b14f14f6448123e11dfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89e9c596e2e9b14f14f6448123e11dfd">&#9670;&#160;</a></span>ActorAttributeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString UActorBlueprintFunctionLibrary::ActorAttributeToString </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ActorAttribute</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01782">1782</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00066">FActorAttribute::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00069">FActorAttribute::Type</a> , 以及 <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00072">FActorAttribute::Value</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01866">RetrieveActorAttributeToString()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="afa4aba6393bb016000f71bd60d2e2f12" name="afa4aba6393bb016000f71bd60d2e2f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa4aba6393bb016000f71bd60d2e2f12">&#9670;&#160;</a></span>CheckActorDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UActorBlueprintFunctionLibrary::CheckActorDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ActorDefinition</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return whether the actor definition is valid. Prints all the errors found. </p>
+<p>============================================================================</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+@}</h1>
+<h1><a class="anchor" id="autotoc_md5"></a>
+@name Actor definition validators</h1>
+<h1><a class="anchor" id="autotoc_md0"></a>
+&ndash; Actor definition validators ------------------------------------------&mdash;</h1>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">178</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00033">FActorDefinitionValidator::SingleIsValid()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d6a/ActorDispatcher_8cpp_source.html#l00023">UActorDispatcher::Bind()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00306">MakeCameraDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01260">MakeCustomV2XDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01372">MakeGnssDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00754">MakeIMUDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00910">MakeLidarDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00668">MakeNormalsCameraDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01552">MakePedestrianDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01666">MakePropDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00852">MakeRadarDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01655">MakeTriggerDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01027">MakeV2XDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01434">MakeVehicleDefinition()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="abbc517c6b70dc38dcc9573ba48b77f17" name="abbc517c6b70dc38dcc9573ba48b77f17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbc517c6b70dc38dcc9573ba48b77f17">&#9670;&#160;</a></span>CheckActorDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UActorBlueprintFunctionLibrary::CheckActorDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ActorDefinitions</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return whether the list of actor definitions is valid. </p>
+<p>Prints all the errors found. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00184">184</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00027">FActorDefinitionValidator::AreValid()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a472a14c750c6c5dc66b38cfeaea82ccc" name="a472a14c750c6c5dc66b38cfeaea82ccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a472a14c750c6c5dc66b38cfeaea82ccc">&#9670;&#160;</a></span>MakeCameraDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeCameraDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>bEnableModifyingPostProcessEffects</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00306">306</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00231">AddRecommendedValuesForSensorRoleNames()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4ac26f15e86e3de4c398a8273272aba034">Bool</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<a id="a73179ac899a1f87c07ab2ae222f0a9ec" name="a73179ac899a1f87c07ab2ae222f0a9ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73179ac899a1f87c07ab2ae222f0a9ec">&#9670;&#160;</a></span>MakeCameraDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeCameraDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>bEnableModifyingPostProcessEffects</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00295">295</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00295">MakeCameraDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d0e/DepthCamera_8cpp_source.html#l00014">ADepthCamera::GetSensorDefinition()</a>, <a class="el" href="../../d9/d6e/DVSCamera_8cpp_source.html#l00038">ADVSCamera::GetSensorDefinition()</a>, <a class="el" href="../../d6/dcd/InstanceSegmentationCamera_8cpp_source.html#l00016">AInstanceSegmentationCamera::GetSensorDefinition()</a>, <a class="el" href="../../d0/d58/OpticalFlowCamera_8cpp_source.html#l00009">AOpticalFlowCamera::GetSensorDefinition()</a>, <a class="el" href="../../d1/dec/SceneCaptureCamera_8cpp_source.html#l00016">ASceneCaptureCamera::GetSensorDefinition()</a>, <a class="el" href="../../d9/d38/SemanticSegmentationCamera_8cpp_source.html#l00015">ASemanticSegmentationCamera::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00295">MakeCameraDefinition()</a>.</p>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<a id="a43e718e1315f87e4cf556a5994e774c0" name="a43e718e1315f87e4cf556a5994e774c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43e718e1315f87e4cf556a5994e774c0">&#9670;&#160;</a></span>MakeCustomV2XDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeCustomV2XDefinition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01251">1251</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01251">MakeCustomV2XDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00062">ACustomV2XSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01251">MakeCustomV2XDefinition()</a>.</p>
+<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 13 --></div>
+</div>
+<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 14 --></div>
+</div>
+
+</div>
+</div>
+<a id="a6a975ca515c0b9d64bf8600dc1eeb699" name="a6a975ca515c0b9d64bf8600dc1eeb699"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a975ca515c0b9d64bf8600dc1eeb699">&#9670;&#160;</a></span>MakeCustomV2XDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeCustomV2XDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01260">1260</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4ac26f15e86e3de4c398a8273272aba034">Bool</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 15 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae0868b514cddf92d49758bc605e511c1" name="ae0868b514cddf92d49758bc605e511c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0868b514cddf92d49758bc605e511c1">&#9670;&#160;</a></span>MakeGenericDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeGenericDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Category</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<h1><a class="anchor" id="autotoc_md6"></a>
+@}</h1>
+<h1><a class="anchor" id="autotoc_md7"></a>
+@name Helpers to create actor definitions</h1>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00276">276</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00286">MakeGenericSensorDefinition()</a>.</p>
+<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 16 --></div>
+</div>
+<div id="dynsection-17" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 17 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac586f27c6e47e3aee9427dd89d01bb9e" name="ac586f27c6e47e3aee9427dd89d01bb9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac586f27c6e47e3aee9427dd89d01bb9e">&#9670;&#160;</a></span>MakeGenericSensorDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeGenericSensorDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00286">286</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00231">AddRecommendedValuesForSensorRoleNames()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00276">MakeGenericDefinition()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/df0/CollisionSensor_8cpp_source.html#l00026">ACollisionSensor::GetSensorDefinition()</a>, <a class="el" href="../../d4/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2LaneInvasionSensor_8cpp_source.html#l00010">ALaneInvasionSensor::GetSensorDefinition()</a>, <a class="el" href="../../df/db5/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2RssSensor_8cpp_source.html#l00012">ARssSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01702">MakeObstacleDetectorDefinitions()</a>.</p>
+<div id="dynsection-18" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 18 --></div>
+</div>
+<div id="dynsection-19" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 19 --></div>
+</div>
+
+</div>
+</div>
+<a id="a5a71771b91e3e1f62080441653ccec34" name="a5a71771b91e3e1f62080441653ccec34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a71771b91e3e1f62080441653ccec34">&#9670;&#160;</a></span>MakeGnssDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeGnssDefinition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01363">1363</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01363">MakeGnssDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00026">AGnssSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01363">MakeGnssDefinition()</a>.</p>
+<div id="dynsection-20" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 20 --></div>
+</div>
+<div id="dynsection-21" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-21-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-21-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-21-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 21 --></div>
+</div>
+
+</div>
+</div>
+<a id="a43f8e76c64459f72e679f073462f5983" name="a43f8e76c64459f72e679f073462f5983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43f8e76c64459f72e679f073462f5983">&#9670;&#160;</a></span>MakeGnssDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeGnssDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01372">1372</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-22" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-22-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-22-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-22-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 22 --></div>
+</div>
+
+</div>
+</div>
+<a id="a027542870b02494a58d594e9c0036a84" name="a027542870b02494a58d594e9c0036a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a027542870b02494a58d594e9c0036a84">&#9670;&#160;</a></span>MakeIMUDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeIMUDefinition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00745">745</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00745">MakeIMUDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00038">AInertialMeasurementUnit::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00745">MakeIMUDefinition()</a>.</p>
+<div id="dynsection-23" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-23-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-23-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-23-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 23 --></div>
+</div>
+<div id="dynsection-24" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-24-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-24-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 24 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8113a5e0efff9740fde3c53ed9994b6e" name="a8113a5e0efff9740fde3c53ed9994b6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8113a5e0efff9740fde3c53ed9994b6e">&#9670;&#160;</a></span>MakeIMUDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeIMUDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00754">754</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-25" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-25-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-25-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 25 --></div>
+</div>
+
+</div>
+</div>
+<a id="a3c005a41d0d198f79318a439ecd61c26" name="a3c005a41d0d198f79318a439ecd61c26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c005a41d0d198f79318a439ecd61c26">&#9670;&#160;</a></span>MakeLidarDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeLidarDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00900">900</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00900">MakeLidarDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dec/RayCastLidar_8cpp_source.html#l00024">ARayCastLidar::GetSensorDefinition()</a>, <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00025">ARayCastSemanticLidar::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00900">MakeLidarDefinition()</a>.</p>
+<div id="dynsection-26" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-26-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-26-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-26-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 26 --></div>
+</div>
+<div id="dynsection-27" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-27-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-27-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-27-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 27 --></div>
+</div>
+
+</div>
+</div>
+<a id="abffeca8ba8f30edadcc4897ad8a21bc9" name="abffeca8ba8f30edadcc4897ad8a21bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abffeca8ba8f30edadcc4897ad8a21bc9">&#9670;&#160;</a></span>MakeLidarDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeLidarDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00910">910</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00231">AddRecommendedValuesForSensorRoleNames()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00066">DEBUG_ASSERT</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-28" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-28-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-28-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-28-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 28 --></div>
+</div>
+
+</div>
+</div>
+<a id="a9c8420b32e8a4dd64fd80c3c0a2b771e" name="a9c8420b32e8a4dd64fd80c3c0a2b771e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8420b32e8a4dd64fd80c3c0a2b771e">&#9670;&#160;</a></span>MakeNormalsCameraDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00659">659</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00659">MakeNormalsCameraDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d81/NormalsCamera_8cpp_source.html#l00014">ANormalsCamera::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00659">MakeNormalsCameraDefinition()</a>.</p>
+<div id="dynsection-29" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-29-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-29-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-29-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 29 --></div>
+</div>
+<div id="dynsection-30" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-30-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-30-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-30-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 30 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab49a876cfbacc4ffedbb09362fc9b180" name="ab49a876cfbacc4ffedbb09362fc9b180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab49a876cfbacc4ffedbb09362fc9b180">&#9670;&#160;</a></span>MakeNormalsCameraDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00668">668</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00231">AddRecommendedValuesForSensorRoleNames()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-31" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-31-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-31-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-31-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 31 --></div>
+</div>
+
+</div>
+</div>
+<a id="afa6590208ad245d841cf5a03546d8ad8" name="afa6590208ad245d841cf5a03546d8ad8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa6590208ad245d841cf5a03546d8ad8">&#9670;&#160;</a></span>MakeObstacleDetectorDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeObstacleDetectorDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01702">1702</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4ac26f15e86e3de4c398a8273272aba034">Bool</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00286">MakeGenericSensorDefinition()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/d70/ObstacleDetectionSensor_8cpp_source.html#l00026">AObstacleDetectionSensor::GetSensorDefinition()</a>.</p>
+<div id="dynsection-32" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-32-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-32-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-32-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 32 --></div>
+</div>
+<div id="dynsection-33" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-33-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-33-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-33-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 33 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab457df342c04ac42c785ef1c845fe5e0" name="ab457df342c04ac42c785ef1c845fe5e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab457df342c04ac42c785ef1c845fe5e0">&#9670;&#160;</a></span>MakePedestrianDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakePedestrianDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d9/db1/structFPedestrianParameters.html">FPedestrianParameters</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Parameters</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000002">待办事项</a></b></dt><dd>We need to validate here the params. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01552">1552</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00217">AddRecommendedValuesForActorRoleName()</a>, <a class="el" href="../../d5/dca/PedestrianParameters_8h_source.html#l00051">FPedestrianParameters::Age</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00047">FActorDefinition::Attributes</a>, <a class="el" href="../../d5/dca/PedestrianParameters_8h_source.html#l00060">FPedestrianParameters::bCanUseWheelChair</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4ac26f15e86e3de4c398a8273272aba034">Bool</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00033">FActorDefinition::Class</a>, <a class="el" href="../../d5/dca/PedestrianParameters_8h_source.html#l00045">FPedestrianParameters::Class</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d5/dca/PedestrianParameters_8h_source.html#l00048">FPedestrianParameters::Gender</a>, <a class="el" href="../../d5/dca/PedestrianParameters_8h_source.html#l00057">FPedestrianParameters::Generation</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d5/dca/PedestrianParameters_8h_source.html#l00042">FPedestrianParameters::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../d5/dca/PedestrianParameters_8h_source.html#l00054">FPedestrianParameters::Speed</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01641">MakePedestrianDefinitions()</a>.</p>
+<div id="dynsection-34" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-34-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-34-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-34-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 34 --></div>
+</div>
+<div id="dynsection-35" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-35-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-35-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-35-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 35 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae19224c46ae864cf29547f20a98a3137" name="ae19224c46ae864cf29547f20a98a3137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae19224c46ae864cf29547f20a98a3137">&#9670;&#160;</a></span>MakePedestrianDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakePedestrianDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../d9/db1/structFPedestrianParameters.html">FPedestrianParameters</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ParameterArray</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Definitions</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01641">1641</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01528">FillActorDefinitionArray()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01552">MakePedestrianDefinition()</a>.</p>
+<div id="dynsection-36" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-36-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-36-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-36-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 36 --></div>
+</div>
+
+</div>
+</div>
+<a id="a673c0d82c938a146db8bbfb6f29c6ab4" name="a673c0d82c938a146db8bbfb6f29c6ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a673c0d82c938a146db8bbfb6f29c6ab4">&#9670;&#160;</a></span>MakePropDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakePropDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d61/structFPropParameters.html">FPropParameters</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Parameters</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000003">待办事项</a></b></dt><dd>We need to validate here the params. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01666">1666</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00217">AddRecommendedValuesForActorRoleName()</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00047">FActorDefinition::Attributes</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../dc/d01/PropParameters_8h_source.html#l00033">FPropParameters::Name</a>, <a class="el" href="../../dc/d01/PropParameters_8h_source.html#l00039">FPropParameters::Size</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">String</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01695">MakePropDefinitions()</a>.</p>
+<div id="dynsection-37" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-37-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-37-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-37-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 37 --></div>
+</div>
+<div id="dynsection-38" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-38-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-38-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-38-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 38 --></div>
+</div>
+
+</div>
+</div>
+<a id="a00ce0991bf4d63ef8a19655e3c7a78f8" name="a00ce0991bf4d63ef8a19655e3c7a78f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00ce0991bf4d63ef8a19655e3c7a78f8">&#9670;&#160;</a></span>MakePropDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakePropDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../db/d61/structFPropParameters.html">FPropParameters</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ParameterArray</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Definitions</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01695">1695</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01528">FillActorDefinitionArray()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01666">MakePropDefinition()</a>.</p>
+<div id="dynsection-39" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-39-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-39-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-39-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 39 --></div>
+</div>
+
+</div>
+</div>
+<a id="a9ede5e06388e0ae507170f1364755eb8" name="a9ede5e06388e0ae507170f1364755eb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ede5e06388e0ae507170f1364755eb8">&#9670;&#160;</a></span>MakeRadarDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeRadarDefinition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00843">843</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00843">MakeRadarDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d99/Radar_8cpp_source.html#l00020">ARadar::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00843">MakeRadarDefinition()</a>.</p>
+<div id="dynsection-40" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-40-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-40-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-40-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 40 --></div>
+</div>
+<div id="dynsection-41" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-41-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-41-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-41-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 41 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8eb67a9669278274d94d01473c82da45" name="a8eb67a9669278274d94d01473c82da45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb67a9669278274d94d01473c82da45">&#9670;&#160;</a></span>MakeRadarDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeRadarDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00852">852</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-42" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-42-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-42-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-42-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 42 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0213b0fbf5dcf2339ba8a54ea11f95d4" name="a0213b0fbf5dcf2339ba8a54ea11f95d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0213b0fbf5dcf2339ba8a54ea11f95d4">&#9670;&#160;</a></span>MakeTriggerDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeTriggerDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01655">1655</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00249">AddVariationsForTrigger()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/da1/TriggerFactory_8cpp_source.html#l00021">ATriggerFactory::GetDefinitions()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01648">MakeTriggerDefinitions()</a>.</p>
+<div id="dynsection-43" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-43-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-43-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-43-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 43 --></div>
+</div>
+<div id="dynsection-44" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-44-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-44-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-44-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 44 --></div>
+</div>
+
+</div>
+</div>
+<a id="a5cddd62ff32e8276bcad25389a47ab74" name="a5cddd62ff32e8276bcad25389a47ab74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cddd62ff32e8276bcad25389a47ab74">&#9670;&#160;</a></span>MakeTriggerDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeTriggerDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; FString &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ParameterArray</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Definitions</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01648">1648</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01528">FillActorDefinitionArray()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01655">MakeTriggerDefinition()</a>.</p>
+<div id="dynsection-45" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-45-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-45-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-45-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 45 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad8b6e7f68d88556a2db3305b4d80cab2" name="ad8b6e7f68d88556a2db3305b4d80cab2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8b6e7f68d88556a2db3305b4d80cab2">&#9670;&#160;</a></span>MakeV2XDefinition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> UActorBlueprintFunctionLibrary::MakeV2XDefinition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01018">1018</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01018">MakeV2XDefinition()</a> , 以及 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00056">AV2XSensor::GetSensorDefinition()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01018">MakeV2XDefinition()</a>.</p>
+<div id="dynsection-46" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-46-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-46-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-46-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 46 --></div>
+</div>
+<div id="dynsection-47" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-47-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-47-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-47-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 47 --></div>
+</div>
+
+</div>
+</div>
+<a id="a397901fd012ae8ee40c9cc223cb3ff9b" name="a397901fd012ae8ee40c9cc223cb3ff9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a397901fd012ae8ee40c9cc223cb3ff9b">&#9670;&#160;</a></span>MakeV2XDefinition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeV2XDefinition </td>
+          <td>(</td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01027">1027</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00237">AddVariationsForSensor()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4ac26f15e86e3de4c398a8273272aba034">Bool</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a22ae0e2b89e5e3d477f988cc36d3272b">Float</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+<div id="dynsection-48" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-48-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-48-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-48-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 48 --></div>
+</div>
+
+</div>
+</div>
+<a id="a5e83afa97bb195943c3a8a3b9a897c87" name="a5e83afa97bb195943c3a8a3b9a897c87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e83afa97bb195943c3a8a3b9a897c87">&#9670;&#160;</a></span>MakeVehicleDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeVehicleDefinition </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/structFVehicleParameters.html">FVehicleParameters</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Parameters</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Success</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Definition</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000001">待办事项</a></b></dt><dd>We need to validate here the params. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01434">1434</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00217">AddRecommendedValuesForActorRoleName()</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00047">FActorDefinition::Attributes</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00039">FVehicleParameters::BaseType</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4ac26f15e86e3de4c398a8273272aba034">Bool</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00055">FActorVariation::bRestrictToRecommended</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00178">CheckActorDefinition()</a>, <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00033">FActorDefinition::Class</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00025">FVehicleParameters::Class</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00165">ColorToFString()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00195">FillIdAndTags()</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00031">FVehicleParameters::Generation</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00046">FVehicleParameters::HasDynamicDoors</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00049">FVehicleParameters::HasLights</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00046">FActorVariation::Id</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a1686a6c336b71b36d77354cea19a8b52">Int</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00019">FVehicleParameters::Make</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00022">FVehicleParameters::Model</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00028">FVehicleParameters::NumberOfWheels</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00035">FVehicleParameters::ObjectType</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00052">FVehicleParameters::RecommendedColors</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00052">FActorVariation::RecommendedValues</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4aee34f4e29a9cd1703c2829d753c76e5d">RGBColor</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00043">FVehicleParameters::SpecialType</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">String</a>, <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="../../d1/d1b/VehicleParameters_8h_source.html#l00057">FVehicleParameters::SupportedDrivers</a>, <a class="el" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_source.html#l00049">FActorVariation::Type</a> , 以及 <a class="el" href="../../d0/d65/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDefinition_8h_source.html#l00042">FActorDefinition::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01545">MakeVehicleDefinitions()</a>.</p>
+<div id="dynsection-49" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-49-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-49-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-49-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 49 --></div>
+</div>
+<div id="dynsection-50" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-50-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-50-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-50-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 50 --></div>
+</div>
+
+</div>
+</div>
+<a id="affd8df709504c5a38b3fc636d1748590" name="affd8df709504c5a38b3fc636d1748590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affd8df709504c5a38b3fc636d1748590">&#9670;&#160;</a></span>MakeVehicleDefinitions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::MakeVehicleDefinitions </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../d0/db7/structFVehicleParameters.html">FVehicleParameters</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ParameterArray</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Definitions</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01545">1545</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01528">FillActorDefinitionArray()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01434">MakeVehicleDefinition()</a>.</p>
+<div id="dynsection-51" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-51-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-51-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-51-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 51 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae7e9b8e2c941f8665b7130e0f7f9844c" name="ae7e9b8e2c941f8665b7130e0f7f9844c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7e9b8e2c941f8665b7130e0f7f9844c">&#9670;&#160;</a></span>RetrieveActorAttributeToBool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UActorBlueprintFunctionLibrary::RetrieveActorAttributeToBool </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Attributes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01836">1836</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01746">ActorAttributeToBool()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d6e/DVSCamera_8cpp_source.html#l00090">ADVSCamera::Set()</a>, <a class="el" href="../../d2/d70/ObstacleDetectionSensor_8cpp_source.html#l00033">AObstacleDetectionSensor::Set()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02214">SetCustomV2X()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02134">SetV2X()</a>.</p>
+<div id="dynsection-52" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-52-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-52-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-52-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 52 --></div>
+</div>
+<div id="dynsection-53" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-53-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-53-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-53-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 53 --></div>
+</div>
+
+</div>
+</div>
+<a id="a93ef1bca2720f7ddc783338a1d46d4e9" name="a93ef1bca2720f7ddc783338a1d46d4e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93ef1bca2720f7ddc783338a1d46d4e9">&#9670;&#160;</a></span>RetrieveActorAttributeToColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FColor UActorBlueprintFunctionLibrary::RetrieveActorAttributeToColor </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Attributes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FColor &amp;</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01876">1876</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01794">ActorAttributeToColor()</a>.</p>
+<div id="dynsection-54" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-54-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-54-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-54-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 54 --></div>
+</div>
+
+</div>
+</div>
+<a id="a9df033f51ecd7f941548826451bddb74" name="a9df033f51ecd7f941548826451bddb74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9df033f51ecd7f941548826451bddb74">&#9670;&#160;</a></span>RetrieveActorAttributeToFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float UActorBlueprintFunctionLibrary::RetrieveActorAttributeToFloat </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Attributes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">1856</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01770">ActorAttributeToFloat()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d6e/DVSCamera_8cpp_source.html#l00090">ADVSCamera::Set()</a>, <a class="el" href="../../d2/d70/ObstacleDetectionSensor_8cpp_source.html#l00033">AObstacleDetectionSensor::Set()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01904">SetCamera()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01995">SetCamera()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02214">SetCustomV2X()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02047">SetGnss()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02076">SetIMU()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02014">SetLidar()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02107">SetRadar()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02134">SetV2X()</a> , 以及 <a class="el" href="../../d3/da1/TriggerFactory_8cpp_source.html#l00036">ATriggerFactory::SpawnActor()</a>.</p>
+<div id="dynsection-55" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-55-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-55-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-55-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 55 --></div>
+</div>
+<div id="dynsection-56" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-56-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-56-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-56-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 56 --></div>
+</div>
+
+</div>
+</div>
+<a id="a133abaff7dac1fe73845d942c9305427" name="a133abaff7dac1fe73845d942c9305427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a133abaff7dac1fe73845d942c9305427">&#9670;&#160;</a></span>RetrieveActorAttributeToInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32 UActorBlueprintFunctionLibrary::RetrieveActorAttributeToInt </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Attributes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">1846</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01758">ActorAttributeToInt()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d6e/DVSCamera_8cpp_source.html#l00090">ADVSCamera::Set()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01904">SetCamera()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02214">SetCustomV2X()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02047">SetGnss()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02076">SetIMU()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02014">SetLidar()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02107">SetRadar()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02134">SetV2X()</a>.</p>
+<div id="dynsection-57" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-57-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-57-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-57-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 57 --></div>
+</div>
+<div id="dynsection-58" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-58-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-58-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-58-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 58 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7b7a13caca875b188c8eb5106e9a36ad" name="a7b7a13caca875b188c8eb5106e9a36ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b7a13caca875b188c8eb5106e9a36ad">&#9670;&#160;</a></span>RetrieveActorAttributeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString UActorBlueprintFunctionLibrary::RetrieveActorAttributeToString </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TMap&lt; FString, <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Attributes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Default</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01866">1866</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01782">ActorAttributeToString()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01904">SetCamera()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02214">SetCustomV2X()</a> , 以及 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02134">SetV2X()</a>.</p>
+<div id="dynsection-59" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-59-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-59-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-59-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 59 --></div>
+</div>
+<div id="dynsection-60" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-60-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-60-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-60-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 60 --></div>
+</div>
+
+</div>
+</div>
+<a id="a6a1fcb0b47cb61691281c6ca5693908f" name="a6a1fcb0b47cb61691281c6ca5693908f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a1fcb0b47cb61691281c6ca5693908f">&#9670;&#160;</a></span>SetCamera() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::SetCamera </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d4/d60/classASceneCaptureSensor.html">ASceneCaptureSensor</a> *</td>          <td class="paramname"><span class="paramname"><em>Camera</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<h1><a class="anchor" id="autotoc_md10"></a>
+@}</h1>
+<h1><a class="anchor" id="autotoc_md11"></a>
+@name Helpers to set Actors</h1>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01904">1904</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01746">ActorAttributeToBool()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01900">CARLA_ABFL_CHECK_ACTOR</a>, <a class="el" href="../../d8/d95/SceneCaptureSensor_8h_source.html#l00153">ASceneCaptureSensor::EnablePostProcessingEffects()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">RetrieveActorAttributeToInt()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01866">RetrieveActorAttributeToString()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00150">ASceneCaptureSensor::SetAperture()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00210">ASceneCaptureSensor::SetBladeCount()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00390">ASceneCaptureSensor::SetBloomIntensity()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00426">ASceneCaptureSensor::SetChromAberrIntensity()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00438">ASceneCaptureSensor::SetChromAberrOffset()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00174">ASceneCaptureSensor::SetDepthBlurAmount()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00186">ASceneCaptureSensor::SetDepthBlurRadius()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00198">ASceneCaptureSensor::SetDepthOfFieldMinFstop()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00330">ASceneCaptureSensor::SetExposureCalibrationConstant()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00108">ASceneCaptureSensor::SetExposureCompensation()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00294">ASceneCaptureSensor::SetExposureMaxBrightness()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00096">ASceneCaptureSensor::SetExposureMethod()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00282">ASceneCaptureSensor::SetExposureMinBrightness()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00306">ASceneCaptureSensor::SetExposureSpeedDown()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00318">ASceneCaptureSensor::SetExposureSpeedUp()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00258">ASceneCaptureSensor::SetFilmBlackClip()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00246">ASceneCaptureSensor::SetFilmShoulder()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00222">ASceneCaptureSensor::SetFilmSlope()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00234">ASceneCaptureSensor::SetFilmToe()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00270">ASceneCaptureSensor::SetFilmWhiteClip()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00162">ASceneCaptureSensor::SetFocalDistance()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00084">ASceneCaptureSensor::SetFOVAngle()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00078">ASceneCaptureSensor::SetImageSize()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00138">ASceneCaptureSensor::SetISO()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00378">ASceneCaptureSensor::SetLensFlareIntensity()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00342">ASceneCaptureSensor::SetMotionBlurIntensity()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00354">ASceneCaptureSensor::SetMotionBlurMaxDistortion()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00366">ASceneCaptureSensor::SetMotionBlurMinObjectScreenSize()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00126">ASceneCaptureSensor::SetShutterSpeed()</a>, <a class="el" href="../../d8/d95/SceneCaptureSensor_8h_source.html#l00183">ASceneCaptureSensor::SetTargetGamma()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00402">ASceneCaptureSensor::SetWhiteTemp()</a>, <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00414">ASceneCaptureSensor::SetWhiteTint()</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d2d/SceneCaptureSensor_8cpp_source.html#l00072">ASceneCaptureSensor::Set()</a> , 以及 <a class="el" href="../../da/d96/ShaderBasedSensor_8cpp_source.html#l00048">AShaderBasedSensor::Set()</a>.</p>
+<div id="dynsection-61" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-61-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-61-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-61-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 61 --></div>
+</div>
+<div id="dynsection-62" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-62-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-62-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-62-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 62 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7f912961f6922c092175f02f6a47ed9f" name="a7f912961f6922c092175f02f6a47ed9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f912961f6922c092175f02f6a47ed9f">&#9670;&#160;</a></span>SetCamera() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::SetCamera </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../da/dd3/classAShaderBasedSensor.html">AShaderBasedSensor</a> *</td>          <td class="paramname"><span class="paramname"><em>Camera</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01995">1995</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01900">CARLA_ABFL_CHECK_ACTOR</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../da/d96/ShaderBasedSensor_8cpp_source.html#l00054">AShaderBasedSensor::SetFloatShaderParameter()</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a>.</p>
+<div id="dynsection-63" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-63-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-63-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-63-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 63 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac5ef7e7573d6e6798475a6e497458a11" name="ac5ef7e7573d6e6798475a6e497458a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ef7e7573d6e6798475a6e497458a11">&#9670;&#160;</a></span>SetCustomV2X()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::SetCustomV2X </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d1f/classACustomV2XSensor.html">ACustomV2XSensor</a> *</td>          <td class="paramname"><span class="paramname"><em>V2X</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02214">2214</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01900">CARLA_ABFL_CHECK_ACTOR</a>, <a class="el" href="../../de/dd9/RandomEngine_8cpp_source.html#l00022">URandomEngine::GenerateRandomSeed()</a>, <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00025">Geometric</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00079">ASensor::GetRandomEngine()</a>, <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00030">Highway</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01836">RetrieveActorAttributeToBool()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">RetrieveActorAttributeToInt()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01866">RetrieveActorAttributeToString()</a>, <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00031">Rural</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00089">ACustomV2XSensor::SetPathLossModel()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00075">ACustomV2XSensor::SetPropagationParams()</a>, <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00093">ACustomV2XSensor::SetScenario()</a>, <a class="el" href="../../d7/d16/Sensor_8cpp_source.html#l00087">ASensor::SetSeed()</a>, <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00032">Urban</a>, <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a> , 以及 <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00024">Winner</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d97/CustomV2XSensor_8cpp_source.html#l00068">ACustomV2XSensor::Set()</a>.</p>
+<div id="dynsection-64" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-64-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-64-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-64-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 64 --></div>
+</div>
+<div id="dynsection-65" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-65-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-65-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-65-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 65 --></div>
+</div>
+
+</div>
+</div>
+<a id="a064afaa3154f81c475048ff14f699486" name="a064afaa3154f81c475048ff14f699486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a064afaa3154f81c475048ff14f699486">&#9670;&#160;</a></span>SetGnss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::SetGnss </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/dc3/classAGnssSensor.html">AGnssSensor</a> *</td>          <td class="paramname"><span class="paramname"><em>Gnss</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02047">2047</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01900">CARLA_ABFL_CHECK_ACTOR</a>, <a class="el" href="../../de/dd9/RandomEngine_8cpp_source.html#l00022">URandomEngine::GenerateRandomSeed()</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00079">ASensor::GetRandomEngine()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">RetrieveActorAttributeToInt()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00112">AGnssSensor::SetAltitudeBias()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00097">AGnssSensor::SetAltitudeDeviation()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00102">AGnssSensor::SetLatitudeBias()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00087">AGnssSensor::SetLatitudeDeviation()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00107">AGnssSensor::SetLongitudeBias()</a>, <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00092">AGnssSensor::SetLongitudeDeviation()</a>, <a class="el" href="../../d7/d16/Sensor_8cpp_source.html#l00087">ASensor::SetSeed()</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d22/GnssSensor_8cpp_source.html#l00031">AGnssSensor::Set()</a>.</p>
+<div id="dynsection-66" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-66-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-66-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-66-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 66 --></div>
+</div>
+<div id="dynsection-67" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-67-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-67-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-67-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 67 --></div>
+</div>
+
+</div>
+</div>
+<a id="affa8a0128f536d34d052c54c93ff3629" name="affa8a0128f536d34d052c54c93ff3629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa8a0128f536d34d052c54c93ff3629">&#9670;&#160;</a></span>SetIMU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::SetIMU </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/de0/classAInertialMeasurementUnit.html">AInertialMeasurementUnit</a> *</td>          <td class="paramname"><span class="paramname"><em>IMU</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02076">2076</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01900">CARLA_ABFL_CHECK_ACTOR</a>, <a class="el" href="../../de/dd9/RandomEngine_8cpp_source.html#l00022">URandomEngine::GenerateRandomSeed()</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00079">ASensor::GetRandomEngine()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">RetrieveActorAttributeToInt()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00219">AInertialMeasurementUnit::SetAccelerationStandardDeviation()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00229">AInertialMeasurementUnit::SetGyroscopeBias()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00224">AInertialMeasurementUnit::SetGyroscopeStandardDeviation()</a>, <a class="el" href="../../d7/d16/Sensor_8cpp_source.html#l00087">ASensor::SetSeed()</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00043">AInertialMeasurementUnit::Set()</a>.</p>
+<div id="dynsection-68" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-68-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-68-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-68-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 68 --></div>
+</div>
+<div id="dynsection-69" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-69-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-69-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-69-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 69 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0ac14016bd271f575f9eb78ea3dc8cd3" name="a0ac14016bd271f575f9eb78ea3dc8cd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ac14016bd271f575f9eb78ea3dc8cd3">&#9670;&#160;</a></span>SetLidar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::SetLidar </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/d6f/structFLidarDescription.html">FLidarDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Lidar</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02014">2014</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00048">FLidarDescription::AtmospAttenRate</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00018">FLidarDescription::Channels</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00064">FLidarDescription::DropOffAtZeroIntensity</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00056">FLidarDescription::DropOffGenRate</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00060">FLidarDescription::DropOffIntensityLimit</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00044">FLidarDescription::HorizontalFov</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00040">FLidarDescription::LowerFovLimit</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00071">FLidarDescription::NoiseStdDev</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00026">FLidarDescription::PointsPerSecond</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00052">FLidarDescription::RandomSeed</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00022">FLidarDescription::Range</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">RetrieveActorAttributeToInt()</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00030">FLidarDescription::RotationFrequency</a>, <a class="el" href="../../de/d92/LidarDescription_8h_source.html#l00035">FLidarDescription::UpperFovLimit</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dec/RayCastLidar_8cpp_source.html#l00037">ARayCastLidar::Set()</a> , 以及 <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00036">ARayCastSemanticLidar::Set()</a>.</p>
+<div id="dynsection-70" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-70-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-70-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-70-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 70 --></div>
+</div>
+<div id="dynsection-71" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-71-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-71-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-71-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 71 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0e5fb47e9351d11a1f9da3b9af8512af" name="a0e5fb47e9351d11a1f9da3b9af8512af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e5fb47e9351d11a1f9da3b9af8512af">&#9670;&#160;</a></span>SetRadar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::SetRadar </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d27/classARadar.html">ARadar</a> *</td>          <td class="paramname"><span class="paramname"><em>Radar</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02107">2107</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01900">CARLA_ABFL_CHECK_ACTOR</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">RetrieveActorAttributeToInt()</a> , 以及 <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d99/Radar_8cpp_source.html#l00038">ARadar::Set()</a>.</p>
+<div id="dynsection-72" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-72-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-72-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-72-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 72 --></div>
+</div>
+<div id="dynsection-73" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-73-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-73-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-73-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 73 --></div>
+</div>
+
+</div>
+</div>
+<a id="a664347ac38a83e63948914b13cdabd78" name="a664347ac38a83e63948914b13cdabd78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a664347ac38a83e63948914b13cdabd78">&#9670;&#160;</a></span>SetV2X()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UActorBlueprintFunctionLibrary::SetV2X </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Description</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d3/dd4/classAV2XSensor.html">AV2XSensor</a> *</td>          <td class="paramname"><span class="paramname"><em>V2X</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a> 第 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02134">2134</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01900">CARLA_ABFL_CHECK_ACTOR</a>, <a class="el" href="../../de/dd9/RandomEngine_8cpp_source.html#l00022">URandomEngine::GenerateRandomSeed()</a>, <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00025">Geometric</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00079">ASensor::GetRandomEngine()</a>, <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00030">Highway</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01836">RetrieveActorAttributeToBool()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01856">RetrieveActorAttributeToFloat()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01846">RetrieveActorAttributeToInt()</a>, <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l01866">RetrieveActorAttributeToString()</a>, <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00031">Rural</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00128">AV2XSensor::SetAccelerationStandardDeviation()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00069">AV2XSensor::SetCaServiceParams()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00133">AV2XSensor::SetGNSSDeviation()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00089">AV2XSensor::SetPathLossModel()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00075">AV2XSensor::SetPropagationParams()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00094">AV2XSensor::SetScenario()</a>, <a class="el" href="../../d7/d16/Sensor_8cpp_source.html#l00087">ASensor::SetSeed()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00152">AV2XSensor::SetVelDeviation()</a>, <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00157">AV2XSensor::SetYawrateDeviation()</a>, <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00032">Urban</a>, <a class="el" href="../../d4/de6/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorDescription_8h_source.html#l00036">FActorDescription::Variations</a> , 以及 <a class="el" href="../../dd/dc7/PathLossModel_8h_source.html#l00024">Winner</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/df9/V2XSensor_8cpp_source.html#l00062">AV2XSensor::Set()</a>.</p>
+<div id="dynsection-74" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-74-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-74-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-74-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 74 --></div>
+</div>
+<div id="dynsection-75" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-75-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-75-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-75-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 75 --></div>
+</div>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d7/dda/ActorBlueprintFunctionLibrary_8h_source.html">ActorBlueprintFunctionLibrary.h</a></li>
+<li><a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html">ActorBlueprintFunctionLibrary.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

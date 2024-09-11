@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::road::element::Geometry类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../de/d26/namespacecarla_1_1road.html">road</a></li><li class="navelem"><a class="el" href="../../df/dc1/namespacecarla_1_1road_1_1element.html">element</a></li><li class="navelem"><a class="el" href="../../d6/db0/classcarla_1_1road_1_1element_1_1Geometry.html">Geometry</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="../../d0/d83/classcarla_1_1road_1_1element_1_1Geometry-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::road::element::Geometry类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::road::element::Geometry 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::road::element::Geometry 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ac1cc6886de9bd538dcb442385c03a881" id="r_ac1cc6886de9bd538dcb442385c03a881"><td class="memItemLeft" align="right" valign="top">virtual std::pair&lt; float, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1cc6886de9bd538dcb442385c03a881">DistanceTo</a> (const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp;p) const =0</td></tr>
+<tr class="separator:ac1cc6886de9bd538dcb442385c03a881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbbf47a2993c39c9f74bb363925d2f5b" id="r_abbbf47a2993c39c9f74bb363925d2f5b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbbf47a2993c39c9f74bb363925d2f5b">GetHeading</a> () const</td></tr>
+<tr class="separator:abbbf47a2993c39c9f74bb363925d2f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affebf69940b752dac1ab2ea56afd2bbe" id="r_affebf69940b752dac1ab2ea56afd2bbe"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affebf69940b752dac1ab2ea56afd2bbe">GetLength</a> () const</td></tr>
+<tr class="separator:affebf69940b752dac1ab2ea56afd2bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a847f90bcb2fc38b8957602c42a290688" id="r_a847f90bcb2fc38b8957602c42a290688"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a847f90bcb2fc38b8957602c42a290688">GetStartOffset</a> () const</td></tr>
+<tr class="separator:a847f90bcb2fc38b8957602c42a290688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af106ac62cf239996bcaca74eff1f5139" id="r_af106ac62cf239996bcaca74eff1f5139"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af106ac62cf239996bcaca74eff1f5139">GetStartPosition</a> ()</td></tr>
+<tr class="separator:af106ac62cf239996bcaca74eff1f5139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae89769a5020860c7f6bd6230b921e592" id="r_ae89769a5020860c7f6bd6230b921e592"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dc1/namespacecarla_1_1road_1_1element.html#af813ce133ab9e826a05831cf2970133e">GeometryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae89769a5020860c7f6bd6230b921e592">GetType</a> () const</td></tr>
+<tr class="separator:ae89769a5020860c7f6bd6230b921e592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9339c847da556bd98f6cbf9ec5a08a26" id="r_a9339c847da556bd98f6cbf9ec5a08a26"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html">DirectedPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9339c847da556bd98f6cbf9ec5a08a26">PosFromDist</a> (double dist) const =0</td></tr>
+<tr class="separator:a9339c847da556bd98f6cbf9ec5a08a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf46cfdd8513f4a5ca7d91e2377de967" id="r_aaf46cfdd8513f4a5ca7d91e2377de967"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf46cfdd8513f4a5ca7d91e2377de967">~Geometry</a> ()=default</td></tr>
+<tr class="separator:aaf46cfdd8513f4a5ca7d91e2377de967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a22fbfcbb776b93c1f561f35c0f9ec137" id="r_a22fbfcbb776b93c1f561f35c0f9ec137"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22fbfcbb776b93c1f561f35c0f9ec137">Geometry</a> (<a class="el" href="../../df/dc1/namespacecarla_1_1road_1_1element.html#af813ce133ab9e826a05831cf2970133e">GeometryType</a> type, double start_offset, double length, double heading, const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp;start_pos)</td></tr>
+<tr class="separator:a22fbfcbb776b93c1f561f35c0f9ec137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a2de543f17a536b4875cc351c00cc3a5b" id="r_a2de543f17a536b4875cc351c00cc3a5b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2de543f17a536b4875cc351c00cc3a5b">_heading</a></td></tr>
+<tr class="separator:a2de543f17a536b4875cc351c00cc3a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a5aaf03ee6fba0fd5b554a6e31605fb" id="r_a4a5aaf03ee6fba0fd5b554a6e31605fb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a5aaf03ee6fba0fd5b554a6e31605fb">_length</a></td></tr>
+<tr class="separator:a4a5aaf03ee6fba0fd5b554a6e31605fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3219ba7b97965d09fc54183422563a77" id="r_a3219ba7b97965d09fc54183422563a77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3219ba7b97965d09fc54183422563a77">_start_position</a></td></tr>
+<tr class="separator:a3219ba7b97965d09fc54183422563a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b79ce37a640fec2d029abe571b8b0f" id="r_af4b79ce37a640fec2d029abe571b8b0f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4b79ce37a640fec2d029abe571b8b0f">_start_position_offset</a></td></tr>
+<tr class="separator:af4b79ce37a640fec2d029abe571b8b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a866cd8b2c7c9a983f8876ca7d10d7721" id="r_a866cd8b2c7c9a983f8876ca7d10d7721"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dc1/namespacecarla_1_1road_1_1element.html#af813ce133ab9e826a05831cf2970133e">GeometryType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a866cd8b2c7c9a983f8876ca7d10d7721">_type</a></td></tr>
+<tr class="separator:a866cd8b2c7c9a983f8876ca7d10d7721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00049">49</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="aaf46cfdd8513f4a5ca7d91e2377de967" name="aaf46cfdd8513f4a5ca7d91e2377de967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf46cfdd8513f4a5ca7d91e2377de967">&#9670;&#160;</a></span>~Geometry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual carla::road::element::Geometry::~Geometry </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22fbfcbb776b93c1f561f35c0f9ec137" name="a22fbfcbb776b93c1f561f35c0f9ec137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22fbfcbb776b93c1f561f35c0f9ec137">&#9670;&#160;</a></span>Geometry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::road::element::Geometry::Geometry </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/dc1/namespacecarla_1_1road_1_1element.html#af813ce133ab9e826a05831cf2970133e">GeometryType</a></td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>start_offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>heading</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>start_pos</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ac1cc6886de9bd538dcb442385c03a881" name="ac1cc6886de9bd538dcb442385c03a881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1cc6886de9bd538dcb442385c03a881">&#9670;&#160;</a></span>DistanceTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::pair&lt; float, float &gt; carla::road::element::Geometry::DistanceTo </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在 <a class="el" href="../../d2/d63/classcarla_1_1road_1_1element_1_1GeometryArc.html#a180909471d37c5408bbaa8004c9fc47e">carla::road::element::GeometryArc</a>, <a class="el" href="../../d2/da7/classcarla_1_1road_1_1element_1_1GeometryLine.html#ae8861cb73fba28809082514d0aeda20f">carla::road::element::GeometryLine</a>, <a class="el" href="../../da/dfa/classcarla_1_1road_1_1element_1_1GeometryParamPoly3.html#ace20c7095a32c52c2d487cbe81f06a3a">carla::road::element::GeometryParamPoly3</a>, <a class="el" href="../../da/dee/classcarla_1_1road_1_1element_1_1GeometryPoly3.html#a154276504ad0671876ffd22891025ceb">carla::road::element::GeometryPoly3</a> , 以及 <a class="el" href="../../de/d24/classcarla_1_1road_1_1element_1_1GeometrySpiral.html#a1d9e5ea2c10e5b2b95c711bd3b68993b">carla::road::element::GeometrySpiral</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="abbbf47a2993c39c9f74bb363925d2f5b" name="abbbf47a2993c39c9f74bb363925d2f5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbbf47a2993c39c9f74bb363925d2f5b">&#9670;&#160;</a></span>GetHeading()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::Geometry::GetHeading </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00061">61</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00095">_heading</a>.</p>
+
+</div>
+</div>
+<a id="affebf69940b752dac1ab2ea56afd2bbe" name="affebf69940b752dac1ab2ea56afd2bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affebf69940b752dac1ab2ea56afd2bbe">&#9670;&#160;</a></span>GetLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::Geometry::GetLength </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00055">55</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00092">_length</a>.</p>
+
+</div>
+</div>
+<a id="a847f90bcb2fc38b8957602c42a290688" name="a847f90bcb2fc38b8957602c42a290688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a847f90bcb2fc38b8957602c42a290688">&#9670;&#160;</a></span>GetStartOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::Geometry::GetStartOffset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00058">58</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00094">_start_position_offset</a>.</p>
+
+</div>
+</div>
+<a id="af106ac62cf239996bcaca74eff1f5139" name="af106ac62cf239996bcaca74eff1f5139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af106ac62cf239996bcaca74eff1f5139">&#9670;&#160;</a></span>GetStartPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp; carla::road::element::Geometry::GetStartPosition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00065">65</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00097">_start_position</a>.</p>
+
+</div>
+</div>
+<a id="ae89769a5020860c7f6bd6230b921e592" name="ae89769a5020860c7f6bd6230b921e592"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae89769a5020860c7f6bd6230b921e592">&#9670;&#160;</a></span>GetType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dc1/namespacecarla_1_1road_1_1element.html#af813ce133ab9e826a05831cf2970133e">GeometryType</a> carla::road::element::Geometry::GetType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00052">52</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00091">_type</a>.</p>
+
+</div>
+</div>
+<a id="a9339c847da556bd98f6cbf9ec5a08a26" name="a9339c847da556bd98f6cbf9ec5a08a26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9339c847da556bd98f6cbf9ec5a08a26">&#9670;&#160;</a></span>PosFromDist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="../../df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html">DirectedPoint</a> carla::road::element::Geometry::PosFromDist </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>dist</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在 <a class="el" href="../../d2/d63/classcarla_1_1road_1_1element_1_1GeometryArc.html#a3334d08b3288965f57bf46a7d40ddc5d">carla::road::element::GeometryArc</a>, <a class="el" href="../../d2/da7/classcarla_1_1road_1_1element_1_1GeometryLine.html#a9603d34a699b3a48be2db715b2fa7062">carla::road::element::GeometryLine</a>, <a class="el" href="../../da/dfa/classcarla_1_1road_1_1element_1_1GeometryParamPoly3.html#a557c2836f4ffc83c9eb3e1a5f3cc2e40">carla::road::element::GeometryParamPoly3</a>, <a class="el" href="../../da/dee/classcarla_1_1road_1_1element_1_1GeometryPoly3.html#a7e10bafa9670df87f6c5daee6ae09cde">carla::road::element::GeometryPoly3</a> , 以及 <a class="el" href="../../de/d24/classcarla_1_1road_1_1element_1_1GeometrySpiral.html#a6172ed93d5e09d458c7ac9b7f705028c">carla::road::element::GeometrySpiral</a> 内被实现.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a2de543f17a536b4875cc351c00cc3a5b" name="a2de543f17a536b4875cc351c00cc3a5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2de543f17a536b4875cc351c00cc3a5b">&#9670;&#160;</a></span>_heading</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::Geometry::_heading</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00095">95</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00146">carla::road::element::GeometryArc::DistanceTo()</a>, <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00061">GetHeading()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00045">carla::road::element::GeometryArc::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00036">carla::road::element::GeometryLine::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00166">carla::road::element::GeometryParamPoly3::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00109">carla::road::element::GeometryPoly3::PosFromDist()</a> , 以及 <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00069">carla::road::element::GeometrySpiral::PosFromDist()</a>.</p>
+
+</div>
+</div>
+<a id="a4a5aaf03ee6fba0fd5b554a6e31605fb" name="a4a5aaf03ee6fba0fd5b554a6e31605fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a5aaf03ee6fba0fd5b554a6e31605fb">&#9670;&#160;</a></span>_length</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::Geometry::_length</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00146">carla::road::element::GeometryArc::DistanceTo()</a>, <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00118">carla::road::element::GeometryLine::DistanceTo()</a>, <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00055">GetLength()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00045">carla::road::element::GeometryArc::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00036">carla::road::element::GeometryLine::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00069">carla::road::element::GeometrySpiral::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00191">carla::road::element::GeometryParamPoly3::PreComputeSpline()</a> , 以及 <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00134">carla::road::element::GeometryPoly3::PreComputeSpline()</a>.</p>
+
+</div>
+</div>
+<a id="a3219ba7b97965d09fc54183422563a77" name="a3219ba7b97965d09fc54183422563a77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3219ba7b97965d09fc54183422563a77">&#9670;&#160;</a></span>_start_position</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> carla::road::element::Geometry::_start_position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00146">carla::road::element::GeometryArc::DistanceTo()</a>, <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00118">carla::road::element::GeometryLine::DistanceTo()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00185">carla::road::element::GeometryParamPoly3::DistanceTo()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00128">carla::road::element::GeometryPoly3::DistanceTo()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00103">carla::road::element::GeometrySpiral::DistanceTo()</a>, <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00065">GetStartPosition()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00045">carla::road::element::GeometryArc::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00036">carla::road::element::GeometryLine::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00166">carla::road::element::GeometryParamPoly3::PosFromDist()</a>, <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00109">carla::road::element::GeometryPoly3::PosFromDist()</a> , 以及 <a class="el" href="../../d7/def/Geometry_8cpp_source.html#l00069">carla::road::element::GeometrySpiral::PosFromDist()</a>.</p>
+
+</div>
+</div>
+<a id="af4b79ce37a640fec2d029abe571b8b0f" name="af4b79ce37a640fec2d029abe571b8b0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4b79ce37a640fec2d029abe571b8b0f">&#9670;&#160;</a></span>_start_position_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::Geometry::_start_position_offset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00094">94</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00058">GetStartOffset()</a>.</p>
+
+</div>
+</div>
+<a id="a866cd8b2c7c9a983f8876ca7d10d7721" name="a866cd8b2c7c9a983f8876ca7d10d7721"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a866cd8b2c7c9a983f8876ca7d10d7721">&#9670;&#160;</a></span>_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dc1/namespacecarla_1_1road_1_1element.html#af813ce133ab9e826a05831cf2970133e">GeometryType</a> carla::road::element::Geometry::_type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a> 第 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00091">91</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d8b/Geometry_8h_source.html#l00052">GetType()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d3/d8b/Geometry_8h_source.html">Geometry.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,1378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::client::Vehicle类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d2/daf/namespacecarla_1_1client.html">client</a></li><li class="navelem"><a class="el" href="../../d9/dc6/classcarla_1_1client_1_1Vehicle.html">Vehicle</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d3/d55/classcarla_1_1client_1_1Vehicle-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::client::Vehicle类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::client::Vehicle 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::client::Vehicle 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a491256ae72c5209ac6e1279ae06e25de" id="r_a491256ae72c5209ac6e1279ae06e25de"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a491256ae72c5209ac6e1279ae06e25de">AckermannControl</a> = <a class="el" href="../../d1/d73/classcarla_1_1rpc_1_1VehicleAckermannControl.html">rpc::VehicleAckermannControl</a></td></tr>
+<tr class="separator:a491256ae72c5209ac6e1279ae06e25de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83dee795635411907857d176a686b2d6" id="r_a83dee795635411907857d176a686b2d6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83dee795635411907857d176a686b2d6">Control</a> = <a class="el" href="../../d3/d9c/classcarla_1_1rpc_1_1VehicleControl.html">rpc::VehicleControl</a></td></tr>
+<tr class="separator:a83dee795635411907857d176a686b2d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acced0fbfea5b8b9d267af2e2061a7d40" id="r_acced0fbfea5b8b9d267af2e2061a7d40"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acced0fbfea5b8b9d267af2e2061a7d40">LightState</a> = <a class="el" href="../../db/d60/classcarla_1_1rpc_1_1VehicleLightState.html#a6372a8be47dbe5cd2b9c19730e5d1dc5">rpc::VehicleLightState::LightState</a></td></tr>
+<tr class="separator:acced0fbfea5b8b9d267af2e2061a7d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a278374757fcc52dbb06a84a04c5189c7" id="r_a278374757fcc52dbb06a84a04c5189c7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a278374757fcc52dbb06a84a04c5189c7">PhysicsControl</a> = <a class="el" href="../../da/d3f/classcarla_1_1rpc_1_1VehiclePhysicsControl.html">rpc::VehiclePhysicsControl</a></td></tr>
+<tr class="separator:a278374757fcc52dbb06a84a04c5189c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0480285d0392b9cac2aab9a4ec0b8652" id="r_a0480285d0392b9cac2aab9a4ec0b8652"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0480285d0392b9cac2aab9a4ec0b8652">TelemetryData</a> = <a class="el" href="../../d1/d26/classcarla_1_1rpc_1_1VehicleTelemetryData.html">rpc::VehicleTelemetryData</a></td></tr>
+<tr class="separator:a0480285d0392b9cac2aab9a4ec0b8652"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee62fd9bb13a6e10cfc570d6633ba459" id="r_aee62fd9bb13a6e10cfc570d6633ba459"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee62fd9bb13a6e10cfc570d6633ba459">TM</a> = <a class="el" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html">traffic_manager::TrafficManager</a></td></tr>
+<tr class="separator:aee62fd9bb13a6e10cfc570d6633ba459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada4ebbb299825a8e08f3324e243780ea" id="r_ada4ebbb299825a8e08f3324e243780ea"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada4ebbb299825a8e08f3324e243780ea">VehicleDoor</a> = <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3eb217a0533294546f189b832ad0ee04">rpc::VehicleDoor</a></td></tr>
+<tr class="separator:ada4ebbb299825a8e08f3324e243780ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafe9381247cc94abcbc2e1fdd97a65b6" id="r_aafe9381247cc94abcbc2e1fdd97a65b6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafe9381247cc94abcbc2e1fdd97a65b6">WheelLocation</a> = <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac246e8e8896e5580ccc625181d39e484">carla::rpc::VehicleWheelLocation</a></td></tr>
+<tr class="separator:aafe9381247cc94abcbc2e1fdd97a65b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a615b6d00529f1375c2a103e362c20304" id="r_a615b6d00529f1375c2a103e362c20304"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a615b6d00529f1375c2a103e362c20304">ApplyAckermannControl</a> (const <a class="el" href="#a491256ae72c5209ac6e1279ae06e25de">AckermannControl</a> &amp;control)</td></tr>
+<tr class="memdesc:a615b6d00529f1375c2a103e362c20304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply <em>control</em> to this vehicle.  <br /></td></tr>
+<tr class="separator:a615b6d00529f1375c2a103e362c20304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3790dbde952495c568dda20e99ec9f0" id="r_ab3790dbde952495c568dda20e99ec9f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3790dbde952495c568dda20e99ec9f0">ApplyAckermannControllerSettings</a> (const <a class="el" href="../../db/d1f/classcarla_1_1rpc_1_1AckermannControllerSettings.html">rpc::AckermannControllerSettings</a> &amp;settings)</td></tr>
+<tr class="memdesc:ab3790dbde952495c568dda20e99ec9f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply Ackermann control settings to this vehicle  <br /></td></tr>
+<tr class="separator:ab3790dbde952495c568dda20e99ec9f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10c6bc68b736b8e9b9f7b3c2222e19e2" id="r_a10c6bc68b736b8e9b9f7b3c2222e19e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10c6bc68b736b8e9b9f7b3c2222e19e2">ApplyControl</a> (const <a class="el" href="#a83dee795635411907857d176a686b2d6">Control</a> &amp;control)</td></tr>
+<tr class="memdesc:a10c6bc68b736b8e9b9f7b3c2222e19e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply <em>control</em> to this vehicle.  <br /></td></tr>
+<tr class="separator:a10c6bc68b736b8e9b9f7b3c2222e19e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b3d9d75c155095bad6413d060d69f91" id="r_a6b3d9d75c155095bad6413d060d69f91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b3d9d75c155095bad6413d060d69f91">ApplyPhysicsControl</a> (const <a class="el" href="#a278374757fcc52dbb06a84a04c5189c7">PhysicsControl</a> &amp;physics_control)</td></tr>
+<tr class="memdesc:a6b3d9d75c155095bad6413d060d69f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply physics control to this vehicle.  <br /></td></tr>
+<tr class="separator:a6b3d9d75c155095bad6413d060d69f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e52559e55b5c6a8bb8c3caa41ebec53" id="r_a3e52559e55b5c6a8bb8c3caa41ebec53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e52559e55b5c6a8bb8c3caa41ebec53">CloseDoor</a> (const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3eb217a0533294546f189b832ad0ee04">VehicleDoor</a> door_idx)</td></tr>
+<tr class="memdesc:a3e52559e55b5c6a8bb8c3caa41ebec53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Close a door in this vehicle  <br /></td></tr>
+<tr class="separator:a3e52559e55b5c6a8bb8c3caa41ebec53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a" id="r_a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a">EnableCarSim</a> (std::string simfile_path)</td></tr>
+<tr class="memdesc:a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables CarSim simulation if it is availiable  <br /></td></tr>
+<tr class="separator:a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb886a0ddf8e8776b50eaa68570f096" id="r_abbb886a0ddf8e8776b50eaa68570f096"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbb886a0ddf8e8776b50eaa68570f096">EnableChronoPhysics</a> (uint64_t MaxSubsteps, float MaxSubstepDeltaTime, std::string VehicleJSON=&quot;&quot;, std::string PowertrainJSON=&quot;&quot;, std::string TireJSON=&quot;&quot;, std::string BaseJSONPath=&quot;&quot;)</td></tr>
+<tr class="separator:abbb886a0ddf8e8776b50eaa68570f096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fae047acdeb088b276602245205f563" id="r_a6fae047acdeb088b276602245205f563"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d1f/classcarla_1_1rpc_1_1AckermannControllerSettings.html">rpc::AckermannControllerSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fae047acdeb088b276602245205f563">GetAckermannControllerSettings</a> () const</td></tr>
+<tr class="memdesc:a6fae047acdeb088b276602245205f563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the last Ackermann controller settings applied to this vehicle.  <br /></td></tr>
+<tr class="separator:a6fae047acdeb088b276602245205f563"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8971090df25077db3759e0bdeae8ac0d" id="r_a8971090df25077db3759e0bdeae8ac0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a83dee795635411907857d176a686b2d6">Control</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8971090df25077db3759e0bdeae8ac0d">GetControl</a> () const</td></tr>
+<tr class="memdesc:a8971090df25077db3759e0bdeae8ac0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the control last applied to this vehicle.  <br /></td></tr>
+<tr class="separator:a8971090df25077db3759e0bdeae8ac0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae001bbd2de1d11c50e9f82a71621d2da" id="r_ae001bbd2de1d11c50e9f82a71621d2da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ae24acdb5a620582353443f8b547a52bc">rpc::VehicleFailureState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae001bbd2de1d11c50e9f82a71621d2da">GetFailureState</a> () const</td></tr>
+<tr class="memdesc:ae001bbd2de1d11c50e9f82a71621d2da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the failure state of the vehicle  <br /></td></tr>
+<tr class="separator:ae001bbd2de1d11c50e9f82a71621d2da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4908572e3627dd37ad25b1ce75a36033" id="r_a4908572e3627dd37ad25b1ce75a36033"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d60/classcarla_1_1rpc_1_1VehicleLightState.html#a6372a8be47dbe5cd2b9c19730e5d1dc5">LightState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4908572e3627dd37ad25b1ce75a36033">GetLightState</a> () const</td></tr>
+<tr class="memdesc:a4908572e3627dd37ad25b1ce75a36033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current open lights (<a class="el" href="../../d9/d19/structcarla_1_1client_1_1LightState.html">LightState</a>) of this vehicle.  <br /></td></tr>
+<tr class="separator:a4908572e3627dd37ad25b1ce75a36033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28be45ecae28b8243a619ce9f9ef1c9e" id="r_a28be45ecae28b8243a619ce9f9ef1c9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a278374757fcc52dbb06a84a04c5189c7">PhysicsControl</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28be45ecae28b8243a619ce9f9ef1c9e">GetPhysicsControl</a> () const</td></tr>
+<tr class="memdesc:a28be45ecae28b8243a619ce9f9ef1c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the physics control last applied to this vehicle.  <br /></td></tr>
+<tr class="separator:a28be45ecae28b8243a619ce9f9ef1c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e16664a03ae2cb3d680b738af1daeb" id="r_a73e16664a03ae2cb3d680b738af1daeb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73e16664a03ae2cb3d680b738af1daeb">GetSpeedLimit</a> () const</td></tr>
+<tr class="memdesc:a73e16664a03ae2cb3d680b738af1daeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the speed limit currently affecting this vehicle.  <br /></td></tr>
+<tr class="separator:a73e16664a03ae2cb3d680b738af1daeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06f59d32da935ac8ea1d703b3f66ebcc" id="r_a06f59d32da935ac8ea1d703b3f66ebcc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a0480285d0392b9cac2aab9a4ec0b8652">TelemetryData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06f59d32da935ac8ea1d703b3f66ebcc">GetTelemetryData</a> () const</td></tr>
+<tr class="memdesc:a06f59d32da935ac8ea1d703b3f66ebcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the telemetry data for this vehicle.  <br /></td></tr>
+<tr class="separator:a06f59d32da935ac8ea1d703b3f66ebcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7588c922c248118e1bcaac619df9ac83" id="r_a7588c922c248118e1bcaac619df9ac83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#acd23708f6a251d2cfa8a7a4b8ce0f3ef">SharedPtr</a>&lt; <a class="el" href="../../df/def/classcarla_1_1client_1_1TrafficLight.html">TrafficLight</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7588c922c248118e1bcaac619df9ac83">GetTrafficLight</a> () const</td></tr>
+<tr class="memdesc:a7588c922c248118e1bcaac619df9ac83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the traffic light actor currently affecting this vehicle.  <br /></td></tr>
+<tr class="separator:a7588c922c248118e1bcaac619df9ac83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a604ff3f9f1fa9afc9023566042f29094" id="r_a604ff3f9f1fa9afc9023566042f29094"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a46c3995219197dcef2980adce8d1cfba">rpc::TrafficLightState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a604ff3f9f1fa9afc9023566042f29094">GetTrafficLightState</a> () const</td></tr>
+<tr class="memdesc:a604ff3f9f1fa9afc9023566042f29094"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the state of the traffic light currently affecting this vehicle.  <br /></td></tr>
+<tr class="separator:a604ff3f9f1fa9afc9023566042f29094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c10fb5ff92e6226bd029d9ef64c4531" id="r_a2c10fb5ff92e6226bd029d9ef64c4531"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c10fb5ff92e6226bd029d9ef64c4531">GetWheelSteerAngle</a> (<a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac246e8e8896e5580ccc625181d39e484">WheelLocation</a> wheel_location)</td></tr>
+<tr class="memdesc:a2c10fb5ff92e6226bd029d9ef64c4531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a <em>Rotation</em> from a wheel of the vehicle  <br /></td></tr>
+<tr class="separator:a2c10fb5ff92e6226bd029d9ef64c4531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f8efa30ea7aeb0bfce0b6c764ca2db6" id="r_a4f8efa30ea7aeb0bfce0b6c764ca2db6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f8efa30ea7aeb0bfce0b6c764ca2db6">IsAtTrafficLight</a> ()</td></tr>
+<tr class="memdesc:a4f8efa30ea7aeb0bfce0b6c764ca2db6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether a traffic light is affecting this vehicle.  <br /></td></tr>
+<tr class="separator:a4f8efa30ea7aeb0bfce0b6c764ca2db6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7c9c4dbeff216f3c6819ca635e440e5" id="r_ab7c9c4dbeff216f3c6819ca635e440e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7c9c4dbeff216f3c6819ca635e440e5">OpenDoor</a> (const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3eb217a0533294546f189b832ad0ee04">VehicleDoor</a> door_idx)</td></tr>
+<tr class="memdesc:ab7c9c4dbeff216f3c6819ca635e440e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open a door in this vehicle  <br /></td></tr>
+<tr class="separator:ab7c9c4dbeff216f3c6819ca635e440e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5f10c04aa7d65345220b613c49c63cd" id="r_af5f10c04aa7d65345220b613c49c63cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5f10c04aa7d65345220b613c49c63cd">RestorePhysXPhysics</a> ()</td></tr>
+<tr class="separator:af5f10c04aa7d65345220b613c49c63cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd51d896d2a994101fadaf3e23e5636e" id="r_afd51d896d2a994101fadaf3e23e5636e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd51d896d2a994101fadaf3e23e5636e">SetAutopilot</a> (bool enabled=true, uint16_t tm_port=TM_DEFAULT_PORT)</td></tr>
+<tr class="memdesc:afd51d896d2a994101fadaf3e23e5636e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch on/off this vehicle's autopilot.  <br /></td></tr>
+<tr class="separator:afd51d896d2a994101fadaf3e23e5636e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adecb262b97138aa6ff0d882628a08aa5" id="r_adecb262b97138aa6ff0d882628a08aa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adecb262b97138aa6ff0d882628a08aa5">SetLightState</a> (const <a class="el" href="../../db/d60/classcarla_1_1rpc_1_1VehicleLightState.html#a6372a8be47dbe5cd2b9c19730e5d1dc5">LightState</a> &amp;light_state)</td></tr>
+<tr class="memdesc:adecb262b97138aa6ff0d882628a08aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a <em><a class="el" href="../../d9/d19/structcarla_1_1client_1_1LightState.html">LightState</a></em> to this vehicle.  <br /></td></tr>
+<tr class="separator:adecb262b97138aa6ff0d882628a08aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06cd6dcede8e2db8e248faa5aaf274c9" id="r_a06cd6dcede8e2db8e248faa5aaf274c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06cd6dcede8e2db8e248faa5aaf274c9">SetWheelSteerDirection</a> (<a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac246e8e8896e5580ccc625181d39e484">WheelLocation</a> wheel_location, float angle_in_deg)</td></tr>
+<tr class="memdesc:a06cd6dcede8e2db8e248faa5aaf274c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a <em>Rotation</em> to a wheel of the vehicle (affects the bone of the car skeleton, not the physics)  <br /></td></tr>
+<tr class="separator:a06cd6dcede8e2db8e248faa5aaf274c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affd2582bafa7ba7b04d2676c92b8fd80" id="r_affd2582bafa7ba7b04d2676c92b8fd80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affd2582bafa7ba7b04d2676c92b8fd80">ShowDebugTelemetry</a> (bool enabled=true)</td></tr>
+<tr class="memdesc:affd2582bafa7ba7b04d2676c92b8fd80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch on/off this vehicle's autopilot.  <br /></td></tr>
+<tr class="separator:affd2582bafa7ba7b04d2676c92b8fd80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab9dad11884a86b8b91e3af3e5b1e6a5" id="r_aab9dad11884a86b8b91e3af3e5b1e6a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab9dad11884a86b8b91e3af3e5b1e6a5">UseCarSimRoad</a> (bool enabled)</td></tr>
+<tr class="memdesc:aab9dad11884a86b8b91e3af3e5b1e6a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the use of CarSim internal road definition instead of unreal's  <br /></td></tr>
+<tr class="separator:aab9dad11884a86b8b91e3af3e5b1e6a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45d5c56688bc54cfbb33a2bcadceb363" id="r_a45d5c56688bc54cfbb33a2bcadceb363"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45d5c56688bc54cfbb33a2bcadceb363">Vehicle</a> (<a class="el" href="../../d9/dea/classcarla_1_1client_1_1ActorInitializer.html">ActorInitializer</a> init)</td></tr>
+<tr class="separator:a45d5c56688bc54cfbb33a2bcadceb363"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1client_1_1Actor"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classcarla_1_1client_1_1Actor')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">carla::client::Actor</a></td></tr>
+<tr class="memitem:a7b649e581262363e6466782b780a29df inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a7b649e581262363e6466782b780a29df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a7b649e581262363e6466782b780a29df">Actor</a> (<a class="el" href="../../d9/dea/classcarla_1_1client_1_1ActorInitializer.html">ActorInitializer</a> init)</td></tr>
+<tr class="separator:a7b649e581262363e6466782b780a29df inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cb940746bae4bc06029b14a23d0dfad inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a2cb940746bae4bc06029b14a23d0dfad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a2cb940746bae4bc06029b14a23d0dfad">AddAngularImpulse</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;vector)</td></tr>
+<tr class="memdesc:a2cb940746bae4bc06029b14a23d0dfad inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add angular impulse to the actor.  <br /></td></tr>
+<tr class="separator:a2cb940746bae4bc06029b14a23d0dfad inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67e5076f60baacaa373af1b16c94efa5 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a67e5076f60baacaa373af1b16c94efa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a67e5076f60baacaa373af1b16c94efa5">AddForce</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;force)</td></tr>
+<tr class="memdesc:a67e5076f60baacaa373af1b16c94efa5 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add force to the actor at its center of mass.  <br /></td></tr>
+<tr class="separator:a67e5076f60baacaa373af1b16c94efa5 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e3285e4b46ada9bc8b9e8537969d1a7 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a3e3285e4b46ada9bc8b9e8537969d1a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a3e3285e4b46ada9bc8b9e8537969d1a7">AddForce</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;force, const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;location)</td></tr>
+<tr class="memdesc:a3e3285e4b46ada9bc8b9e8537969d1a7 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add force to the actor at certain location.  <br /></td></tr>
+<tr class="separator:a3e3285e4b46ada9bc8b9e8537969d1a7 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40d160cdefa81482f9465159c77c9af3 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a40d160cdefa81482f9465159c77c9af3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a40d160cdefa81482f9465159c77c9af3">AddImpulse</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;impulse, const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;location)</td></tr>
+<tr class="memdesc:a40d160cdefa81482f9465159c77c9af3 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add impulse to the actor at certain location.  <br /></td></tr>
+<tr class="separator:a40d160cdefa81482f9465159c77c9af3 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2564a18afed5a0a47c428e47429e7e10 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a2564a18afed5a0a47c428e47429e7e10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a2564a18afed5a0a47c428e47429e7e10">AddImpulse</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;vector)</td></tr>
+<tr class="memdesc:a2564a18afed5a0a47c428e47429e7e10 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add impulse to the actor at its center of mass.  <br /></td></tr>
+<tr class="separator:a2564a18afed5a0a47c428e47429e7e10 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37ea8a1cef0c3a212a78b69c440cb349 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a37ea8a1cef0c3a212a78b69c440cb349"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a37ea8a1cef0c3a212a78b69c440cb349">AddTorque</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;vector)</td></tr>
+<tr class="memdesc:a37ea8a1cef0c3a212a78b69c440cb349 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a torque to the actor.  <br /></td></tr>
+<tr class="separator:a37ea8a1cef0c3a212a78b69c440cb349 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3727fb111b0145aba9e78bf76f3b702b inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a3727fb111b0145aba9e78bf76f3b702b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a3727fb111b0145aba9e78bf76f3b702b">Destroy</a> ()</td></tr>
+<tr class="memdesc:a3727fb111b0145aba9e78bf76f3b702b inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the simulator to destroy this <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html" title="Represents an actor in the simulation.">Actor</a>, and return whether the actor was successfully destroyed.  <br /></td></tr>
+<tr class="separator:a3727fb111b0145aba9e78bf76f3b702b inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15cf46217d58e16fd40a41f8e094772d inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a15cf46217d58e16fd40a41f8e094772d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a15cf46217d58e16fd40a41f8e094772d">DisableConstantVelocity</a> ()</td></tr>
+<tr class="memdesc:a15cf46217d58e16fd40a41f8e094772d inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the constant velocity mode  <br /></td></tr>
+<tr class="separator:a15cf46217d58e16fd40a41f8e094772d inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa56d845bdc7b09118c831dc530f9908c inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_aa56d845bdc7b09118c831dc530f9908c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#aa56d845bdc7b09118c831dc530f9908c">EnableConstantVelocity</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;vector)</td></tr>
+<tr class="memdesc:aa56d845bdc7b09118c831dc530f9908c inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable a constant velocity mode  <br /></td></tr>
+<tr class="separator:aa56d845bdc7b09118c831dc530f9908c inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace294e653095c3a97d989d37a55b4593 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_ace294e653095c3a97d989d37a55b4593"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ace294e653095c3a97d989d37a55b4593">GetAcceleration</a> () const</td></tr>
+<tr class="memdesc:ace294e653095c3a97d989d37a55b4593 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current 3D acceleration of the actor.  <br /></td></tr>
+<tr class="separator:ace294e653095c3a97d989d37a55b4593 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae077bc5b914401b5b81565670232ddcc inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_ae077bc5b914401b5b81565670232ddcc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a05a30f3aa05ff2c5d120170d22c0fbf3">rpc::ActorState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ae077bc5b914401b5b81565670232ddcc">GetActorState</a> () const</td></tr>
+<tr class="separator:ae077bc5b914401b5b81565670232ddcc inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92e136a99a6e8a24ffe66bf984eab769 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a92e136a99a6e8a24ffe66bf984eab769"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a92e136a99a6e8a24ffe66bf984eab769">GetAngularVelocity</a> () const</td></tr>
+<tr class="memdesc:a92e136a99a6e8a24ffe66bf984eab769 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current 3D angular velocity of the actor.  <br /></td></tr>
+<tr class="separator:a92e136a99a6e8a24ffe66bf984eab769 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61daedaa150e1bae3bf2532c80759cd7 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a61daedaa150e1bae3bf2532c80759cd7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a61daedaa150e1bae3bf2532c80759cd7">GetBoneNames</a> () const</td></tr>
+<tr class="separator:a61daedaa150e1bae3bf2532c80759cd7 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb8408b19b961ea55ba5d6569c6cf90f inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_acb8408b19b961ea55ba5d6569c6cf90f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#acb8408b19b961ea55ba5d6569c6cf90f">GetBoneRelativeTransforms</a> () const</td></tr>
+<tr class="separator:acb8408b19b961ea55ba5d6569c6cf90f inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d80b6556c1411a1382d658535032e6 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_ac1d80b6556c1411a1382d658535032e6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ac1d80b6556c1411a1382d658535032e6">GetBoneWorldTransforms</a> () const</td></tr>
+<tr class="separator:ac1d80b6556c1411a1382d658535032e6 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da2132efeee1ca4cc4fa3ad437dfb17 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a4da2132efeee1ca4cc4fa3ad437dfb17"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a4da2132efeee1ca4cc4fa3ad437dfb17">GetComponentNames</a> () const</td></tr>
+<tr class="separator:a4da2132efeee1ca4cc4fa3ad437dfb17 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac03223d2a496124888ca7d534a2e138a inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_ac03223d2a496124888ca7d534a2e138a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ac03223d2a496124888ca7d534a2e138a">GetComponentRelativeTransform</a> (const std::string componentName) const</td></tr>
+<tr class="separator:ac03223d2a496124888ca7d534a2e138a inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a998fe068473df92ed19f52c9da0d1079 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a998fe068473df92ed19f52c9da0d1079"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a998fe068473df92ed19f52c9da0d1079">GetComponentWorldTransform</a> (const std::string componentName) const</td></tr>
+<tr class="separator:a998fe068473df92ed19f52c9da0d1079 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ca3d57dc886e0f30f92d66019c537fe inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a4ca3d57dc886e0f30f92d66019c537fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a4ca3d57dc886e0f30f92d66019c537fe">GetLocation</a> () const</td></tr>
+<tr class="memdesc:a4ca3d57dc886e0f30f92d66019c537fe inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current location of the actor.  <br /></td></tr>
+<tr class="separator:a4ca3d57dc886e0f30f92d66019c537fe inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29b6a86937e3a439c1e6a81dbc9926c9 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a29b6a86937e3a439c1e6a81dbc9926c9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a29b6a86937e3a439c1e6a81dbc9926c9">GetSocketNames</a> () const</td></tr>
+<tr class="separator:a29b6a86937e3a439c1e6a81dbc9926c9 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a568dc7dd76bf935abdf8879e76b49635 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a568dc7dd76bf935abdf8879e76b49635"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a568dc7dd76bf935abdf8879e76b49635">GetSocketRelativeTransforms</a> () const</td></tr>
+<tr class="separator:a568dc7dd76bf935abdf8879e76b49635 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f6cc3b5c4ea6842af10ff930e2fe2f2 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a9f6cc3b5c4ea6842af10ff930e2fe2f2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a9f6cc3b5c4ea6842af10ff930e2fe2f2">GetSocketWorldTransforms</a> () const</td></tr>
+<tr class="separator:a9f6cc3b5c4ea6842af10ff930e2fe2f2 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5c7de9cefbe7d189c97a429ab052115 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_ab5c7de9cefbe7d189c97a429ab052115"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ab5c7de9cefbe7d189c97a429ab052115">GetTransform</a> () const</td></tr>
+<tr class="memdesc:ab5c7de9cefbe7d189c97a429ab052115 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current transform of the actor.  <br /></td></tr>
+<tr class="separator:ab5c7de9cefbe7d189c97a429ab052115 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77affb99965a3c4a127fc9f3737b2734 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a77affb99965a3c4a127fc9f3737b2734"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a77affb99965a3c4a127fc9f3737b2734">GetVelocity</a> () const</td></tr>
+<tr class="memdesc:a77affb99965a3c4a127fc9f3737b2734 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current 3D velocity of the actor.  <br /></td></tr>
+<tr class="separator:a77affb99965a3c4a127fc9f3737b2734 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a1925755510ed3d6a8640d54986e0b9 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a3a1925755510ed3d6a8640d54986e0b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a3a1925755510ed3d6a8640d54986e0b9">IsActive</a> () const</td></tr>
+<tr class="separator:a3a1925755510ed3d6a8640d54986e0b9 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd242a0458417a20996546e692a83da inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a0dd242a0458417a20996546e692a83da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a0dd242a0458417a20996546e692a83da">IsAlive</a> () const</td></tr>
+<tr class="separator:a0dd242a0458417a20996546e692a83da inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c9c134f285e780705c22d02dad550e0 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a4c9c134f285e780705c22d02dad550e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a4c9c134f285e780705c22d02dad550e0">IsDormant</a> () const</td></tr>
+<tr class="separator:a4c9c134f285e780705c22d02dad550e0 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b405b6d271d2271492b21d9695a03c8 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a8b405b6d271d2271492b21d9695a03c8"><td class="memItemLeft" align="right" valign="top">const auto &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a8b405b6d271d2271492b21d9695a03c8">Serialize</a> () const</td></tr>
+<tr class="separator:a8b405b6d271d2271492b21d9695a03c8 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a806883412fae9bcdb8b1886a9de7ede2 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a806883412fae9bcdb8b1886a9de7ede2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a806883412fae9bcdb8b1886a9de7ede2">SetActorDead</a> ()</td></tr>
+<tr class="memdesc:a806883412fae9bcdb8b1886a9de7ede2 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set actor as dead and starts his life span  <br /></td></tr>
+<tr class="separator:a806883412fae9bcdb8b1886a9de7ede2 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb2677b0bc672102b37bec2eac11570d inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_acb2677b0bc672102b37bec2eac11570d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#acb2677b0bc672102b37bec2eac11570d">SetCollisions</a> (bool enabled=true)</td></tr>
+<tr class="memdesc:acb2677b0bc672102b37bec2eac11570d inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable collisions on this actor.  <br /></td></tr>
+<tr class="separator:acb2677b0bc672102b37bec2eac11570d inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ff03a7f5d7bd1ccecd3c7b099081bd7 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a6ff03a7f5d7bd1ccecd3c7b099081bd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a6ff03a7f5d7bd1ccecd3c7b099081bd7">SetEnableGravity</a> (bool enabled=true)</td></tr>
+<tr class="memdesc:a6ff03a7f5d7bd1ccecd3c7b099081bd7 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable gravity on this actor.  <br /></td></tr>
+<tr class="separator:a6ff03a7f5d7bd1ccecd3c7b099081bd7 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a855810b7b15238a5aca6d778fdd0df86 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a855810b7b15238a5aca6d778fdd0df86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a855810b7b15238a5aca6d778fdd0df86">SetLocation</a> (const <a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">geom::Location</a> &amp;location)</td></tr>
+<tr class="memdesc:a855810b7b15238a5aca6d778fdd0df86 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Teleport the actor to <em>location</em>.  <br /></td></tr>
+<tr class="separator:a855810b7b15238a5aca6d778fdd0df86 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a657a7a7a7789152926a9150db481934b inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a657a7a7a7789152926a9150db481934b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a657a7a7a7789152926a9150db481934b">SetSimulatePhysics</a> (bool enabled=true)</td></tr>
+<tr class="memdesc:a657a7a7a7789152926a9150db481934b inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable physics simulation on this actor.  <br /></td></tr>
+<tr class="separator:a657a7a7a7789152926a9150db481934b inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab07d2bd25c21560644d6585c6de1dba8 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_ab07d2bd25c21560644d6585c6de1dba8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ab07d2bd25c21560644d6585c6de1dba8">SetTargetAngularVelocity</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;vector)</td></tr>
+<tr class="memdesc:ab07d2bd25c21560644d6585c6de1dba8 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the angular velocity of the actor before applying physics.  <br /></td></tr>
+<tr class="separator:ab07d2bd25c21560644d6585c6de1dba8 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad377c4df106265607253e594955b973a inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_ad377c4df106265607253e594955b973a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ad377c4df106265607253e594955b973a">SetTargetVelocity</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> &amp;vector)</td></tr>
+<tr class="memdesc:ad377c4df106265607253e594955b973a inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the actor velocity before applying physics.  <br /></td></tr>
+<tr class="separator:ad377c4df106265607253e594955b973a inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59047b1fcbb016391ceacae97edb9339 inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_a59047b1fcbb016391ceacae97edb9339"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#a59047b1fcbb016391ceacae97edb9339">SetTransform</a> (const <a class="el" href="../../de/da4/classcarla_1_1geom_1_1Transform.html">geom::Transform</a> &amp;transform)</td></tr>
+<tr class="memdesc:a59047b1fcbb016391ceacae97edb9339 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Teleport and rotate the actor to <em>transform</em>.  <br /></td></tr>
+<tr class="separator:a59047b1fcbb016391ceacae97edb9339 inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9ee6b493046e4bd834664906df8e9ea inherit pub_methods_classcarla_1_1client_1_1Actor" id="r_ab9ee6b493046e4bd834664906df8e9ea"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html#ab9ee6b493046e4bd834664906df8e9ea">~Actor</a> ()=default</td></tr>
+<tr class="separator:ab9ee6b493046e4bd834664906df8e9ea inherit pub_methods_classcarla_1_1client_1_1Actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classcarla_1_1client_1_1detail_1_1ActorState')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html">carla::client::detail::ActorState</a></td></tr>
+<tr class="memitem:a841b9a44232936c52db09c7b005f06ea inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a841b9a44232936c52db09c7b005f06ea"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="../../d3/dfa/classcarla_1_1client_1_1ActorAttributeValue.html">ActorAttributeValue</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a841b9a44232936c52db09c7b005f06ea">GetAttributes</a> () const</td></tr>
+<tr class="separator:a841b9a44232936c52db09c7b005f06ea inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa98c1565c9edcf133148109c52023819 inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_aa98c1565c9edcf133148109c52023819"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#aa98c1565c9edcf133148109c52023819">GetDisplayId</a> () const</td></tr>
+<tr class="separator:aa98c1565c9edcf133148109c52023819 inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1affb3c32be5ebbacff4200f46cd38ec inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a1affb3c32be5ebbacff4200f46cd38ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a1affb3c32be5ebbacff4200f46cd38ec">GetId</a> () const</td></tr>
+<tr class="separator:a1affb3c32be5ebbacff4200f46cd38ec inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77b201455dd52b51bb3b1834ccf87ccc inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a77b201455dd52b51bb3b1834ccf87ccc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d36/namespacecarla.html#acd23708f6a251d2cfa8a7a4b8ce0f3ef">SharedPtr</a>&lt; <a class="el" href="../../d6/da5/classcarla_1_1client_1_1Actor.html">Actor</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a77b201455dd52b51bb3b1834ccf87ccc">GetParent</a> () const</td></tr>
+<tr class="separator:a77b201455dd52b51bb3b1834ccf87ccc inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fe70b2cf57871b48fbdaaa2d5943902 inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a9fe70b2cf57871b48fbdaaa2d5943902"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a9fe70b2cf57871b48fbdaaa2d5943902">GetParentId</a> () const</td></tr>
+<tr class="separator:a9fe70b2cf57871b48fbdaaa2d5943902 inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17bf408664b6e4b0abcbfd3dcb05ae67 inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a17bf408664b6e4b0abcbfd3dcb05ae67"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; uint8_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a17bf408664b6e4b0abcbfd3dcb05ae67">GetSemanticTags</a> () const</td></tr>
+<tr class="separator:a17bf408664b6e4b0abcbfd3dcb05ae67 inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab88cb27e801fb2661f16f46f4355839e inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_ab88cb27e801fb2661f16f46f4355839e"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#ab88cb27e801fb2661f16f46f4355839e">GetTypeId</a> () const</td></tr>
+<tr class="separator:ab88cb27e801fb2661f16f46f4355839e inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac98d447f3db74c88b3b43e80435042bc inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_ac98d447f3db74c88b3b43e80435042bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">World</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#ac98d447f3db74c88b3b43e80435042bc">GetWorld</a> () const</td></tr>
+<tr class="separator:ac98d447f3db74c88b3b43e80435042bc inherit pub_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ad6b1d5d7aa1d7c4f7ffa8454dc915704" id="r_ad6b1d5d7aa1d7c4f7ffa8454dc915704"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a83dee795635411907857d176a686b2d6">Control</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6b1d5d7aa1d7c4f7ffa8454dc915704">_control</a></td></tr>
+<tr class="separator:ad6b1d5d7aa1d7c4f7ffa8454dc915704"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9539897ef4f943b2c24edaa177835f1" id="r_af9539897ef4f943b2c24edaa177835f1"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9539897ef4f943b2c24edaa177835f1">_is_control_sticky</a></td></tr>
+<tr class="separator:af9539897ef4f943b2c24edaa177835f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classcarla_1_1client_1_1detail_1_1ActorState')"><img src="../../closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html">carla::client::detail::ActorState</a></td></tr>
+<tr class="memitem:a94c0c5ca1f90189eedfafcaa92976b0e inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a94c0c5ca1f90189eedfafcaa92976b0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a94c0c5ca1f90189eedfafcaa92976b0e">ActorState</a> (<a class="el" href="../../db/dfd/classcarla_1_1rpc_1_1Actor.html">rpc::Actor</a> description, <a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a28ab9dcf7abb0f7818432bf7048b385c">EpisodeProxy</a> episode)</td></tr>
+<tr class="separator:a94c0c5ca1f90189eedfafcaa92976b0e inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90f08c22df7ff985404f5ed89199391c inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a90f08c22df7ff985404f5ed89199391c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../db/dfd/classcarla_1_1rpc_1_1Actor.html">rpc::Actor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a90f08c22df7ff985404f5ed89199391c">GetActorDescription</a> () const</td></tr>
+<tr class="separator:a90f08c22df7ff985404f5ed89199391c inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a775c6ec4e7042613c78dfa003f450e03 inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a775c6ec4e7042613c78dfa003f450e03"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d8/d68/classcarla_1_1geom_1_1BoundingBox.html">geom::BoundingBox</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a775c6ec4e7042613c78dfa003f450e03">GetBoundingBox</a> () const</td></tr>
+<tr class="separator:a775c6ec4e7042613c78dfa003f450e03 inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520d5ef7284ded86a1d96a346f3516aa inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_a520d5ef7284ded86a1d96a346f3516aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a28ab9dcf7abb0f7818432bf7048b385c">EpisodeProxy</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#a520d5ef7284ded86a1d96a346f3516aa">GetEpisode</a> ()</td></tr>
+<tr class="separator:a520d5ef7284ded86a1d96a346f3516aa inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87d2fb7b5fc8f3b6798419edb472f75 inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState" id="r_af87d2fb7b5fc8f3b6798419edb472f75"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d8/dcd/namespacecarla_1_1client_1_1detail.html#a28ab9dcf7abb0f7818432bf7048b385c">EpisodeProxy</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html#af87d2fb7b5fc8f3b6798419edb472f75">GetEpisode</a> () const</td></tr>
+<tr class="separator:af87d2fb7b5fc8f3b6798419edb472f75 inherit pro_methods_classcarla_1_1client_1_1detail_1_1ActorState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00033">33</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="a491256ae72c5209ac6e1279ae06e25de" name="a491256ae72c5209ac6e1279ae06e25de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a491256ae72c5209ac6e1279ae06e25de">&#9670;&#160;</a></span>AckermannControl</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a491256ae72c5209ac6e1279ae06e25de">carla::client::Vehicle::AckermannControl</a> = <a class="el" href="../../d1/d73/classcarla_1_1rpc_1_1VehicleAckermannControl.html">rpc::VehicleAckermannControl</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a83dee795635411907857d176a686b2d6" name="a83dee795635411907857d176a686b2d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83dee795635411907857d176a686b2d6">&#9670;&#160;</a></span>Control</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a83dee795635411907857d176a686b2d6">carla::client::Vehicle::Control</a> = <a class="el" href="../../d3/d9c/classcarla_1_1rpc_1_1VehicleControl.html">rpc::VehicleControl</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acced0fbfea5b8b9d267af2e2061a7d40" name="acced0fbfea5b8b9d267af2e2061a7d40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acced0fbfea5b8b9d267af2e2061a7d40">&#9670;&#160;</a></span>LightState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../db/d60/classcarla_1_1rpc_1_1VehicleLightState.html#a6372a8be47dbe5cd2b9c19730e5d1dc5">carla::client::Vehicle::LightState</a> = <a class="el" href="../../db/d60/classcarla_1_1rpc_1_1VehicleLightState.html#a6372a8be47dbe5cd2b9c19730e5d1dc5">rpc::VehicleLightState::LightState</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a278374757fcc52dbb06a84a04c5189c7" name="a278374757fcc52dbb06a84a04c5189c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a278374757fcc52dbb06a84a04c5189c7">&#9670;&#160;</a></span>PhysicsControl</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a278374757fcc52dbb06a84a04c5189c7">carla::client::Vehicle::PhysicsControl</a> = <a class="el" href="../../da/d3f/classcarla_1_1rpc_1_1VehiclePhysicsControl.html">rpc::VehiclePhysicsControl</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0480285d0392b9cac2aab9a4ec0b8652" name="a0480285d0392b9cac2aab9a4ec0b8652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0480285d0392b9cac2aab9a4ec0b8652">&#9670;&#160;</a></span>TelemetryData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a0480285d0392b9cac2aab9a4ec0b8652">carla::client::Vehicle::TelemetryData</a> = <a class="el" href="../../d1/d26/classcarla_1_1rpc_1_1VehicleTelemetryData.html">rpc::VehicleTelemetryData</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aee62fd9bb13a6e10cfc570d6633ba459" name="aee62fd9bb13a6e10cfc570d6633ba459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee62fd9bb13a6e10cfc570d6633ba459">&#9670;&#160;</a></span>TM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#aee62fd9bb13a6e10cfc570d6633ba459">carla::client::Vehicle::TM</a> = <a class="el" href="../../df/d5a/classcarla_1_1traffic__manager_1_1TrafficManager.html">traffic_manager::TrafficManager</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada4ebbb299825a8e08f3324e243780ea" name="ada4ebbb299825a8e08f3324e243780ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada4ebbb299825a8e08f3324e243780ea">&#9670;&#160;</a></span>VehicleDoor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3eb217a0533294546f189b832ad0ee04">carla::client::Vehicle::VehicleDoor</a> = <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3eb217a0533294546f189b832ad0ee04">rpc::VehicleDoor</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aafe9381247cc94abcbc2e1fdd97a65b6" name="aafe9381247cc94abcbc2e1fdd97a65b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafe9381247cc94abcbc2e1fdd97a65b6">&#9670;&#160;</a></span>WheelLocation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac246e8e8896e5580ccc625181d39e484">carla::client::Vehicle::WheelLocation</a> = <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac246e8e8896e5580ccc625181d39e484">carla::rpc::VehicleWheelLocation</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a45d5c56688bc54cfbb33a2bcadceb363" name="a45d5c56688bc54cfbb33a2bcadceb363"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45d5c56688bc54cfbb33a2bcadceb363">&#9670;&#160;</a></span>Vehicle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::client::Vehicle::Vehicle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/dea/classcarla_1_1client_1_1ActorInitializer.html">ActorInitializer</a></td>          <td class="paramname"><span class="paramname"><em>init</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a615b6d00529f1375c2a103e362c20304" name="a615b6d00529f1375c2a103e362c20304"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a615b6d00529f1375c2a103e362c20304">&#9670;&#160;</a></span>ApplyAckermannControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::ApplyAckermannControl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a491256ae72c5209ac6e1279ae06e25de">AckermannControl</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>control</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apply <em>control</em> to this vehicle. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00062">62</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab3790dbde952495c568dda20e99ec9f0" name="ab3790dbde952495c568dda20e99ec9f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3790dbde952495c568dda20e99ec9f0">&#9670;&#160;</a></span>ApplyAckermannControllerSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::ApplyAckermannControllerSettings </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d1f/classcarla_1_1rpc_1_1AckermannControllerSettings.html">rpc::AckermannControllerSettings</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>settings</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apply Ackermann control settings to this vehicle </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00070">70</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a10c6bc68b736b8e9b9f7b3c2222e19e2" name="a10c6bc68b736b8e9b9f7b3c2222e19e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10c6bc68b736b8e9b9f7b3c2222e19e2">&#9670;&#160;</a></span>ApplyControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::ApplyControl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a83dee795635411907857d176a686b2d6">Control</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>control</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apply <em>control</em> to this vehicle. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00055">55</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00156">_control</a>, <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00154">_is_control_sticky</a>, <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="a6b3d9d75c155095bad6413d060d69f91" name="a6b3d9d75c155095bad6413d060d69f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b3d9d75c155095bad6413d060d69f91">&#9670;&#160;</a></span>ApplyPhysicsControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::ApplyPhysicsControl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a278374757fcc52dbb06a84a04c5189c7">PhysicsControl</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>physics_control</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apply physics control to this vehicle. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a3e52559e55b5c6a8bb8c3caa41ebec53" name="a3e52559e55b5c6a8bb8c3caa41ebec53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e52559e55b5c6a8bb8c3caa41ebec53">&#9670;&#160;</a></span>CloseDoor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::CloseDoor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3eb217a0533294546f189b832ad0ee04">VehicleDoor</a></td>          <td class="paramname"><span class="paramname"><em>door_idx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Close a door in this vehicle </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00082">82</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a" name="a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e0c6e1dfdcbc3ba8a2f19a45d8dbf3a">&#9670;&#160;</a></span>EnableCarSim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::EnableCarSim </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>simfile_path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables CarSim simulation if it is availiable </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00127">127</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="abbb886a0ddf8e8776b50eaa68570f096" name="abbb886a0ddf8e8776b50eaa68570f096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb886a0ddf8e8776b50eaa68570f096">&#9670;&#160;</a></span>EnableChronoPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::EnableChronoPhysics </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>MaxSubsteps</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>MaxSubstepDeltaTime</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>VehicleJSON</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>PowertrainJSON</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>TireJSON</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>BaseJSONPath</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00135">135</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="a6fae047acdeb088b276602245205f563" name="a6fae047acdeb088b276602245205f563"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fae047acdeb088b276602245205f563">&#9670;&#160;</a></span>GetAckermannControllerSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d1f/classcarla_1_1rpc_1_1AckermannControllerSettings.html">rpc::AckermannControllerSettings</a> carla::client::Vehicle::GetAckermannControllerSettings </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the last Ackermann controller settings applied to this vehicle. </p>
+<dl class="section warning"><dt>警告</dt><dd>This function does call the simulator. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00066">66</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8971090df25077db3759e0bdeae8ac0d" name="a8971090df25077db3759e0bdeae8ac0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8971090df25077db3759e0bdeae8ac0d">&#9670;&#160;</a></span>GetControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a83dee795635411907857d176a686b2d6">Vehicle::Control</a> carla::client::Vehicle::GetControl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the control last applied to this vehicle. </p>
+<dl class="section note"><dt>注解</dt><dd>This function does not call the simulator, it returns the data received in the last tick. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00098">98</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00472">carla::rss::RssCheck::GetSteeringAngle()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae001bbd2de1d11c50e9f82a71621d2da" name="ae001bbd2de1d11c50e9f82a71621d2da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae001bbd2de1d11c50e9f82a71621d2da">&#9670;&#160;</a></span>GetFailureState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ae24acdb5a620582353443f8b547a52bc">rpc::VehicleFailureState</a> carla::client::Vehicle::GetFailureState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the failure state of the vehicle </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00155">155</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<a id="a4908572e3627dd37ad25b1ce75a36033" name="a4908572e3627dd37ad25b1ce75a36033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4908572e3627dd37ad25b1ce75a36033">&#9670;&#160;</a></span>GetLightState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d60/classcarla_1_1rpc_1_1VehicleLightState.html#a6372a8be47dbe5cd2b9c19730e5d1dc5">Vehicle::LightState</a> carla::client::Vehicle::GetLightState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the current open lights (<a class="el" href="../../d9/d19/structcarla_1_1client_1_1LightState.html">LightState</a>) of this vehicle. </p>
+<dl class="section note"><dt>注解</dt><dd>This function does not call the simulator, it returns the data received in the last tick. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00106">106</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 13 --></div>
+</div>
+
+</div>
+</div>
+<a id="a28be45ecae28b8243a619ce9f9ef1c9e" name="a28be45ecae28b8243a619ce9f9ef1c9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28be45ecae28b8243a619ce9f9ef1c9e">&#9670;&#160;</a></span>GetPhysicsControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a278374757fcc52dbb06a84a04c5189c7">Vehicle::PhysicsControl</a> carla::client::Vehicle::GetPhysicsControl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the physics control last applied to this vehicle. </p>
+<dl class="section warning"><dt>警告</dt><dd>This function does call the simulator. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00102">102</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 14 --></div>
+</div>
+
+</div>
+</div>
+<a id="a73e16664a03ae2cb3d680b738af1daeb" name="a73e16664a03ae2cb3d680b738af1daeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e16664a03ae2cb3d680b738af1daeb">&#9670;&#160;</a></span>GetSpeedLimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::client::Vehicle::GetSpeedLimit </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the speed limit currently affecting this vehicle. </p>
+<dl class="section note"><dt>注解</dt><dd>This function does not call the simulator, it returns the data received in the last tick. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00110">110</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 15 --></div>
+</div>
+
+</div>
+</div>
+<a id="a06f59d32da935ac8ea1d703b3f66ebcc" name="a06f59d32da935ac8ea1d703b3f66ebcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06f59d32da935ac8ea1d703b3f66ebcc">&#9670;&#160;</a></span>GetTelemetryData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a0480285d0392b9cac2aab9a4ec0b8652">Vehicle::TelemetryData</a> carla::client::Vehicle::GetTelemetryData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the telemetry data for this vehicle. </p>
+<dl class="section warning"><dt>警告</dt><dd>This function does call the simulator. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00047">47</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 16 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7588c922c248118e1bcaac619df9ac83" name="a7588c922c248118e1bcaac619df9ac83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7588c922c248118e1bcaac619df9ac83">&#9670;&#160;</a></span>GetTrafficLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d36/namespacecarla.html#acd23708f6a251d2cfa8a7a4b8ce0f3ef">SharedPtr</a>&lt; <a class="el" href="../../df/def/classcarla_1_1client_1_1TrafficLight.html">TrafficLight</a> &gt; carla::client::Vehicle::GetTrafficLight </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve the traffic light actor currently affecting this vehicle. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00122">122</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a>, <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00047">carla::client::detail::ActorState::GetWorld()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-17" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 17 --></div>
+</div>
+
+</div>
+</div>
+<a id="a604ff3f9f1fa9afc9023566042f29094" name="a604ff3f9f1fa9afc9023566042f29094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a604ff3f9f1fa9afc9023566042f29094">&#9670;&#160;</a></span>GetTrafficLightState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a46c3995219197dcef2980adce8d1cfba">rpc::TrafficLightState</a> carla::client::Vehicle::GetTrafficLightState </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the state of the traffic light currently affecting this vehicle. </p>
+<dl class="section return"><dt>返回</dt><dd>Green If no traffic light is affecting the vehicle.</dd></dl>
+<dl class="section note"><dt>注解</dt><dd>This function does not call the simulator, it returns the data received in the last tick. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00114">114</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-18" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 18 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2c10fb5ff92e6226bd029d9ef64c4531" name="a2c10fb5ff92e6226bd029d9ef64c4531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c10fb5ff92e6226bd029d9ef64c4531">&#9670;&#160;</a></span>GetWheelSteerAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::client::Vehicle::GetWheelSteerAngle </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac246e8e8896e5580ccc625181d39e484">WheelLocation</a></td>          <td class="paramname"><span class="paramname"><em>wheel_location</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return a <em>Rotation</em> from a wheel of the vehicle </p>
+<dl class="section note"><dt>注解</dt><dd>The function returns the rotation of the vehicle based on the it's physics </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00094">94</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-19" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 19 --></div>
+</div>
+
+</div>
+</div>
+<a id="a4f8efa30ea7aeb0bfce0b6c764ca2db6" name="a4f8efa30ea7aeb0bfce0b6c764ca2db6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f8efa30ea7aeb0bfce0b6c764ca2db6">&#9670;&#160;</a></span>IsAtTrafficLight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::client::Vehicle::IsAtTrafficLight </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return whether a traffic light is affecting this vehicle. </p>
+<dl class="section note"><dt>注解</dt><dd>This function does not call the simulator, it returns the data received in the last tick. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00118">118</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-20" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 20 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab7c9c4dbeff216f3c6819ca635e440e5" name="ab7c9c4dbeff216f3c6819ca635e440e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7c9c4dbeff216f3c6819ca635e440e5">&#9670;&#160;</a></span>OpenDoor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::OpenDoor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a3eb217a0533294546f189b832ad0ee04">VehicleDoor</a></td>          <td class="paramname"><span class="paramname"><em>door_idx</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Open a door in this vehicle </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00078">78</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-21" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-21-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-21-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-21-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 21 --></div>
+</div>
+
+</div>
+</div>
+<a id="af5f10c04aa7d65345220b613c49c63cd" name="af5f10c04aa7d65345220b613c49c63cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5f10c04aa7d65345220b613c49c63cd">&#9670;&#160;</a></span>RestorePhysXPhysics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::RestorePhysXPhysics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00151">151</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-22" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-22-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-22-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-22-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 22 --></div>
+</div>
+
+</div>
+</div>
+<a id="afd51d896d2a994101fadaf3e23e5636e" name="afd51d896d2a994101fadaf3e23e5636e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd51d896d2a994101fadaf3e23e5636e">&#9670;&#160;</a></span>SetAutopilot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::SetAutopilot </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enabled</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>tm_port</em></span><span class="paramdefsep"> = </span><span class="paramdefval">TM_DEFAULT_PORT</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Switch on/off this vehicle's autopilot. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00038">38</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a>, <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00156">carla::traffic_manager::TrafficManager::RegisterVehicles()</a> , 以及 <a class="el" href="../../da/dfd/TrafficManager_8h_source.html#l00164">carla::traffic_manager::TrafficManager::UnregisterVehicles()</a>.</p>
+<div id="dynsection-23" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-23-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-23-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-23-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 23 --></div>
+</div>
+
+</div>
+</div>
+<a id="adecb262b97138aa6ff0d882628a08aa5" name="adecb262b97138aa6ff0d882628a08aa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adecb262b97138aa6ff0d882628a08aa5">&#9670;&#160;</a></span>SetLightState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::SetLightState </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/d60/classcarla_1_1rpc_1_1VehicleLightState.html#a6372a8be47dbe5cd2b9c19730e5d1dc5">LightState</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>light_state</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a <em><a class="el" href="../../d9/d19/structcarla_1_1client_1_1LightState.html">LightState</a></em> to this vehicle. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-24" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-24-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-24-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 24 --></div>
+</div>
+
+</div>
+</div>
+<a id="a06cd6dcede8e2db8e248faa5aaf274c9" name="a06cd6dcede8e2db8e248faa5aaf274c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06cd6dcede8e2db8e248faa5aaf274c9">&#9670;&#160;</a></span>SetWheelSteerDirection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::SetWheelSteerDirection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#ac246e8e8896e5580ccc625181d39e484">WheelLocation</a></td>          <td class="paramname"><span class="paramname"><em>wheel_location</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>angle_in_deg</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a <em>Rotation</em> to a wheel of the vehicle (affects the bone of the car skeleton, not the physics) </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-25" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-25-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-25-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 25 --></div>
+</div>
+
+</div>
+</div>
+<a id="affd2582bafa7ba7b04d2676c92b8fd80" name="affd2582bafa7ba7b04d2676c92b8fd80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affd2582bafa7ba7b04d2676c92b8fd80">&#9670;&#160;</a></span>ShowDebugTelemetry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::ShowDebugTelemetry </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enabled</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Switch on/off this vehicle's autopilot. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00051">51</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-26" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-26-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-26-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-26-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 26 --></div>
+</div>
+
+</div>
+</div>
+<a id="aab9dad11884a86b8b91e3af3e5b1e6a5" name="aab9dad11884a86b8b91e3af3e5b1e6a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab9dad11884a86b8b91e3af3e5b1e6a5">&#9670;&#160;</a></span>UseCarSimRoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::client::Vehicle::UseCarSimRoad </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enabled</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enables the use of CarSim internal road definition instead of unreal's </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a> 第 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00131">131</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d22/client_2detail_2ActorState_8h_source.html#l00068">carla::client::detail::ActorState::GetEpisode()</a> , 以及 <a class="el" href="../../d2/d6b/EpisodeProxy_8cpp_source.html#l00039">carla::client::detail::EpisodeProxyImpl&lt; PointerT &gt;::Lock()</a>.</p>
+<div id="dynsection-27" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-27-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-27-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-27-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 27 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ad6b1d5d7aa1d7c4f7ffa8454dc915704" name="ad6b1d5d7aa1d7c4f7ffa8454dc915704"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6b1d5d7aa1d7c4f7ffa8454dc915704">&#9670;&#160;</a></span>_control</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a83dee795635411907857d176a686b2d6">Control</a> carla::client::Vehicle::_control</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00156">156</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00055">ApplyControl()</a>.</p>
+
+</div>
+</div>
+<a id="af9539897ef4f943b2c24edaa177835f1" name="af9539897ef4f943b2c24edaa177835f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9539897ef4f943b2c24edaa177835f1">&#9670;&#160;</a></span>_is_control_sticky</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool carla::client::Vehicle::_is_control_sticky</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a> 第 <a class="el" href="../../d9/d18/Vehicle_8h_source.html#l00154">154</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d27/Vehicle_8cpp_source.html#l00055">ApplyControl()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d9/d18/Vehicle_8h_source.html">Vehicle.h</a></li>
+<li><a class="el" href="../../d0/d27/Vehicle_8cpp_source.html">Vehicle.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

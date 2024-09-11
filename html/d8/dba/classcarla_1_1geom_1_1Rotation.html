@@ -1,0 +1,682 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::geom::Rotation类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../dc/dda/namespacecarla_1_1geom.html">geom</a></li><li class="navelem"><a class="el" href="../../d8/dba/classcarla_1_1geom_1_1Rotation.html">Rotation</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../db/d3e/classcarla_1_1geom_1_1Rotation-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::geom::Rotation类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> carla::geom::Rotation 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:af3b9aeecb1d8a5a29aac264ea2b780dc" id="r_af3b9aeecb1d8a5a29aac264ea2b780dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3b9aeecb1d8a5a29aac264ea2b780dc">GetForwardVector</a> () const</td></tr>
+<tr class="separator:af3b9aeecb1d8a5a29aac264ea2b780dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac37b627825f8a17af21bb0e1bcb3da68" id="r_ac37b627825f8a17af21bb0e1bcb3da68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac37b627825f8a17af21bb0e1bcb3da68">GetRightVector</a> () const</td></tr>
+<tr class="separator:ac37b627825f8a17af21bb0e1bcb3da68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac04a99864948e2234675e8e410ab5c08" id="r_ac04a99864948e2234675e8e410ab5c08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac04a99864948e2234675e8e410ab5c08">GetUpVector</a> () const</td></tr>
+<tr class="separator:ac04a99864948e2234675e8e410ab5c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4d8bc301fba5c24b1acdc190a848703" id="r_ad4d8bc301fba5c24b1acdc190a848703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4d8bc301fba5c24b1acdc190a848703">InverseRotateVector</a> (<a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> &amp;in_point) const</td></tr>
+<tr class="separator:ad4d8bc301fba5c24b1acdc190a848703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1fe78f5260e03f09027036ccf835fb5" id="r_ab1fe78f5260e03f09027036ccf835fb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1fe78f5260e03f09027036ccf835fb5">MSGPACK_DEFINE_ARRAY</a> (<a class="el" href="#aced78bb001bbaaf700917f2362f42dd4">pitch</a>, <a class="el" href="#ae3fd0407e6d56544916731d0514fb7dd">yaw</a>, <a class="el" href="#a1da30089c64476098fecf74395b85fa5">roll</a>)</td></tr>
+<tr class="separator:ab1fe78f5260e03f09027036ccf835fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5562c63eaeeca548fb61af44c834918f" id="r_a5562c63eaeeca548fb61af44c834918f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5562c63eaeeca548fb61af44c834918f">operator FRotator</a> () const</td></tr>
+<tr class="separator:a5562c63eaeeca548fb61af44c834918f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1b79be7d9500e6e58cdf6f9be98aaab" id="r_ae1b79be7d9500e6e58cdf6f9be98aaab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1b79be7d9500e6e58cdf6f9be98aaab">operator!=</a> (const <a class="el" href="../../d8/dba/classcarla_1_1geom_1_1Rotation.html">Rotation</a> &amp;rhs) const</td></tr>
+<tr class="separator:ae1b79be7d9500e6e58cdf6f9be98aaab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6199577985cb9e67a7e5234069368b0" id="r_ab6199577985cb9e67a7e5234069368b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6199577985cb9e67a7e5234069368b0">operator==</a> (const <a class="el" href="../../d8/dba/classcarla_1_1geom_1_1Rotation.html">Rotation</a> &amp;rhs) const</td></tr>
+<tr class="separator:ab6199577985cb9e67a7e5234069368b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce6d71b431ea93b5a13cf764467fe1c" id="r_a1ce6d71b431ea93b5a13cf764467fe1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ce6d71b431ea93b5a13cf764467fe1c">RotateVector</a> (const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> &amp;in_point) const</td></tr>
+<tr class="separator:a1ce6d71b431ea93b5a13cf764467fe1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5c4c69bc07cfb7fb46758ed2c8cb56e" id="r_ae5c4c69bc07cfb7fb46758ed2c8cb56e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5c4c69bc07cfb7fb46758ed2c8cb56e">RotateVector</a> (<a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> &amp;in_point) const</td></tr>
+<tr class="separator:ae5c4c69bc07cfb7fb46758ed2c8cb56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71c201ae786655c11847496f3a5c63db" id="r_a71c201ae786655c11847496f3a5c63db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71c201ae786655c11847496f3a5c63db">Rotation</a> ()=default</td></tr>
+<tr class="separator:a71c201ae786655c11847496f3a5c63db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f4c05750e40867595e28eaeb571965" id="r_a52f4c05750e40867595e28eaeb571965"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52f4c05750e40867595e28eaeb571965">Rotation</a> (const FRotator &amp;rotator)</td></tr>
+<tr class="separator:a52f4c05750e40867595e28eaeb571965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afebd121ac590dc228e39930316835f4a" id="r_afebd121ac590dc228e39930316835f4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afebd121ac590dc228e39930316835f4a">Rotation</a> (float p, float y, float r)</td></tr>
+<tr class="separator:afebd121ac590dc228e39930316835f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:aced78bb001bbaaf700917f2362f42dd4" id="r_aced78bb001bbaaf700917f2362f42dd4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aced78bb001bbaaf700917f2362f42dd4">pitch</a> = 0.0f</td></tr>
+<tr class="separator:aced78bb001bbaaf700917f2362f42dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1da30089c64476098fecf74395b85fa5" id="r_a1da30089c64476098fecf74395b85fa5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1da30089c64476098fecf74395b85fa5">roll</a> = 0.0f</td></tr>
+<tr class="separator:a1da30089c64476098fecf74395b85fa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3fd0407e6d56544916731d0514fb7dd" id="r_ae3fd0407e6d56544916731d0514fb7dd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3fd0407e6d56544916731d0514fb7dd">yaw</a> = 0.0f</td></tr>
+<tr class="separator:ae3fd0407e6d56544916731d0514fb7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00022">22</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a71c201ae786655c11847496f3a5c63db" name="a71c201ae786655c11847496f3a5c63db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71c201ae786655c11847496f3a5c63db">&#9670;&#160;</a></span>Rotation() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::geom::Rotation::Rotation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afebd121ac590dc228e39930316835f4a" name="afebd121ac590dc228e39930316835f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afebd121ac590dc228e39930316835f4a">&#9670;&#160;</a></span>Rotation() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::geom::Rotation::Rotation </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>r</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00043">43</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a52f4c05750e40867595e28eaeb571965" name="a52f4c05750e40867595e28eaeb571965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52f4c05750e40867595e28eaeb571965">&#9670;&#160;</a></span>Rotation() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::geom::Rotation::Rotation </td>
+          <td>(</td>
+          <td class="paramtype">const FRotator &amp;</td>          <td class="paramname"><span class="paramname"><em>rotator</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00145">145</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="af3b9aeecb1d8a5a29aac264ea2b780dc" name="af3b9aeecb1d8a5a29aac264ea2b780dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3b9aeecb1d8a5a29aac264ea2b780dc">&#9670;&#160;</a></span>GetForwardVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> carla::geom::Rotation::GetForwardVector </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00052">52</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00117">carla::geom::Math::GetForwardVector()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00054">carla::geom::Transform::GetForwardVector()</a>, <a class="el" href="../../d2/de5/RoadMap_8cpp_source.html#l00098">URoadMap::SetPixelAt()</a>, <a class="el" href="../../d6/dd9/test__geom_8cpp_source.html#l00199">TEST()</a> , 以及 <a class="el" href="../../d3/de7/ProceduralBuilding_8cpp_source.html#l00597">AProceduralBuilding::UpdateTransformPositionToNextChunk()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac37b627825f8a17af21bb0e1bcb3da68" name="ac37b627825f8a17af21bb0e1bcb3da68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac37b627825f8a17af21bb0e1bcb3da68">&#9670;&#160;</a></span>GetRightVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> carla::geom::Rotation::GetRightVector </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00056">56</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00125">carla::geom::Math::GetRightVector()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00058">carla::geom::Transform::GetRightVector()</a> , 以及 <a class="el" href="../../d3/de7/ProceduralBuilding_8cpp_source.html#l00611">AProceduralBuilding::UpdateTransformPositionToNextSide()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac04a99864948e2234675e8e410ab5c08" name="ac04a99864948e2234675e8e410ab5c08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac04a99864948e2234675e8e410ab5c08">&#9670;&#160;</a></span>GetUpVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> carla::geom::Rotation::GetUpVector </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00060">60</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00138">carla::geom::Math::GetUpVector()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d2e/CarlaGameModeBase_8cpp_source.html#l00524">ACarlaGameModeBase::DebugShowSignals()</a> , 以及 <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00062">carla::geom::Transform::GetUpVector()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad4d8bc301fba5c24b1acdc190a848703" name="ad4d8bc301fba5c24b1acdc190a848703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4d8bc301fba5c24b1acdc190a848703">&#9670;&#160;</a></span>InverseRotateVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::geom::Rotation::InverseRotateVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>in_point</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00098">98</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00029">pitch</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00033">roll</a>, <a class="el" href="../../db/d8a/Math_8h_source.html#l00043">carla::geom::Math::ToRadians()</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00031">yaw</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dce/RssCheck_8cpp_source.html#l00453">carla::rss::RssCheck::GetSpeed()</a> , 以及 <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00082">carla::geom::Transform::InverseTransformPoint()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab1fe78f5260e03f09027036ccf835fb5" name="ab1fe78f5260e03f09027036ccf835fb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1fe78f5260e03f09027036ccf835fb5">&#9670;&#160;</a></span>MSGPACK_DEFINE_ARRAY()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::geom::Rotation::MSGPACK_DEFINE_ARRAY </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#aced78bb001bbaaf700917f2362f42dd4">pitch</a></td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ae3fd0407e6d56544916731d0514fb7dd">yaw</a></td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a1da30089c64476098fecf74395b85fa5">roll</a></td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5562c63eaeeca548fb61af44c834918f" name="a5562c63eaeeca548fb61af44c834918f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5562c63eaeeca548fb61af44c834918f">&#9670;&#160;</a></span>operator FRotator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::geom::Rotation::operator FRotator </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00148">148</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00029">pitch</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00033">roll</a> , 以及 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00031">yaw</a>.</p>
+
+</div>
+</div>
+<a id="ae1b79be7d9500e6e58cdf6f9be98aaab" name="ae1b79be7d9500e6e58cdf6f9be98aaab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1b79be7d9500e6e58cdf6f9be98aaab">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::geom::Rotation::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/dba/classcarla_1_1geom_1_1Rotation.html">Rotation</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00135">135</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab6199577985cb9e67a7e5234069368b0" name="ab6199577985cb9e67a7e5234069368b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6199577985cb9e67a7e5234069368b0">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::geom::Rotation::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/dba/classcarla_1_1geom_1_1Rotation.html">Rotation</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00131">131</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00029">pitch</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00033">roll</a> , 以及 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00031">yaw</a>.</p>
+
+</div>
+</div>
+<a id="a1ce6d71b431ea93b5a13cf764467fe1c" name="a1ce6d71b431ea93b5a13cf764467fe1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ce6d71b431ea93b5a13cf764467fe1c">&#9670;&#160;</a></span>RotateVector() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> carla::geom::Rotation::RotateVector </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>in_point</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00064">RotateVector()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae5c4c69bc07cfb7fb46758ed2c8cb56e" name="ae5c4c69bc07cfb7fb46758ed2c8cb56e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5c4c69bc07cfb7fb46758ed2c8cb56e">&#9670;&#160;</a></span>RotateVector() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::geom::Rotation::RotateVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">Vector3D</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>in_point</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00064">64</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00029">pitch</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00033">roll</a>, <a class="el" href="../../db/d8a/Math_8h_source.html#l00043">carla::geom::Math::ToRadians()</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00031">yaw</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d2/dfe/LibCarla_2source_2carla_2geom_2BoundingBox_8h_source.html#l00076">carla::geom::BoundingBox::GetLocalVertices()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00092">RotateVector()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00067">carla::geom::Transform::TransformPoint()</a> , 以及 <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00075">carla::geom::Transform::TransformVector()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aced78bb001bbaaf700917f2362f42dd4" name="aced78bb001bbaaf700917f2362f42dd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aced78bb001bbaaf700917f2362f42dd4">&#9670;&#160;</a></span>pitch</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::geom::Rotation::pitch = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00029">29</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d13/Lane_8cpp_source.html#l00131">carla::road::Lane::ComputeTransform()</a>, <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00117">carla::geom::Math::GetForwardVector()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00113">carla::geom::Transform::GetInverseMatrix()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00090">carla::geom::Transform::GetMatrix()</a>, <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00125">carla::geom::Math::GetRightVector()</a>, <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00138">carla::geom::Math::GetUpVector()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00098">InverseRotateVector()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00148">operator FRotator()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00131">operator==()</a> , 以及 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00064">RotateVector()</a>.</p>
+
+</div>
+</div>
+<a id="a1da30089c64476098fecf74395b85fa5" name="a1da30089c64476098fecf74395b85fa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1da30089c64476098fecf74395b85fa5">&#9670;&#160;</a></span>roll</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::geom::Rotation::roll = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00033">33</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00113">carla::geom::Transform::GetInverseMatrix()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00090">carla::geom::Transform::GetMatrix()</a>, <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00125">carla::geom::Math::GetRightVector()</a>, <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00138">carla::geom::Math::GetUpVector()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00098">InverseRotateVector()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00148">operator FRotator()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00131">operator==()</a> , 以及 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00064">RotateVector()</a>.</p>
+
+</div>
+</div>
+<a id="ae3fd0407e6d56544916731d0514fb7dd" name="ae3fd0407e6d56544916731d0514fb7dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3fd0407e6d56544916731d0514fb7dd">&#9670;&#160;</a></span>yaw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::geom::Rotation::yaw = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a> 第 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00031">31</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00534">carla::nav::Navigation::AddOrUpdateVehicle()</a>, <a class="el" href="../../dc/d13/Lane_8cpp_source.html#l00131">carla::road::Lane::ComputeTransform()</a>, <a class="el" href="../../d9/d5a/road_2Map_8cpp_source.html#l00455">carla::road::Map::GetAllCrosswalkZones()</a>, <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00117">carla::geom::Math::GetForwardVector()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00113">carla::geom::Transform::GetInverseMatrix()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00090">carla::geom::Transform::GetMatrix()</a>, <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00125">carla::geom::Math::GetRightVector()</a>, <a class="el" href="../../d6/d09/Math_8cpp_source.html#l00138">carla::geom::Math::GetUpVector()</a>, <a class="el" href="../../d5/d9c/Navigation_8cpp_source.html#l00923">carla::nav::Navigation::GetWalkerTransform()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00098">InverseRotateVector()</a>, <a class="el" href="../../dd/dbc/LibCarla_2source_2carla_2client_2LaneInvasionSensor_8cpp_source.html#l00125">carla::client::LaneInvasionCallback::MakeBounds()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00148">operator FRotator()</a>, <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00131">operator==()</a> , 以及 <a class="el" href="../../d0/d8f/Rotation_8h_source.html#l00064">RotateVector()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d0/d8f/Rotation_8h_source.html">Rotation.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

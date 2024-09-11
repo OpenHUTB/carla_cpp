@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ActorAttribute.cpp 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_64d7bb605f27024d49af86070bd3f0b6.html">client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">ActorAttribute.cpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d1/d5d/LibCarla_2source_2carla_2client_2ActorAttribute_8h_source.html">carla/client/ActorAttribute.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d8/d8a/Exception_8h_source.html">carla/Exception.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/d87/Logging_8h_source.html">carla/Logging.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d2/d69/StringUtil_8h_source.html">carla/StringUtil.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> ActorAttribute.cpp 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+</div>
+</div>
+<p><a href="../../dc/d32/ActorAttribute_8cpp_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></td></tr>
+<tr class="memdesc:d9/d36/namespacecarla"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file contains definitions of common data structures used in traffic manager. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/daf/namespacecarla_1_1client.html">carla::client</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a1d6f36abdf1869dcc45b8049b846ad8a" id="r_a1d6f36abdf1869dcc45b8049b846ad8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d6f36abdf1869dcc45b8049b846ad8a">LIBCARLA_THROW_BAD_VALUE_CAST</a>(type)</td></tr>
+<tr class="separator:a1d6f36abdf1869dcc45b8049b846ad8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c9a1c96b5e7034a06bd6c279bb60ce" id="r_ad1c9a1c96b5e7034a06bd6c279bb60ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1c9a1c96b5e7034a06bd6c279bb60ce">LIBCARLA_THROW_INVALID_VALUE</a>(message)</td></tr>
+<tr class="separator:ad1c9a1c96b5e7034a06bd6c279bb60ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a4d560af7180e6d7d2d2e2ba8a9533544" id="r_a4d560af7180e6d7d2d2e2ba8a9533544"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
+<tr class="memitem:a4d560af7180e6d7d2d2e2ba8a9533544"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d2/dec/structcarla_1_1sensor_1_1data_1_1Color.html">sensor::data::Color</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d2/daf/namespacecarla_1_1client.html#a4d560af7180e6d7d2d2e2ba8a9533544">carla::client::ActorAttributeValueAccess::As&lt; sensor::data::Color &gt;</a> () const</td></tr>
+<tr class="separator:a4d560af7180e6d7d2d2e2ba8a9533544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa78def54f39d33a538ec8f8a11ed544b" id="r_aa78def54f39d33a538ec8f8a11ed544b"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
+<tr class="memitem:aa78def54f39d33a538ec8f8a11ed544b"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d2/daf/namespacecarla_1_1client.html#aa78def54f39d33a538ec8f8a11ed544b">carla::client::ActorAttributeValueAccess::As&lt; std::string &gt;</a> () const</td></tr>
+<tr class="separator:aa78def54f39d33a538ec8f8a11ed544b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a1d6f36abdf1869dcc45b8049b846ad8a" name="a1d6f36abdf1869dcc45b8049b846ad8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d6f36abdf1869dcc45b8049b846ad8a">&#9670;&#160;</a></span>LIBCARLA_THROW_BAD_VALUE_CAST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIBCARLA_THROW_BAD_VALUE_CAST</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>type</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    <span class="keywordflow">if</span> (GetType() != rpc::ActorAttributeType:: type) { \</div>
+<div class="line">      throw_exception(BadAttributeCast(GetId() + <span class="stringliteral">&quot;: bad attribute cast: cannot convert to &quot;</span> #type)); \</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html">ActorAttribute.cpp</a> 第 <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00017">17</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00070">carla::client::ActorAttributeValueAccess::As&lt; sensor::data::Color &gt;()</a>, <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00064">carla::client::ActorAttributeValueAccess::As&lt; std::string &gt;()</a> , 以及 <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00035">carla::client::ActorAttributeValueAccess::As()</a>.</p>
+
+</div>
+</div>
+<a id="ad1c9a1c96b5e7034a06bd6c279bb60ce" name="ad1c9a1c96b5e7034a06bd6c279bb60ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c9a1c96b5e7034a06bd6c279bb60ce">&#9670;&#160;</a></span>LIBCARLA_THROW_INVALID_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIBCARLA_THROW_INVALID_VALUE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">throw_exception(InvalidAttributeValue(GetId() + <span class="stringliteral">&quot;: &quot;</span> + message));</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html">ActorAttribute.cpp</a> 第 <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00016">16</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00070">carla::client::ActorAttributeValueAccess::As&lt; sensor::data::Color &gt;()</a>, <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00035">carla::client::ActorAttributeValueAccess::As()</a>, <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00022">carla::client::ActorAttribute::Set()</a> , 以及 <a class="el" href="../../dc/d32/ActorAttribute_8cpp_source.html#l00091">carla::client::ActorAttributeValueAccess::Validate()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

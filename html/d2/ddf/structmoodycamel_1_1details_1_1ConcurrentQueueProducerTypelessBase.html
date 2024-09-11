@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: moodycamel::details::ConcurrentQueueProducerTypelessBase结构体 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../db/dc8/namespacemoodycamel.html">moodycamel</a></li><li class="navelem"><a class="el" href="../../d6/d0f/namespacemoodycamel_1_1details.html">details</a></li><li class="navelem"><a class="el" href="../../d2/ddf/structmoodycamel_1_1details_1_1ConcurrentQueueProducerTypelessBase.html">ConcurrentQueueProducerTypelessBase</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../d9/d3e/structmoodycamel_1_1details_1_1ConcurrentQueueProducerTypelessBase-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">moodycamel::details::ConcurrentQueueProducerTypelessBase结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 moodycamel::details::ConcurrentQueueProducerTypelessBase 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> moodycamel::details::ConcurrentQueueProducerTypelessBase 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:affdd092f53b3f68461afc5ae8814a44e" id="r_affdd092f53b3f68461afc5ae8814a44e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affdd092f53b3f68461afc5ae8814a44e">ConcurrentQueueProducerTypelessBase</a> ()</td></tr>
+<tr class="separator:affdd092f53b3f68461afc5ae8814a44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a084765e7e00d6ae481b59da7276cebba" id="r_a084765e7e00d6ae481b59da7276cebba"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a084765e7e00d6ae481b59da7276cebba">inactive</a></td></tr>
+<tr class="separator:a084765e7e00d6ae481b59da7276cebba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e2a2381effda8611ccd71629f716432" id="r_a0e2a2381effda8611ccd71629f716432"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/ddf/structmoodycamel_1_1details_1_1ConcurrentQueueProducerTypelessBase.html">ConcurrentQueueProducerTypelessBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e2a2381effda8611ccd71629f716432">next</a></td></tr>
+<tr class="separator:a0e2a2381effda8611ccd71629f716432"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5498fe2c251bf814dda20cd4c9b158dd" id="r_a5498fe2c251bf814dda20cd4c9b158dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dbb/structmoodycamel_1_1ProducerToken.html">ProducerToken</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5498fe2c251bf814dda20cd4c9b158dd">token</a></td></tr>
+<tr class="separator:a5498fe2c251bf814dda20cd4c9b158dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00372">372</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="affdd092f53b3f68461afc5ae8814a44e" name="affdd092f53b3f68461afc5ae8814a44e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affdd092f53b3f68461afc5ae8814a44e">&#9670;&#160;</a></span>ConcurrentQueueProducerTypelessBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">moodycamel::details::ConcurrentQueueProducerTypelessBase::ConcurrentQueueProducerTypelessBase </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00378">378</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a084765e7e00d6ae481b59da7276cebba" name="a084765e7e00d6ae481b59da7276cebba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a084765e7e00d6ae481b59da7276cebba">&#9670;&#160;</a></span>inactive</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;bool&gt; moodycamel::details::ConcurrentQueueProducerTypelessBase::inactive</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00375">375</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03306">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::get_or_add_implicit_producer()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l02366">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::ImplicitProducer::~ImplicitProducer()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00623">moodycamel::ProducerToken::~ProducerToken()</a>.</p>
+
+</div>
+</div>
+<a id="a0e2a2381effda8611ccd71629f716432" name="a0e2a2381effda8611ccd71629f716432"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e2a2381effda8611ccd71629f716432">&#9670;&#160;</a></span>next</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/ddf/structmoodycamel_1_1details_1_1ConcurrentQueueProducerTypelessBase.html">ConcurrentQueueProducerTypelessBase</a>* moodycamel::details::ConcurrentQueueProducerTypelessBase::next</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00374">374</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03170">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::add_producer()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01676">moodycamel::ConcurrentQueue&lt; T, Traits &gt;::ProducerBase::next_prod()</a>.</p>
+
+</div>
+</div>
+<a id="a5498fe2c251bf814dda20cd4c9b158dd" name="a5498fe2c251bf814dda20cd4c9b158dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5498fe2c251bf814dda20cd4c9b158dd">&#9670;&#160;</a></span>token</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/dbb/structmoodycamel_1_1ProducerToken.html">ProducerToken</a>* moodycamel::details::ConcurrentQueueProducerTypelessBase::token</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00376">376</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03597">moodycamel::ProducerToken::ProducerToken()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l03588">moodycamel::ProducerToken::ProducerToken()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00587">moodycamel::ProducerToken::ProducerToken()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00602">moodycamel::ProducerToken::swap()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00623">moodycamel::ProducerToken::~ProducerToken()</a>.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li><a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

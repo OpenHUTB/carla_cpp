@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::rpc::WheelPhysicsControl类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html">rpc</a></li><li class="navelem"><a class="el" href="../../d5/d9b/classcarla_1_1rpc_1_1WheelPhysicsControl.html">WheelPhysicsControl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../d8/d9f/classcarla_1_1rpc_1_1WheelPhysicsControl-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::rpc::WheelPhysicsControl类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">WheelPhysicsControl.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> carla::rpc::WheelPhysicsControl 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:addc35c3b194c727f0f45e86836c57c92" id="r_addc35c3b194c727f0f45e86836c57c92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addc35c3b194c727f0f45e86836c57c92">operator FWheelPhysicsControl</a> () const</td></tr>
+<tr class="separator:addc35c3b194c727f0f45e86836c57c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a403d8ab29712f4a1b8a75bd2b02310df" id="r_a403d8ab29712f4a1b8a75bd2b02310df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a403d8ab29712f4a1b8a75bd2b02310df">operator!=</a> (const <a class="el" href="../../d5/d9b/classcarla_1_1rpc_1_1WheelPhysicsControl.html">WheelPhysicsControl</a> &amp;rhs) const</td></tr>
+<tr class="separator:a403d8ab29712f4a1b8a75bd2b02310df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9213ea2c1ad5d20e8dcf5e92c8ceb386" id="r_a9213ea2c1ad5d20e8dcf5e92c8ceb386"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9213ea2c1ad5d20e8dcf5e92c8ceb386">operator==</a> (const <a class="el" href="../../d5/d9b/classcarla_1_1rpc_1_1WheelPhysicsControl.html">WheelPhysicsControl</a> &amp;rhs) const</td></tr>
+<tr class="separator:a9213ea2c1ad5d20e8dcf5e92c8ceb386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95804f23f43977841d6602ccba34b5a0" id="r_a95804f23f43977841d6602ccba34b5a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95804f23f43977841d6602ccba34b5a0">WheelPhysicsControl</a> ()=default</td></tr>
+<tr class="separator:a95804f23f43977841d6602ccba34b5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4035481d98731f62818fec00ee503f7c" id="r_a4035481d98731f62818fec00ee503f7c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4035481d98731f62818fec00ee503f7c">WheelPhysicsControl</a> (const <a class="el" href="../../db/dfe/structFWheelPhysicsControl.html">FWheelPhysicsControl</a> &amp;Wheel)</td></tr>
+<tr class="separator:a4035481d98731f62818fec00ee503f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c02e5ad473b215de2a5c065de721e6" id="r_ab4c02e5ad473b215de2a5c065de721e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4c02e5ad473b215de2a5c065de721e6">WheelPhysicsControl</a> (float in_tire_friction, float in_damping_rate, float in_max_steer_angle, float in_radius, float in_max_brake_torque, float in_max_handbrake_torque, float in_lat_stiff_max_load, float in_lat_stiff_value, float in_long_stiff_value, <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> in_position)</td></tr>
+<tr class="separator:ab4c02e5ad473b215de2a5c065de721e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a5d1e371958c4b6c3eae1c2807b5b5975" id="r_a5d1e371958c4b6c3eae1c2807b5b5975"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d1e371958c4b6c3eae1c2807b5b5975">damping_rate</a> = 0.25f</td></tr>
+<tr class="separator:a5d1e371958c4b6c3eae1c2807b5b5975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae067e7101337d4061cfed438acda3b64" id="r_ae067e7101337d4061cfed438acda3b64"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae067e7101337d4061cfed438acda3b64">lat_stiff_max_load</a> = 2.0f</td></tr>
+<tr class="separator:ae067e7101337d4061cfed438acda3b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c6a6d6ce5cea785965a7e5c9043ec12" id="r_a8c6a6d6ce5cea785965a7e5c9043ec12"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c6a6d6ce5cea785965a7e5c9043ec12">lat_stiff_value</a> = 17.0f</td></tr>
+<tr class="separator:a8c6a6d6ce5cea785965a7e5c9043ec12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b9378bde221475cc9153ce0d76048f8" id="r_a3b9378bde221475cc9153ce0d76048f8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b9378bde221475cc9153ce0d76048f8">long_stiff_value</a> = 1000.0f</td></tr>
+<tr class="separator:a3b9378bde221475cc9153ce0d76048f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d9271fec9cc98972ceb04268d3c5ae" id="r_a97d9271fec9cc98972ceb04268d3c5ae"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97d9271fec9cc98972ceb04268d3c5ae">max_brake_torque</a> = 1500.0f</td></tr>
+<tr class="separator:a97d9271fec9cc98972ceb04268d3c5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae280a1897408eb12f227ed9652cdd281" id="r_ae280a1897408eb12f227ed9652cdd281"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae280a1897408eb12f227ed9652cdd281">max_handbrake_torque</a> = 3000.0f</td></tr>
+<tr class="separator:ae280a1897408eb12f227ed9652cdd281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4edcb8df8efb039d35fb0ce0dd17006" id="r_af4edcb8df8efb039d35fb0ce0dd17006"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4edcb8df8efb039d35fb0ce0dd17006">max_steer_angle</a> = 70.0f</td></tr>
+<tr class="separator:af4edcb8df8efb039d35fb0ce0dd17006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a661b79916a68571de97ad76e406f6999" id="r_a661b79916a68571de97ad76e406f6999"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a661b79916a68571de97ad76e406f6999">position</a> = {0.0f, 0.0f, 0.0f}</td></tr>
+<tr class="separator:a661b79916a68571de97ad76e406f6999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a418182031b76655018868b9b0038da99" id="r_a418182031b76655018868b9b0038da99"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a418182031b76655018868b9b0038da99">radius</a> = 30.0f</td></tr>
+<tr class="separator:a418182031b76655018868b9b0038da99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b9b4ac79e7c37622e337ef5762f8d5c" id="r_a0b9b4ac79e7c37622e337ef5762f8d5c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b9b4ac79e7c37622e337ef5762f8d5c">tire_friction</a> = 2.0f</td></tr>
+<tr class="separator:a0b9b4ac79e7c37622e337ef5762f8d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00015">15</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a95804f23f43977841d6602ccba34b5a0" name="a95804f23f43977841d6602ccba34b5a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95804f23f43977841d6602ccba34b5a0">&#9670;&#160;</a></span>WheelPhysicsControl() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::rpc::WheelPhysicsControl::WheelPhysicsControl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4c02e5ad473b215de2a5c065de721e6" name="ab4c02e5ad473b215de2a5c065de721e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4c02e5ad473b215de2a5c065de721e6">&#9670;&#160;</a></span>WheelPhysicsControl() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::rpc::WheelPhysicsControl::WheelPhysicsControl </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_tire_friction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_damping_rate</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_max_steer_angle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_radius</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_max_brake_torque</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_max_handbrake_torque</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_lat_stiff_max_load</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_lat_stiff_value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>in_long_stiff_value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a></td>          <td class="paramname"><span class="paramname"><em>in_position</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4035481d98731f62818fec00ee503f7c" name="a4035481d98731f62818fec00ee503f7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4035481d98731f62818fec00ee503f7c">&#9670;&#160;</a></span>WheelPhysicsControl() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::rpc::WheelPhysicsControl::WheelPhysicsControl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../db/dfe/structFWheelPhysicsControl.html">FWheelPhysicsControl</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Wheel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00072">72</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="addc35c3b194c727f0f45e86836c57c92" name="addc35c3b194c727f0f45e86836c57c92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addc35c3b194c727f0f45e86836c57c92">&#9670;&#160;</a></span>operator FWheelPhysicsControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::rpc::WheelPhysicsControl::operator <a class="el" href="../../db/dfe/structFWheelPhysicsControl.html">FWheelPhysicsControl</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">84</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00043">damping_rate</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00020">FWheelPhysicsControl::DampingRate</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00048">lat_stiff_max_load</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00049">lat_stiff_value</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00035">FWheelPhysicsControl::LatStiffMaxLoad</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00038">FWheelPhysicsControl::LatStiffValue</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00050">long_stiff_value</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00041">FWheelPhysicsControl::LongStiffValue</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00046">max_brake_torque</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00047">max_handbrake_torque</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00044">max_steer_angle</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00029">FWheelPhysicsControl::MaxBrakeTorque</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00032">FWheelPhysicsControl::MaxHandBrakeTorque</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00023">FWheelPhysicsControl::MaxSteerAngle</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00044">FWheelPhysicsControl::Position</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00051">position</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00026">FWheelPhysicsControl::Radius</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00045">radius</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00042">tire_friction</a>, <a class="el" href="../../dd/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Vehicle_2WheelPhysicsControl_8h_source.html#l00017">FWheelPhysicsControl::TireFriction</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+</div>
+</div>
+<a id="a403d8ab29712f4a1b8a75bd2b02310df" name="a403d8ab29712f4a1b8a75bd2b02310df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a403d8ab29712f4a1b8a75bd2b02310df">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::rpc::WheelPhysicsControl::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d9b/classcarla_1_1rpc_1_1WheelPhysicsControl.html">WheelPhysicsControl</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">53</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00043">damping_rate</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00048">lat_stiff_max_load</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00049">lat_stiff_value</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00050">long_stiff_value</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00046">max_brake_torque</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00047">max_handbrake_torque</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00044">max_steer_angle</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00051">position</a>, <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00045">radius</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00042">tire_friction</a>.</p>
+
+</div>
+</div>
+<a id="a9213ea2c1ad5d20e8dcf5e92c8ceb386" name="a9213ea2c1ad5d20e8dcf5e92c8ceb386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9213ea2c1ad5d20e8dcf5e92c8ceb386">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::rpc::WheelPhysicsControl::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/d9b/classcarla_1_1rpc_1_1WheelPhysicsControl.html">WheelPhysicsControl</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00067">67</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a5d1e371958c4b6c3eae1c2807b5b5975" name="a5d1e371958c4b6c3eae1c2807b5b5975"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d1e371958c4b6c3eae1c2807b5b5975">&#9670;&#160;</a></span>damping_rate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::damping_rate = 0.25f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00043">43</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="ae067e7101337d4061cfed438acda3b64" name="ae067e7101337d4061cfed438acda3b64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae067e7101337d4061cfed438acda3b64">&#9670;&#160;</a></span>lat_stiff_max_load</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::lat_stiff_max_load = 2.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00048">48</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="a8c6a6d6ce5cea785965a7e5c9043ec12" name="a8c6a6d6ce5cea785965a7e5c9043ec12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c6a6d6ce5cea785965a7e5c9043ec12">&#9670;&#160;</a></span>lat_stiff_value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::lat_stiff_value = 17.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00049">49</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="a3b9378bde221475cc9153ce0d76048f8" name="a3b9378bde221475cc9153ce0d76048f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b9378bde221475cc9153ce0d76048f8">&#9670;&#160;</a></span>long_stiff_value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::long_stiff_value = 1000.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00050">50</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="a97d9271fec9cc98972ceb04268d3c5ae" name="a97d9271fec9cc98972ceb04268d3c5ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97d9271fec9cc98972ceb04268d3c5ae">&#9670;&#160;</a></span>max_brake_torque</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::max_brake_torque = 1500.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00046">46</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="ae280a1897408eb12f227ed9652cdd281" name="ae280a1897408eb12f227ed9652cdd281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae280a1897408eb12f227ed9652cdd281">&#9670;&#160;</a></span>max_handbrake_torque</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::max_handbrake_torque = 3000.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00047">47</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="af4edcb8df8efb039d35fb0ce0dd17006" name="af4edcb8df8efb039d35fb0ce0dd17006"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4edcb8df8efb039d35fb0ce0dd17006">&#9670;&#160;</a></span>max_steer_angle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::max_steer_angle = 70.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00044">44</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="a661b79916a68571de97ad76e406f6999" name="a661b79916a68571de97ad76e406f6999"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a661b79916a68571de97ad76e406f6999">&#9670;&#160;</a></span>position</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">geom::Vector3D</a> carla::rpc::WheelPhysicsControl::position = {0.0f, 0.0f, 0.0f}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00051">51</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="a418182031b76655018868b9b0038da99" name="a418182031b76655018868b9b0038da99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a418182031b76655018868b9b0038da99">&#9670;&#160;</a></span>radius</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::radius = 30.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00045">45</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="a0b9b4ac79e7c37622e337ef5762f8d5c" name="a0b9b4ac79e7c37622e337ef5762f8d5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b9b4ac79e7c37622e337ef5762f8d5c">&#9670;&#160;</a></span>tire_friction</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::rpc::WheelPhysicsControl::tire_friction = 2.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a> 第 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00042">42</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00084">operator FWheelPhysicsControl()</a> , 以及 <a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html#l00053">operator!=()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../df/d2b/LibCarla_2source_2carla_2rpc_2WheelPhysicsControl_8h_source.html">LibCarla/source/carla/rpc/WheelPhysicsControl.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

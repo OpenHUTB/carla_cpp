@@ -1,0 +1,21 @@
+digraph "carla::sensor::s11n::ImageSerializer::DeserializeHeader"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="carla::sensor::s11n\l::ImageSerializer::Deserialize\lHeader",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::sensor::data\l::ImageTmpl::GetHeader",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#afdc0f33247d9775258c2cf82a64d8d33",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::sensor::data\l::ImageTmpl::GetFOVAngle",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a4532cc15de5d50006dd3d90d14dfca8a",tooltip="Get horizontal field of view of the image in degrees."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::sensor::data\l::ImageTmpl::GetHeight",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a9862785df08e15410044833f9b5e9d1e",tooltip="Get image height in pixels."];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::sensor::data\l::ImageTmpl::ImageTmpl",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a5bd78e5b89873dba921d28268ed6d542",tooltip=" "];
+  Node2 -> Node6 [id="edge5_Node000002_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::sensor::data\l::ImageTmpl::GetWidth",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a882f2a8224953695857c2aab3d26dc7d",tooltip="Get image width in pixels."];
+  Node6 -> Node5 [id="edge6_Node000006_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+}

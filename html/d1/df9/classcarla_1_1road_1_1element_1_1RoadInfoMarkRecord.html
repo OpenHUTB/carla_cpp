@@ -1,0 +1,1026 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::road::element::RoadInfoMarkRecord类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../de/d26/namespacecarla_1_1road.html">road</a></li><li class="navelem"><a class="el" href="../../df/dc1/namespacecarla_1_1road_1_1element.html">element</a></li><li class="navelem"><a class="el" href="../../d1/df9/classcarla_1_1road_1_1element_1_1RoadInfoMarkRecord.html">RoadInfoMarkRecord</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../da/d95/classcarla_1_1road_1_1element_1_1RoadInfoMarkRecord-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::road::element::RoadInfoMarkRecord类 参考<span class="mlabels"><span class="mlabel">final</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Each lane within a road cross section can be provided with several road markentries.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::road::element::RoadInfoMarkRecord 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::road::element::RoadInfoMarkRecord 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a7ab9501c5086223a821a827e77edf7ec" id="r_a7ab9501c5086223a821a827e77edf7ec"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ab9501c5086223a821a827e77edf7ec">LaneChange</a> : uint8_t { <a class="el" href="#a7ab9501c5086223a821a827e77edf7eca6adf97f83acf6453d4a6a4b1070f3754">None</a> = 0x00
+, <a class="el" href="#a7ab9501c5086223a821a827e77edf7ecaaac247ca22789872bad95dc8f6c45d37">Increase</a> = 0x01
+, <a class="el" href="#a7ab9501c5086223a821a827e77edf7eca9e661cc6f7c72b95abfd6b372aacbfa1">Decrease</a> = 0x02
+, <a class="el" href="#a7ab9501c5086223a821a827e77edf7eca130c5b3473c57faa76e2a1c54e26f88e">Both</a> = 0x03
+ }</td></tr>
+<tr class="memdesc:a7ab9501c5086223a821a827e77edf7ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used as flags  <a href="#a7ab9501c5086223a821a827e77edf7ec">更多...</a><br /></td></tr>
+<tr class="separator:a7ab9501c5086223a821a827e77edf7ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a8b1c22127e44d349e85517c900bce148" id="r_a8b1c22127e44d349e85517c900bce148"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b1c22127e44d349e85517c900bce148">AcceptVisitor</a> (<a class="el" href="../../df/d3e/classcarla_1_1road_1_1element_1_1RoadInfoVisitor.html">RoadInfoVisitor</a> &amp;v) final</td></tr>
+<tr class="separator:a8b1c22127e44d349e85517c900bce148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa633d7dfe60dc7519f22a254c6a7d21c" id="r_aa633d7dfe60dc7519f22a254c6a7d21c"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa633d7dfe60dc7519f22a254c6a7d21c">GetColor</a> () const</td></tr>
+<tr class="memdesc:aa633d7dfe60dc7519f22a254c6a7d21c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color of the road mark.  <br /></td></tr>
+<tr class="separator:aa633d7dfe60dc7519f22a254c6a7d21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4e9e8afbdb14c2c83d6ac351d416873" id="r_ab4e9e8afbdb14c2c83d6ac351d416873"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4e9e8afbdb14c2c83d6ac351d416873">GetHeight</a> () const</td></tr>
+<tr class="memdesc:ab4e9e8afbdb14c2c83d6ac351d416873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physical distance of top edge of road mark from reference plane of the lane.  <br /></td></tr>
+<tr class="separator:ab4e9e8afbdb14c2c83d6ac351d416873"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab57f1efeaa960adbc416e50f27e825f4" id="r_ab57f1efeaa960adbc416e50f27e825f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a7ab9501c5086223a821a827e77edf7ec">LaneChange</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab57f1efeaa960adbc416e50f27e825f4">GetLaneChange</a> () const</td></tr>
+<tr class="memdesc:ab57f1efeaa960adbc416e50f27e825f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allow a lane change in the indicated direction taking into account that lanes are numbered in ascending order from right to left.  <br /></td></tr>
+<tr class="separator:ab57f1efeaa960adbc416e50f27e825f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2010bb40412f233c384a9ae22e9954" id="r_a3c2010bb40412f233c384a9ae22e9954"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="../../da/da9/classcarla_1_1road_1_1element_1_1RoadInfoMarkTypeLine.html">RoadInfoMarkTypeLine</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c2010bb40412f233c384a9ae22e9954">GetLines</a> ()</td></tr>
+<tr class="separator:a3c2010bb40412f233c384a9ae22e9954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67fb7e10dbd17e8d983675a24fb894a" id="r_ad67fb7e10dbd17e8d983675a24fb894a"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad67fb7e10dbd17e8d983675a24fb894a">GetMaterial</a> () const</td></tr>
+<tr class="memdesc:ad67fb7e10dbd17e8d983675a24fb894a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Material of the road mark (identifiers to be defined, use "standard" for the moment.  <br /></td></tr>
+<tr class="separator:ad67fb7e10dbd17e8d983675a24fb894a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34a82d5b4a92ffe790dbb88e52a2fbe8" id="r_a34a82d5b4a92ffe790dbb88e52a2fbe8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34a82d5b4a92ffe790dbb88e52a2fbe8">GetRoadMarkId</a> () const</td></tr>
+<tr class="memdesc:a34a82d5b4a92ffe790dbb88e52a2fbe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifer for the road mark.  <br /></td></tr>
+<tr class="separator:a34a82d5b4a92ffe790dbb88e52a2fbe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40b96112b3a6956e1dc23980d3869b83" id="r_a40b96112b3a6956e1dc23980d3869b83"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40b96112b3a6956e1dc23980d3869b83">GetType</a> () const</td></tr>
+<tr class="memdesc:a40b96112b3a6956e1dc23980d3869b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the road mark.  <br /></td></tr>
+<tr class="separator:a40b96112b3a6956e1dc23980d3869b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a254c613150eb0d20a78892fa2a7b25bc" id="r_a254c613150eb0d20a78892fa2a7b25bc"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a254c613150eb0d20a78892fa2a7b25bc">GetTypeName</a> () const</td></tr>
+<tr class="memdesc:a254c613150eb0d20a78892fa2a7b25bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the road mark type if it has one.  <br /></td></tr>
+<tr class="separator:a254c613150eb0d20a78892fa2a7b25bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658fa8090cad3819757b574a13dbb545" id="r_a658fa8090cad3819757b574a13dbb545"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a658fa8090cad3819757b574a13dbb545">GetTypeWidth</a> () const</td></tr>
+<tr class="memdesc:a658fa8090cad3819757b574a13dbb545"><td class="mdescLeft">&#160;</td><td class="mdescRight">Width of the road mark type if it has one.  <br /></td></tr>
+<tr class="separator:a658fa8090cad3819757b574a13dbb545"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e2d558b07fc285d70ad45386ab7aa02" id="r_a1e2d558b07fc285d70ad45386ab7aa02"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e2d558b07fc285d70ad45386ab7aa02">GetWeight</a> () const</td></tr>
+<tr class="memdesc:a1e2d558b07fc285d70ad45386ab7aa02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weight of the road mark.  <br /></td></tr>
+<tr class="separator:a1e2d558b07fc285d70ad45386ab7aa02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcdbc1a8ab972e2c9c301d9678575830" id="r_adcdbc1a8ab972e2c9c301d9678575830"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcdbc1a8ab972e2c9c301d9678575830">GetWidth</a> () const</td></tr>
+<tr class="memdesc:adcdbc1a8ab972e2c9c301d9678575830"><td class="mdescLeft">&#160;</td><td class="mdescRight">Width of the road mark –optional.  <br /></td></tr>
+<tr class="separator:adcdbc1a8ab972e2c9c301d9678575830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaa6c930980374dfae91de8519ff4f69" id="r_afaa6c930980374dfae91de8519ff4f69"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afaa6c930980374dfae91de8519ff4f69">RoadInfoMarkRecord</a> (double s, int road_mark_id)</td></tr>
+<tr class="separator:afaa6c930980374dfae91de8519ff4f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a305f5728230344f246f30ba92512f9bc" id="r_a305f5728230344f246f30ba92512f9bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a305f5728230344f246f30ba92512f9bc">RoadInfoMarkRecord</a> (double s, int road_mark_id, std::string type, std::string weight, std::string color, std::string material, double width, <a class="el" href="#a7ab9501c5086223a821a827e77edf7ec">LaneChange</a> lane_change, double height, std::string type_name, double type_width)</td></tr>
+<tr class="separator:a305f5728230344f246f30ba92512f9bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1road_1_1element_1_1RoadInfo"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classcarla_1_1road_1_1element_1_1RoadInfo')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html">carla::road::element::RoadInfo</a></td></tr>
+<tr class="memitem:a130243a1f115865fd9b59c77c0311fc6 inherit pub_methods_classcarla_1_1road_1_1element_1_1RoadInfo" id="r_a130243a1f115865fd9b59c77c0311fc6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html#a130243a1f115865fd9b59c77c0311fc6">GetDistance</a> () const</td></tr>
+<tr class="memdesc:a130243a1f115865fd9b59c77c0311fc6 inherit pub_methods_classcarla_1_1road_1_1element_1_1RoadInfo"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance from road's start location.  <br /></td></tr>
+<tr class="separator:a130243a1f115865fd9b59c77c0311fc6 inherit pub_methods_classcarla_1_1road_1_1element_1_1RoadInfo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6196a5c838a1950a73f3701d3ea93721 inherit pub_methods_classcarla_1_1road_1_1element_1_1RoadInfo" id="r_a6196a5c838a1950a73f3701d3ea93721"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html#a6196a5c838a1950a73f3701d3ea93721">~RoadInfo</a> ()=default</td></tr>
+<tr class="separator:a6196a5c838a1950a73f3701d3ea93721 inherit pub_methods_classcarla_1_1road_1_1element_1_1RoadInfo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a73731411894f3bc71a8effa01760353f" id="r_a73731411894f3bc71a8effa01760353f"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73731411894f3bc71a8effa01760353f">_color</a></td></tr>
+<tr class="separator:a73731411894f3bc71a8effa01760353f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa923090aa85fde3d0e49d7e510f00d0b" id="r_aa923090aa85fde3d0e49d7e510f00d0b"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa923090aa85fde3d0e49d7e510f00d0b">_height</a></td></tr>
+<tr class="separator:aa923090aa85fde3d0e49d7e510f00d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3379b13655ed612ea19b18aada81a292" id="r_a3379b13655ed612ea19b18aada81a292"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a7ab9501c5086223a821a827e77edf7ec">LaneChange</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3379b13655ed612ea19b18aada81a292">_lane_change</a></td></tr>
+<tr class="separator:a3379b13655ed612ea19b18aada81a292"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a34a185892fbdd0f91cbdb9d666d10f" id="r_a8a34a185892fbdd0f91cbdb9d666d10f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="../../da/da9/classcarla_1_1road_1_1element_1_1RoadInfoMarkTypeLine.html">RoadInfoMarkTypeLine</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a34a185892fbdd0f91cbdb9d666d10f">_lines</a></td></tr>
+<tr class="separator:a8a34a185892fbdd0f91cbdb9d666d10f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7379361a1498c879eb465adb962eaff" id="r_ac7379361a1498c879eb465adb962eaff"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7379361a1498c879eb465adb962eaff">_material</a></td></tr>
+<tr class="separator:ac7379361a1498c879eb465adb962eaff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a75e49822b0c5b863be9d772e8823f7" id="r_a2a75e49822b0c5b863be9d772e8823f7"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a75e49822b0c5b863be9d772e8823f7">_road_mark_id</a></td></tr>
+<tr class="separator:a2a75e49822b0c5b863be9d772e8823f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae291bea7bd2c9006a35e3cde948d37ad" id="r_ae291bea7bd2c9006a35e3cde948d37ad"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae291bea7bd2c9006a35e3cde948d37ad">_type</a></td></tr>
+<tr class="separator:ae291bea7bd2c9006a35e3cde948d37ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7bf5301467dea01cf4066bdda976b32" id="r_af7bf5301467dea01cf4066bdda976b32"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7bf5301467dea01cf4066bdda976b32">_type_name</a></td></tr>
+<tr class="separator:af7bf5301467dea01cf4066bdda976b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4180f0a05e76d5e7faaf97818680162b" id="r_a4180f0a05e76d5e7faaf97818680162b"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4180f0a05e76d5e7faaf97818680162b">_type_width</a></td></tr>
+<tr class="separator:a4180f0a05e76d5e7faaf97818680162b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0131fe06f527ed8c3dad365df0c8be81" id="r_a0131fe06f527ed8c3dad365df0c8be81"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0131fe06f527ed8c3dad365df0c8be81">_weight</a></td></tr>
+<tr class="separator:a0131fe06f527ed8c3dad365df0c8be81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ced8e6302606aac5fd45637eefe5f3" id="r_a21ced8e6302606aac5fd45637eefe5f3"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21ced8e6302606aac5fd45637eefe5f3">_width</a></td></tr>
+<tr class="separator:a21ced8e6302606aac5fd45637eefe5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_methods_classcarla_1_1road_1_1element_1_1RoadInfo"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classcarla_1_1road_1_1element_1_1RoadInfo')"><img src="../../closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="../../d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html">carla::road::element::RoadInfo</a></td></tr>
+<tr class="memitem:ae9400a66b2139334f8d05d68509201f6 inherit pro_methods_classcarla_1_1road_1_1element_1_1RoadInfo" id="r_ae9400a66b2139334f8d05d68509201f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html#ae9400a66b2139334f8d05d68509201f6">RoadInfo</a> (double distance=0.0)</td></tr>
+<tr class="separator:ae9400a66b2139334f8d05d68509201f6 inherit pro_methods_classcarla_1_1road_1_1element_1_1RoadInfo"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Each lane within a road cross section can be provided with several road markentries. </p>
+<p>The road mark information defines the style of the line at the lane’s outer border. For left lanes, this is the left border, for right lanes the right one. The style of the line separating left and right lanes is determined by the road mark entry for lane zero (i.e. the center lane) </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00025">25</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a7ab9501c5086223a821a827e77edf7ec" name="a7ab9501c5086223a821a827e77edf7ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ab9501c5086223a821a827e77edf7ec">&#9670;&#160;</a></span>LaneChange</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a7ab9501c5086223a821a827e77edf7ec">carla::road::element::RoadInfoMarkRecord::LaneChange</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Can be used as flags </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a7ab9501c5086223a821a827e77edf7eca6adf97f83acf6453d4a6a4b1070f3754" name="a7ab9501c5086223a821a827e77edf7eca6adf97f83acf6453d4a6a4b1070f3754"></a>None&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7ab9501c5086223a821a827e77edf7ecaaac247ca22789872bad95dc8f6c45d37" name="a7ab9501c5086223a821a827e77edf7ecaaac247ca22789872bad95dc8f6c45d37"></a>Increase&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7ab9501c5086223a821a827e77edf7eca9e661cc6f7c72b95abfd6b372aacbfa1" name="a7ab9501c5086223a821a827e77edf7eca9e661cc6f7c72b95abfd6b372aacbfa1"></a>Decrease&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7ab9501c5086223a821a827e77edf7eca130c5b3473c57faa76e2a1c54e26f88e" name="a7ab9501c5086223a821a827e77edf7eca130c5b3473c57faa76e2a1c54e26f88e"></a>Both&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="afaa6c930980374dfae91de8519ff4f69" name="afaa6c930980374dfae91de8519ff4f69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaa6c930980374dfae91de8519ff4f69">&#9670;&#160;</a></span>RoadInfoMarkRecord() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::road::element::RoadInfoMarkRecord::RoadInfoMarkRecord </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>road_mark_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a305f5728230344f246f30ba92512f9bc" name="a305f5728230344f246f30ba92512f9bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a305f5728230344f246f30ba92512f9bc">&#9670;&#160;</a></span>RoadInfoMarkRecord() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::road::element::RoadInfoMarkRecord::RoadInfoMarkRecord </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>road_mark_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>weight</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>color</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>material</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>width</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a7ab9501c5086223a821a827e77edf7ec">LaneChange</a></td>          <td class="paramname"><span class="paramname"><em>lane_change</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>height</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>type_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>type_width</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a8b1c22127e44d349e85517c900bce148" name="a8b1c22127e44d349e85517c900bce148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b1c22127e44d349e85517c900bce148">&#9670;&#160;</a></span>AcceptVisitor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::road::element::RoadInfoMarkRecord::AcceptVisitor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/d3e/classcarla_1_1road_1_1element_1_1RoadInfoVisitor.html">RoadInfoVisitor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="../../d6/d0f/classcarla_1_1road_1_1element_1_1RoadInfo.html#aa6c32e4a4279d42cd8d8610bf3cbcc06">carla::road::element::RoadInfo</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00075">75</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa633d7dfe60dc7519f22a254c6a7d21c" name="aa633d7dfe60dc7519f22a254c6a7d21c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa633d7dfe60dc7519f22a254c6a7d21c">&#9670;&#160;</a></span>GetColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; carla::road::element::RoadInfoMarkRecord::GetColor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Color of the road mark. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00095">95</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00145">_color</a>.</p>
+
+</div>
+</div>
+<a id="ab4e9e8afbdb14c2c83d6ac351d416873" name="ab4e9e8afbdb14c2c83d6ac351d416873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4e9e8afbdb14c2c83d6ac351d416873">&#9670;&#160;</a></span>GetHeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::RoadInfoMarkRecord::GetHeight </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Physical distance of top edge of road mark from reference plane of the lane. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00119">119</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00153">_height</a>.</p>
+
+</div>
+</div>
+<a id="ab57f1efeaa960adbc416e50f27e825f4" name="ab57f1efeaa960adbc416e50f27e825f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab57f1efeaa960adbc416e50f27e825f4">&#9670;&#160;</a></span>GetLaneChange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a7ab9501c5086223a821a827e77edf7ec">LaneChange</a> carla::road::element::RoadInfoMarkRecord::GetLaneChange </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allow a lane change in the indicated direction taking into account that lanes are numbered in ascending order from right to left. </p>
+<p>If the attribute is missing, “both” is assumed to be valid. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00113">113</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00151">_lane_change</a>.</p>
+
+</div>
+</div>
+<a id="a3c2010bb40412f233c384a9ae22e9954" name="a3c2010bb40412f233c384a9ae22e9954"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2010bb40412f233c384a9ae22e9954">&#9670;&#160;</a></span>GetLines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::unique_ptr&lt; <a class="el" href="../../da/da9/classcarla_1_1road_1_1element_1_1RoadInfoMarkTypeLine.html">RoadInfoMarkTypeLine</a> &gt; &gt; &amp; carla::road::element::RoadInfoMarkRecord::GetLines </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00133">133</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00159">_lines</a>.</p>
+
+</div>
+</div>
+<a id="ad67fb7e10dbd17e8d983675a24fb894a" name="ad67fb7e10dbd17e8d983675a24fb894a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad67fb7e10dbd17e8d983675a24fb894a">&#9670;&#160;</a></span>GetMaterial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; carla::road::element::RoadInfoMarkRecord::GetMaterial </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Material of the road mark (identifiers to be defined, use "standard" for the moment. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00101">101</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00147">_material</a>.</p>
+
+</div>
+</div>
+<a id="a34a82d5b4a92ffe790dbb88e52a2fbe8" name="a34a82d5b4a92ffe790dbb88e52a2fbe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34a82d5b4a92ffe790dbb88e52a2fbe8">&#9670;&#160;</a></span>GetRoadMarkId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int carla::road::element::RoadInfoMarkRecord::GetRoadMarkId </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unique identifer for the road mark. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00080">80</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00139">_road_mark_id</a>.</p>
+
+</div>
+</div>
+<a id="a40b96112b3a6956e1dc23980d3869b83" name="a40b96112b3a6956e1dc23980d3869b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b96112b3a6956e1dc23980d3869b83">&#9670;&#160;</a></span>GetType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; carla::road::element::RoadInfoMarkRecord::GetType </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type of the road mark. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00085">85</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00141">_type</a>.</p>
+
+</div>
+</div>
+<a id="a254c613150eb0d20a78892fa2a7b25bc" name="a254c613150eb0d20a78892fa2a7b25bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a254c613150eb0d20a78892fa2a7b25bc">&#9670;&#160;</a></span>GetTypeName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; carla::road::element::RoadInfoMarkRecord::GetTypeName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Name of the road mark type if it has one. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00124">124</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00155">_type_name</a>.</p>
+
+</div>
+</div>
+<a id="a658fa8090cad3819757b574a13dbb545" name="a658fa8090cad3819757b574a13dbb545"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a658fa8090cad3819757b574a13dbb545">&#9670;&#160;</a></span>GetTypeWidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::RoadInfoMarkRecord::GetTypeWidth </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Width of the road mark type if it has one. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00129">129</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00157">_type_width</a>.</p>
+
+</div>
+</div>
+<a id="a1e2d558b07fc285d70ad45386ab7aa02" name="a1e2d558b07fc285d70ad45386ab7aa02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e2d558b07fc285d70ad45386ab7aa02">&#9670;&#160;</a></span>GetWeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; carla::road::element::RoadInfoMarkRecord::GetWeight </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Weight of the road mark. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00090">90</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00143">_weight</a>.</p>
+
+</div>
+</div>
+<a id="adcdbc1a8ab972e2c9c301d9678575830" name="adcdbc1a8ab972e2c9c301d9678575830"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcdbc1a8ab972e2c9c301d9678575830">&#9670;&#160;</a></span>GetWidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::road::element::RoadInfoMarkRecord::GetWidth </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Width of the road mark –optional. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00106">106</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00149">_width</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a73731411894f3bc71a8effa01760353f" name="a73731411894f3bc71a8effa01760353f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73731411894f3bc71a8effa01760353f">&#9670;&#160;</a></span>_color</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string carla::road::element::RoadInfoMarkRecord::_color</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00145">145</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00095">GetColor()</a>.</p>
+
+</div>
+</div>
+<a id="aa923090aa85fde3d0e49d7e510f00d0b" name="aa923090aa85fde3d0e49d7e510f00d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa923090aa85fde3d0e49d7e510f00d0b">&#9670;&#160;</a></span>_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double carla::road::element::RoadInfoMarkRecord::_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00153">153</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00119">GetHeight()</a>.</p>
+
+</div>
+</div>
+<a id="a3379b13655ed612ea19b18aada81a292" name="a3379b13655ed612ea19b18aada81a292"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3379b13655ed612ea19b18aada81a292">&#9670;&#160;</a></span>_lane_change</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="#a7ab9501c5086223a821a827e77edf7ec">LaneChange</a> carla::road::element::RoadInfoMarkRecord::_lane_change</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00151">151</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00113">GetLaneChange()</a>.</p>
+
+</div>
+</div>
+<a id="a8a34a185892fbdd0f91cbdb9d666d10f" name="a8a34a185892fbdd0f91cbdb9d666d10f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a34a185892fbdd0f91cbdb9d666d10f">&#9670;&#160;</a></span>_lines</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="../../da/da9/classcarla_1_1road_1_1element_1_1RoadInfoMarkTypeLine.html">RoadInfoMarkTypeLine</a>&gt; &gt; carla::road::element::RoadInfoMarkRecord::_lines</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00159">159</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00133">GetLines()</a>.</p>
+
+</div>
+</div>
+<a id="ac7379361a1498c879eb465adb962eaff" name="ac7379361a1498c879eb465adb962eaff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7379361a1498c879eb465adb962eaff">&#9670;&#160;</a></span>_material</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string carla::road::element::RoadInfoMarkRecord::_material</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00147">147</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00101">GetMaterial()</a>.</p>
+
+</div>
+</div>
+<a id="a2a75e49822b0c5b863be9d772e8823f7" name="a2a75e49822b0c5b863be9d772e8823f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a75e49822b0c5b863be9d772e8823f7">&#9670;&#160;</a></span>_road_mark_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int carla::road::element::RoadInfoMarkRecord::_road_mark_id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00139">139</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00080">GetRoadMarkId()</a>.</p>
+
+</div>
+</div>
+<a id="ae291bea7bd2c9006a35e3cde948d37ad" name="ae291bea7bd2c9006a35e3cde948d37ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae291bea7bd2c9006a35e3cde948d37ad">&#9670;&#160;</a></span>_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string carla::road::element::RoadInfoMarkRecord::_type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00141">141</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00085">GetType()</a>.</p>
+
+</div>
+</div>
+<a id="af7bf5301467dea01cf4066bdda976b32" name="af7bf5301467dea01cf4066bdda976b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7bf5301467dea01cf4066bdda976b32">&#9670;&#160;</a></span>_type_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string carla::road::element::RoadInfoMarkRecord::_type_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00155">155</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00124">GetTypeName()</a>.</p>
+
+</div>
+</div>
+<a id="a4180f0a05e76d5e7faaf97818680162b" name="a4180f0a05e76d5e7faaf97818680162b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4180f0a05e76d5e7faaf97818680162b">&#9670;&#160;</a></span>_type_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double carla::road::element::RoadInfoMarkRecord::_type_width</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00157">157</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00129">GetTypeWidth()</a>.</p>
+
+</div>
+</div>
+<a id="a0131fe06f527ed8c3dad365df0c8be81" name="a0131fe06f527ed8c3dad365df0c8be81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0131fe06f527ed8c3dad365df0c8be81">&#9670;&#160;</a></span>_weight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string carla::road::element::RoadInfoMarkRecord::_weight</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00143">143</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00090">GetWeight()</a>.</p>
+
+</div>
+</div>
+<a id="a21ced8e6302606aac5fd45637eefe5f3" name="a21ced8e6302606aac5fd45637eefe5f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21ced8e6302606aac5fd45637eefe5f3">&#9670;&#160;</a></span>_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double carla::road::element::RoadInfoMarkRecord::_width</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a> 第 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00149">149</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html#l00106">GetWidth()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">RoadInfoMarkRecord.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

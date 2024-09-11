@@ -1,0 +1,665 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: xml_parser结构体 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../d0/df2/structxml__parser-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">xml_parser结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> xml_parser 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a85625c095f072a9938d0e47cf468de6b" id="r_a85625c095f072a9938d0e47cf468de6b"><td class="memItemLeft" align="right" valign="top">char_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85625c095f072a9938d0e47cf468de6b">parse_doctype_group</a> (char_t *s, char_t endch)</td></tr>
+<tr class="separator:a85625c095f072a9938d0e47cf468de6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93f0e9c20ffd16c42a287e687a359a0c" id="r_a93f0e9c20ffd16c42a287e687a359a0c"><td class="memItemLeft" align="right" valign="top">char_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93f0e9c20ffd16c42a287e687a359a0c">parse_doctype_ignore</a> (char_t *s)</td></tr>
+<tr class="separator:a93f0e9c20ffd16c42a287e687a359a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09210dea8745d4d4c45ebb1e1a9211d0" id="r_a09210dea8745d4d4c45ebb1e1a9211d0"><td class="memItemLeft" align="right" valign="top">char_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09210dea8745d4d4c45ebb1e1a9211d0">parse_doctype_primitive</a> (char_t *s)</td></tr>
+<tr class="separator:a09210dea8745d4d4c45ebb1e1a9211d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc651baa774c379ad03244cac2e96015" id="r_afc651baa774c379ad03244cac2e96015"><td class="memItemLeft" align="right" valign="top">char_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc651baa774c379ad03244cac2e96015">parse_exclamation</a> (char_t *s, <a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *cursor, unsigned int optmsk, char_t endch)</td></tr>
+<tr class="separator:afc651baa774c379ad03244cac2e96015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8587d716d71121b4dfffdd1cc8e2145f" id="r_a8587d716d71121b4dfffdd1cc8e2145f"><td class="memItemLeft" align="right" valign="top">char_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8587d716d71121b4dfffdd1cc8e2145f">parse_question</a> (char_t *s, <a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *&amp;ref_cursor, unsigned int optmsk, char_t endch)</td></tr>
+<tr class="separator:a8587d716d71121b4dfffdd1cc8e2145f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35bac90f1975aa1a9d5de4b60b761f16" id="r_a35bac90f1975aa1a9d5de4b60b761f16"><td class="memItemLeft" align="right" valign="top">char_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35bac90f1975aa1a9d5de4b60b761f16">parse_tree</a> (char_t *s, <a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *root, unsigned int optmsk, char_t endch)</td></tr>
+<tr class="separator:a35bac90f1975aa1a9d5de4b60b761f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a062d6951738847e674b538a677c8c5f0" id="r_a062d6951738847e674b538a677c8c5f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a062d6951738847e674b538a677c8c5f0">xml_parser</a> (<a class="el" href="../../d3/dae/structxml__allocator.html">xml_allocator</a> *alloc_)</td></tr>
+<tr class="separator:a062d6951738847e674b538a677c8c5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a6be4da5b3206913d0e3bd8320394df41" id="r_a6be4da5b3206913d0e3bd8320394df41"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6be4da5b3206913d0e3bd8320394df41">has_element_node_siblings</a> (<a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *node)</td></tr>
+<tr class="separator:a6be4da5b3206913d0e3bd8320394df41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bf0acd166edf3fc6cc9543002ff6f5d" id="r_a4bf0acd166edf3fc6cc9543002ff6f5d"><td class="memItemLeft" align="right" valign="top">static xml_parse_result&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bf0acd166edf3fc6cc9543002ff6f5d">parse</a> (char_t *buffer, size_t length, <a class="el" href="../../d3/dde/structxml__document__struct.html">xml_document_struct</a> *xmldoc, <a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *root, unsigned int optmsk)</td></tr>
+<tr class="separator:a4bf0acd166edf3fc6cc9543002ff6f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00681ed5cdd50dc86bfaef01efd86075" id="r_a00681ed5cdd50dc86bfaef01efd86075"><td class="memItemLeft" align="right" valign="top">static char_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00681ed5cdd50dc86bfaef01efd86075">parse_skip_bom</a> (char_t *s)</td></tr>
+<tr class="separator:a00681ed5cdd50dc86bfaef01efd86075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a48f48b81a9a222b8bcb79f95024faad8" id="r_a48f48b81a9a222b8bcb79f95024faad8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/dae/structxml__allocator.html">xml_allocator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48f48b81a9a222b8bcb79f95024faad8">alloc</a></td></tr>
+<tr class="separator:a48f48b81a9a222b8bcb79f95024faad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2476a71cd7e67b3f4bdbcd1323524503" id="r_a2476a71cd7e67b3f4bdbcd1323524503"><td class="memItemLeft" align="right" valign="top">char_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2476a71cd7e67b3f4bdbcd1323524503">error_offset</a></td></tr>
+<tr class="separator:a2476a71cd7e67b3f4bdbcd1323524503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0555859911674e5a7a349447d6533383" id="r_a0555859911674e5a7a349447d6533383"><td class="memItemLeft" align="right" valign="top">xml_parse_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0555859911674e5a7a349447d6533383">error_status</a></td></tr>
+<tr class="separator:a0555859911674e5a7a349447d6533383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02918">2918</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a062d6951738847e674b538a677c8c5f0" name="a062d6951738847e674b538a677c8c5f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a062d6951738847e674b538a677c8c5f0">&#9670;&#160;</a></span>xml_parser()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">xml_parser::xml_parser </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d3/dae/structxml__allocator.html">xml_allocator</a> *</td>          <td class="paramname"><span class="paramname"><em>alloc_</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02924">2924</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a6be4da5b3206913d0e3bd8320394df41" name="a6be4da5b3206913d0e3bd8320394df41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6be4da5b3206913d0e3bd8320394df41">&#9670;&#160;</a></span>has_element_node_siblings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool xml_parser::has_element_node_siblings </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *</td>          <td class="paramname"><span class="paramname"><em>node</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03499">3499</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00460">PUGI__NODETYPE</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03511">parse()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="a4bf0acd166edf3fc6cc9543002ff6f5d" name="a4bf0acd166edf3fc6cc9543002ff6f5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bf0acd166edf3fc6cc9543002ff6f5d">&#9670;&#160;</a></span>parse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static xml_parse_result xml_parser::parse </td>
+          <td>(</td>
+          <td class="paramtype">char_t *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d3/dde/structxml__document__struct.html">xml_document_struct</a> *</td>          <td class="paramname"><span class="paramname"><em>xmldoc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>optmsk</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03511">3511</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02921">error_offset</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02922">error_status</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03499">has_element_node_siblings()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02909">make_parse_result()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03493">parse_skip_bom()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03248">parse_tree()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02595">PUGI__OPTSET</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a85625c095f072a9938d0e47cf468de6b" name="a85625c095f072a9938d0e47cf468de6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85625c095f072a9938d0e47cf468de6b">&#9670;&#160;</a></span>parse_doctype_group()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t * xml_parser::parse_doctype_group </td>
+          <td>(</td>
+          <td class="paramtype">char_t *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t</td>          <td class="paramname"><span class="paramname"><em>endch</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02999">2999</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02968">parse_doctype_ignore()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02935">parse_doctype_primitive()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02602">PUGI__THROW_ERROR</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03045">parse_exclamation()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="a93f0e9c20ffd16c42a287e687a359a0c" name="a93f0e9c20ffd16c42a287e687a359a0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f0e9c20ffd16c42a287e687a359a0c">&#9670;&#160;</a></span>parse_doctype_ignore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t * xml_parser::parse_doctype_ignore </td>
+          <td>(</td>
+          <td class="paramtype">char_t *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02968">2968</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02602">PUGI__THROW_ERROR</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02999">parse_doctype_group()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a09210dea8745d4d4c45ebb1e1a9211d0" name="a09210dea8745d4d4c45ebb1e1a9211d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09210dea8745d4d4c45ebb1e1a9211d0">&#9670;&#160;</a></span>parse_doctype_primitive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t * xml_parser::parse_doctype_primitive </td>
+          <td>(</td>
+          <td class="paramtype">char_t *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02935">2935</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02598">PUGI__SCANFOR</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02602">PUGI__THROW_ERROR</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02999">parse_doctype_group()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="afc651baa774c379ad03244cac2e96015" name="afc651baa774c379ad03244cac2e96015"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc651baa774c379ad03244cac2e96015">&#9670;&#160;</a></span>parse_exclamation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t * xml_parser::parse_exclamation </td>
+          <td>(</td>
+          <td class="paramtype">char_t *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *</td>          <td class="paramname"><span class="paramname"><em>cursor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>optmsk</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t</td>          <td class="paramname"><span class="paramname"><em>endch</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03045">3045</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01839">ct_space</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02999">parse_doctype_group()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02603">PUGI__CHECK_ERROR</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02593">PUGI__ENDSWITH</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01904">PUGI__IS_CHARTYPE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02595">PUGI__OPTSET</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02596">PUGI__PUSHNODE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02598">PUGI__SCANFOR</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02602">PUGI__THROW_ERROR</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02633">strconv_cdata()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02605">strconv_comment()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03248">parse_tree()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8587d716d71121b4dfffdd1cc8e2145f" name="a8587d716d71121b4dfffdd1cc8e2145f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8587d716d71121b4dfffdd1cc8e2145f">&#9670;&#160;</a></span>parse_question()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t * xml_parser::parse_question </td>
+          <td>(</td>
+          <td class="paramtype">char_t *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *&amp;</td>          <td class="paramname"><span class="paramname"><em>ref_cursor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>optmsk</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t</td>          <td class="paramname"><span class="paramname"><em>endch</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03154">3154</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01839">ct_space</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01843">ct_start_symbol</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01842">ct_symbol</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02603">PUGI__CHECK_ERROR</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02601">PUGI__ENDSEG</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02593">PUGI__ENDSWITH</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01904">PUGI__IS_CHARTYPE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02595">PUGI__OPTSET</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02597">PUGI__POPNODE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02596">PUGI__PUSHNODE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02598">PUGI__SCANFOR</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02599">PUGI__SCANWHILE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02594">PUGI__SKIPWS</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02602">PUGI__THROW_ERROR</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03248">parse_tree()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a00681ed5cdd50dc86bfaef01efd86075" name="a00681ed5cdd50dc86bfaef01efd86075"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00681ed5cdd50dc86bfaef01efd86075">&#9670;&#160;</a></span>parse_skip_bom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static char_t * xml_parser::parse_skip_bom </td>
+          <td>(</td>
+          <td class="paramtype">char_t *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03493">3493</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03511">parse()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<a id="a35bac90f1975aa1a9d5de4b60b761f16" name="a35bac90f1975aa1a9d5de4b60b761f16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35bac90f1975aa1a9d5de4b60b761f16">&#9670;&#160;</a></span>parse_tree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t * xml_parser::parse_tree </td>
+          <td>(</td>
+          <td class="paramtype">char_t *</td>          <td class="paramname"><span class="paramname"><em>s</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/dad/classxml__node__struct.html">xml_node_struct</a> *</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>optmsk</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char_t</td>          <td class="paramname"><span class="paramname"><em>endch</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03248">3248</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02920">alloc</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01416">append_new_attribute()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01839">ct_space</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01843">ct_start_symbol</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01842">ct_symbol</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02883">get_strconv_attribute()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02714">get_strconv_pcdata()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03045">parse_exclamation()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03154">parse_question()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02601">PUGI__ENDSEG</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02593">PUGI__ENDSWITH</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01904">PUGI__IS_CHARTYPE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l00460">PUGI__NODETYPE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02595">PUGI__OPTSET</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02597">PUGI__POPNODE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02596">PUGI__PUSHNODE</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02598">PUGI__SCANFOR</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02600">PUGI__SCANWHILE_UNROLL</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02594">PUGI__SKIPWS</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02602">PUGI__THROW_ERROR</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03511">parse()</a>.</p>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a48f48b81a9a222b8bcb79f95024faad8" name="a48f48b81a9a222b8bcb79f95024faad8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48f48b81a9a222b8bcb79f95024faad8">&#9670;&#160;</a></span>alloc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d3/dae/structxml__allocator.html">xml_allocator</a>* xml_parser::alloc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02920">2920</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03248">parse_tree()</a>.</p>
+
+</div>
+</div>
+<a id="a2476a71cd7e67b3f4bdbcd1323524503" name="a2476a71cd7e67b3f4bdbcd1323524503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2476a71cd7e67b3f4bdbcd1323524503">&#9670;&#160;</a></span>error_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char_t* xml_parser::error_offset</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02921">2921</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03511">parse()</a>.</p>
+
+</div>
+</div>
+<a id="a0555859911674e5a7a349447d6533383" name="a0555859911674e5a7a349447d6533383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0555859911674e5a7a349447d6533383">&#9670;&#160;</a></span>error_status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">xml_parse_status xml_parser::error_status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l02922">2922</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l03511">parse()</a>.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li><a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

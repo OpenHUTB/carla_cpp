@@ -1,0 +1,930 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: UCarlaSettings类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d7/db3/classUCarlaSettings-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">UCarlaSettings类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Global settings for CARLA.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 UCarlaSettings 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> UCarlaSettings 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a76b400377bae7bd7cd081bedd822dfe3" id="r_a76b400377bae7bd7cd081bedd822dfe3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cab">EQualityLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76b400377bae7bd7cd081bedd822dfe3">GetQualityLevel</a> () const</td></tr>
+<tr class="separator:a76b400377bae7bd7cd081bedd822dfe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a174db9a076cd0df7a2324ca728aeb1e5" id="r_a174db9a076cd0df7a2324ca728aeb1e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a174db9a076cd0df7a2324ca728aeb1e5">LoadSettings</a> ()</td></tr>
+<tr class="memdesc:a174db9a076cd0df7a2324ca728aeb1e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the settings based on the command-line arguments and the INI file if provided.  <br /></td></tr>
+<tr class="separator:a174db9a076cd0df7a2324ca728aeb1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc4fa4bccd88bf1f33b73982d31170d5" id="r_afc4fa4bccd88bf1f33b73982d31170d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc4fa4bccd88bf1f33b73982d31170d5">LoadSettingsFromString</a> (const FString &amp;INIFileContents)</td></tr>
+<tr class="memdesc:afc4fa4bccd88bf1f33b73982d31170d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the settings from the given string (formatted as INI).  <br /></td></tr>
+<tr class="separator:afc4fa4bccd88bf1f33b73982d31170d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadaca1c20e5413aab737e3cd63779bd4" id="r_aadaca1c20e5413aab737e3cd63779bd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadaca1c20e5413aab737e3cd63779bd4">LogSettings</a> () const</td></tr>
+<tr class="memdesc:aadaca1c20e5413aab737e3cd63779bd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log settings values.  <br /></td></tr>
+<tr class="separator:aadaca1c20e5413aab737e3cd63779bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0d675637e55db086b3441792b26381e" id="r_aa0d675637e55db086b3441792b26381e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0d675637e55db086b3441792b26381e">SetQualityLevel</a> (<a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cab">EQualityLevel</a> InQualityLevel)</td></tr>
+<tr class="memdesc:aa0d675637e55db086b3441792b26381e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the new quality settings level and make changes in the game related to it.  <br /></td></tr>
+<tr class="separator:aa0d675637e55db086b3441792b26381e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">CARLA Server</div></td></tr>
+<tr class="memitem:a77a4b7f85a68c898706950c0996ca5e8" id="r_a77a4b7f85a68c898706950c0996ca5e8"><td class="memItemLeft" align="right" valign="top">uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77a4b7f85a68c898706950c0996ca5e8">RPCPort</a> = 2000u</td></tr>
+<tr class="memdesc:a77a4b7f85a68c898706950c0996ca5e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">World port to listen for client connections.  <br /></td></tr>
+<tr class="separator:a77a4b7f85a68c898706950c0996ca5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04ee39629e88dbcf0ec6dddb8f28a42b" id="r_a04ee39629e88dbcf0ec6dddb8f28a42b"><td class="memItemLeft" align="right" valign="top">uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04ee39629e88dbcf0ec6dddb8f28a42b">StreamingPort</a> = 2001u</td></tr>
+<tr class="memdesc:a04ee39629e88dbcf0ec6dddb8f28a42b"><td class="mdescLeft">&#160;</td><td class="mdescRight">setting for the streaming port.  <br /></td></tr>
+<tr class="separator:a04ee39629e88dbcf0ec6dddb8f28a42b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeacbb55cb9e848fe2eed2d94752e2ae1" id="r_aeacbb55cb9e848fe2eed2d94752e2ae1"><td class="memItemLeft" align="right" valign="top">uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeacbb55cb9e848fe2eed2d94752e2ae1">SecondaryPort</a> = 2002u</td></tr>
+<tr class="memdesc:aeacbb55cb9e848fe2eed2d94752e2ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">setting for the secondary servers port.  <br /></td></tr>
+<tr class="separator:aeacbb55cb9e848fe2eed2d94752e2ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47395726f1b5b8cc84aa5cdaf35b0ad8" id="r_a47395726f1b5b8cc84aa5cdaf35b0ad8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47395726f1b5b8cc84aa5cdaf35b0ad8">PrimaryIP</a> = &quot;&quot;</td></tr>
+<tr class="memdesc:a47395726f1b5b8cc84aa5cdaf35b0ad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">setting for the IP and Port of the primary server to connect.  <br /></td></tr>
+<tr class="separator:a47395726f1b5b8cc84aa5cdaf35b0ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac18290b7e3983076b5e1bb2899562cb8" id="r_ac18290b7e3983076b5e1bb2899562cb8"><td class="memItemLeft" align="right" valign="top">uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac18290b7e3983076b5e1bb2899562cb8">PrimaryPort</a> = 2002u</td></tr>
+<tr class="separator:ac18290b7e3983076b5e1bb2899562cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa52eba3377619b24f3c67963df34f07b" id="r_aa52eba3377619b24f3c67963df34f07b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa52eba3377619b24f3c67963df34f07b">bSynchronousMode</a> = false</td></tr>
+<tr class="memdesc:aa52eba3377619b24f3c67963df34f07b"><td class="mdescLeft">&#160;</td><td class="mdescRight">In synchronous mode, CARLA waits every tick until the control from the client is received.  <br /></td></tr>
+<tr class="separator:aa52eba3377619b24f3c67963df34f07b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fa4cce8efcb504454adce0b12e0aa62" id="r_a4fa4cce8efcb504454adce0b12e0aa62"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fa4cce8efcb504454adce0b12e0aa62">bDisableRendering</a> = false</td></tr>
+<tr class="memdesc:a4fa4cce8efcb504454adce0b12e0aa62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable the viewport rendering of the world.  <br /></td></tr>
+<tr class="separator:a4fa4cce8efcb504454adce0b12e0aa62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:ab1ee1157080626ebb23b0757fab8aeaa" id="r_ab1ee1157080626ebb23b0757fab8aeaa"><td class="memItemLeft" align="right" valign="top">static const FName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1ee1157080626ebb23b0757fab8aeaa">CARLA_ROAD_TAG</a> = FName(&quot;CARLA_ROAD&quot;)</td></tr>
+<tr class="memdesc:ab1ee1157080626ebb23b0757fab8aeaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">CARLA_ROAD name to tag road mesh actors.  <br /></td></tr>
+<tr class="separator:ab1ee1157080626ebb23b0757fab8aeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c6795cda63d59315b16929f19259c6c" id="r_a7c6795cda63d59315b16929f19259c6c"><td class="memItemLeft" align="right" valign="top">static const FName&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c6795cda63d59315b16929f19259c6c">CARLA_SKY_TAG</a> = FName(&quot;CARLA_SKY&quot;)</td></tr>
+<tr class="memdesc:a7c6795cda63d59315b16929f19259c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">CARLA_SKY name to tag the sky sphere (BPS) actors in the scenes.  <br /></td></tr>
+<tr class="separator:a7c6795cda63d59315b16929f19259c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:aa20145a25cbf094c738d7177b3291f8e" id="r_aa20145a25cbf094c738d7177b3291f8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa20145a25cbf094c738d7177b3291f8e">LoadSettingsFromFile</a> (const FString &amp;FilePath, bool bLogOnFailure)</td></tr>
+<tr class="separator:aa20145a25cbf094c738d7177b3291f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aa017a020633e2d040f9f491d7d0fc5bf" id="r_aa017a020633e2d040f9f491d7d0fc5bf"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa017a020633e2d040f9f491d7d0fc5bf">CurrentFileName</a></td></tr>
+<tr class="memdesc:aa017a020633e2d040f9f491d7d0fc5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">File name of the settings file used to load this settings.  <br /></td></tr>
+<tr class="separator:aa017a020633e2d040f9f491d7d0fc5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Quality Settings</h2></td></tr>
+<tr class="memitem:acce650eabfec7117185b96f28505a742" id="r_acce650eabfec7117185b96f28505a742"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cab">EQualityLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acce650eabfec7117185b96f28505a742">QualityLevel</a> = <a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cabae3f530e977d74053c6d70eb84886e756">EQualityLevel::Epic</a></td></tr>
+<tr class="memdesc:acce650eabfec7117185b96f28505a742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quality Settings level.  <br /></td></tr>
+<tr class="separator:acce650eabfec7117185b96f28505a742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcac3d40e8122d6ee17a90f49f27904b" id="r_adcac3d40e8122d6ee17a90f49f27904b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcac3d40e8122d6ee17a90f49f27904b">LowLightFadeDistance</a> = 1000.0f</td></tr>
+<tr class="memdesc:adcac3d40e8122d6ee17a90f49f27904b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance at which the light function should be completely faded to DisabledBrightness.  <br /></td></tr>
+<tr class="separator:adcac3d40e8122d6ee17a90f49f27904b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38c3c1980418132f3ce12b5f6916d344" id="r_a38c3c1980418132f3ce12b5f6916d344"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38c3c1980418132f3ce12b5f6916d344">UPROPERTY</a> (Category=&quot;Quality Settings/Low&quot;, BlueprintReadOnly, EditAnywhere, config, DisplayName=&quot;Road Materials List for <a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1caba28d0edd045e05cf5af64e35ae0c4c6ef">Low</a> Quality&quot;) TArray&lt; FStaticMaterial &gt; LowRoadMaterials</td></tr>
+<tr class="memdesc:a38c3c1980418132f3ce12b5f6916d344"><td class="mdescLeft">&#160;</td><td class="mdescRight">Low quality Road Materials.  <br /></td></tr>
+<tr class="separator:a38c3c1980418132f3ce12b5f6916d344"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a015bfd29beab50ed6fa5fdea459af77a" id="r_a015bfd29beab50ed6fa5fdea459af77a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a015bfd29beab50ed6fa5fdea459af77a">UPROPERTY</a> (Category=&quot;Quality Settings/Low&quot;, BlueprintReadOnly, EditAnywhere, config, meta=(ClampMin=&quot;5000.0&quot;, ClampMax=&quot;20000.0&quot;, UIMin=&quot;5000.0&quot;, UIMax=&quot;20000.0&quot;)) float LowStaticMeshMaxDrawDistance</td></tr>
+<tr class="memdesc:a015bfd29beab50ed6fa5fdea459af77a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default low distance for all primitive components.  <br /></td></tr>
+<tr class="separator:a015bfd29beab50ed6fa5fdea459af77a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcc30b23358b61a1c7a317da02a07855" id="r_adcc30b23358b61a1c7a317da02a07855"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcc30b23358b61a1c7a317da02a07855">UPROPERTY</a> (Category=&quot;Quality Settings/Low&quot;, BlueprintReadOnly, EditAnywhere, config, meta=(ClampMin=&quot;5000.0&quot;, ClampMax=&quot;20000.0&quot;, UIMin=&quot;5000.0&quot;, UIMax=&quot;20000.0&quot;)) float LowRoadPieceMeshMaxDrawDistance</td></tr>
+<tr class="memdesc:adcc30b23358b61a1c7a317da02a07855"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default low distance for roads meshes.  <br /></td></tr>
+<tr class="separator:adcc30b23358b61a1c7a317da02a07855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa61e73d03cffe317ed312dc89e232c8b" id="r_aa61e73d03cffe317ed312dc89e232c8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa61e73d03cffe317ed312dc89e232c8b">UPROPERTY</a> (Category=&quot;Quality Settings/Epic&quot;, BlueprintReadOnly, EditAnywhere, config, DisplayName=&quot;Road Materials List for EPIC Quality&quot;) TArray&lt; FStaticMaterial &gt; EpicRoadMaterials</td></tr>
+<tr class="memdesc:aa61e73d03cffe317ed312dc89e232c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">EPIC quality Road Materials.  <br /></td></tr>
+<tr class="separator:aa61e73d03cffe317ed312dc89e232c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a061cdf4f20d2ed7433b250e5cc3ab114" id="r_a061cdf4f20d2ed7433b250e5cc3ab114"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a061cdf4f20d2ed7433b250e5cc3ab114">UPROPERTY</a> (Category=&quot;Quality Settings/ROS2&quot;, BlueprintReadOnly, EditAnywhere, config, DisplayName=&quot;Enable ROS2&quot;) bool ROS2</td></tr>
+<tr class="memdesc:a061cdf4f20d2ed7433b250e5cc3ab114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable ROS2  <br /></td></tr>
+<tr class="separator:a061cdf4f20d2ed7433b250e5cc3ab114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Global settings for CARLA. </p>
+<p>Setting object used to hold both config settings and editable ones in one place. To ensure the settings are saved to the specified config file make sure to add props using the globalconfig or config meta. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00021">21</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a76b400377bae7bd7cd081bedd822dfe3" name="a76b400377bae7bd7cd081bedd822dfe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76b400377bae7bd7cd081bedd822dfe3">&#9670;&#160;</a></span>GetQualityLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cab">EQualityLevel</a> UCarlaSettings::GetQualityLevel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>返回</dt><dd>current quality settings level (could not have been applied yet). </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00041">41</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00073">UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()</a> , 以及 <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00043">UCarlaSettingsDelegate::OnActorSpawned()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a174db9a076cd0df7a2324ca728aeb1e5" name="a174db9a076cd0df7a2324ca728aeb1e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a174db9a076cd0df7a2324ca728aeb1e5">&#9670;&#160;</a></span>LoadSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaSettings::LoadSettings </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load the settings based on the command-line arguments and the INI file if provided. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html">CarlaSettings.cpp</a> 第 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">107</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00103">bDisableRendering</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00072">CurrentFileName</a>, <a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cabae3f530e977d74053c6d70eb84886e756">Epic</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00090">GetSettingsFilePathFromCommandLine()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00196">LoadSettingsFromFile()</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00092">PrimaryIP</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00093">PrimaryPort</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00114">QualityLevel</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00038">QualityLevelFromString()</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00083">RPCPort</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00089">SecondaryPort</a> , 以及 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00086">StreamingPort</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d19/CarlaGameInstance_8cpp_source.html#l00012">UCarlaGameInstance::UCarlaGameInstance()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa20145a25cbf094c738d7177b3291f8e" name="aa20145a25cbf094c738d7177b3291f8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa20145a25cbf094c738d7177b3291f8e">&#9670;&#160;</a></span>LoadSettingsFromFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaSettings::LoadSettingsFromFile </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>FilePath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>bLogOnFailure</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html">CarlaSettings.cpp</a> 第 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00196">196</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00072">CurrentFileName</a> , 以及 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="afc4fa4bccd88bf1f33b73982d31170d5" name="afc4fa4bccd88bf1f33b73982d31170d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc4fa4bccd88bf1f33b73982d31170d5">&#9670;&#160;</a></span>LoadSettingsFromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaSettings::LoadSettingsFromString </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>INIFileContents</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load the settings from the given string (formatted as INI). </p>
+<p>CarlaServer section is ignored. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html">CarlaSettings.cpp</a> 第 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00165">165</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00072">CurrentFileName</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a> , 以及 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00055">FIniFile::ProcessInputFileContents()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="aadaca1c20e5413aab737e3cd63779bd4" name="aadaca1c20e5413aab737e3cd63779bd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadaca1c20e5413aab737e3cd63779bd4">&#9670;&#160;</a></span>LogSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaSettings::LogSettings </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Log settings values. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html">CarlaSettings.cpp</a> 第 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00175">175</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00103">bDisableRendering</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00098">bSynchronousMode</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00072">CurrentFileName</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00114">QualityLevel</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00053">QualityLevelToString()</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00083">RPCPort</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00025">S_CARLA_QUALITYSETTINGS</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00024">S_CARLA_SERVER</a>, <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00089">SecondaryPort</a> , 以及 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00086">StreamingPort</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d19/CarlaGameInstance_8cpp_source.html#l00012">UCarlaGameInstance::UCarlaGameInstance()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa0d675637e55db086b3441792b26381e" name="aa0d675637e55db086b3441792b26381e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0d675637e55db086b3441792b26381e">&#9670;&#160;</a></span>SetQualityLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UCarlaSettings::SetQualityLevel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cab">EQualityLevel</a></td>          <td class="paramname"><span class="paramname"><em>InQualityLevel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the new quality settings level and make changes in the game related to it. </p>
+<dl class="section note"><dt>注解</dt><dd>This will not apply the quality settings. Use ApplyQualitySettings functions instead </dd></dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">InQualityLevel</td><td>Store the new quality. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00034">34</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa61e73d03cffe317ed312dc89e232c8b" name="aa61e73d03cffe317ed312dc89e232c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa61e73d03cffe317ed312dc89e232c8b">&#9670;&#160;</a></span>UPROPERTY() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UCarlaSettings::UPROPERTY </td>
+          <td>(</td>
+          <td class="paramtype">Category</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Quality&#160;Settings/Epic&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BlueprintReadOnly</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EditAnywhere</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">config</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DisplayName</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Road&#160;Materials&#160;List&#160;for&#160;EPIC&#160;Quality&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>EPIC quality Road Materials. </p>
+<p>Uses slots name to set material for each part of the road for Epic quality. </p>
+
+</div>
+</div>
+<a id="a38c3c1980418132f3ce12b5f6916d344" name="a38c3c1980418132f3ce12b5f6916d344"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38c3c1980418132f3ce12b5f6916d344">&#9670;&#160;</a></span>UPROPERTY() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UCarlaSettings::UPROPERTY </td>
+          <td>(</td>
+          <td class="paramtype">Category</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Quality&#160;Settings/Low&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BlueprintReadOnly</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EditAnywhere</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">config</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DisplayName</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Road&#160;Materials&#160;List&#160;for&#160;<a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1caba28d0edd045e05cf5af64e35ae0c4c6ef">Low</a>&#160;Quality&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Low quality Road Materials. </p>
+<p>Uses slots name to set material for each part of the road for low quality.</p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000022">待办事项</a></b></dt><dd>Move Low quality vars to a generic map of structs with the quality level as key. </dd></dl>
+
+</div>
+</div>
+<a id="adcc30b23358b61a1c7a317da02a07855" name="adcc30b23358b61a1c7a317da02a07855"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcc30b23358b61a1c7a317da02a07855">&#9670;&#160;</a></span>UPROPERTY() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UCarlaSettings::UPROPERTY </td>
+          <td>(</td>
+          <td class="paramtype">Category</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Quality&#160;Settings/Low&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BlueprintReadOnly</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EditAnywhere</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">config</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">meta</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">(ClampMin=&quot;5000.0&quot;,&#160;ClampMax=&quot;20000.0&quot;,&#160;UIMin=&quot;5000.0&quot;,&#160;UIMax=&quot;20000.0&quot;)</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default low distance for roads meshes. </p>
+
+</div>
+</div>
+<a id="a015bfd29beab50ed6fa5fdea459af77a" name="a015bfd29beab50ed6fa5fdea459af77a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a015bfd29beab50ed6fa5fdea459af77a">&#9670;&#160;</a></span>UPROPERTY() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UCarlaSettings::UPROPERTY </td>
+          <td>(</td>
+          <td class="paramtype">Category</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Quality&#160;Settings/Low&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BlueprintReadOnly</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EditAnywhere</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">config</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">meta</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">(ClampMin=&quot;5000.0&quot;,&#160;ClampMax=&quot;20000.0&quot;,&#160;UIMin=&quot;5000.0&quot;,&#160;UIMax=&quot;20000.0&quot;)</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default low distance for all primitive components. </p>
+
+</div>
+</div>
+<a id="a061cdf4f20d2ed7433b250e5cc3ab114" name="a061cdf4f20d2ed7433b250e5cc3ab114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a061cdf4f20d2ed7433b250e5cc3ab114">&#9670;&#160;</a></span>UPROPERTY() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UCarlaSettings::UPROPERTY </td>
+          <td>(</td>
+          <td class="paramtype">Category</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Quality&#160;Settings/ROS2&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BlueprintReadOnly</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EditAnywhere</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">config</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DisplayName</td>          <td class="paramname"><span class="paramname"><em></em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;Enable&#160;ROS2&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable ROS2 </p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a4fa4cce8efcb504454adce0b12e0aa62" name="a4fa4cce8efcb504454adce0b12e0aa62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fa4cce8efcb504454adce0b12e0aa62">&#9670;&#160;</a></span>bDisableRendering</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UCarlaSettings::bDisableRendering = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable the viewport rendering of the world. </p>
+<p>Disabled by default. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00103">103</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00120">UCarlaSettingsDelegate::ApplyQualityLevelPreRestart()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a> , 以及 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00175">LogSettings()</a>.</p>
+
+</div>
+</div>
+<a id="aa52eba3377619b24f3c67963df34f07b" name="aa52eba3377619b24f3c67963df34f07b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa52eba3377619b24f3c67963df34f07b">&#9670;&#160;</a></span>bSynchronousMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UCarlaSettings::bSynchronousMode = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>In synchronous mode, CARLA waits every tick until the control from the client is received. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00098">98</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a> , 以及 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00175">LogSettings()</a>.</p>
+
+</div>
+</div>
+<a id="ab1ee1157080626ebb23b0757fab8aeaa" name="ab1ee1157080626ebb23b0757fab8aeaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1ee1157080626ebb23b0757fab8aeaa">&#9670;&#160;</a></span>CARLA_ROAD_TAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FName UCarlaSettings::CARLA_ROAD_TAG = FName(&quot;CARLA_ROAD&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>CARLA_ROAD name to tag road mesh actors. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00060">60</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00132">ACityMapMeshHolder::AddInstance()</a>, <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00154">ACityMapMeshHolder::DeletePieces()</a>, <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00043">UCarlaSettingsDelegate::OnActorSpawned()</a>, <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00318">UCarlaSettingsDelegate::SetAllActorsDrawDistance()</a> , 以及 <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00227">UCarlaSettingsDelegate::SetAllRoads()</a>.</p>
+
+</div>
+</div>
+<a id="a7c6795cda63d59315b16929f19259c6c" name="a7c6795cda63d59315b16929f19259c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c6795cda63d59315b16929f19259c6c">&#9670;&#160;</a></span>CARLA_SKY_TAG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FName UCarlaSettings::CARLA_SKY_TAG = FName(&quot;CARLA_SKY&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>CARLA_SKY name to tag the sky sphere (BPS) actors in the scenes. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00063">63</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00043">UCarlaSettingsDelegate::OnActorSpawned()</a> , 以及 <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00318">UCarlaSettingsDelegate::SetAllActorsDrawDistance()</a>.</p>
+
+</div>
+</div>
+<a id="aa017a020633e2d040f9f491d7d0fc5bf" name="aa017a020633e2d040f9f491d7d0fc5bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa017a020633e2d040f9f491d7d0fc5bf">&#9670;&#160;</a></span>CurrentFileName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString UCarlaSettings::CurrentFileName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>File name of the settings file used to load this settings. </p>
+<p>Empty if none used. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00072">72</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00196">LoadSettingsFromFile()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00165">LoadSettingsFromString()</a> , 以及 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00175">LogSettings()</a>.</p>
+
+</div>
+</div>
+<a id="adcac3d40e8122d6ee17a90f49f27904b" name="adcac3d40e8122d6ee17a90f49f27904b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcac3d40e8122d6ee17a90f49f27904b">&#9670;&#160;</a></span>LowLightFadeDistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float UCarlaSettings::LowLightFadeDistance = 1000.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Distance at which the light function should be completely faded to DisabledBrightness. </p>
+<p>This is useful for hiding aliasing from light functions applied in the distance. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00134">134</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d4c/CarlaSettingsDelegate_8cpp_source.html#l00073">UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()</a>.</p>
+
+</div>
+</div>
+<a id="a47395726f1b5b8cc84aa5cdaf35b0ad8" name="a47395726f1b5b8cc84aa5cdaf35b0ad8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47395726f1b5b8cc84aa5cdaf35b0ad8">&#9670;&#160;</a></span>PrimaryIP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string UCarlaSettings::PrimaryIP = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setting for the IP and Port of the primary server to connect. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a> , 以及 <a class="el" href="../../d6/da1/CarlaEngine_8cpp_source.html#l00077">FCarlaEngine::NotifyInitGame()</a>.</p>
+
+</div>
+</div>
+<a id="ac18290b7e3983076b5e1bb2899562cb8" name="ac18290b7e3983076b5e1bb2899562cb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac18290b7e3983076b5e1bb2899562cb8">&#9670;&#160;</a></span>PrimaryPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 UCarlaSettings::PrimaryPort = 2002u</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00093">93</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a> , 以及 <a class="el" href="../../d6/da1/CarlaEngine_8cpp_source.html#l00077">FCarlaEngine::NotifyInitGame()</a>.</p>
+
+</div>
+</div>
+<a id="acce650eabfec7117185b96f28505a742" name="acce650eabfec7117185b96f28505a742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acce650eabfec7117185b96f28505a742">&#9670;&#160;</a></span>QualityLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cab">EQualityLevel</a> UCarlaSettings::QualityLevel = <a class="el" href="../../dd/d49/QualityLevelUE_8h.html#a2c71f44a73bc0845d02af2b5fe4b1cabae3f530e977d74053c6d70eb84886e756">EQualityLevel::Epic</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Quality Settings level. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00114">114</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a> , 以及 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00175">LogSettings()</a>.</p>
+
+</div>
+</div>
+<a id="a77a4b7f85a68c898706950c0996ca5e8" name="a77a4b7f85a68c898706950c0996ca5e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a4b7f85a68c898706950c0996ca5e8">&#9670;&#160;</a></span>RPCPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 UCarlaSettings::RPCPort = 2000u</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>World port to listen for client connections. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00083">83</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00175">LogSettings()</a> , 以及 <a class="el" href="../../d6/da1/CarlaEngine_8cpp_source.html#l00077">FCarlaEngine::NotifyInitGame()</a>.</p>
+
+</div>
+</div>
+<a id="aeacbb55cb9e848fe2eed2d94752e2ae1" name="aeacbb55cb9e848fe2eed2d94752e2ae1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeacbb55cb9e848fe2eed2d94752e2ae1">&#9670;&#160;</a></span>SecondaryPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 UCarlaSettings::SecondaryPort = 2002u</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setting for the secondary servers port. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00089">89</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00175">LogSettings()</a> , 以及 <a class="el" href="../../d6/da1/CarlaEngine_8cpp_source.html#l00077">FCarlaEngine::NotifyInitGame()</a>.</p>
+
+</div>
+</div>
+<a id="a04ee39629e88dbcf0ec6dddb8f28a42b" name="a04ee39629e88dbcf0ec6dddb8f28a42b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04ee39629e88dbcf0ec6dddb8f28a42b">&#9670;&#160;</a></span>StreamingPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 UCarlaSettings::StreamingPort = 2001u</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>setting for the streaming port. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a> 第 <a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00107">LoadSettings()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a>, <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00175">LogSettings()</a> , 以及 <a class="el" href="../../d6/da1/CarlaEngine_8cpp_source.html#l00077">FCarlaEngine::NotifyInitGame()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d3/d4e/CarlaSettings_8h_source.html">CarlaSettings.h</a></li>
+<li><a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html">CarlaSettings.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CityMapMeshTag类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="../../d7/db5/classCityMapMeshTag-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">CityMapMeshTag类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Helper class for working with ECityMapMeshTag.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html">CityMapMeshTag.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:aad4b8e932e054f8fb58d8a8b0c2dcd8e" id="r_aad4b8e932e054f8fb58d8a8b0c2dcd8e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad4b8e932e054f8fb58d8a8b0c2dcd8e">GetBaseMeshTag</a> ()</td></tr>
+<tr class="memdesc:aad4b8e932e054f8fb58d8a8b0c2dcd8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the base mesh. The base mesh defines the unit tile for map scaling.  <br /></td></tr>
+<tr class="separator:aad4b8e932e054f8fb58d8a8b0c2dcd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7466d877b3c82a695c664c0634f8bdeb" id="r_a7466d877b3c82a695c664c0634f8bdeb"><td class="memItemLeft" align="right" valign="top">static constexpr uint8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7466d877b3c82a695c664c0634f8bdeb">GetNumberOfTags</a> ()</td></tr>
+<tr class="memdesc:a7466d877b3c82a695c664c0634f8bdeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of tags.  <br /></td></tr>
+<tr class="separator:a7466d877b3c82a695c664c0634f8bdeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae546ef66912146409f0b1d176406aa7b" id="r_ae546ef66912146409f0b1d176406aa7b"><td class="memItemLeft" align="right" valign="top">static uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae546ef66912146409f0b1d176406aa7b">GetRoadIntersectionSize</a> ()</td></tr>
+<tr class="memdesc:ae546ef66912146409f0b1d176406aa7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size in tiles of a road intersection side.  <br /></td></tr>
+<tr class="separator:ae546ef66912146409f0b1d176406aa7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Tag conversions</div></td></tr>
+<tr class="memitem:adff3a665d299485e5953eb382ade78f9" id="r_adff3a665d299485e5953eb382ade78f9"><td class="memItemLeft" align="right" valign="top">static constexpr uint8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adff3a665d299485e5953eb382ade78f9">ToUInt</a> (<a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> Tag)</td></tr>
+<tr class="memdesc:adff3a665d299485e5953eb382ade78f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert <em>Tag</em> to an unsigned integer type.  <br /></td></tr>
+<tr class="separator:adff3a665d299485e5953eb382ade78f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ed367e2730d152438d38ef15fe1fb5c" id="r_a6ed367e2730d152438d38ef15fe1fb5c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ed367e2730d152438d38ef15fe1fb5c">FromUInt</a> (uint8 Value)</td></tr>
+<tr class="memdesc:a6ed367e2730d152438d38ef15fe1fb5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert an unsigned integer to a ECityMapMeshTag.  <br /></td></tr>
+<tr class="separator:a6ed367e2730d152438d38ef15fe1fb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cedcb3f29363cfa5df176e09e1c0408" id="r_a8cedcb3f29363cfa5df176e09e1c0408"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cedcb3f29363cfa5df176e09e1c0408">ToString</a> (<a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> Tag)</td></tr>
+<tr class="memdesc:a8cedcb3f29363cfa5df176e09e1c0408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <em>Tag</em> name as FString.  <br /></td></tr>
+<tr class="separator:a8cedcb3f29363cfa5df176e09e1c0408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f3baa88c51abcb4f3801555d8e8bc5e" id="r_a2f3baa88c51abcb4f3801555d8e8bc5e"><td class="memItemLeft" align="right" valign="top">static FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f3baa88c51abcb4f3801555d8e8bc5e">ToString</a> (uint8 Value)</td></tr>
+<tr class="memdesc:a2f3baa88c51abcb4f3801555d8e8bc5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert <em>Value</em> to ECityMapMeshTag and get its name as FString.  <br /></td></tr>
+<tr class="separator:a2f3baa88c51abcb4f3801555d8e8bc5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Helper class for working with ECityMapMeshTag. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html">CityMapMeshTag.h</a> 第 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00076">76</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a6ed367e2730d152438d38ef15fe1fb5c" name="a6ed367e2730d152438d38ef15fe1fb5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ed367e2730d152438d38ef15fe1fb5c">&#9670;&#160;</a></span>FromUInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> CityMapMeshTag::FromUInt </td>
+          <td>(</td>
+          <td class="paramtype">uint8</td>          <td class="paramname"><span class="paramname"><em>Value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert an unsigned integer to a ECityMapMeshTag. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html">CityMapMeshTag.h</a> 第 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00101">101</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00081">GetNumberOfTags()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00026">ACityMapMeshHolder::ACityMapMeshHolder()</a> , 以及 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00110">ToString()</a>.</p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+</div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="aad4b8e932e054f8fb58d8a8b0c2dcd8e" name="aad4b8e932e054f8fb58d8a8b0c2dcd8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad4b8e932e054f8fb58d8a8b0c2dcd8e">&#9670;&#160;</a></span>GetBaseMeshTag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> CityMapMeshTag::GetBaseMeshTag </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the base mesh. The base mesh defines the unit tile for map scaling. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html">CityMapMeshTag.cpp</a> 第 <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html#l00014">14</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00177">ACityMapMeshHolder::UpdateMapScale()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7466d877b3c82a695c664c0634f8bdeb" name="a7466d877b3c82a695c664c0634f8bdeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7466d877b3c82a695c664c0634f8bdeb">&#9670;&#160;</a></span>GetNumberOfTags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr uint8 CityMapMeshTag::GetNumberOfTags </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the number of tags. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html">CityMapMeshTag.h</a> 第 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00081">81</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00096">ToUInt()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00101">FromUInt()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae546ef66912146409f0b1d176406aa7b" name="ae546ef66912146409f0b1d176406aa7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae546ef66912146409f0b1d176406aa7b">&#9670;&#160;</a></span>GetRoadIntersectionSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 CityMapMeshTag::GetRoadIntersectionSize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the size in tiles of a road intersection side. </p>
+<p>I.e., return N such NxN is the size of a road intersection piece. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html">CityMapMeshTag.cpp</a> 第 <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html#l00019">19</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">ACityMapGenerator::GenerateRoadMap()</a> , 以及 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00153">ACityMapGenerator::GenerateRoads()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8cedcb3f29363cfa5df176e09e1c0408" name="a8cedcb3f29363cfa5df176e09e1c0408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cedcb3f29363cfa5df176e09e1c0408">&#9670;&#160;</a></span>ToString() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString CityMapMeshTag::ToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a></td>          <td class="paramname"><span class="paramname"><em>Tag</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get <em>Tag</em> name as FString. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html">CityMapMeshTag.cpp</a> 第 <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html#l00024">24</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00110">ToString()</a> , 以及 <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00177">ACityMapMeshHolder::UpdateMapScale()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2f3baa88c51abcb4f3801555d8e8bc5e" name="a2f3baa88c51abcb4f3801555d8e8bc5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f3baa88c51abcb4f3801555d8e8bc5e">&#9670;&#160;</a></span>ToString() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static FString CityMapMeshTag::ToString </td>
+          <td>(</td>
+          <td class="paramtype">uint8</td>          <td class="paramname"><span class="paramname"><em>Value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert <em>Value</em> to ECityMapMeshTag and get its name as FString. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html">CityMapMeshTag.h</a> 第 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00110">110</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00101">FromUInt()</a> , 以及 <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html#l00024">ToString()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="adff3a665d299485e5953eb382ade78f9" name="adff3a665d299485e5953eb382ade78f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adff3a665d299485e5953eb382ade78f9">&#9670;&#160;</a></span>ToUInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr uint8 CityMapMeshTag::ToUInt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a></td>          <td class="paramname"><span class="paramname"><em>Tag</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert <em>Tag</em> to an unsigned integer type. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html">CityMapMeshTag.h</a> 第 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00096">96</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html#l00081">GetNumberOfTags()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d4/d83/CityMapMeshTag_8h_source.html">CityMapMeshTag.h</a></li>
+<li><a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html">CityMapMeshTag.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

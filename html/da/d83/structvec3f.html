@@ -1,0 +1,1371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: vec3f结构体 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
+<a href="../../d5/d5d/structvec3f-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">vec3f结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> vec3f 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:acfdc69a0bb87ec748ff8b9b26d0b4741" id="r_acfdc69a0bb87ec748ff8b9b26d0b4741"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfdc69a0bb87ec748ff8b9b26d0b4741">angle</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;v)</td></tr>
+<tr class="separator:acfdc69a0bb87ec748ff8b9b26d0b4741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9415f7dcd645928ff8c52cfb94a3e2e0" id="r_a9415f7dcd645928ff8c52cfb94a3e2e0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9415f7dcd645928ff8c52cfb94a3e2e0">angle2</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;v, const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;w)</td></tr>
+<tr class="separator:a9415f7dcd645928ff8c52cfb94a3e2e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e88f5d9568152b01f851de640bc626f" id="r_a6e88f5d9568152b01f851de640bc626f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e88f5d9568152b01f851de640bc626f">clamp</a> (double <a class="el" href="../../d3/d33/Simplify_8h.html#a50798148e5016c5b85087d4009824f27">min</a>, double max)</td></tr>
+<tr class="separator:a6e88f5d9568152b01f851de640bc626f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfc5e873d7913cb6ca8a0caa583367ed" id="r_acfc5e873d7913cb6ca8a0caa583367ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfc5e873d7913cb6ca8a0caa583367ed">cross</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;a, const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;b)</td></tr>
+<tr class="separator:acfc5e873d7913cb6ca8a0caa583367ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa731ccc98a532eeacbff2390963ce426" id="r_aa731ccc98a532eeacbff2390963ce426"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa731ccc98a532eeacbff2390963ce426">dot</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;a) const</td></tr>
+<tr class="separator:aa731ccc98a532eeacbff2390963ce426"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a596f17a8bfd0ec1f4e2ded3cfc008d90" id="r_a596f17a8bfd0ec1f4e2ded3cfc008d90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a596f17a8bfd0ec1f4e2ded3cfc008d90">frac</a> ()</td></tr>
+<tr class="separator:a596f17a8bfd0ec1f4e2ded3cfc008d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ccaadc5b3002f0615b2be9fc603e08a" id="r_a7ccaadc5b3002f0615b2be9fc603e08a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ccaadc5b3002f0615b2be9fc603e08a">integer</a> ()</td></tr>
+<tr class="separator:a7ccaadc5b3002f0615b2be9fc603e08a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99762ee9d4c079e7693262a9a04105a1" id="r_a99762ee9d4c079e7693262a9a04105a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99762ee9d4c079e7693262a9a04105a1">invert</a> ()</td></tr>
+<tr class="separator:a99762ee9d4c079e7693262a9a04105a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8f51067cf86f5f00ea96d6a7496dba" id="r_a7c8f51067cf86f5f00ea96d6a7496dba"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c8f51067cf86f5f00ea96d6a7496dba">length</a> () const</td></tr>
+<tr class="separator:a7c8f51067cf86f5f00ea96d6a7496dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abddffff6253347aeb55355e229d25aed" id="r_abddffff6253347aeb55355e229d25aed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abddffff6253347aeb55355e229d25aed">normalize</a> (double desired_length=1)</td></tr>
+<tr class="separator:abddffff6253347aeb55355e229d25aed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c1365dd064d058578de4a05543c714d" id="r_a5c1365dd064d058578de4a05543c714d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c1365dd064d058578de4a05543c714d">operator*</a> (const double a) const</td></tr>
+<tr class="separator:a5c1365dd064d058578de4a05543c714d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7637dcd197455999b1e8679330621694" id="r_a7637dcd197455999b1e8679330621694"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7637dcd197455999b1e8679330621694">operator*</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> a) const</td></tr>
+<tr class="separator:a7637dcd197455999b1e8679330621694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5bf833a48a60464b6e877990a495742" id="r_ae5bf833a48a60464b6e877990a495742"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5bf833a48a60464b6e877990a495742">operator+</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;a) const</td></tr>
+<tr class="separator:ae5bf833a48a60464b6e877990a495742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed4fc9ede806c48bd890b5ec5b45c3f" id="r_afed4fc9ede806c48bd890b5ec5b45c3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afed4fc9ede806c48bd890b5ec5b45c3f">operator+=</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;a) const</td></tr>
+<tr class="separator:afed4fc9ede806c48bd890b5ec5b45c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad44acbd8aeb481425c3ccc644af5a5d6" id="r_ad44acbd8aeb481425c3ccc644af5a5d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad44acbd8aeb481425c3ccc644af5a5d6">operator-</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;a) const</td></tr>
+<tr class="separator:ad44acbd8aeb481425c3ccc644af5a5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a281bcf21110a6a74691de1fa56b9e72e" id="r_a281bcf21110a6a74691de1fa56b9e72e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a281bcf21110a6a74691de1fa56b9e72e">operator/</a> (const double a) const</td></tr>
+<tr class="separator:a281bcf21110a6a74691de1fa56b9e72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad255fc409d141bd83cd4dac83dde874" id="r_aad255fc409d141bd83cd4dac83dde874"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad255fc409d141bd83cd4dac83dde874">operator/</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> a) const</td></tr>
+<tr class="separator:aad255fc409d141bd83cd4dac83dde874"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7204afc518b66a5ba863c40a8d389b8f" id="r_a7204afc518b66a5ba863c40a8d389b8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7204afc518b66a5ba863c40a8d389b8f">operator=</a> (const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> a)</td></tr>
+<tr class="separator:a7204afc518b66a5ba863c40a8d389b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0be801429a9ffad5c759841505220f5" id="r_ac0be801429a9ffad5c759841505220f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0be801429a9ffad5c759841505220f5">operator=</a> (const <a class="el" href="../../dd/d53/structvector3.html">vector3</a> a)</td></tr>
+<tr class="separator:ac0be801429a9ffad5c759841505220f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a470b414405f8e1f78e20f3cac06224" id="r_a1a470b414405f8e1f78e20f3cac06224"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a470b414405f8e1f78e20f3cac06224">random01_fxyz</a> ()</td></tr>
+<tr class="separator:a1a470b414405f8e1f78e20f3cac06224"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6a599393b711204fc6c6688cefc8b3d" id="r_ad6a599393b711204fc6c6688cefc8b3d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6a599393b711204fc6c6688cefc8b3d">random_double_01</a> (double a)</td></tr>
+<tr class="separator:ad6a599393b711204fc6c6688cefc8b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c764c2380354c72158a0fac4604c266" id="r_a3c764c2380354c72158a0fac4604c266"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c764c2380354c72158a0fac4604c266">rot_x</a> (double a)</td></tr>
+<tr class="separator:a3c764c2380354c72158a0fac4604c266"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11e68804841063ca93d1c454bbb66c13" id="r_a11e68804841063ca93d1c454bbb66c13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11e68804841063ca93d1c454bbb66c13">rot_y</a> (double a)</td></tr>
+<tr class="separator:a11e68804841063ca93d1c454bbb66c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac78ab8c60770de1bded1d22ccf099162" id="r_ac78ab8c60770de1bded1d22ccf099162"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac78ab8c60770de1bded1d22ccf099162">rot_z</a> (double a)</td></tr>
+<tr class="separator:ac78ab8c60770de1bded1d22ccf099162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afba6be93c96ee46f8996317498f7d3bc" id="r_afba6be93c96ee46f8996317498f7d3bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afba6be93c96ee46f8996317498f7d3bc">v3</a> () const</td></tr>
+<tr class="separator:afba6be93c96ee46f8996317498f7d3bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aece78f635e57653e1983b4bf0b037a07" id="r_aece78f635e57653e1983b4bf0b037a07"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aece78f635e57653e1983b4bf0b037a07">vec3f</a> (const double X, const double Y, const double Z)</td></tr>
+<tr class="separator:aece78f635e57653e1983b4bf0b037a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab5b2b0d34a7854b26f17de98a96db2e" id="r_aab5b2b0d34a7854b26f17de98a96db2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab5b2b0d34a7854b26f17de98a96db2e">vec3f</a> (<a class="el" href="../../dd/d53/structvector3.html">vector3</a> a)</td></tr>
+<tr class="separator:aab5b2b0d34a7854b26f17de98a96db2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a770f07e9f25bc5a492f2e3256db2b5fe" id="r_a770f07e9f25bc5a492f2e3256db2b5fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a770f07e9f25bc5a492f2e3256db2b5fe">vec3f</a> (void)</td></tr>
+<tr class="separator:a770f07e9f25bc5a492f2e3256db2b5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:ac9b492c9b9dcccae1958ce90fcc5aaa6" id="r_ac9b492c9b9dcccae1958ce90fcc5aaa6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9b492c9b9dcccae1958ce90fcc5aaa6">normalize</a> (<a class="el" href="../../da/d83/structvec3f.html">vec3f</a> a)</td></tr>
+<tr class="separator:ac9b492c9b9dcccae1958ce90fcc5aaa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af602e58f970d4631f77c65df910f4c1b" id="r_af602e58f970d4631f77c65df910f4c1b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../da/d83/structvec3f.html">vec3f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af602e58f970d4631f77c65df910f4c1b">random</a> ()</td></tr>
+<tr class="separator:af602e58f970d4631f77c65df910f4c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74b5c0f62d3caca1b1a97c733262d182" id="r_a74b5c0f62d3caca1b1a97c733262d182"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74b5c0f62d3caca1b1a97c733262d182">random_double</a> ()</td></tr>
+<tr class="separator:a74b5c0f62d3caca1b1a97c733262d182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7931d2c037efc77ed820199ab78c8604" id="r_a7931d2c037efc77ed820199ab78c8604"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7931d2c037efc77ed820199ab78c8604">random_init</a> ()</td></tr>
+<tr class="separator:a7931d2c037efc77ed820199ab78c8604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:af6dbde05a9247d11c18b6fde1ef2859d" id="r_af6dbde05a9247d11c18b6fde1ef2859d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6dbde05a9247d11c18b6fde1ef2859d">x</a></td></tr>
+<tr class="separator:af6dbde05a9247d11c18b6fde1ef2859d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a031a0e28b78f48928c1a521491b1aaba" id="r_a031a0e28b78f48928c1a521491b1aaba"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a031a0e28b78f48928c1a521491b1aaba">y</a></td></tr>
+<tr class="separator:a031a0e28b78f48928c1a521491b1aaba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf82d0f778002001736d01d1c8a542c" id="r_abcf82d0f778002001736d01d1c8a542c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcf82d0f778002001736d01d1c8a542c">z</a></td></tr>
+<tr class="separator:abcf82d0f778002001736d01d1c8a542c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:a2fe565989dcd807f729f1d5d3b567b37" id="r_a2fe565989dcd807f729f1d5d3b567b37"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fe565989dcd807f729f1d5d3b567b37">random_number</a></td></tr>
+<tr class="separator:a2fe565989dcd807f729f1d5d3b567b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00036">36</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a770f07e9f25bc5a492f2e3256db2b5fe" name="a770f07e9f25bc5a492f2e3256db2b5fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a770f07e9f25bc5a492f2e3256db2b5fe">&#9670;&#160;</a></span>vec3f() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3f::vec3f </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">40</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00206">frac()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00214">integer()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00069">operator*()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00074">operator*()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00059">operator+()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00064">operator+=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00105">operator-()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00110">operator/()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00100">operator/()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00079">v3()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="aab5b2b0d34a7854b26f17de98a96db2e" name="aab5b2b0d34a7854b26f17de98a96db2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab5b2b0d34a7854b26f17de98a96db2e">&#9670;&#160;</a></span>vec3f() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3f::vec3f </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dd/d53/structvector3.html">vector3</a></td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00045">45</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00033">vector3::x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00033">vector3::y</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00033">vector3::z</a>.</p>
+
+</div>
+</div>
+<a id="aece78f635e57653e1983b4bf0b037a07" name="aece78f635e57653e1983b4bf0b037a07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aece78f635e57653e1983b4bf0b037a07">&#9670;&#160;</a></span>vec3f() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3f::vec3f </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>X</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>Y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>Z</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00052">52</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="acfdc69a0bb87ec748ff8b9b26d0b4741" name="acfdc69a0bb87ec748ff8b9b26d0b4741"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfdc69a0bb87ec748ff8b9b26d0b4741">&#9670;&#160;</a></span>angle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vec3f::angle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00128">128</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00115">dot()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00222">length()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a9415f7dcd645928ff8c52cfb94a3e2e0" name="a9415f7dcd645928ff8c52cfb94a3e2e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9415f7dcd645928ff8c52cfb94a3e2e0">&#9670;&#160;</a></span>angle2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vec3f::angle2 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>v</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>w</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00143">143</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00120">cross()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00115">dot()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00222">length()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a6e88f5d9568152b01f851de640bc626f" name="a6e88f5d9568152b01f851de640bc626f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e88f5d9568152b01f851de640bc626f">&#9670;&#160;</a></span>clamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vec3f::clamp </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>min</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>max</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00176">176</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00294">min()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="acfc5e873d7913cb6ca8a0caa583367ed" name="acfc5e873d7913cb6ca8a0caa583367ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfc5e873d7913cb6ca8a0caa583367ed">&#9670;&#160;</a></span>cross()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::cross </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00120">120</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00143">angle2()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00648">Simplify::SimplificationObject::flipped()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00731">Simplify::SimplificationObject::update_mesh()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa731ccc98a532eeacbff2390963ce426" name="aa731ccc98a532eeacbff2390963ce426"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa731ccc98a532eeacbff2390963ce426">&#9670;&#160;</a></span>dot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vec3f::dot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00115">115</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00128">angle()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00143">angle2()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00267">barycentric()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00648">Simplify::SimplificationObject::flipped()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00731">Simplify::SimplificationObject::update_mesh()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a596f17a8bfd0ec1f4e2ded3cfc008d90" name="a596f17a8bfd0ec1f4e2ded3cfc008d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a596f17a8bfd0ec1f4e2ded3cfc008d90">&#9670;&#160;</a></span>frac()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::frac </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00206">206</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7ccaadc5b3002f0615b2be9fc603e08a" name="a7ccaadc5b3002f0615b2be9fc603e08a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ccaadc5b3002f0615b2be9fc603e08a">&#9670;&#160;</a></span>integer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::integer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00214">214</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="a99762ee9d4c079e7693262a9a04105a1" name="a99762ee9d4c079e7693262a9a04105a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99762ee9d4c079e7693262a9a04105a1">&#9670;&#160;</a></span>invert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::invert </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00199">199</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+</div>
+</div>
+<a id="a7c8f51067cf86f5f00ea96d6a7496dba" name="a7c8f51067cf86f5f00ea96d6a7496dba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c8f51067cf86f5f00ea96d6a7496dba">&#9670;&#160;</a></span>length()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vec3f::length </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00222">222</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00128">angle()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00143">angle2()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="abddffff6253347aeb55355e229d25aed" name="abddffff6253347aeb55355e229d25aed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abddffff6253347aeb55355e229d25aed">&#9670;&#160;</a></span>normalize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::normalize </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>desired_length</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00227">227</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00648">Simplify::SimplificationObject::flipped()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00731">Simplify::SimplificationObject::update_mesh()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac9b492c9b9dcccae1958ce90fcc5aaa6" name="ac9b492c9b9dcccae1958ce90fcc5aaa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9b492c9b9dcccae1958ce90fcc5aaa6">&#9670;&#160;</a></span>normalize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::normalize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a></td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c1365dd064d058578de4a05543c714d" name="a5c1365dd064d058578de4a05543c714d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c1365dd064d058578de4a05543c714d">&#9670;&#160;</a></span>operator*() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00069">69</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7637dcd197455999b1e8679330621694" name="a7637dcd197455999b1e8679330621694"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7637dcd197455999b1e8679330621694">&#9670;&#160;</a></span>operator*() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a></td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae5bf833a48a60464b6e877990a495742" name="ae5bf833a48a60464b6e877990a495742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5bf833a48a60464b6e877990a495742">&#9670;&#160;</a></span>operator+()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00059">59</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 13 --></div>
+</div>
+
+</div>
+</div>
+<a id="afed4fc9ede806c48bd890b5ec5b45c3f" name="afed4fc9ede806c48bd890b5ec5b45c3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afed4fc9ede806c48bd890b5ec5b45c3f">&#9670;&#160;</a></span>operator+=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00064">64</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 14 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad44acbd8aeb481425c3ccc644af5a5d6" name="ad44acbd8aeb481425c3ccc644af5a5d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad44acbd8aeb481425c3ccc644af5a5d6">&#9670;&#160;</a></span>operator-()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00105">105</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 15 --></div>
+</div>
+
+</div>
+</div>
+<a id="a281bcf21110a6a74691de1fa56b9e72e" name="a281bcf21110a6a74691de1fa56b9e72e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a281bcf21110a6a74691de1fa56b9e72e">&#9670;&#160;</a></span>operator/() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00110">110</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 16 --></div>
+</div>
+
+</div>
+</div>
+<a id="aad255fc409d141bd83cd4dac83dde874" name="aad255fc409d141bd83cd4dac83dde874"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad255fc409d141bd83cd4dac83dde874">&#9670;&#160;</a></span>operator/() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a></td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00100">100</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-17" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 17 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7204afc518b66a5ba863c40a8d389b8f" name="a7204afc518b66a5ba863c40a8d389b8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7204afc518b66a5ba863c40a8d389b8f">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/d83/structvec3f.html">vec3f</a></td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+</div>
+</div>
+<a id="ac0be801429a9ffad5c759841505220f5" name="ac0be801429a9ffad5c759841505220f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0be801429a9ffad5c759841505220f5">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/d53/structvector3.html">vector3</a></td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00084">84</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00033">vector3::x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00033">vector3::y</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00033">vector3::z</a>.</p>
+
+</div>
+</div>
+<a id="af602e58f970d4631f77c65df910f4c1b" name="af602e58f970d4631f77c65df910f4c1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af602e58f970d4631f77c65df910f4c1b">&#9670;&#160;</a></span>random()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::random </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a470b414405f8e1f78e20f3cac06224" name="a1a470b414405f8e1f78e20f3cac06224"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a470b414405f8e1f78e20f3cac06224">&#9670;&#160;</a></span>random01_fxyz()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::random01_fxyz </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00258">258</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00251">random_double_01()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-18" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 18 --></div>
+</div>
+
+</div>
+</div>
+<a id="a74b5c0f62d3caca1b1a97c733262d182" name="a74b5c0f62d3caca1b1a97c733262d182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74b5c0f62d3caca1b1a97c733262d182">&#9670;&#160;</a></span>random_double()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double vec3f::random_double </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6a599393b711204fc6c6688cefc8b3d" name="ad6a599393b711204fc6c6688cefc8b3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6a599393b711204fc6c6688cefc8b3d">&#9670;&#160;</a></span>random_double_01()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vec3f::random_double_01 </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00251">251</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00258">random01_fxyz()</a>.</p>
+<div id="dynsection-19" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 19 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7931d2c037efc77ed820199ab78c8604" name="a7931d2c037efc77ed820199ab78c8604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7931d2c037efc77ed820199ab78c8604">&#9670;&#160;</a></span>random_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void vec3f::random_init </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3c764c2380354c72158a0fac4604c266" name="a3c764c2380354c72158a0fac4604c266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c764c2380354c72158a0fac4604c266">&#9670;&#160;</a></span>rot_x()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::rot_x </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00160">160</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+</div>
+</div>
+<a id="a11e68804841063ca93d1c454bbb66c13" name="a11e68804841063ca93d1c454bbb66c13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11e68804841063ca93d1c454bbb66c13">&#9670;&#160;</a></span>rot_y()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::rot_y </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00168">168</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+
+</div>
+</div>
+<a id="ac78ab8c60770de1bded1d22ccf099162" name="ac78ab8c60770de1bded1d22ccf099162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac78ab8c60770de1bded1d22ccf099162">&#9670;&#160;</a></span>rot_z()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::rot_z </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>a</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00191">191</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a>.</p>
+
+</div>
+</div>
+<a id="afba6be93c96ee46f8996317498f7d3bc" name="afba6be93c96ee46f8996317498f7d3bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afba6be93c96ee46f8996317498f7d3bc">&#9670;&#160;</a></span>v3()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d83/structvec3f.html">vec3f</a> vec3f::v3 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00079">79</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00040">vec3f()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">x</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">y</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">z</a>.</p>
+<div id="dynsection-20" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-20-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-20-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-20-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 20 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a2fe565989dcd807f729f1d5d3b567b37" name="a2fe565989dcd807f729f1d5d3b567b37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe565989dcd807f729f1d5d3b567b37">&#9670;&#160;</a></span>random_number</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vec3f::random_number</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00249">249</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af6dbde05a9247d11c18b6fde1ef2859d" name="af6dbde05a9247d11c18b6fde1ef2859d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6dbde05a9247d11c18b6fde1ef2859d">&#9670;&#160;</a></span>x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vec3f::x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">38</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00128">angle()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00143">angle2()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00893">Simplify::SimplificationObject::calculate_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00176">clamp()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00120">cross()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00115">dot()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00206">frac()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00214">integer()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00284">interpolate()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00199">invert()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00222">length()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00954">Simplify::SimplificationObject::load_obj()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00227">normalize()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00069">operator*()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00074">operator*()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00059">operator+()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00064">operator+=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00105">operator-()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00110">operator/()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00100">operator/()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00092">operator=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00084">operator=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00258">random01_fxyz()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00168">rot_y()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00191">rot_z()</a>, <a class="el" href="../../d3/d72/Simplification_8cpp_source.html#l00013">carla::geom::Simplification::Simplificate()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00731">Simplify::SimplificationObject::update_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00079">v3()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00052">vec3f()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00045">vec3f()</a>.</p>
+
+</div>
+</div>
+<a id="a031a0e28b78f48928c1a521491b1aaba" name="a031a0e28b78f48928c1a521491b1aaba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a031a0e28b78f48928c1a521491b1aaba">&#9670;&#160;</a></span>y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vec3f::y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">38</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00128">angle()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00143">angle2()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00893">Simplify::SimplificationObject::calculate_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00176">clamp()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00120">cross()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00115">dot()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00206">frac()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00214">integer()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00284">interpolate()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00199">invert()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00222">length()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00954">Simplify::SimplificationObject::load_obj()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00227">normalize()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00069">operator*()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00074">operator*()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00059">operator+()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00064">operator+=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00105">operator-()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00110">operator/()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00100">operator/()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00092">operator=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00084">operator=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00258">random01_fxyz()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00160">rot_x()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00191">rot_z()</a>, <a class="el" href="../../d3/d72/Simplification_8cpp_source.html#l00013">carla::geom::Simplification::Simplificate()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00731">Simplify::SimplificationObject::update_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00079">v3()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00052">vec3f()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00045">vec3f()</a>.</p>
+
+</div>
+</div>
+<a id="abcf82d0f778002001736d01d1c8a542c" name="abcf82d0f778002001736d01d1c8a542c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcf82d0f778002001736d01d1c8a542c">&#9670;&#160;</a></span>z</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double vec3f::z</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a> 第 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00038">38</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00128">angle()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00143">angle2()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00893">Simplify::SimplificationObject::calculate_error()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00176">clamp()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00120">cross()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00115">dot()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00206">frac()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00214">integer()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00284">interpolate()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00199">invert()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00222">length()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00954">Simplify::SimplificationObject::load_obj()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00227">normalize()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00069">operator*()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00074">operator*()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00059">operator+()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00064">operator+=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00105">operator-()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00110">operator/()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00100">operator/()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00092">operator=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00084">operator=()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00258">random01_fxyz()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00160">rot_x()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00168">rot_y()</a>, <a class="el" href="../../d3/d72/Simplification_8cpp_source.html#l00013">carla::geom::Simplification::Simplificate()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00731">Simplify::SimplificationObject::update_mesh()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00079">v3()</a>, <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00052">vec3f()</a> , 以及 <a class="el" href="../../d3/d33/Simplify_8h_source.html#l00045">vec3f()</a>.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d3/d33/Simplify_8h_source.html">Simplify.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

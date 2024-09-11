@@ -1,0 +1,12 @@
+digraph "geometry_msgs::msg::Point32PubSubType::serialize"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="geometry_msgs::msg\l::Point32PubSubType\l::serialize",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="geometry_msgs::msg\l::Point32::serialize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/df7/classgeometry__msgs_1_1msg_1_1Point32.html#aee1400db284271c6c3ca4b9ce290c97b",tooltip="This function serializes an object using CDR serialization."];
+}

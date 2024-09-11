@@ -1,0 +1,26 @@
+digraph "ACarlaRecorder::AddActorKinematics"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="ACarlaRecorder::AddActor\lKinematics",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="ACarlaRecorder::AddKinematics",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/db9/classACarlaRecorder.html#a6a00a137b5bb6c492107d7d17500a9f0",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="CarlaRecorderActorsKinematics::Add",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/ded/classCarlaRecorderActorsKinematics.html#abce0033ef83222c43c6790416f449c9e",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="FCarlaActor::GetActorAngular\lVelocity",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/dde/classFCarlaActor.html#a6bff2bd5ab8b9a1b66689d0cef59cc71",tooltip=" "];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="FCarlaActor::GetActor",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/dde/classFCarlaActor.html#a4d2752987e47827efd488b90053ad415",tooltip=" "];
+  Node4 -> Node6 [id="edge5_Node000004_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="FCarlaActor::IsDormant",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/dde/classFCarlaActor.html#a49f76353c69e02542858ed2cf6eeb000",tooltip=" "];
+  Node1 -> Node7 [id="edge6_Node000001_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="FCarlaActor::GetActorId",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/dde/classFCarlaActor.html#aca3d1a4bfcb5e0ae1974b7206933d665",tooltip=" "];
+  Node1 -> Node8 [id="edge7_Node000001_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="FCarlaActor::GetActorVelocity",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/dde/classFCarlaActor.html#a88bf447f68db93e6bb544ac54eb3c4c2",tooltip=" "];
+  Node8 -> Node5 [id="edge8_Node000008_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node8 -> Node6 [id="edge9_Node000008_Node000006",color="steelblue1",style="solid",tooltip=" "];
+}

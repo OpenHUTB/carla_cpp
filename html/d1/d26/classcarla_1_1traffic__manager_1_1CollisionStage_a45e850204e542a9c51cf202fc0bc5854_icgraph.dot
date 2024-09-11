@@ -1,0 +1,24 @@
+digraph "carla::traffic_manager::CollisionStage::GetGeodesicBoundary"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="carla::traffic_manager\l::CollisionStage::GetGeodesic\lBoundary",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::traffic_manager\l::CollisionStage::GetGeometry\lBetweenActors",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#a383f31bbf925c84040ef66592dd6e56e",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::traffic_manager\l::CollisionStage::NegotiateCollision",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#af9c0740908fbcb2f077fb513224b2b4e",tooltip=" "];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::traffic_manager\l::CollisionStage::Update",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html#ac446efd585519bce8de5740158758158",tooltip=" "];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::traffic_manager\l::TrafficManagerLocal::Run",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a6d67cce3d0e5a48056645270364fe637",tooltip="Initiates thread to run the TrafficManager sequentially."];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::traffic_manager\l::TrafficManagerLocal\l::Start",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1ffbdb0bed64f385437d2820a90286d0",tooltip="To start the TrafficManager."];
+  Node6 -> Node7 [id="edge6_Node000006_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="carla::traffic_manager\l::TrafficManagerLocal\l::Reset",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a1639db97ccf27a801b92fadabd611755",tooltip="To reset the traffic manager."];
+  Node6 -> Node8 [id="edge7_Node000006_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="carla::traffic_manager\l::TrafficManagerLocal\l::TrafficManagerLocal",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/d0f/classcarla_1_1traffic__manager_1_1TrafficManagerLocal.html#a75976d36f4213ab24e79e3ea2dcd280a",tooltip="Private constructor for singleton lifecycle management."];
+}

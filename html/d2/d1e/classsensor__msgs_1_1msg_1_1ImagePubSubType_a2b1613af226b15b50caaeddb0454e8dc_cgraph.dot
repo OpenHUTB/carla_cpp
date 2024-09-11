@@ -1,0 +1,16 @@
+digraph "sensor_msgs::msg::ImagePubSubType::ImagePubSubType"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="sensor_msgs::msg::ImagePub\lSubType::ImagePubSubType",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="sensor_msgs::msg::Image\l::getKeyMaxCdrSerializedSize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/de9/classsensor__msgs_1_1msg_1_1Image.html#ac8f2aec0d0ff6c0fe3f3a682d079891d",tooltip="This function returns the maximum serialized size of the Key of an object depending on the buffer ali..."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="sensor_msgs::msg::Image\l::getMaxCdrSerializedSize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a0f1e315bc33b95ce0c945dc3ace63177",tooltip="This function returns the maximum serialized size of an object depending on the buffer alignment."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="sensor_msgs::msg::Image\l::isKeyDefined",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/de9/classsensor__msgs_1_1msg_1_1Image.html#a60f3899c6b908396888abacf3b30e95a",tooltip="This function tells you if the Key has been defined for this type"];
+}

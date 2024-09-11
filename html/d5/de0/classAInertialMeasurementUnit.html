@@ -1,0 +1,984 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: AInertialMeasurementUnit类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../de/d21/classAInertialMeasurementUnit-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">AInertialMeasurementUnit类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 AInertialMeasurementUnit 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> AInertialMeasurementUnit 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a450ef713fe9cebeabe86615e95458fc2" id="r_a450ef713fe9cebeabe86615e95458fc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a450ef713fe9cebeabe86615e95458fc2">AInertialMeasurementUnit</a> (const FObjectInitializer &amp;ObjectInitializer)</td></tr>
+<tr class="separator:a450ef713fe9cebeabe86615e95458fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb126bb232bae1d7d8b2470ed85b9ffc" id="r_acb126bb232bae1d7d8b2470ed85b9ffc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb126bb232bae1d7d8b2470ed85b9ffc">ComputeAccelerometer</a> (const float DeltaTime)</td></tr>
+<tr class="memdesc:acb126bb232bae1d7d8b2470ed85b9ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accelerometer: measures linear acceleration in m/s^2  <br /></td></tr>
+<tr class="separator:acb126bb232bae1d7d8b2470ed85b9ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63d8f805a045b32e9ff31343a4eb0780" id="r_a63d8f805a045b32e9ff31343a4eb0780"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63d8f805a045b32e9ff31343a4eb0780">ComputeAccelerometerNoise</a> (const FVector &amp;Accelerometer)</td></tr>
+<tr class="separator:a63d8f805a045b32e9ff31343a4eb0780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01cd59bbd1a52c3a138ff031e5e45697" id="r_a01cd59bbd1a52c3a138ff031e5e45697"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01cd59bbd1a52c3a138ff031e5e45697">ComputeCompass</a> ()</td></tr>
+<tr class="memdesc:a01cd59bbd1a52c3a138ff031e5e45697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Magnetometer: orientation with respect to the North in rad  <br /></td></tr>
+<tr class="separator:a01cd59bbd1a52c3a138ff031e5e45697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74f616bf7d03f2f8a7642ab073d2561" id="r_aa74f616bf7d03f2f8a7642ab073d2561"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa74f616bf7d03f2f8a7642ab073d2561">ComputeGyroscope</a> ()</td></tr>
+<tr class="memdesc:aa74f616bf7d03f2f8a7642ab073d2561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gyroscope: measures angular velocity in rad/sec  <br /></td></tr>
+<tr class="separator:aa74f616bf7d03f2f8a7642ab073d2561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f1b18b10c2c4a24254642f7499cb315" id="r_a5f1b18b10c2c4a24254642f7499cb315"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f1b18b10c2c4a24254642f7499cb315">ComputeGyroscopeNoise</a> (const FVector &amp;Gyroscope)</td></tr>
+<tr class="separator:a5f1b18b10c2c4a24254642f7499cb315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37399d0c1621d3313983a1f6d307989c" id="r_a37399d0c1621d3313983a1f6d307989c"><td class="memItemLeft" align="right" valign="top">const FVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37399d0c1621d3313983a1f6d307989c">GetAccelerationStandardDeviation</a> () const</td></tr>
+<tr class="separator:a37399d0c1621d3313983a1f6d307989c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac732337441386c4ce4c49557091031ce" id="r_ac732337441386c4ce4c49557091031ce"><td class="memItemLeft" align="right" valign="top">const FVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac732337441386c4ce4c49557091031ce">GetGyroscopeBias</a> () const</td></tr>
+<tr class="separator:ac732337441386c4ce4c49557091031ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa4d53e52012dd372dac80599e0532d0" id="r_afa4d53e52012dd372dac80599e0532d0"><td class="memItemLeft" align="right" valign="top">const FVector &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa4d53e52012dd372dac80599e0532d0">GetGyroscopeStandardDeviation</a> () const</td></tr>
+<tr class="separator:afa4d53e52012dd372dac80599e0532d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa86507b1b877834ae72c1034486b7d90" id="r_aa86507b1b877834ae72c1034486b7d90"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa86507b1b877834ae72c1034486b7d90">PostPhysTick</a> (UWorld *World, ELevelTick TickType, float DeltaTime) override</td></tr>
+<tr class="separator:aa86507b1b877834ae72c1034486b7d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0fd1f47876962647b54b8607a5c4414" id="r_ac0fd1f47876962647b54b8607a5c4414"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0fd1f47876962647b54b8607a5c4414">Set</a> (const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;ActorDescription) override</td></tr>
+<tr class="separator:ac0fd1f47876962647b54b8607a5c4414"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac93f533d604e59cd79d504b69e59c57d" id="r_ac93f533d604e59cd79d504b69e59c57d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac93f533d604e59cd79d504b69e59c57d">SetAccelerationStandardDeviation</a> (const FVector &amp;Vec)</td></tr>
+<tr class="separator:ac93f533d604e59cd79d504b69e59c57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cdd622f0394de0d71f64a340ccdb2d3" id="r_a6cdd622f0394de0d71f64a340ccdb2d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cdd622f0394de0d71f64a340ccdb2d3">SetGyroscopeBias</a> (const FVector &amp;Vec)</td></tr>
+<tr class="separator:a6cdd622f0394de0d71f64a340ccdb2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad80f1281490d73ef7ca93e999b4f75f5" id="r_ad80f1281490d73ef7ca93e999b4f75f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad80f1281490d73ef7ca93e999b4f75f5">SetGyroscopeStandardDeviation</a> (const FVector &amp;Vec)</td></tr>
+<tr class="separator:ad80f1281490d73ef7ca93e999b4f75f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a826ff56eb5f50e1a3e9bf01811291557" id="r_a826ff56eb5f50e1a3e9bf01811291557"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a826ff56eb5f50e1a3e9bf01811291557">SetOwner</a> (<a class="el" href="../../d1/da4/classAActor.html">AActor</a> *Owner) override</td></tr>
+<tr class="separator:a826ff56eb5f50e1a3e9bf01811291557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classASensor"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classASensor')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../d3/d01/classASensor.html">ASensor</a></td></tr>
+<tr class="memitem:ae942ab9b7fc691c3c46c3deb87aeaad5 inherit pub_methods_classASensor" id="r_ae942ab9b7fc691c3c46c3deb87aeaad5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#ae942ab9b7fc691c3c46c3deb87aeaad5">ASensor</a> (const FObjectInitializer &amp;ObjectInitializer)</td></tr>
+<tr class="separator:ae942ab9b7fc691c3c46c3deb87aeaad5 inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a5ffb398a9916d3cedd1f1e3f0e1ed4 inherit pub_methods_classASensor" id="r_a3a5ffb398a9916d3cedd1f1e3f0e1ed4"><td class="memItemLeft" align="right" valign="top">boost::optional&lt; <a class="el" href="../../dd/d1d/structFActorAttribute.html">FActorAttribute</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a3a5ffb398a9916d3cedd1f1e3f0e1ed4">GetAttribute</a> (const FString Name)</td></tr>
+<tr class="separator:a3a5ffb398a9916d3cedd1f1e3f0e1ed4 inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfbd2b80613e8936e27f29436d62812c inherit pub_methods_classASensor" id="r_adfbd2b80613e8936e27f29436d62812c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../dc/d84/classUCarlaEpisode.html">UCarlaEpisode</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#adfbd2b80613e8936e27f29436d62812c">GetEpisode</a> () const</td></tr>
+<tr class="separator:adfbd2b80613e8936e27f29436d62812c inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcb906d38dd041714fa0181fa8a65e58 inherit pub_methods_classASensor" id="r_abcb906d38dd041714fa0181fa8a65e58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d4b/classURandomEngine.html">URandomEngine</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#abcb906d38dd041714fa0181fa8a65e58">GetRandomEngine</a> ()</td></tr>
+<tr class="separator:abcb906d38dd041714fa0181fa8a65e58 inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdbaddd5ab8f8a618715e3fdff3a50bb inherit pub_methods_classASensor" id="r_acdbaddd5ab8f8a618715e3fdff3a50bb"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#acdbaddd5ab8f8a618715e3fdff3a50bb">GetSeed</a> () const</td></tr>
+<tr class="separator:acdbaddd5ab8f8a618715e3fdff3a50bb inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66fce49debf0145d15f810fd78775e9d inherit pub_methods_classASensor" id="r_a66fce49debf0145d15f810fd78775e9d"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a66fce49debf0145d15f810fd78775e9d">GetToken</a> () const</td></tr>
+<tr class="memdesc:a66fce49debf0145d15f810fd78775e9d inherit pub_methods_classASensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the token that allows subscribing to this sensor's stream.  <br /></td></tr>
+<tr class="separator:a66fce49debf0145d15f810fd78775e9d inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13a798c094b844a8d208a6c16dd5c47b inherit pub_methods_classASensor" id="r_a13a798c094b844a8d208a6c16dd5c47b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a13a798c094b844a8d208a6c16dd5c47b">IsStreamReady</a> ()</td></tr>
+<tr class="separator:a13a798c094b844a8d208a6c16dd5c47b inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9466335d5838dc21e90ecd99c9d873 inherit pub_methods_classASensor" id="r_a7e9466335d5838dc21e90ecd99c9d873"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/dd9/DataStream_8h.html#aa80bad1d32fa7a360e7e9664f07cb551">FDataStream</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a7e9466335d5838dc21e90ecd99c9d873">MoveDataStream</a> ()</td></tr>
+<tr class="separator:a7e9466335d5838dc21e90ecd99c9d873 inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2395225b2012e8571a3d59e4704a280b inherit pub_methods_classASensor" id="r_a2395225b2012e8571a3d59e4704a280b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a2395225b2012e8571a3d59e4704a280b">OnFirstClientConnected</a> ()</td></tr>
+<tr class="separator:a2395225b2012e8571a3d59e4704a280b inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36465452ef3121fec4a61d583aeb134 inherit pub_methods_classASensor" id="r_ae36465452ef3121fec4a61d583aeb134"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#ae36465452ef3121fec4a61d583aeb134">OnLastClientDisconnected</a> ()</td></tr>
+<tr class="separator:ae36465452ef3121fec4a61d583aeb134 inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac771c41b0631c12d3c5dc8fdaef370bf inherit pub_methods_classASensor" id="r_ac771c41b0631c12d3c5dc8fdaef370bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#ac771c41b0631c12d3c5dc8fdaef370bf">PostPhysTickInternal</a> (UWorld *World, ELevelTick TickType, float DeltaSeconds)</td></tr>
+<tr class="separator:ac771c41b0631c12d3c5dc8fdaef370bf inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd91096546acf20dfd503395d9a133a9 inherit pub_methods_classASensor" id="r_afd91096546acf20dfd503395d9a133a9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#afd91096546acf20dfd503395d9a133a9">PrePhysTick</a> (float DeltaSeconds)</td></tr>
+<tr class="separator:afd91096546acf20dfd503395d9a133a9 inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ee2e98fd5918a9d2affde92ed19150d inherit pub_methods_classASensor" id="r_a6ee2e98fd5918a9d2affde92ed19150d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a6ee2e98fd5918a9d2affde92ed19150d">SetDataStream</a> (<a class="el" href="../../da/dd9/DataStream_8h.html#aa80bad1d32fa7a360e7e9664f07cb551">FDataStream</a> InStream)</td></tr>
+<tr class="memdesc:a6ee2e98fd5918a9d2affde92ed19150d inherit pub_methods_classASensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace the FDataStream associated with this sensor.  <br /></td></tr>
+<tr class="separator:a6ee2e98fd5918a9d2affde92ed19150d inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6410f0656674d8c1d0a1d06dabde5ef inherit pub_methods_classASensor" id="r_ac6410f0656674d8c1d0a1d06dabde5ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#ac6410f0656674d8c1d0a1d06dabde5ef">SetEpisode</a> (const <a class="el" href="../../dc/d84/classUCarlaEpisode.html">UCarlaEpisode</a> &amp;InEpisode)</td></tr>
+<tr class="separator:ac6410f0656674d8c1d0a1d06dabde5ef inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afced2ac412dc1ef1a5c99e65e14f7340 inherit pub_methods_classASensor" id="r_afced2ac412dc1ef1a5c99e65e14f7340"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#afced2ac412dc1ef1a5c99e65e14f7340">SetSeed</a> (int32 InSeed)</td></tr>
+<tr class="separator:afced2ac412dc1ef1a5c99e65e14f7340 inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a355a3cbfa4189981845020658c1435c9 inherit pub_methods_classASensor" id="r_a355a3cbfa4189981845020658c1435c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a355a3cbfa4189981845020658c1435c9">Tick</a> (const float DeltaTime) final</td></tr>
+<tr class="separator:a355a3cbfa4189981845020658c1435c9 inherit pub_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:ab86c890fb98d46aada0e50ca7fcce4e1" id="r_ab86c890fb98d46aada0e50ca7fcce4e1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab86c890fb98d46aada0e50ca7fcce4e1">GetSensorDefinition</a> ()</td></tr>
+<tr class="separator:ab86c890fb98d46aada0e50ca7fcce4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:a9b1a412c36a141f7632c6b4783238ff2" id="r_a9b1a412c36a141f7632c6b4783238ff2"><td class="memItemLeft" align="right" valign="top">static const FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b1a412c36a141f7632c6b4783238ff2">CarlaNorthVector</a></td></tr>
+<tr class="memdesc:a9b1a412c36a141f7632c6b4783238ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Based on OpenDRIVE's lon and lat, North is in (0.0f, -1.0f, 0.0f)  <br /></td></tr>
+<tr class="separator:a9b1a412c36a141f7632c6b4783238ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a1cf15b49b2c117d4e713c8930e6e759d" id="r_a1cf15b49b2c117d4e713c8930e6e759d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cf15b49b2c117d4e713c8930e6e759d">BeginPlay</a> () override</td></tr>
+<tr class="separator:a1cf15b49b2c117d4e713c8930e6e759d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:aa0304a09e7803659be7d99a90c049b56" id="r_aa0304a09e7803659be7d99a90c049b56"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0304a09e7803659be7d99a90c049b56">BiasGyro</a></td></tr>
+<tr class="memdesc:aa0304a09e7803659be7d99a90c049b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bias for gyroscope settings.  <br /></td></tr>
+<tr class="separator:aa0304a09e7803659be7d99a90c049b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7c2718ebf3f409bad5943c67f4de03a" id="r_ac7c2718ebf3f409bad5943c67f4de03a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7c2718ebf3f409bad5943c67f4de03a">PrevDeltaTime</a></td></tr>
+<tr class="memdesc:ac7c2718ebf3f409bad5943c67f4de03a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to compute the acceleration  <br /></td></tr>
+<tr class="separator:ac7c2718ebf3f409bad5943c67f4de03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae34afb2cc7c061f6442fe4171af02ef1" id="r_ae34afb2cc7c061f6442fe4171af02ef1"><td class="memItemLeft" align="right" valign="top">std::array&lt; FVector, 2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae34afb2cc7c061f6442fe4171af02ef1">PrevLocation</a></td></tr>
+<tr class="memdesc:ae34afb2cc7c061f6442fe4171af02ef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to compute the acceleration  <br /></td></tr>
+<tr class="separator:ae34afb2cc7c061f6442fe4171af02ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f7d4078e42363e3b0aeb0ae37ea1c65" id="r_a5f7d4078e42363e3b0aeb0ae37ea1c65"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f7d4078e42363e3b0aeb0ae37ea1c65">StdDevAccel</a></td></tr>
+<tr class="memdesc:a5f7d4078e42363e3b0aeb0ae37ea1c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard deviation for acceleration settings.  <br /></td></tr>
+<tr class="separator:a5f7d4078e42363e3b0aeb0ae37ea1c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab55a52e25a43137d6cde11fb96496e2a" id="r_ab55a52e25a43137d6cde11fb96496e2a"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab55a52e25a43137d6cde11fb96496e2a">StdDevGyro</a></td></tr>
+<tr class="memdesc:ab55a52e25a43137d6cde11fb96496e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard deviation for gyroscope settings.  <br /></td></tr>
+<tr class="separator:ab55a52e25a43137d6cde11fb96496e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_methods_classASensor"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classASensor')"><img src="../../closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="../../d3/d01/classASensor.html">ASensor</a></td></tr>
+<tr class="memitem:a1c9f916c2383430fb6a125a3d2725c76 inherit pro_methods_classASensor" id="r_a1c9f916c2383430fb6a125a3d2725c76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a1c9f916c2383430fb6a125a3d2725c76">EndPlay</a> (EEndPlayReason::Type EndPlayReason) override</td></tr>
+<tr class="separator:a1c9f916c2383430fb6a125a3d2725c76 inherit pro_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fa217c0d68d5c774510d5e941ae0ade inherit pro_methods_classASensor" id="r_a8fa217c0d68d5c774510d5e941ae0ade"><td class="memTemplParams" colspan="2">template&lt;typename SensorT &gt; </td></tr>
+<tr class="memitem:a8fa217c0d68d5c774510d5e941ae0ade inherit pro_methods_classASensor"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d9/d4d/AsyncDataStream_8h.html#a137986f05ea485dbd27ffb2e40f69259">FAsyncDataStream</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a8fa217c0d68d5c774510d5e941ae0ade">GetDataStream</a> (const SensorT &amp;Self)</td></tr>
+<tr class="memdesc:a8fa217c0d68d5c774510d5e941ae0ade inherit pro_methods_classASensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the FDataStream associated with this sensor.  <br /></td></tr>
+<tr class="separator:a8fa217c0d68d5c774510d5e941ae0ade inherit pro_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdde70c4f5b1c247d2e398fbffb6af54 inherit pro_methods_classASensor" id="r_abdde70c4f5b1c247d2e398fbffb6af54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#abdde70c4f5b1c247d2e398fbffb6af54">PostActorCreated</a> () override</td></tr>
+<tr class="separator:abdde70c4f5b1c247d2e398fbffb6af54 inherit pro_methods_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classASensor"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classASensor')"><img src="../../closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="../../d3/d01/classASensor.html">ASensor</a></td></tr>
+<tr class="memitem:a6043009e19b6b996f83595189e7d49e1 inherit pro_attribs_classASensor" id="r_a6043009e19b6b996f83595189e7d49e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a6043009e19b6b996f83595189e7d49e1">bIsActive</a> = false</td></tr>
+<tr class="separator:a6043009e19b6b996f83595189e7d49e1 inherit pro_attribs_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac45a5cb382483d3ddf3547c8dd972067 inherit pro_attribs_classASensor" id="r_ac45a5cb382483d3ddf3547c8dd972067"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d4b/classURandomEngine.html">URandomEngine</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#ac45a5cb382483d3ddf3547c8dd972067">RandomEngine</a> = nullptr</td></tr>
+<tr class="memdesc:ac45a5cb382483d3ddf3547c8dd972067 inherit pro_attribs_classASensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random Engine used to provide noise for sensor output.  <br /></td></tr>
+<tr class="separator:ac45a5cb382483d3ddf3547c8dd972067 inherit pro_attribs_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447a8ed9dea9b7ac36d3060e51135746 inherit pro_attribs_classASensor" id="r_a447a8ed9dea9b7ac36d3060e51135746"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d01/classASensor.html#a447a8ed9dea9b7ac36d3060e51135746">Seed</a> = 123456789</td></tr>
+<tr class="memdesc:a447a8ed9dea9b7ac36d3060e51135746 inherit pro_attribs_classASensor"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seed of the pseudo-random engine.  <br /></td></tr>
+<tr class="separator:a447a8ed9dea9b7ac36d3060e51135746 inherit pro_attribs_classASensor"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a> 第 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00023">23</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a450ef713fe9cebeabe86615e95458fc2" name="a450ef713fe9cebeabe86615e95458fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a450ef713fe9cebeabe86615e95458fc2">&#9670;&#160;</a></span>AInertialMeasurementUnit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AInertialMeasurementUnit::AInertialMeasurementUnit </td>
+          <td>(</td>
+          <td class="paramtype">const FObjectInitializer &amp;</td>          <td class="paramname"><span class="paramname"><em>ObjectInitializer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00025">25</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00086">PrevDeltaTime</a>, <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00083">PrevLocation</a> , 以及 <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00121">ASensor::RandomEngine</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a1cf15b49b2c117d4e713c8930e6e759d" name="a1cf15b49b2c117d4e713c8930e6e759d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf15b49b2c117d4e713c8930e6e759d">&#9670;&#160;</a></span>BeginPlay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AInertialMeasurementUnit::BeginPlay </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d3/d01/classASensor.html#ae63f0e969a04a2c3e9b4c1e7c9d04415">ASensor</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00249">249</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acb126bb232bae1d7d8b2470ed85b9ffc" name="acb126bb232bae1d7d8b2470ed85b9ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb126bb232bae1d7d8b2470ed85b9ffc">&#9670;&#160;</a></span>ComputeAccelerometer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a> AInertialMeasurementUnit::ComputeAccelerometer </td>
+          <td>(</td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>DeltaTime</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Accelerometer: measures linear acceleration in m/s^2 </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00102">102</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00073">ComputeAccelerometerNoise()</a>, <a class="el" href="../../d9/dc8/CarlaStatics_8h_source.html#l00058">UCarlaStatics::GetGameMode()</a>, <a class="el" href="../../d3/d49/CarlaGameModeBase_8h_source.html#l00117">ACarlaGameModeBase::IMUISensorGravity</a>, <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00086">PrevDeltaTime</a> , 以及 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00083">PrevLocation</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00185">PostPhysTick()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a63d8f805a045b32e9ff31343a4eb0780" name="a63d8f805a045b32e9ff31343a4eb0780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63d8f805a045b32e9ff31343a4eb0780">&#9670;&#160;</a></span>ComputeAccelerometerNoise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a> AInertialMeasurementUnit::ComputeAccelerometerNoise </td>
+          <td>(</td>
+          <td class="paramtype">const FVector &amp;</td>          <td class="paramname"><span class="paramname"><em>Accelerometer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00073">73</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/daa/RandomEngine_8h_source.html#l00110">URandomEngine::GetNormalDistribution()</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00121">ASensor::RandomEngine</a> , 以及 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00074">StdDevAccel</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00102">ComputeAccelerometer()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a01cd59bbd1a52c3a138ff031e5e45697" name="a01cd59bbd1a52c3a138ff031e5e45697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01cd59bbd1a52c3a138ff031e5e45697">&#9670;&#160;</a></span>ComputeCompass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AInertialMeasurementUnit::ComputeCompass </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Magnetometer: orientation with respect to the North in rad </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00167">167</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00067">CarlaNorthVector</a> , 以及 <a class="el" href="../../db/d8a/Math_8h_source.html#l00031">carla::geom::Math::Pi2()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00185">PostPhysTick()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa74f616bf7d03f2f8a7642ab073d2561" name="aa74f616bf7d03f2f8a7642ab073d2561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa74f616bf7d03f2f8a7642ab073d2561">&#9670;&#160;</a></span>ComputeGyroscope()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a> AInertialMeasurementUnit::ComputeGyroscope </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gyroscope: measures angular velocity in rad/sec </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00147">147</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00087">ComputeGyroscopeNoise()</a> , 以及 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00055">FIMU_GetActorAngularVelocityInRadians()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00185">PostPhysTick()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a5f1b18b10c2c4a24254642f7499cb315" name="a5f1b18b10c2c4a24254642f7499cb315"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f1b18b10c2c4a24254642f7499cb315">&#9670;&#160;</a></span>ComputeGyroscopeNoise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d9/dfe/classcarla_1_1geom_1_1Vector3D.html">carla::geom::Vector3D</a> AInertialMeasurementUnit::ComputeGyroscopeNoise </td>
+          <td>(</td>
+          <td class="paramtype">const FVector &amp;</td>          <td class="paramname"><span class="paramname"><em>Gyroscope</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00087">87</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00080">BiasGyro</a>, <a class="el" href="../../d6/daa/RandomEngine_8h_source.html#l00110">URandomEngine::GetNormalDistribution()</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00121">ASensor::RandomEngine</a> , 以及 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00077">StdDevGyro</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00147">ComputeGyroscope()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<a id="a37399d0c1621d3313983a1f6d307989c" name="a37399d0c1621d3313983a1f6d307989c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37399d0c1621d3313983a1f6d307989c">&#9670;&#160;</a></span>GetAccelerationStandardDeviation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FVector &amp; AInertialMeasurementUnit::GetAccelerationStandardDeviation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00234">234</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00074">StdDevAccel</a>.</p>
+
+</div>
+</div>
+<a id="ac732337441386c4ce4c49557091031ce" name="ac732337441386c4ce4c49557091031ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac732337441386c4ce4c49557091031ce">&#9670;&#160;</a></span>GetGyroscopeBias()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FVector &amp; AInertialMeasurementUnit::GetGyroscopeBias </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00244">244</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00080">BiasGyro</a>.</p>
+
+</div>
+</div>
+<a id="afa4d53e52012dd372dac80599e0532d0" name="afa4d53e52012dd372dac80599e0532d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa4d53e52012dd372dac80599e0532d0">&#9670;&#160;</a></span>GetGyroscopeStandardDeviation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FVector &amp; AInertialMeasurementUnit::GetGyroscopeStandardDeviation </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00239">239</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00077">StdDevGyro</a>.</p>
+
+</div>
+</div>
+<a id="ab86c890fb98d46aada0e50ca7fcce4e1" name="ab86c890fb98d46aada0e50ca7fcce4e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab86c890fb98d46aada0e50ca7fcce4e1">&#9670;&#160;</a></span>GetSensorDefinition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d76/structFActorDefinition.html">FActorDefinition</a> AInertialMeasurementUnit::GetSensorDefinition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00038">38</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l00745">UActorBlueprintFunctionLibrary::MakeIMUDefinition()</a>.</p>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa86507b1b877834ae72c1034486b7d90" name="aa86507b1b877834ae72c1034486b7d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa86507b1b877834ae72c1034486b7d90">&#9670;&#160;</a></span>PostPhysTick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AInertialMeasurementUnit::PostPhysTick </td>
+          <td>(</td>
+          <td class="paramtype">UWorld *</td>          <td class="paramname"><span class="paramname"><em>World</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ELevelTick</td>          <td class="paramname"><span class="paramname"><em>TickType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>DeltaTime</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d3/d01/classASensor.html#ad7def45d2fa41e8aef4db2acea6f72d0">ASensor</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00185">185</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00102">ComputeAccelerometer()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00167">ComputeCompass()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00147">ComputeGyroscope()</a>, <a class="el" href="../../d9/d9d/detail_2Token_8h_source.html#l00116">carla::streaming::detail::token_type::get_stream_id()</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00110">ASensor::GetDataStream()</a>, <a class="el" href="../../da/db8/ROS2_8h_source.html#l00051">carla::ros2::ROS2::GetInstance()</a>, <a class="el" href="../../da/dd9/DataStream_8h_source.html#l00058">FDataStreamTmpl&lt; T &gt;::GetSensorType()</a>, <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00056">ASensor::GetToken()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00185">PostPhysTick()</a> , 以及 <a class="el" href="../../d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h_source.html#l00128">ASensor::Stream</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00185">PostPhysTick()</a>.</p>
+<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 13 --></div>
+</div>
+<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 14 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac0fd1f47876962647b54b8607a5c4414" name="ac0fd1f47876962647b54b8607a5c4414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0fd1f47876962647b54b8607a5c4414">&#9670;&#160;</a></span>Set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AInertialMeasurementUnit::Set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/df6/structFActorDescription.html">FActorDescription</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>ActorDescription</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>重载 <a class="el" href="../../d3/d01/classASensor.html#a4d1a4a116e9d55b9bdb383de90062059">ASensor</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00043">43</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02076">UActorBlueprintFunctionLibrary::SetIMU()</a>.</p>
+<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 15 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac93f533d604e59cd79d504b69e59c57d" name="ac93f533d604e59cd79d504b69e59c57d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac93f533d604e59cd79d504b69e59c57d">&#9670;&#160;</a></span>SetAccelerationStandardDeviation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AInertialMeasurementUnit::SetAccelerationStandardDeviation </td>
+          <td>(</td>
+          <td class="paramtype">const FVector &amp;</td>          <td class="paramname"><span class="paramname"><em>Vec</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00219">219</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00074">StdDevAccel</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02076">UActorBlueprintFunctionLibrary::SetIMU()</a>.</p>
+<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 16 --></div>
+</div>
+
+</div>
+</div>
+<a id="a6cdd622f0394de0d71f64a340ccdb2d3" name="a6cdd622f0394de0d71f64a340ccdb2d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cdd622f0394de0d71f64a340ccdb2d3">&#9670;&#160;</a></span>SetGyroscopeBias()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AInertialMeasurementUnit::SetGyroscopeBias </td>
+          <td>(</td>
+          <td class="paramtype">const FVector &amp;</td>          <td class="paramname"><span class="paramname"><em>Vec</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00229">229</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00080">BiasGyro</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02076">UActorBlueprintFunctionLibrary::SetIMU()</a>.</p>
+<div id="dynsection-17" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 17 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad80f1281490d73ef7ca93e999b4f75f5" name="ad80f1281490d73ef7ca93e999b4f75f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad80f1281490d73ef7ca93e999b4f75f5">&#9670;&#160;</a></span>SetGyroscopeStandardDeviation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AInertialMeasurementUnit::SetGyroscopeStandardDeviation </td>
+          <td>(</td>
+          <td class="paramtype">const FVector &amp;</td>          <td class="paramname"><span class="paramname"><em>Vec</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00224">224</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00077">StdDevGyro</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d08/ActorBlueprintFunctionLibrary_8cpp_source.html#l02076">UActorBlueprintFunctionLibrary::SetIMU()</a>.</p>
+<div id="dynsection-18" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 18 --></div>
+</div>
+
+</div>
+</div>
+<a id="a826ff56eb5f50e1a3e9bf01811291557" name="a826ff56eb5f50e1a3e9bf01811291557"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a826ff56eb5f50e1a3e9bf01811291557">&#9670;&#160;</a></span>SetOwner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AInertialMeasurementUnit::SetOwner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/da4/classAActor.html">AActor</a> *</td>          <td class="paramname"><span class="paramname"><em>Owner</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a> 第 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="aa0304a09e7803659be7d99a90c049b56" name="aa0304a09e7803659be7d99a90c049b56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0304a09e7803659be7d99a90c049b56">&#9670;&#160;</a></span>BiasGyro</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FVector AInertialMeasurementUnit::BiasGyro</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bias for gyroscope settings. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a> 第 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00080">80</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00087">ComputeGyroscopeNoise()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00244">GetGyroscopeBias()</a> , 以及 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00229">SetGyroscopeBias()</a>.</p>
+
+</div>
+</div>
+<a id="a9b1a412c36a141f7632c6b4783238ff2" name="a9b1a412c36a141f7632c6b4783238ff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b1a412c36a141f7632c6b4783238ff2">&#9670;&#160;</a></span>CarlaNorthVector</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FVector AInertialMeasurementUnit::CarlaNorthVector</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    FVector(0.0f, -1.0f, 0.0f)</div>
+</div><!-- fragment -->
+<p>Based on OpenDRIVE's lon and lat, North is in (0.0f, -1.0f, 0.0f) </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a> 第 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00067">67</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00167">ComputeCompass()</a>.</p>
+
+</div>
+</div>
+<a id="ac7c2718ebf3f409bad5943c67f4de03a" name="ac7c2718ebf3f409bad5943c67f4de03a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7c2718ebf3f409bad5943c67f4de03a">&#9670;&#160;</a></span>PrevDeltaTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AInertialMeasurementUnit::PrevDeltaTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used to compute the acceleration </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a> 第 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00025">AInertialMeasurementUnit()</a> , 以及 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00102">ComputeAccelerometer()</a>.</p>
+
+</div>
+</div>
+<a id="ae34afb2cc7c061f6442fe4171af02ef1" name="ae34afb2cc7c061f6442fe4171af02ef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae34afb2cc7c061f6442fe4171af02ef1">&#9670;&#160;</a></span>PrevLocation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;FVector, 2&gt; AInertialMeasurementUnit::PrevLocation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used to compute the acceleration </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a> 第 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00083">83</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00025">AInertialMeasurementUnit()</a> , 以及 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00102">ComputeAccelerometer()</a>.</p>
+
+</div>
+</div>
+<a id="a5f7d4078e42363e3b0aeb0ae37ea1c65" name="a5f7d4078e42363e3b0aeb0ae37ea1c65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f7d4078e42363e3b0aeb0ae37ea1c65">&#9670;&#160;</a></span>StdDevAccel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FVector AInertialMeasurementUnit::StdDevAccel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Standard deviation for acceleration settings. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a> 第 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00073">ComputeAccelerometerNoise()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00234">GetAccelerationStandardDeviation()</a> , 以及 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00219">SetAccelerationStandardDeviation()</a>.</p>
+
+</div>
+</div>
+<a id="ab55a52e25a43137d6cde11fb96496e2a" name="ab55a52e25a43137d6cde11fb96496e2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab55a52e25a43137d6cde11fb96496e2a">&#9670;&#160;</a></span>StdDevGyro</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FVector AInertialMeasurementUnit::StdDevGyro</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Standard deviation for gyroscope settings. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a> 第 <a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html#l00077">77</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00087">ComputeGyroscopeNoise()</a>, <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00239">GetGyroscopeStandardDeviation()</a> , 以及 <a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html#l00224">SetGyroscopeStandardDeviation()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d7/dfa/InertialMeasurementUnit_8h_source.html">InertialMeasurementUnit.h</a></li>
+<li><a class="el" href="../../d7/d78/InertialMeasurementUnit_8cpp_source.html">InertialMeasurementUnit.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,16 @@
+digraph "carla::traffic_manager::TrafficManagerLocal::GetActionBuffer"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::traffic_manager\l::TrafficManagerLocal\l::GetActionBuffer",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Method to get the vehicle's action buffer."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::traffic_manager\l::LocalizationStage::Compute\lActionBuffer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#a1a835123f13a99787a4a15704073f762",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::traffic_manager\l::SimulationState::GetHeading",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html#a81f26b51d085034ab1319004cada6468",tooltip=" "];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::traffic_manager\l::SimulationState::GetLocation",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html#a59ede59f9972bf3dd9fc2c4b6b1e8233",tooltip=" "];
+}

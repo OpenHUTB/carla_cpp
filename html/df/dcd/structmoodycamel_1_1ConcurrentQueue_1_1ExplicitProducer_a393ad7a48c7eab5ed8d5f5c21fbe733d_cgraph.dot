@@ -1,0 +1,14 @@
+digraph "moodycamel::ConcurrentQueue::ExplicitProducer::dequeue_bulk"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="moodycamel::ConcurrentQueue\l::ExplicitProducer::dequeue_bulk",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="moodycamel::details\l::circular_less_than",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d6/d0f/namespacemoodycamel_1_1details.html#a2ff09523faed5206b521363a67a94df0",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="moodycamel::details\l::deref_noexcept",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d6/d0f/namespacemoodycamel_1_1details.html#a6b9ee0505690e9c90b5279e46c733391",tooltip=" "];
+}

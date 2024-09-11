@@ -1,0 +1,729 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: test_opendrive.cpp 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_97b9e7c0fcfa3758b809c516b8cd633b.html">test</a></li><li class="navelem"><a class="el" href="../../dir_c1fe62670c60e4c178c163f9c59fe158.html">client</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">test_opendrive.cpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d2/ddc/test_8h_source.html">test.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dc/db7/LibCarla_2source_2test_2client_2OpenDrive_8h_source.html">OpenDrive.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dd/d6d/Random_8h_source.html">Random.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d4/da6/StopWatch_8h_source.html">carla/StopWatch.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d3/d43/ThreadPool_8h_source.html">carla/ThreadPool.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/d8b/geom_2Location_8h_source.html">carla/geom/Location.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../db/d8a/Math_8h_source.html">carla/geom/Math.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d1/dd9/OpenDriveParser_8h_source.html">carla/opendrive/OpenDriveParser.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../de/d3b/MapBuilder_8h_source.html">carla/road/MapBuilder.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d7/d90/RoadInfoElevation_8h_source.html">carla/road/element/RoadInfoElevation.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d0/d8e/RoadInfoGeometry_8h_source.html">carla/road/element/RoadInfoGeometry.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/d32/RoadInfoMarkRecord_8h_source.html">carla/road/element/RoadInfoMarkRecord.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d6/d67/RoadInfoVisitor_8h_source.html">carla/road/element/RoadInfoVisitor.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml/pugixml.hpp</a>&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> test_opendrive.cpp 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+</div>
+</div>
+<p><a href="../../d1/dc0/test__opendrive_8cpp_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:abf3b27156775448afb3a631bf7351e4d" id="r_abf3b27156775448afb3a631bf7351e4d"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf3b27156775448afb3a631bf7351e4d">get_total_road_marks</a> (<a class="el" href="../../d5/d2a/classpugi_1_1xml__object__range.html">pugi::xml_object_range</a>&lt; <a class="el" href="../../d3/de2/classpugi_1_1xml__named__node__iterator.html">pugi::xml_named_node_iterator</a> &gt; &amp;lane_nodes, <a class="el" href="../../dd/d80/classcarla_1_1road_1_1LaneSection.html">LaneSection</a> &amp;lane_section)</td></tr>
+<tr class="separator:abf3b27156775448afb3a631bf7351e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b1b093eaba141da41c7241ef0fe622b" id="r_a8b1b093eaba141da41c7241ef0fe622b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b1b093eaba141da41c7241ef0fe622b">TEST</a> (road, get_waypoint)</td></tr>
+<tr class="separator:a8b1b093eaba141da41c7241ef0fe622b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a817f26804b97dd07cbf8e8e78415feda" id="r_a817f26804b97dd07cbf8e8e78415feda"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a817f26804b97dd07cbf8e8e78415feda">TEST</a> (road, iterate_waypoints)</td></tr>
+<tr class="separator:a817f26804b97dd07cbf8e8e78415feda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95337c8716f4e9d4e8bba560dbde9e34" id="r_a95337c8716f4e9d4e8bba560dbde9e34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95337c8716f4e9d4e8bba560dbde9e34">TEST</a> (road, parse_files)</td></tr>
+<tr class="separator:a95337c8716f4e9d4e8bba560dbde9e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ad6143dcb9642d77c0dfc031f41b2a" id="r_a21ad6143dcb9642d77c0dfc031f41b2a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21ad6143dcb9642d77c0dfc031f41b2a">TEST</a> (road, parse_geometry)</td></tr>
+<tr class="separator:a21ad6143dcb9642d77c0dfc031f41b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3c77eb93e568426e72ddb84a31031a7" id="r_ad3c77eb93e568426e72ddb84a31031a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3c77eb93e568426e72ddb84a31031a7">TEST</a> (road, parse_junctions)</td></tr>
+<tr class="separator:ad3c77eb93e568426e72ddb84a31031a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6244d8f18c32ca7e6f0b3de79354dda" id="r_aa6244d8f18c32ca7e6f0b3de79354dda"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6244d8f18c32ca7e6f0b3de79354dda">TEST</a> (road, parse_road)</td></tr>
+<tr class="separator:aa6244d8f18c32ca7e6f0b3de79354dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8d924b4ffb05114a054b94c74cffa78" id="r_ac8d924b4ffb05114a054b94c74cffa78"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8d924b4ffb05114a054b94c74cffa78">TEST</a> (road, parse_road_elevation)</td></tr>
+<tr class="separator:ac8d924b4ffb05114a054b94c74cffa78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47478715c88bbf3920c5566107f97b94" id="r_a47478715c88bbf3920c5566107f97b94"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47478715c88bbf3920c5566107f97b94">TEST</a> (road, parse_road_links)</td></tr>
+<tr class="separator:a47478715c88bbf3920c5566107f97b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae91ed9ba514e82a6468209f5a81f219b" id="r_ae91ed9ba514e82a6468209f5a81f219b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae91ed9ba514e82a6468209f5a81f219b">test_geometry</a> (const <a class="el" href="../../d8/d8d/classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;xml, boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;map)</td></tr>
+<tr class="separator:ae91ed9ba514e82a6468209f5a81f219b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78ab488f8950744f1bc2d977eb08c462" id="r_a78ab488f8950744f1bc2d977eb08c462"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78ab488f8950744f1bc2d977eb08c462">test_junctions</a> (const <a class="el" href="../../d8/d8d/classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;xml, boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;map)</td></tr>
+<tr class="separator:a78ab488f8950744f1bc2d977eb08c462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81c79e5679fb86625a526d45039729e4" id="r_a81c79e5679fb86625a526d45039729e4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81c79e5679fb86625a526d45039729e4">test_road_elevation</a> (const <a class="el" href="../../d8/d8d/classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;xml, boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;map)</td></tr>
+<tr class="separator:a81c79e5679fb86625a526d45039729e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42a99be0271e3dc9745b63fb295161e6" id="r_a42a99be0271e3dc9745b63fb295161e6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42a99be0271e3dc9745b63fb295161e6">test_road_links</a> (boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;map)</td></tr>
+<tr class="separator:a42a99be0271e3dc9745b63fb295161e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a150bee03ecfb9362ac5a63f334562723" id="r_a150bee03ecfb9362ac5a63f334562723"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a150bee03ecfb9362ac5a63f334562723">test_roads</a> (const <a class="el" href="../../d8/d8d/classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;xml, boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;map)</td></tr>
+<tr class="separator:a150bee03ecfb9362ac5a63f334562723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a0423f4cb393331ce0b9f6b3a43adcaae" id="r_a0423f4cb393331ce0b9f6b3a43adcaae"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0423f4cb393331ce0b9f6b3a43adcaae">BASE_PATH</a> = LIBCARLA_TEST_CONTENT_FOLDER &quot;/OpenDrive/&quot;</td></tr>
+<tr class="separator:a0423f4cb393331ce0b9f6b3a43adcaae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="abf3b27156775448afb3a631bf7351e4d" name="abf3b27156775448afb3a631bf7351e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf3b27156775448afb3a631bf7351e4d">&#9670;&#160;</a></span>get_total_road_marks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static auto get_total_road_marks </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/d2a/classpugi_1_1xml__object__range.html">pugi::xml_object_range</a>&lt; <a class="el" href="../../d3/de2/classpugi_1_1xml__named__node__iterator.html">pugi::xml_named_node_iterator</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>lane_nodes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dd/d80/classcarla_1_1road_1_1LaneSection.html">LaneSection</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>lane_section</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00082">82</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d13/Lane_8cpp_source.html#l00046">carla::road::Lane::GetDistance()</a>, <a class="el" href="../../d8/d27/Lane_8h_source.html#l00079">carla::road::Lane::GetInfo()</a> , 以及 <a class="el" href="../../d6/d5d/LaneSection_8cpp_source.html#l00031">carla::road::LaneSection::GetLane()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00117">test_roads()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8b1b093eaba141da41c7241ef0fe622b" name="a8b1b093eaba141da41c7241ef0fe622b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b1b093eaba141da41c7241ef0fe622b">&#9670;&#160;</a></span>TEST() <span class="overload">[1/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">road</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">get_waypoint</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00381">381</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d43/ThreadPool_8h_source.html#l00051">carla::ThreadPool::AsyncRun()</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00020">util::OpenDrive::GetAvailableFiles()</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00059">carla::logging::log()</a> , 以及 <a class="el" href="../../d3/d43/ThreadPool_8h_source.html#l00041">carla::ThreadPool::Post()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a817f26804b97dd07cbf8e8e78415feda" name="a817f26804b97dd07cbf8e8e78415feda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a817f26804b97dd07cbf8e8e78415feda">&#9670;&#160;</a></span>TEST() <span class="overload">[2/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">road</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">iterate_waypoints</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00304">304</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d43/ThreadPool_8h_source.html#l00051">carla::ThreadPool::AsyncRun()</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00020">util::OpenDrive::GetAvailableFiles()</a>, <a class="el" href="../../de/d87/Logging_8h_source.html#l00059">carla::logging::log()</a> , 以及 <a class="el" href="../../d3/d43/ThreadPool_8h_source.html#l00041">carla::ThreadPool::Post()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="a95337c8716f4e9d4e8bba560dbde9e34" name="a95337c8716f4e9d4e8bba560dbde9e34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95337c8716f4e9d4e8bba560dbde9e34">&#9670;&#160;</a></span>TEST() <span class="overload">[3/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">road</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">parse_files</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00225">225</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00020">util::OpenDrive::GetAvailableFiles()</a>, <a class="el" href="../../da/d5a/OpenDriveParser_8cpp_source.html#l00027">carla::opendrive::OpenDriveParser::Load()</a> , 以及 <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00026">util::OpenDrive::Load()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a21ad6143dcb9642d77c0dfc031f41b2a" name="a21ad6143dcb9642d77c0dfc031f41b2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21ad6143dcb9642d77c0dfc031f41b2a">&#9670;&#160;</a></span>TEST() <span class="overload">[4/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">road</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">parse_geometry</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00289">289</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00033">BASE_PATH</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00020">util::OpenDrive::GetAvailableFiles()</a>, <a class="el" href="../../da/d5a/OpenDriveParser_8cpp_source.html#l00027">carla::opendrive::OpenDriveParser::Load()</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00026">util::OpenDrive::Load()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07108">pugi::xml_document::load_file()</a> , 以及 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00060">test_geometry()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad3c77eb93e568426e72ddb84a31031a7" name="ad3c77eb93e568426e72ddb84a31031a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3c77eb93e568426e72ddb84a31031a7">&#9670;&#160;</a></span>TEST() <span class="overload">[5/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">road</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">parse_junctions</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00243">243</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00033">BASE_PATH</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00020">util::OpenDrive::GetAvailableFiles()</a>, <a class="el" href="../../da/d5a/OpenDriveParser_8cpp_source.html#l00027">carla::opendrive::OpenDriveParser::Load()</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00026">util::OpenDrive::Load()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07108">pugi::xml_document::load_file()</a> , 以及 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00172">test_junctions()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa6244d8f18c32ca7e6f0b3de79354dda" name="aa6244d8f18c32ca7e6f0b3de79354dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6244d8f18c32ca7e6f0b3de79354dda">&#9670;&#160;</a></span>TEST() <span class="overload">[6/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">road</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">parse_road</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00259">259</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00033">BASE_PATH</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00020">util::OpenDrive::GetAvailableFiles()</a>, <a class="el" href="../../da/d5a/OpenDriveParser_8cpp_source.html#l00027">carla::opendrive::OpenDriveParser::Load()</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00026">util::OpenDrive::Load()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07108">pugi::xml_document::load_file()</a> , 以及 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00117">test_roads()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac8d924b4ffb05114a054b94c74cffa78" name="ac8d924b4ffb05114a054b94c74cffa78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8d924b4ffb05114a054b94c74cffa78">&#9670;&#160;</a></span>TEST() <span class="overload">[7/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">road</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">parse_road_elevation</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00274">274</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00033">BASE_PATH</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00020">util::OpenDrive::GetAvailableFiles()</a>, <a class="el" href="../../da/d5a/OpenDriveParser_8cpp_source.html#l00027">carla::opendrive::OpenDriveParser::Load()</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00026">util::OpenDrive::Load()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l07108">pugi::xml_document::load_file()</a> , 以及 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00036">test_road_elevation()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a47478715c88bbf3920c5566107f97b94" name="a47478715c88bbf3920c5566107f97b94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47478715c88bbf3920c5566107f97b94">&#9670;&#160;</a></span>TEST() <span class="overload">[8/8]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">road</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">parse_road_links</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00234">234</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00020">util::OpenDrive::GetAvailableFiles()</a>, <a class="el" href="../../da/d5a/OpenDriveParser_8cpp_source.html#l00027">carla::opendrive::OpenDriveParser::Load()</a>, <a class="el" href="../../d8/deb/LibCarla_2source_2test_2client_2OpenDrive_8cpp_source.html#l00026">util::OpenDrive::Load()</a> , 以及 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00206">test_road_links()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae91ed9ba514e82a6468209f5a81f219b" name="ae91ed9ba514e82a6468209f5a81f219b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae91ed9ba514e82a6468209f5a81f219b">&#9670;&#160;</a></span>test_geometry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void test_geometry </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/d8d/classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xml</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>map</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00060">60</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05490">pugi::xml_node::child()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05425">pugi::xml_node::children()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00289">TEST()</a>.</p>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<a id="a78ab488f8950744f1bc2d977eb08c462" name="a78ab488f8950744f1bc2d977eb08c462"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78ab488f8950744f1bc2d977eb08c462">&#9670;&#160;</a></span>test_junctions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void test_junctions </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/d8d/classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xml</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>map</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00172">172</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05490">pugi::xml_node::child()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05425">pugi::xml_node::children()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00243">TEST()</a>.</p>
+<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 13 --></div>
+</div>
+<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 14 --></div>
+</div>
+
+</div>
+</div>
+<a id="a81c79e5679fb86625a526d45039729e4" name="a81c79e5679fb86625a526d45039729e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81c79e5679fb86625a526d45039729e4">&#9670;&#160;</a></span>test_road_elevation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void test_road_elevation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/d8d/classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xml</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>map</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00036">36</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05490">pugi::xml_node::child()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05425">pugi::xml_node::children()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00274">TEST()</a>.</p>
+<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 15 --></div>
+</div>
+<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 16 --></div>
+</div>
+
+</div>
+</div>
+<a id="a42a99be0271e3dc9745b63fb295161e6" name="a42a99be0271e3dc9745b63fb295161e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42a99be0271e3dc9745b63fb295161e6">&#9670;&#160;</a></span>test_road_links()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void test_road_links </td>
+          <td>(</td>
+          <td class="paramtype">boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>map</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00206">206</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00234">TEST()</a>.</p>
+<div id="dynsection-17" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 17 --></div>
+</div>
+
+</div>
+</div>
+<a id="a150bee03ecfb9362ac5a63f334562723" name="a150bee03ecfb9362ac5a63f334562723"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a150bee03ecfb9362ac5a63f334562723">&#9670;&#160;</a></span>test_roads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void test_roads </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d8/d8d/classpugi_1_1xml__document.html">pugi::xml_document</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>xml</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boost::optional&lt; <a class="el" href="../../d0/d34/classcarla_1_1road_1_1Map.html">Map</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>map</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00117">117</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05490">pugi::xml_node::child()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05425">pugi::xml_node::children()</a> , 以及 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00082">get_total_road_marks()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00259">TEST()</a>.</p>
+<div id="dynsection-18" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 18 --></div>
+</div>
+<div id="dynsection-19" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 19 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a0423f4cb393331ce0b9f6b3a43adcaae" name="a0423f4cb393331ce0b9f6b3a43adcaae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0423f4cb393331ce0b9f6b3a43adcaae">&#9670;&#160;</a></span>BASE_PATH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER &quot;/OpenDrive/&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html">test_opendrive.cpp</a> 第 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00033">33</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00289">TEST()</a>, <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00243">TEST()</a>, <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00259">TEST()</a> , 以及 <a class="el" href="../../d1/dc0/test__opendrive_8cpp_source.html#l00274">TEST()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

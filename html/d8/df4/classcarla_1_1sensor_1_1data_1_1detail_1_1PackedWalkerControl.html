@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::sensor::data::detail::PackedWalkerControl类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../dd/d2c/namespacecarla_1_1sensor.html">sensor</a></li><li class="navelem"><a class="el" href="../../db/de4/namespacecarla_1_1sensor_1_1data.html">data</a></li><li class="navelem"><a class="el" href="../../dc/dd9/namespacecarla_1_1sensor_1_1data_1_1detail.html">detail</a></li><li class="navelem"><a class="el" href="../../d8/df4/classcarla_1_1sensor_1_1data_1_1detail_1_1PackedWalkerControl.html">PackedWalkerControl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../dd/d29/classcarla_1_1sensor_1_1data_1_1detail_1_1PackedWalkerControl-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::sensor::data::detail::PackedWalkerControl类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> carla::sensor::data::detail::PackedWalkerControl 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:acc01c60a2158fbc842fe185cb1b2a4f5" id="r_acc01c60a2158fbc842fe185cb1b2a4f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc01c60a2158fbc842fe185cb1b2a4f5">operator rpc::WalkerControl</a> () const</td></tr>
+<tr class="separator:acc01c60a2158fbc842fe185cb1b2a4f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7028514b6be218fd7b2d1a43cb9bdf8" id="r_ab7028514b6be218fd7b2d1a43cb9bdf8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7028514b6be218fd7b2d1a43cb9bdf8">PackedWalkerControl</a> ()=default</td></tr>
+<tr class="separator:ab7028514b6be218fd7b2d1a43cb9bdf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c2ca79eab02903ed80e15ba634483b3" id="r_a8c2ca79eab02903ed80e15ba634483b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c2ca79eab02903ed80e15ba634483b3">PackedWalkerControl</a> (const <a class="el" href="../../d7/d1b/classcarla_1_1rpc_1_1WalkerControl.html">rpc::WalkerControl</a> &amp;control)</td></tr>
+<tr class="separator:a8c2ca79eab02903ed80e15ba634483b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a58e4b217dd74ebefe1825a7dfdeb9225" id="r_a58e4b217dd74ebefe1825a7dfdeb9225"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58e4b217dd74ebefe1825a7dfdeb9225">direction</a> [3u]</td></tr>
+<tr class="separator:a58e4b217dd74ebefe1825a7dfdeb9225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1629df44f42418a82ed1308ce8fe5582" id="r_a1629df44f42418a82ed1308ce8fe5582"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1629df44f42418a82ed1308ce8fe5582">jump</a></td></tr>
+<tr class="separator:a1629df44f42418a82ed1308ce8fe5582"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542b4b1282124777a11252d7cdb9245b" id="r_a542b4b1282124777a11252d7cdb9245b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a542b4b1282124777a11252d7cdb9245b">speed</a></td></tr>
+<tr class="separator:a542b4b1282124777a11252d7cdb9245b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00072">72</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ab7028514b6be218fd7b2d1a43cb9bdf8" name="ab7028514b6be218fd7b2d1a43cb9bdf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7028514b6be218fd7b2d1a43cb9bdf8">&#9670;&#160;</a></span>PackedWalkerControl() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::sensor::data::detail::PackedWalkerControl::PackedWalkerControl </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8c2ca79eab02903ed80e15ba634483b3" name="a8c2ca79eab02903ed80e15ba634483b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c2ca79eab02903ed80e15ba634483b3">&#9670;&#160;</a></span>PackedWalkerControl() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::sensor::data::detail::PackedWalkerControl::PackedWalkerControl </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d1b/classcarla_1_1rpc_1_1WalkerControl.html">rpc::WalkerControl</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>control</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="acc01c60a2158fbc842fe185cb1b2a4f5" name="acc01c60a2158fbc842fe185cb1b2a4f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc01c60a2158fbc842fe185cb1b2a4f5">&#9670;&#160;</a></span>operator rpc::WalkerControl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::sensor::data::detail::PackedWalkerControl::operator <a class="el" href="../../d7/d1b/classcarla_1_1rpc_1_1WalkerControl.html">rpc::WalkerControl</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00082">82</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00088">direction</a>, <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00090">jump</a> , 以及 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00089">speed</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a58e4b217dd74ebefe1825a7dfdeb9225" name="a58e4b217dd74ebefe1825a7dfdeb9225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58e4b217dd74ebefe1825a7dfdeb9225">&#9670;&#160;</a></span>direction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::sensor::data::detail::PackedWalkerControl::direction[3u]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00088">88</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00082">operator rpc::WalkerControl()</a>.</p>
+
+</div>
+</div>
+<a id="a1629df44f42418a82ed1308ce8fe5582" name="a1629df44f42418a82ed1308ce8fe5582"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1629df44f42418a82ed1308ce8fe5582">&#9670;&#160;</a></span>jump</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::sensor::data::detail::PackedWalkerControl::jump</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00090">90</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00082">operator rpc::WalkerControl()</a>.</p>
+
+</div>
+</div>
+<a id="a542b4b1282124777a11252d7cdb9245b" name="a542b4b1282124777a11252d7cdb9245b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a542b4b1282124777a11252d7cdb9245b">&#9670;&#160;</a></span>speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::sensor::data::detail::PackedWalkerControl::speed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00089">89</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00082">operator rpc::WalkerControl()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

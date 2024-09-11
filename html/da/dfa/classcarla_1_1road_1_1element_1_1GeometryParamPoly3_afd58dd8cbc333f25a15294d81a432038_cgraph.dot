@@ -1,0 +1,20 @@
+digraph "carla::road::element::GeometryParamPoly3::GeometryParamPoly3"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::road::element\l::GeometryParamPoly3\l::GeometryParamPoly3",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::road::element\l::GeometryParamPoly3\l::PreComputeSpline",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/dfa/classcarla_1_1road_1_1element_1_1GeometryParamPoly3.html#aa550e28b186d099e5848a48d5713f9ba",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::geom::CubicPolynomial\l::Evaluate",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a5d270a76228a4f47ae0bcfc2c866f5cd",tooltip="Evaluates f(x) = a + bx + cx^2 + dx^3"];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::geom::SegmentCloud\lRtree::InsertElement",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d6f/classcarla_1_1geom_1_1SegmentCloudRtree.html#a90a0c1cdcf9c693cb27816c5639b2747",tooltip=" "];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::geom::CubicPolynomial\l::Tangent",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a6b32ca488e26ca238a28d67fd411528b",tooltip="Evaluates the tangent using df/dx = b + 2cx + 3dx^2"];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::geom::CubicPolynomial::Set",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/db7/classcarla_1_1geom_1_1CubicPolynomial.html#a70e2e72c8e22f4f7f095d302383af5de",tooltip=" "];
+}

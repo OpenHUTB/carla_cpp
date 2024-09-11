@@ -1,0 +1,12 @@
+digraph "carla::traffic_manager::MotionPlanStage::GetTurnTargetVelocity"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::traffic_manager\l::MotionPlanStage::GetTurnTarget\lVelocity",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::traffic_manager\l::MotionPlanStage::GetThreePoint\lCircleRadius",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html#a5b112c3ea6bd4f8536fbb849e2de9681",tooltip=" "];
+}

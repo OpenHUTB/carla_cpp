@@ -1,0 +1,683 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::road::Junction类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../de/d26/namespacecarla_1_1road.html">road</a></li><li class="navelem"><a class="el" href="../../dd/dc6/classcarla_1_1road_1_1Junction.html">Junction</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d1/df5/classcarla_1_1road_1_1Junction-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::road::Junction类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">Junction.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::road::Junction 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::road::Junction 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d7d/structcarla_1_1road_1_1Junction_1_1LaneLink.html">LaneLink</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:acb70860168c258fe72eacbfd86f2cbc2" id="r_acb70860168c258fe72eacbfd86f2cbc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d68/classcarla_1_1geom_1_1BoundingBox.html">carla::geom::BoundingBox</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb70860168c258fe72eacbfd86f2cbc2">GetBoundingBox</a> () const</td></tr>
+<tr class="separator:acb70860168c258fe72eacbfd86f2cbc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ff8a9fe800012b1099b4ebaf668d039" id="r_a0ff8a9fe800012b1099b4ebaf668d039"><td class="memItemLeft" align="right" valign="top">const std::unordered_set&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ff8a9fe800012b1099b4ebaf668d039">GetConflictsOfRoad</a> (<a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a> road_id) const</td></tr>
+<tr class="separator:a0ff8a9fe800012b1099b4ebaf668d039"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f491d0ae7799de3471ea4fb4656c5a4" id="r_a9f491d0ae7799de3471ea4fb4656c5a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f491d0ae7799de3471ea4fb4656c5a4">GetConnection</a> (<a class="el" href="../../de/d26/namespacecarla_1_1road.html#af1e9b9c042c2ad1550d15f607e3c5f05">ConId</a> id)</td></tr>
+<tr class="separator:a9f491d0ae7799de3471ea4fb4656c5a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abedc91af2eee0d254ed59a43f2a37744" id="r_abedc91af2eee0d254ed59a43f2a37744"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#af1e9b9c042c2ad1550d15f607e3c5f05">ConId</a>, <a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abedc91af2eee0d254ed59a43f2a37744">GetConnections</a> ()</td></tr>
+<tr class="separator:abedc91af2eee0d254ed59a43f2a37744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0e1fbd0fb06be8c3bcee23095036336" id="r_aa0e1fbd0fb06be8c3bcee23095036336"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#af1e9b9c042c2ad1550d15f607e3c5f05">ConId</a>, <a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0e1fbd0fb06be8c3bcee23095036336">GetConnections</a> () const</td></tr>
+<tr class="separator:aa0e1fbd0fb06be8c3bcee23095036336"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e69c28cc3dfc106f906dbb7a75140f" id="r_a06e69c28cc3dfc106f906dbb7a75140f"><td class="memItemLeft" align="right" valign="top">const std::set&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a2a6871c9b73093b94512acd5d7e5faa4">ContId</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06e69c28cc3dfc106f906dbb7a75140f">GetControllers</a> () const</td></tr>
+<tr class="separator:a06e69c28cc3dfc106f906dbb7a75140f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a736aa443c045123306d0368512af278a" id="r_a736aa443c045123306d0368512af278a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d26/namespacecarla_1_1road.html#a25b64180ba09083d08dbd3dc5a94807f">JuncId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a736aa443c045123306d0368512af278a">GetId</a> () const</td></tr>
+<tr class="separator:a736aa443c045123306d0368512af278a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a978a595fd356605fdc8e41affe404a1f" id="r_a978a595fd356605fdc8e41affe404a1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a978a595fd356605fdc8e41affe404a1f">Junction</a> (const <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a25b64180ba09083d08dbd3dc5a94807f">JuncId</a> id, const std::string name)</td></tr>
+<tr class="separator:a978a595fd356605fdc8e41affe404a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a8ba8f40f0bd85edf1a2bf655205e7" id="r_ad9a8ba8f40f0bd85edf1a2bf655205e7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9a8ba8f40f0bd85edf1a2bf655205e7">RoadHasConflicts</a> (<a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a> road_id) const</td></tr>
+<tr class="separator:ad9a8ba8f40f0bd85edf1a2bf655205e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a0c75525298b7d58b2a2ac44bf65613d2" id="r_a0c75525298b7d58b2a2ac44bf65613d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d68/classcarla_1_1geom_1_1BoundingBox.html">carla::geom::BoundingBox</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c75525298b7d58b2a2ac44bf65613d2">_bounding_box</a></td></tr>
+<tr class="separator:a0c75525298b7d58b2a2ac44bf65613d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accef4aca0a6deecf05e8499184a35302" id="r_accef4aca0a6deecf05e8499184a35302"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#af1e9b9c042c2ad1550d15f607e3c5f05">ConId</a>, <a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accef4aca0a6deecf05e8499184a35302">_connections</a></td></tr>
+<tr class="separator:accef4aca0a6deecf05e8499184a35302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2259731367df6d09a58035805ab9438" id="r_ab2259731367df6d09a58035805ab9438"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a2a6871c9b73093b94512acd5d7e5faa4">ContId</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2259731367df6d09a58035805ab9438">_controllers</a></td></tr>
+<tr class="separator:ab2259731367df6d09a58035805ab9438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc15397934a54537d58e6e90a071c0c5" id="r_abc15397934a54537d58e6e90a071c0c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d26/namespacecarla_1_1road.html#a25b64180ba09083d08dbd3dc5a94807f">JuncId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc15397934a54537d58e6e90a071c0c5">_id</a></td></tr>
+<tr class="separator:abc15397934a54537d58e6e90a071c0c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1480397432e926b34668c5085ad49c5" id="r_af1480397432e926b34668c5085ad49c5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1480397432e926b34668c5085ad49c5">_name</a></td></tr>
+<tr class="separator:af1480397432e926b34668c5085ad49c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a6c824ebacfdbecaeaa68ff7476213e" id="r_a8a6c824ebacfdbecaeaa68ff7476213e"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a>, std::unordered_set&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a6c824ebacfdbecaeaa68ff7476213e">_road_conflicts</a></td></tr>
+<tr class="separator:a8a6c824ebacfdbecaeaa68ff7476213e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a605fd2f1d41b2a1d34a66d851ced4bc3" id="r_a605fd2f1d41b2a1d34a66d851ced4bc3"><td class="memItemLeft" align="right" valign="top">friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a605fd2f1d41b2a1d34a66d851ced4bc3">MapBuilder</a></td></tr>
+<tr class="separator:a605fd2f1d41b2a1d34a66d851ced4bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_methods_classcarla_1_1MovableNonCopyable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classcarla_1_1MovableNonCopyable')"><img src="../../closed.png" alt="-"/>&#160;Private 成员函数 继承自 <a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">carla::MovableNonCopyable</a></td></tr>
+<tr class="memitem:a6265234e7063fea6d2d0cccc06f6cb75 inherit pub_methods_classcarla_1_1MovableNonCopyable" id="r_a6265234e7063fea6d2d0cccc06f6cb75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html#a6265234e7063fea6d2d0cccc06f6cb75">MovableNonCopyable</a> ()=default</td></tr>
+<tr class="separator:a6265234e7063fea6d2d0cccc06f6cb75 inherit pub_methods_classcarla_1_1MovableNonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81858515e85e7d38a314f4eef98147dd inherit pub_methods_classcarla_1_1MovableNonCopyable" id="r_a81858515e85e7d38a314f4eef98147dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html#a81858515e85e7d38a314f4eef98147dd">MovableNonCopyable</a> (const <a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">MovableNonCopyable</a> &amp;)=delete</td></tr>
+<tr class="separator:a81858515e85e7d38a314f4eef98147dd inherit pub_methods_classcarla_1_1MovableNonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15f074d2bf62b83a5a81ec3eec5fd2e1 inherit pub_methods_classcarla_1_1MovableNonCopyable" id="r_a15f074d2bf62b83a5a81ec3eec5fd2e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html#a15f074d2bf62b83a5a81ec3eec5fd2e1">MovableNonCopyable</a> (<a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">MovableNonCopyable</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a15f074d2bf62b83a5a81ec3eec5fd2e1 inherit pub_methods_classcarla_1_1MovableNonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92f0884ce14b39da31d7b5fb52dc94b7 inherit pub_methods_classcarla_1_1MovableNonCopyable" id="r_a92f0884ce14b39da31d7b5fb52dc94b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">MovableNonCopyable</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html#a92f0884ce14b39da31d7b5fb52dc94b7">operator=</a> (const <a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">MovableNonCopyable</a> &amp;)=delete</td></tr>
+<tr class="separator:a92f0884ce14b39da31d7b5fb52dc94b7 inherit pub_methods_classcarla_1_1MovableNonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a413e56ac97e48cd79144dc43248e2e7d inherit pub_methods_classcarla_1_1MovableNonCopyable" id="r_a413e56ac97e48cd79144dc43248e2e7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">MovableNonCopyable</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html#a413e56ac97e48cd79144dc43248e2e7d">operator=</a> (<a class="el" href="../../d7/d55/classcarla_1_1MovableNonCopyable.html">MovableNonCopyable</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a413e56ac97e48cd79144dc43248e2e7d inherit pub_methods_classcarla_1_1MovableNonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00023">23</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a978a595fd356605fdc8e41affe404a1f" name="a978a595fd356605fdc8e41affe404a1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a978a595fd356605fdc8e41affe404a1f">&#9670;&#160;</a></span>Junction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::road::Junction::Junction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a25b64180ba09083d08dbd3dc5a94807f">JuncId</a></td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="acb70860168c258fe72eacbfd86f2cbc2" name="acb70860168c258fe72eacbfd86f2cbc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb70860168c258fe72eacbfd86f2cbc2">&#9670;&#160;</a></span>GetBoundingBox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/d68/classcarla_1_1geom_1_1BoundingBox.html">carla::geom::BoundingBox</a> carla::road::Junction::GetBoundingBox </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00073">73</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00104">_bounding_box</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d5a/road_2Map_8cpp_source.html#l00764">carla::road::Map::ComputeJunctionConflicts()</a>, <a class="el" href="../../da/d17/Junction_8cpp_source.html#l00014">carla::client::Junction::Junction()</a> , 以及 <a class="el" href="../../d9/d5a/road_2Map_8cpp_source.html#l01453">carla::road::Map::SDFToMesh()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0ff8a9fe800012b1099b4ebaf668d039" name="a0ff8a9fe800012b1099b4ebaf668d039"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ff8a9fe800012b1099b4ebaf668d039">&#9670;&#160;</a></span>GetConflictsOfRoad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::unordered_set&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a> &gt; &amp; carla::road::Junction::GetConflictsOfRoad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a></td>          <td class="paramname"><span class="paramname"><em>road_id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00081">81</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00102">_road_conflicts</a>.</p>
+
+</div>
+</div>
+<a id="a9f491d0ae7799de3471ea4fb4656c5a4" name="a9f491d0ae7799de3471ea4fb4656c5a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f491d0ae7799de3471ea4fb4656c5a4">&#9670;&#160;</a></span>GetConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a> * carla::road::Junction::GetConnection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d26/namespacecarla_1_1road.html#af1e9b9c042c2ad1550d15f607e3c5f05">ConId</a></td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00057">57</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00097">_connections</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/da9/MapBuilder_8cpp_source.html#l00580">carla::road::MapBuilder::AddLaneLink()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="abedc91af2eee0d254ed59a43f2a37744" name="abedc91af2eee0d254ed59a43f2a37744"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abedc91af2eee0d254ed59a43f2a37744">&#9670;&#160;</a></span>GetConnections() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#af1e9b9c042c2ad1550d15f607e3c5f05">ConId</a>, <a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a> &gt; &amp; carla::road::Junction::GetConnections </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00065">65</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00097">_connections</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/da9/MapBuilder_8cpp_source.html#l00570">carla::road::MapBuilder::AddConnection()</a> , 以及 <a class="el" href="../../d9/d5a/road_2Map_8cpp_source.html#l00747">carla::road::Map::GetJunctionWaypoints()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa0e1fbd0fb06be8c3bcee23095036336" name="aa0e1fbd0fb06be8c3bcee23095036336"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0e1fbd0fb06be8c3bcee23095036336">&#9670;&#160;</a></span>GetConnections() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#af1e9b9c042c2ad1550d15f607e3c5f05">ConId</a>, <a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a> &gt; carla::road::Junction::GetConnections </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00069">69</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00097">_connections</a>.</p>
+
+</div>
+</div>
+<a id="a06e69c28cc3dfc106f906dbb7a75140f" name="a06e69c28cc3dfc106f906dbb7a75140f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06e69c28cc3dfc106f906dbb7a75140f">&#9670;&#160;</a></span>GetControllers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::set&lt; <a class="el" href="../../de/d26/namespacecarla_1_1road.html#a2a6871c9b73093b94512acd5d7e5faa4">ContId</a> &gt; &amp; carla::road::Junction::GetControllers </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00085">85</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00099">_controllers</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00291">carla::client::World::GetTrafficLightsInJunction()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a736aa443c045123306d0368512af278a" name="a736aa443c045123306d0368512af278a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a736aa443c045123306d0368512af278a">&#9670;&#160;</a></span>GetId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d26/namespacecarla_1_1road.html#a25b64180ba09083d08dbd3dc5a94807f">JuncId</a> carla::road::Junction::GetId </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00053">53</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00093">_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/d17/Junction_8cpp_source.html#l00014">carla::client::Junction::Junction()</a> , 以及 <a class="el" href="../../d9/d5a/road_2Map_8cpp_source.html#l01453">carla::road::Map::SDFToMesh()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad9a8ba8f40f0bd85edf1a2bf655205e7" name="ad9a8ba8f40f0bd85edf1a2bf655205e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a8ba8f40f0bd85edf1a2bf655205e7">&#9670;&#160;</a></span>RoadHasConflicts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::road::Junction::RoadHasConflicts </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a></td>          <td class="paramname"><span class="paramname"><em>road_id</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00077">77</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00102">_road_conflicts</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a0c75525298b7d58b2a2ac44bf65613d2" name="a0c75525298b7d58b2a2ac44bf65613d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c75525298b7d58b2a2ac44bf65613d2">&#9670;&#160;</a></span>_bounding_box</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/d68/classcarla_1_1geom_1_1BoundingBox.html">carla::geom::BoundingBox</a> carla::road::Junction::_bounding_box</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00104">104</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00073">GetBoundingBox()</a>.</p>
+
+</div>
+</div>
+<a id="accef4aca0a6deecf05e8499184a35302" name="accef4aca0a6deecf05e8499184a35302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accef4aca0a6deecf05e8499184a35302">&#9670;&#160;</a></span>_connections</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../de/d26/namespacecarla_1_1road.html#af1e9b9c042c2ad1550d15f607e3c5f05">ConId</a>, <a class="el" href="../../d1/d9e/structcarla_1_1road_1_1Junction_1_1Connection.html">Connection</a>&gt; carla::road::Junction::_connections</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00057">GetConnection()</a>, <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00065">GetConnections()</a>, <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00069">GetConnections()</a> , 以及 <a class="el" href="../../df/da9/MapBuilder_8cpp_source.html#l00697">carla::road::MapBuilder::GetJunctionLanes()</a>.</p>
+
+</div>
+</div>
+<a id="ab2259731367df6d09a58035805ab9438" name="ab2259731367df6d09a58035805ab9438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2259731367df6d09a58035805ab9438">&#9670;&#160;</a></span>_controllers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::set&lt;<a class="el" href="../../de/d26/namespacecarla_1_1road.html#a2a6871c9b73093b94512acd5d7e5faa4">ContId</a>&gt; carla::road::Junction::_controllers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00099">99</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/da9/MapBuilder_8cpp_source.html#l00589">carla::road::MapBuilder::AddJunctionController()</a> , 以及 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00085">GetControllers()</a>.</p>
+
+</div>
+</div>
+<a id="abc15397934a54537d58e6e90a071c0c5" name="abc15397934a54537d58e6e90a071c0c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc15397934a54537d58e6e90a071c0c5">&#9670;&#160;</a></span>_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d26/namespacecarla_1_1road.html#a25b64180ba09083d08dbd3dc5a94807f">JuncId</a> carla::road::Junction::_id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00093">93</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00053">GetId()</a>.</p>
+
+</div>
+</div>
+<a id="af1480397432e926b34668c5085ad49c5" name="af1480397432e926b34668c5085ad49c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1480397432e926b34668c5085ad49c5">&#9670;&#160;</a></span>_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string carla::road::Junction::_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8a6c824ebacfdbecaeaa68ff7476213e" name="a8a6c824ebacfdbecaeaa68ff7476213e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a6c824ebacfdbecaeaa68ff7476213e">&#9670;&#160;</a></span>_road_conflicts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a>, std::unordered_set&lt;<a class="el" href="../../de/d26/namespacecarla_1_1road.html#ad5e0aeb7e0341f9128c506ddb88270ef">RoadId</a>&gt; &gt; carla::road::Junction::_road_conflicts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00102">102</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00081">GetConflictsOfRoad()</a> , 以及 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00077">RoadHasConflicts()</a>.</p>
+
+</div>
+</div>
+<a id="a605fd2f1d41b2a1d34a66d851ced4bc3" name="a605fd2f1d41b2a1d34a66d851ced4bc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a605fd2f1d41b2a1d34a66d851ced4bc3">&#9670;&#160;</a></span>MapBuilder</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend carla::road::Junction::MapBuilder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a> 第 <a class="el" href="../../d1/d3a/road_2Junction_8h_source.html#l00091">91</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d1/d3a/road_2Junction_8h_source.html">road/Junction.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

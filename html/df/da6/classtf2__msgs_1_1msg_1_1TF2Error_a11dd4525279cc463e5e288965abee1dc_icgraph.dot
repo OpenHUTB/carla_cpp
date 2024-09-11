@@ -1,0 +1,12 @@
+digraph "tf2_msgs::msg::TF2Error::getMaxCdrSerializedSize"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="tf2_msgs::msg::TF2Error\l::getMaxCdrSerializedSize",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="This function returns the maximum serialized size of an object depending on the buffer alignment."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="tf2_msgs::msg::TF2ErrorPub\lSubType::TF2ErrorPubSubType",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d5/da0/classtf2__msgs_1_1msg_1_1TF2ErrorPubSubType.html#aee93dba5a667d9147569e44988f50b8a",tooltip=" "];
+}

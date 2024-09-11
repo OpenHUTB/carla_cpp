@@ -1,0 +1,1293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: sensor_msgs::msg::RegionOfInterest类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d7d/namespacesensor__msgs.html">sensor_msgs</a></li><li class="navelem"><a class="el" href="../../d3/d73/namespacesensor__msgs_1_1msg.html">msg</a></li><li class="navelem"><a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d7/dea/classsensor__msgs_1_1msg_1_1RegionOfInterest-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">sensor_msgs::msg::RegionOfInterest类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This class represents the structure <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html" title="This class represents the structure RegionOfInterest defined by the user in the IDL file.">RegionOfInterest</a> defined by the user in the IDL file.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html">RegionOfInterest.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> sensor_msgs::msg::RegionOfInterest 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a6e95b4836b52a9d830a8333d9982a819" id="r_a6e95b4836b52a9d830a8333d9982a819"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e95b4836b52a9d830a8333d9982a819">deserialize</a> (eprosima::fastcdr::Cdr &amp;cdr)</td></tr>
+<tr class="memdesc:a6e95b4836b52a9d830a8333d9982a819"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function deserializes an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:a6e95b4836b52a9d830a8333d9982a819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69eddaed96d1d561a59af3892ee6ab08" id="r_a69eddaed96d1d561a59af3892ee6ab08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69eddaed96d1d561a59af3892ee6ab08">do_rectify</a> ()</td></tr>
+<tr class="memdesc:a69eddaed96d1d561a59af3892ee6ab08"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member do_rectify  <br /></td></tr>
+<tr class="separator:a69eddaed96d1d561a59af3892ee6ab08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d2f70682d60fd5d4f9c4912d0a6fa8b" id="r_a8d2f70682d60fd5d4f9c4912d0a6fa8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d2f70682d60fd5d4f9c4912d0a6fa8b">do_rectify</a> () const</td></tr>
+<tr class="memdesc:a8d2f70682d60fd5d4f9c4912d0a6fa8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member do_rectify  <br /></td></tr>
+<tr class="separator:a8d2f70682d60fd5d4f9c4912d0a6fa8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af69df0ba047d0be706baaf4ee6e43785" id="r_af69df0ba047d0be706baaf4ee6e43785"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af69df0ba047d0be706baaf4ee6e43785">do_rectify</a> (bool _do_rectify)</td></tr>
+<tr class="memdesc:af69df0ba047d0be706baaf4ee6e43785"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member do_rectify  <br /></td></tr>
+<tr class="separator:af69df0ba047d0be706baaf4ee6e43785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23a33baa1e47bda20ddf30e5c1a6b328" id="r_a23a33baa1e47bda20ddf30e5c1a6b328"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23a33baa1e47bda20ddf30e5c1a6b328">height</a> ()</td></tr>
+<tr class="memdesc:a23a33baa1e47bda20ddf30e5c1a6b328"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member height  <br /></td></tr>
+<tr class="separator:a23a33baa1e47bda20ddf30e5c1a6b328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1528294fbd19be276251ab329f57914" id="r_ae1528294fbd19be276251ab329f57914"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1528294fbd19be276251ab329f57914">height</a> () const</td></tr>
+<tr class="memdesc:ae1528294fbd19be276251ab329f57914"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member height  <br /></td></tr>
+<tr class="separator:ae1528294fbd19be276251ab329f57914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc3ac514644acc4d0979479da59a3dad" id="r_acc3ac514644acc4d0979479da59a3dad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc3ac514644acc4d0979479da59a3dad">height</a> (uint32_t _height)</td></tr>
+<tr class="memdesc:acc3ac514644acc4d0979479da59a3dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member height  <br /></td></tr>
+<tr class="separator:acc3ac514644acc4d0979479da59a3dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76bfd18f1ef01831d6acd5ffdc71f835" id="r_a76bfd18f1ef01831d6acd5ffdc71f835"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76bfd18f1ef01831d6acd5ffdc71f835">operator!=</a> (const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;x) const</td></tr>
+<tr class="memdesc:a76bfd18f1ef01831d6acd5ffdc71f835"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
+<tr class="separator:a76bfd18f1ef01831d6acd5ffdc71f835"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa641f3772eac39ae8c6fed28943c0c76" id="r_aa641f3772eac39ae8c6fed28943c0c76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa641f3772eac39ae8c6fed28943c0c76">operator=</a> (const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;x)</td></tr>
+<tr class="memdesc:aa641f3772eac39ae8c6fed28943c0c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment.  <br /></td></tr>
+<tr class="separator:aa641f3772eac39ae8c6fed28943c0c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb711888505709c8763e47d54b156501" id="r_abb711888505709c8763e47d54b156501"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb711888505709c8763e47d54b156501">operator=</a> (<a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;&amp;x) noexcept</td></tr>
+<tr class="memdesc:abb711888505709c8763e47d54b156501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment.  <br /></td></tr>
+<tr class="separator:abb711888505709c8763e47d54b156501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74184270a0f02dba4565642ab3686fc9" id="r_a74184270a0f02dba4565642ab3686fc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74184270a0f02dba4565642ab3686fc9">operator==</a> (const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;x) const</td></tr>
+<tr class="memdesc:a74184270a0f02dba4565642ab3686fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
+<tr class="separator:a74184270a0f02dba4565642ab3686fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a82f1e55aec9c49fb38a779c99cecb4" id="r_a9a82f1e55aec9c49fb38a779c99cecb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a82f1e55aec9c49fb38a779c99cecb4">RegionOfInterest</a> ()</td></tr>
+<tr class="memdesc:a9a82f1e55aec9c49fb38a779c99cecb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="separator:a9a82f1e55aec9c49fb38a779c99cecb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50f164491319905eb3f4984fa13f3068" id="r_a50f164491319905eb3f4984fa13f3068"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50f164491319905eb3f4984fa13f3068">RegionOfInterest</a> (const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;x)</td></tr>
+<tr class="memdesc:a50f164491319905eb3f4984fa13f3068"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <br /></td></tr>
+<tr class="separator:a50f164491319905eb3f4984fa13f3068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace3c7a8f2e68132a6a24e093b74dd641" id="r_ace3c7a8f2e68132a6a24e093b74dd641"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace3c7a8f2e68132a6a24e093b74dd641">RegionOfInterest</a> (<a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;&amp;x) noexcept</td></tr>
+<tr class="memdesc:ace3c7a8f2e68132a6a24e093b74dd641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <br /></td></tr>
+<tr class="separator:ace3c7a8f2e68132a6a24e093b74dd641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2132a867396c7ff5c0afa1eda96b974" id="r_aa2132a867396c7ff5c0afa1eda96b974"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2132a867396c7ff5c0afa1eda96b974">serialize</a> (eprosima::fastcdr::Cdr &amp;cdr) const</td></tr>
+<tr class="memdesc:aa2132a867396c7ff5c0afa1eda96b974"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function serializes an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:aa2132a867396c7ff5c0afa1eda96b974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add52ee58481ed6b1f6ead4e88eebdae8" id="r_add52ee58481ed6b1f6ead4e88eebdae8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add52ee58481ed6b1f6ead4e88eebdae8">serializeKey</a> (eprosima::fastcdr::Cdr &amp;cdr) const</td></tr>
+<tr class="memdesc:add52ee58481ed6b1f6ead4e88eebdae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function serializes the key members of an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:add52ee58481ed6b1f6ead4e88eebdae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0583b147f5c3e7721a16731d2a2956fa" id="r_a0583b147f5c3e7721a16731d2a2956fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0583b147f5c3e7721a16731d2a2956fa">width</a> ()</td></tr>
+<tr class="memdesc:a0583b147f5c3e7721a16731d2a2956fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member width  <br /></td></tr>
+<tr class="separator:a0583b147f5c3e7721a16731d2a2956fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271a474f965bcbdc101dd8278cc8f850" id="r_a271a474f965bcbdc101dd8278cc8f850"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a271a474f965bcbdc101dd8278cc8f850">width</a> () const</td></tr>
+<tr class="memdesc:a271a474f965bcbdc101dd8278cc8f850"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member width  <br /></td></tr>
+<tr class="separator:a271a474f965bcbdc101dd8278cc8f850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1236eb69dc0714dc7ab48539ab954edb" id="r_a1236eb69dc0714dc7ab48539ab954edb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1236eb69dc0714dc7ab48539ab954edb">width</a> (uint32_t _width)</td></tr>
+<tr class="memdesc:a1236eb69dc0714dc7ab48539ab954edb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member width  <br /></td></tr>
+<tr class="separator:a1236eb69dc0714dc7ab48539ab954edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a504893d3eddf256edc65d31948fbae37" id="r_a504893d3eddf256edc65d31948fbae37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a504893d3eddf256edc65d31948fbae37">x_offset</a> ()</td></tr>
+<tr class="memdesc:a504893d3eddf256edc65d31948fbae37"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member x_offset  <br /></td></tr>
+<tr class="separator:a504893d3eddf256edc65d31948fbae37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11add0e83590c40a39198463d36c15b6" id="r_a11add0e83590c40a39198463d36c15b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11add0e83590c40a39198463d36c15b6">x_offset</a> () const</td></tr>
+<tr class="memdesc:a11add0e83590c40a39198463d36c15b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member x_offset  <br /></td></tr>
+<tr class="separator:a11add0e83590c40a39198463d36c15b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ebe7615f9cd560b6c1fe5798eea478" id="r_ad1ebe7615f9cd560b6c1fe5798eea478"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1ebe7615f9cd560b6c1fe5798eea478">x_offset</a> (uint32_t _x_offset)</td></tr>
+<tr class="memdesc:ad1ebe7615f9cd560b6c1fe5798eea478"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member x_offset  <br /></td></tr>
+<tr class="separator:ad1ebe7615f9cd560b6c1fe5798eea478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f0ef0a7937d7e0738773936c57916f" id="r_a35f0ef0a7937d7e0738773936c57916f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35f0ef0a7937d7e0738773936c57916f">y_offset</a> ()</td></tr>
+<tr class="memdesc:a35f0ef0a7937d7e0738773936c57916f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member y_offset  <br /></td></tr>
+<tr class="separator:a35f0ef0a7937d7e0738773936c57916f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafc7f923bf82e723151c78dbb7f94f66" id="r_aafc7f923bf82e723151c78dbb7f94f66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafc7f923bf82e723151c78dbb7f94f66">y_offset</a> () const</td></tr>
+<tr class="memdesc:aafc7f923bf82e723151c78dbb7f94f66"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member y_offset  <br /></td></tr>
+<tr class="separator:aafc7f923bf82e723151c78dbb7f94f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06cee7b09a87e29aafb489713c23057f" id="r_a06cee7b09a87e29aafb489713c23057f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06cee7b09a87e29aafb489713c23057f">y_offset</a> (uint32_t _y_offset)</td></tr>
+<tr class="memdesc:a06cee7b09a87e29aafb489713c23057f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member y_offset  <br /></td></tr>
+<tr class="separator:a06cee7b09a87e29aafb489713c23057f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8ff1a852c059c2b6d880f62813536c8" id="r_ab8ff1a852c059c2b6d880f62813536c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8ff1a852c059c2b6d880f62813536c8">~RegionOfInterest</a> ()</td></tr>
+<tr class="memdesc:ab8ff1a852c059c2b6d880f62813536c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
+<tr class="separator:ab8ff1a852c059c2b6d880f62813536c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a400852dcf9880a96d51df7ce08cc5f83" id="r_a400852dcf9880a96d51df7ce08cc5f83"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a400852dcf9880a96d51df7ce08cc5f83">getCdrSerializedSize</a> (const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">sensor_msgs::msg::RegionOfInterest</a> &amp;data, size_t current_alignment=0)</td></tr>
+<tr class="memdesc:a400852dcf9880a96d51df7ce08cc5f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the serialized size of a data depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:a400852dcf9880a96d51df7ce08cc5f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67f38d78c3f4c029fb6a7cd4db6dc37d" id="r_a67f38d78c3f4c029fb6a7cd4db6dc37d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67f38d78c3f4c029fb6a7cd4db6dc37d">getKeyMaxCdrSerializedSize</a> (size_t current_alignment=0)</td></tr>
+<tr class="memdesc:a67f38d78c3f4c029fb6a7cd4db6dc37d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the maximum serialized size of the Key of an object depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:a67f38d78c3f4c029fb6a7cd4db6dc37d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd799bb3014ec6eaa9247ff8b596683c" id="r_afd799bb3014ec6eaa9247ff8b596683c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd799bb3014ec6eaa9247ff8b596683c">getMaxCdrSerializedSize</a> (size_t current_alignment=0)</td></tr>
+<tr class="memdesc:afd799bb3014ec6eaa9247ff8b596683c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the maximum serialized size of an object depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:afd799bb3014ec6eaa9247ff8b596683c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad08e912c33af58328dd6e0a590f9cbfe" id="r_ad08e912c33af58328dd6e0a590f9cbfe"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad08e912c33af58328dd6e0a590f9cbfe">isKeyDefined</a> ()</td></tr>
+<tr class="memdesc:ad08e912c33af58328dd6e0a590f9cbfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function tells you if the Key has been defined for this type  <br /></td></tr>
+<tr class="separator:ad08e912c33af58328dd6e0a590f9cbfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a16d9e119784b46bd204d9d31ae4a8b86" id="r_a16d9e119784b46bd204d9d31ae4a8b86"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16d9e119784b46bd204d9d31ae4a8b86">m_do_rectify</a></td></tr>
+<tr class="separator:a16d9e119784b46bd204d9d31ae4a8b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0b422cc9300f4c7ec8446adfa5e25f9" id="r_ad0b422cc9300f4c7ec8446adfa5e25f9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0b422cc9300f4c7ec8446adfa5e25f9">m_height</a></td></tr>
+<tr class="separator:ad0b422cc9300f4c7ec8446adfa5e25f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bade161372d851c60700952a895f009" id="r_a6bade161372d851c60700952a895f009"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bade161372d851c60700952a895f009">m_width</a></td></tr>
+<tr class="separator:a6bade161372d851c60700952a895f009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6de0b2716e715ad13ffe78fd9a99230b" id="r_a6de0b2716e715ad13ffe78fd9a99230b"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6de0b2716e715ad13ffe78fd9a99230b">m_x_offset</a></td></tr>
+<tr class="separator:a6de0b2716e715ad13ffe78fd9a99230b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af03b4cf729d664f243d6f46e94deb581" id="r_af03b4cf729d664f243d6f46e94deb581"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af03b4cf729d664f243d6f46e94deb581">m_y_offset</a></td></tr>
+<tr class="separator:af03b4cf729d664f243d6f46e94deb581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>This class represents the structure <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html" title="This class represents the structure RegionOfInterest defined by the user in the IDL file.">RegionOfInterest</a> defined by the user in the IDL file. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html">RegionOfInterest.h</a> 第 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00070">70</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a9a82f1e55aec9c49fb38a779c99cecb4" name="a9a82f1e55aec9c49fb38a779c99cecb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a82f1e55aec9c49fb38a779c99cecb4">&#9670;&#160;</a></span>RegionOfInterest() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sensor_msgs::msg::RegionOfInterest::RegionOfInterest </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00281">m_do_rectify</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00279">m_height</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00280">m_width</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00277">m_x_offset</a> , 以及 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00278">m_y_offset</a>.</p>
+
+</div>
+</div>
+<a id="ab8ff1a852c059c2b6d880f62813536c8" name="ab8ff1a852c059c2b6d880f62813536c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8ff1a852c059c2b6d880f62813536c8">&#9670;&#160;</a></span>~RegionOfInterest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sensor_msgs::msg::RegionOfInterest::~RegionOfInterest </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default destructor. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a50f164491319905eb3f4984fa13f3068" name="a50f164491319905eb3f4984fa13f3068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50f164491319905eb3f4984fa13f3068">&#9670;&#160;</a></span>RegionOfInterest() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sensor_msgs::msg::RegionOfInterest::RegionOfInterest </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html" title="This class represents the structure RegionOfInterest defined by the user in the IDL file.">sensor_msgs::msg::RegionOfInterest</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00058">58</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00281">m_do_rectify</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00279">m_height</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00280">m_width</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00277">m_x_offset</a> , 以及 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00278">m_y_offset</a>.</p>
+
+</div>
+</div>
+<a id="ace3c7a8f2e68132a6a24e093b74dd641" name="ace3c7a8f2e68132a6a24e093b74dd641"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace3c7a8f2e68132a6a24e093b74dd641">&#9670;&#160;</a></span>RegionOfInterest() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sensor_msgs::msg::RegionOfInterest::RegionOfInterest </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move constructor. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html" title="This class represents the structure RegionOfInterest defined by the user in the IDL file.">sensor_msgs::msg::RegionOfInterest</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00068">68</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a6e95b4836b52a9d830a8333d9982a819" name="a6e95b4836b52a9d830a8333d9982a819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e95b4836b52a9d830a8333d9982a819">&#9670;&#160;</a></span>deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::RegionOfInterest::deserialize </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function deserializes an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00146">146</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8d/RegionOfInterestPubSubTypes_8cpp_source.html#l00082">sensor_msgs::msg::RegionOfInterestPubSubType::deserialize()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="a69eddaed96d1d561a59af3892ee6ab08" name="a69eddaed96d1d561a59af3892ee6ab08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69eddaed96d1d561a59af3892ee6ab08">&#9670;&#160;</a></span>do_rectify() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool &amp; sensor_msgs::msg::RegionOfInterest::do_rectify </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member do_rectify </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member do_rectify </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00291">291</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8d2f70682d60fd5d4f9c4912d0a6fa8b" name="a8d2f70682d60fd5d4f9c4912d0a6fa8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2f70682d60fd5d4f9c4912d0a6fa8b">&#9670;&#160;</a></span>do_rectify() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sensor_msgs::msg::RegionOfInterest::do_rectify </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member do_rectify </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member do_rectify </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00282">282</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af69df0ba047d0be706baaf4ee6e43785" name="af69df0ba047d0be706baaf4ee6e43785"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af69df0ba047d0be706baaf4ee6e43785">&#9670;&#160;</a></span>do_rectify() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::RegionOfInterest::do_rectify </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>_do_rectify</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member do_rectify </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_do_rectify</td><td>New value for member do_rectify </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00272">272</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaDepthCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00461">carla::ros2::CarlaDVSCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaISCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaNormalsCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00383">carla::ros2::CarlaOpticalFlowCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00337">carla::ros2::CarlaRGBCameraPublisher::SetInfoRegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaSSCameraPublisher::SetInfoRegionOfInterest()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a400852dcf9880a96d51df7ce08cc5f83" name="a400852dcf9880a96d51df7ce08cc5f83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a400852dcf9880a96d51df7ce08cc5f83">&#9670;&#160;</a></span>getCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t sensor_msgs::msg::RegionOfInterest::getCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">sensor_msgs::msg::RegionOfInterest</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the serialized size of a data depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Data which is calculated its serialized size. </td></tr>
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00121">121</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d7a/CameraInfo_8cpp_source.html#l00159">sensor_msgs::msg::CameraInfo::getCdrSerializedSize()</a> , 以及 <a class="el" href="../../d9/d8d/RegionOfInterestPubSubTypes_8cpp_source.html#l00112">sensor_msgs::msg::RegionOfInterestPubSubType::getSerializedSizeProvider()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a67f38d78c3f4c029fb6a7cd4db6dc37d" name="a67f38d78c3f4c029fb6a7cd4db6dc37d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67f38d78c3f4c029fb6a7cd4db6dc37d">&#9670;&#160;</a></span>getKeyMaxCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t sensor_msgs::msg::RegionOfInterest::getKeyMaxCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the maximum serialized size of the Key of an object depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Maximum serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00296">296</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/d7a/CameraInfo_8cpp_source.html#l00044">sensor_msgs_msg_RegionOfInterest_max_key_cdr_typesize</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8d/RegionOfInterestPubSubTypes_8cpp_source.html#l00133">sensor_msgs::msg::RegionOfInterestPubSubType::getKey()</a> , 以及 <a class="el" href="../../d9/d8d/RegionOfInterestPubSubTypes_8cpp_source.html#l00032">sensor_msgs::msg::RegionOfInterestPubSubType::RegionOfInterestPubSubType()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="afd799bb3014ec6eaa9247ff8b596683c" name="afd799bb3014ec6eaa9247ff8b596683c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd799bb3014ec6eaa9247ff8b596683c">&#9670;&#160;</a></span>getMaxCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t sensor_msgs::msg::RegionOfInterest::getMaxCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the maximum serialized size of an object depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Maximum serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00114">114</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d8/d7a/CameraInfo_8cpp_source.html#l00040">sensor_msgs_msg_RegionOfInterest_max_cdr_typesize</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8d/RegionOfInterestPubSubTypes_8cpp_source.html#l00032">sensor_msgs::msg::RegionOfInterestPubSubType::RegionOfInterestPubSubType()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a23a33baa1e47bda20ddf30e5c1a6b328" name="a23a33baa1e47bda20ddf30e5c1a6b328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23a33baa1e47bda20ddf30e5c1a6b328">&#9670;&#160;</a></span>height() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t &amp; sensor_msgs::msg::RegionOfInterest::height </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member height </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member height </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae1528294fbd19be276251ab329f57914" name="ae1528294fbd19be276251ab329f57914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1528294fbd19be276251ab329f57914">&#9670;&#160;</a></span>height() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::RegionOfInterest::height </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member height </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member height </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00226">226</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acc3ac514644acc4d0979479da59a3dad" name="acc3ac514644acc4d0979479da59a3dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc3ac514644acc4d0979479da59a3dad">&#9670;&#160;</a></span>height() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::RegionOfInterest::height </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>_height</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member height </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_height</td><td>New value for member height </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaDepthCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00461">carla::ros2::CarlaDVSCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaISCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaNormalsCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00383">carla::ros2::CarlaOpticalFlowCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00337">carla::ros2::CarlaRGBCameraPublisher::SetInfoRegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaSSCameraPublisher::SetInfoRegionOfInterest()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad08e912c33af58328dd6e0a590f9cbfe" name="ad08e912c33af58328dd6e0a590f9cbfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad08e912c33af58328dd6e0a590f9cbfe">&#9670;&#160;</a></span>isKeyDefined()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sensor_msgs::msg::RegionOfInterest::isKeyDefined </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function tells you if the Key has been defined for this type </p>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00303">303</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8d/RegionOfInterestPubSubTypes_8cpp_source.html#l00032">sensor_msgs::msg::RegionOfInterestPubSubType::RegionOfInterestPubSubType()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="a76bfd18f1ef01831d6acd5ffdc71f835" name="a76bfd18f1ef01831d6acd5ffdc71f835"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76bfd18f1ef01831d6acd5ffdc71f835">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sensor_msgs::msg::RegionOfInterest::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comparison operator. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html" title="This class represents the structure RegionOfInterest defined by the user in the IDL file.">sensor_msgs::msg::RegionOfInterest</a> object to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa641f3772eac39ae8c6fed28943c0c76" name="aa641f3772eac39ae8c6fed28943c0c76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa641f3772eac39ae8c6fed28943c0c76">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">sensor_msgs::msg::RegionOfInterest</a> &amp; sensor_msgs::msg::RegionOfInterest::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy assignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html" title="This class represents the structure RegionOfInterest defined by the user in the IDL file.">sensor_msgs::msg::RegionOfInterest</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00078">78</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00281">m_do_rectify</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00279">m_height</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00280">m_width</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00277">m_x_offset</a> , 以及 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00278">m_y_offset</a>.</p>
+
+</div>
+</div>
+<a id="abb711888505709c8763e47d54b156501" name="abb711888505709c8763e47d54b156501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb711888505709c8763e47d54b156501">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">sensor_msgs::msg::RegionOfInterest</a> &amp; sensor_msgs::msg::RegionOfInterest::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move assignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html" title="This class represents the structure RegionOfInterest defined by the user in the IDL file.">sensor_msgs::msg::RegionOfInterest</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a74184270a0f02dba4565642ab3686fc9" name="a74184270a0f02dba4565642ab3686fc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74184270a0f02dba4565642ab3686fc9">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sensor_msgs::msg::RegionOfInterest::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html">RegionOfInterest</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comparison operator. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="../../d7/de7/classsensor__msgs_1_1msg_1_1RegionOfInterest.html" title="This class represents the structure RegionOfInterest defined by the user in the IDL file.">sensor_msgs::msg::RegionOfInterest</a> object to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00102">102</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00281">m_do_rectify</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00279">m_height</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00280">m_width</a>, <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00277">m_x_offset</a> , 以及 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00278">m_y_offset</a>.</p>
+
+</div>
+</div>
+<a id="aa2132a867396c7ff5c0afa1eda96b974" name="aa2132a867396c7ff5c0afa1eda96b974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2132a867396c7ff5c0afa1eda96b974">&#9670;&#160;</a></span>serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::RegionOfInterest::serialize </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function serializes an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00136">136</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8d/RegionOfInterestPubSubTypes_8cpp_source.html#l00053">sensor_msgs::msg::RegionOfInterestPubSubType::serialize()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="add52ee58481ed6b1f6ead4e88eebdae8" name="add52ee58481ed6b1f6ead4e88eebdae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add52ee58481ed6b1f6ead4e88eebdae8">&#9670;&#160;</a></span>serializeKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::RegionOfInterest::serializeKey </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function serializes the key members of an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00308">308</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8d/RegionOfInterestPubSubTypes_8cpp_source.html#l00133">sensor_msgs::msg::RegionOfInterestPubSubType::getKey()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0583b147f5c3e7721a16731d2a2956fa" name="a0583b147f5c3e7721a16731d2a2956fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0583b147f5c3e7721a16731d2a2956fa">&#9670;&#160;</a></span>width() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t &amp; sensor_msgs::msg::RegionOfInterest::width </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member width </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member width </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00263">263</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a271a474f965bcbdc101dd8278cc8f850" name="a271a474f965bcbdc101dd8278cc8f850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271a474f965bcbdc101dd8278cc8f850">&#9670;&#160;</a></span>width() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::RegionOfInterest::width </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member width </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member width </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00254">254</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1236eb69dc0714dc7ab48539ab954edb" name="a1236eb69dc0714dc7ab48539ab954edb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1236eb69dc0714dc7ab48539ab954edb">&#9670;&#160;</a></span>width() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::RegionOfInterest::width </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>_width</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member width </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_width</td><td>New value for member width </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00244">244</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaDepthCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00461">carla::ros2::CarlaDVSCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaISCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaNormalsCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00383">carla::ros2::CarlaOpticalFlowCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00337">carla::ros2::CarlaRGBCameraPublisher::SetInfoRegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaSSCameraPublisher::SetInfoRegionOfInterest()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<a id="a504893d3eddf256edc65d31948fbae37" name="a504893d3eddf256edc65d31948fbae37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a504893d3eddf256edc65d31948fbae37">&#9670;&#160;</a></span>x_offset() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t &amp; sensor_msgs::msg::RegionOfInterest::x_offset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member x_offset </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member x_offset </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a11add0e83590c40a39198463d36c15b6" name="a11add0e83590c40a39198463d36c15b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11add0e83590c40a39198463d36c15b6">&#9670;&#160;</a></span>x_offset() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::RegionOfInterest::x_offset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member x_offset </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member x_offset </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00170">170</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad1ebe7615f9cd560b6c1fe5798eea478" name="ad1ebe7615f9cd560b6c1fe5798eea478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1ebe7615f9cd560b6c1fe5798eea478">&#9670;&#160;</a></span>x_offset() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::RegionOfInterest::x_offset </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>_x_offset</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member x_offset </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_x_offset</td><td>New value for member x_offset </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00160">160</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaDepthCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00461">carla::ros2::CarlaDVSCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaISCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaNormalsCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00383">carla::ros2::CarlaOpticalFlowCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00337">carla::ros2::CarlaRGBCameraPublisher::SetInfoRegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaSSCameraPublisher::SetInfoRegionOfInterest()</a>.</p>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<a id="a35f0ef0a7937d7e0738773936c57916f" name="a35f0ef0a7937d7e0738773936c57916f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f0ef0a7937d7e0738773936c57916f">&#9670;&#160;</a></span>y_offset() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t &amp; sensor_msgs::msg::RegionOfInterest::y_offset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member y_offset </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member y_offset </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00207">207</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aafc7f923bf82e723151c78dbb7f94f66" name="aafc7f923bf82e723151c78dbb7f94f66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafc7f923bf82e723151c78dbb7f94f66">&#9670;&#160;</a></span>y_offset() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::RegionOfInterest::y_offset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member y_offset </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member y_offset </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00198">198</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a06cee7b09a87e29aafb489713c23057f" name="a06cee7b09a87e29aafb489713c23057f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06cee7b09a87e29aafb489713c23057f">&#9670;&#160;</a></span>y_offset() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::RegionOfInterest::y_offset </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>_y_offset</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member y_offset </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_y_offset</td><td>New value for member y_offset </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a> 第 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00188">188</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaDepthCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00461">carla::ros2::CarlaDVSCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaISCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00301">carla::ros2::CarlaNormalsCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00383">carla::ros2::CarlaOpticalFlowCameraPublisher::SetInfoRegionOfInterest()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00337">carla::ros2::CarlaRGBCameraPublisher::SetInfoRegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00300">carla::ros2::CarlaSSCameraPublisher::SetInfoRegionOfInterest()</a>.</p>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a16d9e119784b46bd204d9d31ae4a8b86" name="a16d9e119784b46bd204d9d31ae4a8b86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16d9e119784b46bd204d9d31ae4a8b86">&#9670;&#160;</a></span>m_do_rectify</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sensor_msgs::msg::RegionOfInterest::m_do_rectify</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html">RegionOfInterest.h</a> 第 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00281">281</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00078">operator=()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00102">operator==()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00040">RegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00058">RegionOfInterest()</a>.</p>
+
+</div>
+</div>
+<a id="ad0b422cc9300f4c7ec8446adfa5e25f9" name="ad0b422cc9300f4c7ec8446adfa5e25f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0b422cc9300f4c7ec8446adfa5e25f9">&#9670;&#160;</a></span>m_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::RegionOfInterest::m_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html">RegionOfInterest.h</a> 第 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00279">279</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00078">operator=()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00102">operator==()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00040">RegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00058">RegionOfInterest()</a>.</p>
+
+</div>
+</div>
+<a id="a6bade161372d851c60700952a895f009" name="a6bade161372d851c60700952a895f009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bade161372d851c60700952a895f009">&#9670;&#160;</a></span>m_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::RegionOfInterest::m_width</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html">RegionOfInterest.h</a> 第 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00280">280</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00078">operator=()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00102">operator==()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00040">RegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00058">RegionOfInterest()</a>.</p>
+
+</div>
+</div>
+<a id="a6de0b2716e715ad13ffe78fd9a99230b" name="a6de0b2716e715ad13ffe78fd9a99230b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6de0b2716e715ad13ffe78fd9a99230b">&#9670;&#160;</a></span>m_x_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::RegionOfInterest::m_x_offset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html">RegionOfInterest.h</a> 第 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00277">277</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00078">operator=()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00102">operator==()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00040">RegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00058">RegionOfInterest()</a>.</p>
+
+</div>
+</div>
+<a id="af03b4cf729d664f243d6f46e94deb581" name="af03b4cf729d664f243d6f46e94deb581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af03b4cf729d664f243d6f46e94deb581">&#9670;&#160;</a></span>m_y_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::RegionOfInterest::m_y_offset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html">RegionOfInterest.h</a> 第 <a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html#l00278">278</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00078">operator=()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00102">operator==()</a>, <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00040">RegionOfInterest()</a> , 以及 <a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html#l00058">RegionOfInterest()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d5/da2/RegionOfInterest_8h_source.html">RegionOfInterest.h</a></li>
+<li><a class="el" href="../../d3/df9/RegionOfInterest_8cpp_source.html">RegionOfInterest.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

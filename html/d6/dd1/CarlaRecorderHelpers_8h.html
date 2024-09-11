@@ -1,0 +1,624 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaRecorderHelpers.h 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_0dd3f6464b0e5c5db135a4b73b996175.html">Recorder</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">CarlaRecorderHelpers.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> CarlaRecorderHelpers.h 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+</div>
+<p><a href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:af6751b841d21267b06b9c47a184884d5" id="r_af6751b841d21267b06b9c47a184884d5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6751b841d21267b06b9c47a184884d5">GetRecorderFilename</a> (std::string Filename)</td></tr>
+<tr class="separator:af6751b841d21267b06b9c47a184884d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ed8dab34258bd6b98574ab6e4485d42" id="r_a4ed8dab34258bd6b98574ab6e4485d42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ed8dab34258bd6b98574ab6e4485d42">ReadFString</a> (std::istream &amp;InFile, FString &amp;OutObj)</td></tr>
+<tr class="separator:a4ed8dab34258bd6b98574ab6e4485d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae08e4aad382a9626efef6d44e45905d2" id="r_ae08e4aad382a9626efef6d44e45905d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae08e4aad382a9626efef6d44e45905d2">ReadFVector</a> (std::istream &amp;InFile, FVector &amp;OutObj)</td></tr>
+<tr class="separator:ae08e4aad382a9626efef6d44e45905d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f4b2037a83707a868c6e454bf1e063b" id="r_a8f4b2037a83707a868c6e454bf1e063b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a8f4b2037a83707a868c6e454bf1e063b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8f4b2037a83707a868c6e454bf1e063b">ReadStdVector</a> (std::istream &amp;InFile, std::vector&lt; T &gt; &amp;OutVec)</td></tr>
+<tr class="separator:a8f4b2037a83707a868c6e454bf1e063b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0f713ddb1a0efddd123794c76539bf" id="r_a8d0f713ddb1a0efddd123794c76539bf"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a8d0f713ddb1a0efddd123794c76539bf"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8d0f713ddb1a0efddd123794c76539bf">ReadTArray</a> (std::istream &amp;InFile, TArray&lt; T &gt; &amp;OutVec)</td></tr>
+<tr class="separator:a8d0f713ddb1a0efddd123794c76539bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ab2348e2f0ab8ce89bec654e85e7775" id="r_a2ab2348e2f0ab8ce89bec654e85e7775"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ab2348e2f0ab8ce89bec654e85e7775">ReadTransform</a> (std::ifstream &amp;InFile, FTransform &amp;OutObj)</td></tr>
+<tr class="separator:a2ab2348e2f0ab8ce89bec654e85e7775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7b2a7c287743d6b41ad64e8df3faa5f" id="r_af7b2a7c287743d6b41ad64e8df3faa5f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af7b2a7c287743d6b41ad64e8df3faa5f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af7b2a7c287743d6b41ad64e8df3faa5f">ReadValue</a> (std::istream &amp;InFile, T &amp;OutObj)</td></tr>
+<tr class="separator:af7b2a7c287743d6b41ad64e8df3faa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40ae2e78f27971b47934c69e98978397" id="r_a40ae2e78f27971b47934c69e98978397"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40ae2e78f27971b47934c69e98978397">WriteFString</a> (std::ostream &amp;OutFile, const FString &amp;InObj)</td></tr>
+<tr class="separator:a40ae2e78f27971b47934c69e98978397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39c6608218ac880fd681ba838f4094b8" id="r_a39c6608218ac880fd681ba838f4094b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39c6608218ac880fd681ba838f4094b8">WriteFTransform</a> (std::ofstream &amp;OutFile, const FTransform &amp;InObj)</td></tr>
+<tr class="separator:a39c6608218ac880fd681ba838f4094b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8b4129260148573aa7e5301f0540f7" id="r_a9a8b4129260148573aa7e5301f0540f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a8b4129260148573aa7e5301f0540f7">WriteFVector</a> (std::ostream &amp;OutFile, const FVector &amp;InObj)</td></tr>
+<tr class="separator:a9a8b4129260148573aa7e5301f0540f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fd22c2dab64336dc515987fed026c2d" id="r_a5fd22c2dab64336dc515987fed026c2d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a5fd22c2dab64336dc515987fed026c2d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5fd22c2dab64336dc515987fed026c2d">WriteStdVector</a> (std::ostream &amp;OutFile, const std::vector&lt; T &gt; &amp;InVec)</td></tr>
+<tr class="separator:a5fd22c2dab64336dc515987fed026c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a120098fee5606c8159b4d91f9e800e1e" id="r_a120098fee5606c8159b4d91f9e800e1e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a120098fee5606c8159b4d91f9e800e1e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a120098fee5606c8159b4d91f9e800e1e">WriteTArray</a> (std::ostream &amp;OutFile, const TArray&lt; T &gt; &amp;InVec)</td></tr>
+<tr class="separator:a120098fee5606c8159b4d91f9e800e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3001b37b537aff86368f502ef8dbfa6" id="r_ab3001b37b537aff86368f502ef8dbfa6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ab3001b37b537aff86368f502ef8dbfa6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ab3001b37b537aff86368f502ef8dbfa6">WriteValue</a> (std::ostream &amp;OutFile, const T &amp;InObj)</td></tr>
+<tr class="separator:ab3001b37b537aff86368f502ef8dbfa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="af6751b841d21267b06b9c47a184884d5" name="af6751b841d21267b06b9c47a184884d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6751b841d21267b06b9c47a184884d5">&#9670;&#160;</a></span>GetRecorderFilename()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GetRecorderFilename </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>Filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html">CarlaRecorderHelpers.cpp</a> 第 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00017">17</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00821">CarlaRecorderQuery::QueryBlocked()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00641">CarlaRecorderQuery::QueryCollisions()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00065">CarlaRecorderQuery::QueryInfo()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00106">CarlaReplayer::ReplayFile()</a> , 以及 <a class="el" href="../../da/d49/CarlaRecorder_8cpp_source.html#l00416">ACarlaRecorder::Start()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a4ed8dab34258bd6b98574ab6e4485d42" name="a4ed8dab34258bd6b98574ab6e4485d42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed8dab34258bd6b98574ab6e4485d42">&#9670;&#160;</a></span>ReadFString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadFString </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;</td>          <td class="paramname"><span class="paramname"><em>InFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FString &amp;</td>          <td class="paramname"><span class="paramname"><em>OutObj</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html">CarlaRecorderHelpers.cpp</a> 第 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00014">CarlaRecorderHelperBuffer</a> , 以及 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00060">ReadValue()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d05/CarlaRecorderEventAdd_8cpp_source.html#l00037">CarlaRecorderEventAdd::Read()</a>, <a class="el" href="../../df/de9/CarlaRecorderInfo_8h_source.html#l00021">CarlaRecorderInfo::Read()</a> , 以及 <a class="el" href="../../d2/d85/CarlaRecorderWalkerBones_8cpp_source.html#l00027">CarlaRecorderWalkerBones::Read()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae08e4aad382a9626efef6d44e45905d2" name="ae08e4aad382a9626efef6d44e45905d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae08e4aad382a9626efef6d44e45905d2">&#9670;&#160;</a></span>ReadFVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadFVector </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;</td>          <td class="paramname"><span class="paramname"><em>InFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FVector &amp;</td>          <td class="paramname"><span class="paramname"><em>OutObj</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html">CarlaRecorderHelpers.cpp</a> 第 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00068">68</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00060">ReadValue()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l00187">FDenseTile::InitializeTile()</a>, <a class="el" href="../../dc/daa/CarlaRecorderBoundingBox_8cpp_source.html#l00017">CarlaRecorderBoundingBox::Read()</a>, <a class="el" href="../../d8/d05/CarlaRecorderEventAdd_8cpp_source.html#l00037">CarlaRecorderEventAdd::Read()</a>, <a class="el" href="../../d1/d5d/CarlaRecorderKinematics_8cpp_source.html#l00018">CarlaRecorderKinematics::Read()</a>, <a class="el" href="../../dd/d45/CarlaRecorderPosition_8cpp_source.html#l00019">CarlaRecorderPosition::Read()</a>, <a class="el" href="../../d2/d85/CarlaRecorderWalkerBones_8cpp_source.html#l00027">CarlaRecorderWalkerBones::Read()</a> , 以及 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00076">ReadFTransform()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8f4b2037a83707a868c6e454bf1e063b" name="a8f4b2037a83707a868c6e454bf1e063b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f4b2037a83707a868c6e454bf1e063b">&#9670;&#160;</a></span>ReadStdVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadStdVector </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;</td>          <td class="paramname"><span class="paramname"><em>InFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>OutVec</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html">CarlaRecorderHelpers.h</a> 第 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00066">66</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00060">ReadValue()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l00187">FDenseTile::InitializeTile()</a> , 以及 <a class="el" href="../../dd/d41/CarlaRecorderPhysicsControl_8cpp_source.html#l00045">CarlaRecorderPhysicsControl::Read()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8d0f713ddb1a0efddd123794c76539bf" name="a8d0f713ddb1a0efddd123794c76539bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d0f713ddb1a0efddd123794c76539bf">&#9670;&#160;</a></span>ReadTArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadTArray </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;</td>          <td class="paramname"><span class="paramname"><em>InFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TArray&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>OutVec</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html">CarlaRecorderHelpers.h</a> 第 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00080">80</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00060">ReadValue()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2ab2348e2f0ab8ce89bec654e85e7775" name="a2ab2348e2f0ab8ce89bec654e85e7775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ab2348e2f0ab8ce89bec654e85e7775">&#9670;&#160;</a></span>ReadTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadTransform </td>
+          <td>(</td>
+          <td class="paramtype">std::ifstream &amp;</td>          <td class="paramname"><span class="paramname"><em>InFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FTransform &amp;</td>          <td class="paramname"><span class="paramname"><em>OutObj</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7b2a7c287743d6b41ad64e8df3faa5f" name="af7b2a7c287743d6b41ad64e8df3faa5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7b2a7c287743d6b41ad64e8df3faa5f">&#9670;&#160;</a></span>ReadValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void ReadValue </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;</td>          <td class="paramname"><span class="paramname"><em>InFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>OutObj</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html">CarlaRecorderHelpers.h</a> 第 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00060">60</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00623">CarlaReplayer::ProcessAnimBiker()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00564">CarlaReplayer::ProcessAnimVehicle()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00584">CarlaReplayer::ProcessAnimVehicleWheels()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00603">CarlaReplayer::ProcessAnimWalker()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00660">CarlaReplayer::ProcessDoorVehicle()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00446">CarlaReplayer::ProcessEventsAdd()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00511">CarlaReplayer::ProcessEventsDel()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00526">CarlaReplayer::ProcessEventsParent()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00679">CarlaReplayer::ProcessLightScene()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00641">CarlaReplayer::ProcessLightVehicle()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00693">CarlaReplayer::ProcessPositions()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00541">CarlaReplayer::ProcessStates()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00726">CarlaReplayer::ProcessWalkerBones()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00821">CarlaRecorderQuery::QueryBlocked()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00641">CarlaRecorderQuery::QueryCollisions()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00065">CarlaRecorderQuery::QueryInfo()</a>, <a class="el" href="../../dc/daa/CarlaRecorderBoundingBox_8cpp_source.html#l00029">CarlaRecorderActorBoundingBox::Read()</a>, <a class="el" href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00018">CarlaRecorderAnimBiker::Read()</a>, <a class="el" href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00058">CarlaRecorderAnimBikers::Read()</a>, <a class="el" href="../../d7/d3b/CarlaRecorderAnimVehicle_8cpp_source.html#l00021">CarlaRecorderAnimVehicle::Read()</a>, <a class="el" href="../../d7/d3b/CarlaRecorderAnimVehicle_8cpp_source.html#l00070">CarlaRecorderAnimVehicles::Read()</a>, <a class="el" href="../../dc/d7d/CarlaRecorderAnimVehicleWheels_8cpp_source.html#l00087">CarlaRecorderAnimVehicleWheels::Read()</a>, <a class="el" href="../../db/d94/CarlaRecorderAnimWalker_8cpp_source.html#l00017">CarlaRecorderAnimWalker::Read()</a>, <a class="el" href="../../db/d94/CarlaRecorderAnimWalker_8cpp_source.html#l00057">CarlaRecorderAnimWalkers::Read()</a>, <a class="el" href="../../dc/d7d/CarlaRecorderAnimVehicleWheels_8cpp_source.html#l00035">CarlaRecorderAnimWheels::Read()</a>, <a class="el" href="../../de/d07/CarlaRecorderCollision_8cpp_source.html#l00011">CarlaRecorderCollision::Read()</a>, <a class="el" href="../../d2/d5d/CarlaRecorderDoorVehicle_8cpp_source.html#l00019">CarlaRecorderDoorVehicle::Read()</a>, <a class="el" href="../../d2/d5d/CarlaRecorderDoorVehicle_8cpp_source.html#l00058">CarlaRecorderDoorVehicles::Read()</a>, <a class="el" href="../../d8/d05/CarlaRecorderEventAdd_8cpp_source.html#l00037">CarlaRecorderEventAdd::Read()</a>, <a class="el" href="../../de/d25/CarlaRecorderEventDel_8cpp_source.html#l00011">CarlaRecorderEventDel::Read()</a>, <a class="el" href="../../d8/d3b/CarlaRecorderEventParent_8cpp_source.html#l00012">CarlaRecorderEventParent::Read()</a>, <a class="el" href="../../d8/d05/CarlaRecorderEventAdd_8cpp_source.html#l00106">CarlaRecorderEventsAdd::Read()</a>, <a class="el" href="../../de/d25/CarlaRecorderEventDel_8cpp_source.html#l00062">CarlaRecorderEventsDel::Read()</a>, <a class="el" href="../../d8/d3b/CarlaRecorderEventParent_8cpp_source.html#l00067">CarlaRecorderEventsParent::Read()</a>, <a class="el" href="../../dd/dd3/CarlaRecorderFrames_8cpp_source.html#l00011">CarlaRecorderFrame::Read()</a>, <a class="el" href="../../d9/dc7/CarlaRecorderFrameCounter_8cpp_source.html#l00011">CarlaRecorderFrameCounter::Read()</a>, <a class="el" href="../../df/de9/CarlaRecorderInfo_8h_source.html#l00021">CarlaRecorderInfo::Read()</a>, <a class="el" href="../../d1/d5d/CarlaRecorderKinematics_8cpp_source.html#l00018">CarlaRecorderKinematics::Read()</a>, <a class="el" href="../../dd/d20/CarlaRecorderLightScene_8cpp_source.html#l00020">CarlaRecorderLightScene::Read()</a>, <a class="el" href="../../dd/d20/CarlaRecorderLightScene_8cpp_source.html#l00067">CarlaRecorderLightScenes::Read()</a>, <a class="el" href="../../d2/d63/CarlaRecorderLightVehicle_8cpp_source.html#l00018">CarlaRecorderLightVehicle::Read()</a>, <a class="el" href="../../d2/d63/CarlaRecorderLightVehicle_8cpp_source.html#l00056">CarlaRecorderLightVehicles::Read()</a>, <a class="el" href="../../dd/d41/CarlaRecorderPhysicsControl_8cpp_source.html#l00045">CarlaRecorderPhysicsControl::Read()</a>, <a class="el" href="../../d8/d3c/CarlaRecorderPlatformTime_8cpp_source.html#l00023">CarlaRecorderPlatformTime::Read()</a>, <a class="el" href="../../dd/d45/CarlaRecorderPosition_8cpp_source.html#l00019">CarlaRecorderPosition::Read()</a>, <a class="el" href="../../dd/d45/CarlaRecorderPosition_8cpp_source.html#l00061">CarlaRecorderPositions::Read()</a>, <a class="el" href="../../d6/d0d/CarlaRecorderState_8cpp_source.html#l00058">CarlaRecorderStates::Read()</a>, <a class="el" href="../../d6/d0d/CarlaRecorderState_8cpp_source.html#l00019">CarlaRecorderStateTrafficLight::Read()</a>, <a class="el" href="../../da/d7e/CarlaRecorderTraficLightTime_8cpp_source.html#l00020">CarlaRecorderTrafficLightTime::Read()</a>, <a class="el" href="../../dd/dc4/CarlaRecorderVisualTime_8cpp_source.html#l00016">CarlaRecorderVisualTime::Read()</a>, <a class="el" href="../../d2/d85/CarlaRecorderWalkerBones_8cpp_source.html#l00027">CarlaRecorderWalkerBones::Read()</a>, <a class="el" href="../../df/d8a/FrameData_8cpp_source.html#l00224">FFrameData::Read()</a>, <a class="el" href="../../dc/d7d/CarlaRecorderAnimVehicleWheels_8cpp_source.html#l00018">WheelInfo::Read()</a>, <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00086">ReadFString()</a>, <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00068">ReadFVector()</a>, <a class="el" href="../../de/dc6/CarlaRecorderQuery_8cpp_source.html#l00024">CarlaRecorderQuery::ReadHeader()</a>, <a class="el" href="../../db/dba/CarlaReplayer_8cpp_source.html#l00037">CarlaReplayer::ReadHeader()</a>, <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00066">ReadStdVector()</a> , 以及 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00080">ReadTArray()</a>.</p>
+
+</div>
+</div>
+<a id="a40ae2e78f27971b47934c69e98978397" name="a40ae2e78f27971b47934c69e98978397"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40ae2e78f27971b47934c69e98978397">&#9670;&#160;</a></span>WriteFString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WriteFString </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>OutFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>InObj</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html">CarlaRecorderHelpers.cpp</a> 第 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00053">53</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00021">WriteValue()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d05/CarlaRecorderEventAdd_8cpp_source.html#l00011">CarlaRecorderEventAdd::Write()</a>, <a class="el" href="../../df/de9/CarlaRecorderInfo_8h_source.html#l00029">CarlaRecorderInfo::Write()</a> , 以及 <a class="el" href="../../d2/d85/CarlaRecorderWalkerBones_8cpp_source.html#l00011">CarlaRecorderWalkerBones::Write()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<a id="a39c6608218ac880fd681ba838f4094b8" name="a39c6608218ac880fd681ba838f4094b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39c6608218ac880fd681ba838f4094b8">&#9670;&#160;</a></span>WriteFTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WriteFTransform </td>
+          <td>(</td>
+          <td class="paramtype">std::ofstream &amp;</td>          <td class="paramname"><span class="paramname"><em>OutFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FTransform &amp;</td>          <td class="paramname"><span class="paramname"><em>InObj</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html">CarlaRecorderHelpers.cpp</a> 第 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00046">46</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00038">WriteFVector()</a>.</p>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<a id="a9a8b4129260148573aa7e5301f0540f7" name="a9a8b4129260148573aa7e5301f0540f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a8b4129260148573aa7e5301f0540f7">&#9670;&#160;</a></span>WriteFVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WriteFVector </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>OutFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FVector &amp;</td>          <td class="paramname"><span class="paramname"><em>InObj</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html">CarlaRecorderHelpers.cpp</a> 第 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00038">38</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00021">WriteValue()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/daa/CarlaRecorderBoundingBox_8cpp_source.html#l00011">CarlaRecorderBoundingBox::Write()</a>, <a class="el" href="../../d8/d05/CarlaRecorderEventAdd_8cpp_source.html#l00011">CarlaRecorderEventAdd::Write()</a>, <a class="el" href="../../d1/d5d/CarlaRecorderKinematics_8cpp_source.html#l00011">CarlaRecorderKinematics::Write()</a>, <a class="el" href="../../dd/d45/CarlaRecorderPosition_8cpp_source.html#l00011">CarlaRecorderPosition::Write()</a>, <a class="el" href="../../d2/d85/CarlaRecorderWalkerBones_8cpp_source.html#l00011">CarlaRecorderWalkerBones::Write()</a> , 以及 <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00046">WriteFTransform()</a>.</p>
+<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 13 --></div>
+</div>
+<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 14 --></div>
+</div>
+
+</div>
+</div>
+<a id="a5fd22c2dab64336dc515987fed026c2d" name="a5fd22c2dab64336dc515987fed026c2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fd22c2dab64336dc515987fed026c2d">&#9670;&#160;</a></span>WriteStdVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void WriteStdVector </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>OutFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>InVec</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html">CarlaRecorderHelpers.h</a> 第 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00027">27</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00021">WriteValue()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d41/CarlaRecorderPhysicsControl_8cpp_source.html#l00016">CarlaRecorderPhysicsControl::Write()</a>.</p>
+<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 15 --></div>
+</div>
+<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 16 --></div>
+</div>
+
+</div>
+</div>
+<a id="a120098fee5606c8159b4d91f9e800e1e" name="a120098fee5606c8159b4d91f9e800e1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a120098fee5606c8159b4d91f9e800e1e">&#9670;&#160;</a></span>WriteTArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void WriteTArray </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>OutFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArray&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>InVec</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html">CarlaRecorderHelpers.h</a> 第 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00037">37</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00021">WriteValue()</a>.</p>
+<div id="dynsection-17" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 17 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab3001b37b537aff86368f502ef8dbfa6" name="ab3001b37b537aff86368f502ef8dbfa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3001b37b537aff86368f502ef8dbfa6">&#9670;&#160;</a></span>WriteValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void WriteValue </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;</td>          <td class="paramname"><span class="paramname"><em>OutFile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;</td>          <td class="paramname"><span class="paramname"><em>InObj</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html">CarlaRecorderHelpers.h</a> 第 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00021">21</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/daa/CarlaRecorderBoundingBox_8cpp_source.html#l00023">CarlaRecorderActorBoundingBox::Write()</a>, <a class="el" href="../../dc/daa/CarlaRecorderBoundingBox_8cpp_source.html#l00048">CarlaRecorderActorBoundingBoxes::Write()</a>, <a class="el" href="../../d1/d5d/CarlaRecorderKinematics_8cpp_source.html#l00037">CarlaRecorderActorsKinematics::Write()</a>, <a class="el" href="../../dc/daa/CarlaRecorderBoundingBox_8cpp_source.html#l00078">CarlaRecorderActorTriggerVolumes::Write()</a>, <a class="el" href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00011">CarlaRecorderAnimBiker::Write()</a>, <a class="el" href="../../d2/d93/CarlaRecorderAnimBiker_8cpp_source.html#l00037">CarlaRecorderAnimBikers::Write()</a>, <a class="el" href="../../d7/d3b/CarlaRecorderAnimVehicle_8cpp_source.html#l00011">CarlaRecorderAnimVehicle::Write()</a>, <a class="el" href="../../d7/d3b/CarlaRecorderAnimVehicle_8cpp_source.html#l00044">CarlaRecorderAnimVehicles::Write()</a>, <a class="el" href="../../dc/d7d/CarlaRecorderAnimVehicleWheels_8cpp_source.html#l00061">CarlaRecorderAnimVehicleWheels::Write()</a>, <a class="el" href="../../db/d94/CarlaRecorderAnimWalker_8cpp_source.html#l00011">CarlaRecorderAnimWalker::Write()</a>, <a class="el" href="../../db/d94/CarlaRecorderAnimWalker_8cpp_source.html#l00036">CarlaRecorderAnimWalkers::Write()</a>, <a class="el" href="../../dc/d7d/CarlaRecorderAnimVehicleWheels_8cpp_source.html#l00025">CarlaRecorderAnimWheels::Write()</a>, <a class="el" href="../../de/d07/CarlaRecorderCollision_8cpp_source.html#l00022">CarlaRecorderCollision::Write()</a>, <a class="el" href="../../de/d07/CarlaRecorderCollision_8cpp_source.html#l00050">CarlaRecorderCollisions::Write()</a>, <a class="el" href="../../d2/d5d/CarlaRecorderDoorVehicle_8cpp_source.html#l00012">CarlaRecorderDoorVehicle::Write()</a>, <a class="el" href="../../d2/d5d/CarlaRecorderDoorVehicle_8cpp_source.html#l00039">CarlaRecorderDoorVehicles::Write()</a>, <a class="el" href="../../d8/d05/CarlaRecorderEventAdd_8cpp_source.html#l00011">CarlaRecorderEventAdd::Write()</a>, <a class="el" href="../../de/d25/CarlaRecorderEventDel_8cpp_source.html#l00016">CarlaRecorderEventDel::Write()</a>, <a class="el" href="../../d8/d3b/CarlaRecorderEventParent_8cpp_source.html#l00019">CarlaRecorderEventParent::Write()</a>, <a class="el" href="../../d8/d05/CarlaRecorderEventAdd_8cpp_source.html#l00080">CarlaRecorderEventsAdd::Write()</a>, <a class="el" href="../../de/d25/CarlaRecorderEventDel_8cpp_source.html#l00034">CarlaRecorderEventsDel::Write()</a>, <a class="el" href="../../d8/d3b/CarlaRecorderEventParent_8cpp_source.html#l00039">CarlaRecorderEventsParent::Write()</a>, <a class="el" href="../../dd/dd3/CarlaRecorderFrames_8cpp_source.html#l00016">CarlaRecorderFrame::Write()</a>, <a class="el" href="../../d9/dc7/CarlaRecorderFrameCounter_8cpp_source.html#l00016">CarlaRecorderFrameCounter::Write()</a>, <a class="el" href="../../df/de9/CarlaRecorderInfo_8h_source.html#l00029">CarlaRecorderInfo::Write()</a>, <a class="el" href="../../d1/d5d/CarlaRecorderKinematics_8cpp_source.html#l00011">CarlaRecorderKinematics::Write()</a>, <a class="el" href="../../dd/d20/CarlaRecorderLightScene_8cpp_source.html#l00012">CarlaRecorderLightScene::Write()</a>, <a class="el" href="../../dd/d20/CarlaRecorderLightScene_8cpp_source.html#l00041">CarlaRecorderLightScenes::Write()</a>, <a class="el" href="../../d2/d63/CarlaRecorderLightVehicle_8cpp_source.html#l00012">CarlaRecorderLightVehicle::Write()</a>, <a class="el" href="../../d2/d63/CarlaRecorderLightVehicle_8cpp_source.html#l00037">CarlaRecorderLightVehicles::Write()</a>, <a class="el" href="../../dd/d41/CarlaRecorderPhysicsControl_8cpp_source.html#l00016">CarlaRecorderPhysicsControl::Write()</a>, <a class="el" href="../../dd/d41/CarlaRecorderPhysicsControl_8cpp_source.html#l00088">CarlaRecorderPhysicsControls::Write()</a>, <a class="el" href="../../d8/d3c/CarlaRecorderPlatformTime_8cpp_source.html#l00028">CarlaRecorderPlatformTime::Write()</a>, <a class="el" href="../../dd/d45/CarlaRecorderPosition_8cpp_source.html#l00011">CarlaRecorderPosition::Write()</a>, <a class="el" href="../../dd/d45/CarlaRecorderPosition_8cpp_source.html#l00040">CarlaRecorderPositions::Write()</a>, <a class="el" href="../../d6/d0d/CarlaRecorderState_8cpp_source.html#l00039">CarlaRecorderStates::Write()</a>, <a class="el" href="../../d6/d0d/CarlaRecorderState_8cpp_source.html#l00011">CarlaRecorderStateTrafficLight::Write()</a>, <a class="el" href="../../da/d7e/CarlaRecorderTraficLightTime_8cpp_source.html#l00012">CarlaRecorderTrafficLightTime::Write()</a>, <a class="el" href="../../da/d7e/CarlaRecorderTraficLightTime_8cpp_source.html#l00040">CarlaRecorderTrafficLightTimes::Write()</a>, <a class="el" href="../../dd/dc4/CarlaRecorderVisualTime_8cpp_source.html#l00021">CarlaRecorderVisualTime::Write()</a>, <a class="el" href="../../d2/d85/CarlaRecorderWalkerBones_8cpp_source.html#l00011">CarlaRecorderWalkerBones::Write()</a>, <a class="el" href="../../d2/d85/CarlaRecorderWalkerBones_8cpp_source.html#l00066">CarlaRecorderWalkersBones::Write()</a>, <a class="el" href="../../dc/d7d/CarlaRecorderAnimVehicleWheels_8cpp_source.html#l00011">WheelInfo::Write()</a>, <a class="el" href="../../dd/dd3/CarlaRecorderFrames_8cpp_source.html#l00083">CarlaRecorderFrames::WriteEnd()</a>, <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00053">WriteFString()</a>, <a class="el" href="../../d6/d51/CarlaRecorderHelpers_8cpp_source.html#l00038">WriteFVector()</a>, <a class="el" href="../../dd/dd3/CarlaRecorderFrames_8cpp_source.html#l00052">CarlaRecorderFrames::WriteStart()</a>, <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00027">WriteStdVector()</a> , 以及 <a class="el" href="../../d6/dd1/CarlaRecorderHelpers_8h_source.html#l00037">WriteTArray()</a>.</p>
+<div id="dynsection-18" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 18 --></div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

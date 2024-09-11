@@ -1,0 +1,29 @@
+digraph "Sensor.h"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="Sensor.h",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="ClientSideSensor.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d1d/ClientSideSensor_8h.html",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="LaneInvasionSensor.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/d52/LibCarla_2source_2carla_2client_2LaneInvasionSensor_8h.html",tooltip=" "];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="ActorFactory.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dd6/ActorFactory_8cpp.html",tooltip=" "];
+  Node3 -> Node5 [id="edge4_Node000003_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="LaneInvasionSensor.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/dbc/LibCarla_2source_2carla_2client_2LaneInvasionSensor_8cpp.html",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="RssSensor.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d8/d77/LibCarla_2source_2carla_2rss_2RssSensor_8cpp.html",tooltip=" "];
+  Node1 -> Node7 [id="edge6_Node000001_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="RssSensor.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d8/d17/LibCarla_2source_2carla_2rss_2RssSensor_8h.html",tooltip=" "];
+  Node7 -> Node6 [id="edge7_Node000007_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node8 [id="edge8_Node000001_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="ServerSideSensor.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/d29/ServerSideSensor_8h.html",tooltip=" "];
+  Node8 -> Node4 [id="edge9_Node000008_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 -> Node9 [id="edge10_Node000008_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="ServerSideSensor.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d1/da0/ServerSideSensor_8cpp.html",tooltip=" "];
+  Node1 -> Node10 [id="edge11_Node000001_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="Simulator.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d0c/Simulator_8cpp.html",tooltip=" "];
+}

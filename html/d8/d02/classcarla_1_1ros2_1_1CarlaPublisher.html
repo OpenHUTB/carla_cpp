@@ -1,0 +1,544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::ros2::CarlaPublisher类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d1/d4b/namespacecarla_1_1ros2.html">ros2</a></li><li class="navelem"><a class="el" href="../../d8/d02/classcarla_1_1ros2_1_1CarlaPublisher.html">CarlaPublisher</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="../../d8/db8/classcarla_1_1ros2_1_1CarlaPublisher-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::ros2::CarlaPublisher类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::ros2::CarlaPublisher 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::ros2::CarlaPublisher 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a35f0eba9bdf0bf22524cc6dacf43f242" id="r_a35f0eba9bdf0bf22524cc6dacf43f242"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35f0eba9bdf0bf22524cc6dacf43f242">CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a35f0eba9bdf0bf22524cc6dacf43f242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77422f0594812a0371f8b04d70f19741" id="r_a77422f0594812a0371f8b04d70f19741"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77422f0594812a0371f8b04d70f19741">frame_id</a> () const</td></tr>
+<tr class="separator:a77422f0594812a0371f8b04d70f19741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9656d0fbe195ce57730f65ebb7e9e384" id="r_a9656d0fbe195ce57730f65ebb7e9e384"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9656d0fbe195ce57730f65ebb7e9e384">frame_id</a> (std::string &amp;&amp;frame_id)</td></tr>
+<tr class="separator:a9656d0fbe195ce57730f65ebb7e9e384"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81da28dc11b15e6ad27647887ef65bb" id="r_ac81da28dc11b15e6ad27647887ef65bb"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac81da28dc11b15e6ad27647887ef65bb">name</a> () const</td></tr>
+<tr class="separator:ac81da28dc11b15e6ad27647887ef65bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53db6f09833e2dd625967218568f8ab4" id="r_a53db6f09833e2dd625967218568f8ab4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53db6f09833e2dd625967218568f8ab4">name</a> (std::string &amp;&amp;name)</td></tr>
+<tr class="separator:a53db6f09833e2dd625967218568f8ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f2175762993c5eec161b8f304c59bb5" id="r_a0f2175762993c5eec161b8f304c59bb5"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f2175762993c5eec161b8f304c59bb5">parent</a> () const</td></tr>
+<tr class="separator:a0f2175762993c5eec161b8f304c59bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a49e93846cc2dff08ed65be07767b58" id="r_a1a49e93846cc2dff08ed65be07767b58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a49e93846cc2dff08ed65be07767b58">parent</a> (std::string &amp;&amp;parent)</td></tr>
+<tr class="separator:a1a49e93846cc2dff08ed65be07767b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6448e2522e8b78dfe350aca123530089" id="r_a6448e2522e8b78dfe350aca123530089"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6448e2522e8b78dfe350aca123530089">type</a> () const =0</td></tr>
+<tr class="separator:a6448e2522e8b78dfe350aca123530089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ddebcb6ae5afef2c9061bee7d6153a" id="r_a52ddebcb6ae5afef2c9061bee7d6153a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52ddebcb6ae5afef2c9061bee7d6153a">~CarlaPublisher</a> ()=default</td></tr>
+<tr class="separator:a52ddebcb6ae5afef2c9061bee7d6153a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a611073f244645d4f6265a29b8a6e3b23" id="r_a611073f244645d4f6265a29b8a6e3b23"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a611073f244645d4f6265a29b8a6e3b23">_frame_id</a> = &quot;&quot;</td></tr>
+<tr class="separator:a611073f244645d4f6265a29b8a6e3b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ab51e4d54b99c8c9347a3d245aac20" id="r_a26ab51e4d54b99c8c9347a3d245aac20"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26ab51e4d54b99c8c9347a3d245aac20">_name</a> = &quot;&quot;</td></tr>
+<tr class="separator:a26ab51e4d54b99c8c9347a3d245aac20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284934d8f61aed2ddcb24c575240fb2f" id="r_a284934d8f61aed2ddcb24c575240fb2f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a284934d8f61aed2ddcb24c575240fb2f">_parent</a> = &quot;&quot;</td></tr>
+<tr class="separator:a284934d8f61aed2ddcb24c575240fb2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00013">13</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a35f0eba9bdf0bf22524cc6dacf43f242" name="a35f0eba9bdf0bf22524cc6dacf43f242"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f0eba9bdf0bf22524cc6dacf43f242">&#9670;&#160;</a></span>CarlaPublisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::ros2::CarlaPublisher::CarlaPublisher </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52ddebcb6ae5afef2c9061bee7d6153a" name="a52ddebcb6ae5afef2c9061bee7d6153a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ddebcb6ae5afef2c9061bee7d6153a">&#9670;&#160;</a></span>~CarlaPublisher()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual carla::ros2::CarlaPublisher::~CarlaPublisher </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a77422f0594812a0371f8b04d70f19741" name="a77422f0594812a0371f8b04d70f19741"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77422f0594812a0371f8b04d70f19741">&#9670;&#160;</a></span>frame_id() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; carla::ros2::CarlaPublisher::frame_id </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00015">15</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">_frame_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00019">frame_id()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a9656d0fbe195ce57730f65ebb7e9e384" name="a9656d0fbe195ce57730f65ebb7e9e384"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9656d0fbe195ce57730f65ebb7e9e384">&#9670;&#160;</a></span>frame_id() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaPublisher::frame_id </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>frame_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00019">19</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">_frame_id</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00015">frame_id()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac81da28dc11b15e6ad27647887ef65bb" name="ac81da28dc11b15e6ad27647887ef65bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac81da28dc11b15e6ad27647887ef65bb">&#9670;&#160;</a></span>name() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; carla::ros2::CarlaPublisher::name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00016">16</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">_name</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00020">name()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="a53db6f09833e2dd625967218568f8ab4" name="a53db6f09833e2dd625967218568f8ab4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53db6f09833e2dd625967218568f8ab4">&#9670;&#160;</a></span>name() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaPublisher::name </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00020">20</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">_name</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00016">name()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0f2175762993c5eec161b8f304c59bb5" name="a0f2175762993c5eec161b8f304c59bb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f2175762993c5eec161b8f304c59bb5">&#9670;&#160;</a></span>parent() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; carla::ros2::CarlaPublisher::parent </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">17</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">_parent</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00150">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00176">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00340">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00510">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00166">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00199">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00339">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00207">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00164">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00155">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00340">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00422">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00234">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00347">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00217">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00154">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00339">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00204">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00021">parent()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a1a49e93846cc2dff08ed65be07767b58" name="a1a49e93846cc2dff08ed65be07767b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a49e93846cc2dff08ed65be07767b58">&#9670;&#160;</a></span>parent() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::ros2::CarlaPublisher::parent </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>parent</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00021">21</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">_parent</a> , 以及 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">parent()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="a6448e2522e8b78dfe350aca123530089" name="a6448e2522e8b78dfe350aca123530089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6448e2522e8b78dfe350aca123530089">&#9670;&#160;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const char * carla::ros2::CarlaPublisher::type </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在 <a class="el" href="../../d6/d15/classcarla_1_1ros2_1_1CarlaClockPublisher.html#a56c10a55aa227d80a994006cc4b66d0a">carla::ros2::CarlaClockPublisher</a>, <a class="el" href="../../d7/dff/classcarla_1_1ros2_1_1CarlaCollisionPublisher.html#a811c68fa35e8fb7a07f353595e88b655">carla::ros2::CarlaCollisionPublisher</a>, <a class="el" href="../../d9/d25/classcarla_1_1ros2_1_1CarlaDepthCameraPublisher.html#ab1890aedbf2fd5f118f0ece5fb1f33bb">carla::ros2::CarlaDepthCameraPublisher</a>, <a class="el" href="../../dd/d7a/classcarla_1_1ros2_1_1CarlaDVSCameraPublisher.html#acd29ab3698cb7b670e515d0756c4bc08">carla::ros2::CarlaDVSCameraPublisher</a>, <a class="el" href="../../db/d3f/classcarla_1_1ros2_1_1CarlaGNSSPublisher.html#a1eb94d972a940a9d79e916fdaf391ffb">carla::ros2::CarlaGNSSPublisher</a>, <a class="el" href="../../d7/d62/classcarla_1_1ros2_1_1CarlaIMUPublisher.html#afa5ffb8a7fb2b5c1bb2cecdb192c1856">carla::ros2::CarlaIMUPublisher</a>, <a class="el" href="../../de/d2a/classcarla_1_1ros2_1_1CarlaISCameraPublisher.html#a218150d4b5b241a4b7b9c8e167104abe">carla::ros2::CarlaISCameraPublisher</a>, <a class="el" href="../../d9/dae/classcarla_1_1ros2_1_1CarlaLidarPublisher.html#a2c80a13bdf7299c18f44daa92aa77bac">carla::ros2::CarlaLidarPublisher</a>, <a class="el" href="../../df/dce/classcarla_1_1ros2_1_1CarlaLineInvasionPublisher.html#a367a82cd1fcf6cd4fc5db56ab24fb263">carla::ros2::CarlaLineInvasionPublisher</a>, <a class="el" href="../../da/db9/classcarla_1_1ros2_1_1CarlaMapSensorPublisher.html#a94e68cfc9ebe0eaafc89d5ff764cdd75">carla::ros2::CarlaMapSensorPublisher</a>, <a class="el" href="../../d5/dd3/classcarla_1_1ros2_1_1CarlaNormalsCameraPublisher.html#a272e93ae16b90cb4f48a540f9a5e6857">carla::ros2::CarlaNormalsCameraPublisher</a>, <a class="el" href="../../d1/da1/classcarla_1_1ros2_1_1CarlaOpticalFlowCameraPublisher.html#a737903ec11025af596d641d288932e76">carla::ros2::CarlaOpticalFlowCameraPublisher</a>, <a class="el" href="../../d6/db4/classcarla_1_1ros2_1_1CarlaRadarPublisher.html#ac30eac71d8d48b44cdefb9e9ca152784">carla::ros2::CarlaRadarPublisher</a>, <a class="el" href="../../d9/d63/classcarla_1_1ros2_1_1CarlaRGBCameraPublisher.html#a5435d92f0687102e7d3dc7f3508bd769">carla::ros2::CarlaRGBCameraPublisher</a>, <a class="el" href="../../db/de8/classcarla_1_1ros2_1_1CarlaSemanticLidarPublisher.html#a25ee13625e1274f44c42e8f60ffc6f7f">carla::ros2::CarlaSemanticLidarPublisher</a>, <a class="el" href="../../d7/d9c/classcarla_1_1ros2_1_1CarlaSpeedometerSensor.html#a345a9967f74e5babd7561443d8b4db84">carla::ros2::CarlaSpeedometerSensor</a>, <a class="el" href="../../d3/df4/classcarla_1_1ros2_1_1CarlaSSCameraPublisher.html#aa0d498aab583ef1a1fe475ca30221f58">carla::ros2::CarlaSSCameraPublisher</a> , 以及 <a class="el" href="../../d1/d14/classcarla_1_1ros2_1_1CarlaTransformPublisher.html#a23696c1fcad30c04e0595d8d6cfca6a5">carla::ros2::CarlaTransformPublisher</a> 内被实现.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a611073f244645d4f6265a29b8a6e3b23" name="a611073f244645d4f6265a29b8a6e3b23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a611073f244645d4f6265a29b8a6e3b23">&#9670;&#160;</a></span>_frame_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string carla::ros2::CarlaPublisher::_frame_id = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00030">30</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00189">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00173">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00215">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00199">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00397">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00379">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00585">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00565">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00205">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00189">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00238">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00222">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00396">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00378">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00246">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00230">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00203">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00187">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00194">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00178">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00397">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00379">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00479">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00461">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00273">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00257">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00256">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00240">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00193">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00177">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00396">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00378">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00243">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00227">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00015">frame_id()</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00019">frame_id()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00042">carla::ros2::CarlaClockPublisher::Init()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00043">carla::ros2::CarlaCollisionPublisher::Init()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00042">carla::ros2::CarlaGNSSPublisher::Init()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00042">carla::ros2::CarlaIMUPublisher::Init()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00042">carla::ros2::CarlaLidarPublisher::Init()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00042">carla::ros2::CarlaLineInvasionPublisher::Init()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00042">carla::ros2::CarlaMapSensorPublisher::Init()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00051">carla::ros2::CarlaRadarPublisher::Init()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00043">carla::ros2::CarlaSemanticLidarPublisher::Init()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00042">carla::ros2::CarlaSpeedometerSensor::Init()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00047">carla::ros2::CarlaTransformPublisher::Init()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00069">carla::ros2::CarlaDepthCameraPublisher::InitImage()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00082">carla::ros2::CarlaDVSCameraPublisher::InitImage()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00068">carla::ros2::CarlaISCameraPublisher::InitImage()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00069">carla::ros2::CarlaNormalsCameraPublisher::InitImage()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00073">carla::ros2::CarlaOpticalFlowCameraPublisher::InitImage()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00073">carla::ros2::CarlaRGBCameraPublisher::InitImage()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00068">carla::ros2::CarlaSSCameraPublisher::InitImage()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00118">carla::ros2::CarlaDepthCameraPublisher::InitInfo()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00131">carla::ros2::CarlaDVSCameraPublisher::InitInfo()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00116">carla::ros2::CarlaISCameraPublisher::InitInfo()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00118">carla::ros2::CarlaNormalsCameraPublisher::InitInfo()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00122">carla::ros2::CarlaOpticalFlowCameraPublisher::InitInfo()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00122">carla::ros2::CarlaRGBCameraPublisher::InitInfo()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00116">carla::ros2::CarlaSSCameraPublisher::InitInfo()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00179">carla::ros2::CarlaDVSCameraPublisher::InitPointCloud()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00196">carla::ros2::CarlaClockPublisher::operator=()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00180">carla::ros2::CarlaClockPublisher::operator=()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00222">carla::ros2::CarlaCollisionPublisher::operator=()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00206">carla::ros2::CarlaCollisionPublisher::operator=()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00406">carla::ros2::CarlaDepthCameraPublisher::operator=()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00387">carla::ros2::CarlaDepthCameraPublisher::operator=()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00594">carla::ros2::CarlaDVSCameraPublisher::operator=()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00574">carla::ros2::CarlaDVSCameraPublisher::operator=()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00212">carla::ros2::CarlaGNSSPublisher::operator=()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00196">carla::ros2::CarlaGNSSPublisher::operator=()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00245">carla::ros2::CarlaIMUPublisher::operator=()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00229">carla::ros2::CarlaIMUPublisher::operator=()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaISCameraPublisher::operator=()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaISCameraPublisher::operator=()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00253">carla::ros2::CarlaLidarPublisher::operator=()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00237">carla::ros2::CarlaLidarPublisher::operator=()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00210">carla::ros2::CarlaLineInvasionPublisher::operator=()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00194">carla::ros2::CarlaLineInvasionPublisher::operator=()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00201">carla::ros2::CarlaMapSensorPublisher::operator=()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00185">carla::ros2::CarlaMapSensorPublisher::operator=()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00406">carla::ros2::CarlaNormalsCameraPublisher::operator=()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00387">carla::ros2::CarlaNormalsCameraPublisher::operator=()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00488">carla::ros2::CarlaOpticalFlowCameraPublisher::operator=()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00469">carla::ros2::CarlaOpticalFlowCameraPublisher::operator=()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00280">carla::ros2::CarlaRadarPublisher::operator=()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00264">carla::ros2::CarlaRadarPublisher::operator=()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00412">carla::ros2::CarlaRGBCameraPublisher::operator=()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00394">carla::ros2::CarlaRGBCameraPublisher::operator=()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00263">carla::ros2::CarlaSemanticLidarPublisher::operator=()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00247">carla::ros2::CarlaSemanticLidarPublisher::operator=()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00200">carla::ros2::CarlaSpeedometerSensor::operator=()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00184">carla::ros2::CarlaSpeedometerSensor::operator=()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaSSCameraPublisher::operator=()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaSSCameraPublisher::operator=()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00250">carla::ros2::CarlaTransformPublisher::operator=()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00234">carla::ros2::CarlaTransformPublisher::operator=()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00329">carla::ros2::CarlaDepthCameraPublisher::SetCameraInfoData()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00451">carla::ros2::CarlaDVSCameraPublisher::SetCameraInfoData()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00328">carla::ros2::CarlaISCameraPublisher::SetCameraInfoData()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00329">carla::ros2::CarlaNormalsCameraPublisher::SetCameraInfoData()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00411">carla::ros2::CarlaOpticalFlowCameraPublisher::SetCameraInfoData()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00326">carla::ros2::CarlaRGBCameraPublisher::SetCameraInfoData()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00328">carla::ros2::CarlaSSCameraPublisher::SetCameraInfoData()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00158">carla::ros2::CarlaCollisionPublisher::SetData()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00311">carla::ros2::CarlaDepthCameraPublisher::SetData()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00431">carla::ros2::CarlaDVSCameraPublisher::SetData()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00151">carla::ros2::CarlaGNSSPublisher::SetData()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00151">carla::ros2::CarlaIMUPublisher::SetData()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00310">carla::ros2::CarlaISCameraPublisher::SetData()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaLidarPublisher::SetData()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00151">carla::ros2::CarlaLineInvasionPublisher::SetData()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00311">carla::ros2::CarlaNormalsCameraPublisher::SetData()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00393">carla::ros2::CarlaOpticalFlowCameraPublisher::SetData()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00177">carla::ros2::CarlaRadarPublisher::SetData()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaSemanticLidarPublisher::SetData()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00310">carla::ros2::CarlaSSCameraPublisher::SetData()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00152">carla::ros2::CarlaTransformPublisher::SetData()</a> , 以及 <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00307">carla::ros2::CarlaRGBCameraPublisher::SetImageData()</a>.</p>
+
+</div>
+</div>
+<a id="a26ab51e4d54b99c8c9347a3d245aac20" name="a26ab51e4d54b99c8c9347a3d245aac20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26ab51e4d54b99c8c9347a3d245aac20">&#9670;&#160;</a></span>_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string carla::ros2::CarlaPublisher::_name = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00031">31</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00189">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00173">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00150">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00215">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00199">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00176">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00397">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00379">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00340">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00585">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00565">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00510">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00205">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00189">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00166">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00238">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00222">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00199">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00396">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00378">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00339">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00246">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00230">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00207">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00203">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00187">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00164">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00194">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00178">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00155">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00397">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00379">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00340">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00479">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00461">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00422">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00273">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00257">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00234">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00347">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00256">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00240">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00217">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00193">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00177">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00154">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00396">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00378">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00339">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00243">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00227">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00204">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00042">carla::ros2::CarlaClockPublisher::Init()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00043">carla::ros2::CarlaCollisionPublisher::Init()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00042">carla::ros2::CarlaGNSSPublisher::Init()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00042">carla::ros2::CarlaIMUPublisher::Init()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00042">carla::ros2::CarlaLidarPublisher::Init()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00042">carla::ros2::CarlaLineInvasionPublisher::Init()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00042">carla::ros2::CarlaMapSensorPublisher::Init()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00051">carla::ros2::CarlaRadarPublisher::Init()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00043">carla::ros2::CarlaSemanticLidarPublisher::Init()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00042">carla::ros2::CarlaSpeedometerSensor::Init()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00047">carla::ros2::CarlaTransformPublisher::Init()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00069">carla::ros2::CarlaDepthCameraPublisher::InitImage()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00082">carla::ros2::CarlaDVSCameraPublisher::InitImage()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00068">carla::ros2::CarlaISCameraPublisher::InitImage()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00069">carla::ros2::CarlaNormalsCameraPublisher::InitImage()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00073">carla::ros2::CarlaOpticalFlowCameraPublisher::InitImage()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00073">carla::ros2::CarlaRGBCameraPublisher::InitImage()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00068">carla::ros2::CarlaSSCameraPublisher::InitImage()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00118">carla::ros2::CarlaDepthCameraPublisher::InitInfo()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00131">carla::ros2::CarlaDVSCameraPublisher::InitInfo()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00116">carla::ros2::CarlaISCameraPublisher::InitInfo()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00118">carla::ros2::CarlaNormalsCameraPublisher::InitInfo()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00122">carla::ros2::CarlaOpticalFlowCameraPublisher::InitInfo()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00122">carla::ros2::CarlaRGBCameraPublisher::InitInfo()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00116">carla::ros2::CarlaSSCameraPublisher::InitInfo()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00179">carla::ros2::CarlaDVSCameraPublisher::InitPointCloud()</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00016">name()</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00020">name()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00196">carla::ros2::CarlaClockPublisher::operator=()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00180">carla::ros2::CarlaClockPublisher::operator=()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00222">carla::ros2::CarlaCollisionPublisher::operator=()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00206">carla::ros2::CarlaCollisionPublisher::operator=()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00406">carla::ros2::CarlaDepthCameraPublisher::operator=()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00387">carla::ros2::CarlaDepthCameraPublisher::operator=()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00594">carla::ros2::CarlaDVSCameraPublisher::operator=()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00574">carla::ros2::CarlaDVSCameraPublisher::operator=()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00212">carla::ros2::CarlaGNSSPublisher::operator=()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00196">carla::ros2::CarlaGNSSPublisher::operator=()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00245">carla::ros2::CarlaIMUPublisher::operator=()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00229">carla::ros2::CarlaIMUPublisher::operator=()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaISCameraPublisher::operator=()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaISCameraPublisher::operator=()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00253">carla::ros2::CarlaLidarPublisher::operator=()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00237">carla::ros2::CarlaLidarPublisher::operator=()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00210">carla::ros2::CarlaLineInvasionPublisher::operator=()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00194">carla::ros2::CarlaLineInvasionPublisher::operator=()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00201">carla::ros2::CarlaMapSensorPublisher::operator=()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00185">carla::ros2::CarlaMapSensorPublisher::operator=()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00406">carla::ros2::CarlaNormalsCameraPublisher::operator=()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00387">carla::ros2::CarlaNormalsCameraPublisher::operator=()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00488">carla::ros2::CarlaOpticalFlowCameraPublisher::operator=()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00469">carla::ros2::CarlaOpticalFlowCameraPublisher::operator=()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00280">carla::ros2::CarlaRadarPublisher::operator=()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00264">carla::ros2::CarlaRadarPublisher::operator=()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00412">carla::ros2::CarlaRGBCameraPublisher::operator=()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00394">carla::ros2::CarlaRGBCameraPublisher::operator=()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00263">carla::ros2::CarlaSemanticLidarPublisher::operator=()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00247">carla::ros2::CarlaSemanticLidarPublisher::operator=()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00200">carla::ros2::CarlaSpeedometerSensor::operator=()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00184">carla::ros2::CarlaSpeedometerSensor::operator=()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaSSCameraPublisher::operator=()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaSSCameraPublisher::operator=()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00250">carla::ros2::CarlaTransformPublisher::operator=()</a> , 以及 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00234">carla::ros2::CarlaTransformPublisher::operator=()</a>.</p>
+
+</div>
+</div>
+<a id="a284934d8f61aed2ddcb24c575240fb2f" name="a284934d8f61aed2ddcb24c575240fb2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a284934d8f61aed2ddcb24c575240fb2f">&#9670;&#160;</a></span>_parent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string carla::ros2::CarlaPublisher::_parent = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a> 第 <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00032">32</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00189">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00173">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00150">carla::ros2::CarlaClockPublisher::CarlaClockPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00215">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00199">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00176">carla::ros2::CarlaCollisionPublisher::CarlaCollisionPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00397">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00379">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00340">carla::ros2::CarlaDepthCameraPublisher::CarlaDepthCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00585">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00565">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00510">carla::ros2::CarlaDVSCameraPublisher::CarlaDVSCameraPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00205">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00189">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00166">carla::ros2::CarlaGNSSPublisher::CarlaGNSSPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00238">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00222">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00199">carla::ros2::CarlaIMUPublisher::CarlaIMUPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00396">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00378">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00339">carla::ros2::CarlaISCameraPublisher::CarlaISCameraPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00246">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00230">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00207">carla::ros2::CarlaLidarPublisher::CarlaLidarPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00203">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00187">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00164">carla::ros2::CarlaLineInvasionPublisher::CarlaLineInvasionPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00194">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00178">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00155">carla::ros2::CarlaMapSensorPublisher::CarlaMapSensorPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00397">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00379">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00340">carla::ros2::CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00479">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00461">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00422">carla::ros2::CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00273">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00257">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00234">carla::ros2::CarlaRadarPublisher::CarlaRadarPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00347">carla::ros2::CarlaRGBCameraPublisher::CarlaRGBCameraPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00256">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00240">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00217">carla::ros2::CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00193">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00177">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00154">carla::ros2::CarlaSpeedometerSensor::CarlaSpeedometerSensor()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00396">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00378">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00339">carla::ros2::CarlaSSCameraPublisher::CarlaSSCameraPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00243">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00227">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00204">carla::ros2::CarlaTransformPublisher::CarlaTransformPublisher()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00043">carla::ros2::CarlaCollisionPublisher::Init()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00042">carla::ros2::CarlaGNSSPublisher::Init()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00042">carla::ros2::CarlaIMUPublisher::Init()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00042">carla::ros2::CarlaLidarPublisher::Init()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00042">carla::ros2::CarlaLineInvasionPublisher::Init()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00042">carla::ros2::CarlaMapSensorPublisher::Init()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00051">carla::ros2::CarlaRadarPublisher::Init()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00043">carla::ros2::CarlaSemanticLidarPublisher::Init()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00042">carla::ros2::CarlaSpeedometerSensor::Init()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00069">carla::ros2::CarlaDepthCameraPublisher::InitImage()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00082">carla::ros2::CarlaDVSCameraPublisher::InitImage()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00068">carla::ros2::CarlaISCameraPublisher::InitImage()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00069">carla::ros2::CarlaNormalsCameraPublisher::InitImage()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00073">carla::ros2::CarlaOpticalFlowCameraPublisher::InitImage()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00073">carla::ros2::CarlaRGBCameraPublisher::InitImage()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00068">carla::ros2::CarlaSSCameraPublisher::InitImage()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00118">carla::ros2::CarlaDepthCameraPublisher::InitInfo()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00131">carla::ros2::CarlaDVSCameraPublisher::InitInfo()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00116">carla::ros2::CarlaISCameraPublisher::InitInfo()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00118">carla::ros2::CarlaNormalsCameraPublisher::InitInfo()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00122">carla::ros2::CarlaOpticalFlowCameraPublisher::InitInfo()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00122">carla::ros2::CarlaRGBCameraPublisher::InitInfo()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00116">carla::ros2::CarlaSSCameraPublisher::InitInfo()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00179">carla::ros2::CarlaDVSCameraPublisher::InitPointCloud()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00196">carla::ros2::CarlaClockPublisher::operator=()</a>, <a class="el" href="../../df/dbb/CarlaClockPublisher_8cpp_source.html#l00180">carla::ros2::CarlaClockPublisher::operator=()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00222">carla::ros2::CarlaCollisionPublisher::operator=()</a>, <a class="el" href="../../d4/d22/CarlaCollisionPublisher_8cpp_source.html#l00206">carla::ros2::CarlaCollisionPublisher::operator=()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00406">carla::ros2::CarlaDepthCameraPublisher::operator=()</a>, <a class="el" href="../../df/d25/CarlaDepthCameraPublisher_8cpp_source.html#l00387">carla::ros2::CarlaDepthCameraPublisher::operator=()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00594">carla::ros2::CarlaDVSCameraPublisher::operator=()</a>, <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00574">carla::ros2::CarlaDVSCameraPublisher::operator=()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00212">carla::ros2::CarlaGNSSPublisher::operator=()</a>, <a class="el" href="../../d6/d5f/CarlaGNSSPublisher_8cpp_source.html#l00196">carla::ros2::CarlaGNSSPublisher::operator=()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00245">carla::ros2::CarlaIMUPublisher::operator=()</a>, <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00229">carla::ros2::CarlaIMUPublisher::operator=()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaISCameraPublisher::operator=()</a>, <a class="el" href="../../dc/d01/CarlaISCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaISCameraPublisher::operator=()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00253">carla::ros2::CarlaLidarPublisher::operator=()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00237">carla::ros2::CarlaLidarPublisher::operator=()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00210">carla::ros2::CarlaLineInvasionPublisher::operator=()</a>, <a class="el" href="../../d5/d01/CarlaLineInvasionPublisher_8cpp_source.html#l00194">carla::ros2::CarlaLineInvasionPublisher::operator=()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00201">carla::ros2::CarlaMapSensorPublisher::operator=()</a>, <a class="el" href="../../d6/db7/CarlaMapSensorPublisher_8cpp_source.html#l00185">carla::ros2::CarlaMapSensorPublisher::operator=()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00406">carla::ros2::CarlaNormalsCameraPublisher::operator=()</a>, <a class="el" href="../../dc/d96/CarlaNormalsCameraPublisher_8cpp_source.html#l00387">carla::ros2::CarlaNormalsCameraPublisher::operator=()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00488">carla::ros2::CarlaOpticalFlowCameraPublisher::operator=()</a>, <a class="el" href="../../db/de9/CarlaOpticalFlowCameraPublisher_8cpp_source.html#l00469">carla::ros2::CarlaOpticalFlowCameraPublisher::operator=()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00280">carla::ros2::CarlaRadarPublisher::operator=()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00264">carla::ros2::CarlaRadarPublisher::operator=()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00412">carla::ros2::CarlaRGBCameraPublisher::operator=()</a>, <a class="el" href="../../db/d7c/CarlaRGBCameraPublisher_8cpp_source.html#l00394">carla::ros2::CarlaRGBCameraPublisher::operator=()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00263">carla::ros2::CarlaSemanticLidarPublisher::operator=()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00247">carla::ros2::CarlaSemanticLidarPublisher::operator=()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00200">carla::ros2::CarlaSpeedometerSensor::operator=()</a>, <a class="el" href="../../da/d03/CarlaSpeedometerSensor_8cpp_source.html#l00184">carla::ros2::CarlaSpeedometerSensor::operator=()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00404">carla::ros2::CarlaSSCameraPublisher::operator=()</a>, <a class="el" href="../../d3/df7/CarlaSSCameraPublisher_8cpp_source.html#l00386">carla::ros2::CarlaSSCameraPublisher::operator=()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00250">carla::ros2::CarlaTransformPublisher::operator=()</a>, <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00234">carla::ros2::CarlaTransformPublisher::operator=()</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00017">parent()</a>, <a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html#l00021">parent()</a> , 以及 <a class="el" href="../../d3/d11/CarlaTransformPublisher_8cpp_source.html#l00152">carla::ros2::CarlaTransformPublisher::SetData()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../de/d7a/CarlaPublisher_8h_source.html">CarlaPublisher.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

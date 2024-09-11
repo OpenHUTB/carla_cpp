@@ -1,0 +1,23 @@
+digraph "carla::geom::Math::DistanceSegmentToPoint"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::geom::Math::\lDistanceSegmentToPoint",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Returns a pair containing:"];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::geom::Math::\lClamp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/dea/classcarla_1_1geom_1_1Math.html#a8f8eccc1a2bcc711250f2b47a21eb31f",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="min",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d33/Simplify_8h.html#a50798148e5016c5b85087d4009824f27",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::geom::Math::\lDistance2D",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/dea/classcarla_1_1geom_1_1Math.html#a71f0667271df699e511124559f61665e",tooltip=" "];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::geom::Math::\lDistanceSquared2D",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/dea/classcarla_1_1geom_1_1Math.html#a16bbc81c150eccc1f9407be9d9651766",tooltip=" "];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::geom::Math::\lSquare",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/dea/classcarla_1_1geom_1_1Math.html#ac1644f7af375c05619c27851731cea87",tooltip=" "];
+  Node1 -> Node5 [id="edge6_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node7 [id="edge7_Node000001_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="carla::geom::Math::\lDot2D",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/dea/classcarla_1_1geom_1_1Math.html#ae6918fff45bd7adea4bef119065ce1ab",tooltip=" "];
+}

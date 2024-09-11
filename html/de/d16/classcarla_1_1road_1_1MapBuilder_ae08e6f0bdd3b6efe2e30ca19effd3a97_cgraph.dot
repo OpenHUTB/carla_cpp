@@ -1,0 +1,56 @@
+digraph "carla::road::MapBuilder::SolveSignalReferencesAndTransforms"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::road::MapBuilder\l::SolveSignalReferencesAndTransforms",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Solves the signal references in the road"];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::road::MapBuilder\l::ComputeSignalTransform",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a59c3796375f1ca76276763f94b923afc",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::road::element\l::DirectedPoint::ApplyLateral\lOffset",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/d65/structcarla_1_1road_1_1element_1_1DirectedPoint.html#a058ad3be7f22229ea802e569ab0e8b7e",tooltip=" "];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::road::Road::\lGetDirectedPointInNoLaneOffset",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/de6/classcarla_1_1road_1_1Road.html#add5e8cae755c9981a715426d29f14887",tooltip="Returns a directed point on the center of the road (lane 0), with the corresponding laneOffset and el..."];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::geom::Math::\lClamp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/dea/classcarla_1_1geom_1_1Math.html#a8f8eccc1a2bcc711250f2b47a21eb31f",tooltip=" "];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="min",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d33/Simplify_8h.html#a50798148e5016c5b85087d4009824f27",tooltip=" "];
+  Node4 -> Node7 [id="edge6_Node000004_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="carla::road::Road::\lGetElevationOn",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/de6/classcarla_1_1road_1_1Road.html#a9e0bba29f5bc845d314126c30c46743e",tooltip=" "];
+  Node7 -> Node8 [id="edge7_Node000007_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="carla::road::Road::\lGetInfo",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/de6/classcarla_1_1road_1_1Road.html#a26fed22ee04e5663028f37034c8bd066",tooltip=" "];
+  Node8 -> Node9 [id="edge8_Node000008_Node000009",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="carla::road::Information\lSet::GetInfo",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/d28/classcarla_1_1road_1_1InformationSet.html#a2c183586f8f7bfebf89339f1a3845e49",tooltip="Returns single info given a type and a distance (s) from the start of the road"];
+  Node9 -> Node10 [id="edge9_Node000009_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="carla::road::element\l::MakeRoadInfoIterator",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/dc1/namespacecarla_1_1road_1_1element.html#a33f4ed3275f736848022d6508fbd8846",tooltip=" "];
+  Node7 -> Node11 [id="edge10_Node000007_Node000011",color="steelblue1",style="solid",tooltip=" "];
+  Node11 [id="Node000011",label="carla::throw_exception",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/d36/namespacecarla.html#a23602ab663165210a7757d6108f6b3cd",tooltip=" "];
+  Node4 -> Node9 [id="edge11_Node000004_Node000009",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node12 [id="edge12_Node000002_Node000012",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="carla::road::MapData\l::GetRoad",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/d3b/classcarla_1_1road_1_1MapData.html#a7b4838408fa475389a01b2d451b662e7",tooltip=" "];
+  Node2 -> Node13 [id="edge13_Node000002_Node000013",color="steelblue1",style="solid",tooltip=" "];
+  Node13 [id="Node000013",label="carla::geom::Math::\lToDegrees",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/dea/classcarla_1_1geom_1_1Math.html#ae1dc5ac48cfeb15fc66176a644bcf122",tooltip=" "];
+  Node13 -> Node14 [id="edge14_Node000013_Node000014",color="steelblue1",style="solid",tooltip=" "];
+  Node14 [id="Node000014",label="carla::geom::Math::Pi",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/dea/classcarla_1_1geom_1_1Math.html#abb591fc2a3085df22fc224a9d77cef11",tooltip=" "];
+  Node1 -> Node15 [id="edge15_Node000001_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node15 [id="Node000015",label="carla::road::MapBuilder\l::GenerateDefaultValiditiesFor\lSignalReferences",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ac5ab2aea311a2bb6e43258c73bd57b49",tooltip="Generates a default validity field for signal references with missing validity record in OpenDRIVE"];
+  Node15 -> Node16 [id="edge16_Node000015_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node16 [id="Node000016",label="carla::road::MapBuilder\l::AddValidityToSignalReference",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$de/d16/classcarla_1_1road_1_1MapBuilder.html#a687e51ee805d2daecf80de5523f8ee79",tooltip=" "];
+  Node15 -> Node17 [id="edge17_Node000015_Node000017",color="steelblue1",style="solid",tooltip=" "];
+  Node17 [id="Node000017",label="carla::road::Road::\lGetLanesByDistance",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/de6/classcarla_1_1road_1_1Road.html#acbea6fe4d600f5f2a84d7ae16390aee3",tooltip="Get all lanes from all lane sections in a specific s"];
+  Node17 -> Node18 [id="edge18_Node000017_Node000018",color="steelblue1",style="solid",tooltip=" "];
+  Node18 [id="Node000018",label="carla::road::Road::\lGetLaneSectionsAt",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/de6/classcarla_1_1road_1_1Road.html#aa7ef154cb2573a6a01138abd66d38d83",tooltip=" "];
+  Node18 -> Node19 [id="edge19_Node000018_Node000019",color="steelblue1",style="solid",tooltip=" "];
+  Node19 [id="Node000019",label="carla::road::Road::\lGetLessEqualRange",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/de6/classcarla_1_1road_1_1Road.html#a1ac594dac3f493856ae486ad6f90027b",tooltip=" "];
+  Node18 -> Node20 [id="edge20_Node000018_Node000020",color="steelblue1",style="solid",tooltip=" "];
+  Node20 [id="Node000020",label="carla::iterator::make\l_map_values_iterator",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$de/d22/namespacecarla_1_1iterator.html#a792a388593ac9596218ebc1ffcbad3de",tooltip="Creates an iterator over non-const references to the values of a map."];
+  Node18 -> Node21 [id="edge21_Node000018_Node000021",color="steelblue1",style="solid",tooltip=" "];
+  Node21 [id="Node000021",label="carla::MakeListView",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/d36/namespacecarla.html#a2dc539ffbcff452958f707dc7b0db4d6",tooltip=" "];
+  Node15 -> Node22 [id="edge22_Node000015_Node000022",color="steelblue1",style="solid",tooltip=" "];
+  Node22 [id="Node000022",label="carla::road::MapBuilder\l::GetRoad",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$de/d16/classcarla_1_1road_1_1MapBuilder.html#ae78c5880d7bd9edde4764d054037164d",tooltip=" "];
+  Node22 -> Node12 [id="edge23_Node000022_Node000012",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node23 [id="edge24_Node000001_Node000023",color="steelblue1",style="solid",tooltip=" "];
+  Node23 [id="Node000023",label="carla::road::SignalType\l::IsTrafficLight",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/d47/classcarla_1_1road_1_1SignalType.html#aa4bab3287ce92cf7e1ba04767775ebf0",tooltip=" "];
+}

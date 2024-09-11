@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::BufferPool类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d7/d3c/classcarla_1_1BufferPool.html">BufferPool</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="#friends">友元</a> &#124;
+<a href="../../da/de6/classcarla_1_1BufferPool-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::BufferPool类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>一个缓冲区池。 从这个池中弹出的缓冲区在销毁时会自动返回到池中， 这样分配的内存可以被重用。  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../de/d1a/BufferPool_8h_source.html">BufferPool.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::BufferPool 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::BufferPool 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a491e7232765e4e7126f27a5fbddf2324" id="r_a491e7232765e4e7126f27a5fbddf2324"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a491e7232765e4e7126f27a5fbddf2324">BufferPool</a> ()=default</td></tr>
+<tr class="separator:a491e7232765e4e7126f27a5fbddf2324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ce947ee69ffccb54790317abe5cbcf9" id="r_a2ce947ee69ffccb54790317abe5cbcf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ce947ee69ffccb54790317abe5cbcf9">BufferPool</a> (size_t estimated_size)</td></tr>
+<tr class="separator:a2ce947ee69ffccb54790317abe5cbcf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20203076317fa2bf3f2fcf2784e466e8" id="r_a20203076317fa2bf3f2fcf2784e466e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20203076317fa2bf3f2fcf2784e466e8">Pop</a> ()</td></tr>
+<tr class="memdesc:a20203076317fa2bf3f2fcf2784e466e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">从队列中弹出一个缓冲区，如果队列为空，则创建一个新的缓冲区。  <br /></td></tr>
+<tr class="separator:a20203076317fa2bf3f2fcf2784e466e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a8ff087be141afe8df22bd37250efe7b1" id="r_a8ff087be141afe8df22bd37250efe7b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ff087be141afe8df22bd37250efe7b1">Push</a> (<a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> &amp;&amp;buffer)</td></tr>
+<tr class="separator:a8ff087be141afe8df22bd37250efe7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a9293fdf861f15c7ba6901fe783e852a3" id="r_a9293fdf861f15c7ba6901fe783e852a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt; <a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9293fdf861f15c7ba6901fe783e852a3">_queue</a></td></tr>
+<tr class="separator:a9293fdf861f15c7ba6901fe783e852a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:a5ba04a2bf0ca34a0f845cd759950664d" id="r_a5ba04a2bf0ca34a0f845cd759950664d"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ba04a2bf0ca34a0f845cd759950664d">Buffer</a></td></tr>
+<tr class="separator:a5ba04a2bf0ca34a0f845cd759950664d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>一个缓冲区池。 从这个池中弹出的缓冲区在销毁时会自动返回到池中， 这样分配的内存可以被重用。 </p>
+<dl class="section warning"><dt>警告</dt><dd>缓冲区仅通过增长来调整其大小，除非明确地清除它们，否则不会缩小。 分配的内存在此池被销毁时才会被删除。 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../de/d1a/BufferPool_8h_source.html">BufferPool.h</a> 第 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00029">29</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a491e7232765e4e7126f27a5fbddf2324" name="a491e7232765e4e7126f27a5fbddf2324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a491e7232765e4e7126f27a5fbddf2324">&#9670;&#160;</a></span>BufferPool() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::BufferPool::BufferPool </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ce947ee69ffccb54790317abe5cbcf9" name="a2ce947ee69ffccb54790317abe5cbcf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ce947ee69ffccb54790317abe5cbcf9">&#9670;&#160;</a></span>BufferPool() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::BufferPool::BufferPool </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>estimated_size</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d1a/BufferPool_8h_source.html">BufferPool.h</a> 第 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a20203076317fa2bf3f2fcf2784e466e8" name="a20203076317fa2bf3f2fcf2784e466e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20203076317fa2bf3f2fcf2784e466e8">&#9670;&#160;</a></span>Pop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> carla::BufferPool::Pop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从队列中弹出一个缓冲区，如果队列为空，则创建一个新的缓冲区。 </p>
+
+<p class="definition">在文件 <a class="el" href="../../de/d1a/BufferPool_8h_source.html">BufferPool.h</a> 第 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00037">37</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00356">carla::Buffer::_parent_pool</a> , 以及 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00056">_queue</a>.</p>
+
+</div>
+</div>
+<a id="a8ff087be141afe8df22bd37250efe7b1" name="a8ff087be141afe8df22bd37250efe7b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ff087be141afe8df22bd37250efe7b1">&#9670;&#160;</a></span>Push()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::BufferPool::Push </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d1a/BufferPool_8h_source.html">BufferPool.h</a> 第 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00052">52</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00056">_queue</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">友元及相关符号说明</h2>
+<a id="a5ba04a2bf0ca34a0f845cd759950664d" name="a5ba04a2bf0ca34a0f845cd759950664d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ba04a2bf0ca34a0f845cd759950664d">&#9670;&#160;</a></span>Buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d1a/BufferPool_8h_source.html">BufferPool.h</a> 第 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a9293fdf861f15c7ba6901fe783e852a3" name="a9293fdf861f15c7ba6901fe783e852a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9293fdf861f15c7ba6901fe783e852a3">&#9670;&#160;</a></span>_queue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d8/dc8/classmoodycamel_1_1ConcurrentQueue.html">moodycamel::ConcurrentQueue</a>&lt;<a class="el" href="../../d0/d0a/classcarla_1_1Buffer.html">Buffer</a>&gt; carla::BufferPool::_queue</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d1a/BufferPool_8h_source.html">BufferPool.h</a> 第 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00056">56</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00037">Pop()</a> , 以及 <a class="el" href="../../de/d1a/BufferPool_8h_source.html#l00052">Push()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../de/d1a/BufferPool_8h_source.html">BufferPool.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

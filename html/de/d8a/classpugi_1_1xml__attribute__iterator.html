@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: pugi::xml_attribute_iterator类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d3/d68/namespacepugi.html">pugi</a></li><li class="navelem"><a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="#friends">友元</a> &#124;
+<a href="../../d7/d1f/classpugi_1_1xml__attribute__iterator-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">pugi::xml_attribute_iterator类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> pugi::xml_attribute_iterator 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:aa1454df9b8b7a1f6c05049a299f66848" id="r_aa1454df9b8b7a1f6c05049a299f66848"><td class="memItemLeft" align="right" valign="top">typedef ptrdiff_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1454df9b8b7a1f6c05049a299f66848">difference_type</a></td></tr>
+<tr class="separator:aa1454df9b8b7a1f6c05049a299f66848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ddb212bbf8c7a3ba3d22350f1449dc" id="r_aa8ddb212bbf8c7a3ba3d22350f1449dc"><td class="memItemLeft" align="right" valign="top">typedef std::bidirectional_iterator_tag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8ddb212bbf8c7a3ba3d22350f1449dc">iterator_category</a></td></tr>
+<tr class="separator:aa8ddb212bbf8c7a3ba3d22350f1449dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad63a91a25fa308b1e01f695da570194d" id="r_ad63a91a25fa308b1e01f695da570194d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad63a91a25fa308b1e01f695da570194d">pointer</a></td></tr>
+<tr class="separator:ad63a91a25fa308b1e01f695da570194d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37ef34abbabe0cf8bf192bd33000a5c4" id="r_a37ef34abbabe0cf8bf192bd33000a5c4"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37ef34abbabe0cf8bf192bd33000a5c4">reference</a></td></tr>
+<tr class="separator:a37ef34abbabe0cf8bf192bd33000a5c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14a2ee5f379014550bd7ec4e69ea12b0" id="r_a14a2ee5f379014550bd7ec4e69ea12b0"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14a2ee5f379014550bd7ec4e69ea12b0">value_type</a></td></tr>
+<tr class="separator:a14a2ee5f379014550bd7ec4e69ea12b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a18a70c46b85018cb8950edec7e26740e" id="r_a18a70c46b85018cb8950edec7e26740e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18a70c46b85018cb8950edec7e26740e">operator!=</a> (const <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> &amp;rhs) const</td></tr>
+<tr class="separator:a18a70c46b85018cb8950edec7e26740e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4586b535e8c7d6b62db427dbd63a00c" id="r_ab4586b535e8c7d6b62db427dbd63a00c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4586b535e8c7d6b62db427dbd63a00c">operator*</a> () const</td></tr>
+<tr class="separator:ab4586b535e8c7d6b62db427dbd63a00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af291afcde44b67e836e148af904e6f0f" id="r_af291afcde44b67e836e148af904e6f0f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af291afcde44b67e836e148af904e6f0f">operator++</a> ()</td></tr>
+<tr class="separator:af291afcde44b67e836e148af904e6f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae744b06711aea8ebd68159cd4e0aaaa" id="r_aae744b06711aea8ebd68159cd4e0aaaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae744b06711aea8ebd68159cd4e0aaaa">operator++</a> (int)</td></tr>
+<tr class="separator:aae744b06711aea8ebd68159cd4e0aaaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac06eb61d47a9e57bcd0fd2434c6243" id="r_a7ac06eb61d47a9e57bcd0fd2434c6243"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ac06eb61d47a9e57bcd0fd2434c6243">operator--</a> ()</td></tr>
+<tr class="separator:a7ac06eb61d47a9e57bcd0fd2434c6243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48737f6e77abe7fa3e80841597dc93e1" id="r_a48737f6e77abe7fa3e80841597dc93e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48737f6e77abe7fa3e80841597dc93e1">operator--</a> (int)</td></tr>
+<tr class="separator:a48737f6e77abe7fa3e80841597dc93e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a23db937e077aee64068e31b6ede16d" id="r_a8a23db937e077aee64068e31b6ede16d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a23db937e077aee64068e31b6ede16d">operator-&gt;</a> () const</td></tr>
+<tr class="separator:a8a23db937e077aee64068e31b6ede16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7cb0a228e513d8e7107da25b314ff00" id="r_ad7cb0a228e513d8e7107da25b314ff00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7cb0a228e513d8e7107da25b314ff00">operator==</a> (const <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> &amp;rhs) const</td></tr>
+<tr class="separator:ad7cb0a228e513d8e7107da25b314ff00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a857691abc7ce5cfa3a0b6a91b4df8bd0" id="r_a857691abc7ce5cfa3a0b6a91b4df8bd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a857691abc7ce5cfa3a0b6a91b4df8bd0">xml_attribute_iterator</a> ()</td></tr>
+<tr class="separator:a857691abc7ce5cfa3a0b6a91b4df8bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7310bb0a37f918b7b499f9ccfc52df52" id="r_a7310bb0a37f918b7b499f9ccfc52df52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7310bb0a37f918b7b499f9ccfc52df52">xml_attribute_iterator</a> (const <a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> &amp;attr, const <a class="el" href="../../db/d65/classpugi_1_1xml__node.html">xml_node</a> &amp;parent)</td></tr>
+<tr class="separator:a7310bb0a37f918b7b499f9ccfc52df52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a3f3ae3fe5c21647042c347e1a6257b73" id="r_a3f3ae3fe5c21647042c347e1a6257b73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f3ae3fe5c21647042c347e1a6257b73">xml_attribute_iterator</a> (<a class="el" href="../../df/da1/structpugi_1_1xml__attribute__struct.html">xml_attribute_struct</a> *ref, <a class="el" href="../../d8/d05/structpugi_1_1xml__node__struct.html">xml_node_struct</a> *parent)</td></tr>
+<tr class="separator:a3f3ae3fe5c21647042c347e1a6257b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a2cc75b518f6533d7b97d820613b8a3be" id="r_a2cc75b518f6533d7b97d820613b8a3be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/d65/classpugi_1_1xml__node.html">xml_node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cc75b518f6533d7b97d820613b8a3be">_parent</a></td></tr>
+<tr class="separator:a2cc75b518f6533d7b97d820613b8a3be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3985d6107023a7eae2ec4acdcd710809" id="r_a3985d6107023a7eae2ec4acdcd710809"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3985d6107023a7eae2ec4acdcd710809">_wrap</a></td></tr>
+<tr class="separator:a3985d6107023a7eae2ec4acdcd710809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:a156d917a92815c7b593bd5ef19f6d5fb" id="r_a156d917a92815c7b593bd5ef19f6d5fb"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a156d917a92815c7b593bd5ef19f6d5fb">xml_node</a></td></tr>
+<tr class="separator:a156d917a92815c7b593bd5ef19f6d5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00836">836</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="aa1454df9b8b7a1f6c05049a299f66848" name="aa1454df9b8b7a1f6c05049a299f66848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1454df9b8b7a1f6c05049a299f66848">&#9670;&#160;</a></span>difference_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ptrdiff_t <a class="el" href="#aa1454df9b8b7a1f6c05049a299f66848">pugi::xml_attribute_iterator::difference_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00848">848</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa8ddb212bbf8c7a3ba3d22350f1449dc" name="aa8ddb212bbf8c7a3ba3d22350f1449dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ddb212bbf8c7a3ba3d22350f1449dc">&#9670;&#160;</a></span>iterator_category</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::bidirectional_iterator_tag <a class="el" href="#aa8ddb212bbf8c7a3ba3d22350f1449dc">pugi::xml_attribute_iterator::iterator_category</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00854">854</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad63a91a25fa308b1e01f695da570194d" name="ad63a91a25fa308b1e01f695da570194d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad63a91a25fa308b1e01f695da570194d">&#9670;&#160;</a></span>pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a>* <a class="el" href="#ad63a91a25fa308b1e01f695da570194d">pugi::xml_attribute_iterator::pointer</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00850">850</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a37ef34abbabe0cf8bf192bd33000a5c4" name="a37ef34abbabe0cf8bf192bd33000a5c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37ef34abbabe0cf8bf192bd33000a5c4">&#9670;&#160;</a></span>reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a>&amp; <a class="el" href="#a37ef34abbabe0cf8bf192bd33000a5c4">pugi::xml_attribute_iterator::reference</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00851">851</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a14a2ee5f379014550bd7ec4e69ea12b0" name="a14a2ee5f379014550bd7ec4e69ea12b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a2ee5f379014550bd7ec4e69ea12b0">&#9670;&#160;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> <a class="el" href="#a14a2ee5f379014550bd7ec4e69ea12b0">pugi::xml_attribute_iterator::value_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00849">849</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a3f3ae3fe5c21647042c347e1a6257b73" name="a3f3ae3fe5c21647042c347e1a6257b73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f3ae3fe5c21647042c347e1a6257b73">&#9670;&#160;</a></span>xml_attribute_iterator() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> pugi::xml_attribute_iterator::xml_attribute_iterator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/da1/structpugi_1_1xml__attribute__struct.html">xml_attribute_struct</a> *</td>          <td class="paramname"><span class="paramname"><em>ref</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/d05/structpugi_1_1xml__node__struct.html">xml_node_struct</a> *</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06680">6680</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a857691abc7ce5cfa3a0b6a91b4df8bd0" name="a857691abc7ce5cfa3a0b6a91b4df8bd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a857691abc7ce5cfa3a0b6a91b4df8bd0">&#9670;&#160;</a></span>xml_attribute_iterator() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> pugi::xml_attribute_iterator::xml_attribute_iterator </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06672">6672</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7310bb0a37f918b7b499f9ccfc52df52" name="a7310bb0a37f918b7b499f9ccfc52df52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7310bb0a37f918b7b499f9ccfc52df52">&#9670;&#160;</a></span>xml_attribute_iterator() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> pugi::xml_attribute_iterator::xml_attribute_iterator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>attr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../db/d65/classpugi_1_1xml__node.html">xml_node</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>parent</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06676">6676</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a18a70c46b85018cb8950edec7e26740e" name="a18a70c46b85018cb8950edec7e26740e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18a70c46b85018cb8950edec7e26740e">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> bool pugi::xml_attribute_iterator::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06689">6689</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00350">pugi::xml_attribute::_attr</a>, <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00842">_parent</a>, <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00457">pugi::xml_node::_root</a> , 以及 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00841">_wrap</a>.</p>
+
+</div>
+</div>
+<a id="ab4586b535e8c7d6b62db427dbd63a00c" name="ab4586b535e8c7d6b62db427dbd63a00c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4586b535e8c7d6b62db427dbd63a00c">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> <a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> &amp; pugi::xml_attribute_iterator::operator* </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06694">6694</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00350">pugi::xml_attribute::_attr</a> , 以及 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00841">_wrap</a>.</p>
+
+</div>
+</div>
+<a id="af291afcde44b67e836e148af904e6f0f" name="af291afcde44b67e836e148af904e6f0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af291afcde44b67e836e148af904e6f0f">&#9670;&#160;</a></span>operator++() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> const <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> &amp; pugi::xml_attribute_iterator::operator++ </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06706">6706</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00350">pugi::xml_attribute::_attr</a>, <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00841">_wrap</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l01113">pugi::xml_attribute_struct::next_attribute</a>.</p>
+
+</div>
+</div>
+<a id="aae744b06711aea8ebd68159cd4e0aaaa" name="aae744b06711aea8ebd68159cd4e0aaaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae744b06711aea8ebd68159cd4e0aaaa">&#9670;&#160;</a></span>operator++() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> pugi::xml_attribute_iterator::operator++ </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06713">6713</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7ac06eb61d47a9e57bcd0fd2434c6243" name="a7ac06eb61d47a9e57bcd0fd2434c6243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ac06eb61d47a9e57bcd0fd2434c6243">&#9670;&#160;</a></span>operator--() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> const <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> &amp; pugi::xml_attribute_iterator::operator-- </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06720">6720</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00350">pugi::xml_attribute::_attr</a>, <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00842">_parent</a>, <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00841">_wrap</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05617">pugi::xml_node::last_attribute()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l05158">pugi::xml_attribute::previous_attribute()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="a48737f6e77abe7fa3e80841597dc93e1" name="a48737f6e77abe7fa3e80841597dc93e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48737f6e77abe7fa3e80841597dc93e1">&#9670;&#160;</a></span>operator--() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> pugi::xml_attribute_iterator::operator-- </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06726">6726</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8a23db937e077aee64068e31b6ede16d" name="a8a23db937e077aee64068e31b6ede16d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a23db937e077aee64068e31b6ede16d">&#9670;&#160;</a></span>operator-&gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> <a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> * pugi::xml_attribute_iterator::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06700">6700</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00350">pugi::xml_attribute::_attr</a> , 以及 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00841">_wrap</a>.</p>
+
+</div>
+</div>
+<a id="ad7cb0a228e513d8e7107da25b314ff00" name="ad7cb0a228e513d8e7107da25b314ff00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7cb0a228e513d8e7107da25b314ff00">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d20/pugixml_8cpp.html#a82c335af3ca48cdb209c506bf8dd6ad2">PUGI__FN</a> bool pugi::xml_attribute_iterator::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d8a/classpugi_1_1xml__attribute__iterator.html">xml_attribute_iterator</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rhs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a> 第 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06684">6684</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00350">pugi::xml_attribute::_attr</a>, <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00842">_parent</a>, <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00457">pugi::xml_node::_root</a> , 以及 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00841">_wrap</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">友元及相关符号说明</h2>
+<a id="a156d917a92815c7b593bd5ef19f6d5fb" name="a156d917a92815c7b593bd5ef19f6d5fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a156d917a92815c7b593bd5ef19f6d5fb">&#9670;&#160;</a></span>xml_node</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../db/d65/classpugi_1_1xml__node.html">xml_node</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00838">838</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a2cc75b518f6533d7b97d820613b8a3be" name="a2cc75b518f6533d7b97d820613b8a3be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cc75b518f6533d7b97d820613b8a3be">&#9670;&#160;</a></span>_parent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/d65/classpugi_1_1xml__node.html">xml_node</a> pugi::xml_attribute_iterator::_parent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00842">842</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06689">operator!=()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06720">operator--()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06684">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="a3985d6107023a7eae2ec4acdcd710809" name="a3985d6107023a7eae2ec4acdcd710809"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3985d6107023a7eae2ec4acdcd710809">&#9670;&#160;</a></span>_wrap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d7c/classpugi_1_1xml__attribute.html">xml_attribute</a> pugi::xml_attribute_iterator::_wrap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">mutable</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a> 第 <a class="el" href="../../df/d63/pugixml_8hpp_source.html#l00841">841</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06689">operator!=()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06694">operator*()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06706">operator++()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06720">operator--()</a>, <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06700">operator-&gt;()</a> , 以及 <a class="el" href="../../db/d20/pugixml_8cpp_source.html#l06684">operator==()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../df/d63/pugixml_8hpp_source.html">pugixml.hpp</a></li>
+<li><a class="el" href="../../db/d20/pugixml_8cpp_source.html">pugixml.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

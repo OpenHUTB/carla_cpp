@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: LocalizationStage.h 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_b14cdd661f9a7048a44f1771cd402401.html">carla</a></li><li class="navelem"><a class="el" href="../../dir_a8dbe3691941680fc0b6dad001059c22.html">trafficmanager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#namespaces">命名空间</a> &#124;
+<a href="#typedef-members">类型定义</a>  </div>
+  <div class="headertitle"><div class="title">LocalizationStage.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;memory&gt;</code><br />
+<code>#include &quot;<a class="el" href="../../d0/d49/DataStructures_8h_source.html">carla/trafficmanager/DataStructures.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d3/d89/InMemoryMap_8h_source.html">carla/trafficmanager/InMemoryMap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d2/d84/LocalizationUtils_8h_source.html">carla/trafficmanager/LocalizationUtils.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d9/dd7/Parameters_8h_source.html">carla/trafficmanager/Parameters.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../db/d7f/RandomGenerator_8h_source.html">carla/trafficmanager/RandomGenerator.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../db/d67/TrackTraffic_8h_source.html">carla/trafficmanager/TrackTraffic.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d5/d3b/SimulationState_8h_source.html">carla/trafficmanager/SimulationState.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dd/dc3/Stage_8h_source.html">carla/trafficmanager/Stage.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> LocalizationStage.h 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+</div>
+<p><a href="../../d9/df4/LocalizationStage_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html">carla::traffic_manager::LocalizationStage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class has functionality to maintain a horizon of waypoints ahead of the vehicle for it to follow.  <a href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+命名空间</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></td></tr>
+<tr class="memdesc:d9/d36/namespacecarla"><td class="mdescLeft">&#160;</td><td class="mdescRight">This file contains definitions of common data structures used in traffic manager. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html">carla::traffic_manager</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a9b5d27277f170da61e08276b3811f9c3" id="r_a9b5d27277f170da61e08276b3811f9c3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a9b5d27277f170da61e08276b3811f9c3">carla::traffic_manager::Action</a> = std::pair&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5734807dba08623eeca046a963ade360">RoadOption</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a18480ee043197185cc01710e7ae5e290">WaypointPtr</a>&gt;</td></tr>
+<tr class="separator:a9b5d27277f170da61e08276b3811f9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c74a7f1442948257c1ac169c42bca1c" id="r_a5c74a7f1442948257c1ac169c42bca1c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a5c74a7f1442948257c1ac169c42bca1c">carla::traffic_manager::ActionBuffer</a> = std::vector&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a9b5d27277f170da61e08276b3811f9c3">Action</a>&gt;</td></tr>
+<tr class="separator:a5c74a7f1442948257c1ac169c42bca1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bf403d0c492c0b9841ea4c09ed59cd4" id="r_a4bf403d0c492c0b9841ea4c09ed59cd4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a4bf403d0c492c0b9841ea4c09ed59cd4">carla::traffic_manager::LaneChangeSWptMap</a> = std::unordered_map&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a99054a7951d29e88129eb176ec5d00f1">SimpleWaypointPtr</a>&gt;</td></tr>
+<tr class="separator:a4bf403d0c492c0b9841ea4c09ed59cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c6d0c0349b2273aac996ccc8844f207" id="r_a3c6d0c0349b2273aac996ccc8844f207"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a3c6d0c0349b2273aac996ccc8844f207">carla::traffic_manager::Path</a> = std::vector&lt;<a class="el" href="../../de/d23/classcarla_1_1geom_1_1Location.html">cg::Location</a>&gt;</td></tr>
+<tr class="separator:a3c6d0c0349b2273aac996ccc8844f207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a380af12ea0fbaef982fa5dc19a19e8fe" id="r_a380af12ea0fbaef982fa5dc19a19e8fe"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a380af12ea0fbaef982fa5dc19a19e8fe">carla::traffic_manager::Route</a> = std::vector&lt;uint8_t&gt;</td></tr>
+<tr class="separator:a380af12ea0fbaef982fa5dc19a19e8fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

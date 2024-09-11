@@ -1,0 +1,31 @@
+digraph "AObstacleDetectionSensor::PostPhysTick"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="AObstacleDetectionSensor\l::PostPhysTick",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="AObstacleDetectionSensor\l::OnObstacleDetectionEvent",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d93/classAObstacleDetectionSensor.html#a86daabb07d1a82d74be5ec006b1c20f4",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::streaming::detail\l::token_type::get_stream_id",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/de1/classcarla_1_1streaming_1_1detail_1_1token__type.html#a2edd9e9111f8f91b47791baec38c5829",tooltip=" "];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="ASensor::GetDataStream",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d01/classASensor.html#a8fa217c0d68d5c774510d5e941ae0ade",tooltip="Return the FDataStream associated with this sensor."];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="ASensor::GetEpisode",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d01/classASensor.html#adfbd2b80613e8936e27f29436d62812c",tooltip=" "];
+  Node2 -> Node6 [id="edge5_Node000002_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::ros2::ROS2::\lGetInstance",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d8/d78/classcarla_1_1ros2_1_1ROS2.html#a2cec6f14ee2b8e025b585575508d77f1",tooltip=" "];
+  Node2 -> Node7 [id="edge6_Node000002_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="ASensor::GetToken",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d01/classASensor.html#a66fce49debf0145d15f810fd78775e9d",tooltip="Return the token that allows subscribing to this sensor's stream."];
+  Node2 -> Node8 [id="edge7_Node000002_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="ASensor::IsStreamReady",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d01/classASensor.html#a13a798c094b844a8d208a6c16dd5c47b",tooltip=" "];
+  Node2 -> Node9 [id="edge8_Node000002_Node000009",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="UCarlaEpisode::Serialize\lActor",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/d84/classUCarlaEpisode.html#a16930a678420a1e83d8c136ccbf2e40d",tooltip="Create a serializable object describing the actor."];
+  Node9 -> Node10 [id="edge9_Node000009_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="FCarlaActor::GetActorInfo",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/dde/classFCarlaActor.html#ac9a28cdf1b57b3bf280270d40f53359a",tooltip=" "];
+  Node9 -> Node11 [id="edge10_Node000009_Node000011",color="steelblue1",style="solid",tooltip=" "];
+  Node11 [id="Node000011",label="FCarlaActor::GetParent",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/dde/classFCarlaActor.html#a2dfbb1c5a2b20bf4249cdb5445f18447",tooltip=" "];
+  Node1 -> Node1 [id="edge11_Node000001_Node000001",color="steelblue1",style="solid",tooltip=" "];
+}

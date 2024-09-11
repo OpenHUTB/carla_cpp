@@ -1,0 +1,1002 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: ACityMapGenerator类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="../../d2/d35/classACityMapGenerator-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ACityMapGenerator类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Generates a random city using the meshes provided.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 ACityMapGenerator 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> ACityMapGenerator 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructor and destructor</div></td></tr>
+<tr class="memitem:abc6876834b8dd7e995040edeced110e1" id="r_abc6876834b8dd7e995040edeced110e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc6876834b8dd7e995040edeced110e1">ACityMapGenerator</a> (const FObjectInitializer &amp;ObjectInitializer)</td></tr>
+<tr class="separator:abc6876834b8dd7e995040edeced110e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a155449aa2133f8fb8ec80bf6648b9d75" id="r_a155449aa2133f8fb8ec80bf6648b9d75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a155449aa2133f8fb8ec80bf6648b9d75">~ACityMapGenerator</a> ()</td></tr>
+<tr class="separator:a155449aa2133f8fb8ec80bf6648b9d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Overriden from UObject</div></td></tr>
+<tr class="memitem:a5627a0935def8c92d8ae226b10238f2c" id="r_a5627a0935def8c92d8ae226b10238f2c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5627a0935def8c92d8ae226b10238f2c">PreSave</a> (const ITargetPlatform *TargetPlatform) override</td></tr>
+<tr class="separator:a5627a0935def8c92d8ae226b10238f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classACityMapMeshHolder"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classACityMapMeshHolder')"><img src="../../closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="../../da/d1a/classACityMapMeshHolder.html">ACityMapMeshHolder</a></td></tr>
+<tr class="memitem:af027efb9d4245af7bb251ba552c173a5 inherit pub_methods_classACityMapMeshHolder" id="r_af027efb9d4245af7bb251ba552c173a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#af027efb9d4245af7bb251ba552c173a5">ACityMapMeshHolder</a> (const FObjectInitializer &amp;ObjectInitializer)</td></tr>
+<tr class="memdesc:af027efb9d4245af7bb251ba552c173a5 inherit pub_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the mesh holders.  <br /></td></tr>
+<tr class="separator:af027efb9d4245af7bb251ba552c173a5 inherit pub_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Overriden from ACityMapMeshHolder</div></td></tr>
+<tr class="memitem:a5ad53319596101e96076a12eab41b9c1" id="r_a5ad53319596101e96076a12eab41b9c1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ad53319596101e96076a12eab41b9c1">UpdateMap</a> () override</td></tr>
+<tr class="memdesc:a5ad53319596101e96076a12eab41b9c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Here does nothing, implement in derived classes.  <br /></td></tr>
+<tr class="separator:a5ad53319596101e96076a12eab41b9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Map construction and update related methods</div></td></tr>
+<tr class="memitem:aa35286117be937f54d1c6c9a44380311" id="r_aa35286117be937f54d1c6c9a44380311"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa35286117be937f54d1c6c9a44380311">UpdateSeeds</a> ()</td></tr>
+<tr class="memdesc:aa35286117be937f54d1c6c9a44380311"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the random seeds. Generate random if no fixed seed is used.  <br /></td></tr>
+<tr class="separator:aa35286117be937f54d1c6c9a44380311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b16ca4cb297f67893132bad83a2b4da" id="r_a2b16ca4cb297f67893132bad83a2b4da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b16ca4cb297f67893132bad83a2b4da">GenerateGraph</a> ()</td></tr>
+<tr class="memdesc:a2b16ca4cb297f67893132bad83a2b4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regenerate the DCEL.  <br /></td></tr>
+<tr class="separator:a2b16ca4cb297f67893132bad83a2b4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d7489265a1921069709a71b15efd0c" id="r_a67d7489265a1921069709a71b15efd0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67d7489265a1921069709a71b15efd0c">GenerateRoads</a> ()</td></tr>
+<tr class="memdesc:a67d7489265a1921069709a71b15efd0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the road meshes to the scene based on the current DCEL.  <br /></td></tr>
+<tr class="separator:a67d7489265a1921069709a71b15efd0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce09c4586724fe3e446cbb12712adf3" id="r_a9ce09c4586724fe3e446cbb12712adf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ce09c4586724fe3e446cbb12712adf3">GenerateRoadMap</a> ()</td></tr>
+<tr class="memdesc:a9ce09c4586724fe3e446cbb12712adf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate the road map image and save to disk if requested.  <br /></td></tr>
+<tr class="separator:a9ce09c4586724fe3e446cbb12712adf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Map generation properties</div></td></tr>
+<tr class="memitem:ae2f3f34b4deebef8121ac96a15dd416a" id="r_ae2f3f34b4deebef8121ac96a15dd416a"><td class="memItemLeft" align="right" valign="top">uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2f3f34b4deebef8121ac96a15dd416a">MapSizeX</a> = 20u</td></tr>
+<tr class="memdesc:ae2f3f34b4deebef8121ac96a15dd416a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size X of the map in map units.  <br /></td></tr>
+<tr class="separator:ae2f3f34b4deebef8121ac96a15dd416a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aed81a218dc80859c0a01545cc73944" id="r_a4aed81a218dc80859c0a01545cc73944"><td class="memItemLeft" align="right" valign="top">uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4aed81a218dc80859c0a01545cc73944">MapSizeY</a> = 20u</td></tr>
+<tr class="memdesc:a4aed81a218dc80859c0a01545cc73944"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size Y of the map in map units.  <br /></td></tr>
+<tr class="separator:a4aed81a218dc80859c0a01545cc73944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41349f90e6289ccc92c91bd3a835137f" id="r_a41349f90e6289ccc92c91bd3a835137f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41349f90e6289ccc92c91bd3a835137f">bGenerateRoads</a> = true</td></tr>
+<tr class="memdesc:a41349f90e6289ccc92c91bd3a835137f"><td class="mdescLeft">&#160;</td><td class="mdescRight">If false, no mesh is added, only the internal representation of road is generated.  <br /></td></tr>
+<tr class="separator:a41349f90e6289ccc92c91bd3a835137f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e74da42bd56cbfcebb99b0d5bf657fa" id="r_a8e74da42bd56cbfcebb99b0d5bf657fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e74da42bd56cbfcebb99b0d5bf657fa">bUseFixedSeed</a> = true</td></tr>
+<tr class="memdesc:a8e74da42bd56cbfcebb99b0d5bf657fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">If false, a random seed is generated each time.  <br /></td></tr>
+<tr class="separator:a8e74da42bd56cbfcebb99b0d5bf657fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50d3a198fdbba974271c85ca85c1de86" id="r_a50d3a198fdbba974271c85ca85c1de86"><td class="memItemLeft" align="right" valign="top">int32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50d3a198fdbba974271c85ca85c1de86">Seed</a> = 123456789</td></tr>
+<tr class="memdesc:a50d3a198fdbba974271c85ca85c1de86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seed of the random map generated.  <br /></td></tr>
+<tr class="separator:a50d3a198fdbba974271c85ca85c1de86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Other private members</div></td></tr>
+<tr class="memitem:a5d9a2a8355f7668ff0e1130432d3e1ff" id="r_a5d9a2a8355f7668ff0e1130432d3e1ff"><td class="memItemLeft" align="right" valign="top">TUniquePtr&lt; <a class="el" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html">MapGen::DoublyConnectedEdgeList</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d9a2a8355f7668ff0e1130432d3e1ff">Dcel</a></td></tr>
+<tr class="separator:a5d9a2a8355f7668ff0e1130432d3e1ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc1f93b922336a332e0da1ad349c641f" id="r_adc1f93b922336a332e0da1ad349c641f"><td class="memItemLeft" align="right" valign="top">TUniquePtr&lt; <a class="el" href="../../d0/d95/classMapGen_1_1GraphParser.html">MapGen::GraphParser</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc1f93b922336a332e0da1ad349c641f">DcelParser</a></td></tr>
+<tr class="separator:adc1f93b922336a332e0da1ad349c641f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Road map</h2></td></tr>
+<tr class="memitem:aa9a5c292041dad595fb556193d277ff2" id="r_aa9a5c292041dad595fb556193d277ff2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9a5c292041dad595fb556193d277ff2">bTriggerRoadMapGeneration</a> = false</td></tr>
+<tr class="memdesc:aa9a5c292041dad595fb556193d277ff2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger the generation a the road map image of the current layout (used for off-road and opposite lane invasion detection).  <br /></td></tr>
+<tr class="separator:aa9a5c292041dad595fb556193d277ff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53fe3d828726dd324562762917d863f2" id="r_a53fe3d828726dd324562762917d863f2"><td class="memItemLeft" align="right" valign="top">uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53fe3d828726dd324562762917d863f2">PixelsPerMapUnit</a> = 50u</td></tr>
+<tr class="memdesc:a53fe3d828726dd324562762917d863f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The resolution in pixels per map unit of the road map.  <br /></td></tr>
+<tr class="separator:a53fe3d828726dd324562762917d863f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78bd0499b4bad95f9d87692dda574690" id="r_a78bd0499b4bad95f9d87692dda574690"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78bd0499b4bad95f9d87692dda574690">bLeftHandTraffic</a> = false</td></tr>
+<tr class="memdesc:a78bd0499b4bad95f9d87692dda574690"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the road map should be generated based on left-hand traffic.  <br /></td></tr>
+<tr class="separator:a78bd0499b4bad95f9d87692dda574690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4ec78d006aaa284afbcc243662f8ea3" id="r_ae4ec78d006aaa284afbcc243662f8ea3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4ec78d006aaa284afbcc243662f8ea3">bSaveRoadMapToDisk</a> = true</td></tr>
+<tr class="memdesc:ae4ec78d006aaa284afbcc243662f8ea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, the road map encoded as an image is saved to disk.  <br /></td></tr>
+<tr class="separator:ae4ec78d006aaa284afbcc243662f8ea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67a7a98a81419446e752bbefd5a76213" id="r_a67a7a98a81419446e752bbefd5a76213"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67a7a98a81419446e752bbefd5a76213">bDrawDebugPixelsToLevel</a> = false</td></tr>
+<tr class="memdesc:a67a7a98a81419446e752bbefd5a76213"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, a debug point is drawn in the level for each pixel of the road map.  <br /></td></tr>
+<tr class="separator:a67a7a98a81419446e752bbefd5a76213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a041b7150c71ad44005500e3be58820de" id="r_a041b7150c71ad44005500e3be58820de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a041b7150c71ad44005500e3be58820de">bGenerateRoadMapOnSave</a> = true</td></tr>
+<tr class="memdesc:a041b7150c71ad44005500e3be58820de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The road map is re-computed on save so we always store an up-to-date version.  <br /></td></tr>
+<tr class="separator:a041b7150c71ad44005500e3be58820de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5a910a7b289aee3e337b3176d80253d" id="r_af5a910a7b289aee3e337b3176d80253d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5a910a7b289aee3e337b3176d80253d">bTagForSemanticSegmentation</a> = false</td></tr>
+<tr class="memdesc:af5a910a7b289aee3e337b3176d80253d"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, activate the custom depth pass of each tagged actor in the level.  <br /></td></tr>
+<tr class="separator:af5a910a7b289aee3e337b3176d80253d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a363571665966c001e14e2e037c062454" id="r_a363571665966c001e14e2e037c062454"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/db2/classURoadMap.html">URoadMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a363571665966c001e14e2e037c062454">RoadMap</a></td></tr>
+<tr class="separator:a363571665966c001e14e2e037c062454"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1e03f9d324bac17ca196cc242a06a77" id="r_ac1e03f9d324bac17ca196cc242a06a77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/db2/classURoadMap.html">URoadMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1e03f9d324bac17ca196cc242a06a77">GetRoadMap</a> ()</td></tr>
+<tr class="separator:ac1e03f9d324bac17ca196cc242a06a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pro_methods_classACityMapMeshHolder"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classACityMapMeshHolder')"><img src="../../closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="../../da/d1a/classACityMapMeshHolder.html">ACityMapMeshHolder</a></td></tr>
+<tr class="memitem:a4c492b39aa6c6a95b4b7cfe221bd29e3 inherit pro_methods_classACityMapMeshHolder" id="r_a4c492b39aa6c6a95b4b7cfe221bd29e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#a4c492b39aa6c6a95b4b7cfe221bd29e3">AddInstance</a> (<a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> Tag, FTransform Transform)</td></tr>
+<tr class="memdesc:a4c492b39aa6c6a95b4b7cfe221bd29e3 inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an instance of a mesh with a given transform.  <br /></td></tr>
+<tr class="separator:a4c492b39aa6c6a95b4b7cfe221bd29e3 inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8612476d1ea6286618432bdd28488157 inherit pro_methods_classACityMapMeshHolder" id="r_a8612476d1ea6286618432bdd28488157"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#a8612476d1ea6286618432bdd28488157">AddInstance</a> (<a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> Tag, uint32 X, uint32 Y)</td></tr>
+<tr class="memdesc:a8612476d1ea6286618432bdd28488157 inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an instance of a mesh with a given tile location.  <br /></td></tr>
+<tr class="separator:a8612476d1ea6286618432bdd28488157 inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3adde104855d44465b0f1ce3910dd84f inherit pro_methods_classACityMapMeshHolder" id="r_a3adde104855d44465b0f1ce3910dd84f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#a3adde104855d44465b0f1ce3910dd84f">AddInstance</a> (<a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> Tag, uint32 X, uint32 Y, float Angle)</td></tr>
+<tr class="memdesc:a3adde104855d44465b0f1ce3910dd84f inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an instance of a mesh with a given tile location and rotation.  <br /></td></tr>
+<tr class="separator:a3adde104855d44465b0f1ce3910dd84f inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab58d75b5e6a67bb4042174256a4c5128 inherit pro_methods_classACityMapMeshHolder" id="r_ab58d75b5e6a67bb4042174256a4c5128"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#ab58d75b5e6a67bb4042174256a4c5128">GetMapScale</a> () const</td></tr>
+<tr class="separator:ab58d75b5e6a67bb4042174256a4c5128 inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5db4ee9f869b579ffc0412cac90093f inherit pro_methods_classACityMapMeshHolder" id="r_ac5db4ee9f869b579ffc0412cac90093f"><td class="memItemLeft" align="right" valign="top">UStaticMesh *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#ac5db4ee9f869b579ffc0412cac90093f">GetStaticMesh</a> (<a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> Tag)</td></tr>
+<tr class="memdesc:ac5db4ee9f869b579ffc0412cac90093f inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the static mesh corresponding to <em>Tag</em>.  <br /></td></tr>
+<tr class="separator:ac5db4ee9f869b579ffc0412cac90093f inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a820be96a6443d662ecb49ef00033203a inherit pro_methods_classACityMapMeshHolder" id="r_a820be96a6443d662ecb49ef00033203a"><td class="memItemLeft" align="right" valign="top">const UStaticMesh *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#a820be96a6443d662ecb49ef00033203a">GetStaticMesh</a> (<a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> Tag) const</td></tr>
+<tr class="memdesc:a820be96a6443d662ecb49ef00033203a inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the static mesh corresponding to <em>Tag</em>.  <br /></td></tr>
+<tr class="separator:a820be96a6443d662ecb49ef00033203a inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac51e2220f2416299f49b17a106807254 inherit pro_methods_classACityMapMeshHolder" id="r_ac51e2220f2416299f49b17a106807254"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#ac51e2220f2416299f49b17a106807254">GetTag</a> (const UStaticMesh &amp;StaticMesh) const</td></tr>
+<tr class="memdesc:ac51e2220f2416299f49b17a106807254 inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the tag corresponding to <em>StaticMesh</em>.  <br /></td></tr>
+<tr class="separator:ac51e2220f2416299f49b17a106807254 inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a08875ed449d96a289b144d4d551479 inherit pro_methods_classACityMapMeshHolder" id="r_a1a08875ed449d96a289b144d4d551479"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#a1a08875ed449d96a289b144d4d551479">GetTileLocation</a> (uint32 X, uint32 Y) const</td></tr>
+<tr class="memdesc:a1a08875ed449d96a289b144d4d551479 inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the 3D world location (relative to this actor) of the given 2D tile.  <br /></td></tr>
+<tr class="separator:a1a08875ed449d96a289b144d4d551479 inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6fb186506e4d24e56afc7037a2936aa inherit pro_methods_classACityMapMeshHolder" id="r_af6fb186506e4d24e56afc7037a2936aa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#af6fb186506e4d24e56afc7037a2936aa">OnConstruction</a> (const FTransform &amp;Transform) override</td></tr>
+<tr class="memdesc:af6fb186506e4d24e56afc7037a2936aa inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the instantiators.  <br /></td></tr>
+<tr class="separator:af6fb186506e4d24e56afc7037a2936aa inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8bef1398143fefe4c9a443edd4b393 inherit pro_methods_classACityMapMeshHolder" id="r_a0a8bef1398143fefe4c9a443edd4b393"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#a0a8bef1398143fefe4c9a443edd4b393">PostInitializeComponents</a> () override</td></tr>
+<tr class="separator:a0a8bef1398143fefe4c9a443edd4b393 inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3099ea21753c8730b63a699d3ae5fa36 inherit pro_methods_classACityMapMeshHolder" id="r_a3099ea21753c8730b63a699d3ae5fa36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d1a/classACityMapMeshHolder.html#a3099ea21753c8730b63a699d3ae5fa36">SetStaticMesh</a> (<a class="el" href="../../d4/d83/CityMapMeshTag_8h.html#a36ee1ac629c26b2857c17c737b879469">ECityMapMeshTag</a> Tag, UStaticMesh *Mesh)</td></tr>
+<tr class="memdesc:a3099ea21753c8730b63a699d3ae5fa36 inherit pro_methods_classACityMapMeshHolder"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the static mesh associated with <em>Tag</em>.  <br /></td></tr>
+<tr class="separator:a3099ea21753c8730b63a699d3ae5fa36 inherit pro_methods_classACityMapMeshHolder"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Generates a random city using the meshes provided. </p>
+<dl class="section note"><dt>注解</dt><dd>At this point it only generates roads and sidewalks. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00022">22</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="abc6876834b8dd7e995040edeced110e1" name="abc6876834b8dd7e995040edeced110e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc6876834b8dd7e995040edeced110e1">&#9670;&#160;</a></span>ACityMapGenerator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ACityMapGenerator::ACityMapGenerator </td>
+          <td>(</td>
+          <td class="paramtype">const FObjectInitializer &amp;</td>          <td class="paramname"><span class="paramname"><em>ObjectInitializer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a> 第 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00051">51</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00170">RoadMap</a>.</p>
+
+</div>
+</div>
+<a id="a155449aa2133f8fb8ec80bf6648b9d75" name="a155449aa2133f8fb8ec80bf6648b9d75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a155449aa2133f8fb8ec80bf6648b9d75">&#9670;&#160;</a></span>~ACityMapGenerator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ACityMapGenerator::~ACityMapGenerator </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a> 第 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a2b16ca4cb297f67893132bad83a2b4da" name="a2b16ca4cb297f67893132bad83a2b4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b16ca4cb297f67893132bad83a2b4da">&#9670;&#160;</a></span>GenerateGraph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ACityMapGenerator::GenerateGraph </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Regenerate the DCEL. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a> 第 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00109">109</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00179">Dcel</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00181">DcelParser</a>, <a class="el" href="../../d4/d03/GraphGenerator_8cpp_source.html#l00097">MapGen::GraphGenerator::Generate()</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00097">MapSizeX</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00103">MapSizeY</a> , 以及 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00117">Seed</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00083">UpdateMap()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a9ce09c4586724fe3e446cbb12712adf3" name="a9ce09c4586724fe3e446cbb12712adf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ce09c4586724fe3e446cbb12712adf3">&#9670;&#160;</a></span>GenerateRoadMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ACityMapGenerator::GenerateRoadMap </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generate the road map image and save to disk if requested. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a> 第 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">262</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00152">bDrawDebugPixelsToLevel</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00140">bLeftHandTraffic</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00146">bSaveRoadMapToDisk</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00167">bTagForSemanticSegmentation</a>, <a class="el" href="../../de/d3c/CityMapMeshHolder_8h_source.html#l00049">ACityMapMeshHolder::GetMapScale()</a>, <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html#l00019">CityMapMeshTag::GetRoadIntersectionSize()</a>, <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00114">ACityMapMeshHolder::GetTag()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00236">LineTrace()</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00097">MapSizeX</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00103">MapSizeY</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00136">PixelsPerMapUnit</a>, <a class="el" href="../../d2/de5/RoadMap_8cpp_source.html#l00083">URoadMap::Reset()</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00170">RoadMap</a>, <a class="el" href="../../d2/de5/RoadMap_8cpp_source.html#l00251">URoadMap::SaveAsPNG()</a>, <a class="el" href="../../d2/de5/RoadMap_8cpp_source.html#l00098">URoadMap::SetPixelAt()</a> , 以及 <a class="el" href="../../d2/d35/Tagger_8cpp_source.html#l00223">ATagger::TagActorsInLevel()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00063">PreSave()</a> , 以及 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00083">UpdateMap()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a67d7489265a1921069709a71b15efd0c" name="a67d7489265a1921069709a71b15efd0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d7489265a1921069709a71b15efd0c">&#9670;&#160;</a></span>GenerateRoads()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ACityMapGenerator::GenerateRoads </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add the road meshes to the scene based on the current DCEL. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a> 第 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00153">153</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp.html#ad59e0bdb7ec4f2c3c8477a9d7dd00f65">ADD_INTERSECTION</a>, <a class="el" href="../../d6/ddf/CityMapMeshHolder_8cpp_source.html#l00120">ACityMapMeshHolder::AddInstance()</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00179">Dcel</a>, <a class="el" href="../../d2/d4a/CityMapMeshTag_8cpp_source.html#l00019">CityMapMeshTag::GetRoadIntersectionSize()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00036">FHalfEdgeCounter::Insert()</a>, <a class="el" href="../../d2/de5/namespaceMapGen.html#a3dab4b218910e62b79f0d98c7895c92aa242e02f7fff0062f4737226822aca92a">MapGen::TIntersection</a>, <a class="el" href="../../d2/de5/namespaceMapGen.html#a3dab4b218910e62b79f0d98c7895c92aa340d0b83567e3a159bfcb03c7a3ae615">MapGen::Turn90Deg</a> , 以及 <a class="el" href="../../d2/de5/namespaceMapGen.html#a3dab4b218910e62b79f0d98c7895c92aa05ff87bdcb632a1f2b9b1243d507f00f">MapGen::XIntersection</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00083">UpdateMap()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="ac1e03f9d324bac17ca196cc242a06a77" name="ac1e03f9d324bac17ca196cc242a06a77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1e03f9d324bac17ca196cc242a06a77">&#9670;&#160;</a></span>GetRoadMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/db2/classURoadMap.html">URoadMap</a> * ACityMapGenerator::GetRoadMap </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00062">62</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5627a0935def8c92d8ae226b10238f2c" name="a5627a0935def8c92d8ae226b10238f2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5627a0935def8c92d8ae226b10238f2c">&#9670;&#160;</a></span>PreSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ACityMapGenerator::PreSave </td>
+          <td>(</td>
+          <td class="paramtype">const ITargetPlatform *</td>          <td class="paramname"><span class="paramname"><em>TargetPlatform</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a> 第 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00063">63</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00159">bGenerateRoadMapOnSave</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a> , 以及 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00170">RoadMap</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="a5ad53319596101e96076a12eab41b9c1" name="a5ad53319596101e96076a12eab41b9c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ad53319596101e96076a12eab41b9c1">&#9670;&#160;</a></span>UpdateMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ACityMapGenerator::UpdateMap </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Here does nothing, implement in derived classes. </p>
+
+<p>重载 <a class="el" href="../../da/d1a/classACityMapMeshHolder.html#a70d8a7d221376c2781cefd0205f3b39a">ACityMapMeshHolder</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a> 第 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00083">83</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00109">bGenerateRoads</a>, <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00130">bTriggerRoadMapGeneration</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00109">GenerateGraph()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00153">GenerateRoads()</a> , 以及 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00100">UpdateSeeds()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa35286117be937f54d1c6c9a44380311" name="aa35286117be937f54d1c6c9a44380311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa35286117be937f54d1c6c9a44380311">&#9670;&#160;</a></span>UpdateSeeds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ACityMapGenerator::UpdateSeeds </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update the random seeds. Generate random if no fixed seed is used. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a> 第 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00100">100</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00113">bUseFixedSeed</a> , 以及 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00117">Seed</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00083">UpdateMap()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a67a7a98a81419446e752bbefd5a76213" name="a67a7a98a81419446e752bbefd5a76213"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67a7a98a81419446e752bbefd5a76213">&#9670;&#160;</a></span>bDrawDebugPixelsToLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ACityMapGenerator::bDrawDebugPixelsToLevel = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, a debug point is drawn in the level for each pixel of the road map. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00152">152</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a>.</p>
+
+</div>
+</div>
+<a id="a041b7150c71ad44005500e3be58820de" name="a041b7150c71ad44005500e3be58820de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a041b7150c71ad44005500e3be58820de">&#9670;&#160;</a></span>bGenerateRoadMapOnSave</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ACityMapGenerator::bGenerateRoadMapOnSave = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The road map is re-computed on save so we always store an up-to-date version. </p>
+<p>Uncheck this only for testing purposes as the road map might get out-of-sync with the current road layout. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00159">159</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00063">PreSave()</a>.</p>
+
+</div>
+</div>
+<a id="a41349f90e6289ccc92c91bd3a835137f" name="a41349f90e6289ccc92c91bd3a835137f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41349f90e6289ccc92c91bd3a835137f">&#9670;&#160;</a></span>bGenerateRoads</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ACityMapGenerator::bGenerateRoads = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If false, no mesh is added, only the internal representation of road is generated. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00109">109</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00083">UpdateMap()</a>.</p>
+
+</div>
+</div>
+<a id="a78bd0499b4bad95f9d87692dda574690" name="a78bd0499b4bad95f9d87692dda574690"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78bd0499b4bad95f9d87692dda574690">&#9670;&#160;</a></span>bLeftHandTraffic</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ACityMapGenerator::bLeftHandTraffic = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether the road map should be generated based on left-hand traffic. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00140">140</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a>.</p>
+
+</div>
+</div>
+<a id="ae4ec78d006aaa284afbcc243662f8ea3" name="ae4ec78d006aaa284afbcc243662f8ea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4ec78d006aaa284afbcc243662f8ea3">&#9670;&#160;</a></span>bSaveRoadMapToDisk</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ACityMapGenerator::bSaveRoadMapToDisk = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, the road map encoded as an image is saved to disk. </p>
+<p>The image is saved to the "Saved" folder of the project. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00146">146</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a>.</p>
+
+</div>
+</div>
+<a id="af5a910a7b289aee3e337b3176d80253d" name="af5a910a7b289aee3e337b3176d80253d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a910a7b289aee3e337b3176d80253d">&#9670;&#160;</a></span>bTagForSemanticSegmentation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ACityMapGenerator::bTagForSemanticSegmentation = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, activate the custom depth pass of each tagged actor in the level. </p>
+<p>This pass is necessary for rendering the semantic segmentation. However, it may add a performance penalty since occlusion doesn't seem to be applied to objects having this value active. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00167">167</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a>.</p>
+
+</div>
+</div>
+<a id="aa9a5c292041dad595fb556193d277ff2" name="aa9a5c292041dad595fb556193d277ff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9a5c292041dad595fb556193d277ff2">&#9670;&#160;</a></span>bTriggerRoadMapGeneration</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ACityMapGenerator::bTriggerRoadMapGeneration = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Trigger the generation a the road map image of the current layout (used for off-road and opposite lane invasion detection). </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00130">130</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00083">UpdateMap()</a>.</p>
+
+</div>
+</div>
+<a id="a8e74da42bd56cbfcebb99b0d5bf657fa" name="a8e74da42bd56cbfcebb99b0d5bf657fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e74da42bd56cbfcebb99b0d5bf657fa">&#9670;&#160;</a></span>bUseFixedSeed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ACityMapGenerator::bUseFixedSeed = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If false, a random seed is generated each time. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00113">113</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00100">UpdateSeeds()</a>.</p>
+
+</div>
+</div>
+<a id="a5d9a2a8355f7668ff0e1130432d3e1ff" name="a5d9a2a8355f7668ff0e1130432d3e1ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d9a2a8355f7668ff0e1130432d3e1ff">&#9670;&#160;</a></span>Dcel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TUniquePtr&lt;<a class="el" href="../../d3/d57/classMapGen_1_1DoublyConnectedEdgeList.html">MapGen::DoublyConnectedEdgeList</a>&gt; ACityMapGenerator::Dcel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00179">179</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00109">GenerateGraph()</a> , 以及 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00153">GenerateRoads()</a>.</p>
+
+</div>
+</div>
+<a id="adc1f93b922336a332e0da1ad349c641f" name="adc1f93b922336a332e0da1ad349c641f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc1f93b922336a332e0da1ad349c641f">&#9670;&#160;</a></span>DcelParser</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TUniquePtr&lt;<a class="el" href="../../d0/d95/classMapGen_1_1GraphParser.html">MapGen::GraphParser</a>&gt; ACityMapGenerator::DcelParser</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00181">181</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00109">GenerateGraph()</a>.</p>
+
+</div>
+</div>
+<a id="ae2f3f34b4deebef8121ac96a15dd416a" name="ae2f3f34b4deebef8121ac96a15dd416a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2f3f34b4deebef8121ac96a15dd416a">&#9670;&#160;</a></span>MapSizeX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 ACityMapGenerator::MapSizeX = 20u</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Size X of the map in map units. </p>
+<p>The map unit is calculated based in the tile mesh of the road (see Map Scale). </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00109">GenerateGraph()</a> , 以及 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a>.</p>
+
+</div>
+</div>
+<a id="a4aed81a218dc80859c0a01545cc73944" name="a4aed81a218dc80859c0a01545cc73944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aed81a218dc80859c0a01545cc73944">&#9670;&#160;</a></span>MapSizeY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 ACityMapGenerator::MapSizeY = 20u</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Size Y of the map in map units. </p>
+<p>The map unit is calculated based in the tile mesh of the road (see Map Scale). </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00103">103</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00109">GenerateGraph()</a> , 以及 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a>.</p>
+
+</div>
+</div>
+<a id="a53fe3d828726dd324562762917d863f2" name="a53fe3d828726dd324562762917d863f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53fe3d828726dd324562762917d863f2">&#9670;&#160;</a></span>PixelsPerMapUnit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 ACityMapGenerator::PixelsPerMapUnit = 50u</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The resolution in pixels per map unit of the road map. </p>
+<p>The map unit is calculated based in the tile mesh of the road (see Map Scale). </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00136">136</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a>.</p>
+
+</div>
+</div>
+<a id="a363571665966c001e14e2e037c062454" name="a363571665966c001e14e2e037c062454"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a363571665966c001e14e2e037c062454">&#9670;&#160;</a></span>RoadMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/db2/classURoadMap.html">URoadMap</a>* ACityMapGenerator::RoadMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00170">170</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00051">ACityMapGenerator()</a>, <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00262">GenerateRoadMap()</a> , 以及 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00063">PreSave()</a>.</p>
+
+</div>
+</div>
+<a id="a50d3a198fdbba974271c85ca85c1de86" name="a50d3a198fdbba974271c85ca85c1de86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50d3a198fdbba974271c85ca85c1de86">&#9670;&#160;</a></span>Seed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32 ACityMapGenerator::Seed = 123456789</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Seed of the random map generated. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a> 第 <a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html#l00117">117</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00109">GenerateGraph()</a> , 以及 <a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html#l00100">UpdateSeeds()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d0/da2/CityMapGenerator_8h_source.html">CityMapGenerator.h</a></li>
+<li><a class="el" href="../../d9/d8e/CityMapGenerator_8cpp_source.html">CityMapGenerator.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,921 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: FIniFile类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pri-static-methods">静态 Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d7/d39/classFIniFile-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">FIniFile类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Wrapper around Unreal's INI file.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 FIniFile 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> FIniFile 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constructor</div></td></tr>
+<tr class="memitem:a9452725af953007b9aeaa83cf0983415" id="r_a9452725af953007b9aeaa83cf0983415"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9452725af953007b9aeaa83cf0983415">FIniFile</a> ()=default</td></tr>
+<tr class="separator:a9452725af953007b9aeaa83cf0983415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98068866f4de6b73ea2578b23c68f082" id="r_a98068866f4de6b73ea2578b23c68f082"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98068866f4de6b73ea2578b23c68f082">FIniFile</a> (const FString &amp;FileName)</td></tr>
+<tr class="separator:a98068866f4de6b73ea2578b23c68f082"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Other functions</div></td></tr>
+<tr class="memitem:a4e4824d1ceafba855daff6973bcebf05" id="r_a4e4824d1ceafba855daff6973bcebf05"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e4824d1ceafba855daff6973bcebf05">Combine</a> (const FString &amp;FileName)</td></tr>
+<tr class="separator:a4e4824d1ceafba855daff6973bcebf05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ea8bae6c7c035c6f59a6a14e4e93bc9" id="r_a3ea8bae6c7c035c6f59a6a14e4e93bc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ea8bae6c7c035c6f59a6a14e4e93bc9">ProcessInputFileContents</a> (const FString &amp;INIFileContents)</td></tr>
+<tr class="separator:a3ea8bae6c7c035c6f59a6a14e4e93bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87bb9dc6a4e30a4d70c67be61bcc2ea4" id="r_a87bb9dc6a4e30a4d70c67be61bcc2ea4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87bb9dc6a4e30a4d70c67be61bcc2ea4">HasSection</a> (const FString &amp;Section) const</td></tr>
+<tr class="separator:a87bb9dc6a4e30a4d70c67be61bcc2ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adde75dc0ecd16c11d816934204f903e4" id="r_adde75dc0ecd16c11d816934204f903e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adde75dc0ecd16c11d816934204f903e4">AddSectionIfMissing</a> (const FString &amp;Section)</td></tr>
+<tr class="separator:adde75dc0ecd16c11d816934204f903e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ebb595b4af31b74a7bac9091c9c6a30" id="r_a5ebb595b4af31b74a7bac9091c9c6a30"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ebb595b4af31b74a7bac9091c9c6a30">Write</a> (const FString &amp;Filename)</td></tr>
+<tr class="memdesc:a5ebb595b4af31b74a7bac9091c9c6a30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write contents to disk.  <br /></td></tr>
+<tr class="separator:a5ebb595b4af31b74a7bac9091c9c6a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a373193e9ed61d4a538010c8f27a2595e" id="r_a373193e9ed61d4a538010c8f27a2595e"><td class="memItemLeft" align="right" valign="top">const FConfigFile &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a373193e9ed61d4a538010c8f27a2595e">GetFConfigFile</a> () const</td></tr>
+<tr class="memdesc:a373193e9ed61d4a538010c8f27a2595e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve Unreal's FConfigFile.  <br /></td></tr>
+<tr class="separator:a373193e9ed61d4a538010c8f27a2595e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Get functions</div></td></tr>
+<tr class="memitem:ae4e12c8fd62cea857e718ac066657297" id="r_ae4e12c8fd62cea857e718ac066657297"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ae4e12c8fd62cea857e718ac066657297"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae4e12c8fd62cea857e718ac066657297">GetInt</a> (const TCHAR *Section, const TCHAR *Key, T &amp;Target) const</td></tr>
+<tr class="separator:ae4e12c8fd62cea857e718ac066657297"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa6537e119fba826b0958195237202a7" id="r_aaa6537e119fba826b0958195237202a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa6537e119fba826b0958195237202a7">GetString</a> (const TCHAR *Section, const TCHAR *Key, FString &amp;Target) const</td></tr>
+<tr class="separator:aaa6537e119fba826b0958195237202a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a951d1e6601a472980d10666c3e01dd3d" id="r_a951d1e6601a472980d10666c3e01dd3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a951d1e6601a472980d10666c3e01dd3d">GetBool</a> (const TCHAR *Section, const TCHAR *Key, bool &amp;Target) const</td></tr>
+<tr class="separator:a951d1e6601a472980d10666c3e01dd3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4d732e95ade0010dc062d3d1ce8c67f" id="r_aa4d732e95ade0010dc062d3d1ce8c67f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4d732e95ade0010dc062d3d1ce8c67f">GetFloat</a> (const TCHAR *Section, const TCHAR *Key, float &amp;Target, const float Factor=1.0f) const</td></tr>
+<tr class="separator:aa4d732e95ade0010dc062d3d1ce8c67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6df3df023068efd3e9d57db01c72bb7" id="r_af6df3df023068efd3e9d57db01c72bb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6df3df023068efd3e9d57db01c72bb7">GetLinearColor</a> (const TCHAR *Section, const TCHAR *Key, FLinearColor &amp;Target) const</td></tr>
+<tr class="separator:af6df3df023068efd3e9d57db01c72bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Set functions</div></td></tr>
+<tr class="memitem:ae99704db0d9b71a8c54000db46dcfeab" id="r_ae99704db0d9b71a8c54000db46dcfeab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae99704db0d9b71a8c54000db46dcfeab">SetInt</a> (const TCHAR *Section, const TCHAR *Key, const int64 Value)</td></tr>
+<tr class="separator:ae99704db0d9b71a8c54000db46dcfeab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe188943ae6bd256f4e0631db6a1ca7b" id="r_abe188943ae6bd256f4e0631db6a1ca7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe188943ae6bd256f4e0631db6a1ca7b">SetString</a> (const TCHAR *Section, const TCHAR *Key, const TCHAR *Value)</td></tr>
+<tr class="separator:abe188943ae6bd256f4e0631db6a1ca7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad00b06d4c477022b78741a329511c079" id="r_ad00b06d4c477022b78741a329511c079"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad00b06d4c477022b78741a329511c079">SetString</a> (const TCHAR *Section, const TCHAR *Key, const FString &amp;Value)</td></tr>
+<tr class="separator:ad00b06d4c477022b78741a329511c079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af60c6712f350f763ca458790f23c9790" id="r_af60c6712f350f763ca458790f23c9790"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af60c6712f350f763ca458790f23c9790">SetBool</a> (const TCHAR *Section, const TCHAR *Key, const bool Value)</td></tr>
+<tr class="separator:af60c6712f350f763ca458790f23c9790"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93f0690d30f7b5f806ec2f6eb31a7b2e" id="r_a93f0690d30f7b5f806ec2f6eb31a7b2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93f0690d30f7b5f806ec2f6eb31a7b2e">SetFloat</a> (const TCHAR *Section, const TCHAR *Key, const float Value)</td></tr>
+<tr class="separator:a93f0690d30f7b5f806ec2f6eb31a7b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cf51e71d535cf6216e948bbb941558d" id="r_a1cf51e71d535cf6216e948bbb941558d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cf51e71d535cf6216e948bbb941558d">SetLinearColor</a> (const TCHAR *Section, const TCHAR *Key, const FLinearColor &amp;Value)</td></tr>
+<tr class="separator:a1cf51e71d535cf6216e948bbb941558d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+静态 Private 成员函数</h2></td></tr>
+<tr class="memitem:a770924b905b47cd98b855de695623bda" id="r_a770924b905b47cd98b855de695623bda"><td class="memTemplParams" colspan="2">template&lt;typename TARGET , typename SOURCE &gt; </td></tr>
+<tr class="memitem:a770924b905b47cd98b855de695623bda"><td class="memTemplItemLeft" align="right" valign="top">static void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a770924b905b47cd98b855de695623bda">SafeCastTo</a> (SOURCE source, TARGET &amp;target)</td></tr>
+<tr class="separator:a770924b905b47cd98b855de695623bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a2f76ff391e77bf51e8e6821284dbf996" id="r_a2f76ff391e77bf51e8e6821284dbf996"><td class="memItemLeft" align="right" valign="top">FConfigFile&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f76ff391e77bf51e8e6821284dbf996">ConfigFile</a></td></tr>
+<tr class="separator:a2f76ff391e77bf51e8e6821284dbf996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_methods_classNonCopyable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classNonCopyable')"><img src="../../closed.png" alt="-"/>&#160;Private 成员函数 继承自 <a class="el" href="../../dc/d3c/classNonCopyable.html">NonCopyable</a></td></tr>
+<tr class="memitem:a809b6e4ade7ae32f6d248f2a3b783d45 inherit pub_methods_classNonCopyable" id="r_a809b6e4ade7ae32f6d248f2a3b783d45"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d3c/classNonCopyable.html#a809b6e4ade7ae32f6d248f2a3b783d45">NonCopyable</a> ()=default</td></tr>
+<tr class="separator:a809b6e4ade7ae32f6d248f2a3b783d45 inherit pub_methods_classNonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a501d34ffcc34b30de6d541887a901057 inherit pub_methods_classNonCopyable" id="r_a501d34ffcc34b30de6d541887a901057"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d3c/classNonCopyable.html#a501d34ffcc34b30de6d541887a901057">NonCopyable</a> (const <a class="el" href="../../dc/d3c/classNonCopyable.html">NonCopyable</a> &amp;)=delete</td></tr>
+<tr class="separator:a501d34ffcc34b30de6d541887a901057 inherit pub_methods_classNonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf9b12dcaae80c9d304df7a941d4e21f inherit pub_methods_classNonCopyable" id="r_aaf9b12dcaae80c9d304df7a941d4e21f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d3c/classNonCopyable.html#aaf9b12dcaae80c9d304df7a941d4e21f">operator=</a> (const <a class="el" href="../../dc/d3c/classNonCopyable.html">NonCopyable</a> &amp;)=delete</td></tr>
+<tr class="separator:aaf9b12dcaae80c9d304df7a941d4e21f inherit pub_methods_classNonCopyable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>Wrapper around Unreal's INI file. </p>
+<p>In get functions, <em>Target</em> value is only set if it was present in the INI file, otherwise it keeps its value. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00015">15</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a9452725af953007b9aeaa83cf0983415" name="a9452725af953007b9aeaa83cf0983415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9452725af953007b9aeaa83cf0983415">&#9670;&#160;</a></span>FIniFile() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FIniFile::FIniFile </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a98068866f4de6b73ea2578b23c68f082" name="a98068866f4de6b73ea2578b23c68f082"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98068866f4de6b73ea2578b23c68f082">&#9670;&#160;</a></span>FIniFile() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FIniFile::FIniFile </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>FileName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="adde75dc0ecd16c11d816934204f903e4" name="adde75dc0ecd16c11d816934204f903e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adde75dc0ecd16c11d816934204f903e4">&#9670;&#160;</a></span>AddSectionIfMissing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::AddSectionIfMissing </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Section</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00065">65</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4e4824d1ceafba855daff6973bcebf05" name="a4e4824d1ceafba855daff6973bcebf05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e4824d1ceafba855daff6973bcebf05">&#9670;&#160;</a></span>Combine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FIniFile::Combine </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>FileName</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a951d1e6601a472980d10666c3e01dd3d" name="a951d1e6601a472980d10666c3e01dd3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a951d1e6601a472980d10666c3e01dd3d">&#9670;&#160;</a></span>GetBool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::GetBool </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool &amp;</td>          <td class="paramname"><span class="paramname"><em>Target</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00107">107</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a373193e9ed61d4a538010c8f27a2595e" name="a373193e9ed61d4a538010c8f27a2595e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373193e9ed61d4a538010c8f27a2595e">&#9670;&#160;</a></span>GetFConfigFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FConfigFile &amp; FIniFile::GetFConfigFile </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve Unreal's FConfigFile. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00079">79</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa4d732e95ade0010dc062d3d1ce8c67f" name="aa4d732e95ade0010dc062d3d1ce8c67f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4d732e95ade0010dc062d3d1ce8c67f">&#9670;&#160;</a></span>GetFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::GetFloat </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>Target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>Factor</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0f</span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae4e12c8fd62cea857e718ac066657297" name="ae4e12c8fd62cea857e718ac066657297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4e12c8fd62cea857e718ac066657297">&#9670;&#160;</a></span>GetInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::GetInt </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T &amp;</td>          <td class="paramname"><span class="paramname"><em>Target</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00091">91</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="af6df3df023068efd3e9d57db01c72bb7" name="af6df3df023068efd3e9d57db01c72bb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6df3df023068efd3e9d57db01c72bb7">&#9670;&#160;</a></span>GetLinearColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::GetLinearColor </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FLinearColor &amp;</td>          <td class="paramname"><span class="paramname"><em>Target</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaa6537e119fba826b0958195237202a7" name="aaa6537e119fba826b0958195237202a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa6537e119fba826b0958195237202a7">&#9670;&#160;</a></span>GetString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::GetString </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Target</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00099">99</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00063">LoadSettingsFromConfig()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="a87bb9dc6a4e30a4d70c67be61bcc2ea4" name="a87bb9dc6a4e30a4d70c67be61bcc2ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87bb9dc6a4e30a4d70c67be61bcc2ea4">&#9670;&#160;</a></span>HasSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FIniFile::HasSection </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Section</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00060">60</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3ea8bae6c7c035c6f59a6a14e4e93bc9" name="a3ea8bae6c7c035c6f59a6a14e4e93bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ea8bae6c7c035c6f59a6a14e4e93bc9">&#9670;&#160;</a></span>ProcessInputFileContents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::ProcessInputFileContents </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>INIFileContents</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00055">55</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dc/d42/CarlaSettings_8cpp_source.html#l00165">UCarlaSettings::LoadSettingsFromString()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a770924b905b47cd98b855de695623bda" name="a770924b905b47cd98b855de695623bda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a770924b905b47cd98b855de695623bda">&#9670;&#160;</a></span>SafeCastTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TARGET , typename SOURCE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void FIniFile::SafeCastTo </td>
+          <td>(</td>
+          <td class="paramtype">SOURCE</td>          <td class="paramname"><span class="paramname"><em>source</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TARGET &amp;</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af60c6712f350f763ca458790f23c9790" name="af60c6712f350f763ca458790f23c9790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af60c6712f350f763ca458790f23c9790">&#9670;&#160;</a></span>SetBool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::SetBool </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>Value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00152">152</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a93f0690d30f7b5f806ec2f6eb31a7b2e" name="a93f0690d30f7b5f806ec2f6eb31a7b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f0690d30f7b5f806ec2f6eb31a7b2e">&#9670;&#160;</a></span>SetFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::SetFloat </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>Value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00157">157</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae99704db0d9b71a8c54000db46dcfeab" name="ae99704db0d9b71a8c54000db46dcfeab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae99704db0d9b71a8c54000db46dcfeab">&#9670;&#160;</a></span>SetInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::SetInt </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int64</td>          <td class="paramname"><span class="paramname"><em>Value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00137">137</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1cf51e71d535cf6216e948bbb941558d" name="a1cf51e71d535cf6216e948bbb941558d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cf51e71d535cf6216e948bbb941558d">&#9670;&#160;</a></span>SetLinearColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::SetLinearColor </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FLinearColor &amp;</td>          <td class="paramname"><span class="paramname"><em>Value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00162">162</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad00b06d4c477022b78741a329511c079" name="ad00b06d4c477022b78741a329511c079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad00b06d4c477022b78741a329511c079">&#9670;&#160;</a></span>SetString() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::SetString </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00147">147</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abe188943ae6bd256f4e0631db6a1ca7b" name="abe188943ae6bd256f4e0631db6a1ca7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe188943ae6bd256f4e0631db6a1ca7b">&#9670;&#160;</a></span>SetString() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FIniFile::SetString </td>
+          <td>(</td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Section</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TCHAR *</td>          <td class="paramname"><span class="paramname"><em>Value</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00142">142</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5ebb595b4af31b74a7bac9091c9c6a30" name="a5ebb595b4af31b74a7bac9091c9c6a30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ebb595b4af31b74a7bac9091c9c6a30">&#9670;&#160;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool FIniFile::Write </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>Filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write contents to disk. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00073">73</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a2f76ff391e77bf51e8e6821284dbf996" name="a2f76ff391e77bf51e8e6821284dbf996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f76ff391e77bf51e8e6821284dbf996">&#9670;&#160;</a></span>ConfigFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FConfigFile FIniFile::ConfigFile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a> 第 <a class="el" href="../../d4/d2f/IniFile_8h_source.html#l00171">171</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d4/d2f/IniFile_8h_source.html">IniFile.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

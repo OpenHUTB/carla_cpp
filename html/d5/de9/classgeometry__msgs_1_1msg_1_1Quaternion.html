@@ -1,0 +1,1176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: geometry_msgs::msg::Quaternion类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../db/df8/namespacegeometry__msgs.html">geometry_msgs</a></li><li class="navelem"><a class="el" href="../../d6/d5c/namespacegeometry__msgs_1_1msg.html">msg</a></li><li class="navelem"><a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d1/dce/classgeometry__msgs_1_1msg_1_1Quaternion-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">geometry_msgs::msg::Quaternion类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This class represents the structure <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html" title="This class represents the structure Quaternion defined by the user in the IDL file.">Quaternion</a> defined by the user in the IDL file.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d4a/Quaternion_8h_source.html">Quaternion.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> geometry_msgs::msg::Quaternion 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a88df8066ada10a08aabb32ad3c19bc92" id="r_a88df8066ada10a08aabb32ad3c19bc92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88df8066ada10a08aabb32ad3c19bc92">deserialize</a> (eprosima::fastcdr::Cdr &amp;cdr)</td></tr>
+<tr class="memdesc:a88df8066ada10a08aabb32ad3c19bc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function deserializes an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:a88df8066ada10a08aabb32ad3c19bc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8e000a52ca582258cbd7ed8f1772b83" id="r_af8e000a52ca582258cbd7ed8f1772b83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8e000a52ca582258cbd7ed8f1772b83">operator!=</a> (const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;<a class="el" href="#a23354ac2a07babb4413ab6b7da7a46c4">x</a>) const</td></tr>
+<tr class="memdesc:af8e000a52ca582258cbd7ed8f1772b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
+<tr class="separator:af8e000a52ca582258cbd7ed8f1772b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eb13b2fa7c4e6d453e33825f94d53f8" id="r_a7eb13b2fa7c4e6d453e33825f94d53f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eb13b2fa7c4e6d453e33825f94d53f8">operator=</a> (const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;<a class="el" href="#a23354ac2a07babb4413ab6b7da7a46c4">x</a>)</td></tr>
+<tr class="memdesc:a7eb13b2fa7c4e6d453e33825f94d53f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment.  <br /></td></tr>
+<tr class="separator:a7eb13b2fa7c4e6d453e33825f94d53f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21591ad035d947b089594e925a4af439" id="r_a21591ad035d947b089594e925a4af439"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21591ad035d947b089594e925a4af439">operator=</a> (<a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;&amp;<a class="el" href="#a23354ac2a07babb4413ab6b7da7a46c4">x</a>) noexcept</td></tr>
+<tr class="memdesc:a21591ad035d947b089594e925a4af439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment.  <br /></td></tr>
+<tr class="separator:a21591ad035d947b089594e925a4af439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaecb18ef0fe9251ab6576294d8eb53d5" id="r_aaecb18ef0fe9251ab6576294d8eb53d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaecb18ef0fe9251ab6576294d8eb53d5">operator==</a> (const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;<a class="el" href="#a23354ac2a07babb4413ab6b7da7a46c4">x</a>) const</td></tr>
+<tr class="memdesc:aaecb18ef0fe9251ab6576294d8eb53d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
+<tr class="separator:aaecb18ef0fe9251ab6576294d8eb53d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f6a699856049e96d4607ec7e0b2093" id="r_a87f6a699856049e96d4607ec7e0b2093"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87f6a699856049e96d4607ec7e0b2093">Quaternion</a> ()</td></tr>
+<tr class="memdesc:a87f6a699856049e96d4607ec7e0b2093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="separator:a87f6a699856049e96d4607ec7e0b2093"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34243321fa84a3a2dc11f7f039a095a0" id="r_a34243321fa84a3a2dc11f7f039a095a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34243321fa84a3a2dc11f7f039a095a0">Quaternion</a> (const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;<a class="el" href="#a23354ac2a07babb4413ab6b7da7a46c4">x</a>)</td></tr>
+<tr class="memdesc:a34243321fa84a3a2dc11f7f039a095a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <br /></td></tr>
+<tr class="separator:a34243321fa84a3a2dc11f7f039a095a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfd3f02d300f73feae94e870a5e3db13" id="r_acfd3f02d300f73feae94e870a5e3db13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfd3f02d300f73feae94e870a5e3db13">Quaternion</a> (<a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;&amp;<a class="el" href="#a23354ac2a07babb4413ab6b7da7a46c4">x</a>) noexcept</td></tr>
+<tr class="memdesc:acfd3f02d300f73feae94e870a5e3db13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <br /></td></tr>
+<tr class="separator:acfd3f02d300f73feae94e870a5e3db13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61951653e4d5f7adebd0b5b6db203766" id="r_a61951653e4d5f7adebd0b5b6db203766"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61951653e4d5f7adebd0b5b6db203766">serialize</a> (eprosima::fastcdr::Cdr &amp;cdr) const</td></tr>
+<tr class="memdesc:a61951653e4d5f7adebd0b5b6db203766"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function serializes an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:a61951653e4d5f7adebd0b5b6db203766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf2905626061204b80bb6bf95f4a93dd" id="r_acf2905626061204b80bb6bf95f4a93dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf2905626061204b80bb6bf95f4a93dd">serializeKey</a> (eprosima::fastcdr::Cdr &amp;cdr) const</td></tr>
+<tr class="memdesc:acf2905626061204b80bb6bf95f4a93dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function serializes the key members of an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:acf2905626061204b80bb6bf95f4a93dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92472a2bc9a0756f8a864e25c63a4c71" id="r_a92472a2bc9a0756f8a864e25c63a4c71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92472a2bc9a0756f8a864e25c63a4c71">w</a> ()</td></tr>
+<tr class="memdesc:a92472a2bc9a0756f8a864e25c63a4c71"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member w  <br /></td></tr>
+<tr class="separator:a92472a2bc9a0756f8a864e25c63a4c71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cc9031610b20f7a4af2f3e7f032b097" id="r_a9cc9031610b20f7a4af2f3e7f032b097"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cc9031610b20f7a4af2f3e7f032b097">w</a> () const</td></tr>
+<tr class="memdesc:a9cc9031610b20f7a4af2f3e7f032b097"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member w  <br /></td></tr>
+<tr class="separator:a9cc9031610b20f7a4af2f3e7f032b097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3bef983324fd264b2d5ec981a96e89b" id="r_ab3bef983324fd264b2d5ec981a96e89b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3bef983324fd264b2d5ec981a96e89b">w</a> (double _w)</td></tr>
+<tr class="memdesc:ab3bef983324fd264b2d5ec981a96e89b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member w  <br /></td></tr>
+<tr class="separator:ab3bef983324fd264b2d5ec981a96e89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a643b9a43df6d6e14c24110cddbc915b4" id="r_a643b9a43df6d6e14c24110cddbc915b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a643b9a43df6d6e14c24110cddbc915b4">x</a> ()</td></tr>
+<tr class="memdesc:a643b9a43df6d6e14c24110cddbc915b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member x  <br /></td></tr>
+<tr class="separator:a643b9a43df6d6e14c24110cddbc915b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9b0f0309f26effc6cbc1b20d9022095" id="r_aa9b0f0309f26effc6cbc1b20d9022095"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9b0f0309f26effc6cbc1b20d9022095">x</a> () const</td></tr>
+<tr class="memdesc:aa9b0f0309f26effc6cbc1b20d9022095"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member x  <br /></td></tr>
+<tr class="separator:aa9b0f0309f26effc6cbc1b20d9022095"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23354ac2a07babb4413ab6b7da7a46c4" id="r_a23354ac2a07babb4413ab6b7da7a46c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23354ac2a07babb4413ab6b7da7a46c4">x</a> (double _x)</td></tr>
+<tr class="memdesc:a23354ac2a07babb4413ab6b7da7a46c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member x  <br /></td></tr>
+<tr class="separator:a23354ac2a07babb4413ab6b7da7a46c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0928f00453a00ec66069f56a2e859531" id="r_a0928f00453a00ec66069f56a2e859531"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0928f00453a00ec66069f56a2e859531">y</a> ()</td></tr>
+<tr class="memdesc:a0928f00453a00ec66069f56a2e859531"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member y  <br /></td></tr>
+<tr class="separator:a0928f00453a00ec66069f56a2e859531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a167dc8f50eaa858763bfe9ffabd270" id="r_a9a167dc8f50eaa858763bfe9ffabd270"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a167dc8f50eaa858763bfe9ffabd270">y</a> () const</td></tr>
+<tr class="memdesc:a9a167dc8f50eaa858763bfe9ffabd270"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member y  <br /></td></tr>
+<tr class="separator:a9a167dc8f50eaa858763bfe9ffabd270"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81e678b3d2e5e43222e19fd20ff5fa36" id="r_a81e678b3d2e5e43222e19fd20ff5fa36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81e678b3d2e5e43222e19fd20ff5fa36">y</a> (double _y)</td></tr>
+<tr class="memdesc:a81e678b3d2e5e43222e19fd20ff5fa36"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member y  <br /></td></tr>
+<tr class="separator:a81e678b3d2e5e43222e19fd20ff5fa36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9274cafeba93dd82e0ffbb66517ae26" id="r_ae9274cafeba93dd82e0ffbb66517ae26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9274cafeba93dd82e0ffbb66517ae26">z</a> ()</td></tr>
+<tr class="memdesc:ae9274cafeba93dd82e0ffbb66517ae26"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member z  <br /></td></tr>
+<tr class="separator:ae9274cafeba93dd82e0ffbb66517ae26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a628201d1b13a634639b4ed2e989aa6b8" id="r_a628201d1b13a634639b4ed2e989aa6b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a628201d1b13a634639b4ed2e989aa6b8">z</a> () const</td></tr>
+<tr class="memdesc:a628201d1b13a634639b4ed2e989aa6b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member z  <br /></td></tr>
+<tr class="separator:a628201d1b13a634639b4ed2e989aa6b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa57afbb43941c070c85b24f387012c7e" id="r_aa57afbb43941c070c85b24f387012c7e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa57afbb43941c070c85b24f387012c7e">z</a> (double _z)</td></tr>
+<tr class="memdesc:aa57afbb43941c070c85b24f387012c7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member z  <br /></td></tr>
+<tr class="separator:aa57afbb43941c070c85b24f387012c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36f174aa4f039887a83e47ce9f0aefc4" id="r_a36f174aa4f039887a83e47ce9f0aefc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36f174aa4f039887a83e47ce9f0aefc4">~Quaternion</a> ()</td></tr>
+<tr class="memdesc:a36f174aa4f039887a83e47ce9f0aefc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
+<tr class="separator:a36f174aa4f039887a83e47ce9f0aefc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a42b051b07b2e83df416c8ebfc76a306c" id="r_a42b051b07b2e83df416c8ebfc76a306c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42b051b07b2e83df416c8ebfc76a306c">getCdrSerializedSize</a> (const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">geometry_msgs::msg::Quaternion</a> &amp;data, size_t current_alignment=0)</td></tr>
+<tr class="memdesc:a42b051b07b2e83df416c8ebfc76a306c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the serialized size of a data depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:a42b051b07b2e83df416c8ebfc76a306c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1eafac3d7402c2b227ae109118e5b10" id="r_af1eafac3d7402c2b227ae109118e5b10"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1eafac3d7402c2b227ae109118e5b10">getKeyMaxCdrSerializedSize</a> (size_t current_alignment=0)</td></tr>
+<tr class="memdesc:af1eafac3d7402c2b227ae109118e5b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the maximum serialized size of the Key of an object depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:af1eafac3d7402c2b227ae109118e5b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28381849700631725cd7ac9c56fd6d30" id="r_a28381849700631725cd7ac9c56fd6d30"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28381849700631725cd7ac9c56fd6d30">getMaxCdrSerializedSize</a> (size_t current_alignment=0)</td></tr>
+<tr class="memdesc:a28381849700631725cd7ac9c56fd6d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the maximum serialized size of an object depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:a28381849700631725cd7ac9c56fd6d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8ec8c99cb7d5646a00d8313a6a39ac6" id="r_ad8ec8c99cb7d5646a00d8313a6a39ac6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8ec8c99cb7d5646a00d8313a6a39ac6">isKeyDefined</a> ()</td></tr>
+<tr class="memdesc:ad8ec8c99cb7d5646a00d8313a6a39ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function tells you if the Key has been defined for this type  <br /></td></tr>
+<tr class="separator:ad8ec8c99cb7d5646a00d8313a6a39ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a8090ac815030cc367d9180438fc2437b" id="r_a8090ac815030cc367d9180438fc2437b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8090ac815030cc367d9180438fc2437b">m_w</a></td></tr>
+<tr class="separator:a8090ac815030cc367d9180438fc2437b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a51fd6efad90d5958f1e7cbd086b8d6" id="r_a0a51fd6efad90d5958f1e7cbd086b8d6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a51fd6efad90d5958f1e7cbd086b8d6">m_x</a></td></tr>
+<tr class="separator:a0a51fd6efad90d5958f1e7cbd086b8d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada952913b79f1abe34b683a2c106e028" id="r_ada952913b79f1abe34b683a2c106e028"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada952913b79f1abe34b683a2c106e028">m_y</a></td></tr>
+<tr class="separator:ada952913b79f1abe34b683a2c106e028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebbdcc04062f233b875814928dc9edae" id="r_aebbdcc04062f233b875814928dc9edae"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebbdcc04062f233b875814928dc9edae">m_z</a></td></tr>
+<tr class="separator:aebbdcc04062f233b875814928dc9edae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>This class represents the structure <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html" title="This class represents the structure Quaternion defined by the user in the IDL file.">Quaternion</a> defined by the user in the IDL file. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html">Quaternion.h</a> 第 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00070">70</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a87f6a699856049e96d4607ec7e0b2093" name="a87f6a699856049e96d4607ec7e0b2093"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87f6a699856049e96d4607ec7e0b2093">&#9670;&#160;</a></span>Quaternion() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::msg::Quaternion::Quaternion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00260">m_w</a>, <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00257">m_x</a>, <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00258">m_y</a> , 以及 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00259">m_z</a>.</p>
+
+</div>
+</div>
+<a id="a36f174aa4f039887a83e47ce9f0aefc4" name="a36f174aa4f039887a83e47ce9f0aefc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f174aa4f039887a83e47ce9f0aefc4">&#9670;&#160;</a></span>~Quaternion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::msg::Quaternion::~Quaternion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default destructor. </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a34243321fa84a3a2dc11f7f039a095a0" name="a34243321fa84a3a2dc11f7f039a095a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34243321fa84a3a2dc11f7f039a095a0">&#9670;&#160;</a></span>Quaternion() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::msg::Quaternion::Quaternion </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html" title="This class represents the structure Quaternion defined by the user in the IDL file.">geometry_msgs::msg::Quaternion</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00260">m_w</a>, <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00257">m_x</a>, <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00258">m_y</a> , 以及 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00259">m_z</a>.</p>
+
+</div>
+</div>
+<a id="acfd3f02d300f73feae94e870a5e3db13" name="acfd3f02d300f73feae94e870a5e3db13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfd3f02d300f73feae94e870a5e3db13">&#9670;&#160;</a></span>Quaternion() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">geometry_msgs::msg::Quaternion::Quaternion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move constructor. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html" title="This class represents the structure Quaternion defined by the user in the IDL file.">geometry_msgs::msg::Quaternion</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00065">65</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a88df8066ada10a08aabb32ad3c19bc92" name="a88df8066ada10a08aabb32ad3c19bc92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88df8066ada10a08aabb32ad3c19bc92">&#9670;&#160;</a></span>deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void geometry_msgs::msg::Quaternion::deserialize </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function deserializes an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00138">138</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/dea/QuaternionPubSubTypes_8cpp_source.html#l00082">geometry_msgs::msg::QuaternionPubSubType::deserialize()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="a42b051b07b2e83df416c8ebfc76a306c" name="a42b051b07b2e83df416c8ebfc76a306c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42b051b07b2e83df416c8ebfc76a306c">&#9670;&#160;</a></span>getCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t geometry_msgs::msg::Quaternion::getCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">geometry_msgs::msg::Quaternion</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the serialized size of a data depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Data which is calculated its serialized size. </td></tr>
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/d05/Pose_8cpp_source.html#l00103">geometry_msgs::msg::Pose::getCdrSerializedSize()</a>, <a class="el" href="../../d0/d59/Transform_8cpp_source.html#l00103">geometry_msgs::msg::Transform::getCdrSerializedSize()</a>, <a class="el" href="../../db/d7b/Imu_8cpp_source.html#l00143">sensor_msgs::msg::Imu::getCdrSerializedSize()</a> , 以及 <a class="el" href="../../d5/dea/QuaternionPubSubTypes_8cpp_source.html#l00112">geometry_msgs::msg::QuaternionPubSubType::getSerializedSizeProvider()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="af1eafac3d7402c2b227ae109118e5b10" name="af1eafac3d7402c2b227ae109118e5b10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1eafac3d7402c2b227ae109118e5b10">&#9670;&#160;</a></span>getKeyMaxCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t geometry_msgs::msg::Quaternion::getKeyMaxCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the maximum serialized size of the Key of an object depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Maximum serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00259">259</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d7b/Imu_8cpp_source.html#l00046">geometry_msgs_msg_Quaternion_max_key_cdr_typesize</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/dea/QuaternionPubSubTypes_8cpp_source.html#l00133">geometry_msgs::msg::QuaternionPubSubType::getKey()</a> , 以及 <a class="el" href="../../d5/dea/QuaternionPubSubTypes_8cpp_source.html#l00032">geometry_msgs::msg::QuaternionPubSubType::QuaternionPubSubType()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a28381849700631725cd7ac9c56fd6d30" name="a28381849700631725cd7ac9c56fd6d30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28381849700631725cd7ac9c56fd6d30">&#9670;&#160;</a></span>getMaxCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t geometry_msgs::msg::Quaternion::getMaxCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the maximum serialized size of an object depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Maximum serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00108">108</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../db/d7b/Imu_8cpp_source.html#l00040">geometry_msgs_msg_Quaternion_max_cdr_typesize</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/dea/QuaternionPubSubTypes_8cpp_source.html#l00032">geometry_msgs::msg::QuaternionPubSubType::QuaternionPubSubType()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad8ec8c99cb7d5646a00d8313a6a39ac6" name="ad8ec8c99cb7d5646a00d8313a6a39ac6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8ec8c99cb7d5646a00d8313a6a39ac6">&#9670;&#160;</a></span>isKeyDefined()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool geometry_msgs::msg::Quaternion::isKeyDefined </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function tells you if the Key has been defined for this type </p>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00266">266</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/dea/QuaternionPubSubTypes_8cpp_source.html#l00032">geometry_msgs::msg::QuaternionPubSubType::QuaternionPubSubType()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="af8e000a52ca582258cbd7ed8f1772b83" name="af8e000a52ca582258cbd7ed8f1772b83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8e000a52ca582258cbd7ed8f1772b83">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool geometry_msgs::msg::Quaternion::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comparison operator. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html" title="This class represents the structure Quaternion defined by the user in the IDL file.">geometry_msgs::msg::Quaternion</a> object to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00102">102</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7eb13b2fa7c4e6d453e33825f94d53f8" name="a7eb13b2fa7c4e6d453e33825f94d53f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eb13b2fa7c4e6d453e33825f94d53f8">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">geometry_msgs::msg::Quaternion</a> &amp; geometry_msgs::msg::Quaternion::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy assignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html" title="This class represents the structure Quaternion defined by the user in the IDL file.">geometry_msgs::msg::Quaternion</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00260">m_w</a>, <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00257">m_x</a>, <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00258">m_y</a> , 以及 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00259">m_z</a>.</p>
+
+</div>
+</div>
+<a id="a21591ad035d947b089594e925a4af439" name="a21591ad035d947b089594e925a4af439"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21591ad035d947b089594e925a4af439">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">geometry_msgs::msg::Quaternion</a> &amp; geometry_msgs::msg::Quaternion::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move assignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html" title="This class represents the structure Quaternion defined by the user in the IDL file.">geometry_msgs::msg::Quaternion</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aaecb18ef0fe9251ab6576294d8eb53d5" name="aaecb18ef0fe9251ab6576294d8eb53d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaecb18ef0fe9251ab6576294d8eb53d5">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool geometry_msgs::msg::Quaternion::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html">Quaternion</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comparison operator. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="../../d5/de9/classgeometry__msgs_1_1msg_1_1Quaternion.html" title="This class represents the structure Quaternion defined by the user in the IDL file.">geometry_msgs::msg::Quaternion</a> object to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00260">m_w</a>, <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00257">m_x</a>, <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00258">m_y</a> , 以及 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00259">m_z</a>.</p>
+
+</div>
+</div>
+<a id="a61951653e4d5f7adebd0b5b6db203766" name="a61951653e4d5f7adebd0b5b6db203766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61951653e4d5f7adebd0b5b6db203766">&#9670;&#160;</a></span>serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void geometry_msgs::msg::Quaternion::serialize </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function serializes an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00129">129</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/dea/QuaternionPubSubTypes_8cpp_source.html#l00053">geometry_msgs::msg::QuaternionPubSubType::serialize()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="acf2905626061204b80bb6bf95f4a93dd" name="acf2905626061204b80bb6bf95f4a93dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf2905626061204b80bb6bf95f4a93dd">&#9670;&#160;</a></span>serializeKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void geometry_msgs::msg::Quaternion::serializeKey </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function serializes the key members of an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00271">271</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d5/dea/QuaternionPubSubTypes_8cpp_source.html#l00133">geometry_msgs::msg::QuaternionPubSubType::getKey()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="a92472a2bc9a0756f8a864e25c63a4c71" name="a92472a2bc9a0756f8a864e25c63a4c71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92472a2bc9a0756f8a864e25c63a4c71">&#9670;&#160;</a></span>w() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double &amp; geometry_msgs::msg::Quaternion::w </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member w </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member w </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00254">254</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9cc9031610b20f7a4af2f3e7f032b097" name="a9cc9031610b20f7a4af2f3e7f032b097"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cc9031610b20f7a4af2f3e7f032b097">&#9670;&#160;</a></span>w() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double geometry_msgs::msg::Quaternion::w </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member w </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member w </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00245">245</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab3bef983324fd264b2d5ec981a96e89b" name="ab3bef983324fd264b2d5ec981a96e89b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3bef983324fd264b2d5ec981a96e89b">&#9670;&#160;</a></span>w() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void geometry_msgs::msg::Quaternion::w </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>_w</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member w </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_w</td><td>New value for member w </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00151">carla::ros2::CarlaIMUPublisher::SetData()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="a643b9a43df6d6e14c24110cddbc915b4" name="a643b9a43df6d6e14c24110cddbc915b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a643b9a43df6d6e14c24110cddbc915b4">&#9670;&#160;</a></span>x() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double &amp; geometry_msgs::msg::Quaternion::x </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member x </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member x </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00170">170</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa9b0f0309f26effc6cbc1b20d9022095" name="aa9b0f0309f26effc6cbc1b20d9022095"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9b0f0309f26effc6cbc1b20d9022095">&#9670;&#160;</a></span>x() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double geometry_msgs::msg::Quaternion::x </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member x </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member x </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00161">161</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a23354ac2a07babb4413ab6b7da7a46c4" name="a23354ac2a07babb4413ab6b7da7a46c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23354ac2a07babb4413ab6b7da7a46c4">&#9670;&#160;</a></span>x() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void geometry_msgs::msg::Quaternion::x </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>_x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member x </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_x</td><td>New value for member x </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00151">151</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00151">carla::ros2::CarlaIMUPublisher::SetData()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0928f00453a00ec66069f56a2e859531" name="a0928f00453a00ec66069f56a2e859531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0928f00453a00ec66069f56a2e859531">&#9670;&#160;</a></span>y() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double &amp; geometry_msgs::msg::Quaternion::y </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member y </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member y </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00198">198</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9a167dc8f50eaa858763bfe9ffabd270" name="a9a167dc8f50eaa858763bfe9ffabd270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a167dc8f50eaa858763bfe9ffabd270">&#9670;&#160;</a></span>y() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double geometry_msgs::msg::Quaternion::y </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member y </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member y </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00189">189</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a81e678b3d2e5e43222e19fd20ff5fa36" name="a81e678b3d2e5e43222e19fd20ff5fa36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81e678b3d2e5e43222e19fd20ff5fa36">&#9670;&#160;</a></span>y() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void geometry_msgs::msg::Quaternion::y </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>_y</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member y </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_y</td><td>New value for member y </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00151">carla::ros2::CarlaIMUPublisher::SetData()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae9274cafeba93dd82e0ffbb66517ae26" name="ae9274cafeba93dd82e0ffbb66517ae26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9274cafeba93dd82e0ffbb66517ae26">&#9670;&#160;</a></span>z() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double &amp; geometry_msgs::msg::Quaternion::z </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member z </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member z </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00226">226</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a628201d1b13a634639b4ed2e989aa6b8" name="a628201d1b13a634639b4ed2e989aa6b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a628201d1b13a634639b4ed2e989aa6b8">&#9670;&#160;</a></span>z() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double geometry_msgs::msg::Quaternion::z </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member z </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member z </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00217">217</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa57afbb43941c070c85b24f387012c7e" name="aa57afbb43941c070c85b24f387012c7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa57afbb43941c070c85b24f387012c7e">&#9670;&#160;</a></span>z() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void geometry_msgs::msg::Quaternion::z </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>_z</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member z </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_z</td><td>New value for member z </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a> 第 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00207">207</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/d57/CarlaIMUPublisher_8cpp_source.html#l00151">carla::ros2::CarlaIMUPublisher::SetData()</a>.</p>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a8090ac815030cc367d9180438fc2437b" name="a8090ac815030cc367d9180438fc2437b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8090ac815030cc367d9180438fc2437b">&#9670;&#160;</a></span>m_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double geometry_msgs::msg::Quaternion::m_w</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html">Quaternion.h</a> 第 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00260">260</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00074">operator=()</a>, <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00096">operator==()</a>, <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00040">Quaternion()</a> , 以及 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00056">Quaternion()</a>.</p>
+
+</div>
+</div>
+<a id="a0a51fd6efad90d5958f1e7cbd086b8d6" name="a0a51fd6efad90d5958f1e7cbd086b8d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a51fd6efad90d5958f1e7cbd086b8d6">&#9670;&#160;</a></span>m_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double geometry_msgs::msg::Quaternion::m_x</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html">Quaternion.h</a> 第 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00257">257</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00074">operator=()</a>, <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00096">operator==()</a>, <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00040">Quaternion()</a> , 以及 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00056">Quaternion()</a>.</p>
+
+</div>
+</div>
+<a id="ada952913b79f1abe34b683a2c106e028" name="ada952913b79f1abe34b683a2c106e028"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada952913b79f1abe34b683a2c106e028">&#9670;&#160;</a></span>m_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double geometry_msgs::msg::Quaternion::m_y</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html">Quaternion.h</a> 第 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00258">258</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00074">operator=()</a>, <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00096">operator==()</a>, <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00040">Quaternion()</a> , 以及 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00056">Quaternion()</a>.</p>
+
+</div>
+</div>
+<a id="aebbdcc04062f233b875814928dc9edae" name="aebbdcc04062f233b875814928dc9edae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebbdcc04062f233b875814928dc9edae">&#9670;&#160;</a></span>m_z</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double geometry_msgs::msg::Quaternion::m_z</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html">Quaternion.h</a> 第 <a class="el" href="../../d1/d4a/Quaternion_8h_source.html#l00259">259</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00074">operator=()</a>, <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00096">operator==()</a>, <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00040">Quaternion()</a> , 以及 <a class="el" href="../../d4/d11/Quaternion_8cpp_source.html#l00056">Quaternion()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d1/d4a/Quaternion_8h_source.html">Quaternion.h</a></li>
+<li><a class="el" href="../../d4/d11/Quaternion_8cpp_source.html">Quaternion.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

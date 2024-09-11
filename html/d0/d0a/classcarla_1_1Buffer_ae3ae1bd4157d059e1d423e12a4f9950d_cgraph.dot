@@ -1,0 +1,12 @@
+digraph "carla::Buffer::clear"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::Buffer::clear",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="清除此缓冲区的内容，并将其大小和容量设置为零。 删除已分配的内存。"];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::Buffer::pop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d0a/classcarla_1_1Buffer.html#a4d9294fbccf1ff7d866128a0bc2ee331",tooltip="释放此缓冲区的内容，并将其大小和容量设置为零。"];
+}

@@ -1,0 +1,22 @@
+digraph "carla::MsgPack::UnPack"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="carla::MsgPack::UnPack",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::sensor::s11n\l::CollisionEventSerializer\l::DeserializeRawData",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/de4/classcarla_1_1sensor_1_1s11n_1_1CollisionEventSerializer.html#a371a9104f135008ece300eaf69f41934",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::sensor::s11n\l::GnssSerializer::Deserialize\lRawData",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d49/classcarla_1_1sensor_1_1s11n_1_1GnssSerializer.html#af954d847f754091fb560deab43dd85c4",tooltip=" "];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::sensor::data\l::GnssMeasurement::GnssMeasurement",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/ddb/classcarla_1_1sensor_1_1data_1_1GnssMeasurement.html#a6216a0e4b8b495ae05f1b946ef0a5a13",tooltip=" "];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::sensor::s11n\l::IMUSerializer::Deserialize\lRawData",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dc/da1/classcarla_1_1sensor_1_1s11n_1_1IMUSerializer.html#ad393288dca1aba7bb57c55dff16b24b5",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::sensor::s11n\l::ObstacleDetectionEventSerializer\l::DeserializeRawData",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/d82/classcarla_1_1sensor_1_1s11n_1_1ObstacleDetectionEventSerializer.html#aaf400069620524e3367aa7bdb51dc0ee",tooltip=" "];
+  Node6 -> Node7 [id="edge6_Node000006_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="carla::sensor::data\l::ObstacleDetectionEvent\l::ObstacleDetectionEvent",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d3/d28/classcarla_1_1sensor_1_1data_1_1ObstacleDetectionEvent.html#adde998de0188eb44d081865d9e2f4257",tooltip=" "];
+}

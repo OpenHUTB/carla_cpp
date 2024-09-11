@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: FTilesWorker结构体 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../df/dc1/structFTilesWorker-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">FTilesWorker结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html">CustomTerrainPhysicsComponent.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 FTilesWorker 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> FTilesWorker 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a8a0200b5be16b036abb4585fd42fb49c" id="r_a8a0200b5be16b036abb4585fd42fb49c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a0200b5be16b036abb4585fd42fb49c">FTilesWorker</a> (class UCustomTerrainPhysicsComponent *TerrainComp, FVector NewPosition, float NewRadiusX, float NewRadiusY)</td></tr>
+<tr class="separator:a8a0200b5be16b036abb4585fd42fb49c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ad06b3db2e76db352e65aa6cd4a26e6" id="r_a4ad06b3db2e76db352e65aa6cd4a26e6"><td class="memItemLeft" align="right" valign="top">virtual uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ad06b3db2e76db352e65aa6cd4a26e6">Run</a> () override</td></tr>
+<tr class="separator:a4ad06b3db2e76db352e65aa6cd4a26e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13d85f1241c8910c6259d02c00544816" id="r_a13d85f1241c8910c6259d02c00544816"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13d85f1241c8910c6259d02c00544816">~FTilesWorker</a> () override</td></tr>
+<tr class="separator:a13d85f1241c8910c6259d02c00544816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a8ed136e1ceb3c5577178e8f17c3b88db" id="r_a8ed136e1ceb3c5577178e8f17c3b88db"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ed136e1ceb3c5577178e8f17c3b88db">bShouldContinue</a> = true</td></tr>
+<tr class="separator:a8ed136e1ceb3c5577178e8f17c3b88db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a368a62d1cd2e7704176a6dac8dc25392" id="r_a368a62d1cd2e7704176a6dac8dc25392"><td class="memItemLeft" align="right" valign="top">class UCustomTerrainPhysicsComponent *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a368a62d1cd2e7704176a6dac8dc25392">CustomTerrainComp</a></td></tr>
+<tr class="separator:a368a62d1cd2e7704176a6dac8dc25392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfbca615559e121b555d05d6fec57d75" id="r_abfbca615559e121b555d05d6fec57d75"><td class="memItemLeft" align="right" valign="top">FVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfbca615559e121b555d05d6fec57d75">Position</a></td></tr>
+<tr class="separator:abfbca615559e121b555d05d6fec57d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58f2bc3669a211295675402c9c3e6aab" id="r_a58f2bc3669a211295675402c9c3e6aab"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58f2bc3669a211295675402c9c3e6aab">RadiusX</a></td></tr>
+<tr class="separator:a58f2bc3669a211295675402c9c3e6aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af49bb582708d957d3ab37de8f7caf104" id="r_af49bb582708d957d3ab37de8f7caf104"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af49bb582708d957d3ab37de8f7caf104">RadiusY</a></td></tr>
+<tr class="separator:af49bb582708d957d3ab37de8f7caf104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html">CustomTerrainPhysicsComponent.h</a> 第 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00538">538</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a8a0200b5be16b036abb4585fd42fb49c" name="a8a0200b5be16b036abb4585fd42fb49c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a0200b5be16b036abb4585fd42fb49c">&#9670;&#160;</a></span>FTilesWorker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FTilesWorker::FTilesWorker </td>
+          <td>(</td>
+          <td class="paramtype">class UCustomTerrainPhysicsComponent *</td>          <td class="paramname"><span class="paramname"><em>TerrainComp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FVector</td>          <td class="paramname"><span class="paramname"><em>NewPosition</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>NewRadiusX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>NewRadiusY</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html">CustomTerrainPhysicsComponent.cpp</a> 第 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02629">2629</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00546">CustomTerrainComp</a>, <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00547">Position</a>, <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00549">RadiusX</a> , 以及 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00550">RadiusY</a>.</p>
+
+</div>
+</div>
+<a id="a13d85f1241c8910c6259d02c00544816" name="a13d85f1241c8910c6259d02c00544816"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13d85f1241c8910c6259d02c00544816">&#9670;&#160;</a></span>~FTilesWorker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FTilesWorker::~FTilesWorker </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html">CustomTerrainPhysicsComponent.cpp</a> 第 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02637">2637</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00546">CustomTerrainComp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a4ad06b3db2e76db352e65aa6cd4a26e6" name="a4ad06b3db2e76db352e65aa6cd4a26e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad06b3db2e76db352e65aa6cd4a26e6">&#9670;&#160;</a></span>Run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32 FTilesWorker::Run </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html">CustomTerrainPhysicsComponent.cpp</a> 第 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02643">2643</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00552">bShouldContinue</a>, <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00546">CustomTerrainComp</a> , 以及 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00547">Position</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a8ed136e1ceb3c5577178e8f17c3b88db" name="a8ed136e1ceb3c5577178e8f17c3b88db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ed136e1ceb3c5577178e8f17c3b88db">&#9670;&#160;</a></span>bShouldContinue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool FTilesWorker::bShouldContinue = true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html">CustomTerrainPhysicsComponent.h</a> 第 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00552">552</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02643">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a368a62d1cd2e7704176a6dac8dc25392" name="a368a62d1cd2e7704176a6dac8dc25392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a368a62d1cd2e7704176a6dac8dc25392">&#9670;&#160;</a></span>CustomTerrainComp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">class UCustomTerrainPhysicsComponent* FTilesWorker::CustomTerrainComp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html">CustomTerrainPhysicsComponent.h</a> 第 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00546">546</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02629">FTilesWorker()</a>, <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02643">Run()</a> , 以及 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02637">~FTilesWorker()</a>.</p>
+
+</div>
+</div>
+<a id="abfbca615559e121b555d05d6fec57d75" name="abfbca615559e121b555d05d6fec57d75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbca615559e121b555d05d6fec57d75">&#9670;&#160;</a></span>Position</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FVector FTilesWorker::Position</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html">CustomTerrainPhysicsComponent.h</a> 第 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00547">547</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02629">FTilesWorker()</a> , 以及 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02643">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a58f2bc3669a211295675402c9c3e6aab" name="a58f2bc3669a211295675402c9c3e6aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58f2bc3669a211295675402c9c3e6aab">&#9670;&#160;</a></span>RadiusX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double FTilesWorker::RadiusX</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html">CustomTerrainPhysicsComponent.h</a> 第 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00549">549</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02629">FTilesWorker()</a>.</p>
+
+</div>
+</div>
+<a id="af49bb582708d957d3ab37de8f7caf104" name="af49bb582708d957d3ab37de8f7caf104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af49bb582708d957d3ab37de8f7caf104">&#9670;&#160;</a></span>RadiusY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double FTilesWorker::RadiusY</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html">CustomTerrainPhysicsComponent.h</a> 第 <a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html#l00550">550</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html#l02629">FTilesWorker()</a>.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d1/d4f/CustomTerrainPhysicsComponent_8h_source.html">CustomTerrainPhysicsComponent.h</a></li>
+<li><a class="el" href="../../d1/d59/CustomTerrainPhysicsComponent_8cpp_source.html">CustomTerrainPhysicsComponent.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

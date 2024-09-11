@@ -1,0 +1,24 @@
+digraph "carla::sensor::s11n::SensorHeaderSerializer::Header"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",label="carla::sensor::s11n\l::SensorHeaderSerializer\l::Header",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" frame\nsensor_type",fontcolor="grey" ];
+  Node2 [id="Node000002",label="uint64_t",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" timestamp",fontcolor="grey" ];
+  Node3 [id="Node000003",label="double",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [id="edge3_Node000001_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" sensor_transform",fontcolor="grey" ];
+  Node4 [id="Node000004",label="carla::geom::Transform",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$de/da4/classcarla_1_1geom_1_1Transform.html",tooltip=" "];
+  Node5 -> Node4 [id="edge4_Node000004_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" location",fontcolor="grey" ];
+  Node5 [id="Node000005",label="carla::geom::Location",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$de/d23/classcarla_1_1geom_1_1Location.html",tooltip=" "];
+  Node6 -> Node5 [id="edge5_Node000005_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::geom::Vector3D",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html",tooltip=" "];
+  Node7 -> Node6 [id="edge6_Node000006_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" x\ny\nz",fontcolor="grey" ];
+  Node7 [id="Node000007",label="float",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node4 [id="edge7_Node000004_Node000008",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" rotation",fontcolor="grey" ];
+  Node8 [id="Node000008",label="carla::geom::Rotation",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$d8/dba/classcarla_1_1geom_1_1Rotation.html",tooltip=" "];
+  Node7 -> Node8 [id="edge8_Node000008_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" pitch\nroll\nyaw",fontcolor="grey" ];
+}

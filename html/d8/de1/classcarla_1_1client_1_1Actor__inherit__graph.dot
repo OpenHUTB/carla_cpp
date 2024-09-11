@@ -1,0 +1,38 @@
+digraph "carla::client::Actor"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::client::Actor",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Represents an actor in the simulation."];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="EnableSharedFromThis\l\< Actor \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$da/d05/classEnableSharedFromThis.html",tooltip=" "];
+  Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="firebrick4",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::profiler::Lifetime\lProfiled",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$df/d3e/classcarla_1_1profiler_1_1LifetimeProfiled.html",tooltip=" "];
+  Node4 -> Node1 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::client::detail\l::ActorState",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$d2/d06/classcarla_1_1client_1_1detail_1_1ActorState.html",tooltip="Internal state of an Actor."];
+  Node5 -> Node4 [id="edge4_Node000004_Node000005",dir="back",color="firebrick4",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::MovableNonCopyable",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$d7/d55/classcarla_1_1MovableNonCopyable.html",tooltip="Inherit (privately) to suppress copy construction and assignment."];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::client::Sensor",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$da/dec/classcarla_1_1client_1_1Sensor.html",tooltip=" "];
+  Node6 -> Node7 [id="edge6_Node000006_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="carla::client::ClientSide\lSensor",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$da/d2e/classcarla_1_1client_1_1ClientSideSensor.html",tooltip=" "];
+  Node7 -> Node8 [id="edge7_Node000007_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="carla::client::LaneInvasion\lSensor",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$dc/d47/classcarla_1_1client_1_1LaneInvasionSensor.html",tooltip=" "];
+  Node6 -> Node9 [id="edge8_Node000006_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="carla::client::RssSensor",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$d7/db6/classcarla_1_1client_1_1RssSensor.html",tooltip="The RSS Sensor class implementing the carla::client::Sensor interface This class is a proxy to the Rs..."];
+  Node6 -> Node10 [id="edge9_Node000006_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="carla::client::ServerSide\lSensor",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$de/d68/classcarla_1_1client_1_1ServerSideSensor.html",tooltip=" "];
+  Node1 -> Node11 [id="edge10_Node000001_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node11 [id="Node000011",label="carla::client::TrafficSign",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$dc/d5c/classcarla_1_1client_1_1TrafficSign.html",tooltip=" "];
+  Node11 -> Node12 [id="edge11_Node000011_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="carla::client::TrafficLight",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$df/def/classcarla_1_1client_1_1TrafficLight.html",tooltip=" "];
+  Node1 -> Node13 [id="edge12_Node000001_Node000013",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node13 [id="Node000013",label="carla::client::Vehicle",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$d9/dc6/classcarla_1_1client_1_1Vehicle.html",tooltip=" "];
+  Node1 -> Node14 [id="edge13_Node000001_Node000014",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node14 [id="Node000014",label="carla::client::Walker",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$de/d2b/classcarla_1_1client_1_1Walker.html",tooltip=" "];
+  Node1 -> Node15 [id="edge14_Node000001_Node000015",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node15 [id="Node000015",label="carla::client::WalkerAIController",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$d0/d52/classcarla_1_1client_1_1WalkerAIController.html",tooltip=" "];
+}

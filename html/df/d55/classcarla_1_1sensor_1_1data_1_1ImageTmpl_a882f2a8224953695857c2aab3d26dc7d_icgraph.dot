@@ -1,0 +1,12 @@
+digraph "carla::sensor::data::ImageTmpl::GetWidth"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="carla::sensor::data\l::ImageTmpl::GetWidth",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Get image width in pixels."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::sensor::data\l::ImageTmpl::ImageTmpl",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$df/d55/classcarla_1_1sensor_1_1data_1_1ImageTmpl.html#a5bd78e5b89873dba921d28268ed6d542",tooltip=" "];
+}

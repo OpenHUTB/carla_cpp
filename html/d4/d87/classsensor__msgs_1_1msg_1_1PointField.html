@@ -1,0 +1,1215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: sensor_msgs::msg::PointField类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d7d/namespacesensor__msgs.html">sensor_msgs</a></li><li class="navelem"><a class="el" href="../../d3/d73/namespacesensor__msgs_1_1msg.html">msg</a></li><li class="navelem"><a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../de/d0b/classsensor__msgs_1_1msg_1_1PointField-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">sensor_msgs::msg::PointField类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>This class represents the structure <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html" title="This class represents the structure PointField defined by the user in the IDL file.">PointField</a> defined by the user in the IDL file.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dc/d5c/PointField_8h_source.html">PointField.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> sensor_msgs::msg::PointField 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a9034707851f0dd64d6ab8c2ef0a650ee" id="r_a9034707851f0dd64d6ab8c2ef0a650ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9034707851f0dd64d6ab8c2ef0a650ee">count</a> ()</td></tr>
+<tr class="memdesc:a9034707851f0dd64d6ab8c2ef0a650ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member count  <br /></td></tr>
+<tr class="separator:a9034707851f0dd64d6ab8c2ef0a650ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80a41c4fc23c3174867a7604c29d96d3" id="r_a80a41c4fc23c3174867a7604c29d96d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80a41c4fc23c3174867a7604c29d96d3">count</a> () const</td></tr>
+<tr class="memdesc:a80a41c4fc23c3174867a7604c29d96d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member count  <br /></td></tr>
+<tr class="separator:a80a41c4fc23c3174867a7604c29d96d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58f9595e476a77ee06ca3c2be6930217" id="r_a58f9595e476a77ee06ca3c2be6930217"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58f9595e476a77ee06ca3c2be6930217">count</a> (uint32_t _count)</td></tr>
+<tr class="memdesc:a58f9595e476a77ee06ca3c2be6930217"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member count  <br /></td></tr>
+<tr class="separator:a58f9595e476a77ee06ca3c2be6930217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab295dfe2ea39fc6809345b762130bfb6" id="r_ab295dfe2ea39fc6809345b762130bfb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint8_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab295dfe2ea39fc6809345b762130bfb6">datatype</a> ()</td></tr>
+<tr class="memdesc:ab295dfe2ea39fc6809345b762130bfb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member datatype  <br /></td></tr>
+<tr class="separator:ab295dfe2ea39fc6809345b762130bfb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad018046f9e8a79684e4cf377992381e" id="r_aad018046f9e8a79684e4cf377992381e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad018046f9e8a79684e4cf377992381e">datatype</a> () const</td></tr>
+<tr class="memdesc:aad018046f9e8a79684e4cf377992381e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member datatype  <br /></td></tr>
+<tr class="separator:aad018046f9e8a79684e4cf377992381e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad152475d217a8c03e68909923de0a688" id="r_ad152475d217a8c03e68909923de0a688"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad152475d217a8c03e68909923de0a688">datatype</a> (uint8_t _datatype)</td></tr>
+<tr class="memdesc:ad152475d217a8c03e68909923de0a688"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member datatype  <br /></td></tr>
+<tr class="separator:ad152475d217a8c03e68909923de0a688"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3241e4e3f65f4de84b97670c5bb115d0" id="r_a3241e4e3f65f4de84b97670c5bb115d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3241e4e3f65f4de84b97670c5bb115d0">deserialize</a> (eprosima::fastcdr::Cdr &amp;cdr)</td></tr>
+<tr class="memdesc:a3241e4e3f65f4de84b97670c5bb115d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function deserializes an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:a3241e4e3f65f4de84b97670c5bb115d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab407f82c8a87205db0c0e2aef0105bfb" id="r_ab407f82c8a87205db0c0e2aef0105bfb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab407f82c8a87205db0c0e2aef0105bfb">name</a> ()</td></tr>
+<tr class="memdesc:ab407f82c8a87205db0c0e2aef0105bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member name  <br /></td></tr>
+<tr class="separator:ab407f82c8a87205db0c0e2aef0105bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c5df52b2c3a6d08bfe114205cb755f3" id="r_a9c5df52b2c3a6d08bfe114205cb755f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c5df52b2c3a6d08bfe114205cb755f3">name</a> () const</td></tr>
+<tr class="memdesc:a9c5df52b2c3a6d08bfe114205cb755f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a constant reference to member name  <br /></td></tr>
+<tr class="separator:a9c5df52b2c3a6d08bfe114205cb755f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af638b4180b9e3deb8cd7cf0ec2b4ee" id="r_a9af638b4180b9e3deb8cd7cf0ec2b4ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9af638b4180b9e3deb8cd7cf0ec2b4ee">name</a> (const std::string &amp;_name)</td></tr>
+<tr class="memdesc:a9af638b4180b9e3deb8cd7cf0ec2b4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function copies the value in member name  <br /></td></tr>
+<tr class="separator:a9af638b4180b9e3deb8cd7cf0ec2b4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aece31c7c85235012991e577f009c5cc8" id="r_aece31c7c85235012991e577f009c5cc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aece31c7c85235012991e577f009c5cc8">name</a> (std::string &amp;&amp;_name)</td></tr>
+<tr class="memdesc:aece31c7c85235012991e577f009c5cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function moves the value in member name  <br /></td></tr>
+<tr class="separator:aece31c7c85235012991e577f009c5cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a683a8da99b6a5b5d679ae303b06b6457" id="r_a683a8da99b6a5b5d679ae303b06b6457"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a683a8da99b6a5b5d679ae303b06b6457">offset</a> ()</td></tr>
+<tr class="memdesc:a683a8da99b6a5b5d679ae303b06b6457"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns a reference to member offset  <br /></td></tr>
+<tr class="separator:a683a8da99b6a5b5d679ae303b06b6457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201bb87290f996cb2d99b543a748c4df" id="r_a201bb87290f996cb2d99b543a748c4df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a201bb87290f996cb2d99b543a748c4df">offset</a> () const</td></tr>
+<tr class="memdesc:a201bb87290f996cb2d99b543a748c4df"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the value of member offset  <br /></td></tr>
+<tr class="separator:a201bb87290f996cb2d99b543a748c4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a944c9dc3a111e50a4e0b6e23105ea8c6" id="r_a944c9dc3a111e50a4e0b6e23105ea8c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a944c9dc3a111e50a4e0b6e23105ea8c6">offset</a> (uint32_t _offset)</td></tr>
+<tr class="memdesc:a944c9dc3a111e50a4e0b6e23105ea8c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sets a value in member offset  <br /></td></tr>
+<tr class="separator:a944c9dc3a111e50a4e0b6e23105ea8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e318bab2721b154bf90c5507062f293" id="r_a7e318bab2721b154bf90c5507062f293"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e318bab2721b154bf90c5507062f293">operator!=</a> (const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;x) const</td></tr>
+<tr class="memdesc:a7e318bab2721b154bf90c5507062f293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
+<tr class="separator:a7e318bab2721b154bf90c5507062f293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59bb0b22a051590311ee80aa1007f7ee" id="r_a59bb0b22a051590311ee80aa1007f7ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59bb0b22a051590311ee80aa1007f7ee">operator=</a> (const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;x)</td></tr>
+<tr class="memdesc:a59bb0b22a051590311ee80aa1007f7ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy assignment.  <br /></td></tr>
+<tr class="separator:a59bb0b22a051590311ee80aa1007f7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af303ae1f56ebca268e7085dc39e68244" id="r_af303ae1f56ebca268e7085dc39e68244"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af303ae1f56ebca268e7085dc39e68244">operator=</a> (<a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;&amp;x) noexcept</td></tr>
+<tr class="memdesc:af303ae1f56ebca268e7085dc39e68244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move assignment.  <br /></td></tr>
+<tr class="separator:af303ae1f56ebca268e7085dc39e68244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a960c64f70a5a27b6a5bd46718bc063d0" id="r_a960c64f70a5a27b6a5bd46718bc063d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a960c64f70a5a27b6a5bd46718bc063d0">operator==</a> (const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;x) const</td></tr>
+<tr class="memdesc:a960c64f70a5a27b6a5bd46718bc063d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comparison operator.  <br /></td></tr>
+<tr class="separator:a960c64f70a5a27b6a5bd46718bc063d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81d3ed1143c8bc611a65dd772f51e54b" id="r_a81d3ed1143c8bc611a65dd772f51e54b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81d3ed1143c8bc611a65dd772f51e54b">PointField</a> ()</td></tr>
+<tr class="memdesc:a81d3ed1143c8bc611a65dd772f51e54b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="separator:a81d3ed1143c8bc611a65dd772f51e54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d4ac75dcddabf7cf16867901683ee2c" id="r_a4d4ac75dcddabf7cf16867901683ee2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d4ac75dcddabf7cf16867901683ee2c">PointField</a> (const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;x)</td></tr>
+<tr class="memdesc:a4d4ac75dcddabf7cf16867901683ee2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <br /></td></tr>
+<tr class="separator:a4d4ac75dcddabf7cf16867901683ee2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b57df06be0ccfd035c8e6d4187f7ad4" id="r_a9b57df06be0ccfd035c8e6d4187f7ad4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b57df06be0ccfd035c8e6d4187f7ad4">PointField</a> (<a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;&amp;x) noexcept</td></tr>
+<tr class="memdesc:a9b57df06be0ccfd035c8e6d4187f7ad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move constructor.  <br /></td></tr>
+<tr class="separator:a9b57df06be0ccfd035c8e6d4187f7ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add5f99e158fa338c66e3a6b2fdca6b8d" id="r_add5f99e158fa338c66e3a6b2fdca6b8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add5f99e158fa338c66e3a6b2fdca6b8d">serialize</a> (eprosima::fastcdr::Cdr &amp;cdr) const</td></tr>
+<tr class="memdesc:add5f99e158fa338c66e3a6b2fdca6b8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function serializes an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:add5f99e158fa338c66e3a6b2fdca6b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcc708b1793e42cd65ff5b48735c8a6e" id="r_afcc708b1793e42cd65ff5b48735c8a6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcc708b1793e42cd65ff5b48735c8a6e">serializeKey</a> (eprosima::fastcdr::Cdr &amp;cdr) const</td></tr>
+<tr class="memdesc:afcc708b1793e42cd65ff5b48735c8a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function serializes the key members of an object using CDR serialization.  <br /></td></tr>
+<tr class="separator:afcc708b1793e42cd65ff5b48735c8a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae07f4d3db57827706cda5f34753dc88" id="r_aae07f4d3db57827706cda5f34753dc88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae07f4d3db57827706cda5f34753dc88">~PointField</a> ()</td></tr>
+<tr class="memdesc:aae07f4d3db57827706cda5f34753dc88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor.  <br /></td></tr>
+<tr class="separator:aae07f4d3db57827706cda5f34753dc88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a8dcd851ee5bc79a9d73b779f86794051" id="r_a8dcd851ee5bc79a9d73b779f86794051"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dcd851ee5bc79a9d73b779f86794051">getCdrSerializedSize</a> (const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">sensor_msgs::msg::PointField</a> &amp;data, size_t current_alignment=0)</td></tr>
+<tr class="memdesc:a8dcd851ee5bc79a9d73b779f86794051"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the serialized size of a data depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:a8dcd851ee5bc79a9d73b779f86794051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62325be0ca3a012b4720f01cfe331b55" id="r_a62325be0ca3a012b4720f01cfe331b55"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62325be0ca3a012b4720f01cfe331b55">getKeyMaxCdrSerializedSize</a> (size_t current_alignment=0)</td></tr>
+<tr class="memdesc:a62325be0ca3a012b4720f01cfe331b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the maximum serialized size of the Key of an object depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:a62325be0ca3a012b4720f01cfe331b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a82eb51ea6be52c0f3e1e13054b773e" id="r_a8a82eb51ea6be52c0f3e1e13054b773e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a82eb51ea6be52c0f3e1e13054b773e">getMaxCdrSerializedSize</a> (size_t current_alignment=0)</td></tr>
+<tr class="memdesc:a8a82eb51ea6be52c0f3e1e13054b773e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function returns the maximum serialized size of an object depending on the buffer alignment.  <br /></td></tr>
+<tr class="separator:a8a82eb51ea6be52c0f3e1e13054b773e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ea573e5a46091cd4d87118953ec03b2" id="r_a2ea573e5a46091cd4d87118953ec03b2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d15/CameraInfo_8h.html#abd19d82e50737e50241fe1723b1c6066">eProsima_user_DllExport</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ea573e5a46091cd4d87118953ec03b2">isKeyDefined</a> ()</td></tr>
+<tr class="memdesc:a2ea573e5a46091cd4d87118953ec03b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function tells you if the Key has been defined for this type  <br /></td></tr>
+<tr class="separator:a2ea573e5a46091cd4d87118953ec03b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a1d9b5d423e067b960c979a652a8e2f38" id="r_a1d9b5d423e067b960c979a652a8e2f38"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d9b5d423e067b960c979a652a8e2f38">m_count</a></td></tr>
+<tr class="separator:a1d9b5d423e067b960c979a652a8e2f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fce2646331ad993cbbb4a45a7f9e7a9" id="r_a4fce2646331ad993cbbb4a45a7f9e7a9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fce2646331ad993cbbb4a45a7f9e7a9">m_datatype</a></td></tr>
+<tr class="separator:a4fce2646331ad993cbbb4a45a7f9e7a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad17c88ee4c64c2c03888574ece7aeb6f" id="r_ad17c88ee4c64c2c03888574ece7aeb6f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad17c88ee4c64c2c03888574ece7aeb6f">m_name</a></td></tr>
+<tr class="separator:ad17c88ee4c64c2c03888574ece7aeb6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea71aac3a3ade07a10bc91dc38334f90" id="r_aea71aac3a3ade07a10bc91dc38334f90"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea71aac3a3ade07a10bc91dc38334f90">m_offset</a></td></tr>
+<tr class="separator:aea71aac3a3ade07a10bc91dc38334f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>This class represents the structure <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html" title="This class represents the structure PointField defined by the user in the IDL file.">PointField</a> defined by the user in the IDL file. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d5c/PointField_8h_source.html">PointField.h</a> 第 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00079">79</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a81d3ed1143c8bc611a65dd772f51e54b" name="a81d3ed1143c8bc611a65dd772f51e54b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81d3ed1143c8bc611a65dd772f51e54b">&#9670;&#160;</a></span>PointField() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sensor_msgs::msg::PointField::PointField </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00275">m_count</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00274">m_datatype</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00272">m_name</a> , 以及 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00273">m_offset</a>.</p>
+
+</div>
+</div>
+<a id="aae07f4d3db57827706cda5f34753dc88" name="aae07f4d3db57827706cda5f34753dc88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae07f4d3db57827706cda5f34753dc88">&#9670;&#160;</a></span>~PointField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sensor_msgs::msg::PointField::~PointField </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default destructor. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4d4ac75dcddabf7cf16867901683ee2c" name="a4d4ac75dcddabf7cf16867901683ee2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d4ac75dcddabf7cf16867901683ee2c">&#9670;&#160;</a></span>PointField() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sensor_msgs::msg::PointField::PointField </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html" title="This class represents the structure PointField defined by the user in the IDL file.">sensor_msgs::msg::PointField</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00056">56</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00275">m_count</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00274">m_datatype</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00272">m_name</a> , 以及 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00273">m_offset</a>.</p>
+
+</div>
+</div>
+<a id="a9b57df06be0ccfd035c8e6d4187f7ad4" name="a9b57df06be0ccfd035c8e6d4187f7ad4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b57df06be0ccfd035c8e6d4187f7ad4">&#9670;&#160;</a></span>PointField() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sensor_msgs::msg::PointField::PointField </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move constructor. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html" title="This class represents the structure PointField defined by the user in the IDL file.">sensor_msgs::msg::PointField</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00065">65</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a9034707851f0dd64d6ab8c2ef0a650ee" name="a9034707851f0dd64d6ab8c2ef0a650ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9034707851f0dd64d6ab8c2ef0a650ee">&#9670;&#160;</a></span>count() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t &amp; sensor_msgs::msg::PointField::count </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member count </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member count </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00263">263</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a80a41c4fc23c3174867a7604c29d96d3" name="a80a41c4fc23c3174867a7604c29d96d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80a41c4fc23c3174867a7604c29d96d3">&#9670;&#160;</a></span>count() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::PointField::count </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member count </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member count </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00254">254</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a58f9595e476a77ee06ca3c2be6930217" name="a58f9595e476a77ee06ca3c2be6930217"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58f9595e476a77ee06ca3c2be6930217">&#9670;&#160;</a></span>count() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::PointField::count </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>_count</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member count </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_count</td><td>New value for member count </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00244">244</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaLidarPublisher::SetData()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00177">carla::ros2::CarlaRadarPublisher::SetData()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaSemanticLidarPublisher::SetData()</a> , 以及 <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00471">carla::ros2::CarlaDVSCameraPublisher::SetPointCloudData()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab295dfe2ea39fc6809345b762130bfb6" name="ab295dfe2ea39fc6809345b762130bfb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab295dfe2ea39fc6809345b762130bfb6">&#9670;&#160;</a></span>datatype() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t &amp; sensor_msgs::msg::PointField::datatype </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member datatype </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member datatype </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aad018046f9e8a79684e4cf377992381e" name="aad018046f9e8a79684e4cf377992381e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad018046f9e8a79684e4cf377992381e">&#9670;&#160;</a></span>datatype() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sensor_msgs::msg::PointField::datatype </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member datatype </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member datatype </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00226">226</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad152475d217a8c03e68909923de0a688" name="ad152475d217a8c03e68909923de0a688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad152475d217a8c03e68909923de0a688">&#9670;&#160;</a></span>datatype() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::PointField::datatype </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>_datatype</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member datatype </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_datatype</td><td>New value for member datatype </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00216">216</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaLidarPublisher::SetData()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00177">carla::ros2::CarlaRadarPublisher::SetData()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaSemanticLidarPublisher::SetData()</a> , 以及 <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00471">carla::ros2::CarlaDVSCameraPublisher::SetPointCloudData()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a3241e4e3f65f4de84b97670c5bb115d0" name="a3241e4e3f65f4de84b97670c5bb115d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3241e4e3f65f4de84b97670c5bb115d0">&#9670;&#160;</a></span>deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::PointField::deserialize </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function deserializes an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00137">137</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d9d/PointFieldPubSubTypes_8cpp_source.html#l00082">sensor_msgs::msg::PointFieldPubSubType::deserialize()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8dcd851ee5bc79a9d73b779f86794051" name="a8dcd851ee5bc79a9d73b779f86794051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dcd851ee5bc79a9d73b779f86794051">&#9670;&#160;</a></span>getCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t sensor_msgs::msg::PointField::getCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">sensor_msgs::msg::PointField</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the serialized size of a data depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Data which is calculated its serialized size. </td></tr>
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00150">name()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d7/d7d/PointCloud2_8cpp_source.html#l00151">sensor_msgs::msg::PointCloud2::getCdrSerializedSize()</a> , 以及 <a class="el" href="../../d1/d9d/PointFieldPubSubTypes_8cpp_source.html#l00112">sensor_msgs::msg::PointFieldPubSubType::getSerializedSizeProvider()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a62325be0ca3a012b4720f01cfe331b55" name="a62325be0ca3a012b4720f01cfe331b55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62325be0ca3a012b4720f01cfe331b55">&#9670;&#160;</a></span>getKeyMaxCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t sensor_msgs::msg::PointField::getKeyMaxCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the maximum serialized size of the Key of an object depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Maximum serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00268">268</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/d7d/PointCloud2_8cpp_source.html#l00041">sensor_msgs_msg_PointField_max_key_cdr_typesize</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d9d/PointFieldPubSubTypes_8cpp_source.html#l00133">sensor_msgs::msg::PointFieldPubSubType::getKey()</a> , 以及 <a class="el" href="../../d1/d9d/PointFieldPubSubTypes_8cpp_source.html#l00032">sensor_msgs::msg::PointFieldPubSubType::PointFieldPubSubType()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8a82eb51ea6be52c0f3e1e13054b773e" name="a8a82eb51ea6be52c0f3e1e13054b773e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a82eb51ea6be52c0f3e1e13054b773e">&#9670;&#160;</a></span>getMaxCdrSerializedSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t sensor_msgs::msg::PointField::getMaxCdrSerializedSize </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>current_alignment</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function returns the maximum serialized size of an object depending on the buffer alignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_alignment</td><td>Buffer alignment. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>Maximum serialized size. </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00108">108</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d7/d7d/PointCloud2_8cpp_source.html#l00037">sensor_msgs_msg_PointField_max_cdr_typesize</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d9d/PointFieldPubSubTypes_8cpp_source.html#l00032">sensor_msgs::msg::PointFieldPubSubType::PointFieldPubSubType()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2ea573e5a46091cd4d87118953ec03b2" name="a2ea573e5a46091cd4d87118953ec03b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ea573e5a46091cd4d87118953ec03b2">&#9670;&#160;</a></span>isKeyDefined()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sensor_msgs::msg::PointField::isKeyDefined </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function tells you if the Key has been defined for this type </p>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00275">275</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d9d/PointFieldPubSubTypes_8cpp_source.html#l00032">sensor_msgs::msg::PointFieldPubSubType::PointFieldPubSubType()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab407f82c8a87205db0c0e2aef0105bfb" name="ab407f82c8a87205db0c0e2aef0105bfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab407f82c8a87205db0c0e2aef0105bfb">&#9670;&#160;</a></span>name() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string &amp; sensor_msgs::msg::PointField::name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member name </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member name </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9c5df52b2c3a6d08bfe114205cb755f3" name="a9c5df52b2c3a6d08bfe114205cb755f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c5df52b2c3a6d08bfe114205cb755f3">&#9670;&#160;</a></span>name() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string &amp; sensor_msgs::msg::PointField::name </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a constant reference to member name </p>
+<dl class="section return"><dt>返回</dt><dd>Constant reference to member name </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00170">170</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9af638b4180b9e3deb8cd7cf0ec2b4ee" name="a9af638b4180b9e3deb8cd7cf0ec2b4ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af638b4180b9e3deb8cd7cf0ec2b4ee">&#9670;&#160;</a></span>name() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::PointField::name </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>_name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function copies the value in member name </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_name</td><td>New value to be copied in member name </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00150">150</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00115">getCdrSerializedSize()</a>, <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaLidarPublisher::SetData()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00177">carla::ros2::CarlaRadarPublisher::SetData()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaSemanticLidarPublisher::SetData()</a> , 以及 <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00471">carla::ros2::CarlaDVSCameraPublisher::SetPointCloudData()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="aece31c7c85235012991e577f009c5cc8" name="aece31c7c85235012991e577f009c5cc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aece31c7c85235012991e577f009c5cc8">&#9670;&#160;</a></span>name() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::PointField::name </td>
+          <td>(</td>
+          <td class="paramtype">std::string &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>_name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function moves the value in member name </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_name</td><td>New value to be moved in member name </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00160">160</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a683a8da99b6a5b5d679ae303b06b6457" name="a683a8da99b6a5b5d679ae303b06b6457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a683a8da99b6a5b5d679ae303b06b6457">&#9670;&#160;</a></span>offset() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t &amp; sensor_msgs::msg::PointField::offset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns a reference to member offset </p>
+<dl class="section return"><dt>返回</dt><dd>Reference to member offset </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00207">207</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a201bb87290f996cb2d99b543a748c4df" name="a201bb87290f996cb2d99b543a748c4df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201bb87290f996cb2d99b543a748c4df">&#9670;&#160;</a></span>offset() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::PointField::offset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function returns the value of member offset </p>
+<dl class="section return"><dt>返回</dt><dd>Value of member offset </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00198">198</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a944c9dc3a111e50a4e0b6e23105ea8c6" name="a944c9dc3a111e50a4e0b6e23105ea8c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a944c9dc3a111e50a4e0b6e23105ea8c6">&#9670;&#160;</a></span>offset() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::PointField::offset </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>_offset</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function sets a value in member offset </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_offset</td><td>New value for member offset </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00188">188</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/dd0/CarlaLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaLidarPublisher::SetData()</a>, <a class="el" href="../../df/db7/CarlaRadarPublisher_8cpp_source.html#l00177">carla::ros2::CarlaRadarPublisher::SetData()</a>, <a class="el" href="../../d0/de7/CarlaSemanticLidarPublisher_8cpp_source.html#l00165">carla::ros2::CarlaSemanticLidarPublisher::SetData()</a> , 以及 <a class="el" href="../../d5/dc5/CarlaDVSCameraPublisher_8cpp_source.html#l00471">carla::ros2::CarlaDVSCameraPublisher::SetPointCloudData()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7e318bab2721b154bf90c5507062f293" name="a7e318bab2721b154bf90c5507062f293"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e318bab2721b154bf90c5507062f293">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sensor_msgs::msg::PointField::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comparison operator. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html" title="This class represents the structure PointField defined by the user in the IDL file.">sensor_msgs::msg::PointField</a> object to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00102">102</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a59bb0b22a051590311ee80aa1007f7ee" name="a59bb0b22a051590311ee80aa1007f7ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59bb0b22a051590311ee80aa1007f7ee">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">sensor_msgs::msg::PointField</a> &amp; sensor_msgs::msg::PointField::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy assignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html" title="This class represents the structure PointField defined by the user in the IDL file.">sensor_msgs::msg::PointField</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00275">m_count</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00274">m_datatype</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00272">m_name</a> , 以及 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00273">m_offset</a>.</p>
+
+</div>
+</div>
+<a id="af303ae1f56ebca268e7085dc39e68244" name="af303ae1f56ebca268e7085dc39e68244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af303ae1f56ebca268e7085dc39e68244">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">sensor_msgs::msg::PointField</a> &amp; sensor_msgs::msg::PointField::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Move assignment. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Reference to the object <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html" title="This class represents the structure PointField defined by the user in the IDL file.">sensor_msgs::msg::PointField</a> that will be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a960c64f70a5a27b6a5bd46718bc063d0" name="a960c64f70a5a27b6a5bd46718bc063d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a960c64f70a5a27b6a5bd46718bc063d0">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sensor_msgs::msg::PointField::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html">PointField</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Comparison operator. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td><a class="el" href="../../d4/d87/classsensor__msgs_1_1msg_1_1PointField.html" title="This class represents the structure PointField defined by the user in the IDL file.">sensor_msgs::msg::PointField</a> object to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00096">96</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00275">m_count</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00274">m_datatype</a>, <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00272">m_name</a> , 以及 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00273">m_offset</a>.</p>
+
+</div>
+</div>
+<a id="add5f99e158fa338c66e3a6b2fdca6b8d" name="add5f99e158fa338c66e3a6b2fdca6b8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add5f99e158fa338c66e3a6b2fdca6b8d">&#9670;&#160;</a></span>serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::PointField::serialize </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function serializes an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00128">128</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d9d/PointFieldPubSubTypes_8cpp_source.html#l00053">sensor_msgs::msg::PointFieldPubSubType::serialize()</a>.</p>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<a id="afcc708b1793e42cd65ff5b48735c8a6e" name="afcc708b1793e42cd65ff5b48735c8a6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcc708b1793e42cd65ff5b48735c8a6e">&#9670;&#160;</a></span>serializeKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sensor_msgs::msg::PointField::serializeKey </td>
+          <td>(</td>
+          <td class="paramtype">eprosima::fastcdr::Cdr &amp;</td>          <td class="paramname"><span class="paramname"><em>cdr</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function serializes the key members of an object using CDR serialization. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cdr</td><td>CDR serialization object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a> 第 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00280">280</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d9d/PointFieldPubSubTypes_8cpp_source.html#l00133">sensor_msgs::msg::PointFieldPubSubType::getKey()</a>.</p>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a1d9b5d423e067b960c979a652a8e2f38" name="a1d9b5d423e067b960c979a652a8e2f38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d9b5d423e067b960c979a652a8e2f38">&#9670;&#160;</a></span>m_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::PointField::m_count</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d5c/PointField_8h_source.html">PointField.h</a> 第 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00275">275</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00074">operator=()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00096">operator==()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00040">PointField()</a> , 以及 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00056">PointField()</a>.</p>
+
+</div>
+</div>
+<a id="a4fce2646331ad993cbbb4a45a7f9e7a9" name="a4fce2646331ad993cbbb4a45a7f9e7a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fce2646331ad993cbbb4a45a7f9e7a9">&#9670;&#160;</a></span>m_datatype</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sensor_msgs::msg::PointField::m_datatype</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d5c/PointField_8h_source.html">PointField.h</a> 第 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00274">274</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00074">operator=()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00096">operator==()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00040">PointField()</a> , 以及 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00056">PointField()</a>.</p>
+
+</div>
+</div>
+<a id="ad17c88ee4c64c2c03888574ece7aeb6f" name="ad17c88ee4c64c2c03888574ece7aeb6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad17c88ee4c64c2c03888574ece7aeb6f">&#9670;&#160;</a></span>m_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string sensor_msgs::msg::PointField::m_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d5c/PointField_8h_source.html">PointField.h</a> 第 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00272">272</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00074">operator=()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00096">operator==()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00040">PointField()</a> , 以及 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00056">PointField()</a>.</p>
+
+</div>
+</div>
+<a id="aea71aac3a3ade07a10bc91dc38334f90" name="aea71aac3a3ade07a10bc91dc38334f90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea71aac3a3ade07a10bc91dc38334f90">&#9670;&#160;</a></span>m_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_msgs::msg::PointField::m_offset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d5c/PointField_8h_source.html">PointField.h</a> 第 <a class="el" href="../../dc/d5c/PointField_8h_source.html#l00273">273</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00074">operator=()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00096">operator==()</a>, <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00040">PointField()</a> , 以及 <a class="el" href="../../dd/d77/PointField_8cpp_source.html#l00056">PointField()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../dc/d5c/PointField_8h_source.html">PointField.h</a></li>
+<li><a class="el" href="../../dd/d77/PointField_8cpp_source.html">PointField.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

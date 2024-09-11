@@ -1,0 +1,22 @@
+digraph "carla::sensor::s11n::EpisodeStateSerializer::DeserializeHeader"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="carla::sensor::s11n\l::EpisodeStateSerializer\l::DeserializeHeader",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::sensor::data\l::RawEpisodeState::GetHeader",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a41c627f3fa5914603df00ae7c2acb82e",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::sensor::data\l::RawEpisodeState::GetDelta\lSeconds",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#ab323af3d6eae58aaeceb6c38eefa88ce",tooltip="Simulated seconds elapsed since previous frame."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::sensor::data\l::RawEpisodeState::GetEpisodeId",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#aa112fa12e8546738a1bfce4ba0f9b92b",tooltip="Unique id of the episode at which this data was generated."];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::sensor::data\l::RawEpisodeState::GetMapOrigin",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a70898ae33e41e3511ae83d21cff6b13d",tooltip=" "];
+  Node2 -> Node6 [id="edge5_Node000002_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::sensor::data\l::RawEpisodeState::GetPlatform\lTimeStamp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a6841c35aca82054f07da4b154b720758",tooltip="Time-stamp of the frame at which this measurement was taken, in seconds as given by the OS."];
+  Node2 -> Node7 [id="edge6_Node000002_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="carla::sensor::data\l::RawEpisodeState::GetSimulation\lState",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/d68/classcarla_1_1sensor_1_1data_1_1RawEpisodeState.html#a11a23930d261981a4ef7bf407058e90a",tooltip="Simulation state flags"];
+}

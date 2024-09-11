@@ -1,0 +1,24 @@
+digraph "carla::multigpu::Router::Write"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::multigpu::Router\l::Write",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::BufferView::\lCreateFrom",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/db8/classcarla_1_1BufferView.html#a4eefa5dd2893554424512814e6de0c9e",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::BufferView::\lbuffer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/db8/classcarla_1_1BufferView.html#ab2dfa752fa10fcc6693b27f7bd663479",tooltip="Make a boost::asio::buffer from this buffer."];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::BufferView::\lcbuffer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/db8/classcarla_1_1BufferView.html#a7f789d855f7596a0874eb91fd913c5a7",tooltip="Make a boost::asio::buffer from this buffer."];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::Buffer::data",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d0a/classcarla_1_1Buffer.html#a10680a1dd5dd8718b8e871b631022cdf",tooltip="直接访问分配的内存，如果没有分配内存则返回 nullptr。"];
+  Node4 -> Node6 [id="edge5_Node000004_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::Buffer::size",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d0/d0a/classcarla_1_1Buffer.html#a3edea2e44a05d9806312e5f9e52315e4",tooltip=" "];
+  Node2 -> Node7 [id="edge6_Node000002_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="carla::BufferView::\lBufferView",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/db8/classcarla_1_1BufferView.html#a6b5d5cde7bc06e5296c0a1312721411a",tooltip=" "];
+  Node1 -> Node8 [id="edge7_Node000001_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="carla::multigpu::Primary\l::MakeMessage",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$da/dda/classcarla_1_1multigpu_1_1Primary.html#a9f8beae89652613178df402894c09cb8",tooltip=" "];
+}

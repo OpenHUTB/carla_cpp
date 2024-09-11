@@ -1,0 +1,16 @@
+digraph "sensor_msgs::msg::CameraInfoPubSubType::CameraInfoPubSubType"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="sensor_msgs::msg::Camera\lInfoPubSubType::CameraInfoPub\lSubType",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="sensor_msgs::msg::Camera\lInfo::getKeyMaxCdrSerializedSize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#ab7a1131404855d541c3966710cc54c47",tooltip="This function returns the maximum serialized size of the Key of an object depending on the buffer ali..."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="sensor_msgs::msg::Camera\lInfo::getMaxCdrSerializedSize",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#ac0040d69763a04124bcc0a986ca47ad8",tooltip="This function returns the maximum serialized size of an object depending on the buffer alignment."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="sensor_msgs::msg::Camera\lInfo::isKeyDefined",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d7/d52/classsensor__msgs_1_1msg_1_1CameraInfo.html#a171245a8d286eb362c640327946238e2",tooltip="This function tells you if the Key has been defined for this type"];
+}

@@ -1,0 +1,518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaServer.cpp 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_4f477b896248adf10c6909a9eb9fb7d3.html">Server</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">CarlaServer.cpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d7/d7d/Carla_8h_source.html">Carla.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d0/d35/CarlaServer_8h_source.html">Carla/Server/CarlaServer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../dd/d3e/CarlaServerResponse_8h_source.html">Carla/Server/CarlaServerResponse.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/da0/TrafficLightGroup_8h_source.html">Carla/Traffic/TrafficLightGroup.h</a>&quot;</code><br />
+<code>#include &quot;EngineUtils.h&quot;</code><br />
+<code>#include &quot;Components/SkeletalMeshComponent.h&quot;</code><br />
+<code>#include &quot;Components/SkinnedMeshComponent.h&quot;</code><br />
+<code>#include &quot;Components/SceneComponent.h&quot;</code><br />
+<code>#include &quot;Engine/SkeletalMesh.h&quot;</code><br />
+<code>#include &quot;Engine/SkeletalMeshSocket.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d1/d9b/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2OpenDrive_2OpenDrive_8h_source.html">Carla/OpenDrive/OpenDrive.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/d17/DebugShapeDrawer_8h_source.html">Carla/Util/DebugShapeDrawer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d9/d30/NavigationMesh_8h_source.html">Carla/Util/NavigationMesh.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d0/d95/RayTracer_8h_source.html">Carla/Util/RayTracer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d3/d00/CarlaWheeledVehicle_8h_source.html">Carla/Vehicle/CarlaWheeledVehicle.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../df/d4b/CustomV2XSensor_8h_source.html">Carla/Sensor/CustomV2XSensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../da/d52/WalkerController_8h_source.html">Carla/Walker/WalkerController.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/d5b/WalkerBase_8h_source.html">Carla/Walker/WalkerBase.h</a>&quot;</code><br />
+<code>#include &quot;GameFramework/CharacterMovementComponent.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d7/d06/Tagger_8h_source.html">Carla/Game/Tagger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d9/dc8/CarlaStatics_8h_source.html">Carla/Game/CarlaStatics.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d9/d84/CarSimManagerComponent_8h_source.html">Carla/Vehicle/MovementComponents/CarSimManagerComponent.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d8/d93/ChronoMovementComponent_8h_source.html">Carla/Vehicle/MovementComponents/ChronoMovementComponent.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d1/d0d/CarlaLightSubsystem_8h_source.html">Carla/Lights/CarlaLightSubsystem.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../de/d7d/ActorData_8h_source.html">Carla/Actor/ActorData.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="../../d8/dca/BoundingBoxCalculator_8h_source.html">Carla/Util/BoundingBoxCalculator.h</a>&quot;</code><br />
+<code>#include &quot;Misc/FileHelper.h&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/d02/disable-ue4-macros_8h_source.html">compiler/disable-ue4-macros.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../da/d70/Functional_8h_source.html">carla/Functional.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../da/db7/router_8h_source.html">carla/multigpu/router.h</a>&gt;</code><br />
+<code>#include &lt;carla/Version.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d0/d10/LibCarla_2source_2carla_2rpc_2AckermannControllerSettings_8h_source.html">carla/rpc/AckermannControllerSettings.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/d73/rpc_2Actor_8h_source.html">carla/rpc/Actor.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/dd9/LibCarla_2source_2carla_2rpc_2ActorDefinition_8h_source.html">carla/rpc/ActorDefinition.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/db9/LibCarla_2source_2carla_2rpc_2ActorDescription_8h_source.html">carla/rpc/ActorDescription.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d4/db9/BoneTransformDataIn_8h_source.html">carla/rpc/BoneTransformDataIn.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d1/d55/Command_8h_source.html">carla/rpc/Command.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/dc1/CommandResponse_8h_source.html">carla/rpc/CommandResponse.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/dd3/DebugShape_8h_source.html">carla/rpc/DebugShape.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../de/d10/LibCarla_2source_2carla_2rpc_2EnvironmentObject_8h_source.html">carla/rpc/EnvironmentObject.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/d1c/EpisodeInfo_8h_source.html">carla/rpc/EpisodeInfo.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../db/df7/LibCarla_2source_2carla_2rpc_2EpisodeSettings_8h_source.html">carla/rpc/EpisodeSettings.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/dd4/LabelledPoint_8h_source.html">carla/rpc/LabelledPoint.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d4/daf/rpc_2LightState_8h_source.html">carla/rpc/LightState.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/d5a/MapInfo_8h_source.html">carla/rpc/MapInfo.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d0/dc2/MapLayer_8h_source.html">carla/rpc/MapLayer.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../df/d3f/Response_8h_source.html">carla/rpc/Response.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d0/dc8/rpc_2Server_8h_source.html">carla/rpc/Server.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d3/d80/rpc_2String_8h_source.html">carla/rpc/String.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../df/d36/rpc_2Transform_8h_source.html">carla/rpc/Transform.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../df/d08/rpc_2Vector2D_8h_source.html">carla/rpc/Vector2D.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/d37/rpc_2Vector3D_8h_source.html">carla/rpc/Vector3D.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../da/dc3/VehicleDoor_8h_source.html">carla/rpc/VehicleDoor.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dc/def/LibCarla_2source_2carla_2rpc_2VehicleAckermannControl_8h_source.html">carla/rpc/VehicleAckermannControl.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/d28/LibCarla_2source_2carla_2rpc_2VehicleControl_8h_source.html">carla/rpc/VehicleControl.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d1/d8e/LibCarla_2source_2carla_2rpc_2VehiclePhysicsControl_8h_source.html">carla/rpc/VehiclePhysicsControl.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/d64/LibCarla_2source_2carla_2rpc_2VehicleLightState_8h_source.html">carla/rpc/VehicleLightState.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/d09/VehicleLightStateList_8h_source.html">carla/rpc/VehicleLightStateList.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d3/d90/LibCarla_2source_2carla_2rpc_2VehicleTelemetryData_8h_source.html">carla/rpc/VehicleTelemetryData.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/db7/LibCarla_2source_2carla_2rpc_2WalkerBoneControlIn_8h_source.html">carla/rpc/WalkerBoneControlIn.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d8/db4/LibCarla_2source_2carla_2rpc_2WalkerBoneControlOut_8h_source.html">carla/rpc/WalkerBoneControlOut.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../dd/db3/LibCarla_2source_2carla_2rpc_2WalkerControl_8h_source.html">carla/rpc/WalkerControl.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/d02/VehicleWheels_8h_source.html">carla/rpc/VehicleWheels.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../da/d0c/LibCarla_2source_2carla_2rpc_2WeatherParameters_8h_source.html">carla/rpc/WeatherParameters.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d7/df8/Types_8h_source.html">carla/streaming/detail/Types.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/dbf/Texture_8h_source.html">carla/rpc/Texture.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d7/d10/MaterialParameter_8h_source.html">carla/rpc/MaterialParameter.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/da2/enable-ue4-macros_8h_source.html">compiler/enable-ue4-macros.h</a>&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;atomic&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
+<code>#include &lt;tuple&gt;</code><br />
+</div>
+<p><a href="../../db/d6c/CarlaServer_8cpp_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d97/classFCarlaServer_1_1FPimpl.html">FCarlaServer::FPimpl</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d07/classServerBinder.html">ServerBinder</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ad4c3c060ff5dc787c07a5de33a70ca4a" id="r_ad4c3c060ff5dc787c07a5de33a70ca4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4c3c060ff5dc787c07a5de33a70ca4a">BIND_ASYNC</a>(name)</td></tr>
+<tr class="separator:ad4c3c060ff5dc787c07a5de33a70ca4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92b55bc9a0ab8eb95c2bab76f9bc16d5" id="r_a92b55bc9a0ab8eb95c2bab76f9bc16d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92b55bc9a0ab8eb95c2bab76f9bc16d5">BIND_SYNC</a>(name)</td></tr>
+<tr class="separator:a92b55bc9a0ab8eb95c2bab76f9bc16d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef028aa0fbf9fe78c5d5fba5dee7d5a0" id="r_aef028aa0fbf9fe78c5d5fba5dee7d5a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef028aa0fbf9fe78c5d5fba5dee7d5a0">CARLA_ENSURE_GAME_THREAD</a>()</td></tr>
+<tr class="separator:aef028aa0fbf9fe78c5d5fba5dee7d5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a627185d8086eddbbdc84400c3d81fef0" id="r_a627185d8086eddbbdc84400c3d81fef0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a627185d8086eddbbdc84400c3d81fef0">MAKE_RESULT</a>(operation)</td></tr>
+<tr class="separator:a627185d8086eddbbdc84400c3d81fef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a80d9e21b1bd7564d790fafc7b937af" id="r_a2a80d9e21b1bd7564d790fafc7b937af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a80d9e21b1bd7564d790fafc7b937af">REQUIRE_CARLA_EPISODE</a>()</td></tr>
+<tr class="separator:a2a80d9e21b1bd7564d790fafc7b937af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8545fb5f567924c6a2301641a1bcd3c9" id="r_a8545fb5f567924c6a2301641a1bcd3c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8545fb5f567924c6a2301641a1bcd3c9">RESPOND_ERROR</a>(str)</td></tr>
+<tr class="separator:a8545fb5f567924c6a2301641a1bcd3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa32c47edf0cda39fe98e33a55fa9ff2a" id="r_aa32c47edf0cda39fe98e33a55fa9ff2a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa32c47edf0cda39fe98e33a55fa9ff2a">RESPOND_ERROR_FSTRING</a>(fstr)</td></tr>
+<tr class="separator:aa32c47edf0cda39fe98e33a55fa9ff2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a4edc287c115fc5a8a60714df431f570f" id="r_a4edc287c115fc5a8a60714df431f570f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a4edc287c115fc5a8a60714df431f570f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4edc287c115fc5a8a60714df431f570f">R</a> = <a class="el" href="../../dd/db9/classcarla_1_1rpc_1_1Response.html">carla::rpc::Response</a>&lt;T&gt;</td></tr>
+<tr class="separator:a4edc287c115fc5a8a60714df431f570f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ac4b9c3adc12afebb70cfd995705bc2df" id="r_ac4b9c3adc12afebb70cfd995705bc2df"><td class="memTemplParams" colspan="2">template&lt;typename T , typename <a class="el" href="../../dc/d8e/CarlaLight_8h.html#a33bcb1a8751d904034d5c3e43e6f8959a6311ae17c1ee52b36e68aaf4ad066387">Other</a> &gt; </td></tr>
+<tr class="memitem:ac4b9c3adc12afebb70cfd995705bc2df"><td class="memTemplItemLeft" align="right" valign="top">static std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac4b9c3adc12afebb70cfd995705bc2df">MakeVectorFromTArray</a> (const TArray&lt; <a class="el" href="../../dc/d8e/CarlaLight_8h.html#a33bcb1a8751d904034d5c3e43e6f8959a6311ae17c1ee52b36e68aaf4ad066387">Other</a> &gt; &amp;Array)</td></tr>
+<tr class="separator:ac4b9c3adc12afebb70cfd995705bc2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdd6bf5fe34fdf0678cfaf74a04ed806" id="r_afdd6bf5fe34fdf0678cfaf74a04ed806"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d2a/classcarla_1_1rpc_1_1ResponseError.html">carla::rpc::ResponseError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdd6bf5fe34fdf0678cfaf74a04ed806">RespondError</a> (const FString &amp;FuncName, const <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9d">ECarlaServerResponse</a> &amp;Error, const FString &amp;ExtraInfo=&quot;&quot;)</td></tr>
+<tr class="separator:afdd6bf5fe34fdf0678cfaf74a04ed806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe02dedaaab1da1c4030e2c1823e8618" id="r_abe02dedaaab1da1c4030e2c1823e8618"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d2a/classcarla_1_1rpc_1_1ResponseError.html">carla::rpc::ResponseError</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe02dedaaab1da1c4030e2c1823e8618">RespondError</a> (const FString &amp;FuncName, const FString &amp;ErrorMessage, const FString &amp;ExtraInfo=&quot;&quot;)</td></tr>
+<tr class="separator:abe02dedaaab1da1c4030e2c1823e8618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ad4c3c060ff5dc787c07a5de33a70ca4a" name="ad4c3c060ff5dc787c07a5de33a70ca4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4c3c060ff5dc787c07a5de33a70ca4a">&#9670;&#160;</a></span>BIND_ASYNC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BIND_ASYNC</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line"><span class="keyword">auto</span> name = <a class="code hl_class" href="../../d8/d07/classServerBinder.html">ServerBinder</a>(# name, Server, <span class="keyword">false</span>)</div>
+<div class="ttc" id="aclassServerBinder_html"><div class="ttname"><a href="../../d8/d07/classServerBinder.html">ServerBinder</a></div><div class="ttdef"><b>定义</b> <a href="../../db/d6c/CarlaServer_8cpp_source.html#l00181">CarlaServer.cpp:182</a></div></div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00214">214</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00220">FCarlaServer::FPimpl::BindActions()</a>.</p>
+
+</div>
+</div>
+<a id="a92b55bc9a0ab8eb95c2bab76f9bc16d5" name="a92b55bc9a0ab8eb95c2bab76f9bc16d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b55bc9a0ab8eb95c2bab76f9bc16d5">&#9670;&#160;</a></span>BIND_SYNC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BIND_SYNC</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line"><span class="keyword">auto</span> name = <a class="code hl_class" href="../../d8/d07/classServerBinder.html">ServerBinder</a>(# name, Server, <span class="keyword">true</span>)</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00213">213</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00220">FCarlaServer::FPimpl::BindActions()</a>.</p>
+
+</div>
+</div>
+<a id="aef028aa0fbf9fe78c5d5fba5dee7d5a0" name="aef028aa0fbf9fe78c5d5fba5dee7d5a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef028aa0fbf9fe78c5d5fba5dee7d5a0">&#9670;&#160;</a></span>CARLA_ENSURE_GAME_THREAD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CARLA_ENSURE_GAME_THREAD</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00147">147</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a627185d8086eddbbdc84400c3d81fef0" name="a627185d8086eddbbdc84400c3d81fef0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a627185d8086eddbbdc84400c3d81fef0">&#9670;&#160;</a></span>MAKE_RESULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAKE_RESULT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>operation</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line"><span class="keywordflow">return</span> parse_result(c.actor, operation);</div>
+</div><!-- fragment -->
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00220">FCarlaServer::FPimpl::BindActions()</a>.</p>
+
+</div>
+</div>
+<a id="a2a80d9e21b1bd7564d790fafc7b937af" name="a2a80d9e21b1bd7564d790fafc7b937af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a80d9e21b1bd7564d790fafc7b937af">&#9670;&#160;</a></span>REQUIRE_CARLA_EPISODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REQUIRE_CARLA_EPISODE</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    <a class="code hl_define" href="#aef028aa0fbf9fe78c5d5fba5dee7d5a0">CARLA_ENSURE_GAME_THREAD</a>();   \</div>
+<div class="line">    if (Episode == <span class="keyword">nullptr</span>) { <a class="code hl_define" href="#a8545fb5f567924c6a2301641a1bcd3c9">RESPOND_ERROR</a>(<span class="stringliteral">&quot;episode not ready&quot;</span>); }</div>
+<div class="ttc" id="aCarlaServer_8cpp_html_a8545fb5f567924c6a2301641a1bcd3c9"><div class="ttname"><a href="#a8545fb5f567924c6a2301641a1bcd3c9">RESPOND_ERROR</a></div><div class="ttdeci">#define RESPOND_ERROR(str)</div><div class="ttdef"><b>定义</b> <a href="../../db/d6c/CarlaServer_8cpp_source.html#l00150">CarlaServer.cpp:150</a></div></div>
+<div class="ttc" id="aCarlaServer_8cpp_html_aef028aa0fbf9fe78c5d5fba5dee7d5a0"><div class="ttname"><a href="#aef028aa0fbf9fe78c5d5fba5dee7d5a0">CARLA_ENSURE_GAME_THREAD</a></div><div class="ttdeci">#define CARLA_ENSURE_GAME_THREAD()</div><div class="ttdef"><b>定义</b> <a href="../../db/d6c/CarlaServer_8cpp_source.html#l00147">CarlaServer.cpp:147</a></div></div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00158">158</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00220">FCarlaServer::FPimpl::BindActions()</a>.</p>
+
+</div>
+</div>
+<a id="a8545fb5f567924c6a2301641a1bcd3c9" name="a8545fb5f567924c6a2301641a1bcd3c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8545fb5f567924c6a2301641a1bcd3c9">&#9670;&#160;</a></span>RESPOND_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RESPOND_ERROR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>str</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    {                                              \</div>
+<div class="line">    UE_LOG(LogCarlaServer, Log, TEXT(<span class="stringliteral">&quot;Responding error: %s&quot;</span>), TEXT(str)); \</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_class" href="../../d7/d2a/classcarla_1_1rpc_1_1ResponseError.html">carla::rpc::ResponseError</a>(str); }</div>
+<div class="ttc" id="aclasscarla_1_1rpc_1_1ResponseError_html"><div class="ttname"><a href="../../d7/d2a/classcarla_1_1rpc_1_1ResponseError.html">carla::rpc::ResponseError</a></div><div class="ttdef"><b>定义</b> <a href="../../df/d3f/Response_8h_source.html#l00029">Response.h:29</a></div></div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00150">150</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00220">FCarlaServer::FPimpl::BindActions()</a>.</p>
+
+</div>
+</div>
+<a id="aa32c47edf0cda39fe98e33a55fa9ff2a" name="aa32c47edf0cda39fe98e33a55fa9ff2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa32c47edf0cda39fe98e33a55fa9ff2a">&#9670;&#160;</a></span>RESPOND_ERROR_FSTRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RESPOND_ERROR_FSTRING</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fstr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">    {                                 \</div>
+<div class="line">    UE_LOG(LogCarlaServer, Log, TEXT(<span class="stringliteral">&quot;Responding error: %s&quot;</span>), *fstr); \</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_class" href="../../d7/d2a/classcarla_1_1rpc_1_1ResponseError.html">carla::rpc::ResponseError</a>(carla::rpc::FromFString(fstr)); }</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00154">154</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00220">FCarlaServer::FPimpl::BindActions()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类型定义说明</h2>
+<a id="a4edc287c115fc5a8a60714df431f570f" name="a4edc287c115fc5a8a60714df431f570f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4edc287c115fc5a8a60714df431f570f">&#9670;&#160;</a></span>R</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a4edc287c115fc5a8a60714df431f570f">R</a> = <a class="el" href="../../dd/db9/classcarla_1_1rpc_1_1Response.html">carla::rpc::Response</a>&lt;T&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="ac4b9c3adc12afebb70cfd995705bc2df" name="ac4b9c3adc12afebb70cfd995705bc2df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4b9c3adc12afebb70cfd995705bc2df">&#9670;&#160;</a></span>MakeVectorFromTArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename <a class="el" href="../../dc/d8e/CarlaLight_8h.html#a33bcb1a8751d904034d5c3e43e6f8959a6311ae17c1ee52b36e68aaf4ad066387">Other</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::vector&lt; T &gt; MakeVectorFromTArray </td>
+          <td>(</td>
+          <td class="paramtype">const TArray&lt; <a class="el" href="../../dc/d8e/CarlaLight_8h.html#a33bcb1a8751d904034d5c3e43e6f8959a6311ae17c1ee52b36e68aaf4ad066387">Other</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Array</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00220">FCarlaServer::FPimpl::BindActions()</a>.</p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+</div>
+
+</div>
+</div>
+<a id="afdd6bf5fe34fdf0678cfaf74a04ed806" name="afdd6bf5fe34fdf0678cfaf74a04ed806"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdd6bf5fe34fdf0678cfaf74a04ed806">&#9670;&#160;</a></span>RespondError() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/d2a/classcarla_1_1rpc_1_1ResponseError.html">carla::rpc::ResponseError</a> RespondError </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>FuncName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/d3e/CarlaServerResponse_8h.html#ad15b7df4d328256d9ad3cc9b79ffbf9d">ECarlaServerResponse</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Error</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>ExtraInfo</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00173">173</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/d84/CarlaServerResponse_8cpp_source.html#l00009">CarlaGetStringError()</a> , 以及 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00162">RespondError()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="abe02dedaaab1da1c4030e2c1823e8618" name="abe02dedaaab1da1c4030e2c1823e8618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe02dedaaab1da1c4030e2c1823e8618">&#9670;&#160;</a></span>RespondError() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/d2a/classcarla_1_1rpc_1_1ResponseError.html">carla::rpc::ResponseError</a> RespondError </td>
+          <td>(</td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>FuncName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>ErrorMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const FString &amp;</td>          <td class="paramname"><span class="paramname"><em>ExtraInfo</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html">CarlaServer.cpp</a> 第 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00162">162</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00220">FCarlaServer::FPimpl::BindActions()</a> , 以及 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00173">RespondError()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

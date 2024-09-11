@@ -1,0 +1,13 @@
+digraph "UActorBlueprintFunctionLibrary::CheckActorDefinitions"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="UActorBlueprintFunctionLibrary\l::CheckActorDefinitions",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Return whether the list of actor definitions is valid."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="FActorDefinitionValidator\l::AreValid",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/d10/classFActorDefinitionValidator.html#a4de1f34cc0d38d1b7a37c956870f219b",tooltip="Iterate all actor definitions and their properties and display messages on error."];
+  Node2 -> Node2 [id="edge2_Node000002_Node000002",color="steelblue1",style="solid",tooltip=" "];
+}

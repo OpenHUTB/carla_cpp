@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: Tagger.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_b708e75f0564cefaa95a07ef1c60fa1d.html">Game</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">Tagger.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d7/d06/Tagger_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;GameFramework/Actor.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Components/PrimitiveComponent.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/d02/disable-ue4-macros_8h.html">compiler/disable-ue4-macros.h</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/dea/ObjectLabel_8h.html">carla/rpc/ObjectLabel.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/da2/enable-ue4-macros_8h.html">compiler/enable-ue4-macros.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;Tagger.generated.h&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../de/d6c/namespacecarla_1_1rpc.html">crp</a> = <a class="code hl_namespace" href="../../de/d6c/namespacecarla_1_1rpc.html">carla::rpc</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment"></span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">/// Sets actors&#39; custom depth stencil value for semantic segmentation according</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/// to their meshes.</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">///</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">/// Non-static functions present so it can be dropped into the scene for testing</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">/// purposes.</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment"></span>UCLASS()</div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="../../da/d86/classATagger.html">   26</a></span>class CARLA_API <a class="code hl_class" href="../../da/d86/classATagger.html">ATagger</a> : public <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  GENERATED_BODY()</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"></span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">  /// Set the tag of an actor.</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">  ///</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">  /// If bTagForSemanticSegmentation true, activate the custom depth pass. This</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">  /// pass is necessary for rendering the semantic segmentation. However, it may</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">  /// add a performance penalty since occlusion doesn&#39;t seem to be applied to</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">  /// objects having this value active.</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> TagActor(<span class="keyword">const</span> <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> &amp;Actor, <span class="keywordtype">bool</span> bTagForSemanticSegmentation);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"></span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">  /// Set the tag of every actor in level.</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">  ///</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">  /// If bTagForSemanticSegmentation true, activate the custom depth pass. This</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">  /// pass is necessary for rendering the semantic segmentation. However, it may</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">  /// add a performance penalty since occlusion doesn&#39;t seem to be applied to</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">  /// objects having this value active.</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment"></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> TagActorsInLevel(UWorld &amp;World, <span class="keywordtype">bool</span> bTagForSemanticSegmentation);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> TagActorsInLevel(ULevel &amp;Level, <span class="keywordtype">bool</span> bTagForSemanticSegmentation);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment"></span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">  /// Retrieve the tag of an already tagged component.</span></div>
+<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="../../da/d86/classATagger.html#a1fbf1e4054acac5814c5521796a410a2">   52</a></span><span class="comment"></span>  <span class="keyword">static</span> <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a> <a class="code hl_function" href="../../da/d86/classATagger.html#a1fbf1e4054acac5814c5521796a410a2">GetTagOfTaggedComponent</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> &amp;Component)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a><span class="keyword">&gt;</span>(Component.CustomDepthStencilValue);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  }</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"></span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">  /// Retrieve the tags of an already tagged actor. CityObjectLabel::None is</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">  /// not added to the array.</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"></span>  <span class="keyword">static</span> <span class="keywordtype">void</span> GetTagsOfTaggedActor(<span class="keyword">const</span> <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> &amp;Actor, TSet&lt;crp::CityObjectLabel&gt; &amp;Tags);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">  /// Return true if @a Component has been tagged with the given @a Tag.</span></div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="}">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="../../da/d86/classATagger.html#aa2c691267d7bedb210f4d0884a00d00c">   62</a></span><span class="comment"></span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="../../da/d86/classATagger.html#aa2c691267d7bedb210f4d0884a00d00c">MatchComponent</a>(<span class="keyword">const</span> <a class="code hl_class" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> &amp;Component, <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a> Tag)</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> (Tag == GetTagOfTaggedComponent(Component));</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
+</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"></span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">  /// Retrieve the tags of an already tagged actor. CityObjectLabel::None is</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">  /// not added to the array.</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment"></span>  <span class="keyword">static</span> FString GetTagAsString(<a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a> Tag);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"></span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">  /// Method that computes the label corresponding to a folder path</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"></span>  <span class="keyword">static</span> <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a> GetLabelByFolderName(<span class="keyword">const</span> FString &amp;<a class="code hl_enumvalue" href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">String</a>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"></span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">  /// Method that computes the label corresponding to an specific object</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">  /// using the folder path in which it is stored</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment"></span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="../../da/d86/classATagger.html#aad05d5a21390b4353006636903dcde06">   77</a></span>  <span class="keyword">static</span> <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a> <a class="code hl_function" href="../../da/d86/classATagger.html#aad05d5a21390b4353006636903dcde06">GetLabelByPath</a>(<span class="keyword">const</span> T *Object) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">const</span> FString Path = Object-&gt;GetPathName();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    TArray&lt;FString&gt; StringArray;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    Path.ParseIntoArray(StringArray, TEXT(<span class="stringliteral">&quot;/&quot;</span>), <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> (StringArray.Num() &gt; 4 ? GetLabelByFolderName(StringArray[4]) : crp::CityObjectLabel::None);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  }</div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> SetStencilValue(<a class="code hl_class" href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a> &amp;Component,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keyword">const</span> <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a> &amp;Label, <span class="keyword">const</span> <span class="keywordtype">bool</span> bSetRenderCustomDepth);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keyword">static</span> FLinearColor GetActorLabelColor(<span class="keyword">const</span> <a class="code hl_class" href="../../d1/da4/classAActor.html">AActor</a> &amp;Actor, <span class="keyword">const</span> <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a> &amp;Label);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keyword">static</span> <span class="keywordtype">bool</span> IsThing(<span class="keyword">const</span> <a class="code hl_enumeration" href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">crp::CityObjectLabel</a> &amp;Label);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <a class="code hl_class" href="../../da/d86/classATagger.html">ATagger</a>();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#if WITH_EDITOR</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> PostEditChangeProperty(FPropertyChangedEvent&amp; PropertyChangedEvent) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">#endif </span><span class="comment">// WITH_EDITOR</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  UPROPERTY(Category = <span class="stringliteral">&quot;Tagger&quot;</span>, EditAnywhere)</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="../../da/d86/classATagger.html#a72efac4f5f8004a209a7468a0c635487">  102</a></span>  bool bTriggerTagObjects = false;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  UPROPERTY(Category = &quot;Tagger&quot;, EditAnywhere)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="../../da/d86/classATagger.html#acc5560af1bc30fcf8984e18378661122">  105</a></span>  <span class="keywordtype">bool</span> bTagForSemanticSegmentation = false;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>};</div>
+</div>
+<div class="ttc" id="aObjectLabel_8h_html"><div class="ttname"><a href="../../d0/dea/ObjectLabel_8h.html">ObjectLabel.h</a></div></div>
+<div class="ttc" id="aUnreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h_html_ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98"><div class="ttname"><a href="../../d6/d1a/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Actor_2ActorAttribute_8h.html#ae046bbacbd9af759d3f138e8fd0ebea4a27118326006d3829667a400ad23d5d98">EActorAttributeType::String</a></div><div class="ttdeci">@ String</div></div>
+<div class="ttc" id="aclassAActor_html"><div class="ttname"><a href="../../d1/da4/classAActor.html">AActor</a></div></div>
+<div class="ttc" id="aclassATagger_html"><div class="ttname"><a href="../../da/d86/classATagger.html">ATagger</a></div><div class="ttdoc">Sets actors' custom depth stencil value for semantic segmentation according to their meshes.</div><div class="ttdef"><b>定义</b> <a href="#l00026">Tagger.h:27</a></div></div>
+<div class="ttc" id="aclassATagger_html_a1fbf1e4054acac5814c5521796a410a2"><div class="ttname"><a href="../../da/d86/classATagger.html#a1fbf1e4054acac5814c5521796a410a2">ATagger::GetTagOfTaggedComponent</a></div><div class="ttdeci">static crp::CityObjectLabel GetTagOfTaggedComponent(const UPrimitiveComponent &amp;Component)</div><div class="ttdoc">Retrieve the tag of an already tagged component.</div><div class="ttdef"><b>定义</b> <a href="#l00052">Tagger.h:52</a></div></div>
+<div class="ttc" id="aclassATagger_html_aa2c691267d7bedb210f4d0884a00d00c"><div class="ttname"><a href="../../da/d86/classATagger.html#aa2c691267d7bedb210f4d0884a00d00c">ATagger::MatchComponent</a></div><div class="ttdeci">static bool MatchComponent(const UPrimitiveComponent &amp;Component, crp::CityObjectLabel Tag)</div><div class="ttdoc">Return true if Component has been tagged with the given Tag.</div><div class="ttdef"><b>定义</b> <a href="#l00062">Tagger.h:62</a></div></div>
+<div class="ttc" id="aclassATagger_html_aad05d5a21390b4353006636903dcde06"><div class="ttname"><a href="../../da/d86/classATagger.html#aad05d5a21390b4353006636903dcde06">ATagger::GetLabelByPath</a></div><div class="ttdeci">static crp::CityObjectLabel GetLabelByPath(const T *Object)</div><div class="ttdoc">Method that computes the label corresponding to an specific object using the folder path in which it ...</div><div class="ttdef"><b>定义</b> <a href="#l00077">Tagger.h:77</a></div></div>
+<div class="ttc" id="aclassUPrimitiveComponent_html"><div class="ttname"><a href="../../d9/d6d/classUPrimitiveComponent.html">UPrimitiveComponent</a></div></div>
+<div class="ttc" id="adisable-ue4-macros_8h_html"><div class="ttname"><a href="../../d2/d02/disable-ue4-macros_8h.html">disable-ue4-macros.h</a></div></div>
+<div class="ttc" id="aenable-ue4-macros_8h_html"><div class="ttname"><a href="../../d9/da2/enable-ue4-macros_8h.html">enable-ue4-macros.h</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1rpc_html"><div class="ttname"><a href="../../de/d6c/namespacecarla_1_1rpc.html">carla::rpc</a></div><div class="ttdef"><b>定义</b> <a href="../../de/d17/DebugShapeDrawer_8h_source.html#l00011">DebugShapeDrawer.h:11</a></div></div>
+<div class="ttc" id="anamespacecarla_1_1rpc_html_a5bba5b393ad6b235e35ae620025f47e0"><div class="ttname"><a href="../../de/d6c/namespacecarla_1_1rpc.html#a5bba5b393ad6b235e35ae620025f47e0">carla::rpc::CityObjectLabel</a></div><div class="ttdeci">CityObjectLabel</div><div class="ttdef"><b>定义</b> <a href="../../d0/dea/ObjectLabel_8h_source.html#l00016">ObjectLabel.h:16</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

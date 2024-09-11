@@ -1,0 +1,37 @@
+digraph "moodycamel::ConcurrentQueue&lt; T, Traits &gt;::ExplicitProducer::BlockIndexEntry"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="moodycamel::ConcurrentQueue\l\< T, Traits \>::ExplicitProducer\l::BlockIndexEntry",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" base",fontcolor="grey" ];
+  Node2 [id="Node000002",label="index_t",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" block",fontcolor="grey" ];
+  Node3 [id="Node000003",label="moodycamel::ConcurrentQueue\l\< T, Traits \>::Block",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$dc/dde/structmoodycamel_1_1ConcurrentQueue_1_1Block.html",tooltip=" "];
+  Node4 -> Node3 [id="edge3_Node000003_Node000004",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" elements",fontcolor="grey" ];
+  Node4 [id="Node000004",label="char",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node3 [id="edge4_Node000003_Node000005",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" dummy",fontcolor="grey" ];
+  Node5 [id="Node000005",label="moodycamel::details\l::max_align_t",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$d9/d3b/unionmoodycamel_1_1details_1_1max__align__t.html",tooltip=" "];
+  Node6 -> Node5 [id="edge5_Node000005_Node000006",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" x",fontcolor="grey" ];
+  Node6 [id="Node000006",label="max_align_t",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node7 -> Node5 [id="edge6_Node000005_Node000007",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" y",fontcolor="grey" ];
+  Node7 [id="Node000007",label="long",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node5 [id="edge7_Node000005_Node000008",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" z",fontcolor="grey" ];
+  Node8 [id="Node000008",label="void *",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node9 -> Node3 [id="edge8_Node000003_Node000009",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" @12",fontcolor="grey" ];
+  Node9 [id="Node000009",label="anonymous:@12",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node3 [id="edge9_Node000003_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" next",fontcolor="grey" ];
+  Node10 -> Node3 [id="edge10_Node000003_Node000010",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" elementsCompletelyDequeued",fontcolor="grey" ];
+  Node10 [id="Node000010",label="atomic\< size_t \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node11 -> Node3 [id="edge11_Node000003_Node000011",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" emptyFlags\nshouldBeOnFreeList",fontcolor="grey" ];
+  Node11 [id="Node000011",label="atomic\< bool \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node12 -> Node3 [id="edge12_Node000003_Node000012",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" freeListRefs",fontcolor="grey" ];
+  Node12 [id="Node000012",label="atomic\< std::uint32_t \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node13 -> Node3 [id="edge13_Node000003_Node000013",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" freeListNext",fontcolor="grey" ];
+  Node13 [id="Node000013",label="atomic\< moodycamel\l::ConcurrentQueue::Block * \>",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+  Node14 -> Node3 [id="edge14_Node000003_Node000014",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" dynamicallyAllocated",fontcolor="grey" ];
+  Node14 [id="Node000014",label="bool",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",tooltip=" "];
+}

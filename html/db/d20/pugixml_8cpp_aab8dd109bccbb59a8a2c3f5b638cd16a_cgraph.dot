@@ -1,0 +1,16 @@
+digraph "convert_buffer_latin1"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="convert_buffer_latin1",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="get_latin1_7bit_prefix\l_length",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/d20/pugixml_8cpp.html#a0c28347bb885f60693b5d594cfc3dbd5",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="get_mutable_buffer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/d20/pugixml_8cpp.html#a23609126eff5820342411bf83b280225",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="latin1_decoder::process",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$de/dcd/structlatin1__decoder.html#acf3e6f85693d539919dec3bfb9cee66f",tooltip=" "];
+}

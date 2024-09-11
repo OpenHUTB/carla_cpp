@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::sensor::data::detail::TrafficLightData结构体 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../dd/d2c/namespacecarla_1_1sensor.html">sensor</a></li><li class="navelem"><a class="el" href="../../db/de4/namespacecarla_1_1sensor_1_1data.html">data</a></li><li class="navelem"><a class="el" href="../../dc/dd9/namespacecarla_1_1sensor_1_1data_1_1detail.html">detail</a></li><li class="navelem"><a class="el" href="../../d0/d6d/structcarla_1_1sensor_1_1data_1_1detail_1_1TrafficLightData.html">TrafficLightData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="../../dd/def/structcarla_1_1sensor_1_1data_1_1detail_1_1TrafficLightData-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::sensor::data::detail::TrafficLightData结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> carla::sensor::data::detail::TrafficLightData 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ad0d6dc9217f6128007d756be18967d4b" id="r_ad0d6dc9217f6128007d756be18967d4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0d6dc9217f6128007d756be18967d4b">TrafficLightData</a> ()=default</td></tr>
+<tr class="separator:ad0d6dc9217f6128007d756be18967d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a0a81ac90591f2c60755e10f8c5dbc32d" id="r_a0a81ac90591f2c60755e10f8c5dbc32d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a81ac90591f2c60755e10f8c5dbc32d">elapsed_time</a></td></tr>
+<tr class="separator:a0a81ac90591f2c60755e10f8c5dbc32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a082c7539fcd1dd2a44f018aa6b09838d" id="r_a082c7539fcd1dd2a44f018aa6b09838d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a082c7539fcd1dd2a44f018aa6b09838d">green_time</a></td></tr>
+<tr class="separator:a082c7539fcd1dd2a44f018aa6b09838d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3574d5bf92730bd990024d8e397efc26" id="r_a3574d5bf92730bd990024d8e397efc26"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3574d5bf92730bd990024d8e397efc26">pole_index</a></td></tr>
+<tr class="separator:a3574d5bf92730bd990024d8e397efc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff6151f65355b846e7b9acf745a3e3e" id="r_acff6151f65355b846e7b9acf745a3e3e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acff6151f65355b846e7b9acf745a3e3e">red_time</a></td></tr>
+<tr class="separator:acff6151f65355b846e7b9acf745a3e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ffe3ebf37b173e61765107e9253ad8e" id="r_a9ffe3ebf37b173e61765107e9253ad8e"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ffe3ebf37b173e61765107e9253ad8e">sign_id</a> [32u]</td></tr>
+<tr class="separator:a9ffe3ebf37b173e61765107e9253ad8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeda1e161d0fb946648c444d7892aac86" id="r_aeda1e161d0fb946648c444d7892aac86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a46c3995219197dcef2980adce8d1cfba">rpc::TrafficLightState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeda1e161d0fb946648c444d7892aac86">state</a></td></tr>
+<tr class="separator:aeda1e161d0fb946648c444d7892aac86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc88a50b2391790f59479aaffc3db1a7" id="r_abc88a50b2391790f59479aaffc3db1a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc88a50b2391790f59479aaffc3db1a7">time_is_frozen</a></td></tr>
+<tr class="separator:abc88a50b2391790f59479aaffc3db1a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e06da06438771c5db01e6aa37250d71" id="r_a7e06da06438771c5db01e6aa37250d71"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e06da06438771c5db01e6aa37250d71">yellow_time</a></td></tr>
+<tr class="separator:a7e06da06438771c5db01e6aa37250d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00097">97</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ad0d6dc9217f6128007d756be18967d4b" name="ad0d6dc9217f6128007d756be18967d4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0d6dc9217f6128007d756be18967d4b">&#9670;&#160;</a></span>TrafficLightData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::sensor::data::detail::TrafficLightData::TrafficLightData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a0a81ac90591f2c60755e10f8c5dbc32d" name="a0a81ac90591f2c60755e10f8c5dbc32d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a81ac90591f2c60755e10f8c5dbc32d">&#9670;&#160;</a></span>elapsed_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::sensor::data::detail::TrafficLightData::elapsed_time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00104">104</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a082c7539fcd1dd2a44f018aa6b09838d" name="a082c7539fcd1dd2a44f018aa6b09838d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a082c7539fcd1dd2a44f018aa6b09838d">&#9670;&#160;</a></span>green_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::sensor::data::detail::TrafficLightData::green_time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3574d5bf92730bd990024d8e397efc26" name="a3574d5bf92730bd990024d8e397efc26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3574d5bf92730bd990024d8e397efc26">&#9670;&#160;</a></span>pole_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t carla::sensor::data::detail::TrafficLightData::pole_index</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00105">105</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acff6151f65355b846e7b9acf745a3e3e" name="acff6151f65355b846e7b9acf745a3e3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acff6151f65355b846e7b9acf745a3e3e">&#9670;&#160;</a></span>red_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::sensor::data::detail::TrafficLightData::red_time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00103">103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9ffe3ebf37b173e61765107e9253ad8e" name="a9ffe3ebf37b173e61765107e9253ad8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ffe3ebf37b173e61765107e9253ad8e">&#9670;&#160;</a></span>sign_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char carla::sensor::data::detail::TrafficLightData::sign_id[32u]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aeda1e161d0fb946648c444d7892aac86" name="aeda1e161d0fb946648c444d7892aac86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeda1e161d0fb946648c444d7892aac86">&#9670;&#160;</a></span>state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d6c/namespacecarla_1_1rpc.html#a46c3995219197dcef2980adce8d1cfba">rpc::TrafficLightState</a> carla::sensor::data::detail::TrafficLightData::state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abc88a50b2391790f59479aaffc3db1a7" name="abc88a50b2391790f59479aaffc3db1a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc88a50b2391790f59479aaffc3db1a7">&#9670;&#160;</a></span>time_is_frozen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::sensor::data::detail::TrafficLightData::time_is_frozen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00106">106</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7e06da06438771c5db01e6aa37250d71" name="a7e06da06438771c5db01e6aa37250d71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e06da06438771c5db01e6aa37250d71">&#9670;&#160;</a></span>yellow_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::sensor::data::detail::TrafficLightData::yellow_time</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a> 第 <a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html#l00102">102</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d6/d60/ActorDynamicState_8h_source.html">ActorDynamicState.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

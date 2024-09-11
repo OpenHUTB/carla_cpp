@@ -1,0 +1,1277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::traffic_manager::ALSM类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html">traffic_manager</a></li><li class="navelem"><a class="el" href="../../d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html">ALSM</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-types">Private 类型</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d8/dcb/classcarla_1_1traffic__manager_1_1ALSM-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::traffic_manager::ALSM类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><a class="el" href="../../d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html" title="ALSM: Agent Lifecycle and State Managerment This class has functionality to update the local cache of...">ALSM</a>: Agent Lifecycle and State Managerment This class has functionality to update the local cache of kinematic states and manage memory and cleanup for varying number of vehicles in the simulation.  
+ <a href="#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> carla::traffic_manager::ALSM 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a0f704f4a10ebc4862266a72090cabd2f" id="r_a0f704f4a10ebc4862266a72090cabd2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f704f4a10ebc4862266a72090cabd2f">ALSM</a> (<a class="el" href="../../d6/d8c/classcarla_1_1traffic__manager_1_1AtomicActorSet.html">AtomicActorSet</a> &amp;<a class="el" href="#a33487df8104746bb73315c4ff8d78cd3">registered_vehicles</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae4c7328481a2a008686cc108d2719040">BufferMap</a> &amp;<a class="el" href="#ad3050584a3da46b77d75cfa1a7af38d0">buffer_map</a>, <a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a> &amp;<a class="el" href="#ae9b70c1a4a1933b10c0d653f43487c68">track_traffic</a>, std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a> &gt; &amp;<a class="el" href="#ac90f6fbfbf8082743f7cef235ba2ee0b">marked_for_removal</a>, const <a class="el" href="../../d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html">Parameters</a> &amp;<a class="el" href="#ac2b737327c11910c9554d83d213ecdb3">parameters</a>, const <a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">cc::World</a> &amp;<a class="el" href="#a23c54f9407c992c66579e917e70c13b8">world</a>, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a92e31850c5f50a12c8a4602092108e68">LocalMapPtr</a> &amp;<a class="el" href="#a5fac231accc0caa838aade72596c33d5">local_map</a>, <a class="el" href="../../d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html">SimulationState</a> &amp;<a class="el" href="#ac927072fe35b3f97149bc3300a85d42e">simulation_state</a>, <a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html">LocalizationStage</a> &amp;<a class="el" href="#a57fb718189991828abd379cbb881886b">localization_stage</a>, <a class="el" href="../../d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html">CollisionStage</a> &amp;<a class="el" href="#a9ce1b1e87600dd8c5007e288c9f199cd">collision_stage</a>, <a class="el" href="../../d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html">TrafficLightStage</a> &amp;<a class="el" href="#ae384bf3bbd4736951a4868f7bf0b46b3">traffic_light_stage</a>, <a class="el" href="../../dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html">MotionPlanStage</a> &amp;<a class="el" href="#a8b2956673f6248b5c2bf5adc47506722">motion_plan_stage</a>, <a class="el" href="../../dd/de2/classcarla_1_1traffic__manager_1_1VehicleLightStage.html">VehicleLightStage</a> &amp;<a class="el" href="#a745cc033d8a9b3afd27217473f192dae">vehicle_light_stage</a>)</td></tr>
+<tr class="separator:a0f704f4a10ebc4862266a72090cabd2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33160b538ce38f9ec4a0942f9fa53d86" id="r_a33160b538ce38f9ec4a0942f9fa53d86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33160b538ce38f9ec4a0942f9fa53d86">RemoveActor</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a> actor_id, const bool registered_actor)</td></tr>
+<tr class="separator:a33160b538ce38f9ec4a0942f9fa53d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e9fdb8551738fd70b147a0fe4a08517" id="r_a1e9fdb8551738fd70b147a0fe4a08517"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e9fdb8551738fd70b147a0fe4a08517">Reset</a> ()</td></tr>
+<tr class="separator:a1e9fdb8551738fd70b147a0fe4a08517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a506446f6810014b6da12d0dcba0748" id="r_a0a506446f6810014b6da12d0dcba0748"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a506446f6810014b6da12d0dcba0748">Update</a> ()</td></tr>
+<tr class="separator:a0a506446f6810014b6da12d0dcba0748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private 类型</h2></td></tr>
+<tr class="memitem:a9cbaa04779fc975dd76eb374c6d8a03f" id="r_a9cbaa04779fc975dd76eb374c6d8a03f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cbaa04779fc975dd76eb374c6d8a03f">DestroyeddActors</a> = std::pair&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab87c34bedb886739a49ec8f6db85354f">ActorIdSet</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab87c34bedb886739a49ec8f6db85354f">ActorIdSet</a>&gt;</td></tr>
+<tr class="separator:a9cbaa04779fc975dd76eb374c6d8a03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a844a777e11ef1f194af617bda3a724c4" id="r_a844a777e11ef1f194af617bda3a724c4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a844a777e11ef1f194af617bda3a724c4">IdleInfo</a> = std::pair&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>, double&gt;</td></tr>
+<tr class="separator:a844a777e11ef1f194af617bda3a724c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:aef2962d7072799f698d3bd725f8e713f" id="r_aef2962d7072799f698d3bd725f8e713f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a9cbaa04779fc975dd76eb374c6d8a03f">DestroyeddActors</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef2962d7072799f698d3bd725f8e713f">IdentifyDestroyedActors</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a72fbdd69829f1dbc4c1e4823681c20dc">ActorList</a> &amp;actor_list)</td></tr>
+<tr class="separator:aef2962d7072799f698d3bd725f8e713f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bcfbcb3a48589c581f457d4dc4b4095" id="r_a2bcfbcb3a48589c581f457d4dc4b4095"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bcfbcb3a48589c581f457d4dc4b4095">IdentifyNewActors</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a72fbdd69829f1dbc4c1e4823681c20dc">ActorList</a> &amp;actor_list)</td></tr>
+<tr class="separator:a2bcfbcb3a48589c581f457d4dc4b4095"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8960baa40ebe29297764a3418a7c83f9" id="r_a8960baa40ebe29297764a3418a7c83f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8960baa40ebe29297764a3418a7c83f9">IsVehicleStuck</a> (const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a> &amp;actor_id)</td></tr>
+<tr class="separator:a8960baa40ebe29297764a3418a7c83f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaac16328f1c46481fc16f634edaa9ea4" id="r_aaac16328f1c46481fc16f634edaa9ea4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaac16328f1c46481fc16f634edaa9ea4">UpdateData</a> (const bool hybrid_physics_mode, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a4f067e64ec42d3afa1181500d4060998">Actor</a> &amp;vehicle, const bool hero_actor_present, const float physics_radius_square)</td></tr>
+<tr class="separator:aaac16328f1c46481fc16f634edaa9ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8adfaa2936b29a0454ab04a44171a93" id="r_ae8adfaa2936b29a0454ab04a44171a93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8adfaa2936b29a0454ab04a44171a93">UpdateIdleTime</a> (std::pair&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>, double &gt; &amp;max_idle_time, const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a> &amp;actor_id)</td></tr>
+<tr class="separator:ae8adfaa2936b29a0454ab04a44171a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad15f10c71f3da095c15de0aab2c4462d" id="r_ad15f10c71f3da095c15de0aab2c4462d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad15f10c71f3da095c15de0aab2c4462d">UpdateRegisteredActorsData</a> (const bool hybrid_physics_mode, <a class="el" href="#a844a777e11ef1f194af617bda3a724c4">IdleInfo</a> &amp;max_idle_time)</td></tr>
+<tr class="separator:ad15f10c71f3da095c15de0aab2c4462d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2987ec9734853767e94428fd78421e7" id="r_ab2987ec9734853767e94428fd78421e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2987ec9734853767e94428fd78421e7">UpdateUnregisteredActorsData</a> ()</td></tr>
+<tr class="separator:ab2987ec9734853767e94428fd78421e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:ad3050584a3da46b77d75cfa1a7af38d0" id="r_ad3050584a3da46b77d75cfa1a7af38d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae4c7328481a2a008686cc108d2719040">BufferMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3050584a3da46b77d75cfa1a7af38d0">buffer_map</a></td></tr>
+<tr class="separator:ad3050584a3da46b77d75cfa1a7af38d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce1b1e87600dd8c5007e288c9f199cd" id="r_a9ce1b1e87600dd8c5007e288c9f199cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html">CollisionStage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ce1b1e87600dd8c5007e288c9f199cd">collision_stage</a></td></tr>
+<tr class="separator:a9ce1b1e87600dd8c5007e288c9f199cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd4bf618417e490ba0a8aad7b67f29c3" id="r_abd4bf618417e490ba0a8aad7b67f29c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d2c/classcarla_1_1client_1_1Timestamp.html">cc::Timestamp</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd4bf618417e490ba0a8aad7b67f29c3">current_timestamp</a></td></tr>
+<tr class="separator:abd4bf618417e490ba0a8aad7b67f29c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f1039b4328c2397c773bec9843cc26" id="r_af3f1039b4328c2397c773bec9843cc26"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3f1039b4328c2397c773bec9843cc26">elapsed_last_actor_destruction</a> {0.0}</td></tr>
+<tr class="separator:af3f1039b4328c2397c773bec9843cc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66bb8da346fcb45796227ca94763ce97" id="r_a66bb8da346fcb45796227ca94763ce97"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66bb8da346fcb45796227ca94763ce97">has_physics_enabled</a></td></tr>
+<tr class="separator:a66bb8da346fcb45796227ca94763ce97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94944075ade59a7d25dae4523875862a" id="r_a94944075ade59a7d25dae4523875862a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab23bc21b9ce10c1d29e5d29517b306b1">ActorMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94944075ade59a7d25dae4523875862a">hero_actors</a></td></tr>
+<tr class="separator:a94944075ade59a7d25dae4523875862a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d43575712d6b2c8907ab7100df922c9" id="r_a8d43575712d6b2c8907ab7100df922c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aa37af620583afe7b75c2b14fa56e8cec">IdleTimeMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d43575712d6b2c8907ab7100df922c9">idle_time</a></td></tr>
+<tr class="separator:a8d43575712d6b2c8907ab7100df922c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fac231accc0caa838aade72596c33d5" id="r_a5fac231accc0caa838aade72596c33d5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a92e31850c5f50a12c8a4602092108e68">LocalMapPtr</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fac231accc0caa838aade72596c33d5">local_map</a></td></tr>
+<tr class="separator:a5fac231accc0caa838aade72596c33d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57fb718189991828abd379cbb881886b" id="r_a57fb718189991828abd379cbb881886b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html">LocalizationStage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57fb718189991828abd379cbb881886b">localization_stage</a></td></tr>
+<tr class="separator:a57fb718189991828abd379cbb881886b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac90f6fbfbf8082743f7cef235ba2ee0b" id="r_ac90f6fbfbf8082743f7cef235ba2ee0b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac90f6fbfbf8082743f7cef235ba2ee0b">marked_for_removal</a></td></tr>
+<tr class="separator:ac90f6fbfbf8082743f7cef235ba2ee0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b2956673f6248b5c2bf5adc47506722" id="r_a8b2956673f6248b5c2bf5adc47506722"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html">MotionPlanStage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b2956673f6248b5c2bf5adc47506722">motion_plan_stage</a></td></tr>
+<tr class="separator:a8b2956673f6248b5c2bf5adc47506722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2b737327c11910c9554d83d213ecdb3" id="r_ac2b737327c11910c9554d83d213ecdb3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html">Parameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2b737327c11910c9554d83d213ecdb3">parameters</a></td></tr>
+<tr class="separator:ac2b737327c11910c9554d83d213ecdb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33487df8104746bb73315c4ff8d78cd3" id="r_a33487df8104746bb73315c4ff8d78cd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d8c/classcarla_1_1traffic__manager_1_1AtomicActorSet.html">AtomicActorSet</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33487df8104746bb73315c4ff8d78cd3">registered_vehicles</a></td></tr>
+<tr class="separator:a33487df8104746bb73315c4ff8d78cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac927072fe35b3f97149bc3300a85d42e" id="r_ac927072fe35b3f97149bc3300a85d42e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html">SimulationState</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac927072fe35b3f97149bc3300a85d42e">simulation_state</a></td></tr>
+<tr class="separator:ac927072fe35b3f97149bc3300a85d42e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9b70c1a4a1933b10c0d653f43487c68" id="r_ae9b70c1a4a1933b10c0d653f43487c68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9b70c1a4a1933b10c0d653f43487c68">track_traffic</a></td></tr>
+<tr class="separator:ae9b70c1a4a1933b10c0d653f43487c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae384bf3bbd4736951a4868f7bf0b46b3" id="r_ae384bf3bbd4736951a4868f7bf0b46b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html">TrafficLightStage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae384bf3bbd4736951a4868f7bf0b46b3">traffic_light_stage</a></td></tr>
+<tr class="separator:ae384bf3bbd4736951a4868f7bf0b46b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab73da9ee94e618cfd47b0e25eec06b87" id="r_ab73da9ee94e618cfd47b0e25eec06b87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab23bc21b9ce10c1d29e5d29517b306b1">ActorMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab73da9ee94e618cfd47b0e25eec06b87">unregistered_actors</a></td></tr>
+<tr class="separator:ab73da9ee94e618cfd47b0e25eec06b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a745cc033d8a9b3afd27217473f192dae" id="r_a745cc033d8a9b3afd27217473f192dae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/de2/classcarla_1_1traffic__manager_1_1VehicleLightStage.html">VehicleLightStage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a745cc033d8a9b3afd27217473f192dae">vehicle_light_stage</a></td></tr>
+<tr class="separator:a745cc033d8a9b3afd27217473f192dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c54f9407c992c66579e917e70c13b8" id="r_a23c54f9407c992c66579e917e70c13b8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">cc::World</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23c54f9407c992c66579e917e70c13b8">world</a></td></tr>
+<tr class="separator:a23c54f9407c992c66579e917e70c13b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p><a class="el" href="../../d2/d75/classcarla_1_1traffic__manager_1_1ALSM.html" title="ALSM: Agent Lifecycle and State Managerment This class has functionality to update the local cache of...">ALSM</a>: Agent Lifecycle and State Managerment This class has functionality to update the local cache of kinematic states and manage memory and cleanup for varying number of vehicles in the simulation. </p>
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00041">41</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="a9cbaa04779fc975dd76eb374c6d8a03f" name="a9cbaa04779fc975dd76eb374c6d8a03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cbaa04779fc975dd76eb374c6d8a03f">&#9670;&#160;</a></span>DestroyeddActors</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a9cbaa04779fc975dd76eb374c6d8a03f">carla::traffic_manager::ALSM::DestroyeddActors</a> = std::pair&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab87c34bedb886739a49ec8f6db85354f">ActorIdSet</a>, <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab87c34bedb886739a49ec8f6db85354f">ActorIdSet</a>&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00078">78</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a844a777e11ef1f194af617bda3a724c4" name="a844a777e11ef1f194af617bda3a724c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a844a777e11ef1f194af617bda3a724c4">&#9670;&#160;</a></span>IdleInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a844a777e11ef1f194af617bda3a724c4">carla::traffic_manager::ALSM::IdleInfo</a> = std::pair&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>, double&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00083">83</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a0f704f4a10ebc4862266a72090cabd2f" name="a0f704f4a10ebc4862266a72090cabd2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f704f4a10ebc4862266a72090cabd2f">&#9670;&#160;</a></span>ALSM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::traffic_manager::ALSM::ALSM </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/d8c/classcarla_1_1traffic__manager_1_1AtomicActorSet.html">AtomicActorSet</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>registered_vehicles</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae4c7328481a2a008686cc108d2719040">BufferMap</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>buffer_map</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>track_traffic</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>marked_for_removal</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html">Parameters</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>parameters</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">cc::World</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>world</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a92e31850c5f50a12c8a4602092108e68">LocalMapPtr</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>local_map</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html">SimulationState</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>simulation_state</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html">LocalizationStage</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>localization_stage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html">CollisionStage</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>collision_stage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html">TrafficLightStage</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>traffic_light_stage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html">MotionPlanStage</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>motion_plan_stage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dd/de2/classcarla_1_1traffic__manager_1_1VehicleLightStage.html">VehicleLightStage</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vehicle_light_stage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00017">17</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aef2962d7072799f698d3bd725f8e713f" name="aef2962d7072799f698d3bd725f8e713f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef2962d7072799f698d3bd725f8e713f">&#9670;&#160;</a></span>IdentifyDestroyedActors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a9cbaa04779fc975dd76eb374c6d8a03f">ALSM::DestroyeddActors</a> carla::traffic_manager::ALSM::IdentifyDestroyedActors </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a72fbdd69829f1dbc4c1e4823681c20dc">ActorList</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>actor_list</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00137">137</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/dfa/AtomicActorSet_8h_source.html#l00092">carla::traffic_manager::AtomicActorSet::Contains()</a>, <a class="el" href="../../dd/dfa/AtomicActorSet_8h_source.html#l00045">carla::traffic_manager::AtomicActorSet::GetIDList()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00044">registered_vehicles</a> , 以及 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00046">unregistered_actors</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2bcfbcb3a48589c581f457d4dc4b4095" name="a2bcfbcb3a48589c581f457d4dc4b4095"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bcfbcb3a48589c581f457d4dc4b4095">&#9670;&#160;</a></span>IdentifyNewActors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::ALSM::IdentifyNewActors </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a72fbdd69829f1dbc4c1e4823681c20dc">ActorList</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>actor_list</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dd/dfa/AtomicActorSet_8h_source.html#l00092">carla::traffic_manager::AtomicActorSet::Contains()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00051">hero_actors</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00044">registered_vehicles</a> , 以及 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00046">unregistered_actors</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="a8960baa40ebe29297764a3418a7c83f9" name="a8960baa40ebe29297764a3418a7c83f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8960baa40ebe29297764a3418a7c83f9">&#9670;&#160;</a></span>IsVehicleStuck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool carla::traffic_manager::ALSM::IsVehicleStuck </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>actor_id</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00354">354</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d1/d45/Constants_8h_source.html#l00028">carla::traffic_manager::constants::VehicleRemoval::BLOCKED_TIME_THRESHOLD</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00066">current_timestamp</a>, <a class="el" href="../../d7/d66/Timestamp_8h_source.html#l00033">carla::client::Timestamp::elapsed_seconds</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00089">carla::traffic_manager::SimulationState::GetTLS()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00049">idle_time</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00029">carla::traffic_manager::constants::VehicleRemoval::RED_TL_BLOCKED_TIME_THRESHOLD</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00058">simulation_state</a> , 以及 <a class="el" href="../../d5/d3b/SimulationState_8h_source.html#l00029">carla::traffic_manager::TrafficLightState::tl_state</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a33160b538ce38f9ec4a0942f9fa53d86" name="a33160b538ce38f9ec4a0942f9fa53d86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33160b538ce38f9ec4a0942f9fa53d86">&#9670;&#160;</a></span>RemoveActor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::ALSM::RemoveActor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a></td>          <td class="paramname"><span class="paramname"><em>actor_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>registered_actor</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">367</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00047">buffer_map</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00060">collision_stage</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00117">carla::traffic_manager::TrackTraffic::DeleteActor()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00051">hero_actors</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00049">idle_time</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00059">localization_stage</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00062">motion_plan_stage</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00044">registered_vehicles</a>, <a class="el" href="../../dd/dfa/AtomicActorSet_8h_source.html#l00064">carla::traffic_manager::AtomicActorSet::Remove()</a>, <a class="el" href="../../db/da2/CollisionStage_8cpp_source.html#l00112">carla::traffic_manager::CollisionStage::RemoveActor()</a>, <a class="el" href="../../df/dd3/LocalizationStage_8cpp_source.html#l00322">carla::traffic_manager::LocalizationStage::RemoveActor()</a>, <a class="el" href="../../d4/df7/MotionPlanStage_8cpp_source.html#l00468">carla::traffic_manager::MotionPlanStage::RemoveActor()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00023">carla::traffic_manager::SimulationState::RemoveActor()</a>, <a class="el" href="../../dc/d13/TrafficLightStage_8cpp_source.html#l00169">carla::traffic_manager::TrafficLightStage::RemoveActor()</a>, <a class="el" href="../../d2/d11/VehicleLightStage_8cpp_source.html#l00149">carla::traffic_manager::VehicleLightStage::RemoveActor()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00058">simulation_state</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00052">track_traffic</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00061">traffic_light_stage</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00046">unregistered_actors</a> , 以及 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00063">vehicle_light_stage</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/d53/TrafficManagerLocal_8cpp_source.html#l00321">carla::traffic_manager::TrafficManagerLocal::UnregisterVehicles()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="a1e9fdb8551738fd70b147a0fe4a08517" name="a1e9fdb8551738fd70b147a0fe4a08517"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e9fdb8551738fd70b147a0fe4a08517">&#9670;&#160;</a></span>Reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::ALSM::Reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00387">387</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00066">current_timestamp</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00065">elapsed_last_actor_destruction</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00103">carla::client::World::GetSnapshot()</a>, <a class="el" href="../../df/d11/WorldSnapshot_8h_source.html#l00034">carla::client::WorldSnapshot::GetTimestamp()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00051">hero_actors</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00049">idle_time</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00046">unregistered_actors</a> , 以及 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00056">world</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0a506446f6810014b6da12d0dcba0748" name="a0a506446f6810014b6da12d0dcba0748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a506446f6810014b6da12d0dcba0748">&#9670;&#160;</a></span>Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::ALSM::Update </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00066">current_timestamp</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00030">carla::traffic_manager::constants::VehicleRemoval::DELTA_TIME_BETWEEN_DESTRUCTIONS</a>, <a class="el" href="../../dd/dfa/AtomicActorSet_8h_source.html#l00075">carla::traffic_manager::AtomicActorSet::Destroy()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00065">elapsed_last_actor_destruction</a>, <a class="el" href="../../d7/d66/Timestamp_8h_source.html#l00033">carla::client::Timestamp::elapsed_seconds</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00115">carla::client::World::GetActors()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00411">carla::traffic_manager::Parameters::GetHybridPhysicsMode()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00432">carla::traffic_manager::Parameters::GetOSMMode()</a>, <a class="el" href="../../d7/dfe/World_8cpp_source.html#l00103">carla::client::World::GetSnapshot()</a>, <a class="el" href="../../df/d11/WorldSnapshot_8h_source.html#l00034">carla::client::WorldSnapshot::GetTimestamp()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00051">hero_actors</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00137">IdentifyDestroyedActors()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00115">IdentifyNewActors()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00354">IsVehicleStuck()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00054">marked_for_removal</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00055">parameters</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00044">registered_vehicles</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00169">UpdateRegisteredActorsData()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00270">UpdateUnregisteredActorsData()</a> , 以及 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00056">world</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/d53/TrafficManagerLocal_8cpp_source.html#l00140">carla::traffic_manager::TrafficManagerLocal::Run()</a>.</p>
+<div id="dynsection-10" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 10 --></div>
+</div>
+<div id="dynsection-11" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 11 --></div>
+</div>
+
+</div>
+</div>
+<a id="aaac16328f1c46481fc16f634edaa9ea4" name="aaac16328f1c46481fc16f634edaa9ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaac16328f1c46481fc16f634edaa9ea4">&#9670;&#160;</a></span>UpdateData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::ALSM::UpdateData </td>
+          <td>(</td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>hybrid_physics_mode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a4f067e64ec42d3afa1181500d4060998">Actor</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vehicle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>hero_actor_present</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>physics_radius_square</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00196">196</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00009">carla::traffic_manager::SimulationState::AddActor()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00019">carla::traffic_manager::SimulationState::ContainsActor()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00066">current_timestamp</a>, <a class="el" href="../../d7/d66/Timestamp_8h_source.html#l00033">carla::client::Timestamp::elapsed_seconds</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00061">carla::traffic_manager::SimulationState::GetHybridEndLocation()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00057">carla::traffic_manager::SimulationState::GetLocation()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00073">carla::traffic_manager::SimulationState::GetVelocity()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00067">has_physics_enabled</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00051">hero_actors</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00049">idle_time</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00036">carla::traffic_manager::constants::HybridMode::INV_HYBRID_DT</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00081">carla::traffic_manager::SimulationState::IsPhysicsEnabled()</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00030">carla::geom::Transform::location</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00032">carla::geom::Transform::rotation</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00058">simulation_state</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00037">carla::traffic_manager::SimulationState::UpdateKinematicState()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00045">carla::traffic_manager::SimulationState::UpdateTrafficLightState()</a>, <a class="el" href="../../d5/d3b/SimulationState_8h_source.html#l00012">carla::traffic_manager::Vehicle</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00169">UpdateRegisteredActorsData()</a>.</p>
+<div id="dynsection-12" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 12 --></div>
+</div>
+<div id="dynsection-13" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 13 --></div>
+</div>
+
+</div>
+</div>
+<a id="ae8adfaa2936b29a0454ab04a44171a93" name="ae8adfaa2936b29a0454ab04a44171a93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8adfaa2936b29a0454ab04a44171a93">&#9670;&#160;</a></span>UpdateIdleTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::ALSM::UpdateIdleTime </td>
+          <td>(</td>
+          <td class="paramtype">std::pair&lt; <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>, double &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>max_idle_time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>actor_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00340">340</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00066">current_timestamp</a>, <a class="el" href="../../d7/d66/Timestamp_8h_source.html#l00033">carla::client::Timestamp::elapsed_seconds</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00073">carla::traffic_manager::SimulationState::GetVelocity()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00049">idle_time</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00058">simulation_state</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00013">SQUARE</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00045">carla::geom::Vector3D::SquaredLength()</a> , 以及 <a class="el" href="../../d1/d45/Constants_8h_source.html#l00027">carla::traffic_manager::constants::VehicleRemoval::STOPPED_VELOCITY_THRESHOLD</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00169">UpdateRegisteredActorsData()</a>.</p>
+<div id="dynsection-14" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 14 --></div>
+</div>
+<div id="dynsection-15" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 15 --></div>
+</div>
+
+</div>
+</div>
+<a id="ad15f10c71f3da095c15de0aab2c4462d" name="ad15f10c71f3da095c15de0aab2c4462d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad15f10c71f3da095c15de0aab2c4462d">&#9670;&#160;</a></span>UpdateRegisteredActorsData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::ALSM::UpdateRegisteredActorsData </td>
+          <td>(</td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>hybrid_physics_mode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a844a777e11ef1f194af617bda3a724c4">ALSM::IdleInfo</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>max_idle_time</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00169">169</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00240">carla::traffic_manager::Parameters::GetHybridPhysicsRadius()</a>, <a class="el" href="../../dd/dfa/AtomicActorSet_8h_source.html#l00035">carla::traffic_manager::AtomicActorSet::GetList()</a>, <a class="el" href="../../d9/dbc/Parameters_8cpp_source.html#l00416">carla::traffic_manager::Parameters::GetRespawnDormantVehicles()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00051">hero_actors</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00055">parameters</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00044">registered_vehicles</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00093">carla::traffic_manager::TrackTraffic::SetHeroLocation()</a>, <a class="el" href="../../d1/d45/Constants_8h_source.html#l00013">SQUARE</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00052">track_traffic</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00196">UpdateData()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00340">UpdateIdleTime()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+<div id="dynsection-16" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 16 --></div>
+</div>
+<div id="dynsection-17" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 17 --></div>
+</div>
+
+</div>
+</div>
+<a id="ab2987ec9734853767e94428fd78421e7" name="ab2987ec9734853767e94428fd78421e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2987ec9734853767e94428fd78421e7">&#9670;&#160;</a></span>UpdateUnregisteredActorsData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::traffic_manager::ALSM::UpdateUnregisteredActorsData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a> 第 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00270">270</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00009">carla::traffic_manager::SimulationState::AddActor()</a>, <a class="el" href="../../d5/d3b/SimulationState_8h_source.html#l00014">carla::traffic_manager::Any</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00019">carla::traffic_manager::SimulationState::ContainsActor()</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00057">local_map</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00030">carla::geom::Transform::location</a>, <a class="el" href="../../d5/d3b/SimulationState_8h_source.html#l00013">carla::traffic_manager::Pedestrian</a>, <a class="el" href="../../de/d17/geom_2Transform_8h_source.html#l00032">carla::geom::Transform::rotation</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00058">simulation_state</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00052">track_traffic</a>, <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00046">unregistered_actors</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00037">carla::traffic_manager::SimulationState::UpdateKinematicState()</a>, <a class="el" href="../../d3/d9c/SimulationState_8cpp_source.html#l00045">carla::traffic_manager::SimulationState::UpdateTrafficLightState()</a>, <a class="el" href="../../de/d13/TrackTraffic_8cpp_source.html#l00014">carla::traffic_manager::TrackTraffic::UpdateUnregisteredGridPosition()</a>, <a class="el" href="../../d5/d3b/SimulationState_8h_source.html#l00012">carla::traffic_manager::Vehicle</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00024">carla::geom::Vector3D::x</a>, <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00026">carla::geom::Vector3D::y</a> , 以及 <a class="el" href="../../de/d70/geom_2Vector3D_8h_source.html#l00028">carla::geom::Vector3D::z</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+<div id="dynsection-18" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 18 --></div>
+</div>
+<div id="dynsection-19" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 19 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ad3050584a3da46b77d75cfa1a7af38d0" name="ad3050584a3da46b77d75cfa1a7af38d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3050584a3da46b77d75cfa1a7af38d0">&#9670;&#160;</a></span>buffer_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ae4c7328481a2a008686cc108d2719040">BufferMap</a>&amp; carla::traffic_manager::ALSM::buffer_map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00047">47</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>.</p>
+
+</div>
+</div>
+<a id="a9ce1b1e87600dd8c5007e288c9f199cd" name="a9ce1b1e87600dd8c5007e288c9f199cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ce1b1e87600dd8c5007e288c9f199cd">&#9670;&#160;</a></span>collision_stage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d26/classcarla_1_1traffic__manager_1_1CollisionStage.html">CollisionStage</a>&amp; carla::traffic_manager::ALSM::collision_stage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00060">60</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>.</p>
+
+</div>
+</div>
+<a id="abd4bf618417e490ba0a8aad7b67f29c3" name="abd4bf618417e490ba0a8aad7b67f29c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd4bf618417e490ba0a8aad7b67f29c3">&#9670;&#160;</a></span>current_timestamp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d2c/classcarla_1_1client_1_1Timestamp.html">cc::Timestamp</a> carla::traffic_manager::ALSM::current_timestamp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00066">66</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00354">IsVehicleStuck()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00387">Reset()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00196">UpdateData()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00340">UpdateIdleTime()</a>.</p>
+
+</div>
+</div>
+<a id="af3f1039b4328c2397c773bec9843cc26" name="af3f1039b4328c2397c773bec9843cc26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3f1039b4328c2397c773bec9843cc26">&#9670;&#160;</a></span>elapsed_last_actor_destruction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double carla::traffic_manager::ALSM::elapsed_last_actor_destruction {0.0}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00065">65</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00387">Reset()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+
+</div>
+</div>
+<a id="a66bb8da346fcb45796227ca94763ce97" name="a66bb8da346fcb45796227ca94763ce97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66bb8da346fcb45796227ca94763ce97">&#9670;&#160;</a></span>has_physics_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>, bool&gt; carla::traffic_manager::ALSM::has_physics_enabled</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00067">67</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00196">UpdateData()</a>.</p>
+
+</div>
+</div>
+<a id="a94944075ade59a7d25dae4523875862a" name="a94944075ade59a7d25dae4523875862a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94944075ade59a7d25dae4523875862a">&#9670;&#160;</a></span>hero_actors</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab23bc21b9ce10c1d29e5d29517b306b1">ActorMap</a> carla::traffic_manager::ALSM::hero_actors</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00051">51</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00115">IdentifyNewActors()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00387">Reset()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00196">UpdateData()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00169">UpdateRegisteredActorsData()</a>.</p>
+
+</div>
+</div>
+<a id="a8d43575712d6b2c8907ab7100df922c9" name="a8d43575712d6b2c8907ab7100df922c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d43575712d6b2c8907ab7100df922c9">&#9670;&#160;</a></span>idle_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aa37af620583afe7b75c2b14fa56e8cec">IdleTimeMap</a> carla::traffic_manager::ALSM::idle_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00049">49</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00354">IsVehicleStuck()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00387">Reset()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00196">UpdateData()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00340">UpdateIdleTime()</a>.</p>
+
+</div>
+</div>
+<a id="a5fac231accc0caa838aade72596c33d5" name="a5fac231accc0caa838aade72596c33d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fac231accc0caa838aade72596c33d5">&#9670;&#160;</a></span>local_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#a92e31850c5f50a12c8a4602092108e68">LocalMapPtr</a>&amp; carla::traffic_manager::ALSM::local_map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00057">57</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00270">UpdateUnregisteredActorsData()</a>.</p>
+
+</div>
+</div>
+<a id="a57fb718189991828abd379cbb881886b" name="a57fb718189991828abd379cbb881886b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57fb718189991828abd379cbb881886b">&#9670;&#160;</a></span>localization_stage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/da2/classcarla_1_1traffic__manager_1_1LocalizationStage.html">LocalizationStage</a>&amp; carla::traffic_manager::ALSM::localization_stage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00059">59</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>.</p>
+
+</div>
+</div>
+<a id="ac90f6fbfbf8082743f7cef235ba2ee0b" name="ac90f6fbfbf8082743f7cef235ba2ee0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac90f6fbfbf8082743f7cef235ba2ee0b">&#9670;&#160;</a></span>marked_for_removal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#aaaf95d4ba4313d0ce9edb83f10ffd2fa">ActorId</a>&gt;&amp; carla::traffic_manager::ALSM::marked_for_removal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00054">54</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+
+</div>
+</div>
+<a id="a8b2956673f6248b5c2bf5adc47506722" name="a8b2956673f6248b5c2bf5adc47506722"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b2956673f6248b5c2bf5adc47506722">&#9670;&#160;</a></span>motion_plan_stage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/df9/classcarla_1_1traffic__manager_1_1MotionPlanStage.html">MotionPlanStage</a>&amp; carla::traffic_manager::ALSM::motion_plan_stage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00062">62</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>.</p>
+
+</div>
+</div>
+<a id="ac2b737327c11910c9554d83d213ecdb3" name="ac2b737327c11910c9554d83d213ecdb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2b737327c11910c9554d83d213ecdb3">&#9670;&#160;</a></span>parameters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../d6/ddb/classcarla_1_1traffic__manager_1_1Parameters.html">Parameters</a>&amp; carla::traffic_manager::ALSM::parameters</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00055">55</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00169">UpdateRegisteredActorsData()</a>.</p>
+
+</div>
+</div>
+<a id="a33487df8104746bb73315c4ff8d78cd3" name="a33487df8104746bb73315c4ff8d78cd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33487df8104746bb73315c4ff8d78cd3">&#9670;&#160;</a></span>registered_vehicles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/d8c/classcarla_1_1traffic__manager_1_1AtomicActorSet.html">AtomicActorSet</a>&amp; carla::traffic_manager::ALSM::registered_vehicles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00044">44</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00137">IdentifyDestroyedActors()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00115">IdentifyNewActors()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00169">UpdateRegisteredActorsData()</a>.</p>
+
+</div>
+</div>
+<a id="ac927072fe35b3f97149bc3300a85d42e" name="ac927072fe35b3f97149bc3300a85d42e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac927072fe35b3f97149bc3300a85d42e">&#9670;&#160;</a></span>simulation_state</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d2b/classcarla_1_1traffic__manager_1_1SimulationState.html">SimulationState</a>&amp; carla::traffic_manager::ALSM::simulation_state</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00058">58</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00354">IsVehicleStuck()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00196">UpdateData()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00340">UpdateIdleTime()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00270">UpdateUnregisteredActorsData()</a>.</p>
+
+</div>
+</div>
+<a id="ae9b70c1a4a1933b10c0d653f43487c68" name="ae9b70c1a4a1933b10c0d653f43487c68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9b70c1a4a1933b10c0d653f43487c68">&#9670;&#160;</a></span>track_traffic</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d36/classcarla_1_1traffic__manager_1_1TrackTraffic.html">TrackTraffic</a>&amp; carla::traffic_manager::ALSM::track_traffic</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00052">52</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00169">UpdateRegisteredActorsData()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00270">UpdateUnregisteredActorsData()</a>.</p>
+
+</div>
+</div>
+<a id="ae384bf3bbd4736951a4868f7bf0b46b3" name="ae384bf3bbd4736951a4868f7bf0b46b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae384bf3bbd4736951a4868f7bf0b46b3">&#9670;&#160;</a></span>traffic_light_stage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/db3/classcarla_1_1traffic__manager_1_1TrafficLightStage.html">TrafficLightStage</a>&amp; carla::traffic_manager::ALSM::traffic_light_stage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00061">61</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>.</p>
+
+</div>
+</div>
+<a id="ab73da9ee94e618cfd47b0e25eec06b87" name="ab73da9ee94e618cfd47b0e25eec06b87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab73da9ee94e618cfd47b0e25eec06b87">&#9670;&#160;</a></span>unregistered_actors</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/db7/namespacecarla_1_1traffic__manager.html#ab23bc21b9ce10c1d29e5d29517b306b1">ActorMap</a> carla::traffic_manager::ALSM::unregistered_actors</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00046">46</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00137">IdentifyDestroyedActors()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00115">IdentifyNewActors()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>, <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00387">Reset()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00270">UpdateUnregisteredActorsData()</a>.</p>
+
+</div>
+</div>
+<a id="a745cc033d8a9b3afd27217473f192dae" name="a745cc033d8a9b3afd27217473f192dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a745cc033d8a9b3afd27217473f192dae">&#9670;&#160;</a></span>vehicle_light_stage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/de2/classcarla_1_1traffic__manager_1_1VehicleLightStage.html">VehicleLightStage</a>&amp; carla::traffic_manager::ALSM::vehicle_light_stage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00063">63</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00367">RemoveActor()</a>.</p>
+
+</div>
+</div>
+<a id="a23c54f9407c992c66579e917e70c13b8" name="a23c54f9407c992c66579e917e70c13b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23c54f9407c992c66579e917e70c13b8">&#9670;&#160;</a></span>world</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="../../db/d1f/classcarla_1_1client_1_1World.html">cc::World</a>&amp; carla::traffic_manager::ALSM::world</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a> 第 <a class="el" href="../../dc/d2c/ALSM_8h_source.html#l00056">56</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00387">Reset()</a> , 以及 <a class="el" href="../../d9/da8/ALSM_8cpp_source.html#l00045">Update()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../dc/d2c/ALSM_8h_source.html">ALSM.h</a></li>
+<li><a class="el" href="../../d9/da8/ALSM_8cpp_source.html">ALSM.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

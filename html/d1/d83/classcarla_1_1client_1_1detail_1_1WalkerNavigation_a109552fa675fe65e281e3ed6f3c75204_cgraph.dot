@@ -1,0 +1,24 @@
+digraph "carla::client::detail::WalkerNavigation::UpdateVehiclesInCrowd"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::client::detail\l::WalkerNavigation::UpdateVehicles\lInCrowd",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="add/update/delete all vehicles in crowd"];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::nav::Navigation\l::GetCrowd",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#afcead7bb9bd7ef89f99feb2e7b6126ec",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="carla::nav::Navigation\l::UpdateVehicles",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#a6b7d72d6c0d11bd88a5b9fae3e230ed2",tooltip="add/update/delete vehicles in crowd"];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="carla::nav::Navigation\l::AddOrUpdateVehicle",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#af4c5eadbe143c3a583b26cb351396029",tooltip="create a new vehicle in crowd to be avoided by walkers"];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="carla::logging::log",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d8c/namespacecarla_1_1logging.html#abd90157c295f4863aaaa7d66f18ae0fa",tooltip=" "];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="carla::logging::write\l_to_stream",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d8c/namespacecarla_1_1logging.html#a4193666236852fb6a6977299a31445d8",tooltip=" "];
+  Node3 -> Node7 [id="edge6_Node000003_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="carla::nav::Navigation\l::RemoveAgent",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d9/dc2/classcarla_1_1nav_1_1Navigation.html#a273cfd565ff7a8376f165105a192e2e1",tooltip="remove an agent"];
+  Node7 -> Node8 [id="edge7_Node000007_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="carla::nav::WalkerManager\l::RemoveWalker",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$dd/d5b/classcarla_1_1nav_1_1WalkerManager.html#a020f1ac3386d56709e702fb2c826a4bc",tooltip="remove a walker route"];
+}

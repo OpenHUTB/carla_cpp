@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaServerResponse.h 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_4f477b896248adf10c6909a9eb9fb7d3.html">Server</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">CarlaServerResponse.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+</div>
+</div>
+<p><a href="../../dd/d3e/CarlaServerResponse_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:ad15b7df4d328256d9ad3cc9b79ffbf9d" id="r_ad15b7df4d328256d9ad3cc9b79ffbf9d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9d">ECarlaServerResponse</a> { <br />
+&#160;&#160;<a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dadf314920f19d4440956753e1776c6ec7">ActorNotFound</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dab43f027b5acb9fb70fafef6a3de8e646">ComponentNotFound</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dab2f301adedfdf485c318d60c8e9d0467">ActorTypeMismatch</a>
+, <br />
+&#160;&#160;<a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9daa837676aba9c2e32d77b1ef00fc8ac68">FunctionNotSupported</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da557db64062697b25d7a56a0459d4b89e">NullActor</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dac181f3c95ca8b7e5bf2c225a34f8cc54">MissingActor</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dad4983384e2db2ee10a1930ffefb7d1ec">NotAVehicle</a>
+, <br />
+&#160;&#160;<a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da09eaa716dcb6c3965ffc601074fecf91">WalkerDead</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dacdc9d60658af9996374912b8860d8075">NotAWalker</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da36c7119294334477a21948a963912fd7">WalkerIncompatibleController</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da447d4b17915d35c7c9a89a1a31baaf92">AutoPilotNotSupported</a>
+, <br />
+&#160;&#160;<a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da2697fa4d2030cb2a8f8cd3db63648f5b">CarSimPluginNotEnabled</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dae4bd55506e9b0cc88a9bceace1f9dc18">NotATrafficLight</a>
+, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da8f3ccf5be8ea8de987885a6ca0521733">FunctionNotAvailiableWhenDormant</a>
+<br />
+ }</td></tr>
+<tr class="separator:ad15b7df4d328256d9ad3cc9b79ffbf9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a55d4045c86aebf101a19d8731be29886" id="r_a55d4045c86aebf101a19d8731be29886"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55d4045c86aebf101a19d8731be29886">CarlaGetStringError</a> (<a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9d">ECarlaServerResponse</a> Response)</td></tr>
+<tr class="separator:a55d4045c86aebf101a19d8731be29886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="ad15b7df4d328256d9ad3cc9b79ffbf9d" name="ad15b7df4d328256d9ad3cc9b79ffbf9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad15b7df4d328256d9ad3cc9b79ffbf9d">&#9670;&#160;</a></span>ECarlaServerResponse</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9d">ECarlaServerResponse</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38" name="ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38"></a>Success&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9dadf314920f19d4440956753e1776c6ec7" name="ad15b7df4d328256d9ad3cc9b79ffbf9dadf314920f19d4440956753e1776c6ec7"></a>ActorNotFound&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9dab43f027b5acb9fb70fafef6a3de8e646" name="ad15b7df4d328256d9ad3cc9b79ffbf9dab43f027b5acb9fb70fafef6a3de8e646"></a>ComponentNotFound&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9dab2f301adedfdf485c318d60c8e9d0467" name="ad15b7df4d328256d9ad3cc9b79ffbf9dab2f301adedfdf485c318d60c8e9d0467"></a>ActorTypeMismatch&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9daa837676aba9c2e32d77b1ef00fc8ac68" name="ad15b7df4d328256d9ad3cc9b79ffbf9daa837676aba9c2e32d77b1ef00fc8ac68"></a>FunctionNotSupported&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9da557db64062697b25d7a56a0459d4b89e" name="ad15b7df4d328256d9ad3cc9b79ffbf9da557db64062697b25d7a56a0459d4b89e"></a>NullActor&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9dac181f3c95ca8b7e5bf2c225a34f8cc54" name="ad15b7df4d328256d9ad3cc9b79ffbf9dac181f3c95ca8b7e5bf2c225a34f8cc54"></a>MissingActor&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9dad4983384e2db2ee10a1930ffefb7d1ec" name="ad15b7df4d328256d9ad3cc9b79ffbf9dad4983384e2db2ee10a1930ffefb7d1ec"></a>NotAVehicle&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9da09eaa716dcb6c3965ffc601074fecf91" name="ad15b7df4d328256d9ad3cc9b79ffbf9da09eaa716dcb6c3965ffc601074fecf91"></a>WalkerDead&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9dacdc9d60658af9996374912b8860d8075" name="ad15b7df4d328256d9ad3cc9b79ffbf9dacdc9d60658af9996374912b8860d8075"></a>NotAWalker&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9da36c7119294334477a21948a963912fd7" name="ad15b7df4d328256d9ad3cc9b79ffbf9da36c7119294334477a21948a963912fd7"></a>WalkerIncompatibleController&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9da447d4b17915d35c7c9a89a1a31baaf92" name="ad15b7df4d328256d9ad3cc9b79ffbf9da447d4b17915d35c7c9a89a1a31baaf92"></a>AutoPilotNotSupported&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9da2697fa4d2030cb2a8f8cd3db63648f5b" name="ad15b7df4d328256d9ad3cc9b79ffbf9da2697fa4d2030cb2a8f8cd3db63648f5b"></a>CarSimPluginNotEnabled&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9dae4bd55506e9b0cc88a9bceace1f9dc18" name="ad15b7df4d328256d9ad3cc9b79ffbf9dae4bd55506e9b0cc88a9bceace1f9dc18"></a>NotATrafficLight&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad15b7df4d328256d9ad3cc9b79ffbf9da8f3ccf5be8ea8de987885a6ca0521733" name="ad15b7df4d328256d9ad3cc9b79ffbf9da8f3ccf5be8ea8de987885a6ca0521733"></a>FunctionNotAvailiableWhenDormant&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h_source.html">CarlaServerResponse.h</a> 第 <a class="el" href="../../dd/d3e/CarlaServerResponse_8h_source.html#l00009">9</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a55d4045c86aebf101a19d8731be29886" name="a55d4045c86aebf101a19d8731be29886"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55d4045c86aebf101a19d8731be29886">&#9670;&#160;</a></span>CarlaGetStringError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FString CarlaGetStringError </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9d">ECarlaServerResponse</a></td>          <td class="paramname"><span class="paramname"><em>Response</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/d84/CarlaServerResponse_8cpp_source.html">CarlaServerResponse.cpp</a> 第 <a class="el" href="../../de/d84/CarlaServerResponse_8cpp_source.html#l00009">9</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dadf314920f19d4440956753e1776c6ec7">ActorNotFound</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dab2f301adedfdf485c318d60c8e9d0467">ActorTypeMismatch</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da447d4b17915d35c7c9a89a1a31baaf92">AutoPilotNotSupported</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da2697fa4d2030cb2a8f8cd3db63648f5b">CarSimPluginNotEnabled</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dab43f027b5acb9fb70fafef6a3de8e646">ComponentNotFound</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da8f3ccf5be8ea8de987885a6ca0521733">FunctionNotAvailiableWhenDormant</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dac181f3c95ca8b7e5bf2c225a34f8cc54">MissingActor</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dae4bd55506e9b0cc88a9bceace1f9dc18">NotATrafficLight</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dad4983384e2db2ee10a1930ffefb7d1ec">NotAVehicle</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9dacdc9d60658af9996374912b8860d8075">NotAWalker</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da557db64062697b25d7a56a0459d4b89e">NullActor</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da505a83f220c02df2f85c3810cd9ceb38">Success</a>, <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da09eaa716dcb6c3965ffc601074fecf91">WalkerDead</a> , 以及 <a class="el" href="#ad15b7df4d328256d9ad3cc9b79ffbf9da36c7119294334477a21948a963912fd7">WalkerIncompatibleController</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../db/d6c/CarlaServer_8cpp_source.html#l00173">RespondError()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: test_buffer.cpp 文件参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_1604d568fa4d964dfa9079b701bbfa07.html">LibCarla</a></li><li class="navelem"><a class="el" href="../../dir_b9166249188ce33115fd7d5eed1849f2.html">source</a></li><li class="navelem"><a class="el" href="../../dir_97b9e7c0fcfa3758b809c516b8cd633b.html">test</a></li><li class="navelem"><a class="el" href="../../dir_6f6d9df4e1fad887f766eb2a9ac72e1b.html">common</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">test_buffer.cpp 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="../../d2/ddc/test_8h_source.html">test.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html">carla/Buffer.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../de/d1a/BufferPool_8h_source.html">carla/BufferPool.h</a>&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;list&gt;</code><br />
+<code>#include &lt;set&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> test_buffer.cpp 的引用(Include)关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+</div>
+</div>
+<p><a href="../../dd/d43/test__buffer_8cpp_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:afdf9a56c694ce95d39cce4921ff58703" id="r_afdf9a56c694ce95d39cce4921ff58703"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdf9a56c694ce95d39cce4921ff58703">TEST</a> (buffer, buffer_pool)</td></tr>
+<tr class="separator:afdf9a56c694ce95d39cce4921ff58703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c167d13806fd575bed52320c7f9a127" id="r_a7c167d13806fd575bed52320c7f9a127"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c167d13806fd575bed52320c7f9a127">TEST</a> (buffer, compile)</td></tr>
+<tr class="separator:a7c167d13806fd575bed52320c7f9a127"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a004fa11bd2ed42d84249d85d8eaad774" id="r_a004fa11bd2ed42d84249d85d8eaad774"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a004fa11bd2ed42d84249d85d8eaad774">TEST</a> (buffer, copy)</td></tr>
+<tr class="separator:a004fa11bd2ed42d84249d85d8eaad774"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af95a131befb3c7556150ec4463f4fc" id="r_a2af95a131befb3c7556150ec4463f4fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2af95a131befb3c7556150ec4463f4fc">TEST</a> (buffer, copy_buffer_sequence)</td></tr>
+<tr class="separator:a2af95a131befb3c7556150ec4463f4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee408c1b0eaee28c1ed960c490734f4" id="r_adee408c1b0eaee28c1ed960c490734f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adee408c1b0eaee28c1ed960c490734f4">TEST</a> (buffer, copy_with_offset)</td></tr>
+<tr class="separator:adee408c1b0eaee28c1ed960c490734f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa849c8dbd21eed7c5ff38c3ce8f31f78" id="r_aa849c8dbd21eed7c5ff38c3ce8f31f78"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa849c8dbd21eed7c5ff38c3ce8f31f78">TEST</a> (buffer, memcpy)</td></tr>
+<tr class="separator:aa849c8dbd21eed7c5ff38c3ce8f31f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a393b8bc8c43af5fa0590ae6bc07fdb6e" id="r_a393b8bc8c43af5fa0590ae6bc07fdb6e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a393b8bc8c43af5fa0590ae6bc07fdb6e">TEST</a> (buffer, message_too_big)</td></tr>
+<tr class="separator:a393b8bc8c43af5fa0590ae6bc07fdb6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2db922fae7964733e0aa299edc6e9e4c" id="r_a2db922fae7964733e0aa299edc6e9e4c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2db922fae7964733e0aa299edc6e9e4c">TEST</a> (buffer, to_from_string)</td></tr>
+<tr class="separator:a2db922fae7964733e0aa299edc6e9e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07fc21c931637b3a20e03931e047d44c" id="r_a07fc21c931637b3a20e03931e047d44c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07fc21c931637b3a20e03931e047d44c">TEST</a> (buffer, to_from_vector)</td></tr>
+<tr class="separator:a07fc21c931637b3a20e03931e047d44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="afdf9a56c694ce95d39cce4921ff58703" name="afdf9a56c694ce95d39cce4921ff58703"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf9a56c694ce95d39cce4921ff58703">&#9670;&#160;</a></span>TEST() <span class="overload">[1/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">buffer_pool</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00123">123</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dbd/test_2Buffer_8h_source.html#l00037">util::buffer::as_string()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="a7c167d13806fd575bed52320c7f9a127" name="a7c167d13806fd575bed52320c7f9a127"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c167d13806fd575bed52320c7f9a127">&#9670;&#160;</a></span>TEST() <span class="overload">[2/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">compile</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00295">carla::Buffer::copy_from()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a004fa11bd2ed42d84249d85d8eaad774" name="a004fa11bd2ed42d84249d85d8eaad774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a004fa11bd2ed42d84249d85d8eaad774">&#9670;&#160;</a></span>TEST() <span class="overload">[3/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">copy</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00082">82</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dbd/test_2Buffer_8h_source.html#l00024">util::buffer::make_empty()</a> , 以及 <a class="el" href="../../db/dde/test_2Buffer_8cpp_source.html#l00017">util::buffer::make_random()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2af95a131befb3c7556150ec4463f4fc" name="a2af95a131befb3c7556150ec4463f4fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af95a131befb3c7556150ec4463f4fc">&#9670;&#160;</a></span>TEST() <span class="overload">[4/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">copy_buffer_sequence</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00042">42</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dbd/test_2Buffer_8h_source.html#l00037">util::buffer::as_string()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+
+</div>
+</div>
+<a id="adee408c1b0eaee28c1ed960c490734f4" name="adee408c1b0eaee28c1ed960c490734f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adee408c1b0eaee28c1ed960c490734f4">&#9670;&#160;</a></span>TEST() <span class="overload">[5/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">copy_with_offset</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dbd/test_2Buffer_8h_source.html#l00037">util::buffer::as_string()</a>, <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00295">carla::Buffer::copy_from()</a>, <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00152">carla::Buffer::data()</a> , 以及 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00190">carla::Buffer::size()</a>.</p>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa849c8dbd21eed7c5ff38c3ce8f31f78" name="aa849c8dbd21eed7c5ff38c3ce8f31f78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa849c8dbd21eed7c5ff38c3ce8f31f78">&#9670;&#160;</a></span>TEST() <span class="overload">[6/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">memcpy</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00106">106</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dbd/test_2Buffer_8h_source.html#l00024">util::buffer::make_empty()</a> , 以及 <a class="el" href="../../db/dde/test_2Buffer_8cpp_source.html#l00017">util::buffer::make_random()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a393b8bc8c43af5fa0590ae6bc07fdb6e" name="a393b8bc8c43af5fa0590ae6bc07fdb6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a393b8bc8c43af5fa0590ae6bc07fdb6e">&#9670;&#160;</a></span>TEST() <span class="overload">[7/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">message_too_big</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00116">116</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00244">carla::Buffer::reset()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2db922fae7964733e0aa299edc6e9e4c" name="a2db922fae7964733e0aa299edc6e9e4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2db922fae7964733e0aa299edc6e9e4c">&#9670;&#160;</a></span>TEST() <span class="overload">[8/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">to_from_string</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00059">59</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dbd/test_2Buffer_8h_source.html#l00037">util::buffer::as_string()</a> , 以及 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00190">carla::Buffer::size()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="a07fc21c931637b3a20e03931e047d44c" name="a07fc21c931637b3a20e03931e047d44c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07fc21c931637b3a20e03931e047d44c">&#9670;&#160;</a></span>TEST() <span class="overload">[9/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TEST </td>
+          <td>(</td>
+          <td class="paramtype">buffer</td>          <td class="paramname"><span class="paramname"><em></em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">to_from_vector</td>          <td class="paramname"><span class="paramname"><em></em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html">test_buffer.cpp</a> 第 <a class="el" href="../../dd/d43/test__buffer_8cpp_source.html#l00067">67</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00152">carla::Buffer::data()</a> , 以及 <a class="el" href="../../d2/dda/carla_2Buffer_8h_source.html#l00190">carla::Buffer::size()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

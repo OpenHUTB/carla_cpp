@@ -1,0 +1,12 @@
+digraph "carla::pointcloud::PointCloudIO::Dump"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="carla::pointcloud::\lPointCloudIO::Dump",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="carla::pointcloud::\lPointCloudIO::WriteHeader",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d02/classcarla_1_1pointcloud_1_1PointCloudIO.html#a42e0425f9c812212c41d77c21ce2c314",tooltip=" "];
+}

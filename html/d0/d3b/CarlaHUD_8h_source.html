@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: CarlaHUD.h 源文件</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_2d15d0715a2692171bd03ed14a4a79af.html">Unreal</a></li><li class="navelem"><a class="el" href="../../dir_d3c1db2570616bec48bf5a6dd06bce95.html">CarlaUE4</a></li><li class="navelem"><a class="el" href="../../dir_3538576148ac14151677be9b0aee6fcc.html">Plugins</a></li><li class="navelem"><a class="el" href="../../dir_fbda5b12374c683cbdca72abb2d51944.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_18937e8f6bde63367bf26837323a9508.html">Source</a></li><li class="navelem"><a class="el" href="../../dir_8fc34afb5f07a67966c78bf5319f94ae.html">Carla</a></li><li class="navelem"><a class="el" href="../../dir_b708e75f0564cefaa95a07ef1c60fa1d.html">Game</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">CarlaHUD.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d0/d3b/CarlaHUD_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// de Barcelona (UAB).</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// For a copy, see &lt;https://opensource.org/licenses/MIT&gt;.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// Workaround to fix Windows conflict: Windows changes the name of some functions (DrawText, LoadLibrary...)</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// with Unicode / ANSI versions for his own API (DrawTextW, DrawTextA, LoadLibraryW, LoadLibraryA...).</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// But the changes are global for the compiler. Deep in headers, Windows has something like:</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// #ifdef UNICODE</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//   #define DrawText  DrawTextW</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//   #define LoadLibrary LoadLibraryW</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// #else</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//   #define DrawText  DrawTextA</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//   #define LoadLibrary LoadLibraryA</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// #endif</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// Then the linker tries to find the function DrawTextW on an external DLL and an unresolved external error happens because</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// Unreal has no function DrawTextW, it has just DrawText.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">// We can fix that by just undefining the function that conflicts with the name of the Windows API in Unicode.</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#undef DrawText</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d7d/Carla_8h.html">Carla.h</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;Containers/Array.h&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;GameFramework/HUD.h&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;WheeledVehicleMovementComponent.h&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;CarlaHUD.generated.h&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../dc/da2/structHUDString.html">   30</a></span><span class="keyword">struct </span><a class="code hl_struct" href="../../dc/da2/structHUDString.html">HUDString</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="../../dc/da2/structHUDString.html#a8d3147dc21889278dd152092fda7d4ed">   32</a></span>  FString <a class="code hl_variable" href="../../dc/da2/structHUDString.html#a8d3147dc21889278dd152092fda7d4ed">Str</a> { <span class="stringliteral">&quot;&quot;</span> };</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../dc/da2/structHUDString.html#a79432a47dbe129d9450da27d67b4f170">   33</a></span>  FVector <a class="code hl_variable" href="../../dc/da2/structHUDString.html#a79432a47dbe129d9450da27d67b4f170">Location</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="../../dc/da2/structHUDString.html#abe7ee156d229ae5544b3eb47651e0237">   34</a></span>  FColor <a class="code hl_variable" href="../../dc/da2/structHUDString.html#abe7ee156d229ae5544b3eb47651e0237">Color</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../dc/da2/structHUDString.html#a888e92a411dfe5d5d24dd881ad8d4318">   35</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="../../dc/da2/structHUDString.html#a888e92a411dfe5d5d24dd881ad8d4318">TimeToDie</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="};">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../df/d48/structHUDLine.html">   38</a></span><span class="keyword">struct </span><a class="code hl_struct" href="../../df/d48/structHUDLine.html">HUDLine</a></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="../../df/d48/structHUDLine.html#a0a2b6c6f976020331d6a1a20d1e2a317">   40</a></span>  FVector <a class="code hl_variable" href="../../df/d48/structHUDLine.html#a0a2b6c6f976020331d6a1a20d1e2a317">Begin</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="../../df/d48/structHUDLine.html#a8e1f996b1d10387c3137ed6730e86840">   41</a></span>  FVector <a class="code hl_variable" href="../../df/d48/structHUDLine.html#a8e1f996b1d10387c3137ed6730e86840">End</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../df/d48/structHUDLine.html#ade37d355ec63839b566a62369991b6b4">   42</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="../../df/d48/structHUDLine.html#ade37d355ec63839b566a62369991b6b4">Thickness</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="../../df/d48/structHUDLine.html#a03b9c053b9c556b2f4bbdfd4dd93bbd7">   43</a></span>  FColor <a class="code hl_variable" href="../../df/d48/structHUDLine.html#a03b9c053b9c556b2f4bbdfd4dd93bbd7">Color</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="../../df/d48/structHUDLine.html#a1fdb247c971916d0d9d4080d8159a761">   44</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="../../df/d48/structHUDLine.html#a1fdb247c971916d0d9d4080d8159a761">TimeToDie</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment"></span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/// Class to draw on HUD</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment"></span>UCLASS()</div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../db/d7a/classACarlaHUD.html">   49</a></span>class CARLA_API <a class="code hl_class" href="../../db/d7a/classACarlaHUD.html">ACarlaHUD</a> : public <a class="code hl_class" href="../../de/dc7/classAHUD.html">AHUD</a></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  GENERATED_BODY()</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="../../db/d7a/classACarlaHUD.html#af22486685ce9535fb90b848a9d75beea">   55</a></span>  <a class="code hl_function" href="../../db/d7a/classACarlaHUD.html#af22486685ce9535fb90b848a9d75beea">ACarlaHUD</a>(<span class="keyword">const</span> FObjectInitializer&amp; ObjectInitializer)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    : Super(ObjectInitializer)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    PrimaryActorTick.bCanEverTick = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  }</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> DrawHUD() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="../../db/d7a/classACarlaHUD.html#a8e644aeffbd4150dbe13118dba2bd5b4">   63</a></span>  UWheeledVehicleMovementComponent* DebugVehicle{<span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="../../db/d7a/classACarlaHUD.html#ab4b4f5c4733fca69272cf71aea725300">   64</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d7a/classACarlaHUD.html#ab4b4f5c4733fca69272cf71aea725300">AddDebugVehicleForTelemetry</a>(UWheeledVehicleMovementComponent* Veh) { DebugVehicle = Veh; }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keywordtype">void</span> AddHUDString(<span class="keyword">const</span> FString Str, <span class="keyword">const</span> FVector Location, <span class="keyword">const</span> FColor Color, <span class="keywordtype">double</span> LifeTime);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">void</span> AddHUDLine(<span class="keyword">const</span> FVector Begin, <span class="keyword">const</span> FVector End, <span class="keyword">const</span> <span class="keywordtype">float</span> Thickness, <span class="keyword">const</span> FColor Color, <span class="keywordtype">double</span> LifeTime);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="../../db/d7a/classACarlaHUD.html#a9f35cba130c691efb33b8735368ea7bb">   70</a></span>  TArray&lt;HUDString&gt; <a class="code hl_variable" href="../../db/d7a/classACarlaHUD.html#a9f35cba130c691efb33b8735368ea7bb">StringList</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="../../db/d7a/classACarlaHUD.html#a26959444ff82f6a9f72609285d179d7f">   71</a></span>  TArray&lt;HUDLine&gt; <a class="code hl_variable" href="../../db/d7a/classACarlaHUD.html#a26959444ff82f6a9f72609285d179d7f">LineList</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+</div>
+<div class="ttc" id="aCarla_8h_html"><div class="ttname"><a href="../../d7/d7d/Carla_8h.html">Carla.h</a></div></div>
+<div class="ttc" id="aclassACarlaHUD_html"><div class="ttname"><a href="../../db/d7a/classACarlaHUD.html">ACarlaHUD</a></div><div class="ttdoc">Class to draw on HUD</div><div class="ttdef"><b>定义</b> <a href="#l00049">CarlaHUD.h:50</a></div></div>
+<div class="ttc" id="aclassACarlaHUD_html_a26959444ff82f6a9f72609285d179d7f"><div class="ttname"><a href="../../db/d7a/classACarlaHUD.html#a26959444ff82f6a9f72609285d179d7f">ACarlaHUD::LineList</a></div><div class="ttdeci">TArray&lt; HUDLine &gt; LineList</div><div class="ttdef"><b>定义</b> <a href="#l00071">CarlaHUD.h:71</a></div></div>
+<div class="ttc" id="aclassACarlaHUD_html_a9f35cba130c691efb33b8735368ea7bb"><div class="ttname"><a href="../../db/d7a/classACarlaHUD.html#a9f35cba130c691efb33b8735368ea7bb">ACarlaHUD::StringList</a></div><div class="ttdeci">TArray&lt; HUDString &gt; StringList</div><div class="ttdef"><b>定义</b> <a href="#l00070">CarlaHUD.h:70</a></div></div>
+<div class="ttc" id="aclassACarlaHUD_html_ab4b4f5c4733fca69272cf71aea725300"><div class="ttname"><a href="../../db/d7a/classACarlaHUD.html#ab4b4f5c4733fca69272cf71aea725300">ACarlaHUD::AddDebugVehicleForTelemetry</a></div><div class="ttdeci">void AddDebugVehicleForTelemetry(UWheeledVehicleMovementComponent *Veh)</div><div class="ttdef"><b>定义</b> <a href="#l00064">CarlaHUD.h:64</a></div></div>
+<div class="ttc" id="aclassACarlaHUD_html_af22486685ce9535fb90b848a9d75beea"><div class="ttname"><a href="../../db/d7a/classACarlaHUD.html#af22486685ce9535fb90b848a9d75beea">ACarlaHUD::ACarlaHUD</a></div><div class="ttdeci">ACarlaHUD(const FObjectInitializer &amp;ObjectInitializer)</div><div class="ttdef"><b>定义</b> <a href="#l00055">CarlaHUD.h:55</a></div></div>
+<div class="ttc" id="aclassAHUD_html"><div class="ttname"><a href="../../de/dc7/classAHUD.html">AHUD</a></div></div>
+<div class="ttc" id="astructHUDLine_html"><div class="ttname"><a href="../../df/d48/structHUDLine.html">HUDLine</a></div><div class="ttdef"><b>定义</b> <a href="#l00038">CarlaHUD.h:39</a></div></div>
+<div class="ttc" id="astructHUDLine_html_a03b9c053b9c556b2f4bbdfd4dd93bbd7"><div class="ttname"><a href="../../df/d48/structHUDLine.html#a03b9c053b9c556b2f4bbdfd4dd93bbd7">HUDLine::Color</a></div><div class="ttdeci">FColor Color</div><div class="ttdef"><b>定义</b> <a href="#l00043">CarlaHUD.h:43</a></div></div>
+<div class="ttc" id="astructHUDLine_html_a0a2b6c6f976020331d6a1a20d1e2a317"><div class="ttname"><a href="../../df/d48/structHUDLine.html#a0a2b6c6f976020331d6a1a20d1e2a317">HUDLine::Begin</a></div><div class="ttdeci">FVector Begin</div><div class="ttdef"><b>定义</b> <a href="#l00040">CarlaHUD.h:40</a></div></div>
+<div class="ttc" id="astructHUDLine_html_a1fdb247c971916d0d9d4080d8159a761"><div class="ttname"><a href="../../df/d48/structHUDLine.html#a1fdb247c971916d0d9d4080d8159a761">HUDLine::TimeToDie</a></div><div class="ttdeci">double TimeToDie</div><div class="ttdef"><b>定义</b> <a href="#l00044">CarlaHUD.h:44</a></div></div>
+<div class="ttc" id="astructHUDLine_html_a8e1f996b1d10387c3137ed6730e86840"><div class="ttname"><a href="../../df/d48/structHUDLine.html#a8e1f996b1d10387c3137ed6730e86840">HUDLine::End</a></div><div class="ttdeci">FVector End</div><div class="ttdef"><b>定义</b> <a href="#l00041">CarlaHUD.h:41</a></div></div>
+<div class="ttc" id="astructHUDLine_html_ade37d355ec63839b566a62369991b6b4"><div class="ttname"><a href="../../df/d48/structHUDLine.html#ade37d355ec63839b566a62369991b6b4">HUDLine::Thickness</a></div><div class="ttdeci">float Thickness</div><div class="ttdef"><b>定义</b> <a href="#l00042">CarlaHUD.h:42</a></div></div>
+<div class="ttc" id="astructHUDString_html"><div class="ttname"><a href="../../dc/da2/structHUDString.html">HUDString</a></div><div class="ttdef"><b>定义</b> <a href="#l00030">CarlaHUD.h:31</a></div></div>
+<div class="ttc" id="astructHUDString_html_a79432a47dbe129d9450da27d67b4f170"><div class="ttname"><a href="../../dc/da2/structHUDString.html#a79432a47dbe129d9450da27d67b4f170">HUDString::Location</a></div><div class="ttdeci">FVector Location</div><div class="ttdef"><b>定义</b> <a href="#l00033">CarlaHUD.h:33</a></div></div>
+<div class="ttc" id="astructHUDString_html_a888e92a411dfe5d5d24dd881ad8d4318"><div class="ttname"><a href="../../dc/da2/structHUDString.html#a888e92a411dfe5d5d24dd881ad8d4318">HUDString::TimeToDie</a></div><div class="ttdeci">double TimeToDie</div><div class="ttdef"><b>定义</b> <a href="#l00035">CarlaHUD.h:35</a></div></div>
+<div class="ttc" id="astructHUDString_html_a8d3147dc21889278dd152092fda7d4ed"><div class="ttname"><a href="../../dc/da2/structHUDString.html#a8d3147dc21889278dd152092fda7d4ed">HUDString::Str</a></div><div class="ttdeci">FString Str</div><div class="ttdef"><b>定义</b> <a href="#l00032">CarlaHUD.h:32</a></div></div>
+<div class="ttc" id="astructHUDString_html_abe7ee156d229ae5544b3eb47651e0237"><div class="ttname"><a href="../../dc/da2/structHUDString.html#abe7ee156d229ae5544b3eb47651e0237">HUDString::Color</a></div><div class="ttdeci">FColor Color</div><div class="ttdef"><b>定义</b> <a href="#l00034">CarlaHUD.h:34</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

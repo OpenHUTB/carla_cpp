@@ -1,0 +1,696 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: carla::sensor::data::SemanticLidarData类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../d9/d36/namespacecarla.html">carla</a></li><li class="navelem"><a class="el" href="../../dd/d2c/namespacecarla_1_1sensor.html">sensor</a></li><li class="navelem"><a class="el" href="../../db/de4/namespacecarla_1_1sensor_1_1data.html">data</a></li><li class="navelem"><a class="el" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html">SemanticLidarData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-types">Protected 类型</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="#friends">友元</a> &#124;
+<a href="../../d2/d20/classcarla_1_1sensor_1_1data_1_1SemanticLidarData-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">carla::sensor::data::SemanticLidarData类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 carla::sensor::data::SemanticLidarData 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> carla::sensor::data::SemanticLidarData 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a432e1ad9a42f6469c4fea8b68cbca3b2" id="r_a432e1ad9a42f6469c4fea8b68cbca3b2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a432e1ad9a42f6469c4fea8b68cbca3b2">GetChannelCount</a> () const</td></tr>
+<tr class="separator:a432e1ad9a42f6469c4fea8b68cbca3b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10323c1c337fef5f19d2a64634d9390a" id="r_a10323c1c337fef5f19d2a64634d9390a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10323c1c337fef5f19d2a64634d9390a">GetHorizontalAngle</a> () const</td></tr>
+<tr class="separator:a10323c1c337fef5f19d2a64634d9390a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2873b84b53956436c30961fe7a224743" id="r_a2873b84b53956436c30961fe7a224743"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html">SemanticLidarData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2873b84b53956436c30961fe7a224743">operator=</a> (<a class="el" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html">SemanticLidarData</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a2873b84b53956436c30961fe7a224743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23bc8131f054d14ec065d6df84c7c121" id="r_a23bc8131f054d14ec065d6df84c7c121"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23bc8131f054d14ec065d6df84c7c121">ResetMemory</a> (std::vector&lt; uint32_t &gt; points_per_channel)</td></tr>
+<tr class="separator:a23bc8131f054d14ec065d6df84c7c121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ee973bd4511970fa3c8df05290f2fe1" id="r_a3ee973bd4511970fa3c8df05290f2fe1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ee973bd4511970fa3c8df05290f2fe1">SemanticLidarData</a> (uint32_t <a class="el" href="#a0d0554efb807f37afef58001b1d575dba14ecc4a048ab2c5103d743f84e02de5b">ChannelCount</a>=0u)</td></tr>
+<tr class="separator:a3ee973bd4511970fa3c8df05290f2fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6673646541685f3f58d649577e1df674" id="r_a6673646541685f3f58d649577e1df674"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6673646541685f3f58d649577e1df674">SetHorizontalAngle</a> (float angle)</td></tr>
+<tr class="separator:a6673646541685f3f58d649577e1df674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a138b447dea31ffa9256b2d2314d5f4" id="r_a0a138b447dea31ffa9256b2d2314d5f4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a138b447dea31ffa9256b2d2314d5f4">WriteChannelCount</a> (std::vector&lt; uint32_t &gt; points_per_channel)</td></tr>
+<tr class="separator:a0a138b447dea31ffa9256b2d2314d5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7e40c05ed9cc6700f690d40577ab206" id="r_aa7e40c05ed9cc6700f690d40577ab206"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7e40c05ed9cc6700f690d40577ab206">WritePointSync</a> (<a class="el" href="../../dd/d3c/classcarla_1_1sensor_1_1data_1_1SemanticLidarDetection.html">SemanticLidarDetection</a> &amp;detection)</td></tr>
+<tr class="separator:aa7e40c05ed9cc6700f690d40577ab206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad14537bc1d6c286394aec299af294937" id="r_ad14537bc1d6c286394aec299af294937"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad14537bc1d6c286394aec299af294937">~SemanticLidarData</a> ()</td></tr>
+<tr class="separator:ad14537bc1d6c286394aec299af294937"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
+Protected 类型</h2></td></tr>
+<tr class="memitem:a0d0554efb807f37afef58001b1d575db" id="r_a0d0554efb807f37afef58001b1d575db"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d0554efb807f37afef58001b1d575db">Index</a> : size_t { <a class="el" href="#a0d0554efb807f37afef58001b1d575dbaaa55108e2fb49fbea1410ffe2201472e">HorizontalAngle</a>
+, <a class="el" href="#a0d0554efb807f37afef58001b1d575dba14ecc4a048ab2c5103d743f84e02de5b">ChannelCount</a>
+, <a class="el" href="#a0d0554efb807f37afef58001b1d575dba0f9e9cc1dec280f7af08fdd16125d7f0">SIZE</a>
+ }</td></tr>
+<tr class="separator:a0d0554efb807f37afef58001b1d575db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:acaa2a0e381eb3dcf29034462ecfc3085" id="r_acaa2a0e381eb3dcf29034462ecfc3085"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaa2a0e381eb3dcf29034462ecfc3085">_header</a></td></tr>
+<tr class="separator:acaa2a0e381eb3dcf29034462ecfc3085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accaf0d4324d3c321edc9c22c0bca96e6" id="r_accaf0d4324d3c321edc9c22c0bca96e6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accaf0d4324d3c321edc9c22c0bca96e6">_max_channel_points</a></td></tr>
+<tr class="separator:accaf0d4324d3c321edc9c22c0bca96e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a15e753871a712b164faffe0ee28060a3" id="r_a15e753871a712b164faffe0ee28060a3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="../../dd/d3c/classcarla_1_1sensor_1_1data_1_1SemanticLidarDetection.html">SemanticLidarDetection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15e753871a712b164faffe0ee28060a3">_ser_points</a></td></tr>
+<tr class="separator:a15e753871a712b164faffe0ee28060a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+友元</h2></td></tr>
+<tr class="memitem:a6c24caf7be2c19c069ab932c60e5f6e7" id="r_a6c24caf7be2c19c069ab932c60e5f6e7"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c24caf7be2c19c069ab932c60e5f6e7">carla::ros2::ROS2</a></td></tr>
+<tr class="separator:a6c24caf7be2c19c069ab932c60e5f6e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adab7dd4e07efea2e1fc8cc558488c35e" id="r_adab7dd4e07efea2e1fc8cc558488c35e"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adab7dd4e07efea2e1fc8cc558488c35e">s11n::SemanticLidarHeaderView</a></td></tr>
+<tr class="separator:adab7dd4e07efea2e1fc8cc558488c35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91e2071441bccbec2f540c867885c8f6" id="r_a91e2071441bccbec2f540c867885c8f6"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91e2071441bccbec2f540c867885c8f6">s11n::SemanticLidarSerializer</a></td></tr>
+<tr class="separator:a91e2071441bccbec2f540c867885c8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00086">86</a> 行定义.</p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a0d0554efb807f37afef58001b1d575db" name="a0d0554efb807f37afef58001b1d575db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d0554efb807f37afef58001b1d575db">&#9670;&#160;</a></span>Index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a0d0554efb807f37afef58001b1d575db">carla::sensor::data::SemanticLidarData::Index</a> : size_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a0d0554efb807f37afef58001b1d575dbaaa55108e2fb49fbea1410ffe2201472e" name="a0d0554efb807f37afef58001b1d575dbaaa55108e2fb49fbea1410ffe2201472e"></a>HorizontalAngle&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d0554efb807f37afef58001b1d575dba14ecc4a048ab2c5103d743f84e02de5b" name="a0d0554efb807f37afef58001b1d575dba14ecc4a048ab2c5103d743f84e02de5b"></a>ChannelCount&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d0554efb807f37afef58001b1d575dba0f9e9cc1dec280f7af08fdd16125d7f0" name="a0d0554efb807f37afef58001b1d575dba0f9e9cc1dec280f7af08fdd16125d7f0"></a>SIZE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a3ee973bd4511970fa3c8df05290f2fe1" name="a3ee973bd4511970fa3c8df05290f2fe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ee973bd4511970fa3c8df05290f2fe1">&#9670;&#160;</a></span>SemanticLidarData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">carla::sensor::data::SemanticLidarData::SemanticLidarData </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>ChannelCount</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0u</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00139">_header</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00092">ChannelCount</a>.</p>
+
+</div>
+</div>
+<a id="ad14537bc1d6c286394aec299af294937" name="ad14537bc1d6c286394aec299af294937"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad14537bc1d6c286394aec299af294937">&#9670;&#160;</a></span>~SemanticLidarData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual carla::sensor::data::SemanticLidarData::~SemanticLidarData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00104">104</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a432e1ad9a42f6469c4fea8b68cbca3b2" name="a432e1ad9a42f6469c4fea8b68cbca3b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a432e1ad9a42f6469c4fea8b68cbca3b2">&#9670;&#160;</a></span>GetChannelCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t carla::sensor::data::SemanticLidarData::GetChannelCount </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00114">114</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00139">_header</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00092">ChannelCount</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/df5/LidarData_8h_source.html#l00087">carla::sensor::data::LidarData::ResetMemory()</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00118">ResetMemory()</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00129">WriteChannelCount()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="a10323c1c337fef5f19d2a64634d9390a" name="a10323c1c337fef5f19d2a64634d9390a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10323c1c337fef5f19d2a64634d9390a">&#9670;&#160;</a></span>GetHorizontalAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float carla::sensor::data::SemanticLidarData::GetHorizontalAngle </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00106">106</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00139">_header</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00091">HorizontalAngle</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00100">ARayCastSemanticLidar::SimulateLidar()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<a id="a2873b84b53956436c30961fe7a224743" name="a2873b84b53956436c30961fe7a224743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2873b84b53956436c30961fe7a224743">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html">SemanticLidarData</a> &amp; carla::sensor::data::SemanticLidarData::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/d27/classcarla_1_1sensor_1_1data_1_1SemanticLidarData.html">SemanticLidarData</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23bc8131f054d14ec065d6df84c7c121" name="a23bc8131f054d14ec065d6df84c7c121"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23bc8131f054d14ec065d6df84c7c121">&#9670;&#160;</a></span>ResetMemory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::sensor::data::SemanticLidarData::ResetMemory </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; uint32_t &gt;</td>          <td class="paramname"><span class="paramname"><em>points_per_channel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>被 <a class="el" href="../../dd/da3/classcarla_1_1sensor_1_1data_1_1LidarData.html#a8b3186d7962d7b4acb620d20f774f70a">carla::sensor::data::LidarData</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00118">118</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00139">_header</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00143">_ser_points</a>, <a class="el" href="../../d4/deb/Debug_8h_source.html#l00066">DEBUG_ASSERT</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00114">GetChannelCount()</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00093">SIZE</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00187">ARayCastSemanticLidar::ComputeAndSaveDetections()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 4 --></div>
+</div>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="a6673646541685f3f58d649577e1df674" name="a6673646541685f3f58d649577e1df674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6673646541685f3f58d649577e1df674">&#9670;&#160;</a></span>SetHorizontalAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void carla::sensor::data::SemanticLidarData::SetHorizontalAngle </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>angle</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00110">110</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00139">_header</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00091">HorizontalAngle</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00100">ARayCastSemanticLidar::SimulateLidar()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 6 --></div>
+</div>
+
+</div>
+</div>
+<a id="a0a138b447dea31ffa9256b2d2314d5f4" name="a0a138b447dea31ffa9256b2d2314d5f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a138b447dea31ffa9256b2d2314d5f4">&#9670;&#160;</a></span>WriteChannelCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::sensor::data::SemanticLidarData::WriteChannelCount </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; uint32_t &gt;</td>          <td class="paramname"><span class="paramname"><em>points_per_channel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00129">129</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00139">_header</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00114">GetChannelCount()</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00093">SIZE</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../df/dec/RayCastLidar_8cpp_source.html#l00149">ARayCastLidar::ComputeAndSaveDetections()</a> , 以及 <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00187">ARayCastSemanticLidar::ComputeAndSaveDetections()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 7 --></div>
+</div>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 8 --></div>
+</div>
+
+</div>
+</div>
+<a id="aa7e40c05ed9cc6700f690d40577ab206" name="aa7e40c05ed9cc6700f690d40577ab206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7e40c05ed9cc6700f690d40577ab206">&#9670;&#160;</a></span>WritePointSync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void carla::sensor::data::SemanticLidarData::WritePointSync </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dd/d3c/classcarla_1_1sensor_1_1data_1_1SemanticLidarDetection.html">SemanticLidarDetection</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>detection</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>被 <a class="el" href="../../dd/da3/classcarla_1_1sensor_1_1data_1_1LidarData.html#a112946b3466df4406d410268656d5e2b">carla::sensor::data::LidarData</a> 重载.</p>
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00134">134</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00143">_ser_points</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d8/ddc/RayCastSemanticLidar_8cpp_source.html#l00187">ARayCastSemanticLidar::ComputeAndSaveDetections()</a>.</p>
+<div id="dynsection-9" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 9 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">友元及相关符号说明</h2>
+<a id="a6c24caf7be2c19c069ab932c60e5f6e7" name="a6c24caf7be2c19c069ab932c60e5f6e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c24caf7be2c19c069ab932c60e5f6e7">&#9670;&#160;</a></span>carla::ros2::ROS2</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../d8/d78/classcarla_1_1ros2_1_1ROS2.html">carla::ros2::ROS2</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00147">147</a> 行定义.</p>
+
+</div>
+</div>
+<a id="adab7dd4e07efea2e1fc8cc558488c35e" name="adab7dd4e07efea2e1fc8cc558488c35e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adab7dd4e07efea2e1fc8cc558488c35e">&#9670;&#160;</a></span>s11n::SemanticLidarHeaderView</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../df/d52/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarHeaderView.html">s11n::SemanticLidarHeaderView</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00145">145</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a91e2071441bccbec2f540c867885c8f6" name="a91e2071441bccbec2f540c867885c8f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91e2071441bccbec2f540c867885c8f6">&#9670;&#160;</a></span>s11n::SemanticLidarSerializer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="../../d2/ddd/classcarla_1_1sensor_1_1s11n_1_1SemanticLidarSerializer.html">s11n::SemanticLidarSerializer</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00146">146</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="acaa2a0e381eb3dcf29034462ecfc3085" name="acaa2a0e381eb3dcf29034462ecfc3085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa2a0e381eb3dcf29034462ecfc3085">&#9670;&#160;</a></span>_header</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;uint32_t&gt; carla::sensor::data::SemanticLidarData::_header</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00139">139</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00114">GetChannelCount()</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00106">GetHorizontalAngle()</a>, <a class="el" href="../../de/df5/LidarData_8h_source.html#l00087">carla::sensor::data::LidarData::ResetMemory()</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00118">ResetMemory()</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00097">SemanticLidarData()</a>, <a class="el" href="../../d1/de3/LidarSerializer_8h_source.html#l00084">carla::sensor::s11n::LidarSerializer::Serialize()</a>, <a class="el" href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00085">carla::sensor::s11n::SemanticLidarSerializer::Serialize()</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00110">SetHorizontalAngle()</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00129">WriteChannelCount()</a>.</p>
+
+</div>
+</div>
+<a id="accaf0d4324d3c321edc9c22c0bca96e6" name="accaf0d4324d3c321edc9c22c0bca96e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accaf0d4324d3c321edc9c22c0bca96e6">&#9670;&#160;</a></span>_max_channel_points</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t carla::sensor::data::SemanticLidarData::_max_channel_points</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00140">140</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a15e753871a712b164faffe0ee28060a3" name="a15e753871a712b164faffe0ee28060a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e753871a712b164faffe0ee28060a3">&#9670;&#160;</a></span>_ser_points</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="../../dd/d3c/classcarla_1_1sensor_1_1data_1_1SemanticLidarDetection.html">SemanticLidarDetection</a>&gt; carla::sensor::data::SemanticLidarData::_ser_points</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a> 第 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00143">143</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../dd/d14/ROS2_8cpp_source.html#l00757">carla::ros2::ROS2::ProcessDataFromSemanticLidar()</a>, <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00118">ResetMemory()</a>, <a class="el" href="../../dd/d23/SemanticLidarSerializer_8h_source.html#l00085">carla::sensor::s11n::SemanticLidarSerializer::Serialize()</a> , 以及 <a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html#l00134">WritePointSync()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d0/dc1/SemanticLidarData_8h_source.html">SemanticLidarData.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

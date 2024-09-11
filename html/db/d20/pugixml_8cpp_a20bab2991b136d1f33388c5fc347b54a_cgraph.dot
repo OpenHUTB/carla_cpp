@@ -1,0 +1,21 @@
+digraph "open_file_wide"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="open_file_wide",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="convert_path_heap",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/d20/pugixml_8cpp.html#aac9447d4d8949b4bdfebba0e39b7243f",tooltip=" "];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="as_utf8_begin",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/d20/pugixml_8cpp.html#acf5b48bb1e377e9583eec8ba0e607898",tooltip=" "];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="wchar_decoder::process",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d4/d9e/structwchar__decoder.html#a965801bc1ce931281e10ee153586071c",tooltip=" "];
+  Node2 -> Node5 [id="edge4_Node000002_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="as_utf8_end",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/d20/pugixml_8cpp.html#a1bc09bbcdecde39207659ed351487999",tooltip=" "];
+  Node5 -> Node4 [id="edge5_Node000005_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node6 [id="edge6_Node000002_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="strlength_wide",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$db/d20/pugixml_8cpp.html#a04fddd18d92999ab767c3ab8c123056b",tooltip=" "];
+}

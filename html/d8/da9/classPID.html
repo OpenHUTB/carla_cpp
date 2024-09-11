@@ -1,0 +1,636 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: PID类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(1); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d9/dea/classPID-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">PID类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> PID 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4142b46086dce8aded5a9203945355d8" id="r_a4142b46086dce8aded5a9203945355d8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4142b46086dce8aded5a9203945355d8">PID</a> ()=default</td></tr>
+<tr class="separator:a4142b46086dce8aded5a9203945355d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58590d88d615f8a61f76428bfc3fab2a" id="r_a58590d88d615f8a61f76428bfc3fab2a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58590d88d615f8a61f76428bfc3fab2a">PID</a> (float <a class="el" href="#a67f2b50c209d4de6a20c710b33b62f0e">Kp</a>, float <a class="el" href="#ab48eeec8704e5d517a64b91fbe4fba57">Ki</a>, float <a class="el" href="#a105396cb94f3ec2f352b3d116529112b">Kd</a>)</td></tr>
+<tr class="separator:a58590d88d615f8a61f76428bfc3fab2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f949fd4445477ee9bf1af2bfa3e1a84" id="r_a9f949fd4445477ee9bf1af2bfa3e1a84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f949fd4445477ee9bf1af2bfa3e1a84">Reset</a> ()</td></tr>
+<tr class="separator:a9f949fd4445477ee9bf1af2bfa3e1a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6256fb4ab458508e5cf647cce699e00" id="r_af6256fb4ab458508e5cf647cce699e00"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6256fb4ab458508e5cf647cce699e00">Run</a> (float Input, float DeltaTime)</td></tr>
+<tr class="separator:af6256fb4ab458508e5cf647cce699e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abea9156ba28794984e3145dcf02f976a" id="r_abea9156ba28794984e3145dcf02f976a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abea9156ba28794984e3145dcf02f976a">SetTargetPoint</a> (float Point)</td></tr>
+<tr class="separator:abea9156ba28794984e3145dcf02f976a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf00e3c3f9b79aab9e548fe67bc06be2" id="r_acf00e3c3f9b79aab9e548fe67bc06be2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf00e3c3f9b79aab9e548fe67bc06be2">~PID</a> ()=default</td></tr>
+<tr class="separator:acf00e3c3f9b79aab9e548fe67bc06be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a105396cb94f3ec2f352b3d116529112b" id="r_a105396cb94f3ec2f352b3d116529112b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a105396cb94f3ec2f352b3d116529112b">Kd</a> = 0.0f</td></tr>
+<tr class="separator:a105396cb94f3ec2f352b3d116529112b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab48eeec8704e5d517a64b91fbe4fba57" id="r_ab48eeec8704e5d517a64b91fbe4fba57"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab48eeec8704e5d517a64b91fbe4fba57">Ki</a> = 0.0f</td></tr>
+<tr class="separator:ab48eeec8704e5d517a64b91fbe4fba57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67f2b50c209d4de6a20c710b33b62f0e" id="r_a67f2b50c209d4de6a20c710b33b62f0e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67f2b50c209d4de6a20c710b33b62f0e">Kp</a> = 0.0f</td></tr>
+<tr class="separator:a67f2b50c209d4de6a20c710b33b62f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a8856961f5eb4f8a5c7c0dc9f476c08da" id="r_a8856961f5eb4f8a5c7c0dc9f476c08da"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8856961f5eb4f8a5c7c0dc9f476c08da">Derivative</a> = 0.0f</td></tr>
+<tr class="separator:a8856961f5eb4f8a5c7c0dc9f476c08da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a671ee1b4dbcdc553eabf0d1b59884666" id="r_a671ee1b4dbcdc553eabf0d1b59884666"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a671ee1b4dbcdc553eabf0d1b59884666">Integral</a> = 0.0f</td></tr>
+<tr class="separator:a671ee1b4dbcdc553eabf0d1b59884666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad74b9a590a7c430871d328144c9d484b" id="r_ad74b9a590a7c430871d328144c9d484b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad74b9a590a7c430871d328144c9d484b">LastError</a> = 0.0f</td></tr>
+<tr class="separator:ad74b9a590a7c430871d328144c9d484b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc5572a47efefff6dbea60712a7d9c84" id="r_abc5572a47efefff6dbea60712a7d9c84"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc5572a47efefff6dbea60712a7d9c84">LastInput</a> = 0.0f</td></tr>
+<tr class="separator:abc5572a47efefff6dbea60712a7d9c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f1fc2ea1568ed57e05eaf0b9653771b" id="r_a6f1fc2ea1568ed57e05eaf0b9653771b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f1fc2ea1568ed57e05eaf0b9653771b">MaxOutput</a> = 1.0f</td></tr>
+<tr class="separator:a6f1fc2ea1568ed57e05eaf0b9653771b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69820dded07e4c270658503b8459d80a" id="r_a69820dded07e4c270658503b8459d80a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69820dded07e4c270658503b8459d80a">MinOutput</a> = -1.0f</td></tr>
+<tr class="separator:a69820dded07e4c270658503b8459d80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a821d8a1bfb4e0e81c39a17160fd2da97" id="r_a821d8a1bfb4e0e81c39a17160fd2da97"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a821d8a1bfb4e0e81c39a17160fd2da97">Proportional</a> = 0.0f</td></tr>
+<tr class="separator:a821d8a1bfb4e0e81c39a17160fd2da97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f0e13cd693723b40d5415ff477ffca3" id="r_a4f0e13cd693723b40d5415ff477ffca3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f0e13cd693723b40d5415ff477ffca3">SetPoint</a></td></tr>
+<tr class="separator:a4f0e13cd693723b40d5415ff477ffca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00016">16</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a4142b46086dce8aded5a9203945355d8" name="a4142b46086dce8aded5a9203945355d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4142b46086dce8aded5a9203945355d8">&#9670;&#160;</a></span>PID() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PID::PID </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58590d88d615f8a61f76428bfc3fab2a" name="a58590d88d615f8a61f76428bfc3fab2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58590d88d615f8a61f76428bfc3fab2a">&#9670;&#160;</a></span>PID() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PID::PID </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>Kp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>Ki</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>Kd</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acf00e3c3f9b79aab9e548fe67bc06be2" name="acf00e3c3f9b79aab9e548fe67bc06be2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf00e3c3f9b79aab9e548fe67bc06be2">&#9670;&#160;</a></span>~PID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PID::~PID </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a9f949fd4445477ee9bf1af2bfa3e1a84" name="a9f949fd4445477ee9bf1af2bfa3e1a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f949fd4445477ee9bf1af2bfa3e1a84">&#9670;&#160;</a></span>Reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PID::Reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00048">48</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00074">Derivative</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00073">Integral</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00076">LastError</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00077">LastInput</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00069">MaxOutput</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00068">MinOutput</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00072">Proportional</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00055">FAckermannController::Reset()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 1 --></div>
+</div>
+
+</div>
+</div>
+<a id="af6256fb4ab458508e5cf647cce699e00" name="af6256fb4ab458508e5cf647cce699e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6256fb4ab458508e5cf647cce699e00">&#9670;&#160;</a></span>Run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::Run </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>Input</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>DeltaTime</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">28</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00074">Derivative</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00073">Integral</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00062">Kd</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00061">Ki</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00060">Kp</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00076">LastError</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00077">LastInput</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00069">MaxOutput</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00068">MinOutput</a>, <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00072">Proportional</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00065">SetPoint</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00169">FAckermannController::RunControlAcceleration()</a> , 以及 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00152">FAckermannController::RunControlSpeed()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="abea9156ba28794984e3145dcf02f976a" name="abea9156ba28794984e3145dcf02f976a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abea9156ba28794984e3145dcf02f976a">&#9670;&#160;</a></span>SetTargetPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PID::SetTargetPoint </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>Point</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00023">23</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00065">SetPoint</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00169">FAckermannController::RunControlAcceleration()</a> , 以及 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00152">FAckermannController::RunControlSpeed()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a8856961f5eb4f8a5c7c0dc9f476c08da" name="a8856961f5eb4f8a5c7c0dc9f476c08da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8856961f5eb4f8a5c7c0dc9f476c08da">&#9670;&#160;</a></span>Derivative</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::Derivative = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00048">Reset()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a671ee1b4dbcdc553eabf0d1b59884666" name="a671ee1b4dbcdc553eabf0d1b59884666"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a671ee1b4dbcdc553eabf0d1b59884666">&#9670;&#160;</a></span>Integral</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::Integral = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00073">73</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00048">Reset()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a105396cb94f3ec2f352b3d116529112b" name="a105396cb94f3ec2f352b3d116529112b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a105396cb94f3ec2f352b3d116529112b">&#9670;&#160;</a></span>Kd</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::Kd = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00062">62</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00034">FAckermannController::ApplySettings()</a>, <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00020">FAckermannController::GetSettings()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="ab48eeec8704e5d517a64b91fbe4fba57" name="ab48eeec8704e5d517a64b91fbe4fba57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab48eeec8704e5d517a64b91fbe4fba57">&#9670;&#160;</a></span>Ki</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::Ki = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00061">61</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00034">FAckermannController::ApplySettings()</a>, <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00020">FAckermannController::GetSettings()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a67f2b50c209d4de6a20c710b33b62f0e" name="a67f2b50c209d4de6a20c710b33b62f0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67f2b50c209d4de6a20c710b33b62f0e">&#9670;&#160;</a></span>Kp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::Kp = 0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00060">60</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00034">FAckermannController::ApplySettings()</a>, <a class="el" href="../../d1/d47/AckermannController_8cpp_source.html#l00020">FAckermannController::GetSettings()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="ad74b9a590a7c430871d328144c9d484b" name="ad74b9a590a7c430871d328144c9d484b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad74b9a590a7c430871d328144c9d484b">&#9670;&#160;</a></span>LastError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::LastError = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00076">76</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00048">Reset()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="abc5572a47efefff6dbea60712a7d9c84" name="abc5572a47efefff6dbea60712a7d9c84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc5572a47efefff6dbea60712a7d9c84">&#9670;&#160;</a></span>LastInput</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::LastInput = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00077">77</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00048">Reset()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a6f1fc2ea1568ed57e05eaf0b9653771b" name="a6f1fc2ea1568ed57e05eaf0b9653771b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f1fc2ea1568ed57e05eaf0b9653771b">&#9670;&#160;</a></span>MaxOutput</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::MaxOutput = 1.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00069">69</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00048">Reset()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a69820dded07e4c270658503b8459d80a" name="a69820dded07e4c270658503b8459d80a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69820dded07e4c270658503b8459d80a">&#9670;&#160;</a></span>MinOutput</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::MinOutput = -1.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00068">68</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00048">Reset()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a821d8a1bfb4e0e81c39a17160fd2da97" name="a821d8a1bfb4e0e81c39a17160fd2da97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a821d8a1bfb4e0e81c39a17160fd2da97">&#9670;&#160;</a></span>Proportional</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::Proportional = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00072">72</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00048">Reset()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a>.</p>
+
+</div>
+</div>
+<a id="a4f0e13cd693723b40d5415ff477ffca3" name="a4f0e13cd693723b40d5415ff477ffca3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f0e13cd693723b40d5415ff477ffca3">&#9670;&#160;</a></span>SetPoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID::SetPoint</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a> 第 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00065">65</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00028">Run()</a> , 以及 <a class="el" href="../../d0/d4d/AckermannController_8h_source.html#l00023">SetTargetPoint()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../d0/d4d/AckermannController_8h_source.html">AckermannController.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
