@@ -1,8 +1,8 @@
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 这项工作受到 MIT 许可证的条款保护。
+// 请参阅<https://opensource.org/licenses/MIT>以获得副本。
 
 #include "carla/client/detail/ActorFactory.h"
 
@@ -31,8 +31,8 @@ namespace carla {
 namespace client {
 namespace detail {
 
-  // A deleter cannot throw exceptions; and unlike std::unique_ptr, the deleter
-  // of (std|boost)::shared_ptr is invoked even if the managed pointer is null.
+  // 无法对 deleter 抛出异常；与 std::unique_ptr 不同，deleter
+  // (std|boost)::shared_ptr 的 deleter 即使受管指针为空也会被调用。
   struct GarbageCollector {
     void operator()(::carla::client::Actor *ptr) const noexcept {
       if ((ptr != nullptr) && ptr->IsAlive()) {

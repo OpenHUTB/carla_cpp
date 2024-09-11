@@ -63,8 +63,67 @@ git rm -rf .
 ## 贡献者列表
 [nongfugengxia](https://github.com/nongfugengxia) 、[donghaiwang](https://github.com/donghaiwang) 、
 [QEYY060506](https://github.com/QEYY060506) 、[Xiedao](https://github.com/Xiedao) 、[zzz479](https://github.com/zzz479) 、[ifthen865](https://github.com/ifthen865) 、[zuo664](https://github.com/zuo664)、[Allen-Tang0014](https://github.com/Allen-Tang0014)、[BcyWind](https://github.com/BcyWind) 、
-[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)、[Muyunshui](https://github.com/Muyunshui)
+[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)、[Muyunshui](https://github.com/Muyunshui)、[Wen-511](https://github.com/Wen-511)、[juanexuan](https://github.com/juanexuan)
 [jun-72](https://github.com/jun-72)
 [xiushuowang](https://github.com/xiushuowang)
 [gongguixuan](https://github.com/gongguixuan)[Hyz12345678](https://github.com/Hyz12345678)
 [M-3399](https://github.com/M-3399)
+[Candela-best](https://github.com/Candela-best)
+[karry-tang](https://github.com/karry-tang)
+[wenli-xiong](https://github.com/wenli-xiong)、[wwwwu1207](https://github.com/wwwwu1207)
+[leixing1](https://github.com/leixing1)
+[IHateTheWorld-Zhou](https://github.com/IHateTheWorld-Zhou)
+[Mamba321857](https://github.com/Mamba321857)
+[gyqss](https://github.com/gyqss)
+[liujue0](https://github.com/liujue0)
+[yyyyy1026](https://github.com/yyyyy1026)
+[sematic9527](https://github.com/sematic9527)
+[yuxiyu666](https://github.com/yuxiyu666)
+[xjc548](https://github.com/xjc548)
+[Yuuydz](https://github.com/Yuuydz)
+[zreo141271](https://github.com/zero141271)、[zxy-125](https://github.com/zxy-125)、[fx-hj](https://github.com/fx-hj)
+[A-0-A-0-A](https://github.com/A-0-A-0-A) 。
+[xuuu-1](https://github.com/xuuu-1) 
+[minghao-lee](https://github.com/minghao-lee) 。
+[Lhb106](https://github.com/Lhb106)、
+[52Herze](https://github.com/52Herze) 
+[HuBigmouse](https://github.com/HuBigmouse)
+[lujianjjjj](https://github.com/lujianjjjj)
+[chen-18](https://github.com/18-chen).
+[smile947](https://github.com/smile947).
+[cm1106-ai](https://github.com/cm1106-ai).
+[pengwenzhuo6](https://github.com/pengwenzhuo6).
+[789waa](https://github.com/789waa)
+[Rinco520](https://github.com/Rinco520)、[yanpeng0902](https://github.com/yanpeng0902)
+[zxxzyy](https://github.com/zxxzyy)
+[huangjj114](https://github.com/huangjj114)
+[fengchuanyin](https://github.com/fengchuanyin)
+[cby2838](https://github.com/cby2838)
+[Ekisanhinn](https://github.com/ekisannhinn)
+[Seavey0402](https://github.com/Seavey0402)
+[yyyyy12306](https://github.com/yyyyy12306)、
+[lzh8215](https://github.com/lzh8215)。
+[Rita0621](https://github.com/Rita0621)
+[zxy953](https://github.com/zxy953)
+[MengruChen0723](https://github.com/MengruChen0723)
+[lwwwwwwwww9](https://github.com/lwwwwwwwww9).
+[bobo339](https://github.com/bobo339)
+[hannah-oyeys](https://github.com/hannah-oyeys)
+[kthalo](https://github.com/kthalo)
+[chenzhentao-chen](https://github.com/chenzhentao-chen)
+[jiangyaqin6](https://github.com/jiangyaqin6)
+[zhouxiayu698](https://github.com/zhouxiayu698)
+[feng569150](https://github.com/feng569150)
+[Dipmil](https://github.com/Dipmil)
+[li-guanhua](https://github.com/li-guanhua)
+[yangh05](https://github.com/yangh05)
+[tushuguanL](https://github.com/tushuguanL)
+[18692223518](https://github.com/18692223518)
+[tellwhat](https://https://github.com/tellwhat)
+[Mikecbk](https://https://github.com/Mikecbk)、[ZLW523523](https://github.com/ZLW523523)
+[ovsehun](https://https://github.com/ovsehun)
+[lyj510](https://github.com/lyj510/carla_cpp)
+[YPPBTC](https://github.com/YPPBTC)、[mjyy22](https://github.com/mjyy22)
+[DanandVVa](https://github.com/DanandVVa/carla_cpp.git)
+[yuanshen6666666](https://github.com/yuanshen6666666/carla_cpp.git)
+
