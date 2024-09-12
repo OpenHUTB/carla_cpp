@@ -133,5 +133,5 @@ git rm -rf .
 [YPPBTC](https://github.com/YPPBTC) 、[mjyy22](https://github.com/mjyy22) 、
 [DanandVVa](https://github.com/DanandVVa/carla_cpp.git) 、
 [yuanshen6666666](https://github.com/yuanshen6666666/carla_cpp.git) 、
-[nfdxxl](https://github.com/nfdxxl) 、[Kawashiro1](https://github.com/Kawashiro1)。
+[nfdxxl](https://github.com/nfdxxl) 、[Kawashiro1](https://github.com/Kawashiro1)、
 [DSB0221](https://github.com/DSB0221)、[huangyuking](https://github.com/huangyuking)。
