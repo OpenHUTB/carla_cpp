@@ -21,17 +21,23 @@ namespace detail {
 
     StopWatchTmpl() : _start(clock::now()), _end(), _is_running(true) {}
 
+            // _start 被初始化为当前时间点，表示秒表开始计时
+            // _end 初始化为默认值，表示秒表未停止
+            // _is_running 设置为 true，表示秒表正在运行
     void Restart() {
       _is_running = true;
+      // 将开始时间更新为当前时间点
       _start = clock::now();
     }
 
     void Stop() {
+    	// 将结束时间更新为当前时间点
       _end = clock::now();
       _is_running = false;
     }
 
     typename clock::duration GetDuration() const {
+    	// 如果秒表正在运行，返回当前时间与开始时间的差值
       return _is_running ? clock::now() - _start : _end - _start;
     }
 
