@@ -11,7 +11,7 @@ install(DIRECTORY "${RPCLIB_INCLUDE_PATH}/rpc" DESTINATION include)
 file(GLOB libcarla_carla_rpclib "${RPCLIB_LIB_PATH}/*.*")
 install(FILES ${libcarla_carla_rpclib} DESTINATION lib)
 
-# Install headers.
+# 安装头文件
 
 install(DIRECTORY "${libcarla_source_path}/compiler" DESTINATION include)
 
@@ -129,7 +129,7 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_thirdparty_path}/pugixml/*.hpp")
 
 # ==============================================================================
-# Create targets for debug and release in the same build type.
+# 在同一构建类型中创建调试和发布的目标
 # ==============================================================================
 
 if (LIBCARLA_BUILD_RELEASE)
