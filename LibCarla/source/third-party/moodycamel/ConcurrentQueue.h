@@ -1,40 +1,28 @@
-// Provides a C++11 implementation of a multi-producer, multi-consumer lock-free queue.
-// An overview, including benchmark results, is provided here:
+// 提供多生产者、多消费者无锁队列的 C++ 11实现。
+// 这里提供了一个概述，包括基准测试结果:
 //     http://moodycamel.com/blog/2014/a-fast-general-purpose-lock-free-queue-for-c++
-// The full design is also described in excruciating detail at:
+// 完整的设计也有详细的描述：
 //    http://moodycamel.com/blog/2014/detailed-design-of-a-lock-free-queue
 
 // Simplified BSD license:
 // Copyright (c) 2013-2016, Cameron Desrochers.
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without modification,
-// are permitted provided that the following conditions are met:
+// 允许源代码和二进制形式的再分发和使用，无论是否经过修改，只要满足以下条件：
 //
-// - Redistributions of source code must retain the above copyright notice, this list of
-// conditions and the following disclaimer.
-// - Redistributions in binary form must reproduce the above copyright notice, this list of
-// conditions and the following disclaimer in the documentation and/or other materials
-// provided with the distribution.
+// 源代码的再分发必须保留上述版权声明、条件列表和免责声明。
+// 二进制形式的再分发必须在文档和/或其他材料中再现上述版权声明、条件列表和免责声明。
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
-// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
-// THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-// OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-// TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-// EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-// Notice: This file has been slightly adapted for its use by CARLA.
+//该软件由版权持有者和贡献者“按原样”提供，没有任何明示或暗示的担保，包括但不限于适销性和特定用途适用性的暗示担保
+//在任何情况下，版权持有者或贡献者不对因使用该软件而产生的任何直接、间接、附带、特别、惩罚性或结果性的损害负责，
+//包括但不限于采购替代商品或服务、使用、数据或利润的损失或业务中断，是否基于合同、严格责任或侵权（包括疏忽或其他）理论，即使已经被告知可能发生这样的损害。
+// 注意：这个文件为了被 CARLA 使用做了略微的修改。
 
 #pragma once
 
 #if defined(__GNUC__)
-// Disable -Wconversion warnings (spuriously triggered when Traits::size_t and
-// Traits::index_t are set to < 32 bits, causing integer promotion, causing warnings
-// upon assigning any computed values)
+// 禁用 -Wconversion 警告（当 Traits::size_t 和 Traits::index_t 设置为小于 32 位时，整数提升可能引发这些警告
+// 在赋值计算值时会出现警告）
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
 
@@ -50,8 +38,8 @@
 #ifdef MCDBGQ_USE_RELACY
 #include "relacy/relacy_std.hpp"
 #include "relacy_shims.h"
-// We only use malloc/free anyway, and the delete macro messes up `= delete` method declarations.
-// We'll override the default trait malloc ourselves without a macro.
+// 我们只使用 malloc/free，因此 delete 宏会干扰 `= delete` 方法声明。
+// 我们将自己覆盖默认的 trait malloc，而不使用宏。
 #undef new
 #undef delete
 #undef malloc
@@ -71,7 +59,7 @@
 #include <array>
 #include <thread>    // partly for __WINPTHREADS_VERSION if on MinGW-w64 w/ POSIX threading
 
-// Platform-specific definitions of a numeric thread ID type and an invalid value
+// 平台特定的数字线程 ID 类型和无效值定义
 namespace moodycamel { namespace details {
   template<typename thread_id_t> struct thread_id_converter {
     typedef thread_id_t thread_id_numeric_size_t;
@@ -87,8 +75,8 @@ namespace moodycamel { namespace details {
   static inline thread_id_t thread_id() { return rl::thread_index(); }
 } }
 #elif defined(_WIN32) || defined(__WINDOWS__) || defined(__WIN32__)
-// No sense pulling in windows.h in a header, we'll manually declare the function
-// we use and rely on backwards-compatibility for this not to break
+// 在头文件中引入 windows.h 没有意义，我们将手动声明所用的函数
+// 并依赖向后兼容性确保这不会破坏
 extern "C" __declspec(dllimport) unsigned long __stdcall GetCurrentThreadId(void);
 namespace moodycamel { namespace details {
   static_assert(sizeof(unsigned long) == sizeof(std::uint32_t), "Expected size of unsigned long to be 32 bits on Windows");
@@ -104,9 +92,8 @@ namespace moodycamel { namespace details {
   typedef std::thread::id thread_id_t;
   static const thread_id_t invalid_thread_id;         // Default ctor creates invalid ID
 
-  // Note we don't define a invalid_thread_id2 since std::thread::id doesn't have one; it's
-  // only used if MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED is defined anyway, which it won't
-  // be.
+  // 请注意，我们不定义 invalid_thread_id2，因为 std::thread::id 没有无效值；它
+  // 仅在 MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED 定义时才会使用，但实际上不会定义它。
   static inline thread_id_t thread_id() { return std::this_thread::get_id(); }
 
   template<std::size_t> struct thread_id_size { };
@@ -132,9 +119,8 @@ namespace moodycamel { namespace details {
   };
 } }
 #else
-// Use a nice trick from this answer: http://stackoverflow.com/a/8438730/21475
-// In order to get a numeric thread ID in a platform-independent way, we use a thread-local
-// static variable's address as a thread identifier :-)
+// 使用这个答案中的巧妙方法：http://stackoverflow.com/a/8438730/21475
+// 为了以平台无关的方式获取数字线程 ID，我们使用线程局部静态变量的地址作为线程标识符 :-) :-)
 #if defined(__GNUC__) || defined(__INTEL_COMPILER)
 #define MOODYCAMEL_THREADLOCAL __thread
 #elif defined(_MSC_VER)
@@ -158,7 +144,7 @@ namespace moodycamel { namespace details {
 #endif
 #endif
 
-// ~~~ @begin Modified for CARLA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~ @begin 为 CARLA 所做的修改 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #include <carla/Exception.h>
 
@@ -178,7 +164,7 @@ namespace moodycamel { namespace details {
 #define MOODYCAMEL_THROW(expr) ::carla::throw_exception(expr)
 #endif
 
-// ~~~ @end Modified for CARLA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~ @end 为 CARLA 所做的修改 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #ifndef MOODYCAMEL_NOEXCEPT
 #if !defined(MOODYCAMEL_EXCEPTIONS_ENABLED)
@@ -186,8 +172,8 @@ namespace moodycamel { namespace details {
 #define MOODYCAMEL_NOEXCEPT_CTOR(type, valueType, expr) true
 #define MOODYCAMEL_NOEXCEPT_ASSIGN(type, valueType, expr) true
 #elif defined(_MSC_VER) && defined(_NOEXCEPT) && _MSC_VER < 1800
-// VS2012's std::is_nothrow_[move_]constructible is broken and returns true when it shouldn't :-(
-// We have to assume *all* non-trivial constructors may throw on VS2012!
+// VS2012 的 std::is_nothrow_[move_]constructible 存在问题，返回 true 时不应如此 :-(
+// 我们必须假设 VS2012 上的所有非平凡构造函数可能会抛出异常！
 #define MOODYCAMEL_NOEXCEPT _NOEXCEPT
 #define MOODYCAMEL_NOEXCEPT_CTOR(type, valueType, expr) (std::is_rvalue_reference<valueType>::value && std::is_move_constructible<type>::value ? std::is_trivially_move_constructible<type>::value : std::is_trivially_copy_constructible<type>::value)
 #define MOODYCAMEL_NOEXCEPT_ASSIGN(type, valueType, expr) ((std::is_rvalue_reference<valueType>::value && std::is_move_assignable<type>::value ? std::is_trivially_move_assignable<type>::value || std::is_nothrow_move_assignable<type>::value : std::is_trivially_copy_assignable<type>::value || std::is_nothrow_copy_assignable<type>::value) && MOODYCAMEL_NOEXCEPT_CTOR(type, valueType, expr))
@@ -206,18 +192,18 @@ namespace moodycamel { namespace details {
 #ifdef MCDBGQ_USE_RELACY
 #define MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED
 #else
-// VS2013 doesn't support `thread_local`, and MinGW-w64 w/ POSIX threading has a crippling bug: http://sourceforge.net/p/mingw-w64/bugs/445
-// g++ <=4.7 doesn't support thread_local either.
-// Finally, iOS/ARM doesn't have support for it either, and g++/ARM allows it to compile but it's unconfirmed to actually work
+// VS2013 不支持 `thread_local`，而 MinGW-w64 与 POSIX 线程的组合存在一个严重的 bug： http://sourceforge.net/p/mingw-w64/bugs/445
+// g++ 版本 <=4.7 也不支持 `thread_local`。
+// 最后，iOS/ARM 不支持 `thread_local`，虽然 g++/ARM 允许编译，但尚未确认是否实际有效
 #if (!defined(_MSC_VER) || _MSC_VER >= 1900) && (!defined(__MINGW32__) && !defined(__MINGW64__) || !defined(__WINPTHREADS_VERSION)) && (!defined(__GNUC__) || __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)) && (!defined(__APPLE__) || !TARGET_OS_IPHONE) && !defined(__arm__) && !defined(_M_ARM) && !defined(__aarch64__)
-// Assume `thread_local` is fully supported in all other C++11 compilers/platforms
-//#define MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED    // always disabled for now since several users report having problems with it on
+// 假设所有其他 C++11 编译器/平台都完全支持 `thread_local`
+//#define MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED    // 由于多个用户报告存在问题，因此目前总是禁用
 #endif
 #endif
 #endif
 
-// VS2012 doesn't support deleted functions.
-// In this case, we declare the function normally but don't define it. A link error will be generated if the function is called.
+// VS2012 不支持已删除的函数。
+// 在这种情况下，我们正常声明函数但不定义它。如果调用该函数，会生成链接错误。
 #ifndef MOODYCAMEL_DELETE_FUNCTION
 #if defined(_MSC_VER) && _MSC_VER < 1800
 #define MOODYCAMEL_DELETE_FUNCTION
@@ -226,7 +212,7 @@ namespace moodycamel { namespace details {
 #endif
 #endif
 
-// Compiler-specific likely/unlikely hints
+// 编译器特定的 likely/unlikely 提示
 namespace moodycamel { namespace details {
 #if defined(__GNUC__)
   static inline bool (likely)(bool x) { return __builtin_expect((x), true); }
@@ -252,13 +238,13 @@ namespace details {
   };
 
 #if defined(__GLIBCXX__)
-  typedef ::max_align_t std_max_align_t;      // libstdc++ forgot to add it to std:: for a while
+  typedef ::max_align_t std_max_align_t;      // libstdc++ 一段时间内忘记将其添加到 std:: 中
 #else
-  typedef std::max_align_t std_max_align_t;   // Others (e.g. MSVC) insist it can *only* be accessed via std::
-#endif
+  typedef std::max_align_t std_max_align_t;   // 其他编译器（例如 MSVC）坚持认为它只能通过 std:: 访问
 
-  // Some platforms have incorrectly set max_align_t to a type with <8 bytes alignment even while supporting
-  // 8-byte aligned scalar values (*cough* 32-bit iOS). Work around this with our own union. See issue #64.
+
+  // 一些平台错误地将 max_align_t 设置为一个对齐小于 8 字节的类型，即便它支持 8 字节对齐的标量值（*咳* 32 位 iOS）。
+  //用我们自己的联合体解决这个问题。参见问题 #64
   typedef union {
     std_max_align_t x;
     long long y;
@@ -266,55 +252,48 @@ namespace details {
   } max_align_t;
 }
 
-// Default traits for the ConcurrentQueue. To change some of the
-// traits without re-implementing all of them, inherit from this
-// struct and shadow the declarations you wish to be different;
-// since the traits are used as a template type parameter, the
-// shadowed declarations will be used where defined, and the defaults
-// otherwise.
+  // ConcurrentQueue 的默认特性。
+  // 要改变一些特性而无需重新实现所有特性，可以从这个结构体继承并覆盖你希望不同的声明；
+  // 由于这些特性作为模板类型参数使用，覆盖的声明将在定义的地方使用，其他地方则使用默认值。
 struct ConcurrentQueueDefaultTraits
 {
-  // General-purpose size type. std::size_t is strongly recommended.
+  // 通用大小类型。强烈推荐使用 std::size_t。
   typedef std::size_t size_t;
 
-  // The type used for the enqueue and dequeue indices. Must be at least as
-  // large as size_t. Should be significantly larger than the number of elements
-  // you expect to hold at once, especially if you have a high turnover rate;
-  // for example, on 32-bit x86, if you expect to have over a hundred million
-  // elements or pump several million elements through your queue in a very
-  // short space of time, using a 32-bit type *may* trigger a race condition.
-  // A 64-bit int type is recommended in that case, and in practice will
-  // prevent a race condition no matter the usage of the queue. Note that
-  // whether the queue is lock-free with a 64-int type depends on the whether
-  // std::atomic<std::uint64_t> is lock-free, which is platform-specific.
+  // 用于入队和出队索引的类型。必须至少与 size_t 一样大。
+  // 应该比你预期一次性容纳的元素数量大得多，特别是当你有高周转率时；
+  // 例如，在 32 位 x86 上，如果你预期有超过一亿个元素或在非常短的时间内处理几百万个元素，
+  // 使用 32 位类型 *可能* 会触发竞争条件。在这种情况下，推荐使用 64 位整数类型，
+  // 实际上将防止竞争条件，无论队列的使用情况如何。
+  // 请注意，队列是否在使用 64 位整数类型时无锁，取决于 std::atomic<std::uint64_t> 是否无锁，这具有平台特性。
+
   typedef std::size_t index_t;
 
-  // Internally, all elements are enqueued and dequeued from multi-element
-  // blocks; this is the smallest controllable unit. If you expect few elements
-  // but many producers, a smaller block size should be favoured. For few producers
-  // and/or many elements, a larger block size is preferred. A sane default
-  // is provided. Must be a power of 2.
+  // 内部所有元素都从多元素块中入队和出队；这是最小的可控单位。
+  // 如果你预计元素较少但生产者较多，应选择较小的块大小。
+  // 对于生产者较少和/或元素较多的情况，建议选择较大的块大小。
+  // 提供了一个合理的默认值。块大小必须是 2 的幂。
+
   static const size_t BLOCK_SIZE = 32;
 
-  // For explicit producers (i.e. when using a producer token), the block is
-  // checked for being empty by iterating through a list of flags, one per element.
-  // For large block sizes, this is too inefficient, and switching to an atomic
-  // counter-based approach is faster. The switch is made for block sizes strictly
-  // larger than this threshold.
+  // 对于显式生产者（即使用生产者令牌时），通过迭代每个元素的标志列表来检查块是否为空。
+  // 对于较大的块大小，这种方法效率过低，改为基于原子计数器的方法更快。
+  // 当块大小严格大于此阈值时，会切换到这种方法。
+
   static const size_t EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD = 32;
 
-  // How many full blocks can be expected for a single explicit producer? This should
-  // reflect that number's maximum for optimal performance. Must be a power of 2.
+  // 单个显式生产者可以预期多少个完整块？这个值应反映该数量的最大值以获得最佳性能。
+  // 必须是 2 的幂。
   static const size_t EXPLICIT_INITIAL_INDEX_SIZE = 32;
 
   // How many full blocks can be expected for a single implicit producer? This should
   // reflect that number's maximum for optimal performance. Must be a power of 2.
   static const size_t IMPLICIT_INITIAL_INDEX_SIZE = 32;
 
-  // The initial size of the hash table mapping thread IDs to implicit producers.
-  // Note that the hash is resized every time it becomes half full.
-  // Must be a power of two, and either 0 or at least 1. If 0, implicit production
-  // (using the enqueue methods without an explicit producer token) is disabled.
+  // 线程 ID 到隐式生产者的哈希表的初始大小。
+  // 注意，每当哈希表填充到一半时，会进行调整。
+  // 必须是 2 的幂，并且为 0 或至少为 1。如果为 0，则禁用隐式生产（使用不带显式生产者令牌的入队方法）。
+
   static const size_t INITIAL_IMPLICIT_PRODUCER_HASH_SIZE = 32;
 
   // Controls the number of items that an explicit consumer (i.e. one with a token)

@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-server)
 
-# Install libc++ shared libraries.
+# 安装 libc++ 共享库。
 file(GLOB LibCXX_Libraries "${LLVM_LIB_PATH}/libc++*")
+# DESTINATION给出相对路径时，它将相对于 CMAKE_INSTALL_PREFIX 变量（Unreal\CarlaUE4\Plugins\Carla\CarlaDependencies）
 install(FILES ${LibCXX_Libraries} DESTINATION lib)
 
-# Install rpclib.
+# 安装远程过程调用库 rpclib
 install(DIRECTORY "${RPCLIB_INCLUDE_PATH}/rpc" DESTINATION include)
 file(GLOB libcarla_carla_rpclib "${RPCLIB_LIB_PATH}/*.*")
 install(FILES ${libcarla_carla_rpclib} DESTINATION lib)
@@ -84,7 +85,7 @@ if(WIN32)
   install(FILES ${boostlibs} DESTINATION lib)
 endif()
 
-# carla_server library.
+# carla_server 库。
 
 file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/*.h"
