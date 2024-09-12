@@ -20,23 +20,23 @@
 
 namespace carla {
 
-  /// A thread pool based on Boost.Asio's io context.基于Boost的线性池。 
+  /// 基于Boost.Asio的上下文 
   class ThreadPool : private NonCopyable {
   public:
 
     ThreadPool() : _work_to_do(_io_context) {}
 
-    /// Stops the ThreadPool and joins all its threads.停止连接ThreadPool并连接所有线程 
+    /// 停止连接ThreadPool并连接所有线程 
     ~ThreadPool() {
       Stop();
     }
 
-    /// Return the underlying io_context.返回底层 io_context
+    /// 返回底层 io_context
     auto &io_context() {
       return _io_context;
     }
 
-    /// Post a task to the pool.向Pool发布一个任务 
+    /// 向Pool发布一个任务 
     template <typename FunctorT, typename ResultT = typename std::result_of<FunctorT()>::type>
     std::future<ResultT> Post(FunctorT &&functor) {
       auto task = std::packaged_task<ResultT()>(std::forward<FunctorT>(functor));
