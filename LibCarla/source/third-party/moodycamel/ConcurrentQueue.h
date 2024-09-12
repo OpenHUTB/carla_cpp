@@ -1,7 +1,7 @@
-// Provides a C++11 implementation of a multi-producer, multi-consumer lock-free queue.
-// An overview, including benchmark results, is provided here:
+// 提供多生产者、多消费者无锁队列的 C++ 11实现。
+// 这里提供了一个概述，包括基准测试结果:
 //     http://moodycamel.com/blog/2014/a-fast-general-purpose-lock-free-queue-for-c++
-// The full design is also described in excruciating detail at:
+// 完整的设计也有详细的描述：
 //    http://moodycamel.com/blog/2014/detailed-design-of-a-lock-free-queue
 
 // Simplified BSD license:
@@ -27,7 +27,7 @@
 // TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Notice: This file has been slightly adapted for its use by CARLA.
+// 注意：这个文件为了被 CARLA 使用做了略微的修改。
 
 #pragma once
 
@@ -158,7 +158,7 @@ namespace moodycamel { namespace details {
 #endif
 #endif
 
-// ~~~ @begin Modified for CARLA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~ @begin 为 CARLA 所做的修改 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #include <carla/Exception.h>
 
@@ -178,7 +178,7 @@ namespace moodycamel { namespace details {
 #define MOODYCAMEL_THROW(expr) ::carla::throw_exception(expr)
 #endif
 
-// ~~~ @end Modified for CARLA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~ @end 为 CARLA 所做的修改 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #ifndef MOODYCAMEL_NOEXCEPT
 #if !defined(MOODYCAMEL_EXCEPTIONS_ENABLED)
