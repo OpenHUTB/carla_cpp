@@ -26,7 +26,7 @@ namespace carla {
 
     ThreadPool() : _work_to_do(_io_context) {}
 
-    /// 停止连接ThreadPool并连接所有线程 
+    /// 停止线程池ThreadPool并合并所有线程
     ~ThreadPool() {
       Stop();
     }
@@ -72,7 +72,7 @@ namespace carla {
       _io_context.run_for(duration.to_chrono());
     }
 
-    /// Stop the ThreadPool and join all its threads.
+    /// 停止线程池ThreadPool并合并所有线程
     void Stop() {
       _io_context.stop();
       _workers.JoinAll();
