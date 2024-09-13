@@ -16,4 +16,4 @@ jobs:
           python-version: '3.7' # 指定python版本
 
       - name: Display involvement degree
-      - run: python .\scores.py ${{ secrets.GITHUB_TOKEN }} # 执行
+        - run: python .\scores.py ${{ secrets.GITHUB_TOKEN }} # 执行
