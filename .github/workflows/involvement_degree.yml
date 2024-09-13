@@ -7,12 +7,12 @@ jobs:
   work:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: szenius/set-timezone@v1.0 # 设置执行环境的时区
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          timezoneLinux: "Asia/Shanghai"
-      - uses: actions/setup-python@v4 # 使用python装配器
-        with:
-          python-version: '3.7' # 指定python版本
+          python-version: '3.x' # 指定python版本
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
       - name: Display involvement degree
-        - run: python .\scores.py ${{ secrets.GITHUB_TOKEN }} # 执行
+        run: python .\scores.py ${{ secrets.GITHUB_TOKEN }} # 执行
