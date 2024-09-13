@@ -55,7 +55,7 @@ while True:
     page += 1
 
 sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
-sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1]), reversed=True)
+sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reversed=True))
 
 # 输出结果
 print("提问次数：")
