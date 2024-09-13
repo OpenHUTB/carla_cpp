@@ -1,0 +1,20 @@
+
+name: compute involvement degree
+
+on: [push]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: szenius/set-timezone@v1.0 # 设置执行环境的时区
+      with:
+        timezoneLinux: "Asia/Shanghai"
+        - uses: actions/setup-python@v4 # 使用python装配器
+          with:
+            python-version: '3.7' # 指定python版本
+            cache: 'poetry' # 设置缓存
+
+        - run: poetry install --without dev # 安装
+        - run: poetry run python .\scores.py ${{ secrets.GITHUB_TOKEN }} # 执行
