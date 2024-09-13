@@ -22,6 +22,9 @@ namespace carla {
     ~ThreadGroup() {
       JoinAll();
     }
+    
+    // 创建一个新线程并执行给定的可调用对象。
+    // 模板参数 F 是一个可调用对象类型。
 
     template <typename F>
     void CreateThread(F &&functor) {
@@ -51,4 +54,4 @@ namespace carla {
     std::vector<std::thread> _threads;
   };
 
-} // namespace carla
+} 

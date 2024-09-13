@@ -80,9 +80,9 @@ namespace detail {
   // ===========================================================================
   // -- RecurrentSharedFuture implementation -----------------------------------
   // ===========================================================================
-
+//这是detail命名空间，用于封装实现细节 
 namespace detail {
-
+//一些内部使用的函数或类 
   static thread_local const char thread_tag{};
 
   class SharedException : public std::exception {
