@@ -15,4 +15,4 @@ jobs:
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
       - name: Display involvement degree
-        run: python .\scores.py ${{ secrets.GITHUB_TOKEN }} # 执行
+        run: python scores.py ${{ secrets.GITHUB_TOKEN }} # 执行
