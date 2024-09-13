@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.1)
+
 project(libcarla-client)
 
 # 启用/安装 RSS VARIANT
