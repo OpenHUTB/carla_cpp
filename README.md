@@ -11,7 +11,7 @@
 git clone https://github.com/{username}/carla_cpp.git
 ```
 
-4.添加C++代码注释，如果需要查看生成的文档，在项目主目录下运行以下命令，根据 C++ 代码生成对应的 html 文档：
+4.添加C++代码注释（ [编码标准](https://openhutb.github.io/carla_doc/cont_coding_standard/#c++) ），如果需要查看生成的文档，在项目主目录下运行以下命令，根据 C++ 代码生成对应的 html 文档：
 ```shell script
 doxygen
 ```
@@ -140,3 +140,5 @@ git rm -rf .
 [huangzhihua](https://github.com/bbbelieve)
 [huiii-chen](https://github.com/huiii-chen)
 [xhoyh](https://github.com/xhoyh)
+[ggiiatr](https://github.com/ggiiatr/carla_cpp)
+[suki-mina](https://github.com/suki-mina)
