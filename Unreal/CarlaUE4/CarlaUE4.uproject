@@ -1,13 +1,26 @@
 {
+	// 文件版本
 	"FileVersion": 3,
+
+	//关联的Unreal Engine版本
 	"EngineAssociation": "4.26",
+
+	//类别（此处为空）
 	"Category": "",
+
+	//描述（此处为空）
 	"Description": "",
+
+	//模块列表
 	"Modules": [
 		{
+			//模块名称
 			"Name": "CarlaUE4",
+			//模块类型
 			"Type": "Runtime",
+			//加载阶段，Default为默认
 			"LoadingPhase": "Default",
+			//增加的需求项
 			"AdditionalDependencies": [
 				"Engine",
 				"PhysXVehicles",
@@ -16,107 +29,134 @@
 			]
 		}
 	],
+
+	//插件列表
 	"Plugins": [
+		//插件Carla，已经启用
 		{
 			"Name": "Carla",
 			"Enabled": true
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "OnlineSubsystemGooglePlay",
 			"Enabled": false,
 			"SupportedTargetPlatforms": [
 				"Android"
-			]
+			] //该插件仅支持Android
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "AndroidPermission",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "AppleARKit",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "LocationServicesBPLibrary",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "AndroidDeviceProfileSelector",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "ExampleDeviceProfileSelector",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "IOSDeviceProfileSelector",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "UObjectPlugin",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "AndroidMedia",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "HTML5Networking",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "MobileLauncherProfileWizard",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "MobilePatchingUtils",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "AndroidMoviePlayer",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "AppleMoviePlayer",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "GoogleCloudMessaging",
 			"Enabled": false
 		},
+		//性能监视器已经启用
 		{
 			"Name": "PerformanceMonitor",
 			"Enabled": true
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "OculusVR",
 			"Enabled": false
 		},
+		//下面的插件不能被启用
 		{
 			"Name": "SteamVR",
 			"Enabled": false
 		},
+		//RenderDocPlugin已经启用，可用于图形调试
 		{
 			"Name": "RenderDocPlugin",
 			"Enabled": true
 		},
+		//下面的插件不能被启用，但是提供了市场链接
 		{
 			"Name": "CarSim",
 			"Enabled": false,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/2d712649ca864c80812da7b5252f5608"
 		},
+		//编辑器脚本工具已经启用
 		{
 			"Name": "EditorScriptingUtilities",
 			"Enabled": true
 		},
+		//CarlaTools插件已经启用
 		{
 			"Name": "CarlaTools",
 			"Enabled": true
 		},
+		//Python的脚本插件已经启用
 		{
 			"Name": "PythonScriptPlugin",
 			"Enabled": true
 		},
+		//毛发导入与渲染相关的插件已经启用
 		{
 			"Name": "AlembicHairImporter",
 			"Enabled": true
