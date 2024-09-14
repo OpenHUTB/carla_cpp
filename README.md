@@ -6,7 +6,7 @@
 
 2.在[湖工商仓库](https://github.com/OpenHUTB/carla_cpp) 页面点击`Fork`，然后点击`Create a new fork`，创建分叉到个人仓库。
 
-3.克隆个人仓库：
+3.克隆个人仓库（若出现SSL certificate problems请关闭加速器再克隆）：
 ```shell
 git clone https://github.com/{username}/carla_cpp.git
 ```
@@ -142,3 +142,4 @@ git rm -rf .
 [xhoyh](https://github.com/xhoyh)
 [ggiiatr](https://github.com/ggiiatr/carla_cpp)
 [suki-mina](https://github.com/suki-mina)
+[qqggxx](https://github.com/qqggxx)
