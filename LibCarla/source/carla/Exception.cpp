@@ -51,7 +51,7 @@ namespace detail {
   template void throw_exception<std::exception>(const std::exception &);
   template void throw_exception<std::system_error>(const std::system_error &);
 
-} // namespace detail
+} // 命名空间详细信息 
 } // namespace clmdep_asio
 
-#endif // ASIO_NO_EXCEPTIONS
+#endif // 无异常
