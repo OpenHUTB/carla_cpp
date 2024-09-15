@@ -12,5 +12,9 @@ namespace carla {  // carla 命名空间，封装相关类和函数
     }
   }
 
+<<<<<<< HEAD
 } // namespace carla
 
+=======
+} //namespace carla
+>>>>>>> 5e39fcd54d1550e768c08d3a906986144c8ba7ac
