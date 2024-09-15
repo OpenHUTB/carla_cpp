@@ -6,12 +6,12 @@
 
 2.在[湖工商仓库](https://github.com/OpenHUTB/carla_cpp) 页面点击`Fork`，然后点击`Create a new fork`，创建分叉到个人仓库。
 
-3.克隆个人仓库：
+3.克隆个人仓库（若出现SSL certificate problems请关闭加速器再克隆）：
 ```shell
 git clone https://github.com/{username}/carla_cpp.git
 ```
 
-4.添加C++代码注释，如果需要查看生成的文档，在项目主目录下运行以下命令，根据 C++ 代码生成对应的 html 文档：
+4.添加C++代码注释（ [编码标准](https://openhutb.github.io/carla_doc/cont_coding_standard/#c++) ），如果需要查看生成的文档，在项目主目录下运行以下命令，根据 C++ 代码生成对应的 html 文档：
 ```shell script
 doxygen
 ```
@@ -37,7 +37,7 @@ git push
 2.找到需要修改的文件：
 ![](./img/header_path.jpg)
 
-3.翻译代码中的注释或添加新注释：
+3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留）：
 ![](./img/update_annotated.jpg)
 
 4.运行`doxygen`重新生成文档，查看修改后的文档：
@@ -138,4 +138,12 @@ git rm -rf .
 [ZH1024-Heng](https://github.com/ZH1024-Heng)、
 [siwei1427](https://github.com/siwei1427?tab=repositories)。
 [huangzhihua](https://github.com/bbbelieve)
+<<<<<<< HEAD
 [Hcir-lk](https://gitub.com/Hcir-lk)
+=======
+[huiii-chen](https://github.com/huiii-chen)
+[xhoyh](https://github.com/xhoyh)
+[ggiiatr](https://github.com/ggiiatr/carla_cpp)
+[suki-mina](https://github.com/suki-mina)
+[qqggxx](https://github.com/qqggxx)
+>>>>>>> cb19c56d338af00e8a156081c57d1fbc6154f06b

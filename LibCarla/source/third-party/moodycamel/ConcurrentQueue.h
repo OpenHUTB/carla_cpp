@@ -8,33 +8,21 @@
 // Copyright (c) 2013-2016, Cameron Desrochers.
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without modification,
-// are permitted provided that the following conditions are met:
+// 允许源代码和二进制形式的再分发和使用，无论是否经过修改，只要满足以下条件：
 //
-// - Redistributions of source code must retain the above copyright notice, this list of
-// conditions and the following disclaimer.
-// - Redistributions in binary form must reproduce the above copyright notice, this list of
-// conditions and the following disclaimer in the documentation and/or other materials
-// provided with the distribution.
+// 源代码的再分发必须保留上述版权声明、条件列表和免责声明。
+// 二进制形式的再分发必须在文档和/或其他材料中再现上述版权声明、条件列表和免责声明。
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
-// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
-// THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-// OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
-// TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-// EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
+//该软件由版权持有者和贡献者“按原样”提供，没有任何明示或暗示的担保，包括但不限于适销性和特定用途适用性的暗示担保
+//在任何情况下，版权持有者或贡献者不对因使用该软件而产生的任何直接、间接、附带、特别、惩罚性或结果性的损害负责，
+//包括但不限于采购替代商品或服务、使用、数据或利润的损失或业务中断，是否基于合同、严格责任或侵权（包括疏忽或其他）理论，即使已经被告知可能发生这样的损害。
 // 注意：这个文件为了被 CARLA 使用做了略微的修改。
 
 #pragma once
 
 #if defined(__GNUC__)
-// Disable -Wconversion warnings (spuriously triggered when Traits::size_t and
-// Traits::index_t are set to < 32 bits, causing integer promotion, causing warnings
-// upon assigning any computed values)
+// 禁用 -Wconversion 警告（当 Traits::size_t 和 Traits::index_t 设置为小于 32 位时，整数提升可能引发这些警告
+// 在赋值计算值时会出现警告）
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wconversion"
 
@@ -50,8 +38,8 @@
 #ifdef MCDBGQ_USE_RELACY
 #include "relacy/relacy_std.hpp"
 #include "relacy_shims.h"
-// We only use malloc/free anyway, and the delete macro messes up `= delete` method declarations.
-// We'll override the default trait malloc ourselves without a macro.
+// 我们只使用 malloc/free，因此 delete 宏会干扰 `= delete` 方法声明。
+// 我们将自己覆盖默认的 trait malloc，而不使用宏。
 #undef new
 #undef delete
 #undef malloc
@@ -71,7 +59,7 @@
 #include <array>
 #include <thread>    // partly for __WINPTHREADS_VERSION if on MinGW-w64 w/ POSIX threading
 
-// Platform-specific definitions of a numeric thread ID type and an invalid value
+// 平台特定的数字线程 ID 类型和无效值定义
 namespace moodycamel { namespace details {
   template<typename thread_id_t> struct thread_id_converter {
     typedef thread_id_t thread_id_numeric_size_t;
@@ -87,8 +75,8 @@ namespace moodycamel { namespace details {
   static inline thread_id_t thread_id() { return rl::thread_index(); }
 } }
 #elif defined(_WIN32) || defined(__WINDOWS__) || defined(__WIN32__)
-// No sense pulling in windows.h in a header, we'll manually declare the function
-// we use and rely on backwards-compatibility for this not to break
+// 在头文件中引入 windows.h 没有意义，我们将手动声明所用的函数
+// 并依赖向后兼容性确保这不会破坏
 extern "C" __declspec(dllimport) unsigned long __stdcall GetCurrentThreadId(void);
 namespace moodycamel { namespace details {
   static_assert(sizeof(unsigned long) == sizeof(std::uint32_t), "Expected size of unsigned long to be 32 bits on Windows");
@@ -104,9 +92,8 @@ namespace moodycamel { namespace details {
   typedef std::thread::id thread_id_t;
   static const thread_id_t invalid_thread_id;         // Default ctor creates invalid ID
 
-  // Note we don't define a invalid_thread_id2 since std::thread::id doesn't have one; it's
-  // only used if MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED is defined anyway, which it won't
-  // be.
+  // 请注意，我们不定义 invalid_thread_id2，因为 std::thread::id 没有无效值；它
+  // 仅在 MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED 定义时才会使用，但实际上不会定义它。
   static inline thread_id_t thread_id() { return std::this_thread::get_id(); }
 
   template<std::size_t> struct thread_id_size { };
@@ -132,9 +119,8 @@ namespace moodycamel { namespace details {
   };
 } }
 #else
-// Use a nice trick from this answer: http://stackoverflow.com/a/8438730/21475
-// In order to get a numeric thread ID in a platform-independent way, we use a thread-local
-// static variable's address as a thread identifier :-)
+// 使用这个答案中的巧妙方法：http://stackoverflow.com/a/8438730/21475
+// 为了以平台无关的方式获取数字线程 ID，我们使用线程局部静态变量的地址作为线程标识符 :-) :-)
 #if defined(__GNUC__) || defined(__INTEL_COMPILER)
 #define MOODYCAMEL_THREADLOCAL __thread
 #elif defined(_MSC_VER)
@@ -186,8 +172,8 @@ namespace moodycamel { namespace details {
 #define MOODYCAMEL_NOEXCEPT_CTOR(type, valueType, expr) true
 #define MOODYCAMEL_NOEXCEPT_ASSIGN(type, valueType, expr) true
 #elif defined(_MSC_VER) && defined(_NOEXCEPT) && _MSC_VER < 1800
-// VS2012's std::is_nothrow_[move_]constructible is broken and returns true when it shouldn't :-(
-// We have to assume *all* non-trivial constructors may throw on VS2012!
+// VS2012 的 std::is_nothrow_[move_]constructible 存在问题，返回 true 时不应如此 :-(
+// 我们必须假设 VS2012 上的所有非平凡构造函数可能会抛出异常！
 #define MOODYCAMEL_NOEXCEPT _NOEXCEPT
 #define MOODYCAMEL_NOEXCEPT_CTOR(type, valueType, expr) (std::is_rvalue_reference<valueType>::value && std::is_move_constructible<type>::value ? std::is_trivially_move_constructible<type>::value : std::is_trivially_copy_constructible<type>::value)
 #define MOODYCAMEL_NOEXCEPT_ASSIGN(type, valueType, expr) ((std::is_rvalue_reference<valueType>::value && std::is_move_assignable<type>::value ? std::is_trivially_move_assignable<type>::value || std::is_nothrow_move_assignable<type>::value : std::is_trivially_copy_assignable<type>::value || std::is_nothrow_copy_assignable<type>::value) && MOODYCAMEL_NOEXCEPT_CTOR(type, valueType, expr))
@@ -206,18 +192,18 @@ namespace moodycamel { namespace details {
 #ifdef MCDBGQ_USE_RELACY
 #define MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED
 #else
-// VS2013 doesn't support `thread_local`, and MinGW-w64 w/ POSIX threading has a crippling bug: http://sourceforge.net/p/mingw-w64/bugs/445
-// g++ <=4.7 doesn't support thread_local either.
-// Finally, iOS/ARM doesn't have support for it either, and g++/ARM allows it to compile but it's unconfirmed to actually work
+// VS2013 不支持 `thread_local`，而 MinGW-w64 与 POSIX 线程的组合存在一个严重的 bug： http://sourceforge.net/p/mingw-w64/bugs/445
+// g++ 版本 <=4.7 也不支持 `thread_local`。
+// 最后，iOS/ARM 不支持 `thread_local`，虽然 g++/ARM 允许编译，但尚未确认是否实际有效
 #if (!defined(_MSC_VER) || _MSC_VER >= 1900) && (!defined(__MINGW32__) && !defined(__MINGW64__) || !defined(__WINPTHREADS_VERSION)) && (!defined(__GNUC__) || __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)) && (!defined(__APPLE__) || !TARGET_OS_IPHONE) && !defined(__arm__) && !defined(_M_ARM) && !defined(__aarch64__)
-// Assume `thread_local` is fully supported in all other C++11 compilers/platforms
-//#define MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED    // always disabled for now since several users report having problems with it on
+// 假设所有其他 C++11 编译器/平台都完全支持 `thread_local`
+//#define MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED    // 由于多个用户报告存在问题，因此目前总是禁用
 #endif
 #endif
 #endif
 
-// VS2012 doesn't support deleted functions.
-// In this case, we declare the function normally but don't define it. A link error will be generated if the function is called.
+// VS2012 不支持已删除的函数。
+// 在这种情况下，我们正常声明函数但不定义它。如果调用该函数，会生成链接错误。
 #ifndef MOODYCAMEL_DELETE_FUNCTION
 #if defined(_MSC_VER) && _MSC_VER < 1800
 #define MOODYCAMEL_DELETE_FUNCTION
@@ -226,7 +212,7 @@ namespace moodycamel { namespace details {
 #endif
 #endif
 
-// Compiler-specific likely/unlikely hints
+// 编译器特定的 likely/unlikely 提示
 namespace moodycamel { namespace details {
 #if defined(__GNUC__)
   static inline bool (likely)(bool x) { return __builtin_expect((x), true); }
@@ -252,13 +238,13 @@ namespace details {
   };
 
 #if defined(__GLIBCXX__)
-  typedef ::max_align_t std_max_align_t;      // libstdc++ forgot to add it to std:: for a while
+  typedef ::max_align_t std_max_align_t;      // libstdc++ 一段时间内忘记将其添加到 std:: 中
 #else
-  typedef std::max_align_t std_max_align_t;   // Others (e.g. MSVC) insist it can *only* be accessed via std::
-#endif
+  typedef std::max_align_t std_max_align_t;   // 其他编译器（例如 MSVC）坚持认为它只能通过 std:: 访问
 
-  // Some platforms have incorrectly set max_align_t to a type with <8 bytes alignment even while supporting
-  // 8-byte aligned scalar values (*cough* 32-bit iOS). Work around this with our own union. See issue #64.
+
+  // 一些平台错误地将 max_align_t 设置为一个对齐小于 8 字节的类型，即便它支持 8 字节对齐的标量值（*咳* 32 位 iOS）。
+  //用我们自己的联合体解决这个问题。参见问题 #64
   typedef union {
     std_max_align_t x;
     long long y;
@@ -266,66 +252,71 @@ namespace details {
   } max_align_t;
 }
 
-// Default traits for the ConcurrentQueue. To change some of the
-// traits without re-implementing all of them, inherit from this
-// struct and shadow the declarations you wish to be different;
-// since the traits are used as a template type parameter, the
-// shadowed declarations will be used where defined, and the defaults
-// otherwise.
+  // ConcurrentQueue 的默认特性。
+  // 要改变一些特性而无需重新实现所有特性，可以从这个结构体继承并覆盖你希望不同的声明；
+  // 由于这些特性作为模板类型参数使用，覆盖的声明将在定义的地方使用，其他地方则使用默认值。
 struct ConcurrentQueueDefaultTraits
 {
-  // General-purpose size type. std::size_t is strongly recommended.
+  // 通用大小类型。强烈推荐使用 std::size_t。
   typedef std::size_t size_t;
 
-  // The type used for the enqueue and dequeue indices. Must be at least as
-  // large as size_t. Should be significantly larger than the number of elements
-  // you expect to hold at once, especially if you have a high turnover rate;
-  // for example, on 32-bit x86, if you expect to have over a hundred million
-  // elements or pump several million elements through your queue in a very
-  // short space of time, using a 32-bit type *may* trigger a race condition.
-  // A 64-bit int type is recommended in that case, and in practice will
-  // prevent a race condition no matter the usage of the queue. Note that
-  // whether the queue is lock-free with a 64-int type depends on the whether
-  // std::atomic<std::uint64_t> is lock-free, which is platform-specific.
+  // 用于入队和出队索引的类型。必须至少与 size_t 一样大。
+  // 应该比你预期一次性容纳的元素数量大得多，特别是当你有高周转率时；
+  // 例如，在 32 位 x86 上，如果你预期有超过一亿个元素或在非常短的时间内处理几百万个元素，
+  // 使用 32 位类型 *可能* 会触发竞争条件。在这种情况下，推荐使用 64 位整数类型，
+  // 实际上将防止竞争条件，无论队列的使用情况如何。
+  // 请注意，队列是否在使用 64 位整数类型时无锁，取决于 std::atomic<std::uint64_t> 是否无锁，这具有平台特性。
+
   typedef std::size_t index_t;
 
-  // Internally, all elements are enqueued and dequeued from multi-element
-  // blocks; this is the smallest controllable unit. If you expect few elements
-  // but many producers, a smaller block size should be favoured. For few producers
-  // and/or many elements, a larger block size is preferred. A sane default
-  // is provided. Must be a power of 2.
+  // 内部所有元素都从多元素块中入队和出队；这是最小的可控单位。
+  // 如果你预计元素较少但生产者较多，应选择较小的块大小。
+  // 对于生产者较少和/或元素较多的情况，建议选择较大的块大小。
+  // 提供了一个合理的默认值。块大小必须是 2 的幂。
+
   static const size_t BLOCK_SIZE = 32;
 
-  // For explicit producers (i.e. when using a producer token), the block is
-  // checked for being empty by iterating through a list of flags, one per element.
-  // For large block sizes, this is too inefficient, and switching to an atomic
-  // counter-based approach is faster. The switch is made for block sizes strictly
-  // larger than this threshold.
+  // 对于显式生产者（即使用生产者令牌时），通过迭代每个元素的标志列表来检查块是否为空。
+  // 对于较大的块大小，这种方法效率过低，改为基于原子计数器的方法更快。
+  // 当块大小严格大于此阈值时，会切换到这种方法。
+
   static const size_t EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD = 32;
 
-  // How many full blocks can be expected for a single explicit producer? This should
-  // reflect that number's maximum for optimal performance. Must be a power of 2.
+  // 单个显式生产者可以预期多少个完整块？这个值应反映该数量的最大值以获得最佳性能。
+  // 必须是 2 的幂。
   static const size_t EXPLICIT_INITIAL_INDEX_SIZE = 32;
 
   // How many full blocks can be expected for a single implicit producer? This should
   // reflect that number's maximum for optimal performance. Must be a power of 2.
   static const size_t IMPLICIT_INITIAL_INDEX_SIZE = 32;
 
-  // The initial size of the hash table mapping thread IDs to implicit producers.
-  // Note that the hash is resized every time it becomes half full.
-  // Must be a power of two, and either 0 or at least 1. If 0, implicit production
-  // (using the enqueue methods without an explicit producer token) is disabled.
+  // 线程 ID 到隐式生产者的哈希表的初始大小。
+  // 注意，每当哈希表填充到一半时，会进行调整。
+  // 必须是 2 的幂，并且为 0 或至少为 1。如果为 0，则禁用隐式生产（使用不带显式生产者令牌的入队方法）。
+
   static const size_t INITIAL_IMPLICIT_PRODUCER_HASH_SIZE = 32;
 
-  // Controls the number of items that an explicit consumer (i.e. one with a token)
-  // must consume before it causes all consumers to rotate and move on to the next
-  // internal queue.
+  // 控制显式消费者（即带令牌的消费者）在导致所有消费者旋转并转到下一个内部队列之前
+  // 必须消费的项目数量。
   static const std::uint32_t EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE = 256;
 
-  // The maximum number of elements (inclusive) that can be enqueued to a sub-queue.
-  // Enqueue operations that would cause this limit to be surpassed will fail. Note
-  // that this limit is enforced at the block level (for performance reasons), i.e.
-  // it's rounded up to the nearest block size.
+  // 子队列中最多可以排队的元素数量（包括）。如果入队操作会超过此限制，则操作将失败。
+  // 请注意，这个限制在块级别强制执行（为了性能原因），即它会被四舍五入到最接近的块大小。
+static const size_t MAX_SUBQUEUE_SIZE = details::const_numeric_max<size_t>::value;
+
+#ifndef MCDBGQ_USE_RELACY
+  // 如果需要，可以自定义内存分配。
+  // malloc 应该在失败时返回 nullptr，并处理对齐问题，就像 std::malloc 一样。
+#if defined(malloc) || defined(free)
+  // 哎，这已经是 2015 年了，停止定义破坏标准代码的宏吧！
+  // 解决 malloc/free 是特殊宏的问题：
+  static inline void* WORKAROUND_malloc(size_t size) { return malloc(size); }
+  static inline void WORKAROUND_free(void* ptr) { return free(ptr); }
+  static inline void* (malloc)(size_t size) { return WORKAROUND_malloc(size); }
+  static inline void (free)(void* ptr) { return WORKAROUND_free(ptr); }
+#endif
+#endif
+
   static const size_t MAX_SUBQUEUE_SIZE = details::const_numeric_max<size_t>::value;
 
 
@@ -344,21 +335,21 @@ struct ConcurrentQueueDefaultTraits
   static inline void free(void* ptr) { return std::free(ptr); }
 #endif
 #else
-  // Debug versions when running under the Relacy race detector (ignore
-  // these in user code)
+  // 在使用 Relacy 竞态检测器运行时的调试版本（在用户代码中忽略这些）
+
   static inline void* malloc(size_t size) { return rl::rl_malloc(size, $); }
   static inline void free(void* ptr) { return rl::rl_free(ptr, $); }
 #endif
 };
 
 
-// When producing or consuming many elements, the most efficient way is to:
-//    1) Use one of the bulk-operation methods of the queue with a token
-//    2) Failing that, use the bulk-operation methods without a token
-//    3) Failing that, create a token and use that with the single-item methods
-//    4) Failing that, use the single-parameter methods of the queue
-// Having said that, don't create tokens willy-nilly -- ideally there should be
-// a maximum of one token per thread (of each kind).
+// 当生产或消费大量元素时，最有效的方法是：
+//    1) 使用队列的批量操作方法，并附带一个 token
+//    2) 如果不能使用 token，使用没有 token 的批量操作方法
+//    3) 如果仍然无法使用，创建一个 token，并使用它来调用单项方法
+//    4) 如果以上方法都不可用，使用队列的单参数方法
+// 需要注意的是，不要随意创建 tokens —— 理想情况下，每个线程（每种类型）应该最多只有一个 token。
+
 struct ProducerToken;
 struct ConsumerToken;
 
@@ -384,10 +375,10 @@ namespace details
   template<bool use32> struct _hash_32_or_64 {
     static inline std::uint32_t hash(std::uint32_t h)
     {
-      // MurmurHash3 finalizer -- see https://code.google.com/p/smhasher/source/browse/trunk/MurmurHash3.cpp
-      // Since the thread ID is already unique, all we really want to do is propagate that
-      // uniqueness evenly across all the bits, so that we can use a subset of the bits while
-      // reducing collisions significantly
+      
+      // MurmurHash3 完成器 -- 参见 https://code.google.com/p/smhasher/source/browse/trunk/MurmurHash3.cpp
+      // 由于线程 ID 已经是唯一的，我们真正要做的只是将这种唯一性均匀地传播到所有位上，
+      // 这样我们可以使用这些位的子集，同时显著减少碰撞。
       h ^= h >> 16;
       h *= 0x85ebca6b;
       h ^= h >> 13;
@@ -510,13 +501,16 @@ namespace details
     callback_t callback;
     void* userData;
 
-    ThreadExitListener* next;    // reserved for use by the ThreadExitNotifier
+    ThreadExitListener* next;    // 保留供 ThreadExitNotifier 使用
+
   };
 
 
   class ThreadExitNotifier
   {
   public:
+
+    // 将监听器添加到订阅者列表中
     static void subscribe(ThreadExitListener* listener)
     {
       auto& tlsInst = instance();
@@ -524,6 +518,7 @@ namespace details
       tlsInst.tail = listener;
     }
 
+    // 从订阅者列表中移除监听器
     static void unsubscribe(ThreadExitListener* listener)
     {
       auto& tlsInst = instance();
@@ -533,18 +528,19 @@ namespace details
           *prev = ptr->next;
           break;
         }
-        prev = &ptr->next;
+        prev = &ptr->next;// 更新前一个节点的指针到当前节点的 next
       }
     }
 
   private:
+    // 私有构造函数，确保使用单例模式
     ThreadExitNotifier() : tail(nullptr) { }
     ThreadExitNotifier(ThreadExitNotifier const&) MOODYCAMEL_DELETE_FUNCTION;
     ThreadExitNotifier& operator=(ThreadExitNotifier const&) MOODYCAMEL_DELETE_FUNCTION;
 
     ~ThreadExitNotifier()
     {
-      // This thread is about to exit, let everyone know!
+      // 该线程即将退出，通知所有人！
       assert(this == &instance() && "If this assert fails, you likely have a buggy compiler! Change the preprocessor conditions such that MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED is no longer defined.");
       for (auto ptr = tail; ptr != nullptr; ptr = ptr->next) {
         ptr->callback(ptr->userData);
@@ -610,14 +606,14 @@ struct ProducerToken
     }
   }
 
-  // A token is always valid unless:
-  //     1) Memory allocation failed during construction
-  //     2) It was moved via the move constructor
-  //        (Note: assignment does a swap, leaving both potentially valid)
-  //     3) The associated queue was destroyed
-  // Note that if valid() returns true, that only indicates
-  // that the token is valid for use with a specific queue,
-  // but not which one; that's up to the user to track.
+  // 一个令牌通常是有效的，除非：
+  //     1) 在构造过程中内存分配失败
+  //     2) 通过移动构造函数移动了令牌
+  //        （注意：赋值操作会进行交换，因此两个令牌都可能有效）
+  //     3) 关联的队列被销毁
+  // 注意，如果 valid() 返回 true，这仅表示令牌对于特定队列是有效的，
+  // 但并不能确定是哪一个队列；这需要由用户自己跟踪。
+
   inline bool valid() const { return producer != nullptr; }
 
   ~ProducerToken()
@@ -669,7 +665,7 @@ struct ConsumerToken
     std::swap(desiredProducer, other.desiredProducer);
   }
 
-  // Disable copying and assignment
+  // 禁用拷贝和赋值操作
   ConsumerToken(ConsumerToken const&) MOODYCAMEL_DELETE_FUNCTION;
   ConsumerToken& operator=(ConsumerToken const&) MOODYCAMEL_DELETE_FUNCTION;
 
@@ -677,7 +673,7 @@ private:
   template<typename T, typename Traits> friend class ConcurrentQueue;
   friend class ConcurrentQueueTests;
 
-private: // but shared with ConcurrentQueue
+private: // 但与并发队列共享
   std::uint32_t initialOffset;
   std::uint32_t lastKnownGlobalOffset;
   std::uint32_t itemsConsumedFromCurrent;
@@ -685,8 +681,8 @@ private: // but shared with ConcurrentQueue
   details::ConcurrentQueueProducerTypelessBase* desiredProducer;
 };
 
-// Need to forward-declare this swap because it's in a namespace.
-// See http://stackoverflow.com/questions/4492062/why-does-a-c-friend-class-need-a-forward-declaration-only-in-other-namespaces
+// 需要前向声明这个 swap，因为它在一个命名空间中。
+// 参见 http://stackoverflow.com/questions/4492062/why-does-a-c-friend-class-need-a-forward-declaration-only-in-other-namespaces
 template<typename T, typename Traits>
 inline void swap(typename ConcurrentQueue<T, Traits>::ImplicitProducerKVP& a, typename ConcurrentQueue<T, Traits>::ImplicitProducerKVP& b) MOODYCAMEL_NOEXCEPT;
 
@@ -728,16 +724,13 @@ public:
   static_assert(INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0 || INITIAL_IMPLICIT_PRODUCER_HASH_SIZE >= 1, "Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE must be at least 1 (or 0 to disable implicit enqueueing)");
 
 public:
-  // Creates a queue with at least `capacity` element slots; note that the
-  // actual number of elements that can be inserted without additional memory
-  // allocation depends on the number of producers and the block size (e.g. if
-  // the block size is equal to `capacity`, only a single block will be allocated
-  // up-front, which means only a single producer will be able to enqueue elements
-  // without an extra allocation -- blocks aren't shared between producers).
-  // This method is not thread safe -- it is up to the user to ensure that the
-  // queue is fully constructed before it starts being used by other threads (this
-  // includes making the memory effects of construction visible, possibly with a
-  // memory barrier).
+
+  // 创建一个具有至少 `capacity` 元素槽的队列；注意实际能够插入的元素数量
+  // 取决于生产者的数量和块大小（例如，如果块大小等于 `capacity`，则只会
+  // 预先分配一个块，这意味着只有一个生产者能够在不进行额外分配的情况下
+  // 将元素入队 —— 块在生产者之间不会共享）。这个方法不是线程安全的 ——
+  // 用户需要确保队列在开始被其他线程使用之前已经完全构造（这包括
+  // 使构造的内存效果可见，可能需要使用内存屏障）。
   explicit ConcurrentQueue(size_t capacity = 6 * BLOCK_SIZE)
     : producerListTail(nullptr),
     producerCount(0),
@@ -759,9 +752,9 @@ public:
 #endif
   }
 
-  // Computes the correct amount of pre-allocated blocks for you based
-  // on the minimum number of elements you want available at any given
-  // time, and the maximum concurrent number of each type of producer.
+  // 根据您希望在任何给定时间可用的最小元素数量和每种生产者的最大并发数量，
+  // 计算适当的预分配块数量。
+
   ConcurrentQueue(size_t minCapacity, size_t maxExplicitProducers, size_t maxImplicitProducers)
     : producerListTail(nullptr),
     producerCount(0),
@@ -780,12 +773,12 @@ public:
 #endif
   }
 
-  // Note: The queue should not be accessed concurrently while it's
-  // being deleted. It's up to the user to synchronize this.
-  // This method is not thread safe.
+  // 注意：在队列被删除时不应同时访问它。用户需要同步这一点。
+  // 这个方法不是线程安全的。
+
   ~ConcurrentQueue()
   {
-    // Destroy producers
+    // 销毁生产者
     auto ptr = producerListTail.load(std::memory_order_relaxed);
     while (ptr != nullptr) {
       auto next = ptr->next_prod();
@@ -796,7 +789,7 @@ public:
       ptr = next;
     }
 
-    // Destroy implicit producer hash tables
+    // 销毁隐式生产者哈希表
     if (INITIAL_IMPLICIT_PRODUCER_HASH_SIZE != 0) {
       auto hash = implicitProducerHash.load(std::memory_order_relaxed);
       while (hash != nullptr) {
@@ -812,7 +805,7 @@ public:
       }
     }
 
-    // Destroy global free list
+    // 销毁全局空闲列表
     auto block = freeList.head_unsafe();
     while (block != nullptr) {
       auto next = block->freeListNext.load(std::memory_order_relaxed);
@@ -822,20 +815,18 @@ public:
       block = next;
     }
 
-    // Destroy initial free list
+    // 销毁初始空闲列表
     destroy_array(initialBlockPool, initialBlockPoolSize);
   }
 
-  // Disable copying and copy assignment
+  // 禁用复制构造函数和复制赋值运算符
   ConcurrentQueue(ConcurrentQueue const&) MOODYCAMEL_DELETE_FUNCTION;
   ConcurrentQueue& operator=(ConcurrentQueue const&) MOODYCAMEL_DELETE_FUNCTION;
 
-  // Moving is supported, but note that it is *not* a thread-safe operation.
-  // Nobody can use the queue while it's being moved, and the memory effects
-  // of that move must be propagated to other threads before they can use it.
-  // Note: When a queue is moved, its tokens are still valid but can only be
-  // used with the destination queue (i.e. semantically they are moved along
-  // with the queue itself).
+  // 移动操作是支持的，但请注意它 *不是* 线程安全的操作。
+  // 在队列被移动时，其他线程不能使用该队列，并且必须在其他线程可以使用它之前传播该移动的内存效果。
+  // 注意：当队列被移动时，它的令牌仍然有效，但只能与目标队列一起使用（即语义上它们也被随队列一起移动）。
+
   ConcurrentQueue(ConcurrentQueue&& other) MOODYCAMEL_NOEXCEPT
     : producerListTail(other.producerListTail.load(std::memory_order_relaxed)),
     producerCount(other.producerCount.load(std::memory_order_relaxed)),
@@ -846,7 +837,7 @@ public:
     nextExplicitConsumerId(other.nextExplicitConsumerId.load(std::memory_order_relaxed)),
     globalExplicitConsumerOffset(other.globalExplicitConsumerOffset.load(std::memory_order_relaxed))
   {
-    // Move the other one into this, and leave the other one as an empty queue
+    // 将另一个队列移动到当前队列，并将另一个队列留为空队列
     implicitProducerHashResizeInProgress.clear(std::memory_order_relaxed);
     populate_initial_implicit_producer_hash();
     swap_implicit_producer_hashes(other);
@@ -875,11 +866,11 @@ public:
     return swap_internal(other);
   }
 
-  // Swaps this queue's state with the other's. Not thread-safe.
-  // Swapping two queues does not invalidate their tokens, however
-  // the tokens that were created for one queue must be used with
-  // only the swapped queue (i.e. the tokens are tied to the
-  // queue's movable state, not the object itself).
+  // 交换当前队列的状态与另一个队列的状态。此操作不是线程安全的。
+  // 交换两个队列不会使它们的令牌失效，然而
+  // 为一个队列创建的令牌必须只与交换后的队列一起使用（即，令牌与
+  // 队列的可移动状态相关联，而不是对象本身）。
+
   inline void swap(ConcurrentQueue& other) MOODYCAMEL_NOEXCEPT
   {
     swap_internal(other);
@@ -915,51 +906,51 @@ private:
   }
 
 public:
-  // Enqueues a single item (by copying it).
-  // Allocates memory if required. Only fails if memory allocation fails (or implicit
-  // production is disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE is 0,
-  // or Traits::MAX_SUBQUEUE_SIZE has been defined and would be surpassed).
-  // Thread-safe.
+
+  // 将单个项目（通过复制）入队。
+  // 如有必要，分配内存。仅在内存分配失败时（或隐式
+  // 生产被禁用，因为 Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE 为 0，
+  // 或 Traits::MAX_SUBQUEUE_SIZE 已定义并可能被超越）才会失败。
+  // 线程安全。
   inline bool enqueue(T const& item)
   {
     if (INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0) return false;
     return inner_enqueue<CanAlloc>(item);
   }
 
-  // Enqueues a single item (by moving it, if possible).
-  // Allocates memory if required. Only fails if memory allocation fails (or implicit
-  // production is disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE is 0,
-  // or Traits::MAX_SUBQUEUE_SIZE has been defined and would be surpassed).
-  // Thread-safe.
+  // 将单个项目（如果可能，通过移动）入队。
+  // 如有必要，分配内存。仅在内存分配失败时（或隐式
+  // 生产被禁用，因为 Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE 为 0，
+  // 或 Traits::MAX_SUBQUEUE_SIZE 已定义并可能被超越）才会失败。
+  // 线程安全。
   inline bool enqueue(T&& item)
   {
     if (INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0) return false;
     return inner_enqueue<CanAlloc>(std::move(item));
   }
 
-  // Enqueues a single item (by copying it) using an explicit producer token.
-  // Allocates memory if required. Only fails if memory allocation fails (or
-  // Traits::MAX_SUBQUEUE_SIZE has been defined and would be surpassed).
-  // Thread-safe.
+  // 使用显式生产者令牌将单个项目（通过复制）入队。
+  // 如有必要，分配内存。仅在内存分配失败时（或
+  // Traits::MAX_SUBQUEUE_SIZE 已定义并可能被超越）才会失败。
+  // 线程安全。
   inline bool enqueue(producer_token_t const& token, T const& item)
   {
     return inner_enqueue<CanAlloc>(token, item);
   }
 
-  // Enqueues a single item (by moving it, if possible) using an explicit producer token.
-  // Allocates memory if required. Only fails if memory allocation fails (or
-  // Traits::MAX_SUBQUEUE_SIZE has been defined and would be surpassed).
-  // Thread-safe.
+  // 使用显式生产者令牌将单个项目（如果可能，通过移动）入队。
+  // 如有必要，分配内存。仅在内存分配失败时（或
+  // Traits::MAX_SUBQUEUE_SIZE 已定义并可能被超越）才会失败。
+  // 线程安全。
   inline bool enqueue(producer_token_t const& token, T&& item)
   {
     return inner_enqueue<CanAlloc>(token, std::move(item));
   }
 
-  // Enqueues several items.
-  // Allocates memory if required. Only fails if memory allocation fails (or
-  // implicit production is disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE
-  // is 0, or Traits::MAX_SUBQUEUE_SIZE has been defined and would be surpassed).
-  // Note: Use std::make_move_iterator if the elements should be moved instead of copied.
+  // 将多个项目入队。
+  // 如有必要，分配内存。仅在内存分配失败时（或隐式生产被禁用，因为 Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE 为 0，
+  // 或 Traits::MAX_SUBQUEUE_SIZE 已定义并可能被超越）才会失败。
+  // 注意：如果要移动而非复制元素，请使用 std::make_move_iterator。
   // Thread-safe.
   template<typename It>
   bool enqueue_bulk(It itemFirst, size_t count)
@@ -968,7 +959,7 @@ public:
     return inner_enqueue_bulk<CanAlloc>(itemFirst, count);
   }
 
-  // Enqueues several items using an explicit producer token.
+  // 使用显式生产者令牌将多个项目入队。
   // Allocates memory if required. Only fails if memory allocation fails
   // (or Traits::MAX_SUBQUEUE_SIZE has been defined and would be surpassed).
   // Note: Use std::make_move_iterator if the elements should be moved
@@ -980,7 +971,7 @@ public:
     return inner_enqueue_bulk<CanAlloc>(token, itemFirst, count);
   }
 
-  // Enqueues a single item (by copying it).
+  // 将单个项目（通过复制）入队。
   // Does not allocate memory. Fails if not enough room to enqueue (or implicit
   // production is disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE
   // is 0).
@@ -991,7 +982,7 @@ public:
     return inner_enqueue<CannotAlloc>(item);
   }
 
-  // Enqueues a single item (by moving it, if possible).
+  // 将单个项目入队（如果可能，通过移动）。
   // Does not allocate memory (except for one-time implicit producer).
   // Fails if not enough room to enqueue (or implicit production is
   // disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE is 0).
@@ -1002,7 +993,7 @@ public:
     return inner_enqueue<CannotAlloc>(std::move(item));
   }
 
-  // Enqueues a single item (by copying it) using an explicit producer token.
+  // 使用显式生产者令牌将单个项目入队（通过复制）。
   // Does not allocate memory. Fails if not enough room to enqueue.
   // Thread-safe.
   inline bool try_enqueue(producer_token_t const& token, T const& item)
@@ -1018,8 +1009,8 @@ public:
     return inner_enqueue<CannotAlloc>(token, std::move(item));
   }
 
-  // Enqueues several items.
-  // Does not allocate memory (except for one-time implicit producer).
+  // 批量入队多个项目。
+  // 不会分配内存（除了一个一次性的隐式生产者）。
   // Fails if not enough room to enqueue (or implicit production is
   // disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE is 0).
   // Note: Use std::make_move_iterator if the elements should be moved
@@ -1032,7 +1023,7 @@ public:
     return inner_enqueue_bulk<CannotAlloc>(itemFirst, count);
   }
 
-  // Enqueues several items using an explicit producer token.
+  // 使用显式生产者令牌批量入队多个项目。
   // Does not allocate memory. Fails if not enough room to enqueue.
   // Note: Use std::make_move_iterator if the elements should be moved
   // instead of copied.
@@ -1045,15 +1036,15 @@ public:
 
 
 
-  // Attempts to dequeue from the queue.
-  // Returns false if all producer streams appeared empty at the time they
-  // were checked (so, the queue is likely but not guaranteed to be empty).
-  // Never allocates. Thread-safe.
+  // 尝试从队列中出队。
+  // 如果在检查时所有生产者流都为空，则返回 false（因此队列可能为空，但不保证为空）。
+  // 从不进行内存分配。线程安全。
   template<typename U>
   bool try_dequeue(U& item)
   {
-    // Instead of simply trying each producer in turn (which could cause needless contention on the first
-    // producer), we score them heuristically.
+    
+    // 我们不是简单地依次尝试每个生产者（这可能会导致第一个生产者出现不必要的竞争），
+    // 而是通过启发式方法对它们进行评分。
     size_t nonEmptyCount = 0;
     ProducerBase* best = nullptr;
     size_t bestSize = 0;
@@ -1068,8 +1059,7 @@ public:
       }
     }
 
-    // If there was at least one non-empty queue but it appears empty at the time
-    // we try to dequeue from it, we need to make sure every queue's been tried
+    // 如果至少有一个非空队列，但在尝试从中出队时它似乎为空，我们需要确保每个队列都已被尝试过。
     if (nonEmptyCount > 0) {
       if ((details::likely)(best->dequeue(item))) {
         return true;
@@ -1083,15 +1073,12 @@ public:
     return false;
   }
 
-  // Attempts to dequeue from the queue.
-  // Returns false if all producer streams appeared empty at the time they
-  // were checked (so, the queue is likely but not guaranteed to be empty).
-  // This differs from the try_dequeue(item) method in that this one does
-  // not attempt to reduce contention by interleaving the order that producer
-  // streams are dequeued from. So, using this method can reduce overall throughput
-  // under contention, but will give more predictable results in single-threaded
-  // consumer scenarios. This is mostly only useful for internal unit tests.
-  // Never allocates. Thread-safe.
+  // 尝试从队列中出队。
+  // 如果在检查时所有生产者流都为空，则返回 false（因此队列可能为空，但不保证为空）。
+  // 与 try_dequeue(item) 方法不同的是，这个方法不会通过交错生产者流的出队顺序来减少竞争。
+  // 因此，在竞争情况下使用这个方法可能会降低整体吞吐量，但在单线程消费者场景下会提供更可预测的结果。
+  // 这主要适用于内部单元测试。
+  // 从不进行内存分配。Thread-safe.
   template<typename U>
   bool try_dequeue_non_interleaved(U& item)
   {
@@ -1110,20 +1097,19 @@ public:
   template<typename U>
   bool try_dequeue(consumer_token_t& token, U& item)
   {
-    // The idea is roughly as follows:
-    // Every 256 items from one producer, make everyone rotate (increase the global offset) -> this means the highest efficiency consumer dictates the rotation speed of everyone else, more or less
-    // If you see that the global offset has changed, you must reset your consumption counter and move to your designated place
-    // If there's no items where you're supposed to be, keep moving until you find a producer with some items
-    // If the global offset has not changed but you've run out of items to consume, move over from your current position until you find an producer with something in it
-
+    
+    // 大致思想如下：
+    // 每处理来自一个生产者的 256 个项目，就让所有生产者进行轮换（增加全局偏移量）——这意味着效率最高的消费者在一定程度上决定了其他消费者的轮换速度。
+    // 如果看到全局偏移量发生了变化，你必须重置你的消费计数器并移动到指定的位置。
+    // 如果你所在的位置没有项目，继续移动直到找到一个有项目的生产者。
+    // 如果全局偏移量没有变化，但你已经没有更多项目可以消费，继续从当前位置移动，直到找到一个有项目的生产者。
     if (token.desiredProducer == nullptr || token.lastKnownGlobalOffset != globalExplicitConsumerOffset.load(std::memory_order_relaxed)) {
       if (!update_current_producer_after_rotation(token)) {
         return false;
       }
     }
 
-    // If there was at least one non-empty queue but it appears empty at the time
-    // we try to dequeue from it, we need to make sure every queue's been tried
+    // 如果至少有一个非空队列，但在尝试从中取出元素时它却显得为空，我们需要确保每个队列都已经被尝试过
     if (static_cast<ProducerBase*>(token.currentProducer)->dequeue(item)) {
       if (++token.itemsConsumedFromCurrent == EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE) {
         globalExplicitConsumerOffset.fetch_add(1, std::memory_order_relaxed);
@@ -1150,10 +1136,9 @@ public:
     return false;
   }
 
-  // Attempts to dequeue several elements from the queue.
-  // Returns the number of items actually dequeued.
-  // Returns 0 if all producer streams appeared empty at the time they
-  // were checked (so, the queue is likely but not guaranteed to be empty).
+  // 尝试从队列中取出多个元素。
+  // 返回实际取出的元素数量。
+  // 如果所有生产者流在检查时都显得为空（因此，队列可能但不一定为空），则返回0。
   // Never allocates. Thread-safe.
   template<typename It>
   size_t try_dequeue_bulk(It itemFirst, size_t max)
@@ -1168,7 +1153,7 @@ public:
     return count;
   }
 
-  // Attempts to dequeue several elements from the queue using an explicit consumer token.
+  // 尝试使用显式消费者令牌从队列中取出多个元素。
   // Returns the number of items actually dequeued.
   // Returns 0 if all producer streams appeared empty at the time they
   // were checked (so, the queue is likely but not guaranteed to be empty).
@@ -1319,7 +1304,7 @@ private:
 
   inline bool update_current_producer_after_rotation(consumer_token_t& token)
   {
-    // Ah, there's been a rotation, figure out where we should be!
+    // 发生了轮换，找出我们应该处于的位置！
     auto tail = producerListTail.load(std::memory_order_acquire);
     if (token.desiredProducer == nullptr && tail == nullptr) {
       return false;
@@ -1327,9 +1312,10 @@ private:
     auto prodCount = producerCount.load(std::memory_order_relaxed);
     auto globalOffset = globalExplicitConsumerOffset.load(std::memory_order_relaxed);
     if ((details::unlikely)(token.desiredProducer == nullptr)) {
-      // Aha, first time we're dequeueing anything.
-      // Figure out our local position
-      // Note: offset is from start, not end, but we're traversing from end -- subtract from count first
+      // 我们第一次从队列中取出任何东西。
+      // 确定我们的本地位置。
+      // 注意：偏移量是从开始处计算的，而我们是从末尾遍历的——因此先从计数中减去偏移量。
+
       std::uint32_t offset = prodCount - 1 - (token.initialOffset % prodCount);
       token.desiredProducer = tail;
       for (std::uint32_t i = 0; i != offset; ++i) {
@@ -1371,10 +1357,10 @@ private:
     std::atomic<N*> freeListNext;
   };
 
-  // A simple CAS-based lock-free free list. Not the fastest thing in the world under heavy contention, but
-  // simple and correct (assuming nodes are never freed until after the free list is destroyed), and fairly
-  // speedy under low contention.
-  template<typename N>    // N must inherit FreeListNode or have the same fields (and initialization of them)
+  // 一个基于CAS的简单无锁空闲列表。
+  // 在高争用的情况下不是最快的，但它简单且正确（假设节点在空闲列表销毁之前不会被释放）。
+  // 在低争用的情况下相当快速。
+  template<typename N>   // N 必须继承自 FreeListNode 或具有相同的字段（以及它们的初始化）
   struct FreeList
   {
     FreeList() : freeListHead(nullptr) { }
@@ -1389,11 +1375,11 @@ private:
 #if MCDBGQ_NOLOCKFREE_FREELIST
       debug::DebugLock lock(mutex);
 #endif
-      // We know that the should-be-on-freelist bit is 0 at this point, so it's safe to
-      // set it using a fetch_add
+      
+      // 我们知道此时应在自由列表上的标志位为 0，因此可以安全地使用 fetch_add 来设置它。
       if (node->freeListRefs.fetch_add(SHOULD_BE_ON_FREELIST, std::memory_order_acq_rel) == 0) {
-        // Oh look! We were the last ones referencing this node, and we know
-        // we want to add it to the free list, so let's do it!
+        
+        // 我们是最后一个引用这个节点的，我们知道我们想将它添加到自由列表中，所以就这样做吧！
          add_knowing_refcount_is_zero(node);
       }
     }
@@ -1412,12 +1398,11 @@ private:
           continue;
         }
 
-        // Good, reference count has been incremented (it wasn't at zero), which means we can read the
-        // next and not worry about it changing between now and the time we do the CAS
+        // 好的，引用计数已被递增（它之前不为零），这意味着我们可以安全地读取下一个值，而不必担心在现在和执行 CAS 操作之间它会发生变化。
         auto next = head->freeListNext.load(std::memory_order_relaxed);
         if (freeListHead.compare_exchange_strong(head, next, std::memory_order_acquire, std::memory_order_relaxed)) {
-          // Yay, got the node. This means it was on the list, which means shouldBeOnFreeList must be false no
-          // matter the refcount (because nobody else knows it's been taken off yet, it can't have been put back on).
+          // 太好了，拿到了节点。这意味着节点原本在列表上，这也表明 shouldBeOnFreeList 必须是假的，无论 refcount 的值如何。
+          // 这是因为在节点被取下之前，没有其他人知道它已经被取下，所以它不能被放回列表中。
           assert((head->freeListRefs.load(std::memory_order_relaxed) & SHOULD_BE_ON_FREELIST) == 0);
 
           // Decrease refcount twice, once for our ref, and once for the list's ref
@@ -1425,9 +1410,8 @@ private:
           return head;
         }
 
-        // OK, the head must have changed on us, but we still need to decrease the refcount we increased.
-        // Note that we don't need to release any memory effects, but we do need to ensure that the reference
-        // count decrement happens-after the CAS on the head.
+        // 好的，头指针必须已经发生变化，但我们仍然需要减少我们之前增加的 refcount。
+        // 请注意，我们不需要释放任何内存效果，但我们需要确保 refcount 的递减操作在对头指针的 CAS 操作之后发生。
         refs = prevHead->freeListRefs.fetch_sub(1, std::memory_order_acq_rel);
         if (refs == SHOULD_BE_ON_FREELIST + 1) {
           add_knowing_refcount_is_zero(prevHead);
@@ -1437,26 +1421,25 @@ private:
       return nullptr;
     }
 
-    // Useful for traversing the list when there's no contention (e.g. to destroy remaining nodes)
+    // 在没有争用的情况下遍历列表时很有用（例如，销毁剩余的节点）
     N* head_unsafe() const { return freeListHead.load(std::memory_order_relaxed); }
 
   private:
     inline void add_knowing_refcount_is_zero(N* node)
     {
-      // Since the refcount is zero, and nobody can increase it once it's zero (except us, and we run
-      // only one copy of this method per node at a time, i.e. the single thread case), then we know
-      // we can safely change the next pointer of the node; however, once the refcount is back above
-      // zero, then other threads could increase it (happens under heavy contention, when the refcount
-      // goes to zero in between a load and a refcount increment of a node in try_get, then back up to
-      // something non-zero, then the refcount increment is done by the other thread) -- so, if the CAS
-      // to add the node to the actual list fails, decrease the refcount and leave the add operation to
-      // the next thread who puts the refcount back at zero (which could be us, hence the loop).
+      // 因为引用计数为零，并且一旦它为零，除了我们之外没有其他线程可以增加它（因为我们
+      // 每次处理一个节点时只有一个线程在运行，即单线程情况），所以我们可以安全地改变
+      // 节点的 next 指针。然而，一旦引用计数回到零以上，其他线程可能会增加它（这种情况
+      // 发生在重度争用的情况下，当引用计数在 load 和 try_get 的节点的引用计数增加之间变为零，
+      // 然后又回到非零值时，其他线程会完成引用计数的增加）——因此，如果将节点添加到实际
+      // 列表的 CAS 操作失败，则减少引用计数，并将添加操作留给下一个将引用计数恢复到零的线程
+      // （这可能是我们自己，因此循环）。
       auto head = freeListHead.load(std::memory_order_relaxed);
       while (true) {
         node->freeListNext.store(head, std::memory_order_relaxed);
         node->freeListRefs.store(1, std::memory_order_release);
         if (!freeListHead.compare_exchange_strong(head, node, std::memory_order_release, std::memory_order_relaxed)) {
-          // Hmm, the add failed, but we can only try again when the refcount goes back to zero
+          // 嗯，添加操作失败了，但我们只能在引用计数回到零时再尝试一次
           if (node->freeListRefs.fetch_add(SHOULD_BE_ON_FREELIST - 1, std::memory_order_release) == 1) {
             continue;
           }
@@ -1466,7 +1449,7 @@ private:
     }
 
   private:
-    // Implemented like a stack, but where node order doesn't matter (nodes are inserted out of order under contention)
+    // 实现方式类似于栈，但节点的顺序不重要（在争用情况下，节点可能会无序插入）
     std::atomic<N*> freeListHead;
 
   static const std::uint32_t REFS_MASK = 0x7FFFFFFF;
@@ -1498,14 +1481,14 @@ private:
     inline bool is_empty() const
     {
       if (context == explicit_context && BLOCK_SIZE <= EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD) {
-        // Check flags
+        // 检查标志
         for (size_t i = 0; i < BLOCK_SIZE; ++i) {
           if (!emptyFlags[i].load(std::memory_order_relaxed)) {
             return false;
           }
         }
 
-        // Aha, empty; make sure we have all other memory effects that happened before the empty flags were set
+        // 啊，空的；确保我们在设置空标志之前完成了所有其他的内存操作
         std::atomic_thread_fence(std::memory_order_acquire);
         return true;
       }
@@ -1520,7 +1503,7 @@ private:
       }
     }
 
-    // Returns true if the block is now empty (does not apply in explicit context)
+    // 如果块现在为空，则返回 true（在显式上下文中不适用）
     template<InnerQueueContext context>
     inline bool set_empty(index_t i)
     {
@@ -1538,8 +1521,8 @@ private:
       }
     }
 
-    // Sets multiple contiguous item statuses to 'empty' (assumes no wrapping and count > 0).
-    // Returns true if the block is now empty (does not apply in explicit context).
+    // 将多个连续的项状态设置为“空”（假设没有环绕，并且计数 > 0）。
+    // 如果块现在为空，则返回 true（在显式上下文中不适用）。
     template<InnerQueueContext context>
     inline bool set_many_empty(index_t i, size_t count)
     {

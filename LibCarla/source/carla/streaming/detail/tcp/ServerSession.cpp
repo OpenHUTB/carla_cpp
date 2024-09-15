@@ -44,13 +44,13 @@ namespace tcp {
     DEBUG_ASSERT(on_opened && on_closed);
     _on_closed = std::move(on_closed);
 
-    // This forces not using Nagle's algorithm.
-    // Improves the sync mode velocity on Linux by a factor of ~3.
+    // 强制不使用Nagle(内格尔)算法。
+    // 将Linux上的同步模式速度提高了约3倍。
     const boost::asio::ip::tcp::no_delay option(true);
     _socket.set_option(option);
 
     StartTimer();
-    auto self = shared_from_this(); // To keep myself alive.
+    auto self = shared_from_this(); // 为了让自己存活下去。
     boost::asio::post(_strand, [=]() {
 
       auto handle_query = [this, self, callback=std::move(on_opened)](
@@ -66,7 +66,7 @@ namespace tcp {
         }
       };
 
-      // Read the stream id.
+      // 读取流id。
       _deadline.expires_from_now(_timeout);
       boost::asio::async_read(
           _socket,
@@ -79,18 +79,17 @@ namespace tcp {
     DEBUG_ASSERT(message != nullptr);
     DEBUG_ASSERT(!message->empty());
     auto self = shared_from_this();
-    boost::asio::post(_strand, [=]() {
       if (!_socket.is_open()) {
         return;
       }
       if (_is_writing) {
         if (_server.IsSynchronousMode()) {
-          // wait until previous message has been sent
+          // 等待上一条消息发送完毕
           while (_is_writing) {
             std::this_thread::yield();
           }
         } else {
-          // ignore this message
+          // 忽略该消息
           log_debug("session", _session_id, ": connection too slow: message discarded");
           return;
         }
@@ -111,11 +110,8 @@ namespace tcp {
       log_debug("session", _session_id, ": sending message of", message->size(), "bytes");
 
       _deadline.expires_from_now(_timeout);
-      boost::asio::async_write(
-          _socket,
-          message->GetBufferSequence(),
-          handle_sent);
-    });
+      boost::asio::async_write(_socket, message->GetBufferSequence(), 
+        boost::asio::bind_executor(_strand, handle_sent));
   }
 
   void ServerSession::Close() {
