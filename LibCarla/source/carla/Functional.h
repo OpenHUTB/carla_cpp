@@ -13,8 +13,8 @@ namespace carla {
   class Functional {
   public:
 
-    /// Creates a recursive callable object, where the itself is passed as first
-    /// argument to @a func. Use case: create recursive lambda.
+      /// 创建一个递归调用对象，将自身作为第一个参数传递给 @a func。
+      /// 用法示例：创建递归 lambda
     template <typename FuncT>
     static auto MakeRecursive(FuncT &&func) {
       return Recursive<FuncT>(std::forward<FuncT>(func));
