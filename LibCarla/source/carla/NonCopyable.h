@@ -4,34 +4,34 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once // 确保该头文件只会被编译一次
 
-namespace carla {
+namespace carla { // 定义命名空间 carla，以避免命名冲突
 
-  /// Inherit (privately) to suppress copy/move construction and assignment.
+  /// 这个类用于禁止拷贝和移动构造函数及赋值操作
   class NonCopyable {
   public:
 
-    NonCopyable() = default;
+    NonCopyable() = default; // 默认构造函数
 
-    NonCopyable(const NonCopyable &) = delete;
-    NonCopyable &operator=(const NonCopyable &) = delete;
+    NonCopyable(const NonCopyable &) = delete; // 禁用拷贝构造函数
+    NonCopyable &operator=(const NonCopyable &) = delete; // 禁用拷贝赋值操作符
 
-    NonCopyable(NonCopyable &&) = delete;
-    NonCopyable &operator=(NonCopyable &&) = delete;
+    NonCopyable(NonCopyable &&) = delete; // 禁用移动构造函数
+    NonCopyable &operator=(NonCopyable &&) = delete; // 禁用移动赋值操作符
   };
 
-  /// Inherit (privately) to suppress copy construction and assignment.
+  /// 这个类用于禁止拷贝构造函数和赋值操作，但允许移动构造函数和赋值操作
   class MovableNonCopyable {
   public:
 
-    MovableNonCopyable() = default;
+    MovableNonCopyable() = default; // 默认构造函数
 
-    MovableNonCopyable(const MovableNonCopyable &) = delete;
-    MovableNonCopyable &operator=(const MovableNonCopyable &) = delete;
+    MovableNonCopyable(const MovableNonCopyable &) = delete; // 禁用拷贝构造函数
+    MovableNonCopyable &operator=(const MovableNonCopyable &) = delete; // 禁用拷贝赋值操作符
 
-    MovableNonCopyable(MovableNonCopyable &&) = default;
-    MovableNonCopyable &operator=(MovableNonCopyable &&) = default;
+    MovableNonCopyable(MovableNonCopyable &&) = default; // 允许默认的移动构造函数
+    MovableNonCopyable &operator=(MovableNonCopyable &&) = default; // 允许默认的移动赋值操作符
   };
 
-} // namespace carla
+} // 结束命名空间 carla
