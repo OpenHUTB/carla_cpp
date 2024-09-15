@@ -4,9 +4,9 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 防止头文件被多次包含
 
-#include <utility>
+#include <utility>  // 包含标准库中用于处理完美转发的头文件
 
 namespace carla {
 
