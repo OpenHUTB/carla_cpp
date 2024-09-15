@@ -4,11 +4,11 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once// 防止头文件被多次包含
 
-#include "carla/Debug.h"
+#include "carla/Debug.h"// 引入调试相关的头文件
 
-#include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/date_time/posix_time/posix_time_types.hpp>// 引入 Boost 的时间处理功能
 
 #include <chrono>
 
