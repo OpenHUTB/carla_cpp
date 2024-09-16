@@ -28,7 +28,8 @@ namespace carla {
       return Overload<FuncTs...>(std::forward<FuncTs>(fs)...);
     }
 
-    /// @see MakeRecursive and MakeOverload.
+    /// 创建递归重载调用对象，组合 MakeRecursive 和 MakeOverload 的功能。
+    /// @see MakeRecursive 和 MakeOverload。
     template <typename... FuncTs>
     static auto MakeRecursiveOverload(FuncTs &&... fs) {
       return MakeRecursive(MakeOverload(std::forward<FuncTs>(fs)...));
@@ -36,6 +37,7 @@ namespace carla {
 
   private:
 
+    // 声明一个模板结构体 Overload，用于组合多个可调用对象
     template <typename... Ts>
     struct Overload;
 
