@@ -4,12 +4,13 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include <OSM2ODR.h>
+#include <OSM2ODR.h>  // 位于SUMO源码中的 Build/osm2odr-source/src/OSM2ODR.h
 
-// Empty class to emulate the namespace in the PythonAPI
+// 用来模拟PythonAPI中的命名空间的空类
 class OSM2ODR {};
 
 namespace osm2odr {
+  // 包含由 carla.Osm2Odr 使用的参数化的帮助程序类，用于将 OpenStreetMap 地图转换为 OpenDRIVE 格式。
   std::ostream &operator<<(std::ostream &out, const OSM2ODRSettings &settings) {
     out << "Osm2odrSettings(use_offsets=" << (settings.use_offsets ? "true" : "false")
         << ", offset_x=" << settings.offset_x << ", offset_y=" << settings.offset_y
