@@ -61,34 +61,31 @@ public:
   UFUNCTION(BlueprintCallable)
   TArray<FWaypoint> GenerateWaypoints(float ApproxDistance = 100.0f) const;
 
-  /// 生成定义此拓扑的最小航路点集
-  /// 地图。航路点位于每条车道的入口处。
+  /// 生成定义此拓扑的最小航路点集地图。航点位于每条车道的入口处。
   UFUNCTION(BlueprintCallable)
   TArray<FWaypointConnection> GenerateTopology() const;
 
-  /// Generate waypoints on each lane at the start of each road.
+  /// 在每条道路的起点，在每条车道上生成航点。
   UFUNCTION(BlueprintCallable)
   TArray<FWaypoint> GenerateWaypointsOnRoadEntries() const;
 
-  /// Compute the location of a waypoint.
+  /// 计算航点的位置。
   UFUNCTION(BlueprintCallable)
   FVector ComputeLocation(FWaypoint Waypoint) const;
 
-  /// Compute the locations of an array of waypoints.
+  /// 计算航点数组的位置。
   UFUNCTION(BlueprintCallable)
   TArray<FVector> ComputeLocations(const TArray<FWaypoint> &Waypoints) const;
 
-  /// Compute the transform of a waypoint. The X-axis is directed towards the
-  /// direction of the road at that waypoint.
+  /// 计算航点的变换。x轴指向该航点的道路方向。
   UFUNCTION(BlueprintCallable)
   FTransform ComputeTransform(FWaypoint Waypoint) const;
 
-  /// Compute the transforms of an array of waypoints.
+  /// 计算航点数组的变换。
   UFUNCTION(BlueprintCallable)
   TArray<FTransform> ComputeTransforms(const TArray<FWaypoint> &Waypoints) const;
 
-  /// Return the list of waypoints at a given distance such that a vehicle at
-  /// waypoint could drive to.
+  /// 返回给定距离上的航点列表，以便位于航点的车辆可以行驶得到。
   UFUNCTION(BlueprintCallable)
   TArray<FWaypoint> GetNext(FWaypoint Waypoint, float Distance = 100.0f) const;
 
