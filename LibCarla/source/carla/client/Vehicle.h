@@ -93,7 +93,7 @@ namespace client {
     /// 返回最后应用于车辆的控制.
     ///
     /// @note 此函数不调用模拟器,它返回数据
-    /// 接收最后一个节拍.
+    /// 在最后一个节拍返回接收到的数据.
     Control GetControl() const;
 
     /// 返回车辆最后应用的物理控制.
@@ -104,13 +104,13 @@ namespace client {
     /// 返回当前车辆的打开灯(LightState).
     ///
     /// @note 此函数不调用模拟器,它返回数据
-    /// 接收最后一个节拍.
+    /// 在最后一个节拍返回接收到的数据.
     LightState GetLightState() const;
 
     /// 返回当前影响该车辆的速度限制.
     ///
     /// @note 此函数不调用模拟器,它返回数据
-    /// 接收最后一个节拍.
+    /// 在最后一个节拍返回接收到的数据.
     float GetSpeedLimit() const;
 
     /// 返回当前影响该车辆的交通灯的状态.
@@ -118,13 +118,13 @@ namespace client {
     /// @return 绿灯表示车辆没有受到交通信号灯的影响.
     ///
     /// @note 此函数不调用模拟器,它返回数据
-    /// 接收最后一个节拍.
+    /// 在最后一个节拍返回接收到的数据.
     rpc::TrafficLightState GetTrafficLightState() const;
 
     /// 返回交通灯是否正在影响该车辆.
     ///
     /// @note 此函数不调用模拟器,它返回数据
-    /// 接收最后一个节拍.
+    /// 在最后一个节拍返回接收到的数据.
     bool IsAtTrafficLight();
 
     /// 检索当前影响该车辆的交通灯.
