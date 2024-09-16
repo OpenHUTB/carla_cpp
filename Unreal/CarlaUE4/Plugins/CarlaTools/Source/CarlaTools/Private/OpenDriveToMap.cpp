@@ -479,21 +479,22 @@ void UOpenDriveToMap::LoadMap()
 
     if( QueryActor != nullptr )
     {
-      ALargeMapManager* LargeMapManager = Cast<ALargeMapManager>(QueryActor);
+      ALargeMapManager* LargeMapManager = Cast<ALargeMapManager>(QueryActor);  // 大地图管理器
       NumTilesInXY  = LargeMapManager->GetNumTilesInXY();
       TileSize = LargeMapManager->GetTileSize();
       Tile0Offset = LargeMapManager->GetTile0Offset();
       CurrentTilesInXY = FIntVector(0,0,0);
-      ULevel* PersistantLevel = UEditorLevelLibrary::GetEditorWorld()->PersistentLevel;
+      ULevel* PersistantLevel = UEditorLevelLibrary::GetEditorWorld()->PersistentLevel;  // 持久关卡
       BaseLevelName = LargeMapManager->LargeMapTilePath + "/" + LargeMapManager->LargeMapName;
       do{
-        GenerateTileStandalone();
+        GenerateTileStandalone();  // 循环独立生成地图瓦片
       }while(GoNextTile());
-      ReturnToMainLevel();
+      ReturnToMainLevel();  // 返回主关卡
     }
   }
 }
 
+// 生成各种参与者
 TArray<AActor*> UOpenDriveToMap::GenerateMiscActors(float Offset, FVector MinLocation, FVector MaxLocation )
 {
   carla::geom::Vector3D CarlaMinLocation(MinLocation.X / 100, MinLocation.Y / 100, MinLocation.Z /100);
@@ -533,14 +534,15 @@ void UOpenDriveToMap::GenerateAll(const boost::optional<carla::road::Map>& Param
   }else
   {
     GenerateRoadMesh(ParamCarlaMap, MinLocation, MaxLocation);  // 生成道路网格
-    GenerateLaneMarks(ParamCarlaMap, MinLocation, MaxLocation);  // 
-    GenerateSpawnPoints(ParamCarlaMap, MinLocation, MaxLocation);
-    CreateTerrain(12800, 256);
-    GenerateTreePositions(ParamCarlaMap, MinLocation, MaxLocation);
-    GenerationFinished(MinLocation, MaxLocation);
+    GenerateLaneMarks(ParamCarlaMap, MinLocation, MaxLocation);  // 生成车道线
+    GenerateSpawnPoints(ParamCarlaMap, MinLocation, MaxLocation);  // 产生生成点
+    CreateTerrain(12800, 256);  // 创建地面
+    GenerateTreePositions(ParamCarlaMap, MinLocation, MaxLocation);  // 生成树的位置
+    GenerationFinished(MinLocation, MaxLocation);  // 完成地图生成的一些后续操作
   }
 }
 
+// 生成道路网格
 void UOpenDriveToMap::GenerateRoadMesh( const boost::optional<carla::road::Map>& ParamCarlaMap, FVector MinLocation, FVector MaxLocation )
 {
   opg_parameters.vertex_distance = 0.5f;
