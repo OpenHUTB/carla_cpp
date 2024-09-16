@@ -4,10 +4,10 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 确保头文件只被包含一次，避免重复包含导致的问题
 
-#include "carla/Debug.h"
-#include "carla/NonCopyable.h"
+#include "carla/Debug.h"  // 包含自定义调试功能的头文件
+#include "carla/NonCopyable.h"  // 包含定义 NonCopyable 类的头文件，避免类被复制
 
 #include <thread>
 #include <vector>
