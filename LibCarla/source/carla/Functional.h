@@ -20,9 +20,9 @@ namespace carla {
       return Recursive<FuncT>(std::forward<FuncT>(func));
     }
 
-    /// Creates an "overloaded callable object" out of one or more callable
-    /// objects, each callable object will contribute with an overload of
-    /// operator(). Use case: combine several lambdas into a single lambda.
+    /// 创建一个“重载调用对象”，由一个或多个可调用对象组成，
+    /// 每个可调用对象将贡献一个 operator() 的重载。
+    /// 用例：将多个 lambda 组合成一个 lambda。
     template <typename... FuncTs>
     static auto MakeOverload(FuncTs &&... fs) {
       return Overload<FuncTs...>(std::forward<FuncTs>(fs)...);
