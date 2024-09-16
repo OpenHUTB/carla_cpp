@@ -449,6 +449,7 @@ void UOpenDriveToMap::OpenFileDialog()
   }
 }
 
+// 加载OpenDrive地图
 void UOpenDriveToMap::LoadMap()
 {
   if( FilePath.IsEmpty() ){
@@ -457,9 +458,9 @@ void UOpenDriveToMap::LoadMap()
 
   FString FileContent;
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("UOpenDriveToMap::LoadMap(): File to load %s"), *FilePath );
-  FFileHelper::LoadFileToString(FileContent, *FilePath);
+  FFileHelper::LoadFileToString(FileContent, *FilePath);  // 将OpenDrive文件加载为字符串
   std::string opendrive_xml = carla::rpc::FromLongFString(FileContent);
-  CarlaMap = carla::opendrive::OpenDriveParser::Load(opendrive_xml);
+  CarlaMap = carla::opendrive::OpenDriveParser::Load(opendrive_xml);  // 将OpenDrive的xml字符串解析为Carla的地图数据
 
   if (!CarlaMap.has_value())
   {
