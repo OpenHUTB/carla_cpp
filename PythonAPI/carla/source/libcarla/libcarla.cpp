@@ -12,18 +12,22 @@
 #include <type_traits>
 #include <vector>
 
+// 对于Python中的变量类型，Boost.Python都有相应的类对应，他们都是boost::python::object的子类。
+// boost::python::object 包装了PyObject *, 通过这种方式，C++可以平滑的操作python对象。
+// Boost.Python的主要目标既保持Python的编程风格同时又提供C++和Python的双向映射。
 template <typename OptionalT>
 static boost::python::object OptionalToPythonObject(OptionalT &optional) {
   return optional.has_value() ? boost::python::object(*optional) : boost::python::object();
 }
 
-// Convenient for requests without arguments.
+// 方便地进行没有参数的请求。
+// carla::PythonUtil::ReleaseGIL 文档：https://carla.org/Doxygen/html/d1/d0a/classcarla_1_1PythonUtil_1_1ReleaseGIL.html
 #define CALL_WITHOUT_GIL(cls, fn) +[](cls &self) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(); \
     }
 
-// Convenient for requests with 1 argument.
+// 方便地进行带有1个参数的请求。
 #define CALL_WITHOUT_GIL_1(cls, fn, T1_) +[](cls &self, T1_ t1) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(std::forward<T1_>(t1)); \
