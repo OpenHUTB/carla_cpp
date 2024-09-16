@@ -28,7 +28,7 @@ namespace carla {
 
   class BufferPool;
 
-  /// Creating a constant view from an existing buffer
+   /// 从现有缓冲区创建一个常量视图
   class BufferView : public std::enable_shared_from_this<BufferView> {
 
     // =========================================================================
@@ -37,9 +37,11 @@ namespace carla {
     /// @{
 
   public:
-
+    // 缓冲区中值的类型
     using value_type = unsigned char;
+    // 缓冲区大小的类型
     using size_type = uint32_t;
+    // 常量迭代器类型
     using const_iterator = const value_type *;
 
     /// @}
@@ -53,12 +55,14 @@ namespace carla {
     BufferView() = delete;
     BufferView(const BufferView &) = delete;
 
+    // 从一个临时缓冲区创建一个BufferView的智能指针
     static std::shared_ptr<BufferView> CreateFrom(Buffer &&buffer) {
       return std::shared_ptr<BufferView>(new BufferView(std::move(buffer)));
     }
 
   private:
 
+    // 私有构造函数，接收一个临时缓冲区
     BufferView(Buffer &&rhs) noexcept
       : _buffer(std::move(rhs)) {}
 
@@ -70,22 +74,19 @@ namespace carla {
 
   public:
 
-    /// Access the byte at position @a i.
+    // 访问位置@a i的字节
     const value_type &operator[](size_t i) const {
       return _buffer.data()[i];
     }
 
-    /// Direct access to the allocated memory or nullptr if no memory is
-    /// allocated.
+    // 直接访问分配的内存，如果没有分配内存则返回nullptrv
     const value_type *data() const noexcept {
       return _buffer.data();
     }
 
-    /// Make a boost::asio::buffer from this buffer.
+    // 将此缓冲区转换为boost::asio::buffer
     ///
-    /// @warning Boost.Asio buffers do not own the data, it's up to the caller
-    /// to not delete the memory that this buffer holds until the asio buffer is
-    /// no longer used.
+    /// @warning Boost.Asio缓冲区不拥有数据，调用者必须确保在asio缓冲区不再使用之前不要删除这块内存
     boost::asio::const_buffer cbuffer() const noexcept {
       return {_buffer.data(), _buffer.size()};
     }
@@ -145,9 +146,11 @@ namespace carla {
 
   private:
 
+    // 用于存储数据的缓冲区
     const Buffer _buffer;
   };
 
+  // BufferView的共享智能指针
   using SharedBufferView = std::shared_ptr<BufferView>;
 
 } // namespace carla
