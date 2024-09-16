@@ -32,7 +32,7 @@ AOpenDriveActor::AOpenDriveActor(const FObjectInitializer &ObjectInitializer)
 {
   PrimaryActorTick.bCanEverTick = false;
 
-  // Structure to hold one-time initialization
+  // 用来保存一次性初始化的结构
   static struct FConstructorStatics
   {
     // 用来从资源包里寻找目标渲染纹理图片的工具类
@@ -47,7 +47,7 @@ AOpenDriveActor::AOpenDriveActor(const FObjectInitializer &ObjectInitializer)
     {}
   } ConstructorStatics;
 
-  // We need a scene component to attach Icon sprite
+  // 我们需要一个场景组件来附加 Icon sprite
   USceneComponent *SceneComponent =
       ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, TEXT("SceneComp"));
   RootComponent = SceneComponent;

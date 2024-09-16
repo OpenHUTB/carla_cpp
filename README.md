@@ -37,13 +37,13 @@ git push
 2.找到需要修改的文件：
 ![](./img/header_path.jpg)
 
-3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留）：
+3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留。源代码文件采用UTF-8编码）：
 ![](./img/update_annotated.jpg)
 
 4.运行`doxygen`重新生成文档，查看修改后的文档：
 ![](./img/result.jpg)
 
-详细注释方法参见[注释规范](./annotation_specification.md) 。
+详细注释方法参见[注释规范](./specification.md) 。
 
 
 <!--
