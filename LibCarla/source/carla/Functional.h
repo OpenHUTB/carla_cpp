@@ -47,11 +47,11 @@ namespace carla {
         // 构造函数，初始化 T 和其余的 Overload 基类
       Overload(T &&func, Ts &&... rest)
         : T(std::forward<T>(func)),// 初始化基类 T
-          Overload<Ts...>(std::forward<Ts>(rest)...) {}
+          Overload<Ts...>(std::forward<Ts>(rest)...) {}// 递归初始化其余基类
 
-      using T::operator();
+      using T::operator(); // 继承 T 的 operator()
 
-      using Overload<Ts...>::operator();
+      using Overload<Ts...>::operator(); // 继承其余 Overload 的 operator()
     };
 
     template <typename T>
