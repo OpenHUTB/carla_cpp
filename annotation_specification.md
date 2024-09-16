@@ -255,5 +255,12 @@
 
 选择`Doxygen(/**)` 时，只需要在方法名上输入`/**` 即可出现文档注释。
 
+
+### 使用 VScode 进行注释
+- 关闭vscode #ifdefine 宏开关会使代码自动暗色
+
+解决：按 `Ctrl+Shift+p` ，输入 settings，打开设置界面：
+搜索 `C_Cpp.dimInactiveRegions` ，取消勾选即可。
+
 ## 参考
 - [Doxygen的注释规范](https://www.cnblogs.com/silencehuan/p/11169084.html)

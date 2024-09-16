@@ -42,27 +42,27 @@ public:
 
   UOpenDriveMap(const FObjectInitializer &ObjectInitializer);
 
-  /// Return whether this map has been initialized.
+  /// 返回此映射是否已初始化。
   UFUNCTION(BlueprintCallable)
   bool HasMap() const
   {
     return Map.IsSet();
   }
 
-  /// Load this map with an OpenDrive (XODR) file.
+  /// 使用OpenDrive（XODR）文件加载此映射。
   UFUNCTION(BlueprintCallable)
   bool Load(const FString &XODRContent);
 
-  /// Given a location, return the closest point on the centre of a lane.
+  /// 给定一个位置，返回车道中心最近的点。
   UFUNCTION(BlueprintCallable)
   FWaypoint GetClosestWaypointOnRoad(FVector Location, bool &Success) const;
 
-  /// Generate waypoints all over the map at an approximated distance.
+  /// 在地图上以近似距离生成航路点。
   UFUNCTION(BlueprintCallable)
   TArray<FWaypoint> GenerateWaypoints(float ApproxDistance = 100.0f) const;
 
-  /// Generate the minimum set of waypoints that define the topology of this
-  /// map. The waypoints are placed at the entrance of each lane.
+  /// 生成定义此拓扑的最小航路点集
+  /// 地图。航路点位于每条车道的入口处。
   UFUNCTION(BlueprintCallable)
   TArray<FWaypointConnection> GenerateTopology() const;
 
