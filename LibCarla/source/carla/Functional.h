@@ -41,10 +41,12 @@ namespace carla {
     template <typename... Ts>
     struct Overload;
 
+    // 处理多个可调用对象的情况，递归继承 Overload
     template <typename T, typename... Ts>
     struct Overload<T, Ts...> : T, Overload<Ts...> {
+        // 构造函数，初始化 T 和其余的 Overload 基类
       Overload(T &&func, Ts &&... rest)
-        : T(std::forward<T>(func)),
+        : T(std::forward<T>(func)),// 初始化基类 T
           Overload<Ts...>(std::forward<Ts>(rest)...) {}
 
       using T::operator();
