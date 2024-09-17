@@ -13,12 +13,11 @@
 
 namespace carla {
 
-  /// Use this SharedPtr (boost::shared_ptr) to keep compatibility with
-  /// boost::python, but it would be nice if in the future we can make a Python
-  /// adaptor for std::shared_ptr.
+  /// 使用这个SharedPtr（boost::shared_ptr）以保持与boost::python的兼容性， 
+  /// 但未来如果可能的话，我们希望能为std::shared_ptr制作一个Python适配器。  
   template <typename T>
   using SharedPtr = boost::shared_ptr<T>;
-
+  /// 类似于SharedPtr，但提供对boost::weak_ptr的别名，用于弱引用 
   template <typename T>
   using WeakPtr = boost::weak_ptr<T>;
 
