@@ -4,12 +4,12 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  // È·±£Í·ÎÄ¼şÖ»±»°üº¬Ò»´Î£¬±ÜÃâÖØ¸´°üº¬µ¼ÖÂµÄÎÊÌâ
+#pragma once  // ç¡®ä¿å¤´æ–‡ä»¶åªè¢«åŒ…å«ä¸€æ¬¡ï¼Œé¿å…é‡å¤åŒ…å«å¯¼è‡´çš„é—®é¢˜
 
-#include "carla/Debug.h"  // °üº¬×Ô¶¨Òåµ÷ÊÔ¹¦ÄÜµÄÍ·ÎÄ¼ş
-#include "carla/NonCopyable.h"  // °üº¬¶¨Òå NonCopyable ÀàµÄÍ·ÎÄ¼ş£¬±ÜÃâÀà±»¸´ÖÆ
+#include "carla/Debug.h"  // åŒ…å«è‡ªå®šä¹‰è°ƒè¯•åŠŸèƒ½çš„å¤´æ–‡ä»¶
+#include "carla/NonCopyable.h"  // åŒ…å«å®šä¹‰ NonCopyable ç±»çš„å¤´æ–‡ä»¶ï¼Œé¿å…ç±»è¢«å¤åˆ¶
 
-#include <thread>
+#include <thread> // åŒ…å«çº¿ç¨‹ç›¸å…³çš„åº“
 #include <vector>
 
 namespace carla {
@@ -23,8 +23,8 @@ namespace carla {
       JoinAll();
     }
     
-    // ´´½¨Ò»¸öĞÂÏß³Ì²¢Ö´ĞĞ¸ø¶¨µÄ¿Éµ÷ÓÃ¶ÔÏó¡£
-    // Ä£°å²ÎÊı F ÊÇÒ»¸ö¿Éµ÷ÓÃ¶ÔÏóÀàĞÍ¡£
+    // åˆ›å»ºä¸€ä¸ªæ–°çº¿ç¨‹å¹¶æ‰§è¡Œç»™å®šçš„å¯è°ƒç”¨å¯¹è±¡ã€‚
+    // æ¨¡æ¿å‚æ•° F æ˜¯ä¸€ä¸ªå¯è°ƒç”¨å¯¹è±¡ç±»å‹ã€‚
 
     template <typename F>
     void CreateThread(F &&functor) {
