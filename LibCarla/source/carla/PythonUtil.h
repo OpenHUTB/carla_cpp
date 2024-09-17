@@ -27,7 +27,7 @@ namespace carla {
     static bool ThisThreadHasTheGIL() {
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT
 #  if PY_MAJOR_VERSION >= 3
-      return PyGILState_Check();
+      return PyGILState_Check(); // Python 3: 检查当前线程是否持有GIL
 #  else
       PyThreadState *tstate = _PyThreadState_Current;
       return (tstate != nullptr) && (tstate == PyGILState_GetThisThreadState());

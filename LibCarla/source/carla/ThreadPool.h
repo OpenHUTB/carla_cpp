@@ -20,9 +20,16 @@
 
 namespace carla {
 
-  /// 鍩轰簬Boost.Asio鐨勪笂涓嬫枃 
+  /// 用于 Boost.Asio 的线程池
   class ThreadPool : private NonCopyable {
   public:
+    // 公开的成员函数和构造函数将会在这里定义
+
+  private:
+    // 私有成员函数和数据成员将会在这里定义
+  };
+
+} // namespace carla
 
     ThreadPool() : _work_to_do(_io_context) {}
 
