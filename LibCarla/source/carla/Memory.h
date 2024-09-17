@@ -4,12 +4,12 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 防止头文件被重复包含
 
-#include <boost/enable_shared_from_this.hpp>
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
+#include <boost/enable_shared_from_this.hpp>  // 引入boost库中的enable_shared_from_this，允许对象安全地生成自己的shared_ptr 
+#include <boost/make_shared.hpp>  // 引入boost库中的make_shared，用于创建shared_ptr实例  
+#include <boost/shared_ptr.hpp>   // 引入boost库中的shared_ptr，智能指针，用于自动管理资源 
+#include <boost/weak_ptr.hpp>  // 引入boost库中的weak_ptr，弱引用智能指针，不拥有对象，但可以检查对象是否存在 
 
 namespace carla {
 
