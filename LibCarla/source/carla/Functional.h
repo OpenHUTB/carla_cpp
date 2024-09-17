@@ -4,32 +4,32 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  // ·ÀÖ¹Í·ÎÄ¼ş±»¶à´Î°üº¬
+#pragma once  // é˜²æ­¢å¤´æ–‡ä»¶è¢«å¤šæ¬¡åŒ…å«
 
-#include <utility>  // °üº¬±ê×¼¿âÖĞÓÃÓÚ´¦ÀíÍêÃÀ×ª·¢µÄÍ·ÎÄ¼ş
+#include <utility>  // åŒ…å«æ ‡å‡†åº“ä¸­ç”¨äºå¤„ç†å®Œç¾è½¬å‘çš„å¤´æ–‡ä»¶
 
 namespace carla {
 
   class Functional {
   public:
 
-      /// ´´½¨Ò»¸öµİ¹éµ÷ÓÃ¶ÔÏó£¬½«×ÔÉí×÷ÎªµÚÒ»¸ö²ÎÊı´«µİ¸ø @a func¡£
-      /// ÓÃ·¨Ê¾Àı£º´´½¨µİ¹é lambda
+      /// åˆ›å»ºä¸€ä¸ªé€’å½’è°ƒç”¨å¯¹è±¡ï¼Œå°†è‡ªèº«ä½œä¸ºç¬¬ä¸€ä¸ªå‚æ•°ä¼ é€’ç»™ @a funcã€‚
+      /// ç”¨æ³•ç¤ºä¾‹ï¼šåˆ›å»ºé€’å½’ lambda
     template <typename FuncT>
     static auto MakeRecursive(FuncT &&func) {
       return Recursive<FuncT>(std::forward<FuncT>(func));
     }
 
-    /// ´´½¨Ò»¸ö¡°ÖØÔØµ÷ÓÃ¶ÔÏó¡±£¬ÓÉÒ»¸ö»ò¶à¸ö¿Éµ÷ÓÃ¶ÔÏó×é³É£¬
-    /// Ã¿¸ö¿Éµ÷ÓÃ¶ÔÏó½«¹±Ï×Ò»¸ö operator() µÄÖØÔØ¡£
-    /// ÓÃÀı£º½«¶à¸ö lambda ×éºÏ³ÉÒ»¸ö lambda¡£
+    /// åˆ›å»ºä¸€ä¸ªâ€œé‡è½½è°ƒç”¨å¯¹è±¡â€ï¼Œç”±ä¸€ä¸ªæˆ–å¤šä¸ªå¯è°ƒç”¨å¯¹è±¡ç»„æˆï¼Œ
+    /// æ¯ä¸ªå¯è°ƒç”¨å¯¹è±¡å°†è´¡çŒ®ä¸€ä¸ª operator() çš„é‡è½½ã€‚
+    /// ç”¨ä¾‹ï¼šå°†å¤šä¸ª lambda ç»„åˆæˆä¸€ä¸ª lambdaã€‚
     template <typename... FuncTs>
     static auto MakeOverload(FuncTs &&... fs) {
       return Overload<FuncTs...>(std::forward<FuncTs>(fs)...);
     }
 
-    /// ´´½¨µİ¹éÖØÔØµ÷ÓÃ¶ÔÏó£¬×éºÏ MakeRecursive ºÍ MakeOverload µÄ¹¦ÄÜ¡£
-    /// @see MakeRecursive ºÍ MakeOverload¡£
+    /// åˆ›å»ºé€’å½’é‡è½½è°ƒç”¨å¯¹è±¡ï¼Œç»„åˆ MakeRecursive å’Œ MakeOverload çš„åŠŸèƒ½ã€‚
+    /// @see MakeRecursive å’Œ MakeOverloadã€‚
     template <typename... FuncTs>
     static auto MakeRecursiveOverload(FuncTs &&... fs) {
       return MakeRecursive(MakeOverload(std::forward<FuncTs>(fs)...));
@@ -37,16 +37,16 @@ namespace carla {
 
   private:
 
-    // ÉùÃ÷Ò»¸öÄ£°å½á¹¹Ìå Overload£¬ÓÃÓÚ×éºÏ¶à¸ö¿Éµ÷ÓÃ¶ÔÏó
+    // å£°æ˜ä¸€ä¸ªæ¨¡æ¿ç»“æ„ä½“ Overloadï¼Œç”¨äºç»„åˆå¤šä¸ªå¯è°ƒç”¨å¯¹è±¡
     template <typename... Ts>
     struct Overload;
 
-    // ´¦Àí¶à¸ö¿Éµ÷ÓÃ¶ÔÏóµÄÇé¿ö£¬µİ¹é¼Ì³Ğ Overload
+    // å¤„ç†å¤šä¸ªå¯è°ƒç”¨å¯¹è±¡çš„æƒ…å†µï¼Œé€’å½’ç»§æ‰¿ Overload
     template <typename T, typename... Ts>
     struct Overload<T, Ts...> : T, Overload<Ts...> {
-        // ¹¹Ôìº¯Êı£¬³õÊ¼»¯ T ºÍÆäÓàµÄ Overload »ùÀà
+        // æ„é€ å‡½æ•°ï¼Œåˆå§‹åŒ– T å’Œå…¶ä½™çš„ Overload åŸºç±»
       Overload(T &&func, Ts &&... rest)
-        : T(std::forward<T>(func)),// ³õÊ¼»¯»ùÀà T
+        : T(std::forward<T>(func)),// åˆå§‹åŒ–åŸºç±» T
           Overload<Ts...>(std::forward<Ts>(rest)...) {}
 
       using T::operator();
