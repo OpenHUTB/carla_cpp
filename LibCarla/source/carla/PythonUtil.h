@@ -6,14 +6,14 @@
 
 #pragma once
 
-#include "carla/NonCopyable.h" // ÒıÈë·Ç¿½±´¹¹Ôì»ùÀàµÄÍ·ÎÄ¼ş
+#include "carla/NonCopyable.h"
 
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT
 #  if defined(__clang__)
 #    pragma clang diagnostic push
 #    pragma clang diagnostic ignored "-Wdeprecated-register"
 #  endif
-#    include <boost/python.hpp> // ÒıÈëBoost Python¿âµÄÍ·ÎÄ¼ş
+#    include <boost/python.hpp>
 #  if defined(__clang__)
 #    pragma clang diagnostic pop
 #  endif
@@ -30,53 +30,53 @@ namespace carla {
       return PyGILState_Check(); // Python 3: ¼ì²éµ±Ç°Ïß³ÌÊÇ·ñ³ÖÓĞGIL
 #  else
       PyThreadState *tstate = _PyThreadState_Current;
-      return (tstate != nullptr) && (tstate == PyGILState_GetThisThreadState()); // Python 2: ¼ì²éµ±Ç°Ïß³ÌÊÇ·ñ³ÖÓĞGIL
+      return (tstate != nullptr) && (tstate == PyGILState_GetThisThreadState());
 #  endif // PYTHON3
 #else
-      return false; // Èç¹ûÃ»ÓĞPythonÖ§³Ö£¬·µ»Øfalse
+      return false;
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
     }
 
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT
 
-    /// »ñÈ¡PythonµÄÈ«¾Ö½âÊÍÆ÷Ëø (GIL)£¬ÓÃÓÚÈ·±£Ïß³Ì°²È«
+    /// è·å–Pythonå…¨å±€è§£é‡Šå™¨é”ä¸Šçš„é”ï¼Œè¿™æ˜¯ä»å…¶ä»–çº¿ç¨‹è°ƒç”¨Pythonä»£ç æ‰€å¿…éœ€çš„ã€‚
     class AcquireGIL : private NonCopyable {
     public:
 
-      AcquireGIL() : _state(PyGILState_Ensure()) {} // ¹¹Ôìº¯ÊıÖĞÈ·±£µ±Ç°Ïß³Ì³ÖÓĞGIL
+      AcquireGIL() : _state(PyGILState_Ensure()) {}
 
       ~AcquireGIL() {
-        PyGILState_Release(_state); // Îö¹¹º¯ÊıÖĞÊÍ·ÅGIL
+        PyGILState_Release(_state);
       }
 
     private:
 
-      PyGILState_STATE _state; // ´æ´¢GIL×´Ì¬
+      PyGILState_STATE _state;
     };
 
-    /// ÊÍ·ÅPythonµÄÈ«¾Ö½âÊÍÆ÷Ëø (GIL)£¬ÓÃÓÚÔÊĞíÆäËûÏß³ÌÖ´ĞĞPython´úÂë
+    /// é‡Šæ”¾Pythonçš„å…¨å±€è§£é‡Šå™¨é”ï¼Œåœ¨æ‰§è¡Œé˜»å¡I/Oæ“ä½œæ—¶ä½¿ç”¨å®ƒã€‚
     class ReleaseGIL : private NonCopyable {
     public:
 
-      ReleaseGIL() : _state(PyEval_SaveThread()) {} // ¹¹Ôìº¯ÊıÖĞ±£´æµ±Ç°Ïß³Ì×´Ì¬²¢ÊÍ·ÅGIL
+      ReleaseGIL() : _state(PyEval_SaveThread()) {}
 
       ~ReleaseGIL() {
-        PyEval_RestoreThread(_state); // Îö¹¹º¯ÊıÖĞ»Ö¸´Ïß³Ì×´Ì¬
+        PyEval_RestoreThread(_state);
       }
 
     private:
 
-      PyThreadState *_state; // ´æ´¢Ïß³Ì×´Ì¬
+      PyThreadState *_state;
     };
 
 #else // LIBCARLA_WITH_PYTHON_SUPPORT
 
-    class AcquireGIL : private NonCopyable {}; // Ã»ÓĞPythonÖ§³ÖÊ±£¬ÀàÎª¿Õ
-    class ReleaseGIL : private NonCopyable {}; // Ã»ÓĞPythonÖ§³ÖÊ±£¬ÀàÎª¿Õ
+    class AcquireGIL : private NonCopyable {};
+    class ReleaseGIL : private NonCopyable {};
 
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
 
-    /// É¾³ıPython¶ÔÏóÊ±£¬×Ô¶¯¹ÜÀíGIL×´Ì¬
+    /// å¯ä»¥ä¼ é€’ç»™æ™ºèƒ½æŒ‡é’ˆçš„åˆ é™¤å™¨ï¼Œä»¥ä¾¿åœ¨é”€æ¯å¯¹è±¡ä¹‹å‰è·å–GILã€‚
     class AcquireGILDeleter {
     public:
 
@@ -84,15 +84,15 @@ namespace carla {
       void operator()(T *ptr) const {
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT
         if (ptr != nullptr && !PythonUtil::ThisThreadHasTheGIL()) {
-          AcquireGIL lock; // Èç¹ûµ±Ç°Ïß³ÌÎ´³ÖÓĞGIL£¬Ôò»ñÈ¡GIL
-          delete ptr; // É¾³ı¶ÔÏó
+          AcquireGIL lock;
+          delete ptr;
         } else
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
-        delete ptr; // É¾³ı¶ÔÏó
+        delete ptr;
       }
     };
 
-    /// É¾³ıPython¶ÔÏóÊ±£¬×Ô¶¯¹ÜÀíGIL×´Ì¬
+    /// å¯ä»¥ä¼ é€’ç»™æ™ºèƒ½æŒ‡é’ˆçš„åˆ é™¤å™¨ï¼Œä»¥ä¾¿åœ¨é”€æ¯å¯¹è±¡ä¹‹å‰é‡Šæ”¾GILã€‚
     class ReleaseGILDeleter {
     public:
 
@@ -100,11 +100,11 @@ namespace carla {
       void operator()(T *ptr) const {
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT
         if (ptr != nullptr && PythonUtil::ThisThreadHasTheGIL()) {
-          ReleaseGIL lock; // Èç¹ûµ±Ç°Ïß³Ì³ÖÓĞGIL£¬ÔòÊÍ·ÅGIL
-          delete ptr; // É¾³ı¶ÔÏó
+          ReleaseGIL lock;
+          delete ptr;
         } else
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
-        delete ptr; // É¾³ı¶ÔÏó
+        delete ptr;
       }
     };
   };
