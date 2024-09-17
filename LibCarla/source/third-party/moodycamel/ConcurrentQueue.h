@@ -2009,8 +2009,7 @@ private:
               this->tailBlock = startBlock == nullptr ? firstAllocatedBlock : startBlock;
               return false;
             }
-
-            // 如果分配失败，撤销更改（但保留注入的块）
+            // pr_blockIndexFront 在 new_block_index 内部被更新，因此我们也需要更新备用值（因为即使后来失败，我们仍然保留新的索引）
             originalBlockIndexFront = originalBlockIndexSlotsUsed;
           }
 
@@ -2551,7 +2550,7 @@ private:
           bool full = !details::circular_less_than<index_t>(head, currentTailIndex + BLOCK_SIZE) || (MAX_SUBQUEUE_SIZE != details::const_numeric_max<size_t>::value && (MAX_SUBQUEUE_SIZE == 0 || MAX_SUBQUEUE_SIZE - BLOCK_SIZE < currentTailIndex - head));
           if (full || !(indexInserted = insert_block_index_entry<allocMode>(idxEntry, currentTailIndex)) || (newBlock = this->parent->ConcurrentQueue::template requisition_block<allocMode>()) == nullptr) {
             // 索引分配或块分配失败；撤销目前为止已完成的其他分配
-            // 和索引插入操
+            // 和索引插入操作
             if (indexInserted) {
               rewind_block_index_tail();
               idxEntry->value.store(nullptr, std::memory_order_relaxed);
@@ -2575,7 +2574,7 @@ private:
           newBlock->ConcurrentQueue::Block::template reset_empty<implicit_context>();
           newBlock->next = nullptr;
 
-          // Insert the new block into the index
+          // 将新块插入到索引中
           idxEntry->value.store(newBlock, std::memory_order_relaxed);
 
           // 存储块链，以便在后续分配失败时可以撤销，
@@ -2767,7 +2766,7 @@ private:
     }
 
   private:
-    // The block size must be > 1, so any number with the low bit set is an invalid block base index
+    // 块大小必须大于 1，因此任何低位比特被设置的数字都是无效的块基索引
     static const index_t INVALID_BLOCK_BASE = 1;
 
     struct BlockIndexEntry
