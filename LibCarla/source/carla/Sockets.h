@@ -4,10 +4,10 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once    // 防止头文件被重复包含
 
-#if _WIN32
-  #include <winsock2.h>   ///< socket
+#if _WIN32   // 判断是否是在Windows平台编译
+  #include <winsock2.h>    // 引入Windows Sockets 2 API，用于网络通信  
   #include <Ws2tcpip.h>
 #else
   #include <sys/socket.h> ///< socket
