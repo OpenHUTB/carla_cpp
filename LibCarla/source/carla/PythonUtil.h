@@ -39,8 +39,7 @@ namespace carla {
 
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT
 
-    /// Acquires a lock on the Python's Global Interpreter Lock, necessary for
-    /// calling Python code from a different thread.
+    /// 获取Python全局解释器锁上的锁，这是从其他线程调用Python代码所必需的。
     class AcquireGIL : private NonCopyable {
     public:
 
@@ -55,8 +54,7 @@ namespace carla {
       PyGILState_STATE _state;
     };
 
-    /// Releases the lock on the Python's Global Interpreter Lock, use it when doing
-    /// blocking I/O operations.
+    /// 释放Python的全局解释器锁，在执行阻塞I/O操作时使用它。
     class ReleaseGIL : private NonCopyable {
     public:
 
@@ -78,8 +76,7 @@ namespace carla {
 
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
 
-    /// A deleter that can be passed to a smart pointer to acquire the GIL
-    /// before destroying the object.
+    /// 可以传递给智能指针的删除器，以便在销毁对象之前获取GIL。
     class AcquireGILDeleter {
     public:
 
@@ -95,8 +92,7 @@ namespace carla {
       }
     };
 
-    /// A deleter that can be passed to a smart pointer to release the GIL
-    /// before destroying the object.
+    /// 可以传递给智能指针的删除器，以便在销毁对象之前释放GIL。
     class ReleaseGILDeleter {
     public:
 

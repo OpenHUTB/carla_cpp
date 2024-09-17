@@ -20,23 +20,23 @@
 
 namespace carla {
 
-  /// »ùÓÚBoost.AsioµÄÉÏÏÂÎÄ 
+  /// åŸºäºBoost.Asioçš„ä¸Šä¸‹æ–‡ 
   class ThreadPool : private NonCopyable {
   public:
 
     ThreadPool() : _work_to_do(_io_context) {}
 
-    /// Í£Ö¹Ïß³Ì³ØThreadPool²¢ºÏ²¢ËùÓĞÏß³Ì
+    /// åœæ­¢çº¿ç¨‹æ± ThreadPoolå¹¶åˆå¹¶æ‰€æœ‰çº¿ç¨‹
     ~ThreadPool() {
       Stop();
     }
 
-    /// ·µ»Øµ×²ã io_context
+    /// è¿”å›åº•å±‚ io_context
     auto &io_context() {
       return _io_context;
     }
 
-    /// ÏòPool·¢²¼Ò»¸öÈÎÎñ 
+    /// å‘Poolå‘å¸ƒä¸€ä¸ªä»»åŠ¡ 
     template <typename FunctorT, typename ResultT = typename std::result_of<FunctorT()>::type>
     std::future<ResultT> Post(FunctorT &&functor) {
       auto task = std::packaged_task<ResultT()>(std::forward<FunctorT>(functor));
@@ -72,7 +72,7 @@ namespace carla {
       _io_context.run_for(duration.to_chrono());
     }
 
-    /// Í£Ö¹Ïß³Ì³ØThreadPool²¢ºÏ²¢ËùÓĞÏß³Ì
+    /// åœæ­¢çº¿ç¨‹æ± ThreadPoolå¹¶åˆå¹¶æ‰€æœ‰çº¿ç¨‹
     void Stop() {
       _io_context.stop();
       _workers.JoinAll();
