@@ -14,13 +14,14 @@
 
 namespace carla {
 
-  class ThreadGroup : private NonCopyable {
+  // ThreadGroup 类用于管理一组线程，并确保它们在销毁时被正确地等待
+  class ThreadGroup : private NonCopyable {  // 继承自 NonCopyable，防止复制该类
   public:
 
-    ThreadGroup() = default;
+    ThreadGroup() = default; // 默认构造函数
 
-    ~ThreadGroup() {
-      JoinAll();
+    ~ThreadGroup() {  // 析构函数
+      JoinAll();  // 在销毁时确保所有线程都已完成
     }
     
     // 创建一个新线程并执行给定的可调用对象。
