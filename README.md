@@ -140,7 +140,7 @@ git rm -rf .
 [huangzhihua](https://github.com/bbbelieve) 、
 [huiii-chen](https://github.com/huiii-chen) 、
 [xhoyh](https://github.com/xhoyh) 、
-[ggiiatr](https://github.com/ggiiatr/carla_cpp) 、
+[ggiiatr](https://github.com/ggiiatr) 、
 [suki-mina](https://github.com/suki-mina) 、
 [qqggxx](https://github.com/qqggxx)
 [leeyuu-z](http://github.com/leeyuu-z) 、
