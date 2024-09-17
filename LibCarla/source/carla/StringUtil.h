@@ -3,6 +3,7 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
+//g++ -o output_file source_file.cpp -finput-charset=UTF-8 -fexec-charset=UTF-8
 // 此文件采用 UTF-8 编码，以适应多语言字符集的处理需求。
 #pragma once
 
