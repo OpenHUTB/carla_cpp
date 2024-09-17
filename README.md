@@ -136,11 +136,12 @@ git rm -rf .
 [nfdxxl](https://github.com/nfdxxl) 、[Kawashiro1](https://github.com/Kawashiro1)、
 [DSB0221](https://github.com/DSB0221)、[huangyuking](https://github.com/huangyuking)、
 [ZH1024-Heng](https://github.com/ZH1024-Heng)、
-[siwei1427](https://github.com/siwei1427?tab=repositories)。
-[huangzhihua](https://github.com/bbbelieve)
-[huiii-chen](https://github.com/huiii-chen)
-[xhoyh](https://github.com/xhoyh)
-[ggiiatr](https://github.com/ggiiatr/carla_cpp)
-[suki-mina](https://github.com/suki-mina)
+[siwei1427](https://github.com/siwei1427) 、
+[huangzhihua](https://github.com/bbbelieve) 、
+[huiii-chen](https://github.com/huiii-chen) 、
+[xhoyh](https://github.com/xhoyh) 、
+[ggiiatr](https://github.com/ggiiatr) 、
+[suki-mina](https://github.com/suki-mina) 、
 [qqggxx](https://github.com/qqggxx)
-[leeyuu-z](http://github.com/leeyuu-z)
+[leeyuu-z](http://github.com/leeyuu-z) 、
+[zi666zi](http://github.com/zi666zi) 、
