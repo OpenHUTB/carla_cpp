@@ -4,28 +4,28 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 //g++ -o output_file source_file.cpp -finput-charset=UTF-8 -fexec-charset=UTF-8
-// ´ËÎÄ¼ş²ÉÓÃ UTF-8 ±àÂë£¬ÒÔÊÊÓ¦¶àÓïÑÔ×Ö·û¼¯µÄ´¦ÀíĞèÇó¡£
+// æ­¤æ–‡ä»¶é‡‡ç”¨ UTF-8 ç¼–ç ï¼Œä»¥é€‚åº”å¤šè¯­è¨€å­—ç¬¦é›†çš„å¤„ç†éœ€æ±‚ã€‚
 #pragma once
 
 #include <boost/algorithm/string.hpp>
 
 namespace carla {
-// ¶¨ÒåÃûÎª StringUtil µÄÀà£¬ÓÃÓÚÌá¹©¸÷ÖÖ×Ö·û´®´¦Àí¹¤¾ß·½·¨
+// å®šä¹‰åä¸º StringUtil çš„ç±»ï¼Œç”¨äºæä¾›å„ç§å­—ç¬¦ä¸²å¤„ç†å·¥å…·æ–¹æ³•
   class StringUtil {
   public:
-// ½« const char* ÀàĞÍµÄ×Ö·û´®×ª»»Îª const char*£¬Ö±½Ó·µ»ØÊäÈë²ÎÊı¡£ 
- // ÔÚ UTF-8 ±àÂë»·¾³ÏÂ£¬È·±£¶ÔÔ­Ê¼ const char* ×Ö·û´®µÄÕıÈ·ÒıÓÃ¡£
+// å°† const char* ç±»å‹çš„å­—ç¬¦ä¸²è½¬æ¢ä¸º const char*ï¼Œç›´æ¥è¿”å›è¾“å…¥å‚æ•°ã€‚ 
+ // åœ¨ UTF-8 ç¼–ç ç¯å¢ƒä¸‹ï¼Œç¡®ä¿å¯¹åŸå§‹ const char* å­—ç¬¦ä¸²çš„æ­£ç¡®å¼•ç”¨ã€‚
     static const char *ToConstCharPtr(const char *str) {
       return str;
     }
- // ¶ÔÓÚÄ£°åÀàĞÍµÄ×Ö·û´®£¬½«Æä×ª»»Îª const char*£¬Í¨¹ıµ÷ÓÃÆä c_str() ·½·¨¡£ 
- // UTF-8 ±àÂëÖĞ£¬´Ë·½·¨¿É´¦Àí²»Í¬ÀàĞÍµÄ×Ö·û´®²¢×ª»»Îª const char*£¬·½±ãºóĞø²Ù×÷¡£ 
+ // å¯¹äºæ¨¡æ¿ç±»å‹çš„å­—ç¬¦ä¸²ï¼Œå°†å…¶è½¬æ¢ä¸º const char*ï¼Œé€šè¿‡è°ƒç”¨å…¶ c_str() æ–¹æ³•ã€‚ 
+ // UTF-8 ç¼–ç ä¸­ï¼Œæ­¤æ–¹æ³•å¯å¤„ç†ä¸åŒç±»å‹çš„å­—ç¬¦ä¸²å¹¶è½¬æ¢ä¸º const char*ï¼Œæ–¹ä¾¿åç»­æ“ä½œã€‚ 
     template <typename StringT>
     static const char *ToConstCharPtr(const StringT &str) {
       return str.c_str();
     }
-// ÅĞ¶ÏÊäÈë·¶Î§ input ÊÇ·ñÒÔ·¶Î§ test ¿ªÍ·
-// ÔÚ UTF-8 ±àÂëÏÂ£¬ÄÜ¹»×¼È·ÅĞ¶Ï°üº¬¶àÓïÑÔ×Ö·ûµÄ×Ö·û´®ÊÇ·ñÒÔÌØ¶¨×Ó´®¿ªÍ·¡£
+// åˆ¤æ–­è¾“å…¥èŒƒå›´ input æ˜¯å¦ä»¥èŒƒå›´ test å¼€å¤´
+// åœ¨ UTF-8 ç¼–ç ä¸‹ï¼Œèƒ½å¤Ÿå‡†ç¡®åˆ¤æ–­åŒ…å«å¤šè¯­è¨€å­—ç¬¦çš„å­—ç¬¦ä¸²æ˜¯å¦ä»¥ç‰¹å®šå­ä¸²å¼€å¤´ã€‚
     template <typename Range1T, typename Range2T>
     static bool StartsWith(const Range1T &input, const Range2T &test) {
       return boost::algorithm::istarts_with(input, test);
@@ -40,14 +40,14 @@ namespace carla {
     static void ToLower(WritableRangeT &str) {
       boost::algorithm::to_lower(str);
     }
-// ½«¿ÉĞ´·¶Î§µÄ×Ö·û´®×ª»»ÎªĞ¡Ğ´ĞÎÊ½
-// UTF-8 ±àÂëÏÂ£¬Îª²»¿ÉĞŞ¸ÄµÄ×Ö·û´®Ìá¹©Ğ¡Ğ´ĞÎÊ½µÄ¸±±¾£¬ÊÊÓÃÓÚ¶àÓïÑÔ»·¾³¡£
+// å°†å¯å†™èŒƒå›´çš„å­—ç¬¦ä¸²è½¬æ¢ä¸ºå°å†™å½¢å¼
+// UTF-8 ç¼–ç ä¸‹ï¼Œä¸ºä¸å¯ä¿®æ”¹çš„å­—ç¬¦ä¸²æä¾›å°å†™å½¢å¼çš„å‰¯æœ¬ï¼Œé€‚ç”¨äºå¤šè¯­è¨€ç¯å¢ƒã€‚
     template <typename SequenceT>
     static auto ToLowerCopy(const SequenceT &str) {
       return boost::algorithm::to_lower_copy(str);
     }
-// ½«¿ÉĞ´·¶Î§µÄ×Ö·û´®×ª»»Îª´óĞ´ĞÎÊ½
-// UTF-8 ±àÂëÖĞ£¬¶Ô²»Í¬ÓïÑÔ×Ö·ûµÄ×Ö·û´®½øĞĞ´óĞ´×ª»»²Ù×÷¡£
+// å°†å¯å†™èŒƒå›´çš„å­—ç¬¦ä¸²è½¬æ¢ä¸ºå¤§å†™å½¢å¼
+// UTF-8 ç¼–ç ä¸­ï¼Œå¯¹ä¸åŒè¯­è¨€å­—ç¬¦çš„å­—ç¬¦ä¸²è¿›è¡Œå¤§å†™è½¬æ¢æ“ä½œã€‚
     template <typename WritableRangeT>
     static void ToUpper(WritableRangeT &str) {
       boost::algorithm::to_upper(str);
@@ -57,33 +57,33 @@ namespace carla {
     static auto ToUpperCopy(const SequenceT &str) {
       return boost::algorithm::to_upper_copy(str);
     }
- // È¥³ı¿ÉĞ´·¶Î§×Ö·û´®Á½¶ËµÄ¿Õ°××Ö·û
- // UTF-8 ±àÂë»·¾³ÏÂ£¬ÓĞĞ§È¥³ı¶àÓïÑÔ×Ö·û´®Á½¶ËµÄ¿Õ°××Ö·û¡£
+ // å»é™¤å¯å†™èŒƒå›´å­—ç¬¦ä¸²ä¸¤ç«¯çš„ç©ºç™½å­—ç¬¦
+ // UTF-8 ç¼–ç ç¯å¢ƒä¸‹ï¼Œæœ‰æ•ˆå»é™¤å¤šè¯­è¨€å­—ç¬¦ä¸²ä¸¤ç«¯çš„ç©ºç™½å­—ç¬¦ã€‚
     template <typename WritableRangeT>
     static void Trim(WritableRangeT &str) {
       boost::algorithm::trim(str);
     }
-// ¶ÔÓÚ²»¿ÉĞ´·¶Î§µÄ×Ö·û´®£¬·µ»ØÈ¥³ıÁ½¶Ë¿Õ°××Ö·ûºóµÄ¸±±¾
-// ÔÚ UTF-8 ±àÂëÖĞ£¬Îª²»¿ÉĞŞ¸ÄµÄ×Ö·û´®Ìá¹©È¥³ı¿Õ°×ºóµÄ¸±±¾£¬ÊÊÓÃÓÚ¸÷ÖÖÓïÑÔ¡£
+// å¯¹äºä¸å¯å†™èŒƒå›´çš„å­—ç¬¦ä¸²ï¼Œè¿”å›å»é™¤ä¸¤ç«¯ç©ºç™½å­—ç¬¦åçš„å‰¯æœ¬
+// åœ¨ UTF-8 ç¼–ç ä¸­ï¼Œä¸ºä¸å¯ä¿®æ”¹çš„å­—ç¬¦ä¸²æä¾›å»é™¤ç©ºç™½åçš„å‰¯æœ¬ï¼Œé€‚ç”¨äºå„ç§è¯­è¨€ã€‚
     template <typename SequenceT>
     static auto TrimCopy(const SequenceT &str) {
       return boost::algorithm::trim_copy(str);
     }
-// ½«×Ö·û´® str °´ÕÕ·Ö¸ô·û¼¯ºÏ separators ½øĞĞ·Ö¸î£¬½á¹û´æ´¢ÔÚ destination ÈİÆ÷ÖĞ
-// UTF-8 ±àÂëÏÂ£¬ÄÜÕıÈ··Ö¸î°üº¬¶àÓïÑÔ×Ö·ûµÄ×Ö·û´®¡£
+// å°†å­—ç¬¦ä¸² str æŒ‰ç…§åˆ†éš”ç¬¦é›†åˆ separators è¿›è¡Œåˆ†å‰²ï¼Œç»“æœå­˜å‚¨åœ¨ destination å®¹å™¨ä¸­
+// UTF-8 ç¼–ç ä¸‹ï¼Œèƒ½æ­£ç¡®åˆ†å‰²åŒ…å«å¤šè¯­è¨€å­—ç¬¦çš„å­—ç¬¦ä¸²ã€‚
     template<typename Container, typename Range1T, typename Range2T>
     static void Split(Container &destination, const Range1T &str, const Range2T &separators) {
       boost::split(destination, str, boost::is_any_of(separators));
     }
 
     /// Match @a str with the Unix shell-style @a wildcard_pattern.
-    // Æ¥Åä str Óë Unix shell ·ç¸ñµÄÍ¨Åä·ûÄ£Ê½ wildcard_pattern¡£
-    // ÔÚ UTF-8 ±àÂëÖĞ£¬³¢ÊÔ¶Ô²»Í¬ÓïÑÔ×Ö·ûµÄ×Ö·û´®½øĞĞÍ¨Åä·ûÆ¥Åä¡£
+    // åŒ¹é… str ä¸ Unix shell é£æ ¼çš„é€šé…ç¬¦æ¨¡å¼ wildcard_patternã€‚
+    // åœ¨ UTF-8 ç¼–ç ä¸­ï¼Œå°è¯•å¯¹ä¸åŒè¯­è¨€å­—ç¬¦çš„å­—ç¬¦ä¸²è¿›è¡Œé€šé…ç¬¦åŒ¹é…ã€‚
     static bool Match(const char *str, const char *wildcard_pattern);
 
     /// Match @a str with the Unix shell-style @a wildcard_pattern.
-    // Ä£°å°æ±¾µÄ Match ·½·¨£¬¶ÔÓÚ²»Í¬ÀàĞÍµÄ×Ö·û´®½øĞĞ×ª»»ºóµ÷ÓÃµ×²ãµÄ Match ·½·¨¡£
-    // ÔÚ UTF-8 ±àÂë³¡¾°ÏÂ£¬È·±£²»Í¬ÀàĞÍ×Ö·û´®ÄÜÕıÈ·ÓëÍ¨Åä·ûÄ£Ê½Æ¥Åä¡£
+    // æ¨¡æ¿ç‰ˆæœ¬çš„ Match æ–¹æ³•ï¼Œå¯¹äºä¸åŒç±»å‹çš„å­—ç¬¦ä¸²è¿›è¡Œè½¬æ¢åè°ƒç”¨åº•å±‚çš„ Match æ–¹æ³•ã€‚
+    // åœ¨ UTF-8 ç¼–ç åœºæ™¯ä¸‹ï¼Œç¡®ä¿ä¸åŒç±»å‹å­—ç¬¦ä¸²èƒ½æ­£ç¡®ä¸é€šé…ç¬¦æ¨¡å¼åŒ¹é…ã€‚
     template <typename String1T, typename String2T>
     static bool Match(const String1T &str, const String2T &wildcard_pattern) {
       return Match(ToConstCharPtr(str), ToConstCharPtr(wildcard_pattern));
