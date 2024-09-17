@@ -4,10 +4,13 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
-
+#pragma once  // 防止头文件被重复包含
+// 检查是否使用Microsoft Visual C++编译器
 #if defined(_MSC_VER)
-#  define LIBCARLA_FORCEINLINE __forceinline
+   // 定义LIBCARLA_FORCEINLINE宏为__forceinline，用于强制内联函数 
+#  define LIBCARLA_F
+// 定义LIBCARLA_NOINLINE宏为__declspec(noinline)，用于禁止函数内联RCEINLINE __forceinline
+   
 #  define LIBCARLA_NOINLINE __declspec(noinline)
 #elif defined(__clang__) || defined(__GNUC__)
 #  if defined(NDEBUG)
