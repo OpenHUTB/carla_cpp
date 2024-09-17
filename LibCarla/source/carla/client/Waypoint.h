@@ -31,10 +31,10 @@ namespace client {
 
     ~Waypoint();
 
-    /// Returns an unique Id identifying this waypoint.
+    /// 返回标识此路径点的唯一Id.
     ///
-    /// The Id takes into account OpenDrive's road Id, lane Id, and s distance
-    /// on its road segment up to half-centimetre precision.
+    /// 这个Id综合了OpenDrive的道路Id、车道Id和s距离
+    /// 其路段精度可达半厘米.
     uint64_t GetId() const {
       return std::hash<road::element::Waypoint>()(_waypoint);
     }
@@ -73,12 +73,12 @@ namespace client {
 
     std::vector<SharedPtr<Waypoint>> GetPrevious(double distance) const;
 
-    /// Returns a list of waypoints separated by distance from the current waypoint
-    /// to the end of the lane
+    /// 返回与当前路点按距离分隔的路点列表
+    /// 持续到道路终点
     std::vector<SharedPtr<Waypoint>> GetNextUntilLaneEnd(double distance) const;
 
-    /// Returns a list of waypoints separated by distance from the current waypoint
-    /// to the start of the lane
+    /// 返回与当前路点按距离分隔的路点列表
+    /// 持续到道路起点
     std::vector<SharedPtr<Waypoint>> GetPreviousUntilLaneStart(double distance) const;
 
     SharedPtr<Waypoint> GetRight() const;
@@ -91,12 +91,12 @@ namespace client {
 
     road::element::LaneMarking::LaneChange GetLaneChange() const;
 
-    /// Returns a list of landmarks from the current position to a certain distance
+    /// 返回从当前位置到指定距离的地标列表
     std::vector<SharedPtr<Landmark>> GetAllLandmarksInDistance(
         double distance, bool stop_at_junction = false) const;
 
-    /// Returns a list of landmarks from the current position to a certain distance
-    /// Filters by specified type
+    /// 返回从当前位置到指定距离的地标列表
+    /// 地标点按指定类型筛选
     std::vector<SharedPtr<Landmark>> GetLandmarksOfTypeInDistance(
         double distance, std::string filter_type, bool stop_at_junction = false) const;
 
@@ -112,7 +112,7 @@ namespace client {
 
     geom::Transform _transform;
 
-    // Mark record right and left respectively.
+    // 分别在右侧和左侧标记记录.
     std::pair<
         const road::element::RoadInfoMarkRecord *,
         const road::element::RoadInfoMarkRecord *> _mark_record;
