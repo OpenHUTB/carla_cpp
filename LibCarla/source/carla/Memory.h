@@ -20,10 +20,11 @@ namespace carla {
   /// 类似于SharedPtr，但提供对boost::weak_ptr的别名，用于弱引用 
   template <typename T>
   using WeakPtr = boost::weak_ptr<T>;
-
+  /// 允许类的实例安全地生成指向自身的shared_ptr  
   template <typename T>
   using EnableSharedFromThis = boost::enable_shared_from_this<T>;
-
+  // 模板函数，用于创建shared_ptr实例，并转发参数给T的构造函数  
+  /// 类似于boost::make_shared，但封装在carla命名空间中  
   template <typename T, typename... Args>
   static inline auto MakeShared(Args &&... args) {
     return boost::make_shared<T>(std::forward<Args>(args)...);
