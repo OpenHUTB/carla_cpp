@@ -25,29 +25,7 @@ Atomic Operations: 原子操作,保证多线程下的数据一致性。
 分离显式/隐式生产者: 显式生产者适用于有明确生产者标识的场景,隐式生产者适用于无明确生产者标识的场景。
 空闲块重用: 通过FreeList重用空闲的Block,减少内存分配。
 4. 流程图
-graph TD
-    A[开始] --> B[初始化]
-    B --> C[生产者入队]
-    C --> D{显式/隐式}
-    D -->|显式| E[ExplicitProducer 入队]
-    D -->|隐式| F[ImplicitProducer 入队]
-    E --> G[元素入Block]
-    F --> G
-    G --> H{Block满?}
-    H -->|是| I[申请新Block]
-    H -->|否| C
-    I --> C
-    C --> J[消费者出队]
-    J --> K{显式/隐式}
-    K -->|显式| L[ExplicitProducer 出队]
-    K -->|隐式| M[ImplicitProducer 出队]
-    L --> N[元素出Block]
-    M --> N
-    N --> O{Block空?}
-    O -->|是| P[回收Block到FreeList]
-    O -->|否| J
-    P --> J
-    J --> Q[结束]
+![](./img/Concurrent Queue.png)
 5. 关键点总结
 无锁并发: 利用原子操作和CAS算法,实现无锁并发控制。
 生产者-消费者分离: 显式和隐式生产者分离,适应不同场景。
