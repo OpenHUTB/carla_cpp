@@ -146,3 +146,4 @@ git rm -rf .
 [leeyuu-z](http://github.com/leeyuu-z) 、
 [zi666zi](http://github.com/zi666zi) 、
 [dzq168](https://github.com/dzq168)
+[riset77](https://github.com/riset77)
