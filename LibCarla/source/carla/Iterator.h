@@ -7,23 +7,23 @@
 #pragma once
 
 #include <boost/iterator/transform_iterator.hpp>
-
+// å®šä¹‰ä¸€ä¸ªå‘½åç©ºé—´carlaä¸‹çš„iteratorå‘½åç©ºé—´ 
 namespace carla {
 namespace iterator {
 
- /// Creates an iterator over non-const references to the keys of a map.
+ /// åˆ›å»ºä¸€ä¸ªè¿­ä»£å™¨ï¼Œéå†mapä¸­é”®çš„éconstå¼•ç”¨
   template <typename It>
   inline static auto make_map_keys_iterator(It it) {
-  	// È·¶¨ÊäÈëµü´úÆ÷Ö¸ÏòµÄ¼üÖµ¶ÔÖĞ¼üµÄÀàĞÍ
+  	// ç¡®å®šè¾“å…¥è¿­ä»£å™¨æŒ‡å‘çš„é”®å€¼å¯¹ä¸­é”®çš„ç±»å‹
     using first_value_type = typename It::value_type::first_type;
-    // È¥³ı¼üÀàĞÍÖĞµÄ const ºÍÒıÓÃĞŞÊÎ
+    // å»é™¤é”®ç±»å‹ä¸­çš„ const å’Œå¼•ç”¨ä¿®é¥°
     using decay_first_value_type = typename std::remove_cv_t<typename std::remove_reference_t<first_value_type>>;
-    // ¶¨Òå¶ÔÈ¥³ıĞŞÊÎºóµÄ¼üÀàĞÍµÄ·Ç const ÒıÓÃÀàĞÍ
+    // å®šä¹‰å¯¹å»é™¤ä¿®é¥°åçš„é”®ç±»å‹çš„é const å¼•ç”¨ç±»å‹
     using ref_to_first = decay_first_value_type &;
-     // Ê¹ÓÃ Boost µÄ transform_iterator ´´½¨Ò»¸öĞÂµÄµü´úÆ÷£¬¸Ãµü´úÆ÷ÔÚ½âÒıÓÃÊ±»áµ÷ÓÃ lambda ±í´ïÊ½£¬·µ»Ø¶Ô¼üµÄ·Ç const ÒıÓÃ
+     // ä½¿ç”¨ Boost çš„ transform_iterator åˆ›å»ºä¸€ä¸ªæ–°çš„è¿­ä»£å™¨ï¼Œè¯¥è¿­ä»£å™¨åœ¨è§£å¼•ç”¨æ—¶ä¼šè°ƒç”¨ lambda è¡¨è¾¾å¼ï¼Œè¿”å›å¯¹é”®çš„é const å¼•ç”¨
     return boost::make_transform_iterator(it, [](auto &pair) -> ref_to_first { return pair.first; });
   }
-  /// Creates an iterator over const references to the keys of a map.
+  /// åˆ›å»ºä¸€ä¸ªè¿­ä»£å™¨ï¼Œè¯¥è¿­ä»£å™¨æä¾›å¯¹mapé”®çš„constå¼•ç”¨çš„éå†ã€‚
   template <typename It>
   inline static auto make_map_keys_const_iterator(It it) {
     using first_value_type = typename It::value_type::first_type;
@@ -32,23 +32,23 @@ namespace iterator {
     return boost::make_transform_iterator(it, [](const auto &pair) -> const_ref_to_first { return pair.first; });
   }
 
-  /// Creates an iterator over non-const references to the values of a map.
+  /// åˆ›å»ºä¸€ä¸ªè¿­ä»£å™¨ï¼Œè¯¥è¿­ä»£å™¨æä¾›å¯¹mapå€¼çš„éconstå¼•ç”¨çš„éå†ã€‚
   template <typename It>
   inline static auto make_map_values_iterator(It it) {
     using second_value_type = typename It::value_type::second_type;
     using decay_second_value_type = typename std::remove_cv_t<typename std::remove_reference_t<second_value_type>>;
     using ref_to_second = decay_second_value_type &;
-    // Ê¹ÓÃ Boost µÄ transform_iterator ´´½¨Ò»¸öĞÂµÄµü´úÆ÷£¬¸Ãµü´úÆ÷ÔÚ½âÒıÓÃÊ±»áµ÷ÓÃ lambda ±í´ïÊ½£¬·µ»Ø¶ÔÖµµÄ·Ç const ÒıÓÃ
+    // ä½¿ç”¨ Boost çš„ transform_iterator åˆ›å»ºä¸€ä¸ªæ–°çš„è¿­ä»£å™¨ï¼Œè¯¥è¿­ä»£å™¨åœ¨è§£å¼•ç”¨æ—¶ä¼šè°ƒç”¨ lambda è¡¨è¾¾å¼ï¼Œè¿”å›å¯¹å€¼çš„é const å¼•ç”¨
     return boost::make_transform_iterator(it, [](auto &pair) -> ref_to_second { return pair.second; });
   }
 
- /// Creates an iterator over const references to the values of a map.
+ /// åˆ›å»ºä¸€ä¸ªè¿­ä»£å™¨ï¼Œè¯¥è¿­ä»£å™¨æä¾›å¯¹mapå€¼çš„constå¼•ç”¨çš„éå†ã€‚
   template <typename It>
   inline static auto make_map_values_const_iterator(It it) {
     using second_value_type = typename It::value_type::second_type;
     using decay_second_value_type = typename std::remove_cv_t<typename std::remove_reference_t<second_value_type>>;
     using const_ref_to_second = const decay_second_value_type &;
-    // Ê¹ÓÃ Boost µÄ transform_iterator ´´½¨Ò»¸öĞÂµÄµü´úÆ÷£¬¸Ãµü´úÆ÷ÔÚ½âÒıÓÃÊ±»áµ÷ÓÃ lambda ±í´ïÊ½£¬·µ»Ø¶ÔÖµµÄ const ÒıÓÃ
+    // ä½¿ç”¨ Boost çš„ transform_iterator åˆ›å»ºä¸€ä¸ªæ–°çš„è¿­ä»£å™¨ï¼Œè¯¥è¿­ä»£å™¨åœ¨è§£å¼•ç”¨æ—¶ä¼šè°ƒç”¨ lambda è¡¨è¾¾å¼ï¼Œè¿”å›å¯¹å€¼çš„ const å¼•ç”¨
     return boost::make_transform_iterator(it, [](const auto &pair) -> const_ref_to_second { return pair.second; });
   }
 
