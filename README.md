@@ -144,5 +144,4 @@ git rm -rf .
 [suki-mina](https://github.com/suki-mina) 、
 [qqggxx](https://github.com/qqggxx)
 [leeyuu-z](http://github.com/leeyuu-z) 、
-[zhemuqi](https://github.com/zhemuqi) 、
-
+[zi666zi](http://github.com/zi666zi) 、
