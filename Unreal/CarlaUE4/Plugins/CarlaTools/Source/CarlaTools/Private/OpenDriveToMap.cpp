@@ -63,6 +63,7 @@ UOpenDriveToMap::~UOpenDriveToMap()
 
 }
 
+// 车道类型转换为对应的车道字符串
 FString LaneTypeToFString(carla::road::Lane::LaneType LaneType)
 {
   switch (LaneType)
@@ -135,26 +136,32 @@ FString LaneTypeToFString(carla::road::Lane::LaneType LaneType)
   return FString("Empty");
 }
 
+// 将OpenStreetMap地图格式(.osm)转换为OpenDrive格式(.xodr)
 void UOpenDriveToMap::ConvertOSMInOpenDrive()
 {
+  // OpenDrive文件的绝对路径：Unreal/CarlaUE4/Content/CustomMaps/{MapName}/OpenDrive/{MapName}.osm
   FilePath = FPaths::ProjectContentDir() + "CustomMaps/" + MapName + "/OpenDrive/" + MapName + ".osm";
+  // 根据地图原点坐标(x,y)将OpenDrive坐标转为Carla坐标
   FileDownloader->ConvertOSMInOpenDrive( FilePath , OriginGeoCoordinates.X, OriginGeoCoordinates.Y);
   FilePath.RemoveFromEnd(".osm", ESearchCase::Type::IgnoreCase);
   FilePath += ".xodr";
 
-  DownloadFinished();
-  UEditorLoadingAndSavingUtils::SaveDirtyPackages(true, true);
-  LoadMap();
+  DownloadFinished(); // 下载OpenStreetMap地图完成
+  UEditorLoadingAndSavingUtils::SaveDirtyPackages(true, true);  // 保存已修改的包
+  LoadMap();  // 加载地图
 }
 
+// 创建地图
 void UOpenDriveToMap::CreateMap()
 {
+  // 如果地图名为空，则报错。
   if( MapName.IsEmpty() )
   {
     UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("Map Name Is Empty") );
     return;
   }
 
+  // 如果OpenStreetMap地图的链接为空，则进行地图的下载
   if( !Url.IsEmpty() ) {
     if ( !IsValid(FileDownloader) )
     {
@@ -165,15 +172,15 @@ void UOpenDriveToMap::CreateMap()
     FileDownloader->Url = Url;
 
     FileDownloader->DownloadDelegate.BindUObject( this, &UOpenDriveToMap::ConvertOSMInOpenDrive );
-    FileDownloader->StartDownload();
+    FileDownloader->StartDownload();  // 开始下载
   }
   else if(LocalFilePath.EndsWith(".xodr"))
   {
-    ImportXODR();
+    ImportXODR();  // 如果本地已有OpenDrive文件则导入。
   }
   else if(LocalFilePath.EndsWith(".osm"))
   {
-    ImportOSM();
+    ImportOSM();  // 如果本地已有OpenStreetMap地图文件，则导入
   }
   else
   {
@@ -182,54 +189,57 @@ void UOpenDriveToMap::CreateMap()
 
 }
 
+// 创建地图的整块地面
 void UOpenDriveToMap::CreateTerrain( const int MeshGridSize, const float MeshGridSectionSize)
 {
   TArray<AActor*> FoundActors;
   UGameplayStatics::GetAllActorsOfClass(UEditorLevelLibrary::GetEditorWorld(), AStaticMeshActor::StaticClass(), FoundActors);
-  FVector BoxExtent = FVector(TileSize, TileSize,0);
+  FVector BoxExtent = FVector(TileSize, TileSize,0);  // 初始化地图框大小：瓦片大小 x 瓦片大小
   FVector MinBox = FVector(MinPosition.X, MaxPosition.Y,0);
 
+  // 横向瓦片数 = 地图框横向长度 / 网格大小
   int NumI = BoxExtent.X  / MeshGridSize;
+  // 纵向瓦片数 = 地图纵向长度 / 网格大小
   int NumJ = BoxExtent.Y  / MeshGridSize;
 
   for( int i = 0; i <= NumI; i++ )
   {
     for( int j = 0; j <= NumJ; j++ )
     {
-      // Offset that each procedural mesh is displaced to accomodate all the tiles
+      // 偏移每个程序化网格以容纳所有的地图瓦片
       FVector2D Offset( MinBox.X + i * MeshGridSize, MinBox.Y + j * MeshGridSize);
-      CreateTerrainMesh(i * NumJ + j, Offset, MeshGridSize, MeshGridSectionSize );
+      CreateTerrainMesh(i * NumJ + j, Offset, MeshGridSize, MeshGridSectionSize );  // 创建地面的一个小网格
     }
   }
 }
 
+// 创建地面网格
 void UOpenDriveToMap::CreateTerrainMesh(const int MeshIndex, const FVector2D Offset, const int GridSize, const float GridSectionSize)
 {
   // const float GridSectionSize = 100.0f; // In cm
   const float HeightScale = 3.0f;
 
   UWorld* World = UEditorLevelLibrary::GetEditorWorld();
-  // Creation of the procedural mesh
+  // 程序化网格的创建
   AStaticMeshActor* MeshActor = World->SpawnActor<AStaticMeshActor>();
   MeshActor->SetActorLocation(FVector(Offset.X, Offset.Y, 0));
-  UStaticMeshComponent* Mesh = MeshActor->GetStaticMeshComponent();
+  UStaticMeshComponent* Mesh = MeshActor->GetStaticMeshComponent();  // 得到静态网格组件
 
   TArray<FVector> Vertices;
   TArray<int32> Triangles;
 
-  TArray<FVector> Normals;
+  TArray<FVector> Normals;  // 法线
   TArray<FLinearColor> Colors;
   TArray<FProcMeshTangent> Tangents;
   TArray<FVector2D> UVs;
 
-
   int VerticesInLine = (GridSize / GridSectionSize) + 1.0f;
   static int StaticMeshIndex = 0;
-  for( int i = 0; i < VerticesInLine; i++ )
+  for( int i = 0; i < VerticesInLine; i++ )  // 横向线上的顶点数
   {
     float X = (i * GridSectionSize);
     const int RoadMapX = i * 255 / VerticesInLine;
-    for( int j = 0; j < VerticesInLine; j++ )
+    for( int j = 0; j < VerticesInLine; j++ )  // 纵向线上的顶点数
     {
       float Y = (j * GridSectionSize);
       const int RoadMapY = j * 255 / VerticesInLine;
@@ -242,7 +252,7 @@ void UOpenDriveToMap::CreateTerrainMesh(const int MeshIndex, const FVector2D Off
     }
   }
 
-  //// Triangles formation. 2 triangles per section.
+  //// 三角形的形成。每段2个三角形。
   for(int i = 0; i < VerticesInLine - 1; i++)
   {
     for(int j = 0; j < VerticesInLine - 1; j++)
@@ -279,29 +289,34 @@ void UOpenDriveToMap::CreateTerrainMesh(const int MeshIndex, const FVector2D Off
   StaticMeshIndex++;
 }
 
+// 带冲突检查的参与者生成
 AActor* UOpenDriveToMap::SpawnActorWithCheckNoCollisions(UClass* ActorClassToSpawn, FTransform Transform)
 {
   UWorld* World = UEditorLevelLibrary::GetEditorWorld();
   FActorSpawnParameters SpawnParameters;
   SpawnParameters.bNoFail = true;
+  // 生成参数 设置为 总是生成
   SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-  // Creation of the procedural mesh
+  // 程序化网格的创建
   return World->SpawnActor<AActor>(ActorClassToSpawn, Transform, SpawnParameters);
 
 }
+
+// 独立地（启动单独的虚幻进程）生成地图瓦片
 void UOpenDriveToMap::GenerateTileStandalone(){
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("UOpenDriveToMap::GenerateTileStandalone Function called"));
 
-#if PLATFORM_WINDOWS
+#if PLATFORM_WINDOWS  // Windows平台上调用 ExecuteTileCommandlet() 会导致虚幻编辑器崩溃
   GenerateTile();
 #else
   ExecuteTileCommandlet();
 #endif
-  UEditorLoadingAndSavingUtils::SaveDirtyPackages(true, true);
-  UEditorLevelLibrary::SaveCurrentLevel();
+  UEditorLoadingAndSavingUtils::SaveDirtyPackages(true, true);  // 保存修改后的包
+  UEditorLevelLibrary::SaveCurrentLevel();  // 保存当前关卡
 }
 
+// 生成地图瓦片
 void UOpenDriveToMap::GenerateTile(){
 
   if( FilePath.IsEmpty() ){
@@ -313,7 +328,7 @@ void UOpenDriveToMap::GenerateTile(){
   UE_LOG(LogCarlaToolsMapGenerator, Warning, TEXT("UOpenDriveToMap::GenerateTile(): File to load %s"), *FilePath );
   FFileHelper::LoadFileToString(FileContent, *FilePath);
   std::string opendrive_xml = carla::rpc::FromLongFString(FileContent);
-  CarlaMap = carla::opendrive::OpenDriveParser::Load(opendrive_xml);
+  CarlaMap = carla::opendrive::OpenDriveParser::Load(opendrive_xml);  // 解析OpenDrive的xml文件
 
   if (!CarlaMap.has_value())
   {
@@ -322,20 +337,20 @@ void UOpenDriveToMap::GenerateTile(){
   else
   {
     UE_LOG(LogCarlaToolsMapGenerator, Warning, TEXT("Valid Map loaded"));
-    MapName = FPaths::GetCleanFilename(FilePath);
-    MapName.RemoveFromEnd(".xodr", ESearchCase::Type::IgnoreCase);
+    MapName = FPaths::GetCleanFilename(FilePath);  // 根据完整的路径获取文件名
+    MapName.RemoveFromEnd(".xodr", ESearchCase::Type::IgnoreCase);  // 移除文件后缀获得文件名
     UE_LOG(LogCarlaToolsMapGenerator, Warning, TEXT("MapName %s"), *MapName);
-    UEditorLevelLibrary::LoadLevel(*BaseLevelName);
+    UEditorLevelLibrary::LoadLevel(*BaseLevelName);  // 根据关卡名加载关卡
 
     AActor* QueryActor = UGameplayStatics::GetActorOfClass(
                             GEditor->GetEditorWorldContext().World(),
                             ALargeMapManager::StaticClass() );
     if( QueryActor != nullptr ){
-      ALargeMapManager* LmManager = Cast<ALargeMapManager>(QueryActor);
+      ALargeMapManager* LmManager = Cast<ALargeMapManager>(QueryActor);  // 获得大地图管理器
       LmManager->GenerateMap_Editor();
-      NumTilesInXY  = LmManager->GetNumTilesInXY();
-      TileSize = LmManager->GetTileSize();
-      Tile0Offset = LmManager->GetTile0Offset();
+      NumTilesInXY  = LmManager->GetNumTilesInXY();  // 获得横向和纵向的瓦片数
+      TileSize = LmManager->GetTileSize();  // 获得地图瓦片大小
+      Tile0Offset = LmManager->GetTile0Offset();  // 获得瓦片的偏移
 
       FCarlaMapTile& CarlaTile =  LmManager->GetCarlaMapTile(CurrentTilesInXY);
       UEditorLevelLibrary::SaveCurrentLevel();
@@ -348,10 +363,11 @@ void UOpenDriveToMap::GenerateTile(){
 
       UEditorLevelLibrary::LoadLevel(CarlaTile.Name);
 
-      MinPosition = FVector(CurrentTilesInXY.X * TileSize, CurrentTilesInXY.Y * -TileSize, 0.0f);
+      MinPosition = FVector(CurrentTilesInXY.X * TileSize, CurrentTilesInXY.Y * -TileSize, 0.0f);  // 位置的最小值
+      // 位置的最大值
       MaxPosition = FVector((CurrentTilesInXY.X + 1.0f ) * TileSize, (CurrentTilesInXY.Y + 1.0f) * -TileSize, 0.0f);
 
-      GenerateAll(CarlaMap, MinPosition, MaxPosition);
+      GenerateAll(CarlaMap, MinPosition, MaxPosition);  // 生成所有地图
       Landscapes.Empty();
       bHasStarted = true;
       bRoadsFinished = true;
@@ -363,13 +379,14 @@ void UOpenDriveToMap::GenerateTile(){
 
     UEditorLoadingAndSavingUtils::SaveDirtyPackages(true, true);
     UEditorLevelLibrary::SaveCurrentLevel();
-#if PLATFORM_LINUX
+#if PLATFORM_LINUX  // 如果在Windows上移除根节点会导致虚幻编辑器崩溃（变量为空）
     RemoveFromRoot();
 #endif
 
   }
 }
 
+// 转向下一个瓦片
 bool UOpenDriveToMap::GoNextTile(){
   CurrentTilesInXY.X++;
   if( CurrentTilesInXY.X >= NumTilesInXY.X ){
@@ -382,14 +399,17 @@ bool UOpenDriveToMap::GoNextTile(){
   return true;
 }
 
+// 返回主关卡
 void UOpenDriveToMap::ReturnToMainLevel(){
   Landscapes.Empty();
   FEditorFileUtils::SaveDirtyPackages(false, true, true, false, false, false, nullptr);
   UEditorLevelLibrary::LoadLevel(*BaseLevelName);
 }
 
+// 在当前瓦片中校正所有参与者的位置
 void UOpenDriveToMap::CorrectPositionForAllActorsInCurrentTile(){
   TArray<AActor*> FoundActors;
+  // 获得所有参与者
   UGameplayStatics::GetAllActorsOfClass(UEditorLevelLibrary::GetEditorWorld(), AActor::StaticClass(), FoundActors);
   for( AActor* Current : FoundActors){
     Current->AddActorWorldOffset(-MinPosition, false);
@@ -403,6 +423,7 @@ void UOpenDriveToMap::CorrectPositionForAllActorsInCurrentTile(){
   GEngine->PerformGarbageCollectionAndCleanupActors();
 }
 
+// 获得当前瓦片的字符串
 FString UOpenDriveToMap::GetStringForCurrentTile(){
   return FString("_X_") + FString::FromInt(CurrentTilesInXY.X) + FString("_Y_") + FString::FromInt(CurrentTilesInXY.Y);
 }
@@ -428,6 +449,7 @@ void UOpenDriveToMap::OpenFileDialog()
   }
 }
 
+// 加载OpenDrive地图
 void UOpenDriveToMap::LoadMap()
 {
   if( FilePath.IsEmpty() ){
@@ -436,9 +458,9 @@ void UOpenDriveToMap::LoadMap()
 
   FString FileContent;
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("UOpenDriveToMap::LoadMap(): File to load %s"), *FilePath );
-  FFileHelper::LoadFileToString(FileContent, *FilePath);
+  FFileHelper::LoadFileToString(FileContent, *FilePath);  // 将OpenDrive文件加载为字符串
   std::string opendrive_xml = carla::rpc::FromLongFString(FileContent);
-  CarlaMap = carla::opendrive::OpenDriveParser::Load(opendrive_xml);
+  CarlaMap = carla::opendrive::OpenDriveParser::Load(opendrive_xml);  // 将OpenDrive的xml字符串解析为Carla的地图数据
 
   if (!CarlaMap.has_value())
   {
@@ -457,21 +479,22 @@ void UOpenDriveToMap::LoadMap()
 
     if( QueryActor != nullptr )
     {
-      ALargeMapManager* LargeMapManager = Cast<ALargeMapManager>(QueryActor);
+      ALargeMapManager* LargeMapManager = Cast<ALargeMapManager>(QueryActor);  // 大地图管理器
       NumTilesInXY  = LargeMapManager->GetNumTilesInXY();
       TileSize = LargeMapManager->GetTileSize();
       Tile0Offset = LargeMapManager->GetTile0Offset();
       CurrentTilesInXY = FIntVector(0,0,0);
-      ULevel* PersistantLevel = UEditorLevelLibrary::GetEditorWorld()->PersistentLevel;
+      ULevel* PersistantLevel = UEditorLevelLibrary::GetEditorWorld()->PersistentLevel;  // 持久关卡
       BaseLevelName = LargeMapManager->LargeMapTilePath + "/" + LargeMapManager->LargeMapName;
       do{
-        GenerateTileStandalone();
+        GenerateTileStandalone();  // 循环独立生成地图瓦片
       }while(GoNextTile());
-      ReturnToMainLevel();
+      ReturnToMainLevel();  // 返回主关卡
     }
   }
 }
 
+// 生成各种参与者
 TArray<AActor*> UOpenDriveToMap::GenerateMiscActors(float Offset, FVector MinLocation, FVector MaxLocation )
 {
   carla::geom::Vector3D CarlaMinLocation(MinLocation.X / 100, MinLocation.Y / 100, MinLocation.Z /100);
@@ -500,6 +523,7 @@ TArray<AActor*> UOpenDriveToMap::GenerateMiscActors(float Offset, FVector MinLoc
   return Returning;
 }
 
+// 生成所有的资产
 void UOpenDriveToMap::GenerateAll(const boost::optional<carla::road::Map>& ParamCarlaMap,
   FVector MinLocation,
   FVector MaxLocation )
@@ -509,15 +533,16 @@ void UOpenDriveToMap::GenerateAll(const boost::optional<carla::road::Map>& Param
     UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("Invalid Map"));
   }else
   {
-    GenerateRoadMesh(ParamCarlaMap, MinLocation, MaxLocation);
-    GenerateLaneMarks(ParamCarlaMap, MinLocation, MaxLocation);
-    GenerateSpawnPoints(ParamCarlaMap, MinLocation, MaxLocation);
-    CreateTerrain(12800, 256);
-    GenerateTreePositions(ParamCarlaMap, MinLocation, MaxLocation);
-    GenerationFinished(MinLocation, MaxLocation);
+    GenerateRoadMesh(ParamCarlaMap, MinLocation, MaxLocation);  // 生成道路网格
+    GenerateLaneMarks(ParamCarlaMap, MinLocation, MaxLocation);  // 生成车道线
+    GenerateSpawnPoints(ParamCarlaMap, MinLocation, MaxLocation);  // 产生生成点
+    CreateTerrain(12800, 256);  // 创建地面
+    GenerateTreePositions(ParamCarlaMap, MinLocation, MaxLocation);  // 生成树的位置
+    GenerationFinished(MinLocation, MaxLocation);  // 完成地图生成的一些后续操作
   }
 }
 
+// 生成道路网格
 void UOpenDriveToMap::GenerateRoadMesh( const boost::optional<carla::road::Map>& ParamCarlaMap, FVector MinLocation, FVector MaxLocation )
 {
   opg_parameters.vertex_distance = 0.5f;
