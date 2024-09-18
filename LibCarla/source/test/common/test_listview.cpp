@@ -7,7 +7,7 @@
 #include "test.h"
 
 #include <carla/ListView.h>
-// 引入标准库中用于不同容器类型的头文件
+
 #include <array>
 #include <cstring>
 #include <list>
@@ -31,7 +31,7 @@ static void TestSequence(carla::ListView<Iterator> view) {
   // 断言，检查计数器是否等于 6，以确保 ListView 中有 6 个元素
   ASSERT_EQ(count, 6);
 }
-// 定义一个测试用例，用于测试 ListView 与不同序列容器的交互
+
 TEST(listview, sequence) {
   int array[] = {0, 1, 2, 3, 4, 5};// 定义一个整数数组，并初始化包含 0 到 5 的整数
   
@@ -49,7 +49,7 @@ TEST(listview, sequence) {
   std::set<int> set = {0, 1, 2, 3, 4, 5};
   TestSequence(MakeListView(set));
 }
-// 定义另一个测试用例，用于测试 ListView 与字符串的交互
+
 TEST(listview, string) {
   std::string str = "Hello list view!";// 定义一个 std::string 对象并初始化
   
