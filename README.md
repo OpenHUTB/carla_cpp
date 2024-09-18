@@ -147,3 +147,4 @@ git rm -rf .
 [zi666zi](http://github.com/zi666zi) 、
 [dzq168](https://github.com/dzq168)
 [riset77](https://github.com/riset77)
+[big-Shuaige](https://github.com/big-Shuaige).
