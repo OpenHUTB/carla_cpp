@@ -16,4 +16,4 @@
   #include <unistd.h>     // 提供对POSIX操作系统API的访问
 #endif
 
-#define SOCK_INVALID_INDEX  -1
+#define SOCK_INVALID_INDEX  -1  // 定义一个宏，用于表示无效的socket索引或文件描述符。在Windows和类Unix系统上，无效的socket或文件描述符通常表示为-1
