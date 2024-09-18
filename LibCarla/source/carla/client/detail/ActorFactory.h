@@ -21,8 +21,8 @@ namespace detail {
   class ActorFactory {
   public:
 
-    /// 基于提供的 @a actor_description 创建一个 Actor。@a episode
-    /// 必须指向该演员所在的章节（或者说区域）
+    /// 基于提供的 @a actor_description 创建一个参与者。@a episode
+    /// 必须指向该参与者所在的章节（或者说区域）
     ///
     /// 不要直接调用这个类，请使用 Simulator::MakeActor。
     ///
