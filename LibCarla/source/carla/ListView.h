@@ -15,8 +15,6 @@
 namespace carla {
 
    /// 代表容器中一段元素的视图，基本上是一对起始和结束迭代器。
-  /// A view over a range of elements in a container. Basically a pair of begin
-  /// and end iterators.
   template<typename IT>
   class ListView {
   public:
