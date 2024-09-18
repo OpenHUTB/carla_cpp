@@ -4,17 +4,17 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 确保此头文件仅被包含一次
 
-#include "carla/Debug.h"
+#include "carla/Debug.h"  // 包含调试相关的头文件
 
-#include <type_traits>
-#include <iterator>
+#include <type_traits>  // 包含类型特征相关的头文件
+#include <iterator>  // 包含迭代器相关的头文件
+
 
 namespace carla {
 
-  /// A view over a range of elements in a container. Basically a pair of begin
-  /// and end iterators.
+   /// 代表容器中一段元素的视图，基本上是一对起始和结束迭代器。
   template<typename IT>
   class ListView {
   public:
