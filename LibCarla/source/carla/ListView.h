@@ -4,28 +4,28 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 确保此头文件仅被包含一次
 
-#include "carla/Debug.h"
+#include "carla/Debug.h"  // 包含调试相关的头文件
 
-#include <type_traits>
-#include <iterator>
+#include <type_traits>  // 包含类型特征相关的头文件
+#include <iterator>  // 包含迭代器相关的头文件
+
 
 namespace carla {
 
-  /// A view over a range of elements in a container. Basically a pair of begin
-  /// and end iterators.
+   /// 代表容器中一段元素的视图，基本上是一对起始和结束迭代器。
   template<typename IT>
   class ListView {
   public:
 
-    using iterator = IT;
-    using const_iterator = typename std::add_const<IT>::type;
-    using size_type = size_t;
-    using difference_type = typename std::iterator_traits<iterator>::difference_type;
-    using value_type = typename std::iterator_traits<iterator>::value_type;
-    using pointer = typename std::iterator_traits<iterator>::pointer;
-    using reference = typename std::iterator_traits<iterator>::reference;
+    using iterator = IT;  // 定义迭代器类型
+    using const_iterator = typename std::add_const<IT>::type;   // 定义常量迭代器类型
+    using size_type = size_t;   // 定义大小类型
+    using difference_type = typename std::iterator_traits<iterator>::difference_type;  // 定义差异类型
+    using value_type = typename std::iterator_traits<iterator>::value_type;   // 定义值类型
+    using pointer = typename std::iterator_traits<iterator>::pointer;  // 定义指针类型
+    using reference = typename std::iterator_traits<iterator>::reference;  // 定义引用类型
 
     explicit ListView(iterator begin, iterator end)
       : _begin(begin), _end(end) {

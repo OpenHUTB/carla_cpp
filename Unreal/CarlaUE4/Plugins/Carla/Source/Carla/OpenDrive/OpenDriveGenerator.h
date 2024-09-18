@@ -38,23 +38,22 @@ public:
 
   AOpenDriveGenerator(const FObjectInitializer &ObjectInitializer);
 
-  /// Set the OpenDRIVE information as string and generates the
-  /// queryable map structure.
+  /// 将OpenDRIVE信息设置为字符串，并生成可查询的映射结构。
   bool LoadOpenDrive(const FString &OpenDrive);
 
-  /// Get the OpenDRIVE information as string.
+  /// 以字符串形式获取OpenDRIVE信息。
   const FString &GetOpenDrive() const;
 
-  /// Checks if the OpenDrive has been loaded and it's valid.
+  /// 检查是否已加载OpenDrive及其有效性。
   bool IsOpenDriveValid() const;
 
-  /// Generates the road and sidewalk mesh based on the OpenDRIVE information.
+  /// 基于OpenDRIVE信息生成道路和人行道网格。
   void GenerateRoadMesh();
 
-  /// Generates pole meshes based on the OpenDRIVE information.
+  /// 基于OpenDRIVE信息生成杆网格。
   void GeneratePoles();
 
-  /// Generates spawn points along the road.
+  /// 沿道路生成生成生成点。
   void GenerateSpawnPoints();
 
   void GenerateAll();
@@ -63,8 +62,7 @@ protected:
 
   virtual void BeginPlay() override;
 
-  /// Determine the height where the spawners will be placed, relative to each
-  /// RoutePlanner
+  /// 确定产卵器相对于每个RoutePlanner的放置高度
   UPROPERTY(Category = "Spawners", EditAnywhere)
   float SpawnersHeight = 300.f;
 
