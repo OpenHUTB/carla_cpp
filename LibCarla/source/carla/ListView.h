@@ -4,17 +4,17 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  // È·±£´ËÍ·ÎÄ¼ş½ö±»°üº¬Ò»´Î
+#pragma once  // ç¡®ä¿æ­¤å¤´æ–‡ä»¶ä»…è¢«åŒ…å«ä¸€æ¬¡
 
-#include "carla/Debug.h"  // °üº¬µ÷ÊÔÏà¹ØµÄÍ·ÎÄ¼ş
+#include "carla/Debug.h"  // åŒ…å«è°ƒè¯•ç›¸å…³çš„å¤´æ–‡ä»¶
 
-#include <type_traits>  // °üº¬ÀàĞÍÌØÕ÷Ïà¹ØµÄÍ·ÎÄ¼ş
-#include <iterator>  // °üº¬µü´úÆ÷Ïà¹ØµÄÍ·ÎÄ¼ş
+#include <type_traits>  // åŒ…å«ç±»å‹ç‰¹å¾ç›¸å…³çš„å¤´æ–‡ä»¶
+#include <iterator>  // åŒ…å«è¿­ä»£å™¨ç›¸å…³çš„å¤´æ–‡ä»¶
 
 
 namespace carla {
 
-   /// ´ú±íÈİÆ÷ÖĞÒ»¶ÎÔªËØµÄÊÓÍ¼£¬»ù±¾ÉÏÊÇÒ»¶ÔÆğÊ¼ºÍ½áÊøµü´úÆ÷¡£
+   /// ä»£è¡¨å®¹å™¨ä¸­ä¸€æ®µå…ƒç´ çš„è§†å›¾ï¼ŒåŸºæœ¬ä¸Šæ˜¯ä¸€å¯¹èµ·å§‹å’Œç»“æŸè¿­ä»£å™¨ã€‚
   template<typename IT>
   class ListView {
   public:
