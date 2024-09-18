@@ -27,13 +27,14 @@ namespace carla {
     using pointer = typename std::iterator_traits<iterator>::pointer;  // 定义指针类型
     using reference = typename std::iterator_traits<iterator>::reference;  // 定义引用类型
 
+    // 构造函数，接受开始和结束迭代器
     explicit ListView(iterator begin, iterator end)
-      : _begin(begin), _end(end) {
-      DEBUG_ASSERT(std::distance(_begin, _end) >= 0);
+      : _begin(begin), _end(end) {  // 初始化成员变量
+      DEBUG_ASSERT(std::distance(_begin, _end) >= 0);  // 确保范围有效
     }
 
-    ListView(const ListView &) = default;
-    ListView &operator=(const ListView &) = delete;
+    ListView(const ListView &) = default;   // 默认复制构造函数
+    ListView &operator=(const ListView &) = delete;   // 删除赋值运算符
 
     iterator begin() {
       return _begin;
