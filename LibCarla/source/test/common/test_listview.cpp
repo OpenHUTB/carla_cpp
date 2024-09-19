@@ -1,4 +1,4 @@
-ï»¿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -57,7 +57,7 @@ TEST(listview, string) {
   for (char c : MakeListView(str)) {
     result += c;
   }
-  ASSERT_EQ(result, str);
+  ASSERT_EQ(result, str);// ¶ÏÑÔ½á¹û×Ö·û´®ÓëÔ­Ê¼×Ö·û´®ÏàµÈ
   char hello[6u] = {0};
   auto begin = std::begin(hello);
   // ±éÀúÓÉ×Ö·û´®µÄÒ»²¿·Ö´´½¨µÄ ListView ¶ÔÏó£¬½«×Ö·ûÖğ¸ö¸´ÖÆµ½×Ö·ûÊı×éÖĞ
