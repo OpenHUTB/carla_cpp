@@ -19,8 +19,8 @@ namespace detail {   // 定义命名空间 detail，用于实现细节
     MoveWrapper(MoveWrapper &&) = default;  // 移动构造函数，使用默认实现
     MoveWrapper& operator=(MoveWrapper &&) = default;  // 移动赋值运算符，使用默认实现
 
-    MoveWrapper(const MoveWrapper &);
-    MoveWrapper& operator=(const MoveWrapper &);
+    MoveWrapper(const MoveWrapper &);  // 声明复制构造函数（未定义）
+    MoveWrapper& operator=(const MoveWrapper &);  // 声明复制赋值运算符（未定义）
   };
 
 } // namespace detail
