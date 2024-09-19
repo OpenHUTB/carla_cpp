@@ -10,7 +10,7 @@
 
 namespace std {
 
-  class exception; // ÉùÃ÷ std ÃüÃû¿Õ¼äÖĞµÄ exception Àà
+  class exception; // å£°æ˜ std å‘½åç©ºé—´ä¸­çš„ exception ç±»
 
 } // namespace std
 
@@ -34,7 +34,7 @@ namespace carla {
 namespace carla {
 
   template <typename T>
-  [[ noreturn ]] void throw_exception(const T &e) { // Ä£°åº¯ÊıÉùÃ÷£¬½ÓÊÜÈÎºÎÀàĞÍµÄÒì³£
+  [[ noreturn ]] void throw_exception(const T &e) { // æ¨¡æ¿å‡½æ•°å£°æ˜ï¼Œæ¥å—ä»»ä½•ç±»å‹çš„å¼‚å¸¸
     throw e;
   }
 
