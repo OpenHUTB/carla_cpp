@@ -150,9 +150,5 @@ git rm -rf .
 [ylyl551](https://github.com/yly551)
 [zhemuqi](https://github.com/zhemuqi)
 [YL007-STRONG](https://github.com/YL007-STRONG)
-<<<<<<< HEAD
 [nigor-peter](https://github.com/nigor-peter)
-=======
-[nigor-peter](https://github.com/nigor-peter)
-[jiameixiao](https://github.com/jiameixiao)
->>>>>>> e03343ebd9017e8ea2a4173341cd12136ec08884
+
