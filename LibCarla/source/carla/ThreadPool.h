@@ -46,8 +46,8 @@ namespace carla {
     }
 
     /// 启动线程以异步运行任务。以特定数量启动
-    /// threads if @a worker_threads is provided, otherwise use all available
-    /// hardware concurrency.
+    /// 如果提供了@a worker_threads，则使用所有可用的线程
+    /// 硬件的并发性
     void AsyncRun(size_t worker_threads) {
       _workers.CreateThreads(worker_threads, [this]() { Run(); });
     }
