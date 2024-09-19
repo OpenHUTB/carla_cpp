@@ -4,20 +4,20 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  // È·±£´ËÍ·ÎÄ¼ş½ö±»°üº¬Ò»´Î
+#pragma once  // ç¡®ä¿æ­¤å¤´æ–‡ä»¶ä»…è¢«åŒ…å«ä¸€æ¬¡
 
-#include <type_traits>  // °üº¬ÀàĞÍÌØÕ÷Ïà¹ØµÄÍ·ÎÄ¼ş£¬Ìá¹©ÀàĞÍÌØĞÔÖ§³Ö
-#include <utility>  // °üº¬Í¨ÓÃ¹¤¾ßº¯Êı£¬±ÈÈç std::move
+#include <type_traits>  // åŒ…å«ç±»å‹ç‰¹å¾ç›¸å…³çš„å¤´æ–‡ä»¶ï¼Œæä¾›ç±»å‹ç‰¹æ€§æ”¯æŒ
+#include <utility>  // åŒ…å«é€šç”¨å·¥å…·å‡½æ•°ï¼Œæ¯”å¦‚ std::move
 
-namespace carla {  // ¶¨ÒåÃüÃû¿Õ¼ä carla
-namespace detail {   // ¶¨ÒåÃüÃû¿Õ¼ä detail£¬ÓÃÓÚÊµÏÖÏ¸½Ú
+namespace carla {  // å®šä¹‰å‘½åç©ºé—´ carla
+namespace detail {   // å®šä¹‰å‘½åç©ºé—´ detailï¼Œç”¨äºå®ç°ç»†èŠ‚
 
-  template <typename FunctorT>
-  struct MoveWrapper : FunctorT {
-    MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}
+  template <typename FunctorT>  // å®šä¹‰ä¸€ä¸ªæ¨¡æ¿ç»“æ„ä½“ï¼Œæ¥å—ä»»æ„ç±»å‹ FunctorT
+  struct MoveWrapper : FunctorT {  // MoveWrapper ç»§æ‰¿è‡ª FunctorT
+    MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}  // æ„é€ å‡½æ•°ï¼Œç§»åŠ¨æ„é€  FunctorT
 
-    MoveWrapper(MoveWrapper &&) = default;
-    MoveWrapper& operator=(MoveWrapper &&) = default;
+    MoveWrapper(MoveWrapper &&) = default;  // ç§»åŠ¨æ„é€ å‡½æ•°ï¼Œä½¿ç”¨é»˜è®¤å®ç°
+    MoveWrapper& operator=(MoveWrapper &&) = default;  // ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦ï¼Œä½¿ç”¨é»˜è®¤å®ç°
 
     MoveWrapper(const MoveWrapper &);
     MoveWrapper& operator=(const MoveWrapper &);
