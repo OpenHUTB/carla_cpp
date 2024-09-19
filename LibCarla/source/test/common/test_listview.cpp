@@ -57,7 +57,8 @@ TEST(listview, string) {
   for (char c : MakeListView(str)) {
     result += c;
   }
-  ASSERT_EQ(result, str);// 断言结果字符串与原始字符串相等
+  // 断言结果字符串与原始字符串相等 
+  ASSERT_EQ(result, str); 
   char hello[6u] = {0};
   auto begin = std::begin(hello);
   // 遍历由字符串的一部分创建的 ListView 对象，将字符逐个复制到字符数组中
