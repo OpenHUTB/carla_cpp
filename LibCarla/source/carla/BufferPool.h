@@ -19,21 +19,18 @@
 
 #include <memory>
 
-namespace carla {
+namespace carla {    // ���� carla �����ռ�
 
-  /// 一个缓冲区池。 从这个池中弹出的缓冲区在销毁时会自动返回到池中，
-  /// 这样分配的内存可以被重用。
-  /// @warning 缓冲区仅通过增长来调整其大小，除非明确地清除它们，否则不会缩小。
-  /// 分配的内存在此池被销毁时才会被删除。
+  
 
   class BufferPool : public std::enable_shared_from_this<BufferPool> {
   public:
 
-    BufferPool() = default;
+    BufferPool() = default;    // Ĭ�Ϲ��캯��
 
     explicit BufferPool(size_t estimated_size) : _queue(estimated_size) {}
 
-  /// 从队列中弹出一个缓冲区，如果队列为空，则创建一个新的缓冲区。
+  
     Buffer Pop() {
       Buffer item;
       _queue.try_dequeue(item); // we don't care if it fails.
