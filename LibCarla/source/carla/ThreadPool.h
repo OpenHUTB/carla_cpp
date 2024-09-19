@@ -45,7 +45,7 @@ namespace carla {
       return future;
     }
 
-    /// Launch threads to run tasks asynchronously. Launch specific number of
+    /// 启动线程以异步运行任务。以特定数量启动
     /// threads if @a worker_threads is provided, otherwise use all available
     /// hardware concurrency.
     void AsyncRun(size_t worker_threads) {

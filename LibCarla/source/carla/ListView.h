@@ -19,21 +19,22 @@ namespace carla {
   class ListView {
   public:
 
-    using iterator = IT;
-    using const_iterator = typename std::add_const<IT>::type;
-    using size_type = size_t;
-    using difference_type = typename std::iterator_traits<iterator>::difference_type;
-    using value_type = typename std::iterator_traits<iterator>::value_type;
-    using pointer = typename std::iterator_traits<iterator>::pointer;
-    using reference = typename std::iterator_traits<iterator>::reference;
+    using iterator = IT;  // 定义迭代器类型
+    using const_iterator = typename std::add_const<IT>::type;   // 定义常量迭代器类型
+    using size_type = size_t;   // 定义大小类型
+    using difference_type = typename std::iterator_traits<iterator>::difference_type;  // 定义差异类型
+    using value_type = typename std::iterator_traits<iterator>::value_type;   // 定义值类型
+    using pointer = typename std::iterator_traits<iterator>::pointer;  // 定义指针类型
+    using reference = typename std::iterator_traits<iterator>::reference;  // 定义引用类型
 
+    // 构造函数，接受开始和结束迭代器
     explicit ListView(iterator begin, iterator end)
-      : _begin(begin), _end(end) {
-      DEBUG_ASSERT(std::distance(_begin, _end) >= 0);
+      : _begin(begin), _end(end) {  // 初始化成员变量
+      DEBUG_ASSERT(std::distance(_begin, _end) >= 0);  // 确保范围有效
     }
 
-    ListView(const ListView &) = default;
-    ListView &operator=(const ListView &) = delete;
+    ListView(const ListView &) = default;   // 默认复制构造函数
+    ListView &operator=(const ListView &) = delete;   // 删除赋值运算符
 
     iterator begin() {
       return _begin;
