@@ -57,33 +57,33 @@ namespace carla {
       return _end;
     }
 
-    const_iterator cend() const {
+    const_iterator cend() const {  // 返回常量迭代器的结束位置（常量版本）
       return _end;
     }
 
-    bool empty() const {
-      return _begin == _end;
+    bool empty() const {  // 检查视图是否为空
+      return _begin == _end;  // 如果开始和结束迭代器相等则为空
     }
 
-    size_type size() const {
-      return static_cast<size_t>(std::distance(begin(), end()));
+    size_type size() const {   // 返回视图中的元素数量
+      return static_cast<size_t>(std::distance(begin(), end()));  // 计算开始和结束之间的距离
     }
 
   private:
 
-    const iterator _begin;
+    const iterator _begin;  // 成员变量，表示开始迭代器
 
-    const iterator _end;
+    const iterator _end;  // 成员变量，表示结束迭代器
   };
 
-  template <typename Iterator>
-  static inline auto MakeListView(Iterator begin, Iterator end) {
-    return ListView<Iterator>(begin, end);
+  template <typename Iterator>  // 模板函数，接受迭代器类型
+  static inline auto MakeListView(Iterator begin, Iterator end) {   // 创建 ListView 实例
+    return ListView<Iterator>(begin, end);  // 返回新的 ListView
   }
 
-  template <typename Container>
-  static inline auto MakeListView(Container &c) {
-    return MakeListView(std::begin(c), std::end(c));
+  template <typename Container> // 模板函数，接受容器类型 
+  static inline auto MakeListView(Container &c) {  // 创建 ListView 实例
+    return MakeListView(std::begin(c), std::end(c));   // 使用容器的 begin 和 end 创建 ListView
   }
 
 } // namespace carla
