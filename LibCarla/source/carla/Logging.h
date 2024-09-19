@@ -4,10 +4,10 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once   // 防止头文件被重复包含
 
-#include "carla/Platform.h"
-
+#include "carla/Platform.h"   // 包含Carla平台的头文件
+// 定义日志级别的宏，用于控制日志输出的详细程度  
 #define LIBCARLA_LOG_LEVEL_DEBUG     10
 #define LIBCARLA_LOG_LEVEL_INFO      20
 #define LIBCARLA_LOG_LEVEL_WARNING   30
