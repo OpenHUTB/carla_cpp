@@ -9,8 +9,8 @@
 #include <type_traits>  // 包含类型特性的库，尽管在这个例子中未直接使用，但可能是为了未来扩展或与其他模板特性兼容
 #include <utility>   // 包含实用工具函数，如std::move，用于支持移动语义  
 
-namespace carla {  // ���������ռ� carla
-namespace detail {   // ���������ռ� detail������ʵ��ϸ��
+namespace carla {  // 定义一个名为carla的命名空间
+namespace detail {   // 在carla命名空间内部，定义一个名为detail的子命名空间
 
   template <typename FunctorT>
   struct MoveWrapper : FunctorT {
