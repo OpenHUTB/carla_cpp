@@ -4,20 +4,20 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 确保此头文件仅被包含一次
 
-#include <type_traits>
-#include <utility>
+#include <type_traits>  // 包含类型特征相关的头文件，提供类型特性支持
+#include <utility>  // 包含通用工具函数，比如 std::move
 
-namespace carla {
-namespace detail {
+namespace carla {  // 定义命名空间 carla
+namespace detail {   // 定义命名空间 detail，用于实现细节
 
-  template <typename FunctorT>
-  struct MoveWrapper : FunctorT {
-    MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}
+  template <typename FunctorT>  // 定义一个模板结构体，接受任意类型 FunctorT
+  struct MoveWrapper : FunctorT {  // MoveWrapper 继承自 FunctorT
+    MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}  // 构造函数，移动构造 FunctorT
 
-    MoveWrapper(MoveWrapper &&) = default;
-    MoveWrapper& operator=(MoveWrapper &&) = default;
+    MoveWrapper(MoveWrapper &&) = default;  // 移动构造函数，使用默认实现
+    MoveWrapper& operator=(MoveWrapper &&) = default;  // 移动赋值运算符，使用默认实现
 
     MoveWrapper(const MoveWrapper &);
     MoveWrapper& operator=(const MoveWrapper &);

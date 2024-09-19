@@ -10,21 +10,20 @@
 
 namespace std {
 
-  class exception;
+  class exception; // å£°æ˜ std å‘½åç©ºé—´ä¸­çš„ exception ç±»
 
 } // namespace std
 
 namespace carla {
 
-  /// User define function, similar to Boost throw_exception.
-  ///
-  /// @important Boost exceptions are also routed to this function.
-  ///
-  /// When compiled with LIBCARLA_NO_EXCEPTIONS, this function is left undefined
-  /// in LibCarla, and the modules using LibCarla are expected to supply an
-  /// appropriate definition. Callers of throw_exception are allowed to assume
-  /// that the function never returns; therefore, if the user-defined
-  /// throw_exception returns, the behavior is undefined.
+       /// ÓÃ»§×Ô¶¨ÒåµÄº¯Êı£¬ÀàËÆÓÚ Boost µÄ throw_exception¡£
+      ///
+      /// @important Boost Òì³£Ò²»áÂ·ÓÉµ½´Ëº¯Êı¡£
+      ///
+      /// µ±Ê¹ÓÃ LIBCARLA_NO_EXCEPTIONS ±àÒëÊ±£¬´Ëº¯ÊıÔÚ LibCarla ÖĞÎ´¶¨Òå£¬
+      /// Ê¹ÓÃ LibCarla µÄÄ£¿éĞèÒªÌá¹©ºÏÊÊµÄ¶¨Òå¡£µ÷ÓÃ throw_exception µÄ´úÂë
+      /// ¿ÉÒÔ¼ÙÉè´Ëº¯Êı²»»á·µ»Ø£»Òò´Ë£¬Èç¹ûÓÃ»§¶¨ÒåµÄ throw_exception ·µ»Ø£¬
+      /// ĞĞÎªÊÇÎ´¶¨ÒåµÄ¡£
   [[ noreturn ]] void throw_exception(const std::exception &e);
 
 } // namespace carla
@@ -34,7 +33,7 @@ namespace carla {
 namespace carla {
 
   template <typename T>
-  [[ noreturn ]] void throw_exception(const T &e) {
+  [[ noreturn ]] void throw_exception(const T &e) { // æ¨¡æ¿å‡½æ•°å£°æ˜ï¼Œæ¥å—ä»»ä½•ç±»å‹çš„å¼‚å¸¸
     throw e;
   }
 
