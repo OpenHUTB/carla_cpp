@@ -36,23 +36,24 @@ namespace carla {
     ListView(const ListView &) = default;   // 默认复制构造函数
     ListView &operator=(const ListView &) = delete;   // 删除赋值运算符
 
-    iterator begin() {
+    iterator begin() {  // 返回迭代器的开始位置
       return _begin;
     }
 
-    const_iterator begin() const {
+    const_iterator begin() const {  // 返回常量迭代器的开始位置
       return _begin;
     }
 
-    const_iterator cbegin() const {
+    const_iterator cbegin() const {   // 返回常量迭代器的开始位置（常量版本）
       return _begin;
     }
 
-    iterator end() {
+    iterator end() {  // 返回迭代器的结束位置
       return _end;
     }
 
-    const_iterator end() const {
+    const_iterator end() const {  // 返回常量迭代器的结束位置
+
       return _end;
     }
 
