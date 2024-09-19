@@ -23,8 +23,8 @@ static void TestSequence(carla::ListView<Iterator> view) {
   int count = 0;
  // 遍历 ListView 中的元素
   for (auto &&x : view) {
-  
-    ASSERT_EQ(x, count);{// 断言当前元素与计数器的值相等
+  // 断言当前元素与计数器的值相等
+    ASSERT_EQ(x, count);{
    
     ++count;// 增加计数器的值
   }
