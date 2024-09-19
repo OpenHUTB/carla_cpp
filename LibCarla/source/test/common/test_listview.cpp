@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+ï»¿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -15,18 +15,18 @@
 #include <string>
 #include <vector>
 
-using carla::MakeListView;// Ê¹ÓÃÃüÃû¿Õ¼ä£¬¼ò»¯¶Ô Carla ÖĞµÄ MakeListView º¯ÊıµÄµ÷ÓÃ
+using carla::MakeListView;// ä½¿ç”¨å‘½åç©ºé—´ï¼Œç®€åŒ–å¯¹ Carla ä¸­çš„ MakeListView å‡½æ•°çš„è°ƒç”¨
 
 template <typename Iterator>
 static void TestSequence(carla::ListView<Iterator> view) {
 	
   int count = 0;
- // ±éÀú ListView ÖĞµÄÔªËØ
+ // éå† ListView ä¸­çš„å…ƒç´ 
   for (auto &&x : view) {
   
-    ASSERT_EQ(x, count);// ¶ÏÑÔµ±Ç°ÔªËØÓë¼ÆÊıÆ÷µÄÖµÏàµÈ
+    ASSERT_EQ(x, count);// æ–­è¨€å½“å‰å…ƒç´ ä¸è®¡æ•°å™¨çš„å€¼ç›¸ç­‰
    
-    ++count;// Ôö¼Ó¼ÆÊıÆ÷µÄÖµ
+    ++count;// å¢åŠ è®¡æ•°å™¨çš„å€¼
   }
   
   ASSERT_EQ(count, 6);
@@ -35,15 +35,15 @@ static void TestSequence(carla::ListView<Iterator> view) {
 TEST(listview, sequence) {
   int array[] = {0, 1, 2, 3, 4, 5};
   
-  TestSequence(MakeListView(array));// Ê¹ÓÃ MakeListView ´´½¨Ò»¸ö ListView ¶ÔÏó£¬²¢´«ÈëÕûÊıÊı×é½øĞĞ²âÊÔ
+  TestSequence(MakeListView(array));// ä½¿ç”¨ MakeListView åˆ›å»ºä¸€ä¸ª ListView å¯¹è±¡ï¼Œå¹¶ä¼ å…¥æ•´æ•°æ•°ç»„è¿›è¡Œæµ‹è¯•
   
   std::array<int, 6u> std_array = {0, 1, 2, 3, 4, 5};
   
-  TestSequence(MakeListView(std_array)); // Ê¹ÓÃ MakeListView ´´½¨Ò»¸ö ListView ¶ÔÏó£¬²¢´«Èë std::array ÈİÆ÷½øĞĞ²âÊÔ
+  TestSequence(MakeListView(std_array)); // ä½¿ç”¨ MakeListView åˆ›å»ºä¸€ä¸ª ListView å¯¹è±¡ï¼Œå¹¶ä¼ å…¥ std::array å®¹å™¨è¿›è¡Œæµ‹è¯•
   
   std::vector<int> vector = {0, 1, 2, 3, 4, 5};
   
-  TestSequence(MakeListView(vector));// Ê¹ÓÃ MakeListView ´´½¨Ò»¸ö ListView ¶ÔÏó£¬²¢´«Èë std::vector ÈİÆ÷½øĞĞ²âÊÔ
+  TestSequence(MakeListView(vector));// ä½¿ç”¨ MakeListView åˆ›å»ºä¸€ä¸ª ListView å¯¹è±¡ï¼Œå¹¶ä¼ å…¥ std::vector å®¹å™¨è¿›è¡Œæµ‹è¯•
   std::list<int> list = {0, 1, 2, 3, 4, 5};
   TestSequence(MakeListView(list));
   std::set<int> set = {0, 1, 2, 3, 4, 5};
@@ -62,11 +62,11 @@ TEST(listview, string) {
   ASSERT_EQ(result, str);
   char hello[6u] = {0};
   auto begin = std::begin(hello);
-  // ±éÀúÓÉ×Ö·û´®µÄÒ»²¿·Ö´´½¨µÄ ListView ¶ÔÏó£¬½«×Ö·ûÖğ¸ö¸´ÖÆµ½×Ö·ûÊı×éÖĞ
+  // éå†ç”±å­—ç¬¦ä¸²çš„ä¸€éƒ¨åˆ†åˆ›å»ºçš„ ListView å¯¹è±¡ï¼Œå°†å­—ç¬¦é€ä¸ªå¤åˆ¶åˆ°å­—ç¬¦æ•°ç»„ä¸­
   for (char c : MakeListView(str.begin(), str.begin() + 5u)) {
     *begin = c;
     
     ++begin;
   }
-  ASSERT_EQ(std::strcmp(hello, "Hello"), 0); // ¶ÏÑÔ×Ö·ûÊı×éÖĞµÄÄÚÈİÓë "Hello" ÏàµÈ
+  ASSERT_EQ(std::strcmp(hello, "Hello"), 0); // æ–­è¨€å­—ç¬¦æ•°ç»„ä¸­çš„å†…å®¹ä¸ "Hello" ç›¸ç­‰
 }
