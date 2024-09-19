@@ -76,14 +76,14 @@ namespace carla {
     const iterator _end;  // 成员变量，表示结束迭代器
   };
 
-  template <typename Iterator>
-  static inline auto MakeListView(Iterator begin, Iterator end) {
-    return ListView<Iterator>(begin, end);
+  template <typename Iterator>  // 模板函数，接受迭代器类型
+  static inline auto MakeListView(Iterator begin, Iterator end) {   // 创建 ListView 实例
+    return ListView<Iterator>(begin, end);  // 返回新的 ListView
   }
 
-  template <typename Container>
-  static inline auto MakeListView(Container &c) {
-    return MakeListView(std::begin(c), std::end(c));
+  template <typename Container> // 模板函数，接受容器类型 
+  static inline auto MakeListView(Container &c) {  // 创建 ListView 实例
+    return MakeListView(std::begin(c), std::end(c));   // 使用容器的 begin 和 end 创建 ListView
   }
 
 } // namespace carla
