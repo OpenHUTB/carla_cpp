@@ -43,10 +43,10 @@ namespace detail {   // 定义命名空间 detail，用于实现细节
   /// actually copied it would result in a link error.
   ///
   /// @see https://stackoverflow.com/a/22891509.
-  template <typename FunctorT>
-  auto MoveHandler(FunctorT &&func) {
-    using F = typename std::decay<FunctorT>::type;
-    return detail::MoveWrapper<F>{std::move(func)};
+  template <typename FunctorT>  // 定义一个模板函数，接受任意类型 FunctorT
+  auto MoveHandler(FunctorT &&func) {   // MoveHandler 函数返回一个移动处理器
+    using F = typename std::decay<FunctorT>::type;  // 使用 std::decay 处理 FunctorT 的类型
+    return detail::MoveWrapper<F>{std::move(func)};   // 返回一个 MoveWrapper 实例，移动传入的 func
   }
 
 } // namespace carla
