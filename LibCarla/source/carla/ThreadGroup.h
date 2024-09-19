@@ -40,19 +40,20 @@ namespace carla {
       }
     }
 
+    // 等待所有线程完成
     void JoinAll() {
       for (auto &thread : _threads) {
         DEBUG_ASSERT_NE(thread.get_id(), std::this_thread::get_id());
-        if (thread.joinable()) {
-          thread.join();
+        if (thread.joinable()) { // 检查线程是否可加入
+          thread.join(); // 等待线程完成
         }
       }
-      _threads.clear();
+      _threads.clear();  // 清除线程容器
     }
 
   private:
 
-    std::vector<std::thread> _threads;
+    std::vector<std::thread> _threads; // 存储线程的容器
   };
 
 } 
