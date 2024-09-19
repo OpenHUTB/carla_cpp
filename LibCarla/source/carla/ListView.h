@@ -57,23 +57,23 @@ namespace carla {
       return _end;
     }
 
-    const_iterator cend() const {
+    const_iterator cend() const {  // 返回常量迭代器的结束位置（常量版本）
       return _end;
     }
 
-    bool empty() const {
-      return _begin == _end;
+    bool empty() const {  // 检查视图是否为空
+      return _begin == _end;  // 如果开始和结束迭代器相等则为空
     }
 
-    size_type size() const {
-      return static_cast<size_t>(std::distance(begin(), end()));
+    size_type size() const {   // 返回视图中的元素数量
+      return static_cast<size_t>(std::distance(begin(), end()));  // 计算开始和结束之间的距离
     }
 
   private:
 
-    const iterator _begin;
+    const iterator _begin;  // 成员变量，表示开始迭代器
 
-    const iterator _end;
+    const iterator _end;  // 成员变量，表示结束迭代器
   };
 
   template <typename Iterator>
