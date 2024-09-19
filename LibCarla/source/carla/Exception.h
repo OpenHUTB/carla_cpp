@@ -16,15 +16,14 @@ namespace std {
 
 namespace carla {
 
-  /// User define function, similar to Boost throw_exception.
-  ///
-  /// @important Boost exceptions are also routed to this function.
-  ///
-  /// When compiled with LIBCARLA_NO_EXCEPTIONS, this function is left undefined
-  /// in LibCarla, and the modules using LibCarla are expected to supply an
-  /// appropriate definition. Callers of throw_exception are allowed to assume
-  /// that the function never returns; therefore, if the user-defined
-  /// throw_exception returns, the behavior is undefined.
+       /// 用户自定义的函数，类似于 Boost 的 throw_exception。
+      ///
+      /// @important Boost 异常也会路由到此函数。
+      ///
+      /// 当使用 LIBCARLA_NO_EXCEPTIONS 编译时，此函数在 LibCarla 中未定义，
+      /// 使用 LibCarla 的模块需要提供合适的定义。调用 throw_exception 的代码
+      /// 可以假设此函数不会返回；因此，如果用户定义的 throw_exception 返回，
+      /// 行为是未定义的。
   [[ noreturn ]] void throw_exception(const std::exception &e);
 
 } // namespace carla
