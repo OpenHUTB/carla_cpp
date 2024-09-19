@@ -15,7 +15,7 @@ namespace carla {// ¶¨ÒåÃüÃû¿Õ¼ä carla
 
   template <typename T0, typename T1, typename... Ts>
   struct are_same<T0, T1, Ts...> {
-    static constexpr bool value = std::is_same<T0, T1>::value && are_same<T0, Ts...>::value;//å®šä¹‰ä¸€ä¸ªé™æ€å¸¸é‡å¸ƒå°”æˆå‘˜å˜é‡ 
+    static constexpr bool value = std::is_same<T0, T1>::value && are_same<T0, Ts...>::value;/// ¼ì²é T0 ºÍ T1 ÊÇ·ñÏàÍ¬£¬²¢µİ¹é¼ì²é Ts...
   };
 
   template <typename T0, typename T1>
