@@ -38,31 +38,31 @@ namespace client {
     }
 
     /// Check if an actor is present in this snapshot.
-	// 检查一个演员是否在这个快照中存在
+	// 检查一个参与者是否在这个快照中存在
     bool Contains(ActorId actor_id) const {
       return _state->ContainsActorSnapshot(actor_id);
     }
 
     /// Find an ActorSnapshot by id.
-	// 通过 ID 查找一个演员快照，如果找到则返回 boost::optional<ActorSnapshot>，否则返回 boost::none
+	// 通过 ID 查找一个参与者的快照，如果找到则返回 boost::optional<ActorSnapshot>，否则返回 boost::none
     boost::optional<ActorSnapshot> Find(ActorId actor_id) const {
       return _state->GetActorSnapshotIfPresent(actor_id);
     }
 
     /// Return number of ActorSnapshots present in this WorldSnapshot.
-	// 返回这个世界快照中演员快照的数量
+	// 返回这个世界快照中参与者快照的数量
     size_t size() const {
       return _state->size();
     }
 
     /// Return a begin iterator to the list of ActorSnapshots.
-	// 返回指向演员快照列表的开始迭代器
+	// 返回指向参与者快照列表的开始迭代器
     auto begin() const {
       return _state->begin();
     }
 
     /// Return a past-the-end iterator to the list of ActorSnapshots.
-	// 返回指向演员快照列表的结束迭代器
+	// 返回指向参与者快照列表的结束迭代器
     auto end() const {
       return _state->end();
     }
