@@ -14,36 +14,36 @@
 #include <set>
 #include <string>
 #include <vector>
-// ä½¿ç”¨å‘½åç©ºé—´ï¼Œç®€åŒ–å¯¹ Carla åº“ä¸­ MakeListView å‡½æ•°çš„è°ƒç”¨
-using carla::MakeListView;
-// å®šä¹‰ä¸€ä¸ªæ¨¡æ¿å‡½æ•°ï¼Œç”¨äºæµ‹è¯•ä¸åŒè¿­ä»£å™¨ç±»å‹çš„åºåˆ—å®¹å™¨
+
+using carla::MakeListView;// Ê¹ÓÃÃüÃû¿Õ¼ä£¬¼ò»¯¶Ô Carla ÖĞµÄ MakeListView º¯ÊıµÄµ÷ÓÃ
+
 template <typename Iterator>
 static void TestSequence(carla::ListView<Iterator> view) {
-	// åˆå§‹åŒ–è®¡æ•°å™¨
+	
   int count = 0;
-  // éå† ListView ä¸­çš„å…ƒç´ 
+ // ±éÀú ListView ÖĞµÄÔªËØ
   for (auto &&x : view) {
-  // æ–­è¨€ï¼Œæ£€æŸ¥å½“å‰å…ƒç´ çš„å€¼æ˜¯å¦ä¸è®¡æ•°å™¨çš„å€¼ç›¸ç­‰
-    ASSERT_EQ(x, count);
-    // å¢åŠ è®¡æ•°å™¨çš„å€¼
-    ++count;
+  
+    ASSERT_EQ(x, count);// ¶ÏÑÔµ±Ç°ÔªËØÓë¼ÆÊıÆ÷µÄÖµÏàµÈ
+   
+    ++count;// Ôö¼Ó¼ÆÊıÆ÷µÄÖµ
   }
-  // æ–­è¨€ï¼Œæ£€æŸ¥è®¡æ•°å™¨æ˜¯å¦ç­‰äº 6ï¼Œä»¥ç¡®ä¿ ListView ä¸­æœ‰ 6 ä¸ªå…ƒç´ 
+  
   ASSERT_EQ(count, 6);
 }
 
 TEST(listview, sequence) {
-  int array[] = {0, 1, 2, 3, 4, 5};// å®šä¹‰ä¸€ä¸ªæ•´æ•°æ•°ç»„ï¼Œå¹¶åˆå§‹åŒ–åŒ…å« 0 åˆ° 5 çš„æ•´æ•°
+  int array[] = {0, 1, 2, 3, 4, 5};
   
-  TestSequence(MakeListView(array));// ä½¿ç”¨ MakeListView åˆ›å»ºä¸€ä¸ª ListView å¯¹è±¡ï¼Œå¹¶ä¼ å…¥æ•´æ•°æ•°ç»„è¿›è¡Œæµ‹è¯•
+  TestSequence(MakeListView(array));// Ê¹ÓÃ MakeListView ´´½¨Ò»¸ö ListView ¶ÔÏó£¬²¢´«ÈëÕûÊıÊı×é½øĞĞ²âÊÔ
   
-  std::array<int, 6u> std_array = {0, 1, 2, 3, 4, 5};// å®šä¹‰ä¸€ä¸ª std::array å®¹å™¨ï¼Œå¹¶åˆå§‹åŒ–åŒ…å« 0 åˆ° 5 çš„æ•´æ•°
+  std::array<int, 6u> std_array = {0, 1, 2, 3, 4, 5};
   
-  TestSequence(MakeListView(std_array));// ä½¿ç”¨ MakeListView åˆ›å»ºä¸€ä¸ª ListView å¯¹è±¡ï¼Œå¹¶ä¼ å…¥ std::array å®¹å™¨è¿›è¡Œæµ‹è¯•
+  TestSequence(MakeListView(std_array)); // Ê¹ÓÃ MakeListView ´´½¨Ò»¸ö ListView ¶ÔÏó£¬²¢´«Èë std::array ÈİÆ÷½øĞĞ²âÊÔ
   
-  std::vector<int> vector = {0, 1, 2, 3, 4, 5};// å®šä¹‰ä¸€ä¸ª std::vector å®¹å™¨ï¼Œå¹¶åˆå§‹åŒ–åŒ…å« 0 åˆ° 5 çš„æ•´æ•°
+  std::vector<int> vector = {0, 1, 2, 3, 4, 5};
   
-  TestSequence(MakeListView(vector));// ä½¿ç”¨ MakeListView åˆ›å»ºä¸€ä¸ª ListView å¯¹è±¡ï¼Œå¹¶ä¼ å…¥ std::vector å®¹å™¨è¿›è¡Œæµ‹è¯•
+  TestSequence(MakeListView(vector));// Ê¹ÓÃ MakeListView ´´½¨Ò»¸ö ListView ¶ÔÏó£¬²¢´«Èë std::vector ÈİÆ÷½øĞĞ²âÊÔ
   std::list<int> list = {0, 1, 2, 3, 4, 5};
   TestSequence(MakeListView(list));
   std::set<int> set = {0, 1, 2, 3, 4, 5};
@@ -51,22 +51,22 @@ TEST(listview, sequence) {
 }
 
 TEST(listview, string) {
-  std::string str = "Hello list view!";// å®šä¹‰ä¸€ä¸ª std::string å¯¹è±¡å¹¶åˆå§‹åŒ–
+  std::string str = "Hello list view!";
   
-  std::string result;// å®šä¹‰ä¸€ä¸ªç©ºçš„ std::string å¯¹è±¡ç”¨äºå­˜å‚¨ç»“æœ
+  std::string result;
   
-  // éå† ListView å¯¹è±¡ä¸­çš„å­—ç¬¦ï¼ŒListView å¯¹è±¡ç”±å­—ç¬¦ä¸²åˆ›å»º
+  
   for (char c : MakeListView(str)) {
     result += c;
   }
   ASSERT_EQ(result, str);
   char hello[6u] = {0};
   auto begin = std::begin(hello);
-  // éå† ListView å¯¹è±¡ä¸­çš„å­—ç¬¦ï¼ŒListView å¯¹è±¡ç”±å­—ç¬¦ä¸²çš„ä¸€éƒ¨åˆ†åˆ›å»º
+  // ±éÀúÓÉ×Ö·û´®µÄÒ»²¿·Ö´´½¨µÄ ListView ¶ÔÏó£¬½«×Ö·ûÖğ¸ö¸´ÖÆµ½×Ö·ûÊı×éÖĞ
   for (char c : MakeListView(str.begin(), str.begin() + 5u)) {
     *begin = c;
     
-    ++begin;// ç§»åŠ¨å­—ç¬¦æ•°ç»„çš„è¿­ä»£å™¨
+    ++begin;
   }
-  ASSERT_EQ(std::strcmp(hello, "Hello"), 0);
+  ASSERT_EQ(std::strcmp(hello, "Hello"), 0); // ¶ÏÑÔ×Ö·ûÊı×éÖĞµÄÄÚÈİÓë "Hello" ÏàµÈ
 }
