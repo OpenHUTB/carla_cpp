@@ -31,7 +31,6 @@ static void TestSequence(carla::ListView<Iterator> view) {
   
   ASSERT_EQ(count, 6);
 }
-
 TEST(listview, sequence) {
   int array[] = {0, 1, 2, 3, 4, 5};
   
@@ -49,7 +48,6 @@ TEST(listview, sequence) {
   std::set<int> set = {0, 1, 2, 3, 4, 5};
   TestSequence(MakeListView(set));
 }
-
 TEST(listview, string) {
   std::string str = "Hello list view!";
   
