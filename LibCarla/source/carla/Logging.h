@@ -17,11 +17,11 @@
 
 #ifndef LIBCARLA_LOG_LEVEL
 #  ifdef NDEBUG
-#    define LIBCARLA_LOG_LEVEL LIBCARLA_LOG_LEVEL_WARNING
+#    define LIBCARLA_LOG_LEVEL LIBCARLA_LOG_LEVEL_WARNING  // 如果没有定义NDEBUG，则设置为警告级别
 #  else
-#    define LIBCARLA_LOG_LEVEL LIBCARLA_LOG_LEVEL_INFO
+#    define LIBCARLA_LOG_LEVEL LIBCARLA_LOG_LEVEL_INFO  // 如果没有定义NDEBUG且没有指定日志级别，则设置为信息级别   
 #  endif // NDEBUG
-#endif // LIBCARLA_LOG_LEVEL
+#endif // 结束对 LIBCARLA_LOG_LEVEL 是否未定义的检查
 
 // The following log functions are available, they are only active if
 // LIBCARLA_LOG_LEVEL is greater equal the function's log level.
