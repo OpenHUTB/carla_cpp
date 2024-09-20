@@ -80,9 +80,9 @@ namespace detail {
   // ===========================================================================
   // -- RecurrentSharedFuture implementation -----------------------------------
   // ===========================================================================
-//����detail�����ռ䣬���ڷ�װʵ��ϸ�� 
+// 定义了一个名为 detail 的命名空间
 namespace detail {
-//һЩ�ڲ�ʹ�õĺ������� 
+//// 定义一个线程局部的静态常量字符变量，用于标识或标记当前线程，其值默认为空字符（'\0'）
   static thread_local const char thread_tag{};
 
   class SharedException : public std::exception {
