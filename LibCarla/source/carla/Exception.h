@@ -10,7 +10,7 @@
 
 namespace std {
 
-  class exception; // 声明 std 命名空间中的 exception 类
+  class exception; // 声明 std 命名空间中的 exception �?
 
 } // namespace std
 

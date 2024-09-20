@@ -50,17 +50,29 @@ if (LIBCARLA_BUILD_RELEASE)
 
 endif()
 
+# 检查是否定义了LIBCARLA_BUILD_DEBUG变量，并且其值为真（通常是通过在CMake命令行中设置-DLIBCARLA_BUILD_DEBUG=ON或者在CMakeLists.txt中提前定义）
 if (LIBCARLA_BUILD_DEBUG)
 
+# 添加一个静态库目标，名为carla_pytorch_debug，它由变量libcarla_pytorch_sources指定的源文件构建而成  
+# 这些源文件可能包含与PyTorch集成的CARLA相关代码
   add_library(carla_pytorch_debug STATIC ${libcarla_pytorch_sources})
-
+  
+  # 为carla_pytorch_debug目标设置包含目录。这些目录是编译时查找头文件所需的  
+  # BOOST_INCLUDE_PATH和RPCLIB_INCLUDE_PATH分别包含了Boost和RpcLib库的头文件路径  
+  # SYSTEM关键字表示这些路径中的文件被视为系统文件，这可能会影响编译器的警告和错误消息  
+  # PRIVATE表示这些包含目录仅对carla_pytorch_debug目标本身有效，不会传递给依赖该目标的其他目标
   target_include_directories(carla_pytorch_debug SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
-
+  # 安装carla_pytorch_debug库到指定的目录（lib），OPTIONAL表示这个安装步骤是可选的，即如果安装过程中出现错误，不会停止整个CMake配置过程
   install(TARGETS carla_pytorch_debug DESTINATION lib OPTIONAL)
 
+   # 设置carla_pytorch_debug目标的编译标志，这里使用CMake的变量CMAKE_CXX_FLAGS_DEBUG，该变量通常包含了在调试模式下编译C++代码所需的标志
   set_target_properties(carla_pytorch_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
+  
+  # 为carla_pytorch_debug目标添加编译定义。这里添加了-DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING，这是一个预处理器定义  
+  # 它可能会使Boost.Asio库在调试时输出更多的调试信息或启用额外的检查  
+  # PUBLIC表示这个编译定义不仅会影响carla_pytorch_debug目标本身，还会传递给依赖该目标的其他目标  
   target_compile_definitions(carla_pytorch_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
 
 endif()

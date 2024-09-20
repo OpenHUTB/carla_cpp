@@ -4,14 +4,16 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once // 防止头文件被重复包含  
 
-#include <cstdint>
+#include <cstdint> // 包含标准整数类型的定义
 
 namespace carla {
 namespace image {
 namespace detail {
 
+    // 根据C++标准版本选择是否为CITYSCAPES_PALETTE_MAP添加inline关键字  
+    // 如果C++版本大于或等于C++17，则添加inline，以允许在常量表达式中使用
     static constexpr
 #if __cplusplus >= 201703L // C++17
     inline
@@ -53,9 +55,11 @@ namespace detail {
 
 } // namespace detail
 
+  // 提供Cityscapes调色板相关的功能
   class CityScapesPalette {
   public:
-
+    
+      // 获取调色板中标签的总数
     static constexpr auto GetNumberOfTags() {
       return sizeof(detail::CITYSCAPES_PALETTE_MAP) /
           sizeof(*detail::CITYSCAPES_PALETTE_MAP);
@@ -65,6 +69,7 @@ namespace detail {
     ///
     /// @warning It overflows if @a tag is greater than GetNumberOfTags().
     static constexpr auto GetColor(uint8_t tag) {
+      // 使用模运算来防止数组越界，确保返回的索引是有效的
       return detail::CITYSCAPES_PALETTE_MAP[tag % GetNumberOfTags()];
     }
   };
