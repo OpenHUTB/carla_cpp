@@ -4,23 +4,24 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  // 防止头文件被重复包含
+#pragma once  // 确保此头文件仅被包含一次
 
-#include <type_traits>  // 包含类型特性的库，尽管在这个例子中未直接使用，但可能是为了未来扩展或与其他模板特性兼容
-#include <utility>   // 包含实用工具函数，如std::move，用于支持移动语义  
+#include <type_traits>  // 包含类型特征相关的头文件，提供类型特性支持
+#include <utility>  // 包含通用工具函数，比如 std::move
 
-namespace carla {  // 定义一个名为carla的命名空间
-namespace detail {   // 在carla命名空间内部，定义一个名为detail的子命名空间
+namespace carla {  // 定义命名空间 carla
+namespace detail {   // 定义命名空间 detail，用于实现细节
 
-  template <typename FunctorT>
-  struct MoveWrapper : FunctorT {
-    MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}
 
-    MoveWrapper(MoveWrapper &&) = default;
-    MoveWrapper& operator=(MoveWrapper &&) = default;
+  template <typename FunctorT>  // 定义一个模板结构体，接受任意类型 FunctorT
+  struct MoveWrapper : FunctorT {  // MoveWrapper 继承自 FunctorT
+    MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}  // 构造函数，移动构造 FunctorT
 
-    MoveWrapper(const MoveWrapper &);
-    MoveWrapper& operator=(const MoveWrapper &);
+    MoveWrapper(MoveWrapper &&) = default;  // 移动构造函数，使用默认实现
+    MoveWrapper& operator=(MoveWrapper &&) = default;  // 移动赋值运算符，使用默认实现
+
+    MoveWrapper(const MoveWrapper &);  // 声明复制构造函数（未定义）
+    MoveWrapper& operator=(const MoveWrapper &);  // 声明复制赋值运算符（未定义）
   };
 
 } // namespace detail
@@ -29,10 +30,10 @@ namespace detail {   // 在carla命名空间内部，定义一个名为detail的
   /// actually copied it would result in a link error.
   ///
   /// @see https://stackoverflow.com/a/22891509.
-  template <typename FunctorT>
-  auto MoveHandler(FunctorT &&func) {
-    using F = typename std::decay<FunctorT>::type;
-    return detail::MoveWrapper<F>{std::move(func)};
+  template <typename FunctorT>  // 定义一个模板函数，接受任意类型 FunctorT
+  auto MoveHandler(FunctorT &&func) {   // MoveHandler 函数返回一个移动处理器
+    using F = typename std::decay<FunctorT>::type;  // 使用 std::decay 处理 FunctorT 的类型
+    return detail::MoveWrapper<F>{std::move(func)};   // 返回一个 MoveWrapper 实例，移动传入的 func
   }
 
 } // namespace carla
