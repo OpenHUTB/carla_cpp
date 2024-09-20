@@ -10,20 +10,20 @@
 
 namespace std {
 
-  class exception; // 声明 std 命名空间中的 exception 类
+  class exception;
 
 } // namespace std
 
 namespace carla {
 
-       /// �û��Զ���ĺ����������� Boost �� throw_exception��
+       /// 用户自定义的函数，类似于 Boost 的 throw_exception。
       ///
-      /// @important Boost �쳣Ҳ��·�ɵ��˺�����
+      /// @important Boost 异常也会路由到此函数。
       ///
-      /// ��ʹ�� LIBCARLA_NO_EXCEPTIONS ����ʱ���˺����� LibCarla ��δ���壬
-      /// ʹ�� LibCarla ��ģ����Ҫ�ṩ���ʵĶ��塣���� throw_exception �Ĵ���
-      /// ���Լ���˺������᷵�أ���ˣ�����û������ throw_exception ���أ�
-      /// ��Ϊ��δ����ġ�
+      /// 当使用 LIBCARLA_NO_EXCEPTIONS 编译时，此函数在 LibCarla 中未定义，
+      /// 使用 LibCarla 的模块需要提供合适的定义。调用 throw_exception 的代码
+      /// 可以假设此函数不会返回；因此，如果用户定义的 throw_exception 返回，
+      /// 行为是未定义的。
   [[ noreturn ]] void throw_exception(const std::exception &e);
 
 } // namespace carla
@@ -33,7 +33,7 @@ namespace carla {
 namespace carla {
 
   template <typename T>
-  [[ noreturn ]] void throw_exception(const T &e) { // 模板函数声明，接受任何类型的异常
+  [[ noreturn ]] void throw_exception(const T &e) {
     throw e;
   }
 
