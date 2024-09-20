@@ -16,12 +16,13 @@
 
 #include <ostream>
 #include <iostream>
-
-namespace ctm = carla::traffic_manager;
+// 引入必要的命名空间
+namespace ctm = carla::traffic_manager;// 用于CARLA交通管理器，但在这段代码中未直接使用
 
 namespace carla {
 namespace client {
-
+  
+    // 重载输出流操作符，以便可以直接打印Actor的信息
   std::ostream &operator<<(std::ostream &out, const Actor &actor) {
     out << "Actor(id=" << actor.GetId() << ", type=" << actor.GetTypeId() << ')';
     return out;
@@ -29,7 +30,7 @@ namespace client {
 
 } // namespace client
 } // namespace carla
-
+// 模板函数，将std::vector转换为boost::python::list，以便在Python中使用
 template<class T>
 boost::python::list StdVectorToPyList(const std::vector<T> &vec) {
   boost::python::list l;
@@ -38,32 +39,32 @@ boost::python::list StdVectorToPyList(const std::vector<T> &vec) {
   }
   return l;
 }
-
+// 获取Actor的语义标签，并转换为Python列表
 static boost::python::list GetSemanticTags(const carla::client::Actor &self) {
   const std::vector<uint8_t> &tags = self.GetSemanticTags();
   return StdVectorToPyList(tags);
 }
-
+// 给Actor添加一个冲量（动量变化）  
 static void AddActorImpulse(carla::client::Actor &self,
     const carla::geom::Vector3D &impulse) {
   self.AddImpulse(impulse);
 }
-
+// 给Actor添加一个力 
 static void AddActorForce(carla::client::Actor &self,
     const carla::geom::Vector3D &force) {
   self.AddForce(force);
 }
-
+// 获取与交通灯相关的交通灯组，并转换为Python列表
 static auto GetGroupTrafficLights(carla::client::TrafficLight &self) {
   auto values = self.GetGroupTrafficLights();
   return StdVectorToPyList(values);
 }
-
+// 模板函数，用于给Walker（行人）应用控制（如行走方向、速度等）
 template <typename ControlT>
 static void ApplyControl(carla::client::Walker &self, const ControlT &control) {
   self.ApplyControl(control);
 }
-
+// 获取交通灯的灯光盒（Light Boxes），即交通灯发光的区域，并转换为Python列表
 static auto GetLightBoxes(const carla::client::TrafficLight &self) {
   boost::python::list result;
   for (const auto &bb : self.GetLightBoxes()) {
