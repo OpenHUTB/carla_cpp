@@ -10,7 +10,7 @@
 
 namespace std {
 
-  class exception; // 声明 std 命名空间中的 exception �?
+  class exception; 
 
 } // namespace std
 
@@ -33,7 +33,7 @@ namespace carla {
 namespace carla {
 
   template <typename T>
-  [[ noreturn ]] void throw_exception(const T &e) { // 模板函数声明，接受任何类型的异常
+  [[ noreturn ]] void throw_exception(const T &e) { 
     throw e;
   }
 
