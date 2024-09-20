@@ -4,13 +4,13 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 确保此头文件只被包含一次
 
-#include "carla/Buffer.h"
+#include "carla/Buffer.h"  // 包含 Buffer 头文件，定义 Buffer 类
 
-#if defined(__clang__)
-#  pragma clang diagnostic push
-#  pragma clang diagnostic ignored "-Wold-style-cast"
+#if defined(__clang__)  // 检查是否使用 Clang 编译器
+#  pragma clang diagnostic push   // 保存当前的编译警告状态
+#  pragma clang diagnostic ignored "-Wold-style-cast"  // 忽略旧风格的类型转换警告
 #endif
 #include "moodycamel/ConcurrentQueue.h"
 #if defined(__clang__)
