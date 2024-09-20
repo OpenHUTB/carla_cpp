@@ -17,7 +17,7 @@
 #  pragma clang diagnostic pop  // 恢复之前保存的编译警告状态
 #endif
 
-#include <memory>
+#include <memory>  // 包含内存管理相关的头文件
 
 namespace carla {
 
@@ -26,12 +26,12 @@ namespace carla {
   /// @warning 缓冲区仅通过增长来调整其大小，除非明确地清除它们，否则不会缩小。
   /// 分配的内存在此池被销毁时才会被删除。
 
-  class BufferPool : public std::enable_shared_from_this<BufferPool> {
+  class BufferPool : public std::enable_shared_from_this<BufferPool> {  // 定义 BufferPool 类，支持共享指针
   public:
 
-    BufferPool() = default;
+    BufferPool() = default;  // 默认构造函数
 
-    explicit BufferPool(size_t estimated_size) : _queue(estimated_size) {}
+    explicit BufferPool(size_t estimated_size) : _queue(estimated_size) {}  // 带参数的构造函数，初始化队列大小
 
   /// 从队列中弹出一个缓冲区，如果队列为空，则创建一个新的缓冲区。
     Buffer Pop() {
