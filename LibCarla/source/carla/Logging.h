@@ -4,10 +4,10 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once   // 防止头文件被重复包含
 
-#include "carla/Platform.h"
-
+#include "carla/Platform.h"   // 包含Carla平台的头文件
+// 定义日志级别的宏，用于控制日志输出的详细程度  
 #define LIBCARLA_LOG_LEVEL_DEBUG     10
 #define LIBCARLA_LOG_LEVEL_INFO      20
 #define LIBCARLA_LOG_LEVEL_WARNING   30
@@ -17,11 +17,11 @@
 
 #ifndef LIBCARLA_LOG_LEVEL
 #  ifdef NDEBUG
-#    define LIBCARLA_LOG_LEVEL LIBCARLA_LOG_LEVEL_WARNING
+#    define LIBCARLA_LOG_LEVEL LIBCARLA_LOG_LEVEL_WARNING  // 如果没有定义NDEBUG，则设置为警告级别
 #  else
-#    define LIBCARLA_LOG_LEVEL LIBCARLA_LOG_LEVEL_INFO
+#    define LIBCARLA_LOG_LEVEL LIBCARLA_LOG_LEVEL_INFO  // 如果没有定义NDEBUG且没有指定日志级别，则设置为信息级别   
 #  endif // NDEBUG
-#endif // LIBCARLA_LOG_LEVEL
+#endif // 结束对 LIBCARLA_LOG_LEVEL 是否未定义的检查
 
 // The following log functions are available, they are only active if
 // LIBCARLA_LOG_LEVEL is greater equal the function's log level.

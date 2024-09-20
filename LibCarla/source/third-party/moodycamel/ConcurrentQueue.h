@@ -1578,16 +1578,13 @@ private:
     inline T const* operator[](index_t idx) const MOODYCAMEL_NOEXCEPT { return static_cast<T const*>(static_cast<void const*>(elements)) + static_cast<size_t>(idx & static_cast<index_t>(BLOCK_SIZE - 1)); }
 
   private:
-    // IMPORTANT: This must be the first member in Block, so that if T depends on the alignment of
-    // addresses returned by malloc, that alignment will be preserved. Apparently clang actually
-    // generates code that uses this assumption for AVX instructions in some cases. Ideally, we
-    // should also align Block to the alignment of T in case it's higher than malloc's 16-byte
-    // alignment, but this is hard to do in a cross-platform way. Assert for this case:
+    // 重要提示：这必须是 Block 中的第一个成员，以确保如果 T 依赖于 malloc 返回地址的对齐方式，
+    // 该对齐方式将被保留。显然，clang 在某些情况下为 AVX 指令生成的代码会利用这一假设。
+    // 理想情况下，我们还应该将 Block 对齐到 T 的对齐方式，以防 T 的对齐要求高于 malloc 的 16 字节对齐，
+    // 但在跨平台中很难做到这一点。对此情况进行断言：
     static_assert(std::alignment_of<T>::value <= std::alignment_of<details::max_align_t>::value, "The queue does not support super-aligned types at this time");
-    // Additionally, we need the alignment of Block itself to be a multiple of max_align_t since
-    // otherwise the appropriate padding will not be added at the end of Block in order to make
-    // arrays of Blocks all be properly aligned (not just the first one). We use a union to force
-    // this.
+    // 此外，我们还需要确保 Block 自身的对齐方式是 max_align_t 的倍数，否则在 Block 的末尾将不会添加适当的填充，
+    // 从而使 Block 数组中的所有元素都能正确对齐（而不仅仅是第一个）。我们使用一个联合体来强制实现这一点。
     union {
       char elements[sizeof(T) * BLOCK_SIZE];
       details::max_align_t dummy;
@@ -1600,7 +1597,7 @@ private:
     std::atomic<std::uint32_t> freeListRefs;
     std::atomic<Block*> freeListNext;
     std::atomic<bool> shouldBeOnFreeList;
-    bool dynamicallyAllocated;    // Perhaps a better name for this would be 'isNotPartOfInitialBlockPool'
+    bool dynamicallyAllocated;     // 这个名字可能更好：'isNotPartOfInitialBlockPool'
 
 #if MCDBGQ_TRACKMEM
     void* owner;
@@ -1706,20 +1703,24 @@ private:
         pr_blockIndexSize = poolBasedIndexSize;
       }
 
-      new_block_index(0);    // This creates an index with double the number of current entries, i.e. EXPLICIT_INITIAL_INDEX_SIZE
+      new_block_index(0);    // 这将创建一个具有当前条目数量两倍的索引，即 EXPLICIT_INITIAL_INDEX_SIZE
+
     }
 
     ~ExplicitProducer()
     {
-      // Destruct any elements not yet dequeued.
-      // Since we're in the destructor, we can assume all elements
-      // are either completely dequeued or completely not (no halfways).
+      // 析构任何尚未出队的元素。
+      // 由于我们在析构函数中，我们可以假设所有元素
+      // 要么完全出队，要么完全未出队（没有半途而废的情况）。
+      // 如果 tailBlock 不是空指针，则必须存在一个块索引
+      // 首先找到部分出队的块（如果有的话）
+
       if (this->tailBlock != nullptr) {    // Note this means there must be a block index too
         // First find the block that's partially dequeued, if any
         Block* halfDequeuedBlock = nullptr;
         if ((this->headIndex.load(std::memory_order_relaxed) & static_cast<index_t>(BLOCK_SIZE - 1)) != 0) {
-          // The head's not on a block boundary, meaning a block somewhere is partially dequeued
-          // (or the head block is the tail block and was fully dequeued, but the head/tail are still not on a boundary)
+          // 头部不在块边界上，意味着某个块部分出队
+          // （或者头块是尾块且已完全出队，但头部/尾部仍未在边界上）
           size_t i = (pr_blockIndexFront - pr_blockIndexSlotsUsed) & (pr_blockIndexSize - 1);
           while (details::circular_less_than<index_t>(pr_blockIndexEntries[i].base + BLOCK_SIZE, this->headIndex.load(std::memory_order_relaxed))) {
             i = (i + 1) & (pr_blockIndexSize - 1);
@@ -1728,7 +1729,7 @@ private:
           halfDequeuedBlock = pr_blockIndexEntries[i].block;
         }
 
-        // Start at the head block (note the first line in the loop gives us the head from the tail on the first iteration)
+        // 从头块开始（注意第一次迭代时，循环的第一行给我们提供了头部）
         auto block = this->tailBlock;
         do {
           block = block->next;
@@ -1736,12 +1737,12 @@ private:
             continue;
           }
 
-          size_t i = 0;  // Offset into block
+          size_t i = 0;  // 块中的偏移
           if (block == halfDequeuedBlock) {
             i = static_cast<size_t>(this->headIndex.load(std::memory_order_relaxed) & static_cast<index_t>(BLOCK_SIZE - 1));
           }
 
-          // Walk through all the items in the block; if this is the tail block, we need to stop when we reach the tail index
+          // 遍历块中的所有项目；如果这是尾块，当达到尾索引时需要停止
           auto lastValidIndex = (this->tailIndex.load(std::memory_order_relaxed) & static_cast<index_t>(BLOCK_SIZE - 1)) == 0 ? BLOCK_SIZE : static_cast<size_t>(this->tailIndex.load(std::memory_order_relaxed) & static_cast<index_t>(BLOCK_SIZE - 1));
           while (i != BLOCK_SIZE && (block != this->tailBlock || i != lastValidIndex)) {
             (*block)[i++]->~T();
@@ -1749,7 +1750,7 @@ private:
         } while (block != this->tailBlock);
       }
 
-      // Destroy all blocks that we own
+      // 销毁所有我们拥有的块
       if (this->tailBlock != nullptr) {
         auto block = this->tailBlock;
         do {
@@ -1764,7 +1765,7 @@ private:
         } while (block != this->tailBlock);
       }
 
-      // Destroy the block indices
+      // 销毁块索引
       auto header = static_cast<BlockIndexHeader*>(pr_blockIndexRaw);
       while (header != nullptr) {
         auto prev = static_cast<BlockIndexHeader*>(header->prev);
@@ -1780,45 +1781,36 @@ private:
       index_t currentTailIndex = this->tailIndex.load(std::memory_order_relaxed);
       index_t newTailIndex = 1 + currentTailIndex;
       if ((currentTailIndex & static_cast<index_t>(BLOCK_SIZE - 1)) == 0) {
-        // We reached the end of a block, start a new one
+        // 我们到达了一个块的末尾，开始一个新的块
         auto startBlock = this->tailBlock;
         auto originalBlockIndexSlotsUsed = pr_blockIndexSlotsUsed;
         if (this->tailBlock != nullptr && this->tailBlock->next->ConcurrentQueue::Block::template is_empty<explicit_context>()) {
-          // We can re-use the block ahead of us, it's empty!
+          // 我们可以重用下一个块，它是空的！
           this->tailBlock = this->tailBlock->next;
           this->tailBlock->ConcurrentQueue::Block::template reset_empty<explicit_context>();
 
-          // We'll put the block on the block index (guaranteed to be room since we're conceptually removing the
-          // last block from it first -- except instead of removing then adding, we can just overwrite).
-          // Note that there must be a valid block index here, since even if allocation failed in the ctor,
-          // it would have been re-attempted when adding the first block to the queue; since there is such
-          // a block, a block index must have been successfully allocated.
+          // 我们将把块放到块索引中（由于我们先从中移除最后一个块，因此可以保证有空间 —— 除了移除再添加，我们可以直接覆盖）。
+          // 请注意，这里必须有一个有效的块索引，因为即使在构造函数中分配失败，它也会在将第一个块添加到队列时重新尝试；由于存在这样的块，因此块索引必须成功分配。
         }
         else {
-          // Whatever head value we see here is >= the last value we saw here (relatively),
-          // and <= its current value. Since we have the most recent tail, the head must be
-          // <= to it.
+          // 我们看到的头部值大于或等于我们在此处看到的最后一个值（相对而言），并且小于等于其当前值。由于我们有最新的尾部，头部必须小于等于尾部。
           auto head = this->headIndex.load(std::memory_order_relaxed);
           assert(!details::circular_less_than<index_t>(currentTailIndex, head));
           if (!details::circular_less_than<index_t>(head, currentTailIndex + BLOCK_SIZE)
             || (MAX_SUBQUEUE_SIZE != details::const_numeric_max<size_t>::value && (MAX_SUBQUEUE_SIZE == 0 || MAX_SUBQUEUE_SIZE - BLOCK_SIZE < currentTailIndex - head))) {
-            // We can't enqueue in another block because there's not enough leeway -- the
-            // tail could surpass the head by the time the block fills up! (Or we'll exceed
-            // the size limit, if the second part of the condition was true.)
+             // 我们不能在另一个块中入队，因为没有足够的余地 —— 尾部可能在块填满之前超越头部！ （或者，如果第二部分条件为真，我们将超过大小限制。）
+        return false;
             return false;
           }
-          // We're going to need a new block; check that the block index has room
+           // 我们需要一个新的块；检查块索引是否有空间
           if (pr_blockIndexRaw == nullptr || pr_blockIndexSlotsUsed == pr_blockIndexSize) {
-            // Hmm, the circular block index is already full -- we'll need
-            // to allocate a new index. Note pr_blockIndexRaw can only be nullptr if
-            // the initial allocation failed in the constructor.
-
+            // 嗯，圆形块索引已经满了 —— 我们需要分配一个新的索引。请注意，pr_blockIndexRaw 只能为 nullptr，如果初始分配在构造函数中失败的话。
             if (allocMode == CannotAlloc || !new_block_index(pr_blockIndexSlotsUsed)) {
               return false;
             }
           }
 
-          // Insert a new block in the circular linked list
+           // 在圆形链表中插入一个新块
           auto newBlock = this->parent->ConcurrentQueue::template requisition_block<allocMode>();
           if (newBlock == nullptr) {
             return false;
@@ -1839,14 +1831,12 @@ private:
         }
 
         if (!MOODYCAMEL_NOEXCEPT_CTOR(T, U, new (nullptr) T(std::forward<U>(element)))) {
-          // The constructor may throw. We want the element not to appear in the queue in
-          // that case (without corrupting the queue):
+           // 构造函数可能抛出异常。在这种情况下，我们希望元素不出现在队列中（而不会损坏队列）：
           MOODYCAMEL_TRY {
             new ((*this->tailBlock)[currentTailIndex]) T(std::forward<U>(element));
           }
           MOODYCAMEL_CATCH (...) {
-            // Revert change to the current block, but leave the new block available
-            // for next time
+            // 撤销对当前块的更改，但保留新块以供下次使用
             pr_blockIndexSlotsUsed = originalBlockIndexSlotsUsed;
             this->tailBlock = startBlock == nullptr ? this->tailBlock : startBlock;
             MOODYCAMEL_RETHROW;
@@ -1857,7 +1847,7 @@ private:
           (void)originalBlockIndexSlotsUsed;
         }
 
-        // Add block to block index
+        // 将块添加到块索引中
         auto& entry = blockIndex.load(std::memory_order_relaxed)->entries[pr_blockIndexFront];
         entry.base = currentTailIndex;
         entry.block = this->tailBlock;
@@ -1870,7 +1860,7 @@ private:
         }
       }
 
-      // Enqueue
+      // 入队
       new ((*this->tailBlock)[currentTailIndex]) T(std::forward<U>(element));
 
       this->tailIndex.store(newTailIndex, std::memory_order_release);
@@ -1883,60 +1873,57 @@ private:
       auto tail = this->tailIndex.load(std::memory_order_relaxed);
       auto overcommit = this->dequeueOvercommit.load(std::memory_order_relaxed);
       if (details::circular_less_than<index_t>(this->dequeueOptimisticCount.load(std::memory_order_relaxed) - overcommit, tail)) {
-        // Might be something to dequeue, let's give it a try
+         // 可能有东西要出队，让我们试试看
 
-        // Note that this if is purely for performance purposes in the common case when the queue is
-        // empty and the values are eventually consistent -- we may enter here spuriously.
+        // 注意，这个if仅仅是为了提高性能，在队列为空且值最终一致的常见情况下
+        // 我们可能会错误地进入这里。
 
-        // Note that whatever the values of overcommit and tail are, they are not going to change (unless we
-        // change them) and must be the same value at this point (inside the if) as when the if condition was
-        // evaluated.
+        // 注意，无论overcommit和tail的值如何，它们都不会改变（除非我们改变它们）
+        // 并且在这里的if内部时，它们的值必须与if条件被评估时相同。
 
-        // We insert an acquire fence here to synchronize-with the release upon incrementing dequeueOvercommit below.
-        // This ensures that whatever the value we got loaded into overcommit, the load of dequeueOptisticCount in
-        // the fetch_add below will result in a value at least as recent as that (and therefore at least as large).
-        // Note that I believe a compiler (signal) fence here would be sufficient due to the nature of fetch_add (all
-        // read-modify-write operations are guaranteed to work on the latest value in the modification order), but
-        // unfortunately that can't be shown to be correct using only the C++11 standard.
-        // See http://stackoverflow.com/questions/18223161/what-are-the-c11-memory-ordering-guarantees-in-this-corner-case
+        // 在此处插入一个获取屏障，以与下面增加dequeueOvercommit的释放同步。
+        // 这确保了无论我们加载到overcommit中的值是什么，下面fetch_add中
+        // 加载的dequeueOptimisticCount的值至少是那个值的最新值（因此至少一样大）。
+        // 注意，我相信此处的编译器（信号）屏障是足够的，因为fetch_add的性质
+        // （所有读-修改-写操作都保证在修改顺序中对最新值起作用），但不幸的是，
+        // 仅使用C++11标准无法证明这一点是正确的。
+        // 参见 http://stackoverflow.com/questions/18223161/what-are-the-c11-memory-ordering-guarantees-in-this-corner-case
         std::atomic_thread_fence(std::memory_order_acquire);
 
-        // Increment optimistic counter, then check if it went over the boundary
+        // 增加乐观计数器，然后检查它是否超出了边界
         auto myDequeueCount = this->dequeueOptimisticCount.fetch_add(1, std::memory_order_relaxed);
 
-        // Note that since dequeueOvercommit must be <= dequeueOptimisticCount (because dequeueOvercommit is only ever
-        // incremented after dequeueOptimisticCount -- this is enforced in the `else` block below), and since we now
-        // have a version of dequeueOptimisticCount that is at least as recent as overcommit (due to the release upon
-        // incrementing dequeueOvercommit and the acquire above that synchronizes with it), overcommit <= myDequeueCount.
-        // However, we can't assert this since both dequeueOptimisticCount and dequeueOvercommit may (independently)
-        // overflow; in such a case, though, the logic still holds since the difference between the two is maintained.
+        // 注意，由于dequeueOvercommit必须小于等于dequeueOptimisticCount（因为dequeueOvercommit只会在
+        // dequeueOptimisticCount之后增加——这是在下面的`else`块中强制执行的），并且由于我们现在有一个
+        // 至少与overcommit一样新的dequeueOptimisticCount版本（由于增加dequeueOvercommit的释放以及
+        // 与其同步的获取），所以overcommit <= myDequeueCount。
+        // 但是我们不能断言这一点，因为dequeueOptimisticCount和dequeueOvercommit都可能（独立地）溢出；
+        // 在这种情况下，逻辑仍然成立，因为两者之间的差异得以保持。
 
-        // Note that we reload tail here in case it changed; it will be the same value as before or greater, since
-        // this load is sequenced after (happens after) the earlier load above. This is supported by read-read
-        // coherency (as defined in the standard), explained here: http://en.cppreference.com/w/cpp/atomic/memory_order
+        // 注意我们在这里重新加载tail以防它发生了变化；它将与之前的值相同或更大，因为
+        // 这个加载是排在（发生在）上面的先前加载之后的。这由读取-读取一致性支持
+        // （如标准中定义的），详见：http://en.cppreference.com/w/cpp/atomic/memory_order
         tail = this->tailIndex.load(std::memory_order_acquire);
         if ((details::likely)(details::circular_less_than<index_t>(myDequeueCount - overcommit, tail))) {
-          // Guaranteed to be at least one element to dequeue!
+          // 保证至少有一个元素要出队！
 
-          // Get the index. Note that since there's guaranteed to be at least one element, this
-          // will never exceed tail. We need to do an acquire-release fence here since it's possible
-          // that whatever condition got us to this point was for an earlier enqueued element (that
-          // we already see the memory effects for), but that by the time we increment somebody else
-          // has incremented it, and we need to see the memory effects for *that* element, which is
-          // in such a case is necessarily visible on the thread that incremented it in the first
-          // place with the more current condition (they must have acquired a tail that is at least
-          // as recent).
+          // 获取索引。注意，由于保证至少有一个元素，这
+          // 将永远不会超过tail。我们需要在这里做一个获取-释放屏障，
+          // 因为可能导致我们到达此点的条件是先前入队的元素（我们已经看到它的内存效应），
+          // 但到我们增加时可能有人已将其增加，我们需要看到*那个*元素的内存效应，
+          // 在这种情况下，该元素的内存效应在以更当前的条件首先增加它的线程上是可见的
+          // （他们必须获取一个至少与最近一样新的tail）。
           auto index = this->headIndex.fetch_add(1, std::memory_order_acq_rel);
 
 
-          // Determine which block the element is in
+          // 确定元素在哪个块中
 
           auto localBlockIndex = blockIndex.load(std::memory_order_acquire);
           auto localBlockIndexHead = localBlockIndex->front.load(std::memory_order_acquire);
 
-          // We need to be careful here about subtracting and dividing because of index wrap-around.
-          // When an index wraps, we need to preserve the sign of the offset when dividing it by the
-          // block size (in order to get a correct signed block count offset in all cases):
+          // 我们在这里需要小心减法和除法，因为索引的环绕。
+          // 当索引环绕时，我们在将其除以块大小时需要保持偏移的符号
+           // （以便在所有情况下获得正确的有符号块计数偏移）：
           auto headBase = localBlockIndex->entries[localBlockIndexHead].base;
           auto blockBaseIndex = index & ~static_cast<index_t>(BLOCK_SIZE - 1);
           auto offset = static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(blockBaseIndex - headBase) / BLOCK_SIZE);
@@ -1945,12 +1932,11 @@ private:
           // Dequeue
           auto& el = *((*block)[index]);
           if (!MOODYCAMEL_NOEXCEPT_ASSIGN(T, T&&, element = std::move(el))) {
-            // Make sure the element is still fully dequeued and destroyed even if the assignment
-            // throws
+            // 确保即使赋值操作抛出异常，元素仍能完全出队并被销毁
             struct Guard {
               Block* block;
               index_t index;
-
+              // 析构函数，当 Guard 离开作用域时调用
               ~Guard()
               {
                 (*block)[index]->~T();
@@ -1969,7 +1955,7 @@ private:
           return true;
         }
         else {
-          // Wasn't anything to dequeue after all; make the effective dequeue count eventually consistent
+          // 如果实际上没有元素可以出队，则更新出队过度计数，使其最终与实际一致
           this->dequeueOvercommit.fetch_add(1, std::memory_order_release);    // Release so that the fetch_add on dequeueOptimisticCount is guaranteed to happen before this write
         }
       }
@@ -1980,9 +1966,8 @@ private:
     template<AllocationMode allocMode, typename It>
     bool enqueue_bulk(It itemFirst, size_t count)
     {
-      // First, we need to make sure we have enough room to enqueue all of the elements;
-      // this means pre-allocating blocks and putting them in the block index (but only if
-      // all the allocations succeeded).
+      // 首先，我们需要确保有足够的空间来入队所有元素；
+      // 这意味着需要预先分配块，并将它们放入块索引中（前提是所有分配都成功）。
       index_t startTailIndex = this->tailIndex.load(std::memory_order_relaxed);
       auto startBlock = this->tailBlock;
       auto originalBlockIndexFront = pr_blockIndexFront;
@@ -1990,11 +1975,11 @@ private:
 
       Block* firstAllocatedBlock = nullptr;
 
-      // Figure out how many blocks we'll need to allocate, and do so
+       // 计算需要分配多少块，并进行分配
       size_t blockBaseDiff = ((startTailIndex + count - 1) & ~static_cast<index_t>(BLOCK_SIZE - 1)) - ((startTailIndex - 1) & ~static_cast<index_t>(BLOCK_SIZE - 1));
       index_t currentTailIndex = (startTailIndex - 1) & ~static_cast<index_t>(BLOCK_SIZE - 1);
       if (blockBaseDiff > 0) {
-        // Allocate as many blocks as possible from ahead
+        // 尽可能从现有的块链表中分配块
         while (blockBaseDiff > 0 && this->tailBlock != nullptr && this->tailBlock->next != firstAllocatedBlock && this->tailBlock->next->ConcurrentQueue::Block::template is_empty<explicit_context>()) {
           blockBaseDiff -= static_cast<index_t>(BLOCK_SIZE);
           currentTailIndex += static_cast<index_t>(BLOCK_SIZE);
@@ -2008,7 +1993,7 @@ private:
           pr_blockIndexFront = (pr_blockIndexFront + 1) & (pr_blockIndexSize - 1);
         }
 
-        // Now allocate as many blocks as necessary from the block pool
+        // 如果需要，继续从块池中分配新的块
         while (blockBaseDiff > 0) {
           blockBaseDiff -= static_cast<index_t>(BLOCK_SIZE);
           currentTailIndex += static_cast<index_t>(BLOCK_SIZE);
@@ -2024,14 +2009,11 @@ private:
               this->tailBlock = startBlock == nullptr ? firstAllocatedBlock : startBlock;
               return false;
             }
-
-            // pr_blockIndexFront is updated inside new_block_index, so we need to
-            // update our fallback value too (since we keep the new index even if we
-            // later fail)
+            // pr_blockIndexFront 在 new_block_index 内部被更新，因此我们也需要更新备用值（因为即使后来失败，我们仍然保留新的索引）
             originalBlockIndexFront = originalBlockIndexSlotsUsed;
           }
 
-          // Insert a new block in the circular linked list
+          // 在循环链表中插入新块
           auto newBlock = this->parent->ConcurrentQueue::template requisition_block<allocMode>();
           if (newBlock == nullptr) {
             pr_blockIndexFront = originalBlockIndexFront;
@@ -2078,7 +2060,7 @@ private:
         }
       }
 
-      // Enqueue, one block at a time
+      // 一次入队一个块
       index_t newTailIndex = startTailIndex + static_cast<index_t>(count);
       currentTailIndex = startTailIndex;
       auto endBlock = this->tailBlock;
@@ -2100,22 +2082,19 @@ private:
         else {
           MOODYCAMEL_TRY {
             while (currentTailIndex != stopIndex) {
-              // Must use copy constructor even if move constructor is available
-              // because we may have to revert if there's an exception.
-              // Sorry about the horrible templated next line, but it was the only way
-              // to disable moving *at compile time*, which is important because a type
-              // may only define a (noexcept) move constructor, and so calls to the
-              // cctor will not compile, even if they are in an if branch that will never
-              // be executed
+              // 即使存在移动构造函数，也必须使用拷贝构造函数
+              // 因为如果发生异常，我们可能需要进行恢复。
+              // 对于下一行模板化代码很抱歉，但这是唯一能在编译时禁用移动构造的方式
+              // 这很重要，因为一个类型可能只定义了一个（noexcept）移动构造函数，
+              // 因此即使它们在一个永远不会被执行的 if 分支中，调用拷贝构造函数也无法编译。
               new ((*this->tailBlock)[currentTailIndex]) T(details::nomove_if<(bool)!MOODYCAMEL_NOEXCEPT_CTOR(T, decltype(*itemFirst), new (nullptr) T(details::deref_noexcept(itemFirst)))>::eval(*itemFirst));
               ++currentTailIndex;
               ++itemFirst;
             }
           }
           MOODYCAMEL_CATCH (...) {
-            // Oh dear, an exception's been thrown -- destroy the elements that
-            // were enqueued so far and revert the entire bulk operation (we'll keep
-            // any allocated blocks in our linked list for later, though).
+            // 哎呀，抛出了异常——销毁已排队的元素
+            // 并恢复整个批量操作（不过我们会保留任何已分配的块以备后用）。
             auto constructedStopIndex = currentTailIndex;
             auto lastBlockEnqueued = this->tailBlock;
 
@@ -2182,11 +2161,11 @@ private:
             this->dequeueOvercommit.fetch_add(desiredCount - actualCount, std::memory_order_release);
           }
 
-          // Get the first index. Note that since there's guaranteed to be at least actualCount elements, this
-          // will never exceed tail.
+          // 获取第一个索引。注意，由于保证至少有 actualCount 个元素，这
+          // 不会超过 tail。
           auto firstIndex = this->headIndex.fetch_add(actualCount, std::memory_order_acq_rel);
 
-          // Determine which block the first element is in
+          // 确定第一个元素所在的块
           auto localBlockIndex = blockIndex.load(std::memory_order_acquire);
           auto localBlockIndexHead = localBlockIndex->front.load(std::memory_order_acquire);
 
@@ -2221,9 +2200,8 @@ private:
                 }
               }
               MOODYCAMEL_CATCH (...) {
-                // It's too late to revert the dequeue, but we can make sure that all
-                // the dequeued objects are properly destroyed and the block index
-                // (and empty count) are properly updated before we propagate the exception
+                // 由于已为时已晚，无法恢复出队操作，但我们可以确保所有已出队的对象
+                // 被正确销毁，并且块索引（以及空闲计数）在传播异常之前被正确更新。
                 do {
                   block = localBlockIndex->entries[indexIndex].block;
                   while (index != endIndex) {
@@ -2247,7 +2225,7 @@ private:
           return actualCount;
         }
         else {
-          // Wasn't anything to dequeue after all; make the effective dequeue count eventually consistent
+          // 实际上没有任何东西可以出队；使有效的出队计数最终保持一致
           this->dequeueOvercommit.fetch_add(desiredCount, std::memory_order_release);
         }
       }
@@ -2265,7 +2243,9 @@ private:
     struct BlockIndexHeader
     {
       size_t size;
-      std::atomic<size_t> front;    // Current slot (not next, like pr_blockIndexFront)
+      std::atomic<size_t> front;    // 当前槽（而不是下一个槽，如 pr_blockIndexFront）
+
+
       BlockIndexEntry* entries;
       void* prev;
     };
@@ -2279,13 +2259,13 @@ private:
       pr_blockIndexSize <<= 1;
       auto newRawPtr = static_cast<char*>((Traits::malloc)(sizeof(BlockIndexHeader) + std::alignment_of<BlockIndexEntry>::value - 1 + sizeof(BlockIndexEntry) * pr_blockIndexSize));
       if (newRawPtr == nullptr) {
-        pr_blockIndexSize >>= 1;    // Reset to allow graceful retry
+        pr_blockIndexSize >>= 1;    / 重置以允许优雅地重试
         return false;
       }
 
       auto newBlockIndexEntries = reinterpret_cast<BlockIndexEntry*>(details::align_for<BlockIndexEntry>(newRawPtr + sizeof(BlockIndexHeader)));
 
-      // Copy in all the old indices, if any
+      // 复制所有旧的索引，如果有的话
       size_t j = 0;
       if (pr_blockIndexSlotsUsed != 0) {
         auto i = (pr_blockIndexFront - pr_blockIndexSlotsUsed) & prevBlockSizeMask;
@@ -2300,8 +2280,9 @@ private:
       header->size = pr_blockIndexSize;
       header->front.store(numberOfFilledSlotsToExpose - 1, std::memory_order_relaxed);
       header->entries = newBlockIndexEntries;
-      header->prev = pr_blockIndexRaw;    // we link the new block to the old one so we can free it later
-
+      header->prev = pr_blockIndexRaw;    // 将新块链接到旧块，以便后续可以释放旧块
+      
+      // 更新指向新块索引的指针
       pr_blockIndexFront = j;
       pr_blockIndexEntries = newBlockIndexEntries;
       pr_blockIndexRaw = newRawPtr;
@@ -2313,10 +2294,10 @@ private:
   private:
     std::atomic<BlockIndexHeader*> blockIndex;
 
-    // To be used by producer only -- consumer must use the ones in referenced by blockIndex
+    // 仅供生产者使用 —— 消费者必须使用由 blockIndex 引用的那些
     size_t pr_blockIndexSlotsUsed;
     size_t pr_blockIndexSize;
-    size_t pr_blockIndexFront;    // Next slot (not current)
+    size_t pr_blockIndexFront;    // 下一个槽位（而非当前槽位）
     BlockIndexEntry* pr_blockIndexEntries;
     void* pr_blockIndexRaw;
 
@@ -2348,19 +2329,19 @@ private:
 
     ~ImplicitProducer()
     {
-      // Note that since we're in the destructor we can assume that all enqueue/dequeue operations
-      // completed already; this means that all undequeued elements are placed contiguously across
-      // contiguous blocks, and that only the first and last remaining blocks can be only partially
-      // empty (all other remaining blocks must be completely full).
+      // 请注意，由于我们在析构函数中，我们可以假设所有的入队/出队操作已经完成；
+      // 这意味着所有未出队的元素都被连续地放置在相邻的块中，
+      // 并且只有第一个和最后一个剩余的块可能是部分空的（所有其他剩余的块必须是完全满的）。
 
 #ifdef MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED
-      // Unregister ourselves for thread termination notification
+      
+      // 注销我们自己以便接收线程终止通知
       if (!this->inactive.load(std::memory_order_relaxed)) {
         details::ThreadExitNotifier::unsubscribe(&threadExitListener);
       }
 #endif
 
-      // Destroy all remaining elements!
+      // 销毁所有剩余的元素！
       auto tail = this->tailIndex.load(std::memory_order_relaxed);
       auto index = this->headIndex.load(std::memory_order_relaxed);
       Block* block = nullptr;
@@ -2379,14 +2360,13 @@ private:
         ((*block)[index])->~T();
         ++index;
       }
-      // Even if the queue is empty, there's still one block that's not on the free list
-      // (unless the head index reached the end of it, in which case the tail will be poised
-      // to create a new block).
+      // 即使队列为空，仍然会有一个块不在空闲列表中
+      // （除非头索引已经到达块的末尾，在这种情况下尾部将准备创建一个新的块）。
       if (this->tailBlock != nullptr && (forceFreeLastBlock || (tail & static_cast<index_t>(BLOCK_SIZE - 1)) != 0)) {
         this->parent->add_block_to_free_list(this->tailBlock);
       }
 
-      // Destroy block index
+      //销毁块索引
       auto localBlockIndex = blockIndex.load(std::memory_order_relaxed);
       if (localBlockIndex != nullptr) {
         for (size_t i = 0; i != localBlockIndex->capacity; ++i) {
@@ -2407,7 +2387,7 @@ private:
       index_t currentTailIndex = this->tailIndex.load(std::memory_order_relaxed);
       index_t newTailIndex = 1 + currentTailIndex;
       if ((currentTailIndex & static_cast<index_t>(BLOCK_SIZE - 1)) == 0) {
-        // We reached the end of a block, start a new one
+        // 我们到达了一个块的末尾，开始一个新的块
         auto head = this->headIndex.load(std::memory_order_relaxed);
         assert(!details::circular_less_than<index_t>(currentTailIndex, head));
         if (!details::circular_less_than<index_t>(head, currentTailIndex + BLOCK_SIZE) || (MAX_SUBQUEUE_SIZE != details::const_numeric_max<size_t>::value && (MAX_SUBQUEUE_SIZE == 0 || MAX_SUBQUEUE_SIZE - BLOCK_SIZE < currentTailIndex - head))) {
@@ -2435,7 +2415,7 @@ private:
         newBlock->ConcurrentQueue::Block::template reset_empty<implicit_context>();
 
         if (!MOODYCAMEL_NOEXCEPT_CTOR(T, U, new (nullptr) T(std::forward<U>(element)))) {
-          // May throw, try to insert now before we publish the fact that we have this new block
+          // 可能会抛出异常，尝试现在插入数据，先于我们发布新块的事实
           MOODYCAMEL_TRY {
             new ((*newBlock)[currentTailIndex]) T(std::forward<U>(element));
           }
@@ -2468,7 +2448,7 @@ private:
     template<typename U>
     bool dequeue(U& element)
     {
-      // See ExplicitProducer::dequeue for rationale and explanation
+      // 请参阅 ExplicitProducer::dequeue 以了解原因和解释
       index_t tail = this->tailIndex.load(std::memory_order_relaxed);
       index_t overcommit = this->dequeueOvercommit.load(std::memory_order_relaxed);
       if (details::circular_less_than<index_t>(this->dequeueOptimisticCount.load(std::memory_order_relaxed) - overcommit, tail)) {
@@ -2479,7 +2459,7 @@ private:
         if ((details::likely)(details::circular_less_than<index_t>(myDequeueCount - overcommit, tail))) {
           index_t index = this->headIndex.fetch_add(1, std::memory_order_acq_rel);
 
-          // Determine which block the element is in
+          // 确定元素所在的块
           auto entry = get_block_index_entry_for_index(index);
 
           // Dequeue
@@ -2488,8 +2468,7 @@ private:
 
           if (!MOODYCAMEL_NOEXCEPT_ASSIGN(T, T&&, element = std::move(el))) {
 #if MCDBGQ_NOLOCKFREE_IMPLICITPRODBLOCKINDEX
-            // Note: Acquiring the mutex with every dequeue instead of only when a block
-            // is released is very sub-optimal, but it is, after all, purely debug code.
+            // 注意：每次 dequeue 时都获取互斥锁，而不是仅在释放块时获取，这非常不理想，但毕竟这只是纯调试代码。
             debug::DebugLock lock(producer->mutex);
 #endif
             struct Guard {
@@ -2539,21 +2518,19 @@ private:
     template<AllocationMode allocMode, typename It>
     bool enqueue_bulk(It itemFirst, size_t count)
     {
-      // First, we need to make sure we have enough room to enqueue all of the elements;
-      // this means pre-allocating blocks and putting them in the block index (but only if
-      // all the allocations succeeded).
+      // 首先，我们需要确保有足够的空间来入队所有元素；
+      // 这意味着需要预先分配块，并将它们放入块索引中（但只有在所有分配成功的情况下才这么做）。
 
-      // Note that the tailBlock we start off with may not be owned by us any more;
-      // this happens if it was filled up exactly to the top (setting tailIndex to
-      // the first index of the next block which is not yet allocated), then dequeued
-      // completely (putting it on the free list) before we enqueue again.
+      // 请注意，我们开始时的 tailBlock 可能不再由我们拥有；
+      // 这种情况发生在当它被填满至顶部（将 tailIndex 设置为尚未分配的下一个块的第一个索引），
+      // 然后在我们再次入队之前被完全出队（将其放入空闲列表中）。
 
       index_t startTailIndex = this->tailIndex.load(std::memory_order_relaxed);
       auto startBlock = this->tailBlock;
       Block* firstAllocatedBlock = nullptr;
       auto endBlock = this->tailBlock;
 
-      // Figure out how many blocks we'll need to allocate, and do so
+      // 确定我们需要分配多少块，并进行分配
       size_t blockBaseDiff = ((startTailIndex + count - 1) & ~static_cast<index_t>(BLOCK_SIZE - 1)) - ((startTailIndex - 1) & ~static_cast<index_t>(BLOCK_SIZE - 1));
       index_t currentTailIndex = (startTailIndex - 1) & ~static_cast<index_t>(BLOCK_SIZE - 1);
       if (blockBaseDiff > 0) {
@@ -2564,16 +2541,16 @@ private:
           blockBaseDiff -= static_cast<index_t>(BLOCK_SIZE);
           currentTailIndex += static_cast<index_t>(BLOCK_SIZE);
 
-          // Find out where we'll be inserting this block in the block index
-          BlockIndexEntry* idxEntry = nullptr;  // initialization here unnecessary but compiler can't always tell
+          // 确定我们将在块索引中插入此块的位置
+          BlockIndexEntry* idxEntry = nullptr;  // 这里的初始化是不必要的，但编译器并不总能判断出来
           Block* newBlock;
           bool indexInserted = false;
           auto head = this->headIndex.load(std::memory_order_relaxed);
           assert(!details::circular_less_than<index_t>(currentTailIndex, head));
           bool full = !details::circular_less_than<index_t>(head, currentTailIndex + BLOCK_SIZE) || (MAX_SUBQUEUE_SIZE != details::const_numeric_max<size_t>::value && (MAX_SUBQUEUE_SIZE == 0 || MAX_SUBQUEUE_SIZE - BLOCK_SIZE < currentTailIndex - head));
           if (full || !(indexInserted = insert_block_index_entry<allocMode>(idxEntry, currentTailIndex)) || (newBlock = this->parent->ConcurrentQueue::template requisition_block<allocMode>()) == nullptr) {
-            // Index allocation or block allocation failed; revert any other allocations
-            // and index insertions done so far for this operation
+            // 索引分配或块分配失败；撤销目前为止已完成的其他分配
+            // 和索引插入操作
             if (indexInserted) {
               rewind_block_index_tail();
               idxEntry->value.store(nullptr, std::memory_order_relaxed);
@@ -2597,11 +2574,11 @@ private:
           newBlock->ConcurrentQueue::Block::template reset_empty<implicit_context>();
           newBlock->next = nullptr;
 
-          // Insert the new block into the index
+          // 将新块插入到索引中
           idxEntry->value.store(newBlock, std::memory_order_relaxed);
 
-          // Store the chain of blocks so that we can undo if later allocations fail,
-          // and so that we can find the blocks when we do the actual enqueueing
+          // 存储块链，以便在后续分配失败时可以撤销，
+          // 并且在实际入队时可以找到这些块
           if ((startTailIndex & static_cast<index_t>(BLOCK_SIZE - 1)) != 0 || firstAllocatedBlock != nullptr) {
             assert(this->tailBlock != nullptr);
             this->tailBlock->next = newBlock;
@@ -2706,8 +2683,8 @@ private:
             this->dequeueOvercommit.fetch_add(desiredCount - actualCount, std::memory_order_release);
           }
 
-          // Get the first index. Note that since there's guaranteed to be at least actualCount elements, this
-          // will never exceed tail.
+          // 获取第一个索引。请注意，由于保证至少有 actualCount 个元素，这个值永远不会超过 tail。
+
           auto firstIndex = this->headIndex.fetch_add(actualCount, std::memory_order_acq_rel);
 
           // Iterate the blocks and dequeue
@@ -2769,8 +2746,8 @@ private:
 #if MCDBGQ_NOLOCKFREE_IMPLICITPRODBLOCKINDEX
                 debug::DebugLock lock(mutex);
 #endif
-                // Note that the set_many_empty above did a release, meaning that anybody who acquires the block
-                // we're about to free can use it safely since our writes (and reads!) will have happened-before then.
+                // 请注意，上面的 set_many_empty 执行了释放操作，这意味着任何获得我们即将释放的块的人
+                // 都可以安全地使用它，因为我们的写操作（和读取操作！）在此之前已经完成。
                 entry->value.store(nullptr, std::memory_order_relaxed);
               }
               this->parent->add_block_to_free_list(block);    // releases the above store
@@ -2789,7 +2766,7 @@ private:
     }
 
   private:
-    // The block size must be > 1, so any number with the low bit set is an invalid block base index
+    // 块大小必须大于 1，因此任何低位比特被设置的数字都是无效的块基索引
     static const index_t INVALID_BLOCK_BASE = 1;
 
     struct BlockIndexEntry
@@ -2824,7 +2801,7 @@ private:
         return true;
       }
 
-      // No room in the old block index, try to allocate another one!
+      // 旧的块索引没有空间，尝试分配另一个块索引！
       if (allocMode == CannotAlloc || !new_block_index()) {
         return false;
       }
@@ -2860,8 +2837,7 @@ private:
       auto tail = localBlockIndex->tail.load(std::memory_order_acquire);
       auto tailBase = localBlockIndex->index[tail]->key.load(std::memory_order_relaxed);
       assert(tailBase != INVALID_BLOCK_BASE);
-      // Note: Must use division instead of shift because the index may wrap around, causing a negative
-      // offset, whose negativity we want to preserve
+      // 注意：必须使用除法而不是位移，因为索引可能会回绕，导致负偏移，我们希望保留这个负值
       auto offset = static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(index - tailBase) / BLOCK_SIZE);
       size_t idx = (tail + offset) & (localBlockIndex->capacity - 1);
       assert(localBlockIndex->index[idx]->key.load(std::memory_order_relaxed) == index && localBlockIndex->index[idx]->value.load(std::memory_order_relaxed) != nullptr);
@@ -2991,7 +2967,7 @@ private:
     return freeList.try_get();
   }
 
-  // Gets a free block from one of the memory pools, or allocates a new one (if applicable)
+  // 从内存池中获取一个空闲块，或分配一个新块（如果适用）
   template<AllocationMode canAlloc>
   Block* requisition_block()
   {
@@ -3109,7 +3085,7 @@ private:
       }
     };
 
-    // For debugging only. Not thread-safe.
+    // 仅用于调试。不是线程安全的。
     MemStats getMemStats()
     {
       return MemStats::getFor(this);
@@ -3120,7 +3096,7 @@ private:
 
 
   //////////////////////////////////
-  // Producer list manipulation
+  // 生产者列表操作
   //////////////////////////////////
 
   ProducerBase* recycle_or_create_producer(bool isExplicit)
@@ -3134,12 +3110,12 @@ private:
 #if MCDBGQ_NOLOCKFREE_IMPLICITPRODHASH
     debug::DebugLock lock(implicitProdMutex);
 #endif
-    // Try to re-use one first
+    // 先尝试重用一个
     for (auto ptr = producerListTail.load(std::memory_order_acquire); ptr != nullptr; ptr = ptr->next_prod()) {
       if (ptr->inactive.load(std::memory_order_relaxed) && ptr->isExplicit == isExplicit) {
         bool expected = true;
         if (ptr->inactive.compare_exchange_strong(expected, /* desired */ false, std::memory_order_acquire, std::memory_order_relaxed)) {
-          // We caught one! It's been marked as activated, the caller can have it
+          // 我们抓到一个了！它已被标记为激活，调用者可以使用它
           recycled = true;
           return ptr;
         }
@@ -3152,14 +3128,14 @@ private:
 
   ProducerBase* add_producer(ProducerBase* producer)
   {
-    // Handle failed memory allocation
+    // 处理内存分配失败
     if (producer == nullptr) {
       return nullptr;
     }
 
     producerCount.fetch_add(1, std::memory_order_relaxed);
 
-    // Add it to the lock-free list
+    // 将其添加到无锁列表中
     auto prevTail = producerListTail.load(std::memory_order_relaxed);
     do {
       producer->next = prevTail;
@@ -3185,9 +3161,8 @@ private:
 
   void reown_producers()
   {
-    // After another instance is moved-into/swapped-with this one, all the
-    // producers we stole still think their parents are the other queue.
-    // So fix them up!
+    // 在另一个实例移动到/与此实例交换之后，我们偷来的所有生产者仍然认为它们的父队列是另一个队列。
+    // 所以需要修复它们！
     for (auto ptr = producerListTail.load(std::memory_order_relaxed); ptr != nullptr; ptr = ptr->next_prod()) {
       ptr->parent = this;
     }
@@ -3195,13 +3170,13 @@ private:
 
 
   //////////////////////////////////
-  // Implicit producer hash
+  // 隐式生产者哈希
   //////////////////////////////////
 
   struct ImplicitProducerKVP
   {
     std::atomic<details::thread_id_t> key;
-    ImplicitProducer* value;    // No need for atomicity since it's only read by the thread that sets it in the first place
+    ImplicitProducer* value;    // 由于只有设置它的线程会读取它，因此不需要原子性
 
     ImplicitProducerKVP() : value(nullptr) { }
 
@@ -3255,7 +3230,7 @@ private:
   {
     if (INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0) return;
 
-    // Swap (assumes our implicit producer hash is initialized)
+    // 交换（假设我们的隐式生产者哈希已初始化）
     initialImplicitProducerHashEntries.swap(other.initialImplicitProducerHashEntries);
     initialImplicitProducerHash.entries = &initialImplicitProducerHashEntries[0];
     other.initialImplicitProducerHash.entries = &other.initialImplicitProducerHashEntries[0];
@@ -3285,18 +3260,18 @@ private:
     }
   }
 
-  // Only fails (returns nullptr) if memory allocation fails
+  // 仅在内存分配失败时才会失败（返回 nullptr）
   ImplicitProducer* get_or_add_implicit_producer()
   {
-    // Note that since the data is essentially thread-local (key is thread ID),
-    // there's a reduced need for fences (memory ordering is already consistent
-    // for any individual thread), except for the current table itself.
+    // 注意，由于数据本质上是线程本地的（键是线程 ID），
+    // 所以对内存屏障的需求减少（每个线程的内存顺序本身已一致），
+    // 除了当前的表本身外。
 
-    // Start by looking for the thread ID in the current and all previous hash tables.
-    // If it's not found, it must not be in there yet, since this same thread would
-    // have added it previously to one of the tables that we traversed.
+    // 首先在当前表和所有先前的哈希表中查找线程 ID。
+    // 如果未找到，它一定不在其中，因为这个线程之前会将其
+    // 添加到我们遍历过的表中的某一个表里。
 
-    // Code and algorithm adapted from http://preshing.com/20130605/the-worlds-simplest-lock-free-hash-table
+    // 代码和算法改编自 http://preshing.com/20130605/the-worlds-simplest-lock-free-hash-table
 
 #if MCDBGQ_NOLOCKFREE_IMPLICITPRODHASH
     debug::DebugLock lock(implicitProdMutex);
@@ -3307,18 +3282,17 @@ private:
 
     auto mainHash = implicitProducerHash.load(std::memory_order_acquire);
     for (auto hash = mainHash; hash != nullptr; hash = hash->prev) {
-      // Look for the id in this hash
+      // 在这个哈希表中查找 ID
       auto index = hashedId;
-      while (true) {    // Not an infinite loop because at least one slot is free in the hash table
+      while (true) {    // 不是无限循环，因为哈希表中至少有一个槽位是空闲的
         index &= hash->capacity - 1;
 
         auto probedKey = hash->entries[index].key.load(std::memory_order_relaxed);
         if (probedKey == id) {
-          // Found it! If we had to search several hashes deep, though, we should lazily add it
-          // to the current main hash table to avoid the extended search next time.
-          // Note there's guaranteed to be room in the current hash table since every subsequent
-          // table implicitly reserves space for all previous tables (there's only one
-          // implicitProducerHashCount).
+          // 找到了！不过，如果我们不得不在多个哈希表中进行深度搜索，我们应该懒惰地将其添加到
+          // 当前的主哈希表中，以避免下次的扩展搜索。
+          // 注意，当前的哈希表中保证有空间，因为每个后续的哈希表隐式地为所有先前的表保留了空间
+          // （只有一个 implicitProducerHashCount）。
           auto value = hash->entries[index].value;
           if (hash != mainHash) {
             index = hashedId;
@@ -3343,7 +3317,7 @@ private:
           return value;
         }
         if (probedKey == details::invalid_thread_id) {
-          break;    // Not in this hash table
+          break;    // 不在这个哈希表中
         }
         ++index;
       }
@@ -3353,10 +3327,9 @@ private:
     auto newCount = 1 + implicitProducerHashCount.fetch_add(1, std::memory_order_relaxed);
     while (true) {
       if (newCount >= (mainHash->capacity >> 1) && !implicitProducerHashResizeInProgress.test_and_set(std::memory_order_acquire)) {
-        // We've acquired the resize lock, try to allocate a bigger hash table.
-        // Note the acquire fence synchronizes with the release fence at the end of this block, and hence when
-        // we reload implicitProducerHash it must be the most recent version (it only gets changed within this
-        // locked block).
+        // 我们已获得了调整大小的锁，尝试分配一个更大的哈希表。
+        // 注意，获取屏障与此块末尾的释放屏障同步，因此当我们重新加载 implicitProducerHash 时，它
+        // 必须是最新版本（它只在这个锁定的块内被更改）。
         mainHash = implicitProducerHash.load(std::memory_order_acquire);
         if (newCount >= (mainHash->capacity >> 1)) {
           auto newCapacity = mainHash->capacity << 1;
@@ -3365,7 +3338,7 @@ private:
           }
           auto raw = static_cast<char*>((Traits::malloc)(sizeof(ImplicitProducerHash) + std::alignment_of<ImplicitProducerKVP>::value - 1 + sizeof(ImplicitProducerKVP) * newCapacity));
           if (raw == nullptr) {
-            // Allocation failed
+            // 分配失败
             implicitProducerHashCount.fetch_sub(1, std::memory_order_relaxed);
             implicitProducerHashResizeInProgress.clear(std::memory_order_relaxed);
             return nullptr;
@@ -3388,9 +3361,8 @@ private:
         }
       }
 
-      // If it's < three-quarters full, add to the old one anyway so that we don't have to wait for the next table
-      // to finish being allocated by another thread (and if we just finished allocating above, the condition will
-      // always be true)
+      // 如果当前表的填充度低于三分之四，即使如此也将其添加到旧表中，以避免等待下一个表
+      // 被另一个线程分配（如果我们刚刚完成了上面的分配，条件将总是为真）。
       if (newCount < (mainHash->capacity >> 1) + (mainHash->capacity >> 2)) {
         bool recycled;
         auto producer = static_cast<ImplicitProducer*>(recycle_or_create_producer(false, recycled));
@@ -3429,9 +3401,9 @@ private:
         return producer;
       }
 
-      // Hmm, the old hash is quite full and somebody else is busy allocating a new one.
-      // We need to wait for the allocating thread to finish (if it succeeds, we add, if not,
-      // we try to allocate ourselves).
+      // 嗯，旧的哈希表已经很满了，而其他线程正在忙于分配一个新的哈希表。
+      // 我们需要等待正在分配的新表的线程完成（如果分配成功，我们添加到新表中；如果不成功，
+      // 我们自己尝试分配）。
       mainHash = implicitProducerHash.load(std::memory_order_acquire);
     }
   }
@@ -3439,21 +3411,22 @@ private:
 #ifdef MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED
   void implicit_producer_thread_exited(ImplicitProducer* producer)
   {
-    // Remove from thread exit listeners
+    // 从线程退出监听器中移除
     details::ThreadExitNotifier::unsubscribe(&producer->threadExitListener);
 
-    // Remove from hash
+    // 从哈希表中移除
 #if MCDBGQ_NOLOCKFREE_IMPLICITPRODHASH
     debug::DebugLock lock(implicitProdMutex);
 #endif
     auto hash = implicitProducerHash.load(std::memory_order_acquire);
-    assert(hash != nullptr);    // The thread exit listener is only registered if we were added to a hash in the first place
+    assert(hash != nullptr);    // 线程退出监听器仅在我们最初被添加到哈希表时注册
+
     auto id = details::thread_id();
     auto hashedId = details::hash_thread_id(id);
     details::thread_id_t probedKey;
 
-    // We need to traverse all the hashes just in case other threads aren't on the current one yet and are
-    // trying to add an entry thinking there's a free slot (because they reused a producer)
+    // 我们需要遍历所有的哈希表，以防其他线程还没有在当前哈希表上，
+    // 并且它们正在尝试添加一个条目，认为还有空位（因为它们重用了一个生产者）
     for (; hash != nullptr; hash = hash->prev) {
       auto index = hashedId;
       do {
@@ -3464,10 +3437,11 @@ private:
           break;
         }
         ++index;
-      } while (probedKey != details::invalid_thread_id);    // Can happen if the hash has changed but we weren't put back in it yet, or if we weren't added to this hash in the first place
+      } while (probedKey != details::invalid_thread_id);    // 可能发生在哈希表已改变但我们尚未被重新添加，或者我们最初根本没有被添加到这个哈希表
+
     }
 
-    // Mark the queue as being recyclable
+    // 将队列标记为可回收
     producer->inactive.store(true, std::memory_order_release);
   }
 
@@ -3480,7 +3454,7 @@ private:
 #endif
 
   //////////////////////////////////
-  // Utility functions
+  // 工具函数
   //////////////////////////////////
 
   template<typename U>
