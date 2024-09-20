@@ -6,15 +6,14 @@
 
 #include "MapGenFunctionLibrary.h"
 
-// Engine headers
+// 引擎头文件
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "Materials/MaterialInstance.h"
 #include "StaticMeshAttributes.h"
 #include "RenderingThread.h"
-// Carla C++ headers
+// Carla C++ 头文件
 
-// Carla plugin headers
-
+// Carla 插件头文件
 
 DEFINE_LOG_CATEGORY(LogCarlaMapGenFunctionLibrary);
 static const float OSMToCentimetersScaleFactor = 100.0f;
@@ -41,7 +40,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
   TVertexInstanceAttributesRef<FVector4> Colors = AttributeGetter.GetVertexInstanceColors();
   TVertexInstanceAttributesRef<FVector2D> UVs = AttributeGetter.GetVertexInstanceUVs();
 
-  // Calculate the totals for each ProcMesh element type
+  // 计算每个 ProcMesh 元素类型的总计
   FPolygonGroupID PolygonGroupForSection;
   MeshDescription.ReserveNewVertices(VertexCount);
   MeshDescription.ReserveNewVertexInstances(VertexInstanceCount);
@@ -49,7 +48,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
   MeshDescription.ReserveNewEdges(PolygonCount * 2);
   UVs.SetNumIndices(4);
 
-  // Create Materials
+  // 创建材质
   TMap<UMaterialInterface*, FPolygonGroupID> UniqueMaterials;
 	const int32 NumSections = 1;
 	UniqueMaterials.Reserve(1);
@@ -66,7 +65,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
 
 
 
-  // Create the vertex
+  // 创建模型顶点
   int32 NumVertex = Data.Vertices.Num();
   TMap<int32, FVertexID> VertexIndexToVertexID;
   VertexIndexToVertexID.Reserve(NumVertex);
@@ -78,7 +77,8 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
     VertexIndexToVertexID.Add(VertexIndex, VertexID);
   }
 
-  // Create the VertexInstance
+  // 创建 VertexInstance
+  //"VertexInstance" 是三维图形学和计算机图形学中的术语，它指的是模型中一个特定顶点的实例或具体实现。
   int32 NumIndices = Data.Triangles.Num();
   int32 NumTri = NumIndices / 3;
   TMap<int32, FVertexInstanceID> IndiceIndexToVertexInstanceID;
@@ -127,7 +127,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
         IndiceIndexToVertexInstanceID[IndiceIndex];
     }
 
-    // Insert a polygon into the mesh
+    // 将一个多边形插入到网格中
     MeshDescription.CreatePolygon(NewPolygonGroup, VertexInstanceIDs);
 
   }
