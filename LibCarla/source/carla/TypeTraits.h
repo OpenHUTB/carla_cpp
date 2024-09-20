@@ -18,7 +18,7 @@ namespace carla {//定义一个叫做carla的类
     static constexpr bool value = std::is_same<T0, T1>::value && are_same<T0, Ts...>::value;//定义一个静态常量布尔成员变量 
   };
 
-  template <typename T0, typename T1>
+  template <typename T0, typename T1>  // 针对两个类型的特化
   struct are_same<T0, T1> {
     static constexpr bool value = std::is_same<T0, T1>::value;
   };
