@@ -29,7 +29,7 @@ namespace carla {
 
 namespace detail {
 
-  class SharedException;
+  class SharedException; // 定义一个异常类，用于在文件中共享和传递异常信息
 
 } // namespace detail
 
@@ -37,13 +37,12 @@ namespace detail {
   // -- RecurrentSharedFuture --------------------------------------------------
   // ===========================================================================
 
-  /// This class is meant to be used similar to a shared future, but the value
-  /// can be set any number of times.
+  /// 这个类类似于共享未来（shared future）的使用方式，但是它可以被设置任意次数的值。
   template <typename T>
   class RecurrentSharedFuture {
   public:
 
-    using SharedException = detail::SharedException;
+    using SharedException = detail::SharedException; // 使用detail命名空间下的SharedException类型，作为此模板类的一部分 
 
     /// Wait until the next value is set. Any number of threads can be waiting
     /// simultaneously.
