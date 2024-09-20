@@ -54,12 +54,10 @@ namespace detail {
     template <typename T2>
     void SetValue(const T2 &value);
 
-    /// Set a exception, this exception will be thrown on all the threads
-    /// waiting.
+    /// 设置一个异常，这个异常将会被抛给所有正在等待的线程
     ///
-    /// @note The @a exception will be stored on a SharedException and thrown
-    /// as such.
-    template <typename ExceptionT>
+    /// @note The @a exception 将被存储在一个名为 SharedException 的共享对象上，并且会作为这样的异常被抛出
+    template <typename ExceptionT> /// 定义一个模板类，该类可以处理并存储特定类型的异常
     void SetException(ExceptionT &&exception);
 
   private:
