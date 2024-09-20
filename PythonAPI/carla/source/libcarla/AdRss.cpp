@@ -13,10 +13,11 @@
 #include <ad/rss/python/AdRssMapIntegrationPython.hpp>
 #include <ad/rss/world/RssDynamics.hpp>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
-
+ // 命名空间carla下的rss和sensor命名空间，用于定义与RSS（Responsibility-Sensitive Safety）相关的类和功能
 namespace carla {
 namespace rss {
-
+   
+    // 重载了std::ostream的<<操作符，用于RssRestrictor类的输出。这里简单输出了RssRestrictor的构造函数调用形式。
 std::ostream &operator<<(std::ostream &out, const RssRestrictor &) {
   out << "RssRestrictor()";
   return out;
@@ -27,6 +28,7 @@ std::ostream &operator<<(std::ostream &out, const RssRestrictor &) {
 namespace sensor {
 namespace data {
 
+    // 重载了std::ostream的<<操作符，用于RssResponse类的输出。详细输出了RssResponse对象的各个属性。 
 std::ostream &operator<<(std::ostream &out, const RssResponse &resp) {
   out << "RssResponse(frame=" << resp.GetFrame() << ", timestamp=" << resp.GetTimestamp()
       << ", valid=" << resp.GetResponseValid() << ", proper_response=" << resp.GetProperResponse()
@@ -38,6 +40,28 @@ std::ostream &operator<<(std::ostream &out, const RssResponse &resp) {
 }  // namespace data
 }  // namespace sensor
 }  // namespace carla
+// 以下三个函数是静态函数，用于从carla::client::RssSensor对象中获取不同类型的动态信息（Ego车辆、其他车辆、行人）。  
+
+// 获取Ego车辆的动态信息  
+static auto GetEgoVehicleDynamics(const carla::client::RssSensor& self) {
+    ad::rss::world::RssDynamics ego_dynamics(self.GetEgoVehicleDynamics());
+    return ego_dynamics;
+}
+
+// 获取其他车辆的动态信息  
+static auto GetOtherVehicleDynamics(const carla::client::RssSensor& self) {
+    ad::rss::world::RssDynamics other_dynamics(self.GetOtherVehicleDynamics());
+    return other_dynamics;
+}
+
+// 获取行人的动态信息  
+static auto GetPedestrianDynamics(const carla::client::RssSensor& self) {
+    ad::rss::world::RssDynamics pedestrian_dynamics(self.GetPedestrianDynamics());
+    return pedestrian_dynamics;
+}
+
+// 这些函数通过调用carla::client::RssSensor对象的相关方法来获取不同实体的RSS动态信息，并将这些信息封装在ad::rss::world::RssDynamics对象中返回。  
+// 这里的ad::rss::world::RssDynamics可能是一个自定义的类或结构体，用于表示实体的动态状态，如位置、速度、加速度等。
 
 static auto GetEgoVehicleDynamics(const carla::client::RssSensor &self) {
   ad::rss::world::RssDynamics ego_dynamics(self.GetEgoVehicleDynamics());
