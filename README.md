@@ -155,3 +155,5 @@ git rm -rf .
 [Seavey0402](https://github.com/Seavey0402) 
 [yangf95](https://github.com/yangf95) 
 [LBQ0056](https://github.com/LBQ0056) 
+[yuangjiajie](https://github.com/yuangjiajie) 
+
