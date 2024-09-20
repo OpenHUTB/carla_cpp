@@ -90,7 +90,7 @@ void export_actor() {
   ;
 
   class_<cc::Actor, boost::noncopyable, boost::shared_ptr<cc::Actor>>("Actor", no_init)
-  // work-around, force return copy to resolve Actor instead of ActorState.
+  // 变通方法，强制返回副本以解决Actor而不是ActorState
       .add_property("id", CALL_RETURNING_COPY(cc::Actor, GetId))
       .add_property("type_id", CALL_RETURNING_COPY(cc::Actor, GetTypeId))
       .add_property("parent", CALL_RETURNING_COPY(cc::Actor, GetParent))
