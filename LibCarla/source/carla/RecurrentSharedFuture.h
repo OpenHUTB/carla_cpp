@@ -4,10 +4,10 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 防止头文件被重复包含
 
-#include "carla/Exception.h"
-#include "carla/Time.h"
+#include "carla/Exception.h"  // 引入CARLA项目中的异常处理头文件 
+#include "carla/Time.h"   // 引入CARLA项目中的时间处理头文件
 
 #include <boost/optional.hpp>
 #ifdef _MSC_VER
@@ -80,9 +80,9 @@ namespace detail {
   // ===========================================================================
   // -- RecurrentSharedFuture implementation -----------------------------------
   // ===========================================================================
-//����detail�����ռ䣬���ڷ�װʵ��ϸ�� 
+//����detail�����ռ䣬���ڷ�װʵ��ϸ�� 
 namespace detail {
-//һЩ�ڲ�ʹ�õĺ������� 
+//һЩ�ڲ�ʹ�õĺ������� 
   static thread_local const char thread_tag{};
 
   class SharedException : public std::exception {
