@@ -9,9 +9,9 @@
 #include "carla/Exception.h"  // 引入CARLA项目中的异常处理头文件 
 #include "carla/Time.h"   // 引入CARLA项目中的时间处理头文件
 
-#include <boost/optional.hpp>
-#ifdef _MSC_VER
-#pragma warning(push)
+#include <boost/optional.hpp>  // 引入 Boost 库中的 optional 头文件，用于表示可选的值
+#ifdef _MSC_VER  // 如果是在 Microsoft Visual C++ (MSVC) 环境下编译
+#pragma warning(push)  // 保存当前的警告状态，以便之后恢复 
 #pragma warning(disable:4583)
 #pragma warning(disable:4582)
 #include <boost/variant2/variant.hpp>
