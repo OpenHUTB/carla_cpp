@@ -11,7 +11,7 @@
 
 namespace carla {
 
-  /// ÓÃÓÚ·ÃÎÊÎÄ¼şÏµÍ³µÄ¾²Ì¬º¯Êı¡£
+  /// ç”¨äºè®¿é—®æ–‡ä»¶ç³»ç»Ÿçš„é™æ€å‡½æ•°ã€‚
   ///
   /// @warning Using this file requires linking against boost_filesystem.
   class FileSystem {
