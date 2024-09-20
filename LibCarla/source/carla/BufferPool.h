@@ -35,12 +35,12 @@ namespace carla {
 
   /// 从队列中弹出一个缓冲区，如果队列为空，则创建一个新的缓冲区。
     Buffer Pop() {
-      Buffer item;
-      _queue.try_dequeue(item); // we don't care if it fails.
-#if __cplusplus >= 201703L // C++17
-      item._parent_pool = weak_from_this();
+      Buffer item; // 创建一个 Buffer 实例
+      _queue.try_dequeue(item); // 尝试从队列中弹出，失败则不处理
+#if __cplusplus >= 201703L // 检查是否支持 C++17
+      item._parent_pool = weak_from_this();  // 设置父池为弱引用
 #else
-      item._parent_pool = shared_from_this();
+      item._parent_pool = shared_from_this();  // 设置父池为共享引用
 #endif
       return item;
     }
