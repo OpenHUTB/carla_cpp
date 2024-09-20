@@ -44,13 +44,13 @@ namespace detail {
 
     using SharedException = detail::SharedException; // 使用detail命名空间下的SharedException类型，作为此模板类的一部分 
 
-    /// Wait until the next value is set. Any number of threads can be waiting
-    /// simultaneously.
-    ///
-    /// @return empty optional if the timeout is met.
+    ///等待直到下一个值被设置。任意数量的线程可以同时等待。
+
+
+    /// @return 如果达到超时时间，则返回空的optional
     boost::optional<T> WaitFor(time_duration timeout);
 
-    /// Set the value and notify all waiting threads.
+    /// 设置值并通知所有等待的线程
     template <typename T2>
     void SetValue(const T2 &value);
 
