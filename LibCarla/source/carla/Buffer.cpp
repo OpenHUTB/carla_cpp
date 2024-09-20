@@ -1,13 +1,13 @@
-#include "carla/Buffer.h"  // °üº¬ Buffer Í·ÎÄ¼ş£¬¶¨Òå Buffer Àà
+#include "carla/Buffer.h"  // åŒ…å« Buffer å¤´æ–‡ä»¶ï¼Œå®šä¹‰ Buffer ç±»
 
-#include "carla/BufferPool.h"  // °üº¬ BufferPool Í·ÎÄ¼ş£¬¶¨Òå BufferPool Àà
+#include "carla/BufferPool.h"  // åŒ…å« BufferPool å¤´æ–‡ä»¶ï¼Œå®šä¹‰ BufferPool ç±»
 
 namespace carla {
 
-  void Buffer::ReuseThisBuffer() {  // ¶¨Òå Buffer ÀàµÄ ReuseThisBuffer ·½·¨
-    auto pool = _parent_pool.lock();  // ³¢ÊÔËø¶¨Ö¸Ïò¸¸³ØµÄÈõÖ¸Õë
-    if (pool != nullptr) {  // ¼ì²é³ØÊÇ·ñÓĞĞ§£¨·Ç¿Õ£©
-      pool->Push(std::move(*this));  // ½«µ±Ç° Buffer ÊµÀıÒÆ¶¯µ½³ØµÄ Push ·½·¨ÖĞ
+  void Buffer::ReuseThisBuffer() {  // å®šä¹‰ Buffer ç±»çš„ ReuseThisBuffer æ–¹æ³•
+    auto pool = _parent_pool.lock();  // å°è¯•é”å®šæŒ‡å‘çˆ¶æ± çš„å¼±æŒ‡é’ˆ
+    if (pool != nullptr) {  // æ£€æŸ¥æ± æ˜¯å¦æœ‰æ•ˆï¼ˆéç©ºï¼‰
+      pool->Push(std::move(*this));  // å°†å½“å‰ Buffer å®ä¾‹ç§»åŠ¨åˆ°æ± çš„ Push æ–¹æ³•ä¸­
     }
   }
 
