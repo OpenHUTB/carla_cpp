@@ -15,12 +15,12 @@
 #pragma warning(disable:4583)  // 禁用特定于 MSVC 的警告 4583，这个警告通常与编译器如何处理模板实例化有关
 #pragma warning(disable:4582)  // 禁用特定于 MSVC 的警告 4582，这个警告涉及构造函数或析构函数的隐式转换
 #include <boost/variant2/variant.hpp> // 引入 Boost 库中的 variant2 头文件，variant2 是 Boost.Variant 的后续版本，提供了更灵活和强大的类型安全联合体
-#pragma warning(pop)
+#pragma warning(pop) // 恢复之前保存的警告状态
 #else
-#include <boost/variant2/variant.hpp>
+#include <boost/variant2/variant.hpp> // 如果不是在 MSVC 环境下，直接引入 Boost.Variant2
 #endif
 
-#include <condition_variable>
+#include <condition_variable> // 引入 C++ 标准库中的条件变量头文件，用于同步操作，如等待某个条件成立 
 #include <exception>
 #include <map>
 #include <mutex>
