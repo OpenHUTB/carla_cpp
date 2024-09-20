@@ -61,11 +61,11 @@ namespace detail {
     void SetException(ExceptionT &&exception);
 
   private:
-
+      // 用于在多线程环境中同步访问共享数据的互斥锁
     std::mutex _mutex;
-
+      // 条件变量，用于在多线程程序中同步线程的执行
     std::condition_variable _cv;
-
+      // 定义一个结构体，用于映射键（const char*）到值和等待状态 
     struct mapped_type {
       bool should_wait;
       boost::variant2::variant<SharedException, T> value;
