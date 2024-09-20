@@ -8,19 +8,19 @@
 
 #include <type_traits>
 
-namespace carla {//����һ������carla���� 
+namespace carla {//定义一个叫做carla的类 
 
-  template <typename... Ts>
+  template <typename... Ts>  // 定义一个模板结构体，接受可变数量的类型参数
   struct are_same;
 
-  template <typename T0, typename T1, typename... Ts>
+  template <typename T0, typename T1, typename... Ts> // 针对至少两个类型的特化
   struct are_same<T0, T1, Ts...> {
-    static constexpr bool value = std::is_same<T0, T1>::value && are_same<T0, Ts...>::value;//����һ����̬����������Ա���� 
+    static constexpr bool value = std::is_same<T0, T1>::value && are_same<T0, Ts...>::value;//定义一个静态常量布尔成员变量 
   };
 
-  template <typename T0, typename T1>
+  template <typename T0, typename T1>  // 针对两个类型的特化
   struct are_same<T0, T1> {
-    static constexpr bool value = std::is_same<T0, T1>::value;
+    static constexpr bool value = std::is_same<T0, T1>::value;  // 检查 T0 和 T1 是否相同
   };
 
 } // namespace carla
