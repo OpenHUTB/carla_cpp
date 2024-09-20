@@ -11,13 +11,13 @@
 
 namespace carla {
 
-  /// Static functions for accessing the file system.
+  /// 用于访问文件系统的静态函数。
   ///
-  /// @warning Using this file requires linking against boost_filesystem.
+  ///  @warning 使用此文件需要链接 boost_filesystem。
   class FileSystem {
   public:
 
-    /// Convenient function to validate a path before creating a file.
+    /// 在创建文件之前验证路径的方便函数。
     ///
     /// 1)  Ensures all the parent directories are created if missing.
     /// 2)  If @a filepath is missing the extension, @a default_extension is
