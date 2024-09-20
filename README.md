@@ -22,7 +22,7 @@ doxygen
 
 5.修改并本地测试没问题后，提交代码到个人仓库：
 ```shell script
-git add .
+git add README.md
 git commit -m "update"
 git push
 ```
