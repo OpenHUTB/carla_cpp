@@ -34,11 +34,12 @@ namespace detail {
 } // namespace detail
 
   // ===========================================================================
-  // -- 并发共享的未来 RecurrentSharedFuture ------------------------------------
+  // -- 并发共享未来 RecurrentSharedFuture ------------------------------------
   // ===========================================================================
 
   /// 这个类类似于共享未来（shared future）的使用方式，但是它的值可以被设置任意次数的值。
   /// 未来设计模式的核心思想是异步调用。
+  /// Future接口象征着异步执行任务的结果即执行一个耗时任务完全可以另起一个线程执行，然后此时我们可以去做其他事情，做完其他事情我们再调用Future.get()方法获取结果即可。
   /// 对于未来模式来说，它无法立即返回你需要的数据，但是它会返回一个契约，将来你可以凭借这个契约去获取你需要的信息。
   /// 服务程序并不等数据处理完成便立即返回客户端一个伪造的数据（如：商品的订单，而不是商品本身）；
   /// 在完成其他业务处理后，最后再使用返回比较慢的Future数据。
@@ -50,9 +51,9 @@ namespace detail {
     using SharedException = detail::SharedException; // 使用detail命名空间下的SharedException类型，作为此模板类的一部分 
 
     ///等待直到下一个值被设置。任意数量的线程可以同时等待。
-
-
-    /// @return 如果达到超时时间，则返回空的optional
+    /// 
+    /// @return 如果达到超时时间timeout仍然未获得结果，则返回空的 boost::optional
+    /// boost::optional 即可选返回值，是函数的返回值，可能并不总是返回结果。
     boost::optional<T> WaitFor(time_duration timeout);
 
     /// 设置值并通知所有等待的线程
@@ -67,16 +68,17 @@ namespace detail {
 
   private:
 
-    std::mutex _mutex;
+    std::mutex _mutex;  // 互斥量：可以确保一次只有一个线程可以访问共享资源，避免竞争条件的发生。
 
+    // condition_variable（条件变量）是 C++11 中提供的一种多线程同步机制,它允许一个或多个线程等待另一个线程发出通知,以便能够有效地进行线程同步
     std::condition_variable _cv;
 
     struct mapped_type {
       bool should_wait;
-      boost::variant2::variant<SharedException, T> value;
+      boost::variant2::variant<SharedException, T> value;  // boost::variant2实现类型转换
     };
 
-    std::map<const char *, mapped_type> _map;
+    std::map<const char *, mapped_type> _map;  // 所有线程构成的map
   };
 
   // ===========================================================================
@@ -111,11 +113,16 @@ namespace detail {
 
 } // namespace detail
 
+  //  如果达到超时时间timeout仍然未获得结果，则返回空的 boost::optional
   template <typename T>
   boost::optional<T> RecurrentSharedFuture<T>::WaitFor(time_duration timeout) {
+    // std::mutex提供的lock()和unlock()方法，用于在需要访问共享资源时加锁和解锁。
+    // 当一个线程获得了锁之后，其他线程会被阻塞直到锁被释放。
+    // 这样可以保证同一时刻只有一个线程可以访问共享资源，从而确保数据的一致性和正确性。
     std::unique_lock<std::mutex> lock(_mutex);
     auto &r = _map[&detail::thread_tag];
     r.should_wait = true;
+    // wait_for() 函数用于阻塞线程并等待唤醒，它可以设置一个超时时间 timeout.to_chrono()。
     if (!_cv.wait_for(lock, timeout.to_chrono(), [&]() { return !r.should_wait; })) {
       return {};
     }
@@ -125,15 +132,16 @@ namespace detail {
     return boost::variant2::get<T>(std::move(r.value));
   }
 
+  // /// 设置值并通知所有等待的线程
   template <typename T>
   template <typename T2>
   void RecurrentSharedFuture<T>::SetValue(const T2 &value) {
     std::lock_guard<std::mutex> lock(_mutex);
     for (auto &pair : _map) {
-      pair.second.should_wait = false;
-      pair.second.value = value;
+      pair.second.should_wait = false;  // 将每个线程设置为不需要等待
+      pair.second.value = value;        // 设置值
     }
-    _cv.notify_all();
+    _cv.notify_all();  // 通知所有线程
   }
 
   template <typename T>
