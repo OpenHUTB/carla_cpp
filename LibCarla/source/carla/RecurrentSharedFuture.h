@@ -21,9 +21,9 @@
 #endif
 
 #include <condition_variable> // 引入 C++ 标准库中的条件变量头文件，用于同步操作，如等待某个条件成立 
-#include <exception>
-#include <map>
-#include <mutex>
+#include <exception> // 引入 C++ 标准库中的异常处理头文件
+#include <map> // 引入 C++ 标准库中的 map 头文件，map 是一个关联容器，存储的元素是键值对 
+#include <mutex> // 引入 C++ 标准库中的互斥锁头文件，用于提供互斥锁，以保护共享数据的同步访问 
 
 namespace carla {
 
