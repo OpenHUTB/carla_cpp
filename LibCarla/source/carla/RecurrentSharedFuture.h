@@ -12,9 +12,9 @@
 #include <boost/optional.hpp>  // 引入 Boost 库中的 optional 头文件，用于表示可选的值
 #ifdef _MSC_VER  // 如果是在 Microsoft Visual C++ (MSVC) 环境下编译
 #pragma warning(push)  // 保存当前的警告状态，以便之后恢复 
-#pragma warning(disable:4583)
-#pragma warning(disable:4582)
-#include <boost/variant2/variant.hpp>
+#pragma warning(disable:4583)  // 禁用特定于 MSVC 的警告 4583，这个警告通常与编译器如何处理模板实例化有关
+#pragma warning(disable:4582)  // 禁用特定于 MSVC 的警告 4582，这个警告涉及构造函数或析构函数的隐式转换
+#include <boost/variant2/variant.hpp> // 引入 Boost 库中的 variant2 头文件，variant2 是 Boost.Variant 的后续版本，提供了更灵活和强大的类型安全联合体
 #pragma warning(pop)
 #else
 #include <boost/variant2/variant.hpp>
