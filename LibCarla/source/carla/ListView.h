@@ -19,9 +19,9 @@ namespace carla {
   class ListView {
   public:
 
-    using iterator = IT;
-    using const_iterator = typename std::add_const<IT>::type;
-    using size_type = size_t;
+    using iterator = IT;    // 定义迭代器类型
+    using const_iterator = typename std::add_const<IT>::type;    // 定义常量迭代器类型
+    using size_type = size_t;   // 定义大小类型
     using difference_type = typename std::iterator_traits<iterator>::difference_type;
     using value_type = typename std::iterator_traits<iterator>::value_type;
     using pointer = typename std::iterator_traits<iterator>::pointer;
