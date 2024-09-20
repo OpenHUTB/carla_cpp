@@ -34,10 +34,15 @@ namespace detail {
 } // namespace detail
 
   // ===========================================================================
-  // -- RecurrentSharedFuture --------------------------------------------------
+  // -- 并发共享的未来 RecurrentSharedFuture ------------------------------------
   // ===========================================================================
 
-  /// 这个类类似于共享未来（shared future）的使用方式，但是它可以被设置任意次数的值。
+  /// 这个类类似于共享未来（shared future）的使用方式，但是它的值可以被设置任意次数的值。
+  /// 未来设计模式的核心思想是异步调用。
+  /// 对于未来模式来说，它无法立即返回你需要的数据，但是它会返回一个契约，将来你可以凭借这个契约去获取你需要的信息。
+  /// 服务程序并不等数据处理完成便立即返回客户端一个伪造的数据（如：商品的订单，而不是商品本身）；
+  /// 在完成其他业务处理后，最后再使用返回比较慢的Future数据。
+  /// 参考：https://blog.csdn.net/weixin_43816711/article/details/125664746
   template <typename T>
   class RecurrentSharedFuture {
   public:
@@ -54,12 +59,10 @@ namespace detail {
     template <typename T2>
     void SetValue(const T2 &value);
 
-    /// Set a exception, this exception will be thrown on all the threads
-    /// waiting.
+    /// 设置一个异常，这个异常将会被抛给所有正在等待的线程
     ///
-    /// @note The @a exception will be stored on a SharedException and thrown
-    /// as such.
-    template <typename ExceptionT>
+    /// @note The @a exception 将被存储在一个名为 SharedException 的共享对象上，并且会作为这样的异常被抛出
+    template <typename ExceptionT> /// 定义一个模板类，该类可以处理并存储特定类型的异常
     void SetException(ExceptionT &&exception);
 
   private:
@@ -77,7 +80,7 @@ namespace detail {
   };
 
   // ===========================================================================
-  // -- RecurrentSharedFuture implementation -----------------------------------
+  // -- RecurrentSharedFuture 实现 ---------------------------------------------
   // ===========================================================================
 // 定义了一个名为 detail 的命名空间
 namespace detail {
