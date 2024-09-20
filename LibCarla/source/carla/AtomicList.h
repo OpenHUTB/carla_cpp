@@ -17,37 +17,37 @@ namespace carla {
 namespace client {
 namespace detail {
  
-  /// ³ÖÓĞÒ»¸öÖ¸ÏòÁĞ±íµÄÔ­×ÓÖ¸Õë¡£
+  /// æŒæœ‰ä¸€ä¸ªæŒ‡å‘åˆ—è¡¨çš„åŸå­æŒ‡é’ˆã€‚
   ///
-  /// @warning ½ö Load ·½·¨ÊÇÔ­×ÓµÄ£¬¶ÔÁĞ±íµÄĞŞ¸ÄÓÉ»¥³âÁ¿Ëø¶¨¡£
+  /// @warning ä»… Load æ–¹æ³•æ˜¯åŸå­çš„ï¼Œå¯¹åˆ—è¡¨çš„ä¿®æ”¹ç”±äº’æ–¥é‡é”å®šã€‚
   template <typename T>
   class AtomicList : private NonCopyable {
-    using ListT = std::vector<T>;// ÁĞ±íÀàĞÍ¶¨ÒåÎª std::vector<T>£¬´æ´¢ÔªËØ T
+    using ListT = std::vector<T>;// åˆ—è¡¨ç±»å‹å®šä¹‰ä¸º std::vector<T>ï¼Œå­˜å‚¨å…ƒç´  T
   public:
  
-    AtomicList() : _list(std::make_shared<ListT>()) {}// ³õÊ¼»¯ÁĞ±íÎªÒ»¸ö¿ÕµÄ¹²ÏíÖ¸Õë
+    AtomicList() : _list(std::make_shared<ListT>()) {}// åˆå§‹åŒ–åˆ—è¡¨ä¸ºä¸€ä¸ªç©ºçš„å…±äº«æŒ‡é’ˆ
  
     template <typename ValueT>
     void Push(ValueT &&value) {
-      std::lock_guard<std::mutex> lock(_mutex);// Ëø¶¨»¥³âÁ¿ÒÔ±£Ö¤Ïß³Ì°²È«
-      auto new_list = std::make_shared<ListT>(*Load());// ¸´ÖÆµ±Ç°ÁĞ±í²¢´´½¨Ò»¸öĞÂÁĞ±í
-      new_list->emplace_back(std::forward<ValueT>(value)); // ½«ĞÂÖµÌí¼Óµ½ĞÂÁĞ±íµÄÄ©Î²
-      _list = new_list;// ¸üĞÂÔ­×ÓÖ¸ÕëÖ¸ÏòĞÂÁĞ±í
+      std::lock_guard<std::mutex> lock(_mutex);// é”å®šäº’æ–¥é‡ä»¥ä¿è¯çº¿ç¨‹å®‰å…¨
+      auto new_list = std::make_shared<ListT>(*Load());// å¤åˆ¶å½“å‰åˆ—è¡¨å¹¶åˆ›å»ºä¸€ä¸ªæ–°åˆ—è¡¨
+      new_list->emplace_back(std::forward<ValueT>(value)); // å°†æ–°å€¼æ·»åŠ åˆ°æ–°åˆ—è¡¨çš„æœ«å°¾
+      _list = new_list;// æ›´æ–°åŸå­æŒ‡é’ˆæŒ‡å‘æ–°åˆ—è¡¨
     }
  
     void DeleteByIndex(size_t index) {
-      std::lock_guard<std::mutex> lock(_mutex);// Ëø¶¨»¥³âÁ¿ÒÔ±£Ö¤Ïß³Ì°²È«
-      auto new_list = std::make_shared<ListT>(*Load());// ¸´ÖÆµ±Ç°ÁĞ±í²¢´´½¨Ò»¸öĞÂÁĞ±í
-      auto begin = new_list->begin();// »ñÈ¡ÁĞ±íµÄÆğÊ¼µü´úÆ÷
+      std::lock_guard<std::mutex> lock(_mutex);// é”å®šäº’æ–¥é‡ä»¥ä¿è¯çº¿ç¨‹å®‰å…¨
+      auto new_list = std::make_shared<ListT>(*Load());// å¤åˆ¶å½“å‰åˆ—è¡¨å¹¶åˆ›å»ºä¸€ä¸ªæ–°åˆ—è¡¨
+      auto begin = new_list->begin();// è·å–åˆ—è¡¨çš„èµ·å§‹è¿­ä»£å™¨
       std::advance(begin, index);
       new_list->erase(begin);
-      _list = new_list;// ¸üĞÂÔ­×ÓÖ¸ÕëÖ¸ÏòĞÂÁĞ±í
+      _list = new_list;// æ›´æ–°åŸå­æŒ‡é’ˆæŒ‡å‘æ–°åˆ—è¡¨
     }
  
     template <typename ValueT>
     void DeleteByValue(const ValueT &value) {
       std::lock_guard<std::mutex> lock(_mutex);
-      auto new_list = std::make_shared<ListT>(*Load());  // Ê¹ÓÃ std::remove ÒÆ¶¯ËùÓĞµÈÓÚ value µÄÔªËØµ½ÁĞ±íÄ©Î²£¬È»ºóµ÷ÓÃ erase É¾³ıÕâĞ©ÔªËØ
+      auto new_list = std::make_shared<ListT>(*Load());  // ä½¿ç”¨ std::remove ç§»åŠ¨æ‰€æœ‰ç­‰äº value çš„å…ƒç´ åˆ°åˆ—è¡¨æœ«å°¾ï¼Œç„¶åè°ƒç”¨ erase åˆ é™¤è¿™äº›å…ƒç´ 
       new_list->erase(std::remove(new_list->begin(), new_list->end(), value), new_list->end());
       _list = new_list;
     }
@@ -57,16 +57,16 @@ namespace detail {
       _list = std::make_shared<ListT>();
     }
  
-      /// ·µ»ØÖ¸ÏòÁĞ±íµÄÖ¸Õë¡£
+      /// è¿”å›æŒ‡å‘åˆ—è¡¨çš„æŒ‡é’ˆã€‚
     std::shared_ptr<const ListT> Load() const {
       return _list.load();
     }
  
   private:
  
-    std::mutex _mutex;// »¥³âÁ¿£¬ÓÃÓÚ±£»¤¶ÔÁĞ±íµÄĞŞ¸Ä
+    std::mutex _mutex;// äº’æ–¥é‡ï¼Œç”¨äºä¿æŠ¤å¯¹åˆ—è¡¨çš„ä¿®æ”¹
  
-    AtomicSharedPtr<const ListT> _list;// Ô­×Ó¹²ÏíÖ¸Õë£¬Ö¸Ïòµ±Ç°ÁĞ±í
+    AtomicSharedPtr<const ListT> _list;// åŸå­å…±äº«æŒ‡é’ˆï¼ŒæŒ‡å‘å½“å‰åˆ—è¡¨
   };
  
 } // namespace detail
