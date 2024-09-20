@@ -12,10 +12,12 @@
 #include "carla/Logging.h"
 #include "carla/Time.h"
 
+// C++ Boost Asio是一个基于事件驱动的网络编程库，提供了异步的、非阻塞的网络编程接口。
 #include <boost/asio/connect.hpp>
 #include <boost/asio/read.hpp>
 #include <boost/asio/write.hpp>
-#include <boost/asio/post.hpp>
+// 通过停止使用boost post，删除了ServerSession和Client中Write函数的并行化，
+// 这会导致客户机和服务器之间的不同步，并最终导致泄漏：https://github.com/carla-simulator/carla/pull/8130
 #include <boost/asio/bind_executor.hpp>
 
 #include <exception>
@@ -26,20 +28,21 @@ namespace detail {
 namespace tcp {
 
   // ===========================================================================
-  // -- IncomingMessage --------------------------------------------------------
+  // -- 传入消息 IncomingMessage ------------------------------------------------
   // ===========================================================================
 
-  /// Helper for reading incoming TCP messages. Allocates the whole message in
-  /// a single buffer.
+  /// 读取传入TCP消息的助手。在单个缓冲区中分配整个消息。
   class IncomingMessage {
   public:
 
     explicit IncomingMessage(Buffer &&buffer) : _message(std::move(buffer)) {}
 
+    // 获取缓冲区的大小
     boost::asio::mutable_buffer size_as_buffer() {
       return boost::asio::buffer(&_size, sizeof(_size));
     }
 
+    // 获取消息的缓冲区
     boost::asio::mutable_buffer buffer() {
       DEBUG_ASSERT(_size > 0u);
       _message.reset(_size);
@@ -51,6 +54,8 @@ namespace tcp {
     }
 
     auto pop() {
+      // std::move 将左值转换为右值（转移所有权或启用对象的移动语义）
+      // 移动语义允许开发人员有效地将资源（如内存或文件句柄）从一个对象传输到另一个对象，而无需进行不必要的复制。
       return std::move(_message);
     }
 
@@ -62,7 +67,7 @@ namespace tcp {
   };
 
   // ===========================================================================
-  // -- Client -----------------------------------------------------------------
+  // -- 客户端 ------------------------------------------------------------------
   // ===========================================================================
 
   Client::Client(
@@ -84,9 +89,10 @@ namespace tcp {
 
   Client::~Client() = default;
 
+
+  // 连接
   void Client::Connect() {
     auto self = shared_from_this();
-    boost::asio::post(_strand, [this, self]() {
       if (_done) {
         return;
       }
@@ -106,27 +112,33 @@ namespace tcp {
           if (_done) {
             return;
           }
-          // This forces not using Nagle's algorithm.
-          // Improves the sync mode velocity on Linux by a factor of ~3.
+          // 强制不使用Nagle(内格尔)算法。
+          // Nagle算法：当一个TCP连接上有数据要发送时，并不立即发送出去，
+          // 而是等待一小段时间（通常是由一个RTT，即往返时延来估计），看看是否有更多的数据要发送。
+          // 如果在这段时间内有额外的数据产生，那么这些数据就会被组装成一个更大的报文一起发送。
+          // 这样做可以减少网络中由于过多的小包而引起的拥塞。
+          // 然而，它也可能引入额外的延迟，特别是在同步模式中，用户可能感觉到响应变慢，
+          // 禁用Nagle算法，将Linux上的同步模式速度提高了约3倍。
+          // 以牺牲带宽效率为代价，换取更低的延迟。
           _socket.set_option(boost::asio::ip::tcp::no_delay(true));
           log_debug("streaming client: connected to", ep);
-          // Send the stream id to subscribe to the stream.
+          // 发送流id以订阅流。
           const auto &stream_id = _token.get_stream_id();
           log_debug("streaming client: sending stream id", stream_id);
           boost::asio::async_write(
               _socket,
               boost::asio::buffer(&stream_id, sizeof(stream_id)),
               boost::asio::bind_executor(_strand, [=](error_code ec, size_t DEBUG_ONLY(bytes)) {
-                // Ensures to stop the execution once the connection has been stopped.
+                // 确保在连接停止后停止执行。
                 if (_done) {
                   return;
                 }
                 if (!ec) {
                   DEBUG_ASSERT_EQ(bytes, sizeof(stream_id));
-                  // If succeeded start reading data.
+                  // 如果成功，开始读取数据。
                   ReadData();
                 } else {
-                  // Else try again.
+                  // 否则再尝试连接一次。
                   log_debug("streaming client: failed to send stream id:", ec.message());
                   Connect();
                 }
@@ -139,20 +151,21 @@ namespace tcp {
 
       log_debug("streaming client: connecting to", ep);
       _socket.async_connect(ep, boost::asio::bind_executor(_strand, handle_connect));
-    });
   }
 
+
+  // 停止连接
   void Client::Stop() {
     _connection_timer.cancel();
     auto self = shared_from_this();
-    boost::asio::post(_strand, [this, self]() {
       _done = true;
       if (_socket.is_open()) {
         _socket.close();
       }
-    });
   }
 
+
+  // 重新连接
   void Client::Reconnect() {
     auto self = shared_from_this();
     _connection_timer.expires_from_now(time_duration::seconds(1u));
@@ -163,9 +176,10 @@ namespace tcp {
     });
   }
 
+
+  // 读取数据
   void Client::ReadData() {
     auto self = shared_from_this();
-    boost::asio::post(_strand, [this, self]() {
       if (_done) {
         return;
       }
@@ -179,13 +193,12 @@ namespace tcp {
         if (!ec) {
           DEBUG_ASSERT_EQ(bytes, message->size());
           DEBUG_ASSERT_NE(bytes, 0u);
-          // Move the buffer to the callback function and start reading the next
-          // piece of data.
+          // 将缓冲区移动到回调函数并开始读取下一块数据。
           // log_debug("streaming client: success reading data, calling the callback");
-          boost::asio::post(_strand, [self, message]() { self->_callback(message->pop()); });
+          self->_callback(message->pop());
           ReadData();
         } else {
-          // As usual, if anything fails start over from the very top.
+          // 像往常一样，如果出了什么问题，就从头再来。
           log_debug("streaming client: failed to read data:", ec.message());
           Connect();
         }
@@ -200,8 +213,7 @@ namespace tcp {
           if (_done) {
             return;
           }
-          // Now that we know the size of the coming buffer, we can allocate our
-          // buffer and start putting data into it.
+          // 现在我们知道了即将到来的缓冲区的大小，我们可以分配缓冲区并开始将数据放入其中。
           boost::asio::async_read(
               _socket,
               message->buffer(),
@@ -214,12 +226,11 @@ namespace tcp {
         }
       };
 
-      // Read the size of the buffer that is coming.
+      // 读取即将到来的缓冲区的大小。
       boost::asio::async_read(
           _socket,
           message->size_as_buffer(),
           boost::asio::bind_executor(_strand, handle_read_header));
-    });
   }
 
 } // namespace tcp

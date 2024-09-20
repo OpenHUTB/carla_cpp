@@ -4,32 +4,32 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 防止头文件被重复包含
 
-#include "carla/Exception.h"
-#include "carla/Time.h"
+#include "carla/Exception.h"  // 引入CARLA项目中的异常处理头文件 
+#include "carla/Time.h"   // 引入CARLA项目中的时间处理头文件
 
-#include <boost/optional.hpp>
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable:4583)
-#pragma warning(disable:4582)
-#include <boost/variant2/variant.hpp>
-#pragma warning(pop)
+#include <boost/optional.hpp>  // 引入 Boost 库中的 optional 头文件，用于表示可选的值
+#ifdef _MSC_VER  // 如果是在 Microsoft Visual C++ (MSVC) 环境下编译
+#pragma warning(push)  // 保存当前的警告状态，以便之后恢复 
+#pragma warning(disable:4583)  // 禁用特定于 MSVC 的警告 4583，这个警告通常与编译器如何处理模板实例化有关
+#pragma warning(disable:4582)  // 禁用特定于 MSVC 的警告 4582，这个警告涉及构造函数或析构函数的隐式转换
+#include <boost/variant2/variant.hpp> // 引入 Boost 库中的 variant2 头文件，variant2 是 Boost.Variant 的后续版本，提供了更灵活和强大的类型安全联合体
+#pragma warning(pop) // 恢复之前保存的警告状态
 #else
-#include <boost/variant2/variant.hpp>
+#include <boost/variant2/variant.hpp> // 如果不是在 MSVC 环境下，直接引入 Boost.Variant2
 #endif
 
-#include <condition_variable>
-#include <exception>
-#include <map>
-#include <mutex>
+#include <condition_variable> // 引入 C++ 标准库中的条件变量头文件，用于同步操作，如等待某个条件成立 
+#include <exception> // 引入 C++ 标准库中的异常处理头文件
+#include <map> // 引入 C++ 标准库中的 map 头文件，map 是一个关联容器，存储的元素是键值对 
+#include <mutex> // 引入 C++ 标准库中的互斥锁头文件，用于提供互斥锁，以保护共享数据的同步访问 
 
 namespace carla {
 
 namespace detail {
 
-  class SharedException;
+  class SharedException; // 定义一个异常类，用于在文件中共享和传递异常信息
 
 } // namespace detail
 
@@ -37,21 +37,20 @@ namespace detail {
   // -- RecurrentSharedFuture --------------------------------------------------
   // ===========================================================================
 
-  /// This class is meant to be used similar to a shared future, but the value
-  /// can be set any number of times.
+  /// 这个类类似于共享未来（shared future）的使用方式，但是它可以被设置任意次数的值。
   template <typename T>
   class RecurrentSharedFuture {
   public:
 
-    using SharedException = detail::SharedException;
+    using SharedException = detail::SharedException; // 使用detail命名空间下的SharedException类型，作为此模板类的一部分 
 
-    /// Wait until the next value is set. Any number of threads can be waiting
-    /// simultaneously.
-    ///
-    /// @return empty optional if the timeout is met.
+    ///等待直到下一个值被设置。任意数量的线程可以同时等待。
+
+
+    /// @return 如果达到超时时间，则返回空的optional
     boost::optional<T> WaitFor(time_duration timeout);
 
-    /// Set the value and notify all waiting threads.
+    /// 设置值并通知所有等待的线程
     template <typename T2>
     void SetValue(const T2 &value);
 
@@ -80,9 +79,9 @@ namespace detail {
   // ===========================================================================
   // -- RecurrentSharedFuture implementation -----------------------------------
   // ===========================================================================
-
+// 定义了一个名为 detail 的命名空间
 namespace detail {
-
+//// 定义一个线程局部的静态常量字符变量，用于标识或标记当前线程，其值默认为空字符（'\0'）
   static thread_local const char thread_tag{};
 
   class SharedException : public std::exception {

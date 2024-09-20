@@ -20,6 +20,7 @@ namespace nav {
 
     class Navigation;
 
+    // 定义行人状态的枚举类型
     enum WalkerState {
         WALKER_IDLE,
         WALKER_WALKING,
@@ -27,13 +28,16 @@ namespace nav {
         WALKER_STOP
     };
 
+    // 定义一个结构体用于表示行人路线中的某一点
     struct WalkerRoutePoint {
-        WalkerEvent event;
-        carla::geom::Location location;
-        unsigned char areaType;
+        WalkerEvent event;// 事件类型
+        carla::geom::Location location;// 地点位置
+        unsigned char areaType;// 区域类型
+
+        // 构造函数初始化所有成员
         WalkerRoutePoint(WalkerEvent ev, carla::geom::Location loc, unsigned char area) : event(ev), location(loc), areaType(area) {};
     };
-
+    // 定义一个结构体用于表示一个行人的信息
     struct WalkerInfo {
         carla::geom::Location from;
         carla::geom::Location to;
@@ -42,6 +46,7 @@ namespace nav {
         std::vector<WalkerRoutePoint> route;
     };
 
+  // 定义 WalkerManager 类用于管理行人及其路径
   class WalkerManager : private NonCopyable {
 
   public:
@@ -49,44 +54,46 @@ namespace nav {
     WalkerManager();
     ~WalkerManager();
 
-    /// assign the navigation module
+    // 设置导航模块的函数
     void SetNav(Navigation *nav);
 
-    /// reference to the simulator to access API functions
+    // 设置模拟器的引用，允许访问 API 函数
     void SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator);
 
-    /// create a new walker route
+    // 创建新的行人路线
     bool AddWalker(ActorId id);
 
-    /// remove a walker route
+    // 移除现有的行人路线
     bool RemoveWalker(ActorId id);
 
-    /// update all routes
+    // 更新所有的行人路线
     bool Update(double delta);
 
-    /// set a new route from its current position
+    // 从当前路径点设置新的行人路线
     bool SetWalkerRoute(ActorId id);
     bool SetWalkerRoute(ActorId id, carla::geom::Location to);
 
-    /// set the next point in the route
+    // 设置路径中的下一个点
     bool SetWalkerNextPoint(ActorId id);
   
-    /// get the next point in the route
+    // 获取路径中的下一个点
     bool GetWalkerNextPoint(ActorId id, carla::geom::Location &location);
 
-    /// get the point in the route that end current crosswalk
+    // 获取路径中当前人行横道的结束点
     bool GetWalkerCrosswalkEnd(ActorId id, carla::geom::Location &location);
     
-    /// return the navigation object
+    // 返回导航对象
     Navigation *GetNavigation() { return _nav; };
 
-    /// return the trafficlight affecting that position
+    // 返回影响特定位置的交通灯
     SharedPtr<carla::client::TrafficLight> GetTrafficLightAffecting(carla::geom::Location UnrealPos, float max_distance = -1.0f);
 
     private:
 
+    // 获取所有交通灯的路径点
     void GetAllTrafficLightWaypoints();
 
+    // 执行特定事件的处理
     EventResult ExecuteEvent(ActorId id, WalkerInfo &info, double delta);
 
     std::unordered_map<ActorId, WalkerInfo> _walkers;
