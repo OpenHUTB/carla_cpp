@@ -25,6 +25,7 @@ namespace detail {   //  ���������ռ� detail������ʵ��ϸ��
 namespace carla {  // 定义命名空间 carla
 namespace detail {   // 定义命名空间 detail，用于实现细节
 
+
   template <typename FunctorT>  // 定义一个模板结构体，接受任意类型 FunctorT
   struct MoveWrapper : FunctorT {  // MoveWrapper 继承自 FunctorT
     MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}  // 构造函数，移动构造 FunctorT
@@ -39,8 +40,8 @@ namespace detail {   // 定义命名空间 detail，用于实现细节
 
 } // namespace detail
 
-  /// Hack to trick asio into accepting move-only handlers, if the handler were
-  /// actually copied it would result in a link error.
+  /// 下面是一种hack，用于绕过Asio库的限制，使其能够接受仅可移动的处理程序。
+  /// 如果Asio试图复制一个仅可移动的处理程序，那么编译时可能不会立即报错
   ///
   /// @see https://stackoverflow.com/a/22891509.
   template <typename FunctorT>  // 定义一个模板函数，接受任意类型 FunctorT
