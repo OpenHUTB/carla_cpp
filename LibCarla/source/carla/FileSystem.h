@@ -26,8 +26,8 @@ namespace carla {
         std::string &filepath,
         const std::string &default_extension = "");
 
-    /// List (not recursively) regular files at @a folder_path matching
-    /// @a wildcard_pattern.
+    ///列出 @a folder_path 中匹配 @a wildcard_pattern 的常规文件
+    /// （不递归）。
     ///
     /// @throw std::invalid_argument if folder does not exist.
     ///
