@@ -19,10 +19,10 @@ namespace boost {   // 在boost命名空间中
     carla::throw_exception(e);  // 调用Carla的抛出异常函数 
   }
 
-  void throw_exception(
+  void throw_exception(  // 重载的抛出异常函数，带有源位置信息
       const std::exception &e,
-      boost::source_location const & loc) {
-    throw_exception(e);
+      boost::source_location const & loc) {  // 接受异常和源位置
+    throw_exception(e);  // 调用上面定义的抛出异常函数
   }
 
 } // namespace boost
