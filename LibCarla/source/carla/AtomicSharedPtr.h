@@ -10,8 +10,10 @@
  
 namespace carla {
 
-  /// AtomicSharedPtr是一个非常简单的原子操作智能指针类，支持线程安全的共享指针操作，使用了release-acquire内存顺序。
-  //Release-Acquire确保一个线程的内存写操作（release）在另一个线程的读操作（acquire）之前完成。它保证线程之间的数据同步，避免出现读写顺序错误，确保一个线程看到的数据是另一个线程已经更新过的。
+  /// AtomicSharedPtr是一个非常简单的原子操作智能指针类，支持线程安全的共享指针操作，使用了释放-获取（release-acquire）内存顺序。
+  /// Release-Acquire确保一个线程的内存释放（release）在另一个线程的获取（acquire）之前完成。
+  /// 它保证线程之间的数据同步，避免出现读写顺序错误，确保一个线程看到的数据是另一个线程已经更新过的。
+  /// 参考：https://zhuanlan.zhihu.com/p/669908979
   template <typename T>
   class AtomicSharedPtr {
   public:
@@ -28,7 +30,7 @@ namespace carla {
  	 // 删除移动构造函数，不允许对象的移动操作
     AtomicSharedPtr(AtomicSharedPtr &&) = delete;
     
- 	// 存储新指针，使用release内存顺序，保证所有写操作在这个存储操作之前完成
+ 	// 存储新指针，使用release内存顺序，保证所有释放在操作获取之前完成
     void store(std::shared_ptr<T> ptr) noexcept {
       std::atomic_store_explicit(&_ptr, ptr, std::memory_order_release);
     }
