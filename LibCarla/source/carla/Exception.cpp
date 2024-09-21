@@ -35,9 +35,9 @@ namespace boost {   // 在boost命名空间中
 
 #ifdef ASIO_NO_EXCEPTIONS
 
-#include <exception>
-#include <system_error>
-#include <typeinfo>
+#include <exception>  // 引入异常头文件
+#include <system_error>  // 引入系统错误头文件
+#include <typeinfo>  // 引入类型信息头文件
 
 namespace clmdep_asio {
 namespace detail {
