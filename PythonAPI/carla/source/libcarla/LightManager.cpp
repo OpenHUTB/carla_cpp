@@ -16,8 +16,9 @@ namespace cc = carla::client;
 namespace cr = carla::rpc;
 namespace csd = carla::sensor::data;
 
-/****** ACTIVE ******/
+/****** 交通灯管理激活 ******/
 
+// 打开交通灯管理器
 static void LightManagerTurnOn(
   cc::LightManager& self,
   const boost::python::object& py_lights) {
@@ -30,6 +31,7 @@ static void LightManagerTurnOn(
   self.TurnOn(lights);
 }
 
+// 关闭交通灯管理器
 static void LightManagerTurnOff(
   cc::LightManager& self,
   const boost::python::object& py_lights) {
@@ -81,7 +83,7 @@ static boost::python::list LightManagerIsActive(
 
 /*******************/
 
-/****** COLOR ******/
+/****** 交通灯颜色管理器 ******/
 
 static void LightManagerSetColor(
   cc::LightManager& self,
@@ -134,7 +136,7 @@ static boost::python::list LightManagerGetColor(
 
 /*******************/
 
-/****** INTENSITY ******/
+/****** 交通灯亮度管理器 ******/
 static void LightManagerSetIntensity(
   cc::LightManager& self,
   const boost::python::object& py_lights,
@@ -186,7 +188,7 @@ static boost::python::list LightManagerGetIntensity(
 
 /*******************/
 
-/****** LIGHT GROUP ******/
+/****** 红绿灯组 ******/
 static void LightManagerSetLightGroup(
   cc::LightManager& self,
   const boost::python::object& py_lights,
@@ -238,7 +240,7 @@ static boost::python::list LightManagerGetLightGroup(
 
 /*******************/
 
-/****** LIGHT STATE ******/
+/****** 红绿灯状态 ******/
 static void LightManagerSetLightState(
   cc::LightManager& self,
   const boost::python::object& py_lights,
@@ -295,8 +297,9 @@ static void LightManagerSetDayNightCycle(
 }
 
 /*******************/
-
+// 导出用于灯光管理的函数
 void export_lightmanager() {
+    // 在 Python 模块中封装这些函数指针
     using namespace boost::python;
 
     enum_<cr::LightState::LightGroup>("LightGroup")
@@ -331,6 +334,9 @@ void export_lightmanager() {
       .def("turn_off", &cc::Light::TurnOff)
     ;
 
+    // boost::python::def 函数可以帮助我们将C++中的函数导出到Python中，供Python使用。
+    // get_all_lights(self, light_group=carla.LightGroup.None) 返回包含特定组中的灯光的列表。
+    // turn_on(self, lights) 打开 lights 中的所有灯（参数：python中的函数名、C++中的函数指针、参数列表）
     class_<cc::LightManager, boost::shared_ptr<cc::LightManager>>("LightManager", no_init)
       .def("get_all_lights", CALL_RETURNING_LIST_1(cc::LightManager, GetAllLights, cr::LightState::LightGroup), (args("light_group") = cr::LightState::LightGroup::None ))
       .def("turn_on", &LightManagerTurnOn, (arg("lights")))

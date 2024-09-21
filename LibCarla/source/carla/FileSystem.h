@@ -11,7 +11,7 @@
 
 namespace carla {
 
-  /// Static functions for accessing the file system.
+  /// 用于访问文件系统的静态函数。
   ///
   /// @warning Using this file requires linking against boost_filesystem.
   class FileSystem {
