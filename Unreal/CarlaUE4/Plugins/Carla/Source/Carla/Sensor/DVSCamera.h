@@ -1,6 +1,12 @@
 // Copyright (c) 2020 Robotics and Perception Group (GPR)
 // University of Zurich and ETH Zurich
 //
+// 动态视觉传感器只对运动的目标成像，的每个像素的工作是相互独立、互不干涉的。
+// 也就是说每个感光像素都只对自己所负责的一部分区域进行独立感光。
+// 同时， 每个感光像素都不再直接采样实值， 而是时时刻刻去比较光电流的相对变化值是否超过了一个阈值。
+// 当在对应像素上感受到足够的光强变化时， 传感器就会发出一个“事件信号”。
+// 参考：https://blog.csdn.net/Yannan_Strath/article/details/126799956
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -14,7 +20,7 @@
 
 namespace dvs
 {
-  /// DVS Configuration structure
+  /// 动态视觉传感器 (DVS, Dynamic Vision Sensor) 配置结构
   struct Config
   {
     float Cp;
