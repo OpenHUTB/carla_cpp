@@ -13,7 +13,7 @@ namespace carla {
 
   /// 用于访问文件系统的静态函数。
   ///
-  /// @warning Using this file requires linking against boost_filesystem.
+  /// @warning 使用此文件需要链接 boost_filesystem。
   class FileSystem {
   public:
 
