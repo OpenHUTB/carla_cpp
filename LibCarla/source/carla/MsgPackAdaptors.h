@@ -31,7 +31,7 @@ namespace adaptor {
   // -- Adaptors for boost::optional -------------------------------------------
   // ===========================================================================
 
-  // 为 boost::optional<T> 定义的转换特化// 为 boost::optional<T> 定义的转换特化
+  // 为 boost::optional<T> 定义的转换特化
   template<typename T>
   struct convert<boost::optional<T>> {
   
