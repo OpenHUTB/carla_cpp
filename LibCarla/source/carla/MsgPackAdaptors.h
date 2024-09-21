@@ -31,25 +31,34 @@ namespace adaptor {
   // -- Adaptors for boost::optional -------------------------------------------
   // ===========================================================================
 
+  // 为 boost::optional<T> 定义的转换特化
   template<typename T>
   struct convert<boost::optional<T>> {
+  
+    // 重载函数调用运算符，将 MsgPack 对象转换为 boost::optional<T>
     const clmdep_msgpack::object &operator()(
         const clmdep_msgpack::object &o,
         boost::optional<T> &v) const {
+      // 确保 MsgPack 对象是一个数组
       if (o.type != clmdep_msgpack::type::ARRAY) {
         ::carla::throw_exception(clmdep_msgpack::type_error());
       }
+      
+      // 检查数组大小以决定如何设置 optional
       if (o.via.array.size == 1) {
+        // 如果大小为 1，表示没有值
         v.reset();
       } else if (o.via.array.size == 2) {
+        // 如果大小为 2，从第二个元素中获取值
         v.reset(o.via.array.ptr[1].as<T>());
       } else {
+        // 如果大小不为 1 或 2，抛出类型错误
         ::carla::throw_exception(clmdep_msgpack::type_error());
       }
       return o;
     }
   };
-
+  // 为 boost::optional<T> 定义的打包特化
   template<typename T>
   struct pack<boost::optional<T>> {
     template <typename Stream>
@@ -57,35 +66,42 @@ namespace adaptor {
         clmdep_msgpack::packer<Stream> &o,
         const boost::optional<T> &v) const {
       if (v.has_value()) {
+        // 如果 optional 有值，将其打包为大小为 2 的数组
         o.pack_array(2);
-        o.pack(true);
-        o.pack(*v);
+        o.pack(true);// 第一个元素表示存在
+        o.pack(*v);// 第二个元素是实际值
       } else {
+        // 如果 optional 为空，将其打包为大小为 1 的数组
         o.pack_array(1);
-        o.pack(false);
+        o.pack(false);// 表示值不存在
       }
       return o;
     }
   };
-
+  // 为 boost::optional<T> 定义的带区域的对象特化
   template<typename T>
   struct object_with_zone<boost::optional<T>> {
     void operator()(
         clmdep_msgpack::object::with_zone &o,
         const boost::optional<T> &v) const {
-      o.type = type::ARRAY;
+      o.type = type::ARRAY; // 设置类型为数组
       if (v.has_value()) {
+        // 如果 optional 有值，设置大小为 2 并分配内存
         o.via.array.size = 2;
         o.via.array.ptr = static_cast<clmdep_msgpack::object*>(o.zone.allocate_align(
             sizeof(clmdep_msgpack::object) * o.via.array.size,
             MSGPACK_ZONE_ALIGNOF(clmdep_msgpack::object)));
+        // 第一个元素：true（表示存在）
         o.via.array.ptr[0] = clmdep_msgpack::object(true, o.zone);
+         // 第二个元素：实际值
         o.via.array.ptr[1] = clmdep_msgpack::object(*v, o.zone);
       } else {
+        // 如果 optional 为空，设置大小为 1 并分配内存
         o.via.array.size = 1;
         o.via.array.ptr = static_cast<clmdep_msgpack::object*>(o.zone.allocate_align(
             sizeof(clmdep_msgpack::object) * o.via.array.size,
             MSGPACK_ZONE_ALIGNOF(clmdep_msgpack::object)));
+        // 第一个元素：false（表示不存在）
         o.via.array.ptr[0] = clmdep_msgpack::object(false, o.zone);
       }
     }
