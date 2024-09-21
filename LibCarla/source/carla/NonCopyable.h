@@ -14,6 +14,8 @@ namespace carla { // 定义命名空间 carla，以避免命名冲突
 
     NonCopyable() = default; // 默认构造函数
 
+    // 在C++11中，如果想要禁止类的拷贝行为只需要把相应的函数设为delete即可，参见标准库的std::unique_ptr
+    // 而在之前的标准中是把相应的函数作为private函数。
     NonCopyable(const NonCopyable &) = delete; // 禁用拷贝构造函数
     NonCopyable &operator=(const NonCopyable &) = delete; // 禁用拷贝赋值操作符
 

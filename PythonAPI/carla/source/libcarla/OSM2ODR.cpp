@@ -30,6 +30,7 @@ void export_osm2odr() {
   using namespace osm2odr;
   using namespace boost::python;
 
+  // generate_traffic_lights(bool) 指出是否在OpenDRIVE中生成红绿灯数据
   class_<OSM2ODRSettings>("Osm2OdrSettings", init<>())
     .add_property("use_offsets", &OSM2ODRSettings::use_offsets, &OSM2ODRSettings::use_offsets)
     .add_property("offset_x", &OSM2ODRSettings::offset_x, &OSM2ODRSettings::offset_x)
