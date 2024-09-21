@@ -13,15 +13,15 @@ namespace carla {
 
   /// 用于访问文件系统的静态函数。
   ///
-  /// @warning Using this file requires linking against boost_filesystem.
+  /// @warning 使用此文件需要链接 boost_filesystem。
   class FileSystem {
   public:
 
-    /// Convenient function to validate a path before creating a file.
+    ///在创建文件之前验证路径的方便函数。
     ///
-    /// 1)  Ensures all the parent directories are created if missing.
-    /// 2)  If @a filepath is missing the extension, @a default_extension is
-    ///     appended to the path.
+    /// 1) 确保所有缺失的父目录被创建。
+    /// 2)  如果 @a filepath 缺少扩展名，则将 @a default_extension
+    ///      附加到路径上。
     static void ValidateFilePath(
         std::string &filepath,
         const std::string &default_extension = "");
