@@ -4,19 +4,19 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/Exception.h"  // ÒıÈëCarlaÒì³£´¦ÀíÍ·ÎÄ¼ş
-#include <boost/assert/source_location.hpp>  // ÒıÈëBoostµÄÔ´Î»ÖÃÍ·ÎÄ¼ş
+#include "carla/Exception.h"  // å¼•å…¥Carlaå¼‚å¸¸å¤„ç†å¤´æ–‡ä»¶
+#include <boost/assert/source_location.hpp>  // å¼•å…¥Boostçš„æºä½ç½®å¤´æ–‡ä»¶
 
 // =============================================================================
 // -- Define boost::throw_exception --------------------------------------------
 // =============================================================================
 
-#ifdef BOOST_NO_EXCEPTIONS  // Èç¹û½ûÓÃÒì³£
+#ifdef BOOST_NO_EXCEPTIONS  // å¦‚æœç¦ç”¨å¼‚å¸¸
 
-namespace boost {  // ÔÚboostÃüÃû¿Õ¼äÖĞ
+namespace boost {   // åœ¨boostå‘½åç©ºé—´ä¸­
 
-  void throw_exception(const std::exception &e) {  // ¶¨ÒåÅ×³öÒì³£º¯Êı
-    carla::throw_exception(e);  // µ÷ÓÃCarlaµÄÅ×³öÒì³£º¯Êı
+  void throw_exception(const std::exception &e) {  // å®šä¹‰æŠ›å‡ºå¼‚å¸¸å‡½æ•°
+    carla::throw_exception(e);  // è°ƒç”¨Carlaçš„æŠ›å‡ºå¼‚å¸¸å‡½æ•° 
   }
 
   void throw_exception(
