@@ -14,11 +14,10 @@
 #    pragma clang diagnostic ignored "-Wdeprecated-register"  // 忽略Clang编译器关于"-Wdeprecated-register"的警告，这通常是因为使用了已弃用的寄存器关键字 
 #  endif
 #    include <boost/python.hpp> // 包含Boost.Python的头文件，用于在C++代码中提供Python绑定 
-#  if defined(__clang__)
+#  if defined(__clang__)  // 如果之前是为了Clang编译器保存了编译诊断设置，现在恢复它们
 #    pragma clang diagnostic pop
-#  endif
-#endif // LIBCARLA_WITH_PYTHON_SUPPORT
-
+#  endif  // 结束LIBCARLA_WITH_PYTHON_SUPPORT宏的检查
+#endif //用于在编译时启动LibCarla中与Python绑定的功能
 namespace carla {
 
   class PythonUtil {
