@@ -56,65 +56,64 @@ namespace client {
     World &operator=(const World &) = default;
     World &operator=(World &&) = default;
 
-    /// Get the id of the episode associated with this world.
+    /// 得到与这个世界相联系的id集.
     uint64_t GetId() const {
       return _episode.GetId();
     }
 
-    /// Return the map that describes this world.
+    /// 返回描述这个世界的地图.
     SharedPtr<Map> GetMap() const;
 
     void LoadLevelLayer(rpc::MapLayer map_layers) const;
 
     void UnloadLevelLayer(rpc::MapLayer map_layers) const;
 
-    /// Return the list of blueprints available in this world. This blueprints
-    /// can be used to spawning actor into the world.
+    /// 返回当前世界中可用的蓝图列表. 
+    /// 这个蓝图可以用来在世界中生成参与者(actor).
     SharedPtr<BlueprintLibrary> GetBlueprintLibrary() const;
 
-    /// Returns a list of pairs where the firts element is the vehicle ID
-    /// and the second one is the light state
+    /// 返回一个元素对列表,
+    /// 其中第一个元素是车辆ID,第二个元素是灯光状态.
     rpc::VehicleLightStateList GetVehiclesLightStates() const;
 
-    /// Get a random location from the pedestrians navigation mesh
+    /// 从行人导航网格获得一个随机位置
     boost::optional<geom::Location> GetRandomLocationFromNavigation() const;
 
-    /// Return the spectator actor. The spectator controls the view in the
-    /// simulator window.
+    /// 返回为旁观者的参与者.
+    /// 旁观者控制模拟器窗口中的视图.
     SharedPtr<Actor> GetSpectator() const;
 
     rpc::EpisodeSettings GetSettings() const;
 
-    /// @return The id of the frame when the settings were applied.
+    /// @return 应用设置时的帧id.
     uint64_t ApplySettings(const rpc::EpisodeSettings &settings, time_duration timeout);
 
-    /// Retrieve the weather parameters currently active in the world.
+    /// 检索当前世界上活动的天气参数.
     rpc::WeatherParameters GetWeather() const;
 
-    /// Change the weather in the simulation.
+    /// 在模拟场景中改变天气.
     void SetWeather(const rpc::WeatherParameters &weather);
 
-    /// Get Gravity value used for IMUI Sensor accelerometer calculation
+    /// 获取用于IMUI传感器加速度计计算的重力值.
     float GetIMUISensorGravity() const;
     
-    /// Set Gravity value used for IMUI Sensor accelerometer calculation
+    /// 设置用于IMUI传感器加速度计计算的重力值.
     void SetIMUISensorGravity(float NewIMUISensorGravity);
 
-    /// Return a snapshot of the world at this moment.
+    /// 返回当前世界的快照.
     WorldSnapshot GetSnapshot() const;
 
-    /// Find actor by id, return nullptr if not found.
+    /// 根据id查找actor，如果没有找到则返回nullptr.
     SharedPtr<Actor> GetActor(ActorId id) const;
 
-    /// Return a list with all the actors currently present in the world.
+    /// 返回一个包含当前世界上所有存在的参与者(actor)的列表.
     SharedPtr<ActorList> GetActors() const;
 
-    /// Return a list with the actors requested by ActorId.
+    /// 返回一个包含ActorId请求的参与者(actor)的列表.
     SharedPtr<ActorList> GetActors(const std::vector<ActorId> &actor_ids) const;
 
-    /// Spawn an actor into the world based on the @a blueprint provided at @a
-    /// transform. If a @a parent is provided, the actor is attached to
-    /// @a parent.
+    /// 根据 @a 转换中提供的 @a 蓝图，在世界中生成一个参与者(actor).
+    /// 如果提供了 @a 父类，则参与者(actor)被附加到 @a 父类.
     SharedPtr<Actor> SpawnActor(
         const ActorBlueprint &blueprint,
         const geom::Transform &transform,
@@ -122,8 +121,7 @@ namespace client {
         rpc::AttachmentType attachment_type = rpc::AttachmentType::Rigid,
         const std::string& socket_name = "");
 
-    /// Same as SpawnActor but return nullptr on failure instead of throwing an
-    /// exception.
+    /// 和SpawnActor一样，但失败时返回nullptr而不抛出异常.
     SharedPtr<Actor> TrySpawnActor(
         const ActorBlueprint &blueprint,
         const geom::Transform &transform,
@@ -131,30 +129,29 @@ namespace client {
         rpc::AttachmentType attachment_type = rpc::AttachmentType::Rigid,
         const std::string& socket_name = "") noexcept;
 
-    /// Block calling thread until a world tick is received.
+    /// 阻塞调用线程，直到接收到一个世界刻.
     WorldSnapshot WaitForTick(time_duration timeout) const;
 
-    /// Register a @a callback to be called every time a world tick is received.
+    /// 注册一个 @a 回调函数，在每次接收到世界刻时调用.
     ///
-    /// @return ID of the callback, use it to remove the callback.
+    /// @return 回调函数的ID，用它来删除回调函数.
     size_t OnTick(std::function<void(WorldSnapshot)> callback);
 
     /// Remove a callback registered with OnTick.
     void RemoveOnTick(size_t callback_id);
 
-    /// Signal the simulator to continue to next tick (only has effect on
-    /// synchronous mode).
+    /// 通知模拟器继续进行下一个节拍(仅对同步模式有效).
     ///
-    /// @return The id of the frame that this call started.
+    /// @return 这个调用开始的帧的id.
     uint64_t Tick(time_duration timeout);
 
-    /// set the probability that an agent could cross the roads in its path following
-    /// percentage of 0.0f means no pedestrian can cross roads
-    /// percentage of 0.5f means 50% of all pedestrians can cross roads
-    /// percentage of 1.0f means all pedestrians can cross roads if needed
+    /// 设置一个代理表示在它的路径中穿过道路的概率.
+    /// 0.0f表示行人不得过马路
+    /// 0.5f表示50%的行人可以过马路
+    /// 1.0f表示所有行人在需要时都可以过马路
     void SetPedestriansCrossFactor(float percentage);
 
-    /// set the seed to use with random numbers in the pedestrians module
+    /// 在行人模块中将 seed 设置为使用随机数
     void SetPedestriansSeed(unsigned int seed);
 
     SharedPtr<Actor> GetTrafficSign(const Landmark& landmark) const;
@@ -177,7 +174,7 @@ namespace client {
 
     void FreezeAllTrafficLights(bool frozen);
 
-    /// Returns all the BBs of all the elements of the level
+    /// 返回该等级中所有元素的BBs.
     std::vector<geom::BoundingBox> GetLevelBBs(uint8_t queried_tag) const;
 
     std::vector<rpc::EnvironmentObject> GetEnvironmentObjects(uint8_t queried_tag) const;
