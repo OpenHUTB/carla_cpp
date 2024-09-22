@@ -67,12 +67,11 @@ namespace detail {
     void SetException(ExceptionT &&exception);
 
   private:
-
-    std::mutex _mutex;  // 互斥量：可以确保一次只有一个线程可以访问共享资源，避免竞争条件的发生。
-
-    // condition_variable（条件变量）是 C++11 中提供的一种多线程同步机制,它允许一个或多个线程等待另一个线程发出通知,以便能够有效地进行线程同步
+      // 互斥量：可以确保一次只有一个线程可以访问共享资源，避免竞争条件的发生
+    std::mutex _mutex;
+      // 条件变量是c++中提供的一种多线程同步机制，它允许一个或多个线程等待另一个消除发出通知，以便能够有效地进行线程同步
     std::condition_variable _cv;
-
+      // 定义一个结构体，用于映射键（const char*）到值和等待状态 
     struct mapped_type {
       bool should_wait;
       boost::variant2::variant<SharedException, T> value;  // boost::variant2实现类型转换
