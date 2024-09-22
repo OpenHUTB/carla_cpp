@@ -67,9 +67,9 @@ namespace detail {
     void SetException(ExceptionT &&exception);
 
   private:
-      // 用于在多线程环境中同步访问共享数据的互斥锁
+      // 互斥量：可以确保一次只有一个线程可以访问共享资源，避免竞争条件的发生
     std::mutex _mutex;
-      // 条件变量，用于在多线程程序中同步线程的执行
+      // 条件变量是c++中提供的一种多线程同步机制，它允许一个或多个线程等待另一个消除发出通知，以便能够有效地进行线程同步
     std::condition_variable _cv;
       // 定义一个结构体，用于映射键（const char*）到值和等待状态 
     struct mapped_type {
