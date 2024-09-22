@@ -156,4 +156,5 @@ git rm -rf .
 [yangf95](https://github.com/yangf95)、
 [LBQ0056](https://github.com/LBQ0056)、
 [yuangjiajie](https://github.com/yuangjiajie) 、
-[weidinghe](https://github.com/weidinghe)。
+[weidinghe](https://github.com/weidinghe)、
+[xinderruila](https://github.com/xinderruila)、
