@@ -10,13 +10,13 @@
 
 namespace MapGen {
 
-  /// Random DoublyConnectedEdgeList generator.
+  /// 随机双连通边链表 DoublyConnectedEdgeList 生成器。
   class GraphGenerator : private NonCopyable
   {
   public:
 
-    /// Create a squared DoublyConnectedEdgeList of size @a SizeX times @a SizeY
-    /// and generate random connections inside using fixed @a Seed.
+    /// 创建一个大小为 @a SizeX 乘以  @a SizeY 的平方双连通边链表 DoublyConnectedEdgeList，
+    /// 并使用固定的随机数生成种子 @a Seed 在内部生成随机连接。
     static TUniquePtr<DoublyConnectedEdgeList> Generate(uint32 SizeX, uint32 SizeY, int32 Seed);
   };
 
