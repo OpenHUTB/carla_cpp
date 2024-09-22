@@ -8,7 +8,7 @@
 #include <boost/assert/source_location.hpp>  // 引入Boost的源位置头文件
 
 // =============================================================================
-// -- Define boost::throw_exception --------------------------------------------
+// -- 定义boost::throw_exception --------------------------------------------
 // =============================================================================
 
 #ifdef BOOST_NO_EXCEPTIONS  // 如果禁用异常
@@ -30,21 +30,21 @@ namespace boost {   // 在boost命名空间中
 #endif // BOOST_NO_EXCEPTIONS
 
 // =============================================================================
-// -- Workaround for Boost.Asio bundled with rpclib ----------------------------
+// -- 处理与rpclib捆绑的Boost.Asio的临时解决方案----------------------------
 // =============================================================================
 
 #ifdef ASIO_NO_EXCEPTIONS
 
-#include <exception>
-#include <system_error>
-#include <typeinfo>
+#include <exception>  // 引入异常头文件
+#include <system_error>  // 引入系统错误头文件
+#include <typeinfo>  // 引入类型信息头文件
 
-namespace clmdep_asio {
-namespace detail {
+namespace clmdep_asio {  // 在clmdep_asio命名空间中
+namespace detail {  // 在detail子命名空间中
 
-  template <typename Exception>
-  void throw_exception(const Exception& e) {
-    carla::throw_exception(e);
+  template <typename Exception>  // 定义模板函数，接受任意异常类型
+  void throw_exception(const Exception& e) {  // 抛出异常函数
+    carla::throw_exception(e);  // 调用Carla的抛出异常函数
   }
 
   template void throw_exception<std::bad_cast>(const std::bad_cast &);
