@@ -1,8 +1,7 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
-//
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 版权所有 (c) 2017 巴萨罗那自治大学 (UAB) 计算机视觉中心 (CVC)。  
+//  
+// 本作品依照 MIT 许可条款进行许可。  
+// 许可证副本请见 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 
@@ -15,53 +14,57 @@ namespace client {
   class ServerSideSensor final : public Sensor {
   public:
 
-    using Sensor::Sensor;
+    using Sensor::Sensor; // 继承构造函数  
 
     ~ServerSideSensor();
 
-    /// Register a @a callback to be executed each time a new measurement is
-    /// received.
-    ///
-    /// @warning Calling this function on a sensor that is already listening
-    /// steals the data stream from the previously set callback. Note that
-    /// several instances of Sensor (even in different processes) may point to
-    /// the same sensor in the simulator.
+    /// 注册一个回调函数，当有新的测量值到达时执行。  
+    ///   
+    /// @warning 如果在已经设置了回调的传感器上调用此函数，  
+    /// 会盗取之前设置的回调的数据流。注意，即使在不同的进程中，  
+    /// 多个传感器实例也可能指向模拟器中的同一传感器。
     void Listen(CallbackFunctionType callback) override;
 
-    /// Stop listening for new measurements.
+    /// 停止监听新的测量值。
     void Stop() override;
 
-    /// Return whether this Sensor instance is currently listening to the
-    /// associated sensor in the simulator.
+    /// 检查此传感器实例是否正在监听与模拟器中的关联传感器。  
+    /// @return 如果传感器正在监听，则返回 true；否则返回 false。
     bool IsListening() const override {
-      return listening_mask.test(0);
+      return listening_mask.test(0);// 检查 listening_mask 的第一个位
     }
-
-    /// Listen fr
+    /// 开始监听特定的 GBuffer 流。  
+    /// @param GBufferId GBuffer 的唯一标识符。  
+    /// @param callback 回调函数，当该 GBuffer 有新的数据时调用。
     void ListenToGBuffer(uint32_t GBufferId, CallbackFunctionType callback);
 
-    /// Stop listening for a specific gbuffer stream.
+    /// 停止监听特定的 GBuffer 流。  
+    /// @param GBufferId 要停止监听的 GBuffer 的唯一标识符。
     void StopGBuffer(uint32_t GBufferId);
 
+    /// 检查是否正在监听特定的 GBuffer。  
+    /// @param id GBuffer 的唯一标识符。  
+    /// @return 如果正在监听该 GBuffer，则返回 true；否则返回 false。
     inline bool IsListeningGBuffer(uint32_t id) const {
-      return listening_mask.test(id + 1);
+      return listening_mask.test(id + 1); // 检查 listening_mask 的对应位
     }
 
-    /// Enable this sensor for ROS2 publishing
+    /// 为 ROS2 发布启用此传感器。  
     void EnableForROS();
 
-    /// Disable this sensor for ROS2 publishing
+    /// 禁用此传感器用于 ROS2 发布。  
     void DisableForROS();
 
-    /// Return if the sensor is publishing for ROS2
+    /// 检查传感器是否正在为 ROS2 发布。  
+    /// @return 如果传感器正在发布，则返回 true；否则返回 false。  
     bool IsEnabledForROS();
 
-    /// Send data via this sensor
+    /// 通过此传感器发送数据。  
     void Send(std::string message);
 
-    /// @copydoc Actor::Destroy()
-    ///
-    /// Additionally stop listening.
+    /// 重写 Actor::Destroy() 方法。  
+    /// 此外，确保在销毁传感器之前停止监听。  
+    /// @return 返回销毁操作是否成功。
     bool Destroy() override;
 
   private:
