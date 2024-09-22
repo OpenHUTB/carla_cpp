@@ -51,14 +51,14 @@ namespace carla {
           expected,
           desired,
           std::memory_order_acq_rel,
-          std::memory_order_acq_rel);
-    }
- 
+          std::memory_order_acq_rel);  // 原子比较并交换
+    } 
+    // 重载赋值运算符，使用智能指针存储新值
     AtomicSharedPtr &operator=(std::shared_ptr<T> ptr) noexcept {
-      store(std::move(ptr));
-      return *this;
+      store(std::move(ptr)); // 存储新指针
+      return *this;  // 返回当前对象的引用
     }
- 
+    // 重载赋值运算符，支持复制赋值
     AtomicSharedPtr &operator=(const AtomicSharedPtr &rhs) noexcept {
       store(rhs.load());
       return *this;
