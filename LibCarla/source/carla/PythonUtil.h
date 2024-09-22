@@ -9,11 +9,11 @@
 #include "carla/NonCopyable.h"  // 包含Carla的非可复制类定义，可能用于防止类的实例被复制 
 
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT  // 检查是否定义了LIBCARLA_WITH_PYTHON_SUPPORT宏，该宏通常用于控制是否包含Python支持  
-#  if defined(__clang__)
+#  if defined(__clang__)   // 如果使用Clang编译器，则保存当前的编译诊断设置
 #    pragma clang diagnostic push
-#    pragma clang diagnostic ignored "-Wdeprecated-register"
+#    pragma clang diagnostic ignored "-Wdeprecated-register"  // 忽略Clang编译器关于"-Wdeprecated-register"的警告，这通常是因为使用了已弃用的寄存器关键字 
 #  endif
-#    include <boost/python.hpp>
+#    include <boost/python.hpp> // 包含Boost.Python的头文件，用于在C++代码中提供Python绑定 
 #  if defined(__clang__)
 #    pragma clang diagnostic pop
 #  endif
