@@ -22,7 +22,7 @@ doxygen
 
 5.修改并本地测试没问题后，提交代码到个人仓库：
 ```shell script
-git add .
+git add README.md
 git commit -m "update"
 git push
 ```
@@ -107,7 +107,6 @@ git rm -rf .
 [fengchuanyin](https://github.com/fengchuanyin) 、
 [cby2838](https://github.com/cby2838) 、
 [Ekisanhinn](https://github.com/ekisannhinn) 、
-[Seavey0402](https://github.com/Seavey0402) 、
 [yyyyy12306](https://github.com/yyyyy12306) 、
 [lzh8215](https://github.com/lzh8215) 、
 [Rita0621](https://github.com/Rita0621) 、
@@ -152,4 +151,9 @@ git rm -rf .
 [YL007-STRONG](https://github.com/YL007-STRONG)
 [nigor-peter](https://github.com/nigor-peter)
 [jiameixiao](https://github.com/jiameixiao)
-[2665055983](https://github.com/2665055983)
+[2665055983](https://github.com/2665055983)、
+[Seavey0402](https://github.com/Seavey0402)、 
+[yangf95](https://github.com/yangf95)、
+[LBQ0056](https://github.com/LBQ0056)、
+[yuangjiajie](https://github.com/yuangjiajie) 、
+[weidinghe](https://github.com/weidinghe)。
