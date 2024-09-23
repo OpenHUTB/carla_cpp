@@ -62,14 +62,15 @@ namespace carla {
     }
 
     // 在当前线程中运行任务一段时间，如果在指定时间内没有停止，则退出
-    void RunFor(time_duration duration) {
-      _io_context.run_for(duration.to_chrono());
+    void RunFor(time_duration duration) {   // RunFor方法，指定运行时间
+      _io_context.run_for(duration.to_chrono());  // 在指定时间内运行io_context
     }
 
     // 停止线程池并合并所有线程
-    void Stop() {
-      _io_context.stop();
-      _workers.JoinAll();
+    void Stop() {        
+      _io_context.stop();    // 停止io_context
+
+      _workers.JoinAll();  // 合并所有工作线程
     }
 
   private:
