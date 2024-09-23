@@ -39,10 +39,10 @@ namespace carla {
     // FunctorT 是可调用对象类型，ResultT 是该可调用对象的返回值类型
     template <typename FunctorT, typename ResultT = typename std::result_of<FunctorT()>::type>
     std::future<ResultT> Post(FunctorT &&functor) {
-      auto task = std::packaged_task<ResultT()>(std::forward<FunctorT>(functor));
-      auto future = task.get_future();
-      boost::asio::post(_io_context, carla::MoveHandler(task));
-      return future;
+      auto task = std::packaged_task<ResultT()>(std::forward<FunctorT>(functor));  // 封装任务
+      auto future = task.get_future();   // 获取与任务相关联的 future 对象
+      boost::asio::post(_io_context, carla::MoveHandler(task));  // 将任务发布到 io_context
+      return future;  // 返回 future
     }
 
     // 启动线程以异步运行任务，可以指定线程数量
