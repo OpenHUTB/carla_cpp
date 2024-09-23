@@ -14,12 +14,12 @@
 
 namespace carla {
 namespace rpc {
-
+//负责Ackermann控制器的相关设置
   class AckermannControllerSettings {
   public:
 
     AckermannControllerSettings() = default;
-
+// 构造函数，允许通过参数初始化控制器的比例、积分、微分系数
     AckermannControllerSettings(
         float speed_kp,
         float speed_ki,
@@ -33,7 +33,7 @@ namespace rpc {
         accel_kp(accel_kp),
         accel_ki(accel_ki),
         accel_kd(accel_kd) {}
-
+ // Ackermann控制器设置中的参数，速度控制的PID系数
     float speed_kp = 0.0f;
     float speed_ki = 0.0f;
     float speed_kd = 0.0f;
@@ -43,6 +43,7 @@ namespace rpc {
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
 
+// 使用UE4中FAckermannControllerSettings结构体进行初始化的构造函数
     AckermannControllerSettings(const FAckermannControllerSettings &Settings)
       : speed_kp(Settings.SpeedKp),
         speed_ki(Settings.SpeedKi),
@@ -51,6 +52,7 @@ namespace rpc {
         accel_ki(Settings.AccelKi),
         accel_kd(Settings.AccelKd) {}
 
+    // 操作符重载，将AckermannControllerSettings转换为UE4中的FAckermannControllerSettings结构体
     operator FAckermannControllerSettings() const {
       FAckermannControllerSettings Settings;
       Settings.SpeedKp = speed_kp;
@@ -64,6 +66,7 @@ namespace rpc {
 
 #endif // LIBCARLA_INCLUDED_FROM_UE4
 
+  // 操作符重载，比较两个AckermannControllerSettings对象是否不相等
     bool operator!=(const AckermannControllerSettings &rhs) const {
       return
           speed_kp != rhs.speed_kp ||

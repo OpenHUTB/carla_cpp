@@ -250,10 +250,21 @@
 
 ## 其他
 
+### 文件编码
+代码文件需要使用UTF-8编码保存，比如用记事本进行打开并使用UTF-8保存：
+![](./img/save_to_UTF-8.jpg)
+
 ### VS2019开启快速生成文档注释
 可以点击 `工具 -> 选项 -> 文本编辑器 -> C/C++ -> 代码样式`， 在`生成的文档注释样式`下拉列表中选择想要的注释形式。
 
 选择`Doxygen(/**)` 时，只需要在方法名上输入`/**` 即可出现文档注释。
+
+
+### 使用 VScode 进行注释
+- 关闭vscode #ifdefine 宏开关会使代码自动暗色
+
+解决：按 `Ctrl+Shift+p` ，输入 settings，打开设置界面：
+搜索 `C_Cpp.dimInactiveRegions` ，取消勾选即可。
 
 ## 参考
 - [Doxygen的注释规范](https://www.cnblogs.com/silencehuan/p/11169084.html)

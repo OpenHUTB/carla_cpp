@@ -1,8 +1,7 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有（c）2017巴塞罗那自治大学计算机视觉中心（CVC）
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据麻省理工学院许可条款获得许可
+// 有关副本，请参阅 <https://opensource.org/licenses/MIT>.
 
 #pragma once
 
@@ -16,7 +15,7 @@
 
 class UCarlaSettings;
 
-/// Used to set settings for every actor that is spawned into the world.
+///用于为生成到世界中的每个角色设置设置
 UCLASS(BlueprintType)
 class CARLA_API UCarlaSettingsDelegate : public UObject
 {
@@ -26,18 +25,18 @@ public:
 
   UCarlaSettingsDelegate();
 
-  /// Reset settings to default.
+  ///将设置重置为默认值
   void Reset();
 
-  /// Create the event trigger handler for all the newly spawned actors to be
-  /// processed with a custom function here.
+  /// Cre为所有新生成的参与者创建事件触发器处理程序此处使用自定义函数进行处理
+  ///请访问此处所有新生成的参与者的事件触发器处理程序，以使用此处的定制函数进行处理
   void RegisterSpawnHandler(UWorld *World);
 
-  /// After loading a level, apply the current settings.
+  /// 加载关卡后，应用当前设置
   UFUNCTION(BlueprintCallable, Category = "CARLA Settings", meta = (HidePin = "InWorld"))
   void ApplyQualityLevelPostRestart();
 
-  /// Before loading a level, apply the current settings.
+  /// 加载关卡之前，应用当前设置
   UFUNCTION(BlueprintCallable, Category = "CARLA Settings", meta = (HidePin = "InWorld"))
   void ApplyQualityLevelPreRestart();
 
@@ -47,17 +46,14 @@ private:
 
   UWorld *GetLocalWorld();
 
-  /// Function to apply to the actor that is being spawned to apply the current
-  /// settings.
+  ///函数应用于正在生成的参与者，以应用当前设置
   void OnActorSpawned(AActor *Actor);
 
-  /// Check that the world, instance and settings are valid and save the
-  /// CarlaSettings instance.
-  ///
-  /// @param world used to get the instance of CarlaSettings.
+  /// 检查世界、实例和设置是否有效，并保存CarlaSettings实例
+  ///@param world用于获取CarlaSettings的实例
   void CheckCarlaSettings(UWorld *world);
 
-  /// Execute engine commands to apply the low quality level to the world.
+  ///执行引擎命令，将低质量水平应用于世界
   void LaunchLowQualityCommands(UWorld *world) const;
 
   void SetAllRoads(
@@ -69,7 +65,7 @@ private:
 
   void SetPostProcessEffectsEnabled(UWorld *world, bool enabled) const;
 
-  /// Execute engine commands to apply the epic quality level to the world.
+  ///执行引擎命令，将史诗般的质量水平应用于世界
   void LaunchEpicQualityCommands(UWorld *world) const;
 
   void SetAllLights(
@@ -80,7 +76,7 @@ private:
 
 private:
 
-  /// Currently applied quality level after level is restarted.
+  /// 重新启动级别后当前应用的质量级别
   static EQualityLevel AppliedLowPostResetQualityLevel;
 
   UCarlaSettings *CarlaSettings = nullptr;

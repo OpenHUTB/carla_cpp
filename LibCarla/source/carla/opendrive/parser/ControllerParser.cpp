@@ -18,7 +18,7 @@ namespace parser {
       const pugi::xml_document &xml,
       carla::road::MapBuilder &map_builder) {
 
-    // Extracting the OpenDRIVE
+    // 提取 OpenDRIVE
     const pugi::xml_node opendrive_node = xml.child("OpenDRIVE");
     for (pugi::xml_node controller_node = opendrive_node.child("controller");
         controller_node;

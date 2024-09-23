@@ -28,21 +28,18 @@ namespace carla {
   class BufferPool;
   class BufferView;
 
-  /// A piece of raw data.
-  ///
-  /// Note that if more capacity is needed, a new memory block is allocated and
-  /// the old one is deleted. This means that by default the buffer can only
-  /// grow. To release the memory use `clear` or `pop`.
-  ///
-  /// This is a move-only type, meant to be cheap to pass by value. If the
-  /// buffer is retrieved from a BufferPool, the memory is automatically pushed
-  /// back to the pool on destruction.
-  ///
-  /// @warning Creating a buffer bigger than max_size() is undefined.
+  /// 一块原始数据。
+  /// 请注意，如果需要更多容量，则会分配一个新的内存块，并
+  /// 删除旧的内存块。这意味着默认情况下，缓冲区只能增长。要释放内存，使用 `clear` 或 `pop`。
+  
+  /// 这是一个仅可移动的类型，设计为按值传递时成本较低。如果缓冲区
+  /// 从 BufferPool 中检索，则在销毁时内存会自动推回到池中。
+  
+  /// @warning 创建一个大于 max_size() 的缓冲区是未定义的。
   class Buffer {
 
     // =========================================================================
-    /// @name Member types
+    ///@name 成员类型
     // =========================================================================
     /// @{
 
@@ -58,16 +55,16 @@ namespace carla {
 
     /// @}
     // =========================================================================
-    /// @name Construction and destruction
+    /// @name 构造与析构
     // =========================================================================
     /// @{
 
   public:
 
-    /// Create an empty buffer.
+    /// 创建一个空的缓冲区。
     Buffer() = default;
 
-    /// Create a buffer with @a size bytes allocated.
+    /// 创建一个分配了 @a size 字节的缓冲区。
     explicit Buffer(size_type size)
       : _size(size),
         _capacity(size),
@@ -82,7 +79,7 @@ namespace carla {
           return static_cast<size_type>(size);
         } ()) {}
 
-    /// Copy @a source into this buffer. Allocates the necessary memory.
+    /// 将 @a source 复制到此缓冲区中。分配所需的内存。
     template <typename T>
     explicit Buffer(const T &source) {
       copy_from(source);
@@ -117,7 +114,7 @@ namespace carla {
 
     /// @}
     // =========================================================================
-    /// @name Assignment
+    /// @name 任务赋值 
     // =========================================================================
     /// @{
 
@@ -135,13 +132,13 @@ namespace carla {
 
     /// @}
     // =========================================================================
-    /// @name Data access
+    /// @name 数据访问
     // =========================================================================
     /// @{
 
   public:
 
-    /// Access the byte at position @a i.
+    /// 访问位置 @a i 处的字节
     const value_type &operator[](size_t i) const {
       return _data[i];
     }
@@ -151,8 +148,7 @@ namespace carla {
       return _data[i];
     }
 
-    /// Direct access to the allocated memory or nullptr if no memory is
-    /// allocated.
+    /// 直接访问分配的内存，如果没有分配内存则返回 nullptr。
     const value_type *data() const noexcept {
       return _data.get();
     }
@@ -163,11 +159,8 @@ namespace carla {
       return _data.get();
     }
 
-    /// Make a boost::asio::buffer from this buffer.
-    ///
-    /// @warning Boost.Asio buffers do not own the data, it's up to the caller
-    /// to not delete the memory that this buffer holds until the asio buffer is
-    /// no longer used.
+    /// 从这个缓冲区创建一个 boost::asio::buffer。
+    /// @warning Boost.Asio 缓冲区不拥有数据的所有权。调用者必须确保使用 Asio 缓冲区时不能删除此缓冲区所持有的内存。
     boost::asio::const_buffer cbuffer() const noexcept {
       return {data(), size()};
     }
@@ -184,7 +177,7 @@ namespace carla {
 
     /// @}
     // =========================================================================
-    /// @name Capacity
+    /// @name 容量
     // =========================================================================
     /// @{
 
@@ -208,7 +201,7 @@ namespace carla {
 
     /// @}
     // =========================================================================
-    /// @name Iterators
+    /// @name 迭代器
     // =========================================================================
     /// @{
 
@@ -240,14 +233,13 @@ namespace carla {
 
     /// @}
     // =========================================================================
-    /// @name Modifiers
+    /// @name 修改器
     // =========================================================================
     /// @{
 
   public:
 
-    /// Reset the size of this buffer. If the capacity is not enough, the
-    /// current memory is discarded and a new block of size @a size is
+     /// 重置缓冲区的大小。如果容量不足，当前内存将被丢弃，并分配一个新的大小为 @a size 的内存块。
     /// allocated.
     void reset(size_type size) {
       if (_capacity < size) {
@@ -266,8 +258,7 @@ namespace carla {
       reset(static_cast<size_type>(size));
     }
 
-    /// Resize the buffer, a new block of size @a size is
-    /// allocated if the capacity is not enough and the data is copied.
+	    /// 调整缓冲区的大小。如果容量不足，将分配一个新的大小为 @a size 的内存块，并复制数据。
     void resize(uint64_t size) {
       if(_capacity < size) {
         std::unique_ptr<value_type[]> data = std::move(_data);
@@ -278,16 +269,15 @@ namespace carla {
       _size = static_cast<size_type>(size);
     }
 
-    /// Release the contents of this buffer and set its size and capacity to
-    /// zero.
+    /// 释放此缓冲区的内容，并将其大小和容量设置为零。
     std::unique_ptr<value_type[]> pop() noexcept {
       _size = 0u;
       _capacity = 0u;
       return std::move(_data);
     }
 
-    /// Clear the contents of this buffer and set its size and capacity to zero.
-    /// Deletes allocated memory.
+    	/// 清除此缓冲区的内容，并将其大小和容量设置为零。
+	    /// 删除已分配的内存。
     void clear() noexcept {
       pop();
     }
@@ -300,7 +290,7 @@ namespace carla {
 
   public:
 
-    /// Copy @a source into this buffer. Allocates memory if necessary.
+    /// 将 @a source 复制到此缓冲区。如果需要，则分配内存。
     template <typename T>
     void copy_from(const T &source) {
       copy_from(0u, source);
@@ -312,8 +302,8 @@ namespace carla {
       copy_from(0u, data, size);
     }
 
-    /// Copy @a source into this buffer leaving at the front an offset of @a
-    /// offset bytes uninitialized. Allocates memory if necessary.
+    /// 将 @a source 复制到此缓冲区，在前面留出 @a offset 字节未初始化的空间。
+	  /// 如果需要，则分配内存。
     void copy_from(size_type offset, const Buffer &rhs) {
       copy_from(offset, rhs.buffer());
     }
@@ -347,9 +337,9 @@ namespace carla {
     }
 #endif // LIBCARLA_INCLUDED_FROM_UE4
 
-    /// Copy @a size bytes of the memory pointed by @a data into this buffer,
-    /// leaving at the front an offset of @a offset bytes uninitialized.
-    /// Allocates memory if necessary.
+    /// 将 @a data 指向的内存中的 @a size 字节复制到此缓冲区，
+	  /// 在前面留出 @a offset 字节未初始化的空间。
+	  /// 如果需要，则分配内存。
     void copy_from(size_type offset, const value_type *data, size_type size) {
       copy_from(offset, boost::asio::buffer(data, size));
     }
