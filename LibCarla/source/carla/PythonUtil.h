@@ -56,18 +56,18 @@ namespace carla {
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT
 
     /// 获取Python全局解释器锁上的锁，这是从其他线程调用Python代码所必需的。
-    class AcquireGIL : private NonCopyable {
+    class AcquireGIL : private NonCopyable {   // AcquireGIL类，获取GIL
     public:
 
-      AcquireGIL() : _state(PyGILState_Ensure()) {}
+      AcquireGIL() : _state(PyGILState_Ensure()) {}  // 构造函数，确保GIL被获取
 
-      ~AcquireGIL() {
-        PyGILState_Release(_state);
+      ~AcquireGIL() {   // 析构函数，释放GIL
+        PyGILState_Release(_state);  // 释放GIL
       }
 
     private:
 
-      PyGILState_STATE _state;
+      PyGILState_STATE _state;   // 存储GIL状态
     };
 
     /// 释放Python的全局解释器锁，在执行阻塞I/O操作时使用它。
