@@ -4,13 +4,14 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 防止头文件被重复包含
 
+<<<<<<< HEAD
 #include "carla/NonCopyable.h"   // 引入NonCopyable头文件
 
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT  // 如果启用了Python支持
 #  if defined(__clang__)  // 如果使用clang编译器
-#    pragma clang diagnostic push  // 推送当前的诊断状态
+#    pragma clang diagnostic push   // 推送当前的诊断状态
 #    pragma clang diagnostic ignored "-Wdeprecated-register"  // 忽略过时注册器的警告
 #  endif
 #    include <boost/python.hpp>   // 引入Boost.Python库
@@ -20,6 +21,21 @@
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
 
 namespace carla {   // 定义carla命名空间
+=======
+#include "carla/NonCopyable.h"  // 包含Carla的非可复制类定义，可能用于防止类的实例被复制 
+
+#ifdef LIBCARLA_WITH_PYTHON_SUPPORT  // 检查是否定义了LIBCARLA_WITH_PYTHON_SUPPORT宏，该宏通常用于控制是否包含Python支持  
+#  if defined(__clang__)   // 如果使用Clang编译器，则保存当前的编译诊断设置
+#    pragma clang diagnostic push
+#    pragma clang diagnostic ignored "-Wdeprecated-register"  // 忽略Clang编译器关于"-Wdeprecated-register"的警告，这通常是因为使用了已弃用的寄存器关键字 
+#  endif
+#    include <boost/python.hpp> // 包含Boost.Python的头文件，用于在C++代码中提供Python绑定 
+#  if defined(__clang__)  // 如果之前是为了Clang编译器保存了编译诊断设置，现在恢复它们
+#    pragma clang diagnostic pop
+#  endif  // 结束LIBCARLA_WITH_PYTHON_SUPPORT宏的检查
+#endif //用于在编译时启动LibCarla中与Python绑定的功能
+namespace carla {
+>>>>>>> 222f9845f86fc4a43b0652562d776b1d93dee14f
 
   class PythonUtil {
   public:
