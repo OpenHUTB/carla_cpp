@@ -23,65 +23,65 @@ namespace nav {
     WalkerManager::~WalkerManager() {
     }
 
-    // assign the navigation module
+    // 设置导航模块
     void WalkerManager::SetNav(Navigation *nav) {
         _nav = nav;
     }
 
-    // reference to the simulator to access API functions
+    // 设置模拟器的弱引用，以访问 API 函数
     void WalkerManager::SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator) {
         _simulator = simulator;
     }
 
-	// create a new walker route
+	// 创建新的行人路线
     bool WalkerManager::AddWalker(ActorId id) {
-        GetAllTrafficLightWaypoints();
+        GetAllTrafficLightWaypoints();// 获取所有交通信号灯的路点
 
         WalkerInfo info;
-        info.state = WALKER_IDLE;
+        info.state = WALKER_IDLE;// 设置行人状态为闲置
 
-        // save it
+        // 保存行人信息
         _walkers[id] = std::move(info);
 
         return true;
     }
 
-	// remove a walker route
+	// 移除行人路线
     bool WalkerManager::RemoveWalker(ActorId id) {
-        // search
+        // 查找行人
         auto it = _walkers.find(id);
         if (it == _walkers.end())
-            return false;
-        _walkers.erase(it);
+            return false;// 如果未找到行人，返回 false
+        _walkers.erase(it);// 移除行人
 
         return true;
     }
 
-	// update all routes
+	// 更新所有行人路线
     bool WalkerManager::Update(double delta) {
 
-        // check all walkers
+        // 检查所有行人
         for (auto &it : _walkers) {
 
-            // get the elements
+            // 获取行人信息
             WalkerInfo &info = it.second;
 
-            // in function of the state
+            // 根据状态执行不同的操作
             switch (info.state) {
                 case WALKER_IDLE:
-                    break;
+                    break;// 闲置状态不做任何操作
 
                 case WALKER_WALKING:
                     {
-                        // get the target point
+                        // 获取目标点
                         carla::geom::Location &target = info.route[info.currentIndex].location;
-                        // get current position
+                        // 获取当前位置信息
                         carla::geom::Location current;
                         _nav->GetWalkerPosition(it.first, current);
-                        // check distance to the target point
+                        // 计算与目标点的距离v
                         carla::geom::Vector3D dist(target.x - current.x, target.z - current.z, target.y - current.y);
-                        if (dist.SquaredLength() <= 1) {
-                            info.state = WALKER_IN_EVENT;
+                        if (dist.SquaredLength() <= 1) {// 判断是否到达目标点
+                            info.state = WALKER_IN_EVENT;// 状态切换为在事件中
                         }
                     }
                     break;
@@ -89,20 +89,20 @@ namespace nav {
                 case WALKER_IN_EVENT:
                     switch (ExecuteEvent(it.first, it.second, delta)) {
                         case EventResult::Continue:
-                            break;
+                            break;// 继续事件
                         case EventResult::End:
-                            // next point in route
+                             // 进入下一个路径点 
                             SetWalkerNextPoint(it.first);
                             break;
                         case EventResult::TimeOut:
-                            // unblock changing the route
+                            // 解锁改变路线的操作
                             SetWalkerRoute(it.first);
                             break;
                     }
                     break;
 
                 case WALKER_STOP:
-                    info.state = WALKER_IDLE;
+                    info.state = WALKER_IDLE;// 停止后切换状态为闲置
                     break;
             }
         }
@@ -110,61 +110,61 @@ namespace nav {
         return true;
     }
 
-	// set a new route from its current position
+	// 从当前位置信息设置新的路线
     bool WalkerManager::SetWalkerRoute(ActorId id) {
-        // check
+        // 检查导航模块是否存在
         if (_nav == nullptr)
             return false;
 
-        // set a new random target
+        // 设置一个新的随机目标点
         carla::geom::Location location;
         _nav->GetRandomLocation(location, nullptr);
 
-        // set the route
+        // 设置行人的路线
         return SetWalkerRoute(id, location);
     }
 
-	// set a new route from its current position
+	// 从当前位置信息设置新的路线
     bool WalkerManager::SetWalkerRoute(ActorId id, carla::geom::Location to) {
-        // check
+        // 检查导航模块是否存在
         if (_nav == nullptr)
             return false;
 
-        // search
+        // 查找行人
         auto it = _walkers.find(id);
         if (it == _walkers.end())
             return false;
 
-        // get it
+        // 获取行人信息
         WalkerInfo &info = it->second;
         std::vector<carla::geom::Location> path;
-        std::vector<unsigned char> area;
+        std::vector<unsigned char> area;// 存储区域信息
 
-        // save both points for the route
+        // 保存起点和终点
         _nav->GetWalkerPosition(id, info.from);
         info.to = to;
         info.currentIndex = 0;
-        info.state = WALKER_IDLE;
+        info.state = WALKER_IDLE;// 初始化状态为闲置
 
-        // get a route from navigation
+        // 从导航中获取路径
         _nav->GetAgentRoute(id, info.from, to, path, area);
 
-        // create each point of the route
-        info.route.clear();
-        info.route.reserve(path.size());
-        unsigned char previous_area = CARLA_AREA_SIDEWALK;
+        // 创建每个路径点
+        info.route.clear();// 清空现有路线
+        info.route.reserve(path.size());// 预留空间
+        unsigned char previous_area = CARLA_AREA_SIDEWALK;// 记录前一个区域类型
         for (unsigned int i=0; i<path.size(); ++i) {
-            // get the type
+            // 获取区域类型
             switch (area[i]) {
-                // do nothing
+                // 忽略侧道
                 case CARLA_AREA_SIDEWALK:
                     info.route.emplace_back(WalkerEventIgnore(), std::move(path[i]), area[i]);
                     break;
 
-                // stop and check
+                // 在道路或人行道上停止并检查
                 case CARLA_AREA_ROAD:
                 case CARLA_AREA_CROSSWALK:
-                    // only if we come from a safe area (sidewalks, grass or crosswalk)
+                    // 仅当来自安全区域（人行道、草地或人行横道）时
                     if (previous_area != CARLA_AREA_CROSSWALK && previous_area != CARLA_AREA_ROAD)
                         info.route.emplace_back(WalkerEventStopAndCheck(60), std::move(path[i]), area[i]);
                     break;
@@ -175,12 +175,12 @@ namespace nav {
             previous_area = area[i];
         }
 
-        // assign the first point to go (second in the list)
+        // 分配下一个要走的点
         SetWalkerNextPoint(id);
         return true;
     }
 
-    // set the next point in the route
+    // 设置路线中的下一个点
     bool WalkerManager::SetWalkerNextPoint(ActorId id) {
         // check
         if (_nav == nullptr)
@@ -191,31 +191,31 @@ namespace nav {
         if (it == _walkers.end())
             return false;
 
-        // get it
+        // 获取行人信息
         WalkerInfo &info = it->second;
 
-        // advance next point
+        // 前进到下一个点
         ++info.currentIndex;
 
-        // check the end
+        // 检查是否到达路线末尾
         if (info.currentIndex < info.route.size()) {
-            // change the state
+            // 改变状态为行走
             info.state = WALKER_WALKING;
-            // assign the point to go
+            // 暂停行人的导航
             _nav->PauseAgent(id, false);
             _nav->SetWalkerDirectTarget(id, info.route[info.currentIndex].location);
         } else {
-            // change the state
+            // 改变状态为停止
             info.state = WALKER_STOP;
             _nav->PauseAgent(id, true);
-            // we need a new route from here
+            // 需要从这里获取新的路线
             SetWalkerRoute(id);
         }
 
         return true;
     }
 
-    // get the next point in the route
+    // 获取路线中的下一个点
     bool WalkerManager::GetWalkerNextPoint(ActorId id, carla::geom::Location &location) {
         // check
         if (_nav == nullptr)
@@ -251,7 +251,7 @@ namespace nav {
         // get it
         WalkerInfo &info = it->second;
 
-        // check the end of current crosswalk
+        // 检查当前斑马线的结束位置
         unsigned int pos = info.currentIndex;
         while (pos < info.route.size()) {
             if (info.route[pos].areaType != CARLA_AREA_CROSSWALK) {
@@ -265,32 +265,33 @@ namespace nav {
     }
 
     EventResult WalkerManager::ExecuteEvent(ActorId id, WalkerInfo &info, double delta) {
-        // go to the event
+        // 获取当前事件的路线点
         WalkerRoutePoint &rp = info.route[info.currentIndex];
 
-        // build the visitor structure
+        // 构建访问者结构
         WalkerEventVisitor visitor(this, id, delta);
-        // run the event
+        // 运行事件
         return boost::variant2::visit(visitor, rp.event);
     }
 
+    // 获取所有交通灯的路标
     void WalkerManager::GetAllTrafficLightWaypoints() {
         static bool AlreadyCalculated = false;
         if (AlreadyCalculated) return;
 
-        // the world
+        // 获取世界对象
         carla::client::World world = _simulator.lock()->GetWorld();
 
         _traffic_lights.clear();
         std::vector<carla::rpc::Actor> actors = _simulator.lock()->GetAllTheActorsInTheEpisode();
         for (auto actor : actors) {
             carla::client::ActorSnapshot snapshot = _simulator.lock()->GetActorSnapshot(actor.id);
-            // check traffic lights only
+            // 仅检查交通灯
             if (actor.description.id == "traffic.traffic_light") {
-                // get the TL actor
+                // 获取交通灯对象
                 SharedPtr<carla::client::TrafficLight> tl =
                     boost::static_pointer_cast<carla::client::TrafficLight>(world.GetActor(actor.id));
-                // get the waypoints where the TL affects
+                // 获取交通灯影响的路标
                 std::vector<SharedPtr<carla::client::Waypoint>> list = tl->GetStopWaypoints();
                 for (auto &way : list) {
                     _traffic_lights.emplace_back(tl, way->GetTransform().location);
@@ -298,11 +299,11 @@ namespace nav {
             }
         }
 
-        AlreadyCalculated = true;
+        AlreadyCalculated = true;// 标记为已计算
     }
 
 
-    // return the trafficlight affecting that position
+    // 返回影响该位置的交通灯
     SharedPtr<carla::client::TrafficLight> WalkerManager::GetTrafficLightAffecting(
         carla::geom::Location UnrealPos,
         float max_distance) {
@@ -315,7 +316,7 @@ namespace nav {
                     actor = item.first;
                 }
             }
-            // if distance is not in the limit, then reject the trafficlight
+            // 如果距离超出限制，则拒绝该交通灯
             if (max_distance < 0.0f || min_dist <= max_distance * max_distance) {
                 return actor;
             } else {

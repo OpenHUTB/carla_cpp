@@ -19,69 +19,71 @@ namespace carla {
   class ListView {
   public:
 
-    using iterator = IT;
-    using const_iterator = typename std::add_const<IT>::type;
-    using size_type = size_t;
-    using difference_type = typename std::iterator_traits<iterator>::difference_type;
-    using value_type = typename std::iterator_traits<iterator>::value_type;
-    using pointer = typename std::iterator_traits<iterator>::pointer;
-    using reference = typename std::iterator_traits<iterator>::reference;
+    using iterator = IT;  // 定义迭代器类型
+    using const_iterator = typename std::add_const<IT>::type;   // 定义常量迭代器类型
+    using size_type = size_t;   // 定义大小类型
+    using difference_type = typename std::iterator_traits<iterator>::difference_type;  // 定义差异类型
+    using value_type = typename std::iterator_traits<iterator>::value_type;   // 定义值类型
+    using pointer = typename std::iterator_traits<iterator>::pointer;  // 定义指针类型
+    using reference = typename std::iterator_traits<iterator>::reference;  // 定义引用类型
 
+    // 构造函数，接受开始和结束迭代器
     explicit ListView(iterator begin, iterator end)
-      : _begin(begin), _end(end) {
-      DEBUG_ASSERT(std::distance(_begin, _end) >= 0);
+      : _begin(begin), _end(end) {  // 初始化成员变量
+      DEBUG_ASSERT(std::distance(_begin, _end) >= 0);  // 确保范围有效
     }
 
-    ListView(const ListView &) = default;
-    ListView &operator=(const ListView &) = delete;
+    ListView(const ListView &) = default;   // 默认复制构造函数
+    ListView &operator=(const ListView &) = delete;   // 删除赋值运算符
 
-    iterator begin() {
+    iterator begin() {  // 返回迭代器的开始位置
       return _begin;
     }
 
-    const_iterator begin() const {
+    const_iterator begin() const {  // 返回常量迭代器的开始位置
       return _begin;
     }
 
-    const_iterator cbegin() const {
+    const_iterator cbegin() const {   // 返回常量迭代器的开始位置（常量版本）
       return _begin;
     }
 
-    iterator end() {
+    iterator end() {  // 返回迭代器的结束位置
       return _end;
     }
 
-    const_iterator end() const {
+    const_iterator end() const {  // 返回常量迭代器的结束位置
+
       return _end;
     }
 
-    const_iterator cend() const {
+    const_iterator cend() const {  // 返回常量迭代器的结束位置（常量版本）
       return _end;
     }
 
-    bool empty() const {
-      return _begin == _end;
+    bool empty() const {  // 检查视图是否为空
+      return _begin == _end;  // 如果开始和结束迭代器相等则为空
     }
 
-    size_type size() const {
-      return static_cast<size_t>(std::distance(begin(), end()));
+    size_type size() const {   // 返回视图中的元素数量
+      return static_cast<size_t>(std::distance(begin(), end()));  // 计算开始和结束之间的距离
     }
 
   private:
 
-    const iterator _begin;
+    const iterator _begin;  // 成员变量，表示开始迭代器
 
-    const iterator _end;
+    const iterator _end;  // 成员变量，表示结束迭代器
   };
 
-  template <typename Iterator>
-  static inline auto MakeListView(Iterator begin, Iterator end) {
-    return ListView<Iterator>(begin, end);
+  template <typename Iterator>  // 模板函数，接受迭代器类型
+  static inline auto MakeListView(Iterator begin, Iterator end) {   // 创建 ListView 实例
+    return ListView<Iterator>(begin, end);  // 返回新的 ListView
   }
 
-  template <typename Container>
-  static inline auto MakeListView(Container &c) {
-    return MakeListView(std::begin(c), std::end(c));
+  template <typename Container> // 模板函数，接受容器类型 
+  static inline auto MakeListView(Container &c) {  // 创建 ListView 实例
+    return MakeListView(std::begin(c), std::end(c));   // 使用容器的 begin 和 end 创建 ListView
   }
 
 } // namespace carla

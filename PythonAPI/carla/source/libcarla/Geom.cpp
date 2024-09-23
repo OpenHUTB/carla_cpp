@@ -227,6 +227,7 @@ void export_geom() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // inverse_transform 逆变换
   class_<cg::Transform>("Transform")
     .def(init<cg::Location, cg::Rotation>(
         (arg("location")=cg::Location(), arg("rotation")=cg::Rotation())))

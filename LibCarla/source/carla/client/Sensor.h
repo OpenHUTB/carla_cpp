@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -21,14 +21,14 @@ namespace client {
 
     using Actor::Actor;
 
-    /// Register a @a callback to be executed each time a new measurement is
-    /// received.
+    /// 注册一个@a回调，每次收到新的测量值时执行。
+    /// 
     virtual void Listen(CallbackFunctionType callback) = 0;
 
-    /// Stop listening for new measurements.
+    /// 停止收听新的测量结果。
     virtual void Stop() = 0;
 
-    /// Return whether this Sensor instance is currently listening to new data.
+    ///返回此传感器实例当前是否正在侦听新数据。
     virtual bool IsListening() const = 0;
   };
 
