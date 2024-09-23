@@ -24,15 +24,15 @@ namespace carla {
   public:
 
     static bool ThisThreadHasTheGIL() {
-#ifdef LIBCARLA_WITH_PYTHON_SUPPORT
-#  if PY_MAJOR_VERSION >= 3
-      return PyGILState_Check();
-#  else
+#ifdef LIBCARLA_WITH_PYTHON_SUPPORT  // 如果项目配置了Python
+#  if PY_MAJOR_VERSION >= 3 // 如果是Python 3及以上版本
+      return PyGILState_Check();  // 使用Python 3的API检查当前线程是否持有GIL
+  #  else// 对于Python 2通过检查当前线程的状态是否等于GIL状态来检查
       PyThreadState *tstate = _PyThreadState_Current;
       return (tstate != nullptr) && (tstate == PyGILState_GetThisThreadState());
 #  endif // PYTHON3
 #else
-      return false;
+      return false;  // 如果没有配置Python支持，总是返回false 
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
     }
 
