@@ -1,6 +1,8 @@
 // Copyright (c) 2024 Institut fuer Technik der Informationsverarbeitung (ITIV) at the
 // Karlsruhe Institute of Technology
 //
+// 路径损耗模型
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
