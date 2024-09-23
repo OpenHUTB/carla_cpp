@@ -6,23 +6,23 @@
 
 #pragma once
 
-#include "carla/geom/Transform.h" // ÒıÈë×ø±ê±ä»»Àà
-#include "carla/geom/Vector3D.h" // ÒıÈëÈıÎ¬ÏòÁ¿Àà
-#include "carla/rpc/ActorId.h" // ÒıÈë½ÇÉ«IDÀà
-#include "carla/rpc/ActorState.h" // ÒıÈë½ÇÉ«×´Ì¬Àà
-#include "carla/sensor/data/ActorDynamicState.h" // ÒıÈë½ÇÉ«¶¯Ì¬×´Ì¬Êı¾İÀà
+#include "carla/geom/Transform.h" // å¼•å…¥åæ ‡å˜æ¢ç±»
+#include "carla/geom/Vector3D.h" // å¼•å…¥ä¸‰ç»´å‘é‡ç±»
+#include "carla/rpc/ActorId.h" // å¼•å…¥è§’è‰²IDç±»
+#include "carla/rpc/ActorState.h" // å¼•å…¥è§’è‰²çŠ¶æ€ç±»
+#include "carla/sensor/data/ActorDynamicState.h" // å¼•å…¥è§’è‰²åŠ¨æ€çŠ¶æ€æ•°æ®ç±»
 
 namespace carla {
     namespace client {
 
-        struct ActorSnapshot { // ¶¨Òå½ÇÉ«¿ìÕÕ½á¹¹Ìå
-            ActorId id = 0u; // ½ÇÉ«µÄÎ¨Ò»±êÊ¶·û£¬Ä¬ÈÏÎª0
-            rpc::ActorState actor_state; // ½ÇÉ«µÄ×´Ì¬ĞÅÏ¢
-            geom::Transform transform; // ½ÇÉ«µÄÎ»ÖÃĞÅÏ¢ºÍ·½Ïò
-            geom::Vector3D velocity; // ½ÇÉ«µÄÏßËÙ¶È
-            geom::Vector3D angular_velocity; // ½ÇÉ«µÄ½ÇËÙ¶È
-            geom::Vector3D acceleration; // ½ÇÉ«µÄ¼ÓËÙ¶È
-            sensor::data::ActorDynamicState::TypeDependentState state; // ½ÇÉ«µÄ¶¯Ì¬×´Ì¬
+        struct ActorSnapshot { // å®šä¹‰è§’è‰²å¿«ç…§ç»“æ„ä½“
+            ActorId id = 0u; // è§’è‰²çš„å”¯ä¸€æ ‡è¯†ç¬¦ï¼Œé»˜è®¤ä¸º0
+            rpc::ActorState actor_state; // è§’è‰²çš„çŠ¶æ€ä¿¡æ¯
+            geom::Transform transform; // è§’è‰²çš„ä½ç½®ä¿¡æ¯å’Œæ–¹å‘
+            geom::Vector3D velocity; // è§’è‰²çš„çº¿é€Ÿåº¦
+            geom::Vector3D angular_velocity; // è§’è‰²çš„è§’é€Ÿåº¦
+            geom::Vector3D acceleration; // è§’è‰²çš„åŠ é€Ÿåº¦
+            sensor::data::ActorDynamicState::TypeDependentState state; // è§’è‰²çš„åŠ¨æ€çŠ¶æ€
         };
 
     } // namespace client
