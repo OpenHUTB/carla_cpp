@@ -6,33 +6,33 @@
 
 #pragma once
 
-#include "carla/NonCopyable.h"
+#include "carla/NonCopyable.h"   // 引入NonCopyable头文件
 
-#ifdef LIBCARLA_WITH_PYTHON_SUPPORT
-#  if defined(__clang__)
-#    pragma clang diagnostic push
-#    pragma clang diagnostic ignored "-Wdeprecated-register"
+#ifdef LIBCARLA_WITH_PYTHON_SUPPORT  // 如果启用了Python支持
+#  if defined(__clang__)  // 如果使用clang编译器
+#    pragma clang diagnostic push  // 推送当前的诊断状态
+#    pragma clang diagnostic ignored "-Wdeprecated-register"  // 忽略过时注册器的警告
 #  endif
-#    include <boost/python.hpp>
-#  if defined(__clang__)
-#    pragma clang diagnostic pop
+#    include <boost/python.hpp>   // 引入Boost.Python库
+#  if defined(__clang__)  // 如果使用clang编译器
+#    pragma clang diagnostic pop  // 恢复之前的诊断状态
 #  endif
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
 
-namespace carla {
+namespace carla {   // 定义carla命名空间
 
   class PythonUtil {
   public:
 
-    static bool ThisThreadHasTheGIL() {
-#ifdef LIBCARLA_WITH_PYTHON_SUPPORT
-#  if PY_MAJOR_VERSION >= 3
-      return PyGILState_Check();
+    static bool ThisThreadHasTheGIL() {  // 检查当前线程是否拥有GIL
+#ifdef LIBCARLA_WITH_PYTHON_SUPPORT   // 如果启用了Python支持
+#  if PY_MAJOR_VERSION >= 3   // 如果Python版本大于等于3
+      return PyGILState_Check();   返回GIL状态检查结果
 #  else
-      PyThreadState *tstate = _PyThreadState_Current;
-      return (tstate != nullptr) && (tstate == PyGILState_GetThisThreadState());
+      PyThreadState *tstate = _PyThreadState_Current;  // 获取当前线程状态
+      return (tstate != nullptr) && (tstate == PyGILState_GetThisThreadState());   // 检查状态是否匹配
 #  endif // PYTHON3
-#else
+#else    如果未启用Python支持
       return false;
 #endif // LIBCARLA_WITH_PYTHON_SUPPORT
     }
