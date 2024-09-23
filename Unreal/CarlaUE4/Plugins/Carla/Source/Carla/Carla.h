@@ -2,47 +2,47 @@
 
 // This file is included before any other file in every compile unit within the
 // plugin.
-#pragma once // ·ÀÖ¹Í·ÎÄ¼ş±»¶à´Î°üº¬
+#pragma once // é˜²æ­¢å¤´æ–‡ä»¶è¢«å¤šæ¬¡åŒ…å«
 
-#include "Util/NonCopyable.h" // ÒıÈë·Ç¿½±´ableÀà
-#include "Logging/LogMacros.h" // ÒıÈëÈÕÖ¾ºê¶¨Òå
-#include "Modules/ModuleInterface.h" // ÒıÈëÄ£¿é½Ó¿Ú¶¨Òå
+#include "Util/NonCopyable.h" // å¼•å…¥éæ‹·è´ableç±»
+#include "Logging/LogMacros.h" // å¼•å…¥æ—¥å¿—å®å®šä¹‰
+#include "Modules/ModuleInterface.h" // å¼•å…¥æ¨¡å—æ¥å£å®šä¹‰
 
-// ÉùÃ÷ÈÕÖ¾Àà±ğ£¬ÓÃÓÚCarlaµÄÈÕÖ¾¼ÇÂ¼
+// å£°æ˜æ—¥å¿—ç±»åˆ«ï¼Œç”¨äºCarlaçš„æ—¥å¿—è®°å½•
 DECLARE_LOG_CATEGORY_EXTERN(LogCarla, Log, All);
-DECLARE_LOG_CATEGORY_EXTERN(LogCarlaServer, Log, All); // ÉùÃ÷Carla·şÎñÆ÷ÈÕÖ¾Àà±ğ
+DECLARE_LOG_CATEGORY_EXTERN(LogCarlaServer, Log, All); // å£°æ˜CarlaæœåŠ¡å™¨æ—¥å¿—ç±»åˆ«
 
-// ÉùÃ÷Í³¼Æ×é£¬ÓÃÓÚCarla´«¸ĞÆ÷Í³¼Æ
+// å£°æ˜ç»Ÿè®¡ç»„ï¼Œç”¨äºCarlaä¼ æ„Ÿå™¨ç»Ÿè®¡
 DECLARE_STATS_GROUP(TEXT("CarlaSensor"), STATGROUP_CarlaSensor, STATCAT_Advanced);
 
-// ÉùÃ÷Ñ­»·Í³¼Æ£¬¼ÇÂ¼²»Í¬²Ù×÷µÄĞÔÄÜÊı¾İ
-DECLARE_CYCLE_STAT(TEXT("Read RT"), STAT_CarlaSensorReadRT, STATGROUP_CarlaSensor); // ¶ÁÈ¡ÊµÊ±Êı¾İµÄÍ³¼Æ
-DECLARE_CYCLE_STAT(TEXT("Copy Text"), STAT_CarlaSensorCopyText, STATGROUP_CarlaSensor); // ÎÄ±¾¸´ÖÆµÄÍ³¼Æ
-DECLARE_CYCLE_STAT(TEXT("Buffer Copy"), STAT_CarlaSensorBufferCopy, STATGROUP_CarlaSensor); // »º³åÇø¸´ÖÆµÄÍ³¼Æ
-DECLARE_CYCLE_STAT(TEXT("Stream Send"), STAT_CarlaSensorStreamSend, STATGROUP_CarlaSensor); // Êı¾İÁ÷·¢ËÍµÄÍ³¼Æ
+// å£°æ˜å¾ªç¯ç»Ÿè®¡ï¼Œè®°å½•ä¸åŒæ“ä½œçš„æ€§èƒ½æ•°æ®
+DECLARE_CYCLE_STAT(TEXT("Read RT"), STAT_CarlaSensorReadRT, STATGROUP_CarlaSensor); // è¯»å–å®æ—¶æ•°æ®çš„ç»Ÿè®¡
+DECLARE_CYCLE_STAT(TEXT("Copy Text"), STAT_CarlaSensorCopyText, STATGROUP_CarlaSensor); // æ–‡æœ¬å¤åˆ¶çš„ç»Ÿè®¡
+DECLARE_CYCLE_STAT(TEXT("Buffer Copy"), STAT_CarlaSensorBufferCopy, STATGROUP_CarlaSensor); // ç¼“å†²åŒºå¤åˆ¶çš„ç»Ÿè®¡
+DECLARE_CYCLE_STAT(TEXT("Stream Send"), STAT_CarlaSensorStreamSend, STATGROUP_CarlaSensor); // æ•°æ®æµå‘é€çš„ç»Ÿè®¡
 
-// ±àÒëÊ±ÆôÓÃ¶îÍâµ÷ÊÔÈÕÖ¾µÄÑ¡Ïî
+// ç¼–è¯‘æ—¶å¯ç”¨é¢å¤–è°ƒè¯•æ—¥å¿—çš„é€‰é¡¹
 #if WITH_EDITOR
-// ³µÁ¾AI¶îÍâÈÕÖ¾
-// ĞĞÈËAI¶îÍâÈÕÖ¾
-// µÀÂ·Éú³ÉÆ÷¶îÍâÈÕÖ¾
-// ·şÎñÆ÷¶îÍâÈÕÖ¾
-// ±êÇ©Æ÷¶îÍâÈÕÖ¾
-// ÌìÆøÏà¹ØµÄ¶îÍâÈÕÖ¾
+// è½¦è¾†AIé¢å¤–æ—¥å¿—
+// è¡ŒäººAIé¢å¤–æ—¥å¿—
+// é“è·¯ç”Ÿæˆå™¨é¢å¤–æ—¥å¿—
+// æœåŠ¡å™¨é¢å¤–æ—¥å¿—
+// æ ‡ç­¾å™¨é¢å¤–æ—¥å¿—
+// å¤©æ°”ç›¸å…³çš„é¢å¤–æ—¥å¿—
 #endif // WITH_EDITOR
 
-// ¶¨ÒåFCarlaModuleÀà£¬¼Ì³Ğ×ÔIModuleInterface
+// å®šä¹‰FCarlaModuleç±»ï¼Œç»§æ‰¿è‡ªIModuleInterface
 class FCarlaModule : public IModuleInterface
 {
-	void RegisterSettings(); // ×¢²áÉèÖÃµÄ·½·¨
-	void UnregisterSettings(); // È¡Ïû×¢²áÉèÖÃµÄ·½·¨
-	bool HandleSettingsSaved(); // ´¦ÀíÉèÖÃ±£´æµÄ·½·¨
-	void LoadChronoDll(); // ¼ÓÔØChrono DLLµÄ·½·¨
+	void RegisterSettings(); // æ³¨å†Œè®¾ç½®çš„æ–¹æ³•
+	void UnregisterSettings(); // å–æ¶ˆæ³¨å†Œè®¾ç½®çš„æ–¹æ³•
+	bool HandleSettingsSaved(); // å¤„ç†è®¾ç½®ä¿å­˜çš„æ–¹æ³•
+	void LoadChronoDll(); // åŠ è½½Chrono DLLçš„æ–¹æ³•
 
 public:
 
-	/** IModuleInterfaceÊµÏÖ */
-	virtual void StartupModule() override; // Æô¶¯Ä£¿éµÄÊµÏÖ
-	virtual void ShutdownModule() override; // ¹Ø±ÕÄ£¿éµÄÊµÏÖ
+	/** IModuleInterfaceå®ç° */
+	virtual void StartupModule() override; // å¯åŠ¨æ¨¡å—çš„å®ç°
+	virtual void ShutdownModule() override; // å…³é—­æ¨¡å—çš„å®ç°
 
 };
