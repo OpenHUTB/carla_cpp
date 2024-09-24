@@ -29,9 +29,9 @@ namespace carla {
     ///列出 @a folder_path 中匹配 @a wildcard_pattern 的常规文件
     /// （不递归）。
     ///
-    /// @throw std::invalid_argument if folder does not exist.
+    /// @throw std::invalid_argument 如果文件夹不存在。
     ///
-    /// @todo Do permission check.
+    /// @todo 进行权限检查。
     static std::vector<std::string> ListFolder(
         const std::string &folder_path,
         const std::string &wildcard_pattern);
