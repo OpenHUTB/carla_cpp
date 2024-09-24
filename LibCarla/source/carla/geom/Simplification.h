@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "carla/geom/Mesh.h"
+#include "carla/geom/Mesh.h" // 包含Mesh类的定义
 
 namespace carla {
 namespace geom {
@@ -14,15 +14,15 @@ namespace geom {
   class Simplification {
   public:
 
-    Simplification() = default;
+    Simplification() = default; // 默认构造函数
 
-    Simplification(float simplificationrate)
-      : simplification_percentage(simplificationrate)
+    Simplification(float simplificationrate) /// 带参数的构造函数，用于初始化简化率
+      : simplification_percentage(simplificationrate) // 初始化简化率
       {}
 
-    float simplification_percentage;
+    float simplification_percentage; // 存储简化率
 
-    void Simplificate(const std::unique_ptr<geom::Mesh>& pmesh);
+    void Simplificate(const std::unique_ptr<geom::Mesh>& pmesh); // 声明简化函数
   };
 
 } // namespace geom
