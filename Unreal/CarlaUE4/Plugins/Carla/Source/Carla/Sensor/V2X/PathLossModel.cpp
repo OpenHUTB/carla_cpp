@@ -49,7 +49,7 @@ void PathLossModel::SetParams(const float TransmitPower,
     PathLossModel::Frequency_GHz = Frequency;
     PathLossModel::Frequency = PathLossModel::Frequency_GHz * std::pow(10, 9);
     PathLossModel::lambda = PathLossModel::c_speedoflight / PathLossModel::Frequency;
-    // when reference distance is set, we prepare the FSPL for the reference distance to be used in LDPL
+    // 当设定了参考距离后，我们准备了用于 对数距离路径损耗模型(log-distance path loss, LDPL) 的参考距离的 自由空间路径损耗(free space path loss, FSPL)
     CalculateFSPL_d0();
 }
 
@@ -65,7 +65,7 @@ std::map<AActor *, float> PathLossModel::GetReceiveActorPowerList()
 
 void PathLossModel::Simulate(const std::vector<ActorPowerPair> ActorList, UCarlaEpisode *CarlaEpisode, UWorld *World)
 {
-    // Set current world and episode
+    // 设置当前世界和事件
     mWorld = World;
     mCarlaEpisode = CarlaEpisode;
 
@@ -73,8 +73,8 @@ void PathLossModel::Simulate(const std::vector<ActorPowerPair> ActorList, UCarla
     FVector OtherActorLocation;
     mReceiveActorPowerList.clear();
     float ReceivedPower = 0;
-    // Logic to get height of the vehicle
-    //  TODO: make that thing use the actual attachment and transform of the sensor
+    // 从逻辑上得到车辆的高度
+    //  TODO: 让这个东西使用传感器的实际连接和变换
 
     double tx_height_local = (mActorOwner->GetSimpleCollisionHalfHeight() * 2.0f) + 2.0;
 
@@ -83,7 +83,7 @@ void PathLossModel::Simulate(const std::vector<ActorPowerPair> ActorList, UCarla
     for (auto &actor_power_pair : ActorList)
     {
         const FCarlaActor *view = Registry.FindCarlaActor(actor_power_pair.first);
-        // ensure other actor is still alive
+        // 确保其他参与者还活着
         if (!view)
         {
             continue;
