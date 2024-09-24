@@ -43,12 +43,15 @@ namespace detail {
       new_list->erase(begin);
       _list = new_list;// 更新原子指针指向新列表
     }
- 
+    // DeleteByValue方法，根据值删除列表中的元素
     template <typename ValueT>
     void DeleteByValue(const ValueT &value) {
+      // 锁定互斥量以保证线程安全
       std::lock_guard<std::mutex> lock(_mutex);
+      // 复制当前列表并创建一个新列表
       auto new_list = std::make_shared<ListT>(*Load());  // 使用 std::remove 移动所有等于 value 的元素到列表末尾，然后调用 erase 删除这些元素
       new_list->erase(std::remove(new_list->begin(), new_list->end(), value), new_list->end());
+      // 更新原子指针指向新列表
       _list = new_list;
     }
  
