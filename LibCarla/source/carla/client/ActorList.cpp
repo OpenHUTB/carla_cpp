@@ -4,40 +4,41 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/ActorList.h"  // ÒıÈëActorListÀàµÄÍ·ÎÄ¼ş
+#include "carla/client/ActorList.h" // å¼•å…¥å‚ä¸è€…åˆ—è¡¨ç±»çš„å¤´æ–‡ä»¶
 
-#include "carla/StringUtil.h"  // ÒıÈë×Ö·û´®¹¤¾ßÀàµÄÍ·ÎÄ¼ş
-#include "carla/client/detail/ActorFactory.h"  // ÒıÈë½ÇÉ«¹¤³§ÀàµÄÍ·ÎÄ¼ş
+#include "carla/StringUtil.h" // å¼•å…¥å­—ç¬¦ä¸²å·¥å…·ç±»çš„å¤´æ–‡ä»¶
+#include "carla/client/detail/ActorFactory.h" // å¼•å…¥å‚ä¸è€…å·¥å‚ç±»çš„å¤´æ–‡ä»¶
 
-#include <iterator>  // ÒıÈëµü´úÆ÷Ïà¹ØµÄ±ê×¼¿â
+#include <iterator> // å¼•å…¥è¿­ä»£å™¨ç›¸å…³çš„æ ‡å‡†åº“
 
 namespace carla {
 namespace client {
 
-   ActorList::ActorList(  // ActorList¹¹Ôìº¯Êı
-       detail::EpisodeProxy episode,  // ´«ÈëµÄ³¡¾°´úÀí¶ÔÏó
-       std::vector<rpc::Actor> actors)  // ´«ÈëµÄ²ÎÓëÕßÁĞ±í
-      : _episode(std::move(episode)),  // ÒÆ¶¯ÓïÒå´«µİ³¡¾°´úÀí
-        _actors(std::make_move_iterator(actors.begin()), std::make_move_iterator(actors.end())) {}  // Ê¹ÓÃÒÆ¶¯µü´úÆ÷³õÊ¼»¯²ÎÓëÕßÁĞ±í
+  ActorList::ActorList( // å‚ä¸è€…åˆ—è¡¨æ„é€ å‡½æ•°
+      detail::EpisodeProxy episode, // ä¼ å…¥çš„åœºæ™¯ä»£ç†å¯¹è±¡
+      std::vector<rpc::Actor> actors) // ä¼ å…¥çš„å‚ä¸è€…åˆ—è¡¨
+    : _episode(std::move(episode)), // ç§»åŠ¨è¯­ä¹‰ä¼ é€’åœºæ™¯ä»£ç†
+      _actors(std::make_move_iterator(actors.begin()), std::make_move_iterator(actors.end())) {} // ä½¿ç”¨ç§»åŠ¨è¿­ä»£å™¨åˆå§‹åŒ–å‚ä¸è€…åˆ—è¡¨
 
-   SharedPtr<Actor> ActorList::Find(const ActorId actor_id) const {  // ²éÕÒÖ¸¶¨IDµÄ²ÎÓëÕß
-     for (auto& actor : _actors) {  // ±éÀúËùÓĞ²ÎÓëÕß
-        if (actor_id == actor.GetId()) {     // Èç¹ûÕÒµ½Æ¥ÅäµÄID
-          return actor.Get(_episode);  // ·µ»Ø²ÎÓëÕßµÄ¹²ÏíÖ¸Õë
-        }
-     }
-     return nullptr;  // Èç¹ûÎ´ÕÒµ½£¬·µ»Ø¿ÕÖ¸Õë
-   }
+  SharedPtr<Actor> ActorList::Find(const ActorId actor_id) const { // æŸ¥æ‰¾æŒ‡å®šIDçš„å‚ä¸è€…
+    for (auto &actor : _actors) { // éå†æ‰€æœ‰å‚ä¸è€…
+      if (actor_id == actor.GetId()) { // å¦‚æœæ‰¾åˆ°åŒ¹é…çš„ID
+        return actor.Get(_episode); // è¿”å›å‚ä¸è€…çš„å…±äº«æŒ‡é’ˆ
+      }
+    }
+    return nullptr; // å¦‚æœæœªæ‰¾åˆ°ï¼Œè¿”å›ç©ºæŒ‡é’ˆ
+  }
 
-   SharedPtr<ActorList> ActorList::Filter(const std::string& wildcard_pattern) const {  // ¸ù¾İÍ¨Åä·ûÄ£Ê½¹ıÂË²ÎÓëÕß
-     SharedPtr<ActorList> filtered(new ActorList(_episode, {}));  // ´´½¨Ò»¸öĞÂµÄActorListÓÃÓÚ´æ·Å¹ıÂËºóµÄ²ÎÓëÕß
-     for (auto&& actor : _actors) {  // ±éÀúËùÓĞ²ÎÓëÕß
-        if (StringUtil::Match(actor.GetTypeId(), wildcard_pattern)) {  // Èç¹û²ÎÓëÕßÀàĞÍÓëÍ¨Åä·ûÆ¥Åä
-           filtered->_actors.push_back(actor);  // ½«Æ¥ÅäµÄ²ÎÓëÕß¼ÓÈëµ½¹ıÂËºóµÄÁĞ±íÖĞ
-        }
-     }
-     return filtered;  // ·µ»Ø¹ıÂËºóµÄ²ÎÓëÕßÁĞ±í
-   }
+  SharedPtr<ActorList> ActorList::Filter(const std::string &wildcard_pattern) const { // æ ¹æ®é€šé…ç¬¦æ¨¡å¼è¿‡æ»¤å‚ä¸è€…
+    SharedPtr<ActorList> filtered (new ActorList(_episode, {})); // åˆ›å»ºä¸€ä¸ªæ–°çš„å‚ä¸è€…åˆ—è¡¨ç”¨äºå­˜æ”¾è¿‡æ»¤åçš„å‚ä¸è€…
+    for (auto &&actor : _actors) { // éå†æ‰€æœ‰å‚ä¸è€…
+      if (StringUtil::Match(actor.GetTypeId(), wildcard_pattern)) { // å¦‚æœå‚ä¸è€…ç±»å‹ä¸é€šé…ç¬¦åŒ¹é…
+        filtered->_actors.push_back(actor); // å°†åŒ¹é…çš„å‚ä¸è€…åŠ å…¥åˆ°è¿‡æ»¤åçš„åˆ—è¡¨ä¸­
+      }
+    }
+    return filtered; // è¿”å›è¿‡æ»¤åçš„å‚ä¸è€…åˆ—è¡¨
+  }
 
 } // namespace client
 } // namespace carla
+
