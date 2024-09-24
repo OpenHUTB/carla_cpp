@@ -1,5 +1,5 @@
 
-/// This file contains definitions of common data structures used in traffic manager.
+/// 该文件包含交通管理器中常用数据结构的定义。
 
 #pragma once
 
@@ -20,7 +20,7 @@
 namespace carla {
 namespace traffic_manager {
 
-namespace chr = std::chrono;
+namespace chr = std::chrono;   // std::chrono是C++11引入的日期时间处理库，包含3种时钟：system_clock，steady_clock，high_resolution_clock
 namespace cc = carla::client;
 namespace cg = carla::geom;
 
@@ -52,14 +52,14 @@ using ControlFrame = std::vector<carla::rpc::Command>;
 
 using TLFrame = std::vector<bool>;
 
-/// Structure to hold the actuation signals.
+/// 用来保存驱动信号的结构
 struct ActuationSignal {
-  float throttle;
-  float brake;
-  float steer;
+  float throttle;  // 油门
+  float brake;     // 删车
+  float steer;     // 方向盘
 };
 
-/// Structure to hold the controller state.
+/// 用来保存控制器状态的状态。
 struct StateEntry {
   cc::Timestamp time_instance;
   float angular_deviation;

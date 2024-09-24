@@ -15,12 +15,11 @@
 
 namespace MapGen {
 
-  /// Simple doubly-connected edge list structure. It only allows adding
-  /// elements, not removing them.
+  /// 简单的双连通边链表结构。它只允许添加元素，不允许删除元素。
   class CARLA_API DoublyConnectedEdgeList : private NonCopyable
   {
     // =========================================================================
-    // -- DCEL types -----------------------------------------------------------
+    // -- DCEL 类型 -----------------------------------------------------------
     // =========================================================================
 
   public:
@@ -86,15 +85,15 @@ namespace MapGen {
     using ConstFaceIterator = typename FaceContainer::const_iterator;
 
     // =========================================================================
-    // -- Constructors and destructor ------------------------------------------
+    // -- 构造函数和析构函数 ----------------------------------------------------
     // =========================================================================
 
   public:
 
-    /// Create a DoublyConnectedEdgeList with two nodes, two edges and one face.
+    /// 创建一个有2个节点、2个边和1个面的双连通边链表DoublyConnectedEdgeList。
     explicit DoublyConnectedEdgeList(const Position &Position0, const Position &Position1);
 
-    /// Create a DoublyConnectedEdgeList consisting of a cycle of N nodes.
+    /// 创建一个由N个节点组成双连通链表DoublyConnectedEdgeList环。
     template <size_t N>
     explicit DoublyConnectedEdgeList(const std::array<Position, N> &Cycle)
       : DoublyConnectedEdgeList(Cycle[0u], Cycle[1u])
@@ -109,41 +108,39 @@ namespace MapGen {
     ~DoublyConnectedEdgeList();
 
     // =========================================================================
-    /// @name Adding elements to the graph -------------------------------------
+    /// @name 向图中添加元素-----------------------------------------------------
     // =========================================================================
     /// {
   public:
 
     /// Add a node at @a NodePosition and attach it to @a OtherNode.
     ///
-    /// The time complexity is O(n*log(n)) where n is the number of edges
-    /// leaving @a OtherNode.
+    /// 时间复杂度为 O(n*log(n))，其中 n 是离开节点 @a OtherNode 的边数。
     ///
-    /// @return The newly generated node.
+    /// @return 新生成的节点。
     Node &AddNode(const Position &NodePosition, Node &OtherNode);
 
-    /// Split @a HalfEdge (and its pair) at @a Position.
+    /// 在 @a 位置分割 @a HalfEdge （和它的配对）
     ///
-    /// The time complexity is O(n*log(n)) where n is the number of edges
-    /// leaving @a HalfEdge's source.
+    /// 时间复杂度为 O(n*log(n))，其中 n 是离开 @a HalfEdge 源的边数
     ///
-    /// @return The newly generated node.
+    /// @return 新生成的节点。
     Node &SplitEdge(const Position &Position, HalfEdge &HalfEdge);
 
-    /// Connect two nodes by a pair of edges.
+    /// 用一对边连接两个节点。
     ///
-    /// It is assumed that both nodes are connected by the same face.
+    /// 假设两个节点由同一面连接。
     ///
-    /// The time complexity is O(n0*log(n0) + n1*log(n1) + nf) where n0 and n1
-    /// are the number of edges leaving @a Node0 and @a Node1 respectively, and
-    /// nf is the number of edges in the face containing both nodes.
+    /// 时间复杂度为 O(n0*log(n0) + n1*log(n1) + nf)，
+    /// 其中 n0 和 n1 分别是离开节点 @a Node0 和节点 @a Node1 的边数。
+    /// 并且 nf 是包含两个节点的面的边数。
     ///
-    /// @return The newly generated face.
+    /// @return 新生成的面。
     Face &ConnectNodes(Node &Node0, Node &Node1);
 
     /// @}
     // =========================================================================
-    /// @name Counting graph elements ------------------------------------------
+    /// @name 统计图元素的数目 --------------------------------------------------
     // =========================================================================
     /// @{
   public:
@@ -165,7 +162,7 @@ namespace MapGen {
 
     /// @}
     // =========================================================================
-    /// @name Accessing graph elements -----------------------------------------
+    /// @name 访问图的元素 ------------------------------------------------------
     // =========================================================================
     /// @{
   public:
@@ -202,12 +199,12 @@ namespace MapGen {
 
     /// @}
     // =========================================================================
-    /// @name Accessing graph pointers -----------------------------------------
+    /// @name 访问图指针 --------------------------------------------------------
     // =========================================================================
     /// @{
   public:
 
-    // -- Primary pointers -----------------------------------------------------
+    // -- 主要指针 --------------------------------------------------------------
 
     static Node &GetSource(HalfEdge &halfEdge)
     {
@@ -281,7 +278,7 @@ namespace MapGen {
       return *face.HalfEdge;
     }
 
-    // -- Secondary pointers ---------------------------------------------------
+    // -- 二级指针 ------------------------------------------------------------
 
     static HalfEdge &GetNextInFace(HalfEdge &halfEdge)
     {
@@ -307,12 +304,12 @@ namespace MapGen {
 
     /// @}
     // =========================================================================
-    /// @name Other member functions -------------------------------------------
+    /// @name 其他成员函数 ------------------------------------------------------
     // =========================================================================
     /// @{
   public:
 
-    /// Return the angle [-pi, pi] of the half-edge.
+    /// 返回 half-edge 的角度，范围为 [-pi, pi]
     static float GetAngle(const HalfEdge &halfEdge);
 
 #ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG
@@ -321,7 +318,7 @@ namespace MapGen {
 
     /// @}
     // =========================================================================
-    // -- Private members ------------------------------------------------------
+    // -- 私有成员 --------------------------------------------------------------
     // =========================================================================
 
   private:

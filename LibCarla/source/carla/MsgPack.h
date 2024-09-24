@@ -5,39 +5,39 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
-#include "carla/Buffer.h" // ÒıÈë Buffer Í·ÎÄ¼ş£¬Buffer ÀàÓÃÓÚ´¦ÀíÊı¾İ»º³åÇø
-#include <rpc/msgpack.hpp> // ÒıÈë MessagePack ¿âÍ·ÎÄ¼ş
+#include "carla/Buffer.h" // å¼•å…¥ Buffer å¤´æ–‡ä»¶ï¼ŒBuffer ç±»ç”¨äºå¤„ç†æ•°æ®ç¼“å†²åŒº
+#include <rpc/msgpack.hpp> // å¼•å…¥ MessagePack åº“å¤´æ–‡ä»¶
 
 namespace carla {
 
   class MsgPack {
   public:
 
-    // Ä£°å·½·¨£¬½«¶ÔÏó obj ĞòÁĞ»¯Îª Buffer
+    // æ¨¡æ¿æ–¹æ³•ï¼Œå°†å¯¹è±¡ obj åºåˆ—åŒ–ä¸º Buffer
     template <typename T>
     static Buffer Pack(const T &obj) {
-      namespace mp = ::clmdep_msgpack; // Ê¹ÓÃ×Ô¶¨ÒåÃüÃû¿Õ¼ä clmdep_msgpack
-      mp::sbuffer sbuf; // ´´½¨Ò»¸ö MessagePack µÄ»º³åÇø¶ÔÏó sbuf
-      mp::pack(sbuf, obj); // Ê¹ÓÃ MessagePack µÄ pack ·½·¨½«¶ÔÏó obj ĞòÁĞ»¯µ½ sbuf ÖĞ
-      // ¹¹Ôì Buffer ¶ÔÏó£¬½« sbuf µÄÊı¾İºÍ´óĞ¡´«µİ¸ø Buffer
+      namespace mp = ::clmdep_msgpack; // ä½¿ç”¨è‡ªå®šä¹‰å‘½åç©ºé—´ clmdep_msgpack
+      mp::sbuffer sbuf; // åˆ›å»ºä¸€ä¸ª MessagePack çš„ç¼“å†²åŒºå¯¹è±¡ sbuf
+      mp::pack(sbuf, obj); // ä½¿ç”¨ MessagePack çš„ pack æ–¹æ³•å°†å¯¹è±¡ obj åºåˆ—åŒ–åˆ° sbuf ä¸­
+      // æ„é€  Buffer å¯¹è±¡ï¼Œå°† sbuf çš„æ•°æ®å’Œå¤§å°ä¼ é€’ç»™ Buffer
       return Buffer(reinterpret_cast<const unsigned char *>(sbuf.data()), sbuf.size());
     }
 
-    // Ä£°å·½·¨£¬½« Buffer ·´ĞòÁĞ»¯Îª¶ÔÏó T
+    // æ¨¡æ¿æ–¹æ³•ï¼Œå°† Buffer ååºåˆ—åŒ–ä¸ºå¯¹è±¡ T
     template <typename T>
     static T UnPack(const Buffer &buffer) {
-      namespace mp = ::clmdep_msgpack; // Ê¹ÓÃ×Ô¶¨ÒåÃüÃû¿Õ¼ä clmdep_msgpack
-      // Ê¹ÓÃ MessagePack µÄ unpack ·½·¨½« Buffer ÖĞµÄÊı¾İ·´ĞòÁĞ»¯Îª¶ÔÏó T
-      // reinterpret_cast ÓÃÓÚ½« unsigned char* ÀàĞÍµÄ data ×ª»»Îª char* ÀàĞÍ
+      namespace mp = ::clmdep_msgpack; // ä½¿ç”¨è‡ªå®šä¹‰å‘½åç©ºé—´ clmdep_msgpack
+      // ä½¿ç”¨ MessagePack çš„ unpack æ–¹æ³•å°† Buffer ä¸­çš„æ•°æ®ååºåˆ—åŒ–ä¸ºå¯¹è±¡ T
+      // reinterpret_cast ç”¨äºå°† unsigned char* ç±»å‹çš„ data è½¬æ¢ä¸º char* ç±»å‹
       return mp::unpack(reinterpret_cast<const char *>(buffer.data()), buffer.size()).template as<T>();
     }
 
-    // Ä£°å·½·¨£¬½«Ô­Ê¼Êı¾İ·´ĞòÁĞ»¯Îª¶ÔÏó T
+    // æ¨¡æ¿æ–¹æ³•ï¼Œå°†åŸå§‹æ•°æ®ååºåˆ—åŒ–ä¸ºå¯¹è±¡ T
     template <typename T>
     static T UnPack(const unsigned char *data, size_t size) {
-      namespace mp = ::clmdep_msgpack; // Ê¹ÓÃ×Ô¶¨ÒåÃüÃû¿Õ¼ä clmdep_msgpack
-      // Ê¹ÓÃ MessagePack µÄ unpack ·½·¨½«Ô­Ê¼Êı¾İ·´ĞòÁĞ»¯Îª¶ÔÏó T
-      // reinterpret_cast ÓÃÓÚ½« unsigned char* ÀàĞÍµÄ data ×ª»»Îª char* ÀàĞÍ
+      namespace mp = ::clmdep_msgpack; // ä½¿ç”¨è‡ªå®šä¹‰å‘½åç©ºé—´ clmdep_msgpack
+      // ä½¿ç”¨ MessagePack çš„ unpack æ–¹æ³•å°†åŸå§‹æ•°æ®ååºåˆ—åŒ–ä¸ºå¯¹è±¡ T
+      // reinterpret_cast ç”¨äºå°† unsigned char* ç±»å‹çš„ data è½¬æ¢ä¸º char* ç±»å‹
       return mp::unpack(reinterpret_cast<const char *>(data), size).template as<T>();
     }
   };
