@@ -36,7 +36,7 @@
 // -- Static local methods -----------------------------------------------------
 // =============================================================================
 
-// init static variables
+// 初始化静态变量
 uint64_t FCarlaEngine::FrameCounter = 0;
 
 static uint32 FCarlaEngine_GetNumberOfThreadsForRPCServer()
@@ -101,13 +101,13 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
 
     bIsRunning = true;
 
-    // check to convert this as secondary server
+    // 将此作为备用服务器转换进行检查
     if (!PrimaryIP.empty())
     {
-      // we are secondary server, connecting to primary server
+      // 我们是备用服务器，正在连接到主服务器
       bIsPrimaryServer = false;
 
-      // define the commands executor (when a command comes from the primary server)
+      // 当命令来自主服务器时，命令执行器是指负责处理和执行这些命令的组件或模块
       auto CommandExecutor = [=](carla::multigpu::MultiGPUCommand Id, carla::Buffer Data) {
         struct CarlaStreamBuffer : public std::streambuf
         {
@@ -119,7 +119,7 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
             if(GetCurrentEpisode())
             {
               TRACE_CPUPROFILER_EVENT_SCOPE_STR("MultiGPUCommand::SEND_FRAME");
-              // convert frame data from buffer to istream
+              // 将缓冲区中的帧数据转换为输入流
               CarlaStreamBuffer TempStream((char *) Data.data(), Data.size());
               std::istream InStream(&TempStream);
               GetCurrentEpisode()->GetFrameData().Read(InStream);
@@ -129,7 +129,7 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
                 FramesToProcess.emplace_back(GetCurrentEpisode()->GetFrameData());
               }
             }
-            // forces a tick
+            // 强制进行一次进行单位时间操作
             Server.Tick();
             break;
           }
@@ -145,9 +145,9 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
           }
           case carla::multigpu::MultiGPUCommand::GET_TOKEN:
           {
-            // get the sensor id
+            // 获取传感器 ID
             auto sensor_id = *(reinterpret_cast<carla::streaming::detail::stream_id_type *>(Data.data()));
-            // query dispatcher
+            // 查询调度器
             carla::streaming::detail::token_type token(Server.GetStreamingServer().GetToken(sensor_id));
             carla::Buffer buf(reinterpret_cast<unsigned char *>(&token), (size_t) sizeof(token));
             carla::log_info("responding with a token for port ", token.get_port());
@@ -164,11 +164,11 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
           }
           case carla::multigpu::MultiGPUCommand::ENABLE_ROS:
           {
-            // get the sensor id
+            // 获取传感器 ID
             auto sensor_id = *(reinterpret_cast<carla::streaming::detail::stream_id_type *>(Data.data()));
-            // query dispatcher
+            // 查询调度器
             Server.GetStreamingServer().EnableForROS(sensor_id);
-            // return a 'true'
+            // 返回一个 'true'
             bool res = true;
             carla::Buffer buf(reinterpret_cast<unsigned char *>(&res), (size_t) sizeof(bool));
             carla::log_info("responding ENABLE_ROS with a true");
@@ -177,11 +177,11 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
           }
           case carla::multigpu::MultiGPUCommand::DISABLE_ROS:
           {
-            // get the sensor id
+            // 获取传感器 ID
             auto sensor_id = *(reinterpret_cast<carla::streaming::detail::stream_id_type *>(Data.data()));
-            // query dispatcher
+            // 查询调度器
             Server.GetStreamingServer().DisableForROS(sensor_id);
-            // return a 'true'
+            // 返回一个 'true'
             bool res = true;
             carla::Buffer buf(reinterpret_cast<unsigned char *>(&res), (size_t) sizeof(bool));
             carla::log_info("responding DISABLE_ROS with a true");
@@ -190,9 +190,9 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
           }
           case carla::multigpu::MultiGPUCommand::IS_ENABLED_ROS:
           {
-            // get the sensor id
+            // 获取传感器 ID
             auto sensor_id = *(reinterpret_cast<carla::streaming::detail::stream_id_type *>(Data.data()));
-            // query dispatcher
+            // 查询调度器
             bool res = Server.GetStreamingServer().IsEnabledForROS(sensor_id);
             carla::Buffer buf(reinterpret_cast<unsigned char *>(&res), (size_t) sizeof(bool));
             carla::log_info("responding IS_ENABLED_ROS with: ", res);
@@ -204,12 +204,12 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
 
       Secondary = std::make_shared<carla::multigpu::Secondary>(PrimaryIP, PrimaryPort, CommandExecutor);
       Secondary->Connect();
-      // set this server in synchronous mode
+      // 将此服务器设置为同步模式
       bSynchronousMode = true;
     }
     else
     {
-      // we are primary server, starting server
+      // 我们是主服务器，正在启动服务器
       bIsPrimaryServer = true;
       SecondaryServer = Server.GetSecondaryServer();
       SecondaryServer->SetNewConnectionCallback([this]()
@@ -220,7 +220,7 @@ void FCarlaEngine::NotifyInitGame(const UCarlaSettings &Settings)
     }
   }
 
-  // create ROS2 manager
+  //创建 ROS2 管理器
   #if defined(WITH_ROS2)
   if (Settings.ROS2)
   {
@@ -238,7 +238,7 @@ void FCarlaEngine::NotifyBeginEpisode(UCarlaEpisode &Episode)
   Episode.EpisodeSettings.FixedDeltaSeconds = FCarlaEngine_GetFixedDeltaSeconds();
   CurrentEpisode = &Episode;
 
-  // Reset map settings
+  // 重置地图设置
   UWorld* World = CurrentEpisode->GetWorld();
   ALargeMapManager* LargeMapManager = UCarlaStatics::GetLargeMapManager(World);
   if (LargeMapManager)
@@ -249,7 +249,7 @@ void FCarlaEngine::NotifyBeginEpisode(UCarlaEpisode &Episode)
 
   if (!bIsPrimaryServer)
   {
-    // set this secondary server with no-rendering mode
+    // 将此次要服务器设置为无渲染模式
     CurrentSettings.bNoRenderingMode = true;
   }
 
@@ -257,7 +257,7 @@ void FCarlaEngine::NotifyBeginEpisode(UCarlaEpisode &Episode)
 
   ResetFrameCounter(GFrameNumber);
 
-  // make connection between Episode and Recorder
+  // 建立Episode和Recorder之间的连接
   if (Recorder)
   {
     Recorder->SetEpisode(&Episode);
@@ -286,14 +286,14 @@ void FCarlaEngine::OnPreTick(UWorld *, ELevelTick TickType, float DeltaSeconds)
     {
       if (CurrentEpisode && !bSynchronousMode && SecondaryServer->HasClientsConnected())
       {
-        // set synchronous mode
+        // 设置为同步模式。
         CurrentSettings.bSynchronousMode = true;
         CurrentSettings.FixedDeltaSeconds = 1 / 20.0f;
         OnEpisodeSettingsChanged(CurrentSettings);
         CurrentEpisode->ApplySettings(CurrentSettings);
       }
 
-      // process RPC commands
+      // 处理RPC命令
       do
       {
         Server.RunSome(1u);
@@ -302,7 +302,7 @@ void FCarlaEngine::OnPreTick(UWorld *, ELevelTick TickType, float DeltaSeconds)
     }
     else
     {
-      // process frame data
+      // 处理帧数据
       do
       {
         Server.RunSome(1u);
@@ -310,7 +310,7 @@ void FCarlaEngine::OnPreTick(UWorld *, ELevelTick TickType, float DeltaSeconds)
       while (!FramesToProcess.size());
     }
 
-    // update frame counter
+    // 更新帧计数器
     UpdateFrameCounter();
 
     if (CurrentEpisode)
@@ -324,7 +324,7 @@ void FCarlaEngine::OnPreTick(UWorld *, ELevelTick TickType, float DeltaSeconds)
           TRACE_CPUPROFILER_EVENT_SCOPE_STR("FramesToProcess.PlayFrameData");
           std::lock_guard<std::mutex> Lock(FrameToProcessMutex);
           FramesToProcess.front().PlayFrameData(CurrentEpisode, MappedId);
-          FramesToProcess.erase(FramesToProcess.begin()); // remove first element
+          FramesToProcess.erase(FramesToProcess.begin()); // 移除第一个元素
         }
       }
     }
@@ -335,7 +335,7 @@ void FCarlaEngine::OnPreTick(UWorld *, ELevelTick TickType, float DeltaSeconds)
 void FCarlaEngine::OnPostTick(UWorld *World, ELevelTick TickType, float DeltaSeconds)
 {
   TRACE_CPUPROFILER_EVENT_SCOPE_STR(__FUNCTION__);
-  // tick the recorder/replayer system
+  // 标记录制/回放系统
   if (GetCurrentEpisode())
   {
     if (bIsPrimaryServer)
@@ -346,7 +346,7 @@ void FCarlaEngine::OnPostTick(UWorld *World, ELevelTick TickType, float DeltaSec
         std::ostringstream OutStream;
         GetCurrentEpisode()->GetFrameData().Write(OutStream);
 
-        // send frame data to secondary
+        // 将帧数据发送到次级服务器
         std::string Tmp(OutStream.str());
         SecondaryServer->GetCommander().SendFrameData(carla::Buffer(std::move((unsigned char *) Tmp.c_str()), (size_t) Tmp.size()));
 
@@ -363,7 +363,7 @@ void FCarlaEngine::OnPostTick(UWorld *World, ELevelTick TickType, float DeltaSec
 
   if ((TickType == ELevelTick::LEVELTICK_All) && (CurrentEpisode != nullptr))
   {
-    // Look for lightsubsystem
+    // 查找光子系统
     bool LightUpdatePending = false;
     if (World)
     {
@@ -374,7 +374,10 @@ void FCarlaEngine::OnPostTick(UWorld *World, ELevelTick TickType, float DeltaSec
       }
     }
 
-    // send the worldsnapshot
+    // 发送 worldsnapshot
+    //worldsnapshot:
+    //1·游戏开发：在游戏中，"world snapshot" 可以用来记录游戏的状态，保存玩家的位置、状态、物品等信息，以便后续恢复。
+    //2·虚拟现实和增强现实：在这些环境中，世界快照可以帮助记录用户的位置和交互，便于分析和重现体验。
     WorldObserver.BroadcastTick(*CurrentEpisode, DeltaSeconds, bMapChanged, LightUpdatePending);
     CurrentEpisode->GetSensorManager().PostPhysTick(World, TickType, DeltaSeconds);
     ResetSimulationState();
@@ -394,7 +397,7 @@ void FCarlaEngine::OnEpisodeSettingsChanged(const FEpisodeSettings &Settings)
 
   FCarlaEngine_SetFixedDeltaSeconds(Settings.FixedDeltaSeconds);
 
-  // Setting parameters for physics substepping
+  // 为物理子步设置参数
   UPhysicsSettings* PhysSett = UPhysicsSettings::Get();
   PhysSett->bSubstepping = Settings.bSubstepping;
   PhysSett->MaxSubstepDeltaTime = Settings.MaxSubstepDeltaTime;
