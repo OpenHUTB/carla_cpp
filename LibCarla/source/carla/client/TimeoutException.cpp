@@ -1,23 +1,24 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+s// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/TimeoutException.h" // ÒıÈëTimeoutExceptionÍ·ÎÄ¼ş
+#include "carla/client/TimeoutException.h" // å¼•å…¥TimeoutExceptionå¤´æ–‡ä»¶
 
-namespace carla { // ¶¨ÒåcarlaÃüÃû¿Õ¼ä
-namespace client { // ¶¨Òåclient×ÓÃüÃû¿Õ¼ä
+namespace carla { // å®šä¹‰carlaå‘½åç©ºé—´
+namespace client { // å®šä¹‰clientå­å‘½åç©ºé—´
 
-  using namespace std::string_literals; // Ê¹ÓÃ×Ö·û´®×ÖÃæÁ¿µÄÃüÃû¿Õ¼ä
+  using namespace std::string_literals; // ä½¿ç”¨å­—ç¬¦ä¸²å­—é¢é‡çš„å‘½åç©ºé—´
 
-  TimeoutException::TimeoutException( // TimeoutException¹¹Ôìº¯Êı
-      const std::string &endpoint, // ÊäÈë²ÎÊı£º¶ËµãµØÖ·
-      time_duration timeout) // ÊäÈë²ÎÊı£º³¬Ê±Ê±¼ä
-    : std::runtime_error( // ³õÊ¼»¯»ùÀàstd::runtime_error
-        "time-out of "s + std::to_string(timeout.milliseconds()) + // ¹¹½¨´íÎóĞÅÏ¢£¬°üº¬³¬Ê±Ê±¼ä
-        "ms while waiting for the simulator, " // ÌáÊ¾ĞÅÏ¢£¬µÈ´ıÄ£ÄâÆ÷Ê±·¢Éú³¬Ê±
-        "make sure the simulator is ready and connected to " + endpoint) {} // ÌáÊ¾ÓÃ»§È·±£Ä£ÄâÆ÷ÒÑ¾ÍĞ÷²¢Á¬½Óµ½Ö¸¶¨¶Ëµã
+  TimeoutException::TimeoutException( // TimeoutExceptionæ„é€ å‡½æ•°
+      const std::string &endpoint, // è¾“å…¥å‚æ•°ï¼šç«¯ç‚¹åœ°å€
+      time_duration timeout) // è¾“å…¥å‚æ•°ï¼šè¶…æ—¶æ—¶é—´
+    : std::runtime_error( // åˆå§‹åŒ–åŸºç±»std::runtime_error
+        "time-out of "s + std::to_string(timeout.milliseconds()) + // æ„å»ºé”™è¯¯ä¿¡æ¯ï¼ŒåŒ…å«è¶…æ—¶æ—¶é—´
+        "ms while waiting for the simulator, " // æç¤ºä¿¡æ¯ï¼Œç­‰å¾…æ¨¡æ‹Ÿå™¨æ—¶å‘ç”Ÿè¶…æ—¶
+        "make sure the simulator is ready and connected to " + endpoint) {} // æç¤ºç”¨æˆ·ç¡®ä¿æ¨¡æ‹Ÿå™¨å·²å°±ç»ªå¹¶è¿æ¥åˆ°æŒ‡å®šç«¯ç‚¹
 
 } // namespace client
 } // namespace carla
+
