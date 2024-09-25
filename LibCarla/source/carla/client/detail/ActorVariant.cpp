@@ -4,23 +4,24 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/detail/ActorVariant.h" // ÒıÈëActorVariantÍ·ÎÄ¼ş
+#include "carla/client/detail/ActorVariant.h" // å¼•å…¥ActorVariantå¤´æ–‡ä»¶
 
-#include "carla/client/detail/ActorFactory.h" // ÒıÈëActorFactoryÍ·ÎÄ¼ş
-#include "carla/client/ActorList.h" // ÒıÈëActorListÍ·ÎÄ¼ş
+#include "carla/client/detail/ActorFactory.h" // å¼•å…¥ActorFactoryå¤´æ–‡ä»¶
+#include "carla/client/ActorList.h" // å¼•å…¥ActorListå¤´æ–‡ä»¶
 
-namespace carla { // ¶¨ÒåcarlaÃüÃû¿Õ¼ä
-namespace client { // ¶¨Òåclient×ÓÃüÃû¿Õ¼ä
-namespace detail { // ¶¨Òådetail×ÓÃüÃû¿Õ¼ä
+namespace carla { // å®šä¹‰carlaå‘½åç©ºé—´
+namespace client { // å®šä¹‰clientå­å‘½åç©ºé—´
+namespace detail { // å®šä¹‰detailå­å‘½åç©ºé—´
 
-  void ActorVariant::MakeActor(EpisodeProxy episode) const { // ¶¨ÒåMakeActor·½·¨£¬½ÓÊÜÒ»¸öEpisodeProxy²ÎÊı
-    _value = detail::ActorFactory::MakeActor( // µ÷ÓÃActorFactoryµÄMakeActor·½·¨´´½¨Ò»¸öÑİÔ±
-        episode, // ´«Èëµ±Ç°µÄepisode
-        boost::variant2::get<rpc::Actor>(std::move(_value)), // ´Ó_variantÖĞ»ñÈ¡rpc::Actor¶ÔÏó²¢ÒÆ¶¯
-        GarbageCollectionPolicy::Disabled); // ÉèÖÃÀ¬»ø»ØÊÕ²ßÂÔÎª½ûÓÃ
+  void ActorVariant::MakeActor(EpisodeProxy episode) const { // å®šä¹‰MakeActoræ–¹æ³•ï¼Œæ¥å—ä¸€ä¸ªEpisodeProxyå‚æ•°
+    _value = detail::ActorFactory::MakeActor( // è°ƒç”¨ActorFactoryçš„MakeActoræ–¹æ³•åˆ›å»ºä¸€ä¸ªæ¼”å‘˜
+        episode, // ä¼ å…¥å½“å‰çš„episode
+        boost::variant2::get<rpc::Actor>(std::move(_value)), // ä»_variantä¸­è·å–rpc::Actorå¯¹è±¡å¹¶ç§»åŠ¨
+        GarbageCollectionPolicy::Disabled); // è®¾ç½®åƒåœ¾å›æ”¶ç­–ç•¥ä¸ºç¦ç”¨
   }
 
 } // namespace detail
 } // namespace client
 } // namespace carla
+
 
