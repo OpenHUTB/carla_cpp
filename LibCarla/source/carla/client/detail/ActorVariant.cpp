@@ -14,7 +14,7 @@ namespace client { // 定义client子命名空间
 namespace detail { // 定义detail子命名空间
 
   void ActorVariant::MakeActor(EpisodeProxy episode) const { // 定义MakeActor方法，接受一个EpisodeProxy参数
-    _value = detail::ActorFactory::MakeActor( // 调用ActorFactory的MakeActor方法创建一个演员
+    _value = detail::ActorFactory::MakeActor( // 调用ActorFactory的MakeActor方法创建一个参与者
         episode, // 传入当前的episode
         boost::variant2::get<rpc::Actor>(std::move(_value)), // 从_variant中获取rpc::Actor对象并移动
         GarbageCollectionPolicy::Disabled); // 设置垃圾回收策略为禁用
