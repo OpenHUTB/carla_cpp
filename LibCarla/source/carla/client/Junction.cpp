@@ -4,27 +4,26 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/Junction.h" // ÒıÈëJunctionÍ·ÎÄ¼ş
-#include "carla/client/Map.h" // ÒıÈëMapÍ·ÎÄ¼ş
-#include "carla/road/element/Waypoint.h" // ÒıÈëWaypointÍ·ÎÄ¼ş
+#include "carla/client/Junction.h" // å¼•å…¥Junctionå¤´æ–‡ä»¶
+#include "carla/client/Map.h" // å¼•å…¥Mapå¤´æ–‡ä»¶
+#include "carla/road/element/Waypoint.h" // å¼•å…¥Waypointå¤´æ–‡ä»¶
 
-namespace carla { // ¶¨ÒåcarlaÃüÃû¿Õ¼ä
-namespace client { // ¶¨Òåclient×ÓÃüÃû¿Õ¼ä
+namespace carla { // å®šä¹‰carlaå‘½åç©ºé—´
+namespace client { // å®šä¹‰clientå­å‘½åç©ºé—´
 
-  Junction::Junction(SharedPtr<const Map> parent, const road::Junction *junction) : _parent(parent) { // Junction¹¹Ôìº¯Êı
-    _bounding_box = junction->GetBoundingBox(); // »ñÈ¡²¢´æ´¢½»²æ¿ÚµÄ±ß½ç¿ò
-    _id = junction->GetId(); // »ñÈ¡²¢´æ´¢½»²æ¿ÚµÄID
+  Junction::Junction(SharedPtr<const Map> parent, const road::Junction *junction) : _parent(parent) { // Junctionæ„é€ å‡½æ•°
+    _bounding_box = junction->GetBoundingBox(); // è·å–å¹¶å­˜å‚¨äº¤å‰å£çš„è¾¹ç•Œæ¡†
+    _id = junction->GetId(); // è·å–å¹¶å­˜å‚¨äº¤å‰å£çš„ID
   }
 
-  std::vector<std::pair<SharedPtr<Waypoint>, SharedPtr<Waypoint>>> Junction::GetWaypoints( // »ñÈ¡½»²æ¿ÚµÄÂ·µã
-      road::Lane::LaneType type) const { // ÊäÈë²ÎÊı£º³µµÀÀàĞÍ
-    return _parent->GetJunctionWaypoints(GetId(), type); // ´Ó¸¸Map»ñÈ¡Óë½»²æ¿ÚÏà¹ØµÄÂ·µã
+  std::vector<std::pair<SharedPtr<Waypoint>, SharedPtr<Waypoint>>> Junction::GetWaypoints( // è·å–äº¤å‰å£çš„è·¯ç‚¹
+      road::Lane::LaneType type) const { // è¾“å…¥å‚æ•°ï¼šè½¦é“ç±»å‹
+    return _parent->GetJunctionWaypoints(GetId(), type); // ä»çˆ¶Mapè·å–ä¸äº¤å‰å£ç›¸å…³çš„è·¯ç‚¹
   }
 
-  geom::BoundingBox Junction::GetBoundingBox() const { // »ñÈ¡½»²æ¿ÚµÄ±ß½ç¿ò
-    return _bounding_box; // ·µ»Ø´æ´¢µÄ±ß½ç¿ò
+  geom::BoundingBox Junction::GetBoundingBox() const { // è·å–äº¤å‰å£çš„è¾¹ç•Œæ¡†
+    return _bounding_box; // è¿”å›å­˜å‚¨çš„è¾¹ç•Œæ¡†
   }
 
 } // namespace client
 } // namespace carla
-
