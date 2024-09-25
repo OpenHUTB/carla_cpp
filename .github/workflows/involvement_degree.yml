@@ -7,6 +7,13 @@ jobs:
   work:
     runs-on: ubuntu-latest
     steps:
+      - name: Update git version
+        run: |
+          sudo apt-get install -y software-properties-common \
+            && sudo apt-get update \
+            && sudo add-apt-repository -y ppa:git-core/ppa \
+            && sudo apt-get update \
+            && sudo apt-get install -y git
       - uses: actions/checkout@v4
       - name: Set up Python
         # This is the version of the action for setting up Python, not the Python version.
