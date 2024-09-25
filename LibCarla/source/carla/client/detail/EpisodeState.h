@@ -4,131 +4,131 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once // ·ÀÖ¹Í·ÎÄ¼ş±»ÖØ¸´°üº¬
+#pragma once // é˜²æ­¢å¤´æ–‡ä»¶è¢«é‡å¤åŒ…å«
 
-#include "carla/Iterator.h" // ÒıÈëµü´úÆ÷Í·ÎÄ¼ş
-#include "carla/ListView.h" // ÒıÈëÁĞ±íÊÓÍ¼Í·ÎÄ¼ş
-#include "carla/NonCopyable.h" // ÒıÈë²»¿É¸´ÖÆÀàµÄÍ·ÎÄ¼ş
-#include "carla/client/ActorSnapshot.h" // ÒıÈë²ÎÓëÕß¿ìÕÕÍ·ÎÄ¼ş
-#include "carla/client/Timestamp.h" // ÒıÈëÊ±¼ä´ÁÍ·ÎÄ¼ş
-#include "carla/geom/Vector3DInt.h" // ÒıÈëÈıÎ¬ÕûÊıÏòÁ¿Í·ÎÄ¼ş
-#include "carla/sensor/data/RawEpisodeState.h" // ÒıÈëÔ­Ê¼¾ç¼¯×´Ì¬Êı¾İÍ·ÎÄ¼ş
+#include "carla/Iterator.h" // å¼•å…¥è¿­ä»£å™¨å¤´æ–‡ä»¶
+#include "carla/ListView.h" // å¼•å…¥åˆ—è¡¨è§†å›¾å¤´æ–‡ä»¶
+#include "carla/NonCopyable.h" // å¼•å…¥ä¸å¯å¤åˆ¶ç±»çš„å¤´æ–‡ä»¶
+#include "carla/client/ActorSnapshot.h" // å¼•å…¥å‚ä¸è€…å¿«ç…§å¤´æ–‡ä»¶
+#include "carla/client/Timestamp.h" // å¼•å…¥æ—¶é—´æˆ³å¤´æ–‡ä»¶
+#include "carla/geom/Vector3DInt.h" // å¼•å…¥ä¸‰ç»´æ•´æ•°å‘é‡å¤´æ–‡ä»¶
+#include "carla/sensor/data/RawEpisodeState.h" // å¼•å…¥åŸå§‹å‰§é›†çŠ¶æ€æ•°æ®å¤´æ–‡ä»¶
 
-#include <boost/optional.hpp> // ÒıÈëBoost¿ÉÑ¡ÀàĞÍÍ·ÎÄ¼ş
+#include <boost/optional.hpp> // å¼•å…¥Boostå¯é€‰ç±»å‹å¤´æ–‡ä»¶
 
-#include <memory> // ÒıÈëÖÇÄÜÖ¸ÕëÍ·ÎÄ¼ş
-#include <unordered_map> // ÒıÈëÎŞĞòÓ³ÉäÍ·ÎÄ¼ş
+#include <memory> // å¼•å…¥æ™ºèƒ½æŒ‡é’ˆå¤´æ–‡ä»¶
+#include <unordered_map> // å¼•å…¥æ— åºæ˜ å°„å¤´æ–‡ä»¶
 
-namespace carla { // ¶¨ÒåcarlaÃüÃû¿Õ¼ä
-namespace client { // ¶¨Òåclient×ÓÃüÃû¿Õ¼ä
-namespace detail { // ¶¨Òådetail×ÓÃüÃû¿Õ¼ä
+namespace carla { // å®šä¹‰carlaå‘½åç©ºé—´
+namespace client { // å®šä¹‰clientå­å‘½åç©ºé—´
+namespace detail { // å®šä¹‰detailå­å‘½åç©ºé—´
 
-  /// ±íÊ¾Ä³Ò»Ö¡µÄËùÓĞ²ÎÓëÕßµÄ×´Ì¬
+  /// è¡¨ç¤ºæŸä¸€å¸§çš„æ‰€æœ‰å‚ä¸è€…çš„çŠ¶æ€
   class EpisodeState
-    : public std::enable_shared_from_this<EpisodeState>, // ÔÊĞí¹²Ïí×ÔÉíÖ¸Õë
-      private NonCopyable { // ½ûÖ¹¸´ÖÆ
+    : public std::enable_shared_from_this<EpisodeState>, // å…è®¸å…±äº«è‡ªèº«æŒ‡é’ˆ
+      private NonCopyable { // ç¦æ­¢å¤åˆ¶
 
-      using SimulationState = sensor::s11n::EpisodeStateSerializer::SimulationState; // ¶¨ÒåÄ£Äâ×´Ì¬ÀàĞÍ
+      using SimulationState = sensor::s11n::EpisodeStateSerializer::SimulationState; // å®šä¹‰æ¨¡æ‹ŸçŠ¶æ€ç±»å‹
 
   public:
 
-    // ¹¹Ôìº¯Êı£¬½ÓÊÜ¾ç¼¯ID
+    // æ„é€ å‡½æ•°ï¼Œæ¥å—å‰§é›†ID
     explicit EpisodeState(uint64_t episode_id) : _episode_id(episode_id) {}
 
-    // ¹¹Ôìº¯Êı£¬½ÓÊÜÔ­Ê¼¾ç¼¯×´Ì¬
+    // æ„é€ å‡½æ•°ï¼Œæ¥å—åŸå§‹å‰§é›†çŠ¶æ€
     explicit EpisodeState(const sensor::data::RawEpisodeState &state);
 
-    // »ñÈ¡¾ç¼¯ID
+    // è·å–å‰§é›†ID
     auto GetEpisodeId() const {
       return _episode_id;
     }
 
-    // »ñÈ¡µ±Ç°Ö¡Êı
+    // è·å–å½“å‰å¸§æ•°
     auto GetFrame() const {
       return _timestamp.frame;
     }
 
-    // »ñÈ¡Ê±¼ä´Á
+    // è·å–æ—¶é—´æˆ³
     const auto &GetTimestamp() const {
       return _timestamp;
     }
 
-    // »ñÈ¡Ä£Äâ×´Ì¬
+    // è·å–æ¨¡æ‹ŸçŠ¶æ€
     SimulationState GetsimulationState() const {
       return _simulation_state;
     }
 
-    // ¼ì²éµØÍ¼ÊÇ·ñ·¢Éú±ä»¯
+    // æ£€æŸ¥åœ°å›¾æ˜¯å¦å‘ç”Ÿå˜åŒ–
     bool HasMapChanged() const {
       return (_simulation_state & SimulationState::MapChange) != SimulationState::None;
     }
 
-    // ¼ì²é¹âÕÕ¸üĞÂÊÇ·ñ´ı´¦Àí
+    // æ£€æŸ¥å…‰ç…§æ›´æ–°æ˜¯å¦å¾…å¤„ç†
     bool IsLightUpdatePending() const {
       return (_simulation_state & SimulationState::PendingLightUpdate)  != 0;
     }
 
-    // ¼ì²éÊÇ·ñ°üº¬Ö¸¶¨µÄ²ÎÓëÕß¿ìÕÕ
+    // æ£€æŸ¥æ˜¯å¦åŒ…å«æŒ‡å®šçš„å‚ä¸è€…å¿«ç…§
     bool ContainsActorSnapshot(ActorId actor_id) const {
       return _actors.find(actor_id) != _actors.end();
     }
 
-    // »ñÈ¡Ö¸¶¨²ÎÓëÕßµÄ¿ìÕÕ
+    // è·å–æŒ‡å®šå‚ä¸è€…çš„å¿«ç…§
     ActorSnapshot GetActorSnapshot(ActorId id) const {
-      ActorSnapshot state; // ´´½¨²ÎÓëÕß¿ìÕÕ¶ÔÏó
-      CopyActorSnapshotIfPresent(id, state); // ¸´ÖÆ¿ìÕÕ£¨Èç¹û´æÔÚ£©
-      return state; // ·µ»Ø¿ìÕÕ
+      ActorSnapshot state; // åˆ›å»ºå‚ä¸è€…å¿«ç…§å¯¹è±¡
+      CopyActorSnapshotIfPresent(id, state); // å¤åˆ¶å¿«ç…§ï¼ˆå¦‚æœå­˜åœ¨ï¼‰
+      return state; // è¿”å›å¿«ç…§
     }
 
-    // »ñÈ¡Ö¸¶¨²ÎÓëÕßµÄ¿ìÕÕ£¨Èç¹û´æÔÚ£©
+    // è·å–æŒ‡å®šå‚ä¸è€…çš„å¿«ç…§ï¼ˆå¦‚æœå­˜åœ¨ï¼‰
     boost::optional<ActorSnapshot> GetActorSnapshotIfPresent(ActorId id) const {
-      boost::optional<ActorSnapshot> state; // ´´½¨¿ÉÑ¡¿ìÕÕ
-      CopyActorSnapshotIfPresent(id, state); // ¸´ÖÆ¿ìÕÕ£¨Èç¹û´æÔÚ£©
-      return state; // ·µ»Ø¿ÉÑ¡¿ìÕÕ
+      boost::optional<ActorSnapshot> state; // åˆ›å»ºå¯é€‰å¿«ç…§
+      CopyActorSnapshotIfPresent(id, state); // å¤åˆ¶å¿«ç…§ï¼ˆå¦‚æœå­˜åœ¨ï¼‰
+      return state; // è¿”å›å¯é€‰å¿«ç…§
     }
 
-    // »ñÈ¡ËùÓĞ²ÎÓëÕßID
+    // è·å–æ‰€æœ‰å‚ä¸è€…ID
     auto GetActorIds() const {
-      return MakeListView( // ´´½¨ÁĞ±íÊÓÍ¼
-          iterator::make_map_keys_const_iterator(_actors.begin()), // »ñÈ¡²ÎÓëÕßIDµü´úÆ÷
-          iterator::make_map_keys_const_iterator(_actors.end())); // »ñÈ¡²ÎÓëÕßIDµü´úÆ÷
+      return MakeListView( // åˆ›å»ºåˆ—è¡¨è§†å›¾
+          iterator::make_map_keys_const_iterator(_actors.begin()), // è·å–å‚ä¸è€…IDè¿­ä»£å™¨
+          iterator::make_map_keys_const_iterator(_actors.end())); // è·å–å‚ä¸è€…IDè¿­ä»£å™¨
     }
 
-    // »ñÈ¡²ÎÓëÕßÊıÁ¿
+    // è·å–å‚ä¸è€…æ•°é‡
     size_t size() const {
-      return _actors.size(); // ·µ»Ø²ÎÓëÕßÊıÁ¿
+      return _actors.size(); // è¿”å›å‚ä¸è€…æ•°é‡
     }
 
-    // ·µ»Ø²ÎÓëÕß¿ìÕÕµÄ¿ªÊ¼µü´úÆ÷
+    // è¿”å›å‚ä¸è€…å¿«ç…§çš„å¼€å§‹è¿­ä»£å™¨
     auto begin() const {
-      return iterator::make_map_values_const_iterator(_actors.begin()); // ·µ»Ø²ÎÓëÕß¿ìÕÕÖµµÄ¿ªÊ¼µü´úÆ÷
+      return iterator::make_map_values_const_iterator(_actors.begin()); // è¿”å›å‚ä¸è€…å¿«ç…§å€¼çš„å¼€å§‹è¿­ä»£å™¨
     }
 
-    // ·µ»Ø²ÎÓëÕß¿ìÕÕµÄ½áÊøµü´úÆ÷
+    // è¿”å›å‚ä¸è€…å¿«ç…§çš„ç»“æŸè¿­ä»£å™¨
     auto end() const {
-      return iterator::make_map_values_const_iterator(_actors.end()); // ·µ»Ø²ÎÓëÕß¿ìÕÕÖµµÄ½áÊøµü´úÆ÷
+      return iterator::make_map_values_const_iterator(_actors.end()); // è¿”å›å‚ä¸è€…å¿«ç…§å€¼çš„ç»“æŸè¿­ä»£å™¨
     }
 
   private:
 
-    // ¸´ÖÆÖ¸¶¨²ÎÓëÕßµÄ¿ìÕÕ£¨Èç¹û´æÔÚ£©
+    // å¤åˆ¶æŒ‡å®šå‚ä¸è€…çš„å¿«ç…§ï¼ˆå¦‚æœå­˜åœ¨ï¼‰
     template <typename T>
     void CopyActorSnapshotIfPresent(ActorId id, T &value) const {
-      auto it = _actors.find(id); // ²éÕÒ²ÎÓëÕß
-      if (it != _actors.end()) { // Èç¹ûÕÒµ½ÁË
-        value = it->second; // ¸´ÖÆ¿ìÕÕ
+      auto it = _actors.find(id); // æŸ¥æ‰¾å‚ä¸è€…
+      if (it != _actors.end()) { // å¦‚æœæ‰¾åˆ°äº†
+        value = it->second; // å¤åˆ¶å¿«ç…§
       }
     }
 
-    const uint64_t _episode_id; // ´æ´¢¾ç¼¯ID
+    const uint64_t _episode_id; // å­˜å‚¨å‰§é›†ID
 
-    const Timestamp _timestamp; // ´æ´¢Ê±¼ä´Á
+    const Timestamp _timestamp; // å­˜å‚¨æ—¶é—´æˆ³
 
-    geom::Vector3DInt _map_origin; // ´æ´¢µØÍ¼Ô­µã
+    geom::Vector3DInt _map_origin; // å­˜å‚¨åœ°å›¾åŸç‚¹
 
-    SimulationState _simulation_state; // ´æ´¢Ä£Äâ×´Ì¬
+    SimulationState _simulation_state; // å­˜å‚¨æ¨¡æ‹ŸçŠ¶æ€
 
-    std::unordered_map<ActorId, ActorSnapshot> _actors; // ´æ´¢²ÎÓëÕß¿ìÕÕµÄÎŞĞòÓ³Éä
+    std::unordered_map<ActorId, ActorSnapshot> _actors; // å­˜å‚¨å‚ä¸è€…å¿«ç…§çš„æ— åºæ˜ å°„
   };
 
 } // namespace detail
