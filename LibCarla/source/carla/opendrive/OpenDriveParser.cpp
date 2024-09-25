@@ -26,7 +26,7 @@ namespace opendrive {
 
   boost::optional<road::Map> OpenDriveParser::Load(const std::string &opendrive) {
     pugi::xml_document xml;
-    pugi::xml_parse_result parse_result = xml.load_string(opendrive.c_str());
+    pugi::xml_parse_result parse_result = xml.load_string(opendrive.c_str());  // 使用 pugixml XML 处理工具加载OpenDrive文件
 
     if (parse_result == false) {
       log_error("unable to parse the OpenDRIVE XML string");

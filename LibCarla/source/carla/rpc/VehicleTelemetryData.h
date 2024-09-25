@@ -1,6 +1,8 @@
 // Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 车辆遥感数据
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -19,12 +21,12 @@ namespace rpc {
     VehicleTelemetryData() = default;
 
     VehicleTelemetryData(
-        float speed,
-        float steer,
-        float throttle,
-        float brake,
-        float engine_rpm,
-        int32_t gear,
+        float speed,      // 速度
+        float steer,      // 驾驶方向
+        float throttle,   // 油门
+        float brake,      // 刹车
+        float engine_rpm, // 引擎 每分钟转速(revolutions per minute)
+        int32_t gear,     // 档位
         float drag,
         std::vector<WheelTelemetryData> wheels)
       : speed(speed),
@@ -36,10 +38,12 @@ namespace rpc {
         drag(drag),
         wheels(wheels) {}
 
+    // 获得车轮
     const std::vector<WheelTelemetryData> &GetWheels() const {
       return wheels;
     }
 
+    // 设置车轮
     void SetWheels(std::vector<WheelTelemetryData> &in_wheels) {
       wheels = in_wheels;
     }
