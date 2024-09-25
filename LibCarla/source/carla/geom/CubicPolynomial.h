@@ -13,19 +13,18 @@
 namespace carla {
 namespace geom {
 
-  /// Describes a Cubic Polynomial so:
-  /// f(x) = a + bx + cx^2 + dx^3
+  /// 定义一个CubicPolynomial类，用于描述和计算三次多项式 f(x) = a + bx + cx^2 + dx^3 
   class CubicPolynomial {
   public:
-
+      // 定义CubicPolynomial中使用的数值类型，这里选择为double，适用于需要高精度的数学计算
     using value_type = double;
 
     // =========================================================================
     // -- Constructors ---------------------------------------------------------
     // =========================================================================
-
+    // 默认构造函数，使用=default意味着使用编译器自动生成的默认构造函数，不执行任何操作
     CubicPolynomial() = default;
-
+    // 拷贝构造函数，同样使用=default意味着使用编译器自动生成的拷贝构造函数， 它会自动复制源对象的所有成员到新对象中
     CubicPolynomial(const CubicPolynomial &) = default;
 
     CubicPolynomial(
