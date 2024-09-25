@@ -4,31 +4,31 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  // Ö»°üº¬Ò»´Î¸ÃÍ·ÎÄ¼şµÄÖ¸Áî¡£
+#pragma once  // Ö»    Ò» Î¸ Í· Ä¼   Ö¸ î¡£
 
-#include "carla/image/ImageView.h" // ÒıÈë ImageView Í·ÎÄ¼ş¡£
+#include "carla/image/ImageView.h" //      ImageView Í· Ä¼   
 
-namespace carla {  // ¶¨Òå carla ÃüÃû¿Õ¼ä¡£
-namespace image {  // ¶¨Òå image ÃüÃû¿Õ¼ä¡£
+namespace carla {  //      carla      Õ¼ä¡£
+namespace image {  //      image      Õ¼ä¡£
 
-  class ImageConverter {  // ¶¨ÒåÍ¼Ïñ×ª»»Æ÷Àà¡£
-  public:   // ¹«ÓĞ·ÃÎÊĞŞÊÎ·û¡£
+  class ImageConverter {  //     Í¼  ×ª     à¡£
+  public:   //    Ğ·      Î·   
 
-      // Ä£°åº¯Êı£¬ÓÃÓÚ¸´ÖÆÏñËØ¡£
+      // Ä£ åº¯       Ú¸      Ø¡ 
     template <typename SrcViewT, typename DstViewT>
     static void CopyPixels(const SrcViewT &src, DstViewT &dst) {
-      boost::gil::copy_pixels(src, dst); // Ê¹ÓÃ boost::gil ¿â¸´ÖÆÔ´ÊÓÍ¼µÄÏñËØµ½Ä¿±êÊÓÍ¼¡£
+      boost::gil::copy_pixels(src, dst); // Ê¹   boost::gil  â¸´  Ô´  Í¼     Øµ Ä¿    Í¼  
     }
 
-     // Ä£°åº¯Êı£¬ÓÃÓÚ¾ÍµØ×ª»»Í¼Ïñ¡£
+     // Ä£ åº¯       Ú¾Íµ ×ª  Í¼  
     template <typename ColorConverter, typename MutableImageView>
     static void ConvertInPlace(
-        MutableImageView &image_view, // ¿É±äÍ¼ÏñÊÓÍ¼ÒıÓÃ¡£
-        ColorConverter converter = ColorConverter()) { // ÑÕÉ«×ª»»Æ÷µÄÄ¬ÈÏÖµÎª ColorConverter()¡£
-      using DstPixelT = typename MutableImageView::value_type;  // »ñÈ¡¿É±äÍ¼ÏñÊÓÍ¼µÄÏñËØÀàĞÍ¡£
-      CopyPixels(  // µ÷ÓÃ CopyPixels º¯Êı¡£
+        MutableImageView &image_view, //  É± Í¼    Í¼   Ã¡ 
+        ColorConverter converter = ColorConverter()) { //   É«×ª      Ä¬  ÖµÎª ColorConverter()  
+      using DstPixelT = typename MutableImageView::value_type;  //   È¡ É± Í¼    Í¼         Í¡ 
+      CopyPixels(  //      CopyPixels       
           ImageView::MakeColorConvertedView<MutableImageView, DstPixelT>(image_view, converter),
-          image_view);  // ½«×ª»»ºóµÄÊÓÍ¼¸´ÖÆ»ØÔ­Ê¼Í¼ÏñÊÓÍ¼¡£
+          image_view);  //   ×ª       Í¼   Æ» Ô­Ê¼Í¼    Í¼  
     }
   };
 
