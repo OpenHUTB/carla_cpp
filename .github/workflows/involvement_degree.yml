@@ -7,8 +7,6 @@ jobs:
   work:
     runs-on: ubuntu-latest
     steps:
-      - name: Obtain Latest Git ONLY within container for checkout
-        run: apk add git --update-cache
       - uses: actions/checkout@v4
       - name: Set up Python
         # This is the version of the action for setting up Python, not the Python version.
@@ -20,5 +18,5 @@ jobs:
       - name: Install Python dependencies
         run: python -m pip install --upgrade pip requests gitpython
       - name: Display involvement degree
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ inputs..working-directory }}
         run: python scores.py -t ${{ secrets.GITHUB_TOKEN }} # 执行
