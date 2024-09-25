@@ -4,35 +4,36 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once  // 确保此头文件仅被包含一次
 
-#include <type_traits>
-#include <utility>
+#include <type_traits>  // 包含类型特征相关的头文件，提供类型特性支持
+#include <utility>  // 包含通用工具函数，比如 std::move
 
-namespace carla {
-namespace detail {
+namespace carla {  // 定义命名空间 carla
+namespace detail {   // 定义命名空间 detail，用于实现细节
 
-  template <typename FunctorT>
-  struct MoveWrapper : FunctorT {
-    MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}
 
-    MoveWrapper(MoveWrapper &&) = default;
-    MoveWrapper& operator=(MoveWrapper &&) = default;
+  template <typename FunctorT>  // 定义一个模板结构体，接受任意类型 FunctorT
+  struct MoveWrapper : FunctorT {  // MoveWrapper 继承自 FunctorT
+    MoveWrapper(FunctorT &&f) : FunctorT(std::move(f)) {}  // 构造函数，移动构造 FunctorT
 
-    MoveWrapper(const MoveWrapper &);
-    MoveWrapper& operator=(const MoveWrapper &);
+    MoveWrapper(MoveWrapper &&) = default;  // 移动构造函数，使用默认实现
+    MoveWrapper& operator=(MoveWrapper &&) = default;  // 移动赋值运算符，使用默认实现
+
+    MoveWrapper(const MoveWrapper &);  // 声明复制构造函数（未定义）
+    MoveWrapper& operator=(const MoveWrapper &);  // 声明复制赋值运算符（未定义）
   };
 
 } // namespace detail
 
-  /// Hack to trick asio into accepting move-only handlers, if the handler were
-  /// actually copied it would result in a link error.
+  /// 下面是一种hack，用于绕过Asio库的限制，使其能够接受仅可移动的处理程序。
+  /// 如果Asio试图复制一个仅可移动的处理程序，那么编译时可能不会立即报错
   ///
   /// @see https://stackoverflow.com/a/22891509.
-  template <typename FunctorT>
-  auto MoveHandler(FunctorT &&func) {
-    using F = typename std::decay<FunctorT>::type;
-    return detail::MoveWrapper<F>{std::move(func)};
+  template <typename FunctorT>  // 定义一个模板函数，接受任意类型 FunctorT
+  auto MoveHandler(FunctorT &&func) {   // MoveHandler 函数返回一个移动处理器
+    using F = typename std::decay<FunctorT>::type;  // 使用 std::decay 处理 FunctorT 的类型
+    return detail::MoveWrapper<F>{std::move(func)};   // 返回一个 MoveWrapper 实例，移动传入的 func
   }
 
 } // namespace carla

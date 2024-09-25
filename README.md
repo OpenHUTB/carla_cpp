@@ -138,12 +138,10 @@ git rm -rf .
 [ZH1024-Heng](https://github.com/ZH1024-Heng)、
 [siwei1427](https://github.com/siwei1427?tab=repositories)。
 [huangzhihua](https://github.com/bbbelieve)
-<<<<<<< HEAD
-[Hcir-lk](https://gitub.com/Hcir-lk)
-=======
 [huiii-chen](https://github.com/huiii-chen)
 [xhoyh](https://github.com/xhoyh)
 [ggiiatr](https://github.com/ggiiatr/carla_cpp)
 [suki-mina](https://github.com/suki-mina)
 [qqggxx](https://github.com/qqggxx)
 >>>>>>> cb19c56d338af00e8a156081c57d1fbc6154f06b
+[Hcir-lk](https://github.com/Hcir-lk)

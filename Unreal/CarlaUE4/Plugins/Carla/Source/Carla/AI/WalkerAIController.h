@@ -10,8 +10,7 @@
 
 #include "WalkerAIController.generated.h"
 
-/// Walker AI Controller representation. This actor does nothing, it's a handle
-/// for the actual controller created on the client-side.
+///Walker AI Controller 表示这个 actor 什么也不做，它只是客户端实际控制器的一个句柄。
 UCLASS()
 class CARLA_API AWalkerAIController : public AActor
 {
