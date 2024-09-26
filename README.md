@@ -169,4 +169,5 @@ git rm -rf .
 [xiaoyu-903](https://github.come/xiaoyu-903)、
 [zhouxinyu-a11y](https://github.come/zhouxinyu-a11y)、
 [wdlmd20](https://github.com/wdlmd20)、
-[Hcir-lk](https://github.com/Hcir-lk)。
+[Hcir-lk](https://github.com/Hcir-lk)、
+[S1TZ](https://github.com/S1TZ)。
