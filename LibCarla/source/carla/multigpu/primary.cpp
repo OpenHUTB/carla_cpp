@@ -1,6 +1,8 @@
 // Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 主服务器
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -46,18 +48,18 @@ namespace multigpu {
     }
   }
 
+  /// 启动会话并在成功读取流 id 后调用 @a on_opened，会话关闭后调用 @a on_closed。
   void Primary::Open(
       Listener::callback_function_type on_opened,
       Listener::callback_function_type on_closed,
       Listener::callback_function_type_response on_response) {
     DEBUG_ASSERT(on_opened && on_closed);
 
-    // This forces not using Nagle's algorithm.
-    // Improves the sync mode velocity on Linux by a factor of ~3.
+    // 这强制不使用 Nagle 算法。将 Linux 上的同步模式速度提高了约 3 倍。
     const boost::asio::ip::tcp::no_delay option(true);
     _socket.set_option(option);
 
-    // callbacks
+    // 回调
     _on_closed = std::move(on_closed);
     _on_response = std::move(on_response);
     on_opened(shared_from_this());
@@ -65,6 +67,7 @@ namespace multigpu {
     ReadData();
   }
 
+  /// 将一些数据写入套接字。
   void Primary::Write(std::shared_ptr<const carla::streaming::detail::tcp::Message> message) {
     DEBUG_ASSERT(message != nullptr);
     DEBUG_ASSERT(!message->empty());
@@ -104,7 +107,7 @@ namespace multigpu {
         return;
       }
 
-      // sent first size buffer
+      // 发送的第一个大小缓冲区
       self->_deadline.expires_from_now(self->_timeout);
       int this_size = text.size();
       boost::asio::async_write(
