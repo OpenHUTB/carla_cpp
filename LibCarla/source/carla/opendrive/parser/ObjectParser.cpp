@@ -24,18 +24,18 @@ namespace parser {
 
     for (pugi::xml_node node_road : xml.child("OpenDRIVE").children("road")) {
 
-      // parse all objects
+      // 解析所有的对象
       pugi::xml_node node_objects = node_road.child("objects");
       if (node_objects) {
 
         for (pugi::xml_node node_object : node_objects.children("object")) {
 
-          // type Crosswalk
+          // 人行横道 Crosswalk 类型 
           std::string type = node_object.attribute("type").as_string();
           std::string name = node_object.attribute("name").as_string();
           if (type == "crosswalk") {
 
-              // read all points
+              // 读取所有的点
               pugi::xml_node node_outline = node_object.child("outline");
               if (node_outline) {
                 points.clear();
@@ -45,11 +45,11 @@ namespace parser {
                                       node_corner.attribute("z").as_double());
                 }
               }
-            // get road id
+            // 获取路的 id
             road::RoadId road_id = node_road.attribute("id").as_uint();
             road::Road *road = map_builder.GetRoad(road_id);
 
-            // create the object
+            // 创建对象
             map_builder.AddRoadObjectCrosswalk(road,
                 node_object.attribute("name").as_string(),
                 node_object.attribute("s").as_double(),
@@ -66,7 +66,7 @@ namespace parser {
           } else if (name.substr(0, 6) == "Speed_" || name.substr(0, 6) == "speed_") {
             road::RoadId road_id = node_road.attribute("id").as_uint();
             road::Road *road = map_builder.GetRoad(road_id);
-            // speed signal by roadrunner
+            // 由 roadrunner 创建的速度信号
             std::string speed_str;
             if (name.find("STATIC") != std::string::npos) {
                speed_str = name.substr(13);
