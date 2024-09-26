@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// 在项目设置的描述页面中填写自己的版权声明
 
 using UnrealBuildTool;// 引入Unreal Build Tool的命名空间，以便使用UBT的类和功能
 // 定义一个继承自ModuleRules的类CarlaUE4，用于设置CARLA UE4模块的构建规则

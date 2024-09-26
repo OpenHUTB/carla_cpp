@@ -22,8 +22,8 @@
 #  else
 #    define LIBCARLA_FORCEINLINE inline
 #  endif // NDEBUG
-#  define LIBCARLA_NOINLINE __attribute__((noinline))
+#  define LIBCARLA_NOINLINE __attribute__((noinline))  // 禁止内联
 #else
-#  warning Compiler not supported.
-#  define LIBCARLA_NOINLINE
+#  warning Compiler not supported.  // 编译器不支持的警告
+#  define LIBCARLA_NOINLINE // 定义LIBCARLA_NOINLINE为空
 #endif
