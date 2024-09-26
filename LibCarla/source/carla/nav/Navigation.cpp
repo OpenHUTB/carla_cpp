@@ -4,8 +4,8 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#define _USE_MATH_DEFINES // to avoid undefined error of M_PI (bug in Visual
-                          // Studio 2015 and 2017)
+#define _USE_MATH_DEFINES // 避免 M_PI 未定义错误（Visual Studio 2015 和 2017 中的错误）
+
 #include <cmath>
 
 #include "carla/Logging.h"
@@ -28,8 +28,7 @@ namespace nav {
     DT_CROWD_OPTIMIZE_TOPO      = 16
   };
 
-  // these settings are the same than in RecastBuilder, so if you change the height of the agent, 
-  // you should do the same in RecastBuilder
+  // 这些设置与 RecastBuilder 中的设置相同，因此如果您更改代理的高度，则应该在 RecastBuilder 中执行相同的操作
   static const int   MAX_POLYS = 256;
   static const int   MAX_AGENTS = 500;
   static const int   MAX_QUERY_SEARCH_NODES = 2048;
@@ -43,13 +42,13 @@ namespace nav {
   static const float AREA_GRASS_COST =  1.0f;
   static const float AREA_ROAD_COST  = 10.0f;
 
-  // return a random float
+  // 返回一个随机的浮点数 float
   static float frand() {
     return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
   }
 
   Navigation::Navigation() {
-    // assign walker manager
+    // 指定行人管理器
     _walker_manager.SetNav(this);
   }
 
@@ -67,24 +66,24 @@ namespace nav {
     dtFreeNavMesh(_nav_mesh);
   }
 
-  // reference to the simulator to access API functions
+  // 参考模拟器访问API函数
   void Navigation::SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator)
   {
     _simulator = simulator;
     _walker_manager.SetSimulator(simulator);
   }
 
-  // set the seed to use with random numbers
+  // 设置要使用的随机数种子
   void Navigation::SetSeed(unsigned int seed) {
     srand(seed);
   }
 
-  // load navigation data
+  // 加载导航数据
   bool Navigation::Load(const std::string &filename) {
     std::ifstream f;
     std::istream_iterator<uint8_t> start(f), end;
 
-    // read the whole file
+    // 读取整个文件
     f.open(filename, std::ios::binary);
     if (!f.is_open()) {
       return false;
@@ -92,61 +91,64 @@ namespace nav {
     std::vector<uint8_t> content(start, end);
     f.close();
 
-    // parse the content
+    // 解析内容
     return Load(std::move(content));
   }
 
-  // load navigation data from memory
+  // 从内存中加载导航数据
   bool Navigation::Load(std::vector<uint8_t> content) {
     const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; // 'MSET';
     const int NAVMESHSET_VERSION = 1;
 #pragma pack(push, 1)
 
+    // 导航网格集合头的结构体
     struct NavMeshSetHeader {
-      int magic;
-      int version;
-      int num_tiles;
+      int magic;       // 魔术
+      int version;     // 版本
+      int num_tiles;   // 瓦片数
       dtNavMeshParams params;
     } header;
+    // 导航网格瓦片头的结构体
     struct NavMeshTileHeader {
       dtTileRef tile_ref;
-      int data_size;
+      int data_size;        // 数据大小
     };
 #pragma pack(pop)
 
-    // check size for header
+    // 检查 导航网格集合头的结构体大小
+    // 如果内存中导航数据 都小于 头的大小，则报错
     if (content.size() < sizeof(header)) {
       logging::log("Nav: failed loading binary");
       return false;
     }
 
-    // read the file header
+    // 读取文件的头
     unsigned long pos = 0;
     memcpy(&header, &content[pos], sizeof(header));
     pos += sizeof(header);
 
-    // check file magic and version
+    // 检查文件的魔术和版本
     if (header.magic != NAVMESHSET_MAGIC || header.version != NAVMESHSET_VERSION) {
       return false;
     }
 
-    // allocate object
+    // 分配导航网格对象的内存
     dtNavMesh *mesh = dtAllocNavMesh();
     if (!mesh) {
       return false;
     }
 
-    // set number of tiles and origin
+    // 设置瓦片的数目和原点
     dtStatus status = mesh->init(&header.params);
     if (dtStatusFailed(status)) {
       return false;
     }
 
-    // read the tiles data
+    // 读取瓦片数据
     for (int i = 0; i < header.num_tiles; ++i) {
       NavMeshTileHeader tile_header;
 
-      // read the tile header
+      // 读取瓦片头
       memcpy(&tile_header, &content[pos], sizeof(tile_header));
       pos += sizeof(tile_header);
       if (pos >= content.size()) {
@@ -154,18 +156,18 @@ namespace nav {
         return false;
       }
 
-      // check for valid tile
+      // 检查瓦片的有效性
       if (!tile_header.tile_ref || !tile_header.data_size) {
         break;
       }
 
-      // allocate the buffer
+      // 分配缓冲区内存
       char *data = static_cast<char *>(dtAlloc(static_cast<size_t>(tile_header.data_size), DT_ALLOC_PERM));
       if (!data) {
         break;
       }
 
-      // read the tile
+      // 读取瓦片
       memcpy(data, &content[pos], static_cast<size_t>(tile_header.data_size));
       pos += static_cast<unsigned long>(tile_header.data_size);
       if (pos > content.size()) {
@@ -174,25 +176,25 @@ namespace nav {
         return false;
       }
 
-      // add the tile data
+      // 添加瓦片数据
       mesh->addTile(reinterpret_cast<unsigned char *>(data), tile_header.data_size, DT_TILE_FREE_DATA,
       tile_header.tile_ref, 0);
     }
 
-    // exchange
+    // 交换
     dtFreeNavMesh(_nav_mesh);
     _nav_mesh = mesh;
 
-    // prepare the query object
+    // 准备查询对象
     dtFreeNavMeshQuery(_nav_query);
     _nav_query = dtAllocNavMeshQuery();
     _nav_query->init(_nav_mesh, MAX_QUERY_SEARCH_NODES);
 
-    // copy
+    // 拷贝
     _binary_mesh = std::move(content);
     _ready = true;
 
-    // create and init the crowd manager
+    // 创建并初始化人群管理器
     CreateCrowd();
 
     return true;
@@ -200,16 +202,16 @@ namespace nav {
 
   void Navigation::CreateCrowd(void) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return;
     }
 
     DEBUG_ASSERT(_crowd == nullptr);
 
-    // create and init
+    // 创建并初始化
     _crowd = dtAllocCrowd();
-    // these radius should be the maximum size of the vehicles (CarlaCola for Carla)
+    // 这些半径应该是车辆的最大尺寸 (CarlaCola for Carla)
     const float max_agent_radius = AGENT_RADIUS * 20;
     if (!_crowd->init(MAX_AGENTS, max_agent_radius, _nav_mesh)) {
       logging::log("Nav: failed to create crowd");
