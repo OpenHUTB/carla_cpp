@@ -97,7 +97,7 @@ public:
 
   void Update (const unsigned long index) override; // 更新方法
 
-  void RemoveActor(const ActorId actor_id) override; // 移除演员方法
+  void RemoveActor(const ActorId actor_id) override; // 移除参与者方法
 
   void Reset() override; // 重置方法
 
