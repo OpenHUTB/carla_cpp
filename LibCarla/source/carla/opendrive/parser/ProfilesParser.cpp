@@ -124,7 +124,7 @@ namespace parser {
       }
     }
 
-    // map_builder calls
+    // 调用地图构建器 map_builder
     for (auto const pro : elevation_profile) {
       map_builder.AddRoadElevationProfile(pro.road, pro.s, pro.a, pro.b, pro.c, pro.d);
     }
