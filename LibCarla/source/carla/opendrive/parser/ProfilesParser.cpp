@@ -52,65 +52,65 @@ namespace parser {
 
     for (pugi::xml_node node_road : xml.child("OpenDRIVE").children("road")) {
 
-      // parse elevation profile
+      // 解析高程剖面
       pugi::xml_node node_profile = node_road.child("elevationProfile");
       uint64_t number_profiles = 0;
       if (node_profile) {
-        // all geometry
+        // 所有的几何
         for (pugi::xml_node node_elevation : node_profile.children("elevation")) {
           ElevationProfile elev;
 
-          // get road id
+          // 获取道路 id
           road::RoadId road_id = node_road.attribute("id").as_uint();
           elev.road = map_builder.GetRoad(road_id);
 
-          // get common properties
+          // 获取常用属性
           elev.s = node_elevation.attribute("s").as_double();
           elev.a = node_elevation.attribute("a").as_double();
           elev.b = node_elevation.attribute("b").as_double();
           elev.c = node_elevation.attribute("c").as_double();
           elev.d = node_elevation.attribute("d").as_double();
 
-          // add it
+          // 添加它
           elevation_profile.emplace_back(elev);
           number_profiles++;
         }
       }
-      // add a default profile if none is found
+      // 如果没有找到，则添加默认配置
       if(number_profiles == 0){
         ElevationProfile elev;
         road::RoadId road_id = node_road.attribute("id").as_uint();
         elev.road = map_builder.GetRoad(road_id);
 
-        // get common properties
+        // 获取常用属性
         elev.s = 0;
         elev.a = 0;
         elev.b = 0;
         elev.c = 0;
         elev.d = 0;
 
-        // add it
+        // 添加它
         elevation_profile.emplace_back(elev);
       }
 
-      // parse lateral profile
+      // 解析横向剖面
       node_profile = node_road.child("lateralProfile");
       if (node_profile) {
         for (pugi::xml_node node : node_profile.children()) {
           LateralProfile lateral;
 
-          // get road id
+          // 获取路 id
           road::RoadId road_id = node_road.attribute("id").as_uint();
           lateral.road = map_builder.GetRoad(road_id);
 
-          // get common properties
+          // 获取常用属性
           lateral.s = node.attribute("s").as_double();
           lateral.a = node.attribute("a").as_double();
           lateral.b = node.attribute("b").as_double();
           lateral.c = node.attribute("c").as_double();
           lateral.d = node.attribute("d").as_double();
 
-          // handle different types
+          // 处理不同类型
           lateral.type = node.name();
           if (lateral.type == "crossfall") {
             lateral.cross.side = node.attribute("side").value();

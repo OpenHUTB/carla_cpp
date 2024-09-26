@@ -1,9 +1,12 @@
 import requests
 
 import argparse
+import os
 
 from collections import defaultdict
 from collections import Counter
+
+import git  # 导入git模块，用于操作Git库
 
 argparser = argparse.ArgumentParser(
         description='Involvement Degree')
@@ -24,7 +27,9 @@ owner = 'OpenHUTB'  # 替换为仓库所有者
 repo = 'carla_cpp'    # 替换为仓库名称
 
 
-
+#########################################
+####### 统计代码添加和删除行数 ############
+#########################################
 def commit_info():
     import os
     from git.repo import Repo
@@ -56,9 +61,42 @@ def commit_info():
     for author, count in author_counts.most_common():
         print(f"{author}: {count} 次提交")
 
+    # 获取提交日志，格式为作者名字，并包含增删行数
+    log_data = repo.git.log('--pretty=format:%an', '--numstat')
+
+    # 处理 log 数据
+    author_stats = defaultdict(lambda: {'added': 0, 'deleted': 0})  # 使用 defaultdict 来统计每个作者的增加行数
+    current_author = None
+
+    line_cnt = 0
+    # 解析日志，统计每个作者的增加行数
+    for line in log_data.splitlines():
+        line_cnt = line_cnt + 1
+        if line.strip() == "":
+            continue
+        # 如果是作者行，则更新当前提交的作者（作者有可能是数字开头）
+        if '\t' not in line or line.isdigit():  # 提交者名字的行不会以数字开头
+            current_author = line.strip()
+        elif '\t' in line:
+            # 解析 numstat 格式的增删行
+            added, deleted, _ = line.split('\t')
+            if added != '-':  # 处理新增的行数
+                author_stats[current_author]['added'] += int(added)
+            if deleted != '-':  # 处理删除的行数
+                author_stats[current_author]['deleted'] += int(deleted)
+
+    # 输出每个作者的增加行数
+    for author, stats in author_stats.items():
+        print(f"{author}: 添加 {stats['added']} 行, 删除 {stats['deleted']} 行")
+    pass
+
 commit_info()
 
 
+
+#########################################
+####### 统计用户提问和评论数 ##############
+#########################################
 # 初始化统计字典
 issue_counts = {}
 comment_counts = {}
