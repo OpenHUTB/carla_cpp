@@ -37,7 +37,7 @@ namespace parser {
 
       for (pugi::xml_node control_node : controller_node.children("control")) {
         const road::SignId signal_id = control_node.attribute("signalId").value();
-        // The controller_type is included in the OpenDrive format but not used yet
+        // controller_type 包含在 OpenDrive 格式中，但尚未使用
         // const std::string controller_type = control_node.attribute("type").value();
         signals.insert(signal_id);
       }

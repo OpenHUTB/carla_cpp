@@ -1,6 +1,8 @@
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 路口解析器
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -14,10 +16,12 @@ namespace carla {
 namespace opendrive {
 namespace parser {
 
+  // 执行解析过程
   void JunctionParser::Parse(
       const pugi::xml_document &xml,
       carla::road::MapBuilder &map_builder) {
 
+    // 道路连接（开始道路ID + 结束道路 ID）
     struct LaneLink {
       road::LaneId from;
       road::LaneId to;
@@ -30,6 +34,7 @@ namespace parser {
       std::vector<LaneLink> lane_links;
     };
 
+    // 路口
     struct Junction {
       road::JuncId id;
       std::string name;
@@ -39,14 +44,14 @@ namespace parser {
 
     pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
-    // Junctions
+    // 路口
     std::vector<Junction> junctions;
     for (pugi::xml_node junction_node : open_drive_node.children("junction")) {
       Junction junction;
       junction.id = junction_node.attribute("id").as_int();
       junction.name = junction_node.attribute("name").value();
 
-      // Connections
+      // 连接
       for (pugi::xml_node connection_node : junction_node.children("connection")) {
 
         Connection connection;
@@ -67,7 +72,7 @@ namespace parser {
         junction.connections.push_back(connection);
       }
 
-      // Controller
+      // 控制器
       for (pugi::xml_node controller_node : junction_node.children("controller")) {
         const road::ContId controller_id = controller_node.attribute("id").value();
         // const std::string controller_name = controller_node.attribute("name").value();
@@ -78,7 +83,7 @@ namespace parser {
       junctions.push_back(junction);
     }
 
-    // Fill Map Builder
+    // 填充地图生成器
     for (auto &junction : junctions) {
       map_builder.AddJunction(junction.id, junction.name);
       for (auto &connection : junction.connections) {
