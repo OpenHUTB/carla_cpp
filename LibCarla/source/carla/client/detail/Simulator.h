@@ -45,7 +45,7 @@ namespace client {
 
 namespace detail {
 
-  /// Connects and controls a CARLA Simulator.
+  /// 连接并控制 CARLA 模拟器。
   class Simulator
     : public std::enable_shared_from_this<Simulator>,
       private profiler::LifetimeProfiled,
@@ -53,19 +53,19 @@ namespace detail {
   public:
 
     // =========================================================================
-    /// @name Constructor
+    /// @name 构造函数
     // =========================================================================
     /// @{
 
     explicit Simulator(
-        const std::string &host,
-        uint16_t port,
-        size_t worker_threads = 0u,
-        bool enable_garbage_collection = false);
+        const std::string &host,      // 主服务器的IP地址
+        uint16_t port,                // 连接主服务器的端口号，默认为 2000
+        size_t worker_threads = 0u,   // 仿真器使用的工作线程数，默认全部启用
+        bool enable_garbage_collection = false);    // 是否启用垃圾回收，默认不启用
 
     /// @}
     // =========================================================================
-    /// @name Load a new episode
+    /// @name 加载新的场景
     // =========================================================================
     /// @{
 

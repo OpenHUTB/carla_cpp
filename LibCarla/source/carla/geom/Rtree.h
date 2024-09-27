@@ -4,7 +4,7 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once ///预处理器指令，用于确保头文件只被包含一次，以避免重复包含。
 
 #include <vector>
 
@@ -15,7 +15,7 @@
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point.hpp>
 #include <boost/geometry/index/rtree.hpp>
-#if defined(__clang__)
+#if defined(__clang__) // 恢复之前的编译器警告设置。
 #  pragma clang diagnostic pop
 #endif
 
@@ -23,33 +23,33 @@
 namespace carla {
 namespace geom {
 
-  /// Rtree class working with 3D point clouds.
-  /// Asociates a T element with a 3D point
-  /// Useful to perform fast k-NN searches
-  template <typename T, size_t Dimension = 3>
+  /// PointCloudRtree 类用于处理 3D 点云。
+  ///将类型 T 的元素与 3D 点关联，用于快速 k-NN 搜索。
+  /// 
+  template <typename T, size_t Dimension = 3> // 定义模板类 PointCloudRtree，用于处理点云，T 是元素类型，默认维度为 3。
   class PointCloudRtree {
   public:
 
-    typedef boost::geometry::model::point<float, Dimension, boost::geometry::cs::cartesian> BPoint;
-    typedef std::pair<BPoint, T> TreeElement;
+    typedef boost::geometry::model::point<float, Dimension, boost::geometry::cs::cartesian> BPoint; // 定义类型别名 BPoint，表示 Boost 几何库中的点。
+    typedef std::pair<BPoint, T> TreeElement;  // 定义类型别名 TreeElement，表示 R-tree 中的元素，包含一个点和一个关联元素。
 
     void InsertElement(const BPoint &point, const T &element) {
       _rtree.insert(std::make_pair(point, element));
-    }
+    } // 成员函数，将一个点和关联元素插入 R-tree。
 
     void InsertElement(const TreeElement &element) {
       _rtree.insert(element);
-    }
+    } // 成员函数，将一个 TreeElement 插入 R-tree。
 
     void InsertElements(const std::vector<TreeElement> &elements) {
       _rtree.insert(elements.begin(), elements.end());
-    }
+    } // 成员函数，批量插入多个 TreeElement 到 R-tree。
 
-    /// Return nearest neighbors with a user defined filter.
-    /// The filter reveices as an argument a TreeElement value and needs to
-    /// return a bool to accept or reject the value
-    /// [&](Rtree::TreeElement const &element){if (IsOk(element)) return true;
-    /// else return false;}
+    /// 返回最近邻元素，可以应用用户定义的过滤器。
+    ///  过滤器接收一个 TreeElement 值作为参数，并且需要
+    /// 返回一个布尔值以接受或拒绝该值
+    /// 例如：[&](Rtree::TreeElement const &element){如果 IsOk(element) 返回 true;
+    /// 否则返回 false;}
     template <typename Filter>
     std::vector<TreeElement> GetNearestNeighboursWithFilter(const BPoint &point, Filter filter,
         size_t number_neighbours = 1) const {
@@ -60,31 +60,31 @@ namespace geom {
       // https://www.bullseye.com/help/trouble-logicalOverload.html.
       _rtree.query(operator&&(nearest, satisfies), std::back_inserter(query_result));
       return query_result;
-    }
+    } // 成员函数模板，返回最近邻元素，可以应用用户定义的过滤器。
 
     std::vector<TreeElement> GetNearestNeighbours(const BPoint &point, size_t number_neighbours = 1) const {
       std::vector<TreeElement> query_result;
       _rtree.query(boost::geometry::index::nearest(point, static_cast<unsigned int>(number_neighbours)),
       std::back_inserter(query_result));
       return query_result;
-    }
+    } // 成员函数，返回最近邻元素，不使用过滤器。
 
     size_t GetTreeSize() const {
       return _rtree.size();
-    }
+    } // 成员函数，返回 R-tree 的大小。
 
   private:
 
     boost::geometry::index::rtree<TreeElement, boost::geometry::index::linear<16>> _rtree;
-
+    // 私有成员变量，R-tree 数据结构实例。
   };
 
-  /// Rtree class working with 3D segment clouds.
-  /// Stores a pair of T elements (one for each end of the segment)
-  /// Useful to perform fast k-NN searches.
+  /// SegmentCloudRtree 类用于处理 3D 线段云
+  /// 将类型 T 的元素与线段的两个端点关联，用于快速 k-NN 搜索。
+  /// 
   template <typename T, size_t Dimension = 3>
   class SegmentCloudRtree {
-  public:
+  public:// 定义模板类 SegmentCloudRtree，用于处理线段云，T 是元素类型，默认维度为 3。
 
     typedef boost::geometry::model::point<float, Dimension, boost::geometry::cs::cartesian> BPoint;
     typedef boost::geometry::model::segment<BPoint> BSegment;
@@ -92,21 +92,21 @@ namespace geom {
 
     void InsertElement(const BSegment &segment, const T &element_start, const T &element_end) {
       _rtree.insert(std::make_pair(segment, std::make_pair(element_start, element_end)));
-    }
+    }// 成员函数，将一个线段和两个关联元素插入 R-tree。
 
     void InsertElement(const TreeElement &element) {
       _rtree.insert(element);
-    }
+    }// 成员函数，将一个 TreeElement 插入 R-tree。
 
     void InsertElements(const std::vector<TreeElement> &elements) {
       _rtree.insert(elements.begin(), elements.end());
-    }
+    }// 成员函数，批量插入多个 TreeElement 到 R-tree。
 
-    /// Return nearest neighbors with a user defined filter.
-    /// The filter reveices as an argument a TreeElement value and needs to
-    /// return a bool to accept or reject the value
-    /// [&](Rtree::TreeElement const &element){if (IsOk(element)) return true;
-    /// else return false;}
+    /// 返回带有用户定义过滤器的最近邻元素。
+    /// 过滤器接收一个 TreeElement 值作为参数，并且需要
+    /// 返回一个布尔值以接受或拒绝该值
+    /// 示例过滤器：[&](Rtree::TreeElement const &element){如果 IsOk(element) 返回 true；
+    /// 否则返回 false;}
     template <typename Geometry, typename Filter>
     std::vector<TreeElement> GetNearestNeighboursWithFilter(
         const Geometry &geometry,
@@ -118,7 +118,7 @@ namespace geom {
               boost::geometry::index::satisfies(filter),
           std::back_inserter(query_result));
       return query_result;
-    }
+    } // 成员函数模板，返回最近邻元素，可以应用用户定义的过滤器。
 
     template<typename Geometry>
     std::vector<TreeElement> GetNearestNeighbours(const Geometry &geometry, size_t number_neighbours = 1) const {
@@ -127,10 +127,10 @@ namespace geom {
           boost::geometry::index::nearest(geometry, static_cast<unsigned int>(number_neighbours)),
           std::back_inserter(query_result));
       return query_result;
-    }
+    } // 成员函数模板，返回最近邻元素，不使用过滤器。
 
-    /// Returns segments that intersec the specified geometry
-    /// Warning: intersection between 3D segments is not implemented by boost
+    /// 返回与指定几何形状相交的线段。
+    /// 警告：Boost 库没有实现3D线段间的交集计算。
     template<typename Geometry>
     std::vector<TreeElement> GetIntersections(const Geometry &geometry) const {
       std::vector<TreeElement> query_result;
@@ -138,16 +138,16 @@ namespace geom {
           boost::geometry::index::intersects(geometry),
           std::back_inserter(query_result));
       return query_result;
-    }
+    } // 成员函数模板，返回与指定几何形状相交的线段。
 
     size_t GetTreeSize() const {
       return _rtree.size();
-    }
+    } // 成员函数，返回 R-tree 的大小。
 
   private:
 
     boost::geometry::index::rtree<TreeElement, boost::geometry::index::linear<16>> _rtree;
-
+    // 私有成员变量，R-tree 数据结构实例。
   };
 
 } // namespace geom
