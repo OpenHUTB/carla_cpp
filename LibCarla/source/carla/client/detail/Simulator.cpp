@@ -132,7 +132,7 @@ namespace detail {
   }
 
   // ===========================================================================
-  // -- Access to current episode ----------------------------------------------
+  // -- 访问当前场景 ------------------------------------------------------------
   // ===========================================================================
 
   void Simulator::GetReadyCurrentEpisode() {
@@ -189,7 +189,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // ===========================================================================
-  // -- Required files ---------------------------------------------------------
+  // -- 所需要的文件 ------------------------------------------------------------
   // ===========================================================================
 
 
@@ -244,7 +244,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // ===========================================================================
-  // -- Access to global objects in the episode --------------------------------
+  // -- 在场景中访问全局对象 -----------------------------------------------------
   // ===========================================================================
 
   SharedPtr<BlueprintLibrary> Simulator::GetBlueprintLibrary() {
@@ -299,7 +299,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
     return nav;
   }
 
-  // tick pedestrian navigation
+  // 行人导航的节拍
   void Simulator::NavigationTick() {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
@@ -347,9 +347,10 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // ===========================================================================
-  // -- General operations with actors -----------------------------------------
+  // -- 参与者的一般操作 --------------------------------------------------------
   // ===========================================================================
 
+    // 生成参与者
     SharedPtr<Actor> Simulator::SpawnActor(
       const ActorBlueprint &blueprint,
       const geom::Transform &transform,
@@ -396,7 +397,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // ===========================================================================
-  // -- Operations with sensors ------------------------------------------------
+  // -- 传感器的操作 ------------------------------------------------------------
   // ===========================================================================
 
   void Simulator::SubscribeToSensor(
@@ -414,7 +415,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
 
   void Simulator::UnSubscribeFromSensor(Actor &sensor) {
     _client.UnSubscribeFromStream(sensor.GetActorDescription().GetStreamToken());
-    // If in the future we need to unsubscribe from each gbuffer individually, it should be done here.
+    // 如果将来我们需要单独取消订阅每个 gbuffer，则应该在这里完成。
   }
 
   void Simulator::EnableForROS(const Sensor &sensor) {
@@ -454,7 +455,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // =========================================================================
-  /// -- Texture updating operations
+  /// -- 纹理更新操作
   // =========================================================================
 
   void Simulator::ApplyColorTextureToObjects(

@@ -90,7 +90,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Access to current episode
+    /// @name 访问当前场景
     // =========================================================================
     /// @{
 
@@ -106,7 +106,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name World snapshot
+    /// @name 世界快照
     // =========================================================================
     /// @{
 
@@ -116,7 +116,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name World snapshot
+    /// @name 世界快照
     // =========================================================================
     /// @{
 
@@ -127,7 +127,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Map related methods
+    /// @name 地图相关的方法
     // =========================================================================
     /// @{
 
@@ -139,7 +139,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Required files related methods
+    /// @name 所需文件相关的方法
     // =========================================================================
     /// @{
 
@@ -153,7 +153,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Garbage collection policy
+    /// @name 垃圾收集策略
     // =========================================================================
     /// @{
 
@@ -163,7 +163,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Pure networking operations
+    /// @name 纯网络操作
     // =========================================================================
     /// @{
 
@@ -205,7 +205,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Access to global objects in the episode
+    /// @name 访问场景中的全局对象
     // =========================================================================
     /// @{
 
@@ -213,22 +213,23 @@ namespace detail {
     	return _client.GetEndpoint();
     }
 
-    /// Query to know if a Traffic Manager is running on port
+    /// 查询交通管理器是否正在端口上运行
     bool IsTrafficManagerRunning(uint16_t port) const {
       return _client.IsTrafficManagerRunning(port);
     }
 
-    /// Gets a pair filled with the <IP, port> of the Trafic Manager running on port.
-    /// If there is no Traffic Manager running the pair will be ("", 0)
+    /// 获取一个填充了在端口上运行的交通管理器的 <IP, 端口> 对。
+    /// 如果没有正在运行的流量管理器，则该对将为 ("", 0)
     std::pair<std::string, uint16_t> GetTrafficManagerRunning(uint16_t port) const {
       return _client.GetTrafficManagerRunning(port);
     }
 
-    /// Informs that a Traffic Manager is running on <IP, port>
+    /// 通知交通管理器正在 <IP, 端口> 上运行
     bool AddTrafficManagerRunning(std::pair<std::string, uint16_t> trafficManagerInfo) const {
       return _client.AddTrafficManagerRunning(trafficManagerInfo);
     }
 
+    // 根据端口销毁交通管理器
     void DestroyTrafficManager(uint16_t port) const {
       _client.DestroyTrafficManager(port);
     }
@@ -239,8 +240,7 @@ namespace detail {
 
     SharedPtr<BlueprintLibrary> GetBlueprintLibrary();
 
-    /// Returns a list of pairs where the firts element is the vehicle ID
-    /// and the second one is the light state
+    /// 返回一个列表，其中第一个元素是车辆 ID，第二个元素是灯光状态
     rpc::VehicleLightStateList GetVehiclesLightStates();
 
     SharedPtr<Actor> GetSpectator();
@@ -302,7 +302,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name AI
+    /// @name 人工智能
     // =========================================================================
     /// @{
 
@@ -322,7 +322,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name General operations with actors
+    /// @name 参与者的一般操作
     // =========================================================================
     /// @{
 
@@ -341,8 +341,7 @@ namespace detail {
       return _episode->GetActors();
     }
 
-    /// Creates an actor instance out of a description of an existing actor.
-    /// Note that this does not spawn an actor.
+    /// 根据现有参与者的描述创建一个参与者实例。请注意，这不会生成参与者。
     ///
     /// If @a gc is GarbageCollectionPolicy::Enabled, the shared pointer
     /// returned is provided with a custom deleter that calls Destroy() on the
@@ -354,7 +353,7 @@ namespace detail {
       return ActorFactory::MakeActor(GetCurrentEpisode(), std::move(actor_description), gc);
     }
 
-    /// Spawns an actor into the simulation.
+    /// 在模拟中生成一个参与者
     ///
     /// If @a gc is GarbageCollectionPolicy::Enabled, the shared pointer
     /// returned is provided with a custom deleter that calls Destroy() on the
@@ -517,7 +516,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations with vehicles
+    /// @name 车辆的操作
     // =========================================================================
     /// @{
 
@@ -627,7 +626,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations with the recorder
+    /// @name 记录器的操作
     // =========================================================================
     /// @{
 
@@ -674,7 +673,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations with sensors
+    /// @name 传感器的操作
     // =========================================================================
     /// @{
 
@@ -703,10 +702,11 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations with traffic lights
+    /// @name 交通灯的操作
     // =========================================================================
     /// @{
 
+    // 设置交通灯的状态
     void SetTrafficLightState(TrafficLight &trafficLight, const rpc::TrafficLightState trafficLightState) {
       _client.SetTrafficLightState(trafficLight.GetId(), trafficLightState);
     }
@@ -745,7 +745,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Debug
+    /// @name 调试
     // =========================================================================
     /// @{
 
@@ -769,7 +769,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations lights
+    /// @name 操作灯
     // =========================================================================
     /// @{
 
@@ -805,7 +805,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Texture updating operations
+    /// @name 纹理更新操作
     // =========================================================================
     /// @{
 
