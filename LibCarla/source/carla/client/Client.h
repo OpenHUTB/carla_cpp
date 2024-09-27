@@ -20,37 +20,37 @@ namespace client {
   class Client {
   public:
 
-    /// Construct a carla client.
+    /// 构建一个 carla 客户端。
     ///
-    /// @param host IP address of the host machine running the simulator.
-    /// @param port TCP port to connect with the simulator.
-    /// @param worker_threads number of asynchronous threads to use, or 0 to use
-    ///        all available hardware concurrency.
+    /// @param host 运行模拟器的主机IP地址。
+    /// @param port 连接到模拟器的TCP端口。
+    /// @param worker_threads 要使用的异步线程数，或 0 以使用所有可用的硬件并发。
     explicit Client(
         const std::string &host,
         uint16_t port,
         size_t worker_threads = 0u);
 
-    /// Set a timeout for networking operations. If set, any networking
-    /// operation taking longer than @a timeout throws rpc::timeout.
+    /// 设置网络操作的超时时间。如果设置，任何超过 @a 超时时间的网络操作都会抛出 rpc::timeout 异常。 
     void SetTimeout(time_duration timeout) {
       _simulator->SetNetworkingTimeout(timeout);
     }
 
+    // 获取当前客户端的超时时间
     time_duration GetTimeout() {
       return _simulator->GetNetworkingTimeout();
     }
 
-    /// Return the version string of this client API.
+    /// 返回此客户端 API 版本的字符串。
     std::string GetClientVersion() const {
       return _simulator->GetClientVersion();
     }
 
-    /// Return the version string of the simulator we are connected to.
+    /// 返回我们连接的模拟器版本的字符串。
     std::string GetServerVersion() const {
       return _simulator->GetServerVersion();
     }
 
+    // 获得当前连接服务中心所有可用的地图
     std::vector<std::string> GetAvailableMaps() const {
       return _simulator->GetAvailableMaps();
     }
@@ -71,14 +71,16 @@ namespace client {
       return World{_simulator->ReloadEpisode(reset_settings)};
     }
 
+    // 加载场景世界
     World LoadWorld(
-        std::string map_name,
+        std::string map_name,           // 地图名
         bool reset_settings = true,
+        // 实际调用 _simulator->LoadEpisode 返回的场景
         rpc::MapLayer map_layers = rpc::MapLayer::All) const {
       return World{_simulator->LoadEpisode(std::move(map_name), reset_settings, map_layers)};
     }
 
-    /// Return (and load) a new world (map) only when the requested map is different from the current one
+    /// 仅当请求的地图与当前地图不同时才返回（并加载）一个新的世界（地图）
 
     void LoadWorldIfDifferent(
         std::string map_name,
@@ -103,12 +105,12 @@ namespace client {
           std::move(opendrive), params, reset_settings)};
     }
 
-    /// Return an instance of the world currently active in the simulator.
+    /// 返回模拟器中当前活跃世界的一个实例。
     World GetWorld() const {
       return World{_simulator->GetCurrentEpisode()};
     }
 
-    /// Return an instance of the TrafficManager currently active in the simulator.
+    /// 返回模拟器中当前活动的 TrafficManager 实例。
     TrafficManager GetInstanceTM(uint16_t port = TM_DEFAULT_PORT) const {
       return TrafficManager(_simulator->GetCurrentEpisode(), port);
     }
@@ -177,7 +179,7 @@ namespace client {
 
   private:
 
-    std::shared_ptr<detail::Simulator> _simulator;
+    std::shared_ptr<detail::Simulator> _simulator;  // 当前仿真器的智能指针
   };
 
   inline Client::Client(
