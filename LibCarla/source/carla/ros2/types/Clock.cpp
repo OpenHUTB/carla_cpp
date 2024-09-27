@@ -26,149 +26,165 @@ char dummy;
 }  // namespace
 #endif  // _WIN32
 
-#include "Clock.h"
-#include <fastcdr/Cdr.h>
+#include "Clock.h"  // 引入头文件 Clock.h
+#include <fastcdr/Cdr.h>  // 引入 Fast CDR 库中的 Cdr 类
+#include <fastcdr/exceptions/BadParamException.h>  // 引入 Fast CDR 异常类
 
-#include <fastcdr/exceptions/BadParamException.h>
-using namespace eprosima::fastcdr::exception;
+using namespace eprosima::fastcdr::exception;  // 使用 Fast CDR 的异常命名空间
 
-#include <utility>
+#include <utility>  // 引入 utility 头文件以使用 std::move
 
+// 定义最大 CDR 类型大小为 0
 #define Time_max_cdr_typesize 0ULL;
 #define rosgraph_msg_Clock_max_cdr_typesize 0ULL;
 #define Time_max_key_cdr_typesize 0ULL;
 #define rosgraph_msg_Clock_max_key_cdr_typesize 0ULL;
 
+// Clock 类的构造函数
 rosgraph::msg::Clock::Clock()
 {
 }
 
+// Clock 类的析构函数
 rosgraph::msg::Clock::~Clock()
 {
 }
 
+// 拷贝构造函数，复制另一个 Clock 对象
 rosgraph::msg::Clock::Clock(
         const rosgraph::msg::Clock& x)
 {
-    m_clock = x.m_clock;
+    m_clock = x.m_clock;  // 复制 m_clock 成员变量
 }
 
+// 移动构造函数，移动另一个 Clock 对象的资源
 rosgraph::msg::Clock::Clock(
         rosgraph::msg::Clock&& x) noexcept
 {
-    m_clock = x.m_clock;
+    m_clock = x.m_clock;  // 移动 m_clock 成员变量
 }
 
+// 拷贝赋值运算符，赋值另一个 Clock 对象
 rosgraph::msg::Clock& rosgraph::msg::Clock::operator =(
         const rosgraph::msg::Clock& x)
 {
-    m_clock = x.m_clock;
-    return *this;
+    m_clock = x.m_clock;  // 赋值 m_clock 成员变量
+    return *this;  // 返回当前对象的引用
 }
 
+// 移动赋值运算符，赋值另一个 Clock 对象的资源
 rosgraph::msg::Clock& rosgraph::msg::Clock::operator =(
         rosgraph::msg::Clock&& x) noexcept
 {
-    m_clock = x.m_clock;
-    return *this;
+    m_clock = x.m_clock;  // 移动 m_clock 成员变量
+    return *this;  // 返回当前对象的引用
 }
 
+// 判断两个 Clock 对象是否相等
 bool rosgraph::msg::Clock::operator ==(
         const Clock& x) const
 {
-    return (m_clock == x.m_clock);
+    return (m_clock == x.m_clock);  // 比较 m_clock 是否相等
 }
 
+// 判断两个 Clock 对象是否不相等
 bool rosgraph::msg::Clock::operator !=(
         const Clock& x) const
 {
-    return !(*this == x);
+    return !(*this == x);  // 调用 == 运算符返回相反结果
 }
 
+// 获取最大 CDR 序列化大小
 size_t rosgraph::msg::Clock::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
-    static_cast<void>(current_alignment);
-    return rosgraph_msg_Clock_max_cdr_typesize;
+    static_cast<void>(current_alignment);  // 防止未使用参数警告
+    return rosgraph_msg_Clock_max_cdr_typesize;  // 返回最大 CDR 类型大小
 }
 
+// 获取特定数据的 CDR 序列化大小
 size_t rosgraph::msg::Clock::getCdrSerializedSize(
         const rosgraph::msg::Clock& data,
         size_t current_alignment)
 {
-    (void)data;
-    size_t initial_alignment = current_alignment;
+    (void)data;  // 防止未使用参数警告
+    size_t initial_alignment = current_alignment;  // 保存初始对齐值
 
-
+    // 计算 m_clock 的序列化大小
     current_alignment += builtin_interfaces::msg::Time::getCdrSerializedSize(data.clock(), current_alignment);
 
-    return current_alignment - initial_alignment;
+    return current_alignment - initial_alignment;  // 返回序列化大小
 }
 
+// 序列化 Clock 对象
 void rosgraph::msg::Clock::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
-    scdr << m_clock;
+    scdr << m_clock;  // 将 m_clock 写入 Cdr 对象
 }
 
+// 反序列化 Clock 对象
 void rosgraph::msg::Clock::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
 {
-    dcdr >> m_clock;
+    dcdr >> m_clock;  // 从 Cdr 对象读取 m_clock
 }
 
 /*!
- * @brief This function copies the value in member clock
- * @param _clock New value to be copied in member clock
+ * @brief 该函数复制成员 clock 的值
+ * @param _clock 要复制到成员 clock 的新值
  */
 void rosgraph::msg::Clock::clock(
         const builtin_interfaces::msg::Time& _clock)
 {
-    m_clock = _clock;
+    m_clock = _clock;  // 复制传入的新值
 }
 
 /*!
- * @brief This function moves the value in member clock
- * @param _clock New value to be moved in member clock
+ * @brief 该函数移动成员 clock 的值
+ * @param _clock 要移动到成员 clock 的新值
  */
 void rosgraph::msg::Clock::clock(
         builtin_interfaces::msg::Time&& _clock)
 {
-    m_clock = std::move(_clock);
+    m_clock = std::move(_clock);  // 移动传入的新值
 }
 
 /*!
- * @brief This function returns a constant reference to member clock
- * @return Constant reference to member clock
+ * @brief 该函数返回成员 clock 的常量引用
+ * @return 成员 clock 的常量引用
  */
 const builtin_interfaces::msg::Time& rosgraph::msg::Clock::clock() const
 {
-    return m_clock;
+    return m_clock;  // 返回 m_clock 的常量引用
 }
 
 /*!
- * @brief This function returns a reference to member clock
- * @return Reference to member clock
+ * @brief 该函数返回成员 clock 的引用
+ * @return 成员 clock 的引用
  */
 builtin_interfaces::msg::Time& rosgraph::msg::Clock::clock()
 {
-    return m_clock;
+    return m_clock;  // 返回 m_clock 的引用
 }
 
+// 获取键的最大 CDR 序列化大小
 size_t rosgraph::msg::Clock::getKeyMaxCdrSerializedSize(
         size_t current_alignment)
 {
-    static_cast<void>(current_alignment);
-    return rosgraph_msg_Clock_max_key_cdr_typesize;
+    static_cast<void>(current_alignment);  // 防止未使用参数警告
+    return rosgraph_msg_Clock_max_key_cdr_typesize;  // 返回最大键 CDR 类型大小
 }
 
+// 判断键是否已定义
 bool rosgraph::msg::Clock::isKeyDefined()
 {
-    return false;
+    return false;  // 当前类未定义键
 }
 
+// 序列化键（此处无实际操作）
 void rosgraph::msg::Clock::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
-    (void) scdr;
+    (void) scdr;  // 防止未使用参数警告
 }

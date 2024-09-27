@@ -25,9 +25,8 @@
 namespace carla {
 namespace multigpu {
 
-  /// A TCP server session. When a session opens, it reads from the socket a
-  /// stream id object and passes itself to the callback functor. The session
-  /// closes itself after @a timeout of inactivity is met.
+  /// TCP 服务器会话。会话打开时，它会从套接字读取流 ID 对象并将其自身传递给回调函子。
+  // 会话在达到不活动超时 @a timeout 后自行关闭。
   class Primary
     : public std::enable_shared_from_this<Primary>,
       private profiler::LifetimeProfiled,
@@ -43,8 +42,7 @@ namespace multigpu {
 
     ~Primary();
 
-    /// Starts the session and calls @a on_opened after successfully reading the
-    /// stream id, and @a on_closed once the session is closed.
+    /// 启动会话并在成功读取流 id 后调用 @a on_opened，会话关闭后调用 @a on_closed。
     void Open(
         Listener::callback_function_type on_opened,
         Listener::callback_function_type on_closed,
@@ -58,28 +56,30 @@ namespace multigpu {
       return std::make_shared<const carla::streaming::detail::tcp::Message>(buffers...);
     }
 
-    /// Writes some data to the socket.
+    /// 将一些数据写入套接字。
     void Write(std::shared_ptr<const carla::streaming::detail::tcp::Message> message);
 
-    /// Writes a string
+    /// 写入字符串
     void Write(std::string text);
 
-    /// read data
+    /// 读取数据
     void ReadData();
 
-    /// Writes some data to the socket.
+    /// 将一些数据写入套接字。
     template <typename... Buffers>
     void Write(Buffers... buffers) {
       Write(MakeMessage(buffers...));
     }
 
-    /// Post a job to close the session.
+    /// 发布工作以关闭会话。
     void Close();
 
   private:
 
+    // 开启计时器
     void StartTimer();
 
+    // 立即关闭
     void CloseNow(boost::system::error_code ec = boost::system::error_code());
 
     friend class Listener;
