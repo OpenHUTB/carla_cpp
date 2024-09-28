@@ -20,33 +20,30 @@ namespace client {
 namespace detail {
 
   // ===========================================================================
-  // -- CachedActorList --------------------------------------------------------
+  // -- 在客户端缓冲的参与者列表 CachedActorList ---------------------------------
   // ===========================================================================
 
-  /// Keeps a list of actor descriptions to avoid requesting each time the
-  /// descriptions to the server.
+  /// 保留参与者描述列表，以避免每次都向服务器请求描述。
   ///
   /// @todo Dead actors are never removed from the list.
   class CachedActorList : private MovableNonCopyable {
   public:
 
-    /// Inserts an actor into the list.
+    /// 将参与者插入到列表中。
     void Insert(rpc::Actor actor);
 
-    /// Inserts a @a range containing actors.
+    /// 插入包含参与者的 @a 范围。
     template <typename RangeT>
     void InsertRange(RangeT range);
 
-    /// Return the actor ids present in @a range that haven't been added to this
-    /// list.
+    /// 返回 @a 范围内尚未添加到此列表的参与者 ID。
     template <typename RangeT>
     std::vector<ActorId> GetMissingIds(const RangeT &range) const;
 
-    /// Retrieve the actor matching @a id, or empty optional if actor is not
-    /// cached.
+    /// 检索与 @a id 匹配的参与者，如果参与者未被缓存，则为空（可选）。
     boost::optional<rpc::Actor> GetActorById(ActorId id) const;
 
-    /// Retrieve the actors matching the ids in @a range.
+    /// 检索与 @a 范围内的 ID 匹配的参与者。
     template <typename RangeT>
     std::vector<rpc::Actor> GetActorsById(const RangeT &range) const;
 
@@ -60,7 +57,7 @@ namespace detail {
   };
 
   // ===========================================================================
-  // -- CachedActorList implementation -----------------------------------------
+  // -- 缓冲的参与者列表 CachedActorList implementation 实现 ---------------------
   // ===========================================================================
 
   inline void CachedActorList::Insert(rpc::Actor actor) {

@@ -11,44 +11,44 @@
 namespace carla {
     namespace client {
 
-        // Ó¦ÓÃ¿ØÖÆµ½ÐÐ×ßÕß
+        // åº”ç”¨æŽ§åˆ¶åˆ°è¡Œèµ°è€…
         void Walker::ApplyControl(const Control& control) {
-            // Èç¹û¿ØÖÆÖ¸ÁîÓëµ±Ç°¿ØÖÆ²»Í¬
+            // å¦‚æžœæŽ§åˆ¶æŒ‡ä»¤ä¸Žå½“å‰æŽ§åˆ¶ä¸åŒ
             if (control != _control) {
-                // ½«¿ØÖÆÓ¦ÓÃµ½ÐÐ×ßÕß
+                // å°†æŽ§åˆ¶åº”ç”¨åˆ°è¡Œèµ°è€…
                 GetEpisode().Lock()->ApplyControlToWalker(*this, control);
-                // ¸üÐÂµ±Ç°¿ØÖÆÎªÐÂµÄ¿ØÖÆ
+                // æ›´æ–°å½“å‰æŽ§åˆ¶ä¸ºæ–°çš„æŽ§åˆ¶
                 _control = control;
             }
         }
 
-        // »ñÈ¡ÐÐ×ßÕßµÄ¿ØÖÆÐÅÏ¢
+        // èŽ·å–è¡Œèµ°è€…çš„æŽ§åˆ¶ä¿¡æ¯
         Walker::Control Walker::GetWalkerControl() const {
-            // ·µ»ØÐÐ×ßÕßµÄ¿ØÖÆ×´Ì¬
+            // è¿”å›žè¡Œèµ°è€…çš„æŽ§åˆ¶çŠ¶æ€
             return GetEpisode().Lock()->GetActorSnapshot(*this).state.walker_control;
         }
 
-        // »ñÈ¡ÐÐ×ßÕßµÄ¹Ç÷À±ä»»ÐÅÏ¢
+        // èŽ·å–è¡Œèµ°è€…çš„éª¨éª¼å˜æ¢ä¿¡æ¯
         Walker::BoneControlOut Walker::GetBonesTransform() {
-            // ·µ»Øµ±Ç°ÐÐ×ßÕßµÄ¹Ç÷À±ä»»
+            // è¿”å›žå½“å‰è¡Œèµ°è€…çš„éª¨éª¼å˜æ¢
             return GetEpisode().Lock()->GetBonesTransform(*this);
         }
 
-        // ÉèÖÃÐÐ×ßÕßµÄ¹Ç÷À±ä»»ÐÅÏ¢
+        // è®¾ç½®è¡Œèµ°è€…çš„éª¨éª¼å˜æ¢ä¿¡æ¯
         void Walker::SetBonesTransform(const Walker::BoneControlIn& bones) {
-            // ½«ÐÂµÄ¹Ç÷À±ä»»Ó¦ÓÃµ½ÐÐ×ßÕß
+            // å°†æ–°çš„éª¨éª¼å˜æ¢åº”ç”¨åˆ°è¡Œèµ°è€…
             return GetEpisode().Lock()->SetBonesTransform(*this, bones);
         }
 
-        // »ìºÏµ±Ç°×ËÊÆ
+        // æ··åˆå½“å‰å§¿åŠ¿
         void Walker::BlendPose(float blend) {
-            // Ó¦ÓÃ»ìºÏ×ËÊÆµ½ÐÐ×ßÕß
+            // åº”ç”¨æ··åˆå§¿åŠ¿åˆ°è¡Œèµ°è€…
             return GetEpisode().Lock()->BlendPose(*this, blend);
         }
 
-        // ´Ó¶¯»­ÖÐ»ñÈ¡×ËÊÆ
+        // ä»ŽåŠ¨ç”»ä¸­èŽ·å–å§¿åŠ¿
         void Walker::GetPoseFromAnimation() {
-            // ¸üÐÂÐÐ×ßÕßµÄ×ËÊÆ´Ó¶¯»­ÖÐ»ñÈ¡
+            // æ›´æ–°è¡Œèµ°è€…çš„å§¿åŠ¿ä»ŽåŠ¨ç”»ä¸­èŽ·å–
             return GetEpisode().Lock()->GetPoseFromAnimation(*this);
         }
 

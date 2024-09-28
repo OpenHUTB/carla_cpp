@@ -20,11 +20,12 @@ enum MultiGPUCommand : uint32_t {
   IS_ENABLED_ROS, // 查询ROS集成是否启用
   YOU_ALIVE // 一种心跳或存活检查命令，用于确认接收方是否在线或响应
 };
-
+// 定义一个结构体CommandHeader，用于表示命令的头部信息  
+// 头部信息通常包括命令的标识符和后续数据的大小
 struct CommandHeader {
-  MultiGPUCommand id;
-  uint32_t size;
+  MultiGPUCommand id; // 命令的标识符，从MultiGPUCommand枚举中选择
+  uint32_t size; // 跟随此头部之后的数据的大小（以字节为单位
 };
 
-} // namespace multigpu
-} // namespace carla
+}  // namespace multigpu 结束multigpu命名空间的定义
+} // namespace carla 结束carla命名空间的定义
