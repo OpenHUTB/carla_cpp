@@ -27,10 +27,10 @@ namespace client {
 
   public:
 
-    /// Find an actor by id.
+    /// 根据 id 寻找参与者。
     SharedPtr<Actor> Find(ActorId actor_id) const;
 
-    /// Filters a list of Actor with type id matching @a wildcard_pattern.
+    /// 过滤类型 ID 与 @a wildcard_pattern 匹配的参与者列表。
     SharedPtr<ActorList> Filter(const std::string &wildcard_pattern) const;
 
     SharedPtr<Actor> operator[](size_t pos) const {

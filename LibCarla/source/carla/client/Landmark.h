@@ -18,7 +18,7 @@
 namespace carla {
 namespace client {
 
-  /// Class containing a reference to RoadInfoSignal
+  /// 包含对 RoadInfoSignal 的引用类
   class Landmark {
   public:
 
@@ -129,7 +129,7 @@ namespace client {
         _signal(signal),
         _distance_from_search(distance_from_search) {}
 
-    /// waypoint where the signal is affecting
+    /// 信号影响的路径点
     SharedPtr<Waypoint> _waypoint;
 
     SharedPtr<const Map> _parent;
