@@ -26,14 +26,14 @@ namespace carla // 定义命名空间carla
             class CAMData // 定义CAMData类
             {
             public:
-                float Power; // 电源强度
+                float Power; // 电源功率
                 CAM_t Message; // CAM消息
             };
 
             class CustomV2XData // 定义CustomV2XData类
             {
             public:
-                float Power; // 电源强度
+                float Power; // 电源功率
                 CustomV2XM Message; // 自定义V2X消息
             };
 
