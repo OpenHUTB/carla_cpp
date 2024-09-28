@@ -35,11 +35,14 @@ namespace multigpu {
       _buffer.reset(_size); // 根据消息大小重置缓冲区
       return _buffer.buffer(); // 返回缓冲区的引用
     }
-
+   /// 返回消息的大小（长度）。  
+    /// 这个函数返回的是从TCP连接中读取的消息大小（字节数）。
     auto size() const {
       return _size;
     }
-
+   /// 弹出（移动）当前消息使用的Buffer对象。  
+    /// 这个函数将内部的_buffer对象以移动语义的方式返回，允许调用者接管该缓冲区的所有权。  
+    /// 调用此函数后，IncomingMessage对象不再拥有该缓冲区。
     auto pop() {
       return std::move(_buffer);
     }
