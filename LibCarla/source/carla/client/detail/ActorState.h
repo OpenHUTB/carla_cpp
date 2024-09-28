@@ -18,7 +18,7 @@ namespace detail {
 
   class ActorFactory;
 
-  /// Internal state of an Actor.
+  /// 参与者的内部状态
   class ActorState : private MovableNonCopyable {
   public:
 
@@ -88,8 +88,7 @@ namespace detail {
 
 } // namespace detail
 
-  /// Used to initialize Actor classes. Only the ActorFactory can create this
-  /// object, thus only the ActorFactory can create actors.
+  /// 用于初始化 Actor 类。只有 ActorFactory 可以创建此对象，因此只有 ActorFactory 可以创建 Actor。
   class ActorInitializer : public detail::ActorState {
   public:
     ActorInitializer(ActorInitializer &&) = default;
