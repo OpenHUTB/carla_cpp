@@ -130,7 +130,7 @@ namespace detail {
         // 获取代理
         const dtCrowdAgent *agent = _nav.GetCrowd()->getAgent(i);
         if (agent && agent->params.useObb) {
-          // draw for debug
+          // 为了调试进行绘制
           carla::geom::Location p1, p2, p3, p4;
           p1.x = agent->params.obb[0];
           p1.z = agent->params.obb[1];
@@ -166,12 +166,12 @@ namespace detail {
         }
       }
 
-      // draw some text for debug
+      // 为了调试绘制一些文本
       for (int i = 0; i < _nav.GetCrowd()->getAgentCount(); ++i) {
-        // get the agent
+        // 获得智能体
         const dtCrowdAgent *agent = _nav.GetCrowd()->getAgent(i);
         if (agent) {
-          // draw for debug
+          // 为了调试进行绘制
           carla::geom::Location p1(agent->npos[0], agent->npos[2], agent->npos[1] + 1);
           if (agent->params.userData) {
             std::ostringstream out;
