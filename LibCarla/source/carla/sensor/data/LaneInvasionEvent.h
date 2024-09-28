@@ -24,7 +24,7 @@ namespace data {
 
     using LaneMarking = road::element::LaneMarking; // 定义一个类型别名，方便使用
 
-    explicit LaneInvasionEvent( // 构造函数，初始化车道入侵事件
+    explicit LaneInvasionEvent( // 构造函数，初始化车辆压线事件
         size_t frame, // 当前帧数
         double timestamp, // 时间戳
         const rpc::Transform &sensor_transform, // 传感器的变换
@@ -34,7 +34,7 @@ namespace data {
         _parent(parent),
         _crossed_lane_markings(std::move(crossed_lane_markings)) {} // 初始化成员变量
 
-    /// 获取入侵车道的Actor
+    /// 获取压线车道的Actor
     SharedPtr<client::Actor> GetActor() const;
 
     /// 获取被穿越的车道标记列表
