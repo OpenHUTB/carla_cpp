@@ -23,7 +23,7 @@ namespace detail {
 
   WalkerNavigation::WalkerNavigation(std::weak_ptr<Simulator> simulator) : _simulator(simulator), _next_check_index(0) {
     _nav.SetSimulator(simulator);
-    // Here call the server to retrieve the navmesh data.
+    // 这里调用服务器来检索导航网格数据。
     auto files = _simulator.lock()->GetRequiredFiles("Nav");
     if (!files.empty()) {
       _nav.Load(_simulator.lock()->GetCacheFile(files[0], true));
@@ -36,16 +36,16 @@ namespace detail {
       return;
     }
 
-    // get current state
+    // 获取当前状态
     std::shared_ptr<const EpisodeState> state = episode->GetState();
 
-    // purge all possible dead walkers
+    // 清除所有可能的死亡行人
     CheckIfWalkerExist(*walkers, *state);
 
-    // add/update/delete all vehicles in crowd
+    // 在人群中添加/更新/删除所有车辆
     UpdateVehiclesInCrowd(episode, false);
 
-    // update crowd in navigation module
+    // 更新导航模块中的人群
     _nav.UpdateCrowd(*state);
 
     carla::geom::Transform trans;
@@ -53,7 +53,7 @@ namespace detail {
     std::vector<Cmd> commands;
     commands.reserve(walkers->size());
     for (auto handle : *walkers) {
-      // get the transform of the walker
+      // 获取行人的变换
       if (_nav.GetWalkerTransform(handle.walker, trans)) {
         float speed = _nav.GetWalkerSpeed(handle.walker);
         commands.emplace_back(Cmd::ApplyWalkerState{ handle.walker, trans, speed });
@@ -61,19 +61,19 @@ namespace detail {
     }
     _simulator.lock()->ApplyBatchSync(std::move(commands), false);
 
-    // check if any agent has been killed
+    // 检查是否所有代理已被杀死
     bool alive;
     for (auto handle : *walkers) {
-      // get the agent state
+      // 获取代理状态
       if (_nav.IsWalkerAlive(handle.walker, alive)) {
         if (!alive) {
           _simulator.lock()->SetActorCollisions(handle.walker, true);
           _simulator.lock()->SetActorDead(handle.walker);
-          // remove from the crowd
+          // 从人群中移除
           _nav.RemoveAgent(handle.walker);
-          // destroy the controller
+          // 销毁控制器
           _simulator.lock()->DestroyActor(handle.controller);
-          // unregister from list
+          // 从列表中取消注册
           UnregisterWalker(handle.walker, handle.controller);
         }
       }
@@ -82,17 +82,17 @@ namespace detail {
 
   void WalkerNavigation::CheckIfWalkerExist(std::vector<WalkerHandle> walkers, const EpisodeState &state) {
 
-    // check with total
+    // 与总数进行核对
     if (_next_check_index >= walkers.size())
       _next_check_index = 0;
 
-    // check the existence
+    // 检查存在
     if (!state.ContainsActorSnapshot(walkers[_next_check_index].walker)) {
-      // remove from the crowd
+      // 从人群中移除
       _nav.RemoveAgent(walkers[_next_check_index].walker);
-      // destroy the controller
+      // 销毁控制器
       _simulator.lock()->DestroyActor(walkers[_next_check_index].controller);
-      // unregister from list
+      // 从列表中取消注册
       UnregisterWalker(walkers[_next_check_index].walker, walkers[_next_check_index].controller);
     }
 
@@ -100,34 +100,34 @@ namespace detail {
 
   }
 
-  // add/update/delete all vehicles in crowd
+  // 添加/更新/删除人群中的所有车辆
   void WalkerNavigation::UpdateVehiclesInCrowd(std::shared_ptr<Episode> episode, bool show_debug) {
     std::vector<carla::nav::VehicleCollisionInfo> vehicles;
 
-    // get current state
+    // 获取当前状态
     std::shared_ptr<const EpisodeState> state = episode->GetState();
 
-    // get all vehicles from episode
+    // 获取情节中的所有车辆
     for (auto &&actor : episode->GetActors()) {
-      // only vehicles
+      // 仅限车辆
       if (actor.description.id.rfind("vehicle.", 0) == 0) {
-        // get the snapshot
+        // 获取快照
         ActorSnapshot snapshot = state->GetActorSnapshot(actor.id);
-        // add to the vector
+        // 添加到向量
         vehicles.emplace_back(carla::nav::VehicleCollisionInfo{actor.id, snapshot.transform, actor.bounding_box});
       }
     }
 
-    // update the vehicles found
+    // 更新找到的车辆
     _nav.UpdateVehicles(vehicles);
 
-    // optional debug info
+    // 可选的调试信息
     if (show_debug) {
       if (_nav.GetCrowd() == nullptr) return;
 
-      // draw bounding boxes for debug
+      // 绘制边界框以进行调试
       for (int i = 0; i < _nav.GetCrowd()->getAgentCount(); ++i) {
-        // get the agent
+        // 获取代理
         const dtCrowdAgent *agent = _nav.GetCrowd()->getAgent(i);
         if (agent && agent->params.useObb) {
           // draw for debug

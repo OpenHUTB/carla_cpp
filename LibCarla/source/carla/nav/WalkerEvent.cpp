@@ -17,7 +17,7 @@ namespace nav {
     }
 
     EventResult WalkerEventVisitor::operator()(WalkerEventWait &event) {
-        // refresh time and check
+        // 刷新时间并检查
         event.time -= _delta;
         if (event.time <= 0.0)
             return EventResult::End;
@@ -33,12 +33,12 @@ namespace nav {
             carla::geom::Location currentUnrealPos;
             _manager->GetNavigation()->PauseAgent(_id, true);
             _manager->GetNavigation()->GetWalkerPosition(_id, currentUnrealPos);
-            // check if we need to check for a trafficlight there (only the first time)
+            // 检查是否需要检查那里的交通信号灯（仅限第一次）
             if (event.check_for_trafficlight) {
                 event.actor = _manager->GetTrafficLightAffecting(currentUnrealPos);
                 event.check_for_trafficlight = false;
             }
-            // check if we need to wait for a trafficlight
+            // 检查是否需要等待红绿灯
             if (event.actor) {
                 auto state = event.actor->GetState();
                 if (state == carla::rpc::TrafficLightState::Green || 
@@ -47,14 +47,14 @@ namespace nav {
                 }
             }
             _manager->GetNavigation()->PauseAgent(_id, false);
-            // calculate the direction to look for vehicles
+            // 计算寻找车辆的方向
             carla::geom::Location crosswalkEnd;
             _manager->GetWalkerCrosswalkEnd(_id, crosswalkEnd);
             carla::geom::Location direction;
             direction.x = crosswalkEnd.x - currentUnrealPos.x;
             direction.y = crosswalkEnd.y - currentUnrealPos.y;
             direction.z = crosswalkEnd.z - currentUnrealPos.z;
-            // check if the agent has any vehicle around
+            // 检查代理附近是否有车辆
             if (_manager && !(_manager->GetNavigation()->HasVehicleNear(_id, 6.0f, direction))) {
                 return EventResult::End;
             } else {
