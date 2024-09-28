@@ -272,10 +272,10 @@ const LightState& LightManager::RetrieveLightState(LightId id) const {
 
 void LightManager::QueryLightsStateToServer() {
   std::lock_guard<std::mutex> lock(_mutex);
-  // Send blocking query
+  // 发送 blocking 查询
   std::vector<rpc::LightState> lights_snapshot = _episode.Lock()->QueryLightsStateToServer();
 
-  // Update lights
+  // 更新灯
   SharedPtr<LightManager> lm = _episode.Lock()->GetLightManager();
 
   for(const auto& it : lights_snapshot) {
@@ -309,7 +309,7 @@ void LightManager::UpdateServerLightsState(bool discard_client) {
           it.second._active
         );
         state._id = it.first;
-        // Add to command
+        // 添加到命令
         message.push_back(state);
       }
     }

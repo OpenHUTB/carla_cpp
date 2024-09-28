@@ -1,6 +1,10 @@
 // Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// R树的核心思想是聚合距离相近的节点并在树结构的上一层将其表示为这些节点的最小外接矩形，这个最小外接矩形就成为上一层的一个节点。
+// R树的“R”代表“Rectangle（矩形）”。
+// 参考：https://zh.wikipedia.org/wiki/R%E6%A0%91
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
