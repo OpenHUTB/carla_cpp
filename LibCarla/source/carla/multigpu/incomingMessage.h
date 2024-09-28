@@ -16,11 +16,11 @@
 namespace carla {
 namespace multigpu {
 
-  /// Helper for reading incoming TCP messages. Allocates the whole message in
-  /// a single buffer.
+  /// 这个类是一个辅助类，用于读取传入的TCP消息
   class IncomingMessage {
   public:
-
+  /// 构造函数，接收一个Buffer对象并将其移动赋值给内部_buffer。  
+  /// 这个构造函数用于初始化IncomingMessage对象，接收一个已经分配好的缓冲区。  
     explicit IncomingMessage(Buffer &&buffer) : _buffer(std::move(buffer)) {}
 
     boost::asio::mutable_buffer size_as_buffer() {
