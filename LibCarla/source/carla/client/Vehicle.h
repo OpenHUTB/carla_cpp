@@ -14,7 +14,7 @@
 #include "carla/rpc/VehicleDoor.h"
 #include "carla/rpc/VehicleLightState.h"
 #include "carla/rpc/VehiclePhysicsControl.h"
-#include "carla/rpc/VehicleTelemetryData.h"    // 车辆遥感数据
+#include "carla/rpc/VehicleTelemetryData.h"    // 车辆遥测数据
 #include "carla/rpc/VehicleWheels.h"
 #include "carla/trafficmanager/TrafficManager.h"
 
