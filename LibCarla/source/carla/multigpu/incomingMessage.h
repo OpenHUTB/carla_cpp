@@ -48,9 +48,11 @@ namespace multigpu {
     }
 
   private:
-
+     /// 存储消息的大小（字节数）。  
+    /// 这个变量用于存储从TCP连接中读取的消息大小
     carla::streaming::detail::message_size_type _size = 0u;
-
+    /// 存储消息数据的缓冲区。  
+    /// 这个Buffer对象用于存储实际的消息数据。  
     Buffer _buffer;
   };
 
