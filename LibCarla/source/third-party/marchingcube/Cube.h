@@ -8,8 +8,8 @@ namespace MeshReconstruction
     // 0 - 255
     int signConfig;
 
-    // If it exists, vertex on edge i is stored at position i.
-    // For edge numbering and location see numberings.png.
+    // 如果存在，则第i条边的顶点存储在第i个位置
+    //关于边的编号和位置，请参见numberings.png
     std::array<Vec3, 12> edgeVertIndices;
   };
 
@@ -30,9 +30,9 @@ namespace MeshReconstruction
 
   namespace
   {
-    // Cube has 8 vertices. Each vertex can have positive or negative sign.
-    // 2^8 = 256 possible configurations mapped to intersected edges in each case.
-    // The 12 edges are numbered as 1, 2, 4, ..., 2048 and are stored as a 12-bit bitstring for each configuration.
+    // Cube有8个顶点。每个顶点可以有正号或负号
+    // 在每种情况下，2^8=256种可能的配置映射到相交的边
+    // 这12条边被编号为1,2,4,2048，并为每个配置存储为一个12位的位串
     const int signConfigToIntersectedEdges[256] = {
         0x0, 0x109, 0x203, 0x30a, 0x406, 0x50f, 0x605, 0x70c,
         0x80c, 0x905, 0xa0f, 0xb06, 0xc0a, 0xd03, 0xe09, 0xf00,
@@ -156,9 +156,9 @@ namespace MeshReconstruction
   IntersectInfo Cube::Intersect(double iso) const
   {
     // idea:
-    // from signs at 8 corners of cube a sign configuration (256 possible ones) is computed
-    // this configuration can be used to index into a table that tells which of the 12 edges are intersected
-    // find vertices adjacent to edges and interpolate cut vertex and store it in IntersectionInfo object
+    // 从立方体的8个角的符号中计算出一个符号配置(256个可能的)
+    // 这个配置可以用来索引到一个表中，这个表告诉12条边中哪条是相交的
+    // 找到与边相邻的顶点并插值切割顶点并将其存储在Intersectionlnfo对象中
 
     IntersectInfo intersect;
     intersect.signConfig = SignConfig(iso);
