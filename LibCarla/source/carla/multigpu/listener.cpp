@@ -15,12 +15,13 @@
 
 namespace carla {
 namespace multigpu {
-
+// Listener类的构造函数  
+  // 初始化监听器，绑定到指定的io_context和endpoint上，并设置超时时间
   Listener::Listener(boost::asio::io_context &io_context, endpoint ep)
     : _io_context(io_context),
       _acceptor(_io_context, std::move(ep)),
       _timeout(time_duration::seconds(1u)) {
-        _acceptor.listen();
+        _acceptor.listen();// 开始监听端口
       }
 
   Listener::~Listener() {
