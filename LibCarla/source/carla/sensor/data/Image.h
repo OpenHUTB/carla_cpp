@@ -6,25 +6,25 @@
 
 #pragma once
 
-#include "carla/sensor/data/Color.h"
-#include "carla/sensor/data/ImageTmpl.h"
+#include "carla/sensor/data/Color.h" // 包含颜色定义的头文件
+#include "carla/sensor/data/ImageTmpl.h" // 包含图像模板定义的头文件
 
 namespace carla {
 namespace sensor {
 namespace data {
 
-  /// An image of 32-bit BGRA colors (8-bit channels, 4 bytes)
+  /// 定义32位BGRA颜色的图像
   using Image = ImageTmpl<Color>;
   
-  /// An image of float BGRA colors (32-bit channels)
+  /// 定义浮点型BGRA颜色的图像
   using FloatImage = ImageTmpl<rpc::FloatColor>;
 
-  /// An image of 64-bit BGRA colors (16-bit channels, 2 floats)
+  /// 定义64位BGRA颜色的图像，使用16位通道
   using OpticalFlowImage = ImageTmpl<OpticalFlowPixel>;
 
-  /// An image of 32-bit BGRA colors (8-bit channels, 4 bytes)
+  /// 定义32位BGRA颜色的图像，用于法线图
   using NormalsImage = ImageTmpl<Color>;
 
 } // namespace data
 } // namespace sensor
-} // namespace carla
+} // namespace carla // 结束命名空间

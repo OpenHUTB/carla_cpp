@@ -23,7 +23,7 @@ namespace client {
 
     explicit Walker(ActorInitializer init) : Actor(std::move(init)) {}
 
-    /// 应用 @a control 给 this Walker.
+    /// 应用 @a control 给这个行人。
     void ApplyControl(const Control &control);
 
     /// 把最后应用的控制返回给Walker对象.

@@ -100,9 +100,9 @@ namespace detail { // 定义detail子命名空间
 
     AtomicList<WalkerHandle> _walkers;
 
-    /// check a few walkers and if they don't exist then remove from the crowd
+    /// 检查一些行人，如果不存在，则将其从人群中移除
     void CheckIfWalkerExist(std::vector<WalkerHandle> walkers, const EpisodeState &state);
-    /// add/update/delete all vehicles in crowd
+    /// 添加/更新/删除人群中的所有车辆
     void UpdateVehiclesInCrowd(std::shared_ptr<Episode> episode, bool show_debug = false);
   };
 
