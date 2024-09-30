@@ -4,6 +4,8 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+#pragma once
+
 // #include "carla/Logging.h" // 引入CARLA的日志模块（暂时注释掉） 
 #include "carla/Buffer.h" // 引入CARLA的缓冲区模块
 #include "carla/multigpu/commands.h" // 引入多GPU命令模块
