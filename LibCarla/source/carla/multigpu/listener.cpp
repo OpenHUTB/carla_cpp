@@ -45,14 +45,16 @@ namespace multigpu {
       callback_function_type_response on_response) {// 收到响应时调用的回调函数
 
     using boost::system::error_code;
-
+   // 创建一个Primary对象，它代表一个会话
     auto session = std::make_shared<Primary>(_io_context, timeout, *this);
-    auto self = shared_from_this();
-    
+    auto self = shared_from_this();// 获取Listener的shared_ptr，以便在lambda中使用  
+    // 定义一个lambda来处理accept操作的结果 
     auto handle_query = [on_opened, on_closed, on_response, session, self](const error_code &ec) {
     if (!ec) {
+      // 如果accept成功，打开会话并设置回调函数 
       session->Open(std::move(on_opened), std::move(on_closed), std::move(on_response));
     } else {
+      // 如果失败，记录错误信息 
       log_error("Secondary server:", ec.message());
     }
   };
