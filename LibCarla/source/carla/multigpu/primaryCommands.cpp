@@ -28,19 +28,19 @@ void PrimaryCommands::set_router(std::shared_ptr<Router> router) {
   _router = router;
 }
 
-// broadcast to all secondary servers the frame data
+// 向所有辅助服务器广播帧数据
 void PrimaryCommands::SendFrameData(carla::Buffer buffer) {
   _router->Write(MultiGPUCommand::SEND_FRAME, std::move(buffer));
   // log_info("sending frame command");
 }
 
-// broadcast to all secondary servers the map to load
+// 向所有辅助服务器广播要加载的地图
 void PrimaryCommands::SendLoadMap(std::string map) {
   carla::Buffer buf((unsigned char *) map.c_str(), (size_t) map.size() + 1);
   _router->Write(MultiGPUCommand::LOAD_MAP, std::move(buf));
 }
 
-// send to who the router wants the request for a token
+// 向路由器需要令牌的人员发送请求
 token_type PrimaryCommands::SendGetToken(stream_id sensor_id) {
   log_info("asking for a token");
   carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
@@ -53,7 +53,7 @@ token_type PrimaryCommands::SendGetToken(stream_id sensor_id) {
   return new_token;
 }
 
-// send to know if a connection is alive
+// 发送以了解连接是否处于活动状态
 void PrimaryCommands::SendIsAlive() {
   std::string msg("Are you alive?");
   carla::Buffer buf((unsigned char *) msg.c_str(), (size_t) msg.size());
@@ -64,7 +64,7 @@ void PrimaryCommands::SendIsAlive() {
 }
 
 void PrimaryCommands::SendEnableForROS(stream_id sensor_id) {
-  // search if the sensor has been activated in any secondary server
+  // 搜索传感器是否已在任何辅助服务器中激活
   auto it = _servers.find(sensor_id);
   if (it != _servers.end()) {
     carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
@@ -79,7 +79,7 @@ void PrimaryCommands::SendEnableForROS(stream_id sensor_id) {
 }
 
 void PrimaryCommands::SendDisableForROS(stream_id sensor_id) {
-  // search if the sensor has been activated in any secondary server
+  // 搜索传感器是否已在任何辅助服务器中激活
   auto it = _servers.find(sensor_id);
   if (it != _servers.end()) {
     carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
@@ -94,7 +94,7 @@ void PrimaryCommands::SendDisableForROS(stream_id sensor_id) {
 }
 
 bool PrimaryCommands::SendIsEnabledForROS(stream_id sensor_id) {
-  // search if the sensor has been activated in any secondary server
+  // 搜索传感器是否已在任何辅助服务器中激活
   auto it = _servers.find(sensor_id);
   if (it != _servers.end()) {
     carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
@@ -111,15 +111,15 @@ bool PrimaryCommands::SendIsEnabledForROS(stream_id sensor_id) {
 }
 
 token_type PrimaryCommands::GetToken(stream_id sensor_id) {
-  // search if the sensor has been activated in any secondary server
+  // 搜索传感器是否已在任何辅助服务器中激活
   auto it = _tokens.find(sensor_id);
   if (it != _tokens.end()) {
-    // return already activated sensor token
+    // 返回已经激活的传感器令牌
     log_debug("Using token from already activated sensor: ", it->second.get_stream_id(), ", ", it->second.get_port());
     return it->second;
   }
   else {
-    // enable the sensor on one secondary server
+    // 在一台辅助服务器上启用传感器
     auto server = _router->GetNextServer();
     auto token = SendGetToken(sensor_id);
     // add to the maps
@@ -135,7 +135,7 @@ void PrimaryCommands::EnableForROS(stream_id sensor_id) {
   if (it != _servers.end()) {
     SendEnableForROS(sensor_id);
   } else {
-    // we need to activate the sensor in any server yet, and repeat
+    // 我们需要在任何服务器上激活传感器，然后重复
     GetToken(sensor_id);
     EnableForROS(sensor_id);
   }
