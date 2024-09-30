@@ -23,20 +23,16 @@ namespace client {
 
     ~LaneInvasionSensor();
 
-    /// Register a @a callback to be executed each time a new measurement is
-    /// received.
+    /// 注册一个 @a 回调，每次收到新的测量值时执行。
     ///
-    /// @warning Calling this function on a sensor that is already listening
-    /// steals the data stream from the previously set callback. Note that
-    /// several instances of Sensor (even in different processes) may point to
-    /// the same sensor in the simulator.
+    /// @warning 在已在监听的传感器上调用此函数会窃取先前设置的回调中的数据流。
+    /// 请注意，多个传感器实例（即使在不同的进程中）可能指向模拟器中的同一传感器。 
     void Listen(CallbackFunctionType callback) override;
 
-    /// Stop listening for new measurements.
+    /// 停止监听新的测量结果。
     void Stop() override;
 
-    /// Return whether this Sensor instance is currently listening to the
-    /// associated sensor in the simulator.
+    /// 返回此传感器实例当前是否正在监听模拟器中的相关传感器。
     bool IsListening() const override {
       return _callback_id != 0u;
     }

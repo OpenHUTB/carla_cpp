@@ -4,11 +4,11 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once// ·ÀÖ¹Í·ÎÄ¼ş±»¶à´Î°üº¬
+#pragma once// é˜²æ­¢å¤´æ–‡ä»¶è¢«å¤šæ¬¡åŒ…å«
 
-#include "carla/Debug.h"// ÒıÈëµ÷ÊÔÏà¹ØµÄÍ·ÎÄ¼ş
+#include "carla/Debug.h"// å¼•å…¥è°ƒè¯•ç›¸å…³çš„å¤´æ–‡ä»¶
 
-#include <boost/date_time/posix_time/posix_time_types.hpp>// ÒıÈë Boost µÄÊ±¼ä´¦Àí¹¦ÄÜ
+#include <boost/date_time/posix_time/posix_time_types.hpp>// å¼•å…¥ Boost çš„æ—¶é—´å¤„ç†åŠŸèƒ½
 
 #include <chrono>
 
@@ -18,41 +18,41 @@ namespace carla {
   /// between std::chrono::duration and boost::posix_time::time_duration.
   class time_duration {
   public:
-// ¾²Ì¬³ÉÔ±º¯Êı£¬ÓÃÓÚ´´½¨Ò»¸ö±íÊ¾Ö¸¶¨ÃëÊıµÄÊ±¼ä¼ä¸ô
+// é™æ€æˆå‘˜å‡½æ•°ï¼Œç”¨äºåˆ›å»ºä¸€ä¸ªè¡¨ç¤ºæŒ‡å®šç§’æ•°çš„æ—¶é—´é—´éš”
     static inline time_duration seconds(size_t timeout) {
       return std::chrono::seconds(timeout);
     }
-// ¾²Ì¬³ÉÔ±º¯Êı£¬ÓÃÓÚ´´½¨Ò»¸ö±íÊ¾Ö¸¶¨ºÁÃëÊıµÄÊ±¼ä¼ä¸ô
+// é™æ€æˆå‘˜å‡½æ•°ï¼Œç”¨äºåˆ›å»ºä¸€ä¸ªè¡¨ç¤ºæŒ‡å®šæ¯«ç§’æ•°çš„æ—¶é—´é—´éš”
     static inline time_duration milliseconds(size_t timeout) {
       return std::chrono::milliseconds(timeout);
     }
-// Ä¬ÈÏ¹¹Ôìº¯Êı£¬´´½¨Ò»¸ö±íÊ¾ 0 ºÁÃëµÄÊ±¼ä¼ä¸ô
+// é»˜è®¤æ„é€ å‡½æ•°ï¼Œåˆ›å»ºä¸€ä¸ªè¡¨ç¤º 0 æ¯«ç§’çš„æ—¶é—´é—´éš”
     constexpr time_duration() noexcept : _milliseconds(0u) {}
 
-// Ä£°å¹¹Ôìº¯Êı£¬½ÓÊÜÒ»¸ö std::chrono::duration ÀàĞÍµÄ²ÎÊı£¬½«Æä×ª»»ÎªÒÔºÁÃëÎªµ¥Î»µÄÊ±¼ä¼ä¸ô
+// æ¨¡æ¿æ„é€ å‡½æ•°ï¼Œæ¥å—ä¸€ä¸ª std::chrono::duration ç±»å‹çš„å‚æ•°ï¼Œå°†å…¶è½¬æ¢ä¸ºä»¥æ¯«ç§’ä¸ºå•ä½çš„æ—¶é—´é—´éš”
     template <typename Rep, typename Period>
     time_duration(std::chrono::duration<Rep, Period> duration)
       : _milliseconds([=]() {
-      	// ½«´«ÈëµÄ duration ×ª»»ÎªºÁÃëÊı£¬²¢½øĞĞ¶ÏÑÔÈ·±£½á¹û·Ç¸º
+      	// å°†ä¼ å…¥çš„ duration è½¬æ¢ä¸ºæ¯«ç§’æ•°ï¼Œå¹¶è¿›è¡Œæ–­è¨€ç¡®ä¿ç»“æœéè´Ÿ
           const auto count = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
           DEBUG_ASSERT(count >= 0);
           return static_cast<size_t>(count);
         }()) {}
-// ¹¹Ôìº¯Êı£¬½ÓÊÜÒ»¸ö boost::posix_time::time_duration ÀàĞÍµÄ²ÎÊı£¬½«Æä×ª»»ÎªÒÔºÁÃëÎªµ¥Î»µÄÊ±¼ä¼ä¸ô
+// æ„é€ å‡½æ•°ï¼Œæ¥å—ä¸€ä¸ª boost::posix_time::time_duration ç±»å‹çš„å‚æ•°ï¼Œå°†å…¶è½¬æ¢ä¸ºä»¥æ¯«ç§’ä¸ºå•ä½çš„æ—¶é—´é—´éš”
     time_duration(boost::posix_time::time_duration timeout)
       : time_duration(std::chrono::milliseconds(timeout.total_milliseconds())) {}
-// ¿½±´¹¹Ôìº¯Êı£¬Ê¹ÓÃÄ¬ÈÏÊµÏÖ
+// æ‹·è´æ„é€ å‡½æ•°ï¼Œä½¿ç”¨é»˜è®¤å®ç°
     time_duration(const time_duration &) = default;
     time_duration &operator=(const time_duration &) = default;
-// ½«µ±Ç°Ê±¼ä¼ä¸ô×ª»»Îª boost::posix_time::time_duration ÀàĞÍ
+// å°†å½“å‰æ—¶é—´é—´éš”è½¬æ¢ä¸º boost::posix_time::time_duration ç±»å‹
     boost::posix_time::time_duration to_posix_time() const {
       return boost::posix_time::milliseconds(_milliseconds);
     }
-// ½«µ±Ç°Ê±¼ä¼ä¸ô×ª»»Îª std::chrono::milliseconds ÀàĞÍ
+// å°†å½“å‰æ—¶é—´é—´éš”è½¬æ¢ä¸º std::chrono::milliseconds ç±»å‹
     constexpr auto to_chrono() const {
       return std::chrono::milliseconds(_milliseconds);
     }
-// ÀàĞÍ×ª»»ÔËËã·û£¬½«µ±Ç°¶ÔÏó×ª»»Îª boost::posix_time::time_duration ÀàĞÍ
+// ç±»å‹è½¬æ¢è¿ç®—ç¬¦ï¼Œå°†å½“å‰å¯¹è±¡è½¬æ¢ä¸º boost::posix_time::time_duration ç±»å‹
     operator boost::posix_time::time_duration() const {
       return to_posix_time();
     }
@@ -62,7 +62,7 @@ namespace carla {
     }
 
   private:
-// ´æ´¢Ê±¼ä¼ä¸ôµÄºÁÃëÊı
+// å­˜å‚¨æ—¶é—´é—´éš”çš„æ¯«ç§’æ•°
     size_t _milliseconds;
   };
 

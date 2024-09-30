@@ -28,49 +28,50 @@ static boost::python::object OptionalToPythonObject(OptionalT &optional) {
     }
 
 // 方便地进行带有1个参数的请求。
+// std::forward 主要用于完美转发，能够保留传递给函数参数的值类别（lvalue 或 rvalue），确保在转发参数时不丢失其原有的值性质。
 #define CALL_WITHOUT_GIL_1(cls, fn, T1_) +[](cls &self, T1_ t1) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(std::forward<T1_>(t1)); \
     }
 
-// Convenient for requests with 2 arguments.
+// 方便地进行带有2个参数的请求。
 #define CALL_WITHOUT_GIL_2(cls, fn, T1_, T2_) +[](cls &self, T1_ t1, T2_ t2) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2)); \
     }
 
-// Convenient for requests with 3 arguments.
+// 方便地进行带有3个参数的请求。
 #define CALL_WITHOUT_GIL_3(cls, fn, T1_, T2_, T3_) +[](cls &self, T1_ t1, T2_ t2, T3_ t3) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2), std::forward<T3_>(t3)); \
     }
 
-// Convenient for requests with 4 arguments.
+// 方便地进行带有4个参数的请求。
 #define CALL_WITHOUT_GIL_4(cls, fn, T1_, T2_, T3_, T4_) +[](cls &self, T1_ t1, T2_ t2, T3_ t3, T4_ t4) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2), std::forward<T3_>(t3), std::forward<T4_>(t4)); \
     }
 
-// Convenient for requests with 5 arguments.
+// 方便地进行带有5个参数的请求。
 #define CALL_WITHOUT_GIL_5(cls, fn, T1_, T2_, T3_, T4_, T5_) +[](cls &self, T1_ t1, T2_ t2, T3_ t3, T4_ t4, T5_ t5) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2), std::forward<T3_>(t3), std::forward<T4_>(t4), std::forward<T5_>(t5)); \
     }
 
-// Convenient for const requests without arguments.
+// 方便地进行没有参数的常量请求。
 #define CONST_CALL_WITHOUT_GIL(cls, fn) CALL_WITHOUT_GIL(const cls, fn)
 #define CONST_CALL_WITHOUT_GIL_1(cls, fn, T1_) CALL_WITHOUT_GIL_1(const cls, fn, T1_)
 #define CONST_CALL_WITHOUT_GIL_2(cls, fn, T1_, T2_) CALL_WITHOUT_GIL_2(const cls, fn, T1_, T2_)
 #define CONST_CALL_WITHOUT_GIL_3(cls, fn, T1_, T2_, T3_) CALL_WITHOUT_GIL_3(const cls, fn, T1_, T2_, T3_)
 #define CONST_CALL_WITHOUT_GIL_4(cls, fn, T1_, T2_, T3_, T4_) CALL_WITHOUT_GIL_4(const cls, fn, T1_, T2_, T3_, T4_)
 
-// Convenient for const requests that need to make a copy of the returned value.
+// 方便用于需要复制返回值的const请求。 
 #define CALL_RETURNING_COPY(cls, fn) +[](const cls &self) \
         -> std::decay_t<std::result_of_t<decltype(&cls::fn)(cls*)>> { \
       return self.fn(); \
     }
 
-// Convenient for const requests that need to make a copy of the returned value.
+// 方便用于需要复制返回值的const请求。
 #define CALL_RETURNING_COPY_1(cls, fn, T1_) +[](const cls &self, T1_ t1) \
         -> std::decay_t<std::result_of_t<decltype(&cls::fn)(cls*, T1_)>> { \
       return self.fn(std::forward<T1_>(t1)); \
@@ -86,8 +87,7 @@ std::vector<T> PythonLitstToVector(boost::python::list &input) {
   return result;
 }
 
-// Convenient for const requests that needs to convert the return value to a
-// Python list.
+// 方便地需要将返回值转换为Python列表的const请求。
 #define CALL_RETURNING_LIST(cls, fn) +[](const cls &self) { \
       boost::python::list result; \
       for (auto &&item : self.fn()) { \
@@ -96,8 +96,7 @@ std::vector<T> PythonLitstToVector(boost::python::list &input) {
       return result; \
     }
 
-// Convenient for const requests that needs to convert the return value to a
-// Python list.
+// 方便需要将返回值转换为Python列表的const请求。
 #define CALL_RETURNING_LIST_1(cls, fn, T1_) +[](const cls &self, T1_ t1) { \
       boost::python::list result; \
       for (auto &&item : self.fn(std::forward<T1_>(t1))) { \
@@ -199,17 +198,17 @@ static carla::time_duration TimeDurationFromSeconds(double seconds) {
 
 static auto MakeCallback(boost::python::object callback) {
   namespace py = boost::python;
-  // Make sure the callback is actually callable.
+  // 确保回调实际上是可调用的。
   if (!PyCallable_Check(callback.ptr())) {
     PyErr_SetString(PyExc_TypeError, "callback argument must be callable!");
     py::throw_error_already_set();
   }
 
-  // We need to delete the callback while holding the GIL.
+  // 我们需要在持有GIL的同时删除回调。
   using Deleter = carla::PythonUtil::AcquireGILDeleter;
   auto callback_ptr = carla::SharedPtr<py::object>{new py::object(callback), Deleter()};
 
-  // Make a lambda callback.
+  // 做一个lambda回调。
   return [callback=std::move(callback_ptr)](auto message) {
     carla::PythonUtil::AcquireGIL lock;
     try {

@@ -17,11 +17,10 @@ namespace carla {
 namespace client {
 
   // ===========================================================================
-  // -- InvalidAttributeValue --------------------------------------------------
+  // -- 无效属性值 InvalidAttributeValue ----------------------------------------
   // ===========================================================================
 
-  /// Exception thrown when the value given to an ActorAttribute cannot be
-  /// converted to its type.
+  /// 当赋予 ActorAttribute 的值无法转换为其类型时抛出异常。
   class InvalidAttributeValue : public std::invalid_argument {
   public:
 
@@ -29,11 +28,10 @@ namespace client {
   };
 
   // ===========================================================================
-  // -- BadAttributeCast -------------------------------------------------------
+  // -- 错误的属性转换异常 BadAttributeCast --------------------------------------
   // ===========================================================================
 
-  /// Exception thrown when the value of an ActorAttribute cannot be cast to the
-  /// requested type.
+  /// 当 ActorAttribute 的值无法转换为请求的类型时抛出异常。
   class BadAttributeCast : public std::logic_error {
   public:
 
@@ -41,7 +39,7 @@ namespace client {
   };
 
   // ===========================================================================
-  // -- ActorAttribute ---------------------------------------------------------
+  // -- 参与者属性 --------------------------------------------------------------
   // ===========================================================================
 
   class ActorAttributeValueAccess
@@ -59,16 +57,15 @@ namespace client {
 
     virtual rpc::ActorAttributeType GetType() const = 0;
 
-    /// Cast the value to the given type.
+    /// 将值转换为给定的类型。
     ///
-    /// @throw BadAttributeCast if the cast fails.
+    /// @throw 如果转换失败跑出BadAttributeCast异常。
     template <typename T>
     T As() const;
 
-    /// Cast the value to the type specified by the enum
-    /// carla::rpc::ActorAttributeType.
+    /// 将值转换为枚举 carla::rpc::ActorAttributeType 指定的类型。
     ///
-    /// @throw BadAttributeCast if the cast fails.
+    /// @throw 如果转换失败，则抛出 BadAttributeCast 的异常。
     template <rpc::ActorAttributeType Type>
     auto As() const;
 
@@ -213,13 +210,13 @@ namespace client {
       return _attribute.is_modifiable;
     }
 
-    /// Set the value of this attribute.
+    /// 设置这个属性值
     ///
-    /// @throw InvalidAttributeValue if attribute is not modifiable.
-    /// @throw InvalidAttributeValue if format does not match this type.
+    /// @throw 如果属性不可修改，则抛出 InvalidAttributeValue 异常。
+    /// @throw 如果格式不匹配这个类型，则抛出 InvalidAttributeValue 异常。
     void Set(std::string value);
 
-    /// Serialize this object as a carla::rpc::ActorAttributeValue.
+    /// 将此对象序列化为 carla::rpc::ActorAttributeValue。
     operator rpc::ActorAttributeValue() const {
       return _attribute;
     }

@@ -19,49 +19,45 @@ namespace client {
 
     ~ServerSideSensor();
 
-    /// Register a @a callback to be executed each time a new measurement is
-    /// received.
+    /// 注册一个 @a 回调，每次收到新的测量值时执行。
     ///
-    /// @warning Calling this function on a sensor that is already listening
-    /// steals the data stream from the previously set callback. Note that
-    /// several instances of Sensor (even in different processes) may point to
-    /// the same sensor in the simulator.
+    /// @warning 在已在监听的传感器上调用此函数会窃取先前设置的回调中的数据流。
+    /// 请注意，多个传感器实例（即使在不同的进程中）可能指向模拟器中的同一传感器。
     void Listen(CallbackFunctionType callback) override;
 
-    /// Stop listening for new measurements.
+    /// 停止监听新的测量结果。
     void Stop() override;
 
-    /// Return whether this Sensor instance is currently listening to the
-    /// associated sensor in the simulator.
+    /// 返回此传感器实例当前是否正在监听模拟器中的相关传感器。
     bool IsListening() const override {
       return listening_mask.test(0);
     }
 
-    /// Listen fr
+    /// 监听 fr
     void ListenToGBuffer(uint32_t GBufferId, CallbackFunctionType callback);
 
-    /// Stop listening for a specific gbuffer stream.
+    /// 停止监听特定的 gbuffer 流。
     void StopGBuffer(uint32_t GBufferId);
 
     inline bool IsListeningGBuffer(uint32_t id) const {
       return listening_mask.test(id + 1);
     }
 
-    /// Enable this sensor for ROS2 publishing
+    /// 启用此传感器以进行 ROS2 发布
     void EnableForROS();
 
-    /// Disable this sensor for ROS2 publishing
+    /// 禁用此传感器以进行 ROS2 发布
     void DisableForROS();
 
-    /// Return if the sensor is publishing for ROS2
+    /// 如果传感器正在为 ROS2 发布，则返回
     bool IsEnabledForROS();
 
-    /// Send data via this sensor
+    /// 通过该传感器发送数据
     void Send(std::string message);
 
     /// @copydoc Actor::Destroy()
     ///
-    /// Additionally stop listening.
+    /// 另外停止监听。
     bool Destroy() override;
 
   private:

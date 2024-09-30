@@ -90,7 +90,7 @@ void export_actor() {
   ;
 
   class_<cc::Actor, boost::noncopyable, boost::shared_ptr<cc::Actor>>("Actor", no_init)
-  // work-around, force return copy to resolve Actor instead of ActorState.
+  // 变通方法，强制返回副本以解决Actor而不是ActorState
       .add_property("id", CALL_RETURNING_COPY(cc::Actor, GetId))
       .add_property("type_id", CALL_RETURNING_COPY(cc::Actor, GetTypeId))
       .add_property("parent", CALL_RETURNING_COPY(cc::Actor, GetParent))
@@ -195,7 +195,7 @@ void export_actor() {
       .def("apply_ackermann_controller_settings", &cc::Vehicle::ApplyAckermannControllerSettings, (arg("settings")))
       .def("get_ackermann_controller_settings", CONST_CALL_WITHOUT_GIL(cc::Vehicle, GetAckermannControllerSettings))
       .def("set_autopilot", CALL_WITHOUT_GIL_2(cc::Vehicle, SetAutopilot, bool, uint16_t), (arg("enabled") = true, arg("tm_port") = ctm::TM_DEFAULT_PORT))
-      .def("get_telemetry_data", CONST_CALL_WITHOUT_GIL(cc::Vehicle, GetTelemetryData))
+      .def("get_telemetry_data", CONST_CALL_WITHOUT_GIL(cc::Vehicle, GetTelemetryData))  // 向客户端暴露遥测数据
       .def("show_debug_telemetry", &cc::Vehicle::ShowDebugTelemetry, (arg("enabled") = true))
       .def("get_speed_limit", &cc::Vehicle::GetSpeedLimit)
       .def("get_traffic_light_state", &cc::Vehicle::GetTrafficLightState)
