@@ -32,12 +32,15 @@ namespace opendrive {
       log_error("unable to parse the OpenDRIVE XML string");
       return {};
     }
-
+// 创建MapBuilder对象，用于构建地图
     carla::road::MapBuilder map_builder;
-
+ // 使用GeoReferenceParser解析器解析XML中的地理参考信息（如坐标系统），并将这些信息传递给map_builder对象以构建地图的地理基础  
     parser::GeoReferenceParser::Parse(xml, map_builder);
+ // 使用RoadParser解析器解析XML中的道路信息（如道路形状、类型等）， 并将这些信息添加到map_builder对象中 
     parser::RoadParser::Parse(xml, map_builder);
+  // 使用JunctionParser解析器解析XML中的交叉路口信息， 并将这些信息添加到map_builder对象中 
     parser::JunctionParser::Parse(xml, map_builder);
+  // 使用GeometryParser解析器解析XML中的几何信息（如道路曲率、边界等）， 并将这些信息添加到map_builder对象中
     parser::GeometryParser::Parse(xml, map_builder);
     parser::LaneParser::Parse(xml, map_builder);
     parser::ProfilesParser::Parse(xml, map_builder);
