@@ -6,13 +6,13 @@
 
 #pragma once
 
-#include "carla/client/Actor.h"  // 引入演员类
-#include "carla/client/ActorList.h"  // 引入演员列表类
+#include "carla/client/Actor.h"  // 引入操作者类
+#include "carla/client/ActorList.h"  // 引入操作者列表类
 #include "carla/client/Vehicle.h"  // 引入车辆类
 #include "carla/client/World.h"  // 引入世界类
 #include "carla/geom/Location.h"  // 引入位置几何类
 #include "carla/road/RoadTypes.h"  // 引入道路类型定义
-#include "carla/rpc/ActorId.h"  // 引入演员ID定义
+#include "carla/rpc/ActorId.h"  // 引入操作者ID定义
 
 #include "carla/trafficmanager/Constants.h"  // 引入交通管理常量
 #include "carla/trafficmanager/SimpleWaypoint.h"  // 引入简单路点类
