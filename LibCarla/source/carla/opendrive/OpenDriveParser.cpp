@@ -42,11 +42,17 @@ namespace opendrive {
     parser::JunctionParser::Parse(xml, map_builder);
   // 使用GeometryParser解析器解析XML中的几何信息（如道路曲率、边界等）， 并将这些信息添加到map_builder对象中
     parser::GeometryParser::Parse(xml, map_builder);
+  // 使用LaneParser解析器解析XML中的车道信息（如车道宽度、方向等）， 并将这些信息添加到map_builder对象中  
     parser::LaneParser::Parse(xml, map_builder);
+  // 使用ProfilesParser解析器解析XML中的道路属性信息（如速度限制、类型等）， 并将这些信息添加到map_builder对象中  
     parser::ProfilesParser::Parse(xml, map_builder);
-    parser::TrafficGroupParser::Parse(xml, map_builder);
+  // 使用TrafficGroupParser解析器解析XML中的交通组信息（如公交专用道、自行车道等） ，并将这些信息添加到map_builder对象中  
+    parser::TrafficGroupParser::Parse(xml, map_builder)
+  // 使用SignalParser解析器解析XML中的交通信号信息（如红绿灯、停车标志等） ，并将这些信息添加到map_builder对象中  
     parser::SignalParser::Parse(xml, map_builder);
+  // 使用ObjectParser解析器解析XML中的静态物体信息（如树木、建筑物等） ，并将这些信息添加到map_builder对象中  
     parser::ObjectParser::Parse(xml, map_builder);
+  // 使用ControllerParser解析器解析XML中可能存在的控制器配置信息  ，并将这些信息添加到map_builder对象中  
     parser::ControllerParser::Parse(xml, map_builder);
 
     return map_builder.Build();
