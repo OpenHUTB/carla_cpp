@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include "carla/road/Map.h"
+#include "carla/road/Map.h" // 引入 carla 交通道路地图的头文件
 
-#include <boost/optional.hpp>
+#include <boost/optional.hpp> // 引入 Boost 库中的可选类型头文件
 
 #include <string>
 // 引入CARLA项目的命名空间，CARLA是一个开源的自动驾驶模拟器
