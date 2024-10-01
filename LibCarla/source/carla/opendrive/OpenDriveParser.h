@@ -6,19 +6,19 @@
 
 #pragma once
 
-#include "carla/road/Map.h"
+#include "carla/road/Map.h" // 引入 carla 交通道路地图的头文件
 
-#include <boost/optional.hpp>
+#include <boost/optional.hpp> // 引入 Boost 库中的可选类型头文件
 
-#include <string>
+#include <string> // 引入字符串类型的头文件
 
-namespace carla {
-namespace opendrive {
+namespace carla { // 定义命名空间 carla
+namespace opendrive { // 定义命名空间 opendrive
 
-  class OpenDriveParser {
+  class OpenDriveParser { // 声明 OpenDriveParser 类
   public:
 
-    static boost::optional<road::Map> Load(const std::string &opendrive);
+    static boost::optional<road::Map> Load(const std::string &opendrive); // 静态成员函数 Load，返回可选的道路地图对象
   };
 
 } // namespace opendrive
