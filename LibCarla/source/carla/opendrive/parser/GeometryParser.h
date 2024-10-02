@@ -6,25 +6,25 @@
 
 #pragma once
 
-namespace pugi {
-  class xml_document;
+namespace pugi { // 声明命名空间 pugi
+  class xml_document; // 前向声明 xml_document 类
 } // namespace pugi
 
-namespace carla {
+namespace carla { // 声明命名空间 carla
 
-namespace road {
-  class MapBuilder;
+namespace road { // 声明命名空间 road
+  class MapBuilder; // 前向声明 MapBuilder 类
 } // namespace road
 
-namespace opendrive {
-namespace parser {
+namespace opendrive { // 声明命名空间 opendrive
+namespace parser { // 声明命名空间 parser
 
-  class GeometryParser {
+  class ControllerParser { // 声明 ControllerParser 类
   public:
 
-    static void Parse(
-        const pugi::xml_document &xml,
-        carla::road::MapBuilder &map_builder);
+    static void Parse( // 静态成员函数 Parse
+        const pugi::xml_document &xml, // 参数：常量引用 pugi 的 xml_document 对象
+        carla::road::MapBuilder &map_builder); // 参数：引用 carla::road 的 MapBuilder 对象
 
   };
 
