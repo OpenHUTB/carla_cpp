@@ -115,164 +115,154 @@ namespace road {
       const LaneId lane_id) {
 
     // lane_id不能为0
-    RELEASE_ASSERT(lane_id != 0);
+  RELEASE_ASSERT(lane_id != 0);  // 断言 lane_id 不为 0
 
-    const bool negative_lane_id = lane_id < 0;
-    double dist = 0.0;
-    double tangent = 0.0;
-    for (const auto &lane : container) {
-      auto info = lane.second.template GetInfo<element::RoadInfoLaneWidth>(s);
-      RELEASE_ASSERT(info != nullptr);
-      const auto current_polynomial = info->GetPolynomial();
-      auto current_dist = current_polynomial.Evaluate(s);
-      auto current_tang = current_polynomial.Tangent(s);
-      if (lane.first != lane_id) {
-        dist += negative_lane_id ? current_dist : -current_dist;
-        tangent += negative_lane_id ? current_tang : -current_tang;
-      } else {
-        current_dist *= 0.5;
-        dist += negative_lane_id ? current_dist : -current_dist;
-        tangent += (negative_lane_id ? current_tang : -current_tang) * 0.5;
-        break;
-      }
+const bool negative_lane_id = lane_id < 0;  // 判断 lane_id 是否为负
+double dist = 0.0;  // 初始化距离
+double tangent = 0.0;  // 初始化切线
+
+for (const auto &lane : container) {  // 遍历所有车道
+    auto info = lane.second.template GetInfo<element::RoadInfoLaneWidth>(s);  // 获取当前车道宽度信息
+    RELEASE_ASSERT(info != nullptr);  // 断言信息不为空
+    const auto current_polynomial = info->GetPolynomial();  // 获取当前多项式
+    auto current_dist = current_polynomial.Evaluate(s);  // 计算当前距离
+    auto current_tang = current_polynomial.Tangent(s);  // 计算当前切线
+
+    if (lane.first != lane_id) {  // 如果当前车道 ID 不等于给定的 lane_id
+        dist += negative_lane_id ? current_dist : -current_dist;  // 根据 lane_id 的正负更新距离
+        tangent += negative_lane_id ? current_tang : -current_tang;  // 根据 lane_id 的正负更新切线
+    } else {  // 如果当前车道 ID 等于给定的 lane_id
+        current_dist *= 0.5;  // 将当前距离乘以 0.5
+        dist += negative_lane_id ? current_dist : -current_dist;  // 更新距离
+        tangent += (negative_lane_id ? current_tang : -current_tang) * 0.5;  // 更新切线
+        break;  // 跳出循环
     }
-    return std::make_pair(dist, tangent);
-  }
+}
+return std::make_pair(dist, tangent);  // 返回距离和切线的对
 
-  geom::Transform Lane::ComputeTransform(const double s) const {
-    const Road *road = GetRoad();
-    DEBUG_ASSERT(road != nullptr);
+geom::Transform Lane::ComputeTransform(const double s) const {  // 计算车道变换
+    const Road *road = GetRoad();  // 获取道路对象
+    DEBUG_ASSERT(road != nullptr);  // 断言道路对象不为空
 
-    // must s be smaller (or eq) than road length and bigger (or eq) than 0?
+    // 确保 s 小于等于道路长度且大于等于 0
     RELEASE_ASSERT(s <= road->GetLength());
     RELEASE_ASSERT(s >= 0.0);
 
-    const auto *lane_section = GetLaneSection();
-    DEBUG_ASSERT(lane_section != nullptr);
-    const std::map<LaneId, Lane> &lanes = lane_section->GetLanes();
+    const auto *lane_section = GetLaneSection();  // 获取车道段
+    DEBUG_ASSERT(lane_section != nullptr);  // 断言车道段不为空
+    const std::map<LaneId, Lane> &lanes = lane_section->GetLanes();  // 获取车道映射
 
-    // check that lane_id exists on the current s
+    // 检查当前 s 上是否存在 lane_id
     RELEASE_ASSERT(!lanes.empty());
-    RELEASE_ASSERT(GetId() >= lanes.begin()->first);
-    RELEASE_ASSERT(GetId() <= lanes.rbegin()->first);
+    RELEASE_ASSERT(GetId() >= lanes.begin()->first);  // 断言 lane_id 在有效范围内
+    RELEASE_ASSERT(GetId() <= lanes.rbegin()->first);  // 断言 lane_id 在有效范围内
 
-    // These will accumulate the lateral offset (t) and lane heading of all
-    // the lanes in between the current lane and lane 0, where the main road
-    // geometry is described
-    float lane_t_offset = 0.0f;
-    float lane_tangent = 0.0f;
+    // 累积当前车道与车道 0 之间的横向偏移 (t) 和车道方向
+    float lane_t_offset = 0.0f;  // 初始化车道横向偏移
+    float lane_tangent = 0.0f;  // 初始化车道方向
 
-    if (GetId() < 0) {
-      // right lane
-      const auto side_lanes = MakeListView(
-          std::make_reverse_iterator(lanes.lower_bound(0)), lanes.rend());
-      const auto computed_width =
-          ComputeTotalLaneWidth(side_lanes, s, GetId());
-      lane_t_offset = static_cast<float>(computed_width.first);
-      lane_tangent = static_cast<float>(computed_width.second);
-    } else if (GetId() > 0) {
-      // left lane
-      const auto side_lanes = MakeListView(lanes.lower_bound(1), lanes.end());
-      const auto computed_width =
-          ComputeTotalLaneWidth(side_lanes, s, GetId());
-      lane_t_offset = static_cast<float>(computed_width.first);
-      lane_tangent = static_cast<float>(computed_width.second);
+    if (GetId() < 0) {  // 如果是右侧车道
+        const auto side_lanes = MakeListView(
+            std::make_reverse_iterator(lanes.lower_bound(0)), lanes.rend());  // 获取从 0 到当前车道的车道列表
+        const auto computed_width =
+            ComputeTotalLaneWidth(side_lanes, s, GetId());  // 计算总车道宽度
+        lane_t_offset = static_cast<float>(computed_width.first);  // 设置车道横向偏移
+        lane_tangent = static_cast<float>(computed_width.second);  // 设置车道方向
+    } else if (GetId() > 0) {  // 如果是左侧车道
+        const auto side_lanes = MakeListView(lanes.lower_bound(1), lanes.end());  // 获取从 1 到当前车道的车道列表
+        const auto computed_width =
+            ComputeTotalLaneWidth(side_lanes, s, GetId());  // 计算总车道宽度
+        lane_t_offset = static_cast<float>(computed_width.first);  // 设置车道横向偏移
+        lane_tangent = static_cast<float>(computed_width.second);  // 设置车道方向
     }
 
-    // Compute the tangent of the road's (lane 0) "laneOffset" on the current s
-    const auto lane_offset_info = road->GetInfo<element::RoadInfoLaneOffset>(s);
+    // 计算当前 s 的道路（车道 0）的“laneOffset”切线
+    const auto lane_offset_info = road->GetInfo<element::RoadInfoLaneOffset>(s);  // 获取车道偏移信息
     const auto lane_offset_tangent =
-        static_cast<float>(lane_offset_info->GetPolynomial().Tangent(s));
+        static_cast<float>(lane_offset_info->GetPolynomial().Tangent(s));  // 获取车道偏移切线
 
-    // Update the road tangent with the "laneOffset" information at current s
+    // 用当前 s 更新道路切线，减去“laneOffset”信息
     lane_tangent -= lane_offset_tangent;
 
-    // Get a directed point on the center of the current lane given an s
+    // 获取在当前 s 的车道中心的有向点
     element::DirectedPoint dp = road->GetDirectedPointIn(s);
 
-    // Transform from the center of the road to the center of the lane
+    // 从道路中心转换到车道中心
     dp.ApplyLateralOffset(lane_t_offset);
 
-    // Update the lane tangent with the road "laneOffset" at current s
+    // 用当前 s 更新车道切线，减去道路的“laneOffset”
     dp.tangent -= lane_tangent;
 
-    // Unreal's Y axis hack
-    dp.location.y *= -1;
-    dp.tangent    *= -1;
+    // Unreal 的 Y 轴转换
+    dp.location.y *= -1;  // 反转 Y 轴
+    dp.tangent    *= -1;  // 反转切线
 
     geom::Rotation rot(
-        geom::Math::ToDegrees(static_cast<float>(dp.pitch)),
-        geom::Math::ToDegrees(static_cast<float>(dp.tangent)),
-        0.0f);
+        geom::Math::ToDegrees(static_cast<float>(dp.pitch)),  // 将俯仰角转换为度
+        geom::Math::ToDegrees(static_cast<float>(dp.tangent)),  // 将切线角转换为度
+        0.0f);  // Z 轴角度设为 0    // Fix the direction of the possitive lanes
+    if (GetId() > 0) {  // 如果车道 ID 大于 0
+    rot.yaw += 180.0f;  // 将偏航角加上 180 度
+    rot.pitch = 360.0f - rot.pitch;  // 将俯仰角调整为 360 度减去当前俯仰角
+}
 
-    // Fix the direction of the possitive lanes
-    if (GetId() > 0) {
-      rot.yaw += 180.0f;
-      rot.pitch = 360.0f - rot.pitch;
+return geom::Transform(dp.location, rot);  // 返回位置和旋转变换
+
+std::pair<geom::Vector3D, geom::Vector3D> Lane::GetCornerPositions(  // 定义获取车道角落位置的方法
+    const double s, const float extra_width) const {  // 接受参数 s 和额外的宽度
+    const Road *road = GetRoad();  // 获取道路对象
+    DEBUG_ASSERT(road != nullptr);  // 断言道路对象不为空
+
+    const auto *lane_section = GetLaneSection();  // 获取车道段
+    DEBUG_ASSERT(lane_section != nullptr);  // 断言车道段不为空
+    const std::map<LaneId, Lane> &lanes = lane_section->GetLanes();  // 获取车道映射
+
+    // 检查当前 s 上是否存在 lane_id
+    RELEASE_ASSERT(!lanes.empty());  // 断言车道不为空
+    RELEASE_ASSERT(GetId() >= lanes.begin()->first);  // 断言 lane_id 不小于最小值
+    RELEASE_ASSERT(GetId() <= lanes.rbegin()->first);  // 断言 lane_id 不大于最大值
+
+    float lane_t_offset = 0.0f;  // 初始化车道横向偏移
+
+    if (GetId() < 0) {  // 如果是右侧车道
+        // 获取从 0 到当前车道的车道列表
+        const auto side_lanes = MakeListView(
+            std::make_reverse_iterator(lanes.lower_bound(0)), lanes.rend());
+        const auto computed_width =
+            ComputeTotalLaneWidth(side_lanes, s, GetId());  // 计算总车道宽度
+        lane_t_offset = static_cast<float>(computed_width.first);  // 设置车道横向偏移
+    } else if (GetId() > 0) {  // 如果是左侧车道
+        // 获取从 1 到当前车道的车道列表
+        const auto side_lanes = MakeListView(lanes.lower_bound(1), lanes.end());
+        const auto computed_width =
+            ComputeTotalLaneWidth(side_lanes, s, GetId());  // 计算总车道宽度
+        lane_t_offset = static_cast<float>(computed_width.first);  // 设置车道横向偏移
     }
 
-    return geom::Transform(dp.location, rot);
-  }
-
-  std::pair<geom::Vector3D, geom::Vector3D> Lane::GetCornerPositions(
-      const double s, const float extra_width) const {
-    const Road *road = GetRoad();
-    DEBUG_ASSERT(road != nullptr);
-
-    const auto *lane_section = GetLaneSection();
-    DEBUG_ASSERT(lane_section != nullptr);
-    const std::map<LaneId, Lane> &lanes = lane_section->GetLanes();
-
-    // check that lane_id exists on the current s
-    RELEASE_ASSERT(!lanes.empty());
-    RELEASE_ASSERT(GetId() >= lanes.begin()->first);
-    RELEASE_ASSERT(GetId() <= lanes.rbegin()->first);
-
-    float lane_t_offset = 0.0f;
-
-    if (GetId() < 0) {
-      // right lane
-      const auto side_lanes = MakeListView(
-          std::make_reverse_iterator(lanes.lower_bound(0)), lanes.rend());
-      const auto computed_width =
-          ComputeTotalLaneWidth(side_lanes, s, GetId());
-      lane_t_offset = static_cast<float>(computed_width.first);
-    } else if (GetId() > 0) {
-      // left lane
-      const auto side_lanes = MakeListView(lanes.lower_bound(1), lanes.end());
-      const auto computed_width =
-          ComputeTotalLaneWidth(side_lanes, s, GetId());
-      lane_t_offset = static_cast<float>(computed_width.first);
+    float lane_width = static_cast<float>(GetWidth(s)) / 2.0f;  // 获取当前车道宽度的一半
+    if (extra_width != 0.f && road->IsJunction() && GetType() == Lane::LaneType::Driving) {  // 如果有额外宽度且是交叉口且车道类型为驾驶
+        lane_width += extra_width;  // 增加额外宽度
     }
 
-    float lane_width = static_cast<float>(GetWidth(s)) / 2.0f;
-    if (extra_width != 0.f && road->IsJunction() && GetType() == Lane::LaneType::Driving) {
-      lane_width += extra_width;
+    // 获取在给定 s 上道路中心的两个点
+    element::DirectedPoint dp_r, dp_l;  // 初始化右侧和左侧的有向点
+    dp_r = dp_l = road->GetDirectedPointIn(s);  // 获取道路中心的有向点
+
+    // 从道路中心转换到每个车道角落
+    dp_r.ApplyLateralOffset(lane_t_offset + lane_width);  // 右侧车道角落
+    dp_l.ApplyLateralOffset(lane_t_offset - lane_width);  // 左侧车道角落
+
+    // Unreal 的 Y 轴处理
+    dp_r.location.y *= -1;  // 反转右侧点的 Y 坐标
+    dp_l.location.y *= -1;  // 反转左侧点的 Y 坐标
+
+    // 对人行道应用偏移
+    if (GetType() == LaneType::Sidewalk) {  // 如果车道类型为人行道
+        // RoadRunner 当前不导出该信息，作为临时解决方案，15.24 cm 是大多数 RoadRunner 人行道匹配的高度
+        dp_r.location.z += 0.1524f;  // 右侧点的 Z 坐标增加 0.1524 米
+        dp_l.location.z += 0.1524f;  // 左侧点的 Z 坐标增加 0.1524 米
+        /// @TODO: 使用 OpenDRIVE 5.3.7.2.1.1.9 车道高度记录
     }
 
-    // Get two points on the center of the road on given s
-    element::DirectedPoint dp_r, dp_l;
-    dp_r = dp_l = road->GetDirectedPointIn(s);
-
-    // Transform from the center of the road to each of lane corners
-    dp_r.ApplyLateralOffset(lane_t_offset + lane_width);
-    dp_l.ApplyLateralOffset(lane_t_offset - lane_width);
-
-    // Unreal's Y axis hack
-    dp_r.location.y *= -1;
-    dp_l.location.y *= -1;
-
-    // Apply an offset to the Sidewalks
-    if (GetType() == LaneType::Sidewalk) {
-      // RoadRunner doesn't export it right now and as a workarround where 15.24 cm
-      // is the exact height that match with most of the RoadRunner sidewalks
-      dp_r.location.z += 0.1524f;
-      dp_l.location.z += 0.1524f;
-      /// @TODO: use the OpenDRIVE 5.3.7.2.1.1.9 Lane Height Record
-    }
-
-    return std::make_pair(dp_r.location, dp_l.location);
-  }
-
-} // road
-} // carla
+    return std::make_pair(dp_r.location, dp_l.location);  // 返回右侧和左侧点的位置
+}
