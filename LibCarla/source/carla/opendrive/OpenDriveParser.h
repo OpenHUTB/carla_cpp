@@ -10,6 +10,7 @@
 
 #include <boost/optional.hpp> // 引入 Boost 库中的可选类型头文件
 
+<<<<<<< HEAD
 #include <string> // 引入字符串类型的头文件
 
 namespace carla { // 定义命名空间 carla
@@ -19,6 +20,19 @@ namespace opendrive { // 定义命名空间 opendrive
   public:
 
     static boost::optional<road::Map> Load(const std::string &opendrive); // 静态成员函数 Load，返回可选的道路地图对象
+=======
+#include <string>
+// 引入CARLA项目的命名空间，CARLA是一个开源的自动驾驶模拟器
+namespace carla {
+namespace opendrive {
+// 定义一个名为OpenDriveParser的类，该类用于解析OpenDRIVE格式的数据 ，OpenDRIVE是一个用于道路网络描述的XML格式标准，广泛应用于自动驾驶仿真领域 
+  class OpenDriveParser {
+  public:
+// 函数返回一个boost::optional<road::Map>类型的值 ， boost::optional是一个模板类，用于表示一个可能不存在的值  
+// 在这里，它表示可能成功解析并生成一个road::Map对象，也可能因为某些原因（如文件不存在、解析错误等）而失败  
+// road::Map是CARLA中定义的一个类，用于表示一个完整的道路网络地图  
+    static boost::optional<road::Map> Load(const std::string &opendrive);
+>>>>>>> c63b32c3e7f7ecdb4d722a71947c0cce148f8fdc
   };
 
 } // namespace opendrive
