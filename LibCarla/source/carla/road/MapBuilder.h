@@ -6,13 +6,13 @@
 
 #pragma once
 
-#include "carla/road/Map.h"
-#include "carla/road/element/RoadInfoCrosswalk.h"
-#include "carla/road/element/RoadInfoSignal.h"
+#include "carla/road/Map.h" // 引入地图模块
+#include "carla/road/element/RoadInfoCrosswalk.h" // 引入人行横道信息模块
+#include "carla/road/element/RoadInfoSignal.h" // 引入交通信号信息模块
 
-#include <boost/optional.hpp>
+#include <boost/optional.hpp> // 引入可选类型模块
 
-#include <map>
+#include <map> // 引入映射容器模块
 
 namespace carla {
 namespace road {
@@ -20,109 +20,109 @@ namespace road {
   class MapBuilder {
   public:
 
-    boost::optional<Map> Build();
+    boost::optional<Map> Build(); // 构建地图并返回一个可选的地图对象
 
-    // called from road parser
+    // 从道路解析器调用
     carla::road::Road *AddRoad(
-        const RoadId road_id,
-        const std::string name,
-        const double length,
-        const JuncId junction_id,
-        const RoadId predecessor,
-        const RoadId successor);
+        const RoadId road_id, // 道路ID
+        const std::string name, // 道路名称
+        const double length, // 道路长度
+        const JuncId junction_id, // 交叉口ID
+        const RoadId predecessor, // 前驱道路ID
+        const RoadId successor); // 后继道路ID
 
     carla::road::LaneSection *AddRoadSection(
-        carla::road::Road *road,
-        const SectionId id,
-        const double s);
+        carla::road::Road *road, // 指向道路的指针
+        const SectionId id, // 道路段ID
+        const double s); // 位置参数
 
     carla::road::Lane *AddRoadSectionLane(
-        carla::road::LaneSection *section,
-        const LaneId lane_id,
-        const uint32_t lane_type,
-        const bool lane_level,
-        const LaneId predecessor,
-        const LaneId successor);
+        carla::road::LaneSection *section, // 道路段指针
+        const LaneId lane_id, // 车道ID
+        const uint32_t lane_type, // 车道类型
+        const bool lane_level, // 是否平坦
+        const LaneId predecessor, // 前驱车道ID
+        const LaneId successor); // 后继车道ID
 
-    // called from geometry parser
+    // 从几何解析器调用
     void AddRoadGeometryLine(
-        carla::road::Road *road,
-        const double s,
-        const double x,
-        const double y,
-        const double hdg,
-        const double length);
+        carla::road::Road *road, // 指向道路的指针
+        const double s, // 位置参数
+        const double x, // x坐标
+        const double y, // y坐标
+        const double hdg, // 航向角
+        const double length); // 线段长度
 
     void AddRoadGeometryArc(
-        carla::road::Road *road,
-        const double s,
-        const double x,
-        const double y,
-        const double hdg,
-        const double length,
-        const double curvature);
+        carla::road::Road *road, // 指向道路的指针
+        const double s, // 位置参数
+        const double x, // x坐标
+        const double y, // y坐标
+        const double hdg, // 航向角
+        const double length, // 弧长
+        const double curvature); // 曲率
 
     void AddRoadGeometrySpiral(
-        carla::road::Road *road,
-        const double s,
-        const double x,
-        const double y,
-        const double hdg,
-        const double length,
-        const double curvStart,
-        const double curvEnd);
+        carla::road::Road *road, // 指向道路的指针
+        const double s, // 位置参数
+        const double x, // x坐标
+        const double y, // y坐标
+        const double hdg, // 航向角
+        const double length, // 螺旋长度
+        const double curvStart, // 起始曲率
+        const double curvEnd); // 结束曲率
 
     void AddRoadGeometryPoly3(
-        carla::road::Road *road,
-        const double s,
-        const double x,
-        const double y,
-        const double hdg,
-        const double length,
-        const double a,
-        const double b,
-        const double c,
-        const double d);
+        carla::road::Road *road, // 指向道路的指针
+        const double s, // 位置参数
+        const double x, // x坐标
+        const double y, // y坐标
+        const double hdg, // 航向角
+        const double length, // 多项式长度
+        const double a, // 多项式系数a
+        const double b, // 多项式系数b
+        const double c, // 多项式系数c
+        const double d); // 多项式系数d
 
     void AddRoadGeometryParamPoly3(
-        carla::road::Road *road,
-        const double s,
-        const double x,
-        const double y,
-        const double hdg,
-        const double length,
-        const double aU,
-        const double bU,
-        const double cU,
-        const double dU,
-        const double aV,
-        const double bV,
-        const double cV,
-        const double dV,
-        const std::string p_range);
+        carla::road::Road *road, // 指向道路的指针
+        const double s, // 位置参数
+        const double x, // x坐标
+        const double y, // y坐标
+        const double hdg, // 航向角
+        const double length, // 多项式长度
+        const double aU, // 多项式系数a (U方向)
+        const double bU, // 多项式系数b (U方向)
+        const double cU, // 多项式系数c (U方向)
+        const double dU, // 多项式系数d (U方向)
+        const double aV, // 多项式系数a (V方向)
+        const double bV, // 多项式系数b (V方向)
+        const double cV, // 多项式系数c (V方向)
+        const double dV, // 多项式系数d (V方向)
+        const std::string p_range); // 参数范围字符串
 
-    // called from profiles parser
+    // 从轮廓解析器调用
     void AddRoadElevationProfile(
-        Road *road,
-        const double s,
-        const double a,
-        const double b,
-        const double c,
-        const double d);
+        Road *road, // 指向道路的指针
+        const double s, // 位置参数
+        const double a, // 高程参数a
+        const double b, // 高程参数b
+        const double c, // 高程参数c
+        const double d); // 高程参数d
 
     void AddRoadObjectCrosswalk(
-        Road *road,
-        const std::string name,
-        const double s,
-        const double t,
-        const double zOffset,
-        const double hdg,
-        const double pitch,
-        const double roll,
-        const std::string orientation,
-        const double width,
-        const double length,
-        const std::vector<road::element::CrosswalkPoint> points);
+        Road *road, // 指向道路的指针
+        const std::string name, // 人行横道名称
+        const double s, // 位置参数
+        const double t, // 横向位置
+        const double zOffset, // 垂直偏移
+        const double hdg, // 航向角
+        const double pitch, // 倾斜角
+        const double roll, // 翻滚角
+        const std::string orientation, // 定位方向
+        const double width, // 宽度
+        const double length, // 长度
+        const std::vector<road::element::CrosswalkPoint> points); // 人行横道点集
 
     // void AddRoadLateralSuperElevation(
     //     Road* road,
@@ -150,8 +150,8 @@ namespace road {
     //     const double d,
     //     const double t);
 
-    // Signal methods
-    element::RoadInfoSignal* AddSignal(
+    // 信号方法   
+ element::RoadInfoSignal* AddSignal(
         Road* road,
         const SignId signal_id,
         const double s,
