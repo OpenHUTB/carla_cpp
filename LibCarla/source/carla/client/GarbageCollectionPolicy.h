@@ -4,15 +4,15 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once // Ö»°üº¬Ò»´ÎµÄÔ¤´¦ÀíÖ¸Áî
+#pragma once // åªåŒ…å«ä¸€æ¬¡çš„é¢„å¤„ç†æŒ‡ä»¤
 
-namespace carla { // ¶¨ÒåcarlaÃüÃû¿Õ¼ä
-namespace client { // ¶¨Òåclient×ÓÃüÃû¿Õ¼ä
+namespace carla { // å®šä¹‰carlaå‘½åç©ºé—´
+namespace client { // å®šä¹‰clientå­å‘½åç©ºé—´
 
-  enum class GarbageCollectionPolicy { // ¶¨ÒåÀ¬»ø»ØÊÕ²ßÂÔµÄÃ¶¾ÙÀà
-    Disabled, // ½ûÓÃÀ¬»ø»ØÊÕ
-    Enabled,  // ÆôÓÃÀ¬»ø»ØÊÕ
-    Inherit   // ¼Ì³ĞÀ¬»ø»ØÊÕÉèÖÃ
+  enum class GarbageCollectionPolicy { // å®šä¹‰åƒåœ¾å›æ”¶ç­–ç•¥çš„æšä¸¾ç±»
+    Disabled, // ç¦ç”¨åƒåœ¾å›æ”¶
+    Enabled,  // å¯ç”¨åƒåœ¾å›æ”¶
+    Inherit   // ç»§æ‰¿åƒåœ¾å›æ”¶è®¾ç½®
   };
 
 } // namespace client

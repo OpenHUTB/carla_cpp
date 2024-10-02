@@ -59,17 +59,17 @@ void AWalkerController::GetBonesTransform(FWalkerBoneControlOut &WalkerBones)
   USkeletalMeshComponent *SkeletalMesh = SkeletalMeshes.IsValidIndex(0) ? SkeletalMeshes[0] : nullptr;
   if (!SkeletalMesh) return;
 
-  // get the walker animation class
+  // 获取行人的动画类
   auto *AnimInst = SkeletalMesh->GetAnimInstance();
   if (!AnimInst) return;
   UWalkerAnim *WalkerAnim = Cast<UWalkerAnim>(AnimInst);
   if (!WalkerAnim) return;
   
-  // get current pose
+  // 获取当前的姿态
   FPoseSnapshot TempSnapshot;
   SkeletalMesh->SnapshotPose(TempSnapshot);
   
-  // copy pose
+  // 拷贝姿态
   // WalkerAnim->Snap = TempSnapshot;
 
   for (int i=0; i<TempSnapshot.BoneNames.Num(); ++i)
