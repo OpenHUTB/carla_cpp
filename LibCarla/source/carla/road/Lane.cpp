@@ -22,88 +22,99 @@
 namespace carla {
 namespace road {
 
+  // 获取当前车道所在的车道段
   const LaneSection *Lane::GetLaneSection() const {
-    return _lane_section;
+    return _lane_section; // 返回车道段指针
   }
 
+  // 获取当前车道所属的道路
   Road *Lane::GetRoad() const {
-    DEBUG_ASSERT(_lane_section != nullptr);
-    return _lane_section->GetRoad();
+    DEBUG_ASSERT(_lane_section != nullptr); // 确保车道段不为空
+    return _lane_section->GetRoad(); // 返回车道段对应的道路
   }
 
+  // 获取当前车道的ID
   LaneId Lane::GetId() const {
-    return _id;
+    return _id; // 返回车道ID
   }
 
+  // 获取当前车道的类型
   Lane::LaneType Lane::GetType() const {
-    return _type;
+    return _type; // 返回车道类型
   }
 
+  // 获取当前车道的等级
   bool Lane::GetLevel() const {
-    return _level;
+    return _level; // 返回车道等级
   }
 
+  // 获取当前车道在道路上的距离
   double Lane::GetDistance() const {
-    DEBUG_ASSERT(_lane_section != nullptr);
-    return _lane_section->GetDistance();
+    DEBUG_ASSERT(_lane_section != nullptr); // 确保车道段不为空
+    return _lane_section->GetDistance(); // 返回距离
   }
 
+  // 获取当前车道的长度
   double Lane::GetLength() const {
-    const auto *road = GetRoad();
-    DEBUG_ASSERT(road != nullptr);
-    const auto s = GetDistance();
-    return road->UpperBound(s) - s;
+    const auto *road = GetRoad(); // 获取所属道路
+    DEBUG_ASSERT(road != nullptr); // 确保道路不为空
+    const auto s = GetDistance(); // 获取车道的距离
+    return road->UpperBound(s) - s; // 计算并返回车道长度
   }
 
+  // 获取指定位置s处的车道宽度
   double Lane::GetWidth(const double s) const {
-    RELEASE_ASSERT(s <= GetRoad()->GetLength());
-    const auto width_info = GetInfo<element::RoadInfoLaneWidth>(s);
+    RELEASE_ASSERT(s <= GetRoad()->GetLength()); // 确保s不超过道路的长度
+    const auto width_info = GetInfo<element::RoadInfoLaneWidth>(s); // 获取宽度信息
     if(width_info != nullptr){
-      return width_info->GetPolynomial().Evaluate(s);
+      return width_info->GetPolynomial().Evaluate(s); // 根据多项式计算并返回宽度
     }
-    return 0.0f;
+    return 0.0f; // 如果没有宽度信息，返回0
   }
 
+  // 检查当前车道是否为直线
   bool Lane::IsStraight() const {
-    Road *road = GetRoad();
-    RELEASE_ASSERT(road != nullptr);
-    auto *geometry = road->GetInfo<element::RoadInfoGeometry>(GetDistance());
-    DEBUG_ASSERT(geometry != nullptr);
-    auto geometry_type = geometry->GetGeometry().GetType();
+    Road *road = GetRoad(); // 获取所属道路
+    RELEASE_ASSERT(road != nullptr); // 确保道路不为空
+    auto *geometry = road->GetInfo<element::RoadInfoGeometry>(GetDistance()); // 获取几何信息
+    DEBUG_ASSERT(geometry != nullptr); // 确保几何信息不为空
+    auto geometry_type = geometry->GetGeometry().GetType(); // 获取几何类型
     if (geometry_type != element::GeometryType::LINE) {
-      return false;
+      return false; // 如果不是直线，返回false
     }
+    // 检查距离是否在几何范围内
     if(GetDistance() < geometry->GetDistance() ||
         GetDistance() + GetLength() >
         geometry->GetDistance() + geometry->GetGeometry().GetLength()) {
-      return false;
+      return false; // 如果不在范围内，返回false
     }
+    // 检查车道偏移信息
     auto lane_offsets = GetInfos<element::RoadInfoLaneOffset>();
     for (auto *lane_offset : lane_offsets) {
       if (std::abs(lane_offset->GetPolynomial().GetC()) > 0 ||
           std::abs(lane_offset->GetPolynomial().GetD()) > 0) {
-        return false;
+        return false; // 如果偏移量不为0，返回false
       }
     }
+    // 检查道路高程信息
     auto elevations = road->GetInfos<element::RoadInfoElevation>();
     for (auto *elevation : elevations) {
       if (std::abs(elevation->GetPolynomial().GetC()) > 0 ||
           std::abs(elevation->GetPolynomial().GetD()) > 0) {
-        return false;
+        return false; // 如果高程不为0，返回false
       }
     }
-    return true;
+    return true; // 如果所有检查通过，返回true
   }
 
-  /// Returns a pair containing first = width, second = tangent,
-  /// for an specific Lane given an s and a iterator over lanes
+  /// 返回一对包含特定车道在给定s和车道迭代器下的宽度和切线
   template <typename T>
   static std::pair<double, double> ComputeTotalLaneWidth(
       const T container,
       const double s,
       const LaneId lane_id) {
 
-    // lane_id can't be 0
+    // lane_id不能为0
     RELEASE_ASSERT(lane_id != 0);
 
     const bool negative_lane_id = lane_id < 0;
