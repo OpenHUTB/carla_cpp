@@ -97,7 +97,7 @@ namespace detail {
   };
 
   // ===========================================================================
-  // -- Client -----------------------------------------------------------------
+  // -- 客户端 -----------------------------------------------------------------
   // ===========================================================================
 
   Client::Client(
@@ -145,22 +145,22 @@ namespace detail {
   }
 
   void Client::LoadEpisode(std::string map_name, bool reset_settings, rpc::MapLayer map_layer) {
-    // Await response, we need to be sure in this one.
+    // 等待响应，我们需要确定这一点。
     _pimpl->CallAndWait<void>("load_new_episode", std::move(map_name), reset_settings, map_layer);
   }
 
   void Client::LoadLevelLayer(rpc::MapLayer map_layer) const {
-    // Await response, we need to be sure in this one.
+    // 等待响应，我们需要确定这一点。
     _pimpl->CallAndWait<void>("load_map_layer", map_layer);
   }
 
   void Client::UnloadLevelLayer(rpc::MapLayer map_layer) const {
-    // Await response, we need to be sure in this one.
+    // 等待响应，我们需要确定这一点。
     _pimpl->CallAndWait<void>("unload_map_layer", map_layer);
   }
 
   void Client::CopyOpenDriveToServer(std::string opendrive, const rpc::OpendriveGenerationParameters & params) {
-    // Await response, we need to be sure in this one.
+    // 等待响应，我们需要确定这一点。
     _pimpl->CallAndWait<void>("copy_opendrive_to_file", std::move(opendrive), params);
   }
 
@@ -203,12 +203,12 @@ namespace detail {
   }
 
   std::vector<std::string> Client::GetRequiredFiles(const std::string &folder, const bool download) const {
-    // Get the list of required files
+    // 获取所需文件列表
     auto requiredFiles = _pimpl->CallAndWait<std::vector<std::string>>("get_required_files", folder);
 
     if (download) {
 
-      // For each required file, check if it exists and request it otherwise
+      // 对于每个所需文件，检查它是否存在，否则请求它
       for (auto requiredFile : requiredFiles) {
         if (!FileTransfer::FileExists(requiredFile)) {
           RequestFile(requiredFile);
@@ -222,16 +222,16 @@ namespace detail {
   }
 
   void Client::RequestFile(const std::string &name) const {
-    // Download the binary content of the file from the server and write it on the client
+    // 从服务器下载文件的二进制内容并写入客户端
     auto content = _pimpl->CallAndWait<std::vector<uint8_t>>("request_file", name);
     FileTransfer::WriteFile(name, content);
   }
 
   std::vector<uint8_t> Client::GetCacheFile(const std::string &name, const bool request_otherwise) const {
-    // Get the file from the cache in the file transfer
+    // 在文件传输中从缓存中获取文件
     std::vector<uint8_t> file = FileTransfer::ReadFile(name);
 
-    // If it isn't in the cache, download it if request otherwise is true
+    // 如果缓存中没有，则下载它（如果请求为真）
     if (file.empty() && request_otherwise) {
       RequestFile(name);
       file = FileTransfer::ReadFile(name);

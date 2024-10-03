@@ -4,124 +4,140 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/Exception.h"
-#include "carla/geom/CubicPolynomial.h"
-#include "carla/geom/Location.h"
-#include "carla/geom/Math.h"
-#include "carla/ListView.h"
-#include "carla/Logging.h"
-#include "carla/road/element/RoadInfoElevation.h"
-#include "carla/road/element/RoadInfoGeometry.h"
-#include "carla/road/element/RoadInfoLaneOffset.h"
-#include "carla/road/element/RoadInfoLaneWidth.h"
-#include "carla/road/Lane.h"
-#include "carla/road/MapData.h"
-#include "carla/road/Road.h"
+#include "carla/Exception.h" // 引入异常处理头文件
+#include "carla/geom/CubicPolynomial.h" // 引入三次多项式几何头文件
+#include "carla/geom/Location.h" // 引入位置几何头文件
+#include "carla/geom/Math.h" // 引入数学运算头文件
+#include "carla/ListView.h" // 引入列表视图头文件
+#include "carla/Logging.h" // 引入日志记录头文件
+#include "carla/road/element/RoadInfoElevation.h" // 引入道路信息的高度头文件
+#include "carla/road/element/RoadInfoGeometry.h" // 引入道路几何信息头文件
+#include "carla/road/element/RoadInfoLaneOffset.h" // 引入车道偏移信息头文件
+#include "carla/road/element/RoadInfoLaneWidth.h" // 引入车道宽度信息头文件
+#include "carla/road/Lane.h" // 引入车道头文件
+#include "carla/road/MapData.h" // 引入地图数据头文件
+#include "carla/road/Road.h" // 引入道路头文件
 
-#include <stdexcept>
+#include <stdexcept> // 引入标准异常处理头文件
 
 namespace carla {
 namespace road {
 
+  // 获取与该道路相关联的地图数据
   const MapData *Road::GetMap() const {
-    return _map_data;
+    return _map_data; // 返回地图数据指针
   }
 
+  // 获取道路的ID
   RoadId Road::GetId() const {
-    return _id;
+    return _id; // 返回道路ID
   }
 
+  // 获取道路名称
   std::string Road::GetName() const {
-    return _name;
+    return _name; // 返回道路名称
   }
 
+  // 获取道路长度
   double Road::GetLength() const {
-    return _length;
+    return _length; // 返回道路长度
   }
 
+  // 判断该道路是否为交叉口
   bool Road::IsJunction() const {
-    return _is_junction;
+    return _is_junction; // 返回是否为交叉口
   }
 
+  // 获取交叉口ID
   JuncId Road::GetJunctionId() const {
-    return _junction_id;
+    return _junction_id; // 返回交叉口ID
   }
 
+  // 获取下一条道路的ID
   RoadId Road::GetSuccessor() const {
-    return _successor;
+    return _successor; // 返回下一条道路ID
   }
 
+  // 获取前一条道路的ID
   RoadId Road::GetPredecessor() const {
-    return _predecessor;
+    return _predecessor; // 返回前一条道路ID
   }
 
+  // 获取下一条道路的指针列表
   std::vector<Road *> Road::GetNexts() const {
-    return _nexts;
+    return _nexts; // 返回下一条道路的指针列表
   }
 
+  // 获取前一条道路的指针列表
   std::vector<Road *> Road::GetPrevs() const {
-    return _prevs;
+    return _prevs; // 返回前一条道路的指针列表
   }
 
+  // 获取给定距离s处的道路高度多项式
   const geom::CubicPolynomial &Road::GetElevationOn(const double s) const {
-    auto info = GetInfo<element::RoadInfoElevation>(s);
-    if (info == nullptr) {
-      throw_exception(std::runtime_error("failed to find road elevation."));
+    auto info = GetInfo<element::RoadInfoElevation>(s); // 获取道路高度信息
+    if (info == nullptr) { // 如果没有找到高度信息
+      throw_exception(std::runtime_error("failed to find road elevation.")); // 抛出异常
     }
-    return info->GetPolynomial();
+    return info->GetPolynomial(); // 返回高度多项式
   }
 
+  // 根据距离s和车道ID获取车道的引用
   Lane &Road::GetLaneByDistance(double s, LaneId lane_id) {
-    for (auto &section : GetLaneSectionsAt(s)) {
-      auto *lane = section.GetLane(lane_id);
-      if (lane != nullptr) {
-        return *lane;
+    for (auto &section : GetLaneSectionsAt(s)) { // 遍历在距离s处的车道段
+      auto *lane = section.GetLane(lane_id); // 获取指定ID的车道
+      if (lane != nullptr) { // 如果找到了车道
+        return *lane; // 返回车道引用
       }
     }
-    throw_exception(std::runtime_error("lane not found"));
+    throw_exception(std::runtime_error("lane not found")); // 抛出异常，表示未找到车道
   }
 
+  // 获取给定距离s和车道ID的常量车道引用
   const Lane &Road::GetLaneByDistance(double s, LaneId lane_id) const {
-    return const_cast<Road *>(this)->GetLaneByDistance(s, lane_id);
+    return const_cast<Road *>(this)->GetLaneByDistance(s, lane_id); // 调用非常量版本
   }
 
+  // 根据距离s获取所有车道的指针列表
   std::vector<Lane*> Road::GetLanesByDistance(double s) {
-    std::vector<Lane*> result;
-    auto lane_sections = GetLaneSectionsAt(s);
-    for (auto &lane_section : lane_sections) {
-      for (auto & lane_pair : lane_section.GetLanes()) {
-        result.emplace_back(&lane_pair.second);
+    std::vector<Lane*> result; // 创建结果列表
+    auto lane_sections = GetLaneSectionsAt(s); // 获取在距离s处的车道段
+    for (auto &lane_section : lane_sections) { // 遍历每个车道段
+      for (auto & lane_pair : lane_section.GetLanes()) { // 遍历车道段中的每个车道
+        result.emplace_back(&lane_pair.second); // 将车道指针添加到结果列表
       }
     }
-    return result;
+    return result; // 返回车道指针列表
   }
 
+  // 根据距离s获取所有车道的常量指针列表
   std::vector<const Lane*> Road::GetLanesByDistance(double s) const {
-    std::vector<const Lane*> result;
-    const auto lane_sections = GetLaneSectionsAt(s);
-    for (const auto &lane_section : lane_sections) {
-      for (const auto & lane_pair : lane_section.GetLanes()) {
-        result.emplace_back(&lane_pair.second);
+    std::vector<const Lane*> result; // 创建结果列表
+    const auto lane_sections = GetLaneSectionsAt(s); // 获取在距离s处的车道段
+    for (const auto &lane_section : lane_sections) { // 遍历每个车道段
+      for (const auto & lane_pair : lane_section.GetLanes()) { // 遍历车道段中的每个车道
+        result.emplace_back(&lane_pair.second); // 将车道指针添加到结果列表
       }
     }
-    return result;
+    return result; // 返回车道指针列表
   }
 
+  // 根据车道段ID和车道ID获取车道的引用
   Lane &Road::GetLaneById(SectionId section_id, LaneId lane_id) {
-    return GetLaneSectionById(section_id).GetLanes().at(lane_id);
+    return GetLaneSectionById(section_id).GetLanes().at(lane_id); // 获取指定车道段中的车道引用
   }
 
+  // 根据车道段ID和车道ID获取车道的常量引用
   const Lane &Road::GetLaneById(SectionId section_id, LaneId lane_id) const {
-    return const_cast<Road *>(this)->GetLaneById(section_id, lane_id);
+    return const_cast<Road *>(this)->GetLaneById(section_id, lane_id); // 调用非常量版本
   }
 
-  // get the lane on a section next to 's'
+  // 获取给定距离s处的下一个车道
   Lane *Road::GetNextLane(const double s, const LaneId lane_id) {
+    auto upper = _lane_sections.upper_bound(s); // 获取距离s的上界车道段
 
-    auto upper = _lane_sections.upper_bound(s);
-
-    while (upper != _lane_sections.end()) {
-      // check id
+    while (upper != _lane_sections.end()) { // 当上界车道段不为空时
+      // 检查ID
       Lane *ptr = upper->second.GetLane(lane_id);
       if (ptr != nullptr) {
         return ptr;

@@ -32,7 +32,7 @@ namespace parser {
       const pugi::xml_document &xml,
       carla::road::MapBuilder &map_builder) {
 
-    // Extracting the OpenDRIVE
+    // 提取 OpenDRIVE
     const pugi::xml_node opendrive_node = xml.child("OpenDRIVE");
     const std::string validity = "validity";
     for (pugi::xml_node road_node = opendrive_node.child("road");

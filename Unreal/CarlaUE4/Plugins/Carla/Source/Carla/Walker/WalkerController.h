@@ -32,11 +32,11 @@ public:
 
   void Tick(float DeltaSeconds) override;
 
-  /// Maximum walk speed allowed in centimetres per second.
+  /// 允许的最大步行速度（以厘米/秒为单位）。
   UFUNCTION(BlueprintCallable)
   float GetMaximumWalkSpeed() const
   {
-    return 4096.0f; // ~147 km/h
+    return 4096.0f; // ~147 km/h（40 米/秒）
   }
 
   UFUNCTION(BlueprintCallable)
