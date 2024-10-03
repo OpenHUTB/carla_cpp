@@ -211,7 +211,7 @@ namespace carla {
 
     /// @copydoc cbuffer()
     boost::asio::const_buffer buffer() const noexcept {
-      return cbuff er();
+      return cbuffer();
     }
     // 创建一个常量的Boost.Asio缓冲区，调用cbuffer函数
 
