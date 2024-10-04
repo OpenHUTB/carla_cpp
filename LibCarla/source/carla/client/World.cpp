@@ -4,124 +4,123 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/World.h"
+#include "carla/client/World.h"  // 引入World类的定义
 
-#include "carla/Logging.h"
-#include "carla/client/Actor.h"
-#include "carla/client/ActorBlueprint.h"
-#include "carla/client/ActorList.h"
-#include "carla/client/detail/Simulator.h"
-#include "carla/StringUtil.h"
-#include "carla/road/SignalType.h"
-#include "carla/road/Junction.h"
-#include "carla/client/TrafficLight.h"
+#include "carla/Logging.h"  // 引入日志记录功能
+#include "carla/client/Actor.h"  // 引入参与者类的定义
+#include "carla/client/ActorBlueprint.h"  // 引入参与者蓝图类的定义
+#include "carla/client/ActorList.h"  // 引入参与者列表类的定义
+#include "carla/client/detail/Simulator.h"  // 引入模拟器的详细信息
+#include "carla/StringUtil.h"  // 引入字符串工具
+#include "carla/road/SignalType.h"  // 引入信号类型定义
+#include "carla/road/Junction.h"  // 引入交叉口类的定义
+#include "carla/client/TrafficLight.h"  // 引入交通灯类的定义
 
-#include <exception>
+#include <exception>  // 引入异常处理
 
 namespace carla {
 namespace client {
 
-  SharedPtr<Map> World::GetMap() const {
-    return _episode.Lock()->GetCurrentMap();
+  SharedPtr<Map> World::GetMap() const {  // 获取地图的方法
+    return _episode.Lock()->GetCurrentMap();  // 返回当前地图
   }
 
-  void World::LoadLevelLayer(rpc::MapLayer map_layers) const {
-    _episode.Lock()->LoadLevelLayer(map_layers);
+  void World::LoadLevelLayer(rpc::MapLayer map_layers) const {  // 加载地图层的方法
+    _episode.Lock()->LoadLevelLayer(map_layers);  // 加载指定的地图层
   }
 
-  void World::UnloadLevelLayer(rpc::MapLayer map_layers) const {
-    _episode.Lock()->UnloadLevelLayer(map_layers);
+  void World::UnloadLevelLayer(rpc::MapLayer map_layers) const {  // 卸载地图层的方法
+    _episode.Lock()->UnloadLevelLayer(map_layers);  // 卸载指定的地图层
   }
 
-  SharedPtr<BlueprintLibrary> World::GetBlueprintLibrary() const {
-    return _episode.Lock()->GetBlueprintLibrary();
+  SharedPtr<BlueprintLibrary> World::GetBlueprintLibrary() const {  // 获取蓝图库的方法
+    return _episode.Lock()->GetBlueprintLibrary();  // 返回蓝图库
   }
 
-  rpc::VehicleLightStateList World::GetVehiclesLightStates() const {
-    return _episode.Lock()->GetVehiclesLightStates();
+  rpc::VehicleLightStateList World::GetVehiclesLightStates() const {  // 获取车辆灯光状态的方法
+    return _episode.Lock()->GetVehiclesLightStates();  // 返回车辆灯光状态列表
   }
 
-  boost::optional<geom::Location> World::GetRandomLocationFromNavigation() const {
-    return _episode.Lock()->GetRandomLocationFromNavigation();
+  boost::optional<geom::Location> World::GetRandomLocationFromNavigation() const {  // 获取随机导航位置的方法
+    return _episode.Lock()->GetRandomLocationFromNavigation();  // 返回随机导航位置
   }
 
-  SharedPtr<Actor> World::GetSpectator() const {
-    return _episode.Lock()->GetSpectator();
+  SharedPtr<Actor> World::GetSpectator() const {  // 获取观众的方法
+    return _episode.Lock()->GetSpectator();  // 返回当前观众
   }
 
-  rpc::EpisodeSettings World::GetSettings() const {
-    return _episode.Lock()->GetEpisodeSettings();
+  rpc::EpisodeSettings World::GetSettings() const {  // 获取设置的方法
+    return _episode.Lock()->GetEpisodeSettings();  // 返回当前剧集设置
   }
 
-  uint64_t World::ApplySettings(const rpc::EpisodeSettings &settings, time_duration timeout) {
-    rpc::EpisodeSettings new_settings = settings;
-    uint64_t id = _episode.Lock()->SetEpisodeSettings(settings);
+  uint64_t World::ApplySettings(const rpc::EpisodeSettings &settings, time_duration timeout) {  // 应用设置的方法
+    rpc::EpisodeSettings new_settings = settings;  // 复制新的设置
+    uint64_t id = _episode.Lock()->SetEpisodeSettings(settings);  // 设置新的剧集设置并返回ID
 
-    time_duration local_timeout = timeout.milliseconds() == 0 ?
-        _episode.Lock()->GetNetworkingTimeout() : timeout;
+    time_duration local_timeout = timeout.milliseconds() == 0 ?  // 判断超时设置
+        _episode.Lock()->GetNetworkingTimeout() : timeout;  // 如果没有设置，则使用默认网络超时
 
-    if (settings.fixed_delta_seconds.has_value()) {
-      using namespace std::literals::chrono_literals;
+    if (settings.fixed_delta_seconds.has_value()) {  // 如果有固定的时间间隔设置
+      using namespace std::literals::chrono_literals;  // 使用时间字面量
 
-      const auto number_of_attemps = 30u;
-      uint64_t tics_correct = 0;
-      for (auto i = 0u; i < number_of_attemps; i++) {
-        const auto curr_snapshot = GetSnapshot();
+      const auto number_of_attemps = 30u;  // 定义最大尝试次数
+      uint64_t tics_correct = 0;  // 记录正确的滴答数
+      for (auto i = 0u; i < number_of_attemps; i++) {  // 尝试应用设置
+        const auto curr_snapshot = GetSnapshot();  // 获取当前快照
 
-        const double error = abs(new_settings.fixed_delta_seconds.get() - curr_snapshot.GetTimestamp().delta_seconds);
-        if (error < std::numeric_limits<float>::epsilon())
-          tics_correct++;
+        const double error = abs(new_settings.fixed_delta_seconds.get() - curr_snapshot.GetTimestamp().delta_seconds);  // 计算误差
+        if (error < std::numeric_limits<float>::epsilon())  // 如果误差在允许范围内
+          tics_correct++;  // 正确滴答数加一
 
-        if (tics_correct >= 2)
-          return id;
+        if (tics_correct >= 2)  // 如果正确滴答数达到2
+          return id;  // 返回设置ID
 
-        Tick(local_timeout);
+        Tick(local_timeout);  // 执行一次Tick操作
       }
 
-      log_warning("World::ApplySettings: After", number_of_attemps, " attemps, the settings were not correctly set. Please check that everything is consistent.");
+      log_warning("World::ApplySettings: After", number_of_attemps, " attempts, the settings were not correctly set. Please check that everything is consistent.");  // 日志警告
     }
-    return id;
+    return id;  // 返回设置ID
   }
 
-  rpc::WeatherParameters World::GetWeather() const {
-    return _episode.Lock()->GetWeatherParameters();
+  rpc::WeatherParameters World::GetWeather() const {  // 获取天气的方法
+    return _episode.Lock()->GetWeatherParameters();  // 返回当前天气参数
   }
 
-  void World::SetWeather(const rpc::WeatherParameters &weather) {
-    _episode.Lock()->SetWeatherParameters(weather);
-  }
-  
-  float World::GetIMUISensorGravity() const {
-    return _episode.Lock()->GetIMUISensorGravity();
+  void World::SetWeather(const rpc::WeatherParameters &weather) {  // 设置天气的方法
+    _episode.Lock()->SetWeatherParameters(weather);  // 应用新的天气参数
   }
 
-  void World::SetIMUISensorGravity(float NewIMUISensorGravity) {
-    _episode.Lock()->SetIMUISensorGravity(NewIMUISensorGravity);
-  }
-  
-
-  WorldSnapshot World::GetSnapshot() const {
-    return _episode.Lock()->GetWorldSnapshot();
+  float World::GetIMUISensorGravity() const {  // 获取IMU传感器重力的方法
+    return _episode.Lock()->GetIMUISensorGravity();  // 返回当前重力设置
   }
 
-  SharedPtr<Actor> World::GetActor(ActorId id) const {
-    auto simulator = _episode.Lock();
-    auto description = simulator->GetActorById(id);
-    return description.has_value() ?
-        simulator->MakeActor(std::move(*description)) :
-        nullptr;
+  void World::SetIMUISensorGravity(float NewIMUISensorGravity) {  // 设置IMU传感器重力的方法
+    _episode.Lock()->SetIMUISensorGravity(NewIMUISensorGravity);  // 应用新的重力设置
   }
 
-  SharedPtr<ActorList> World::GetActors() const {
-    return SharedPtr<ActorList>{new ActorList{
+  WorldSnapshot World::GetSnapshot() const {  // 获取世界快照的方法
+    return _episode.Lock()->GetWorldSnapshot();  // 返回当前世界快照
+  }
+
+  SharedPtr<Actor> World::GetActor(ActorId id) const {  // 根据ID获取参与者的方法
+    auto simulator = _episode.Lock();  // 锁定当前剧集
+    auto description = simulator->GetActorById(id);  // 获取指定ID的参与者描述
+    return description.has_value() ?  // 如果参与者存在
+        simulator->MakeActor(std::move(*description)) :  // 创建并返回参与者实例
+        nullptr;  // 否则返回空指针
+  }
+
+  SharedPtr<ActorList> World::GetActors() const {  // 获取所有参与者的方法
+    return SharedPtr<ActorList>{new ActorList{  // 返回新的参与者列表
                                   _episode,
-                                  _episode.Lock()->GetAllTheActorsInTheEpisode()}};
+                                  _episode.Lock()->GetAllTheActorsInTheEpisode()}};  // 获取所有参与者
   }
 
-  SharedPtr<ActorList> World::GetActors(const std::vector<ActorId> &actor_ids) const {
-    return SharedPtr<ActorList>{new ActorList{
+  SharedPtr<ActorList> World::GetActors(const std::vector<ActorId> &actor_ids) const {  // 根据ID列表获取参与者的方法
+    return SharedPtr<ActorList>{new ActorList{  // 返回新的参与者列表
                                   _episode,
-                                  _episode.Lock()->GetActorsById(actor_ids)}};
+                                  _episode.Lock()->GetActorsById(actor_ids)}};  // 根据ID获取参与者列表
   }
 
   SharedPtr<Actor> World::SpawnActor(
