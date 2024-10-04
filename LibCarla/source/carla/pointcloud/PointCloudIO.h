@@ -44,12 +44,18 @@ namespace pointcloud {// 定义命名空间pointcloud，进一步组织特定于
 
   private:
     template <typename PointIt> static void WriteHeader(std::ostream &out, PointIt begin, PointIt end) {
+      // 断言确保点云数据的数量非负
       DEBUG_ASSERT(std::distance(begin, end) >= 0);
+      // 写入PLY文件的基本头部信息
       out << "ply\n"
            "format ascii 1.0\n"
+           // 写入元素(vertex)的数量，即点云中的点数
            "element vertex " << std::to_string(static_cast<size_t>(std::distance(begin, end))) << "\n";
+      // 假设每个点对象都有WritePlyHeaderInfo方法，用于写入特定的头部信息      
       begin->WritePlyHeaderInfo(out);
+      // 写入PLY文件头部的结束标志
       out << "\nend_header\n";
+      // 设置输出流的格式，固定小数点后4位 
       out << std::fixed << std::setprecision(4u);
     }
   };
