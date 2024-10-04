@@ -244,101 +244,107 @@ namespace client {
   }
 
 
-  void World::EnableEnvironmentObjects(
-      std::vector<uint64_t> env_objects_ids,
-      bool enable) const {
-    _episode.Lock()->EnableEnvironmentObjects(env_objects_ids, enable);
+ void World::EnableEnvironmentObjects(
+      std::vector<uint64_t> env_objects_ids, // 环境对象的 ID 列表
+      bool enable) const { // 是否启用环境对象
+    _episode.Lock()->EnableEnvironmentObjects(env_objects_ids, enable); // 锁定并启用或禁用环境对象
   }
 
-  boost::optional<rpc::LabelledPoint> World::ProjectPoint(
-      geom::Location location, geom::Vector3D direction, float search_distance) const {
-    auto result = _episode.Lock()->ProjectPoint(location, direction, search_distance);
-    if (result.first) {
-      return result.second;
+boost::optional<rpc::LabelledPoint> World::ProjectPoint(
+      geom::Location location, // 要投影的点的位置
+      geom::Vector3D direction, // 投影方向
+      float search_distance) const { // 搜索距离
+    auto result = _episode.Lock()->ProjectPoint(location, direction, search_distance); // 锁定并进行点投影
+    if (result.first) { // 如果投影成功
+      return result.second; // 返回投影结果
     }
-    return {};
+    return {}; // 否则返回空
   }
 
-  boost::optional<rpc::LabelledPoint> World::GroundProjection(
-      geom::Location location, float search_distance) const {
-    const geom::Vector3D DownVector(0,0,-1);
-    return ProjectPoint(location, DownVector, search_distance);
+boost::optional<rpc::LabelledPoint> World::GroundProjection(
+      geom::Location location, // 要投影的点的位置
+      float search_distance) const { // 搜索距离
+    const geom::Vector3D DownVector(0,0,-1); // 定义向下的向量
+    return ProjectPoint(location, DownVector, search_distance); // 调用 ProjectPoint 进行地面投影
   }
 
-  std::vector<rpc::LabelledPoint> World::CastRay(
-      geom::Location start_location, geom::Location end_location) const {
-    return _episode.Lock()->CastRay(start_location, end_location);
+std::vector<rpc::LabelledPoint> World::CastRay(
+      geom::Location start_location, // 射线起始位置
+      geom::Location end_location) const { // 射线结束位置
+    return _episode.Lock()->CastRay(start_location, end_location); // 锁定并进行射线投射
   }
 
-  std::vector<SharedPtr<Actor>> World::GetTrafficLightsFromWaypoint(
-      const Waypoint& waypoint, double distance) const {
-    std::vector<SharedPtr<Actor>> Result;
+std::vector<SharedPtr<Actor>> World::GetTrafficLightsFromWaypoint(
+      const Waypoint& waypoint, // 轨迹点
+      double distance) const { // 距离
+    std::vector<SharedPtr<Actor>> Result; // 保存交通信号灯的结果
     std::vector<SharedPtr<Landmark>> landmarks =
-        waypoint.GetAllLandmarksInDistance(distance);
-    std::set<std::string> added_signals;
-    for (auto& landmark : landmarks) {
-      if (road::SignalType::IsTrafficLight(landmark->GetType())) {
-        SharedPtr<Actor> traffic_light = GetTrafficLight(*(landmark.get()));
-        if (traffic_light) {
-          if(added_signals.count(landmark->GetId()) == 0) {
-            Result.emplace_back(traffic_light);
-            added_signals.insert(landmark->GetId());
+        waypoint.GetAllLandmarksInDistance(distance); // 获取指定距离内的所有地标
+    std::set<std::string> added_signals; // 用于记录已添加的信号
+    for (auto& landmark : landmarks) { // 遍历所有地标
+      if (road::SignalType::IsTrafficLight(landmark->GetType())) { // 判断是否为交通信号灯
+        SharedPtr<Actor> traffic_light = GetTrafficLight(*(landmark.get())); // 获取交通信号灯
+        if (traffic_light) { // 如果找到交通信号灯
+          if(added_signals.count(landmark->GetId()) == 0) { // 检查是否未添加
+            Result.emplace_back(traffic_light); // 添加到结果中
+            added_signals.insert(landmark->GetId()); // 标记为已添加
           }
         }
       }
     }
-    return Result;
+    return Result; // 返回找到的交通信号灯
   }
 
-  std::vector<SharedPtr<Actor>> World::GetTrafficLightsInJunction(
-      const road::JuncId junc_id) const {
-    std::vector<SharedPtr<Actor>> Result;
-    SharedPtr<Map> map = GetMap();
-    const road::Junction* junction = map->GetMap().GetJunction(junc_id);
-    for (const road::ContId& cont_id : junction->GetControllers()) {
+std::vector<SharedPtr<Actor>> World::GetTrafficLightsInJunction(
+      const road::JuncId junc_id) const { // 获取交叉口的交通信号灯
+    std::vector<SharedPtr<Actor>> Result; // 保存结果的向量
+    SharedPtr<Map> map = GetMap(); // 获取地图
+    const road::Junction* junction = map->GetMap().GetJunction(junc_id); // 获取交叉口
+    for (const road::ContId& cont_id : junction->GetControllers()) { // 遍历控制器
       const std::unique_ptr<road::Controller>& controller =
-          map->GetMap().GetControllers().at(cont_id);
-      for (road::SignId sign_id : controller->GetSignals()) {
-        SharedPtr<Actor> traffic_light = GetTrafficLightFromOpenDRIVE(sign_id);
-        if (traffic_light) {
-          Result.emplace_back(traffic_light);
+          map->GetMap().GetControllers().at(cont_id); // 获取控制器
+      for (road::SignId sign_id : controller->GetSignals()) { // 遍历控制器的信号
+        SharedPtr<Actor> traffic_light = GetTrafficLightFromOpenDRIVE(sign_id); // 从 OpenDRIVE 获取交通信号灯
+        if (traffic_light) { // 如果找到交通信号灯
+          Result.emplace_back(traffic_light); // 添加到结果中
         }
       }
     }
-    return Result;
+    return Result; // 返回找到的交通信号灯
   }
 
-  void World::ApplyColorTextureToObject(
-      const std::string &object_name,
-      const rpc::MaterialParameter& parameter,
-      const rpc::TextureColor& Texture) {
-    _episode.Lock()->ApplyColorTextureToObjects({object_name}, parameter, Texture);
+void World::ApplyColorTextureToObject(
+      const std::string &object_name, // 对象名称
+      const rpc::MaterialParameter& parameter, // 材质参数
+      const rpc::TextureColor& Texture) { // 纹理颜色
+    _episode.Lock()->ApplyColorTextureToObjects({object_name}, parameter, Texture); // 锁定并应用颜色纹理到对象
   }
 
-  void World::ApplyColorTextureToObjects(
-      const std::vector<std::string> &objects_name,
-      const rpc::MaterialParameter& parameter,
-      const rpc::TextureColor& Texture) {
-    _episode.Lock()->ApplyColorTextureToObjects(objects_name, parameter, Texture);
+void World::ApplyColorTextureToObjects(
+      const std::vector<std::string> &objects_name, // 对象名称列表
+      const rpc::MaterialParameter& parameter, // 材质参数
+      const rpc::TextureColor& Texture) { // 纹理颜色
+    _episode.Lock()->ApplyColorTextureToObjects(objects_name, parameter, Texture); // 锁定并应用颜色纹理到对象列表
   }
 
-  void World::ApplyFloatColorTextureToObject(
-      const std::string &object_name,
-      const rpc::MaterialParameter& parameter,
-      const rpc::TextureFloatColor& Texture) {
-    _episode.Lock()->ApplyColorTextureToObjects({object_name}, parameter, Texture);
+void World::ApplyFloatColorTextureToObject(
+      const std::string &object_name, // 对象名称
+      const rpc::MaterialParameter& parameter, // 材质参数
+      const rpc::TextureFloatColor& Texture) { // 浮点纹理颜色
+    _episode.Lock()->ApplyColorTextureToObjects({object_name}, parameter, Texture); // 锁定并应用浮点颜色纹理到对象
   }
 
-  void World::ApplyFloatColorTextureToObjects(
-      const std::vector<std::string> &objects_name,
-      const rpc::MaterialParameter& parameter,
-      const rpc::TextureFloatColor& Texture) {
-    _episode.Lock()->ApplyColorTextureToObjects(objects_name, parameter, Texture);
+void World::ApplyFloatColorTextureToObjects(
+      const std::vector<std::string> &objects_name, // 对象名称列表
+      const rpc::MaterialParameter& parameter, // 材质参数
+      const rpc::TextureFloatColor& Texture) { // 浮点纹理颜色
+    _episode.Lock()->ApplyColorTextureToObjects(objects_name, parameter, Texture); // 锁定并应用浮点颜色纹理到对象列表
   }
 
-  std::vector<std::string> World::GetNamesOfAllObjects() const {
-    return _episode.Lock()->GetNamesOfAllObjects();
+std::vector<std::string> World::GetNamesOfAllObjects() const { // 获取所有对象的名称
+    return _episode.Lock()->GetNamesOfAllObjects(); // 锁定并返回所有对象的名称
   }
+
 
   void World::ApplyTexturesToObject(
       const std::string &object_name,
