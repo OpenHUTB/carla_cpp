@@ -425,32 +425,38 @@ void MapBuilder::AddSignalPositionRoad(
         hdg,
         location);
 
-    _temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,
+    _// 将新的道路几何信息添加到临时道路信息容器中
+_temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,
         std::move(line_geometry))));
   }
 
-  void MapBuilder::CreateRoadSpeed(
+// 创建道路速度信息
+void MapBuilder::CreateRoadSpeed(
       Road *road,
       const double s,
       const std::string /*type*/,
       const double max,
       const std::string /*unit*/) {
-    DEBUG_ASSERT(road != nullptr);
+    DEBUG_ASSERT(road != nullptr); // 确保道路指针不为nullptr
+    // 将新的速度信息添加到临时道路信息容器中
     _temp_road_info_container[road].emplace_back(std::make_unique<RoadInfoSpeed>(s, max));
   }
 
-  void MapBuilder::CreateSectionOffset(
+// 创建道路段偏移信息
+void MapBuilder::CreateSectionOffset(
       Road *road,
       const double s,
       const double a,
       const double b,
       const double c,
       const double d) {
-    DEBUG_ASSERT(road != nullptr);
+    DEBUG_ASSERT(road != nullptr); // 确保道路指针不为nullptr
+    // 将新的车道偏移信息添加到临时道路信息容器中
     _temp_road_info_container[road].emplace_back(std::make_unique<RoadInfoLaneOffset>(s, a, b, c, d));
   }
 
-  void MapBuilder::AddRoadGeometryArc(
+// 添加道路几何弧形信息
+void MapBuilder::AddRoadGeometryArc(
       Road *road,
       const double s,
       const double x,
@@ -458,8 +464,10 @@ void MapBuilder::AddSignalPositionRoad(
       const double hdg,
       const double length,
       const double curvature) {
-    DEBUG_ASSERT(road != nullptr);
+    DEBUG_ASSERT(road != nullptr); // 确保道路指针不为nullptr
+    // 创建位置对象
     const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f);
+    // 创建弧形几何对象
     auto arc_geometry = std::make_unique<GeometryArc>(
         s,
         length,
@@ -467,11 +475,13 @@ void MapBuilder::AddSignalPositionRoad(
         location,
         curvature);
 
+    // 将新的道路几何信息（弧形）添加到临时道路信息容器中
     _temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,
         std::move(arc_geometry))));
   }
 
-  void MapBuilder::AddRoadGeometrySpiral(
+// 添加道路几何螺旋形信息
+void MapBuilder::AddRoadGeometrySpiral(
       Road * road,
       const double s,
       const double x,
@@ -480,9 +490,11 @@ void MapBuilder::AddSignalPositionRoad(
       const double length,
       const double curvStart,
       const double curvEnd) {
-    //throw_exception(std::runtime_error("geometry spiral not supported"));
-    DEBUG_ASSERT(road != nullptr);
+    // throw_exception(std::runtime_error("geometry spiral not supported"));
+    DEBUG_ASSERT(road != nullptr); // 确保道路指针不为nullptr
+    // 创建位置对象
     const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f);
+    // 创建螺旋几何对象
     auto spiral_geometry = std::make_unique<GeometrySpiral>(
         s,
         length,
@@ -491,11 +503,13 @@ void MapBuilder::AddSignalPositionRoad(
         curvStart,
         curvEnd);
 
-      _temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,
+    // 将新的道路几何信息（螺旋）添加到临时道路信息容器中
+    _temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,
         std::move(spiral_geometry))));
   }
 
-  void MapBuilder::AddRoadGeometryPoly3(
+// 添加道路几何三次多项式信息
+void MapBuilder::AddRoadGeometryPoly3(
       Road * road,
       const double s,
       const double x,
@@ -506,48 +520,47 @@ void MapBuilder::AddSignalPositionRoad(
       const double b,
       const double c,
       const double d) {
-    //throw_exception(std::runtime_error("geometry poly3 not supported"));
-    DEBUG_ASSERT(road != nullptr);
-    const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f);
-    auto poly3_geometry = std::make_unique<GeometryPoly3>(
-        s,
-        length,
-        hdg,
-        location,
-        a,
-        b,
-        c,
-        d);
-    _temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,
-        std::move(poly3_geometry))));
-  }
+    // throw_exception(std::runtime_error("geometry poly3 not supported"));
+   DEBUG_ASSERT(road != nullptr);  // 确保 road 指针不为空
+const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f);  // 创建一个位置对象，坐标为 (x, y)，高度为 0.0f
+auto poly3_geometry = std::make_unique<GeometryPoly3>(  // 创建一个 GeometryPoly3 对象的智能指针
+    s,
+    length,
+    hdg,
+    location,
+    a,
+    b,
+    c,
+    d);
+_temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,  // 将 RoadInfoGeometry 对象添加到临时道路信息容器中
+    std::move(poly3_geometry))));  // 移动 poly3_geometry 智能指针
 
-  void MapBuilder::AddRoadGeometryParamPoly3(
-      Road * road,
-      const double s,
-      const double x,
-      const double y,
-      const double hdg,
-      const double length,
-      const double aU,
-      const double bU,
-      const double cU,
-      const double dU,
-      const double aV,
-      const double bV,
-      const double cV,
-      const double dV,
-      const std::string p_range) {
-    //throw_exception(std::runtime_error("geometry poly3 not supported"));
-    bool arcLength;
-    if(p_range == "arcLength"){
-      arcLength = true;
-    }else{
-      arcLength = false;
+void MapBuilder::AddRoadGeometryParamPoly3(  // 定义一个函数，用于添加参数化的三次曲线道路几何信息
+    Road * road,  // 道路指针
+    const double s,  // 曲线长度
+    const double x,  // x 坐标
+    const double y,  // y 坐标
+    const double hdg,  // 航向角
+    const double length,  // 道路长度
+    const double aU,  // 参数 U 的系数 a
+    const double bU,  // 参数 U 的系数 b
+    const double cU,  // 参数 U 的系数 c
+    const double dU,  // 参数 U 的系数 d
+    const double aV,  // 参数 V 的系数 a
+    const double bV,  // 参数 V 的系数 b
+    const double cV,  // 参数 V 的系数 c
+    const double dV,  // 参数 V 的系数 d
+    const std::string p_range) {  // 参数范围类型
+    //throw_exception(std::runtime_error("geometry poly3 not supported"));  // 抛出异常，表示不支持三次曲线几何（已注释）
+    bool arcLength;  // 声明一个布尔变量，用于判断弧长
+    if(p_range == "arcLength"){  // 如果参数范围是弧长
+      arcLength = true;  // 设置 arcLength 为 true
+    }else{  // 否则
+      arcLength = false;  // 设置 arcLength 为 false
     }
-    DEBUG_ASSERT(road != nullptr);
-    const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f);
-    auto parampoly3_geometry = std::make_unique<GeometryParamPoly3>(
+    DEBUG_ASSERT(road != nullptr);  // 确保 road 指针不为空
+    const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f);  // 创建一个位置对象
+    auto parampoly3_geometry = std::make_unique<GeometryParamPoly3>(  // 创建一个 GeometryParamPoly3 对象的智能指针
         s,
         length,
         hdg,
@@ -560,40 +573,39 @@ void MapBuilder::AddSignalPositionRoad(
         bV,
         cV,
         dV,
-        arcLength);
-    _temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,
-        std::move(parampoly3_geometry))));
-  }
+        arcLength);  // 将 arcLength 作为参数传入
+    _temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,  // 将 RoadInfoGeometry 对象添加到临时道路信息容器中
+        std::move(parampoly3_geometry))));  // 移动 parampoly3_geometry 智能指针
 
-  void MapBuilder::AddJunction(const int32_t id, const std::string name) {
-    _map_data.GetJunctions().emplace(id, Junction(id, name));
-  }
+void MapBuilder::AddJunction(const int32_t id, const std::string name) {  // 定义一个函数，用于添加交叉口
+    _map_data.GetJunctions().emplace(id, Junction(id, name));  // 在地图数据中添加交叉口
+}
 
-  void MapBuilder::AddConnection(
-      const JuncId junction_id,
-      const ConId connection_id,
-      const RoadId incoming_road,
-      const RoadId connecting_road) {
-    DEBUG_ASSERT(_map_data.GetJunction(junction_id) != nullptr);
-    _map_data.GetJunction(junction_id)->GetConnections().emplace(connection_id,
-        Junction::Connection(connection_id, incoming_road, connecting_road));
-  }
+void MapBuilder::AddConnection(  // 定义一个函数，用于添加交叉口连接
+    const JuncId junction_id,  // 交叉口 ID
+    const ConId connection_id,  // 连接 ID
+    const RoadId incoming_road,  // 输入道路 ID
+    const RoadId connecting_road) {  // 连接道路 ID
+    DEBUG_ASSERT(_map_data.GetJunction(junction_id) != nullptr);  // 确保交叉口存在
+    _map_data.GetJunction(junction_id)->GetConnections().emplace(connection_id,  // 在交叉口中添加连接
+        Junction::Connection(connection_id, incoming_road, connecting_road));  // 创建连接对象并添加
+}
 
-  void MapBuilder::AddLaneLink(
-      const JuncId junction_id,
-      const ConId connection_id,
-      const LaneId from,
-      const LaneId to) {
-    DEBUG_ASSERT(_map_data.GetJunction(junction_id) != nullptr);
-    _map_data.GetJunction(junction_id)->GetConnection(connection_id)->AddLaneLink(from, to);
-  }
+void MapBuilder::AddLaneLink(  // 定义一个函数，用于添加车道链接
+    const JuncId junction_id,  // 交叉口 ID
+    const ConId connection_id,  // 连接 ID
+    const LaneId from,  // 起始车道 ID
+    const LaneId to) {  // 目标车道 ID
+    DEBUG_ASSERT(_map_data.GetJunction(junction_id) != nullptr);  // 确保交叉口存在
+    _map_data.GetJunction(junction_id)->GetConnection(connection_id)->AddLaneLink(from, to);  // 添加车道链接
+}
 
-  void MapBuilder::AddJunctionController(
-      const JuncId junction_id,
-      std::set<road::ContId>&& controllers) {
-    DEBUG_ASSERT(_map_data.GetJunction(junction_id) != nullptr);
-    _map_data.GetJunction(junction_id)->_controllers = std::move(controllers);
-  }
+void MapBuilder::AddJunctionController(  // 定义一个函数，用于添加交叉口控制器
+    const JuncId junction_id,  // 交叉口 ID
+    std::set<road::ContId>&& controllers) {  // 控制器集合
+    DEBUG_ASSERT(_map_data.GetJunction(junction_id) != nullptr);  // 确保交叉口存在
+    _map_data.GetJunction(junction_id)->_controllers = std::move(controllers);  // 移动控制器集合到交叉口
+}
 
   Lane *MapBuilder::GetLane(
       const RoadId road_id,
