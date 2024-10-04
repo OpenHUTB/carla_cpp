@@ -32,9 +32,13 @@ namespace pointcloud {// 定义命名空间pointcloud，进一步组织特定于
 
     template <typename PointIt>
     static std::string SaveToDisk(std::string path, PointIt begin, PointIt end) {
+      // 验证文件路径是否以".ply"结尾，确保文件类型为PLY 
       FileSystem::ValidateFilePath(path, ".ply");
+      // 创建输出文件流对象，并打开文件
       std::ofstream out(path);
+      // 调用Dump函数，将点云数据写入到文件中
       Dump(out, begin, end);
+       // 返回文件路径
       return path;
     }
 
