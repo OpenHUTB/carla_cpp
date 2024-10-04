@@ -204,115 +204,113 @@ namespace road {
         material, width, lc, height, type_name, type_width)); // 创建道路标记记录并添加到临时车道信息容器
   }
   void MapBuilder::CreateRoadMarkTypeLine(
-      Lane *lane,
-      const int road_mark_id,
-      const double length,
-      const double space,
-      const double tOffset,
-      const double s,
-      const std::string rule,
-      const double width) {
-    DEBUG_ASSERT(lane != nullptr);
-    auto it = MakeRoadInfoIterator<RoadInfoMarkRecord>(_temp_lane_info_container[lane]);
-    for (; !it.IsAtEnd(); ++it) {
-      if (it->GetRoadMarkId() == road_mark_id) {
+      Lane *lane,  // 道路车道指针
+      const int road_mark_id,  // 道路标记ID
+      const double length,  // 标记线长度
+      const double space,  // 标记线间距
+      const double tOffset,  // 垂直偏移量
+      const double s,  // 纵向位置
+      const std::string rule,  // 规则字符串
+      const double width) {  // 标记线宽度
+    DEBUG_ASSERT(lane != nullptr);  // 确保车道指针不为空
+    auto it = MakeRoadInfoIterator<RoadInfoMarkRecord>(_temp_lane_info_container[lane]);  // 创建道路信息迭代器
+    for (; !it.IsAtEnd(); ++it) {  // 遍历道路信息
+      if (it->GetRoadMarkId() == road_mark_id) {  // 如果找到匹配的道路标记ID
         it->GetLines().emplace_back(std::make_unique<RoadInfoMarkTypeLine>(s, road_mark_id, length, space,
-            tOffset, rule, width));
-        break;
+            tOffset, rule, width));  // 添加新的标记线对象
+        break;  // 跳出循环
       }
     }
+}
 
-  }
+void MapBuilder::CreateLaneSpeed(
+      Lane *lane,  // 道路车道指针
+      const double s,  // 纵向位置
+      const double max,  // 最大速度
+      const std::string /*unit*/) {  // 单位（未使用）
+    DEBUG_ASSERT(lane != nullptr);  // 确保车道指针不为空
+    _temp_lane_info_container[lane].emplace_back(std::make_unique<RoadInfoSpeed>(s, max));  // 添加车道速度信息
+}
 
-  void MapBuilder::CreateLaneSpeed(
-      Lane *lane,
-      const double s,
-      const double max,
-      const std::string /*unit*/) {
-    DEBUG_ASSERT(lane != nullptr);
-    _temp_lane_info_container[lane].emplace_back(std::make_unique<RoadInfoSpeed>(s, max));
-  }
+element::RoadInfoSignal* MapBuilder::AddSignal(
+      Road* road,  // 道路指针
+      const SignId signal_id,  // 信号ID
+      const double s,  // 纵向位置
+      const double t,  // 横向位置
+      const std::string name,  // 信号名称
+      const std::string dynamic,  // 动态信息
+      const std::string orientation,  // 方向
+      const double zOffset,  // 高度偏移量
+      const std::string country,  // 国家
+      const std::string type,  // 信号类型
+      const std::string subtype,  // 信号子类型
+      const double value,  // 信号值
+      const std::string unit,  // 单位
+      const double height,  // 信号高度
+      const double width,  // 信号宽度
+      const std::string text,  // 文字内容
+      const double hOffset,  // 水平偏移量
+      const double pitch,  // 俯仰角
+      const double roll) {  // 横滚角
+    _temp_signal_container[signal_id] = std::make_unique<Signal>(  // 创建信号对象并存储
+        road->GetId(),  // 获取道路ID
+        signal_id,  // 信号ID
+        s,  // 纵向位置
+        t,  // 横向位置
+        name,  // 信号名称
+        dynamic,  // 动态信息
+        orientation,  // 方向
+        zOffset,  // 高度偏移量
+        country,  // 国家
+        type,  // 信号类型
+        subtype,  // 信号子类型
+        value,  // 信号值
+        unit,  // 单位
+        height,  // 信号高度
+        width,  // 信号宽度
+        text,  // 文字内容
+        hOffset,  // 水平偏移量
+        pitch,  // 俯仰角
+        roll);  // 横滚角
 
+    return AddSignalReference(road, signal_id, s, t, orientation);  // 添加信号引用并返回
+}
 
-  element::RoadInfoSignal* MapBuilder::AddSignal(
-      Road* road,
-      const SignId signal_id,
-      const double s,
-      const double t,
-      const std::string name,
-      const std::string dynamic,
-      const std::string orientation,
-      const double zOffset,
-      const std::string country,
-      const std::string type,
-      const std::string subtype,
-      const double value,
-      const std::string unit,
-      const double height,
-      const double width,
-      const std::string text,
-      const double hOffset,
-      const double pitch,
-      const double roll) {
-    _temp_signal_container[signal_id] = std::make_unique<Signal>(
-        road->GetId(),
-        signal_id,
-        s,
-        t,
-        name,
-        dynamic,
-        orientation,
-        zOffset,
-        country,
-        type,
-        subtype,
-        value,
-        unit,
-        height,
-        width,
-        text,
-        hOffset,
-        pitch,
-        roll);
+void MapBuilder::AddSignalPositionInertial(
+      const SignId signal_id,  // 信号ID
+      const double x,  // X坐标
+      const double y,  // Y坐标
+      const double z,  // Z坐标
+      const double hdg,  // 航向角
+      const double pitch,  // 俯仰角
+      const double roll) {  // 横滚角
+    std::unique_ptr<Signal> &signal = _temp_signal_container[signal_id];  // 获取信号对象引用
+    signal->_using_inertial_position = true;  // 设置为使用惯性位置
+    geom::Location location = geom::Location(x, -y, z);  // 创建位置对象，注意Y轴取反
+    signal->_transform = geom::Transform(location, geom::Rotation(  // 创建变换对象
+        geom::Math::ToDegrees(static_cast<float>(pitch)),  // 俯仰角转换为度
+        geom::Math::ToDegrees(static_cast<float>(-hdg)),  // 航向角转换为度并取反
+        geom::Math::ToDegrees(static_cast<float>(roll))));  // 横滚角转换为度
+}
 
-    return AddSignalReference(road, signal_id, s, t, orientation);
-  }
-
-  void MapBuilder::AddSignalPositionInertial(
-      const SignId signal_id,
-      const double x,
-      const double y,
-      const double z,
-      const double hdg,
-      const double pitch,
-      const double roll) {
-    std::unique_ptr<Signal> &signal = _temp_signal_container[signal_id];
-    signal->_using_inertial_position = true;
-    geom::Location location = geom::Location(x, -y, z);
-    signal->_transform = geom::Transform (location, geom::Rotation(
-        geom::Math::ToDegrees(static_cast<float>(pitch)),
-        geom::Math::ToDegrees(static_cast<float>(-hdg)),
-        geom::Math::ToDegrees(static_cast<float>(roll))));
-  }
-
-  void MapBuilder::AddSignalPositionRoad(
-      const SignId signal_id,
-      const RoadId road_id,
-      const double s,
-      const double t,
-      const double zOffset,
-      const double hOffset,
-      const double pitch,
-      const double roll) {
-    std::unique_ptr<Signal> &signal = _temp_signal_container[signal_id];
-    signal->_road_id = road_id;
-    signal->_s = s;
-    signal->_t = t;
-    signal->_zOffset = zOffset;
-    signal->_hOffset = hOffset;
-    signal->_pitch = pitch;
-    signal->_roll = roll;
-  }
+void MapBuilder::AddSignalPositionRoad(
+      const SignId signal_id,  // 信号ID
+      const RoadId road_id,  // 道路ID
+      const double s,  // 纵向位置
+      const double t,  // 横向位置
+      const double zOffset,  // 高度偏移量
+      const double hOffset,  // 水平偏移量
+      const double pitch,  // 俯仰角
+      const double roll) {  // 横滚角
+    std::unique_ptr<Signal> &signal = _temp_signal_container[signal_id];  // 获取信号对象引用
+    signal->_road_id = road_id;  // 设置道路ID
+    signal->_s = s;  // 设置纵向位置
+    signal->_t = t;  // 设置横向位置
+    signal->_zOffset = zOffset;  // 设置高度偏移量
+    signal->_hOffset = hOffset;  // 设置水平偏移量
+    signal->_pitch = pitch;  // 设置俯仰角
+    signal->_roll = roll;  // 设置横滚角
+}
 
     element::RoadInfoSignal* MapBuilder::AddSignalReference(
         Road* road,
@@ -321,22 +319,26 @@ namespace road {
         const double t_position,
         const std::string signal_reference_orientation) {
 
-      const double epsilon = 0.00001;
-      RELEASE_ASSERT(s_position >= 0.0);
-      // Prevent s_position from being equal to the road length
+      const double epsilon = 0.00001; // 定义一个极小值，用于比较
+      RELEASE_ASSERT(s_position >= 0.0); // 确保s_position为非负数
+      // 防止s_position等于道路长度
       double fixed_s = geom::Math::Clamp(s_position, 0.0, road->GetLength() - epsilon);
+      // 在临时容器中创建一个RoadInfoSignal对象并存储
       _temp_road_info_container[road].emplace_back(std::make_unique<element::RoadInfoSignal>(
           signal_id, road->GetId(), fixed_s, t_position, signal_reference_orientation));
+      // 获取刚刚添加的信号引用
       auto road_info_signal = static_cast<element::RoadInfoSignal*>(
           _temp_road_info_container[road].back().get());
+      // 将信号引用添加到临时信号参考容器中
       _temp_signal_reference_container.emplace_back(road_info_signal);
-      return road_info_signal;
+      return road_info_signal; // 返回信号引用
     }
 
     void MapBuilder::AddValidityToSignalReference(
         element::RoadInfoSignal* signal_reference,
         const LaneId from_lane,
         const LaneId to_lane) {
+      // 为信号引用添加有效性信息
       signal_reference->_validities.emplace_back(LaneValidity(from_lane, to_lane));
     }
 
@@ -344,44 +346,44 @@ namespace road {
         const SignId signal_id,
         const std::string dependency_id,
         const std::string dependency_type) {
+      // 为信号添加依赖关系
       _temp_signal_container[signal_id]->_dependencies.emplace_back(
           SignalDependency(dependency_id, dependency_type));
     }
 
-    // build road objects
+    // 构建道路对象
     carla::road::Road *MapBuilder::AddRoad(
         const RoadId road_id,
         const std::string name,
         const double length,
         const JuncId junction_id,
         const RoadId predecessor,
-        const RoadId successor)
-    {
+        const RoadId successor) {
 
-      // add it
+      // 添加道路
       auto road = &(_map_data._roads.emplace(road_id, Road()).first->second);
 
-      // set road data
-      road->_map_data = &_map_data;
-      road->_id = road_id;
-      road->_name = name;
-      road->_length = length;
-      road->_junction_id = junction_id;
-      (junction_id != -1) ? road->_is_junction = true : road->_is_junction = false;
-      road->_successor = successor;
-      road->_predecessor = predecessor;
+      // 设置道路数据
+      road->_map_data = &_map_data; // 设置地图数据指针
+      road->_id = road_id; // 设置道路ID
+      road->_name = name; // 设置道路名称
+      road->_length = length; // 设置道路长度
+      road->_junction_id = junction_id; // 设置交叉口ID
+      (junction_id != -1) ? road->_is_junction = true : road->_is_junction = false; // 判断是否为交叉口
+      road->_successor = successor; // 设置后继道路
+      road->_predecessor = predecessor; // 设置前驱道路
 
-      return road;
+      return road; // 返回道路对象
   }
 
   carla::road::LaneSection *MapBuilder::AddRoadSection(
       Road *road,
       const SectionId id,
       const double s) {
-    DEBUG_ASSERT(road != nullptr);
-    carla::road::LaneSection &sec = road->_lane_sections.Emplace(id, s);
-    sec._road = road;
-    return &sec;
+    DEBUG_ASSERT(road != nullptr); // 确保道路不为空
+    carla::road::LaneSection &sec = road->_lane_sections.Emplace(id, s); // 在道路中添加车道段
+    sec._road = road; // 设置车道段所属道路
+    return &sec; // 返回车道段对象
   }
 
   carla::road::Lane *MapBuilder::AddRoadSectionLane(
@@ -391,20 +393,20 @@ namespace road {
       const bool lane_level,
       const int32_t predecessor,
       const int32_t successor) {
-    DEBUG_ASSERT(section != nullptr);
+    DEBUG_ASSERT(section != nullptr); // 确保车道段不为空
 
-    // add the lane
+    // 添加车道
     auto *lane = &((section->_lanes.emplace(lane_id, Lane()).first)->second);
 
-    // set lane data
-    lane->_id = lane_id;
-    lane->_lane_section = section;
-    lane->_level = lane_level;
-    lane->_type = static_cast<carla::road::Lane::LaneType>(lane_type);
-    lane->_successor = successor;
-    lane->_predecessor = predecessor;
+    // 设置车道数据
+    lane->_id = lane_id; // 设置车道ID
+    lane->_lane_section = section; // 设置所属车道段
+    lane->_level = lane_level; // 设置车道等级
+    lane->_type = static_cast<carla::road::Lane::LaneType>(lane_type); // 设置车道类型
+    lane->_successor = successor; // 设置后继车道
+    lane->_predecessor = predecessor; // 设置前驱车道
 
-    return lane;
+    return lane; // 返回车道对象
   }
 
   void MapBuilder::AddRoadGeometryLine(
@@ -414,8 +416,9 @@ namespace road {
       const double y,
       const double hdg,
       const double length) {
-    DEBUG_ASSERT(road != nullptr);
-    const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f);
+    DEBUG_ASSERT(road != nullptr); // 确保道路不为空
+    const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f); // 创建位置对象
+    // 创建几何线对象
     auto line_geometry = std::make_unique<GeometryLine>(
         s,
         length,
