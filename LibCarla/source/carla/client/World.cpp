@@ -123,123 +123,126 @@ namespace client {
                                   _episode.Lock()->GetActorsById(actor_ids)}};  // 根据ID获取参与者列表
   }
 
-  SharedPtr<Actor> World::SpawnActor(
-      const ActorBlueprint &blueprint,
-      const geom::Transform &transform,
-      Actor *parent_actor,
-      rpc::AttachmentType attachment_type,
-      const std::string& socket_name) {
+ SharedPtr<Actor> World::SpawnActor(
+      const ActorBlueprint &blueprint, // 参与者蓝图
+      const geom::Transform &transform, // 变换信息
+      Actor *parent_actor, // 父参与者
+      rpc::AttachmentType attachment_type, // 附加类型
+      const std::string& socket_name) { // 套接字名称
     return _episode.Lock()->SpawnActor(blueprint, transform, parent_actor, attachment_type, GarbageCollectionPolicy::Inherit, socket_name);
+    // 使用给定参数生成新的参与者
   }
 
   SharedPtr<Actor> World::TrySpawnActor(
-      const ActorBlueprint &blueprint,
-      const geom::Transform &transform,
-      Actor *parent_actor,
-      rpc::AttachmentType attachment_type,
-      const std::string& socket_name) noexcept {
+      const ActorBlueprint &blueprint, // 参与者蓝图
+      const geom::Transform &transform, // 变换信息
+      Actor *parent_actor, // 父参与者
+      rpc::AttachmentType attachment_type, // 附加类型
+      const std::string& socket_name) noexcept { // 套接字名称
     try {
       return SpawnActor(blueprint, transform, parent_actor, attachment_type, socket_name);
+      // 尝试生成参与者，若成功返回参与者指针
     } catch (const std::exception &) {
-      return nullptr;
+      return nullptr; // 发生异常时返回空指针
     }
   }
 
-  WorldSnapshot World::WaitForTick(time_duration timeout) const {
+  WorldSnapshot World::WaitForTick(time_duration timeout) const { // 等待tick时间
     time_duration local_timeout = timeout.milliseconds() == 0 ?
-        _episode.Lock()->GetNetworkingTimeout() : timeout;
+        _episode.Lock()->GetNetworkingTimeout() : timeout; // 根据情况确定超时时间
 
-    return _episode.Lock()->WaitForTick(local_timeout);
+    return _episode.Lock()->WaitForTick(local_timeout); // 等待并返回快照
   }
 
-  size_t World::OnTick(std::function<void(WorldSnapshot)> callback) {
-    return _episode.Lock()->RegisterOnTickEvent(std::move(callback));
+  size_t World::OnTick(std::function<void(WorldSnapshot)> callback) { // 注册tick事件
+    return _episode.Lock()->RegisterOnTickEvent(std::move(callback)); // 返回回调ID
   }
 
-  void World::RemoveOnTick(size_t callback_id) {
-    _episode.Lock()->RemoveOnTickEvent(callback_id);
+  void World::RemoveOnTick(size_t callback_id) { // 移除tick事件
+    _episode.Lock()->RemoveOnTickEvent(callback_id); // 根据ID移除
   }
 
-  uint64_t World::Tick(time_duration timeout) {
+  uint64_t World::Tick(time_duration timeout) { // 执行tick操作
     time_duration local_timeout = timeout.milliseconds() == 0 ?
-        _episode.Lock()->GetNetworkingTimeout() : timeout;
-    return _episode.Lock()->Tick(local_timeout);
+        _episode.Lock()->GetNetworkingTimeout() : timeout; // 确定超时时间
+    return _episode.Lock()->Tick(local_timeout); // 执行tick并返回结果
   }
 
-  void World::SetPedestriansCrossFactor(float percentage) {
-    _episode.Lock()->SetPedestriansCrossFactor(percentage);
+  void World::SetPedestriansCrossFactor(float percentage) { // 设置行人过街因子
+    _episode.Lock()->SetPedestriansCrossFactor(percentage); // 更新因子
   }
 
-  void World::SetPedestriansSeed(unsigned int seed) {
-    _episode.Lock()->SetPedestriansSeed(seed);
+  void World::SetPedestriansSeed(unsigned int seed) { // 设置行人种子
+    _episode.Lock()->SetPedestriansSeed(seed); // 更新种子值
   }
 
-  SharedPtr<Actor> World::GetTrafficSign(const Landmark& landmark) const {
-    SharedPtr<ActorList> actors = GetActors();
-    SharedPtr<TrafficSign> result;
-    std::string landmark_id = landmark.GetId();
+  SharedPtr<Actor> World::GetTrafficSign(const Landmark& landmark) const { // 获取交通标志
+    SharedPtr<ActorList> actors = GetActors(); // 获取所有参与者
+    SharedPtr<TrafficSign> result; // 结果变量
+    std::string landmark_id = landmark.GetId(); // 获取地标ID
     for (size_t i = 0; i < actors->size(); i++) {
-      SharedPtr<Actor> actor = actors->at(i);
-      if (StringUtil::Match(actor->GetTypeId(), "*traffic.*")) {
-        TrafficSign* sign = static_cast<TrafficSign*>(actor.get());
-        if(sign && (sign->GetSignId() == landmark_id)) {
-          return actor;
+      SharedPtr<Actor> actor = actors->at(i); // 遍历参与者
+      if (StringUtil::Match(actor->GetTypeId(), "*traffic.*")) { // 匹配交通标志类型
+        TrafficSign* sign = static_cast<TrafficSign*>(actor.get()); // 转换为交通标志指针
+        if(sign && (sign->GetSignId() == landmark_id)) { // 匹配ID
+          return actor; // 返回匹配的参与者
         }
       }
     }
-    return nullptr;
+    return nullptr; // 未找到时返回空指针
   }
 
-  SharedPtr<Actor> World::GetTrafficLight(const Landmark& landmark) const {
-    SharedPtr<ActorList> actors = GetActors();
-    SharedPtr<TrafficLight> result;
-    std::string landmark_id = landmark.GetId();
+  SharedPtr<Actor> World::GetTrafficLight(const Landmark& landmark) const { // 获取交通信号灯
+    SharedPtr<ActorList> actors = GetActors(); // 获取所有参与者
+    SharedPtr<TrafficLight> result; // 结果变量
+    std::string landmark_id = landmark.GetId(); // 获取地标ID
     for (size_t i = 0; i < actors->size(); i++) {
-      SharedPtr<Actor> actor = actors->at(i);
-      if (StringUtil::Match(actor->GetTypeId(), "*traffic_light*")) {
-        TrafficLight* tl = static_cast<TrafficLight*>(actor.get());
-        if(tl && (tl->GetSignId() == landmark_id)) {
-          return actor;
+      SharedPtr<Actor> actor = actors->at(i); // 遍历参与者
+      if (StringUtil::Match(actor->GetTypeId(), "*traffic_light*")) { // 匹配交通灯类型
+        TrafficLight* tl = static_cast<TrafficLight*>(actor.get()); // 转换为交通灯指针
+        if(tl && (tl->GetSignId() == landmark_id)) { // 匹配ID
+          return actor; // 返回匹配的参与者
         }
       }
     }
-    return nullptr;
+    return nullptr; // 未找到时返回空指针
   }
 
-  SharedPtr<Actor> World::GetTrafficLightFromOpenDRIVE(const road::SignId& sign_id) const {
-    SharedPtr<ActorList> actors = GetActors();
-    SharedPtr<TrafficLight> result;
+  SharedPtr<Actor> World::GetTrafficLightFromOpenDRIVE(const road::SignId& sign_id) const { // 从OpenDRIVE获取交通信号灯
+    SharedPtr<ActorList> actors = GetActors(); // 获取所有参与者
+    SharedPtr<TrafficLight> result; // 结果变量
     for (size_t i = 0; i < actors->size(); i++) {
-      SharedPtr<Actor> actor = actors->at(i);
-      if (StringUtil::Match(actor->GetTypeId(), "*traffic_light*")) {
-        TrafficLight* tl = static_cast<TrafficLight*>(actor.get());
-        if(tl && (tl->GetSignId() == sign_id)) {
-          return actor;
+      SharedPtr<Actor> actor = actors->at(i); // 遍历参与者
+      if (StringUtil::Match(actor->GetTypeId(), "*traffic_light*")) { // 匹配交通灯类型
+        TrafficLight* tl = static_cast<TrafficLight*>(actor.get()); // 转换为交通灯指针
+        if(tl && (tl->GetSignId() == sign_id)) { // 匹配ID
+          return actor; // 返回匹配的参与者
         }
       }
     }
-    return nullptr;
+    return nullptr; // 未找到时返回空指针
   }
 
-  void World::ResetAllTrafficLights() {
-    _episode.Lock()->ResetAllTrafficLights();
+  void World::ResetAllTrafficLights() { // 重置所有交通信号灯
+    _episode.Lock()->ResetAllTrafficLights(); // 调用重置方法
   }
 
-  SharedPtr<LightManager> World::GetLightManager() const {
-    return _episode.Lock()->GetLightManager();
+  SharedPtr<LightManager> World::GetLightManager() const { // 获取光照管理器
+    return _episode.Lock()->GetLightManager(); // 返回光照管理器
   }
 
-  void World::FreezeAllTrafficLights(bool frozen) {
-    _episode.Lock()->FreezeAllTrafficLights(frozen);
+  void World::FreezeAllTrafficLights(bool frozen) { // 冻结或解冻所有交通信号灯
+    _episode.Lock()->FreezeAllTrafficLights(frozen); // 调用冻结方法
   }
 
-  std::vector<geom::BoundingBox> World::GetLevelBBs(uint8_t queried_tag) const {
-    return _episode.Lock()->GetLevelBBs(queried_tag);
+  std::vector<geom::BoundingBox> World::GetLevelBBs(uint8_t queried_tag) const { // 获取级别边界框
+    return _episode.Lock()->GetLevelBBs(queried_tag); // 返回边界框列表
   }
 
-  std::vector<rpc::EnvironmentObject> World::GetEnvironmentObjects(uint8_t queried_tag) const {
-    return _episode.Lock()->GetEnvironmentObjects(queried_tag);
+  std::vector<rpc::EnvironmentObject> World::GetEnvironmentObjects(uint8_t queried_tag) const { // 获取环境对象
+    return _episode.Lock()->GetEnvironmentObjects(queried_tag); // 返回环境对象列表
   }
+
 
   void World::EnableEnvironmentObjects(
       std::vector<uint64_t> env_objects_ids,
