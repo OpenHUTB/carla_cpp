@@ -4,30 +4,37 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/ActorBlueprint.h"
+#include "carla/client/ActorBlueprint.h"//引入ActorBlueprint类相关头文件
 
-#include "carla/Exception.h"
-#include "carla/StringUtil.h"
+#include "carla/Exception.h"//引入异常处理头文件
+#include "carla/StringUtil.h"//引入字符串工具头文件，用于字符串操作
 
-#include <algorithm>
+#include <algorithm>//引入算法库
 
 namespace carla {
 namespace client {
-
+//函数：FillMap
+//作用：将 source 容器中的元素移动到 destination map 中，并根据 item.id 作为 key
   template <typename Map, typename Container>
   static void FillMap(Map &destination, Container &source) {
+  	//预先分配空间，提高效率
     destination.reserve(source.size());
+    //遍历 source 容器中的每个元素
     for (auto &item : source) {
       auto id = item.id;
+      //将 item.id 作为 map 的键，并将 item 的所有权转移到 map 中去
       destination.emplace(id, std::move(item));
     }
   }
-
+//ActorBlueprint 构造函数
+//作用：根据 rpc::ActorBlueprint 初始化ActorBlueprint对象
   ActorBlueprint::ActorBlueprint(rpc::ActorDefinition definition)
-    : _uid(definition.uid),
-      _id(std::move(definition.id)) {
+    : _uid(definition.uid), //初始化成员变量 _uid
+      _id(std::move(definition.id)) { //将定义中的 id 移动赋值给 _id
     StringUtil::Split(_tags, definition.tags, ",");
+    //将 tags 按逗号分隔，并储存到 _tags列表中
     FillMap(_attributes, definition.attributes);
+    //调用 FillMap 函数，将 attributes 从 definition 移动到 _attributes 中
   }
 
   bool ActorBlueprint::MatchTags(const std::string &wildcard_pattern) const {
