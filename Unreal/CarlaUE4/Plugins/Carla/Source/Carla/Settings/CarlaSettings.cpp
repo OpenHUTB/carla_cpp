@@ -34,19 +34,25 @@ const FName UCarlaSettings::CARLA_SKY_TAG = FName("CARLA_SKY");
 // =============================================================================
 // -- Static methods -----------------------------------------------------------
 // =============================================================================
-
+// 定义一个静态函数，用于将字符串转换为质量等级枚举值  
+// 参数：  
+// - SQualitySettingsLevel：一个FString类型的字符串，表示质量等级的设置  
+// - Default：一个EQualityLevel类型的默认值，当字符串不匹配任何已知质量等级时返回此值，默认为EQualityLevel::INVALID 
 static EQualityLevel QualityLevelFromString(
     const FString &SQualitySettingsLevel,
     const EQualityLevel Default = EQualityLevel::INVALID)
 {
+  // 如果输入字符串等于"Low"，则返回EQualityLevel::Low 
   if (SQualitySettingsLevel.Equals("Low"))
   {
     return EQualityLevel::Low;
   }
+  // 如果输入字符串等于"Epic"，则返回EQualityLevel::Epic
   if (SQualitySettingsLevel.Equals("Epic"))
   {
     return EQualityLevel::Epic;
   }
+  // 如果字符串不匹配"Low"或"Epic"，则返回传入的默认值
   return Default;
 }
 
