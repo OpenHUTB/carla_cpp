@@ -813,200 +813,229 @@ geom::Transform MapBuilder::ComputeSignalTransform(std::unique_ptr<Signal> &sign
 }
 
   void MapBuilder::SolveSignalReferencesAndTransforms() {
+    // 遍历临时信号引用容器
     for(auto signal_reference : _temp_signal_reference_container){
-      signal_reference->_signal =
-          _temp_signal_container[signal_reference->_signal_id].get();
+        // 将信号引用的信号指针设置为临时信号容器中的信号
+        signal_reference->_signal =
+            _temp_signal_container[signal_reference->_signal_id].get();
     }
 
+    // 遍历临时信号容器
     for(auto& signal_pair : _temp_signal_container) {
-      auto& signal = signal_pair.second;
-      if (signal->_using_inertial_position) {
-        continue;
-      }
-      auto transform = ComputeSignalTransform(signal, _map_data);
-      if (SignalType::IsTrafficLight(signal->GetType())) {
-        transform.location = transform.location +
-            geom::Location(transform.GetForwardVector()*0.25);
-      }
-      signal->_transform = transform;
+        auto& signal = signal_pair.second; // 获取信号对象
+        if (signal->_using_inertial_position) { // 如果使用惯性位置则跳过
+            continue;
+        }
+        // 计算信号变换
+        auto transform = ComputeSignalTransform(signal, _map_data);
+        // 如果信号类型是交通灯
+        if (SignalType::IsTrafficLight(signal->GetType())) {
+            // 调整交通灯位置
+            transform.location = transform.location +
+                geom::Location(transform.GetForwardVector()*0.25);
+        }
+        // 设置信号的变换属性
+        signal->_transform = transform;
     }
 
+    // 移动临时信号容器到地图数据中
     _map_data._signals = std::move(_temp_signal_container);
 
+    // 生成信号引用的默认有效性
     GenerateDefaultValiditiesForSignalReferences();
-  }
+}
 
-  void MapBuilder::SolveControllerAndJuntionReferences() {
+void MapBuilder::SolveControllerAndJuntionReferences() {
+    // 遍历地图数据中的所有交叉口
     for(const auto& junction : _map_data._junctions) {
-      for(const auto& controller : junction.second._controllers) {
-        auto it = _map_data._controllers.find(controller);
-        if(it != _map_data._controllers.end()){
-          if( it->second != nullptr ){
-            it->second->_junctions.insert(junction.first);
-            for(const auto & signal : it->second->_signals) {
-              auto signal_it = _map_data._signals.find(signal);
-              if( signal_it->second != nullptr ){
-                signal_it->second->_controllers.insert(controller);
-              }
+        // 遍历每个交叉口的控制器
+        for(const auto& controller : junction.second._controllers) {
+            // 在地图数据中查找控制器
+            auto it = _map_data._controllers.find(controller);
+            if(it != _map_data._controllers.end()){ // 如果找到了控制器
+                if( it->second != nullptr ){ // 确保控制器不为空
+                    // 将交叉口添加到控制器的交叉口集合中
+                    it->second->_junctions.insert(junction.first);
+                    // 遍历控制器管理的信号
+                    for(const auto & signal : it->second->_signals) {
+                        // 查找信号在地图数据中的位置
+                        auto signal_it = _map_data._signals.find(signal);
+                        if( signal_it->second != nullptr ){ // 确保信号不为空
+                            // 将控制器添加到信号的控制器集合中
+                            signal_it->second->_controllers.insert(controller);
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
+}
 
-  void MapBuilder::CreateJunctionBoundingBoxes(Map &map) {
+void MapBuilder::CreateJunctionBoundingBoxes(Map &map) {
+    // 遍历地图中的所有交叉口
     for (auto &junctionpair : map._data.GetJunctions()) {
-      auto* junction = map.GetJunction(junctionpair.first);
-      auto waypoints = map.GetJunctionWaypoints(junction->GetId(), Lane::LaneType::Any);
-      const int number_intervals = 10;
+        auto* junction = map.GetJunction(junctionpair.first); // 获取交叉口对象
+        auto waypoints = map.GetJunctionWaypoints(junction->GetId(), Lane::LaneType::Any); // 获取交叉口的路径点
+        const int number_intervals = 10; // 定义分段数量
 
-      float minx = std::numeric_limits<float>::max();
-      float miny = std::numeric_limits<float>::max();
-      float minz = std::numeric_limits<float>::max();
-      float maxx = -std::numeric_limits<float>::max();
-      float maxy = -std::numeric_limits<float>::max();
-      float maxz = -std::numeric_limits<float>::max();
+        // 初始化最小和最大坐标
+        float minx = std::numeric_limits<float>::max();
+        float miny = std::numeric_limits<float>::max();
+        float minz = std::numeric_limits<float>::max();
+        float maxx = -std::numeric_limits<float>::max();
+        float maxy = -std::numeric_limits<float>::max();
+        float maxz = -std::numeric_limits<float>::max();
 
-      auto get_min_max = [&](geom::Location position) {
-        if (position.x < minx) {
-          minx = position.x;
+        // 定义获取最小和最大坐标的Lambda函数
+        auto get_min_max = [&](geom::Location position) {
+            // 更新最小坐标
+            if (position.x < minx) {
+                minx = position.x;
+            }
+            if (position.y < miny) {
+                miny = position.y;
+            }
+            if (position.z < minz) {
+                minz = position.z;
+            }
+
+            // 更新最大坐标
+            if (position.x > maxx) {
+                maxx = position.x;
+            }
+            if (position.y > maxy) {
+                maxy = position.y;
+            }
+            if (position.z > maxz) {
+                maxz = position.z;
+            }
+        };
+
+        // 遍历所有路径点
+        for (auto &waypoint_p : waypoints) {
+            auto &waypoint_start = waypoint_p.first; // 起始路径点
+            auto &waypoint_end = waypoint_p.second; // 结束路径点
+            double interval = (waypoint_end.s - waypoint_start.s) / static_cast<double>(number_intervals); // 计算间隔
+            auto next_wp = waypoint_end; // 下一个路径点
+            auto location = map.ComputeTransform(next_wp).location; // 获取位置
+
+            // 更新最小和最大坐标
+            get_min_max(location);
+
+            next_wp = waypoint_start; // 重置下一个路径点
+            location = map.ComputeTransform(next_wp).location; // 获取位置
+
+            // 更新最小和最大坐标
+            get_min_max(location);
+
+            // 遍历分段
+            for (int i = 0; i < number_intervals; ++i) {
+                if (interval < std::numeric_limits<double>::epsilon()) // 如果间隔很小则跳出
+                    break;
+                auto next = map.GetNext(next_wp, interval); // 获取下一个路径点
+                if(next.size()){ // 如果找到了下一个路径点
+                    next_wp = next.back(); // 更新下一个路径点
+                }
+
+                location = map.ComputeTransform(next_wp).location; // 获取位置
+                get_min_max(location); // 更新最小和最大坐标
+            }
         }
-        if (position.y < miny) {
-          miny = position.y;
-        }
-        if (position.z < minz) {
-          minz = position.z;
-        }
+        // 计算交叉口的中心位置和范围
+        carla::geom::Location location(0.5f * (maxx + minx), 0.5f * (maxy + miny), 0.5f * (maxz + minz));
+        carla::geom::Vector3D extent(0.5f * (maxx - minx), 0.5f * (maxy - miny), 0.5f * (maxz - minz));
 
-        if (position.x > maxx) {
-          maxx = position.x;
-        }
-        if (position.y > maxy) {
-          maxy = position.y;
-        }
-        if (position.z > maxz) {
-          maxz = position.z;
-        }
-      };
-
-      for (auto &waypoint_p : waypoints) {
-        auto &waypoint_start = waypoint_p.first;
-        auto &waypoint_end = waypoint_p.second;
-        double interval = (waypoint_end.s - waypoint_start.s) / static_cast<double>(number_intervals);
-        auto next_wp = waypoint_end;
-        auto location = map.ComputeTransform(next_wp).location;
-
-        get_min_max(location);
-
-        next_wp = waypoint_start;
-        location = map.ComputeTransform(next_wp).location;
-
-        get_min_max(location);
-
-        for (int i = 0; i < number_intervals; ++i) {
-          if (interval < std::numeric_limits<double>::epsilon())
-            break;
-          auto next = map.GetNext(next_wp, interval);
-          if(next.size()){
-            next_wp = next.back();
-          }
-
-          location = map.ComputeTransform(next_wp).location;
-          get_min_max(location);
-        }
-      }
-      carla::geom::Location location(0.5f * (maxx + minx), 0.5f * (maxy + miny), 0.5f * (maxz + minz));
-      carla::geom::Vector3D extent(0.5f * (maxx - minx), 0.5f * (maxy - miny), 0.5f * (maxz - minz));
-
-      junction->_bounding_box = carla::geom::BoundingBox(location, extent);
+        // 设置交叉口的边界框
+        junction->_bounding_box = carla::geom::BoundingBox(location, extent);
     }
-  }
+}
 
 void MapBuilder::CreateController(
-  const ContId controller_id,
-  const std::string controller_name,
-  const uint32_t controller_sequence,
-  const std::set<road::SignId>&& signals) {
+  const ContId controller_id, // 控制器ID
+  const std::string controller_name, // 控制器名称
+  const uint32_t controller_sequence, // 控制器序列
+  const std::set<road::SignId>&& signals) { // 控制器管理的信号集合
 
-    // Add the Controller to MapData
+    // 将控制器添加到地图数据中
     auto controller_pair = _map_data._controllers.emplace(
       std::make_pair(
           controller_id,
           std::make_unique<Controller>(controller_id, controller_name, controller_sequence)));
 
-    DEBUG_ASSERT(controller_pair.first != _map_data._controllers.end());
-    DEBUG_ASSERT(controller_pair.first->second);
+    DEBUG_ASSERT(controller_pair.first != _map_data._controllers.end()); // 确保控制器成功添加
+    DEBUG_ASSERT(controller_pair.first->second); // 确保控制器对象不为空
 
-    // Add the signals owned by the controller
+    // 添加控制器管理的信号
     controller_pair.first->second->_signals = std::move(signals);
 
-    // Add ContId to the signal owned by this Controller
-    auto& signals_map = _map_data._signals;
-    for(auto signal: signals) {
-      auto it = signals_map.find(signal);
-      if(it != signals_map.end()) {
-        it->second->_controllers.insert(signal);
+    // 将控制器ID添加到该控制器管理的信号中
+    auto& signals_map = _map_data._signals; // 获取信号映射
+    for(auto signal: signals) { // 遍历信号集合
+      auto it = signals_map.find(signal); // 查找信号
+      if(it != signals_map.end()) { // 如果找到信号
+        it->second->_controllers.insert(controller_id); // 将控制器添加到信号的控制器集合中
       }
     }
 }
 
-  void MapBuilder::ComputeJunctionRoadConflicts(Map &map) {
+void MapBuilder::ComputeJunctionRoadConflicts(Map &map) {
+    // 遍历地图中的所有交叉口
     for (auto &junctionpair : map._data.GetJunctions()) {
-      auto& junction = junctionpair.second;
-      junction._road_conflicts = (map.ComputeJunctionConflicts(junction.GetId()));
+      auto& junction = junctionpair.second; // 获取交叉口对象
+      junction._road_conflicts = (map.ComputeJunctionConflicts(junction.GetId())); // 计算交叉口的道路冲突
     }
-  }
+}
 
-  void MapBuilder::GenerateDefaultValiditiesForSignalReferences() {
+void MapBuilder::GenerateDefaultValiditiesForSignalReferences() {
+    // 遍历临时信号引用容器
     for (auto * signal_reference : _temp_signal_reference_container) {
-      if (signal_reference->_validities.size() == 0) {
-        Road* road = GetRoad(signal_reference->GetRoadId());
-        auto lanes = road->GetLanesByDistance(signal_reference->GetS());
-        switch (signal_reference->GetOrientation()) {
-          case SignalOrientation::Positive: {
-            LaneId min_lane = 1;
-            LaneId max_lane = 0;
-            for (const auto* lane : lanes) {
-              auto lane_id = lane->GetId();
-              if(lane_id > max_lane) {
+      if (signal_reference->_validities.size() == 0) { // 如果信号引用没有有效性
+        Road* road = GetRoad(signal_reference->GetRoadId()); // 获取信号引用所在的道路
+        auto lanes = road->GetLanesByDistance(signal_reference->GetS()); // 根据距离获取车道
+        switch (signal_reference->GetOrientation()) { // 根据信号的朝向进行处理
+          case SignalOrientation::Positive: { // 正向信号
+            LaneId min_lane = 1; // 最小车道ID初始化为1
+            LaneId max_lane = 0; // 最大车道ID初始化为0
+            for (const auto* lane : lanes) { // 遍历车道
+              auto lane_id = lane->GetId(); // 获取车道ID
+              if(lane_id > max_lane) { // 更新最大车道ID
                 max_lane = lane_id;
               }
             }
-            if(min_lane <= max_lane) {
-              AddValidityToSignalReference(signal_reference, min_lane, max_lane);
+            if(min_lane <= max_lane) { // 如果最小车道ID小于等于最大车道ID
+              AddValidityToSignalReference(signal_reference, min_lane, max_lane); // 添加有效性
             }
             break;
           }
-          case SignalOrientation::Negative: {
-            LaneId min_lane = 0;
-            LaneId max_lane = -1;
-            for (const auto* lane : lanes) {
-              auto lane_id = lane->GetId();
-              if(lane_id < min_lane) {
+          case SignalOrientation::Negative: { // 反向信号
+            LaneId min_lane = 0; // 最小车道ID初始化为0
+            LaneId max_lane = -1; // 最大车道ID初始化为-1
+            for (const auto* lane : lanes) { // 遍历车道
+              auto lane_id = lane->GetId(); // 获取车道ID
+              if(lane_id < min_lane) { // 更新最小车道ID
                 min_lane = lane_id;
               }
             }
-            if(min_lane <= max_lane) {
-              AddValidityToSignalReference(signal_reference, min_lane, max_lane);
+            if(min_lane <= max_lane) { // 如果最小车道ID小于等于最大车道ID
+              AddValidityToSignalReference(signal_reference, min_lane, max_lane); // 添加有效性
             }
             break;
           }
-          case SignalOrientation::Both: {
-            // Get positive lanes
-            LaneId min_lane = 1;
-            LaneId max_lane = 0;
-            for (const auto* lane : lanes) {
-              auto lane_id = lane->GetId();
-              if(lane_id > max_lane) {
+          case SignalOrientation::Both: { // 双向信号
+            // 获取正向车道
+            LaneId min_lane = 1; // 最小车道ID初始化为1
+            LaneId max_lane = 0; // 最大车道ID初始化为0
+            for (const auto* lane : lanes) { // 遍历车道
+              auto lane_id = lane->GetId(); // 获取车道ID
+              if(lane_id > max_lane) { // 更新最大车道ID
                 max_lane = lane_id;
               }
             }
-            if(min_lane <= max_lane) {
-              AddValidityToSignalReference(signal_reference, min_lane, max_lane);
+            if(min_lane <= max_lane) { // 如果最小车道ID小于等于最大车道ID
+              AddValidityToSignalReference(signal_reference, min_lane, max_lane); // 添加有效性
             }
 
-            // get negative lanes
+            // 获取反向车道
             min_lane = 0;
             max_lane = -1;
             for (const auto* lane : lanes) {
