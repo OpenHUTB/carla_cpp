@@ -346,61 +346,83 @@ std::vector<std::string> World::GetNamesOfAllObjects() const { // 获取所有�
   }
 
 
-  void World::ApplyTexturesToObject(
-      const std::string &object_name,
-      const rpc::TextureColor& diffuse_texture,
-      const rpc::TextureFloatColor& emissive_texture,
-      const rpc::TextureFloatColor& normal_texture,
-      const rpc::TextureFloatColor& ao_roughness_metallic_emissive_texture)
-  {
-    if (diffuse_texture.GetWidth() && diffuse_texture.GetHeight()) {
-      ApplyColorTextureToObject(
-          object_name, rpc::MaterialParameter::Tex_Diffuse, diffuse_texture);
-    }
-    if (normal_texture.GetWidth() && normal_texture.GetHeight()) {
-      ApplyFloatColorTextureToObject(
-          object_name, rpc::MaterialParameter::Tex_Normal, normal_texture);
-    }
-    if (ao_roughness_metallic_emissive_texture.GetWidth() &&
-        ao_roughness_metallic_emissive_texture.GetHeight()) {
-      ApplyFloatColorTextureToObject(
-          object_name,
-          rpc::MaterialParameter::Tex_Ao_Roughness_Metallic_Emissive,
-          ao_roughness_metallic_emissive_texture);
-    }
-    if (emissive_texture.GetWidth() && emissive_texture.GetHeight()) {
-      ApplyFloatColorTextureToObject(
-          object_name, rpc::MaterialParameter::Tex_Emissive, emissive_texture);
-    }
+void World::ApplyTexturesToObject(
+    const std::string &object_name, // 对象名称
+    const rpc::TextureColor& diffuse_texture, // 漫反射纹理
+    const rpc::TextureFloatColor& emissive_texture, // 自发光纹理
+    const rpc::TextureFloatColor& normal_texture, // 法线纹理
+    const rpc::TextureFloatColor& ao_roughness_metallic_emissive_texture) // AO、粗糙度、金属度、自发光纹理
+{
+  // 检查漫反射纹理的宽度和高度是否有效
+  if (diffuse_texture.GetWidth() && diffuse_texture.GetHeight()) {
+    // 将漫反射纹理应用于指定对象
+    ApplyColorTextureToObject(
+        object_name, rpc::MaterialParameter::Tex_Diffuse, diffuse_texture);
   }
+  
+  // 检查法线纹理的宽度和高度是否有效
+  if (normal_texture.GetWidth() && normal_texture.GetHeight()) {
+    // 将法线纹理应用于指定对象
+    ApplyFloatColorTextureToObject(
+        object_name, rpc::MaterialParameter::Tex_Normal, normal_texture);
+  }
+  
+  // 检查AO、粗糙度、金属度和自发光纹理的宽度和高度是否有效
+  if (ao_roughness_metallic_emissive_texture.GetWidth() &&
+      ao_roughness_metallic_emissive_texture.GetHeight()) {
+    // 将AO、粗糙度、金属度和自发光纹理应用于指定对象
+    ApplyFloatColorTextureToObject(
+        object_name,
+        rpc::MaterialParameter::Tex_Ao_Roughness_Metallic_Emissive,
+        ao_roughness_metallic_emissive_texture);
+  }
+  
+  // 检查自发光纹理的宽度和高度是否有效
+  if (emissive_texture.GetWidth() && emissive_texture.GetHeight()) {
+    // 将自发光纹理应用于指定对象
+    ApplyFloatColorTextureToObject(
+        object_name, rpc::MaterialParameter::Tex_Emissive, emissive_texture);
+  }
+}
 
-  void World::ApplyTexturesToObjects(
-      const std::vector<std::string> &objects_names,
-      const rpc::TextureColor& diffuse_texture,
-      const rpc::TextureFloatColor& emissive_texture,
-      const rpc::TextureFloatColor& normal_texture,
-      const rpc::TextureFloatColor& ao_roughness_metallic_emissive_texture)
-  {
-    if (diffuse_texture.GetWidth() && diffuse_texture.GetHeight()) {
-      ApplyColorTextureToObjects(
-          objects_names, rpc::MaterialParameter::Tex_Diffuse, diffuse_texture);
-    }
-    if (normal_texture.GetWidth() && normal_texture.GetHeight()) {
-      ApplyFloatColorTextureToObjects(
-          objects_names, rpc::MaterialParameter::Tex_Normal, normal_texture);
-    }
-    if (ao_roughness_metallic_emissive_texture.GetWidth() &&
-        ao_roughness_metallic_emissive_texture.GetHeight()) {
-      ApplyFloatColorTextureToObjects(
-          objects_names,
-          rpc::MaterialParameter::Tex_Ao_Roughness_Metallic_Emissive,
-          ao_roughness_metallic_emissive_texture);
-    }
-    if (emissive_texture.GetWidth() && emissive_texture.GetHeight()) {
-      ApplyFloatColorTextureToObjects(
-          objects_names, rpc::MaterialParameter::Tex_Emissive, emissive_texture);
-    }
+void World::ApplyTexturesToObjects(
+    const std::vector<std::string> &objects_names, // 对象名称列表
+    const rpc::TextureColor& diffuse_texture, // 漫反射纹理
+    const rpc::TextureFloatColor& emissive_texture, // 自发光纹理
+    const rpc::TextureFloatColor& normal_texture, // 法线纹理
+    const rpc::TextureFloatColor& ao_roughness_metallic_emissive_texture) // AO、粗糙度、金属度、自发光纹理
+{
+  // 检查漫反射纹理的宽度和高度是否有效
+  if (diffuse_texture.GetWidth() && diffuse_texture.GetHeight()) {
+    // 将漫反射纹理应用于多个指定对象
+    ApplyColorTextureToObjects(
+        objects_names, rpc::MaterialParameter::Tex_Diffuse, diffuse_texture);
   }
+  
+  // 检查法线纹理的宽度和高度是否有效
+  if (normal_texture.GetWidth() && normal_texture.GetHeight()) {
+    // 将法线纹理应用于多个指定对象
+    ApplyFloatColorTextureToObjects(
+        objects_names, rpc::MaterialParameter::Tex_Normal, normal_texture);
+  }
+  
+  // 检查AO、粗糙度、金属度和自发光纹理的宽度和高度是否有效
+  if (ao_roughness_metallic_emissive_texture.GetWidth() &&
+      ao_roughness_metallic_emissive_texture.GetHeight()) {
+    // 将AO、粗糙度、金属度和自发光纹理应用于多个指定对象
+    ApplyFloatColorTextureToObjects(
+        objects_names,
+        rpc::MaterialParameter::Tex_Ao_Roughness_Metallic_Emissive,
+        ao_roughness_metallic_emissive_texture);
+  }
+  
+  // 检查自发光纹理的宽度和高度是否有效
+  if (emissive_texture.GetWidth() && emissive_texture.GetHeight()) {
+    // 将自发光纹理应用于多个指定对象
+    ApplyFloatColorTextureToObjects(
+        objects_names, rpc::MaterialParameter::Tex_Emissive, emissive_texture);
+  }
+}
 
 } // namespace client
 } // namespace carla
