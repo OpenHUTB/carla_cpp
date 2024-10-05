@@ -607,209 +607,210 @@ void MapBuilder::AddJunctionController(  // 定义一个函数，用于添加交
     _map_data.GetJunction(junction_id)->_controllers = std::move(controllers);  // 移动控制器集合到交叉口
 }
 
-  Lane *MapBuilder::GetLane(
+Lane *MapBuilder::GetLane(
       const RoadId road_id,
       const LaneId lane_id,
       const double s) {
+    // 根据给定的道路ID、车道ID和距离s，获取车道的指针
     return &_map_data.GetRoad(road_id).GetLaneByDistance(s, lane_id);
-  }
+}
 
-  Road *MapBuilder::GetRoad(
+Road *MapBuilder::GetRoad(
       const RoadId road_id) {
+    // 根据道路ID获取道路的指针
     return &_map_data.GetRoad(road_id);
-  }
+}
 
-  // return the pointer to a lane object
-  Lane *MapBuilder::GetEdgeLanePointer(RoadId road_id, bool from_start, LaneId lane_id) {
+// 返回车道对象的指针
+Lane *MapBuilder::GetEdgeLanePointer(RoadId road_id, bool from_start, LaneId lane_id) {
 
+    // 检查地图数据中是否包含给定的道路ID
     if (!_map_data.ContainsRoad(road_id)) {
-      return nullptr;
+      return nullptr; // 如果不包含，返回空指针
     }
-    Road &road = _map_data.GetRoad(road_id);
+    Road &road = _map_data.GetRoad(road_id); // 获取对应的道路
 
-    // get the lane section
+    // 获取车道段
     LaneSection *section;
     if (from_start) {
-      section = road.GetStartSection(lane_id);
+      section = road.GetStartSection(lane_id); // 从起点获取车道段
     } else {
-      section = road.GetEndSection(lane_id);
+      section = road.GetEndSection(lane_id); // 从终点获取车道段
     }
 
-    // get the lane
-    DEBUG_ASSERT(section != nullptr);
-    return section->GetLane(lane_id);
-  }
+    // 获取车道
+    DEBUG_ASSERT(section != nullptr); // 确保车道段不是空指针
+    return section->GetLane(lane_id); // 返回车道的指针
+}
 
-  // return a list of pointers to all lanes from a lane (using road and junction
-  // info)
-  std::vector<Lane *> MapBuilder::GetLaneNext(
+// 返回从指定车道出发的所有后续车道的指针列表（使用道路和交叉口信息）
+std::vector<Lane *> MapBuilder::GetLaneNext(
       RoadId road_id,
       SectionId section_id,
       LaneId lane_id) {
-    std::vector<Lane *> result;
+    std::vector<Lane *> result; // 存储结果的向量
 
+    // 检查地图数据中是否包含给定的道路ID
     if (!_map_data.ContainsRoad(road_id)) {
-      return result;
+      return result; // 如果不包含，返回空列表
     }
-    Road &road = _map_data.GetRoad(road_id);
+    Road &road = _map_data.GetRoad(road_id); // 获取对应的道路
 
-    // get the section
+    // 获取车道段
     LaneSection &section = road._lane_sections.GetById(section_id);
 
-    // get the lane
+    // 获取车道
     Lane *lane = section.GetLane(lane_id);
-    DEBUG_ASSERT(lane != nullptr);
+    DEBUG_ASSERT(lane != nullptr); // 确保车道不是空指针
 
-    // successor and predecessor (road and lane)
+    // 获取后继和前驱（道路和车道）
     LaneId next;
     RoadId next_road;
     if (lane_id <= 0) {
-      next_road = road.GetSuccessor();
-      next = lane->GetSuccessor();
+      next_road = road.GetSuccessor(); // 获取后继道路ID
+      next = lane->GetSuccessor(); // 获取后继车道ID
     } else {
-      next_road = road.GetPredecessor();
-      next = lane->GetPredecessor();
+      next_road = road.GetPredecessor(); // 获取前驱道路ID
+      next = lane->GetPredecessor(); // 获取前驱车道ID
     }
 
-    // check to see if next is a road or a junction
+    // 检查后继是否是道路或交叉口
     bool next_is_junction = !_map_data.ContainsRoad(next_road);
-    double s = section.GetDistance();
+    double s = section.GetDistance(); // 获取车道段的距离
 
-    // check if we are in a lane section in the middle
+    // 检查是否在中间的车道段
     if ((lane_id > 0 && s > 0) ||
         (lane_id <= 0 && road._lane_sections.upper_bound(s) != road._lane_sections.end())) {
-      // check if lane has a next link (if not, it deads in the middle section)
+      // 检查车道是否有后继链接（如果没有，说明它在中间段结束）
       if (next != 0 || (lane_id == 0 && next == 0)) {
-        // change to next / prev section
+        // 切换到下一个/上一个车道段
         if (lane_id <= 0) {
-          result.push_back(road.GetNextLane(s, next));
+          result.push_back(road.GetNextLane(s, next)); // 获取下一个车道
         } else {
-          result.push_back(road.GetPrevLane(s, next));
+          result.push_back(road.GetPrevLane(s, next)); // 获取上一个车道
         }
       }
     } else if (!next_is_junction) {
-      // change to another road / junction
+      // 切换到另一条道路/交叉口
       if (next != 0 || (lane_id == 0 && next == 0)) {
-        // single road
-        result.push_back(GetEdgeLanePointer(next_road, (next <= 0), next));
+        // 单一路段
+        result.push_back(GetEdgeLanePointer(next_road, (next <= 0), next)); // 获取边缘车道指针
       }
     } else {
-      // several roads (junction)
+      // 多条道路（交叉口）
 
-      /// @todo Is it correct to use a road id as section id? (NS: I just added
-      /// this cast to avoid compiler warnings).
+      /// @todo 是否正确使用道路ID作为段ID？（NS: 我只是添加了这个强制转换以避免编译器警告）。
       auto next_road_as_junction = static_cast<JuncId>(next_road);
-      auto options = GetJunctionLanes(next_road_as_junction, road_id, lane_id);
+      auto options = GetJunctionLanes(next_road_as_junction, road_id, lane_id); // 获取交叉口车道
       for (auto opt : options) {
-        result.push_back(GetEdgeLanePointer(opt.first, (opt.second <= 0), opt.second));
+        result.push_back(GetEdgeLanePointer(opt.first, (opt.second <= 0), opt.second)); // 将选项添加到结果中
       }
     }
 
-    return result;
-  }
+    return result; // 返回车道指针列表
+}
 
-  std::vector<std::pair<RoadId, LaneId>> MapBuilder::GetJunctionLanes(
+std::vector<std::pair<RoadId, LaneId>> MapBuilder::GetJunctionLanes(
       JuncId junction_id,
       RoadId road_id,
       LaneId lane_id) {
-    std::vector<std::pair<RoadId, LaneId>> result;
+    std::vector<std::pair<RoadId, LaneId>> result; // 存储结果的向量
 
-    // get the junction
-    Junction *junction = _map_data.GetJunction(junction_id);
-    if (junction == nullptr) {
-      return result;
-    }
+    // 获取交叉口（具体实现未显示）
+   Junction *junction = _map_data.GetJunction(junction_id); // 根据 junction_id 获取交叉口指针
+if (junction == nullptr) { // 检查交叉口是否为空
+  return result; // 如果为空，返回结果
+}
 
-    // check all connections
-    for (auto con : junction->_connections) {
-      // only connections for our road
-      if (con.second.incoming_road == road_id) {
-        // for center lane it is always next lane id 0, we don't need to search
-        // because it is not in the junction
-        if (lane_id == 0) {
-          result.push_back(std::make_pair(con.second.connecting_road, 0));
-        } else {
-          // check all lane links
-          for (auto link : con.second.lane_links) {
-            // is our lane id ?
-            if (link.from == lane_id) {
-              // add as option
-              result.push_back(std::make_pair(con.second.connecting_road, link.to));
-            }
-          }
-        }
-      }
-    }
-
-    return result;
-  }
-
-  // assign pointers to the next lanes
-  void MapBuilder::CreatePointersBetweenRoadSegments(void) {
-    // process each lane to define its nexts
-    for (auto &road : _map_data._roads) {
-      for (auto &section : road.second._lane_sections) {
-        for (auto &lane : section.second._lanes) {
-
-          // assign the next lane pointers
-          lane.second._next_lanes = GetLaneNext(road.first, section.second._id, lane.first);
-
-          // add to each lane found, this as its predecessor
-          for (auto next_lane : lane.second._next_lanes) {
-            // add as previous
-            DEBUG_ASSERT(next_lane != nullptr);
-            next_lane->_prev_lanes.push_back(&lane.second);
-          }
-
-        }
-      }
-    }
-
-    // process each lane to define its nexts
-    for (auto &road : _map_data._roads) {
-      for (auto &section : road.second._lane_sections) {
-        for (auto &lane : section.second._lanes) {
-
-          // add next roads
-          for (auto next_lane : lane.second._next_lanes) {
-            DEBUG_ASSERT(next_lane != nullptr);
-            // avoid same road
-            if (next_lane->GetRoad() != &road.second) {
-              if (std::find(road.second._nexts.begin(), road.second._nexts.end(),
-                  next_lane->GetRoad()) == road.second._nexts.end()) {
-                road.second._nexts.push_back(next_lane->GetRoad());
-              }
-            }
-          }
-
-          // add prev roads
-          for (auto prev_lane : lane.second._prev_lanes) {
-            DEBUG_ASSERT(prev_lane != nullptr);
-            // avoid same road
-            if (prev_lane->GetRoad() != &road.second) {
-              if (std::find(road.second._prevs.begin(), road.second._prevs.end(),
-                  prev_lane->GetRoad()) == road.second._prevs.end()) {
-                road.second._prevs.push_back(prev_lane->GetRoad());
-              }
-            }
-          }
-
+// 检查所有连接
+for (auto con : junction->_connections) { // 遍历交叉口的所有连接
+  // 仅处理与我们道路相关的连接
+  if (con.second.incoming_road == road_id) { // 如果 incoming_road 与 road_id 匹配
+    // 对于中心车道，连接车道 ID 始终为 0，不需要搜索，因为它不在交叉口中
+    if (lane_id == 0) { // 如果车道 ID 为 0
+      result.push_back(std::make_pair(con.second.connecting_road, 0)); // 将连接的道路和车道 ID 0 添加到结果中
+    } else { // 如果车道 ID 不为 0
+      // 检查所有车道链接
+      for (auto link : con.second.lane_links) { // 遍历连接的车道链接
+        // 是否是我们的车道 ID？
+        if (link.from == lane_id) { // 如果链接的起始车道等于当前车道 ID
+          // 添加为选项
+          result.push_back(std::make_pair(con.second.connecting_road, link.to)); // 将连接的道路和目标车道添加到结果中
         }
       }
     }
   }
+}
 
-  geom::Transform MapBuilder::ComputeSignalTransform(std::unique_ptr<Signal> &signal, MapData &data) {
-    DirectedPoint point = data.GetRoad(signal->_road_id).GetDirectedPointInNoLaneOffset(signal->_s);
-    point.ApplyLateralOffset(static_cast<float>(-signal->_t));
-    point.location.y *= -1; // Unreal Y axis hack
-    point.location.z += static_cast<float>(signal->_zOffset);
-    geom::Transform transform(point.location, geom::Rotation(
-        geom::Math::ToDegrees(static_cast<float>(signal->_pitch)),
-        geom::Math::ToDegrees(static_cast<float>(-(point.tangent + signal->_hOffset))),
-        geom::Math::ToDegrees(static_cast<float>(signal->_roll))));
-    return transform;
+return result; // 返回结果
+}
+
+// 为下一个车道分配指针
+void MapBuilder::CreatePointersBetweenRoadSegments(void) {
+  // 处理每个车道以定义其下一个车道
+  for (auto &road : _map_data._roads) { // 遍历地图数据中的所有道路
+    for (auto &section : road.second._lane_sections) { // 遍历每条道路的车道段
+      for (auto &lane : section.second._lanes) { // 遍历每个车道
+
+        // 分配下一个车道指针
+        lane.second._next_lanes = GetLaneNext(road.first, section.second._id, lane.first); // 获取下一个车道
+
+        // 将找到的每个车道添加为其前驱
+        for (auto next_lane : lane.second._next_lanes) { // 遍历下一个车道
+          // 添加为前驱
+          DEBUG_ASSERT(next_lane != nullptr); // 确保下一个车道不为空
+          next_lane->_prev_lanes.push_back(&lane.second); // 将当前车道添加到下一个车道的前驱列表中
+        }
+
+      }
+    }
   }
+
+  // 处理每个车道以定义其下一个车道
+  for (auto &road : _map_data._roads) { // 遍历地图数据中的所有道路
+    for (auto &section : road.second._lane_sections) { // 遍历每条道路的车道段
+      for (auto &lane : section.second._lanes) { // 遍历每个车道
+
+        // 添加下一个道路
+        for (auto next_lane : lane.second._next_lanes) { // 遍历下一个车道
+          DEBUG_ASSERT(next_lane != nullptr); // 确保下一个车道不为空
+          // 避免同一路径
+          if (next_lane->GetRoad() != &road.second) { // 如果下一个车道的道路不是当前道路
+            if (std::find(road.second._nexts.begin(), road.second._nexts.end(),
+                next_lane->GetRoad()) == road.second._nexts.end()) { // 检查下一个道路是否已经存在于列表中
+              road.second._nexts.push_back(next_lane->GetRoad()); // 添加下一个道路
+            }
+          }
+        }
+
+        // 添加前驱道路
+        for (auto prev_lane : lane.second._prev_lanes) { // 遍历前驱车道
+          DEBUG_ASSERT(prev_lane != nullptr); // 确保前驱车道不为空
+          // 避免同一路径
+          if (prev_lane->GetRoad() != &road.second) { // 如果前驱车道的道路不是当前道路
+            if (std::find(road.second._prevs.begin(), road.second._prevs.end(),
+                prev_lane->GetRoad()) == road.second._prevs.end()) { // 检查前驱道路是否已经存在于列表中
+              road.second._prevs.push_back(prev_lane->GetRoad()); // 添加前驱道路
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+geom::Transform MapBuilder::ComputeSignalTransform(std::unique_ptr<Signal> &signal, MapData &data) {
+  DirectedPoint point = data.GetRoad(signal->_road_id).GetDirectedPointInNoLaneOffset(signal->_s); // 获取指定道路上的导向点
+  point.ApplyLateralOffset(static_cast<float>(-signal->_t)); // 应用横向偏移
+  point.location.y *= -1; // Unreal Y 轴修正
+  point.location.z += static_cast<float>(signal->_zOffset); // 应用 Z 轴偏移
+  geom::Transform transform(point.location, geom::Rotation( // 创建变换对象
+      geom::Math::ToDegrees(static_cast<float>(signal->_pitch)), // 转换并应用俯仰角
+      geom::Math::ToDegrees(static_cast<float>(-(point.tangent + signal->_hOffset))), // 转换并应用偏航角
+      geom::Math::ToDegrees(static_cast<float>(signal->_roll)))); // 转换并应用滚转角
+  return transform; // 返回变换对象
+}
 
   void MapBuilder::SolveSignalReferencesAndTransforms() {
     for(auto signal_reference : _temp_signal_reference_container){
