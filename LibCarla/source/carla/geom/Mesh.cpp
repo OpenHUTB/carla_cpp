@@ -18,13 +18,13 @@ namespace carla {
 namespace geom {
 
   bool Mesh::IsValid() const {
-    // should be at least some one vertex
+    // 至少应为某个顶点
     if (_vertices.empty()) {
       std::cout << "Mesh validation error: there are no vertices in the mesh." << std::endl;
       return false;
     }
 
-    // if there are indices, the amount must be multiple of 3
+    // 如果有 indices，数量必须是3的倍数
     if (!_indexes.empty() && _indexes.size() % 3 != 0) {
       std::cout << "Mesh validation error: the index amount must be multiple of 3." << std::endl;
       return false;
@@ -38,6 +38,9 @@ namespace geom {
     return true;
   }
 
+  // 添加 三角形条带(triangle strip)
+  // 三角形条带是一条，每增加一个点增加一个三角形
+  // 参考：https://blog.csdn.net/tomorrow_opal/article/details/70140965
   // e.g:
   // 1   3   5   7
   // #---#---#---#
@@ -67,7 +70,9 @@ namespace geom {
     }
   }
 
-  // e.g:
+  // 添加 三角形扇(triangle fan)
+  // 三角形扇是第一个点是中心，其他的点都围绕着它，第2个点和最后一个点是一样的就可以围成一个圈了
+  // 例如：
   // 2   1   6
   // #---#---#
   // | / | \ |
@@ -114,7 +119,7 @@ namespace geom {
     const size_t open_index = _indexes.size();
     if (!_materials.empty()) {
       if (_materials.back().index_end == 0) {
-        // @todo: change this comment to a debug warning
+        // @todo: 将此注释更改为调试警告
         // std::cout << "last material was not closed, closing it..." << std::endl;
         EndMaterial();
       }
@@ -131,12 +136,12 @@ namespace geom {
     if (_materials.empty() ||
         _materials.back().index_start == close_index ||
         _materials.back().index_end != 0) {
-      // @todo: change this comment to a debug warning
+      // @todo: 将此注释更改为调试警告
       // std::cout << "WARNING: Bad end of material. Material not started." << std::endl;
       return;
     }
     if (_indexes.empty() || close_index % 3 != 0) {
-      // @todo: change this comment to a debug warning
+      // @todo: 将此注释更改为调试警告
       // std::cout << "WARNING: Bad end of material. Face not started/ended." << std::endl;
       return;
     }
@@ -148,7 +153,7 @@ namespace geom {
       return "";
     }
     std::stringstream out;
-    out << std::fixed; // Avoid using scientific notation
+    out << std::fixed; // 避免使用科学计数法
 
     out << "# List of geometric vertices, with (x, y, z) coordinates." << std::endl;
     for (auto &v : _vertices) {
@@ -177,17 +182,17 @@ namespace geom {
       while (it != _indexes.end()) {
         // While exist materials
         if (it_m != _materials.end()) {
-          // If the current material ends at this index
+          // 如果当前材料在此索引处结束
           if (it_m->index_end == index_counter) {
             ++it_m;
           }
-          // If the current material start at this index
+          // 如果当前材料从该索引开始
           if (it_m->index_start == index_counter) {
             out << "\nusemtl " << it_m->name << std::endl;
           }
         }
 
-        // Add the actual face using the 3 consecutive indices
+        // 使用 3 个连续的索引添加实际表面
         out << "f " << *it; ++it;
         out << " " << *it; ++it;
         out << " " << *it << std::endl; ++it;
@@ -204,11 +209,11 @@ namespace geom {
       return "";
     }
     std::stringstream out;
-    out << std::fixed; // Avoid using scientific notation
+    out << std::fixed; // 避免使用科学计数法
 
     out << "# List of geometric vertices, with (x, y, z) coordinates." << std::endl;
     for (auto &v : _vertices) {
-      // Switched "y" and "z" for Recast library
+      // 为 Recast 库切换“y”和“z”
       out << "v " << v.x << " " << v.z << " " << v.y << std::endl;
     }
 
@@ -220,18 +225,16 @@ namespace geom {
       while (it != _indexes.end()) {
         // While exist materials
         if (it_m != _materials.end()) {
-          // If the current material ends at this index
+          // 如果当前材料在此索引处结束
           if (it_m->index_end == index_counter) {
             ++it_m;
           }
-          // If the current material start at this index
+          // 如果当前材料从该索引开始
           if (it_m->index_start == index_counter) {
             out << "\nusemtl " << it_m->name << std::endl;
           }
         }
-        // Add the actual face using the 3 consecutive indices
-        // Changes the face build direction to clockwise since
-        // the space has changed.
+        // 使用 3 个连续的索引添加实际面由于空间已经改变，因此将面构建方向更改为顺时针。
         out << "f " << *it; ++it;
         const auto i_2 = *it; ++it;
         const auto i_3 = *it; ++it;
@@ -247,7 +250,7 @@ namespace geom {
     if (!IsValid()) {
       return "Invalid Mesh";
     }
-    // Generate header
+    // 生成头
     std::stringstream out;
     return out.str();
   }

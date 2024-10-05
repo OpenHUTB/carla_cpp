@@ -22,8 +22,8 @@ namespace detail {
     using Weak = std::weak_ptr<Simulator>;
   };
 
-  /// Provides access to the Simulator during a given episode. After the episode
-  /// is ended any access to the simulator throws an std::runtime_error.
+  /// 在给定情节期间提供对模拟器的访问。
+  /// 情节结束后，对模拟器的任何访问都会引发 std::runtime_error。
   template <typename PointerT>
   class EpisodeProxyImpl {
   public:
@@ -45,9 +45,9 @@ namespace detail {
 
     SharedPtrType TryLock() const noexcept;
 
-    /// Same as TryLock but never return nullptr.
+    /// 与 TryLock 相同，但永远不会返回 nullptr。
     ///
-    /// @throw std::runtime_error if episode is gone.
+    /// @throw 如果剧集结束，则发生 std::runtime_error。
     SharedPtrType Lock() const;
 
     bool IsValid() const noexcept {

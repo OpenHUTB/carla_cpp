@@ -4,63 +4,63 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-  #pragma once // ·ÀÖ¹Í·ÎÄ¼ş±»¶à´Î°üº¬£¬Ìá¸ß±àÒëĞ§ÂÊ
+  #pragma once // é˜²æ­¢å¤´æ–‡ä»¶è¢«å¤šæ¬¡åŒ…å«ï¼Œæé«˜ç¼–è¯‘æ•ˆç‡
 
-#include <chrono> // ÒıÈë chrono ¿â£¬ÓÃÓÚÊ±¼ä²âÁ¿¹¦ÄÜ
-#include <cstdint> // ÒıÈë cstdint ¿â£¬Ìá¹©±ê×¼ÕûÊıÀàĞÍ
+#include <chrono> // å¼•å…¥ chrono åº“ï¼Œç”¨äºæ—¶é—´æµ‹é‡åŠŸèƒ½
+#include <cstdint> // å¼•å…¥ cstdint åº“ï¼Œæä¾›æ ‡å‡†æ•´æ•°ç±»å‹
 
-namespace carla { // ¶¨Òå carla ÃüÃû¿Õ¼ä
-namespace detail { // ¶¨Òå detail ÃüÃû¿Õ¼ä£¬ÓÃÓÚ·â×°ÊµÏÖÏ¸½Ú
+namespace carla { // å®šä¹‰ carla å‘½åç©ºé—´
+namespace detail { // å®šä¹‰ detail å‘½åç©ºé—´ï¼Œç”¨äºå°è£…å®ç°ç»†èŠ‚
 
-  template <typename CLOCK> // Ä£°åÀà£¬ÔÊĞí´«Èë²»Í¬ÀàĞÍµÄÊ±ÖÓ
+  template <typename CLOCK> // æ¨¡æ¿ç±»ï¼Œå…è®¸ä¼ å…¥ä¸åŒç±»å‹çš„æ—¶é’Ÿ
   class StopWatchTmpl {
     static_assert(CLOCK::is_steady, "The StopWatch's clock must be steady");
-    // ¾²Ì¬¶ÏÑÔ£¬È·±£´«ÈëµÄÊ±ÖÓÀàĞÍÊÇÎÈ¶¨µÄ£¨steady£©£¬±ÜÃâÊ±¼ä»ØÍËÎÊÌâ
+    // é™æ€æ–­è¨€ï¼Œç¡®ä¿ä¼ å…¥çš„æ—¶é’Ÿç±»å‹æ˜¯ç¨³å®šçš„ï¼ˆsteadyï¼‰ï¼Œé¿å…æ—¶é—´å›é€€é—®é¢˜
 
   public:
-    using clock = CLOCK; // ¶¨Òå clock Îª´«ÈëµÄÊ±ÖÓÀàĞÍ±ğÃû
+    using clock = CLOCK; // å®šä¹‰ clock ä¸ºä¼ å…¥çš„æ—¶é’Ÿç±»å‹åˆ«å
 
     StopWatchTmpl() 
-      : _start(clock::now()), // ³õÊ¼»¯¿ªÊ¼Ê±¼äÎªµ±Ç°Ê±¼ä
-        _end(), // ³õÊ¼»¯½áÊøÊ±¼äÎªÄ¬ÈÏÖµ
-        _is_running(true) {} // ³õÊ¼»¯ÎªÃë±íÕıÔÚÔËĞĞ×´Ì¬
+      : _start(clock::now()), // åˆå§‹åŒ–å¼€å§‹æ—¶é—´ä¸ºå½“å‰æ—¶é—´
+        _end(), // åˆå§‹åŒ–ç»“æŸæ—¶é—´ä¸ºé»˜è®¤å€¼
+        _is_running(true) {} // åˆå§‹åŒ–ä¸ºç§’è¡¨æ­£åœ¨è¿è¡ŒçŠ¶æ€
 
     void Restart() {
-      _is_running = true; // ÉèÖÃÃë±íÎªÔËĞĞ×´Ì¬
-      _start = clock::now(); // ¸üĞÂ¿ªÊ¼Ê±¼äÎªµ±Ç°Ê±¼ä
+      _is_running = true; // è®¾ç½®ç§’è¡¨ä¸ºè¿è¡ŒçŠ¶æ€
+      _start = clock::now(); // æ›´æ–°å¼€å§‹æ—¶é—´ä¸ºå½“å‰æ—¶é—´
     }
 
     void Stop() {
-      _end = clock::now(); // ¸üĞÂ½áÊøÊ±¼äÎªµ±Ç°Ê±¼ä
-      _is_running = false; // ÉèÖÃÃë±íÎªÍ£Ö¹×´Ì¬
+      _end = clock::now(); // æ›´æ–°ç»“æŸæ—¶é—´ä¸ºå½“å‰æ—¶é—´
+      _is_running = false; // è®¾ç½®ç§’è¡¨ä¸ºåœæ­¢çŠ¶æ€
     }
 
     typename clock::duration GetDuration() const {
-      // Èç¹ûÃë±íÕıÔÚÔËĞĞ£¬·µ»Øµ±Ç°Ê±¼äÓë¿ªÊ¼Ê±¼äµÄ²îÖµ
-      // ·ñÔò£¬·µ»Ø½áÊøÊ±¼äÓë¿ªÊ¼Ê±¼äµÄ²îÖµ
+      // å¦‚æœç§’è¡¨æ­£åœ¨è¿è¡Œï¼Œè¿”å›å½“å‰æ—¶é—´ä¸å¼€å§‹æ—¶é—´çš„å·®å€¼
+      // å¦åˆ™ï¼Œè¿”å›ç»“æŸæ—¶é—´ä¸å¼€å§‹æ—¶é—´çš„å·®å€¼
       return _is_running ? clock::now() - _start : _end - _start;
     }
 
     template <class RESOLUTION=std::chrono::milliseconds>
     size_t GetElapsedTime() const {
-      // ½«Ê±¼ä¼ä¸ô×ª»»ÎªÖ¸¶¨¾«¶ÈµÄÊ±¼äµ¥Î»£¨Ä¬ÈÏÎªºÁÃë£©£¬²¢·µ»ØÆä¼ÆÊıÖµ
+      // å°†æ—¶é—´é—´éš”è½¬æ¢ä¸ºæŒ‡å®šç²¾åº¦çš„æ—¶é—´å•ä½ï¼ˆé»˜è®¤ä¸ºæ¯«ç§’ï¼‰ï¼Œå¹¶è¿”å›å…¶è®¡æ•°å€¼
       return static_cast<size_t>(std::chrono::duration_cast<RESOLUTION>(GetDuration()).count());
     }
 
     bool IsRunning() const {
-      return _is_running; // ·µ»ØÃë±íÊÇ·ñÕıÔÚÔËĞĞµÄ×´Ì¬
+      return _is_running; // è¿”å›ç§’è¡¨æ˜¯å¦æ­£åœ¨è¿è¡Œçš„çŠ¶æ€
     }
 
   private:
-    typename clock::time_point _start; // Ãë±í¿ªÊ¼Ê±¼äµã
-    typename clock::time_point _end;   // Ãë±í½áÊøÊ±¼äµã
-    bool _is_running;                  // Ãë±íÊÇ·ñÕıÔÚÔËĞĞµÄ×´Ì¬
+    typename clock::time_point _start; // ç§’è¡¨å¼€å§‹æ—¶é—´ç‚¹
+    typename clock::time_point _end;   // ç§’è¡¨ç»“æŸæ—¶é—´ç‚¹
+    bool _is_running;                  // ç§’è¡¨æ˜¯å¦æ­£åœ¨è¿è¡Œçš„çŠ¶æ€
   };
 
 } // namespace detail
 
   using StopWatch = detail::StopWatchTmpl<std::chrono::steady_clock>;
-  // ÊµÀı»¯ StopWatchTmpl Ä£°å£¬Ê¹ÓÃ std::chrono::steady_clock ×÷ÎªÊ±ÖÓÀàĞÍ£¬¶¨Òå StopWatch ÀàĞÍ
+  // å®ä¾‹åŒ– StopWatchTmpl æ¨¡æ¿ï¼Œä½¿ç”¨ std::chrono::steady_clock ä½œä¸ºæ—¶é’Ÿç±»å‹ï¼Œå®šä¹‰ StopWatch ç±»å‹
 
 } // namespace carla
 

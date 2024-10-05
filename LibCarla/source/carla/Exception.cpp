@@ -4,25 +4,42 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+<<<<<<< HEAD
 #include "carla/Exception.h"  //包含carla命名空间中的Exception类定义
 #include <boost/assert/source_location.hpp>//包含Boost库中的source_lacation类定义
+=======
+#include "carla/Exception.h"  // 引入Carla异常处理头文件
+#include <boost/assert/source_location.hpp>  // 引入Boost的源位置头文件
+>>>>>>> 35e56a5476b3d382de4d05bcb4f6f08f2669b817
 
 // =============================================================================
-// -- Define boost::throw_exception --------------------------------------------
+// -- 定义boost::throw_exception --------------------------------------------
 // =============================================================================
 
+<<<<<<< HEAD
 #ifdef BOOST_NO_EXCEPTIONS   //如果Boost库禁用异常
+=======
+#ifdef BOOST_NO_EXCEPTIONS  // 如果禁用异常
+>>>>>>> 35e56a5476b3d382de4d05bcb4f6f08f2669b817
 
-namespace boost {
+namespace boost {   // 在boost命名空间中
 
+<<<<<<< HEAD
   void throw_exception(const std::exception &e) { //定义throw_exception函数
     carla::throw_exception(e);//将异常转发给carla命名空间的throw_exception函数
   }
 
   void throw_exception(  //重载throw_exception函数，接受source_location参数
+=======
+  void throw_exception(const std::exception &e) {  // 定义抛出异常函数
+    carla::throw_exception(e);  // 调用Carla的抛出异常函数 
+  }
+
+  void throw_exception(  // 重载的抛出异常函数，带有源位置信息
+>>>>>>> 35e56a5476b3d382de4d05bcb4f6f08f2669b817
       const std::exception &e,
-      boost::source_location const & loc) {
-    throw_exception(e);
+      boost::source_location const & loc) {  // 接受异常和源位置
+    throw_exception(e);  // 调用上面定义的抛出异常函数
   }
 
 } // namespace boost
@@ -30,21 +47,21 @@ namespace boost {
 #endif // BOOST_NO_EXCEPTIONS
 
 // =============================================================================
-// -- Workaround for Boost.Asio bundled with rpclib ----------------------------
+// -- 处理与rpclib捆绑的Boost.Asio的临时解决方案----------------------------
 // =============================================================================
 
 #ifdef ASIO_NO_EXCEPTIONS
 
-#include <exception>
-#include <system_error>
-#include <typeinfo>
+#include <exception>  // 引入异常头文件
+#include <system_error>  // 引入系统错误头文件
+#include <typeinfo>  // 引入类型信息头文件
 
-namespace clmdep_asio {
-namespace detail {
+namespace clmdep_asio {  // 在clmdep_asio命名空间中
+namespace detail {  // 在detail子命名空间中
 
-  template <typename Exception>
-  void throw_exception(const Exception& e) {
-    carla::throw_exception(e);
+  template <typename Exception>  // 定义模板函数，接受任意异常类型
+  void throw_exception(const Exception& e) {  // 抛出异常函数
+    carla::throw_exception(e);  // 调用Carla的抛出异常函数
   }
 
   template void throw_exception<std::bad_cast>(const std::bad_cast &);

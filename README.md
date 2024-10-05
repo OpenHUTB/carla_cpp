@@ -22,7 +22,7 @@ doxygen
 
 5.修改并本地测试没问题后，提交代码到个人仓库：
 ```shell script
-git add .
+git add README.md
 git commit -m "update"
 git push
 ```
@@ -107,7 +107,6 @@ git rm -rf .
 [fengchuanyin](https://github.com/fengchuanyin) 、
 [cby2838](https://github.com/cby2838) 、
 [Ekisanhinn](https://github.com/ekisannhinn) 、
-[Seavey0402](https://github.com/Seavey0402) 、
 [yyyyy12306](https://github.com/yyyyy12306) 、
 [lzh8215](https://github.com/lzh8215) 、
 [Rita0621](https://github.com/Rita0621) 、
@@ -151,4 +150,29 @@ git rm -rf .
 [zhemuqi](https://github.com/zhemuqi)
 [YL007-STRONG](https://github.com/YL007-STRONG)
 [nigor-peter](https://github.com/nigor-peter)
+<<<<<<< HEAD
 [jiameixiao](https://github.com/jiameixiao)
+=======
+[jiameixiao](https://github.com/jiameixiao)
+[2665055983](https://github.com/2665055983)、
+[Seavey0402](https://github.com/Seavey0402)、 
+[yangf95](https://github.com/yangf95)、
+[LBQ0056](https://github.com/LBQ0056)、
+[yuangjiajie](https://github.com/yuangjiajie) 、
+[weidinghe](https://github.com/weidinghe)、
+[xinderruila](https://github.com/xinderruila)、
+[YJY336](https://github.com/YJY336)、
+[Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrilky](https://github.com/hyjrilky)、
+[vv313](https://github.com/vv313)、
+[lwh0954](https://github.com/lwh0954)、
+[csgo3553](https://github.com/csgo3553) 、
+[Mia-cloud-del](https://github.com/Mia-cloud-del) 、
+[hui215151](https://github.com/hui215151)、
+[SRX-ytk](https://github.com/SRX-ytk)、
+[xiaoyu-903](https://github.come/xiaoyu-903)、
+[zhouxinyu-a11y](https://github.come/zhouxinyu-a11y)、
+[wdlmd20](https://github.com/wdlmd20)、
+[Hcir-lk](https://github.com/Hcir-lk)、
+[S1TZ](https://github.com/S1TZ)。
+[lzg6667](https://github.com/lzg6667)。
+>>>>>>> 35e56a5476b3d382de4d05bcb4f6f08f2669b817

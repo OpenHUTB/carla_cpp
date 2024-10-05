@@ -1,6 +1,8 @@
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 变换类
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -20,11 +22,12 @@
 namespace carla {
 namespace geom {
 
+  // 变换
   class Transform {
   public:
 
     // =========================================================================
-    // -- Public data members --------------------------------------------------
+    // -- 公开数据成员 ----------------------------------------------------------
     // =========================================================================
 
     Location location;
@@ -34,7 +37,7 @@ namespace geom {
     MSGPACK_DEFINE_ARRAY(location, rotation);
 
     // =========================================================================
-    // -- Constructors ---------------------------------------------------------
+    // -- 构造函数 --------------------------------------------------------------
     // =========================================================================
 
     Transform() = default;
@@ -48,7 +51,7 @@ namespace geom {
         rotation(in_rotation) {}
 
     // =========================================================================
-    // -- Other methods --------------------------------------------------------
+    // -- 其他方法 --------------------------------------------------------------
     // =========================================================================
 
     Vector3D GetForwardVector() const {
@@ -63,30 +66,30 @@ namespace geom {
       return rotation.GetUpVector();
     }
 
-    /// Applies this transformation to @a in_point (first translation then rotation).
+    /// 将此变换应用于 @a in_point（先平移然后旋转）。
     void TransformPoint(Vector3D &in_point) const {
       auto out_point = in_point;
-      rotation.RotateVector(out_point); // First rotate
-      out_point += location;            // Then translate
+      rotation.RotateVector(out_point); // 先旋转
+      out_point += location;            // 再平移
       in_point = out_point;
     }
 
-    /// Applies this transformation to @a in_vector (rotation only).
+    /// 将此转换应用于 @a in_vector（仅旋转）。
     void TransformVector(Vector3D &in_vector) const {
       auto out_vector = in_vector;
-      rotation.RotateVector(out_vector); // First rotate
+      rotation.RotateVector(out_vector); // 先旋转
       in_vector = out_vector;
     }
 
-    /// Applies the inverse of this transformation to @a in_point
+    /// 将此变换的逆运算应用于 @a in_point 
     void InverseTransformPoint(Vector3D &in_point) const {
       auto out_point = in_point;
-      out_point -= location;                   // First translate inverse
-      rotation.InverseRotateVector(out_point); // Then rotate inverse
+      out_point -= location;                   // 先逆变换
+      rotation.InverseRotateVector(out_point); // 再逆旋转
       in_point = out_point;
     }
 
-    /// Computes the 4-matrix form of the transformation
+    /// 计算变换的 4 矩阵形式
     std::array<float, 16> GetMatrix() const {
       const float yaw = rotation.yaw;
       const float cy = std::cos(Math::ToRadians(yaw));
@@ -109,7 +112,7 @@ namespace geom {
       return transform;
     }
 
-    /// Computes the 4-matrix form of the inverse transformation
+    /// 计算逆变换的 4 矩阵形式
     std::array<float, 16> GetInverseMatrix() const {
       const float yaw = rotation.yaw;
       const float cy = std::cos(Math::ToRadians(yaw));
@@ -136,9 +139,10 @@ namespace geom {
     }
 
     // =========================================================================
-    // -- Comparison operators -------------------------------------------------
+    // -- 比较运算符 ------------------------------------------------------------
     // =========================================================================
 
+    // 比较是否相等（分别比较平移类和旋转类是否相等）
     bool operator==(const Transform &rhs) const {
       return (location == rhs.location) && (rotation == rhs.rotation);
     }

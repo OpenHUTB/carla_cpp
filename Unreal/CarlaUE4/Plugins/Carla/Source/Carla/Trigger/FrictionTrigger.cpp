@@ -1,3 +1,4 @@
+// 摩擦力触发器
 // Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB). This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
@@ -22,19 +23,20 @@ AFrictionTrigger::AFrictionTrigger(const FObjectInitializer &ObjectInitializer)
 
 void AFrictionTrigger::Init()
 {
-  // Register delegate on begin overlap.
+  // 在开始重叠时注册委托。
   if (!TriggerVolume->OnComponentBeginOverlap.IsAlreadyBound(this, &AFrictionTrigger::OnTriggerBeginOverlap))
   {
     TriggerVolume->OnComponentBeginOverlap.AddDynamic(this, &AFrictionTrigger::OnTriggerBeginOverlap);
   }
 
-  // Register delegate on end overlap.
+  // 在末端重叠处注册委托。
   if (!TriggerVolume->OnComponentEndOverlap.IsAlreadyBound(this, &AFrictionTrigger::OnTriggerEndOverlap))
   {
     TriggerVolume->OnComponentEndOverlap.AddDynamic(this, &AFrictionTrigger::OnTriggerEndOverlap);
   }
 }
 
+// 更新轮胎的摩擦力
 void AFrictionTrigger::UpdateWheelsFriction(AActor *OtherActor, TArray<float>& NewFriction)
 {
   ACarlaWheeledVehicle *Vehicle = Cast<ACarlaWheeledVehicle>(OtherActor);
