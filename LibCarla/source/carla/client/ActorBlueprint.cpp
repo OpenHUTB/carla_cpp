@@ -38,9 +38,12 @@ namespace client {
   }
 
   bool ActorBlueprint::MatchTags(const std::string &wildcard_pattern) const {
+  	//返回结果为：_id 匹配模式或 _tags 列表中的任意一个 tag 匹配模式
     return
         StringUtil::Match(_id, wildcard_pattern) ||
+        //检查 _id 是否匹配模式
         std::any_of(_tags.begin(), _tags.end(), [&](const auto &tag) {
+        	//遍历每个 tag 检查是否匹配模式
           return StringUtil::Match(tag, wildcard_pattern);
         });
   }
