@@ -4,22 +4,22 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/Exception.h"
-#include <boost/assert/source_location.hpp>
+#include "carla/Exception.h"  //包含carla命名空间中的Exception类定义
+#include <boost/assert/source_location.hpp>//包含Boost库中的source_lacation类定义
 
 // =============================================================================
 // -- Define boost::throw_exception --------------------------------------------
 // =============================================================================
 
-#ifdef BOOST_NO_EXCEPTIONS
+#ifdef BOOST_NO_EXCEPTIONS   //如果Boost库禁用异常
 
 namespace boost {
 
-  void throw_exception(const std::exception &e) {
-    carla::throw_exception(e);
+  void throw_exception(const std::exception &e) { //定义throw_exception函数
+    carla::throw_exception(e);//将异常转发给carla命名空间的throw_exception函数
   }
 
-  void throw_exception(
+  void throw_exception(  //重载throw_exception函数，接受source_location参数
       const std::exception &e,
       boost::source_location const & loc) {
     throw_exception(e);
