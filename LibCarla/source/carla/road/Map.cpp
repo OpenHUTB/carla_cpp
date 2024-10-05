@@ -4,126 +4,129 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/road/Map.h"
-#include "carla/Exception.h"
-#include "carla/geom/Math.h"
-#include "carla/geom/Vector3D.h"
-#include "carla/road/MeshFactory.h"
-#include "carla/road/Deformation.h"
-#include "carla/road/element/LaneCrossingCalculator.h"
-#include "carla/road/element/RoadInfoCrosswalk.h"
-#include "carla/road/element/RoadInfoElevation.h"
-#include "carla/road/element/RoadInfoGeometry.h"
-#include "carla/road/element/RoadInfoLaneOffset.h"
-#include "carla/road/element/RoadInfoLaneWidth.h"
-#include "carla/road/element/RoadInfoMarkRecord.h"
-#include "carla/road/element/RoadInfoSpeed.h"
-#include "carla/road/element/RoadInfoSignal.h"
+#include "carla/road/Map.h" // 导入地图相关的头文件
+#include "carla/Exception.h" // 导入异常处理的头文件
+#include "carla/geom/Math.h" // 导入数学计算相关的头文件
+#include "carla/geom/Vector3D.h" // 导入三维向量相关的头文件
+#include "carla/road/MeshFactory.h" // 导入网格工厂的头文件
+#include "carla/road/Deformation.h" // 导入变形相关的头文件
+#include "carla/road/element/LaneCrossingCalculator.h" // 导入车道交叉计算器的头文件
+#include "carla/road/element/RoadInfoCrosswalk.h" // 导入人行横道信息的头文件
+#include "carla/road/element/RoadInfoElevation.h" // 导入道路高度信息的头文件
+#include "carla/road/element/RoadInfoGeometry.h" // 导入道路几何信息的头文件
+#include "carla/road/element/RoadInfoLaneOffset.h" // 导入车道偏移信息的头文件
+#include "carla/road/element/RoadInfoLaneWidth.h" // 导入车道宽度信息的头文件
+#include "carla/road/element/RoadInfoMarkRecord.h" // 导入道路标记记录信息的头文件
+#include "carla/road/element/RoadInfoSpeed.h" // 导入道路速度信息的头文件
+#include "carla/road/element/RoadInfoSignal.h" // 导入道路信号信息的头文件
 
-#include "marchingcube/MeshReconstruction.h"
+#include "marchingcube/MeshReconstruction.h" // 导入网格重建的头文件
 
-#include <vector>
-#include <unordered_map>
-#include <stdexcept>
-#include <chrono>
-#include <thread>
-#include <iomanip>
-#include <cmath>
+#include <vector> // 导入向量库
+#include <unordered_map> // 导入无序映射库
+#include <stdexcept> // 导入标准异常库
+#include <chrono> // 导入时间相关库
+#include <thread> // 导入线程相关库
+#include <iomanip> // 导入格式化输入输出库
+#include <cmath> // 导入数学库
 
 namespace carla {
 namespace road {
 
-  using namespace carla::road::element;
+  using namespace carla::road::element; // 使用carla::road::element命名空间中的内容
 
-  /// We use this epsilon to shift the waypoints away from the edges of the lane
-  /// sections to avoid floating point precision errors.
+  /// 我们使用这个epsilon值将路径点从车道边缘移动开，以避免浮点精度错误。
   static constexpr double EPSILON = 10.0 * std::numeric_limits<double>::epsilon();
 
   // ===========================================================================
-  // -- Static local methods ---------------------------------------------------
+  // -- 静态本地方法 ----------------------------------------------------------
   // ===========================================================================
 
+  // 合并两个向量
   template <typename T>
   static std::vector<T> ConcatVectors(std::vector<T> dst, std::vector<T> src) {
-    if (src.size() > dst.size()) {
-      return ConcatVectors(src, dst);
+    if (src.size() > dst.size()) { // 如果源向量大小大于目标向量
+      return ConcatVectors(src, dst); // 递归调用合并源和目标
     }
     dst.insert(
-        dst.end(),
-        std::make_move_iterator(src.begin()),
-        std::make_move_iterator(src.end()));
-    return dst;
+        dst.end(), // 在目标向量末尾插入源向量的元素
+        std::make_move_iterator(src.begin()), // 移动源向量的开始迭代器
+        std::make_move_iterator(src.end())); // 移动源向量的结束迭代器
+    return dst; // 返回合并后的向量
   }
 
+  // 获取车道开始位置的距离
   static double GetDistanceAtStartOfLane(const Lane &lane) {
-    if (lane.GetId() <= 0) {
-      return lane.GetDistance() + 10.0 * EPSILON;
+    if (lane.GetId() <= 0) { // 如果车道ID小于等于0
+      return lane.GetDistance() + 10.0 * EPSILON; // 返回距离加上一个小的偏移量
     } else {
-      return lane.GetDistance() + lane.GetLength() - 10.0 * EPSILON;
+      return lane.GetDistance() + lane.GetLength() - 10.0 * EPSILON; // 返回距离加上车道长度减去偏移量
     }
   }
 
+  // 获取车道结束位置的距离
   static double GetDistanceAtEndOfLane(const Lane &lane) {
-    if (lane.GetId() > 0) {
-      return lane.GetDistance() + 10.0 * EPSILON;
+    if (lane.GetId() > 0) { // 如果车道ID大于0
+      return lane.GetDistance() + 10.0 * EPSILON; // 返回距离加上一个小的偏移量
     } else {
-      return lane.GetDistance() + lane.GetLength() - 10.0 * EPSILON;
+      return lane.GetDistance() + lane.GetLength() - 10.0 * EPSILON; // 返回距离加上车道长度减去偏移量
     }
   }
 
-  /// Return a waypoint for each drivable lane on @a lane_section.
+  /// 返回每个可行驶车道的路径点 @a lane_section.
   template <typename FuncT>
   static void ForEachDrivableLaneImpl(
-      RoadId road_id,
-      const LaneSection &lane_section,
-      double distance,
-      FuncT &&func) {
-    for (const auto &pair : lane_section.GetLanes()) {
-      const auto &lane = pair.second;
-      if (lane.GetId() == 0) {
+      RoadId road_id, // 道路ID
+      const LaneSection &lane_section, // 车道段
+      double distance, // 距离
+      FuncT &&func) { // 函数对象
+    for (const auto &pair : lane_section.GetLanes()) { // 遍历车道
+      const auto &lane = pair.second; // 获取车道
+      if (lane.GetId() == 0) { // 如果车道ID为0，跳过
         continue;
       }
-      if ((static_cast<uint32_t>(lane.GetType()) & static_cast<uint32_t>(Lane::LaneType::Driving)) > 0) {
-        std::forward<FuncT>(func)(Waypoint{
-            road_id,
-            lane_section.GetId(),
-            lane.GetId(),
-            distance < 0.0 ? GetDistanceAtStartOfLane(lane) : distance});
+      if ((static_cast<uint32_t>(lane.GetType()) & static_cast<uint32_t>(Lane::LaneType::Driving)) > 0) { // 如果是可驾驶类型的车道
+        std::forward<FuncT>(func)(Waypoint{ // 调用传入的函数
+            road_id, // 道路ID
+            lane_section.GetId(), // 车道段ID
+            lane.GetId(), // 车道ID
+            distance < 0.0 ? GetDistanceAtStartOfLane(lane) : distance}); // 计算距离
       }
     }
   }
 
+  // 遍历指定类型的车道
   template <typename FuncT>
   static void ForEachLaneImpl(
-      RoadId road_id,
-      const LaneSection &lane_section,
-      double distance,
-      Lane::LaneType lane_type,
-      FuncT &&func) {
-    for (const auto &pair : lane_section.GetLanes()) {
-      const auto &lane = pair.second;
-      if (lane.GetId() == 0) {
+      RoadId road_id, // 道路ID
+      const LaneSection &lane_section, // 车道段
+      double distance, // 距离
+      Lane::LaneType lane_type, // 车道类型
+      FuncT &&func) { // 函数对象
+    for (const auto &pair : lane_section.GetLanes()) { // 遍历车道
+      const auto &lane = pair.second; // 获取车道
+      if (lane.GetId() == 0) { // 如果车道ID为0，跳过
         continue;
       }
-      if ((static_cast<int32_t>(lane.GetType()) & static_cast<int32_t>(lane_type)) > 0) {
-        std::forward<FuncT>(func)(Waypoint{
-            road_id,
-            lane_section.GetId(),
-            lane.GetId(),
-            distance < 0.0 ? GetDistanceAtStartOfLane(lane) : distance});
+      if ((static_cast<int32_t>(lane.GetType()) & static_cast<int32_t>(lane_type)) > 0) { // 如果是指定类型的车道
+        std::forward<FuncT>(func)(Waypoint{ // 调用传入的函数
+            road_id, // 道路ID
+            lane_section.GetId(), // 车道段ID
+            lane.GetId(), // 车道ID
+            distance < 0.0 ? GetDistanceAtStartOfLane(lane) : distance}); // 计算距离
       }
     }
   }
 
-  /// Return a waypoint for each drivable lane on each lane section of @a road.
+  /// 返回每个可行驶车道的路径点，遍历所有车道段 @a road.
   template <typename FuncT>
   static void ForEachDrivableLane(const Road &road, FuncT &&func) {
-    for (const auto &lane_section : road.GetLaneSections()) {
-      ForEachDrivableLaneImpl(
-          road.GetId(),
-          lane_section,
-          -1.0, // At start of the lane
-          std::forward<FuncT>(func));
+    for (const auto &lane_section : road.GetLaneSections()) { // 遍历道路的所有车道段
+      ForEachDrivableLaneImpl( // 调用实现函数
+          road.GetId(), // 道路ID
+          lane_section, // 车道段
+          -1.0, // 在车道起点位置
+          std::forward<FuncT>(func)); // 调用传入的函数
     }
   }
 
