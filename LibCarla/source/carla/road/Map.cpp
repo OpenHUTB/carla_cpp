@@ -554,359 +554,363 @@ std::vector<Waypoint> Map::GetPredecessors(const Waypoint waypoint) const {
     return result; // 返回前一个航点
 }
 
-  std::vector<Waypoint> Map::GetNext(
+std::vector<Waypoint> Map::GetNext(
       const Waypoint waypoint,
       const double distance) const {
-    RELEASE_ASSERT(distance > 0.0);
-    if (distance <= EPSILON) {
-      return {waypoint};
+    RELEASE_ASSERT(distance > 0.0); // 确保距离大于0
+    if (distance <= EPSILON) { // 如果距离很小（近似为0）
+      return {waypoint}; // 返回当前的waypoint
     }
-    const auto &lane = GetLane(waypoint);
-    const bool forward = (waypoint.lane_id <= 0);
-    const double signed_distance = forward ? distance : -distance;
-    const double relative_s = waypoint.s - lane.GetDistance();
-    const double remaining_lane_length = forward ? lane.GetLength() - relative_s : relative_s;
-    DEBUG_ASSERT(remaining_lane_length >= 0.0);
+    const auto &lane = GetLane(waypoint); // 获取当前waypoint所在的车道
+    const bool forward = (waypoint.lane_id <= 0); // 判断移动方向（正向或反向）
+    const double signed_distance = forward ? distance : -distance; // 根据方向确定带符号的距离
+    const double relative_s = waypoint.s - lane.GetDistance(); // 计算相对位置s
+    const double remaining_lane_length = forward ? lane.GetLength() - relative_s : relative_s; // 剩余车道长度
+    DEBUG_ASSERT(remaining_lane_length >= 0.0); // 确保剩余车道长度非负
 
-    // If after subtracting the distance we are still in the same lane, return
-    // same waypoint with the extra distance.
+    // 如果在同一车道内，返回增加了距离的waypoint
     if (distance <= remaining_lane_length) {
-      Waypoint result = waypoint;
-      result.s += signed_distance;
-      result.s += forward ? -EPSILON : EPSILON;
-      RELEASE_ASSERT(result.s > 0.0);
-      return { result };
+      Waypoint result = waypoint; // 创建结果waypoint
+      result.s += signed_distance; // 更新s值
+      result.s += forward ? -EPSILON : EPSILON; // 调整s值以避免浮点数精度问题
+      RELEASE_ASSERT(result.s > 0.0); // 确保s值大于0
+      return { result }; // 返回结果
     }
 
-    // If we run out of remaining_lane_length we have to go to the successors.
-    std::vector<Waypoint> result;
-    for (const auto &successor : GetSuccessors(waypoint)) {
+    // 如果没有剩余车道长度，则需要转到后继节点
+    std::vector<Waypoint> result; // 存储结果的vector
+    for (const auto &successor : GetSuccessors(waypoint)) { // 遍历所有后继waypoints
       DEBUG_ASSERT(
-          successor.road_id != waypoint.road_id ||
-          successor.section_id != waypoint.section_id ||
-          successor.lane_id != waypoint.lane_id);
-      result = ConcatVectors(result, GetNext(successor, distance - remaining_lane_length));
+          successor.road_id != waypoint.road_id || // 确保不在同一路段
+          successor.section_id != waypoint.section_id || // 确保不在同一部分
+          successor.lane_id != waypoint.lane_id); // 确保不在同一车道
+      result = ConcatVectors(result, GetNext(successor, distance - remaining_lane_length)); // 递归获取下一个waypoint
     }
-    return result;
+    return result; // 返回所有找到的waypoints
   }
 
   std::vector<Waypoint> Map::GetPrevious(
       const Waypoint waypoint,
       const double distance) const {
-    RELEASE_ASSERT(distance > 0.0);
-    if (distance <= EPSILON) {
-      return {waypoint};
+    RELEASE_ASSERT(distance > 0.0); // 确保距离大于0
+    if (distance <= EPSILON) { // 如果距离很小（近似为0）
+      return {waypoint}; // 返回当前的waypoint
     }
-    const auto &lane = GetLane(waypoint);
-    const bool forward = !(waypoint.lane_id <= 0);
-    const double signed_distance = forward ? distance : -distance;
-    const double relative_s = waypoint.s - lane.GetDistance();
-    const double remaining_lane_length = forward ? lane.GetLength() - relative_s : relative_s;
-    DEBUG_ASSERT(remaining_lane_length >= 0.0);
+    const auto &lane = GetLane(waypoint); // 获取当前waypoint所在的车道
+    const bool forward = !(waypoint.lane_id <= 0); // 判断移动方向（正向或反向）
+    const double signed_distance = forward ? distance : -distance; // 根据方向确定带符号的距离
+    const double relative_s = waypoint.s - lane.GetDistance(); // 计算相对位置s
+    const double remaining_lane_length = forward ? lane.GetLength() - relative_s : relative_s; // 剩余车道长度
+    DEBUG_ASSERT(remaining_lane_length >= 0.0); // 确保剩余车道长度非负
 
-    // If after subtracting the distance we are still in the same lane, return
-    // same waypoint with the extra distance.
+    // 如果在同一车道内，返回增加了距离的waypoint
     if (distance <= remaining_lane_length) {
-      Waypoint result = waypoint;
-      result.s += signed_distance;
-      result.s += forward ? -EPSILON : EPSILON;
-      RELEASE_ASSERT(result.s > 0.0);
-      return { result };
+      Waypoint result = waypoint; // 创建结果waypoint
+      result.s += signed_distance; // 更新s值
+      result.s += forward ? -EPSILON : EPSILON; // 调整s值以避免浮点数精度问题
+      RELEASE_ASSERT(result.s > 0.0); // 确保s值大于0
+      return { result }; // 返回结果
     }
 
-    // If we run out of remaining_lane_length we have to go to the successors.
-    std::vector<Waypoint> result;
-    for (const auto &successor : GetPredecessors(waypoint)) {
+    // 如果没有剩余车道长度，则需要转到前驱节点
+    std::vector<Waypoint> result; // 存储结果的vector
+    for (const auto &successor : GetPredecessors(waypoint)) { // 遍历所有前驱waypoints
       DEBUG_ASSERT(
-          successor.road_id != waypoint.road_id ||
-          successor.section_id != waypoint.section_id ||
-          successor.lane_id != waypoint.lane_id);
-      result = ConcatVectors(result, GetPrevious(successor, distance - remaining_lane_length));
+          successor.road_id != waypoint.road_id || // 确保不在同一路段
+          successor.section_id != waypoint.section_id || // 确保不在同一部分
+          successor.lane_id != waypoint.lane_id); // 确保不在同一车道
+      result = ConcatVectors(result, GetPrevious(successor, distance - remaining_lane_length)); // 递归获取前一个waypoint
     }
-    return result;
+    return result; // 返回所有找到的waypoints
   }
 
   boost::optional<Waypoint> Map::GetRight(Waypoint waypoint) const {
-    RELEASE_ASSERT(waypoint.lane_id != 0);
-    if (waypoint.lane_id > 0) {
-      ++waypoint.lane_id;
+    RELEASE_ASSERT(waypoint.lane_id != 0); // 确保车道ID不为0
+    if (waypoint.lane_id > 0) { // 如果当前车道ID为正
+      ++waypoint.lane_id; // 向右移动到下一个车道
     } else {
-      --waypoint.lane_id;
+      --waypoint.lane_id; // 向左移动到下一个车道
     }
-    return IsLanePresent(_data, waypoint) ? waypoint : boost::optional<Waypoint>{};
+    return IsLanePresent(_data, waypoint) ? waypoint : boost::optional<Waypoint>{}; // 检查新车道是否存在
   }
 
   boost::optional<Waypoint> Map::GetLeft(Waypoint waypoint) const {
-    RELEASE_ASSERT(waypoint.lane_id != 0);
-    if (std::abs(waypoint.lane_id) == 1) {
-      waypoint.lane_id *= -1;
-    } else if (waypoint.lane_id > 0) {
-      --waypoint.lane_id;
+    RELEASE_ASSERT(waypoint.lane_id != 0); // 确保车道ID不为0
+    if (std::abs(waypoint.lane_id) == 1) { // 如果当前车道ID绝对值为1
+      waypoint.lane_id *= -1; // 切换到另一侧的车道
+    } else if (waypoint.lane_id > 0) { // 如果当前车道ID为正
+      --waypoint.lane_id; // 向左移动到下一个车道
     } else {
-      ++waypoint.lane_id;
+      ++waypoint.lane_id; // 向右移动到下一个车道
     }
-    return IsLanePresent(_data, waypoint) ? waypoint : boost::optional<Waypoint>{};
+    return IsLanePresent(_data, waypoint) ? waypoint : boost::optional<Waypoint>{}; // 检查新车道是否存在
   }
 
   std::vector<Waypoint> Map::GenerateWaypoints(const double distance) const {
-    RELEASE_ASSERT(distance > 0.0);
-    std::vector<Waypoint> result;
-    for (const auto &pair : _data.GetRoads()) {
-      const auto &road = pair.second;
-      for (double s = EPSILON; s < (road.GetLength() - EPSILON); s += distance) {
-        ForEachDrivableLaneAt(road, s, [&](auto &&waypoint) {
-          result.emplace_back(waypoint);
+    RELEASE_ASSERT(distance > 0.0); // 确保距离大于0
+    std::vector<Waypoint> result; // 存储生成的waypoints
+    for (const auto &pair : _data.GetRoads()) { // 遍历所有道路
+      const auto &road = pair.second; // 获取当前道路
+      for (double s = EPSILON; s < (road.GetLength() - EPSILON); s += distance) { // 从0到道路长度生成waypoints
+        ForEachDrivableLaneAt(road, s, [&](auto &&waypoint) { // 对每个可驾驶车道执行操作
+          result.emplace_back(waypoint); // 将waypoint添加到结果中
         });
       }
     }
-    return result;
+    return result; // 返回生成的waypoints
   }
 
-  std::vector<Waypoint> Map::GenerateWaypointsOnRoadEntries(Lane::LaneType lane_type) const {
-    std::vector<Waypoint> result;
-    for (const auto &pair : _data.GetRoads()) {
-      const auto &road = pair.second;
-      // right lanes start at s 0
-      for (const auto &lane_section : road.GetLaneSectionsAt(0.0)) {
-        for (const auto &lane : lane_section.GetLanes()) {
-          // add only the right (negative) lanes
-          if (lane.first < 0 &&
-              static_cast<int32_t>(lane.second.GetType()) & static_cast<int32_t>(lane_type)) {
-            result.emplace_back(Waypoint{ road.GetId(), lane_section.GetId(), lane.second.GetId(), 0.0 });
-          }
+ std::vector<Waypoint> Map::GenerateWaypointsOnRoadEntries(Lane::LaneType lane_type) const {
+    std::vector<Waypoint> result; // 创建一个空的 Waypoint 向量来存储结果
+    for (const auto &pair : _data.GetRoads()) { // 遍历所有道路
+        const auto &road = pair.second; // 获取当前道路
+        // 右侧车道从 s = 0 开始
+        for (const auto &lane_section : road.GetLaneSectionsAt(0.0)) { // 在 s=0 处获取车道段
+            for (const auto &lane : lane_section.GetLanes()) { // 遍历当前车道段的车道
+                // 仅添加右侧（负值）车道
+                if (lane.first < 0 && 
+                    static_cast<int32_t>(lane.second.GetType()) & static_cast<int32_t>(lane_type)) {
+                    result.emplace_back(Waypoint{ road.GetId(), lane_section.GetId(), lane.second.GetId(), 0.0 }); // 添加到结果
+                }
+            }
         }
-      }
-      // left lanes start at s max
-      const auto road_len = road.GetLength();
-      for (const auto &lane_section : road.GetLaneSectionsAt(road_len)) {
-        for (const auto &lane : lane_section.GetLanes()) {
-          // add only the left (positive) lanes
-          if (lane.first > 0 &&
-              static_cast<int32_t>(lane.second.GetType()) & static_cast<int32_t>(lane_type)) {
-            result.emplace_back(
-              Waypoint{ road.GetId(), lane_section.GetId(), lane.second.GetId(), road_len });
-          }
+        // 左侧车道从 s = max 开始
+        const auto road_len = road.GetLength(); // 获取道路长度
+        for (const auto &lane_section : road.GetLaneSectionsAt(road_len)) { // 在 s=road_len 处获取车道段
+            for (const auto &lane : lane_section.GetLanes()) { // 遍历当前车道段的车道
+                // 仅添加左侧（正值）车道
+                if (lane.first > 0 && 
+                    static_cast<int32_t>(lane.second.GetType()) & static_cast<int32_t>(lane_type)) {
+                    result.emplace_back(
+                        Waypoint{ road.GetId(), lane_section.GetId(), lane.second.GetId(), road_len }); // 添加到结果
+                }
+            }
         }
-      }
     }
-    return result;
-  }
+    return result; // 返回生成的 Waypoint 向量
+}
 
-  std::vector<Waypoint> Map::GenerateWaypointsInRoad(
-      RoadId road_id,
-      Lane::LaneType lane_type) const {
-    std::vector<Waypoint> result;
-    if(_data.GetRoads().count(road_id)) {
-      const auto &road = _data.GetRoads().at(road_id);
-      // right lanes start at s 0
-      for (const auto &lane_section : road.GetLaneSectionsAt(0.0)) {
-        for (const auto &lane : lane_section.GetLanes()) {
-          // add only the right (negative) lanes
-          if (lane.first < 0 &&
-              static_cast<int32_t>(lane.second.GetType()) & static_cast<int32_t>(lane_type)) {
-            result.emplace_back(Waypoint{ road.GetId(), lane_section.GetId(), lane.second.GetId(), 0.0 });
-          }
+std::vector<Waypoint> Map::GenerateWaypointsInRoad(
+    RoadId road_id,
+    Lane::LaneType lane_type) const {
+    std::vector<Waypoint> result; // 创建一个空的 Waypoint 向量来存储结果
+    if(_data.GetRoads().count(road_id)) { // 检查道路是否存在
+        const auto &road = _data.GetRoads().at(road_id); // 获取指定道路
+        // 右侧车道从 s = 0 开始
+        for (const auto &lane_section : road.GetLaneSectionsAt(0.0)) { // 在 s=0 处获取车道段
+            for (const auto &lane : lane_section.GetLanes()) { // 遍历当前车道段的车道
+                // 仅添加右侧（负值）车道
+                if (lane.first < 0 && 
+                    static_cast<int32_t>(lane.second.GetType()) & static_cast<int32_t>(lane_type)) {
+                    result.emplace_back(Waypoint{ road.GetId(), lane_section.GetId(), lane.second.GetId(), 0.0 }); // 添加到结果
+                }
+            }
         }
-      }
-      // left lanes start at s max
-      const auto road_len = road.GetLength();
-      for (const auto &lane_section : road.GetLaneSectionsAt(road_len)) {
-        for (const auto &lane : lane_section.GetLanes()) {
-          // add only the left (positive) lanes
-          if (lane.first > 0 &&
-              static_cast<int32_t>(lane.second.GetType()) & static_cast<int32_t>(lane_type)) {
-            result.emplace_back(
-              Waypoint{ road.GetId(), lane_section.GetId(), lane.second.GetId(), road_len });
-          }
+        // 左侧车道从 s = max 开始
+        const auto road_len = road.GetLength(); // 获取道路长度
+        for (const auto &lane_section : road.GetLaneSectionsAt(road_len)) { // 在 s=road_len 处获取车道段
+            for (const auto &lane : lane_section.GetLanes()) { // 遍历当前车道段的车道
+                // 仅添加左侧（正值）车道
+                if (lane.first > 0 && 
+                    static_cast<int32_t>(lane.second.GetType()) & static_cast<int32_t>(lane_type)) {
+                    result.emplace_back(
+                        Waypoint{ road.GetId(), lane_section.GetId(), lane.second.GetId(), road_len }); // 添加到结果
+                }
+            }
         }
-      }
     }
-    return result;
-  }
+    return result; // 返回生成的 Waypoint 向量
+}
 
-  std::vector<std::pair<Waypoint, Waypoint>> Map::GenerateTopology() const {
-    std::vector<std::pair<Waypoint, Waypoint>> result;
-    for (const auto &pair : _data.GetRoads()) {
-      const auto &road = pair.second;
-      ForEachDrivableLane(road, [&](auto &&waypoint) {
-        auto successors = GetSuccessors(waypoint);
-        if (successors.size() == 0){
-          auto distance = static_cast<float>(GetDistanceAtEndOfLane(GetLane(waypoint)));
-          auto last_waypoint = GetWaypoint(waypoint.road_id, waypoint.lane_id, distance);
-          if (last_waypoint.has_value()){
-            result.push_back({waypoint, *last_waypoint});
-          }
-        }
-        else{
-          for (auto &&successor : GetSuccessors(waypoint)) {
-            result.push_back({waypoint, successor});
-          }
-        }
-      });
+std::vector<std::pair<Waypoint, Waypoint>> Map::GenerateTopology() const {
+    std::vector<std::pair<Waypoint, Waypoint>> result; // 创建一个空的 Waypoint 对向量来存储结果
+    for (const auto &pair : _data.GetRoads()) { // 遍历所有道路
+        const auto &road = pair.second; // 获取当前道路
+        ForEachDrivableLane(road, [&](auto &&waypoint) { // 对每个可驾驶车道执行操作
+            auto successors = GetSuccessors(waypoint); // 获取当前 waypoint 的后继 waypoint
+            if (successors.size() == 0) { // 如果没有后继
+                auto distance = static_cast<float>(GetDistanceAtEndOfLane(GetLane(waypoint))); // 获取车道末尾的距离
+                auto last_waypoint = GetWaypoint(waypoint.road_id, waypoint.lane_id, distance); // 获取最后一个 waypoint
+                if (last_waypoint.has_value()) { // 如果存在最后一个 waypoint
+                    result.push_back({waypoint, *last_waypoint}); // 添加到结果
+                }
+            } else { // 如果有后继
+                for (auto &&successor : GetSuccessors(waypoint)) { // 遍历所有后继
+                    result.push_back({waypoint, successor}); // 添加到结果
+                }
+            }
+        });
     }
-    return result;
-  }
+    return result; // 返回生成的 waypoint 对向量
+}
 
-  std::vector<std::pair<Waypoint, Waypoint>> Map::GetJunctionWaypoints(JuncId id, Lane::LaneType lane_type) const {
-    std::vector<std::pair<Waypoint, Waypoint>> result;
-    const Junction * junction = GetJunction(id);
-    for(auto &connections : junction->GetConnections()) {
-      const Road &road = _data.GetRoad(connections.second.connecting_road);
-      ForEachLane(road, lane_type, [&](auto &&waypoint) {
-        const auto& lane = GetLane(waypoint);
-        const double final_s = GetDistanceAtEndOfLane(lane);
-        Waypoint lane_end(waypoint);
-        lane_end.s = final_s;
-        result.push_back({waypoint, lane_end});
-      });
+
+std::vector<std::pair<Waypoint, Waypoint>> Map::GetJunctionWaypoints(JuncId id, Lane::LaneType lane_type) const {
+    std::vector<std::pair<Waypoint, Waypoint>> result; // 存储结果的向量
+    const Junction * junction = GetJunction(id); // 获取指定ID的交叉口
+
+    for(auto &connections : junction->GetConnections()) { // 遍历交叉口的所有连接
+        const Road &road = _data.GetRoad(connections.second.connecting_road); // 获取连接的道路
+        ForEachLane(road, lane_type, [&](auto &&waypoint) { // 对于每条车道
+            const auto& lane = GetLane(waypoint); // 获取车道信息
+            const double final_s = GetDistanceAtEndOfLane(lane); // 计算车道末端的距离
+            Waypoint lane_end(waypoint); // 创建一个新的Waypoint对象
+            lane_end.s = final_s; // 设置新的Waypoint的s值为末端距离
+            result.push_back({waypoint, lane_end}); // 将原Waypoint和末端Waypoint存入结果向量
+        });
     }
-    return result;
-  }
+    return result; // 返回结果
+}
 
-  std::unordered_map<road::RoadId, std::unordered_set<road::RoadId>>
-      Map::ComputeJunctionConflicts(JuncId id) const {
+std::unordered_map<road::RoadId, std::unordered_set<road::RoadId>>
+Map::ComputeJunctionConflicts(JuncId id) const {
+    const float epsilon = 0.0001f; // 设置一个小的误差值，防止数值错误
+    const Junction *junction = GetJunction(id); // 获取指定ID的交叉口
+    std::unordered_map<road::RoadId, std::unordered_set<road::RoadId>> conflicts; // 存储冲突的道路ID
 
-    const float epsilon = 0.0001f; // small delta in the road (set to 0.1
-                                     // millimeters to prevent numeric errors)
-    const Junction *junction = GetJunction(id);
-    std::unordered_map<road::RoadId, std::unordered_set<road::RoadId>>
-        conflicts;
+    // 2D类型定义
+    typedef boost::geometry::model::point<float, 2, boost::geometry::cs::cartesian> Point2d; // 定义2D点
+    typedef boost::geometry::model::segment<Point2d> Segment2d; // 定义2D线段
+    typedef boost::geometry::model::box<Rtree::BPoint> Box; // 定义包围盒
 
-    // 2d typedefs
-    typedef boost::geometry::model::point
-        <float, 2, boost::geometry::cs::cartesian> Point2d;
-    typedef boost::geometry::model::segment<Point2d> Segment2d;
-    typedef boost::geometry::model::box<Rtree::BPoint> Box;
-
-    // box range
-    auto bbox_pos = junction->GetBoundingBox().location;
-    auto bbox_ext = junction->GetBoundingBox().extent;
-    auto min_corner = geom::Vector3D(
+    // 计算包围盒范围
+    auto bbox_pos = junction->GetBoundingBox().location; // 获取交叉口的中心位置
+    auto bbox_ext = junction->GetBoundingBox().extent; // 获取交叉口的扩展范围
+    auto min_corner = geom::Vector3D( // 计算最小角点
         bbox_pos.x - bbox_ext.x,
         bbox_pos.y - bbox_ext.y,
         bbox_pos.z - bbox_ext.z - epsilon);
-    auto max_corner = geom::Vector3D(
+    auto max_corner = geom::Vector3D( // 计算最大角点
         bbox_pos.x + bbox_ext.x,
         bbox_pos.y + bbox_ext.y,
         bbox_pos.z + bbox_ext.z + epsilon);
-    Box box({min_corner.x, min_corner.y, min_corner.z},
+    Box box({min_corner.x, min_corner.y, min_corner.z}, // 创建包围盒
         {max_corner.x, max_corner.y, max_corner.z});
-    auto segments = _rtree.GetIntersections(box);
+    auto segments = _rtree.GetIntersections(box); // 获取与包围盒相交的线段
 
-    for (size_t i = 0; i < segments.size(); ++i){
-      auto &segment1 = segments[i];
-      auto waypoint1 = segment1.second.first;
-      JuncId junc_id1 = _data.GetRoad(waypoint1.road_id).GetJunctionId();
-      // only segments in the junction
-      if(junc_id1 != id){
-        continue;
-      }
-      Segment2d seg1{{segment1.first.first.get<0>(), segment1.first.first.get<1>()},
-          {segment1.first.second.get<0>(), segment1.first.second.get<1>()}};
-      for (size_t j = i + 1; j < segments.size(); ++j){
-        auto &segment2 = segments[j];
-        auto waypoint2 = segment2.second.first;
-        JuncId junc_id2 = _data.GetRoad(waypoint2.road_id).GetJunctionId();
-        // only segments in the junction
-        if(junc_id2 != id){
-          continue;
+    for (size_t i = 0; i < segments.size(); ++i) { // 遍历所有线段
+        auto &segment1 = segments[i]; // 获取当前线段
+        auto waypoint1 = segment1.second.first; // 获取对应的第一个Waypoint
+        JuncId junc_id1 = _data.GetRoad(waypoint1.road_id).GetJunctionId(); // 获取该Waypoint所在道路的交叉口ID
+        // 只处理在当前交叉口的线段
+        if(junc_id1 != id) {
+            continue; // 如果不在当前交叉口则跳过
         }
-        // discard same road
-        if(waypoint1.road_id == waypoint2.road_id){
-          continue;
-        }
-        Segment2d seg2{{segment2.first.first.get<0>(), segment2.first.first.get<1>()},
-            {segment2.first.second.get<0>(), segment2.first.second.get<1>()}};
+        Segment2d seg1{{segment1.first.first.get<0>(), segment1.first.first.get<1>()}, // 构建第一个线段
+            {segment1.first.second.get<0>(), segment1.first.second.get<1()}};
+        for (size_t j = i + 1; j < segments.size(); ++j) { // 遍历后续的线段
+            auto &segment2 = segments[j]; // 获取第二个线段
+            auto waypoint2 = segment2.second.first; // 获取对应的Waypoint
+            JuncId junc_id2 = _data.GetRoad(waypoint2.road_id).GetJunctionId(); // 获取该Waypoint所在道路的交叉口ID
+            // 只处理在当前交叉口的线段
+            if(junc_id2 != id) {
+                continue; // 如果不在当前交叉口则跳过
+            }
+            // 排除同一路径
+            if(waypoint1.road_id == waypoint2.road_id) {
+                continue; // 如果是同一路段则跳过
+            }
+            Segment2d seg2{{segment2.first.first.get<0>(), segment2.first.first.get<1>()}, // 构建第二个线段
+                {segment2.first.second.get<0>(), segment2.first.second.get<1>()}};
 
-        double distance = boost::geometry::distance(seg1, seg2);
-        // better to set distance to lanewidth
-        if(distance > 2.0){
-          continue;
+            double distance = boost::geometry::distance(seg1, seg2); // 计算两线段之间的距离
+            // 设定距离阈值
+            if(distance > 2.0) {
+                continue; // 如果距离大于2.0则跳过
+            }
+            if(conflicts[waypoint1.road_id].count(waypoint2.road_id) == 0) {
+                conflicts[waypoint1.road_id].insert(waypoint2.road_id); // 记录冲突
+            }
+            if(conflicts[waypoint2.road_id].count(waypoint1.road_id) == 0) {
+                conflicts[waypoint2.road_id].insert(waypoint1.road_id); // 记录冲突
+            }
         }
-        if(conflicts[waypoint1.road_id].count(waypoint2.road_id) == 0){
-          conflicts[waypoint1.road_id].insert(waypoint2.road_id);
-        }
-        if(conflicts[waypoint2.road_id].count(waypoint1.road_id) == 0){
-          conflicts[waypoint2.road_id].insert(waypoint1.road_id);
-        }
-      }
     }
-    return conflicts;
-  }
+    return conflicts; // 返回所有冲突
+}
 
-  const Lane &Map::GetLane(Waypoint waypoint) const {
+const Lane &Map::GetLane(Waypoint waypoint) const {
+    // 根据给定的Waypoint获取对应的车道
     return _data.GetRoad(waypoint.road_id).GetLaneById(waypoint.section_id, waypoint.lane_id);
-  }
+}
 
-  // ===========================================================================
-  // -- Map: Private functions -------------------------------------------------
-  // ===========================================================================
+// ===========================================================================
+// -- Map: Private functions -------------------------------------------------
+// ===========================================================================
 
-  // Adds a new element to the rtree element list using the position of the
-  // waypoints both ends of the segment
-  void Map::AddElementToRtree(
-      std::vector<Rtree::TreeElement> &rtree_elements,
-      geom::Transform &current_transform,
-      geom::Transform &next_transform,
-      Waypoint &current_waypoint,
-      Waypoint &next_waypoint) {
+// 使用线段两端的Waypoints位置将新元素添加到R树元素列表中
+void Map::AddElementToRtree(
+    std::vector<Rtree::TreeElement> &rtree_elements, // R树元素列表
+    geom::Transform &current_transform,               // 当前变换
+    geom::Transform &next_transform,                  // 下一个变换
+    Waypoint &current_waypoint,                       // 当前Waypoint
+    Waypoint &next_waypoint) {                        // 下一个Waypoint
+    // 初始化点
     Rtree::BPoint init =
         Rtree::BPoint(
-        current_transform.location.x,
-        current_transform.location.y,
-        current_transform.location.z);
+            current_transform.location.x,
+            current_transform.location.y,
+            current_transform.location.z);
+    // 结束点
     Rtree::BPoint end =
         Rtree::BPoint(
-        next_transform.location.x,
-        next_transform.location.y,
-        next_transform.location.z);
+            next_transform.location.x,
+            next_transform.location.y,
+            next_transform.location.z);
+    // 将线段和相应的Waypoints加入R树元素列表
     rtree_elements.emplace_back(std::make_pair(Rtree::BSegment(init, end),
         std::make_pair(current_waypoint, next_waypoint)));
-  }
-  // Adds a new element to the rtree element list using the position of the
-  // waypoints, both ends of the segment
-  void Map::AddElementToRtreeAndUpdateTransforms(
-      std::vector<Rtree::TreeElement> &rtree_elements,
-      geom::Transform &current_transform,
-      Waypoint &current_waypoint,
-      Waypoint &next_waypoint) {
+}
+
+// 使用Waypoints的位置将新元素添加到R树元素列表中，并更新变换
+void Map::AddElementToRtreeAndUpdateTransforms(
+    std::vector<Rtree::TreeElement> &rtree_elements, // R树元素列表
+    geom::Transform &current_transform,               // 当前变换
+    Waypoint &current_waypoint,                       // 当前Waypoint
+    Waypoint &next_waypoint) {                        // 下一个Waypoint
+    // 计算下一个Waypoint的变换
     geom::Transform next_transform = ComputeTransform(next_waypoint);
+    // 添加元素到R树
     AddElementToRtree(rtree_elements, current_transform, next_transform,
-    current_waypoint, next_waypoint);
+                      current_waypoint, next_waypoint);
+    // 更新当前Waypoint和变换
     current_waypoint = next_waypoint;
     current_transform = next_transform;
-  }
+}
 
-  // returns the remaining length of the geometry depending on the lane
-  // direction
-  double GetRemainingLength(const Lane &lane, double current_s) {
+// 根据车道方向返回几何图形的剩余长度
+double GetRemainingLength(const Lane &lane, double current_s) {
     if (lane.GetId() < 0) {
-      return (lane.GetDistance() + lane.GetLength() - current_s);
+        // 如果车道ID小于0，计算剩余长度
+        return (lane.GetDistance() + lane.GetLength() - current_s);
     } else {
-      return (current_s - lane.GetDistance());
+        // 如果车道ID大于等于0，返回从当前s到车道起始位置的长度
+        return (current_s - lane.GetDistance());
     }
-  }
+}
 
-  void Map::CreateRtree() {
-    const double epsilon = 0.000001; // small delta in the road (set to 1
-                                     // micrometer to prevent numeric errors)
-    const double min_delta_s = 1;    // segments of minimum 1m through the road
+// 创建R树
+void Map::CreateRtree() {
+    const double epsilon = 0.000001; // 设置一个小的增量以防止数值误差
+    const double min_delta_s = 1;    // 每个段的最小长度为1米
 
-    // 1.8 degrees, maximum angle in a curve to place a segment
+    // 1.8度，曲线中放置线段的最大角度阈值
     constexpr double angle_threshold = geom::Math::Pi<double>() / 100.0;
-    // maximum distance of a segment
+    // 线段的最大长度
     constexpr double max_segment_length = 100.0;
 
-    // Generate waypoints at start of every lane
-    std::vector<Waypoint> topology;
-    for (const auto &pair : _data.GetRoads()) {
-      const auto &road = pair.second;
-      ForEachLane(road, Lane::LaneType::Any, [&](auto &&waypoint) {
-        if(waypoint.lane_id != 0) {
-          topology.push_back(waypoint);
-        }
-      });
+    // 在每条车道的起始位置生成Waypoints
+    std::vector<Waypoint> topology; // 存储所有Waypoints
+    for (const auto &pair : _data.GetRoads()) { // 遍历所有道路
+        const auto &road = pair.second; // 获取道路信息
+        // 对每条车道进行操作
+        ForEachLane(road, Lane::LaneType::Any, [&](auto &&waypoint) {
+            if(waypoint.lane_id != 0) { // 排除ID为0的车道
+                topology.push_back(waypoint); // 将Waypoint加入到topology中
+            }
+        });
     }
+}
 
     // Container of segments and waypoints
     std::vector<Rtree::TreeElement> rtree_elements;
