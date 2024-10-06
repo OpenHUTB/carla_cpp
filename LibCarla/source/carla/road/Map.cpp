@@ -912,163 +912,171 @@ void Map::CreateRtree() {
     }
 }
 
-    // Container of segments and waypoints
-    std::vector<Rtree::TreeElement> rtree_elements;
-    // Loop through all lanes
-    for (auto &waypoint : topology) {
-      auto &lane_start_waypoint = waypoint;
+// 段和路点的容器
+std::vector<Rtree::TreeElement> rtree_elements;
 
-      auto current_waypoint = lane_start_waypoint;
+// 遍历所有车道
+for (auto &waypoint : topology) {
+    auto &lane_start_waypoint = waypoint; // 车道起始路点
 
-      const Lane &lane = GetLane(current_waypoint);
+    auto current_waypoint = lane_start_waypoint; // 当前路点
 
-      geom::Transform current_transform = ComputeTransform(current_waypoint);
+    const Lane &lane = GetLane(current_waypoint); // 获取当前路点所在的车道
 
-      // Save computation time in straight lines
-      if (lane.IsStraight()) {
-        double delta_s = min_delta_s;
-        double remaining_length =
-            GetRemainingLength(lane, current_waypoint.s);
-        remaining_length -= epsilon;
-        delta_s = remaining_length;
-        if (delta_s < epsilon) {
-          continue;
+    geom::Transform current_transform = ComputeTransform(current_waypoint); // 计算当前路点的变换
+
+    // 在直线段中节省计算时间
+    if (lane.IsStraight()) { // 如果车道是直的
+        double delta_s = min_delta_s; // 初始化增量距离
+        double remaining_length = GetRemainingLength(lane, current_waypoint.s); // 获取剩余长度
+        remaining_length -= epsilon; // 减去一个小值以避免数值问题
+        delta_s = remaining_length; // 更新增量距离
+        if (delta_s < epsilon) { // 如果增量距离小于阈值
+            continue; // 跳过此轮
         }
-        auto next = GetNext(current_waypoint, delta_s);
+        auto next = GetNext(current_waypoint, delta_s); // 获取下一个路点
 
-        RELEASE_ASSERT(next.size() == 1);
-        RELEASE_ASSERT(next.front().road_id == current_waypoint.road_id);
-        auto next_waypoint = next.front();
+        RELEASE_ASSERT(next.size() == 1); // 确保下一个路点只有一个
+        RELEASE_ASSERT(next.front().road_id == current_waypoint.road_id); // 确保下一个路点在同一路段
+        auto next_waypoint = next.front(); // 下一个路点
 
-        AddElementToRtreeAndUpdateTransforms(
+        AddElementToRtreeAndUpdateTransforms( // 添加元素到R树并更新变换
             rtree_elements,
             current_transform,
             current_waypoint,
             next_waypoint);
-        // end of lane
-      } else {
-        auto next_waypoint = current_waypoint;
+        // 到达车道末尾
+    } else {
+        auto next_waypoint = current_waypoint; // 初始化下一个路点
 
-        // Loop until the end of the lane
-        // Advance in small s-increments
+        // 循环直到车道末尾
+        // 按小的s增量前进
         while (true) {
-          double delta_s = min_delta_s;
-          double remaining_length =
-              GetRemainingLength(lane, next_waypoint.s);
-          remaining_length -= epsilon;
-          delta_s = std::min(delta_s, remaining_length);
+            double delta_s = min_delta_s; // 初始化增量距离
+            double remaining_length = GetRemainingLength(lane, next_waypoint.s); // 获取剩余长度
+            remaining_length -= epsilon; // 减去一个小值以避免数值问题
+            delta_s = std::min(delta_s, remaining_length); // 更新增量距离
 
-          if (delta_s < epsilon) {
-            AddElementToRtreeAndUpdateTransforms(
-                rtree_elements,
-                current_transform,
-                current_waypoint,
-                next_waypoint);
-            break;
-          }
+            if (delta_s < epsilon) { // 如果增量距离小于阈值
+                AddElementToRtreeAndUpdateTransforms( // 添加当前路点和下一个路点到R树
+                    rtree_elements,
+                    current_transform,
+                    current_waypoint,
+                    next_waypoint);
+                break; // 退出循环
+            }
 
-          auto next = GetNext(next_waypoint, delta_s);
-          if (next.size() != 1 ||
-          current_waypoint.section_id != next.front().section_id) {
-            AddElementToRtreeAndUpdateTransforms(
-                rtree_elements,
-                current_transform,
-                current_waypoint,
-                next_waypoint);
-            break;
-          }
+            auto next = GetNext(next_waypoint, delta_s); // 获取下一个路点
+            if (next.size() != 1 || // 如果下一个路点不止一个或在不同的区段
+                current_waypoint.section_id != next.front().section_id) {
+                AddElementToRtreeAndUpdateTransforms( // 添加当前和下一个路点到R树
+                    rtree_elements,
+                    current_transform,
+                    current_waypoint,
+                    next_waypoint);
+                break; // 退出循环
+            }
 
-          next_waypoint = next.front();
-          geom::Transform next_transform = ComputeTransform(next_waypoint);
-          double angle = geom::Math::GetVectorAngle(
-              current_transform.GetForwardVector(), next_transform.GetForwardVector());
+            next_waypoint = next.front(); // 更新下一个路点
+            geom::Transform next_transform = ComputeTransform(next_waypoint); // 计算下一个路点的变换
+            double angle = geom::Math::GetVectorAngle( // 获取当前和下一个路点的角度
+                current_transform.GetForwardVector(), next_transform.GetForwardVector());
 
-          if (std::abs(angle) > angle_threshold ||
-              std::abs(current_waypoint.s - next_waypoint.s) > max_segment_length) {
-            AddElementToRtree(
-                rtree_elements,
-                current_transform,
-                next_transform,
-                current_waypoint,
-                next_waypoint);
-            current_waypoint = next_waypoint;
-            current_transform = next_transform;
+            if (std::abs(angle) > angle_threshold || // 如果角度超过阈值
+                std::abs(current_waypoint.s - next_waypoint.s) > max_segment_length) { // 或者距离超过最大段长度
+                AddElementToRtree( // 将当前和下一个路点的变换添加到R树
+                    rtree_elements,
+                    current_transform,
+                    next_transform,
+                    current_waypoint,
+                    next_waypoint);
+                current_waypoint = next_waypoint; // 更新当前路点
+                current_transform = next_transform; // 更新当前变换
+            }
+        }
+    }
+}
+
+// 将段添加到R树
+_rtree.InsertElements(rtree_elements);
+
+Junction* Map::GetJunction(JuncId id) { // 获取交叉口
+    return _data.GetJunction(id); // 返回指定ID的交叉口
+}
+
+const Junction* Map::GetJunction(JuncId id) const { // 获取交叉口（常量版本）
+    return _data.GetJunction(id); // 返回指定ID的交叉口
+}
+
+// 生成网格的函数，参数包括距离、额外宽度和是否平滑交叉口
+geom::Mesh Map::GenerateMesh(
+      const double distance, // 距离参数
+      const float extra_width, // 额外宽度参数
+      const bool smooth_junctions) const { // 是否平滑交叉口的标志
+    RELEASE_ASSERT(distance > 0.0); // 确保距离大于0
+    geom::MeshFactory mesh_factory; // 创建网格工厂
+    geom::Mesh out_mesh; // 输出网格
+
+    // 设置路参数
+    mesh_factory.road_param.resolution = static_cast<float>(distance); // 设置分辨率为给定距离
+    mesh_factory.road_param.extra_lane_width = extra_width; // 设置额外车道宽度
+
+    // 生成交叉口外的道路
+    for (auto &&pair : _data.GetRoads()) { // 遍历所有道路
+      const auto &road = pair.second; // 获取当前道路
+      if (road.IsJunction()) { // 如果是交叉口，跳过
+        continue; // 继续下一个循环
+      }
+      out_mesh += *mesh_factory.Generate(road); // 生成网格并添加到输出网格中
+    }
+
+    // 生成交叉口内的道路并平滑处理
+    for (const auto &junc_pair : _data.GetJunctions()) { // 遍历所有交叉口
+      const auto &junction = junc_pair.second; // 获取当前交叉口
+      std::vector<std::unique_ptr<geom::Mesh>> lane_meshes; // 存储车道网格的指针
+
+      // 遍历交叉口的连接
+      for(const auto &connection_pair : junction.GetConnections()) { // 遍历连接
+        const auto &connection = connection_pair.second; // 获取连接信息
+        const auto &road = _data.GetRoads().at(connection.connecting_road); // 获取连接的道路
+
+        // 遍历每个车道段的车道
+        for (auto &&lane_section : road.GetLaneSections()) { // 获取道路上的车道段
+          for (auto &&lane_pair : lane_section.GetLanes()) { // 遍历车道
+            lane_meshes.push_back(mesh_factory.Generate(lane_pair.second)); // 生成车道网格并添加到列表
           }
         }
       }
-    }
-    // Add segments to Rtree
-    _rtree.InsertElements(rtree_elements);
-  }
 
-  Junction* Map::GetJunction(JuncId id) {
-    return _data.GetJunction(id);
-  }
-
-  const Junction* Map::GetJunction(JuncId id) const {
-    return _data.GetJunction(id);
-  }
-
-  geom::Mesh Map::GenerateMesh(
-      const double distance,
-      const float extra_width,
-      const  bool smooth_junctions) const {
-    RELEASE_ASSERT(distance > 0.0);
-    geom::MeshFactory mesh_factory;
-    geom::Mesh out_mesh;
-
-    mesh_factory.road_param.resolution = static_cast<float>(distance);
-    mesh_factory.road_param.extra_lane_width = extra_width;
-
-    // Generate roads outside junctions
-    for (auto &&pair : _data.GetRoads()) {
-      const auto &road = pair.second;
-      if (road.IsJunction()) {
-        continue;
-      }
-      out_mesh += *mesh_factory.Generate(road);
-    }
-
-    // Generate roads within junctions and smooth them
-    for (const auto &junc_pair : _data.GetJunctions()) {
-      const auto &junction = junc_pair.second;
-      std::vector<std::unique_ptr<geom::Mesh>> lane_meshes;
-      for(const auto &connection_pair : junction.GetConnections()) {
-        const auto &connection = connection_pair.second;
-        const auto &road = _data.GetRoads().at(connection.connecting_road);
-        for (auto &&lane_section : road.GetLaneSections()) {
-          for (auto &&lane_pair : lane_section.GetLanes()) {
-            lane_meshes.push_back(mesh_factory.Generate(lane_pair.second));
-          }
-        }
-      }
+      // 如果需要平滑交叉口
       if(smooth_junctions) {
-        out_mesh += *mesh_factory.MergeAndSmooth(lane_meshes);
+        out_mesh += *mesh_factory.MergeAndSmooth(lane_meshes); // 合并并平滑车道网格
       } else {
-        geom::Mesh junction_mesh;
-        for(auto& lane : lane_meshes) {
-          junction_mesh += *lane;
+        geom::Mesh junction_mesh; // 创建交叉口网格
+        for(auto& lane : lane_meshes) { // 遍历车道网格
+          junction_mesh += *lane; // 将车道网格添加到交叉口网格中
         }
-        out_mesh += junction_mesh;
+        out_mesh += junction_mesh; // 将交叉口网格添加到输出网格
       }
     }
 
-    return out_mesh;
+    return out_mesh; // 返回生成的网格
   }
 
 
-  std::vector<std::unique_ptr<geom::Mesh>> Map::GenerateChunkedMesh(
+std::vector<std::unique_ptr<geom::Mesh>> Map::GenerateChunkedMesh(
       const rpc::OpendriveGenerationParameters& params) const {
-    geom::MeshFactory mesh_factory(params);
-    std::vector<std::unique_ptr<geom::Mesh>> out_mesh_list;
+    geom::MeshFactory mesh_factory(params); // 创建一个网格工厂，用于生成网格
+    std::vector<std::unique_ptr<geom::Mesh>> out_mesh_list; // 定义输出网格列表
 
-    std::unordered_map<JuncId, geom::Mesh> junction_map;
-    for (auto &&pair : _data.GetRoads()) {
-      const auto &road = pair.second;
-      if (!road.IsJunction()) {
+    std::unordered_map<JuncId, geom::Mesh> junction_map; // 定义用于存储交叉口网格的哈希映射
+    for (auto &&pair : _data.GetRoads()) { // 遍历所有道路
+      const auto &road = pair.second; // 获取当前道路
+      if (!road.IsJunction()) { // 如果该道路不是交叉口
         std::vector<std::unique_ptr<geom::Mesh>> road_mesh_list =
-            mesh_factory.GenerateAllWithMaxLen(road);
+            mesh_factory.GenerateAllWithMaxLen(road); // 生成道路的所有网格
 
+        // 将生成的道路网格添加到输出网格列表中
         out_mesh_list.insert(
             out_mesh_list.end(),
             std::make_move_iterator(road_mesh_list.begin()),
@@ -1076,190 +1084,198 @@ void Map::CreateRtree() {
       }
     }
 
-    // Generate roads within junctions and smooth them
-    for (const auto &junc_pair : _data.GetJunctions()) {
-      const auto &junction = junc_pair.second;
-      std::vector<std::unique_ptr<geom::Mesh>> lane_meshes;
-      std::vector<std::unique_ptr<geom::Mesh>> sidewalk_lane_meshes;
-      for(const auto &connection_pair : junction.GetConnections()) {
-        const auto &connection = connection_pair.second;
-        const auto &road = _data.GetRoads().at(connection.connecting_road);
-        for (auto &&lane_section : road.GetLaneSections()) {
-          for (auto &&lane_pair : lane_section.GetLanes()) {
-            const auto &lane = lane_pair.second;
-            if (lane.GetType() != road::Lane::LaneType::Sidewalk) {
-              lane_meshes.push_back(mesh_factory.Generate(lane));
+    // 生成交叉口内的道路并进行光滑处理
+    for (const auto &junc_pair : _data.GetJunctions()) { // 遍历所有交叉口
+      const auto &junction = junc_pair.second; // 获取当前交叉口
+      std::vector<std::unique_ptr<geom::Mesh>> lane_meshes; // 存储车道网格
+      std::vector<std::unique_ptr<geom::Mesh>> sidewalk_lane_meshes; // 存储人行道网格
+      for(const auto &connection_pair : junction.GetConnections()) { // 遍历交叉口的连接
+        const auto &connection = connection_pair.second; // 获取连接信息
+        const auto &road = _data.GetRoads().at(connection.connecting_road); // 获取连接的道路
+        for (auto &&lane_section : road.GetLaneSections()) { // 遍历道路的车道段
+          for (auto &&lane_pair : lane_section.GetLanes()) { // 遍历车道
+            const auto &lane = lane_pair.second; // 获取当前车道
+            if (lane.GetType() != road::Lane::LaneType::Sidewalk) { // 如果车道不是人行道
+              lane_meshes.push_back(mesh_factory.Generate(lane)); // 生成车道网格并添加
             } else {
-              sidewalk_lane_meshes.push_back(mesh_factory.Generate(lane));
+              sidewalk_lane_meshes.push_back(mesh_factory.Generate(lane)); // 生成人行道网格并添加
             }
           }
         }
       }
-      if(params.smooth_junctions) {
-        auto merged_mesh = mesh_factory.MergeAndSmooth(lane_meshes);
-        for(auto& lane : sidewalk_lane_meshes) {
-          *merged_mesh += *lane;
+      if(params.smooth_junctions) { // 如果需要光滑处理交叉口
+        auto merged_mesh = mesh_factory.MergeAndSmooth(lane_meshes); // 合并并光滑车道网格
+        for(auto& lane : sidewalk_lane_meshes) { // 遍历人行道网格
+          *merged_mesh += *lane; // 将人行道网格添加到合并网格中
         }
-        out_mesh_list.push_back(std::move(merged_mesh));
+        out_mesh_list.push_back(std::move(merged_mesh)); // 将合并后的网格添加到输出列表
       } else {
-        std::unique_ptr<geom::Mesh> junction_mesh = std::make_unique<geom::Mesh>();
-        for(auto& lane : lane_meshes) {
-          *junction_mesh += *lane;
+        std::unique_ptr<geom::Mesh> junction_mesh = std::make_unique<geom::Mesh>(); // 创建新的交叉口网格
+        for(auto& lane : lane_meshes) { // 遍历车道网格
+          *junction_mesh += *lane; // 将车道网格添加到交叉口网格中
         }
-        for(auto& lane : sidewalk_lane_meshes) {
-          *junction_mesh += *lane;
+        for(auto& lane : sidewalk_lane_meshes) { // 遍历人行道网格
+          *junction_mesh += *lane; // 将人行道网格添加到交叉口网格中
         }
-        out_mesh_list.push_back(std::move(junction_mesh));
+        out_mesh_list.push_back(std::move(junction_mesh)); // 将交叉口网格添加到输出列表
       }
     }
 
+    // 找到输出网格的最小和最大位置
     auto min_pos = geom::Vector2D(
         out_mesh_list.front()->GetVertices().front().x,
         out_mesh_list.front()->GetVertices().front().y);
-    auto max_pos = min_pos;
-    for (auto & mesh : out_mesh_list) {
-      auto vertex = mesh->GetVertices().front();
-      min_pos.x = std::min(min_pos.x, vertex.x);
-      min_pos.y = std::min(min_pos.y, vertex.y);
-      max_pos.x = std::max(max_pos.x, vertex.x);
-      max_pos.y = std::max(max_pos.y, vertex.y);
+    auto max_pos = min_pos; // 初始化最大位置为最小位置
+    for (auto & mesh : out_mesh_list) { // 遍历所有输出网格
+      auto vertex = mesh->GetVertices().front(); // 获取网格的第一个顶点
+      min_pos.x = std::min(min_pos.x, vertex.x); // 更新最小x坐标
+      min_pos.y = std::min(min_pos.y, vertex.y); // 更新最小y坐标
+      max_pos.x = std::max(max_pos.x, vertex.x); // 更新最大x坐标
+      max_pos.y = std::max(max_pos.y, vertex.y); // 更新最大y坐标
     }
-    size_t mesh_amount_x = static_cast<size_t>((max_pos.x - min_pos.x)/params.max_road_length) + 1;
-    size_t mesh_amount_y = static_cast<size_t>((max_pos.y - min_pos.y)/params.max_road_length) + 1;
-    std::vector<std::unique_ptr<geom::Mesh>> result;
-    result.reserve(mesh_amount_x*mesh_amount_y);
-    for (size_t i = 0; i < mesh_amount_x*mesh_amount_y; ++i) {
+    size_t mesh_amount_x = static_cast<size_t>((max_pos.x - min_pos.x)/params.max_road_length) + 1; // 计算x方向的网格数量
+    size_t mesh_amount_y = static_cast<size_t>((max_pos.y - min_pos.y)/params.max_road_length) + 1; // 计算y方向的网格数量
+    std::vector<std::unique_ptr<geom::Mesh>> result; // 定义结果网格列表
+    result.reserve(mesh_amount_x*mesh_amount_y); // 预留空间以容纳所有网格
+    for (size_t i = 0; i < mesh_amount_x*mesh_amount_y; ++i) { // 根据网格数量逐个初始化网格
       result.emplace_back(std::make_unique<geom::Mesh>());
     }
-    for (auto & mesh : out_mesh_list) {
-      auto vertex = mesh->GetVertices().front();
-      size_t x_pos = static_cast<size_t>((vertex.x - min_pos.x) / params.max_road_length);
-      size_t y_pos = static_cast<size_t>((vertex.y - min_pos.y) / params.max_road_length);
-      *(result[x_pos + mesh_amount_x*y_pos]) += *mesh;
+    for (auto & mesh : out_mesh_list) { // 遍历所有输出网格
+      auto vertex = mesh->GetVertices().front(); // 获取网格的第一个顶点
+      size_t x_pos = static_cast<size_t>((vertex.x - min_pos.x) / params.max_road_length); // 计算x坐标在结果网格中的索引
+      size_t y_pos = static_cast<size_t>((vertex.y - min_pos.y) / params.max_road_length); // 计算y坐标在结果网格中的索引
+      *(result[x_pos + mesh_amount_x*y_pos]) += *mesh; // 将当前网格添加到对应的结果网格中
     }
 
-    return result;
+    return result; // 返回生成的结果网格列表
   }
 
-  std::map<road::Lane::LaneType , std::vector<std::unique_ptr<geom::Mesh>>>
-    Map::GenerateOrderedChunkedMeshInLocations( const rpc::OpendriveGenerationParameters& params,
-                                     const geom::Vector3D& minpos,
-                                     const geom::Vector3D& maxpos) const
-  {
+ std::map<road::Lane::LaneType , std::vector<std::unique_ptr<geom::Mesh>>>
+Map::GenerateOrderedChunkedMeshInLocations(const rpc::OpendriveGenerationParameters& params,
+                                            const geom::Vector3D& minpos,
+                                            const geom::Vector3D& maxpos) const
+{
+    geom::MeshFactory mesh_factory(params); // 创建一个网格工厂，用于生成网格
+    std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>> road_out_mesh_list; // 存储道路类型对应的网格列表
+    std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>> junction_out_mesh_list; // 存储交叉口类型对应的网格列表
 
-    geom::MeshFactory mesh_factory(params);
-    std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>> road_out_mesh_list;
-    std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>> junction_out_mesh_list;
+    // 创建一个线程来生成交叉口的网格
+    std::thread junction_thread(&Map::GenerateJunctions, this, mesh_factory, params,
+                                 minpos, maxpos, &junction_out_mesh_list);
 
-    std::thread juntction_thread( &Map::GenerateJunctions, this, mesh_factory, params,
-      minpos, maxpos, &junction_out_mesh_list);
-
+    // 根据位置过滤需要生成的道路ID
     const std::vector<RoadId> RoadsIDToGenerate = FilterRoadsByPosition(minpos, maxpos);
 
-    size_t num_roads = RoadsIDToGenerate.size();
-    size_t num_roads_per_thread = 30;
-    size_t num_threads = (num_roads / num_roads_per_thread) + 1;
-    num_threads = num_threads > 1 ? num_threads : 1;
-    std::vector<std::thread> workers;
-    std::mutex write_mutex;
-    std::cout << "Generating " << std::to_string(num_roads) << " roads" << std::endl;
+    size_t num_roads = RoadsIDToGenerate.size(); // 获取需要生成的道路数量
+    size_t num_roads_per_thread = 30; // 每个线程处理的道路数量
+    size_t num_threads = (num_roads / num_roads_per_thread) + 1; // 计算所需线程数
+    num_threads = num_threads > 1 ? num_threads : 1; // 确保至少有一个线程
+    std::vector<std::thread> workers; // 存储工作线程
+    std::mutex write_mutex; // 互斥量，用于保护写操作
+    std::cout << "Generating " << std::to_string(num_roads) << " roads" << std::endl; // 输出生成道路数量
 
-    for ( size_t i = 0; i < num_threads; ++i ) {
-      std::thread neworker(
-        [this, &write_mutex, &mesh_factory, &RoadsIDToGenerate, &road_out_mesh_list, i, num_roads_per_thread]() {
-        std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>> Current =
-          std::move(GenerateRoadsMultithreaded(mesh_factory, RoadsIDToGenerate,i, num_roads_per_thread ));
-        std::lock_guard<std::mutex> guard(write_mutex);
-        for ( auto&& pair : Current ) {
-          if (road_out_mesh_list.find(pair.first) != road_out_mesh_list.end()) {
-            road_out_mesh_list[pair.first].insert(road_out_mesh_list[pair.first].end(),
-              std::make_move_iterator(pair.second.begin()),
-              std::make_move_iterator(pair.second.end()));
-          } else {
-            road_out_mesh_list[pair.first] = std::move(pair.second);
-          }
+    for (size_t i = 0; i < num_threads; ++i) { // 为每个线程创建工作任务
+        std::thread new_worker(
+            [this, &write_mutex, &mesh_factory, &RoadsIDToGenerate, &road_out_mesh_list, i, num_roads_per_thread]() {
+                // 生成当前线程的道路网格
+                std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>> Current =
+                    std::move(GenerateRoadsMultithreaded(mesh_factory, RoadsIDToGenerate, i, num_roads_per_thread));
+                
+                std::lock_guard<std::mutex> guard(write_mutex); // 锁住互斥量以进行安全写入
+                
+                for (auto&& pair : Current) { // 遍历当前线程生成的网格
+                    if (road_out_mesh_list.find(pair.first) != road_out_mesh_list.end()) { // 检查类型是否已存在
+                        // 如果已存在，合并网格
+                        road_out_mesh_list[pair.first].insert(road_out_mesh_list[pair.first].end(),
+                                                              std::make_move_iterator(pair.second.begin()),
+                                                              std::make_move_iterator(pair.second.end()));
+                    } else {
+                        // 如果不存在，直接添加
+                        road_out_mesh_list[pair.first] = std::move(pair.second);
+                    }
+                }
+            });
+        workers.push_back(std::move(new_worker)); // 将新线程添加到工作线程列表中
+    }
+
+    for (size_t i = 0; i < workers.size(); ++i) { // 等待所有工作线程完成
+        workers[i].join(); // 加入线程
+    }
+    workers.clear(); // 清空工作线程列表
+    for (size_t i = 0; i < workers.size(); ++i) { // 再次检查线程并确保它们已加入
+        if (workers[i].joinable()) {
+            workers[i].join(); // 如果可加入则加入
         }
-      });
-      workers.push_back(std::move(neworker));
     }
 
-    for (size_t i = 0; i < workers.size(); ++i) {
-      workers[i].join();
+    junction_thread.join(); // 等待交叉口生成线程完成
+    for (auto&& pair : junction_out_mesh_list) { // 遍历交叉口生成的网格
+        if (road_out_mesh_list.find(pair.first) != road_out_mesh_list.end()) { // 检查类型是否已存在
+            // 如果已存在，合并交叉口网格
+            road_out_mesh_list[pair.first].insert(road_out_mesh_list[pair.first].end(),
+                                                  std::make_move_iterator(pair.second.begin()),
+                                                  std::make_move_iterator(pair.second.end()));
+        } else {
+            // 如果不存在，直接添加
+            road_out_mesh_list[pair.first] = std::move(pair.second);
+        }
     }
-    workers.clear();
-    for (size_t i = 0; i < workers.size(); ++i) {
-      if (workers[i].joinable()) {
-        workers[i].join();
-      }
-    }
+    std::cout << "Generated " << std::to_string(num_roads) << " roads" << std::endl; // 输出生成完成的信息
 
-    juntction_thread.join();
-    for (auto&& pair : junction_out_mesh_list) {
-      if (road_out_mesh_list.find(pair.first) != road_out_mesh_list.end())
-      {
-        road_out_mesh_list[pair.first].insert(road_out_mesh_list[pair.first].end(),
-          std::make_move_iterator(pair.second.begin()),
-          std::make_move_iterator(pair.second.end()));
-      }
-      else
-      {
-        road_out_mesh_list[pair.first] = std::move(pair.second);
-      }
-    }
-    std::cout << "Generated " << std::to_string(num_roads) << " roads" << std::endl;
+    return road_out_mesh_list; // 返回生成的道路网格列表
+}
 
-    return road_out_mesh_list;
-  }
 
   std::vector<std::pair<geom::Transform, std::string>> Map::GetTreesTransform(
-    const geom::Vector3D& minpos,
-    const geom::Vector3D& maxpos,
-    float distancebetweentrees,
-    float distancefromdrivinglineborder,
-    float s_offset) const {
+    const geom::Vector3D& minpos,                              // 最小位置
+    const geom::Vector3D& maxpos,                              // 最大位置
+    float distancebetweentrees,                                // 树之间的距离
+    float distancefromdrivinglineborder,                       // 从驾驶线边缘的距离
+    float s_offset) const {                                    // 偏移量
 
-    std::vector<std::pair<geom::Transform, std::string>> transforms;
+    std::vector<std::pair<geom::Transform, std::string>> transforms; // 存储树的变换和类型的向量
 
-    const std::vector<RoadId> RoadsIDToGenerate = FilterRoadsByPosition(minpos, maxpos);
-    for ( RoadId id : RoadsIDToGenerate ) {
-      const auto& road = _data.GetRoads().at(id);
-      if (!road.IsJunction()) {
-        for (auto &&lane_section : road.GetLaneSections()) {
-          LaneId min_lane = 0;
-          for (auto &pairlane : lane_section.GetLanes()) {
-            if (min_lane > pairlane.first && pairlane.second.GetType() == Lane::LaneType::Driving) {
-              min_lane = pairlane.first;
+    const std::vector<RoadId> RoadsIDToGenerate = FilterRoadsByPosition(minpos, maxpos); // 根据位置过滤需要生成的道路ID
+    for ( RoadId id : RoadsIDToGenerate ) {                   // 遍历每个需要生成的道路ID
+      const auto& road = _data.GetRoads().at(id);            // 获取对应的道路对象
+      if (!road.IsJunction()) {                               // 如果不是交叉口
+        for (auto &&lane_section : road.GetLaneSections()) { // 遍历道路的车道段
+          LaneId min_lane = 0;                                // 初始化最小车道ID
+          for (auto &pairlane : lane_section.GetLanes()) {   // 遍历车道
+            if (min_lane > pairlane.first && pairlane.second.GetType() == Lane::LaneType::Driving) { // 找到最小的驾驶车道
+              min_lane = pairlane.first;                      // 更新最小车道ID
             }
           }
 
-          const road::Lane* lane = lane_section.GetLane(min_lane);
-          if( lane ) {
-            double s_current = lane_section.GetDistance() + s_offset;
-            const double s_end = lane_section.GetDistance() + lane_section.GetLength();
-            while(s_current < s_end){
-              if(lane->GetWidth(s_current) != 0.0f){
-                const auto edges = lane->GetCornerPositions(s_current, 0);
-                if (edges.first == edges.second) continue;
-                geom::Vector3D director = edges.second - edges.first;
-                geom::Vector3D treeposition = edges.first - director.MakeUnitVector() * distancefromdrivinglineborder;
-                geom::Transform lanetransform = lane->ComputeTransform(s_current);
-                geom::Transform treeTransform(treeposition, lanetransform.rotation);
-                const carla::road::element::RoadInfoSpeed* roadinfo = lane->GetInfo<carla::road::element::RoadInfoSpeed>(s_current);
-                if(roadinfo){
-                  transforms.push_back(std::make_pair(treeTransform, roadinfo->GetType()));
-                }else{
-                  transforms.push_back(std::make_pair(treeTransform, "urban"));
+          const road::Lane* lane = lane_section.GetLane(min_lane); // 获取最小车道
+          if( lane ) {                                         // 如果车道存在
+            double s_current = lane_section.GetDistance() + s_offset; // 当前距离
+            const double s_end = lane_section.GetDistance() + lane_section.GetLength(); // 结束距离
+            while(s_current < s_end){                           // 在车道范围内循环
+              if(lane->GetWidth(s_current) != 0.0f){          // 如果宽度不为零
+                const auto edges = lane->GetCornerPositions(s_current, 0); // 获取车道边缘位置
+                if (edges.first == edges.second) continue;     // 如果边缘相同，跳过
+                geom::Vector3D director = edges.second - edges.first; // 计算方向向量
+                geom::Vector3D treeposition = edges.first - director.MakeUnitVector() * distancefromdrivinglineborder; // 计算树的位置
+                geom::Transform lanetransform = lane->ComputeTransform(s_current); // 计算车道的变换
+                geom::Transform treeTransform(treeposition, lanetransform.rotation); // 创建树的变换
+                const carla::road::element::RoadInfoSpeed* roadinfo = lane->GetInfo<carla::road::element::RoadInfoSpeed>(s_current); // 获取道路信息
+                if(roadinfo){                                   // 如果有道路信息
+                  transforms.push_back(std::make_pair(treeTransform, roadinfo->GetType())); // 添加树的变换和类型
+                }else{                                         // 如果没有道路信息
+                  transforms.push_back(std::make_pair(treeTransform, "urban")); // 默认类型为“城市”
                 }
               }
-              s_current += distancebetweentrees;
+              s_current += distancebetweentrees;               // 更新当前距离，移动到下一个位置
             }
 
           }
         }
       }
     }
-    return transforms;
+    return transforms;                                        // 返回生成的树的变换和类型
   }
+
 
   geom::Mesh Map::GetAllCrosswalkMesh() const {
     geom::Mesh out_mesh;
