@@ -1277,99 +1277,101 @@ Map::GenerateOrderedChunkedMeshInLocations(const rpc::OpendriveGenerationParamet
   }
 
 
-  geom::Mesh Map::GetAllCrosswalkMesh() const {
-    geom::Mesh out_mesh;
+geom::Mesh Map::GetAllCrosswalkMesh() const {
+    geom::Mesh out_mesh; // 创建一个输出网格对象
 
-    // Get the crosswalk vertices for the current map
+    // 获取当前地图的斑马线顶点
     const std::vector<geom::Location> crosswalk_vertex = GetAllCrosswalkZones();
-    if (crosswalk_vertex.empty()) {
-      return out_mesh;
+    if (crosswalk_vertex.empty()) { // 如果没有斑马线顶点，返回空网格
+        return out_mesh;
     }
 
-    // Create a a list of triangle fans with material "crosswalk"
+    // 为斑马线添加材质
     out_mesh.AddMaterial("crosswalk");
-    size_t start_vertex_index = 0;
-    size_t i = 0;
-    std::vector<geom::Vector3D> vertices;
-    // Iterate the vertices until a repeated one is found, this indicates
-    // the triangle fan is done and another one must start
+    size_t start_vertex_index = 0; // 起始顶点索引
+    size_t i = 0; // 当前顶点索引
+    std::vector<geom::Vector3D> vertices; // 用于存储三角形扇的顶点
+
+    // 遍历顶点直到找到重复的顶点，表示三角形扇结束
     do {
-      // Except for the first iteration && triangle fan done
-      if (i != 0 && crosswalk_vertex[start_vertex_index] == crosswalk_vertex[i]) {
-        // Create the actual fan
-        out_mesh.AddTriangleFan(vertices);
-        vertices.clear();
-        // End the loop if i reached the end of the vertex list
-        if (i >= crosswalk_vertex.size() - 1) {
-          break;
+        // 除了第一次迭代 && 三角形扇完成
+        if (i != 0 && crosswalk_vertex[start_vertex_index] == crosswalk_vertex[i]) {
+            // 创建实际的三角形扇
+            out_mesh.AddTriangleFan(vertices);
+            vertices.clear(); // 清空顶点容器
+            // 如果 i 到达顶点列表的末尾，结束循环
+            if (i >= crosswalk_vertex.size() - 1) {
+                break;
+            }
+            start_vertex_index = ++i; // 更新起始顶点索引
         }
-        start_vertex_index = ++i;
-      }
-      // Append a new Vector3D that will be added to the triangle fan
-      vertices.push_back(crosswalk_vertex[i++]);
-    } while (i < crosswalk_vertex.size());
+        // 添加新的 Vector3D 顶点到三角形扇
+        vertices.push_back(crosswalk_vertex[i++]);
+    } while (i < crosswalk_vertex.size()); // 继续遍历直到所有顶点处理完
 
-    out_mesh.EndMaterial();
-    return out_mesh;
-  }
+    out_mesh.EndMaterial(); // 结束当前材质
+    return out_mesh; // 返回生成的斑马线网格
+}
 
-  /// Buids a list of meshes related with LineMarkings
-  std::vector<std::unique_ptr<geom::Mesh>> Map::GenerateLineMarkings(
-    const rpc::OpendriveGenerationParameters& params,
-    const geom::Vector3D& minpos,
-    const geom::Vector3D& maxpos,
-    std::vector<std::string>& outinfo ) const
-  {
-    std::vector<std::unique_ptr<geom::Mesh>> LineMarks;
-    geom::MeshFactory mesh_factory(params);
+/// 生成与线标相关的网格列表
+std::vector<std::unique_ptr<geom::Mesh>> Map::GenerateLineMarkings(
+    const rpc::OpendriveGenerationParameters& params, // 生成参数
+    const geom::Vector3D& minpos, // 最小位置
+    const geom::Vector3D& maxpos, // 最大位置
+    std::vector<std::string>& outinfo ) const // 输出信息
+{
+    std::vector<std::unique_ptr<geom::Mesh>> LineMarks; // 存储线标网格的向量
+    geom::MeshFactory mesh_factory(params); // 创建网格工厂
 
+    // 根据位置筛选要生成的道路ID
     const std::vector<RoadId> RoadsIDToGenerate = FilterRoadsByPosition(minpos, maxpos);
-    for ( RoadId id : RoadsIDToGenerate ) {
-      const auto& road = _data.GetRoads().at(id);
-      if (!road.IsJunction()) {
-        mesh_factory.GenerateLaneMarkForRoad(road, LineMarks, outinfo);
-      }
+    for ( RoadId id : RoadsIDToGenerate ) { // 遍历每条道路ID
+        const auto& road = _data.GetRoads().at(id); // 获取道路对象
+        if (!road.IsJunction()) { // 如果不是交叉口
+            mesh_factory.GenerateLaneMarkForRoad(road, LineMarks, outinfo); // 生成道路的线标
+        }
     }
 
-    return std::move(LineMarks);
-  }
+    return std::move(LineMarks); // 移动并返回生成的线标网格
+}
+
 
   std::vector<carla::geom::BoundingBox> Map::GetJunctionsBoundingBoxes() const {
-    std::vector<carla::geom::BoundingBox> returning;
-    for ( const auto& junc_pair : _data.GetJunctions() ) {
-      const auto& junction = junc_pair.second;
-      float box_extraextension_factor = 1.5f;
-      carla::geom::BoundingBox bb = junction.GetBoundingBox();
-      bb.extent *= box_extraextension_factor;
-      returning.push_back(bb);
+    std::vector<carla::geom::BoundingBox> returning;   // 创建一个返回的边界框向量
+    for ( const auto& junc_pair : _data.GetJunctions() ) {   // 遍历所有交叉口对
+      const auto& junction = junc_pair.second;   // 获取交叉口对象
+      float box_extraextension_factor = 1.5f;   // 定义边界框扩展因子
+      carla::geom::BoundingBox bb = junction.GetBoundingBox();   // 获取交叉口的边界框
+      bb.extent *= box_extraextension_factor;   // 扩大边界框的范围
+      returning.push_back(bb);   // 将修改后的边界框添加到返回向量中
     }
-    return returning;
+    return returning;   // 返回所有交叉口的边界框
   }
 
   inline float Map::GetZPosInDeformation(float posx, float posy) const {
-    return geom::deformation::GetZPosInDeformation(posx, posy) +
-      geom::deformation::GetBumpDeformation(posx,posy);
+    return geom::deformation::GetZPosInDeformation(posx, posy) +   // 获取在变形中的Z坐标
+      geom::deformation::GetBumpDeformation(posx,posy);   // 添加隆起变形的值
   }
 
   std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>>
-      Map::GenerateRoadsMultithreaded( const carla::geom::MeshFactory& mesh_factory,
-                                        const std::vector<RoadId>& RoadsId,
+      Map::GenerateRoadsMultithreaded( const carla::geom::MeshFactory& mesh_factory,   // 定义生成道路的多线程函数
+                                        const std::vector<RoadId>& RoadsId,   // 输入的道路ID向量
                                         const size_t index, const size_t number_of_roads_per_thread) const
   {
-    std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>> out;
+    std::map<road::Lane::LaneType, std::vector<std::unique_ptr<geom::Mesh>>> out;   // 输出的道路网格
 
-    size_t start = index * number_of_roads_per_thread;
-    size_t endoffset = (index+1) * number_of_roads_per_thread;
-    size_t end = RoadsId.size();
+    size_t start = index * number_of_roads_per_thread;  // 计算当前线程的起始索引
+    size_t endoffset = (index+1) * number_of_roads_per_thread;  // 计算当前线程的结束索引
+    size_t end = RoadsId.size();  // 获取道路ID的总数
 
-    for (int i = start; i < endoffset && i < end; ++i) {
-      const auto& road = _data.GetRoads().at(RoadsId[i]);
-      if (!road.IsJunction()) {
-        mesh_factory.GenerateAllOrderedWithMaxLen(road, out);
+    for (int i = start; i < endoffset && i < end; ++i) {   // 遍历当前线程负责的道路
+      const auto& road = _data.GetRoads().at(RoadsId[i]);  // 获取当前道路对象
+      if (!road.IsJunction()) {   // 如果当前道路不是交叉口
+        mesh_factory.GenerateAllOrderedWithMaxLen(road, out);   // 生成该道路的所有网格
       }
     }
-    std::cout << "Generated roads from " + std::to_string(index * number_of_roads_per_thread) + " to " + std::to_string((index+1) * number_of_roads_per_thread ) << std::endl;
-    return out;
+    std::cout << "Generated roads from " + std::to_string(index * number_of_roads_per_thread) + " to " + std::to_string((index+1) * number_of_roads_per_thread ) << std::endl;   // 输出生成的道路范围
+    return out;   // 返回生成的道路网格
   }
 
   void Map::GenerateJunctions(const carla::geom::MeshFactory& mesh_factory,
