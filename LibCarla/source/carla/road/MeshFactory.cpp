@@ -195,316 +195,318 @@ namespace geom {
     return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
 }
 
-  void MeshFactory::GenerateLaneSectionOrdered(
+void MeshFactory::GenerateLaneSectionOrdered(
     const road::LaneSection &lane_section,
     std::map<carla::road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>>& result) const {
 
-    const int vertices_in_width = road_param.vertex_width_resolution >= 2 ? road_param.vertex_width_resolution : 2;
-    std::vector<size_t> redirections;
-    for (auto &&lane_pair : lane_section.GetLanes()) {
-      auto it = std::find(redirections.begin(), redirections.end(), lane_pair.first);
-      if ( it == redirections.end() ) {
-        redirections.push_back(lane_pair.first);
-        it = std::find(redirections.begin(), redirections.end(), lane_pair.first);
+    const int vertices_in_width = road_param.vertex_width_resolution >= 2 ? road_param.vertex_width_resolution : 2; // 确定每个车道宽度的顶点分辨率，至少为2
+    std::vector<size_t> redirections; // 用于存储已处理的车道ID
+    for (auto &&lane_pair : lane_section.GetLanes()) { // 遍历车道段中的所有车道
+      auto it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 查找当前车道ID是否已存在
+      if ( it == redirections.end() ) { // 如果车道ID不存在，则添加
+        redirections.push_back(lane_pair.first); // 将新的车道ID添加到列表中
+        it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 重新查找当前车道ID的位置
       }
-      size_t PosToAdd = it - redirections.begin();
+      size_t PosToAdd = it - redirections.begin(); // 计算当前车道ID在列表中的位置
 
-      Mesh out_mesh;
-      switch(lane_pair.second.GetType())
+      Mesh out_mesh; // 创建一个新的网格对象
+      switch(lane_pair.second.GetType()) // 根据车道类型生成不同的网格
       {
-        case road::Lane::LaneType::Driving:
-        case road::Lane::LaneType::Parking:
-        case road::Lane::LaneType::Bidirectional:
+        case road::Lane::LaneType::Driving: // 驾驶车道
+        case road::Lane::LaneType::Parking: // 停车车道
+        case road::Lane::LaneType::Bidirectional: // 双向车道
         {
-          out_mesh += *GenerateTesselated(lane_pair.second);
-          break;
+          out_mesh += *GenerateTesselated(lane_pair.second); // 生成细分网格并添加到输出网格
+          break; // 结束当前case
         }
-        case road::Lane::LaneType::Shoulder:
-        case road::Lane::LaneType::Sidewalk:
-        case road::Lane::LaneType::Biking:
+        case road::Lane::LaneType::Shoulder: // 应急车道
+        case road::Lane::LaneType::Sidewalk: // 人行道
+        case road::Lane::LaneType::Biking: // 自行车道
         {
-          out_mesh += *GenerateSidewalk(lane_pair.second);
-          break;
+          out_mesh += *GenerateSidewalk(lane_pair.second); // 生成人行道网格并添加到输出网格
+          break; // 结束当前case
         }
-        default:
+        default: // 其他类型的车道
         {
-          out_mesh += *GenerateTesselated(lane_pair.second);
-          break;
+          out_mesh += *GenerateTesselated(lane_pair.second); // 默认生成细分网格并添加到输出网格
+          break; // 结束当前case
         }
       }
 
-      if( result[lane_pair.second.GetType()].size() <= PosToAdd ){
-        result[lane_pair.second.GetType()].push_back(std::make_unique<Mesh>(out_mesh));
-      } else {
-        uint32_t verticesinwidth  = SelectVerticesInWidth(vertices_in_width, lane_pair.second.GetType());
-        (result[lane_pair.second.GetType()][PosToAdd])->ConcatMesh(out_mesh, verticesinwidth);
+      if( result[lane_pair.second.GetType()].size() <= PosToAdd ){ // 检查当前车道类型的网格数量是否小于等于位置索引
+        result[lane_pair.second.GetType()].push_back(std::make_unique<Mesh>(out_mesh)); // 如果满足条件，则添加新的网格到结果中
+      } else { // 如果已存在网格
+        uint32_t verticesinwidth  = SelectVerticesInWidth(vertices_in_width, lane_pair.second.GetType()); // 选择适当的宽度顶点数量
+        (result[lane_pair.second.GetType()][PosToAdd])->ConcatMesh(out_mesh, verticesinwidth); // 将新生成的网格与现有网格合并
       }
     }
-  }
+ }
 
-
-  std::unique_ptr<Mesh> MeshFactory::GenerateSidewalk(const road::LaneSection &lane_section) const{
-    Mesh out_mesh;
-    for (auto &&lane_pair : lane_section.GetLanes()) {
-      const double s_start = lane_pair.second.GetDistance() + EPSILON;
-      const double s_end = lane_pair.second.GetDistance() + lane_pair.second.GetLength() - EPSILON;
-      out_mesh += *GenerateSidewalk(lane_pair.second, s_start, s_end);
+std::unique_ptr<Mesh> MeshFactory::GenerateSidewalk(const road::LaneSection &lane_section) const{ // 定义生成侧步的方法，接受车道段作为参数
+    Mesh out_mesh; // 创建一个输出网格
+    for (auto &&lane_pair : lane_section.GetLanes()) { // 遍历车道段中的所有车道
+        const double s_start = lane_pair.second.GetDistance() + EPSILON; // 计算开始的s参数
+        const double s_end = lane_pair.second.GetDistance() + lane_pair.second.GetLength() - EPSILON; // 计算结束的s参数
+        out_mesh += *GenerateSidewalk(lane_pair.second, s_start, s_end); // 生成车道的侧步网格并添加到输出网格
     }
-    return std::make_unique<Mesh>(out_mesh);
-  }
-  std::unique_ptr<Mesh> MeshFactory::GenerateSidewalk(const road::Lane &lane) const{
-    const double s_start = lane.GetDistance() + EPSILON;
-    const double s_end = lane.GetDistance() + lane.GetLength() - EPSILON;
-    return GenerateSidewalk(lane, s_start, s_end);
-  }
-  std::unique_ptr<Mesh> MeshFactory::GenerateSidewalk(
+    return std::make_unique<Mesh>(out_mesh); // 返回创建的网格
+}
+std::unique_ptr<Mesh> MeshFactory::GenerateSidewalk(const road::Lane &lane) const{ // 定义生成侧步的方法，接受车道作为参数
+    const double s_start = lane.GetDistance() + EPSILON; // 计算开始的s参数
+    const double s_end = lane.GetDistance() + lane.GetLength() - EPSILON; // 计算结束的s参数
+    return GenerateSidewalk(lane, s_start, s_end); // 调用重载方法生成侧步网格
+}
+
+std::unique_ptr<Mesh> MeshFactory::GenerateSidewalk( // 重载方法，接受车道及其起始和结束s参数
     const road::Lane &lane, const double s_start,
     const double s_end ) const {
 
-    RELEASE_ASSERT(road_param.resolution > 0.0);
-    DEBUG_ASSERT(s_start >= 0.0);
-    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength());
-    DEBUG_ASSERT(s_end >= EPSILON);
-    DEBUG_ASSERT(s_start < s_end);
-    // The lane with lane_id 0 have no physical representation in OpenDRIVE
-    Mesh out_mesh;
-    if (lane.GetId() == 0) {
-      return std::make_unique<Mesh>(out_mesh);
+    RELEASE_ASSERT(road_param.resolution > 0.0); // 确保道路参数的分辨率大于零
+    DEBUG_ASSERT(s_start >= 0.0); // 确保开始的s参数非负
+    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束的s参数不超过车道长度
+    DEBUG_ASSERT(s_end >= EPSILON); // 确保结束的s参数大于或等于一个小的正值
+    DEBUG_ASSERT(s_start < s_end); // 确保开始的s参数小于结束的s参数
+    // lane_id为0的车道在OpenDRIVE中没有物理表示
+    Mesh out_mesh; // 创建一个输出网格
+    if (lane.GetId() == 0) { // 如果车道ID为0
+        return std::make_unique<Mesh>(out_mesh); // 返回空网格
     }
-    double s_current = s_start;
+    double s_current = s_start; // 初始化当前s为起始s值
 
-    std::vector<geom::Vector3D> vertices;
-    // Ensure minimum vertices in width are two
-    const int vertices_in_width = 6;
-    const int segments_number = vertices_in_width - 1;
-    std::vector<geom::Vector2D> uvs;
-    int uvy = 0;
+    std::vector<geom::Vector3D> vertices; // 存储顶点的向量
+    // 确保宽度上至少有两个顶点
+    const int vertices_in_width = 6; // 每行中的顶点数量
+    const int segments_number = vertices_in_width - 1; // 计算段落数量
+    std::vector<geom::Vector2D> uvs; // 存储纹理坐标的向量
+    int uvy = 0; // 纹理坐标y轴索引
 
-    // Iterate over the lane's 's' and store the vertices based on it's width
+    // 遍历车道的's'值，根据其宽度存储顶点
     do {
-      // Get the location of the edges of the current lane at the current waypoint
+      // 获取当前路点处车道边缘的位置
       std::pair<geom::Vector3D, geom::Vector3D> edges =
         lane.GetCornerPositions(s_current, road_param.extra_lane_width);
 
-      geom::Vector3D low_vertex_first = edges.first - geom::Vector3D(0,0,1);
-      geom::Vector3D low_vertex_second = edges.second - geom::Vector3D(0,0,1);
-      vertices.push_back(low_vertex_first);
-      uvs.push_back(geom::Vector2D(0, uvy));
+      geom::Vector3D low_vertex_first = edges.first - geom::Vector3D(0,0,1); // 计算第一个低顶点
+      geom::Vector3D low_vertex_second = edges.second - geom::Vector3D(0,0,1); // 计算第二个低顶点
+      vertices.push_back(low_vertex_first); // 添加第一个低顶点到顶点列表
+      uvs.push_back(geom::Vector2D(0, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(edges.first);
-      uvs.push_back(geom::Vector2D(1, uvy));
+      vertices.push_back(edges.first); // 添加第一个边缘顶点
+      uvs.push_back(geom::Vector2D(1, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(edges.first);
-      uvs.push_back(geom::Vector2D(1, uvy));
+      vertices.push_back(edges.first); // 重复添加第一个边缘顶点
+      uvs.push_back(geom::Vector2D(1, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(edges.second);
-      uvs.push_back(geom::Vector2D(2, uvy));
+      vertices.push_back(edges.second); // 添加第二个边缘顶点
+      uvs.push_back(geom::Vector2D(2, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(edges.second);
-      uvs.push_back(geom::Vector2D(2, uvy));
+      vertices.push_back(edges.second); // 重复添加第二个边缘顶点
+      uvs.push_back(geom::Vector2D(2, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(low_vertex_second);
-      uvs.push_back(geom::Vector2D(3, uvy));
+      vertices.push_back(low_vertex_second); // 添加第二个低顶点到顶点列表
+      uvs.push_back(geom::Vector2D(3, uvy)); // 添加相应的纹理坐标
 
-      // Update the current waypoint's "s"
-      s_current += road_param.resolution;
-      uvy++;
-    } while (s_current < s_end);
+      // 更新当前路点的"s"值
+      s_current += road_param.resolution; // 增加当前的"s"值
+      uvy++; // 增加y轴纹理坐标索引
+    } while (s_current < s_end); // 当当前s小于结束s值时继续循环
 
-    // This ensures the mesh is constant and have no gaps between roads,
-    // adding geometry at the very end of the lane
+    // 确保网格是连续的，并且道路之间没有缝隙，
+    // 在车道的最末尾添加几何体
 
-    if (s_end - (s_current - road_param.resolution) > EPSILON) {
+    if (s_end - (s_current - road_param.resolution) > EPSILON) { // 检查是否需要额外的顶点
       std::pair<carla::geom::Vector3D, carla::geom::Vector3D> edges =
         lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width);
 
-      geom::Vector3D low_vertex_first = edges.first - geom::Vector3D(0,0,1);
-      geom::Vector3D low_vertex_second = edges.second - geom::Vector3D(0,0,1);
+      geom::Vector3D low_vertex_first = edges.first - geom::Vector3D(0,0,1); // 计算第一个低顶点
+      geom::Vector3D low_vertex_second = edges.second - geom::Vector3D(0,0,1); // 计算第二个低顶点
 
-      vertices.push_back(low_vertex_first);
-      uvs.push_back(geom::Vector2D(0, uvy));
+      vertices.push_back(low_vertex_first); // 添加第一个低顶点到顶点列表
+      uvs.push_back(geom::Vector2D(0, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(edges.first);
-      uvs.push_back(geom::Vector2D(1, uvy));
+      vertices.push_back(edges.first); // 添加第一个边缘顶点
+      uvs.push_back(geom::Vector2D(1, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(edges.first);
-      uvs.push_back(geom::Vector2D(1, uvy));
+      vertices.push_back(edges.first); // 重复添加第一个边缘顶点
+      uvs.push_back(geom::Vector2D(1, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(edges.second);
-      uvs.push_back(geom::Vector2D(2, uvy));
+      vertices.push_back(edges.second); // 添加第二个边缘顶点
+      uvs.push_back(geom::Vector2D(2, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(edges.second);
-      uvs.push_back(geom::Vector2D(2, uvy));
+      vertices.push_back(edges.second); // 重复添加第二个边缘顶点
+      uvs.push_back(geom::Vector2D(2, uvy)); // 添加相应的纹理坐标
 
-      vertices.push_back(low_vertex_second);
-      uvs.push_back(geom::Vector2D(3, uvy));
+      vertices.push_back(low_vertex_second); // 添加第二个低顶点到顶点列表
+      uvs.push_back(geom::Vector2D(3, uvy)); // 添加相应的纹理坐标
 
     }
 
-    out_mesh.AddVertices(vertices);
-    out_mesh.AddUVs(uvs);
-    // Add the adient material, create the strip and close the material
+    out_mesh.AddVertices(vertices); // 将所有顶点添加到输出网格
+    out_mesh.AddUVs(uvs); // 将所有纹理坐标添加到输出网格
+    // 添加渐变材料，创建条带并结束材料
     out_mesh.AddMaterial(
-      lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road");
+      lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型添加材料
 
-    const int number_of_rows = (vertices.size() / vertices_in_width);
+    const int number_of_rows = (vertices.size() / vertices_in_width); // 计算行数
 
-    for (size_t i = 0; i < (number_of_rows - 1); ++i) {
-      for (size_t j = 0; j < vertices_in_width - 1; ++j) {
+    for (size_t i = 0; i < (number_of_rows - 1); ++i) { // 遍历每一行
+      for (size_t j = 0; j < vertices_in_width - 1; ++j) { // 遍历每一行的每个顶点
 
-        if(j == 1 || j == 3){
-          continue;
+        if(j == 1 || j == 3){ // 跳过特定的顶点索引
+          continue; // 继续下一个循环
         }
 
-        out_mesh.AddIndex(   j       + (   i       * vertices_in_width ) + 1);
-        out_mesh.AddIndex( ( j + 1 ) + (   i       * vertices_in_width ) + 1);
-        out_mesh.AddIndex(   j       + ( ( i + 1 ) * vertices_in_width ) + 1);
+        out_mesh.AddIndex(   j       + (   i       * vertices_in_width ) + 1); // 添加三角形索引
+        out_mesh.AddIndex( ( j + 1 ) + (   i       * vertices_in_width ) + 1); // 添加三角形索引
+        out_mesh.AddIndex(   j       + ( ( i + 1 ) * vertices_in_width ) + 1); // 添加三角形索引
 
-        out_mesh.AddIndex( ( j + 1 ) + (   i       * vertices_in_width ) + 1);
-        out_mesh.AddIndex( ( j + 1 ) + ( ( i + 1 ) * vertices_in_width ) + 1);
-        out_mesh.AddIndex(   j       + ( ( i + 1 ) * vertices_in_width ) + 1);
+        out_mesh.AddIndex( ( j + 1 ) + (   i       * vertices_in_width ) + 1); // 添加三角形索引
+        out_mesh.AddIndex( ( j + 1 ) + ( ( i + 1 ) * vertices_in_width ) + 1); // 添加三角形索引
+        out_mesh.AddIndex(   j       + ( ( i + 1 ) * vertices_in_width ) + 1); // 添加三角形索引
 
       }
     }
-    out_mesh.EndMaterial();
-    return std::make_unique<Mesh>(out_mesh);
-  }
-  std::unique_ptr<Mesh> MeshFactory::GenerateWalls(const road::LaneSection &lane_section) const {
-    Mesh out_mesh;
+    out_mesh.EndMaterial(); // 结束材料定义
+    return std::make_unique<Mesh>(out_mesh); // 返回创建的网格对象
+}
+std::unique_ptr<Mesh> MeshFactory::GenerateWalls(const road::LaneSection &lane_section) const {
+    Mesh out_mesh; // 创建一个输出网格
 
+    // 确定最小和最大车道的ID
     const auto min_lane = lane_section.GetLanes().begin()->first == 0 ?
-        1 : lane_section.GetLanes().begin()->first;
+        1 : lane_section.GetLanes().begin()->first; // 如果最小车道ID为0，则设置为1
     const auto max_lane = lane_section.GetLanes().rbegin()->first == 0 ?
-        -1 : lane_section.GetLanes().rbegin()->first;
+        -1 : lane_section.GetLanes().rbegin()->first; // 如果最大车道ID为0，则设置为-1
 
+    // 遍历所有车道
     for (auto &&lane_pair : lane_section.GetLanes()) {
-      const auto &lane = lane_pair.second;
-      const double s_start = lane.GetDistance() + EPSILON;
-      const double s_end = lane.GetDistance() + lane.GetLength() - EPSILON;
-      if (lane.GetId() == max_lane) {
-        out_mesh += *GenerateLeftWall(lane, s_start, s_end);
-      }
-      if (lane.GetId() == min_lane) {
-        out_mesh += *GenerateRightWall(lane, s_start, s_end);
-      }
+        const auto &lane = lane_pair.second; // 获取当前车道
+        const double s_start = lane.GetDistance() + EPSILON; // 车道起始位置
+        const double s_end = lane.GetDistance() + lane.GetLength() - EPSILON; // 车道结束位置
+        if (lane.GetId() == max_lane) { // 如果是最大车道
+            out_mesh += *GenerateLeftWall(lane, s_start, s_end); // 生成左墙并添加到输出网格
+        }
+        if (lane.GetId() == min_lane) { // 如果是最小车道
+            out_mesh += *GenerateRightWall(lane, s_start, s_end); // 生成右墙并添加到输出网格
+        }
     }
-    return std::make_unique<Mesh>(out_mesh);
-  }
+    return std::make_unique<Mesh>(out_mesh); // 返回包含生成墙体的网格
+}
 
-  std::unique_ptr<Mesh> MeshFactory::GenerateRightWall(
+std::unique_ptr<Mesh> MeshFactory::GenerateRightWall(
       const road::Lane &lane, const double s_start, const double s_end) const {
-    RELEASE_ASSERT(road_param.resolution > 0.0);
-    DEBUG_ASSERT(s_start >= 0.0);
-    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength());
-    DEBUG_ASSERT(s_end >= EPSILON);
-    DEBUG_ASSERT(s_start < s_end);
-    // The lane with lane_id 0 have no physical representation in OpenDRIVE
-    Mesh out_mesh;
-    if (lane.GetId() == 0) {
-      return std::make_unique<Mesh>(out_mesh);
+    RELEASE_ASSERT(road_param.resolution > 0.0); // 确保分辨率大于0
+    DEBUG_ASSERT(s_start >= 0.0); // 确保起始位置合法
+    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束位置合法
+    DEBUG_ASSERT(s_end >= EPSILON); // 确保结束位置大于一个小值
+    DEBUG_ASSERT(s_start < s_end); // 确保起始位置小于结束位置
+    // ID为0的车道在OpenDRIVE中没有物理表示
+    Mesh out_mesh; // 创建输出网格
+    if (lane.GetId() == 0) { // 如果车道ID为0
+        return std::make_unique<Mesh>(out_mesh); // 返回空网格
     }
-    double s_current = s_start;
-    const geom::Vector3D height_vector = geom::Vector3D(0.f, 0.f, road_param.wall_height);
+    double s_current = s_start; // 当前s值初始化为起始位置
+    const geom::Vector3D height_vector = geom::Vector3D(0.f, 0.f, road_param.wall_height); // 墙体高度向量
 
-    std::vector<geom::Vector3D> r_vertices;
-    if (lane.IsStraight()) {
-      // Mesh optimization: If the lane is straight just add vertices at the
-      // begining and at the end of it
-      const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-      r_vertices.push_back(edges.first + height_vector);
-      r_vertices.push_back(edges.first);
+    std::vector<geom::Vector3D> r_vertices; // 存储右墙顶点的容器
+    if (lane.IsStraight()) { // 如果车道是直的
+        // 网格优化：如果车道是直的，只需在起始和结束位置添加顶点
+        const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width); // 获取边缘位置
+        r_vertices.push_back(edges.first + height_vector); // 添加上边缘顶点
+        r_vertices.push_back(edges.first); // 添加下边缘顶点
     } else {
-      // Iterate over the lane's 's' and store the vertices based on it's width
-      do {
-        // Get the location of the edges of the current lane at the current waypoint
-        const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-        r_vertices.push_back(edges.first + height_vector);
-        r_vertices.push_back(edges.first);
+        // 遍历车道的's'并根据宽度存储顶点
+        do {
+            // 获取当前s位置的车道边缘位置
+            const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
+            r_vertices.push_back(edges.first + height_vector); // 添加上边缘顶点
+            r_vertices.push_back(edges.first); // 添加下边缘顶点
 
-        // Update the current waypoint's "s"
-        s_current += road_param.resolution;
-      } while(s_current < s_end);
+            // 更新当前的s值
+            s_current += road_param.resolution; // 将s值增加分辨率
+        } while(s_current < s_end); // 当当前s值小于结束s值时继续
     }
 
-    // This ensures the mesh is constant and have no gaps between roads,
-    // adding geometry at the very end of the lane
+    // 确保网格是连续的，且车道之间没有缝隙，
+    // 在车道末尾添加几何体
     if (s_end - (s_current - road_param.resolution) > EPSILON) {
-      const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width);
-      r_vertices.push_back(edges.first + height_vector);
-      r_vertices.push_back(edges.first);
+        const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width); // 获取结束位置的边缘
+        r_vertices.push_back(edges.first + height_vector); // 添加上边缘顶点
+        r_vertices.push_back(edges.first); // 添加下边缘顶点
     }
 
-    // Add the adient material, create the strip and close the material
+    // 添加合适的材质，创建三角形带，并结束材质定义
     out_mesh.AddMaterial(
-        lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road");
-    out_mesh.AddTriangleStrip(r_vertices);
-    out_mesh.EndMaterial();
-    return std::make_unique<Mesh>(out_mesh);
-  }
+        lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型添加材质
+    out_mesh.AddTriangleStrip(r_vertices); // 添加三角带
+    out_mesh.EndMaterial(); // 结束材质定义
+    return std::make_unique<Mesh>(out_mesh); // 返回包含右墙的网格
+}
 
-  std::unique_ptr<Mesh> MeshFactory::GenerateLeftWall(
+std::unique_ptr<Mesh> MeshFactory::GenerateLeftWall(
       const road::Lane &lane, const double s_start, const double s_end) const {
-    RELEASE_ASSERT(road_param.resolution > 0.0);
-    DEBUG_ASSERT(s_start >= 0.0);
-    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength());
-    DEBUG_ASSERT(s_end >= EPSILON);
-    DEBUG_ASSERT(s_start < s_end);
-    // The lane with lane_id 0 have no physical representation in OpenDRIVE
-    Mesh out_mesh;
-    if (lane.GetId() == 0) {
-      return std::make_unique<Mesh>(out_mesh);
+    RELEASE_ASSERT(road_param.resolution > 0.0); // 确保分辨率大于0
+    DEBUG_ASSERT(s_start >= 0.0); // 确保起始位置合法
+    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束位置合法
+    DEBUG_ASSERT(s_end >= EPSILON); // 确保结束位置大于一个小值
+    DEBUG_ASSERT(s_start < s_end); // 确保起始位置小于结束位置
+    // ID为0的车道在OpenDRIVE中没有物理表示
+    Mesh out_mesh; // 创建输出网格
+    if (lane.GetId() == 0) { // 如果车道ID为0
+        return std::make_unique<Mesh>(out_mesh); // 返回空网格
     }
-    double s_current = s_start;
-    const geom::Vector3D height_vector = geom::Vector3D(0.f, 0.f, road_param.wall_height);
 
-    std::vector<geom::Vector3D> l_vertices;
-    if (lane.IsStraight()) {
-      // Mesh optimization: If the lane is straight just add vertices at the
-      // begining and at the end of it
-      const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-      l_vertices.push_back(edges.second);
-      l_vertices.push_back(edges.second + height_vector);
+    double s_current = s_start; // 初始化当前的s值为起始位置
+    const geom::Vector3D height_vector = geom::Vector3D(0.f, 0.f, road_param.wall_height); // 创建高度向量，表示墙体的高度
+
+    std::vector<geom::Vector3D> l_vertices; // 存储左墙顶点的容器
+    if (lane.IsStraight()) { // 如果车道是直的
+      // 网格优化：如果车道是直的，只需在起始和结束位置添加顶点
+      const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width); // 获取边缘位置
+      l_vertices.push_back(edges.second); // 添加下边缘顶点
+      l_vertices.push_back(edges.second + height_vector); // 添加上边缘顶点
     } else {
-      // Iterate over the lane's 's' and store the vertices based on it's width
+      // 遍历车道的's'并根据宽度存储顶点
       do {
-        // Get the location of the edges of the current lane at the current waypoint
+        // 获取当前s位置的车道边缘位置
         const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-        l_vertices.push_back(edges.second);
-        l_vertices.push_back(edges.second + height_vector);
+        l_vertices.push_back(edges.second); // 添加下边缘顶点
+        l_vertices.push_back(edges.second + height_vector); // 添加上边缘顶点
 
-        // Update the current waypoint's "s"
-        s_current += road_param.resolution;
-      } while(s_current < s_end);
+        // 更新当前的s值
+        s_current += road_param.resolution; // 将s值增加分辨率
+      } while(s_current < s_end); // 当当前s值小于结束s值时继续
     }
 
-    // This ensures the mesh is constant and have no gaps between roads,
-    // adding geometry at the very end of the lane
-    if (s_end - (s_current - road_param.resolution) > EPSILON) {
-      const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width);
-      l_vertices.push_back(edges.second);
-      l_vertices.push_back(edges.second + height_vector);
+    // 确保网格是连续的，且车道之间没有缝隙，
+    // 在车道末尾添加几何体
+    if (s_end - (s_current - road_param.resolution) > EPSILON) { // 如果s_end与当前s的差距大于小值
+      const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width); // 获取结束位置的边缘
+      l_vertices.push_back(edges.second); // 添加下边缘顶点
+      l_vertices.push_back(edges.second + height_vector); // 添加上边缘顶点
     }
 
-    // Add the adient material, create the strip and close the material
+    // 添加合适的材质，创建三角形带，并结束材质定义
     out_mesh.AddMaterial(
-        lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road");
-    out_mesh.AddTriangleStrip(l_vertices);
-    out_mesh.EndMaterial();
-    return std::make_unique<Mesh>(out_mesh);
+        lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型添加材质
+    out_mesh.AddTriangleStrip(l_vertices); // 添加三角带
+    out_mesh.EndMaterial(); // 结束材质定义
+    return std::make_unique<Mesh>(out_mesh); // 返回包含左墙的网格
   }
 
   std::vector<std::unique_ptr<Mesh>> MeshFactory::GenerateWithMaxLen(
-      const road::Road &road) const {
-    std::vector<std::unique_ptr<Mesh>> mesh_uptr_list;
-    for (auto &&lane_section : road.GetLaneSections()) {
-      auto section_uptr_list = GenerateWithMaxLen(lane_section);
+      const road::Road &road) const { // 根据道路生成最大长度的网格
+    std::vector<std::unique_ptr<Mesh>> mesh_uptr_list; // 存储生成的网格指针的列表
+    for (auto &&lane_section : road.GetLaneSections()) { // 遍历道路的每个车道段
+      auto section_uptr_list = GenerateWithMaxLen(lane_section); // 生成当前车道段的网格
       mesh_uptr_list.insert(
           mesh_uptr_list.end(),
-          std::make_move_iterator(section_uptr_list.begin()),
-          std::make_move_iterator(section_uptr_list.end()));
+          std::make_move_iterator(section_uptr_list.begin()), // 移动当前车道段网格到总列表
+          std::make_move_iterator(section_uptr_list.end())); // 移动结束迭代器
     }
-    return mesh_uptr_list;
+    return mesh_uptr_list; // 返回所有生成的网格列表
   }
+
 
   std::vector<std::unique_ptr<Mesh>> MeshFactory::GenerateWithMaxLen(
       const road::LaneSection &lane_section) const {
