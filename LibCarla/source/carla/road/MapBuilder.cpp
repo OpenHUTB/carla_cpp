@@ -1036,118 +1036,130 @@ void MapBuilder::GenerateDefaultValiditiesForSignalReferences() {
             }
 
             // 获取反向车道
-            min_lane = 0;
-            max_lane = -1;
-            for (const auto* lane : lanes) {
-              auto lane_id = lane->GetId();
-              if(lane_id < min_lane) {
-                min_lane = lane_id;
-              }
-            }
-            if(min_lane <= max_lane) {
-              AddValidityToSignalReference(signal_reference, min_lane, max_lane);
-            }
-            break;
-          }
-        }
+        min_lane = 0; // 初始化最小车道 ID 为 0
+max_lane = -1; // 初始化最大车道 ID 为 -1
+
+for (const auto* lane : lanes) { // 遍历所有车道
+  auto lane_id = lane->GetId(); // 获取当前车道的 ID
+  if(lane_id < min_lane) { // 如果当前车道 ID 小于最小车道 ID
+    min_lane = lane_id; // 更新最小车道 ID
+  }
+}
+
+if(min_lane <= max_lane) { // 如果最小车道 ID 小于等于最大车道 ID
+  AddValidityToSignalReference(signal_reference, min_lane, max_lane); // 添加信号参考的有效性
+}
+break; // 跳出当前循环
+}
+}
+}
+
+void MapBuilder::RemoveZeroLaneValiditySignalReferences() { // 定义移除零车道有效性信号引用的函数
+  std::vector<element::RoadInfoSignal*> elements_to_remove; // 存储待移除的信号元素
+  for (auto * signal_reference : _temp_signal_reference_container) { // 遍历临时信号引用容器
+    bool should_remove = true; // 标记是否应移除
+    for (auto & lane_validity : signal_reference->_validities) { // 遍历信号引用的有效性
+      if ( (lane_validity._from_lane != 0) || // 如果起始车道不为 0
+           (lane_validity._to_lane != 0)) { // 或者结束车道不为 0
+        should_remove = false; // 不应移除
+        break; // 跳出当前循环
       }
+    }
+    if (signal_reference->_validities.size() == 0) { // 如果有效性列表为空
+      should_remove = false; // 不应移除
+    }
+
+    if (should_remove) { // 如果标记为应移除
+      elements_to_remove.push_back(signal_reference); // 添加到待移除列表
     }
   }
 
-  void MapBuilder::RemoveZeroLaneValiditySignalReferences() {
-    std::vector<element::RoadInfoSignal*> elements_to_remove;
-    for (auto * signal_reference : _temp_signal_reference_container) {
-      bool should_remove = true;
-      for (auto & lane_validity : signal_reference->_validities) {
-        if ( (lane_validity._from_lane != 0) ||
-             (lane_validity._to_lane != 0)) {
-          should_remove = false;
-          break;
-        }
-      }
-      if (signal_reference->_validities.size() == 0) {
-        should_remove = false;
-      }
-      if (should_remove) {
-        elements_to_remove.push_back(signal_reference);
-      }
-    }
-    for (auto* element : elements_to_remove) {
-      auto road_id = element->GetRoadId();
-      auto& road_info = _temp_road_info_container[GetRoad(road_id)];
-      road_info.erase(std::remove_if(road_info.begin(), road_info.end(),
-          [=] (auto& info_ptr) {
-            return (info_ptr.get() == element);
-          }), road_info.end());
-      _temp_signal_reference_container.erase(std::remove(_temp_signal_reference_container.begin(),
-          _temp_signal_reference_container.end(), element),
-          _temp_signal_reference_container.end());
-    }
+  for (auto* element : elements_to_remove) { // 遍历待移除的元素
+    auto road_id = element->GetRoadId(); // 获取道路 ID
+    auto& road_info = _temp_road_info_container[GetRoad(road_id)]; // 获取与该道路相关的信息
+    road_info.erase(std::remove_if(road_info.begin(), road_info.end(), // 移除信号元素
+        [=] (auto& info_ptr) {
+          return (info_ptr.get() == element); // 如果指针指向当前元素，则移除
+        }), road_info.end());
+    _temp_signal_reference_container.erase(std::remove(_temp_signal_reference_container.begin(), // 从临时信号引用容器中移除
+        _temp_signal_reference_container.end(), element),
+        _temp_signal_reference_container.end());
   }
+}
 
-  void MapBuilder::CheckSignalsOnRoads(Map &map) {
-    for (auto& signal_pair : map._data._signals) {
-      auto& signal = signal_pair.second;
-      auto signal_position = signal->GetTransform().location;
-      auto signal_rotation = signal->GetTransform().rotation;
-      auto closest_waypoint_to_signal =
-          map.GetClosestWaypointOnRoad(signal_position,
-          static_cast<int32_t>(carla::road::Lane::LaneType::Shoulder) |  static_cast<int32_t>(carla::road::Lane::LaneType::Driving));
-      // workarround to not move stencil stop
-      if (
-          signal->GetName().find("Stencil_STOP") != std::string::npos ||
-          signal->GetName().find("STATIC") != std::string::npos ||
-          signal->_using_inertial_position) {
-        continue;
-      }
-      if(closest_waypoint_to_signal) {
-        auto road_transform = map.ComputeTransform(closest_waypoint_to_signal.get());
-        auto distance_to_road = (road_transform.location -signal_position).Length();
-        double lane_width = map.GetLaneWidth(closest_waypoint_to_signal.get());
-        int displacement_direction = 1;
-        int iter = 0;
-        int MaxIter = 10;
-        // Displaces signal until it finds a suitable spot
-        while(distance_to_road < (lane_width * 0.7) && iter < MaxIter && displacement_direction != 0) {
-          if(iter == 0) {
-            log_debug("Traffic sign",
-                signal->GetSignalId(),
-                "overlaps a driving lane. Moving out of the road...");
-          }
+void MapBuilder::CheckSignalsOnRoads(Map &map) { // 定义检查道路上信号的函数
+  for (auto& signal_pair : map._data._signals) { // 遍历地图中的所有信号
+    auto& signal = signal_pair.second; // 获取信号对象
+    auto signal_position = signal->GetTransform().location; // 获取信号的位置
+    auto signal_rotation = signal->GetTransform().rotation; // 获取信号的旋转信息
+    auto closest_waypoint_to_signal = // 获取离信号最近的路点
+        map.GetClosestWaypointOnRoad(signal_position,
+        static_cast<int32_t>(carla::road::Lane::LaneType::Shoulder) |  static_cast<int32_t>(carla::road::Lane::LaneType::Driving));
 
-          auto right_waypoint = map.GetRight(closest_waypoint_to_signal.get());
-          auto right_lane_type = (right_waypoint) ? map.GetLaneType(right_waypoint.get()) : carla::road::Lane::LaneType::None;
+    // 工作绕过以避免移动 stencil stop
+    if (
+        signal->GetName().find("Stencil_STOP") != std::string::npos || // 如果信号名称包含 "Stencil_STOP"
+        signal->GetName().find("STATIC") != std::string::npos || // 或者包含 "STATIC"
+        signal->_using_inertial_position) { // 或使用惯性位置
+      continue; // 跳过此次循环
+    }
 
-          auto left_waypoint = map.GetLeft(closest_waypoint_to_signal.get());
-          auto left_lane_type = (left_waypoint) ? map.GetLaneType(left_waypoint.get()) : carla::road::Lane::LaneType::None;
+    if(closest_waypoint_to_signal) { // 如果找到了最近的路点
+      auto road_transform = map.ComputeTransform(closest_waypoint_to_signal.get()); // 计算路点的变换
+      auto distance_to_road = (road_transform.location - signal_position).Length(); // 计算信号与路的距离
+      double lane_width = map.GetLaneWidth(closest_waypoint_to_signal.get()); // 获取车道宽度
+      int displacement_direction = 1; // 初始化位移方向为 1
+      int iter = 0; // 初始化迭代次数
+      int MaxIter = 10; // 设置最大迭代次数为 10
 
-          if (right_lane_type != carla::road::Lane::LaneType::Driving) {
-            displacement_direction = 1;
-          } else if (left_lane_type != carla::road::Lane::LaneType::Driving) {
-            displacement_direction = -1;
-          } else {
-            displacement_direction = 0;
-          }
-
-          geom::Vector3D displacement = 1.f*(road_transform.GetRightVector()) *
-              static_cast<float>(abs(lane_width))*0.2f;
-          signal_position += (displacement * displacement_direction);
-          signal_rotation = road_transform.rotation;
-          closest_waypoint_to_signal =
-              map.GetClosestWaypointOnRoad(signal_position,
-              static_cast<int32_t>(carla::road::Lane::LaneType::Shoulder) |  static_cast<int32_t>(carla::road::Lane::LaneType::Driving));
-          distance_to_road =
-              (map.ComputeTransform(closest_waypoint_to_signal.get()).location -
-              signal_position).Length();
-          lane_width = map.GetLaneWidth(closest_waypoint_to_signal.get());
-          iter++;
+      // 移动信号直到找到合适的位置
+      while(distance_to_road < (lane_width * 0.7) && iter < MaxIter && displacement_direction != 0) {
+        if(iter == 0) { // 如果是第一次迭代
+          log_debug("Traffic sign", // 记录调试信息
+              signal->GetSignalId(),
+              "overlaps a driving lane. Moving out of the road...");
         }
-        if(iter == MaxIter) {
-          log_debug("Failed to find suitable place for signal.");
-        } else {
-          // Only perform the displacement if a good location has been found
-          signal->_transform.location = signal_position;
-          signal->_transform.rotation = signal_rotation;
+
+          auto right_waypoint = map.GetRight(closest_waypoint_to_signal.get()); // 获取信号右侧的路点
+auto right_lane_type = (right_waypoint) ?
+ map.GetLaneType(right_waypoint.get()) :
+ carla::road::Lane::LaneType::None; // 获取右侧车道类型，如果没有路点则为 None
+
+auto left_waypoint = map.GetLeft(closest_waypoint_to_signal.get()); // 获取信号左侧的路点
+auto left_lane_type = (left_waypoint) ?
+ map.GetLaneType(left_waypoint.get()) :
+ carla::road::Lane::LaneType::None; // 获取左侧车道类型，如果没有路点则为 None
+
+if (right_lane_type != carla::road::Lane::LaneType::Driving) { // 如果右侧车道不是行驶车道
+  displacement_direction = 1; // 设置位移方向为 1（向右）
+} else if (left_lane_type != carla::road::Lane::LaneType::Driving) { // 如果左侧车道不是行驶车道
+  displacement_direction = -1; // 设置位移方向为 -1（向左）
+} else {
+  displacement_direction = 0; // 如果两侧都是行驶车道，设置位移方向为 0（不移动）
+}
+
+geom::Vector3D displacement = 1.f*(road_transform.GetRightVector()) * // 计算位移向量
+    static_cast<float>(abs(lane_width)) * 0.2f; // 使用车道宽度的绝对值乘以 0.2
+
+signal_position += (displacement * displacement_direction); // 根据位移方向更新信号的位置
+signal_rotation = road_transform.rotation; // 更新信号的旋转信息为道路的旋转信息
+closest_waypoint_to_signal = // 获取更新后信号位置最近的路点
+    map.GetClosestWaypointOnRoad(signal_position,
+    static_cast<int32_t>(carla::road::Lane::LaneType::Shoulder) |  static_cast<int32_t>(carla::road::Lane::LaneType::Driving));
+
+distance_to_road = // 计算信号与最近路点之间的距离
+    (map.ComputeTransform(closest_waypoint_to_signal.get()).location -
+    signal_position).Length(); // 计算两者间的长度
+lane_width = map.GetLaneWidth(closest_waypoint_to_signal.get()); // 获取最近路点所在车道的宽度
+iter++; // 增加迭代次数
+}
+
+if(iter == MaxIter) { // 如果达到最大迭代次数
+  log_debug("Failed to find suitable place for signal."); // 记录无法找到合适位置的调试信息
+} else {
+  // 只有在找到合适位置时才进行位移
+  signal->_transform.location = signal_position; // 更新信号的位置
+  signal->_transform.rotation = signal_rotation; // 更新信号的旋转信息
         }
       }
     }
