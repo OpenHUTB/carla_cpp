@@ -18,178 +18,182 @@
 namespace carla {
 namespace geom {
 
+  // MeshFactory构造函数，接受一个参数用于初始化路面相关参数
   MeshFactory::MeshFactory(rpc::OpendriveGenerationParameters params) {
-    road_param.resolution = static_cast<float>(params.vertex_distance);
-    road_param.max_road_len = static_cast<float>(params.max_road_length);
-    road_param.extra_lane_width = static_cast<float>(params.additional_width);
-    road_param.wall_height = static_cast<float>(params.wall_height);
-    road_param.vertex_width_resolution = static_cast<float>(params.vertex_width_resolution);
+    road_param.resolution = static_cast<float>(params.vertex_distance); // 设置顶点距离
+    road_param.max_road_len = static_cast<float>(params.max_road_length); // 设置最大道路长度
+    road_param.extra_lane_width = static_cast<float>(params.additional_width); // 设置额外车道宽度
+    road_param.wall_height = static_cast<float>(params.wall_height); // 设置墙体高度
+    road_param.vertex_width_resolution = static_cast<float>(params.vertex_width_resolution); // 设置顶点宽度分辨率
   }
 
-  /// We use this epsilon to shift the waypoints away from the edges of the lane
-  /// sections to avoid floating point precision errors.
+  // 为避免浮点精度错误，使用此epsilon值将路径点从车道边缘移开
   static constexpr double EPSILON = 10.0 * std::numeric_limits<double>::epsilon();
   static constexpr double MESH_EPSILON = 50.0 * std::numeric_limits<double>::epsilon();
 
+  // 根据路面生成网格
   std::unique_ptr<Mesh> MeshFactory::Generate(const road::Road &road) const {
-    Mesh out_mesh;
-    for (auto &&lane_section : road.GetLaneSections()) {
-      out_mesh += *Generate(lane_section);
+    Mesh out_mesh; // 创建输出网格
+    for (auto &&lane_section : road.GetLaneSections()) { // 遍历所有车道段
+      out_mesh += *Generate(lane_section); // 生成每个车道段的网格并添加到输出网格中
     }
-    return std::make_unique<Mesh>(out_mesh);
+    return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
   }
 
+  // 根据车道段生成网格
   std::unique_ptr<Mesh> MeshFactory::Generate(const road::LaneSection &lane_section) const {
-    Mesh out_mesh;
-    for (auto &&lane_pair : lane_section.GetLanes()) {
-      out_mesh += *Generate(lane_pair.second);
+    Mesh out_mesh; // 创建输出网格
+    for (auto &&lane_pair : lane_section.GetLanes()) { // 遍历车道段中的所有车道
+      out_mesh += *Generate(lane_pair.second); // 生成每条车道的网格并添加到输出网格中
     }
-    return std::make_unique<Mesh>(out_mesh);
+    return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
   }
 
+  // 根据车道生成网格，默认起始点和结束点
   std::unique_ptr<Mesh> MeshFactory::Generate(const road::Lane &lane) const {
-    const double s_start = lane.GetDistance() + EPSILON;
-    const double s_end = lane.GetDistance() + lane.GetLength() - EPSILON;
-    return Generate(lane, s_start, s_end);
+    const double s_start = lane.GetDistance() + EPSILON; // 计算起始点
+    const double s_end = lane.GetDistance() + lane.GetLength() - EPSILON; // 计算结束点
+    return Generate(lane, s_start, s_end); // 调用重载函数生成网格
   }
 
+  // 根据车道生成细分网格，默认起始点和结束点
   std::unique_ptr<Mesh> MeshFactory::GenerateTesselated(const road::Lane& lane) const {
-    const double s_start = lane.GetDistance() + EPSILON;
-    const double s_end = lane.GetDistance() + lane.GetLength() - EPSILON;
-    return GenerateTesselated(lane, s_start, s_end);
+    const double s_start = lane.GetDistance() + EPSILON; // 计算起始点
+    const double s_end = lane.GetDistance() + lane.GetLength() - EPSILON; // 计算结束点
+    return GenerateTesselated(lane, s_start, s_end); // 调用重载函数生成细分网格
   }
 
+  // 根据车道和给定的起始、结束位置生成网格
   std::unique_ptr<Mesh> MeshFactory::Generate(
       const road::Lane &lane, const double s_start, const double s_end) const {
-    RELEASE_ASSERT(road_param.resolution > 0.0);
-    DEBUG_ASSERT(s_start >= 0.0);
-    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength());
-    DEBUG_ASSERT(s_end >= EPSILON);
-    DEBUG_ASSERT(s_start < s_end);
-    // The lane with lane_id 0 have no physical representation in OpenDRIVE
-    Mesh out_mesh;
+    RELEASE_ASSERT(road_param.resolution > 0.0); // 确保分辨率大于0
+    DEBUG_ASSERT(s_start >= 0.0); // 确保起始点合法
+    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束点合法
+    DEBUG_ASSERT(s_end >= EPSILON); // 确保结束点大于Epsilon
+    DEBUG_ASSERT(s_start < s_end); // 确保起始点小于结束点
+    
+    // ID为0的车道在OpenDRIVE中没有物理表示
+    Mesh out_mesh; 
     if (lane.GetId() == 0) {
-      return std::make_unique<Mesh>(out_mesh);
+      return std::make_unique<Mesh>(out_mesh); // 返回空网格
     }
-    double s_current = s_start;
+    
+    double s_current = s_start; // 当前s值初始化为起始点
 
-    std::vector<geom::Vector3D> vertices;
-    if (lane.IsStraight()) {
-      // Mesh optimization: If the lane is straight just add vertices at the
-      // begining and at the end of it
-      const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-      vertices.push_back(edges.first);
-      vertices.push_back(edges.second);
+    std::vector<geom::Vector3D> vertices; // 存储顶点的向量
+    if (lane.IsStraight()) { // 如果车道是直的
+      // 网格优化：如果车道是直的，只需在开始和结束处添加顶点
+      const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width); // 获取当前车道边缘位置
+      vertices.push_back(edges.first); // 添加左边缘顶点
+      vertices.push_back(edges.second); // 添加右边缘顶点
     } else {
-      // Iterate over the lane's 's' and store the vertices based on it's width
+      // 遍历车道的's'并根据宽度存储顶点
       do {
-        // Get the location of the edges of the current lane at the current waypoint
+        // 获取当前路径点的车道边缘位置
         const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-        vertices.push_back(edges.first);
-        vertices.push_back(edges.second);
+        vertices.push_back(edges.first); // 添加左边缘顶点
+        vertices.push_back(edges.second); // 添加右边缘顶点
 
-        // Update the current waypoint's "s"
-        s_current += road_param.resolution;
-      } while(s_current < s_end);
+        // 更新当前路径点的"s"
+        s_current += road_param.resolution; // 增加当前s值
+      } while(s_current < s_end); // 继续直到达到结束点
     }
 
-    // This ensures the mesh is constant and have no gaps between roads,
-    // adding geometry at the very end of the lane
+    // 确保网格是连续的，并且车道之间没有间隙，
+    // 在车道的末尾添加几何形状
     if (s_end - (s_current - road_param.resolution) > EPSILON) {
-      const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width);
-      vertices.push_back(edges.first);
-      vertices.push_back(edges.second);
+      const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width); // 获取结束点的车道边缘位置
+      vertices.push_back(edges.first); // 添加左边缘顶点
+      vertices.push_back(edges.second); // 添加右边缘顶点
     }
 
-    // Add the adient material, create the strip and close the material
+    // 添加材质，创建三角形带并结束材质
     out_mesh.AddMaterial(
-        lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road");
-    out_mesh.AddTriangleStrip(vertices);
-    out_mesh.EndMaterial();
-    return std::make_unique<Mesh>(out_mesh);
-  }
+        lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型选择材质
+    out_mesh.AddTriangleStrip(vertices); // 添加三角形带
+    out_mesh.EndMaterial(); // 结束材质
+    return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
 
   std::unique_ptr<Mesh> MeshFactory::GenerateTesselated(
-    const road::Lane& lane, const double s_start, const double s_end) const {
-    RELEASE_ASSERT(road_param.resolution > 0.0);
-    DEBUG_ASSERT(s_start >= 0.0);
-    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength());
-    DEBUG_ASSERT(s_end >= EPSILON);
-    DEBUG_ASSERT(s_start < s_end);
-    // The lane with lane_id 0 have no physical representation in OpenDRIVE
-    Mesh out_mesh;
-    if (lane.GetId() == 0) {
-      return std::make_unique<Mesh>(out_mesh);
+    const road::Lane& lane, const double s_start, const double s_end) const { // 生成细分网格
+    RELEASE_ASSERT(road_param.resolution > 0.0); // 确保分辨率大于零
+    DEBUG_ASSERT(s_start >= 0.0); // 确保起始s值非负
+    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束s值在有效范围内
+    DEBUG_ASSERT(s_end >= EPSILON); // 确保结束s值大于最小值
+    DEBUG_ASSERT(s_start < s_end); // 确保起始s值小于结束s值
+    // lane_id为0的车道在OpenDRIVE中没有物理表示
+    Mesh out_mesh; // 创建网格对象
+    if (lane.GetId() == 0) { // 检查车道ID
+      return std::make_unique<Mesh>(out_mesh); // 如果ID为0，返回空网格
     }
-    double s_current = s_start;
+    double s_current = s_start; // 初始化当前s值
 
-    std::vector<geom::Vector3D> vertices;
-    // Ensure minimum vertices in width are two
-    const int vertices_in_width = road_param.vertex_width_resolution >= 2 ? road_param.vertex_width_resolution : 2;
-    const int segments_number = vertices_in_width - 1;
+    std::vector<geom::Vector3D> vertices; // 存储顶点的向量
+    // 确保宽度方向上的最小顶点数为两个
+    const int vertices_in_width = road_param.vertex_width_resolution >= 2 ? road_param.vertex_width_resolution : 2; // 设置宽度方向上的顶点数
+    const int segments_number = vertices_in_width - 1; // 计算段数
 
-    std::vector<geom::Vector2D> uvs;
-    int uvx = 0;
-    int uvy = 0;
-    // Iterate over the lane's 's' and store the vertices based on it's width
+    std::vector<geom::Vector2D> uvs; // 存储UV坐标
+    int uvx = 0; // UV的X坐标
+    int uvy = 0; // UV的Y坐标
+    // 遍历车道的's'并根据其宽度存储顶点
     do {
-      // Get the location of the edges of the current lane at the current waypoint
-      std::pair<geom::Vector3D, geom::Vector3D> edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-      const geom::Vector3D segments_size = ( edges.second - edges.first ) / segments_number;
-      geom::Vector3D current_vertex = edges.first;
-      uvx = 0;
-      for (int i = 0; i < vertices_in_width; ++i) {
-        uvs.push_back(geom::Vector2D(uvx, uvy));
-        vertices.push_back(current_vertex);
-        current_vertex = current_vertex + segments_size;
-        uvx++;
+      // 获取当前车道在当前位置的边缘位置
+      std::pair<geom::Vector3D, geom::Vector3D> edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width); // 获取边缘位置
+      const geom::Vector3D segments_size = (edges.second - edges.first) / segments_number; // 计算每个段的大小
+      geom::Vector3D current_vertex = edges.first; // 当前顶点初始化为左边缘
+      uvx = 0; // 重置UV的X坐标
+      for (int i = 0; i < vertices_in_width; ++i) { // 遍历宽度方向的顶点
+        uvs.push_back(geom::Vector2D(uvx, uvy)); // 添加UV坐标
+        vertices.push_back(current_vertex); // 添加当前顶点
+        current_vertex = current_vertex + segments_size; // 更新当前顶点位置
+        uvx++; // 更新UV的X坐标
       }
-      uvy++;
-      // Update the current waypoint's "s"
-      s_current += road_param.resolution;
-    } while (s_current < s_end);
+      uvy++; // 更新UV的Y坐标
+      // 更新当前waypoint的"s"
+      s_current += road_param.resolution; // 增加当前s值
+    } while (s_current < s_end); // 当当前s值小于结束s值时继续
 
-    // This ensures the mesh is constant and have no gaps between roads,
-    // adding geometry at the very end of the lane
+    // 确保网格是连续的，没有道路之间的间隙，
+    // 在车道末尾添加几何体
 
-    if (s_end - (s_current - road_param.resolution) > EPSILON) {
+    if (s_end - (s_current - road_param.resolution) > EPSILON) { // 检查是否需要在末尾添加几何体
       std::pair<carla::geom::Vector3D, carla::geom::Vector3D> edges =
-        lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width);
-      const geom::Vector3D segments_size = (edges.second - edges.first) / segments_number;
-      geom::Vector3D current_vertex = edges.first;
-      uvx = 0;
-      for (int i = 0; i < vertices_in_width; ++i)
+        lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width); // 获取结束位置的边缘
+      const geom::Vector3D segments_size = (edges.second - edges.first) / segments_number; // 计算段的大小
+      geom::Vector3D current_vertex = edges.first; // 当前顶点初始化为左边缘
+      uvx = 0; // 重置UV的X坐标
+      for (int i = 0; i < vertices_in_width; ++i) // 遍历宽度方向的顶点
       {
-        uvs.push_back(geom::Vector2D(uvx, uvy));
-        vertices.push_back(current_vertex);
-        current_vertex = current_vertex + segments_size;
-        uvx++;
+        uvs.push_back(geom::Vector2D(uvx, uvy)); // 添加UV坐标
+        vertices.push_back(current_vertex); // 添加当前顶点
+        current_vertex = current_vertex + segments_size; // 更新当前顶点位置
+        uvx++; // 更新UV的X坐标
       }
     }
-    out_mesh.AddVertices(vertices);
-    out_mesh.AddUVs(uvs);
+    out_mesh.AddVertices(vertices); // 添加顶点到网格
+    out_mesh.AddUVs(uvs); // 添加UV坐标到网格
 
-    // Add the adient material, create the strip and close the material
+    // 添加材质，创建索引并结束材质
     out_mesh.AddMaterial(
-      lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road");
+      lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型选择材质
 
-    const size_t number_of_rows = (vertices.size() / vertices_in_width);
+    const size_t number_of_rows = (vertices.size() / vertices_in_width); // 计算行数
 
-    for (size_t i = 0; i < (number_of_rows - 1); ++i) {
-      for (size_t j = 0; j < vertices_in_width - 1; ++j) {
-        out_mesh.AddIndex(   j       + (   i       * vertices_in_width ) + 1);
-        out_mesh.AddIndex( ( j + 1 ) + (   i       * vertices_in_width ) + 1);
-        out_mesh.AddIndex(   j       + ( ( i + 1 ) * vertices_in_width ) + 1);
+    for (size_t i = 0; i < (number_of_rows - 1); ++i) { // 遍历行
+      for (size_t j = 0; j < vertices_in_width - 1; ++j) { // 遍历列
+        out_mesh.AddIndex(   j       + (   i       * vertices_in_width ) + 1); // 添加索引
+        out_mesh.AddIndex( ( j + 1 ) + (   i       * vertices_in_width ) + 1); // 添加索引
+        out_mesh.AddIndex(   j       + ( ( i + 1 ) * vertices_in_width ) + 1); // 添加索引
 
-        out_mesh.AddIndex( ( j + 1 ) + (   i       * vertices_in_width ) + 1);
-        out_mesh.AddIndex( ( j + 1 ) + ( ( i + 1 ) * vertices_in_width ) + 1);
-        out_mesh.AddIndex(   j       + ( ( i + 1 ) * vertices_in_width ) + 1);
+        out_mesh.AddIndex( ( j + 1 ) + (   i       * vertices_in_width ) + 1); // 添加索引
+        out_mesh.AddIndex( ( j + 1 ) + ( ( i + 1 ) * vertices_in_width ) + 1); // 添加索引
+        out_mesh.AddIndex(   j       + ( ( i + 1 ) * vertices_in_width ) + 1); // 添加索引
       }
     }
-    out_mesh.EndMaterial();
-    return std::make_unique<Mesh>(out_mesh);
-  }
-
+    out_mesh.EndMaterial(); // 结束材质
+    return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
+}
 
   void MeshFactory::GenerateLaneSectionOrdered(
     const road::LaneSection &lane_section,
