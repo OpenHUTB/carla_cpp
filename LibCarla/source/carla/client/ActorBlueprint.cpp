@@ -49,27 +49,31 @@ namespace client {
   }
 
   const ActorAttribute &ActorBlueprint::GetAttribute(const std::string &id) const {
+  	//在_attributes映射中查找 id 对应的属性
     auto it = _attributes.find(id);
     if (it == _attributes.end()) {
       using namespace std::string_literals;
       throw_exception(std::out_of_range("attribute '"s + id + "' not found"));
-    }
-    return it->second;
+    } //如果未找到则抛出异常
+    return it->second; //返回找到的属性
   }
-
+//指定 id 的属性值
   void ActorBlueprint::SetAttribute(const std::string &id, std::string value) {
     const_cast<ActorAttribute &>(GetAttribute(id)).Set(std::move(value));
+    // const_cast 用于移除常量性，将找到的属性设置为新的值
   }
-
+//生成一个 rpc::ActorDescription 对象，用于描述当前的 ActorBlueprint
   rpc::ActorDescription ActorBlueprint::MakeActorDescription() const {
     rpc::ActorDescription description;
-    description.uid = _uid;
-    description.id = _id;
+    description.uid = _uid; //设置唯一标识符
+    description.id = _id; //设置 id
+     //为属性预留空间以优化性能
     description.attributes.reserve(_attributes.size());
+   //将所有属性添加到描述对象的 attributes 向量中
     for (const auto &attribute : *this) {
       description.attributes.push_back(attribute);
     }
-    return description;
+    return description; //返回生成的描述对象
   }
 
 } // namespace client
