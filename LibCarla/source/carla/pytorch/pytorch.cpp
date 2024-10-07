@@ -16,69 +16,83 @@
 #include <vector>
 #include <ostream>
 #include <sstream>
-
+// 定义一个空的函数，用于添加标记
 void add_mark(const std::string &text) {
 
 }
-
+// 定义一个命名空间 carla，其中包含另一个命名空间 learning
 namespace carla {
 namespace learning {
-
+  // 测试学习功能的函数，打印CUDA版本信息
   void test_learning()
   {
-    std::ostringstream ss;
-    std::cout << "cuda version " << cluster::cuda_version() << std::endl;
-    std::cout << "cuda version " << scatter::cuda_version() << std::endl;
+    std::ostringstream ss;// 创建一个字符串流
+    std::cout << "cuda version " << cluster::cuda_version() << std::endl;// 打印cluster命名空间中定义的cuda_version()函数的返回值
+    std::cout << "cuda version " << scatter::cuda_version() << std::endl;// 打印scatter命名空间中定义的cuda_version()函数的返回值
+    // 下面的代码被注释掉了，如果取消注释，将创建一个3x3的单位张量并打印
     // torch::Tensor tensor = torch::eye(3);
     // std::cout << tensor << std::endl;
   }
-
+// 定义一个函数，用于将WheelInput结构体中的数据转换为PyTorch张量，并将这些张量打包成一个IValue元组返回
   torch::jit::IValue GetWheelTensorInputs(WheelInput& wheel) {
+    // 从wheel结构体的particles_positions成员变量创建一个张量，表示粒子的位置。  
+    // particles_positions是一个指向粒子位置数据的指针，num_particles是粒子的数量，每个粒子有3个位置坐标（x, y, z）
     at::Tensor particles_position_tensor = 
         torch::from_blob(wheel.particles_positions, 
             {wheel.num_particles, 3}, torch::kFloat32);
-
+    // 从wheel结构体的particles_velocities成员变量创建一个张量，表示粒子的速度。  
+    // particles_velocities是一个指向粒子速度数据的指针，格式与粒子位置相同
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_positions成员变量创建一个张量，表示车轮的位置。  
+    // wheel_positions是一个指向车轮位置数据的指针，车轮位置由3个坐标（x, y, z）表示
     at::Tensor wheel_positions_tensor = 
         torch::from_blob(wheel.wheel_positions, 
             {3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_oritentation成员变量创建一个张量，表示车轮的朝向
     at::Tensor wheel_oritentation_tensor = 
         torch::from_blob(wheel.wheel_oritentation, 
             {4}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_linear_velocity成员变量创建一个张量，表示车轮的线速度。  
+    // wheel_linear_velocity是一个指向车轮线速度数据的指针，由3个分量（x, y, z）表示
     at::Tensor wheel_linear_velocity_tensor = 
         torch::from_blob(wheel.wheel_linear_velocity, 
             {3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_angular_velocity成员变量创建一个张量，表示车轮的角速度。  
+    // wheel_angular_velocity是一个指向车轮角速度数据的指针，同样由3个分量（x, y, z）表示
     at::Tensor wheel_angular_velocity_tensor = 
         torch::from_blob(wheel.wheel_angular_velocity, 
             {3}, torch::kFloat32);
-
+    // 将上述所有张量放入一个IValue向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor, particles_velocity_tensor, wheel_positions_tensor, 
          wheel_oritentation_tensor, wheel_linear_velocity_tensor, wheel_angular_velocity_tensor};
-    return torch::ivalue::Tuple::create(Tuple);
+    return torch::ivalue::Tuple::create(Tuple);// 使用torch::ivalue::Tuple::create方法将IValue向量打包成一个IValue元组，并返回
   }
-
+// 定义一个函数，用于从粒子力和轮力张量中提取信息，并填充到一个WheelOutput结构体中
   WheelOutput GetWheelTensorOutput(
-      const at::Tensor &particle_forces, 
-      const at::Tensor &wheel_forces ) {
+      const at::Tensor &particle_forces, // 输入参数：粒子力的张量
+      const at::Tensor &wheel_forces ) {// 输入参数：轮力的张量
     WheelOutput result;
+    // 获取轮力张量的数据指针，并假定数据类型为float
     const float* wheel_forces_data = wheel_forces.data_ptr<float>();
+    // 从轮力张量中提取x, y, z方向的轮力和轮扭矩，并存储到result结构体中
     result.wheel_forces_x = wheel_forces_data[0];
     result.wheel_forces_y = wheel_forces_data[1];
     result.wheel_forces_z = wheel_forces_data[2];
     result.wheel_torque_x = wheel_forces_data[3];
     result.wheel_torque_y = wheel_forces_data[4];
     result.wheel_torque_z = wheel_forces_data[5];
+    // 获取粒子力张量的数据指针，并假定数据类型为float 
     const float* particle_forces_data = particle_forces.data_ptr<float>();
+    // 定义粒子力的维度数量（假设为3D空间，即x, y, z三个方向）
     int num_dimensions = 3;
+    // 获取粒子力张量中粒子的数量
     int num_particles = particle_forces.sizes()[0];
+    // 为存储粒子力的向量预留空间，大小为粒子数量乘以每个粒子的维度数量
     result._particle_forces.reserve(num_particles*num_dimensions);
+    // 遍历每个粒子，将其x, y, z方向的力添加到result结构体中的粒子力向量中
     for (int i = 0; i < num_particles; i++) {
       result._particle_forces.emplace_back(
           particle_forces_data[i*num_dimensions + 0]);
@@ -113,22 +127,32 @@ namespace learning {
     return result;
   }
 
-  // holds the neural network
+  // 定义一个名为NeuralModelImpl的结构体，它封装了与神经网络模型相关的数据和操作
   struct NeuralModelImpl
   {
     NeuralModelImpl(){}
+    // 成员变量：一个PyTorch JIT编译的脚本模块，用于加载和执行神经网络
     torch::jit::script::Module module;
     ~NeuralModelImpl(){}
+    // 成员变量：一个存储粒子位置张量的向量，每个张量代表一组粒子的位置信息 
     std::vector<at::Tensor> particles_position_tensors;
+    // 成员变量：一个存储粒子速度张量的向量，每个张量代表一组粒子的速度信息
     std::vector<at::Tensor> particles_velocity_tensors;
+    // 成员函数：获取与指定车轮相关的输入张量，这些张量将作为神经网络的输入  
+    // 参数：  
+    //   - wheel：一个引用传递的WheelInput结构体，包含了车轮的输入信息  
+    //   - wheel_idx：指定车轮的索引，用于从可能的多组车轮输入中选择一组  
+    // 返回值：  
+    //   - 一个torch::jit::IValue对象，它封装了神经网络所需的输入张量（或张量的组合）  
+    //       这个返回值可以直接被传递给torch::jit::script::Module的forward方法
     torch::jit::IValue GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx);
   };
   torch::jit::IValue NeuralModelImpl::GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx)
-  {
+  {// 从WheelInput结构体中的粒子位置数组创建一个张量
     at::Tensor particles_position_tensor = 
-        torch::from_blob(wheel.particles_positions, 
-            {wheel.num_particles, 3}, torch::kFloat32);
-
+        torch::from_blob(wheel.particles_positions, // 指向数据的指针
+            {wheel.num_particles, 3}, torch::kFloat32);// 张量的形状
+ // 从WheelInput结构体中的粒子速度数组创建一个张量，过程与位置张量类似
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
@@ -148,11 +172,13 @@ namespace learning {
     at::Tensor wheel_angular_velocity_tensor = 
         torch::from_blob(wheel.wheel_angular_velocity, 
             {3}, torch::kFloat32);
-
+// 将所有准备好的张量以及粒子数量（作为一个标量张量或直接作为整数）放入一个向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor.cuda(), particles_velocity_tensor.cuda(), wheel_positions_tensor.cuda(), 
+        // 修正了变量名以匹配之前的声明
          wheel_oritentation_tensor.cuda(), wheel_linear_velocity_tensor.cuda(), wheel_angular_velocity_tensor.cuda(),
-         wheel.num_particles};
+         wheel.num_particles};// 直接作为整数传递，而不是张量  
+    };  
     return torch::ivalue::Tuple::create(Tuple);
   }
 
