@@ -983,109 +983,109 @@ void MeshFactory::GenerateLaneMarksForNotCenterLine(
 
             break;
           }
-          case carla::road::element::LaneMarking::Type::SolidSolid: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::SolidSolid: {  // 实线-实线标记
+            s_current += road_param.resolution;   // 当前距离增加分辨率
             break;
           }
-          case carla::road::element::LaneMarking::Type::SolidBroken: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::SolidBroken: {  // 实线-实线标记
+            s_current += road_param.resolution;  // 当前距离增加分辨率
             break;
           }
-          case carla::road::element::LaneMarking::Type::BrokenSolid: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::BrokenSolid: {  //虚线-实线标记
+            s_current += road_param.resolution;  // 当前距离增加分辨率
+            break; 
+          }
+          case carla::road::element::LaneMarking::Type::BrokenBroken: {  // 虚线-虚线标记
+            s_current += road_param.resolution;  // 当前距离增加分辨率
             break;
           }
-          case carla::road::element::LaneMarking::Type::BrokenBroken: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::BottsDots: {   // Botts点标记
+            s_current += road_param.resolution;  // 当前距离增加分辨率
             break;
           }
-          case carla::road::element::LaneMarking::Type::BottsDots: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::Grass: {  // 草地标记
+            s_current += road_param.resolution;  // 当前距离增加分辨率
             break;
           }
-          case carla::road::element::LaneMarking::Type::Grass: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::Curb: {   // 路缘标记
+            s_current += road_param.resolution;  // 当前距离增加分辨率
             break;
           }
-          case carla::road::element::LaneMarking::Type::Curb: {
-            s_current += road_param.resolution;
-            break;
-          }
-          case carla::road::element::LaneMarking::Type::Other: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::Other: {  // 其他类型标记
+            s_current += road_param.resolution;  // 当前距离增加分辨率
             break;
           }
           default: {
-            s_current += road_param.resolution;
+            s_current += road_param.resolution;  // 当前距离增加分辨率
             break;
           }
         }
       }
-    } while (s_current < s_end);
+    } while (s_current < s_end);   // 循环直到当前距离小于结束距离
 
-    if (out_mesh.IsValid()) {
-      const carla::road::element::RoadInfoMarkRecord* road_info_mark = lane.GetInfo<carla::road::element::RoadInfoMarkRecord>(s_current);
-      if (road_info_mark != nullptr)
+    if (out_mesh.IsValid()) {  // 如果输出网格有效
+      const carla::road::element::RoadInfoMarkRecord* road_info_mark = lane.GetInfo<carla::road::element::RoadInfoMarkRecord>(s_current);  // 获取道路信息标记记录
+      if (road_info_mark != nullptr)  // 如果道路信息标记不为空
       {
-        carla::road::element::LaneMarking lane_mark_info(*road_info_mark);
-        carla::road::element::DirectedPoint rightpoint = road.GetDirectedPointIn(s_current);
-        carla::road::element::DirectedPoint leftpoint = rightpoint;
+        carla::road::element::LaneMarking lane_mark_info(*road_info_mark);  // 创建车道标记信息
+        carla::road::element::DirectedPoint rightpoint = road.GetDirectedPointIn(s_current);   // 获取当前距离的右侧点
+        carla::road::element::DirectedPoint leftpoint = rightpoint;  // 左侧点初始化为右侧点
 
-        rightpoint.ApplyLateralOffset(lane_mark_info.width * 0.5f);
-        leftpoint.ApplyLateralOffset(lane_mark_info.width * -0.5f);
+        rightpoint.ApplyLateralOffset(lane_mark_info.width * 0.5f);   // 右侧点应用横向偏移
+        leftpoint.ApplyLateralOffset(lane_mark_info.width * -0.5f);  // 左侧点应用横向偏移
 
-        // Unreal's Y axis hack
-        rightpoint.location.y *= -1;
-        leftpoint.location.y *= -1;
+        // Unreal的Y轴处理
+        rightpoint.location.y *= -1;  // 反转右侧点的Y轴
+        leftpoint.location.y *= -1;  // 反转左侧点的Y轴
 
-        out_mesh.AddVertex(rightpoint.location);
-        out_mesh.AddVertex(leftpoint.location);
+        out_mesh.AddVertex(rightpoint.location);  // 向输出网格添加右侧点
+        out_mesh.AddVertex(leftpoint.location);  // 向输出网格添加左侧点
 
       }
-      inout.push_back(std::make_unique<Mesh>(out_mesh));
+      inout.push_back(std::make_unique<Mesh>(out_mesh));  // 将输出网格添加到输出列表
     }
   }
 
-  struct VertexWeight {
-    Mesh::vertex_type* vertex;
-    double weight;
+  struct VertexWeight {   // 顶点权重结构
+    Mesh::vertex_type* vertex;  // 顶点指针
+    double weight;  // 权重值
   };
-  struct VertexNeighbors {
-    Mesh::vertex_type* vertex;
-    std::vector<VertexWeight> neighbors;
+  struct VertexNeighbors {  // 顶点邻居结构
+    Mesh::vertex_type* vertex;  // 顶点指针
+    std::vector<VertexWeight> neighbors;  // 邻居顶点权重列表
   };
-  struct VertexInfo {
-    Mesh::vertex_type * vertex;
-    size_t lane_mesh_idx;
-    bool is_static;
+  struct VertexInfo {   // 顶点信息结构
+    Mesh::vertex_type * vertex;  // 顶点指针
+    size_t lane_mesh_idx;  // 车道网格索引
+    bool is_static;  // 是否为静态顶点
   };
 
-  // Helper function to compute the weight of neighboring vertices
+  // 计算邻居顶点权重的辅助函数
   static VertexWeight ComputeVertexWeight(
-      const MeshFactory::RoadParameters &road_param,
-      const VertexInfo &vertex_info,
-      const VertexInfo &neighbor_info) {
-    const float distance3D = geom::Math::Distance(*vertex_info.vertex, *neighbor_info.vertex);
-    // Ignore vertices beyond a certain distance
+      const MeshFactory::RoadParameters &road_param,  // 道路参数
+      const VertexInfo &vertex_info,  // 顶点信息
+      const VertexInfo &neighbor_info) {  // 邻居信息
+    const float distance3D = geom::Math::Distance(*vertex_info.vertex, *neighbor_info.vertex);  // 计算三维距离
+    // 忽略超过一定距离的顶点
     if(distance3D > road_param.max_weight_distance) {
-      return {neighbor_info.vertex, 0};
+      return {neighbor_info.vertex, 0};  // 超过最大权重距离，返回权重为0
     }
-    if(abs(distance3D) < EPSILON) {
-      return {neighbor_info.vertex, 0};
+    if(abs(distance3D) < EPSILON) {  // 如果距离小于极小值
+      return {neighbor_info.vertex, 0};  // 返回权重为0
     }
-    float weight = geom::Math::Clamp<float>(1.0f / distance3D, 0.0f, 100000.0f);
+    float weight = geom::Math::Clamp<float>(1.0f / distance3D, 0.0f, 100000.0f);   // 计算权重并限制范围
 
-    // Additional weight to vertices in the same lane
+    // 对于同一车道的顶点增加额外权重
     if(vertex_info.lane_mesh_idx == neighbor_info.lane_mesh_idx) {
-      weight *= road_param.same_lane_weight_multiplier;
-      // Further additional weight for fixed verices
+      weight *= road_param.same_lane_weight_multiplier;  // 乘以同车道权重因子
+      // 对于固定顶点进一步增加权重
       if(neighbor_info.is_static) {
-        weight *= road_param.lane_ends_multiplier;
+        weight *= road_param.lane_ends_multiplier;  / 乘以车道结束权重因子
       }
     }
-    return {neighbor_info.vertex, weight};
-  }
-  // Helper function to compute neighborhoord of vertices and their weights
+    return {neighbor_info.vertex, weight};  // 返回邻居顶点和计算的权重
+  } 
+// Helper function to compute neighborhoord of vertices and their weights
   std::vector<VertexNeighbors> GetVertexNeighborhoodAndWeights(
       const MeshFactory::RoadParameters &road_param,
       std::vector<std::unique_ptr<Mesh>> &lane_meshes) {
