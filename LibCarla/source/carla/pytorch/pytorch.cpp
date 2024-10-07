@@ -16,19 +16,20 @@
 #include <vector>
 #include <ostream>
 #include <sstream>
-
+// 定义一个空的函数，用于添加标记
 void add_mark(const std::string &text) {
 
 }
-
+// 定义一个命名空间 carla，其中包含另一个命名空间 learning
 namespace carla {
 namespace learning {
-
+  // 测试学习功能的函数，打印CUDA版本信息
   void test_learning()
   {
-    std::ostringstream ss;
-    std::cout << "cuda version " << cluster::cuda_version() << std::endl;
-    std::cout << "cuda version " << scatter::cuda_version() << std::endl;
+    std::ostringstream ss;// 创建一个字符串流
+    std::cout << "cuda version " << cluster::cuda_version() << std::endl;// 打印cluster命名空间中定义的cuda_version()函数的返回值
+    std::cout << "cuda version " << scatter::cuda_version() << std::endl;// 打印scatter命名空间中定义的cuda_version()函数的返回值
+    // 下面的代码被注释掉了，如果取消注释，将创建一个3x3的单位张量并打印
     // torch::Tensor tensor = torch::eye(3);
     // std::cout << tensor << std::endl;
   }
