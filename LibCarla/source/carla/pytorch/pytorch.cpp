@@ -70,22 +70,29 @@ namespace learning {
          wheel_oritentation_tensor, wheel_linear_velocity_tensor, wheel_angular_velocity_tensor};
     return torch::ivalue::Tuple::create(Tuple);// 使用torch::ivalue::Tuple::create方法将IValue向量打包成一个IValue元组，并返回
   }
-
+// 定义一个函数，用于从粒子力和轮力张量中提取信息，并填充到一个WheelOutput结构体中
   WheelOutput GetWheelTensorOutput(
-      const at::Tensor &particle_forces, 
-      const at::Tensor &wheel_forces ) {
+      const at::Tensor &particle_forces, // 输入参数：粒子力的张量
+      const at::Tensor &wheel_forces ) {// 输入参数：轮力的张量
     WheelOutput result;
+    // 获取轮力张量的数据指针，并假定数据类型为float
     const float* wheel_forces_data = wheel_forces.data_ptr<float>();
+    // 从轮力张量中提取x, y, z方向的轮力和轮扭矩，并存储到result结构体中
     result.wheel_forces_x = wheel_forces_data[0];
     result.wheel_forces_y = wheel_forces_data[1];
     result.wheel_forces_z = wheel_forces_data[2];
     result.wheel_torque_x = wheel_forces_data[3];
     result.wheel_torque_y = wheel_forces_data[4];
     result.wheel_torque_z = wheel_forces_data[5];
+    // 获取粒子力张量的数据指针，并假定数据类型为float 
     const float* particle_forces_data = particle_forces.data_ptr<float>();
+    // 定义粒子力的维度数量（假设为3D空间，即x, y, z三个方向）
     int num_dimensions = 3;
+    // 获取粒子力张量中粒子的数量
     int num_particles = particle_forces.sizes()[0];
+    // 为存储粒子力的向量预留空间，大小为粒子数量乘以每个粒子的维度数量
     result._particle_forces.reserve(num_particles*num_dimensions);
+    // 遍历每个粒子，将其x, y, z方向的力添加到result结构体中的粒子力向量中
     for (int i = 0; i < num_particles; i++) {
       result._particle_forces.emplace_back(
           particle_forces_data[i*num_dimensions + 0]);
