@@ -1,6 +1,8 @@
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 简化
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -30,7 +32,7 @@ namespace geom {
       Simplification.triangles.push_back(t);
     }
 
-    // Reduce to the X% of the polys
+    // 减少到多边形的 X%
     float target_size = Simplification.triangles.size();
     Simplification.simplify_mesh((target_size * simplification_percentage));
 

@@ -4,8 +4,8 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#define _USE_MATH_DEFINES // to avoid undefined error of M_PI (bug in Visual
-                          // Studio 2015 and 2017)
+#define _USE_MATH_DEFINES // 避免 M_PI 未定义错误（Visual Studio 2015 和 2017 中的错误）
+
 #include <cmath>
 
 #include "carla/Logging.h"
@@ -28,8 +28,7 @@ namespace nav {
     DT_CROWD_OPTIMIZE_TOPO      = 16
   };
 
-  // these settings are the same than in RecastBuilder, so if you change the height of the agent, 
-  // you should do the same in RecastBuilder
+  // 这些设置与 RecastBuilder 中的设置相同，因此如果您更改代理的高度，则应该在 RecastBuilder 中执行相同的操作
   static const int   MAX_POLYS = 256;
   static const int   MAX_AGENTS = 500;
   static const int   MAX_QUERY_SEARCH_NODES = 2048;
@@ -43,13 +42,13 @@ namespace nav {
   static const float AREA_GRASS_COST =  1.0f;
   static const float AREA_ROAD_COST  = 10.0f;
 
-  // return a random float
+  // 返回一个随机的浮点数 float
   static float frand() {
     return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
   }
 
   Navigation::Navigation() {
-    // assign walker manager
+    // 指定行人管理器
     _walker_manager.SetNav(this);
   }
 
@@ -67,24 +66,24 @@ namespace nav {
     dtFreeNavMesh(_nav_mesh);
   }
 
-  // reference to the simulator to access API functions
+  // 参考模拟器访问API函数
   void Navigation::SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator)
   {
     _simulator = simulator;
     _walker_manager.SetSimulator(simulator);
   }
 
-  // set the seed to use with random numbers
+  // 设置要使用的随机数种子
   void Navigation::SetSeed(unsigned int seed) {
     srand(seed);
   }
 
-  // load navigation data
+  // 加载导航数据
   bool Navigation::Load(const std::string &filename) {
     std::ifstream f;
     std::istream_iterator<uint8_t> start(f), end;
 
-    // read the whole file
+    // 读取整个文件
     f.open(filename, std::ios::binary);
     if (!f.is_open()) {
       return false;
@@ -92,61 +91,64 @@ namespace nav {
     std::vector<uint8_t> content(start, end);
     f.close();
 
-    // parse the content
+    // 解析内容
     return Load(std::move(content));
   }
 
-  // load navigation data from memory
+  // 从内存中加载导航数据
   bool Navigation::Load(std::vector<uint8_t> content) {
     const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; // 'MSET';
     const int NAVMESHSET_VERSION = 1;
 #pragma pack(push, 1)
 
+    // 导航网格集合头的结构体
     struct NavMeshSetHeader {
-      int magic;
-      int version;
-      int num_tiles;
+      int magic;       // 魔术
+      int version;     // 版本
+      int num_tiles;   // 瓦片数
       dtNavMeshParams params;
     } header;
+    // 导航网格瓦片头的结构体
     struct NavMeshTileHeader {
       dtTileRef tile_ref;
-      int data_size;
+      int data_size;        // 数据大小
     };
 #pragma pack(pop)
 
-    // check size for header
+    // 检查 导航网格集合头的结构体大小
+    // 如果内存中导航数据 都小于 头的大小，则报错
     if (content.size() < sizeof(header)) {
       logging::log("Nav: failed loading binary");
       return false;
     }
 
-    // read the file header
+    // 读取文件的头
     unsigned long pos = 0;
     memcpy(&header, &content[pos], sizeof(header));
     pos += sizeof(header);
 
-    // check file magic and version
+    // 检查文件的魔术和版本
     if (header.magic != NAVMESHSET_MAGIC || header.version != NAVMESHSET_VERSION) {
       return false;
     }
 
-    // allocate object
+    // 分配导航网格对象的内存
     dtNavMesh *mesh = dtAllocNavMesh();
     if (!mesh) {
       return false;
     }
 
-    // set number of tiles and origin
+    // 设置瓦片的数目和原点
     dtStatus status = mesh->init(&header.params);
     if (dtStatusFailed(status)) {
       return false;
     }
 
-    // read the tiles data
+    // 读取瓦片数据
     for (int i = 0; i < header.num_tiles; ++i) {
       NavMeshTileHeader tile_header;
 
-      // read the tile header
+      // 读取瓦片头
       memcpy(&tile_header, &content[pos], sizeof(tile_header));
       pos += sizeof(tile_header);
       if (pos >= content.size()) {
@@ -154,18 +156,18 @@ namespace nav {
         return false;
       }
 
-      // check for valid tile
+      // 检查瓦片的有效性
       if (!tile_header.tile_ref || !tile_header.data_size) {
         break;
       }
 
-      // allocate the buffer
+      // 分配缓冲区内存
       char *data = static_cast<char *>(dtAlloc(static_cast<size_t>(tile_header.data_size), DT_ALLOC_PERM));
       if (!data) {
         break;
       }
 
-      // read the tile
+      // 读取瓦片
       memcpy(data, &content[pos], static_cast<size_t>(tile_header.data_size));
       pos += static_cast<unsigned long>(tile_header.data_size);
       if (pos > content.size()) {
@@ -174,25 +176,25 @@ namespace nav {
         return false;
       }
 
-      // add the tile data
+      // 添加瓦片数据
       mesh->addTile(reinterpret_cast<unsigned char *>(data), tile_header.data_size, DT_TILE_FREE_DATA,
       tile_header.tile_ref, 0);
     }
 
-    // exchange
+    // 交换
     dtFreeNavMesh(_nav_mesh);
     _nav_mesh = mesh;
 
-    // prepare the query object
+    // 准备查询对象
     dtFreeNavMeshQuery(_nav_query);
     _nav_query = dtAllocNavMeshQuery();
     _nav_query->init(_nav_mesh, MAX_QUERY_SEARCH_NODES);
 
-    // copy
+    // 拷贝
     _binary_mesh = std::move(content);
     _ready = true;
 
-    // create and init the crowd manager
+    // 创建并初始化人群管理器
     CreateCrowd();
 
     return true;
@@ -200,37 +202,37 @@ namespace nav {
 
   void Navigation::CreateCrowd(void) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return;
     }
 
     DEBUG_ASSERT(_crowd == nullptr);
 
-    // create and init
+    // 创建并初始化
     _crowd = dtAllocCrowd();
-    // these radius should be the maximum size of the vehicles (CarlaCola for Carla)
+    // 这些半径应该是车辆的最大尺寸 (CarlaCola for Carla)
     const float max_agent_radius = AGENT_RADIUS * 20;
     if (!_crowd->init(MAX_AGENTS, max_agent_radius, _nav_mesh)) {
       logging::log("Nav: failed to create crowd");
       return;
     }
 
-    // set different filters
-    // filter 0 can not walk on roads
+    // 设置不同的过滤器
+    // 过滤器 0 不能在道路上行走
     _crowd->getEditableFilter(0)->setIncludeFlags(CARLA_TYPE_WALKABLE);
     _crowd->getEditableFilter(0)->setExcludeFlags(CARLA_TYPE_ROAD);
     _crowd->getEditableFilter(0)->setAreaCost(CARLA_AREA_ROAD, AREA_ROAD_COST);
     _crowd->getEditableFilter(0)->setAreaCost(CARLA_AREA_GRASS, AREA_GRASS_COST);
-    // filter 1 can walk on roads
+    // 过滤器 1 可以在道路上行走
     _crowd->getEditableFilter(1)->setIncludeFlags(CARLA_TYPE_WALKABLE);
     _crowd->getEditableFilter(1)->setExcludeFlags(CARLA_TYPE_NONE);
     _crowd->getEditableFilter(1)->setAreaCost(CARLA_AREA_ROAD, AREA_ROAD_COST);
     _crowd->getEditableFilter(1)->setAreaCost(CARLA_AREA_GRASS, AREA_GRASS_COST);
 
-    // Setup local avoidance params to different qualities.
+    // 设置不同品质的局部避让参数。
     dtObstacleAvoidanceParams params;
-    // Use mostly default settings, copy from dtCrowd.
+    // 主要使用默认设置，从 dtCrowd 复制。
     memcpy(&params, _crowd->getObstacleAvoidanceParams(0), sizeof(dtObstacleAvoidanceParams));
 
     // Low (11)
@@ -263,37 +265,37 @@ namespace nav {
     _crowd->setObstacleAvoidanceParams(3, &params);
   }
 
-  // return the path points to go from one position to another
+  // 返回从一个位置到另一个位置的路径点
   bool Navigation::GetPath(carla::geom::Location from,
                            carla::geom::Location to,
                            dtQueryFilter * filter,
                            std::vector<carla::geom::Location> &path,
                            std::vector<unsigned char> &area) {
-    // path found
+    // 找到路径
     float straight_path[MAX_POLYS * 3];
     unsigned char straight_path_flags[MAX_POLYS];
     dtPolyRef straight_path_polys[MAX_POLYS];
     int num_straight_path;
     int straight_path_options = DT_STRAIGHTPATH_AREA_CROSSINGS;
 
-    // polys in path
+    // 路径中的多边形
     dtPolyRef polys[MAX_POLYS];
     int num_polys;
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_nav_query != nullptr);
 
-    // point extension
+    // 点的延伸
     float poly_pick_ext[3];
     poly_pick_ext[0] = 2;
     poly_pick_ext[1] = 4;
     poly_pick_ext[2] = 2;
 
-    // filter
+    // 筛选
     dtQueryFilter filter2;
     if (filter == nullptr) {
       filter2.setAreaCost(CARLA_AREA_ROAD, AREA_ROAD_COST);
@@ -303,13 +305,13 @@ namespace nav {
       filter = &filter2;
     }
 
-    // set the points
+    // 设置点
     dtPolyRef start_ref = 0;
     dtPolyRef end_ref = 0;
     float start_pos[3] = { from.x, from.z, from.y };
     float end_pos[3] = { to.x, to.z, to.y };
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       _nav_query->findNearestPoly(start_pos, poly_pick_ext, filter, &start_ref, 0);
       _nav_query->findNearestPoly(end_pos, poly_pick_ext, filter, &end_ref, 0);
@@ -319,47 +321,46 @@ namespace nav {
     }
 
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
-      // get the path of nodes
+      // 获取节点的路径
       _nav_query->findPath(start_ref, end_ref, start_pos, end_pos, filter, polys, &num_polys, MAX_POLYS);
     }
 
-    // get the path of points
+    // 获得点的路径
     num_straight_path = 0;
     if (num_polys == 0) {
       return false;
     }
 
-    // in case of partial path, make sure the end point is clamped to the last
-    // polygon
+    // 如果是部分路径，请确保终点与最后一个多边形相接
     float end_pos2[3];
     dtVcopy(end_pos2, end_pos);
     if (polys[num_polys - 1] != end_ref) {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       _nav_query->closestPointOnPoly(polys[num_polys - 1], end_pos, end_pos2, 0);
     }
 
-    // get the points
+    // 获得点
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       _nav_query->findStraightPath(start_pos, end_pos2, polys, num_polys,
       straight_path, straight_path_flags,
       straight_path_polys, &num_straight_path, MAX_POLYS, straight_path_options);
     }
 
-    // copy the path to the output buffer
+    // 将路径复制到输出缓冲区
     path.clear();
     path.reserve(static_cast<unsigned long>(num_straight_path));
     unsigned char area_type;
     for (int i = 0, j = 0; j < num_straight_path; i += 3, ++j) {
-      // save coordinate for Unreal axis (x, z, y)
+      // 保存虚幻轴的坐标（x，z，y）
       path.emplace_back(straight_path[i], straight_path[i + 2], straight_path[i + 1]);
-      // save area type
+      // 保存区域类型
       {
-        // critical section, force single thread running this
+        // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
         _nav_mesh->getPolyArea(straight_path_polys[j], &area_type);
       }
@@ -371,46 +372,46 @@ namespace nav {
 
   bool Navigation::GetAgentRoute(ActorId id, carla::geom::Location from, carla::geom::Location to,
   std::vector<carla::geom::Location> &path, std::vector<unsigned char> &area) {
-    // path found
+    // 找到路径
     float straight_path[MAX_POLYS * 3];
     unsigned char straight_path_flags[MAX_POLYS];
     dtPolyRef straight_path_polys[MAX_POLYS];
     int num_straight_path = 0;
     int straight_path_options = DT_STRAIGHTPATH_AREA_CROSSINGS;
 
-    // polys in path
+    // 路径中的多边形
     dtPolyRef polys[MAX_POLYS];
     int num_polys;
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_nav_query != nullptr);
 
-    // point extension
+    // 点的扩展
     float poly_pick_ext[3] = {2,4,2};
 
-    // get current filter from agent
+    // 从代理获取当前过滤器
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end())
       return false;
 
     const dtQueryFilter *filter;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       filter = _crowd->getFilter(_crowd->getAgent(it->second)->params.queryFilterType);
     }
 
-    // set the points
+    // 设置点
     dtPolyRef start_ref = 0;
     dtPolyRef end_ref = 0;
     float start_pos[3] = { from.x, from.z, from.y };
     float end_pos[3] = { to.x, to.z, to.y };
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       _nav_query->findNearestPoly(start_pos, poly_pick_ext, filter, &start_ref, 0);
       _nav_query->findNearestPoly(end_pos, poly_pick_ext, filter, &end_ref, 0);
@@ -419,47 +420,46 @@ namespace nav {
       return false;
     }
 
-    // get the path of nodes
+    // 获取点的路径
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       _nav_query->findPath(start_ref, end_ref, start_pos, end_pos, filter, polys, &num_polys, MAX_POLYS);
     }
 
-    // get the path of points
+    // 获取点的路径
     if (num_polys == 0) {
       return false;
     }
 
-    // in case of partial path, make sure the end point is clamped to the last
-    // polygon
+    // 如果是部分路径，请确保终点与最后一个多边形相接
     float end_pos2[3];
     dtVcopy(end_pos2, end_pos);
     if (polys[num_polys - 1] != end_ref) {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       _nav_query->closestPointOnPoly(polys[num_polys - 1], end_pos, end_pos2, 0);
     }
 
-    // get the points
+    // 获取点
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       _nav_query->findStraightPath(start_pos, end_pos2, polys, num_polys,
       straight_path, straight_path_flags,
       straight_path_polys, &num_straight_path, MAX_POLYS, straight_path_options);
     }
 
-    // copy the path to the output buffer
+    // 将路径复制到输出缓冲区
     path.clear();
     path.reserve(static_cast<unsigned long>(num_straight_path));
     unsigned char area_type;
     for (int i = 0, j = 0; j < num_straight_path; i += 3, ++j) {
-      // save coordinate for Unreal axis (x, z, y)
+      // 保存虚幻轴的坐标（x，z，y）
       path.emplace_back(straight_path[i], straight_path[i + 2], straight_path[i + 1]);
-      // save area type
+      // 保存面积类型
       {
-        // critical section, force single thread running this
+        // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
         _nav_mesh->getPolyArea(straight_path_polys[j], &area_type);
       }
@@ -469,18 +469,18 @@ namespace nav {
     return true;
   }
 
-  // create a new walker in crowd
+  // 在人群中创造新的行人
   bool Navigation::AddWalker(ActorId id, carla::geom::Location from) {
     dtCrowdAgentParams params;
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // set parameters
+    // 设置参数
     memset(&params, 0, sizeof(params));
     params.radius = AGENT_RADIUS;
     params.height = AGENT_HEIGHT;
@@ -490,7 +490,7 @@ namespace nav {
     params.obstacleAvoidanceType = 3;
     params.separationWeight = 0.5f;
     
-    // set if the agent can cross roads or not
+    // 设置代理是否可以过马路
     if (frand() <= _probability_crossing) {
       params.queryFilterType = 1;
     } else {
@@ -503,13 +503,12 @@ namespace nav {
     params.updateFlags |= DT_CROWD_OBSTACLE_AVOIDANCE;
     params.updateFlags |= DT_CROWD_SEPARATION;
 
-    // from Unreal coordinates (subtract half height to move pivot from center
-    // (unreal) to bottom (recast))
+    // 来自虚幻坐标（减去一半高度以将枢轴从中心（虚幻）移动到底部（recast））
     float point_from[3] = { from.x, from.z - (AGENT_HEIGHT / 2.0f), from.y };
-    // add walker
+    // 添加行人
     int index;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       index = _crowd->addAgent(point_from, &params);
       if (index == -1) {
@@ -517,71 +516,71 @@ namespace nav {
       }
     }
 
-    // save the id
+    // 保存 id
     _mapped_walkers_id[id] = index;
     _mapped_by_index[index] = id;
 
-    // init yaw
+    // 初始化偏航角
     _yaw_walkers[id] = 0.0f;
 
-    // add walker for the route planning
+    // 添加行人进行路线规划
     _walker_manager.AddWalker(id);
 
     return true;
   }
 
-  // create a new vehicle in crowd to be avoided by walkers
+  // 在人群中创造一种新的车辆，以便行人避开
   bool Navigation::AddOrUpdateVehicle(VehicleCollisionInfo &vehicle) {
     namespace cg = carla::geom;
     dtCrowdAgentParams params;
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // get the bounding box extension plus some space around
+    // 获取边界框扩展以及周围的一些空间
     float marge = 0.8f;
     float hx = vehicle.bounding.extent.x + marge;
     float hy = vehicle.bounding.extent.y + marge;
-    // define the 4 corners of the bounding box
+    // 定义边界框的 4 个角
     cg::Vector3D box_corner1 {-hx, -hy, 0};
     cg::Vector3D box_corner2 { hx + 0.2f, -hy, 0};
     cg::Vector3D box_corner3 { hx + 0.2f,  hy, 0};
     cg::Vector3D box_corner4 {-hx,  hy, 0};
-    // rotate the points
+    // 旋转点
     float angle = cg::Math::ToRadians(vehicle.transform.rotation.yaw);
     box_corner1 = cg::Math::RotatePointOnOrigin2D(box_corner1, angle);
     box_corner2 = cg::Math::RotatePointOnOrigin2D(box_corner2, angle);
     box_corner3 = cg::Math::RotatePointOnOrigin2D(box_corner3, angle);
     box_corner4 = cg::Math::RotatePointOnOrigin2D(box_corner4, angle);
-    // translate to world position
+    // 转换为世界位置
     box_corner1 += vehicle.transform.location;
     box_corner2 += vehicle.transform.location;
     box_corner3 += vehicle.transform.location;
     box_corner4 += vehicle.transform.location;
 
-    // check if this actor exists
+    // 检查该参与者是否存在
     auto it = _mapped_vehicles_id.find(vehicle.id);
     if (it != _mapped_vehicles_id.end()) {
-      // get the index found
+      // 获得找到的索引
       int index = it->second;
       if (index != -1) {
-        // get the agent
+        // 获得智能体
         dtCrowdAgent *agent;
         {
-          // critical section, force single thread running this
+          // 关键部分，强制单线程运行这里
           std::lock_guard<std::mutex> lock(_mutex);
           agent = _crowd->getEditableAgent(index);
         }
         if (agent) {
-          // update its position
+          // 更新它的位置
           agent->npos[0] = vehicle.transform.location.x;
           agent->npos[1] = vehicle.transform.location.z;
           agent->npos[2] = vehicle.transform.location.y;
-          // update its oriented bounding box
+          // 更新其朝向的边界框
           agent->params.obb[0]  = box_corner1.x;
           agent->params.obb[1]  = box_corner1.z;
           agent->params.obb[2]  = box_corner1.y;
@@ -599,7 +598,7 @@ namespace nav {
       }
     }
 
-    // set parameters
+    // 设置参数
     memset(&params, 0, sizeof(params));
     params.radius = 2;
     params.height = AGENT_HEIGHT;
@@ -609,12 +608,12 @@ namespace nav {
     params.obstacleAvoidanceType = 0;
     params.separationWeight = 100.0f;
 
-    // flags
+    // 标志
     params.updateFlags = 0;
     params.updateFlags |= DT_CROWD_SEPARATION;
 
-    // update its oriented bounding box
-    // data: [x][y][z] [x][y][z] [x][y][z] [x][y][z]
+    // 更新其朝向的边界框
+    // 数据: [x][y][z] [x][y][z] [x][y][z] [x][y][z]
     params.useObb = true;
     params.obb[0]  = box_corner1.x;
     params.obb[1]  = box_corner1.z;
@@ -629,15 +628,15 @@ namespace nav {
     params.obb[10] = box_corner4.z;
     params.obb[11] = box_corner4.y;
 
-    // from Unreal coordinates (vertical is Z) to Recast coordinates (vertical is Y)
+    // 从虚幻坐标（垂直为 Z）到 Recast 坐标（垂直为 Y，右手坐标系）
     float point_from[3] = { vehicle.transform.location.x,
                             vehicle.transform.location.z,
                             vehicle.transform.location.y };
 
-    // add walker
+    // 添加行人
     int index;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       index = _crowd->addAgent(point_from, &params);
       if (index == -1) {
@@ -645,36 +644,36 @@ namespace nav {
         return false;
       }
 
-      // mark as valid
+      // 标记为有效
       dtCrowdAgent *agent = _crowd->getEditableAgent(index);
       if (agent) {
         agent->state = DT_CROWDAGENT_STATE_WALKING;
       }
     }
 
-    // save the id
+    // 保存 id
     _mapped_vehicles_id[vehicle.id] = index;
     _mapped_by_index[index] = vehicle.id;
 
     return true;
   }
 
-  // remove an agent
+  // 移除代理
   bool Navigation::RemoveAgent(ActorId id) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // get the internal walker index
+    // 获取内部行人索引
     auto it = _mapped_walkers_id.find(id);
     if (it != _mapped_walkers_id.end()) {
-      // remove from crowd
+      // 从人群中移除
       {
-        // critical section, force single thread running this
+        // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
         _crowd->removeAgent(it->second);
       }
@@ -689,13 +688,13 @@ namespace nav {
     // get the internal vehicle index
     it = _mapped_vehicles_id.find(id);
     if (it != _mapped_vehicles_id.end()) {
-      // remove from crowd
+      // 从人群中移除
       {
-        // critical section, force single thread running this
+        // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
         _crowd->removeAgent(it->second);
       }
-      // remove from mapping
+      // 从映射中移除
       _mapped_vehicles_id.erase(it);
       _mapped_by_index.erase(it->second);
 
@@ -705,51 +704,51 @@ namespace nav {
     return false;
   }
 
-  // add/update/delete vehicles in crowd
+  // 在人群中添加/更新/删除车辆
   bool Navigation::UpdateVehicles(std::vector<VehicleCollisionInfo> vehicles) {
     std::unordered_set<carla::rpc::ActorId> updated;
 
-    // add all current mapped vehicles in the set
+    // 添加所有当前已映射的车辆
     for (auto &&entry : _mapped_vehicles_id) {
       updated.insert(entry.first);
     }
 
-    // add all vehicles (if already exists, it gets updated only)
+    // 添加所有车辆（如果已经存在，则仅更新）
     for (auto &&entry : vehicles) {
-      // try to add or update the vehicle
+      // 尝试添加或更新车辆
       AddOrUpdateVehicle(entry);
-      // mark as updated (to avoid removing it in this frame)
+      // 标记为已更新（以避免在此帧中删除它）
       updated.erase(entry.id);
     }
 
-    // remove all vehicles not updated (they don't exist in this frame)
+    // 删除所有未更新的车辆（它们不存在于此帧中）
     for (auto &&entry : updated) {
-      // remove agent not updated
+      // 删除未更新的代理
       RemoveAgent(entry);
     }
 
     return true;
   }
 
-  // set new max speed
+  // 设置新的最大速度
   bool Navigation::SetWalkerMaxSpeed(ActorId id, float max_speed) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // get the internal index
+    // 获取内部索引
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       return false;
     }
 
-    // get the agent
+    // 获得智能体
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       dtCrowdAgent *agent = _crowd->getEditableAgent(it->second);
       if (agent) {
@@ -761,15 +760,15 @@ namespace nav {
     return false;
   }
 
-  // set a new target point to go
+  // 设定新的目标点
   bool Navigation::SetWalkerTarget(ActorId id, carla::geom::Location to) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
-    // get the internal index
+    // 获取内部索引
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       return false;
@@ -778,15 +777,15 @@ namespace nav {
     return _walker_manager.SetWalkerRoute(id, to);
   }
 
-  // set a new target point to go directly without events
+  // 设置新的目标点，直接前往没有事件发生的地方
   bool Navigation::SetWalkerDirectTarget(ActorId id, carla::geom::Location to) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
-    // get the internal index
+    // 获取内部索引
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       return false;
@@ -795,10 +794,10 @@ namespace nav {
     return SetWalkerDirectTargetIndex(it->second, to);
   }
 
-  // set a new target point to go directly without events
+  // 设置新的目标点，直接前往没有事件发生的地方
   bool Navigation::SetWalkerDirectTargetIndex(int index, carla::geom::Location to) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
@@ -810,12 +809,12 @@ namespace nav {
       return false;
     }
 
-    // set target position
+    // 设定目标位置
     float point_to[3] = { to.x, to.z, to.y };
     float nearest[3];
     bool res;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       const dtQueryFilter *filter = _crowd->getFilter(0);
       dtPolyRef target_ref;
@@ -830,42 +829,42 @@ namespace nav {
     return res;
   }
 
-  // update all walkers in crowd
+  // 更新人群中的所有行人
   void Navigation::UpdateCrowd(const client::detail::EpisodeState &state) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // update crowd agents
+    // 更新人群代理
     _delta_seconds = state.GetTimestamp().delta_seconds;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       _crowd->update(static_cast<float>(_delta_seconds), nullptr);
     }
 
-    // update the walkers route
+    // 更新行人路线
     _walker_manager.Update(_delta_seconds);
 
-    // update the time to check for blocked agents
+    // 更新检查被堵塞代理的时间
     _time_to_unblock += _delta_seconds;
 
-    // check all active agents
+    // 查看所有活跃代理
     int total_unblocked = 0;
     int total_agents;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       total_agents = _crowd->getAgentCount();
     }
     const dtCrowdAgent *ag;
     for (int i = 0; i < total_agents; ++i) {
       {
-        // critical section, force single thread running this
+        // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
         ag = _crowd->getAgent(i);
       }
@@ -874,14 +873,14 @@ namespace nav {
         continue;
       }
 
-      // check only pedestrians not paused, and no vehicles
+      // 仅检查未暂停的行人，不检查车辆
       if (!ag->params.useObb && !ag->paused) {
         bool reset_target_pos = false;
         bool use_same_filter = false;
 
-        // check for unblocking actors
+        // 检查参与者是否解除堵塞
         if (_time_to_unblock >= AGENT_UNBLOCK_TIME) {
-          // get the distance moved by each actor
+          // 获取每个参与者移动的距离
           carla::geom::Vector3D previous = _walkers_blocked_position[i];
           carla::geom::Vector3D current = carla::geom::Vector3D(ag->npos[0], ag->npos[1], ag->npos[2]);
           carla::geom::Vector3D distance = current - previous;
@@ -891,7 +890,7 @@ namespace nav {
             reset_target_pos = true;
             use_same_filter = true;
           }
-          // update with current position
+          // 更新当前位置
           _walkers_blocked_position[i] = current;
 
           // check to assign a new target position
@@ -904,7 +903,7 @@ namespace nav {
                 SetAgentFilter(i, 0);
               }
             }
-            // set a new random target
+            // 设置新的随机目标
             carla::geom::Location location;
             GetRandomLocation(location, nullptr);
             _walker_manager.SetWalkerRoute(_mapped_by_index[i], location);
@@ -913,38 +912,38 @@ namespace nav {
       }
     }
 
-    // check for resetting time
+    // 检查重置时间
     if (_time_to_unblock >= AGENT_UNBLOCK_TIME) {
       _time_to_unblock = 0.0f;
     }
   }
 
-  // get the walker current transform
+  // 获取行人当前变换
   bool Navigation::GetWalkerTransform(ActorId id, carla::geom::Transform &trans) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // get the internal index
+    // 获取内部索引
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       return false;
     }
 
-    // get the index found
+    // 找到索引
     int index = it->second;
     if (index == -1) {
       return false;
     }
 
-    // get the walker
+    // 获得行人
     const dtCrowdAgent *agent;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       agent = _crowd->getAgent(index);
     }
@@ -953,12 +952,12 @@ namespace nav {
       return false;
     }
 
-    // set its position in Unreal coordinates
+    // 在虚幻坐标中设置其位置
     trans.location.x = agent->npos[0];
     trans.location.y = agent->npos[2];
     trans.location.z = agent->npos[1];
 
-    // set its rotation
+    // 设置其旋转
     float yaw;
     float speed = 0.0f;
     float min = 0.1f;
@@ -971,7 +970,7 @@ namespace nav {
       speed = sqrtf(agent->dvel[0] * agent->dvel[0] + agent->dvel[1] * agent->dvel[1] + agent->dvel[2] * agent->dvel[2]);
     }
 
-    // interpolate current and target angle
+    // 插入当前角度和目标角度
     float shortest_angle = fmod(yaw - _yaw_walkers[id] + 540.0f, 360.0f) - 180.0f;
     float per = (speed / 1.5f);
     if (per > 1.0f) per = 1.0f;
@@ -983,32 +982,32 @@ namespace nav {
     return true;
   }
 
-  // get the walker current location
+  // 获取行人的当前位置
   bool Navigation::GetWalkerPosition(ActorId id, carla::geom::Location &location) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // get the internal index
+    // 获取内部索引
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       return false;
     }
 
-    // get the index found
+    // 找到索引
     int index = it->second;
     if (index == -1) {
       return false;
     }
 
-    // get the walker
+    // 获得行人
     const dtCrowdAgent *agent;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       agent = _crowd->getAgent(index);
     }
@@ -1017,7 +1016,7 @@ namespace nav {
       return false;
     }
 
-    // set its position in Unreal coordinates
+    // 在虚幻坐标中设置其位置
     location.x = agent->npos[0];
     location.y = agent->npos[2];
     location.z = agent->npos[1];
@@ -1027,29 +1026,29 @@ namespace nav {
 
   float Navigation::GetWalkerSpeed(ActorId id) {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return 0.0f;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // get the internal index
+    // 获取内部索引
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       return 0.0f;
     }
 
-    // get the index found
+    // 找到索引
     int index = it->second;
     if (index == -1) {
       return 0.0f;
     }
 
-    // get the walker
+    // 获得行人
     const dtCrowdAgent *agent;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       agent = _crowd->getAgent(index);
     }
@@ -1058,17 +1057,17 @@ namespace nav {
     agent->vel[2]);
   }
 
-  // get a random location for navigation
+  // 获取随机的导航位置
   bool Navigation::GetRandomLocation(carla::geom::Location &location, dtQueryFilter * filter) const {
 
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_nav_query != nullptr);
 
-    // filter
+    // 过滤器
     dtQueryFilter filter2;
     if (filter == nullptr) {
       filter2.setIncludeFlags(CARLA_TYPE_SIDEWALK);
@@ -1076,17 +1075,17 @@ namespace nav {
       filter = &filter2;
     }
 
-    // we will try up to 10 rounds, otherwise we failed to find a good location
+    // 我们会尝试最多 10 轮，否则我们就找不到好的位置
     dtPolyRef random_ref { 0 };
     float point[3] { 0.0f, 0.0f, 0.0f };
     int rounds = 10;
     {
       dtStatus status;
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       do {
         status = _nav_query->findRandomPoint(filter, frand, &random_ref, point);
-        // set the location in Unreal coords
+        // 在虚幻坐标中设置位置
         if (status == DT_SUCCESS) {
           location.x = point[0];
           location.y = point[2];
@@ -1099,63 +1098,62 @@ namespace nav {
     return (rounds > 0);
   }
 
-  // assign a filter index to an agent
+  // 为代理分配过滤索引
   void Navigation::SetAgentFilter(int agent_index, int filter_index)
   {
-    // get the walker
+    // 获得行人
     dtCrowdAgent *agent;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       agent = _crowd->getEditableAgent(agent_index);
     }
     agent->params.queryFilterType = static_cast<unsigned char>(filter_index);
   }
 
-  // set the probability that an agent could cross the roads in its path following
-  // percentage of 0.0f means no pedestrian can cross roads
-  // percentage of 0.5f means 50% of all pedestrians can cross roads
-  // percentage of 1.0f means all pedestrians can cross roads if needed
+  // 设置代理在其路径上过马路的概率 0.0 表示没有行人可以过马路，
+  // 0.5 表示 50% 的行人可以过马路
+  // 1.0 表示所有行人都可以在需要时过马路
   void Navigation::SetPedestriansCrossFactor(float percentage)
   {
     _probability_crossing = percentage;
   }
 
-  // set an agent as paused for the crowd
+  // 将人群中的代理设置为暂停
   void Navigation::PauseAgent(ActorId id, bool pause) {
-    // check if all is ready
+    // 检查是否一切就绪
     if (!_ready) {
       return;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // get the internal index
+    // 获取内部索引
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       return;
     }
 
-    // get the index found
+    // 找到索引
     int index = it->second;
     if (index == -1) {
       return;
     }
 
-    // get the walker
+    // 获取行人
     dtCrowdAgent *agent;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       agent = _crowd->getEditableAgent(index);
     }
 
-    // mark
+    // 标记为暂停
     agent->paused = pause;
   }
 
   bool Navigation::HasVehicleNear(ActorId id, float distance, carla::geom::Location direction) {
-    // get the internal index (walker or vehicle)
+    // 获取内部索引（行人或者车辆）
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       it = _mapped_vehicles_id.find(id);
@@ -1167,16 +1165,16 @@ namespace nav {
     float dir[3] = { direction.x, direction.z, direction.y };
     bool result;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       result = _crowd->hasVehicleNear(it->second, distance * distance, dir, false);
     }
     return result;
   }
 
-  /// make agent look at some location
+  /// 让代理查看某个位置
   bool Navigation::SetWalkerLookAt(ActorId id, carla::geom::Location location) {
-    // get the internal index (walker or vehicle)
+    // 获取内部索引（行人或车辆）
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       it = _mapped_vehicles_id.find(id);
@@ -1187,17 +1185,17 @@ namespace nav {
 
     dtCrowdAgent *agent;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       agent = _crowd->getEditableAgent(it->second);
     }
 
-    // get the position
+    // 获取位置
     float x = (location.x - agent->npos[0]) * 0.0001f;
     float y = (location.y - agent->npos[2]) * 0.0001f;
     float z = (location.z - agent->npos[1]) * 0.0001f;
 
-    // set its velocity
+    // 设置其速度
     agent->vel[0] = x;
     agent->vel[2] = y;
     agent->vel[1] = z;
@@ -1212,34 +1210,34 @@ namespace nav {
   }
 
   bool Navigation::IsWalkerAlive(ActorId id, bool &alive) {
-    // check if all is ready
+    // 检查是否所有都就绪
     if (!_ready) {
       return false;
     }
 
     DEBUG_ASSERT(_crowd != nullptr);
 
-    // get the internal index
+    // 获取内部索引
     auto it = _mapped_walkers_id.find(id);
     if (it == _mapped_walkers_id.end()) {
       return false;
     }
 
-    // get the index found
+    // 找到索引
     int index = it->second;
     if (index == -1) {
       return false;
     }
 
-    // get the walker
+    // 获取行人
     const dtCrowdAgent *agent;
     {
-      // critical section, force single thread running this
+      // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
       agent = _crowd->getAgent(index);
     }
 
-    // mark
+    // 标记
     alive = !agent->dead;
 
     return true;

@@ -61,22 +61,22 @@ using namespace std::chrono_literals;
         auto next = std::make_shared<const EpisodeState>(CastData(*data));
         auto prev = self->GetState();
 
-        // TODO: Update how the map change is detected
+        // TODO: 更新地图变化的检测方式
         bool HasMapChanged = next->HasMapChanged();
         bool UpdateLights = next->IsLightUpdatePending();
 
-        /// Check for pending exceptions (Mainly TM server closed)
+        /// 检查待处理的异常（主要是交通管理服务器关闭）
         if(self->_pending_exceptions) {
 
-          /// Mark pending exception false
+          /// 将待处理的异常标记为 false
           self->_pending_exceptions = false;
 
-          /// Create exception for the error message
+          /// 为错误消息创建异常
           auto exception(self->_pending_exceptions_msg);
-          // Notify waiting threads that exception occurred
+          // 通知等待线程发生异常
           self->_snapshot.SetException(std::runtime_error(exception));
         }
-        /// Sensor case: inconsistent data
+        /// 传感器案例：数据不一致
         else {
           bool episode_changed = (next->GetEpisodeId() != prev->GetEpisodeId());
 
@@ -95,15 +95,15 @@ using namespace std::chrono_literals;
             self->_should_update_map = true;
           }
 
-          /// Episode change
+          /// Episode 改变
           if(episode_changed) {
             self->OnEpisodeChanged();
           }
 
-          // Notify waiting threads and do the callbacks.
+          // 通知等待的线程并执行回调。
           self->_snapshot.SetValue(next);
 
-          // Call user callbacks.
+          // 调用用户回调函数
           self->_on_tick_callbacks.Call(next);
         }
       }
