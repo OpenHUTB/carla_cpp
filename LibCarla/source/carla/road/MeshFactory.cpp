@@ -1085,27 +1085,26 @@ void MeshFactory::GenerateLaneMarksForNotCenterLine(
     }
     return {neighbor_info.vertex, weight};  // 返回邻居顶点和计算的权重
   }
-// 辅助函数，计算顶点的邻域及其权重
-std::vector<VertexNeighbors> GetVertexNeighborhoodAndWeights(
-    const MeshFactory::RoadParameters &road_param,  // 道路参数
-    std::vector<std::unique_ptr<Mesh>> &lane_meshes) {  // 车道网格
-
-  // 构建R树以进行邻域查询
-  using Rtree = geom::PointCloudRtree<VertexInfo>;  // R树类型
-  using Point = Rtree::BPoint;  // 点类型
-  Rtree rtree;  // 创建R树实例
-  for (size_t lane_mesh_idx = 0; lane_mesh_idx < lane_meshes.size(); ++lane_mesh_idx) {  // 遍历每个车道网格
-    auto& mesh = lane_meshes[lane_mesh_idx];  // 获取当前网格
-    for(size_t i = 0; i < mesh->GetVerticesNum(); ++i) {  // 遍历每个顶点
-      auto& vertex = mesh->GetVertices()[i];  // 获取当前顶点
-      Point point(vertex.x, vertex.y, vertex.z);  // 创建点对象
-      if (i < 2 || i >= mesh->GetVerticesNum() - 2) {  // 判断顶点是否为边界顶点
-        rtree.InsertElement({point, {&vertex, lane_mesh_idx, true}});  // 插入边界顶点到R树
-      } else {
-        rtree.InsertElement({point, {&vertex, lane_mesh_idx, false}});  // 插入非边界顶点到R树
+  // 辅助函数，计算顶点的邻域及其权重
+  std::vector<VertexNeighbors> GetVertexNeighborhoodAndWeights(
+      const MeshFactory::RoadParameters &road_param,  // 道路参数
+      std::vector<std::unique_ptr<Mesh>> &lane_meshes) {  // 车道网格
+    // 构建R树以进行邻域查询
+    using Rtree = geom::PointCloudRtree<VertexInfo>;  // R树类型
+    using Point = Rtree::BPoint;  // 点类型
+    Rtree rtree;  // 创建R树实例
+    for (size_t lane_mesh_idx = 0; lane_mesh_idx < lane_meshes.size(); ++lane_mesh_idx) {  // 遍历每个车道网格
+      auto& mesh = lane_meshes[lane_mesh_idx];   // 获取当前网格
+      for(size_t i = 0; i < mesh->GetVerticesNum(); ++i) {  // 遍历每个顶点
+        auto& vertex = mesh->GetVertices()[i];  // 获取当前顶点
+        Point point(vertex.x, vertex.y, vertex.z);  // 创建点对象
+        if (i < 2 || i >= mesh->GetVerticesNum() - 2) {  // 判断顶点是否为边界顶点
+          rtree.InsertElement({point, {&vertex, lane_mesh_idx, true}});  // 插入边界顶点到R树
+        } else {
+          rtree.InsertElement({point, {&vertex, lane_mesh_idx, false}});  // 插入非边界顶点到R树
+        }
       }
     }
-  }
 
   // 查找每个顶点的邻居并计算它们的权重
   std::vector<VertexNeighbors> vertices_neighborhoods;  // 顶点邻域集合
