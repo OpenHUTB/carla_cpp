@@ -704,205 +704,205 @@ std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>> MeshFactory:
     return mesh_uptr_list; // 返回生成的Mesh列表
   }
 
-  std::vector<std::unique_ptr<Mesh>> MeshFactory::GenerateAllWithMaxLen(
-      const road::Road &road) const {
-    std::vector<std::unique_ptr<Mesh>> mesh_uptr_list;
+std::vector<std::unique_ptr<Mesh>> MeshFactory::GenerateAllWithMaxLen(
+      const road::Road &road) const { // 定义一个函数，生成具有最大长度的所有网格
+    std::vector<std::unique_ptr<Mesh>> mesh_uptr_list; // 创建一个唯一指针的网格列表
 
-    // Get road meshes
-    auto roads = GenerateWithMaxLen(road);
+    // 获取道路网格
+    auto roads = GenerateWithMaxLen(road); // 生成最大长度的道路网格
     mesh_uptr_list.insert(
         mesh_uptr_list.end(),
-        std::make_move_iterator(roads.begin()),
-        std::make_move_iterator(roads.end()));
+        std::make_move_iterator(roads.begin()), // 移动道路网格到列表中
+        std::make_move_iterator(roads.end())); // 移动道路网格到列表中
 
-    // Get wall meshes only if is not a junction
-    if (!road.IsJunction()) {
-      auto walls = GenerateWallsWithMaxLen(road);
+    //如果不是交叉口则获取墙体网格
+    if (!road.IsJunction()) { // 如果不是交叉口
+      auto walls = GenerateWallsWithMaxLen(road); // 生成最大长度的墙体网格
 
-      if (roads.size() == walls.size()) {
-        for (size_t i = 0; i < walls.size(); ++i) {
-          *mesh_uptr_list[i] += *walls[i];
+      if (roads.size() == walls.size()) { // 如果道路和墙体的数量相同
+        for (size_t i = 0; i < walls.size(); ++i) { // 遍历墙体网格
+          *mesh_uptr_list[i] += *walls[i]; // 将墙体网格合并到对应的道路网格中
         }
-      } else {
+      } else { // 如果数量不同
         mesh_uptr_list.insert(
             mesh_uptr_list.end(),
-            std::make_move_iterator(walls.begin()),
-            std::make_move_iterator(walls.end()));
+            std::make_move_iterator(walls.begin()), // 移动墙体网格到列表中
+            std::make_move_iterator(walls.end())); // 移动墙体网格到列表中
       }
     }
 
-    return mesh_uptr_list;
+    return mesh_uptr_list; // 返回生成的网格列表
   }
 
   void MeshFactory::GenerateAllOrderedWithMaxLen(
       const road::Road &road,
       std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>>& roads
-      ) const {
+      ) const { // 定义一个函数，按顺序生成具有最大长度的所有网格
 
-    // Get road meshes
-    std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>> result = GenerateOrderedWithMaxLen(road);
-    for (auto &pair_map : result)
-    {
-      std::vector<std::unique_ptr<Mesh>>& origin = roads[pair_map.first];
-      std::vector<std::unique_ptr<Mesh>>& source = pair_map.second;
-      std::move(source.begin(), source.end(), std::back_inserter(origin));
+    // Get road meshes 获取道路网格
+    std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>> result = GenerateOrderedWithMaxLen(road); // 生成有序的最大长度道路网格
+    for (auto &pair_map : result) { // 遍历结果中的每一对
+      std::vector<std::unique_ptr<Mesh>>& origin = roads[pair_map.first]; // 获取原始网格列表
+      std::vector<std::unique_ptr<Mesh>>& source = pair_map.second; // 获取源网格列表
+      std::move(source.begin(), source.end(), std::back_inserter(origin)); // 将源网格移动到原始网格列表中
     }
   }
 
   void MeshFactory::GenerateLaneMarkForRoad(
     const road::Road& road,
     std::vector<std::unique_ptr<Mesh>>& inout,
-    std::vector<std::string>& outinfo ) const
+    std::vector<std::string>& outinfo ) const // 定义一个函数，为道路生成车道标记
   {
-    for (auto&& lane_section : road.GetLaneSections()) {
-      for (auto&& lane : lane_section.GetLanes()) {
-        if (lane.first != 0) {
-          switch(lane.second.GetType())
+    for (auto&& lane_section : road.GetLaneSections()) { // 遍历道路的车道段
+      for (auto&& lane : lane_section.GetLanes()) { // 遍历车道
+        if (lane.first != 0) { // 如果车道索引不为0
+          switch(lane.second.GetType()) // 根据车道类型选择操作
           {
-            case road::Lane::LaneType::Driving:
-            case road::Lane::LaneType::Parking:
-            case road::Lane::LaneType::Bidirectional:
+            case road::Lane::LaneType::Driving: // 驾驶车道
+            case road::Lane::LaneType::Parking: // 停车车道
+            case road::Lane::LaneType::Bidirectional: // 双向车道
             {
-              GenerateLaneMarksForNotCenterLine(lane_section, lane.second, inout, outinfo);
-              outinfo.push_back("white");
-              break;
+              GenerateLaneMarksForNotCenterLine(lane_section, lane.second, inout, outinfo); // 为非中心线生成车道标记
+              outinfo.push_back("white"); // 添加白色到输出信息
+              break; // 退出switch
             }
           }
-        } else {
-          if(lane.second.GetType() == road::Lane::LaneType::None ){
-            GenerateLaneMarksForCenterLine(road, lane_section, lane.second, inout, outinfo);
-            outinfo.push_back("yellow");
+        } else { // 如果车道索引为0
+          if(lane.second.GetType() == road::Lane::LaneType::None ){ // 如果车道类型为无
+            GenerateLaneMarksForCenterLine(road, lane_section, lane.second, inout, outinfo); // 为中心线生成车道标记
+            outinfo.push_back("yellow"); // 添加黄色到输出信息
           }
         }
       }
     }
   }
 
-  void MeshFactory::GenerateLaneMarksForNotCenterLine(
-    const road::LaneSection& lane_section,
-    const road::Lane& lane,
-    std::vector<std::unique_ptr<Mesh>>& inout,
-    std::vector<std::string>& outinfo ) const {
-    Mesh out_mesh;
-    const double s_start = lane_section.GetDistance();
-    const double s_end = lane_section.GetDistance() + lane_section.GetLength();
-    double s_current = s_start;
-    std::vector<geom::Vector3D> vertices;
-    std::vector<size_t> indices;
+void MeshFactory::GenerateLaneMarksForNotCenterLine(
+    const road::LaneSection& lane_section, // 道路车道段
+    const road::Lane& lane, // 道路车道
+    std::vector<std::unique_ptr<Mesh>>& inout, // 输入输出网格
+    std::vector<std::string>& outinfo ) const { // 输出信息
+    Mesh out_mesh; // 输出网格
+    const double s_start = lane_section.GetDistance(); // 起始距离
+    const double s_end = lane_section.GetDistance() + lane_section.GetLength(); // 结束距离
+    double s_current = s_start; // 当前距离
+    std::vector<geom::Vector3D> vertices; // 顶点向量
+    std::vector<size_t> indices; // 索引向量
 
     do {
-      //Get Lane info
-      const carla::road::element::RoadInfoMarkRecord* road_info_mark = lane.GetInfo<carla::road::element::RoadInfoMarkRecord>(s_current);
-      if (road_info_mark != nullptr) {
-        carla::road::element::LaneMarking lane_mark_info(*road_info_mark);
+      // 获取车道信息
+      const carla::road::element::RoadInfoMarkRecord* road_info_mark = lane.GetInfo<carla::road::element::RoadInfoMarkRecord>(s_current); // 获取当前距离的标记信息
+      if (road_info_mark != nullptr) { // 如果标记信息存在
+        carla::road::element::LaneMarking lane_mark_info(*road_info_mark); // 创建车道标记信息对象
 
-        switch (lane_mark_info.type) {
-          case carla::road::element::LaneMarking::Type::Solid: {
-            size_t currentIndex = out_mesh.GetVertices().size() + 1;
+        switch (lane_mark_info.type) { // 根据标记类型进行处理
+          case carla::road::element::LaneMarking::Type::Solid: { // 实线的情况
+            size_t currentIndex = out_mesh.GetVertices().size() + 1; // 当前索引
 
             std::pair<geom::Vector3D, geom::Vector3D> edges = 
-              ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width);
+              ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width); // 计算边缘
 
-            out_mesh.AddVertex(edges.first);
-            out_mesh.AddVertex(edges.second);
+            out_mesh.AddVertex(edges.first); // 添加第一个顶点
+            out_mesh.AddVertex(edges.second); // 添加第二个顶点
 
-            out_mesh.AddIndex(currentIndex);
-            out_mesh.AddIndex(currentIndex + 1);
-            out_mesh.AddIndex(currentIndex + 2);
+            out_mesh.AddIndex(currentIndex); // 添加索引
+            out_mesh.AddIndex(currentIndex + 1); // 添加索引
+            out_mesh.AddIndex(currentIndex + 2); // 添加索引
 
-            out_mesh.AddIndex(currentIndex + 1);
-            out_mesh.AddIndex(currentIndex + 3);
-            out_mesh.AddIndex(currentIndex + 2);
+            out_mesh.AddIndex(currentIndex + 1); // 添加索引
+            out_mesh.AddIndex(currentIndex + 3); // 添加索引
+            out_mesh.AddIndex(currentIndex + 2); // 添加索引
 
-            s_current += road_param.resolution;
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::Broken: {
-            size_t currentIndex = out_mesh.GetVertices().size() + 1;
+          case carla::road::element::LaneMarking::Type::Broken: { // 虚线的情况
+            size_t currentIndex = out_mesh.GetVertices().size() + 1; // 当前索引
 
             std::pair<geom::Vector3D, geom::Vector3D> edges = 
-              ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width);
+              ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width); // 计算边缘
 
-            out_mesh.AddVertex(edges.first);
-            out_mesh.AddVertex(edges.second);
+            out_mesh.AddVertex(edges.first); // 添加第一个顶点
+            out_mesh.AddVertex(edges.second); // 添加第二个顶点
 
-            s_current += road_param.resolution * 3;
-            if (s_current > s_end)
+            s_current += road_param.resolution * 3; // 更新当前距离
+            if (s_current > s_end) // 如果超出结束距离
             {
-              s_current = s_end;
+              s_current = s_end; // 将当前距离设置为结束距离
             }
 
-            edges = ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width);
+            edges = ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width); // 计算新的边缘
 
-            out_mesh.AddVertex(edges.first);
-            out_mesh.AddVertex(edges.second);
+            out_mesh.AddVertex(edges.first); // 添加第一个顶点
+            out_mesh.AddVertex(edges.second); // 添加第二个顶点
             
-            out_mesh.AddIndex(currentIndex);
-            out_mesh.AddIndex(currentIndex + 1);
-            out_mesh.AddIndex(currentIndex + 2);
+            out_mesh.AddIndex(currentIndex); // 添加索引
+            out_mesh.AddIndex(currentIndex + 1); // 添加索引
+            out_mesh.AddIndex(currentIndex + 2); // 添加索引
 
-            out_mesh.AddIndex(currentIndex + 1);
-            out_mesh.AddIndex(currentIndex + 3);
-            out_mesh.AddIndex(currentIndex + 2);
+            out_mesh.AddIndex(currentIndex + 1); // 添加索引
+            out_mesh.AddIndex(currentIndex + 3); // 添加索引
+            out_mesh.AddIndex(currentIndex + 2); // 添加索引
 
-            s_current += road_param.resolution * 3;
+            s_current += road_param.resolution * 3; // 更新当前距离
 
             break;
           }
-          case carla::road::element::LaneMarking::Type::SolidSolid: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::SolidSolid: { // 实线与实线
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::SolidBroken: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::SolidBroken: { // 实线与虚线
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::BrokenSolid: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::BrokenSolid: { // 虚线与实线
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::BrokenBroken: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::BrokenBroken: { // 虚线与虚线
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::BottsDots: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::BottsDots: { // 点状标记
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::Grass: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::Grass: { // 草坪标记
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::Curb: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::Curb: { // 路缘标记
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::Other: {
-            s_current += road_param.resolution;
+          case carla::road::element::LaneMarking::Type::Other: { // 其他标记
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          default: {
-            s_current += road_param.resolution;
+          default: { // 默认情况
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
         }
       }
-    } while (s_current < s_end);
+     } while (s_current < s_end); // 当当前距离小于结束距离时继续循环
 
-    if (out_mesh.IsValid()) {
-      const carla::road::element::RoadInfoMarkRecord* road_info_mark = lane.GetInfo<carla::road::element::RoadInfoMarkRecord>(s_current);
-      if (road_info_mark != nullptr) {
-        carla::road::element::LaneMarking lane_mark_info(*road_info_mark);
+    if (out_mesh.IsValid()) { // 如果输出网格有效
+      const carla::road::element::RoadInfoMarkRecord* road_info_mark = lane.GetInfo<carla::road::element::RoadInfoMarkRecord>(s_current); // 获取当前距离的标记信息
+      if (road_info_mark != nullptr) { // 如果标记信息存在
+        carla::road::element::LaneMarking lane_mark_info(*road_info_mark); // 创建车道标记信息对象
         
         std::pair<geom::Vector3D, geom::Vector3D> edges = 
-              ComputeEdgesForLanemark(lane_section, lane, s_end, lane_mark_info.width);
+              ComputeEdgesForLanemark(lane_section, lane, s_end, lane_mark_info.width); // 计算结束距离的边缘
 
-        out_mesh.AddVertex(edges.first);
-        out_mesh.AddVertex(edges.second);
+        out_mesh.AddVertex(edges.first); // 添加第一个顶点
+        out_mesh.AddVertex(edges.second); // 添加第二个顶点
       }
-      inout.push_back(std::make_unique<Mesh>(out_mesh));
+      inout.push_back(std::make_unique<Mesh>(out_mesh)); // 将输出网格添加到输入输出中
     }
   }
+
 
   void MeshFactory::GenerateLaneMarksForCenterLine(
     const road::Road& road,
@@ -911,75 +911,75 @@ std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>> MeshFactory:
     std::vector<std::unique_ptr<Mesh>>& inout,
     std::vector<std::string>& outinfo ) const
   {
-    Mesh out_mesh;
-    const double s_start = lane_section.GetDistance();
-    const double s_end = lane_section.GetDistance() + lane_section.GetLength();
-    double s_current = s_start;
-    std::vector<geom::Vector3D> vertices;
-    std::vector<size_t> indices;
+    Mesh out_mesh; // 初始化输出网格
+    const double s_start = lane_section.GetDistance(); // 获取车道段的起始距离
+    const double s_end = lane_section.GetDistance() + lane_section.GetLength(); // 获取车道段的结束距离
+    double s_current = s_start; // 当前距离从起始距离开始
+    std::vector<geom::Vector3D> vertices; // 顶点容器
+    std::vector<size_t> indices; // 索引容器
 
     do {
-      //Get Lane info
+      // 获取车道信息
       const carla::road::element::RoadInfoMarkRecord* road_info_mark = lane.GetInfo<carla::road::element::RoadInfoMarkRecord>(s_current);
-      if (road_info_mark != nullptr) {
-        carla::road::element::LaneMarking lane_mark_info(*road_info_mark);
+      if (road_info_mark != nullptr) { // 如果标记信息不为空
+        carla::road::element::LaneMarking lane_mark_info(*road_info_mark); // 创建车道标记信息
 
-        switch (lane_mark_info.type) {
-          case carla::road::element::LaneMarking::Type::Solid: {
-            size_t currentIndex = out_mesh.GetVertices().size() + 1;
+        switch (lane_mark_info.type) { // 根据标记类型进行处理
+          case carla::road::element::LaneMarking::Type::Solid: { // 实线情况
+            size_t currentIndex = out_mesh.GetVertices().size() + 1; // 当前顶点索引
 
-            carla::road::element::DirectedPoint rightpoint = road.GetDirectedPointIn(s_current);
-            carla::road::element::DirectedPoint leftpoint = rightpoint;
+            carla::road::element::DirectedPoint rightpoint = road.GetDirectedPointIn(s_current); // 获取右侧点
+            carla::road::element::DirectedPoint leftpoint = rightpoint; // 左侧点初始化为右侧点
 
-            rightpoint.ApplyLateralOffset(lane_mark_info.width * 0.5);
-            leftpoint.ApplyLateralOffset(lane_mark_info.width * -0.5);
+            rightpoint.ApplyLateralOffset(lane_mark_info.width * 0.5); // 应用右侧偏移
+            leftpoint.ApplyLateralOffset(lane_mark_info.width * -0.5); // 应用左侧偏移
 
-            // Unreal's Y axis hack
-            rightpoint.location.y *= -1;
-            leftpoint.location.y *= -1;
+            // Unreal的Y轴处理
+            rightpoint.location.y *= -1; // 反转右侧点的Y坐标
+            leftpoint.location.y *= -1; // 反转左侧点的Y坐标
 
-            out_mesh.AddVertex(rightpoint.location);
-            out_mesh.AddVertex(leftpoint.location);
+            out_mesh.AddVertex(rightpoint.location); // 添加右侧点到网格
+            out_mesh.AddVertex(leftpoint.location); // 添加左侧点到网格
 
-            out_mesh.AddIndex(currentIndex);
-            out_mesh.AddIndex(currentIndex + 1);
-            out_mesh.AddIndex(currentIndex + 2);
+            out_mesh.AddIndex(currentIndex); // 添加索引
+            out_mesh.AddIndex(currentIndex + 1); // 添加索引
+            out_mesh.AddIndex(currentIndex + 2); // 添加索引
 
-            out_mesh.AddIndex(currentIndex + 1);
-            out_mesh.AddIndex(currentIndex + 3);
-            out_mesh.AddIndex(currentIndex + 2);
+            out_mesh.AddIndex(currentIndex + 1); // 添加索引
+            out_mesh.AddIndex(currentIndex + 3); // 添加索引
+            out_mesh.AddIndex(currentIndex + 2); // 添加索引
 
-            s_current += road_param.resolution;
+            s_current += road_param.resolution; // 更新当前距离
             break;
           }
-          case carla::road::element::LaneMarking::Type::Broken: {
-            size_t currentIndex = out_mesh.GetVertices().size() + 1;
+          case carla::road::element::LaneMarking::Type::Broken: { // 虚线情况
+            size_t currentIndex = out_mesh.GetVertices().size() + 1; // 当前顶点索引
 
             std::pair<geom::Vector3D, geom::Vector3D> edges = 
-              ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width);
+              ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width); // 计算边缘
             
-            out_mesh.AddVertex(edges.first);
-            out_mesh.AddVertex(edges.second);
+            out_mesh.AddVertex(edges.first); // 添加边缘第一个点到网格
+            out_mesh.AddVertex(edges.second); // 添加边缘第二个点到网格
 
-            s_current += road_param.resolution * 3;
-            if (s_current > s_end) {
-              s_current = s_end;
+            s_current += road_param.resolution * 3; // 更新当前距离
+            if (s_current > s_end) { // 如果当前距离超过结束距离
+              s_current = s_end; // 修正当前距离为结束距离
             }
 
-            edges = ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width);
+            edges = ComputeEdgesForLanemark(lane_section, lane, s_current, lane_mark_info.width); // 计算下一个边缘
 
-            out_mesh.AddVertex(edges.first);
-            out_mesh.AddVertex(edges.second);
+            out_mesh.AddVertex(edges.first); // 添加下一个边缘第一个点到网格
+            out_mesh.AddVertex(edges.second); // 添加下一个边缘第二个点到网格
 
-            out_mesh.AddIndex(currentIndex);
-            out_mesh.AddIndex(currentIndex + 1);
-            out_mesh.AddIndex(currentIndex + 2);
+            out_mesh.AddIndex(currentIndex); // 添加索引
+            out_mesh.AddIndex(currentIndex + 1); // 添加索引
+            out_mesh.AddIndex(currentIndex + 2); // 添加索引
 
-            out_mesh.AddIndex(currentIndex + 1);
-            out_mesh.AddIndex(currentIndex + 3);
-            out_mesh.AddIndex(currentIndex + 2);
+            out_mesh.AddIndex(currentIndex + 1); // 添加索引
+            out_mesh.AddIndex(currentIndex + 3); // 添加索引
+            out_mesh.AddIndex(currentIndex + 2); // 添加索引
 
-            s_current += road_param.resolution * 3;
+            s_current += road_param.resolution * 3; // 更新当前距离
 
             break;
           }
@@ -1085,7 +1085,6 @@ std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>> MeshFactory:
     }
     return {neighbor_info.vertex, weight};
   }
-
   // Helper function to compute neighborhoord of vertices and their weights
   std::vector<VertexNeighbors> GetVertexNeighborhoodAndWeights(
       const MeshFactory::RoadParameters &road_param,

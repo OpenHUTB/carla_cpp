@@ -33,36 +33,42 @@ namespace learning {
     // torch::Tensor tensor = torch::eye(3);
     // std::cout << tensor << std::endl;
   }
-
+// 定义一个函数，用于将WheelInput结构体中的数据转换为PyTorch张量，并将这些张量打包成一个IValue元组返回
   torch::jit::IValue GetWheelTensorInputs(WheelInput& wheel) {
+    // 从wheel结构体的particles_positions成员变量创建一个张量，表示粒子的位置。  
+    // particles_positions是一个指向粒子位置数据的指针，num_particles是粒子的数量，每个粒子有3个位置坐标（x, y, z）
     at::Tensor particles_position_tensor = 
         torch::from_blob(wheel.particles_positions, 
             {wheel.num_particles, 3}, torch::kFloat32);
-
+    // 从wheel结构体的particles_velocities成员变量创建一个张量，表示粒子的速度。  
+    // particles_velocities是一个指向粒子速度数据的指针，格式与粒子位置相同
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_positions成员变量创建一个张量，表示车轮的位置。  
+    // wheel_positions是一个指向车轮位置数据的指针，车轮位置由3个坐标（x, y, z）表示
     at::Tensor wheel_positions_tensor = 
         torch::from_blob(wheel.wheel_positions, 
             {3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_oritentation成员变量创建一个张量，表示车轮的朝向
     at::Tensor wheel_oritentation_tensor = 
         torch::from_blob(wheel.wheel_oritentation, 
             {4}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_linear_velocity成员变量创建一个张量，表示车轮的线速度。  
+    // wheel_linear_velocity是一个指向车轮线速度数据的指针，由3个分量（x, y, z）表示
     at::Tensor wheel_linear_velocity_tensor = 
         torch::from_blob(wheel.wheel_linear_velocity, 
             {3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_angular_velocity成员变量创建一个张量，表示车轮的角速度。  
+    // wheel_angular_velocity是一个指向车轮角速度数据的指针，同样由3个分量（x, y, z）表示
     at::Tensor wheel_angular_velocity_tensor = 
         torch::from_blob(wheel.wheel_angular_velocity, 
             {3}, torch::kFloat32);
-
+    // 将上述所有张量放入一个IValue向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor, particles_velocity_tensor, wheel_positions_tensor, 
          wheel_oritentation_tensor, wheel_linear_velocity_tensor, wheel_angular_velocity_tensor};
-    return torch::ivalue::Tuple::create(Tuple);
+    return torch::ivalue::Tuple::create(Tuple);// 使用torch::ivalue::Tuple::create方法将IValue向量打包成一个IValue元组，并返回
   }
 
   WheelOutput GetWheelTensorOutput(
