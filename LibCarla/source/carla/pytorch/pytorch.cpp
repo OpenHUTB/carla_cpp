@@ -16,69 +16,83 @@
 #include <vector>
 #include <ostream>
 #include <sstream>
-
+// 定义一个空的函数，用于添加标记
 void add_mark(const std::string &text) {
 
 }
-
+// 定义一个命名空间 carla，其中包含另一个命名空间 learning
 namespace carla {
 namespace learning {
-
+  // 测试学习功能的函数，打印CUDA版本信息
   void test_learning()
   {
-    std::ostringstream ss;
-    std::cout << "cuda version " << cluster::cuda_version() << std::endl;
-    std::cout << "cuda version " << scatter::cuda_version() << std::endl;
+    std::ostringstream ss;// 创建一个字符串流
+    std::cout << "cuda version " << cluster::cuda_version() << std::endl;// 打印cluster命名空间中定义的cuda_version()函数的返回值
+    std::cout << "cuda version " << scatter::cuda_version() << std::endl;// 打印scatter命名空间中定义的cuda_version()函数的返回值
+    // 下面的代码被注释掉了，如果取消注释，将创建一个3x3的单位张量并打印
     // torch::Tensor tensor = torch::eye(3);
     // std::cout << tensor << std::endl;
   }
-
+// 定义一个函数，用于将WheelInput结构体中的数据转换为PyTorch张量，并将这些张量打包成一个IValue元组返回
   torch::jit::IValue GetWheelTensorInputs(WheelInput& wheel) {
+    // 从wheel结构体的particles_positions成员变量创建一个张量，表示粒子的位置。  
+    // particles_positions是一个指向粒子位置数据的指针，num_particles是粒子的数量，每个粒子有3个位置坐标（x, y, z）
     at::Tensor particles_position_tensor = 
         torch::from_blob(wheel.particles_positions, 
             {wheel.num_particles, 3}, torch::kFloat32);
-
+    // 从wheel结构体的particles_velocities成员变量创建一个张量，表示粒子的速度。  
+    // particles_velocities是一个指向粒子速度数据的指针，格式与粒子位置相同
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_positions成员变量创建一个张量，表示车轮的位置。  
+    // wheel_positions是一个指向车轮位置数据的指针，车轮位置由3个坐标（x, y, z）表示
     at::Tensor wheel_positions_tensor = 
         torch::from_blob(wheel.wheel_positions, 
             {3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_oritentation成员变量创建一个张量，表示车轮的朝向
     at::Tensor wheel_oritentation_tensor = 
         torch::from_blob(wheel.wheel_oritentation, 
             {4}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_linear_velocity成员变量创建一个张量，表示车轮的线速度。  
+    // wheel_linear_velocity是一个指向车轮线速度数据的指针，由3个分量（x, y, z）表示
     at::Tensor wheel_linear_velocity_tensor = 
         torch::from_blob(wheel.wheel_linear_velocity, 
             {3}, torch::kFloat32);
-
+    // 从wheel结构体的wheel_angular_velocity成员变量创建一个张量，表示车轮的角速度。  
+    // wheel_angular_velocity是一个指向车轮角速度数据的指针，同样由3个分量（x, y, z）表示
     at::Tensor wheel_angular_velocity_tensor = 
         torch::from_blob(wheel.wheel_angular_velocity, 
             {3}, torch::kFloat32);
-
+    // 将上述所有张量放入一个IValue向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor, particles_velocity_tensor, wheel_positions_tensor, 
          wheel_oritentation_tensor, wheel_linear_velocity_tensor, wheel_angular_velocity_tensor};
-    return torch::ivalue::Tuple::create(Tuple);
+    return torch::ivalue::Tuple::create(Tuple);// 使用torch::ivalue::Tuple::create方法将IValue向量打包成一个IValue元组，并返回
   }
-
+// 定义一个函数，用于从粒子力和轮力张量中提取信息，并填充到一个WheelOutput结构体中
   WheelOutput GetWheelTensorOutput(
-      const at::Tensor &particle_forces, 
-      const at::Tensor &wheel_forces ) {
+      const at::Tensor &particle_forces, // 输入参数：粒子力的张量
+      const at::Tensor &wheel_forces ) {// 输入参数：轮力的张量
     WheelOutput result;
+    // 获取轮力张量的数据指针，并假定数据类型为float
     const float* wheel_forces_data = wheel_forces.data_ptr<float>();
+    // 从轮力张量中提取x, y, z方向的轮力和轮扭矩，并存储到result结构体中
     result.wheel_forces_x = wheel_forces_data[0];
     result.wheel_forces_y = wheel_forces_data[1];
     result.wheel_forces_z = wheel_forces_data[2];
     result.wheel_torque_x = wheel_forces_data[3];
     result.wheel_torque_y = wheel_forces_data[4];
     result.wheel_torque_z = wheel_forces_data[5];
+    // 获取粒子力张量的数据指针，并假定数据类型为float 
     const float* particle_forces_data = particle_forces.data_ptr<float>();
+    // 定义粒子力的维度数量（假设为3D空间，即x, y, z三个方向）
     int num_dimensions = 3;
+    // 获取粒子力张量中粒子的数量
     int num_particles = particle_forces.sizes()[0];
+    // 为存储粒子力的向量预留空间，大小为粒子数量乘以每个粒子的维度数量
     result._particle_forces.reserve(num_particles*num_dimensions);
+    // 遍历每个粒子，将其x, y, z方向的力添加到result结构体中的粒子力向量中
     for (int i = 0; i < num_particles; i++) {
       result._particle_forces.emplace_back(
           particle_forces_data[i*num_dimensions + 0]);
