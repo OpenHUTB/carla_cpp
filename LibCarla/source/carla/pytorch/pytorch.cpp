@@ -148,11 +148,11 @@ namespace learning {
     torch::jit::IValue GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx);
   };
   torch::jit::IValue NeuralModelImpl::GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx)
-  {
+  {// 从WheelInput结构体中的粒子位置数组创建一个张量
     at::Tensor particles_position_tensor = 
-        torch::from_blob(wheel.particles_positions, 
-            {wheel.num_particles, 3}, torch::kFloat32);
-
+        torch::from_blob(wheel.particles_positions, // 指向数据的指针
+            {wheel.num_particles, 3}, torch::kFloat32);// 张量的形状
+ // 从WheelInput结构体中的粒子速度数组创建一个张量，过程与位置张量类似
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
@@ -172,11 +172,13 @@ namespace learning {
     at::Tensor wheel_angular_velocity_tensor = 
         torch::from_blob(wheel.wheel_angular_velocity, 
             {3}, torch::kFloat32);
-
+// 将所有准备好的张量以及粒子数量（作为一个标量张量或直接作为整数）放入一个向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor.cuda(), particles_velocity_tensor.cuda(), wheel_positions_tensor.cuda(), 
+        // 修正了变量名以匹配之前的声明
          wheel_oritentation_tensor.cuda(), wheel_linear_velocity_tensor.cuda(), wheel_angular_velocity_tensor.cuda(),
-         wheel.num_particles};
+         wheel.num_particles};// 直接作为整数传递，而不是张量  
+    };  
     return torch::ivalue::Tuple::create(Tuple);
   }
 
