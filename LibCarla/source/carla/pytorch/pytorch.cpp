@@ -127,14 +127,24 @@ namespace learning {
     return result;
   }
 
-  // holds the neural network
+  // 定义一个名为NeuralModelImpl的结构体，它封装了与神经网络模型相关的数据和操作
   struct NeuralModelImpl
   {
     NeuralModelImpl(){}
+    // 成员变量：一个PyTorch JIT编译的脚本模块，用于加载和执行神经网络
     torch::jit::script::Module module;
     ~NeuralModelImpl(){}
+    // 成员变量：一个存储粒子位置张量的向量，每个张量代表一组粒子的位置信息 
     std::vector<at::Tensor> particles_position_tensors;
+    // 成员变量：一个存储粒子速度张量的向量，每个张量代表一组粒子的速度信息
     std::vector<at::Tensor> particles_velocity_tensors;
+    // 成员函数：获取与指定车轮相关的输入张量，这些张量将作为神经网络的输入  
+    // 参数：  
+    //   - wheel：一个引用传递的WheelInput结构体，包含了车轮的输入信息  
+    //   - wheel_idx：指定车轮的索引，用于从可能的多组车轮输入中选择一组  
+    // 返回值：  
+    //   - 一个torch::jit::IValue对象，它封装了神经网络所需的输入张量（或张量的组合）  
+    //       这个返回值可以直接被传递给torch::jit::script::Module的forward方法
     torch::jit::IValue GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx);
   };
   torch::jit::IValue NeuralModelImpl::GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx)
