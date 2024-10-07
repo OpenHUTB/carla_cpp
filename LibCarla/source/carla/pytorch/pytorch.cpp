@@ -127,22 +127,32 @@ namespace learning {
     return result;
   }
 
-  // holds the neural network
+  // 定义一个名为NeuralModelImpl的结构体，它封装了与神经网络模型相关的数据和操作
   struct NeuralModelImpl
   {
     NeuralModelImpl(){}
+    // 成员变量：一个PyTorch JIT编译的脚本模块，用于加载和执行神经网络
     torch::jit::script::Module module;
     ~NeuralModelImpl(){}
+    // 成员变量：一个存储粒子位置张量的向量，每个张量代表一组粒子的位置信息 
     std::vector<at::Tensor> particles_position_tensors;
+    // 成员变量：一个存储粒子速度张量的向量，每个张量代表一组粒子的速度信息
     std::vector<at::Tensor> particles_velocity_tensors;
+    // 成员函数：获取与指定车轮相关的输入张量，这些张量将作为神经网络的输入  
+    // 参数：  
+    //   - wheel：一个引用传递的WheelInput结构体，包含了车轮的输入信息  
+    //   - wheel_idx：指定车轮的索引，用于从可能的多组车轮输入中选择一组  
+    // 返回值：  
+    //   - 一个torch::jit::IValue对象，它封装了神经网络所需的输入张量（或张量的组合）  
+    //       这个返回值可以直接被传递给torch::jit::script::Module的forward方法
     torch::jit::IValue GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx);
   };
   torch::jit::IValue NeuralModelImpl::GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx)
-  {
+  {// 从WheelInput结构体中的粒子位置数组创建一个张量
     at::Tensor particles_position_tensor = 
-        torch::from_blob(wheel.particles_positions, 
-            {wheel.num_particles, 3}, torch::kFloat32);
-
+        torch::from_blob(wheel.particles_positions, // 指向数据的指针
+            {wheel.num_particles, 3}, torch::kFloat32);// 张量的形状
+ // 从WheelInput结构体中的粒子速度数组创建一个张量，过程与位置张量类似
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
@@ -162,11 +172,13 @@ namespace learning {
     at::Tensor wheel_angular_velocity_tensor = 
         torch::from_blob(wheel.wheel_angular_velocity, 
             {3}, torch::kFloat32);
-
+// 将所有准备好的张量以及粒子数量（作为一个标量张量或直接作为整数）放入一个向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor.cuda(), particles_velocity_tensor.cuda(), wheel_positions_tensor.cuda(), 
+        // 修正了变量名以匹配之前的声明
          wheel_oritentation_tensor.cuda(), wheel_linear_velocity_tensor.cuda(), wheel_angular_velocity_tensor.cuda(),
-         wheel.num_particles};
+         wheel.num_particles};// 直接作为整数传递，而不是张量  
+    };  
     return torch::ivalue::Tuple::create(Tuple);
   }
 
