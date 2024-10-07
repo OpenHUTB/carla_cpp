@@ -1083,15 +1083,9 @@ void MeshFactory::GenerateLaneMarksForNotCenterLine(
         weight *= road_param.lane_ends_multiplier;  / 乘以车道结束权重因子
       }
     }
-<<<<<<< HEAD
     return {neighbor_info.vertex, weight};  // 返回邻居顶点和计算的权重
-  } 
-// Helper function to compute neighborhoord of vertices and their weights
-=======
-    return {neighbor_info.vertex, weight};
   }
   // Helper function to compute neighborhoord of vertices and their weights
->>>>>>> dd332942e37aa58d58c79c44c4c76b3323ce5c68
   std::vector<VertexNeighbors> GetVertexNeighborhoodAndWeights(
       const MeshFactory::RoadParameters &road_param,
       std::vector<std::unique_ptr<Mesh>> &lane_meshes) {
