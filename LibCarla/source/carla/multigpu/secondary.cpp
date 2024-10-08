@@ -4,149 +4,149 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/multigpu/incomingMessage.h"
-#include "carla/multigpu/secondary.h"
+#include "carla/multigpu/incomingMessage.h" // 包含接收消息的头文件
+#include "carla/multigpu/secondary.h"       // 包含次要功能的头文件
 
-#include "carla/BufferPool.h"
-#include "carla/Debug.h"
-#include "carla/Exception.h"
-#include "carla/Logging.h"
-#include "carla/Time.h"
+#include "carla/BufferPool.h"                // 包含缓冲池的头文件
+#include "carla/Debug.h"                     // 包含调试相关的头文件
+#include "carla/Exception.h"                 // 包含异常处理的头文件
+#include "carla/Logging.h"                   // 包含日志记录的头文件
+#include "carla/Time.h"                      // 包含时间处理的头文件
 
-#include <boost/asio/connect.hpp>
-#include <boost/asio/read.hpp>
-#include <boost/asio/write.hpp>
-#include <boost/asio/post.hpp>
-#include <boost/asio/bind_executor.hpp>
+#include <boost/asio/connect.hpp>            // 包含连接的Boost.Asio头文件
+#include <boost/asio/read.hpp>               // 包含读取的Boost.Asio头文件
+#include <boost/asio/write.hpp>              // 包含写入的Boost.Asio头文件
+#include <boost/asio/post.hpp>               // 包含异步操作的Boost.Asio头文件
+#include <boost/asio/bind_executor.hpp>      // 包含绑定执行器的Boost.Asio头文件
 
-#include <exception>
+#include <exception>                         // 包含标准异常处理头文件
 
 namespace carla {
 namespace multigpu {
 
-  Secondary::Secondary(
+  Secondary::Secondary(                    // 构造函数，接受端点和回调函数
     boost::asio::ip::tcp::endpoint ep,
     SecondaryCommands::callback_type callback) :
-      _pool(),
-      _socket(_pool.io_context()),
-      _endpoint(ep),
-      _strand(_pool.io_context()),
-      _connection_timer(_pool.io_context()),
-      _buffer_pool(std::make_shared<BufferPool>()) {
+      _pool(),                              // 初始化缓冲池
+      _socket(_pool.io_context()),          // 初始化套接字
+      _endpoint(ep),                        // 设置端点
+      _strand(_pool.io_context()),          // 初始化strand以确保线程安全
+      _connection_timer(_pool.io_context()),// 初始化连接计时器
+      _buffer_pool(std::make_shared<BufferPool>()) { // 创建共享的缓冲池
 
-      _commander.set_callback(callback);
+      _commander.set_callback(callback);    // 设置回调函数
     }
 
 
-  Secondary::Secondary(
+  Secondary::Secondary(                    // 另一个构造函数，接受IP和端口以及回调函数
     std::string ip,
     uint16_t port,
     SecondaryCommands::callback_type callback) :
-      _pool(),
-      _socket(_pool.io_context()),
-      _strand(_pool.io_context()),
-      _connection_timer(_pool.io_context()),
-      _buffer_pool(std::make_shared<BufferPool>()) {
+      _pool(),                              // 初始化缓冲池
+      _socket(_pool.io_context()),          // 初始化套接字
+      _strand(_pool.io_context()),          // 初始化strand以确保线程安全
+      _connection_timer(_pool.io_context()),// 初始化连接计时器
+      _buffer_pool(std::make_shared<BufferPool>()) { // 创建共享的缓冲池
 
-    boost::asio::ip::address ip_address = boost::asio::ip::address::from_string(ip);
-    _endpoint = boost::asio::ip::tcp::endpoint(ip_address, port);
-    _commander.set_callback(callback);
+    boost::asio::ip::address ip_address = boost::asio::ip::address::from_string(ip); // 从字符串转换为IP地址
+    _endpoint = boost::asio::ip::tcp::endpoint(ip_address, port); // 设置端点
+    _commander.set_callback(callback);    // 设置回调函数
   }
 
-  Secondary::~Secondary() {
-    _pool.Stop();
+  Secondary::~Secondary() {                // 析构函数
+    _pool.Stop();                          // 停止缓冲池
   }
 
-  void Secondary::Connect() {
-    AsyncRun(2u);
+  void Secondary::Connect() {              // 连接函数
+    AsyncRun(2u);                          // 启动异步运行，使用2个工作线程
 
-    _commander.set_secondary(shared_from_this());
+    _commander.set_secondary(shared_from_this()); // 设置当前对象为命令的次要部分
 
-    std::weak_ptr<Secondary> weak = shared_from_this();
-    boost::asio::post(_strand, [weak]() {
-      auto self = weak.lock();
-      if (!self) return;
+    std::weak_ptr<Secondary> weak = shared_from_this(); // 创建弱指针以防止循环引用
+    boost::asio::post(_strand, [weak]() { // 在strand中发布任务
+      auto self = weak.lock();             // 锁定弱指针
+      if (!self) return;                   // 如果对象已被销毁，返回
 
-      if (self->_done) {
+      if (self->_done) {                   // 如果已完成
         return;
       }
 
-      if (self->_socket.is_open()) {
-        self->_socket.close();
+      if (self->_socket.is_open()) {       // 如果套接字是打开的
+        self->_socket.close();              // 关闭套接字
       }
 
-      auto handle_connect = [weak](boost::system::error_code ec) {
-        auto self = weak.lock();
-        if (!self) return;
-        if (ec) {
-          log_error("secondary server: connection failed:", ec.message());
-          if (!self->_done)
+      auto handle_connect = [weak](boost::system::error_code ec) { // 处理连接结果的回调
+        auto self = weak.lock();            // 锁定弱指针
+        if (!self) return;                  // 如果对象已被销毁，返回
+        if (ec) {                           // 如果有错误
+          log_error("secondary server: connection failed:", ec.message()); // 记录错误信息
+          if (!self->_done)                 // 如果未完成，尝试重连
             self->Reconnect();
           return;
         }
 
-        if (self->_done) {
+        if (self->_done) {                  // 如果已完成
           return;
         }
 
-        // This forces not using Nagle's algorithm.
-        // Improves the sync mode velocity on Linux by a factor of ~3.
-        self->_socket.set_option(boost::asio::ip::tcp::no_delay(true));
+        // 此设置强制不使用Nagle算法。
+        // 在Linux上提高同步模式速度约3倍。
+        self->_socket.set_option(boost::asio::ip::tcp::no_delay(true)); // 禁用Nagle算法
 
-        log_info("secondary server: connected to ", self->_endpoint);
+        log_info("secondary server: connected to ", self->_endpoint); // 记录连接信息
 
-        self->ReadData();
+        self->ReadData();                   // 调用读取数据函数
       };
 
-      self->_socket.async_connect(self->_endpoint, boost::asio::bind_executor(self->_strand, handle_connect));
+      self->_socket.async_connect(self->_endpoint, boost::asio::bind_executor(self->_strand, handle_connect)); // 异步连接
     });
   }
 
-  void Secondary::Stop() {
-    _connection_timer.cancel();
-    std::weak_ptr<Secondary> weak = shared_from_this();
-    boost::asio::post(_strand, [weak]() {
-      auto self = weak.lock();
-      if (!self) return;
-      self->_done = true;
-      if (self->_socket.is_open()) {
-        self->_socket.close();
+  void Secondary::Stop() {                 // 停止函数
+    _connection_timer.cancel();             // 取消连接计时器
+    std::weak_ptr<Secondary> weak = shared_from_this(); // 创建弱指针
+    boost::asio::post(_strand, [weak]() {   // 在strand中发布停止任务
+      auto self = weak.lock();              // 锁定弱指针
+      if (!self) return;                    // 如果对象已被销毁，返回
+      self->_done = true;                   // 标记为已完成
+      if (self->_socket.is_open()) {       // 如果套接字是打开的
+        self->_socket.close();              // 关闭套接字
       }
     });
   }
 
-  void Secondary::Reconnect() {
-    std::weak_ptr<Secondary> weak = shared_from_this();
-    _connection_timer.expires_from_now(time_duration::seconds(1u));
-    _connection_timer.async_wait([weak](boost::system::error_code ec) {
-      auto self = weak.lock();
-      if (!self) return;
-      if (!ec) {
-        self->Connect();
+  void Secondary::Reconnect() {             // 重连函数
+    std::weak_ptr<Secondary> weak = shared_from_this(); // 创建弱指针
+    _connection_timer.expires_from_now(time_duration::seconds(1u)); // 设置计时器为1秒后到期
+    _connection_timer.async_wait([weak](boost::system::error_code ec) { // 等待计时器到期后的回调
+      auto self = weak.lock();              // 锁定弱指针
+      if (!self) return;                    // 如果对象已被销毁，返回
+      if (!ec) {                            // 如果没有错误
+        self->Connect();                    // 重新连接
       }
     });
   }
 
-  void Secondary::AsyncRun(size_t worker_threads) {
-    _pool.AsyncRun(worker_threads);
+  void Secondary::AsyncRun(size_t worker_threads) { // 启动异步运行，接受工作线程数量
+    _pool.AsyncRun(worker_threads);         // 调用缓冲池的异步运行
   }
 
-  void Secondary::Write(std::shared_ptr<const carla::streaming::detail::tcp::Message> message) {
-    DEBUG_ASSERT(message != nullptr);
-    DEBUG_ASSERT(!message->empty());
-    std::weak_ptr<Secondary> weak = shared_from_this();
-    boost::asio::post(_strand, [=]() {
-      auto self = weak.lock();
-      if (!self) return;
-      if (!self->_socket.is_open()) {
-        return;
+  void Secondary::Write(std::shared_ptr<const carla::streaming::detail::tcp::Message> message) { // 写入函数
+    DEBUG_ASSERT(message != nullptr);       // 确保消息不为空
+    DEBUG_ASSERT(!message->empty());        // 确保消息不为空
+    std::weak_ptr<Secondary> weak = shared_from_this(); // 创建弱指针
+    boost::asio::post(_strand, [=]() {      // 在strand中发布写入任务
+      auto self = weak.lock();              // 锁定弱指针
+      if (!self) return;                    // 如果对象已被销毁，返回
+      if (!self->_socket.is_open()) {      // 如果套接字未打开
+        return;                             // 返回
       }
 
-      auto handle_sent = [weak, message](const boost::system::error_code &ec, size_t DEBUG_ONLY(bytes)) {
-        auto self = weak.lock();
-        if (!self) return;
-        if (ec) {
-          log_error("error sending data: ", ec.message());
+      auto handle_sent = [weak, message](const boost::system::error_code &ec, size_t DEBUG_ONLY(bytes)) { // 处理发送结果的回调
+        auto self = weak.lock();             // 锁定弱指针
+        if (!self) return;                   // 如果对象已被销毁，返回
+        if (ec) {                           // 如果有错误
+          log_error("error sending data: ", ec.message()); // 记录发送数据的错误
         }
       };
 
