@@ -150,126 +150,131 @@ namespace multigpu {
         }
       };
 
-      // _deadline.expires_from_now(_timeout);
+     // 设置超时期限
       boost::asio::async_write(
-          self->_socket,
-          message->GetBufferSequence(),
-          boost::asio::bind_executor(self->_strand, handle_sent));
+          self->_socket,// 目标 socket
+          message->GetBufferSequence(),// 获取要发送的消息缓冲区序列
+          boost::asio::bind_executor(self->_strand, handle_sent)); // 绑定执行器，处理发送完成后的回调
     });
   }
 
   void Secondary::Write(Buffer buffer) {
+// 创建一个视图从传入的缓冲区
     auto view_data = carla::BufferView::CreateFrom(std::move(buffer));
+ // 创建消息
     auto message = Secondary::MakeMessage(view_data);
 
-    DEBUG_ASSERT(message != nullptr);
-    DEBUG_ASSERT(!message->empty());
-    std::weak_ptr<Secondary> weak = shared_from_this();
-    boost::asio::post(_strand, [=]() {
-      auto self = weak.lock();
-      if (!self) return;
-      if (!self->_socket.is_open()) {
+    DEBUG_ASSERT(message != nullptr);// 确保消息不为空
+    DEBUG_ASSERT(!message->empty());// 确保消息不为空
+    std::weak_ptr<Secondary> weak = shared_from_this(); // 创建弱指针以避免循环引用
+    boost::asio::post(_strand, [=]() {// 在strand中异步执行
+      auto self = weak.lock(); // 锁定弱指针
+      if (!self) return;// 如果对象已被销毁，返回
+      if (!self->_socket.is_open()) {// 如果socket未打开
         return;
       }
 
+     // 发送完成后的处理函数
       auto handle_sent = [weak, message](const boost::system::error_code &ec, size_t DEBUG_ONLY(bytes)) {
-        auto self = weak.lock();
-        if (!self) return;
-        if (ec) {
-          log_error("error sending data: ", ec.message());
+        auto self = weak.lock(); // 锁定弱指针
+        if (!self) return;// 如果对象已被销毁，返回
+        if (ec) {// 如果发生错误
+          log_error("error sending data: ", ec.message()); // 记录错误
         }
       };
 
-      // _deadline.expires_from_now(_timeout);
+      // 设置超时（注释掉）
       boost::asio::async_write(
-          self->_socket,
-          message->GetBufferSequence(),
-          boost::asio::bind_executor(self->_strand, handle_sent));
+          self->_socket,// 异步写入socket
+          message->GetBufferSequence(),// 获取消息的缓冲区序列
+          boost::asio::bind_executor(self->_strand, handle_sent));// 绑定执行器
     });
   }
 
   void Secondary::Write(std::string text) {
-    std::weak_ptr<Secondary> weak = shared_from_this();
+    std::weak_ptr<Secondary> weak = shared_from_this(); // 创建弱指针以避免循环引用
     boost::asio::post(_strand, [=]() {
-      auto self = weak.lock();
-      if (!self) return;
-      if (!self->_socket.is_open()) {
+      auto self = weak.lock();// 锁定弱指针
+      if (!self) return;// 如果对象已被销毁，返回
+      if (!self->_socket.is_open()) {// 如果socket未打开
         return;
       }
 
+     // 发送完成后的处理函数
       auto handle_sent = [weak](const boost::system::error_code &ec, size_t DEBUG_ONLY(bytes)) {
-        auto self = weak.lock();
-        if (!self) return;
-        if (ec) {
-          log_error("error sending data: ", ec.message());
+        auto self = weak.lock();// 锁定弱指针
+        if (!self) return;// 如果对象已被销毁，返回
+        if (ec) { // 如果发生错误
+          log_error("error sending data: ", ec.message());// 记录错误
         }
       };
 
-      // _deadline.expires_from_now(_timeout);
-      // sent first size buffer
-      int this_size = text.size();
+     // 设置超时（注释掉）
+      // 发送大小缓冲区
+      int this_size = text.size();// 获取字符串大小
       boost::asio::async_write(
-          self->_socket,
-          boost::asio::buffer(&this_size, sizeof(this_size)),
-          boost::asio::bind_executor(self->_strand, handle_sent));
+          self->_socket,// 异步写入socket
+          boost::asio::buffer(&this_size, sizeof(this_size)),// 写入大小
+          boost::asio::bind_executor(self->_strand, handle_sent));// 绑定执行器
 
-      // send characters
+     // 发送字符
       boost::asio::async_write(
-          self->_socket,
-          boost::asio::buffer(text.c_str(), text.size()),
-          boost::asio::bind_executor(self->_strand, handle_sent));
+          self->_socket,// 异步写入socket
+          boost::asio::buffer(text.c_str(), text.size()),// 写入字符
+          boost::asio::bind_executor(self->_strand, handle_sent));// 绑定执行器
     });
   }
 
+  // 读取数据的处理函数
   void Secondary::ReadData() {
-    std::weak_ptr<Secondary> weak = shared_from_this();
-    boost::asio::post(_strand, [weak]() {
-      auto self = weak.lock();
-      if (!self) return;
-      if (self->_done) {
+    std::weak_ptr<Secondary> weak = shared_from_this();// 创建弱指针以避免循环引用
+    boost::asio::post(_strand, [weak]() {// 在strand中异步执行
+      auto self = weak.lock();// 锁定弱指针
+      if (!self) return;// 如果对象已被销毁，返回
+      if (self->_done) {// 如果已完成，不再处理
         return;
       }
 
-      auto message = std::make_shared<IncomingMessage>(self->_buffer_pool->Pop());
+      auto message = std::make_shared<IncomingMessage>(self->_buffer_pool->Pop());// 创建共享 IncomingMessage
 
+     // 读取数据的处理函数
       auto handle_read_data = [weak, message](boost::system::error_code ec, size_t DEBUG_ONLY(bytes)) {
-        auto self = weak.lock();
-        if (!self) return;
-        if (!ec) {
-          DEBUG_ASSERT_EQ(bytes, message->size());
+        auto self = weak.lock();// 锁定弱指针
+        if (!self) return;// 如果对象已被销毁，返回
+        if (!ec) {// 如果没有错误
+          DEBUG_ASSERT_EQ(bytes, message->size());// 确保字节数匹配
           DEBUG_ASSERT_NE(bytes, 0u);
-          // Move the buffer to the callback function and start reading the next
-          // piece of data.
+          // 移动缓冲区到回调函数并开始读取下一部分数据
           self->GetCommander().process_command(message->pop());
-          self->ReadData();
+          self->ReadData();// 继续读取数据
         } else {
-          // As usual, if anything fails start over from the very top.
-          log_error("secondary server: failed to read data: ", ec.message());
-          // Connect();
+          // 如果发生错误，从最顶部重新开始
+          log_error("secondary server: failed to read data: ", ec.message());// 记录错误
+          // 连接（注释掉）
         }
       };
 
+      // 读取头部的处理函数
       auto handle_read_header = [weak, message, handle_read_data](
         boost::system::error_code ec,
         size_t DEBUG_ONLY(bytes)) {
-          auto self = weak.lock();
-          if (!self) return;
-          if (!ec && (message->size() > 0u)) {
-            DEBUG_ASSERT_EQ(bytes, sizeof(carla::streaming::detail::message_size_type));
-            if (self->_done) {
+          auto self = weak.lock();// 锁定弱指针
+          if (!self) return; // 如果对象已被销毁，返回
+          if (!ec && (message->size() > 0u)) {// 如果没有错误且消息大小大于零
+            DEBUG_ASSERT_EQ(bytes, sizeof(carla::streaming::detail::message_size_type));// 验证字节数
+            if (self->_done) { // 如果已完成，不再处理
               return;
             }
-            // Now that we know the size of the coming buffer, we can allocate our
-            // buffer and start putting data into it.
+            // 现在我们知道即将到来的缓冲区的大小，可以分配缓冲区并开始填充数据
             boost::asio::async_read(
-                self->_socket,
-                message->buffer(),
-                boost::asio::bind_executor(self->_strand, handle_read_data));
-          } else if (!self->_done) {
-            log_error("secondary server: failed to read header: ", ec.message());
-            // DEBUG_ONLY(printf("size  = ", message->size()));
-            // DEBUG_ONLY(printf("bytes = ", bytes));
-            // Connect();
+                self->_socket,// 异步读取socket
+                message->buffer(),// 读取消息缓冲区
+                boost::asio::bind_executor(self->_strand, handle_read_data));// 绑定执行器
+          } else if (!self->_done) {// 如果发生错误且未完成
+            log_error("secondary server: failed to read header: ", ec.message());// 记录错误
+            // 调试输出（注释掉）
+            // 调试输出（注释掉）
+            // 连接（注释掉）
           }
         };
 
