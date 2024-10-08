@@ -183,11 +183,15 @@ namespace learning {
   }
 
   NeuralModel::NeuralModel() {
+    // 使用std::make_unique初始化Model成员变量，它是一个指向NeuralModelImpl类型的unique_ptr
     Model = std::make_unique<NeuralModelImpl>();
   }
   void NeuralModel::LoadModel(char* filename, int device) {
+    // 禁用TensorExpr融合器，可能是为了避免某些与模型加载或执行不兼容的问题
     torch::jit::setTensorExprFuserEnabled(false);
+    // 将传入的char*类型文件名转换为std::string，便于后续操作。
     std::string filename_str(filename);
+    // 打印正在加载的模型文件名
     std::cout << "loading " << filename_str << std::endl;
     try {
       Model->module = torch::jit::load(filename_str);
