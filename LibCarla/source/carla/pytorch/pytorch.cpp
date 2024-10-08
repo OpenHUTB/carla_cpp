@@ -194,13 +194,18 @@ namespace learning {
     // 打印正在加载的模型文件名
     std::cout << "loading " << filename_str << std::endl;
     try {
+      // 使用torch::jit::load加载模型文件，并将其存储在ModelImpl类的module成员中
       Model->module = torch::jit::load(filename_str);
+      // 构造CUDA设备字符串，格式为"cuda:X"，其中X是传入的设备ID
       std::string cuda_str = "cuda:" + std::to_string(device);
+      // 将模型移动到指定的CUDA设备上执行
       // std::cout << "Using CUDA device " << cuda_str << std::endl;
       // Model->module.to(at::Device(cuda_str));
     } catch (const c10::Error& e) {
+      // 如果加载模型过程中发生异常（例如文件不存在、格式错误等），则捕获异常并打印错误信息
       std::cout << "Error loading model: " << e.msg() << std::endl;
     }
+    // 打印模型加载完成的消息
     std::cout << "loaded " << filename_str <<  std::endl;
   }
 
