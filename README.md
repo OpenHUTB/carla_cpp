@@ -172,8 +172,4 @@ git rm -rf .
 [Hcir-lk](https://github.com/Hcir-lk)、
 [S1TZ](https://github.com/S1TZ)。
 [lzg6667](https://github.com/lzg6667)。
-<<<<<<< HEAD
->>>>>>> 35e56a5476b3d382de4d05bcb4f6f08f2669b817
-=======
 [RYZ-666](https://github.com/RYZ-666)
->>>>>>> dfa798011de3aabdd697b318d7ed9c21f0eb511c
