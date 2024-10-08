@@ -8,7 +8,7 @@
 namespace carla {
 namespace traffic_manager {
 
-// 定义演员类型的枚举
+// 定义参与者类型的枚举
 enum ActorType {
   Vehicle,      // 车辆
   Pedestrian,   // 行人
@@ -36,7 +36,7 @@ using TrafficLightStateMap = std::unordered_map<ActorId, TrafficLightState>; // 
 
 // 描述静态属性的结构体
 struct StaticAttributes {
-  ActorType actor_type;        // 演员类型
+  ActorType actor_type;        // 参与者类型
   float half_length;           // 半长
   float half_width;            // 半宽
   float half_height;           // 半高
@@ -47,55 +47,55 @@ using StaticAttributeMap = std::unordered_map<ActorId, StaticAttributes>; // 定
 class SimulationState {
 
 private:
-  // 存储仿真中所有演员的ID的结构
+  // 存储仿真中所有参与者的ID的结构
   std::unordered_set<ActorId> actor_set; 
-  // 存储演员动态运动相关状态的结构
+  // 存储参与者动态运动相关状态的结构
   KinematicStateMap kinematic_state_map; 
-  // 存储演员静态属性的结构
+  // 存储参与者静态属性的结构
   StaticAttributeMap static_attribute_map; 
-  // 存储演员动态交通灯相关状态的结构
+  // 存储参与者动态交通灯相关状态的结构
   TrafficLightStateMap tl_state_map; 
 
 public :
   SimulationState(); // 构造函数
 
-  // 将演员添加到仿真状态的方法
+  // 将参与者添加到仿真状态的方法
   void AddActor(ActorId actor_id,
                 KinematicState kinematic_state,
                 StaticAttributes attributes,
                 TrafficLightState tl_state);
 
-  // 验证演员是否当前存在于仿真状态中的方法
+  // 验证参与者是否当前存在于仿真状态中的方法
   bool ContainsActor(ActorId actor_id) const;
 
-  // 从仿真状态中移除演员的方法
+  // 从仿真状态中移除参与者的方法
   void RemoveActor(ActorId actor_id);
 
-  // 清除所有状态和演员的方法
+  // 清除所有状态和参与者的方法
   void Reset();
 
-  // 更新演员运动状态的方法
+  // 更新参与者运动状态的方法
   void UpdateKinematicState(ActorId actor_id, KinematicState state);
 
-  // 更新演员混合结束位置的方法
+  // 更新参与者混合结束位置的方法
   void UpdateKinematicHybridEndLocation(ActorId actor_id, cg::Location location);
 
   // 更新交通灯状态的方法
   void UpdateTrafficLightState(ActorId actor_id, TrafficLightState state);
 
-  // 获取演员位置的方法
+  // 获取参与者位置的方法
   cg::Location GetLocation(const ActorId actor_id) const;
 
-  // 获取演员混合结束位置的方法
+  // 获取参与者混合结束位置的方法
   cg::Location GetHybridEndLocation(const ActorId actor_id) const;
 
-  // 获取演员旋转的方法
+  // 获取参与者旋转的方法
   cg::Rotation GetRotation(const ActorId actor_id) const;
 
-  // 获取演员朝向的方法
+  // 获取参与者朝向的方法
   cg::Vector3D GetHeading(const ActorId actor_id) const;
 
-  // 获取演员速度的方法
+  // 获取参与者速度的方法
   cg::Vector3D GetVelocity(const ActorId actor_id) const;
 
   // 获取速度限制的方法
@@ -104,7 +104,7 @@ public :
   // 检查物理是否启用的方法
   bool IsPhysicsEnabled(const ActorId actor_id) const;
 
-  // 检查演员是否处于休眠状态的方法
+  // 检查参与者是否处于休眠状态的方法
   bool IsDormant(const ActorId actor_id) const;
 
   // 获取英雄位置的方法
@@ -113,10 +113,10 @@ public :
   // 获取交通灯状态的方法
   TrafficLightState GetTLS(const ActorId actor_id) const;
 
-  // 获取演员类型的方法
+  // 获取参与者类型的方法
   ActorType GetType(const ActorId actor_id) const;
 
-  // 获取演员尺寸的方法
+  // 获取参与者尺寸的方法
   cg::Vector3D GetDimensions(const ActorId actor_id) const;
 
 };
