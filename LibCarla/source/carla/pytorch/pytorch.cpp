@@ -70,22 +70,29 @@ namespace learning {
          wheel_oritentation_tensor, wheel_linear_velocity_tensor, wheel_angular_velocity_tensor};
     return torch::ivalue::Tuple::create(Tuple);// 使用torch::ivalue::Tuple::create方法将IValue向量打包成一个IValue元组，并返回
   }
-
+// 定义一个函数，用于从粒子力和轮力张量中提取信息，并填充到一个WheelOutput结构体中
   WheelOutput GetWheelTensorOutput(
-      const at::Tensor &particle_forces, 
-      const at::Tensor &wheel_forces ) {
+      const at::Tensor &particle_forces, // 输入参数：粒子力的张量
+      const at::Tensor &wheel_forces ) {// 输入参数：轮力的张量
     WheelOutput result;
+    // 获取轮力张量的数据指针，并假定数据类型为float
     const float* wheel_forces_data = wheel_forces.data_ptr<float>();
+    // 从轮力张量中提取x, y, z方向的轮力和轮扭矩，并存储到result结构体中
     result.wheel_forces_x = wheel_forces_data[0];
     result.wheel_forces_y = wheel_forces_data[1];
     result.wheel_forces_z = wheel_forces_data[2];
     result.wheel_torque_x = wheel_forces_data[3];
     result.wheel_torque_y = wheel_forces_data[4];
     result.wheel_torque_z = wheel_forces_data[5];
+    // 获取粒子力张量的数据指针，并假定数据类型为float 
     const float* particle_forces_data = particle_forces.data_ptr<float>();
+    // 定义粒子力的维度数量（假设为3D空间，即x, y, z三个方向）
     int num_dimensions = 3;
+    // 获取粒子力张量中粒子的数量
     int num_particles = particle_forces.sizes()[0];
+    // 为存储粒子力的向量预留空间，大小为粒子数量乘以每个粒子的维度数量
     result._particle_forces.reserve(num_particles*num_dimensions);
+    // 遍历每个粒子，将其x, y, z方向的力添加到result结构体中的粒子力向量中
     for (int i = 0; i < num_particles; i++) {
       result._particle_forces.emplace_back(
           particle_forces_data[i*num_dimensions + 0]);
@@ -120,22 +127,32 @@ namespace learning {
     return result;
   }
 
-  // holds the neural network
+  // 定义一个名为NeuralModelImpl的结构体，它封装了与神经网络模型相关的数据和操作
   struct NeuralModelImpl
   {
     NeuralModelImpl(){}
+    // 成员变量：一个PyTorch JIT编译的脚本模块，用于加载和执行神经网络
     torch::jit::script::Module module;
     ~NeuralModelImpl(){}
+    // 成员变量：一个存储粒子位置张量的向量，每个张量代表一组粒子的位置信息 
     std::vector<at::Tensor> particles_position_tensors;
+    // 成员变量：一个存储粒子速度张量的向量，每个张量代表一组粒子的速度信息
     std::vector<at::Tensor> particles_velocity_tensors;
+    // 成员函数：获取与指定车轮相关的输入张量，这些张量将作为神经网络的输入  
+    // 参数：  
+    //   - wheel：一个引用传递的WheelInput结构体，包含了车轮的输入信息  
+    //   - wheel_idx：指定车轮的索引，用于从可能的多组车轮输入中选择一组  
+    // 返回值：  
+    //   - 一个torch::jit::IValue对象，它封装了神经网络所需的输入张量（或张量的组合）  
+    //       这个返回值可以直接被传递给torch::jit::script::Module的forward方法
     torch::jit::IValue GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx);
   };
   torch::jit::IValue NeuralModelImpl::GetWheelTensorInputsCUDA(WheelInput& wheel, int wheel_idx)
-  {
+  {// 从WheelInput结构体中的粒子位置数组创建一个张量
     at::Tensor particles_position_tensor = 
-        torch::from_blob(wheel.particles_positions, 
-            {wheel.num_particles, 3}, torch::kFloat32);
-
+        torch::from_blob(wheel.particles_positions, // 指向数据的指针
+            {wheel.num_particles, 3}, torch::kFloat32);// 张量的形状
+ // 从WheelInput结构体中的粒子速度数组创建一个张量，过程与位置张量类似
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
@@ -155,20 +172,26 @@ namespace learning {
     at::Tensor wheel_angular_velocity_tensor = 
         torch::from_blob(wheel.wheel_angular_velocity, 
             {3}, torch::kFloat32);
-
+// 将所有准备好的张量以及粒子数量（作为一个标量张量或直接作为整数）放入一个向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor.cuda(), particles_velocity_tensor.cuda(), wheel_positions_tensor.cuda(), 
+        // 修正了变量名以匹配之前的声明
          wheel_oritentation_tensor.cuda(), wheel_linear_velocity_tensor.cuda(), wheel_angular_velocity_tensor.cuda(),
-         wheel.num_particles};
+         wheel.num_particles};// 直接作为整数传递，而不是张量  
+    };  
     return torch::ivalue::Tuple::create(Tuple);
   }
 
   NeuralModel::NeuralModel() {
+    // 使用std::make_unique初始化Model成员变量，它是一个指向NeuralModelImpl类型的unique_ptr
     Model = std::make_unique<NeuralModelImpl>();
   }
   void NeuralModel::LoadModel(char* filename, int device) {
+    // 禁用TensorExpr融合器，可能是为了避免某些与模型加载或执行不兼容的问题
     torch::jit::setTensorExprFuserEnabled(false);
+    // 将传入的char*类型文件名转换为std::string，便于后续操作。
     std::string filename_str(filename);
+    // 打印正在加载的模型文件名
     std::cout << "loading " << filename_str << std::endl;
     try {
       Model->module = torch::jit::load(filename_str);
