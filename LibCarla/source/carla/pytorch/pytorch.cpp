@@ -232,15 +232,18 @@ namespace learning {
     }
     // 将是否输出详细信息的标志添加到输入向量中
     TorchInputs.push_back(_input.verbose);
-
+// 定义一个变量用于存储模型的输出
     torch::jit::IValue Output;
+    // 尝试执行模型的前向传播，并捕获可能发生的错误
     try {
       Output = Model->module.forward(TorchInputs);
     } catch (const c10::Error& e) {
+       // 如果发生错误，打印错误信息  
       std::cout << "Error running model: " << e.msg() << std::endl;
     }
-
+// 将模型的输出转换为元组，并提取其中的Tensor
     std::vector<torch::jit::IValue> Tensors =  Output.toTuple()->elements();
+     // 对每个轮子的输出Tensor进行处理，并更新输出结构体中的相应字段
     _output.wheel0 = GetWheelTensorOutput(
         Tensors[0].toTensor().cpu(), Tensors[4].toTensor().cpu() );
     _output.wheel1 = GetWheelTensorOutput(
