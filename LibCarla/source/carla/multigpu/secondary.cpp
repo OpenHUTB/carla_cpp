@@ -278,11 +278,11 @@ namespace multigpu {
           }
         };
 
-      // Read the size of the buffer that is coming.
+       // 读取即将到来的缓冲区的大小.
       boost::asio::async_read(
-          self->_socket,
-          message->size_as_buffer(),
-          boost::asio::bind_executor(self->_strand, handle_read_header));
+          self->_socket,// 从socket异步读取数据
+          message->size_as_buffer(),// 读取消息大小的缓冲区
+          boost::asio::bind_executor(self->_strand, handle_read_header));// 绑定执行器并指定处理头部的回调函数
     });
   }
 
