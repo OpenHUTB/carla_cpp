@@ -162,177 +162,175 @@ namespace detail {  // 定义命名空间detail
           boost::gil::color_converted_view<boost::gil::rgb8_pixel_t>(view), // 将视图转换为RGB8像素格式
           boost::gil::jpeg_tag()); // 使用boost库写入JPEG视图
     }
-#endif // LIBCARLA_IMAGE_WITH_JPEG_SUPPORT
-  };
+#endif // LIBCARLA_IMAGE_WITH_JPEG_SUPPORT // 结束JPEG支持的条件编译
 
-  struct io_tiff {
+struct io_tiff { // 定义一个io_tiff结构体
 
-    static constexpr bool is_supported = has_tiff_support();
+    static constexpr bool is_supported = has_tiff_support(); // 判断是否支持TIFF格式
 
-#if LIBCARLA_IMAGE_WITH_TIFF_SUPPORT
+#if LIBCARLA_IMAGE_WITH_TIFF_SUPPORT // 如果开启了TIFF支持
 
-    static constexpr const char *get_default_extension() {
-      return "tiff";
+    static constexpr const char *get_default_extension() { // 获取默认扩展名
+        return "tiff"; // 返回TIFF
     }
 
-    template <typename Str>
-    static bool match_extension(const Str &str) {
-      return StringUtil::EndsWith(str, get_default_extension());
+    template <typename Str> // 模板函数，接受任何字符串类型
+    static bool match_extension(const Str &str) { // 检查文件扩展名是否匹配
+        return StringUtil::EndsWith(str, get_default_extension()); // 返回是否以默认扩展名结尾
     }
 
-    template <typename Str, typename ImageT>
-    static void read_image(Str &&in_filename, ImageT &image) {
-      boost::gil::read_and_convert_image(std::forward<Str>(in_filename), image, boost::gil::tiff_tag());
+    template <typename Str, typename ImageT> // 模板函数，接受字符串和图像类型
+    static void read_image(Str &&in_filename, ImageT &image) { // 读取图像
+        boost::gil::read_and_convert_image(std::forward<Str>(in_filename), image, boost::gil::tiff_tag()); // 使用boost库读取并转换图像
     }
 
-    template <typename Str, typename ViewT>
-    static typename std::enable_if<is_write_supported<ViewT, boost::gil::tiff_tag>::value>::type
-    write_view(Str &&out_filename, const ViewT &view) {
-      boost::gil::write_view(std::forward<Str>(out_filename), view, boost::gil::tiff_tag());
+    template <typename Str, typename ViewT> // 模板函数，接受字符串和视图类型
+    static typename std::enable_if<is_write_supported<ViewT, boost::gil::tiff_tag>::value>::type // 如果支持写入
+    write_view(Str &&out_filename, const ViewT &view) { // 写入视图
+        boost::gil::write_view(std::forward<Str>(out_filename), view, boost::gil::tiff_tag()); // 使用boost库写入视图
     }
 
-    template <typename Str, typename ViewT>
-    static typename std::enable_if<!is_write_supported<ViewT, boost::gil::tiff_tag>::value>::type
-    write_view(Str &&out_filename, const ViewT &view) {
-      boost::gil::write_view(
-          std::forward<Str>(out_filename),
-          boost::gil::color_converted_view<boost::gil::rgb8_pixel_t>(view),
-          boost::gil::tiff_tag());
+    template <typename Str, typename ViewT> // 模板函数，接受字符串和视图类型
+    static typename std::enable_if<!is_write_supported<ViewT, boost::gil::tiff_tag>::value>::type // 如果不支持写入
+    write_view(Str &&out_filename, const ViewT &view) { // 写入视图
+        boost::gil::write_view( // 使用boost库写入
+            std::forward<Str>(out_filename), // 转发输出文件名
+            boost::gil::color_converted_view<boost::gil::rgb8_pixel_t>(view), // 先进行颜色转换
+            boost::gil::tiff_tag()); // 使用TIFF标签
     }
 
-#endif // LIBCARLA_IMAGE_WITH_TIFF_SUPPORT
-  };
+#endif // LIBCARLA_IMAGE_WITH_TIFF_SUPPORT // 结束TIFF支持的条件编译
+};
 
-  struct io_resolver {
+struct io_resolver { // 定义一个io_resolver结构体
 
-    template <typename IO, typename Str>
-    static typename std::enable_if<IO::is_supported, bool>::type match_extension(const Str &str) {
-      return IO::match_extension(str);
+    template <typename IO, typename Str> // 模板函数，接受IO类型和字符串类型
+    static typename std::enable_if<IO::is_supported, bool>::type match_extension(const Str &str) { // 如果IO支持
+        return IO::match_extension(str); // 调用IO的匹配扩展名函数
     }
 
-    template <typename IO, typename Str>
-    static typename std::enable_if<!IO::is_supported, bool>::type match_extension(const Str &) {
-      return false;
+    template <typename IO, typename Str> // 模板函数，接受IO类型和字符串类型
+    static typename std::enable_if<!IO::is_supported, bool>::type match_extension(const Str &) { // 如果IO不支持
+        return false; // 返回false
     }
 
-    template <typename IO, typename Str, typename... Args>
-    static typename std::enable_if<IO::is_supported>::type read_image(const Str &path, Args &&... args) {
-      log_debug("reading", path, "as", IO::get_default_extension());
-      IO::read_image(path, std::forward<Args>(args)...);
+    template <typename IO, typename Str, typename... Args> // 模板函数，接受IO类型、字符串和其他参数
+    static typename std::enable_if<IO::is_supported>::type read_image(const Str &path, Args &&... args) { // 如果IO支持读取
+        log_debug("reading", path, "as", IO::get_default_extension()); // 日志记录正在读取的文件
+        IO::read_image(path, std::forward<Args>(args)...); // 调用IO的读取图像函数
     }
 
-    template <typename IO, typename... Args>
-    static typename std::enable_if<!IO::is_supported>::type read_image(Args &&...) {
-      DEBUG_ASSERT(false);
+    template <typename IO, typename... Args> // 模板函数，接受IO类型和其他参数
+    static typename std::enable_if<!IO::is_supported>::type read_image(Args &&...) { // 如果IO不支持读取
+        DEBUG_ASSERT(false); // 断言失败
     }
 
-    template <typename IO, typename... Args>
-    static typename std::enable_if<IO::is_supported>::type write_view(std::string &path, Args &&... args) {
-      FileSystem::ValidateFilePath(path, IO::get_default_extension());
-      log_debug("writing", path, "as", IO::get_default_extension());
-      IO::write_view(path, std::forward<Args>(args)...);
+    template <typename IO, typename... Args> // 模板函数，接受IO类型和其他参数
+    static typename std::enable_if<IO::is_supported>::type write_view(std::string &path, Args &&... args) { // 如果IO支持写入
+        FileSystem::ValidateFilePath(path, IO::get_default_extension()); // 验证文件路径
+        log_debug("writing", path, "as", IO::get_default_extension()); // 日志记录正在写入的文件
+        IO::write_view(path, std::forward<Args>(args)...); // 调用IO的写入视图函数
     }
 
-    template <typename IO, typename... Args>
-    static typename std::enable_if<!IO::is_supported>::type write_view(Args &&...) {
-      DEBUG_ASSERT(false);
+    template <typename IO, typename... Args> // 模板函数，接受IO类型和其他参数
+    static typename std::enable_if<!IO::is_supported>::type write_view(Args &&...) { // 如果IO不支持写入
+        DEBUG_ASSERT(false); // 断言失败
     }
-  };
+};
 
-  template <typename... IOs>
-  struct io_impl;
+template <typename... IOs> // 模板结构体，接受多个IO类型
+struct io_impl; // 前向声明
 
-  template <typename IO>
-  struct io_impl<IO> {
-    constexpr static bool is_supported = IO::is_supported;
+template <typename IO> // 模板结构体，接受单个IO类型
+struct io_impl<IO> { // 实现io_impl
+    constexpr static bool is_supported = IO::is_supported; // 是否支持IO
 
-    template <typename... Args>
-    static void read_image(Args &&... args) {
-      io_resolver::read_image<IO>(std::forward<Args>(args)...);
-    }
-
-    template <typename... Args>
-    static void write_view(Args &&... args) {
-      io_resolver::write_view<IO>(std::forward<Args>(args)...);
+    template <typename... Args> // 模板函数，接受任意参数
+    static void read_image(Args &&... args) { // 读取图像
+        io_resolver::read_image<IO>(std::forward<Args>(args)...); // 调用io_resolver的读取函数
     }
 
-    template <typename Str, typename... Args>
-    static bool try_read_image(const Str &filename, Args &&... args) {
-      if (io_resolver::match_extension<IO>(filename)) {
-        io_resolver::read_image<IO>(filename, std::forward<Args>(args)...);
-        return true;
-      }
-      return false;
+    template <typename... Args> // 模板函数，接受任意参数
+    static void write_view(Args &&... args) { // 写入视图
+        io_resolver::write_view<IO>(std::forward<Args>(args)...); // 调用io_resolver的写入函数
     }
 
-    template <typename Str, typename... Args>
-    static bool try_write_view(Str &filename, Args &&... args) {
-      if (io_resolver::match_extension<IO>(filename)) {
-        io_resolver::write_view<IO>(filename, std::forward<Args>(args)...);
-        return true;
-      }
-      return false;
+    template <typename Str, typename... Args> // 模板函数，接受字符串和任意参数
+    static bool try_read_image(const Str &filename, Args &&... args) { // 尝试读取图像
+        if (io_resolver::match_extension<IO>(filename)) { // 如果扩展名匹配
+            io_resolver::read_image<IO>(filename, std::forward<Args>(args)...); // 读取图像
+            return true; // 返回true
+        }
+        return false; // 返回false
     }
-  };
 
-  template <typename IO, typename... IOs>
-  struct io_impl<IO, IOs...> {
-  private:
-    using self = io_impl<IO>;
-    using recursive = io_impl<IOs...>;
-  public:
+    template <typename Str, typename... Args> // 模板函数，接受字符串和任意参数
+    static bool try_write_view(Str &filename, Args &&... args) { // 尝试写入视图
+        if (io_resolver::match_extension<IO>(filename)) { // 如果扩展名匹配
+            io_resolver::write_view<IO>(filename, std::forward<Args>(args)...); // 写入视图
+            return true; // 返回true
+        }
+        return false; // 返回false
+    }
+};
+  template <typename IO, typename... IOs> // 定义一个模板结构体io_impl，接受一个IO类型和多个IO类型
+struct io_impl<IO, IOs...> { // 特化io_impl
+private:
+    using self = io_impl<IO>; // 定义self为当前IO的io_impl
+    using recursive = io_impl<IOs...>; // 定义recursive为剩余IOs的io_impl
+public:
 
-    constexpr static bool is_supported = self::is_supported || recursive::is_supported;
+    constexpr static bool is_supported = self::is_supported || recursive::is_supported; // 判断是否支持任一IO
 
-    template <typename... Args>
-    static void read_image(Args &... args) {
-      if (!recursive::try_read_image(args...)) {
-        self::read_image(args...);
+    template <typename... Args> // 定义一个接受任意参数的模板函数
+    static void read_image(Args &... args) { // 读取图像函数
+      if (!recursive::try_read_image(args...)) { // 如果递归IO未能读取图像
+        self::read_image(args...); // 则调用当前IO读取图像
       }
     }
 
-    template <typename... Args>
-    static bool try_read_image(Args &... args) {
-      return recursive::try_read_image(args...) || self::try_read_image(args...);
+    template <typename... Args> // 定义一个接受任意参数的模板函数
+    static bool try_read_image(Args &... args) { // 尝试读取图像函数
+      return recursive::try_read_image(args...) || self::try_read_image(args...); // 返回递归IO或当前IO是否能读取图像
     }
 
-    template <typename... Args>
-    static void write_view(Args &... args) {
-      if (!recursive::try_write_view(args...)) {
-        self::write_view(args...);
+    template <typename... Args> // 定义一个接受任意参数的模板函数
+    static void write_view(Args &... args) { // 写入视图函数
+      if (!recursive::try_write_view(args...)) { // 如果递归IO未能写入视图
+        self::write_view(args...); // 则调用当前IO写入视图
       }
     }
 
-    template <typename... Args>
-    static bool try_write_view(Args &... args) {
-      return recursive::try_write_view(args...) || self::try_write_view(args...);
+    template <typename... Args> // 定义一个接受任意参数的模板函数
+    static bool try_write_view(Args &... args) { // 尝试写入视图函数
+      return recursive::try_write_view(args...) || self::try_write_view(args...); // 返回递归IO或当前IO是否能写入视图
     }
-  };
+};
 
-  template <typename DefaultIO, typename... IOs>
-  struct io_any : detail::io_impl<DefaultIO, IOs...> {
-    static_assert(DefaultIO::is_supported, "Default IO needs to be supported.");
-  };
+template <typename DefaultIO, typename... IOs> // 定义一个模板结构体io_any，接受默认IO和多个IO
+struct io_any : detail::io_impl<DefaultIO, IOs...> { // 继承自detail::io_impl
+    static_assert(DefaultIO::is_supported, "Default IO needs to be supported."); // 确保默认IO是支持的
+};
 
 } // namespace detail
 
-  struct png : detail::io_impl<detail::io_png> {};
+struct png : detail::io_impl<detail::io_png> {}; // 定义png结构体，继承自io_impl
 
-  struct jpeg : detail::io_impl<detail::io_jpeg> {};
+struct jpeg : detail::io_impl<detail::io_jpeg> {}; // 定义jpeg结构体，继承自io_impl
 
-  struct tiff : detail::io_impl<detail::io_tiff> {};
+struct tiff : detail::io_impl<detail::io_tiff> {}; // 定义tiff结构体，继承自io_impl
 
-#if LIBCARLA_IMAGE_WITH_PNG_SUPPORT
+#if LIBCARLA_IMAGE_WITH_PNG_SUPPORT // 如果支持PNG格式
 
-  struct any : detail::io_any<detail::io_png, detail::io_tiff, detail::io_jpeg> {};
+struct any : detail::io_any<detail::io_png, detail::io_tiff, detail::io_jpeg> {}; // 定义any结构体，支持PNG、TIFF和JPEG
 
-#elif LIBCARLA_IMAGE_WITH_TIFF_SUPPORT
+#elif LIBCARLA_IMAGE_WITH_TIFF_SUPPORT // 如果不支持PNG但支持TIFF
 
-  struct any : detail::io_any<detail::io_tiff, detail::io_jpeg> {};
+struct any : detail::io_any<detail::io_tiff, detail::io_jpeg> {}; // 定义any结构体，支持TIFF和JPEG
 
-#else // Then for sure this one is available.
+#else // 如果以上都不支持
 
-  struct any : detail::io_any<detail::io_jpeg> {};
+struct any : detail::io_any<detail::io_jpeg> {}; // 定义any结构体，仅支持JPEG
 
 #endif
 
