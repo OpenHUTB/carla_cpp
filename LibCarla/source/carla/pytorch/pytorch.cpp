@@ -213,19 +213,24 @@ namespace learning {
     _input = input;
   }
 
-
+// 定义一个成员函数 Forward，用于在神经网络模型中执行前向传播
   void NeuralModel::Forward() {
+    // 创建一个存储PyTorch输入数据的向量
     std::vector<torch::jit::IValue> TorchInputs;
+    // 将四个轮子的输入数据转换为Tensor并添加到输入向量中  
     TorchInputs.push_back(GetWheelTensorInputs(_input.wheel0));
     TorchInputs.push_back(GetWheelTensorInputs(_input.wheel1));
     TorchInputs.push_back(GetWheelTensorInputs(_input.wheel2));
     TorchInputs.push_back(GetWheelTensorInputs(_input.wheel3));
+    // 将驾驶控制输入（转向、油门、刹车）转换为Tensor并添加到输入向量中
     auto drv_inputs = torch::tensor(
         {_input.steering, _input.throttle, _input.braking}, torch::kFloat32); //steer, throtle, brake
     TorchInputs.push_back(drv_inputs);
+    // 如果地形类型输入有效，则将其添加到输入向量中
     if (_input.terrain_type >= 0) {
       TorchInputs.push_back(_input.terrain_type);
     }
+    // 将是否输出详细信息的标志添加到输入向量中
     TorchInputs.push_back(_input.verbose);
 
     torch::jit::IValue Output;
