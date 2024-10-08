@@ -34,35 +34,41 @@ const FName UCarlaSettings::CARLA_SKY_TAG = FName("CARLA_SKY");
 // =============================================================================
 // -- Static methods -----------------------------------------------------------
 // =============================================================================
-// ¶¨ÒåÒ»¸ö¾²Ì¬º¯Êı£¬ÓÃÓÚ½«×Ö·û´®×ª»»ÎªÖÊÁ¿µÈ¼¶Ã¶¾ÙÖµ  
-// ²ÎÊı£º  
-// - SQualitySettingsLevel£ºÒ»¸öFStringÀàĞÍµÄ×Ö·û´®£¬±íÊ¾ÖÊÁ¿µÈ¼¶µÄÉèÖÃ  
-// - Default£ºÒ»¸öEQualityLevelÀàĞÍµÄÄ¬ÈÏÖµ£¬µ±×Ö·û´®²»Æ¥ÅäÈÎºÎÒÑÖªÖÊÁ¿µÈ¼¶Ê±·µ»Ø´ËÖµ£¬Ä¬ÈÏÎªEQualityLevel::INVALID 
+// å®šä¹‰ä¸€ä¸ªé™æ€å‡½æ•°ï¼Œç”¨äºå°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºè´¨é‡ç­‰çº§æšä¸¾å€¼  
+// å‚æ•°ï¼š  
+// - SQualitySettingsLevelï¼šä¸€ä¸ªFStringç±»å‹çš„å­—ç¬¦ä¸²ï¼Œè¡¨ç¤ºè´¨é‡ç­‰çº§çš„è®¾ç½®  
+// - Defaultï¼šä¸€ä¸ªEQualityLevelç±»å‹çš„é»˜è®¤å€¼ï¼Œå½“å­—ç¬¦ä¸²ä¸åŒ¹é…ä»»ä½•å·²çŸ¥è´¨é‡ç­‰çº§æ—¶è¿”å›æ­¤å€¼ï¼Œé»˜è®¤ä¸ºEQualityLevel::INVALID 
 static EQualityLevel QualityLevelFromString(
     const FString &SQualitySettingsLevel,
     const EQualityLevel Default = EQualityLevel::INVALID)
 {
-  // Èç¹ûÊäÈë×Ö·û´®µÈÓÚ"Low"£¬Ôò·µ»ØEQualityLevel::Low 
+  // å¦‚æœè¾“å…¥å­—ç¬¦ä¸²ç­‰äº"Low"ï¼Œåˆ™è¿”å›EQualityLevel::Low 
   if (SQualitySettingsLevel.Equals("Low"))
   {
     return EQualityLevel::Low;
   }
-  // Èç¹ûÊäÈë×Ö·û´®µÈÓÚ"Epic"£¬Ôò·µ»ØEQualityLevel::Epic
+  // å¦‚æœè¾“å…¥å­—ç¬¦ä¸²ç­‰äº"Epic"ï¼Œåˆ™è¿”å›EQualityLevel::Epic
   if (SQualitySettingsLevel.Equals("Epic"))
   {
     return EQualityLevel::Epic;
   }
-  // Èç¹û×Ö·û´®²»Æ¥Åä"Low"»ò"Epic"£¬Ôò·µ»Ø´«ÈëµÄÄ¬ÈÏÖµ
+  // å¦‚æœå­—ç¬¦ä¸²ä¸åŒ¹é…"Low"æˆ–"Epic"ï¼Œåˆ™è¿”å›ä¼ å…¥çš„é»˜è®¤å€¼
   return Default;
 }
-
+// å®šä¹‰ä¸€ä¸ªå‡½æ•°ï¼Œç”¨äºå°†è´¨é‡ç­‰çº§æšä¸¾å€¼è½¬æ¢ä¸ºå­—ç¬¦ä¸²  
+// å‚æ•°ï¼š  
+// - QualitySettingsLevelï¼šä¸€ä¸ªEQualityLevelç±»å‹çš„è´¨é‡ç­‰çº§æšä¸¾å€¼ 
 FString QualityLevelToString(EQualityLevel QualitySettingsLevel)
 {
+   // å°è¯•åœ¨é¡¹ç›®çš„ä»»ä½•åŒ…ä¸­æ‰¾åˆ°åä¸º"EQualityLevel"çš„æšä¸¾ç±»å‹å¯¹è±¡
   const UEnum *ptr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EQualityLevel"), true);
+  // å¦‚æœæœªæ‰¾åˆ°è¯¥æšä¸¾ç±»å‹å¯¹è±¡ï¼Œåˆ™è¿”å›"Invalid"å­—ç¬¦ä¸²
   if (!ptr)
   {
     return FString("Invalid");
   }
+  // è¿”å›ä¸ä¼ å…¥çš„è´¨é‡ç­‰çº§æšä¸¾å€¼å¯¹åº”çš„æšä¸¾é¡¹åç§°å­—ç¬¦ä¸²  
+  // è¿™é‡Œä½¿ç”¨static_cast<int32>å°†æšä¸¾å€¼è½¬æ¢ä¸ºç´¢å¼•å€¼
   return ptr->GetNameStringByIndex(static_cast<int32>(QualitySettingsLevel));
 }
 
