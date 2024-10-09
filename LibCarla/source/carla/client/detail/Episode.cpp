@@ -24,16 +24,16 @@ using namespace std::chrono_literals;
     using target_t = const sensor::data::RawEpisodeState;
     return static_cast<target_t &>(data);
   }
-// 模板函数，根据给定的演员ID范围获取演员列表
+// 模板函数，根据给定的参与者ID范围获取演员列表
   template <typename RangeT>
   static auto GetActorsById_Impl(Client &client, CachedActorList &actors, const RangeT &actor_ids) {
-  	// 获取缺失的演员ID
+  	// 获取缺失的参与者ID
     auto missing_ids = actors.GetMissingIds(actor_ids);
     if (!missing_ids.empty()) {
-    	// 如果有缺失的ID，从客户端获取对应演员并插入列表
+    	// 如果有缺失的ID，从客户端获取对应参与者并插入列表
       actors.InsertRange(client.GetActorsById(missing_ids));
     }
-     // 返回指定ID的演员列表
+     // 返回指定ID的参与者列表
     return actors.GetActorsById(actor_ids);
   }
 // 构造函数，通过客户端和弱引用的模拟器创建Episode对象，并使用默认的EpisodeInfo
@@ -112,7 +112,7 @@ using namespace std::chrono_literals;
       }
     });
   }
-// 根据演员ID获取单个演员，如果不存在则从客户端获取并插入到缓存中
+// 根据参与者ID获取单个参与者，如果不存在则从客户端获取并插入到缓存中
   boost::optional<rpc::Actor> Episode::GetActorById(ActorId id) {
     auto actor = _actors.GetActorById(id);
     if (!actor.has_value()) {
@@ -124,11 +124,11 @@ using namespace std::chrono_literals;
     }
     return actor;
   }
-// 根据演员ID列表获取演员列表，使用模板函数实现
+// 根据参与者ID列表获取参与者列表，使用模板函数实现
   std::vector<rpc::Actor> Episode::GetActorsById(const std::vector<ActorId> &actor_ids) {
     return GetActorsById_Impl(_client, _actors, actor_ids);
   }
-// 获取所有演员列表，使用模板函数实现
+// 获取所有参与者列表，使用模板函数实现
   std::vector<rpc::Actor> Episode::GetActors() {
     return GetActorsById_Impl(_client, _actors, GetState()->GetActorIds());
   }
