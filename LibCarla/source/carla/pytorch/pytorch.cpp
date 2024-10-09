@@ -292,30 +292,37 @@ namespace learning {
     c10::cuda::CUDACachingAllocator::emptyCache();
 
   }
-
+// NeuralModel类的ForwardDynamic成员函数，用于执行模型的动态前向传播 
   void NeuralModel::ForwardCUDATensors()
   {
+    // 创建一个用于存储模型输入数据的向量TorchInputs
     std::vector<torch::jit::IValue> TorchInputs;
+    // 将四个轮子的输入数据（可能是传感器数据）转换为PyTorch张量，并添加到TorchInputs中
     TorchInputs.push_back(Model->GetWheelTensorInputsCUDA(_input.wheel0, 0));
     TorchInputs.push_back(Model->GetWheelTensorInputsCUDA(_input.wheel1, 1));
     TorchInputs.push_back(Model->GetWheelTensorInputsCUDA(_input.wheel2, 2));
     TorchInputs.push_back(Model->GetWheelTensorInputsCUDA(_input.wheel3, 3));
+    // 将驾驶控制输入（方向盘转角、油门、刹车）组合成一个PyTorch张量，并添加到TorchInputs中
     auto drv_inputs = torch::tensor(
         {_input.steering, _input.throttle, _input.braking}, torch::kFloat32); //steer, throtle, brake
     TorchInputs.push_back(drv_inputs.cuda());
+    // 如果地形类型有效（非负值），则将其作为标量添加到TorchInputs中 
     if (_input.terrain_type >= 0) {
+      // 将verbose标志（可能用于控制模型输出的详细程度）添加到TorchInputs中
       TorchInputs.push_back(_input.terrain_type);
     }
     TorchInputs.push_back(_input.verbose);
-
+// 定义一个变量Output，用于存储模型的前向传播结果
     torch::jit::IValue Output;
+    // 尝试执行模型的前向传播，如果发生错误（如模型不匹配、输入数据问题等），则捕获异常并打印错误信息
     try {
       Output = Model->module.forward(TorchInputs);
     } catch (const c10::Error& e) {
       std::cout << "Error running model: " << e.msg() << std::endl;
     }
-
+// 将Output转换为包含多个元素的元组，并提取其中的张量数据
     std::vector<torch::jit::IValue> Tensors =  Output.toTuple()->elements();
+    // 对每个轮子的输出数据，调用GetWheelTensorOutputDynamic函数进行处理（可能是提取特定的输出值或进行格式转换）
     _output.wheel0 = GetWheelTensorOutput(
         Tensors[0].toTensor().cpu(), Tensors[4].toTensor().cpu() );
     _output.wheel1 = GetWheelTensorOutput(
