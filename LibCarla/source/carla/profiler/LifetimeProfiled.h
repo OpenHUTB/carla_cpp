@@ -31,9 +31,12 @@ namespace profiler {
 
 } // namespace profiler
 } // namespace carla
-
+// 根据是否定义了LIBCARLA_ENABLE_LIFETIME_PROFILER宏，  
+// LIBCARLA_INITIALIZE_LIFETIME_PROFILER宏被用来方便地初始化LifetimeProfiled对象
 #ifndef LIBCARLA_ENABLE_LIFETIME_PROFILER
 #  define LIBCARLA_INITIALIZE_LIFETIME_PROFILER(display_name) ::carla::profiler::LifetimeProfiled()
+// 当性能分析功能被禁用时，该宏简单地创建一个LifetimeProfiled对象, 但不使用display_name参数
 #else
 #  define LIBCARLA_INITIALIZE_LIFETIME_PROFILER(display_name) ::carla::profiler::LifetimeProfiled(display_name)
+// 当性能分析功能被启用时，该宏使用提供的display_name参数来创建LifetimeProfiled对象，以便在性能分析中包含该对象的标识信息
 #endif // LIBCARLA_ENABLE_LIFETIME_PROFILER
