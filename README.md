@@ -71,8 +71,8 @@ git rm -rf .
 [nongfugengxia](https://github.com/nongfugengxia) 、[donghaiwang](https://github.com/donghaiwang) 、
 <<<<<<< HEAD
 [QEYY060506](https://github.com/QEYY060506) 、[Xiedao](https://github.com/Xiedao) 、[zzz479](https://github.com/zzz479) 、[ifthen865](https://github.com/ifthen865) 、[zuo664](https://github.com/zuo664)、[Allen-Tang0014](https://github.com/Allen-Tang0014)、[BcyWind](https://github.com/BcyWind) 、
-[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)、[Muyunshui](https://github.com/Muyunshui)、[Wen-511](https://github.com/Wen-511)、[juanexuan](https://github.com/juanexuan)
-[jun-72](https://github.com/jun-72)
+[Nananxuan](https://github.com/Nananxuan) 、[xiazhimingchen](https://github.com/xiazhimingchen)、[Muyunshui](https://github.com/Muyunshui)、[Wen-511](https://github.com/Wen-511)、
+[jun-72](https://github.com/jun-72)、[juanexuan](https://github.com/juanexuan)
 [xiushuowang](https://github.com/xiushuowang)
 [gongguixuan](https://github.com/gongguixuan)[Hyz12345678](https://github.com/Hyz12345678)
 [M-3399](https://github.com/M-3399)
