@@ -68,23 +68,27 @@ namespace client {
 
   BlueprintLibrary::const_pointer BlueprintLibrary::Find(const std::string &key) const {
     auto it = _blueprints.find(key);
+    //在 _blueprints 字典中查找给定的键 (key)
     return it != _blueprints.end() ? &it->second : nullptr;
+    //如果找到则返回键对应的值的地址，否则返回 nullptr
   }
 
   BlueprintLibrary::const_reference BlueprintLibrary::at(const std::string &key) const {
     auto it = _blueprints.find(key);
+    //在 _blueprints 字典中查找给定的键 (key)
     if (it == _blueprints.end()) {
       using namespace std::string_literals;
       throw_exception(std::out_of_range("blueprint '"s + key + "' not found"));
-    }
-    return it->second;
+    } //如果未找到对应的键，则抛出一个 out_of_range 异常
+    return it->second;//如果找到对应的键，则返回键对应的值的引用
   }
 
   BlueprintLibrary::const_reference BlueprintLibrary::at(size_type pos) const {
+  	//检查 pos 是否超出 _blueprints 的大小范围
     if (pos >= size()) {
       throw_exception(std::out_of_range("index out of range"));
-    }
-    return operator[](pos);
+    } //如果超出范围，则抛出一个 out_of_range 异常，并提示具体的错误信息
+    return operator[](pos); //如果在范围内，则通过 operator[] 返回对应位置的值
   }
 
 } // namespace client
