@@ -1,7 +1,7 @@
-// Copyright (c) 2019-2020 Intel Corporation
+// 版权(c) 2019-2020 英特尔公司
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品是根据麻省理工学院许可证的条款授权的
+// 有关副本，请参阅 <https://opensource.org/licenses/MIT>.
 
 #include "carla/rss/RssCheck.h"
 
