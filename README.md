@@ -172,5 +172,6 @@ git rm -rf .
 [wdlmd20](https://github.com/wdlmd20)、
 [Hcir-lk](https://github.com/Hcir-lk)、
 [S1TZ](https://github.com/S1TZ)。
-[lzg6667](https://github.com/lzg6667)、
-[Taohygge](https://github.com/Taohygge/carla_cpp.git)
+[lzg6667](https://github.com/lzg6667)。
+[RYZ-666](https://github.com/RYZ-666)、
+[Taohygge](https://github.com/Taohygge/carla_cpp.git)。
