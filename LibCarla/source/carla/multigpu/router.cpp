@@ -34,7 +34,7 @@ Router::Router(uint16_t port) :
 }
 
 void Router::SetCallbacks() {
-  // prepare server
+  // 准备服务器
   std::weak_ptr<Router> weak = shared_from_this();
 
   carla::multigpu::Listener::callback_function_type on_open = [=](std::shared_ptr<carla::multigpu::Primary> session) {
@@ -88,7 +88,7 @@ void Router::ConnectSession(std::shared_ptr<Primary> session) {
   std::lock_guard<std::mutex> lock(_mutex);
   _sessions.emplace_back(std::move(session));
   log_info("Connected secondary servers:", _sessions.size());
-  // run external callback for new connections
+  // 对新连接运行外部回调
   if (_callback)
     _callback();
 }
@@ -110,7 +110,7 @@ void Router::ClearSessions() {
 }
 
 void Router::Write(MultiGPUCommand id, Buffer &&buffer) {
-  // define the command header
+  // 定义命令头
   CommandHeader header;
   header.id = id;
   header.size = buffer.size();

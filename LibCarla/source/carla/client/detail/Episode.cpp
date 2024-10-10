@@ -17,32 +17,35 @@
 namespace carla {
 namespace client {
 namespace detail {
-
+// 使用命名空间中的chrono_literals，用于方便地表示时间常量
 using namespace std::chrono_literals;
-
+// 静态函数，将传感器数据强制转换为特定类型
   static auto &CastData(const sensor::SensorData &data) {
     using target_t = const sensor::data::RawEpisodeState;
     return static_cast<target_t &>(data);
   }
-
+// 模板函数，根据给定的参与者ID范围获取演员列表
   template <typename RangeT>
   static auto GetActorsById_Impl(Client &client, CachedActorList &actors, const RangeT &actor_ids) {
+  	// 获取缺失的参与者ID
     auto missing_ids = actors.GetMissingIds(actor_ids);
     if (!missing_ids.empty()) {
+    	// 如果有缺失的ID，从客户端获取对应参与者并插入列表
       actors.InsertRange(client.GetActorsById(missing_ids));
     }
+     // 返回指定ID的参与者列表
     return actors.GetActorsById(actor_ids);
   }
-
+// 构造函数，通过客户端和弱引用的模拟器创建Episode对象，并使用默认的EpisodeInfo
   Episode::Episode(Client &client, std::weak_ptr<Simulator> simulator)
     : Episode(client, client.GetEpisodeInfo(), simulator) {}
-
+// 构造函数，通过客户端、EpisodeInfo和弱引用的模拟器创建Episode对象
   Episode::Episode(Client &client, const rpc::EpisodeInfo &info, std::weak_ptr<Simulator> simulator)
     : _client(client),
       _state(std::make_shared<EpisodeState>(info.id)),
       _simulator(simulator),
       _token(info.token) {}
-
+// 析构函数，尝试取消订阅流并处理可能的异常
   Episode::~Episode() {
     try {
       _client.UnSubscribeFromStream(_token);
@@ -50,33 +53,33 @@ using namespace std::chrono_literals;
       log_error("exception trying to disconnect from episode:", e.what());
     }
   }
-
+// 开始监听流数据的函数
   void Episode::Listen() {
     std::weak_ptr<Episode> weak = shared_from_this();
     _client.SubscribeToStream(_token, [weak](auto buffer) {
       auto self = weak.lock();
       if (self != nullptr) {
-
+        // 反序列化数据
         auto data = sensor::Deserializer::Deserialize(std::move(buffer));
         auto next = std::make_shared<const EpisodeState>(CastData(*data));
         auto prev = self->GetState();
 
-        // TODO: Update how the map change is detected
+        // TODO: 更新地图变化的检测方式
         bool HasMapChanged = next->HasMapChanged();
         bool UpdateLights = next->IsLightUpdatePending();
 
-        /// Check for pending exceptions (Mainly TM server closed)
+        /// 检查待处理的异常（主要是交通管理服务器关闭）
         if(self->_pending_exceptions) {
 
-          /// Mark pending exception false
+          /// 将待处理的异常标记为 false
           self->_pending_exceptions = false;
 
-          /// Create exception for the error message
+          /// 为错误消息创建异常
           auto exception(self->_pending_exceptions_msg);
-          // Notify waiting threads that exception occurred
+          // 通知等待线程发生异常
           self->_snapshot.SetException(std::runtime_error(exception));
         }
-        /// Sensor case: inconsistent data
+        /// 传感器案例：数据不一致
         else {
           bool episode_changed = (next->GetEpisodeId() != prev->GetEpisodeId());
 
@@ -95,21 +98,21 @@ using namespace std::chrono_literals;
             self->_should_update_map = true;
           }
 
-          /// Episode change
+          /// Episode 改变
           if(episode_changed) {
             self->OnEpisodeChanged();
           }
 
-          // Notify waiting threads and do the callbacks.
+          // 通知等待的线程并执行回调。
           self->_snapshot.SetValue(next);
 
-          // Call user callbacks.
+          // 调用用户回调函数
           self->_on_tick_callbacks.Call(next);
         }
       }
     });
   }
-
+// 根据参与者ID获取单个参与者，如果不存在则从客户端获取并插入到缓存中
   boost::optional<rpc::Actor> Episode::GetActorById(ActorId id) {
     auto actor = _actors.GetActorById(id);
     if (!actor.has_value()) {
@@ -121,26 +124,26 @@ using namespace std::chrono_literals;
     }
     return actor;
   }
-
+// 根据参与者ID列表获取参与者列表，使用模板函数实现
   std::vector<rpc::Actor> Episode::GetActorsById(const std::vector<ActorId> &actor_ids) {
     return GetActorsById_Impl(_client, _actors, actor_ids);
   }
-
+// 获取所有参与者列表，使用模板函数实现
   std::vector<rpc::Actor> Episode::GetActors() {
     return GetActorsById_Impl(_client, _actors, GetState()->GetActorIds());
   }
-
+// 当Episode开始时的处理函数
   void Episode::OnEpisodeStarted() {
     _actors.Clear();
     _on_tick_callbacks.Clear();
     _walker_navigation.reset();
     traffic_manager::TrafficManager::Release();
   }
-
+// 当Episode改变时的处理函数
   void Episode::OnEpisodeChanged() {
     traffic_manager::TrafficManager::Reset();
   }
-
+// 检查自上次调用以来地图是否发生变化
   bool Episode::HasMapChangedSinceLastCall() {
     if(_should_update_map) {
       _should_update_map = false;
@@ -148,7 +151,7 @@ using namespace std::chrono_literals;
     }
     return false;
   }
-
+// 创建WalkerNavigation对象，如果不存在则创建并返回
   std::shared_ptr<WalkerNavigation> Episode::CreateNavigationIfMissing() {
     std::shared_ptr<WalkerNavigation> nav;
     do {
