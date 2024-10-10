@@ -28,13 +28,13 @@ namespace carla {
 
 namespace rss {
 
-/// forward declaration of the RoadBoundariesMode
+/// 前向声明 RoadBoundariesMode 枚举类
 enum class RoadBoundariesMode;
-/// forward declaration of the RssCheck class
+/// 前向声明 RssCheck 类
 class RssCheck;
-/// forward declaration of the ActorContellationResult struct
+/// 前向声明 ActorConstellationResult 结构体
 struct ActorConstellationResult;
-/// forward declaration of the ActorContellationData struct
+/// 前向声明 ActorConstellationData 结构体
 struct ActorConstellationData;
 }  // namespace rss
 
