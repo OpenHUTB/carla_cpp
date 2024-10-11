@@ -17,129 +17,129 @@
 #include "carla/sensor/s11n/SensorHeaderSerializer.h" // 引入传感器头序列化模块
 
 #include "publishers/CarlaPublisher.h" // 引入Carla发布者模块
-#include "publishers/CarlaClockPublisher.h" // 引入Carla时钟发布者模块
-#include "publishers/CarlaRGBCameraPublisher.h" // 引入Carla RGB相机发布者模块
-#include "publishers/CarlaDepthCameraPublisher.h" // 引入Carla 深度相机发布者模块
-#include "publishers/CarlaNormalsCameraPublisher.h" // 引入Carla 法线相机发布者模块
-#include "publishers/CarlaOpticalFlowCameraPublisher.h" // 引入Carla 光流相机发布者模块
-#include "publishers/CarlaSSCameraPublisher.h" // 引入Carla 单目相机发布者模块
-#include "publishers/CarlaISCameraPublisher.h" // 引入Carla 立体相机发布者模块
-#include "publishers/CarlaDVSCameraPublisher.h" // 引入Carla DVS相机发布者模块
-#include "publishers/CarlaLidarPublisher.h" // 引入Carla 激光雷达发布者模块
-#include "publishers/CarlaSemanticLidarPublisher.h" // 引入Carla 语义激光雷达发布者模块
-#include "publishers/CarlaRadarPublisher.h" // 引入Carla 雷达发布者模块
-#include "publishers/CarlaIMUPublisher.h" // 引入Carla IMU发布者模块
-#include "publishers/CarlaGNSSPublisher.h" // 引入Carla GNSS发布者模块
-#include "publishers/CarlaMapSensorPublisher.h" // 引入Carla 地图传感器发布者模块
-#include "publishers/CarlaSpeedometerSensor.h" // 引入Carla 速度计传感器模块
-#include "publishers/CarlaTransformPublisher.h" // 引入Carla 变换发布者模块
-#include "publishers/CarlaCollisionPublisher.h" // 引入Carla 碰撞发布者模块
-#include "publishers/CarlaLineInvasionPublisher.h" // 引入Carla 线路侵入发布者模块
+#include "publishers/CarlaClockPublisher.h" // 引入时钟发布者模块
+#include "publishers/CarlaRGBCameraPublisher.h" // 引入RGB相机发布者模块
+#include "publishers/CarlaDepthCameraPublisher.h" // 引入深度相机发布者模块
+#include "publishers/CarlaNormalsCameraPublisher.h" // 引入法线相机发布者模块
+#include "publishers/CarlaOpticalFlowCameraPublisher.h" // 引入光流相机发布者模块
+#include "publishers/CarlaSSCameraPublisher.h" // 引入超分辨率相机发布者模块
+#include "publishers/CarlaISCameraPublisher.h" // 引入实例分割相机发布者模块
+#include "publishers/CarlaDVSCameraPublisher.h" // 引入DVS相机发布者模块
+#include "publishers/CarlaLidarPublisher.h" // 引入激光雷达发布者模块
+#include "publishers/CarlaSemanticLidarPublisher.h" // 引入语义激光雷达发布者模块
+#include "publishers/CarlaRadarPublisher.h" // 引入雷达发布者模块
+#include "publishers/CarlaIMUPublisher.h" // 引入IMU发布者模块
+#include "publishers/CarlaGNSSPublisher.h" // 引入GNSS发布者模块
+#include "publishers/CarlaMapSensorPublisher.h" // 引入地图传感器发布者模块
+#include "publishers/CarlaSpeedometerSensor.h" // 引入速度计传感器模块
+#include "publishers/CarlaTransformPublisher.h" // 引入变换发布者模块
+#include "publishers/CarlaCollisionPublisher.h" // 引入碰撞发布者模块
+#include "publishers/CarlaLineInvasionPublisher.h" // 引入线路侵入发布者模块
 
-#include "subscribers/CarlaSubscriber.h" // 引入Carla 订阅者模块
-#include "subscribers/CarlaEgoVehicleControlSubscriber.h" // 引入Carla 自主车辆控制订阅者模块
+#include "subscribers/CarlaSubscriber.h" // 引入Carla订阅者模块
+#include "subscribers/CarlaEgoVehicleControlSubscriber.h" // 引入自我车辆控制订阅者模块
 
-#include <vector> // 引入向量容器
+#include <vector> // 引入向量库
 
 namespace carla {
 namespace ros2 {
 
 // 静态字段
-std::shared_ptr<ROS2> ROS2::_instance; // 创建ROS2的共享指针实例
+std::shared_ptr<ROS2> ROS2::_instance; // ROS2实例的共享指针
 
 // 传感器列表（应该等同于SensorsRegistry列表）
-enum ESensors { // 定义传感器类型枚举
+enum ESensors { // 定义传感器枚举
   CollisionSensor, // 碰撞传感器
   DepthCamera, // 深度相机
   NormalsCamera, // 法线相机
   DVSCamera, // DVS相机
   GnssSensor, // GNSS传感器
   InertialMeasurementUnit, // 惯性测量单元
-  LaneInvasionSensor, // 车道侵入传感器
+  LaneInvasionSensor, // 车道入侵传感器
   ObstacleDetectionSensor, // 障碍物检测传感器
   OpticalFlowCamera, // 光流相机
   Radar, // 雷达
-  RayCastSemanticLidar, // 射线投射语义激光雷达
-  RayCastLidar, // 射线投射激光雷达
+  RayCastSemanticLidar, // 光线投射语义激光雷达
+  RayCastLidar, // 光线投射激光雷达
   RssSensor, // RSS传感器
   SceneCaptureCamera, // 场景捕获相机
   SemanticSegmentationCamera, // 语义分割相机
   InstanceSegmentationCamera, // 实例分割相机
   WorldObserver, // 世界观察者
-  CameraGBufferUint8, // 相机G缓冲区（无符号8位整数）
+  CameraGBufferUint8, // 相机G缓冲区（8位无符号整数）
   CameraGBufferFloat // 相机G缓冲区（浮点数）
 };
 
-void ROS2::Enable(bool enable) { // 启用或禁用ROS2功能
+void ROS2::Enable(bool enable) { // 启用或禁用ROS2
   _enabled = enable; // 设置启用状态
-  log_info("ROS2 enabled: ", _enabled); // 记录启用信息
-  _clock_publisher = std::make_shared<CarlaClockPublisher>("clock", ""); // 初始化时钟发布者
-  _clock_publisher->Init(); // 调用初始化方法
+  log_info("ROS2 enabled: ", _enabled); // 记录启用状态
+  _clock_publisher = std::make_shared<CarlaClockPublisher>("clock", ""); // 创建时钟发布者
+  _clock_publisher->Init(); // 初始化时钟发布者
 }
 
-void ROS2::SetFrame(uint64_t frame) { // 设置帧数
-  _frame = frame; // 存储新帧数
-   //log_info("ROS2 new frame: ", _frame); // 记录新帧数
+void ROS2::SetFrame(uint64_t frame) { // 设置帧
+  _frame = frame; // 更新帧
+   //log_info("ROS2 new frame: ", _frame); // 记录新帧信息
    if (_controller) { // 如果控制器存在
-    void* actor = _controller->GetVehicle(); // 获取车辆实例
-    if (_controller->IsAlive()) { // 检查控制器是否存活
-      if (_controller->HasNewMessage()) { // 检查是否有新消息
-        auto it = _actor_callbacks.find(actor); // 查找对应的回调
-        if (it != _actor_callbacks.end()) { // 如果找到回调
+    void* actor = _controller->GetVehicle(); // 获取操作者
+    if (_controller->IsAlive()) { // 如果控制器仍然存活
+      if (_controller->HasNewMessage()) { // 如果有新消息
+        auto it = _actor_callbacks.find(actor); // 查找操作者回调
+        if (it != _actor_callbacks.end()) { // 如果找到操作者回调
           VehicleControl control = _controller->GetMessage(); // 获取控制消息
           it->second(actor, control); // 调用回调函数
         }
       }
-    } else { // 如果控制器不存活
-      RemoveActorCallback(actor); // 移除该演员的回调
+    } else { // 如果控制器不再存活
+      RemoveActorCallback(actor); // 移除操作者回调
     }
    }
 }
 
 void ROS2::SetTimestamp(double timestamp) { // 设置时间戳
   double integral; // 整数部分
-  const double fractional = modf(timestamp, &integral); // 分离小数部分
+  const double fractional = modf(timestamp, &integral); // 分数部分
   const double multiplier = 1000000000.0; // 毫微秒乘数
-  _seconds = static_cast<int32_t>(integral); // 设置秒数
-  _nanoseconds = static_cast<uint32_t>(fractional * multiplier); // 设置纳秒数
-  _clock_publisher->SetData(_seconds, _nanoseconds); // 更新时钟数据
+  _seconds = static_cast<int32_t>(integral); // 更新秒数
+  _nanoseconds = static_cast<uint32_t>(fractional * multiplier); // 更新纳秒数
+  _clock_publisher->SetData(_seconds, _nanoseconds); // 设置时钟数据
   _clock_publisher->Publish(); // 发布时钟数据
    //log_info("ROS2 new timestamp: ", _timestamp); // 记录新时间戳
 }
 
-void ROS2::AddActorRosName(void *actor, std::string ros_name) { // 添加演员的ROS名称
-  _actor_ros_name.insert({actor, ros_name}); // 插入演员和对应的ROS名称
+void ROS2::AddActorRosName(void *actor, std::string ros_name) { // 添加操作者的ROS名称
+  _actor_ros_name.insert({actor, ros_name}); // 插入操作者和ROS名称
 }
 
-void ROS2::AddActorParentRosName(void *actor, void* parent) { // 添加演员的父级ROS名称
-  auto it = _actor_parent_ros_name.find(actor); // 查找演员的父级名称
-  if (it != _actor_parent_ros_name.end()) { // 如果找到父级名称
-    it->second.push_back(parent); // 将父级添加到列表中
-  } else { // 如果未找到
-    _actor_parent_ros_name.insert({actor, {parent}}); // 插入新的父级名称
+void ROS2::AddActorParentRosName(void *actor, void* parent) { // 添加操作者的父ROS名称
+  auto it = _actor_parent_ros_name.find(actor); // 查找操作者
+  if (it != _actor_parent_ros_name.end()) { // 如果找到
+    it->second.push_back(parent); // 添加父名称
+  } else { // 如果没找到
+    _actor_parent_ros_name.insert({actor, {parent}}); // 插入操作者和父名称
   }
 }
 
-void ROS2::RemoveActorRosName(void *actor) { // 移除演员的ROS名称
-  _actor_ros_name.erase(actor); // 移除演员名称
-  _actor_parent_ros_name.erase(actor); // 移除演员父级名称
+void ROS2::RemoveActorRosName(void *actor) { // 移除操作者的ROS名称
+  _actor_ros_name.erase(actor); // 移除ROS名称
+  _actor_parent_ros_name.erase(actor); // 移除父ROS名称
 
-  _publishers.erase(actor); // 移除对应的发布者
-  _transforms.erase(actor); // 移除对应的变换
+  _publishers.erase(actor); // 移除发布者
+  _transforms.erase(actor); // 移除变换数据
 }
 
-void ROS2::UpdateActorRosName(void *actor, std::string ros_name) { // 更新演员的ROS名称
-  auto it = _actor_ros_name.find(actor); // 查找演员名称
+void ROS2::UpdateActorRosName(void *actor, std::string ros_name) { // 更新操作者的ROS名称
+  auto it = _actor_ros_name.find(actor); // 查找操作者
   if (it != _actor_ros_name.end()) { // 如果找到
-    it->second = ros_name; // 更新为新名称
+    it->second = ros_name; // 更新ROS名称
   }
 }
 
-std::string ROS2::GetActorRosName(void *actor) { // 获取演员的ROS名称
-  auto it = _actor_ros_name.find(actor); // 查找演员名称
+std::string ROS2::GetActorRosName(void *actor) { // 获取操作者的ROS名称
+  auto it = _actor_ros_name.find(actor); // 查找操作者
   if (it != _actor_ros_name.end()) { // 如果找到
-    return it->second; // 返回对应的名称
-  } else { // 如果未找到
+    return it->second; // 返回ROS名称
+  } else { // 如果没找到
     return std::string(""); // 返回空字符串
   }
 }
