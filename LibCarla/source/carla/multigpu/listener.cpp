@@ -36,22 +36,25 @@ namespace multigpu {
     _io_context.stop();// 停止io_context的事件处理
     _io_context.reset();// 重置io_context到初始状态
   }
-  
+  // 打开一个新的会话  
+  // 设置超时时间和回调函数，当会话建立、关闭或收到响应时调用
   void Listener::OpenSession(
-      time_duration timeout,
-      callback_function_type on_opened,
-      callback_function_type on_closed,
-      callback_function_type_response on_response) {
+      time_duration timeout,// 会话的超时时间
+      callback_function_type on_opened,// 会话建立时调用的回调函数
+      callback_function_type on_closed,// 会话关闭时调用的回调函数 
+      callback_function_type_response on_response) {// 收到响应时调用的回调函数
 
     using boost::system::error_code;
-
+   // 创建一个Primary对象，它代表一个会话
     auto session = std::make_shared<Primary>(_io_context, timeout, *this);
-    auto self = shared_from_this();
-    
+    auto self = shared_from_this();// 获取Listener的shared_ptr，以便在lambda中使用  
+    // 定义一个lambda来处理accept操作的结果 
     auto handle_query = [on_opened, on_closed, on_response, session, self](const error_code &ec) {
     if (!ec) {
+      // 如果accept成功，打开会话并设置回调函数 
       session->Open(std::move(on_opened), std::move(on_closed), std::move(on_response));
     } else {
+      // 如果失败，记录错误信息 
       log_error("Secondary server:", ec.message());
     }
   };

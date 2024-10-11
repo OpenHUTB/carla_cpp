@@ -34,29 +34,41 @@ const FName UCarlaSettings::CARLA_SKY_TAG = FName("CARLA_SKY");
 // =============================================================================
 // -- Static methods -----------------------------------------------------------
 // =============================================================================
-
+// 定义一个静态函数，用于将字符串转换为质量等级枚举值  
+// 参数：  
+// - SQualitySettingsLevel：一个FString类型的字符串，表示质量等级的设置  
+// - Default：一个EQualityLevel类型的默认值，当字符串不匹配任何已知质量等级时返回此值，默认为EQualityLevel::INVALID 
 static EQualityLevel QualityLevelFromString(
     const FString &SQualitySettingsLevel,
     const EQualityLevel Default = EQualityLevel::INVALID)
 {
+  // 如果输入字符串等于"Low"，则返回EQualityLevel::Low 
   if (SQualitySettingsLevel.Equals("Low"))
   {
     return EQualityLevel::Low;
   }
+  // 如果输入字符串等于"Epic"，则返回EQualityLevel::Epic
   if (SQualitySettingsLevel.Equals("Epic"))
   {
     return EQualityLevel::Epic;
   }
+  // 如果字符串不匹配"Low"或"Epic"，则返回传入的默认值
   return Default;
 }
-
+// 定义一个函数，用于将质量等级枚举值转换为字符串  
+// 参数：  
+// - QualitySettingsLevel：一个EQualityLevel类型的质量等级枚举值 
 FString QualityLevelToString(EQualityLevel QualitySettingsLevel)
 {
+   // 尝试在项目的任何包中找到名为"EQualityLevel"的枚举类型对象
   const UEnum *ptr = FindObject<UEnum>(ANY_PACKAGE, TEXT("EQualityLevel"), true);
+  // 如果未找到该枚举类型对象，则返回"Invalid"字符串
   if (!ptr)
   {
     return FString("Invalid");
   }
+  // 返回与传入的质量等级枚举值对应的枚举项名称字符串  
+  // 这里使用static_cast<int32>将枚举值转换为索引值
   return ptr->GetNameStringByIndex(static_cast<int32>(QualitySettingsLevel));
 }
 
