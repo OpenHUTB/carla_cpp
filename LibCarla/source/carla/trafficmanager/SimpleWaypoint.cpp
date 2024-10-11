@@ -11,135 +11,133 @@
 namespace carla {
 namespace traffic_manager {
 
-  using SimpleWaypointPtr = std::shared_ptr<SimpleWaypoint>;
+  using SimpleWaypointPtr = std::shared_ptr<SimpleWaypoint>; // 定义一个智能指针类型，指向SimpleWaypoint类的实例
 
-  SimpleWaypoint::SimpleWaypoint(WaypointPtr _waypoint) {
-    waypoint = _waypoint;
-    next_left_waypoint = nullptr;
-    next_right_waypoint = nullptr;
+  SimpleWaypoint::SimpleWaypoint(WaypointPtr _waypoint) { // 构造函数，接受一个WaypointPtr类型的参数
+    waypoint = _waypoint; // 初始化成员waypoint
+    next_left_waypoint = nullptr; // 初始化左侧下一个路点为空
+    next_right_waypoint = nullptr; // 初始化右侧下一个路点为空
   }
-  SimpleWaypoint::~SimpleWaypoint() {}
+  SimpleWaypoint::~SimpleWaypoint() {} // 析构函数
 
-  std::vector<SimpleWaypointPtr> SimpleWaypoint::GetNextWaypoint() const {
-    return next_waypoints;
-  }
-
-  std::vector<SimpleWaypointPtr> SimpleWaypoint::GetPreviousWaypoint() const {
-    return previous_waypoints;
+  std::vector<SimpleWaypointPtr> SimpleWaypoint::GetNextWaypoint() const { // 获取下一个路点
+    return next_waypoints; // 返回下一个路点的向量
   }
 
-  WaypointPtr SimpleWaypoint::GetWaypoint() const {
-    return waypoint;
+  std::vector<SimpleWaypointPtr> SimpleWaypoint::GetPreviousWaypoint() const { // 获取上一个路点
+    return previous_waypoints; // 返回上一个路点的向量
   }
 
-  uint64_t SimpleWaypoint::GetId() const {
-    return waypoint->GetId();
+  WaypointPtr SimpleWaypoint::GetWaypoint() const { // 获取当前的Waypoint
+    return waypoint; // 返回waypoint
   }
 
-  SimpleWaypointPtr SimpleWaypoint::GetLeftWaypoint() {
-    return next_left_waypoint;
+  uint64_t SimpleWaypoint::GetId() const { // 获取当前路点的ID
+    return waypoint->GetId(); // 返回waypoint的ID
   }
 
-  SimpleWaypointPtr SimpleWaypoint::GetRightWaypoint() {
-    return next_right_waypoint;
+  SimpleWaypointPtr SimpleWaypoint::GetLeftWaypoint() { // 获取左侧下一个路点
+    return next_left_waypoint; // 返回左侧下一个路点
   }
 
-  cg::Location SimpleWaypoint::GetLocation() const {
-    return waypoint->GetTransform().location;
+  SimpleWaypointPtr SimpleWaypoint::GetRightWaypoint() { // 获取右侧下一个路点
+    return next_right_waypoint; // 返回右侧下一个路点
   }
 
-  cg::Vector3D SimpleWaypoint::GetForwardVector() const {
-    return waypoint->GetTransform().rotation.GetForwardVector();
+  cg::Location SimpleWaypoint::GetLocation() const { // 获取当前路点的位置
+    return waypoint->GetTransform().location; // 返回位置
   }
 
-  uint64_t SimpleWaypoint::SetNextWaypoint(const std::vector<SimpleWaypointPtr> &waypoints) {
-    for (auto &simple_waypoint: waypoints) {
-      next_waypoints.push_back(simple_waypoint);
+  cg::Vector3D SimpleWaypoint::GetForwardVector() const { // 获取当前路点的前进方向向量
+    return waypoint->GetTransform().rotation.GetForwardVector(); // 返回前进方向向量
+  }
+
+  uint64_t SimpleWaypoint::SetNextWaypoint(const std::vector<SimpleWaypointPtr> &waypoints) { // 设置下一个路点
+    for (auto &simple_waypoint: waypoints) { // 遍历给定的路点向量
+      next_waypoints.push_back(simple_waypoint); // 将每个路点添加到next_waypoints中
     }
-    return static_cast<uint64_t>(waypoints.size());
+    return static_cast<uint64_t>(waypoints.size()); // 返回设置的路点数量
   }
 
-  uint64_t SimpleWaypoint::SetPreviousWaypoint(const std::vector<SimpleWaypointPtr> &waypoints) {
-    for (auto &simple_waypoint: waypoints) {
-      previous_waypoints.push_back(simple_waypoint);
+  uint64_t SimpleWaypoint::SetPreviousWaypoint(const std::vector<SimpleWaypointPtr> &waypoints) { // 设置上一个路点
+    for (auto &simple_waypoint: waypoints) { // 遍历给定的路点向量
+      previous_waypoints.push_back(simple_waypoint); // 将每个路点添加到previous_waypoints中
     }
-    return static_cast<uint64_t>(waypoints.size());
+    return static_cast<uint64_t>(waypoints.size()); // 返回设置的路点数量
   }
 
-  void SimpleWaypoint::SetLeftWaypoint(SimpleWaypointPtr &_waypoint) {
-
-    const cg::Vector3D heading_vector = waypoint->GetTransform().GetForwardVector();
-    const cg::Vector3D relative_vector = GetLocation() - _waypoint->GetLocation();
-    if ((heading_vector.x * relative_vector.y - heading_vector.y * relative_vector.x) > 0.0f) {
-      next_left_waypoint = _waypoint;
-    }
-  }
-
-  void SimpleWaypoint::SetRightWaypoint(SimpleWaypointPtr &_waypoint) {
-
-    const cg::Vector3D heading_vector = waypoint->GetTransform().GetForwardVector();
-    const cg::Vector3D relative_vector = GetLocation() - _waypoint->GetLocation();
-    if ((heading_vector.x * relative_vector.y - heading_vector.y * relative_vector.x) < 0.0f) {
-      next_right_waypoint = _waypoint;
+  void SimpleWaypoint::SetLeftWaypoint(SimpleWaypointPtr &_waypoint) { // 设置左侧下一个路点
+    const cg::Vector3D heading_vector = waypoint->GetTransform().GetForwardVector(); // 获取前进方向向量
+    const cg::Vector3D relative_vector = GetLocation() - _waypoint->GetLocation(); // 计算相对位置向量
+    if ((heading_vector.x * relative_vector.y - heading_vector.y * relative_vector.x) > 0.0f) { // 判断是否为左侧
+      next_left_waypoint = _waypoint; // 设置左侧下一个路点
     }
   }
 
-  float SimpleWaypoint::Distance(const cg::Location &location) const {
-    return GetLocation().Distance(location);
+  void SimpleWaypoint::SetRightWaypoint(SimpleWaypointPtr &_waypoint) { // 设置右侧下一个路点
+    const cg::Vector3D heading_vector = waypoint->GetTransform().GetForwardVector(); // 获取前进方向向量
+    const cg::Vector3D relative_vector = GetLocation() - _waypoint->GetLocation(); // 计算相对位置向量
+    if ((heading_vector.x * relative_vector.y - heading_vector.y * relative_vector.x) < 0.0f) { // 判断是否为右侧
+      next_right_waypoint = _waypoint; // 设置右侧下一个路点
+    }
   }
 
-  float SimpleWaypoint::Distance(const SimpleWaypointPtr &other) const {
-    return GetLocation().Distance(other->GetLocation());
+  float SimpleWaypoint::Distance(const cg::Location &location) const { // 计算与给定位置的距离
+    return GetLocation().Distance(location); // 返回距离
   }
 
-  float SimpleWaypoint::DistanceSquared(const cg::Location &location) const {
-    return cg::Math::DistanceSquared(GetLocation(), location);
+  float SimpleWaypoint::Distance(const SimpleWaypointPtr &other) const { // 计算与另一个路点的距离
+    return GetLocation().Distance(other->GetLocation()); // 返回距离
   }
 
-  float SimpleWaypoint::DistanceSquared(const SimpleWaypointPtr &other) const {
-    return cg::Math::DistanceSquared(GetLocation(), other->GetLocation());
+  float SimpleWaypoint::DistanceSquared(const cg::Location &location) const { // 计算与给定位置的平方距离
+    return cg::Math::DistanceSquared(GetLocation(), location); // 返回平方距离
   }
 
-  bool SimpleWaypoint::CheckJunction() const {
-    return _is_junction;
+  float SimpleWaypoint::DistanceSquared(const SimpleWaypointPtr &other) const { // 计算与另一个路点的平方距离
+    return cg::Math::DistanceSquared(GetLocation(), other->GetLocation()); // 返回平方距离
   }
 
-  void SimpleWaypoint::SetIsJunction(bool value) {
-    _is_junction = value;
+  bool SimpleWaypoint::CheckJunction() const { // 检查当前路点是否为交叉口
+    return _is_junction; // 返回交叉口状态
   }
 
-  bool SimpleWaypoint::CheckIntersection() const {
-    return (next_waypoints.size() > 1);
+  void SimpleWaypoint::SetIsJunction(bool value) { // 设置当前路点为交叉口
+    _is_junction = value; // 更新交叉口状态
   }
 
-  void SimpleWaypoint::SetGeodesicGridId(GeoGridId _geodesic_grid_id) {
-    geodesic_grid_id = _geodesic_grid_id;
+  bool SimpleWaypoint::CheckIntersection() const { // 检查当前路点是否有多个下一个路点
+    return (next_waypoints.size() > 1); // 如果下一个路点数量大于1，则返回true
   }
 
-  GeoGridId SimpleWaypoint::GetGeodesicGridId() {
-    GeoGridId grid_id;
-    if (waypoint->IsJunction()) {
-      grid_id = waypoint->GetJunctionId();
+  void SimpleWaypoint::SetGeodesicGridId(GeoGridId _geodesic_grid_id) { // 设置地理网格ID
+    geodesic_grid_id = _geodesic_grid_id; // 更新地理网格ID
+  }
+
+  GeoGridId SimpleWaypoint::GetGeodesicGridId() { // 获取地理网格ID
+    GeoGridId grid_id; // 声明变量存储网格ID
+    if (waypoint->IsJunction()) { // 如果当前路点是交叉口
+      grid_id = waypoint->GetJunctionId(); // 获取交叉口ID
     } else {
-      grid_id = geodesic_grid_id;
+      grid_id = geodesic_grid_id; // 否则获取地理网格ID
     }
-    return grid_id;
+    return grid_id; // 返回网格ID
   }
 
-  GeoGridId SimpleWaypoint::GetJunctionId() const {
-    return waypoint->GetJunctionId();
+  GeoGridId SimpleWaypoint::GetJunctionId() const { // 获取交叉口ID
+    return waypoint->GetJunctionId(); // 返回交叉口ID
   }
 
-  cg::Transform SimpleWaypoint::GetTransform() const {
-    return waypoint->GetTransform();
+  cg::Transform SimpleWaypoint::GetTransform() const { // 获取当前路点的变换信息
+    return waypoint->GetTransform(); // 返回变换信息
   }
 
-  void SimpleWaypoint::SetRoadOption(RoadOption _road_option) {
-    road_option = _road_option;
+  void SimpleWaypoint::SetRoadOption(RoadOption _road_option) { // 设置道路选项
+    road_option = _road_option; // 更新道路选项
   }
 
-  RoadOption SimpleWaypoint::GetRoadOption() {
-    return road_option;
+  RoadOption SimpleWaypoint::GetRoadOption() { // 获取道路选项
+    return road_option; // 返回道路选项
   }
 
 } // namespace traffic_manager
