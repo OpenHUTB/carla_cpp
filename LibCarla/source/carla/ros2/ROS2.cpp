@@ -316,9 +316,9 @@ parent_ros_name.c_str());// 创建新的深度相机发布者
           ros_name += string_id;// 添加字符串ID
           UpdateActorRosName(actor, ros_name);// 更新操作者的ROS名称
         }
-        std::shared_ptr<CarlaLineInvasionPublisher> new_publisher = std::make_shared<CarlaLineInvasionPublisher>(ros_name.c_str(), parent_ros_name.c_str());// 创建新的车道侵入发布者
-        if (new_publisher->Init()) {// 初始化车道侵入发布者
-          _publishers.insert({actor, new_publisher});// 将车道侵入发布者插入到发布者集合中
+        std::shared_ptr<CarlaLineInvasionPublisher> new_publisher = std::make_shared<CarlaLineInvasionPublisher>(ros_name.c_str(), parent_ros_name.c_str());// 创建新的压线发布者
+        if (new_publisher->Init()) {// 初始化压线发布者
+          _publishers.insert({actor, new_publisher});// 将压线发布者插入到发布者集合中
           publisher = new_publisher;// 更新当前发布者
         }
         std::shared_ptr<CarlaTransformPublisher> new_transform = std::make_shared<CarlaTransformPublisher>(ros_name.c_str(), parent_ros_name.c_str());// 创建新的变换发布者
