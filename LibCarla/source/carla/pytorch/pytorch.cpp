@@ -183,20 +183,29 @@ namespace learning {
   }
 
   NeuralModel::NeuralModel() {
+    // 使用std::make_unique初始化Model成员变量，它是一个指向NeuralModelImpl类型的unique_ptr
     Model = std::make_unique<NeuralModelImpl>();
   }
   void NeuralModel::LoadModel(char* filename, int device) {
+    // 禁用TensorExpr融合器，可能是为了避免某些与模型加载或执行不兼容的问题
     torch::jit::setTensorExprFuserEnabled(false);
+    // 将传入的char*类型文件名转换为std::string，便于后续操作。
     std::string filename_str(filename);
+    // 打印正在加载的模型文件名
     std::cout << "loading " << filename_str << std::endl;
     try {
+      // 使用torch::jit::load加载模型文件，并将其存储在ModelImpl类的module成员中
       Model->module = torch::jit::load(filename_str);
+      // 构造CUDA设备字符串，格式为"cuda:X"，其中X是传入的设备ID
       std::string cuda_str = "cuda:" + std::to_string(device);
+      // 将模型移动到指定的CUDA设备上执行
       // std::cout << "Using CUDA device " << cuda_str << std::endl;
       // Model->module.to(at::Device(cuda_str));
     } catch (const c10::Error& e) {
+      // 如果加载模型过程中发生异常（例如文件不存在、格式错误等），则捕获异常并打印错误信息
       std::cout << "Error loading model: " << e.msg() << std::endl;
     }
+    // 打印模型加载完成的消息
     std::cout << "loaded " << filename_str <<  std::endl;
   }
 
@@ -204,29 +213,37 @@ namespace learning {
     _input = input;
   }
 
-
+// 定义一个成员函数 Forward，用于在神经网络模型中执行前向传播
   void NeuralModel::Forward() {
+    // 创建一个存储PyTorch输入数据的向量
     std::vector<torch::jit::IValue> TorchInputs;
+    // 将四个轮子的输入数据转换为Tensor并添加到输入向量中  
     TorchInputs.push_back(GetWheelTensorInputs(_input.wheel0));
     TorchInputs.push_back(GetWheelTensorInputs(_input.wheel1));
     TorchInputs.push_back(GetWheelTensorInputs(_input.wheel2));
     TorchInputs.push_back(GetWheelTensorInputs(_input.wheel3));
+    // 将驾驶控制输入（转向、油门、刹车）转换为Tensor并添加到输入向量中
     auto drv_inputs = torch::tensor(
         {_input.steering, _input.throttle, _input.braking}, torch::kFloat32); //steer, throtle, brake
     TorchInputs.push_back(drv_inputs);
+    // 如果地形类型输入有效，则将其添加到输入向量中
     if (_input.terrain_type >= 0) {
       TorchInputs.push_back(_input.terrain_type);
     }
+    // 将是否输出详细信息的标志添加到输入向量中
     TorchInputs.push_back(_input.verbose);
-
+// 定义一个变量用于存储模型的输出
     torch::jit::IValue Output;
+    // 尝试执行模型的前向传播，并捕获可能发生的错误
     try {
       Output = Model->module.forward(TorchInputs);
     } catch (const c10::Error& e) {
+       // 如果发生错误，打印错误信息  
       std::cout << "Error running model: " << e.msg() << std::endl;
     }
-
+// 将模型的输出转换为元组，并提取其中的Tensor
     std::vector<torch::jit::IValue> Tensors =  Output.toTuple()->elements();
+     // 对每个轮子的输出Tensor进行处理，并更新输出结构体中的相应字段
     _output.wheel0 = GetWheelTensorOutput(
         Tensors[0].toTensor().cpu(), Tensors[4].toTensor().cpu() );
     _output.wheel1 = GetWheelTensorOutput(
@@ -275,30 +292,37 @@ namespace learning {
     c10::cuda::CUDACachingAllocator::emptyCache();
 
   }
-
+// NeuralModel类的ForwardDynamic成员函数，用于执行模型的动态前向传播 
   void NeuralModel::ForwardCUDATensors()
   {
+    // 创建一个用于存储模型输入数据的向量TorchInputs
     std::vector<torch::jit::IValue> TorchInputs;
+    // 将四个轮子的输入数据（可能是传感器数据）转换为PyTorch张量，并添加到TorchInputs中
     TorchInputs.push_back(Model->GetWheelTensorInputsCUDA(_input.wheel0, 0));
     TorchInputs.push_back(Model->GetWheelTensorInputsCUDA(_input.wheel1, 1));
     TorchInputs.push_back(Model->GetWheelTensorInputsCUDA(_input.wheel2, 2));
     TorchInputs.push_back(Model->GetWheelTensorInputsCUDA(_input.wheel3, 3));
+    // 将驾驶控制输入（方向盘转角、油门、刹车）组合成一个PyTorch张量，并添加到TorchInputs中
     auto drv_inputs = torch::tensor(
         {_input.steering, _input.throttle, _input.braking}, torch::kFloat32); //steer, throtle, brake
     TorchInputs.push_back(drv_inputs.cuda());
+    // 如果地形类型有效（非负值），则将其作为标量添加到TorchInputs中 
     if (_input.terrain_type >= 0) {
+      // 将verbose标志（可能用于控制模型输出的详细程度）添加到TorchInputs中
       TorchInputs.push_back(_input.terrain_type);
     }
     TorchInputs.push_back(_input.verbose);
-
+// 定义一个变量Output，用于存储模型的前向传播结果
     torch::jit::IValue Output;
+    // 尝试执行模型的前向传播，如果发生错误（如模型不匹配、输入数据问题等），则捕获异常并打印错误信息
     try {
       Output = Model->module.forward(TorchInputs);
     } catch (const c10::Error& e) {
       std::cout << "Error running model: " << e.msg() << std::endl;
     }
-
+// 将Output转换为包含多个元素的元组，并提取其中的张量数据
     std::vector<torch::jit::IValue> Tensors =  Output.toTuple()->elements();
+    // 对每个轮子的输出数据，调用GetWheelTensorOutputDynamic函数进行处理（可能是提取特定的输出值或进行格式转换）
     _output.wheel0 = GetWheelTensorOutput(
         Tensors[0].toTensor().cpu(), Tensors[4].toTensor().cpu() );
     _output.wheel1 = GetWheelTensorOutput(
