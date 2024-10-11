@@ -1,82 +1,76 @@
-// 本作品根据MIT许可证条款进行授权。
-// 许可证副本见<https://opensource.org/licenses/MIT>。
+// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+// de Barcelona (UAB).
+//
+// This work is licensed under the terms of the MIT license.
+// For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include <carla/client/Actor.h> // 引入Actor功能的头文件
-#include <carla/client/TrafficLight.h> // 引入TrafficLight功能的头文件
-#include <carla/client/Vehicle.h> // 引入Vehicle功能的头文件
-#include <carla/client/Walker.h> // 引入Walker功能的头文件
-#include <carla/client/WalkerAIController.h> // 引入Walker AI控制器功能的头文件
-#include <carla/rpc/TrafficLightState.h> // 引入交通灯状态的头文件
-#include <carla/trafficmanager/TrafficManager.h> // 引入交通管理器功能的头文件
+#include <carla/client/Actor.h>
+#include <carla/client/TrafficLight.h>
+#include <carla/client/Vehicle.h>
+#include <carla/client/Walker.h>
+#include <carla/client/WalkerAIController.h>
+#include <carla/rpc/TrafficLightState.h>
+#include <carla/trafficmanager/TrafficManager.h>
 
-#include <boost/python/suite/indexing/vector_indexing_suite.hpp> // 引入Boost.Python库以支持向量索引
+#include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 
-#include <ostream> // 引入输出流的头文件
-#include <iostream> // 引入输入输出流的头文件
-
-namespace ctm = carla::traffic_manager; // 为交通管理器命名空间创建别名
+#include <ostream>
+#include <iostream>
+namespace ctm = carla::traffic_manager;
 
 namespace carla {
 namespace client {
 
-// 重载输出流操作符以打印Actor信息
-std::ostream &operator<<(std::ostream &out, const Actor &actor) {
-    // 输出Actor的ID和类型
+  std::ostream &operator<<(std::ostream &out, const Actor &actor) {
     out << "Actor(id=" << actor.GetId() << ", type=" << actor.GetTypeId() << ')';
     return out;
-}
+  }
 
 } // namespace client
 } // namespace carla
 
-// 模板函数将std::vector转换为Python列表
 template<class T>
 boost::python::list StdVectorToPyList(const std::vector<T> &vec) {
-    boost::python::list l; // 创建一个新的Python列表
-    for (auto &e : vec) { // 遍历向量中的每个元素
-        l.append(e); // 将每个元素添加到Python列表中
-    }
-    return l; // 返回填充好的Python列表
+  boost::python::list l;
+  for (auto &e : vec) {
+    l.append(e);
+  }
+  return l;
 }
 
-// 获取Actor的语义标签并转换为Python列表
 static boost::python::list GetSemanticTags(const carla::client::Actor &self) {
-    const std::vector<uint8_t> &tags = self.GetSemanticTags(); // 获取语义标签
-    return StdVectorToPyList(tags); // 转换并返回为Python列表
+  const std::vector<uint8_t> &tags = self.GetSemanticTags();
+  return StdVectorToPyList(tags);
 }
 
-// 为Actor添加冲击力
 static void AddActorImpulse(carla::client::Actor &self,
     const carla::geom::Vector3D &impulse) {
-    self.AddImpulse(impulse); // 对Actor施加冲击力
+  self.AddImpulse(impulse);
 }
 
-// 为Actor添加力
 static void AddActorForce(carla::client::Actor &self,
     const carla::geom::Vector3D &force) {
-    self.AddForce(force); // 对Actor施加力
+  self.AddForce(force);
 }
 
-// 获取与交通灯关联的组交通灯
 static auto GetGroupTrafficLights(carla::client::TrafficLight &self) {
-    auto values = self.GetGroupTrafficLights(); // 获取组交通灯
-    return StdVectorToPyList(values); // 转换并返回为Python列表
+  auto values = self.GetGroupTrafficLights();
+  return StdVectorToPyList(values);
 }
 
-// 模板函数为Walker应用控制
 template <typename ControlT>
 static void ApplyControl(carla::client::Walker &self, const ControlT &control) {
-    self.ApplyControl(control); // 将控制应用于Walker
+  self.ApplyControl(control);
 }
 
-// 获取交通灯的光源盒
 static auto GetLightBoxes(const carla::client::TrafficLight &self) {
-    boost::python::list result; // 创建一个新的Python列表用于结果
-    for (const auto &bb : self.GetLightBoxes()) { // 遍历每个边界框
-        result.append(bb); // 将边界框添加到结果列表中
-    }
-    return result; // 返回填充好的光源盒列表
+  boost::python::list result;
+  for (const auto &bb : self.GetLightBoxes()) {
+    result.append(bb);
+  }
+  return result;
 }
+
 void export_actor() {
   using namespace boost::python;
   namespace cc = carla::client;
