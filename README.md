@@ -1,4 +1,4 @@
-# Carla 的 C++ 文档
+﻿# Carla 的 C++ 文档
 注释Carla的 [LibCarla](https://github.com/OpenHUTB/carla_cpp/tree/dev/LibCarla/source/carla) 、[CarlaUE4](https://github.com/OpenHUTB/carla_cpp/tree/dev/Unreal/CarlaUE4/Plugins/Carla/Source/Carla) 模块，包括实现方式、实现原理、流程图等。做出贡献之前请查看 [指南](https://github.com/OpenHUTB/PFC/blob/main/CONTRIBUTING.md) 。
 
 ## 生成文档
@@ -168,8 +168,11 @@ git rm -rf .
 [SRX-ytk](https://github.com/SRX-ytk)、
 [xiaoyu-903](https://github.come/xiaoyu-903)、
 [zhouxinyu-a11y](https://github.come/zhouxinyu-a11y)、
+[wdlmd20](https://github.com/wdlmd20)。
 [wdlmd20](https://github.com/wdlmd20)、
 [Hcir-lk](https://github.com/Hcir-lk)、
 [S1TZ](https://github.com/S1TZ)。
 [lzg6667](https://github.com/lzg6667)。
-[RYZ-666](https://github.com/RYZ-666)
+[RYZ-666](https://github.com/RYZ-666)、
+[Taohygge](https://github.com/Taohygge/carla_cpp.git)。
+
