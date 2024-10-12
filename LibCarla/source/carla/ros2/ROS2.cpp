@@ -601,247 +601,247 @@ void ROS2::ProcessDataFromCamera(
       }
       break;
     }
-    case ESensors::SemanticSegmentationCamera:
-      log_info("Sensor SemanticSegmentationCamera to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());
+    case ESensors::SemanticSegmentationCamera:// 语义分割相机
+      log_info("Sensor SemanticSegmentationCamera to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());// 记录信息：语义分割相机到ROS数据
       {
-        auto sensors = GetOrCreateSensor(ESensors::SemanticSegmentationCamera, stream_id, actor);
-        if (sensors.first) {
-          std::shared_ptr<CarlaSSCameraPublisher> publisher = std::dynamic_pointer_cast<CarlaSSCameraPublisher>(sensors.first);
-          const carla::sensor::s11n::ImageSerializer::ImageHeader *header =
-            reinterpret_cast<const carla::sensor::s11n::ImageSerializer::ImageHeader *>(buffer->data());
-          if (!header)
-            return;
-          if (!publisher->HasBeenInitialized())
-            publisher->InitInfoData(0, 0, H, W, Fov, true);
-          publisher->SetImageData(_seconds, _nanoseconds, header->height, header->width, (const uint8_t*) (buffer->data() + carla::sensor::s11n::ImageSerializer::header_offset));
-          publisher->SetCameraInfoData(_seconds, _nanoseconds);
-          publisher->Publish();
+        auto sensors = GetOrCreateSensor(ESensors::SemanticSegmentationCamera, stream_id, actor);// 获取或创建传感器
+        if (sensors.first) {// 如果第一个传感器存在
+          std::shared_ptr<CarlaSSCameraPublisher> publisher = std::dynamic_pointer_cast<CarlaSSCameraPublisher>(sensors.first);// 转换为语义分割相机发布者
+          const carla::sensor::s11n::ImageSerializer::ImageHeader *header =// 获取图像头信息
+            reinterpret_cast<const carla::sensor::s11n::ImageSerializer::ImageHeader *>(buffer->data());// 从缓冲区中获取数据
+          if (!header) // 如果图像头不存在
+            return;// 返回
+          if (!publisher->HasBeenInitialized())// 如果发布者尚未初始化
+            publisher->InitInfoData(0, 0, H, W, Fov, true);// 初始化信息数据
+          publisher->SetImageData(_seconds, _nanoseconds, header->height, header->width, (const uint8_t*) (buffer->data() + carla::sensor::s11n::ImageSerializer::header_offset));// 设置图像数据
+          publisher->SetCameraInfoData(_seconds, _nanoseconds); // 设置相机信息数据
+          publisher->Publish();// 发布数据
         }
-        if (sensors.second) {
-          std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-          publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-          publisher->Publish();
+        if (sensors.second) {// 如果第二个传感器存在
+          std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 转换为变换发布者
+          publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置位置信息和旋转信息
+          publisher->Publish();// 发布数据
         }
       }
-      break;
-    case ESensors::InstanceSegmentationCamera:
-      log_info("Sensor InstanceSegmentationCamera to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());
+      break;// 结束该case
+    case ESensors::InstanceSegmentationCamera:// 实例分割相机
+      log_info("Sensor InstanceSegmentationCamera to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());// 记录信息：实例分割相机到ROS数据
       {
-        auto sensors = GetOrCreateSensor(ESensors::InstanceSegmentationCamera, stream_id, actor);
-        if (sensors.first) {
-          std::shared_ptr<CarlaISCameraPublisher> publisher = std::dynamic_pointer_cast<CarlaISCameraPublisher>(sensors.first);
-          const carla::sensor::s11n::ImageSerializer::ImageHeader *header =
-            reinterpret_cast<const carla::sensor::s11n::ImageSerializer::ImageHeader *>(buffer->data());
-          if (!header)
-            return;
-          if (!publisher->HasBeenInitialized())
-            publisher->InitInfoData(0, 0, H, W, Fov, true);
-          publisher->SetImageData(_seconds, _nanoseconds, header->height, header->width, (const uint8_t*) (buffer->data() + carla::sensor::s11n::ImageSerializer::header_offset));
-          publisher->SetCameraInfoData(_seconds, _nanoseconds);
-          publisher->Publish();
+        auto sensors = GetOrCreateSensor(ESensors::InstanceSegmentationCamera, stream_id, actor);// 获取或创建传感器
+        if (sensors.first) { // 如果第一个传感器存在
+          std::shared_ptr<CarlaISCameraPublisher> publisher = std::dynamic_pointer_cast<CarlaISCameraPublisher>(sensors.first);// 转换为实例分割相机发布者
+          const carla::sensor::s11n::ImageSerializer::ImageHeader *header =// 获取图像头信息
+            reinterpret_cast<const carla::sensor::s11n::ImageSerializer::ImageHeader *>(buffer->data());// 从缓冲区中获取数据
+          if (!header)// 如果图像头不存在
+            return;// 返回
+          if (!publisher->HasBeenInitialized())// 如果发布者尚未初始化
+            publisher->InitInfoData(0, 0, H, W, Fov, true);// 初始化信息数据
+          publisher->SetImageData(_seconds, _nanoseconds, header->height, header->width, (const uint8_t*) (buffer->data() + carla::sensor::s11n::ImageSerializer::header_offset));// 设置图像数据
+          publisher->SetCameraInfoData(_seconds, _nanoseconds);// 设置相机信息数据
+          publisher->Publish();// 发布数据
         }
-        if (sensors.second) {
-          std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-          publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-          publisher->Publish();
+        if (sensors.second) { // 如果第二个传感器存在
+          std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 转换为变换发布者
+          publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置位置信息和旋转信息
+          publisher->Publish();// 发布数据
         }
       }
-      break;
-    case ESensors::WorldObserver:
-      log_info("Sensor WorldObserver to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());
-      break;
-    case ESensors::CameraGBufferUint8:
-      log_info("Sensor CameraGBufferUint8 to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());
-      break;
-    case ESensors::CameraGBufferFloat:
-      log_info("Sensor CameraGBufferFloat to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());
-      break;
-    default:
-      log_info("Sensor to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());
+      break;// 结束该case
+    case ESensors::WorldObserver:// 世界观察者
+      log_info("Sensor WorldObserver to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());// 记录信息：世界观察者到ROS数据
+      break;// 结束该case
+    case ESensors::CameraGBufferUint8:// 相机G缓冲区（无符号8位）
+      log_info("Sensor CameraGBufferUint8 to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size()); // 记录信息：相机G缓冲区（无符号8位）到ROS数据
+      break;// 结束该case
+    case ESensors::CameraGBufferFloat:// 相机G缓冲区（浮点型）
+      log_info("Sensor CameraGBufferFloat to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());// 记录信息：相机G缓冲区（浮点型）到ROS数据
+      break;// 结束该case
+    default:// 默认情况
+      log_info("Sensor to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "buffer.", buffer->size());// 记录信息：传感器到ROS数据
   }
 }
 
 void ROS2::ProcessDataFromGNSS(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    const carla::geom::GeoLocation &data,
-    void *actor) {
-  log_info("Sensor GnssSensor to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "geo.", data.latitude, data.longitude, data.altitude);
-  auto sensors = GetOrCreateSensor(ESensors::GnssSensor, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaGNSSPublisher> publisher = std::dynamic_pointer_cast<CarlaGNSSPublisher>(sensors.first);
-    publisher->SetData(_seconds, _nanoseconds, reinterpret_cast<const double*>(&data));
-    publisher->Publish();
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 数据流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    const carla::geom::GeoLocation &data, // 地理位置数据
+    void *actor) {// 操作者
+  log_info("Sensor GnssSensor to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "geo.", data.latitude, data.longitude, data.altitude);// 记录GNSS传感器数据
+  auto sensors = GetOrCreateSensor(ESensors::GnssSensor, stream_id, actor);// 获取或创建传感器
+  if (sensors.first) { // 如果存在第一个传感器
+    std::shared_ptr<CarlaGNSSPublisher> publisher = std::dynamic_pointer_cast<CarlaGNSSPublisher>(sensors.first); // 将传感器转换为GNSS发布者
+    publisher->SetData(_seconds, _nanoseconds, reinterpret_cast<const double*>(&data)); // 设置数据
+    publisher->Publish(); // 发布数据
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) { // 如果存在第二个传感器
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 将传感器转换为变换发布者
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
+    publisher->Publish();// 发布变换数据
   }
 }
 
 void ROS2::ProcessDataFromIMU(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    carla::geom::Vector3D accelerometer,
-    carla::geom::Vector3D gyroscope,
-    float compass,
-    void *actor) {
-  log_info("Sensor InertialMeasurementUnit to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "imu.", accelerometer.x, gyroscope.x, compass);
-  auto sensors = GetOrCreateSensor(ESensors::InertialMeasurementUnit, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaIMUPublisher> publisher = std::dynamic_pointer_cast<CarlaIMUPublisher>(sensors.first);
-    publisher->SetData(_seconds, _nanoseconds, reinterpret_cast<float*>(&accelerometer), reinterpret_cast<float*>(&gyroscope), compass);
-    publisher->Publish();
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 数据流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    carla::geom::Vector3D accelerometer, // 加速度计数据
+    carla::geom::Vector3D gyroscope,// 陀螺仪数据
+    float compass, // 指南针数据
+    void *actor) { // 操作者
+  log_info("Sensor InertialMeasurementUnit to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "imu.", accelerometer.x, gyroscope.x, compass);// 记录IMU传感器数据
+  auto sensors = GetOrCreateSensor(ESensors::InertialMeasurementUnit, stream_id, actor);// 获取或创建传感器
+  if (sensors.first) {// 如果存在第一个传感器
+    std::shared_ptr<CarlaIMUPublisher> publisher = std::dynamic_pointer_cast<CarlaIMUPublisher>(sensors.first);// 将传感器转换为IMU发布者
+    publisher->SetData(_seconds, _nanoseconds, reinterpret_cast<float*>(&accelerometer), reinterpret_cast<float*>(&gyroscope), compass);// 设置数据
+    publisher->Publish(); // 发布数据
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) {// 如果存在第二个传感器
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 将传感器转换为变换发布者
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
+    publisher->Publish();// 发布变换数据
   }
 }
 
 void ROS2::ProcessDataFromDVS(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    const carla::SharedBufferView buffer,
-    int W, int H, float Fov,
-    void *actor) {
-  log_info("Sensor DVS to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id);
-  auto sensors = GetOrCreateSensor(ESensors::DVSCamera, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaDVSCameraPublisher> publisher = std::dynamic_pointer_cast<CarlaDVSCameraPublisher>(sensors.first);
-    const carla::sensor::s11n::ImageSerializer::ImageHeader *header =
-      reinterpret_cast<const carla::sensor::s11n::ImageSerializer::ImageHeader *>(buffer->data());
-    if (!header)
-      return;
-    if (!publisher->HasBeenInitialized())
-      publisher->InitInfoData(0, 0, H, W, Fov, true);
-    size_t elements = (buffer->size() - carla::sensor::s11n::ImageSerializer::header_offset) / sizeof(carla::sensor::data::DVSEvent);
-    publisher->SetImageData(_seconds, _nanoseconds, elements, header->height, header->width, (const uint8_t*) (buffer->data() + carla::sensor::s11n::ImageSerializer::header_offset));
-    publisher->SetCameraInfoData(_seconds, _nanoseconds);
-    publisher->SetPointCloudData(1, elements * sizeof(carla::sensor::data::DVSEvent), elements, (const uint8_t*) (buffer->data() + carla::sensor::s11n::ImageSerializer::header_offset));
-    publisher->Publish();
+    uint64_t sensor_type, // 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 数据流ID
+    const carla::geom::Transform sensor_transform, // 传感器变换
+    const carla::SharedBufferView buffer,// 缓冲区视图
+    int W, int H, float Fov, // 宽度、高度、视场角
+    void *actor) { // 操作者
+  log_info("Sensor DVS to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id);// 记录DVS传感器数据
+  auto sensors = GetOrCreateSensor(ESensors::DVSCamera, stream_id, actor);// 获取或创建传感器
+  if (sensors.first) { // 如果存在第一个传感器
+    std::shared_ptr<CarlaDVSCameraPublisher> publisher = std::dynamic_pointer_cast<CarlaDVSCameraPublisher>(sensors.first);// 将传感器转换为DVS相机发布者
+    const carla::sensor::s11n::ImageSerializer::ImageHeader *header =// 图像头信息
+      reinterpret_cast<const carla::sensor::s11n::ImageSerializer::ImageHeader *>(buffer->data());// 从缓冲区获取头部
+    if (!header)// 如果头部为空
+      return; // 退出
+    if (!publisher->HasBeenInitialized())  // 如果发布者尚未初始化
+      publisher->InitInfoData(0, 0, H, W, Fov, true);// 初始化信息数据
+    size_t elements = (buffer->size() - carla::sensor::s11n::ImageSerializer::header_offset) / sizeof(carla::sensor::data::DVSEvent);// 计算元素数量
+    publisher->SetImageData(_seconds, _nanoseconds, elements, header->height, header->width, (const uint8_t*) (buffer->data() + carla::sensor::s11n::ImageSerializer::header_offset));// 设置图像数据
+    publisher->SetCameraInfoData(_seconds, _nanoseconds);// 设置相机信息数据
+    publisher->SetPointCloudData(1, elements * sizeof(carla::sensor::data::DVSEvent), elements, (const uint8_t*) (buffer->data() + carla::sensor::s11n::ImageSerializer::header_offset));// 设置点云数据
+    publisher->Publish();// 发布数据
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) { // 如果存在第二个传感器
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 将传感器转换为变换发布者
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
+    publisher->Publish();// 发布变换数据
   }
 }
 
 void ROS2::ProcessDataFromLidar(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    carla::sensor::data::LidarData &data,
-    void *actor) {
-  log_info("Sensor Lidar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._points.size());
-  auto sensors = GetOrCreateSensor(ESensors::RayCastLidar, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaLidarPublisher> publisher = std::dynamic_pointer_cast<CarlaLidarPublisher>(sensors.first);
-    size_t width = data._points.size();
-    size_t height = 1;
-    publisher->SetData(_seconds, _nanoseconds, height, width, (float*)data._points.data());
-    publisher->Publish();
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 数据流ID
+    const carla::geom::Transform sensor_transform, // 传感器变换
+    carla::sensor::data::LidarData &data, // 激光雷达数据
+    void *actor) {// 操作者
+  log_info("Sensor Lidar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._points.size());// 记录激光雷达传感器数据
+  auto sensors = GetOrCreateSensor(ESensors::RayCastLidar, stream_id, actor);// 获取或创建传感器
+  if (sensors.first) {// 如果存在第一个传感器
+    std::shared_ptr<CarlaLidarPublisher> publisher = std::dynamic_pointer_cast<CarlaLidarPublisher>(sensors.first);// 将传感器转换为激光雷达发布者
+    size_t width = data._points.size();// 获取点云宽度
+    size_t height = 1;// 设置高度为1
+    publisher->SetData(_seconds, _nanoseconds, height, width, (float*)data._points.data());// 设置数据
+    publisher->Publish();// 发布数据
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) {// 如果存在第二个传感器
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 将传感器转换为变换发布者
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
+    publisher->Publish();// 发布变换数据
   }
 }
 
 void ROS2::ProcessDataFromSemanticLidar(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    carla::sensor::data::SemanticLidarData &data,
-    void *actor) {
-  static_assert(sizeof(float) == sizeof(uint32_t), "Invalid float size");
-  log_info("Sensor SemanticLidar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._ser_points.size());
-  auto sensors = GetOrCreateSensor(ESensors::RayCastSemanticLidar, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaSemanticLidarPublisher> publisher = std::dynamic_pointer_cast<CarlaSemanticLidarPublisher>(sensors.first);
-    size_t width = data._ser_points.size();
-    size_t height = 1;
-    publisher->SetData(_seconds, _nanoseconds, 6, height, width, (float*)data._ser_points.data());
-    publisher->Publish();
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    carla::sensor::data::SemanticLidarData &data,// 语义激光雷达数据
+    void *actor) {// 操作者
+  static_assert(sizeof(float) == sizeof(uint32_t), "Invalid float size");// 确保float和uint32_t大小一致
+  log_info("Sensor SemanticLidar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._ser_points.size());// 记录日志：传感器语义激光雷达到ROS数据
+  auto sensors = GetOrCreateSensor(ESensors::RayCastSemanticLidar, stream_id, actor);// 获取或创建传感器
+  if (sensors.first) {// 如果传感器存在
+    std::shared_ptr<CarlaSemanticLidarPublisher> publisher = std::dynamic_pointer_cast<CarlaSemanticLidarPublisher>(sensors.first);// 动态转换到CarlaSemanticLidarPublisher
+    size_t width = data._ser_points.size();// 点的数量
+    size_t height = 1; // 高度设为1
+    publisher->SetData(_seconds, _nanoseconds, 6, height, width, (float*)data._ser_points.data());// 设置数据
+    publisher->Publish();// 发布数据
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) {// 如果第二个传感器存在
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 动态转换到CarlaTransformPublisher
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation); // 设置变换数据
+    publisher->Publish();// 发布变换数据
   }
 }
 
 void ROS2::ProcessDataFromRadar(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    const carla::sensor::data::RadarData &data,
-    void *actor) {
-  log_info("Sensor Radar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._detections.size());
-  auto sensors = GetOrCreateSensor(ESensors::Radar, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaRadarPublisher> publisher = std::dynamic_pointer_cast<CarlaRadarPublisher>(sensors.first);
-    size_t elements = data.GetDetectionCount();
-    size_t width = elements * sizeof(carla::sensor::data::RadarDetection);
-    size_t height = 1;
-    publisher->SetData(_seconds, _nanoseconds, height, width, elements, (const uint8_t*)data._detections.data());
-    publisher->Publish();
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    const carla::sensor::data::RadarData &data,// 雷达数据
+    void *actor) {// 操作者
+  log_info("Sensor Radar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._detections.size());// 记录日志：传感器雷达到ROS数据
+  auto sensors = GetOrCreateSensor(ESensors::Radar, stream_id, actor); // 获取或创建传感器
+  if (sensors.first) {// 如果传感器存在
+    std::shared_ptr<CarlaRadarPublisher> publisher = std::dynamic_pointer_cast<CarlaRadarPublisher>(sensors.first);// 动态转换到CarlaRadarPublisher
+    size_t elements = data.GetDetectionCount();// 获取检测数量
+    size_t width = elements * sizeof(carla::sensor::data::RadarDetection); // 计算宽度
+    size_t height = 1;// 高度设为1
+    publisher->SetData(_seconds, _nanoseconds, height, width, elements, (const uint8_t*)data._detections.data()); // 设置数据
+    publisher->Publish();// 发布数据
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) { // 如果第二个传感器存在
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 动态转换到CarlaTransformPublisher
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
+    publisher->Publish(); // 发布变换数据
   }
 }
 
 void ROS2::ProcessDataFromObstacleDetection(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    AActor *first_ctor,
-    AActor *second_actor,
-    float distance,
-    void *actor) {
-  log_info("Sensor ObstacleDetector to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "distance.", distance);
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    AActor *first_ctor, // 第一个构造函数
+    AActor *second_actor, // 第二个操作者
+    float distance,// 距离
+    void *actor) {  // 操作者
+  log_info("Sensor ObstacleDetector to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "distance.", distance);// 记录日志：传感器障碍物检测到ROS数据
 }
 
 void ROS2::ProcessDataFromCollisionSensor(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    uint32_t other_actor,
-    carla::geom::Vector3D impulse,
-    void* actor) {
-  auto sensors = GetOrCreateSensor(ESensors::CollisionSensor, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaCollisionPublisher> publisher = std::dynamic_pointer_cast<CarlaCollisionPublisher>(sensors.first);
-    publisher->SetData(_seconds, _nanoseconds, other_actor, impulse.x, impulse.y, impulse.z);
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id, // 流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    uint32_t other_actor,// 其他操作者
+    carla::geom::Vector3D impulse, // 冲击力
+    void* actor) { // 操作者
+  auto sensors = GetOrCreateSensor(ESensors::CollisionSensor, stream_id, actor); // 获取或创建传感器
+  if (sensors.first) {// 如果传感器存在
+    std::shared_ptr<CarlaCollisionPublisher> publisher = std::dynamic_pointer_cast<CarlaCollisionPublisher>(sensors.first);// 动态转换到CarlaCollisionPublisher
+    publisher->SetData(_seconds, _nanoseconds, other_actor, impulse.x, impulse.y, impulse.z);// 设置碰撞数据
     publisher->Publish();
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) {// 如果第二个传感器存在
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 动态转换到CarlaTransformPublisher
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
+    publisher->Publish();// 发布变换数据
   }
 }
 
-void ROS2::Shutdown() {
-  for (auto& element : _publishers) {
-    element.second.reset();
+void ROS2::Shutdown() {// 关闭
+  for (auto& element : _publishers) {// 遍历发布者
+    element.second.reset();// 重置发布者
   }
-  for (auto& element : _transforms) {
-    element.second.reset();
+  for (auto& element : _transforms) {// 遍历变换
+    element.second.reset();// 重置变换
   }
-  _clock_publisher.reset();
-  _controller.reset();
-  _enabled = false;
+  _clock_publisher.reset();// 重置时钟发布者
+  _controller.reset();// 重置控制器
+  _enabled = false;// 禁用
 }
 
 } // namespace ros2
