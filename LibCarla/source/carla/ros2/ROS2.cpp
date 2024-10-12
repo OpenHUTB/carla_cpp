@@ -756,92 +756,92 @@ void ROS2::ProcessDataFromLidar(
 }
 
 void ROS2::ProcessDataFromSemanticLidar(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    carla::sensor::data::SemanticLidarData &data,
-    void *actor) {
-  static_assert(sizeof(float) == sizeof(uint32_t), "Invalid float size");
-  log_info("Sensor SemanticLidar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._ser_points.size());
-  auto sensors = GetOrCreateSensor(ESensors::RayCastSemanticLidar, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaSemanticLidarPublisher> publisher = std::dynamic_pointer_cast<CarlaSemanticLidarPublisher>(sensors.first);
-    size_t width = data._ser_points.size();
-    size_t height = 1;
-    publisher->SetData(_seconds, _nanoseconds, 6, height, width, (float*)data._ser_points.data());
-    publisher->Publish();
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    carla::sensor::data::SemanticLidarData &data,// 语义激光雷达数据
+    void *actor) {// 操作者
+  static_assert(sizeof(float) == sizeof(uint32_t), "Invalid float size");// 确保float和uint32_t大小一致
+  log_info("Sensor SemanticLidar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._ser_points.size());// 记录日志：传感器语义激光雷达到ROS数据
+  auto sensors = GetOrCreateSensor(ESensors::RayCastSemanticLidar, stream_id, actor);// 获取或创建传感器
+  if (sensors.first) {// 如果传感器存在
+    std::shared_ptr<CarlaSemanticLidarPublisher> publisher = std::dynamic_pointer_cast<CarlaSemanticLidarPublisher>(sensors.first);// 动态转换到CarlaSemanticLidarPublisher
+    size_t width = data._ser_points.size();// 点的数量
+    size_t height = 1; // 高度设为1
+    publisher->SetData(_seconds, _nanoseconds, 6, height, width, (float*)data._ser_points.data());// 设置数据
+    publisher->Publish();// 发布数据
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) {// 如果第二个传感器存在
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 动态转换到CarlaTransformPublisher
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation); // 设置变换数据
+    publisher->Publish();// 发布变换数据
   }
 }
 
 void ROS2::ProcessDataFromRadar(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    const carla::sensor::data::RadarData &data,
-    void *actor) {
-  log_info("Sensor Radar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._detections.size());
-  auto sensors = GetOrCreateSensor(ESensors::Radar, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaRadarPublisher> publisher = std::dynamic_pointer_cast<CarlaRadarPublisher>(sensors.first);
-    size_t elements = data.GetDetectionCount();
-    size_t width = elements * sizeof(carla::sensor::data::RadarDetection);
-    size_t height = 1;
-    publisher->SetData(_seconds, _nanoseconds, height, width, elements, (const uint8_t*)data._detections.data());
-    publisher->Publish();
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    const carla::sensor::data::RadarData &data,// 雷达数据
+    void *actor) {// 操作者
+  log_info("Sensor Radar to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "points.", data._detections.size());// 记录日志：传感器雷达到ROS数据
+  auto sensors = GetOrCreateSensor(ESensors::Radar, stream_id, actor); // 获取或创建传感器
+  if (sensors.first) {// 如果传感器存在
+    std::shared_ptr<CarlaRadarPublisher> publisher = std::dynamic_pointer_cast<CarlaRadarPublisher>(sensors.first);// 动态转换到CarlaRadarPublisher
+    size_t elements = data.GetDetectionCount();// 获取检测数量
+    size_t width = elements * sizeof(carla::sensor::data::RadarDetection); // 计算宽度
+    size_t height = 1;// 高度设为1
+    publisher->SetData(_seconds, _nanoseconds, height, width, elements, (const uint8_t*)data._detections.data()); // 设置数据
+    publisher->Publish();// 发布数据
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) { // 如果第二个传感器存在
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 动态转换到CarlaTransformPublisher
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
+    publisher->Publish(); // 发布变换数据
   }
 }
 
 void ROS2::ProcessDataFromObstacleDetection(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    AActor *first_ctor,
-    AActor *second_actor,
-    float distance,
-    void *actor) {
-  log_info("Sensor ObstacleDetector to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "distance.", distance);
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id,// 流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    AActor *first_ctor, // 第一个构造函数
+    AActor *second_actor, // 第二个操作者
+    float distance,// 距离
+    void *actor) {  // 操作者
+  log_info("Sensor ObstacleDetector to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "distance.", distance);// 记录日志：传感器障碍物检测到ROS数据
 }
 
 void ROS2::ProcessDataFromCollisionSensor(
-    uint64_t sensor_type,
-    carla::streaming::detail::stream_id_type stream_id,
-    const carla::geom::Transform sensor_transform,
-    uint32_t other_actor,
-    carla::geom::Vector3D impulse,
-    void* actor) {
-  auto sensors = GetOrCreateSensor(ESensors::CollisionSensor, stream_id, actor);
-  if (sensors.first) {
-    std::shared_ptr<CarlaCollisionPublisher> publisher = std::dynamic_pointer_cast<CarlaCollisionPublisher>(sensors.first);
-    publisher->SetData(_seconds, _nanoseconds, other_actor, impulse.x, impulse.y, impulse.z);
+    uint64_t sensor_type,// 传感器类型
+    carla::streaming::detail::stream_id_type stream_id, // 流ID
+    const carla::geom::Transform sensor_transform,// 传感器变换
+    uint32_t other_actor,// 其他操作者
+    carla::geom::Vector3D impulse, // 冲击力
+    void* actor) { // 操作者
+  auto sensors = GetOrCreateSensor(ESensors::CollisionSensor, stream_id, actor); // 获取或创建传感器
+  if (sensors.first) {// 如果传感器存在
+    std::shared_ptr<CarlaCollisionPublisher> publisher = std::dynamic_pointer_cast<CarlaCollisionPublisher>(sensors.first);// 动态转换到CarlaCollisionPublisher
+    publisher->SetData(_seconds, _nanoseconds, other_actor, impulse.x, impulse.y, impulse.z);// 设置碰撞数据
     publisher->Publish();
   }
-  if (sensors.second) {
-    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);
-    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);
-    publisher->Publish();
+  if (sensors.second) {// 如果第二个传感器存在
+    std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 动态转换到CarlaTransformPublisher
+    publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
+    publisher->Publish();// 发布变换数据
   }
 }
 
-void ROS2::Shutdown() {
-  for (auto& element : _publishers) {
-    element.second.reset();
+void ROS2::Shutdown() {// 关闭
+  for (auto& element : _publishers) {// 遍历发布者
+    element.second.reset();// 重置发布者
   }
-  for (auto& element : _transforms) {
-    element.second.reset();
+  for (auto& element : _transforms) {// 遍历变换
+    element.second.reset();// 重置变换
   }
-  _clock_publisher.reset();
-  _controller.reset();
-  _enabled = false;
+  _clock_publisher.reset();// 重置时钟发布者
+  _controller.reset();// 重置控制器
+  _enabled = false;// 禁用
 }
 
 } // namespace ros2
