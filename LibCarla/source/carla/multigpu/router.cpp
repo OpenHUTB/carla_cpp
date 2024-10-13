@@ -120,7 +120,7 @@ void Router::Write(MultiGPUCommand id, Buffer &&buffer) {
   auto view_data = carla::BufferView::CreateFrom(std::move(buffer));
   auto message = Primary::MakeMessage(view_header, view_data);
 
-  // write to multiple servers
+  // 写入多个服务器
   std::lock_guard<std::mutex> lock(_mutex);
   for (auto &s : _sessions) {
     if (s != nullptr) {
@@ -130,7 +130,7 @@ void Router::Write(MultiGPUCommand id, Buffer &&buffer) {
 }
 
 std::future<SessionInfo> Router::WriteToNext(MultiGPUCommand id, Buffer &&buffer) {
-  // define the command header
+  // 定义命令头
   CommandHeader header;
   header.id = id;
   header.size = buffer.size();
@@ -140,10 +140,10 @@ std::future<SessionInfo> Router::WriteToNext(MultiGPUCommand id, Buffer &&buffer
   auto view_data = carla::BufferView::CreateFrom(std::move(buffer));
   auto message = Primary::MakeMessage(view_header, view_data);
 
-  // create the promise for the posible answer
+  // 为可能的答案创建承诺自动响应
   auto response = std::make_shared<std::promise<SessionInfo>>();
 
-  // write to the next server only
+  // 只写特定服务器
   std::lock_guard<std::mutex> lock(_mutex);
   if (_next >= _sessions.size()) {
     _next = 0;
@@ -162,7 +162,7 @@ std::future<SessionInfo> Router::WriteToNext(MultiGPUCommand id, Buffer &&buffer
 }
 
 std::future<SessionInfo> Router::WriteToOne(std::weak_ptr<Primary> server, MultiGPUCommand id, Buffer &&buffer) {
-  // define the command header
+  // 定义命令头
   CommandHeader header;
   header.id = id;
   header.size = buffer.size();
@@ -172,10 +172,12 @@ std::future<SessionInfo> Router::WriteToOne(std::weak_ptr<Primary> server, Multi
   auto view_data = carla::BufferView::CreateFrom(std::move(buffer));
   auto message = Primary::MakeMessage(view_header, view_data);
 
-  // create the promise for the posible answer
+  // 为可能的答案创建承诺自动响应
+
   auto response = std::make_shared<std::promise<SessionInfo>>();
 
-  // write to the specific server only
+  // 只写特定服务器
+
   std::lock_guard<std::mutex> lock(_mutex);
   auto s = server.lock();
   if (s) {
@@ -197,5 +199,5 @@ std::weak_ptr<Primary> Router::GetNextServer() {
   }
 }
 
-} // namespace multigpu
-} // namespace carla
+} // 名称空间 multigpu
+} // 名称空间 carla
