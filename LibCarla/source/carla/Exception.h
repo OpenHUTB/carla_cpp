@@ -4,38 +4,38 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once // é˜²æ­¢å¤´æ–‡ä»¶è¢«å¤šæ¬¡åŒ…å«
 
-#ifdef LIBCARLA_NO_EXCEPTIONS
+#ifdef LIBCARLA_NO_EXCEPTIONS // å¦‚æœå®šä¹‰äº† LIBCARLA_NO_EXCEPTIONS
 
-namespace std {
+namespace std { // å®šä¹‰æ ‡å‡†å‘½åç©ºé—´
 
-  class exception; // å£°æ˜ std å‘½åç©ºé—´ä¸­çš„ exception ç±»
+    class exception; // å‰å‘å£°æ˜å¼‚å¸¸ç±»
 
 } // namespace std
 
-namespace carla {
+namespace carla { // å®šä¹‰ carla å‘½åç©ºé—´
 
-       /// ÓÃ»§×Ô¶¨ÒåµÄº¯Êı£¬ÀàËÆÓÚ Boost µÄ throw_exception¡£
-      ///
-      /// @important Boost Òì³£Ò²»áÂ·ÓÉµ½´Ëº¯Êı¡£
-      ///
-      /// µ±Ê¹ÓÃ LIBCARLA_NO_EXCEPTIONS ±àÒëÊ±£¬´Ëº¯ÊıÔÚ LibCarla ÖĞÎ´¶¨Òå£¬
-      /// Ê¹ÓÃ LibCarla µÄÄ£¿éĞèÒªÌá¹©ºÏÊÊµÄ¶¨Òå¡£µ÷ÓÃ throw_exception µÄ´úÂë
-      /// ¿ÉÒÔ¼ÙÉè´Ëº¯Êı²»»á·µ»Ø£»Òò´Ë£¬Èç¹ûÓÃ»§¶¨ÒåµÄ throw_exception ·µ»Ø£¬
-      /// ĞĞÎªÊÇÎ´¶¨ÒåµÄ¡£
-  [[ noreturn ]] void throw_exception(const std::exception &e);
+    /// ç”¨æˆ·è‡ªå®šä¹‰çš„å‡½æ•°ï¼Œç±»ä¼¼äº Boost çš„ throw_exceptionã€‚
+   ///
+   /// @important Boost å¼‚å¸¸ä¹Ÿä¼šè·¯ç”±åˆ°æ­¤å‡½æ•°ã€‚
+   ///
+   /// å½“ä½¿ç”¨ LIBCARLA_NO_EXCEPTIONS ç¼–è¯‘æ—¶ï¼Œæ­¤å‡½æ•°åœ¨ LibCarla ä¸­æœªå®šä¹‰ï¼Œ
+   /// ä½¿ç”¨ LibCarla çš„æ¨¡å—éœ€è¦æä¾›åˆé€‚çš„å®šä¹‰ã€‚è°ƒç”¨ throw_exception çš„ä»£ç 
+   /// å¯ä»¥å‡è®¾æ­¤å‡½æ•°ä¸ä¼šè¿”å›ï¼›å› æ­¤ï¼Œå¦‚æœç”¨æˆ·å®šä¹‰çš„ throw_exception è¿”å›ï¼Œ
+   /// è¡Œä¸ºæ˜¯æœªå®šä¹‰çš„ã€‚
+    [[ noreturn ]] void throw_exception(const std::exception& e); // å£°æ˜ä¸è¿”å›çš„å¼‚å¸¸æŠ›å‡ºå‡½æ•°
 
 } // namespace carla
 
-#else
+#else // å¦‚æœæœªå®šä¹‰ LIBCARLA_NO_EXCEPTIONS
 
-namespace carla {
+namespace carla { // å®šä¹‰ carla å‘½åç©ºé—´
 
-  template <typename T>
-  [[ noreturn ]] void throw_exception(const T &e) { // æ¨¡æ¿å‡½æ•°å£°æ˜ï¼Œæ¥å—ä»»ä½•ç±»å‹çš„å¼‚å¸¸
-    throw e;
-  }
+    template <typename T>
+    [[ noreturn ]] void throw_exception(const T& e) { // æ¨¡æ¿å¼‚å¸¸æŠ›å‡ºå‡½æ•°
+        throw e; // æŠ›å‡ºå¼‚å¸¸
+    }
 
 } // namespace carla
 

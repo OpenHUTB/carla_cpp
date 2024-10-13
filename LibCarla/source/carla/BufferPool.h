@@ -42,18 +42,18 @@ namespace carla {
 #else
       item._parent_pool = shared_from_this();  // 设置父池为共享引用
 #endif
-      return item;
+      return item;  // 返回弹出的 Buffer
     }
 
   private:
 
-    friend class Buffer;
+    friend class Buffer;  // 允许 Buffer 类访问私有成员
 
-    void Push(Buffer &&buffer) {
-      _queue.enqueue(std::move(buffer));
+    void Push(Buffer &&buffer) {  // 定义 Push 方法，接受一个右值引用的 Buffer
+      _queue.enqueue(std::move(buffer));  // 将 Buffer 移动到队列中
     }
 
-    moodycamel::ConcurrentQueue<Buffer> _queue;
+    moodycamel::ConcurrentQueue<Buffer> _queue;  // 定义并发队列用于存储 Buffer
   };
 
 } // namespace carla

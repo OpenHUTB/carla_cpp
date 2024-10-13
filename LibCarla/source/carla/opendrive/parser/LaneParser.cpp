@@ -1,6 +1,8 @@
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 车道解析器
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -14,6 +16,7 @@ namespace carla {
 namespace opendrive {
 namespace parser {
 
+  // 解析车道
   static void ParseLanes(
       road::RoadId road_id,
       double s,
@@ -25,7 +28,7 @@ namespace parser {
 
       road::Lane *lane = map_builder.GetLane(road_id, lane_id, s);
 
-      // Lane Width
+      // 车道宽度
       int width_count = 0;
       for (pugi::xml_node lane_width_node : lane_node.children("width")) {
         const double s_offset = lane_width_node.attribute("sOffset").as_double();
@@ -34,7 +37,7 @@ namespace parser {
         const double c = lane_width_node.attribute("c").as_double();
         const double d = lane_width_node.attribute("d").as_double();
 
-        // Call Map builder create Lane Width function
+        // 调用地图构建器创建车道宽度函数
         map_builder.CreateLaneWidth(lane, s_offset + s, a, b, c, d);
         width_count++;
       }
@@ -44,7 +47,7 @@ namespace parser {
         " no \"<width>\" parameter found under \"<lane>\" tag. Using default values." << std::endl;
       }
 
-      // Lane Border
+      // 车道边界
       for (pugi::xml_node lane_border_node : lane_node.children("border")) {
         const double s_offset = lane_border_node.attribute("sOffset").as_double();
         const double a = lane_border_node.attribute("a").as_double();
@@ -52,11 +55,12 @@ namespace parser {
         const double c = lane_border_node.attribute("c").as_double();
         const double d = lane_border_node.attribute("d").as_double();
 
-        // Call Map builder create Lane Border function
+        // 调用地图构建器创建车道边界函数
         map_builder.CreateLaneBorder(lane, s_offset + s, a, b, c, d);
       }
 
       // Lane Road Mark
+      // 在OpenDrive中，<roadMark>元素定义了车道外边界的车道线样式，即左边车道就定义其左边界，右边车道就定义其右边界。
       int road_mark_id = 0;
       for (pugi::xml_node lane_road_mark : lane_node.children("roadMark")) {
         pugi::xml_node road_mark_type;
@@ -70,7 +74,7 @@ namespace parser {
           const std::string lane_change = lane_road_mark.attribute("laneChange").value();
           const double height = lane_road_mark.attribute("height").as_double();
 
-          // Call map builder for LaneRoadMarkType
+          // 为 LaneRoadMarkType 调用地图构建器
 
           std::string type_name = "";
           double type_width = 0.0;
@@ -80,7 +84,7 @@ namespace parser {
             type_width = road_mark_type.attribute("width").as_double();
           }
 
-          // Call map builder for LaneRoadMark
+          // 为 LaneRoadMark 调用地图构建器
           map_builder.CreateRoadMark(
               lane,
               road_mark_id,
@@ -105,7 +109,7 @@ namespace parser {
           const std::string rule = road_mark_type_line_node.attribute("rule").value();
           const double width = road_mark_type_line_node.attribute("width").as_double();
 
-          // Call map builder for LaneRoadMarkType LaneRoadMarkTypeLine
+          // 为 LaneRoadMarkType LaneRoadMarkTypeLine 调用地图构建器 
           map_builder.CreateRoadMarkTypeLine(
               lane,
               road_mark_id,
@@ -119,7 +123,7 @@ namespace parser {
         ++road_mark_id;
       }
 
-      // Lane Material
+      // 车道材质
       for (pugi::xml_node lane_material_node : lane_node.children("material")) {
 
         const double s_offset = lane_material_node.attribute("sOffset").as_double();
@@ -127,11 +131,11 @@ namespace parser {
         const double friction = lane_material_node.attribute("friction").as_double();
         const double roughness = lane_material_node.attribute("roughness").as_double();
 
-        // Create map builder for Lane Material
+        // 为车道材质 Lane Material 创建地图构建器
         map_builder.CreateLaneMaterial(lane, s_offset + s, surface, friction, roughness);
       }
 
-      // Lane Visibility
+      // 车道可见性
       for (pugi::xml_node lane_visibility_node : lane_node.children("visibility")) {
         const double s_offset = lane_visibility_node.attribute("sOffset").as_double();
         const double forward = lane_visibility_node.attribute("forward").as_double();
@@ -139,26 +143,28 @@ namespace parser {
         const double left = lane_visibility_node.attribute("left").as_double();
         const double right = lane_visibility_node.attribute("right").as_double();
 
-        // Create map builder for Lane Visibility
+        // 为车道可见性 Lane Visibility 创建地图构建器
         map_builder.CreateLaneVisibility(lane, s_offset + s, forward, back, left, right);
       }
 
       // Lane Speed
+      // 单独车道可以拥有不同于所属道路的速度限制，其将被定义为<laneSpeed>。
       for (pugi::xml_node lane_speed_node : lane_node.children("speed")) {
         const double s_offset = lane_speed_node.attribute("sOffset").as_double();
         const double max = lane_speed_node.attribute("max").as_double();
         std::string unit = lane_speed_node.attribute("unit").value();
 
-        // Create map builder for Lane Speed
+        // 为车道速度限制 Lane Speed 创建地图构建器
         map_builder.CreateLaneSpeed(lane, s_offset + s, max, unit);
       }
 
       // Lane Access
+      // 在 <lane> 元素内提供了 <access> 元素,以便描述车道使用规则
       for (pugi::xml_node lane_access_node : lane_node.children("access")) {
         const double s_offset = lane_access_node.attribute("sOffset").as_double();
         const std::string restriction = lane_access_node.attribute("restriction").value();
 
-        // Create map builder for Lane Access
+        // 为车道使用 Lane Access 创建地图构建器
         map_builder.CreateLaneAccess(lane, s_offset + s, restriction);
       }
 
@@ -190,7 +196,7 @@ namespace parser {
 
     pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
-    // Lanes
+    // 车道
     for (pugi::xml_node road_node : open_drive_node.children("road")) {
       road::RoadId road_id = road_node.attribute("id").as_uint();
 
