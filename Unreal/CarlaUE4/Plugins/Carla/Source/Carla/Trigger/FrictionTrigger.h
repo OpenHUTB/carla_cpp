@@ -64,7 +64,7 @@ protected:
 
   virtual void Tick(float DeltaTime) override;
 
-  // Save old frictions
+  // 避免旧的摩擦力
   TArray<float> OldFrictionValues;
 
 public:

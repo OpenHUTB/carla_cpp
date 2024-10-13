@@ -1,4 +1,4 @@
-# Carla 的 C++ 文档
+﻿# Carla 的 C++ 文档
 注释Carla的 [LibCarla](https://github.com/OpenHUTB/carla_cpp/tree/dev/LibCarla/source/carla) 、[CarlaUE4](https://github.com/OpenHUTB/carla_cpp/tree/dev/Unreal/CarlaUE4/Plugins/Carla/Source/Carla) 模块，包括实现方式、实现原理、流程图等。做出贡献之前请查看 [指南](https://github.com/OpenHUTB/PFC/blob/main/CONTRIBUTING.md) 。
 
 ## 生成文档
@@ -6,12 +6,12 @@
 
 2.在[湖工商仓库](https://github.com/OpenHUTB/carla_cpp) 页面点击`Fork`，然后点击`Create a new fork`，创建分叉到个人仓库。
 
-3.克隆个人仓库：
+3.克隆个人仓库（若出现SSL certificate problems请关闭加速器再克隆）：
 ```shell
 git clone https://github.com/{username}/carla_cpp.git
 ```
 
-4.添加C++代码注释，如果需要查看生成的文档，在项目主目录下运行以下命令，根据 C++ 代码生成对应的 html 文档：
+4.添加C++代码注释（ [编码标准](https://openhutb.github.io/carla_doc/cont_coding_standard/#c++) ），如果需要查看生成的文档，在项目主目录下运行以下命令，根据 C++ 代码生成对应的 html 文档：
 ```shell script
 doxygen
 ```
@@ -22,7 +22,7 @@ doxygen
 
 5.修改并本地测试没问题后，提交代码到个人仓库：
 ```shell script
-git add .
+git add README.md
 git commit -m "update"
 git push
 ```
@@ -37,13 +37,13 @@ git push
 2.找到需要修改的文件：
 ![](./img/header_path.jpg)
 
-3.翻译代码中的注释或添加新注释：
+3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留。源代码文件采用UTF-8编码）：
 ![](./img/update_annotated.jpg)
 
 4.运行`doxygen`重新生成文档，查看修改后的文档：
 ![](./img/result.jpg)
 
-详细注释方法参见[注释规范](./annotation_specification.md) 。
+详细注释方法参见[注释规范](./specification.md) 。
 
 
 <!--
@@ -107,7 +107,6 @@ git rm -rf .
 [fengchuanyin](https://github.com/fengchuanyin) 、
 [cby2838](https://github.com/cby2838) 、
 [Ekisanhinn](https://github.com/ekisannhinn) 、
-[Seavey0402](https://github.com/Seavey0402) 、
 [yyyyy12306](https://github.com/yyyyy12306) 、
 [lzh8215](https://github.com/lzh8215) 、
 [Rita0621](https://github.com/Rita0621) 、
@@ -136,7 +135,44 @@ git rm -rf .
 [nfdxxl](https://github.com/nfdxxl) 、[Kawashiro1](https://github.com/Kawashiro1)、
 [DSB0221](https://github.com/DSB0221)、[huangyuking](https://github.com/huangyuking)、
 [ZH1024-Heng](https://github.com/ZH1024-Heng)、
-[siwei1427](https://github.com/siwei1427?tab=repositories)。
-[huangzhihua](https://github.com/bbbelieve)
-[huiii-chen](https://github.com/huiii-chen)
-[xhoyh](https://github.com/xhoyh)
+[siwei1427](https://github.com/siwei1427) 、
+[huangzhihua](https://github.com/bbbelieve) 、
+[huiii-chen](https://github.com/huiii-chen) 、
+[xhoyh](https://github.com/xhoyh) 、
+[ggiiatr](https://github.com/ggiiatr) 、
+[suki-mina](https://github.com/suki-mina) 、
+[qqggxx](https://github.com/qqggxx)
+[leeyuu-z](http://github.com/leeyuu-z) 、
+[zi666zi](http://github.com/zi666zi) 、
+[dzq168](https://github.com/dzq168)
+[riset77](https://github.com/riset77)
+[ylyl551](https://github.com/yly551)
+[zhemuqi](https://github.com/zhemuqi)
+[YL007-STRONG](https://github.com/YL007-STRONG)
+[nigor-peter](https://github.com/nigor-peter)
+[jiameixiao](https://github.com/jiameixiao)
+[2665055983](https://github.com/2665055983)、
+[Seavey0402](https://github.com/Seavey0402)、 
+[yangf95](https://github.com/yangf95)、
+[LBQ0056](https://github.com/LBQ0056)、
+[yuangjiajie](https://github.com/yuangjiajie) 、
+[weidinghe](https://github.com/weidinghe)、
+[xinderruila](https://github.com/xinderruila)、
+[YJY336](https://github.com/YJY336)、
+[Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrilky](https://github.com/hyjrilky)、
+[vv313](https://github.com/vv313)、
+[lwh0954](https://github.com/lwh0954)、
+[csgo3553](https://github.com/csgo3553) 、
+[Mia-cloud-del](https://github.com/Mia-cloud-del) 、
+[hui215151](https://github.com/hui215151)、
+[SRX-ytk](https://github.com/SRX-ytk)、
+[xiaoyu-903](https://github.come/xiaoyu-903)、
+[zhouxinyu-a11y](https://github.come/zhouxinyu-a11y)、
+[wdlmd20](https://github.com/wdlmd20)。
+[wdlmd20](https://github.com/wdlmd20)、
+[Hcir-lk](https://github.com/Hcir-lk)、
+[S1TZ](https://github.com/S1TZ)。
+[lzg6667](https://github.com/lzg6667)。
+[RYZ-666](https://github.com/RYZ-666)、
+[Taohygge](https://github.com/Taohygge/carla_cpp.git)。
+[HZY-23](https://github.com/HZY-23)。

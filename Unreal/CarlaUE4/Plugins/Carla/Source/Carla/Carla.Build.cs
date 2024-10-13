@@ -6,33 +6,45 @@ using UnrealBuildTool;
 
 public class Carla : ModuleRules
 {
+
+  // 控制是否启用不同模块的布尔值
   bool UsingCarSim = false;
   bool UsingChrono = false;
   bool UsingPytorch = false;
   bool UsingRos2 = false;
+
+  // 检查目标平台是否为 Windows
   private bool IsWindows(ReadOnlyTargetRules Target)
   {
     return (Target.Platform == UnrealTargetPlatform.Win64) || (Target.Platform == UnrealTargetPlatform.Win32);
   }
 
+  // 构造函数，接受一个只读目标规则参数
   public Carla(ReadOnlyTargetRules Target) : base(Target)
   {
+  
+    // 设置私有PCH（预编译头文件）
     PrivatePCHHeaderFile = "Carla.h";
 
+    // 如果目标平台是Windows，启用异常处理
     if (IsWindows(Target))
     {
       bEnableExceptions = true;
     }
 
-    // Read config about carsim
+     // 读取配置文件，检查是否启用各种模块
     string CarlaPluginPath = Path.GetFullPath( ModuleDirectory );
     string ConfigDir =  Path.GetFullPath(Path.Combine(CarlaPluginPath, "../../../../Config/"));
     string OptionalModulesFile = Path.Combine(ConfigDir, "OptionalModules.ini");
+
+    // 读取配置文件中的每一行
     string[] text = System.IO.File.ReadAllLines(OptionalModulesFile);
     foreach (string line in text)
     {
       if (line.Contains("CarSim ON"))
       {
+      
+      	// 检查是否启用 CarSim
         Console.WriteLine("Enabling carsim");
         UsingCarSim = true;
         PublicDefinitions.Add("WITH_CARSIM");
@@ -62,15 +74,17 @@ public class Carla : ModuleRules
       }
     }
 
+    // 添加公共包含路径
     PublicIncludePaths.AddRange(
       new string[] {
         // ... add public include paths required here ...
       }
       );
 
+    // 添加私有包含路径
     PrivateIncludePaths.AddRange(
       new string[] {
-        // ... add other private include paths required here ...
+        // ... 添加所需的其他私有包含路径 ...
       }
       );
 
@@ -86,16 +100,20 @@ public class Carla : ModuleRules
         // ... add other public dependencies that you statically link with here ...
       }
       );
+      
+    // 如果启用了 CarSim，则添加相关依赖
     if (UsingCarSim)
     {
       PublicDependencyModuleNames.AddRange(new string[] { "CarSim" });
     }
-
+    
+	// 如果目标类型是编辑器，则添加 UnrealEd 依赖
 	 if (Target.Type == TargetType.Editor)
 	 {
 		PublicDependencyModuleNames.AddRange(new string[] { "UnrealEd" });
 	 }
 
+    // 添加私有依赖模块
     PrivateDependencyModuleNames.AddRange(
       new string[]
       {
@@ -125,7 +143,7 @@ public class Carla : ModuleRules
       PrivateIncludePathModuleNames.AddRange(new string[] { "CarSim" });
     }
 
-
+    // 添加动态加载的模块
     DynamicallyLoadedModuleNames.AddRange(
       new string[]
       {
@@ -140,9 +158,8 @@ public class Carla : ModuleRules
   {
     if (IsWindows(Target))
     {
-      // In Windows, Unreal uses the Release C++ Runtime (CRT) even in debug
-      // mode, so unless we recompile the engine we cannot link the debug
-      // libraries.
+      // 在Windows上，即使在调试模式下，Unreal也使用Release C++运行时（CRT），
+      // 所以除非我们重新编译引擎，否则无法链接调试库。
       return false;
     }
     else
@@ -150,7 +167,8 @@ public class Carla : ModuleRules
       return false;
     }
   }
-
+  
+   // 添加动态库
   private void AddDynamicLibrary(string library)
   {
     PublicAdditionalLibraries.Add(library);
@@ -172,10 +190,12 @@ public class Carla : ModuleRules
     foreach (string file in files) PublicAdditionalLibraries.Add(file);
   }
 
+  // 添加 Carla 服务器依赖
   private void AddCarlaServerDependency(ReadOnlyTargetRules Target)
   {
     string LibCarlaInstallPath = Path.GetFullPath(Path.Combine(ModuleDirectory, "../../CarlaDependencies"));
 
+    // 委托，用于获取库名称
     ADelegate GetLibName = (string BaseName) => {
       if (IsWindows(Target))
       {
@@ -187,9 +207,11 @@ public class Carla : ModuleRules
       }
     };
 
-    // Link dependencies.
+    // 根据目标平台链接依赖库
     if (IsWindows(Target))
     {
+    
+      // 从指定路径添加Boost库
       AddBoostLibs(Path.Combine(LibCarlaInstallPath, "lib"));
       PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", GetLibName("rpc")));
 
@@ -201,6 +223,8 @@ public class Carla : ModuleRules
       {
         PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", GetLibName("carla_server")));
       }
+      
+      // 如果使用Chrono库，则添加其依赖项
       if (UsingChrono)
       {
         PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", GetLibName("ChronoEngine")));
@@ -211,10 +235,10 @@ public class Carla : ModuleRules
         AddDllDependency(Path.Combine(LibCarlaInstallPath, "dll"), "ChronoEngine_vehicle.dll");
         AddDllDependency(Path.Combine(LibCarlaInstallPath, "dll"), "ChronoModels_vehicle.dll");
         AddDllDependency(Path.Combine(LibCarlaInstallPath, "dll"), "ChronoModels_robot.dll");
-        bUseRTTI = true;
+        bUseRTTI = true;// 启用运行时类型信息
       }
 
-      //OsmToODR
+      // OsmToODR集成的依赖项
       PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", "sqlite3.lib"));
       PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", "xerces-c_3.lib"));
       PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", "proj.lib"));
@@ -223,6 +247,7 @@ public class Carla : ModuleRules
     }
     else
     {
+      // 对于非Windows平台的类似库链接过程
       PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", GetLibName("rpc")));
       if (UseDebugLibs(Target))
       {
@@ -242,11 +267,14 @@ public class Carla : ModuleRules
         bUseRTTI = true;
       }
 
+      // 检查是否使用PyTorch并添加其库
       if (UsingPytorch)
       {
         PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", GetLibName("carla_pytorch")));
 
         string LibTorchPath = LibCarlaInstallPath;
+	
+	// 添加各种需要的PyTorch库
         PublicAdditionalLibraries.Add(Path.Combine(LibTorchPath, "lib", "libonnx_proto.a"));
         PublicAdditionalLibraries.Add(Path.Combine(LibTorchPath, "lib", "libfbgemm.a"));
         PublicAdditionalLibraries.Add(Path.Combine(LibTorchPath, "lib", "libgloo.a"));
@@ -328,7 +356,7 @@ public class Carla : ModuleRules
       }
 
 
-      //OsmToODR
+      // 非Windows平台的OsmToODR集成依赖项
       PublicAdditionalLibraries.Add("/usr/lib/x86_64-linux-gnu/libc.so");
       PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", "libsqlite3.so"));
       PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", "libxerces-c.a"));
@@ -336,9 +364,9 @@ public class Carla : ModuleRules
       PublicAdditionalLibraries.Add(Path.Combine(LibCarlaInstallPath, "lib", "libosm2odr.a"));
 
     }
-    bEnableExceptions = true;
+    bEnableExceptions = true;// 启用代码中的异常处理
 
-    // Include path.
+    // 包含路径
     string LibCarlaIncludePath = Path.Combine(LibCarlaInstallPath, "include");
 
     PublicIncludePaths.Add(LibCarlaIncludePath);

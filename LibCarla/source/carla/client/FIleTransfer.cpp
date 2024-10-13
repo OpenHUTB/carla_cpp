@@ -19,7 +19,7 @@ namespace client {
   bool FileTransfer::SetFilesBaseFolder(const std::string &path) {
     if (path.empty()) return false;
 
-    // Check that the path ends in a slash, add it otherwise
+    // 检查路径是否以斜线结尾，否则添加
     if (path[path.size() - 1] != '/' && path[path.size() - 1] != '\\') {
       _filesBaseFolder = path + "/";
   }
@@ -32,7 +32,7 @@ namespace client {
   }
 
   bool FileTransfer::FileExists(std::string file) {
-    // Check if the file exists or not
+    // 检查文件是否存在
     struct stat buffer;
     std::string fullpath = _filesBaseFolder;
     fullpath += "/";
@@ -50,14 +50,14 @@ namespace client {
     writePath += "/";
     writePath += path;
 
-    // Validate and create the file path
+    // 验证并创建文件路径
     carla::FileSystem::ValidateFilePath(writePath);
 
-    // Open the file to truncate it in binary mode
+    // 以二进制模式打开文件并截断
     std::ofstream out(writePath, std::ios::trunc | std::ios::binary);
     if(!out.good()) return false;
 
-    // Write the content on and close it
+    // 写下内容并关闭
     for(auto file : content) {
           out << file;
     }
@@ -72,7 +72,7 @@ namespace client {
     fullpath += ::carla::version();
     fullpath += "/";
     fullpath += path;
-    // Read the binary file from the base folder
+    // 从基础文件夹读取二进制文件
     std::ifstream file(fullpath, std::ios::binary);
     std::vector<uint8_t> content(std::istreambuf_iterator<char>(file), {});
     return content;

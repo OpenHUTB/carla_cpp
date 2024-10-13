@@ -21,14 +21,14 @@ namespace detail {
   class ActorFactory {
   public:
 
-    /// Create an Actor based on the provided @a actor_description. @a episode
-    /// must point to the episode in which the actor is living.
+    /// 基于提供的 @a actor_description 创建一个参与者。@a episode
+    /// 必须指向该参与者所在的章节（或者说区域）
     ///
-    /// Do not call this class directly, use Simulator::MakeActor.
+    /// 不要直接调用这个类，请使用 Simulator::MakeActor。
     ///
-    /// If @a garbage_collection_policy is GarbageCollectionPolicy::Enabled, the
-    /// shared pointer returned is provided with a custom deleter that calls
-    /// Destroy() on the actor.
+    /// 如果 @a garbage_collection_policy 是 GarbageCollectionPolicy::Enabled，那么
+    /// 返回的共享指针将提供一个自定义删除器，该删除器调用
+    /// actor 上的 Destroy() 方法
     static SharedPtr<Actor> MakeActor(
         EpisodeProxy episode,
         rpc::Actor actor_description,

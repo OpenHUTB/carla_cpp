@@ -1,6 +1,8 @@
 // Copyright (c) 2024 Institut fuer Technik der Informationsverarbeitung (ITIV) at the
-// Karlsruhe Institute of Technology
+// 卡尔斯鲁厄理工学院
 //
+// 路径损耗模型
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -53,9 +55,9 @@ public:
     void SetPathLossModel(const EPathLossModel path_loss_model);
 
 private:
-    // diffraction for NLOSv
+    // 非视距(NLOSv,non-line-of-sight) 衍射
     double CalcVehicleLoss(const double d1, const double d2, const double h);
-    // powers
+    // 计算接收功率
     float CalculateReceivedPower(AActor *OtherActor,
                                  const float OtherTransmitPower,
                                  const FVector Source,
@@ -68,7 +70,7 @@ private:
                                  const double reference_z);
     void EstimatePathStateAndVehicleObstacles(AActor *OtherActor, FVector Source, double TxHeight, double RxHeight, double reference_z, EPathState &state, std::vector<FVector> &vehicle_obstacles);
     double MakeVehicleBlockageLoss(double TxHeight, double RxHeight, double obj_height, double obj_distance);
-    // variables
+    // 变量
     AActor *mActorOwner;
     UCarlaEpisode *mCarlaEpisode;
     UWorld *mWorld;
@@ -77,32 +79,32 @@ private:
     ActorPowerMap mReceiveActorPowerList;
     FVector CurrentActorLocation;
 
-    // constants
-    constexpr static float c_speedoflight = 299792458.0; // m/s
+    // 常量
+    constexpr static float c_speedoflight = 299792458.0;  // 光速（单位为m/s）
 
-    // full two ray path loss
+    // 完整的双摄像路径损失
     const double epsilon_r = 1.02;
 
-    // params
-    static double Frequency_GHz;   // 5.9f;//5.9 GHz
+    // 参数
+    static double Frequency_GHz;   // 传输频率（GHz）。5.9 GHz 是多个物理信道的标准。 5.9f;//5.9 GHz
     static double Frequency;       // Frequency_GHz * std::pow(10,9);
     static double lambda;          // c_speedoflight/Frequency;
-    float reference_distance_fspl; // m
-    float TransmitPower;           // dBm
-    float ReceiverSensitivity;     // dBm
-    EScenario scenario;
-    float path_loss_exponent; // no unit, default 2.7;
-    float filter_distance;    // in meters  default 500.0
+    float reference_distance_fspl; // 对数距离路径损耗模型的参考距离（单位：米m）
+    float TransmitPower;           // 发送方传输功率（单位：毫瓦分贝 dBm）
+    float ReceiverSensitivity;     // 接收器灵敏度（单位：毫瓦分贝 dBm）
+    EScenario scenario;            // 选项：[urban, rustic, highly available]，定义衰落噪声参数
+    float path_loss_exponent; // 由于建筑物遮挡导致的非视距损耗参数。没有单位，默认为 2.7;
+    float filter_distance;    // 最大传输距离（以米为单位，默认为 500.0），上面的路径损耗计算因模拟速度而略过
     EPathLossModel model;
-    bool use_etsi_fading;
-    float custom_fading_stddev;
-    float combined_antenna_gain; // 10.0 dBi
+    bool use_etsi_fading;     // 使用 ETSI 出版物中提到的衰落参数（true），或使用自定义衰落标准偏差
+    float custom_fading_stddev;  // 衰减标准偏差的自定义值，仅当use_etsi_fading设置为 false 时才使用
+    float combined_antenna_gain; // 10.0 dBi， 发射机和接收机天线的组合增益（以 dBi 为单位），辐射效率和方向性的参数
 
-    // dependent params that are precalculated on setting of params
+    // 根据参数设置预先计算的依赖参数
     float m_fspl_d0;
 
 protected:
-    /// Method that allow to preprocess if the rays will be traced.
+    /// 如果要追踪光线，则允许预处理的方法。
 
     float ComputeLoss(AActor *OtherActor, FVector Source, FVector Destination, double Distance3d, double TxHeight, double RxHeight, double reference_z);
     bool IsVehicle(const FHitResult &HitInfo);
@@ -113,12 +115,12 @@ protected:
 
     float CalculateShadowFading(EPathState state);
 
-    // full two ray model
+    // 完整的双射线模型
     double CalculateTwoRayPathLoss(double Distance3d, double TxHeight, double RxHeight);
-    // simplified two ray model
+    // 简化的双射线模型
     float CalculateTwoRayPathLossSimple(double Distance3d, double TxHeight, double RxHeight);
 
-    // functions for precalculation
+    // 预计算功能
     void CalculateFSPL_d0();
     TArray<FHitResult> HitResult;
 };

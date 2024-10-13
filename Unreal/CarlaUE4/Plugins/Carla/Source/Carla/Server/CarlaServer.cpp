@@ -85,9 +85,10 @@ template <typename T>
 using R = carla::rpc::Response<T>;
 
 // =============================================================================
-// -- Static local functions ---------------------------------------------------
+// -- 静态局部函数 --------------------------------------------------------------
 // =============================================================================
 
+// 通过数组构建向量
 template <typename T, typename Other>
 static std::vector<T> MakeVectorFromTArray(const TArray<Other> &Array)
 {
@@ -107,9 +108,11 @@ public:
       StreamingServer(StreamingPort),
       BroadcastStream(StreamingServer.MakeStream())
   {
-    // we need to create shared_ptr from the router for some handlers to live
-    SecondaryServer = std::make_shared<carla::multigpu::Router>(SecondaryPort);
-    SecondaryServer->SetCallbacks();
+    // 我们需要从路由中创建指向 carla::multigpu::Router 类型的智能指针 shared_ptr，以便一些处理程序能够存活
+    // 使用make_shared函数可以减少内存分配的次数，因为它会在一次内存分配中同时分配智能指针对象和指向的对象。
+    // std::make_shared函数会自动分配内存并构造对象，因此不需要手动调用new操作符
+    SecondaryServer = std::make_shared<carla::multigpu::Router>(SecondaryPort); // 从服务器
+    SecondaryServer->SetCallbacks();  // 设置从服务器的回调函数
     BindActions();
   }
 
@@ -117,7 +120,7 @@ public:
     return SecondaryServer;
   }
 
-  /// Map of pairs < port , ip > with all the Traffic Managers active in the simulation
+  /// 仿真中所有活动的交通管理器对 < port, ip > 的映射
   std::map<uint16_t, std::string> TrafficManagerInfo;
 
   carla::rpc::Server Server;
@@ -130,7 +133,7 @@ public:
 
   UCarlaEpisode *Episode = nullptr;
 
-  std::atomic_size_t TickCuesReceived { 0u };
+  std::atomic_size_t TickCuesReceived { 0u };  // 收到的节拍提示
 
 private:
 
@@ -138,7 +141,7 @@ private:
 };
 
 // =============================================================================
-// -- Define helper macros -----------------------------------------------------
+// -- 定义辅助宏 ----------------------------------------------------------------
 // =============================================================================
 
 #if WITH_EDITOR
@@ -1677,6 +1680,7 @@ BIND_SYNC(is_sensor_enabled_for_ros) << [this](carla::streaming::detail::stream_
     }
   };
 
+  // 向客户端公开遥测数据
   BIND_SYNC(get_physics_control) << [this](
       cr::ActorId ActorId) -> R<cr::VehiclePhysicsControl>
   {
@@ -1691,7 +1695,7 @@ BIND_SYNC(is_sensor_enabled_for_ros) << [this](carla::streaming::detail::stream_
     }
     FVehiclePhysicsControl PhysicsControl;
     ECarlaServerResponse Response =
-        CarlaActor->GetPhysicsControl(PhysicsControl);
+        CarlaActor->GetPhysicsControl(PhysicsControl);  // 获得车辆的物理控制
     if (Response != ECarlaServerResponse::Success)
     {
       return RespondError(
