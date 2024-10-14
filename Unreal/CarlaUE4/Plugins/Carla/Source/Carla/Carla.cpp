@@ -123,18 +123,21 @@ IMPLEMENT_MODULE(FCarlaModule, Carla)
 // =============================================================================
 // -- Implement carla throw_exception ------------------------------------------
 // =============================================================================
-
+// 引入一个头文件，用于禁用Unreal Engine 4（UE4）的宏定义，以避免可能的宏冲突
 #include <compiler/disable-ue4-macros.h>
+// 引入Carla库中定义的异常处理相关的头文件
 #include <carla/Exception.h>
+//引入另一个头文件，用于重新启用之前被禁用的UE4宏定义
 #include <compiler/enable-ue4-macros.h>
-
+// 引入C++标准库中的异常处理头文件
 #include <exception>
-
+// 定义一个命名空间carla，用于封装Carla相关的代码
 namespace carla {
-
+//定义一个函数，用于抛出并处理异常
   void throw_exception(const std::exception &e) {
     UE_LOG(LogCarla, Fatal, TEXT("Exception thrown: %s"), UTF8_TO_TCHAR(e.what()));
-    // It should never reach this part.
+	// 调用std::terminate()函数立即终止程序
+	// It should never reach this part.
     std::terminate();
   }
 
