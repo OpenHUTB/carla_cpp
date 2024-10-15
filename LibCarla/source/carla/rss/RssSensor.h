@@ -90,18 +90,14 @@ public:
   /// also RssCheck::SetEgoVehicleDynamics() 以获取更多信息） 
   void SetEgoVehicleDynamics(const ::ad::rss::world::RssDynamics &ego_dynamics);
 
-  /// @returns the currently used dynamics of other vehicles (@see also
-  /// RssCheck::GetOtherVehicleDynamics())
+  /// 返回当前其他车辆所使用的动力学参数（@see RssCheck::GetOtherVehicleDynamics() 获取更多信息）
   const ::ad::rss::world::RssDynamics &GetOtherVehicleDynamics() const;
-  /// @brief sets the ego vehicle dynamics to be used by other vehicles (@see
-  /// also RssCheck::SetOtherVehicleDynamics())
+  /// @brief 设置其他车辆所使用的动力学参数（@see RssCheck::SetOtherVehicleDynamics() 获取更多信息）
   void SetOtherVehicleDynamics(const ::ad::rss::world::RssDynamics &other_vehicle_dynamics);
 
-  /// @returns the currently used dynamics of pedestrians (@see also
-  /// RssCheck::GetPedestrianDynamics())
+  /// 返回当前行人所使用的动力学参数（@see RssCheck::GetPedestrianDynamics() 获取更多信息）
   const ::ad::rss::world::RssDynamics &GetPedestrianDynamics() const;
-  /// @brief sets the ego vehicle dynamics to be used by pedestrians (@see
-  /// also RssCheck::SetPedestrianDynamics())
+  /// @brief 设置行人所使用的动力学参数（@see RssCheck::SetPedestrianDynamics() 获取更多信息）
   void SetPedestrianDynamics(const ::ad::rss::world::RssDynamics &pedestrian_dynamics);
 
   /// @returns the current mode for respecting the road boundaries (@see also
