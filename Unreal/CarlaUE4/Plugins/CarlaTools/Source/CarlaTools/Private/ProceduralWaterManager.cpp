@@ -231,13 +231,18 @@ AActor* UProceduralWaterManager::SpawnRiverBlueprintActor()
   return RiverActor;
 }
 
+// 定义一个指向AActor的指针函数SpawnLakeBlueprintActor，该函数属于UProceduralWaterManager类。  
+// 函数返回一个指向AActor的指针，AActor是所有游戏内对象的基类
 AActor* UProceduralWaterManager::SpawnLakeBlueprintActor()
 {
-  
+  // 定义一个FVector类型的变量Location，用于指定新生成的Actor的位置。  
+  // 这里位置被初始化为(0, 0, 0)，即世界坐标的原点
   FVector Location(0, 0, 0);
+  // 定义一个FRotator类型的变量Rotation，用于指定新生成的Actor的旋转角度。  
+  // 这里旋转角度被初始化为(0, 0, 0)，即没有旋转
   FRotator Rotation(0,0,0);
   FActorSpawnParameters SpawnInfo;
-  
+  // 获取当前UProceduralWaterManager实例所在的世界（UWorld对象
   UWorld* World = GetWorld();
   AActor* LakeActor =  World->SpawnActor<AActor>(
       LakeBlueprintClass, 
