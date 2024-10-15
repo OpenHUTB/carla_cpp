@@ -72,23 +72,22 @@ public:
 /// 注意：为了能够等待非活动状态的回调函数，全局解释器锁（GIL）必须被解锁。
   void Stop() override;
 
-  /// Return whether this Sensor instance is currently listening to the
-  /// associated sensor in the simulator.
+  /// 返回此Sensor实例当前是否正在监听模拟器中的相关传感器
   bool IsListening() const override {
     return _on_tick_register_id != 0u;
   }
 
-  /// @brief sets the current log level
+  /// @brief 设置当前的日志级别
   void SetLogLevel(const uint8_t &log_level);
 
-  /// @brief sets the current map log level
+  /// @brief 设置当前的地图日志级别
   void SetMapLogLevel(const uint8_t &map_log_level);
 
-  /// @returns the currently used dynamics of the ego vehicle (@see also
-  /// RssCheck::GetEgoVehicleDynamics())
+  /// 返回当前自车（ego vehicle）所使用的动力学参数（@see also  
+  /// RssCheck::GetEgoVehicleDynamics() 以获取更多信息）
   const ::ad::rss::world::RssDynamics &GetEgoVehicleDynamics() const;
-  /// @brief sets the ego vehicle dynamics to be used by the ego vehicle (@see
-  /// also RssCheck::SetEgoVehicleDynamics())
+  /// @brief 设置自车（ego vehicle）将要使用的动力学参数（@see  
+  /// also RssCheck::SetEgoVehicleDynamics() 以获取更多信息） 
   void SetEgoVehicleDynamics(const ::ad::rss::world::RssDynamics &ego_dynamics);
 
   /// @returns the currently used dynamics of other vehicles (@see also
