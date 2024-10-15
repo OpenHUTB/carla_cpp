@@ -59,21 +59,17 @@ public:
   // 用于RssSensor对象的清理工作  
   ~RssSensor();
 
-  /// Register a @a callback to be executed for each actor within each measurement to be processed
-  /// to decide on the operation of the RSS sensor in respect to the ego vehicle to actor constellation
+  /// 为每个待处理的测量中的每个行为体注册一个回调函数，以便决定RSS传感器相对于自我车辆与行为体星座的操作。
   void RegisterActorConstellationCallback(ActorConstellationCallbackFunctionType callback);
 
-  /// Register a @a callback to be executed each time a new measurement is
-  /// received.
-  ///
-  /// @warning Calling this function on a sensor that is already listening
-  /// steals the data stream from the previously set callback. Note that
-  /// several instances of Sensor (even in different processes) may point to
-  /// the same sensor in the simulator.
+  /// 注册一个回调函数，每次接收到新的测量数据时都会执行该函数。
+///
+/// @警告：如果对一个已经在监听的传感器调用此函数，则会窃取之前设置的回调函数的数据流。请注意，
+/// 模拟器中的多个Sensor实例（甚至在不同进程中）可能指向同一个传感器。
   void Listen(CallbackFunctionType callback) override;
 
-  /// Stop listening for new measurements.
-  /// Be aware:  GIL has to be unlocked to be able to wait for callbacks not active.
+  /// 停止监听新的测量数据。
+/// 注意：为了能够等待非活动状态的回调函数，全局解释器锁（GIL）必须被解锁。
   void Stop() override;
 
   /// Return whether this Sensor instance is currently listening to the
