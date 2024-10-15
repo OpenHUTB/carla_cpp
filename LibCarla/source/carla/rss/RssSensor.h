@@ -40,19 +40,23 @@ struct ActorConstellationData;
 
 namespace client {
 
-/// The RSS Sensor class implementing the carla::client::Sensor interface
-/// This class is a proxy to the RssCheck class
+/// 实现carla::client::Sensor接口的RSS传感器类
+/// 这个类是RssCheck类的代理
 class RssSensor : public Sensor {
 public:
+// 使用基类Sensor的构造函数
   using Sensor::Sensor;
-
+// 定义一个函数类型，用于Actor星座（即周围物体的配置或分布）回调  
+  // 该函数接收一个指向carla::rss::ActorConstellationData的智能指针，并返回一个carla::rss::ActorConstellationResult
   using ActorConstellationCallbackFunctionType =
       std::function<::carla::rss::ActorConstellationResult(carla::SharedPtr<::carla::rss::ActorConstellationData>)>;
 
-  /// @brief constructor
+  /// @brief 构造函数  
+  // 显式地使用ActorInitializer对象作为参数进行初始化 /// @brief constructor
   explicit RssSensor(ActorInitializer init);
 
-  /// @brief destructor
+  /// @brief 析构函数  
+  // 用于RssSensor对象的清理工作  
   ~RssSensor();
 
   /// Register a @a callback to be executed for each actor within each measurement to be processed
