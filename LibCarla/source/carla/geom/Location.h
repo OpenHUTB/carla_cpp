@@ -1,6 +1,8 @@
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 位置类
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -23,7 +25,7 @@ namespace geom {
   public:
 
     // =========================================================================
-    // -- Constructors ---------------------------------------------------------
+    // -- 构造函数 -------------------------------------------------------------
     // =========================================================================
 
     Location() = default;
@@ -38,7 +40,7 @@ namespace geom {
                  static_cast<float>(rhs.z)) {}
 
     // =========================================================================
-    // -- Other methods --------------------------------------------------------
+    // -- 其他方法 --------------------------------------------------------------
     // =========================================================================
 
     auto DistanceSquared(const Location &loc) const {
@@ -50,7 +52,7 @@ namespace geom {
     }
 
     // =========================================================================
-    // -- Arithmetic operators -------------------------------------------------
+    // -- 算术运算符 ------------------------------------------------------------
     // =========================================================================
 
     Location &operator+=(const Location &rhs) {
@@ -74,28 +76,30 @@ namespace geom {
     }
 
     // =========================================================================
-    // -- Comparison operators -------------------------------------------------
+    // -- 比较运算符 ------------------------------------------------------------
     // =========================================================================
 
+    // 等于
     bool operator==(const Location &rhs) const {
       return static_cast<const Vector3D &>(*this) == rhs;
     }
 
+    // 不等于
     bool operator!=(const Location &rhs) const {
       return !(*this == rhs);
     }
 
     // =========================================================================
-    // -- Conversions to UE4 types ---------------------------------------------
+    // -- 转换为 UE4 类型 -------------------------------------------------------
     // =========================================================================
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
 
-    Location(const FVector &vector) // from centimeters to meters.
+    Location(const FVector &vector) // 从厘米到米（乘以0.01）。
       : Location(1e-2f * vector.X, 1e-2f * vector.Y, 1e-2f * vector.Z) {}
 
     operator FVector() const {
-      return FVector{1e2f * x, 1e2f * y, 1e2f * z}; // from meters to centimeters.
+      return FVector{1e2f * x, 1e2f * y, 1e2f * z}; // 从米到厘米（乘以100）。
     }
 
 #endif // LIBCARLA_INCLUDED_FROM_UE4

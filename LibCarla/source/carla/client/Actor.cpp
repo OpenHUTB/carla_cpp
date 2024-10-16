@@ -149,5 +149,5 @@ namespace client {
     return result;
   }
 
-} // namespace client
-} // namespace carla
+} // 命名空间client方便区分函数
+} // 命名空间carla方便区分函数

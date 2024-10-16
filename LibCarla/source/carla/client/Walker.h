@@ -23,13 +23,13 @@ namespace client {
 
     explicit Walker(ActorInitializer init) : Actor(std::move(init)) {}
 
-    /// Apply @a control to this Walker.
+    /// 应用 @a control 给这个行人。
     void ApplyControl(const Control &control);
 
-    /// Return the control last applied to this Walker.
+    /// 把最后应用的控制返回给Walker对象.
     ///
-    /// @note This function does not call the simulator, it returns the Control
-    /// received in the last tick.
+    /// @note 这个函数没有调用模拟器, 它返回给 Control
+    /// 在最后一个节拍返回接收到的数据.
     Control GetWalkerControl() const;
 
     BoneControlOut GetBonesTransform();

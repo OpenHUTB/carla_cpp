@@ -4,25 +4,25 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-// ÒıÈë carla ¿âÖĞµÄÎÄ¼şÏµÍ³Ïà¹ØµÄÍ·ÎÄ¼ş
+// å¼•å…¥ carla åº“ä¸­çš„æ–‡ä»¶ç³»ç»Ÿç›¸å…³çš„å¤´æ–‡ä»¶
 #include "carla/FileSystem.h"
 
-// ÒıÈë carla ¿âÖĞµÄÒì³£´¦ÀíÍ·ÎÄ¼ş
+// å¼•å…¥ carla åº“ä¸­çš„å¼‚å¸¸å¤„ç†å¤´æ–‡ä»¶
 #include "carla/Exception.h"
-// ÒıÈë carla ¿âÖĞµÄ×Ö·û´®´¦Àí¹¤¾ßÍ·ÎÄ¼ş
+// å¼•å…¥ carla åº“ä¸­çš„å­—ç¬¦ä¸²å¤„ç†å·¥å…·å¤´æ–‡ä»¶
 #include "carla/StringUtil.h"
 
-// ÒıÈë boost ÎÄ¼şÏµÍ³¿âµÄ²Ù×÷Ïà¹ØÍ·ÎÄ¼ş
+// å¼•å…¥ boost æ–‡ä»¶ç³»ç»Ÿåº“çš„æ“ä½œç›¸å…³å¤´æ–‡ä»¶
 #include <boost/filesystem/operations.hpp>
 
-// ¶¨ÒåÃüÃû¿Õ¼ä carla
+// å®šä¹‰å‘½åç©ºé—´ carla
 namespace carla {
 
-// ÒıÈë boost ÎÄ¼şÏµÍ³¿âÃüÃû¿Õ¼ä£¬²¢Æğ±ğÃû fs
+// å¼•å…¥ boost æ–‡ä»¶ç³»ç»Ÿåº“å‘½åç©ºé—´ï¼Œå¹¶èµ·åˆ«å fs
 namespace fs = boost::filesystem;
 
-// º¯Êı£ºValidateFilePath
-// ×÷ÓÃ£ºÑéÖ¤ÎÄ¼şÂ·¾¶£¬È·±£Â·¾¶ÓĞÀ©Õ¹Ãû£¬²¢´´½¨Â·¾¶µÄ¸¸Ä¿Â¼£¨Èç¹ûĞèÒª£©
+// å‡½æ•°ï¼šValidateFilePath
+// ä½œç”¨ï¼šéªŒè¯æ–‡ä»¶è·¯å¾„ï¼Œç¡®ä¿è·¯å¾„æœ‰æ‰©å±•åï¼Œå¹¶åˆ›å»ºè·¯å¾„çš„çˆ¶ç›®å½•ï¼ˆå¦‚æœéœ€è¦ï¼‰
   void FileSystem::ValidateFilePath(std::string &filepath, const std::string &ext) {
     fs::path path(filepath);
     if (path.extension().empty() && !ext.empty()) {
@@ -37,12 +37,12 @@ namespace fs = boost::filesystem;
     }
     filepath = path.string();
   }
-// º¯Êı£ºListFolder
-// ×÷ÓÃ£ºÁĞ³öÖ¸¶¨ÎÄ¼ş¼ĞÏÂ·ûºÏÌØ¶¨Í¨Åä·ûÄ£Ê½µÄÎÄ¼şÁĞ±í
+// å‡½æ•°ï¼šListFolder
+// ä½œç”¨ï¼šåˆ—å‡ºæŒ‡å®šæ–‡ä»¶å¤¹ä¸‹ç¬¦åˆç‰¹å®šé€šé…ç¬¦æ¨¡å¼çš„æ–‡ä»¶åˆ—è¡¨
   std::vector<std::string> FileSystem::ListFolder(
       const std::string &folder_path,
       const std::string &wildcard_pattern) {
-      	// ½«ÊäÈëµÄÎÄ¼ş¼ĞÂ·¾¶×ª»»Îª boost::filesystem::path ÀàĞÍµÄ¶ÔÏó
+      	// å°†è¾“å…¥çš„æ–‡ä»¶å¤¹è·¯å¾„è½¬æ¢ä¸º boost::filesystem::path ç±»å‹çš„å¯¹è±¡
     fs::path root(folder_path);
     if (!fs::exists(root) || !fs::is_directory(root)) {
       throw_exception(std::invalid_argument(folder_path + ": no such folder"));

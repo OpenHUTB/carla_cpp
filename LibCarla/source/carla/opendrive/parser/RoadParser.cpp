@@ -1,6 +1,8 @@
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 参考：http://hdmap.geomatics.ncku.edu.tw/assets/docs/20200612_TAICS%20TS-0024%20v1.01-%E9%AB%98%E7%B2%BE%E5%9C%B0%E5%9C%96%E5%9C%96%E8%B3%87%E5%85%A7%E5%AE%B9%E5%8F%8A%E6%A0%BC%E5%BC%8F%E6%A8%99%E6%BA%96.pdf
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -21,6 +23,7 @@ namespace parser {
   using LaneId = road::LaneId;
   using JuncId = road::JuncId;
 
+  // 三次多项式的线性 v_{local} = a + b * du + c * du^2 + d * du^3
   struct Polynomial {
     double s;
     double a, b, c, d;
@@ -63,47 +66,48 @@ namespace parser {
     std::vector<LaneSection> sections;
   };
 
+  // 字符串转车道类型
   static road::Lane::LaneType StringToLaneType(std::string &&str) {
     StringUtil::ToLower(str);
-    if (str == "driving") {
+    if (str == "driving") {                     // 车道
       return road::Lane::LaneType::Driving;
-    } else if (str == "stop") {
+    } else if (str == "stop") {                 // 禁止进入
       return road::Lane::LaneType::Stop;
-    } else if (str == "shoulder") {
+    } else if (str == "shoulder") {             // 路肩
       return road::Lane::LaneType::Shoulder;
-    } else if (str == "biking") {
+    } else if (str == "biking") {               // 自行车专用道
       return road::Lane::LaneType::Biking;
-    } else if (str == "sidewalk") {
+    } else if (str == "sidewalk") {             // 人行道
       return road::Lane::LaneType::Sidewalk;
-    } else if (str == "border") {
+    } else if (str == "border") {               // 边界，车道之间的界限
       return road::Lane::LaneType::Border;
-    } else if (str == "restricted") {
+    } else if (str == "restricted") {           // 限制
       return road::Lane::LaneType::Restricted;
-    } else if (str == "parking") {
+    } else if (str == "parking") {              // 路边停车带
       return road::Lane::LaneType::Parking;
-    } else if (str == "bidirectional") {
+    } else if (str == "bidirectional") {        // 双向行驶的车道，通常为狭窄道路的情况
       return road::Lane::LaneType::Bidirectional;
-    } else if (str == "median") {
+    } else if (str == "median") {               // 中央分隔带
       return road::Lane::LaneType::Median;
-    } else if (str == "special1") {
+    } else if (str == "special1") {             // 特殊1
       return road::Lane::LaneType::Special1;
-    } else if (str == "special2") {
+    } else if (str == "special2") {             // 特殊2
       return road::Lane::LaneType::Special2;
-    } else if (str == "special3") {
+    } else if (str == "special3") {             // 特殊3
       return road::Lane::LaneType::Special3;
-    } else if (str == "roadworks") {
+    } else if (str == "roadworks") {            // 道路施工
       return road::Lane::LaneType::RoadWorks;
-    } else if (str == "tram") {
+    } else if (str == "tram") {                 // 轻轨电车专用道
       return road::Lane::LaneType::Tram;
-    } else if (str == "rail") {
+    } else if (str == "rail") {                 // 铁路
       return road::Lane::LaneType::Rail;
-    } else if (str == "entry") {
+    } else if (str == "entry") {                // 入口
       return road::Lane::LaneType::Entry;
-    } else if (str == "exit") {
+    } else if (str == "exit") {                 // 出口
       return road::Lane::LaneType::Exit;
-    } else if (str == "offramp") {
+    } else if (str == "offramp") {              // 出口匝道
       return road::Lane::LaneType::OffRamp;
-    } else if (str == "onramp") {
+    } else if (str == "onramp") {               // 入口匝道
       return road::Lane::LaneType::OnRamp;
     } else {
       return road::Lane::LaneType::None;
@@ -119,13 +123,13 @@ namespace parser {
     for (pugi::xml_node node_road : xml.child("OpenDRIVE").children("road")) {
       Road road { 0, "", 0.0, -1, 0, 0, {}, {}, {} };
 
-      // attributes
+      // 属性
       road.id = node_road.attribute("id").as_uint();
       road.name = node_road.attribute("name").value();
       road.length = node_road.attribute("length").as_double();
       road.junction_id = node_road.attribute("junction").as_int();
 
-      // link
+      // 连接
       pugi::xml_node link = node_road.child("link");
       if (link) {
         if (link.child("predecessor")) {
@@ -136,21 +140,21 @@ namespace parser {
         }
       }
 
-      // types
+      // 类别
       for (pugi::xml_node node_type : node_road.children("type")) {
         RoadTypeSpeed type { 0.0, "", 0.0, "" };
 
         type.s = node_type.attribute("s").as_double();
         type.type = node_type.attribute("type").value();
 
-        // speed type
+        // 速度类别
         pugi::xml_node speed = node_type.child("speed");
         if (speed) {
           type.max = speed.attribute("max").as_double();
           type.unit = speed.attribute("unit").value();
         }
 
-        // add it
+        // 添加它
         road.speed.emplace_back(type);
       }
 
@@ -164,7 +168,7 @@ namespace parser {
         offset.d = node_offset.attribute("d").as_double();
         road.section_offsets.emplace_back(offset);
       }
-      // Add default lane offset if none is found
+      // 如果没有找到，则添加默认的车道偏移量
       if(road.section_offsets.size() == 0) {
         LaneOffset offset { 0.0, 0.0, 0.0, 0.0, 0.0 };
         road.section_offsets.emplace_back(offset);
@@ -199,7 +203,7 @@ namespace parser {
           section.lanes.emplace_back(lane);
         }
 
-        // center lane
+        // 中央车道
         for (pugi::xml_node node_lane : node_section.child("center").children("lane")) {
           Lane lane { 0, road::Lane::LaneType::None, false, 0, 0 };
 
@@ -207,7 +211,7 @@ namespace parser {
           lane.type = StringToLaneType(node_lane.attribute("type").value());
           lane.level = node_lane.attribute("level").as_bool();
 
-          // link (probably it never exists)
+          // 连接(可能根本不存在)
           pugi::xml_node link2 = node_lane.child("link");
           if (link2) {
             if (link2.child("predecessor")) {
@@ -218,7 +222,7 @@ namespace parser {
             }
           }
 
-          // add it
+          // 添加它
           section.lanes.emplace_back(lane);
         }
 
@@ -241,7 +245,7 @@ namespace parser {
             }
           }
 
-          // add it
+          // 添加它
           section.lanes.emplace_back(lane);
         }
 
@@ -249,7 +253,7 @@ namespace parser {
         road.sections.emplace_back(section);
       }
 
-      // add road
+      // 添加路
       roads.emplace_back(road);
     }
 
@@ -286,7 +290,7 @@ namespace parser {
        }
      */
 
-    // map_builder calls
+    // 调用地图构建器 map_builder 
     for (auto const r : roads) {
       carla::road::Road *road = map_builder.AddRoad(r.id,
           r.name,

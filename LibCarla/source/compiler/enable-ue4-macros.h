@@ -15,6 +15,8 @@
 #  pragma clang diagnostic pop
 #endif
 
+// #pragma push_macro 将指定的宏压入栈中，相当于暂时存储，以备以后使用；
+// #pragma pop_macro 将栈顶的宏出栈，弹出的宏将覆盖当前名称相同的宏
 #pragma pop_macro("GET_AI_CONFIG_VAR")
 #pragma pop_macro("BT_VLOG")
 #pragma pop_macro("BT_SEARCHLOG")
