@@ -49,48 +49,48 @@ void ALSM::Update() {
   //定义两个集合用于存储世界中的车辆 ID 和行人 ID
   std::set<ActorId> world_vehicle_ids;
   std::set<ActorId> world_pedestrian_ids;
-  //存储待删除的未注册角色的 ID 列表
+  //存储待删除的未注册参与者的 ID 列表
   std::vector<ActorId> unregistered_list_to_be_deleted;
 
   current_timestamp = world.GetSnapshot().GetTimestamp(); //获取当前时间截
-  ActorList world_actors = world.GetActors();//获取当前世界中的所有角色列表
+  ActorList world_actors = world.GetActors();//获取当前世界中的所有参与者列表
 
-  // 找到已经销毁的角色并进行清理
+  // 找到已经销毁的参与者并进行清理
   const ALSM::DestroyeddActors destroyed_actors = IdentifyDestroyedActors(world_actors);
   
-  //处理已注册的被销毁的角色
+  //处理已注册的被销毁的参与者
   const ActorIdSet &destroyed_registered = destroyed_actors.first;
   for (const auto &deletion_id: destroyed_registered) {
-    RemoveActor(deletion_id, true); //删除角色并标记为未注册角色
+    RemoveActor(deletion_id, true); //删除角色并标记为注册参与者
   }
-
+  //处理未注册的被销毁参与者
   const ActorIdSet &destroyed_unregistered = destroyed_actors.second;
   for (auto deletion_id : destroyed_unregistered) {
     RemoveActor(deletion_id, false);
   }
 
-  // 检查英雄角色是否存活，如果英雄角色已被销毁，则将其从英雄列表中移除
+  // 检查英雄参与者是否存活，如果英雄参与者已被销毁，则将其从英雄列表中移除
   if (hero_actors.size() != 0u) {
     ActorIdSet hero_actors_to_delete;
-    //遍历英雄角色，查看它们是否已被销毁
+    //遍历英雄参与者，查看它们是否已被销毁
     for (auto &hero_actor_info: hero_actors) { 
-    //如果在未注册销毁列表中找到英雄角色，则标记其删除
+    //如果在未注册销毁列表中找到英雄参与者，则标记其删除
       if (destroyed_unregistered.find(hero_actor_info.first) != destroyed_unregistered.end()) {
         hero_actors_to_delete.insert(hero_actor_info.first);
       }
-      //如果在已注册销毁列表中找到英雄角色，则标记其删除
+      //如果在已注册销毁列表中找到英雄参与者，则标记其删除
       if (destroyed_registered.find(hero_actor_info.first) != destroyed_registered.end()) {
         hero_actors_to_delete.insert(hero_actor_info.first);
       }
     }
     
-    //删除所有已标记的英雄角色
+    //删除所有已标记的英雄参与者
     for (auto &deletion_id: hero_actors_to_delete) {
       hero_actors.erase(deletion_id);
     }
   }
 
-  // 扫描并识别新的未注册角色
+  // 扫描并识别新的未注册参与者
   IdentifyNewActors(world_actors);
 
   // 更新所有已注册的车辆的动态状态和静态属性
@@ -101,24 +101,24 @@ void ALSM::Update() {
   if (IsVehicleStuck(max_idle_time.first)
       && (current_timestamp.elapsed_seconds - elapsed_last_actor_destruction) > DELTA_TIME_BETWEEN_DESTRUCTIONS
       && hero_actors.find(max_idle_time.first) == hero_actors.end()) {
-    // 如果车辆被卡住，且它不是英雄角色，并且距离上次销毁的时间超过了预设的时间间隔，则销毁该车辆。
+    // 如果车辆被卡住，且它不是英雄参与者，并且距离上次销毁的时间超过了预设的时间间隔，则销毁该车辆。
     
 	registered_vehicles.Destroy(max_idle_time.first); // 销毁长时间停滞不动的车辆
-    RemoveActor(max_idle_time.first, true); //从已注册的角色中移除该辆车
+    RemoveActor(max_idle_time.first, true); //从已注册的参与者中移除该辆车
     elapsed_last_actor_destruction = current_timestamp.elapsed_seconds;//更新上一次销毁的时间
   }
 
   //分阶段销毁标记为移除的车辆
   if (parameters.GetOSMMode()) {
-  	//如果系统处于 OSM 模式，遍历标记为移除的角色列表
+  	//如果系统处于 OSM 模式，遍历标记为移除的参与者列表
     for (const ActorId& actor_id: marked_for_removal) {
       registered_vehicles.Destroy(actor_id); //销毁这些标记为移除的车辆
-      RemoveActor(actor_id, true); //从已注册角色列表中移除
+      RemoveActor(actor_id, true); //从已注册参与者列表中移除
     }
-    marked_for_removal.clear(); //清空标记为移除的角色列表
+    marked_for_removal.clear(); //清空标记为移除的参与者列表
   }
 
-  // 更新未注册角色的动态状态和静态属性
+  // 更新未注册参与者的动态状态和静态属性
   UpdateUnregisteredActorsData();
 }
 
