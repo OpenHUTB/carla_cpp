@@ -101,19 +101,23 @@ void UActorAttacher::AttachActors(
 {
   check(Child != nullptr);
   check(Parent != nullptr);
-
+  // 根据AttachmentType的值，选择不同的方式将Child对象附加到Parent对象上
   switch (AttachmentType)
   {
-    case EAttachmentType::Rigid:
+      // FName(*SocketName)是一个名称，用于指定Parent上的一个附着点
+  case EAttachmentType::Rigid:
       Child->AttachToActor(Parent, FAttachmentTransformRules::KeepRelativeTransform, FName(*SocketName));
       break;
-    case EAttachmentType::SpringArm:
+      // 这个函数可能是用来以弹簧臂的方式将Child附加到Parent上，弹簧臂通常用于相机，以提供一个动态且平滑的视角
+  case EAttachmentType::SpringArm:
       UActorAttacher_AttachActorsWithSpringArm(Child, Parent);
       break;
-    case EAttachmentType::SpringArmGhost:
+      // 这个函数的行为可能与SpringArm类似，但可能有一些特殊的用途或行为，例如在不渲染弹簧臂本身的情况下提供视角
+  case EAttachmentType::SpringArmGhost:
       UActorAttacher_AttachActorsWithSpringArmGhost(Child, Parent);
       break;
-    default:
+      // Fatal表示这是一个严重的错误，可能会导致程序崩溃
+  default:
       UE_LOG(LogCarla, Fatal, TEXT("Invalid attachment type"));
   }
 
