@@ -230,19 +230,18 @@ AActor* UProceduralWaterManager::SpawnRiverBlueprintActor()
 
   return RiverActor;
 }
-
-// ¶¨ÒåÒ»¸öÖ¸ÏòAActorµÄÖ¸Õëº¯ÊýSpawnLakeBlueprintActor£¬¸Ãº¯ÊýÊôÓÚUProceduralWaterManagerÀà¡£  
-// º¯Êý·µ»ØÒ»¸öÖ¸ÏòAActorµÄÖ¸Õë£¬AActorÊÇËùÓÐÓÎÏ·ÄÚ¶ÔÏóµÄ»ùÀà
+// å®šä¹‰ä¸€ä¸ªæŒ‡å‘AActorçš„æŒ‡é’ˆå‡½æ•°SpawnLakeBlueprintActorï¼Œè¯¥å‡½æ•°å±žäºŽUProceduralWaterManagerç±»ã€‚  
+// å‡½æ•°è¿”å›žä¸€ä¸ªæŒ‡å‘AActorçš„æŒ‡é’ˆï¼ŒAActoræ˜¯æ‰€æœ‰æ¸¸æˆå†…å¯¹è±¡çš„åŸºç±»
 AActor* UProceduralWaterManager::SpawnLakeBlueprintActor()
 {
-  // ¶¨ÒåÒ»¸öFVectorÀàÐÍµÄ±äÁ¿Location£¬ÓÃÓÚÖ¸¶¨ÐÂÉú³ÉµÄActorµÄÎ»ÖÃ¡£  
-  // ÕâÀïÎ»ÖÃ±»³õÊ¼»¯Îª(0, 0, 0)£¬¼´ÊÀ½ç×ø±êµÄÔ­µã
+  // å®šä¹‰ä¸€ä¸ªFVectorç±»åž‹çš„å˜é‡Locationï¼Œç”¨äºŽæŒ‡å®šæ–°ç”Ÿæˆçš„Actorçš„ä½ç½®ã€‚  
+  // è¿™é‡Œä½ç½®è¢«åˆå§‹åŒ–ä¸º(0, 0, 0)ï¼Œå³ä¸–ç•Œåæ ‡çš„åŽŸç‚¹
   FVector Location(0, 0, 0);
-  // ¶¨ÒåÒ»¸öFRotatorÀàÐÍµÄ±äÁ¿Rotation£¬ÓÃÓÚÖ¸¶¨ÐÂÉú³ÉµÄActorµÄÐý×ª½Ç¶È¡£  
-  // ÕâÀïÐý×ª½Ç¶È±»³õÊ¼»¯Îª(0, 0, 0)£¬¼´Ã»ÓÐÐý×ª
+  // å®šä¹‰ä¸€ä¸ªFRotatorç±»åž‹çš„å˜é‡Rotationï¼Œç”¨äºŽæŒ‡å®šæ–°ç”Ÿæˆçš„Actorçš„æ—‹è½¬è§’åº¦ã€‚  
+  // è¿™é‡Œæ—‹è½¬è§’åº¦è¢«åˆå§‹åŒ–ä¸º(0, 0, 0)ï¼Œå³æ²¡æœ‰æ—‹è½¬
   FRotator Rotation(0,0,0);
   FActorSpawnParameters SpawnInfo;
-  // »ñÈ¡µ±Ç°UProceduralWaterManagerÊµÀýËùÔÚµÄÊÀ½ç£¨UWorld¶ÔÏó
+  // èŽ·å–å½“å‰UProceduralWaterManagerå®žä¾‹æ‰€åœ¨çš„ä¸–ç•Œï¼ˆUWorldå¯¹è±¡
   UWorld* World = GetWorld();
   AActor* LakeActor =  World->SpawnActor<AActor>(
       LakeBlueprintClass, 
