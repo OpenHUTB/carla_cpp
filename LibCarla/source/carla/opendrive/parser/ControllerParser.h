@@ -28,7 +28,7 @@ namespace parser {
   public:
       ///@brief 解析XML文档并使用提供的MapBuilder构建地图
       ///@param xml 要解析的XML文档的常量引用
-      ///@param map_builder 将用于构建地图的MapBuilder对象的引用
+      ///@param map_builder 将用于构建地图的MapBuilder对象的引用。
     static void Parse(
         const pugi::xml_document &xml,
         carla::road::MapBuilder &map_builder);
