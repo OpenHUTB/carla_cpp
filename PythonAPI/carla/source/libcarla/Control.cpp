@@ -34,54 +34,61 @@ namespace rpc {
         << ", gear=" << std::to_string(control.gear) << ')';
     return out;
   }
+  //用于输出车辆的基本控制信息，包括油门(throttle)、方向盘转角(steer)、刹车(brake)、手刹(hand_brake)、倒车(reverse)、是否手动换挡(manual_gear_shift)和当前挡位(gear)
 
-  std::ostream &operator<<(std::ostream &out, const VehicleAckermannControl &control) {
-    out << "VehicleAckermannControl(steer=" << std::to_string(control.steer)
-        << ", steer_speed=" << std::to_string(control.steer_speed)
-        << ", speed=" << std::to_string(control.speed)
-        << ", acceleration=" << std::to_string(control.acceleration)
-        << ", jerk=" << std::to_string(control.jerk) << ')';
-    return out;
+  std::ostream& operator<<(std::ostream& out, const VehicleAckermannControl& control) {
+      out << "VehicleAckermannControl(steer=" << std::to_string(control.steer)
+          << ", steer_speed=" << std::to_string(control.steer_speed)
+          << ", speed=" << std::to_string(control.speed)
+          << ", acceleration=" << std::to_string(control.acceleration)
+          << ", jerk=" << std::to_string(control.jerk) << ')';
+      return out;
   }
+  //输出Ackermann转向模型的车辆控制信息，包括方向盘转角(steer)、转向速度(steer_speed)、速度(speed)、加速度(acceleration)和加加速度(jerk)
 
-  std::ostream &operator<<(std::ostream &out, const WalkerControl &control) {
-    out << "WalkerControl(direction=" << control.direction
-        << ", speed=" << std::to_string(control.speed)
-        << ", jump=" << boolalpha(control.jump) << ')';
-    return out;
+  std::ostream& operator<<(std::ostream& out, const WalkerControl& control) {
+      out << "WalkerControl(direction=" << control.direction
+          << ", speed=" << std::to_string(control.speed)
+          << ", jump=" << boolalpha(control.jump) << ')';
+      return out;
   }
+  //输出行人的控制信息，包括方向(direction)、速度(speed)和是否跳跃(jump)
 
-  std::ostream &operator<<(std::ostream &out, const WalkerBoneControlIn &control) {
-    out << "WalkerBoneControlIn(bone_transforms(";
-    for (auto bone_transform : control.bone_transforms) {
-      out << "(name="  << bone_transform.first
-          << ", transform=" << bone_transform.second << ')';
-    }
-    out << "))";
-    return out;
+  std::ostream& operator<<(std::ostream& out, const WalkerBoneControlIn& control) {
+      out << "WalkerBoneControlIn(bone_transforms(";
+      for (auto bone_transform : control.bone_transforms) {
+          out << "(name=" << bone_transform.first
+              << ", transform=" << bone_transform.second << ')';
+      }
+      out << "))";
+      return out;
   }
+  //输出对行人骨骼控制的输入信息，包括一系列骨骼的变换(bone_transforms)，每个变换包含骨骼名称和变换信息。
 
-  std::ostream &operator<<(std::ostream &out, const BoneTransformDataOut &data) {
-    out << "BoneTransformDataOut(name="  << data.bone_name << ", world=" << data.world << ", component=" << data.component << ", relative=" << data.relative << ')';
-    return out;
+  std::ostream& operator<<(std::ostream& out, const BoneTransformDataOut& data) {
+      out << "BoneTransformDataOut(name=" << data.bone_name << ", world=" << data.world << ", component=" << data.component << ", relative=" << data.relative << ')';
+      return out;
   }
+  //输出挡位物理控制的信息，包括挡位比(ratio)、降挡比(down_ratio)和升挡比(up_ratio)
 
-  std::ostream &operator<<(std::ostream &out, const WalkerBoneControlOut &control) {
-    out << "WalkerBoneControlOut(bone_transforms(";
-    for (auto bone_transform : control.bone_transforms) {
-      out << "(name="  << bone_transform.bone_name
-          << ", world=" << bone_transform.world << ", component=" << bone_transform.component << ", relative=" << bone_transform.relative << ')';
-    }
-    out << "))";
-    return out;
+  std::ostream& operator<<(std::ostream& out, const WalkerBoneControlOut& control) {
+      out << "WalkerBoneControlOut(bone_transforms(";
+      for (auto bone_transform : control.bone_transforms) {
+          out << "(name=" << bone_transform.bone_name
+              << ", world=" << bone_transform.world << ", component=" << bone_transform.component << ", relative=" << bone_transform.relative << ')';
+      }
+      out << "))";
+      return out;
   }
+  //输出车轮物理控制的信息，包括轮胎摩擦力(tire_friction)、阻尼率(damping_rate)、最大转向角(max_steer_angle)、半径(radius)、最大刹车扭矩(max_brake_torque)、最大手刹扭矩(max_handbrake_torque)、横向刚度最大值(lat_stiff_max_load)、横向刚度值(lat_stiff_value)、纵向刚度值(long_stiff_value)和车轮位置(position)
 
-  std::ostream &operator<<(std::ostream &out, const GearPhysicsControl &control) {
-    out << "GearPhysicsControl(ratio=" << std::to_string(control.ratio)
-        << ", down_ratio=" << std::to_string(control.down_ratio)
-        << ", up_ratio=" << std::to_string(control.up_ratio) << ')';
-    return out;
+  std::ostream& operator<<(std::ostream& out, const GearPhysicsControl& control) {
+      out << "GearPhysicsControl(ratio=" << std::to_string(control.ratio)
+          << ", down_ratio=" << std::to_string(control.down_ratio)
+          << ", up_ratio=" << std::to_string(control.up_ratio) << ')';
+      return out;
   }
+  //输出车辆物理控制的信息，包括扭矩曲线(torque_curve)、最大转速(max_rpm)、转动惯量(moi)、不同情况下的阻尼率、是否使用自动换挡(use_gear_autobox)、换挡时间(gear_switch_time)、离合器强度(clutch_strength)、最终传动比(final_ratio)、前进挡数量(forward_gears)、质量(mass)、阻力系数(drag_coefficient)、质心(center_of_mass)、转向曲线(steering_curve)、车轮信息(wheels)和是否使用扫掠车轮碰撞(use_sweep_wheel_collision)
 
   std::ostream &operator<<(std::ostream &out, const WheelPhysicsControl &control) {
     out << "WheelPhysicsControl(tire_friction=" << std::to_string(control.tire_friction)
