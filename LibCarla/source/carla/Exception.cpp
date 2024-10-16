@@ -24,7 +24,7 @@ namespace boost {   // 在boost命名空间中
       boost::source_location const & loc) {  // 接受异常和源位置
     throw_exception(e);  // 调用上面定义的抛出异常函数
   }
-
+  
 } // namespace boost
 
 #endif // BOOST_NO_EXCEPTIONS
@@ -53,5 +53,4 @@ namespace detail {  // 在detail子命名空间中
 
 } // namespace detail
 } // namespace clmdep_asio
-
 #endif // ASIO_NO_EXCEPTIONS

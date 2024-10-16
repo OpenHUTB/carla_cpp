@@ -1,9 +1,9 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2017 巴萨罗那自治大学 (UAB) 的计算机视觉中心 (CVC)。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品遵循MIT许可证的条款进行许可。
+// 许可证副本请参见 <https://opensource.org/licenses/MIT>。
 
+// 引入carla库中的相关头文件
 #include <carla/PythonUtil.h>
 #include <carla/client/Actor.h>
 #include <carla/client/ActorList.h>
@@ -11,30 +11,43 @@
 #include <carla/rpc/EnvironmentObject.h>
 #include <carla/rpc/ObjectLabel.h>
 
+// 引入标准库中的字符串处理功能
 #include <string>
 
+// 引入Boost Python库中的vector容器相关的功能
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 
+// carla命名空间
 namespace carla {
 namespace client {
 
+  // 重载输出流操作符 "<<" 以方便打印ActorList对象
+  // 该操作符将输出ActorList中的内容
   std::ostream &operator<<(std::ostream &out, const ActorList &actors) {
+    // 调用PrintList来打印actor列表中的所有内容
     return PrintList(out, actors);
   }
 
+  // 重载输出流操作符 "<<" 以方便打印World对象
+  // 该操作符将输出World的id
   std::ostream &operator<<(std::ostream &out, const World &world) {
-    out << "World(id=" << world.GetId() << ')';
+    out << "World(id=" << world.GetId() << ')';  // 输出World的id
     return out;
   }
 
 } // namespace client
 } // namespace carla
 
+// carla命名空间中的rpc部分
 namespace carla {
 namespace rpc {
 
+  // 重载输出流操作符 "<<" 以方便打印EpisodeSettings对象
   std::ostream &operator<<(std::ostream &out, const EpisodeSettings &settings) {
+    // 帮助函数：将布尔值转换为字符串"True"或"False"
     auto BoolToStr = [](bool b) { return b ? "True" : "False"; };
+
+    // 输出世界设置的各个参数，包括同步模式、渲染模式、固定时间步等
     out << "WorldSettings(synchronous_mode=" << BoolToStr(settings.synchronous_mode)
         << ",no_rendering_mode=" << BoolToStr(settings.no_rendering_mode)
         << ",fixed_delta_seconds=" << settings.fixed_delta_seconds.get()
@@ -46,16 +59,19 @@ namespace rpc {
     return out;
   }
 
+  // 重载输出流操作符 "<<" 以方便打印EnvironmentObject对象
+  // 该操作符将输出环境对象的id、名称、变换矩阵和包围盒
   std::ostream &operator<<(std::ostream &out, const EnvironmentObject &environment_object) {
-    out << "Mesh(id=" << environment_object.id << ", ";
-    out << "name=" << environment_object.name << ", ";
-    out << "transform=" << environment_object.transform << ", ";
-    out << "bounding_box=" << environment_object.bounding_box << ")";
+    out << "Mesh(id=" << environment_object.id << ", ";  // 输出Mesh的id
+    out << "name=" << environment_object.name << ", ";  // 输出Mesh的名称
+    out << "transform=" << environment_object.transform << ", ";  // 输出Mesh的变换矩阵
+    out << "bounding_box=" << environment_object.bounding_box << ")";  // 输出Mesh的包围盒
     return out;
   }
 
 } // namespace rpc
 } // namespace carla
+
 
 static auto WaitForTick(const carla::client::World &world, double seconds) {
   carla::PythonUtil::ReleaseGIL unlock;
