@@ -16,8 +16,8 @@
 #endif // WITH_EDITORONLY_DATA
 #include "MoveAssetsCommandlet.generated.h"
 
-/// Struct containing Package Params, used for storing the parsed arguments when
-/// invoking this commandlet
+///包含 “包参数” 的结构体，
+///用于在调用此命令行工具时存储已解析的参数。
 USTRUCT()
 struct CARLA_API FMovePackageParams
 {
@@ -35,44 +35,50 @@ class UMoveAssetsCommandlet : public UCommandlet
 
 public:
 
-  /// Default constructor.
+  /// 默认构造函数.
   UMoveAssetsCommandlet();
 #if WITH_EDITORONLY_DATA
 
-  /// Parses the command line parameters provided through @a InParams The
-  /// arguments to parse are the package name and a list of map names
-  /// concatenated in a string.
+  /// 解析通过 @a InParams 提供的命令行参数。
+  ///要解析的参数是包名称
+  ///和以字符串形式连接在一起的地图名称列表。
   FMovePackageParams ParseParams(const FString &InParams) const;
 
-  /// Moves all the assets contained in a map from @a SrcPath to @a DestPath
+  /// 将地图中包含的所有资产从 @a SrcPath 移动到 @a DestPath
   void MoveAssetsFromMapForSemanticSegmentation(const FString &PackageName, const FString &MapName);
 
-  /// Moves the meshes of all maps listed in a @PackageParams
+  /// 将在一个 “包参数” 中列出的所有地图的网格移动
   void MoveAssets(const FMovePackageParams &PackageParams);
 
 public:
 
-  /// Main method and entry of the commandlet, taking as input parameters @a
-  /// Params.
+  ///主方法和命令行工具的入口，
+  ///以 @a Params 作为输入参数
   virtual int32 Main(const FString &Params) override;
 
 #endif // WITH_EDITORONLY_DATA
 
 private:
 
-  /// The following data structures are declared as class members and with
-  /// UPROPERTY macro to avoid UE4 to garbage collect them.
+  /// 以下数据结构被声明为类成员，
+  ///并使用 UPROPERTY 宏来避免被虚幻引擎 4 进行垃圾回收。
 
-  /// Loaded assets from any object library
+介绍一下 UPROPERTY 宏的作用和使用方法
+数据结构如何避免被 UE4 进行垃圾回收
+推荐一些有关 UE4 数据结构的教程
+  /// 从任何对象库中加载资产
   UPROPERTY()
   TArray<FAssetData> AssetDatas;
 
-  /// Loaded maps from any object library
+  /// 从任何对象库中加载地图
   UPROPERTY()
   TArray<FAssetData> MapContents;
 
-  /// Used for loading assets in object library. Loaded Data is stored in
-  /// AssetDatas.
+  /// 用于在对象库中加载资产。
+  ///已加载的数据存储在 “资产数据” 中。
+如何确定从哪个对象库中加载资产？
+如何存储和管理加载的资产？
+如何确保加载的资产的准确性和完整性？.
   UPROPERTY()
   UObjectLibrary *AssetsObjectLibrary;
 };
