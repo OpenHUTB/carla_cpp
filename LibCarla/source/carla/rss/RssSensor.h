@@ -59,54 +59,45 @@ public:
   // 用于RssSensor对象的清理工作  
   ~RssSensor();
 
-  /// Register a @a callback to be executed for each actor within each measurement to be processed
-  /// to decide on the operation of the RSS sensor in respect to the ego vehicle to actor constellation
+  /// 为每个待处理的测量中的每个行为体注册一个回调函数，以便决定RSS传感器相对于自我车辆与行为体星座的操作。
   void RegisterActorConstellationCallback(ActorConstellationCallbackFunctionType callback);
 
-  /// Register a @a callback to be executed each time a new measurement is
-  /// received.
-  ///
-  /// @warning Calling this function on a sensor that is already listening
-  /// steals the data stream from the previously set callback. Note that
-  /// several instances of Sensor (even in different processes) may point to
-  /// the same sensor in the simulator.
+  /// 注册一个回调函数，每次接收到新的测量数据时都会执行该函数。
+///
+/// @警告：如果对一个已经在监听的传感器调用此函数，则会窃取之前设置的回调函数的数据流。请注意，
+/// 模拟器中的多个Sensor实例（甚至在不同进程中）可能指向同一个传感器。
   void Listen(CallbackFunctionType callback) override;
 
-  /// Stop listening for new measurements.
-  /// Be aware:  GIL has to be unlocked to be able to wait for callbacks not active.
+  /// 停止监听新的测量数据。
+/// 注意：为了能够等待非活动状态的回调函数，全局解释器锁（GIL）必须被解锁。
   void Stop() override;
 
-  /// Return whether this Sensor instance is currently listening to the
-  /// associated sensor in the simulator.
+  /// 返回此Sensor实例当前是否正在监听模拟器中的相关传感器
   bool IsListening() const override {
     return _on_tick_register_id != 0u;
   }
 
-  /// @brief sets the current log level
+  /// @brief 设置当前的日志级别
   void SetLogLevel(const uint8_t &log_level);
 
-  /// @brief sets the current map log level
+  /// @brief 设置当前的地图日志级别
   void SetMapLogLevel(const uint8_t &map_log_level);
 
-  /// @returns the currently used dynamics of the ego vehicle (@see also
-  /// RssCheck::GetEgoVehicleDynamics())
+  /// 返回当前自车（ego vehicle）所使用的动力学参数（@see also  
+  /// RssCheck::GetEgoVehicleDynamics() 以获取更多信息）
   const ::ad::rss::world::RssDynamics &GetEgoVehicleDynamics() const;
-  /// @brief sets the ego vehicle dynamics to be used by the ego vehicle (@see
-  /// also RssCheck::SetEgoVehicleDynamics())
+  /// @brief 设置自车（ego vehicle）将要使用的动力学参数（@see  
+  /// also RssCheck::SetEgoVehicleDynamics() 以获取更多信息） 
   void SetEgoVehicleDynamics(const ::ad::rss::world::RssDynamics &ego_dynamics);
 
-  /// @returns the currently used dynamics of other vehicles (@see also
-  /// RssCheck::GetOtherVehicleDynamics())
+  /// 返回当前其他车辆所使用的动力学参数（@see RssCheck::GetOtherVehicleDynamics() 获取更多信息）
   const ::ad::rss::world::RssDynamics &GetOtherVehicleDynamics() const;
-  /// @brief sets the ego vehicle dynamics to be used by other vehicles (@see
-  /// also RssCheck::SetOtherVehicleDynamics())
+  /// @brief 设置其他车辆所使用的动力学参数（@see RssCheck::SetOtherVehicleDynamics() 获取更多信息）
   void SetOtherVehicleDynamics(const ::ad::rss::world::RssDynamics &other_vehicle_dynamics);
 
-  /// @returns the currently used dynamics of pedestrians (@see also
-  /// RssCheck::GetPedestrianDynamics())
+  /// 返回当前行人所使用的动力学参数（@see RssCheck::GetPedestrianDynamics() 获取更多信息）
   const ::ad::rss::world::RssDynamics &GetPedestrianDynamics() const;
-  /// @brief sets the ego vehicle dynamics to be used by pedestrians (@see
-  /// also RssCheck::SetPedestrianDynamics())
+  /// @brief 设置行人所使用的动力学参数（@see RssCheck::SetPedestrianDynamics() 获取更多信息）
   void SetPedestrianDynamics(const ::ad::rss::world::RssDynamics &pedestrian_dynamics);
 
   /// @returns the current mode for respecting the road boundaries (@see also
