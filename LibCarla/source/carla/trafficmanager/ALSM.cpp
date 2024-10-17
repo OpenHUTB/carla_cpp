@@ -1,114 +1,124 @@
 
 #include "boost/pointer_cast.hpp"
 
-#include "carla/client/Actor.h"
-#include "carla/client/Vehicle.h"
-#include "carla/client/Walker.h"
+#include "carla/client/Actor.h" //导入 Actor 类
+#include "carla/client/Vehicle.h" //导入 Vehicle (车辆)类
+#include "carla/client/Walker.h" //导入 Walker (行人)类
 
-#include "carla/trafficmanager/Constants.h"
-#include "carla/trafficmanager/LocalizationUtils.h"
-#include "carla/trafficmanager/SimpleWaypoint.h"
+#include "carla/trafficmanager/Constants.h" //导入交通管理中的常量定义
+#include "carla/trafficmanager/LocalizationUtils.h" //导入定义相关的工具
+#include "carla/trafficmanager/SimpleWaypoint.h" //导入 SimpleWaypoint 类
 
-#include "carla/trafficmanager/ALSM.h"
+#include "carla/trafficmanager/ALSM.h" //导入 ALSM 类的声明
 
 namespace carla {
 namespace traffic_manager {
 
+//ALSM 类的构造函数，用于初始化各个模块
 ALSM::ALSM(
-  AtomicActorSet &registered_vehicles,
-  BufferMap &buffer_map,
-  TrackTraffic &track_traffic,
-  std::vector<ActorId>& marked_for_removal,
-  const Parameters &parameters,
-  const cc::World &world,
-  const LocalMapPtr &local_map,
-  SimulationState &simulation_state,
-  LocalizationStage &localization_stage,
-  CollisionStage &collision_stage,
-  TrafficLightStage &traffic_light_stage,
-  MotionPlanStage &motion_plan_stage,
-  VehicleLightStage &vehicle_light_stage)
-  : registered_vehicles(registered_vehicles),
-    buffer_map(buffer_map),
-    track_traffic(track_traffic),
-    marked_for_removal(marked_for_removal),
-    parameters(parameters),
-    world(world),
-    local_map(local_map),
-    simulation_state(simulation_state),
-    localization_stage(localization_stage),
-    collision_stage(collision_stage),
-    traffic_light_stage(traffic_light_stage),
-    motion_plan_stage(motion_plan_stage),
-    vehicle_light_stage(vehicle_light_stage) {}
+  AtomicActorSet &registered_vehicles, //已注册车辆的集合
+  BufferMap &buffer_map, //存储交通流中路径缓存
+  TrackTraffic &track_traffic, //用于追踪交通的模块
+  std::vector<ActorId>& marked_for_removal, //标记即将移除的车辆 ID 列表
+  const Parameters &parameters, //系统的参数配置
+  const cc::World &world, //代表仿真世界
+  const LocalMapPtr &local_map, //本地地图指针，用于交通管理
+  SimulationState &simulation_state, //仿真状态
+  LocalizationStage &localization_stage, //定位模块
+  CollisionStage &collision_stage,//碰撞检测模块
+  TrafficLightStage &traffic_light_stage, //交通信号灯控制模块
+  MotionPlanStage &motion_plan_stage, //运动规划模块
+  VehicleLightStage &vehicle_light_stage) //车辆灯光控制模块
+  : registered_vehicles(registered_vehicles), //初始化已注册车辆
+    buffer_map(buffer_map), //初始化路径缓存
+    track_traffic(track_traffic), //初始化交通追踪器
+    marked_for_removal(marked_for_removal), //初始化将移除的车辆列表
+    parameters(parameters), //初始化系统参数
+    world(world), //初始化仿真世界
+    local_map(local_map), //初始化本地地图
+    simulation_state(simulation_state), //初始化仿真状态
+    localization_stage(localization_stage), //初始化定位模块
+    collision_stage(collision_stage), //初始化碰撞检测模块
+    traffic_light_stage(traffic_light_stage), //初始化交通信号灯控制模块
+    motion_plan_stage(motion_plan_stage), //初始化运动规划模块
+    vehicle_light_stage(vehicle_light_stage) {} //初始化车辆灯光控制模块
 
 void ALSM::Update() {
-
+  //获取是否启用混合物理模式参数
   bool hybrid_physics_mode = parameters.GetHybridPhysicsMode();
-
+  //定义两个集合用于存储世界中的车辆 ID 和行人 ID
   std::set<ActorId> world_vehicle_ids;
   std::set<ActorId> world_pedestrian_ids;
+  //存储待删除的未注册参与者的 ID 列表
   std::vector<ActorId> unregistered_list_to_be_deleted;
 
-  current_timestamp = world.GetSnapshot().GetTimestamp();
-  ActorList world_actors = world.GetActors();
+  current_timestamp = world.GetSnapshot().GetTimestamp(); //获取当前时间截
+  ActorList world_actors = world.GetActors();//获取当前世界中的所有参与者列表
 
-  // Find destroyed actors and perform clean up.
+  // 找到已经销毁的参与者并进行清理
   const ALSM::DestroyeddActors destroyed_actors = IdentifyDestroyedActors(world_actors);
-
+  
+  //处理已注册的被销毁的参与者
   const ActorIdSet &destroyed_registered = destroyed_actors.first;
   for (const auto &deletion_id: destroyed_registered) {
-    RemoveActor(deletion_id, true);
+    RemoveActor(deletion_id, true); //删除角色并标记为注册参与者
   }
-
+  //处理未注册的被销毁参与者
   const ActorIdSet &destroyed_unregistered = destroyed_actors.second;
   for (auto deletion_id : destroyed_unregistered) {
     RemoveActor(deletion_id, false);
   }
 
-  // Invalidate hero actor if it is not alive anymore.
+  // 检查英雄参与者是否存活，如果英雄参与者已被销毁，则将其从英雄列表中移除
   if (hero_actors.size() != 0u) {
     ActorIdSet hero_actors_to_delete;
-    for (auto &hero_actor_info: hero_actors) {
+    //遍历英雄参与者，查看它们是否已被销毁
+    for (auto &hero_actor_info: hero_actors) { 
+    //如果在未注册销毁列表中找到英雄参与者，则标记其删除
       if (destroyed_unregistered.find(hero_actor_info.first) != destroyed_unregistered.end()) {
         hero_actors_to_delete.insert(hero_actor_info.first);
       }
+      //如果在已注册销毁列表中找到英雄参与者，则标记其删除
       if (destroyed_registered.find(hero_actor_info.first) != destroyed_registered.end()) {
         hero_actors_to_delete.insert(hero_actor_info.first);
       }
     }
-
+    
+    //删除所有已标记的英雄参与者
     for (auto &deletion_id: hero_actors_to_delete) {
       hero_actors.erase(deletion_id);
     }
   }
 
-  // Scan for new unregistered actors.
+  // 扫描并识别新的未注册参与者
   IdentifyNewActors(world_actors);
 
-  // Update dynamic state and static attributes for all registered vehicles.
+  // 更新所有已注册的车辆的动态状态和静态属性
   ALSM::IdleInfo max_idle_time = std::make_pair(0u, current_timestamp.elapsed_seconds);
   UpdateRegisteredActorsData(hybrid_physics_mode, max_idle_time);
 
-  // Destroy registered vehicle if stuck at a location for too long.
+  // 如果某辆已注册的车在某位置停留过久，则销毁该车辆
   if (IsVehicleStuck(max_idle_time.first)
       && (current_timestamp.elapsed_seconds - elapsed_last_actor_destruction) > DELTA_TIME_BETWEEN_DESTRUCTIONS
       && hero_actors.find(max_idle_time.first) == hero_actors.end()) {
-    registered_vehicles.Destroy(max_idle_time.first);
-    RemoveActor(max_idle_time.first, true);
-    elapsed_last_actor_destruction = current_timestamp.elapsed_seconds;
+    // 如果车辆被卡住，且它不是英雄参与者，并且距离上次销毁的时间超过了预设的时间间隔，则销毁该车辆。
+    
+	registered_vehicles.Destroy(max_idle_time.first); // 销毁长时间停滞不动的车辆
+    RemoveActor(max_idle_time.first, true); //从已注册的参与者中移除该辆车
+    elapsed_last_actor_destruction = current_timestamp.elapsed_seconds;//更新上一次销毁的时间
   }
 
-  // Destorying vehicles for marked for removal by stages.
+  //分阶段销毁标记为移除的车辆
   if (parameters.GetOSMMode()) {
+  	//如果系统处于 OSM 模式，遍历标记为移除的参与者列表
     for (const ActorId& actor_id: marked_for_removal) {
-      registered_vehicles.Destroy(actor_id);
-      RemoveActor(actor_id, true);
+      registered_vehicles.Destroy(actor_id); //销毁这些标记为移除的车辆
+      RemoveActor(actor_id, true); //从已注册参与者列表中移除
     }
-    marked_for_removal.clear();
+    marked_for_removal.clear(); //清空标记为移除的参与者列表
   }
 
-  // Update dynamic state and static attributes for unregistered actors.
+  // 更新未注册参与者的动态状态和静态属性
   UpdateUnregisteredActorsData();
 }
 
