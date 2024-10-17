@@ -101,55 +101,56 @@ private:
   AtomicMap<ActorId, Route> custom_route;
 
 public:
+    /// 构造函数
   Parameters();
+    /// 析构函数
   ~Parameters();
 
   ////////////////////////////////// SETTERS /////////////////////////////////////
 
-  /// Set a vehicle's % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// 设置车辆相对于速度限制的速度降低百分比
+  /// 如果小于0，则表示速度增加百分比
   void SetPercentageSpeedDifference(const ActorPtr &actor, const float percentage);
 
-  /// Method to set a lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// 设置车道偏移量，从中心线开始的位移
+  /// 正值表示向右偏移，负值表示向左偏移
   void SetLaneOffset(const ActorPtr &actor, const float offset);
 
-  /// Set a vehicle's exact desired velocity.
+  /// 设置车辆的精确期望速度
   void SetDesiredSpeed(const ActorPtr &actor, const float value);
 
-  /// Set a global % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// 设置全局相对于速度限制的速度降低百分比
+  /// 如果小于0，则表示速度增加百分比
   void SetGlobalPercentageSpeedDifference(float const percentage);
 
-  /// Method to set a global lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// 设置全局车道偏移量，从中心线开始的位移
+  /// 正值表示向右偏移，负值表示向左偏移
   void SetGlobalLaneOffset(float const offset);
 
-  /// Method to set collision detection rules between vehicles.
+  /// 设置车辆之间的碰撞检测规则的方法
   void SetCollisionDetection(
-      const ActorPtr &reference_actor,
-      const ActorPtr &other_actor,
-      const bool detect_collision);
+      const ActorPtr &reference_actor, ///<参考车辆指针
+      const ActorPtr &other_actor,     ///<另一车辆指针
+      const bool detect_collision);    ///<是否碰撞的布尔值
 
-  /// Method to force lane change on a vehicle.
-  /// Direction flag can be set to true for left and false for right.
-  void SetForceLaneChange(const ActorPtr &actor, const bool direction);
+  /// 强制车辆换道的方法
+  /// 方向标志可以设置为true表示向左，false表示向右
+  void SetForceLaneChange(const ActorPtr &actor, const bool direction);///<车辆指针和方向布尔值
 
-  /// Enable/disable automatic lane change on a vehicle.
-  void SetAutoLaneChange(const ActorPtr &actor, const bool enable);
+  /// 启用/禁用车辆的自动换道功能
+  void SetAutoLaneChange(const ActorPtr &actor, const bool enable);///<车辆指针和启用或禁用的布尔值
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the leading vehicle.
-  void SetDistanceToLeadingVehicle(const ActorPtr &actor, const float distance);
+  /// 设置车辆应保持与前车距离的方法
+  void SetDistanceToLeadingVehicle(const ActorPtr &actor, const float distance);///<车辆指针和应保持的距离值
 
-  /// Method to set % to run any traffic sign.
-  void SetPercentageRunningSign(const ActorPtr &actor, const float perc);
+  /// 设置无视交通标志的概率的方法
+  void SetPercentageRunningSign(const ActorPtr &actor, const float perc);///<车辆指针和无视标志的概率值
 
-  /// Method to set % to run any traffic light.
-  void SetPercentageRunningLight(const ActorPtr &actor, const float perc);
+  /// 设置无视交通信号灯的概率的方法
+  void SetPercentageRunningLight(const ActorPtr &actor, const float perc);///<车辆指针和无视信号灯的概率值
 
-  /// Method to set % to ignore any vehicle.
-  void SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc);
+  /// 设置无视其他车辆的概率的方法
+  void SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc);///<车辆指针和无视车辆的概率值
 
   /// Method to set % to ignore any vehicle.
   void SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc);
