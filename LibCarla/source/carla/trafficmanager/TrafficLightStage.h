@@ -25,7 +25,7 @@ private:
   std::unordered_map<JunctionID, std::deque<ActorId>> entering_vehicles_map;        // 路口 ID 到车辆 ID 队列的无序映射
   // 将车辆与其当前路口链接起来的映射。用于方便地访问前面的两个映射。
   std::unordered_map<ActorId, JunctionID> vehicle_last_junction;     // 车辆 ID 到路口 ID 的无序映射
-  // 包含演员首次在停车标志处停止的时间戳的映射。
+  // 包含参与者首次在停车标志处停止的时间戳的映射。
   std::unordered_map<ActorId, cc::Timestamp> vehicle_stop_time;    // 车辆 ID 到时间戳的无序映射
   TLFrame &output_array;   // 输出数组的引用
   RandomGenerator &random_device;        // 随机数生成器的引用
