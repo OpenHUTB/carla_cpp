@@ -6,211 +6,211 @@
 
 #pragma once
 
-#include <atomic>  /// Ìá¹©Ô­×Ó²Ù×÷£¬È·±£Ïß³Ì°²È«
-#include <chrono>  /// Ìá¹©Ê±¼ä¹¦ÄÜ£¬ÓÃÓÚÊ±¼ä¼ÆËã
-#include <random>  /// Ìá¹©Ëæ»úÊıÉú³É¹¦ÄÜ
-#include <unordered_map> /// Ìá¹©ÎŞĞòÓ³ÉäÈİÆ÷£¬ÓÃÓÚ¿ìËÙ²éÕÒ
-/// °üº¬Carla¿Í»§¶ËÏà¹ØµÄÍ·ÎÄ¼ş
+#include <atomic>  /// æä¾›åŸå­æ“ä½œï¼Œç¡®ä¿çº¿ç¨‹å®‰å…¨
+#include <chrono>  /// æä¾›æ—¶é—´åŠŸèƒ½ï¼Œç”¨äºæ—¶é—´è®¡ç®—
+#include <random>  /// æä¾›éšæœºæ•°ç”ŸæˆåŠŸèƒ½
+#include <unordered_map> /// æä¾›æ— åºæ˜ å°„å®¹å™¨ï¼Œç”¨äºå¿«é€ŸæŸ¥æ‰¾
+/// åŒ…å«Carlaå®¢æˆ·ç«¯ç›¸å…³çš„å¤´æ–‡ä»¶
 #include "carla/client/Actor.h"
 #include "carla/client/Vehicle.h"
-#include "carla/Memory.h"/// °üº¬CarlaÄÚ´æ¹ÜÀíÏà¹ØµÄÍ·ÎÄ¼ş
-#include "carla/rpc/ActorId.h"/// °üº¬Carla Rpc Í¨ĞÅÏà¹ØµÄÍ·ÎÄ¼ş£¬¶¨ÒåÁË²ÎÓëÕßµÄÎ¨Ò»±êÊ¶·û
+#include "carla/Memory.h"/// åŒ…å«Carlaå†…å­˜ç®¡ç†ç›¸å…³çš„å¤´æ–‡ä»¶
+#include "carla/rpc/ActorId.h"/// åŒ…å«Carla Rpc é€šä¿¡ç›¸å…³çš„å¤´æ–‡ä»¶ï¼Œå®šä¹‰äº†å‚ä¸è€…çš„å”¯ä¸€æ ‡è¯†ç¬¦
 
-#include "carla/trafficmanager/AtomicActorSet.h"/// °üº¬Carla½»Í¨¹ÜÀíÆ÷µÄÏà¹ØÍ·ÎÄ¼ş
+#include "carla/trafficmanager/AtomicActorSet.h"/// åŒ…å«Carlaäº¤é€šç®¡ç†å™¨çš„ç›¸å…³å¤´æ–‡ä»¶
 #include "carla/trafficmanager/AtomicMap.h"
 
 namespace carla {
     namespace traffic_manager {
-        /// Ê¹ÓÃ±ğÃû¼ò»¯´úÂëÖĞµÄÃüÃû
+        /// ä½¿ç”¨åˆ«åç®€åŒ–ä»£ç ä¸­çš„å‘½å
         namespace cc = carla::client;
         namespace cg = carla::geom;
-        using ActorPtr = carla::SharedPtr<cc::Actor>;/// ²ÎÓëÕßµÄÖÇÄÜÖ¸ÕëÀàĞÍ
-        using ActorId = carla::ActorId;/// ²ÎÓëÕßµÄÎ¨Ò»±êÊ¶·ûÀàĞÍ
-        using Path = std::vector<cg::Location>;/// Â·ÏßÀàĞÍ£¬ÓÉÒ»ÏµÁĞµØÀíÎ»ÖÃ×é³É
-        using Route = std::vector<uint8_t>;/// Â·ÏßÀàĞÍ£¬ÓÉÒ»ÏµÁĞ×Ö½Ú×é³É£¬±íÊ¾Â·ÏßĞÅÏ¢
-        /// »»µÀĞÅÏ¢½á¹¹Ìå
+        using ActorPtr = carla::SharedPtr<cc::Actor>;/// å‚ä¸è€…çš„æ™ºèƒ½æŒ‡é’ˆç±»å‹
+        using ActorId = carla::ActorId;/// å‚ä¸è€…çš„å”¯ä¸€æ ‡è¯†ç¬¦ç±»å‹
+        using Path = std::vector<cg::Location>;/// è·¯çº¿ç±»å‹ï¼Œç”±ä¸€ç³»åˆ—åœ°ç†ä½ç½®ç»„æˆ
+        using Route = std::vector<uint8_t>;/// è·¯çº¿ç±»å‹ï¼Œç”±ä¸€ç³»åˆ—å­—èŠ‚ç»„æˆï¼Œè¡¨ç¤ºè·¯çº¿ä¿¡æ¯
+        /// æ¢é“ä¿¡æ¯ç»“æ„ä½“
         struct ChangeLaneInfo {
-            bool change_lane = false;/// ÊÇ·ñ»»µÀ
-            bool direction = false;/// »»µÀ·½Ïò
+            bool change_lane = false;/// æ˜¯å¦æ¢é“
+            bool direction = false;/// æ¢é“æ–¹å‘
         };
-        /// ½»Í¨¹ÜÀí²ÎÊı
+        /// äº¤é€šç®¡ç†å‚æ•°
         class Parameters {
 
         private:
-            /// »ùÓÚËÙ¶ÈÏŞÖÆ²îÒìµÄµ¥¸ö³µÁ¾Ä¿±êËÙ¶ÈÓ³Éä
+            /// åŸºäºé€Ÿåº¦é™åˆ¶å·®å¼‚çš„å•ä¸ªè½¦è¾†ç›®æ ‡é€Ÿåº¦æ˜ å°„
             AtomicMap<ActorId, float> percentage_difference_from_speed_limit;
-            /// µ¥¸ö³µÁ¾µÄ³µµÀÆ«ÒÆÓ³Éä
+            /// å•ä¸ªè½¦è¾†çš„è½¦é“åç§»æ˜ å°„
             AtomicMap<ActorId, float> lane_offset;
-            /// »ùÓÚÆÚÍûËÙ¶ÈµÄµ¥¸ö³µÁ¾Ä¿±êËÙ¶ÈÓ³Éä
+            /// åŸºäºæœŸæœ›é€Ÿåº¦çš„å•ä¸ªè½¦è¾†ç›®æ ‡é€Ÿåº¦æ˜ å°„
             AtomicMap<ActorId, float> exact_desired_speed;
-            /// È«¾ÖÄ¿±êËÙ¶ÈÏŞÖÆ²îÒì°Ù·Ö±È
+            /// å…¨å±€ç›®æ ‡é€Ÿåº¦é™åˆ¶å·®å¼‚ç™¾åˆ†æ¯”
             float global_percentage_difference_from_limit = 0;
-            /// È«¾Ö³µµÀÆ«ÒÆ
+            /// å…¨å±€è½¦é“åç§»
             float global_lane_offset = 0;
-            /// ÔÚÅö×²¼ì²âÆÚ¼äÒªºöÂÔµÄÑİÔ±¼¯ºÏÓ³Éä
+            /// åœ¨ç¢°æ’æ£€æµ‹æœŸé—´è¦å¿½ç•¥çš„æ¼”å‘˜é›†åˆæ˜ å°„
             AtomicMap<ActorId, std::shared_ptr<AtomicActorSet>> ignore_collision;
-            /// µ½Ç°µ¼³µÁ¾µÄ¾àÀëÓ³Éä
+            /// åˆ°å‰å¯¼è½¦è¾†çš„è·ç¦»æ˜ å°„
             AtomicMap<ActorId, float> distance_to_leading_vehicle;
-            /// Ç¿ÖÆ»»µÀÃüÁîÓ³Éä
+            /// å¼ºåˆ¶æ¢é“å‘½ä»¤æ˜ å°„
             AtomicMap<ActorId, ChangeLaneInfo> force_lane_change;
-            /// ×Ô¶¯»»µÀÃüÁîÓ³Éä
+            /// è‡ªåŠ¨æ¢é“å‘½ä»¤æ˜ å°„
             AtomicMap<ActorId, bool> auto_lane_change;
-            /// ´³½»Í¨ĞÅºÅµÆ°Ù·Ö±ÈÓ³Éä
+            /// é—¯äº¤é€šä¿¡å·ç¯ç™¾åˆ†æ¯”æ˜ å°„
             AtomicMap<ActorId, float> perc_run_traffic_light;
-            /// ´³½»Í¨±êÖ¾°Ù·Ö±ÈÓ³Éä
+            /// é—¯äº¤é€šæ ‡å¿—ç™¾åˆ†æ¯”æ˜ å°„
             AtomicMap<ActorId, float> perc_run_traffic_sign;
-            /// ºöÂÔĞĞÈË°Ù·Ö±ÈÓ³Éä
+            /// å¿½ç•¥è¡Œäººç™¾åˆ†æ¯”æ˜ å°„
             AtomicMap<ActorId, float> perc_ignore_walkers;
-            /// ºöÂÔ³µÁ¾°Ù·Ö±ÈÓ³Éä
+            /// å¿½ç•¥è½¦è¾†ç™¾åˆ†æ¯”æ˜ å°„
             AtomicMap<ActorId, float> perc_ignore_vehicles;
-            /// ¿¿ÓÒĞĞÊ»¹æÔò°Ù·Ö±ÈÓ³Éä
+            /// é å³è¡Œé©¶è§„åˆ™ç™¾åˆ†æ¯”æ˜ å°„
             AtomicMap<ActorId, float> perc_keep_right;
-            /// Ëæ»ú×ó»»µÀ°Ù·Ö±ÈÓ³Éä
+            /// éšæœºå·¦æ¢é“ç™¾åˆ†æ¯”æ˜ å°„
             AtomicMap<ActorId, float> perc_random_left;
-            /// Ëæ»úÓÒ»»µÀ°Ù·Ö±ÈÓ³Éä
+            /// éšæœºå³æ¢é“ç™¾åˆ†æ¯”æ˜ å°„
             AtomicMap<ActorId, float> perc_random_right;
-            /// ³µÁ¾µÆ¹â×Ô¶¯¸üĞÂ±êÖ¾Ó³Éä
+            /// è½¦è¾†ç¯å…‰è‡ªåŠ¨æ›´æ–°æ ‡å¿—æ˜ å°„
             AtomicMap<ActorId, bool> auto_update_vehicle_lights;
-            /// Í¬²½¿ª¹Ø
+            /// åŒæ­¥å¼€å…³
             std::atomic<bool> synchronous_mode{ false };
-            /// ¾àÀë±ß¾à
+            /// è·ç¦»è¾¹è·
             std::atomic<float> distance_margin{ 2.0 };
-            /// »ìºÏÎïÀíÄ£Ê½¿ª¹Ø
+            /// æ··åˆç‰©ç†æ¨¡å¼å¼€å…³
             std::atomic<bool> hybrid_physics_mode{ false };
-            /// ×Ô¶¯ÖØÉúÄ£Ê½¿ª¹Ø
+            /// è‡ªåŠ¨é‡ç”Ÿæ¨¡å¼å¼€å…³
             std::atomic<bool> respawn_dormant_vehicles{ false };
-            /// Ïà¶ÔÓÚÖ÷½Ç³µÁ¾µÄ×îĞ¡ÖØÉú¾àÀë
+            /// ç›¸å¯¹äºä¸»è§’è½¦è¾†çš„æœ€å°é‡ç”Ÿè·ç¦»
             std::atomic<float> respawn_lower_bound{ 100.0 };
-            /// Ïà¶ÔÓÚÖ÷½Ç³µÁ¾µÄ×î´óÖØÉú¾àÀë
+            /// ç›¸å¯¹äºä¸»è§’è½¦è¾†çš„æœ€å¤§é‡ç”Ÿè·ç¦»
             std::atomic<float> respawn_upper_bound{ 1000.0 };
-            /// Ïà¶ÔÓÚÖ÷½Ç³µÁ¾µÄ×îĞ¡¿ÉÄÜÖØÉú¾àÀë
+            /// ç›¸å¯¹äºä¸»è§’è½¦è¾†çš„æœ€å°å¯èƒ½é‡ç”Ÿè·ç¦»
             float min_lower_bound;
-            /// Ïà¶ÔÓÚÖ÷½Ç³µÁ¾µÄ×î´ó¿ÉÄÜÖØÉú¾àÀë
+            /// ç›¸å¯¹äºä¸»è§’è½¦è¾†çš„æœ€å¤§å¯èƒ½é‡ç”Ÿè·ç¦»
             float max_upper_bound;
-            /// »ìºÏÎïÀí°ë¾¶
+            /// æ··åˆç‰©ç†åŠå¾„
             std::atomic<float> hybrid_physics_radius{ 70.0 };
-            /// Open Street MapÄ£Ê½²ÎÊı
+            /// Open Street Mapæ¨¡å¼å‚æ•°
             std::atomic<bool> osm_mode{ true };
-            /// ÊÇ·ñµ¼Èë×Ô¶¨ÒåÂ·¾¶µÄ²ÎÊıÓ³Éä
+            /// æ˜¯å¦å¯¼å…¥è‡ªå®šä¹‰è·¯å¾„çš„å‚æ•°æ˜ å°„
             AtomicMap<ActorId, bool> upload_path;
-            /// ´æ´¢ËùÓĞ×Ô¶¨ÒåÂ·¾¶µÄ½á¹¹
+            /// å­˜å‚¨æ‰€æœ‰è‡ªå®šä¹‰è·¯å¾„çš„ç»“æ„
             AtomicMap<ActorId, Path> custom_path;
-            /// ÊÇ·ñµ¼Èë×Ô¶¨ÒåÂ·ÏßµÄ²ÎÊıÓ³Éä
+            /// æ˜¯å¦å¯¼å…¥è‡ªå®šä¹‰è·¯çº¿çš„å‚æ•°æ˜ å°„
             AtomicMap<ActorId, bool> upload_route;
-            /// ´æ´¢ËùÓĞ×Ô¶¨ÒåÂ·ÏßµÄ½á¹¹
+            /// å­˜å‚¨æ‰€æœ‰è‡ªå®šä¹‰è·¯çº¿çš„ç»“æ„
             AtomicMap<ActorId, Route> custom_route;
 
         public:
-            /// ¹¹Ôìº¯Êı
+            /// æ„é€ å‡½æ•°
             Parameters();
-            /// Îö¹¹º¯Êı
+            /// ææ„å‡½æ•°
             ~Parameters();
 
             ////////////////////////////////// SETTERS /////////////////////////////////////
 
-            /// ÉèÖÃ³µÁ¾Ïà¶ÔÓÚËÙ¶ÈÏŞÖÆµÄËÙ¶È½µµÍ°Ù·Ö±È
-            /// Èç¹ûĞ¡ÓÚ0£¬Ôò±íÊ¾ËÙ¶ÈÔö¼Ó°Ù·Ö±È
+            /// è®¾ç½®è½¦è¾†ç›¸å¯¹äºé€Ÿåº¦é™åˆ¶çš„é€Ÿåº¦é™ä½ç™¾åˆ†æ¯”
+            /// å¦‚æœå°äº0ï¼Œåˆ™è¡¨ç¤ºé€Ÿåº¦å¢åŠ ç™¾åˆ†æ¯”
             void SetPercentageSpeedDifference(const ActorPtr& actor, const float percentage);
 
-            /// ÉèÖÃ³µµÀÆ«ÒÆÁ¿£¬´ÓÖĞĞÄÏß¿ªÊ¼µÄÎ»ÒÆ
-            /// ÕıÖµ±íÊ¾ÏòÓÒÆ«ÒÆ£¬¸ºÖµ±íÊ¾Ïò×óÆ«ÒÆ
+            /// è®¾ç½®è½¦é“åç§»é‡ï¼Œä»ä¸­å¿ƒçº¿å¼€å§‹çš„ä½ç§»
+            /// æ­£å€¼è¡¨ç¤ºå‘å³åç§»ï¼Œè´Ÿå€¼è¡¨ç¤ºå‘å·¦åç§»
             void SetLaneOffset(const ActorPtr& actor, const float offset);
 
-            /// ÉèÖÃ³µÁ¾µÄ¾«È·ÆÚÍûËÙ¶È
+            /// è®¾ç½®è½¦è¾†çš„ç²¾ç¡®æœŸæœ›é€Ÿåº¦
             void SetDesiredSpeed(const ActorPtr& actor, const float value);
 
-            /// ÉèÖÃÈ«¾ÖÏà¶ÔÓÚËÙ¶ÈÏŞÖÆµÄËÙ¶È½µµÍ°Ù·Ö±È
-            /// Èç¹ûĞ¡ÓÚ0£¬Ôò±íÊ¾ËÙ¶ÈÔö¼Ó°Ù·Ö±È
+            /// è®¾ç½®å…¨å±€ç›¸å¯¹äºé€Ÿåº¦é™åˆ¶çš„é€Ÿåº¦é™ä½ç™¾åˆ†æ¯”
+            /// å¦‚æœå°äº0ï¼Œåˆ™è¡¨ç¤ºé€Ÿåº¦å¢åŠ ç™¾åˆ†æ¯”
             void SetGlobalPercentageSpeedDifference(float const percentage);
 
-            /// ÉèÖÃÈ«¾Ö³µµÀÆ«ÒÆÁ¿£¬´ÓÖĞĞÄÏß¿ªÊ¼µÄÎ»ÒÆ
-            /// ÕıÖµ±íÊ¾ÏòÓÒÆ«ÒÆ£¬¸ºÖµ±íÊ¾Ïò×óÆ«ÒÆ
+            /// è®¾ç½®å…¨å±€è½¦é“åç§»é‡ï¼Œä»ä¸­å¿ƒçº¿å¼€å§‹çš„ä½ç§»
+            /// æ­£å€¼è¡¨ç¤ºå‘å³åç§»ï¼Œè´Ÿå€¼è¡¨ç¤ºå‘å·¦åç§»
             void SetGlobalLaneOffset(float const offset);
 
-            /// ÉèÖÃ³µÁ¾Ö®¼äµÄÅö×²¼ì²â¹æÔòµÄ·½·¨
+            /// è®¾ç½®è½¦è¾†ä¹‹é—´çš„ç¢°æ’æ£€æµ‹è§„åˆ™çš„æ–¹æ³•
             void SetCollisionDetection(
-                const ActorPtr& reference_actor, ///<²Î¿¼³µÁ¾Ö¸Õë
-                const ActorPtr& other_actor,     ///<ÁíÒ»³µÁ¾Ö¸Õë
-                const bool detect_collision);    ///<ÊÇ·ñÅö×²µÄ²¼¶ûÖµ
+                const ActorPtr& reference_actor, ///<å‚è€ƒè½¦è¾†æŒ‡é’ˆ
+                const ActorPtr& other_actor,     ///<å¦ä¸€è½¦è¾†æŒ‡é’ˆ
+                const bool detect_collision);    ///<æ˜¯å¦ç¢°æ’çš„å¸ƒå°”å€¼
 
-            /// Ç¿ÖÆ³µÁ¾»»µÀµÄ·½·¨
-            /// ·½Ïò±êÖ¾¿ÉÒÔÉèÖÃÎªtrue±íÊ¾Ïò×ó£¬false±íÊ¾ÏòÓÒ
-            void SetForceLaneChange(const ActorPtr& actor, const bool direction);///<³µÁ¾Ö¸ÕëºÍ·½Ïò²¼¶ûÖµ
+            /// å¼ºåˆ¶è½¦è¾†æ¢é“çš„æ–¹æ³•
+            /// æ–¹å‘æ ‡å¿—å¯ä»¥è®¾ç½®ä¸ºtrueè¡¨ç¤ºå‘å·¦ï¼Œfalseè¡¨ç¤ºå‘å³
+            void SetForceLaneChange(const ActorPtr& actor, const bool direction);///<è½¦è¾†æŒ‡é’ˆå’Œæ–¹å‘å¸ƒå°”å€¼
 
-            /// ÆôÓÃ/½ûÓÃ³µÁ¾µÄ×Ô¶¯»»µÀ¹¦ÄÜ
-            void SetAutoLaneChange(const ActorPtr& actor, const bool enable);///<³µÁ¾Ö¸ÕëºÍÆôÓÃ»ò½ûÓÃµÄ²¼¶ûÖµ
+            /// å¯ç”¨/ç¦ç”¨è½¦è¾†çš„è‡ªåŠ¨æ¢é“åŠŸèƒ½
+            void SetAutoLaneChange(const ActorPtr& actor, const bool enable);///<è½¦è¾†æŒ‡é’ˆå’Œå¯ç”¨æˆ–ç¦ç”¨çš„å¸ƒå°”å€¼
 
-            /// ÉèÖÃ³µÁ¾Ó¦±£³ÖÓëÇ°³µ¾àÀëµÄ·½·¨
-            void SetDistanceToLeadingVehicle(const ActorPtr& actor, const float distance);///<³µÁ¾Ö¸ÕëºÍÓ¦±£³ÖµÄ¾àÀëÖµ
+            /// è®¾ç½®è½¦è¾†åº”ä¿æŒä¸å‰è½¦è·ç¦»çš„æ–¹æ³•
+            void SetDistanceToLeadingVehicle(const ActorPtr& actor, const float distance);///<è½¦è¾†æŒ‡é’ˆå’Œåº”ä¿æŒçš„è·ç¦»å€¼
 
-            /// ÉèÖÃÎŞÊÓ½»Í¨±êÖ¾µÄ¸ÅÂÊµÄ·½·¨
-            void SetPercentageRunningSign(const ActorPtr& actor, const float perc);///<³µÁ¾Ö¸ÕëºÍÎŞÊÓ±êÖ¾µÄ¸ÅÂÊÖµ
+            /// è®¾ç½®æ— è§†äº¤é€šæ ‡å¿—çš„æ¦‚ç‡çš„æ–¹æ³•
+            void SetPercentageRunningSign(const ActorPtr& actor, const float perc);///<è½¦è¾†æŒ‡é’ˆå’Œæ— è§†æ ‡å¿—çš„æ¦‚ç‡å€¼
 
-            /// ÉèÖÃÎŞÊÓ½»Í¨ĞÅºÅµÆµÄ¸ÅÂÊµÄ·½·¨
-            void SetPercentageRunningLight(const ActorPtr& actor, const float perc);///<³µÁ¾Ö¸ÕëºÍÎŞÊÓĞÅºÅµÆµÄ¸ÅÂÊÖµ
+            /// è®¾ç½®æ— è§†äº¤é€šä¿¡å·ç¯çš„æ¦‚ç‡çš„æ–¹æ³•
+            void SetPercentageRunningLight(const ActorPtr& actor, const float perc);///<è½¦è¾†æŒ‡é’ˆå’Œæ— è§†ä¿¡å·ç¯çš„æ¦‚ç‡å€¼
 
-            /// ÉèÖÃÎŞÊÓÆäËû³µÁ¾µÄ¸ÅÂÊµÄ·½·¨
-            void SetPercentageIgnoreVehicles(const ActorPtr& actor, const float perc);///<³µÁ¾Ö¸ÕëºÍÎŞÊÓ³µÁ¾µÄ¸ÅÂÊÖµ
+            /// è®¾ç½®æ— è§†å…¶ä»–è½¦è¾†çš„æ¦‚ç‡çš„æ–¹æ³•
+            void SetPercentageIgnoreVehicles(const ActorPtr& actor, const float perc);///<è½¦è¾†æŒ‡é’ˆå’Œæ— è§†è½¦è¾†çš„æ¦‚ç‡å€¼
 
-            /// ÉèÖÃÎŞÊÓÆäËû³µÁ¾µÄ¸ÅÂÊµÄ·½·¨
-            void SetPercentageIgnoreWalkers(const ActorPtr& actor, const float perc);///<³µÁ¾Ö¸ÕëºÍÎŞÊÓ³µÁ¾µÄ¸ÅÂÊÖµ
+            /// è®¾ç½®æ— è§†å…¶ä»–è½¦è¾†çš„æ¦‚ç‡çš„æ–¹æ³•
+            void SetPercentageIgnoreWalkers(const ActorPtr& actor, const float perc);///<è½¦è¾†æŒ‡é’ˆå’Œæ— è§†è½¦è¾†çš„æ¦‚ç‡å€¼
 
-            /// ÉèÖÃÇ¿ÖÆ¿¿ÓÒĞĞÊ»µÄ¸ÅÂÊµÄ·½·¨
-            void SetKeepRightPercentage(const ActorPtr& actor, const float percentage);///<³µÁ¾Ö¸ÕëºÍ±£³Ö¿¿ÓÒĞĞÊ»µÄ¸ÅÂÊÖµ
+            /// è®¾ç½®å¼ºåˆ¶é å³è¡Œé©¶çš„æ¦‚ç‡çš„æ–¹æ³•
+            void SetKeepRightPercentage(const ActorPtr& actor, const float percentage);///<è½¦è¾†æŒ‡é’ˆå’Œä¿æŒé å³è¡Œé©¶çš„æ¦‚ç‡å€¼
 
-            /// ÉèÖÃËæ»úÏò×ó»»µÀµÄ¸ÅÂÊµÄ·½·¨
-            void SetRandomLeftLaneChangePercentage(const ActorPtr& actor, const float percentage);///<³µÁ¾Ö¸ÕëºÍËæ»úÏò×ó»»µÀµÄ¸ÅÂÊÖµ
+            /// è®¾ç½®éšæœºå‘å·¦æ¢é“çš„æ¦‚ç‡çš„æ–¹æ³•
+            void SetRandomLeftLaneChangePercentage(const ActorPtr& actor, const float percentage);///<è½¦è¾†æŒ‡é’ˆå’Œéšæœºå‘å·¦æ¢é“çš„æ¦‚ç‡å€¼
 
-            /// ÉèÖÃËæ»úÏòÓÒ»»µÀµÄ¸ÅÂÊµÄ·½·¨
-            void SetRandomRightLaneChangePercentage(const ActorPtr& actor, const float percentage);///<³µÁ¾Ö¸ÕëºÍËæ»úÏòÓÒ»»µÀµÄ¸ÅÂÊÖµ
+            /// è®¾ç½®éšæœºå‘å³æ¢é“çš„æ¦‚ç‡çš„æ–¹æ³•
+            void SetRandomRightLaneChangePercentage(const ActorPtr& actor, const float percentage);///<è½¦è¾†æŒ‡é’ˆå’Œéšæœºå‘å³æ¢é“çš„æ¦‚ç‡å€¼
 
-            /// ÉèÖÃÊÇ·ñ×Ô¶¯¸üĞÂ³µÁ¾µÆ¹â×´Ì¬µÄ·½·¨
-            void SetUpdateVehicleLights(const ActorPtr& actor, const bool do_update);///<³µÁ¾Ö¸ÕëºÍÊÇ·ñ¸üĞÂµÄ²¼¶ûÖµ
+            /// è®¾ç½®æ˜¯å¦è‡ªåŠ¨æ›´æ–°è½¦è¾†ç¯å…‰çŠ¶æ€çš„æ–¹æ³•
+            void SetUpdateVehicleLights(const ActorPtr& actor, const bool do_update);///<è½¦è¾†æŒ‡é’ˆå’Œæ˜¯å¦æ›´æ–°çš„å¸ƒå°”å€¼
 
-            /// ÉèÖÃËùÓĞ×¢²á³µÁ¾Ó¦±£³ÖÓëÇ°³µµÄ¾àÀëµÄ·½·¨
-            void SetGlobalDistanceToLeadingVehicle(const float dist);///< ËùÓĞ³µÁ¾Ó¦±£³ÖµÄ¾àÀëÖµ
+            /// è®¾ç½®æ‰€æœ‰æ³¨å†Œè½¦è¾†åº”ä¿æŒä¸å‰è½¦çš„è·ç¦»çš„æ–¹æ³•
+            void SetGlobalDistanceToLeadingVehicle(const float dist);///< æ‰€æœ‰è½¦è¾†åº”ä¿æŒçš„è·ç¦»å€¼
 
-            /// ÉèÖÃÍ¬²½Ä£Ê½³¬Ê±Ê±¼ä
-            void SetSynchronousModeTimeOutInMiliSecond(const double time);///< ³¬Ê±Ê±¼äÖµ
+            /// è®¾ç½®åŒæ­¥æ¨¡å¼è¶…æ—¶æ—¶é—´
+            void SetSynchronousModeTimeOutInMiliSecond(const double time);///< è¶…æ—¶æ—¶é—´å€¼
 
-            /// ÉèÖÃ»ìºÏÎïÀíÄ£Ê½µÄ·½·¨
-            void SetHybridPhysicsMode(const bool mode_switch);///< ÊÇ·ñÆôÓÃ»ìºÏÎïÀíÄ£Ê½µÄ²¼¶ûÖµ
+            /// è®¾ç½®æ··åˆç‰©ç†æ¨¡å¼çš„æ–¹æ³•
+            void SetHybridPhysicsMode(const bool mode_switch);///< æ˜¯å¦å¯ç”¨æ··åˆç‰©ç†æ¨¡å¼çš„å¸ƒå°”å€¼
 
-            /// ÉèÖÃÍ¬²½Ä£Ê½µÄ·½·¨
-            void SetSynchronousMode(const bool mode_switch = true);///< ÊÇ·ñÆôÓÃÍ¬²½Ä£Ê½µÄ²¼¶ûÖµ£¬Ä¬ÈÏÆôÓÃ
+            /// è®¾ç½®åŒæ­¥æ¨¡å¼çš„æ–¹æ³•
+            void SetSynchronousMode(const bool mode_switch = true);///< æ˜¯å¦å¯ç”¨åŒæ­¥æ¨¡å¼çš„å¸ƒå°”å€¼ï¼Œé»˜è®¤å¯ç”¨
 
-            /// ÉèÖÃ»ìºÏÎïÀí°ë¾¶µÄ·½·¨
-            void SetHybridPhysicsRadius(const float radius);///< »ìºÏÎïÀí°ë¾¶Öµ
+            /// è®¾ç½®æ··åˆç‰©ç†åŠå¾„çš„æ–¹æ³•
+            void SetHybridPhysicsRadius(const float radius);///< æ··åˆç‰©ç†åŠå¾„å€¼
 
-            /// ÉèÖÃOpen Street MapÄ£Ê½µÄ·½·¨
-            void SetOSMMode(const bool mode_switch);///< ÊÇ·ñÆôÓÃOSMÄ£Ê½µÄ²¼¶ûÖµ
+            /// è®¾ç½®Open Street Mapæ¨¡å¼çš„æ–¹æ³•
+            void SetOSMMode(const bool mode_switch);///< æ˜¯å¦å¯ç”¨OSMæ¨¡å¼çš„å¸ƒå°”å€¼
 
-            /// ÉèÖÃÊÇ·ñ×Ô¶¯ÖØÉúĞİÃß³µÁ¾µÄ·½·¨
-            void SetRespawnDormantVehicles(const bool mode_switch); ///< ÊÇ·ñÆôÓÃµÄ²¼¶ûÖµ
+            /// è®¾ç½®æ˜¯å¦è‡ªåŠ¨é‡ç”Ÿä¼‘çœ è½¦è¾†çš„æ–¹æ³•
+            void SetRespawnDormantVehicles(const bool mode_switch); ///< æ˜¯å¦å¯ç”¨çš„å¸ƒå°”å€¼
 
-            /// ÉèÖÃÖØÉúĞİÃß³µÁ¾µÄ±ß½çµÄ·½·¨
-            void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound);///< ÏÂ±ß½çÖµºÍÏÂ±ß½çÖµ
+            /// è®¾ç½®é‡ç”Ÿä¼‘çœ è½¦è¾†çš„è¾¹ç•Œçš„æ–¹æ³•
+            void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound);///< ä¸‹è¾¹ç•Œå€¼å’Œä¸‹è¾¹ç•Œå€¼
 
-            /// ÉèÖÃÖØÉúĞİÃß³µÁ¾Ê±µÄ±ß½çÏŞÖÆµÄ·½·¨
-            void SetMaxBoundaries(const float lower, const float upper);///< ÏÂÏŞÖµºÍÏÂÏŞÖµ
+            /// è®¾ç½®é‡ç”Ÿä¼‘çœ è½¦è¾†æ—¶çš„è¾¹ç•Œé™åˆ¶çš„æ–¹æ³•
+            void SetMaxBoundaries(const float lower, const float upper);///< ä¸‹é™å€¼å’Œä¸‹é™å€¼
 
-            /// ÉèÖÃ×Ô¶¨ÒåÂ·¾¶µÄ·½·¨
-            void SetCustomPath(const ActorPtr& actor, const Path path, const bool empty_buffer);///< ³µÁ¾Ö¸Õë£¬Â·¾¶Êı¾İºÍÊÇ·ñÇå¿Õ»º³åÇøµÄ²¼¶ûÖµ
+            /// è®¾ç½®è‡ªå®šä¹‰è·¯å¾„çš„æ–¹æ³•
+            void SetCustomPath(const ActorPtr& actor, const Path path, const bool empty_buffer);///< è½¦è¾†æŒ‡é’ˆï¼Œè·¯å¾„æ•°æ®å’Œæ˜¯å¦æ¸…ç©ºç¼“å†²åŒºçš„å¸ƒå°”å€¼
 
-            /// ÒÆ³ıÒ»×éµãµÄ·½·¨
-            void RemoveUploadPath(const ActorId& actor_id, const bool remove_path);///< ³µÁ¾IDºÍÊÇ·ñÒÆ³ıµÄ²¼¶ûÖµ
+            /// ç§»é™¤ä¸€ç»„ç‚¹çš„æ–¹æ³•
+            void RemoveUploadPath(const ActorId& actor_id, const bool remove_path);///< è½¦è¾†IDå’Œæ˜¯å¦ç§»é™¤çš„å¸ƒå°”å€¼
 
-            /// ¸üĞÂÒÑÉèÖÃµÄµãÁĞ±íµÄ·½·¨
-            void UpdateUploadPath(const ActorId& actor_id, const Path path);///< ³µÁ¾IDºÍĞÂµÄÂ·¾¶Êı¾İ
+            /// æ›´æ–°å·²è®¾ç½®çš„ç‚¹åˆ—è¡¨çš„æ–¹æ³•
+            void UpdateUploadPath(const ActorId& actor_id, const Path path);///< è½¦è¾†IDå’Œæ–°çš„è·¯å¾„æ•°æ®
 
-            /// ÉèÖÃ×Ô¶¨ÒåÂ·ÏßµÄ·½·¨
-            void SetImportedRoute(const ActorPtr& actor, const Route route, const bool empty_buffer);///< ³µÁ¾Ö¸Õë£¬Â·ÏßÊı¾İºÍÊÇ·ñÇå¿Õ»º³åÇøµÄ²¼¶ûÖµ
+            /// è®¾ç½®è‡ªå®šä¹‰è·¯çº¿çš„æ–¹æ³•
+            void SetImportedRoute(const ActorPtr& actor, const Route route, const bool empty_buffer);///< è½¦è¾†æŒ‡é’ˆï¼Œè·¯çº¿æ•°æ®å’Œæ˜¯å¦æ¸…ç©ºç¼“å†²åŒºçš„å¸ƒå°”å€¼
 
-            /// ÒÆ³ıÂ·ÏßµÄ·½·¨
-            void RemoveImportedRoute(const ActorId& actor_id, const bool remove_path);///<³µÁ¾IDºÍÊÇ·ñÒÆ³ıµÄ²¼¶ûÖµ
+            /// ç§»é™¤è·¯çº¿çš„æ–¹æ³•
+            void RemoveImportedRoute(const ActorId& actor_id, const bool remove_path);///<è½¦è¾†IDå’Œæ˜¯å¦ç§»é™¤çš„å¸ƒå°”å€¼
 
-            /// ¸üĞÂÒÑÉèÖÃÂ·ÏßµÄ·½·¨
-            void UpdateImportedRoute(const ActorId& actor_id, const Route route);///< ³µÁ¾IDºÍĞÂµÄÂ·ÏßÊı¾İ
+            /// æ›´æ–°å·²è®¾ç½®è·¯çº¿çš„æ–¹æ³•
+            void UpdateImportedRoute(const ActorId& actor_id, const Route route);///< è½¦è¾†IDå’Œæ–°çš„è·¯çº¿æ•°æ®
 
             ///////////////////////////////// GETTERS /////////////////////////////////////
 
