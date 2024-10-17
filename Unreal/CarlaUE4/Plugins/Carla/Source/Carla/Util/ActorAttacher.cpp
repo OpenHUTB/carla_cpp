@@ -99,24 +99,22 @@ void UActorAttacher::AttachActors(
     const EAttachmentType AttachmentType,
     const FString& SocketName)
 {
-  check(Child != nullptr);
-  check(Parent != nullptr);
-  // ¸ù¾İAttachmentTypeµÄÖµ£¬Ñ¡Ôñ²»Í¬µÄ·½Ê½½«Child¶ÔÏó¸½¼Óµ½Parent¶ÔÏóÉÏ
+ // æ ¹æ®AttachmentTypeçš„å€¼ï¼Œé€‰æ‹©ä¸åŒçš„æ–¹å¼å°†Childå¯¹è±¡é™„åŠ åˆ°Parentå¯¹è±¡ä¸Š
   switch (AttachmentType)
   {
-      // FName(*SocketName)ÊÇÒ»¸öÃû³Æ£¬ÓÃÓÚÖ¸¶¨ParentÉÏµÄÒ»¸ö¸½×Åµã
+      // FName(*SocketName)æ˜¯ä¸€ä¸ªåç§°ï¼Œç”¨äºæŒ‡å®šParentä¸Šçš„ä¸€ä¸ªé™„ç€ç‚¹
   case EAttachmentType::Rigid:
       Child->AttachToActor(Parent, FAttachmentTransformRules::KeepRelativeTransform, FName(*SocketName));
       break;
-      // Õâ¸öº¯Êı¿ÉÄÜÊÇÓÃÀ´ÒÔµ¯»É±ÛµÄ·½Ê½½«Child¸½¼Óµ½ParentÉÏ£¬µ¯»É±ÛÍ¨³£ÓÃÓÚÏà»ú£¬ÒÔÌá¹©Ò»¸ö¶¯Ì¬ÇÒÆ½»¬µÄÊÓ½Ç
+      // è¿™ä¸ªå‡½æ•°å¯èƒ½æ˜¯ç”¨æ¥ä»¥å¼¹ç°§è‡‚çš„æ–¹å¼å°†Childé™„åŠ åˆ°Parentä¸Šï¼Œå¼¹ç°§è‡‚é€šå¸¸ç”¨äºç›¸æœºï¼Œä»¥æä¾›ä¸€ä¸ªåŠ¨æ€ä¸”å¹³æ»‘çš„è§†è§’
   case EAttachmentType::SpringArm:
       UActorAttacher_AttachActorsWithSpringArm(Child, Parent);
       break;
-      // Õâ¸öº¯ÊıµÄĞĞÎª¿ÉÄÜÓëSpringArmÀàËÆ£¬µ«¿ÉÄÜÓĞÒ»Ğ©ÌØÊâµÄÓÃÍ¾»òĞĞÎª£¬ÀıÈçÔÚ²»äÖÈ¾µ¯»É±Û±¾ÉíµÄÇé¿öÏÂÌá¹©ÊÓ½Ç
+      // è¿™ä¸ªå‡½æ•°çš„è¡Œä¸ºå¯èƒ½ä¸SpringArmç±»ä¼¼ï¼Œä½†å¯èƒ½æœ‰ä¸€äº›ç‰¹æ®Šçš„ç”¨é€”æˆ–è¡Œä¸ºï¼Œä¾‹å¦‚åœ¨ä¸æ¸²æŸ“å¼¹ç°§è‡‚æœ¬èº«çš„æƒ…å†µä¸‹æä¾›è§†è§’
   case EAttachmentType::SpringArmGhost:
       UActorAttacher_AttachActorsWithSpringArmGhost(Child, Parent);
       break;
-      // Fatal±íÊ¾ÕâÊÇÒ»¸öÑÏÖØµÄ´íÎó£¬¿ÉÄÜ»áµ¼ÖÂ³ÌĞò±ÀÀ£
+      // Fatalè¡¨ç¤ºè¿™æ˜¯ä¸€ä¸ªä¸¥é‡çš„é”™è¯¯ï¼Œå¯èƒ½ä¼šå¯¼è‡´ç¨‹åºå´©æºƒ
   default:
       UE_LOG(LogCarla, Fatal, TEXT("Invalid attachment type"));
   }
