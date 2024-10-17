@@ -6,34 +6,34 @@
 
 #pragma once
 
-#include <atomic>
-#include <chrono>
-#include <random>
-#include <unordered_map>
-
+#include <atomic>  /// 提供原子操作，确保线程安全
+#include <chrono>  /// 提供时间功能，用于时间计算
+#include <random>  /// 提供随机数生成功能
+#include <unordered_map> /// 提供无序映射容器，用于快速查找
+/// 包含Carla客户端相关的头文件
 #include "carla/client/Actor.h"
 #include "carla/client/Vehicle.h"
-#include "carla/Memory.h"
-#include "carla/rpc/ActorId.h"
+#include "carla/Memory.h"/// 包含Carla内存管理相关的头文件
+#include "carla/rpc/ActorId.h"/// 包含Carla Rpc 通信相关的头文件，定义了参与者的唯一标识符
 
-#include "carla/trafficmanager/AtomicActorSet.h"
+#include "carla/trafficmanager/AtomicActorSet.h"/// 包含Carla交通管理器的相关头文件
 #include "carla/trafficmanager/AtomicMap.h"
 
 namespace carla {
 namespace traffic_manager {
-
+    /// 使用别名简化代码中的命名
 namespace cc = carla::client;
 namespace cg = carla::geom;
-using ActorPtr = carla::SharedPtr<cc::Actor>;
-using ActorId = carla::ActorId;
-using Path = std::vector<cg::Location>;
-using Route = std::vector<uint8_t>;
-
+using ActorPtr = carla::SharedPtr<cc::Actor>;/// 参与者的智能指针类型
+using ActorId = carla::ActorId;/// 参与者的唯一标识符类型
+using Path = std::vector<cg::Location>;/// 路线类型，由一系列地理位置组成
+using Route = std::vector<uint8_t>;/// 路线类型，由一系列字节组成，表示路线信息
+/// 换道信息结构体
 struct ChangeLaneInfo {
-  bool change_lane = false;
-  bool direction = false;
+  bool change_lane = false;/// 是否换道
+  bool direction = false;/// 换道方向
 };
-
+/// 交通管理参数
 class Parameters {
 
 private:
