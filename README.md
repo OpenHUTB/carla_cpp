@@ -176,3 +176,4 @@ git rm -rf .
 [RYZ-666](https://github.com/RYZ-666)、
 [Taohygge](https://github.com/Taohygge)、
 [HZY-23](https://github.com/HZY-23)。
+[hugufy](https://github.com/hugufy)
