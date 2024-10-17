@@ -53,7 +53,7 @@ public:
 
   void Update(const unsigned long index) override;     // 重写的更新函数
 
-  void RemoveActor(const ActorId actor_id) override;      // 重写的移除演员函数
+  void RemoveActor(const ActorId actor_id) override;      // 重写的移除参与者函数
 
   void Reset() override;   // 重写的重置函数
 
