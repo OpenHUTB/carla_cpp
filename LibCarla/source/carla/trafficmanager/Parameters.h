@@ -152,65 +152,65 @@ public:
   /// 设置无视其他车辆的概率的方法
   void SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc);///<车辆指针和无视车辆的概率值
 
-  /// Method to set % to ignore any vehicle.
-  void SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc);
+  /// 设置无视其他车辆的概率的方法
+  void SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc);///<车辆指针和无视车辆的概率值
 
-  /// Method to set % to keep on the right lane.
-  void SetKeepRightPercentage(const ActorPtr &actor, const float percentage);
+  /// 设置强制靠右行驶的概率的方法
+  void SetKeepRightPercentage(const ActorPtr &actor, const float percentage);///<车辆指针和保持靠右行驶的概率值
 
-  /// Method to set % to randomly do a left lane change.
-  void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage);
+  /// 设置随机向左换道的概率的方法
+  void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage);///<车辆指针和随机向左换道的概率值
 
-  /// Method to set % to randomly do a right lane change.
-  void SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage);
+  /// 设置随机向右换道的概率的方法
+  void SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage);///<车辆指针和随机向右换道的概率值
 
-  /// Method to set the automatic vehicle light state update flag.
-  void SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update);
+  /// 设置是否自动更新车辆灯光状态的方法
+  void SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update);///<车辆指针和是否更新的布尔值
 
-  /// Method to set the distance to leading vehicle for all registered vehicles.
-  void SetGlobalDistanceToLeadingVehicle(const float dist);
+  /// 设置所有注册车辆应保持与前车的距离的方法
+  void SetGlobalDistanceToLeadingVehicle(const float dist);///< 所有车辆应保持的距离值
 
-  /// Set Synchronous mode time out.
-  void SetSynchronousModeTimeOutInMiliSecond(const double time);
+  /// 设置同步模式超时时间
+  void SetSynchronousModeTimeOutInMiliSecond(const double time);///< 超时时间值
 
-  /// Method to set hybrid physics mode.
-  void SetHybridPhysicsMode(const bool mode_switch);
+  /// 设置混合物理模式的方法
+  void SetHybridPhysicsMode(const bool mode_switch);///< 是否启用混合物理模式的布尔值
 
-  /// Method to set synchronous mode.
-  void SetSynchronousMode(const bool mode_switch = true);
+  /// 设置同步模式的方法
+  void SetSynchronousMode(const bool mode_switch = true);///< 是否启用同步模式的布尔值，默认启用
 
-  /// Method to set hybrid physics radius.
-  void SetHybridPhysicsRadius(const float radius);
+  /// 设置混合物理半径的方法
+  void SetHybridPhysicsRadius(const float radius);///< 混合物理半径值
 
-  /// Method to set Open Street Map mode.
-  void SetOSMMode(const bool mode_switch);
+  /// 设置Open Street Map模式的方法
+  void SetOSMMode(const bool mode_switch);///< 是否启用OSM模式的布尔值
 
-  /// Method to set if we are automatically respawning vehicles.
-  void SetRespawnDormantVehicles(const bool mode_switch);
+  /// 设置是否自动重生休眠车辆的方法
+  void SetRespawnDormantVehicles(const bool mode_switch); ///< 是否启用的布尔值
 
-  /// Method to set boundaries for respawning vehicles.
-  void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound);
+  /// 设置重生休眠车辆的边界的方法
+  void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound);///< 下边界值和下边界值
 
-  /// Method to set limits for boundaries when respawning vehicles.
-  void SetMaxBoundaries(const float lower, const float upper);
+  /// 设置重生休眠车辆时的边界限制的方法
+  void SetMaxBoundaries(const float lower, const float upper);///< 下限值和下限值
 
-  /// Method to set our own imported path.
-  void SetCustomPath(const ActorPtr &actor, const Path path, const bool empty_buffer);
+  /// 设置自定义路径的方法
+  void SetCustomPath(const ActorPtr &actor, const Path path, const bool empty_buffer);///< 车辆指针，路径数据和是否清空缓冲区的布尔值
 
-  /// Method to remove a list of points.
-  void RemoveUploadPath(const ActorId &actor_id, const bool remove_path);
+  /// 移除一组点的方法
+  void RemoveUploadPath(const ActorId &actor_id, const bool remove_path);///< 车辆ID和是否移除的布尔值
 
-  /// Method to update an already set list of points.
-  void UpdateUploadPath(const ActorId &actor_id, const Path path);
+  /// 更新已设置的点列表的方法
+  void UpdateUploadPath(const ActorId &actor_id, const Path path);///< 车辆ID和新的路径数据
 
-  /// Method to set our own imported route.
-  void SetImportedRoute(const ActorPtr &actor, const Route route, const bool empty_buffer);
+  /// 设置自定义路线的方法
+  void SetImportedRoute(const ActorPtr &actor, const Route route, const bool empty_buffer);///< 车辆指针，路线数据和是否清空缓冲区的布尔值
 
-  /// Method to remove a route.
-  void RemoveImportedRoute(const ActorId &actor_id, const bool remove_path);
+  /// 移除路线的方法
+  void RemoveImportedRoute(const ActorId &actor_id, const bool remove_path);///<车辆ID和是否移除的布尔值
 
-  /// Method to update an already set route.
-  void UpdateImportedRoute(const ActorId &actor_id, const Route route);
+  /// 更新已设置路线的方法
+  void UpdateImportedRoute(const ActorId &actor_id, const Route route);///< 车辆ID和新的路线数据
 
   ///////////////////////////////// GETTERS /////////////////////////////////////
 
