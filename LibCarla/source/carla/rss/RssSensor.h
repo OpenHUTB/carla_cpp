@@ -90,35 +90,26 @@ public:
   /// also RssCheck::SetEgoVehicleDynamics() 以获取更多信息） 
   void SetEgoVehicleDynamics(const ::ad::rss::world::RssDynamics &ego_dynamics);
 
-  /// @returns the currently used dynamics of other vehicles (@see also
-  /// RssCheck::GetOtherVehicleDynamics())
+  /// 返回当前其他车辆所使用的动力学参数（@see RssCheck::GetOtherVehicleDynamics() 获取更多信息）
   const ::ad::rss::world::RssDynamics &GetOtherVehicleDynamics() const;
-  /// @brief sets the ego vehicle dynamics to be used by other vehicles (@see
-  /// also RssCheck::SetOtherVehicleDynamics())
+  /// @brief 设置其他车辆所使用的动力学参数（@see RssCheck::SetOtherVehicleDynamics() 获取更多信息）
   void SetOtherVehicleDynamics(const ::ad::rss::world::RssDynamics &other_vehicle_dynamics);
 
-  /// @returns the currently used dynamics of pedestrians (@see also
-  /// RssCheck::GetPedestrianDynamics())
+  /// 返回当前行人所使用的动力学参数（@see RssCheck::GetPedestrianDynamics() 获取更多信息）
   const ::ad::rss::world::RssDynamics &GetPedestrianDynamics() const;
-  /// @brief sets the ego vehicle dynamics to be used by pedestrians (@see
-  /// also RssCheck::SetPedestrianDynamics())
+  /// @brief 设置行人所使用的动力学参数（@see RssCheck::SetPedestrianDynamics() 获取更多信息）
   void SetPedestrianDynamics(const ::ad::rss::world::RssDynamics &pedestrian_dynamics);
 
-  /// @returns the current mode for respecting the road boundaries (@see also
-  /// RssCheck::GetRoadBoundariesMode())
+  /// @returns 当前用于遵守道路边界的模式 (@see 同样参见 RssCheck::GetRoadBoundariesMode())
   const ::carla::rss::RoadBoundariesMode &GetRoadBoundariesMode() const;
-  /// @brief sets the current mode for respecting the road boundaries (@see also
-  /// RssCheck::SetRoadBoundariesMode())
+  /// @brief 设置当前用于遵守道路边界的模式 (@see 同样参见 RssCheck::SetRoadBoundariesMode())
   void SetRoadBoundariesMode(const ::carla::rss::RoadBoundariesMode &road_boundaries_mode);
 
-  /// @returns the current routing targets (@see also
-  /// RssCheck::GetRoutingTargets())
+  /// @returns 当前的路由目标 (@see 同样参见 RssCheck::GetRoutingTargets())
   const std::vector<::carla::geom::Transform> GetRoutingTargets() const;
-  /// @brief appends a routing target to the current routing target list (@see
-  /// also RssCheck::AppendRoutingTarget())
+  /// @brief 向当前路由目标列表追加一个路由目标 (@see 同样参见 RssCheck::AppendRoutingTarget())
   void AppendRoutingTarget(const ::carla::geom::Transform &routing_target);
-  /// @brief resets the current routing target (@see also
-  /// RssCheck::ResetRoutingTargets())
+  /// @brief 重置当前的路由目标 (@see 同样参见 RssCheck::ResetRoutingTargets())
   void ResetRoutingTargets();
 
   /// @brief drop the current route (@see also RssCheck::DropRoute())
