@@ -37,67 +37,67 @@ struct ChangeLaneInfo {
 class Parameters {
 
 private:
-  /// Target velocity map for individual vehicles, based on a % diffrerence from speed limit.
+  /// 基于速度限制差异的单个车辆目标速度映射
   AtomicMap<ActorId, float> percentage_difference_from_speed_limit;
-  /// Lane offset map for individual vehicles.
+  /// 单个车辆的车道偏移映射
   AtomicMap<ActorId, float> lane_offset;
-  /// Target velocity map for individual vehicles, based on a desired velocity.
+  /// 基于期望速度的单个车辆目标速度映射
   AtomicMap<ActorId, float> exact_desired_speed;
-  /// Global target velocity limit % difference.
+  /// 全局目标速度限制差异百分比
   float global_percentage_difference_from_limit = 0;
-  /// Global lane offset
+  /// 全局车道偏移
   float global_lane_offset = 0;
-  /// Map containing a set of actors to be ignored during collision detection.
+  /// 在碰撞检测期间要忽略的演员集合映射
   AtomicMap<ActorId, std::shared_ptr<AtomicActorSet>> ignore_collision;
-  /// Map containing distance to leading vehicle command.
+  /// 到前导车辆的距离映射
   AtomicMap<ActorId, float> distance_to_leading_vehicle;
-  /// Map containing force lane change commands.
+  /// 强制换道命令映射
   AtomicMap<ActorId, ChangeLaneInfo> force_lane_change;
-  /// Map containing auto lane change commands.
+  /// 自动换道命令映射
   AtomicMap<ActorId, bool> auto_lane_change;
-  /// Map containing % of running a traffic light.
+  /// 闯交通信号灯百分比映射
   AtomicMap<ActorId, float> perc_run_traffic_light;
-  /// Map containing % of running a traffic sign.
+  /// 闯交通标志百分比映射
   AtomicMap<ActorId, float> perc_run_traffic_sign;
-  /// Map containing % of ignoring walkers.
+  /// 忽略行人百分比映射
   AtomicMap<ActorId, float> perc_ignore_walkers;
-  /// Map containing % of ignoring vehicles.
+  /// 忽略车辆百分比映射
   AtomicMap<ActorId, float> perc_ignore_vehicles;
-  /// Map containing % of keep right rule.
+  /// 靠右行驶规则百分比映射
   AtomicMap<ActorId, float> perc_keep_right;
-  /// Map containing % of random left lane change.
+  /// 随机左换道百分比映射
   AtomicMap<ActorId, float> perc_random_left;
-  /// Map containing % of random right lane change.
+  /// 随机右换道百分比映射
   AtomicMap<ActorId, float> perc_random_right;
-  /// Map containing the automatic vehicle lights update flag
+  /// 车辆灯光自动更新标志映射
   AtomicMap<ActorId, bool> auto_update_vehicle_lights;
-  /// Synchronous mode switch.
+  /// 同步开关
   std::atomic<bool> synchronous_mode{false};
-  /// Distance margin
+  /// 距离边距
   std::atomic<float> distance_margin{2.0};
-  /// Hybrid physics mode switch.
+  /// 混合物理模式开关
   std::atomic<bool> hybrid_physics_mode{false};
-  /// Automatic respawn mode switch.
+  /// 自动重生模式开关
   std::atomic<bool> respawn_dormant_vehicles{false};
-  /// Minimum distance to respawn vehicles with respect to the hero vehicle.
+  /// 相对于主角车辆的最小重生距离
   std::atomic<float> respawn_lower_bound{100.0};
-  /// Maximum distance to respawn vehicles with respect to the hero vehicle.
+  /// 相对于主角车辆的最大重生距离
   std::atomic<float> respawn_upper_bound{1000.0};
-  /// Minimum possible distance to respawn vehicles with respect to the hero vehicle.
+  /// 相对于主角车辆的最小可能重生距离
   float min_lower_bound;
-  /// Maximum possible distance to respawn vehicles with respect to the hero vehicle.
+  /// 相对于主角车辆的最大可能重生距离
   float max_upper_bound;
-  /// Hybrid physics radius.
+  /// 混合物理半径
   std::atomic<float> hybrid_physics_radius {70.0};
-  /// Parameter specifying Open Street Map mode.
+  /// Open Street Map模式参数
   std::atomic<bool> osm_mode {true};
-  /// Parameter specifying if importing a custom path.
+  /// 是否导入自定义路径的参数映射
   AtomicMap<ActorId, bool> upload_path;
-  /// Structure to hold all custom paths.
+  /// 存储所有自定义路径的结构
   AtomicMap<ActorId, Path> custom_path;
-  /// Parameter specifying if importing a custom route.
+  /// 是否导入自定义路线的参数映射
   AtomicMap<ActorId, bool> upload_route;
-  /// Structure to hold all custom routes.
+  /// 存储所有自定义路线的结构
   AtomicMap<ActorId, Route> custom_route;
 
 public:
