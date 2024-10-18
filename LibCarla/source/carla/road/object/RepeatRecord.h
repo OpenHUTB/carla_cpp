@@ -4,22 +4,22 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  //È·±£Õâ¸öÍ·ÎÄ¼şÔÚÒ»¸ö±àÒëµ¥ÔªÖĞÖ»±»°üº¬Ò»´Î 
+#pragma once  //ç¡®ä¿è¿™ä¸ªå¤´æ–‡ä»¶åœ¨ä¸€ä¸ªç¼–è¯‘å•å…ƒä¸­åªè¢«åŒ…å«ä¸€æ¬¡ 
 
-#include "carla/NonCopyable.h"  //°üº¬carla¿ò¼ÜÖĞµÄNonCopyableÀà£¬ÓÃÓÚ½ûÖ¹¿½±´²Ù×÷ 
-#include <string>  //°üº¬±ê×¼¿âÖĞµÄstringÀà 
-#include <vector>  //°üº¬±ê×¼¿âÖĞvectorÀà£¬ÓÃÓÚ´¦Àí¶¯Ì¬Êı×é 
-#include "carla/road/RoadTypes.h"  //°üº¬carla¿ò¼ÜÖĞroadÄ£¿éµÄÂ·ĞÍ¶¨Òå 
+#include "carla/NonCopyable.h"  //åŒ…å«carlaæ¡†æ¶ä¸­çš„NonCopyableç±»ï¼Œç”¨äºç¦æ­¢æ‹·è´æ“ä½œ 
+#include <string>  //åŒ…å«æ ‡å‡†åº“ä¸­çš„stringç±» 
+#include <vector>  //åŒ…å«æ ‡å‡†åº“ä¸­vectorç±»ï¼Œç”¨äºå¤„ç†åŠ¨æ€æ•°ç»„ 
+#include "carla/road/RoadTypes.h"  //åŒ…å«carlaæ¡†æ¶ä¸­roadæ¨¡å—çš„è·¯å‹å®šä¹‰ 
 
 namespace carla {
 namespace road {
 namespace object {
-  //RepeatRecordÀà¶¨Òå£¬Ëü¼Ì³Ğ×ÔMovableNonCopyable,ºóÕßË½ÓĞ¼Ì³Ğ×ÔNonCopyable,
-  //ÒâÎ¶×ÅRepeatRecordÀàÒ²²»ÄÜ±»¿½±´£¬µ«¿ÉÒÔÒÆ¶¯£¨Èç¹ûMovableNonCopyableÀàÊµÏÖÁËÒÆ¶¯ÓïÒå£©
-  //Õâ¸öÀà±»Éè¼ÆÎªÖ»°üº¬Ë½ÓĞ³ÉÔ±£¬±íÃ÷Æä²»´òËã±»Íâ²¿Ö±½ÓÊ¹ÓÃ
+  //RepeatRecordç±»å®šä¹‰ï¼Œå®ƒç»§æ‰¿è‡ªMovableNonCopyable,åè€…ç§æœ‰ç»§æ‰¿è‡ªNonCopyable,
+  //æ„å‘³ç€RepeatRecordç±»ä¹Ÿä¸èƒ½è¢«æ‹·è´ï¼Œä½†å¯ä»¥ç§»åŠ¨ï¼ˆå¦‚æœMovableNonCopyableç±»å®ç°äº†ç§»åŠ¨è¯­ä¹‰ï¼‰
+  //è¿™ä¸ªç±»è¢«è®¾è®¡ä¸ºåªåŒ…å«ç§æœ‰æˆå‘˜ï¼Œè¡¨æ˜å…¶ä¸æ‰“ç®—è¢«å¤–éƒ¨ç›´æ¥ä½¿ç”¨
   class RepeatRecord : private MovableNonCopyable {
   public:
-    //Ä¬ÈÏ¹¹Ôìº¯Êı£¬²»Ö´ĞĞÈÎºÎ²Ù×÷ 
+    //é»˜è®¤æ„é€ å‡½æ•°ï¼Œä¸æ‰§è¡Œä»»ä½•æ“ä½œ 
     RepeatRecord() {}
 
   private:
