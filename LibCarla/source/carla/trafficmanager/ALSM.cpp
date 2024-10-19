@@ -190,26 +190,38 @@ ALSM::DestroyeddActors ALSM::IdentifyDestroyedActors(const ActorList &actor_list
 
 void ALSM::UpdateRegisteredActorsData(const bool hybrid_physics_mode, ALSM::IdleInfo &max_idle_time) {
 
+  //获取所有注册车辆的列表
   std::vector<ActorPtr> vehicle_list = registered_vehicles.GetList();
+  //检查是否有英雄车辆存在
   bool hero_actor_present = hero_actors.size() != 0u;
+  //获取混合物理模式下的半径值
   float physics_radius = parameters.GetHybridPhysicsRadius();
+  //计算半径的平方值
   float physics_radius_square = SQUARE(physics_radius);
+  //检查是否启用了重生功能
   bool is_respawn_vehicles = parameters.GetRespawnDormantVehicles();
+  //如果启用了重生功能且没有英雄车辆，将英雄车辆设置为(0,0,0)
   if (is_respawn_vehicles && !hero_actor_present) {
     track_traffic.SetHeroLocation(cg::Location(0,0,0));
   }
-  // Update first the information regarding any hero vehicle.
+  // 首先更新英雄车辆的信息
   for (auto &hero_actor_info: hero_actors){
+     //如果启用了重生功能，设置英雄车辆的当前位置
     if (is_respawn_vehicles) {
       track_traffic.SetHeroLocation(hero_actor_info.second->GetTransform().location);
     }
+    //更新英雄车辆的数据，传入是否处于混合物理模式、英雄车辆、是否有英雄车辆存在、物理半径平方等参数
     UpdateData(hybrid_physics_mode, hero_actor_info.second, hero_actor_present, physics_radius_square);
   }
-  // Update information for all other registered vehicles.
+  // 更新其他注册车辆的信息
   for (const Actor &vehicle : vehicle_list) {
+    //获取车辆的 ID
     ActorId actor_id = vehicle->GetId();
+    //如果车辆不是英雄车辆，更新该车辆的数据
     if (hero_actors.find(actor_id) == hero_actors.end()) {
+      //更新车辆数据
       UpdateData(hybrid_physics_mode, vehicle, hero_actor_present, physics_radius_square);
+      //更新该车辆的空闲时间信息
       UpdateIdleTime(max_idle_time, actor_id);
     }
   }
