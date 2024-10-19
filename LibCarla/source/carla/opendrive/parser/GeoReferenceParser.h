@@ -5,28 +5,28 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
-/// @brief Ò»¸öÌá¹©XMLÎÄµµµÄÀà£¬ÓÃÓÚ´¢´æºÍ½âÎöXMLÊı¾İ
+/// @brief ä¸€ä¸ªæä¾›XMLæ–‡æ¡£çš„ç±»ï¼Œç”¨äºå‚¨å­˜å’Œè§£æXMLæ•°æ®
 namespace pugi {
   class xml_document;
 } // namespace pugi
-/// @brief Carla×Ô¶¯¼İÊ»·ÂÕæ¿ò¼ÜµÄÃüÃû¿Õ¼ä
+/// @brief Carlaè‡ªåŠ¨é©¾é©¶ä»¿çœŸæ¡†æ¶çš„å‘½åç©ºé—´
 namespace carla {
-/// @brief °üº¬µÀÂ·½¨Ä£ºÍµØÍ¼¹¹½¨Ïà¹Ø¹¦ÄÜµÄÃüÃû¿Õ¼ä
+/// @brief åŒ…å«é“è·¯å»ºæ¨¡å’Œåœ°å›¾æ„å»ºç›¸å…³åŠŸèƒ½çš„å‘½åç©ºé—´
 namespace road {
-  class MapBuilder;/// @brief ÓÃÓÚ¹¹½¨µÀÂ·µØÍ¼µÄÀà£¬Ìá¹©µØÍ¼¹¹½¨µÄ½Ó¿ÚºÍ·½·¨
+  class MapBuilder;/// @brief ç”¨äºæ„å»ºé“è·¯åœ°å›¾çš„ç±»ï¼Œæä¾›åœ°å›¾æ„å»ºçš„æ¥å£å’Œæ–¹æ³•
 } // namespace road
-/// @brief °üº¬OpenDrive¸ñÊ½µÀÂ·Êı¾İ½âÎöºÍ´¦Àí¹¦ÄÜµÄÃüÃû¿Õ¼ä
+/// @brief åŒ…å«OpenDriveæ ¼å¼é“è·¯æ•°æ®è§£æå’Œå¤„ç†åŠŸèƒ½çš„å‘½åç©ºé—´
 namespace opendrive {
- /// @brief °üº¬ÓÃÓÚ½âÎöOpenDriveÎÄ¼şµÄ½âÎöÆ÷ÀàµÄÃüÃû¿Õ¼ä
+ /// @brief åŒ…å«ç”¨äºè§£æOpenDriveæ–‡ä»¶çš„è§£æå™¨ç±»çš„å‘½åç©ºé—´
 namespace parser {
- /// @brief ÓÃÓÚ½âÎöOpenDriveÎÄ¼şÖĞµÄµØÀí²Î¿¼ĞÅÏ¢µÄ½âÎöÆ÷Àà
+ /// @brief ç”¨äºè§£æOpenDriveæ–‡ä»¶ä¸­çš„åœ°ç†å‚è€ƒä¿¡æ¯çš„è§£æå™¨ç±»
   class GeoReferenceParser {
   public:
-/// @brief ½âÎöXMLÎÄµµÖĞµÄµØÀí²Î¿¼ĞÅÏ¢²¢¹¹½¨µÀÂ·µØÍ¼
-/// ¸Ãº¯Êı¶ÁÈ¡XMLÎÄµµÖĞµÄµØÀí²Î¿¼Êı¾İ£¬Èç×ø±êÏµÍ³¡¢Í¶Ó°ĞÅÏ¢
-/// ²¢Ê¹ÓÃÕâĞ©ĞÅÏ¢À´¹¹½¨»ò¸üĞÂµÀÂ·µØÍ¼
-/// @param xml [const pugi::xml_document &] Òª½âÎöµÄXMLÎÄµµ¶ÔÏó
-/// @param map_builder [carla::road::MapBuilder &] ÓÃÓÚ¹¹½¨µÀÂ·µØÍ¼µÄ¹¹½¨Æ÷¶ÔÏó
+/// @brief è§£æXMLæ–‡æ¡£ä¸­çš„åœ°ç†å‚è€ƒä¿¡æ¯å¹¶æ„å»ºé“è·¯åœ°å›¾
+/// è¯¥å‡½æ•°è¯»å–XMLæ–‡æ¡£ä¸­çš„åœ°ç†å‚è€ƒæ•°æ®ï¼Œå¦‚åæ ‡ç³»ç»Ÿã€æŠ•å½±ä¿¡æ¯
+/// å¹¶ä½¿ç”¨è¿™äº›ä¿¡æ¯æ¥æ„å»ºæˆ–æ›´æ–°é“è·¯åœ°å›¾
+/// @param xml [const pugi::xml_document &] è¦è§£æçš„XMLæ–‡æ¡£å¯¹è±¡
+/// @param map_builder [carla::road::MapBuilder &] ç”¨äºæ„å»ºé“è·¯åœ°å›¾çš„æ„å»ºå™¨å¯¹è±¡
     static void Parse(
         const pugi::xml_document &xml,
         carla::road::MapBuilder &map_builder);
