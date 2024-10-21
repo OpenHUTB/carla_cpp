@@ -47,7 +47,8 @@ static auto GetEgoVehicleDynamics(const carla::client::RssSensor &self) {
 static auto GetOtherVehicleDynamics(const carla::client::RssSensor &self) {
   ad::rss::world::RssDynamics other_dynamics(self.GetOtherVehicleDynamics());
   return other_dynamics;
-}
+}#这里是一个函数GetOtherVehicleDynamics，接受一个carla::client::RssSensor类型的参数self
+#self.GetOtherVehicleDynamics()这里调用函数
 
 static auto GetPedestrianDynamics(const carla::client::RssSensor &self) {
   ad::rss::world::RssDynamics pedestrian_dynamics(self.GetPedestrianDynamics());
