@@ -31,14 +31,14 @@ class PID
 
       Proportional = Kp * Error;
       Integral += Ki * Error * DeltaTime;
-      // Avoid integral windup
+      // 避免积分饱和
       Integral = FMath::Clamp(Integral, MinOutput, MaxOutput);
       Derivative = (-Kd * (Input - LastInput)) / DeltaTime;
 
       float Out = Proportional + Integral + Derivative;
       Out = FMath::Clamp(Out, MinOutput, MaxOutput);
 
-      // Keep track of the state
+      // 跟踪状态
       LastError = Out;
       LastInput = Input;
 
@@ -68,7 +68,7 @@ class PID
     float MinOutput = -1.0f;
     float MaxOutput = 1.0f;
 
-    // Internal state.
+    // 内部状态
     float Proportional = 0.0f;
     float Integral = 0.0f;
     float Derivative = 0.0f;
@@ -100,10 +100,10 @@ public:
 
 private:
 
-  // Lateral Control
+  // 横向控制
   void RunControlSteering();
 
-  // Longitudinal Control
+  // 纵向控制
   bool RunControlFullStop();
   void RunControlReverse();
   void RunControlSpeed();
@@ -117,34 +117,34 @@ private:
 
   FVehicleAckermannControl UserTargetPoint;
 
-  // Target point after aplying restrictions
+  // 应用限制后的目标点
   float TargetSteer = 0.0;
   float TargetSteerSpeed = 0.0;
   float TargetSpeed = 0.0;
   float TargetAcceleration = 0.0;
   float TargetJerk = 0.0;
 
-  // Restricitions parameters
+  // 限制参数
   float MaxAccel = 3.0f;  // [m/s2]
   float MaxDecel = 8.0f;  // [m/s2]
 
-  // Control parameters
+  // 控制参数
   float Steer = 0.0f;
   float Throttle = 0.0f;
   float Brake = 0.0f;
   bool bReverse = false;
 
-  // Internal control parameters
+  // 内部控制参数
   float SpeedControlAccelDelta = 0.0f;
   float SpeedControlAccelTarget = 0.0f;
 
   float AccelControlPedalDelta = 0.0f;
   float AccelControlPedalTarget = 0.0f;
 
-  // Simulation state
+  // 仿真状态
   float DeltaTime = 0.0f;                // [s]
 
-  // Vehicle state
+  // 车辆状态
   float VehicleMaxSteering = 0.0f;       // [rad]
 
   float VehicleSteer = 0.0f;             // [rad]
