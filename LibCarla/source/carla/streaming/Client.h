@@ -5,11 +5,14 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once// 预编译指令，防止头文件被重复包含。
+
 #include "carla/Logging.h"// 包含 carla 库中的日志相关的头文件。
 #include "carla/ThreadPool.h"// 包含 carla 库中的线程池相关的头文件。
 #include "carla/streaming/Token.h"// 包含 carla 库中流处理相关的令牌（Token）头文件。
+
 #include "carla/streaming/detail/tcp/Client.h"// 包含 carla 库中流处理细节中 TCP 客户端相关的头文件。
 #include "carla/streaming/low_level/Client.h"// 包含 carla 库中流处理低层级客户端相关的头文件。
+
 #include <boost/asio/io_context.hpp>// 包含 Boost.Asio 库中的输入输出上下文（io_context）头文件。
 
 namespace carla {
@@ -18,7 +21,6 @@ namespace streaming {
 using stream_token = detail::token_type;// 定义别名 stream_token 为 detail 命名空间中的 token_type。
 
 // 注释：一个能够订阅多个流的客户端。
-
 class Client {// 定义一个名为 Client 的类。
 using underlying_client = low_level::Client<detail::tcp::Client>;// 定义一个类型别名 underlying_client，表示低层级客户端，该客户端使用 detail::tcp::Client 作为模板参数。
 
