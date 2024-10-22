@@ -73,12 +73,8 @@ private:
   /// 从任何对象库中加载地图
   UPROPERTY()
   TArray<FAssetData> MapContents;
-
   /// 用于在对象库中加载资产。
   ///已加载的数据存储在 “资产数据” 中。
-如何确定从哪个对象库中加载资产？
-如何存储和管理加载的资产？
-如何确保加载的资产的准确性和完整性？.
   UPROPERTY()
   UObjectLibrary *AssetsObjectLibrary;
 };

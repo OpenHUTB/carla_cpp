@@ -119,10 +119,6 @@ void UPrepareAssetsForCookingCommandlet::LoadWorld(FAssetData &AssetData)
   if (AssetDatas.Num() > 0)
   {
     // 提取在文件夹路径中找到的第一个资产（即基础地图）
-
-How to load a map folder using object library in Carla?
-What is the first asset found in a folder path?
-How to extract the first asset found in a folder path?
     AssetData = AssetDatas.Pop();
   }
 }
@@ -178,9 +174,6 @@ TArray<AStaticMeshActor *> UPrepareAssetsForCookingCommandlet::SpawnMeshesToWorl
 
   // 使用对象库加载由 “AssetsPaths” 中指定的资产，
   //用于构建地图世界。
-How to create a default Transform for all assets to spawn?
-What is the purpose of loading assets specified in AssetsPaths by using an object library?
-Can you provide an example of how to use an object library to load assets for building a map world?
   AssetsObjectLibrary = UObjectLibrary::CreateLibrary(UStaticMesh::StaticClass(), false, GIsEditor);
   AssetsObjectLibrary->AddToRoot();
   AssetsObjectLibrary->LoadAssetDataFromPaths(AssetsPaths);
@@ -584,11 +577,11 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
       else {
         World = CastChecked<UWorld>(AssetData.GetAsset());
       }
-      // 尝试烹饪（处理）整个地图（非分块地图）。
+      // 尝试烘培（处理）整个地图（非分块地图）。
       TArray<AStaticMeshActor *> SpawnedActors = SpawnMeshesToWorld(DataPath, Map.bUseCarlaMapMaterials, -1, -1);
       // 在指定路径中保存世界。
       SaveWorld(AssetData, PackageName, Map.Path, Map.Name);
-      // 从世界中移除已生成的角色，以使其与基础地图保持一致。
+      // 从世界中移除已生成的参与者，以使其与基础地图保持一致。
       DestroySpawnedActorsInWorld(SpawnedActors);
     }
     else
@@ -654,7 +647,7 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
             MapPathsIds.Add(
                 TPair<FString, FIntVector>(
                   Map.Path + "/" + TileName, FIntVector(i, j, 0)));
-            // 从世界中移除生成的角色，以使其与基础地图保持一致。
+            // 从世界中移除生成的参与者，以使其与基础地图保持一致。
             DestroySpawnedActorsInWorld(SpawnedActors);
             ++i;
           }
