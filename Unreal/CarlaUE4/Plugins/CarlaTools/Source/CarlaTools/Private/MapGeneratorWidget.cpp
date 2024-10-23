@@ -60,19 +60,19 @@ void UMapGeneratorWidget::GenerateMapFiles(const FMapGeneratorMetaInfo& MetaInfo
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: Starting Map Generation %s %s"), 
       *CUR_CLASS_FUNC_LINE, *MetaInfo.DestinationPath, *MetaInfo.MapName);
 
-  // // 1. Creating tiles terrain
+  // // 1. 创建瓦片地形。
   bool bTilesSuccess = CreateTilesMaps(MetaInfo);
   if(!bTilesSuccess)
     UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error Creating Tile for %s"), 
         *CUR_CLASS_FUNC_LINE, *MetaInfo.MapName);
 
-  // 2. Create Main Large map
+  // 2.创建主大型地图。
   bool bLargeMapSuccess = CreateMainLargeMap(MetaInfo);
   if(!bLargeMapSuccess)
     UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error creating Main Large Map for %s"), 
         *CUR_CLASS_FUNC_LINE, *MetaInfo.MapName);
 
-  // 3. Opendrive auxiliary file
+  // 3. 开放驱动辅助文件
   bool bOpenDriveCopySuccess = CreateOpenDriveFile(MetaInfo);
   if(!bOpenDriveCopySuccess)
     UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error creating OpenDrive file for %s"), 
@@ -84,7 +84,7 @@ void UMapGeneratorWidget::CookVegetation(const FMapGeneratorMetaInfo& MetaInfo)
 {
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: Starting Cooking Vegetation to Tiles in %s %s"), 
       *CUR_CLASS_FUNC_LINE, *MetaInfo.DestinationPath, *MetaInfo.MapName);
-  // 3. Add vegetation to tiles
+  // 3. 给瓦片添加植被。
   bool bVegetationSuccess = CookVegetationToTiles(MetaInfo);
   if(!bVegetationSuccess){
     UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error Cooking vegetation for %s"), 
@@ -102,7 +102,7 @@ void UMapGeneratorWidget::CookSoilTypeToMaps(const FMapGeneratorMetaInfo& MetaIn
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: Starting Cooking Soil Type to Tiles in %s %s"), 
       *CUR_CLASS_FUNC_LINE, *MetaInfo.DestinationPath, *MetaInfo.MapName);
 
-  // Check if map is valid
+  // 检查地图是否有效。
   const FString MapCompletePath = MetaInfo.DestinationPath + "/" + MetaInfo.MapName;
   const FString MapPackageFileName = FPackageName::LongPackageNameToFilename(
       MapCompletePath, 
@@ -115,7 +115,7 @@ void UMapGeneratorWidget::CookSoilTypeToMaps(const FMapGeneratorMetaInfo& MetaIn
     return;
   }
 
-  // Instantiate Weather Actor in main map
+  //在主地图中实例化天气角色。
   const FString WorldToLoadPath = MapCompletePath + "." + MetaInfo.MapName;
   UWorld* World = LoadObject<UWorld>(nullptr, *WorldToLoadPath);
 
@@ -123,7 +123,7 @@ void UMapGeneratorWidget::CookSoilTypeToMaps(const FMapGeneratorMetaInfo& MetaIn
 
   SoilTypeManagerActor->ClearTerrainPropertiesMap();
 
-  // Set General Settings
+  //设置常规设置。
   SoilTypeManagerActor->SetGeneralTerrainProperties(MetaInfo.GeneralSoilType);
 
   for(TPair<FRoiTile, FSoilTypeROI> SoilROIPair : MetaInfo.SoilTypeRoisMap)
@@ -142,7 +142,7 @@ void UMapGeneratorWidget::CookMiscSpreadedInformationToTiles(const FMapGenerator
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: Starting Cooking Miscellaneous Info to Tiles in %s %s"), 
       *CUR_CLASS_FUNC_LINE, *MetaInfo.DestinationPath, *MetaInfo.MapName);
 
-  // Spreaded actors (ROIs)
+  // 分散的角色（感兴趣区域）。
   bool bSpreadedSuccess = CookMiscSpreadedActors(MetaInfo);
   if(!bSpreadedSuccess)
   {
@@ -155,7 +155,7 @@ void UMapGeneratorWidget::CookMiscSpecificLocationInformationToTiles(const FMapG
 {
   UWorld* World = GEditor->GetEditorWorldContext().World();
 
-  // Only one ROI at a time supported
+  //一次仅支持一个感兴趣区域。
   TArray<FMiscSpecificLocationActorsROI> ActorROIArray;
   MetaInfo.MiscSpecificLocationActorsRoisMap.GenerateValueArray(ActorROIArray);
 
@@ -193,7 +193,7 @@ void UMapGeneratorWidget::DeleteAllSpreadedActors(const FMapGeneratorMetaInfo& M
   {
     UWorld* World = GetWorldFromAssetData(AssetData);
 
-    // Check if it is not a tile
+    // 检查它是否不是一块（瓷砖/图块）。
     if(!World->GetMapName().Contains("_Tile_"))
     {
       UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: %s Skipped as it is not a tile"), 
@@ -274,7 +274,7 @@ FString UMapGeneratorWidget::SanitizeDirectory(FString InDirectory)
 {
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: Sanitazing directory: %s"), 
         *CUR_CLASS_FUNC_LINE, *InDirectory);
-  // Check that the directory in metaInfo cannot finish in /, if does, delete it
+  // 检查 metaInfo 中的目录不能以“/”结尾，如果是，则删除它。
   while(InDirectory.EndsWith("/") || InDirectory.EndsWith("\\"))
   {
     if(InDirectory.EndsWith("/"))
@@ -336,7 +336,7 @@ bool UMapGeneratorWidget::LoadMapInfoFromPath(FString InDirectory, int& OutMapSi
   }
   else
   {
-    // No Map Found
+    // 未找到地图。
     return false;
   }
 
@@ -449,7 +449,7 @@ AActor* UMapGeneratorWidget::AddWeatherToExistingMap(TSubclassOf<class AActor> W
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: Generating Weather to %s"), 
       *CUR_CLASS_FUNC_LINE, *MetaInfo.MapName);
 
-  // Check if map is valid
+  //检查地图是否有效。
   const FString MapCompletePath = MetaInfo.DestinationPath + "/" + MetaInfo.MapName;
   const FString MapPackageFileName = FPackageName::LongPackageNameToFilename(
       MapCompletePath, 
@@ -462,7 +462,7 @@ AActor* UMapGeneratorWidget::AddWeatherToExistingMap(TSubclassOf<class AActor> W
     return nullptr;
   }
 
-  // Instantiate Weather Actor in main map
+  //在主地图中实例化天气角色。
   const FString WorldToLoadPath = MapCompletePath + "." + MetaInfo.MapName;
   UWorld* World = LoadObject<UWorld>(nullptr, *WorldToLoadPath);
 
@@ -564,7 +564,7 @@ bool UMapGeneratorWidget::DeleteAllVegetationInMap(const FString Path, const FSt
     return false;
   }
 
-  // Cook vegetation for each of the maps
+  // 为每一张地图烘焙植被。
   for(FAssetData AssetData : AssetsData)
   {
     UWorld* World = GetWorldFromAssetData(AssetData);
@@ -697,7 +697,7 @@ bool UMapGeneratorWidget::LoadWorlds(TArray<FAssetData>& WorldAssetsData, const 
   TArray<FAssetData> AssetsData;
   UObjectLibrary *MapObjectLibrary;
 
-  // Loading Map from folder using object library
+  //使用对象库从文件夹中加载地图。
   MapObjectLibrary = UObjectLibrary::CreateLibrary(UWorld::StaticClass(), false, GIsEditor);
   MapObjectLibrary->bRecursivePaths = bRecursive;
   MapObjectLibrary->AddToRoot();
@@ -707,7 +707,7 @@ bool UMapGeneratorWidget::LoadWorlds(TArray<FAssetData>& WorldAssetsData, const 
 
   if (AssetsData.Num() > 0)
   {
-    // Return whole list of world assets found in directory
+    // 返回在目录中找到的所有世界资产的完整列表。
     WorldAssetsData = AssetsData;
     return true;
   }
@@ -783,22 +783,22 @@ bool UMapGeneratorWidget::CreateMainLargeMap(const FMapGeneratorMetaInfo& MetaIn
   LargeMapManager->LargeMapTilePath = MetaInfo.DestinationPath;
   LargeMapManager->LargeMapName = MetaInfo.MapName;
 
-  // Set Tile0Offset to 0 to cook tiles info
+  // 将 Tile0Offset 设置为 0 以烘焙图块信息。
   FVector OriginalTile0Offset = LargeMapManager->GetTile0Offset();
   LargeMapManager->SetTile0Offset(FVector(0.0f, 0.0f, 0.0f));
 
   LargeMapManager->GenerateMap_Editor();
 
-  // Reset Tile0Offset to original mid-tile position for runtime operations
+  //将 Tile0Offset 重置为原始的图块中间位置以用于运行时操作。
   LargeMapManager->SetTile0Offset(OriginalTile0Offset);
 
-  // Spawn Vegetation Manager if defined
+  // 如果已定义，则生成植被管理器。
   if(MetaInfo.VegetationManagerBpClass)
   {
     AActor* VegetationManagerActor = World->SpawnActor(MetaInfo.VegetationManagerBpClass);
   }
 
-  // Spawn Terramechanics Manager if defined
+  // 如果已定义，则生成地形力学管理器。
   if(MetaInfo.TerramechanicsBpClass)
   {
     AActor* TerramechanicsActor = World->SpawnActor(MetaInfo.TerramechanicsBpClass);
@@ -877,7 +877,7 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
       Landscape->NumSubsections = 2;       // (1 for 1x1 , 2 for 2x2)
       Landscape->SetLandscapeGuid(FGuid::NewGuid());
 
-      // Height Render Target
+      // 高度渲染目标。
       UTextureRenderTarget2D* HeightRT = MetaInfo.GlobalHeightmap;
       UE_LOG(LogCarlaToolsMapGenerator, Warning, TEXT("%s: Heightmap detected with dimensions %dx%d"), 
             *CUR_CLASS_FUNC_LINE, HeightRT->SizeX, HeightRT->SizeY);
@@ -889,7 +889,7 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
       TileMetaInfo.MapMetaInfo = MetaInfo;
       
 
-      // River Management
+      //河流管理。
       if(FMath::RandRange(0.0f, 100.0f) < MetaInfo.RiverChanceFactor)
       {
         TileMetaInfo.ContainsRiver = true;
@@ -899,7 +899,7 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
         TileMetaInfo.ContainsRiver = false;
       }
 
-      // Update and get heightmap from texture
+      // 从纹理中更新并获取高度图。
       UpdateTileRT(TileMetaInfo);
 
       FTextureRenderTargetResource* RenderTargetResource = HeightRT->GameThread_GetRenderTargetResource();
@@ -915,13 +915,13 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
         HeightData.Add((uint16)(LinearColor.R * 255 * 255 + LinearColor.G * 255));
       }
 
-      // Terrain ROI
+      // 地形感兴趣区域。
       FRoiTile ThisTileIndex(i, j);
       if(FCarlaRegionOfInterest::IsTileInRegionsSet(ThisTileIndex, MetaInfo.TerrainRoisMap))
       {
         FTerrainROI TileRegion = MetaInfo.TerrainRoisMap[ThisTileIndex];
 
-        // Update ROI RT with ROI material
+        //使用 ROI 材质更新 ROI 渲染目标（ROI Render Target）。
         UpdateTileRoiRT(TileMetaInfo, TileRegion.RoiMaterialInstance);
 
         UTextureRenderTarget2D* RoiHeightRT = TileRegion.RoiHeightmapRenderTarget;
@@ -939,10 +939,10 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
         }
 
 
-        //int FlateningMargin = 30;   // Not flatened
-        int FlateningMargin = 0;   // Not flatened
-        int FlateningFalloff = 100; // Transition from actual and flat value
-        int TileSize = TILESIZE; // Should be calculated by sqrt(HeightData.Num())
+        //int FlateningMargin = 30;   //未被平整化。
+        int FlateningMargin = 0;   // 未被平整化。
+        int FlateningFalloff = 100; // 从实际值和平整值进行过渡。
+        int TileSize = TILESIZE; // 应该通过 HeightData 的数量的平方根（sqrt(HeightData.Num())）来计算。
 
         bool IsThereTileUp, IsThereTileDown, IsThereTileLeft, IsThereTileRight;
 
@@ -982,14 +982,14 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
         }
       }
 
-      // Flatening if contains river
-      // TODO: Move this if to a function
-      // TODO: Check and fix flatening algorithm
+      //如果包含河流则进行平整化。
+      //待办事项：将这个 if 判断移到一个函数中。
+      //待办事项：检查并修复平整化算法。
       if(TileMetaInfo.ContainsRiver)
       {
         int TileSize = TILESIZE; // Should be calculated by sqrt(HeightData.Num())
-        int FlateningMargin = 30;   // Not flatened
-        int FlateningFalloff = 100; // Transition from actual and flat value
+        int FlateningMargin = 30;   // 未被平整化。
+        int FlateningFalloff = 100; // 从实际值向平整值过渡。
 
         for(int X = FlateningMargin; X < (TileSize - FlateningMargin); X++)
         {
@@ -1014,36 +1014,38 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
               TransitionFactor *= 1 - ((Y - (TileSize - FlateningMargin - FlateningFalloff)) / (float) FlateningFalloff);
             }
             
-            // HeightData[(X * TileSize) + Y] = (HeightData[(X * TileSize) + Y] * MetaInfo.RiverFlateningFactor) * TransitionFactor +  HeightData[(X * TileSize) + Y] * (1-TransitionFactor);
+            // 高度数据数组 HeightData 中索引为（X 乘以瓦片尺寸 TileSize 再加上 Y）的元素值等
+            //（该元素原本的值乘以元信息 MetaInfo 中的河流平整化因子 RiverFlateningFactor）再乘以
+            //过渡因子 TransitionFactor，加上该元素原本的值乘以（1 减去过渡因子）”
           }
         }
         DuplicateWorld("/CarlaTools/MapGenerator/Rivers/RiverPresets/River01/RiverPreset01.RiverPreset01",
             MetaInfo.DestinationPath + "/Rivers", MapName + "_River");
       }
 
-      // Smooth process
+      // 平滑处理
       TArray<uint16> SmoothedData;
       SmoothHeightmap(HeightData, SmoothedData);
       HeightData = SmoothedData;
 
-      // Sew Upper and Left boundaries
-      if(BoundariesInfo.Num() != 0) // To avoid crashing on the first Tile
+      //缝合上边界和左边界。
+      if(BoundariesInfo.Num() != 0) // 为了避免在第一个图块上崩溃。
       {
         TArray<uint16> SewedData;
         SewUpperAndLeftTiles(HeightData, SewedData, ThisTileIndex.X, ThisTileIndex.Y);
         HeightData = SewedData;
       }
 
-      // Store Boundaries Info
+      // 存储边界信息。
       FTileBoundariesInfo ThisTileBoundariesInfo;
       TArray<uint16> RightHeightData;
       TArray<uint16> BottomHeightData;
 
       for(int DataIndex = 0; DataIndex < TILESIZE - 1; DataIndex++)
       {
-        // Right
+        // 正确的
         RightHeightData.Add(HeightData[ Convert2DTo1DCoord(0, DataIndex, TILESIZE) ]);
-        // Bottom
+        // 底部
         BottomHeightData.Add(HeightData[ Convert2DTo1DCoord(DataIndex, TILESIZE - 1, TILESIZE) ]);
       }
 
@@ -1067,14 +1069,13 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
       Landscape->ReregisterAllComponents();
       Landscape->CreateLandscapeInfo();
       Landscape->SetActorLabel(TEXT("Landscape_"+FString::FromInt(i) + "_" + FString::FromInt(j)));
-      // Landscape->SetActorLabel("Landscape");
-
-      // Apply material
+      //“景观（Landscape）对象设置行为体标签为‘Landscape’”。
+      // 应用材质。
       AssignLandscapeMaterial(Landscape);
 
       Landscape->RecreateCollisionComponents();
 
-      // Creating terramechanics heightmap
+      // 创建地面力学高度图。
       FString HeightmapPath = MetaInfo.DestinationPath + "/HeightMaps/";
       UCustomTerrainPhysicsComponent::BuildLandscapeHeightMapDataAasset(Landscape, 1009, FVector(100800,100800,0),
           HeightmapPath, MapName);
@@ -1096,7 +1097,7 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
     }
   }
 
-  // Clear Boundaries Data Array
+  // 清空边界数据数组。
   BoundariesInfo.Empty();
 
   CookTilesCollisions(MetaInfo);
@@ -1109,7 +1110,7 @@ bool UMapGeneratorWidget::CookVegetationToTiles(const FMapGeneratorMetaInfo& Met
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: Cooking vegetation to %s tiles"), 
       *CUR_CLASS_FUNC_LINE, *MetaInfo.MapName);
 
-  // First check if there is elements in MetaInfo.FoliageSpawners
+  //首先检查元信息（MetaInfo）中的植被生成器（FoliageSpawners）中是否有元素。
   if(MetaInfo.FoliageSpawners.Num() == 0)
   {
     UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s Vegetation cooking skipped. No foliage spawners selected."), 
@@ -1117,7 +1118,7 @@ bool UMapGeneratorWidget::CookVegetationToTiles(const FMapGeneratorMetaInfo& Met
         return true;
   }
 
-  // Load all newly generated maps
+  // 加载所有新生成的地图。
   TArray<FAssetData> AssetsData;
   const FString TilesPath = MetaInfo.DestinationPath;
   bool success = LoadWorlds(AssetsData, TilesPath);
@@ -1127,12 +1128,12 @@ bool UMapGeneratorWidget::CookVegetationToTiles(const FMapGeneratorMetaInfo& Met
     return false;
   }
 
-  // Cook vegetation for each of the maps
+  // 为每张地图烘焙植被。
   for(FAssetData AssetData : AssetsData)
   {
     UWorld* World = GetWorldFromAssetData(AssetData);
 
-    // Check if it is not a tile
+    // 检查它是否不是一个图块。
     if(!World->GetMapName().Contains("_Tile_"))
     {
       UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: %s Skipped as it is not a tile"), 
@@ -1142,7 +1143,7 @@ bool UMapGeneratorWidget::CookVegetationToTiles(const FMapGeneratorMetaInfo& Met
 
     const FString MapNameToLoad = TilesPath + "/" + World->GetMapName() + "." + World->GetMapName();
 
-    // Load Map to editor. Required to spawn simulatee procedural foliage
+    // 将地图加载到编辑器中。这是生成模拟的程序性植被所必需的。
     bool bLoadedSuccess = FEditorFileUtils::LoadMap(*MapNameToLoad, false, true);
     if(!bLoadedSuccess){
       UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error Loading %s"),
@@ -1150,7 +1151,7 @@ bool UMapGeneratorWidget::CookVegetationToTiles(const FMapGeneratorMetaInfo& Met
       return false;
     }
 
-    // ROI checks
+    // 感兴趣区域检查
     int TileIndexX, TileIndexY;
     ExtractCoordinatedFromMapName(World->GetMapName(), TileIndexX, TileIndexY);
 
@@ -1166,7 +1167,7 @@ bool UMapGeneratorWidget::CookVegetationToTiles(const FMapGeneratorMetaInfo& Met
       FoliageSpawnersToCook = MetaInfo.FoliageSpawners;
     }
 
-    // Cook vegetation to world
+    //为世界烘焙植被。
     bool bVegetationSuccess = CookVegetationToWorld(World, FoliageSpawnersToCook);
     if(!bVegetationSuccess){
       UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error Cooking Vegetation in %s"),
@@ -1186,7 +1187,7 @@ bool UMapGeneratorWidget::CookVegetationToWorld(
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("%s: Cooking vegetation to %s"), 
       *CUR_CLASS_FUNC_LINE, *World->GetMapName());
 
-  // For each spawner create a procedural foliage volume and simulates the vegetation
+  // 对于每个生成器，创建一个程序性植被体积并模拟植被。
   for(auto Spawner : FoliageSpawners)
   {
     ULevel* Level = World->GetCurrentLevel();
@@ -1241,14 +1242,16 @@ bool UMapGeneratorWidget::CookMiscSpreadedActors(const FMapGeneratorMetaInfo& Me
 
   for(FRoiTile ThisTile : ListOfTiles)
   {
-    // Check if map is valid
+    //检查地图是否有效。
     const FString MapCompletePath = MetaInfo.DestinationPath + "/" + MetaInfo.MapName +
         "_Tile_" + FString::FromInt(ThisTile.X) + "_" + FString::FromInt(ThisTile.Y);
 
-    // Instantiate Weather Actor in main map
+    //在主地图中实例化天气行为体。
     const FString WorldToLoadPath = MapCompletePath + "." + MetaInfo.MapName + 
         "_Tile_" + FString::FromInt(ThisTile.X) + "_" + FString::FromInt(ThisTile.Y);
-    // UWorld* World = LoadObject<UWorld>(nullptr, *WorldToLoadPath);
+    //创建一个指向虚幻世界（UWorld）类型的指针 World，
+    //通过加载对象函数（LoadObject）以空指针（nullptr）和待加载世界的路径（WorldToLoadPath）作为参数，
+    //尝试加载一个虚幻世界对象。);
     bool bLoadedSuccess = FEditorFileUtils::LoadMap(*WorldToLoadPath, false, true);
     if(!bLoadedSuccess){
       UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error Loading %s"),
@@ -1293,7 +1296,7 @@ bool UMapGeneratorWidget::CookMiscSpreadedActors(const FMapGeneratorMetaInfo& Me
         {
           float ActorZCoord = GetLandscapeSurfaceHeight(World, ActorXCoord, ActorYCoord, false);
           FVector Location(ActorXCoord, ActorYCoord, ActorZCoord);
-          // TODO: Add rotation randomly?
+          // 待办事项：随机添加旋转吗？
           FRotator Rotation(0, 0, 0);
           FActorSpawnParameters SpawnInfo;
 
@@ -1307,7 +1310,7 @@ bool UMapGeneratorWidget::CookMiscSpreadedActors(const FMapGeneratorMetaInfo& Me
       }
     }
 
-    // Save map
+    //保存地图。
     SaveWorld(World); 
   }
 
@@ -1337,7 +1340,7 @@ float UMapGeneratorWidget::GetLandscapeSurfaceHeight(UWorld* World, float x, flo
     
     FVector Location(x, y, 0);
     TOptional<float> Height = Landscape->GetHeightAtLocation(Location);
-    // TODO: Change function return type to TOptional<float>
+    // 待办事项：将函数的返回类型更改为可选浮点型（TOptional<float>）。
     return Height.IsSet() ? Height.GetValue() : GetLandscapeSurfaceHeightFromRayCast(World, x, y, bDrawDebugLines);
   }
   return 0.0f;
@@ -1350,7 +1353,7 @@ float UMapGeneratorWidget::GetLandscapeSurfaceHeightFromRayCast(UWorld* World, f
     FVector RayStartingPoint(x, y, 9999999);
     FVector RayEndPoint(x, y, -9999999);
 
-    // Raytrace
+    // 光线追踪。
     FHitResult HitResult;
     World->LineTraceSingleByObjectType(
         OUT HitResult,
@@ -1359,7 +1362,7 @@ float UMapGeneratorWidget::GetLandscapeSurfaceHeightFromRayCast(UWorld* World, f
         FCollisionObjectQueryParams(ECollisionChannel::ECC_WorldStatic),
         FCollisionQueryParams());
 
-    // Draw debug line.
+    //绘制调试线.
     if (bDrawDebugLines)
     {
       FColor LineColor;
@@ -1378,7 +1381,7 @@ float UMapGeneratorWidget::GetLandscapeSurfaceHeightFromRayCast(UWorld* World, f
           10.f);
     }
 
-    // Return Z Location.
+    // 返回 Z 轴位置。
     if (HitResult.GetActor()) 
       return HitResult.ImpactPoint.Z;
 
@@ -1402,7 +1405,7 @@ void UMapGeneratorWidget::SmoothHeightmap(TArray<uint16> HeightData, TArray<uint
 {
   TArray<uint16> SmoothedData(HeightData);
 
-  // Prepare Gaussian Kernel
+  // 准备高斯核。
   int KernelSize = 5;
   int KernelWeight = 273; 
   float Kernel[] = {1,  4,  7,  4,  1,
@@ -1417,7 +1420,7 @@ void UMapGeneratorWidget::SmoothHeightmap(TArray<uint16> HeightData, TArray<uint
     SmoothKernel.Add(Kernel[i] / KernelWeight);
   }
 
-  // Apply kernel to height data
+  // 将核应用于高度数据。
   int TileMargin = 2;
 
   /* Applying a smoothing kernel to the height data */
