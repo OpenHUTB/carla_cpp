@@ -6,40 +6,40 @@
 
 #pragma once
 
-#include "carla/road/element/RoadInfoVisitor.h"// °üº¬RoadInfoVisitorÀàµÄ¶¨Òå£¬ÓÃÓÚ·ÃÎÊÕßÄ£Ê½¡£
-#include "carla/NonCopyable.h"// °üº¬NonCopyableÀàµÄ¶¨Òå£¬ÓÃÓÚ½ûÖ¹¿½±´²Ù×÷¡£
+#include "carla/road/element/RoadInfoVisitor.h"// åŒ…å«RoadInfoVisitorç±»çš„å®šä¹‰ï¼Œç”¨äºè®¿é—®è€…æ¨¡å¼ã€‚
+#include "carla/NonCopyable.h"// åŒ…å«NonCopyableç±»çš„å®šä¹‰ï¼Œç”¨äºç¦æ­¢æ‹·è´æ“ä½œã€‚
 
-#include <map>// Ìá¹©mapÈİÆ÷µÄ¶¨Òå¡£
-#include <string>// Ìá¹©stringÀàµÄ¶¨Òå¡£
-#include <vector>// Ìá¹©vectorÈİÆ÷µÄ¶¨Òå¡£
-//Ê¹ÓÃcarlaÃüÃû¿Õ¼äÏÂµÄroadºÍelement×ÓÃüÃû¿Õ¼ä¡£
+#include <map>// æä¾›mapå®¹å™¨çš„å®šä¹‰ã€‚
+#include <string>// æä¾›stringç±»çš„å®šä¹‰ã€‚
+#include <vector>// æä¾›vectorå®¹å™¨çš„å®šä¹‰ã€‚
+//ä½¿ç”¨carlaå‘½åç©ºé—´ä¸‹çš„roadå’Œelementå­å‘½åç©ºé—´ã€‚
 namespace carla {
-    namespace road {
-        namespace element {
-            // ¶¨ÒåRoadInfoÀà£¬Ëü¼Ì³Ğ×ÔNonCopyable£¨Ë½ÓĞ¼Ì³Ğ£©£¬ÓÃÓÚ½ûÖ¹¿½±´²Ù×÷¡£
-            class RoadInfo : private NonCopyable {
-            public:
-                // ¶¨ÒåÒ»¸öĞéÎö¹¹º¯Êı£¬È·±£ÅÉÉúÀàÄÜ¹»ÕıÈ·Îö¹¹¡£
-                virtual ~RoadInfo() = default;
-                // ¶¨ÒåÒ»¸ö´¿Ğéº¯ÊıAcceptVisitor£¬½ÓÊÜÒ»¸öRoadInfoVisitorÒıÓÃ×÷Îª²ÎÊı¡£
-                // ÕâÊÇ·ÃÎÊÕßÄ£Ê½µÄÊµÏÖ£¬ÔÊĞíÍâ²¿Í¨¹ı·ÃÎÊÕß¶ÔÏó·ÃÎÊRoadInfoµÄÄÚ²¿×´Ì¬¡£
-                virtual void AcceptVisitor(RoadInfoVisitor&) = 0;
-                /// »ñÈ¡´ÓµÀÂ·ÆğÊ¼Î»ÖÃµÄ¾àÀë¡£
-                /// Distance from road's start location.
-                double GetDistance() const {
-                    return _s;// ·µ»ØË½ÓĞ³ÉÔ±±äÁ¿_sµÄÖµ¡£
-                }
+namespace road {
+namespace element {
+    // å®šä¹‰RoadInfoç±»ï¼Œå®ƒç»§æ‰¿è‡ªNonCopyableï¼ˆç§æœ‰ç»§æ‰¿ï¼‰ï¼Œç”¨äºç¦æ­¢æ‹·è´æ“ä½œã€‚
+  class RoadInfo : private NonCopyable {
+  public:
+      // å®šä¹‰ä¸€ä¸ªè™šææ„å‡½æ•°ï¼Œç¡®ä¿æ´¾ç”Ÿç±»èƒ½å¤Ÿæ­£ç¡®ææ„ã€‚
+    virtual ~RoadInfo() = default;
+    // å®šä¹‰ä¸€ä¸ªçº¯è™šå‡½æ•°AcceptVisitorï¼Œæ¥å—ä¸€ä¸ªRoadInfoVisitorå¼•ç”¨ä½œä¸ºå‚æ•°ã€‚
+    // è¿™æ˜¯è®¿é—®è€…æ¨¡å¼çš„å®ç°ï¼Œå…è®¸å¤–éƒ¨é€šè¿‡è®¿é—®è€…å¯¹è±¡è®¿é—®RoadInfoçš„å†…éƒ¨çŠ¶æ€ã€‚
+    virtual void AcceptVisitor(RoadInfoVisitor &) = 0;
+    /// è·å–ä»é“è·¯èµ·å§‹ä½ç½®çš„è·ç¦»ã€‚
+    /// Distance from road's start location.
+    double GetDistance() const {
+      return _s;// è¿”å›ç§æœ‰æˆå‘˜å˜é‡_sçš„å€¼ã€‚
+    }
 
-            protected:
-                // ¶¨ÒåÊÜ±£»¤µÄ¹¹Ôìº¯Êı£¬ÔÊĞíÅÉÉúÀà¹¹ÔìRoadInfo¶ÔÏó¡£
-                // ´øÓĞÄ¬ÈÏ²ÎÊı0.0£¬±íÊ¾Ä¬ÈÏ¾àÀëÎª0¡£
-                RoadInfo(double distance = 0.0) : _s(distance) {}
+  protected:
+      // å®šä¹‰å—ä¿æŠ¤çš„æ„é€ å‡½æ•°ï¼Œå…è®¸æ´¾ç”Ÿç±»æ„é€ RoadInfoå¯¹è±¡ã€‚
+      // å¸¦æœ‰é»˜è®¤å‚æ•°0.0ï¼Œè¡¨ç¤ºé»˜è®¤è·ç¦»ä¸º0ã€‚
+    RoadInfo(double distance = 0.0) : _s(distance) {}
 
-            private:
-                // Ë½ÓĞ³ÉÔ±±äÁ¿_s£¬´æ´¢´ÓµÀÂ·ÆğÊ¼Î»ÖÃµÄ¾àÀë¡£
-                double _s;
-            };
+  private:
+      // ç§æœ‰æˆå‘˜å˜é‡_sï¼Œå­˜å‚¨ä»é“è·¯èµ·å§‹ä½ç½®çš„è·ç¦»ã€‚
+    double _s;
+  };
 
-        } // namespace element
-    } // namespace road
+} // namespace element
+} // namespace road
 } // namespace carla
