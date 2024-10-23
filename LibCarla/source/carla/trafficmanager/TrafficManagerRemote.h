@@ -318,57 +318,122 @@ public:
  */
   void UpdateUploadPath(const ActorId &actor_id, const Path path);
 
-  /// Method to set our own imported route.
+  /**
+ * @brief 设置自定义路线。
+ *
+ * @param actor 需要设置自定义路线的车辆对象。
+ * @param route 自定义路线对象。
+ * @param empty_buffer 是否清空动作缓冲区。
+ */
   void SetImportedRoute(const ActorPtr &actor, const Route route, const bool empty_buffer);
 
-  /// Method to remove a route.
+  /**
+ * @brief 移除路线。
+ *
+ * @param actor_id 需要移除路线的车辆ID。
+ * @param remove_path 是否移除路线。
+ */
   void RemoveImportedRoute(const ActorId &actor_id, const bool remove_path);
 
-  /// Method to update an already set route.
+  /**
+ * @brief 更新已设置的路线。
+ *
+ * @param actor_id 需要更新路线的车辆ID。
+ * @param route 新的路线对象。
+ */
   void UpdateImportedRoute(const ActorId &actor_id, const Route route);
 
-  /// Method to set automatic respawn of dormant vehicles.
+  /**
+  * @brief 设置自动重生休眠车辆的模式。
+  *
+  * @param mode_switch 是否启用自动重生休眠车辆模式。
+  */
   void SetRespawnDormantVehicles(const bool mode_switch);
 
-  // Method to set boundaries to respawn of dormant vehicles.
+  /**
+ * @brief 设置休眠车辆重生的边界。
+ *
+ * @param lower_bound 重生的下边界值。
+ * @param upper_bound 重生的上边界值。
+ */
   void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound);
 
-  // Method to set boundaries to respawn of dormant vehicles.
+  /**
+ * @brief 设置最大的重生边界。
+ *
+ * @param lower 最小的重生边界值。
+ * @param upper 最大的重生边界值。
+ */
   void SetMaxBoundaries(const float lower, const float upper);
-
+  /**
+ * @brief 关闭交通管理器。
+ */
   virtual void ShutDown();
 
-  /// Method to get the vehicle's next action.
+  /**
+  * @brief 获取车辆的下一个动作。
+  *
+  * @param actor_id 需要获取动作的车辆ID。
+  * @return 车辆的下一个动作。
+  */
   Action GetNextAction(const ActorId &actor_id);
 
-  /// Method to get the vehicle's action buffer.
+  /**
+  * @brief 获取车辆的动作缓冲区。
+  *
+  * @param actor_id 需要获取动作缓冲区的车辆ID。
+  * @return 车辆的动作缓冲区。
+  */
   ActionBuffer GetActionBuffer(const ActorId &actor_id);
 
-  /// Method to provide synchronous tick
+  /**
+ * @brief 提供同步Tick。
+ *
+ * @return 是否成功执行同步Tick。
+ */
   bool SynchronousTick();
 
-  /// Get CARLA episode information.
+  /**
+  * @brief 获取CARLA回合信息。
+  *
+  * @return CARLA回合信息的代理对象。
+  */
   carla::client::detail::EpisodeProxy& GetEpisodeProxy();
 
-  /// Method to check server is alive or not.
+  /**
+ * @brief 检查服务器是否存活。
+ */
   void HealthCheckRemoteTM();
 
-  /// Method to set randomization seed.
+  /**
+ * @brief 设置随机化种子。
+ *
+ * @param seed 随机化种子值。
+ */
   void SetRandomDeviceSeed(const uint64_t seed);
 
 private:
 
-  /// Remote client using the IP and port information it connects to
-  /// as remote RPC traffic manager server.
+	/**
+   * @brief 远程客户端，使用IP和端口信息连接到远程RPC交通管理器服务器。
+   */
   TrafficManagerClient client;
 
-  /// CARLA client connection object.
+  /**
+  * @brief CARLA客户端连接对象。
+  */
   carla::client::detail::EpisodeProxy episodeProxyTM;
-
+  /**
+ * @brief 条件变量，用于线程同步。
+ */
   std::condition_variable _cv;
-
+  /**
+ * @brief 互斥锁，用于保护共享资源。
+ */
   std::mutex _mutex;
-
+  /**
+ * @brief 保持活动状态标志。
+ */
   bool _keep_alive = true;
 };
 
