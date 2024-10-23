@@ -14,31 +14,64 @@
 #include "carla/client/detail/EpisodeProxy.h"/// @brief CARLA客户端EpisodeProxy类的头文件，包含了与仿真片段（Episode）相关的操作和接口
 #include "carla/trafficmanager/TrafficManagerBase.h"/// @brief CARLA交通管理器基础类的头文件，提供了交通管理器的基本功能和接口
 #include "carla/trafficmanager/TrafficManagerClient.h"/// @brief CARLA交通管理器客户端类的头文件，用于与交通管理器进行通信和控制
-
+/**
+ * @namespace carla::traffic_manager
+ * @brief CARLA仿真环境中的交通管理器命名空间。
+ *
+ * 该命名空间包含了与交通管理相关的类、函数和类型定义，用于实现交通流的控制和管理。
+ */
 namespace carla {
 namespace traffic_manager {
-
+	/**
+	 * @brief 定义一个智能指针类型，指向carla::client::Actor类。
+	 *
+	 * 用于在交通管理器中方便地管理Actor（如车辆、行人等）的引用。
+	 */
 using ActorPtr = carla::SharedPtr<carla::client::Actor>;
+/**
+ * @brief 定义一个路径类型，由多个cg::Location组成。
+ *
+ * 用于表示一个Actor在地图上的移动路径。
+ */
 using Path = std::vector<cg::Location>;
+/**
+ * @brief 定义一个路由类型，由多个uint8_t组成。
+ *
+ * 用于表示一个Actor在交通网络中的路由信息。
+ */
 using Route = std::vector<uint8_t>;
-
-
-/// The function of this class is to integrate all the various stages of
-/// the traffic manager appropriately using messengers.
+/**
+ * @class TrafficManagerRemote
+ * @brief 远程交通管理器类，通过消息传递机制整合交通管理的各个阶段。
+ *
+ * 该类继承自TrafficManagerBase，提供了远程交通管理的功能，包括启动、停止、重置以及车辆的注册、注销和速度控制等。
+ */
 class TrafficManagerRemote : public TrafficManagerBase {
 
 public:
-
-  /// To start the TrafficManager.
+	/**
+	   * @brief 启动交通管理器。
+	   *
+	   * 初始化并启动交通管理器的各个组件，准备进行交通管理。
+	   */
   void Start();
-
-  /// To stop the TrafficManager.
+  /**
+	 * @brief 停止交通管理器。
+	 *
+	 * 停止交通管理器的运行，释放相关资源。
+	 */
   void Stop();
-
-  /// To release the traffic manager.
+  /**
+	 * @brief 释放交通管理器。
+	 *
+	 * 彻底释放交通管理器占用的资源，确保不再使用。
+	 */
   void Release();
-
-  /// To reset the traffic manager.
+  /**
+	 * @brief 重置交通管理器。
+	 *
+	 * 将交通管理器重置到初始状态，准备进行新的交通管理任务。
+	 */
   void Reset();
 
   /// Constructor store remote location information.
