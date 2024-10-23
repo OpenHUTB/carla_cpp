@@ -135,17 +135,22 @@ namespace client {
   rpc::ActorState Actor::GetActorState() const {
     return GetEpisode().Lock()->GetActorState(*this);
   }
-
+  // 定义在Actor类中的Destroy成员函数，该函数返回一个布尔值，表示销毁操作是否成功
   bool Actor::Destroy() {
-    rpc::ActorState actor_state = GetActorState();
-    bool result = false;
-    if (actor_state != rpc::ActorState::Invalid) {
+      // 调用GetActorState成员函数获取当前Actor的状态，并将其存储在actor_state变量中
+      rpc::ActorState actor_state = GetActorState();
+      // 定义一个布尔变量result，初始化为false，用于记录销毁操作的结果
+      bool result = false;
+      // 判断actor_state是否不等于rpc::ActorState枚举中的Invalid状态。  
+      // 如果不等于Invalid，说明该Actor对象是一个有效的对象，可以进行销毁操作
+      if (actor_state != rpc::ActorState::Invalid) {
       result = GetEpisode().Lock()->DestroyActor(*this);
     } else {
       log_warning(
           "attempting to destroy an actor that is already dead:",
           GetDisplayId());
     }
+    // 返回销毁操作的结果
     return result;
   }
 
