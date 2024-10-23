@@ -37,9 +37,9 @@ using ActorPtr = carla::SharedPtr<carla::client::Actor>;
 using Path = std::vector<cg::Location>;
 
 /**
- * @brief 定义一个路由类型，由多个uint8_t组成。
+ * @brief 定义一个路线类型，由多个uint8_t组成。
  *
- * 用于表示一个Actor在交通网络中的路由信息。
+ * 用于表示一个Actor在交通网络中的路线信息。
  */
 using Route = std::vector<uint8_t>;
 
