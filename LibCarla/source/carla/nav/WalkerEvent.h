@@ -24,24 +24,24 @@ namespace nav {
     class Navigation;
     class WalkerManager;
 
-    /// result of an event
+    /// 事件的结果
     enum class EventResult : uint8_t {
         Continue,
         End,
         TimeOut
     };
 
-    /// empty event that just ignores
+    /// 忽略的空事件
     struct WalkerEventIgnore {
     };
 
-    /// event to wait for a while
+    /// 等待一段时间的事件
     struct WalkerEventWait {
         double time;
         WalkerEventWait(double duration) : time(duration) {};
     };
 
-    /// event to pause and check for near vehicles
+    /// 暂停并检查附近车辆的事件
     struct WalkerEventStopAndCheck {
         double time;
         bool check_for_trafficlight;
@@ -51,10 +51,10 @@ namespace nav {
                                                    {};
     };
 
-    /// walker event variant
+    /// 行人事件变体
     using WalkerEvent = boost::variant2::variant<WalkerEventIgnore, WalkerEventWait, WalkerEventStopAndCheck>;
 
-    /// visitor class
+    /// 访问者类
     class WalkerEventVisitor {
         public:
             WalkerEventVisitor(WalkerManager *manager, ActorId id, double delta) : _manager(manager), _id(id), _delta(delta) {};

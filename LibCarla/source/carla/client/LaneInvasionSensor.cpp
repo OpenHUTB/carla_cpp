@@ -1,6 +1,8 @@
 // Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
+// 压线传感器
+// 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -20,7 +22,7 @@ namespace carla {
 namespace client {
 
   // ===========================================================================
-  // -- Static local methods ---------------------------------------------------
+  // -- 静态局部方法 ------------------------------------------------------------
   // ===========================================================================
 
   static geom::Location Rotate(float yaw, const geom::Location &location) {
@@ -34,7 +36,7 @@ namespace client {
   }
 
   // ===========================================================================
-  // -- LaneInvasionCallback ---------------------------------------------------
+  // -- 压线回调类 LaneInvasionCallback -----------------------------------------
   // ===========================================================================
 
   class LaneInvasionCallback {
@@ -76,7 +78,7 @@ namespace client {
   };
 
   void LaneInvasionCallback::Tick(const WorldSnapshot &snapshot) const {
-    // Make sure the parent is alive.
+    // 确保父类还存活。
     auto parent = snapshot.Find(_parent);
     if (!parent) {
       return;
@@ -85,12 +87,12 @@ namespace client {
     auto next = MakeBounds(snapshot.GetFrame(), parent->transform);
     auto prev = _bounds.load();
 
-    // First frame it'll be null.
+    // 第一帧它将为空。
     if ((prev == nullptr) && _bounds.compare_exchange(&prev, next)) {
       return;
     }
 
-    // Make sure the distance is long enough.
+    // 确保距离足够长。
     constexpr float distance_threshold = 10.0f * std::numeric_limits<float>::epsilon();
     for (auto i = 0u; i < 4u; ++i) {
       if ((next->corners[i] - prev->corners[i]).Length() < distance_threshold) {
@@ -98,14 +100,14 @@ namespace client {
       }
     }
 
-    // Make sure the current frame is up-to-date.
+    // 确保当前帧是最新的。
     do {
       if (prev->frame >= next->frame) {
         return;
       }
     } while (!_bounds.compare_exchange(&prev, next));
 
-    // Finally it's safe to compute the crossed lanes.
+    // 最后，可以安全地计算交叉车道。
     std::vector<road::element::LaneMarking> crossed_lanes;
     for (auto i = 0u; i < 4u; ++i) {
       const auto lanes = _map->CalculateCrossedLanes(prev->corners[i], next->corners[i]);
@@ -136,7 +138,7 @@ namespace client {
   }
 
   // ===========================================================================
-  // -- LaneInvasionSensor -----------------------------------------------------
+  // -- 压线传感器 LaneInvasionSensor -------------------------------------------
   // ===========================================================================
 
   LaneInvasionSensor::~LaneInvasionSensor() {

@@ -20,8 +20,7 @@
 namespace carla {
 namespace geom {
 
-  /// Material that references the vertex index start and end of
-  /// a mesh where it is affecting.
+  /// 引用其影响的网格的顶点索引的起点和终点的材质。
   struct MeshMaterial {
 
     MeshMaterial(
@@ -40,7 +39,7 @@ namespace geom {
 
   };
 
-  /// Mesh data container, validator and exporter.
+  /// 网格数据容器、验证器和导出器。
   class Mesh {
   public:
 
@@ -51,7 +50,7 @@ namespace geom {
     using material_type = MeshMaterial;
 
     // =========================================================================
-    // -- Constructor ----------------------------------------------------------
+    // -- 构造函数 -------------------------------------------------------------
     // =========================================================================
 
     Mesh(const std::vector<vertex_type> &vertices = {},
@@ -64,66 +63,62 @@ namespace geom {
         _uvs(uvs) {}
 
     // =========================================================================
-    // -- Validate methods -----------------------------------------------------
+    // -- 验证方法 --------------------------------------------------------------
     // =========================================================================
 
-    /// Check if the mesh can be valid or not.
+    /// 检查网格是否有效。
     bool IsValid() const;
 
     // =========================================================================
-    // -- Mesh build methods ---------------------------------------------------
+    // -- 网格构建方法 ----------------------------------------------------------
     // =========================================================================
 
-    /// Adds a triangle strip to the mesh, vertex order is counterclockwise.
+    /// 向网格添加三角形带，顶点顺序为逆时针。
     void AddTriangleStrip(const std::vector<vertex_type> &vertices);
 
-    /// Adds a triangle fan to the mesh, vertex order is counterclockwise.
+    /// 向网格添加三角形扇形，顶点顺序为逆时针。
     void AddTriangleFan(const std::vector<vertex_type> &vertices);
 
-    /// Appends a vertex to the vertices list.
+    /// 将顶点附加到顶点列表。
     void AddVertex(vertex_type vertex);
 
-    /// Appends a vertex to the vertices list.
+    /// 将顶点附加到顶点列表。
     void AddVertices(const std::vector<vertex_type> &vertices);
 
-    /// Appends a normal to the normal list.
+    /// 将法线附加到法线列表。
     void AddNormal(normal_type normal);
 
-    /// Appends a index to the indexes list.
+    /// 将索引附加到索引列表。
     void AddIndex(index_type index);
 
-    /// Appends a vertex to the vertices list, they will be read 3 in 3.
+    /// 将一个顶点附加到顶点列表，它们将被读取 3 个中的 3 个。
     void AddUV(uv_type uv);
 
-    /// Appends uvs.
+    /// 添加纹理映射坐标(Texture-Mapping Coordinates, UV)
     void AddUVs(const std::vector<uv_type> & uv);
 
-    /// Starts applying a new material to the new added triangles.
+    /// 开始将新材质应用到新添加的三角形。
     void AddMaterial(const std::string &material_name);
 
-    /// Stops applying the material to the new added triangles.
+    /// 停止将材质应用到新添加的三角形。
     void EndMaterial();
 
     // =========================================================================
-    // -- Export methods -------------------------------------------------------
+    // -- 导出方法 --------------------------------------------------------------
     // =========================================================================
 
-    /// Returns a string containing the mesh encoded in OBJ.
-    /// Units are in meters. It is in Unreal space.
+    /// 返回包含 OBJ 中编码的网格的字符串。单位为米。它位于虚幻空间中。
     std::string GenerateOBJ() const;
 
-    /// Returns a string containing the mesh encoded in OBJ.
-    /// Units are in meters. This function exports the OBJ file
-    /// specifically to be consumed by Recast library.
-    /// Changes the build face direction and the coordinate space.
+    /// 返回包含 OBJ 中编码的网格的字符串。单位为米。
+    /// 此函数导出 OBJ 文件，供 Recast 库专门使用。更改构建面的方向和坐标空间。
     std::string GenerateOBJForRecast() const;
 
-    /// Returns a string containing the mesh encoded in PLY.
-    /// Units are in meters.
+    /// 返回包含 PLY 中编码的网格的字符串。单位为米。
     std::string GeneratePLY() const;
 
     // =========================================================================
-    // -- Other methods --------------------------------------------------------
+    // -- 其他方法 -------------------------------------------------------------
     // =========================================================================
 
     const std::vector<vertex_type> &GetVertices() const;
@@ -144,19 +139,19 @@ namespace geom {
 
     const std::vector<material_type> &GetMaterials() const;
 
-    /// Returns the index of the last added vertex (number of vertices).
+    /// 返回最后添加的顶点索引（顶点数）。
     size_t GetLastVertexIndex() const;
 
-    /// Merges two meshes into a single mesh
+    /// 将两个网格合并为一个网格
     Mesh& ConcatMesh(const Mesh& rhs, int num_vertices_to_link);
 
-    /// Merges two meshes into a single mesh
+    /// 将两个网格合并为一个网格
     Mesh &operator+=(const Mesh &rhs);
 
     friend Mesh operator+(const Mesh &lhs, const Mesh &rhs);
 
     // =========================================================================
-    // -- Conversions to UE4 types ---------------------------------------------
+    // -- 转换为 UE4 类型 -------------------------------------------------------
     // =========================================================================
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
@@ -164,10 +159,10 @@ namespace geom {
     operator FProceduralCustomMesh() const {
       FProceduralCustomMesh Mesh;
 
-      // Build the mesh
+      // 构建网格
       for (const auto Vertex : GetVertices())
       {
-        // From meters to centimeters
+        // 从米到厘米
         Mesh.Vertices.Add(FVector{1e2f * Vertex.x, 1e2f * Vertex.y, 1e2f * Vertex.z});
       }
 
@@ -176,9 +171,9 @@ namespace geom {
       for (auto i = 0u; i < Indexes.size(); i += 3)
       {
         FTriIndices Triangle;
-        // "-1" since mesh indexes in Unreal starts from index 0.
+        // “-1”，因为 Unreal 中的网格索引从索引 0 开始。
         Mesh.Triangles.Add(Indexes[i]     - 1);
-        // Since Unreal's coords are left handed, invert the last 2 indices.
+        // 由于虚幻的坐标是左手的，因此将最后两个索引反转。
         Mesh.Triangles.Add(Indexes[i + 2] - 1);
         Mesh.Triangles.Add(Indexes[i + 1] - 1);
 
@@ -188,7 +183,7 @@ namespace geom {
         TriIndices.Add(Triangle);
       }
 
-      // Compute the normals
+      // 计算法线
       TArray<FVector> Normals;
       Mesh.Normals.Init(FVector::UpVector, Mesh.Vertices.Num());
 
@@ -203,8 +198,7 @@ namespace geom {
         Normal = Normal.GetSafeNormal(.0001f);
         if (Normal != FVector::ZeroVector)
         {
-          // fix to prevent ugly x-fighting in geometries with very large curvatures,
-          // ensures that all road geometry is facing upwards
+          // 修复以防止在曲率非常大的几何形状中出现难看的 x-fighting，确保所有道路几何形状都朝上
           if (FVector::DotProduct(Normal, FVector(0,0,1)) < 0)
           {
             Normal = -Normal;
@@ -217,7 +211,7 @@ namespace geom {
 
       for (const auto uv : GetUVs())
       {
-        // From meters to centimeters
+        // 从米到厘米
         Mesh.UV0.Add(FVector2D{uv.x, uv.y});
       }
 
@@ -229,7 +223,7 @@ namespace geom {
   private:
 
     // =========================================================================
-    // -- Private data members -------------------------------------------------
+    // -- 私有数据成员 ----------------------------------------------------------
     // =========================================================================
 
     std::vector<vertex_type> _vertices;
