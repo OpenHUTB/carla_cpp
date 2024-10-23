@@ -28,18 +28,21 @@ namespace traffic_manager {
 	 * 用于在交通管理器中方便地管理Actor（如车辆、行人等）的引用。
 	 */
 using ActorPtr = carla::SharedPtr<carla::client::Actor>;
+
 /**
  * @brief 定义一个路径类型，由多个cg::Location组成。
  *
  * 用于表示一个Actor在地图上的移动路径。
  */
 using Path = std::vector<cg::Location>;
+
 /**
  * @brief 定义一个路由类型，由多个uint8_t组成。
  *
  * 用于表示一个Actor在交通网络中的路由信息。
  */
 using Route = std::vector<uint8_t>;
+
 /**
  * @class TrafficManagerRemote
  * @brief 远程交通管理器类，通过消息传递机制整合交通管理的各个阶段。
@@ -49,80 +52,154 @@ using Route = std::vector<uint8_t>;
 class TrafficManagerRemote : public TrafficManagerBase {
 
 public:
+	
 	/**
 	   * @brief 启动交通管理器。
 	   *
 	   * 初始化并启动交通管理器的各个组件，准备进行交通管理。
 	   */
   void Start();
+  
   /**
 	 * @brief 停止交通管理器。
 	 *
 	 * 停止交通管理器的运行，释放相关资源。
 	 */
   void Stop();
+  
   /**
 	 * @brief 释放交通管理器。
 	 *
 	 * 彻底释放交通管理器占用的资源，确保不再使用。
 	 */
   void Release();
+  
   /**
 	 * @brief 重置交通管理器。
 	 *
 	 * 将交通管理器重置到初始状态，准备进行新的交通管理任务。
 	 */
   void Reset();
-
-  /// Constructor store remote location information.
+ 
+  /**
+   * @brief 构造函数，存储远程服务器的位置信息。
+   *
+   * @param _serverTM 远程交通管理器的地址和端口号。
+   * @param episodeProxy 与当前仿真片段相关联的代理对象。
+   */
   TrafficManagerRemote(const std::pair<std::string, uint16_t> &_serverTM, carla::client::detail::EpisodeProxy &episodeProxy);
-
-  /// Destructor.
+  
+  /**
+   * @brief 析构函数。
+   *
+   * 释放TrafficManagerRemote对象占用的资源。
+   */
   virtual ~TrafficManagerRemote();
 
-  /// This method registers a vehicle with the traffic manager.
+  /**
+   * @brief 注册车辆到交通管理器。
+   *
+   * @param actor_list 需要注册的车辆列表。
+   */
   void RegisterVehicles(const std::vector<ActorPtr> &actor_list);
 
-  /// This method unregisters a vehicle from traffic manager.
+  /**
+   * @brief 从交通管理器注销车辆。
+   *
+   * @param actor_list 需要注销的车辆列表。
+   */
   void UnregisterVehicles(const std::vector<ActorPtr> &actor_list);
 
-  /// Method to set a vehicle's % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /**
+  * @brief 设置车辆相对于限速的速度差异百分比。
+  *
+  * @param actor 需要设置速度差异的车辆。
+  * @param percentage 速度差异的百分比。如果小于0，则表示速度增加。
+  */
   void SetPercentageSpeedDifference(const ActorPtr &actor, const float percentage);
 
-  /// Method to set a lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /**
+  * @brief 设置车辆相对于车道中心线的偏移量。
+  *
+  * @param actor 需要设置车道偏移的车辆。
+  * @param offset 车道偏移量。正值表示向右偏移，负值表示向左偏移。
+  */
   void SetLaneOffset(const ActorPtr &actor, const float offset);
 
-  /// Set a vehicle's exact desired velocity.
+  /**
+	* @brief 设置车辆的精确期望速度。
+	*
+	* @param actor 需要设置期望速度的车辆。
+	* @param value 车辆的期望速度。
+	*/
   void SetDesiredSpeed(const ActorPtr &actor, const float value);
 
-  /// Method to set a global % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /**
+   * @brief 设置全局速度相对于限速的百分比减少量。
+   *
+   * 如果传入的值小于0，则表示速度百分比增加。
+   *
+   * @param percentage 速度变化的百分比值。
+   */
   void SetGlobalPercentageSpeedDifference(float const percentage);
 
-  /// Method to set a global lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /**
+ * @brief 设置全局车道偏移量，相对于车道中心线。
+ *
+ * 正值表示向右偏移，负值表示向左偏移。
+ *
+ * @param offset 车道偏移量的具体值。
+ */
   void SetGlobalLaneOffset(float const offset);
 
-  /// Method to set the automatic management of the vehicle lights
+  /**
+ * @brief 设置车辆灯光的自动管理功能。
+ *
+ * @param actor 需要设置灯光自动管理的车辆对象。
+ * @param do_update 是否启用灯光自动管理功能。
+ */
   void SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update);
 
-  /// Method to set collision detection rules between vehicles.
+  /**
+   * @brief 设置车辆之间的碰撞检测规则。
+   *
+   * @param reference_actor 参考车辆对象，即碰撞检测的一方。
+   * @param other_actor 另一车辆对象，即与参考车辆进行碰撞检测的对象。
+   * @param detect_collision 是否启用碰撞检测功能。
+   */
   void SetCollisionDetection(const ActorPtr &reference_actor, const ActorPtr &other_actor, const bool detect_collision);
 
-  /// Method to force lane change on a vehicle.
-  /// Direction flag can be set to true for left and false for right.
+  /**
+ * @brief 强制车辆进行换道。
+ *
+ * 方向标志设置为true表示向左换道，设置为false表示向右换道。
+ *
+ * @param actor 需要进行换道的车辆对象。
+ * @param direction 换道方向标志。
+ */
   void SetForceLaneChange(const ActorPtr &actor, const bool direction);
 
-  /// Enable/disable automatic lane change on a vehicle.
+  /**
+ * @brief 启用/禁用车辆的自动换道功能。
+ *
+ * @param actor 需要设置自动换道功能的车辆对象。
+ * @param enable 是否启用自动换道功能。
+ */
   void SetAutoLaneChange(const ActorPtr &actor, const bool enable);
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the leading vehicle.
+  /**
+ * @brief 设置车辆与前车应保持的距离。
+ *
+ * @param actor 需要设置距离的车辆对象。
+ * @param distance 车辆与前车应保持的具体距离值。
+ */
   void SetDistanceToLeadingVehicle(const ActorPtr &actor, const float distance);
 
-  /// Method to specify Global Distance
+  /**
+ * @brief 设置全局前车距离。
+ *
+ * @param distance 全局前车距离的具体值。
+ */
   void SetGlobalDistanceToLeadingVehicle(const float distance);
 
   /// Method to specify the % chance of ignoring collisions with any walker.
