@@ -6,14 +6,14 @@
 
 #pragma once
 
-#include <condition_variable>
-#include <mutex>
-#include <vector>
+#include <condition_variable>/// @brief 引入条件变量类，用于线程间的同步
+#include <mutex>/// @brief 引入互斥锁类，用于保护共享数据的访问
+#include <vector>/// @brief 引入动态数组类，用于储存多个元素
 
-#include "carla/client/Actor.h"
-#include "carla/client/detail/EpisodeProxy.h"
-#include "carla/trafficmanager/TrafficManagerBase.h"
-#include "carla/trafficmanager/TrafficManagerClient.h"
+#include "carla/client/Actor.h"/// @brief CARLA客户端Actor类的头文件，包含了Actor（参与者）的定义和接口
+#include "carla/client/detail/EpisodeProxy.h"/// @brief CARLA客户端EpisodeProxy类的头文件，包含了与仿真片段（Episode）相关的操作和接口
+#include "carla/trafficmanager/TrafficManagerBase.h"/// @brief CARLA交通管理器基础类的头文件，提供了交通管理器的基本功能和接口
+#include "carla/trafficmanager/TrafficManagerClient.h"/// @brief CARLA交通管理器客户端类的头文件，用于与交通管理器进行通信和控制
 
 namespace carla {
 namespace traffic_manager {
