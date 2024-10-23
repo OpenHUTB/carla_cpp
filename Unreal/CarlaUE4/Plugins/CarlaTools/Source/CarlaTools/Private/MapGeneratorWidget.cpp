@@ -1043,7 +1043,7 @@ bool UMapGeneratorWidget::CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo)
 
       for(int DataIndex = 0; DataIndex < TILESIZE - 1; DataIndex++)
       {
-        // 正确的
+        // 右边
         RightHeightData.Add(HeightData[ Convert2DTo1DCoord(0, DataIndex, TILESIZE) ]);
         // 底部
         BottomHeightData.Add(HeightData[ Convert2DTo1DCoord(DataIndex, TILESIZE - 1, TILESIZE) ]);
