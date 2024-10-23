@@ -202,49 +202,120 @@ public:
  */
   void SetGlobalDistanceToLeadingVehicle(const float distance);
 
-  /// Method to specify the % chance of ignoring collisions with any walker.
+  /**
+ * @brief 设置车辆忽略行人碰撞的百分比概率。
+ *
+ * @param actor 需要设置碰撞忽略概率的车辆对象。
+ * @param perc 忽略行人碰撞的百分比概率值。
+ */
   void SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc);
 
-  /// Method to specify the % chance of ignoring collisions with any vehicle.
+  /**
+ * @brief 设置车辆忽略其他车辆碰撞的百分比概率。
+ *
+ * @param actor 需要设置碰撞忽略概率的车辆对象。
+ * @param perc 忽略其他车辆碰撞的百分比概率值。
+ */
   void SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc);
 
-  /// Method to specify the % chance of running any traffic light
+  /**
+ * @brief 设置车辆无视交通信号灯的概率百分比。
+ *
+ * @param actor 需要设置无视信号灯概率的车辆对象。
+ * @param perc 无视交通信号灯的概率百分比值。
+ */
   void SetPercentageRunningLight(const ActorPtr &actor, const float perc);
 
-  /// Method to specify the % chance of running any traffic sign
+  /**
+  * @brief 设置车辆无视交通标志的概率百分比。
+  *
+  * @param actor 需要设置无视交通标志概率的车辆对象。
+  * @param perc 无视交通标志的概率百分比值。
+  */
   void SetPercentageRunningSign(const ActorPtr &actor, const float perc);
 
-  /// Method to switch traffic manager into synchronous execution.
+  /**
+ * @brief 切换交通管理器为同步执行模式。
+ *
+ * @param mode 是否启用同步执行模式。
+ */
   void SetSynchronousMode(bool mode);
 
-  /// Method to set Tick timeout for synchronous execution.
+  /**
+ * @brief 设置同步执行模式的Tick超时时间（毫秒）。
+ *
+ * @param time 同步执行模式的Tick超时时间值（毫秒）。
+ */
   void SetSynchronousModeTimeOutInMiliSecond(double time);
 
-  /// Method to set % to keep on the right lane.
+  /**
+  * @brief 设置车辆保持在右侧车道的百分比概率。
+  *
+  * @param actor 需要设置保持在右侧车道概率的车辆对象。
+  * @param percentage 保持在右侧车道的百分比概率值。
+  */
   void SetKeepRightPercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set % to randomly do a left lane change.
+  /**
+ * @brief 设置车辆随机进行左车道变换的百分比概率。
+ *
+ * @param actor 需要设置随机左车道变换概率的车辆对象。
+ * @param percentage 随机进行左车道变换的百分比概率值。
+ */
   void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set % to randomly do a right lane change.
+  /**
+ * @brief 设置车辆随机进行右车道变换的百分比概率。
+ *
+ * @param actor 需要设置随机右车道变换概率的车辆对象。
+ * @param percentage 随机进行右车道变换的百分比概率值。
+ */
   void SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set hybrid physics mode.
+  /**
+ * @brief 设置混合物理模式。
+ *
+ * @param mode_switch 是否启用混合物理模式。
+ */
   void SetHybridPhysicsMode(const bool mode_switch);
 
-  /// Method to set hybrid physics radius.
+  /**
+ * @brief 设置混合物理模式的半径。
+ *
+ * @param radius 混合物理模式的半径值。
+ */
   void SetHybridPhysicsRadius(const float radius);
 
-  /// Method to set Open Street Map mode.
+  /**
+ * @brief 设置Open Street Map（OSM）模式。
+ *
+ * @param mode_switch 是否启用OSM模式。
+ */
   void SetOSMMode(const bool mode_switch);
 
-  /// Method to set our own imported path.
+  /**
+ * @brief 设置自定义路径。
+ *
+ * @param actor 需要设置自定义路径的车辆对象。
+ * @param path 自定义路径对象。
+ * @param empty_buffer 是否清空动作缓冲区。
+ */
   void SetCustomPath(const ActorPtr &actor, const Path path, const bool empty_buffer);
 
-  /// Method to remove a path.
+  /**
+  * @brief 移除路径。
+  *
+  * @param actor_id 需要移除路径的车辆ID。
+  * @param remove_path 是否移除路径。
+  */
   void RemoveUploadPath(const ActorId &actor_id, const bool remove_path);
 
-  /// Method to update an already set path.
+  /**
+ * @brief 更新已设置的路径。
+ *
+ * @param actor_id 需要更新路径的车辆ID。
+ * @param path 新的路径对象。
+ */
   void UpdateUploadPath(const ActorId &actor_id, const Path path);
 
   /// Method to set our own imported route.
