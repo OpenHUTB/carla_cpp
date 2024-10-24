@@ -3,16 +3,53 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+/**
+ * @file
+ * @brief 包含CARLA交通管理相关的头文件和定义
+ *
+ * 此文件通过#pragma once指令防止头文件被重复包含，并引入了多个CARLA项目中的关键头文件。
+ * 这些头文件涉及异常处理、客户端参与者（Actor）管理、RPC服务器通信以及交通管理模块的基础定义和常量。
+ */
 #pragma once
-
+ /**
+  * @brief 包含标准库中的向量容器
+  */
 #include <vector>
-
+  /**
+   * @brief 引入CARLA项目中的异常处理类
+   *
+   * 用于处理CARLA项目中可能出现的各种异常情况。
+   */
 #include "carla/Exception.h"
+   /**
+    * @brief 引入CARLA客户端中的参与者（Actor）管理相关类
+    *
+    * 参与者（Actor）是CARLA仿真环境中的基础元素，可以代表车辆、行人、传感器等。
+    */
 #include "carla/client/Actor.h"
+    /**
+     * @brief 引入CARLA客户端内部使用的参与者（Actor）变体类型
+     *
+     * 这是一个实现细节，用于在客户端内部灵活处理不同类型的参与者。
+     */
 #include "carla/client/detail/ActorVariant.h"
+     /**
+      * @brief 引入CARLA RPC服务器相关类
+      *
+      * 用于与CARLA服务器进行远程过程调用（RPC）通信。
+      */
 #include "carla/rpc/Server.h"
+      /**
+       * @brief 引入CARLA交通管理模块中的常量定义
+       *
+       * 包含交通管理模块中使用的一些常量，如速度限制、时间间隔等。
+       */
 #include "carla/trafficmanager/Constants.h"
+       /**
+        * @brief 引入CARLA交通管理基础类
+        *
+        * 这是交通管理模块的核心类之一，提供了交通管理的基本功能。
+        */
 #include "carla/trafficmanager/TrafficManagerBase.h"
 
 namespace carla {
