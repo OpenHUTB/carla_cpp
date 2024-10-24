@@ -233,57 +233,76 @@ public:
         tm->SetGlobalDistanceToLeadingVehicle(distance);
       });
 
-      /// Method to specify the % chance of running any traffic light.
+      /// 设置交通灯运行概率的方法 
+      /// @param actor CARLA中的Actor对象  
+      /// @param percentage 交通灯运行的概率（百分比）
       server->bind("set_percentage_running_light", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetPercentageRunningLight(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
 
-      /// Method to specify the % chance of running any traffic sign.
+      /// 设置交通标志运行概率的方法
+      /// @param actor CARLA中的Actor对象
+      /// @param percentage 交通标志运行的概率（百分比）
       server->bind("set_percentage_running_sign", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetPercentageRunningSign(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
-
-      /// Method to specify the % chance of ignoring collisions with any walker.
+      /// 设置忽略行人碰撞概率的方法 
+      /// @param actor CARLA中的Actor对象  
+      /// @param percentage 忽略行人碰撞的概率（百分比）
       server->bind("set_percentage_ignore_walkers", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetPercentageIgnoreWalkers(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
 
-      /// Method to specify the % chance of ignoring collisions with any vehicle.
+      /// 设置忽略车辆碰撞概率的方法  
+      /// @param actor CARLA中的Actor对象  
+      /// @param percentage 忽略车辆碰撞的概率（百分比）
       server->bind("set_percentage_ignore_vehicles", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetPercentageIgnoreVehicles(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
 
-      /// Method to set % to keep on the right lane.
+      /// 设置保持在右侧车道行驶概率的方法
+      /// @param actor CARLA中的Actor对象  
+      /// @param percentage 保持在右侧车道行驶的概率（百分比）
       server->bind("set_percentage_keep_right_rule", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetKeepRightPercentage(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
 
-      /// Method to set % to randomly do a left lane change.
+      /// 设置随机进行左车道变换概率的方法  
+      /// @param actor CARLA中的Actor对象  
+      /// @param percentage 随机进行左车道变换的概率（百分比）
       server->bind("set_percentage_random_left_lanechange", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetRandomLeftLaneChangePercentage(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
 
-      /// Method to set % to randomly do a right lane change.
+      /// 设置随机进行右车道变换概率的方法  
+      /// @param actor CARLA中的Actor对象  
+      /// @param percentage 随机进行右车道变换的概率（百分比）
       server->bind("set_percentage_random_right_lanechange", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetRandomRightLaneChangePercentage(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
 
-      /// Method to set hybrid physics mode.
+      /// 设置混合物理模式的方法  
+      /// @param mode_switch 是否开启混合物理模式
       server->bind("set_hybrid_physics_mode", [=](const bool mode_switch) {
         tm->SetHybridPhysicsMode(mode_switch);
       });
 
-      /// Method to set hybrid physics radius.
+      /// 设置混合物理半径的方法  
+      /// @param radius 混合物理的半径
       server->bind("set_hybrid_physics_radius", [=](const float radius) {
         tm->SetHybridPhysicsRadius(radius);
       });
 
-      /// Method to set hybrid physics radius.
+      /// 设置OSM（OpenStreetMap）模式的方法  
+      /// @param mode_switch 是否开启OSM模式
       server->bind("set_osm_mode", [=](const bool mode_switch) {
         tm->SetOSMMode(mode_switch);
       });
 
-      /// Method to set our own imported path.
+      /// 设置自定义路径的方法  
+      /// @param actor CARLA中的Actor对象  
+      /// @param path 自定义的路径  
+      /// @param empty_buffer 是否清空缓冲区
       server->bind("set_path", [=](carla::rpc::Actor actor, const Path path, const bool empty_buffer) {
         tm->SetCustomPath(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), path, empty_buffer);
       });
