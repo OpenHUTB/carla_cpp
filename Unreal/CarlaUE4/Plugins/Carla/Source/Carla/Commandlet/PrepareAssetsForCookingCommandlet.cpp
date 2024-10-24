@@ -51,15 +51,15 @@ static bool ValidateStaticMesh(UStaticMesh *Mesh)
 
 UPrepareAssetsForCookingCommandlet::UPrepareAssetsForCookingCommandlet()
 {
-  // Set necessary flags to run commandlet
+  // 设置必要的标志以运行命令行工具
   IsClient = false;
   IsEditor = true;
   IsServer = false;
   LogToConsole = true;
 
 #if WITH_EDITORONLY_DATA
-  // Get Carla Default materials, these will be used for maps that need to use
-  // Carla materials
+  // 获取 Carla 默认材质，
+  //这些材质将用于需要使用 Carla 材质的地图
   static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> MarkingNodeYellowMaterial(TEXT(
     "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/RoadPainterMaterials/LargeMaps/M_Road_03_Tiled_V3.M_Road_03_Tiled_V3'"));
   static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> MarkingNodeWhiteMaterial(TEXT(
@@ -96,20 +96,20 @@ FPackageParams UPrepareAssetsForCookingCommandlet::ParseParams(const FString &In
 
   FPackageParams PackageParams;
 
-  // Parse and store Package name
+  // 解析并存储包名称
   FParse::Value(*InParams, TEXT("PackageName="), PackageParams.Name);
 
-  // Parse and store flag for only preparing maps
+  // 解析并存储仅准备地图的标志
   FParse::Bool(*InParams, TEXT("OnlyPrepareMaps="), PackageParams.bOnlyPrepareMaps);
   return PackageParams;
 }
 
 void UPrepareAssetsForCookingCommandlet::LoadWorld(FAssetData &AssetData)
 {
-  // BaseMap path inside Carla
+  // Carla 中的基础地图路径
   const FString BaseMap = TEXT("/Game/Carla/Maps/BaseMap");
 
-  // Load Map folder using object library
+  // 使用对象库加载地图文件夹
   MapObjectLibrary = UObjectLibrary::CreateLibrary(UWorld::StaticClass(), false, GIsEditor);
   MapObjectLibrary->AddToRoot();
   MapObjectLibrary->LoadAssetDataFromPath(*BaseMap);
@@ -118,17 +118,17 @@ void UPrepareAssetsForCookingCommandlet::LoadWorld(FAssetData &AssetData)
 
   if (AssetDatas.Num() > 0)
   {
-    // Extract first asset found in folder path (i.e. the BaseMap)
+    // 提取在文件夹路径中找到的第一个资产（即基础地图）
     AssetData = AssetDatas.Pop();
   }
 }
 
 void UPrepareAssetsForCookingCommandlet::LoadWorldTile(FAssetData &AssetData)
 {
-  // BaseTile path inside Carla
+  //Carla 中的基础瓦片路径
   const FString BaseTile = TEXT("/Game/Carla/Maps/TestMaps");
 
-  // Load Map folder using object library
+  // 使用对象库加载地图文件夹。
   MapObjectLibrary = UObjectLibrary::CreateLibrary(UWorld::StaticClass(), false, GIsEditor);
   MapObjectLibrary->AddToRoot();
   MapObjectLibrary->LoadAssetDataFromPath(*BaseTile);
@@ -137,17 +137,17 @@ void UPrepareAssetsForCookingCommandlet::LoadWorldTile(FAssetData &AssetData)
 
   if (AssetDatas.Num() > 0)
   {
-    // Extract first asset found in folder path (i.e. the BaseTile)
+    // 提取在文件夹路径中找到的第一个资产（即基础瓦片）
     AssetData = AssetDatas.Pop();
   }
 }
 
 void UPrepareAssetsForCookingCommandlet::LoadLargeMapWorld(FAssetData &AssetData)
 {
-  // BaseMap path inside Carla
+  // Carla 中的基础地图路径
   const FString BaseMap = TEXT("/Game/Carla/Maps/BaseLargeMap");
 
-  // Load Map folder using object library
+  //使用对象库加载地图文件夹。
   MapObjectLibrary = UObjectLibrary::CreateLibrary(UWorld::StaticClass(), false, GIsEditor);
   MapObjectLibrary->AddToRoot();
   MapObjectLibrary->LoadAssetDataFromPath(*BaseMap);
@@ -156,7 +156,7 @@ void UPrepareAssetsForCookingCommandlet::LoadLargeMapWorld(FAssetData &AssetData
 
   if (AssetDatas.Num() > 0)
   {
-    // Extract first asset found in folder path (i.e. the BaseMap)
+    // 提取在文件夹路径中找到的第一个资产（即基础地图）。
     AssetData = AssetDatas.Pop();
   }
 }
@@ -169,11 +169,11 @@ TArray<AStaticMeshActor *> UPrepareAssetsForCookingCommandlet::SpawnMeshesToWorl
 {
   TArray<AStaticMeshActor *> SpawnedMeshes;
 
-  // Create default Transform for all assets to spawn
+  // 为所有要生成的资产创建默认变换。
   const FTransform ZeroTransform = FTransform();
 
-  // Load assets specified in AssetsPaths by using an object library
-  // for building map world
+  // 使用对象库加载由 “AssetsPaths” 中指定的资产，
+  //用于构建地图世界。
   AssetsObjectLibrary = UObjectLibrary::CreateLibrary(UStaticMesh::StaticClass(), false, GIsEditor);
   AssetsObjectLibrary->AddToRoot();
   AssetsObjectLibrary->LoadAssetDataFromPaths(AssetsPaths);
@@ -184,7 +184,7 @@ TArray<AStaticMeshActor *> UPrepareAssetsForCookingCommandlet::SpawnMeshesToWorl
   UStaticMesh *MeshAsset;
   AStaticMeshActor *MeshActor;
 
-  // name of current tile to cook
+  //要烹饪的当前瓦片的名称。
   FString TileName;
   if (i != -1)
   {
@@ -195,14 +195,14 @@ TArray<AStaticMeshActor *> UPrepareAssetsForCookingCommandlet::SpawnMeshesToWorl
   FString AssetName;
   for (auto MapAsset : MapContents)
   {
-    // Spawn Static Mesh
+    // 生成静态网格体
     MeshAsset = Cast<UStaticMesh>(MapAsset.GetAsset());
     if (MeshAsset && ValidateStaticMesh(MeshAsset))
     {
-      // get asset name
+      // 获取资产名称。
       MapAsset.AssetName.ToString(AssetName);
 
-      // check to ignore meshes from other tiles
+      //检查以忽略来自其他瓦片的网格体。
       if (i == -1 || (i != -1 && (AssetName.EndsWith(TileName) || AssetName.Contains(TileName + "_"))))
       {
         MeshActor = World->SpawnActor<AStaticMeshActor>(AStaticMeshActor::StaticClass(), ZeroTransform);
@@ -210,7 +210,7 @@ TArray<AStaticMeshActor *> UPrepareAssetsForCookingCommandlet::SpawnMeshesToWorl
         MeshComponent->SetStaticMesh(CastChecked<UStaticMesh>(MeshAsset));
         MeshActor->SetActorLabel(AssetName, true);
 
-        // set complex collision as simple in asset
+        // 在资产中将复杂碰撞设置为简单碰撞。
         UBodySetup *BodySetup = MeshAsset->BodySetup;
         if (BodySetup)
         {
@@ -222,8 +222,8 @@ TArray<AStaticMeshActor *> UPrepareAssetsForCookingCommandlet::SpawnMeshesToWorl
 
         if (bUseCarlaMaterials)
         {
-          // Set Carla Materials depending on RoadRunner's Semantic Segmentation
-          // tag
+          // 根据 RoadRunner 的语义分割标签设置 
+          //Carla 材质。
           if (AssetName.Contains(SSTags::R_MARKING1) || AssetName.Contains(SSTags::R_MARKING2))
           {
             for (int32 i = 0; i < MeshActor->GetStaticMeshComponent()->GetStaticMesh()->StaticMaterials.Num(); ++i)
@@ -267,10 +267,10 @@ TArray<AStaticMeshActor *> UPrepareAssetsForCookingCommandlet::SpawnMeshesToWorl
     }
   }
 
-  // Clear loaded assets in library
+  // 清除库中已加载的资产。
   AssetsObjectLibrary->ClearLoaded();
 
-  // Mark package dirty
+  // 将包标记为已修改。
   World->MarkPackageDirty();
 
   return SpawnedMeshes;
@@ -278,8 +278,8 @@ TArray<AStaticMeshActor *> UPrepareAssetsForCookingCommandlet::SpawnMeshesToWorl
 
 bool UPrepareAssetsForCookingCommandlet::IsMapInTiles(const TArray<FString> &AssetsPaths)
 {
-  // Load assets specified in AssetsPaths by using an object library
-  // for building map world
+  //使用对象库加载 “AssetsPaths” 中指定的资产，
+  //以构建地图世界
   AssetsObjectLibrary = UObjectLibrary::CreateLibrary(UStaticMesh::StaticClass(), false, GIsEditor);
   AssetsObjectLibrary->AddToRoot();
   AssetsObjectLibrary->LoadAssetDataFromPaths(AssetsPaths);
@@ -293,14 +293,14 @@ bool UPrepareAssetsForCookingCommandlet::IsMapInTiles(const TArray<FString> &Ass
   bool Found = false;
   for (auto MapAsset : MapContents)
   {
-    // Spawn Static Mesh
+    // 生成静态网格。
     MeshAsset = Cast<UStaticMesh>(MapAsset.GetAsset());
     if (MeshAsset && ValidateStaticMesh(MeshAsset))
     {
-      // get asset name
+      // 获取资产名称。
       MapAsset.AssetName.ToString(AssetName);
 
-      // check if the asset is a tile
+      // 检查该资产是否是一个瓦片。
       if (AssetName.Contains("_Tile_"))
       {
         Found = true;
@@ -309,7 +309,7 @@ bool UPrepareAssetsForCookingCommandlet::IsMapInTiles(const TArray<FString> &Ass
     }
   }
 
-  // Clear loaded assets in library
+  // 清除库中已加载的资产。
   AssetsObjectLibrary->ClearLoaded();
 
   return Found;
@@ -318,13 +318,13 @@ bool UPrepareAssetsForCookingCommandlet::IsMapInTiles(const TArray<FString> &Ass
 void UPrepareAssetsForCookingCommandlet::DestroySpawnedActorsInWorld(
     TArray<AStaticMeshActor *> &SpawnedActors)
 {
-  // Destroy all spawned actors
+  // 销毁所有已生成的演员（角色）。
   for (auto Actor : SpawnedActors)
   {
     Actor->Destroy();
   }
 
-  // Mark package dirty
+  // 将包标记为已修改（脏）状态。
   World->MarkPackageDirty();
 }
 
@@ -335,28 +335,28 @@ bool UPrepareAssetsForCookingCommandlet::SaveWorld(
     const FString &WorldName,
     bool bGenerateSpawnPoints)
 {
-  // Create Package to save
+  // 创建包以进行保存。
   UPackage *Package = AssetData.GetPackage();
   Package->SetFolderName(*WorldName);
   Package->FullyLoad();
   Package->MarkPackageDirty();
   FAssetRegistryModule::AssetCreated(World);
 
-  // Renaming map
+  // 重命名地图。
   World->Rename(*WorldName, World->GetOuter());
   const FString PackagePath = DestPath + "/" + WorldName;
   FAssetRegistryModule::AssetRenamed(World, *PackagePath);
   World->MarkPackageDirty();
   World->GetOuter()->MarkPackageDirty();
 
-  // Check if OpenDrive file exists
+  // 检查 OpenDrive 文件是否存在。
   const FString PathXODR = FPaths::ProjectContentDir() + PackageName + TEXT("/Maps/") +
       WorldName + TEXT("/OpenDrive/") + WorldName + TEXT(".xodr");
 
   bool bPackageSaved = false;
   if (FPaths::FileExists(PathXODR) && bGenerateSpawnPoints)
   {
-    // We need to spawn OpenDrive assets before saving the map
+    // 在保存地图之前，我们需要生成 OpenDrive 资产。
     AOpenDriveActor *OpenWorldActor = CastChecked<AOpenDriveActor>(
         World->SpawnActor(AOpenDriveActor::StaticClass(),
         new FVector(),
@@ -367,7 +367,7 @@ bool UPrepareAssetsForCookingCommandlet::SaveWorld(
 
     bPackageSaved = SavePackage(PackagePath, Package);
 
-    // We need to destroy OpenDrive assets once saved the map
+    // 一旦保存了地图，我们就需要销毁 OpenDrive 资产。
     OpenWorldActor->RemoveRoutes();
     OpenWorldActor->RemoveSpawners();
     OpenWorldActor->Destroy();
@@ -382,7 +382,7 @@ bool UPrepareAssetsForCookingCommandlet::SaveWorld(
 
 FString UPrepareAssetsForCookingCommandlet::GetFirstPackagePath(const FString &PackageName) const
 {
-  // Get all Package names
+  // 获取所有包的名称。
   TArray<FString> PackageList;
   IFileManager::Get().FindFilesRecursive(PackageList, *(FPaths::ProjectContentDir()),
       *(PackageName + TEXT(".Package.json")), true, false, false);
@@ -402,7 +402,7 @@ FAssetsPaths UPrepareAssetsForCookingCommandlet::GetAssetsPathFromPackage(const 
 
   FAssetsPaths AssetsPaths;
 
-  // Get All Maps Path
+  // 得到所有地图路径
   FString MapsFileJsonContent;
   if (FFileHelper::LoadFileToString(MapsFileJsonContent, *PackageJsonFilePath))
   {
@@ -410,7 +410,7 @@ FAssetsPaths UPrepareAssetsForCookingCommandlet::GetAssetsPathFromPackage(const 
     TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(MapsFileJsonContent);
     if (FJsonSerializer::Deserialize(JsonReader, JsonParsed))
     {
-      // Add Maps Path
+      // 添加地图路径。
       auto MapsJsonArray = JsonParsed->GetArrayField(TEXT("maps"));
 
       for (auto &MapJsonValue : MapsJsonArray)
@@ -425,7 +425,7 @@ FAssetsPaths UPrepareAssetsForCookingCommandlet::GetAssetsPathFromPackage(const 
         AssetsPaths.MapsPaths.Add(std::move(MapData));
       }
 
-      // Add Props Path
+      //  添加地图路径
       auto PropJsonArray = JsonParsed->GetArrayField(TEXT("props"));
 
       for (auto &PropJsonValue : PropJsonArray)
@@ -449,15 +449,15 @@ bool SaveStringTextToFile(
 {
   IPlatformFile &PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
 
-  // CreateDirectoryTree returns true if the destination
-  // directory existed prior to call or has been created
-  // during the call.
+  // 如果目标目录在调用之前已存在或者在调用期间已被创建，
+  //那么“CreateDirectoryTree”（创建目录树）
+  //将返回 true。
   if (PlatformFile.CreateDirectoryTree(*SaveDirectory))
   {
-    // Get absolute file path
+    // 获取绝对文件路径。
     const FString AbsoluteFilePath = SaveDirectory + "/" + FileName;
 
-    // Allow overwriting or file doesn't already exist
+    
     if (bAllowOverWriting || !PlatformFile.FileExists(*AbsoluteFilePath))
     {
       FFileHelper::SaveStringToFile(SaveText, *AbsoluteFilePath);
@@ -474,7 +474,7 @@ bool UPrepareAssetsForCookingCommandlet::SavePackage(const FString &PackagePath,
 
   if (FPaths::FileExists(*PackageFileName))
   {
-    // Will not save package if it already exists
+    // 如果包已存在，则不会保存该包。
     return false;
   }
 
@@ -560,14 +560,14 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
     const FString TerrainPath   = BasePath + SSTags::TERRAIN   + MapPath;
     const FString SidewalkPath  = BasePath + SSTags::SIDEWALK  + MapPath;
 
-    // Spawn assets located in semantic segmentation folders
+    // 生成位于语义分割文件夹中的资产。
     TArray<FString> DataPath = {DefaultPath, RoadsPath, RoadLinesPath, TerrainPath, SidewalkPath};
 
-    // check whether we have a single map or a map in tiles
+    // 检查我们是有一个单一地图还是有一个分块地图。
     if (!IsMapInTiles(DataPath))
     {
       UE_LOG(LogTemp, Log, TEXT("Cooking map"));
-      // Load World
+      // 加载世界。
       FAssetData AssetData;
       LoadWorld(AssetData);
       UObjectRedirector *BaseMapRedirector = Cast<UObjectRedirector>(AssetData.GetAsset());
@@ -577,11 +577,11 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
       else {
         World = CastChecked<UWorld>(AssetData.GetAsset());
       }
-      // try to cook the whole map (no tiles)
+      // 尝试烘培（处理）整个地图（非分块地图）。
       TArray<AStaticMeshActor *> SpawnedActors = SpawnMeshesToWorld(DataPath, Map.bUseCarlaMapMaterials, -1, -1);
-      // Save the World in specified path
+      // 在指定路径中保存世界。
       SaveWorld(AssetData, PackageName, Map.Path, Map.Name);
-      // Remove spawned actors from world to keep equal as BaseMap
+      // 从世界中移除已生成的参与者，以使其与基础地图保持一致。
       DestroySpawnedActorsInWorld(SpawnedActors);
     }
     else
@@ -614,7 +614,7 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
       }
 
       UE_LOG(LogTemp, Log, TEXT("Cooking tiles:"));
-      // Load World
+      // 加载世界。
       FAssetData AssetData;
       LoadWorldTile(AssetData);
       UObjectRedirector *BaseMapRedirector = Cast<UObjectRedirector>(AssetData.GetAsset());
@@ -624,7 +624,7 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
       else {
         World = CastChecked<UWorld>(AssetData.GetAsset());
       }
-      // try to create each possible tile of the map
+      // 尝试创建地图的每一种可能的分块。
       int  i, j;
       bool Res;
       j = 0;
@@ -641,13 +641,13 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
             UE_LOG(LogTemp, Log, TEXT(" Tile %d,%d found"), i, j);
             FString TileName;
             TileName = FString::Printf(TEXT("%s_Tile_%d_%d"), *Map.Name, i, j);
-            // Save the World in specified path
+            // 在指定路径中保存世界。
             // UE_LOG(LogTemp, Log, TEXT("Saving as %s to %s"), *TileName, *Map.Path);
             SaveWorld(AssetData, PackageName, Map.Path, TileName);
             MapPathsIds.Add(
                 TPair<FString, FIntVector>(
                   Map.Path + "/" + TileName, FIntVector(i, j, 0)));
-            // Remove spawned actors from world to keep equal as BaseMap
+            // 从世界中移除生成的参与者，以使其与基础地图保持一致。
             DestroySpawnedActorsInWorld(SpawnedActors);
             ++i;
           }
@@ -660,7 +660,7 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
       #if WITH_EDITOR
         UEditorLoadingAndSavingUtils::SaveDirtyPackages(true, true);
       #endif
-      // Load base map for tiled maps
+      // 加载分块地图的基础地图。
       LoadLargeMapWorld(AssetData);
       BaseMapRedirector = Cast<UObjectRedirector>(AssetData.GetAsset());
       if (BaseMapRedirector != nullptr) {
@@ -670,7 +670,7 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
         World = CastChecked<UWorld>(AssetData.GetAsset());
       }
 
-      // Generate Large Map Manager
+      // 生成大型地图管理器。
       ALargeMapManager* LargeMapManager = World->SpawnActor<ALargeMapManager>(
           ALargeMapManager::StaticClass(), FTransform());
       LargeMapManager->LargeMapTilePath = Map.Path;
@@ -691,9 +691,9 @@ void UPrepareAssetsForCookingCommandlet::PreparePropsForCooking(
     const TArray<FString> &PropsPaths,
     FString &MapDestPath)
 {
-  // Load World
+  // 生成大型地图管理器。
   FAssetData AssetData;
-  // Loads the BaseMap
+  // 加载基础地图。
   LoadWorld(AssetData);
   UObjectRedirector *BaseMapRedirector = Cast<UObjectRedirector>(AssetData.GetAsset());
   if (BaseMapRedirector != nullptr) {
@@ -703,8 +703,8 @@ void UPrepareAssetsForCookingCommandlet::PreparePropsForCooking(
     World = CastChecked<UWorld>(AssetData.GetAsset());
   }
 
-  // Remove the meshes names from the original path for props, so we can load
-  // props inside folder
+  //从道具的原始路径中移除网格名称，
+  //以便我们可以加载文件夹内的道具。
   TArray<FString> PropPathDirs = PropsPaths;
 
   for (auto &PropPath : PropPathDirs)
@@ -713,7 +713,7 @@ void UPrepareAssetsForCookingCommandlet::PreparePropsForCooking(
         ESearchCase::Type::IgnoreCase, ESearchDir::Type::FromEnd);
   }
 
-  // Add props in a single Base Map
+  // 在单个基础地图中添加道具。
   TArray<AStaticMeshActor *> SpawnedActors = SpawnMeshesToWorld(PropPathDirs, false);
 
   const FString MapName("PropsMap");
@@ -727,7 +727,7 @@ int32 UPrepareAssetsForCookingCommandlet::Main(const FString &Params)
 {
   FPackageParams PackageParams = ParseParams(Params);
 
-  // Get Props and Maps Path
+  // 获取道具和地图的路径。
   FAssetsPaths AssetsPaths = GetAssetsPathFromPackage(PackageParams.Name);
 
   if (PackageParams.bOnlyPrepareMaps)
@@ -744,10 +744,10 @@ int32 UPrepareAssetsForCookingCommandlet::Main(const FString &Params)
       PreparePropsForCooking(PackageParams.Name, AssetsPaths.PropsPaths, PropsMapPath);
     }
 
-    // Save Map Path File for further use
+    // 保存地图路径文件以供进一步使用
     GenerateMapPathsFile(AssetsPaths, PropsMapPath);
 
-    // Saves Package path for further use
+    // 保存包路径以供进一步使用
     GeneratePackagePathFile(PackageParams.Name);
   }
 
