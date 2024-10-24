@@ -173,46 +173,63 @@ public:
         tm->SetUpdateVehicleLights(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), do_update);
       });
 
-      /// Method to set a global % decrease in velocity with respect to the speed limit.
-      /// If less than 0, it's a % increase.
+      /// 设置全局相对于限速的速度降低百分比的方法 
+      /// 如果小于0，则表示百分比增加
+      /// @param percentage 速度降低的百分比（负值表示增加）
       server->bind("set_global_percentage_speed_difference", [=](const float percentage) {
+          /// 调用交通管理器的SetGlobalPercentageSpeedDifference方法来设置全局速度差异百分比
         tm->SetGlobalPercentageSpeedDifference(percentage);
       });
 
-      /// Method to set a global lane offset displacement from the center line.
-      /// Positive values imply a right offset while negative ones mean a left one.
+      /// 设置全局从中心线偏移的车道位移的方法 
+      /// 正值表示向右偏移，负值表示向左偏移  
+      /// @param offset 车道偏移量
       server->bind("set_global_lane_offset", [=](const float offset) {
+          /// 调用交通管理器的SetGlobalLaneOffset方法来设置全局车道偏移量
         tm->SetGlobalLaneOffset(offset);
       });
 
 
-      /// Method to set collision detection rules between vehicles.
+      /// 设置车辆间碰撞检测规则的方法 
+      /// @param reference_actor 参考车辆（用于检测碰撞的基准车辆） 
+      /// @param other_actor 另一车辆（与参考车辆进行碰撞检测的车辆） 
+      /// @param detect_collision 是否检测碰撞（true表示检测，false表示不检测）
       server->bind("set_collision_detection", [=](const carla::rpc::Actor &reference_actor, const carla::rpc::Actor &other_actor, const bool detect_collision) {
+          /// 将rpc::Actor转换为ActorPtr类型
         const auto reference = carla::client::detail::ActorVariant(reference_actor).Get(tm->GetEpisodeProxy());
         const auto other = carla::client::detail::ActorVariant(other_actor).Get(tm->GetEpisodeProxy());
+        /// 调用交通管理器的SetCollisionDetection方法来设置碰撞检测规则
         tm->SetCollisionDetection(reference, other, detect_collision);
       });
 
-      /// Method to force lane change on a vehicle.
-      /// Direction flag can be set to true for left and false for right.
+      /// 强制车辆换道的方法  
+      /// @param actor 需要强制换道的车辆 
+      /// @param direction 换道方向（true表示向左，false表示向右）
       server->bind("set_force_lane_change", [=](carla::rpc::Actor actor, const bool direction) {
+          /// 将rpc::Actor转换为ActorPtr类型，并调用交通管理器的SetForceLaneChange方法来强制车辆换道
         tm->SetForceLaneChange(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), direction);
       });
 
-     /// Enable/disable automatic lane change on a vehicle.
+      /// 启用/禁用车辆的自动换道功能 
+      /// @param actor 需要设置自动换道功能的车辆  
+      /// @param enable 是否启用自动换道（true表示启用，false表示禁用）
       server->bind("set_auto_lane_change", [=](carla::rpc::Actor actor, const bool enable) {
+          /// 将rpc::Actor转换为ActorPtr类型，并调用交通管理器的SetAutoLaneChange方法来启用或禁用自动换道功能
         tm->SetAutoLaneChange(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), enable);
       });
 
-      /// Method to specify how much distance a vehicle should maintain to
-      /// the leading vehicle.
+      /// 设置车辆应保持与前车距离的方法
+      /// @param actor 需要设置距离的车辆  
+      /// @param distance 应保持的距离
       server->bind("set_distance_to_leading_vehicle", [=](carla::rpc::Actor actor, const float distance) {
+          /// 将rpc::Actor转换为ActorPtr类型，并调用交通管理器的SetDistanceToLeadingVehicle方法来设置与前车的距离
         tm->SetDistanceToLeadingVehicle(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), distance);
       });
 
-      /// Method to the Global Distance to Leading vehicle
-
+      /// 设置全局车辆应保持与前车距离的方法
+      /// @param distance 全局应保持的距离
       server->bind("set_global_distance_to_leading_vehicle", [=]( const float distance) {
+          /// 调用交通管理器的SetGlobalDistanceToLeadingVehicle方法来设置全局与前车的距离
         tm->SetGlobalDistanceToLeadingVehicle(distance);
       });
 
