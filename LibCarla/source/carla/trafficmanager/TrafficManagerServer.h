@@ -307,37 +307,58 @@ public:
         tm->SetCustomPath(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), path, empty_buffer);
       });
 
-      /// Method to remove a list of points.
+      /// 移除指定的一系列点的方法  
+      /// @param server 用于绑定方法的服务器对象  
+      /// @param actor_id 需要移除路径的Actor的ID  
+      /// @param remove_path 一个布尔值，指示是否移除路径
       server->bind("remove_custom_path", [=](const ActorId actor_id, const bool remove_path) {
         tm->RemoveUploadPath(actor_id, remove_path);
       });
 
-       /// Method to update an already set list of points.
+      /// 更新已经设置的一系列点的方法     
+      /// @param server 用于绑定方法的服务器对象  
+      /// @param actor_id 需要更新路径的Actor的ID  
+      /// @param path 新的路径数据
       server->bind("update_custom_path", [=](const ActorId actor_id, const Path path) {
         tm->UpdateUploadPath(actor_id, path);
       });
 
-      /// Method to set our own imported route.
+      /// 设置我们自己的导入路线的方法 
+      /// @param server 用于绑定方法的服务器对象 
+      /// @param actor 包含路线信息的Actor对象  
+      /// @param route 需要设置的路线数据  
+      /// @param empty_buffer 一个布尔值，指示是否清空缓冲区
       server->bind("set_imported_route", [=](carla::rpc::Actor actor, const Route route, const bool empty_buffer) {
         tm->SetImportedRoute(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), route, empty_buffer);
       });
 
-      /// Method to remove a route.
+      /// 移除指定路线的方法  
+      /// @param server 用于绑定方法的服务器对象  
+      /// @param actor_id 需要移除路线的Actor的ID 
+      /// @param remove_path 一个布尔值，指示是否移除路径
       server->bind("remove_imported_route", [=](const ActorId actor_id, const bool remove_path) {
         tm->RemoveImportedRoute(actor_id, remove_path);
       });
 
-      /// Method to update an already set list of points.
+      /// 更新已经设置的路线的方法
+      /// @param server 用于绑定方法的服务器对象  
+      /// @param actor_id 需要更新路线的Actor的ID  
+      /// @param route 新的路线数据
       server->bind("update_imported_route", [=](const ActorId actor_id, const Route route) {
         tm->UpdateImportedRoute(actor_id, route);
       });
 
-      /// Method to set respawn dormant vehicles mode.
+      /// 设置重生休眠车辆模式的方法。   
+      /// @param server 用于绑定方法的服务器对象。  
+      /// @param mode_switch 一个布尔值，指示是否开启重生休眠车辆模式
       server->bind("set_respawn_dormant_vehicles", [=](const bool mode_switch) {
         tm->SetRespawnDormantVehicles(mode_switch);
       });
 
-      /// Method to set respawn dormant vehicles mode.
+      /// 设置重生休眠车辆的边界范围的方法 
+      /// @param server 用于绑定方法的服务器对象 
+      /// @param lower_bound 重生休眠车辆的下边界值 
+      /// @param upper_bound 重生休眠车辆的上边界值
       server->bind("set_boundaries_respawn_dormant_vehicles", [=](const float lower_bound, const float upper_bound) {
         tm->SetBoundariesRespawnDormantVehicles(lower_bound, upper_bound);
       });
