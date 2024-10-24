@@ -3,58 +3,116 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+/**
+ * @file
+ * @brief 包含CARLA交通管理相关的头文件和定义
+ *
+ * 此文件通过#pragma once指令防止头文件被重复包含，并引入了多个CARLA项目中的关键头文件。
+ * 这些头文件涉及异常处理、客户端参与者（Actor）管理、RPC服务器通信以及交通管理模块的基础定义和常量。
+ */
 #pragma once
-
+ /**
+  * @brief 包含标准库中的向量容器
+  */
 #include <vector>
-
+  /**
+   * @brief 引入CARLA项目中的异常处理类
+   *
+   * 用于处理CARLA项目中可能出现的各种异常情况。
+   */
 #include "carla/Exception.h"
+   /**
+    * @brief 引入CARLA客户端中的参与者（Actor）管理相关类
+    *
+    * 参与者（Actor）是CARLA仿真环境中的基础元素，可以代表车辆、行人、传感器等。
+    */
 #include "carla/client/Actor.h"
+    /**
+     * @brief 引入CARLA客户端内部使用的参与者（Actor）变体类型
+     *
+     * 这是一个实现细节，用于在客户端内部灵活处理不同类型的参与者。
+     */
 #include "carla/client/detail/ActorVariant.h"
+     /**
+      * @brief 引入CARLA RPC服务器相关类
+      *
+      * 用于与CARLA服务器进行远程过程调用（RPC）通信。
+      */
 #include "carla/rpc/Server.h"
+      /**
+       * @brief 引入CARLA交通管理模块中的常量定义
+       *
+       * 包含交通管理模块中使用的一些常量，如速度限制、时间间隔等。
+       */
 #include "carla/trafficmanager/Constants.h"
+       /**
+        * @brief 引入CARLA交通管理基础类
+        *
+        * 这是交通管理模块的核心类之一，提供了交通管理的基本功能。
+        */
 #include "carla/trafficmanager/TrafficManagerBase.h"
-
+        /**
+         * @namespace carla::traffic_manager
+         * @brief carla命名空间中用于管理交通流的子命名空间。
+         */
 namespace carla {
 namespace traffic_manager {
-
+    /**
+     * @typedef ActorPtr
+     * @brief 定义一个智能指针类型，用于指向carla::client::Actor类型的对象。
+     */
 using ActorPtr = carla::SharedPtr<carla::client::Actor>;
+/**
+ * @typedef Path
+ * @brief 定义一个路径类型，使用std::vector存储cg::Location对象，表示一系列地理位置。
+ */
 using Path = std::vector<cg::Location>;
+/**
+ * @typedef Route
+ * @brief 定义一个路线类型，使用std::vector存储uint8_t类型的数据，表示一系列路线信息。
+ */
 using Route = std::vector<uint8_t>;
 
 using namespace constants::Networking;
-
+/**
+ * @class TrafficManagerServer
+ * @brief 交通管理服务器类，负责处理远程交通管理器的请求并应用更改到本地实例。
+ */
 class TrafficManagerServer {
 public:
 
-  TrafficManagerServer(const TrafficManagerServer &) = default;
-  TrafficManagerServer(TrafficManagerServer &&) = default;
+  TrafficManagerServer(const TrafficManagerServer &) = default;/// @brief 默认拷贝构造函数
+  TrafficManagerServer(TrafficManagerServer &&) = default;/// @brief 默认移动构造函数
 
-  TrafficManagerServer &operator=(const TrafficManagerServer &) = default;
-  TrafficManagerServer &operator=(TrafficManagerServer &&) = default;
+  TrafficManagerServer &operator=(const TrafficManagerServer &) = default;/// @brief 默认拷贝赋值运算符
+  TrafficManagerServer &operator=(TrafficManagerServer &&) = default;/// @brief 默认移动赋值运算符
 
-  /// Here RPCPort is the traffic manager local instance RPC server port where
-  /// it can listen to remote traffic managers and apply the changes to
-  /// local instance through a TrafficManagerBase pointer.
+  /**
+     * @brief 构造函数，初始化交通管理服务器实例。
+     *
+     * @param RPCPort 引用传递的RPC端口号，用于创建服务器实例并监听远程交通管理器的请求。
+     * @param tm        指向TrafficManagerBase类型的指针，用于通过远程交通管理器应用更改到本地实例。
+     */
   TrafficManagerServer(
-      uint16_t &RPCPort,
-      carla::traffic_manager::TrafficManagerBase* tm)
+      uint16_t &RPCPort,///< 引用传递的RPC端口号
+      carla::traffic_manager::TrafficManagerBase* tm)///< 指向TrafficManagerBase的指针
     : _RPCPort(RPCPort) {
 
     uint16_t counter = 0;
     while(counter < MIN_TRY_COUNT) {
       try {
 
-        /// Create server instance.
+        /// @brief 创建服务器实例
         server = new ::rpc::server(RPCPort);
 
       } catch(std::exception) {
         using namespace std::chrono_literals;
-        /// Update port number and try again.
+        /// @brief 捕获异常后，更新端口号并重试创建服务器实例
+        /// 在每次重试前，线程将休眠500毫秒
         std::this_thread::sleep_for(500ms);
       }
 
-      /// If server created.
+      /// @brief 如果服务器实例创建成功
       if(server != nullptr) {
         break;
       }
