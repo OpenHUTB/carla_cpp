@@ -119,52 +119,57 @@ public:
       counter ++;
     }
 
-    /// If server still not created throw a runtime exception.
+    /// 如果服务器仍未创建，则抛出运行时异常
     if(server == nullptr) {
-
+        /// @throw std::runtime_error 如果系统因绑定错误而无法创建RPC服务器，则抛出运行时异常
       carla::throw_exception(std::runtime_error(
         "trying to create rpc server for traffic manager; "
         "but the system failed to create because of bind error."));
     } else {
-      /// If the server creation was successful we are
-      /// binding a lambda function to the name "register_vehicle".
+        /// 如果服务器创建成功，我们将一个lambda函数绑定到名称"register_vehicle"
       server->bind("register_vehicle", [=](std :: vector <carla::rpc::Actor> _actor_list) {
         std::vector<ActorPtr> actor_list;
         for (auto &&actor : _actor_list) {
+            /// 将rpc::Actor转换为ActorPtr，并添加到actor_list中
           actor_list.emplace_back(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()));
-        }
+        }/// 在交通管理器中注册车辆
         tm->RegisterVehicles(actor_list);
       });
 
 
-      /// Binding a lambda function to the name "unregister_vehicle".
+      /// 绑定一个lambda函数到名称"unregister_vehicle"
       server->bind("unregister_vehicle", [=](std :: vector <carla::rpc::Actor> _actor_list) {
         std::vector<ActorPtr> actor_list;
         for (auto &&actor : _actor_list) {
+            /// 将rpc::Actor转换为ActorPtr，并添加到actor_list中
           actor_list.emplace_back(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()));
-        }
+        } /// 在交通管理器中注销车辆
         tm->UnregisterVehicles(actor_list);
       });
 
-      /// Method to set a vehicle's % decrease in velocity with respect to the speed limit.
-      /// If less than 0, it's a % increase.
+      /// 设置车辆相对于限速的速度降低百分比的方法  
+      /// 如果小于0，则表示百分比增加
       server->bind("set_percentage_speed_difference", [=](carla::rpc::Actor actor, const float percentage) {
+          /// 设置车辆的百分比速度差异
         tm->SetPercentageSpeedDifference(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
 
-      /// Method to set a lane offset displacement from the center line.
-      /// Positive values imply a right offset while negative ones mean a left one.
+      /// 设置从中心线偏移的车道位移的方法 
+      /// 正值表示向右偏移，负值表示向左偏移
       server->bind("set_lane_offset", [=](carla::rpc::Actor actor, const float offset) {
+          /// 设置车辆的车道偏移量
         tm->SetLaneOffset(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), offset);
       });
 
-      /// Set a vehicle's exact desired velocity.
+      /// 设置车辆的精确期望速度的方法
       server->bind("set_desired_speed", [=](carla::rpc::Actor actor, const float value) {
+          /// 设置车辆的期望速度
         tm->SetDesiredSpeed(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), value);
       });
 
-      /// Method to set the automatic management of the vehicle lights
+      /// 设置车辆灯光自动管理的方法
       server->bind("update_vehicle_lights", [=](carla::rpc::Actor actor, const bool do_update) {
+          /// 设置是否更新车辆灯光
         tm->SetUpdateVehicleLights(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), do_update);
       });
 
