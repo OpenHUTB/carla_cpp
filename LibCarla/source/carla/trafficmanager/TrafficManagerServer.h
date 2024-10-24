@@ -363,50 +363,57 @@ public:
         tm->SetBoundariesRespawnDormantVehicles(lower_bound, upper_bound);
       });
 
-      /// Method to get the vehicle's next action.
+      /// 获取车辆下一个动作的方法 
+      /// @param actor_id 需要获取动作的车辆Actor的ID
       server->bind("get_next_action", [=](const ActorId actor_id) {
         tm->GetNextAction(actor_id);
       });
 
-      /// Method to get the vehicle's action buffer.
+      /// 获取车辆动作缓冲区的方法 
+      /// @param actor_id 需要获取动作缓冲区的车辆Actor的ID
       server->bind("get_all_actions", [=](const ActorId actor_id) {
         tm->GetActionBuffer(actor_id);
       });
-
+      /// 关闭服务器的方法
       server->bind("shut_down", [=]() {
         tm->Release();
       });
 
-      /// Method to set synchronous mode.
+      /// 设置同步模式的方法 
+      /// @param mode 一个布尔值，指示是否开启同步模式
       server->bind("set_synchronous_mode", [=](const bool mode) {
         tm->SetSynchronousMode(mode);
       });
 
-      /// Method to set tick timeout for synchronous execution.
+      /// 设置同步执行时的超时时间（以毫秒为单位）  
+      /// @param time 同步模式的超时时间，单位为毫秒
       server->bind("set_synchronous_mode_timeout_in_milisecond", [=](const double time) {
         tm->SetSynchronousModeTimeOutInMiliSecond(time);
       });
 
-      /// Method to set randomization seed.
+      /// 设置随机化种子的方法
+      /// @param seed 用于随机化过程的种子值
       server->bind("set_random_device_seed", [=](const uint64_t seed) {
         tm->SetRandomDeviceSeed(seed);
       });
 
-      /// Method to provide synchronous tick.
+      /// 提供同步时钟的方法  
+      /// @return 一个布尔值，指示同步时钟是否成功
       server->bind("synchronous_tick", [=]() -> bool {
         return tm->SynchronousTick();
       });
 
-      /// Method to check server is alive or not.
+      /// 检查服务器是否正在运行的方法
       server->bind("health_check_remote_TM", [=](){});
 
-      /// Run traffic manager server to respond of any
-      /// user client in asynchronous mode.
+      /// 以异步模式运行交通管理器服务器，以响应任何用户客户端的请求
       server->async_run();
     }
 
   }
-
+  /**
+     * @brief 析构函数，释放交通管理器服务器资源
+     */
   ~TrafficManagerServer() {
     if(server) {
       server->stop();
@@ -414,17 +421,20 @@ public:
       server = nullptr;
     }
   }
-
+  /**
+     * @brief 获取交通管理器服务器的RPC端口号
+     * @return RPC端口号
+     */
   uint16_t port() const {
     return _RPCPort;
   }
 
 private:
 
-  /// Traffic manager server RPC port
+    /// 交通管理器服务器的RPC端口号
   uint16_t _RPCPort;
 
-  /// Server instance
+  /// 服务器实例指针
   ::rpc::server *server = nullptr;
 
 };
