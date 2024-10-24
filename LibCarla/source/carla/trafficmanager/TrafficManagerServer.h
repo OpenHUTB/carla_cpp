@@ -51,47 +51,68 @@
         * 这是交通管理模块的核心类之一，提供了交通管理的基本功能。
         */
 #include "carla/trafficmanager/TrafficManagerBase.h"
-
+        /**
+         * @namespace carla::traffic_manager
+         * @brief carla命名空间中用于管理交通流的子命名空间。
+         */
 namespace carla {
 namespace traffic_manager {
-
+    /**
+     * @typedef ActorPtr
+     * @brief 定义一个智能指针类型，用于指向carla::client::Actor类型的对象。
+     */
 using ActorPtr = carla::SharedPtr<carla::client::Actor>;
+/**
+ * @typedef Path
+ * @brief 定义一个路径类型，使用std::vector存储cg::Location对象，表示一系列地理位置。
+ */
 using Path = std::vector<cg::Location>;
+/**
+ * @typedef Route
+ * @brief 定义一个路线类型，使用std::vector存储uint8_t类型的数据，表示一系列路线信息。
+ */
 using Route = std::vector<uint8_t>;
 
 using namespace constants::Networking;
-
+/**
+ * @class TrafficManagerServer
+ * @brief 交通管理服务器类，负责处理远程交通管理器的请求并应用更改到本地实例。
+ */
 class TrafficManagerServer {
 public:
 
-  TrafficManagerServer(const TrafficManagerServer &) = default;
-  TrafficManagerServer(TrafficManagerServer &&) = default;
+  TrafficManagerServer(const TrafficManagerServer &) = default;/// @brief 默认拷贝构造函数
+  TrafficManagerServer(TrafficManagerServer &&) = default;/// @brief 默认移动构造函数
 
-  TrafficManagerServer &operator=(const TrafficManagerServer &) = default;
-  TrafficManagerServer &operator=(TrafficManagerServer &&) = default;
+  TrafficManagerServer &operator=(const TrafficManagerServer &) = default;/// @brief 默认拷贝赋值运算符
+  TrafficManagerServer &operator=(TrafficManagerServer &&) = default;/// @brief 默认移动赋值运算符
 
-  /// Here RPCPort is the traffic manager local instance RPC server port where
-  /// it can listen to remote traffic managers and apply the changes to
-  /// local instance through a TrafficManagerBase pointer.
+  /**
+     * @brief 构造函数，初始化交通管理服务器实例。
+     *
+     * @param RPCPort 引用传递的RPC端口号，用于创建服务器实例并监听远程交通管理器的请求。
+     * @param tm        指向TrafficManagerBase类型的指针，用于通过远程交通管理器应用更改到本地实例。
+     */
   TrafficManagerServer(
-      uint16_t &RPCPort,
-      carla::traffic_manager::TrafficManagerBase* tm)
+      uint16_t &RPCPort,///< 引用传递的RPC端口号
+      carla::traffic_manager::TrafficManagerBase* tm)///< 指向TrafficManagerBase的指针
     : _RPCPort(RPCPort) {
 
     uint16_t counter = 0;
     while(counter < MIN_TRY_COUNT) {
       try {
 
-        /// Create server instance.
+        /// @brief 创建服务器实例
         server = new ::rpc::server(RPCPort);
 
       } catch(std::exception) {
         using namespace std::chrono_literals;
-        /// Update port number and try again.
+        /// @brief 捕获异常后，更新端口号并重试创建服务器实例
+        /// 在每次重试前，线程将休眠500毫秒
         std::this_thread::sleep_for(500ms);
       }
 
-      /// If server created.
+      /// @brief 如果服务器实例创建成功
       if(server != nullptr) {
         break;
       }
