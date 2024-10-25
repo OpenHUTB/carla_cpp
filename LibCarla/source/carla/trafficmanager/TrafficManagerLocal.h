@@ -100,43 +100,59 @@ private:
      * 使用AtomicActorSet管理所有已注册到交通管理器的参与者（如车辆、行人等）。
      */
   AtomicActorSet registered_vehicles;
-  /// State counter to track changes in registered actors.
+  /// @brief 用于跟踪注册参与者状态变化的计数器
   int registered_vehicles_state;
-  /// List of vehicles registered with the traffic manager in
-  /// current update cycle.
+  /// @brief 当前更新周期中注册到交通管理器的车辆列表  
+  /// 使用ActorId类型存储车辆的唯一标识符
   std::vector<ActorId> vehicle_id_list;
-  /// Pointer to local map cache.
+  /// @brief 指向本地地图缓存的指针  
+  /// 使用智能指针管理InMemoryMap对象，用于存储和访问地图数据
   LocalMapPtr local_map;
-  /// Structures to hold waypoint buffers for all vehicles.
+  /// @brief 存储所有车辆路径点的缓冲区结构映射  
+  /// 使用BufferMap类型（可能是自定义的映射类型）来存储每个车辆的路径点缓冲区
   BufferMap buffer_map;
-  /// Object for tracking paths of the traffic vehicles.
+  /// @brief 用于跟踪交通车辆路径的对象 
+  /// TrackTraffic对象可能包含有关交通车辆当前位置和预期路径的信息
   TrackTraffic track_traffic;
-  /// Type containing the current state of all actors involved in the simulation.
+  /// @brief 包含模拟中所有参与者当前状态的类型  
+  /// 用于表示模拟中所有参与者的状态信息
   SimulationState simulation_state;
-  /// Time instance used to calculate dt in asynchronous mode.
+  /// @brief 在异步模式下用于计算时间差(dt)的时间实例  
+  /// 使用TimePoint类型表示一个具体的时间点，用于与上一个更新时间点进行比较，以计算时间差
   TimePoint previous_update_instance;
-  /// Parameterization object.
+  /// @brief 参数化对象  
+  /// 包含交通管理器运行所需的各种配置参数
   Parameters parameters;
-  /// Array to hold output data of localization stage.
+  /// @brief 存储定位阶段输出数据的数组  
+  /// 用于存储定位阶段产生的数据
   LocalizationFrame localization_frame;
-  /// Array to hold output data of collision avoidance.
+  /// @brief 存储碰撞避免阶段输出数据的数组  
+  /// 用于存储碰撞避免阶段产生的数据
   CollisionFrame collision_frame;
-  /// Array to hold output data of traffic light response.
+  /// @brief 存储交通灯响应阶段输出数据的数组  
+  /// 用于存储交通灯响应阶段产生的数据
   TLFrame tl_frame;
-  /// Array to hold output data of motion planning.
+  /// @brief 存储运动规划阶段输出数据的数组  
+  /// 用于存储运动规划阶段产生的控制指令
   ControlFrame control_frame;
-  /// Variable to keep track of currently reserved array space for frames.
+  /// @brief 用于跟踪当前为帧保留的数组空间的变量 
+  /// 这是一个无符号64位整数，用于记录为各个帧数组预留的空间大小
   uint64_t current_reserved_capacity {0u};
-  /// Various stages representing core operations of traffic manager.
+  /// @brief 表示交通管理器核心操作的各种阶段  
+  /// 这些阶段包括定位、碰撞避免、交通灯响应、运动规划和车辆灯光控制等
   LocalizationStage localization_stage;
   CollisionStage collision_stage;
   TrafficLightStage traffic_light_stage;
   MotionPlanStage motion_plan_stage;
   VehicleLightStage vehicle_light_stage;
+  /// @brief 自动驾驶局部路径规划模块（ALSM）  
+  /// ALSM可能是一个用于生成局部路径规划算法的模块或对象
   ALSM alsm;
-  /// Traffic manager server instance.
+  /// @brief 交通管理器服务器实例。  
+  /// 负责处理来自客户端的请求，并管理交通管理器的运行
   TrafficManagerServer server;
-  /// Switch to turn on / turn off traffic manager.
+  /// @brief 用于打开/关闭交通管理器的开关  
+  /// 这是一个原子布尔变量，用于线程安全地控制交通管理器的运行状态
   std::atomic<bool> run_traffic_manger{true};
   /// Flags to signal step begin and end.
   std::atomic<bool> step_begin{false};
