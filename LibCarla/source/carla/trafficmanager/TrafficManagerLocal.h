@@ -32,34 +32,73 @@
 #include "carla/trafficmanager/CollisionStage.h"///@brief 包含交通管理器的碰撞检测阶段类，用于检测和处理交通参与者之间的碰撞
 #include "carla/trafficmanager/TrafficLightStage.h"///@brief 包含交通管理器的交通灯阶段类，用于处理交通灯的控制和同步
 #include "carla/trafficmanager/MotionPlanStage.h"///@brief 包含交通管理器的运动规划阶段类，用于规划和执行交通参与者的运动轨迹
-
+///@brief CARLA 交通管理器命名空间，包含交通管理相关的类和函数
 namespace carla {
 namespace traffic_manager {
-
+///@brief 命名空间别名，简化std::chrono的使用
 namespace chr = std::chrono;
-
+///@brief 使用命名空间别名，简化std::chrono_literals的使用，以便于定义时间字面量
 using namespace std::chrono_literals;
-
+///@brief 时间点类型，使用系统时钟和纳秒精度
 using TimePoint = chr::time_point<chr::system_clock, chr::nanoseconds>;
+///@brief 交通灯组类型，使用CARLA的智能指针管理交通灯对象的集合
 using TLGroup = std::vector<carla::SharedPtr<carla::client::TrafficLight>>;
+///@brief 本地地图指针类型，使用智能指针管理InMemoryMap对象
 using LocalMapPtr = std::shared_ptr<InMemoryMap>;
+///@brief 引入HYBRID_MODE_DT常量，用于定义混合模式下的时间间隔
 using constants::HybridMode::HYBRID_MODE_DT;
 
-/// The function of this class is to integrate all the various stages of
-/// the traffic manager appropriately using messengers.
+/**
+ * @class TrafficManagerLocal
+ * @brief 交通管理器本地类，通过消息传递机制整合交通管理器的各个阶段。
+ * @inherits TrafficManagerBase
+ *
+ * 该类继承自TrafficManagerBase，并实现了通过消息传递机制整合交通管理器的各个阶段的功能。
+ */
 class TrafficManagerLocal : public TrafficManagerBase {
 
 private:
-  /// PID controller parameters.
+    /**
+       * @brief 纵向PID控制器参数集合。
+       *
+       * 包含用于纵向（前进方向）PID（比例-积分-微分）控制器的参数集合。
+    */
   std::vector<float> longitudinal_PID_parameters;
+  /**
+     * @brief 高速公路纵向PID控制器参数集合。
+     *
+     * 包含用于高速公路场景下纵向PID控制器的参数集合。
+     */
   std::vector<float> longitudinal_highway_PID_parameters;
+  /**
+    * @brief 横向PID控制器参数集合。
+    *
+    * 包含用于横向（侧向）PID控制器的参数集合。
+    */
   std::vector<float> lateral_PID_parameters;
+  /**
+     * @brief 高速公路横向PID控制器参数集合。
+     *
+     * 包含用于高速公路场景下横向PID控制器的参数集合。
+     */
   std::vector<float> lateral_highway_PID_parameters;
-  /// CARLA client connection object.
+  /**
+       * @brief CARLA 客户端连接对象。
+       *
+       * 用于与CARLA仿真环境进行通信的客户端连接对象。
+       */
   carla::client::detail::EpisodeProxy episode_proxy;
-  /// CARLA client and object.
+  /**
+     * @brief CARLA 世界对象。
+     *
+     * 表示CARLA仿真世界的一个对象，用于访问和操作仿真世界中的元素。
+     */
   cc::World world;
-  /// Set of all actors registered with traffic manager.
+  /**
+     * @brief 注册到交通管理器的所有参与者集合。
+     *
+     * 使用AtomicActorSet管理所有已注册到交通管理器的参与者（如车辆、行人等）。
+     */
   AtomicActorSet registered_vehicles;
   /// State counter to track changes in registered actors.
   int registered_vehicles_state;
