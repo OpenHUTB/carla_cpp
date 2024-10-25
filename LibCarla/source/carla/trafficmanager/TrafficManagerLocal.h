@@ -319,76 +319,136 @@ public:
   /// 在同步执行模式下，交通管理器的所有操作将按顺序执行，而不是并行执行
   void SetSynchronousMode(bool mode);
 
-  /// Method to set Tick timeout for synchronous execution.
+  /// @brief 设置同步执行时的Tick超时时间（以毫秒为单位）。  
+///   
+/// @param time Tick超时时间，单位为毫秒
   void SetSynchronousModeTimeOutInMiliSecond(double time);
 
-  /// Method to provide synchronous tick.
+  /// @brief 提供同步Tick。  
+///   
+/// @return 如果成功提供同步Tick，则返回true；否则返回false
   bool SynchronousTick();
 
-  /// Get CARLA episode information.
+  /// @brief 获取CARLA仿真场景的信息代理。  
+///   
+/// @return 返回CARLA仿真场景的EpisodeProxy引用
   carla::client::detail::EpisodeProxy &GetEpisodeProxy();
 
-  /// Get list of all registered vehicles.
+  /// @brief 获取所有已注册车辆的ID列表。  
+///   
+/// @return 返回包含所有已注册车辆ID的std::vector
   std::vector<ActorId> GetRegisteredVehiclesIDs();
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the Global leading vehicle.
+  /// @brief 设置车辆与全局前导车辆应保持的距离。  
+///   
+/// @param distance 车辆与全局前导车辆应保持的距离值。
   void SetGlobalDistanceToLeadingVehicle(const float distance);
 
-  /// Method to set % to keep on the right lane.
+  /// @brief 设置车辆保持在右侧车道的百分比概率。  
+///   
+/// @param actor 要设置的车辆指针。  
+/// @param percentage 车辆保持在右侧车道的百分比概率
   void SetKeepRightPercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set % to randomly do a left lane change.
+  /// @brief 设置车辆随机进行左车道变换的百分比概率。  
+///   
+/// @param actor 要设置的车辆指针。  
+/// @param percentage 车辆随机进行左车道变换的百分比概率
   void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set % to randomly do a right lane change.
+  /// @brief 设置车辆随机进行右车道变换的百分比概率。  
+///   
+/// @param actor 要设置的车辆指针。  
+/// @param percentage 车辆随机进行右车道变换的百分比概率
   void SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set hybrid physics mode.
+  /// @brief 设置混合物理模式。  
+///   
+/// @param mode_switch 是否启用混合物理模式。如果为true，则启用；如果为false，则禁用
   void SetHybridPhysicsMode(const bool mode_switch);
 
-  /// Method to set hybrid physics radius.
+  /// @brief 设置混合物理模式的半径。  
+///   
+/// @param radius 混合物理模式的半径值
   void SetHybridPhysicsRadius(const float radius);
 
-  /// Method to set randomization seed.
+  /// @brief 设置随机化种子。  
+///   
+/// @param _seed 随机化种子值
   void SetRandomDeviceSeed(const uint64_t _seed);
 
-  /// Method to set Open Street Map mode.
+  /// @brief 设置Open Street Map模式。  
+///   
+/// @param mode_switch 是否启用Open Street Map模式。如果为true，则启用；如果为false，则禁用.
   void SetOSMMode(const bool mode_switch);
 
-  /// Method to set our own imported path.
+  /// @brief 设置自定义路径。  
+///   
+/// @param actor 要设置路径的车辆指针。  
+/// @param path 自定义路径。  
+/// @param empty_buffer 是否清空已有的路径缓冲区。如果为true，则清空；如果为false，则不清空
   void SetCustomPath(const ActorPtr &actor, const Path path, const bool empty_buffer);
 
-  /// Method to remove a list of points.
+  /// @brief 移除一组点。  
+///   
+/// @param actor_id 车辆ID。  
+/// @param remove_path 是否移除路径。如果为true，则移除；如果为false，则不移除
   void RemoveUploadPath(const ActorId &actor_id, const bool remove_path);
 
-  /// Method to update an already set list of points.
+  /// @brief 更新已设置的点列表。  
+///   
+/// @param actor_id 车辆ID。  
+/// @param path 新的路径
   void UpdateUploadPath(const ActorId &actor_id, const Path path);
 
-  /// Method to set our own imported route.
+  /// @brief 设置自定义路线。  
+///   
+/// @param actor 要设置路线的车辆指针。  
+/// @param route 自定义路线。  
+/// @param empty_buffer 是否清空已有的路线缓冲区。如果为true，则清空；如果为false，则不清空
   void SetImportedRoute(const ActorPtr &actor, const Route route, const bool empty_buffer);
 
-  /// Method to remove a route.
+  /// @brief 移除路线。  
+///   
+/// @param actor_id 车辆ID。  
+/// @param remove_path 是否移除路线。如果为true，则移除；如果为false，则不移除
   void RemoveImportedRoute(const ActorId &actor_id, const bool remove_path);
 
-  /// Method to update an already set route.
+  /// @brief 更新已设置的路线。  
+///   
+/// @param actor_id 车辆ID。  
+/// @param route 新的路线
   void UpdateImportedRoute(const ActorId &actor_id, const Route route);
 
-  /// Method to set automatic respawn of dormant vehicles.
+  /// @brief 设置休眠车辆的自动重生模式。  
+///   
+/// @param mode_switch 是否启用休眠车辆的自动重生模式。如果为true，则启用；如果为false，则禁用
   void SetRespawnDormantVehicles(const bool mode_switch);
 
-  /// Method to set boundaries to respawn of dormant vehicles.
+  /// @brief 设置休眠车辆重生时的边界。  
+///   
+/// @param lower_bound 重生边界的下限。  
+/// @param upper_bound 重生边界的上限
   void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound);
 
-  /// Method to set limits for boundaries when respawning dormant vehicles.
+  /// @brief 设置重生休眠车辆时边界的限制。  
+///   
+/// @param lower 下限值。  
+/// @param upper 上限值
   void SetMaxBoundaries(const float lower, const float upper);
 
-  /// Method to get the vehicle's next action.
+  /// @brief 获取车辆的下一个动作。  
+///   
+/// @param actor_id 车辆ID。  
+/// @return 返回车辆的下一个动作
   Action GetNextAction(const ActorId &actor_id);
 
-  /// Method to get the vehicle's action buffer.
+  /// @brief 获取车辆的动作缓冲区。  
+ ///   
+ /// @param actor_id 车辆ID。  
+ /// @return 返回车辆的动作缓冲区
   ActionBuffer GetActionBuffer(const ActorId &actor_id);
-
+  /// @brief 关闭并清理资源
   void ShutDown() {};
 };
 
