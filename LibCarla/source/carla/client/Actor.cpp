@@ -69,7 +69,7 @@ namespace client {
   std::vector<geom::Transform> Actor::GetSocketRelativeTransforms() const {
     return GetEpisode().Lock()->GetActorSocketRelativeTransforms(*this);
   }
-  //这个函数返回一个std::vector<std::string>类型的值，包含Actor中所有插槽的名称
+  //这个函数返回一个std::vector<std::string>类型的值，包含Actor中所有插槽的名称。
   std::vector<std::string> Actor::GetSocketNames() const {
     return GetEpisode().Lock()->GetActorSocketNames(*this);
   }  
