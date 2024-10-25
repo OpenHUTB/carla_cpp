@@ -319,38 +319,62 @@ public:
   /// 在同步执行模式下，交通管理器的所有操作将按顺序执行，而不是并行执行
   void SetSynchronousMode(bool mode);
 
-  /// Method to set Tick timeout for synchronous execution.
+  /// @brief 设置同步执行时的Tick超时时间（以毫秒为单位）。  
+///   
+/// @param time Tick超时时间，单位为毫秒
   void SetSynchronousModeTimeOutInMiliSecond(double time);
 
-  /// Method to provide synchronous tick.
+  /// @brief 提供同步Tick。  
+///   
+/// @return 如果成功提供同步Tick，则返回true；否则返回false
   bool SynchronousTick();
 
-  /// Get CARLA episode information.
+  /// @brief 获取CARLA仿真场景的信息代理。  
+///   
+/// @return 返回CARLA仿真场景的EpisodeProxy引用
   carla::client::detail::EpisodeProxy &GetEpisodeProxy();
 
-  /// Get list of all registered vehicles.
+  /// @brief 获取所有已注册车辆的ID列表。  
+///   
+/// @return 返回包含所有已注册车辆ID的std::vector
   std::vector<ActorId> GetRegisteredVehiclesIDs();
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the Global leading vehicle.
+  /// @brief 设置车辆与全局前导车辆应保持的距离。  
+///   
+/// @param distance 车辆与全局前导车辆应保持的距离值。
   void SetGlobalDistanceToLeadingVehicle(const float distance);
 
-  /// Method to set % to keep on the right lane.
+  /// @brief 设置车辆保持在右侧车道的百分比概率。  
+///   
+/// @param actor 要设置的车辆指针。  
+/// @param percentage 车辆保持在右侧车道的百分比概率
   void SetKeepRightPercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set % to randomly do a left lane change.
+  /// @brief 设置车辆随机进行左车道变换的百分比概率。  
+///   
+/// @param actor 要设置的车辆指针。  
+/// @param percentage 车辆随机进行左车道变换的百分比概率
   void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set % to randomly do a right lane change.
+  /// @brief 设置车辆随机进行右车道变换的百分比概率。  
+///   
+/// @param actor 要设置的车辆指针。  
+/// @param percentage 车辆随机进行右车道变换的百分比概率
   void SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage);
 
-  /// Method to set hybrid physics mode.
+  /// @brief 设置混合物理模式。  
+///   
+/// @param mode_switch 是否启用混合物理模式。如果为true，则启用；如果为false，则禁用
   void SetHybridPhysicsMode(const bool mode_switch);
 
-  /// Method to set hybrid physics radius.
+  /// @brief 设置混合物理模式的半径。  
+///   
+/// @param radius 混合物理模式的半径值
   void SetHybridPhysicsRadius(const float radius);
 
-  /// Method to set randomization seed.
+  /// @brief 设置随机化种子。  
+///   
+/// @param _seed 随机化种子值
   void SetRandomDeviceSeed(const uint64_t _seed);
 
   /// Method to set Open Street Map mode.
