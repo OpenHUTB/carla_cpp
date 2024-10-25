@@ -377,42 +377,78 @@ public:
 /// @param _seed 随机化种子值
   void SetRandomDeviceSeed(const uint64_t _seed);
 
-  /// Method to set Open Street Map mode.
+  /// @brief 设置Open Street Map模式。  
+///   
+/// @param mode_switch 是否启用Open Street Map模式。如果为true，则启用；如果为false，则禁用.
   void SetOSMMode(const bool mode_switch);
 
-  /// Method to set our own imported path.
+  /// @brief 设置自定义路径。  
+///   
+/// @param actor 要设置路径的车辆指针。  
+/// @param path 自定义路径。  
+/// @param empty_buffer 是否清空已有的路径缓冲区。如果为true，则清空；如果为false，则不清空
   void SetCustomPath(const ActorPtr &actor, const Path path, const bool empty_buffer);
 
-  /// Method to remove a list of points.
+  /// @brief 移除一组点。  
+///   
+/// @param actor_id 车辆ID。  
+/// @param remove_path 是否移除路径。如果为true，则移除；如果为false，则不移除
   void RemoveUploadPath(const ActorId &actor_id, const bool remove_path);
 
-  /// Method to update an already set list of points.
+  /// @brief 更新已设置的点列表。  
+///   
+/// @param actor_id 车辆ID。  
+/// @param path 新的路径
   void UpdateUploadPath(const ActorId &actor_id, const Path path);
 
-  /// Method to set our own imported route.
+  /// @brief 设置自定义路线。  
+///   
+/// @param actor 要设置路线的车辆指针。  
+/// @param route 自定义路线。  
+/// @param empty_buffer 是否清空已有的路线缓冲区。如果为true，则清空；如果为false，则不清空
   void SetImportedRoute(const ActorPtr &actor, const Route route, const bool empty_buffer);
 
-  /// Method to remove a route.
+  /// @brief 移除路线。  
+///   
+/// @param actor_id 车辆ID。  
+/// @param remove_path 是否移除路线。如果为true，则移除；如果为false，则不移除
   void RemoveImportedRoute(const ActorId &actor_id, const bool remove_path);
 
-  /// Method to update an already set route.
+  /// @brief 更新已设置的路线。  
+///   
+/// @param actor_id 车辆ID。  
+/// @param route 新的路线
   void UpdateImportedRoute(const ActorId &actor_id, const Route route);
 
-  /// Method to set automatic respawn of dormant vehicles.
+  /// @brief 设置休眠车辆的自动重生模式。  
+///   
+/// @param mode_switch 是否启用休眠车辆的自动重生模式。如果为true，则启用；如果为false，则禁用
   void SetRespawnDormantVehicles(const bool mode_switch);
 
-  /// Method to set boundaries to respawn of dormant vehicles.
+  /// @brief 设置休眠车辆重生时的边界。  
+///   
+/// @param lower_bound 重生边界的下限。  
+/// @param upper_bound 重生边界的上限
   void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound);
 
-  /// Method to set limits for boundaries when respawning dormant vehicles.
+  /// @brief 设置重生休眠车辆时边界的限制。  
+///   
+/// @param lower 下限值。  
+/// @param upper 上限值
   void SetMaxBoundaries(const float lower, const float upper);
 
-  /// Method to get the vehicle's next action.
+  /// @brief 获取车辆的下一个动作。  
+///   
+/// @param actor_id 车辆ID。  
+/// @return 返回车辆的下一个动作
   Action GetNextAction(const ActorId &actor_id);
 
-  /// Method to get the vehicle's action buffer.
+  /// @brief 获取车辆的动作缓冲区。  
+ ///   
+ /// @param actor_id 车辆ID。  
+ /// @return 返回车辆的动作缓冲区
   ActionBuffer GetActionBuffer(const ActorId &actor_id);
-
+  /// @brief 关闭并清理资源
   void ShutDown() {};
 };
 
