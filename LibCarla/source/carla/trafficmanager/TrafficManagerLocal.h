@@ -154,29 +154,50 @@ private:
   /// @brief 用于打开/关闭交通管理器的开关  
   /// 这是一个原子布尔变量，用于线程安全地控制交通管理器的运行状态
   std::atomic<bool> run_traffic_manger{true};
-  /// Flags to signal step begin and end.
+  /// @brief 用于标记步骤开始和结束的标志 
+  /// 使用std::atomic<bool>确保跨线程的原子操作，避免数据竞争
   std::atomic<bool> step_begin{false};
   std::atomic<bool> step_end{false};
-  /// Mutex for progressing synchronous execution.
+  /// @brief 用于同步执行进度的互斥锁 
+  /// std::mutex用于保护共享资源，确保同一时间只有一个线程可以访问
   std::mutex step_execution_mutex;
-  /// Condition variables for progressing synchronous execution.
+  /// @brief 用于同步执行进度的条件变量
+  /// std::condition_variable用于线程间的同步，当一个线程需要等待某个条件成立时，可以阻塞在该条件变量上，直到另一个线程通知条件已成立
   std::condition_variable step_begin_trigger;
   std::condition_variable step_end_trigger;
-  /// Single worker thread for sequential execution of sub-components.
+  /// @brief 用于顺序执行子组件的单个工作线程  
+  /// 使用std::unique_ptr<std::thread>管理线程的生命周期，确保线程在不再需要时能够被正确销毁
   std::unique_ptr<std::thread> worker_thread;
-  /// Randomization seed.
+  /// @brief 随机化种子  
+  /// 使用当前时间作为随机化种子，确保每次程序运行时都能产生不同的随机序列
   uint64_t seed {static_cast<uint64_t>(time(NULL))};
-  /// Structure holding random devices per vehicle.
+  /// @brief 持有每辆车的随机设备的结构体  
+  /// RandomGenerator是一个用于生成随机数的类或结构体，使用seed进行初始化
   RandomGenerator random_device = RandomGenerator(seed);
+  /// @brief 标记为删除的参与者ID列表 
+  /// 用于存储需要在某个时间点被移除的参与者ID
   std::vector<ActorId> marked_for_removal;
-  /// Mutex to prevent vehicle registration during frame array re-allocation.
+  /// @brief 防止在帧数组重新分配期间注册车辆的互斥锁  
+  /// 用于保护车辆注册操作，确保在帧数组重新分配时不会有新的车辆被注册
   std::mutex registration_mutex;
-
-  /// Method to check if all traffic lights are frozen in a group.
+  /// @brief 检查一个交通灯组中的所有交通灯是否都被冻结的方法
+  ///   
+  /// @param tl_to_freeze 要检查的交通灯组 
+  /// @return 如果所有交通灯都被冻结，则返回true；否则返回false
   bool CheckAllFrozen(TLGroup tl_to_freeze);
 
 public:
-  /// Private constructor for singleton lifecycle management.
+    /// @brief 私有构造函数，用于单例生命周期管理  
+      ///   
+      /// 通过私有构造函数确保TrafficManagerLocal类只能有一个实例被创建，并通过其他静态方法访问该实例 
+      ///   
+      /// @param longitudinal_PID_parameters 纵向PID控制参数 
+      /// @param longitudinal_highway_PID_parameters 高速公路纵向PID控制参数  
+      /// @param lateral_PID_parameters 横向PID控制参数  
+      /// @param lateral_highway_PID_parameters 高速公路横向PID控制参数  
+      /// @param perc_decrease_from_limit 从限速降低的百分比 
+      /// @param episode_proxy 模拟器中的episode代理对象  
+      /// @param RPCportTM 交通管理器使用的RPC端口号
   TrafficManagerLocal(std::vector<float> longitudinal_PID_parameters,
                       std::vector<float> longitudinal_highway_PID_parameters,
                       std::vector<float> lateral_PID_parameters,
