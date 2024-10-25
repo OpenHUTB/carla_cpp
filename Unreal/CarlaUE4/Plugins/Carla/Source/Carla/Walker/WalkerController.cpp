@@ -94,16 +94,16 @@ void AWalkerController::SetBonesTransform(const FWalkerBoneControlIn &WalkerBone
   USkeletalMeshComponent *SkeletalMesh = SkeletalMeshes.IsValidIndex(0) ? SkeletalMeshes[0] : nullptr;
   if (!SkeletalMesh) return;
 
-  // get the walker animation class
+  // 获取行人动画的类
   auto *AnimInst = SkeletalMesh->GetAnimInstance();
   if (!AnimInst) return;
   UWalkerAnim *WalkerAnim = Cast<UWalkerAnim>(AnimInst);
   if (!WalkerAnim) return;
   
-  // if pose is empty, then get a first version
+  // 如果姿势为空，则获得第一个版本
   if (WalkerAnim->Snap.BoneNames.Num() == 0)
   {
-    // get current pose
+    // 获得当前的姿势
     SkeletalMesh->SnapshotPose(WalkerAnim->Snap);
   }
 
@@ -114,7 +114,7 @@ void AWalkerController::SetBonesTransform(const FWalkerBoneControlIn &WalkerBone
     BonesMap.Add(BoneName, pair.Value);
   }
 
-  // assign common bones
+  // 分配常用骨架
   for (int i=0; i<WalkerAnim->Snap.BoneNames.Num(); ++i)
   {
     FTransform *Trans = BonesMap.Find(WalkerAnim->Snap.BoneNames[i]);
@@ -135,13 +135,13 @@ void AWalkerController::BlendPose(float Blend)
   USkeletalMeshComponent *SkeletalMesh = SkeletalMeshes.IsValidIndex(0) ? SkeletalMeshes[0] : nullptr;
   if (!SkeletalMesh) return;
 
-  // get the walker animation class
+  // 获得行人动画类
   auto *AnimInst = SkeletalMesh->GetAnimInstance();
   if (!AnimInst) return;
   UWalkerAnim *WalkerAnim = Cast<UWalkerAnim>(AnimInst);
   if (!WalkerAnim) return;
   
-  // set current pose
+  // 设置当前姿势
   WalkerAnim->Blend = Blend;
 }
 
@@ -155,13 +155,13 @@ void AWalkerController::GetPoseFromAnimation()
   USkeletalMeshComponent *SkeletalMesh = SkeletalMeshes.IsValidIndex(0) ? SkeletalMeshes[0] : nullptr;
   if (!SkeletalMesh) return;
 
-  // get the walker animation class
+  // 获得行人动画类
   auto *AnimInst = SkeletalMesh->GetAnimInstance();
   if (!AnimInst) return;
   UWalkerAnim *WalkerAnim = Cast<UWalkerAnim>(AnimInst);
   if (!WalkerAnim) return;
   
-  // get current pose
+  // 获得当前姿势
   SkeletalMesh->SnapshotPose(WalkerAnim->Snap);
 }
 

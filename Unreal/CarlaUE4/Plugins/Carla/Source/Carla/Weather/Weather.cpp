@@ -69,7 +69,7 @@ void AWeather::ApplyWeather(const FWeatherParameters& InWeather)
     UE_LOG(LogCarla, Log, TEXT("  - DustStorm = %.2f"), Weather.DustStorm);
 #endif // CARLA_WEATHER_EXTRA_LOG
 
-    // Call the blueprint that actually changes the weather.
+    // 调用能真正改变天气的蓝图。
     RefreshWeather(Weather);
 }
 
@@ -77,7 +77,7 @@ void AWeather::NotifyWeather(ASensor* Sensor)
 {
     CheckWeatherPostProcessEffects();
 
-    // Call the blueprint that actually changes the weather.
+    // 调用能真正改变天气的蓝图。
     RefreshWeather(Weather);
 }
 

@@ -122,82 +122,106 @@ void ALSM::Update() {
   UpdateUnregisteredActorsData();
 }
 
+//识别新的参与者
 void ALSM::IdentifyNewActors(const ActorList &actor_list) {
+    //遍历传入的参与者列表
   for (auto iter = actor_list->begin(); iter != actor_list->end(); ++iter) {
-    ActorPtr actor = *iter;
-    ActorId actor_id = actor->GetId();
-    // Identify any new hero vehicle
-    if (actor->GetTypeId().front() == 'v') {
+    ActorPtr actor = *iter; //获取当前的参与者对象
+    ActorId actor_id = actor->GetId(); //获取当前参与者的唯一标识符（ID）
+    // 识别新的英雄车辆
+    if (actor->GetTypeId().front() == 'v') { //通过其类型（ID）判断当前参与者
+     //如果没有任何已识别的英雄车辆，或者该参与者不在英雄参与者列表中
      if (hero_actors.size() == 0u || hero_actors.find(actor_id) == hero_actors.end()) {
+      //遍历该参与者的所有属性
       for (auto&& attribute: actor->GetAttributes()) {
+        //如果属性的 ID 是 "role_name"，并且其值是 "hero"
         if (attribute.GetId() == "role_name" && attribute.GetValue() == "hero") {
+         //将英雄车辆插入到英雄列表中
           hero_actors.insert({actor_id, actor});
         }
       }
     }
   }
+    //如果该参与者不在已注册车辆列表中，且不在未注册的参与者列表中
     if (!registered_vehicles.Contains(actor_id)
         && unregistered_actors.find(actor_id) == unregistered_actors.end()) {
-
+      //将该参与者添加到未注册参与者中
       unregistered_actors.insert({actor_id, actor});
     }
   }
 }
 
+//识别已销毁的参与者
 ALSM::DestroyeddActors ALSM::IdentifyDestroyedActors(const ActorList &actor_list) {
 
-  ALSM::DestroyeddActors destroyed_actors;
-  ActorIdSet &deleted_registered = destroyed_actors.first;
-  ActorIdSet &deleted_unregistered = destroyed_actors.second;
+  ALSM::DestroyeddActors destroyed_actors; //用于存储销毁的参与者 ID
+  ActorIdSet &deleted_registered = destroyed_actors.first; //存储已销毁的注册车辆的 ID
+  ActorIdSet &deleted_unregistered = destroyed_actors.second; //存储已销毁的未注册参与者的 ID
 
-  // Building hash set of actors present in current frame.
+  //构建当前帧中存在的参与者的哈希集合
   ActorIdSet current_actors;
   for  (auto iter = actor_list->begin(); iter != actor_list->end(); ++iter) {
-    current_actors.insert((*iter)->GetId());
+    current_actors.insert((*iter)->GetId()); //将当前参与者的 ID 插入集合中
   }
 
-  // Searching for destroyed registered actors.
+  // 查找被销毁的已注册车辆
   std::vector<ActorId> registered_ids = registered_vehicles.GetIDList();
   for (const ActorId &actor_id : registered_ids) {
+    //如果当前帧中不存在某个已注册车辆
     if (current_actors.find(actor_id) == current_actors.end()) {
+        //将该车辆的 ID 加入到已销毁的注册车辆列表中
       deleted_registered.insert(actor_id);
     }
   }
 
-  // Searching for destroyed unregistered actors.
+  // 查找被销毁的未注册参与者
   for (const auto &actor_info: unregistered_actors) {
     const ActorId &actor_id = actor_info.first;
+    //如果当前帧中不存在某个未注册的参与者，或者该参与者已经注册为车辆
      if (current_actors.find(actor_id) == current_actors.end()
          || registered_vehicles.Contains(actor_id)) {
+      //将该参与者的 ID 加入到已销毁的未注册参与者列表中
       deleted_unregistered.insert(actor_id);
     }
   }
-
+  //返回销毁的参与者列表
   return destroyed_actors;
 }
 
 void ALSM::UpdateRegisteredActorsData(const bool hybrid_physics_mode, ALSM::IdleInfo &max_idle_time) {
 
+  //获取所有注册车辆的列表
   std::vector<ActorPtr> vehicle_list = registered_vehicles.GetList();
+  //检查是否有英雄车辆存在
   bool hero_actor_present = hero_actors.size() != 0u;
+  //获取混合物理模式下的半径值
   float physics_radius = parameters.GetHybridPhysicsRadius();
+  //计算半径的平方值
   float physics_radius_square = SQUARE(physics_radius);
+  //检查是否启用了重生功能
   bool is_respawn_vehicles = parameters.GetRespawnDormantVehicles();
+  //如果启用了重生功能且没有英雄车辆，将英雄车辆设置为(0,0,0)
   if (is_respawn_vehicles && !hero_actor_present) {
     track_traffic.SetHeroLocation(cg::Location(0,0,0));
   }
-  // Update first the information regarding any hero vehicle.
+  // 首先更新英雄车辆的信息
   for (auto &hero_actor_info: hero_actors){
+     //如果启用了重生功能，设置英雄车辆的当前位置
     if (is_respawn_vehicles) {
       track_traffic.SetHeroLocation(hero_actor_info.second->GetTransform().location);
     }
+    //更新英雄车辆的数据，传入是否处于混合物理模式、英雄车辆、是否有英雄车辆存在、物理半径平方等参数
     UpdateData(hybrid_physics_mode, hero_actor_info.second, hero_actor_present, physics_radius_square);
   }
-  // Update information for all other registered vehicles.
+  // 更新其他注册车辆的信息
   for (const Actor &vehicle : vehicle_list) {
+    //获取车辆的 ID
     ActorId actor_id = vehicle->GetId();
+    //如果车辆不是英雄车辆，更新该车辆的数据
     if (hero_actors.find(actor_id) == hero_actors.end()) {
+      //更新车辆数据
       UpdateData(hybrid_physics_mode, vehicle, hero_actor_present, physics_radius_square);
+      //更新该车辆的空闲时间信息
       UpdateIdleTime(max_idle_time, actor_id);
     }
   }
