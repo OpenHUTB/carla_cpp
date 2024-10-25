@@ -206,46 +206,60 @@ public:
                       cc::detail::EpisodeProxy &episode_proxy,
                       uint16_t &RPCportTM);
 
-  /// Destructor.
+  /// @brief 析构函数 
+  /// 虚拟析构函数，用于确保派生类能够正确地被销毁
   virtual ~TrafficManagerLocal();
 
-  /// Method to setup InMemoryMap.
+  /// @brief 设置内存中的地图 
+  /// 此方法用于初始化或设置TrafficManagerLocal所使用的内存地图
   void SetupLocalMap();
 
-  /// To start the TrafficManager.
+  /// @brief 启动交通管理器  
+  /// 此方法用于启动TrafficManagerLocal，开始其管理交通的功能
   void Start();
 
-  /// Initiates thread to run the TrafficManager sequentially.
+  /// @brief 启动线程以顺序运行交通管理器  
+  /// 此方法将创建一个新线程（如果尚未创建），并在该线程中顺序运行交通管理器的逻辑
   void Run();
 
-  /// To stop the TrafficManager.
+  /// @brief 停止交通管理器  
+  /// 此方法用于停止TrafficManagerLocal的运行，并可能进行必要的清理工作
   void Stop();
 
-  /// To release the traffic manager.
+  /// @brief 释放交通管理器 
+  /// 此方法用于释放TrafficManagerLocal所占用的资源，例如线程、内存等
   void Release();
 
-  /// To reset the traffic manager.
+  /// @brief 重置交通管理器  
+  /// 此方法将TrafficManagerLocal重置为其初始状态，清除所有已注册的车辆和设置
   void Reset();
 
-  /// This method registers a vehicle with the traffic manager.
+  /// @brief 向交通管理器注册车辆  
+  /// @param actor_list 要注册的车辆列表，每个元素都是一个指向Actor的指针
   void RegisterVehicles(const std::vector<ActorPtr> &actor_list);
 
-  /// This method unregisters a vehicle from traffic manager.
+  /// @brief 从交通管理器注销车辆  
+  /// @param actor_list 要注销的车辆列表，每个元素都是一个指向Actor的指针
   void UnregisterVehicles(const std::vector<ActorPtr> &actor_list);
 
-  /// Method to set a vehicle's % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// @brief 设置车辆相对于限速的速度百分比差异  
+  /// @param actor 要设置速度差异的车辆指针  
+  /// @param percentage 速度百分比差异，如果小于0，则表示速度百分比增加
   void SetPercentageSpeedDifference(const ActorPtr &actor, const float percentage);
 
-  /// Set a vehicle's exact desired velocity.
+  /// @brief 设置车辆的精确期望速度  
+  /// @param actor 要设置期望速度的车辆指针  
+  /// @param value 车辆的期望速度值
   void SetDesiredSpeed(const ActorPtr &actor, const float value);
 
-  /// Method to set a global % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// @brief 设置全局相对于限速的速度百分比差异 
+  /// @param percentage 全局速度百分比差异，如果小于0，则表示速度百分比增加  
+  /// 此设置将影响所有已注册的车辆
   void SetGlobalPercentageSpeedDifference(float const percentage);
 
-  /// Method to set a lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// @brief 设置车辆相对于中心线的车道偏移量  
+  /// @param actor 要设置车道偏移量的车辆指针  
+  /// @param offset 车道偏移量，正值表示向右偏移，负值表示向左偏移
   void SetLaneOffset(const ActorPtr &actor, const float offset);
 
   /// Method to set a global lane offset displacement from the center line.
