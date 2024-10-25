@@ -6,32 +6,32 @@
 
 #pragma once
 
-#include <atomic>
-#include <chrono>
-#include <mutex>
-#include <thread>
-#include <vector>
+#include <atomic>///@brief 包含C++原子操作库，用于线程安全的计数器和标志位
+#include <chrono>///@brief 包含C++时间库，用于时间测量和延迟
+#include <mutex>///@brief 包含C++互斥锁库，用于线程同步
+#include <thread>///@brief 包含C++线程库，用于多线程编程
+#include <vector>///@brief 包含C++动态数组库，用于存储和管理序列化的数据
 
-#include "carla/client/detail/EpisodeProxy.h"
-#include "carla/client/TrafficLight.h"
-#include "carla/client/World.h"
-#include "carla/Memory.h"
-#include "carla/rpc/Command.h"
+#include "carla/client/detail/EpisodeProxy.h"///@brief 包含CARLA客户端的Episode代理类，用于管理仿真场景的一个回合
+#include "carla/client/TrafficLight.h"///@brief 包含CARLA客户端的交通灯控制类
+#include "carla/client/World.h"///@brief 包含CARLA客户端的世界管理类，用于访问和修改仿真世界
+#include "carla/Memory.h"///@brief 包含CARLA的内存管理类，用于管理内存分配和释放
+#include "carla/rpc/Command.h"///@brief 包含CARLA的RPC命令处理类，用于远程过程调用
 
-#include "carla/trafficmanager/AtomicActorSet.h"
-#include "carla/trafficmanager/InMemoryMap.h"
-#include "carla/trafficmanager/Parameters.h"
-#include "carla/trafficmanager/RandomGenerator.h"
-#include "carla/trafficmanager/SimulationState.h"
-#include "carla/trafficmanager/TrackTraffic.h"
-#include "carla/trafficmanager/TrafficManagerBase.h"
-#include "carla/trafficmanager/TrafficManagerServer.h"
+#include "carla/trafficmanager/AtomicActorSet.h"///@brief 包含交通管理器中的原子参与者集合类，用于管理仿真中的参与者（如车辆、行人）
+#include "carla/trafficmanager/InMemoryMap.h"///@brief 包含交通管理器的内存地图类，用于在内存中存储地图数据
+#include "carla/trafficmanager/Parameters.h"///@brief 包含交通管理器的参数配置类，用于配置交通管理器的各种参数
+#include "carla/trafficmanager/RandomGenerator.h"///@brief 包含交通管理器的随机数生成器类，用于生成随机数或随机序列
+#include "carla/trafficmanager/SimulationState.h"///@brief 包含交通管理器的仿真状态类，用于管理仿真的全局状态
+#include "carla/trafficmanager/TrackTraffic.h"///@brief 包含交通管理器的流量跟踪类，用于跟踪和管理仿真中的交通流量
+#include "carla/trafficmanager/TrafficManagerBase.h"///@brief 包含交通管理器的基类，定义了交通管理器的基本接口和功能
+#include "carla/trafficmanager/TrafficManagerServer.h"///@brief 包含交通管理器的服务器类，用于管理交通管理器的网络通信
 
-#include "carla/trafficmanager/ALSM.h"
-#include "carla/trafficmanager/LocalizationStage.h"
-#include "carla/trafficmanager/CollisionStage.h"
-#include "carla/trafficmanager/TrafficLightStage.h"
-#include "carla/trafficmanager/MotionPlanStage.h"
+#include "carla/trafficmanager/ALSM.h"///@brief 包含交通管理器的ALSM（高级状态机）类，用于管理交通参与者的状态转换
+#include "carla/trafficmanager/LocalizationStage.h"///@brief 包含交通管理器的定位阶段类，用于处理交通参与者的定位信息
+#include "carla/trafficmanager/CollisionStage.h"///@brief 包含交通管理器的碰撞检测阶段类，用于检测和处理交通参与者之间的碰撞
+#include "carla/trafficmanager/TrafficLightStage.h"///@brief 包含交通管理器的交通灯阶段类，用于处理交通灯的控制和同步
+#include "carla/trafficmanager/MotionPlanStage.h"///@brief 包含交通管理器的运动规划阶段类，用于规划和执行交通参与者的运动轨迹
 
 namespace carla {
 namespace traffic_manager {
