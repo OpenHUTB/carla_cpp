@@ -262,40 +262,61 @@ public:
   /// @param offset 车道偏移量，正值表示向右偏移，负值表示向左偏移
   void SetLaneOffset(const ActorPtr &actor, const float offset);
 
-  /// Method to set a global lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// @brief 设置全局车道相对于中心线的偏移量。  
+  ///   
+  /// @param offset 车道偏移量。正值表示向右偏移，负值表示向左偏移。  
+  /// 此设置将影响所有由交通管理器管理的车辆
   void SetGlobalLaneOffset(float const offset);
 
-  /// Method to set the automatic management of the vehicle lights
+  /// @brief 设置车辆的灯光是否自动管理。  
+  /// @param actor 要设置灯光管理状态的车辆指针。  
+  /// @param do_update 是否启用自动灯光管理。如果为true，则启用；如果为false，则禁用
   void SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update);
 
-  /// Method to set collision detection rules between vehicles.
+  /// @brief 设置两辆车之间的碰撞检测规则。  
+  /// @param reference_actor 参考车辆指针，即碰撞检测中的一方。  
+  /// @param other_actor 另一车辆指针，即与参考车辆进行碰撞检测的另一方。  
+  /// @param detect_collision 是否启用两车之间的碰撞检测。如果为true，则启用；如果为false，则禁用
   void SetCollisionDetection(const ActorPtr &reference_actor, const ActorPtr &other_actor, const bool detect_collision);
 
-  /// Method to force lane change on a vehicle.
-  /// Direction flag can be set to true for left and false for right.
+  /// @brief 强制车辆进行换道。  
+  /// @param actor 要强制换道的车辆指针。  
+  /// @param direction 换道方向。如果为true，则向左换道；如果为false，则向右换道
   void SetForceLaneChange(const ActorPtr &actor, const bool direction);
 
-  /// Enable/disable automatic lane change on a vehicle.
+  /// @brief 启用或禁用车辆的自动换道功能。  
+  /// @param actor 要设置自动换道状态的车辆指针。  
+  /// @param enable 是否启用自动换道。如果为true，则启用；如果为false，则禁用
   void SetAutoLaneChange(const ActorPtr &actor, const bool enable);
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the leading vehicle.
+  /// @brief 设置车辆与前车应保持的距离。  
+  /// @param actor 要设置距离的车辆指针。  
+  /// @param distance 车辆与前车应保持的距离值
   void SetDistanceToLeadingVehicle(const ActorPtr &actor, const float distance);
 
-  /// Method to specify the % chance of ignoring collisions with any walker.
+  /// @brief 设置车辆忽略行人碰撞的百分比概率。  
+  /// @param actor 要设置忽略行人碰撞概率的车辆指针。  
+  /// @param perc 忽略行人碰撞的百分比概率。值范围应在0到100之间。  
   void SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc);
 
-  /// Method to specify the % chance of ignoring collisions with any vehicle.
+  /// @brief 设置车辆忽略其他车辆碰撞的百分比概率。  
+  /// @param actor 要设置忽略其他车辆碰撞概率的车辆指针。  
+  /// @param perc 忽略其他车辆碰撞的百分比概率。值范围应在0到100之间
   void SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc);
 
-  /// Method to specify the % chance of running any traffic light.
+  /// @brief 设置车辆闯红灯的百分比概率。  
+  /// @param actor 要设置闯红灯概率的车辆指针。  
+  /// @param perc 闯红灯的百分比概率。值范围应在0到100之间
   void SetPercentageRunningLight(const ActorPtr &actor, const float perc);
 
-  /// Method to specify the % chance of running any traffic sign.
+  /// @brief 设置车辆无视交通标志的百分比概率。  
+  /// @param actor 要设置无视交通标志概率的车辆指针。  
+  /// @param perc 无视交通标志的百分比概率。值范围应在0到100之间。
   void SetPercentageRunningSign(const ActorPtr &actor, const float perc);
 
-  /// Method to switch traffic manager into synchronous execution.
+  /// @brief 将交通管理器切换到同步执行模式。  
+  /// @param mode 是否启用同步执行模式。如果为true，则启用；如果为false，则禁用。  
+  /// 在同步执行模式下，交通管理器的所有操作将按顺序执行，而不是并行执行
   void SetSynchronousMode(bool mode);
 
   /// Method to set Tick timeout for synchronous execution.
