@@ -11,31 +11,37 @@
 
 namespace carla {
 namespace client {
-
+  //这个函数返回Actor当前的位置。
   geom::Location Actor::GetLocation() const {
     return GetEpisode().Lock()->GetActorLocation(*this);
   }
-
+  //返回Actor当前的变换（位置和方向）。
+  //实现方式与GetLocation类似，通过GetEpisode().Lock()->GetActorTransform(*this)获取。
   geom::Transform Actor::GetTransform() const {
     return GetEpisode().Lock()->GetActorTransform(*this);
   }
-
+  //返回Actor当前的速度，以三维向量表示。
+  //通过GetEpisode().Lock()->GetActorVelocity(*this)获取。
   geom::Vector3D Actor::GetVelocity() const {
     return GetEpisode().Lock()->GetActorVelocity(*this);
   }
+  //返回Actor当前的角速度，也是以三维向量表示。
+  //实现方式同上，通过GetEpisode().Lock()->GetActorAngularVelocity(*this)获取。
 
   geom::Vector3D Actor::GetAngularVelocity() const {
     return GetEpisode().Lock()->GetActorAngularVelocity(*this);
   }
-
+  //返回Actor当前的加速度，以三维向量表示。
+  //通过GetEpisode().Lock()->GetActorAcceleration(*this)获取。
   geom::Vector3D Actor::GetAcceleration() const {
     return GetEpisode().Lock()->GetActorAcceleration(*this);
   }
-
+  //返回指定组件在世界空间中的变换。
+  //这里的componentName是一个字符串，表示Actor上某个特定组件的名称。
   geom::Transform Actor::GetComponentWorldTransform(const std::string componentName) const {
     return GetEpisode().Lock()->GetActorComponentWorldTransform(*this, componentName);
   }
-
+  //返回指定组件相对于Actor自身的变换。
   geom::Transform Actor::GetComponentRelativeTransform(const std::string componentName) const {
     return GetEpisode().Lock()->GetActorComponentRelativeTransform(*this, componentName);
   }
