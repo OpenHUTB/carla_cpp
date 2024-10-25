@@ -45,31 +45,31 @@ namespace client {
   geom::Transform Actor::GetComponentRelativeTransform(const std::string componentName) const {
     return GetEpisode().Lock()->GetActorComponentRelativeTransform(*this, componentName);
   }
-
+  //这个函数返回一个std::vector<geom::Transform>类型的值，代表Actor中所有骨骼的世界变换（World Transforms）。
   std::vector<geom::Transform> Actor::GetBoneWorldTransforms() const {
     return GetEpisode().Lock()->GetActorBoneWorldTransforms(*this);
   }
-
+  //与GetBoneWorldTransforms类似，这个函数返回Actor中所有骨骼的相对变换（Relative Transforms）
   std::vector<geom::Transform> Actor::GetBoneRelativeTransforms() const {
     return GetEpisode().Lock()->GetActorBoneRelativeTransforms(*this);
   }
-
+  //这个函数返回一个std::vector<std::string>类型的值，包含Actor中所有组件的名称。
   std::vector<std::string> Actor::GetComponentNames() const {
     return GetEpisode().Lock()->GetActorComponentNames(*this);
   }
-
+  //这个函数返回一个std::vector<std::string>类型的值，包含Actor中所有骨骼的名称
   std::vector<std::string> Actor::GetBoneNames() const {
     return GetEpisode().Lock()->GetActorBoneNames(*this);
   } 
-
+  //这个函数返回一个std::vector<geom::Transform>类型的值，代表Actor中所有插槽（Sockets）的世界变换
   std::vector<geom::Transform> Actor::GetSocketWorldTransforms() const {
     return GetEpisode().Lock()->GetActorSocketWorldTransforms(*this);
   }
-
+  //与GetSocketWorldTransforms类似，这个函数返回Actor中所有插槽的相对变换
   std::vector<geom::Transform> Actor::GetSocketRelativeTransforms() const {
     return GetEpisode().Lock()->GetActorSocketRelativeTransforms(*this);
   }
-
+  //这个函数返回一个std::vector<std::string>类型的值，包含Actor中所有插槽的名称
   std::vector<std::string> Actor::GetSocketNames() const {
     return GetEpisode().Lock()->GetActorSocketNames(*this);
   }  
