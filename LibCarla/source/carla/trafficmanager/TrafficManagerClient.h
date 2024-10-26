@@ -64,63 +64,76 @@ public:
       }
   }
 
-  /// Destructor method.
+  /// 析构函数，用于清理资源
   ~TrafficManagerClient() {
     if(_client) {
-      delete _client;
-      _client = nullptr;
+      delete _client;// 如果_client存在，则删除它
+      _client = nullptr;// 将_client指针置为空，避免野指针  
     }
   };
 
-  /// Set parameters.
+  /// 设置服务器详细信息。  
+/// @param _host 服务器主机名或IP地址。  
+/// @param _port 服务器端口号
   void setServerDetails(const std::string &_host, const uint16_t &_port) {
-    tmhost = _host;
-    tmport = _port;
+    tmhost = _host;// 设置主机名
+    tmport = _port;// 设置端口号 
   }
 
-  /// Get parameters.
+  /// 获取服务器详细信息。  
+/// @param _host 用于存储服务器主机名的字符串引用。  
+/// @param _port 用于存储服务器端口号的无符号短整型引用
   void getServerDetails(std::string &_host, uint16_t &_port) {
-    _host = tmhost;
-    _port = tmport;
+    _host = tmhost;// 返回主机名
+    _port = tmport;// 返回端口号 
   }
 
-  /// Register vehicles to remote traffic manager server via RPC client.
+  /// 通过RPC客户端向远程交通管理服务器注册车辆。  
+/// @param actor_list 要注册的车辆列表。
   void RegisterVehicle(const std::vector<carla::rpc::Actor> &actor_list) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("register_vehicle", std::move(actor_list));
+    DEBUG_ASSERT(_client != nullptr);// 断言_client不为空 
+    _client->call("register_vehicle", std::move(actor_list));// 调用RPC方法注册车辆  
   }
 
-  /// Unregister vehicles to remote traffic manager server via RPC client.
+  /// 通过RPC客户端从远程交通管理服务器注销车辆。  
+/// @param actor_list 要注销的车辆列表。 
   void UnregisterVehicle(const std::vector<carla::rpc::Actor> &actor_list) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("unregister_vehicle", std::move(actor_list));
+    DEBUG_ASSERT(_client != nullptr);// 断言_client不为空
+    _client->call("unregister_vehicle", std::move(actor_list));// 调用RPC方法注销车辆
   }
 
-  /// Method to set a vehicle's % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// 设置车辆相对于限速的速度百分比差异。  
+/// 如果小于0，则表示百分比增加。  
+/// @param _actor 要设置速度差异的车辆。  
+/// @param percentage 速度百分比差异。
   void SetPercentageSpeedDifference(const carla::rpc::Actor &_actor, const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_percentage_speed_difference", std::move(_actor), percentage);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client不为空
+    _client->call("set_percentage_speed_difference", std::move(_actor), percentage);// 调用RPC方法设置速度差异
   }
 
-  /// Method to set a lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// 设置车辆相对于中心线的车道偏移量。  
+/// 正值表示向右偏移，负值表示向左偏移。  
+/// @param _actor 要设置车道偏移量的车辆。  
+/// @param offset 车道偏移量。
   void SetLaneOffset(const carla::rpc::Actor &_actor, const float offset) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_lane_offset", std::move(_actor), offset);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client不为空
+    _client->call("set_lane_offset", std::move(_actor), offset);// 调用RPC方法设置车道偏移量
   }
 
-  /// Set a vehicle's exact desired velocity.
+  /// 设置车辆的精确期望速度。  
+/// @param _actor 要设置期望速度的车辆。  
+/// @param value 期望速度值。
   void SetDesiredSpeed(const carla::rpc::Actor &_actor, const float value) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_desired_speed", std::move(_actor), value);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client不为空
+    _client->call("set_desired_speed", std::move(_actor), value);// 调用RPC方法设置期望速度
   }
 
-  /// Method to set a global % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// 设置全局相对于限速的速度百分比差异。  
+/// 如果小于0，则表示百分比增加。  
+/// @param percentage 全局速度百分比差异。
   void SetGlobalPercentageSpeedDifference(const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_global_percentage_speed_difference", percentage);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client不为空
+    _client->call("set_global_percentage_speed_difference", percentage);// 调用RPC方法设置全局速度差异
   }
 
   /// Method to set a global lane offset displacement from the center line.
