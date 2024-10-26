@@ -136,73 +136,92 @@ public:
     _client->call("set_global_percentage_speed_difference", percentage);// 调用RPC方法设置全局速度差异
   }
 
-  /// Method to set a global lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// 设置全局车道偏移量，相对于中心线。  
+/// 正值表示向右偏移，负值表示向左偏移。  
+/// @param offset 车道偏移量。
   void SetGlobalLaneOffset(const float offset) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_global_lane_offset", offset);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空
+    _client->call("set_global_lane_offset", offset);// 调用RPC方法设置全局车道偏移量  
   }
 
-  /// Method to set the automatic management of the vehicle lights
+  /// 设置车辆灯光的自动管理。  
+/// @param _actor 要设置灯光管理的车辆。  
+/// @param do_update 是否启用灯光自动管理。
   void SetUpdateVehicleLights(const carla::rpc::Actor &_actor, const bool do_update) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("update_vehicle_lights", std::move(_actor), do_update);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空
+    _client->call("update_vehicle_lights", std::move(_actor), do_update);// 调用RPC方法设置车辆灯光自动管理
   }
 
-  /// Method to set collision detection rules between vehicles.
+  /// 设置车辆间的碰撞检测规则。  
+/// @param reference_actor 参考车辆。  
+/// @param other_actor 另一辆参与碰撞检测的车辆。  
+/// @param detect_collision 是否启用碰撞检测。
   void SetCollisionDetection(const carla::rpc::Actor &reference_actor, const carla::rpc::Actor &other_actor, const bool detect_collision) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_collision_detection", reference_actor, other_actor, detect_collision);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空  
+    _client->call("set_collision_detection", reference_actor, other_actor, detect_collision);// 调用RPC方法设置碰撞检测规则 
   }
 
-  /// Method to force lane change on a vehicle.
-  /// Direction flag can be set to true for left and false for right.
+  /// 强制车辆换道。  
+/// @param actor 要强制换道的车辆。  
+/// @param direction 换道方向，true表示向左，false表示向右。
   void SetForceLaneChange(const carla::rpc::Actor &actor, const bool direction) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_force_lane_change", actor, direction);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空
+    _client->call("set_force_lane_change", actor, direction);// 调用RPC方法强制车辆换道
   }
 
-  /// Enable/disable automatic lane change on a vehicle.
+  /// 启用/禁用车辆的自动换道功能。  
+/// @param actor 要设置自动换道功能的车辆。  
+/// @param enable 是否启用自动换道。
   void SetAutoLaneChange(const carla::rpc::Actor &actor, const bool enable) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_auto_lane_change", actor, enable);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空 
+    _client->call("set_auto_lane_change", actor, enable);// 调用RPC方法设置自动换道功能
   }
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the leading vehicle.
+  /// 设置车辆与前车应保持的距离。  
+/// @param actor 要设置距离的车辆。  
+/// @param distance 应保持的距离。
   void SetDistanceToLeadingVehicle(const carla::rpc::Actor &actor, const float distance) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_distance_to_leading_vehicle", actor, distance);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空
+    _client->call("set_distance_to_leading_vehicle", actor, distance);// 调用RPC方法设置与前车的距离
   }
 
-  /// Method to specify the % chance of ignoring collisions with any walker.
+  /// 设置车辆忽略行人的碰撞概率。  
+/// @param actor 要设置碰撞概率的车辆。  
+/// @param percentage 忽略行人的碰撞概率（百分比）。
   void SetPercentageIgnoreWalkers(const carla::rpc::Actor &actor, const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_percentage_ignore_walkers", actor, percentage);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空
+    _client->call("set_percentage_ignore_walkers", actor, percentage); // 调用RPC方法设置忽略行人的碰撞概率
   }
 
-  /// Method to specify the % chance of ignoring collisions with any vehicle.
+  /// 设置车辆忽略其他车辆的碰撞概率。  
+/// @param actor 要设置碰撞概率的车辆。  
+/// @param percentage 忽略其他车辆的碰撞概率（百分比）。
   void SetPercentageIgnoreVehicles(const carla::rpc::Actor &actor, const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_percentage_ignore_vehicles", actor, percentage);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空
+    _client->call("set_percentage_ignore_vehicles", actor, percentage);// 调用RPC方法设置忽略其他车辆的碰撞概率
   }
 
-  /// Method to specify the % chance of running a traffic sign.
+  /// 设置车辆闯红灯的概率。  
+/// @param actor 要设置闯红灯概率的车辆。  
+/// @param percentage 闯红灯的概率（百分比）。
   void SetPercentageRunningLight(const carla::rpc::Actor &actor, const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_percentage_running_light", actor, percentage);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空
+    _client->call("set_percentage_running_light", actor, percentage);// 调用RPC方法设置闯红灯的概率
   }
 
-  /// Method to specify the % chance of running any traffic sign.
+  /// 设置车辆无视任何交通标志的概率。  
+/// @param actor 要设置无视交通标志概率的车辆。  
+/// @param percentage 无视交通标志的概率（百分比）。 
   void SetPercentageRunningSign(const carla::rpc::Actor &actor, const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_percentage_running_sign", actor, percentage);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空
+    _client->call("set_percentage_running_sign", actor, percentage);// 调用RPC方法设置无视交通标志的概率
   }
 
-  /// Method to switch traffic manager into synchronous execution.
+  /// 将交通管理器切换为同步执行模式。  
+/// @param mode 是否启用同步模式。
   void SetSynchronousMode(const bool mode) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_synchronous_mode", mode);
+    DEBUG_ASSERT(_client != nullptr);// 断言_client指针不为空 
+    _client->call("set_synchronous_mode", mode);// 调用RPC方法设置同步执行模式
   }
 
   /// Method to set tick timeout for synchronous execution.
