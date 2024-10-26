@@ -302,73 +302,73 @@ public:
     _client->call("remove_custom_path", actor_id, remove_path);/// 调用_client的call方法移除自定义路径
   }
 
-  /// Method to update an already set list of points.
+  /// 更新已设置的点列表的方法
   void UpdateUploadPath(const ActorId &actor_id, const Path path) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("update_custom_path", actor_id, path);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr
+    _client->call("update_custom_path", actor_id, path);/// 调用_client的call方法，传入"update_custom_path"指令、actor_id和path
   }
 
-  /// Method to set our own imported route.
+  /// 设置我们自己的导入路线的方法
   void SetImportedRoute(const carla::rpc::Actor &actor, const Route route, const bool empty_buffer) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_imported_route", actor, route, empty_buffer);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr
+    _client->call("set_imported_route", actor, route, empty_buffer);/// 调用_client的call方法，传入"set_imported_route"指令、actor、route和empty_buffer
   }
 
-  /// Method to remove a route.
+  /// 移除路线的方法
   void RemoveImportedRoute(const ActorId &actor_id, const bool remove_path) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("remove_imported_route", actor_id, remove_path);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr
+    _client->call("remove_imported_route", actor_id, remove_path);/// 调用_client的call方法，传入"remove_imported_route"指令、actor_id和remove_path。
   }
 
-  /// Method to update an already set list of points.
+  /// 更新已设置的导入路线的方法
   void UpdateImportedRoute(const ActorId &actor_id, const Route route) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("update_imported_route", actor_id, route);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr
+    _client->call("update_imported_route", actor_id, route);/// 调用_client的call方法，传入"update_imported_route"指令、actor_id和route
   }
 
-  /// Method to set automatic respawn of dormant vehicles.
+  /// 设置休眠车辆的自动重生模式的方法
   void SetRespawnDormantVehicles(const bool mode_switch) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_respawn_dormant_vehicles", mode_switch);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr
+    _client->call("set_respawn_dormant_vehicles", mode_switch);/// 调用_client的call方法，传入"set_respawn_dormant_vehicles"指令和mode_switch
   }
 
-  /// Method to set boundaries for respawning vehicles.
+  /// 设置重生车辆的边界的方法
   void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_boundaries_respawn_dormant_vehicles", lower_bound, upper_bound);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr
+    _client->call("set_boundaries_respawn_dormant_vehicles", lower_bound, upper_bound);/// 调用_client的call方法，传入"set_boundaries_respawn_dormant_vehicles"指令、lower_bound和upper_bound
   }
 
-  /// Method to set boundaries for respawning vehicles.
+  /// 设置最大边界的方法
   void SetMaxBoundaries(const float lower, const float upper) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_max_boundaries", lower, upper);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr。
+    _client->call("set_max_boundaries", lower, upper);/// 调用_client的call方法，传入"set_max_boundaries"指令、lower和upper
   }
 
-  /// Method to get the vehicle's next action.
+  /// 获取车辆下一个动作的方法
   Action GetNextAction(const ActorId &actor_id) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("get_next_action", actor_id);
-    return Action();
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr
+    _client->call("get_next_action", actor_id);/// 调用_client的call方法，传入"get_next_action"指令和actor_id
+    return Action();/// 返回Action对象
   }
 
-  /// Method to get the vehicle's action buffer.
+  /// 获取车辆动作缓冲区的方法
   ActionBuffer GetActionBuffer(const ActorId &actor_id) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("get_all_actions", actor_id);
-    return ActionBuffer();
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client不为nullptr
+    _client->call("get_all_actions", actor_id);/// 调用_client的call方法，传入"get_all_actions"指令和actor_id
+    return ActionBuffer();/// 返回ActionBuffer对象
   }
-
-  void ShutDown() {
+  /// 关闭的方法
+  void ShutDown() {/// 断言_client不为nullptr
     DEBUG_ASSERT(_client != nullptr);
-    _client->call("shut_down");
+    _client->call("shut_down");/// 调用_client的call方法，传入"shut_down"指令
   }
 
 private:
 
-  /// RPC client.
+    /// RPC客户端
   ::rpc::client *_client = nullptr;
 
-  /// Server port and host.
+  /// 服务器端口和主机
   std::string tmhost;
   uint16_t    tmport;
 };
