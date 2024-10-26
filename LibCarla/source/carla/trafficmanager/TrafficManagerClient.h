@@ -6,39 +6,61 @@
 
 #pragma once
 
-#include "carla/trafficmanager/Constants.h"
-#include "carla/rpc/Actor.h"
+#include "carla/trafficmanager/Constants.h"// 引入常量定义
+#include "carla/rpc/Actor.h"// 引入Actor类的定义
 
-#include <rpc/client.h>
+#include <rpc/client.h>// 引入RPC客户端库
 
 namespace carla {
 namespace traffic_manager {
-
+    /**
+     * 使用常量命名空间中的TM_TIMEOUT和TM_DEFAULT_PORT。
+     */
 using constants::Networking::TM_TIMEOUT;
 using constants::Networking::TM_DEFAULT_PORT;
 
-/// Provides communication with the rpc of TrafficManagerServer.
+/**
+ * @class TrafficManagerClient
+ * @brief 提供与TrafficManagerServer的RPC通信功能。
+ */
 class TrafficManagerClient {
 
 public:
-
+    /**
+       * @brief 拷贝构造函数，默认实现。
+       */
   TrafficManagerClient(const TrafficManagerClient &) = default;
+  /**
+   * @brief 移动构造函数，默认实现。
+   */
   TrafficManagerClient(TrafficManagerClient &&) = default;
-
+  /**
+   * @brief 拷贝赋值运算符，默认实现。
+   */
   TrafficManagerClient &operator=(const TrafficManagerClient &) = default;
+  /**
+   * @brief 移动赋值运算符，默认实现。
+   */
   TrafficManagerClient &operator=(TrafficManagerClient &&) = default;
 
-  /// Parametric constructor to initialize the parameters.
+  /**
+   * @brief 参数化构造函数，用于初始化连接参数。
+   * @param _host 服务器主机名或IP地址。
+   * @param _port 服务器端口号。
+   */
   TrafficManagerClient(
-      const std::string &_host,
-      const uint16_t &_port)
-    : tmhost(_host),
-      tmport(_port) {
+      const std::string &_host,// 服务器主机名或IP地址 
+      const uint16_t &_port)// 服务器端口号  
+    : tmhost(_host),// 初始化成员变量tmhost 
+      tmport(_port) {// 初始化成员变量tmport
 
-    /// Create client instance.
+      /**
+       * 创建RPC客户端实例。
+       * 如果_client尚未创建，则创建一个新的rpc::client实例，并设置超时时间。
+       */
       if(!_client) {
-        _client = new ::rpc::client(tmhost, tmport);
-        _client->set_timeout(TM_TIMEOUT);
+        _client = new ::rpc::client(tmhost, tmport);// 创建RPC客户端实例
+        _client->set_timeout(TM_TIMEOUT);// 设置超时时间为TM_TIMEOUT
       }
   }
 
