@@ -224,83 +224,82 @@ public:
     _client->call("set_synchronous_mode", mode);// 调用RPC方法设置同步执行模式
   }
 
-  /// Method to set tick timeout for synchronous execution.
+  /// 设置同步执行模式下的超时时间（以毫秒为单位）
   void SetSynchronousModeTimeOutInMiliSecond(const double time) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_synchronous_mode_timeout_in_milisecond", time);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空。
+    _client->call("set_synchronous_mode_timeout_in_milisecond", time);/// 调用_client的call方法设置超时时间
   }
 
-  /// Method to provide synchronous tick.
+  /// 提供同步滴答（tick）操作
   bool SynchronousTick() {
-    DEBUG_ASSERT(_client != nullptr);
-    return _client->call("synchronous_tick").as<bool>();
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    return _client->call("synchronous_tick").as<bool>();/// 调用_client的call方法执行同步滴答，并返回结果
   }
 
-  /// Check if remote traffic manager is alive
+  /// 检查远程交通管理器（TM）是否存活
   void HealthCheckRemoteTM() {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("health_check_remote_TM");
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("health_check_remote_TM");/// 调用_client的call方法检查远程交通管理器状态
   }
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the Global leading vehicle.
+  /// 设置全局领航车辆应保持的距离
   void SetGlobalDistanceToLeadingVehicle(const float distance) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_global_distance_to_leading_vehicle",distance);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("set_global_distance_to_leading_vehicle",distance); /// 调用_client的call方法设置全局领航距离
   }
 
-  /// Method to set % to keep on the right lane.
+  /// 设置车辆保持在右侧车道的百分比
   void SetKeepRightPercentage(const carla::rpc::Actor &actor, const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("keep_right_rule_percentage", actor, percentage);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("keep_right_rule_percentage", actor, percentage);/// 调用_client的call方法设置保持右侧车道的百分比
   }
 
-  /// Method to set % to randomly do a left lane change.
+  /// 设置车辆随机进行左车道变换的百分比
   void SetRandomLeftLaneChangePercentage(const carla::rpc::Actor &actor, const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("random_left_lanechange_percentage", actor, percentage);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("random_left_lanechange_percentage", actor, percentage);/// 调用_client的call方法设置随机左车道变换的百分比
   }
 
-  /// Method to set % to randomly do a right lane change.
+  /// 设置车辆随机进行右车道变换的百分比
   void SetRandomRightLaneChangePercentage(const carla::rpc::Actor &actor, const float percentage) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("random_right_lanechange_percentage", actor, percentage);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("random_right_lanechange_percentage", actor, percentage);/// 调用_client的call方法设置随机右车道变换的百分比
   }
 
-  /// Method to set hybrid physics mode.
+  /// 设置混合物理模式
   void SetHybridPhysicsMode(const bool mode_switch) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_hybrid_physics_mode", mode_switch);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("set_hybrid_physics_mode", mode_switch);/// 调用_client的call方法设置混合物理模式
   }
 
-  /// Method to set hybrid physics mode.
+  /// 设置混合物理模式的半径
   void SetHybridPhysicsRadius(const float radius) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_hybrid_physics_radius", radius);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("set_hybrid_physics_radius", radius);/// 调用_client的call方法设置混合物理模式的半径
   }
 
-  /// Method to set randomization seed.
+  /// 设置随机化种子
   void SetRandomDeviceSeed(const uint64_t seed) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_random_device_seed", seed);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("set_random_device_seed", seed);/// 调用_client的call方法设置随机化种子
   }
 
-  /// Method to set Open Street Map mode.
+  /// 设置Open Street Map模式
   void SetOSMMode(const bool mode_switch) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_osm_mode", mode_switch);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("set_osm_mode", mode_switch);/// 调用_client的call方法设置Open Street Map模式
   }
 
-  /// Method to set our own imported path.
+  /// 设置自定义路径
   void SetCustomPath(const carla::rpc::Actor &actor, const Path path, const bool empty_buffer) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("set_path", actor, path, empty_buffer);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("set_path", actor, path, empty_buffer);/// 调用_client的call方法设置自定义路径
   }
 
-  /// Method to remove a list of points.
+  /// 移除一系列点（路径）
   void RemoveUploadPath(const ActorId &actor_id, const bool remove_path) {
-    DEBUG_ASSERT(_client != nullptr);
-    _client->call("remove_custom_path", actor_id, remove_path);
+    DEBUG_ASSERT(_client != nullptr);/// 断言_client指针不为空
+    _client->call("remove_custom_path", actor_id, remove_path);/// 调用_client的call方法移除自定义路径
   }
 
   /// Method to update an already set list of points.
