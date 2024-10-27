@@ -20,16 +20,18 @@ Router::~Router() {
 }
 
 void Router::Stop() {
-  ClearSessions();
-  _listener->Stop();
-  _listener.reset();
-  _pool.Stop();
+  ClearSessions();    // 清除所有活动的会话。
+  _listener->Stop();  // 停止监听器，防止接受新连接
+  _listener.reset();  // 释放监听器对象的内存。
+  _pool.Stop();       // 停止相关的线程池以释放资源。
 }
 
 Router::Router(uint16_t port) :
   _next(0) {
 
+  // 创建一个TCP端点，监听所有网络接口（0.0.0.0）上的指定端口
   _endpoint = boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string("0.0.0.0"), port);
+  // 初始化_listener为指向Listener对象的共享指针，用于处理传入连接。
   _listener = std::make_shared<carla::multigpu::Listener>(_pool.io_context(), _endpoint);
 }
 
