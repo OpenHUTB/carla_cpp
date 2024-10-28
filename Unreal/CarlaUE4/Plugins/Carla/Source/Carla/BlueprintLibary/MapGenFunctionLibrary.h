@@ -6,14 +6,14 @@
 
 #pragma once
 
-// Engine headers
+// 发动机接头
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "MeshDescription.h"
 #include "ProceduralMeshComponent.h"
 // Carla C++ headers
 
-// Carla plugin headers
+// Carla 插件头文件
 #include "Carla/Util/ProceduralCustomMesh.h"
 
 #include "MapGenFunctionLibrary.generated.h"
