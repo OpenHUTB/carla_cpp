@@ -118,7 +118,7 @@ struct ActorConstellationData {
   /// @brief the ego route
   ::ad::map::route::FullRoute ego_route;
 
-  /// @brief the ego dynamics on the route
+  路线上的自主动力
   EgoDynamicsOnRoute ego_dynamics_on_route;
 
   /// @brief the other object's map matched information
