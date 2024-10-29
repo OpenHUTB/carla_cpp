@@ -47,7 +47,7 @@ struct EgoDynamicsOnRoute {
   double time_since_epoch_check_start_ms;
   ///在checkObjects调用结束时，从epoch开始的时间，单位为毫秒
   double time_since_epoch_check_end_ms;
-  /// 自我速度
+  /// 自主车辆的速度
   ::ad::physics::Speed ego_speed;
   /// 当前最小停止距离
   ::ad::physics::Distance min_stopping_distance;
@@ -118,7 +118,7 @@ struct ActorConstellationData {
   /// @brief the ego route
   ::ad::map::route::FullRoute ego_route;
 
-  路线上的自主动力
+  //路线上自主车辆的动力学
   EgoDynamicsOnRoute ego_dynamics_on_route;
 
   /// @brief the other object's map matched information
