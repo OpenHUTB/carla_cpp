@@ -46,8 +46,7 @@ void UMoveAssetsCommandlet::MoveAssets(const FMovePackageParams &PackageParams)
   AssetsObjectLibrary = UObjectLibrary::CreateLibrary(UStaticMesh::StaticClass(), false, GIsEditor);
   AssetsObjectLibrary->AddToRoot();
 
-  // 开始加载库中的所有资产，并对它们进行分类以进行语义化
-  // 分割
+  // 开始加载库中的所有资产，并对它们进行分类以进行语义化;分割
   for (const auto &Map : PackageParams.MapNames)
   {
     MoveAssetsFromMapForSemanticSegmentation(PackageParams.Name, Map);
@@ -117,8 +116,7 @@ void UMoveAssetsCommandlet::MoveAssetsFromMapForSemanticSegmentation(
         continue;
       }
 
-      // 标签之间绑定，根据语义对资产进行分类
-      // 分割
+      // 标签之间绑定，根据语义对资产进行分类;分割
       if (AssetName.Contains(SSTags::R_ROAD1) || AssetName.Contains(SSTags::R_ROAD2))
       {
         AssetDataMap[SSTags::ROAD].Add(MeshAsset);
