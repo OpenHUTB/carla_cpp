@@ -296,43 +296,52 @@ public:
     }
   }
 
-  /// Method to specify the % chance of ignoring collisions with any walker.
+  /// 设置忽略行人的碰撞概率。  
+/// @param actor 车辆指针。  
+/// @param perc 忽略碰撞的概率（百分比）。
   void SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetPercentageIgnoreWalkers(actor, perc);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效  
+      tm_ptr->SetPercentageIgnoreWalkers(actor, perc); // 调用设置忽略行人碰撞概率的方法
     }
   }
 
-  /// Method to specify the % chance of ignoring collisions with any vehicle.
+  /// 设置忽略车辆的碰撞概率。  
+/// @param actor 车辆指针。  
+/// @param perc 忽略碰撞的概率（百分比）。
   void SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetPercentageIgnoreVehicles(actor, perc);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetPercentageIgnoreVehicles(actor, perc);// 调用设置忽略车辆碰撞概率的方法
     }
   }
 
-  /// Method to specify the % chance of running a sign.
+  /// 设置无视交通标志的概率。  
+/// @param actor 车辆指针。  
+/// @param perc 无视交通标志的概率（百分比）。 
   void SetPercentageRunningSign(const ActorPtr &actor, const float perc) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetPercentageRunningSign(actor, perc);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetPercentageRunningSign(actor, perc);// 调用设置无视交通标志概率的方法
     }
   }
 
-  /// Method to specify the % chance of running a light.
+  /// 设置无视交通信号灯的概率。  
+/// @param actor 车辆指针。  
+/// @param perc 无视交通信号灯的概率（百分比）。  
   void SetPercentageRunningLight(const ActorPtr &actor, const float perc){
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetPercentageRunningLight(actor, perc);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetPercentageRunningLight(actor, perc); // 调用设置无视交通信号灯概率的方法
     }
   }
 
-  /// Method to switch traffic manager into synchronous execution.
-  void SetSynchronousMode(bool mode) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetSynchronousMode(mode);
+  /// 将交通管理器切换为同步执行模式。  
+ /// @param mode 是否启用同步模式（true为启用，false为禁用）。
+  void SetSynchronousMode(bool mode) {// 获取交通管理器实例 
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetSynchronousMode(mode);// 调用设置同步执行模式的方法  
     }
   }
 
