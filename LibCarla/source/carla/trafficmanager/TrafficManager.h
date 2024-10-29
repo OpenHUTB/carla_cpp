@@ -6,46 +6,50 @@
 
 #pragma once
 
-#include <map>
-#include <mutex>
-#include <vector>
+#include <map>///< 引入map容器，用于存储键值对
+#include <mutex>///< 引入互斥锁，用于线程间的同步
+#include <vector>///< 引入动态数组容器，用于存储可变大小的数组
 
-#include "carla/client/Actor.h"
-#include "carla/trafficmanager/Constants.h"
-#include "carla/trafficmanager/TrafficManagerBase.h"
+#include "carla/client/Actor.h"///< 引入CARLA客户端的Actor类，代表场景中的一个实体
+#include "carla/trafficmanager/Constants.h"///< 引入交通管理器常量定义
+#include "carla/trafficmanager/TrafficManagerBase.h"///< 引入交通管理器基类
 
 namespace carla {
 namespace traffic_manager {
 
-using constants::Networking::TM_DEFAULT_PORT;
+using constants::Networking::TM_DEFAULT_PORT;///< 使用常量TM_DEFAULT_PORT，表示交通管理器的默认端口号
 
-using ActorPtr = carla::SharedPtr<carla::client::Actor>;
+using ActorPtr = carla::SharedPtr<carla::client::Actor>;///< 定义Actor的智能指针类型，用于管理Actor对象的生命周期
 
-/// This class integrates all the various stages of
-/// the traffic manager appropriately using messengers.
+/// \class TrafficManager  
+/// \brief 该类通过使用消息传递机制，将交通管理器的各个阶段恰当地整合在一起
 class TrafficManager {
 
 public:
-  /// Public constructor for singleton life cycle management.
+    /// \brief 公有构造函数，用于单例生命周期管理。  
+    /// \param episode_proxy CARLA客户端的EpisodeProxy对象，代表一个场景会话。  
+    /// \param port 交通管理器的端口号，默认为TM_DEFAULT_PORT
   explicit TrafficManager(
     carla::client::detail::EpisodeProxy episode_proxy,
     uint16_t port = TM_DEFAULT_PORT);
-
+  /// \brief 拷贝构造函数，用于复制另一个TrafficManager对象。  
+  /// \param other 要复制的TrafficManager对象。
   TrafficManager(const TrafficManager& other) {
     _port = other._port;
   }
-
+  /// \brief 默认构造函数，不执行任何操作。
   TrafficManager() {};
-
+  /// \brief 移动构造函数，用于移动另一个TrafficManager对象
   TrafficManager(TrafficManager &&) = default;
-
+  /// \brief 拷贝赋值运算符，用于将另一个TrafficManager对象赋值给当前对象
   TrafficManager &operator=(const TrafficManager &) = default;
+  /// \brief 移动赋值运算符，用于将另一个TrafficManager对象移动赋值给当前对象
   TrafficManager &operator=(TrafficManager &&) = default;
-
+  /// \brief 释放TrafficManager对象，用于单例模式的清理工作
   static void Release();
-
+  /// \brief 重置TrafficManager对象，用于单例模式的重置操作
   static void Reset();
-
+  /// \brief 执行TrafficManager的Tick操作，通常用于周期性地更新状态
   static void Tick();
 
   uint16_t Port() const {
