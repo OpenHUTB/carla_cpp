@@ -345,60 +345,70 @@ public:
     }
   }
 
-  /// Method to set tick timeout for synchronous execution.
+  /// 设置同步执行模式的滴答超时时间（以毫秒为单位）。  
+/// @param time 超时时间，单位为毫秒。
   void SetSynchronousModeTimeOutInMiliSecond(double time) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetSynchronousModeTimeOutInMiliSecond(time);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetSynchronousModeTimeOutInMiliSecond(time);// 调用设置超时时间的方法
     }
   }
 
-  /// Method to provide synchronous tick.
+  /// 执行同步滴答。  
+/// @return 如果成功执行同步滴答，则返回true；否则返回false。 
   bool SynchronousTick() {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      return tm_ptr->SynchronousTick();
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      return tm_ptr->SynchronousTick();// 调用执行同步滴答的方法，并返回结果
     }
-    return false;
+    return false;// 如果实例无效，则返回false
   }
 
-  /// Method to Set Global distance to Leading vehicle
+  /// 设置全局的前车距离。  
+/// @param distance 前车距离。
   void SetGlobalDistanceToLeadingVehicle(const float distance) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetGlobalDistanceToLeadingVehicle(distance);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetGlobalDistanceToLeadingVehicle(distance);// 调用设置前车距离的方法
     }
   }
 
-  /// Method to set % to keep on the right lane.
+  /// 设置车辆保持在右侧车道的百分比。  
+ /// @param actor 车辆指针。  
+ /// @param percentage 保持在右侧车道的百分比。 
   void SetKeepRightPercentage(const ActorPtr &actor, const float percentage) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetKeepRightPercentage(actor, percentage);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例  
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetKeepRightPercentage(actor, percentage);// 调用设置保持在右侧车道百分比的方法
     }
   }
 
-  /// Method to set % to randomly do a left lane change.
+  /// 设置车辆随机进行左侧车道变换的百分比。  
+/// @param actor 车辆指针。  
+/// @param percentage 随机进行左侧车道变换的百分比。
   void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetRandomLeftLaneChangePercentage(actor, percentage);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetRandomLeftLaneChangePercentage(actor, percentage);// 调用设置随机左侧车道变换百分比的方法
     }
   }
 
-  /// Method to set % to randomly do a right lane change.
+  /// 设置车辆随机进行右侧车道变换的百分比。  
+ /// @param actor 车辆指针。  
+ /// @param percentage 随机进行右侧车道变换的百分比。
   void SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetRandomRightLaneChangePercentage(actor, percentage);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例  
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetRandomRightLaneChangePercentage(actor, percentage);// 调用设置随机右侧车道变换百分比的方法
     }
   }
 
-  /// Method to set randomization seed.
+  /// 设置随机数生成器的种子。  
+ /// @param seed 随机数生成器的种子。
   void SetRandomDeviceSeed(const uint64_t seed) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetRandomDeviceSeed(seed);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetRandomDeviceSeed(seed);// 调用设置随机数生成器种子的方法
     }
   }
 
