@@ -133,45 +133,106 @@ public:
  */
   virtual void SetGlobalLaneOffset(float const offset) = 0;
 
-  /// Method to set the automatic management of the vehicle lights
+  /**
+ * @brief 设置车辆灯光的自动管理。
+ * @param actor 车辆指针。
+ * @param do_update 是否更新灯光管理。
+ */
   virtual void SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update) = 0;
 
-  /// Method to set collision detection rules between vehicles.
+  /**
+  * @brief 设置车辆之间的碰撞检测规则。
+  *
+  * @param reference_actor 参考车辆指针。
+  * @param other_actor 其他车辆指针。
+  * @param detect_collision 是否检测碰撞。
+  */
   virtual void SetCollisionDetection(const ActorPtr &reference_actor, const ActorPtr &other_actor, const bool detect_collision) = 0;
 
-  /// Method to force lane change on a vehicle.
-  /// Direction flag can be set to true for left and false for right.
+  /**
+ * @brief 强制车辆换道。
+ *
+ * 方向标志可以设置为true表示向左换道，false表示向右换道。
+ *
+ * @param actor 车辆指针。
+ * @param direction 换道方向。
+ */
   virtual void SetForceLaneChange(const ActorPtr &actor, const bool direction) = 0;
 
-  /// Enable/disable automatic lane change on a vehicle.
+  /**
+ * @brief 启用/禁用车辆的自动换道。
+ *
+ * @param actor 车辆指针。
+ * @param enable 是否启用自动换道。
+ */
   virtual void SetAutoLaneChange(const ActorPtr &actor, const bool enable) = 0;
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the leading vehicle.
+  /**
+ * @brief 设置车辆与前车应保持的距离。
+ *
+ * @param actor 车辆指针。
+ * @param distance 应保持的距离。
+ */
   virtual void SetDistanceToLeadingVehicle(const ActorPtr &actor, const float distance) = 0;
 
-  /// Method to specify the % chance of ignoring collisions with any walker.
+  /**
+  * @brief 设置车辆忽略行人的碰撞概率。
+  *
+  * @param actor 车辆指针。
+  * @param perc 忽略行人的碰撞概率。
+  */
   virtual void SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc) = 0;
 
-  /// Method to specify the % chance of ignoring collisions with any vehicle.
+  /**
+ * @brief 设置车辆忽略其他车辆的碰撞概率。
+ *
+ * @param actor 车辆指针。
+ * @param perc 忽略其他车辆的碰撞概率。
+ */
   virtual void SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc) = 0;
 
-  /// Method to specify the % chance of running any traffic light.
+  /**
+ * @brief 设置车辆闯红灯的概率。
+ *
+ * @param actor 车辆指针。
+ * @param perc 闯红灯的概率。
+ */
   virtual void SetPercentageRunningLight(const ActorPtr &actor, const float perc) = 0;
 
-  /// Method to specify the % chance of running any traffic sign.
+  /**
+  * @brief 设置车辆无视交通标志的概率。
+  *
+  * @param actor 车辆指针。
+  * @param perc 无视交通标志的概率。
+  */
   virtual void SetPercentageRunningSign(const ActorPtr &actor, const float perc) = 0;
 
-  /// Method to switch traffic manager into synchronous execution.
+  /**
+ * @brief 将交通管理器切换到同步执行模式。
+ *
+ * @param mode 是否启用同步模式。
+ */
   virtual void SetSynchronousMode(bool mode) = 0;
 
-  /// Method to set Tick timeout for synchronous execution.
+  /**
+  * @brief 设置同步执行模式的Tick超时时间。
+  *
+  * @param time Tick超时时间（毫秒）。
+  */
   virtual void SetSynchronousModeTimeOutInMiliSecond(double time) = 0;
 
-  /// Method to provide synchronous tick
+  /**
+ * @brief 提供同步Tick。
+ *
+ * @return 如果成功提供同步Tick，则返回true；否则返回false。
+ */
   virtual bool SynchronousTick() = 0;
 
-  /// Get carla episode information
+  /**
+ * @brief 获取CARLA场景信息代理。
+ *
+ * @return 返回CARLA场景信息代理的引用。
+ */
   virtual  carla::client::detail::EpisodeProxy& GetEpisodeProxy() = 0;
 
   /// Method to set Global Distance to Leading Vehicle.
