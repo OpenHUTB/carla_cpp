@@ -20,17 +20,17 @@ void SecondaryCommands::set_callback(callback_type callback) {
 }
 
 void SecondaryCommands::process_command(Buffer buffer) {
-  // get the header
+  // get the header//获取标题
   CommandHeader *header;
   header = reinterpret_cast<CommandHeader *>(buffer.data());
   
-  // send only data to the callback
+  //只向回调发送数据
   Buffer data(buffer.data() + sizeof(CommandHeader), header->size);
   _callback(header->id, std::move(data));
 
-  // log_info("Secondary got a command to process");
+  // log_info（“Secondary有一个命令要处理”）；
 }
 
 
-} // namespace multigpu
-} // namespace carla
+} //命名空间multigpu
+} //命名空间Carla
