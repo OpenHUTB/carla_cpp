@@ -182,3 +182,4 @@ git rm -rf .
 [certain-m](https://github.com/caerain-m)。
 [kuanghy123](https://github.com/kuanghy123)。
 [longxiang06](https://github.com/longxiang06)
+https://github.com/bless416/carla_cpp.git
