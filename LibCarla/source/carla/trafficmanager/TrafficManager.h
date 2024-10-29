@@ -51,17 +51,20 @@ public:
   static void Reset();
   /// \brief 执行TrafficManager的Tick操作，通常用于周期性地更新状态
   static void Tick();
-
+  /// \brief 获取当前端口号。  
+/// \return 返回当前设置的端口号
   uint16_t Port() const {
     return _port;
   }
-
+  /// \brief 检查端口号是否有效。  
+/// \details 通常，操作系统会保留前1024个端口，因此有效端口号应大于1023。  
+/// \return 如果端口号有效，则返回true；否则返回false。
   bool IsValidPort() const {
-    // The first 1024 ports are reserved by the OS
     return (_port > 1023);
   }
 
-  /// Method to set Open Street Map mode.
+  /// \brief 设置Open Street Map模式。  
+  /// \param mode_switch 如果为true，则启用OSM模式；如果为false，则禁用
   void SetOSMMode(const bool mode_switch) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -69,7 +72,10 @@ public:
     }
   }
 
-  /// Method to set our own imported path.
+  /// \brief 设置自定义路径。  
+/// \param actor 对应的Actor指针。  
+/// \param path 要设置的路径。  
+/// \param empty_buffer 如果为true，则在设置新路径前清空缓冲区
   void SetCustomPath(const ActorPtr &actor, const Path path, const bool empty_buffer) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -77,7 +83,9 @@ public:
     }
   }
 
-  /// Method to remove a path.
+  /// \brief 移除路径。  
+ /// \param actor_id 要移除路径的Actor的ID。  
+ /// \param remove_path 如果为true，则移除路径；如果为false，则不执行操作（具体行为可能依赖于实现）
   void RemoveUploadPath(const ActorId &actor_id, const bool remove_path) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -85,7 +93,9 @@ public:
     }
   }
 
-  /// Method to update an already set path.
+  /// \brief 更新已设置的路径。  
+/// \param actor_id 要更新路径的Actor的ID。  
+/// \param path 新的路径。
   void UpdateUploadPath(const ActorId &actor_id, const Path path) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -93,7 +103,10 @@ public:
     }
   }
 
-  /// Method to set our own imported route.
+  /// \brief 设置导入的路线。  
+ /// \param actor 对应的Actor指针。  
+ /// \param route 要设置的路线。  
+ /// \param empty_buffer 如果为true，则在设置新路线前清空缓冲区。
   void SetImportedRoute(const ActorPtr &actor, const Route route, const bool empty_buffer) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -101,7 +114,9 @@ public:
     }
   }
 
-  /// Method to remove a route.
+  /// \brief 移除路线。  
+/// \param actor_id 要移除路线的Actor的ID。  
+/// \param remove_path 如果为true，则移除路线；如果为false，则不执行操作（具体行为可能依赖于实现）
   void RemoveImportedRoute(const ActorId &actor_id, const bool remove_path) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -109,7 +124,9 @@ public:
     }
   }
 
-  /// Method to update an already set route.
+  /// \brief 更新已设置的路线。  
+/// \param actor_id 要更新路线的Actor的ID。  
+/// \param route 新的路线。
   void UpdateImportedRoute(const ActorId &actor_id, const Route route) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -117,14 +134,17 @@ public:
     }
   }
 
-  /// Method to set if we are automatically respawning vehicles.
+  /// \brief 设置是否自动重生车辆。  
+/// \param mode_switch 如果为true，则启用自动重生；如果为false，则禁用。
   void SetRespawnDormantVehicles(const bool mode_switch) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
       tm_ptr->SetRespawnDormantVehicles(mode_switch);
     }
   }
-  /// Method to set boundaries for respawning vehicles.
+  /// \brief 设置重生车辆的范围边界。  
+  /// \param lower_bound 范围的下界。  
+  /// \param upper_bound 范围的上界。 
   void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
