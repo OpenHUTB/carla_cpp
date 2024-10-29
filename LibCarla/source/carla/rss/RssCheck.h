@@ -24,10 +24,10 @@
 namespace carla {
 namespace rss {
 
-/// @brief struct defining the different supported handling of road boundaries
+///  @brief结构体定义道路边界的不同支持处理
 enum class RoadBoundariesMode {
-  Off,  /// No road boundaries considered by RSS check
-  On    /// The road boundaries of the current route are considered by RSS check
+  Off,  ///  RSS 检查不考虑道路边界
+  On    /// 当前路线的道路边界会在RSS检查中考虑
 };
 
 /// @brief struct defining the ego vehicles current dynamics in respect to the
@@ -41,25 +41,25 @@ struct EgoDynamicsOnRoute {
   /// @brief constructor
   EgoDynamicsOnRoute();
 
-  /// @brief the carla timestamp of the last calculation
+  /// @brief 最后一次计算的Carla时间戳
   carla::client::Timestamp timestamp;
-  /// @brief the time since epoch in ms at start of the checkObjects call
+  ///在checkObjects调用开始时，@brief从epoch开始的时间，单位为毫秒
   double time_since_epoch_check_start_ms;
-  /// @brief the time since epoch in ms at the end of the checkObjects call
+  ///在checkObjects调用结束时，@brief从epoch开始的时间，单位为毫秒
   double time_since_epoch_check_end_ms;
-  /// @brief the ego speed
+  /// @brief的自我速度
   ::ad::physics::Speed ego_speed;
-  /// @brief the current minimum stopping distance
+  /// @brief当前最小停止距离
   ::ad::physics::Distance min_stopping_distance;
-  /// @brief the considered enu position of the ego vehicle
+  /// @brief考虑过的自我车辆的位置
   ::ad::map::point::ENUPoint ego_center;
-  /// @brief the considered heading of the ego vehicle
+  /// @brief考虑的自我车辆的航向
   ::ad::map::point::ENUHeading ego_heading;
-  /// @brief the considered heading change of the ego vehicle
+  /// @brief考虑的自我车辆的方向变化
   ::ad::physics::AngularVelocity ego_heading_change;
-  /// @brief the considered steering angle of the ego vehicle
+  /// @brief考虑的自我车辆的转向角度
   ::ad::physics::Angle ego_steering_angle;
-  /// @brief check if the ego center is within route
+  /// @brief检查自我中心是否在路由内
   bool ego_center_within_route;
   /// @brief flag indicating if the current state is already crossing one of the
   /// borders
@@ -94,25 +94,25 @@ struct EgoDynamicsOnRoute {
 /// for every frame
 ///
 struct ActorConstellationResult {
-  /// The calculation mode to be applied with the actor
+  ///要应用于角色的计算模式
   ::ad::rss::map::RssMode rss_calculation_mode{::ad::rss::map::RssMode::NotRelevant};
 
-  /// The mode for restricting speed limit
+  ///限速模式
   ::ad::rss::map::RssSceneCreation::RestrictSpeedLimitMode restrict_speed_limit_mode{
       ::ad::rss::map::RssSceneCreation::RestrictSpeedLimitMode::None};
 
-  /// The Rss dynamics to be applied for the ego vehicle
+   ///应用于ego车辆的Rss动态
   ::ad::rss::world::RssDynamics ego_vehicle_dynamics;
 
-  /// The Rss object type to be used for the actor
+  ///要用于角色的Rss对象类型
   ::ad::rss::world::ObjectType actor_object_type;
 
-  /// The Rss dynamics to be applied for the actor
+  ///应用于actor的Rss动态
   ::ad::rss::world::RssDynamics actor_dynamics;
 };
 
 struct ActorConstellationData {
-  /// @brief the ego map matched information
+  /// @brief ego map匹配的信息
   ::ad::map::match::Object ego_match_object;
 
   /// @brief the ego route
