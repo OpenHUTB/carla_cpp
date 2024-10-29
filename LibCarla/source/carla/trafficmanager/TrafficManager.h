@@ -246,54 +246,53 @@ public:
     }
   }
 
-  /// Method to set a global lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// 设置全局车道偏移量，相对于中心线的位移。  
+/// 正值表示向右偏移，负值表示向左偏移。 
   void SetGlobalLaneOffset(float const offset){
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetGlobalLaneOffset(offset);
+    TrafficManagerBase* tm_ptr = GetTM(_port); // 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetGlobalLaneOffset(offset);// 调用设置全局车道偏移量的方法 
     }
   }
 
-  /// Set the automatic management of the vehicle lights
+  /// 设置车辆灯光的自动管理
   void SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update){
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetUpdateVehicleLights(actor, do_update);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetUpdateVehicleLights(actor, do_update);// 调用设置车辆灯光自动管理的方法 
     }
   }
 
-  /// Method to set collision detection rules between vehicles.
+  /// 设置车辆之间的碰撞检测规则
   void SetCollisionDetection(const ActorPtr &reference_actor, const ActorPtr &other_actor, const bool detect_collision) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetCollisionDetection(reference_actor, other_actor, detect_collision);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetCollisionDetection(reference_actor, other_actor, detect_collision);// 调用设置碰撞检测规则的方法
     }
   }
 
-  /// Method to force lane change on a vehicle.
-  /// Direction flag can be set to true for left and false for right.
+  /// 强制车辆换道。  
+/// 方向标志设置为true表示向左换道，false表示向右换道。
   void SetForceLaneChange(const ActorPtr &actor, const bool direction) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetForceLaneChange(actor, direction);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetForceLaneChange(actor, direction);// 调用强制换道的方法
     }
   }
 
-  /// Enable/disable automatic lane change on a vehicle.
+  /// 启用/禁用车辆的自动换道功能。
   void SetAutoLaneChange(const ActorPtr &actor, const bool enable) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetAutoLaneChange(actor, enable);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetAutoLaneChange(actor, enable);// 调用设置自动换道功能的方法
     }
   }
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the leading vehicle.
+  /// 设置车辆与前车应保持的距离。
   void SetDistanceToLeadingVehicle(const ActorPtr &actor, const float distance) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetDistanceToLeadingVehicle(actor, distance);
+    TrafficManagerBase* tm_ptr = GetTM(_port); // 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetDistanceToLeadingVehicle(actor, distance); // 调用设置与前车距离的方法
     }
   }
 
