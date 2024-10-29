@@ -24,7 +24,7 @@
 namespace carla {
 namespace rss {
 
-///  @brief结构体定义道路边界的不同支持处理
+///结构体定义道路边界的不同支持处理
 enum class RoadBoundariesMode {
   Off,  ///  RSS 检查不考虑道路边界
   On    /// 当前路线的道路边界会在RSS检查中考虑
@@ -41,25 +41,25 @@ struct EgoDynamicsOnRoute {
   /// @brief constructor
   EgoDynamicsOnRoute();
 
-  /// @brief 最后一次计算的Carla时间戳
+  /// 最后一次计算的Carla时间戳
   carla::client::Timestamp timestamp;
-  ///在checkObjects调用开始时，@brief从epoch开始的时间，单位为毫秒
+  ///在checkObjects调用开始时，从epoch开始的时间，单位为毫秒
   double time_since_epoch_check_start_ms;
-  ///在checkObjects调用结束时，@brief从epoch开始的时间，单位为毫秒
+  ///在checkObjects调用结束时，从epoch开始的时间，单位为毫秒
   double time_since_epoch_check_end_ms;
-  /// @brief的自我速度
+  /// 自我速度
   ::ad::physics::Speed ego_speed;
-  /// @brief当前最小停止距离
+  /// 当前最小停止距离
   ::ad::physics::Distance min_stopping_distance;
-  /// @brief考虑过的自我车辆的位置
+  /// 考虑自主车辆的位置
   ::ad::map::point::ENUPoint ego_center;
-  /// @brief考虑的自我车辆的航向
+  /// 考虑自主车辆的航向
   ::ad::map::point::ENUHeading ego_heading;
-  /// @brief考虑的自我车辆的方向变化
+  /// 考虑自主车辆的方向变化
   ::ad::physics::AngularVelocity ego_heading_change;
-  /// @brief考虑的自我车辆的转向角度
+  /// 考虑自主车辆的转向角度
   ::ad::physics::Angle ego_steering_angle;
-  /// @brief检查自我中心是否在路由内
+  /// 检查自我中心是否在路线内
   bool ego_center_within_route;
   /// @brief flag indicating if the current state is already crossing one of the
   /// borders
@@ -94,7 +94,7 @@ struct EgoDynamicsOnRoute {
 /// for every frame
 ///
 struct ActorConstellationResult {
-  ///要应用于角色的计算模式
+  ///要应用于参与者的计算模式
   ::ad::rss::map::RssMode rss_calculation_mode{::ad::rss::map::RssMode::NotRelevant};
 
   ///限速模式
@@ -104,15 +104,15 @@ struct ActorConstellationResult {
    ///应用于ego车辆的Rss动态
   ::ad::rss::world::RssDynamics ego_vehicle_dynamics;
 
-  ///要用于角色的Rss对象类型
+  ///要用于参与者的Rss对象类型
   ::ad::rss::world::ObjectType actor_object_type;
 
-  ///应用于actor的Rss动态
+  ///应用于参与者的Rss动态
   ::ad::rss::world::RssDynamics actor_dynamics;
 };
 
 struct ActorConstellationData {
-  /// @brief ego map匹配的信息
+  ///  ego map匹配的信息
   ::ad::map::match::Object ego_match_object;
 
   /// @brief the ego route
