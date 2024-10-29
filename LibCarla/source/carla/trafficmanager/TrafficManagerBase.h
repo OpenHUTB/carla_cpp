@@ -47,52 +47,90 @@ using Action = std::pair<RoadOption, WaypointPtr>;
 using ActionBuffer = std::vector<Action>;
 
 
-/// The function of this class is to integrate all the various stages of
-/// the traffic manager appropriately using messengers.
+/**
+///  * @class TrafficManagerBase
+///  * @brief 此类的功能是通过消息传递机制适当地整合交通管理器的各个阶段。
+///  */
 class TrafficManagerBase {
 
 public:
-  /// To start the traffic manager.
+	/**
+   * @brief 启动交通管理器。
+   */
   virtual void Start() = 0;
 
-  /// To stop the traffic manager.
+  /**
+ * @brief 停止交通管理器。
+ */
   virtual void Stop() = 0;
 
-  /// To release the traffic manager.
+  /**
+ * @brief 释放交通管理器。
+ */
   virtual void Release() = 0;
 
-  /// To reset the traffic manager.
+  /**
+ * @brief 重置交通管理器。
+ */
   virtual void Reset() = 0;
 
-  /// Protected constructor for singleton lifecycle management.
+  /**
+  * @brief 单例生命周期管理的受保护构造函数。
+  */
   TrafficManagerBase() {};
 
-  /// Destructor.
+  /**
+  * @brief 析构函数。
+  */
   virtual ~TrafficManagerBase() {};
 
-  /// This method registers a vehicle with the traffic manager.
+  /**
+ * @brief 此方法向交通管理器注册车辆。
+ * @param actor_list 车辆列表。
+ */
   virtual void RegisterVehicles(const std::vector<ActorPtr> &actor_list) = 0;
 
-  /// This method unregisters a vehicle from traffic manager.
+  /**
+ * @brief 此方法从交通管理器注销车辆。
+ * @param actor_list 车辆列表。
+ */
   virtual void UnregisterVehicles(const std::vector<ActorPtr> &actor_list) = 0;
 
-  /// Set a vehicle's % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /**
+   * @brief 设置车辆相对于限速的速度百分比降低。
+   * 如果小于0，则表示百分比增加。
+   * @param actor 车辆指针。
+   * @param percentage 百分比值。
+   */
   virtual void SetPercentageSpeedDifference(const ActorPtr &actor, const float percentage) = 0;
 
-  /// Method to set a lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /**
+ * @brief 设置车辆相对于中心线的车道偏移量。
+ * 正值表示向右偏移，负值表示向左偏移。
+ * @param actor 车辆指针。
+ * @param offset 偏移量。
+ */
   virtual void SetLaneOffset(const ActorPtr &actor, const float offset) = 0;
 
-  /// Set a vehicle's exact desired velocity.
+  /**
+ * @brief 设置车辆的精确期望速度。
+ * @param actor 车辆指针。
+ * @param value 速度值。
+ */
   virtual void SetDesiredSpeed(const ActorPtr &actor, const float value) = 0;
 
-  /// Set a global % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /**
+ * @brief 设置全局相对于限速的速度百分比降低。
+ * 如果小于0，则表示百分比增加。
+ * @param percentage 百分比值。
+ */
   virtual void SetGlobalPercentageSpeedDifference(float const percentage) = 0;
 
-  /// Method to set a global lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /**
+ * @brief 设置全局相对于中心线的车道偏移量。
+ * 正值表示向右偏移，负值表示向左偏移。
+ * @param offset 偏移量。
+ */
   virtual void SetGlobalLaneOffset(float const offset) = 0;
 
   /// Method to set the automatic management of the vehicle lights
