@@ -7,17 +7,43 @@
 #pragma once
 
 #include <memory>
-#include "carla/client/Actor.h"
-#include "carla/trafficmanager/SimpleWaypoint.h"
-
+#include "carla/client/Actor.h"/// @brief 包含CARLA客户端中Actor类的定义
+#include "carla/trafficmanager/SimpleWaypoint.h"/// @brief 包含CARLA交通管理器中SimpleWaypoint类的定义
+/**
+ * @namespace carla::traffic_manager
+ * @brief CARLA交通管理器的命名空间。
+ */
 namespace carla {
 namespace traffic_manager {
-
+	/**
+	 * @brief Actor的智能指针类型别名。
+	 * @details 这是一个指向carla::client::Actor对象的共享指针。
+	 */
 using ActorPtr = carla::SharedPtr<carla::client::Actor>;
+/**
+ * @brief 路径类型别名。
+ * @details 这是一个包含cg::Location对象的向量，用于表示一条路径。
+ */
 using Path = std::vector<cg::Location>;
+/**
+ * @brief 路线类型别名。
+ * @details 这是一个包含uint8_t的向量，用于表示一条路线（可能是一个编码的路径或导航指令）。
+ */
 using Route = std::vector<uint8_t>;
+/**
+ * @brief Waypoint的智能指针类型别名。
+ * @details 这是一个指向carla::client::Waypoint对象的共享指针。
+ */
 using WaypointPtr = carla::SharedPtr<carla::client::Waypoint>;
+/**
+ * @brief 动作类型别名。
+ * @details 这是一个包含RoadOption和WaypointPtr的pair，表示一个动作，其中RoadOption表示行驶选项，WaypointPtr表示该动作的目标点。
+ */
 using Action = std::pair<RoadOption, WaypointPtr>;
+/**
+ * @brief 动作缓冲区类型别名。
+ * @details 这是一个包含Action的向量，用于存储一系列的动作。
+ */
 using ActionBuffer = std::vector<Action>;
 
 
