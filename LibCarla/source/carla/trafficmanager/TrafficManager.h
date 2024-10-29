@@ -411,10 +411,12 @@ public:
       tm_ptr->SetRandomDeviceSeed(seed);// 调用设置随机数生成器种子的方法
     }
   }
-
+  /// 关闭交通管理器服务或客户端。
   void ShutDown();
 
-  /// Method to get the next action.
+  /// 获取指定参与者的下一个动作。  
+  /// @param actor_id 参与者的唯一标识符。  
+  /// @return 指定参与者的下一个动作。
   Action GetNextAction(const ActorId &actor_id) {
     Action next_action;
     TrafficManagerBase* tm_ptr = GetTM(_port);
@@ -425,7 +427,9 @@ public:
     return next_action;
   }
 
-  /// Method to get the action buffer.
+  /// 获取指定参与者的动作缓冲区。  
+   /// @param actor_id 参与者的唯一标识符。  
+   /// @return 指定参与者的动作缓冲区。 
   ActionBuffer GetActionBuffer(const ActorId &actor_id) {
     ActionBuffer action_buffer;
     TrafficManagerBase* tm_ptr = GetTM(_port);
@@ -437,16 +441,23 @@ public:
   }
 
 private:
-
+    /// 创建交通管理器服务器。  
+  /// @param episode_proxy 与当前场景相关联的代理对象。  
+  /// @param port 服务器监听的端口号。
   void CreateTrafficManagerServer(
     carla::client::detail::EpisodeProxy episode_proxy,
     uint16_t port);
 
-
+  /// 创建交通管理器客户端。  
+  /// @param episode_proxy 与当前场景相关联的代理对象。  
+  /// @param port 客户端连接的端口号。  
+  /// @return 如果创建成功，则返回true；否则返回false。
   bool CreateTrafficManagerClient(
     carla::client::detail::EpisodeProxy episode_proxy,
     uint16_t port);
-
+  /// 根据端口号获取交通管理器实例。  
+  /// @param port 端口号。  
+  /// @return 对应的交通管理器实例指针；如果未找到，则返回nullptr。
   TrafficManagerBase* GetTM(uint16_t port) const {
     std::lock_guard<std::mutex> lock(_mutex);
     auto it = _tm_map.find(port);
@@ -455,10 +466,12 @@ private:
     }
     return nullptr;
   }
-
+  /// 存储交通管理器实例的静态映射表。  
+  /// @details 键为端口号，值为对应的交通管理器实例指针
   static std::map<uint16_t, TrafficManagerBase*> _tm_map;
+  /// 用于保护_tm_map的静态互斥锁。
   static std::mutex _mutex;
-
+  /// 当前交通管理器实例使用的端口号。
   uint16_t _port = 0;
 
 };
