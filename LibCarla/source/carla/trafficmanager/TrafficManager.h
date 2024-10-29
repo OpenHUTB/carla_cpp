@@ -152,7 +152,10 @@ public:
     }
   }
 
-  /// Method to set boundaries for respawning vehicles.
+  /// @brief 设置重生车辆的边界。   
+/// 此方法用于为TrafficManager设置车辆重生时的上下边界。    
+/// @param lower 下边界值。  
+/// @param upper 上边界值。 
   void SetMaxBoundaries(const float lower, const float upper) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -160,7 +163,9 @@ public:
     }
   }
 
-  /// This method sets the hybrid physics mode.
+  /// @brief 设置混合物理模式。  
+ /// 此方法用于启用或禁用TrafficManager的混合物理模式。  
+ /// @param mode_switch 启用（true）或禁用（false）混合物理模式。  
   void SetHybridPhysicsMode(const bool mode_switch) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -168,7 +173,9 @@ public:
     }
   }
 
-  /// This method sets the hybrid physics radius.
+  /// @brief 设置混合物理半径。  
+/// 此方法用于设置TrafficManager的混合物理模式的触发半径。     
+/// @param radius 混合物理模式的触发半径。
   void SetHybridPhysicsRadius(const float radius) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -176,7 +183,9 @@ public:
     }
   }
 
-  /// This method registers a vehicle with the traffic manager.
+  /// @brief 向交通管理器注册车辆。  
+/// 此方法用于将一组车辆注册到TrafficManager中。  
+/// @param actor_list 要注册的车辆列表。
   void RegisterVehicles(const std::vector<ActorPtr> &actor_list) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -184,7 +193,9 @@ public:
     }
   }
 
-  /// This method unregisters a vehicle from traffic manager.
+  /// @brief 从交通管理器注销车辆。  
+ /// 此方法用于从TrafficManager中注销一组车辆。 
+ /// @param actor_list 要注销的车辆列表。
   void UnregisterVehicles(const std::vector<ActorPtr> &actor_list) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -192,8 +203,10 @@ public:
     }
   }
 
-  /// Set a vehicle's % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// @brief 设置车辆相对于限速的速度百分比差异。  
+/// 此方法用于设置车辆相对于道路限速的速度百分比差异。如果百分比小于0，则表示速度增加。    
+/// @param actor 要设置速度差异的车辆。  
+/// @param percentage 速度百分比差异。 
   void SetPercentageSpeedDifference(const ActorPtr &actor, const float percentage) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -201,8 +214,10 @@ public:
     }
   }
 
-  /// Method to set a lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// @brief 设置车辆相对于车道中心线的偏移量。  
+/// 此方法用于设置车辆相对于车道中心线的偏移量。正值表示向右偏移，负值表示向左偏移。
+/// @param actor 要设置车道偏移的车辆。  
+/// @param offset 车道偏移量。 
   void SetLaneOffset(const ActorPtr &actor, const float offset) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -210,7 +225,10 @@ public:
     }
   }
 
-  /// Set a vehicle's exact desired velocity.
+  /// @brief 设置车辆的期望速度。  
+ /// 此方法用于设置车辆的精确期望速度。  
+ /// @param actor 要设置期望速度的车辆。  
+ /// @param value 车辆的期望速度。
   void SetDesiredSpeed(const ActorPtr &actor, const float value) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -218,8 +236,9 @@ public:
     }
   }
 
-  /// Set a global % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// @brief 设置全局速度百分比差异。  
+/// 此方法用于设置所有车辆相对于道路限速的全局速度百分比差异。如果百分比小于0，则表示速度增加。  
+/// @param percentage 全局速度百分比差异。
   void SetGlobalPercentageSpeedDifference(float const percentage){
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
