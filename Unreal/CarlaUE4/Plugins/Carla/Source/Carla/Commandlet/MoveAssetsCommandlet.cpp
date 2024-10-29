@@ -24,11 +24,11 @@ FMovePackageParams UMoveAssetsCommandlet::ParseParams(const FString &InParams) c
 
   ParseCommandLine(*InParams, Tokens, Params);
 
-  // Parse and store package name
+  // 解析并储存包名称
   FMovePackageParams PackageParams;
   FParse::Value(*InParams, TEXT("PackageName="), PackageParams.Name);
 
-  // Parse and store maps name in an array
+  // 解析映射名称并将其储存在数组中
   FString Maps;
   FParse::Value(*InParams, TEXT("Maps="), Maps);
 
@@ -42,12 +42,12 @@ FMovePackageParams UMoveAssetsCommandlet::ParseParams(const FString &InParams) c
 
 void UMoveAssetsCommandlet::MoveAssets(const FMovePackageParams &PackageParams)
 {
-  // Create a library instance for loading all the assets
+  // 创建用于加载所有资源的库实例
   AssetsObjectLibrary = UObjectLibrary::CreateLibrary(UStaticMesh::StaticClass(), false, GIsEditor);
   AssetsObjectLibrary->AddToRoot();
 
-  // Start loading all the assets in the library and classify them for semantic
-  // segmentation
+  // 开始加载库中的所有资产，并对它们进行分类以进行语义化
+  // 分割
   for (const auto &Map : PackageParams.MapNames)
   {
     MoveAssetsFromMapForSemanticSegmentation(PackageParams.Name, Map);
@@ -81,19 +81,19 @@ void UMoveAssetsCommandlet::MoveAssetsFromMapForSemanticSegmentation(
     const FString &PackageName,
     const FString &MapName)
 {
-  // Prepare a UObjectLibrary for moving assets
+  // 准备用于移动资产的 UObjectLibrary
   const FString SrcPath = TEXT("/Game/") + PackageName + TEXT("/Maps/") + MapName;
   AssetsObjectLibrary->LoadAssetDataFromPath(*SrcPath);
   AssetsObjectLibrary->LoadAssetsFromAssetData();
 
-  // Load Assets to move
+  // 加载要移动的资产
   MapContents.Empty();
   AssetsObjectLibrary->GetAssetDataList(MapContents);
   AssetsObjectLibrary->ClearLoaded();
 
   TArray<FString> DestinationPaths = {SSTags::ROAD, SSTags::ROADLINE, SSTags::TERRAIN, SSTags::GRASS, SSTags::SIDEWALK, SSTags::CURB, SSTags::GUTTER};
 
-  // Init Map with keys
+  // 使用键初始化 Map
   TMap<FString, TArray<UObject *>> AssetDataMap;
   for (const auto &Paths : DestinationPaths)
   {
@@ -102,7 +102,7 @@ void UMoveAssetsCommandlet::MoveAssetsFromMapForSemanticSegmentation(
 
   for (const auto &MapAsset : MapContents)
   {
-    // Get AssetName
+    // 获取 AssetName
     FString AssetName;
     UStaticMesh *MeshAsset = CastChecked<UStaticMesh>(MapAsset.GetAsset());
     MapAsset.AssetName.ToString(AssetName);
@@ -117,8 +117,8 @@ void UMoveAssetsCommandlet::MoveAssetsFromMapForSemanticSegmentation(
         continue;
       }
 
-      // Bind between tags and classify assets according to semantic
-      // segmentation
+      // 标签之间绑定，根据语义对资产进行分类
+      // 分割
       if (AssetName.Contains(SSTags::R_ROAD1) || AssetName.Contains(SSTags::R_ROAD2))
       {
         AssetDataMap[SSTags::ROAD].Add(MeshAsset);
@@ -150,7 +150,7 @@ void UMoveAssetsCommandlet::MoveAssetsFromMapForSemanticSegmentation(
     }
   }
 
-  // Move assets to correspoding semantic segmentation folders
+  // 将资产移动到相应的语义分割文件夹
   for (const auto &Elem : AssetDataMap)
   {
     FString DestPath = TEXT("/Game/") + PackageName + TEXT("/Static/") + Elem.Key + "/" + MapName;
