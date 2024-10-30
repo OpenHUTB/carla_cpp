@@ -44,13 +44,13 @@ void AProceduralBuildingUtilities::GenerateImpostorTexture(const FVector& Buildi
 
   check(Camera->TextureTarget != nullptr);
 
-  // FRONT View
+  // 前视图
   RenderImpostorView(Camera, BuildingSize, EBuildingCameraView::FRONT);
-  // LEFT View
+  // 左视图
   RenderImpostorView(Camera, BuildingSize, EBuildingCameraView::LEFT);
-  // BACK View
+  // 后视图
   RenderImpostorView(Camera, BuildingSize, EBuildingCameraView::BACK);
-  // RIGHT View
+  // 右视图
   RenderImpostorView(Camera, BuildingSize, EBuildingCameraView::RIGHT);
 
   Camera->DestroyComponent();
@@ -58,7 +58,7 @@ void AProceduralBuildingUtilities::GenerateImpostorTexture(const FVector& Buildi
 
 UProceduralMeshComponent* AProceduralBuildingUtilities::GenerateImpostorGeometry(const FVector& BuildingSize)
 {
-  // Spawn procedural mesh actor / component
+  //生成程序网格体 actor（角色或参与者，在游戏开发等情境下可理解为具有特定行为和属性的游戏元素）/组件。
   UProceduralMeshComponent* Mesh = NewObject<UProceduralMeshComponent>(
       this, UProceduralMeshComponent::StaticClass(), TEXT("LOD Impostor Mesh"));
 
@@ -72,28 +72,27 @@ UProceduralMeshComponent* AProceduralBuildingUtilities::GenerateImpostorGeometry
 
   check(Mesh != nullptr)
 
-  // FRONT View
+  //前视图
   CreateBuildingImpostorGeometryForView(Mesh, BuildingSize, EBuildingCameraView::FRONT);
-  // LEFT View
+  // 左视图
   CreateBuildingImpostorGeometryForView(Mesh, BuildingSize, EBuildingCameraView::LEFT);
-  // BACK View
+  //  后视图
   CreateBuildingImpostorGeometryForView(Mesh, BuildingSize, EBuildingCameraView::BACK);
-  // RIGHT View
+  //右视图
   CreateBuildingImpostorGeometryForView(Mesh, BuildingSize, EBuildingCameraView::RIGHT);
 
   return Mesh;
 
-  // Cook new mesh to a static mesh
+  // 将新的网格体烘焙为静态网格体。
 
-  // Assign as LOD or store on disk for manual import
+  //指定为细节层次级别（LOD），或者存储在磁盘上以便手动导入。
 }
 
 void AProceduralBuildingUtilities::CookProceduralBuildingToMesh(const FString& DestinationPath, const FString& FileName)
 {
   TArray<UPrimitiveComponent*> Components;
   TArray<UStaticMeshComponent*> StaticMeshComponents;
-  GetComponents<UStaticMeshComponent>(StaticMeshComponents, false); // Components of class
-
+  GetComponents<UStaticMeshComponent>(StaticMeshComponents, false); // 类的组件
   for(UStaticMeshComponent* StaticMeshComponent : StaticMeshComponents)
   {
     if(StaticMeshComponent->GetStaticMesh())
@@ -283,7 +282,7 @@ void AProceduralBuildingUtilities::CreateBuildingImpostorGeometryForView(
     const FVector& BuildingSize,
     const EBuildingCameraView View)
 {
-  // Create vertices based on Building Size
+  // 根据建筑规模创建顶点。
   TArray<FVector> Vertices;
   TArray<int32> Triangles;
 
@@ -297,8 +296,8 @@ void AProceduralBuildingUtilities::CreateBuildingImpostorGeometryForView(
   FVector RotationAxis(0.0f, 0.0f, 1.0f);
   FVector OriginOffset(- 0.5f * BuildingDepth, - 0.5f * BuildingWidth, 0.0f);
 
-  // Vertices are created in local space, then offsetted to compensate origin and finally rotating
-  // according to the ViewAngle
+  //顶点是在局部空间中创建的，然后进行偏移以补偿原点位置，最后进行旋转操作。
+  //根据视角
   Vertices.Add((FVector(0.0f, 0.0f, 0.0f)                     + OriginOffset).RotateAngleAxis(ViewAngle, RotationAxis));
   Vertices.Add((FVector(0.0f, 0.0f, BuildingHeight)           + OriginOffset).RotateAngleAxis(ViewAngle, RotationAxis));
   Vertices.Add((FVector(0.0f, BuildingWidth, 0.0f)            + OriginOffset).RotateAngleAxis(ViewAngle, RotationAxis));
@@ -369,7 +368,7 @@ void AProceduralBuildingUtilities::CalculateViewGeometryUVs(
     const EBuildingCameraView View,
     TArray<FVector2D>& OutUVs)
 {
-  // Calculate UVs from 0 to 1
+  // 计算从 0 到 1 的 UV 坐标。
   //  ------------
   // |  uv1  uv3  |
   // |  uv0  uv2  |
@@ -405,7 +404,7 @@ void AProceduralBuildingUtilities::CalculateViewGeometryUVs(
 
   if(WidthRatio < 1.0f)
   {
-    // Fit Vertically
+    //垂直适配；纵向适配
     X0 = FVector2D(0.05f - 0.05f * WidthRatio, 0.1f) + OriginOffset;
     X1 = FVector2D(0.05f - 0.05f * WidthRatio, 0.0f) + OriginOffset;
     X2 = FVector2D(0.05f + 0.05f * WidthRatio, 0.1f) + OriginOffset;
@@ -413,14 +412,14 @@ void AProceduralBuildingUtilities::CalculateViewGeometryUVs(
   }
   else
   {
-    // Fit Horizontally
+    //水平适配；横向适配
     X0 = FVector2D(0.0f, 0.05f + 0.05f * HeightRatio) + OriginOffset;
     X1 = FVector2D(0.0f, 0.05f - 0.05f * HeightRatio) + OriginOffset;
     X2 = FVector2D(0.1f, 0.05f + 0.05f * HeightRatio) + OriginOffset;
     X3 = FVector2D(0.1f, 0.05f - 0.05f * HeightRatio) + OriginOffset;
   }
 
-  // Fix offset to fit in view quadrant
+  // 修正偏移量以使其适配于视图象限
   OutUVs.Add(X0);
   OutUVs.Add(X1);
   OutUVs.Add(X2);
