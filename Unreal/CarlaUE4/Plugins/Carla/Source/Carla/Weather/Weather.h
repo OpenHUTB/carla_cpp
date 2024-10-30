@@ -23,32 +23,32 @@ public:
 
   AWeather(const FObjectInitializer& ObjectInitializer);
 
-  /// Update the weather parameters and notifies it to the blueprint's event
+  /// 更新天气参数并将其通知到蓝图的事件
   UFUNCTION(BlueprintCallable)
   void ApplyWeather(const FWeatherParameters &WeatherParameters);
 
-  /// Notifing the weather to the blueprint's event
+  /// 将天气通知到蓝图的事件
   void NotifyWeather(ASensor* Sensor = nullptr);
 
-  /// Update the weather parameters without notifing it to the blueprint's event
+  /// 在不通知蓝图事件的情况下更新天气参数
   UFUNCTION(BlueprintCallable)
   void SetWeather(const FWeatherParameters &WeatherParameters);
 
-  /// Returns the current WeatherParameters
+  /// 返回当前的 天气参数 WeatherParameters
   UFUNCTION(BlueprintCallable)
   const FWeatherParameters &GetCurrentWeather() const
   {
     return Weather;
   }
 
-  /// Returns whether the day night cycle is active (automatic on/off switch when changin to night mode)
+  /// 返回昼夜循环是否有效（切换到夜间模式时自动 开/关 切换）
   UFUNCTION(BlueprintCallable)
   const bool &GetDayNightCycle() const
   {
     return DayNightCycle;
   }
 
-  /// Update the day night cycle
+  /// 更新昼夜周期
   void SetDayNightCycle(const bool &active);
 
 protected:
