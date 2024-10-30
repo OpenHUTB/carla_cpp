@@ -53,9 +53,9 @@ void UUSDImporterWidget::ImportUSDVehicle(
     bool bAsBlueprint)
 {
 #ifdef WITH_OMNIVERSE
-  // Import meshes
+  // 导入网格体
   UUSDCARLAInterface::ImportUSD(USDPath, DestinationAssetPath, false, bAsBlueprint);
-  // Import Lights
+  //导入灯光
   TArray<FUSDCARLALight> USDLights = UUSDCARLAInterface::GetUSDLights(USDPath);
   LightList.Empty();
   for (const FUSDCARLALight& USDLight : USDLights)
@@ -63,7 +63,7 @@ void UUSDImporterWidget::ImportUSDVehicle(
     FVehicleLight Light {USDLight.Name, USDLight.Location, USDLight.Color};
     LightList.Add(Light);
   }
-  // Import Wheel and suspension data
+  // 导入车轮及悬架数据。
   TArray<FUSDCARLAWheelData> WheelsData = UUSDCARLAInterface::GetUSDWheelData(USDPath);
   auto CreateVehicleWheel =
       [&](const FUSDCARLAWheelData& WheelData,
@@ -71,23 +71,23 @@ void UUSDImporterWidget::ImportUSDVehicle(
          const FString &PackagePathName)
       -> TSubclassOf<UVehicleWheel>
   {
-    // Get a reference to the editor subsystem
+    //获取对编辑器子系统的引用。
     constexpr float MToCM = 100.f;
     constexpr float RadToDeg = 360.f/3.14159265359f;
     FString BlueprintName =  FPaths::GetBaseFilename(PackagePathName);
     FString BlueprintPath = FPaths::GetPath(PackagePathName);
     IAssetTools& AssetTools = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
-    // Create a new Blueprint factory
+    // 创建一个新的蓝图工厂
     UBlueprintFactory* Factory = NewObject<UBlueprintFactory>();
-    // Set the parent class for the new Blueprint
+    //为新的蓝图设置父类
     Factory->ParentClass = TemplateClass;
-    // Create a new Blueprint asset with the given name
+    //使用给定的名称创建一个新的蓝图资产。
     UObject* NewAsset = AssetTools.CreateAsset(BlueprintName, BlueprintPath, UBlueprint::StaticClass(), Factory);
-    // Cast the new asset to a UBlueprint
+    // 将新创建的资产转换为一个 UBlueprint 类型
     UBlueprint* NewBlueprint = Cast<UBlueprint>(NewAsset);
-    // Modify the new Blueprint
+    //修改新的蓝图。
     NewBlueprint->Modify();
-    // Edit the default object for the new Blueprint
+    // 编辑新蓝图的默认对象。
     UVehicleWheel* Result = Cast<UVehicleWheel>(NewBlueprint->GeneratedClass->ClassDefaultObject);
     Result->MaxBrakeTorque = MToCM*WheelData.MaxBrakeTorque;
     if (WheelData.MaxHandBrakeTorque != 0)
@@ -100,7 +100,7 @@ void UUSDImporterWidget::ImportUSDVehicle(
     Result->LongStiffValue = WheelData.LongitudinalStiffness;
     return Result->GetClass();
   };
-  // Save wheel objects
+  //保存车轮对象。
   FString AssetPath = DestinationAssetPath + FPaths::GetBaseFilename(USDPath);
   FString PathWheelFL = AssetPath + "_Wheel_FLW";
   FString PathWheelFR = AssetPath + "_Wheel_FRW";
@@ -307,7 +307,7 @@ FVehicleMeshParts UUSDImporterWidget::SplitVehicleParts(
   {
     Light.Location -= BodyLocation;
   }
-  // fix glass materials not being transparent
+  // 修复玻璃材质不透明的问题
   for (UStaticMeshComponent* Compopnent : GlassComponents)
   {
     const TArray<UMaterialInterface*>& Materials = Compopnent->GetMaterials();
@@ -451,7 +451,7 @@ AActor* UUSDImporterWidget::GenerateNewVehicleBlueprint(
   };
 
   AActor* TemplateActor = World->SpawnActor<AActor>(BaseClass);
-  // Get an replace all static meshes with the appropiate mesh
+  // 获取并将所有静态网格体替换为合适的网格体
   TArray<UStaticMeshComponent*> MeshComponents;
   TemplateActor->GetComponents(MeshComponents);
   for (UStaticMeshComponent* Component : MeshComponents)
@@ -469,7 +469,7 @@ AActor* UUSDImporterWidget::GenerateNewVehicleBlueprint(
     *UKismetSystemLibrary::GetDisplayName(Component), *Component->GetName());
   }
 
-  // Get the skeletal mesh and modify it to match the vehicle parameters
+  // 获取骨骼网格体并且修改以匹配车辆参数
   USkeletalMeshComponent* SkeletalMeshComponent = Cast<USkeletalMeshComponent>(
       TemplateActor->GetComponentByClass(USkeletalMeshComponent::StaticClass()));
   if(!SkeletalMeshComponent)
@@ -540,7 +540,7 @@ AActor* UUSDImporterWidget::GenerateNewVehicleBlueprint(
     TemplateActor->AddInstanceComponent(LightComponent);
     UE_LOG(LogCarlaTools, Log, TEXT("Spawn Light %s, %s, %s"), *Light.Name, *Light.Location.ToString(), *Light.Color.ToString());
   }
-  // set the wheel radius
+  // 设置车轮半径
   UVehicleWheel* WheelDefault;
   WheelDefault = WheelTemplates.WheelFL->GetDefaultObject<UVehicleWheel>();
   WheelDefault->ShapeRadius = VehicleMeshes.WheelFL->GetBounds().SphereRadius;
@@ -550,7 +550,7 @@ AActor* UUSDImporterWidget::GenerateNewVehicleBlueprint(
   WheelDefault->ShapeRadius = VehicleMeshes.WheelRL->GetBounds().SphereRadius;
   WheelDefault = WheelTemplates.WheelRR->GetDefaultObject<UVehicleWheel>();
   WheelDefault->ShapeRadius = VehicleMeshes.WheelRR->GetBounds().SphereRadius;
-  // assign generated wheel types
+  // 分配生成的车轮类型
   TArray<FWheelSetup> WheelSetups;
   FWheelSetup Setup;
   Setup.WheelClass = WheelTemplates.WheelFL;
@@ -578,13 +578,13 @@ AActor* UUSDImporterWidget::GenerateNewVehicleBlueprint(
   {
     UE_LOG(LogCarlaTools, Error, TEXT("Null CarlaVehicle"));
   }
-  // Set the vehicle collision in the new physicsasset object
+  // 在新的物理资产里对象设置车辆碰撞
   UEditorStaticMeshLibrary::AddSimpleCollisions(
       VehicleMeshes.Body, EScriptingCollisionShapeType::NDOP26);
   CopyCollisionToPhysicsAsset(NewPhysicsAsset, VehicleMeshes.Body);
-  // assign the physics asset to the skeletal mesh
+  // 将物理资产分配给骨骼网格体。
   NewSkeletalMesh->PhysicsAsset = NewPhysicsAsset;
-  // Create the new blueprint vehicle
+  // 创建新的车辆蓝图。
   FKismetEditorUtilities::FCreateBlueprintFromActorParams Params;
   Params.bReplaceActor = false;
   Params.bKeepMobility = true;
