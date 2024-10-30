@@ -33,18 +33,27 @@
 #include "carla/client/Waypoint.h"
 
 #define DEBUG_TIMING 0
-
+// 定义在carla命名空间的rss子命名空间中 
 namespace carla {
 namespace rss {
-
+ // 定义一个函数printRoute，用于打印路由信息  
+ // 参数包括一个描述路由的字符串route_descr和一个FullRoute类型的常量引用route 
 void printRoute(std::string const &route_descr, ::ad::map::route::FullRoute const &route) {
-  std::cout << route_descr << std::endl;
-  for (auto road_segment : route.roadSegments) {
-    for (auto lane_segment : road_segment.drivableLaneSegments) {
-      std::cout << "(" << static_cast<uint64_t>(lane_segment.laneInterval.laneId) << " | " << std::setprecision(2)
+    // 首先打印出路由的描述信息
+    std::cout << route_descr << std::endl;
+    // 遍历路由中的每一个路段（road segment）
+    for (auto road_segment : route.roadSegments) {
+        // 对于每一个路段，遍历其所有可驾驶的车道段（lane segment）
+        for (auto lane_segment : road_segment.drivableLaneSegments) {
+        // 打印出车道段的详细信息，包括：  
+         // 车道ID（laneId），转换为uint64_t类型  
+         // 车道段的起始位置（start）和结束位置（end），转换为double类型，并保留两位小数  
+         // 输出格式为：(车道ID | 起始位置:结束位置)
+            std::cout << "(" << static_cast<uint64_t>(lane_segment.laneInterval.laneId) << " | " << std::setprecision(2)
                 << static_cast<double>(lane_segment.laneInterval.start) << ":"
                 << static_cast<double>(lane_segment.laneInterval.end) << ")    ";
     }
+    // 每个路段的车道段信息打印完毕后，输出一个换行符，以便于区分不同的路段
     std::cout << std::endl;
   }
 }
