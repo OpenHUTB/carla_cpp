@@ -235,63 +235,156 @@ public:
  */
   virtual  carla::client::detail::EpisodeProxy& GetEpisodeProxy() = 0;
 
-  /// Method to set Global Distance to Leading Vehicle.
+  /**
+ * @brief 设置全局前车距离。
+ *
+ * @param dist 前车距离。
+ */
   virtual void SetGlobalDistanceToLeadingVehicle(const float dist) = 0;
 
-  /// Method to set % to keep on the right lane.
+  /**
+ * @brief 设置保持在右车道的百分比。
+ *
+ * @param actor 车辆指针。
+ * @param percentage 保持在右车道的百分比。
+ */
   virtual void SetKeepRightPercentage(const ActorPtr &actor,const float percentage) = 0;
 
-  /// Method to set % to randomly do a left lane change.
+  /**
+   * @brief 设置随机左变道的百分比。
+   *
+   * @param actor 车辆指针。
+   * @param percentage 随机左变道的百分比。
+   */
   virtual void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage) = 0;
 
-  /// Method to set % to randomly do a right lane change.
+  /**
+  * @brief 设置随机右变道的百分比。
+  *
+  * @param actor 车辆指针。
+  * @param percentage 随机右变道的百分比。
+  */
   virtual void SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage) = 0;
 
-  /// Method to set hybrid physics mode.
+  /**
+ * @brief 设置混合物理模式。
+ *
+ * @param mode_switch 是否启用混合物理模式。
+ */
   virtual void SetHybridPhysicsMode(const bool mode_switch) = 0;
 
-  /// Method to set hybrid physics radius.
+  /**
+ * @brief 设置混合物理半径。
+ *
+ * @param radius 混合物理半径。
+ */
   virtual void SetHybridPhysicsRadius(const float radius) = 0;
 
-  /// Method to set randomization seed.
+  /**
+ * @brief 设置随机化种子。
+ *
+ * @param seed 随机化种子。
+ */
   virtual void SetRandomDeviceSeed(const uint64_t seed) = 0;
 
-  /// Method to set Open Street Map mode.
+  /**
+ * @brief 设置Open Street Map模式。
+ *
+ * @param mode_switch 是否启用Open Street Map模式。
+ */
   virtual void SetOSMMode(const bool mode_switch) = 0;
 
-  /// Method to set our own imported path.
+  /**
+   * @brief 设置自定义导入路径。
+   *
+   * @param actor 车辆指针。
+   * @param path 自定义路径。
+   * @param empty_buffer 是否清空缓冲区。
+   */
   virtual void SetCustomPath(const ActorPtr &actor, const Path path, const bool empty_buffer) = 0;
 
-  /// Method to remove a path.
+  /**
+ * @brief 移除路径。
+ *
+ * @param actor_id 车辆ID。
+ * @param remove_path 是否移除路径。
+ */
   virtual void RemoveUploadPath(const ActorId &actor_id, const bool remove_path) = 0;
 
-  /// Method to update an already set path.
+  /**
+  * @brief 更新已设置的路径。
+  *
+  * @param actor_id 车辆ID。
+  * @param path 更新后的路径。
+  */
   virtual void UpdateUploadPath(const ActorId &actor_id, const Path path) = 0;
 
-  /// Method to set our own imported route.
+  /**
+ * @brief 设置自定义导入路线。
+ *
+ * @param actor 车辆指针。
+ * @param route 自定义路线。
+ * @param empty_buffer 是否清空缓冲区。
+ */
   virtual void SetImportedRoute(const ActorPtr &actor, const Route route, const bool empty_buffer) = 0;
 
-  /// Method to remove a route.
+  /**
+ * @brief 移除路线。
+ *
+ * @param actor_id 车辆ID。
+ * @param remove_path 是否移除路线。
+ */
   virtual void RemoveImportedRoute(const ActorId &actor_id, const bool remove_path) = 0;
 
-  /// Method to update an already set route.
+  /**
+  * @brief 更新已设置的路线。
+  *
+  * @param actor_id 车辆ID。
+  * @param route 更新后的路线。
+  */
   virtual void UpdateImportedRoute(const ActorId &actor_id, const Route route) = 0;
 
-  /// Method to set automatic respawn of dormant vehicles.
+  /**
+ * @brief 设置休眠车辆的自动重生。
+ *
+ * @param mode_switch 是否启用休眠车辆的自动重生。
+ */
   virtual void SetRespawnDormantVehicles(const bool mode_switch) = 0;
 
-  /// Method to set boundaries for respawning vehicles.
+  /**
+ * @brief 设置重生车辆的范围。
+ *
+ * @param lower_bound 范围下限。
+ * @param upper_bound 范围上限。
+ */
   virtual void SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound) = 0;
 
-  /// Method to set limits for boundaries when respawning vehicles.
+  /**
+ * @brief 设置范围限制。
+ *
+ * @param lower 范围下限。
+ * @param upper 范围上限。
+ */
   virtual void SetMaxBoundaries(const float lower, const float upper) = 0;
 
-  /// Method to get the vehicle's next action.
+  /**
+ * @brief 获取车辆的下一个动作。
+ *
+ * @param actor_id 车辆ID。
+ * @return 车辆的下一个动作。
+ */
   virtual Action GetNextAction(const ActorId &actor_id) = 0;
 
-  /// Method to get the vehicle's action buffer.
+  /**
+  * @brief 获取车辆的动作缓冲区。
+  *
+  * @param actor_id 车辆ID。
+  * @return 车辆的动作缓冲区。
+  */
   virtual ActionBuffer GetActionBuffer(const ActorId &actor_id) = 0;
-
+  /**
+ * @brief 关闭系统。
+ */
   virtual void ShutDown() = 0;
 
 protected:
