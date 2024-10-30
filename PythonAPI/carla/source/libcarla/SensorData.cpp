@@ -4,82 +4,208 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include <carla/PythonUtil.h>  
-#include <carla/image/ImageConverter.h>  
-#include <carla/image/ImageIO.h>  
-#include <carla/image/ImageView.h>  
-#include <carla/pointcloud/PointCloudIO.h>  
-#include <carla/sensor/SensorData.h>  
-// 引入CARLA传感器数据相关的头文件  
-#include <carla/sensor/data/CollisionEvent.h>        // 碰撞事件数据  
-#include <carla/sensor/data/IMUMeasurement.h>       // IMU测量数据  
-#include <carla/sensor/data/ObstacleDetectionEvent.h> // 障碍物检测事件数据  
-#include <carla/sensor/data/Image.h>                 // 图像数据  
-#include <carla/sensor/data/LaneInvasionEvent.h>     // 车道入侵事件数据  
-#include <carla/sensor/data/LidarMeasurement.h>      // 激光雷达测量数据  
-#include <carla/sensor/data/SemanticLidarMeasurement.h> // 语义激光雷达测量数据  
-#include <carla/sensor/data/GnssMeasurement.h>       // GNSS测量数据  
-#include <carla/sensor/data/RadarMeasurement.h>      // 雷达测量数据  
-#include <carla/sensor/data/DVSEventArray.h>         // 动态视觉传感器事件数组数据  
-#include <carla/sensor/data/V2XEvent.h>              // 车联网事件数据  
-#include <carla/sensor/data/V2XData.h>               // 车联网数据  
-#include <carla/sensor/data/LibITS.h>                // ITS（智能交通系统）库数据  
-  
-#include <carla/sensor/data/RadarData.h>             // 雷达数据  
-  
-#include <boost/python/suite/indexing/vector_indexing_suite.hpp> // Boost Python库，用于Python和C++交互  
-  
-#include <ostream>  
-#include <iostream>  
-#include <cmath>  
-#include <vector>  
-#include <algorithm>  
-#include <thread>  
-  
-namespace carla {  
-namespace sensor {  
-namespace data {  
-  
-// 重载输出流运算符，用于打印Image对象的信息  
-std::ostream &operator<<(std::ostream &out, const Image &image) {  
-    out << "Image(frame=" << std::to_string(image.GetFrame())  
-        << ", timestamp=" << std::to_string(image.GetTimestamp())  
-        << ", size=" << std::to_string(image.GetWidth()) << 'x' << std::to_string(image.GetHeight())  
-        << ')';  
-    return out;  
-}  
-  
-// 重载输出流运算符，用于打印OpticalFlowImage对象的信息  
-std::ostream &operator<<(std::ostream &out, const OpticalFlowImage &image) {  
-    // ... (类似Image的重载)  
-}  
-  
-// 为其他数据类型（如LidarMeasurement, SemanticLidarMeasurement等）重载输出流运算符  
-// ... (省略了具体实现，但格式类似)  
-  
-// 重载输出流运算符，用于打印RadarDetection对象的信息  
-std::ostream &operator<<(std::ostream &out, const RadarDetection &det) {  
-    out << "RadarDetection(velocity=" << std::to_string(det.velocity)  
-        << ", azimuth=" << std::to_string(det.azimuth)  
-        << ", altitude=" << std::to_string(det.altitude)  
-        << ", depth=" << std::to_string(det.depth)  
-        << ')';  
-    return out;  
-}  
-  
-// 重载输出流运算符，用于打印LidarDetection对象的信息  
-std::ostream &operator<<(std::ostream &out, const LidarDetection &det) {  
-    // ... (类似RadarDetection的重载)  
-}  
-  
-// 重载输出流运算符，用于打印SemanticLidarDetection对象的信息  
-std::ostream &operator<<(std::ostream &out, const SemanticLidarDetection &det) {  
-    // ... (类似LidarDetection的重载，但包含更多信息)  
-}  
-  
-} // namespace data  
-} // namespace sensor  
-} // namespace carla}
+#include <carla/PythonUtil.h>
+#include <carla/image/ImageConverter.h>
+#include <carla/image/ImageIO.h>
+#include <carla/image/ImageView.h>
+#include <carla/pointcloud/PointCloudIO.h>
+#include <carla/sensor/SensorData.h>
+#include <carla/sensor/data/CollisionEvent.h>
+#include <carla/sensor/data/IMUMeasurement.h>
+#include <carla/sensor/data/ObstacleDetectionEvent.h>
+#include <carla/sensor/data/Image.h>
+#include <carla/sensor/data/LaneInvasionEvent.h>
+#include <carla/sensor/data/LidarMeasurement.h>
+#include <carla/sensor/data/SemanticLidarMeasurement.h>
+#include <carla/sensor/data/GnssMeasurement.h>
+#include <carla/sensor/data/RadarMeasurement.h>
+#include <carla/sensor/data/DVSEventArray.h>
+#include <carla/sensor/data/V2XEvent.h>
+#include <carla/sensor/data/V2XData.h>
+#include <carla/sensor/data/LibITS.h>
+
+#include <carla/sensor/data/RadarData.h>
+
+#include <boost/python/suite/indexing/vector_indexing_suite.hpp>
+
+#include <ostream>
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+#include <thread>
+
+namespace carla {
+namespace sensor {
+namespace data {
+
+  std::ostream &operator<<(std::ostream &out, const Image &image) {
+    out << "Image(frame=" << std::to_string(image.GetFrame())
+        << ", timestamp=" << std::to_string(image.GetTimestamp())
+        << ", size=" << std::to_string(image.GetWidth()) << 'x' << std::to_string(image.GetHeight())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const OpticalFlowImage &image) {
+    out << "OpticalFlowImage(frame=" << std::to_string(image.GetFrame())
+        << ", timestamp=" << std::to_string(image.GetTimestamp())
+        << ", size=" << std::to_string(image.GetWidth()) << 'x' << std::to_string(image.GetHeight())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const LidarMeasurement &meas) {
+    out << "LidarMeasurement(frame=" << std::to_string(meas.GetFrame())
+        << ", timestamp=" << std::to_string(meas.GetTimestamp())
+        << ", number_of_points=" << std::to_string(meas.size())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const SemanticLidarMeasurement &meas) {
+    out << "SemanticLidarMeasurement(frame=" << std::to_string(meas.GetFrame())
+        << ", timestamp=" << std::to_string(meas.GetTimestamp())
+        << ", number_of_points=" << std::to_string(meas.size())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const CollisionEvent &meas) {
+    out << "CollisionEvent(frame=" << std::to_string(meas.GetFrame())
+        << ", timestamp=" << std::to_string(meas.GetTimestamp())
+        << ", other_actor=" << meas.GetOtherActor()
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const ObstacleDetectionEvent &meas) {
+    out << "ObstacleDetectionEvent(frame=" << std::to_string(meas.GetFrame())
+        << ", timestamp=" << std::to_string(meas.GetTimestamp())
+        << ", other_actor=" << meas.GetOtherActor()
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const LaneInvasionEvent &meas) {
+    out << "LaneInvasionEvent(frame=" << std::to_string(meas.GetFrame())
+        << ", timestamp=" << std::to_string(meas.GetTimestamp())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const GnssMeasurement &meas) {
+    out << "GnssMeasurement(frame=" << std::to_string(meas.GetFrame())
+        << ", timestamp=" << std::to_string(meas.GetTimestamp())
+        << ", lat=" << std::to_string(meas.GetLatitude())
+        << ", lon=" << std::to_string(meas.GetLongitude())
+        << ", alt=" << std::to_string(meas.GetAltitude())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const IMUMeasurement &meas) {
+    out << "IMUMeasurement(frame=" << std::to_string(meas.GetFrame())
+        << ", timestamp=" << std::to_string(meas.GetTimestamp())
+        << ", accelerometer=" << meas.GetAccelerometer()
+        << ", gyroscope=" << meas.GetGyroscope()
+        << ", compass=" << std::to_string(meas.GetCompass())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const RadarMeasurement &meas) {
+    out << "RadarMeasurement(frame=" << std::to_string(meas.GetFrame())
+        << ", timestamp=" << std::to_string(meas.GetTimestamp())
+        << ", point_count=" << std::to_string(meas.GetDetectionAmount())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const DVSEvent &event) {
+    out << "Event(x=" << std::to_string(event.x)
+        << ", y=" << std::to_string(event.y)
+        << ", t=" << std::to_string(event.t)
+        << ", pol=" << std::to_string(event.pol) << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const DVSEventArray &events) {
+    out << "EventArray(frame=" << std::to_string(events.GetFrame())
+        << ", timestamp=" << std::to_string(events.GetTimestamp())
+        << ", dimensions=" << std::to_string(events.GetWidth()) << 'x' << std::to_string(events.GetHeight())
+        << ", number_of_events=" << std::to_string(events.size())
+        << ')';
+    return out;
+  }
+
+
+  std::ostream &operator<<(std::ostream &out, const RadarDetection &det) {
+    out << "RadarDetection(velocity=" << std::to_string(det.velocity)
+        << ", azimuth=" << std::to_string(det.azimuth)
+        << ", altitude=" << std::to_string(det.altitude)
+        << ", depth=" << std::to_string(det.depth)
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const LidarDetection &det) {
+    out << "LidarDetection(x=" << std::to_string(det.point.x)
+        << ", y=" << std::to_string(det.point.y)
+        << ", z=" << std::to_string(det.point.z)
+        << ", intensity=" << std::to_string(det.intensity)
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const SemanticLidarDetection &det) {
+    out << "SemanticLidarDetection(x=" << std::to_string(det.point.x)
+        << ", y=" << std::to_string(det.point.y)
+        << ", z=" << std::to_string(det.point.z)
+        << ", cos_inc_angle=" << std::to_string(det.cos_inc_angle)
+        << ", object_idx=" << std::to_string(det.object_idx)
+        << ", object_tag=" << std::to_string(det.object_tag)
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const CAMEvent &data) {
+    out << "CAMEvent(frame=" << std::to_string(data.GetFrame())
+        << ", timestamp=" << std::to_string(data.GetTimestamp())
+        << ", message_count=" << std::to_string(data.GetMessageCount())
+        << ')';
+    return out;
+  }
+
+    std::ostream &operator<<(std::ostream &out, const CustomV2XEvent &data) {
+    out << "CustomV2XEvent(frame=" << std::to_string(data.GetFrame())
+        << ", timestamp=" << std::to_string(data.GetTimestamp())
+        << ", message_count=" << std::to_string(data.GetMessageCount())
+        << ')';
+    return out;
+  }
+
+  std::ostream &operator<<(std::ostream &out, const CAMData &data) {
+    out << "CAMData(power=" << std::to_string(data.Power)
+        << ", stationId=" << std::to_string(data.Message.header.stationID)
+        << ", messageId=" << std::to_string(data.Message.header.messageID)
+        << ')';
+    return out;
+  }
+
+    std::ostream &operator<<(std::ostream &out, const CustomV2XData &data) {
+    out << "CustomV2XData(power=" << std::to_string(data.Power)
+        << ", stationId=" << std::to_string(data.Message.header.stationID)
+        << ", messageId=" << std::to_string(data.Message.header.messageID)
+        << ')';
+    return out;
+  }
+
+
+
+} // namespace s11n
+} // namespace sensor
+} // namespace carla
 
 enum class EColorConverter {
   Raw,
