@@ -47,6 +47,9 @@ namespace data {
     return out;
   }
 
+// 为Image类型重载输出流运算符，允许Image对象可以直接输出到标准输出流（如cout）中。
+// 输出内容包括帧编号、时间戳、图像宽度和高度。  
+ 
   std::ostream &operator<<(std::ostream &out, const OpticalFlowImage &image) {
     out << "OpticalFlowImage(frame=" << std::to_string(image.GetFrame())
         << ", timestamp=" << std::to_string(image.GetTimestamp())
@@ -54,6 +57,8 @@ namespace data {
         << ')';
     return out;
   }
+
+// 为OpticalFlowImage类型重载输出流运算符，功能类似Image类型，用于输出光学流图像的信息。
 
   std::ostream &operator<<(std::ostream &out, const LidarMeasurement &meas) {
     out << "LidarMeasurement(frame=" << std::to_string(meas.GetFrame())
@@ -63,6 +68,8 @@ namespace data {
     return out;
   }
 
+// 为LidarMeasurement类型重载输出流运算符，输出激光雷达测量的信息，包括帧编号、时间戳和点数量。
+
   std::ostream &operator<<(std::ostream &out, const SemanticLidarMeasurement &meas) {
     out << "SemanticLidarMeasurement(frame=" << std::to_string(meas.GetFrame())
         << ", timestamp=" << std::to_string(meas.GetTimestamp())
@@ -70,6 +77,8 @@ namespace data {
         << ')';
     return out;
   }
+
+// 为SemanticLidarMeasurement类型重载输出流运算符，输出语义激光雷达测量的信息，类似LidarMeasurement。
 
   std::ostream &operator<<(std::ostream &out, const CollisionEvent &meas) {
     out << "CollisionEvent(frame=" << std::to_string(meas.GetFrame())
@@ -79,6 +88,8 @@ namespace data {
     return out;
   }
 
+// 为CollisionEvent类型重载输出流运算符，输出碰撞事件的信息，包括帧编号、时间戳和碰撞的其他参与者。
+
   std::ostream &operator<<(std::ostream &out, const ObstacleDetectionEvent &meas) {
     out << "ObstacleDetectionEvent(frame=" << std::to_string(meas.GetFrame())
         << ", timestamp=" << std::to_string(meas.GetTimestamp())
@@ -87,12 +98,16 @@ namespace data {
     return out;
   }
 
+// 为ObstacleDetectionEvent类型重载输出流运算符，输出障碍物检测事件的信息，类似CollisionEvent。
+
   std::ostream &operator<<(std::ostream &out, const LaneInvasionEvent &meas) {
     out << "LaneInvasionEvent(frame=" << std::to_string(meas.GetFrame())
         << ", timestamp=" << std::to_string(meas.GetTimestamp())
         << ')';
     return out;
   }
+
+// 为LaneInvasionEvent类型重载输出流运算符，输出车道入侵事件的信息，包括帧编号和时间戳。
 
   std::ostream &operator<<(std::ostream &out, const GnssMeasurement &meas) {
     out << "GnssMeasurement(frame=" << std::to_string(meas.GetFrame())
@@ -104,6 +119,8 @@ namespace data {
     return out;
   }
 
+// 为GnssMeasurement类型重载输出流运算符，输出GNSS测量信息，包括帧编号、时间戳、纬度、经度和海拔。
+
   std::ostream &operator<<(std::ostream &out, const IMUMeasurement &meas) {
     out << "IMUMeasurement(frame=" << std::to_string(meas.GetFrame())
         << ", timestamp=" << std::to_string(meas.GetTimestamp())
@@ -114,6 +131,8 @@ namespace data {
     return out;
   }
 
+// 为IMUMeasurement类型重载输出流运算符，输出IMU测量信息，包括帧编号、时间戳、加速度计、陀螺仪和指南针数据。
+
   std::ostream &operator<<(std::ostream &out, const RadarMeasurement &meas) {
     out << "RadarMeasurement(frame=" << std::to_string(meas.GetFrame())
         << ", timestamp=" << std::to_string(meas.GetTimestamp())
@@ -122,6 +141,8 @@ namespace data {
     return out;
   }
 
+// 为RadarMeasurement类型重载输出流运算符，输出雷达测量信息，包括帧编号、时间戳和检测到的点数。
+
   std::ostream &operator<<(std::ostream &out, const DVSEvent &event) {
     out << "Event(x=" << std::to_string(event.x)
         << ", y=" << std::to_string(event.y)
@@ -129,6 +150,8 @@ namespace data {
         << ", pol=" << std::to_string(event.pol) << ')';
     return out;
   }
+
+// 为DVSEvent类型重载输出流运算符，输出动态视觉传感器事件的信息，包括位置坐标、时间和极性。
 
   std::ostream &operator<<(std::ostream &out, const DVSEventArray &events) {
     out << "EventArray(frame=" << std::to_string(events.GetFrame())
@@ -139,6 +162,7 @@ namespace data {
     return out;
   }
 
+// 为DVSEventArray类型重载输出流运算符，输出动态视觉传感器事件数组的信息，包括帧编号、时间戳、尺寸和事件数量。
 
   std::ostream &operator<<(std::ostream &out, const RadarDetection &det) {
     out << "RadarDetection(velocity=" << std::to_string(det.velocity)
@@ -149,6 +173,8 @@ namespace data {
     return out;
   }
 
+// 为RadarDetection类型重载输出流运算符，输出雷达检测到的物体的信息，包括速度、方位角、高度和深度。
+
   std::ostream &operator<<(std::ostream &out, const LidarDetection &det) {
     out << "LidarDetection(x=" << std::to_string(det.point.x)
         << ", y=" << std::to_string(det.point.y)
@@ -157,6 +183,8 @@ namespace data {
         << ')';
     return out;
   }
+
+// 为LidarDetection类型重载输出流运算符，输出激光雷达检测到的点的信息，包括坐标和强度。
 
   std::ostream &operator<<(std::ostream &out, const SemanticLidarDetection &det) {
     out << "SemanticLidarDetection(x=" << std::to_string(det.point.x)
@@ -169,6 +197,8 @@ namespace data {
     return out;
   }
 
+// 为SemanticLidarDetection类型重载输出流运算符，输出语义激光雷达检测到的点的信息，包括坐标、余弦入射角和对象索引及标签。
+
   std::ostream &operator<<(std::ostream &out, const CAMEvent &data) {
     out << "CAMEvent(frame=" << std::to_string(data.GetFrame())
         << ", timestamp=" << std::to_string(data.GetTimestamp())
@@ -176,6 +206,7 @@ namespace data {
         << ')';
     return out;
   }
+// 为CAMEvent类型重载输出流运算符，输出CAMEvent（可能是指某种与通信相关的事件）的信息，包括帧编号、时间戳和消息数量。
 
     std::ostream &operator<<(std::ostream &out, const CustomV2XEvent &data) {
     out << "CustomV2XEvent(frame=" << std::to_string(data.GetFrame())

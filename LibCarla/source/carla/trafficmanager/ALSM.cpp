@@ -230,19 +230,21 @@ void ALSM::UpdateRegisteredActorsData(const bool hybrid_physics_mode, ALSM::Idle
 void ALSM::UpdateData(const bool hybrid_physics_mode, const Actor &vehicle,
                       const bool hero_actor_present, const float physics_radius_square) {
 
+  //获取车辆的ID和位置信息
   ActorId actor_id = vehicle->GetId();
   cg::Transform vehicle_transform = vehicle->GetTransform();
   cg::Location vehicle_location = vehicle_transform.location;
   cg::Rotation vehicle_rotation = vehicle_transform.rotation;
   cg::Vector3D vehicle_velocity = vehicle->GetVelocity();
+  //检查仿真状态中是否包含当前车辆的状态信息
   bool state_entry_present = simulation_state.ContainsActor(actor_id);
 
-  // Initializing idle times.
+  //初始化空闲时间
   if (idle_time.find(actor_id) == idle_time.end() && current_timestamp.elapsed_seconds != 0.0) {
     idle_time.insert({actor_id, current_timestamp.elapsed_seconds});
   }
 
-  // Check if current actor is in range of hero actor and enable physics in hybrid mode.
+  // 检查当前车辆是否在英雄车辆的范围内，并在混合物理模式下启用物理仿真
   bool in_range_of_hero_actor = false;
   if (hero_actor_present && hybrid_physics_mode) {
     for (auto &hero_actor_info: hero_actors) {
@@ -257,20 +259,23 @@ void ALSM::UpdateData(const bool hybrid_physics_mode, const Actor &vehicle,
     }
   }
 
+  //根据混合物理模式和是否在英雄车辆范围内决定是否启用物理仿真
   bool enable_physics = hybrid_physics_mode ? in_range_of_hero_actor : true;
   if (!has_physics_enabled.count(actor_id) || has_physics_enabled[actor_id] != enable_physics) {
+    // 如果当前车辆不是英雄车辆，则更新物理仿真状态
     if (hero_actors.find(actor_id) == hero_actors.end()) {
       vehicle->SetSimulatePhysics(enable_physics);
       has_physics_enabled[actor_id] = enable_physics;
+      //如果启用了物理仿真，并且仿真状态中存在车辆状态信息，则设置目标速度
       if (enable_physics == true && state_entry_present) {
         vehicle->SetTargetVelocity(simulation_state.GetVelocity(actor_id));
       }
     }
   }
 
-  // If physics are disabled, calculate velocity based on change in position.
-  // Do not use 'enable_physics' as turning off the physics in this tick doesn't remove the velocity.
-  // To avoid issues with other clients teleporting the actors, use the previous outpout location.
+  // 如果物理仿真被禁用，根据位置变化计算速度
+  // 不要使用 'enable_physics' ，因为在这一刻关闭物理仿真并不会移除当前速度
+  // 为了避免其他客户端导致的对象位置偏移问题，使用之前记录的输出位置
   if (state_entry_present && !simulation_state.IsPhysicsEnabled(actor_id)){
     cg::Location previous_location = simulation_state.GetLocation(actor_id);
     cg::Location previous_end_location = simulation_state.GetHybridEndLocation(actor_id);
@@ -278,24 +283,26 @@ void ALSM::UpdateData(const bool hybrid_physics_mode, const Actor &vehicle,
     vehicle_velocity = displacement * INV_HYBRID_DT;
   }
 
-  // Updated kinematic state object.
+  // 更新运动学状态对象
   auto vehicle_ptr = boost::static_pointer_cast<cc::Vehicle>(vehicle);
   KinematicState kinematic_state{vehicle_location, vehicle_rotation,
                                   vehicle_velocity, vehicle_ptr->GetSpeedLimit(),
                                   enable_physics, vehicle->IsDormant(), cg::Location()};
 
-  // Updated traffic light state object.
+  // 更新交通信号状态对象
   TrafficLightState tl_state = {vehicle_ptr->GetTrafficLightState(), vehicle_ptr->IsAtTrafficLight()};
 
-  // Update simulation state.
+  // 更新仿真状态
   if (state_entry_present) {
     simulation_state.UpdateKinematicState(actor_id, kinematic_state);
     simulation_state.UpdateTrafficLightState(actor_id, tl_state);
   }
   else {
+    // 如果是新车辆，添加静态属性，包括车辆的类型和边界尺寸
     cg::Vector3D dimensions = vehicle_ptr->GetBoundingBox().extent;
     StaticAttributes attributes{ActorType::Vehicle, dimensions.x, dimensions.y, dimensions.z};
 
+    // 将新的车辆及其状态添加到仿真状态中
     simulation_state.AddActor(actor_id, kinematic_state, attributes, tl_state);
   }
 }
