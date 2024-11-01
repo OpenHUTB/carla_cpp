@@ -309,71 +309,79 @@ void ALSM::UpdateData(const bool hybrid_physics_mode, const Actor &vehicle,
 
 
 void ALSM::UpdateUnregisteredActorsData() {
+  //遍历所有未注册的参与者
   for (auto &actor_info: unregistered_actors) {
 
-    const ActorId actor_id = actor_info.first;
-    const ActorPtr actor_ptr = actor_info.second;
-    const std::string type_id = actor_ptr->GetTypeId();
-
-    const cg::Transform actor_transform = actor_ptr->GetTransform();
-    const cg::Location actor_location = actor_transform.location;
-    const cg::Rotation actor_rotation = actor_transform.rotation;
-    const cg::Vector3D actor_velocity = actor_ptr->GetVelocity();
-    const bool actor_is_dormant = actor_ptr->IsDormant();
+    const ActorId actor_id = actor_info.first; //获取参与者的 ID
+    const ActorPtr actor_ptr = actor_info.second; //获取参与者的指针
+    const std::string type_id = actor_ptr->GetTypeId(); //获取参与者的类型 ID
+     
+    const cg::Transform actor_transform = actor_ptr->GetTransform(); //获取参与者的变换信息
+    const cg::Location actor_location = actor_transform.location; //获取参与者的位置
+    const cg::Rotation actor_rotation = actor_transform.rotation; //获取参与者的旋转信息
+    const cg::Vector3D actor_velocity = actor_ptr->GetVelocity(); //获取参与者的速度
+    const bool actor_is_dormant = actor_ptr->IsDormant(); //判断参与者是否处于休眠状态
+    //创建运动状态对象
     KinematicState kinematic_state {actor_location, actor_rotation, actor_velocity, -1.0f, true, actor_is_dormant, cg::Location()};
 
-    TrafficLightState tl_state;
-    ActorType actor_type = ActorType::Any;
-    cg::Vector3D dimensions;
-    std::vector<SimpleWaypointPtr> nearest_waypoints;
+    TrafficLightState tl_state; //交通灯状态
+    ActorType actor_type = ActorType::Any; //参与者类型
+    cg::Vector3D dimensions; //参与者的尺寸
+    std::vector<SimpleWaypointPtr> nearest_waypoints; //最近的路点
 
+    //检查参与者在模拟状态中是否存在条目
     bool state_entry_not_present = !simulation_state.ContainsActor(actor_id);
-    if (type_id.front() == 'v') {
-      auto vehicle_ptr = boost::static_pointer_cast<cc::Vehicle>(actor_ptr);
-      kinematic_state.speed_limit = vehicle_ptr->GetSpeedLimit();
+    if (type_id.front() == 'v') { //如果是车辆
+      auto vehicle_ptr = boost::static_pointer_cast<cc::Vehicle>(actor_ptr); //转换为车辆指针
+      kinematic_state.speed_limit = vehicle_ptr->GetSpeedLimit(); //获取车辆的速度限制
 
-      tl_state = {vehicle_ptr->GetTrafficLightState(), vehicle_ptr->IsAtTrafficLight()};
+      tl_state = {vehicle_ptr->GetTrafficLightState(), vehicle_ptr->IsAtTrafficLight()}; //获取交通灯状态
 
       if (state_entry_not_present) {
-        dimensions = vehicle_ptr->GetBoundingBox().extent;
-        actor_type = ActorType::Vehicle;
-        StaticAttributes attributes {actor_type, dimensions.x, dimensions.y, dimensions.z};
+        dimensions = vehicle_ptr->GetBoundingBox().extent; //获取车辆的边界框尺寸
+        actor_type = ActorType::Vehicle; //设置参与者类型为车辆
+        StaticAttributes attributes {actor_type, dimensions.x, dimensions.y, dimensions.z}; //创建静态属性
 
+        //添加参与者到模拟状态
         simulation_state.AddActor(actor_id, kinematic_state, attributes, tl_state);
       } else {
+        // 更新运动状态和交通灯状态
         simulation_state.UpdateKinematicState(actor_id, kinematic_state);
         simulation_state.UpdateTrafficLightState(actor_id, tl_state);
       }
 
-      // Identify occupied waypoints.
-      cg::Vector3D extent = vehicle_ptr->GetBoundingBox().extent;
-      cg::Vector3D heading_vector = vehicle_ptr->GetTransform().GetForwardVector();
+      // 确定占用的路点
+      cg::Vector3D extent = vehicle_ptr->GetBoundingBox().extent; // 获取车辆的尺寸
+      cg::Vector3D heading_vector = vehicle_ptr->GetTransform().GetForwardVector(); //获取车辆的朝向向量
+     // 计算车辆四个角的位置
       std::vector<cg::Location> corners = {actor_location + cg::Location(extent.x * heading_vector),
                                            actor_location,
                                            actor_location + cg::Location(-extent.x * heading_vector)};
       for (cg::Location &vertex: corners) {
-        SimpleWaypointPtr nearest_waypoint = local_map->GetWaypoint(vertex);
-        nearest_waypoints.push_back(nearest_waypoint);
+        SimpleWaypointPtr nearest_waypoint = local_map->GetWaypoint(vertex); //获取最近的路点
+        nearest_waypoints.push_back(nearest_waypoint); //添加到最近路点列表
       }
     }
-    else if (type_id.front() == 'w') {
-      auto walker_ptr = boost::static_pointer_cast<cc::Walker>(actor_ptr);
+    else if (type_id.front() == 'w') { //如果是行人
+      auto walker_ptr = boost::static_pointer_cast<cc::Walker>(actor_ptr); //转换为行人指针
 
       if (state_entry_not_present) {
-        dimensions = walker_ptr->GetBoundingBox().extent;
-        actor_type = ActorType::Pedestrian;
-        StaticAttributes attributes {actor_type, dimensions.x, dimensions.y, dimensions.z};
+        dimensions = walker_ptr->GetBoundingBox().extent; //获取行人的边界框尺寸
+        actor_type = ActorType::Pedestrian; //设置参与者类型为行人
+        StaticAttributes attributes {actor_type, dimensions.x, dimensions.y, dimensions.z}; //创建静态属性
 
+        // 添加参与者到模拟状态
         simulation_state.AddActor(actor_id, kinematic_state, attributes, tl_state);
       } else {
+         // 更新运动状态
         simulation_state.UpdateKinematicState(actor_id, kinematic_state);
       }
 
-      // Identify occupied waypoints.
-      SimpleWaypointPtr nearest_waypoint = local_map->GetWaypoint(actor_location);
-      nearest_waypoints.push_back(nearest_waypoint);
+      // 确定占用的路点
+      SimpleWaypointPtr nearest_waypoint = local_map->GetWaypoint(actor_location); //获取最近的路线
+      nearest_waypoints.push_back(nearest_waypoint); //添加到最近路点列表
     }
-
+    //更新未注册参与者的网络位置
     track_traffic.UpdateUnregisteredGridPosition(actor_id, nearest_waypoints);
   }
 }
