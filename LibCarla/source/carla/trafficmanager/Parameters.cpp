@@ -153,7 +153,7 @@ void Parameters::SetSynchronousModeTimeOutInMiliSecond(const double time) {
 
 void Parameters::SetGlobalDistanceToLeadingVehicle(const float dist) {
     // 设置全局前车距离
-    distance_margin.store(dist);
+   distance_margin.store(dist);
 }
 
 void Parameters::SetPercentageRunningLight(const ActorPtr &actor, const float perc) {
@@ -168,23 +168,23 @@ void Parameters::SetPercentageRunningLight(const ActorPtr &actor, const float pe
 
 void Parameters::SetPercentageRunningSign(const ActorPtr &actor, const float perc) {
     // 设置运行标志的百分比
-    float new_perc = cg::Math::Clamp(perc, 0.0f, 100.0f);
-    const auto entry = std::make_pair(actor->GetId(), new_perc);
-    perc_run_traffic_sign.AddEntry(entry);
+   float new_perc = cg::Math::Clamp(perc, 0.0f, 100.0f);
+   const auto entry = std::make_pair(actor->GetId(), new_perc);
+   perc_run_traffic_sign.AddEntry(entry);
 }
 
 void Parameters::SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc) {
     // 设置忽略车辆的百分比
-    float new_perc = cg::Math::Clamp(perc, 0.0f, 100.0f);
-    const auto entry = std::make_pair(actor->GetId(), new_perc);
-    perc_ignore_vehicles.AddEntry(entry);
+   float new_perc = cg::Math::Clamp(perc, 0.0f, 100.0f);
+   const auto entry = std::make_pair(actor->GetId(), new_perc);
+   perc_ignore_vehicles.AddEntry(entry);
 }
 
 void Parameters::SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc) {
     // 设置忽略行人的百分比
-    float new_perc = cg::Math::Clamp(perc, 0.0f, 100.0f);
-    const auto entry = std::make_pair(actor->GetId(), new_perc);
-    perc_ignore_walkers.AddEntry(entry);
+   float new_perc = cg::Math::Clamp(perc, 0.0f, 100.0f);
+   const auto entry = std::make_pair(actor->GetId(), new_perc);
+   perc_ignore_walkers.AddEntry(entry);
 }
 
 void Parameters::SetHybridPhysicsRadius(const float radius) {
@@ -257,7 +257,7 @@ void Parameters::UpdateImportedRoute(const ActorId &actor_id, const Route route)
 
 float Parameters::GetHybridPhysicsRadius() const {
     // 获取混合物理半径
-    return hybrid_physics_radius.load();
+   return hybrid_physics_radius.load();
 }
 
 bool Parameters::GetSynchronousMode() const {
@@ -296,7 +296,7 @@ float Parameters::GetLaneOffset(const ActorId &actor_id) const {
         offset = lane_offset.GetValue(actor_id);
     }
 
-    return offset; // 返回车道偏移
+   return offset; // 返回车道偏移
 }
 
 bool Parameters::GetCollisionDetection(const ActorId &reference_actor_id, const ActorId &other_actor_id) const {
@@ -309,7 +309,7 @@ bool Parameters::GetCollisionDetection(const ActorId &reference_actor_id, const 
         avoid_collision = false; // 不避免碰撞
     }
 
-    return avoid_collision; // 返回碰撞检测结果
+   return avoid_collision; // 返回碰撞检测结果
 }
 
 ChangeLaneInfo Parameters::GetForceLaneChange(const ActorId &actor_id) {
@@ -324,7 +324,7 @@ ChangeLaneInfo Parameters::GetForceLaneChange(const ActorId &actor_id) {
     // 移除该参与者的强制车道变更条目
     force_lane_change.RemoveEntry(actor_id);
 
-    return change_lane_info; // 返回车道变更信息
+   return change_lane_info; // 返回车道变更信息
 }
 
 float Parameters::GetKeepRightPercentage(const ActorId &actor_id) {
@@ -336,7 +336,7 @@ float Parameters::GetKeepRightPercentage(const ActorId &actor_id) {
         percentage = perc_keep_right.GetValue(actor_id);
     }
 
-    return percentage; // 返回保持右侧的百分比
+   return percentage; // 返回保持右侧的百分比
 }
 
 float Parameters::GetRandomLeftLaneChangePercentage(const ActorId &actor_id) {
@@ -348,7 +348,7 @@ float Parameters::GetRandomLeftLaneChangePercentage(const ActorId &actor_id) {
         percentage = perc_random_left.GetValue(actor_id);
     }
 
-    return percentage; // 返回随机左侧车道变更的百分比
+   return percentage; // 返回随机左侧车道变更的百分比
 }
 
 float Parameters::GetRandomRightLaneChangePercentage(const ActorId &actor_id) {
@@ -360,7 +360,7 @@ float Parameters::GetRandomRightLaneChangePercentage(const ActorId &actor_id) {
         percentage = perc_random_right.GetValue(actor_id);
     }
 
-    return percentage; // 返回随机右侧车道变更的百分比
+   return percentage; // 返回随机右侧车道变更的百分比
 }
 
 bool Parameters::GetAutoLaneChange(const ActorId &actor_id) const {
@@ -372,7 +372,7 @@ bool Parameters::GetAutoLaneChange(const ActorId &actor_id) const {
         auto_lane_change_policy = auto_lane_change.GetValue(actor_id);
     }
 
-    return auto_lane_change_policy; // 返回自动车道变更政策
+   return auto_lane_change_policy; // 返回自动车道变更政策
 }
 
 float Parameters::GetDistanceToLeadingVehicle(const ActorId &actor_id) const {
@@ -398,7 +398,7 @@ float Parameters::GetPercentageRunningLight(const ActorId &actor_id) const {
         percentage = perc_run_traffic_light.GetValue(actor_id);
     }
 
-    return percentage; // 返回红绿灯违规的百分比
+   return percentage; // 返回红绿灯违规的百分比
 }
 
 float Parameters::GetPercentageRunningSign(const ActorId &actor_id) const {
@@ -410,7 +410,7 @@ float Parameters::GetPercentageRunningSign(const ActorId &actor_id) const {
         percentage = perc_run_traffic_sign.GetValue(actor_id);
     }
 
-    return percentage; // 返回交通标志违规的百分比
+   return percentage; // 返回交通标志违规的百分比
 }
 
 float Parameters::GetPercentageIgnoreWalkers(const ActorId &actor_id) const {
@@ -422,7 +422,7 @@ float Parameters::GetPercentageIgnoreWalkers(const ActorId &actor_id) const {
         percentage = perc_ignore_walkers.GetValue(actor_id);
     }
 
-    return percentage; // 返回忽略行人的百分比
+   return percentage; // 返回忽略行人的百分比
 }
 
 bool Parameters::GetUpdateVehicleLights(const ActorId &actor_id) const {
@@ -434,7 +434,7 @@ bool Parameters::GetUpdateVehicleLights(const ActorId &actor_id) const {
         do_update = auto_update_vehicle_lights.GetValue(actor_id);
     }
 
-    return do_update; // 返回灯光更新设置
+   return do_update; // 返回灯光更新设置
 }
 
 float Parameters::GetPercentageIgnoreVehicles(const ActorId &actor_id) const {
@@ -446,32 +446,32 @@ float Parameters::GetPercentageIgnoreVehicles(const ActorId &actor_id) const {
         percentage = perc_ignore_vehicles.GetValue(actor_id);
     }
 
-    return percentage; // 返回忽略车辆的百分比
+   return percentage; // 返回忽略车辆的百分比
 }
 
 bool Parameters::GetHybridPhysicsMode() const {
     // 返回混合物理模式的状态
-    return hybrid_physics_mode.load();
+   return hybrid_physics_mode.load();
 }
 
 bool Parameters::GetRespawnDormantVehicles() const {
     // 返回是否重新生成休眠车辆的设置
-    return respawn_dormant_vehicles.load();
+   return respawn_dormant_vehicles.load();
 }
 
 float Parameters::GetLowerBoundaryRespawnDormantVehicles() const {
     // 返回休眠车辆重新生成的下边界值
-    return respawn_lower_bound.load();
+   return respawn_lower_bound.load();
 }
 
 float Parameters::GetUpperBoundaryRespawnDormantVehicles() const {
     // 返回休眠车辆重新生成的上边界值
-    return respawn_upper_bound.load();
+   return respawn_upper_bound.load();
 }
 
 bool Parameters::GetOSMMode() const {
     // 返回是否启用OSM模式的设置
-    return osm_mode.load();
+   return osm_mode.load();
 }
 
 bool Parameters::GetUploadPath(const ActorId &actor_id) const {
@@ -483,7 +483,7 @@ bool Parameters::GetUploadPath(const ActorId &actor_id) const {
         custom_path_bool = upload_path.GetValue(actor_id);
     }
 
-    return custom_path_bool; // 返回自定义路径标志
+   return custom_path_bool; // 返回自定义路径标志
 }
 
 Path Parameters::GetCustomPath(const ActorId &actor_id) const {
@@ -495,7 +495,7 @@ Path Parameters::GetCustomPath(const ActorId &actor_id) const {
         custom_path_import = custom_path.GetValue(actor_id);
     }
 
-    return custom_path_import; // 返回自定义路径
+   return custom_path_import; // 返回自定义路径
 }
 
 bool Parameters::GetUploadRoute(const ActorId &actor_id) const {
@@ -507,7 +507,7 @@ bool Parameters::GetUploadRoute(const ActorId &actor_id) const {
         custom_route_bool = upload_route.GetValue(actor_id);
     }
 
-    return custom_route_bool; // 返回自定义路线标志
+   return custom_route_bool; // 返回自定义路线标志
 }
 
 Route Parameters::GetImportedRoute(const ActorId &actor_id) const {
@@ -519,7 +519,7 @@ Route Parameters::GetImportedRoute(const ActorId &actor_id) const {
         custom_route_import = custom_route.GetValue(actor_id);
     }
 
-    return custom_route_import; // 返回自定义路线
+   return custom_route_import; // 返回自定义路线
 }
 
 
