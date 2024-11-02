@@ -152,7 +152,10 @@ public:
     }
   }
 
-  /// Method to set boundaries for respawning vehicles.
+  /// @brief 设置重生车辆的边界。   
+/// 此方法用于为TrafficManager设置车辆重生时的上下边界。    
+/// @param lower 下边界值。  
+/// @param upper 上边界值。 
   void SetMaxBoundaries(const float lower, const float upper) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if (tm_ptr != nullptr) {
@@ -160,7 +163,9 @@ public:
     }
   }
 
-  /// This method sets the hybrid physics mode.
+  /// @brief 设置混合物理模式。  
+ /// 此方法用于启用或禁用TrafficManager的混合物理模式。  
+ /// @param mode_switch 启用（true）或禁用（false）混合物理模式。  
   void SetHybridPhysicsMode(const bool mode_switch) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -168,7 +173,9 @@ public:
     }
   }
 
-  /// This method sets the hybrid physics radius.
+  /// @brief 设置混合物理半径。  
+/// 此方法用于设置TrafficManager的混合物理模式的触发半径。     
+/// @param radius 混合物理模式的触发半径。
   void SetHybridPhysicsRadius(const float radius) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -176,7 +183,9 @@ public:
     }
   }
 
-  /// This method registers a vehicle with the traffic manager.
+  /// @brief 向交通管理器注册车辆。  
+/// 此方法用于将一组车辆注册到TrafficManager中。  
+/// @param actor_list 要注册的车辆列表。
   void RegisterVehicles(const std::vector<ActorPtr> &actor_list) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -184,7 +193,9 @@ public:
     }
   }
 
-  /// This method unregisters a vehicle from traffic manager.
+  /// @brief 从交通管理器注销车辆。  
+ /// 此方法用于从TrafficManager中注销一组车辆。 
+ /// @param actor_list 要注销的车辆列表。
   void UnregisterVehicles(const std::vector<ActorPtr> &actor_list) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -192,8 +203,10 @@ public:
     }
   }
 
-  /// Set a vehicle's % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// @brief 设置车辆相对于限速的速度百分比差异。  
+/// 此方法用于设置车辆相对于道路限速的速度百分比差异。如果百分比小于0，则表示速度增加。    
+/// @param actor 要设置速度差异的车辆。  
+/// @param percentage 速度百分比差异。 
   void SetPercentageSpeedDifference(const ActorPtr &actor, const float percentage) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -201,8 +214,10 @@ public:
     }
   }
 
-  /// Method to set a lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// @brief 设置车辆相对于车道中心线的偏移量。  
+/// 此方法用于设置车辆相对于车道中心线的偏移量。正值表示向右偏移，负值表示向左偏移。
+/// @param actor 要设置车道偏移的车辆。  
+/// @param offset 车道偏移量。 
   void SetLaneOffset(const ActorPtr &actor, const float offset) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -210,7 +225,10 @@ public:
     }
   }
 
-  /// Set a vehicle's exact desired velocity.
+  /// @brief 设置车辆的期望速度。  
+ /// 此方法用于设置车辆的精确期望速度。  
+ /// @param actor 要设置期望速度的车辆。  
+ /// @param value 车辆的期望速度。
   void SetDesiredSpeed(const ActorPtr &actor, const float value) {
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -218,8 +236,9 @@ public:
     }
   }
 
-  /// Set a global % decrease in velocity with respect to the speed limit.
-  /// If less than 0, it's a % increase.
+  /// @brief 设置全局速度百分比差异。  
+/// 此方法用于设置所有车辆相对于道路限速的全局速度百分比差异。如果百分比小于0，则表示速度增加。  
+/// @param percentage 全局速度百分比差异。
   void SetGlobalPercentageSpeedDifference(float const percentage){
     TrafficManagerBase* tm_ptr = GetTM(_port);
     if(tm_ptr != nullptr){
@@ -227,157 +246,177 @@ public:
     }
   }
 
-  /// Method to set a global lane offset displacement from the center line.
-  /// Positive values imply a right offset while negative ones mean a left one.
+  /// 设置全局车道偏移量，相对于中心线的位移。  
+/// 正值表示向右偏移，负值表示向左偏移。 
   void SetGlobalLaneOffset(float const offset){
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetGlobalLaneOffset(offset);
+    TrafficManagerBase* tm_ptr = GetTM(_port); // 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetGlobalLaneOffset(offset);// 调用设置全局车道偏移量的方法 
     }
   }
 
-  /// Set the automatic management of the vehicle lights
+  /// 设置车辆灯光的自动管理
   void SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update){
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetUpdateVehicleLights(actor, do_update);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetUpdateVehicleLights(actor, do_update);// 调用设置车辆灯光自动管理的方法 
     }
   }
 
-  /// Method to set collision detection rules between vehicles.
+  /// 设置车辆之间的碰撞检测规则
   void SetCollisionDetection(const ActorPtr &reference_actor, const ActorPtr &other_actor, const bool detect_collision) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetCollisionDetection(reference_actor, other_actor, detect_collision);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetCollisionDetection(reference_actor, other_actor, detect_collision);// 调用设置碰撞检测规则的方法
     }
   }
 
-  /// Method to force lane change on a vehicle.
-  /// Direction flag can be set to true for left and false for right.
+  /// 强制车辆换道。  
+/// 方向标志设置为true表示向左换道，false表示向右换道。
   void SetForceLaneChange(const ActorPtr &actor, const bool direction) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetForceLaneChange(actor, direction);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetForceLaneChange(actor, direction);// 调用强制换道的方法
     }
   }
 
-  /// Enable/disable automatic lane change on a vehicle.
+  /// 启用/禁用车辆的自动换道功能。
   void SetAutoLaneChange(const ActorPtr &actor, const bool enable) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetAutoLaneChange(actor, enable);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetAutoLaneChange(actor, enable);// 调用设置自动换道功能的方法
     }
   }
 
-  /// Method to specify how much distance a vehicle should maintain to
-  /// the leading vehicle.
+  /// 设置车辆与前车应保持的距离。
   void SetDistanceToLeadingVehicle(const ActorPtr &actor, const float distance) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetDistanceToLeadingVehicle(actor, distance);
+    TrafficManagerBase* tm_ptr = GetTM(_port); // 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetDistanceToLeadingVehicle(actor, distance); // 调用设置与前车距离的方法
     }
   }
 
-  /// Method to specify the % chance of ignoring collisions with any walker.
+  /// 设置忽略行人的碰撞概率。  
+/// @param actor 车辆指针。  
+/// @param perc 忽略碰撞的概率（百分比）。
   void SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetPercentageIgnoreWalkers(actor, perc);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效  
+      tm_ptr->SetPercentageIgnoreWalkers(actor, perc); // 调用设置忽略行人碰撞概率的方法
     }
   }
 
-  /// Method to specify the % chance of ignoring collisions with any vehicle.
+  /// 设置忽略车辆的碰撞概率。  
+/// @param actor 车辆指针。  
+/// @param perc 忽略碰撞的概率（百分比）。
   void SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetPercentageIgnoreVehicles(actor, perc);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetPercentageIgnoreVehicles(actor, perc);// 调用设置忽略车辆碰撞概率的方法
     }
   }
 
-  /// Method to specify the % chance of running a sign.
+  /// 设置无视交通标志的概率。  
+/// @param actor 车辆指针。  
+/// @param perc 无视交通标志的概率（百分比）。 
   void SetPercentageRunningSign(const ActorPtr &actor, const float perc) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetPercentageRunningSign(actor, perc);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetPercentageRunningSign(actor, perc);// 调用设置无视交通标志概率的方法
     }
   }
 
-  /// Method to specify the % chance of running a light.
+  /// 设置无视交通信号灯的概率。  
+/// @param actor 车辆指针。  
+/// @param perc 无视交通信号灯的概率（百分比）。  
   void SetPercentageRunningLight(const ActorPtr &actor, const float perc){
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetPercentageRunningLight(actor, perc);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetPercentageRunningLight(actor, perc); // 调用设置无视交通信号灯概率的方法
     }
   }
 
-  /// Method to switch traffic manager into synchronous execution.
-  void SetSynchronousMode(bool mode) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetSynchronousMode(mode);
+  /// 将交通管理器切换为同步执行模式。  
+ /// @param mode 是否启用同步模式（true为启用，false为禁用）。
+  void SetSynchronousMode(bool mode) {// 获取交通管理器实例 
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetSynchronousMode(mode);// 调用设置同步执行模式的方法  
     }
   }
 
-  /// Method to set tick timeout for synchronous execution.
+  /// 设置同步执行模式的滴答超时时间（以毫秒为单位）。  
+/// @param time 超时时间，单位为毫秒。
   void SetSynchronousModeTimeOutInMiliSecond(double time) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetSynchronousModeTimeOutInMiliSecond(time);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetSynchronousModeTimeOutInMiliSecond(time);// 调用设置超时时间的方法
     }
   }
 
-  /// Method to provide synchronous tick.
+  /// 执行同步滴答。  
+/// @return 如果成功执行同步滴答，则返回true；否则返回false。 
   bool SynchronousTick() {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      return tm_ptr->SynchronousTick();
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      return tm_ptr->SynchronousTick();// 调用执行同步滴答的方法，并返回结果
     }
-    return false;
+    return false;// 如果实例无效，则返回false
   }
 
-  /// Method to Set Global distance to Leading vehicle
+  /// 设置全局的前车距离。  
+/// @param distance 前车距离。
   void SetGlobalDistanceToLeadingVehicle(const float distance) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetGlobalDistanceToLeadingVehicle(distance);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetGlobalDistanceToLeadingVehicle(distance);// 调用设置前车距离的方法
     }
   }
 
-  /// Method to set % to keep on the right lane.
+  /// 设置车辆保持在右侧车道的百分比。  
+ /// @param actor 车辆指针。  
+ /// @param percentage 保持在右侧车道的百分比。 
   void SetKeepRightPercentage(const ActorPtr &actor, const float percentage) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetKeepRightPercentage(actor, percentage);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例  
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetKeepRightPercentage(actor, percentage);// 调用设置保持在右侧车道百分比的方法
     }
   }
 
-  /// Method to set % to randomly do a left lane change.
+  /// 设置车辆随机进行左侧车道变换的百分比。  
+/// @param actor 车辆指针。  
+/// @param percentage 随机进行左侧车道变换的百分比。
   void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetRandomLeftLaneChangePercentage(actor, percentage);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效 
+      tm_ptr->SetRandomLeftLaneChangePercentage(actor, percentage);// 调用设置随机左侧车道变换百分比的方法
     }
   }
 
-  /// Method to set % to randomly do a right lane change.
+  /// 设置车辆随机进行右侧车道变换的百分比。  
+ /// @param actor 车辆指针。  
+ /// @param percentage 随机进行右侧车道变换的百分比。
   void SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetRandomRightLaneChangePercentage(actor, percentage);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例  
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetRandomRightLaneChangePercentage(actor, percentage);// 调用设置随机右侧车道变换百分比的方法
     }
   }
 
-  /// Method to set randomization seed.
+  /// 设置随机数生成器的种子。  
+ /// @param seed 随机数生成器的种子。
   void SetRandomDeviceSeed(const uint64_t seed) {
-    TrafficManagerBase* tm_ptr = GetTM(_port);
-    if(tm_ptr != nullptr){
-      tm_ptr->SetRandomDeviceSeed(seed);
+    TrafficManagerBase* tm_ptr = GetTM(_port);// 获取交通管理器实例 
+    if(tm_ptr != nullptr){// 检查实例是否有效
+      tm_ptr->SetRandomDeviceSeed(seed);// 调用设置随机数生成器种子的方法
     }
   }
-
+  /// 关闭交通管理器服务或客户端。
   void ShutDown();
 
-  /// Method to get the next action.
+  /// 获取指定参与者的下一个动作。  
+  /// @param actor_id 参与者的唯一标识符。  
+  /// @return 指定参与者的下一个动作。
   Action GetNextAction(const ActorId &actor_id) {
     Action next_action;
     TrafficManagerBase* tm_ptr = GetTM(_port);
@@ -388,7 +427,9 @@ public:
     return next_action;
   }
 
-  /// Method to get the action buffer.
+  /// 获取指定参与者的动作缓冲区。  
+   /// @param actor_id 参与者的唯一标识符。  
+   /// @return 指定参与者的动作缓冲区。 
   ActionBuffer GetActionBuffer(const ActorId &actor_id) {
     ActionBuffer action_buffer;
     TrafficManagerBase* tm_ptr = GetTM(_port);
@@ -400,16 +441,23 @@ public:
   }
 
 private:
-
+    /// 创建交通管理器服务器。  
+  /// @param episode_proxy 与当前场景相关联的代理对象。  
+  /// @param port 服务器监听的端口号。
   void CreateTrafficManagerServer(
     carla::client::detail::EpisodeProxy episode_proxy,
     uint16_t port);
 
-
+  /// 创建交通管理器客户端。  
+  /// @param episode_proxy 与当前场景相关联的代理对象。  
+  /// @param port 客户端连接的端口号。  
+  /// @return 如果创建成功，则返回true；否则返回false。
   bool CreateTrafficManagerClient(
     carla::client::detail::EpisodeProxy episode_proxy,
     uint16_t port);
-
+  /// 根据端口号获取交通管理器实例。  
+  /// @param port 端口号。  
+  /// @return 对应的交通管理器实例指针；如果未找到，则返回nullptr。
   TrafficManagerBase* GetTM(uint16_t port) const {
     std::lock_guard<std::mutex> lock(_mutex);
     auto it = _tm_map.find(port);
@@ -418,10 +466,12 @@ private:
     }
     return nullptr;
   }
-
+  /// 存储交通管理器实例的静态映射表。  
+  /// @details 键为端口号，值为对应的交通管理器实例指针
   static std::map<uint16_t, TrafficManagerBase*> _tm_map;
+  /// 用于保护_tm_map的静态互斥锁。
   static std::mutex _mutex;
-
+  /// 当前交通管理器实例使用的端口号。
   uint16_t _port = 0;
 
 };
