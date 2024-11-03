@@ -387,35 +387,48 @@ void ALSM::UpdateUnregisteredActorsData() {
 }
 
 void ALSM::UpdateIdleTime(std::pair<ActorId, double>& max_idle_time, const ActorId& actor_id) {
-  if (idle_time.find(actor_id) != idle_time.end()) {
+    // 检查参与者的空闲时间是否存在于空闲时间映射中
+    if (idle_time.find(actor_id) != idle_time.end()) {
+    // 获取参与者的空闲持续时间
     double &idle_duration = idle_time.at(actor_id);
+    // 检查参与者的速度是否超过停止阈值
     if (simulation_state.GetVelocity(actor_id).SquaredLength() > SQUARE(STOPPED_VELOCITY_THRESHOLD)) {
-      idle_duration = current_timestamp.elapsed_seconds;
+        //如果速度超过阈值，则更新空闲时间为当前时间截
+        idle_duration = current_timestamp.elapsed_seconds;
     }
 
-    // Checking maximum idle time.
+    // 检查并更新最大空闲时间
     if (max_idle_time.first == 0u || max_idle_time.second > idle_duration) {
       max_idle_time = std::make_pair(actor_id, idle_duration);
     }
   }
 }
 
+//检查车辆是否被卡住
 bool ALSM::IsVehicleStuck(const ActorId& actor_id) {
+  // 检查参与者的空闲时间是否存在
   if (idle_time.find(actor_id) != idle_time.end()) {
-    double delta_idle_time = current_timestamp.elapsed_seconds - idle_time.at(actor_id);
-    TrafficLightState tl_state = simulation_state.GetTLS(actor_id);
-    if ((delta_idle_time >= RED_TL_BLOCKED_TIME_THRESHOLD)
+      // 计算自上次纪录以来的空闲时间增量
+      double delta_idle_time = current_timestamp.elapsed_seconds - idle_time.at(actor_id);
+      // 获取交通灯状态
+      TrafficLightState tl_state = simulation_state.GetTLS(actor_id);
+      // 检查是否超过红灯阻塞时间阈值或非红灯状态的阻塞时间阈值
+      if ((delta_idle_time >= RED_TL_BLOCKED_TIME_THRESHOLD)
     || (delta_idle_time >= BLOCKED_TIME_THRESHOLD && tl_state.tl_state != TLS::Red))
     {
-      return true;
+      return true; // 车辆被认为是卡住的
     }
   }
-  return false;
+  return false; //车辆被没有认为是卡住的
 }
 
+// 移除指定的参与者
 void ALSM::RemoveActor(const ActorId actor_id, const bool registered_actor) {
+  // 如果参与者是已注册的
   if (registered_actor) {
+    // 从注册车辆中移除参与者
     registered_vehicles.Remove({actor_id});
+    // 从缓冲区、空闲时间、定位阶段等中移除参与者
     buffer_map.erase(actor_id);
     idle_time.erase(actor_id);
     localization_stage.RemoveActor(actor_id);
@@ -425,20 +438,25 @@ void ALSM::RemoveActor(const ActorId actor_id, const bool registered_actor) {
     vehicle_light_stage.RemoveActor(actor_id);
   }
   else {
+    // 如果参与者未注册，则从未注册参与者和英雄参与者集合中移除
     unregistered_actors.erase(actor_id);
     hero_actors.erase(actor_id);
   }
 
+  //从交通监控系统中删除参与者
   track_traffic.DeleteActor(actor_id);
+  // 从仿真状态中移除参与者
   simulation_state.RemoveActor(actor_id);
 }
 
+// 重置状态
 void ALSM::Reset() {
+  // 清空未注册参与者、空闲时间、英雄参与者等数据
   unregistered_actors.clear();
   idle_time.clear();
   hero_actors.clear();
-  elapsed_last_actor_destruction = 0.0;
-  current_timestamp = world.GetSnapshot().GetTimestamp();
+  elapsed_last_actor_destruction = 0.0; // 重置上次参与者销毁的时间
+  current_timestamp = world.GetSnapshot().GetTimestamp(); // 更新当前时间截
 }
 
 } // namespace traffic_manager
