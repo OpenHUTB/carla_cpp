@@ -206,15 +206,23 @@ namespace multigpu {
           log_error("primary server: failed to read data: ", ec.message());
         }
       };
-
+      /**
+ * @brief 异步读取套接字头部信息（通常包含后续数据的大小）的回调函数。
+ *
+ * 此回调函数用于处理从TCP套接字异步读取的头部信息。如果成功读取且消息大小大于0，
+ * 则会分配相应大小的缓冲区，并启动异步读取数据的操作。如果读取失败或消息大小为0，
+ * 则会记录错误日志并关闭连接。
+ *
+ * @param ec 读取操作的结果代码。如果为0，表示读取成功；否则表示读取失败。
+ * @param bytes 读取的字节数（仅在调试模式下使用）。
+ */
       auto handle_read_header = [weak, message, handle_read_data](
           boost::system::error_code ec,
           size_t DEBUG_ONLY(bytes)) {
         auto self = weak.lock();
         if (!self) return;
         if (!ec && (message->size() > 0u)) {
-          // Now that we know the size of the coming buffer, we can allocate our
-          // buffer and start putting data into it.
+            // 既然已经知道了即将到来的缓冲区的大小，我们就可以分配缓冲区并开始存储数据。
           boost::asio::async_read(
               self->_socket,
               message->buffer(),
@@ -223,7 +231,7 @@ namespace multigpu {
           if (ec) {
             log_error("Primary server: failed to read header: ", ec.message());
           }
-          // Connect();
+          // Connect(); // 此处可能需要根据实际情况决定是否重连 
           self->Close();
         }
       };
@@ -235,7 +243,21 @@ namespace multigpu {
           boost::asio::bind_executor(self->_strand, handle_read_header));
     });
   }
+  /**
+ * @brief 异步读取套接字头部信息（即数据缓冲区的大小）。
+ *
+ * 此方法会启动一个异步读取操作，从TCP套接字中读取数据缓冲区的大小。
+ * 读取完成后，会调用`handle_read_header`回调函数来处理读取结果。
+ */
+ // 接下来的代码段是前面代码的一部分，为了完整性而保留在此处，但注释已添加到上面的回调函数中。  
+ // ...（省略了部分代码，具体为async_read的调用）  
 
+ /**
+  * @brief 关闭连接并释放资源。
+  *
+  * 此方法会启动一个异步任务，在该任务中尝试获取当前对象的强引用。
+  * 如果成功获取，则调用`CloseNow`方法来关闭连接并释放资源。
+  */
   void Primary::Close() {
     std::weak_ptr<Primary> weak = shared_from_this();
     boost::asio::post(_strand, [weak]() {
@@ -244,7 +266,13 @@ namespace multigpu {
       self->CloseNow();
     });
   }
-
+  /**
+ * @brief 启动定时器以监控连接是否超时。
+ *
+ * 此方法会检查定时器是否已经过期。如果已过期，则记录调试信息并关闭连接。
+ * 如果未过期，则启动一个异步等待操作，等待定时器超时。超时后，会递归调用`StartTimer`
+ * 方法以继续监控，或者在遇到错误时记录错误日志。
+ */
   void Primary::StartTimer() {
     if (_deadline.expires_at() <= boost::asio::deadline_timer::traits_type::now()) {
       log_debug("session ", _session_id, " time out");
