@@ -290,18 +290,28 @@ namespace multigpu {
       });
     }
   }
-
+  /// \brief 立即关闭连接并处理相关资源。  
+///  
+/// 此方法用于在接收到关闭指令或错误时，立即取消任何挂起的操作，关闭套接字，  
+/// 并通知相关的关闭事件处理函数。  
+///  
+/// \param ec 错误代码，指示关闭操作是否由于错误而触发。
   void Primary::CloseNow(boost::system::error_code ec) {
+      /// \details 取消所有挂起的定时器操作。 
     _deadline.cancel();
+    /// \details 如果没有错误代码（即正常关闭），则检查套接字是否仍然打开
     if (!ec)
     {
+        /// \details 如果套接字仍然打开，则先进行双向关闭操作，然后关闭套接字
       if (_socket.is_open()) {
-        boost::system::error_code ec2;
+        boost::system::error_code ec2;// 用于捕获shutdown操作的错误代码
         _socket.shutdown(boost::asio::socket_base::shutdown_both, ec2);
-        _socket.close();
+        _socket.close();// 关闭套接字  
       }
     }
+    /// \details 通知关闭事件的处理函数，传递当前对象的共享指针。  
     _on_closed(shared_from_this());
+    /// \details 记录调试信息，表明会话已关闭。
     log_debug("session", _session_id, "closed");
   }
 
