@@ -79,44 +79,53 @@ namespace multigpu {
       Listener::callback_function_type on_opened,
       Listener::callback_function_type on_closed,
       Listener::callback_function_type_response on_response) {
-    DEBUG_ASSERT(on_opened && on_closed);
+    DEBUG_ASSERT(on_opened && on_closed);// 确保回调函数不为空。 
 
     // 这强制不使用 Nagle 算法。将 Linux 上的同步模式速度提高了约 3 倍。
     const boost::asio::ip::tcp::no_delay option(true);
     _socket.set_option(option);
 
-    // 回调
+    // 保存回调函数的引用。
     _on_closed = std::move(on_closed);
     _on_response = std::move(on_response);
+    // 调用`on_opened`回调，传入当前`Primary`对象的共享指针。 
     on_opened(shared_from_this());
-
+    // 开始读取数据
     ReadData();
   }
 
   /// 将一些数据写入套接字。
   void Primary::Write(std::shared_ptr<const carla::streaming::detail::tcp::Message> message) {
-    DEBUG_ASSERT(message != nullptr);
-    DEBUG_ASSERT(!message->empty());
+    DEBUG_ASSERT(message != nullptr);// 确保消息不为空。
+    DEBUG_ASSERT(!message->empty());// 确保消息内容不为空。  
+    // 创建一个当前`Primary`对象的弱引用，以避免循环引用。
     std::weak_ptr<Primary> weak = shared_from_this();
+    // 在IO上下文的执行器上异步执行任务。
     boost::asio::post(_strand, [=]() {
+        // 尝试获取当前`Primary`对象的强引用。
       auto self = weak.lock();
-      if (!self) return;
+      if (!self) return;// 如果对象已被销毁，则直接返回。
+      // 检查套接字是否仍然打开。
       if (!self->_socket.is_open()) {
-        return;
+        return;// 如果套接字已关闭，则不执行写入操作。
       }
-
+      // 定义一个回调函数来处理写入完成后的结果。 
       auto handle_sent = [weak, message](const boost::system::error_code &ec, size_t DEBUG_ONLY(bytes)) {
+          // 尝试获取当前`Primary`对象的强引用。  
         auto self = weak.lock();
-        if (!self) return;
+        if (!self) return;// 如果对象已被销毁，则直接返回。
+        // 检查是否发生错误。
         if (ec) {
+            // 记录错误日志，并立即关闭会话。  
           log_error("session ", self->_session_id, ": error sending data: ", ec.message());
           self->CloseNow(ec);
         } else {
           // DEBUG_ASSERT_EQ(bytes, sizeof(message_size_type) + message->size());
         }
       };
-
+      // 设置超时时间。 
       self->_deadline.expires_from_now(self->_timeout);
+      // 异步写入数据到套接字，并在写入完成后调用`handle_sent`回调函数。
       boost::asio::async_write(
           self->_socket,
           message->GetBufferSequence(),
