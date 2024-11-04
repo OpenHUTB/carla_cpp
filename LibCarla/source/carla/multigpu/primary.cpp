@@ -132,14 +132,25 @@ namespace multigpu {
           boost::asio::bind_executor(self->_strand, handle_sent));
     });
   }
-
+  /**
+ * @brief 异步地将文本数据写入套接字。
+ *
+ * 此方法将给定的文本数据异步写入TCP套接字。首先发送数据的大小（以字节为单位），
+ * 然后发送实际的文本数据。如果套接字未打开或对象已被销毁，则不执行任何操作。
+ *
+ * @param text 要写入套接字的文本数据。
+ */
   void Primary::Write(std::string text) {
+      // 创建一个当前对象的弱引用，以避免循环引用。 
     std::weak_ptr<Primary> weak = shared_from_this();
+    // 在IO上下文的执行器上异步执行任务。
     boost::asio::post(_strand, [=]() {
+        // 尝试获取当前对象的强引用。
       auto self = weak.lock();
-      if (!self) return;
+      if (!self) return; // 如果对象已被销毁，则直接返回。
+      // 检查套接字是否仍然打开。
       if (!self->_socket.is_open()) {
-        return;
+        return;// 如果套接字已关闭，则不执行写入操作。 
       }
 
       // 发送的第一个大小缓冲区
@@ -148,36 +159,50 @@ namespace multigpu {
       boost::asio::async_write(
           self->_socket,
           boost::asio::buffer(&this_size, sizeof(this_size)),
+          // 发送完成后不执行任何操作（占位回调）。
           boost::asio::bind_executor(self->_strand, [](const boost::system::error_code &, size_t){ }));
-      // send characters
+      // 发送实际的文本数据。 
       boost::asio::async_write(
           self->_socket,
           boost::asio::buffer(text.c_str(), text.size()),
+          // 发送完成后不执行任何操作（占位回调）。
           boost::asio::bind_executor(self->_strand, [](const boost::system::error_code &, size_t){ }));
     });
   }
-
+  /**
+ * @brief 异步地读取套接字数据。
+ *
+ * 此方法异步地从TCP套接字读取数据。它首先尝试获取当前对象的强引用，
+ * 如果成功，则分配一个缓冲区来接收数据，并注册一个回调函数来处理读取操作的结果。
+ * 如果读取成功，它将调用`_on_response`回调函数，并递归地调用自己以继续读取数据。
+ * 如果读取失败，则记录错误日志并重新开始读取过程。
+ */
   void Primary::ReadData() {
+      // 创建一个当前对象的弱引用，以避免循环引用。
     std::weak_ptr<Primary> weak = shared_from_this();
+    // 在IO上下文的执行器上异步执行任务。
     boost::asio::post(_strand, [weak]() {
+        // 尝试获取当前对象的强引用。 
       auto self = weak.lock();
-      if (!self) return;
-
+      if (!self) return;// 如果对象已被销毁，则直接返回。
+      // 分配一个缓冲区来接收数据。
       auto message = std::make_shared<IncomingMessage>(self->_buffer_pool->Pop());
-
+      // 定义回调函数来处理读取操作的结果。
       auto handle_read_data = [weak, message](boost::system::error_code ec, size_t DEBUG_ONLY(bytes)) {
+          // 尝试获取当前对象的强引用。
         auto self = weak.lock();
-        if (!self) return;
+        if (!self) return;// 如果对象已被销毁，则直接返回。
+        // 检查是否读取成功。
         if (!ec) {
+            // 验证读取的字节数是否与缓冲区大小一致，并且不为0。  
           DEBUG_ASSERT_EQ(bytes, message->size());
           DEBUG_ASSERT_NE(bytes, 0u);
-          // Move the buffer to the callback function and start reading the next
-          // piece of data.
+          // 将缓冲区中的数据移交给回调函数，并开始读取下一块数据。 
           self->_on_response(self, message->pop());
           std::cout << "Getting data on listener\n";
-          self->ReadData();
+          self->ReadData(); // 递归调用以继续读取数据。 
         } else {
-          // As usual, if anything fails start over from the very top.
+            // 如果读取失败，则记录错误日志并重新开始读取过程。
           log_error("primary server: failed to read data: ", ec.message());
         }
       };
