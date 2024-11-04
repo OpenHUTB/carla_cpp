@@ -23,9 +23,31 @@
 
 namespace carla {
 namespace multigpu {
+    /**
+ * @namespace carla::multigpu
+ * @brief CARLA模拟器中处理多GPU通信的命名空间。
+ */
 
+ /**
+  * @brief 用于生成唯一会话ID的静态原子计数器。
+  *
+  * 这是一个线程安全的计数器，用于为每个新的Primary会话实例分配一个唯一的会话ID。
+  */
   static std::atomic_size_t SESSION_COUNTER{0u};
-
+  /**
+   * @class Primary
+   * @brief 管理TCP会话的类，用于CARLA的多GPU通信。
+   */
+   /**
+      * @brief Primary类的构造函数。
+      *
+      * @param io_context 引用Boost.Asio的IO上下文，用于异步通信。
+      * @param timeout 会话的超时时间。
+      * @param server 对Listener对象的引用，用于处理传入的连接和消息。
+      *
+      * 构造函数初始化Primary类的成员变量，并设置性能分析器（如果使用了LIBCARLA_INITIALIZE_LIFETIME_PROFILER宏）。
+      * 它还会为当前会话分配一个唯一的会话ID，并创建一个新的套接字、截止时间和执行器绑定。
+      */
   Primary::Primary(
       boost::asio::io_context &io_context,
       const time_duration timeout,
@@ -39,7 +61,11 @@ namespace multigpu {
       _deadline(io_context),
       _strand(io_context),
       _buffer_pool(std::make_shared<BufferPool>()) {}
-
+  /**
+ * @brief Primary类的析构函数实现。
+ *
+ * 如果套接字仍然打开，则先调用shutdown方法关闭套接字的读写操作，然后调用close方法关闭套接字。
+ */
   Primary::~Primary() {
     if (_socket.is_open()) {
       boost::system::error_code ec;
