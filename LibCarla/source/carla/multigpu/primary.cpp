@@ -5,21 +5,21 @@
 // 
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
+/// @brief 包含CARLA多GPU支持和网络通信相关的头文件，以及Boost.Asio和C++标准库的部分功能。
+#include "carla/multigpu/primary.h"///< 包含CARLA多GPU支持的主头文件，可能定义了多GPU环境下的主要接口或类。
 
-#include "carla/multigpu/primary.h"
-
-#include "carla/Debug.h"
-#include "carla/Logging.h"
-#include "carla/multigpu/incomingMessage.h"
-#include "carla/multigpu/listener.h"
-
-#include <boost/asio/read.hpp>
-#include <boost/asio/write.hpp>
-#include <boost/asio/bind_executor.hpp>
-#include <boost/asio/post.hpp>
-
-#include <atomic>
-#include <thread>
+#include "carla/Debug.h"///< 包含CARLA的调试功能，可能包括断言、日志记录级别等。
+#include "carla/Logging.h"///< 包含CARLA的日志记录功能，可能定义了日志记录器、日志级别和日志消息格式等。
+#include "carla/multigpu/incomingMessage.h"///< 包含CARLA多GPU支持中接收消息的相关类和函数。
+#include "carla/multigpu/listener.h"///< 包含CARLA多GPU支持中监听网络通信的相关类和函数。
+/// @brief 包含Boost.Asio库的头文件，用于网络编程和异步I/O操作。 
+#include <boost/asio/read.hpp>///< Boost.Asio库中的读操作函数，用于从网络套接字读取数据。
+#include <boost/asio/write.hpp> ///< Boost.Asio库中的写操作函数，用于向网络套接字写入数据。 
+#include <boost/asio/bind_executor.hpp>///< Boost.Asio库中的绑定执行器函数，用于将异步操作与特定的执行器（如I/O上下文）关联。
+#include <boost/asio/post.hpp> ///< Boost.Asio库中的post函数，用于将任务异步地发布到执行器上执行。
+/// @brief 包含C++标准库的头文件，用于多线程编程和原子操作。  
+#include <atomic>///< C++标准库中的原子操作类，用于实现线程安全的计数器、标志位等。
+#include <thread>///< C++标准库中的线程类和相关函数，用于创建和管理线程。
 
 namespace carla {
 namespace multigpu {
