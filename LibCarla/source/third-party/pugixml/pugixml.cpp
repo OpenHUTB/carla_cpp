@@ -186,33 +186,33 @@ namespace pugi
 #endif
 
 // Memory allocation
-// PUGI__NS_BEGIN ºÍ PUGI__NS_END ºêÍ¨³£ÓÃÓÚ¶¨ÒåÃüÃû¿Õ¼äµÄ¿ªÊ¼ºÍ½áÊø
+// PUGI__NS_BEGIN å’Œ PUGI__NS_END å®é€šå¸¸ç”¨äºå®šä¹‰å‘½åç©ºé—´çš„å¼€å§‹å’Œç»“æŸ
 PUGI__NS_BEGIN
-// ¶¨ÒåÒ»¸öº¯Êı£¬ÓÃÓÚ·ÖÅäÖ¸¶¨´óĞ¡µÄÄÚ´æ¡£Õâ¸öº¯Êı¼òµ¥µØµ÷ÓÃÁË±ê×¼¿âµÄ malloc º¯Êı
+// å®šä¹‰ä¸€ä¸ªå‡½æ•°ï¼Œç”¨äºåˆ†é…æŒ‡å®šå¤§å°çš„å†…å­˜ã€‚è¿™ä¸ªå‡½æ•°ç®€å•åœ°è°ƒç”¨äº†æ ‡å‡†åº“çš„ malloc å‡½æ•°
 PUGI__FN void* default_allocate(size_t size)
 {
 	return malloc(size);
 }
-// ¶¨ÒåÒ»¸öº¯Êı£¬ÓÃÓÚÊÍ·ÅÖ®Ç°·ÖÅäµÄÄÚ´æ¡£Õâ¸öº¯Êı¼òµ¥µØµ÷ÓÃÁË±ê×¼¿âµÄ free º¯Êı
+// å®šä¹‰ä¸€ä¸ªå‡½æ•°ï¼Œç”¨äºé‡Šæ”¾ä¹‹å‰åˆ†é…çš„å†…å­˜ã€‚è¿™ä¸ªå‡½æ•°ç®€å•åœ°è°ƒç”¨äº†æ ‡å‡†åº“çš„ free å‡½æ•°
 PUGI__FN void default_deallocate(void* ptr)
 {
 	free(ptr);
 }
-// ¶¨ÒåÒ»¸öÄ£°å½á¹¹Ìå£¬ÓÃÓÚ´æ´¢ÄÚ´æ¹ÜÀíº¯Êı£¨·ÖÅäºÍÊÍ·Å£©
+// å®šä¹‰ä¸€ä¸ªæ¨¡æ¿ç»“æ„ä½“ï¼Œç”¨äºå­˜å‚¨å†…å­˜ç®¡ç†å‡½æ•°ï¼ˆåˆ†é…å’Œé‡Šæ”¾ï¼‰ã€‚
 template <typename T>
 struct xml_memory_management_function_storage
 {
 	static allocation_function allocate;
 	static deallocation_function deallocate;
 };
-// ÎªÄ£°å½á¹¹ÌåµÄ¾²Ì¬³ÉÔ±±äÁ¿·ÖÅäÄ¬ÈÏÖµ¡£  
-// ÕâÀïÊ¹ÓÃÁËÄ£°åÌØ»¯µÄÓï·¨À´Ö¸¶¨Ã¿¸öÀàĞÍTµÄ allocate ºÍ deallocate ³ÉÔ±±äÁ¿µÄÖµ
+// ä¸ºæ¨¡æ¿ç»“æ„ä½“çš„é™æ€æˆå‘˜å˜é‡åˆ†é…é»˜è®¤å€¼ã€‚  
+// è¿™é‡Œä½¿ç”¨äº†æ¨¡æ¿ç‰¹åŒ–çš„è¯­æ³•æ¥æŒ‡å®šæ¯ä¸ªç±»å‹Tçš„ allocate å’Œ deallocate æˆå‘˜å˜é‡çš„å€¼
 // Global allocation functions are stored in class statics so that in header mode linker deduplicates them
 // Without a template<> we'll get multiple definitions of the same static
 template <typename T> allocation_function xml_memory_management_function_storage<T>::allocate = default_allocate;
 template <typename T> deallocation_function xml_memory_management_function_storage<T>::deallocate = default_deallocate;
-// Ê¹ÓÃtypedefÎª xml_memory_management_function_storage<int> ´´½¨Ò»¸ö±ğÃû xml_memory
-// ×¨ÃÅÓÃÓÚintÀàĞÍµÄÄÚ´æ¹ÜÀíº¯Êı´æ´¢
+// ä½¿ç”¨typedefä¸º xml_memory_management_function_storage<int> åˆ›å»ºä¸€ä¸ªåˆ«å xml_memory
+// ä¸“é—¨ç”¨äºintç±»å‹çš„å†…å­˜ç®¡ç†å‡½æ•°å­˜å‚¨
 typedef xml_memory_management_function_storage<int> xml_memory;
 PUGI__NS_END
 
