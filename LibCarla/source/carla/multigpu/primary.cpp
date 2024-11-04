@@ -132,14 +132,25 @@ namespace multigpu {
           boost::asio::bind_executor(self->_strand, handle_sent));
     });
   }
-
+  /**
+ * @brief 异步地将文本数据写入套接字。
+ *
+ * 此方法将给定的文本数据异步写入TCP套接字。首先发送数据的大小（以字节为单位），
+ * 然后发送实际的文本数据。如果套接字未打开或对象已被销毁，则不执行任何操作。
+ *
+ * @param text 要写入套接字的文本数据。
+ */
   void Primary::Write(std::string text) {
+      // 创建一个当前对象的弱引用，以避免循环引用。 
     std::weak_ptr<Primary> weak = shared_from_this();
+    // 在IO上下文的执行器上异步执行任务。
     boost::asio::post(_strand, [=]() {
+        // 尝试获取当前对象的强引用。
       auto self = weak.lock();
-      if (!self) return;
+      if (!self) return; // 如果对象已被销毁，则直接返回。
+      // 检查套接字是否仍然打开。
       if (!self->_socket.is_open()) {
-        return;
+        return;// 如果套接字已关闭，则不执行写入操作。 
       }
 
       // 发送的第一个大小缓冲区
@@ -148,48 +159,70 @@ namespace multigpu {
       boost::asio::async_write(
           self->_socket,
           boost::asio::buffer(&this_size, sizeof(this_size)),
+          // 发送完成后不执行任何操作（占位回调）。
           boost::asio::bind_executor(self->_strand, [](const boost::system::error_code &, size_t){ }));
-      // send characters
+      // 发送实际的文本数据。 
       boost::asio::async_write(
           self->_socket,
           boost::asio::buffer(text.c_str(), text.size()),
+          // 发送完成后不执行任何操作（占位回调）。
           boost::asio::bind_executor(self->_strand, [](const boost::system::error_code &, size_t){ }));
     });
   }
-
+  /**
+ * @brief 异步地读取套接字数据。
+ *
+ * 此方法异步地从TCP套接字读取数据。它首先尝试获取当前对象的强引用，
+ * 如果成功，则分配一个缓冲区来接收数据，并注册一个回调函数来处理读取操作的结果。
+ * 如果读取成功，它将调用`_on_response`回调函数，并递归地调用自己以继续读取数据。
+ * 如果读取失败，则记录错误日志并重新开始读取过程。
+ */
   void Primary::ReadData() {
+      // 创建一个当前对象的弱引用，以避免循环引用。
     std::weak_ptr<Primary> weak = shared_from_this();
+    // 在IO上下文的执行器上异步执行任务。
     boost::asio::post(_strand, [weak]() {
+        // 尝试获取当前对象的强引用。 
       auto self = weak.lock();
-      if (!self) return;
-
+      if (!self) return;// 如果对象已被销毁，则直接返回。
+      // 分配一个缓冲区来接收数据。
       auto message = std::make_shared<IncomingMessage>(self->_buffer_pool->Pop());
-
+      // 定义回调函数来处理读取操作的结果。
       auto handle_read_data = [weak, message](boost::system::error_code ec, size_t DEBUG_ONLY(bytes)) {
+          // 尝试获取当前对象的强引用。
         auto self = weak.lock();
-        if (!self) return;
+        if (!self) return;// 如果对象已被销毁，则直接返回。
+        // 检查是否读取成功。
         if (!ec) {
+            // 验证读取的字节数是否与缓冲区大小一致，并且不为0。  
           DEBUG_ASSERT_EQ(bytes, message->size());
           DEBUG_ASSERT_NE(bytes, 0u);
-          // Move the buffer to the callback function and start reading the next
-          // piece of data.
+          // 将缓冲区中的数据移交给回调函数，并开始读取下一块数据。 
           self->_on_response(self, message->pop());
           std::cout << "Getting data on listener\n";
-          self->ReadData();
+          self->ReadData(); // 递归调用以继续读取数据。 
         } else {
-          // As usual, if anything fails start over from the very top.
+            // 如果读取失败，则记录错误日志并重新开始读取过程。
           log_error("primary server: failed to read data: ", ec.message());
         }
       };
-
+      /**
+ * @brief 异步读取套接字头部信息（通常包含后续数据的大小）的回调函数。
+ *
+ * 此回调函数用于处理从TCP套接字异步读取的头部信息。如果成功读取且消息大小大于0，
+ * 则会分配相应大小的缓冲区，并启动异步读取数据的操作。如果读取失败或消息大小为0，
+ * 则会记录错误日志并关闭连接。
+ *
+ * @param ec 读取操作的结果代码。如果为0，表示读取成功；否则表示读取失败。
+ * @param bytes 读取的字节数（仅在调试模式下使用）。
+ */
       auto handle_read_header = [weak, message, handle_read_data](
           boost::system::error_code ec,
           size_t DEBUG_ONLY(bytes)) {
         auto self = weak.lock();
         if (!self) return;
         if (!ec && (message->size() > 0u)) {
-          // Now that we know the size of the coming buffer, we can allocate our
-          // buffer and start putting data into it.
+            // 既然已经知道了即将到来的缓冲区的大小，我们就可以分配缓冲区并开始存储数据。
           boost::asio::async_read(
               self->_socket,
               message->buffer(),
@@ -198,7 +231,7 @@ namespace multigpu {
           if (ec) {
             log_error("Primary server: failed to read header: ", ec.message());
           }
-          // Connect();
+          // Connect(); // 此处可能需要根据实际情况决定是否重连 
           self->Close();
         }
       };
@@ -210,7 +243,21 @@ namespace multigpu {
           boost::asio::bind_executor(self->_strand, handle_read_header));
     });
   }
+  /**
+ * @brief 异步读取套接字头部信息（即数据缓冲区的大小）。
+ *
+ * 此方法会启动一个异步读取操作，从TCP套接字中读取数据缓冲区的大小。
+ * 读取完成后，会调用`handle_read_header`回调函数来处理读取结果。
+ */
+ // 接下来的代码段是前面代码的一部分，为了完整性而保留在此处，但注释已添加到上面的回调函数中。  
+ // ...（省略了部分代码，具体为async_read的调用）  
 
+ /**
+  * @brief 关闭连接并释放资源。
+  *
+  * 此方法会启动一个异步任务，在该任务中尝试获取当前对象的强引用。
+  * 如果成功获取，则调用`CloseNow`方法来关闭连接并释放资源。
+  */
   void Primary::Close() {
     std::weak_ptr<Primary> weak = shared_from_this();
     boost::asio::post(_strand, [weak]() {
@@ -219,7 +266,13 @@ namespace multigpu {
       self->CloseNow();
     });
   }
-
+  /**
+ * @brief 启动定时器以监控连接是否超时。
+ *
+ * 此方法会检查定时器是否已经过期。如果已过期，则记录调试信息并关闭连接。
+ * 如果未过期，则启动一个异步等待操作，等待定时器超时。超时后，会递归调用`StartTimer`
+ * 方法以继续监控，或者在遇到错误时记录错误日志。
+ */
   void Primary::StartTimer() {
     if (_deadline.expires_at() <= boost::asio::deadline_timer::traits_type::now()) {
       log_debug("session ", _session_id, " time out");
@@ -237,18 +290,28 @@ namespace multigpu {
       });
     }
   }
-
+  /// \brief 立即关闭连接并处理相关资源。  
+///  
+/// 此方法用于在接收到关闭指令或错误时，立即取消任何挂起的操作，关闭套接字，  
+/// 并通知相关的关闭事件处理函数。  
+///  
+/// \param ec 错误代码，指示关闭操作是否由于错误而触发。
   void Primary::CloseNow(boost::system::error_code ec) {
+      /// \details 取消所有挂起的定时器操作。 
     _deadline.cancel();
+    /// \details 如果没有错误代码（即正常关闭），则检查套接字是否仍然打开
     if (!ec)
     {
+        /// \details 如果套接字仍然打开，则先进行双向关闭操作，然后关闭套接字
       if (_socket.is_open()) {
-        boost::system::error_code ec2;
+        boost::system::error_code ec2;// 用于捕获shutdown操作的错误代码
         _socket.shutdown(boost::asio::socket_base::shutdown_both, ec2);
-        _socket.close();
+        _socket.close();// 关闭套接字  
       }
     }
+    /// \details 通知关闭事件的处理函数，传递当前对象的共享指针。  
     _on_closed(shared_from_this());
+    /// \details 记录调试信息，表明会话已关闭。
     log_debug("session", _session_id, "closed");
   }
 
