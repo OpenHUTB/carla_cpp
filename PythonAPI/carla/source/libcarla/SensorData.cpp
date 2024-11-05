@@ -208,96 +208,113 @@ namespace data {
   }
 // 为CAMEvent类型重载输出流运算符，输出CAMEvent（可能是指某种与通信相关的事件）的信息，包括帧编号、时间戳和消息数量。
 
-    std::ostream &operator<<(std::ostream &out, const CustomV2XEvent &data) {
-    out << "CustomV2XEvent(frame=" << std::to_string(data.GetFrame())
-        << ", timestamp=" << std::to_string(data.GetTimestamp())
-        << ", message_count=" << std::to_string(data.GetMessageCount())
-        << ')';
-    return out;
-  }
-
-  std::ostream &operator<<(std::ostream &out, const CAMData &data) {
-    out << "CAMData(power=" << std::to_string(data.Power)
-        << ", stationId=" << std::to_string(data.Message.header.stationID)
-        << ", messageId=" << std::to_string(data.Message.header.messageID)
-        << ')';
-    return out;
-  }
-
-    std::ostream &operator<<(std::ostream &out, const CustomV2XData &data) {
-    out << "CustomV2XData(power=" << std::to_string(data.Power)
-        << ", stationId=" << std::to_string(data.Message.header.stationID)
-        << ", messageId=" << std::to_string(data.Message.header.messageID)
-        << ')';
-    return out;
-  }
-
-
-
-} // namespace s11n
-} // namespace sensor
-} // namespace carla
-
-enum class EColorConverter {
-  Raw,
-  Depth,
-  LogarithmicDepth,
-  CityScapesPalette
-};
-
-template <typename T>
-static auto GetRawDataAsBuffer(T &self) {
-  auto *data = reinterpret_cast<unsigned char *>(self.data());
-  auto size = static_cast<Py_ssize_t>(sizeof(typename T::value_type) * self.size());
-#if PY_MAJOR_VERSION >= 3
-  auto *ptr = PyMemoryView_FromMemory(reinterpret_cast<char *>(data), size, PyBUF_READ);
-#else
-  auto *ptr = PyBuffer_FromMemory(data, size);
-#endif
-  return boost::python::object(boost::python::handle<>(ptr));
-}
-
-template <typename T>
-static void ConvertImage(T &self, EColorConverter cc) {
-  carla::PythonUtil::ReleaseGIL unlock;
-  using namespace carla::image;
-  auto view = ImageView::MakeView(self);
-  switch (cc) {
-    case EColorConverter::Depth:
-      ImageConverter::ConvertInPlace(view, ColorConverter::Depth());
-      break;
-    case EColorConverter::LogarithmicDepth:
-      ImageConverter::ConvertInPlace(view, ColorConverter::LogarithmicDepth());
-      break;
-    case EColorConverter::CityScapesPalette:
-      ImageConverter::ConvertInPlace(view, ColorConverter::CityScapesPalette());
-      break;
-    case EColorConverter::Raw:
-      break; // ignore.
-    default:
-      throw std::invalid_argument("invalid color converter!");
-  }
-}
-
-// image object resturned from optical flow to color conversion
-class FakeImage : public std::vector<uint8_t> {
-  public:
-  unsigned int Width = 0;
-  unsigned int Height = 0;
-  float FOV = 0;
-};
-// method to convert optical flow images to rgb
-static FakeImage ColorCodedFlow (
-    carla::sensor::data::OpticalFlowImage& image) {
-  namespace bp = boost::python;
-  namespace csd = carla::sensor::data;
-  constexpr float pi = 3.1415f;
-  constexpr float rad2ang = 360.f/(2.f*pi);
-  FakeImage result;
-  result.Width = image.GetWidth();
-  result.Height = image.GetHeight();
-  result.FOV = image.GetFOVAngle();
-  result.resize(image.GetHeight()*image.GetWidth()* 4);
+std::ostream &operator<<(std::ostream &out, const CustomV2XEvent &data) {  
+    out << "CustomV2XEvent(frame=" << std::to_string(data.GetFrame()) // 打印帧号  
+        << ", timestamp=" << std::to_string(data.GetTimestamp())      // 打印时间戳  
+        << ", message_count=" << std::to_string(data.GetMessageCount()) // 打印消息数量  
+        << ')';  
+    return out; // 返回输出流对象，支持链式调用  
+}  
+  
+// 为CAMData类型重载<<运算符  
+std::ostream &operator<<(std::ostream &out, const CAMData &data) {  
+    out << "CAMData(power=" << std::to_string(data.Power) // 打印功率  
+        << ", stationId=" << std::to_string(data.Message.header.stationID) // 打印站点ID  
+        << ", messageId=" << std::to_string(data.Message.header.messageID) // 打印消息ID  
+        << ')';  
+    return out;  
+}  
+  
+// 为CustomV2XData类型重载<<运算符，其实现与CAMData类似  
+std::ostream &operator<<(std::ostream &out, const CustomV2XData &data) {  
+    out << "CustomV2XData(power=" << std::to_string(data.Power)  
+        << ", stationId=" << std::to_string(data.Message.header.stationID)  
+        << ", messageId=" << std::to_string(data.Message.header.messageID)  
+        << ')';  
+    return out;  
+}  
+  
+} // namespace s11n  
+} // namespace sensor  
+} // namespace carla  
+  
+// 定义一个枚举类EColorConverter，用于表示不同的颜色转换器类型  
+enum class EColorConverter {  
+  Raw, // 原始数据  
+  Depth, // 深度图  
+  LogarithmicDepth, // 对数深度图  
+  CityScapesPalette // CityScapes调色板  
+};  
+  
+// 模板函数GetRawDataAsBuffer，用于将T类型的数据转换为Python的内存视图对象  
+template <typename T>  
+static auto GetRawDataAsBuffer(T &self) {  
+    // 将self的数据部分转换为unsigned char*类型  
+    auto *data = reinterpret_cast<unsigned char *>(self.data());  
+    // 计算数据的大小  
+    auto size = static_cast<Py_ssize_t>(sizeof(typename T::value_type) * self.size());  
+    // 根据Python版本创建内存视图对象  
+#if PY_MAJOR_VERSION >= 3  
+    auto *ptr = PyMemoryView_FromMemory(reinterpret_cast<char *>(data), size, PyBUF_READ);  
+#else  
+    auto *ptr = PyBuffer_FromMemory(data, size);  
+#endif  
+    // 返回boost::python::object对象，封装了内存视图  
+    return boost::python::object(boost::python::handle<>(ptr));  
+}  
+  
+// 模板函数ConvertImage，用于根据指定的颜色转换器类型转换图像数据  
+template <typename T>  
+static void ConvertImage(T &self, EColorConverter cc) {  
+    // 释放全局解释器锁，以便在C++代码中执行耗时操作时不会阻塞Python线程  
+    carla::PythonUtil::ReleaseGIL unlock;  
+    // 使用carla::image命名空间  
+    using namespace carla::image;  
+    // 创建ImageView对象，用于操作图像数据  
+    auto view = ImageView::MakeView(self);  
+    // 根据颜色转换器类型执行相应的转换  
+    switch (cc) {  
+        case EColorConverter::Depth:  
+            ImageConverter::ConvertInPlace(view, ColorConverter::Depth());  
+            break;  
+        case EColorConverter::LogarithmicDepth:  
+            ImageConverter::ConvertInPlace(view, ColorConverter::LogarithmicDepth());  
+            break;  
+        case EColorConverter::CityScapesPalette:  
+            ImageConverter::ConvertInPlace(view, ColorConverter::CityScapesPalette());  
+            break;  
+        case EColorConverter::Raw:  
+            break; // 忽略原始数据，不进行转换  
+        default:  
+            throw std::invalid_argument("invalid color converter!"); // 抛出异常，表示无效的颜色转换器  
+    }  
+}  
+  
+// FakeImage类，继承自std::vector<uint8_t>，用于表示从光学流转换为颜色后的图像  
+class FakeImage : public std::vector<uint8_t> {  
+  public:  
+    unsigned int Width = 0; // 图像宽度  
+    unsigned int Height = 0; // 图像高度  
+    float FOV = 0; // 视野角度  
+};  
+  
+// ColorCodedFlow函数，用于将光学流图像转换为RGB图像  
+static FakeImage ColorCodedFlow(  
+    carla::sensor::data::OpticalFlowImage& image) {  
+    // 使用命名空间别名简化代码  
+    namespace bp = boost::python;  
+    namespace csd = carla::sensor::data;  
+    // 定义常量π和弧度转角度的系数  
+    constexpr float pi = 3.1415f;  
+    constexpr float rad2ang = 360.f/(2.f*pi);  
+    // 创建FakeImage对象，用于存储转换后的图像数据  
+    FakeImage result;  
+    // 设置图像的宽度、高度和视野角度  
+    result.Width = image.GetWidth();  
+    result.Height = image.GetHeight();  
+    result.FOV = image.GetFOVAngle();  
+    // 调整result的大小，以适应RGB图像的数据量（每个像素4个字节）  
+    result.resize(image.GetHeight()*image.GetWidth()* 4);
 
   // lambda for computing batches of pixels
   auto command = [&] (size_t min_index, size_t max_index) {
