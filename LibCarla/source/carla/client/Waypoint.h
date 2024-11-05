@@ -59,41 +59,71 @@
          * 该头文件包含了Boost库中的boost::optional模板类，用于表示一个可能不存在的值。
          */
 #include <boost/optional.hpp>
-
+         /**
+          * @namespace carla::client
+          * @brief CARLA客户端相关的命名空间。
+          */
 namespace carla {
 namespace client {
-
+    // 前向声明其他相关类  
   class Map;
   class Junction;
   class Landmark;
-
+  /**
+   * @class Waypoint
+   * @brief 路径点类，表示道路上的特定位置。
+   *
+   * Waypoint类继承自EnableSharedFromThis，使得它可以安全地生成自身的共享指针。
+   * 同时，它继承自NonCopyable，防止被复制。
+   */
   class Waypoint
     : public EnableSharedFromThis<Waypoint>,
     private NonCopyable {
   public:
-
+      /**
+           * @brief 析构函数。
+           */
     ~Waypoint();
 
-    /// 返回标识此路径点的唯一Id.
-    ///
-    /// 这个Id综合了OpenDrive的道路Id、车道Id和s距离
-    /// 其路段精度可达半厘米.
+    /**
+      * @brief 获取此路径点的唯一标识符。
+      *
+      * 该标识符结合了OpenDrive的道路ID、车道ID和s距离，精度可达半厘米。
+      *
+      * @return 唯一标识符（uint64_t类型）。
+      */
     uint64_t GetId() const {
       return std::hash<road::element::Waypoint>()(_waypoint);
     }
-
+    /**
+     * @brief 获取道路ID。
+     *
+     * @return 道路ID。
+     */
     auto GetRoadId() const {
       return _waypoint.road_id;
     }
-
+    /**
+     * @brief 获取路段ID。
+     *
+     * @return 路段ID。
+     */
     auto GetSectionId() const {
       return _waypoint.section_id;
     }
-
+    /**
+    * @brief 获取车道ID。
+    *
+    * @return 车道ID。
+    */
     auto GetLaneId() const {
       return _waypoint.lane_id;
     }
-
+    /**
+     * @brief 获取沿车道的距离（s值）。
+     *
+     * @return 距离（double类型）。
+     */
     auto GetDistance() const {
       return _waypoint.s;
     }
