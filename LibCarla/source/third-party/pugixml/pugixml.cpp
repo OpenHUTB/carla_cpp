@@ -186,30 +186,34 @@ namespace pugi
 #endif
 
 // Memory allocation
+// PUGI__NS_BEGIN 和 PUGI__NS_END 宏通常用于定义命名空间的开始和结束
 PUGI__NS_BEGIN
-	PUGI__FN void* default_allocate(size_t size)
-	{
-		return malloc(size);
-	}
-
-	PUGI__FN void default_deallocate(void* ptr)
-	{
-		free(ptr);
-	}
-
-	template <typename T>
-	struct xml_memory_management_function_storage
-	{
-		static allocation_function allocate;
-		static deallocation_function deallocate;
-	};
-
-	// Global allocation functions are stored in class statics so that in header mode linker deduplicates them
-	// Without a template<> we'll get multiple definitions of the same static
-	template <typename T> allocation_function xml_memory_management_function_storage<T>::allocate = default_allocate;
-	template <typename T> deallocation_function xml_memory_management_function_storage<T>::deallocate = default_deallocate;
-
-	typedef xml_memory_management_function_storage<int> xml_memory;
+// 定义一个函数，用于分配指定大小的内存。这个函数简单地调用了标准库的 malloc 函数
+PUGI__FN void* default_allocate(size_t size)
+{
+	return malloc(size);
+}
+// 定义一个函数，用于释放之前分配的内存。这个函数简单地调用了标准库的 free 函数
+PUGI__FN void default_deallocate(void* ptr)
+{
+	free(ptr);
+}
+// 定义一个模板结构体，用于存储内存管理函数（分配和释放）。
+template <typename T>
+struct xml_memory_management_function_storage
+{
+	static allocation_function allocate;
+	static deallocation_function deallocate;
+};
+// 为模板结构体的静态成员变量分配默认值。  
+// 这里使用了模板特化的语法来指定每个类型T的 allocate 和 deallocate 成员变量的值
+// Global allocation functions are stored in class statics so that in header mode linker deduplicates them
+// Without a template<> we'll get multiple definitions of the same static
+template <typename T> allocation_function xml_memory_management_function_storage<T>::allocate = default_allocate;
+template <typename T> deallocation_function xml_memory_management_function_storage<T>::deallocate = default_deallocate;
+// 使用typedef为 xml_memory_management_function_storage<int> 创建一个别名 xml_memory
+// 专门用于int类型的内存管理函数存储
+typedef xml_memory_management_function_storage<int> xml_memory;
 PUGI__NS_END
 
 // String utilities
