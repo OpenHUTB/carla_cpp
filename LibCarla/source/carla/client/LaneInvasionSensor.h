@@ -7,7 +7,7 @@
 #pragma once
 /**
  * @file LaneInvasionSensor.h
- * @brief 包含LaneInvasionSensor类的声明，这是一个继承自ClientSideSensor的类，用于检测车道入侵。
+ * @brief 包含LaneInvasionSensor类的声明，这是一个继承自ClientSideSensor的类，用于检测车辆压线。
  */
 #include "carla/client/ClientSideSensor.h"
 
@@ -34,7 +34,7 @@ namespace client {
   class Vehicle;
   /**
    * @class LaneInvasionSensor
-   * @brief LaneInvasionSensor类是一个检测车道入侵的传感器，继承自ClientSideSensor。
+   * @brief LaneInvasionSensor类是一个检测车辆压线的传感器，继承自ClientSideSensor。
    */
   class LaneInvasionSensor final : public ClientSideSensor {
   public:
@@ -48,7 +48,7 @@ namespace client {
     ~LaneInvasionSensor();
 
     /**
-     * @brief 注册一个回调，每次收到新的车道入侵测量值时执行。
+     * @brief 注册一个回调，每次收到新的车辆压线测量值时执行。
      *
      * @param callback 回调函数，当接收到新的测量值时会被调用。
      * @warning 在已在监听的传感器上调用此函数会替换先前设置的回调，从而窃取其数据流。
@@ -57,7 +57,7 @@ namespace client {
     void Listen(CallbackFunctionType callback) override;
 
     /**
-      * @brief 停止监听新的车道入侵测量结果。
+      * @brief 停止监听新的车辆压线测量结果。
       */
     void Stop() override;
 
