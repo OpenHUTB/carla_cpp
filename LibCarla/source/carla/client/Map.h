@@ -99,60 +99,136 @@ namespace client {
     const std::string &GetOpenDrive() const {  
       return open_drive_file;
     }
-
-    const std::vector<geom::Transform> &GetRecommendedSpawnPoints() const { // 获取推荐生成点
+    /**
+         * @brief 获取推荐生成点。
+         *
+         * @return 返回推荐生成点（`geom::Transform`对象的向量）的常量引用。
+         */
+    const std::vector<geom::Transform> &GetRecommendedSpawnPoints() const {  
       return _description.recommended_spawn_points;
     }
-
-    SharedPtr<Waypoint> GetWaypoint( // 获取路点，可以选择是否投影到道路上
+    /**
+         * @brief 获取路点，可以选择是否投影到道路上。
+         *
+         * @param location 地理位置。
+         * @param project_to_road 是否将位置投影到最近的道路上（默认为true）。
+         * @param lane_type 车道类型（默认为驾驶车道）。
+         * @return 返回指向路点对象的智能指针。
+         */
+    SharedPtr<Waypoint> GetWaypoint(  
         const geom::Location &location,
         bool project_to_road = true,
         int32_t lane_type = static_cast<uint32_t>(road::Lane::LaneType::Driving)) const;
-
-    SharedPtr<Waypoint> GetWaypointXODR( // 根据OpenDRIVE ID获取路点
+    /**
+         * @brief 根据OpenDRIVE ID获取路点。
+         *
+         * @param road_id 道路ID。
+         * @param lane_id 车道ID。
+         * @param s 沿车道的距离。
+         * @return 返回指向路点对象的智能指针。
+         */
+    SharedPtr<Waypoint> GetWaypointXODR(  
       carla::road::RoadId road_id,
       carla::road::LaneId lane_id,
       float s) const;
-
+    /**
+         * @brief 拓扑结构列表的类型定义。
+         */
     using TopologyList = std::vector<std::pair<SharedPtr<Waypoint>, SharedPtr<Waypoint>>>;
-
+    /**
+        * @brief 获取地图的拓扑结构。
+        *
+        * @return 返回拓扑结构列表。
+        */
     TopologyList GetTopology() const;
-
-    std::vector<SharedPtr<Waypoint>> GenerateWaypoints(double distance) const;  // 根据距离生成路点
-
-    std::vector<road::element::LaneMarking> CalculateCrossedLanes( // 计算交叉车道
+    /**
+         * @brief 根据距离生成路点。
+         *
+         * @param distance 距离。
+         * @return 返回生成的路点（智能指针的向量）。
+         */
+    std::vector<SharedPtr<Waypoint>> GenerateWaypoints(double distance) const;   
+    /**
+         * @brief 计算从起点到终点所跨越的车道。
+         *
+         * @param origin 起点位置。
+         * @param destination 终点位置。
+         * @return 返回跨越的车道标记的向量。
+         */
+    std::vector<road::element::LaneMarking> CalculateCrossedLanes(  
         const geom::Location &origin,
         const geom::Location &destination) const;
+    /**
+         * @brief 获取地理参考。
+         *
+         * @return 返回地理参考的常量引用。
+         */
+    const geom::GeoLocation &GetGeoReference() const;  
+    /**
+         * @brief 获取所有斑马线区域。
+         *
+         * @return 返回斑马线区域位置（`geom::Location`对象的向量）的常量引用。
+         */
+    std::vector<geom::Location> GetAllCrosswalkZones() const;   
+    /**
+         * @brief 获取指定路点所属的路口对象。
+         *
+         * @param waypoint 路点对象。
+         * @return 返回指向路口对象的智能指针。
+         */
+    SharedPtr<Junction> GetJunction(const Waypoint &waypoint) const;  
 
-    const geom::GeoLocation &GetGeoReference() const;  // 获取地理参考
-
-    std::vector<geom::Location> GetAllCrosswalkZones() const;  // 获取所有斑马线区域
-
-    SharedPtr<Junction> GetJunction(const Waypoint &waypoint) const; // 获取指定路点所属的路口对象
-
-    /// 返回路口中每条车道的起始和结束路点
-    /// 
+    /**
+         * @brief 返回路口中每条车道的起始和结束路点。
+         *
+         * @param id 路口ID。
+         * @param type 车道类型。
+         * @return 返回路口车道路点的对（智能指针）的向量。
+         */
     std::vector<std::pair<SharedPtr<Waypoint>, SharedPtr<Waypoint>>> GetJunctionWaypoints(
         road::JuncId id, road::Lane::LaneType type) const;
 
-    /// 获取地图中所有的地标
+    /**
+         * @brief 获取地图中所有的地标。
+         *
+         * @return 返回所有地标（智能指针的向量）。
+         */
     std::vector<SharedPtr<Landmark>> GetAllLandmarks() const;
 
-    ///根据特定的OpenDRIVE ID获取地图中的所有地标
+    /**
+         * @brief 根据特定的OpenDRIVE ID获取地图中的所有地标。
+         *
+         * @param id OpenDRIVE ID。
+         * @return 返回与ID匹配的地标（智能指针的向量）。
+         */
     std::vector<SharedPtr<Landmark>> GetLandmarksFromId(std::string id) const;
 
-    /// 根据特定类型获取地图中的所有地标
+    /**
+          * @brief 根据特定类型获取地图中的所有地标。
+          *
+          * @param type 地标类型。
+          * @return 返回与类型匹配的地标（智能指针的向量）。
+          */
     std::vector<SharedPtr<Landmark>> GetAllLandmarksOfType(std::string type) const;
 
-    ///获取与指定地标在同一组的所有地标
+    /**
+          * @brief 获取与指定地标在同一组的所有地标。
+          *
+          * @param landmark 指定地标对象。
+          * @return 返回与指定地标在同一组的地标（智能指针的向量）。
+          */
     std::vector<SharedPtr<Landmark>> GetLandmarkGroup(const Landmark &landmark) const;
 
-    /// 制作交通管理器使用的内存地图
+    /**
+          * @brief 制作交通管理器使用的内存地图。
+          *
+          * @param path 地图存储路径。
+          */
     void CookInMemoryMap(const std::string& path) const;
 
   private:
 
-    std::string open_drive_file;
+    std::string open_drive_file;// 包含OpenDRIVE文件内容的字符串
 
     const rpc::MapInfo _description; // 描述地图信息的RPC对象
 
