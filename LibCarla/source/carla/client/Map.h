@@ -5,14 +5,23 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once // 确保头文件只被包含一次，防止重复定义。
+/// @cond DoxygenSuppress
 
+// 包含CARLA内存管理相关的头文件
 #include "carla/Memory.h"
+// 包含CARLA不可复制类的头文件，用于防止对象被复制
 #include "carla/NonCopyable.h"
+// 包含CARLA道路元素中的车道标记（LaneMarking）的头文件
 #include "carla/road/element/LaneMarking.h"
+// 包含CARLA道路（Lane）的头文件
 #include "carla/road/Lane.h"
+、// 包含CARLA地图（Map）的头文件
 #include "carla/road/Map.h"
+// 包含CARLA道路类型（RoadTypes）的头文件
 #include "carla/road/RoadTypes.h"
+// 包含CARLA RPC地图信息（MapInfo）的头文件
 #include "carla/rpc/MapInfo.h"
+// 包含地标（Landmark）的头文件
 #include "Landmark.h"
 
 #include <string>
