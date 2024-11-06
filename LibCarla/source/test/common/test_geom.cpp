@@ -11,13 +11,19 @@
 #include <carla/geom/BoundingBox.h>
 #include <carla/geom/Transform.h>
 #include <limits>
-
+// 定义一个名为carla的命名空间，用于组织相关的代码和类型
 namespace carla {
+// 在carla命名空间内部，再定义一个名为geom的子命名空间
 namespace geom {
-
+// 重载std::ostream的插入运算符(<<)，使其能够处理const Vector3D&类型的参数  
+// 这个函数允许我们将Vector3D对象的内容输出到std::ostream对象（如std::cout）中
   std::ostream &operator<<(std::ostream &out, const Vector3D &vector3D) {
-    out << "{x=" << vector3D.x << ", y=" << vector3D.y << ", z=" << vector3D.z << '}';
-    return out;
+  // 使用输出流out输出Vector3D对象的坐标值  
+  // 输出格式为：{x=x值, y=y值, z=z值}  
+  // 其中x、y、z是Vector3D对象中存储的三个坐标分量
+      out << "{x=" << vector3D.x << ", y=" << vector3D.y << ", z=" << vector3D.z << '}';
+      // 返回输出流out的引用，这允许进行链式调用
+      return out;
   }
 
 } // namespace geom
