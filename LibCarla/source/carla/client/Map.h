@@ -25,35 +25,78 @@
 #include "Landmark.h"
 
 #include <string>
-
+/**
+ * @namespace carla::client
+ * @brief CARLA仿真框架中的客户端命名空间，包含与地图交互的类。
+ */
 namespace carla {
-namespace geom { class GeoLocation; } // 定义几何位置类
+namespace geom { 
+    /**
+     * @class GeoLocation
+     * @brief 定义几何位置类，用于表示地图上的地理位置。
+     */class GeoLocation; } 
 namespace client {
-
-  class Waypoint; // 声明路点类
-  class Junction; // 声明交叉口类
-
+    /**
+         * @class Waypoint
+         * @brief 声明路点类，表示地图上的一个具体点，通常与道路网络中的某个位置相关联。
+         */
+  class Waypoint; 
+  /**
+     * @class Junction
+     * @brief 声明交叉口类，表示地图上的一个交叉口或道路交汇点。
+     */
+  class Junction;  
+  /**
+     * @class Map
+     * @brief 地图类，用于表示和操作CARLA仿真中的地图。
+     *
+     * 该类提供了丰富的接口来查询地图信息、处理路点和地标、以及获取地图的拓扑结构等。
+     * 它继承自EnableSharedFromThis以支持智能指针的共享，并私有继承了NonCopyable以防止对象被复制。
+     */
   class Map
     : public EnableSharedFromThis<Map>, 
       private NonCopyable {
   public:
-
-    explicit Map(rpc::MapInfo description, std::string xodr_content); // 构造函数，从RPC地图信息和OpenDRIVE内容创建地图
-
-
-    explicit Map(std::string name, std::string xodr_content);  // 构造函数，从名称和OpenDRIVE内容创建地图
-
+      /**
+               * @brief 构造函数，从RPC地图信息和OpenDRIVE内容创建地图。
+               *
+               * @param description 描述地图信息的RPC对象。
+               * @param xodr_content 包含OpenDRIVE地图数据的字符串。
+               */
+    explicit Map(rpc::MapInfo description, std::string xodr_content);   
+    /**
+         * @brief 构造函数，从名称和OpenDRIVE内容创建地图。
+         *
+         * @param name 地图的名称。
+         * @param xodr_content 包含OpenDRIVE地图数据的字符串。
+         */
+    explicit Map(std::string name, std::string xodr_content);   
+    /**
+         * @brief 析构函数。
+         */
     ~Map();
-
-    const std::string &GetName() const { // 获取地图名称
+    /**
+         * @brief 获取地图名称。
+         *
+         * @return 返回地图名称的常量引用。
+         */
+    const std::string &GetName() const { 
       return _description.name;
     }
-
-    const road::Map &GetMap() const { // 获取道路地图
+    /**
+         * @brief 获取道路地图。
+         *
+         * @return 返回道路地图的常量引用。
+         */
+    const road::Map &GetMap() const {  
       return _map;
     }
-
-    const std::string &GetOpenDrive() const { // 获取OpenDRIVE文件内容
+    /**
+         * @brief 获取OpenDRIVE文件内容。
+         *
+         * @return 返回包含OpenDRIVE文件内容的字符串的常量引用。
+         */
+    const std::string &GetOpenDrive() const {  
       return open_drive_file;
     }
 
