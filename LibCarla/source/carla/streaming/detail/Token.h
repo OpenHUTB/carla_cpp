@@ -15,7 +15,19 @@
 #include <boost/asio/ip/address.hpp>/// 包含Boost.Asio库中的IP地址类定义。
 #include <boost/asio/ip/tcp.hpp>/// 包含Boost.Asio库中的TCP协议类定义。
 #include <boost/asio/ip/udp.hpp> /// 包含Boost.Asio库中的UDP协议类定义。
+/**
+ * @namespace carla::streaming::detail
+ * @brief CARLA流传输模块的详细实现命名空间。
+ */
 
+ /**
+  * @struct token_data
+  * @brief 令牌数据结构，用于存储流传输的相关信息。
+  * @ingroup carla::streaming::detail
+  *
+  * 此结构体用于存储流ID、端口号、协议类型和地址类型等流传输的基本信息。
+  * 使用#pragma pack(push, 1)确保结构体成员紧密排列，无填充字节。
+  */
 namespace carla {
 namespace streaming {
 namespace detail {
@@ -23,25 +35,38 @@ namespace detail {
 #pragma pack(push, 1)
 
   struct token_data {
+      /**
+     * @brief 流ID，用于唯一标识一个流。
+     */
     stream_id_type stream_id = 0u;
-
+    /**
+     * @brief 端口号，用于网络通信。
+     */
     uint16_t port = 0u;
-
+    /**
+     * @brief 协议类型枚举，指示使用的传输协议。
+     */
     enum class protocol : uint8_t {
-      not_set,
-      tcp,
-      udp
+      not_set,///< 未设置协议
+      tcp,///< TCP协议
+      udp ///< UDP协议
     } protocol = protocol::not_set;
-
+    /**
+    * @brief 地址类型枚举，指示IP地址的版本。
+    */
     enum class address : uint8_t {
-      not_set,
-      ip_v4,
-      ip_v6
+      not_set,///< 未设置地址
+      ip_v4,///< IPv4地址
+      ip_v6///< IPv6地址
     } address_type = address::not_set;
-
+    /**
+     * @brief 联合体，用于存储IPv4或IPv6地址。
+     *
+     * 根据address_type的值，此联合体可以存储IPv4或IPv6地址的字节表示。
+     */
     union {
-      boost::asio::ip::address_v4::bytes_type v4;
-      boost::asio::ip::address_v6::bytes_type v6;
+      boost::asio::ip::address_v4::bytes_type v4;///< IPv4地址的字节表示
+      boost::asio::ip::address_v6::bytes_type v6;///< IPv6地址的字节表示
     } address;
   };
 
