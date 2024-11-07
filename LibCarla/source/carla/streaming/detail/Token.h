@@ -71,7 +71,17 @@ namespace detail {
   };
 
 #pragma pack(pop)
-
+  /**
+ * @brief 静态断言，用于确保`token_data`结构体的大小与`Token::data`的大小相同。
+ *
+ * 此断言用于验证`token_data`结构体的大小是否符合预期，即不超过192字节，具体分配如下：
+ * - IPv6地址：128字节
+ * - 状态：16字节
+ * - 端口：16字节
+ * - 流ID：32字节
+ *
+ * 如果`token_data`的大小超过192字节，则编译时会报错。
+ */
   static_assert(
       sizeof(token_data) == sizeof(Token::data),
       "Size shouldn't be more than"
@@ -82,11 +92,18 @@ namespace detail {
       "  -----------------"
       "                192");
 
-  /// Serializes a stream endpoint. Contains all the necessary information for a
-  /// client to subscribe to a stream.
+  /**
+  * @brief 序列化流端点类，包含客户端订阅流所需的所有必要信息。
+  */
   class token_type {
   private:
-
+      /**
+     * @brief 根据协议类型获取对应的协议枚举值。
+     *
+     * @tparam P 协议类型，必须是`boost::asio::ip::tcp`或`boost::asio::ip::udp`。
+     * @return 如果P是`boost::asio::ip::tcp`，则返回`token_data::protocol::tcp`；如果是`boost::asio::ip::udp`，则返回`token_data::protocol::udp`。
+     * @throws 编译时断言，如果P不是有效的协议类型，则会导致编译错误。
+     */
     template <typename P>
     static constexpr auto get_protocol() {
       static_assert(
@@ -96,16 +113,28 @@ namespace detail {
           token_data::protocol::tcp :
           token_data::protocol::udp;
     }
-
+    /**
+    * @brief 获取与令牌关联的端点。
+    *
+    * @tparam P 协议类型，必须是`boost::asio::ip::tcp`或`boost::asio::ip::udp`。
+    * @return 返回与令牌关联的端点。
+    * @throws 运行时断言，如果令牌无效或协议不匹配，则断言失败。
+    */
     template <typename P>
     boost::asio::ip::basic_endpoint<P> get_endpoint() const {
-      DEBUG_ASSERT(is_valid());
-      DEBUG_ASSERT(get_protocol<P>() == _token.protocol);
-      return {get_address(), _token.port};
+      DEBUG_ASSERT(is_valid());// 假设is_valid()是一个检查令牌有效性的成员函数
+      DEBUG_ASSERT(get_protocol<P>() == _token.protocol);// 检查协议是否匹配
+      return {get_address(), _token.port};// 返回端点，包含地址和端口
     }
 
   public:
-  
+      /**
+         * @brief 构造函数，根据给定的流ID和端点创建令牌。
+         *
+         * @tparam Protocol 端点使用的协议类型，必须是`boost::asio::ip::tcp`或`boost::asio::ip::udp`。
+         * @param stream_id 流ID，用于唯一标识一个流。
+         * @param ep 端点，包含地址和端口信息。
+         */
     template <typename Protocol>
     explicit token_type(
         stream_id_type stream_id,
