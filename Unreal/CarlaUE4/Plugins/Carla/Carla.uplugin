@@ -38,26 +38,30 @@
 	// 指示是否为测试版（Beta版）
 	"IsBetaVersion": true,
 
-
+	// 指示软件是否已安装
 	"Installed": true,
+
+	// 软件包含的模块列表，每个模块有其特定的属性和依赖
 	"Modules": [
 		{
-			"Name": "Carla",
-			"Type": "Runtime",
-			"LoadingPhase": "PreDefault",
-			"AdditionalDependencies": [
-				"Engine"
+			"Name": "Carla", // 模块的名称
+			"Type": "Runtime", // 模块的类型，例如运行时模块
+			"LoadingPhase": "PreDefault", // 模块的加载阶段，指示在何时加载该模块
+			"AdditionalDependencies": [ // 模块依赖的其他组件或库
+				"Engine" // 例如，依赖于游戏引擎
 			]
 		}
 	],
+
+	// 软件包含的插件列表，每个插件可以启用或禁用
 	"Plugins": [
 		{
-			"Name": "PhysXVehicles",
-			"Enabled": true
+			"Name": "PhysXVehicles", // 插件的名称
+			"Enabled": true // 插件是否启用
 		},
 		{
-			"Name": "ProceduralMeshComponent",
-			"Enabled": true
+			"Name": "ProceduralMeshComponent", // 另一个插件的名称
+			"Enabled": true // 插件是否启用
 		}
 	]
 }
