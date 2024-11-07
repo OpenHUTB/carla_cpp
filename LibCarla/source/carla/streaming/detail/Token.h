@@ -144,7 +144,13 @@ namespace detail {
       _token.protocol = get_protocol<Protocol>();
       set_address(ep.address());
     }
-
+    /**
+ * @brief 构造一个token_type对象，使用指定的流ID和部分定义的端点。
+ *
+ * @param stream_id 流ID，用于唯一标识一个流。
+ * @param ep 部分定义的端点，包含端口和协议信息。
+ * @template Protocol 指定端点使用的协议类型，例如boost::asio::ip::tcp或boost::asio::ip::udp。
+ */
     template <typename Protocol>
     explicit token_type(
         stream_id_type stream_id,
@@ -154,36 +160,78 @@ namespace detail {
       _token.protocol = get_protocol<Protocol>();
     }
 
-
+    /**
+ * @brief 默认构造函数，用于创建未初始化的token_type对象。
+ */
     token_type() = default;
+    /**
+ * @brief 拷贝构造函数，用于创建与另一个token_type对象相同的副本。
+ */
     token_type(const token_type &) = default;
-
+    /**
+ * @brief 转换构造函数，从Token对象创建token_type对象。
+ *
+ * @param rhs 要转换的Token对象。
+ */
     token_type(const Token &rhs);
-
+    /**
+ * @brief 转换构造函数，从token_data对象创建token_type对象。
+ *
+ * @param data 要转换的token_data对象。
+ */
     explicit token_type(token_data data) {
       _token = data;
     }
-
+    /**
+ * @brief 类型转换操作符，将token_type对象转换为Token对象。
+ *
+ * @return 转换后的Token对象。
+ */
     operator Token() const;
 
-    // We need to return a reference here so we can use the address of the
-    // stream id to send it as buffer.
+    /**
+ * @brief 获取流ID的引用。
+ *
+ * 返回流ID的引用，以便可以使用其地址作为缓冲区发送。
+ *
+ * @return 流ID的引用。
+ */
     const auto &get_stream_id() const {
       return _token.stream_id;
     }
-
+    /**
+ * @brief 设置流ID。
+ *
+ * @param id 要设置的流ID。
+ */
     void set_stream_id(stream_id_type id) {
       _token.stream_id = id;
     }
-
+    /**
+ * @brief 检查是否已设置地址。
+ *
+ * @return 如果已设置地址，则返回true；否则返回false。
+ */
     bool has_address() const {
       return _token.address_type != token_data::address::not_set;
     }
-
+    /**
+ * @brief 设置地址。
+ *
+ * @param addr 要设置的地址。
+ */
     void set_address(const boost::asio::ip::address &addr);
-
+    /**
+ * @brief 获取地址。
+ *
+ * @return 当前设置的地址。
+ */
     boost::asio::ip::address get_address() const;
-
+    /**
+ * @brief 获取端口号。
+ *
+ * @return 端口号。
+ */
     auto get_port() const {
       return _token.port;
     }
