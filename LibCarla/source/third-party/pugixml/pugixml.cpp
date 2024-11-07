@@ -218,53 +218,62 @@ PUGI__NS_END
 
 // String utilities
 PUGI__NS_BEGIN
-	// Get string length
-	PUGI__FN size_t strlength(const char_t* s)
-	{
-		assert(s);
+// Get string length
+// 获取字符串长度  
+// char_t 是一个类型别名，它根据是否定义了 PUGIXML_WCHAR_MODE 宏来决定是 char 还是 wchar_t 类型
+PUGI__FN size_t strlength(const char_t* s)
+{
+	// 断言 s 不为 nullptr，确保传入的字符串指针是有效的
+	assert(s);
+	// 根据是否定义了 PUGIXML_WCHAR_MODE 宏来选择使用 wcslen 还是 strlen 函数来获取字符串长度
+#ifdef PUGIXML_WCHAR_MODE
+	return wcslen(s);// 宽字符字符串长度
+#else
+	return strlen(s);// 单字节字符字符串长度
+#endif
+}
 
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcslen(s);
-	#else
-		return strlen(s);
-	#endif
+// Compare two strings
+PUGI__FN bool strequal(const char_t* src, const char_t* dst)
+{
+	// 断言 src 和 dst 都不为 nullptr，确保传入的字符串指针都是有效的
+	assert(src && dst);
+
+#ifdef PUGIXML_WCHAR_MODE
+	return wcscmp(src, dst) == 0;// 宽字符字符串比较
+#else
+	return strcmp(src, dst) == 0;// 单字节字符字符串比较
+#endif
 	}
 
-	// Compare two strings
-	PUGI__FN bool strequal(const char_t* src, const char_t* dst)
-	{
-		assert(src && dst);
+// Compare lhs with [rhs_begin, rhs_end)
+PUGI__FN bool strequalrange(const char_t* lhs, const char_t* rhs, size_t count)
+{
+	// 逐个字符比较 lhs 和 rhs，如果发现有不相等的字符，则返回 false
+	for (size_t i = 0; i < count; ++i)
+		if (lhs[i] != rhs[i])
+			return false;
+	// 如果循环结束后没有发现不相等的字符，则检查 lhs 的第 count 个字符是否为空终止符，  
+	// 如果是，则返回 true，表示字符串相等（在指定范围内）；否则返回 false
+	return lhs[count] == 0;
+}
 
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcscmp(src, dst) == 0;
-	#else
-		return strcmp(src, dst) == 0;
-	#endif
-	}
-
-	// Compare lhs with [rhs_begin, rhs_end)
-	PUGI__FN bool strequalrange(const char_t* lhs, const char_t* rhs, size_t count)
-	{
-		for (size_t i = 0; i < count; ++i)
-			if (lhs[i] != rhs[i])
-				return false;
-
-		return lhs[count] == 0;
-	}
-
-	// Get length of wide string, even if CRT lacks wide character support
-	PUGI__FN size_t strlength_wide(const wchar_t* s)
-	{
-		assert(s);
-
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcslen(s);
-	#else
-		const wchar_t* end = s;
-		while (*end) end++;
-		return static_cast<size_t>(end - s);
-	#endif
-	}
+// Get length of wide string, even if CRT lacks wide character support
+PUGI__FN size_t strlength_wide(const wchar_t* s)
+{
+	// 断言 s 不为 nullptr，确保传入的宽字符串指针是有效的
+	assert(s);
+	// 如果定义了 PUGIXML_WCHAR_MODE 宏，则直接使用 wcslen 函数获取长度
+#ifdef PUGIXML_WCHAR_MODE
+	return wcslen(s);
+#else
+	// 如果没有定义 PUGIXML_WCHAR_MODE 宏，则手动计算长度。  
+	// 通过遍历字符串直到遇到空终止符来计算长度
+	const wchar_t* end = s;
+	while (*end) end++;
+	return static_cast<size_t>(end - s);// 返回字符串的长度
+#endif
+}
 PUGI__NS_END
 
 // auto_ptr-like object for exception recovery
