@@ -235,46 +235,91 @@ namespace detail {
     auto get_port() const {
       return _token.port;
     }
-
+    /**
+ * @brief 检查令牌是否有效。
+ *
+ * 一个有效的令牌必须有一个设置的地址、协议类型和地址类型。
+ *
+ * @return 如果令牌有效，则返回true；否则返回false。
+ */
     bool is_valid() const {
       return has_address() &&
              ((_token.protocol != token_data::protocol::not_set) &&
              (_token.address_type != token_data::address::not_set));
     }
-
+    /**
+ * @brief 检查地址是否为IPv4。
+ *
+ * @return 如果地址是IPv4，则返回true；否则返回false。
+ */
     bool address_is_v4() const {
       return _token.address_type == token_data::address::ip_v4;
     }
-
+    /**
+ * @brief 检查地址是否为IPv6。
+ *
+ * @return 如果地址是IPv6，则返回true；否则返回false。
+ */
     bool address_is_v6() const {
       return _token.address_type == token_data::address::ip_v6;
     }
-
+    /**
+ * @brief 检查协议是否为UDP。
+ *
+ * @return 如果协议是UDP，则返回true；否则返回false。
+ */
     bool protocol_is_udp() const {
       return _token.protocol == token_data::protocol::udp;
     }
-
+    /**
+ * @brief 检查协议是否为TCP。
+ *
+ * @return 如果协议是TCP，则返回true；否则返回false。
+ */
     bool protocol_is_tcp() const {
       return _token.protocol == token_data::protocol::tcp;
     }
-
+    /**
+ * @brief 检查是否具有相同的协议。
+ *
+ * 比较当前令牌的协议与给定端点的协议。
+ *
+ * @param endpoint 要比较的端点。
+ * @return 如果协议相同，则返回true；否则返回false。
+ */
     template <typename Protocol>
     bool has_same_protocol(const boost::asio::ip::basic_endpoint<Protocol> &) const {
       return _token.protocol == get_protocol<Protocol>();
     }
-
+    /**
+ * @brief 将令牌转换为UDP端点。
+ *
+ * 如果当前令牌的协议不是UDP，则行为未定义。
+ *
+ * @return UDP端点。
+ */
     boost::asio::ip::udp::endpoint to_udp_endpoint() const {
       return get_endpoint<boost::asio::ip::udp>();
     }
-
+    /**
+ * @brief 将令牌转换为TCP端点。
+ *
+ * 如果当前令牌的协议不是TCP，则行为未定义。
+ *
+ * @return TCP端点。
+ */
     boost::asio::ip::tcp::endpoint to_tcp_endpoint() const {
       return get_endpoint<boost::asio::ip::tcp>();
     }
 
   private:
-
+      /**
+ * @brief 友元类，允许Dispatcher访问私有成员。
+ */
     friend class Dispatcher;
-
+    /**
+ * @brief 存储令牌数据的成员变量。
+ */
     token_data _token;
   };
 
