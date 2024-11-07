@@ -5,15 +5,16 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
+/// \file
+/// 包含CARLA流处理相关头文件和Boost.Asio网络库头文件。
+#include "carla/Debug.h"/// 包含CARLA的调试功能相关定义。
+#include "carla/streaming/EndPoint.h"/// 包含CARLA流处理的端点（EndPoint）类定义。
+#include "carla/streaming/Token.h"/// 包含CARLA流处理的令牌（Token）类定义。
+#include "carla/streaming/detail/Types.h"/// 包含CARLA流处理细节部分的类型定义。
 
-#include "carla/Debug.h"
-#include "carla/streaming/EndPoint.h"
-#include "carla/streaming/Token.h"
-#include "carla/streaming/detail/Types.h"
-
-#include <boost/asio/ip/address.hpp>
-#include <boost/asio/ip/tcp.hpp>
-#include <boost/asio/ip/udp.hpp>
+#include <boost/asio/ip/address.hpp>/// 包含Boost.Asio库中的IP地址类定义。
+#include <boost/asio/ip/tcp.hpp>/// 包含Boost.Asio库中的TCP协议类定义。
+#include <boost/asio/ip/udp.hpp> /// 包含Boost.Asio库中的UDP协议类定义。
 
 namespace carla {
 namespace streaming {
