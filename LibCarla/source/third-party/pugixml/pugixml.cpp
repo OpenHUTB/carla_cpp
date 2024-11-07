@@ -278,29 +278,36 @@ PUGI__NS_END
 
 // auto_ptr-like object for exception recovery
 PUGI__NS_BEGIN
-	template <typename T> struct auto_deleter
+// 定义一个模板结构体 auto_deleter，它可以用于任何类型 T
+template <typename T> struct auto_deleter
+{
+	// 定义一个类型别名 D，它是一个指向函数的指针，该函数接受一个指向 T 类型的指针作为参数，并返回 void
+	typedef void (*D)(T*);
+	// 成员变量：
+	// data：指向需要被自动删除的对象的指针。
+	// deleter：一个函数指针，指向用于删除 data 指向的对象的函数
+	T* data;
+	D deleter;
+	// 构造函数，接受一个指向对象的指针和一个删除该对象的函数指针
+	auto_deleter(T* data_, D deleter_) : data(data_), deleter(deleter_)
 	{
-		typedef void (*D)(T*);
-
-		T* data;
-		D deleter;
-
-		auto_deleter(T* data_, D deleter_): data(data_), deleter(deleter_)
-		{
-		}
-
-		~auto_deleter()
-		{
-			if (data) deleter(data);
-		}
-
-		T* release()
-		{
-			T* result = data;
-			data = 0;
-			return result;
-		}
-	};
+	}
+	// 析构函数，当 auto_deleter 对象被销毁时调用。
+	// 如果 data 非空，则调用 deleter 函数来删除 data 指向的对象
+	~auto_deleter()
+	{
+		if (data) deleter(data);
+	}
+	// release 函数，用于手动释放对对象的所有权。
+	// 它返回 data 指向的对象的指针，并将 data 设置为 0（nullptr）。
+	// 这意味着之后 auto_deleter 对象不会再尝试删除该对象
+	T* release()
+	{
+		T* result = data;
+		data = 0;
+		return result;
+	}
+};
 PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
