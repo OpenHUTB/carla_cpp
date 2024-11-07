@@ -20,21 +20,23 @@ Router::~Router() {
 }
 
 void Router::Stop() {
-  ClearSessions();
-  _listener->Stop();
-  _listener.reset();
-  _pool.Stop();
+  ClearSessions();    // 清除所有活动的会话。
+  _listener->Stop();  // 停止监听器，防止接受新连接
+  _listener.reset();  // 释放监听器对象的内存。
+  _pool.Stop();       // 停止相关的线程池以释放资源。
 }
 
 Router::Router(uint16_t port) :
   _next(0) {
 
+  // 创建一个TCP端点，监听所有网络接口（0.0.0.0）上的指定端口
   _endpoint = boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string("0.0.0.0"), port);
+  // 初始化_listener为指向Listener对象的共享指针，用于处理传入连接。
   _listener = std::make_shared<carla::multigpu::Listener>(_pool.io_context(), _endpoint);
 }
 
 void Router::SetCallbacks() {
-  // prepare server
+  // 准备服务器
   std::weak_ptr<Router> weak = shared_from_this();
 
   carla::multigpu::Listener::callback_function_type on_open = [=](std::shared_ptr<carla::multigpu::Primary> session) {
@@ -88,7 +90,7 @@ void Router::ConnectSession(std::shared_ptr<Primary> session) {
   std::lock_guard<std::mutex> lock(_mutex);
   _sessions.emplace_back(std::move(session));
   log_info("Connected secondary servers:", _sessions.size());
-  // run external callback for new connections
+  // 对新连接运行外部回调
   if (_callback)
     _callback();
 }
@@ -110,7 +112,7 @@ void Router::ClearSessions() {
 }
 
 void Router::Write(MultiGPUCommand id, Buffer &&buffer) {
-  // define the command header
+  // 定义命令头
   CommandHeader header;
   header.id = id;
   header.size = buffer.size();
@@ -120,7 +122,7 @@ void Router::Write(MultiGPUCommand id, Buffer &&buffer) {
   auto view_data = carla::BufferView::CreateFrom(std::move(buffer));
   auto message = Primary::MakeMessage(view_header, view_data);
 
-  // write to multiple servers
+  // 写入多个服务器
   std::lock_guard<std::mutex> lock(_mutex);
   for (auto &s : _sessions) {
     if (s != nullptr) {
@@ -130,7 +132,7 @@ void Router::Write(MultiGPUCommand id, Buffer &&buffer) {
 }
 
 std::future<SessionInfo> Router::WriteToNext(MultiGPUCommand id, Buffer &&buffer) {
-  // define the command header
+  // 定义命令头
   CommandHeader header;
   header.id = id;
   header.size = buffer.size();
@@ -140,10 +142,10 @@ std::future<SessionInfo> Router::WriteToNext(MultiGPUCommand id, Buffer &&buffer
   auto view_data = carla::BufferView::CreateFrom(std::move(buffer));
   auto message = Primary::MakeMessage(view_header, view_data);
 
-  // create the promise for the posible answer
+  // 为可能的答案创建承诺自动响应
   auto response = std::make_shared<std::promise<SessionInfo>>();
 
-  // write to the next server only
+  // 只写特定服务器
   std::lock_guard<std::mutex> lock(_mutex);
   if (_next >= _sessions.size()) {
     _next = 0;
@@ -162,7 +164,7 @@ std::future<SessionInfo> Router::WriteToNext(MultiGPUCommand id, Buffer &&buffer
 }
 
 std::future<SessionInfo> Router::WriteToOne(std::weak_ptr<Primary> server, MultiGPUCommand id, Buffer &&buffer) {
-  // define the command header
+  // 定义命令头
   CommandHeader header;
   header.id = id;
   header.size = buffer.size();
@@ -172,10 +174,12 @@ std::future<SessionInfo> Router::WriteToOne(std::weak_ptr<Primary> server, Multi
   auto view_data = carla::BufferView::CreateFrom(std::move(buffer));
   auto message = Primary::MakeMessage(view_header, view_data);
 
-  // create the promise for the posible answer
+  // 为可能的答案创建承诺自动响应
+
   auto response = std::make_shared<std::promise<SessionInfo>>();
 
-  // write to the specific server only
+  // 只写特定服务器
+
   std::lock_guard<std::mutex> lock(_mutex);
   auto s = server.lock();
   if (s) {
@@ -197,5 +201,5 @@ std::weak_ptr<Primary> Router::GetNextServer() {
   }
 }
 
-} // namespace multigpu
-} // namespace carla
+} // 名称空间 multigpu
+} // 名称空间 carla

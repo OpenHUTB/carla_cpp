@@ -1,7 +1,7 @@
-// Copyright (c) 2017 ������Ӿ����� (CVC) - �����������δ�ѧ (UAB).
+// Copyright (c) 2017 计算机视觉中心 (CVC) - 巴塞罗那自治大学 (UAB).
 //
-// ����Ʒ����MIT����֤������Ȩ��
-// �й���ϸ��Ϣ����μ� <https://opensource.org/licenses/MIT>.
+// 本作品依据MIT许可证条款授权。
+// 有关详细信息，请参见 <https://opensource.org/licenses/MIT>.
 
 #pragma once
 
@@ -14,7 +14,7 @@
 namespace carla {
     namespace client {
 
-        /// ��ʾģ���е�һ����Ϊ�壨Actor����
+        /// 表示模拟中的一个行为体（Actor）。
         class Actor
             : public EnableSharedFromThis<Actor>,
             private profiler::LifetimeProfiled,
@@ -30,29 +30,29 @@ namespace carla {
 
             virtual ~Actor() = default;
 
-            /// ������Ϊ��ĵ�ǰλ�á�
+            /// 返回行为体的当前位置。
             ///
-            /// @note �ú����������ģ���������Ƿ�����һ��ʱ�̽��յ���λ�á�
+            /// @note 该函数不会调用模拟器，而是返回上一个时刻接收到的位置。
             geom::Location GetLocation() const;
 
-            /// ������Ϊ��ĵ�ǰ�任��λ�úͷ��򣩡�
+            /// 返回行为体的当前变换（位置和方向）。
             ///
-            /// @note �ú����������ģ���������Ƿ�����һ��ʱ�̽��յ��ı任��
+            /// @note 该函数不会调用模拟器，而是返回上一个时刻接收到的变换。
             geom::Transform GetTransform() const;
 
-            /// ������Ϊ��ĵ�ǰ3D�ٶȡ�
+            /// 返回行为体的当前3D速度。
             ///
-            /// @note �ú����������ģ���������Ƿ�����һ��ʱ�̽��յ����ٶȡ�
+            /// @note 该函数不会调用模拟器，而是返回上一个时刻接收到的速度。
             geom::Vector3D GetVelocity() const;
 
-            /// ������Ϊ��ĵ�ǰ3D���ٶȡ�
+            /// 返回行为体的当前3D角速度。
             ///
-            /// @note �ú����������ģ���������Ƿ�����һ��ʱ�̽��յ��Ľ��ٶȡ�
+            /// @note 该函数不会调用模拟器，而是返回上一个时刻接收到的角速度。
             geom::Vector3D GetAngularVelocity() const;
 
-            /// ������Ϊ��ĵ�ǰ3D���ٶȡ�
+            /// 返回行为体的当前3D加速度。
             ///
-            /// @note �ú����������ģ���������Ƿ��ظ�����Ϊ����ٶȼ���ļ��ٶȡ�
+            /// @note 该函数不会调用模拟器，而是返回根据行为体的速度计算的加速度。
             geom::Vector3D GetAcceleration() const;
 
             geom::Transform GetComponentWorldTransform(const std::string componentName) const;
@@ -73,52 +73,52 @@ namespace carla {
 
             std::vector<std::string> GetSocketNames() const;
 
-            /// ����Ϊ�崫�͵� @a location��
+            /// 将行为体传送到 @a location。
             void SetLocation(const geom::Location& location);
 
-            /// ����Ϊ�崫�Ͳ���ת�� @a transform��
+            /// 将行为体传送并旋转到 @a transform。
             void SetTransform(const geom::Transform& transform);
 
-            /// ��Ӧ������֮ǰ������Ϊ����ٶȡ�
+            /// 在应用物理之前设置行为体的速度。
             void SetTargetVelocity(const geom::Vector3D& vector);
 
-            /// ��Ӧ������֮ǰ������Ϊ��Ľ��ٶȡ�
+            /// 在应用物理之前设置行为体的角速度。
             void SetTargetAngularVelocity(const geom::Vector3D& vector);
 
-            /// ���ú㶨�ٶ�ģʽ��
+            /// 启用恒定速度模式。
             void EnableConstantVelocity(const geom::Vector3D& vector);
 
-            /// ���ú㶨�ٶ�ģʽ��
+            /// 禁用恒定速度模式。
             void DisableConstantVelocity();
 
-            /// ����Ϊ�������ʩ�ӳ�����
+            /// 在行为体的质心施加冲量。
             void AddImpulse(const geom::Vector3D& vector);
 
-            /// ��ĳ��λ�ö���Ϊ��ʩ�ӳ�����
+            /// 在某个位置对行为体施加冲量。
             void AddImpulse(const geom::Vector3D& impulse, const geom::Vector3D& location);
 
-            /// ����Ϊ�������ʩ������
+            /// 在行为体的质心施加力。
             void AddForce(const geom::Vector3D& force);
 
-            /// ��ĳ��λ�ö���Ϊ��ʩ������
+            /// 在某个位置对行为体施加力。
             void AddForce(const geom::Vector3D& force, const geom::Vector3D& location);
 
-            /// ����Ϊ��ʩ�ӽǳ�����
+            /// 对行为体施加角冲量。
             void AddAngularImpulse(const geom::Vector3D& vector);
 
-            /// ����Ϊ��ʩ��Ť�ء�
+            /// 对行为体施加扭矩。
             void AddTorque(const geom::Vector3D& vector);
 
-            /// ���û���ø���Ϊ�������ģ�⡣
+            /// 启用或禁用该行为体的物理模拟。
             void SetSimulatePhysics(bool enabled = true);
 
-            /// ���û���ø���Ϊ�����ײ��
+            /// 启用或禁用该行为体的碰撞。
             void SetCollisions(bool enabled = true);
 
-            /// ����Ϊ����Ϊ����������ʼ���������ڡ�
+            /// 将行为体标记为已死亡并开始其生命周期。
             void SetActorDead();
 
-            /// ���û���ø���Ϊ���������
+            /// 启用或禁用该行为体的重力。
             void SetEnableGravity(bool enabled = true);
 
             rpc::ActorState GetActorState() const;
@@ -135,11 +135,11 @@ namespace carla {
                 return GetEpisode().IsValid() && GetActorState() == rpc::ActorState::Active;
             }
 
-            /// ����ģ�������ٸ���Ϊ�壬��������Ϊ���Ƿ�ɹ������ٵĽ����
+            /// 告诉模拟器销毁该行为体，并返回行为体是否成功被销毁的结果。
             ///
-            /// @note �����Ϊ���Ѿ��ɹ����٣���ú���û��Ч����
+            /// @note 如果行为体已经成功销毁，则该函数没有效果。
             ///
-            /// @warning �˺�����������ֱ��ģ����������ٲ�����
+            /// @warning 此函数会阻塞，直到模拟器完成销毁操作。
             virtual bool Destroy();
 
             const auto& Serialize() const {

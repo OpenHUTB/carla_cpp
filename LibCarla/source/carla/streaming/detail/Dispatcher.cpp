@@ -16,16 +16,16 @@ namespace carla {
 namespace streaming {
 namespace detail {
 
+  // Dispatcher 析构函数
   Dispatcher::~Dispatcher() {
-    // Disconnect all the sessions from their streams, this should kill any
-    // session remaining since at this point the io_context should be already
-    // stopped.
+    
+     // 断开所有会话与其流的连接，确保在此时 io_context 已停止
     for (auto &pair : _stream_map) {
 #ifndef LIBCARLA_NO_EXCEPTIONS
       try {
 #endif // LIBCARLA_NO_EXCEPTIONS
-        auto stream_state = pair.second;
-        stream_state->ClearSessions();
+        auto stream_state = pair.second;// 获取流状态
+        stream_state->ClearSessions();// 清除会话
 #ifndef LIBCARLA_NO_EXCEPTIONS
       } catch (const std::exception &e) {
         log_error("failed to clear sessions:", e.what());
@@ -34,14 +34,15 @@ namespace detail {
     }
   }
 
+  // 创建一个新的流或重用现有流
   carla::streaming::Stream Dispatcher::MakeStream() {
-    std::lock_guard<std::mutex> lock(_mutex);
-    ++_cached_token._token.stream_id; // id zero only happens in overflow.
+    std::lock_guard<std::mutex> lock(_mutex);// 确保线程安全
+    ++_cached_token._token.stream_id; // 增加流ID，防止溢出
     log_debug("New stream:", _cached_token._token.stream_id);
-    std::shared_ptr<MultiStreamState> ptr;
-    auto search = _stream_map.find(_cached_token.get_stream_id());
+    std::shared_ptr<MultiStreamState> ptr;// 声明流状态的智能指针
+    auto search = _stream_map.find(_cached_token.get_stream_id());// 查找现有流
     if (search == _stream_map.end()) {
-      // creating new stream
+      // 如果没有找到，创建新的流
       ptr = std::make_shared<MultiStreamState>(_cached_token);
       auto result = _stream_map.emplace(std::make_pair(_cached_token.get_stream_id(), ptr));
       if (!result.second) {
@@ -50,13 +51,14 @@ namespace detail {
       log_debug("Stream created");
       return carla::streaming::Stream(ptr);
     } else {
-      // reusing existing stream
-      log_debug("Stream reused");
-      ptr = search->second;
-      return carla::streaming::Stream(ptr);
+      // 将新流插入流映射表中
+      log_debug("Stream reused");// 日志记录流创建信息
+      ptr = search->second;// 获取现有流状态
+      return carla::streaming::Stream(ptr);// 返回现有流
     }
   }
 
+  // 关闭指定ID的流
   void Dispatcher::CloseStream(carla::streaming::detail::stream_id_type id) {
     std::lock_guard<std::mutex> lock(_mutex);
     log_debug("Calling CloseStream for ", id);
@@ -71,6 +73,7 @@ namespace detail {
     }
   }
 
+  // 注册会话到指定流
   bool Dispatcher::RegisterSession(std::shared_ptr<Session> session) {
     DEBUG_ASSERT(session != nullptr);
     std::lock_guard<std::mutex> lock(_mutex);
@@ -88,6 +91,7 @@ namespace detail {
     return false;
   }
 
+  // 从流中注销会话
   void Dispatcher::DeregisterSession(std::shared_ptr<Session> session) {
     DEBUG_ASSERT(session != nullptr);
     std::lock_guard<std::mutex> lock(_mutex);
@@ -114,6 +118,8 @@ namespace detail {
       log_debug("Getting token from stream ", sensor_id, " on port ", stream_state->token().get_port());
       return stream_state->token();
     } else {
+      
+      // 如果没有找到，创建新的传感器流
       log_debug("Not Found sensor id, creating sensor stream: ", sensor_id);
       token_type temp_token(_cached_token);
       temp_token.set_stream_id(sensor_id);
@@ -126,7 +132,7 @@ namespace detail {
       log_debug("Created token from stream ", sensor_id, " on port ", temp_token.get_port());
       return temp_token;
     }
-    return token_type();
+    return token_type();// 如果未找到流，返回默认令牌
   }
 
 } // namespace detail

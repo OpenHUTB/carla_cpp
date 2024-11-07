@@ -1,4 +1,4 @@
-# Carla 的 C++ 文档
+﻿# Carla 的 C++ 文档
 注释Carla的 [LibCarla](https://github.com/OpenHUTB/carla_cpp/tree/dev/LibCarla/source/carla) 、[CarlaUE4](https://github.com/OpenHUTB/carla_cpp/tree/dev/Unreal/CarlaUE4/Plugins/Carla/Source/Carla) 模块，包括实现方式、实现原理、流程图等。做出贡献之前请查看 [指南](https://github.com/OpenHUTB/PFC/blob/main/CONTRIBUTING.md) 。
 
 ## 生成文档
@@ -160,4 +160,28 @@ git rm -rf .
 [xinderruila](https://github.com/xinderruila)、
 [YJY336](https://github.com/YJY336)、
 [Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrilky](https://github.com/hyjrilky)、
-[vv313](https://github.com/vv313)
+[vv313](https://github.com/vv313)、
+[lwh0954](https://github.com/lwh0954)、
+[csgo3553](https://github.com/csgo3553) 、
+[Mia-cloud-del](https://github.com/Mia-cloud-del) 、
+[hui215151](https://github.com/hui215151)、
+[SRX-ytk](https://github.com/SRX-ytk)、
+[xiaoyu-903](https://github.come/xiaoyu-903)、
+[zhouxinyu-a11y](https://github.come/zhouxinyu-a11y)、
+[wdlmd20](https://github.com/wdlmd20)。
+[wdlmd20](https://github.com/wdlmd20)、
+[Hcir-lk](https://github.com/Hcir-lk)、
+[S1TZ](https://github.com/S1TZ)。
+[lzg6667](https://github.com/lzg6667)。
+[RYZ-666](https://github.com/RYZ-666)、
+[Taohygge](https://github.com/Taohygge)、
+[HZY-23](https://github.com/HZY-23)。
+[hugufy](https://github.com/hugufy)
+[54zwz](https://github.com/54zwz)
+[xuebaobizui](https://github.com/xuebaobizui)
+[certain-m](https://github.com/caerain-m)。
+[kuanghy123](https://github.com/kuanghy123)。
+[longxiang06](https://github.com/longxiang06)
+[takagis](https://github.com/takagis)
+[dq1](https://github.com/dq1)
+[xiao-ice666](https://github.com/xiao-ice666)
