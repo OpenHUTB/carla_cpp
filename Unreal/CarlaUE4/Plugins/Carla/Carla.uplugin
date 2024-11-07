@@ -1,17 +1,44 @@
 {
+	// 文件版本，用于标识JSON文件的格式版本
 	"FileVersion": 3,
+
+	// 软件的版本号
 	"Version": 1,
+
+	// 版本的名称，通常是一个更具可读性的标识符
 	"VersionName": "0.9.15",
+
+	// 软件的友好名称，用于显示给用户
 	"FriendlyName": "CARLA",
+
+	// 软件的描述，简单介绍软件的功能和用途
 	"Description": "Open-source simulator for autonomous driving research.",
+
+	// 软件所属的类别，用于分类或搜索
 	"Category": "Science",
+
+	// 创建软件的实体或团队名称
 	"CreatedBy": "Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB)",
+
+	// 创建软件的实体或团队的官方网址
 	"CreatedByURL": "http://carla.org",
+
+	// 软件的官方文档网址
 	"DocsURL": "http://carla.readthedocs.io",
+
+	// 软件在市场上的官方页面或商店网址（此处为空）
 	"MarketplaceURL": "",
+
+	// 提供支持或反馈的官方网址，例如问题跟踪系统
 	"SupportURL": "https://github.com/carla-simulator/carla/issues",
+
+	// 指示软件是否可以包含额外的内容，如插件或模块
 	"CanContainContent": true,
+
+	// 指示是否为测试版（Beta版）
 	"IsBetaVersion": true,
+
+
 	"Installed": true,
 	"Modules": [
 		{
