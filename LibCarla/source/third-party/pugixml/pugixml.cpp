@@ -186,108 +186,128 @@ namespace pugi
 #endif
 
 // Memory allocation
+// PUGI__NS_BEGIN 和 PUGI__NS_END 宏通常用于定义命名空间的开始和结束
 PUGI__NS_BEGIN
-	PUGI__FN void* default_allocate(size_t size)
-	{
-		return malloc(size);
-	}
-
-	PUGI__FN void default_deallocate(void* ptr)
-	{
-		free(ptr);
-	}
-
-	template <typename T>
-	struct xml_memory_management_function_storage
-	{
-		static allocation_function allocate;
-		static deallocation_function deallocate;
-	};
-
-	// Global allocation functions are stored in class statics so that in header mode linker deduplicates them
-	// Without a template<> we'll get multiple definitions of the same static
-	template <typename T> allocation_function xml_memory_management_function_storage<T>::allocate = default_allocate;
-	template <typename T> deallocation_function xml_memory_management_function_storage<T>::deallocate = default_deallocate;
-
-	typedef xml_memory_management_function_storage<int> xml_memory;
+// 定义一个函数，用于分配指定大小的内存。这个函数简单地调用了标准库的 malloc 函数
+PUGI__FN void* default_allocate(size_t size)
+{
+	return malloc(size);
+}
+// 定义一个函数，用于释放之前分配的内存。这个函数简单地调用了标准库的 free 函数
+PUGI__FN void default_deallocate(void* ptr)
+{
+	free(ptr);
+}
+// 定义一个模板结构体，用于存储内存管理函数（分配和释放）。
+template <typename T>
+struct xml_memory_management_function_storage
+{
+	static allocation_function allocate;
+	static deallocation_function deallocate;
+};
+// 为模板结构体的静态成员变量分配默认值。  
+// 这里使用了模板特化的语法来指定每个类型T的 allocate 和 deallocate 成员变量的值
+// Global allocation functions are stored in class statics so that in header mode linker deduplicates them
+// Without a template<> we'll get multiple definitions of the same static
+template <typename T> allocation_function xml_memory_management_function_storage<T>::allocate = default_allocate;
+template <typename T> deallocation_function xml_memory_management_function_storage<T>::deallocate = default_deallocate;
+// 使用typedef为 xml_memory_management_function_storage<int> 创建一个别名 xml_memory
+// 专门用于int类型的内存管理函数存储
+typedef xml_memory_management_function_storage<int> xml_memory;
 PUGI__NS_END
 
 // String utilities
 PUGI__NS_BEGIN
-	// Get string length
-	PUGI__FN size_t strlength(const char_t* s)
-	{
-		assert(s);
+// Get string length
+// 获取字符串长度  
+// char_t 是一个类型别名，它根据是否定义了 PUGIXML_WCHAR_MODE 宏来决定是 char 还是 wchar_t 类型
+PUGI__FN size_t strlength(const char_t* s)
+{
+	// 断言 s 不为 nullptr，确保传入的字符串指针是有效的
+	assert(s);
+	// 根据是否定义了 PUGIXML_WCHAR_MODE 宏来选择使用 wcslen 还是 strlen 函数来获取字符串长度
+#ifdef PUGIXML_WCHAR_MODE
+	return wcslen(s);// 宽字符字符串长度
+#else
+	return strlen(s);// 单字节字符字符串长度
+#endif
+}
 
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcslen(s);
-	#else
-		return strlen(s);
-	#endif
+// Compare two strings
+PUGI__FN bool strequal(const char_t* src, const char_t* dst)
+{
+	// 断言 src 和 dst 都不为 nullptr，确保传入的字符串指针都是有效的
+	assert(src && dst);
+
+#ifdef PUGIXML_WCHAR_MODE
+	return wcscmp(src, dst) == 0;// 宽字符字符串比较
+#else
+	return strcmp(src, dst) == 0;// 单字节字符字符串比较
+#endif
 	}
 
-	// Compare two strings
-	PUGI__FN bool strequal(const char_t* src, const char_t* dst)
-	{
-		assert(src && dst);
+// Compare lhs with [rhs_begin, rhs_end)
+PUGI__FN bool strequalrange(const char_t* lhs, const char_t* rhs, size_t count)
+{
+	// 逐个字符比较 lhs 和 rhs，如果发现有不相等的字符，则返回 false
+	for (size_t i = 0; i < count; ++i)
+		if (lhs[i] != rhs[i])
+			return false;
+	// 如果循环结束后没有发现不相等的字符，则检查 lhs 的第 count 个字符是否为空终止符，  
+	// 如果是，则返回 true，表示字符串相等（在指定范围内）；否则返回 false
+	return lhs[count] == 0;
+}
 
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcscmp(src, dst) == 0;
-	#else
-		return strcmp(src, dst) == 0;
-	#endif
-	}
-
-	// Compare lhs with [rhs_begin, rhs_end)
-	PUGI__FN bool strequalrange(const char_t* lhs, const char_t* rhs, size_t count)
-	{
-		for (size_t i = 0; i < count; ++i)
-			if (lhs[i] != rhs[i])
-				return false;
-
-		return lhs[count] == 0;
-	}
-
-	// Get length of wide string, even if CRT lacks wide character support
-	PUGI__FN size_t strlength_wide(const wchar_t* s)
-	{
-		assert(s);
-
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcslen(s);
-	#else
-		const wchar_t* end = s;
-		while (*end) end++;
-		return static_cast<size_t>(end - s);
-	#endif
-	}
+// Get length of wide string, even if CRT lacks wide character support
+PUGI__FN size_t strlength_wide(const wchar_t* s)
+{
+	// 断言 s 不为 nullptr，确保传入的宽字符串指针是有效的
+	assert(s);
+	// 如果定义了 PUGIXML_WCHAR_MODE 宏，则直接使用 wcslen 函数获取长度
+#ifdef PUGIXML_WCHAR_MODE
+	return wcslen(s);
+#else
+	// 如果没有定义 PUGIXML_WCHAR_MODE 宏，则手动计算长度。  
+	// 通过遍历字符串直到遇到空终止符来计算长度
+	const wchar_t* end = s;
+	while (*end) end++;
+	return static_cast<size_t>(end - s);// 返回字符串的长度
+#endif
+}
 PUGI__NS_END
 
 // auto_ptr-like object for exception recovery
 PUGI__NS_BEGIN
-	template <typename T> struct auto_deleter
+// 定义一个模板结构体 auto_deleter，它可以用于任何类型 T
+template <typename T> struct auto_deleter
+{
+	// 定义一个类型别名 D，它是一个指向函数的指针，该函数接受一个指向 T 类型的指针作为参数，并返回 void
+	typedef void (*D)(T*);
+	// 成员变量：
+	// data：指向需要被自动删除的对象的指针。
+	// deleter：一个函数指针，指向用于删除 data 指向的对象的函数
+	T* data;
+	D deleter;
+	// 构造函数，接受一个指向对象的指针和一个删除该对象的函数指针
+	auto_deleter(T* data_, D deleter_) : data(data_), deleter(deleter_)
 	{
-		typedef void (*D)(T*);
-
-		T* data;
-		D deleter;
-
-		auto_deleter(T* data_, D deleter_): data(data_), deleter(deleter_)
-		{
-		}
-
-		~auto_deleter()
-		{
-			if (data) deleter(data);
-		}
-
-		T* release()
-		{
-			T* result = data;
-			data = 0;
-			return result;
-		}
-	};
+	}
+	// 析构函数，当 auto_deleter 对象被销毁时调用。
+	// 如果 data 非空，则调用 deleter 函数来删除 data 指向的对象
+	~auto_deleter()
+	{
+		if (data) deleter(data);
+	}
+	// release 函数，用于手动释放对对象的所有权。
+	// 它返回 data 指向的对象的指针，并将 data 设置为 0（nullptr）。
+	// 这意味着之后 auto_deleter 对象不会再尝试删除该对象
+	T* release()
+	{
+		T* result = data;
+		data = 0;
+		return result;
+	}
+};
 PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
