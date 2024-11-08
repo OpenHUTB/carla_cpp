@@ -71,17 +71,20 @@ struct CARLA_API FActorVariation
 
 /// An actor attribute, may be an intrinsic (non-modifiable) attribute of the
 /// actor or an user-defined actor variation.
+/// 上面的代码意思为角色属性，可以是角色的固有（不可修改）属性或用户定义的角色变体
+
+// 标记这个结构体可以在Unreal Engine的蓝图系统中使用
 USTRUCT(BlueprintType)
 struct CARLA_API FActorAttribute
 {
-  GENERATED_BODY()
-
+  GENERATED_BODY()  // 自动生成反射代码
+ 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  FString Id;
-
+  FString Id;  // 属性标识符
+ 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  EActorAttributeType Type = EActorAttributeType::String;
-
+  EActorAttributeType Type = EActorAttributeType::String;  // 属性类型
+ 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  FString Value;
+  FString Value;  // 属性值
 };
