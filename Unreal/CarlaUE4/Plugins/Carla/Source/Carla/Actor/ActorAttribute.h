@@ -28,41 +28,45 @@
 UENUM(BlueprintType)
 enum class EActorAttributeType : uint8
 {
-  Null = 0, // Workarround for UE4.24 issue with enums
-  Bool      = CARLA_ENUM_FROM_RPC(Bool)      UMETA(DisplayName = "Bool"),
-  Int       = CARLA_ENUM_FROM_RPC(Int)       UMETA(DisplayName = "Integer"),
-  Float     = CARLA_ENUM_FROM_RPC(Float)     UMETA(DisplayName = "Float"),
-  String    = CARLA_ENUM_FROM_RPC(String)    UMETA(DisplayName = "String"),
-  RGBColor  = CARLA_ENUM_FROM_RPC(RGBColor)  UMETA(DisplayName = "RGB Color (comma separated)"),
-
-  SIZE        UMETA(Hidden),
-  INVALID     UMETA(Hidden)
+  Null = 0, // Workarround for UE4.24 issue with enums（针对UE4.24中枚举问题的临时解决方案）
+  Bool      = CARLA_ENUM_FROM_RPC(Bool)      UMETA(DisplayName = "Bool"),  // 布尔类型
+  Int       = CARLA_ENUM_FROM_RPC(Int)       UMETA(DisplayName = "Integer"),  // 整数类型
+  Float     = CARLA_ENUM_FROM_RPC(Float)     UMETA(DisplayName = "Float"),  // 浮点数类型
+  String    = CARLA_ENUM_FROM_RPC(String)    UMETA(DisplayName = "String"),  // 字符串类型
+  RGBColor  = CARLA_ENUM_FROM_RPC(RGBColor)  UMETA(DisplayName = "RGB Color (comma separated)"),  // RGB颜色类型（逗号分隔）
+ 
+  SIZE        UMETA(Hidden),  // 隐藏属性，不应在UI中显示
+  INVALID     UMETA(Hidden)  // 无效属性，不应在UI中显示
 };
 
-#undef CARLA_ENUM_FROM_RPC
+#undef CARLA_ENUM_FROM_RPC// 取消定义宏
 
 /// Definition of an actor variation. Variations represent attributes of the
 /// actor that the user can modify in order to generate variations of the same
 /// actor.
+/// 上面的代码意思为角色变体的定义。变体表示用户可以修改的角色属性，以生成相同角色的变体
 ///
 /// A list of recommended values is given. If bRestrictToRecommended is true,
 /// only recommended values are accepted as valid.
+/// 上面的代码意思为提供了一组推荐值。如果bRestrictToRecommended为true，则只接受推荐值作为有效值
+
+// 标记这个结构体可以在Unreal Engine的蓝图系统中使用
 USTRUCT(BlueprintType)
 struct CARLA_API FActorVariation
 {
-  GENERATED_BODY()
-
+  GENERATED_BODY()  // 自动生成反射代码
+ 
+  UPROPERTY(EditAnywhere, BlueprintReadWrite)  // 标记这个属性可以在任何位置编辑，并且可以在蓝图中读写
+  FString Id;  // 变体标识符
+ 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  FString Id;
-
+  EActorAttributeType Type = EActorAttributeType::String;  // 变体类型
+ 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  EActorAttributeType Type = EActorAttributeType::String;
-
+  TArray<FString> RecommendedValues;  // 推荐值列表
+ 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  TArray<FString> RecommendedValues;
-
-  UPROPERTY(EditAnywhere, BlueprintReadWrite)
-  bool bRestrictToRecommended = false;
+  bool bRestrictToRecommended = false;  // 是否限制为只能使用推荐值
 };
 
 /// An actor attribute, may be an intrinsic (non-modifiable) attribute of the
