@@ -311,14 +311,17 @@ template <typename T> struct auto_deleter
 PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
+// 命名空间开始
 PUGI__NS_BEGIN
+// 定义 compact_hash_table 类
 	class compact_hash_table
 	{
 	public:
+		// 构造函数，初始化成员变量
 		compact_hash_table(): _items(0), _capacity(0), _count(0)
 		{
 		}
-
+ // 清空哈希表，释放内存并重置成员变量
 		void clear()
 		{
 			if (_items)
@@ -329,9 +332,10 @@ PUGI__NS_BEGIN
 				_count = 0;
 			}
 		}
-
+// 根据给定的键查找对应的值，如果未找到则返回 0
 		void* find(const void* key)
 		{
+			 // 如果哈希表容量为 0，则返回 0，表示未找到
 			if (_capacity == 0) return 0;
 
 			item_t* item = get_item(key);
@@ -340,14 +344,14 @@ PUGI__NS_BEGIN
 
 			return item->value;
 		}
-
+// 向哈希表中插入键值对
 		void insert(const void* key, void* value)
 		{
 			assert(_capacity != 0 && _count < _capacity - _capacity / 4);
 
 			item_t* item = get_item(key);
 			assert(item);
-
+// 如果当前位置的键为 0，表示该位置为空，可以插入新的键值对
 			if (item->key == 0)
 			{
 				_count++;
@@ -356,7 +360,7 @@ PUGI__NS_BEGIN
 
 			item->value = value;
 		}
-
+// 如果当前位置的键为 0，表示该位置为空，可以插入新的键值对
 		bool reserve(size_t extra = 16)
 		{
 			if (_count + extra >= _capacity - _capacity / 4)
@@ -366,19 +370,20 @@ PUGI__NS_BEGIN
 		}
 
 	private:
+		// 定义内部结构体 item_t，用于存储键值对
 		struct item_t
 		{
 			const void* key;
 			void* value;
 		};
 
-		item_t* _items;
-		size_t _capacity;
+		item_t* _items;// 指向存储键值对的数组
+		size_t _capacity;// 哈希表的容量
 
-		size_t _count;
-
+		size_t _count;// 当前存储的键值对数量
+// 重新哈希函数，用于调整哈希表的大小
 		bool rehash(size_t count);
-
+// 根据键获取对应的哈希表项
 		item_t* get_item(const void* key)
 		{
 			assert(key);
@@ -386,7 +391,7 @@ PUGI__NS_BEGIN
 
 			size_t hashmod = _capacity - 1;
 			size_t bucket = hash(key) & hashmod;
-
+ // 使用二次探测法查找对应的哈希表项
 			for (size_t probe = 0; probe <= hashmod; ++probe)
 			{
 				item_t& probe_item = _items[bucket];
@@ -394,19 +399,19 @@ PUGI__NS_BEGIN
 				if (probe_item.key == key || probe_item.key == 0)
 					return &probe_item;
 
-				// hash collision, quadratic probing
+			 // 发生哈希冲突，进行二次探测
 				bucket = (bucket + probe + 1) & hashmod;
 			}
 
-			assert(false && "Hash table is full"); // unreachable
+			assert(false && "Hash table is full"); // 如果到达这里，表示哈希表已满，这是不可达的代码，用于调试目的
 			return 0;
 		}
-
+// 哈希函数，使用 MurmurHash3 算法
 		static PUGI__UNSIGNED_OVERFLOW unsigned int hash(const void* key)
 		{
 			unsigned int h = static_cast<unsigned int>(reinterpret_cast<uintptr_t>(key));
 
-			// MurmurHash3 32-bit finalizer
+			   // MurmurHash3 32-bit finalizer
 			h ^= h >> 16;
 			h *= 0x85ebca6bu;
 			h ^= h >> 13;
@@ -416,7 +421,7 @@ PUGI__NS_BEGIN
 			return h;
 		}
 	};
-
+// 定义 compact_hash_table 类的非内联成员函数 rehash
 	PUGI__FN_NO_INLINE bool compact_hash_table::rehash(size_t count)
 	{
 		size_t capacity = 32;
