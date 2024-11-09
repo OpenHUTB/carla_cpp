@@ -49,68 +49,101 @@ public:
     return AreValid(TEXT("Actor Definition"), ActorDefinitions);
   }
 
-  /// Validate @a ActorDefinition and display messages on error.
-  bool SingleIsValid(const FActorDefinition &Definition)
+  /// Validate @a ActorDefinition and display messages on error.（验证@a ActorDefinition的有效性，并在出现错误时显示消息）
+  bool SingleIsValid(const FActorDefinition& Definition)
   {
-    auto ScopeText = FString::Printf(TEXT("[Actor Definition : %s]"), *Definition.Id);
-    auto Scope = Stack.PushScope(ScopeText);
-    return IsValid(Definition);
+      // 使用Definition的Id构造一个作用域文本
+      auto ScopeText = FString::Printf(TEXT("[Actor Definition : %s]"), *Definition.Id);
+
+      // 将作用域文本推入Stack的作用域栈中
+      auto Scope = Stack.PushScope(ScopeText);
+
+      // 调用IsValid函数验证Definition的有效性
+      return IsValid(Definition);
   }
 
 private:
 
   /// If @a Predicate is false, print an error message. If possible the message
   /// is printed to the editor window.
+  /// 上面两行代码意思是如果@a Predicate为false，则打印一条错误消息。如果可能，消息将被打印到编辑器窗口中
   template <typename T, typename ... ARGS>
   bool OnScreenAssert(bool Predicate, const T &Format, ARGS && ... Args) const
   {
     if (!Predicate)
     {
       FString Message;
+      // 遍历Stack中的所有字符串，并将它们添加到Message中
       for (auto &String : Stack)
       {
         Message += String;
       }
+      // 在Message末尾添加一个空格
       Message += TEXT(" ");
+      // 使用Format和参数Args格式化字符串，并追加到Message中
       Message += FString::Printf(Format, std::forward<ARGS>(Args) ...);
-
+ 
+      // 使用UE_LOG记录错误消息
       UE_LOG(LogCarla, Error, TEXT("%s"), *Message);
+
+
 #if WITH_EDITOR
+     // 如果在编辑器模式下，且GEngine对象存在
       if (GEngine)
       {
+        // 在屏幕上显示一条调试消息，消息颜色为红色
         GEngine->AddOnScreenDebugMessage(42, 15.0f, FColor::Red, Message);
       }
-#endif // WITH_EDITOR
+#endif // WITH_EDITOR（被用来检查是否正在编辑器环境中运行）
     }
+    // 返回Predicate的值
     return Predicate;
   }
 
+  /// 为给定类型的项目生成显示ID。
   template <typename T>
   FString GetDisplayId(const FString &Type, size_t Index, const T &Item)
   {
+    // 使用Type、Index和Item的Id构造并返回一个格式化的字符串
     return FString::Printf(TEXT("[%s %d : %s]"), *Type, Index, *Item.Id);
   }
-
+ 
+  /// 为给定类型的字符串项目生成显示ID的重载版本。
   FString GetDisplayId(const FString &Type, size_t Index, const FString &Item)
   {
+    // 使用Type、Index和Item字符串构造并返回一个格式化的字符串
     return FString::Printf(TEXT("[%s %d : %s]"), *Type, Index, *Item);
   }
 
   /// Applies @a Validator to each item in @a Array. Pushes a new context to the
   /// stack for each item.
+  /// 上面两行的意思是对@a Array中的每个元素应用@a Validator。为每个元素向堆栈推送一个新的上下文
   template <typename T, typename F>
-  bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
+bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
+{
+  bool Result = true; // 初始化结果为true，假设所有元素都通过验证。
+  auto Counter = 0u;  // 初始化计数器，用于追踪当前正在验证的元素位置。
+ 
+  // 遍历数组中的每个元素
+  for (const auto &Item : Array)
   {
-    bool Result = true;
-    auto Counter = 0u;
-    for (const auto &Item : Array)
-    {
-      auto Scope = Stack.PushScope(GetDisplayId(Type, Counter, Item));
-      Result &= Validator(Item);
-      ++Counter;
-    }
-    return Result;
+    // 为当前元素生成一个显示ID，并将其推送到堆栈的新上下文中。
+    // 这里假设Stack是一个能够管理上下文的某种堆栈结构，而PushScope是一个向堆栈添加新上下文的方法。
+    // GetDisplayId是一个函数，用于生成包含元素类型、索引和ID的格式化字符串。
+    auto Scope = Stack.PushScope(GetDisplayId(Type, Counter, Item));
+ 
+    // 对当前元素应用Validator进行验证，并将验证结果与当前Result进行逻辑与运算。
+    // 如果Validator返回false，则Result也将变为false。
+    Result &= Validator(Item);
+ 
+    // 计数器递增，准备验证下一个元素。
+    ++Counter;
   }
+ 
+  // 返回最终的验证结果。如果所有元素都通过验证，则Result为true；否则为false。
+  return Result;
+}
+
 
   /// Applies @a IsValid to each item in @a Array. Pushes a new context to the
   /// stack for each item.
