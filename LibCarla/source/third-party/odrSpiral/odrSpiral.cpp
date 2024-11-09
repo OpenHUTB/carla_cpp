@@ -137,7 +137,7 @@ static double gd[11] = {
   1.86958710162783236342E-22,
 };
 
-
+//polevl 函数
 static double polevl( double x, double* coef, int n )
 {
     double ans;
@@ -155,7 +155,7 @@ static double polevl( double x, double* coef, int n )
 
     return ans;
 }
-
+//p1evl 函数
 static double p1evl( double x, double* coef, int n )
 {
     double ans;
@@ -174,7 +174,7 @@ static double p1evl( double x, double* coef, int n )
     return ans;
 }
 
-
+//fresnel 函数
 static void fresnel( double xxa, double *ssa, double *cca )
 {
     double f, g, cc, ss, c, s, t, u;

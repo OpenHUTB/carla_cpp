@@ -4,6 +4,9 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+
+//使用Boost.Python库将一些C++函数和类方法暴露给Python，以便在Python中使用
+
 #include <carla/FileSystem.h>
 #include <carla/PythonUtil.h>
 #include <carla/client/Junction.h>
@@ -16,30 +19,31 @@
 #include <ostream>
 #include <fstream>
 
+//定义两个重载的输出流运算符（operator<<），用于将 Map 和 Waypoint 类型的对象以文本形式输出到标准输出流
 namespace carla {
 namespace client {
 
   std::ostream &operator<<(std::ostream &out, const Map &map) {
     out << "Map(name=" << map.GetName() << ')';
     return out;
-  }
+  }//接受一个 std::ostream 引用和一个 Map 类型的常量引用,使用传入的输出流 out 输出 Map 对象的名称
 
   std::ostream &operator<<(std::ostream &out, const Waypoint &waypoint) {
     out << "Waypoint(" << waypoint.GetTransform() << ')';
     return out;
-  }
+  }//它接受一个 std::ostream 引用和一个 Waypoint 类型的常量引用,用传入的输出流 out 输出 Waypoint 对象的变换信息
 
 } // namespace client
 } // namespace carla
 
 static void SaveOpenDriveToDisk(const carla::client::Map &self, std::string path) {
   carla::PythonUtil::ReleaseGIL unlock;
-  if (path.empty()) {
-    path = self.GetName();
+  if (path.empty()) {//检查传入的 path 字符串是否为空
+    path = self.GetName();//如果 path 为空,则将其设置为地图对象 self 的名称
   }
-  carla::FileSystem::ValidateFilePath(path, ".xodr");
-  std::ofstream out(path);
-  out << self.GetOpenDrive() << std::endl;
+  carla::FileSystem::ValidateFilePath(path, ".xodr");//使用 ValidateFilePath 函数验证文件路径,并确保文件扩展名为 .xodr
+  std::ofstream out(path);//打开指定文件
+  out << self.GetOpenDrive() << std::endl;//将地图对象 self 中的 OpenDRIVE 数据写入文件
 }
 
 static auto GetTopology(const carla::client::Map &self) {
