@@ -5,21 +5,22 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
+/// \file
+/// \brief 本文件包含了网络通信相关类所需的头文件。
+#include "carla/Buffer.h"/// \include 包含用于网络通信的缓冲区类定义。
+#include "carla/NonCopyable.h"/// \include 包含禁止对象复制和赋值的基类定义。
+#include "carla/profiler/LifetimeProfiled.h"/// \include 包含用于性能分析的生命周期跟踪类定义。
+#include "carla/streaming/detail/Token.h"/// \include 包含流处理中的令牌类定义。
+#include "carla/streaming/detail/Types.h"/// \include 包含流处理中使用的类型别名和常量定义。
 
-#include "carla/Buffer.h"
-#include "carla/NonCopyable.h"
-#include "carla/profiler/LifetimeProfiled.h"
-#include "carla/streaming/detail/Token.h"
-#include "carla/streaming/detail/Types.h"
+#include <boost/asio/deadline_timer.hpp>/// \include 包含Boost.Asio的定时器类定义，用于处理超时事件。
+#include <boost/asio/io_context.hpp>/// \include 包含Boost.Asio的I/O上下文类定义，是异步操作的核心。
+#include <boost/asio/ip/tcp.hpp> /// \include 包含Boost.Asio的TCP协议支持，用于网络通信。
+#include <boost/asio/strand.hpp> /// \include 包含Boost.Asio的线程安全操作类定义，用于在多个线程间同步异步操作。
 
-#include <boost/asio/deadline_timer.hpp>
-#include <boost/asio/io_context.hpp>
-#include <boost/asio/ip/tcp.hpp>
-#include <boost/asio/strand.hpp>
-
-#include <atomic>
-#include <functional>
-#include <memory>
+#include <atomic>/// \include 包含C++标准库中的原子操作支持，用于实现线程安全的计数器等。
+#include <functional>/// \include 包含C++标准库中的函数对象支持，用于定义回调和可调用对象。
+#include <memory>/// \include 包含C++标准库中的智能指针支持，用于管理动态分配的内存。
 
 namespace carla {
 
