@@ -1,31 +1,51 @@
 // Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
+// 上面两行意思是版权所有 (c) 2019 巴塞罗那自治大学 (UAB) 计算机视觉中心 (CVC)
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// This work is licensed under the terms of the MIT license.（本工作遵循 MIT 许可证条款进行授权）
+// For a copy, see <https://opensource.org/licenses/MIT>.（如需副本，请访问 <https://opensource.org/licenses/MIT>）
 
+// 引入 Carla 项目的头文件
 #include "Carla.h"
+
+// 引入 Carla 中 Actor 蓝图功能库的头文件
 #include "Carla/Actor/ActorBlueprintFunctionLibrary.h"
 
+// 引入 Carla 中激光雷达描述的头文件
 #include "Carla/Sensor/LidarDescription.h"
+
+// 引入 Carla 中场景捕获传感器的头文件
 #include "Carla/Sensor/SceneCaptureSensor.h"
+
+// 引入 Carla 中基于着色器的传感器的头文件
 #include "Carla/Sensor/ShaderBasedSensor.h"
+
+// 引入 Carla 中 V2X 路径损耗模型的头文件
 #include "Carla/Sensor/V2X/PathLossModel.h"
+
+// 引入 Carla 中作用域栈工具的头文件
 #include "Carla/Util/ScopedStack.h"
 
+// 引入标准算法库
 #include <algorithm>
+
+// 引入标准库中的极限值
 #include <limits>
+
+// 引入标准栈库
 #include <stack>
 
-/// Checks validity of FActorDefinition.
+/// Checks validity of FActorDefinition.（检查 FActorDefinition 的有效性）
 class FActorDefinitionValidator
 {
 public:
 
   /// Iterate all actor definitions and their properties and display messages on
   /// error.
+  /// 上面两行代码意思是遍历所有 actor 定义及其属性，并在出错时显示消息
   bool AreValid(const TArray<FActorDefinition> &ActorDefinitions)
   {
+    // 调用重载的 AreValid 方法，传入 "Actor Definition" 字符串和 actor 定义数组
     return AreValid(TEXT("Actor Definition"), ActorDefinitions);
   }
 
