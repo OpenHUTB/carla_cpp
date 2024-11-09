@@ -147,33 +147,44 @@ bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
 
   /// Applies @a IsValid to each item in @a Array. Pushes a new context to the
   /// stack for each item.
+  /// 上面两行代码的意思是对@a Array中的每个元素应用验证函数，为每个元素向堆栈推送一个新的上下文
   template <typename T>
-  bool AreValid(const FString &Type, const TArray<T> &Array)
-  {
-    return ForEach(Type, Array, [this](const auto &Item) { return IsValid(Item); });
-  }
+bool AreValid(const FString &Type, const TArray<T> &Array)
+{
+  // 调用ForEach函数，传入类型名称、元素数组和一个lambda表达式作为验证函数。
+  // lambda表达式捕获当前对象（this），并调用IsValid成员函数来验证每个元素
+  return ForEach(Type, Array, [this](const auto &Item) { return IsValid(Item); });
+}
 
+  /// 验证ID是否有效
   bool IsIdValid(const FString &Id)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言ID不为空且不是"."。如果失败，则显示错误信息
     return OnScreenAssert((!Id.IsEmpty() && Id != TEXT(".")), TEXT("Id cannot be empty"));
   }
 
+  /// 验证标签是否有效
   bool AreTagsValid(const FString &Tags)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言标签不为空。如果失败，则显示错误信息
     return OnScreenAssert(!Tags.IsEmpty(), TEXT("Tags cannot be empty"));
   }
 
+  /// 验证类型是否有效
   bool IsValid(const EActorAttributeType Type)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言类型值小于EActorAttributeType枚举的大小。如果失败，则显示错误信息
     return OnScreenAssert(Type < EActorAttributeType::SIZE, TEXT("Invalid type"));
   }
 
+  /// 验证值是否有效
   bool ValueIsValid(const EActorAttributeType Type, const FString &Value)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 当前版本未执行任何检查，直接返回true
     return true;
   }
 
