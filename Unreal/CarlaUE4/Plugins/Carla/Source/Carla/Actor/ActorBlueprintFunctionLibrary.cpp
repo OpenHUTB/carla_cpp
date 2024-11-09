@@ -117,19 +117,33 @@ private:
 
   /// Applies @a Validator to each item in @a Array. Pushes a new context to the
   /// stack for each item.
+  /// 上面两行的意思是对@a Array中的每个元素应用@a Validator。为每个元素向堆栈推送一个新的上下文
   template <typename T, typename F>
-  bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
+bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
+{
+  bool Result = true; // 初始化结果为true，假设所有元素都通过验证。
+  auto Counter = 0u;  // 初始化计数器，用于追踪当前正在验证的元素位置。
+ 
+  // 遍历数组中的每个元素
+  for (const auto &Item : Array)
   {
-    bool Result = true;
-    auto Counter = 0u;
-    for (const auto &Item : Array)
-    {
-      auto Scope = Stack.PushScope(GetDisplayId(Type, Counter, Item));
-      Result &= Validator(Item);
-      ++Counter;
-    }
-    return Result;
+    // 为当前元素生成一个显示ID，并将其推送到堆栈的新上下文中。
+    // 这里假设Stack是一个能够管理上下文的某种堆栈结构，而PushScope是一个向堆栈添加新上下文的方法。
+    // GetDisplayId是一个函数，用于生成包含元素类型、索引和ID的格式化字符串。
+    auto Scope = Stack.PushScope(GetDisplayId(Type, Counter, Item));
+ 
+    // 对当前元素应用Validator进行验证，并将验证结果与当前Result进行逻辑与运算。
+    // 如果Validator返回false，则Result也将变为false。
+    Result &= Validator(Item);
+ 
+    // 计数器递增，准备验证下一个元素。
+    ++Counter;
   }
+ 
+  // 返回最终的验证结果。如果所有元素都通过验证，则Result为true；否则为false。
+  return Result;
+}
+
 
   /// Applies @a IsValid to each item in @a Array. Pushes a new context to the
   /// stack for each item.
