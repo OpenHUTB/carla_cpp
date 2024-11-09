@@ -74,12 +74,20 @@ namespace ros2 {
          */
     rosgraph::msg::Clock _clock {};
   };
-
+  /**
+     * @brief 初始化CarlaClockPublisher对象。
+     *
+     * 此函数负责创建并配置DDS中的DomainParticipant、Publisher、Topic和DataWriter。
+     *
+     * @return 如果初始化成功，则返回true；否则返回false。
+     */
   bool CarlaClockPublisher::Init() {
+      // 检查TypeSupport是否有效
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
+    // 设置DomainParticipant的QoS策略并创建DomainParticipant
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
@@ -88,15 +96,16 @@ namespace ros2 {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    // 注册消息类型
     _impl->_type.register_type(_impl->_participant);
-
+    // 设置Publisher的QoS策略并创建Publisher
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    // 设置Topic的QoS策略并创建Topic
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string topic_name { "rt/clock" };
     _impl->_topic = _impl->_participant->create_topic(topic_name, _impl->_type->getName(), tqos);
@@ -104,7 +113,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    // 设置DataWriter的QoS策略并创建DataWriter
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
@@ -112,13 +121,22 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    // 设置帧ID
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 发布时钟数据的方法
+ *
+ * 该方法尝试通过Fast-RTPS发布时钟数据。
+ * 如果发布成功，则返回true；否则，根据返回码输出相应的错误信息，并返回false。
+ *
+ * @return bool 发布成功返回true，否则返回false。
+ */
   bool CarlaClockPublisher::Publish() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_clock, instance_handle);
+    // 根据返回码处理不同的错误情况
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
     }
@@ -177,18 +195,36 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置时钟数据的方法
+ *
+ * 该方法用于设置时钟数据的秒和纳秒部分。
+ *
+ * @param sec 秒部分
+ * @param nanosec 纳秒部分
+ */
   void CarlaClockPublisher::SetData(int32_t sec, uint32_t nanosec) {
     _impl->_clock.clock().sec(sec);
     _impl->_clock.clock().nanosec(nanosec);
   }
-
+  /**
+ * @brief CarlaClockPublisher的构造函数
+ *
+ * 初始化CarlaClockPublisher对象，包括设置名称、父对象，并创建实现类的实例。
+ *
+ * @param ros_name ROS节点名称
+ * @param parent 父对象名称
+ */
   CarlaClockPublisher::CarlaClockPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaClockPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaClockPublisher的析构函数
+ *
+ * 释放CarlaClockPublisher对象占用的资源，包括删除数据写入器、发布者、主题和参与者。
+ */
   CarlaClockPublisher::~CarlaClockPublisher() {
       if (!_impl)
           return;
@@ -205,14 +241,27 @@ namespace ros2 {
       if (_impl->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
   }
-
+  /**
+ * @brief CarlaClockPublisher的拷贝构造函数
+ *
+ * 创建一个新的CarlaClockPublisher对象，作为现有对象的副本。
+ *
+ * @param other 现有对象
+ */
   CarlaClockPublisher::CarlaClockPublisher(const CarlaClockPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
     _parent = other._parent;
     _impl = other._impl;
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将现有对象的值赋给当前对象。
+ *
+ * @param other 现有对象
+ * @return CarlaClockPublisher& 当前对象的引用
+ */
   CarlaClockPublisher& CarlaClockPublisher::operator=(const CarlaClockPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -221,14 +270,27 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaClockPublisher的移动构造函数
+ *
+ * 创建一个新的CarlaClockPublisher对象，通过移动现有对象的资源来初始化。
+ *
+ * @param other 现有对象
+ */
   CarlaClockPublisher::CarlaClockPublisher(CarlaClockPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
     _parent = std::move(other._parent);
     _impl = std::move(other._impl);
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 通过移动现有对象的资源来更新当前对象。
+ *
+ * @param other 现有对象
+ * @return CarlaClockPublisher& 当前对象的引用
+ */
   CarlaClockPublisher& CarlaClockPublisher::operator=(CarlaClockPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
