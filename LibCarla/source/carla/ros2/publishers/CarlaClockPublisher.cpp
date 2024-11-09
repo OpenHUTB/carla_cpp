@@ -24,19 +24,54 @@
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>/// @brief 包含 Fast-DDS 数据写入器QoS策略的类声明。
 #include <fastdds/dds/publisher/DataWriterListener.hpp>/// @brief 包含 Fast-DDS 数据写入器监听器的类声明，用于接收数据写入事件。
 
-
+/**
+ * @namespace carla::ros2
+ * @brief 此命名空间包含了CARLA与ROS 2集成的相关功能。
+ */
 namespace carla {
 namespace ros2 {
+    /**
+     * @namespace efd
+     * @brief 别名，代表eprosima::fastdds::dds命名空间，用于简化Fast DDS相关类型的引用。
+     */
   namespace efd = eprosima::fastdds::dds;
+  /**
+     * @using erc
+     * @brief 别名，代表eprosima::fastrtps::types::ReturnCode_t类型，用于简化返回码类型的引用。
+     */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+     * @struct CarlaClockPublisherImpl
+     * @brief CarlaClockPublisher的内部实现结构体，用于封装与Fast DDS相关的资源。
+     */
   struct CarlaClockPublisherImpl {
+      /**
+         * @brief 指向DomainParticipant的指针，用于管理DDS域中的参与者。
+         */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+         * @brief 指向Publisher的指针，用于发布数据。
+         */
     efd::Publisher* _publisher { nullptr };
+    /**
+         * @brief 指向Topic的指针，用于定义数据的主题。
+         */
     efd::Topic* _topic { nullptr };
+    /**
+         * @brief 指向DataWriter的指针，用于写入数据到指定的Topic。
+         */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+         * @brief TypeSupport对象，用于注册和识别消息类型。
+         */
     efd::TypeSupport _type { new rosgraph::msg::ClockPubSubType() };
+    /**
+         * @brief CarlaListener对象，用于监听DDS事件。
+         */
     CarlaListener _listener {};
+    /**
+         * @brief 存储Clock消息的变量。
+         */
     rosgraph::msg::Clock _clock {};
   };
 
