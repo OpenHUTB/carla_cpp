@@ -194,42 +194,56 @@ namespace tcp {
       return std::make_shared<const Message>(buffers...);
     }
 
-    /// Writes some data to the socket.
+    /// @brief 向套接字写入一些数据。
+/// 
+/// 该函数将一个包含数据的消息对象写入到套接字中。
     void Write(std::shared_ptr<const Message> message);
 
-    /// Writes some data to the socket.
+    /// @brief 向套接字写入一些数据（模板函数）。
+ /// 
+ /// 该模板函数接受任意数量的缓冲区参数，并将它们组合成一个消息对象，然后写入到套接字中。
+ /// @param buffers 要写入的缓冲区，类型应为 BufferView 或其兼容类型。
     template <typename... Buffers>
     void Write(Buffers... buffers) {
+        /// @details 内部调用 Write(std::shared_ptr<const Message> message) 函数，
+  /// 通过 MakeMessage 函数将缓冲区参数转换为消息对象。
       Write(MakeMessage(buffers...));
     }
 
-    /// Post a job to close the session.
+    /// @brief 发布一个关闭会话的任务。
+/// 
+/// 该函数安排一个任务来关闭当前会话，但不会立即关闭。
     void Close();
 
   private:
-
+      /// @brief 启动定时器。
+/// 
+/// 该函数用于启动一个定时器，该定时器在会话空闲时间超过指定时长后触发关闭操作。
     void StartTimer();
-
+    /// @brief 立即关闭会话。
+/// 
+/// 该函数用于立即关闭会话，可选地接受一个错误代码参数来表示关闭的原因。
+/// @param ec 关闭会话时的错误代码，默认为无错误。
     void CloseNow(boost::system::error_code ec = boost::system::error_code());
-
+    /// @brief 允许 Server 类访问私有成员。
     friend class Server;
-
+    /// @brief 对 Server 对象的引用。
     Server &_server;
-
+    /// @brief 会话的唯一标识符。
     const size_t _session_id;
-
+    /// @brief 流标识符，用于标识会话中传输的数据流。
     stream_id_type _stream_id = 0u;
-
+    /// @brief 套接字类型，用于网络通信。
     socket_type _socket;
-
+    /// @brief 会话超时时长，表示会话在多长时间内无活动将被关闭。
     time_duration _timeout;
-
+    /// @brief 定时器，用于在会话超时后触发关闭操作。
     boost::asio::deadline_timer _deadline;
-
+    /// @brief 用于保证异步操作顺序的 strand 对象。
     boost::asio::io_context::strand _strand;
-
+    /// @brief 会话关闭时的回调函数。
     callback_function_type _on_closed;
-
+    /// @brief 表示当前是否正在进行写入操作的标志。
     bool _is_writing = false;
   };
 
