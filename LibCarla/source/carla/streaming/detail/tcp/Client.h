@@ -23,36 +23,47 @@
 #include <memory>/// \include 包含C++标准库中的智能指针支持，用于管理动态分配的内存。
 
 namespace carla {
-
+    /// 缓冲区池类，用于管理缓冲区的分配和释放。
   class BufferPool;
 
 namespace streaming {
 namespace detail {
 namespace tcp {
 
-  /// A client that connects to a single stream.
-  ///
-  /// @warning This client should be stopped before releasing the shared pointer
-  /// or won't be destroyed.
+    /// @class Client
+    /// @brief 连接单个流的客户端。
+    /// 
+    /// @warning 在释放共享指针之前，应该先停止这个客户端，否则它将不会被销毁。
   class Client
-    : public std::enable_shared_from_this<Client>,
-      private profiler::LifetimeProfiled,
-      private NonCopyable {
+    : public std::enable_shared_from_this<Client>,// 使Client类支持通过shared_from_this()获取自身的shared_ptr
+      private profiler::LifetimeProfiled,// 继承自LifetimeProfiled类，用于生命周期性能分析（私有继承表示不在外部接口中暴露该基类）
+      private NonCopyable {// 继承自NonCopyable类，表示该类不可复制（私有继承表示不在外部接口中暴露该基类）
   public:
-
+      /// @typedef endpoint
+    /// @brief TCP端点类型，用于表示TCP连接的一端。
     using endpoint = boost::asio::ip::tcp::endpoint;
+    /// @typedef protocol_type
+    /// @brief 协议类型，表示TCP协议。
     using protocol_type = endpoint::protocol_type;
+    /// @typedef callback_function_type
+    /// @brief 回调函数类型，接收一个Buffer作为参数。
     using callback_function_type = std::function<void (Buffer)>;
-
+    /// @brief 构造函数。
+   /// 
+   /// @param io_context 引用boost::asio的I/O上下文对象，用于异步操作。
+   /// @param token 流的令牌，包含流的唯一标识等信息。
+   /// @param callback 回调函数，当接收到数据时调用。
     Client(
         boost::asio::io_context &io_context,
         const token_type &token,
         callback_function_type callback);
-
+    /// @brief 析构函数。
     ~Client();
-
+    /// @brief 连接到指定的流。
     void Connect();
-
+    /// @brief 获取流的ID。
+    /// 
+    /// @return 流的ID。
     stream_id_type GetStreamId() const {
       return _token.get_stream_id();
     }
