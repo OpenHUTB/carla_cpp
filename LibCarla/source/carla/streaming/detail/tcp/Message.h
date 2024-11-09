@@ -30,24 +30,34 @@ namespace streaming {
 namespace detail {
 namespace tcp {
 
-  /// Serialization of a set of buffers to be sent over a TCP socket as a single
-  /// message. Template paramenter @a MaxNumberOfBuffers imposes a compile-time
-  /// limit on the maximum number of buffers that can be included in a single
-  /// message.
+    /// @brief 通过TCP套接字发送的一组缓冲区的序列化，作为单个消息发送。
+   ///        模板参数@a MaxNumberOfBuffers在编译时限制单个消息中可以包含的缓冲区的最大数量。
+   ///
+   /// @tparam MaxNumberOfBuffers 单个消息中可以包含的缓冲区的最大数量（编译时常量）。
   template <size_t MaxNumberOfBuffers>
   class MessageTmpl
     : public std::enable_shared_from_this<MessageTmpl<MaxNumberOfBuffers>>,
       private NonCopyable {
   public:
-
+      /// @brief 获取单个消息中可以包含的缓冲区的最大数量。
+    ///
+    /// @return 返回单个消息中可以包含的缓冲区的最大数量。
     static constexpr size_t max_size() {
       return MaxNumberOfBuffers;
     }
 
   private:
-
+      /// @brief 私有构造函数，用于限制外部直接创建对象。
+   ///
+   /// @param size 预留参数，可能用于内部初始化。
     MessageTmpl(size_t) {}
-
+    /// @brief 模板化的构造函数，用于初始化消息对象。
+    ///
+    /// @param size 缓冲区总数（包括传入的和后续参数中的）。
+    /// @param buffer 第一个缓冲区（类型为SharedBufferView）。
+    /// @param buffers 可变数量的其他缓冲区。
+    ///
+    /// @note 该构造函数通过递归调用自身来处理可变数量的缓冲区参数。
     template <typename... Buffers>
     MessageTmpl(size_t size, SharedBufferView buffer, Buffers... buffers)
       : MessageTmpl(size, buffers...) {
