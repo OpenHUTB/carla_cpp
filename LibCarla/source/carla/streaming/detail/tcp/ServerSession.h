@@ -102,43 +102,90 @@
                * 该头文件提供了智能指针、动态内存分配和对象生命周期管理等功能。
                */
 #include <memory>
-
+               /**
+                * @namespace carla::streaming::detail::tcp
+                * @brief 包含Carla流处理模块中TCP通信的详细实现。
+                */
 namespace carla {
 namespace streaming {
 namespace detail {
 namespace tcp {
-
+    /**
+ * @class Server
+ * @brief TCP服务器类的前向声明。
+ *
+ * 此类是TCP服务器类的前向声明，用于在ServerSession类中引用。
+ */
   class Server;
 
-  /// A TCP server session. When a session opens, it reads from the socket a
-  /// stream id object and passes itself to the callback functor. The session
-  /// closes itself after @a timeout of inactivity is met.
+  /**
+ * @class ServerSession
+ * @brief TCP服务器会话类。
+ *
+ * 当会话打开时，它会从套接字读取一个流ID对象，并将自身传递给回调函数。如果在指定的不活动超时后没有活动，会话将自行关闭。
+ *
+ * 该类继承自std::enable_shared_from_this<ServerSession>，以便能够安全地生成自身的shared_ptr。同时，它私有继承自
+ * profiler::LifetimeProfiled用于性能分析，以及NonCopyable类以防止复制。
+ */
   class ServerSession
     : public std::enable_shared_from_this<ServerSession>,
       private profiler::LifetimeProfiled,
       private NonCopyable {
   public:
-
+      /**
+     * @brief 套接字类型别名。
+     */
     using socket_type = boost::asio::ip::tcp::socket;
+    /**
+     * @brief 回调函数类型别名。
+     *
+     * 回调函数接受一个ServerSession的shared_ptr作为参数。
+     */
     using callback_function_type = std::function<void(std::shared_ptr<ServerSession>)>;
-
+    /**
+     * @brief 构造函数。
+     *
+     * @param io_context I/O上下文，用于异步操作。
+     * @param timeout 不活动超时时间。
+     * @param server 对Server对象的引用。
+     */
     explicit ServerSession(
         boost::asio::io_context &io_context,
         time_duration timeout,
         Server &server);
 
-    /// Starts the session and calls @a on_opened after successfully reading the
-    /// stream id, and @a on_closed once the session is closed.
+    /**
+     * @brief 启动会话。
+     *
+     * 成功读取流ID后调用@a on_opened回调，会话关闭时调用@a on_closed回调。
+     *
+     * @param on_opened 会话打开时的回调函数。
+     * @param on_closed 会话关闭时的回调函数。
+     */
     void Open(
         callback_function_type on_opened,
         callback_function_type on_closed);
 
-    /// @warning This function should only be called after the session is
-    /// opened. It is safe to call this function from within the @a callback.
+    /**
+     * @warning 此函数只能在会话打开后调用。从回调函数中调用此函数是安全的。
+     *
+     * @brief 获取流ID。
+     *
+     * @return 流ID。
+     */
     stream_id_type get_stream_id() const {
       return _stream_id;
     }
-
+    /**
+     * @brief 创建消息。
+     *
+     * 静态模板函数，接受一个或多个BufferView类型的参数，并创建一个Message对象的shared_ptr。
+     *
+     * @param buffers 一个或多个BufferView类型的参数。
+     * @return Message对象的shared_ptr。
+     *
+     * @note 此函数仅接受BufferView类型的参数。
+     */
     template <typename... Buffers>
     static auto MakeMessage(Buffers... buffers) {
       static_assert(
