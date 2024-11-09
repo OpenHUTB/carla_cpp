@@ -5,21 +5,25 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
+/// @file
+/// @brief 包含 Carla 框架中与网络流相关的类和函数的声明。
+/// 
+/// 此文件包含了 Carla 框架中用于网络通信的一些基础类和函数的声明，
+/// 包括列表视图、缓冲区、缓冲区视图、调试工具、不可复制类以及网络流相关的类型定义。
+#include "carla/ListView.h"/// @brief 包含 ListView 类的声明，用于管理数据的列表视图。
+#include "carla/Buffer.h" /// @brief 包含 Buffer 类的声明，用于存储和管理数据缓冲区。
+#include "carla/BufferView.h"/// @brief 包含 BufferView 类的声明，提供对 Buffer 中数据的只读视图。
+#include "carla/Debug.h"/// @brief 包含调试工具的声明，用于输出调试信息和进行断言检查。
+#include "carla/NonCopyable.h"/// @brief 包含 NonCopyable 类的声明，用于禁止类的拷贝操作。
+#include "carla/streaming/detail/Types.h"/// @brief 包含网络流相关的类型定义。
 
-#include "carla/ListView.h"
-#include "carla/Buffer.h"
-#include "carla/BufferView.h"
-#include "carla/Debug.h"
-#include "carla/NonCopyable.h"
-#include "carla/streaming/detail/Types.h"
+#include <boost/asio/buffer.hpp>/// @brief 包含 Boost.Asio 库中用于处理网络缓冲区的函数和类型。
 
-#include <boost/asio/buffer.hpp>
-
-#include <array>
-#include <exception>
-#include <limits>
-#include <memory>
-#include <string>
+#include <array>/// @brief 包含 std::array 容器的声明，用于存储固定大小的数组。
+#include <exception>/// @brief 包含标准异常类的声明，用于处理异常情况。
+#include <limits>/// @brief 包含标准库中与限制和常量相关的定义，如数值类型的最大值和最小值。
+#include <memory>/// @brief 包含内存管理相关的类和函数，如智能指针。
+#include <string>/// @brief 包含 std::string 类的声明，用于处理字符串数据。
 
 namespace carla {
 namespace streaming {
