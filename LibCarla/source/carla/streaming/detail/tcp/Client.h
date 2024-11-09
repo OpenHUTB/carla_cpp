@@ -67,27 +67,45 @@ namespace tcp {
     stream_id_type GetStreamId() const {
       return _token.get_stream_id();
     }
-
+    /// @brief 停止客户端。
     void Stop();
 
   private:
-
+      /// @brief 重新连接流。
+///
+/// 此方法尝试重新建立与流的连接。
     void Reconnect();
-
+    /// @brief 从流中读取数据。
+///
+/// 此方法从已连接的流中读取数据，并处理这些数据。
     void ReadData();
-
+    /// @brief 存储流的唯一标识令牌。
+///
+/// 这是一个常量，用于在客户端的整个生命周期内唯一标识流。
     const token_type _token;
-
+    /// @brief 回调函数类型，用于处理读取的数据。
+///
+/// 当从流中读取到数据时，将调用此回调函数，并将读取到的数据作为参数传递给它。
     callback_function_type _callback;
-
+    /// @brief TCP套接字，用于与流建立连接。
+///
+/// 这是一个Boost.Asio的TCP套接字对象，用于与远程服务器进行通信。
     boost::asio::ip::tcp::socket _socket;
-
+    /// @brief 序列化对套接字的访问。
+///
+/// 这是一个Boost.Asio的io_context strand对象，用于确保对套接字的访问是线程安全的。
     boost::asio::io_context::strand _strand;
-
+    /// @brief 连接超时定时器。
+///
+/// 这是一个Boost.Asio的deadline_timer对象，用于在连接尝试超过指定时间后触发超时事件。
     boost::asio::deadline_timer _connection_timer;
-
+    /// @brief 指向缓冲区池的共享指针。
+///
+/// 这是一个指向BufferPool对象的共享指针，用于管理内存缓冲区。
     std::shared_ptr<BufferPool> _buffer_pool;
-
+    /// @brief 表示客户端是否已完成工作的原子布尔值。
+///
+/// 这是一个原子布尔值，用于在线程之间安全地表示客户端是否已完成其工作。初始值为false，表示客户端仍在运行。
     std::atomic_bool _done{false};
   };
 
