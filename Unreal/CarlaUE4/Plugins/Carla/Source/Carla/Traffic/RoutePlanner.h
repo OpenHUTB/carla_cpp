@@ -15,10 +15,8 @@
 
 class AWheeledVehicleAIController;
 
-/// Assign a random route to every ACarlaWheeledVehicle entering the trigger
-/// volume. Routes must be added in editor after placing this actor into the
-/// world. Spline tangents are ignored, only locations are taken into account
-/// for making the route.
+/// 为每个进入触发体积的 ACarlaWheeledVehicle 分配一条随机路线。
+/// 将此参与者放入世界后，必须在编辑器中添加路线。样条线切线将被忽略，仅考虑位置来制定路线。
 UCLASS()
 class CARLA_API ARoutePlanner : public AActor
 {

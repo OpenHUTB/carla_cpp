@@ -12,11 +12,9 @@
 
 #include "CarlaSettings.generated.h"
 
-/// Global settings for CARLA.
+/// Carla 的全局设置
 ///
-/// Setting object used to hold both config settings and editable ones in one
-/// place. To ensure the settings are saved to the specified config file make
-/// sure to add props using the globalconfig or config meta.
+/// 设置对象用于将配置设置和可编辑设置保存在一个位置。为确保设置保存到指定的配置文件，请确保使用全局配置或配置元数据添加属性。
 UCLASS(BlueprintType, Blueprintable, config = Game, defaultconfig)
 class CARLA_API UCarlaSettings : public UObject
 {
@@ -24,11 +22,9 @@ class CARLA_API UCarlaSettings : public UObject
 
 public:
 
-  /// Sets the new quality settings level and make changes in the game related
-  /// to it.
+  /// 设置新的质量设置级别并在游戏中进行与之相关的更改。
   ///
-  /// @note This will not apply the quality settings. Use ApplyQualitySettings
-  /// functions instead
+  /// @note 这不会应用质量设置。请改用 ApplyQualitySettings 函数
   /// @param InQualityLevel Store the new quality.
   UFUNCTION(BlueprintCallable, Category = "CARLA Settings")
   void SetQualityLevel(EQualityLevel InQualityLevel)
@@ -36,87 +32,81 @@ public:
     QualityLevel = InQualityLevel;
   }
 
-  /// @return current quality settings level (could not have been applied yet).
+  /// @return 当前质量设置级别（尚未应用）。
   UFUNCTION(BlueprintCallable, Category = "CARLA Settings")
   EQualityLevel GetQualityLevel() const
   {
     return QualityLevel;
   }
 
-  /// Load the settings based on the command-line arguments and the INI file if
-  /// provided.
+  /// 根据命令行参数和 INI 文件（如果提供）加载设置。
   void LoadSettings();
 
-  /// Load the settings from the given string (formatted as INI). CarlaServer
-  /// section is ignored.
+  /// 从给定的字符串（格式为 INI）加载设置。CarlaServer 部分被忽略。
   void LoadSettingsFromString(const FString &INIFileContents);
 
-  /// Log settings values.
+  /// 记录设置值。
   void LogSettings() const;
 
 public:
 
-  /// CARLA_ROAD name to tag road mesh actors.
+  /// CARLA_ROAD 名称用于标记道路网格参与者。
   static const FName CARLA_ROAD_TAG;
 
-  /// CARLA_SKY name to tag the sky sphere (BPS) actors in the scenes.
+  /// CARLA_SKY 名称用于标记场景中的天空球（sky sphere, BPS）参与者。
   static const FName CARLA_SKY_TAG;
 
 private:
 
   void LoadSettingsFromFile(const FString &FilePath, bool bLogOnFailure);
 
-  /// File name of the settings file used to load this settings. Empty if none
-  /// used.
+  /// 用于加载此设置的设置文件的文件名。如果没有使用则为空。
   UPROPERTY(Category = "CARLA Settings|Debug", VisibleAnywhere)
   FString CurrentFileName;
 
   // ===========================================================================
-  /// @name CARLA Server
+  /// @name CARLA 服务端
   // ===========================================================================
   /// @{
 
 public:
 
-  /// World port to listen for client connections.
+  /// 用于监听客户端连接的世界端口。
   UPROPERTY(Category = "CARLA Server", VisibleAnywhere, meta = (EditCondition = bUseNetworking))
   uint32 RPCPort = 2000u;
 
-  /// setting for the streaming port.
+  /// 流媒体端口的设置。
   uint32 StreamingPort = 2001u;
 
-  /// setting for the secondary servers port.
+  /// 辅助服务器端口的设置。
   uint32 SecondaryPort = 2002u;
 
-  /// setting for the IP and Port of the primary server to connect.
+  /// 设置要连接的主服务器的IP和端口。
   std::string PrimaryIP = "";
   uint32      PrimaryPort = 2002u;
 
-  /// In synchronous mode, CARLA waits every tick until the control from the
-  /// client is received.
+  /// 在同步模式下，CARLA 会等待每个节拍信号，直到收到来自客户端的控制。
   UPROPERTY(Category = "CARLA Server", VisibleAnywhere, meta = (EditCondition = bUseNetworking))
   bool bSynchronousMode = false;
 
-  /// Enable or disable the viewport rendering of the world. Disabled by
-  /// default.
+  /// 启用或禁用世界的视窗渲染。默认情况下禁用。
   UPROPERTY(Category = "CARLA Server", VisibleAnywhere)
   bool bDisableRendering = false;
 
   // ===========================================================================
-  /// @name Quality Settings
+  /// @name 画质设置
   // ===========================================================================
   /// @{
 
 private:
 
-  /// Quality Settings level.
+  /// 画质设置等级
   UPROPERTY(Category = "Quality Settings", VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
   EQualityLevel QualityLevel = EQualityLevel::Epic;
 
 public:
 
-  /// Low quality Road Materials. Uses slots name to set material for each part
-  /// of the road for low quality.
+  /// 低质量道路材料。使用插槽名称为道路的每个部分设置低质量的材料。
   ///
   /// @todo Move Low quality vars to a generic map of structs with the quality
   /// level as key.
@@ -127,24 +117,23 @@ public:
       DisplayName = "Road Materials List for Low Quality")
   TArray<FStaticMaterial> LowRoadMaterials;
 
-  /// Distance at which the light function should be completely faded to
-  /// DisabledBrightness. This is useful for hiding aliasing from light
-  /// functions applied in the distance.
+  /// 光照函数应完全淡化为 禁用亮度（DisabledBrightness）的距离。
+  /// 这对于隐藏在远处应用的光照函数的混叠很有用。
   UPROPERTY(Category = "Quality Settings/Low", BlueprintReadOnly, EditAnywhere, config)
   float LowLightFadeDistance  = 1000.0f;
 
-  /// Default low distance for all primitive components.
+  /// 所有原始组件的默认 low 距离。 
   UPROPERTY(Category = "Quality Settings/Low", BlueprintReadOnly, EditAnywhere, config,
       meta = (ClampMin = "5000.0", ClampMax = "20000.0", UIMin = "5000.0", UIMax = "20000.0"))
   float LowStaticMeshMaxDrawDistance = 10000.0f;
 
-  /// Default low distance for roads meshes.
+  /// 道路网格的默认 low 距离。
   UPROPERTY(Category = "Quality Settings/Low", BlueprintReadOnly, EditAnywhere, config,
       meta = (ClampMin = "5000.0", ClampMax = "20000.0", UIMin = "5000.0", UIMax = "20000.0"))
   float LowRoadPieceMeshMaxDrawDistance = 15000.0f;
 
-  /// EPIC quality Road Materials. Uses slots name to set material for each part
-  /// of the road for Epic quality.
+  /// 史诗级质量道路材料。
+  /// 使用插槽名称为道路的每个部分设置质量的材料。
   UPROPERTY(Category = "Quality Settings/Epic",
       BlueprintReadOnly,
       EditAnywhere,
