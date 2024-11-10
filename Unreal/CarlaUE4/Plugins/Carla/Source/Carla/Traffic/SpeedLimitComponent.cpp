@@ -50,11 +50,10 @@ void USpeedLimitComponent::InitializeSign(const carla::road::Map &Map)
         if(Map.GetLane(signal_waypoint).GetType() != cr::Lane::LaneType::Driving)
           continue;
 
-        // Get 90% of the half size of the width of the lane
+        // 获得车道宽度一半的 90%
         float BoxSize = static_cast<float>(
             0.7f*Map.GetLaneWidth(signal_waypoint)*0.5);
-        // Prevent a situation where the road width is 0,
-        // this could happen in a lane that is just appearing
+        // 防止出现道路宽度为 0 的情况，这种情况可能发生在刚刚出现的车道上
         BoxSize = std::max(0.01f, BoxSize);
         // Get min and max
         double LaneLength = Map.GetLane(signal_waypoint).GetLength();
