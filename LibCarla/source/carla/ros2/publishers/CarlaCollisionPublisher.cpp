@@ -256,12 +256,34 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+   * @brief 设置碰撞数据，使用单独的x, y, z坐标
+   *
+   * 该函数将时间戳（秒和纳秒）、actor_id以及碰撞的x, y, z坐标作为参数，
+   * 并将这些数据封装成向量后调用重载的SetData函数。
+   *
+   * @param seconds 时间戳的秒部分
+   * @param nanoseconds 时间戳的纳秒部分
+   * @param actor_id 发生碰撞的actor的ID
+   * @param x 碰撞点的x坐标
+   * @param y 碰撞点的y坐标
+   * @param z 碰撞点的z坐标
+   */
 void CarlaCollisionPublisher::SetData(int32_t seconds, uint32_t nanoseconds, uint32_t actor_id, float x, float y, float z) {
     std::vector<float> vector_data ;
     SetData(seconds, nanoseconds, actor_id, {x, y, z});
   }
-
+/**
+ * @brief 设置碰撞数据，使用向量数据
+ *
+ * 该函数将时间戳（秒和纳秒）、actor_id以及包含碰撞数据的向量作为参数，
+ * 并使用这些数据填充碰撞事件的消息结构。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param actor_id 发生碰撞的actor的ID
+ * @param data 包含碰撞点x, y, z坐标的向量
+ */
   void CarlaCollisionPublisher::SetData(int32_t seconds, uint32_t nanoseconds, uint32_t actor_id, std::vector<float>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -279,13 +301,24 @@ void CarlaCollisionPublisher::SetData(int32_t seconds, uint32_t nanoseconds, uin
     _impl->_event.other_actor_id(actor_id);
     _impl->_event.normal_impulse(impulse);
   }
-
+  /**
+ * @brief CarlaCollisionPublisher类的构造函数
+ *
+ * 初始化CarlaCollisionPublisher对象，包括设置ROS名称、父节点以及内部实现对象。
+ *
+ * @param ros_name ROS节点名称
+ * @param parent 父节点名称
+ */
   CarlaCollisionPublisher::CarlaCollisionPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaCollisionPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaCollisionPublisher类的析构函数
+ *
+ * 清理资源，包括删除数据写入器、发布者、主题和参与者。
+ */
   CarlaCollisionPublisher::~CarlaCollisionPublisher() {
       if (!_impl)
           return;
@@ -302,14 +335,27 @@ void CarlaCollisionPublisher::SetData(int32_t seconds, uint32_t nanoseconds, uin
       if (_impl->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
   }
-
+  /**
+ * @brief CarlaCollisionPublisher类的拷贝构造函数
+ *
+ * 创建并初始化一个新的CarlaCollisionPublisher对象，作为另一个CarlaCollisionPublisher对象的拷贝。
+ *
+ * @param other 要拷贝的CarlaCollisionPublisher对象
+ */
   CarlaCollisionPublisher::CarlaCollisionPublisher(const CarlaCollisionPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
     _parent = other._parent;
     _impl = other._impl;
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将当前对象设置为另一个CarlaCollisionPublisher对象的拷贝。
+ *
+ * @param other 要拷贝的CarlaCollisionPublisher对象
+ * @return 引用当前对象
+ */
   CarlaCollisionPublisher& CarlaCollisionPublisher::operator=(const CarlaCollisionPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -318,14 +364,27 @@ void CarlaCollisionPublisher::SetData(int32_t seconds, uint32_t nanoseconds, uin
 
     return *this;
   }
-
+  /**
+ * @brief CarlaCollisionPublisher类的移动构造函数
+ *
+ * 创建并初始化一个新的CarlaCollisionPublisher对象，作为另一个CarlaCollisionPublisher对象的移动。
+ *
+ * @param other 要移动的CarlaCollisionPublisher对象
+ */
   CarlaCollisionPublisher::CarlaCollisionPublisher(CarlaCollisionPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
     _parent = std::move(other._parent);
     _impl = std::move(other._impl);
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 将当前对象设置为另一个CarlaCollisionPublisher对象的移动。
+ *
+ * @param other 要移动的CarlaCollisionPublisher对象
+ * @return 引用当前对象
+ */
   CarlaCollisionPublisher& CarlaCollisionPublisher::operator=(CarlaCollisionPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
