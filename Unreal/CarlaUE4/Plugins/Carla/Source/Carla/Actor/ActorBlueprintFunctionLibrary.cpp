@@ -248,39 +248,54 @@ bool AreValid(const FString &Type, const TArray<T> &Array)
   FScopedStack<FString> Stack;
 };
 
+// 定义一个模板函数，用于将多个字符串使用指定的分隔符连接起来
 template <typename ... ARGS>
 static FString JoinStrings(const FString &Separator, ARGS && ... Args)
 {
+  // 使用FString的Join方法，将Args中的字符串使用Separator连接起来
+  // std::forward<ARGS>(Args) ... 是完美转发，用于保持参数的左值或右值属性
+  // TArray<FString>{std::forward<ARGS>(Args) ...} 创建了一个包含所有参数的FString数组
   return FString::Join(TArray<FString>{std::forward<ARGS>(Args) ...}, *Separator);
 }
-
+ 
+// 定义一个函数，用于将FColor颜色对象转换为FString字符串
+// 字符串格式为 "R,G,B"，其中R、G、B是颜色的红、绿、蓝分量
 static FString ColorToFString(const FColor &Color)
 {
+  // 调用JoinStrings函数，将颜色的红、绿、蓝分量转换为字符串并用逗号连接
   return JoinStrings(
-      TEXT(","),
-      FString::FromInt(Color.R),
-      FString::FromInt(Color.G),
-      FString::FromInt(Color.B));
+      TEXT(","), // 使用逗号作为分隔符
+      FString::FromInt(Color.R), // 将红色分量转换为字符串
+      FString::FromInt(Color.G), // 将绿色分量转换为字符串
+      FString::FromInt(Color.B)); // 将蓝色分量转换为字符串
 }
-
+ 
 /// ============================================================================
-/// -- Actor definition validators ---------------------------------------------
+/// -- Actor definition validators（Actor定义验证器） --------------------------
 /// ============================================================================
-
+ 
+// UActorBlueprintFunctionLibrary类中的成员函数，用于验证单个Actor定义的有效性
 bool UActorBlueprintFunctionLibrary::CheckActorDefinition(const FActorDefinition &ActorDefinition)
 {
+  // 创建FActorDefinitionValidator验证器对象
   FActorDefinitionValidator Validator;
+
+  // 调用验证器的SingleIsValid方法，验证单个Actor定义的有效性
   return Validator.SingleIsValid(ActorDefinition);
 }
-
+ 
+// UActorBlueprintFunctionLibrary类中的成员函数，用于验证多个Actor定义的有效性
 bool UActorBlueprintFunctionLibrary::CheckActorDefinitions(const TArray<FActorDefinition> &ActorDefinitions)
 {
+  // 创建FActorDefinitionValidator验证器对象
   FActorDefinitionValidator Validator;
+
+  // 调用验证器的AreValid方法，验证多个Actor定义的有效性
   return Validator.AreValid(ActorDefinitions);
 }
-
+ 
 /// ============================================================================
-/// -- Helpers to create actor definitions -------------------------------------
+/// -- Helpers to create actor definitions （创建Actor定义的辅助函数）----------
 /// ============================================================================
 
 template <typename ... TStrs>
