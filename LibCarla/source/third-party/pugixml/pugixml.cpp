@@ -312,32 +312,39 @@ PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
 PUGI__NS_BEGIN
+	// 定义了一个名为 compact_hash_table 的类，用于实现紧凑的哈希表
 	class compact_hash_table
 	{
 	public:
+		// 类的构造函数，初始化哈希表的项指针为0，容量和计数也为0
 		compact_hash_table(): _items(0), _capacity(0), _count(0)
 		{
 		}
-
+		// 清除哈希表的方法。释放已分配的内存，并将容量和计数重置为0
 		void clear()
 		{
+			// 如果已分配了内存给哈希表的项
 			if (_items)
 			{
+				// 使用 xml_memory::deallocate 方法释放内存
 				xml_memory::deallocate(_items);
+				// 将项指针、容量和计数重置为0
 				_items = 0;
 				_capacity = 0;
 				_count = 0;
 			}
 		}
-
+		// 根据给定的键查找值的方法
 		void* find(const void* key)
 		{
+			// 如果哈希表的容量为0，表示哈希表为空，直接返回0（表示未找到
 			if (_capacity == 0) return 0;
-
+			// 调用 get_item 方法根据键获取对应的项（这个方法在给出的代码中没有定义，可能是类的私有方法）
 			item_t* item = get_item(key);
+			// 使用 assert 断言确保获取的项不为空，且项的键要么与给定的键相等，要么是一个空项（键和值都为0）
 			assert(item);
 			assert(item->key == key || (item->key == 0 && item->value == 0));
-
+			// 返回找到的项的值
 			return item->value;
 		}
 
