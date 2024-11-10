@@ -312,56 +312,71 @@ PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
 PUGI__NS_BEGIN
+	// 定义了一个名为 compact_hash_table 的类，用于实现紧凑的哈希表
 	class compact_hash_table
 	{
 	public:
+		// 类的构造函数，初始化哈希表的项指针为0，容量和计数也为0
 		compact_hash_table(): _items(0), _capacity(0), _count(0)
 		{
 		}
-
+		// 清除哈希表的方法。释放已分配的内存，并将容量和计数重置为0
 		void clear()
 		{
+			// 如果已分配了内存给哈希表的项
 			if (_items)
 			{
+				// 使用 xml_memory::deallocate 方法释放内存
 				xml_memory::deallocate(_items);
+				// 将项指针、容量和计数重置为0
 				_items = 0;
 				_capacity = 0;
 				_count = 0;
 			}
 		}
-
+		// 根据给定的键查找值的方法
 		void* find(const void* key)
 		{
+			// 如果哈希表的容量为0，表示哈希表为空，直接返回0（表示未找到
 			if (_capacity == 0) return 0;
-
+			// 调用 get_item 方法根据键获取对应的项（这个方法在给出的代码中没有定义，可能是类的私有方法）
 			item_t* item = get_item(key);
+			// 使用 assert 断言确保获取的项不为空，且项的键要么与给定的键相等，要么是一个空项（键和值都为0）
 			assert(item);
 			assert(item->key == key || (item->key == 0 && item->value == 0));
-
+			// 返回找到的项的值
 			return item->value;
 		}
-
+		// 插入一个键值对到哈希表中
 		void insert(const void* key, void* value)
 		{
+			// 断言哈希表的容量不为0，并且当前存储的项的数量小于容量的3/4（为了保持哈希表的负载因子在一个合理的范围内）
 			assert(_capacity != 0 && _count < _capacity - _capacity / 4);
-
+			// 调用get_item方法根据键获取哈希表中的项（这个方法在给出的代码中没有定义，可能是类的私有方法）
 			item_t* item = get_item(key);
+			// 断言确保获取的项不为空
 			assert(item);
-
+			// 如果找到的项的键为空，表示这是一个空槽，可以插入新的键值对
 			if (item->key == 0)
 			{
+				// 增加哈希表中当前存储的项的数量
 				_count++;
+				// 将键设置为给定的键
 				item->key = key;
 			}
-
+			// 无论是否是新插入的项，都将值设置为给定的值（如果键已经存在，则更新值）
 			item->value = value;
 		}
-
+		// 为哈希表预留额外的空间（默认是16个单位）
 		bool reserve(size_t extra = 16)
 		{
+			// 如果加上额外空间后的项的数量大于等于当前容量的3/4，则需要重新哈希以扩展容量
 			if (_count + extra >= _capacity - _capacity / 4)
+				// 调用rehash方法重新分配内存并重新插入所有项（这个方法在给出的代码中没有定义，可能是类的私有方法）
+				// 如果rehash方法返回true，表示重新哈希成功；否则，表示失败（尽管在这个实现中它总是返回true或false，但具体取决于rehash的实现）
 				return rehash(_count + extra);
-
+				return rehash(_count + extra);
+			// 如果不需要重新哈希，则直接返回true
 			return true;
 		}
 
