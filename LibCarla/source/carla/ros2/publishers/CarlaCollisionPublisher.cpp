@@ -1,27 +1,28 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaCollisionPublisher.h"
+#include "CarlaCollisionPublisher.h"// 包含Carla碰撞事件发布者类的声明
 
-#include <string>
-
+#include <string>// 包含字符串处理相关的功能
+// 包含Carla ROS 2类型定义和监听器相关的头文件
 #include "carla/ros2/types/CarlaCollisionEventPubSubTypes.h"
 #include "carla/ros2/listeners/CarlaListener.h"
-
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-
-#include <fastrtps/attributes/ParticipantAttributes.h>
-#include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
+// 包含Fast-DDS（eProsima Fast RTPS的C++ API）相关的头文件
+#include <fastdds/dds/domain/DomainParticipant.hpp>// 包含域参与者相关的类
+#include <fastdds/dds/publisher/Publisher.hpp>// 包含发布者相关的类
+#include <fastdds/dds/topic/Topic.hpp>// 包含主题相关的类
+#include <fastdds/dds/publisher/DataWriter.hpp> // 包含数据写入器相关的类
+#include <fastdds/dds/topic/TypeSupport.hpp>// 包含类型支持相关的类
+// 包含Fast-DDS QOS策略相关的头文件
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp> // 包含域参与者QOS策略相关的类
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>// 包含域参与者工厂相关的类
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp>// 包含发布者QOS策略相关的类
+#include <fastdds/dds/topic/qos/TopicQos.hpp>// 包含主题QOS策略相关的类
+// 包含Fast RTPS属性相关的头文件
+#include <fastrtps/attributes/ParticipantAttributes.h>// 包含参与者属性相关的类
+#include <fastrtps/qos/QosPolicies.h>// 包含QOS策略相关的类
+// 包含Fast-DDS数据写入器QOS策略和监听器相关的头文件
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 包含数据写入器QOS策略相关的类
+#include <fastdds/dds/publisher/DataWriterListener.hpp>// 包含数据写入器监听器相关的类
 
 
 namespace carla {
