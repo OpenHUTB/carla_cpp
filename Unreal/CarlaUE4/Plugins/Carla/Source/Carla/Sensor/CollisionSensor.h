@@ -52,7 +52,7 @@ public:
       const FHitResult& Hit);
 
 private:
-  /// Registry that saves all collisions. Used to avoid sending the same collision more than once per frame,
-  /// as the collision sensor uses the PhysX substepping tick. Helps with sensor usage and stream overload.
+  /// 保存所有碰撞的注册表。
+  /// 用于避免每帧发送多次相同的碰撞，因为碰撞传感器使用 PhysX 子步节拍信号。有助于传感器的使用和流过载。
   std::vector<std::tuple<uint64_t, AActor*, AActor*>> CollisionRegistry;
 };

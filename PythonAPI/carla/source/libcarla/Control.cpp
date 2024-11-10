@@ -34,7 +34,7 @@ namespace rpc {
         << ", gear=" << std::to_string(control.gear) << ')';
     return out;
   }
-  //ÓÃÓÚÊä³ö³µÁ¾µÄ»ù±¾¿ØÖÆĞÅÏ¢£¬°üÀ¨ÓÍÃÅ(throttle)¡¢·½ÏòÅÌ×ª½Ç(steer)¡¢É²³µ(brake)¡¢ÊÖÉ²(hand_brake)¡¢µ¹³µ(reverse)¡¢ÊÇ·ñÊÖ¶¯»»µ²(manual_gear_shift)ºÍµ±Ç°µ²Î»(gear)
+  //ç”¨äºè¾“å‡ºè½¦è¾†çš„åŸºæœ¬æ§åˆ¶ä¿¡æ¯ï¼ŒåŒ…æ‹¬æ²¹é—¨(throttle)ã€æ–¹å‘ç›˜è½¬è§’(steer)ã€åˆ¹è½¦(brake)ã€æ‰‹åˆ¹(hand_brake)ã€å€’è½¦(reverse)ã€æ˜¯å¦æ‰‹åŠ¨æ¢æŒ¡(manual_gear_shift)å’Œå½“å‰æŒ¡ä½(gear)
 
   std::ostream& operator<<(std::ostream& out, const VehicleAckermannControl& control) {
       out << "VehicleAckermannControl(steer=" << std::to_string(control.steer)
@@ -44,7 +44,7 @@ namespace rpc {
           << ", jerk=" << std::to_string(control.jerk) << ')';
       return out;
   }
-  //Êä³öAckermann×ªÏòÄ£ĞÍµÄ³µÁ¾¿ØÖÆĞÅÏ¢£¬°üÀ¨·½ÏòÅÌ×ª½Ç(steer)¡¢×ªÏòËÙ¶È(steer_speed)¡¢ËÙ¶È(speed)¡¢¼ÓËÙ¶È(acceleration)ºÍ¼Ó¼ÓËÙ¶È(jerk)
+  //è¾“å‡ºAckermannè½¬å‘æ¨¡å‹çš„è½¦è¾†æ§åˆ¶ä¿¡æ¯ï¼ŒåŒ…æ‹¬æ–¹å‘ç›˜è½¬è§’(steer)ã€è½¬å‘é€Ÿåº¦(steer_speed)ã€é€Ÿåº¦(speed)ã€åŠ é€Ÿåº¦(acceleration)å’ŒåŠ åŠ é€Ÿåº¦(jerk)
 
   std::ostream& operator<<(std::ostream& out, const WalkerControl& control) {
       out << "WalkerControl(direction=" << control.direction
@@ -52,7 +52,7 @@ namespace rpc {
           << ", jump=" << boolalpha(control.jump) << ')';
       return out;
   }
-  //Êä³öĞĞÈËµÄ¿ØÖÆĞÅÏ¢£¬°üÀ¨·½Ïò(direction)¡¢ËÙ¶È(speed)ºÍÊÇ·ñÌøÔ¾(jump)
+  //è¾“å‡ºè¡Œäººçš„æ§åˆ¶ä¿¡æ¯ï¼ŒåŒ…æ‹¬æ–¹å‘(direction)ã€é€Ÿåº¦(speed)å’Œæ˜¯å¦è·³è·ƒ(jump)
 
   std::ostream& operator<<(std::ostream& out, const WalkerBoneControlIn& control) {
       out << "WalkerBoneControlIn(bone_transforms(";
@@ -63,13 +63,13 @@ namespace rpc {
       out << "))";
       return out;
   }
-  //Êä³ö¶ÔĞĞÈË¹Ç÷À¿ØÖÆµÄÊäÈëĞÅÏ¢£¬°üÀ¨Ò»ÏµÁĞ¹Ç÷ÀµÄ±ä»»(bone_transforms)£¬Ã¿¸ö±ä»»°üº¬¹Ç÷ÀÃû³ÆºÍ±ä»»ĞÅÏ¢¡£
+  //è¾“å‡ºå¯¹è¡Œäººéª¨éª¼æ§åˆ¶çš„è¾“å…¥ä¿¡æ¯ï¼ŒåŒ…æ‹¬ä¸€ç³»åˆ—éª¨éª¼çš„å˜æ¢(bone_transforms)ï¼Œæ¯ä¸ªå˜æ¢åŒ…å«éª¨éª¼åç§°å’Œå˜æ¢ä¿¡æ¯ã€‚
 
   std::ostream& operator<<(std::ostream& out, const BoneTransformDataOut& data) {
       out << "BoneTransformDataOut(name=" << data.bone_name << ", world=" << data.world << ", component=" << data.component << ", relative=" << data.relative << ')';
       return out;
   }
-  //Êä³öµ²Î»ÎïÀí¿ØÖÆµÄĞÅÏ¢£¬°üÀ¨µ²Î»±È(ratio)¡¢½µµ²±È(down_ratio)ºÍÉıµ²±È(up_ratio)
+  //è¾“å‡ºæŒ¡ä½ç‰©ç†æ§åˆ¶çš„ä¿¡æ¯ï¼ŒåŒ…æ‹¬æŒ¡ä½æ¯”(ratio)ã€é™æŒ¡æ¯”(down_ratio)å’Œå‡æŒ¡æ¯”(up_ratio)
 
   std::ostream& operator<<(std::ostream& out, const WalkerBoneControlOut& control) {
       out << "WalkerBoneControlOut(bone_transforms(";
@@ -80,7 +80,7 @@ namespace rpc {
       out << "))";
       return out;
   }
-  //Êä³ö³µÂÖÎïÀí¿ØÖÆµÄĞÅÏ¢£¬°üÀ¨ÂÖÌ¥Ä¦²ÁÁ¦(tire_friction)¡¢×èÄáÂÊ(damping_rate)¡¢×î´ó×ªÏò½Ç(max_steer_angle)¡¢°ë¾¶(radius)¡¢×î´óÉ²³µÅ¤¾Ø(max_brake_torque)¡¢×î´óÊÖÉ²Å¤¾Ø(max_handbrake_torque)¡¢ºáÏò¸Õ¶È×î´óÖµ(lat_stiff_max_load)¡¢ºáÏò¸Õ¶ÈÖµ(lat_stiff_value)¡¢×İÏò¸Õ¶ÈÖµ(long_stiff_value)ºÍ³µÂÖÎ»ÖÃ(position)
+  //è¾“å‡ºè½¦è½®ç‰©ç†æ§åˆ¶çš„ä¿¡æ¯ï¼ŒåŒ…æ‹¬è½®èƒæ‘©æ“¦åŠ›(tire_friction)ã€é˜»å°¼ç‡(damping_rate)ã€æœ€å¤§è½¬å‘è§’(max_steer_angle)ã€åŠå¾„(radius)ã€æœ€å¤§åˆ¹è½¦æ‰­çŸ©(max_brake_torque)ã€æœ€å¤§æ‰‹åˆ¹æ‰­çŸ©(max_handbrake_torque)ã€æ¨ªå‘åˆšåº¦æœ€å¤§å€¼(lat_stiff_max_load)ã€æ¨ªå‘åˆšåº¦å€¼(lat_stiff_value)ã€çºµå‘åˆšåº¦å€¼(long_stiff_value)å’Œè½¦è½®ä½ç½®(position)
 
   std::ostream& operator<<(std::ostream& out, const GearPhysicsControl& control) {
       out << "GearPhysicsControl(ratio=" << std::to_string(control.ratio)
@@ -88,8 +88,9 @@ namespace rpc {
           << ", up_ratio=" << std::to_string(control.up_ratio) << ')';
       return out;
   }
-  //Êä³ö³µÁ¾ÎïÀí¿ØÖÆµÄĞÅÏ¢£¬°üÀ¨Å¤¾ØÇúÏß(torque_curve)¡¢×î´ó×ªËÙ(max_rpm)¡¢×ª¶¯¹ßÁ¿(moi)¡¢²»Í¬Çé¿öÏÂµÄ×èÄáÂÊ¡¢ÊÇ·ñÊ¹ÓÃ×Ô¶¯»»µ²(use_gear_autobox)¡¢»»µ²Ê±¼ä(gear_switch_time)¡¢ÀëºÏÆ÷Ç¿¶È(clutch_strength)¡¢×îÖÕ´«¶¯±È(final_ratio)¡¢Ç°½øµ²ÊıÁ¿(forward_gears)¡¢ÖÊÁ¿(mass)¡¢×èÁ¦ÏµÊı(drag_coefficient)¡¢ÖÊĞÄ(center_of_mass)¡¢×ªÏòÇúÏß(steering_curve)¡¢³µÂÖĞÅÏ¢(wheels)ºÍÊÇ·ñÊ¹ÓÃÉ¨ÂÓ³µÂÖÅö×²(use_sweep_wheel_collision)
+  //è¾“å‡ºè½¦è¾†ç‰©ç†æ§åˆ¶çš„ä¿¡æ¯ï¼ŒåŒ…æ‹¬æ‰­çŸ©æ›²çº¿(torque_curve)ã€æœ€å¤§è½¬é€Ÿ(max_rpm)ã€è½¬åŠ¨æƒ¯é‡(moi)ã€ä¸åŒæƒ…å†µä¸‹çš„é˜»å°¼ç‡ã€æ˜¯å¦ä½¿ç”¨è‡ªåŠ¨æ¢æŒ¡(use_gear_autobox)ã€æ¢æŒ¡æ—¶é—´(gear_switch_time)ã€ç¦»åˆå™¨å¼ºåº¦(clutch_strength)ã€æœ€ç»ˆä¼ åŠ¨æ¯”(final_ratio)ã€å‰è¿›æŒ¡æ•°é‡(forward_gears)ã€è´¨é‡(mass)ã€é˜»åŠ›ç³»æ•°(drag_coefficient)ã€è´¨å¿ƒ(center_of_mass)ã€è½¬å‘æ›²çº¿(steering_curve)ã€è½¦è½®ä¿¡æ¯(wheels)å’Œæ˜¯å¦ä½¿ç”¨æ‰«æ è½¦è½®ç¢°æ’(use_sweep_wheel_collision)
 
+// ä¸ºVehiclePhysicsControlç±»å‹é‡è½½<<æ“ä½œç¬¦
   std::ostream &operator<<(std::ostream &out, const WheelPhysicsControl &control) {
     out << "WheelPhysicsControl(tire_friction=" << std::to_string(control.tire_friction)
         << ", damping_rate=" << std::to_string(control.damping_rate)
@@ -101,9 +102,11 @@ namespace rpc {
         << ", lat_stiff_value=" << std::to_string(control.lat_stiff_value)
         << ", long_stiff_value=" << std::to_string(control.long_stiff_value)
         << ", position=" << control.position << ')';
+ // è¾“å‡ºVehiclePhysicsControlå¯¹è±¡çš„æ‰€æœ‰æˆå‘˜å˜é‡    
     return out;
   }
 
+// ä¸ºVehiclePhysicsControlç±»å‹é‡è½½<<æ“ä½œç¬¦
   std::ostream &operator<<(std::ostream &out, const VehiclePhysicsControl &control) {
     out << "VehiclePhysicsControl(torque_curve=" << control.torque_curve
     << ", max_rpm=" << std::to_string(control.max_rpm)
@@ -122,9 +125,11 @@ namespace rpc {
     << ", steering_curve=" << control.steering_curve
     << ", wheels=" << control.wheels
     << ", use_sweep_wheel_collision=" << control.use_sweep_wheel_collision << ')';
+// è¾“å‡ºVehiclePhysicsControlå¯¹è±¡çš„æ‰€æœ‰æˆå‘˜å˜é‡
     return out;
   }
 
+// ä¸ºWheelTelemetryDataç±»å‹é‡è½½<<æ“ä½œç¬¦
   std::ostream &operator<<(std::ostream &out, const WheelTelemetryData &telemetry) {
     out << "WheelTelemetryData(tire_friction=" << std::to_string(telemetry.tire_friction)
         << ", lat_slip=" << std::to_string(telemetry.lat_slip)
@@ -137,9 +142,11 @@ namespace rpc {
         << ", lat_force=" << std::to_string(telemetry.lat_force)
         << ", normalized_long_force=" << std::to_string(telemetry.normalized_long_force)
         << ", normalized_lat_force=" << std::to_string(telemetry.normalized_lat_force) << ')';
+// è¾“å‡ºWheelTelemetryDataå¯¹è±¡çš„æ‰€æœ‰æˆå‘˜å˜é‡
     return out;
   }
 
+// ä¸ºVehicleTelemetryDataç±»å‹é‡è½½<<æ“ä½œç¬¦
   std::ostream &operator<<(std::ostream &out, const VehicleTelemetryData &telemetry) {
     out << "VehicleTelemetryData(speed=" << std::to_string(telemetry.speed)
     << ", steer=" << std::to_string(telemetry.steer)
@@ -149,9 +156,11 @@ namespace rpc {
     << ", gear=" << std::to_string(telemetry.gear)
     << ", drag=" << std::to_string(telemetry.drag)
     << ", wheels=" << telemetry.wheels << ')';
+// è¾“å‡ºVehicleTelemetryDataå¯¹è±¡çš„æ‰€æœ‰æˆå‘˜å˜é‡
     return out;
   }
 
+// ä¸ºAckermannControllerSettingsç±»å‹é‡è½½<<æ“ä½œç¬¦
   std::ostream &operator<<(std::ostream &out, const AckermannControllerSettings &settings) {
     out << "AckermannControllerSettings(speed_kp=" << std::to_string(settings.speed_kp)
         << ", speed_ki=" << std::to_string(settings.speed_ki)
@@ -159,68 +168,96 @@ namespace rpc {
         << ", accel_kp=" << std::to_string(settings.accel_kp)
         << ", accel_ki=" << std::to_string(settings.accel_ki)
         << ", accel_kd=" << std::to_string(settings.accel_kd)  << ')';
+// è¾“å‡ºAckermannControllerSettingså¯¹è±¡çš„æ‰€æœ‰æˆå‘˜å˜é‡
     return out;
   }
 
 } // namespace rpc
 } // namespace carla
 
+// å®šä¹‰ä¸€ä¸ªé™æ€å‡½æ•°ï¼Œç”¨äºä»Pythonåˆ—è¡¨ä¸­æå–carla::geom::Vector2Då¯¹è±¡æˆ–æ•°æ®ï¼Œå¹¶è½¬æ¢ä¸ºstd::vector<carla::geom::Vector2D>
 static auto GetVectorOfVector2DFromList(const boost::python::list &list) {
-  std::vector<carla::geom::Vector2D> v;
-
+  std::vector<carla::geom::Vector2D> v; // åˆ›å»ºä¸€ä¸ªVector2Dçš„å‘é‡
+ 
+  // è·å–Pythonåˆ—è¡¨çš„é•¿åº¦
   auto length = boost::python::len(list);
+  // ä¸ºå‘é‡é¢„ç•™è¶³å¤Ÿçš„ç©ºé—´ä»¥æé«˜æ•ˆç‡
   v.reserve(static_cast<size_t>(length));
+  // éå†Pythonåˆ—è¡¨
   for (auto i = 0u; i < length; ++i) {
+    // å°è¯•ä»åˆ—è¡¨ä¸­æå–Vector2Då¯¹è±¡
     boost::python::extract<carla::geom::Vector2D> ext(list[i]);
     if (ext.check()) {
+      // å¦‚æœæå–æˆåŠŸï¼Œæ·»åŠ åˆ°å‘é‡ä¸­
       v.push_back(ext);
     } else {
+      // å¦‚æœæå–å¤±è´¥ï¼Œå°è¯•ä»åˆ—è¡¨ä¸­æå–ä¸¤ä¸ªæµ®ç‚¹æ•°ï¼ˆå‡è®¾æ˜¯Vector2Dçš„xå’Œyåæ ‡ï¼‰
       v.push_back(carla::geom::Vector2D{
-        boost::python::extract<float>(list[i][0u]),
-        boost::python::extract<float>(list[i][1u])});
+        boost::python::extract<float>(list[i][0u]), // xåæ ‡
+        boost::python::extract<float>(list[i][1u])}); // yåæ ‡
     }
   }
+  // è¿”å›è½¬æ¢åçš„å‘é‡
   return v;
 }
-
+ 
+// å®šä¹‰ä¸€ä¸ªé™æ€å‡½æ•°ï¼Œç”¨äºä»Pythonåˆ—è¡¨ä¸­æå–carla::rpc::BoneTransformDataInå¯¹è±¡æˆ–æ•°æ®ï¼Œå¹¶è½¬æ¢ä¸ºstd::vector<carla::rpc::BoneTransformDataIn>
 static auto GetVectorOfBoneTransformFromList(const boost::python::list &list) {
-  std::vector<carla::rpc::BoneTransformDataIn> v;
-
+  std::vector<carla::rpc::BoneTransformDataIn> v; // åˆ›å»ºä¸€ä¸ªBoneTransformDataInçš„å‘é‡
+ 
+  // è·å–Pythonåˆ—è¡¨çš„é•¿åº¦
   auto length = boost::python::len(list);
+  // ä¸ºå‘é‡é¢„ç•™è¶³å¤Ÿçš„ç©ºé—´
   v.reserve(static_cast<size_t>(length));
+  // éå†Pythonåˆ—è¡¨
   for (auto i = 0u; i < length; ++i) {
+    // å°è¯•ä»åˆ—è¡¨ä¸­æå–BoneTransformDataInå¯¹è±¡
     boost::python::extract<carla::rpc::BoneTransformDataIn> ext(list[i]);
     if (ext.check()) {
+      // å¦‚æœæå–æˆåŠŸï¼Œæ·»åŠ åˆ°å‘é‡ä¸­
       v.push_back(ext);
     } else {
+      // å¦‚æœæå–å¤±è´¥ï¼Œå°è¯•ä»åˆ—è¡¨ä¸­æå–å­—ç¬¦ä¸²å’ŒTransformå¯¹è±¡ï¼ˆå‡è®¾æ˜¯BoneTransformDataInçš„nameå’Œtransformï¼‰
       v.push_back(carla::rpc::BoneTransformDataIn{
-        boost::python::extract<std::string>(list[i][0u]),
-        boost::python::extract<carla::geom::Transform>(list[i][1u])});
+        boost::python::extract<std::string>(list[i][0u]), // name
+        boost::python::extract<carla::geom::Transform>(list[i][1u])}); // transform
     }
   }
+  // è¿”å›è½¬æ¢åçš„å‘é‡
   return v;
 }
-
+ 
+// å®šä¹‰ä¸€ä¸ªé™æ€å‡½æ•°ï¼Œç”¨äºä»VehiclePhysicsControlå¯¹è±¡ä¸­è·å–è½¦è½®ä¿¡æ¯ï¼Œå¹¶å°†å…¶è½¬æ¢ä¸ºPythonåˆ—è¡¨
 static auto GetWheels(const carla::rpc::VehiclePhysicsControl &self) {
-  const auto &wheels = self.GetWheels();
+  const auto &wheels = self.GetWheels(); // è·å–è½¦è½®ä¿¡æ¯
+  // ä½¿ç”¨Boost.Pythonçš„è¿­ä»£å™¨åŠŸèƒ½å°†C++çš„vectorè½¬æ¢ä¸ºPythonçš„è¿­ä»£å™¨
   boost::python::object get_iter = boost::python::iterator<std::vector<carla::rpc::WheelPhysicsControl>>();
   boost::python::object iter = get_iter(wheels);
+  // å°†è¿­ä»£å™¨è½¬æ¢ä¸ºPythonåˆ—è¡¨å¹¶è¿”å›
   return boost::python::list(iter);
 }
-
+ 
+// å®šä¹‰ä¸€ä¸ªé™æ€å‡½æ•°ï¼Œç”¨äºè®¾ç½®VehiclePhysicsControlå¯¹è±¡çš„è½¦è½®ä¿¡æ¯ï¼Œä¿¡æ¯æ¥æºäºPythonåˆ—è¡¨
 static void SetWheels(carla::rpc::VehiclePhysicsControl &self, const boost::python::list &list) {
-  std::vector<carla::rpc::WheelPhysicsControl> wheels;
+  std::vector<carla::rpc::WheelPhysicsControl> wheels; // åˆ›å»ºä¸€ä¸ªWheelPhysicsControlçš„å‘é‡
+  // è·å–Pythonåˆ—è¡¨çš„é•¿åº¦
   auto length = boost::python::len(list);
+  // éå†Pythonåˆ—è¡¨
   for (auto i = 0u; i < length; ++i) {
+    // ä»åˆ—è¡¨ä¸­æå–WheelPhysicsControlå¯¹è±¡å¹¶æ·»åŠ åˆ°å‘é‡ä¸­
     wheels.push_back(boost::python::extract<carla::rpc::WheelPhysicsControl &>(list[i]));
   }
+  // è®¾ç½®VehiclePhysicsControlå¯¹è±¡çš„è½¦è½®ä¿¡æ¯
   self.wheels = wheels;
 }
-
+ 
+// å®šä¹‰ä¸€ä¸ªé™æ€å‡½æ•°ï¼Œç”¨äºä»VehiclePhysicsControlå¯¹è±¡ä¸­è·å–å‰è¿›æŒ¡ä¿¡æ¯ï¼Œå¹¶å°†å…¶è½¬æ¢ä¸ºPythonåˆ—è¡¨
 static auto GetForwardGears(const carla::rpc::VehiclePhysicsControl &self) {
-  const auto &gears = self.GetForwardGears();
+  const auto &gears = self.GetForwardGears(); // è·å–å‰è¿›æŒ¡ä¿¡æ¯
+  // ä½¿ç”¨Boost.Pythonçš„è¿­ä»£å™¨åŠŸèƒ½å°†C++çš„vectorè½¬æ¢ä¸ºPythonçš„è¿­ä»£å™¨
   boost::python::object get_iter = boost::python::iterator<std::vector<carla::rpc::GearPhysicsControl>>();
   boost::python::object iter = get_iter(gears);
+  // å°†è¿­ä»£å™¨è½¬æ¢ä¸ºPythonåˆ—è¡¨å¹¶è¿”å›
   return boost::python::list(iter);
 }
 
