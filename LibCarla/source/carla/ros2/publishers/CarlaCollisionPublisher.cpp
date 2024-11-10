@@ -24,20 +24,61 @@
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 包含数据写入器QOS策略相关的类
 #include <fastdds/dds/publisher/DataWriterListener.hpp>// 包含数据写入器监听器相关的类
 
+/**
+ * @namespace carla::ros2
+ * @brief 命名空间，用于组织CARLA与ROS2相关的代码。
+ */
 
+ /**
+  * @brief 命名空间别名定义
+  * @details 为eprosima::fastdds::dds命名空间定义别名efd，为eprosima::fastrtps::types::ReturnCode_t类型定义别名erc，方便后续使用。
+  */
 namespace carla {
 namespace ros2 {
 
   namespace efd = eprosima::fastdds::dds;
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+ * @struct CarlaCollisionPublisherImpl
+ * @brief CarlaCollisionPublisher的内部实现结构体
+ *
+ * 该结构体包含了与DDS通信相关的成员变量，用于管理CARLA碰撞事件的发布。
+ */
   struct CarlaCollisionPublisherImpl {
+      /**
+     * @brief DDS域参与者指针
+     * @details 指向一个DDS域参与者的指针，用于管理通信域。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief DDS发布者指针
+     * @details 指向一个DDS发布者的指针，用于发布消息。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief DDS主题指针
+     * @details 指向一个DDS主题的指针，用于定义消息的类型和名称。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据写入器指针
+     * @details 指向一个DDS数据写入器的指针，用于写入数据到主题。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持
+     * @details 用于注册和管理消息类型的支持对象，这里使用carla_msgs::msg::CarlaCollisionEventPubSubType。
+     */
     efd::TypeSupport _type { new carla_msgs::msg::CarlaCollisionEventPubSubType() };
+    /**
+     * @brief Carla监听器
+     * @details 用于监听DDS通信事件的监听器对象。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief CARLA碰撞事件消息
+     * @details 存储要发布的CARLA碰撞事件消息的数据结构。
+     */
     carla_msgs::msg::CarlaCollisionEvent _event {};
   };
 
