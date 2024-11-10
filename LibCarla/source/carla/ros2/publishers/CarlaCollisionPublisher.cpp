@@ -181,13 +181,25 @@ namespace ros2 {
      */
     return true;
   }
-
+  /**
+ * @brief 发布碰撞数据
+ *
+ * 此函数尝试通过Fast-RTPS发布碰撞事件数据。
+ * 根据返回码（ReturnCode_t）判断发布是否成功，并输出相应的错误信息。
+ *
+ * @return bool 如果发布成功返回true，否则返回false。
+ */
   bool CarlaCollisionPublisher::Publish() {
+      /// @brief 用于存储Fast-RTPS实例句柄的变量
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /// @brief 调用DataWriter的write方法尝试发布数据，并获取返回码
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_event, instance_handle);
+    /// @brief 如果返回码为RETCODE_OK，表示发布成功
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
     }
+    /// @brief 处理各种可能的错误返回码，并输出相应的错误信息
+    /// @note 以下分支处理不同的错误情况
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
@@ -240,6 +252,7 @@ namespace ros2 {
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @brief 如果返回码未知，则输出"UNKNOWN"错误信息
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
