@@ -81,52 +81,104 @@ namespace ros2 {
      */
     carla_msgs::msg::CarlaCollisionEvent _event {};
   };
-
+  /**
+ * @brief 初始化CarlaCollisionPublisher
+ * @return bool 初始化成功返回true，失败返回false
+ *
+ * 该函数负责初始化CarlaCollisionPublisher，包括创建DDS域参与者、发布者、主题和数据写入器，并注册消息类型。
+ */
   bool CarlaCollisionPublisher::Init() {
+      /**
+     * @brief 检查类型支持是否有效
+     * @details 如果_type为nullptr，则打印错误信息并返回false。
+     */
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /**
+     * @brief 设置域参与者QoS策略
+     * @details 使用默认的域参与者QoS策略，并设置名称。
+     */
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    /**
+     * @brief 创建域参与者
+     * @details 使用DomainParticipantFactory创建域参与者，如果失败则打印错误信息并返回false。
+     */
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl->_participant = factory->create_participant(0, pqos);
     if (_impl->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /**
+     * @brief 注册类型支持
+     * @details 使用类型支持对象注册消息类型到域参与者。
+     */
     _impl->_type.register_type(_impl->_participant);
-
+    /**
+     * @brief 设置发布者QoS策略
+     * @details 使用默认的发布者QoS策略。
+     */
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
+    /**
+     * @brief 创建发布者
+     * @details 在域参与者中创建一个发布者，如果失败则打印错误信息并返回false。
+     */
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /**
+     * @brief 设置主题QoS策略
+     * @details 使用默认的主题QoS策略。
+     */
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
+    /**
+     * @brief 构建主题名称
+     * @details 根据_name和_parent成员变量构建主题名称。
+     */
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
     if (!_parent.empty())
       topic_name += _parent + "/";
     topic_name += _name;
+    /**
+     * @brief 创建主题
+     * @details 在域参与者中创建一个主题，如果失败则打印错误信息并返回false。
+     */
     _impl->_topic = _impl->_participant->create_topic(topic_name, _impl->_type->getName(), tqos);
     if (_impl->_topic == nullptr) {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    /**
+     * @brief 设置数据写入器QoS策略
+     * @details 使用默认的数据写入器QoS策略，并设置历史内存策略为预分配并允许重新分配。
+     */
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
+    /**
+     * @brief 创建数据写入器
+     * @details 在发布者中创建一个数据写入器，并关联监听器，如果失败则打印错误信息并返回false。
+     */
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
     if (_impl->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-
+    /**
+    * @brief 设置帧ID
+    * @details 将_frame_id设置为_name的值。
+    */
     _frame_id = _name;
+    /**
+     * @brief 初始化成功
+     * @details 初始化所有DDS组件成功后返回true。
+     */
     return true;
   }
 
