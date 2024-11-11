@@ -1,28 +1,29 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaSSCameraPublisher.h"
+#include "CarlaSSCameraPublisher.h"// 引入CarlaSSCameraPublisher类的声明
 
-#include <string>
-
+#include <string>// 引入标准字符串库
+// 引入CARLA ROS2桥接器中定义的图像和相机信息类型的PubSubTypes
 #include "carla/ros2/types/ImagePubSubTypes.h"
 #include "carla/ros2/types/CameraInfoPubSubTypes.h"
-#include "carla/ros2/listeners/CarlaListener.h"
-
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+#include "carla/ros2/listeners/CarlaListener.h"// 引入CARLA ROS2监听器基类
+// 引入Fast-DDS（eProsima Fast RTPS的C++ API封装）相关的头文件
+#include <fastdds/dds/domain/DomainParticipant.hpp> // DomainParticipant类，用于创建、删除和管理RTPS实体
+#include <fastdds/dds/publisher/Publisher.hpp>// Publisher类，用于发布数据
+#include <fastdds/dds/topic/Topic.hpp>// Topic类，用于定义数据的主题
+#include <fastdds/dds/publisher/DataWriter.hpp>// DataWriter类，用于写入数据到指定的主题
+#include <fastdds/dds/topic/TypeSupport.hpp> // TypeSupport类，用于支持特定类型的数据
+// 引入Fast-DDS中与质量服务（QoS）相关的头文件
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>// DomainParticipantQos类，用于配置DomainParticipant的QoS策略
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>// DomainParticipantFactory类，用于创建DomainParticipant实例
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp>// PublisherQos类，用于配置Publisher的QoS策略
+#include <fastdds/dds/topic/qos/TopicQos.hpp>// TopicQos类，用于配置Topic的QoS策略
+// 引入Fast-RTPS（eProsima Fast RTPS库）中的头文件，用于配置参与者属性和QoS策略
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
+// 引入Fast-DDS中DataWriter的QoS配置和数据写入监听器
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// DataWriterQos类，用于配置DataWriter的QoS策略
+#include <fastdds/dds/publisher/DataWriterListener.hpp>// DataWriterListener类，用于监听DataWriter的事件
 
 namespace carla {
 namespace ros2 {
