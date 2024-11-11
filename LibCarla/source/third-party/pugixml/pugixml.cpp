@@ -218,134 +218,165 @@ PUGI__NS_END
 
 // String utilities
 PUGI__NS_BEGIN
-	// Get string length
-	PUGI__FN size_t strlength(const char_t* s)
-	{
-		assert(s);
+// Get string length
+// 获取字符串长度  
+// char_t 是一个类型别名，它根据是否定义了 PUGIXML_WCHAR_MODE 宏来决定是 char 还是 wchar_t 类型
+PUGI__FN size_t strlength(const char_t* s)
+{
+	// 断言 s 不为 nullptr，确保传入的字符串指针是有效的
+	assert(s);
+	// 根据是否定义了 PUGIXML_WCHAR_MODE 宏来选择使用 wcslen 还是 strlen 函数来获取字符串长度
+#ifdef PUGIXML_WCHAR_MODE
+	return wcslen(s);// 宽字符字符串长度
+#else
+	return strlen(s);// 单字节字符字符串长度
+#endif
+}
 
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcslen(s);
-	#else
-		return strlen(s);
-	#endif
+// Compare two strings
+PUGI__FN bool strequal(const char_t* src, const char_t* dst)
+{
+	// 断言 src 和 dst 都不为 nullptr，确保传入的字符串指针都是有效的
+	assert(src && dst);
+
+#ifdef PUGIXML_WCHAR_MODE
+	return wcscmp(src, dst) == 0;// 宽字符字符串比较
+#else
+	return strcmp(src, dst) == 0;// 单字节字符字符串比较
+#endif
 	}
 
-	// Compare two strings
-	PUGI__FN bool strequal(const char_t* src, const char_t* dst)
-	{
-		assert(src && dst);
+// Compare lhs with [rhs_begin, rhs_end)
+PUGI__FN bool strequalrange(const char_t* lhs, const char_t* rhs, size_t count)
+{
+	// 逐个字符比较 lhs 和 rhs，如果发现有不相等的字符，则返回 false
+	for (size_t i = 0; i < count; ++i)
+		if (lhs[i] != rhs[i])
+			return false;
+	// 如果循环结束后没有发现不相等的字符，则检查 lhs 的第 count 个字符是否为空终止符，  
+	// 如果是，则返回 true，表示字符串相等（在指定范围内）；否则返回 false
+	return lhs[count] == 0;
+}
 
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcscmp(src, dst) == 0;
-	#else
-		return strcmp(src, dst) == 0;
-	#endif
-	}
-
-	// Compare lhs with [rhs_begin, rhs_end)
-	PUGI__FN bool strequalrange(const char_t* lhs, const char_t* rhs, size_t count)
-	{
-		for (size_t i = 0; i < count; ++i)
-			if (lhs[i] != rhs[i])
-				return false;
-
-		return lhs[count] == 0;
-	}
-
-	// Get length of wide string, even if CRT lacks wide character support
-	PUGI__FN size_t strlength_wide(const wchar_t* s)
-	{
-		assert(s);
-
-	#ifdef PUGIXML_WCHAR_MODE
-		return wcslen(s);
-	#else
-		const wchar_t* end = s;
-		while (*end) end++;
-		return static_cast<size_t>(end - s);
-	#endif
-	}
+// Get length of wide string, even if CRT lacks wide character support
+PUGI__FN size_t strlength_wide(const wchar_t* s)
+{
+	// 断言 s 不为 nullptr，确保传入的宽字符串指针是有效的
+	assert(s);
+	// 如果定义了 PUGIXML_WCHAR_MODE 宏，则直接使用 wcslen 函数获取长度
+#ifdef PUGIXML_WCHAR_MODE
+	return wcslen(s);
+#else
+	// 如果没有定义 PUGIXML_WCHAR_MODE 宏，则手动计算长度。  
+	// 通过遍历字符串直到遇到空终止符来计算长度
+	const wchar_t* end = s;
+	while (*end) end++;
+	return static_cast<size_t>(end - s);// 返回字符串的长度
+#endif
+}
 PUGI__NS_END
 
 // auto_ptr-like object for exception recovery
 PUGI__NS_BEGIN
-	template <typename T> struct auto_deleter
+// 定义一个模板结构体 auto_deleter，它可以用于任何类型 T
+template <typename T> struct auto_deleter
+{
+	// 定义一个类型别名 D，它是一个指向函数的指针，该函数接受一个指向 T 类型的指针作为参数，并返回 void
+	typedef void (*D)(T*);
+	// 成员变量：
+	// data：指向需要被自动删除的对象的指针。
+	// deleter：一个函数指针，指向用于删除 data 指向的对象的函数
+	T* data;
+	D deleter;
+	// 构造函数，接受一个指向对象的指针和一个删除该对象的函数指针
+	auto_deleter(T* data_, D deleter_) : data(data_), deleter(deleter_)
 	{
-		typedef void (*D)(T*);
-
-		T* data;
-		D deleter;
-
-		auto_deleter(T* data_, D deleter_): data(data_), deleter(deleter_)
-		{
-		}
-
-		~auto_deleter()
-		{
-			if (data) deleter(data);
-		}
-
-		T* release()
-		{
-			T* result = data;
-			data = 0;
-			return result;
-		}
-	};
+	}
+	// 析构函数，当 auto_deleter 对象被销毁时调用。
+	// 如果 data 非空，则调用 deleter 函数来删除 data 指向的对象
+	~auto_deleter()
+	{
+		if (data) deleter(data);
+	}
+	// release 函数，用于手动释放对对象的所有权。
+	// 它返回 data 指向的对象的指针，并将 data 设置为 0（nullptr）。
+	// 这意味着之后 auto_deleter 对象不会再尝试删除该对象
+	T* release()
+	{
+		T* result = data;
+		data = 0;
+		return result;
+	}
+};
 PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
 PUGI__NS_BEGIN
+	// 定义了一个名为 compact_hash_table 的类，用于实现紧凑的哈希表
 	class compact_hash_table
 	{
 	public:
+		// 类的构造函数，初始化哈希表的项指针为0，容量和计数也为0
 		compact_hash_table(): _items(0), _capacity(0), _count(0)
 		{
 		}
-
+		// 清除哈希表的方法。释放已分配的内存，并将容量和计数重置为0
 		void clear()
 		{
+			// 如果已分配了内存给哈希表的项
 			if (_items)
 			{
+				// 使用 xml_memory::deallocate 方法释放内存
 				xml_memory::deallocate(_items);
+				// 将项指针、容量和计数重置为0
 				_items = 0;
 				_capacity = 0;
 				_count = 0;
 			}
 		}
-
+		// 根据给定的键查找值的方法
 		void* find(const void* key)
 		{
+			// 如果哈希表的容量为0，表示哈希表为空，直接返回0（表示未找到
 			if (_capacity == 0) return 0;
-
+			// 调用 get_item 方法根据键获取对应的项（这个方法在给出的代码中没有定义，可能是类的私有方法）
 			item_t* item = get_item(key);
+			// 使用 assert 断言确保获取的项不为空，且项的键要么与给定的键相等，要么是一个空项（键和值都为0）
 			assert(item);
 			assert(item->key == key || (item->key == 0 && item->value == 0));
-
+			// 返回找到的项的值
 			return item->value;
 		}
-
+		// 插入一个键值对到哈希表中
 		void insert(const void* key, void* value)
 		{
+			// 断言哈希表的容量不为0，并且当前存储的项的数量小于容量的3/4（为了保持哈希表的负载因子在一个合理的范围内）
 			assert(_capacity != 0 && _count < _capacity - _capacity / 4);
-
+			// 调用get_item方法根据键获取哈希表中的项（这个方法在给出的代码中没有定义，可能是类的私有方法）
 			item_t* item = get_item(key);
+			// 断言确保获取的项不为空
 			assert(item);
-
+			// 如果找到的项的键为空，表示这是一个空槽，可以插入新的键值对
 			if (item->key == 0)
 			{
+				// 增加哈希表中当前存储的项的数量
 				_count++;
+				// 将键设置为给定的键
 				item->key = key;
 			}
-
+			// 无论是否是新插入的项，都将值设置为给定的值（如果键已经存在，则更新值）
 			item->value = value;
 		}
-
+		// 为哈希表预留额外的空间（默认是16个单位）
 		bool reserve(size_t extra = 16)
 		{
+			// 如果加上额外空间后的项的数量大于等于当前容量的3/4，则需要重新哈希以扩展容量
 			if (_count + extra >= _capacity - _capacity / 4)
+				// 调用rehash方法重新分配内存并重新插入所有项（这个方法在给出的代码中没有定义，可能是类的私有方法）
+				// 如果rehash方法返回true，表示重新哈希成功；否则，表示失败（尽管在这个实现中它总是返回true或false，但具体取决于rehash的实现）
 				return rehash(_count + extra);
-
+				return rehash(_count + extra);
+			// 如果不需要重新哈希，则直接返回true
 			return true;
 		}
 
