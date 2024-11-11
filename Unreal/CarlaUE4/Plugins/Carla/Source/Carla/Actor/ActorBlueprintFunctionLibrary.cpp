@@ -1,194 +1,301 @@
 // Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
+// 上面两行意思是版权所有 (c) 2019 巴塞罗那自治大学 (UAB) 计算机视觉中心 (CVC)
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// This work is licensed under the terms of the MIT license.（本工作遵循 MIT 许可证条款进行授权）
+// For a copy, see <https://opensource.org/licenses/MIT>.（如需副本，请访问 <https://opensource.org/licenses/MIT>）
 
+// 引入 Carla 项目的头文件
 #include "Carla.h"
+
+// 引入 Carla 中 Actor 蓝图功能库的头文件
 #include "Carla/Actor/ActorBlueprintFunctionLibrary.h"
 
+// 引入 Carla 中激光雷达描述的头文件
 #include "Carla/Sensor/LidarDescription.h"
+
+// 引入 Carla 中场景捕获传感器的头文件
 #include "Carla/Sensor/SceneCaptureSensor.h"
+
+// 引入 Carla 中基于着色器的传感器的头文件
 #include "Carla/Sensor/ShaderBasedSensor.h"
+
+// 引入 Carla 中 V2X 路径损耗模型的头文件
 #include "Carla/Sensor/V2X/PathLossModel.h"
+
+// 引入 Carla 中作用域栈工具的头文件
 #include "Carla/Util/ScopedStack.h"
 
+// 引入标准算法库
 #include <algorithm>
+
+// 引入标准库中的极限值
 #include <limits>
+
+// 引入标准栈库
 #include <stack>
 
-/// Checks validity of FActorDefinition.
+/// Checks validity of FActorDefinition.（检查 FActorDefinition 的有效性）
 class FActorDefinitionValidator
 {
 public:
 
   /// Iterate all actor definitions and their properties and display messages on
   /// error.
+  /// 上面两行代码意思是遍历所有 actor 定义及其属性，并在出错时显示消息
   bool AreValid(const TArray<FActorDefinition> &ActorDefinitions)
   {
+    // 调用重载的 AreValid 方法，传入 "Actor Definition" 字符串和 actor 定义数组
     return AreValid(TEXT("Actor Definition"), ActorDefinitions);
   }
 
-  /// Validate @a ActorDefinition and display messages on error.
-  bool SingleIsValid(const FActorDefinition &Definition)
+  /// Validate @a ActorDefinition and display messages on error.（验证@a ActorDefinition的有效性，并在出现错误时显示消息）
+  bool SingleIsValid(const FActorDefinition& Definition)
   {
-    auto ScopeText = FString::Printf(TEXT("[Actor Definition : %s]"), *Definition.Id);
-    auto Scope = Stack.PushScope(ScopeText);
-    return IsValid(Definition);
+      // 使用Definition的Id构造一个作用域文本
+      auto ScopeText = FString::Printf(TEXT("[Actor Definition : %s]"), *Definition.Id);
+
+      // 将作用域文本推入Stack的作用域栈中
+      auto Scope = Stack.PushScope(ScopeText);
+
+      // 调用IsValid函数验证Definition的有效性
+      return IsValid(Definition);
   }
 
 private:
 
   /// If @a Predicate is false, print an error message. If possible the message
   /// is printed to the editor window.
+  /// 上面两行代码意思是如果@a Predicate为false，则打印一条错误消息。如果可能，消息将被打印到编辑器窗口中
   template <typename T, typename ... ARGS>
   bool OnScreenAssert(bool Predicate, const T &Format, ARGS && ... Args) const
   {
     if (!Predicate)
     {
       FString Message;
+      // 遍历Stack中的所有字符串，并将它们添加到Message中
       for (auto &String : Stack)
       {
         Message += String;
       }
+      // 在Message末尾添加一个空格
       Message += TEXT(" ");
+      // 使用Format和参数Args格式化字符串，并追加到Message中
       Message += FString::Printf(Format, std::forward<ARGS>(Args) ...);
-
+ 
+      // 使用UE_LOG记录错误消息
       UE_LOG(LogCarla, Error, TEXT("%s"), *Message);
+
+
 #if WITH_EDITOR
+     // 如果在编辑器模式下，且GEngine对象存在
       if (GEngine)
       {
+        // 在屏幕上显示一条调试消息，消息颜色为红色
         GEngine->AddOnScreenDebugMessage(42, 15.0f, FColor::Red, Message);
       }
-#endif // WITH_EDITOR
+#endif // WITH_EDITOR（被用来检查是否正在编辑器环境中运行）
     }
+    // 返回Predicate的值
     return Predicate;
   }
 
+  /// 为给定类型的项目生成显示ID。
   template <typename T>
   FString GetDisplayId(const FString &Type, size_t Index, const T &Item)
   {
+    // 使用Type、Index和Item的Id构造并返回一个格式化的字符串
     return FString::Printf(TEXT("[%s %d : %s]"), *Type, Index, *Item.Id);
   }
-
+ 
+  /// 为给定类型的字符串项目生成显示ID的重载版本。
   FString GetDisplayId(const FString &Type, size_t Index, const FString &Item)
   {
+    // 使用Type、Index和Item字符串构造并返回一个格式化的字符串
     return FString::Printf(TEXT("[%s %d : %s]"), *Type, Index, *Item);
   }
 
   /// Applies @a Validator to each item in @a Array. Pushes a new context to the
   /// stack for each item.
+  /// 上面两行的意思是对@a Array中的每个元素应用@a Validator。为每个元素向堆栈推送一个新的上下文
   template <typename T, typename F>
-  bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
+bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
+{
+  bool Result = true; // 初始化结果为true，假设所有元素都通过验证。
+  auto Counter = 0u;  // 初始化计数器，用于追踪当前正在验证的元素位置。
+ 
+  // 遍历数组中的每个元素
+  for (const auto &Item : Array)
   {
-    bool Result = true;
-    auto Counter = 0u;
-    for (const auto &Item : Array)
-    {
-      auto Scope = Stack.PushScope(GetDisplayId(Type, Counter, Item));
-      Result &= Validator(Item);
-      ++Counter;
-    }
-    return Result;
+    // 为当前元素生成一个显示ID，并将其推送到堆栈的新上下文中。
+    // 这里假设Stack是一个能够管理上下文的某种堆栈结构，而PushScope是一个向堆栈添加新上下文的方法。
+    // GetDisplayId是一个函数，用于生成包含元素类型、索引和ID的格式化字符串。
+    auto Scope = Stack.PushScope(GetDisplayId(Type, Counter, Item));
+ 
+    // 对当前元素应用Validator进行验证，并将验证结果与当前Result进行逻辑与运算。
+    // 如果Validator返回false，则Result也将变为false。
+    Result &= Validator(Item);
+ 
+    // 计数器递增，准备验证下一个元素。
+    ++Counter;
   }
+ 
+  // 返回最终的验证结果。如果所有元素都通过验证，则Result为true；否则为false。
+  return Result;
+}
+
 
   /// Applies @a IsValid to each item in @a Array. Pushes a new context to the
   /// stack for each item.
+  /// 上面两行代码的意思是对@a Array中的每个元素应用验证函数，为每个元素向堆栈推送一个新的上下文
   template <typename T>
-  bool AreValid(const FString &Type, const TArray<T> &Array)
-  {
-    return ForEach(Type, Array, [this](const auto &Item) { return IsValid(Item); });
-  }
+bool AreValid(const FString &Type, const TArray<T> &Array)
+{
+  // 调用ForEach函数，传入类型名称、元素数组和一个lambda表达式作为验证函数。
+  // lambda表达式捕获当前对象（this），并调用IsValid成员函数来验证每个元素
+  return ForEach(Type, Array, [this](const auto &Item) { return IsValid(Item); });
+}
 
+  /// 验证ID是否有效
   bool IsIdValid(const FString &Id)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言ID不为空且不是"."。如果失败，则显示错误信息
     return OnScreenAssert((!Id.IsEmpty() && Id != TEXT(".")), TEXT("Id cannot be empty"));
   }
 
+  /// 验证标签是否有效
   bool AreTagsValid(const FString &Tags)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言标签不为空。如果失败，则显示错误信息
     return OnScreenAssert(!Tags.IsEmpty(), TEXT("Tags cannot be empty"));
   }
 
+  /// 验证类型是否有效
   bool IsValid(const EActorAttributeType Type)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言类型值小于EActorAttributeType枚举的大小。如果失败，则显示错误信息
     return OnScreenAssert(Type < EActorAttributeType::SIZE, TEXT("Invalid type"));
   }
 
+  /// 验证值是否有效
   bool ValueIsValid(const EActorAttributeType Type, const FString &Value)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 当前版本未执行任何检查，直接返回true
     return true;
   }
 
+  // 判断给定的因子变化是否有效
   bool IsValid(const FActorVariation &Variation)
   {
+    // 返回以下条件都为真的结果
     return
+
+      //因子变化的ID有效
       IsIdValid(Variation.Id) &&
+
+      //因子变化的类型有效
       IsValid(Variation.Type) &&
+
+      //因子变化的推荐值数量大于0，且推荐值不能为空
       OnScreenAssert(Variation.RecommendedValues.Num() > 0, TEXT("Recommended values cannot be empty")) &&
+
+      //对每个推荐值，调用一个lambda函数检查其是否有效，该函数根据因子变化的类型检查值的有效性
       ForEach(TEXT("Recommended Value"), Variation.RecommendedValues, [&](auto &Value) {
       return ValueIsValid(Variation.Type, Value);
     });
   }
 
+  // 判断给定的因子属性是否有效
   bool IsValid(const FActorAttribute &Attribute)
   {
+    // 返回以下条件都为真的结果
     return
+
+      //因子属性的ID有效
       IsIdValid(Attribute.Id) &&
+
+      //因子属性的类型有效
       IsValid(Attribute.Type) &&
+
+      //根据因子属性的类型，其值有效
       ValueIsValid(Attribute.Type, Attribute.Value);
   }
 
+  // 判断给定的角色定义是否有效
   bool IsValid(const FActorDefinition &ActorDefinition)
   {
-    /// @todo Validate Class and make sure IDs are not repeated.
+    /// @todo Validate Class and make sure IDs are not repeated.（@todo验证类别并确保ID不重复）
+    //返回以下条件都为真的结果
     return
+
+      //角色定义的ID有效
       IsIdValid(ActorDefinition.Id) &&
+
+      //角色定义的标签有效
       AreTagsValid(ActorDefinition.Tags) &&
+
+      //角色定义的变化（因子变化）集合有效
       AreValid(TEXT("Variation"), ActorDefinition.Variations) &&
+
+      //角色定义的属性集合有效
       AreValid(TEXT("Attribute"), ActorDefinition.Attributes);
   }
-
+  // 一个FScopedStack<FString>类型的栈实例，用于特定的字符串管理或操作
   FScopedStack<FString> Stack;
 };
 
+// 定义一个模板函数，用于将多个字符串使用指定的分隔符连接起来
 template <typename ... ARGS>
 static FString JoinStrings(const FString &Separator, ARGS && ... Args)
 {
+  // 使用FString的Join方法，将Args中的字符串使用Separator连接起来
+  // std::forward<ARGS>(Args) ... 是完美转发，用于保持参数的左值或右值属性
+  // TArray<FString>{std::forward<ARGS>(Args) ...} 创建了一个包含所有参数的FString数组
   return FString::Join(TArray<FString>{std::forward<ARGS>(Args) ...}, *Separator);
 }
-
+ 
+// 定义一个函数，用于将FColor颜色对象转换为FString字符串
+// 字符串格式为 "R,G,B"，其中R、G、B是颜色的红、绿、蓝分量
 static FString ColorToFString(const FColor &Color)
 {
+  // 调用JoinStrings函数，将颜色的红、绿、蓝分量转换为字符串并用逗号连接
   return JoinStrings(
-      TEXT(","),
-      FString::FromInt(Color.R),
-      FString::FromInt(Color.G),
-      FString::FromInt(Color.B));
+      TEXT(","), // 使用逗号作为分隔符
+      FString::FromInt(Color.R), // 将红色分量转换为字符串
+      FString::FromInt(Color.G), // 将绿色分量转换为字符串
+      FString::FromInt(Color.B)); // 将蓝色分量转换为字符串
 }
-
+ 
 /// ============================================================================
-/// -- Actor definition validators ---------------------------------------------
+/// -- Actor definition validators（Actor定义验证器） --------------------------
 /// ============================================================================
-
+ 
+// UActorBlueprintFunctionLibrary类中的成员函数，用于验证单个Actor定义的有效性
 bool UActorBlueprintFunctionLibrary::CheckActorDefinition(const FActorDefinition &ActorDefinition)
 {
+  // 创建FActorDefinitionValidator验证器对象
   FActorDefinitionValidator Validator;
+
+  // 调用验证器的SingleIsValid方法，验证单个Actor定义的有效性
   return Validator.SingleIsValid(ActorDefinition);
 }
-
+ 
+// UActorBlueprintFunctionLibrary类中的成员函数，用于验证多个Actor定义的有效性
 bool UActorBlueprintFunctionLibrary::CheckActorDefinitions(const TArray<FActorDefinition> &ActorDefinitions)
 {
+  // 创建FActorDefinitionValidator验证器对象
   FActorDefinitionValidator Validator;
+
+  // 调用验证器的AreValid方法，验证多个Actor定义的有效性
   return Validator.AreValid(ActorDefinitions);
 }
-
+ 
 /// ============================================================================
-/// -- Helpers to create actor definitions -------------------------------------
+/// -- Helpers to create actor definitions （创建Actor定义的辅助函数）----------
 /// ============================================================================
 
 template <typename ... TStrs>
