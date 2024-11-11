@@ -4,66 +4,66 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/ServerSideSensor.h" // µ¼ÈëServerSideSensorÀàµÄÍ·ÎÄ¼ş
+#include "carla/client/ServerSideSensor.h" // å¯¼å…¥ServerSideSensorç±»çš„å¤´æ–‡ä»¶
 
-#include "carla/Logging.h" // µ¼ÈëÈÕÖ¾¼ÇÂ¼Ïà¹ØµÄÍ·ÎÄ¼ş
-#include "carla/client/detail/Simulator.h" // µ¼ÈëSimulatorÀàµÄÍ·ÎÄ¼ş
+#include "carla/Logging.h" // å¯¼å…¥æ—¥å¿—è®°å½•ç›¸å…³çš„å¤´æ–‡ä»¶
+#include "carla/client/detail/Simulator.h" // å¯¼å…¥Simulatorç±»çš„å¤´æ–‡ä»¶
 
-#include <exception> //µ¼ÈëÒì³£´¦ÀíµÄÍ·ÎÄ¼ş
+#include <exception> //å¯¼å…¥å¼‚å¸¸å¤„ç†çš„å¤´æ–‡ä»¶
 
-// ¶¨ÒåÒ»¸ö³£Á¿±íÊ¾GBufferµÄÎÆÀíÊıÁ¿
+// å®šä¹‰ä¸€ä¸ªå¸¸é‡è¡¨ç¤ºGBufferçš„çº¹ç†æ•°é‡
 constexpr size_t GBufferTextureCount = 13;
 
 namespace carla {
 namespace client {
   
-  //ServerSideSensorµÄÎö¹¹º¯Êı
+  //ServerSideSensorçš„ææ„å‡½æ•°
   ServerSideSensor::~ServerSideSensor() {
-    // ¼ì²é´«¸ĞÆ÷ÊÇ·ñÔÚÔËĞĞÇÒ´¦ÓÚ¼àÌı×´Ì¬
+    // æ£€æŸ¥ä¼ æ„Ÿå™¨æ˜¯å¦åœ¨è¿è¡Œä¸”å¤„äºç›‘å¬çŠ¶æ€
     if (IsAlive() && IsListening()) {
-      // ´òÓ¡¾¯¸æĞÅÏ¢£º´«¸ĞÆ÷¶ÔÏó³¬³ö×÷ÓÃÓò£¬µ«´«¸ĞÆ÷ÈÔÔÚÄ£ÄâÖĞÔËĞĞ
+      // æ‰“å°è­¦å‘Šä¿¡æ¯ï¼šä¼ æ„Ÿå™¨å¯¹è±¡è¶…å‡ºä½œç”¨åŸŸï¼Œä½†ä¼ æ„Ÿå™¨ä»åœ¨æ¨¡æ‹Ÿä¸­è¿è¡Œ
       log_warning(
           "sensor object went out of the scope but the sensor is still alive",
           "in the simulation:",
           GetDisplayId());
     }
-    // Èç¹û´«¸ĞÆ÷ÔÚ¼àÌı²¢ÇÒµ±Ç°µÄÄ£Äâ³¡¾°ÓĞĞ§
+    // å¦‚æœä¼ æ„Ÿå™¨åœ¨ç›‘å¬å¹¶ä¸”å½“å‰çš„æ¨¡æ‹Ÿåœºæ™¯æœ‰æ•ˆ
     if (IsListening() && GetEpisode().IsValid()) {
       try {
-        // ±éÀúËùÓĞGBufferÎÆÀí£¬Èç¹ûÕıÔÚ¼àÌı£¬ÔòÍ£Ö¹¼àÌı
+        // éå†æ‰€æœ‰GBufferçº¹ç†ï¼Œå¦‚æœæ­£åœ¨ç›‘å¬ï¼Œåˆ™åœæ­¢ç›‘å¬
         for (uint32_t i = 1; i != GBufferTextureCount + 1; ++i) {
-          if (listening_mask.test(i)) // ¼ì²éÊÇ·ñÕıÔÚ¼àÌı
-            StopGBuffer(i - 1); // Í£Ö¹¸ÃÎÆÀíµÄ¼àÌı
+          if (listening_mask.test(i)) // æ£€æŸ¥æ˜¯å¦æ­£åœ¨ç›‘å¬
+            StopGBuffer(i - 1); // åœæ­¢è¯¥çº¹ç†çš„ç›‘å¬
         }
-        Stop(); // Í£Ö¹´«¸ĞÆ÷
+        Stop(); // åœæ­¢ä¼ æ„Ÿå™¨
       } catch (const std::exception &e) {
-        // Èç¹û·¢ÉúÒì³££¬¼ÇÂ¼´íÎóĞÅÏ¢
+        // å¦‚æœå‘ç”Ÿå¼‚å¸¸ï¼Œè®°å½•é”™è¯¯ä¿¡æ¯
         log_error("exception trying to stop sensor:", GetDisplayId(), ':', e.what());
       }
     }
   }
-  // Listenº¯Êı£º¿ªÊ¼¼àÌı´«¸ĞÆ÷Êı¾İÁ÷
+  // Listenå‡½æ•°ï¼šå¼€å§‹ç›‘å¬ä¼ æ„Ÿå™¨æ•°æ®æµ
   void ServerSideSensor::Listen(CallbackFunctionType callback) {
-    log_debug("calling sensor Listen() ", GetDisplayId()); // ´òÓ¡µ÷ÊÔĞÅÏ¢
-    log_debug(GetDisplayId(), ": subscribing to stream"); // ¼ÇÂ¼¶©ÔÄÁ÷µÄÏûÏ¢
-    //Ëø¶¨µ±Ç°Ä£Äâ³¡¾°²¢¶©ÔÄ´«¸ĞÆ÷Êı¾İÁ÷
+    log_debug("calling sensor Listen() ", GetDisplayId()); // æ‰“å°è°ƒè¯•ä¿¡æ¯
+    log_debug(GetDisplayId(), ": subscribing to stream"); // è®°å½•è®¢é˜…æµçš„æ¶ˆæ¯
+    //é”å®šå½“å‰æ¨¡æ‹Ÿåœºæ™¯å¹¶è®¢é˜…ä¼ æ„Ÿå™¨æ•°æ®æµ
     GetEpisode().Lock()->SubscribeToSensor(*this, std::move(callback));
-    listening_mask.set(0); // ½«¼àÌı±êÖ¾µÄµÚ0Î»ÖÃÎªtrue
+    listening_mask.set(0); // å°†ç›‘å¬æ ‡å¿—çš„ç¬¬0ä½ç½®ä¸ºtrue
   }
 
-  // stopº¯Êı£ºÍ£Ö¹¼àÌı´«¸ĞÆ÷Êı¾İÁ÷
+  // stopå‡½æ•°ï¼šåœæ­¢ç›‘å¬ä¼ æ„Ÿå™¨æ•°æ®æµ
   void ServerSideSensor::Stop() {
-    log_debug("calling sensor Stop() ", GetDisplayId()); // ´òÓ¡µ÷ÊÔĞÅÏ¢
+    log_debug("calling sensor Stop() ", GetDisplayId()); // æ‰“å°è°ƒè¯•ä¿¡æ¯
     if (!IsListening()) { 
-      // Èç¹ûÃ»ÓĞ¼àÌı£¬´òÓ¡¾¯¸æĞÅÏ¢
+      // å¦‚æœæ²¡æœ‰ç›‘å¬ï¼Œæ‰“å°è­¦å‘Šä¿¡æ¯
       log_warning(
           "attempting to unsubscribe from stream but sensor wasn't listening:",
           GetDisplayId());
       return;
     }
-    // Ëø¶¨µ±Ç°Ä£Äâ³¡¾°²¢È¡Ïû´«¸ĞÆ÷µÄ¶©ÔÄ
+    // é”å®šå½“å‰æ¨¡æ‹Ÿåœºæ™¯å¹¶å–æ¶ˆä¼ æ„Ÿå™¨çš„è®¢é˜…
     GetEpisode().Lock()->UnSubscribeFromSensor(*this);
-    listening_mask.reset(0); // ½«¼àÌı±êÖ¾µÄµÚ0Î»ÖÃÎªfalse
+    listening_mask.reset(0); // å°†ç›‘å¬æ ‡å¿—çš„ç¬¬0ä½ç½®ä¸ºfalse
   }
 
   void ServerSideSensor::Send(std::string message) {
