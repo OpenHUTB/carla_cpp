@@ -22,7 +22,7 @@ if (BUILD_RSS_VARIANT)
   # DESTINATION给出相对路径时，它将相对于 CMAKE_INSTALL_PREFIX 变量（PythonAPI\carla\dependencies）
   install(FILES ${spdlog_file} DESTINATION lib)
   list(APPEND ADRSS_LIBS ${spdlog_file})
-
+  #完成项目的包含目录和库目录的路径设置 安装位置指定以及相关列表的添加操作
   set(proj_include_dir ${ADRSS_INSTALL_DIR}/../../proj-install/include)
   set(proj_lib ${ADRSS_INSTALL_DIR}/../../proj-install/lib/libproj.a)
   install(DIRECTORY ${proj_include_dir} DESTINATION include/system)
