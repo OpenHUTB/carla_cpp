@@ -24,34 +24,97 @@
 // 引入Fast-DDS中DataWriter的QoS配置和数据写入监听器
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// DataWriterQos类，用于配置DataWriter的QoS策略
 #include <fastdds/dds/publisher/DataWriterListener.hpp>// DataWriterListener类，用于监听DataWriter的事件
-
+/**
+ * @namespace carla::ros2
+ * @brief 此命名空间包含了CARLA与ROS2集成相关的类和函数。
+ */
 namespace carla {
 namespace ros2 {
-
+    /**
+       * @brief 命名空间别名，简化eprosima::fastdds::dds的引用。
+       */
   namespace efd = eprosima::fastdds::dds;
+  /**
+   * @brief 类型别名，简化eprosima::fastrtps::types::ReturnCode_t的引用。
+   */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+   * @struct CarlaSSCameraPublisherImpl
+   * @brief CarlaSSCameraPublisher的内部实现结构体，包含Fast-DDS相关的资源和配置。
+   */
   struct CarlaSSCameraPublisherImpl {
+      /**
+     * @brief Fast-DDS的DomainParticipant指针，用于管理RTPS实体。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief Fast-DDS的Publisher指针，用于发布数据。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS的Topic指针，定义了数据的主题。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS的DataWriter指针，用于写入数据到指定的主题。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+    * @brief Fast-DDS的TypeSupport对象，支持特定类型的数据（这里是sensor_msgs::msg::Image）。
+    */
     efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };
+    /**
+     * @brief CarlaListener对象，用于监听CARLA的事件。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 存储的图像数据。
+     */
     sensor_msgs::msg::Image _image {};
   };
-
+  /**
+   * @struct CarlaCameraInfoPublisherImpl
+   * @brief CarlaCameraInfoPublisher的内部实现结构体，包含Fast-DDS相关的资源和配置。
+   */
   struct CarlaCameraInfoPublisherImpl {
+      /**
+     * @brief Fast-DDS的DomainParticipant指针，用于管理RTPS实体。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief Fast-DDS的Publisher指针，用于发布数据。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS的Topic指针，定义了数据的主题。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS的DataWriter指针，用于写入数据到指定的主题。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief Fast-DDS的TypeSupport对象，支持特定类型的数据（这里是sensor_msgs::msg::CameraInfo）。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
+    /**
+     * @brief CarlaListener对象，用于监听CARLA的事件。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 标记是否已初始化。
+     */
     bool _init {false};
+    /**
+     * @brief 存储的相机信息数据。
+     */
     sensor_msgs::msg::CameraInfo _info {};
   };
-
+  /**
+   * @brief 检查CarlaSSCameraPublisher是否已初始化。
+   *
+   * @return 如果已初始化，则返回true；否则返回false。
+   */
   bool CarlaSSCameraPublisher::HasBeenInitialized() const {
     return _impl_info->_init;
   }
