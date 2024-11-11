@@ -303,10 +303,17 @@ namespace ros2 {
   bool CarlaSSCameraPublisher::Publish() {
     return PublishImage() && PublishInfo();
   }
-
+  /**
+ * @brief 发布图像数据
+ *
+ * 此函数尝试通过Fast RTPS发布图像数据。根据返回码（ReturnCode_t），函数会输出相应的错误信息并返回发布是否成功。
+ *
+ * @return true 如果图像数据成功发布，否则返回false。
+ */
   bool CarlaSSCameraPublisher::PublishImage() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_image, instance_handle);
+    // 根据不同的返回码处理不同的错误情况
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
     }
@@ -365,10 +372,17 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 发布信息数据
+ *
+ * 此函数尝试通过Fast RTPS发布信息数据。根据返回码（ReturnCode_t），函数会输出相应的错误信息并返回发布是否成功。
+ *
+ * @return true 如果信息数据成功发布，否则返回false。
+ */
   bool CarlaSSCameraPublisher::PublishInfo() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl_info->_datawriter->write(&_impl_info->_info, instance_handle);
+    // 根据不同的返回码处理不同的错误情况
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
     }
