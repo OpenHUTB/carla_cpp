@@ -526,18 +526,29 @@ namespace ros2 {
     header.frame_id(_frame_id);
     _impl_info->_info.header(header);
   }
-
+  /**
+ * @brief CarlaSSCameraPublisher类的构造函数
+ *
+ * 初始化CarlaSSCameraPublisher对象，并创建内部实现对象和相机信息发布者对象。
+ *
+ * @param ros_name ROS节点名称
+ * @param parent 父节点或组件的名称
+ */
   CarlaSSCameraPublisher::CarlaSSCameraPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaSSCameraPublisherImpl>()),
   _impl_info(std::make_shared<CarlaCameraInfoPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaSSCameraPublisher类的析构函数
+ *
+ * 清理资源，包括删除数据写入器、发布者、主题和参与者。
+ */
   CarlaSSCameraPublisher::~CarlaSSCameraPublisher() {
       if (!_impl)
           return;
-
+      // 清理_impl相关的资源
       if (_impl->_datawriter)
           _impl->_publisher->delete_datawriter(_impl->_datawriter);
 
@@ -552,7 +563,7 @@ namespace ros2 {
 
       if (!_impl_info)
         return;
-
+      // 清理_impl_info相关的资源
       if (_impl_info->_datawriter)
           _impl_info->_publisher->delete_datawriter(_impl_info->_datawriter);
 
@@ -565,7 +576,14 @@ namespace ros2 {
       if (_impl_info->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl_info->_participant);
   }
-
+  /**
+ * @brief CarlaSSCameraPublisher类的拷贝构造函数
+ *
+ * 创建当前对象的深拷贝。注意：这里的实现可能存在问题，因为_impl和_impl_info是智能指针，直接赋值可能导致多个对象共享相同的内部实现，这通常不是期望的行为。
+ * 在实际实现中，应该考虑使用深拷贝或者避免在拷贝构造函数中直接赋值智能指针。
+ *
+ * @param other 要拷贝的对象
+ */
   CarlaSSCameraPublisher::CarlaSSCameraPublisher(const CarlaSSCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -573,7 +591,14 @@ namespace ros2 {
     _impl = other._impl;
     _impl_info = other._impl_info;
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将当前对象设置为另一个CarlaSSCameraPublisher对象的拷贝。与拷贝构造函数类似，这里的实现也可能存在问题。
+ *
+ * @param other 要赋值的对象
+ * @return 对当前对象的引用
+ */
   CarlaSSCameraPublisher& CarlaSSCameraPublisher::operator=(const CarlaSSCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -583,7 +608,13 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaSSCameraPublisher类的移动构造函数
+ *
+ * 使用另一个CarlaSSCameraPublisher对象的资源初始化当前对象，并清空源对象的资源。
+ *
+ * @param other 要移动的对象
+ */
   CarlaSSCameraPublisher::CarlaSSCameraPublisher(CarlaSSCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
@@ -591,7 +622,14 @@ namespace ros2 {
     _impl = std::move(other._impl);
     _impl_info = std::move(other._impl_info);
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 将当前对象设置为另一个CarlaSSCameraPublisher对象的移动拷贝，并清空源对象的资源。
+ *
+ * @param other 要移动赋值的对象
+ * @return 对当前对象的引用
+ */
   CarlaSSCameraPublisher& CarlaSSCameraPublisher::operator=(CarlaSSCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
