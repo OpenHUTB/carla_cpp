@@ -301,38 +301,38 @@ bool UActorBlueprintFunctionLibrary::CheckActorDefinitions(const TArray<FActorDe
 // 定义一个模板函数，接受任意数量的字符串参数（可变参数模板）
 template <typename ... TStrs>
 
-// 静态函数，用于填充角色定义（FActorDefinition）的ID和标签（Tags），以及添加一些默认属性
+// 静态函数，用于填充参与者定义（FActorDefinition）的ID和标签（Tags），以及添加一些默认属性
 static void FillIdAndTags(FActorDefinition& Def, TStrs && ... Strings)
 {
-    // 将传入的字符串参数用"."连接，并转换为小写，作为角色的ID
+    // 将传入的字符串参数用"."连接，并转换为小写，作为参与者的ID
     Def.Id = JoinStrings(TEXT("."), std::forward<TStrs>(Strings) ...).ToLower();
 
-    // 将传入的字符串参数用","连接，并转换为小写，作为角色的标签
+    // 将传入的字符串参数用","连接，并转换为小写，作为参与者的标签
     Def.Tags = JoinStrings(TEXT(","), std::forward<TStrs>(Strings) ...).ToLower();
 
-  // each actor gets an actor role name attribute (empty by default) （每个角色都会有一个角色名称属性（默认为空））
+  // 每个参与者都会有一个角色名称属性（默认为空）
   FActorVariation ActorRole;
   ActorRole.Id = TEXT("role_name"); // 属性ID
   ActorRole.Type = EActorAttributeType::String; // 属性类型：字符串
   ActorRole.RecommendedValues = { TEXT("default") }; // 推荐值：默认
   ActorRole.bRestrictToRecommended = false; // 是否限制为推荐值：否
-  Def.Variations.Emplace(ActorRole); // 将角色名称属性添加到角色的属性列表中
+  Def.Variations.Emplace(ActorRole); // 将参与者名称属性添加到角色的属性列表中
 
-  // ROS2（ROS2相关的属性设置）
+  // ROS2相关的属性设置
   FActorVariation Var;
   Var.Id = TEXT("ros_name"); // 属性ID：ros名称
   Var.Type = EActorAttributeType::String; // 属性类型：字符串
-  Var.RecommendedValues = { Def.Id }; // 推荐值：角色的ID
+  Var.RecommendedValues = { Def.Id }; // 推荐值：参与者的ID
   Var.bRestrictToRecommended = false; // 是否限制为推荐值：否
-  Def.Variations.Emplace(Var); // 将ROS2名称属性添加到角色的属性列表中
+  Def.Variations.Emplace(Var); // 将ROS2名称属性添加到参与者的属性列表中
 }
 
-// 定义一个静态函数，用于为角色名称属性添加推荐值
+// 定义一个静态函数，用于为参与者名称属性添加推荐值
 static void AddRecommendedValuesForActorRoleName(
-    FActorDefinition &Definition, // 角色定义引用
+    FActorDefinition &Definition, // 参与者定义引用
     TArray<FString> &&RecommendedValues) // 推荐值的数组（右值引用）
 {
-  // 遍历角色的属性列表
+  // 遍历参与者的属性列表
   for (auto &&ActorVariation: Definition.Variations)
   {
     // 如果找到ID为"role_name"的属性
