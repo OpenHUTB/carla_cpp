@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "CoreMinimal.h"  // 核心极小的：包含UE4核心编程环境的普遍存在类型(包括FString / FName / TArray 等)
 #include "SignComponent.h"
 #include "Carla/Vehicle/WheeledVehicleAIController.h"
 #include "YieldSignComponent.generated.h"
@@ -28,8 +28,7 @@ private:
   void GenerateCheckBox(const FTransform BoxTransform,
       float BoxSize);
 
-  /// Try to give way to vehicles in the Yield
-  /// checking the car count in the check boxes
+  /// 尽量给“让路”车辆让路，并检查复选框中的车辆数量
   UFUNCTION(BlueprintCallable)
   void GiveWayIfPossible();
 
