@@ -5,92 +5,32 @@
 #pragma once
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include <memory>// å¼•å…¥æ™ºèƒ½æŒ‡é’ˆstd::shared_ptr
-#include <vector>// å¼•å…¥STLå®¹å™¨std::vector
+#include <memory>
+#include <vector>//ÒıÈëËùĞèµÄÍ·ÎÄ¼ş 
 
-#include "CarlaPublisher.h"// å¼•å…¥CarlaPublisherç±»çš„å®šä¹‰
-/**
- * @namespace carla
- * @brief CARLAé¡¹ç›®çš„å‘½åç©ºé—´ã€‚
- */
+#include "CarlaPublisher.h"//ÒıÈëCarlaPublisher.hÀàµÄÉùÃ÷ 
+
 namespace carla {
-    /**
- * @namespace ros2
- * @brief ROS2ç›¸å…³çš„å‘½åç©ºé—´ï¼Œç”¨äºåŒºåˆ†CARLAä¸ROS2ä¹‹é—´çš„äº¤äº’éƒ¨åˆ†ã€‚
- */
 namespace ros2 {
-    /**
-     * @struct CarlaTransformPublisherImpl
-     * @brief CarlaTransformPublisherç±»çš„å†…éƒ¨å®ç°ç»“æ„ä½“ï¼Œé‡‡ç”¨Pimplï¼ˆPointer to IMPLementationï¼‰æƒ¯ç”¨æ³•éšè—å®ç°ç»†èŠ‚ã€‚
-     */
-  struct CarlaTransformPublisherImpl;
-  /**
-     * @class CarlaTransformPublisher
-     * @brief CarlaTransformPublisherç±»ç»§æ‰¿è‡ªCarlaPublisherï¼Œç”¨äºåœ¨CARLAä¸­å‘å¸ƒå˜æ¢ä¿¡æ¯åˆ°ROS2ã€‚
-     */
+//¶¨ÒåÃüÃû¿Õ¼äcarla::ros2,ÓÃÓÚ×éÖ¯´úÂë 
+  struct CarlaTransformPublisherImpl;//ÉùÃ÷Ò»¸öË½ÓĞµÄ½á¹¹ÌåCarlaTransformPublisherImpl 
+//¶¨ÒåCarlaTransformPublisherÀà£¬¼Ì³Ğ×ÔCarlaPublisherÀà 
   class CarlaTransformPublisher : public CarlaPublisher {
     public:
-        /**
-            * @brief æ„é€ å‡½æ•°ï¼Œåˆå§‹åŒ–CarlaTransformPublisherå¯¹è±¡ã€‚
-            * @param ros_name ROS2èŠ‚ç‚¹çš„åç§°ï¼Œé»˜è®¤ä¸ºç©ºå­—ç¬¦ä¸²ã€‚
-            * @param parent çˆ¶èŠ‚ç‚¹çš„åç§°ï¼Œé»˜è®¤ä¸ºç©ºå­—ç¬¦ä¸²ã€‚
-            */
-      CarlaTransformPublisher(const char* ros_name = "", const char* parent = "");
-      /**
-             * @brief ææ„å‡½æ•°ï¼Œé‡Šæ”¾CarlaTransformPublisherå¯¹è±¡å ç”¨çš„èµ„æºã€‚
-             */
-      ~CarlaTransformPublisher();
-      /**
-             * @brief æ‹·è´æ„é€ å‡½æ•°ï¼Œé€šè¿‡æ‹·è´å¦ä¸€ä¸ªCarlaTransformPublisherå¯¹è±¡æ¥åˆå§‹åŒ–æ–°å¯¹è±¡ã€‚
-             * @param other è¦æ‹·è´çš„CarlaTransformPublisherå¯¹è±¡ã€‚
-             */
-      CarlaTransformPublisher(const CarlaTransformPublisher&);
-      /**
-             * @brief æ‹·è´èµ‹å€¼è¿ç®—ç¬¦ï¼Œå°†å¦ä¸€ä¸ªCarlaTransformPublisherå¯¹è±¡çš„å†…å®¹å¤åˆ¶åˆ°å½“å‰å¯¹è±¡ã€‚
-             * @param other è¦å¤åˆ¶çš„CarlaTransformPublisherå¯¹è±¡ã€‚
-             * @return è¿”å›å½“å‰å¯¹è±¡çš„å¼•ç”¨ã€‚
-             */
-      CarlaTransformPublisher& operator=(const CarlaTransformPublisher&);
-      /**
-            * @brief ç§»åŠ¨æ„é€ å‡½æ•°ï¼Œé€šè¿‡ç§»åŠ¨å¦ä¸€ä¸ªCarlaTransformPublisherå¯¹è±¡æ¥åˆå§‹åŒ–æ–°å¯¹è±¡ã€‚
-            * @param other è¦ç§»åŠ¨çš„CarlaTransformPublisherå¯¹è±¡ã€‚
-            */
-      CarlaTransformPublisher(CarlaTransformPublisher&&);
-      /**
-            * @brief ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦ï¼Œå°†å¦ä¸€ä¸ªCarlaTransformPublisherå¯¹è±¡çš„å†…å®¹ç§»åŠ¨åˆ°å½“å‰å¯¹è±¡ã€‚
-            * @param other è¦ç§»åŠ¨çš„CarlaTransformPublisherå¯¹è±¡ã€‚
-            * @return è¿”å›å½“å‰å¯¹è±¡çš„å¼•ç”¨ã€‚
-            */
-      CarlaTransformPublisher& operator=(CarlaTransformPublisher&&);
-      /**
-             * @brief åˆå§‹åŒ–å‡½æ•°ï¼Œç”¨äºåˆå§‹åŒ–CarlaTransformPublisherå¯¹è±¡ã€‚
-             * @return å¦‚æœåˆå§‹åŒ–æˆåŠŸï¼Œåˆ™è¿”å›trueï¼›å¦åˆ™è¿”å›falseã€‚
-             */
-      bool Init();
-      /**
-             * @brief å‘å¸ƒå‡½æ•°ï¼Œç”¨äºå°†å˜æ¢ä¿¡æ¯å‘å¸ƒåˆ°ROS2ã€‚
-             * @return å¦‚æœå‘å¸ƒæˆåŠŸï¼Œåˆ™è¿”å›trueï¼›å¦åˆ™è¿”å›falseã€‚
-             */
-      bool Publish();
-      /**
-             * @brief è®¾ç½®å˜æ¢æ•°æ®çš„å‡½æ•°ã€‚
-             * @param seconds å˜æ¢çš„æ—¶é—´æˆ³ï¼Œç§’éƒ¨åˆ†ã€‚
-             * @param nanoseconds å˜æ¢çš„æ—¶é—´æˆ³ï¼Œçº³ç§’éƒ¨åˆ†ã€‚
-             * @param translation å˜æ¢çš„å¹³ç§»éƒ¨åˆ†ï¼Œæ•°ç»„åŒ…å«x, y, zä¸‰ä¸ªåˆ†é‡ã€‚
-             * @param rotation å˜æ¢çš„æ—‹è½¬éƒ¨åˆ†ï¼Œæ•°ç»„åŒ…å«roll, pitch, yawä¸‰ä¸ªåˆ†é‡ã€‚
-             */
-      void SetData(int32_t seconds, uint32_t nanoseconds, const float* translation, const float* rotation);
-      /**
-             * @brief é‡å†™typeå‡½æ•°ï¼Œè¿”å›å½“å‰å¯¹è±¡çš„ç±»å‹å­—ç¬¦ä¸²ã€‚
-             * @return è¿”å›"transform"å­—ç¬¦ä¸²ï¼Œè¡¨ç¤ºå½“å‰å¯¹è±¡å‘å¸ƒçš„æ¶ˆæ¯ç±»å‹ä¸ºå˜æ¢ä¿¡æ¯ã€‚
-             */
-      const char* type() const override { return "transform"; }
+      CarlaTransformPublisher(const char* ros_name = "", const char* parent = "");//¹¹Ôìº¯Êı£¬½ÓÊÜROS½ÚµãÃû³ÆºÍ¸¸½ÚµãÃû³Æ×÷Îª²ÎÊı 
+      ~CarlaTransformPublisher();//Îö¹¹º¯Êı£¬ÓÃÓÚÇåÀí×ÊÔ´ 
+      CarlaTransformPublisher(const CarlaTransformPublisher&);//¹¹Ôì¿½±´º¯Êı 
+      CarlaTransformPublisher& operator=(const CarlaTransformPublisher&);//¿½±´ÔËËã¸³ÖµÔËËã·û 
+      CarlaTransformPublisher(CarlaTransformPublisher&&);//ÒÆ¶¯¹¹Ôìº¯Êı 
+      CarlaTransformPublisher& operator=(CarlaTransformPublisher&&);//ÒÆ¶¯¸³ÖµÔËËã·û 
 
-    private:
-        /**
-             * @brief æŒ‡å‘CarlaTransformPublisherImplçš„æ™ºèƒ½æŒ‡é’ˆï¼Œç”¨äºéšè—å®ç°ç»†èŠ‚ã€‚
-             */
-      std::shared_ptr<CarlaTransformPublisherImpl> _impl;
+      bool Init();//³õÊ¼»¯·½·¨£¬ÓÃÓÚÉèÖÃ·¢²¼Õß 
+      bool Publish();//·¢²¼·½·¨£¬ÓÃÓÚ·¢²¼±ä»»ĞÅÏ¢ 
+      void SetData(int32_t seconds, uint32_t nanoseconds, const float* translation, const float* rotation);//²ÎÊı°üÀ¨Ê±¼ä´Á£¨ÃëºÍÄÉÃë£©£¬Æ½ÒÆÏòÁ¿ºÍĞı×ªÏòÁ¿ 
+      const char* type() const override { return "transform"; }//·µ»ØÀàĞÍÃû³Æ£¬ÖØĞ´»ùÀà·½·¨ 
+
+    private://Ë½ÓĞ³ÉÔ±±äÁ¿£¬Ö¸ÏòCarlaTransformPublisherImplµÄÖÇÄÜÖ¸Õë 
+      std::shared_ptr<CarlaTransformPublisherImpl> _impl;//ÓÃÓÚÊµÏÖÀàµÄÄÚ²¿¹¦ÄÜ 
   };
 }
 }
