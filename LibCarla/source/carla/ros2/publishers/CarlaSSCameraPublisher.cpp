@@ -118,17 +118,40 @@ namespace ros2 {
   bool CarlaSSCameraPublisher::HasBeenInitialized() const {
     return _impl_info->_init;
   }
-
+  /**
+ * @brief 初始化相机信息数据
+ *
+ * 该函数用于初始化相机的信息数据，包括高度、宽度、视场角（FOV），并设置感兴趣区域（ROI）。
+ *
+ * @param x_offset  感兴趣区域的X轴偏移量
+ * @param y_offset  感兴趣区域的Y轴偏移量
+ * @param height    相机图像的高度
+ * @param width     相机图像的宽度
+ * @param fov       相机的视场角（FOV）
+ * @param do_rectify 是否对图像进行校正
+ */
   void CarlaSSCameraPublisher::InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify) {
     _impl_info->_info = std::move(sensor_msgs::msg::CameraInfo(height, width, fov));
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
     _impl_info->_init = true;
   }
-
+  /**
+ * @brief 初始化相机发布者
+ *
+ * 该函数用于初始化相机发布者，包括图像和信息的初始化。
+ *
+ * @return 初始化是否成功，成功返回true，失败返回false
+ */
   bool CarlaSSCameraPublisher::Init() {
     return InitImage() && InitInfo();
   }
-
+  /**
+ * @brief 初始化相机图像
+ *
+ * 该函数用于初始化相机图像的发布，包括创建DomainParticipant、Publisher、Topic和DataWriter。
+ *
+ * @return 初始化是否成功，成功返回true，失败返回false
+ */
   bool CarlaSSCameraPublisher::InitImage() {
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
