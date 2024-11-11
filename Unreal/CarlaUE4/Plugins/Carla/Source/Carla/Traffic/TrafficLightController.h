@@ -16,11 +16,11 @@
 
 class ATrafficLightGroup;
 
-/// Defines a stage of a semaphor with a State and
-/// the time this state lasts
+/// 定义信号量的某个阶段，并定义其状态以及该状态的持续时间
 USTRUCT(BlueprintType)
 struct FTrafficLightStage
 {
+  // 在类体的第一行添加（如果你的类继承自UObject，你的类名上方需要加入UCLASS()宏）
   GENERATED_BODY()
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -30,8 +30,7 @@ struct FTrafficLightStage
   ETrafficLightState State;
 };
 
-/// Maps a controller from OpenDrive.
-/// Controls the asociated traffic lights and contains its cycles
+/// 从 OpenDrive 映射一个控制器。控制相关交通信号灯并包含其循环
 UCLASS(BlueprintType)
 class CARLA_API UTrafficLightController : public UObject
 {
@@ -47,11 +46,11 @@ public:
   UFUNCTION(Category = "Traffic Controller", BlueprintPure)
   const FTrafficLightStage &GetCurrentState() const;
 
-  // Updates traffic light components to the next state
+  // 将交通信号灯组件更新到下一个状态
   UFUNCTION(Category = "Traffic Controller", BlueprintCallable)
   float NextState();
 
-  // Advances the counter of the controller and returns true if The cicle is finished
+  // 推进控制器的计数器，如果循环完成则返回 true
   UFUNCTION(Category = "Traffic Controller", BlueprintCallable)
   bool AdvanceTimeAndCycleFinished(float DeltaTime);
 
@@ -146,7 +145,7 @@ private:
   UPROPERTY(Category = "Traffic Controller", EditAnywhere)
   int CurrentState = 0;
 
-  // Pairs with the state of the semaphors (time - state) e.g. 10s in green
+  // 与信号灯的状态配对（时间 - 状态），例如绿灯 10 秒
   UPROPERTY(Category = "Traffic Controller", EditAnywhere)
   TArray<FTrafficLightStage> LightStates = {
     {10, ETrafficLightState::Green},
@@ -162,7 +161,7 @@ private:
   UPROPERTY(Category = "Traffic Controller", VisibleAnywhere)
   ATrafficLightGroup* TrafficLightGroup;
 
-  // Sequence within junction (unused for now)
+  // 交叉路口的序列（暂时未使用）
   UPROPERTY(Category = "Traffic Controller", EditAnywhere)
   int Sequence = 0;
 

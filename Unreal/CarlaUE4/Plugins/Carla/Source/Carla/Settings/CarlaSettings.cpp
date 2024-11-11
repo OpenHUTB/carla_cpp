@@ -20,19 +20,19 @@
 #include "Package.h"
 #include "UnrealMathUtility.h"
 
-// INI file sections.
+// 初始化设置文件（INI file）段
 #define S_CARLA_SERVER          TEXT("CARLA/Server")
 #define S_CARLA_QUALITYSETTINGS TEXT("CARLA/QualitySettings")
 
 // =============================================================================
-// -- Static variables & constants ---------------------------------------------
+// -- 静态变量 & 常量 -----------------------------------------------------------
 // =============================================================================
 
 const FName UCarlaSettings::CARLA_ROAD_TAG = FName("CARLA_ROAD");
 const FName UCarlaSettings::CARLA_SKY_TAG = FName("CARLA_SKY");
 
 // =============================================================================
-// -- Static methods -----------------------------------------------------------
+// -- 静态方法 ------------------------------------------------------------------
 // =============================================================================
 // 定义一个静态函数，用于将字符串转换为质量等级枚举值  
 // 参数：  
@@ -93,7 +93,7 @@ static void LoadSettingsFromConfig(
   }
   ConfigFile.GetBool(S_CARLA_SERVER, TEXT("SynchronousMode"), Settings.bSynchronousMode);
   ConfigFile.GetBool(S_CARLA_SERVER, TEXT("DisableRendering"), Settings.bDisableRendering);
-  // QualitySettings.
+  // 画质配置 QualitySettings.
   FString sQualityLevel;
   ConfigFile.GetString(S_CARLA_QUALITYSETTINGS, TEXT("QualityLevel"), sQualityLevel);
   Settings.SetQualityLevel(QualityLevelFromString(sQualityLevel));
@@ -119,9 +119,9 @@ static bool GetSettingsFilePathFromCommandLine(FString &Value)
 void UCarlaSettings::LoadSettings()
 {
   CurrentFileName = TEXT("");
-  // Load settings from project Config folder if present.
+  // 如果存在，则从项目配置文件夹加载设置。
   LoadSettingsFromFile(FPaths::Combine(FPaths::ProjectConfigDir(), TEXT("CarlaSettings.ini")), false);
-  // Load settings given by command-line arg if provided.
+  // 如果提供，则加载命令行参数给出的设置。
   {
     FString FilePath;
     if (GetSettingsFilePathFromCommandLine(FilePath))
@@ -129,7 +129,7 @@ void UCarlaSettings::LoadSettings()
       LoadSettingsFromFile(FilePath, true);
     }
   }
-  // Override settings from command-line.
+  // 从命令行覆盖设置。
   {
     uint32 Value;
     if (FParse::Value(FCommandLine::Get(), TEXT("-world-port="), Value) ||
@@ -137,6 +137,7 @@ void UCarlaSettings::LoadSettings()
         FParse::Value(FCommandLine::Get(), TEXT("-carla-rpc-port="), Value) ||
         FParse::Value(FCommandLine::Get(), TEXT("-carla-world-port="), Value))
     {
+      // 默认情况下，流媒体服务的端口是RPC端口+1，辅助服务器端口是RPC端口+2
       RPCPort = Value;
       StreamingPort = Value + 1u;
       SecondaryPort = Value + 2u;
