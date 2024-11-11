@@ -199,30 +199,58 @@ namespace ros2 {
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 初始化CarlaSSCameraPublisher的信息
+ *
+ * 此函数负责初始化CarlaSSCameraPublisher所需的各种组件，包括DomainParticipant, Publisher, Topic和DataWriter。
+ * 如果任何步骤失败，函数将输出错误信息并返回false。
+ *
+ * @return bool 如果初始化成功返回true，否则返回false。
+ */
   bool CarlaSSCameraPublisher::InitInfo() {
+      /**
+    * 检查_impl_info->_type是否为nullptr，如果是，则输出错误信息并返回false。
+    */
     if (_impl_info->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /**
+    * 设置DomainParticipant的QoS参数为默认值，并设置其名称。
+    */
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    /**
+    * 获取DomainParticipantFactory的实例，并创建一个DomainParticipant。
+    */
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl_info->_participant = factory->create_participant(0, pqos);
+    /**
+    * 如果DomainParticipant创建失败，输出错误信息并返回false。
+    */
     if (_impl_info->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /**
+    * 注册类型到DomainParticipant。
+    */
     _impl_info->_type.register_type(_impl_info->_participant);
-
+    /**
+    * 设置Publisher的QoS参数为默认值，并创建一个Publisher。
+    */
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl_info->_publisher = _impl_info->_participant->create_publisher(pubqos, nullptr);
+    /**
+    * 如果Publisher创建失败，输出错误信息并返回false。
+    */
     if (_impl_info->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /**
+    * 设置Topic的QoS参数为默认值，并构造Topic名称。
+    */
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/camera_info"};
     const std::string base { "rt/carla/" };
@@ -231,23 +259,47 @@ namespace ros2 {
       topic_name += _parent + "/";
     topic_name += _name;
     topic_name += publisher_type;
+    /**
+    * 创建一个Topic。
+    */
     _impl_info->_topic = _impl_info->_participant->create_topic(topic_name, _impl_info->_type->getName(), tqos);
+    /**
+    * 如果Topic创建失败，输出错误信息并返回false。
+    */
     if (_impl_info->_topic == nullptr) {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
+    /**
+    * 设置DataWriter的QoS参数为默认值，并创建一个DataWriter。
+    */
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl_info->_listener._impl.get();
     _impl_info->_datawriter = _impl_info->_publisher->create_datawriter(_impl_info->_topic, wqos, listener);
+    /**
+   * 如果DataWriter创建失败，输出错误信息并返回false。
+   */
     if (_impl_info->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-
+    /**
+    * 设置_frame_id为_name。
+    */
     _frame_id = _name;
+    /**
+    * 初始化成功，返回true。
+    */
     return true;
   }
-
+  /**
+ * @brief 发布图像和信息
+ *
+ * 此函数调用PublishImage和PublishInfo函数来发布图像和相关信息。
+ * 如果两个函数都成功返回true，则此函数也返回true；否则返回false。
+ *
+ * @return bool 如果发布成功返回true，否则返回false。
+ */
   bool CarlaSSCameraPublisher::Publish() {
     return PublishImage() && PublishInfo();
   }
