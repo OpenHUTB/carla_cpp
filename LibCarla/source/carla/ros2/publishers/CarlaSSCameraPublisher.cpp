@@ -441,7 +441,18 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 该函数接收时间戳、图像高度、图像宽度和图像数据，然后将这些数据复制到一个新的vector中，
+ * 并调用SetData函数设置图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 图像数据的指针，假设为BGRA格式
+ */
   void CarlaSSCameraPublisher::SetImageData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, const uint8_t* data) {
     std::vector<uint8_t> vector_data;
     const size_t size = height * width * 4;
@@ -449,7 +460,17 @@ namespace ros2 {
     std::memcpy(&vector_data[0], &data[0], size);
     SetData(seconds, nanoseconds, height, width, std::move(vector_data));
   }
-
+  /**
+ * @brief 设置感兴趣区域的信息
+ *
+ * 该函数用于设置图像的感兴趣区域（Region Of Interest, ROI），包括偏移量、高度、宽度和是否需要校正。
+ *
+ * @param x_offset ROI的X轴偏移量
+ * @param y_offset ROI的Y轴偏移量
+ * @param height ROI的高度
+ * @param width ROI的宽度
+ * @param do_rectify 是否需要校正ROI
+ */
   void CarlaSSCameraPublisher::SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify) {
     sensor_msgs::msg::RegionOfInterest roi;
     roi.x_offset(x_offset);
@@ -459,7 +480,17 @@ namespace ros2 {
     roi.do_rectify(do_rectify);
     _impl_info->_info.roi(roi);
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 该函数接收时间戳、图像高度、图像宽度和图像数据（以vector形式），然后设置图像的元数据和数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 图像数据的vector，假设为BGRA格式，使用右值引用进行移动语义优化
+ */
   void CarlaSSCameraPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -477,7 +508,14 @@ namespace ros2 {
     _impl->_image.step(_impl->_image.width() * sizeof(uint8_t) * 4);
     _impl->_image.data(std::move(data)); //https://github.com/eProsima/Fast-DDS/issues/2330
   }
-
+  /**
+ * @brief 设置相机信息数据的时间戳
+ *
+ * 该函数接收时间戳，并设置相机信息的头部时间戳和帧ID。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ */
   void CarlaSSCameraPublisher::SetCameraInfoData(int32_t seconds, uint32_t nanoseconds) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
