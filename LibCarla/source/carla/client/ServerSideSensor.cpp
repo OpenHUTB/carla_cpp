@@ -67,63 +67,72 @@ namespace client {
   }
 
   void ServerSideSensor::Send(std::string message) {
-    log_debug("calling sensor Send() ", GetDisplayId());
+    log_debug("calling sensor Send() ", GetDisplayId()); //记录调试日志，表示调用了send方法
     if (GetActorDescription().description.id != "sensor.other.v2x_custom")
+     //如果传感器类型不是"sensor.other.v2x_custom",则不支持send方法
     {
       log_warning("Send methods are not supported on non-V2x sensors (sensor.other.v2x_custom).");
       return;
     }
+    //通过Episode对象向外发送信息
     GetEpisode().Lock()->Send(*this,message);
   }
 
   void ServerSideSensor::ListenToGBuffer(uint32_t GBufferId, CallbackFunctionType callback) {
-    log_debug(GetDisplayId(), ": subscribing to gbuffer stream");
-    RELEASE_ASSERT(GBufferId < GBufferTextureCount);
+    log_debug(GetDisplayId(), ": subscribing to gbuffer stream"); //记录订阅GBuffer流的日志
+    RELEASE_ASSERT(GBufferId < GBufferTextureCount); //确保GBufferId在有效范围内
     if (GetActorDescription().description.id != "sensor.camera.rgb")
+     // 如果传感器不是"sensor.camera.rgb",则不支持GBuffer方法
     {
       log_warning("GBuffer methods are not supported on non-RGB sensors (sensor.camera.rgb).");
       return;
     }
+    // 通过Episode对象订阅指定的GBuffer流，设置回调函数
     GetEpisode().Lock()->SubscribeToGBuffer(*this, GBufferId, std::move(callback));
-    listening_mask.set(0);
-    listening_mask.set(GBufferId + 1);
+    listening_mask.set(0); //设置监听掩码的第一位，表示开启了GBuffer监听
+    listening_mask.set(GBufferId + 1); // 根据GBufferId设置相应的掩码位
   }
 
   void ServerSideSensor::StopGBuffer(uint32_t GBufferId) {
-    log_debug(GetDisplayId(), ": unsubscribing from gbuffer stream");
-    RELEASE_ASSERT(GBufferId < GBufferTextureCount);
+    log_debug(GetDisplayId(), ": unsubscribing from gbuffer stream"); //记录取消订阅GBuffer流的日志
+    RELEASE_ASSERT(GBufferId < GBufferTextureCount); // 确保GBufferId在有效范围内
     if (GetActorDescription().description.id != "sensor.camera.rgb")
+    // 如果传感器不是"sensor.camera.rgb"，则不支持GBuffer方法
     {
       log_warning("GBuffer methods are not supported on non-RGB sensors (sensor.camera.rgb).");
       return;
     }
+    // 通过Episode对象取消订阅指定的GBuffer流
     GetEpisode().Lock()->UnSubscribeFromGBuffer(*this, GBufferId);
-    listening_mask.reset(GBufferId + 1);
+    listening_mask.reset(GBufferId + 1); // 重置掩码的相应位，表示停止监听
   }
 
   void ServerSideSensor::EnableForROS() {
+    // 使传感器支持ROS
     GetEpisode().Lock()->EnableForROS(*this);
   }
 
   void ServerSideSensor::DisableForROS() {
+    // 禁用传感器对ROS的支持
     GetEpisode().Lock()->DisableForROS(*this);
   }
 
   bool ServerSideSensor::IsEnabledForROS(){
+    //检查传感器是否启用了对ROS的支持
     return GetEpisode().Lock()->IsEnabledForROS(*this);
   }
 
   bool ServerSideSensor::Destroy() {
-    log_debug("calling sensor Destroy() ", GetDisplayId());
-    if (IsListening()) {
+    log_debug("calling sensor Destroy() ", GetDisplayId()); // 记录调试日志，表示调用了Destroy方法
+    if (IsListening()) { // 如果传感器正在监听
       for (uint32_t i = 1; i != GBufferTextureCount + 1; ++i) {
-        if (listening_mask.test(i)) {
-          StopGBuffer(i - 1);
+        if (listening_mask.test(i)) { // 检查掩码以确认是否有活跃的GBuffer流
+          StopGBuffer(i - 1); // 停止每个活跃的GBuffer流
         }
       }
-      Stop();
+      Stop(); // 停止其他监听任务
     }
-    return Actor::Destroy();
+    return Actor::Destroy(); //调用基类的Destroy方法，完成销毁
   }
 
 } // namespace client
