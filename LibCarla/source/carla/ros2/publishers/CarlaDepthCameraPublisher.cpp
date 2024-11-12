@@ -450,14 +450,34 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 将传入的图像数据复制到一个新的vector中，并调用SetData函数来设置图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 指向图像数据的指针，数据格式为BGRA，每个像素4个字节
+ */
   void CarlaDepthCameraPublisher::SetImageData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, const uint8_t* data) {    std::vector<uint8_t> vector_data;
     const size_t size = height * width * 4;
     vector_data.resize(size);
     std::memcpy(&vector_data[0], &data[0], size);
     SetData(seconds, nanoseconds,height, width, std::move(vector_data));
   }
-
+  /**
+ * @brief 设置感兴趣区域（ROI）信息
+ *
+ * 设置图像的感兴趣区域（ROI），包括偏移量、高度、宽度以及是否进行校正。
+ *
+ * @param x_offset ROI的X轴偏移量
+ * @param y_offset ROI的Y轴偏移量
+ * @param height ROI的高度
+ * @param width ROI的宽度
+ * @param do_rectify 是否对ROI进行校正
+ */
   void CarlaDepthCameraPublisher::SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify) {
     sensor_msgs::msg::RegionOfInterest roi;
     roi.x_offset(x_offset);
@@ -467,7 +487,17 @@ namespace ros2 {
     roi.do_rectify(do_rectify);
     _impl_info->_info.roi(roi);
   }
-
+  /**
+ * @brief 设置图像数据及其元数据
+ *
+ * 设置图像的时间戳、帧ID、宽度、高度、编码方式、字节序、步长以及图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 包含图像数据的vector，数据格式为BGRA，每个像素4个字节
+ */
   void CarlaDepthCameraPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -485,7 +515,14 @@ namespace ros2 {
     _impl->_image.step(_impl->_image.width() * sizeof(uint8_t) * 4);
     _impl->_image.data(std::move(data)); //https://github.com/eProsima/Fast-DDS/issues/2330
   }
-
+  /**
+ * @brief 设置相机信息数据的时间戳
+ *
+ * 设置相机信息的时间戳和帧ID。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ */
   void CarlaDepthCameraPublisher::SetCameraInfoData(int32_t seconds, uint32_t nanoseconds) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
