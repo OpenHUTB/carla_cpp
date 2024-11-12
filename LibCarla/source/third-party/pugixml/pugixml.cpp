@@ -379,41 +379,49 @@ PUGI__NS_BEGIN
 			// 如果不需要重新哈希，则直接返回true
 			return true;
 		}
-
+	// 私有成员定义开始
 	private:
+		// 定义一个结构体item_t，用于存储哈希表中的项
 		struct item_t
 		{
-			const void* key;
-			void* value;
+			const void* key;// 指向键的指针，使用void*表示可以是任意类型的键
+			void* value; // 指向值的指针，使用void*表示可以是任意类型的值
 		};
-
+		// 指向item_t数组的指针，用于存储哈希表中的所有项
 		item_t* _items;
+		// 哈希表的容量，即_items数组可以存储的项的最大数量
 		size_t _capacity;
-
+		// 当前哈希表中存储的项的数量
 		size_t _count;
-
+		// 一个成员函数，用于在需要时重新调整哈希表的大小
 		bool rehash(size_t count);
-
+		// 一个成员函数，用于根据给定的键查找对应的项
 		item_t* get_item(const void* key)
 		{
+			// 确保传入的键不为空
 			assert(key);
+			// 确保哈希表的容量大于0
 			assert(_capacity > 0);
-
+			// 计算哈希表容量的掩码，用于将哈希值限制在哈希表的范围内
 			size_t hashmod = _capacity - 1;
+			// 计算给定键的初始桶（bucket）位置
 			size_t bucket = hash(key) & hashmod;
-
+			// 使用二次探测法解决哈希冲突
 			for (size_t probe = 0; probe <= hashmod; ++probe)
 			{
+				// 引用当前桶中的项
 				item_t& probe_item = _items[bucket];
-
+				// 如果找到了键匹配的项，或者该位置为空（表示哈希表中没有更多的项），则返回该项的指针
 				if (probe_item.key == key || probe_item.key == 0)
 					return &probe_item;
 
 				// hash collision, quadratic probing
+				// 计算下一个探测的位置，使用二次探测法
 				bucket = (bucket + probe + 1) & hashmod;
 			}
-
+			// 断言失败，表示哈希表已满（理论上应该不可达，因为哈希表在满之前会进行扩容）
 			assert(false && "Hash table is full"); // unreachable
+			// 如果上面的断言失败，则返回0（实际上由于断言的存在，这行代码不会被执行）
 			return 0;
 		}
 
