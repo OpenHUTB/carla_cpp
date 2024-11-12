@@ -140,17 +140,28 @@ namespace ros2 {
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
     _impl_info->_init = true;
   }
-
+  /**
+ * @brief 初始化深度相机发布者。
+ *
+ * @return true 如果初始化成功，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::Init() {
     return InitImage() && InitInfo();
   }
-
+  /**
+ * @brief 初始化深度图像数据。
+ *
+ * @return true 如果初始化成功，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::InitImage() {
     if (_impl->_type == nullptr) {
+        /**
+         * @brief 输出错误信息，表示类型支持无效。
+         */
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    // 设置域参与者的QoS策略，并为其命名
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
@@ -159,15 +170,16 @@ namespace ros2 {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    // 在域参与者中注册类型
     _impl->_type.register_type(_impl->_participant);
-
+    // 设置发布者的QoS策略，并创建发布者
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    // 设置主题的QoS策略，并创建主题
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/image"};
     const std::string base { "rt/carla/" };
@@ -181,7 +193,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    // 设置数据写入器的QoS策略，并创建数据写入器
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
@@ -190,16 +202,24 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    // 设置帧ID
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 初始化相机信息发布者的DDS相关组件。
+ *
+ * 该函数负责为相机信息创建DDS域参与者、发布者、主题和数据写入器，并处理可能出现的错误。
+ *
+ * @return true 如果所有组件都成功创建，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::InitInfo() {
+      // 检查类型支持是否有效
     if (_impl_info->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    // 设置域参与者的QoS策略，并为其命名
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
@@ -208,15 +228,16 @@ namespace ros2 {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    // 在域参与者中注册类型
     _impl_info->_type.register_type(_impl_info->_participant);
-
+    // 设置发布者的QoS策略，并创建发布者
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl_info->_publisher = _impl_info->_participant->create_publisher(pubqos, nullptr);
     if (_impl_info->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    // 设置主题的QoS策略，并创建主题
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/camera_info"};
     const std::string base { "rt/carla/" };
@@ -230,6 +251,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
+    // 设置数据写入器的QoS策略（使用默认值），并创建数据写入器
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl_info->_listener._impl.get();
     _impl_info->_datawriter = _impl_info->_publisher->create_datawriter(_impl_info->_topic, wqos, listener);
@@ -237,12 +259,19 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-
+    // 设置帧ID
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 发布深度图像和相机信息。
+ *
+ * 该函数负责调用其他函数来发布深度图像和相机信息。
+ *
+ * @return true 如果深度图像和相机信息都成功发布，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::Publish() {
+      // 发布深度图像和相机信息，并返回结果
     return PublishImage() && PublishInfo();
   }
 
