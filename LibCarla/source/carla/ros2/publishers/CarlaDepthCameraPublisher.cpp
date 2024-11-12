@@ -533,18 +533,29 @@ namespace ros2 {
     header.frame_id(_frame_id);
     _impl_info->_info.header(header);
   }
-
+  /**
+ * @brief CarlaDepthCameraPublisher类的构造函数
+ *
+ * 初始化CarlaDepthCameraPublisher对象，创建_impl和_impl_info智能指针成员变量，并设置ROS节点名和父节点名。
+ *
+ * @param ros_name ROS节点名
+ * @param parent 父节点名
+ */
   CarlaDepthCameraPublisher::CarlaDepthCameraPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaDepthCameraPublisherImpl>()),
   _impl_info(std::make_shared<CarlaCameraInfoPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaDepthCameraPublisher类的析构函数
+ *
+ * 清理CarlaDepthCameraPublisher对象，释放_impl和_impl_info成员变量所占用的资源。
+ */
   CarlaDepthCameraPublisher::~CarlaDepthCameraPublisher() {
       if (!_impl)
           return;
-
+      // 清理_impl相关的资源
       if (_impl->_datawriter)
           _impl->_publisher->delete_datawriter(_impl->_datawriter);
 
@@ -559,7 +570,7 @@ namespace ros2 {
 
       if (!_impl_info)
         return;
-
+      // 清理_impl_info相关的资源
       if (_impl_info->_datawriter)
           _impl_info->_publisher->delete_datawriter(_impl_info->_datawriter);
 
@@ -572,7 +583,13 @@ namespace ros2 {
       if (_impl_info->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl_info->_participant);
   }
-
+  /**
+ * @brief CarlaDepthCameraPublisher类的拷贝构造函数
+ *
+ * 创建一个新的CarlaDepthCameraPublisher对象，作为另一个CarlaDepthCameraPublisher对象的副本。
+ *
+ * @param other 要拷贝的CarlaDepthCameraPublisher对象
+ */
   CarlaDepthCameraPublisher::CarlaDepthCameraPublisher(const CarlaDepthCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -580,7 +597,14 @@ namespace ros2 {
     _impl = other._impl;
     _impl_info = other._impl_info;
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将另一个CarlaDepthCameraPublisher对象的值赋给当前对象。
+ *
+ * @param other 要赋值的CarlaDepthCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaDepthCameraPublisher& CarlaDepthCameraPublisher::operator=(const CarlaDepthCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -590,7 +614,13 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaDepthCameraPublisher类的移动构造函数
+ *
+ * 创建一个新的CarlaDepthCameraPublisher对象，通过移动另一个CarlaDepthCameraPublisher对象的资源来初始化。
+ *
+ * @param other 要移动的CarlaDepthCameraPublisher对象
+ */
   CarlaDepthCameraPublisher::CarlaDepthCameraPublisher(CarlaDepthCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
@@ -599,7 +629,14 @@ namespace ros2 {
     _impl_info = std::move(other._impl_info);
 
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 将另一个CarlaDepthCameraPublisher对象的资源移动到当前对象。
+ *
+ * @param other 要移动的CarlaDepthCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaDepthCameraPublisher& CarlaDepthCameraPublisher::operator=(CarlaDepthCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
