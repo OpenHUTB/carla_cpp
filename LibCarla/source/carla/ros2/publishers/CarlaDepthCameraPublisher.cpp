@@ -274,138 +274,210 @@ namespace ros2 {
       // 发布深度图像和相机信息，并返回结果
     return PublishImage() && PublishInfo();
   }
-
+  /**
+ * @brief 发布深度图像
+ *
+ * 该函数尝试通过FastRTPS发布深度图像数据。
+ * 如果发布成功，返回true；否则根据返回的错误码输出相应的错误信息，并返回false。
+ *
+ * @return bool 如果图像成功发布，则返回true；否则返回false。
+ */
   bool CarlaDepthCameraPublisher::PublishImage() {
+      /// @var instance_handle
+    /// 用于存储FastRTPS实例句柄的变量。
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /// @var rcode
+    /// 存储_datawriter->write方法返回的结果码。
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_image, instance_handle);
+    // 检查返回码，并根据不同的返回码进行相应处理
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /// @return 如果返回码为RETCODE_OK，表示发布成功，返回true。
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @todo 输出未知错误码信息，并返回false。
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 发布深度相机信息
+ *
+ * 此函数尝试通过Fast RTPS发布深度相机的信息。
+ * 如果发布成功，则返回true；否则，根据返回码输出相应的错误信息并返回false。
+ *
+ * @return bool 发布成功返回true，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::PublishInfo() {
+      /// @brief Fast RTPS实例句柄
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /// @brief 调用数据写入函数并获取返回码
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl_info->_datawriter->write(&_impl_info->_info, instance_handle);
+    /// @brief 检查返回码，并处理各种可能的错误情况
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /// @brief 发布成功
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @brief 发生一般错误
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @brief 请求的操作不被支持
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @brief 提供了错误的参数
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @brief 调用前的条件未满足
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @brief 资源不足
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @brief 实体未启用
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @brief 试图修改不可变的策略
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @brief 策略不一致
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @brief 实体已被删除
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @brief 操作超时
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @brief 没有数据
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @brief 非法操作
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @brief 安全策略不允许的操作
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @brief 未知错误
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 将传入的图像数据复制到一个新的vector中，并调用SetData函数来设置图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 指向图像数据的指针，数据格式为BGRA，每个像素4个字节
+ */
   void CarlaDepthCameraPublisher::SetImageData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, const uint8_t* data) {    std::vector<uint8_t> vector_data;
     const size_t size = height * width * 4;
     vector_data.resize(size);
     std::memcpy(&vector_data[0], &data[0], size);
     SetData(seconds, nanoseconds,height, width, std::move(vector_data));
   }
-
+  /**
+ * @brief 设置感兴趣区域（ROI）信息
+ *
+ * 设置图像的感兴趣区域（ROI），包括偏移量、高度、宽度以及是否进行校正。
+ *
+ * @param x_offset ROI的X轴偏移量
+ * @param y_offset ROI的Y轴偏移量
+ * @param height ROI的高度
+ * @param width ROI的宽度
+ * @param do_rectify 是否对ROI进行校正
+ */
   void CarlaDepthCameraPublisher::SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify) {
     sensor_msgs::msg::RegionOfInterest roi;
     roi.x_offset(x_offset);
@@ -415,7 +487,17 @@ namespace ros2 {
     roi.do_rectify(do_rectify);
     _impl_info->_info.roi(roi);
   }
-
+  /**
+ * @brief 设置图像数据及其元数据
+ *
+ * 设置图像的时间戳、帧ID、宽度、高度、编码方式、字节序、步长以及图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 包含图像数据的vector，数据格式为BGRA，每个像素4个字节
+ */
   void CarlaDepthCameraPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -433,7 +515,14 @@ namespace ros2 {
     _impl->_image.step(_impl->_image.width() * sizeof(uint8_t) * 4);
     _impl->_image.data(std::move(data)); //https://github.com/eProsima/Fast-DDS/issues/2330
   }
-
+  /**
+ * @brief 设置相机信息数据的时间戳
+ *
+ * 设置相机信息的时间戳和帧ID。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ */
   void CarlaDepthCameraPublisher::SetCameraInfoData(int32_t seconds, uint32_t nanoseconds) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -444,18 +533,29 @@ namespace ros2 {
     header.frame_id(_frame_id);
     _impl_info->_info.header(header);
   }
-
+  /**
+ * @brief CarlaDepthCameraPublisher类的构造函数
+ *
+ * 初始化CarlaDepthCameraPublisher对象，创建_impl和_impl_info智能指针成员变量，并设置ROS节点名和父节点名。
+ *
+ * @param ros_name ROS节点名
+ * @param parent 父节点名
+ */
   CarlaDepthCameraPublisher::CarlaDepthCameraPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaDepthCameraPublisherImpl>()),
   _impl_info(std::make_shared<CarlaCameraInfoPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaDepthCameraPublisher类的析构函数
+ *
+ * 清理CarlaDepthCameraPublisher对象，释放_impl和_impl_info成员变量所占用的资源。
+ */
   CarlaDepthCameraPublisher::~CarlaDepthCameraPublisher() {
       if (!_impl)
           return;
-
+      // 清理_impl相关的资源
       if (_impl->_datawriter)
           _impl->_publisher->delete_datawriter(_impl->_datawriter);
 
@@ -470,7 +570,7 @@ namespace ros2 {
 
       if (!_impl_info)
         return;
-
+      // 清理_impl_info相关的资源
       if (_impl_info->_datawriter)
           _impl_info->_publisher->delete_datawriter(_impl_info->_datawriter);
 
@@ -483,7 +583,13 @@ namespace ros2 {
       if (_impl_info->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl_info->_participant);
   }
-
+  /**
+ * @brief CarlaDepthCameraPublisher类的拷贝构造函数
+ *
+ * 创建一个新的CarlaDepthCameraPublisher对象，作为另一个CarlaDepthCameraPublisher对象的副本。
+ *
+ * @param other 要拷贝的CarlaDepthCameraPublisher对象
+ */
   CarlaDepthCameraPublisher::CarlaDepthCameraPublisher(const CarlaDepthCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -491,7 +597,14 @@ namespace ros2 {
     _impl = other._impl;
     _impl_info = other._impl_info;
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将另一个CarlaDepthCameraPublisher对象的值赋给当前对象。
+ *
+ * @param other 要赋值的CarlaDepthCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaDepthCameraPublisher& CarlaDepthCameraPublisher::operator=(const CarlaDepthCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -501,7 +614,13 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaDepthCameraPublisher类的移动构造函数
+ *
+ * 创建一个新的CarlaDepthCameraPublisher对象，通过移动另一个CarlaDepthCameraPublisher对象的资源来初始化。
+ *
+ * @param other 要移动的CarlaDepthCameraPublisher对象
+ */
   CarlaDepthCameraPublisher::CarlaDepthCameraPublisher(CarlaDepthCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
@@ -510,7 +629,14 @@ namespace ros2 {
     _impl_info = std::move(other._impl_info);
 
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 将另一个CarlaDepthCameraPublisher对象的资源移动到当前对象。
+ *
+ * @param other 要移动的CarlaDepthCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaDepthCameraPublisher& CarlaDepthCameraPublisher::operator=(CarlaDepthCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
