@@ -274,65 +274,92 @@ namespace ros2 {
       // 发布深度图像和相机信息，并返回结果
     return PublishImage() && PublishInfo();
   }
-
+  /**
+ * @brief 发布深度图像
+ *
+ * 该函数尝试通过FastRTPS发布深度图像数据。
+ * 如果发布成功，返回true；否则根据返回的错误码输出相应的错误信息，并返回false。
+ *
+ * @return bool 如果图像成功发布，则返回true；否则返回false。
+ */
   bool CarlaDepthCameraPublisher::PublishImage() {
+      /// @var instance_handle
+    /// 用于存储FastRTPS实例句柄的变量。
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /// @var rcode
+    /// 存储_datawriter->write方法返回的结果码。
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_image, instance_handle);
+    // 检查返回码，并根据不同的返回码进行相应处理
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /// @return 如果返回码为RETCODE_OK，表示发布成功，返回true。
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @todo 输出错误信息，并返回false。
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @todo 输出未知错误码信息，并返回false。
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
