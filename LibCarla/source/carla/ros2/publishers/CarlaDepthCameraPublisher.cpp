@@ -77,22 +77,64 @@ namespace ros2 {
      */
     sensor_msgs::msg::Image _image {};
   };
-
+  /**
+ * @struct CarlaCameraInfoPublisherImpl
+ * @brief CARLA相机信息发布者实现结构体。
+ *
+ * 该结构体包含了与DDS相关的成员变量，用于发布相机信息数据。
+ */
   struct CarlaCameraInfoPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+    * @brief DDS数据写入器指针。
+    */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于相机信息消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
+    /**
+     * @brief CARLA监听器实例。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 初始化标志。
+     */
     bool _init {false};
+    /**
+     * @brief 相机信息消息实例。
+     */
     sensor_msgs::msg::CameraInfo _info {};
   };
-
+  /**
+ * @brief 检查深度相机发布者是否已初始化。
+ *
+ * @return true 如果已初始化，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::HasBeenInitialized() const {
     return _impl_info->_init;
   }
-
+  /**
+ * @brief 初始化深度相机信息数据。
+ *
+ * @param x_offset X轴偏移量。
+ * @param y_offset Y轴偏移量。
+ * @param height 图像高度。
+ * @param width 图像宽度。
+ * @param fov 视野角度。
+ * @param do_rectify 是否进行校正。
+ */
   void CarlaDepthCameraPublisher::InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify) {
     _impl_info->_info = std::move(sensor_msgs::msg::CameraInfo(height, width, fov));
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
