@@ -25,20 +25,56 @@
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 引入数据写入器QoS配置类
 #include <fastdds/dds/publisher/DataWriterListener.hpp>// 引入数据写入器监听器类
 
+/**
+ * @namespace carla::ros2
+ * @brief 命名空间，用于封装CARLA与ROS 2之间的集成代码。
+ */
 
+ /**
+  * @brief 命名空间别名定义，简化eprosima::fastdds::dds的引用。
+  */
 namespace carla {
 namespace ros2 {
 
   namespace efd = eprosima::fastdds::dds;
+  /**
+ * @brief 类型别名定义，简化eprosima::fastrtps::types::ReturnCode_t的引用。
+ */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+ * @struct CarlaDepthCameraPublisherImpl
+ * @brief CARLA深度相机发布者实现结构体。
+ *
+ * 该结构体包含了与DDS（Data Distribution Service）相关的成员变量，用于发布深度图像数据。
+ */
   struct CarlaDepthCameraPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于深度图像消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };
+    /**
+     * @brief CARLA监听器实例。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 深度图像消息实例。
+     */
     sensor_msgs::msg::Image _image {};
   };
 
