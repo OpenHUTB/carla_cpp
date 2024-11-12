@@ -1,77 +1,167 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaDepthCameraPublisher.h"
+#include "CarlaDepthCameraPublisher.h"// 引入Carla深度相机发布者类的声明
 
-#include <string>
-
+#include <string>// 引入字符串处理相关的功能
+// 引入CARLA ROS 2桥接器中定义的图像和相机信息类型支持
 #include "carla/ros2/types/ImagePubSubTypes.h"
 #include "carla/ros2/types/CameraInfoPubSubTypes.h"
+// 引入CARLA ROS 2桥接器中定义的监听器类，用于处理CARLA仿真环境中的事件
 #include "carla/ros2/listeners/CarlaListener.h"
-
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+// 引入Fast-DDS库中的相关类和类型定义
+#include <fastdds/dds/domain/DomainParticipant.hpp>// 引入域参与者类
+#include <fastdds/dds/publisher/Publisher.hpp>// 引入发布者类
+#include <fastdds/dds/topic/Topic.hpp>// 引入主题类
+#include <fastdds/dds/publisher/DataWriter.hpp>// 引入数据写入器类
+#include <fastdds/dds/topic/TypeSupport.hpp>// 引入类型支持类
+// 引入Fast-DDS库中的QoS配置相关的类和类型定义
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>// 引入域参与者QoS配置类
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>// 引入域参与者工厂类
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp>// 引入发布者QoS配置类
+#include <fastdds/dds/topic/qos/TopicQos.hpp>// 引入主题QoS配置类
+// 引入Fast-RTPS库中的参与者属性和QoS策略相关的类和类型定义
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 引入数据写入器QoS配置类
+#include <fastdds/dds/publisher/DataWriterListener.hpp>// 引入数据写入器监听器类
 
+/**
+ * @namespace carla::ros2
+ * @brief 命名空间，用于封装CARLA与ROS 2之间的集成代码。
+ */
 
+ /**
+  * @brief 命名空间别名定义，简化eprosima::fastdds::dds的引用。
+  */
 namespace carla {
 namespace ros2 {
 
   namespace efd = eprosima::fastdds::dds;
+  /**
+ * @brief 类型别名定义，简化eprosima::fastrtps::types::ReturnCode_t的引用。
+ */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+ * @struct CarlaDepthCameraPublisherImpl
+ * @brief CARLA深度相机发布者实现结构体。
+ *
+ * 该结构体包含了与DDS（Data Distribution Service）相关的成员变量，用于发布深度图像数据。
+ */
   struct CarlaDepthCameraPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于深度图像消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };
+    /**
+     * @brief CARLA监听器实例。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 深度图像消息实例。
+     */
     sensor_msgs::msg::Image _image {};
   };
-
+  /**
+ * @struct CarlaCameraInfoPublisherImpl
+ * @brief CARLA相机信息发布者实现结构体。
+ *
+ * 该结构体包含了与DDS相关的成员变量，用于发布相机信息数据。
+ */
   struct CarlaCameraInfoPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+    * @brief DDS数据写入器指针。
+    */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于相机信息消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
+    /**
+     * @brief CARLA监听器实例。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 初始化标志。
+     */
     bool _init {false};
+    /**
+     * @brief 相机信息消息实例。
+     */
     sensor_msgs::msg::CameraInfo _info {};
   };
-
+  /**
+ * @brief 检查深度相机发布者是否已初始化。
+ *
+ * @return true 如果已初始化，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::HasBeenInitialized() const {
     return _impl_info->_init;
   }
-
+  /**
+ * @brief 初始化深度相机信息数据。
+ *
+ * @param x_offset X轴偏移量。
+ * @param y_offset Y轴偏移量。
+ * @param height 图像高度。
+ * @param width 图像宽度。
+ * @param fov 视野角度。
+ * @param do_rectify 是否进行校正。
+ */
   void CarlaDepthCameraPublisher::InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify) {
     _impl_info->_info = std::move(sensor_msgs::msg::CameraInfo(height, width, fov));
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
     _impl_info->_init = true;
   }
-
+  /**
+ * @brief 初始化深度相机发布者。
+ *
+ * @return true 如果初始化成功，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::Init() {
     return InitImage() && InitInfo();
   }
-
+  /**
+ * @brief 初始化深度图像数据。
+ *
+ * @return true 如果初始化成功，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::InitImage() {
     if (_impl->_type == nullptr) {
+        /**
+         * @brief 输出错误信息，表示类型支持无效。
+         */
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    // 设置域参与者的QoS策略，并为其命名
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
@@ -80,15 +170,16 @@ namespace ros2 {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    // 在域参与者中注册类型
     _impl->_type.register_type(_impl->_participant);
-
+    // 设置发布者的QoS策略，并创建发布者
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    // 设置主题的QoS策略，并创建主题
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/image"};
     const std::string base { "rt/carla/" };
@@ -102,7 +193,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    // 设置数据写入器的QoS策略，并创建数据写入器
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
@@ -111,16 +202,24 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    // 设置帧ID
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 初始化相机信息发布者的DDS相关组件。
+ *
+ * 该函数负责为相机信息创建DDS域参与者、发布者、主题和数据写入器，并处理可能出现的错误。
+ *
+ * @return true 如果所有组件都成功创建，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::InitInfo() {
+      // 检查类型支持是否有效
     if (_impl_info->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    // 设置域参与者的QoS策略，并为其命名
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
@@ -129,15 +228,16 @@ namespace ros2 {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    // 在域参与者中注册类型
     _impl_info->_type.register_type(_impl_info->_participant);
-
+    // 设置发布者的QoS策略，并创建发布者
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl_info->_publisher = _impl_info->_participant->create_publisher(pubqos, nullptr);
     if (_impl_info->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    // 设置主题的QoS策略，并创建主题
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/camera_info"};
     const std::string base { "rt/carla/" };
@@ -151,6 +251,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
+    // 设置数据写入器的QoS策略（使用默认值），并创建数据写入器
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl_info->_listener._impl.get();
     _impl_info->_datawriter = _impl_info->_publisher->create_datawriter(_impl_info->_topic, wqos, listener);
@@ -158,12 +259,19 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-
+    // 设置帧ID
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 发布深度图像和相机信息。
+ *
+ * 该函数负责调用其他函数来发布深度图像和相机信息。
+ *
+ * @return true 如果深度图像和相机信息都成功发布，否则返回false。
+ */
   bool CarlaDepthCameraPublisher::Publish() {
+      // 发布深度图像和相机信息，并返回结果
     return PublishImage() && PublishInfo();
   }
 
