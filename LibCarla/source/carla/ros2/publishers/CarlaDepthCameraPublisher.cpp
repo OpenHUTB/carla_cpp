@@ -1,28 +1,29 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaDepthCameraPublisher.h"
+#include "CarlaDepthCameraPublisher.h"// 引入Carla深度相机发布者类的声明
 
-#include <string>
-
+#include <string>// 引入字符串处理相关的功能
+// 引入CARLA ROS 2桥接器中定义的图像和相机信息类型支持
 #include "carla/ros2/types/ImagePubSubTypes.h"
 #include "carla/ros2/types/CameraInfoPubSubTypes.h"
+// 引入CARLA ROS 2桥接器中定义的监听器类，用于处理CARLA仿真环境中的事件
 #include "carla/ros2/listeners/CarlaListener.h"
-
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+// 引入Fast-DDS库中的相关类和类型定义
+#include <fastdds/dds/domain/DomainParticipant.hpp>// 引入域参与者类
+#include <fastdds/dds/publisher/Publisher.hpp>// 引入发布者类
+#include <fastdds/dds/topic/Topic.hpp>// 引入主题类
+#include <fastdds/dds/publisher/DataWriter.hpp>// 引入数据写入器类
+#include <fastdds/dds/topic/TypeSupport.hpp>// 引入类型支持类
+// 引入Fast-DDS库中的QoS配置相关的类和类型定义
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>// 引入域参与者QoS配置类
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>// 引入域参与者工厂类
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp>// 引入发布者QoS配置类
+#include <fastdds/dds/topic/qos/TopicQos.hpp>// 引入主题QoS配置类
+// 引入Fast-RTPS库中的参与者属性和QoS策略相关的类和类型定义
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 引入数据写入器QoS配置类
+#include <fastdds/dds/publisher/DataWriterListener.hpp>// 引入数据写入器监听器类
 
 
 namespace carla {
