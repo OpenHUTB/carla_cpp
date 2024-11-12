@@ -348,14 +348,14 @@ static void AddRecommendedValuesForActorRoleName(
 // 定义一个函数，用于为传感器的参与者名称添加推荐值
 static void AddRecommendedValuesForSensorRoleNames(FActorDefinition& Definition)
 {
-    // 为演员定义的参与者名称添加推荐的传感器位置名称
+    // 为参与者定义的参与者名称添加推荐的传感器位置名称
     AddRecommendedValuesForActorRoleName(Definition, { TEXT("front"), TEXT("back"), TEXT("left"), TEXT("right"), TEXT("front_left"), TEXT("front_right"), TEXT("back_left"), TEXT("back_right") });
 }
 
 // 定义一个函数，用于为传感器添加变化属性
 static void AddVariationsForSensor(FActorDefinition& Def)
 {
-    // 创建一个演员变化对象
+    // 创建一个参与者变化对象
     FActorVariation Tick;
 
     // 设置变化对象的ID为"sensor_tick"
@@ -370,7 +370,7 @@ static void AddVariationsForSensor(FActorDefinition& Def)
     // 设置是否限制只能使用推荐值，这里为false，表示不限制
     Tick.bRestrictToRecommended = false;
 
-    // 将变化对象添加到演员定义的变化列表中
+    // 将变化对象添加到参与者定义的变化列表中
     Def.Variations.Emplace(Tick);
 }
 
@@ -392,7 +392,7 @@ static void AddVariationsForTrigger(FActorDefinition& Def)
     // 设置是否限制只能使用推荐值，这里为false，表示不限制
     Friction.bRestrictToRecommended = false;
 
-    // 将摩擦力变化对象添加到演员定义的变化列表中
+    // 将摩擦力变化对象添加到参与者定义的变化列表中
     Def.Variations.Emplace(Friction);
 
     // Extent（范围）
@@ -416,7 +416,7 @@ static void AddVariationsForTrigger(FActorDefinition& Def)
         // 设置是否限制只能使用推荐值，这里为false，表示不限制
         ExtentCoordinate.bRestrictToRecommended = false;
 
-        // 将变化对象添加到演员定义的变化列表中
+        // 将变化对象添加到参与者定义的变化列表中
         Def.Variations.Emplace(ExtentCoordinate);
     }
 }
