@@ -533,31 +533,67 @@ void UActorBlueprintFunctionLibrary::MakeCameraDefinition(
     // 设置是否限制用户只能使用推荐的值，这里设置为false，表示用户可以选择其他值
     FOV.bRestrictToRecommended = false; 
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+    // 关于分辨率
+    // 定义图像的宽度（X轴）变化的结构体
+    FActorVariation ResX;
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+    // 设置该变化项的标识符为"image_size_x"
+    ResX.Id = TEXT("image_size_x");
 
-  // Lens parameters
-  FActorVariation LensCircleFalloff;
-  LensCircleFalloff.Id = TEXT("lens_circle_falloff");
-  LensCircleFalloff.Type = EActorAttributeType::Float;
-  LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
-  LensCircleFalloff.bRestrictToRecommended = false;
+    // 设置该变化项的类型为整数（Int）
+    ResX.Type = EActorAttributeType::Int;
 
-  FActorVariation LensCircleMultiplier;
-  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
-  LensCircleMultiplier.Type = EActorAttributeType::Float;
-  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
-  LensCircleMultiplier.bRestrictToRecommended = false;
+    // 设置推荐的值为"800"
+    ResX.RecommendedValues = { TEXT("800") };
+
+    // 设置是否限制用户只能使用推荐值，这里设置为false，意味着用户可以选择其他值
+    ResX.bRestrictToRecommended = false;
+
+    // 定义图像的高度（Y轴）变化的结构体
+    FActorVariation ResY;
+
+    // 设置该变化项的标识符为"image_size_y"
+    ResY.Id = TEXT("image_size_y");
+
+    // 设置该变化项的类型为整数（Int）
+    ResY.Type = EActorAttributeType::Int;
+
+    // 设置推荐的值为"600"（同样以文本形式给出，但实际为整数）
+    ResY.RecommendedValues = { TEXT("600") };
+
+    // 设置是否限制用户只能使用推荐值，这里同样设置为false
+    ResY.bRestrictToRecommended = false;
+
+    // 镜头参数
+    // 定义镜头圆形衰减参数的结构体
+    FActorVariation LensCircleFalloff;
+
+    // 设置该变化项的标识符为"lens_circle_falloff"
+    LensCircleFalloff.Id = TEXT("lens_circle_falloff");
+
+    // 设置该变化项的类型为浮点数（Float）
+    LensCircleFalloff.Type = EActorAttributeType::Float;
+
+    // 设置推荐的值为"5.0"
+    LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
+
+    // 设置是否限制用户只能使用推荐值，这里设置为false
+    LensCircleFalloff.bRestrictToRecommended = false;
+
+    // 定义镜头圆形倍增参数的结构体
+    FActorVariation LensCircleMultiplier;
+
+    // 设置该变化项的标识符为"lens_circle_multiplier"
+    LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
+
+    // 设置该变化项的类型为浮点数（Float）
+    LensCircleMultiplier.Type = EActorAttributeType::Float;
+
+    // 设置推荐的值为"0.0"（以文本形式给出，但实际为浮点数）
+    LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否限制用户只能使用推荐值，这里同样设置为false
+    LensCircleMultiplier.bRestrictToRecommended = false;
 
   FActorVariation LensK;
   LensK.Id = TEXT("lens_k");
