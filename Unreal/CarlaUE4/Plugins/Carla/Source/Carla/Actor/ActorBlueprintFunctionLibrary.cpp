@@ -421,34 +421,42 @@ static void AddVariationsForTrigger(FActorDefinition& Def)
     }
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，用于创建一个通用的Actor定义。
+// 它接收三个参数：分类（Category）、类型（Type）和ID（Id），并返回一个参与者对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeGenericDefinition(
-    const FString &Category,
-    const FString &Type,
-    const FString &Id)
+    const FString& Category, // 分类名称，例如“sensor”
+    const FString& Type,     // 参与者的类型
+    const FString& Id)       // 参与者的唯一标识符
 {
-  FActorDefinition Definition;
-  FillIdAndTags(Definition, Category, Type, Id);
-  return Definition;
+    FActorDefinition Definition; // 创建一个参与者对象，用于存储Actor的定义
+    FillIdAndTags(Definition, Category, Type, Id); // 调用FillIdAndTags函数，填充定义中的ID和标签
+    return Definition; // 返回填充后的定义
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，专门用于创建传感器类型的Actor定义。
+// 它接收两个参数：类型（Type）和ID（Id），并返回一个FActorDefinition对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeGenericSensorDefinition(
-    const FString &Type,
-    const FString &Id)
+    const FString& Type, // 传感器的类型
+    const FString& Id)  // 传感器的唯一标识符
 {
-  auto Definition = MakeGenericDefinition(TEXT("sensor"), Type, Id);
-  AddRecommendedValuesForSensorRoleNames(Definition);
-  return Definition;
+    auto Definition = MakeGenericDefinition(TEXT("sensor"), Type, Id); // 调用MakeGenericDefinition函数，创建一个分类为“sensor”的通用定义
+    AddRecommendedValuesForSensorRoleNames(Definition); // 调用AddRecommendedValuesForSensorRoleNames函数，为定义添加建议的传感器角色名称值
+    return Definition; // 返回填充后的定义
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，用于创建一个相机Actor的定义。
+// 它接收两个参数：ID（Id）和一个布尔值（bEnableModifyingPostProcessEffects），指示是否允许修改后处理效果。
+// 函数返回一个FActorDefinition对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeCameraDefinition(
-    const FString &Id,
-    const bool bEnableModifyingPostProcessEffects)
+    const FString& Id, // 相机的唯一标识符
+    const bool bEnableModifyingPostProcessEffects) // 是否允许修改后处理效果的标志
 {
-  FActorDefinition Definition;
-  bool Success;
-  MakeCameraDefinition(Id, bEnableModifyingPostProcessEffects, Success, Definition);
-  check(Success);
-  return Definition;
+    FActorDefinition Definition; // 创建一个参与者对象，用于存储相机的定义
+    bool Success; // 定义一个布尔变量，用于指示定义创建是否成功
+    // 调用一个重载版本的MakeCameraDefinition函数（未在代码片段中给出），该版本接受一个额外的Success参数用于输出操作结果
+    MakeCameraDefinition(Id, bEnableModifyingPostProcessEffects, Success, Definition);
+    check(Success); // 使用check宏确保定义创建成功，如果失败则触发断言
+    return Definition; // 返回填充后的定义
 }
 
 void UActorBlueprintFunctionLibrary::MakeCameraDefinition(
