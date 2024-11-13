@@ -34,7 +34,7 @@ namespace rpc {
         << ", gear=" << std::to_string(control.gear) << ')';
     return out;
   }
-  //������������Ļ���������Ϣ����������(throttle)��������ת��(steer)��ɲ��(brake)����ɲ(hand_brake)������(reverse)���Ƿ��ֶ�����(manual_gear_shift)�͵�ǰ��λ(gear)
+  //用于输出车辆的基本控制信息，包括油门(throttle)、方向盘转角(steer)、刹车(brake)、手刹(hand_brake)、倒车(reverse)、是否手动换挡(manual_gear_shift)和当前挡位(gear)
 
   std::ostream& operator<<(std::ostream& out, const VehicleAckermannControl& control) {
       out << "VehicleAckermannControl(steer=" << std::to_string(control.steer)
@@ -44,7 +44,7 @@ namespace rpc {
           << ", jerk=" << std::to_string(control.jerk) << ')';
       return out;
   }
-  //���Ackermannת��ģ�͵ĳ���������Ϣ������������ת��(steer)��ת���ٶ�(steer_speed)���ٶ�(speed)�����ٶ�(acceleration)�ͼӼ��ٶ�(jerk)
+  //输出Ackermann转向模型的车辆控制信息，包括方向盘转角(steer)、转向速度(steer_speed)、速度(speed)、加速度(acceleration)和加加速度(jerk)
 
   std::ostream& operator<<(std::ostream& out, const WalkerControl& control) {
       out << "WalkerControl(direction=" << control.direction
@@ -52,7 +52,7 @@ namespace rpc {
           << ", jump=" << boolalpha(control.jump) << ')';
       return out;
   }
-  //������˵Ŀ�����Ϣ����������(direction)���ٶ�(speed)���Ƿ���Ծ(jump)
+  //输出行人的控制信息，包括方向(direction)、速度(speed)和是否跳跃(jump)
 
   std::ostream& operator<<(std::ostream& out, const WalkerBoneControlIn& control) {
       out << "WalkerBoneControlIn(bone_transforms(";
@@ -63,13 +63,13 @@ namespace rpc {
       out << "))";
       return out;
   }
-  //��������˹������Ƶ�������Ϣ������һϵ�й����ı任(bone_transforms)��ÿ���任�����������ƺͱ任��Ϣ��
+  //输出对行人骨骼控制的输入信息，包括一系列骨骼的变换(bone_transforms)，每个变换包含骨骼名称和变换信息。
 
   std::ostream& operator<<(std::ostream& out, const BoneTransformDataOut& data) {
       out << "BoneTransformDataOut(name=" << data.bone_name << ", world=" << data.world << ", component=" << data.component << ", relative=" << data.relative << ')';
       return out;
   }
-  //�����λ�������Ƶ���Ϣ��������λ��(ratio)��������(down_ratio)��������(up_ratio)
+  //输出挡位物理控制的信息，包括挡位比(ratio)、降挡比(down_ratio)和升挡比(up_ratio)
 
   std::ostream& operator<<(std::ostream& out, const WalkerBoneControlOut& control) {
       out << "WalkerBoneControlOut(bone_transforms(";
@@ -80,7 +80,7 @@ namespace rpc {
       out << "))";
       return out;
   }
-  //��������������Ƶ���Ϣ��������̥Ħ����(tire_friction)��������(damping_rate)�����ת���(max_steer_angle)���뾶(radius)�����ɲ��Ť��(max_brake_torque)�������ɲŤ��(max_handbrake_torque)������ն����ֵ(lat_stiff_max_load)������ն�ֵ(lat_stiff_value)������ն�ֵ(long_stiff_value)�ͳ���λ��(position)
+  //输出车轮物理控制的信息，包括轮胎摩擦力(tire_friction)、阻尼率(damping_rate)、最大转向角(max_steer_angle)、半径(radius)、最大刹车扭矩(max_brake_torque)、最大手刹扭矩(max_handbrake_torque)、横向刚度最大值(lat_stiff_max_load)、横向刚度值(lat_stiff_value)、纵向刚度值(long_stiff_value)和车轮位置(position)
 
   std::ostream& operator<<(std::ostream& out, const GearPhysicsControl& control) {
       out << "GearPhysicsControl(ratio=" << std::to_string(control.ratio)
@@ -88,8 +88,9 @@ namespace rpc {
           << ", up_ratio=" << std::to_string(control.up_ratio) << ')';
       return out;
   }
-  //��������������Ƶ���Ϣ������Ť������(torque_curve)�����ת��(max_rpm)��ת������(moi)����ͬ����µ������ʡ��Ƿ�ʹ���Զ�����(use_gear_autobox)������ʱ��(gear_switch_time)�������ǿ��(clutch_strength)�����մ�����(final_ratio)��ǰ��������(forward_gears)������(mass)������ϵ��(drag_coefficient)������(center_of_mass)��ת������(steering_curve)��������Ϣ(wheels)���Ƿ�ʹ��ɨ�ӳ�����ײ(use_sweep_wheel_collision)
+  //输出车辆物理控制的信息，包括扭矩曲线(torque_curve)、最大转速(max_rpm)、转动惯量(moi)、不同情况下的阻尼率、是否使用自动换挡(use_gear_autobox)、换挡时间(gear_switch_time)、离合器强度(clutch_strength)、最终传动比(final_ratio)、前进挡数量(forward_gears)、质量(mass)、阻力系数(drag_coefficient)、质心(center_of_mass)、转向曲线(steering_curve)、车轮信息(wheels)和是否使用扫掠车轮碰撞(use_sweep_wheel_collision)
 
+// 为VehiclePhysicsControl类型重载<<操作符
   std::ostream &operator<<(std::ostream &out, const WheelPhysicsControl &control) {
     out << "WheelPhysicsControl(tire_friction=" << std::to_string(control.tire_friction)
         << ", damping_rate=" << std::to_string(control.damping_rate)
@@ -101,9 +102,11 @@ namespace rpc {
         << ", lat_stiff_value=" << std::to_string(control.lat_stiff_value)
         << ", long_stiff_value=" << std::to_string(control.long_stiff_value)
         << ", position=" << control.position << ')';
+ // 输出VehiclePhysicsControl对象的所有成员变量    
     return out;
   }
 
+// 为VehiclePhysicsControl类型重载<<操作符
   std::ostream &operator<<(std::ostream &out, const VehiclePhysicsControl &control) {
     out << "VehiclePhysicsControl(torque_curve=" << control.torque_curve
     << ", max_rpm=" << std::to_string(control.max_rpm)
@@ -122,9 +125,11 @@ namespace rpc {
     << ", steering_curve=" << control.steering_curve
     << ", wheels=" << control.wheels
     << ", use_sweep_wheel_collision=" << control.use_sweep_wheel_collision << ')';
+// 输出VehiclePhysicsControl对象的所有成员变量
     return out;
   }
 
+// 为WheelTelemetryData类型重载<<操作符
   std::ostream &operator<<(std::ostream &out, const WheelTelemetryData &telemetry) {
     out << "WheelTelemetryData(tire_friction=" << std::to_string(telemetry.tire_friction)
         << ", lat_slip=" << std::to_string(telemetry.lat_slip)
@@ -137,9 +142,11 @@ namespace rpc {
         << ", lat_force=" << std::to_string(telemetry.lat_force)
         << ", normalized_long_force=" << std::to_string(telemetry.normalized_long_force)
         << ", normalized_lat_force=" << std::to_string(telemetry.normalized_lat_force) << ')';
+// 输出WheelTelemetryData对象的所有成员变量
     return out;
   }
 
+// 为VehicleTelemetryData类型重载<<操作符
   std::ostream &operator<<(std::ostream &out, const VehicleTelemetryData &telemetry) {
     out << "VehicleTelemetryData(speed=" << std::to_string(telemetry.speed)
     << ", steer=" << std::to_string(telemetry.steer)
@@ -149,9 +156,11 @@ namespace rpc {
     << ", gear=" << std::to_string(telemetry.gear)
     << ", drag=" << std::to_string(telemetry.drag)
     << ", wheels=" << telemetry.wheels << ')';
+// 输出VehicleTelemetryData对象的所有成员变量
     return out;
   }
 
+// 为AckermannControllerSettings类型重载<<操作符
   std::ostream &operator<<(std::ostream &out, const AckermannControllerSettings &settings) {
     out << "AckermannControllerSettings(speed_kp=" << std::to_string(settings.speed_kp)
         << ", speed_ki=" << std::to_string(settings.speed_ki)
@@ -159,104 +168,144 @@ namespace rpc {
         << ", accel_kp=" << std::to_string(settings.accel_kp)
         << ", accel_ki=" << std::to_string(settings.accel_ki)
         << ", accel_kd=" << std::to_string(settings.accel_kd)  << ')';
+// 输出AckermannControllerSettings对象的所有成员变量
     return out;
   }
 
 } // namespace rpc
 } // namespace carla
 
+// 定义一个静态函数，用于从Python列表中提取carla::geom::Vector2D对象或数据，并转换为std::vector<carla::geom::Vector2D>
 static auto GetVectorOfVector2DFromList(const boost::python::list &list) {
-  std::vector<carla::geom::Vector2D> v;
-
+  std::vector<carla::geom::Vector2D> v; // 创建一个Vector2D的向量
+ 
+  // 获取Python列表的长度
   auto length = boost::python::len(list);
+  // 为向量预留足够的空间以提高效率
   v.reserve(static_cast<size_t>(length));
+  // 遍历Python列表
   for (auto i = 0u; i < length; ++i) {
+    // 尝试从列表中提取Vector2D对象
     boost::python::extract<carla::geom::Vector2D> ext(list[i]);
     if (ext.check()) {
+      // 如果提取成功，添加到向量中
       v.push_back(ext);
     } else {
+      // 如果提取失败，尝试从列表中提取两个浮点数（假设是Vector2D的x和y坐标）
       v.push_back(carla::geom::Vector2D{
-        boost::python::extract<float>(list[i][0u]),
-        boost::python::extract<float>(list[i][1u])});
+        boost::python::extract<float>(list[i][0u]), // x坐标
+        boost::python::extract<float>(list[i][1u])}); // y坐标
     }
   }
+  // 返回转换后的向量
   return v;
 }
-
+ 
+// 定义一个静态函数，用于从Python列表中提取carla::rpc::BoneTransformDataIn对象或数据，并转换为std::vector<carla::rpc::BoneTransformDataIn>
 static auto GetVectorOfBoneTransformFromList(const boost::python::list &list) {
-  std::vector<carla::rpc::BoneTransformDataIn> v;
-
+  std::vector<carla::rpc::BoneTransformDataIn> v; // 创建一个BoneTransformDataIn的向量
+ 
+  // 获取Python列表的长度
   auto length = boost::python::len(list);
+  // 为向量预留足够的空间
   v.reserve(static_cast<size_t>(length));
+  // 遍历Python列表
   for (auto i = 0u; i < length; ++i) {
+    // 尝试从列表中提取BoneTransformDataIn对象
     boost::python::extract<carla::rpc::BoneTransformDataIn> ext(list[i]);
     if (ext.check()) {
+      // 如果提取成功，添加到向量中
       v.push_back(ext);
     } else {
+      // 如果提取失败，尝试从列表中提取字符串和Transform对象（假设是BoneTransformDataIn的name和transform）
       v.push_back(carla::rpc::BoneTransformDataIn{
-        boost::python::extract<std::string>(list[i][0u]),
-        boost::python::extract<carla::geom::Transform>(list[i][1u])});
+        boost::python::extract<std::string>(list[i][0u]), // name
+        boost::python::extract<carla::geom::Transform>(list[i][1u])}); // transform
     }
   }
+  // 返回转换后的向量
   return v;
 }
-
+ 
+// 定义一个静态函数，用于从VehiclePhysicsControl对象中获取车轮信息，并将其转换为Python列表
 static auto GetWheels(const carla::rpc::VehiclePhysicsControl &self) {
-  const auto &wheels = self.GetWheels();
+  const auto &wheels = self.GetWheels(); // 获取车轮信息
+  // 使用Boost.Python的迭代器功能将C++的vector转换为Python的迭代器
   boost::python::object get_iter = boost::python::iterator<std::vector<carla::rpc::WheelPhysicsControl>>();
   boost::python::object iter = get_iter(wheels);
+  // 将迭代器转换为Python列表并返回
   return boost::python::list(iter);
 }
-
+ 
+// 定义一个静态函数，用于设置VehiclePhysicsControl对象的车轮信息，信息来源于Python列表
 static void SetWheels(carla::rpc::VehiclePhysicsControl &self, const boost::python::list &list) {
-  std::vector<carla::rpc::WheelPhysicsControl> wheels;
+  std::vector<carla::rpc::WheelPhysicsControl> wheels; // 创建一个WheelPhysicsControl的向量
+  // 获取Python列表的长度
   auto length = boost::python::len(list);
+  // 遍历Python列表
   for (auto i = 0u; i < length; ++i) {
+    // 从列表中提取WheelPhysicsControl对象并添加到向量中
     wheels.push_back(boost::python::extract<carla::rpc::WheelPhysicsControl &>(list[i]));
   }
+  // 设置VehiclePhysicsControl对象的车轮信息
   self.wheels = wheels;
 }
-
+ 
+// 定义一个静态函数，用于从VehiclePhysicsControl对象中获取前进挡信息，并将其转换为Python列表
 static auto GetForwardGears(const carla::rpc::VehiclePhysicsControl &self) {
-  const auto &gears = self.GetForwardGears();
+  const auto &gears = self.GetForwardGears(); // 获取前进挡信息
+  // 使用Boost.Python的迭代器功能将C++的vector转换为Python的迭代器
   boost::python::object get_iter = boost::python::iterator<std::vector<carla::rpc::GearPhysicsControl>>();
   boost::python::object iter = get_iter(gears);
+  // 将迭代器转换为Python列表并返回
   return boost::python::list(iter);
 }
 
+// 设置车辆的前进挡位
 static void SetForwardGears(carla::rpc::VehiclePhysicsControl &self, const boost::python::list &list) {
-  std::vector<carla::rpc::GearPhysicsControl> gears;
-  auto length = boost::python::len(list);
+  std::vector<carla::rpc::GearPhysicsControl> gears; // 用于存储挡位信息的向量
+  auto length = boost::python::len(list); // 获取Python列表的长度
   for (auto i = 0u; i < length; ++i) {
+    // 将Python列表中的每个元素转换为carla::rpc::GearPhysicsControl类型，并添加到gears向量中
     gears.push_back(boost::python::extract<carla::rpc::GearPhysicsControl &>(list[i]));
   }
-  self.SetForwardGears(gears);
+  self.SetForwardGears(gears); // 使用转换后的挡位信息设置车辆的前进挡位
 }
 
+// 获取车辆的扭矩曲线
 static auto GetTorqueCurve(const carla::rpc::VehiclePhysicsControl &self) {
-  const std::vector<carla::geom::Vector2D> &torque_curve = self.GetTorqueCurve();
-  boost::python::object get_iter = boost::python::iterator<const std::vector<carla::geom::Vector2D>>();
-  boost::python::object iter = get_iter(torque_curve);
-  return boost::python::list(iter);
+  const std::vector<carla::geom::Vector2D> &torque_curve = self.GetTorqueCurve(); // 获取扭矩曲线
+  boost::python::object get_iter = boost::python::iterator<const std::vector<carla::geom::Vector2D>>(); // 创建一个迭代器对象
+  boost::python::object iter = get_iter(torque_curve); // 获取扭矩曲线的迭代器
+  return boost::python::list(iter); // 将迭代器转换为Python列表并返回
 }
 
+
+// 设置车辆的扭矩曲线
 static void SetTorqueCurve(carla::rpc::VehiclePhysicsControl &self, const boost::python::list &list) {
-  self.torque_curve = GetVectorOfVector2DFromList(list);
+  // 将Python列表转换为std::vector<carla::geom::Vector2D>类型，并设置给扭矩曲线
+  self.torque_curve = GetVectorOfVector2DFromList(list); // 注意：GetVectorOfVector2DFromList函数未在代码中定义，可能是一个辅助函数
 }
 
+
+// 获取车辆的转向曲线
 static auto GetSteeringCurve(const carla::rpc::VehiclePhysicsControl &self) {
-  const std::vector<carla::geom::Vector2D> &steering_curve = self.GetSteeringCurve();
-  boost::python::object get_iter = boost::python::iterator<const std::vector<carla::geom::Vector2D>>();
-  boost::python::object iter = get_iter(steering_curve);
-  return boost::python::list(iter);
+  const std::vector<carla::geom::Vector2D> &steering_curve = self.GetSteeringCurve(); // 获取转向曲线
+  boost::python::object get_iter = boost::python::iterator<const std::vector<carla::geom::Vector2D>>(); // 创建一个迭代器对象
+  boost::python::object iter = get_iter(steering_curve); // 获取转向曲线的迭代器
+  return boost::python::list(iter); // 将迭代器转换为Python列表并返回
 }
 
+
+// 设置车辆的转向曲线
 static void SetSteeringCurve(carla::rpc::VehiclePhysicsControl &self, const boost::python::list &list) {
-  self.steering_curve = GetVectorOfVector2DFromList(list);
+  // 将Python列表转换为std::vector<carla::geom::Vector2D>类型，并设置给转向曲线
+  self.steering_curve = GetVectorOfVector2DFromList(list); // 注意：GetVectorOfVector2DFromList函数未在代码中定义，可能是一个辅助函数
 }
 
+// 初始化VehiclePhysicsControl对象
 boost::python::object VehiclePhysicsControl_init(boost::python::tuple args, boost::python::dict kwargs) {
-  // Args names
+  // 定义参数名称
   const uint32_t NUM_ARGUMENTS = 17;
   const char *args_names[NUM_ARGUMENTS] = {
     "torque_curve",
@@ -281,43 +330,47 @@ boost::python::object VehiclePhysicsControl_init(boost::python::tuple args, boos
     "use_sweep_wheel_collision",
   };
 
-  boost::python::object self = args[0];
-  args = boost::python::tuple(args.slice(1, boost::python::_));
-
-  auto res = self.attr("__init__")();
+  boost::python::object self = args[0]; // 获取self对象
+  args = boost::python::tuple(args.slice(1, boost::python::_)); // 移除self后的参数
+ 
+  auto res = self.attr("__init__")(); // 调用Python的__init__方法
+  // 处理位置参数
   if (len(args) > 0) {
     for (unsigned int i = 0; i < len(args); ++i) {
-      self.attr(args_names[i]) = args[i];
+      self.attr(args_names[i]) = args[i]; // 将位置参数设置到对应的属性上
     }
   }
-
+  // 处理关键字参数
   for (unsigned int i = 0; i < NUM_ARGUMENTS; ++i) {
     if (kwargs.contains(args_names[i])) {
-      self.attr(args_names[i]) = kwargs[args_names[i]];
+      self.attr(args_names[i]) = kwargs[args_names[i]]; // 将关键字参数设置到对应的属性上
     }
   }
-
+ 
   return res;
 }
 
+// 获取车辆的轮胎遥测数据
 static auto GetWheelsTelemetry(const carla::rpc::VehicleTelemetryData &self) {
-  const auto &wheels = self.GetWheels();
-  boost::python::object get_iter = boost::python::iterator<std::vector<carla::rpc::WheelTelemetryData>>();
-  boost::python::object iter = get_iter(wheels);
-  return boost::python::list(iter);
+  const auto &wheels = self.GetWheels(); // 获取轮胎遥测数据
+  boost::python::object get_iter = boost::python::iterator<std::vector<carla::rpc::WheelTelemetryData>>(); // 创建一个迭代器对象
+  boost::python::object iter = get_iter(wheels); // 获取轮胎遥测数据的迭代器
+  return boost::python::list(iter); // 将迭代器转换为Python列表并返回
 }
 
+// 设置车辆的轮胎遥测数据
 static void SetWheelsTelemetry(carla::rpc::VehicleTelemetryData &self, const boost::python::list &list) {
-  std::vector<carla::rpc::WheelTelemetryData> wheels;
-  auto length = boost::python::len(list);
+  std::vector<carla::rpc::WheelTelemetryData> wheels; // 用于存储轮胎遥测数据的向量
+  auto length = boost::python::len(list); // 获取Python列表的长度
   for (auto i = 0u; i < length; ++i) {
+    // 将Python列表中的每个元素转换为carla::rpc::WheelTelemetryData类型，并添加到wheels向量中
     wheels.push_back(boost::python::extract<carla::rpc::WheelTelemetryData &>(list[i]));
   }
-  self.SetWheels(wheels);
+  self.SetWheels(wheels); // 使用转换后的轮胎遥测数据设置车辆的轮胎信息
 }
-
+// 初始化VehicleTelemetryData对象
 boost::python::object VehicleTelemetryData_init(boost::python::tuple args, boost::python::dict kwargs) {
-  // Args names
+  // 定义参数名称
   const uint32_t NUM_ARGUMENTS = 7;
   const char *args_names[NUM_ARGUMENTS] = {
     "speed",
@@ -347,20 +400,24 @@ boost::python::object VehicleTelemetryData_init(boost::python::tuple args, boost
 
   return res;
 }
-
+// 获取Walker的骨骼变换信息（输入）
 static auto GetBonesTransform(const carla::rpc::WalkerBoneControlIn &self) {
+  // 获取骨骼变换信息，并转换为Python列表返回
   const std::vector<carla::rpc::BoneTransformDataIn> &bone_transform_data = self.bone_transforms;
   boost::python::object get_iter =
       boost::python::iterator<const std::vector<carla::rpc::BoneTransformDataIn>>();
   boost::python::object iter = get_iter(bone_transform_data);
   return boost::python::list(iter);
 }
-
+// 设置Walker的骨骼变换信息（输入）
 static void SetBonesTransform(carla::rpc::WalkerBoneControlIn &self, const boost::python::list &list) {
+  // 将Python列表转换为骨骼变换信息，并设置
   self.bone_transforms = GetVectorOfBoneTransformFromList(list);
 }
 
+// 获取Walker的骨骼变换信息（输出）
 static auto GetBonesTransformOut(const carla::rpc::WalkerBoneControlOut &self) {
+  // 获取骨骼变换信息，并转换为Python列表返回
   const std::vector<carla::rpc::BoneTransformDataOut> &bone_transform_data = self.bone_transforms;
   boost::python::object get_iter =
       boost::python::iterator<const std::vector<carla::rpc::BoneTransformDataOut>>();
@@ -368,8 +425,9 @@ static auto GetBonesTransformOut(const carla::rpc::WalkerBoneControlOut &self) {
   return boost::python::list(iter);
 }
 
+// 初始化WalkerBoneControl对象
 boost::python::object WalkerBoneControl_init(boost::python::tuple args, boost::python::dict kwargs) {
-  // Args names
+  // 定义参数名称
   const uint32_t NUM_ARGUMENTS = 1;
   const char *args_names[NUM_ARGUMENTS] = {
     "bone_transforms"
@@ -394,12 +452,17 @@ boost::python::object WalkerBoneControl_init(boost::python::tuple args, boost::p
   return res;
 }
 
+// 定义一个函数export_control，这个函数没有返回值，也没有参数
 void export_control() {
+  // 使用boost::python命名空间，简化代码中的引用
   using namespace boost::python;
-  namespace cg = carla::geom;
-  namespace cr = carla::rpc;
+  // 为方便引用，为命名空间创建别名
+  namespace cg = carla::geom; // carla的几何命名空间
+  namespace cr = carla::rpc;  // carla的RPC（远程过程调用）命名空间
 
+  // 将cr::VehicleControl类暴露给Python
   class_<cr::VehicleControl>("VehicleControl")
+    // 定义一个构造函数，并设置参数的默认值
     .def(init<float, float, float, bool, bool, bool, int>(
       (arg("throttle") = 0.0f,
       arg("steer") = 0.0f,
@@ -408,6 +471,7 @@ void export_control() {
       arg("reverse") = false,
       arg("manual_gear_shift") = false,
       arg("gear") = 0)))
+    // 为类的成员变量添加读写属性
     .def_readwrite("throttle", &cr::VehicleControl::throttle)
     .def_readwrite("steer", &cr::VehicleControl::steer)
     .def_readwrite("brake", &cr::VehicleControl::brake)
@@ -419,7 +483,7 @@ void export_control() {
     .def("__ne__", &cr::VehicleControl::operator!=)
     .def(self_ns::str(self_ns::self))
   ;
-
+  // 将cr::VehicleAckermannControl类暴露给Python
   class_<cr::VehicleAckermannControl>("VehicleAckermannControl")
     .def(init<float, float, float, float, float>(
       (arg("steer") = 0.0f,
@@ -436,7 +500,7 @@ void export_control() {
     .def("__ne__", &cr::VehicleAckermannControl::operator!=)
     .def(self_ns::str(self_ns::self))
   ;
-
+  // 将cr::AckermannControllerSettings类暴露给Python
   class_<cr::AckermannControllerSettings>("AckermannControllerSettings")
     .def(init<float, float, float, float, float, float>(
       (arg("speed_kp") = 0.0f,
@@ -455,7 +519,7 @@ void export_control() {
     .def("__ne__", &cr::AckermannControllerSettings::operator!=)
     .def(self_ns::str(self_ns::self))
   ;
-
+  // 将cr::WalkerControl类暴露给Python
   class_<cr::WalkerControl>("WalkerControl")
     .def(init<cg::Vector3D, float, bool>(
        (arg("direction") = cg::Vector3D{1.0f, 0.0f, 0.0f},
@@ -469,6 +533,7 @@ void export_control() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将std::pair<std::string, cg::Transform>类型的类（别名为bone_transform）暴露给Python
   class_<cr::BoneTransformDataIn>("bone_transform")
     .def(init<>())
     .def_readwrite("name", &std::pair<std::string, cg::Transform>::first)
@@ -476,12 +541,14 @@ void export_control() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将std::vector<cr::BoneTransformDataIn>类型的类（别名为vector_of_bones）暴露给Python
   class_<std::vector<cr::BoneTransformDataIn>>("vector_of_bones")
     .def(init<>())
     .def(boost::python::vector_indexing_suite<std::vector<cr::BoneTransformDataIn>>())
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cr::BoneTransformDataOut类暴露给Python
   class_<cr::BoneTransformDataOut>("bone_transform_out")
     .def(init<>())
     .def_readwrite("name", &cr::BoneTransformDataOut::bone_name)
@@ -493,12 +560,15 @@ void export_control() {
     .def("__ne__", &cr::BoneTransformDataOut::operator!=)
   ;
 
+  // 将std::vector<cr::BoneTransformDataOut>类型的类（别名为vector_of_bones_out）暴露给Python
   class_<std::vector<cr::BoneTransformDataOut>>("vector_of_bones_out")
     .def(init<>())
     .def(boost::python::vector_indexing_suite<std::vector<cr::BoneTransformDataOut>>())
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cr::WalkerBoneControlIn类暴露给Python
+  // 注意：这里使用了raw_function来处理特殊的初始化逻辑
   class_<cr::WalkerBoneControlIn>("WalkerBoneControlIn")
     .def("__init__", raw_function(WalkerBoneControl_init))
     .def(init<>())
@@ -506,6 +576,8 @@ void export_control() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cr::WalkerBoneControlOut类暴露给Python
+  // 注意：这里只提供了getter而没有setter，或者使用了不同的处理逻辑
   class_<cr::WalkerBoneControlOut>("WalkerBoneControlOut")
     .def("__init__", raw_function(WalkerBoneControl_init))
     .def(init<>())
@@ -514,6 +586,7 @@ void export_control() {
     .def(self_ns::str(self_ns::self))
   ;
 
+ // 将std::vector<cr::GearPhysicsControl>类型的类（别名为vector_of_gears）暴露给Python
   class_<std::vector<cr::GearPhysicsControl>>("vector_of_gears")
       .def(boost::python::vector_indexing_suite<std::vector<cr::GearPhysicsControl>>())
       .def(self_ns::str(self_ns::self))

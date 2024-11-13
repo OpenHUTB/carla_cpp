@@ -1,84 +1,189 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaDVSCameraPublisher.h"
+#include "CarlaDVSCameraPublisher.h"// 引入CarlaDVS相机发布器的头文件
 
-#include <string>
-
+#include <string>// 引入字符串处理功能
+// 引入CARLA传感器数据中的DVS事件类型
 #include "carla/sensor/data/DVSEvent.h"
-
+// 引入CARLA ROS2类型的发布/订阅类型定义
 #include "carla/ros2/types/ImagePubSubTypes.h"
 #include "carla/ros2/types/CameraInfoPubSubTypes.h"
 #include "carla/ros2/types/PointCloud2PubSubTypes.h"
+// 引入CARLA ROS2监听器接口
 #include "carla/ros2/listeners/CarlaListener.h"
-
+// 引入Fast-DDS的域参与者、发布者、主题和数据写入器等核心组件
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/publisher/Publisher.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/topic/TypeSupport.hpp>
-
+// 引入Fast-DDS的QoS策略定义
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+// 引入Fast-RTPS的参与者属性和QoS策略
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/DataWriterListener.hpp>
 
-
+/**
+ * @namespace carla::ros2
+ * @brief CARLA的ROS2集成命名空间，包含DVS相机、相机信息和点云数据的发布者实现。
+ */
 namespace carla {
 namespace ros2 {
-
+    /**
+  * @brief 引入Fast-DDS命名空间的别名，简化代码中的引用。
+  */
   namespace efd = eprosima::fastdds::dds;
+  /**
+   * @brief 引入Fast-RTPS返回代码类型的别名。
+   */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+  * @struct CarlaDVSCameraPublisherImpl
+  * @brief DVS相机数据发布者的内部实现结构。
+  */
   struct CarlaDVSCameraPublisherImpl {
+      /**
+    * @brief Fast-DDS域参与者指针。
+    */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief Fast-DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief Fast-DDS类型支持，用于图像数据。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };
+    /**
+     * @brief CARLA监听器实例，用于处理回调。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 待发布的图像数据。
+     */
     sensor_msgs::msg::Image _image {};
   };
-
+  /**
+   * @struct CarlaCameraInfoPublisherImpl
+   * @brief 相机信息数据发布者的内部实现结构。
+   */
   struct CarlaCameraInfoPublisherImpl {
+      /**
+     * @brief Fast-DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief Fast-DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief Fast-DDS类型支持，用于相机信息数据。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
+    /**
+     * @brief CARLA监听器实例，用于处理回调。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 初始化标志。
+     */
     bool _init {false};
+    /**
+     * @brief 待发布的相机信息数据。
+     */
     sensor_msgs::msg::CameraInfo _ci {};
   };
-
+  /**
+  * @struct CarlaPointCloudPublisherImpl
+  * @brief 点云数据发布者的内部实现结构。
+  */
   struct CarlaPointCloudPublisherImpl {
+   /**
+     * @brief Fast-DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+    * @brief Fast-DDS发布者指针。
+    */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief Fast-DDS类型支持，用于点云数据。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::PointCloud2PubSubType() };
+    /**
+     * @brief CARLA监听器实例，用于处理回调。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 待发布的点云数据。
+     */
     sensor_msgs::msg::PointCloud2 _pc {};
   };
-
+  /**
+ * @brief 检查是否已初始化
+ *
+ * @return true 如果已经初始化，否则返回false
+ */
   bool CarlaDVSCameraPublisher::HasBeenInitialized() const {
     return _info->_init;
   }
-
+  /**
+ * @brief 初始化相机信息数据
+ *
+ * @param x_offset X轴偏移量
+ * @param y_offset Y轴偏移量
+ * @param height 图像高度
+ * @param width 图像宽度
+ * @param fov 视野角度（以弧度为单位）
+ * @param do_rectify 是否进行校正
+ */
   void CarlaDVSCameraPublisher::InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify) {
     _info->_ci = std::move(sensor_msgs::msg::CameraInfo(height, width, fov));
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
     _info->_init = true;
   }
-
+  /**
+ * @brief 初始化CarlaDVSCameraPublisher
+ *
+ * @return true 如果初始化成功，否则返回false
+ */
   bool CarlaDVSCameraPublisher::Init() {
     return InitImage() && InitInfo() && InitPointCloud();
   }
-
+  /**
+ * @brief 初始化图像发布相关资源
+ *
+ * @return true 如果图像发布初始化成功，否则返回false
+ */
   bool CarlaDVSCameraPublisher::InitImage() {
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
@@ -127,31 +232,42 @@ namespace ros2 {
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 初始化相机信息发布相关资源
+ *
+ * @return true 如果相机信息初始化成功，否则返回false
+ */
   bool CarlaDVSCameraPublisher::InitInfo() {
     if (_info->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /// 设置DomainParticipant的QoS（Quality of Service）策略为默认值，并设置其名称
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    /// 获取DomainParticipantFactory的实例
     auto factory = efd::DomainParticipantFactory::get_instance();
     _info->_participant = factory->create_participant(0, pqos);
+    /// 创建DomainParticipant
     if (_info->_participant == nullptr) {
+        /// 如果创建DomainParticipant失败，则输出错误信息并返回false
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /// 注册数据类型
     _info->_type.register_type(_info->_participant);
-
+    /// 设置Publisher的QoS策略为默认值
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
+    /// 创建Publisher
     _info->_publisher = _info->_participant->create_publisher(pubqos, nullptr);
     if (_info->_publisher == nullptr) {
+        /// 如果创建Publisher失败，则输出错误信息并返回false
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /// 设置Topic的QoS策略为默认值
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
+    /// 构建Topic的名称
     const std::string publisher_type {"/camera_info"};
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
@@ -159,46 +275,60 @@ namespace ros2 {
       topic_name += _parent + "/";
     topic_name += _name;
     topic_name += publisher_type;
+    /// 创建Topic
     _info->_topic = _info->_participant->create_topic(topic_name, _info->_type->getName(), tqos);
     if (_info->_topic == nullptr) {
+        /// 如果创建Topic失败，则输出错误信息并返回false
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
+    /// 设置DataWriter的QoS策略为默认值
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
+    /// 获取DataWriterListener的实例
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_info->_listener._impl.get();
+    /// 创建DataWriter
     _info->_datawriter = _info->_publisher->create_datawriter(_info->_topic, wqos, listener);
     if (_info->_datawriter == nullptr) {
+        /// 如果创建DataWriter失败，则输出错误信息并返回false
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-
+    /// 设置帧ID为节点名称
     _frame_id = _name;
+    /// 所有组件都成功创建，返回true
     return true;
   }
-
+  /**
+ * @brief 初始化点云发布相关资源
+ *
+ * @return true 如果点云初始化成功，否则返回false
+ */
   bool CarlaDVSCameraPublisher::InitPointCloud() {
     if (_point_cloud->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /// 设置DomainParticipant的QoS策略
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    /// 获取DomainParticipantFactory的实例
     auto factory = efd::DomainParticipantFactory::get_instance();
+    /// 创建DomainParticipant
     _point_cloud->_participant = factory->create_participant(0, pqos);
     if (_point_cloud->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /// 注册类型到DomainParticipant
     _point_cloud->_type.register_type(_point_cloud->_participant);
-
+    /// 设置Publisher的QoS策略
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _point_cloud->_publisher = _point_cloud->_participant->create_publisher(pubqos, nullptr);
     if (_point_cloud->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /// 设置Topic的QoS策略
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/point_cloud"};
     const std::string base { "rt/carla/" };
@@ -212,7 +342,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    /// 设置DataWriter的QoS策略，并指定历史内存策略为预分配并允许重新分配
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_point_cloud->_listener._impl.get();
@@ -221,6 +351,7 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    /// 设置帧ID为参与者名称
     _frame_id = _name;
     return true;
   }

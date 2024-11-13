@@ -12,9 +12,11 @@
 
 class UBoxComponent;
 
+// UENUM 将枚举类型进行标记，方便 虚幻头文件解析工具(UHT, UnrealHeaderTool) 为其生成相应的类型文件，生成反射系统需要的代码。
+// BlueprintType说明符令该枚举可以在蓝图中自如使用。
 UENUM(BlueprintType)
 enum class ETrafficSignState : uint8 {
-  Null = 0, // Workarround for UE4.24 issue with enums
+  Null = 0, // 解决 UE4.24 枚举问题
   UNKNOWN            = 0u   UMETA(DisplayName = "UNKNOWN"),
   TrafficLightRed    = 1u   UMETA(DisplayName = "Traffic Light - Red"),
   TrafficLightYellow = 2u   UMETA(DisplayName = "Traffic Light - Yellow"),
