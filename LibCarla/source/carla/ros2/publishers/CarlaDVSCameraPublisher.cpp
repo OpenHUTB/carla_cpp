@@ -114,31 +114,76 @@ namespace ros2 {
      */
     sensor_msgs::msg::CameraInfo _ci {};
   };
-
+  /**
+  * @struct CarlaPointCloudPublisherImpl
+  * @brief 点云数据发布者的内部实现结构。
+  */
   struct CarlaPointCloudPublisherImpl {
+   /**
+     * @brief Fast-DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+    * @brief Fast-DDS发布者指针。
+    */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief Fast-DDS类型支持，用于点云数据。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::PointCloud2PubSubType() };
+    /**
+     * @brief CARLA监听器实例，用于处理回调。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 待发布的点云数据。
+     */
     sensor_msgs::msg::PointCloud2 _pc {};
   };
-
+  /**
+ * @brief 检查是否已初始化
+ *
+ * @return true 如果已经初始化，否则返回false
+ */
   bool CarlaDVSCameraPublisher::HasBeenInitialized() const {
     return _info->_init;
   }
-
+  /**
+ * @brief 初始化相机信息数据
+ *
+ * @param x_offset X轴偏移量
+ * @param y_offset Y轴偏移量
+ * @param height 图像高度
+ * @param width 图像宽度
+ * @param fov 视野角度（以弧度为单位）
+ * @param do_rectify 是否进行校正
+ */
   void CarlaDVSCameraPublisher::InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify) {
     _info->_ci = std::move(sensor_msgs::msg::CameraInfo(height, width, fov));
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
     _info->_init = true;
   }
-
+  /**
+ * @brief 初始化CarlaDVSCameraPublisher
+ *
+ * @return true 如果初始化成功，否则返回false
+ */
   bool CarlaDVSCameraPublisher::Init() {
     return InitImage() && InitInfo() && InitPointCloud();
   }
-
+  /**
+ * @brief 初始化图像发布相关资源
+ *
+ * @return true 如果图像发布初始化成功，否则返回false
+ */
   bool CarlaDVSCameraPublisher::InitImage() {
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
