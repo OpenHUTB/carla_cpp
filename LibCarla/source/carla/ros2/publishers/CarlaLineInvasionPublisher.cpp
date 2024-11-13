@@ -1,24 +1,24 @@
-#define _GLIBCXX_USE_CXX11_ABI 0
+ï»¿#define _GLIBCXX_USE_CXX11_ABI 0
 
 #include "CarlaLineInvasionPublisher.h"
 
 #include <string>
-// °üº¬CarlaÏà¹ØµÄÏûÏ¢ÀàĞÍ¶¨Òå
+// åŒ…å«Carlaç›¸å…³çš„æ¶ˆæ¯ç±»å‹å®šä¹‰
 #include "carla/ros2/types/CarlaLineInvasionPubSubTypes.h"
-// °üº¬Carla¼àÌıÆ÷Ïà¹ØÍ·ÎÄ¼ş
+// åŒ…å«Carlaç›‘å¬å™¨ç›¸å…³å¤´æ–‡ä»¶
 #include "carla/ros2/listeners/CarlaListener.h"
-// °üº¬Fast DDSÏà¹ØµÄÍ·ÎÄ¼ş£¬ÓÃÓÚDDSÍ¨ĞÅµÄ¸÷ÖÖ¹¦ÄÜÊµÏÖ
+// åŒ…å«Fast DDSç›¸å…³çš„å¤´æ–‡ä»¶ï¼Œç”¨äºDDSé€šä¿¡çš„å„ç§åŠŸèƒ½å®ç°
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/publisher/Publisher.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/topic/TypeSupport.hpp>
-// °üº¬Fast DDSÏà¹ØµÄQoS£¨·şÎñÖÊÁ¿£©ÉèÖÃÍ·ÎÄ¼ş
+// åŒ…å«Fast DDSç›¸å…³çš„QoSï¼ˆæœåŠ¡è´¨é‡ï¼‰è®¾ç½®å¤´æ–‡ä»¶
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
-// °üº¬Fast RTPSÏà¹ØµÄÊôĞÔºÍQoS²ßÂÔÍ·ÎÄ¼ş
+// åŒ…å«Fast RTPSç›¸å…³çš„å±æ€§å’ŒQoSç­–ç•¥å¤´æ–‡ä»¶
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
@@ -27,96 +27,96 @@
 
 namespace carla {
 namespace ros2 {
-	// ÎªÁË·½±ãÊ¹ÓÃ£¬¸øeprosima::fastdds::ddsÃüÃû¿Õ¼äÆğ±ğÃûefd
+	// ä¸ºäº†æ–¹ä¾¿ä½¿ç”¨ï¼Œç»™eprosima::fastdds::ddså‘½åç©ºé—´èµ·åˆ«åefd
   namespace efd = eprosima::fastdds::dds;
-  // ¸øeprosima::fastrtps::types::ReturnCode_tÆğ±ğÃûerc£¬ÓÃÓÚ±íÊ¾·µ»ØÂëÀàĞÍ
+  // ç»™eprosima::fastrtps::types::ReturnCode_tèµ·åˆ«åercï¼Œç”¨äºè¡¨ç¤ºè¿”å›ç ç±»å‹
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-  // ¶¨ÒåCarlaLineInvasionPublisherImpl½á¹¹Ìå£¬ÓÃÓÚ´æ´¢·¢²¼ÕßÏà¹ØµÄ¸÷ÖÖ¶ÔÏóÖ¸ÕëºÍÊı¾İ
+  // å®šä¹‰CarlaLineInvasionPublisherImplç»“æ„ä½“ï¼Œç”¨äºå­˜å‚¨å‘å¸ƒè€…ç›¸å…³çš„å„ç§å¯¹è±¡æŒ‡é’ˆå’Œæ•°æ®
   struct CarlaLineInvasionPublisherImpl {
-  	// Óò²ÎÓëÕßÖ¸Õë£¬ÓÃÓÚ²ÎÓëDDSÍ¨ĞÅÓò£¬³õÊ¼»¯Îªnullptr
+  	// åŸŸå‚ä¸è€…æŒ‡é’ˆï¼Œç”¨äºå‚ä¸DDSé€šä¿¡åŸŸï¼Œåˆå§‹åŒ–ä¸ºnullptr
     efd::DomainParticipant* _participant { nullptr };
-    // ·¢²¼ÕßÖ¸Õë£¬ÓÃÓÚ·¢²¼Êı¾İ£¬³õÊ¼»¯Îªnullptr
+    // å‘å¸ƒè€…æŒ‡é’ˆï¼Œç”¨äºå‘å¸ƒæ•°æ®ï¼Œåˆå§‹åŒ–ä¸ºnullptr
     efd::Publisher* _publisher { nullptr };
-    // Ö÷ÌâÖ¸Õë£¬ÓÃÓÚ±êÊ¶·¢²¼Êı¾İµÄÖ÷Ìâ£¬³õÊ¼»¯Îªnullptr
+    // ä¸»é¢˜æŒ‡é’ˆï¼Œç”¨äºæ ‡è¯†å‘å¸ƒæ•°æ®çš„ä¸»é¢˜ï¼Œåˆå§‹åŒ–ä¸ºnullptr
     efd::Topic* _topic { nullptr };
-    // Êı¾İĞ´ÈëÆ÷Ö¸Õë£¬ÓÃÓÚ½«Êı¾İĞ´Èëµ½Ö÷Ìâ£¬³õÊ¼»¯Îªnullptr
+    // æ•°æ®å†™å…¥å™¨æŒ‡é’ˆï¼Œç”¨äºå°†æ•°æ®å†™å…¥åˆ°ä¸»é¢˜ï¼Œåˆå§‹åŒ–ä¸ºnullptr
     efd::DataWriter* _datawriter { nullptr };
-    // ÀàĞÍÖ§³Ö¶ÔÏó£¬ÓÃÓÚ×¢²áÏûÏ¢ÀàĞÍ£¬ÕâÀïÊÇCarlaµÄ³µµÀÈëÇÖÊÂ¼şÏûÏ¢ÀàĞÍ
+    // ç±»å‹æ”¯æŒå¯¹è±¡ï¼Œç”¨äºæ³¨å†Œæ¶ˆæ¯ç±»å‹ï¼Œè¿™é‡Œæ˜¯Carlaçš„è½¦é“å…¥ä¾µäº‹ä»¶æ¶ˆæ¯ç±»å‹
     efd::TypeSupport _type { new carla_msgs::msg::LaneInvasionEventPubSubType() };
-    // Carla¼àÌıÆ÷¶ÔÏó£¬ÓÃÓÚ¼àÌıÏà¹ØÊÂ¼ş
+    // Carlaç›‘å¬å™¨å¯¹è±¡ï¼Œç”¨äºç›‘å¬ç›¸å…³äº‹ä»¶
     CarlaListener _listener {};
-    // ´æ´¢³µµÀÈëÇÖÊÂ¼şµÄÊı¾İ½á¹¹£¬³õÊ¼»¯ÎªÄ¬ÈÏÖµ
+    // å­˜å‚¨è½¦é“å…¥ä¾µäº‹ä»¶çš„æ•°æ®ç»“æ„ï¼Œåˆå§‹åŒ–ä¸ºé»˜è®¤å€¼
     carla_msgs::msg::LaneInvasionEvent _event {};
   };
-// CarlaLineInvasionPublisherÀàµÄ³õÊ¼»¯º¯Êı£¬ÓÃÓÚ³õÊ¼»¯·¢²¼ÕßÏà¹ØµÄ¸÷ÖÖ¶ÔÏó
+// CarlaLineInvasionPublisherç±»çš„åˆå§‹åŒ–å‡½æ•°ï¼Œç”¨äºåˆå§‹åŒ–å‘å¸ƒè€…ç›¸å…³çš„å„ç§å¯¹è±¡
   bool CarlaLineInvasionPublisher::Init() {
-  	// ¼ì²éÀàĞÍÖ§³Ö¶ÔÏóÊÇ·ñÎª¿Õ£¬Èç¹ûÎª¿ÕÔòÊä³ö´íÎóĞÅÏ¢²¢·µ»Øfalse
+  	// æ£€æŸ¥ç±»å‹æ”¯æŒå¯¹è±¡æ˜¯å¦ä¸ºç©ºï¼Œå¦‚æœä¸ºç©ºåˆ™è¾“å‡ºé”™è¯¯ä¿¡æ¯å¹¶è¿”å›false
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-// »ñÈ¡Ä¬ÈÏµÄÓò²ÎÓëÕßQoSÉèÖÃ£¬²¢ÉèÖÃÆäÃû³ÆÎª´«ÈëµÄ_name
+// è·å–é»˜è®¤çš„åŸŸå‚ä¸è€…QoSè®¾ç½®ï¼Œå¹¶è®¾ç½®å…¶åç§°ä¸ºä¼ å…¥çš„_name
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
-    // »ñÈ¡Óò²ÎÓëÕß¹¤³§µÄµ¥ÀıÊµÀı
+    // è·å–åŸŸå‚ä¸è€…å·¥å‚çš„å•ä¾‹å®ä¾‹
     auto factory = efd::DomainParticipantFactory::get_instance();
-    // Ê¹ÓÃ¹¤³§´´½¨Óò²ÎÓëÕß¶ÔÏó£¬´«ÈëÓòIDºÍQoSÉèÖÃ£¬Èç¹û´´½¨Ê§°ÜÔòÊä³ö´íÎóĞÅÏ¢²¢·µ»Øfalse
+    // ä½¿ç”¨å·¥å‚åˆ›å»ºåŸŸå‚ä¸è€…å¯¹è±¡ï¼Œä¼ å…¥åŸŸIDå’ŒQoSè®¾ç½®ï¼Œå¦‚æœåˆ›å»ºå¤±è´¥åˆ™è¾“å‡ºé”™è¯¯ä¿¡æ¯å¹¶è¿”å›false
     _impl->_participant = factory->create_participant(0, pqos);
     if (_impl->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
-    // ÔÚ´´½¨µÄÓò²ÎÓëÕßÉÏ×¢²áÏûÏ¢ÀàĞÍ
+    // åœ¨åˆ›å»ºçš„åŸŸå‚ä¸è€…ä¸Šæ³¨å†Œæ¶ˆæ¯ç±»å‹
     _impl->_type.register_type(_impl->_participant);
-// »ñÈ¡Ä¬ÈÏµÄ·¢²¼ÕßQoSÉèÖÃ
+// è·å–é»˜è®¤çš„å‘å¸ƒè€…QoSè®¾ç½®
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
-    // Ê¹ÓÃÓò²ÎÓëÕß´´½¨·¢²¼Õß¶ÔÏó£¬´«ÈëQoSÉèÖÃºÍ¿ÕµÄ¼àÌıÆ÷Ö¸Õë£¬Èç¹û´´½¨Ê§°ÜÔòÊä³ö´íÎóĞÅÏ¢²¢·µ»Øfalse
+    // ä½¿ç”¨åŸŸå‚ä¸è€…åˆ›å»ºå‘å¸ƒè€…å¯¹è±¡ï¼Œä¼ å…¥QoSè®¾ç½®å’Œç©ºçš„ç›‘å¬å™¨æŒ‡é’ˆï¼Œå¦‚æœåˆ›å»ºå¤±è´¥åˆ™è¾“å‡ºé”™è¯¯ä¿¡æ¯å¹¶è¿”å›false
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-// »ñÈ¡Ä¬ÈÏµÄÖ÷ÌâQoSÉèÖÃ
+// è·å–é»˜è®¤çš„ä¸»é¢˜QoSè®¾ç½®
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
-    // Èç¹û¸¸Ãû³Æ²»Îª¿Õ£¬Ôò½«¸¸Ãû³ÆÌí¼Óµ½Ö÷ÌâÃû³ÆÖĞ
+    // å¦‚æœçˆ¶åç§°ä¸ä¸ºç©ºï¼Œåˆ™å°†çˆ¶åç§°æ·»åŠ åˆ°ä¸»é¢˜åç§°ä¸­
     if (!_parent.empty())
       topic_name += _parent + "/";
-      // ÔÙÌí¼Ó×ÔÉíÃû³Æµ½Ö÷ÌâÃû³ÆÖĞ
+      // å†æ·»åŠ è‡ªèº«åç§°åˆ°ä¸»é¢˜åç§°ä¸­
     topic_name += _name;
-    // Ê¹ÓÃÓò²ÎÓëÕß´´½¨Ö÷Ìâ¶ÔÏó£¬´«ÈëÖ÷ÌâÃû³Æ¡¢ÏûÏ¢ÀàĞÍÃû³ÆºÍQoSÉèÖÃ£¬Èç¹û´´½¨Ê§°ÜÔòÊä³ö´íÎóĞÅÏ¢²¢·µ»Øfalse
+    // ä½¿ç”¨åŸŸå‚ä¸è€…åˆ›å»ºä¸»é¢˜å¯¹è±¡ï¼Œä¼ å…¥ä¸»é¢˜åç§°ã€æ¶ˆæ¯ç±»å‹åç§°å’ŒQoSè®¾ç½®ï¼Œå¦‚æœåˆ›å»ºå¤±è´¥åˆ™è¾“å‡ºé”™è¯¯ä¿¡æ¯å¹¶è¿”å›false
     _impl->_topic = _impl->_participant->create_topic(topic_name, _impl->_type->getName(), tqos);
     if (_impl->_topic == nullptr) {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-// »ñÈ¡Ä¬ÈÏµÄÊı¾İĞ´ÈëÆ÷QoSÉèÖÃ£¬²¢ÉèÖÃÆäÄÚ´æ²ßÂÔÎªÔ¤·ÖÅä²¢¿ÉÖØĞÂ·ÖÅäÄ£Ê½
+// è·å–é»˜è®¤çš„æ•°æ®å†™å…¥å™¨QoSè®¾ç½®ï¼Œå¹¶è®¾ç½®å…¶å†…å­˜ç­–ç•¥ä¸ºé¢„åˆ†é…å¹¶å¯é‡æ–°åˆ†é…æ¨¡å¼
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
-     // »ñÈ¡¼àÌıÆ÷¶ÔÏóµÄÖ¸Õë£¬ÓÃÓÚÊı¾İĞ´ÈëÆ÷µÄ¼àÌıÆ÷ÉèÖÃ
+     // è·å–ç›‘å¬å™¨å¯¹è±¡çš„æŒ‡é’ˆï¼Œç”¨äºæ•°æ®å†™å…¥å™¨çš„ç›‘å¬å™¨è®¾ç½®
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
-    // Ê¹ÓÃ·¢²¼Õß´´½¨Êı¾İĞ´ÈëÆ÷¶ÔÏó£¬´«ÈëÖ÷Ìâ¡¢QoSÉèÖÃºÍ¼àÌıÆ÷Ö¸Õë£¬Èç¹û´´½¨Ê§°ÜÔòÊä³ö´íÎóĞÅÏ¢²¢·µ»Øfalse
+    // ä½¿ç”¨å‘å¸ƒè€…åˆ›å»ºæ•°æ®å†™å…¥å™¨å¯¹è±¡ï¼Œä¼ å…¥ä¸»é¢˜ã€QoSè®¾ç½®å’Œç›‘å¬å™¨æŒ‡é’ˆï¼Œå¦‚æœåˆ›å»ºå¤±è´¥åˆ™è¾“å‡ºé”™è¯¯ä¿¡æ¯å¹¶è¿”å›false
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
     if (_impl->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-    // ÉèÖÃÖ¡IDÎª×ÔÉíÃû³Æ
+    // è®¾ç½®å¸§IDä¸ºè‡ªèº«åç§°
     _frame_id = _name;
     return true;
   }
-// CarlaLineInvasionPublisherÀàµÄ·¢²¼º¯Êı£¬ÓÃÓÚ½«Êı¾İ·¢²¼µ½Ö÷Ìâ
+// CarlaLineInvasionPublisherç±»çš„å‘å¸ƒå‡½æ•°ï¼Œç”¨äºå°†æ•°æ®å‘å¸ƒåˆ°ä¸»é¢˜
   bool CarlaLineInvasionPublisher::Publish() {
-  	// ¶¨ÒåÊµÀı¾ä±ú£¬ÓÃÓÚ±êÊ¶Êı¾İÊµÀı
+  	// å®šä¹‰å®ä¾‹å¥æŸ„ï¼Œç”¨äºæ ‡è¯†æ•°æ®å®ä¾‹
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
-    // µ÷ÓÃÊı¾İĞ´ÈëÆ÷µÄwriteº¯Êı½«ÊÂ¼şÊı¾İĞ´Èë£¬»ñÈ¡·µ»ØÂë
+    // è°ƒç”¨æ•°æ®å†™å…¥å™¨çš„writeå‡½æ•°å°†äº‹ä»¶æ•°æ®å†™å…¥ï¼Œè·å–è¿”å›ç 
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_event, instance_handle);
-    // Èç¹û·µ»ØÂëÎªRETCODE_OK£¬±íÊ¾Ğ´Èë³É¹¦£¬·µ»Øtrue
+    // å¦‚æœè¿”å›ç ä¸ºRETCODE_OKï¼Œè¡¨ç¤ºå†™å…¥æˆåŠŸï¼Œè¿”å›true
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
     }
-     // ¸ù¾İ²»Í¬µÄ·µ»ØÂëÖµ£¬Êä³öÏàÓ¦µÄ´íÎóĞÅÏ¢²¢·µ»Øfalse
+     // æ ¹æ®ä¸åŒçš„è¿”å›ç å€¼ï¼Œè¾“å‡ºç›¸åº”çš„é”™è¯¯ä¿¡æ¯å¹¶è¿”å›false
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
@@ -172,28 +172,28 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-// ÉèÖÃÒª·¢²¼µÄ³µµÀÈëÇÖÊÂ¼şÊı¾İµÄº¯Êı
+// è®¾ç½®è¦å‘å¸ƒçš„è½¦é“å…¥ä¾µäº‹ä»¶æ•°æ®çš„å‡½æ•°
   void CarlaLineInvasionPublisher::SetData(int32_t seconds, uint32_t nanoseconds, const int32_t* data) {
-  	// ´´½¨Ò»¸öÊ±¼ä½á¹¹Ìå£¬²¢ÉèÖÃÃëºÍÄÉÃëµÄÖµ
+  	// åˆ›å»ºä¸€ä¸ªæ—¶é—´ç»“æ„ä½“ï¼Œå¹¶è®¾ç½®ç§’å’Œçº³ç§’çš„å€¼
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
     time.nanosec(nanoseconds);
-// ´´½¨Ò»¸öÏûÏ¢Í·½á¹¹Ìå£¬ÉèÖÃÊ±¼ä´ÁºÍÖ¡ID
+// åˆ›å»ºä¸€ä¸ªæ¶ˆæ¯å¤´ç»“æ„ä½“ï¼Œè®¾ç½®æ—¶é—´æˆ³å’Œå¸§ID
     std_msgs::msg::Header header;
     header.stamp(std::move(time));
     header.frame_id(_frame_id);
-// ÉèÖÃ³µµÀÈëÇÖÊÂ¼şµÄÏûÏ¢Í·
+// è®¾ç½®è½¦é“å…¥ä¾µäº‹ä»¶çš„æ¶ˆæ¯å¤´
     _impl->_event.header(std::move(header));
-    // ÉèÖÃ³µµÀÈëÇÖÊÂ¼şÖĞ¿çÔ½³µµÀ±ê¼ÇµÄÊı¾İ
+    // è®¾ç½®è½¦é“å…¥ä¾µäº‹ä»¶ä¸­è·¨è¶Šè½¦é“æ ‡è®°çš„æ•°æ®
     _impl->_event.crossed_lane_markings({data[0], data[1], data[2]});
   }
-// CarlaLineInvasionPublisherÀàµÄ¹¹Ôìº¯Êı£¬ÓÃÓÚ³õÊ¼»¯¶ÔÏóµÄ³ÉÔ±±äÁ¿
+// CarlaLineInvasionPublisherç±»çš„æ„é€ å‡½æ•°ï¼Œç”¨äºåˆå§‹åŒ–å¯¹è±¡çš„æˆå‘˜å˜é‡
   CarlaLineInvasionPublisher::CarlaLineInvasionPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaLineInvasionPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-// CarlaLineInvasionPublisherÀàµÄÎö¹¹º¯Êı£¬ÓÃÓÚÊÍ·ÅÏà¹Ø×ÊÔ´
+// CarlaLineInvasionPublisherç±»çš„ææ„å‡½æ•°ï¼Œç”¨äºé‡Šæ”¾ç›¸å…³èµ„æº
   CarlaLineInvasionPublisher::~CarlaLineInvasionPublisher() {
       if (!_impl)
           return;
@@ -210,14 +210,14 @@ namespace ros2 {
       if (_impl->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
   }
-// ¿½±´¹¹Ôìº¯Êı£¬ÓÃÓÚ¸´ÖÆÁíÒ»¸öCarlaLineInvasionPublisher¶ÔÏóµÄ³ÉÔ±±äÁ¿
+// æ‹·è´æ„é€ å‡½æ•°ï¼Œç”¨äºå¤åˆ¶å¦ä¸€ä¸ªCarlaLineInvasionPublisherå¯¹è±¡çš„æˆå‘˜å˜é‡
   CarlaLineInvasionPublisher::CarlaLineInvasionPublisher(const CarlaLineInvasionPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
     _parent = other._parent;
     _impl = other._impl;
   }
-// ¿½±´¸³ÖµÔËËã·ûÖØÔØº¯Êı£¬ÓÃÓÚ½«ÁíÒ»¸öCarlaLineInvasionPublisher¶ÔÏóµÄ³ÉÔ±±äÁ¿¸³Öµ¸øµ±Ç°¶ÔÏó
+// æ‹·è´èµ‹å€¼è¿ç®—ç¬¦é‡è½½å‡½æ•°ï¼Œç”¨äºå°†å¦ä¸€ä¸ªCarlaLineInvasionPublisherå¯¹è±¡çš„æˆå‘˜å˜é‡èµ‹å€¼ç»™å½“å‰å¯¹è±¡
   CarlaLineInvasionPublisher& CarlaLineInvasionPublisher::operator=(const CarlaLineInvasionPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -226,14 +226,14 @@ namespace ros2 {
 
     return *this;
   }
-// ÒÆ¶¯¹¹Ôìº¯Êı£¬ÓÃÓÚÒÆ¶¯ÁíÒ»¸öCarlaLineInvasionPublisher¶ÔÏóµÄ×ÊÔ´µ½µ±Ç°¶ÔÏó
+// ç§»åŠ¨æ„é€ å‡½æ•°ï¼Œç”¨äºç§»åŠ¨å¦ä¸€ä¸ªCarlaLineInvasionPublisherå¯¹è±¡çš„èµ„æºåˆ°å½“å‰å¯¹è±¡
   CarlaLineInvasionPublisher::CarlaLineInvasionPublisher(CarlaLineInvasionPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
     _parent = std::move(other._parent);
     _impl = std::move(other._impl);
   }
-// ÒÆ¶¯¸³ÖµÔËËã·ûÖØÔØº¯Êı£¬ÓÃÓÚ½«ÁíÒ»¸öCarlaLineInvasionPublisher¶ÔÏóµÄ×ÊÔ´ÒÆ¶¯¸³Öµ¸øµ±Ç°¶ÔÏó
+// ç§»åŠ¨èµ‹å€¼è¿ç®—ç¬¦é‡è½½å‡½æ•°ï¼Œç”¨äºå°†å¦ä¸€ä¸ªCarlaLineInvasionPublisherå¯¹è±¡çš„èµ„æºç§»åŠ¨èµ‹å€¼ç»™å½“å‰å¯¹è±¡
   CarlaLineInvasionPublisher& CarlaLineInvasionPublisher::operator=(CarlaLineInvasionPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
