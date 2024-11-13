@@ -29,7 +29,7 @@ void UStopSignComponent::InitializeSign(const carla::road::Map &Map)
     auto RoadId = Reference.first;
     const auto* SignalReference = Reference.second;
     TSet<carla::road::RoadId> SignalPredecessors;
-    // Stop box
+    // 停车标志边界框
     for(auto &validity : SignalReference->GetValidities())
     {
       for(auto lane : carla::geom::Math::GenerateRange(validity._from_lane, validity._to_lane))
@@ -44,7 +44,7 @@ void UStopSignComponent::InitializeSign(const carla::road::Map &Map)
           continue;
 
         auto box_waypoint = signal_waypoint;
-        // Prevent adding the bounding box inside the intersection
+        // 防止在交叉路口内添加边界框
         if (Map.IsJunction(RoadId)) {
           auto predecessors = Map.GetPredecessors(box_waypoint);
           if (predecessors.size() == 1) {
@@ -55,18 +55,17 @@ void UStopSignComponent::InitializeSign(const carla::road::Map &Map)
           }
         }
 
-        // Get 50% of the half size of the width of the lane
+        // 获得车道宽度一半的 50%
         float BoxWidth = static_cast<float>(
             0.5f*Map.GetLaneWidth(box_waypoint)*0.5);
         float BoxLength = 1.5f;
         float BoxHeight = 1.0f;
-        // Prevent a situation where the road width is 0,
-        // this could happen in a lane that is just appearing
+        // 防止出现道路宽度为 0 的情况，这种情况可能发生在刚刚出现的车道上
         BoxWidth = std::max(0.01f, BoxWidth);
         // Get min and max
         double LaneLength = Map.GetLane(box_waypoint).GetLength();
         double LaneDistance = Map.GetLane(box_waypoint).GetDistance();
-        // Safe distance to avoid overlapping the bounding box with the intersection
+        // 避免边界框与交叉路口重叠的安全距离
         float AdditionalDistance = 1.5f;
         if(lane < 0)
         {
