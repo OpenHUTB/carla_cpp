@@ -14,6 +14,10 @@
 #include <ad/rss/world/RssDynamics.hpp>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 
+//包含了 Carla RSS 模块中关于限制器（RssRestrictor）、传感器（RssSensor）以及传感器数据响应（RssResponse）等相关的头文件，这些文件应该定义了对应的 C++ 类和函数，用于处理 RSS 相关的逻辑，比如车辆的安全限制、传感器数据获取与处理等。
+//同时还包含了一些以ad开头的头文件，可能是与特定的物理模拟、地图访问、RSS 相关的 Python 绑定辅助库，用于在 C++ 和 Python 之间进行数据传递和功能调用的对接。
+//boost/python/suite/indexing/vector_indexing_suite.hpp 是 Boost.Python 库中的文件，用于在 Python 和 C++ 之间方便地处理vector类型的数据绑定，使得在 Python 中可以像操作原生list一样操作 C++ 的vector类型数据。
+
 namespace carla {
 namespace rss {
 
@@ -34,6 +38,8 @@ std::ostream &operator<<(std::ostream &out, const RssResponse &resp) {
       << ", world_model=" << resp.GetWorldModel() << ", ego_dynamics_on_route=" << resp.GetEgoDynamicsOnRoute() << ')';
   return out;
 }
+//在carla命名空间下，进一步细分了rss和sensor::data等子命名空间。
+//分别为RssRestrictor和RssResponse类重载了<<操作符，用于将这些对象以特定的格式输出到流中。这样在需要打印这些对象信息时，可以方便地使用cout等输出流进行操作，输出对象的关键属性信息，方便调试和查看对象状态。
 
 }  // namespace data
 }  // namespace sensor
@@ -63,6 +69,9 @@ static auto GetRoutingTargets(const carla::client::RssSensor &self) {
   std::vector<carla::geom::Transform> routing_targets(self.GetRoutingTargets());
   return routing_targets;
 }
+//这些函数都是静态函数，用于从carla::client::RssSensor对象中获取不同类型的动力学数据或模式信息。
+//例如，GetEgoVehicleDynamics函数通过调用RssSensor对象的GetEgoVehicleDynamics方法获取车辆自身的动力学数据，并将其转换为ad::rss::world::RssDynamics类型返回，方便后续在 Python 绑定中使用统一的数据类型进行处理。
+//类似地，GetOtherVehicleDynamics、GetPedestrianDynamics分别获取其他车辆和行人的动力学数据，GetRoadBoundariesMode获取道路边界模式，GetRoutingTargets获取路由目标信息（以carla::geom::Transform类型的向量形式）
 
 static void RegisterActorConstellationCallback(carla::client::RssSensor &self, boost::python::object callback) {
   namespace py = boost::python;
@@ -93,11 +102,18 @@ static void RegisterActorConstellationCallback(carla::client::RssSensor &self, b
   self.RegisterActorConstellationCallback(callback_function);
 }
 
+//这个函数用于在RssSensor对象上注册一个演员星座（ActorConstellation）回调函数。
+//首先，它检查传入的boost::python::object类型的回调函数是否是可调用的，如果不是则抛出类型错误异常。
+//然后，创建一个SharedPtr来管理回调函数对象，并使用carla::PythonUtil::AcquireGILDeleter确保在删除回调函数时能够正确获取和释放全局解释器锁（GIL），这是在多线程环境下与 Python 解释器交互时需要注意的，以保证数据的一致性和线程安全性。
+//接着，定义了一个 lambda 函数作为实际要注册到RssSensor的回调函数，在这个 lambda 函数内部，先获取 GIL 锁，然后通过boost::python的call函数调用传入的原始回调函数，并处理可能出现的异常（如果回调函数执行过程中抛出异常，会打印异常信息），最后返回回调函数的执行结果给RssSensor。
+
 static void Stop(carla::client::RssSensor &self) {
   // ensure the RssSensor is stopped with GIL released to sync on processing lock
   carla::PythonUtil::ReleaseGIL unlock;
   self.Stop();
 }
+//这个函数用于停止RssSensor的运行。
+//在调用RssSensor的Stop方法之前，先释放全局解释器锁（GIL），这样可以让其他 Python 线程在传感器停止操作期间能够继续执行，避免因为锁的占用导致其他线程阻塞，同时也能保证传感器停止操作的同步性和正确性。
 
 void export_ad() {
   using namespace boost::python;
