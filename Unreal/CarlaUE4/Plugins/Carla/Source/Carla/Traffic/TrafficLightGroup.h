@@ -15,14 +15,15 @@
 
 class ATrafficLightManager;
 
-/// Class which implements the state changing of traffic lights
+/// 如果你的类继承自UObject，你的类名上方需要加入 UCLASS() 宏
+/// 实现交通信号灯状态改变的类
 UCLASS()
 class CARLA_API ATrafficLightGroup : public AActor
 {
   GENERATED_BODY()
 
 public:
-  // Sets default values for this actor's properties
+  // 设置该参与者属性的默认值
   ATrafficLightGroup();
 
   UFUNCTION(Category = "Traffic Group", BlueprintPure)
@@ -47,7 +48,7 @@ public:
   void AddController(UTrafficLightController* Controller);
 
 protected:
-  // Called every frame
+  // 每帧调用
   virtual void Tick(float DeltaTime) override;
 
 private:
