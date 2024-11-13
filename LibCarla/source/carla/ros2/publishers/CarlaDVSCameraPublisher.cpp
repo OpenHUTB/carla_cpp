@@ -232,31 +232,42 @@ namespace ros2 {
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 初始化相机信息发布相关资源
+ *
+ * @return true 如果相机信息初始化成功，否则返回false
+ */
   bool CarlaDVSCameraPublisher::InitInfo() {
     if (_info->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /// 设置DomainParticipant的QoS（Quality of Service）策略为默认值，并设置其名称
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    /// 获取DomainParticipantFactory的实例
     auto factory = efd::DomainParticipantFactory::get_instance();
     _info->_participant = factory->create_participant(0, pqos);
+    /// 创建DomainParticipant
     if (_info->_participant == nullptr) {
+        /// 如果创建DomainParticipant失败，则输出错误信息并返回false
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /// 注册数据类型
     _info->_type.register_type(_info->_participant);
-
+    /// 设置Publisher的QoS策略为默认值
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
+    /// 创建Publisher
     _info->_publisher = _info->_participant->create_publisher(pubqos, nullptr);
     if (_info->_publisher == nullptr) {
+        /// 如果创建Publisher失败，则输出错误信息并返回false
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /// 设置Topic的QoS策略为默认值
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
+    /// 构建Topic的名称
     const std::string publisher_type {"/camera_info"};
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
@@ -264,46 +275,60 @@ namespace ros2 {
       topic_name += _parent + "/";
     topic_name += _name;
     topic_name += publisher_type;
+    /// 创建Topic
     _info->_topic = _info->_participant->create_topic(topic_name, _info->_type->getName(), tqos);
     if (_info->_topic == nullptr) {
+        /// 如果创建Topic失败，则输出错误信息并返回false
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
+    /// 设置DataWriter的QoS策略为默认值
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
+    /// 获取DataWriterListener的实例
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_info->_listener._impl.get();
+    /// 创建DataWriter
     _info->_datawriter = _info->_publisher->create_datawriter(_info->_topic, wqos, listener);
     if (_info->_datawriter == nullptr) {
+        /// 如果创建DataWriter失败，则输出错误信息并返回false
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-
+    /// 设置帧ID为节点名称
     _frame_id = _name;
+    /// 所有组件都成功创建，返回true
     return true;
   }
-
+  /**
+ * @brief 初始化点云发布相关资源
+ *
+ * @return true 如果点云初始化成功，否则返回false
+ */
   bool CarlaDVSCameraPublisher::InitPointCloud() {
     if (_point_cloud->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /// 设置DomainParticipant的QoS策略
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    /// 获取DomainParticipantFactory的实例
     auto factory = efd::DomainParticipantFactory::get_instance();
+    /// 创建DomainParticipant
     _point_cloud->_participant = factory->create_participant(0, pqos);
     if (_point_cloud->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /// 注册类型到DomainParticipant
     _point_cloud->_type.register_type(_point_cloud->_participant);
-
+    /// 设置Publisher的QoS策略
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _point_cloud->_publisher = _point_cloud->_participant->create_publisher(pubqos, nullptr);
     if (_point_cloud->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /// 设置Topic的QoS策略
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/point_cloud"};
     const std::string base { "rt/carla/" };
@@ -317,7 +342,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    /// 设置DataWriter的QoS策略，并指定历史内存策略为预分配并允许重新分配
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_point_cloud->_listener._impl.get();
@@ -326,6 +351,7 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    /// 设置帧ID为参与者名称
     _frame_id = _name;
     return true;
   }
