@@ -355,11 +355,21 @@ namespace ros2 {
     _frame_id = _name;
     return true;
   }
-
+  /// @brief 发布图像、信息和点云数据。
+    /// 
+    /// 此方法会依次调用 PublishImage()、PublishInfo() 和 PublishPointCloud() 方法，
+    /// 只有当这三个方法都返回 true 时，此方法才返回 true。
+    /// 
+    /// @return bool 如果图像、信息和点云数据都成功发布，则返回 true；否则返回 false。
   bool CarlaDVSCameraPublisher::Publish() {
     return PublishImage() && PublishInfo() && PublishPointCloud();
   }
-
+  /// @brief 发布图像数据。
+   /// 
+   /// 使用 DataWriter 将图像数据发布到 DDS 网络中。
+   /// 根据返回的 ReturnCode 判断发布是否成功，并输出相应的错误信息。
+   /// 
+   /// @return bool 如果图像数据成功发布，则返回 true；否则返回 false。
   bool CarlaDVSCameraPublisher::PublishImage() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(& _impl->_image, instance_handle);
@@ -421,7 +431,12 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /// @brief 发布信息数据。
+   /// 
+   /// 使用 DataWriter 将信息数据发布到 DDS 网络中。
+   /// 根据返回的 ReturnCode 判断发布是否成功，并输出相应的错误信息。
+   /// 
+   /// @return bool 如果信息数据成功发布，则返回 true；否则返回 false。
   bool CarlaDVSCameraPublisher::PublishInfo() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _info->_datawriter->write(& _info->_ci, instance_handle);
@@ -483,7 +498,12 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /// @brief 发布点云数据。
+    /// 
+    /// 使用 DataWriter 将点云数据发布到 DDS 网络中。
+    /// 根据返回的 ReturnCode 判断发布是否成功，并输出相应的错误信息。
+    /// 
+    /// @return bool 如果点云数据成功发布，则返回 true；否则返回 false。
   bool CarlaDVSCameraPublisher::PublishPointCloud() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _point_cloud->_datawriter->write(&_point_cloud->_pc, instance_handle);
@@ -545,48 +565,79 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置图像数据，用于DVS（动态视觉传感器）相机发布者。
+ *
+ * 该函数接收时间戳、图像元素数量、高度、宽度以及图像数据，并将这些数据转换为BGR8格式的图像数据，
+ * 然后调用SetData函数来设置图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param elements 图像中的事件元素数量
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 指向图像数据的指针，数据格式为DVS事件
+ */
   void CarlaDVSCameraPublisher::SetImageData(int32_t seconds, uint32_t nanoseconds, size_t elements, size_t height, size_t width, const uint8_t* data) {
     std::vector<uint8_t> im_data;
-    const size_t im_size = width * height * 3;
-    im_data.resize(im_size);
+    const size_t im_size = width * height * 3;// 计算图像数据的大小（BGR格式）
+    im_data.resize(im_size);// 调整向量大小以适应图像数据
     carla::sensor::data::DVSEvent* vec_event = (carla::sensor::data::DVSEvent*)&data[0];
     for (size_t i = 0; i < elements; ++i, ++vec_event) {
+        // 计算每个事件在图像数据中的索引位置，根据事件的x, y坐标和极性（pol）
         size_t index = (vec_event->y * width + vec_event->x) * 3 + (static_cast<int>(vec_event->pol) * 2);
-        im_data[index] = 255;
+        im_data[index] = 255;// 设置对应位置的像素值为255（假设为亮像素）
     }
-
+    // 调用SetData函数来设置图像数据
     SetData(seconds, nanoseconds, height, width, std::move(im_data));
   }
-
+  /**
+ * @brief 设置图像数据，包括时间戳、图像尺寸和图像数据。
+ *
+ * 该函数接收时间戳、图像高度、图像宽度和图像数据，并设置图像消息的相关字段，
+ * 包括时间戳、帧ID、图像尺寸、编码方式以及图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 图像数据的右值引用，用于移动语义
+ */
   void CarlaDVSCameraPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
     time.nanosec(nanoseconds);
 
     std_msgs::msg::Header header;
-    header.stamp(std::move(time));
-    header.frame_id(_frame_id);
-    _impl->_image.header(header);
-    _info->_ci.header(header);
-    _point_cloud->_pc.header(header);
+    header.stamp(std::move(time));// 设置时间戳
+    header.frame_id(_frame_id);// 设置帧ID
+    _impl->_image.header(header);// 设置图像消息的头信息
+    _info->_ci.header(header);// 设置相机信息消息的头信息
+    _point_cloud->_pc.header(header);// 设置点云消息的头信息
 
-    _impl->_image.width(width);
-    _impl->_image.height(height);
-    _impl->_image.encoding("bgr8"); //taken from the list of strings in include/sensor_msgs/image_encodings.h
-    _impl->_image.is_bigendian(0);
-    _impl->_image.step(_impl->_image.width() * sizeof(uint8_t) * 3);
-    _impl->_image.data(std::move(data)); //https://github.com/eProsima/Fast-DDS/issues/2330
+    _impl->_image.width(width); // 设置图像宽度
+    _impl->_image.height(height);// 设置图像高度
+    _impl->_image.encoding("bgr8"); //taken from the list of strings in include/sensor_msgs/image_encodings.h // 设置图像编码方式为BGR8
+    _impl->_image.is_bigendian(0);// 设置图像数据是否为大端模式（0表示小端）
+    _impl->_image.step(_impl->_image.width() * sizeof(uint8_t) * 3);// 设置图像每行的字节数
+    _impl->_image.data(std::move(data)); //https://github.com/eProsima/Fast-DDS/issues/2330  // 设置图像数据
   }
-
+  /**
+ * @brief 设置相机信息数据的时间戳和帧ID。
+ *
+ * 该函数接收时间戳，并设置相机信息消息的时间戳和帧ID。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ */
   void CarlaDVSCameraPublisher::SetCameraInfoData(int32_t seconds, uint32_t nanoseconds) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
     time.nanosec(nanoseconds);
 
     std_msgs::msg::Header header;
-    header.stamp(std::move(time));
-    header.frame_id(_frame_id);
+    header.stamp(std::move(time));// 设置时间戳
+    header.frame_id(_frame_id);// 设置帧ID
   }
 
   void CarlaDVSCameraPublisher::SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify) {
