@@ -1,27 +1,28 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaDVSCameraPublisher.h"
+#include "CarlaDVSCameraPublisher.h"// 引入CarlaDVS相机发布器的头文件
 
-#include <string>
-
+#include <string>// 引入字符串处理功能
+// 引入CARLA传感器数据中的DVS事件类型
 #include "carla/sensor/data/DVSEvent.h"
-
+// 引入CARLA ROS2类型的发布/订阅类型定义
 #include "carla/ros2/types/ImagePubSubTypes.h"
 #include "carla/ros2/types/CameraInfoPubSubTypes.h"
 #include "carla/ros2/types/PointCloud2PubSubTypes.h"
+// 引入CARLA ROS2监听器接口
 #include "carla/ros2/listeners/CarlaListener.h"
-
+// 引入Fast-DDS的域参与者、发布者、主题和数据写入器等核心组件
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/publisher/Publisher.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/topic/TypeSupport.hpp>
-
+// 引入Fast-DDS的QoS策略定义
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+// 引入Fast-RTPS的参与者属性和QoS策略
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
