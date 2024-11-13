@@ -639,7 +639,17 @@ namespace ros2 {
     header.stamp(std::move(time));// 设置时间戳
     header.frame_id(_frame_id);// 设置帧ID
   }
-
+  /**
+ * @brief 设置相机信息中的感兴趣区域（Region Of Interest, ROI）。
+ *
+ * 该函数用于配置相机信息的ROI，包括x和y偏移量、高度、宽度以及是否进行校正。
+ *
+ * @param x_offset ROI的x轴偏移量。
+ * @param y_offset ROI的y轴偏移量。
+ * @param height ROI的高度。
+ * @param width ROI的宽度。
+ * @param do_rectify 是否对ROI进行校正。
+ */
   void CarlaDVSCameraPublisher::SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify) {
     sensor_msgs::msg::RegionOfInterest roi;
     roi.x_offset(x_offset);
@@ -649,14 +659,23 @@ namespace ros2 {
     roi.do_rectify(do_rectify);
     _info->_ci.roi(roi);
   }
-
+  /**
+ * @brief 设置点云数据。
+ *
+ * 该函数用于配置点云消息，包括高度、宽度、元素数量以及点云数据。
+ *
+ * @param height 点云的高度（即点的行数）。
+ * @param width 点云的宽度（即点的列数）。
+ * @param elements 点云中的元素数量。
+ * @param data 指向点云数据的指针。
+ */
   void CarlaDVSCameraPublisher::SetPointCloudData(size_t height, size_t width, size_t elements, const uint8_t* data) {
 
     std::vector<uint8_t> vector_data;
-    const size_t size = height * width;
-    vector_data.resize(size);
-    std::memcpy(&vector_data[0], &data[0], size);
-
+    const size_t size = height * width;// 计算点云数据所需的总字节数
+    vector_data.resize(size);// 调整向量大小以适应点云数据
+    std::memcpy(&vector_data[0], &data[0], size);// 将原始数据复制到向量中
+    // 配置点云描述符（即点的属性信息）
     sensor_msgs::msg::PointField descriptor1;
     descriptor1.name("x");
     descriptor1.offset(0);
@@ -678,17 +697,24 @@ namespace ros2 {
     descriptor3.datatype(sensor_msgs::msg::PointField__INT8);
     descriptor3.count(1);
 
-    const size_t point_size = sizeof(carla::sensor::data::DVSEvent);
-    _point_cloud->_pc.width(width);
-    _point_cloud->_pc.height(height);
-    _point_cloud->_pc.is_bigendian(false);
-    _point_cloud->_pc.fields({descriptor1, descriptor2, descriptor3, descriptor4});
-    _point_cloud->_pc.point_step(point_size);
-    _point_cloud->_pc.row_step(width * point_size);
-    _point_cloud->_pc.is_dense(false); //True if there are not invalid points
-    _point_cloud->_pc.data(std::move(vector_data));
+    const size_t point_size = sizeof(carla::sensor::data::DVSEvent);// 假设每个点的大小与DVSEvent结构相同
+    _point_cloud->_pc.width(width); // 设置点云的宽度
+    _point_cloud->_pc.height(height);// 设置点云的高度
+    _point_cloud->_pc.is_bigendian(false);// 设置点云数据是否为大端模式（这里假设为小端）
+    _point_cloud->_pc.fields({descriptor1, descriptor2, descriptor3, descriptor4});// 设置点云的描述符
+    _point_cloud->_pc.point_step(point_size);// 设置每个点的步长（即每个点的大小）
+    _point_cloud->_pc.row_step(width * point_size);// 设置每行的步长（即每行数据的大小）
+    _point_cloud->_pc.is_dense(false);// 设置点云是否为稠密点云（false表示存在无效点）
+    _point_cloud->_pc.data(std::move(vector_data));// 设置点云数据（使用移动语义）
   }
-
+  /**
+ * @brief CarlaDVSCameraPublisher的构造函数。
+ *
+ * 初始化CarlaDVSCameraPublisher对象，包括内部实现对象、相机信息发布者对象和点云发布者对象。
+ *
+ * @param ros_name ROS节点名称。
+ * @param parent 父节点或相关实体的名称。
+ */
   CarlaDVSCameraPublisher::CarlaDVSCameraPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaDVSCameraPublisherImpl>()),
   _info(std::make_shared<CarlaCameraInfoPublisherImpl>()),
@@ -696,7 +722,11 @@ namespace ros2 {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaDVSCameraPublisher的析构函数。
+ *
+ * 清理CarlaDVSCameraPublisher对象，包括释放内部实现对象、相机信息发布者对象和点云发布者对象所占用的资源。
+ */
   CarlaDVSCameraPublisher::~CarlaDVSCameraPublisher() {
       if (!_impl)
           return;
@@ -743,7 +773,13 @@ namespace ros2 {
       if (_point_cloud->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_point_cloud->_participant);
   }
-
+  /**
+ * @brief CarlaDVSCameraPublisher的拷贝构造函数。
+ *
+ * 创建一个新的CarlaDVSCameraPublisher对象，并复制另一个CarlaDVSCameraPublisher对象的成员变量。
+ *
+ * @param other 要复制的CarlaDVSCameraPublisher对象。
+ */
   CarlaDVSCameraPublisher::CarlaDVSCameraPublisher(const CarlaDVSCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -752,7 +788,14 @@ namespace ros2 {
     _info = other._info;
     _point_cloud = other._point_cloud;
   }
-
+  /**
+ * @brief 赋值运算符重载。
+ *
+ * 将另一个CarlaDVSCameraPublisher对象的成员变量赋值给当前对象。
+ *
+ * @param other 要赋值的CarlaDVSCameraPublisher对象。
+ * @return 返回对当前对象的引用。
+ */
   CarlaDVSCameraPublisher& CarlaDVSCameraPublisher::operator=(const CarlaDVSCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -763,7 +806,13 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaDVSCameraPublisher的移动构造函数。
+ *
+ * 创建一个新的CarlaDVSCameraPublisher对象，并移动另一个CarlaDVSCameraPublisher对象的成员变量。
+ *
+ * @param other 要移动的CarlaDVSCameraPublisher对象。
+ */
   CarlaDVSCameraPublisher::CarlaDVSCameraPublisher(CarlaDVSCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
@@ -772,7 +821,14 @@ namespace ros2 {
     _info = std::move(other._info);
     _point_cloud = std::move(other._point_cloud);
   }
-
+  /**
+ * @brief 移动赋值运算符重载。
+ *
+ * 将另一个CarlaDVSCameraPublisher对象的成员变量移动到当前对象。
+ *
+ * @param other 要移动的CarlaDVSCameraPublisher对象。
+ * @return 返回对当前对象的引用。
+ */
   CarlaDVSCameraPublisher& CarlaDVSCameraPublisher::operator=(CarlaDVSCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
