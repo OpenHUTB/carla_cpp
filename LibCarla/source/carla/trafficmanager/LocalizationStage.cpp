@@ -53,7 +53,7 @@ void LocalizationStage::Update(const unsigned long index) {
   }
   Buffer &waypoint_buffer = buffer_map.at(actor_id);
 
-  // Clear buffer if vehicle is too far from the first waypoint in the buffer.
+  // 如果车辆离缓冲区里的第一个路点过远则清理路点缓冲区。
   if (!waypoint_buffer.empty() &&
       cg::Math::DistanceSquared(waypoint_buffer.front()->GetLocation(),
                                 vehicle_location) > SQUARE(MAX_START_DISTANCE)) {

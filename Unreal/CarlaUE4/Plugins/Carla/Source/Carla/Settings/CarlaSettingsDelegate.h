@@ -1,7 +1,7 @@
-// °æÈ¨ËùÓĞ£¨c£©2017°ÍÈûÂŞÄÇ×ÔÖÎ´óÑ§¼ÆËã»úÊÓ¾õÖĞĞÄ£¨CVC£©
+// ç‰ˆæƒæ‰€æœ‰ï¼ˆcï¼‰2017å·´å¡ç½—é‚£è‡ªæ²»å¤§å­¦è®¡ç®—æœºè§†è§‰ä¸­å¿ƒï¼ˆCVCï¼‰
 //
-// ±¾×÷Æ·¸ù¾İÂéÊ¡Àí¹¤Ñ§ÔºĞí¿ÉÌõ¿î»ñµÃĞí¿É
-// ÓĞ¹Ø¸±±¾£¬Çë²ÎÔÄ <https://opensource.org/licenses/MIT>.
+// æœ¬ä½œå“æ ¹æ®éº»çœç†å·¥å­¦é™¢è®¸å¯æ¡æ¬¾è·å¾—è®¸å¯
+// æœ‰å…³å‰¯æœ¬ï¼Œè¯·å‚é˜… <https://opensource.org/licenses/MIT>.
 
 #pragma once
 
@@ -15,7 +15,7 @@
 
 class UCarlaSettings;
 
-///ÓÃÓÚÎªÉú³Éµ½ÊÀ½çÖĞµÄÃ¿¸ö½ÇÉ«ÉèÖÃÉèÖÃ
+///ç”¨äºä¸ºç”Ÿæˆåˆ°ä¸–ç•Œä¸­çš„æ¯ä¸ªè§’è‰²è®¾ç½®è®¾ç½®
 UCLASS(BlueprintType)
 class CARLA_API UCarlaSettingsDelegate : public UObject
 {
@@ -25,18 +25,17 @@ public:
 
   UCarlaSettingsDelegate();
 
-  ///½«ÉèÖÃÖØÖÃÎªÄ¬ÈÏÖµ
+  ///å°†è®¾ç½®é‡ç½®ä¸ºé»˜è®¤å€¼
   void Reset();
 
-  /// CreÎªËùÓĞĞÂÉú³ÉµÄ²ÎÓëÕß´´½¨ÊÂ¼ş´¥·¢Æ÷´¦Àí³ÌĞò´Ë´¦Ê¹ÓÃ×Ô¶¨Òåº¯Êı½øĞĞ´¦Àí
-  ///Çë·ÃÎÊ´Ë´¦ËùÓĞĞÂÉú³ÉµÄ²ÎÓëÕßµÄÊÂ¼ş´¥·¢Æ÷´¦Àí³ÌĞò£¬ÒÔÊ¹ÓÃ´Ë´¦µÄ¶¨ÖÆº¯Êı½øĞĞ´¦Àí
+  /// åœ¨æ­¤å¤„ä¸ºæ‰€æœ‰æ–°ç”Ÿæˆçš„å‚ä¸è€…åˆ›å»ºäº‹ä»¶è§¦å‘å™¨å¤„ç†ç¨‹åºï¼Œä»¥ä¾¿ä½¿ç”¨è‡ªå®šä¹‰å‡½æ•°è¿›è¡Œå¤„ç†ã€‚
   void RegisterSpawnHandler(UWorld *World);
 
-  /// ¼ÓÔØ¹Ø¿¨ºó£¬Ó¦ÓÃµ±Ç°ÉèÖÃ
+  /// åŠ è½½å…³å¡åï¼Œåº”ç”¨å½“å‰è®¾ç½®
   UFUNCTION(BlueprintCallable, Category = "CARLA Settings", meta = (HidePin = "InWorld"))
   void ApplyQualityLevelPostRestart();
 
-  /// ¼ÓÔØ¹Ø¿¨Ö®Ç°£¬Ó¦ÓÃµ±Ç°ÉèÖÃ
+  /// åŠ è½½å…³å¡ä¹‹å‰ï¼Œåº”ç”¨å½“å‰è®¾ç½®
   UFUNCTION(BlueprintCallable, Category = "CARLA Settings", meta = (HidePin = "InWorld"))
   void ApplyQualityLevelPreRestart();
 
@@ -46,14 +45,14 @@ private:
 
   UWorld *GetLocalWorld();
 
-  ///º¯ÊıÓ¦ÓÃÓÚÕıÔÚÉú³ÉµÄ²ÎÓëÕß£¬ÒÔÓ¦ÓÃµ±Ç°ÉèÖÃ
+  ///å‡½æ•°åº”ç”¨äºæ­£åœ¨ç”Ÿæˆçš„å‚ä¸è€…ï¼Œä»¥åº”ç”¨å½“å‰è®¾ç½®
   void OnActorSpawned(AActor *Actor);
 
-  /// ¼ì²éÊÀ½ç¡¢ÊµÀıºÍÉèÖÃÊÇ·ñÓĞĞ§£¬²¢±£´æCarlaSettingsÊµÀı
-  ///@param worldÓÃÓÚ»ñÈ¡CarlaSettingsµÄÊµÀı
+  /// æ£€æŸ¥ä¸–ç•Œã€å®ä¾‹å’Œè®¾ç½®æ˜¯å¦æœ‰æ•ˆï¼Œå¹¶ä¿å­˜CarlaSettingså®ä¾‹
+  ///@param worldç”¨äºè·å–CarlaSettingsçš„å®ä¾‹
   void CheckCarlaSettings(UWorld *world);
 
-  ///Ö´ĞĞÒıÇæÃüÁî£¬½«µÍÖÊÁ¿Ë®Æ½Ó¦ÓÃÓÚÊÀ½ç
+  ///æ‰§è¡Œå¼•æ“å‘½ä»¤ï¼Œå°†ä½è´¨é‡æ°´å¹³åº”ç”¨äºä¸–ç•Œ
   void LaunchLowQualityCommands(UWorld *world) const;
 
   void SetAllRoads(
@@ -65,7 +64,7 @@ private:
 
   void SetPostProcessEffectsEnabled(UWorld *world, bool enabled) const;
 
-  ///Ö´ĞĞÒıÇæÃüÁî£¬½«Ê·Ê«°ãµÄÖÊÁ¿Ë®Æ½Ó¦ÓÃÓÚÊÀ½ç
+  ///æ‰§è¡Œå¼•æ“å‘½ä»¤ï¼Œå°†å²è¯—èˆ¬çš„è´¨é‡æ°´å¹³åº”ç”¨äºä¸–ç•Œ
   void LaunchEpicQualityCommands(UWorld *world) const;
 
   void SetAllLights(
@@ -76,7 +75,7 @@ private:
 
 private:
 
-  /// ÖØĞÂÆô¶¯¼¶±ğºóµ±Ç°Ó¦ÓÃµÄÖÊÁ¿¼¶±ğ
+  /// é‡æ–°å¯åŠ¨çº§åˆ«åå½“å‰åº”ç”¨çš„è´¨é‡çº§åˆ«
   static EQualityLevel AppliedLowPostResetQualityLevel;
 
   UCarlaSettings *CarlaSettings = nullptr;

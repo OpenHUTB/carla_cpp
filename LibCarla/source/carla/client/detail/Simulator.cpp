@@ -267,6 +267,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
           "recommended to set 'fixed_delta_seconds' when running on synchronous mode.");
     }
     else if (settings.synchronous_mode && settings.substepping) {
+      // 最大物理子步数 必须在[1,16]范围之内
       if(settings.max_substeps < 1 || settings.max_substeps > 16) {
         log_warning(
             "synchronous mode and substepping are enabled but the number of substeps is not valid. "
