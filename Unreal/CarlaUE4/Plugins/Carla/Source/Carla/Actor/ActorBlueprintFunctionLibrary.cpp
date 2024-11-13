@@ -345,49 +345,80 @@ static void AddRecommendedValuesForActorRoleName(
   }
 }
 
-static void AddRecommendedValuesForSensorRoleNames(FActorDefinition &Definition)
+// 定义一个函数，用于为传感器的参与者名称添加推荐值
+static void AddRecommendedValuesForSensorRoleNames(FActorDefinition& Definition)
 {
-  AddRecommendedValuesForActorRoleName(Definition, {TEXT("front"), TEXT("back"), TEXT("left"), TEXT(
-      "right"), TEXT("front_left"), TEXT("front_right"), TEXT("back_left"), TEXT("back_right")});
+    // 为参与者定义的参与者名称添加推荐的传感器位置名称
+    AddRecommendedValuesForActorRoleName(Definition, { TEXT("front"), TEXT("back"), TEXT("left"), TEXT("right"), TEXT("front_left"), TEXT("front_right"), TEXT("back_left"), TEXT("back_right") });
 }
 
-static void AddVariationsForSensor(FActorDefinition &Def)
+// 定义一个函数，用于为传感器添加变化属性
+static void AddVariationsForSensor(FActorDefinition& Def)
 {
-  FActorVariation Tick;
+    // 创建一个参与者变化对象
+    FActorVariation Tick;
 
-  Tick.Id = TEXT("sensor_tick");
-  Tick.Type = EActorAttributeType::Float;
-  Tick.RecommendedValues = { TEXT("0.0") };
-  Tick.bRestrictToRecommended = false;
+    // 设置变化对象的ID为"sensor_tick"
+    Tick.Id = TEXT("sensor_tick");
 
-  Def.Variations.Emplace(Tick);
+    // 设置变化对象的类型为浮点型
+    Tick.Type = EActorAttributeType::Float;
+
+    // 设置变化对象的推荐值为"0.0"
+    Tick.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否限制只能使用推荐值，这里为false，表示不限制
+    Tick.bRestrictToRecommended = false;
+
+    // 将变化对象添加到参与者定义的变化列表中
+    Def.Variations.Emplace(Tick);
 }
 
-static void AddVariationsForTrigger(FActorDefinition &Def)
+// 定义一个函数，用于为触发器添加变化属性
+static void AddVariationsForTrigger(FActorDefinition& Def)
 {
-  // Friction
-  FActorVariation Friction;
-  Friction.Id = FString("friction");
-  Friction.Type = EActorAttributeType::Float;
-  Friction.RecommendedValues = { TEXT("3.5f") };
-  Friction.bRestrictToRecommended = false;
-  Def.Variations.Emplace(Friction);
+    // Friction（摩擦力）
+    FActorVariation Friction;
 
-  // Extent
-  FString Extent("extent");
-  FString Coordinates[3] = {FString("x"), FString("y"), FString("z")};
+    // 设置摩擦力变化对象的ID为"friction"
+    Friction.Id = FString("friction");
 
-  for (auto Coordinate : Coordinates)
-  {
-    FActorVariation ExtentCoordinate;
+    // 设置摩擦力变化对象的类型为浮点型
+    Friction.Type = EActorAttributeType::Float;
 
-    ExtentCoordinate.Id = JoinStrings(TEXT("_"), Extent, Coordinate);
-    ExtentCoordinate.Type = EActorAttributeType::Float;
-    ExtentCoordinate.RecommendedValues = { TEXT("1.0f") };
-    ExtentCoordinate.bRestrictToRecommended = false;
+    // 设置摩擦力变化对象的推荐值为"3.5f"
+    Friction.RecommendedValues = { TEXT("3.5f") };
 
-    Def.Variations.Emplace(ExtentCoordinate);
-  }
+    // 设置是否限制只能使用推荐值，这里为false，表示不限制
+    Friction.bRestrictToRecommended = false;
+
+    // 将摩擦力变化对象添加到参与者定义的变化列表中
+    Def.Variations.Emplace(Friction);
+
+    // Extent（范围）
+    FString Extent("extent");
+    FString Coordinates[3] = { FString("x"), FString("y"), FString("z") }; // 定义三个坐标轴x, y, z
+
+    // 遍历坐标轴数组
+    for (auto Coordinate : Coordinates)
+    {
+        FActorVariation ExtentCoordinate; // 为每个坐标轴创建一个变化对象
+
+        // 设置变化对象的ID，格式为"extent_x", "extent_y", "extent_z"
+        ExtentCoordinate.Id = JoinStrings(TEXT("_"), Extent, Coordinate);
+
+        // 设置变化对象的类型为浮点型
+        ExtentCoordinate.Type = EActorAttributeType::Float;
+
+        // 设置变化对象的推荐值为"1.0f"
+        ExtentCoordinate.RecommendedValues = { TEXT("1.0f") };
+
+        // 设置是否限制只能使用推荐值，这里为false，表示不限制
+        ExtentCoordinate.bRestrictToRecommended = false;
+
+        // 将变化对象添加到参与者定义的变化列表中
+        Def.Variations.Emplace(ExtentCoordinate);
+    }
 }
 
 FActorDefinition UActorBlueprintFunctionLibrary::MakeGenericDefinition(
