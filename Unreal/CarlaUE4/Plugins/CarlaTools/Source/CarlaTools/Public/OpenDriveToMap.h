@@ -30,7 +30,12 @@ class UMeshComponent;
 class UCustomFileDownloader;
 class UMaterialInstance;
 // UCLASS宏用于将此类注册到UE4的反射系统中，使其可以在蓝图中使用、进行序列化等操作
-// Blueprintable表示此类可以在蓝图中继承扩展，BlueprintType表示此类的实例可以作为蓝图中的变量类型UCLASS(Blueprintable, BlueprintType)
+// Blueprintable表示此类可以在蓝图中继承扩展，BlueprintType表示此类的实例可以作为蓝图中的变量类型
+/**	
+ *
+	
+ */
+UCLASS(Blueprintable, BlueprintType)
 class CARLATOOLS_API UOpenDriveToMap : public UEditorUtilityObject
 {
   GENERATED_BODY()
