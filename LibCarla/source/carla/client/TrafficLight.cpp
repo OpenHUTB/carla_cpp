@@ -13,61 +13,74 @@
 
 namespace carla {
 namespace client {
-
+  // 设置交通信号灯的当前状态（如红灯、黄灯、绿灯）
   void TrafficLight::SetState(rpc::TrafficLightState state) {
     GetEpisode().Lock()->SetTrafficLightState(*this, state);
   }
 
+  //获取交通信号灯的当前状态
   rpc::TrafficLightState TrafficLight::GetState() const {
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.state;
   }
-
+  // 设置绿灯持续时间
   void TrafficLight::SetGreenTime(float green_time) {
     GetEpisode().Lock()->SetTrafficLightGreenTime(*this, green_time);
   }
 
+  // 获取绿灯持续时间
   float TrafficLight::GetGreenTime() const {
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.green_time;
   }
 
+  //设置黄灯持续时间
   void TrafficLight::SetYellowTime(float yellow_time) {
     GetEpisode().Lock()->SetTrafficLightYellowTime(*this, yellow_time);
   }
 
+  //获取黄灯持续时间
   float TrafficLight::GetYellowTime() const {
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.yellow_time;
   }
 
+  // 设置红灯持续时间
   void TrafficLight::SetRedTime(float red_time) {
     GetEpisode().Lock()->SetTrafficLightRedTime(*this, red_time);
   }
 
+  // 获取红灯持续时间
   float TrafficLight::GetRedTime() const {
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.red_time;
   }
 
+  // 获取当前信号灯周期内已过去的时间
   float TrafficLight::GetElapsedTime() const {
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.elapsed_time;
   }
 
+  // 冻结或解冻信号灯的状态
   void TrafficLight::Freeze(bool freeze) {
-    //GetEpisode().Lock()->FreezeTrafficLight(*this, freeze);
+    // 冻结或解冻所有信号灯
     GetEpisode().Lock()->FreezeAllTrafficLights(freeze);
   }
 
+  //检查信号灯是否被冻结
   bool TrafficLight::IsFrozen() const {
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.time_is_frozen;
   }
 
+  // 获取当前信号灯的杆编号
   uint32_t TrafficLight::GetPoleIndex()
   {
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.pole_index;
   }
 
+  // 获取属于同一组的所有信号灯
   std::vector<SharedPtr<TrafficLight>> TrafficLight::GetGroupTrafficLights() {
     std::vector<SharedPtr<TrafficLight>> result;
+    //获取同组的信号灯ID列表
     auto ids = GetEpisode().Lock()->GetGroupTrafficLights(*this);
     for (auto id : ids) {
+      // 查找每个ID对应的参与者，并转换为TrafficLight类型，加入结果列表
       SharedPtr<Actor> actor = GetWorld().GetActors()->Find(id);
       result.push_back(boost::static_pointer_cast<TrafficLight>(actor));
     }
