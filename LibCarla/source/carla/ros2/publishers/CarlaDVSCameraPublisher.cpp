@@ -28,31 +28,90 @@
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/DataWriterListener.hpp>
 
-
+/**
+ * @namespace carla::ros2
+ * @brief CARLA的ROS2集成命名空间，包含DVS相机、相机信息和点云数据的发布者实现。
+ */
 namespace carla {
 namespace ros2 {
-
+    /**
+  * @brief 引入Fast-DDS命名空间的别名，简化代码中的引用。
+  */
   namespace efd = eprosima::fastdds::dds;
+  /**
+   * @brief 引入Fast-RTPS返回代码类型的别名。
+   */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+  * @struct CarlaDVSCameraPublisherImpl
+  * @brief DVS相机数据发布者的内部实现结构。
+  */
   struct CarlaDVSCameraPublisherImpl {
+      /**
+    * @brief Fast-DDS域参与者指针。
+    */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief Fast-DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief Fast-DDS类型支持，用于图像数据。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };
+    /**
+     * @brief CARLA监听器实例，用于处理回调。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 待发布的图像数据。
+     */
     sensor_msgs::msg::Image _image {};
   };
-
+  /**
+   * @struct CarlaCameraInfoPublisherImpl
+   * @brief 相机信息数据发布者的内部实现结构。
+   */
   struct CarlaCameraInfoPublisherImpl {
+      /**
+     * @brief Fast-DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief Fast-DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief Fast-DDS类型支持，用于相机信息数据。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
+    /**
+     * @brief CARLA监听器实例，用于处理回调。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 初始化标志。
+     */
     bool _init {false};
+    /**
+     * @brief 待发布的相机信息数据。
+     */
     sensor_msgs::msg::CameraInfo _ci {};
   };
 
