@@ -15,7 +15,7 @@ namespace carla {
 namespace sensor {
 namespace data {
 
-  //用RadarDetection(雷达探测器)编写的RadarMeasurement类。由一个RadarDetection数组组成
+  //由雷达探测出来的测量结果。由一个RadarDetection数组的数据组成
   ///一个RadarDetection包含四个浮点变量: 速度, 朝向方位角, 海拔以及深度
   class RadarMeasurement : public Array<data::RadarDetection> {
     using Super = Array<data::RadarDetection>;
