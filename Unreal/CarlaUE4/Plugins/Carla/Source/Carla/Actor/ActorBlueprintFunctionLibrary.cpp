@@ -686,24 +686,27 @@ if (bEnableModifyingPostProcessEffects)
     Gamma.bRestrictToRecommended = false;      // 不限制用户只能使用推荐的Gamma值
 }
 
-    // Motion Blur
-    FActorVariation MBIntesity;
-    MBIntesity.Id = TEXT("motion_blur_intensity");
-    MBIntesity.Type = EActorAttributeType::Float;
-    MBIntesity.RecommendedValues = { TEXT("0.45") };
-    MBIntesity.bRestrictToRecommended = false;
-
+    // 运动模糊配置
+   // 定义运动模糊强度的变化属性
+    FActorVariation MBIntesity; 
+    MBIntesity.Id = TEXT("motion_blur_intensity"); // 设置属性的唯一标识符
+    MBIntesity.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBIntesity.RecommendedValues = { TEXT("0.45") }; // 设置推荐的运动模糊强度值
+    MBIntesity.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
+ 
+    // 定义运动模糊最大扭曲的变化属性
     FActorVariation MBMaxDistortion;
-    MBMaxDistortion.Id = TEXT("motion_blur_max_distortion");
-    MBMaxDistortion.Type = EActorAttributeType::Float;
-    MBMaxDistortion.RecommendedValues = { TEXT("0.35") };
-    MBMaxDistortion.bRestrictToRecommended = false;
-
+    MBMaxDistortion.Id = TEXT("motion_blur_max_distortion"); // 设置属性的唯一标识符
+    MBMaxDistortion.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBMaxDistortion.RecommendedValues = { TEXT("0.35") }; // 设置推荐的运动模糊最大扭曲值
+    MBMaxDistortion.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
+ 
+    // 定义运动模糊最小对象屏幕尺寸的变化属性
     FActorVariation MBMinObjectScreenSize;
-    MBMinObjectScreenSize.Id = TEXT("motion_blur_min_object_screen_size");
-    MBMinObjectScreenSize.Type = EActorAttributeType::Float;
-    MBMinObjectScreenSize.RecommendedValues = { TEXT("0.1") };
-    MBMinObjectScreenSize.bRestrictToRecommended = false;
+    MBMinObjectScreenSize.Id = TEXT("motion_blur_min_object_screen_size"); // 设置属性的唯一标识符
+    MBMinObjectScreenSize.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBMinObjectScreenSize.RecommendedValues = { TEXT("0.1") }; // 设置推荐的运动模糊最小对象屏幕尺寸值
+    MBMinObjectScreenSize.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
 
     // Lens Flare
     FActorVariation LensFlareIntensity;
