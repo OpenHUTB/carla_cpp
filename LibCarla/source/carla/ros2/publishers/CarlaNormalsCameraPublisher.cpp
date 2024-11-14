@@ -251,17 +251,31 @@ namespace ros2 {
     _frame_id = _name;
     return true;// 返回true表示初始化成功
   }
-
+  /**
+ * @brief 发布图像和相关信息
+ *
+ * 该函数负责发布图像数据以及相关的图像信息。它首先尝试发布图像数据，
+ * 然后尝试发布图像信息。如果两者都成功发布，则返回true；否则返回false。
+ *
+ * @return bool 如果图像和相关信息都成功发布，则返回true；否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::Publish() {
     return PublishImage() && PublishInfo();
   }
-
+  /**
+ * @brief 发布图像数据
+ *
+ * 该函数尝试通过Fast-RTPS发布图像数据。根据返回码（rcode）判断发布是否成功，
+ * 并输出相应的错误信息。如果发布成功，返回true；否则返回false。
+ *
+ * @return bool 如果图像数据成功发布，则返回true；否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::PublishImage() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_image, instance_handle);
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
-    }
+    }// 根据返回码判断发布结果，并输出相应的错误信息
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
@@ -317,13 +331,20 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 发布图像信息
+ *
+ * 该函数尝试通过Fast-RTPS发布图像信息。根据返回码（rcode）判断发布是否成功，
+ * 并输出相应的错误信息。如果发布成功，返回true；否则返回false。
+ *
+ * @return bool 如果图像信息成功发布，则返回true；否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::PublishInfo() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl_info->_datawriter->write(&_impl_info->_info, instance_handle);
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
-    }
+    }// 根据返回码判断发布结果，并输出相应的错误信息
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
