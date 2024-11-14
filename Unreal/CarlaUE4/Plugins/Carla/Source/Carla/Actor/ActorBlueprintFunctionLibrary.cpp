@@ -656,31 +656,35 @@ void UActorBlueprintFunctionLibrary::MakeCameraDefinition(
     LensYSize.bRestrictToRecommended = false;
 
 
-  Definition.Variations.Append({
-      ResX,
-      ResY,
-      FOV,
-      LensCircleFalloff,
-      LensCircleMultiplier,
-      LensK,
-      LensKcube,
-      LensXSize,
-      LensYSize});
-
-  if (bEnableModifyingPostProcessEffects)
-  {
+ // 将一系列变量（如分辨率、视野等）添加到定义的变化列表中
+Definition.Variations.Append({
+    ResX,           // 分辨率X轴
+    ResY,           // 分辨率Y轴
+    FOV,            // 视野（Field of View）
+    LensCircleFalloff, // 镜头圆形衰减
+    LensCircleMultiplier, // 镜头圆形倍增器
+    LensK,          // 镜头K值（一种镜头畸变参数）
+    LensKcube,      // 镜头K立方值（另一种镜头畸变参数）
+    LensXSize,      // 镜头X轴尺寸
+    LensYSize});    // 镜头Y轴尺寸
+ 
+// 如果启用了修改后处理效果的功能
+if (bEnableModifyingPostProcessEffects)
+{
+    // 创建一个后处理效果的变化定义
     FActorVariation PostProccess;
-    PostProccess.Id = TEXT("enable_postprocess_effects");
-    PostProccess.Type = EActorAttributeType::Bool;
-    PostProccess.RecommendedValues = { TEXT("true") };
-    PostProccess.bRestrictToRecommended = false;
-
-    // Gamma
+    PostProccess.Id = TEXT("enable_postprocess_effects"); // 设置变化的标识符
+    PostProccess.Type = EActorAttributeType::Bool;        // 设置变化类型为布尔值
+    PostProccess.RecommendedValues = { TEXT("true") };    // 设置推荐的值为"true"（启用）
+    PostProccess.bRestrictToRecommended = false;          // 不限制用户只能使用推荐值
+ 
+    // 创建一个关于Gamma值的变化定义
     FActorVariation Gamma;
-    Gamma.Id = TEXT("gamma");
-    Gamma.Type = EActorAttributeType::Float;
-    Gamma.RecommendedValues = { TEXT("2.2") };
-    Gamma.bRestrictToRecommended = false;
+    Gamma.Id = TEXT("gamma");         // 设置变化的标识符为"gamma"
+    Gamma.Type = EActorAttributeType::Float; // 设置变化类型为浮点数
+    Gamma.RecommendedValues = { TEXT("2.2") }; // 设置推荐的Gamma值为2.2
+    Gamma.bRestrictToRecommended = false;      // 不限制用户只能使用推荐的Gamma值
+}
 
     // Motion Blur
     FActorVariation MBIntesity;
