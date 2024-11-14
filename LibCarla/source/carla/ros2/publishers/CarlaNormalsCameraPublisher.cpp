@@ -149,52 +149,54 @@ namespace ros2 {
  * @return true 如果初始化成功，否则返回false。
  */
   bool CarlaNormalsCameraPublisher::InitImage() {
+      // 检查类型支持是否有效
     if (_impl->_type == nullptr) {
-        std::cerr << "Invalid TypeSupport" << std::endl;
-        return false;
+        std::cerr << "Invalid TypeSupport" << std::endl;// 打印错误信息：无效的类型支持
+        return false;// 返回false表示初始化失败
     }
-
+    // 设置DomainParticipant的QoS策略，并创建DomainParticipant
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
-    pqos.name(_name);
+    pqos.name(_name);// 设置DomainParticipant的名称
     auto factory = efd::DomainParticipantFactory::get_instance();
-    _impl->_participant = factory->create_participant(0, pqos);
+    _impl->_participant = factory->create_participant(0, pqos);// 创建DomainParticipant
     if (_impl->_participant == nullptr) {
-        std::cerr << "Failed to create DomainParticipant" << std::endl;
-        return false;
+        std::cerr << "Failed to create DomainParticipant" << std::endl;// 打印错误信息：创建DomainParticipant失败
+        return false;// 返回false表示初始化失败
     }
-    _impl->_type.register_type(_impl->_participant);
-
+    _impl->_type.register_type(_impl->_participant);// 注册类型到DomainParticipant
+    // 设置Publisher的QoS策略，并创建Publisher
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
-    _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
+    _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);// 创建Publisher
     if (_impl->_publisher == nullptr) {
-      std::cerr << "Failed to create Publisher" << std::endl;
-      return false;
+      std::cerr << "Failed to create Publisher" << std::endl;// 打印错误信息：创建Publisher失败
+      return false;// 返回false表示初始化失败
     }
-
+    // 设置Topic的QoS策略，并创建Topic
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
-    const std::string publisher_type {"/image"};
-    const std::string base { "rt/carla/" };
-    std::string topic_name = base;
-    if (!_parent.empty())
-      topic_name += _parent + "/";
-    topic_name += _name;
-    topic_name += publisher_type;
+    const std::string publisher_type {"/image"};// 定义Topic的类型后缀，表示这是一个图像发布者
+    const std::string base { "rt/carla/" };// 定义Topic的基础路径
+    std::string topic_name = base;// 初始化Topic名称
+    if (!_parent.empty())// 如果父路径不为空
+      topic_name += _parent + "/";// 添加父路径到Topic名称
+    topic_name += _name;// 添加名称到Topic名称
+    topic_name += publisher_type;// 添加类型后缀到Topic名称
     _impl->_topic = _impl->_participant->create_topic(topic_name, _impl->_type->getName(), tqos);
     if (_impl->_topic == nullptr) {
-        std::cerr << "Failed to create Topic" << std::endl;
-        return false;
+        std::cerr << "Failed to create Topic" << std::endl;// 打印错误信息：创建Topic失败
+        return false;// 返回false表示初始化失败
     }
-
+    // 设置DataWriter的QoS策略，并创建DataWriter
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
-    wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
-    efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
-    _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
+    wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;// 设置历史内存策略为预分配并允许重新分配
+    efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();// 获取DataWriter监听器
+    _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);// 创建DataWriter
     if (_impl->_datawriter == nullptr) {
-        std::cerr << "Failed to create DataWriter" << std::endl;
-        return false;
+        std::cerr << "Failed to create DataWriter" << std::endl;// 打印错误信息：创建DataWriter失败
+        return false;// 返回false表示初始化失败
     }
+    // 设置帧ID为名称
     _frame_id = _name;
-    return true;
+    return true;// 返回true表示初始化成功
   }
   /**
  * @brief 初始化CameraInfo发布者。
