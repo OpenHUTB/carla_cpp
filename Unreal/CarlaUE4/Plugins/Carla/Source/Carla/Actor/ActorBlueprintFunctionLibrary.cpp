@@ -421,78 +421,179 @@ static void AddVariationsForTrigger(FActorDefinition& Def)
     }
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，用于创建一个通用的Actor定义。
+// 它接收三个参数：分类（Category）、类型（Type）和ID（Id），并返回一个参与者对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeGenericDefinition(
-    const FString &Category,
-    const FString &Type,
-    const FString &Id)
+
+    // 分类名称
+    const FString& Category, 
+
+    // 参与者的类型
+    const FString& Type,
+
+    // 参与者的唯一标识符
+    const FString& Id)       
 {
-  FActorDefinition Definition;
-  FillIdAndTags(Definition, Category, Type, Id);
-  return Definition;
+    // 创建一个参与者对象，用于存储Actor的定义
+    FActorDefinition Definition;
+
+    // 调用FillIdAndTags函数，填充定义中的ID和标签
+    FillIdAndTags(Definition, Category, Type, Id); 
+
+    // 返回填充后的定义
+    return Definition; 
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，专门用于创建传感器类型的Actor定义。
+// 它接收两个参数：类型（Type）和ID（Id），并返回一个FActorDefinition对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeGenericSensorDefinition(
-    const FString &Type,
-    const FString &Id)
+
+    // 传感器的类型
+    const FString& Type, 
+
+    // 传感器的唯一标识符
+    const FString& Id) 
 {
-  auto Definition = MakeGenericDefinition(TEXT("sensor"), Type, Id);
-  AddRecommendedValuesForSensorRoleNames(Definition);
-  return Definition;
+    // 调用MakeGenericDefinition函数，创建一个分类为“sensor”的通用定义
+    auto Definition = MakeGenericDefinition(TEXT("sensor"), Type, Id); 
+
+    // 调用AddRecommendedValuesForSensorRoleNames函数，为定义添加建议的传感器角色名称值
+    AddRecommendedValuesForSensorRoleNames(Definition); 
+
+    // 返回填充后的定义
+    return Definition; 
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，用于创建一个相机Actor的定义。
+// 它接收两个参数：ID（Id）和一个布尔值（bEnableModifyingPostProcessEffects），指示是否允许修改后处理效果。
+// 函数返回一个FActorDefinition对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeCameraDefinition(
-    const FString &Id,
+
+    // 相机的唯一标识符
+    const FString& Id, 
+
+    // 是否允许修改后处理效果的标志
     const bool bEnableModifyingPostProcessEffects)
 {
-  FActorDefinition Definition;
-  bool Success;
-  MakeCameraDefinition(Id, bEnableModifyingPostProcessEffects, Success, Definition);
-  check(Success);
-  return Definition;
+    // 创建一个参与者对象，用于存储相机的定义
+    FActorDefinition Definition;
+
+    // 定义一个布尔变量，用于指示定义创建是否成功
+    bool Success;
+
+    // 调用一个重载版本的MakeCameraDefinition函数（未在代码片段中给出），该版本接受一个额外的Success参数用于输出操作结果
+    MakeCameraDefinition(Id, bEnableModifyingPostProcessEffects, Success, Definition);
+
+    // 使用check宏确保定义创建成功，如果失败则触发断言
+    check(Success); 
+    
+    // 返回填充后的定义
+    return Definition; 
 }
 
+// 定义一个函数，用于创建相机定义
+// 该函数属于UActorBlueprintFunctionLibrary类
 void UActorBlueprintFunctionLibrary::MakeCameraDefinition(
-    const FString &Id,
-    const bool bEnableModifyingPostProcessEffects,
-    bool &Success,
-    FActorDefinition &Definition)
+
+    // 相机的唯一标识符
+    const FString& Id, 
+
+    // 是否允许修改后处理效果
+    const bool bEnableModifyingPostProcessEffects, 
+
+    // 函数执行成功与否的标志，通过引用传递，函数内部可以修改其值
+    bool& Success, 
+
+    // 相机定义的对象，通过引用传递，函数内部会对其进行填充
+    FActorDefinition& Definition) 
 {
-  FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), Id);
-  AddRecommendedValuesForSensorRoleNames(Definition);
-  AddVariationsForSensor(Definition);
+    // 填充相机定义的基本信息，包括Id和标签（此处标签为"sensor"和"camera"）
+    FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), Id);
 
-  // FOV
-  FActorVariation FOV;
-  FOV.Id = TEXT("fov");
-  FOV.Type = EActorAttributeType::Float;
-  FOV.RecommendedValues = { TEXT("90.0") };
-  FOV.bRestrictToRecommended = false;
+    // 为相机定义添加推荐的参与者名称值，这些值通常与传感器的参与者有关
+    AddRecommendedValuesForSensorRoleNames(Definition);
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+    // 为相机定义添加传感器相关的变体（可能是不同的配置或参数集合）
+    AddVariationsForSensor(Definition);
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+    // 下面的代码块用于添加相机的视野（Field of View, FOV）定义
 
-  // Lens parameters
-  FActorVariation LensCircleFalloff;
-  LensCircleFalloff.Id = TEXT("lens_circle_falloff");
-  LensCircleFalloff.Type = EActorAttributeType::Float;
-  LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
-  LensCircleFalloff.bRestrictToRecommended = false;
+    // 创建一个FActorVariation对象，用于表示FOV的定义
+    FActorVariation FOV; 
 
-  FActorVariation LensCircleMultiplier;
-  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
-  LensCircleMultiplier.Type = EActorAttributeType::Float;
-  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
-  LensCircleMultiplier.bRestrictToRecommended = false;
+    // 设置FOV定义的标识符为"fov"
+    FOV.Id = TEXT("fov"); 
+
+    // 设置FOV的类型为浮点型
+    FOV.Type = EActorAttributeType::Float; 
+
+    // 为FOV设置一个推荐的值，这里是90.0度
+    FOV.RecommendedValues = { TEXT("90.0") }; 
+
+    // 设置是否限制用户只能使用推荐的值，这里设置为false，表示用户可以选择其他值
+    FOV.bRestrictToRecommended = false; 
+
+    // 关于分辨率
+    // 定义图像的宽度（X轴）变化的结构体
+    FActorVariation ResX;
+
+    // 设置该变化项的标识符为"image_size_x"
+    ResX.Id = TEXT("image_size_x");
+
+    // 设置该变化项的类型为整数（Int）
+    ResX.Type = EActorAttributeType::Int;
+
+    // 设置推荐的值为"800"
+    ResX.RecommendedValues = { TEXT("800") };
+
+    // 设置是否限制用户只能使用推荐值，这里设置为false，意味着用户可以选择其他值
+    ResX.bRestrictToRecommended = false;
+
+    // 定义图像的高度（Y轴）变化的结构体
+    FActorVariation ResY;
+
+    // 设置该变化项的标识符为"image_size_y"
+    ResY.Id = TEXT("image_size_y");
+
+    // 设置该变化项的类型为整数（Int）
+    ResY.Type = EActorAttributeType::Int;
+
+    // 设置推荐的值为"600"（同样以文本形式给出，但实际为整数）
+    ResY.RecommendedValues = { TEXT("600") };
+
+    // 设置是否限制用户只能使用推荐值，这里同样设置为false
+    ResY.bRestrictToRecommended = false;
+
+    // 镜头参数
+    // 定义镜头圆形衰减参数的结构体
+    FActorVariation LensCircleFalloff;
+
+    // 设置该变化项的标识符为"lens_circle_falloff"
+    LensCircleFalloff.Id = TEXT("lens_circle_falloff");
+
+    // 设置该变化项的类型为浮点数（Float）
+    LensCircleFalloff.Type = EActorAttributeType::Float;
+
+    // 设置推荐的值为"5.0"
+    LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
+
+    // 设置是否限制用户只能使用推荐值，这里设置为false
+    LensCircleFalloff.bRestrictToRecommended = false;
+
+    // 定义镜头圆形倍增参数的结构体
+    FActorVariation LensCircleMultiplier;
+
+    // 设置该变化项的标识符为"lens_circle_multiplier"
+    LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
+
+    // 设置该变化项的类型为浮点数（Float）
+    LensCircleMultiplier.Type = EActorAttributeType::Float;
+
+    // 设置推荐的值为"0.0"（以文本形式给出，但实际为浮点数）
+    LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否限制用户只能使用推荐值，这里同样设置为false
+    LensCircleMultiplier.bRestrictToRecommended = false;
 
   FActorVariation LensK;
   LensK.Id = TEXT("lens_k");
