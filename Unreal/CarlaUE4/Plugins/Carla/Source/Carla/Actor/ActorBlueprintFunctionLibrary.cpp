@@ -595,29 +595,66 @@ void UActorBlueprintFunctionLibrary::MakeCameraDefinition(
     // 设置是否限制用户只能使用推荐值，这里同样设置为false
     LensCircleMultiplier.bRestrictToRecommended = false;
 
-  FActorVariation LensK;
-  LensK.Id = TEXT("lens_k");
-  LensK.Type = EActorAttributeType::Float;
-  LensK.RecommendedValues = { TEXT("-1.0") };
-  LensK.bRestrictToRecommended = false;
+    // 定义一个FActorVariation类型的变量LensK，用于表示某种属性或参数的变化
+    FActorVariation LensK;
 
-  FActorVariation LensKcube;
-  LensKcube.Id = TEXT("lens_kcube");
-  LensKcube.Type = EActorAttributeType::Float;
-  LensKcube.RecommendedValues = { TEXT("0.0") };
-  LensKcube.bRestrictToRecommended = false;
+    // 为LensK设置唯一标识符，这里是一个文本字符串"lens_k"
+    LensK.Id = TEXT("lens_k");
 
-  FActorVariation LensXSize;
-  LensXSize.Id = TEXT("lens_x_size");
-  LensXSize.Type = EActorAttributeType::Float;
-  LensXSize.RecommendedValues = { TEXT("0.08") };
-  LensXSize.bRestrictToRecommended = false;
+    // 设置LensK的属性类型为浮点型
+    LensK.Type = EActorAttributeType::Float;
 
-  FActorVariation LensYSize;
-  LensYSize.Id = TEXT("lens_y_size");
-  LensYSize.Type = EActorAttributeType::Float;
-  LensYSize.RecommendedValues = { TEXT("0.08") };
-  LensYSize.bRestrictToRecommended = false;
+    // 为LensK设置一个推荐值列表，这里只有一个值"-1.0"
+    LensK.RecommendedValues = { TEXT("-1.0") };
+
+    // 设置是否将LensK的值限制在推荐值之内，这里设置为false，表示不限制
+    LensK.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensKcube，与LensK类似，但表示不同的属性或参数
+    FActorVariation LensKcube;
+
+    // 为LensKcube设置唯一标识符"lens_kcube"
+    LensKcube.Id = TEXT("lens_kcube");
+
+    // 设置LensKcube的属性类型也为浮点型
+    LensKcube.Type = EActorAttributeType::Float;
+
+    // 为LensKcube设置一个推荐值列表，这里只有一个值"0.0"
+    LensKcube.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否将LensKcube的值限制在推荐值之内，这里也设置为false
+    LensKcube.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensXSize，表示透镜在X轴方向上的尺寸变化
+    FActorVariation LensXSize;
+
+    // 为LensXSize设置唯一标识符"lens_x_size"
+    LensXSize.Id = TEXT("lens_x_size");
+
+    // 设置LensXSize的属性类型也为浮点型
+    LensXSize.Type = EActorAttributeType::Float;
+
+    // 为LensXSize设置一个推荐值列表，这里只有一个值"0.08"
+    LensXSize.RecommendedValues = { TEXT("0.08") };
+
+    // 设置是否将LensXSize的值限制在推荐值之内，这里也设置为false
+    LensXSize.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensYSize，表示透镜在Y轴方向上的尺寸变化
+    FActorVariation LensYSize;
+
+    // 为LensYSize设置唯一标识符"lens_y_size"
+    LensYSize.Id = TEXT("lens_y_size");
+
+    // 设置LensYSize的属性类型也为浮点型
+    LensYSize.Type = EActorAttributeType::Float;
+
+    // 为LensYSize设置一个推荐值列表，这里只有一个值"0.08"
+    LensYSize.RecommendedValues = { TEXT("0.08") };
+
+    // 设置是否将LensYSize的值限制在推荐值之内，这里也设置为false
+    LensYSize.bRestrictToRecommended = false;
+
 
   Definition.Variations.Append({
       ResX,
