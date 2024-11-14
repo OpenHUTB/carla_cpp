@@ -400,14 +400,34 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 将传入的图像数据复制到内部存储，并调用SetData方法设置图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 指向图像数据的指针
+ */
   void CarlaNormalsCameraPublisher::SetImageData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, const uint8_t* data) {    std::vector<uint8_t> vector_data;
     const size_t size = height * width * 4;
     vector_data.resize(size);
     std::memcpy(&vector_data[0], &data[0], size);
     SetData(seconds, nanoseconds,height, width, std::move(vector_data));
   }
-
+  /**
+ * @brief 设置感兴趣区域（Region of Interest, ROI）
+ *
+ * 设置图像的感兴趣区域，包括偏移量和尺寸，以及是否进行校正。
+ *
+ * @param x_offset ROI的X轴偏移量
+ * @param y_offset ROI的Y轴偏移量
+ * @param height ROI的高度
+ * @param width ROI的宽度
+ * @param do_rectify 是否对ROI进行校正
+ */
   void CarlaNormalsCameraPublisher::SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify) {
     sensor_msgs::msg::RegionOfInterest roi;
     roi.x_offset(x_offset);
@@ -417,7 +437,17 @@ namespace ros2 {
     roi.do_rectify(do_rectify);
     _impl_info->_info.roi(roi);
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 设置图像的时间戳、帧ID、尺寸、编码和数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 图像数据的vector
+ */
   void CarlaNormalsCameraPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -435,7 +465,14 @@ namespace ros2 {
     _impl->_image.step(_impl->_image.width() * sizeof(uint8_t) * 4);
     _impl->_image.data(std::move(data)); //https://github.com/eProsima/Fast-DDS/issues/2330
   }
-
+  /**
+ * @brief 设置相机信息数据的时间戳
+ *
+ * 设置相机信息的时间戳和帧ID。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ */
   void CarlaNormalsCameraPublisher::SetCameraInfoData(int32_t seconds, uint32_t nanoseconds) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -446,14 +483,25 @@ namespace ros2 {
     header.frame_id(_frame_id);
     _impl_info->_info.header(header);
   }
-
+  /**
+ * @brief CarlaNormalsCameraPublisher的构造函数
+ *
+ * 初始化CarlaNormalsCameraPublisher对象，包括内部实现对象和相机信息对象。
+ *
+ * @param ros_name ROS节点名称
+ * @param parent 父节点名称
+ */
   CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaNormalsCameraPublisherImpl>()),
   _impl_info(std::make_shared<CarlaCameraInfoPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaNormalsCameraPublisher的析构函数
+ *
+ * 清理资源，包括删除数据写入器、发布者、主题和参与者。
+ */
   CarlaNormalsCameraPublisher::~CarlaNormalsCameraPublisher() {
       if (!_impl)
           return;
@@ -485,7 +533,13 @@ namespace ros2 {
       if (_impl_info->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl_info->_participant);
   }
-
+  /**
+ * @brief CarlaNormalsCameraPublisher的拷贝构造函数
+ *
+ * 创建一个新的CarlaNormalsCameraPublisher对象，并复制另一个对象的数据。
+ *
+ * @param other 要复制的CarlaNormalsCameraPublisher对象
+ */
   CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher(const CarlaNormalsCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -493,7 +547,14 @@ namespace ros2 {
     _impl = other._impl;
     _impl_info = other._impl_info;
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将另一个CarlaNormalsCameraPublisher对象的数据复制到当前对象。
+ *
+ * @param other 要复制的CarlaNormalsCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaNormalsCameraPublisher& CarlaNormalsCameraPublisher::operator=(const CarlaNormalsCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -503,7 +564,13 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaNormalsCameraPublisher的移动构造函数
+ *
+ * 创建一个新的CarlaNormalsCameraPublisher对象，并移动另一个对象的数据。
+ *
+ * @param other 要移动的CarlaNormalsCameraPublisher对象
+ */
   CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher(CarlaNormalsCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
@@ -512,7 +579,14 @@ namespace ros2 {
     _impl_info = std::move(other._impl_info);
 
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 将另一个CarlaNormalsCameraPublisher对象的数据移动到当前对象。
+ *
+ * @param other 要移动的CarlaNormalsCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaNormalsCameraPublisher& CarlaNormalsCameraPublisher::operator=(CarlaNormalsCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
