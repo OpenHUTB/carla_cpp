@@ -24,31 +24,92 @@
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 数据写入器QOS策略
 #include <fastdds/dds/publisher/DataWriterListener.hpp>// 数据写入器监听器类
 
+/**
+ * @namespace carla::ros2
+ * @brief 命名空间，包含CARLA与ROS2集成的相关功能。
+ */
 
+ /**
+  * @brief 别名定义，简化eprosima::fastdds::dds命名空间的引用。
+  */
 namespace carla {
 namespace ros2 {
 
   namespace efd = eprosima::fastdds::dds;
+  /**
+ * @brief 类型别名，简化eprosima::fastrtps::types::ReturnCode_t的引用。
+ */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+ * @struct CarlaNormalsCameraPublisherImpl
+ * @brief CarlaNormalsCameraPublisher的内部实现结构体。
+ */
   struct CarlaNormalsCameraPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+    * @brief DDS发布者指针。
+    */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于Image消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };
+    /**
+     * @brief CarlaListener实例，用于监听DDS事件。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 存储的Image消息。
+     */
     sensor_msgs::msg::Image _image {};
   };
-
+  /**
+ * @struct CarlaCameraInfoPublisherImpl
+ * @brief CarlaCameraInfoPublisher的内部实现结构体。
+ */
   struct CarlaCameraInfoPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+    * @brief DDS主题指针。
+    */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于CameraInfo消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
+    /**
+     * @brief CarlaListener实例，用于监听DDS事件。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 初始化标志。
+     */
     bool _init {false};
+    /**
+     * @brief 存储的CameraInfo消息。
+     */
     sensor_msgs::msg::CameraInfo _info {};
   };
 
