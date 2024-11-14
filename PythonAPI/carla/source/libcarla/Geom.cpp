@@ -72,8 +72,8 @@ namespace geom {
     WriteVector3D(out, "Extent", box.extent);
     out << ", " << box.rotation << ')';
     return out;
-  }
- 
+  } 
+
   // 重载<<操作符，用于将GeoLocation对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const GeoLocation &geo_location) {
     out << "GeoLocation(latitude=" << std::to_string(geo_location.latitude) << ", longitude=" << std::to_string(geo_location.longitude) << ", altitude=" << std::to_string(geo_location.altitude) << ')';
@@ -90,7 +90,6 @@ static void TransformList(const carla::geom::Transform &self, boost::python::lis
     self.TransformPoint(boost::python::extract<carla::geom::Vector3D &>(list[i]));
   }
 }
- 
 // 定义一个函数，用于将一个16元素的float数组转换为一个4x4的boost::python::list。
 static boost::python::list BuildMatrix(const std::array<float, 16> &m) {
   boost::python::list r_out;
@@ -99,50 +98,39 @@ static boost::python::list BuildMatrix(const std::array<float, 16> &m) {
   for (uint8_t i = 0; i < 4; ++i) { r_out.append(r[i]); }
   return r_out;
 }
- 
 // 定义一个函数，用于获取Transform对象的矩阵表示。
 static auto GetTransformMatrix(const carla::geom::Transform &self) {
   return BuildMatrix(self.GetMatrix());
 }
- 
 // 定义一个函数，用于获取Transform对象的逆矩阵表示。
 static auto GetInverseTransformMatrix(const carla::geom::Transform &self) {
   return BuildMatrix(self.GetInverseMatrix());
 }
- 
 // 定义一系列静态函数，用于处理Vector3D对象的数学运算，如叉积、点积、距离等。
 static auto Cross(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Cross(self, other);
 }
- 
 static auto Dot(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Dot(self, other);
 }
- 
 static auto Distance(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Distance(self, other);
 }
- 
 static auto DistanceSquared(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::DistanceSquared(self, other);
 }
- 
 static auto Dot2D(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Dot2D(self, other);
 }
- 
 static auto Distance2D(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Distance2D(self, other);
 }
- 
 static auto DistanceSquared2D(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::DistanceSquared2D(self, other);
 }
- 
 static auto GetVectorAngle(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::GetVectorAngle(self, other);
 }
- 
 // 定义export_geom函数，用于将CARLA的geom模块中的类型和函数导出到Python中。
 void export_geom() {
   using namespace boost::python;
