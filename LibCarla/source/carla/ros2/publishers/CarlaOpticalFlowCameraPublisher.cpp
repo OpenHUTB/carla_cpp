@@ -24,36 +24,65 @@
 #include <fastrtps/qos/QosPolicies.h> // 引入QoS策略的类定义
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 引入数据写入器QoS配置的类定义
 #include <fastdds/dds/publisher/DataWriterListener.hpp>// 引入数据写入器监听器的类定义（用于处理写入事件）
-
+/**
+ * @brief 通用CLAMP函数，用于将值限制在指定范围内。
+ *
+ * @param value 要限制的值。
+ * @param low 范围的下限。
+ * @param high 范围的上限。
+ * @return 限制后的值。
+ * @template T 值的类型，需要支持比较操作。
+ */
 template <typename T> T CLAMP(const T& value, const T& low, const T& high)
 {
   return value < low ? low : (value > high ? high : value);
 }
-
+/**
+ * @namespace carla
+ * @brief Carla项目的命名空间。
+ */
+ /**
+  * @namespace carla::ros2
+  * @brief Carla项目中与ROS 2相关的功能的命名空间。
+  */
 namespace carla {
 namespace ros2 {
-
+    /**
+ * @brief FastDDS DDS命名空间的别名，用于简化代码。
+ */
   namespace efd = eprosima::fastdds::dds;
+  /**
+ * @brief FastRTPS返回码类型的别名，用于简化代码。
+ */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
+  /**
+ * @brief Carla光流相机发布者内部实现的结构体。
+ *
+ * 包含了发布图像数据所需的FastDDS组件和辅助数据。
+ */
   struct CarlaOpticalFlowCameraPublisherImpl {
-    efd::DomainParticipant* _participant { nullptr };
-    efd::Publisher* _publisher { nullptr };
-    efd::Topic* _topic { nullptr };
-    efd::DataWriter* _datawriter { nullptr };
-    efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };
-    CarlaListener _listener {};
-    sensor_msgs::msg::Image _image {};
+    efd::DomainParticipant* _participant { nullptr };///< 域参与者，用于创建其他DDS实体。
+    efd::Publisher* _publisher { nullptr };///< 发布者，用于发送数据。
+    efd::Topic* _topic { nullptr };///< 主题，定义了发布的数据类型。
+    efd::DataWriter* _datawriter { nullptr };///< 数据写入器，用于将数据写入主题。
+    efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };///< 类型支持，用于序列化和反序列化图像数据。
+    CarlaListener _listener {}; ///< Carla监听器，可能用于接收相关事件或数据。
+    sensor_msgs::msg::Image _image {};///< 存储待发布的图像数据。
   };
-
+  /**
+ * @brief Carla相机信息发布者内部实现的结构体。
+ *
+ * 包含了发布相机信息数据所需的FastDDS组件和辅助数据。
+ */
   struct CarlaCameraInfoPublisherImpl {
-    efd::DomainParticipant* _participant { nullptr };
-    efd::Publisher* _publisher { nullptr };
-    efd::Topic* _topic { nullptr };
-    efd::DataWriter* _datawriter { nullptr };
-    efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
-    CarlaListener _listener {};
-    bool _init { false};
-    sensor_msgs::msg::CameraInfo _info {};
+    efd::DomainParticipant* _participant { nullptr };///< 域参与者。
+    efd::Publisher* _publisher { nullptr };///< 发布者。
+    efd::Topic* _topic { nullptr }; ///< 主题。
+    efd::DataWriter* _datawriter { nullptr };///< 数据写入器。
+    efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };///< 类型支持，用于序列化和反序列化相机信息数据。
+    CarlaListener _listener {};///< Carla监听器。
+    bool _init { false};///< 初始化标志。
+    sensor_msgs::msg::CameraInfo _info {};///< 存储待发布的相机信息数据。
   };
 
   bool CarlaOpticalFlowCameraPublisher::HasBeenInitialized() const {
