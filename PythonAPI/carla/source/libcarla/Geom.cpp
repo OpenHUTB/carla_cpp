@@ -77,7 +77,8 @@ namespace geom {
   std::ostream &operator<<(std::ostream &out, const BoundingBox &box) {
     out << "BoundingBox(" << box.location << ", ";
     WriteVector3D(out, "Extent", box.extent);
-    out << ", " << box.rotation << ')';
+    out << ", " << box.rotation;
+    out << ')';
     return out;
   }
 
@@ -88,14 +89,14 @@ namespace geom {
         << ", altitude=" << std::to_string(geo_location.altitude) << ')';
     return out;
   }
- 
+
 } // namespace geom
 } // namespace carla
  
 // 定义一个函数，用于将Transform对象应用于一个Vector3D对象的列表，并更新这些对象。
 static void TransformList(const carla::geom::Transform &self, boost::python::list &list) {
   auto length = boost::python::len(list);
-  for (auto i = 0u; i < length; ++i) {
+   for (auto i = 0u; i < length; ++i) {
     self.TransformPoint(boost::python::extract<carla::geom::Vector3D &>(list[i]));
   }
 }
