@@ -533,100 +533,180 @@ void UActorBlueprintFunctionLibrary::MakeCameraDefinition(
     // 设置是否限制用户只能使用推荐的值，这里设置为false，表示用户可以选择其他值
     FOV.bRestrictToRecommended = false; 
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+    // 关于分辨率
+    // 定义图像的宽度（X轴）变化的结构体
+    FActorVariation ResX;
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+    // 设置该变化项的标识符为"image_size_x"
+    ResX.Id = TEXT("image_size_x");
 
-  // Lens parameters
-  FActorVariation LensCircleFalloff;
-  LensCircleFalloff.Id = TEXT("lens_circle_falloff");
-  LensCircleFalloff.Type = EActorAttributeType::Float;
-  LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
-  LensCircleFalloff.bRestrictToRecommended = false;
+    // 设置该变化项的类型为整数（Int）
+    ResX.Type = EActorAttributeType::Int;
 
-  FActorVariation LensCircleMultiplier;
-  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
-  LensCircleMultiplier.Type = EActorAttributeType::Float;
-  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
-  LensCircleMultiplier.bRestrictToRecommended = false;
+    // 设置推荐的值为"800"
+    ResX.RecommendedValues = { TEXT("800") };
 
-  FActorVariation LensK;
-  LensK.Id = TEXT("lens_k");
-  LensK.Type = EActorAttributeType::Float;
-  LensK.RecommendedValues = { TEXT("-1.0") };
-  LensK.bRestrictToRecommended = false;
+    // 设置是否限制用户只能使用推荐值，这里设置为false，意味着用户可以选择其他值
+    ResX.bRestrictToRecommended = false;
 
-  FActorVariation LensKcube;
-  LensKcube.Id = TEXT("lens_kcube");
-  LensKcube.Type = EActorAttributeType::Float;
-  LensKcube.RecommendedValues = { TEXT("0.0") };
-  LensKcube.bRestrictToRecommended = false;
+    // 定义图像的高度（Y轴）变化的结构体
+    FActorVariation ResY;
 
-  FActorVariation LensXSize;
-  LensXSize.Id = TEXT("lens_x_size");
-  LensXSize.Type = EActorAttributeType::Float;
-  LensXSize.RecommendedValues = { TEXT("0.08") };
-  LensXSize.bRestrictToRecommended = false;
+    // 设置该变化项的标识符为"image_size_y"
+    ResY.Id = TEXT("image_size_y");
 
-  FActorVariation LensYSize;
-  LensYSize.Id = TEXT("lens_y_size");
-  LensYSize.Type = EActorAttributeType::Float;
-  LensYSize.RecommendedValues = { TEXT("0.08") };
-  LensYSize.bRestrictToRecommended = false;
+    // 设置该变化项的类型为整数（Int）
+    ResY.Type = EActorAttributeType::Int;
 
-  Definition.Variations.Append({
-      ResX,
-      ResY,
-      FOV,
-      LensCircleFalloff,
-      LensCircleMultiplier,
-      LensK,
-      LensKcube,
-      LensXSize,
-      LensYSize});
+    // 设置推荐的值为"600"（同样以文本形式给出，但实际为整数）
+    ResY.RecommendedValues = { TEXT("600") };
 
-  if (bEnableModifyingPostProcessEffects)
-  {
+    // 设置是否限制用户只能使用推荐值，这里同样设置为false
+    ResY.bRestrictToRecommended = false;
+
+    // 镜头参数
+    // 定义镜头圆形衰减参数的结构体
+    FActorVariation LensCircleFalloff;
+
+    // 设置该变化项的标识符为"lens_circle_falloff"
+    LensCircleFalloff.Id = TEXT("lens_circle_falloff");
+
+    // 设置该变化项的类型为浮点数（Float）
+    LensCircleFalloff.Type = EActorAttributeType::Float;
+
+    // 设置推荐的值为"5.0"
+    LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
+
+    // 设置是否限制用户只能使用推荐值，这里设置为false
+    LensCircleFalloff.bRestrictToRecommended = false;
+
+    // 定义镜头圆形倍增参数的结构体
+    FActorVariation LensCircleMultiplier;
+
+    // 设置该变化项的标识符为"lens_circle_multiplier"
+    LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
+
+    // 设置该变化项的类型为浮点数（Float）
+    LensCircleMultiplier.Type = EActorAttributeType::Float;
+
+    // 设置推荐的值为"0.0"（以文本形式给出，但实际为浮点数）
+    LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否限制用户只能使用推荐值，这里同样设置为false
+    LensCircleMultiplier.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensK，用于表示某种属性或参数的变化
+    FActorVariation LensK;
+
+    // 为LensK设置唯一标识符，这里是一个文本字符串"lens_k"
+    LensK.Id = TEXT("lens_k");
+
+    // 设置LensK的属性类型为浮点型
+    LensK.Type = EActorAttributeType::Float;
+
+    // 为LensK设置一个推荐值列表，这里只有一个值"-1.0"
+    LensK.RecommendedValues = { TEXT("-1.0") };
+
+    // 设置是否将LensK的值限制在推荐值之内，这里设置为false，表示不限制
+    LensK.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensKcube，与LensK类似，但表示不同的属性或参数
+    FActorVariation LensKcube;
+
+    // 为LensKcube设置唯一标识符"lens_kcube"
+    LensKcube.Id = TEXT("lens_kcube");
+
+    // 设置LensKcube的属性类型也为浮点型
+    LensKcube.Type = EActorAttributeType::Float;
+
+    // 为LensKcube设置一个推荐值列表，这里只有一个值"0.0"
+    LensKcube.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否将LensKcube的值限制在推荐值之内，这里也设置为false
+    LensKcube.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensXSize，表示透镜在X轴方向上的尺寸变化
+    FActorVariation LensXSize;
+
+    // 为LensXSize设置唯一标识符"lens_x_size"
+    LensXSize.Id = TEXT("lens_x_size");
+
+    // 设置LensXSize的属性类型也为浮点型
+    LensXSize.Type = EActorAttributeType::Float;
+
+    // 为LensXSize设置一个推荐值列表，这里只有一个值"0.08"
+    LensXSize.RecommendedValues = { TEXT("0.08") };
+
+    // 设置是否将LensXSize的值限制在推荐值之内，这里也设置为false
+    LensXSize.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensYSize，表示透镜在Y轴方向上的尺寸变化
+    FActorVariation LensYSize;
+
+    // 为LensYSize设置唯一标识符"lens_y_size"
+    LensYSize.Id = TEXT("lens_y_size");
+
+    // 设置LensYSize的属性类型也为浮点型
+    LensYSize.Type = EActorAttributeType::Float;
+
+    // 为LensYSize设置一个推荐值列表，这里只有一个值"0.08"
+    LensYSize.RecommendedValues = { TEXT("0.08") };
+
+    // 设置是否将LensYSize的值限制在推荐值之内，这里也设置为false
+    LensYSize.bRestrictToRecommended = false;
+
+
+ // 将一系列变量（如分辨率、视野等）添加到定义的变化列表中
+Definition.Variations.Append({
+    ResX,           // 分辨率X轴
+    ResY,           // 分辨率Y轴
+    FOV,            // 视野（Field of View）
+    LensCircleFalloff, // 镜头圆形衰减
+    LensCircleMultiplier, // 镜头圆形倍增器
+    LensK,          // 镜头K值（一种镜头畸变参数）
+    LensKcube,      // 镜头K立方值（另一种镜头畸变参数）
+    LensXSize,      // 镜头X轴尺寸
+    LensYSize});    // 镜头Y轴尺寸
+ 
+// 如果启用了修改后处理效果的功能
+if (bEnableModifyingPostProcessEffects)
+{
+    // 创建一个后处理效果的变化定义
     FActorVariation PostProccess;
-    PostProccess.Id = TEXT("enable_postprocess_effects");
-    PostProccess.Type = EActorAttributeType::Bool;
-    PostProccess.RecommendedValues = { TEXT("true") };
-    PostProccess.bRestrictToRecommended = false;
-
-    // Gamma
+    PostProccess.Id = TEXT("enable_postprocess_effects"); // 设置变化的标识符
+    PostProccess.Type = EActorAttributeType::Bool;        // 设置变化类型为布尔值
+    PostProccess.RecommendedValues = { TEXT("true") };    // 设置推荐的值为"true"（启用）
+    PostProccess.bRestrictToRecommended = false;          // 不限制用户只能使用推荐值
+ 
+    // 创建一个关于Gamma值的变化定义
     FActorVariation Gamma;
-    Gamma.Id = TEXT("gamma");
-    Gamma.Type = EActorAttributeType::Float;
-    Gamma.RecommendedValues = { TEXT("2.2") };
-    Gamma.bRestrictToRecommended = false;
+    Gamma.Id = TEXT("gamma");         // 设置变化的标识符为"gamma"
+    Gamma.Type = EActorAttributeType::Float; // 设置变化类型为浮点数
+    Gamma.RecommendedValues = { TEXT("2.2") }; // 设置推荐的Gamma值为2.2
+    Gamma.bRestrictToRecommended = false;      // 不限制用户只能使用推荐的Gamma值
+}
 
-    // Motion Blur
-    FActorVariation MBIntesity;
-    MBIntesity.Id = TEXT("motion_blur_intensity");
-    MBIntesity.Type = EActorAttributeType::Float;
-    MBIntesity.RecommendedValues = { TEXT("0.45") };
-    MBIntesity.bRestrictToRecommended = false;
-
+    // 运动模糊配置
+   // 定义运动模糊强度的变化属性
+    FActorVariation MBIntesity; 
+    MBIntesity.Id = TEXT("motion_blur_intensity"); // 设置属性的唯一标识符
+    MBIntesity.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBIntesity.RecommendedValues = { TEXT("0.45") }; // 设置推荐的运动模糊强度值
+    MBIntesity.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
+ 
+    // 定义运动模糊最大扭曲的变化属性
     FActorVariation MBMaxDistortion;
-    MBMaxDistortion.Id = TEXT("motion_blur_max_distortion");
-    MBMaxDistortion.Type = EActorAttributeType::Float;
-    MBMaxDistortion.RecommendedValues = { TEXT("0.35") };
-    MBMaxDistortion.bRestrictToRecommended = false;
-
+    MBMaxDistortion.Id = TEXT("motion_blur_max_distortion"); // 设置属性的唯一标识符
+    MBMaxDistortion.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBMaxDistortion.RecommendedValues = { TEXT("0.35") }; // 设置推荐的运动模糊最大扭曲值
+    MBMaxDistortion.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
+ 
+    // 定义运动模糊最小对象屏幕尺寸的变化属性
     FActorVariation MBMinObjectScreenSize;
-    MBMinObjectScreenSize.Id = TEXT("motion_blur_min_object_screen_size");
-    MBMinObjectScreenSize.Type = EActorAttributeType::Float;
-    MBMinObjectScreenSize.RecommendedValues = { TEXT("0.1") };
-    MBMinObjectScreenSize.bRestrictToRecommended = false;
+    MBMinObjectScreenSize.Id = TEXT("motion_blur_min_object_screen_size"); // 设置属性的唯一标识符
+    MBMinObjectScreenSize.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBMinObjectScreenSize.RecommendedValues = { TEXT("0.1") }; // 设置推荐的运动模糊最小对象屏幕尺寸值
+    MBMinObjectScreenSize.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
 
     // Lens Flare
     FActorVariation LensFlareIntensity;
