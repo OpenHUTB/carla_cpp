@@ -186,30 +186,55 @@ namespace ros2 {
     /// 所有对象都成功创建，返回true。
     return true;
   }
-
+  /**
+ * @brief 初始化信息并设置CarlaOpticalFlowCameraPublisher的相关参数。
+ *
+ * 此函数负责初始化域参与者（DomainParticipant）、发布者（Publisher）、主题（Topic）和数据写入器（DataWriter），
+ * 并确保它们被正确创建。如果任何一步失败，函数将输出错误信息并返回false。
+ *
+ * @return 如果初始化成功，返回true；否则返回false。
+ */
   bool CarlaOpticalFlowCameraPublisher::InitInfo() {
+      /**
+     * 检查类型支持是否有效。如果_impl_info->_type为空，则输出错误信息并返回false。
+     */
     if (_impl_info->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /**
+     * 设置域参与者的QoS策略，并将其命名为_name。
+     */
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl_info->_participant = factory->create_participant(0, pqos);
+    /**
+     * 如果域参与者创建失败，输出错误信息并返回false。
+     */
     if (_impl_info->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /**
+     * 在域参与者中注册类型。
+     */
     _impl_info->_type.register_type(_impl_info->_participant);
-
+    /**
+    * 设置发布者的QoS策略，并创建一个发布者。
+    */
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl_info->_publisher = _impl_info->_participant->create_publisher(pubqos, nullptr);
+    /**
+     * 如果发布者创建失败，输出错误信息并返回false。
+     */
     if (_impl_info->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /**
+    * 设置主题的QoS策略，并创建一个主题。主题名称由基础名称、父级名称（如果存在）、自身名称和类型名称组成。
+    */
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/camera_info"};
     const std::string base { "rt/carla/" };
@@ -219,19 +244,29 @@ namespace ros2 {
     topic_name += _name;
     topic_name += publisher_type;
     _impl_info->_topic = _impl_info->_participant->create_topic(topic_name, _impl_info->_type->getName(), tqos);
+    /**
+   * 如果主题创建失败，输出错误信息并返回false。
+   */
     if (_impl_info->_topic == nullptr) {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
+    /**
+     * 设置数据写入器的QoS策略，并创建一个数据写入器。
+     */
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl_info->_listener._impl.get();
     _impl_info->_datawriter = _impl_info->_publisher->create_datawriter(_impl_info->_topic, wqos, listener);
+    /**
+     * 如果数据写入器创建失败，输出错误信息并返回false。
+     */
     if (_impl_info->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-
+    /// 设置帧ID为名称。
     _frame_id = _name;
+    /// 所有对象都成功创建，返回true。
     return true;
   }
 
