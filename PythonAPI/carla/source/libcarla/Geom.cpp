@@ -27,13 +27,18 @@ namespace geom {
   // 模板函数，用于将Vector2D对象的x和y值输出到ostream中。
   template <typename T>
   static void WriteVector2D(std::ostream &out, const char *name, const T &vector2D) {
-    out << name << "(x=" << std::to_string(vector2D.x) << ", y=" << std::to_string(vector2D.y) << ')';
+    out << name
+        << "(x=" << std::to_string(vector2D.x)
+        << ", y=" << std::to_string(vector2D.y) << ')';
   }
  
   // 模板函数，用于将Vector3D对象的x、y和z值输出到ostream中。
   template <typename T>
   static void WriteVector3D(std::ostream &out, const char *name, const T &vector3D) {
-    out << name << "(x=" << std::to_string(vector3D.x) << ", y=" << std::to_string(vector3D.y) << ", z=" << std::to_string(vector3D.z) << ')';
+    out << name 
+        << "(x=" << std::to_string(vector3D.x)
+        << ", y=" << std::to_string(vector3D.y)
+        << ", z=" << std::to_string(vector3D.z) << ')';
   }
  
   // 重载<<操作符，用于将Vector2D对象输出到ostream中。
@@ -56,10 +61,12 @@ namespace geom {
  
   // 重载<<操作符，用于将Rotation对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const Rotation &rotation) {
-    out << "Rotation(pitch=" << std::to_string(rotation.pitch) << ", yaw=" << std::to_string(rotation.yaw) << ", roll=" << std::to_string(rotation.roll) << ')';
+        out << "Rotation(pitch=" << std::to_string(rotation.pitch)
+        << ", yaw=" << std::to_string(rotation.yaw)
+        << ", roll=" << std::to_string(rotation.roll) << ')';
     return out;
   }
- 
+   
   // 重载<<操作符，用于将Transform对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const Transform &transform) {
     out << "Transform(" << transform.location << ", " << transform.rotation << ')';
@@ -76,7 +83,9 @@ namespace geom {
 
   // 重载<<操作符，用于将GeoLocation对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const GeoLocation &geo_location) {
-    out << "GeoLocation(latitude=" << std::to_string(geo_location.latitude) << ", longitude=" << std::to_string(geo_location.longitude) << ", altitude=" << std::to_string(geo_location.altitude) << ')';
+        out << "GeoLocation(latitude=" << std::to_string(geo_location.latitude)
+        << ", longitude=" << std::to_string(geo_location.longitude)
+        << ", altitude=" << std::to_string(geo_location.altitude) << ')';
     return out;
   }
  
