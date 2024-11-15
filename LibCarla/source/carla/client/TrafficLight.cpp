@@ -86,42 +86,50 @@ namespace client {
     }
     return result;
   }
-
+ 
+  // 重置交通信号灯组
   void TrafficLight::ResetGroup() {
+    // 调用当前交通信号灯所属的交通信号灯组的重置方法
     GetEpisode().Lock()->ResetTrafficLightGroup(*this);
   }
 
+  // 获取交通信号灯影响的车道的路点
   std::vector<SharedPtr<Waypoint>> TrafficLight::GetAffectedLaneWaypoints() const {
-    std::vector<SharedPtr<Waypoint>> result;
-    SharedPtr<Map> carla_map = GetEpisode().Lock()->GetCurrentMap();
-    std::vector<SharedPtr<Landmark>> landmarks = carla_map->GetLandmarksFromId(GetOpenDRIVEID());
+    std::vector<SharedPtr<Waypoint>> result; // 存储受影响车道的路点结果
+    SharedPtr<Map> carla_map = GetEpisode().Lock()->GetCurrentMap(); // 获取当前的地图对象
+    std::vector<SharedPtr<Landmark>> landmarks = carla_map->GetLandmarksFromId(GetOpenDRIVEID()); // 获取与交通信号灯相关的地标
     for (auto& landmark : landmarks) {
+      // 遍历地标，检查其影响的车道范围
       for (const road::LaneValidity& validity : landmark->GetValidities()) {
+        // 如果车道范围是从小到大的
         if (validity._from_lane < validity._to_lane) {
           for (int lane_id = validity._from_lane; lane_id <= validity._to_lane; ++lane_id) {
-            if(lane_id == 0) continue;
+            if(lane_id == 0) continue; // 跳过中心车道
             result.emplace_back(
                 carla_map->GetWaypointXODR(
-                landmark->GetRoadId(), lane_id, static_cast<float>(landmark->GetS())));
+                landmark->GetRoadId(), lane_id, static_cast<float>(landmark->GetS()))); // 获取车道路点
           }
-        } else {
+        } else { // 车道范围是从大到小的
           for (int lane_id = validity._from_lane; lane_id >= validity._to_lane; --lane_id) {
-            if(lane_id == 0) continue;
+            if(lane_id == 0) continue; // 跳过中心车道
             result.emplace_back(
                 carla_map->GetWaypointXODR(
-                landmark->GetRoadId(), lane_id, static_cast<float>(landmark->GetS())));
+                landmark->GetRoadId(), lane_id, static_cast<float>(landmark->GetS()))); // 获取车道路点
           }
         }
       }
     }
-    return result;
+    return result; //返回受影响的车道路点
   }
 
+  // 获取交通信号灯的边界框方法
   std::vector<geom::BoundingBox> TrafficLight::GetLightBoxes() const {
     return GetEpisode().Lock()->GetLightBoxes(*this);
   }
 
+  // 获取交通信号灯的OpenDRIVE标识符
   road::SignId TrafficLight::GetOpenDRIVEID() const {
+    //　通过交通信号灯的快照数据获取其OpenDRIVE的标识符
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.sign_id;
   }
 
