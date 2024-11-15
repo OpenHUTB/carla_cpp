@@ -566,7 +566,19 @@ namespace ros2 {
     // 调用SetData函数，将转换后的图像数据、时间戳和尺寸信息传递给其他处理部分
     SetData(seconds, nanoseconds, height, width, std::move(vector_data));
   }
-
+  /**
+ * @brief 设置感兴趣区域（ROI）信息
+ *
+ * 该函数用于设置相机的感兴趣区域（Region Of Interest, ROI）信息，
+ * 包括ROI的起始点偏移（x_offset, y_offset）、高度（height）、宽度（width）
+ * 以及是否进行校正（do_rectify）。
+ *
+ * @param x_offset ROI起始点的x轴偏移量
+ * @param y_offset ROI起始点的y轴偏移量
+ * @param height ROI的高度
+ * @param width ROI的宽度
+ * @param do_rectify 是否对ROI进行校正
+ */
   void CarlaOpticalFlowCameraPublisher::SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify) {
     sensor_msgs::msg::RegionOfInterest roi;
     roi.x_offset(x_offset);
@@ -576,7 +588,17 @@ namespace ros2 {
     roi.do_rectify(do_rectify);
     _impl_info->_info.roi(roi);
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 该函数用于设置图像的时间戳、高度、宽度以及图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 图像数据，使用右值引用和移动语义来避免不必要的拷贝
+ */
   void CarlaOpticalFlowCameraPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -594,7 +616,14 @@ namespace ros2 {
     _impl->_image.step(_impl->_image.width() * sizeof(uint8_t) * 4);
     _impl->_image.data(std::move(data)); //https://github.com/eProsima/Fast-DDS/issues/2330
   }
-
+  /**
+ * @brief 设置相机信息数据的时间戳
+ *
+ * 该函数用于设置相机信息消息的时间戳和帧ID。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ */
   void CarlaOpticalFlowCameraPublisher::SetCameraInfoData(int32_t seconds, uint32_t nanoseconds) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -605,7 +634,14 @@ namespace ros2 {
     header.frame_id(_frame_id);
     _impl_info->_info.header(header);
   }
-
+  /**
+ * @brief CarlaOpticalFlowCameraPublisher类的构造函数
+ *
+ * 初始化CarlaOpticalFlowCameraPublisher对象，创建内部实现对象和相机信息发布者对象。
+ *
+ * @param ros_name ROS节点名称
+ * @param parent 父节点或相关标识符
+ */
   CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaOpticalFlowCameraPublisherImpl>()),
   _impl_info(std::make_shared<CarlaCameraInfoPublisherImpl>()) {
