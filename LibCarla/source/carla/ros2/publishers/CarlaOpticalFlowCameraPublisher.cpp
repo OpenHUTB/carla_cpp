@@ -648,11 +648,15 @@ namespace ros2 {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaOpticalFlowCameraPublisher类的析构函数
+ *
+ * 清理CarlaOpticalFlowCameraPublisher对象，释放与DDS（数据分发服务）相关的资源。
+ */
   CarlaOpticalFlowCameraPublisher::~CarlaOpticalFlowCameraPublisher() {
       if (!_impl)
           return;
-
+      // 清理_impl相关的DDS资源
       if (_impl->_datawriter)
           _impl->_publisher->delete_datawriter(_impl->_datawriter);
 
@@ -667,7 +671,7 @@ namespace ros2 {
 
       if (!_impl_info)
         return;
-
+      // 清理_impl_info相关的DDS资源
       if (_impl_info->_datawriter)
           _impl_info->_publisher->delete_datawriter(_impl_info->_datawriter);
 
@@ -680,7 +684,13 @@ namespace ros2 {
       if (_impl_info->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl_info->_participant);
   }
-
+  /**
+ * @brief CarlaOpticalFlowCameraPublisher类的拷贝构造函数
+ *
+ * 创建CarlaOpticalFlowCameraPublisher对象的深拷贝。
+ *
+ * @param other 要拷贝的CarlaOpticalFlowCameraPublisher对象
+ */
   CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher(const CarlaOpticalFlowCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -688,7 +698,13 @@ namespace ros2 {
     _impl = other._impl;
     _impl_info = other._impl_info;
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将另一个CarlaOpticalFlowCameraPublisher对象赋值给当前对象。
+ * @param other 要赋值的CarlaOpticalFlowCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaOpticalFlowCameraPublisher& CarlaOpticalFlowCameraPublisher::operator=(const CarlaOpticalFlowCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -698,7 +714,13 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaOpticalFlowCameraPublisher类的移动构造函数
+ *
+ * 创建CarlaOpticalFlowCameraPublisher对象的移动拷贝，避免不必要的拷贝操作。
+ *
+ * @param other 要移动的CarlaOpticalFlowCameraPublisher对象
+ */
   CarlaOpticalFlowCameraPublisher::CarlaOpticalFlowCameraPublisher(CarlaOpticalFlowCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
@@ -707,7 +729,14 @@ namespace ros2 {
     _impl_info = std::move(other._impl_info);
 
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 将另一个CarlaOpticalFlowCameraPublisher对象移动赋值给当前对象，避免不必要的拷贝操作。
+ *
+ * @param other 要移动赋值的CarlaOpticalFlowCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaOpticalFlowCameraPublisher& CarlaOpticalFlowCameraPublisher::operator=(CarlaOpticalFlowCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
