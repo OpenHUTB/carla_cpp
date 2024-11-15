@@ -187,3 +187,4 @@ git rm -rf .
 [xiao-ice666](https://github.com/xiao-ice666)、
 [bless416](https://github.com/bless416)、
 [haleely](https://github.com/haleely)。
+[haohaozhuzzzz](https://github.com/haohaozhuzzzz)、
