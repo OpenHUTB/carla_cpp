@@ -1,29 +1,29 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaOpticalFlowCameraPublisher.h"
+#include "CarlaOpticalFlowCameraPublisher.h"// 引入Carla光流相机发布者的头文件
 
-#include <string>
-#include <cmath>
-
-#include "carla/ros2/types/ImagePubSubTypes.h"
-#include "carla/ros2/types/CameraInfoPubSubTypes.h"
-#include "carla/ros2/listeners/CarlaListener.h"
-
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-
-#include <fastrtps/attributes/ParticipantAttributes.h>
-#include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
+#include <string>// 引入字符串处理的标准库
+#include <cmath>// 引入数学计算的标准库（可能用于图像处理或数据转换）
+// 引入Carla ROS 2类型定义的头文件，用于序列化/反序列化图像和相机信息数据
+#include "carla/ros2/types/ImagePubSubTypes.h"// 引入图像消息类型的定义
+#include "carla/ros2/types/CameraInfoPubSubTypes.h"// 引入相机信息消息类型的定义
+#include "carla/ros2/listeners/CarlaListener.h"// 引入Carla监听器的头文件
+// 引入FastDDS相关的头文件，用于实现DDS（Data Distribution Service）通信
+#include <fastdds/dds/domain/DomainParticipant.hpp> // 引入域参与者的类定义
+#include <fastdds/dds/publisher/Publisher.hpp>// 引入发布者的类定义
+#include <fastdds/dds/topic/Topic.hpp>// 引入主题的类定义
+#include <fastdds/dds/publisher/DataWriter.hpp> // 引入数据写入器的类定义
+#include <fastdds/dds/topic/TypeSupport.hpp>// 引入类型支持的类定义（用于序列化/反序列化）
+// 引入FastDDS的QoS（Quality of Service）相关的头文件
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>// 引入域参与者QoS配置的类定义
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>// 引入域参与者工厂的类定义
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp> // 引入发布者QoS配置的类定义
+#include <fastdds/dds/topic/qos/TopicQos.hpp>// 引入主题QoS配置的类定义
+// 引入FastRTPS（FastDDS的底层实现）相关的头文件，用于配置参与者属性和QoS策略
+#include <fastrtps/attributes/ParticipantAttributes.h>// 引入参与者属性的类定义
+#include <fastrtps/qos/QosPolicies.h> // 引入QoS策略的类定义
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 引入数据写入器QoS配置的类定义
+#include <fastdds/dds/publisher/DataWriterListener.hpp>// 引入数据写入器监听器的类定义（用于处理写入事件）
 
 template <typename T> T CLAMP(const T& value, const T& low, const T& high)
 {
