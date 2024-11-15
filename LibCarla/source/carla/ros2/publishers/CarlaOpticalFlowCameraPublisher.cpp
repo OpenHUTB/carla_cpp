@@ -269,131 +269,192 @@ namespace ros2 {
     /// 所有对象都成功创建，返回true。
     return true;
   }
-
+  /**
+ * @brief 发布图像和相关信息。
+ *
+ * 此函数负责调用PublishImage()和PublishInfo()函数来发布图像和相关信息。
+ * 如果两者都成功发布，则返回true；否则返回false。
+ *
+ * @return 如果图像和相关信息都成功发布，返回true；否则返回false。
+ */
   bool CarlaOpticalFlowCameraPublisher::Publish() {
     return PublishImage() && PublishInfo();
   }
-
+  /**
+ * @brief 发布图像数据。
+ *
+ * 此函数尝试使用DataWriter发布图像数据。根据返回的ReturnCode值，函数会输出相应的错误信息（如果有的话）
+ * 并返回发布是否成功的布尔值。
+ *
+ * @return 如果图像数据成功发布，返回true；否则返回false。
+ */
   bool CarlaOpticalFlowCameraPublisher::PublishImage() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /**
+    * 尝试写入图像数据到DataWriter。
+    */
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_image, instance_handle);
+    /**
+    * 根据返回的ReturnCode值处理发布结果。
+    */
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /// @retval true 表示发布信息成功。
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @retval false 表示通用错误。
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @retval false 表示操作不支持。
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @retval false 表示参数错误。
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @retval false 表示前提条件未满足。
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @retval false 表示资源不足。
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @retval false 表示功能未启用。
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @retval false 表示策略不可变。
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @retval false 表示策略不一致。
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @retval false 表示实体已被删除。
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @retval false 表示操作超时。
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @retval false 表示无数据。
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @retval false 表示非法操作。
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @retval false 表示安全策略不允许。
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @retval false 表示未知错误，发布失败。
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 发布信息函数
+ *
+ * 此函数尝试通过数据写入器发布信息。根据返回码（ReturnCode_t）的不同，函数会返回不同的结果，
+ * 并在控制台输出相应的错误信息。
+ *
+ * @return 如果发布信息成功，则返回true；否则返回false。
+ */
   bool CarlaOpticalFlowCameraPublisher::PublishInfo() {
+      /// @var instance_handle
+   /// 用于存储数据写入操作后的实例句柄。
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /// @var rcode
+    /// 存储数据写入操作的返回码。
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl_info->_datawriter->write(&_impl_info->_info, instance_handle);
+    // 检查返回码，并根据不同的返回码执行相应的操作
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /// @retval true 表示发布信息成功。
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @retval false 表示发生错误。
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @retval false 表示操作不支持。
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @retval false 表示参数错误。
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @retval false 表示前提条件未满足。
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @retval false 表示资源不足。
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @retval false 表示未启用。
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @retval false 表示策略不可变。
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @retval false 表示策略不一致。
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @retval false 表示已删除。
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @retval false 表示超时。
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @retval false 表示无数据。
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @retval false 表示非法操作。
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @retval false 表示安全策略不允许。
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
-    }
+    }/// @retval false 表示未知错误。
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
