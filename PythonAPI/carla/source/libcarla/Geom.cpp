@@ -35,7 +35,7 @@ namespace geom {
   // 模板函数，用于将Vector3D对象的x、y和z值输出到ostream中。
   template <typename T>
   static void WriteVector3D(std::ostream &out, const char *name, const T &vector3D) {
-    out << name 
+    out << name
         << "(x=" << std::to_string(vector3D.x)
         << ", y=" << std::to_string(vector3D.y)
         << ", z=" << std::to_string(vector3D.z) << ')';
@@ -79,7 +79,7 @@ namespace geom {
     WriteVector3D(out, "Extent", box.extent);
     out << ", " << box.rotation << ')';
     return out;
-  } 
+  }
 
   // 重载<<操作符，用于将GeoLocation对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const GeoLocation &geo_location) {
