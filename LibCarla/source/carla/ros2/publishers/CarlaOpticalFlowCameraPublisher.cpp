@@ -84,45 +84,77 @@ namespace ros2 {
     bool _init { false};///< 初始化标志。
     sensor_msgs::msg::CameraInfo _info {};///< 存储待发布的相机信息数据。
   };
-
+  /**
+ * @brief 检查类是否已经被初始化。
+ *
+ * @return 如果类已经被初始化，则返回true；否则返回false。
+ */
   bool CarlaOpticalFlowCameraPublisher::HasBeenInitialized() const {
     return _impl_info->_init;
   }
-
+  /**
+ * @brief 初始化摄像头信息数据。
+ *
+ * @param x_offset X轴偏移量
+ * @param y_offset Y轴偏移量
+ * @param height 图像高度
+ * @param width 图像宽度
+ * @param fov 视场角
+ * @param do_rectify 是否进行校正
+ */
   void CarlaOpticalFlowCameraPublisher::InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify) {
     _impl_info->_info = std::move(sensor_msgs::msg::CameraInfo(height, width, fov));
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
     _impl_info->_init = true;
   }
-
+  /**
+ * @brief 初始化类。
+ *
+ * 调用InitImage()和InitInfo()进行初始化，并返回两者的逻辑与结果。
+ *
+ * @return 如果初始化成功，则返回true；否则返回false。
+ */
   bool CarlaOpticalFlowCameraPublisher::Init() {
     return InitImage() && InitInfo();
   }
-
+  /**
+ * @brief 初始化图像相关的资源。
+ *
+ * 创建一个DomainParticipant、Publisher、Topic和DataWriter用于发布图像数据。
+ *
+ * @return 如果初始化成功，则返回true；否则返回false。
+ */
   bool CarlaOpticalFlowCameraPublisher::InitImage() {
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /// 设置DomainParticipant的QoS策略为默认值，并设置名称。
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    /// 获取DomainParticipantFactory的实例。
     auto factory = efd::DomainParticipantFactory::get_instance();
+    /// 创建DomainParticipant。
     _impl->_participant = factory->create_participant(0, pqos);
     if (_impl->_participant == nullptr) {
+        /// 如果创建DomainParticipant失败，输出错误信息并返回false。
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /// 在DomainParticipant中注册数据类型。
     _impl->_type.register_type(_impl->_participant);
-
+    /// 设置Publisher的QoS策略为默认值。
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
+    /// 创建Publisher。
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
+        /// 如果创建Publisher失败，输出错误信息并返回false。
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /// 设置Topic的QoS策略为默认值。
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
+    /// 构建Topic的名称。
     const std::string publisher_type {"/image"};
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
@@ -130,21 +162,28 @@ namespace ros2 {
       topic_name += _parent + "/";
     topic_name += _name;
     topic_name += publisher_type;
+    /// 创建Topic。
     _impl->_topic = _impl->_participant->create_topic(topic_name, _impl->_type->getName(), tqos);
     if (_impl->_topic == nullptr) {
+        /// 如果创建Topic失败，输出错误信息并返回false。
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    /// 设置DataWriter的QoS策略为默认值，并修改历史内存策略。
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
+    /// 获取DataWriter的监听器。
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
+    /// 创建DataWriter。
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
     if (_impl->_datawriter == nullptr) {
+        /// 如果创建DataWriter失败，输出错误信息并返回false。
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    /// 设置帧ID为名称。
     _frame_id = _name;
+    /// 所有对象都成功创建，返回true。
     return true;
   }
 
