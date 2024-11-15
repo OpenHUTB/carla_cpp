@@ -708,12 +708,21 @@ if (bEnableModifyingPostProcessEffects)
     MBMinObjectScreenSize.RecommendedValues = { TEXT("0.1") }; // 设置推荐的运动模糊最小对象屏幕尺寸值
     MBMinObjectScreenSize.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
 
-    // Lens Flare
-    FActorVariation LensFlareIntensity;
-    LensFlareIntensity.Id = TEXT("lens_flare_intensity");
-    LensFlareIntensity.Type = EActorAttributeType::Float;
-    LensFlareIntensity.RecommendedValues = { TEXT("0.1") };
-    LensFlareIntensity.bRestrictToRecommended = false;
+    // 关于镜头光晕效果的设置
+    FActorVariation LensFlareIntensity; // 声明一个FActorVariation类型的对象，用于存储镜头光晕强度的配置
+
+    // 设置对象的Id属性，用于唯一标识这个变量
+    LensFlareIntensity.Id = TEXT("lens_flare_intensity"); // 将Id设置为"lens_flare_intensity"，这是一个字符串标识符
+
+    // 设置对象的Type属性，指定变量的数据类型
+    LensFlareIntensity.Type = EActorAttributeType::Float; // 将类型设置为浮点型（Float），意味着镜头光晕的强度是一个浮点数
+
+    // 设置RecommendedValues属性，提供推荐的变量值列表
+    LensFlareIntensity.RecommendedValues = { TEXT("0.1") }; // 这里只提供了一个推荐值"0.1"，意味着默认情况下镜头光晕的强度被设置为0.1
+
+    // 设置bRestrictToRecommended属性，决定变量值是否必须为推荐值之一
+    LensFlareIntensity.bRestrictToRecommended = false; // 设置为false，意味着镜头光晕的强度值不仅限于推荐值，可以是任意浮点数。
+
 
     // Bloom
     FActorVariation BloomIntensity;
