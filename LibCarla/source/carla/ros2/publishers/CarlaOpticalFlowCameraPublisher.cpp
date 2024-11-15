@@ -458,38 +458,59 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置图像数据，将光学流数据转换为RGBA图像数据
+ *
+ * 该函数将输入的光学流数据（速度向量场）转换为RGBA格式的图像数据。
+ * 每个速度向量（vx, vy）被转换为一个HSV颜色值，然后转换为RGB格式，并附加一个透明度通道（Alpha）。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 指向包含光学流数据的浮点数组的指针，每个元素对（vx, vy）表示一个速度向量
+ */
   void CarlaOpticalFlowCameraPublisher::SetImageData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, const float* data) {
-    constexpr float pi = 3.1415f;
+      // 常量定义：圆周率π和弧度转角度的转换系数
+      constexpr float pi = 3.1415f;
     constexpr float rad2ang = 360.0f/(2.0f*pi);
+    // 计算最大索引值，即数据数组中的元素总数的一半（因为每个速度向量有两个分量）
     const size_t max_index = width * height * 2;
+    // 创建一个uint8_t类型的向量，用于存储最终的RGBA图像数据
     std::vector<uint8_t> vector_data;
+    // 调整向量大小以匹配图像数据的总大小（每个像素4个字节，对应RGBA）
     vector_data.resize(height * width * 4);
+    // 索引变量，用于遍历输入数据数组
     size_t data_index = 0;
+    // 遍历每个速度向量
     for (size_t index = 0; index < max_index; index += 2) {
+        // 获取当前速度向量的x和y分量
         const float vx = data[index];
         const float vy = data[index + 1];
+        // 计算角度（从-180到180度，然后调整到0到360度）
         float angle = 180.0f + std::atan2(vy, vx) * rad2ang;
         if (angle < 0)
         {
             angle = 360.0f + angle;
         }
         angle = std::fmod(angle, 360.0f);
-
+        // 计算速度向量的模（即速度的大小）
         const float norm = std::sqrt(vx * vx + vy * vy);
+        // 计算HSV颜色空间中的值
         const float shift = 0.999f;
         const float a = 1.0f / std::log(0.1f + shift);
         const float intensity = CLAMP<float>(a * std::log(norm + shift), 0.0f, 1.0f);
-
+        // 将角度赋值给H（色调），设置S（饱和度）为1.0，V（亮度）为计算得到的intensity
         const float& H = angle;
         const float S = 1.0f;
         const float V = intensity;
+        // 将色调H转换为0到5之间的整数，用于后续的颜色计算
         const float H_60 = H * (1.0f / 60.0f);
-
+        // 计算C（色度）和m（最小亮度值）
         const float C = V * S;
         const float X = C * (1.0f - std::abs(std::fmod(H_60, 2.0f) - 1.0f));
         const float m = V - C;
-
+        // 根据色调H的值，计算RGB颜色分量
         float r = 0;
         float g = 0;
         float b = 0;
@@ -531,16 +552,18 @@ namespace ros2 {
             b = 1;
             break;
         }
-
+        // 将RGB颜色分量转换为uint8_t类型，并附加透明度通道（Alpha设为0，表示不透明）
         const uint8_t R = static_cast<uint8_t>((r + m) * 255.0f);
         const uint8_t G = static_cast<uint8_t>((g + m) * 255.0f);
         const uint8_t B = static_cast<uint8_t>((b + m) * 255.0f);
 
+        // 将RGBA值依次存储到vector_data中
         vector_data[data_index++] = B;
         vector_data[data_index++] = G;
         vector_data[data_index++] = R;
         vector_data[data_index++] = 0;
     }
+    // 调用SetData函数，将转换后的图像数据、时间戳和尺寸信息传递给其他处理部分
     SetData(seconds, nanoseconds, height, width, std::move(vector_data));
   }
 
