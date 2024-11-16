@@ -724,36 +724,54 @@ if (bEnableModifyingPostProcessEffects)
     LensFlareIntensity.bRestrictToRecommended = false; // 设置为false，意味着镜头光晕的强度值不仅限于推荐值，可以是任意浮点数。
 
 
-    // Bloom
+    // 初始化一个名为BloomIntensity的FActorVariation对象，用于控制Bloom效果的强度
     FActorVariation BloomIntensity;
+
+    // 设置BloomIntensity的标识符（ID）为"bloom_intensity"，用于在引擎中唯一标识这个变量
     BloomIntensity.Id = TEXT("bloom_intensity");
+
+    // 设置BloomIntensity的类型为Float，表示这个变量的值是一个浮点数
     BloomIntensity.Type = EActorAttributeType::Float;
+
+    // 设置BloomIntensity的推荐值为0.675。这通常是一个经验值，可以在编辑器中作为默认值或推荐值显示
     BloomIntensity.RecommendedValues = { TEXT("0.675") };
+
+    // 设置BloomIntensity是否限制为仅使用推荐值。这里设置为false，意味着用户可以选择任何值
     BloomIntensity.bRestrictToRecommended = false;
 
-    // More info at:
+    // 更多信息（这些链接提供了关于如何在Unreal Engine中使用和配置这些效果的详细信息）:
     // https://docs.unrealengine.com/en-US/Engine/Rendering/PostProcessEffects/AutomaticExposure/index.html
     // https://docs.unrealengine.com/en-US/Engine/Rendering/PostProcessEffects/DepthOfField/CinematicDOFMethods/index.html
     // https://docs.unrealengine.com/en-US/Engine/Rendering/PostProcessEffects/ColorGrading/index.html
 
-    // Exposure
+    // 初始化一个名为ExposureMode的FActorVariation对象，用于控制曝光模式
     FActorVariation ExposureMode;
+
+    // 设置ExposureMode的标识符（ID）为"exposure_mode"，用于在引擎中唯一标识这个变量
     ExposureMode.Id = TEXT("exposure_mode");
+
+    // 设置ExposureMode的类型为String，表示这个变量的值是一个字符串
     ExposureMode.Type = EActorAttributeType::String;
+
+    // 设置ExposureMode的推荐值为"histogram"和"manual"，表示曝光模式可以是基于直方图的自动曝光或手动曝光
     ExposureMode.RecommendedValues = { TEXT("histogram"), TEXT("manual") };
+
+    // 设置ExposureMode是否限制为仅使用推荐值。这里设置为true，意味着用户只能选择推荐值之一
     ExposureMode.bRestrictToRecommended = true;
 
-    // Logarithmic adjustment for the exposure. Only used if a tonemapper is
-    // specified.
-    //  0 : no adjustment
-    // -1 : 2x darker
-    // -2 : 4x darker
-    //  1 : 2x brighter
-    //  2 : 4x brighter.
+    // 初始化一个名为ExposureCompensation的FActorVariation对象，用于控制曝光的对数调整
     FActorVariation ExposureCompensation;
+
+    // 设置ExposureCompensation的标识符（ID）为"exposure_compensation"，用于在引擎中唯一标识这个变量
     ExposureCompensation.Id = TEXT("exposure_compensation");
+
+    // 设置ExposureCompensation的类型为Float，表示这个变量的值是一个浮点数
     ExposureCompensation.Type = EActorAttributeType::Float;
+
+    // 设置ExposureCompensation的推荐值为0.0
     ExposureCompensation.RecommendedValues = { TEXT("0.0") };
+
+    // 设置ExposureCompensation是否限制为仅使用推荐值。这里设置为false，意味着用户可以选择任何值
     ExposureCompensation.bRestrictToRecommended = false;
 
     // - Manual ------------------------------------------------
