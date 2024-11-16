@@ -769,6 +769,7 @@ if (bEnableModifyingPostProcessEffects)
     ExposureCompensation.Type = EActorAttributeType::Float;
 
     // 设置ExposureCompensation的推荐值为0.0
+    // 不同的值代表不同的亮度调整倍数：-1表示2倍暗，-2表示4倍暗；1表示2倍亮，2表示4倍亮
     ExposureCompensation.RecommendedValues = { TEXT("0.0") };
 
     // 设置ExposureCompensation是否限制为仅使用推荐值。这里设置为false，意味着用户可以选择任何值
