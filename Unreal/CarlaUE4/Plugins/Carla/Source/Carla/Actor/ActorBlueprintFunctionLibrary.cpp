@@ -775,32 +775,33 @@ if (bEnableModifyingPostProcessEffects)
     // 设置ExposureCompensation是否限制为仅使用推荐值。这里设置为false，意味着用户可以选择任何值
     ExposureCompensation.bRestrictToRecommended = false;
 
-    // - Manual ------------------------------------------------
+    // - 手动设置 ------------------------------------------------
 
-    // The formula used to compute the camera exposure scale is:
-    // Exposure = 1 / (1.2 * 2^(log2( N²/t * 100/S )))
+    // 用于计算相机曝光比例的公式是：
+    // 曝光 = 1 / (1.2 * 2^(log2( N²/t * 100/S )))
 
-    // The camera shutter speed in seconds.
-    FActorVariation ShutterSpeed; // (1/t)
-    ShutterSpeed.Id = TEXT("shutter_speed");
-    ShutterSpeed.Type = EActorAttributeType::Float;
-    ShutterSpeed.RecommendedValues = { TEXT("200.0") };
-    ShutterSpeed.bRestrictToRecommended = false;
+    // 相机的快门速度，单位为秒
+    FActorVariation ShutterSpeed; // (1/t)，t为快门时间的倒数
+    ShutterSpeed.Id = TEXT("shutter_speed"); // 设置属性ID为"shutter_speed"
+    ShutterSpeed.Type = EActorAttributeType::Float; // 设置属性类型为浮点型
+    ShutterSpeed.RecommendedValues = { TEXT("200.0") }; // 设置推荐的属性值为"200.0"
+    ShutterSpeed.bRestrictToRecommended = false; // 设置是否限制用户只能使用推荐值
 
-    // The camera sensor sensitivity.
-    FActorVariation ISO; // S
-    ISO.Id = TEXT("iso");
-    ISO.Type = EActorAttributeType::Float;
-    ISO.RecommendedValues = { TEXT("100.0") };
-    ISO.bRestrictToRecommended = false;
+    // 相机的传感器灵敏度。
+    FActorVariation ISO; // S，感光度
+    ISO.Id = TEXT("iso"); // 设置属性ID为"iso"
+    ISO.Type = EActorAttributeType::Float; // 设置属性类型为浮点型
+    ISO.RecommendedValues = { TEXT("100.0") }; // 设置推荐的属性值为"100.0"
+    ISO.bRestrictToRecommended = false; // 设置是否限制用户只能使用推荐值
 
-    // Defines the size of the opening for the camera lens.
-    // Using larger numbers will reduce the DOF effect.
-    FActorVariation Aperture; // N
-    Aperture.Id = TEXT("fstop");
-    Aperture.Type = EActorAttributeType::Float;
-    Aperture.RecommendedValues = { TEXT("1.4") };
-    Aperture.bRestrictToRecommended = false;
+    // 定义相机镜头开口的大小。
+    // 使用较大的数值将减少景深（DOF）效果。
+    FActorVariation Aperture; // N，光圈值（f值），注意这里注释中的N与代码中的fstop对应，通常f值越小，光圈越大
+    Aperture.Id = TEXT("fstop"); // 设置属性ID为"fstop"
+    Aperture.Type = EActorAttributeType::Float; // 设置属性类型为浮点型
+    Aperture.RecommendedValues = { TEXT("1.4") }; // 设置推荐的属性值为"1.4"
+    Aperture.bRestrictToRecommended = false; // 设置是否限制用户只能使用推荐值
+
 
     // - Histogram ---------------------------------------------
 
