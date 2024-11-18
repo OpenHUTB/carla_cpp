@@ -134,27 +134,43 @@ namespace client {
   }
 
   std::vector<SharedPtr<Waypoint>> TrafficLight::GetStopWaypoints() const {
+    // 定义一个向量用于存储结果（停止点的路标）
     std::vector<SharedPtr<Waypoint>> result;
+    // 获取当前地图的指针
     SharedPtr<Map> carla_map = GetEpisode().Lock()->GetCurrentMap();
+    //获取交通信号灯的触发范围
     geom::BoundingBox box = GetTriggerVolume();
+    // 获取交通信号灯的全局变换
     geom::Transform transform = GetTransform();
+    // 提取Bounding Box 的中心位置
     geom::Location box_position = box.location;
+    // 将 Bounding Box 的位置转换为全局坐标
     transform.TransformPoint(box_position);
+    // 获取信号灯面朝的方向向量
     geom::Vector3D right_direction = transform.GetForwardVector();
-    float min_x = -0.9f*box.extent.x;
-    float max_x = 0.9f*box.extent.x;
-    float current_x = min_x;
+    // 定义遍历 Bounding Box 沿x轴的范围：从最小x值到最大x值
+    float min_x = -0.9f*box.extent.x; // x的最小范围
+    float max_x = 0.9f*box.extent.x; // x的最大范围
+    float current_x = min_x; //初始化当前x值为最小范围
+    // 定义一个哈希表，用于记录已经访问过的道路和车道ID
     std::unordered_map<road::RoadId, std::unordered_set<road::LaneId>> road_lanes_map;
+    // 遍历Bounding Box 沿x轴的范围
     while (current_x < max_x) {
+      // 根据当前x值计算查询点的全局位置
       geom::Location query_point = box_position + geom::Location(right_direction*current_x);
+      // 获取查询点对应的路标
       SharedPtr<Waypoint> waypoint = carla_map->GetWaypoint(query_point);
+      // 检查当前的路标是否已经被处理过
       if (road_lanes_map[waypoint->GetRoadId()].count(waypoint->GetLaneId()) == 0) {
+        // 如果未处理过，则将道路ID和车道ID记录到哈希表中
         road_lanes_map[waypoint->GetRoadId()].insert(waypoint->GetLaneId());
+        // 将路标加入结果列表
         result.emplace_back(waypoint);
       }
+      // 将当前x值增加，继续处理下一个点
       current_x += 1.f;
     }
-    return result;
+    return result; // 返回结果列表
   }
 
 } // namespace client
