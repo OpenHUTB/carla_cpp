@@ -557,36 +557,42 @@ PUGI__NS_BEGIN
 		32768
 	#endif
 		- sizeof(xml_memory_page);
-
+	// 定义xml_memory_string_header结构体，用于描述字符串在内存页中的位置和大小
 	struct xml_memory_string_header
 	{
+		// 从内存页数据起始位置到字符串起始位置的偏移量
 		uint16_t page_offset; // offset from page->data
+		// 如果字符串占据整个内存页，则为0；否则为字符串的实际大小
 		uint16_t full_size; // 0 if string occupies whole page
 	};
-
+	// 定义xml_allocator结构体，用于管理内存页的分配
 	struct xml_allocator
 	{
+		// 构造函数，接受一个指向根内存页的指针，并初始化成员变量
 		xml_allocator(xml_memory_page* root): _root(root), _busy_size(root->busy_size)
 		{
 		#ifdef PUGIXML_COMPACT
-			_hash = 0;
+			_hash = 0;// 如果定义了PUGIXML_COMPACT宏，则初始化_hash为0
 		#endif
 		}
-
+		// 成员函数：分配一个新的内存页
+		// 接受一个数据大小参数，用于确定除了结构体本身外还需要多少额外空间
 		xml_memory_page* allocate_page(size_t data_size)
 		{
+			// 计算总大小：内存页结构体的大小加上额外数据的大小
 			size_t size = sizeof(xml_memory_page) + data_size;
 
 			// allocate block with some alignment, leaving memory for worst-case padding
 			void* memory = xml_memory::allocate(size);
-			if (!memory) return 0;
+			if (!memory) return 0;// 如果分配失败，则返回0（空指针）
 
 			// prepare page structure
+			// 在分配的内存块上构造xml_memory_page对象
 			xml_memory_page* page = xml_memory_page::construct(memory);
-			assert(page);
-
+			assert(page);// 确保构造成功
+			// 设置新页面的分配器为根页面的分配器（可能是为了保持一致性或实现某种内存管理策略）
 			page->allocator = _root->allocator;
-
+			// 返回新分配的页面
 			return page;
 		}
 
