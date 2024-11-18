@@ -288,37 +288,63 @@ void CarlaSemanticLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds,
     _impl->_lidar.is_dense(false); // 设置是否稠密，false表示可能存在无效点
     _impl->_lidar.data(std::move(data));// 设置激光雷达数据
   }
-
+/**
+ * @brief CarlaSemanticLidarPublisher类的构造函数。
+ *
+ * 初始化CarlaSemanticLidarPublisher对象，创建内部实现对象，并设置ROS节点名称和父节点名称。
+ *
+ * @param ros_name ROS节点名称。
+ * @param parent 父节点名称或空字符串（如果无父节点）。
+ */
   CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaSemanticLidarPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaSemanticLidarPublisher类的析构函数。
+ *
+ * 清理CarlaSemanticLidarPublisher对象，释放所有资源。
+ * 这包括删除数据写入器、发布者、主题和参与者（如果它们存在）。
+ */
   CarlaSemanticLidarPublisher::~CarlaSemanticLidarPublisher() {
+      // 检查_impl是否有效，如果为nullptr则直接返回。
       if (!_impl)
           return;
-
+      // 如果存在数据写入器，则删除它。
       if (_impl->_datawriter)
           _impl->_publisher->delete_datawriter(_impl->_datawriter);
-
+      // 如果存在发布者，则删除它。
       if (_impl->_publisher)
           _impl->_participant->delete_publisher(_impl->_publisher);
-
+      // 如果存在主题，则删除它。
       if (_impl->_topic)
           _impl->_participant->delete_topic(_impl->_topic);
-
+      // 如果存在参与者，则删除它。
       if (_impl->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
   }
-
+  /**
+ * @brief CarlaSemanticLidarPublisher类的拷贝构造函数。
+ *
+ * 通过另一个CarlaSemanticLidarPublisher对象来初始化当前对象，实现深拷贝（如果_impl是智能指针则实现浅拷贝）。
+ *
+ * @param other 要拷贝的CarlaSemanticLidarPublisher对象。
+ */
   CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher(const CarlaSemanticLidarPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
     _parent = other._parent;
     _impl = other._impl;
   }
-
+  /**
+ * @brief 拷贝赋值运算符重载。
+ *
+ * 将当前对象替换为另一个CarlaSemanticLidarPublisher对象的拷贝。
+ *
+ * @param other 要赋值的CarlaSemanticLidarPublisher对象。
+ * @return 引用当前对象。
+ */
   CarlaSemanticLidarPublisher& CarlaSemanticLidarPublisher::operator=(const CarlaSemanticLidarPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -327,14 +353,27 @@ void CarlaSemanticLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds,
 
     return *this;
   }
-
+  /**
+ * @brief CarlaSemanticLidarPublisher类的移动构造函数。
+ *
+ * 通过另一个CarlaSemanticLidarPublisher对象（右值引用）来初始化当前对象，实现资源的转移。
+ *
+ * @param other 要移动的CarlaSemanticLidarPublisher对象（右值）。
+ */
   CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher(CarlaSemanticLidarPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
     _parent = std::move(other._parent);
     _impl = std::move(other._impl);
   }
-
+  /**
+ * @brief 移动赋值运算符重载。
+ *
+ * 将当前对象替换为另一个CarlaSemanticLidarPublisher对象（右值）的资源转移。
+ *
+ * @param other 要赋值的CarlaSemanticLidarPublisher对象（右值）。
+ * @return 引用当前对象。
+ */
   CarlaSemanticLidarPublisher& CarlaSemanticLidarPublisher::operator=(CarlaSemanticLidarPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
