@@ -111,63 +111,82 @@ namespace ros2 {
   }
 
   bool CarlaSemanticLidarPublisher::Publish() {
+      /// @var instance_handle
+    /// 用于存储Fast RTPS实例句柄的变量。
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /// @var rcode
+   /// 用于存储写操作返回码的变量。
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_lidar, instance_handle);
+    /// 检查返回码，如果是RETCODE_OK，表示发布成功。
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
     }
+    /// 返回码为RETCODE_ERROR，表示发生了错误。
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_UNSUPPORTED，表示操作不受支持。
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_BAD_PARAMETER，表示参数错误。
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_PRECONDITION_NOT_MET，表示前提条件未满足。
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_OUT_OF_RESOURCES，表示资源不足。
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_NOT_ENABLED，表示功能未启用。
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_IMMUTABLE_POLICY，表示策略不可变。
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_INCONSISTENT_POLICY，表示策略不一致。
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_ALREADY_DELETED，表示对象已被删除。
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_TIMEOUT，表示操作超时。
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_NO_DATA，表示没有数据。
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_ILLEGAL_OPERATION，表示非法操作。
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
+    /// 返回码为RETCODE_NOT_ALLOWED_BY_SECURITY，表示安全策略不允许。
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// 如果返回码未知，输出UNKNOWN错误信息。
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
