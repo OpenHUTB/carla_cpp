@@ -595,25 +595,35 @@ PUGI__NS_BEGIN
 			// 返回新分配的页面
 			return page;
 		}
-
+		// 定义deallocate_page函数，用于释放一个内存页
+		// 接受一个指向xml_memory_page对象的指针作为参数
 		static void deallocate_page(xml_memory_page* page)
 		{
+			// 调用xml_memory类的静态成员函数deallocate来释放内存页
+			// 假设xml_memory是一个管理内存分配的类，类似于标准库中的allocator
 			xml_memory::deallocate(page);
 		}
-
+		// 它用于在内存不足时分配内存，可能是通过分配一个新的内存页或其他机制
 		void* allocate_memory_oob(size_t size, xml_memory_page*& out_page);
-
+		// 定义allocate_memory函数，尝试在当前根内存页中分配指定大小的内存
+		// 如果内存不足，则调用allocate_memory_oob函数
 		void* allocate_memory(size_t size, xml_memory_page*& out_page)
 		{
+			// 使用PUGI__UNLIKELY宏来提示编译器这个条件可能不常发生
+			// 这有助于优化生成的代码（尽管这取决于编译器的实现）
 			if (PUGI__UNLIKELY(_busy_size + size > xml_memory_page_size))
+				// 如果当前根内存页中的已分配大小加上请求的大小超过了内存页的总大小
+				// 则调用allocate_memory_oob函数来分配内存，并传递请求的大小和out_page引用
 				return allocate_memory_oob(size, out_page);
-
+			// 计算分配内存的起始地址
+			// _root是指向当前根内存页的指针，sizeof(xml_memory_page)是内存页结构体的大小
+			// _busy_size是当前已分配（忙碌）的内存大小
 			void* buf = reinterpret_cast<char*>(_root) + sizeof(xml_memory_page) + _busy_size;
-
+			// 更新已分配（忙碌）的内存大小
 			_busy_size += size;
-
+			// 将out_page引用设置为指向当前根内存页的指针
 			out_page = _root;
-
+			// 返回分配的内存的起始地址
 			return buf;
 		}
 
