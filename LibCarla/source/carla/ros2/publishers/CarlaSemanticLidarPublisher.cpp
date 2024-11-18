@@ -23,28 +23,49 @@
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 引入数据写入器QoS类
 #include <fastdds/dds/publisher/DataWriterListener.hpp>// 引入数据写入器监听器类
 
-
+/**
+ * @namespace carla::ros2
+ * @brief 命名空间，包含CARLA与ROS2桥接相关的类和函数。
+ */
 namespace carla {
 namespace ros2 {
-
+    /**
+   * @brief 引入Fast-DDS命名空间的别名。
+   */
   namespace efd = eprosima::fastdds::dds;
+  /**
+   * @brief 引入Fast-RTPS返回码类型的别名。
+   */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+  * @struct CarlaSemanticLidarPublisherImpl
+  * @brief Carla语义激光雷达数据发布者的内部实现结构。
+  *
+  * 该结构包含了Fast-DDS所需的域参与者、发布者、话题和数据写入器等成员变量，以及一个CARLA监听器和一个用于存储点云数据的成员变量。
+  */
   struct CarlaSemanticLidarPublisherImpl {
-    efd::DomainParticipant* _participant { nullptr };
-    efd::Publisher* _publisher { nullptr };
-    efd::Topic* _topic { nullptr };
-    efd::DataWriter* _datawriter { nullptr };
-    efd::TypeSupport _type { new sensor_msgs::msg::PointCloud2PubSubType() };
-    CarlaListener _listener {};
-    sensor_msgs::msg::PointCloud2 _lidar {};
+    efd::DomainParticipant* _participant { nullptr };///< 域参与者指针
+    efd::Publisher* _publisher { nullptr };///< 发布者指针
+    efd::Topic* _topic { nullptr };///< 话题指针
+    efd::DataWriter* _datawriter { nullptr };///< 数据写入器指针
+    efd::TypeSupport _type { new sensor_msgs::msg::PointCloud2PubSubType() };///< 类型支持，用于点云数据
+    CarlaListener _listener {};///< CARLA监听器
+    sensor_msgs::msg::PointCloud2 _lidar {}; ///< 存储点云数据的成员变量
   };
-
+  /**
+   * @brief 初始化Carla语义激光雷达数据发布者。
+   *
+   * 该函数负责创建Fast-DDS的域参与者、发布者、话题和数据写入器，并注册类型支持。
+   *
+   * @return bool 如果初始化成功，则返回true；否则返回false。
+   */
   bool CarlaSemanticLidarPublisher::Init() {
+      // 检查类型支持是否有效
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
+    // 设置域参与者的QoS策略，并创建域参与者
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
@@ -53,15 +74,16 @@ namespace ros2 {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    // 注册类型支持
     _impl->_type.register_type(_impl->_participant);
-
+    // 设置发布者的QoS策略，并创建发布者
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
@@ -73,7 +95,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    // 设置数据写入器的QoS策略，并创建数据写入器
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
@@ -82,7 +104,9 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    // 设置帧ID为发布者的名称
     _frame_id = _name;
+    // 初始化成功
     return true;
   }
 
