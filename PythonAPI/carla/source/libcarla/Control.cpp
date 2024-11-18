@@ -452,12 +452,17 @@ boost::python::object WalkerBoneControl_init(boost::python::tuple args, boost::p
   return res;
 }
 
+// 定义一个函数export_control，这个函数没有返回值，也没有参数
 void export_control() {
+  // 使用boost::python命名空间，简化代码中的引用
   using namespace boost::python;
-  namespace cg = carla::geom;
-  namespace cr = carla::rpc;
+  // 为方便引用，为命名空间创建别名
+  namespace cg = carla::geom; // carla的几何命名空间
+  namespace cr = carla::rpc;  // carla的RPC（远程过程调用）命名空间
 
+  // 将cr::VehicleControl类暴露给Python
   class_<cr::VehicleControl>("VehicleControl")
+    // 定义一个构造函数，并设置参数的默认值
     .def(init<float, float, float, bool, bool, bool, int>(
       (arg("throttle") = 0.0f,
       arg("steer") = 0.0f,
@@ -466,6 +471,7 @@ void export_control() {
       arg("reverse") = false,
       arg("manual_gear_shift") = false,
       arg("gear") = 0)))
+    // 为类的成员变量添加读写属性
     .def_readwrite("throttle", &cr::VehicleControl::throttle)
     .def_readwrite("steer", &cr::VehicleControl::steer)
     .def_readwrite("brake", &cr::VehicleControl::brake)
@@ -477,7 +483,7 @@ void export_control() {
     .def("__ne__", &cr::VehicleControl::operator!=)
     .def(self_ns::str(self_ns::self))
   ;
-
+  // 将cr::VehicleAckermannControl类暴露给Python
   class_<cr::VehicleAckermannControl>("VehicleAckermannControl")
     .def(init<float, float, float, float, float>(
       (arg("steer") = 0.0f,
@@ -494,7 +500,7 @@ void export_control() {
     .def("__ne__", &cr::VehicleAckermannControl::operator!=)
     .def(self_ns::str(self_ns::self))
   ;
-
+  // 将cr::AckermannControllerSettings类暴露给Python
   class_<cr::AckermannControllerSettings>("AckermannControllerSettings")
     .def(init<float, float, float, float, float, float>(
       (arg("speed_kp") = 0.0f,
@@ -513,7 +519,7 @@ void export_control() {
     .def("__ne__", &cr::AckermannControllerSettings::operator!=)
     .def(self_ns::str(self_ns::self))
   ;
-
+  // 将cr::WalkerControl类暴露给Python
   class_<cr::WalkerControl>("WalkerControl")
     .def(init<cg::Vector3D, float, bool>(
        (arg("direction") = cg::Vector3D{1.0f, 0.0f, 0.0f},
@@ -527,6 +533,7 @@ void export_control() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将std::pair<std::string, cg::Transform>类型的类（别名为bone_transform）暴露给Python
   class_<cr::BoneTransformDataIn>("bone_transform")
     .def(init<>())
     .def_readwrite("name", &std::pair<std::string, cg::Transform>::first)
@@ -534,12 +541,14 @@ void export_control() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将std::vector<cr::BoneTransformDataIn>类型的类（别名为vector_of_bones）暴露给Python
   class_<std::vector<cr::BoneTransformDataIn>>("vector_of_bones")
     .def(init<>())
     .def(boost::python::vector_indexing_suite<std::vector<cr::BoneTransformDataIn>>())
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cr::BoneTransformDataOut类暴露给Python
   class_<cr::BoneTransformDataOut>("bone_transform_out")
     .def(init<>())
     .def_readwrite("name", &cr::BoneTransformDataOut::bone_name)
@@ -551,12 +560,15 @@ void export_control() {
     .def("__ne__", &cr::BoneTransformDataOut::operator!=)
   ;
 
+  // 将std::vector<cr::BoneTransformDataOut>类型的类（别名为vector_of_bones_out）暴露给Python
   class_<std::vector<cr::BoneTransformDataOut>>("vector_of_bones_out")
     .def(init<>())
     .def(boost::python::vector_indexing_suite<std::vector<cr::BoneTransformDataOut>>())
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cr::WalkerBoneControlIn类暴露给Python
+  // 注意：这里使用了raw_function来处理特殊的初始化逻辑
   class_<cr::WalkerBoneControlIn>("WalkerBoneControlIn")
     .def("__init__", raw_function(WalkerBoneControl_init))
     .def(init<>())
@@ -564,6 +576,8 @@ void export_control() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cr::WalkerBoneControlOut类暴露给Python
+  // 注意：这里只提供了getter而没有setter，或者使用了不同的处理逻辑
   class_<cr::WalkerBoneControlOut>("WalkerBoneControlOut")
     .def("__init__", raw_function(WalkerBoneControl_init))
     .def(init<>())
@@ -572,6 +586,7 @@ void export_control() {
     .def(self_ns::str(self_ns::self))
   ;
 
+ // 将std::vector<cr::GearPhysicsControl>类型的类（别名为vector_of_gears）暴露给Python
   class_<std::vector<cr::GearPhysicsControl>>("vector_of_gears")
       .def(boost::python::vector_indexing_suite<std::vector<cr::GearPhysicsControl>>())
       .def(self_ns::str(self_ns::self))
