@@ -803,54 +803,50 @@ if (bEnableModifyingPostProcessEffects)
     Aperture.bRestrictToRecommended = false; // 设置是否限制用户只能使用推荐值
 
 
-    // - Histogram ---------------------------------------------
+    // - 直方图相关设置 ---------------------------------------------
 
-    // The minimum brightness for auto exposure that limits the lower
-    // brightness the eye can adapt within
-    FActorVariation ExposureMinBright;
-    ExposureMinBright.Id = TEXT("exposure_min_bright");
-    ExposureMinBright.Type = EActorAttributeType::Float;
-    ExposureMinBright.RecommendedValues = { TEXT("10.0") };
-    ExposureMinBright.bRestrictToRecommended = false;
+    // 自动曝光的最小亮度值，它限制了眼睛能够适应的最低亮度范围
+    FActorVariation ExposureMinBright; // 自动曝光最小亮度变量
+    ExposureMinBright.Id = TEXT("exposure_min_bright"); // 设置变量的ID为"exposure_min_bright"
+    ExposureMinBright.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureMinBright.RecommendedValues = { TEXT("10.0") }; // 设置推荐值为10.0
+    ExposureMinBright.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // The maximum brightness for auto exposure that limits the upper
-    // brightness the eye can adapt within
-    FActorVariation ExposureMaxBright;
-    ExposureMaxBright.Id = TEXT("exposure_max_bright");
-    ExposureMaxBright.Type = EActorAttributeType::Float;
-    ExposureMaxBright.RecommendedValues = { TEXT("12.0") };
-    ExposureMaxBright.bRestrictToRecommended = false;
+    // 自动曝光的最大亮度值，它限制了眼睛能够适应的最高亮度范围
+    FActorVariation ExposureMaxBright; // 自动曝光最大亮度变量
+    ExposureMaxBright.Id = TEXT("exposure_max_bright"); // 设置变量的ID为"exposure_max_bright"
+    ExposureMaxBright.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureMaxBright.RecommendedValues = { TEXT("12.0") }; // 设置推荐值为12.0
+    ExposureMaxBright.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // The speed at which the adaptation occurs from a dark environment
-    // to a bright environment.
-    FActorVariation ExposureSpeedUp;
-    ExposureSpeedUp.Id = TEXT("exposure_speed_up");
-    ExposureSpeedUp.Type = EActorAttributeType::Float;
-    ExposureSpeedUp.RecommendedValues = { TEXT("3.0") };
-    ExposureSpeedUp.bRestrictToRecommended = false;
+    // 从暗环境到亮环境的适应速度
+    FActorVariation ExposureSpeedUp; // 曝光上调速度变量
+    ExposureSpeedUp.Id = TEXT("exposure_speed_up"); // 设置变量的ID为"exposure_speed_up"
+    ExposureSpeedUp.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureSpeedUp.RecommendedValues = { TEXT("3.0") }; // 设置推荐值为3.0
+    ExposureSpeedUp.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // The speed at which the adaptation occurs from a bright environment
-    // to a dark environment.
-    FActorVariation ExposureSpeedDown;
-    ExposureSpeedDown.Id = TEXT("exposure_speed_down");
-    ExposureSpeedDown.Type = EActorAttributeType::Float;
-    ExposureSpeedDown.RecommendedValues = { TEXT("1.0") };
-    ExposureSpeedDown.bRestrictToRecommended = false;
+    // 从亮环境到暗环境的适应速度。
+    FActorVariation ExposureSpeedDown; // 曝光下调速度变量
+    ExposureSpeedDown.Id = TEXT("exposure_speed_down"); // 设置变量的ID为"exposure_speed_down"
+    ExposureSpeedDown.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureSpeedDown.RecommendedValues = { TEXT("1.0") }; // 设置推荐值为1.0
+    ExposureSpeedDown.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Calibration constant for 18% Albedo.
-    FActorVariation CalibrationConstant;
-    CalibrationConstant.Id = TEXT("calibration_constant");
-    CalibrationConstant.Type = EActorAttributeType::Float;
-    CalibrationConstant.RecommendedValues = { TEXT("16.0") };
-    CalibrationConstant.bRestrictToRecommended = false;
+    // 18%反射率（Albedo）的校准常数。
+    FActorVariation CalibrationConstant; // 校准常数变量
+    CalibrationConstant.Id = TEXT("calibration_constant"); // 设置变量的ID为"calibration_constant"
+    CalibrationConstant.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    CalibrationConstant.RecommendedValues = { TEXT("16.0") }; // 设置推荐值为16.0
+    CalibrationConstant.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Distance in which the Depth of Field effect should be sharp,
-    // in unreal units (cm)
-    FActorVariation FocalDistance;
-    FocalDistance.Id = TEXT("focal_distance");
-    FocalDistance.Type = EActorAttributeType::Float;
-    FocalDistance.RecommendedValues = { TEXT("1000.0") };
-    FocalDistance.bRestrictToRecommended = false;
+    // 景深效果应保持清晰的距离，
+    // 单位为虚幻引擎单位（厘米）
+    FActorVariation FocalDistance; // 焦距距离变量
+    FocalDistance.Id = TEXT("focal_distance"); // 设置变量的ID为"focal_distance"
+    FocalDistance.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    FocalDistance.RecommendedValues = { TEXT("1000.0") }; // 设置推荐值为1000.0
+    FocalDistance.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
     // Depth blur km for 50%
     FActorVariation DepthBlurAmount;
