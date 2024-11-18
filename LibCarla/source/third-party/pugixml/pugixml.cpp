@@ -424,49 +424,55 @@ PUGI__NS_BEGIN
 			// 如果上面的断言失败，则返回0（实际上由于断言的存在，这行代码不会被执行）
 			return 0;
 		}
-
+		// 定义一个静态函数，用于计算给定键的哈希值，并处理可能的无符号整数溢出
 		static PUGI__UNSIGNED_OVERFLOW unsigned int hash(const void* key)
 		{
+			// 将指针转换为无符号整数类型（uintptr_t），然后转换为unsigned int。
+			// 这里的转换是为了获取一个可以用于哈希计算的数值。
 			unsigned int h = static_cast<unsigned int>(reinterpret_cast<uintptr_t>(key));
 
 			// MurmurHash3 32-bit finalizer
-			h ^= h >> 16;
-			h *= 0x85ebca6bu;
-			h ^= h >> 13;
-			h *= 0xc2b2ae35u;
-			h ^= h >> 16;
+			h ^= h >> 16;		// 将h右移16位后与自身异或
+			h *= 0x85ebca6bu;	// 乘以一个魔术数字（常数）
+			h ^= h >> 13;		// 再次右移13位后与自身异或
+			h *= 0xc2b2ae35u;	// 再次乘以另一个魔术数字
+			h ^= h >> 16;		// 最后，再次右移16位后与自身异或
 
 			return h;
 		}
 	};
-
+	// 定义一个函数，用于根据当前存储的元素数量重新调整哈希表的容量
 	PUGI__FN_NO_INLINE bool compact_hash_table::rehash(size_t count)
 	{
+		// 初始化容量为32
 		size_t capacity = 32;
+		// 当当前元素数量大于等于当前容量的3/4时，将容量翻倍，直到满足条件
 		while (count >= capacity - capacity / 4)
 			capacity *= 2;
-
+		// 创建一个新的哈希表实例
 		compact_hash_table rt;
+		// 设置新哈希表的容量为计算得到的新容量
 		rt._capacity = capacity;
+		// 为新哈希表分配内存空间
 		rt._items = static_cast<item_t*>(xml_memory::allocate(sizeof(item_t) * capacity));
-
+		// 如果内存分配失败，则返回false
 		if (!rt._items)
 			return false;
-
+		// 将新分配的内存空间初始化为0
 		memset(rt._items, 0, sizeof(item_t) * capacity);
-
+		// 遍历旧哈希表的每一项，如果键不为空，则将其插入到新哈希表中
 		for (size_t i = 0; i < _capacity; ++i)
 			if (_items[i].key)
 				rt.insert(_items[i].key, _items[i].value);
-
+		// 如果旧哈希表有已分配的内存，则释放它
 		if (_items)
 			xml_memory::deallocate(_items);
-
+		// 更新旧哈希表的容量为新的容量，并设置其项指针为新分配的内存
 		_capacity = capacity;
 		_items = rt._items;
-
+		// 断言确保重新哈希后元素数量未变。
 		assert(_count == rt._count);
-
+		// 返回true，表示重新哈希成功
 		return true;
 	}
 
