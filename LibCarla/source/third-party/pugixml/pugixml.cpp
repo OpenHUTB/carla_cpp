@@ -509,36 +509,40 @@ PUGI__NS_BEGIN
 	#define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
 
 	struct xml_allocator;
-
+	// 定义xml_memory_page结构体，用于管理内存页
 	struct xml_memory_page
 	{
+		// 静态成员函数，用于在给定内存块上构造xml_memory_page对象
+		// 这个函数不分配新的内存，而是将传入的void*内存块转换为xml_memory_page*并初始化它
 		static xml_memory_page* construct(void* memory)
 		{
+			// 将传入的void*内存块转换为xml_memory_page*类型
 			xml_memory_page* result = static_cast<xml_memory_page*>(memory);
-
-			result->allocator = 0;
-			result->prev = 0;
-			result->next = 0;
-			result->busy_size = 0;
-			result->freed_size = 0;
-
+			// 初始化成员变量
+			result->allocator = 0;	// 指向xml_allocator的指针，初始化为0（空指针）
+			result->prev = 0;		// 指向前一个内存页的指针，初始化为0（空指针）
+			result->next = 0;		// 指向下一个内存页的指针，初始化为0（空指针）
+			result->busy_size = 0;	// 当前页中已分配（忙碌）的内存大小，初始化为0
+			result->freed_size = 0;	// 当前页中已释放（空闲）的内存大小，初始化为0
+			// 如果定义了PUGIXML_COMPACT宏，则初始化与紧凑模式相关的成员变量
 		#ifdef PUGIXML_COMPACT
 			result->compact_string_base = 0;
 			result->compact_shared_parent = 0;
 			result->compact_page_marker = 0;
 		#endif
-
+			// 返回构造并初始化后的xml_memory_page对象的指针
 			return result;
 		}
-
+		// 成员变量
 		xml_allocator* allocator;
-
+		// 内存页之间的双向链表链接
 		xml_memory_page* prev;
 		xml_memory_page* next;
-
+		// 内存使用情况统计
 		size_t busy_size;
 		size_t freed_size;
-
+		// 注意：如果定义了PUGIXML_COMPACT宏，则还会存在以下成员变量
+		// 这些变量在紧凑模式下用于优化内存使用和访问速度
 	#ifdef PUGIXML_COMPACT
 		char_t* compact_string_base;
 		void* compact_shared_parent;
