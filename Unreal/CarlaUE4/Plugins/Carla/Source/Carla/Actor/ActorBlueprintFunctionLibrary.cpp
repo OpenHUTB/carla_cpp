@@ -803,31 +803,28 @@ if (bEnableModifyingPostProcessEffects)
     Aperture.bRestrictToRecommended = false; // 设置是否限制用户只能使用推荐值
 
 
-    // - Histogram ---------------------------------------------
+    // - 直方图相关设置 ---------------------------------------------
 
-    // The minimum brightness for auto exposure that limits the lower
-    // brightness the eye can adapt within
-    FActorVariation ExposureMinBright;
-    ExposureMinBright.Id = TEXT("exposure_min_bright");
-    ExposureMinBright.Type = EActorAttributeType::Float;
-    ExposureMinBright.RecommendedValues = { TEXT("10.0") };
-    ExposureMinBright.bRestrictToRecommended = false;
+    // 自动曝光的最小亮度值，它限制了眼睛能够适应的最低亮度范围
+    FActorVariation ExposureMinBright; // 自动曝光最小亮度变量
+    ExposureMinBright.Id = TEXT("exposure_min_bright"); // 设置变量的ID为"exposure_min_bright"
+    ExposureMinBright.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureMinBright.RecommendedValues = { TEXT("10.0") }; // 设置推荐值为10.0
+    ExposureMinBright.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // The maximum brightness for auto exposure that limits the upper
-    // brightness the eye can adapt within
-    FActorVariation ExposureMaxBright;
-    ExposureMaxBright.Id = TEXT("exposure_max_bright");
-    ExposureMaxBright.Type = EActorAttributeType::Float;
-    ExposureMaxBright.RecommendedValues = { TEXT("12.0") };
-    ExposureMaxBright.bRestrictToRecommended = false;
+    // 自动曝光的最大亮度值，它限制了眼睛能够适应的最高亮度范围
+    FActorVariation ExposureMaxBright; // 自动曝光最大亮度变量
+    ExposureMaxBright.Id = TEXT("exposure_max_bright"); // 设置变量的ID为"exposure_max_bright"
+    ExposureMaxBright.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureMaxBright.RecommendedValues = { TEXT("12.0") }; // 设置推荐值为12.0
+    ExposureMaxBright.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // The speed at which the adaptation occurs from a dark environment
-    // to a bright environment.
-    FActorVariation ExposureSpeedUp;
-    ExposureSpeedUp.Id = TEXT("exposure_speed_up");
-    ExposureSpeedUp.Type = EActorAttributeType::Float;
-    ExposureSpeedUp.RecommendedValues = { TEXT("3.0") };
-    ExposureSpeedUp.bRestrictToRecommended = false;
+    // 从暗环境到亮环境的适应速度
+    FActorVariation ExposureSpeedUp; // 曝光上调速度变量
+    ExposureSpeedUp.Id = TEXT("exposure_speed_up"); // 设置变量的ID为"exposure_speed_up"
+    ExposureSpeedUp.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureSpeedUp.RecommendedValues = { TEXT("3.0") }; // 设置推荐值为3.0
+    ExposureSpeedUp.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
     // The speed at which the adaptation occurs from a bright environment
     // to a dark environment.
