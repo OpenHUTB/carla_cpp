@@ -1,27 +1,27 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaSemanticLidarPublisher.h"
+#include "CarlaSemanticLidarPublisher.h"// 引入Carla语义激光雷达发布者类的声明
 
-#include <string>
-
+#include <string>// 引入字符串处理相关的标准库
+// 引入CARLA ROS2桥接库中的点云数据类型和监听器类
 #include "carla/ros2/types/PointCloud2PubSubTypes.h"
 #include "carla/ros2/listeners/CarlaListener.h"
-
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-
-#include <fastrtps/attributes/ParticipantAttributes.h>
-#include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
+// 引入Fast-DDS库中的相关类和头文件
+#include <fastdds/dds/domain/DomainParticipant.hpp>// 引入域参与者类
+#include <fastdds/dds/publisher/Publisher.hpp>// 引入发布者类
+#include <fastdds/dds/topic/Topic.hpp>// 引入话题类
+#include <fastdds/dds/publisher/DataWriter.hpp>// 引入数据写入器类
+#include <fastdds/dds/topic/TypeSupport.hpp>// 引入类型支持类
+// 引入Fast-DDS库中与QoS（服务质量）相关的类和头文件
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>// 引入域参与者QoS类
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp> // 引入域参与者工厂类
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp>// 引入发布者QoS类
+#include <fastdds/dds/topic/qos/TopicQos.hpp>// 引入话题QoS类
+// 引入Fast-RTPS库中的参与者属性和QoS策略相关的类和头文件
+#include <fastrtps/attributes/ParticipantAttributes.h>// 引入参与者属性类
+#include <fastrtps/qos/QosPolicies.h>  // 引入QoS策略类
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 引入数据写入器QoS类
+#include <fastdds/dds/publisher/DataWriterListener.hpp>// 引入数据写入器监听器类
 
 
 namespace carla {
