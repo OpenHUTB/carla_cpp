@@ -826,28 +826,27 @@ if (bEnableModifyingPostProcessEffects)
     ExposureSpeedUp.RecommendedValues = { TEXT("3.0") }; // 设置推荐值为3.0
     ExposureSpeedUp.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // The speed at which the adaptation occurs from a bright environment
-    // to a dark environment.
-    FActorVariation ExposureSpeedDown;
-    ExposureSpeedDown.Id = TEXT("exposure_speed_down");
-    ExposureSpeedDown.Type = EActorAttributeType::Float;
-    ExposureSpeedDown.RecommendedValues = { TEXT("1.0") };
-    ExposureSpeedDown.bRestrictToRecommended = false;
+    // 从亮环境到暗环境的适应速度。
+    FActorVariation ExposureSpeedDown; // 曝光下调速度变量
+    ExposureSpeedDown.Id = TEXT("exposure_speed_down"); // 设置变量的ID为"exposure_speed_down"
+    ExposureSpeedDown.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureSpeedDown.RecommendedValues = { TEXT("1.0") }; // 设置推荐值为1.0
+    ExposureSpeedDown.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Calibration constant for 18% Albedo.
-    FActorVariation CalibrationConstant;
-    CalibrationConstant.Id = TEXT("calibration_constant");
-    CalibrationConstant.Type = EActorAttributeType::Float;
-    CalibrationConstant.RecommendedValues = { TEXT("16.0") };
-    CalibrationConstant.bRestrictToRecommended = false;
+    // 18%反射率（Albedo）的校准常数。
+    FActorVariation CalibrationConstant; // 校准常数变量
+    CalibrationConstant.Id = TEXT("calibration_constant"); // 设置变量的ID为"calibration_constant"
+    CalibrationConstant.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    CalibrationConstant.RecommendedValues = { TEXT("16.0") }; // 设置推荐值为16.0
+    CalibrationConstant.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Distance in which the Depth of Field effect should be sharp,
-    // in unreal units (cm)
-    FActorVariation FocalDistance;
-    FocalDistance.Id = TEXT("focal_distance");
-    FocalDistance.Type = EActorAttributeType::Float;
-    FocalDistance.RecommendedValues = { TEXT("1000.0") };
-    FocalDistance.bRestrictToRecommended = false;
+    // 景深效果应保持清晰的距离，
+    // 单位为虚幻引擎单位（厘米）
+    FActorVariation FocalDistance; // 焦距距离变量
+    FocalDistance.Id = TEXT("focal_distance"); // 设置变量的ID为"focal_distance"
+    FocalDistance.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    FocalDistance.RecommendedValues = { TEXT("1000.0") }; // 设置推荐值为1000.0
+    FocalDistance.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
     // Depth blur km for 50%
     FActorVariation DepthBlurAmount;
