@@ -190,30 +190,61 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置激光雷达数据，包括时间戳、数据尺寸以及浮点数据数组，并对数据进行预处理。
+ *
+ * 此函数首先遍历浮点数据数组（除了第一个元素），将其中的每个元素乘以-1（即取反）。
+ * 然后，它将浮点数数据转换为字节序列，并调用另一个重载的SetData函数来设置处理后的数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param elements 每个点的数据元素数量（例如，一个点可能包含x, y, z坐标等）
+ * @param height 数据的高度（行数）
+ * @param width 数据的宽度（列数）
+ * @param data 指向浮点数据数组的指针，这些数据将被处理并用于设置激光雷达数据
+ */
 void CarlaSemanticLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t elements, size_t height, size_t width, float* data) {
+    // 指向数据起始位置的迭代器
     float* it = data;
+    // 指向数据结束位置的迭代器
     float* end = &data[height * width * elements];
+    // 遍历数据（除了第一个元素），将每个元素乘以-1
     for (++it; it < end; it += elements) {
         *it *= -1.0f;
     }
-
+    // 用于存储转换后的字节数据的向量
     std::vector<uint8_t> vector_data;
+    // 计算需要存储的字节数据的大小
     const size_t size = height * width * sizeof(float) * elements;
+    // 调整向量的大小以匹配数据大小
     vector_data.resize(size);
+    // 将浮点数据复制到字节数据向量中
     std::memcpy(&vector_data[0], &data[0], size);
+    // 调用另一个重载的SetData函数来设置处理后的数据
     SetData(seconds, nanoseconds, height, width, std::move(vector_data));
 }
-
+/**
+ * @brief 设置激光雷达数据，包括时间戳、数据尺寸以及字节数据。
+ *
+ * 此函数创建并设置ROS消息头（Header）、点字段描述符（PointField）以及激光雷达数据（Lidar）的相关属性。
+ * 它使用提供的时间戳、高度、宽度和字节数据来填充这些属性，并准备激光雷达数据以供发布。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 数据的高度（行数）
+ * @param width 数据的宽度（点数/列数）
+ * @param data 包含激光雷达点数据的字节向量，这些数据将被直接用于设置激光雷达消息的数据部分
+ */
 void CarlaSemanticLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
+    // 创建并设置时间戳消息
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
     time.nanosec(nanoseconds);
-
+    // 创建并设置消息头，包括时间戳和帧ID
     std_msgs::msg::Header header;
     header.stamp(std::move(time));
-    header.frame_id(_frame_id);
-
+    header.frame_id(_frame_id);// _frame_id应为类的成员变量，表示帧的ID
+    // 创建并设置点字段描述符，这些描述符定义了点的数据结构
     sensor_msgs::msg::PointField descriptor1;
     descriptor1.name("x");
     descriptor1.offset(0);
@@ -244,17 +275,18 @@ void CarlaSemanticLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds,
     descriptor6.offset(20);
     descriptor6.datatype(sensor_msgs::msg::PointField__UINT32);
     descriptor6.count(1);
-
+    // 计算每个点的大小（以字节为单位）
     const size_t point_size = 6 * sizeof(float);
+    // 设置激光雷达数据的各个属性
     _impl->_lidar.header(std::move(header));
     _impl->_lidar.width(width);
     _impl->_lidar.height(height);
-    _impl->_lidar.is_bigendian(false);
-    _impl->_lidar.fields({descriptor1, descriptor2, descriptor3, descriptor4, descriptor5, descriptor6});
-    _impl->_lidar.point_step(point_size);
-    _impl->_lidar.row_step(width * point_size);
-    _impl->_lidar.is_dense(false); //True if there are not invalid points
-    _impl->_lidar.data(std::move(data));
+    _impl->_lidar.is_bigendian(false);// 设置字节序，false表示小端序
+    _impl->_lidar.fields({descriptor1, descriptor2, descriptor3, descriptor4, descriptor5, descriptor6});// 设置点字段描述符
+    _impl->_lidar.point_step(point_size);// 设置每个点的步长（即每个点的大小）
+    _impl->_lidar.row_step(width * point_size);// 设置每行的步长（即每行的总大小）
+    _impl->_lidar.is_dense(false); // 设置是否稠密，false表示可能存在无效点
+    _impl->_lidar.data(std::move(data));// 设置激光雷达数据
   }
 
   CarlaSemanticLidarPublisher::CarlaSemanticLidarPublisher(const char* ros_name, const char* parent) :
