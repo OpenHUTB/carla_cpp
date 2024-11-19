@@ -285,17 +285,34 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置速度传感器的数据
+ *
+ * 该函数用于将速度数据设置到速度传感器的内部实现中。
+ *
+ * @param data 浮点数类型，表示速度数据
+ */
   void CarlaSpeedometerSensor::SetData(float data) {
     _impl->_float.data(data);
   }
-
+  /**
+ * @brief CarlaSpeedometerSensor类的构造函数
+ *
+ * 构造函数初始化速度传感器的实例，并设置其名称和父节点。
+ *
+ * @param ros_name 字符指针，表示ROS节点的名称
+ * @param parent 字符指针，表示父节点的名称
+ */
   CarlaSpeedometerSensor::CarlaSpeedometerSensor(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaSpeedometerSensorImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaSpeedometerSensor类的析构函数
+ *
+ * 析构函数释放速度传感器所使用的资源，包括数据写入器、发布者、主题和参与者。
+ */
   CarlaSpeedometerSensor::~CarlaSpeedometerSensor() {
       if (!_impl)
           return;
@@ -312,14 +329,27 @@ namespace ros2 {
       if (_impl->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
   }
-
+  /**
+ * @brief CarlaSpeedometerSensor类的拷贝构造函数
+ *
+ * 拷贝构造函数通过复制另一个速度传感器的实例来初始化当前实例。
+ *
+ * @param other 另一个CarlaSpeedometerSensor实例，用于复制数据
+ */
   CarlaSpeedometerSensor::CarlaSpeedometerSensor(const CarlaSpeedometerSensor& other) {
     _frame_id = other._frame_id;
     _name = other._name;
     _parent = other._parent;
     _impl = other._impl;
   }
-
+  /**
+ * @brief 拷贝赋值运算符
+ *
+ * 通过复制另一个速度传感器的实例来更新当前实例的数据。
+ *
+ * @param other 另一个CarlaSpeedometerSensor实例，用于复制数据
+ * @return CarlaSpeedometerSensor& 当前实例的引用
+ */
   CarlaSpeedometerSensor& CarlaSpeedometerSensor::operator=(const CarlaSpeedometerSensor& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -328,14 +358,27 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaSpeedometerSensor类的移动构造函数
+ *
+ * 移动构造函数通过移动另一个速度传感器的实例来初始化当前实例，避免数据复制。
+ *
+ * @param other 另一个CarlaSpeedometerSensor实例，用于移动数据
+ */
   CarlaSpeedometerSensor::CarlaSpeedometerSensor(CarlaSpeedometerSensor&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
     _parent = std::move(other._parent);
     _impl = std::move(other._impl);
   }
-
+  /**
+ * @brief 移动赋值运算符
+ *
+ * 通过移动另一个速度传感器的实例来更新当前实例的数据，避免数据复制。
+ *
+ * @param other 另一个CarlaSpeedometerSensor实例，用于移动数据
+ * @return CarlaSpeedometerSensor& 当前实例的引用
+ */
   CarlaSpeedometerSensor& CarlaSpeedometerSensor::operator=(CarlaSpeedometerSensor&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
