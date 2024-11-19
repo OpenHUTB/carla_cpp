@@ -306,58 +306,97 @@ namespace ros2 {
     // 更新内部存储的Transform集合
     _impl->_transform.transforms({ts});
   }
-
+  /**
+ * @brief CarlaTransformPublisher 类的构造函数
+ *
+ * 初始化 CarlaTransformPublisher 对象，并设置 ROS 名称和父帧ID。
+ *
+ * @param ros_name ROS 节点名称
+ * @param parent 父帧ID
+ */
   CarlaTransformPublisher::CarlaTransformPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaTransformPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaTransformPublisher 类的析构函数
+ *
+ * 清理资源，删除与 DDS（Data Distribution Service）相关的对象。
+ */
   CarlaTransformPublisher::~CarlaTransformPublisher() {
       if (!_impl)
           return;
-
+      // 删除 DataWriter
       if (_impl->_datawriter)
           _impl->_publisher->delete_datawriter(_impl->_datawriter);
-
+      // 删除 Publisher
       if (_impl->_publisher)
           _impl->_participant->delete_publisher(_impl->_publisher);
-
+      // 删除 Topic
       if (_impl->_topic)
           _impl->_participant->delete_topic(_impl->_topic);
-
+      // 删除 Participant
       if (_impl->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
   }
-
+  /**
+ * @brief CarlaTransformPublisher 类的拷贝构造函数
+ *
+ * 创建一个与现有对象相同的 CarlaTransformPublisher 对象。
+ * 注意：这里浅拷贝了 _impl 指针，假设 CarlaTransformPublisherImpl 类是正确管理其生命周期的。
+ *
+ * @param other 要拷贝的对象
+ */
   CarlaTransformPublisher::CarlaTransformPublisher(const CarlaTransformPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
     _parent = other._parent;
-    _impl = other._impl;
+    _impl = other._impl;// 浅拷贝 _impl 指针
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将现有对象的值赋给另一个 CarlaTransformPublisher 对象。
+ * 注意：这里浅拷贝了 _impl 指针。
+ *
+ * @param other 要赋值的对象
+ * @return 引用到当前对象
+ */
   CarlaTransformPublisher& CarlaTransformPublisher::operator=(const CarlaTransformPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
     _parent = other._parent;
-    _impl = other._impl;
+    _impl = other._impl;// 浅拷贝 _impl 指针
 
     return *this;
   }
-
+  /**
+ * @brief CarlaTransformPublisher 类的移动构造函数
+ *
+ * 创建一个新的 CarlaTransformPublisher 对象，并将现有对象的资源移动到新对象中。
+ *
+ * @param other 要移动的对象
+ */
   CarlaTransformPublisher::CarlaTransformPublisher(CarlaTransformPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
     _parent = std::move(other._parent);
-    _impl = std::move(other._impl);
+    _impl = std::move(other._impl);// 移动 _impl 指针
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 将现有对象的资源移动到另一个 CarlaTransformPublisher 对象。
+ *
+ * @param other 要移动赋值的对象
+ * @return 引用到当前对象
+ */
   CarlaTransformPublisher& CarlaTransformPublisher::operator=(CarlaTransformPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
     _parent = std::move(other._parent);
-    _impl = std::move(other._impl);
+    _impl = std::move(other._impl);// 移动 _impl 指针
 
     return *this;
   }
