@@ -23,24 +23,44 @@
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/DataWriterListener.hpp>
 
-
+/**
+ * @namespace carla::ros2
+ * @brief 命名空间，包含CARLA与ROS2桥接相关的类和功能。
+ */
 namespace carla {
 namespace ros2 {
+    /// 引入eprosima::fastdds::dds命名空间，并为其设置别名efd。
   namespace efd = eprosima::fastdds::dds;
+  /// 为eprosima::fastrtps::types::ReturnCode_t类型设置别名erc。
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+   * @struct CarlaTransformPublisherImpl
+   * @brief CarlaTransformPublisher的内部实现结构体。
+   *
+   * 该结构体包含了Fast-DDS相关的资源指针，以及用于发布变换信息的成员变量。
+   */
   struct CarlaTransformPublisherImpl {
+      /// Fast-DDS的DomainParticipant指针。
     efd::DomainParticipant* _participant { nullptr };
+    /// Fast-DDS的Publisher指针。
     efd::Publisher* _publisher { nullptr };
+    /// Fast-DDS的Topic指针。
     efd::Topic* _topic { nullptr };
+    /// Fast-DDS的DataWriter指针。
     efd::DataWriter* _datawriter { nullptr };
+    /// Fast-DDS的TypeSupport，用于注册TFMessage类型。
     efd::TypeSupport _type { new tf2_msgs::msg::TFMessagePubSubType() };
+    /// CarlaListener对象，用于监听CARLA的消息。
     CarlaListener _listener {};
+    /// 存储要发布的TFMessage对象。
     tf2_msgs::msg::TFMessage _transform {};
-
+    /// 上次的位置信息（x, y, z）。
     float last_translation[3] = {0.0f};
+    /// 上次的旋转信息（roll, pitch, yaw，但通常使用四元数表示旋转更为准确）。
     float last_rotation[3] = {0.0f};
+    /// 位置信息的ROS2消息表示。
     geometry_msgs::msg::Vector3 vec_translation;
+    /// 旋转信息的ROS2消息表示（使用四元数）。
     geometry_msgs::msg::Quaternion vec_rotation;
   };
 
