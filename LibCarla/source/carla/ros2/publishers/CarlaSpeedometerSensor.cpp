@@ -195,65 +195,93 @@ namespace ros2 {
     _frame_id = _name;
     return true;
   }
-
+  /**
+ * @brief 发布速度计传感器的数据
+ *
+ * 该函数尝试通过RTPS（实时发布订阅）协议发布速度计传感器的数据。
+ * 如果发布成功，则返回true；否则，根据返回码输出相应的错误信息，并返回false。
+ *
+ * @return bool 如果数据成功发布，则返回true；否则返回false。
+ */
   bool CarlaSpeedometerSensor::Publish() {
+      /// @brief RTPS实例句柄
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /// @brief 调用数据写入函数，并获取返回码
+    /// @param &_impl->_float 指向要写入数据的指针
+    /// @param instance_handle RTPS实例句柄
+    /// @return eprosima::fastrtps::types::ReturnCode_t 返回码，表示写入操作的结果
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_float, instance_handle);
+    // 根据不同的返回码处理相应的逻辑
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /// @brief 数据成功发布
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @brief 发生了一般错误
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @brief 操作不被支持
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @brief 提供了错误的参数
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @brief 前置条件未满足
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @brief 资源不足
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @brief 功能未启用
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @brief 策略不可变
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @brief 策略不一致
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @brief 实体已被删除
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @brief 操作超时
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @brief 没有数据
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @brief 非法操作
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @brief 安全策略不允许
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @brief 未知错误
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
