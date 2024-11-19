@@ -788,42 +788,49 @@ PUGI__NS_BEGIN
 		compact_hash_table* _hash;
 	#endif
 	};
-
+	// 该函数用于在内存不足（out of bounds，简称OOB）的情况下分配内存。
+	// 参数size指定了要分配的内存大小，out_page通过引用返回分配的内存所在的页面。
 	PUGI__FN_NO_INLINE void* xml_allocator::allocate_memory_oob(size_t size, xml_memory_page*& out_page)
 	{
+		// 定义一个阈值，用于区分“大”分配和“小”分配。
+		// 这里，大分配是指超过页面大小四分之一的分配。
 		const size_t large_allocation_threshold = xml_memory_page_size / 4;
-
+		// 根据分配大小分配一个页面。如果分配大小超过阈值，则分配一个足够大的页面
 		xml_memory_page* page = allocate_page(size <= large_allocation_threshold ? xml_memory_page_size : size);
+		// 通过引用参数返回分配的页面
 		out_page = page;
-
+		// 如果页面分配失败（即page为nullptr），则返回nullptr表示分配失败。
 		if (!page) return 0;
-
+		// 如果分配大小小于或等于阈值，则执行以下操作
 		if (size <= large_allocation_threshold)
 		{
+			// 更新根页面的忙碌大小为全局忙碌大小
 			_root->busy_size = _busy_size;
 
 			// insert page at the end of linked list
 			page->prev = _root;
 			_root->next = page;
+			// 更新_root指针，使其指向新插入的页面。
 			_root = page;
-
+			// 更新全局忙碌大小为当前分配的大小。
 			_busy_size = size;
 		}
 		else
 		{
 			// insert page before the end of linked list, so that it is deleted as soon as possible
 			// the last page is not deleted even if it's empty (see deallocate_memory)
+			// 对于大分配，将页面插入到链表末尾之前的位置。
 			assert(_root->prev);
-
+			// 插入新页面到链表中。
 			page->prev = _root->prev;
 			page->next = _root;
 
 			_root->prev->next = page;
 			_root->prev = page;
-
+			// 设置新页面的忙碌大小为当前分配的大小
 			page->busy_size = size;
 		}
-
+		// 返回指向页面内部数据的指针（跳过页面头部）。
 		return reinterpret_cast<char*>(page) + sizeof(xml_memory_page);
 	}
 PUGI__NS_END
