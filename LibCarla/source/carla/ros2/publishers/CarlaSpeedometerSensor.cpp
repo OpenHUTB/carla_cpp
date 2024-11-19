@@ -1,26 +1,76 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
+/**
+ * @file
+ * 包含必要的头文件，实现CARLA车速传感器的ROS2和FastDDS通信。
+ */
 
+ /**
+  * @brief 包含CARLA车速传感器的头文件。
+  */
 #include "CarlaSpeedometerSensor.h"
-
+  /**
+   * @brief 包含标准字符串库。
+   */
 #include <string>
-
+   /**
+    * @brief 包含CARLA ROS2类型的Float32发布和订阅类型定义。
+    */
 #include "carla/ros2/types/Float32PubSubTypes.h"
+    /**
+     * @brief 包含CARLA ROS2监听器相关定义。
+     */
 #include "carla/ros2/listeners/CarlaListener.h"
-
+     /**
+      * @brief 包含FastDDS DomainParticipant类的声明。
+      */
 #include <fastdds/dds/domain/DomainParticipant.hpp>
+      /**
+       * @brief 包含FastDDS Publisher类的声明。
+       */
 #include <fastdds/dds/publisher/Publisher.hpp>
+       /**
+        * @brief 包含FastDDS Topic类的声明。
+        */
 #include <fastdds/dds/topic/Topic.hpp>
+        /**
+         * @brief 包含FastDDS DataWriter类的声明。
+         */
 #include <fastdds/dds/publisher/DataWriter.hpp>
+         /**
+          * @brief 包含FastDDS TypeSupport类的声明，用于支持特定类型的数据传输。
+          */
 #include <fastdds/dds/topic/TypeSupport.hpp>
-
+          /**
+           * @brief 包含FastDDS DomainParticipantQos类的声明，用于配置DomainParticipant的QoS策略。
+           */
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
+           /**
+            * @brief 包含FastDDS DomainParticipantFactory类的声明，用于创建DomainParticipant实例。
+            */
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
+            /**
+             * @brief 包含FastDDS PublisherQos类的声明，用于配置Publisher的QoS策略。
+             */
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
+             /**
+              * @brief 包含FastDDS TopicQos类的声明，用于配置Topic的QoS策略。
+              */
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+              /**
+               * @brief 包含FastRTPS的ParticipantAttributes类，用于配置RTPS参与者属性。
+               */
 #include <fastrtps/attributes/ParticipantAttributes.h>
+               /**
+                * @brief 包含FastRTPS的QosPolicies类，用于配置RTPS的QoS策略。
+                */
 #include <fastrtps/qos/QosPolicies.h>
+                /**
+                 * @brief 包含FastDDS DataWriterQos类的声明，用于配置DataWriter的QoS策略。
+                 */
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
+                 /**
+                  * @brief 包含FastDDS DataWriterListener类的声明，用于监听DataWriter的事件。
+                  */
 #include <fastdds/dds/publisher/DataWriterListener.hpp>
 
 
