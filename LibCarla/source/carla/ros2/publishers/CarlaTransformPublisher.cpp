@@ -242,56 +242,68 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置CarlaTransformPublisher的数据
+ *
+ * 此函数用于更新位置和时间信息，并计算四元数旋转。
+ * 如果传入的位置或旋转与上一次的不同，则更新内部状态，并计算新的四元数旋转。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param translation 指向包含x, y, z位置信息的浮点数组的指针
+ * @param rotation 指向包含绕x, y, z轴旋转角度（以度为单位）的浮点数组的指针
+ */
   void CarlaTransformPublisher::SetData(int32_t seconds, uint32_t nanoseconds, const float* translation, const float* rotation) {
-
+      // 比较传入的位置和旋转与上一次的是否相同
     int same_translation = std::memcmp(translation, _impl->last_translation, sizeof(float) * 3);
     int same_rotation = std::memcmp(rotation, _impl->last_rotation, sizeof(float) * 3);
+    // 如果位置或旋转有变化，则更新内部状态
     if (same_translation != 0 || same_rotation != 0) {
         std::memcpy(_impl->last_translation, translation, sizeof(float) * 3);
         std::memcpy(_impl->last_rotation, rotation, sizeof(float) * 3);
-
+        // 从数组中解包位置信息
         const float tx = *translation++;
         const float ty = *translation++;
         const float tz = *translation++;
-
+        // 从数组中解包旋转信息，并转换为弧度
         const float rx = ((*rotation++) * -1.0f) * (M_PIf32 / 180.0f);
         const float ry = ((*rotation++) * -1.0f) * (M_PIf32 / 180.0f);
         const float rz = *rotation++ * (M_PIf32 / 180.0f);
-
+        // 计算四元数的组成部分
         const float cr = cosf(rz * 0.5f);
         const float sr = sinf(rz * 0.5f);
         const float cp = cosf(rx * 0.5f);
         const float sp = sinf(rx * 0.5f);
         const float cy = cosf(ry * 0.5f);
         const float sy = sinf(ry * 0.5f);
-
+        // 更新位置信息（注意y轴方向取反）
         _impl->vec_translation.x(tx);
         _impl->vec_translation.y(-ty);
         _impl->vec_translation.z(tz);
-
+        // 更新四元数旋转信息
         _impl->vec_rotation.w(cr * cp * cy + sr * sp * sy);
         _impl->vec_rotation.x(sr * cp * cy - cr * sp * sy);
         _impl->vec_rotation.y(cr * sp * cy + sr * cp * sy);
         _impl->vec_rotation.z(cr * cp * sy - sr * sp * cy);
     }
-
+    // 设置时间戳
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
     time.nanosec(nanoseconds);
-
+    // 创建消息头并设置时间戳和帧ID
     std_msgs::msg::Header header;
     header.stamp(std::move(time));
     header.frame_id(_parent);
-
+    // 创建Transform消息并设置旋转和位置
     geometry_msgs::msg::Transform t;
     t.rotation(_impl->vec_rotation);
     t.translation(_impl->vec_translation);
-
+    // 创建TransformStamped消息并设置头信息、Transform和子帧ID
     geometry_msgs::msg::TransformStamped ts;
     ts.header(std::move(header));
     ts.transform(std::move(t));
     ts.child_frame_id(_frame_id);
+    // 更新内部存储的Transform集合
     _impl->_transform.transforms({ts});
   }
 
