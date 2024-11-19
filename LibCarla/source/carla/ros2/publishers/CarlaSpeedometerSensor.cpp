@@ -125,12 +125,24 @@ namespace ros2 {
      */
     std_msgs::msg::Float32 _float {};
   };
-
+  /**
+ * @brief 初始化Carla车速传感器。
+ *
+ * 该函数负责初始化Carla车速传感器的FastDDS相关资源，包括创建DomainParticipant、Publisher、Topic和DataWriter。
+ *
+ * @return 初始化成功返回true，否则返回false。
+ */
   bool CarlaSpeedometerSensor::Init() {
+      /**
+     * @brief 检查TypeSupport是否有效。
+     */
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
+    /**
+     * @brief 设置DomainParticipant的QoS策略，并创建DomainParticipant。
+     */
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
@@ -139,15 +151,22 @@ namespace ros2 {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /**
+     * @brief 注册TypeSupport。
+     */
     _impl->_type.register_type(_impl->_participant);
-
+    /**
+     * @brief 设置Publisher的QoS策略，并创建Publisher。
+     */
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /**
+     * @brief 设置Topic的QoS策略，并创建Topic。
+     */
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
@@ -159,7 +178,9 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    /**
+     * @brief 设置DataWriter的QoS策略，并创建DataWriter。
+     */
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
@@ -168,6 +189,9 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    /**
+     * @brief 设置帧ID为传感器名称。
+     */
     _frame_id = _name;
     return true;
   }
