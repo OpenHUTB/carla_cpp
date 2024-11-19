@@ -63,47 +63,88 @@ namespace ros2 {
     /// 旋转信息的ROS2消息表示（使用四元数）。
     geometry_msgs::msg::Quaternion vec_rotation;
   };
-
+  /**
+ * @brief 初始化CarlaTransformPublisher对象
+ *
+ * 该函数负责初始化CarlaTransformPublisher对象，包括设置DomainParticipant、Publisher、Topic和DataWriter。
+ * 如果在初始化过程中遇到任何错误，函数将输出错误信息并返回false。
+ *
+ * @return bool 如果初始化成功，则返回true；否则返回false。
+ */
   bool CarlaTransformPublisher::Init() {
+      /**
+     * 检查_type是否为nullptr。如果是，则表示TypeSupport无效，输出错误信息并返回false。
+     */
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /**
+     * 设置DomainParticipant的QoS策略，并使用默认QoS创建一个DomainParticipant。
+     * 设置DomainParticipant的名称为_name。
+     */
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl->_participant = factory->create_participant(0, pqos);
+    /**
+     * 如果DomainParticipant创建失败，则输出错误信息并返回false。
+     */
     if (_impl->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /**
+    * 使用_type注册类型到DomainParticipant。
+    */
     _impl->_type.register_type(_impl->_participant);
-
+    /**
+     * 设置Publisher的QoS策略，并使用默认QoS创建一个Publisher。
+     */
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
+    /**
+     * 如果Publisher创建失败，则输出错误信息并返回false。
+     */
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /**
+    * 设置Topic的QoS策略，并创建一个名为"rt/tf"的Topic。
+    */
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string topic_name { "rt/tf" };
     _impl->_topic = _impl->_participant->create_topic(topic_name, _impl->_type->getName(), tqos);
+    /**
+     * 如果Topic创建失败，则输出错误信息并返回false。
+     */
     if (_impl->_topic == nullptr) {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    /**
+     * 设置DataWriter的QoS策略，并创建一个DataWriter。
+     * 将history_memory_policy设置为PREALLOCATED_WITH_REALLOC_MEMORY_MODE。
+     */
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
+    /**
+     * 如果DataWriter创建失败，则输出错误信息并返回false。
+     */
     if (_impl->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    /**
+     * 设置_frame_id为_name。
+     */
     _frame_id = _name;
+    /**
+     * 初始化成功，返回true。
+     */
     return true;
   }
 
