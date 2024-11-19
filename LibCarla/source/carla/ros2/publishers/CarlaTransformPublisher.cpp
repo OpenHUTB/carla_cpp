@@ -1,23 +1,23 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaTransformPublisher.h"
+#include "CarlaTransformPublisher.h"// 包含CarlaTransformPublisher类的声明
 
-#include <string>
-
+#include <string>// 包含字符串处理功能
+// 包含CARLA ROS2类型定义和监听器类
 #include "carla/ros2/types/TFMessagePubSubTypes.h"
 #include "carla/ros2/listeners/CarlaListener.h"
-
+// 包含Fast-DDS（eProsima Fast RTPS的C++ API）的相关头文件
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/publisher/Publisher.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/topic/TypeSupport.hpp>
-
+// 包含Fast-DDS的QoS（服务质量）策略配置相关的头文件
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+// 包含Fast-RTPS的基础配置和QoS策略相关的头文件
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
