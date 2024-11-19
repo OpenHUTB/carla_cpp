@@ -147,65 +147,98 @@ namespace ros2 {
      */
     return true;
   }
-
+  /**
+ * @brief 发布Carla的变换信息
+ *
+ * 该函数负责使用DataWriter发布_impl->_transform中的数据。根据返回码（ReturnCode_t）处理不同的错误情况，
+ * 并输出相应的错误信息。如果发布成功，则返回true；否则返回false。
+ *
+ * @return bool 发布成功返回true，否则返回false。
+ */
   bool CarlaTransformPublisher::Publish() {
+      /**
+     * 声明一个InstanceHandle_t类型的变量instance_handle，用于接收write方法的返回值。
+     */
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_transform, instance_handle);
+    /**
+     * 调用DataWriter的write方法发布_impl->_transform数据，并获取返回码。
+     */
+     /**
+      * 根据返回码处理不同的错误情况。
+      */
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /**
+             * 发布成功，返回true。
+             */
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @brief 通用错误
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @brief 请求的操作不受支持
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @brief 传递给函数的参数无效
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @brief 操作的前置条件未满足
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @brief 系统资源不足，无法完成操作
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @brief 实体未启用，无法执行操作
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @brief 试图更改不可变的QoS策略
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @brief QoS策略不一致，无法设置
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @brief 实体已被删除
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @brief 操作超时
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @brief 请求的数据不存在
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @brief 执行了非法操作
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @brief 安全策略不允许执行此操作
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @brief 如果返回码不是预定义的任何值，则输出"UNKNOWN"错误信息
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
