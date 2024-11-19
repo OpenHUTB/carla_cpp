@@ -73,19 +73,56 @@
                   */
 #include <fastdds/dds/publisher/DataWriterListener.hpp>
 
-
+/**
+  * @namespace carla::ros2
+  * @brief 包含与ROS2集成相关的Carla模块的实现。
+  */
 namespace carla {
+/**
+ * @namespace carla::ros2::efd
+ * @brief eprosima::fastdds::dds命名空间的别名，用于简化代码中对FastDDS库的引用。
+ */
 namespace ros2 {
+    /**
+ * @typedef erc
+ * @brief eprosima::fastrtps::types::ReturnCode_t类型的别名，用于表示FastRTPS操作的结果代码。
+ */
   namespace efd = eprosima::fastdds::dds;
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+ * @struct CarlaSpeedometerSensorImpl
+ * @brief Carla车速传感器实现的内部结构体。
+ *
+ * 该结构体封装了与FastDDS相关的资源，包括DomainParticipant、Publisher、Topic和DataWriter，以及用于发布车速数据的TypeSupport和监听器。
+ */
   struct CarlaSpeedometerSensorImpl {
+      /**
+     * @brief FastDDS的DomainParticipant指针，用于创建和管理FastDDS的通信实体。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief FastDDS的Publisher指针，用于发布数据。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+    * @brief FastDDS的Topic指针，用于定义数据的主题。
+    */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief FastDDS的DataWriter指针，用于写入数据到指定的Topic。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief TypeSupport对象，用于注册和识别发布的消息类型。
+     */
     efd::TypeSupport _type { new std_msgs::msg::Float32PubSubType() };
+    /**
+     * @brief CarlaListener对象，用于处理相关的回调事件。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 用于发布的车速数据。
+     */
     std_msgs::msg::Float32 _float {};
   };
 
