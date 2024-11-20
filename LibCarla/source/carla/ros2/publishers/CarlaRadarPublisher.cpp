@@ -434,28 +434,48 @@ void CarlaRadarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t 
     _parent = other._parent;///< 拷贝父节点的名称
     _impl = other._impl; ///< 共享相同的 CarlaRadarPublisherImpl 对象
   }
-
+  /**
+ * @brief 拷贝赋值运算符
+ *
+ * 使用另一个 CarlaRadarPublisher 对象来更新当前对象。
+ *
+ * @param other 另一个 CarlaRadarPublisher 对象
+ * @return CarlaRadarPublisher& 当前对象的引用
+ */
   CarlaRadarPublisher& CarlaRadarPublisher::operator=(const CarlaRadarPublisher& other) {
-    _frame_id = other._frame_id;
-    _name = other._name;
-    _parent = other._parent;
-    _impl = other._impl;
+    _frame_id = other._frame_id;///< 拷贝帧 ID
+    _name = other._name;///< 拷贝 ROS 节点的名称
+    _parent = other._parent;///< 拷贝父节点的名称
+    _impl = other._impl;///< 共享相同的 CarlaRadarPublisherImpl 对象
 
     return *this;
   }
-
+  /**
+ * @brief CarlaRadarPublisher 类的移动构造函数
+ *
+ * 使用另一个 CarlaRadarPublisher 对象（右值）来初始化当前对象。
+ *
+ * @param other 另一个 CarlaRadarPublisher 对象（右值）
+ */
   CarlaRadarPublisher::CarlaRadarPublisher(CarlaRadarPublisher&& other) {
-    _frame_id = std::move(other._frame_id);
-    _name = std::move(other._name);
-    _parent = std::move(other._parent);
-    _impl = std::move(other._impl);
+    _frame_id = std::move(other._frame_id);///< 移动帧 ID
+    _name = std::move(other._name);///< 移动 ROS 节点的名称
+    _parent = std::move(other._parent);///< 移动父节点的名称
+    _impl = std::move(other._impl);///< 移动 CarlaRadarPublisherImpl 对象
   }
-
+  /**
+ * @brief 移动赋值运算符
+ *
+ * 使用另一个 CarlaRadarPublisher 对象（右值）来更新当前对象。
+ *
+ * @param other 另一个 CarlaRadarPublisher 对象（右值）
+ * @return CarlaRadarPublisher& 当前对象的引用
+ */
   CarlaRadarPublisher& CarlaRadarPublisher::operator=(CarlaRadarPublisher&& other) {
-    _frame_id = std::move(other._frame_id);
-    _name = std::move(other._name);
-    _parent = std::move(other._parent);
-    _impl = std::move(other._impl);
+    _frame_id = std::move(other._frame_id);///< 移动帧 ID
+    _name = std::move(other._name);///< 移动 ROS 节点的名称
+    _parent = std::move(other._parent);///< 移动父节点的名称
+    _impl = std::move(other._impl);///< 移动 CarlaRadarPublisherImpl 对象
 
     return *this;
   }
