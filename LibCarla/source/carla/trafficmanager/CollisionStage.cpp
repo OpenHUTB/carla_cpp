@@ -9,20 +9,21 @@
 namespace carla {
 namespace traffic_manager {
 
-using Point2D = bg::model::point<double, 2, bg::cs::cartesian>;
-using TLS = carla::rpc::TrafficLightState;
+using Point2D = bg::model::point<double, 2, bg::cs::cartesian>; // 定义一个二维笛卡尔坐标系点类型
+using TLS = carla::rpc::TrafficLightState; // 简化交通信号灯状态的命名空间
 
-using namespace constants::Collision;
-using constants::WaypointSelection::JUNCTION_LOOK_AHEAD;
+using namespace constants::Collision; // 引入碰撞相关的常量
+using constants::WaypointSelection::JUNCTION_LOOK_AHEAD; // 引入路口前瞻距离常量
 
+// 碰撞阶段的构造函数
 CollisionStage::CollisionStage(
-  const std::vector<ActorId> &vehicle_id_list,
-  const SimulationState &simulation_state,
-  const BufferMap &buffer_map,
-  const TrackTraffic &track_traffic,
-  const Parameters &parameters,
-  CollisionFrame &output_array,
-  RandomGenerator &random_device)
+  const std::vector<ActorId> &vehicle_id_list, // 所有车辆的ID列表
+  const SimulationState &simulation_state,     // 仿真状态
+  const BufferMap &buffer_map,                 // 每辆车的路径缓存
+  const TrackTraffic &track_traffic,           // 交通跟踪器
+  const Parameters &parameters,                // 仿真参数
+  CollisionFrame &output_array,                // 碰撞信息输出
+  RandomGenerator &random_device)              // 随机数生成器
   : vehicle_id_list(vehicle_id_list),
     simulation_state(simulation_state),
     buffer_map(buffer_map),
@@ -31,39 +32,43 @@ CollisionStage::CollisionStage(
     output_array(output_array),
     random_device(random_device) {}
 
+// 更新指定索引的车辆碰撞状态
 void CollisionStage::Update(const unsigned long index) {
-  ActorId obstacle_id = 0u;
-  bool collision_hazard = false;
-  float available_distance_margin = std::numeric_limits<float>::infinity();
+  ActorId obstacle_id = 0u; // 障碍物ID ，初始为0
+  bool collision_hazard = false; //碰撞风险标志
+  float available_distance_margin = std::numeric_limits<float>::infinity(); // 可用距离裕量，初始为正无穷
 
+  // 获取当前车辆的ID
   const ActorId ego_actor_id = vehicle_id_list.at(index);
-  if (simulation_state.ContainsActor(ego_actor_id)) {
-    const cg::Location ego_location = simulation_state.GetLocation(ego_actor_id);
-    const Buffer &ego_buffer = buffer_map.at(ego_actor_id);
-    const unsigned long look_ahead_index = GetTargetWaypoint(ego_buffer, JUNCTION_LOOK_AHEAD).second;
-    const float velocity = simulation_state.GetVelocity(ego_actor_id).Length();
+  if (simulation_state.ContainsActor(ego_actor_id)) { // 检查仿真中是否包含此车辆
+    const cg::Location ego_location = simulation_state.GetLocation(ego_actor_id); // 获取车辆当前位置
+    const Buffer &ego_buffer = buffer_map.at(ego_actor_id); // 获取车辆的路径缓存
+    const unsigned long look_ahead_index = GetTargetWaypoint(ego_buffer, JUNCTION_LOOK_AHEAD).second; // 计算前瞻路径点索引
+    const float velocity = simulation_state.GetVelocity(ego_actor_id).Length(); // 获取车辆速度
 
+    // 获取与当前车辆路径重叠的其他车辆ID
     ActorIdSet overlapping_actors = track_traffic.GetOverlappingVehicles(ego_actor_id);
-    std::vector<ActorId> collision_candidate_ids;
-    // Run through vehicles with overlapping paths and filter them;
-    const float distance_to_leading = parameters.GetDistanceToLeadingVehicle(ego_actor_id);
-    float collision_radius_square = SQUARE(COLLISION_RADIUS_RATE * velocity + COLLISION_RADIUS_MIN);
-    if (velocity < 2.0f) {
-      const float length = simulation_state.GetDimensions(ego_actor_id).x;
-      const float collision_radius_stop = COLLISION_RADIUS_STOP + length;
+    std::vector<ActorId> collision_candidate_ids; // 碰撞候选车辆ID列表
+    // 根据速度和参数计算碰撞检测的最大半径平方
+    const float distance_to_leading = parameters.GetDistanceToLeadingVehicle(ego_actor_id); // 获取前车的安全距离
+    float collision_radius_square = SQUARE(COLLISION_RADIUS_RATE * velocity + COLLISION_RADIUS_MIN); // 碰撞半径平方
+    if (velocity < 2.0f) { // 如果车辆速度较低
+      const float length = simulation_state.GetDimensions(ego_actor_id).x; // 获取车辆长度
+      const float collision_radius_stop = COLLISION_RADIUS_STOP + length; // 设置静止时的碰撞半径
       collision_radius_square = SQUARE(collision_radius_stop);
     }
-    if (distance_to_leading > collision_radius_square) {
+    if (distance_to_leading > collision_radius_square) { // 如果前车距离更大
         collision_radius_square = SQUARE(distance_to_leading);
     }
 
+    // 遍历重叠路径上的其他车辆，筛选碰撞候选车辆
     for (ActorId overlapping_actor_id : overlapping_actors) {
-      // If actor is within maximum collision avoidance and vertical overlap range.
-      const cg::Location &overlapping_actor_location = simulation_state.GetLocation(overlapping_actor_id);
-      if (overlapping_actor_id != ego_actor_id
-          && cg::Math::DistanceSquared(overlapping_actor_location, ego_location) < collision_radius_square
-          && std::abs(ego_location.z - overlapping_actor_location.z) < VERTICAL_OVERLAP_THRESHOLD) {
-        collision_candidate_ids.push_back(overlapping_actor_id);
+      // 如果其他车辆在最大碰撞避免范围内，并且垂直方向有重叠
+      const cg::Location &overlapping_actor_location = simulation_state.GetLocation(overlapping_actor_id); // 获取重叠车辆的位置
+      if (overlapping_actor_id != ego_actor_id // 排除自身
+          && cg::Math::DistanceSquared(overlapping_actor_location, ego_location) < collision_radius_square  // 检测是否在碰撞半径范围内
+          && std::abs(ego_location.z - overlapping_actor_location.z) < VERTICAL_OVERLAP_THRESHOLD) { // 检测垂直方向的重叠
+        collision_candidate_ids.push_back(overlapping_actor_id); // 添加到碰撞候选列表
       }
     }
 

@@ -37,7 +37,7 @@ git push
 2.找到需要修改的文件：
 ![](./img/header_path.jpg)
 
-3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留。源代码文件采用UTF-8编码）：
+3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留。源代码文件统一采用`UTF-8-BOM`编码，即`UTF-8带签名编码`，vs2019中的 [操作方法](https://www.cnblogs.com/leokale-zz/p/11423953.html) ）：
 ![](./img/update_annotated.jpg)
 
 4.运行`doxygen`重新生成文档，查看修改后的文档：
@@ -187,3 +187,5 @@ git rm -rf .
 [xiao-ice666](https://github.com/xiao-ice666)、
 [bless416](https://github.com/bless416)、
 [haleely](https://github.com/haleely)。
+[haohaozhuzzzz](https://github.com/haohaozhuzzzz)、
+[big-Shuaige](https://github.com/big-Shuaige)
