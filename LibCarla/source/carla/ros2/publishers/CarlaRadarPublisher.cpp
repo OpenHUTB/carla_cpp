@@ -4,25 +4,25 @@
 
 #include <string>
 
-#include "carla/sensor/data/RadarData.h"
-#include "carla/ros2/types/PointCloud2PubSubTypes.h"
-#include "carla/ros2/listeners/CarlaListener.h"
+#include "carla/sensor/data/RadarData.h"/// @brief 包含CARLA雷达数据结构的头文件。
+#include "carla/ros2/types/PointCloud2PubSubTypes.h"/// @brief 包含ROS 2点云发布/订阅类型的头文件。
+#include "carla/ros2/listeners/CarlaListener.h"/// @brief 包含CARLA监听器类的头文件。
 
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
+#include <fastdds/dds/domain/DomainParticipant.hpp>/// @brief 包含Fast-DDS域参与者的头文件。
+#include <fastdds/dds/publisher/Publisher.hpp> /// @brief 包含Fast-DDS发布者的头文件。
+#include <fastdds/dds/topic/Topic.hpp> /// @brief 包含Fast-DDS主题的头文件。
+#include <fastdds/dds/publisher/DataWriter.hpp>/// @brief 包含Fast-DDS数据写入器的头文件。
+#include <fastdds/dds/topic/TypeSupport.hpp>/// @brief 包含Fast-DDS类型支持的头文件。
 
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>/// @brief 包含Fast-DDS域参与者服务质量（QoS）的头文件。
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>/// @brief 包含Fast-DDS域参与者工厂的头文件。
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp>/// @brief 包含Fast-DDS发布者服务质量（QoS）的头文件。
+#include <fastdds/dds/topic/qos/TopicQos.hpp>/// @brief 包含Fast-DDS主题服务质量（QoS）的头文件。
 
-#include <fastrtps/attributes/ParticipantAttributes.h>
-#include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
+#include <fastrtps/attributes/ParticipantAttributes.h>/// @brief 包含Fast-RTPS参与者属性的头文件。
+#include <fastrtps/qos/QosPolicies.h>/// @brief 包含Fast-RTPS服务质量（QoS）策略的头文件。
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>/// @brief 包含Fast-DDS数据写入器服务质量（QoS）的头文件。
+#include <fastdds/dds/publisher/DataWriterListener.hpp>/// @brief 包含Fast-DDS数据写入器监听器的头文件。
 
 
 namespace carla {
