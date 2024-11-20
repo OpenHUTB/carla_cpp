@@ -7,67 +7,76 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
+# 导入全局模块，用于文件路径的匹配
 import glob
+# 导入操作系统接口模块，用于获取操作系统类型等信息
 import os
+# 导入系统特定的参数和功能模块
 import sys
-
+ 
 try:
+    # 根据Python版本和操作系统类型构造CARLA库的文件名模式
     carla_lib_name = 'carla-*%d.%d-%s.egg' % (
-        sys.version_info.major,
-        sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64')
+        sys.version_info.major,  # Python主版本号
+        sys.version_info.minor,  # Python次版本号
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'  # 根据操作系统选择平台标识
+    )
+    # 将匹配到的CARLA库文件所在的目录添加到系统路径中，以便能够导入CARLA模块
     sys.path.append(glob.glob('../carla/dist/%s' % carla_lib_name)[0])
 except IndexError:
+    # 如果没有找到匹配的CARLA库文件，则打印错误信息
     print('\n  [ERROR] Could not find "%s"' % carla_lib_name)
     print('          Blueprint library docs will not be generated')
     print("  .---------------------------------------------------.")
     print("  |     Make sure the python client is compiled!      |")
     print("  '---------------------------------------------------'\n")
-    # We don't provide an error to prvent Travis checks failing
+    # 为了避免Travis检查失败，这里不抛出错误，而是正常退出
     sys.exit(0)
-
+ 
+# 导入CARLA模块，由于前面已经将CARLA库文件目录添加到系统路径中，这里可以成功导入
 import carla
-
+ 
+# 定义一个颜色常量，用于文本格式化
 COLOR_LIST = '#498efc'
-
-
+ 
+# 定义一个函数，用于将元素列表用指定的分隔符连接成一个字符串
 def join(elem, separator=''):
     return separator.join(elem)
-
-
+ 
+# 定义一个函数，用于给文本添加颜色
 def color(col, buf):
     return join(['<font color="', col, '">', buf, '</font>'])
-
-
+ 
+# 定义一个函数，用于检查字典中是否包含指定的键和值
 def valid_dic_val(dic, value):
     return value in dic and dic[value]
-
-
+ 
+# 定义一个函数，用于将文本转换为斜体
 def italic(buf):
     return join(['_', buf, '_'])
-
-
+ 
+# 定义一个函数，用于将文本转换为粗体
 def bold(buf):
     return join(['**', buf, '**'])
-
-
+ 
+# 定义一个函数，用于将文本用括号括起来
 def parentheses(buf):
     return join(['(', buf, ')'])
-
-
+ 
+# 定义一个函数，用于将文本转换为下标
 def sub(buf):
     return join(['<sub>', buf, '</sub>'])
-
-
+ 
+# 定义一个函数，用于将文本转换为代码格式
 def code(buf):
     return join(['`', buf, '`'])
-
-
+ 
+# 定义一个MarkdownFile类，用于处理Markdown文档的生成
 class MarkdownFile:
     def __init__(self):
-        self._data = ""
-        self._list_depth = 0
-        self.endl = '  \n'
+        self._data = ""  # 用于存储Markdown文档内容的字符串
+        self._list_depth = 0  # 用于记录当前列表的深度
+        self.endl = '  \n'  # 定义一个换行符，用于在Markdown文档中添加换行
 
     def data(self):
         return self._data
