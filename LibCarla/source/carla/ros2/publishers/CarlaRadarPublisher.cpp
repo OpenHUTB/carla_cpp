@@ -279,33 +279,65 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置雷达数据
+ *
+ * 该函数接收雷达检测数据，并将其转换为内部使用的格式，然后调用另一个重载的SetData函数来发布数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 数据的高度（通常用于图像数据，这里可能表示雷达扫描的垂直分辨率）
+ * @param width 数据的宽度（通常用于图像数据，这里可能表示雷达扫描的水平分辨率）
+ * @param elements 数据点的数量
+ * @param data 指向雷达检测数据的指针，数据格式为carla::sensor::data::RadarDetection
+ */
 void CarlaRadarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, size_t elements, const uint8_t* data) {
-
+    // 创建一个用于存储转换后数据的向量
     std::vector<uint8_t> vector_data;
+    // 计算需要存储的数据大小
     const size_t size = elements * sizeof(RadarDetectionWithPosition);
+    // 调整向量大小以适应数据
     vector_data.resize(size);
+    // 将向量的起始地址转换为RadarDetectionWithPosition类型的指针
     RadarDetectionWithPosition* radar_data = (RadarDetectionWithPosition*)&vector_data[0];
+    // 将输入数据的起始地址转换为carla::sensor::data::RadarDetection类型的指针
     carla::sensor::data::RadarDetection* detection_data = (carla::sensor::data::RadarDetection*)data;
+    // 遍历每个检测数据点，进行转换
     for (size_t i = 0; i < elements; ++i, ++radar_data, ++detection_data) {
+        // 根据深度、方位角和仰角计算x坐标
       radar_data->x = detection_data->depth * cosf(detection_data->azimuth) * cosf(-detection_data->altitude);
+      // 根据深度、方位角和仰角计算y坐标
       radar_data->y = detection_data->depth * sinf(-detection_data->azimuth) * cosf(detection_data->altitude);
+      // 根据深度和仰角计算z坐标
       radar_data->z = detection_data->depth * sinf(detection_data->altitude);
+      // 复制完整的检测数据
       radar_data->detection = *detection_data;
     }
-
+    // 调用重载的SetData函数，发布转换后的数据
     SetData(seconds, nanoseconds, height, width, elements, std::move(vector_data));
   }
-
+/**
+ * @brief 设置雷达数据并发布
+ *
+ * 该函数接收时间戳、数据尺寸、数据点数量以及数据本身，然后将这些数据封装成ROS消息格式并发布。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 数据的高度
+ * @param width 数据的宽度
+ * @param elements 数据点的数量
+ * @param data 包含雷达检测数据的向量，数据格式为RadarDetectionWithPosition
+ */
   void CarlaRadarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, size_t elements, std::vector<uint8_t>&& data) {
+      // 创建一个时间戳消息
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
     time.nanosec(nanoseconds);
-
+    // 创建一个消息头
     std_msgs::msg::Header header;
     header.stamp(std::move(time));
     header.frame_id(_frame_id);
-
+    // 创建点字段描述符，用于描述点云数据的结构
     sensor_msgs::msg::PointField descriptor1;
     descriptor1.name("x");
     descriptor1.offset(0);
@@ -341,8 +373,9 @@ void CarlaRadarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t 
     descriptor7.offset(24);
     descriptor7.datatype(sensor_msgs::msg::PointField__FLOAT32);
     descriptor7.count(1);
-
+    // 获取点数据的大小
     const size_t point_size = sizeof(RadarDetectionWithPosition);
+    // 设置雷达消息的头信息、宽度、高度、字节序、字段描述符、点步长、行步长和是否稠密
     _impl->_radar.header(std::move(header));
     _impl->_radar.width(elements);
     _impl->_radar.height(height);
@@ -351,6 +384,7 @@ void CarlaRadarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t 
     _impl->_radar.point_step(point_size);
     _impl->_radar.row_step(elements * point_size);
     _impl->_radar.is_dense(false);
+    // 设置雷达消息的数据
     _impl->_radar.data(std::move(data));
   }
 
