@@ -884,29 +884,35 @@ PUGI__NS_BEGIN
 			// 返回指向xml_memory_page的指针
 			return const_cast<xml_memory_page*>(reinterpret_cast<const xml_memory_page*>(static_cast<const void*>(page)));
 		}
-
+	// 紧凑头部类的私有成员变量定义
 	private:
+		// 存储页面索引的变量，用于标识当前对象所在的内存页
 		unsigned char _page;
+		// 存储标志位的变量，用于记录一些额外的信息或状态
 		unsigned char _flags;
 	};
-
+	// 一个函数，用于根据给定的对象和头部偏移量获取对应的xml_memory_page
+	//   指向xml_memory_page的指针，该页面包含了object
 	PUGI__FN xml_memory_page* compact_get_page(const void* object, int header_offset)
 	{
+		// 将object指针向前移动header_offset，得到compact_header的指针
 		const compact_header* header = reinterpret_cast<const compact_header*>(static_cast<const char*>(object) - header_offset);
-
+		// 调用compact_header的get_page方法获取xml_memory_page指针
 		return header->get_page();
 	}
-
+	// 一个模板函数，用于根据给定的对象和头部偏移量获取对应的值
+	//   指向T类型的指针，该值通过哈希表查找得到
 	template <int header_offset, typename T> PUGI__FN_NO_INLINE T* compact_get_value(const void* object)
-	{
+	{// 首先获取包含object的xml_memory_page,然后通过页面的allocator和_hash成员查找object对应的值
 		return static_cast<T*>(compact_get_page(object, header_offset)->allocator->_hash->find(object));
 	}
-
+	// 一个模板函数，用于根据给定的对象和头部偏移量设置对应的值
 	template <int header_offset, typename T> PUGI__FN_NO_INLINE void compact_set_value(const void* object, T* value)
 	{
+		// 首先获取包含object的xml_memory_page,然后通过页面的allocator和_hash成员插入object和value的对应关系
 		compact_get_page(object, header_offset)->allocator->_hash->insert(object, value);
 	}
-
+	// 一个模板类，用于管理紧凑指针，这些指针通过哈希表进行存储和查找
 	template <typename T, int header_offset, int start = -126> class compact_pointer
 	{
 	public:
