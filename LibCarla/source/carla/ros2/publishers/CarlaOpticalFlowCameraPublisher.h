@@ -70,6 +70,7 @@ namespace ros2 {
       // 定义一个智能指针，指向CarlaOpticalFlowCameraPublisherImpl结构体类型，用于管理该类型对象的生命周期
       std::shared_ptr<CarlaCameraInfoPublisherImpl> _impl_info;
       // 类似地，定义一个智能指针，指向CarlaCameraInfoPublisherImpl结构体类型，用于管理相机信息发布相关的实现对象的生命周期
+
   };
   };
 }
