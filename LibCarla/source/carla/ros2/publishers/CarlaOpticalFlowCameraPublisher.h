@@ -3,7 +3,6 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
-// 这是一个预处理指令，用于确保头文件只被包含一次，避免重复定义等问题
 #define _GLIBCXX_USE_CXX11_ABI 0
 
 #include <memory>
@@ -70,7 +69,6 @@ namespace ros2 {
       // 定义一个智能指针，指向CarlaOpticalFlowCameraPublisherImpl结构体类型，用于管理该类型对象的生命周期
       std::shared_ptr<CarlaCameraInfoPublisherImpl> _impl_info;
       // 类似地，定义一个智能指针，指向CarlaCameraInfoPublisherImpl结构体类型，用于管理相机信息发布相关的实现对象的生命周期
-
   };
   };
 }
