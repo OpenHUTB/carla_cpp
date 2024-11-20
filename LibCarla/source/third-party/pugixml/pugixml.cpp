@@ -424,49 +424,55 @@ PUGI__NS_BEGIN
 			// 如果上面的断言失败，则返回0（实际上由于断言的存在，这行代码不会被执行）
 			return 0;
 		}
-
+		// 定义一个静态函数，用于计算给定键的哈希值，并处理可能的无符号整数溢出
 		static PUGI__UNSIGNED_OVERFLOW unsigned int hash(const void* key)
 		{
+			// 将指针转换为无符号整数类型（uintptr_t），然后转换为unsigned int。
+			// 这里的转换是为了获取一个可以用于哈希计算的数值。
 			unsigned int h = static_cast<unsigned int>(reinterpret_cast<uintptr_t>(key));
 
 			// MurmurHash3 32-bit finalizer
-			h ^= h >> 16;
-			h *= 0x85ebca6bu;
-			h ^= h >> 13;
-			h *= 0xc2b2ae35u;
-			h ^= h >> 16;
+			h ^= h >> 16;		// 将h右移16位后与自身异或
+			h *= 0x85ebca6bu;	// 乘以一个魔术数字（常数）
+			h ^= h >> 13;		// 再次右移13位后与自身异或
+			h *= 0xc2b2ae35u;	// 再次乘以另一个魔术数字
+			h ^= h >> 16;		// 最后，再次右移16位后与自身异或
 
 			return h;
 		}
 	};
-
+	// 定义一个函数，用于根据当前存储的元素数量重新调整哈希表的容量
 	PUGI__FN_NO_INLINE bool compact_hash_table::rehash(size_t count)
 	{
+		// 初始化容量为32
 		size_t capacity = 32;
+		// 当当前元素数量大于等于当前容量的3/4时，将容量翻倍，直到满足条件
 		while (count >= capacity - capacity / 4)
 			capacity *= 2;
-
+		// 创建一个新的哈希表实例
 		compact_hash_table rt;
+		// 设置新哈希表的容量为计算得到的新容量
 		rt._capacity = capacity;
+		// 为新哈希表分配内存空间
 		rt._items = static_cast<item_t*>(xml_memory::allocate(sizeof(item_t) * capacity));
-
+		// 如果内存分配失败，则返回false
 		if (!rt._items)
 			return false;
-
+		// 将新分配的内存空间初始化为0
 		memset(rt._items, 0, sizeof(item_t) * capacity);
-
+		// 遍历旧哈希表的每一项，如果键不为空，则将其插入到新哈希表中
 		for (size_t i = 0; i < _capacity; ++i)
 			if (_items[i].key)
 				rt.insert(_items[i].key, _items[i].value);
-
+		// 如果旧哈希表有已分配的内存，则释放它
 		if (_items)
 			xml_memory::deallocate(_items);
-
+		// 更新旧哈希表的容量为新的容量，并设置其项指针为新分配的内存
 		_capacity = capacity;
 		_items = rt._items;
-
+		// 断言确保重新哈希后元素数量未变。
 		assert(_count == rt._count);
-
+		// 返回true，表示重新哈希成功
 		return true;
 	}
 
@@ -503,36 +509,40 @@ PUGI__NS_BEGIN
 	#define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
 
 	struct xml_allocator;
-
+	// 定义xml_memory_page结构体，用于管理内存页
 	struct xml_memory_page
 	{
+		// 静态成员函数，用于在给定内存块上构造xml_memory_page对象
+		// 这个函数不分配新的内存，而是将传入的void*内存块转换为xml_memory_page*并初始化它
 		static xml_memory_page* construct(void* memory)
 		{
+			// 将传入的void*内存块转换为xml_memory_page*类型
 			xml_memory_page* result = static_cast<xml_memory_page*>(memory);
-
-			result->allocator = 0;
-			result->prev = 0;
-			result->next = 0;
-			result->busy_size = 0;
-			result->freed_size = 0;
-
+			// 初始化成员变量
+			result->allocator = 0;	// 指向xml_allocator的指针，初始化为0（空指针）
+			result->prev = 0;		// 指向前一个内存页的指针，初始化为0（空指针）
+			result->next = 0;		// 指向下一个内存页的指针，初始化为0（空指针）
+			result->busy_size = 0;	// 当前页中已分配（忙碌）的内存大小，初始化为0
+			result->freed_size = 0;	// 当前页中已释放（空闲）的内存大小，初始化为0
+			// 如果定义了PUGIXML_COMPACT宏，则初始化与紧凑模式相关的成员变量
 		#ifdef PUGIXML_COMPACT
 			result->compact_string_base = 0;
 			result->compact_shared_parent = 0;
 			result->compact_page_marker = 0;
 		#endif
-
+			// 返回构造并初始化后的xml_memory_page对象的指针
 			return result;
 		}
-
+		// 成员变量
 		xml_allocator* allocator;
-
+		// 内存页之间的双向链表链接
 		xml_memory_page* prev;
 		xml_memory_page* next;
-
+		// 内存使用情况统计
 		size_t busy_size;
 		size_t freed_size;
-
+		// 注意：如果定义了PUGIXML_COMPACT宏，则还会存在以下成员变量
+		// 这些变量在紧凑模式下用于优化内存使用和访问速度
 	#ifdef PUGIXML_COMPACT
 		char_t* compact_string_base;
 		void* compact_shared_parent;
@@ -547,57 +557,73 @@ PUGI__NS_BEGIN
 		32768
 	#endif
 		- sizeof(xml_memory_page);
-
+	// 定义xml_memory_string_header结构体，用于描述字符串在内存页中的位置和大小
 	struct xml_memory_string_header
 	{
+		// 从内存页数据起始位置到字符串起始位置的偏移量
 		uint16_t page_offset; // offset from page->data
+		// 如果字符串占据整个内存页，则为0；否则为字符串的实际大小
 		uint16_t full_size; // 0 if string occupies whole page
 	};
-
+	// 定义xml_allocator结构体，用于管理内存页的分配
 	struct xml_allocator
 	{
+		// 构造函数，接受一个指向根内存页的指针，并初始化成员变量
 		xml_allocator(xml_memory_page* root): _root(root), _busy_size(root->busy_size)
 		{
 		#ifdef PUGIXML_COMPACT
-			_hash = 0;
+			_hash = 0;// 如果定义了PUGIXML_COMPACT宏，则初始化_hash为0
 		#endif
 		}
-
+		// 成员函数：分配一个新的内存页
+		// 接受一个数据大小参数，用于确定除了结构体本身外还需要多少额外空间
 		xml_memory_page* allocate_page(size_t data_size)
 		{
+			// 计算总大小：内存页结构体的大小加上额外数据的大小
 			size_t size = sizeof(xml_memory_page) + data_size;
 
 			// allocate block with some alignment, leaving memory for worst-case padding
 			void* memory = xml_memory::allocate(size);
-			if (!memory) return 0;
+			if (!memory) return 0;// 如果分配失败，则返回0（空指针）
 
 			// prepare page structure
+			// 在分配的内存块上构造xml_memory_page对象
 			xml_memory_page* page = xml_memory_page::construct(memory);
-			assert(page);
-
+			assert(page);// 确保构造成功
+			// 设置新页面的分配器为根页面的分配器（可能是为了保持一致性或实现某种内存管理策略）
 			page->allocator = _root->allocator;
-
+			// 返回新分配的页面
 			return page;
 		}
-
+		// 定义deallocate_page函数，用于释放一个内存页
+		// 接受一个指向xml_memory_page对象的指针作为参数
 		static void deallocate_page(xml_memory_page* page)
 		{
+			// 调用xml_memory类的静态成员函数deallocate来释放内存页
+			// 假设xml_memory是一个管理内存分配的类，类似于标准库中的allocator
 			xml_memory::deallocate(page);
 		}
-
+		// 它用于在内存不足时分配内存，可能是通过分配一个新的内存页或其他机制
 		void* allocate_memory_oob(size_t size, xml_memory_page*& out_page);
-
+		// 定义allocate_memory函数，尝试在当前根内存页中分配指定大小的内存
+		// 如果内存不足，则调用allocate_memory_oob函数
 		void* allocate_memory(size_t size, xml_memory_page*& out_page)
 		{
+			// 使用PUGI__UNLIKELY宏来提示编译器这个条件可能不常发生
+			// 这有助于优化生成的代码（尽管这取决于编译器的实现）
 			if (PUGI__UNLIKELY(_busy_size + size > xml_memory_page_size))
+				// 如果当前根内存页中的已分配大小加上请求的大小超过了内存页的总大小
+				// 则调用allocate_memory_oob函数来分配内存，并传递请求的大小和out_page引用
 				return allocate_memory_oob(size, out_page);
-
+			// 计算分配内存的起始地址
+			// _root是指向当前根内存页的指针，sizeof(xml_memory_page)是内存页结构体的大小
+			// _busy_size是当前已分配（忙碌）的内存大小
 			void* buf = reinterpret_cast<char*>(_root) + sizeof(xml_memory_page) + _busy_size;
-
+			// 更新已分配（忙碌）的内存大小
 			_busy_size += size;
-
+			// 将out_page引用设置为指向当前根内存页的指针
 			out_page = _root;
-
+			// 返回分配的内存的起始地址
 			return buf;
 		}
 
@@ -633,50 +659,60 @@ PUGI__NS_BEGIN
 			}
 		}
 	#else
+		// 定义一个函数，用于分配指定大小的内存对象，并返回指向该对象的指针。
+// 同时，通过out_page参数返回该对象所在的内存页。
 		void* allocate_object(size_t size, xml_memory_page*& out_page)
 		{
+			// 调用另一个函数allocate_memory来实际进行内存分配，并返回分配的指针。
 			return allocate_memory(size, out_page);
 		}
-	#endif
-
+#endif
+		// 定义一个函数，用于释放之前分配的内存
 		void deallocate_memory(void* ptr, size_t size, xml_memory_page* page)
 		{
+			// 如果当前释放的内存页是根页（_root），则更新根页的忙碌大小（_busy_size）。
 			if (page == _root) page->busy_size = _busy_size;
-
+			// 断言检查，确保指针ptr指向的内存确实位于page所管理的内存范围内
 			assert(ptr >= reinterpret_cast<char*>(page) + sizeof(xml_memory_page) && ptr < reinterpret_cast<char*>(page) + sizeof(xml_memory_page) + page->busy_size);
 			(void)!ptr;
-
+			// 更新页面已释放内存的大小
 			page->freed_size += size;
+			// 断言检查，确保已释放的内存大小不会超过该页面的忙碌大小
 			assert(page->freed_size <= page->busy_size);
-
+			// 如果整个页面的内存都已释放，则进行清理操作
 			if (page->freed_size == page->busy_size)
 			{
+				// 如果这是最后一个页面（即没有下一个页面），
 				if (page->next == 0)
 				{
+					// 断言检查，确保这是根页面。
 					assert(_root == page);
 
+					// 如果是顶部页面被释放，则重置其大小。
 					// top page freed, just reset sizes
 					page->busy_size = 0;
 					page->freed_size = 0;
 
-				#ifdef PUGIXML_COMPACT
+#ifdef PUGIXML_COMPACT
 					// reset compact state to maximize efficiency
 					page->compact_string_base = 0;
 					page->compact_shared_parent = 0;
 					page->compact_page_marker = 0;
-				#endif
-
+#endif
+					// 重置全局忙碌大小。
 					_busy_size = 0;
 				}
 				else
 				{
+					// 断言检查，确保这不是根页面，并且它有前一个页面。
 					assert(_root != page);
 					assert(page->prev);
-
+					// 从页面中移除该页面（假设页面存储在一个双向链表中）
 					// remove from the list
 					page->prev->next = page->next;
 					page->next->prev = page->prev;
 
+					// 释放该页面。
 					// deallocate
 					deallocate_page(page);
 				}
@@ -752,42 +788,49 @@ PUGI__NS_BEGIN
 		compact_hash_table* _hash;
 	#endif
 	};
-
+	// 该函数用于在内存不足（out of bounds，简称OOB）的情况下分配内存。
+	// 参数size指定了要分配的内存大小，out_page通过引用返回分配的内存所在的页面。
 	PUGI__FN_NO_INLINE void* xml_allocator::allocate_memory_oob(size_t size, xml_memory_page*& out_page)
 	{
+		// 定义一个阈值，用于区分“大”分配和“小”分配。
+		// 这里，大分配是指超过页面大小四分之一的分配。
 		const size_t large_allocation_threshold = xml_memory_page_size / 4;
-
+		// 根据分配大小分配一个页面。如果分配大小超过阈值，则分配一个足够大的页面
 		xml_memory_page* page = allocate_page(size <= large_allocation_threshold ? xml_memory_page_size : size);
+		// 通过引用参数返回分配的页面
 		out_page = page;
-
+		// 如果页面分配失败（即page为nullptr），则返回nullptr表示分配失败。
 		if (!page) return 0;
-
+		// 如果分配大小小于或等于阈值，则执行以下操作
 		if (size <= large_allocation_threshold)
 		{
+			// 更新根页面的忙碌大小为全局忙碌大小
 			_root->busy_size = _busy_size;
 
 			// insert page at the end of linked list
 			page->prev = _root;
 			_root->next = page;
+			// 更新_root指针，使其指向新插入的页面。
 			_root = page;
-
+			// 更新全局忙碌大小为当前分配的大小。
 			_busy_size = size;
 		}
 		else
 		{
 			// insert page before the end of linked list, so that it is deleted as soon as possible
 			// the last page is not deleted even if it's empty (see deallocate_memory)
+			// 对于大分配，将页面插入到链表末尾之前的位置。
 			assert(_root->prev);
-
+			// 插入新页面到链表中。
 			page->prev = _root->prev;
 			page->next = _root;
 
 			_root->prev->next = page;
 			_root->prev = page;
-
+			// 设置新页面的忙碌大小为当前分配的大小
 			page->busy_size = size;
 		}
-
+		// 返回指向页面内部数据的指针（跳过页面头部）。
 		return reinterpret_cast<char*>(page) + sizeof(xml_memory_page);
 	}
 PUGI__NS_END
