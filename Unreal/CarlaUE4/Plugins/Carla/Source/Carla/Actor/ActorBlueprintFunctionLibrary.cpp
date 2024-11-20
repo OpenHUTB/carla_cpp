@@ -826,21 +826,21 @@ if (bEnableModifyingPostProcessEffects)
     ExposureSpeedUp.RecommendedValues = { TEXT("3.0") }; // 设置推荐值为3.0
     ExposureSpeedUp.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // 从亮环境到暗环境的适应速度。
+    // 从亮环境到暗环境的适应速度
     FActorVariation ExposureSpeedDown; // 曝光下调速度变量
     ExposureSpeedDown.Id = TEXT("exposure_speed_down"); // 设置变量的ID为"exposure_speed_down"
     ExposureSpeedDown.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
     ExposureSpeedDown.RecommendedValues = { TEXT("1.0") }; // 设置推荐值为1.0
     ExposureSpeedDown.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // 18%反射率（Albedo）的校准常数。
+    // 18%反射率（Albedo）的校准常数
     FActorVariation CalibrationConstant; // 校准常数变量
     CalibrationConstant.Id = TEXT("calibration_constant"); // 设置变量的ID为"calibration_constant"
     CalibrationConstant.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
     CalibrationConstant.RecommendedValues = { TEXT("16.0") }; // 设置推荐值为16.0
     CalibrationConstant.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // 景深效果应保持清晰的距离，
+    // 景深效果应保持清晰的距离
     // 单位为虚幻引擎单位（厘米）
     FActorVariation FocalDistance; // 焦距距离变量
     FocalDistance.Id = TEXT("focal_distance"); // 设置变量的ID为"focal_distance"
@@ -848,69 +848,68 @@ if (bEnableModifyingPostProcessEffects)
     FocalDistance.RecommendedValues = { TEXT("1000.0") }; // 设置推荐值为1000.0
     FocalDistance.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Depth blur km for 50%
-    FActorVariation DepthBlurAmount;
-    DepthBlurAmount.Id = TEXT("blur_amount");
-    DepthBlurAmount.Type = EActorAttributeType::Float;
-    DepthBlurAmount.RecommendedValues = { TEXT("1.0") };
-    DepthBlurAmount.bRestrictToRecommended = false;
+    // 50%深度模糊系数
+    FActorVariation DepthBlurAmount; // 深度模糊量
+    DepthBlurAmount.Id = TEXT("blur_amount"); // 标识符为"blur_amount"
+    DepthBlurAmount.Type = EActorAttributeType::Float; // 类型为浮点数
+    DepthBlurAmount.RecommendedValues = { TEXT("1.0") }; // 推荐值为1.0
+    DepthBlurAmount.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // Depth blur radius in pixels at 1920x
-    FActorVariation DepthBlurRadius;
-    DepthBlurRadius.Id = TEXT("blur_radius");
-    DepthBlurRadius.Type = EActorAttributeType::Float;
-    DepthBlurRadius.RecommendedValues = { TEXT("0.0") };
-    DepthBlurRadius.bRestrictToRecommended = false;
+    // 在1920x分辨率下的深度模糊半径（以像素为单位）
+    FActorVariation DepthBlurRadius; // 深度模糊半径
+    DepthBlurRadius.Id = TEXT("blur_radius"); // 标识符为"blur_radius"
+    DepthBlurRadius.Type = EActorAttributeType::Float; // 类型为浮点数
+    DepthBlurRadius.RecommendedValues = { TEXT("0.0") }; // 推荐值为0.0
+    DepthBlurRadius.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // Defines the opening of the camera lens, Aperture is 1.0/fstop,
-    // typical lens go down to f/1.2 (large opening),
-    // larger numbers reduce the DOF effect
-    FActorVariation MaxAperture;
-    MaxAperture.Id = TEXT("min_fstop");
-    MaxAperture.Type = EActorAttributeType::Float;
-    MaxAperture.RecommendedValues = { TEXT("1.2") };
-    MaxAperture.bRestrictToRecommended = false;
+    // 定义相机镜头的开口大小，光圈是1.0/fstop，
+    // 典型的镜头可以小到f/1.2（大开口），
+    // 较大的数值会减少景深效果
+    FActorVariation MaxAperture; // 最大光圈
+    MaxAperture.Id = TEXT("min_fstop"); // 标识符为"min_fstop"
+    MaxAperture.Type = EActorAttributeType::Float; // 类型为浮点数
+    MaxAperture.RecommendedValues = { TEXT("1.2") }; // 推荐值为1.2
+    MaxAperture.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // Defines the number of blades of the diaphragm within the
-    // lens (between 4 and 16)
-    FActorVariation BladeCount;
-    BladeCount.Id = TEXT("blade_count");
-    BladeCount.Type = EActorAttributeType::Int;
-    BladeCount.RecommendedValues = { TEXT("5") };
-    BladeCount.bRestrictToRecommended = false;
+    // 定义镜头内光圈叶片的数量（在4到16之间）
+    FActorVariation BladeCount; // 叶片数量
+    BladeCount.Id = TEXT("blade_count"); // 标识符为"blade_count"
+    BladeCount.Type = EActorAttributeType::Int; // 类型为整数
+    BladeCount.RecommendedValues = { TEXT("5") }; // 推荐值为5
+    BladeCount.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // - Tonemapper Settings -----------------------------------
-    // You can adjust these tonemapper controls to emulate other
-    // types of film stock for your project
-    FActorVariation FilmSlope;
-    FilmSlope.Id = TEXT("slope");
-    FilmSlope.Type = EActorAttributeType::Float;
-    FilmSlope.RecommendedValues = { TEXT("0.88") };
-    FilmSlope.bRestrictToRecommended = false;
+    // - 调色映射器设置 -----------------------------------
+    // 您可以调整这些调色映射器控件，以模拟其他类型的胶片库存，用于您的项目
+    FActorVariation FilmSlope; // 胶片斜率变量
+    FilmSlope.Id = TEXT("slope"); // 变量标识符设置为"slope"
+    FilmSlope.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmSlope.RecommendedValues = { TEXT("0.88") }; // 推荐值设置为0.88
+    FilmSlope.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmToe;
-    FilmToe.Id = TEXT("toe");
-    FilmToe.Type = EActorAttributeType::Float;
-    FilmToe.RecommendedValues = { TEXT("0.55") };
-    FilmToe.bRestrictToRecommended = false;
+    FActorVariation FilmToe; // 胶片趾部变量
+    FilmToe.Id = TEXT("toe"); // 变量标识符设置为"toe"
+    FilmToe.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmToe.RecommendedValues = { TEXT("0.55") }; // 推荐值设置为0.55
+    FilmToe.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmShoulder;
-    FilmShoulder.Id = TEXT("shoulder");
-    FilmShoulder.Type = EActorAttributeType::Float;
-    FilmShoulder.RecommendedValues = { TEXT("0.26") };
-    FilmShoulder.bRestrictToRecommended = false;
+    FActorVariation FilmShoulder; // 胶片肩部变量
+    FilmShoulder.Id = TEXT("shoulder"); // 变量标识符设置为"shoulder"
+    FilmShoulder.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmShoulder.RecommendedValues = { TEXT("0.26") }; // 推荐值设置为0.26
+    FilmShoulder.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmBlackClip;
-    FilmBlackClip.Id = TEXT("black_clip");
-    FilmBlackClip.Type = EActorAttributeType::Float;
-    FilmBlackClip.RecommendedValues = { TEXT("0.0") };
-    FilmBlackClip.bRestrictToRecommended = false;
+    FActorVariation FilmBlackClip; // 胶片黑色截断变量
+    FilmBlackClip.Id = TEXT("black_clip"); // 变量标识符设置为"black_clip"
+    FilmBlackClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmBlackClip.RecommendedValues = { TEXT("0.0") }; // 推荐值设置为0.0
+    FilmBlackClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmWhiteClip;
-    FilmWhiteClip.Id = TEXT("white_clip");
-    FilmWhiteClip.Type = EActorAttributeType::Float;
-    FilmWhiteClip.RecommendedValues = { TEXT("0.04") };
-    FilmWhiteClip.bRestrictToRecommended = false;
+    FActorVariation FilmWhiteClip; // 胶片白色截断变量
+    FilmWhiteClip.Id = TEXT("white_clip"); // 变量标识符设置为"white_clip"
+    FilmWhiteClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmWhiteClip.RecommendedValues = { TEXT("0.04") }; // 推荐值设置为0.04
+    FilmWhiteClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
+
 
     // Color
     FActorVariation Temperature;
