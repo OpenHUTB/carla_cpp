@@ -24,27 +24,74 @@
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>/// @brief 包含Fast-DDS数据写入器服务质量（QoS）的头文件。
 #include <fastdds/dds/publisher/DataWriterListener.hpp>/// @brief 包含Fast-DDS数据写入器监听器的头文件。
 
-
+/**
+ * @namespace carla::ros2
+ * @brief 包含CARLA与ROS 2集成相关功能的命名空间。
+ */
 namespace carla {
 namespace ros2 {
-
+    /**
+  * @brief 简化eprosima::fastdds::dds命名空间的别名，以便代码更简洁。
+  */
   namespace efd = eprosima::fastdds::dds;
+  /**
+   * @brief 简化eprosima::fastrtps::types::ReturnCode_t类型的别名，用于错误码返回。
+   */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+   * @struct CarlaRadarPublisherImpl
+   * @brief CarlaRadarPublisher的内部实现结构体，封装了Fast-DDS发布雷达数据所需的对象。
+   */
   struct CarlaRadarPublisherImpl {
+      /**
+     * @brief Fast-DDS域参与者对象指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief Fast-DDS发布者对象指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief Fast-DDS主题对象指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief Fast-DDS数据写入器对象指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief Fast-DDS类型支持对象，用于注册ROS 2点云消息类型。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::PointCloud2PubSubType() };
+    /**
+    * @brief CARLA监听器对象，用于接收来自CARLA的雷达数据。
+    */
     CarlaListener _listener {};
+    /**
+     * @brief 存储雷达数据的ROS 2点云消息对象。
+     */
     sensor_msgs::msg::PointCloud2 _radar {};
   };
-
+  /**
+   * @struct RadarDetectionWithPosition
+   * @brief 包含雷达检测及其位置信息的结构体。
+   */
   struct RadarDetectionWithPosition {
+      /**
+     * @brief 检测到的目标在X轴上的位置。
+     */
     float x;
+    /**
+     * @brief 检测到的目标在Y轴上的位置。
+     */
     float y;
+    /**
+     * @brief 检测到的目标在Z轴上的位置。
+     */
     float z;
+    /**
+     * @brief CARLA雷达检测数据。
+     */
     carla::sensor::data::RadarDetection detection;
   };
 
