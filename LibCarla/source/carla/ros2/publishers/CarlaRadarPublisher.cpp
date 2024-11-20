@@ -387,35 +387,52 @@ void CarlaRadarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t 
     // 设置雷达消息的数据
     _impl->_radar.data(std::move(data));
   }
-
+  /**
+ * @brief CarlaRadarPublisher 类的构造函数
+ *
+ * 初始化 CarlaRadarPublisher 对象，并创建一个 CarlaRadarPublisherImpl 对象的智能指针。
+ *
+ * @param ros_name ROS 节点的名称
+ * @param parent 父节点的名称
+ */
   CarlaRadarPublisher::CarlaRadarPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaRadarPublisherImpl>()) {
-    _name = ros_name;
-    _parent = parent;
+    _name = ros_name;///< ROS 节点的名称
+    _parent = parent;///< 父节点的名称
   }
-
+  /**
+ * @brief CarlaRadarPublisher 类的析构函数
+ *
+ * 清理资源，包括删除 DataWriter、Publisher、Topic 和 Participant。
+ */
   CarlaRadarPublisher::~CarlaRadarPublisher() {
       if (!_impl)
           return;
 
       if (_impl->_datawriter)
-          _impl->_publisher->delete_datawriter(_impl->_datawriter);
+          _impl->_publisher->delete_datawriter(_impl->_datawriter);///< 删除 DataWriter
 
       if (_impl->_publisher)
-          _impl->_participant->delete_publisher(_impl->_publisher);
+          _impl->_participant->delete_publisher(_impl->_publisher);///< 删除 Publisher
 
       if (_impl->_topic)
-          _impl->_participant->delete_topic(_impl->_topic);
+          _impl->_participant->delete_topic(_impl->_topic); ///< 删除 Topic
 
       if (_impl->_participant)
-          efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
+          efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);///< 删除 Participant
   }
-
+  /**
+ * @brief CarlaRadarPublisher 类的拷贝构造函数
+ *
+ * 使用另一个 CarlaRadarPublisher 对象来初始化当前对象。
+ *
+ * @param other 另一个 CarlaRadarPublisher 对象
+ */
   CarlaRadarPublisher::CarlaRadarPublisher(const CarlaRadarPublisher& other) {
-    _frame_id = other._frame_id;
-    _name = other._name;
-    _parent = other._parent;
-    _impl = other._impl;
+    _frame_id = other._frame_id;///< 拷贝帧 ID
+    _name = other._name;///< 拷贝 ROS 节点的名称
+    _parent = other._parent;///< 拷贝父节点的名称
+    _impl = other._impl; ///< 共享相同的 CarlaRadarPublisherImpl 对象
   }
 
   CarlaRadarPublisher& CarlaRadarPublisher::operator=(const CarlaRadarPublisher& other) {
