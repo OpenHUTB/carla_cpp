@@ -878,38 +878,38 @@ if (bEnableModifyingPostProcessEffects)
     BladeCount.RecommendedValues = { TEXT("5") }; // 推荐值为5
     BladeCount.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // - Tonemapper Settings -----------------------------------
-    // You can adjust these tonemapper controls to emulate other
-    // types of film stock for your project
-    FActorVariation FilmSlope;
-    FilmSlope.Id = TEXT("slope");
-    FilmSlope.Type = EActorAttributeType::Float;
-    FilmSlope.RecommendedValues = { TEXT("0.88") };
-    FilmSlope.bRestrictToRecommended = false;
+    // - 调色映射器设置 -----------------------------------
+    // 您可以调整这些调色映射器控件，以模拟其他类型的胶片库存，用于您的项目
+    FActorVariation FilmSlope; // 胶片斜率变量
+    FilmSlope.Id = TEXT("slope"); // 变量标识符设置为"slope"
+    FilmSlope.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmSlope.RecommendedValues = { TEXT("0.88") }; // 推荐值设置为0.88
+    FilmSlope.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmToe;
-    FilmToe.Id = TEXT("toe");
-    FilmToe.Type = EActorAttributeType::Float;
-    FilmToe.RecommendedValues = { TEXT("0.55") };
-    FilmToe.bRestrictToRecommended = false;
+    FActorVariation FilmToe; // 胶片趾部变量
+    FilmToe.Id = TEXT("toe"); // 变量标识符设置为"toe"
+    FilmToe.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmToe.RecommendedValues = { TEXT("0.55") }; // 推荐值设置为0.55
+    FilmToe.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmShoulder;
-    FilmShoulder.Id = TEXT("shoulder");
-    FilmShoulder.Type = EActorAttributeType::Float;
-    FilmShoulder.RecommendedValues = { TEXT("0.26") };
-    FilmShoulder.bRestrictToRecommended = false;
+    FActorVariation FilmShoulder; // 胶片肩部变量
+    FilmShoulder.Id = TEXT("shoulder"); // 变量标识符设置为"shoulder"
+    FilmShoulder.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmShoulder.RecommendedValues = { TEXT("0.26") }; // 推荐值设置为0.26
+    FilmShoulder.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmBlackClip;
-    FilmBlackClip.Id = TEXT("black_clip");
-    FilmBlackClip.Type = EActorAttributeType::Float;
-    FilmBlackClip.RecommendedValues = { TEXT("0.0") };
-    FilmBlackClip.bRestrictToRecommended = false;
+    FActorVariation FilmBlackClip; // 胶片黑色截断变量
+    FilmBlackClip.Id = TEXT("black_clip"); // 变量标识符设置为"black_clip"
+    FilmBlackClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmBlackClip.RecommendedValues = { TEXT("0.0") }; // 推荐值设置为0.0
+    FilmBlackClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmWhiteClip;
-    FilmWhiteClip.Id = TEXT("white_clip");
-    FilmWhiteClip.Type = EActorAttributeType::Float;
-    FilmWhiteClip.RecommendedValues = { TEXT("0.04") };
-    FilmWhiteClip.bRestrictToRecommended = false;
+    FActorVariation FilmWhiteClip; // 胶片白色截断变量
+    FilmWhiteClip.Id = TEXT("white_clip"); // 变量标识符设置为"white_clip"
+    FilmWhiteClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmWhiteClip.RecommendedValues = { TEXT("0.04") }; // 推荐值设置为0.04
+    FilmWhiteClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
+
 
     // Color
     FActorVariation Temperature;
