@@ -836,45 +836,52 @@ PUGI__NS_BEGIN
 PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
+// 开始命名空间（假设PUGI__NS_BEGIN是一个宏，用于定义或进入特定的命名空间）
 PUGI__NS_BEGIN
+	// 定义紧凑对齐的log2值，这里为2，意味着对齐是2的2次方，即4字节对齐
 	static const uintptr_t compact_alignment_log2 = 2;
+	// 根据log2值计算紧凑对齐的实际值，这里是1 << 2 = 4
 	static const uintptr_t compact_alignment = 1 << compact_alignment_log2;
-
+	// 定义一个紧凑头部类，用于管理紧凑内存页的头部信息
 	class compact_header
 	{
 	public:
+		// 构造函数，接收一个指向xml_memory_page的指针和一个标志位
 		compact_header(xml_memory_page* page, unsigned int flags)
 		{
+			// 静态断言，确保xml_memory_block_alignment与compact_alignment相等
 			PUGI__STATIC_ASSERT(xml_memory_block_alignment == compact_alignment);
-
+			// 计算当前对象相对于page->compact_page_marker的偏移量
 			ptrdiff_t offset = (reinterpret_cast<char*>(this) - reinterpret_cast<char*>(page->compact_page_marker));
+			// 断言偏移量是对齐的，并且小于256个对齐单位
 			assert(offset % compact_alignment == 0 && static_cast<uintptr_t>(offset) < 256 * compact_alignment);
-
+			// 计算并存储页面索引
 			_page = static_cast<unsigned char>(offset >> compact_alignment_log2);
+			// 存储标志位
 			_flags = static_cast<unsigned char>(flags);
 		}
-
+		// 位与赋值操作符，用于修改标志位
 		void operator&=(uintptr_t mod)
 		{
 			_flags &= static_cast<unsigned char>(mod);
 		}
-
+		// 位或赋值操作符，用于修改标志位
 		void operator|=(uintptr_t mod)
 		{
 			_flags |= static_cast<unsigned char>(mod);
 		}
-
+		// 位与操作符，用于获取标志位与给定值的交集
 		uintptr_t operator&(uintptr_t mod) const
 		{
 			return _flags & mod;
 		}
-
+		// 获取关联的xml_memory_page对象
 		xml_memory_page* get_page() const
 		{
 			// round-trip through void* to silence 'cast increases required alignment of target type' warnings
 			const char* page_marker = reinterpret_cast<const char*>(this) - (_page << compact_alignment_log2);
 			const char* page = page_marker - *reinterpret_cast<const uint32_t*>(static_cast<const void*>(page_marker));
-
+			// 返回指向xml_memory_page的指针
 			return const_cast<xml_memory_page*>(reinterpret_cast<const xml_memory_page*>(static_cast<const void*>(page)));
 		}
 
