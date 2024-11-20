@@ -94,51 +94,102 @@ namespace ros2 {
      */
     carla::sensor::data::RadarDetection detection;
   };
-
+  /**
+   * @brief 初始化CarlaRadarPublisher对象。
+   *
+   * 此函数负责创建Fast-DDS域参与者、发布者、主题和数据写入器，并注册ROS 2点云消息类型。
+   *
+   * @return 如果初始化成功，则返回true；否则返回false。
+   */
   bool CarlaRadarPublisher::Init() {
+      /**
+   * 检查类型支持是否有效。如果_impl->_type为nullptr，表示类型支持无效，打印错误信息并返回false。
+   */
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /**
+   * 设置域参与者（DomainParticipant）的质量服务（Qos）参数，使用默认值，并设置名称。
+   */
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
-    pqos.name(_name);
+    pqos.name(_name); // 设置域参与者的名称
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl->_participant = factory->create_participant(0, pqos);
+    /**
+   * 检查域参与者是否创建成功。如果为nullptr，表示创建失败，打印错误信息并返回false。
+   */
     if (_impl->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
-    _impl->_type.register_type(_impl->_participant);
-
+    /**
+   * 注册类型支持到域参与者。
+   */
+    _impl->_type.register_type(_impl->_participant);// 注册类型支持
+    /**
+   * 设置发布者（Publisher）的质量服务（Qos）参数，使用默认值。
+   */
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
+    /**
+   * 创建发布者。
+   */
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
+    /**
+   * 检查发布者是否创建成功。如果为nullptr，表示创建失败，打印错误信息并返回false。
+   */
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    /**
+   * 设置主题（Topic）的质量服务（Qos）参数，使用默认值。
+   */
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
+    /**
+   * 构造主题名称，根据基础名称"rt/carla/"和可能的父级名称以及本对象的名称。
+   */
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
     if (!_parent.empty())
       topic_name += _parent + "/";
     topic_name += _name;
+    /**
+   * 创建主题。
+   */
     _impl->_topic = _impl->_participant->create_topic(topic_name, _impl->_type->getName(), tqos);
+    /**
+   * 检查主题是否创建成功。如果为nullptr，表示创建失败，打印错误信息并返回false。
+   */
     if (_impl->_topic == nullptr) {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    /**
+   * 设置数据写入器（DataWriter）的质量服务（Qos）参数，使用默认值，并设置历史内存策略为预分配并重新分配模式。
+   */
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
+    /**
+  * 获取数据写入器监听器实例。
+  */
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
+    /**
+   * 创建数据写入器。
+   */
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
+    /**
+   * 检查数据写入器是否创建成功。如果为nullptr，表示创建失败，打印错误信息并返回false。
+   */
     if (_impl->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    // 设置帧ID
     _frame_id = _name;
+    /**
+   * 初始化成功，返回true。
+   */
     return true;
   }
 
