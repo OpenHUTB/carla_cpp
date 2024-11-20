@@ -72,75 +72,80 @@ void CollisionStage::Update(const unsigned long index) {
       }
     }
 
-    // Sorting collision candidates in accending order of distance to current vehicle.
+    // 按与自车的距离对潜在碰撞对象进行升序排序
     std::sort(collision_candidate_ids.begin(), collision_candidate_ids.end(),
               [this, &ego_location](const ActorId &a_id_1, const ActorId &a_id_2) {
-                const cg::Location &e_loc = ego_location;
-                const cg::Location &loc_1 = simulation_state.GetLocation(a_id_1);
-                const cg::Location &loc_2 = simulation_state.GetLocation(a_id_2);
+                const cg::Location &e_loc = ego_location; // 自车位置
+                const cg::Location &loc_1 = simulation_state.GetLocation(a_id_1); // 对象1的位置
+                const cg::Location &loc_2 = simulation_state.GetLocation(a_id_2); // 对象2的位置
+                // 按距离平方排序，避免使用平方根计算，提升性能
                 return (cg::Math::DistanceSquared(e_loc, loc_1) < cg::Math::DistanceSquared(e_loc, loc_2));
               });
 
-    // Check every actor in the vicinity if it poses a collision hazard.
+    // 遍历排序后的对象，检查每个对象是否构成碰撞威胁
     for (auto iter = collision_candidate_ids.begin();
          iter != collision_candidate_ids.end() && !collision_hazard;
          ++iter) {
-      const ActorId other_actor_id = *iter;
-      const ActorType other_actor_type = simulation_state.GetType(other_actor_id);
-
-      if (parameters.GetCollisionDetection(ego_actor_id, other_actor_id)
-          && buffer_map.find(ego_actor_id) != buffer_map.end()
-          && simulation_state.ContainsActor(other_actor_id)) {
+      const ActorId other_actor_id = *iter; // 当前检查的对象ID
+      const ActorType other_actor_type = simulation_state.GetType(other_actor_id); // 对象的类型（车辆/行人）
+      // 检查碰撞检测条件是否满足
+      if (parameters.GetCollisionDetection(ego_actor_id, other_actor_id) // 检查自车与目标车之间的碰撞检测设置
+          && buffer_map.find(ego_actor_id) != buffer_map.end()           // 检查缓冲区是否存在自车
+          && simulation_state.ContainsActor(other_actor_id)) {           // 检查目标对象是否仍在场景中
+        // 通过协商函数计算碰撞威胁
         std::pair<bool, float> negotiation_result = NegotiateCollision(ego_actor_id,
                                                                        other_actor_id,
                                                                        look_ahead_index);
-        if (negotiation_result.first) {
+        if (negotiation_result.first) { // 如果存在碰撞威胁
+          // 根据对象类型和随机概率，决定是否忽略此威胁
           if ((other_actor_type == ActorType::Vehicle
                && parameters.GetPercentageIgnoreVehicles(ego_actor_id) <= random_device.next())
               || (other_actor_type == ActorType::Pedestrian
                   && parameters.GetPercentageIgnoreWalkers(ego_actor_id) <= random_device.next())) {
-            collision_hazard = true;
-            obstacle_id = other_actor_id;
-            available_distance_margin = negotiation_result.second;
+            collision_hazard = true;      // 标记碰撞威胁
+            obstacle_id = other_actor_id; // 记录威胁对象ID
+            available_distance_margin = negotiation_result.second; // 记录距离裕度
           }
         }
       }
     }
   }
 
+  // 更新输出碰撞数据
   CollisionHazardData &output_element = output_array.at(index);
-  output_element.hazard_actor_id = obstacle_id;
-  output_element.hazard = collision_hazard;
-  output_element.available_distance_margin = available_distance_margin;
+  output_element.hazard_actor_id = obstacle_id; // 威胁对象ID
+  output_element.hazard = collision_hazard;     // 是否存在碰撞威胁
+  output_element.available_distance_margin = available_distance_margin; // 距离裕度
 }
 
 void CollisionStage::RemoveActor(const ActorId actor_id) {
+  // 移除特定对象的碰撞锁定
   collision_locks.erase(actor_id);
 }
 
 void CollisionStage::Reset() {
+  // 清空所有碰撞锁定
   collision_locks.clear();
 }
 
 float CollisionStage::GetBoundingBoxExtention(const ActorId actor_id) {
-
-  const float velocity = cg::Math::Dot(simulation_state.GetVelocity(actor_id), simulation_state.GetHeading(actor_id));
+  // 根据速度计算对象的碰撞边界延伸
+  const float velocity = cg::Math::Dot(simulation_state.GetVelocity(actor_id), simulation_state.GetHeading(actor_id)); // 计算对象的速度
   float bbox_extension;
-  // Using a function to calculate boundary length.
-  float velocity_extension = VEL_EXT_FACTOR * velocity;
-  bbox_extension = BOUNDARY_EXTENSION_MINIMUM + velocity_extension * velocity_extension;
-  // If a valid collision lock present, change boundary length to maintain lock.
+  // 使用函数来计算边界长度
+  float velocity_extension = VEL_EXT_FACTOR * velocity; // 根据速度计算延伸因子
+  bbox_extension = BOUNDARY_EXTENSION_MINIMUM + velocity_extension * velocity_extension; // 基础边界延伸
+  // 如果对象有有效的碰撞锁定，调整边界以保持锁定
   if (collision_locks.find(actor_id) != collision_locks.end()) {
     const CollisionLock &lock = collision_locks.at(actor_id);
     float lock_boundary_length = static_cast<float>(lock.distance_to_lead_vehicle + LOCKING_DISTANCE_PADDING);
-    // Only extend boundary track vehicle if the leading vehicle
-    // if it is not further than velocity dependent extension by MAX_LOCKING_EXTENSION.
+    // 仅当前车辆距离未超过速度相关延伸的最大值时，才延伸边界跟踪车辆
     if ((lock_boundary_length - lock.initial_lock_distance) < MAX_LOCKING_EXTENSION) {
       bbox_extension = lock_boundary_length;
     }
   }
 
-  return bbox_extension;
+  return bbox_extension; // 返回最终计算的边界长度
 }
 
 LocationVector CollisionStage::GetBoundary(const ActorId actor_id) {
