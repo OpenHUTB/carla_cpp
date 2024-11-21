@@ -398,30 +398,30 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
       available_distance_margin = static_cast<float>(std::max(geometry_comparison.reference_vehicle_to_other_geodesic
                                                               - static_cast<double>(specific_distance_margin), 0.0));
 
-      ///////////////////////////////////// Collision locking mechanism /////////////////////////////////
-      // The idea is, when encountering a possible collision,
-      // we should ensure that the bounding box extension doesn't decrease too fast and loose collision tracking.
-      // This enables us to smoothly approach the lead vehicle.
+      ///////////////////////////////////// 碰撞锁定机构 /////////////////////////////////
+      // 这个想法是，在遇到可能的碰撞时，
+      // 我们应该确保边界框的扩展不会过快地减小，从而导致碰撞跟踪的丢失
+      // 这使得我们能够平稳地接近前车
 
-      // When possible collision found, check if an entry for collision lock present.
+      // 当发现可能的碰撞时，检查是否存在碰撞锁的条目
       if (collision_locks.find(reference_vehicle_id) != collision_locks.end()) {
         CollisionLock &lock = collision_locks.at(reference_vehicle_id);
-        // Check if the same vehicle is under lock.
+        // 检查同一车辆是否处于锁定状态
         if (other_actor_id == lock.lead_vehicle_id) {
-          // If the body of the lead vehicle is touching the reference vehicle bounding box.
+          // 如果领头车辆的车身与参考车辆的边界框接触
           if (geometry_comparison.other_vehicle_to_reference_geodesic < OVERLAP_THRESHOLD) {
-            // Distance between the bodies of the vehicles.
+            // 车辆车身之间的距离
             lock.distance_to_lead_vehicle = geometry_comparison.inter_bbox_distance;
           } else {
-            // Distance from reference vehicle body to other vehicle path polygon.
+            // 参考车辆车身与其他车辆路径多边形的距离
             lock.distance_to_lead_vehicle = geometry_comparison.reference_vehicle_to_other_geodesic;
           }
         } else {
-          // If possible collision with a new vehicle, re-initialize with new lock entry.
+          // 如果可能与新车辆发生碰撞，请使用新的锁定条目重新初始化
           lock = {geometry_comparison.inter_bbox_distance, geometry_comparison.inter_bbox_distance, other_actor_id};
         }
       } else {
-        // Insert and initialize lock entry if not present.
+        // 如果锁条目不存在，则插入并初始化锁条目
         collision_locks.insert({reference_vehicle_id,
                                 {geometry_comparison.inter_bbox_distance,
                                  geometry_comparison.inter_bbox_distance,
@@ -430,7 +430,7 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
     }
   }
 
-  // If no collision hazard detected, then flush collision lock held by the vehicle.
+  // 如果没有检测到碰撞危险，则清除车辆持有的碰撞锁定
   if (!hazard && collision_locks.find(reference_vehicle_id) != collision_locks.end()) {
     collision_locks.erase(reference_vehicle_id);
   }
