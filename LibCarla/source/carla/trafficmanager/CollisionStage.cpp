@@ -333,7 +333,7 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
 
   // 自我和其他车辆的方向
   const cg::Vector3D reference_heading = simulation_state.GetHeading(reference_vehicle_id);
-  // Vector from ego position to position of the other vehicle.
+  // 从自车位置到其他车辆位置的向量
   cg::Vector3D reference_to_other = other_location - reference_location;
   reference_to_other = reference_to_other.MakeSafeUnitVector(EPSILON);
 
@@ -349,12 +349,12 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
   float inter_vehicle_distance = cg::Math::DistanceSquared(reference_location, other_location);
   float ego_bounding_box_extension = GetBoundingBoxExtention(reference_vehicle_id);
   float other_bounding_box_extension = GetBoundingBoxExtention(other_actor_id);
-  // Calculate minimum distance between vehicle to consider collision negotiation.
+  // 计算车辆之间考虑碰撞协商的最小距离
   float inter_vehicle_length = reference_vehicle_length + other_vehicle_length;
   float ego_detection_range = SQUARE(ego_bounding_box_extension + inter_vehicle_length);
   float cross_detection_range = SQUARE(ego_bounding_box_extension + inter_vehicle_length + other_bounding_box_extension);
 
-  // Conditions to consider collision negotiation.
+  // 考虑碰撞谈判的条件
   bool other_vehicle_in_ego_range = inter_vehicle_distance < ego_detection_range;
   bool other_vehicles_in_cross_detection_range = inter_vehicle_distance < cross_detection_range;
   float reference_heading_to_other_dot = cg::Math::Dot(reference_heading, reference_to_other);
@@ -368,13 +368,13 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
   SimpleWaypointPtr look_ahead_point = reference_vehicle_buffer.at(reference_junction_look_ahead_index);
   bool ego_at_junction_entrance = !closest_point->CheckJunction() && look_ahead_point->CheckJunction();
 
-  // Conditions to consider collision negotiation.
+  // 考虑碰撞谈判的条件
   if (!(ego_at_junction_entrance && ego_at_traffic_light && ego_stopped_by_light)
       && ((ego_inside_junction && other_vehicles_in_cross_detection_range)
           || (!ego_inside_junction && other_vehicle_in_front && other_vehicle_in_ego_range))) {
     GeometryComparison geometry_comparison = GetGeometryBetweenActors(reference_vehicle_id, other_actor_id);
 
-    // Conditions for collision negotiation.
+    // 碰撞谈判的条件
     bool geodesic_path_bbox_touching = geometry_comparison.inter_geodesic_distance < OVERLAP_THRESHOLD;
     bool vehicle_bbox_touching = geometry_comparison.inter_bbox_distance < OVERLAP_THRESHOLD;
     bool ego_path_clear = geometry_comparison.other_vehicle_to_reference_geodesic > OVERLAP_THRESHOLD;
@@ -383,7 +383,7 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
     bool other_path_priority = geometry_comparison.reference_vehicle_to_other_geodesic > geometry_comparison.other_vehicle_to_reference_geodesic;
     bool ego_angular_priority = reference_heading_to_other_dot< cg::Math::Dot(other_heading, other_to_reference);
 
-    // Whichever vehicle's path is farthest away from the other vehicle gets priority to move.
+    // 哪辆车的路径离另一辆车最远，哪辆车就优先通行
     bool lower_priority = !ego_path_priority && (other_path_priority || !ego_angular_priority);
     bool blocked_by_other_or_lower_priority = !ego_path_clear || (other_path_clear && lower_priority);
     bool yield_pre_crash = !vehicle_bbox_touching && blocked_by_other_or_lower_priority;
