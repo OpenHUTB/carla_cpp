@@ -216,20 +216,43 @@ namespace ros2 {
     return false;
   }
 
-
+  /**
+ * @brief 设置激光雷达数据，处理并转换数据类型
+ *
+ * 该函数接收激光雷达的原始浮点数据，将其中的某些值取反，然后转换为字节向量，
+ * 并调用另一个重载的 SetData 函数来设置激光雷达数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 数据的高度（行数）
+ * @param width 数据的宽度（列数），假设每个点包含4个浮数值（x, y, z, intensity）
+ * @param data 指向浮点数据数组的指针
+ */
 void CarlaLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, float* data) {
     float* it = data;
     float* end = &data[height * width];
     for (++it; it < end; it += 4) {
-        *it *= -1.0f;
+        *it *= -1.0f;// 将y值取反（假设data[1]是y值）
     }
     std::vector<uint8_t> vector_data;
     const size_t size = height * width * sizeof(float);
     vector_data.resize(size);
-    std::memcpy(&vector_data[0], &data[0], size);
+    std::memcpy(&vector_data[0], &data[0], size);// 将浮点数据复制到字节向量中
+    // 调用重载的SetData函数来设置处理后的数据
     SetData(seconds, nanoseconds, height, width, std::move(vector_data));
   }
-
+/**
+ * @brief 设置激光雷达数据
+ *
+ * 该函数接收时间戳、数据的高度和宽度，以及处理后的字节数据，
+ * 然后设置激光雷达消息的各个字段。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 数据的高度（行数）
+ * @param width 数据的宽度（每行点数），注意这里已经是处理后的宽度（原始宽度的1/4）
+ * @param data 包含处理后的激光雷达数据的字节向量，按点（x, y, z, intensity）组织
+ */
   void CarlaLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -237,8 +260,8 @@ void CarlaLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t 
 
     std_msgs::msg::Header header;
     header.stamp(std::move(time));
-    header.frame_id(_frame_id);
-
+    header.frame_id(_frame_id);// 设置帧ID
+    // 设置点云数据的描述字段
     sensor_msgs::msg::PointField descriptor1;
     descriptor1.name("x");
     descriptor1.offset(0);
@@ -260,16 +283,16 @@ void CarlaLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t 
     descriptor4.datatype(sensor_msgs::msg::PointField__FLOAT32);
     descriptor4.count(1);
 
-    const size_t point_size = 4 * sizeof(float);
-    _impl->_lidar.header(std::move(header));
-    _impl->_lidar.width(width / 4);
-    _impl->_lidar.height(height);
-    _impl->_lidar.is_bigendian(false);
-    _impl->_lidar.fields({descriptor1, descriptor2, descriptor3, descriptor4});
-    _impl->_lidar.point_step(point_size);
-    _impl->_lidar.row_step(width * sizeof(float));
-    _impl->_lidar.is_dense(false); //True if there are not invalid points
-    _impl->_lidar.data(std::move(data));
+    const size_t point_size = 4 * sizeof(float);// 每个点的大小（字节）
+    _impl->_lidar.header(std::move(header));// 设置消息头
+    _impl->_lidar.width(width / 4);// 设置宽度（每行点数）
+    _impl->_lidar.height(height);// 设置高度（行数）
+    _impl->_lidar.is_bigendian(false);// 设置字节序
+    _impl->_lidar.fields({descriptor1, descriptor2, descriptor3, descriptor4});// 设置点字段描述
+    _impl->_lidar.point_step(point_size);// 设置每个点的步长
+    _impl->_lidar.row_step(width * sizeof(float));// 设置每行的步长
+    _impl->_lidar.is_dense(false); // 设置是否稠密（True表示没有无效点）
+    _impl->_lidar.data(std::move(data));// 设置点云数据
   }
 
   CarlaLidarPublisher::CarlaLidarPublisher(const char* ros_name, const char* parent) :
