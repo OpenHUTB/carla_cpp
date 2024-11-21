@@ -341,28 +341,49 @@ void CarlaLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t 
     _parent = other._parent;///< 拷贝父节点名称
     _impl = other._impl;///< 共享实现类的指针
   }
-
+  /**
+ * @brief 拷贝赋值运算符重载
+ *
+ * 使用另一个 CarlaLidarPublisher 实例的值更新当前实例
+ *
+ * @param other 要赋值的 CarlaLidarPublisher 实例
+ * @return CarlaLidarPublisher& 引用当前实例
+ */
   CarlaLidarPublisher& CarlaLidarPublisher::operator=(const CarlaLidarPublisher& other) {
-    _frame_id = other._frame_id;
-    _name = other._name;
-    _parent = other._parent;
-    _impl = other._impl;
+    _frame_id = other._frame_id;///< 更新帧 ID
+    _name = other._name;///< 更新 ROS 节点名称
+    _parent = other._parent;///< 更新父节点名称
+    _impl = other._impl;///< 共享实现类的指针
 
     return *this;
   }
-
+  /**
+ * @brief CarlaLidarPublisher 类的移动构造函数
+ *
+ * 使用另一个 CarlaidarLPublisher 实例的值初始化新实例，并移动资源
+ *
+ * @param other 要移动的 CarlaLidarPublisher 实例
+ */
   CarlaLidarPublisher::CarlaLidarPublisher(CarlaLidarPublisher&& other) {
-    _frame_id = std::move(other._frame_id);
-    _name = std::move(other._name);
-    _parent = std::move(other._parent);
-    _impl = std::move(other._impl);
+    _frame_id = std::move(other._frame_id);///< 移动帧 ID
+    _name = std::move(other._name);///< 移动 ROS 节点名称
+    _parent = std::move(other._parent);///< 移动父节点名称
+    _impl = std::move(other._impl);///< 移动实现类的指针
   }
 
+  /**
+   * @brief 移动赋值运算符重载
+   *
+   * 使用另一个 CarlaLidarPublisher 实例的值更新当前实例，并移动资源
+   *
+   * @param other 要赋值的 CarlaLidarPublisher 实例
+   * @return CarlaLidarPublisher& 引用当前实例
+   */
   CarlaLidarPublisher& CarlaLidarPublisher::operator=(CarlaLidarPublisher&& other) {
-    _frame_id = std::move(other._frame_id);
-    _name = std::move(other._name);
-    _parent = std::move(other._parent);
-    _impl = std::move(other._impl);
+    _frame_id = std::move(other._frame_id);///< 移动帧 ID
+    _name = std::move(other._name);///< 移动 ROS 节点名称
+    _parent = std::move(other._parent);///< 移动父节点名称
+    _impl = std::move(other._impl);///< 移动实现类的指针
 
     return *this;
   }
