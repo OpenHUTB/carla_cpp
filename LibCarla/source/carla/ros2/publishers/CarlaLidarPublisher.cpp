@@ -128,65 +128,90 @@ namespace ros2 {
     _frame_id = _name;
     return true;
   }
-
+  /// @brief 发布激光雷达数据
+/// 
+/// 该函数尝试通过DDS（数据分发服务）发布激光雷达数据。
+/// 根据返回码，函数会返回发布是否成功。
+/// 
+/// @return 发布成功返回true，否则返回false。
   bool CarlaLidarPublisher::Publish() {
+      /// @brief DDS实例句柄
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    /// @brief 写入数据并获取返回码
+    /// 
+    /// 尝试将激光雷达数据写入DDS，并获取操作返回码。
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_lidar, instance_handle);
+    /// @brief 根据返回码处理结果
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /// @details 操作成功，返回true
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @details 发生错误，打印错误信息并返回false
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @details 操作不支持，打印错误信息并返回false
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @details 参数错误，打印错误信息并返回false
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @details 前置条件未满足，打印错误信息并返回false
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @details 资源不足，打印错误信息并返回false
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @details 功能未启用，打印错误信息并返回false
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @details 策略不可变，打印错误信息并返回false
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @details 策略不一致，打印错误信息并返回false
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @details 对象已被删除，打印错误信息并返回false
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @details 操作超时，打印错误信息并返回false
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @details 无数据，打印错误信息并返回false
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @details 非法操作，打印错误信息并返回false
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @details 安全策略不允许，打印错误信息并返回false
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @details 未知错误，打印未知错误信息并返回false
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
