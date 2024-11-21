@@ -149,60 +149,61 @@ float CollisionStage::GetBoundingBoxExtention(const ActorId actor_id) {
 }
 
 LocationVector CollisionStage::GetBoundary(const ActorId actor_id) {
-  const ActorType actor_type = simulation_state.GetType(actor_id);
-  const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id);
+  const ActorType actor_type = simulation_state.GetType(actor_id); // 获取实体类型
+  const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id); // 获取实体的朝向向量
 
-  float forward_extension = 0.0f;
+  float forward_extension = 0.0f; // 用于扩展边界框的向前长度
   if (actor_type == ActorType::Pedestrian) {
-    // 扩展行人的边界框以“预测”他们的位置并避免碰撞
-    forward_extension = simulation_state.GetVelocity(actor_id).Length() * WALKER_TIME_EXTENSION;
+    // 扩展行人的边界框，用于预测行人未来的位置，从而避免碰撞
+    forward_extension = simulation_state.GetVelocity(actor_id).Length() * WALKER_TIME_EXTENSION; // 根据速度扩展
   }
 
-  cg::Vector3D dimensions = simulation_state.GetDimensions(actor_id);
+  cg::Vector3D dimensions = simulation_state.GetDimensions(actor_id); // 获取实体的尺寸
 
-  float bbox_x = dimensions.x;
-  float bbox_y = dimensions.y;
+  float bbox_x = dimensions.x; // 边界框的x轴长度（前后方向）
+  float bbox_y = dimensions.y; // 边界框的y轴长度（左右方向）
 
-  const cg::Vector3D x_boundary_vector = heading_vector * (bbox_x + forward_extension);
-  const auto perpendicular_vector = cg::Vector3D(-heading_vector.y, heading_vector.x, 0.0f).MakeSafeUnitVector(EPSILON);
-  const cg::Vector3D y_boundary_vector = perpendicular_vector * (bbox_y + forward_extension);
+  const cg::Vector3D x_boundary_vector = heading_vector * (bbox_x + forward_extension); // 计算x方向的边界向量
+  const auto perpendicular_vector = cg::Vector3D(-heading_vector.y, heading_vector.x, 0.0f).MakeSafeUnitVector(EPSILON); // 计算垂直于朝向的单位向量
+  const cg::Vector3D y_boundary_vector = perpendicular_vector * (bbox_y + forward_extension); // 计算y方向的边界向量
 
-  // 车辆四个角在俯视图中的顺时针顺序（左手坐标系）
-  const cg::Location location = simulation_state.GetLocation(actor_id);
+  // 四个顶点，按照顺时针顺序（左手坐标系下的顶视图）
+  const cg::Location location = simulation_state.GetLocation(actor_id); // 获取实体位置
   LocationVector bbox_boundary = {
-      location + cg::Location(x_boundary_vector - y_boundary_vector),
-      location + cg::Location(-1.0f * x_boundary_vector - y_boundary_vector),
-      location + cg::Location(-1.0f * x_boundary_vector + y_boundary_vector),
-      location + cg::Location(x_boundary_vector + y_boundary_vector),
+      location + cg::Location(x_boundary_vector - y_boundary_vector), // 左前角
+      location + cg::Location(-1.0f * x_boundary_vector - y_boundary_vector), // 左后角
+      location + cg::Location(-1.0f * x_boundary_vector + y_boundary_vector), // 右后角
+      location + cg::Location(x_boundary_vector + y_boundary_vector), // 右前角
   };
 
-  return bbox_boundary;
+  return bbox_boundary; // 返回边界框
 }
 
 LocationVector CollisionStage::GetGeodesicBoundary(const ActorId actor_id) {
   LocationVector geodesic_boundary;
 
   if (geodesic_boundary_map.find(actor_id) != geodesic_boundary_map.end()) {
+    // 如果地理边界已经缓存，则直接获取
     geodesic_boundary = geodesic_boundary_map.at(actor_id);
   } else {
-    const LocationVector bbox = GetBoundary(actor_id);
+    const LocationVector bbox = GetBoundary(actor_id); //获取边界框
 
     if (buffer_map.find(actor_id) != buffer_map.end()) {
-      float bbox_extension = GetBoundingBoxExtention(actor_id);
-      const float specific_lead_distance = parameters.GetDistanceToLeadingVehicle(actor_id);
-      bbox_extension = std::max(specific_lead_distance, bbox_extension);
-      const float bbox_extension_square = SQUARE(bbox_extension);
+      float bbox_extension = GetBoundingBoxExtention(actor_id); // 获取边界框扩展值
+      const float specific_lead_distance = parameters.GetDistanceToLeadingVehicle(actor_id); // 获取特定的前车距离
+      bbox_extension = std::max(specific_lead_distance, bbox_extension); // 扩展边界框，使用更大的距离
+      const float bbox_extension_square = SQUARE(bbox_extension); // 计算扩展距离的平方
 
-      LocationVector left_boundary;
-      LocationVector right_boundary;
-      cg::Vector3D dimensions = simulation_state.GetDimensions(actor_id);
-      const float width = dimensions.y;
-      const float length = dimensions.x;
+      LocationVector left_boundary; // 左边界点集合
+      LocationVector right_boundary; // 右边界点集合
+      cg::Vector3D dimensions = simulation_state.GetDimensions(actor_id); // 获取实体的尺寸
+      const float width = dimensions.y; // 宽度
+      const float length = dimensions.x; // 长度
 
-      const Buffer &waypoint_buffer = buffer_map.at(actor_id);
-      const TargetWPInfo target_wp_info = GetTargetWaypoint(waypoint_buffer, length);
-      const SimpleWaypointPtr boundary_start = target_wp_info.first;
-      const uint64_t boundary_start_index = target_wp_info.second;
+      const Buffer &waypoint_buffer = buffer_map.at(actor_id); // 获取路径缓冲区
+      const TargetWPInfo target_wp_info = GetTargetWaypoint(waypoint_buffer, length); // 获取目标路径点和起点索引
+      const SimpleWaypointPtr boundary_start = target_wp_info.first; // 边界起始路径点
+      const uint64_t boundary_start_index = target_wp_info.second; // 边界起始索引
 
       // 在无信号交叉口，我们扩展边界穿过交叉口
       // 在所有其他情况下，边界长度与速度相关
@@ -254,13 +255,15 @@ LocationVector CollisionStage::GetGeodesicBoundary(const ActorId actor_id) {
 
 Polygon CollisionStage::GetPolygon(const LocationVector &boundary) {
 
-  traffic_manager::Polygon boundary_polygon;
+  traffic_manager::Polygon boundary_polygon; //定义一个多边形对象
   for (const cg::Location &location : boundary) {
+    // 将边界点逐一添加到多边形外环中
     bg::append(boundary_polygon.outer(), Point2D(location.x, location.y));
   }
+  // 将起始点再次添加到外环，闭合多边形
   bg::append(boundary_polygon.outer(), Point2D(boundary.front().x, boundary.front().y));
 
-  return boundary_polygon;
+  return boundary_polygon; // 返回多边形
 }
 
 GeometryComparison CollisionStage::GetGeometryBetweenActors(const ActorId reference_vehicle_id,
@@ -269,47 +272,53 @@ GeometryComparison CollisionStage::GetGeometryBetweenActors(const ActorId refere
 
   std::pair<ActorId, ActorId> key_parts;
   if (reference_vehicle_id < other_actor_id) {
+    // 确保缓存键的生成始终保持一致，选择较小的 ActorId 为第一个键
     key_parts = {reference_vehicle_id, other_actor_id};
   } else {
     key_parts = {other_actor_id, reference_vehicle_id};
   }
 
-  uint64_t actor_id_key = 0u;
-  actor_id_key |= key_parts.first;
-  actor_id_key <<= 32;
-  actor_id_key |= key_parts.second;
+  uint64_t actor_id_key = 0u; // 用于存储唯一键
+  actor_id_key |= key_parts.first; // 首先存储第一个实体 ID
+  actor_id_key <<= 32; // 左移32位，为第二个实体ID留出空间
+  actor_id_key |= key_parts.second; // 添加第二个实体ID
 
-  GeometryComparison comparision_result{-1.0, -1.0, -1.0, -1.0};
+  GeometryComparison comparision_result{-1.0, -1.0, -1.0, -1.0}; // 默认比较结果，初始化为-1.0
 
   if (geometry_cache.find(actor_id_key) != geometry_cache.end()) {
-
+    // 如果几何关系已缓存，则直接获取
     comparision_result = geometry_cache.at(actor_id_key);
     double mref_veh_other = comparision_result.reference_vehicle_to_other_geodesic;
+    // 交换参考车辆到其他车辆的距离和相反方向的距离
     comparision_result.reference_vehicle_to_other_geodesic = comparision_result.other_vehicle_to_reference_geodesic;
     comparision_result.other_vehicle_to_reference_geodesic = mref_veh_other;
   } else {
-
+    // 获取参考车辆的边界多边形
     const Polygon reference_polygon = GetPolygon(GetBoundary(reference_vehicle_id));
+    // 获取其他实体的边界多边形
     const Polygon other_polygon = GetPolygon(GetBoundary(other_actor_id));
-
+    // 获取参考车辆的地理边界多边形
     const Polygon reference_geodesic_polygon = GetPolygon(GetGeodesicBoundary(reference_vehicle_id));
-
+    //获取其他实体的地理边界多边形
     const Polygon other_geodesic_polygon = GetPolygon(GetGeodesicBoundary(other_actor_id));
-
+    // 计算参考车辆到其他实体地理边界的距离
     const double reference_vehicle_to_other_geodesic = bg::distance(reference_polygon, other_geodesic_polygon);
+    // 计算其他实体到参考车辆地理边界的距离
     const double other_vehicle_to_reference_geodesic = bg::distance(other_polygon, reference_geodesic_polygon);
+    // 计算两实体地理边界之间的距离
     const auto inter_geodesic_distance = bg::distance(reference_geodesic_polygon, other_geodesic_polygon);
+    // 计算两实体边界框之间的距离
     const auto inter_bbox_distance = bg::distance(reference_polygon, other_polygon);
-
+    // 将计算结果存储到比较结果中
     comparision_result = {reference_vehicle_to_other_geodesic,
               other_vehicle_to_reference_geodesic,
               inter_geodesic_distance,
               inter_bbox_distance};
-
+    // 将结果缓存
     geometry_cache.insert({actor_id_key, comparision_result});
   }
 
-  return comparision_result;
+  return comparision_result; // 返回几何比较结果
 }
 
 std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId reference_vehicle_id,
