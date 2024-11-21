@@ -4,9 +4,9 @@
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
 
-""" This module implements an agent that roams around a track following random
-waypoints and avoiding other vehicles. The agent also responds to traffic lights,
-traffic signs, and has different possible configurations. """
+""" 这个模块实现了一个代理（agent），它在赛道上随机漫游，遵循路径点并避开其他车辆。
+该代理还响应交通信号灯、交通标志，并具有不同的可能配置。
+ """
 
 import numpy as np
 import carla
@@ -18,15 +18,11 @@ from agents.tools.misc import get_speed, positive
 
 class BehaviorAgent(BasicAgent):
     """
-    BehaviorAgent implements an agent that navigates scenes to reach a given
-    target destination, by computing the shortest possible path to it.
-    This agent can correctly follow traffic signs, speed limitations,
-    traffic lights, while also taking into account nearby vehicles. Lane changing
-    decisions can be taken by analyzing the surrounding environment such as tailgating avoidance.
-    Adding to these are possible behaviors, the agent can also keep safety distance
-    from a car in front of it by tracking the instantaneous time to collision
-    and keeping it in a certain range. Finally, different sets of behaviors
-    are encoded in the agent, from cautious to a more aggressive ones.
+  BehaviorAgent实现了一个代理，它能够在场景中导航以到达给定的目标目的地，通过计算到达目的地的最短可能路径。
+  这个代理能够正确地遵循交通标志、速度限制和交通信号灯，同时还会考虑到附近车辆的情况。
+  通过分析周围环境，例如避免被紧跟，可以做出车道变换决策。
+  除此之外，代理还可以保持与前方车辆的安全距离，通过跟踪即时的碰撞时间并将其保持在一定范围内。
+  最后，代理中编码了不同的行为集合，从谨慎到更具侵略性的行为都有。
     """
 
     def __init__(self, vehicle, behavior='normal', opt_dict={}, map_inst=None, grp_inst=None):
@@ -40,7 +36,7 @@ class BehaviorAgent(BasicAgent):
         super().__init__(vehicle, opt_dict=opt_dict, map_inst=map_inst, grp_inst=grp_inst)
         self._look_ahead_steps = 0
 
-        # Vehicle information
+        # 车辆信息
         self._speed = 0
         self._speed_limit = 0
         self._direction = None
@@ -50,7 +46,7 @@ class BehaviorAgent(BasicAgent):
         self._behavior = None
         self._sampling_resolution = 4.5
 
-        # Parameters for agent behavior
+        # 代理行为参数
         if behavior == 'cautious':
             self._behavior = Cautious()
 
@@ -62,8 +58,7 @@ class BehaviorAgent(BasicAgent):
 
     def _update_information(self):
         """
-        This method updates the information regarding the ego
-        vehicle based on the surrounding world.
+        这个方法更新了关于自车（ego vehicle）基于周围世界的信息。
         """
         self._speed = get_speed(self._vehicle)
         self._speed_limit = self._vehicle.get_speed_limit()
@@ -81,7 +76,7 @@ class BehaviorAgent(BasicAgent):
 
     def traffic_light_manager(self):
         """
-        This method is in charge of behaviors for red lights.
+        这个方法负责处理红灯的行为。
         """
         actor_list = self._world.get_actors()
         lights_list = actor_list.filter("*traffic_light*")
@@ -91,7 +86,7 @@ class BehaviorAgent(BasicAgent):
 
     def _tailgating(self, waypoint, vehicle_list):
         """
-        This method is in charge of tailgating behaviors.
+        这个方法负责处理尾随行为。
 
             :param location: current location of the agent
             :param waypoint: current waypoint of the agent
@@ -129,8 +124,7 @@ class BehaviorAgent(BasicAgent):
 
     def collision_and_car_avoid_manager(self, waypoint):
         """
-        This module is in charge of warning in case of a collision
-        and managing possible tailgating chances.
+        这个模块负责在发生碰撞的情况下发出警告，并管理可能的尾随机会。
 
             :param location: current location of the agent
             :param waypoint: current waypoint of the agent
@@ -166,8 +160,7 @@ class BehaviorAgent(BasicAgent):
 
     def pedestrian_avoid_manager(self, waypoint):
         """
-        This module is in charge of warning in case of a collision
-        with any pedestrian.
+        这个模块负责在与任何行人发生碰撞的情况下发出警告。
 
             :param location: current location of the agent
             :param waypoint: current waypoint of the agent
@@ -194,8 +187,7 @@ class BehaviorAgent(BasicAgent):
 
     def car_following_manager(self, vehicle, distance, debug=False):
         """
-        Module in charge of car-following behaviors when there's
-        someone in front of us.
+        这个模块负责管理当我们前方有车辆时的跟车行为。
 
             :param vehicle: car to follow
             :param distance: distance from vehicle
@@ -207,7 +199,7 @@ class BehaviorAgent(BasicAgent):
         delta_v = max(1, (self._speed - vehicle_speed) / 3.6)
         ttc = distance / delta_v if delta_v != 0 else distance / np.nextafter(0., 1.)
 
-        # Under safety time distance, slow down.
+        # 在安全时间距离下，减速。
         if self._behavior.safety_time > ttc > 0.0:
             target_speed = min([
                 positive(vehicle_speed - self._behavior.speed_decrease),
@@ -216,7 +208,7 @@ class BehaviorAgent(BasicAgent):
             self._local_planner.set_speed(target_speed)
             control = self._local_planner.run_step(debug=debug)
 
-        # Actual safety distance area, try to follow the speed of the vehicle in front.
+        # 在实际安全距离范围内，尝试跟随前方车辆的速度。
         elif 2 * self._behavior.safety_time > ttc >= self._behavior.safety_time:
             target_speed = min([
                 max(self._min_speed, vehicle_speed),
@@ -225,7 +217,7 @@ class BehaviorAgent(BasicAgent):
             self._local_planner.set_speed(target_speed)
             control = self._local_planner.run_step(debug=debug)
 
-        # Normal behavior.
+        # 正常行为。
         else:
             target_speed = min([
                 self._behavior.max_speed,
@@ -237,7 +229,7 @@ class BehaviorAgent(BasicAgent):
 
     def run_step(self, debug=False):
         """
-        Execute one step of navigation.
+       执行导航的一步。
 
             :param debug: boolean for debugging
             :return control: carla.VehicleControl
@@ -251,35 +243,35 @@ class BehaviorAgent(BasicAgent):
         ego_vehicle_loc = self._vehicle.get_location()
         ego_vehicle_wp = self._map.get_waypoint(ego_vehicle_loc)
 
-        # 1: Red lights and stops behavior
+        # 1: 处理红灯和停车行为。
         if self.traffic_light_manager():
             return self.emergency_stop()
 
-        # 2.1: Pedestrian avoidance behaviors
+        # 2.1: 行人避让行为。
         walker_state, walker, w_distance = self.pedestrian_avoid_manager(ego_vehicle_wp)
 
         if walker_state:
-            # Distance is computed from the center of the two cars,
-            # we use bounding boxes to calculate the actual distance
+            # 距离是从两辆车的中心计算得出的
+            # 我们使用边界框来计算实际距离。
             distance = w_distance - max(
                 walker.bounding_box.extent.y, walker.bounding_box.extent.x) - max(
                     self._vehicle.bounding_box.extent.y, self._vehicle.bounding_box.extent.x)
 
-            # Emergency brake if the car is very close.
+            # 如果车辆非常接近，则紧急刹车。
             if distance < self._behavior.braking_distance:
                 return self.emergency_stop()
 
-        # 2.2: Car following behaviors
+        #2.2：跟车行为
         vehicle_state, vehicle, distance = self.collision_and_car_avoid_manager(ego_vehicle_wp)
 
         if vehicle_state:
-            # Distance is computed from the center of the two cars,
-            # we use bounding boxes to calculate the actual distance
+            # 距离是从两辆车的中心计算的。
+            # 我们使用边界框来计算实际距离。
             distance = distance - max(
                 vehicle.bounding_box.extent.y, vehicle.bounding_box.extent.x) - max(
                     self._vehicle.bounding_box.extent.y, self._vehicle.bounding_box.extent.x)
 
-            # Emergency brake if the car is very close.
+            # 如果车辆非常接近，就紧急刹车。
             if distance < self._behavior.braking_distance:
                 return self.emergency_stop()
             else:
