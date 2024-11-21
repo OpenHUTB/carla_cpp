@@ -149,60 +149,61 @@ float CollisionStage::GetBoundingBoxExtention(const ActorId actor_id) {
 }
 
 LocationVector CollisionStage::GetBoundary(const ActorId actor_id) {
-  const ActorType actor_type = simulation_state.GetType(actor_id);
-  const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id);
+  const ActorType actor_type = simulation_state.GetType(actor_id); // 获取实体类型
+  const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id); // 获取实体的朝向向量
 
-  float forward_extension = 0.0f;
+  float forward_extension = 0.0f; // 用于扩展边界框的向前长度
   if (actor_type == ActorType::Pedestrian) {
-    // Extend the pedestrians bbox to "predict" where they'll be and avoid collisions.
-    forward_extension = simulation_state.GetVelocity(actor_id).Length() * WALKER_TIME_EXTENSION;
+    // 扩展行人的边界框，用于预测行人未来的位置，从而避免碰撞
+    forward_extension = simulation_state.GetVelocity(actor_id).Length() * WALKER_TIME_EXTENSION; // 根据速度扩展
   }
 
-  cg::Vector3D dimensions = simulation_state.GetDimensions(actor_id);
+  cg::Vector3D dimensions = simulation_state.GetDimensions(actor_id); // 获取实体的尺寸
 
-  float bbox_x = dimensions.x;
-  float bbox_y = dimensions.y;
+  float bbox_x = dimensions.x; // 边界框的x轴长度（前后方向）
+  float bbox_y = dimensions.y; // 边界框的y轴长度（左右方向）
 
-  const cg::Vector3D x_boundary_vector = heading_vector * (bbox_x + forward_extension);
-  const auto perpendicular_vector = cg::Vector3D(-heading_vector.y, heading_vector.x, 0.0f).MakeSafeUnitVector(EPSILON);
-  const cg::Vector3D y_boundary_vector = perpendicular_vector * (bbox_y + forward_extension);
+  const cg::Vector3D x_boundary_vector = heading_vector * (bbox_x + forward_extension); // 计算x方向的边界向量
+  const auto perpendicular_vector = cg::Vector3D(-heading_vector.y, heading_vector.x, 0.0f).MakeSafeUnitVector(EPSILON); // 计算垂直于朝向的单位向量
+  const cg::Vector3D y_boundary_vector = perpendicular_vector * (bbox_y + forward_extension); // 计算y方向的边界向量
 
-  // Four corners of the vehicle in top view clockwise order (left-handed system).
-  const cg::Location location = simulation_state.GetLocation(actor_id);
+  // 四个顶点，按照顺时针顺序（左手坐标系下的顶视图）
+  const cg::Location location = simulation_state.GetLocation(actor_id); // 获取实体位置
   LocationVector bbox_boundary = {
-      location + cg::Location(x_boundary_vector - y_boundary_vector),
-      location + cg::Location(-1.0f * x_boundary_vector - y_boundary_vector),
-      location + cg::Location(-1.0f * x_boundary_vector + y_boundary_vector),
-      location + cg::Location(x_boundary_vector + y_boundary_vector),
+      location + cg::Location(x_boundary_vector - y_boundary_vector), // 左前角
+      location + cg::Location(-1.0f * x_boundary_vector - y_boundary_vector), // 左后角
+      location + cg::Location(-1.0f * x_boundary_vector + y_boundary_vector), // 右后角
+      location + cg::Location(x_boundary_vector + y_boundary_vector), // 右前角
   };
 
-  return bbox_boundary;
+  return bbox_boundary; // 返回边界框
 }
 
 LocationVector CollisionStage::GetGeodesicBoundary(const ActorId actor_id) {
   LocationVector geodesic_boundary;
 
   if (geodesic_boundary_map.find(actor_id) != geodesic_boundary_map.end()) {
+    // 如果地理边界已经缓存，则直接获取
     geodesic_boundary = geodesic_boundary_map.at(actor_id);
   } else {
-    const LocationVector bbox = GetBoundary(actor_id);
+    const LocationVector bbox = GetBoundary(actor_id); //获取边界框
 
     if (buffer_map.find(actor_id) != buffer_map.end()) {
-      float bbox_extension = GetBoundingBoxExtention(actor_id);
-      const float specific_lead_distance = parameters.GetDistanceToLeadingVehicle(actor_id);
-      bbox_extension = std::max(specific_lead_distance, bbox_extension);
-      const float bbox_extension_square = SQUARE(bbox_extension);
+      float bbox_extension = GetBoundingBoxExtention(actor_id); // 获取边界框扩展值
+      const float specific_lead_distance = parameters.GetDistanceToLeadingVehicle(actor_id); // 获取特定的前车距离
+      bbox_extension = std::max(specific_lead_distance, bbox_extension); // 扩展边界框，使用更大的距离
+      const float bbox_extension_square = SQUARE(bbox_extension); // 计算扩展距离的平方
 
-      LocationVector left_boundary;
-      LocationVector right_boundary;
-      cg::Vector3D dimensions = simulation_state.GetDimensions(actor_id);
-      const float width = dimensions.y;
-      const float length = dimensions.x;
+      LocationVector left_boundary; // 左边界点集合
+      LocationVector right_boundary; // 右边界点集合
+      cg::Vector3D dimensions = simulation_state.GetDimensions(actor_id); // 获取实体的尺寸
+      const float width = dimensions.y; // 宽度
+      const float length = dimensions.x; // 长度
 
-      const Buffer &waypoint_buffer = buffer_map.at(actor_id);
-      const TargetWPInfo target_wp_info = GetTargetWaypoint(waypoint_buffer, length);
-      const SimpleWaypointPtr boundary_start = target_wp_info.first;
-      const uint64_t boundary_start_index = target_wp_info.second;
+      const Buffer &waypoint_buffer = buffer_map.at(actor_id); // 获取路径缓冲区
+      const TargetWPInfo target_wp_info = GetTargetWaypoint(waypoint_buffer, length); // 获取目标路径点和起点索引
+      const SimpleWaypointPtr boundary_start = target_wp_info.first; // 边界起始路径点
+      const uint64_t boundary_start_index = target_wp_info.second; // 边界起始索引
 
       // At non-signalized junctions, we extend the boundary across the junction
       // and in all other situations, boundary length is velocity-dependent.
