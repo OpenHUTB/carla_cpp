@@ -70,30 +70,39 @@ namespace ros2 {
      */
     sensor_msgs::msg::PointCloud2 _lidar {};
   };
-
+  /**
+   * @brief 初始化CarlaLidarPublisher。
+   *
+   * 该函数负责初始化DDS通信所需的资源，包括域参与者、发布者、主题和数据写入器。
+   *
+   * @return 初始化成功返回true，否则返回false。
+   */
   bool CarlaLidarPublisher::Init() {
+      // 检查类型支持是否有效
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    // 设置域参与者的QoS策略
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    // 创建域参与者
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl->_participant = factory->create_participant(0, pqos);
     if (_impl->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    // 注册类型支持
     _impl->_type.register_type(_impl->_participant);
-
+    // 设置发布者的QoS策略
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+    // 设置主题的QoS策略
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
@@ -105,15 +114,17 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    // 设置数据写入器的QoS策略
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
+    // 创建数据写入器，并传入自定义的监听器
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
     if (_impl->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
+    // 设置帧ID为发布者的名称
     _frame_id = _name;
     return true;
   }
