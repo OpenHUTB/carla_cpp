@@ -878,63 +878,63 @@ if (bEnableModifyingPostProcessEffects)
     BladeCount.RecommendedValues = { TEXT("5") }; // 推荐值为5
     BladeCount.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // - Tonemapper Settings -----------------------------------
-    // You can adjust these tonemapper controls to emulate other
-    // types of film stock for your project
-    FActorVariation FilmSlope;
-    FilmSlope.Id = TEXT("slope");
-    FilmSlope.Type = EActorAttributeType::Float;
-    FilmSlope.RecommendedValues = { TEXT("0.88") };
-    FilmSlope.bRestrictToRecommended = false;
+    // - 调色映射器设置 -----------------------------------
+    // 您可以调整这些调色映射器控件，以模拟其他类型的胶片库存，用于您的项目
+    FActorVariation FilmSlope; // 胶片斜率变量
+    FilmSlope.Id = TEXT("slope"); // 变量标识符设置为"slope"
+    FilmSlope.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmSlope.RecommendedValues = { TEXT("0.88") }; // 推荐值设置为0.88
+    FilmSlope.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmToe;
-    FilmToe.Id = TEXT("toe");
-    FilmToe.Type = EActorAttributeType::Float;
-    FilmToe.RecommendedValues = { TEXT("0.55") };
-    FilmToe.bRestrictToRecommended = false;
+    FActorVariation FilmToe; // 胶片趾部变量
+    FilmToe.Id = TEXT("toe"); // 变量标识符设置为"toe"
+    FilmToe.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmToe.RecommendedValues = { TEXT("0.55") }; // 推荐值设置为0.55
+    FilmToe.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmShoulder;
-    FilmShoulder.Id = TEXT("shoulder");
-    FilmShoulder.Type = EActorAttributeType::Float;
-    FilmShoulder.RecommendedValues = { TEXT("0.26") };
-    FilmShoulder.bRestrictToRecommended = false;
+    FActorVariation FilmShoulder; // 胶片肩部变量
+    FilmShoulder.Id = TEXT("shoulder"); // 变量标识符设置为"shoulder"
+    FilmShoulder.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmShoulder.RecommendedValues = { TEXT("0.26") }; // 推荐值设置为0.26
+    FilmShoulder.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmBlackClip;
-    FilmBlackClip.Id = TEXT("black_clip");
-    FilmBlackClip.Type = EActorAttributeType::Float;
-    FilmBlackClip.RecommendedValues = { TEXT("0.0") };
-    FilmBlackClip.bRestrictToRecommended = false;
+    FActorVariation FilmBlackClip; // 胶片黑色截断变量
+    FilmBlackClip.Id = TEXT("black_clip"); // 变量标识符设置为"black_clip"
+    FilmBlackClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmBlackClip.RecommendedValues = { TEXT("0.0") }; // 推荐值设置为0.0
+    FilmBlackClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmWhiteClip;
-    FilmWhiteClip.Id = TEXT("white_clip");
-    FilmWhiteClip.Type = EActorAttributeType::Float;
-    FilmWhiteClip.RecommendedValues = { TEXT("0.04") };
-    FilmWhiteClip.bRestrictToRecommended = false;
+    FActorVariation FilmWhiteClip; // 胶片白色截断变量
+    FilmWhiteClip.Id = TEXT("white_clip"); // 变量标识符设置为"white_clip"
+    FilmWhiteClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmWhiteClip.RecommendedValues = { TEXT("0.04") }; // 推荐值设置为0.04
+    FilmWhiteClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    // Color
-    FActorVariation Temperature;
-    Temperature.Id = TEXT("temp");
-    Temperature.Type = EActorAttributeType::Float;
-    Temperature.RecommendedValues = { TEXT("6500.0") };
-    Temperature.bRestrictToRecommended = false;
 
-    FActorVariation Tint;
-    Tint.Id = TEXT("tint");
-    Tint.Type = EActorAttributeType::Float;
-    Tint.RecommendedValues = { TEXT("0.0") };
-    Tint.bRestrictToRecommended = false;
+    // 颜色相关设置
+    FActorVariation Temperature;// 温度变量
+    Temperature.Id = TEXT("temp"); // 设置温度变量的标识符为"temp"
+    Temperature.Type = EActorAttributeType::Float;// 设置温度变量的类型为浮点数
+    Temperature.RecommendedValues = { TEXT("6500.0") };// 为温度变量设置推荐值
+    Temperature.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
-    FActorVariation ChromaticIntensity;
-    ChromaticIntensity.Id = TEXT("chromatic_aberration_intensity");
-    ChromaticIntensity.Type = EActorAttributeType::Float;
-    ChromaticIntensity.RecommendedValues = { TEXT("0.0") };
-    ChromaticIntensity.bRestrictToRecommended = false;
+    FActorVariation Tint; // 色调变量
+    Tint.Id = TEXT("tint");// 设置色调变量的标识符为"tint"
+    Tint.Type = EActorAttributeType::Float;// 设置色调变量的类型为浮点数
+    Tint.RecommendedValues = { TEXT("0.0") };// 为色调变量设置推荐值
+    Tint.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
-    FActorVariation ChromaticOffset;
-    ChromaticOffset.Id = TEXT("chromatic_aberration_offset");
-    ChromaticOffset.Type = EActorAttributeType::Float;
-    ChromaticOffset.RecommendedValues = { TEXT("0.0") };
-    ChromaticOffset.bRestrictToRecommended = false;
+    FActorVariation ChromaticIntensity;// 色散强度变量
+    ChromaticIntensity.Id = TEXT("chromatic_aberration_intensity");// 设置色散强度变量的标识符为"chromatic_aberration_intensity"
+    ChromaticIntensity.Type = EActorAttributeType::Float; // 设置色散强度变量的类型为浮点数
+    ChromaticIntensity.RecommendedValues = { TEXT("0.0") };// 为色散强度变量设置推荐值
+    ChromaticIntensity.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
+
+    FActorVariation ChromaticOffset;// 色散偏移变量
+    ChromaticOffset.Id = TEXT("chromatic_aberration_offset"); // 设置色散偏移变量的标识符为"chromatic_aberration_offset"
+    ChromaticOffset.Type = EActorAttributeType::Float;// 设置色散偏移变量的类型为浮点数
+    ChromaticOffset.RecommendedValues = { TEXT("0.0") }; // 为色散偏移变量设置推荐值
+    ChromaticOffset.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
     Definition.Variations.Append({
       ExposureMode,
