@@ -952,33 +952,37 @@ PUGI__NS_BEGIN
 				// 如果赋值为nullptr，则将_data设置为0
 				_data = 0;
 		}
-
+		// 定义一个类型转换运算符，将compact_pointer转换为T*
 		operator T*() const
 		{
-			if (_data)
+			if (_data)// 如果_data不为0
 			{
-				if (_data < 255)
+				if (_data < 255)// 如果_data的值小于255，表示指针值直接存储在_data中（经过编码）
 				{
+					// 计算基地址：将this指针向下对齐到compact_alignment的倍数
 					uintptr_t base = reinterpret_cast<uintptr_t>(this) & ~(compact_alignment - 1);
-
+					// 根据_data计算偏移量，并加上start（可能是一个调整值），然后乘以compact_alignment得到实际地址
+					// 最后，将基地址与计算出的偏移量相加，得到目标指针的地址，并转换为T*类型
 					return reinterpret_cast<T*>(base + (_data - 1 + start) * compact_alignment);
 				}
-				else
+				else  // 如果_data的值等于255，表示指针值存储在外部
+					 // 调用compact_get_value函数来获取存储在外部的指针值
 					return compact_get_value<header_offset, T>(this);
 			}
-			else
-				return 0;
+			else// 如果_data为0，表示空指针
+				return 0;// 返回nullptr
 		}
-
+		// 定义一个成员访问运算符，允许通过compact_pointer对象直接访问目标对象的成员
 		T* operator->() const
 		{
 			return *this;
 		}
-
+	// compact_pointer类的私有成员定义结束
 	private:
+		// 用于存储编码后的指针值或标记指针值是否存储在外部
 		unsigned char _data;
 	};
-
+	// 定义一个模板类compact_pointer_parent，它可能是compact_pointer的基类或用于提供某些共享功能
 	template <typename T, int header_offset> class compact_pointer_parent
 	{
 	public:
