@@ -22,20 +22,52 @@
 #include <fastrtps/qos/QosPolicies.h>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
 #include <fastdds/dds/publisher/DataWriterListener.hpp>
-
+/**
+ * @namespace carla::ros2
+ * @brief 命名空间，包含CARLA与ROS2集成相关的类和函数。
+ */
 namespace carla {
 namespace ros2 {
-
+    /**
+       * @brief 命名空间别名，简化eprosima::fastdds::dds的引用。
+       */
   namespace efd = eprosima::fastdds::dds;
+  /**
+   * @brief 类型别名，简化eprosima::fastrtps::types::ReturnCode_t的引用。
+   */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+   * @struct CarlaLidarPublisherImpl
+   * @brief CarlaLidarPublisher的内部实现结构体，封装了DDS通信所需的资源。
+   */
   struct CarlaLidarPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于PointCloud2消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::PointCloud2PubSubType() };
+    /**
+     * @brief CARLA监听器，用于接收CARLA模拟器的数据。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 存储激光雷达数据的PointCloud2消息。
+     */
     sensor_msgs::msg::PointCloud2 _lidar {};
   };
 
