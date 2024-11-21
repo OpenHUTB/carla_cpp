@@ -55,9 +55,9 @@ void ASoilTypeManager::Tick(float DeltaTime)
       // 具体的索引格式可能根据地图数据结构的实现而定
 
       FString TypeStr = GetTerrainPropertiesAtGlobalLocation(GlobalCarPos).ToString();
+
       // 调用当前类（ASoilTypeManager）的GetTerrainPropertiesAtGlobalLocation函数获取车辆所在全局位置的地形属性，
       // 并将其转换为字符串形式存储在TypeStr变量中，以便后续输出日志
-  
       UE_LOG(LogCarla, Log, TEXT("Current Tile Index %d ----> (%d, %d, %d) with position L[%f, %f, %f] G[%f, %f, %f] Terrain Type: %s"),
         TileIndex, TileVector.X, TileVector.Y, TileVector.Z, CarPos.X, CarPos.Y, CarPos.Z, GlobalCarPos.X, GlobalCarPos.Y, GlobalCarPos.Z,
         *TypeStr);
