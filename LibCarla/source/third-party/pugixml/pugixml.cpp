@@ -916,15 +916,16 @@ PUGI__NS_BEGIN
 	template <typename T, int header_offset, int start = -126> class compact_pointer
 	{
 	public:
+		// compact_pointer的默认构造函数，初始化_data成员为0
 		compact_pointer(): _data(0)
 		{
 		}
-
+		// 重载赋值运算符，用于将一个compact_pointer对象赋值给另一个
 		void operator=(const compact_pointer& rhs)
 		{
 			*this = rhs + 0;
 		}
-
+		// 重载赋值运算符，用于将一个原生指针赋值给compact_pointer对象
 		void operator=(T* value)
 		{
 			if (value)
@@ -935,17 +936,20 @@ PUGI__NS_BEGIN
 				// compensate for arithmetic shift rounding for negative values
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) - start;
-
+				// 如果计算出的偏移量（经过调整并转换为无符号后）小于等于253，
+				// 则将其加1后存储到_data中（因为0被保留用于空指针）
 				if (static_cast<uintptr_t>(offset) <= 253)
 					_data = static_cast<unsigned char>(offset + 1);
 				else
 				{
+					// compact_set_value是一个模板函数，header_offset是一个占位符，表示可能的头部偏移量
 					compact_set_value<header_offset>(this, value);
 
-					_data = 255;
+					_data = 255;// 设置_data为255，表示指针值存储在外部
 				}
 			}
 			else
+				// 如果赋值为nullptr，则将_data设置为0
 				_data = 0;
 		}
 
