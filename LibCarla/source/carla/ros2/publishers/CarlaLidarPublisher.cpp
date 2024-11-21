@@ -294,35 +294,52 @@ void CarlaLidarPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t 
     _impl->_lidar.is_dense(false); // 设置是否稠密（True表示没有无效点）
     _impl->_lidar.data(std::move(data));// 设置点云数据
   }
-
+  /**
+ * @brief CarlaLidarPublisher 类的构造函数
+ *
+ * 初始化 CarlaLidarPublisher 实例，并创建 CarlaLidarPublisherImpl 实现类的共享指针
+ *
+ * @param ros_name ROS 节点名称
+ * @param parent 父节点的名称
+ */
   CarlaLidarPublisher::CarlaLidarPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaLidarPublisherImpl>()) {
-    _name = ros_name;
-    _parent = parent;
+    _name = ros_name;///< ROS 节点名称
+    _parent = parent;///< 父节点名称
   }
-
+  /**
+ * @brief CarlaLidarPublisher 类的析构函数
+ *
+ * 释放所有分配的资源，包括数据写入器、发布者、主题和参与者
+ */
   CarlaLidarPublisher::~CarlaLidarPublisher() {
       if (!_impl)
           return;
 
       if (_impl->_datawriter)
-          _impl->_publisher->delete_datawriter(_impl->_datawriter);
+          _impl->_publisher->delete_datawriter(_impl->_datawriter);///< 删除数据写入器
 
       if (_impl->_publisher)
-          _impl->_participant->delete_publisher(_impl->_publisher);
+          _impl->_participant->delete_publisher(_impl->_publisher);///< 删除发布者
 
       if (_impl->_topic)
-          _impl->_participant->delete_topic(_impl->_topic);
+          _impl->_participant->delete_topic(_impl->_topic); ///< 删除主题
 
       if (_impl->_participant)
-          efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
+          efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant); ///< 删除参与者
   }
-
+  /**
+ * @brief CarlaLidarPublisher 类的拷贝构造函数
+ *
+ * 使用另一个 CarlaLidarPublisher 实例初始化新实例
+ *
+ * @param other 要拷贝的 CarlaLidarPublisher 实例
+ */
   CarlaLidarPublisher::CarlaLidarPublisher(const CarlaLidarPublisher& other) {
-    _frame_id = other._frame_id;
-    _name = other._name;
-    _parent = other._parent;
-    _impl = other._impl;
+    _frame_id = other._frame_id;///< 拷贝帧 ID
+    _name = other._name;///< 拷贝 ROS 节点名称
+    _parent = other._parent;///< 拷贝父节点名称
+    _impl = other._impl;///< 共享实现类的指针
   }
 
   CarlaLidarPublisher& CarlaLidarPublisher::operator=(const CarlaLidarPublisher& other) {
