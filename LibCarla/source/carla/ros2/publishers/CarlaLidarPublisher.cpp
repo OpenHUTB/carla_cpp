@@ -1,23 +1,23 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaLidarPublisher.h"
+#include "CarlaLidarPublisher.h"// 包含 CarlaLidarPublisher 类的声明
 
-#include <string>
-
+#include <string>// 包含字符串处理功能
+// 包含 CARLA ROS2 桥接所需的类型定义和监听器类
 #include "carla/ros2/types/PointCloud2PubSubTypes.h"
 #include "carla/ros2/listeners/CarlaListener.h"
-
+// 包含 FastDDS 相关的头文件，用于 DDS 通信
 #include <fastdds/dds/domain/DomainParticipant.hpp>
 #include <fastdds/dds/publisher/Publisher.hpp>
 #include <fastdds/dds/topic/Topic.hpp>
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/topic/TypeSupport.hpp>
-
+// 包含 FastDDS QoS（服务质量）配置相关的头文件
 #include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/publisher/qos/PublisherQos.hpp>
 #include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+// 包含 FastRTPS（FastDDS 的底层实现）的参与者属性和 QoS 策略相关的头文件
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
 #include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
