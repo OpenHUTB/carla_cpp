@@ -11,7 +11,6 @@ ASoilTypeManager::ASoilTypeManager()
 {
    // 设置此 Actor 使其每一帧都调用 Tick () 函数。如果你不需要它（每帧调用 Tick () 函数的功能），可以将其关闭以提高性能。
   PrimaryActorTick.bCanEverTick = false;
-
 }
 
 // 在游戏开始或（Actor）生成时被调用。
