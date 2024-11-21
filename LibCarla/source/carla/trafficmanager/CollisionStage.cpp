@@ -154,7 +154,7 @@ LocationVector CollisionStage::GetBoundary(const ActorId actor_id) {
 
   float forward_extension = 0.0f;
   if (actor_type == ActorType::Pedestrian) {
-    // Extend the pedestrians bbox to "predict" where they'll be and avoid collisions.
+    // 扩展行人的边界框以“预测”他们的位置并避免碰撞
     forward_extension = simulation_state.GetVelocity(actor_id).Length() * WALKER_TIME_EXTENSION;
   }
 
@@ -167,7 +167,7 @@ LocationVector CollisionStage::GetBoundary(const ActorId actor_id) {
   const auto perpendicular_vector = cg::Vector3D(-heading_vector.y, heading_vector.x, 0.0f).MakeSafeUnitVector(EPSILON);
   const cg::Vector3D y_boundary_vector = perpendicular_vector * (bbox_y + forward_extension);
 
-  // Four corners of the vehicle in top view clockwise order (left-handed system).
+  // 车辆四个角在俯视图中的顺时针顺序（左手坐标系）
   const cg::Location location = simulation_state.GetLocation(actor_id);
   LocationVector bbox_boundary = {
       location + cg::Location(x_boundary_vector - y_boundary_vector),
@@ -204,8 +204,8 @@ LocationVector CollisionStage::GetGeodesicBoundary(const ActorId actor_id) {
       const SimpleWaypointPtr boundary_start = target_wp_info.first;
       const uint64_t boundary_start_index = target_wp_info.second;
 
-      // At non-signalized junctions, we extend the boundary across the junction
-      // and in all other situations, boundary length is velocity-dependent.
+      // 在无信号交叉口，我们扩展边界穿过交叉口
+      // 在所有其他情况下，边界长度与速度相关
       SimpleWaypointPtr boundary_end = nullptr;
       SimpleWaypointPtr current_point = waypoint_buffer.at(boundary_start_index);
       bool reached_distance = false;
@@ -221,7 +221,7 @@ LocationVector CollisionStage::GetGeodesicBoundary(const ActorId actor_id) {
           const cg::Location location = current_point->GetLocation();
           cg::Vector3D perpendicular_vector = cg::Vector3D(-heading_vector.y, heading_vector.x, 0.0f);
           perpendicular_vector = perpendicular_vector.MakeSafeUnitVector(EPSILON);
-          // Direction determined for the left-handed system.
+          // 方向根据左手坐标系确定
           const cg::Vector3D scaled_perpendicular = perpendicular_vector * width;
           left_boundary.push_back(location + cg::Location(scaled_perpendicular));
           right_boundary.push_back(location + cg::Location(-1.0f * scaled_perpendicular));
@@ -232,11 +232,11 @@ LocationVector CollisionStage::GetGeodesicBoundary(const ActorId actor_id) {
         current_point = waypoint_buffer.at(j);
       }
 
-      // Reversing right boundary to construct clockwise (left-hand system)
-      // boundary. This is so because both left and right boundary vectors have
-      // the closest point to the vehicle at their starting index for the right
-      // boundary,
-      // we want to begin at the farthest point to have a clockwise trace.
+      // 反向右边界以构建顺时针（左手坐标系）
+      // 边界。这是因为左边界和右边界向量都有
+      // 在右边界的起始索引处与车辆的最近点
+      // 边界
+      // 我们希望从最远的点开始，以获得顺时针轨迹
       std::reverse(right_boundary.begin(), right_boundary.end());
       geodesic_boundary.insert(geodesic_boundary.end(), right_boundary.begin(), right_boundary.end());
       geodesic_boundary.insert(geodesic_boundary.end(), bbox.begin(), bbox.end());
@@ -315,22 +315,22 @@ GeometryComparison CollisionStage::GetGeometryBetweenActors(const ActorId refere
 std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId reference_vehicle_id,
                                                           const ActorId other_actor_id,
                                                           const uint64_t reference_junction_look_ahead_index) {
-  // Output variables for the method.
+  // 方法的输出变量
   bool hazard = false;
   float available_distance_margin = std::numeric_limits<float>::infinity();
 
   const cg::Location reference_location = simulation_state.GetLocation(reference_vehicle_id);
   const cg::Location other_location = simulation_state.GetLocation(other_actor_id);
 
-  // Ego and other vehicle heading.
+  // 自我和其他车辆的方向
   const cg::Vector3D reference_heading = simulation_state.GetHeading(reference_vehicle_id);
   // Vector from ego position to position of the other vehicle.
   cg::Vector3D reference_to_other = other_location - reference_location;
   reference_to_other = reference_to_other.MakeSafeUnitVector(EPSILON);
 
-  // Other vehicle heading.
+  // 其他车辆的方向
   const cg::Vector3D other_heading = simulation_state.GetHeading(other_actor_id);
-  // Vector from other vehicle position to ego position.
+  // 从其他车辆位置到自我位置的向量
   cg::Vector3D other_to_reference = reference_location - other_location;
   other_to_reference = other_to_reference.MakeSafeUnitVector(EPSILON);
 
