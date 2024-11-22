@@ -1038,40 +1038,56 @@ if (bEnableModifyingPostProcessEffects)
     Success = CheckActorDefinition(Definition);
 }
 
+// 定义一个函数，该函数属于UActorBlueprintFunctionLibrary类，用于创建一个法线相机的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
+  // 创建一个FActorDefinition类型的对象Definition，用于存储相机定义
+  FActorDefinition Definition; 
+
+  // 定义一个布尔变量Success，用于标记操作是否成功
+  bool Success; 
+
+  // 调用重载的MakeNormalsCameraDefinition函数，传入Success和Definition的引用，以填充Definition并设置Success的值
   MakeNormalsCameraDefinition(Success, Definition);
+
+  // 使用check宏来验证Success是否为true，如果不是，则程序将在这里崩溃。这是一种调试时的保护措施。
   check(Success);
+
+  // 返回填充好的Definition对象
   return Definition;
 }
-
+ 
+// 定义一个重载的函数，该函数同样属于UActorBlueprintFunctionLibrary类，用于填充法线相机的定义
 void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, FActorDefinition &Definition)
 {
+  // 调用FillIdAndTags函数为Definition设置ID和标签，这里设置的ID为"sensor"，标签包括"camera"和"normals"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), TEXT("normals"));
+
+  // 调用AddRecommendedValuesForSensorRoleNames函数为Definition添加建议的角色名称值，这些值可能用于优化相机性能或行为
   AddRecommendedValuesForSensorRoleNames(Definition);
+
+  // 调用AddVariationsForSensor函数为Definition添加传感器的变种或变体，这可能包括不同的配置或设置以适应不同的使用场景
   AddVariationsForSensor(Definition);
 
-  // FOV
-  FActorVariation FOV;
-  FOV.Id = TEXT("fov");
-  FOV.Type = EActorAttributeType::Float;
-  FOV.RecommendedValues = { TEXT("90.0") };
-  FOV.bRestrictToRecommended = false;
+  // 视场角设置
+  FActorVariation FOV; // 创建一个FActorVariation类型的对象FOV，用于表示相机的视场角变化
+  FOV.Id = TEXT("fov"); // 设置FOV对象的ID为"fov"，这是其唯一标识符
+  FOV.Type = EActorAttributeType::Float; // 设置FOV对象的类型为浮点型，表示视场角是一个浮点数
+  FOV.RecommendedValues = { TEXT("90.0") }; // 为FOV对象设置一个推荐的视场角值
+  FOV.bRestrictToRecommended = false; // 设置FOV对象是否限制为只能使用推荐值
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+  // 分辨率设置
+  FActorVariation ResX; // 创建一个FActorVariation类型的对象ResX，用于表示相机图像宽度的变化
+  ResX.Id = TEXT("image_size_x"); // 设置ResX对象的ID为"image_size_x"，表示图像宽度
+  ResX.Type = EActorAttributeType::Int; // 设置ResX对象的类型为整型，表示图像宽度是一个整数
+  ResX.RecommendedValues = { TEXT("800") }; // 为ResX对象设置一个推荐的图像宽度值
+  ResX.bRestrictToRecommended = false; // 设置ResX对象是否限制为只能使用推荐值
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+  FActorVariation ResY; // 创建一个FActorVariation类型的对象ResY，用于表示相机图像高度的变化
+  ResY.Id = TEXT("image_size_y"); // 设置ResY对象的ID为"image_size_y"，表示图像高度
+  ResY.Type = EActorAttributeType::Int; // 设置ResY对象的类型为整型，表示图像高度是一个整数
+  ResY.RecommendedValues = { TEXT("600") }; // 为ResY对象设置一个推荐的图像高度值
+  ResY.bRestrictToRecommended = false; // 设置ResY对象是否限制为只能使用推荐值
 
   // Lens parameters
   FActorVariation LensCircleFalloff;
