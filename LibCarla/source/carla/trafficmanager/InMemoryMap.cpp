@@ -381,27 +381,26 @@ namespace traffic_manager {
       std::size_t next_swp_size = next_waypoints.size();
 
       if (next_swp_size == 0) {
-        // No next waypoint means that this is an end of the road.
+        // 没有下一个航点意味着这是路的尽头
         swp->SetRoadOption(RoadOption::RoadEnd);
       }
 
       else if (next_swp_size > 1 || (!swp->CheckJunction() && next_waypoints.front()->CheckJunction())) {
-        // To check if we are in an actual junction, and not on an highway, we try to see
-        // if there's a landmark nearby of type Traffic Light, Stop Sign or Yield Sign.
-
+        // 为了确认我们是否真的在一个交叉路口，而不是在高速公路上，我们尝试查看
+        // 如果附近有交通灯、停车标志或让行标志等类型的地标
         bool found_landmark= false;
         if (next_swp_size <= 1) {
 
           auto all_landmarks = swp->GetWaypoint()->GetAllLandmarksInDistance(15.0);
 
           if (all_landmarks.empty()) {
-            // Landmark hasn't been found, this isn't a junction.
+            // 未发现地标，这不是一个交叉口
             swp->SetRoadOption(RoadOption::LaneFollow);
           } else {
             for (auto &landmark : all_landmarks) {
               auto landmark_type = landmark->GetType();
               if (landmark_type == "1000001" || landmark_type == "206" || landmark_type == "205") {
-                // We found a landmark.
+                // 我们发现了一个地标
                 found_landmark= true;
                 break;
               }
@@ -412,8 +411,8 @@ namespace traffic_manager {
           }
         }
 
-        // If we did find a landmark, or we are in the other case, find all waypoints
-        // in the junction and assign the correct RoadOption.
+        // 如果我们确实找到了一个地标，或者在另一种情况下，找到了所有的航点
+        // 在交汇处并分配正确的道路选项
         if (found_landmark || next_swp_size > 1) {
           swp->SetRoadOption(RoadOption::LaneFollow);
           for (auto &next_swp : next_waypoints) {
@@ -435,7 +434,7 @@ namespace traffic_manager {
               junction_end_waypoint = temp.front();
             }
 
-            // Calculate the angle between the first and the last point of the junction.
+            // 计算连接点首尾两点之间的夹角
             int16_t current_angle = static_cast<int16_t>(traversed_waypoints.front()->GetTransform().rotation.yaw);
             int16_t junction_end_angle = static_cast<int16_t>(traversed_waypoints.back()->GetTransform().rotation.yaw);
             int16_t diff_angle = (junction_end_angle - current_angle) % 360;
@@ -451,7 +450,7 @@ namespace traffic_manager {
               }
             };
 
-            // Assign RoadOption according to the angle.
+            // 根据角度分配道路选项
             if (straight) assign_option(RoadOption::Straight, traversed_waypoints);
             else if (right) assign_option(RoadOption::Right, traversed_waypoints);
             else assign_option(RoadOption::Left, traversed_waypoints);
