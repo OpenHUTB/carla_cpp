@@ -23,24 +23,70 @@
 #include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>// 引入数据读取器QOS类
 #include <fastdds/dds/subscriber/DataReaderListener.hpp>// 引入数据读取器监听器类
 
-
+/**
+ * @namespace carla::ros2
+ * @brief 定义了CARLA与ROS 2集成的相关代码。
+ */
 namespace carla {
 namespace ros2 {
-
+    /**
+ * @brief 引入并定义了一些别名，以便简化代码中的类型引用。
+ *
+ * - `efd` 是 `eprosima::fastdds::dds` 的别名，用于DDS（Data Distribution Service）通信。
+ * - `erc` 是 `eprosima::fastrtps::types::ReturnCode_t` 的别名，用于表示Fast RTPS的返回码类型。
+ */
   namespace efd = eprosima::fastdds::dds;
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+ * @struct CarlaEgoVehicleControlSubscriberImpl
+ * @brief CarlaEgoVehicleControlSubscriber的内部实现结构体。
+ *
+ * 包含了DDS订阅者所需的所有成员变量，用于接收和处理CARLA的EgoVehicleControl消息。
+ */
   struct CarlaEgoVehicleControlSubscriberImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+    * @brief DDS订阅者指针。
+    */
     efd::Subscriber* _subscriber { nullptr };
+    /**
+     * @brief DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据读取器指针。
+     */
     efd::DataReader* _datareader { nullptr };
+    /**
+     * @brief DDS类型支持，用于注册消息类型。
+     */
     efd::TypeSupport _type { new carla_msgs::msg::CarlaEgoVehicleControlPubSubType() };
+    /**
+     * @brief 订阅者监听器，用于处理接收到的消息。
+     */
     CarlaSubscriberListener _listener {nullptr};
+    /**
+     * @brief 存储接收到的CARLA EgoVehicleControl消息。
+     */
     carla_msgs::msg::CarlaEgoVehicleControl _event {};
+    /**
+     * @brief 转换为内部使用的VehicleControl结构体。
+     */
     VehicleControl _control {};
+    /**
+     * @brief 标记是否有新的消息到达。
+     */
     bool _new_message {false};
+    /**
+     * @brief 标记订阅者是否仍然活跃。
+     */
     bool _alive {true};
+    /**
+     * @brief 与车辆控制相关的指针（具体类型未在代码中定义）。
+     */
     void* _vehicle {nullptr};
   };
 
