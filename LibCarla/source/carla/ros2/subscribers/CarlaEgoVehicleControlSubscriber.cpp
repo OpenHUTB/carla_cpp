@@ -240,33 +240,77 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 将车辆控制信息转发给内部实现。
+ *
+ * 该函数将传入的车辆控制信息（VehicleControl）保存到内部实现对象的对应成员变量中，
+ * 并标记有新的消息到达。
+ *
+ * @param control 车辆控制信息。
+ */
   void CarlaEgoVehicleControlSubscriber::ForwardMessage(VehicleControl control) {
     _impl->_control = control;
     _impl->_new_message = true;
   }
-
+  /**
+ * @brief 销毁订阅者。
+ *
+ * 该函数将内部实现对象的存活标志设置为false，用于通知其他部分该订阅者已经不再活跃。
+ */
   void CarlaEgoVehicleControlSubscriber::DestroySubscriber() {
     _impl->_alive = false;
   }
-
+  /**
+ * @brief 获取最新的车辆控制信息。
+ *
+ * 该函数返回内部实现对象中保存的车辆控制信息，并将新的消息标志设置为false，
+ * 表示该消息已被读取。
+ *
+ * @return 车辆控制信息。
+ */
   VehicleControl CarlaEgoVehicleControlSubscriber::GetMessage() {
     _impl->_new_message = false;
     return _impl->_control;
   }
-
+  /**
+ * @brief 检查订阅者是否存活。
+ *
+ * 该函数返回内部实现对象的存活标志，用于判断订阅者是否仍然活跃。
+ *
+ * @return 如果订阅者存活，则返回true；否则返回false。
+ */
   bool CarlaEgoVehicleControlSubscriber::IsAlive() {
     return _impl->_alive;
   }
-
+  /**
+ * @brief 检查是否有新的消息到达。
+ *
+ * 该函数返回内部实现对象的新消息标志，用于判断是否有新的车辆控制信息到达。
+ *
+ * @return 如果有新的消息到达，则返回true；否则返回false。
+ */
   bool CarlaEgoVehicleControlSubscriber::HasNewMessage() {
     return _impl->_new_message;
   }
-
+  /**
+ * @brief 获取关联的车辆对象。
+ *
+ * 该函数返回内部实现对象中保存的车辆对象指针。
+ *
+ * @return 车辆对象指针。
+ */
   void* CarlaEgoVehicleControlSubscriber::GetVehicle() {
     return _impl->_vehicle;
   }
-
+  /**
+ * @brief CarlaEgoVehicleControlSubscriber类的构造函数。
+ *
+ * 构造函数初始化内部实现对象，并设置相关属性，包括车辆对象指针、ROS节点名称和父节点名称。
+ *
+ * @param vehicle 车辆对象指针。
+ * @param ros_name ROS节点名称。
+ * @param parent 父节点名称。
+ */
   CarlaEgoVehicleControlSubscriber::CarlaEgoVehicleControlSubscriber(void* vehicle, const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaEgoVehicleControlSubscriberImpl>()) {
     _impl->_listener.SetOwner(this);
