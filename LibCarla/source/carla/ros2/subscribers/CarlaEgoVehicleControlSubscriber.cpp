@@ -154,65 +154,89 @@ namespace ros2 {
     }
     return true;
   }
-
+  /**
+ * @brief 读取并处理来自数据读取器的样本
+ *
+ * 该函数尝试从内部数据读取器中获取下一个样本，并根据返回的代码执行相应的操作。
+ * 如果成功获取样本，则返回true；否则，根据错误代码打印错误信息并返回false。
+ *
+ * @return bool 如果成功获取样本，则返回true；否则返回false。
+ */
   bool CarlaEgoVehicleControlSubscriber::Read() {
-    efd::SampleInfo info;
+    efd::SampleInfo info;// 用于存储样本信息的结构体
+    // 尝试从数据读取器中获取下一个样本
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datareader->take_next_sample(&_impl->_event, &info);
+    // 根据返回的代码执行相应的操作
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
+        /// @todo 成功获取样本，返回true
         return true;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
+        /// @todo 打印错误代码"RETCODE_ERROR"并返回false
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
+        /// @todo 打印错误代码"RETCODE_UNSUPPORTED"并返回false
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
+        /// @todo 打印错误代码"RETCODE_BAD_PARAMETER"并返回false
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
+        /// @todo 打印错误代码"RETCODE_PRECONDITION_NOT_MET"并返回false
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
+        /// @todo 打印错误代码"RETCODE_OUT_OF_RESOURCES"并返回false
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
+        /// @todo 打印错误代码"RETCODE_NOT_ENABLED"并返回false
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
+        /// @todo 打印错误代码"RETCODE_IMMUTABLE_POLICY"并返回false
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
+        /// @todo 打印错误代码"RETCODE_INCONSISTENT_POLICY"并返回false
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
+        /// @todo 打印错误代码"RETCODE_ALREADY_DELETED"并返回false
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
+        /// @todo 打印错误代码"RETCODE_TIMEOUT"并返回false
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
+        /// @todo 打印错误代码"RETCODE_NO_DATA"并返回false
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
+        /// @todo 打印错误代码"RETCODE_ILLEGAL_OPERATION"并返回false
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
+        /// @todo 打印错误代码"RETCODE_NOT_ALLOWED_BY_SECURITY"并返回false
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
     }
+    /// @todo 打印未知错误代码"UNKNOWN"并返回false
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
