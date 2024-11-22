@@ -1,27 +1,27 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaEgoVehicleControlSubscriber.h"
+#include "CarlaEgoVehicleControlSubscriber.h"// 引入Carla自我车辆控制订阅者的头文件
 
-#include "carla/ros2/types/CarlaEgoVehicleControl.h"
-#include "carla/ros2/types/CarlaEgoVehicleControlPubSubTypes.h"
-#include "carla/ros2/listeners/CarlaSubscriberListener.h"
-
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/subscriber/Subscriber.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/subscriber/DataReader.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-#include <fastdds/dds/subscriber/SampleInfo.hpp>
-
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/subscriber/qos/SubscriberQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-
-#include <fastrtps/attributes/ParticipantAttributes.h>
-#include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>
-#include <fastdds/dds/subscriber/DataReaderListener.hpp>
+#include "carla/ros2/types/CarlaEgoVehicleControl.h"// 引入Carla自我车辆控制信息的消息类型
+#include "carla/ros2/types/CarlaEgoVehicleControlPubSubTypes.h"// 引入Carla自我车辆控制信息的PubSub类型
+#include "carla/ros2/listeners/CarlaSubscriberListener.h"// 引入Carla订阅者监听器
+// 引入Fast-DDS相关的头文件
+#include <fastdds/dds/domain/DomainParticipant.hpp>// 引入域参与者类
+#include <fastdds/dds/subscriber/Subscriber.hpp>// 引入订阅者类
+#include <fastdds/dds/topic/Topic.hpp>// 引入主题类
+#include <fastdds/dds/subscriber/DataReader.hpp> // 引入数据读取器类
+#include <fastdds/dds/topic/TypeSupport.hpp>// 引入类型支持类
+#include <fastdds/dds/subscriber/SampleInfo.hpp>// 引入样本信息类
+// 引入Fast-DDS QOS相关的头文件
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>// 引入域参与者QOS类
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>// 引入域参与者工厂类
+#include <fastdds/dds/subscriber/qos/SubscriberQos.hpp>// 引入订阅者QOS类
+#include <fastdds/dds/topic/qos/TopicQos.hpp>// 引入主题QOS类
+// 引入Fast-RTPS属性与QOS策略相关的头文件
+#include <fastrtps/attributes/ParticipantAttributes.h>// 引入参与者属性类
+#include <fastrtps/qos/QosPolicies.h>// 引入QOS策略类
+#include <fastdds/dds/subscriber/qos/DataReaderQos.hpp>// 引入数据读取器QOS类
+#include <fastdds/dds/subscriber/DataReaderListener.hpp>// 引入数据读取器监听器类
 
 
 namespace carla {
