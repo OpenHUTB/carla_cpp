@@ -89,11 +89,11 @@ namespace traffic_manager {
       return;
     }
 
-    // write total records
+    // 将所有记录的总数写入文件中
     uint32_t total = static_cast<uint32_t>(dense_topology.size());
     out_file.write(reinterpret_cast<const char *>(&total), sizeof(uint32_t));
 
-    // write simple waypoints
+    // 创建或记录一些基本的导航点
     std::unordered_set<uint64_t> used_ids;
     for (auto& wp: dense_topology) {
       if (used_ids.find(wp->GetId()) != used_ids.end()) {
