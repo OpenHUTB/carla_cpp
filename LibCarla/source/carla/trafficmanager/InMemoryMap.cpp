@@ -165,7 +165,7 @@ namespace traffic_manager {
 
   void InMemoryMap::SetUp() {
 
-    // 1. Building segment topology (i.e., defining set of segment predecessors and successors)
+    // 1. 构建路段拓扑（即，定义路段的前驱和后继集合）
     assert(_world_map != nullptr && "No map reference found.");
     auto waypoint_topology = _world_map->GetTopology();
 
@@ -177,12 +177,12 @@ namespace traffic_manager {
       auto &waypoint = connection.first;
       auto &successor = connection.second;
 
-      // Setting segment predecessors and successors.
+      // 设置段落的前驱和后继
       SegmentId waypoint_segment_id = GetSegmentId(connection.first);
       SegmentId successor_segment_id = GetSegmentId(connection.second);
       if (waypoint_segment_id == successor_segment_id){
-        // If both topology waypoints are at the same segment, ignore them.
-        // This happens at lanes that have either no successor or predecessor connections.
+        // 如果两个拓扑航点位于同一段，则忽略它们
+        // 这种情况发生在没有后继或前驱连接的车道上
         continue;
       }
       using SegIdVectorPair = std::pair<std::vector<SegmentId>, std::vector<SegmentId>>;
@@ -191,7 +191,7 @@ namespace traffic_manager {
       connection_first.second.push_back(successor_segment_id);
       connection_second.first.push_back(waypoint_segment_id);
 
-      // From path to standard road.
+      // 从路径到标准道路
       bool waypoint_is_junction = waypoint->IsJunction();
       bool successor_is_junction = successor->IsJunction();
       if (waypoint_is_junction && !successor_is_junction) {
@@ -209,7 +209,7 @@ namespace traffic_manager {
         }
       }
 
-      // From standard road to path.
+      // 从标准道路到小径
       if (!waypoint_is_junction && successor_is_junction) {
         crd::RoadId path_id = successor->GetRoadId();
         int64_t std_road_id = static_cast<int64_t>(waypoint->GetRoadId());
@@ -226,18 +226,18 @@ namespace traffic_manager {
       }
     }
 
-    // 2. Consuming the raw dense topology from cc::Map into SimpleWaypoints.
+    // 2. 将cc::Map中的原始密集拓扑消费到SimpleWaypoints中
     SegmentMap segment_map;
     assert(_world_map != nullptr && "No map reference found.");
     auto raw_dense_topology = _world_map->GenerateWaypoints(MAP_RESOLUTION);
     for (auto &waypoint_ptr: raw_dense_topology) {
       if (waypoint_ptr->GetLaneWidth() > MIN_LANE_WIDTH){
-        // Avoid making the vehicles move through very narrow lanes
+        // 避免让车辆通过非常狭窄的车道
         segment_map[GetSegmentId(waypoint_ptr)].emplace_back(std::make_shared<SimpleWaypoint>(waypoint_ptr));
       }
     }
 
-    // 3. Processing waypoints.
+    // 3. 处理航点
     auto distance_squared = [](cg::Location l1, cg::Location l2) {
       return cg::Math::DistanceSquared(l1, l2);
     };
@@ -256,17 +256,17 @@ namespace traffic_manager {
     for (auto &segment: segment_map) {
       auto &segment_waypoints = segment.second;
 
-      // Generating geodesic grid ids.
+      // 生成测地线网格ID
       ++geodesic_grid_id_counter;
 
-      // Ordering waypoints according to road direction.
+      // 根据道路方向排序航点
       std::sort(segment_waypoints.begin(), segment_waypoints.end(), compare_s);
       auto lane_id = segment_waypoints.front()->GetWaypoint()->GetLaneId();
       if (lane_id > 0) {
         std::reverse(segment_waypoints.begin(), segment_waypoints.end());
       }
 
-      // Adding more waypoints if the angle is too tight or if they are too distant.
+      // 如果角度太紧或航点之间的距离太远，则添加更多航点
       for (std::size_t i = 0; i < segment_waypoints.size() - 1; ++i) {
           double distance = std::abs(segment_waypoints.at(i)->GetWaypoint()->GetDistance() - segment_waypoints.at(i+1)->GetWaypoint()->GetDistance());
           double angle = wpt_angle(segment_waypoints.at(i)->GetTransform().GetForwardVector(), segment_waypoints.at(i+1)->GetTransform().GetForwardVector());
@@ -274,7 +274,7 @@ namespace traffic_manager {
           int16_t distance_splits = static_cast<int16_t>((distance*distance)/MAX_WPT_DISTANCE);
           auto max_splits = max(angle_splits, distance_splits);
           if (max_splits >= 1) {
-            // Compute how many waypoints do we need to generate.
+            // 计算我们需要生成多少个航点
             for (uint16_t j = 0; j < max_splits; ++j) {
               auto next_waypoints = segment_waypoints.at(i)->GetWaypoint()->GetNext(distance/(max_splits+1));
               if (next_waypoints.size() != 0) {
@@ -282,19 +282,19 @@ namespace traffic_manager {
                 i++;
                 segment_waypoints.insert(segment_waypoints.begin()+static_cast<int64_t>(i), std::make_shared<SimpleWaypoint>(new_waypoint));
               } else {
-                // Reached end of the road.
+                // 到达路的尽头
                 break;
               }
             }
           }
         }
 
-      // Placing intra-segment connections.
+      // 放置段内连接
       cg::Location grid_edge_location = segment_waypoints.front()->GetLocation();
       for (std::size_t i = 0; i < segment_waypoints.size() - 1; ++i) {
         SimpleWaypointPtr current_waypoint = segment_waypoints.at(i);
         SimpleWaypointPtr next_waypoint = segment_waypoints.at(i+1);
-        // Assigning grid id.
+        // 分配网格ID
         if (distance_squared(grid_edge_location, current_waypoint->GetLocation()) >
         square(MAX_GEODESIC_GRID_LENGTH)) {
           ++geodesic_grid_id_counter;
@@ -308,9 +308,9 @@ namespace traffic_manager {
       }
       segment_waypoints.back()->SetGeodesicGridId(geodesic_grid_id_counter);
 
-      // Adding simple waypoints to processed dense topology.
+      // 在处理后的密集拓扑中添加简单的航点
       for (auto swp: segment_waypoints) {
-        // Checking whether the waypoint is in a real junction.
+        // 检查航点是否位于实际的交叉路口
         auto wpt = swp->GetWaypoint();
         auto road_id = wpt->GetRoadId();
         if (wpt->IsJunction() && !is_real_junction.count(road_id)) {
@@ -325,7 +325,7 @@ namespace traffic_manager {
 
     SetUpSpatialTree();
 
-    // Placing inter-segment connections.
+    // 放置段间连接
     for (auto &segment : segment_map) {
       SegmentId segment_id = segment.first;
       auto &segment_waypoints = segment.second;
@@ -337,14 +337,14 @@ namespace traffic_manager {
       segment_waypoints.back()->SetNextWaypoint(successors);
     }
 
-    // Linking lane change connections.
+    // 连接车道变更连接
     for (auto &swp : dense_topology) {
       if (!swp->CheckJunction()) {
         FindAndLinkLaneChange(swp);
       }
     }
 
-    // Linking any unconnected segments.
+    // 连接任何未连接的线段
     for (auto &swp : dense_topology) {
       if (swp->GetNextWaypoint().empty()) {
         auto neighbour = swp->GetRightWaypoint();
@@ -361,7 +361,7 @@ namespace traffic_manager {
       }
     }
 
-    // Specifying a RoadOption for each SimpleWaypoint
+    // 为每个 SimpleWaypoint 指定一个 RoadOption
     SetUpRoadOption();
   }
 
