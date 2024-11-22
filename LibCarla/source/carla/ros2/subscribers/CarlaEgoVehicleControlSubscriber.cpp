@@ -318,7 +318,12 @@ namespace ros2 {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaEgoVehicleControlSubscriber类的析构函数。
+ *
+ * 析构函数负责清理订阅者所使用的资源。
+ * 它首先检查_impl指针是否为空，如果不为空，则依次删除数据读取器、订阅者、主题和参与者。
+ */
   CarlaEgoVehicleControlSubscriber::~CarlaEgoVehicleControlSubscriber() {
       if (!_impl)
           return;
@@ -335,7 +340,14 @@ namespace ros2 {
       if (_impl->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl->_participant);
   }
-
+  /**
+ * @brief CarlaEgoVehicleControlSubscriber类的拷贝构造函数。
+ *
+ * 拷贝构造函数通过复制另一个CarlaEgoVehicleControlSubscriber对象来初始化新对象。
+ * 它复制了所有成员变量，并设置了监听器的所有者。
+ *
+ * @param other 要复制的CarlaEgoVehicleControlSubscriber对象。
+ */
   CarlaEgoVehicleControlSubscriber::CarlaEgoVehicleControlSubscriber(const CarlaEgoVehicleControlSubscriber& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -343,7 +355,15 @@ namespace ros2 {
     _impl = other._impl;
     _impl->_listener.SetOwner(this);
   }
-
+  /**
+ * @brief 拷贝赋值运算符。
+ *
+ * 拷贝赋值运算符将当前对象替换为另一个CarlaEgoVehicleControlSubscriber对象的副本。
+ * 它复制了所有成员变量，并设置了监听器的所有者。
+ *
+ * @param other 要复制的CarlaEgoVehicleControlSubscriber对象。
+ * @return 引用当前对象。
+ */
   CarlaEgoVehicleControlSubscriber& CarlaEgoVehicleControlSubscriber::operator=(const CarlaEgoVehicleControlSubscriber& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -353,7 +373,14 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaEgoVehicleControlSubscriber类的移动构造函数。
+ *
+ * 移动构造函数通过移动另一个CarlaEgoVehicleControlSubscriber对象的资源来初始化新对象。
+ * 它移动了所有成员变量，并设置了监听器的所有者。
+ *
+ * @param other 要移动的CarlaEgoVehicleControlSubscriber对象。
+ */
   CarlaEgoVehicleControlSubscriber::CarlaEgoVehicleControlSubscriber(CarlaEgoVehicleControlSubscriber&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
@@ -361,7 +388,15 @@ namespace ros2 {
     _impl = std::move(other._impl);
     _impl->_listener.SetOwner(this);
   }
-
+  /**
+ * @brief 移动赋值运算符。
+ *
+ * 移动赋值运算符将当前对象替换为通过移动另一个CarlaEgoVehicleControlSubscriber对象的资源得到的对象。
+ * 它移动了所有成员变量，并设置了监听器的所有者。
+ *
+ * @param other 要移动的CarlaEgoVehicleControlSubscriber对象。
+ * @return 引用当前对象。
+ */
   CarlaEgoVehicleControlSubscriber& CarlaEgoVehicleControlSubscriber::operator=(CarlaEgoVehicleControlSubscriber&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
