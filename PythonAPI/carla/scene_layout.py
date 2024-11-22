@@ -141,87 +141,98 @@ def get_dynamic_objects(carla_world, carla_map):
         corners = [carla_map.transform_to_geolocation(p) for p in corners]
         return corners
 
-    def _split_actors(actors):
-        vehicles = []
-        traffic_lights = []
-        speed_limits = []
-        walkers = []
-        stops = []
-        static_obstacles = []
-        for actor in actors:
-            if 'vehicle' in actor.type_id:
-                vehicles.append(actor)
-            elif 'traffic_light' in actor.type_id:
-                traffic_lights.append(actor)
-            elif 'speed_limit' in actor.type_id:
-                speed_limits.append(actor)
-            elif 'walker' in actor.type_id:
-                walkers.append(actor)
-            elif 'stop' in actor.type_id:
-                stops.append(actor)
-            elif 'static.prop' in actor.type_id:
-                static_obstacles.append(actor)
-
-
-        return (vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles)
-
-    # Public functions
-    def get_stop_signals(stops):
-        stop_signals_dict = dict()
-        for stop in stops:
-            st_transform = stop.get_transform()
-            location_gnss = carla_map.transform_to_geolocation(st_transform.location)
-            st_dict = {
-                "id": stop.id,
-                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
-                "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(stop)]
-            }
-            stop_signals_dict[stop.id] = st_dict
-        return stop_signals_dict
-
-    def get_traffic_lights(traffic_lights):
-        traffic_lights_dict = dict()
-        for traffic_light in traffic_lights:
-            tl_transform = traffic_light.get_transform()
-            location_gnss = carla_map.transform_to_geolocation(tl_transform.location)
-            tl_dict = {
-                "id": traffic_light.id,
-                "state": int(traffic_light.state),
-                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
-                "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(traffic_light)]
-            }
-            traffic_lights_dict[traffic_light.id] = tl_dict
-        return traffic_lights_dict
-
-    def get_vehicles(vehicles):
-        vehicles_dict = dict()
-        for vehicle in vehicles:
-            v_transform = vehicle.get_transform()
-            location_gnss = carla_map.transform_to_geolocation(v_transform.location)
-            v_dict = {
-                "id": vehicle.id,
-                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
-                "orientation": [v_transform.rotation.roll, v_transform.rotation.pitch, v_transform.rotation.yaw],
-                "bounding_box": [[v.longitude, v.latitude, v.altitude] for v in _get_bounding_box(vehicle)]
-            }
-            vehicles_dict[vehicle.id] = v_dict
-        return vehicles_dict
-
-    def get_hero_vehicle(hero_vehicle):
-        if hero_vehicle is None:
-            return hero_vehicle
-
-        hero_waypoint = carla_map.get_waypoint(hero_vehicle.get_location())
-        hero_transform = hero_vehicle.get_transform()
-        location_gnss = carla_map.transform_to_geolocation(hero_transform.location)
-
-        hero_vehicle_dict = {
-            "id": hero_vehicle.id,
+# 定义一个函数，用于将传入的actors列表根据类型分割成不同的列表
+def _split_actors(actors):
+    vehicles = []  # 存储车辆的列表
+    traffic_lights = []  # 存储交通灯的列表
+    speed_limits = []  # 存储速度限制的列表（注意：在CARLA中，速度限制可能作为actor存在）
+    walkers = []  # 存储行人的列表
+    stops = []  # 存储停车点的列表
+    static_obstacles = []  # 存储静态障碍物的列表
+    
+    for actor in actors:  # 遍历每个actor
+        if 'vehicle' in actor.type_id:  # 如果actor的类型ID包含'vehicle'，则认为是车辆
+            vehicles.append(actor)
+        elif 'traffic_light' in actor.type_id:  # 如果actor的类型ID包含'traffic_light'，则认为是交通灯
+            traffic_lights.append(actor)
+        elif 'speed_limit' in actor.type_id:  # 如果actor的类型ID包含'speed_limit'，则认为是速度限制
+            speed_limits.append(actor)
+        elif 'walker' in actor.type_id:  # 如果actor的类型ID包含'walker'，则认为是行人
+            walkers.append(actor)
+        elif 'stop' in actor.type_id:  # 如果actor的类型ID包含'stop'，则认为是停车点
+            stops.append(actor)
+        elif 'static.prop' in actor.type_id:  # 如果actor的类型ID包含'static.prop'，则认为是静态障碍物
+            static_obstacles.append(actor)
+    
+    # 返回分割后的列表元组
+    return (vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles)
+ 
+# 公共函数部分
+ 
+# 获取停车点的信号信息
+def get_stop_signals(stops):
+    stop_signals_dict = dict()  # 创建一个字典来存储停车点的信息
+    for stop in stops:  # 遍历每个停车点
+        st_transform = stop.get_transform()  # 获取停车点的变换信息
+        location_gnss = carla_map.transform_to_geolocation(st_transform.location)  # 将位置转换为GNSS坐标
+        # 创建一个字典来存储停车点的ID、位置和触发体积信息
+        st_dict = {
+            "id": stop.id,
             "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
-            "road_id": hero_waypoint.road_id,
-            "lane_id": hero_waypoint.lane_id
+            "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(stop)]  # 获取触发体积的坐标列表
         }
-        return hero_vehicle_dict
+        stop_signals_dict[stop.id] = st_dict  # 将停车点信息添加到字典中
+    return stop_signals_dict  # 返回包含所有停车点信息的字典
+ 
+# 获取交通灯的信息
+def get_traffic_lights(traffic_lights):
+    traffic_lights_dict = dict()  # 创建一个字典来存储交通灯的信息
+    for traffic_light in traffic_lights:  # 遍历每个交通灯
+        tl_transform = traffic_light.get_transform()  # 获取交通灯的变换信息
+        location_gnss = carla_map.transform_to_geolocation(tl_transform.location)  # 将位置转换为GNSS坐标
+        # 创建一个字典来存储交通灯的ID、状态、位置和触发体积信息
+        tl_dict = {
+            "id": traffic_light.id,
+            "state": int(traffic_light.state),  # 交通灯的状态（整数表示）
+            "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+            "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(traffic_light)]  # 获取触发体积的坐标列表
+        }
+        traffic_lights_dict[traffic_light.id] = tl_dict  # 将交通灯信息添加到字典中
+    return traffic_lights_dict  # 返回包含所有交通灯信息的字典
+ 
+# 获取车辆的信息
+def get_vehicles(vehicles):
+    vehicles_dict = dict()  # 创建一个字典来存储车辆的信息
+    for vehicle in vehicles:  # 遍历每个车辆
+        v_transform = vehicle.get_transform()  # 获取车辆的变换信息
+        location_gnss = carla_map.transform_to_geolocation(v_transform.location)  # 将位置转换为GNSS坐标
+        # 创建一个字典来存储车辆的ID、位置、朝向和边界框信息
+        v_dict = {
+            "id": vehicle.id,
+            "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+            "orientation": [v_transform.rotation.roll, v_transform.rotation.pitch, v_transform.rotation.yaw],  # 车辆的朝向（横滚角、俯仰角、偏航角）
+            "bounding_box": [[v.longitude, v.latitude, v.altitude] for v in _get_bounding_box(vehicle)]  # 获取边界框的坐标列表
+        }
+        vehicles_dict[vehicle.id] = v_dict  # 将车辆信息添加到字典中
+    return vehicles_dict  # 返回包含所有车辆信息的字典
+ 
+# 获取主角车辆的信息
+def get_hero_vehicle(hero_vehicle):
+    if hero_vehicle is None:  # 如果主角车辆为空，则直接返回
+        return hero_vehicle
+    
+    hero_waypoint = carla_map.get_waypoint(hero_vehicle.get_location())  # 获取主角车辆所在的路点信息
+    hero_transform = hero_vehicle.get_transform()  # 获取主角车辆的变换信息
+    location_gnss = carla_map.transform_to_geolocation(hero_transform.location)  # 将位置转换为GNSS坐标
+    
+    # 创建一个字典来存储主角车辆的ID、位置、道路ID和车道ID信息
+    hero_vehicle_dict = {
+        "id": hero_vehicle.id,
+        "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+        "road_id": hero_waypoint.road_id,
+        "lane_id": hero_waypoint.lane_id
+    }
+    return hero_vehicle_dict  # 返回包含主角车辆信息的字典
 
     def get_walkers(walkers):
         walkers_dict = dict()
