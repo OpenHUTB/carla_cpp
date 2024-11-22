@@ -114,12 +114,12 @@ namespace traffic_manager {
     std::vector<CachedSimpleWaypoint> cached_waypoints;
     std::unordered_map<uint64_t, uint32_t> id2index;
 
-    // read total records
+    // 读取总记录数
     uint32_t total;
     memcpy(&total, &content[pos], sizeof(total));
     pos += sizeof(total);
 
-    // read simple waypoints
+    // 读取简单航点
     for (uint32_t i=0; i < total; i++) {
       CachedSimpleWaypoint cached_wp;
       cached_wp.Read(content, pos);
@@ -134,7 +134,7 @@ namespace traffic_manager {
       dense_topology.push_back(wp);
     }
 
-    // connect waypoints
+    // 连接航点
     for (uint32_t i=0; i < dense_topology.size(); i++) {
       auto wp = dense_topology.at(i);
       auto cached_wp = cached_waypoints.at(i);
@@ -157,7 +157,7 @@ namespace traffic_manager {
       }
     }
 
-    // create spatial tree
+    // 创建空间树
     SetUpSpatialTree();
 
     return true;
