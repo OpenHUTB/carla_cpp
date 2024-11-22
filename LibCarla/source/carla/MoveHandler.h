@@ -1,9 +1,11 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权 © 2019 自由大学计算机视觉中心（CVC）
+// de Barcelona (UAB)[巴塞罗那（UAB].
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品采用 MIT 许可证授权e.
+// 欲查看许可证副本，请访问 https://opensource.org/licenses/MIT.
 
+// 这段代码的目的是为了解决某些库（如 Asio）不能正确处理仅可移动对象的问题。
+//通过 MoveWrapper，代码可以确保传入的处理程序对象在 Asio 等库中能够安全地进行移动而非复制，从而避免可能出现的编译错误
 #pragma once  // 确保此头文件仅被包含一次
 
 #include <type_traits>  // 包含类型特征相关的头文件，提供类型特性支持
