@@ -1038,19 +1038,35 @@ if (bEnableModifyingPostProcessEffects)
     Success = CheckActorDefinition(Definition);
 }
 
+// 定义一个函数，该函数属于UActorBlueprintFunctionLibrary类，用于创建一个法线相机的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
+  // 创建一个FActorDefinition类型的对象Definition，用于存储相机定义
+  FActorDefinition Definition; 
+
+  // 定义一个布尔变量Success，用于标记操作是否成功
+  bool Success; 
+
+  // 调用重载的MakeNormalsCameraDefinition函数，传入Success和Definition的引用，以填充Definition并设置Success的值
   MakeNormalsCameraDefinition(Success, Definition);
+
+  // 使用check宏来验证Success是否为true，如果不是，则程序将在这里崩溃。这是一种调试时的保护措施。
   check(Success);
+
+  // 返回填充好的Definition对象
   return Definition;
 }
-
+ 
+// 定义一个重载的函数，该函数同样属于UActorBlueprintFunctionLibrary类，用于填充法线相机的定义
 void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, FActorDefinition &Definition)
 {
+  // 调用FillIdAndTags函数为Definition设置ID和标签，这里设置的ID为"sensor"，标签包括"camera"和"normals"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), TEXT("normals"));
+
+  // 调用AddRecommendedValuesForSensorRoleNames函数为Definition添加建议的角色名称值，这些值可能用于优化相机性能或行为
   AddRecommendedValuesForSensorRoleNames(Definition);
+
+  // 调用AddVariationsForSensor函数为Definition添加传感器的变种或变体，这可能包括不同的配置或设置以适应不同的使用场景
   AddVariationsForSensor(Definition);
 
   // FOV
