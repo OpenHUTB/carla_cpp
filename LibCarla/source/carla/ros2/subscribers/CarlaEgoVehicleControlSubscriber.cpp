@@ -89,13 +89,22 @@ namespace ros2 {
      */
     void* _vehicle {nullptr};
   };
-
+  /**
+ * @brief 初始化CARLA EgoVehicleControl消息的订阅者。
+ *
+ * @return 初始化成功返回true，否则返回false。
+ */
   bool CarlaEgoVehicleControlSubscriber::Init() {
+      /**
+     * @brief 检查类型支持是否有效。
+     */
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
-
+    /**
+     * @brief 设置域参与者的QoS（Quality of Service）并创建域参与者。
+     */
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
     auto factory = efd::DomainParticipantFactory::get_instance();
@@ -104,15 +113,22 @@ namespace ros2 {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    /**
+     * @brief 注册消息类型。
+     */
     _impl->_type.register_type(_impl->_participant);
-
+    /**
+     * @brief 设置订阅者的QoS并创建订阅者。
+     */
     efd::SubscriberQos subqos = efd::SUBSCRIBER_QOS_DEFAULT;
     _impl->_subscriber = _impl->_participant->create_subscriber(subqos, nullptr);
     if (_impl->_subscriber == nullptr) {
       std::cerr << "Failed to create Subscriber" << std::endl;
       return false;
     }
-
+    /**
+     * @brief 设置主题的QoS并创建主题。
+     */
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string base { "rt/carla/" };
     const std::string publisher_type {"/vehicle_control_cmd"};
@@ -126,7 +142,9 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+    /**
+     * @brief 设置数据读取器的QoS并创建数据读取器。
+     */
     efd::DataReaderQos rqos = efd::DATAREADER_QOS_DEFAULT;
     efd::DataReaderListener* listener = (efd::DataReaderListener*)_impl->_listener._impl.get();
     _impl->_datareader = _impl->_subscriber->create_datareader(_impl->_topic, rqos, listener);
