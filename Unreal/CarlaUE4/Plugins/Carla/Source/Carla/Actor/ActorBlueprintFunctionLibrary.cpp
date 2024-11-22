@@ -1069,25 +1069,25 @@ void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, 
   // 调用AddVariationsForSensor函数为Definition添加传感器的变种或变体，这可能包括不同的配置或设置以适应不同的使用场景
   AddVariationsForSensor(Definition);
 
-  // FOV
-  FActorVariation FOV;
-  FOV.Id = TEXT("fov");
-  FOV.Type = EActorAttributeType::Float;
-  FOV.RecommendedValues = { TEXT("90.0") };
-  FOV.bRestrictToRecommended = false;
+  // 视场角设置
+  FActorVariation FOV; // 创建一个FActorVariation类型的对象FOV，用于表示相机的视场角变化
+  FOV.Id = TEXT("fov"); // 设置FOV对象的ID为"fov"，这是其唯一标识符
+  FOV.Type = EActorAttributeType::Float; // 设置FOV对象的类型为浮点型，表示视场角是一个浮点数
+  FOV.RecommendedValues = { TEXT("90.0") }; // 为FOV对象设置一个推荐的视场角值
+  FOV.bRestrictToRecommended = false; // 设置FOV对象是否限制为只能使用推荐值
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+  // 分辨率设置
+  FActorVariation ResX; // 创建一个FActorVariation类型的对象ResX，用于表示相机图像宽度的变化
+  ResX.Id = TEXT("image_size_x"); // 设置ResX对象的ID为"image_size_x"，表示图像宽度
+  ResX.Type = EActorAttributeType::Int; // 设置ResX对象的类型为整型，表示图像宽度是一个整数
+  ResX.RecommendedValues = { TEXT("800") }; // 为ResX对象设置一个推荐的图像宽度值
+  ResX.bRestrictToRecommended = false; // 设置ResX对象是否限制为只能使用推荐值
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+  FActorVariation ResY; // 创建一个FActorVariation类型的对象ResY，用于表示相机图像高度的变化
+  ResY.Id = TEXT("image_size_y"); // 设置ResY对象的ID为"image_size_y"，表示图像高度
+  ResY.Type = EActorAttributeType::Int; // 设置ResY对象的类型为整型，表示图像高度是一个整数
+  ResY.RecommendedValues = { TEXT("600") }; // 为ResY对象设置一个推荐的图像高度值
+  ResY.bRestrictToRecommended = false; // 设置ResY对象是否限制为只能使用推荐值
 
   // Lens parameters
   FActorVariation LensCircleFalloff;
