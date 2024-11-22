@@ -234,58 +234,103 @@ def get_hero_vehicle(hero_vehicle):
     }
     return hero_vehicle_dict  # 返回包含主角车辆信息的字典
 
-    def get_walkers(walkers):
-        walkers_dict = dict()
-        for walker in walkers:
-            w_transform = walker.get_transform()
-            location_gnss = carla_map.transform_to_geolocation(w_transform.location)
-            w_dict = {
-                "id": walker.id,
-                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
-                "orientation": [w_transform.rotation.roll, w_transform.rotation.pitch, w_transform.rotation.yaw],
-                "bounding_box": [[v.longitude, v.latitude, v.altitude] for v in _get_bounding_box(walker)]
-            }
-            walkers_dict[walker.id] = w_dict
-        return walkers_dict
-
-    def get_speed_limits(speed_limits):
-        speed_limits_dict = dict()
-        for speed_limit in speed_limits:
-            sl_transform = speed_limit.get_transform()
-            location_gnss = carla_map.transform_to_geolocation(sl_transform.location)
-            sl_dict = {
-                "id": speed_limit.id,
-                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
-                "speed": int(speed_limit.type_id.split('.')[2])
-            }
-            speed_limits_dict[speed_limit.id] = sl_dict
-        return speed_limits_dict
-
-    def get_static_obstacles(static_obstacles):
-        static_obstacles_dict = dict()
-        for static_prop in static_obstacles:
-            sl_transform = static_prop.get_transform()
-            location_gnss = carla_map.transform_to_geolocation(sl_transform.location)
-            sl_dict = {
-                "id": static_prop.id,
-                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude]
-            }
-            static_obstacles_dict[static_prop.id] = sl_dict
-        return static_obstacles_dict
-
-    actors = carla_world.get_actors()
-    vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles = _split_actors(actors)
-
-    hero_vehicles = [vehicle for vehicle in vehicles if
-                     'vehicle' in vehicle.type_id and vehicle.attributes['role_name'] == 'hero']
-    hero = None if len(hero_vehicles) == 0 else random.choice(hero_vehicles)
-
-    return {
-        'vehicles': get_vehicles(vehicles),
-        'hero_vehicle': get_hero_vehicle(hero),
-        'walkers': get_walkers(walkers),
-        'traffic_lights': get_traffic_lights(traffic_lights),
-        'stop_signs': get_stop_signals(stops),
-        'speed_limits': get_speed_limits(speed_limits),
-        'static_obstacles': get_static_obstacles(static_obstacles)
-    }
+# 定义一个函数，用于获取行人的信息并将其存储在一个字典中
+def get_walkers(walkers):
+    # 初始化一个空字典，用于存储行人的信息
+    walkers_dict = dict()
+    # 遍历传入的行人列表
+    for walker in walkers:
+        # 获取行人的位置转换信息
+        w_transform = walker.get_transform()
+        # 将行人的位置从CARLA坐标转换为地理坐标（GPS）
+        location_gnss = carla_map.transform_to_geolocation(w_transform.location)
+        # 创建一个字典，用于存储单个行人的信息
+        w_dict = {
+            # 行人的唯一标识符
+            "id": walker.id,
+            # 行人的位置，包括纬度、经度和海拔
+            "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+            # 行人的朝向，包括横滚角、俯仰角和偏航角
+            "orientation": [w_transform.rotation.roll w,_transform.rotation.pitch, w_transform.rotation.yaw],
+            # 行人的边界框，这里假设有一个函数_get_bounding_box用于获取行人的边界框顶点
+            "bounding_box": [[v.longitude, v.latitude, v.altitude] for v in _get_bounding_box(walker)]
+        }
+        # 将单个行人的信息添加到字典中，以行人的id作为键
+        walkers_dict[walker.id] = w_dict
+    # 返回包含所有行人信息的字典
+    return walkers_dict
+ 
+# 定义一个函数，用于获取速度限制的信息并将其存储在一个字典中
+def get_speed_limits(speed_limits):
+    # 初始化一个空字典，用于存储速度限制的信息
+    speed_limits_dict = dict()
+    # 遍历传入的速度限制列表
+    for speed_limit in speed_limits:
+        # 获取速度限制的位置转换信息
+        sl_transform = speed_limit.get_transform()
+        # 将速度限制的位置从CARLA坐标转换为地理坐标（GPS）
+        location_gnss = carla_map.transform_to_geolocation(sl_transform.location)
+        # 创建一个字典，用于存储单个速度限制的信息
+        sl_dict = {
+            # 速度限制的唯一标识符
+            "id": speed_limit.id,
+            # 速度限制的位置，包括纬度、经度和海拔
+            "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+            # 速度限制的值，这里假设速度限制的id中包含速度值，通过分割字符串获取
+            "speed": int(speed_limit.type_id.split('.')[2])
+        }
+        # 将单个速度限制的信息添加到字典中，以速度限制的id作为键
+        speed_limits_dict[speed_limit.id] = sl_dict
+    # 返回包含所有速度限制信息的字典
+    return speed_limits_dict
+ 
+# 定义一个函数，用于获取静态障碍物的信息并将其存储在一个字典中
+def get_static_obstacles(static_obstacles):
+    # 初始化一个空字典，用于存储静态障碍物的信息
+    static_obstacles_dict = dict()
+    # 遍历传入的静态障碍物列表
+    for static_prop in static_obstacles:
+        # 获取静态障碍物的位置转换信息
+        sl_transform = static_prop.get_transform()
+        # 将静态障碍物的位置从CARLA坐标转换为地理坐标（GPS）
+        location_gnss = carla_map.transform_to_geolocation(sl_transform.location)
+        # 创建一个字典，用于存储单个静态障碍物的信息
+        sl_dict = {
+            # 静态障碍物的唯一标识符
+            "id": static_prop.id,
+            # 静态障碍物的位置，包括纬度、经度和海拔
+            "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude]
+        }
+        # 将单个静态障碍物的信息添加到字典中，以静态障碍物的id作为键
+        static_obstacles_dict[static_prop.id] = sl_dict
+    # 返回包含所有静态障碍物信息的字典
+    return static_obstacles_dict
+ 
+# 获取CARLA世界中的所有元素（演员）
+actors = carla_world.get_actors()
+# 将演员分类为车辆、交通灯、速度限制、行人、停车标志和静态障碍物
+vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles = _split_actors(actors)
+ 
+# 从车辆中筛选出英雄车辆（通常用于模拟驾驶的主车辆）
+hero_vehicles = [vehicle for vehicle in vehicles if
+                 'vehicle' in vehicle.type_id and vehicle.attributes['role_name'] == 'hero']
+# 如果有英雄车辆，则随机选择一个作为hero，否则设置为None
+hero = None if len(hero_vehicles) == 0 else random.choice(hero_vehicles)
+ 
+# 返回一个包含所有元素信息的字典
+return {
+    # 车辆的信息，这里假设有一个函数get_vehicles用于获取车辆的信息
+    'vehicles': get_vehicles(vehicles),
+    # 英雄车辆的信息，这里假设有一个函数get_hero_vehicle用于获取英雄车辆的信息
+    'hero_vehicle': get_hero_vehicle(hero),
+    # 行人的信息，使用上面定义的get_walkers函数获取
+    'walkers': get_walkers(walkers),
+    # 交通灯的信息，这里假设有一个函数get_traffic_lights用于获取交通灯的信息
+    'traffic_lights': get_traffic_lights(traffic_lights),
+    # 停车标志的信息，这里假设有一个函数get_stop_signals用于获取停车标志的信息
+    'stop_signs': get_stop_signals(stops),
+    # 速度限制的信息，使用上面定义的get_speed_limits函数获取
+    'speed_limits': get_speed_limits(speed_limits),
+    # 静态障碍物的信息，使用上面定义的get_static_obstacles函数获取
+    'static_obstacles': get_static_obstacles(static_obstacles)
+}
