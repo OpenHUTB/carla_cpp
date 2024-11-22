@@ -513,10 +513,10 @@ namespace traffic_manager {
     const WaypointPtr raw_waypoint = reference_waypoint->GetWaypoint();
     const crd::element::LaneMarking::LaneChange lane_change = raw_waypoint->GetLaneChange();
 
-    /// Cheack for transits
+    /// 检查过境
     switch(lane_change)
     {
-      /// Left transit way point present only
+      /// 左转航路点仅存在
       case crd::element::LaneMarking::LaneChange::Left:
       {
         const WaypointPtr left_waypoint = raw_waypoint->GetLeft();
@@ -530,7 +530,7 @@ namespace traffic_manager {
       }
       break;
 
-      /// Right transit way point present only
+      /// 仅显示正确的航路点
       case crd::element::LaneMarking::LaneChange::Right:
       {
 	    const WaypointPtr right_waypoint = raw_waypoint->GetRight();
@@ -544,10 +544,10 @@ namespace traffic_manager {
       }
       break;
 
-      /// Both left and right transit present
+      /// 左右两侧均显示交通状况
       case crd::element::LaneMarking::LaneChange::Both:
       {
-        /// Right transit way point
+        /// 右转航路点
         const WaypointPtr right_waypoint = raw_waypoint->GetRight();
         if (right_waypoint != nullptr &&
         right_waypoint->GetType() == crd::Lane::LaneType::Driving &&
@@ -557,7 +557,7 @@ namespace traffic_manager {
           reference_waypoint->SetRightWaypoint(closest_simple_waypointR);
         }
 
-        /// Left transit way point
+        /// 左转航路点
         const WaypointPtr left_waypoint = raw_waypoint->GetLeft();
         if (left_waypoint != nullptr &&
         left_waypoint->GetType() == crd::Lane::LaneType::Driving &&
@@ -569,7 +569,7 @@ namespace traffic_manager {
       }
       break;
 
-      /// For no transit waypoint (left or right)
+      /// 无中转航点（左或右）
       default: break;
     }
   }
