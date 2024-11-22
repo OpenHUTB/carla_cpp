@@ -936,41 +936,106 @@ if (bEnableModifyingPostProcessEffects)
     ChromaticOffset.RecommendedValues = { TEXT("0.0") }; // 为色散偏移变量设置推荐值
     ChromaticOffset.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
+    // 向一个名为Definition的对象的Variations属性中添加一个新的集合
     Definition.Variations.Append({
-      ExposureMode,
-      ExposureCompensation,
-      ShutterSpeed,
-      ISO,
-      Aperture,
-      PostProccess,
-      Gamma,
-      MBIntesity,
-      MBMaxDistortion,
-      LensFlareIntensity,
-      BloomIntensity,
-      MBMinObjectScreenSize,
-      ExposureMinBright,
-      ExposureMaxBright,
-      ExposureSpeedUp,
-      ExposureSpeedDown,
-      CalibrationConstant,
-      FocalDistance,
-      MaxAperture,
-      BladeCount,
-      DepthBlurAmount,
-      DepthBlurRadius,
-      FilmSlope,
-      FilmToe,
-      FilmShoulder,
-      FilmBlackClip,
-      FilmWhiteClip,
-      Temperature,
-      Tint,
-      ChromaticIntensity,
-      ChromaticOffset});
-  }
+        
+        // 曝光模式
+        ExposureMode,
 
-  Success = CheckActorDefinition(Definition);
+        // 曝光补偿
+        ExposureCompensation,
+
+        // 快门速度
+        ShutterSpeed,
+
+        // ISO感光度
+        ISO,
+
+        // 光圈大小
+        Aperture,
+
+        // 后期处理
+        PostProccess,
+
+        // Gamma值，用于调整图像的亮度
+        Gamma,
+
+        // MB强度
+        MBIntesity,
+
+        // MB最大畸变
+        MBMaxDistortion,
+
+        // 镜头光晕强度
+        LensFlareIntensity,
+
+        // 泛光强度
+        BloomIntensity,
+
+        // MB最小对象屏幕大小
+        MBMinObjectScreenSize,
+
+        // 曝光最小亮度
+        ExposureMinBright,
+
+        // 曝光最大亮度
+        ExposureMaxBright,
+
+        // 曝光加速
+        ExposureSpeedUp,
+
+        // 曝光减速
+        ExposureSpeedDown,
+
+        // 校准常数
+        CalibrationConstant,
+
+        // 焦距
+        FocalDistance,
+
+        // 最大光圈
+        MaxAperture,
+
+        // 光圈叶片数量
+        BladeCount,
+
+        // 景深模糊量
+        DepthBlurAmount,
+
+        // 景深模糊半径
+        DepthBlurRadius,
+
+        // 胶片斜率（影响图像对比度）
+        FilmSlope,
+
+        // 胶片趾部（影响图像暗部细节）
+        FilmToe,
+
+        // 胶片肩部（影响图像亮部细节）
+        FilmShoulder,
+
+        // 胶片黑剪（最暗部被剪切的程度）
+        FilmBlackClip,
+
+        // 胶片白剪（最亮部被剪切的程度）
+        FilmWhiteClip,
+
+        // 色温
+        Temperature,
+
+        // 色调
+        Tint,
+
+        // 色差强度
+        ChromaticIntensity,
+
+        // 色差偏移
+        ChromaticOffset
+        });
+
+    // 调用CheckActorDefinition函数来检查Definition对象是否有效或符合某种标准
+    // 并将结果赋值给Success变量
+    Success = CheckActorDefinition(Definition);
 }
 
 FActorDefinition UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition()
