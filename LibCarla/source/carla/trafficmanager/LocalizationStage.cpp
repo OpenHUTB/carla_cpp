@@ -540,16 +540,16 @@ void LocalizationStage::ImportRoute(Route &imported_actions, Buffer &waypoint_bu
       for (uint64_t j = 0u; j < number_of_pops - 1; ++j) {
         PopWaypoint(actor_id, track_traffic, waypoint_buffer, false);
       }
-      // We have successfully imported the route. Remove it from the list of routes to be imported.
+      //我们已成功导入该路由。请将其从待导入路由列表中移除
       parameters.RemoveImportedRoute(actor_id, false);
     }
 
     RoadOption next_road_option = static_cast<RoadOption>(imported_actions.front());
     while (!imported_actions.empty() && waypoint_buffer.back()->DistanceSquared(waypoint_buffer.front()) <= horizon_square) {
-      // Get the latest point we added to the list. If starting, this will be the one referred to the vehicle's location.
+      // 获取我们添加到列表中的最新点。如果是起点，这将是与车辆位置相关的点
       SimpleWaypointPtr latest_waypoint = waypoint_buffer.back();
       RoadOption latest_road_option = latest_waypoint->GetRoadOption();
-      // Try to link the latest_waypoint to the correct next RouteOption.
+      // 尝试将最新的航点与正确的下一个路线选项关联起来
       std::vector<SimpleWaypointPtr> next_waypoints = latest_waypoint->GetNextWaypoint();
       uint16_t selection_index = 0u;
       if (next_waypoints.size() > 1) {
@@ -574,17 +574,17 @@ void LocalizationStage::ImportRoute(Route &imported_actions, Buffer &waypoint_bu
       SimpleWaypointPtr next_wp_selection = next_waypoints.at(selection_index);
       PushWaypoint(actor_id, track_traffic, waypoint_buffer, next_wp_selection);
 
-      // If we are switching to a new RoadOption, it means the current one is already fully imported.
+      // 如果我们正在切换到新的道路选项，这意味着当前的道路选项已经完全导入
       if (latest_road_option != next_wp_selection->GetRoadOption() && next_road_option == next_wp_selection->GetRoadOption()) {
         imported_actions.erase(imported_actions.begin());
         next_road_option = static_cast<RoadOption>(imported_actions.front());
       }
     }
     if (imported_actions.empty()) {
-      // Once we are done, check if we can clear the structure.
+      // 一旦完成，检查我们是否可以清除该结构
       parameters.RemoveImportedRoute(actor_id, true);
     } else {
-      // Otherwise, update the structure with the waypoints that we still need to import.
+      // 否则，使用我们仍然需要导入的路点更新结构
       parameters.UpdateImportedRoute(actor_id, imported_actions);
     }
 }
