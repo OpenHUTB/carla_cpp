@@ -594,7 +594,7 @@ Action LocalizationStage::ComputeNextAction(const ActorId& actor_id) {
   auto next_action = std::make_pair(RoadOption::LaneFollow, waypoint_buffer.back()->GetWaypoint());
   bool is_lane_change = false;
   if (last_lane_change_swpt.find(actor_id) != last_lane_change_swpt.end()) {
-    // A lane change is happening.
+    // 正在发生车道变更
     is_lane_change = true;
     const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id);
     const cg::Vector3D relative_vector = simulation_state.GetLocation(actor_id) - last_lane_change_swpt.at(actor_id)->GetLocation();
@@ -606,10 +606,10 @@ Action LocalizationStage::ComputeNextAction(const ActorId& actor_id) {
     RoadOption road_opt = swpt->GetRoadOption();
     if (road_opt != RoadOption::LaneFollow) {
       if (!is_lane_change) {
-        // No lane change in sight, we can assume this will be the next action.
+        // 没有看到变道的迹象，我们可以假设这将是下一个动作
         return std::make_pair(road_opt, swpt->GetWaypoint());
       } else {
-        // A lane change will happen as well as another action, we need to figure out which one will happen first.
+        // 变道和另一个动作都会发生，我们需要弄清楚哪一个会先发生
         cg::Location lane_change = last_lane_change_swpt.at(actor_id)->GetLocation();
         cg::Location actual_location = simulation_state.GetLocation(actor_id);
         auto distance_lane_change = cg::Math::DistanceSquared(actual_location, lane_change);
