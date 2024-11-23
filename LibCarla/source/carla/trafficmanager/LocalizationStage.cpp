@@ -632,7 +632,7 @@ ActionBuffer LocalizationStage::ComputeActionBuffer(const ActorId& actor_id) {
   RoadOption last_road_opt = buffer_front->GetRoadOption();
   action_buffer.push_back(std::make_pair(last_road_opt, buffer_front->GetWaypoint()));
   if (last_lane_change_swpt.find(actor_id) != last_lane_change_swpt.end()) {
-    // A lane change is happening.
+    // 正在发生变道
     is_lane_change = true;
     const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id);
     const cg::Vector3D relative_vector = simulation_state.GetLocation(actor_id) - last_lane_change_swpt.at(actor_id)->GetLocation();
@@ -648,12 +648,12 @@ ActionBuffer LocalizationStage::ComputeActionBuffer(const ActorId& actor_id) {
     }
   }
   if (is_lane_change) {
-    // Insert the lane change action in the appropriate part of the action buffer.
+    // 在动作缓冲区的适当部分插入变道动作
     auto distance_lane_change = cg::Math::DistanceSquared(waypoint_buffer.front()->GetLocation(), lane_change.second->GetTransform().location);
     for (uint16_t i = 0; i < action_buffer.size(); ++i) {
       auto distance_action = cg::Math::DistanceSquared(waypoint_buffer.front()->GetLocation(), waypoint_buffer.at(i)->GetLocation());
-      // If the waypoint related to the next action is further away from the one of the lane change, insert lane change action here.
-      // If we reached the end of the buffer, place the action at the end.
+      // 如果与下一步行动相关的方式点距离变道的方式点更远，请在此处插入变道行动
+      // 如果我们到达了缓冲区的末尾，则将操作放在末尾
       if (i == action_buffer.size()-1) {
         action_buffer.push_back(lane_change);
         break;
