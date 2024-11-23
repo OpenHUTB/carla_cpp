@@ -248,7 +248,7 @@ void LocalizationStage::ExtendAndFindSafeSpace(const ActorId actor_id,
     SimpleWaypointPtr junction_begin_point = nullptr;
     float safe_distance_squared = SQUARE(SAFE_DISTANCE_AFTER_JUNCTION);
 
-    // Scanning existing buffer points.
+    // 扫描现有缓冲点
     for (unsigned long i = 0u; i < waypoint_buffer.size() && !safe_point_found; ++i) {
       current_waypoint = waypoint_buffer.at(i);
       if (!entered_junction && current_waypoint->CheckJunction()) {
@@ -265,7 +265,7 @@ void LocalizationStage::ExtendAndFindSafeSpace(const ActorId actor_id,
       }
     }
 
-    // Extend buffer if safe point not found.
+    // 如果未找到安全点，则扩展缓冲区
     if (!safe_point_found) {
       bool abort = false;
 
