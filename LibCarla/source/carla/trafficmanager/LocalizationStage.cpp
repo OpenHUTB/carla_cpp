@@ -41,7 +41,7 @@ void LocalizationStage::Update(const unsigned long index) {
   const cg::Vector3D vehicle_velocity_vector = simulation_state.GetVelocity(actor_id);
   const float vehicle_speed = vehicle_velocity_vector.Length();
 
-  // Speed dependent waypoint horizon length.
+  // 速度相关的航点视野长度
   float horizon_length = std::max(vehicle_speed * HORIZON_RATE, MINIMUM_HORIZON_LENGTH);
   if (vehicle_speed > HIGHWAY_SPEED) {
     horizon_length = std::max(vehicle_speed * HIGH_SPEED_HORIZON_RATE, MINIMUM_HORIZON_LENGTH);
@@ -66,7 +66,7 @@ void LocalizationStage::Update(const unsigned long index) {
 
   bool is_at_junction_entrance = false;
   if (!waypoint_buffer.empty()) {
-    // Purge passed waypoints.
+    // 清除已通过的航点
     float dot_product = DeviationDotProduct(vehicle_location, heading_vector, waypoint_buffer.front()->GetLocation());
     while (dot_product <= 0.0f && !waypoint_buffer.empty()) {
       PopWaypoint(actor_id, track_traffic, waypoint_buffer);
@@ -76,7 +76,7 @@ void LocalizationStage::Update(const unsigned long index) {
     }
 
     if (!waypoint_buffer.empty()) {
-      // Determine if the vehicle is at the entrance of a junction.
+      // 确定车辆是否在交叉路口入口处
       SimpleWaypointPtr look_ahead_point = GetTargetWaypoint(waypoint_buffer, JUNCTION_LOOK_AHEAD).first;
       SimpleWaypointPtr front_waypoint = waypoint_buffer.front();
       bool front_waypoint_junction = front_waypoint->CheckJunction();
@@ -88,14 +88,14 @@ void LocalizationStage::Update(const unsigned long index) {
         }
       }
       if (is_at_junction_entrance
-          // Exception for roundabout in Town03.
+          //Town03中的环岛例外情况
           && local_map->GetMapName() == "Carla/Maps/Town03"
           && vehicle_location.SquaredLength() < SQUARE(30)) {
         is_at_junction_entrance = false;
       }
     }
 
-    // Purge waypoints too far from the front of the buffer, but not if it has reached a junction.
+    // 清除缓冲区前端太远的航点，但如果已经到达一个路口，则不要清除
     while (!is_at_junction_entrance
            && !waypoint_buffer.empty()
            && waypoint_buffer.back()->DistanceSquared(waypoint_buffer.front()) > horizon_square + horizon_square
@@ -104,18 +104,18 @@ void LocalizationStage::Update(const unsigned long index) {
     }
   }
 
-  // Initializing buffer if it is empty.
+  // 如果缓冲区为空，则进行初始化
   if (waypoint_buffer.empty()) {
     SimpleWaypointPtr closest_waypoint = local_map->GetWaypoint(vehicle_location);
     PushWaypoint(actor_id, track_traffic, waypoint_buffer, closest_waypoint);
   }
 
-  // Assign a lane change.
+  // 分配变道
   const ChangeLaneInfo lane_change_info = parameters.GetForceLaneChange(actor_id);
   bool force_lane_change = lane_change_info.change_lane;
   bool lane_change_direction = lane_change_info.direction;
 
-  // Apply parameters for keep right rule and random lane changes.
+  //应用保持右侧规则和随机变道参数
   if (!force_lane_change && vehicle_speed > MIN_LANE_CHANGE_SPEED){
     const float perc_keep_right = parameters.GetKeepRightPercentage(actor_id);
     const float perc_random_leftlanechange = parameters.GetRandomLeftLaneChangePercentage(actor_id);
@@ -124,7 +124,7 @@ void LocalizationStage::Update(const unsigned long index) {
     const bool is_random_left_change = perc_random_leftlanechange >= random_device.next();
     const bool is_random_right_change = perc_random_rightlanechange >= random_device.next();
 
-    // Determine which of the parameters we should apply.
+    //确定应应用的参数
     if (is_keep_right || is_random_right_change) {
       force_lane_change = true;
       lane_change_direction = true;
@@ -134,7 +134,7 @@ void LocalizationStage::Update(const unsigned long index) {
         force_lane_change = true;
         lane_change_direction = false;
       } else {
-        // Both a left and right lane changes are forced. Choose between one of them.
+        // 左右车道变更都是强制性的。请在其中选择一个
         lane_change_direction = FIFTYPERC > random_device.next();
       }
     }
@@ -176,7 +176,7 @@ void LocalizationStage::Update(const unsigned long index) {
 
   Path imported_path = parameters.GetCustomPath(actor_id);
   Route imported_actions = parameters.GetImportedRoute(actor_id);
-  // We are effectively importing a path.
+  // 我们实际上是在导入一个路径
   if (!imported_path.empty()) {
 
     ImportPath(imported_path, waypoint_buffer, actor_id, horizon_square);
@@ -187,13 +187,13 @@ void LocalizationStage::Update(const unsigned long index) {
 
   }
 
-  // Populating the buffer through randomly chosen waypoints.
+  // 通过随机选择航点填充缓冲区
   else {
     while (waypoint_buffer.back()->DistanceSquared(waypoint_buffer.front()) <= horizon_square) {
       SimpleWaypointPtr furthest_waypoint = waypoint_buffer.back();
       std::vector<SimpleWaypointPtr> next_waypoints = furthest_waypoint->GetNextWaypoint();
       uint64_t selection_index = 0u;
-      // Pseudo-randomized path selection if found more than one choice.
+      // 伪随机路径选择，如果发现多个选择
       if (next_waypoints.size() > 1) {
         double r_sample = random_device.next();
         selection_index = static_cast<uint64_t>(r_sample*next_waypoints.size()*0.01);
@@ -207,14 +207,14 @@ void LocalizationStage::Update(const unsigned long index) {
       SimpleWaypointPtr next_wp_selection = next_waypoints.at(selection_index);
       PushWaypoint(actor_id, track_traffic, waypoint_buffer, next_wp_selection);
       if (next_wp_selection->GetId() == waypoint_buffer.front()->GetId()){
-        // Found a loop, stop. Don't use zero distance as there can be two waypoints at the same location
+        // 发现了一个环，停止。不要使用零距离，因为可能有两个航点在同一位置
         break;
       }
     }
   }
   ExtendAndFindSafeSpace(actor_id, is_at_junction_entrance, waypoint_buffer);
 
-  // Editing output array
+  // 编辑输出数组
   LocalizationData &output = output_array.at(index);
   output.is_at_junction_entrance = is_at_junction_entrance;
 
@@ -227,7 +227,7 @@ void LocalizationStage::Update(const unsigned long index) {
     output.safe_point = nullptr;
   }
 
-  // Updating geodesic grid position for actor.
+  // 更新参与者的测地线网格位置
   track_traffic.UpdateGridPosition(actor_id, waypoint_buffer);
 }
 
