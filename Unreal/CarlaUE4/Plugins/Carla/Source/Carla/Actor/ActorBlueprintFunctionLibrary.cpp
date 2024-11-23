@@ -1089,30 +1089,30 @@ void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, 
   ResY.RecommendedValues = { TEXT("600") }; // 为ResY对象设置一个推荐的图像高度值
   ResY.bRestrictToRecommended = false; // 设置ResY对象是否限制为只能使用推荐值
 
-  // Lens parameters
-  FActorVariation LensCircleFalloff;
-  LensCircleFalloff.Id = TEXT("lens_circle_falloff");
-  LensCircleFalloff.Type = EActorAttributeType::Float;
-  LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
-  LensCircleFalloff.bRestrictToRecommended = false;
+  // 镜头参数
+  FActorVariation LensCircleFalloff; // 镜头圆形衰减参数
+  LensCircleFalloff.Id = TEXT("lens_circle_falloff"); // 设置参数ID为"lens_circle_falloff"
+  LensCircleFalloff.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensCircleFalloff.RecommendedValues = { TEXT("5.0") }; // 设置推荐值为"5.0"
+  LensCircleFalloff.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensCircleMultiplier;
-  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
-  LensCircleMultiplier.Type = EActorAttributeType::Float;
-  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
-  LensCircleMultiplier.bRestrictToRecommended = false;
+  FActorVariation LensCircleMultiplier; // 镜头圆形倍增参数
+  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier"); // 设置参数ID为"lens_circle_multiplier"
+  LensCircleMultiplier.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
+  LensCircleMultiplier.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensK;
-  LensK.Id = TEXT("lens_k");
-  LensK.Type = EActorAttributeType::Float;
-  LensK.RecommendedValues = { TEXT("-1.0") };
-  LensK.bRestrictToRecommended = false;
+  FActorVariation LensK; // 镜头K参数
+  LensK.Id = TEXT("lens_k"); // 设置参数ID为"lens_k"
+  LensK.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensK.RecommendedValues = { TEXT("-1.0") }; // 设置推荐值为"-1.0"
+  LensK.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensKcube;
-  LensKcube.Id = TEXT("lens_kcube");
-  LensKcube.Type = EActorAttributeType::Float;
-  LensKcube.RecommendedValues = { TEXT("0.0") };
-  LensKcube.bRestrictToRecommended = false;
+  FActorVariation LensKcube; // 镜头K的三次方参数
+  LensKcube.Id = TEXT("lens_kcube"); // 设置参数ID为"lens_kcube"
+  LensKcube.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensKcube.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
+  LensKcube.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
   FActorVariation LensXSize;
   LensXSize.Id = TEXT("lens_x_size");
