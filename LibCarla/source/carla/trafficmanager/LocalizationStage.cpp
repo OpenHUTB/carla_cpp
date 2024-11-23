@@ -334,24 +334,24 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
                                                       const float vehicle_speed,
                                                       bool force, bool direction) {
 
-  // Waypoint representing the new starting point for the waypoint buffer
-  // due to lane change. Remains nullptr if lane change not viable.
+  // 航点表示航点缓冲区的新起点
+  // 由于车道变更。如果车道变更不可行，则保持为空指针
   SimpleWaypointPtr change_over_point = nullptr;
 
-  // Retrieve waypoint buffer for current vehicle.
+  // 获取当前车辆的航点缓冲区
   const Buffer &waypoint_buffer = buffer_map.at(actor_id);
 
-  // Check buffer is not empty.
+  // 检查缓冲区是否不为空
   if (!waypoint_buffer.empty()) {
-    // Get the left and right waypoints for the current closest waypoint.
+    // 获取当前最近航点的左右航点
     const SimpleWaypointPtr &current_waypoint = waypoint_buffer.front();
     const SimpleWaypointPtr left_waypoint = current_waypoint->GetLeftWaypoint();
     const SimpleWaypointPtr right_waypoint = current_waypoint->GetRightWaypoint();
 
-    // Retrieve vehicles with overlapping waypoint buffers with current vehicle.
+    // 检索与当前车辆重叠路径点缓冲区的车辆
     const auto blocking_vehicles = track_traffic.GetOverlappingVehicles(actor_id);
 
-    // Find immediate in-lane obstacle and check if any are too close to initiate lane change.
+    // 查找车道内即时障碍物，并检查是否有障碍物距离过近，无法进行变道
     bool obstacle_too_close = false;
     float minimum_squared_distance = std::numeric_limits<float>::infinity();
     ActorId obstacle_actor_id = 0u;
@@ -359,7 +359,7 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
          i != blocking_vehicles.end() && !obstacle_too_close && !force;
          ++i) {
       const ActorId &other_actor_id = *i;
-      // Find vehicle in buffer map and check if it's buffer is not empty.
+      // 在缓冲区地图中查找车辆，并检查其缓冲区是否不为空
       if (buffer_map.find(other_actor_id) != buffer_map.end() && !buffer_map.at(other_actor_id).empty()) {
         const Buffer &other_buffer = buffer_map.at(other_actor_id);
         const SimpleWaypointPtr &other_current_waypoint = other_buffer.front();
@@ -371,9 +371,9 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
 
         WaypointPtr current_raw_waypoint = current_waypoint->GetWaypoint();
         WaypointPtr other_current_raw_waypoint = other_current_waypoint->GetWaypoint();
-        // Check both vehicles are not in junction,
-        // Check if the other vehicle is in front of the current vehicle,
-        // Check if the two vehicles have acceptable angular deviation between their headings.
+        // 检查两辆车是否都不在交叉路口
+        //检查另一辆车是否在当前车辆的前方
+        // 检查两辆车的航向之间是否存在可接受的角偏差
         if (!current_waypoint->CheckJunction()
             && !other_current_waypoint->CheckJunction()
             && other_current_raw_waypoint->GetRoadId() == current_raw_waypoint->GetRoadId()
@@ -381,9 +381,9 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
             && cg::Math::Dot(reference_heading, reference_to_other) > 0.0f
             && cg::Math::Dot(reference_heading, other_heading) > MAXIMUM_LANE_OBSTACLE_CURVATURE) {
           float squared_distance = cg::Math::DistanceSquared(vehicle_location, other_location);
-          // Abort if the obstacle is too close.
+          // 如果障碍物太近，则中止
           if (squared_distance > SQUARE(MINIMUM_LANE_CHANGE_DISTANCE)) {
-            // Remember if the new vehicle is closer.
+            // 如果新车辆更靠近就记住
             if (squared_distance < minimum_squared_distance && squared_distance < SQUARE(MAXIMUM_LANE_OBSTACLE_DISTANCE)) {
               minimum_squared_distance = squared_distance;
               obstacle_actor_id = other_actor_id;
@@ -395,18 +395,18 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
       }
     }
 
-    // If a valid immediate obstacle found.
+    // 如果发现有效的即时障碍
     if (!obstacle_too_close && obstacle_actor_id != 0u && !force) {
       const Buffer &other_buffer = buffer_map.at(obstacle_actor_id);
       const SimpleWaypointPtr &other_current_waypoint = other_buffer.front();
       const auto other_neighbouring_lanes = {other_current_waypoint->GetLeftWaypoint(),
                                              other_current_waypoint->GetRightWaypoint()};
 
-      // Flags reflecting whether adjacent lanes are free near the obstacle.
+      // 反映障碍物附近相邻车道是否畅通的标志
       bool distant_left_lane_free = false;
       bool distant_right_lane_free = false;
 
-      // Check if the neighbouring lanes near the obstructing vehicle are free of other vehicles.
+      // 检查阻碍车辆附近的相邻车道是否没有其他车辆
       bool left_right = true;
       for (auto &candidate_lane_wp : other_neighbouring_lanes) {
         if (candidate_lane_wp != nullptr &&
@@ -420,8 +420,8 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
         left_right = !left_right;
       }
 
-      // Based on what lanes are free near the obstacle,
-      // find the change over point with no vehicles passing through them.
+      //基于障碍物附近哪些车道是空闲的，
+      // 找到没有车辆通过的变更点
       if (distant_right_lane_free && right_waypoint != nullptr
           && track_traffic.GetPassingVehicles(right_waypoint->GetId()).size() == 0) {
         change_over_point = right_waypoint;
