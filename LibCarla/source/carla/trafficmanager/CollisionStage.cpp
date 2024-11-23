@@ -333,7 +333,7 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
 
   // 自我和其他车辆的方向
   const cg::Vector3D reference_heading = simulation_state.GetHeading(reference_vehicle_id);
-  // Vector from ego position to position of the other vehicle.
+  // 从自车位置到其他车辆位置的向量
   cg::Vector3D reference_to_other = other_location - reference_location;
   reference_to_other = reference_to_other.MakeSafeUnitVector(EPSILON);
 
@@ -349,12 +349,12 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
   float inter_vehicle_distance = cg::Math::DistanceSquared(reference_location, other_location);
   float ego_bounding_box_extension = GetBoundingBoxExtention(reference_vehicle_id);
   float other_bounding_box_extension = GetBoundingBoxExtention(other_actor_id);
-  // Calculate minimum distance between vehicle to consider collision negotiation.
+  // 计算车辆之间考虑碰撞协商的最小距离
   float inter_vehicle_length = reference_vehicle_length + other_vehicle_length;
   float ego_detection_range = SQUARE(ego_bounding_box_extension + inter_vehicle_length);
   float cross_detection_range = SQUARE(ego_bounding_box_extension + inter_vehicle_length + other_bounding_box_extension);
 
-  // Conditions to consider collision negotiation.
+  // 考虑碰撞谈判的条件
   bool other_vehicle_in_ego_range = inter_vehicle_distance < ego_detection_range;
   bool other_vehicles_in_cross_detection_range = inter_vehicle_distance < cross_detection_range;
   float reference_heading_to_other_dot = cg::Math::Dot(reference_heading, reference_to_other);
@@ -368,13 +368,13 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
   SimpleWaypointPtr look_ahead_point = reference_vehicle_buffer.at(reference_junction_look_ahead_index);
   bool ego_at_junction_entrance = !closest_point->CheckJunction() && look_ahead_point->CheckJunction();
 
-  // Conditions to consider collision negotiation.
+  // 考虑碰撞谈判的条件
   if (!(ego_at_junction_entrance && ego_at_traffic_light && ego_stopped_by_light)
       && ((ego_inside_junction && other_vehicles_in_cross_detection_range)
           || (!ego_inside_junction && other_vehicle_in_front && other_vehicle_in_ego_range))) {
     GeometryComparison geometry_comparison = GetGeometryBetweenActors(reference_vehicle_id, other_actor_id);
 
-    // Conditions for collision negotiation.
+    // 碰撞谈判的条件
     bool geodesic_path_bbox_touching = geometry_comparison.inter_geodesic_distance < OVERLAP_THRESHOLD;
     bool vehicle_bbox_touching = geometry_comparison.inter_bbox_distance < OVERLAP_THRESHOLD;
     bool ego_path_clear = geometry_comparison.other_vehicle_to_reference_geodesic > OVERLAP_THRESHOLD;
@@ -383,7 +383,7 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
     bool other_path_priority = geometry_comparison.reference_vehicle_to_other_geodesic > geometry_comparison.other_vehicle_to_reference_geodesic;
     bool ego_angular_priority = reference_heading_to_other_dot< cg::Math::Dot(other_heading, other_to_reference);
 
-    // Whichever vehicle's path is farthest away from the other vehicle gets priority to move.
+    // 哪辆车的路径离另一辆车最远，哪辆车就优先通行
     bool lower_priority = !ego_path_priority && (other_path_priority || !ego_angular_priority);
     bool blocked_by_other_or_lower_priority = !ego_path_clear || (other_path_clear && lower_priority);
     bool yield_pre_crash = !vehicle_bbox_touching && blocked_by_other_or_lower_priority;
@@ -398,30 +398,30 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
       available_distance_margin = static_cast<float>(std::max(geometry_comparison.reference_vehicle_to_other_geodesic
                                                               - static_cast<double>(specific_distance_margin), 0.0));
 
-      ///////////////////////////////////// Collision locking mechanism /////////////////////////////////
-      // The idea is, when encountering a possible collision,
-      // we should ensure that the bounding box extension doesn't decrease too fast and loose collision tracking.
-      // This enables us to smoothly approach the lead vehicle.
+      ///////////////////////////////////// 碰撞锁定机构 /////////////////////////////////
+      // 这个想法是，在遇到可能的碰撞时，
+      // 我们应该确保边界框的扩展不会过快地减小，从而导致碰撞跟踪的丢失
+      // 这使得我们能够平稳地接近前车
 
-      // When possible collision found, check if an entry for collision lock present.
+      // 当发现可能的碰撞时，检查是否存在碰撞锁的条目
       if (collision_locks.find(reference_vehicle_id) != collision_locks.end()) {
         CollisionLock &lock = collision_locks.at(reference_vehicle_id);
-        // Check if the same vehicle is under lock.
+        // 检查同一车辆是否处于锁定状态
         if (other_actor_id == lock.lead_vehicle_id) {
-          // If the body of the lead vehicle is touching the reference vehicle bounding box.
+          // 如果领头车辆的车身与参考车辆的边界框接触
           if (geometry_comparison.other_vehicle_to_reference_geodesic < OVERLAP_THRESHOLD) {
-            // Distance between the bodies of the vehicles.
+            // 车辆车身之间的距离
             lock.distance_to_lead_vehicle = geometry_comparison.inter_bbox_distance;
           } else {
-            // Distance from reference vehicle body to other vehicle path polygon.
+            // 参考车辆车身与其他车辆路径多边形的距离
             lock.distance_to_lead_vehicle = geometry_comparison.reference_vehicle_to_other_geodesic;
           }
         } else {
-          // If possible collision with a new vehicle, re-initialize with new lock entry.
+          // 如果可能与新车辆发生碰撞，请使用新的锁定条目重新初始化
           lock = {geometry_comparison.inter_bbox_distance, geometry_comparison.inter_bbox_distance, other_actor_id};
         }
       } else {
-        // Insert and initialize lock entry if not present.
+        // 如果锁条目不存在，则插入并初始化锁条目
         collision_locks.insert({reference_vehicle_id,
                                 {geometry_comparison.inter_bbox_distance,
                                  geometry_comparison.inter_bbox_distance,
@@ -430,7 +430,7 @@ std::pair<bool, float> CollisionStage::NegotiateCollision(const ActorId referenc
     }
   }
 
-  // If no collision hazard detected, then flush collision lock held by the vehicle.
+  // 如果没有检测到碰撞危险，则清除车辆持有的碰撞锁定
   if (!hazard && collision_locks.find(reference_vehicle_id) != collision_locks.end()) {
     collision_locks.erase(reference_vehicle_id);
   }
