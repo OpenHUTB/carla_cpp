@@ -451,30 +451,30 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
 }
 
 void LocalizationStage::ImportPath(Path &imported_path, Buffer &waypoint_buffer, const ActorId actor_id, const float horizon_square) {
-    // Remove the waypoints already added to the path, except for the first.
+    // 移除已添加到路径中的航点，除了第一个
     if (parameters.GetUploadPath(actor_id)) {
       auto number_of_pops = waypoint_buffer.size();
       for (uint64_t j = 0u; j < number_of_pops - 1; ++j) {
         PopWaypoint(actor_id, track_traffic, waypoint_buffer, false);
       }
-      // We have successfully imported the path. Remove it from the list of paths to be imported.
+      // 我们已经成功导入了该路径。请将其从待导入路径列表中移除
       parameters.RemoveUploadPath(actor_id, false);
     }
 
-    // Get the latest imported waypoint. and find its closest waypoint in TM's InMemoryMap.
+    // 获取最新的导入航点，并在TM的InMemoryMap中找到与其最近的航点
     cg::Location latest_imported = imported_path.front();
     SimpleWaypointPtr imported = local_map->GetWaypoint(latest_imported);
 
-    // We need to generate a path compatible with TM's waypoints.
+    //我们需要生成一条与TM航点兼容的路径
     while (!imported_path.empty() && waypoint_buffer.back()->DistanceSquared(waypoint_buffer.front()) <= horizon_square) {
-      // Get the latest point we added to the list. If starting, this will be the one referred to the vehicle's location.
+      // 获取我们添加到列表中的最新点。如果从起点开始，这将是与车辆位置相关的点
       SimpleWaypointPtr latest_waypoint = waypoint_buffer.back();
 
-      // Try to link the latest_waypoint to the imported waypoint.
+      // 尝试将最新的航点与导入的航点进行关联
       std::vector<SimpleWaypointPtr> next_waypoints = latest_waypoint->GetNextWaypoint();
       uint64_t selection_index = 0u;
 
-      // Choose correct path.
+      // 选择正确的路径
       if (next_waypoints.size() > 1) {
         const float imported_road_id = imported->GetWaypoint()->GetRoadId();
         float min_distance = std::numeric_limits<float>::infinity();
@@ -509,12 +509,12 @@ void LocalizationStage::ImportPath(Path &imported_path, Buffer &waypoint_buffer,
       }
       SimpleWaypointPtr next_wp_selection = next_waypoints.at(selection_index);
 
-      // Remove the imported waypoint from the path if it's close to the last one.
+      // 如果导入的路点接近最后一个路点，则将其从路径中移除
       if (next_wp_selection->DistanceSquared(imported) < 30.0f) {
         imported_path.erase(imported_path.begin());
         std::vector<SimpleWaypointPtr> possible_waypoints = next_wp_selection->GetNextWaypoint();
         if (std::find(possible_waypoints.begin(), possible_waypoints.end(), imported) != possible_waypoints.end()) {
-          // If the lane is changing, only push the new waypoint
+          //如果正在变道，只需推送新的路径点
           PushWaypoint(actor_id, track_traffic, waypoint_buffer, next_wp_selection);
         }
         PushWaypoint(actor_id, track_traffic, waypoint_buffer, imported);
@@ -525,10 +525,10 @@ void LocalizationStage::ImportPath(Path &imported_path, Buffer &waypoint_buffer,
       }
     }
     if (imported_path.empty()) {
-      // Once we are done, check if we can clear the structure.
+      // 一旦完成，检查是否可以清除该结构
       parameters.RemoveUploadPath(actor_id, true);
     } else {
-      // Otherwise, update the structure with the waypoints that we still need to import.
+      // 否则，使用我们仍需导入的路点更新结构
       parameters.UpdateUploadPath(actor_id, imported_path);
     }
 }
