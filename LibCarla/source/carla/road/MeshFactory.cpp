@@ -65,54 +65,56 @@ namespace geom {
 
   // 根据车道和给定的起始、结束位置生成网格
   std::unique_ptr<Mesh> MeshFactory::Generate(
-      const road::Lane &lane, const double s_start, const double s_end) const {
-    RELEASE_ASSERT(road_param.resolution > 0.0); // 确保分辨率大于0
-    DEBUG_ASSERT(s_start >= 0.0); // 确保起始点合法
-    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束点合法
-    DEBUG_ASSERT(s_end >= EPSILON); // 确保结束点大于Epsilon
-    DEBUG_ASSERT(s_start < s_end); // 确保起始点小于结束点
-    
-    // ID为0的车道在OpenDRIVE中没有物理表示
-    Mesh out_mesh; 
-    if (lane.GetId() == 0) {
-      return std::make_unique<Mesh>(out_mesh); // 返回空网格
-    }
-    
-    double s_current = s_start; // 当前s值初始化为起始点
+      const road::Lane& lane, const double s_start, const double s_end) const {
+      RELEASE_ASSERT(road_param.resolution > 0.0); // 确保分辨率大于0
+      DEBUG_ASSERT(s_start >= 0.0); // 确保起始点合法
+      DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束点合法
+      DEBUG_ASSERT(s_end >= EPSILON); // 确保结束点大于Epsilon
+      DEBUG_ASSERT(s_start < s_end); // 确保起始点小于结束点
 
-    std::vector<geom::Vector3D> vertices; // 存储顶点的向量
-    if (lane.IsStraight()) { // 如果车道是直的
-      // 网格优化：如果车道是直的，只需在开始和结束处添加顶点
-      const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width); // 获取当前车道边缘位置
-      vertices.push_back(edges.first); // 添加左边缘顶点
-      vertices.push_back(edges.second); // 添加右边缘顶点
-    } else {
-      // 遍历车道的's'并根据宽度存储顶点
-      do {
-        // 获取当前路径点的车道边缘位置
-        const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-        vertices.push_back(edges.first); // 添加左边缘顶点
-        vertices.push_back(edges.second); // 添加右边缘顶点
+      // ID为0的车道在OpenDRIVE中没有物理表示
+      Mesh out_mesh;
+      if (lane.GetId() == 0) {
+          return std::make_unique<Mesh>(out_mesh); // 返回空网格
+      }
 
-        // 更新当前路径点的"s"
-        s_current += road_param.resolution; // 增加当前s值
-      } while(s_current < s_end); // 继续直到达到结束点
-    }
+      double s_current = s_start; // 当前s值初始化为起始点
 
-    // 确保网格是连续的，并且车道之间没有间隙，
-    // 在车道的末尾添加几何形状
-    if (s_end - (s_current - road_param.resolution) > EPSILON) {
-      const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width); // 获取结束点的车道边缘位置
-      vertices.push_back(edges.first); // 添加左边缘顶点
-      vertices.push_back(edges.second); // 添加右边缘顶点
-    }
+      std::vector<geom::Vector3D> vertices; // 存储顶点的向量
+      if (lane.IsStraight()) { // 如果车道是直的
+        // 网格优化：如果车道是直的，只需在开始和结束处添加顶点
+          const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width); // 获取当前车道边缘位置
+          vertices.push_back(edges.first); // 添加左边缘顶点
+          vertices.push_back(edges.second); // 添加右边缘顶点
+      }
+      else {
+          // 遍历车道的's'并根据宽度存储顶点
+          do {
+              // 获取当前路径点的车道边缘位置
+              const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
+              vertices.push_back(edges.first); // 添加左边缘顶点
+              vertices.push_back(edges.second); // 添加右边缘顶点
 
-    // 添加材质，创建三角形带并结束材质
-    out_mesh.AddMaterial(
-        lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型选择材质
-    out_mesh.AddTriangleStrip(vertices); // 添加三角形带
-    out_mesh.EndMaterial(); // 结束材质
-    return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
+              // 更新当前路径点的"s"
+              s_current += road_param.resolution; // 增加当前s值
+          } while (s_current < s_end); // 继续直到达到结束点
+      }
+
+      // 确保网格是连续的，并且车道之间没有间隙，
+      // 在车道的末尾添加几何形状
+      if (s_end - (s_current - road_param.resolution) > EPSILON) {
+          const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width); // 获取结束点的车道边缘位置
+          vertices.push_back(edges.first); // 添加左边缘顶点
+          vertices.push_back(edges.second); // 添加右边缘顶点
+      }
+
+      // 添加材质，创建三角形带并结束材质
+      out_mesh.AddMaterial(
+          lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型选择材质
+      out_mesh.AddTriangleStrip(vertices); // 添加三角形带
+      out_mesh.EndMaterial(); // 结束材质
+      return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
+  }
 
   std::unique_ptr<Mesh> MeshFactory::GenerateTesselated(
     const road::Lane& lane, const double s_start, const double s_end) const { // 生成细分网格
