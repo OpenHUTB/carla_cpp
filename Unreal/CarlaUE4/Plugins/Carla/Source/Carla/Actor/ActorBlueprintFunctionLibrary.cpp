@@ -1114,17 +1114,17 @@ void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, 
   LensKcube.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
   LensKcube.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensXSize;
-  LensXSize.Id = TEXT("lens_x_size");
-  LensXSize.Type = EActorAttributeType::Float;
-  LensXSize.RecommendedValues = { TEXT("0.08") };
-  LensXSize.bRestrictToRecommended = false;
+  FActorVariation LensXSize; // 镜头X轴大小参数
+  LensXSize.Id = TEXT("lens_x_size"); // 设置参数ID为"lens_x_size"
+  LensXSize.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensXSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
+  LensXSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
-  FActorVariation LensYSize;
-  LensYSize.Id = TEXT("lens_y_size");
-  LensYSize.Type = EActorAttributeType::Float;
-  LensYSize.RecommendedValues = { TEXT("0.08") };
-  LensYSize.bRestrictToRecommended = false;
+  FActorVariation LensYSize; // 镜头Y轴大小参数
+  LensYSize.Id = TEXT("lens_y_size"); // 设置参数ID为"lens_y_size"
+  LensYSize.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensYSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
+  LensYSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
   Definition.Variations.Append({
       ResX,
