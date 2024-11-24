@@ -55,16 +55,16 @@ namespace carla {
     };
 
     template <typename T>
-    struct Overload<T> : T { // 基本情况，只处理一个可调用对象
-      Overload(T &&func) : T(std::forward<T>(func)) {} // 初始化基类 T
+    struct Overload<T> : T {
+      Overload(T &&func) : T(std::forward<T>(func)) {}
 
-      using T::operator();  // 继承 T 的 operator()
+      using T::operator();
     };
 
     template<typename T>
-    struct Recursive {  // 定义 Recursive 结构体，用于递归调用
+    struct Recursive {
 
-      explicit Recursive(T &&func) : _func(std::forward<T>(func)) {}  // 构造函数，初始化 _func
+      explicit Recursive(T &&func) : _func(std::forward<T>(func)) {}
 
       template<typename... Ts>
       auto operator()(Ts &&... arguments) const {
