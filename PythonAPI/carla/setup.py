@@ -141,15 +141,15 @@ def get_libcarla_extensions():
     def make_extension(name, sources):
 
         return Extension(
-            name,
-            sources=sources,
-            include_dirs=include_dirs,
-            library_dirs=library_dirs,
-            libraries=libraries,
-            extra_compile_args=extra_compile_args,
-            extra_link_args=extra_link_args,
-            language='c++14',
-            depends=depends)
+            name,             # 模块名：carla.libcarla
+            sources=sources,  # 源代码：PythonAPI/carla/source/libcarla/libcarla.cpp
+            include_dirs=include_dirs,  # 头文件目录：dependencies/include
+            library_dirs=library_dirs,  # 库文件目录：dependencies/lib
+            libraries=libraries,        # 标准的库搜索路径中需要链接的库：暂时为空
+            extra_compile_args=extra_compile_args,  # 额外的编译参数
+            extra_link_args=extra_link_args,        # 额外的链接参数
+            language='c++14',  # 使用的语言为C++14
+            depends=depends)   # depends选项是扩展所依赖的文件列表（例如头文件）。
 
     print('compiling:\n  - %s' % '\n  - '.join(sources))
 
