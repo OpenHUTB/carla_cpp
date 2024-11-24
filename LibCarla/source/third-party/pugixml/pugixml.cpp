@@ -836,82 +836,96 @@ PUGI__NS_BEGIN
 PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
+// 开始命名空间（假设PUGI__NS_BEGIN是一个宏，用于定义或进入特定的命名空间）
 PUGI__NS_BEGIN
+	// 定义紧凑对齐的log2值，这里为2，意味着对齐是2的2次方，即4字节对齐
 	static const uintptr_t compact_alignment_log2 = 2;
+	// 根据log2值计算紧凑对齐的实际值，这里是1 << 2 = 4
 	static const uintptr_t compact_alignment = 1 << compact_alignment_log2;
-
+	// 定义一个紧凑头部类，用于管理紧凑内存页的头部信息
 	class compact_header
 	{
 	public:
+		// 构造函数，接收一个指向xml_memory_page的指针和一个标志位
 		compact_header(xml_memory_page* page, unsigned int flags)
 		{
+			// 静态断言，确保xml_memory_block_alignment与compact_alignment相等
 			PUGI__STATIC_ASSERT(xml_memory_block_alignment == compact_alignment);
-
+			// 计算当前对象相对于page->compact_page_marker的偏移量
 			ptrdiff_t offset = (reinterpret_cast<char*>(this) - reinterpret_cast<char*>(page->compact_page_marker));
+			// 断言偏移量是对齐的，并且小于256个对齐单位
 			assert(offset % compact_alignment == 0 && static_cast<uintptr_t>(offset) < 256 * compact_alignment);
-
+			// 计算并存储页面索引
 			_page = static_cast<unsigned char>(offset >> compact_alignment_log2);
+			// 存储标志位
 			_flags = static_cast<unsigned char>(flags);
 		}
-
+		// 位与赋值操作符，用于修改标志位
 		void operator&=(uintptr_t mod)
 		{
 			_flags &= static_cast<unsigned char>(mod);
 		}
-
+		// 位或赋值操作符，用于修改标志位
 		void operator|=(uintptr_t mod)
 		{
 			_flags |= static_cast<unsigned char>(mod);
 		}
-
+		// 位与操作符，用于获取标志位与给定值的交集
 		uintptr_t operator&(uintptr_t mod) const
 		{
 			return _flags & mod;
 		}
-
+		// 获取关联的xml_memory_page对象
 		xml_memory_page* get_page() const
 		{
 			// round-trip through void* to silence 'cast increases required alignment of target type' warnings
 			const char* page_marker = reinterpret_cast<const char*>(this) - (_page << compact_alignment_log2);
 			const char* page = page_marker - *reinterpret_cast<const uint32_t*>(static_cast<const void*>(page_marker));
-
+			// 返回指向xml_memory_page的指针
 			return const_cast<xml_memory_page*>(reinterpret_cast<const xml_memory_page*>(static_cast<const void*>(page)));
 		}
-
+	// 紧凑头部类的私有成员变量定义
 	private:
+		// 存储页面索引的变量，用于标识当前对象所在的内存页
 		unsigned char _page;
+		// 存储标志位的变量，用于记录一些额外的信息或状态
 		unsigned char _flags;
 	};
-
+	// 一个函数，用于根据给定的对象和头部偏移量获取对应的xml_memory_page
+	//   指向xml_memory_page的指针，该页面包含了object
 	PUGI__FN xml_memory_page* compact_get_page(const void* object, int header_offset)
 	{
+		// 将object指针向前移动header_offset，得到compact_header的指针
 		const compact_header* header = reinterpret_cast<const compact_header*>(static_cast<const char*>(object) - header_offset);
-
+		// 调用compact_header的get_page方法获取xml_memory_page指针
 		return header->get_page();
 	}
-
+	// 一个模板函数，用于根据给定的对象和头部偏移量获取对应的值
+	//   指向T类型的指针，该值通过哈希表查找得到
 	template <int header_offset, typename T> PUGI__FN_NO_INLINE T* compact_get_value(const void* object)
-	{
+	{// 首先获取包含object的xml_memory_page,然后通过页面的allocator和_hash成员查找object对应的值
 		return static_cast<T*>(compact_get_page(object, header_offset)->allocator->_hash->find(object));
 	}
-
+	// 一个模板函数，用于根据给定的对象和头部偏移量设置对应的值
 	template <int header_offset, typename T> PUGI__FN_NO_INLINE void compact_set_value(const void* object, T* value)
 	{
+		// 首先获取包含object的xml_memory_page,然后通过页面的allocator和_hash成员插入object和value的对应关系
 		compact_get_page(object, header_offset)->allocator->_hash->insert(object, value);
 	}
-
+	// 一个模板类，用于管理紧凑指针，这些指针通过哈希表进行存储和查找
 	template <typename T, int header_offset, int start = -126> class compact_pointer
 	{
 	public:
+		// compact_pointer的默认构造函数，初始化_data成员为0
 		compact_pointer(): _data(0)
 		{
 		}
-
+		// 重载赋值运算符，用于将一个compact_pointer对象赋值给另一个
 		void operator=(const compact_pointer& rhs)
 		{
 			*this = rhs + 0;
 		}
-
+		// 重载赋值运算符，用于将一个原生指针赋值给compact_pointer对象
 		void operator=(T* value)
 		{
 			if (value)
@@ -922,58 +936,66 @@ PUGI__NS_BEGIN
 				// compensate for arithmetic shift rounding for negative values
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) - start;
-
+				// 如果计算出的偏移量（经过调整并转换为无符号后）小于等于253，
+				// 则将其加1后存储到_data中（因为0被保留用于空指针）
 				if (static_cast<uintptr_t>(offset) <= 253)
 					_data = static_cast<unsigned char>(offset + 1);
 				else
 				{
+					// compact_set_value是一个模板函数，header_offset是一个占位符，表示可能的头部偏移量
 					compact_set_value<header_offset>(this, value);
 
-					_data = 255;
+					_data = 255;// 设置_data为255，表示指针值存储在外部
 				}
 			}
 			else
+				// 如果赋值为nullptr，则将_data设置为0
 				_data = 0;
 		}
-
+		// 定义一个类型转换运算符，将compact_pointer转换为T*
 		operator T*() const
 		{
-			if (_data)
+			if (_data)// 如果_data不为0
 			{
-				if (_data < 255)
+				if (_data < 255)// 如果_data的值小于255，表示指针值直接存储在_data中（经过编码）
 				{
+					// 计算基地址：将this指针向下对齐到compact_alignment的倍数
 					uintptr_t base = reinterpret_cast<uintptr_t>(this) & ~(compact_alignment - 1);
-
+					// 根据_data计算偏移量，并加上start（可能是一个调整值），然后乘以compact_alignment得到实际地址
+					// 最后，将基地址与计算出的偏移量相加，得到目标指针的地址，并转换为T*类型
 					return reinterpret_cast<T*>(base + (_data - 1 + start) * compact_alignment);
 				}
-				else
+				else  // 如果_data的值等于255，表示指针值存储在外部
+					 // 调用compact_get_value函数来获取存储在外部的指针值
 					return compact_get_value<header_offset, T>(this);
 			}
-			else
-				return 0;
+			else// 如果_data为0，表示空指针
+				return 0;// 返回nullptr
 		}
-
+		// 定义一个成员访问运算符，允许通过compact_pointer对象直接访问目标对象的成员
 		T* operator->() const
 		{
 			return *this;
 		}
-
+	// compact_pointer类的私有成员定义结束
 	private:
+		// 用于存储编码后的指针值或标记指针值是否存储在外部
 		unsigned char _data;
 	};
-
+	// 定义一个模板类compact_pointer_parent，它可能是compact_pointer的基类或用于提供某些共享功能
 	template <typename T, int header_offset> class compact_pointer_parent
 	{
+	// 类的构造函数，初始化成员变量_data为0
 	public:
 		compact_pointer_parent(): _data(0)
 		{
 		}
-
+		// 拷贝赋值操作符
 		void operator=(const compact_pointer_parent& rhs)
 		{
 			*this = rhs + 0;
 		}
-
+		// 赋值操作符重载，接受一个T*类型的参数
 		void operator=(T* value)
 		{
 			if (value)
@@ -982,26 +1004,30 @@ PUGI__NS_BEGIN
 				// our decoding is based on 'this' aligned to compact alignment downwards (see operator T*)
 				// so for negative offsets (e.g. -3) we need to adjust the diff by compact_alignment - 1 to
 				// compensate for arithmetic shift behavior for negative values
+				// 将value和this指针转换为char*，然后计算它们之间的差值diff
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) + 65533;
-
+				// 如果计算出的offset在可存储范围内（即小于或等于65533），则直接存储为_data的值（加1是为了留出0表示null的特殊情况）
 				if (static_cast<uintptr_t>(offset) <= 65533)
 				{
 					_data = static_cast<unsigned short>(offset + 1);
 				}
 				else
 				{
+					// 如果offset超出范围，则需要使用更复杂的内存管理机制
+					// 首先，获取与this相关的内存页
 					xml_memory_page* page = compact_get_page(this, header_offset);
-
+					// 如果该页还没有共享父指针，则设置它
 					if (PUGI__UNLIKELY(page->compact_shared_parent == 0))
 						page->compact_shared_parent = value;
-
+					// 如果共享父指针已经是value，则使用特殊值65534表示
 					if (page->compact_shared_parent == value)
 					{
 						_data = 65534;
 					}
 					else
-					{
+					{\
+						// 否则，使用某种机制将value存储到内存页中，并将_data设置为特殊值65535
 						compact_set_value<header_offset>(this, value);
 
 						_data = 65535;
@@ -1010,6 +1036,7 @@ PUGI__NS_BEGIN
 			}
 			else
 			{
+				// 如果value为nullptr，则将_data设置为0，表示null指针
 				_data = 0;
 			}
 		}

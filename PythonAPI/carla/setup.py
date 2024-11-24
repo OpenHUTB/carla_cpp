@@ -6,46 +6,63 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
+# 从setuptools库导入setup和Extension类，用于配置和构建Python扩展模块
 from setuptools import setup, Extension
-
+ 
+# 导入fnmatch模块，用于文件名匹配
 import fnmatch
+# 导入os模块，用于与操作系统交互，如环境变量、文件路径等
 import os
+# 导入sys模块，用于访问与Python解释器紧密相关的变量和函数
 import sys
-
+ 
+# 定义一个函数，检查是否启用了RSS变体构建
 def is_rss_variant_enabled():
+    # 检查环境变量BUILD_RSS_VARIANT是否被设置为'true'
     if 'BUILD_RSS_VARIANT' in os.environ and os.environ['BUILD_RSS_VARIANT'] == 'true':
         return True
     return False
-
+ 
+# 定义一个函数，用于获取libcarla扩展模块的配置信息
 def get_libcarla_extensions():
+    # 指定头文件搜索路径
     include_dirs = ['dependencies/include']
-
+    
+    # 指定库文件搜索路径
     library_dirs = ['dependencies/lib']
+    # 初始化库名称列表（这里可能根据条件动态添加）
     libraries = []
-
-
+ 
+    # 指定源代码文件
     sources = ['source/libcarla/libcarla.cpp']
-
+ 
+    # 定义一个生成器函数，用于遍历指定文件夹下的文件，支持文件过滤
     def walk(folder, file_filter='*'):
         for root, _, filenames in os.walk(folder):
             for filename in fnmatch.filter(filenames, file_filter):
                 yield os.path.join(root, filename)
-
+ 
+    # 检查当前操作系统是否为POSIX兼容系统（如Linux, macOS等）
     if os.name == "posix":
-        import distro
-        supported_dists = ["ubuntu", "debian", "deepin"]
+        import distro  # 导入distro模块，用于获取Linux发行版信息
+        supported_dists = ["ubuntu", "debian", "deepin"]  # 支持的Linux发行版列表
         
+        # 获取当前Linux发行版的ID并转换为小写
         linux_distro = distro.id().lower()
+        # 如果当前发行版在支持的列表中
         if linux_distro in supported_dists:
-            pwd = os.path.dirname(os.path.realpath(__file__))
-            pylib = "libboost_python%d%d.a" % (sys.version_info.major,
-                                               sys.version_info.minor)
+            pwd = os.path.dirname(os.path.realpath(__file__))  # 获取当前脚本所在目录的绝对路径
+            # 根据Python版本构建Boost Python库的名称
+            pylib = "libboost_python%d%d.a" % (sys.version_info.major, sys.version_info.minor)
+            # 检查是否启用了RSS变体构建
             if is_rss_variant_enabled():
                 print('Building AD RSS variant.')
+                # 如果是，则添加RSS相关的库文件到链接参数中
                 extra_link_args = [ os.path.join(pwd, 'dependencies/lib/libcarla_client_rss.a') ]
             else:
+                # 否则，添加普通的Carla客户端库文件到链接参数中
                 extra_link_args = [ os.path.join(pwd, 'dependencies/lib/libcarla_client.a') ]
-
+                
             extra_link_args += [
                 os.path.join(pwd, 'dependencies/lib/librpc.a'),
                 os.path.join(pwd, 'dependencies/lib/libboost_filesystem.a'),
@@ -141,15 +158,15 @@ def get_libcarla_extensions():
     def make_extension(name, sources):
 
         return Extension(
-            name,
-            sources=sources,
-            include_dirs=include_dirs,
-            library_dirs=library_dirs,
-            libraries=libraries,
-            extra_compile_args=extra_compile_args,
-            extra_link_args=extra_link_args,
-            language='c++14',
-            depends=depends)
+            name,             # 模块名：carla.libcarla
+            sources=sources,  # 源代码：PythonAPI/carla/source/libcarla/libcarla.cpp
+            include_dirs=include_dirs,  # 头文件目录：dependencies/include
+            library_dirs=library_dirs,  # 库文件目录：dependencies/lib
+            libraries=libraries,        # 标准的库搜索路径中需要链接的库：暂时为空
+            extra_compile_args=extra_compile_args,  # 额外的编译参数
+            extra_link_args=extra_link_args,        # 额外的链接参数
+            language='c++14',  # 使用的语言为C++14
+            depends=depends)   # depends选项是扩展所依赖的文件列表（例如头文件）。
 
     print('compiling:\n  - %s' % '\n  - '.join(sources))
 

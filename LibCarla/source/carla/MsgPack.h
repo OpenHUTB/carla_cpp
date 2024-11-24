@@ -41,3 +41,5 @@ namespace carla {
       return mp::unpack(reinterpret_cast<const char *>(data), size).template as<T>();
     }
   };
+
+} // namespace carla

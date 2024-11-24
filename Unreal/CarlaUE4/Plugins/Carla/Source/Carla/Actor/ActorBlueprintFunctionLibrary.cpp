@@ -878,194 +878,285 @@ if (bEnableModifyingPostProcessEffects)
     BladeCount.RecommendedValues = { TEXT("5") }; // 推荐值为5
     BladeCount.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // - Tonemapper Settings -----------------------------------
-    // You can adjust these tonemapper controls to emulate other
-    // types of film stock for your project
-    FActorVariation FilmSlope;
-    FilmSlope.Id = TEXT("slope");
-    FilmSlope.Type = EActorAttributeType::Float;
-    FilmSlope.RecommendedValues = { TEXT("0.88") };
-    FilmSlope.bRestrictToRecommended = false;
+    // - 调色映射器设置 -----------------------------------
+    // 您可以调整这些调色映射器控件，以模拟其他类型的胶片库存，用于您的项目
+    FActorVariation FilmSlope; // 胶片斜率变量
+    FilmSlope.Id = TEXT("slope"); // 变量标识符设置为"slope"
+    FilmSlope.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmSlope.RecommendedValues = { TEXT("0.88") }; // 推荐值设置为0.88
+    FilmSlope.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmToe;
-    FilmToe.Id = TEXT("toe");
-    FilmToe.Type = EActorAttributeType::Float;
-    FilmToe.RecommendedValues = { TEXT("0.55") };
-    FilmToe.bRestrictToRecommended = false;
+    FActorVariation FilmToe; // 胶片趾部变量
+    FilmToe.Id = TEXT("toe"); // 变量标识符设置为"toe"
+    FilmToe.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmToe.RecommendedValues = { TEXT("0.55") }; // 推荐值设置为0.55
+    FilmToe.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmShoulder;
-    FilmShoulder.Id = TEXT("shoulder");
-    FilmShoulder.Type = EActorAttributeType::Float;
-    FilmShoulder.RecommendedValues = { TEXT("0.26") };
-    FilmShoulder.bRestrictToRecommended = false;
+    FActorVariation FilmShoulder; // 胶片肩部变量
+    FilmShoulder.Id = TEXT("shoulder"); // 变量标识符设置为"shoulder"
+    FilmShoulder.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmShoulder.RecommendedValues = { TEXT("0.26") }; // 推荐值设置为0.26
+    FilmShoulder.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmBlackClip;
-    FilmBlackClip.Id = TEXT("black_clip");
-    FilmBlackClip.Type = EActorAttributeType::Float;
-    FilmBlackClip.RecommendedValues = { TEXT("0.0") };
-    FilmBlackClip.bRestrictToRecommended = false;
+    FActorVariation FilmBlackClip; // 胶片黑色截断变量
+    FilmBlackClip.Id = TEXT("black_clip"); // 变量标识符设置为"black_clip"
+    FilmBlackClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmBlackClip.RecommendedValues = { TEXT("0.0") }; // 推荐值设置为0.0
+    FilmBlackClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmWhiteClip;
-    FilmWhiteClip.Id = TEXT("white_clip");
-    FilmWhiteClip.Type = EActorAttributeType::Float;
-    FilmWhiteClip.RecommendedValues = { TEXT("0.04") };
-    FilmWhiteClip.bRestrictToRecommended = false;
+    FActorVariation FilmWhiteClip; // 胶片白色截断变量
+    FilmWhiteClip.Id = TEXT("white_clip"); // 变量标识符设置为"white_clip"
+    FilmWhiteClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmWhiteClip.RecommendedValues = { TEXT("0.04") }; // 推荐值设置为0.04
+    FilmWhiteClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    // Color
-    FActorVariation Temperature;
-    Temperature.Id = TEXT("temp");
-    Temperature.Type = EActorAttributeType::Float;
-    Temperature.RecommendedValues = { TEXT("6500.0") };
-    Temperature.bRestrictToRecommended = false;
 
-    FActorVariation Tint;
-    Tint.Id = TEXT("tint");
-    Tint.Type = EActorAttributeType::Float;
-    Tint.RecommendedValues = { TEXT("0.0") };
-    Tint.bRestrictToRecommended = false;
+    // 颜色相关设置
+    FActorVariation Temperature;// 温度变量
+    Temperature.Id = TEXT("temp"); // 设置温度变量的标识符为"temp"
+    Temperature.Type = EActorAttributeType::Float;// 设置温度变量的类型为浮点数
+    Temperature.RecommendedValues = { TEXT("6500.0") };// 为温度变量设置推荐值
+    Temperature.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
-    FActorVariation ChromaticIntensity;
-    ChromaticIntensity.Id = TEXT("chromatic_aberration_intensity");
-    ChromaticIntensity.Type = EActorAttributeType::Float;
-    ChromaticIntensity.RecommendedValues = { TEXT("0.0") };
-    ChromaticIntensity.bRestrictToRecommended = false;
+    FActorVariation Tint; // 色调变量
+    Tint.Id = TEXT("tint");// 设置色调变量的标识符为"tint"
+    Tint.Type = EActorAttributeType::Float;// 设置色调变量的类型为浮点数
+    Tint.RecommendedValues = { TEXT("0.0") };// 为色调变量设置推荐值
+    Tint.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
-    FActorVariation ChromaticOffset;
-    ChromaticOffset.Id = TEXT("chromatic_aberration_offset");
-    ChromaticOffset.Type = EActorAttributeType::Float;
-    ChromaticOffset.RecommendedValues = { TEXT("0.0") };
-    ChromaticOffset.bRestrictToRecommended = false;
+    FActorVariation ChromaticIntensity;// 色散强度变量
+    ChromaticIntensity.Id = TEXT("chromatic_aberration_intensity");// 设置色散强度变量的标识符为"chromatic_aberration_intensity"
+    ChromaticIntensity.Type = EActorAttributeType::Float; // 设置色散强度变量的类型为浮点数
+    ChromaticIntensity.RecommendedValues = { TEXT("0.0") };// 为色散强度变量设置推荐值
+    ChromaticIntensity.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
+    FActorVariation ChromaticOffset;// 色散偏移变量
+    ChromaticOffset.Id = TEXT("chromatic_aberration_offset"); // 设置色散偏移变量的标识符为"chromatic_aberration_offset"
+    ChromaticOffset.Type = EActorAttributeType::Float;// 设置色散偏移变量的类型为浮点数
+    ChromaticOffset.RecommendedValues = { TEXT("0.0") }; // 为色散偏移变量设置推荐值
+    ChromaticOffset.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
+
+    // 向一个名为Definition的对象的Variations属性中添加一个新的集合
     Definition.Variations.Append({
-      ExposureMode,
-      ExposureCompensation,
-      ShutterSpeed,
-      ISO,
-      Aperture,
-      PostProccess,
-      Gamma,
-      MBIntesity,
-      MBMaxDistortion,
-      LensFlareIntensity,
-      BloomIntensity,
-      MBMinObjectScreenSize,
-      ExposureMinBright,
-      ExposureMaxBright,
-      ExposureSpeedUp,
-      ExposureSpeedDown,
-      CalibrationConstant,
-      FocalDistance,
-      MaxAperture,
-      BladeCount,
-      DepthBlurAmount,
-      DepthBlurRadius,
-      FilmSlope,
-      FilmToe,
-      FilmShoulder,
-      FilmBlackClip,
-      FilmWhiteClip,
-      Temperature,
-      Tint,
-      ChromaticIntensity,
-      ChromaticOffset});
-  }
+        
+        // 曝光模式
+        ExposureMode,
 
-  Success = CheckActorDefinition(Definition);
+        // 曝光补偿
+        ExposureCompensation,
+
+        // 快门速度
+        ShutterSpeed,
+
+        // ISO感光度
+        ISO,
+
+        // 光圈大小
+        Aperture,
+
+        // 后期处理
+        PostProccess,
+
+        // Gamma值，用于调整图像的亮度
+        Gamma,
+
+        // MB强度
+        MBIntesity,
+
+        // MB最大畸变
+        MBMaxDistortion,
+
+        // 镜头光晕强度
+        LensFlareIntensity,
+
+        // 泛光强度
+        BloomIntensity,
+
+        // MB最小对象屏幕大小
+        MBMinObjectScreenSize,
+
+        // 曝光最小亮度
+        ExposureMinBright,
+
+        // 曝光最大亮度
+        ExposureMaxBright,
+
+        // 曝光加速
+        ExposureSpeedUp,
+
+        // 曝光减速
+        ExposureSpeedDown,
+
+        // 校准常数
+        CalibrationConstant,
+
+        // 焦距
+        FocalDistance,
+
+        // 最大光圈
+        MaxAperture,
+
+        // 光圈叶片数量
+        BladeCount,
+
+        // 景深模糊量
+        DepthBlurAmount,
+
+        // 景深模糊半径
+        DepthBlurRadius,
+
+        // 胶片斜率（影响图像对比度）
+        FilmSlope,
+
+        // 胶片趾部（影响图像暗部细节）
+        FilmToe,
+
+        // 胶片肩部（影响图像亮部细节）
+        FilmShoulder,
+
+        // 胶片黑剪（最暗部被剪切的程度）
+        FilmBlackClip,
+
+        // 胶片白剪（最亮部被剪切的程度）
+        FilmWhiteClip,
+
+        // 色温
+        Temperature,
+
+        // 色调
+        Tint,
+
+        // 色差强度
+        ChromaticIntensity,
+
+        // 色差偏移
+        ChromaticOffset
+        });
+
+    // 调用CheckActorDefinition函数来检查Definition对象是否有效或符合某种标准
+    // 并将结果赋值给Success变量
+    Success = CheckActorDefinition(Definition);
 }
 
+// 定义一个函数，该函数属于UActorBlueprintFunctionLibrary类，用于创建一个法线相机的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
+  // 创建一个FActorDefinition类型的对象Definition，用于存储相机定义
+  FActorDefinition Definition; 
+
+  // 定义一个布尔变量Success，用于标记操作是否成功
+  bool Success; 
+
+  // 调用重载的MakeNormalsCameraDefinition函数，传入Success和Definition的引用，以填充Definition并设置Success的值
   MakeNormalsCameraDefinition(Success, Definition);
+
+  // 使用check宏来验证Success是否为true，如果不是，则程序将在这里崩溃。这是一种调试时的保护措施。
   check(Success);
+
+  // 返回填充好的Definition对象
   return Definition;
 }
-
+ 
+// 定义一个重载的函数，该函数同样属于UActorBlueprintFunctionLibrary类，用于填充法线相机的定义
 void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, FActorDefinition &Definition)
 {
+  // 调用FillIdAndTags函数为Definition设置ID和标签，这里设置的ID为"sensor"，标签包括"camera"和"normals"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), TEXT("normals"));
+
+  // 调用AddRecommendedValuesForSensorRoleNames函数为Definition添加建议的角色名称值，这些值可能用于优化相机性能或行为
   AddRecommendedValuesForSensorRoleNames(Definition);
+
+  // 调用AddVariationsForSensor函数为Definition添加传感器的变种或变体，这可能包括不同的配置或设置以适应不同的使用场景
   AddVariationsForSensor(Definition);
 
-  // FOV
-  FActorVariation FOV;
-  FOV.Id = TEXT("fov");
-  FOV.Type = EActorAttributeType::Float;
-  FOV.RecommendedValues = { TEXT("90.0") };
-  FOV.bRestrictToRecommended = false;
+  // 视场角设置
+  FActorVariation FOV; // 创建一个FActorVariation类型的对象FOV，用于表示相机的视场角变化
+  FOV.Id = TEXT("fov"); // 设置FOV对象的ID为"fov"，这是其唯一标识符
+  FOV.Type = EActorAttributeType::Float; // 设置FOV对象的类型为浮点型，表示视场角是一个浮点数
+  FOV.RecommendedValues = { TEXT("90.0") }; // 为FOV对象设置一个推荐的视场角值
+  FOV.bRestrictToRecommended = false; // 设置FOV对象是否限制为只能使用推荐值
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+  // 分辨率设置
+  FActorVariation ResX; // 创建一个FActorVariation类型的对象ResX，用于表示相机图像宽度的变化
+  ResX.Id = TEXT("image_size_x"); // 设置ResX对象的ID为"image_size_x"，表示图像宽度
+  ResX.Type = EActorAttributeType::Int; // 设置ResX对象的类型为整型，表示图像宽度是一个整数
+  ResX.RecommendedValues = { TEXT("800") }; // 为ResX对象设置一个推荐的图像宽度值
+  ResX.bRestrictToRecommended = false; // 设置ResX对象是否限制为只能使用推荐值
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+  FActorVariation ResY; // 创建一个FActorVariation类型的对象ResY，用于表示相机图像高度的变化
+  ResY.Id = TEXT("image_size_y"); // 设置ResY对象的ID为"image_size_y"，表示图像高度
+  ResY.Type = EActorAttributeType::Int; // 设置ResY对象的类型为整型，表示图像高度是一个整数
+  ResY.RecommendedValues = { TEXT("600") }; // 为ResY对象设置一个推荐的图像高度值
+  ResY.bRestrictToRecommended = false; // 设置ResY对象是否限制为只能使用推荐值
 
-  // Lens parameters
-  FActorVariation LensCircleFalloff;
-  LensCircleFalloff.Id = TEXT("lens_circle_falloff");
-  LensCircleFalloff.Type = EActorAttributeType::Float;
-  LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
-  LensCircleFalloff.bRestrictToRecommended = false;
+  // 镜头参数
+  FActorVariation LensCircleFalloff; // 镜头圆形衰减参数
+  LensCircleFalloff.Id = TEXT("lens_circle_falloff"); // 设置参数ID为"lens_circle_falloff"
+  LensCircleFalloff.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensCircleFalloff.RecommendedValues = { TEXT("5.0") }; // 设置推荐值为"5.0"
+  LensCircleFalloff.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensCircleMultiplier;
-  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
-  LensCircleMultiplier.Type = EActorAttributeType::Float;
-  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
-  LensCircleMultiplier.bRestrictToRecommended = false;
+  FActorVariation LensCircleMultiplier; // 镜头圆形倍增参数
+  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier"); // 设置参数ID为"lens_circle_multiplier"
+  LensCircleMultiplier.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
+  LensCircleMultiplier.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensK;
-  LensK.Id = TEXT("lens_k");
-  LensK.Type = EActorAttributeType::Float;
-  LensK.RecommendedValues = { TEXT("-1.0") };
-  LensK.bRestrictToRecommended = false;
+  FActorVariation LensK; // 镜头K参数
+  LensK.Id = TEXT("lens_k"); // 设置参数ID为"lens_k"
+  LensK.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensK.RecommendedValues = { TEXT("-1.0") }; // 设置推荐值为"-1.0"
+  LensK.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensKcube;
-  LensKcube.Id = TEXT("lens_kcube");
-  LensKcube.Type = EActorAttributeType::Float;
-  LensKcube.RecommendedValues = { TEXT("0.0") };
-  LensKcube.bRestrictToRecommended = false;
+  FActorVariation LensKcube; // 镜头K的三次方参数
+  LensKcube.Id = TEXT("lens_kcube"); // 设置参数ID为"lens_kcube"
+  LensKcube.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensKcube.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
+  LensKcube.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensXSize;
-  LensXSize.Id = TEXT("lens_x_size");
-  LensXSize.Type = EActorAttributeType::Float;
-  LensXSize.RecommendedValues = { TEXT("0.08") };
-  LensXSize.bRestrictToRecommended = false;
+  FActorVariation LensXSize; // 镜头X轴大小参数
+  LensXSize.Id = TEXT("lens_x_size"); // 设置参数ID为"lens_x_size"
+  LensXSize.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensXSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
+  LensXSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
-  FActorVariation LensYSize;
-  LensYSize.Id = TEXT("lens_y_size");
-  LensYSize.Type = EActorAttributeType::Float;
-  LensYSize.RecommendedValues = { TEXT("0.08") };
-  LensYSize.bRestrictToRecommended = false;
+  FActorVariation LensYSize; // 镜头Y轴大小参数
+  LensYSize.Id = TEXT("lens_y_size"); // 设置参数ID为"lens_y_size"
+  LensYSize.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensYSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
+  LensYSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
+  // 将一个包含多个参数的集合追加到Definitions的Variations列表中
   Definition.Variations.Append({
-      ResX,
-      ResY,
-      FOV,
-      LensCircleFalloff,
-      LensCircleMultiplier,
-      LensK,
-      LensKcube,
-      LensXSize,
-      LensYSize});
+      ResX,       // 分辨率X轴
+      ResY,       // 分辨率Y轴
+      FOV,        // 视场角
+      LensCircleFalloff, // 镜头圆形衰减
+      LensCircleMultiplier, // 镜头圆形倍乘器
+      LensK,      // 镜头K系数
+      LensKcube,  // 镜头K立方系数
+      LensXSize,  // 镜头X尺寸
+      LensYSize });// 镜头Y尺寸
 
+  // 调用CheckActorDefinition函数检查Definition是否有效，并将结果存储在Success变量中
   Success = CheckActorDefinition(Definition);
 }
 
+// UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeIMUDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
-  MakeIMUDefinition(Success, Definition);
-  check(Success);
-  return Definition;
+    FActorDefinition Definition; // 创建一个FActorDefinition类型的对象Definition
+
+    bool Success; // 声明一个布尔类型的变量Success，用于存储操作的结果
+    
+    // 调用MakeIMUDefinition函数，该函数填充Definition并设置Success
+    MakeIMUDefinition(Success, Definition);
+
+    // 使用check宏断言Success为真，如果为假则触发断言错误
+    check(Success);
+
+    // 返回填充好的Definition对象
+    return Definition;
 }
 
 void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
