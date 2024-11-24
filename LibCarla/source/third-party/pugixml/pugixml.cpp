@@ -985,16 +985,17 @@ PUGI__NS_BEGIN
 	// 定义一个模板类compact_pointer_parent，它可能是compact_pointer的基类或用于提供某些共享功能
 	template <typename T, int header_offset> class compact_pointer_parent
 	{
+	// 类的构造函数，初始化成员变量_data为0
 	public:
 		compact_pointer_parent(): _data(0)
 		{
 		}
-
+		// 拷贝赋值操作符
 		void operator=(const compact_pointer_parent& rhs)
 		{
 			*this = rhs + 0;
 		}
-
+		// 赋值操作符重载，接受一个T*类型的参数
 		void operator=(T* value)
 		{
 			if (value)
@@ -1003,26 +1004,30 @@ PUGI__NS_BEGIN
 				// our decoding is based on 'this' aligned to compact alignment downwards (see operator T*)
 				// so for negative offsets (e.g. -3) we need to adjust the diff by compact_alignment - 1 to
 				// compensate for arithmetic shift behavior for negative values
+				// 将value和this指针转换为char*，然后计算它们之间的差值diff
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) + 65533;
-
+				// 如果计算出的offset在可存储范围内（即小于或等于65533），则直接存储为_data的值（加1是为了留出0表示null的特殊情况）
 				if (static_cast<uintptr_t>(offset) <= 65533)
 				{
 					_data = static_cast<unsigned short>(offset + 1);
 				}
 				else
 				{
+					// 如果offset超出范围，则需要使用更复杂的内存管理机制
+					// 首先，获取与this相关的内存页
 					xml_memory_page* page = compact_get_page(this, header_offset);
-
+					// 如果该页还没有共享父指针，则设置它
 					if (PUGI__UNLIKELY(page->compact_shared_parent == 0))
 						page->compact_shared_parent = value;
-
+					// 如果共享父指针已经是value，则使用特殊值65534表示
 					if (page->compact_shared_parent == value)
 					{
 						_data = 65534;
 					}
 					else
-					{
+					{\
+						// 否则，使用某种机制将value存储到内存页中，并将_data设置为特殊值65535
 						compact_set_value<header_offset>(this, value);
 
 						_data = 65535;
@@ -1031,6 +1036,7 @@ PUGI__NS_BEGIN
 			}
 			else
 			{
+				// 如果value为nullptr，则将_data设置为0，表示null指针
 				_data = 0;
 			}
 		}

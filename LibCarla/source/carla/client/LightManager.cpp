@@ -12,103 +12,113 @@
 namespace carla {
 namespace client {
 
-  using LightGroup = rpc::LightState::LightGroup;
-
+  using LightGroup = rpc::LightState::LightGroup; // 定义 LightGroup类型，用于表示灯光组
+// 析构函数，清理灯光管理器资源
 LightManager::~LightManager(){
+  // 检查是否存在有效的场景实例
   if(_episode.IsValid()) {
+    // 移除灯光相关的事件回调
     _episode.Lock()->RemoveOnTickEvent(_on_light_update_register_id);
     _episode.Lock()->RemoveLightUpdateChangeEvent(_on_light_update_register_id);
   }
+  // 同步灯光状态至服务器并强制更新
   UpdateServerLightsState(true);
 }
 
+// 设置当前场景实例并注册事件
 void LightManager::SetEpisode(detail::WeakEpisodeProxy episode) {
 
-  _episode = episode;
-
+  _episode = episode; // 保存场景引用
+  // 注册在每帧更新时的回调函数
   _on_tick_register_id = _episode.Lock()->RegisterOnTickEvent(
     [&](const WorldSnapshot&) {
-      UpdateServerLightsState();
+      UpdateServerLightsState(); // 同步灯光状态到服务器
     });
 
+  // 注册灯光更新事件的回调函数
   _on_light_update_register_id = _episode.Lock()->RegisterLightUpdateChangeEvent(
     [&](const WorldSnapshot& ) {
-      QueryLightsStateToServer();
-      ApplyChanges();
+      QueryLightsStateToServer(); // 查询灯光状态 
+      ApplyChanges(); // 应用灯光的改变
     });
 
-    QueryLightsStateToServer();
+    QueryLightsStateToServer(); // 初始化时查询灯光状态
 }
-
+// 获取指定灯光组类型的所有灯光
 std::vector<Light> LightManager::GetAllLights(LightGroup type) const {
   std::vector<Light> result;
-
+  // 遍历所有灯光状态
   for(auto lights_state : _lights_state) {
     LightGroup group = lights_state.second._group;
+    // 如果类型为None 或匹配指定类型，则添加到结果中
     if((type == LightGroup::None) || (group == type)) {
       auto it_light = _lights.find(lights_state.first);
       result.push_back(it_light->second);
     }
   }
 
-  return result;
+  return result; // 返回符合条件的灯光
 }
-
+// 打开指定的灯光
 void LightManager::TurnOn(std::vector<Light>& lights) {
   for(Light& light : lights) {
-    SetActive(light._id, true);
+    SetActive(light._id, true); // 设置灯光为激活状态
   }
 }
-
+// 关闭指定的灯光
 void LightManager::TurnOff(std::vector<Light>& lights) {
   for(Light& light : lights) {
-    SetActive(light._id, false);
+    SetActive(light._id, false); // 设置灯光为非激活状态
   }
 }
 
+// 根据布尔值数组设置灯光激活状态
 void LightManager::SetActive(std::vector<Light>& lights, std::vector<bool>& active) {
   size_t lights_to_update = (lights.size() < active.size()) ? lights.size() : active.size();
   for(size_t i = 0; i < lights_to_update; i++) {
-    SetActive(lights[i]._id, active[i]);
+    SetActive(lights[i]._id, active[i]); // 根据对应索引设置灯光状态
   }
 }
 
+// 检查指定灯光是否为激活状态
 std::vector<bool> LightManager::IsActive(std::vector<Light>& lights) const {
   std::vector<bool> result;
   for(Light& light : lights) {
-    result.push_back( IsActive(light._id) );
+    result.push_back( IsActive(light._id) ); // 查询每个灯光的激活状态
   }
-  return result;
+  return result; // 返回激活状态列表
 }
-
+// 获取所有开启状态的灯光
 std::vector<Light> LightManager::GetTurnedOnLights(LightGroup type) const {
   std::vector<Light> result;
-
+  // 遍历灯光状态
   for(auto lights_state : _lights_state) {
     LightState& state = lights_state.second;
     LightGroup group = state._group;
+    // 检查类型匹配且灯光处于开启状态
     if( (type == LightGroup::None || group == type) && state._active ) {
       auto it_light = _lights.find(lights_state.first);
       result.push_back(it_light->second);
     }
   }
 
-  return result;
+  return result; // 返回所有开启状态的灯光
 }
-
+// 获取所有关闭状态的灯光
 std::vector<Light> LightManager::GetTurnedOffLights(LightGroup type) const {
   std::vector<Light> result;
-
+  // 遍历灯光状态
   for(auto lights_state : _lights_state) {
     LightState& state = lights_state.second;
     LightGroup group = state._group;
+    // 检查类型匹配且灯光处于非关闭状态
     if( (type == LightGroup::None || group == type) && !state._active ) {
       auto it_light = _lights.find(lights_state.first);
       result.push_back(it_light->second);
     }
   }
 
-  return result;
+  return result; // 返回所有关闭状态的灯光
 }
 
 void LightManager::SetColor(std::vector<Light>& lights, Color color) {
