@@ -1126,27 +1126,37 @@ void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, 
   LensYSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
   LensYSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
+  // 将一个包含多个参数的集合追加到Definitions的Variations列表中
   Definition.Variations.Append({
-      ResX,
-      ResY,
-      FOV,
-      LensCircleFalloff,
-      LensCircleMultiplier,
-      LensK,
-      LensKcube,
-      LensXSize,
-      LensYSize});
+      ResX,       // 分辨率X轴
+      ResY,       // 分辨率Y轴
+      FOV,        // 视场角
+      LensCircleFalloff, // 镜头圆形衰减
+      LensCircleMultiplier, // 镜头圆形倍乘器
+      LensK,      // 镜头K系数
+      LensKcube,  // 镜头K立方系数
+      LensXSize,  // 镜头X尺寸
+      LensYSize });// 镜头Y尺寸
 
+  // 调用CheckActorDefinition函数检查Definition是否有效，并将结果存储在Success变量中
   Success = CheckActorDefinition(Definition);
 }
 
+// UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeIMUDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
-  MakeIMUDefinition(Success, Definition);
-  check(Success);
-  return Definition;
+    FActorDefinition Definition; // 创建一个FActorDefinition类型的对象Definition
+
+    bool Success; // 声明一个布尔类型的变量Success，用于存储操作的结果
+    
+    // 调用MakeIMUDefinition函数，该函数填充Definition并设置Success
+    MakeIMUDefinition(Success, Definition);
+
+    // 使用check宏断言Success为真，如果为假则触发断言错误
+    check(Success);
+
+    // 返回填充好的Definition对象
+    return Definition;
 }
 
 void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
