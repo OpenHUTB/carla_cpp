@@ -141,55 +141,44 @@ def get_dynamic_objects(carla_world, carla_map):
         corners = [carla_map.transform_to_geolocation(p) for p in corners]
         return corners
 
-# 定义一个函数，用于将给定的actor列表按类型分割成不同的列表
-def _split_actors(actors):
-    # 初始化不同类型的列表，用于存储车辆、交通灯、速度限制、行人、停车点和静态障碍物
-    vehicles = []           # 存储车辆的列表
-    traffic_lights = []     # 存储交通灯的列表
-    speed_limits = []       # 存储速度限制的列表
-    walkers = []            # 存储行人的列表
-    stops = []              # 存储停车点的列表
-    static_obstacles = []   # 存储静态障碍物的列表
-    # 遍历actor列表
-    for actor in actors:
-        # 根据actor的类型ID，将其添加到相应的列表中
-        if 'vehicle' in actor.type_id:
-            vehicles.append(actor)  # 如果是车辆，添加到车辆列表
-        elif 'traffic_light' in actor.type_id:
-            traffic_lights.append(actor)  # 如果是交通灯，添加到交通灯列表
-        elif 'speed_limit' in actor.type_id:
-            speed_limits.append(actor)  # 如果是速度限制，添加到速度限制列表
-        elif 'walker' in actor.type_id:
-            walkers.append(actor)  # 如果是行人，添加到行人列表
-        elif 'stop' in actor.type_id:
-            stops.append(actor)  # 如果是停车点，添加到停车点列表
-        elif 'static.prop' in actor.type_id:
-            static_obstacles.append(actor)  # 如果是静态障碍物，添加到静态障碍物列表
- 
-    # 返回分割后的不同类型actor的列表
-    return (vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles)
- 
-# 公共函数，用于获取停车点的信号信息
-def get_stop_signals(stops):
-    # 初始化一个字典，用于存储停车点的信号信息
-    stop_signals_dict = dict()
-    # 遍历停车点列表
-    for stop in stops:
-        # 获取停车点的变换信息
-        st_transform = stop.get_transform()
-        # 将停车点的位置转换为地理坐标（纬度、经度、海拔）
-        location_gnss = carla_map.transform_to_geolocation(st_transform.location)
-        # 构造停车点的信息字典
-        st_dict = {
-            "id": stop.id,  # 停车点的ID
-            "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],  # 停车点的位置
-            # 构造触发体积的列表，假设_get_trigger_volume(stop)返回的是停车点触发体积的顶点列表
-            "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(stop)]
-        }
-        # 将停车点的信息字典添加到字典中，以停车点的ID为键
-        stop_signals_dict[stop.id] = st_dict
-    # 返回包含所有停车点信号信息的字典
-    return stop_signals_dict
+    def _split_actors(actors):
+        vehicles = []
+        traffic_lights = []
+        speed_limits = []
+        walkers = []
+        stops = []
+        static_obstacles = []
+        for actor in actors:
+            if 'vehicle' in actor.type_id:
+                vehicles.append(actor)
+            elif 'traffic_light' in actor.type_id:
+                traffic_lights.append(actor)
+            elif 'speed_limit' in actor.type_id:
+                speed_limits.append(actor)
+            elif 'walker' in actor.type_id:
+                walkers.append(actor)
+            elif 'stop' in actor.type_id:
+                stops.append(actor)
+            elif 'static.prop' in actor.type_id:
+                static_obstacles.append(actor)
+
+
+        return (vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles)
+
+    # Public functions
+    def get_stop_signals(stops):
+        stop_signals_dict = dict()
+        for stop in stops:
+            st_transform = stop.get_transform()
+            location_gnss = carla_map.transform_to_geolocation(st_transform.location)
+            st_dict = {
+                "id": stop.id,
+                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+                "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(stop)]
+            }
+            stop_signals_dict[stop.id] = st_dict
+        return stop_signals_dict
+
     def get_traffic_lights(traffic_lights):
         traffic_lights_dict = dict()
         for traffic_light in traffic_lights:
