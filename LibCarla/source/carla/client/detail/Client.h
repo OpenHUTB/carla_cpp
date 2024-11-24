@@ -385,8 +385,7 @@ namespace detail {
     std::vector<geom::BoundingBox> GetLightBoxes(
         rpc::ActorId traffic_light) const;
 
-    /// Returns a list of pairs where the firts element is the vehicle ID
-    /// and the second one is the light state
+    /// 返回第一个元素表示交通工具ID，第二个元素表示信号灯状态的键值对
     rpc::VehicleLightStateList GetVehiclesLightStates();
 
     std::vector<ActorId> GetGroupTrafficLights(
