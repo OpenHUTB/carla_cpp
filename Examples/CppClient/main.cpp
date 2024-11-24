@@ -30,7 +30,7 @@ using namespace std::string_literals;
 /// Pick a random element from @a range.
 template <typename RangeT, typename RNG>
 static auto &RandomChoice(const RangeT &range, RNG &&generator) {
-  EXPECT_TRUE(range.size() > 0u);
+  EXPECT_TRUE(range.size() > 0u);  // 断言值一定大于0，否则就抛出异常
   std::uniform_int_distribution<size_t> dist{0u, range.size() - 1u};
   return range[dist(std::forward<RNG>(generator))];
 }
@@ -52,7 +52,7 @@ static void SaveSemSegImageToDisk(const csd::Image &image) {
 */
 
 static auto ParseArguments(int argc, const char *argv[]) {
-  EXPECT_TRUE((argc == 1u) || (argc == 3u));
+  EXPECT_TRUE((argc == 1u) || (argc == 3u));  // 断言argc的值要么是1要么是3，否则就抛出异常
   using ResultType = std::tuple<std::string, uint16_t>;
   return argc == 3u ?
       ResultType{argv[1u], std::stoi(argv[2u])} :
