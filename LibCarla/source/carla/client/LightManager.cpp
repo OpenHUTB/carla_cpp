@@ -121,88 +121,103 @@ std::vector<Light> LightManager::GetTurnedOffLights(LightGroup type) const {
   return result; // 返回所有关闭状态的灯光
 }
 
+// 设置多个灯光的相同颜色
 void LightManager::SetColor(std::vector<Light>& lights, Color color) {
+  // 遍历灯光列表，逐个设置颜色
   for(Light& light : lights) {
-    SetColor(light._id, color);
+    SetColor(light._id, color); // 调用内部方法根据灯光ID设置颜色
   }
 }
 
+// 设置多个灯光的不同颜色
 void LightManager::SetColor(std::vector<Light>& lights, std::vector<Color>& colors) {
+  // 确定需要更新的灯光数量，以灯光和颜色列表较短者为准
   size_t lights_to_update = (lights.size() < colors.size()) ? lights.size() : colors.size();
+  // 遍历灯光和颜色列表，逐个设置颜色
   for(size_t i = 0; i < lights_to_update; i++) {
-    SetColor(lights[i]._id, colors[i]);
+    SetColor(lights[i]._id, colors[i]); // 调用内部方法设置每个灯光的颜色
   }
 }
 
+// 获取多个灯光的颜色
 std::vector<Color> LightManager::GetColor(std::vector<Light>& lights) const {
-  std::vector<Color> result;
+  std::vector<Color> result; // 保存颜色结果的向量
   for(Light& light : lights) {
-    result.push_back( GetColor(light._id) );
+    result.push_back( GetColor(light._id) ); // 调用内部方法获取颜色
   }
-  return result;
+  return result; // 返回所有灯光的颜色
 }
 
+// 设置多个灯光的相同亮度
 void LightManager::SetIntensity(std::vector<Light>& lights, float intensity) {
   for(Light& light : lights) {
-    SetIntensity(light._id, intensity);
+    SetIntensity(light._id, intensity); // 调用内部方法设置亮度
   }
 }
 
+//设置多个灯光的不同亮度
 void LightManager::SetIntensity(std::vector<Light>& lights, std::vector<float>& intensities) {
   size_t lights_to_update = (lights.size() < intensities.size()) ? lights.size() : intensities.size();
   for(size_t i = 0; i < lights_to_update; i++) {
-    SetIntensity(lights[i]._id, intensities[i]);
+    SetIntensity(lights[i]._id, intensities[i]); // 根据灯光ID和亮度列表设置亮度
   }
 }
 
+// 获取多个灯光的亮度
 std::vector<float> LightManager::GetIntensity(std::vector<Light>& lights) const {
-  std::vector<float> result;
+  std::vector<float> result; // 保存亮度结果的向量 
   for(Light& light : lights) {
-    result.push_back( GetIntensity(light._id) );
+    result.push_back( GetIntensity(light._id) ); // 调用内部方法获取亮度
   }
-  return result;
+  return result; // 返回所有灯光的亮度
 }
 
+// 设置多个灯光的相同分组
 void LightManager::SetLightGroup(std::vector<Light>& lights, LightGroup group) {
   for(Light& light : lights) {
-    SetLightGroup(light._id, group);
+    SetLightGroup(light._id, group); // 调用内部方法设置分组
   }
 }
 
+// 设置多个灯光的不同分组
 void LightManager::SetLightGroup(std::vector<Light>& lights, std::vector<LightGroup>& groups) {
   size_t lights_to_update = (lights.size() < groups.size()) ? lights.size() : groups.size();
   for(size_t i = 0; i < lights_to_update; i++) {
-    SetLightGroup(lights[i]._id, groups[i]);
+    SetLightGroup(lights[i]._id, groups[i]); // 根据灯光ID和分组列表设置分组
   }
 }
 
+// 获取多个灯光的分组
 std::vector<LightGroup> LightManager::GetLightGroup(std::vector<Light>& lights) const {
-  std::vector<LightGroup> result;
+  std::vector<LightGroup> result; // 保存分组结果的向量
   for(Light& light : lights) {
-    result.push_back( GetLightGroup(light._id) );
+    result.push_back( GetLightGroup(light._id) ); // 调用内部方法获取分组
   }
-  return result;
+  return result; // 返回所有灯光的分组
 }
 
+// 设置多个灯光的相同状态
 void LightManager::SetLightState(std::vector<Light>& lights, LightState state) {
   for(Light& light : lights) {
-    SetLightState(light._id, state);
+    SetLightState(light._id, state); // 调用内部方法设置状态
   }
 }
 
+// 设置多个灯光的不同状态
 void LightManager::SetLightState(std::vector<Light>& lights, std::vector<LightState>& states) {
   size_t lights_to_update = (lights.size() < states.size()) ? lights.size() : states.size();
   for(size_t i = 0; i < lights_to_update; i++) {
-    SetLightState(lights[i]._id, states[i]);
+    SetLightState(lights[i]._id, states[i]); // 根据灯光ID和状态列表设置状态
   }
 }
 
+// 获取多个灯光的状态
 std::vector<LightState> LightManager::GetLightState(std::vector<Light>& lights) const {
-  std::vector<LightState> result;
+  std::vector<LightState> result; // 保存状态结果的向量
   for(Light& light : lights) {
-    result.push_back( RetrieveLightState(light._id) );
+    result.push_back( RetrieveLightState(light._id) ); // 调用内部方法获取状态
   }
-  return result;
+  return result; // 返回所有灯光的状态
 }
 
 Color LightManager::GetColor(LightId id) const {
