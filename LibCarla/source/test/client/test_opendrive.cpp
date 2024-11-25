@@ -24,15 +24,24 @@
 #include <fstream>/// @brief 包含C++标准库的文件流类，用于文件读写。
 #include <string>/// @brief 包含C++标准库的字符串类。
 
-using namespace carla::road;
-using namespace carla::road::element;
-using namespace carla::geom;
-using namespace carla::opendrive;
-using namespace util;
-
+using namespace carla::road;/// 导入CARLA的路面相关命名空间，包括道路定义和元素。
+using namespace carla::road::element;/// 导入CARLA的路面元素相关的命名空间，包括具体的道路元素定义。
+using namespace carla::geom;/// 导入CARLA的几何相关命名空间，包括位置、方向和形状的定义。
+using namespace carla::opendrive;/// 导入CARLA的OpenDRIVE数据模型相关的命名空间，用于处理道路网络数据。
+using namespace util;/// 导入CARLA的实用工具命名空间，包含常用的功能函数和类。
+/**
+ * @brief 定义了OpenDrive XML文件的基本路径。
+ */
 const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER "/OpenDrive/";
 
-// Road Elevation
+/**
+ * @brief 测试道路高程信息。
+ *
+ * 该函数遍历OpenDrive XML中的道路节点，并检查每个道路的高程信息是否与解析器解析出的信息匹配。
+ *
+ * @param xml 包含OpenDrive数据的XML文档。
+ * @param map 可选的Map对象，包含了由CARLA路网构建器生成的路网信息。
+ */
 static void test_road_elevation(const pugi::xml_document &xml, boost::optional<Map>& map) {
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
@@ -56,7 +65,14 @@ static void test_road_elevation(const pugi::xml_document &xml, boost::optional<M
   }
 }
 
-// Geometry
+/**
+ * @brief 测试道路几何信息。
+ *
+ * 该函数遍历OpenDrive XML中的道路节点，并检查每个道路的几何信息是否与解析器解析出的信息匹配。
+ *
+ * @param xml 包含OpenDrive数据的XML文档。
+ * @param map 可选的Map对象，包含了由CARLA路网构建器生成的路网信息。
+ */
 static void test_geometry(const pugi::xml_document &xml, boost::optional<Map>& map) {
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
