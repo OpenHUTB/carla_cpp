@@ -4,25 +4,25 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "test.h"
-#include "OpenDrive.h"
-#include "Random.h"
+#include "test.h" /// @brief 包含测试相关的头文件（假设用于单元测试或示例代码）。
+#include "OpenDrive.h"/// @brief 包含OpenDrive相关的自定义头文件（可能是封装了OpenDrive解析的类）。
+#include "Random.h"/// @brief 包含随机数生成相关的头文件。
 
-#include <carla/StopWatch.h>
-#include <carla/ThreadPool.h>
-#include <carla/geom/Location.h>
-#include <carla/geom/Math.h>
-#include <carla/opendrive/OpenDriveParser.h>
-#include <carla/road/MapBuilder.h>
-#include <carla/road/element/RoadInfoElevation.h>
-#include <carla/road/element/RoadInfoGeometry.h>
-#include <carla/road/element/RoadInfoMarkRecord.h>
-#include <carla/road/element/RoadInfoVisitor.h>
+#include <carla/StopWatch.h> /// @brief 包含CARLA的计时器类，用于性能测量。
+#include <carla/ThreadPool.h>/// @brief 包含CARLA的线程池类，用于并行处理任务。
+#include <carla/geom/Location.h>/// @brief 包含地理位置相关的类，如点、向量等。
+#include <carla/geom/Math.h>/// @brief 包含几何数学运算相关的函数和类。
+#include <carla/opendrive/OpenDriveParser.h>/// @brief 包含OpenDrive解析器类，用于解析OpenDrive格式的地图文件。
+#include <carla/road/MapBuilder.h>/// @brief 包含CARLA的路网构建器类，用于构建路网。
+#include <carla/road/element/RoadInfoElevation.h>/// @brief 包含道路高程信息相关的类。
+#include <carla/road/element/RoadInfoGeometry.h>/// @brief 包含道路几何信息相关的类。
+#include <carla/road/element/RoadInfoMarkRecord.h>/// @brief 包含道路标记记录信息相关的类
+#include <carla/road/element/RoadInfoVisitor.h>/// @brief 包含道路信息访问者模式的基类，用于遍历路网元素。
 
-#include <pugixml/pugixml.hpp>
+#include <pugixml/pugixml.hpp>/// @brief 包含pugixml库的头文件，用于XML解析和生成。
 
-#include <fstream>
-#include <string>
+#include <fstream>/// @brief 包含C++标准库的文件流类，用于文件读写。
+#include <string>/// @brief 包含C++标准库的字符串类。
 
 using namespace carla::road;
 using namespace carla::road::element;
