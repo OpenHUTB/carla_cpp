@@ -34,14 +34,7 @@ using namespace util;/// 导入CARLA的实用工具命名空间，包含常用�
  */
 const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER "/OpenDrive/";
 
-/**
- * @brief 测试道路高程信息。
- *
- * 该函数遍历OpenDrive XML中的道路节点，并检查每个道路的高程信息是否与解析器解析出的信息匹配。
- *
- * @param xml 包含OpenDrive数据的XML文档。
- * @param map 可选的Map对象，包含了由CARLA路网构建器生成的路网信息。
- */
+
 static void test_road_elevation(const pugi::xml_document &xml, boost::optional<Map>& map) {
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
@@ -65,14 +58,7 @@ static void test_road_elevation(const pugi::xml_document &xml, boost::optional<M
   }
 }
 
-/**
- * @brief 测试道路几何信息。
- *
- * 该函数遍历OpenDrive XML中的道路节点，并检查每个道路的几何信息是否与解析器解析出的信息匹配。
- *
- * @param xml 包含OpenDrive数据的XML文档。
- * @param map 可选的Map对象，包含了由CARLA路网构建器生成的路网信息。
- */
+
 static void test_geometry(const pugi::xml_document &xml, boost::optional<Map>& map) {
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
@@ -118,7 +104,7 @@ static auto get_total_road_marks(
   auto total_road_mark_parser = 0;
   /// 遍历车道节点范围。
   for (pugi::xml_node lane_node : lane_nodes) {
-      /// 获取当前车道节点中的所有道路标记节点。
+
     auto road_mark_nodes = lane_node.children("roadMark");
     /// 计算并累加解析得到的道路标记数量。
     total_road_mark_parser += std::distance(road_mark_nodes.begin(), road_mark_nodes.end());
