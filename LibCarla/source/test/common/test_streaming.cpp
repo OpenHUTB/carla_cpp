@@ -19,8 +19,7 @@
 
 using namespace std::chrono_literals;
 
-// This is required for low level to properly stop the threads in case of
-// exception/assert.
+// 这里需要级别低一些来在异常或者断言的情形下正确的停止线程
 class io_context_running {
 public:
 
@@ -169,7 +168,7 @@ TEST(streaming, low_level_tcp_small_message) {
   });
   c->Connect();
 
-  // We need at least two threads because this server loop consumes one.
+  // 需要至少两个线程，因为这个服务循环要使用其中一个
   carla::ThreadGroup threads;
   threads.CreateThreads(
       std::max(2u, std::thread::hardware_concurrency()),
