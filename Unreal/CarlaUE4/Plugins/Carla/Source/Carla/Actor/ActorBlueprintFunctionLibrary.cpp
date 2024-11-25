@@ -1159,39 +1159,45 @@ FActorDefinition UActorBlueprintFunctionLibrary::MakeIMUDefinition()
     return Definition;
 }
 
+// 定义UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义，包含成功标志和定义结构体
 void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
-    bool &Success,
-    FActorDefinition &Definition)
+    bool &Success,         // 成功标志的引用，用于指示函数执行是否成功
+    FActorDefinition &Definition) // 定义结构体的引用，用于存储IMU的定义信息
 {
+  // 为定义填充ID和标签，分别为"sensor"、"other"和"imu"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("imu"));
+
+  // 为传感器添加变体信息
   AddVariationsForSensor(Definition);
-
-  // - Noise seed --------------------------------
+ 
+  // ------------------------ 噪声种子 --------------------------------
+  // 创建一个噪声种子的变体信息
   FActorVariation NoiseSeed;
-  NoiseSeed.Id = TEXT("noise_seed");
-  NoiseSeed.Type = EActorAttributeType::Int;
-  NoiseSeed.RecommendedValues = { TEXT("0") };
-  NoiseSeed.bRestrictToRecommended = false;
-
-  // - Accelerometer Standard Deviation ----------
-  // X Component
+  NoiseSeed.Id = TEXT("noise_seed");            // 设置ID为"noise_seed"
+  NoiseSeed.Type = EActorAttributeType::Int;    // 设置类型为整型
+  NoiseSeed.RecommendedValues = { TEXT("0") };  // 设置推荐值为0
+  NoiseSeed.bRestrictToRecommended = false;     // 设置不限制为推荐值
+ 
+  // -------------------------------- 加速度计标准差 --------------------------
+  // X分量
   FActorVariation StdDevAccelX;
-  StdDevAccelX.Id = TEXT("noise_accel_stddev_x");
-  StdDevAccelX.Type = EActorAttributeType::Float;
-  StdDevAccelX.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelX.bRestrictToRecommended = false;
-  // Y Component
+  StdDevAccelX.Id = TEXT("noise_accel_stddev_x"); // 设置ID为"noise_accel_stddev_x"
+  StdDevAccelX.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelX.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelX.bRestrictToRecommended = false;     // 设置不限制为推荐值
+  // Y分量
   FActorVariation StdDevAccelY;
-  StdDevAccelY.Id = TEXT("noise_accel_stddev_y");
-  StdDevAccelY.Type = EActorAttributeType::Float;
-  StdDevAccelY.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelY.bRestrictToRecommended = false;
-  // Z Component
+  StdDevAccelY.Id = TEXT("noise_accel_stddev_y"); // 设置ID为"noise_accel_stddev_y"
+  StdDevAccelY.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelY.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelY.bRestrictToRecommended = false;     // 设置不限制为推荐值
+  // Z分量
   FActorVariation StdDevAccelZ;
-  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z");
-  StdDevAccelZ.Type = EActorAttributeType::Float;
-  StdDevAccelZ.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelZ.bRestrictToRecommended = false;
+  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z"); // 设置ID为"noise_accel_stddev_z"
+  StdDevAccelZ.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelZ.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelZ.bRestrictToRecommended = false;     // 设置不限制为推荐值
+
 
   // - Gyroscope Standard Deviation --------------
   // X Component
