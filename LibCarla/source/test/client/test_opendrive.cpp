@@ -32,7 +32,7 @@ using namespace util;
 
 const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER "/OpenDrive/";
 
-// Road Elevation
+// 道路标高
 static void test_road_elevation(const pugi::xml_document &xml, boost::optional<Map>& map) {
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
@@ -56,7 +56,7 @@ static void test_road_elevation(const pugi::xml_document &xml, boost::optional<M
   }
 }
 
-// Geometry
+// 图形处理
 static void test_geometry(const pugi::xml_document &xml, boost::optional<Map>& map) {
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
@@ -86,7 +86,7 @@ static auto get_total_road_marks(
   auto total_road_mark = 0;
   auto total_road_mark_parser = 0;
   for (pugi::xml_node lane_node : lane_nodes) {
-    // Check Road Mark
+    // 检查道路标记
     auto road_mark_nodes = lane_node.children("roadMark");
     total_road_mark_parser += std::distance(road_mark_nodes.begin(), road_mark_nodes.end());
 
