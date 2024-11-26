@@ -1223,25 +1223,27 @@ void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
   StdDevGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
   StdDevGyroZ.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
 
-  // - Gyroscope Bias ----------------------------
-  // X Component
-  FActorVariation BiasGyroX;
-  BiasGyroX.Id = TEXT("noise_gyro_bias_x");
-  BiasGyroX.Type = EActorAttributeType::Float;
-  BiasGyroX.RecommendedValues = { TEXT("0.0") };
-  BiasGyroX.bRestrictToRecommended = false;
-  // Y Component
-  FActorVariation BiasGyroY;
-  BiasGyroY.Id = TEXT("noise_gyro_bias_y");
-  BiasGyroY.Type = EActorAttributeType::Float;
-  BiasGyroY.RecommendedValues = { TEXT("0.0") };
-  BiasGyroY.bRestrictToRecommended = false;
-  // Z Component
-  FActorVariation BiasGyroZ;
-  BiasGyroZ.Id = TEXT("noise_gyro_bias_z");
-  BiasGyroZ.Type = EActorAttributeType::Float;
-  BiasGyroZ.RecommendedValues = { TEXT("0.0") };
-  BiasGyroZ.bRestrictToRecommended = false;
+  // - 陀螺仪偏差 ----------------------------
+  // X 分量
+  FActorVariation BiasGyroX; // 定义一个用于表示陀螺仪X轴偏差的变量
+  BiasGyroX.Id = TEXT("noise_gyro_bias_x"); // 设置该变量的标识符为"noise_gyro_bias_x"
+  BiasGyroX.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
+  BiasGyroX.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  BiasGyroX.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
+
+  // Y 分量
+  FActorVariation BiasGyroY; // 定义一个用于表示陀螺仪Y轴偏差的变量
+  BiasGyroY.Id = TEXT("noise_gyro_bias_y"); // 设置该变量的标识符为"noise_gyro_bias_y"
+  BiasGyroY.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
+  BiasGyroY.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  BiasGyroY.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
+
+  // Z 分量
+  FActorVariation BiasGyroZ; // 定义一个用于表示陀螺仪Z轴偏差的变量
+  BiasGyroZ.Id = TEXT("noise_gyro_bias_z"); // 设置该变量的标识符为"noise_gyro_bias_z"
+  BiasGyroZ.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
+  BiasGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  BiasGyroZ.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
 
   Definition.Variations.Append({
     NoiseSeed,
