@@ -74,17 +74,17 @@ int main(int argc, const char *argv[]) {
     std::cout << "Client API version : " << client.GetClientVersion() << '\n';
     std::cout << "Server API version : " << client.GetServerVersion() << '\n';
 
-    // Load a random town.
+    // 随机加载一个城镇位置
     auto town_name = RandomChoice(client.GetAvailableMaps(), rng);
     std::cout << "Loading world: " << town_name << std::endl;
     auto world = client.LoadWorld(town_name);
 
-    // Get a random vehicle blueprint.
+    // 随机获取一个交通工具蓝图
     auto blueprint_library = world.GetBlueprintLibrary();
     auto vehicles = blueprint_library->Filter("vehicle");
     auto blueprint = RandomChoice(*vehicles, rng);
 
-    // Randomize the blueprint.
+    // 随机选取一个蓝图
     if (blueprint.ContainsAttribute("color")) {
       auto &attribute = blueprint.GetAttribute("color");
       blueprint.SetAttribute(
