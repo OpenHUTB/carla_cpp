@@ -1038,134 +1038,166 @@ if (bEnableModifyingPostProcessEffects)
     Success = CheckActorDefinition(Definition);
 }
 
+// 定义一个函数，该函数属于UActorBlueprintFunctionLibrary类，用于创建一个法线相机的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
+  // 创建一个FActorDefinition类型的对象Definition，用于存储相机定义
+  FActorDefinition Definition; 
+
+  // 定义一个布尔变量Success，用于标记操作是否成功
+  bool Success; 
+
+  // 调用重载的MakeNormalsCameraDefinition函数，传入Success和Definition的引用，以填充Definition并设置Success的值
   MakeNormalsCameraDefinition(Success, Definition);
+
+  // 使用check宏来验证Success是否为true，如果不是，则程序将在这里崩溃。这是一种调试时的保护措施。
   check(Success);
+
+  // 返回填充好的Definition对象
   return Definition;
 }
-
+ 
+// 定义一个重载的函数，该函数同样属于UActorBlueprintFunctionLibrary类，用于填充法线相机的定义
 void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, FActorDefinition &Definition)
 {
+  // 调用FillIdAndTags函数为Definition设置ID和标签，这里设置的ID为"sensor"，标签包括"camera"和"normals"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), TEXT("normals"));
+
+  // 调用AddRecommendedValuesForSensorRoleNames函数为Definition添加建议的角色名称值，这些值可能用于优化相机性能或行为
   AddRecommendedValuesForSensorRoleNames(Definition);
+
+  // 调用AddVariationsForSensor函数为Definition添加传感器的变种或变体，这可能包括不同的配置或设置以适应不同的使用场景
   AddVariationsForSensor(Definition);
 
-  // FOV
-  FActorVariation FOV;
-  FOV.Id = TEXT("fov");
-  FOV.Type = EActorAttributeType::Float;
-  FOV.RecommendedValues = { TEXT("90.0") };
-  FOV.bRestrictToRecommended = false;
+  // 视场角设置
+  FActorVariation FOV; // 创建一个FActorVariation类型的对象FOV，用于表示相机的视场角变化
+  FOV.Id = TEXT("fov"); // 设置FOV对象的ID为"fov"，这是其唯一标识符
+  FOV.Type = EActorAttributeType::Float; // 设置FOV对象的类型为浮点型，表示视场角是一个浮点数
+  FOV.RecommendedValues = { TEXT("90.0") }; // 为FOV对象设置一个推荐的视场角值
+  FOV.bRestrictToRecommended = false; // 设置FOV对象是否限制为只能使用推荐值
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+  // 分辨率设置
+  FActorVariation ResX; // 创建一个FActorVariation类型的对象ResX，用于表示相机图像宽度的变化
+  ResX.Id = TEXT("image_size_x"); // 设置ResX对象的ID为"image_size_x"，表示图像宽度
+  ResX.Type = EActorAttributeType::Int; // 设置ResX对象的类型为整型，表示图像宽度是一个整数
+  ResX.RecommendedValues = { TEXT("800") }; // 为ResX对象设置一个推荐的图像宽度值
+  ResX.bRestrictToRecommended = false; // 设置ResX对象是否限制为只能使用推荐值
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+  FActorVariation ResY; // 创建一个FActorVariation类型的对象ResY，用于表示相机图像高度的变化
+  ResY.Id = TEXT("image_size_y"); // 设置ResY对象的ID为"image_size_y"，表示图像高度
+  ResY.Type = EActorAttributeType::Int; // 设置ResY对象的类型为整型，表示图像高度是一个整数
+  ResY.RecommendedValues = { TEXT("600") }; // 为ResY对象设置一个推荐的图像高度值
+  ResY.bRestrictToRecommended = false; // 设置ResY对象是否限制为只能使用推荐值
 
-  // Lens parameters
-  FActorVariation LensCircleFalloff;
-  LensCircleFalloff.Id = TEXT("lens_circle_falloff");
-  LensCircleFalloff.Type = EActorAttributeType::Float;
-  LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
-  LensCircleFalloff.bRestrictToRecommended = false;
+  // 镜头参数
+  FActorVariation LensCircleFalloff; // 镜头圆形衰减参数
+  LensCircleFalloff.Id = TEXT("lens_circle_falloff"); // 设置参数ID为"lens_circle_falloff"
+  LensCircleFalloff.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensCircleFalloff.RecommendedValues = { TEXT("5.0") }; // 设置推荐值为"5.0"
+  LensCircleFalloff.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensCircleMultiplier;
-  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
-  LensCircleMultiplier.Type = EActorAttributeType::Float;
-  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
-  LensCircleMultiplier.bRestrictToRecommended = false;
+  FActorVariation LensCircleMultiplier; // 镜头圆形倍增参数
+  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier"); // 设置参数ID为"lens_circle_multiplier"
+  LensCircleMultiplier.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
+  LensCircleMultiplier.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensK;
-  LensK.Id = TEXT("lens_k");
-  LensK.Type = EActorAttributeType::Float;
-  LensK.RecommendedValues = { TEXT("-1.0") };
-  LensK.bRestrictToRecommended = false;
+  FActorVariation LensK; // 镜头K参数
+  LensK.Id = TEXT("lens_k"); // 设置参数ID为"lens_k"
+  LensK.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensK.RecommendedValues = { TEXT("-1.0") }; // 设置推荐值为"-1.0"
+  LensK.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensKcube;
-  LensKcube.Id = TEXT("lens_kcube");
-  LensKcube.Type = EActorAttributeType::Float;
-  LensKcube.RecommendedValues = { TEXT("0.0") };
-  LensKcube.bRestrictToRecommended = false;
+  FActorVariation LensKcube; // 镜头K的三次方参数
+  LensKcube.Id = TEXT("lens_kcube"); // 设置参数ID为"lens_kcube"
+  LensKcube.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensKcube.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
+  LensKcube.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensXSize;
-  LensXSize.Id = TEXT("lens_x_size");
-  LensXSize.Type = EActorAttributeType::Float;
-  LensXSize.RecommendedValues = { TEXT("0.08") };
-  LensXSize.bRestrictToRecommended = false;
+  FActorVariation LensXSize; // 镜头X轴大小参数
+  LensXSize.Id = TEXT("lens_x_size"); // 设置参数ID为"lens_x_size"
+  LensXSize.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensXSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
+  LensXSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
-  FActorVariation LensYSize;
-  LensYSize.Id = TEXT("lens_y_size");
-  LensYSize.Type = EActorAttributeType::Float;
-  LensYSize.RecommendedValues = { TEXT("0.08") };
-  LensYSize.bRestrictToRecommended = false;
+  FActorVariation LensYSize; // 镜头Y轴大小参数
+  LensYSize.Id = TEXT("lens_y_size"); // 设置参数ID为"lens_y_size"
+  LensYSize.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensYSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
+  LensYSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
+  // 将一个包含多个参数的集合追加到Definitions的Variations列表中
   Definition.Variations.Append({
-      ResX,
-      ResY,
-      FOV,
-      LensCircleFalloff,
-      LensCircleMultiplier,
-      LensK,
-      LensKcube,
-      LensXSize,
-      LensYSize});
+      ResX,       // 分辨率X轴
+      ResY,       // 分辨率Y轴
+      FOV,        // 视场角
+      LensCircleFalloff, // 镜头圆形衰减
+      LensCircleMultiplier, // 镜头圆形倍乘器
+      LensK,      // 镜头K系数
+      LensKcube,  // 镜头K立方系数
+      LensXSize,  // 镜头X尺寸
+      LensYSize });// 镜头Y尺寸
 
+  // 调用CheckActorDefinition函数检查Definition是否有效，并将结果存储在Success变量中
   Success = CheckActorDefinition(Definition);
 }
 
+// UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeIMUDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
-  MakeIMUDefinition(Success, Definition);
-  check(Success);
-  return Definition;
+    FActorDefinition Definition; // 创建一个FActorDefinition类型的对象Definition
+
+    bool Success; // 声明一个布尔类型的变量Success，用于存储操作的结果
+    
+    // 调用MakeIMUDefinition函数，该函数填充Definition并设置Success
+    MakeIMUDefinition(Success, Definition);
+
+    // 使用check宏断言Success为真，如果为假则触发断言错误
+    check(Success);
+
+    // 返回填充好的Definition对象
+    return Definition;
 }
 
+// 定义UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义，包含成功标志和定义结构体
 void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
-    bool &Success,
-    FActorDefinition &Definition)
+    bool &Success,         // 成功标志的引用，用于指示函数执行是否成功
+    FActorDefinition &Definition) // 定义结构体的引用，用于存储IMU的定义信息
 {
+  // 为定义填充ID和标签，分别为"sensor"、"other"和"imu"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("imu"));
+
+  // 为传感器添加变体信息
   AddVariationsForSensor(Definition);
-
-  // - Noise seed --------------------------------
+ 
+  // ------------------------ 噪声种子 --------------------------------
+  // 创建一个噪声种子的变体信息
   FActorVariation NoiseSeed;
-  NoiseSeed.Id = TEXT("noise_seed");
-  NoiseSeed.Type = EActorAttributeType::Int;
-  NoiseSeed.RecommendedValues = { TEXT("0") };
-  NoiseSeed.bRestrictToRecommended = false;
-
-  // - Accelerometer Standard Deviation ----------
-  // X Component
+  NoiseSeed.Id = TEXT("noise_seed");            // 设置ID为"noise_seed"
+  NoiseSeed.Type = EActorAttributeType::Int;    // 设置类型为整型
+  NoiseSeed.RecommendedValues = { TEXT("0") };  // 设置推荐值为0
+  NoiseSeed.bRestrictToRecommended = false;     // 设置不限制为推荐值
+ 
+  // -------------------------------- 加速度计标准差 --------------------------
+  // X分量
   FActorVariation StdDevAccelX;
-  StdDevAccelX.Id = TEXT("noise_accel_stddev_x");
-  StdDevAccelX.Type = EActorAttributeType::Float;
-  StdDevAccelX.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelX.bRestrictToRecommended = false;
-  // Y Component
+  StdDevAccelX.Id = TEXT("noise_accel_stddev_x"); // 设置ID为"noise_accel_stddev_x"
+  StdDevAccelX.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelX.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelX.bRestrictToRecommended = false;     // 设置不限制为推荐值
+  // Y分量
   FActorVariation StdDevAccelY;
-  StdDevAccelY.Id = TEXT("noise_accel_stddev_y");
-  StdDevAccelY.Type = EActorAttributeType::Float;
-  StdDevAccelY.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelY.bRestrictToRecommended = false;
-  // Z Component
+  StdDevAccelY.Id = TEXT("noise_accel_stddev_y"); // 设置ID为"noise_accel_stddev_y"
+  StdDevAccelY.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelY.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelY.bRestrictToRecommended = false;     // 设置不限制为推荐值
+  // Z分量
   FActorVariation StdDevAccelZ;
-  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z");
-  StdDevAccelZ.Type = EActorAttributeType::Float;
-  StdDevAccelZ.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelZ.bRestrictToRecommended = false;
+  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z"); // 设置ID为"noise_accel_stddev_z"
+  StdDevAccelZ.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelZ.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelZ.bRestrictToRecommended = false;     // 设置不限制为推荐值
+
 
   // - Gyroscope Standard Deviation --------------
   // X Component

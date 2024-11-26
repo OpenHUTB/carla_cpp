@@ -46,6 +46,7 @@ void export_osm2odr() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 对应carla.Osm2Odr的方法：convert(osm_file, settings)
   class_<OSM2ODR>("Osm2Odr", no_init)
     .def("convert", &ConvertOSMToOpenDRIVE, (arg("osm_file"), arg("settings") = OSM2ODRSettings()))
       .staticmethod("convert")
