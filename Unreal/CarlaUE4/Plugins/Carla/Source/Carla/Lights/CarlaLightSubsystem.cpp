@@ -12,7 +12,7 @@
 
 void UCarlaLightSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
-  // TODO: Subscribe to map change
+  // TODO: ¶©ÔÄµØÍ¼±ä»¯
 }
 
 void UCarlaLightSubsystem::Deinitialize()

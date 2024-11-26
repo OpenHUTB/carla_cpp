@@ -10,7 +10,7 @@
 
 #include "CarlaWheeledVehicleNW.generated.h"
 
-/// Base class for CARLA wheeled vehicles.
+/// CARLA轮式车辆的基类
 UCLASS()
 class CARLA_API ACarlaWheeledVehicleNW : public ACarlaWheeledVehicle
 {

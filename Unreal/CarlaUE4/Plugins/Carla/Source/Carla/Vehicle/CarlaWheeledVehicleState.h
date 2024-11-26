@@ -8,8 +8,7 @@
 
 #include "CarlaWheeledVehicleState.generated.h"
 
-/// State of a ACarlaWheeledVehicle, to be displayed in editor for debugging
-/// purposes.
+/// 用于调试目的，在编辑器中显示的CARLA轮式车辆状态。
 UENUM(BlueprintType)
 enum class ECarlaWheeledVehicleState : uint8
 {
