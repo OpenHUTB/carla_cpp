@@ -951,37 +951,38 @@ namespace Simplify
       // 清理网格，移除所有已标记为删除的三角形
       compact_mesh();
     } // simplify_mesh()
-
+    /**
+ * @brief 无损简化网格
+ *
+ * 该函数通过迭代地移除误差低于给定阈值的三角形来简化网格，同时保持网格的无损性。
+ *
+ * @param verbose 是否打印详细信息，默认为false不打印
+ */
     void simplify_mesh_lossless(bool verbose = false)
     {
-      // init
+        // 初始化
+     /// @todo 使用范围for循环替换宏定义的循环，以提高代码可读性和安全性
       loopi(0, triangles.size()) triangles[i].deleted = 0;
 
-      // main iteration loop
+      // 主迭代循环
       int deleted_triangles = 0;
       std::vector<int> deleted0, deleted1;
 
-      // int iteration = 0;
-      // loop(iteration,0,100)
+      // 迭代处理网格
       for (int iteration = 0; iteration < 9999; iteration++)
       {
-        // update mesh constantly
+          // 不断更新网格
         update_mesh(iteration);
         // clear dirty flag
         loopi(0, triangles.size()) triangles[i].dirty = 0;
-        //
-        // All triangles with edges below the threshold will be removed
-        //
-        // The following numbers works well for most models.
-        // If it does not, try to adjust the 3 parameters
-        //
-        double threshold = DBL_EPSILON; // 1.0E-3 EPS;
+        // 移除误差低于阈值的边及其三角形
+        double threshold = DBL_EPSILON; // 1.0E-3 EPS;用于确定哪些三角形应该被移除
         if (verbose)
         {
           printf("lossless iteration %d\n", iteration);
         }
 
-        // remove vertices & mark deleted triangles
+        // 遍历所有三角形，移除符合条件的三角形
         loopi(0, triangles.size())
         {
           Triangle &t = triangles[i];
@@ -999,30 +1000,30 @@ namespace Simplify
             int i1 = t.v[(j + 1) % 3];
             Vertex &v1 = vertices[i1];
 
-            // Border check
+            // 边界检查，如果两个顶点不在同一边界上，则跳过
             if (v0.border != v1.border)
               continue;
 
-            // Compute vertex to collapse to
+            // 计算要合并到的顶点位置
             vec3f p;
             calculate_error(i0, i1, p);
+            // 临时存储顶点相关的三角形索引
+            deleted0.resize(v0.tcount); 
+            deleted1.resize(v1.tcount); 
 
-            deleted0.resize(v0.tcount); // normals temporarily
-            deleted1.resize(v1.tcount); // normals temporarily
-
-            // don't remove if flipped
+            // 如果合并后导致法线翻转，则跳过
             if (flipped(p, i0, i1, v0, v1, deleted0))
               continue;
             if (flipped(p, i1, i0, v1, v0, deleted1))
               continue;
-
+            // 如果三角形有纹理坐标，则更新纹理坐标
             if ((t.attr & TEXCOORD) == TEXCOORD)
             {
               update_uvs(i0, v0, p, deleted0);
               update_uvs(i0, v1, p, deleted1);
             }
 
-            // not flipped, so remove edge
+            // 合并顶点并更新相关三角形
             v0.p = p;
             v0.q = v1.q + v0.q;
             int tstart = refs.size();
@@ -1031,26 +1032,25 @@ namespace Simplify
             update_triangles(i0, v1, deleted1, deleted_triangles);
 
             int tcount = refs.size() - tstart;
-
+            // 如果合并后的三角形数量小于等于原数量，则节省内存
             if (tcount <= v0.tcount)
             {
-              // save ram
               if (tcount)
                 memcpy(&refs[v0.tstart], &refs[tstart], tcount * sizeof(Ref));
             }
             else
-              // append
+                // 否则，追加新的三角形索引
               v0.tstart = tstart;
 
             v0.tcount = tcount;
-            break;
+            break;// 找到一个可合并的边后跳出内层循环
           }
-        }
+        }// 如果没有三角形被删除，则跳出循环
         if (deleted_triangles <= 0)
           break;
-        deleted_triangles = 0;
-      } // for each iteration
-      // clean up mesh
+        deleted_triangles = 0;// 重置计数器，为下一轮迭代准备
+      } // 迭代结束
+      // 清理网格，移除所有被标记为删除的三角形
       compact_mesh();
     } // simplify_mesh_lossless()
 
