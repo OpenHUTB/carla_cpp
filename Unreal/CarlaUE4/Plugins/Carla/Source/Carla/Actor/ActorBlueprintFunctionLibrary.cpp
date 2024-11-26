@@ -1245,20 +1245,42 @@ void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
   BiasGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
   BiasGyroZ.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
 
+  // 将一系列变量添加到Definition的Variations列表中，这些变量通常用于定义某个物体的噪声和偏差特性
   Definition.Variations.Append({
-    NoiseSeed,
-    StdDevAccelX,
-    StdDevAccelY,
-    StdDevAccelZ,
-    StdDevGyroX,
-    StdDevGyroY,
-    StdDevGyroZ,
-    BiasGyroX,
-    BiasGyroY,
-    BiasGyroZ});
+      // 噪声种子，用于生成随机数序列，以模拟噪声的随机性
+      NoiseSeed,      
 
+      // 加速度计X轴的标准偏差，表示X轴加速度测量值的噪声水平
+      StdDevAccelX,      
+
+      // 加速度计Y轴的标准偏差，表示Y轴加速度测量值的噪声水平
+      StdDevAccelY,   
+
+      // 加速度计Z轴的标准偏差，表示Z轴加速度测量值的噪声水平
+      StdDevAccelZ,  
+
+      // 陀螺仪X轴的标准偏差，表示X轴角速度测量值的噪声水平
+      StdDevGyroX,   
+
+      // 陀螺仪Y轴的标准偏差，表示Y轴角速度测量值的噪声水平
+      StdDevGyroY,     
+
+      // 陀螺仪Z轴的标准偏差，表示Z轴角速度测量值的噪声水平
+      StdDevGyroZ,     
+
+      // 陀螺仪X轴的偏差，表示X轴角速度测量值的固定偏移量
+      BiasGyroX, 
+
+      // 陀螺仪Y轴的偏差，表示Y轴角速度测量值的固定偏移量
+      BiasGyroY, 
+
+      // 陀螺仪Z轴的偏差，表示Z轴角速度测量值的固定偏移量
+      BiasGyroZ          
+      });
+
+  // 调用CheckActorDefinition函数来检查Definition对象的有效性或配置是否正确
   Success = CheckActorDefinition(Definition);
-}
+
 
 FActorDefinition UActorBlueprintFunctionLibrary::MakeRadarDefinition()
 {
