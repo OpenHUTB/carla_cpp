@@ -1043,25 +1043,31 @@ PUGI__NS_BEGIN
 
 		operator T*() const
 		{
-			if (_data)
+			if (_data)// 如果_data非零
 			{
-				if (_data < 65534)
+				if (_data < 65534)// 如果_data的值小于65534
 				{
+					// 调整当前对象的地址，使其符合compact_alignment对齐要求
 					uintptr_t base = reinterpret_cast<uintptr_t>(this) & ~(compact_alignment - 1);
-
+					// 根据_data的值计算实际存储T类型数据的地址，并返回该地址
+					// 这里假设了一个特殊的存储策略，其中65533作为偏移量的基准点
 					return reinterpret_cast<T*>(base + (_data - 1 - 65533) * compact_alignment);
 				}
-				else if (_data == 65534)
+				else if (_data == 65534)// 如果_data的值等于65534
+					// 调用compact_get_page函数获取一个特定的页面，并返回该页面中compact_shared_parent指向的T类型数据的地址
 					return static_cast<T*>(compact_get_page(this, header_offset)->compact_shared_parent);
-				else
+				else// 如果_data的值大于65534
+					// 调用compact_get_value函数，根据_data的值和header_offset获取并返回T类型数据的地址
 					return compact_get_value<header_offset, T>(this);
 			}
-			else
+			else// 如果_data为零
+				// 返回空指针，表示没有有效的T类型数据
 				return 0;
 		}
 
 		T* operator->() const
 		{
+			// 返回当前对象转换为T*的结果，允许通过->操作符访问T类型对象的成员
 			return *this;
 		}
 
