@@ -803,36 +803,51 @@ namespace Simplify
      */
     int tid, tvertex;
   };
-
+  /**
+ * @class SimplificationObject
+ *
+ * @brief 用于简化网格的类。
+ */
   class SimplificationObject
   {
   public:
+      /**
+     * @brief 存储三角形的向量。
+     */
     std::vector<Triangle> triangles;
+    /**
+     * @brief 存储顶点的向量。
+     */
     std::vector<Vertex> vertices;
+    /**
+     * @brief 存储引用的向量。
+     */
     std::vector<Ref> refs;
+    /**
+     * @brief 材质库的名称。
+     */
     std::string mtllib;
+    /**
+     * @brief 存储材质名称的向量。
+     */
     std::vector<std::string> materials;
 
-    // Helper functions
-
-    //
-    // Main simplification function
-    //
-    // target_count  : target nr. of triangles
-    // agressiveness : sharpness to increase the threshold.
-    //                 5..8 are good numbers
-    //                 more iterations yield higher quality
-    //
-
+    /**
+     * @brief 主简化函数。
+     *
+     * @param target_count 目标三角形数量。
+     * @param agressiveness 激进程度，用于增加阈值的锐度。5到8是较好的数值，更多迭代次数可以获得更高质量。
+     * @param verbose 是否输出详细信息。
+     */
     void simplify_mesh(int target_count, double agressiveness = 7, bool verbose = false)
     {
-      // init
+        // 初始化
       loopi(0, triangles.size())
       {
         triangles[i].deleted = 0;
       }
 
-      // main iteration loop
+      // 主迭代循环
       int deleted_triangles = 0;
       std::vector<int> deleted0, deleted1;
       int triangle_count = triangles.size();
@@ -843,7 +858,7 @@ namespace Simplify
         if (triangle_count - deleted_triangles <= target_count)
           break;
 
-        // update mesh once in a while
+        // 每隔一段时间更新网格
         if (iteration % 5 == 0)
         {
           update_mesh(iteration);
@@ -852,21 +867,17 @@ namespace Simplify
         // clear dirty flag
         loopi(0, triangles.size()) triangles[i].dirty = 0;
 
-        //
-        // All triangles with edges below the threshold will be removed
-        //
-        // The following numbers works well for most models.
-        // If it does not, try to adjust the 3 parameters
-        //
+        // 计算当前迭代的误差阈值
+         // 以下数值对大多数模型有效，如果不适用，可以尝试调整以下三个参数
         double threshold = 0.000000001 * pow(double(iteration + 3), agressiveness);
 
-        // target number of triangles reached ? Then break
+        // 如果启用了详细输出，并且迭代次数是5的倍数，则打印当前状态
         if ((verbose) && (iteration % 5 == 0))
         {
           printf("iteration %d - triangles %d threshold %g\n", iteration, triangle_count - deleted_triangles, threshold);
         }
 
-        // remove vertices & mark deleted triangles
+        // 遍历所有三角形，移除误差较小的三角形并标记已删除的三角形
         loopi(0, triangles.size())
         {
           Triangle &t = triangles[i];
@@ -876,7 +887,7 @@ namespace Simplify
             continue;
           if (t.dirty)
             continue;
-
+          // 遍历三角形的三条边
           loopj(0, 3) if (t.err[j] < threshold)
           {
 
@@ -884,57 +895,60 @@ namespace Simplify
             Vertex &v0 = vertices[i0];
             int i1 = t.v[(j + 1) % 3];
             Vertex &v1 = vertices[i1];
-            // Border check
+            // 如果任一顶点位于边界上，则跳过
             if (v0.border || v1.border)
               continue;
 
-            // Compute vertex to collapse to
+            // 计算要合并到的顶点位置
             vec3f p;
             calculate_error(i0, i1, p);
-            deleted0.resize(v0.tcount); // normals temporarily
-            deleted1.resize(v1.tcount); // normals temporarily
-            // don't remove if flipped
+            // 临时存储顶点相关的三角形信息
+            deleted0.resize(v0.tcount);
+            deleted1.resize(v1.tcount); 
+            // 如果合并后会导致翻转，则跳过
             if (flipped(p, i0, i1, v0, v1, deleted0))
               continue;
 
             if (flipped(p, i1, i0, v1, v0, deleted1))
               continue;
-
+            // 如果三角形具有纹理坐标，则更新纹理坐标
             if ((t.attr & TEXCOORD) == TEXCOORD)
             {
               update_uvs(i0, v0, p, deleted0);
               update_uvs(i0, v1, p, deleted1);
             }
 
-            // not flipped, so remove edge
+            // 如果没有翻转，则移除边
             v0.p = p;
             v0.q = v1.q + v0.q;
+            // 更新三角形信息
             int tstart = refs.size();
 
             update_triangles(i0, v0, deleted0, deleted_triangles);
             update_triangles(i0, v1, deleted1, deleted_triangles);
 
             int tcount = refs.size() - tstart;
-
+            // 如果更新后的三角形数量小于等于原始数量，则节省内存
             if (tcount <= v0.tcount)
             {
-              // save ram
+              
               if (tcount)
                 memcpy(&refs[v0.tstart], &refs[tstart], tcount * sizeof(Ref));
             }
             else
-              // append
+                // 否则，追加新的三角形信息
               v0.tstart = tstart;
 
             v0.tcount = tcount;
+            // 跳出内层循环，继续下一个三角形的检查
             break;
           }
-          // done?
+          // 如果已达到目标三角形数量，则退出外层循环
           if (triangle_count - deleted_triangles <= target_count)
             break;
         }
       }
-      // clean up mesh
+      // 清理网格，移除所有已标记为删除的三角形
       compact_mesh();
     } // simplify_mesh()
 
