@@ -705,35 +705,102 @@ public:
   double m[10];
 };
 ///////////////////////////////////////////
-
+/**
+ * @namespace Simplify
+ *
+ * @brief 命名空间，用于简化网格模型的工具和数据结构。
+ */
 namespace Simplify
 {
-  // Global Variables & Strctures
+    /**
+   * @enum Attributes
+   *
+   * @brief 枚举类型，表示三角形的属性。
+   */
   enum Attributes
   {
+      /**
+     * @brief 无属性。
+     */
     NONE,
+    /**
+     * @brief 普通属性。
+     */
     NORMAL = 2,
+    /**
+    * @brief 包含纹理坐标属性。
+    */
     TEXCOORD = 4,
+    /**
+     * @brief 包含颜色属性。
+     */
     COLOR = 8
   };
+  /**
+ * @struct Triangle
+ *
+ * @brief 表示三角形的数据结构。
+ */
   struct Triangle
   {
+      /**
+     * @brief 三角形的三个顶点索引。
+     */
     int v[3];
+    /**
+     * @brief 误差值数组，用于简化算法。
+     */
     double err[4];
+    /**
+     * @brief 是否被删除的标志、是否需要重新计算的标志和三角形的属性。
+     */
     int deleted, dirty, attr;
+    /**
+     * @brief 法向量。
+     */
     vec3f n;
+    /**
+     * @brief 三个顶点的纹理坐标。
+     */
     vec3f uvs[3];
+    /**
+     * @brief 材质索引。
+     */
     int material;
   };
+  /**
+ * @struct Vertex
+ *
+ * @brief 表示顶点的数据结构。
+ */
   struct Vertex
   {
+      /**
+     * @brief 顶点位置。
+     */
     vec3f p;
+    /**
+     * @brief 第一个引用此顶点的三角形的索引和引用此顶点的三角形数量。
+     */
     int tstart, tcount;
+    /**
+     * @brief 对称矩阵，用于存储顶点信息。
+     */
     SymetricMatrix q;
+    /**
+     * @brief 是否为边界顶点的标志。
+     */
     int border;
   };
+  /**
+ * @struct Ref
+ *
+ * @brief 表示三角形和顶点之间的引用的数据结构。
+ */
   struct Ref
-  {
+  {/**
+     * @brief 三角形的索引和三角形中引用的顶点索引。
+     */
     int tid, tvertex;
   };
 
