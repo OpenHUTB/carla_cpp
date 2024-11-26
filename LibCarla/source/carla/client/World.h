@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -42,15 +42,16 @@ namespace client {
   class Map;
   class TrafficLight;
   class TrafficSign;
-
+  // World类定义开始，代表整个CARLA模拟世界
   class World {
   public:
-
+      // 构造函数，接受一个detail::EpisodeProxy对象作为参数，并将其移动到_episode成员变量中。  
     explicit World(detail::EpisodeProxy episode) : _episode(std::move(episode)) {}
-
+      // 析构函数，负责清理World对象持有的资源。在这个例子中，没有特别的清理代码，但它是虚函数或继承时的重要部分。 
     ~World(){}
-
+      // 拷贝构造函数和拷贝赋值运算符，都使用默认实现。这表明World对象可以安全地被拷贝，但注意，这可能不总是你想要的行为，特别是如果_episode包含了不可拷贝的资源
     World(const World &) = default;
+    // 移动构造函数和移动赋值运算符，也使用默认实现。这允许高效地转移World对象的所有权，而不是拷贝它。  
     World(World &&) = default;
 
     World &operator=(const World &) = default;

@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -18,13 +18,13 @@ namespace client {
   void WalkerAIController::Start() {
     GetEpisode().Lock()->RegisterAIController(*this);
 
-    // add the walker in the Recast & Detour
+    // 在 Recast & Detour 中添加行人
     auto walker = GetParent();
     if (walker != nullptr) {
       auto nav = GetEpisode().Lock()->GetNavigation();
       if (nav != nullptr) {
         nav->AddWalker(walker->GetId(), walker->GetLocation());
-        // disable physics and collision of walker actor
+        // 禁用行人参与者的物理和碰撞
         GetEpisode().Lock()->SetActorSimulatePhysics(*walker, false);
         GetEpisode().Lock()->SetActorCollisions(*walker, false);
       }
@@ -34,7 +34,7 @@ namespace client {
   void WalkerAIController::Stop() {
     GetEpisode().Lock()->UnregisterAIController(*this);
 
-    // remove the walker from the Recast & Detour
+    // 从 Recast & Detour 中移除行人
     auto walker = GetParent();
     if (walker != nullptr) {
       auto nav = GetEpisode().Lock()->GetNavigation();

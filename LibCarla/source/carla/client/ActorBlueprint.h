@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -19,12 +19,12 @@
 namespace carla {
 namespace client {
 
-  /// Contains all the necessary information for spawning an Actor.
+  /// 包含生成参与者所需的所有必要信息。
   class ActorBlueprint {
   public:
 
     // =========================================================================
-    /// @name Constructor
+    /// @name 构造函数
     // =========================================================================
     /// @{
 
@@ -44,7 +44,7 @@ namespace client {
 
     /// @}
     // =========================================================================
-    /// @name Tags
+    /// @name 标签
     // =========================================================================
     /// @{
 
@@ -54,9 +54,9 @@ namespace client {
       return _tags.find(tag) != _tags.end();
     }
 
-    /// Test if any of the flags matches @a wildcard_pattern.
+    /// 测试是否有标签满足 @a wildcard_pattern。
     ///
-    /// @a wildcard_pattern follows Unix shell-style wildcards.
+    /// @a wildcard_pattern 遵循 Unix shell 风格的通配符。
     bool MatchTags(const std::string &wildcard_pattern) const;
 
     std::vector<std::string> GetTags() const {
@@ -65,7 +65,7 @@ namespace client {
 
     /// @}
     // =========================================================================
-    /// @name Attributes
+    /// @name 属性
     // =========================================================================
     /// @{
 
@@ -75,14 +75,14 @@ namespace client {
       return _attributes.find(id) != _attributes.end();
     }
 
-    /// @throw std::out_of_range if no such element exists.
+    /// @throw 如果不存在这种元素，则抛出 std::out_of_range 异常。
     const ActorAttribute &GetAttribute(const std::string &id) const;
 
     /// Set the value of the attribute given by @a id.
     ///
-    /// @throw std::out_of_range if no such element exists.
-    /// @throw InvalidAttributeValue if attribute is not modifiable.
-    /// @throw InvalidAttributeValue if format does not match the attribute type.
+    /// @throw 如果不存在这样的元素，则抛出 std::out_of_range 异常。
+    /// @throw 如果属性不可修改，则抛出 InvalidAttributeValue 异常。
+    /// @throw 如果格式不匹配属性类型，则抛出 InvalidAttributeValue 异常。
     void SetAttribute(const std::string &id, std::string value);
 
     size_t size() const {
@@ -99,7 +99,7 @@ namespace client {
 
     /// @}
     // =========================================================================
-    /// @name ActorDescription
+    /// @name 参与者描述 ActorDescription
     // =========================================================================
     /// @{
 

@@ -1,36 +1,67 @@
 {
+	// 文件版本，用于标识JSON文件的格式版本
 	"FileVersion": 3,
+
+	// 软件的版本号
 	"Version": 1,
+
+	// 版本的名称，通常是一个更具可读性的标识符
 	"VersionName": "0.9.15",
+
+	// 软件的友好名称，用于显示给用户
 	"FriendlyName": "CARLA",
+
+	// 软件的描述，简单介绍软件的功能和用途
 	"Description": "Open-source simulator for autonomous driving research.",
+
+	// 软件所属的类别，用于分类或搜索
 	"Category": "Science",
+
+	// 创建软件的实体或团队名称
 	"CreatedBy": "Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB)",
+
+	// 创建软件的实体或团队的官方网址
 	"CreatedByURL": "http://carla.org",
+
+	// 软件的官方文档网址
 	"DocsURL": "http://carla.readthedocs.io",
+
+	// 软件在市场上的官方页面或商店网址（此处为空）
 	"MarketplaceURL": "",
+
+	// 提供支持或反馈的官方网址，例如问题跟踪系统
 	"SupportURL": "https://github.com/carla-simulator/carla/issues",
+
+	// 指示软件是否可以包含额外的内容，如插件或模块
 	"CanContainContent": true,
+
+	// 指示是否为测试版（Beta版）
 	"IsBetaVersion": true,
+
+	// 指示软件是否已安装
 	"Installed": true,
+
+	// 软件包含的模块列表，每个模块有其特定的属性和依赖
 	"Modules": [
 		{
-			"Name": "Carla",
-			"Type": "Runtime",
-			"LoadingPhase": "PreDefault",
-			"AdditionalDependencies": [
-				"Engine"
+			"Name": "Carla", // 模块的名称
+			"Type": "Runtime", // 模块的类型，例如运行时模块
+			"LoadingPhase": "PreDefault", // 模块的加载阶段，指示在何时加载该模块
+			"AdditionalDependencies": [ // 模块依赖的其他组件或库
+				"Engine" // 例如，依赖于游戏引擎
 			]
 		}
 	],
+
+	// 软件包含的插件列表，每个插件可以启用或禁用
 	"Plugins": [
 		{
-			"Name": "PhysXVehicles",
-			"Enabled": true
+			"Name": "PhysXVehicles", // 插件的名称
+			"Enabled": true // 插件是否启用
 		},
 		{
-			"Name": "ProceduralMeshComponent",
-			"Enabled": true
+			"Name": "ProceduralMeshComponent", // 另一个插件的名称
+			"Enabled": true // 插件是否启用
 		}
 	]
 }

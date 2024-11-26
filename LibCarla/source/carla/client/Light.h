@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -6,73 +6,80 @@
 
 #pragma once
 
-#include "carla/Memory.h"
+#include "carla/Memory.h"    // 包含内存管理相关的头文件
 
-#include "carla/client/LightState.h"
-#include "carla/geom/Location.h"
-#include "carla/geom/Rotation.h"
-#include "carla/rpc/LightState.h"
 
-namespace carla {
-namespace client {
+#include "carla/client/LightState.h"  // 包含光照状态相关的客户端头文件
+#include "carla/geom/Location.h"   // 包含位置几何信息的头文件
+#include "carla/geom/Rotation.h"   // 包含旋转几何信息的头文件
+#include "carla/rpc/LightState.h"   // 包含远程过程调用的光照状态定义头文件
 
-class LightManager;
 
-class Light {
+namespace carla {  // 开始 carla 命名空间
+namespace client {  // 开始 client 命名空间
 
-  using LightGroup = rpc::LightState::LightGroup;
+class LightManager;   // 前向声明 LightManager 类
+
+class Light {    // 定义 Light 类
+
+
+  using LightGroup = rpc::LightState::LightGroup;   // 定义 LightGroup 类型别名
 
 public:
 
-  Light() {}
+  Light() {}  // 默认构造函数
 
-  Color GetColor() const;
+  Color GetColor() const;    // 获取颜色的成员函数
 
-  LightId GetId() const {
-    return _id;
+  LightId GetId() const {  // 获取光源 ID 的成员函数
+    return _id;  // 返回光源的 ID
   }
 
-  float GetIntensity() const;
+  float GetIntensity() const;    // 获取光强度的成员函数
 
-  const geom::Location GetLocation() const {
-    return _location;
+  const geom::Location GetLocation() const {  // 获取位置的成员函数
+    return _location;   // 返回光源的位置
   }
 
-  LightGroup GetLightGroup() const;
+  LightGroup GetLightGroup() const;   // 获取光源组的成员函数
 
-  LightState GetLightState() const;
+  LightState GetLightState() const;   // 获取光照状态的成员函数
 
-  bool IsOn() const;
 
-  bool IsOff() const;
+  bool IsOn() const;    // 检查光源是否开启的成员函数
 
-  void SetColor(Color color);
+  bool IsOff() const;     // 检查光源是否关闭的成员函数
 
-  void SetIntensity(float intensity);
+  void SetColor(Color color);   // 设置光源颜色的成员函数
 
-  void SetLightGroup(LightGroup group);
+  void SetIntensity(float intensity);    // 设置光源强度的成员函数
 
-  void SetLightState(const LightState& state);
+  void SetLightGroup(LightGroup group);    // 设置光源组的成员函数
 
-  void TurnOn();
+  void SetLightState(const LightState& state);    // 设置光照状态的成员函数
 
-  void TurnOff();
+  void TurnOn();   // 开启光源的成员函数
 
-private:
 
-  friend class LightManager;
+  void TurnOff();     // 关闭光源的成员函数
 
-  Light(WeakPtr<LightManager> light_manager,
-    geom::Location location,
-    LightId id)
-  : _light_manager(light_manager),
-    _location (location),
-    _id (id) {}
+private:   // 私有成员
 
-  WeakPtr<LightManager> _light_manager;
-  geom::Location _location;
 
-  LightId _id;
+  friend class LightManager;    // 声明 LightManager 为友元类，可以访问私有成员
+
+  Light(WeakPtr<LightManager> light_manager,    // 构造函数，接受弱指针的 LightManager
+    geom::Location location,   // 位置参数
+    LightId id)     // 光源 ID 参数
+  : _light_manager(light_manager),   // 初始化光源管理器
+    _location (location),   // 初始化位置
+    _id (id) {}   // 初始化光源 ID
+
+  WeakPtr<LightManager> _light_manager;    // 存储光源管理器的弱指针
+
+  geom::Location _location;   // 存储光源位置
+
+  LightId _id;   // 存储光源 ID
 
 };
 

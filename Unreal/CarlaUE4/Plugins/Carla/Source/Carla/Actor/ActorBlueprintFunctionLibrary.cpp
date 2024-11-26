@@ -1,789 +1,1203 @@
 // Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
+// 上面两行意思是版权所有 (c) 2019 巴塞罗那自治大学 (UAB) 计算机视觉中心 (CVC)
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// This work is licensed under the terms of the MIT license.（本工作遵循 MIT 许可证条款进行授权）
+// For a copy, see <https://opensource.org/licenses/MIT>.（如需副本，请访问 <https://opensource.org/licenses/MIT>）
 
+// 引入 Carla 项目的头文件
 #include "Carla.h"
+
+// 引入 Carla 中 Actor 蓝图功能库的头文件
 #include "Carla/Actor/ActorBlueprintFunctionLibrary.h"
 
+// 引入 Carla 中激光雷达描述的头文件
 #include "Carla/Sensor/LidarDescription.h"
+
+// 引入 Carla 中场景捕获传感器的头文件
 #include "Carla/Sensor/SceneCaptureSensor.h"
+
+// 引入 Carla 中基于着色器的传感器的头文件
 #include "Carla/Sensor/ShaderBasedSensor.h"
+
+// 引入 Carla 中 V2X 路径损耗模型的头文件
 #include "Carla/Sensor/V2X/PathLossModel.h"
+
+// 引入 Carla 中作用域栈工具的头文件
 #include "Carla/Util/ScopedStack.h"
 
+// 引入标准算法库
 #include <algorithm>
+
+// 引入标准库中的极限值
 #include <limits>
+
+// 引入标准栈库
 #include <stack>
 
-/// Checks validity of FActorDefinition.
+/// Checks validity of FActorDefinition.（检查 FActorDefinition 的有效性）
 class FActorDefinitionValidator
 {
 public:
 
   /// Iterate all actor definitions and their properties and display messages on
   /// error.
+  /// 上面两行代码意思是遍历所有 actor 定义及其属性，并在出错时显示消息
   bool AreValid(const TArray<FActorDefinition> &ActorDefinitions)
   {
+    // 调用重载的 AreValid 方法，传入 "Actor Definition" 字符串和 actor 定义数组
     return AreValid(TEXT("Actor Definition"), ActorDefinitions);
   }
 
-  /// Validate @a ActorDefinition and display messages on error.
-  bool SingleIsValid(const FActorDefinition &Definition)
+  /// Validate @a ActorDefinition and display messages on error.（验证@a ActorDefinition的有效性，并在出现错误时显示消息）
+  bool SingleIsValid(const FActorDefinition& Definition)
   {
-    auto ScopeText = FString::Printf(TEXT("[Actor Definition : %s]"), *Definition.Id);
-    auto Scope = Stack.PushScope(ScopeText);
-    return IsValid(Definition);
+      // 使用Definition的Id构造一个作用域文本
+      auto ScopeText = FString::Printf(TEXT("[Actor Definition : %s]"), *Definition.Id);
+
+      // 将作用域文本推入Stack的作用域栈中
+      auto Scope = Stack.PushScope(ScopeText);
+
+      // 调用IsValid函数验证Definition的有效性
+      return IsValid(Definition);
   }
 
 private:
 
   /// If @a Predicate is false, print an error message. If possible the message
   /// is printed to the editor window.
+  /// 上面两行代码意思是如果@a Predicate为false，则打印一条错误消息。如果可能，消息将被打印到编辑器窗口中
   template <typename T, typename ... ARGS>
   bool OnScreenAssert(bool Predicate, const T &Format, ARGS && ... Args) const
   {
     if (!Predicate)
     {
       FString Message;
+      // 遍历Stack中的所有字符串，并将它们添加到Message中
       for (auto &String : Stack)
       {
         Message += String;
       }
+      // 在Message末尾添加一个空格
       Message += TEXT(" ");
+      // 使用Format和参数Args格式化字符串，并追加到Message中
       Message += FString::Printf(Format, std::forward<ARGS>(Args) ...);
-
+ 
+      // 使用UE_LOG记录错误消息
       UE_LOG(LogCarla, Error, TEXT("%s"), *Message);
+
+
 #if WITH_EDITOR
+     // 如果在编辑器模式下，且GEngine对象存在
       if (GEngine)
       {
+        // 在屏幕上显示一条调试消息，消息颜色为红色
         GEngine->AddOnScreenDebugMessage(42, 15.0f, FColor::Red, Message);
       }
-#endif // WITH_EDITOR
+#endif // WITH_EDITOR（被用来检查是否正在编辑器环境中运行）
     }
+    // 返回Predicate的值
     return Predicate;
   }
 
+  /// 为给定类型的项目生成显示ID。
   template <typename T>
   FString GetDisplayId(const FString &Type, size_t Index, const T &Item)
   {
+    // 使用Type、Index和Item的Id构造并返回一个格式化的字符串
     return FString::Printf(TEXT("[%s %d : %s]"), *Type, Index, *Item.Id);
   }
-
+ 
+  /// 为给定类型的字符串项目生成显示ID的重载版本。
   FString GetDisplayId(const FString &Type, size_t Index, const FString &Item)
   {
+    // 使用Type、Index和Item字符串构造并返回一个格式化的字符串
     return FString::Printf(TEXT("[%s %d : %s]"), *Type, Index, *Item);
   }
 
   /// Applies @a Validator to each item in @a Array. Pushes a new context to the
   /// stack for each item.
+  /// 上面两行的意思是对@a Array中的每个元素应用@a Validator。为每个元素向堆栈推送一个新的上下文
   template <typename T, typename F>
-  bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
+bool ForEach(const FString &Type, const TArray<T> &Array, F Validator)
+{
+  bool Result = true; // 初始化结果为true，假设所有元素都通过验证。
+  auto Counter = 0u;  // 初始化计数器，用于追踪当前正在验证的元素位置。
+ 
+  // 遍历数组中的每个元素
+  for (const auto &Item : Array)
   {
-    bool Result = true;
-    auto Counter = 0u;
-    for (const auto &Item : Array)
-    {
-      auto Scope = Stack.PushScope(GetDisplayId(Type, Counter, Item));
-      Result &= Validator(Item);
-      ++Counter;
-    }
-    return Result;
+    // 为当前元素生成一个显示ID，并将其推送到堆栈的新上下文中。
+    // 这里假设Stack是一个能够管理上下文的某种堆栈结构，而PushScope是一个向堆栈添加新上下文的方法。
+    // GetDisplayId是一个函数，用于生成包含元素类型、索引和ID的格式化字符串。
+    auto Scope = Stack.PushScope(GetDisplayId(Type, Counter, Item));
+ 
+    // 对当前元素应用Validator进行验证，并将验证结果与当前Result进行逻辑与运算。
+    // 如果Validator返回false，则Result也将变为false。
+    Result &= Validator(Item);
+ 
+    // 计数器递增，准备验证下一个元素。
+    ++Counter;
   }
+ 
+  // 返回最终的验证结果。如果所有元素都通过验证，则Result为true；否则为false。
+  return Result;
+}
+
 
   /// Applies @a IsValid to each item in @a Array. Pushes a new context to the
   /// stack for each item.
+  /// 上面两行代码的意思是对@a Array中的每个元素应用验证函数，为每个元素向堆栈推送一个新的上下文
   template <typename T>
-  bool AreValid(const FString &Type, const TArray<T> &Array)
-  {
-    return ForEach(Type, Array, [this](const auto &Item) { return IsValid(Item); });
-  }
+bool AreValid(const FString &Type, const TArray<T> &Array)
+{
+  // 调用ForEach函数，传入类型名称、元素数组和一个lambda表达式作为验证函数。
+  // lambda表达式捕获当前对象（this），并调用IsValid成员函数来验证每个元素
+  return ForEach(Type, Array, [this](const auto &Item) { return IsValid(Item); });
+}
 
+  /// 验证ID是否有效
   bool IsIdValid(const FString &Id)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言ID不为空且不是"."。如果失败，则显示错误信息
     return OnScreenAssert((!Id.IsEmpty() && Id != TEXT(".")), TEXT("Id cannot be empty"));
   }
 
+  /// 验证标签是否有效
   bool AreTagsValid(const FString &Tags)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言标签不为空。如果失败，则显示错误信息
     return OnScreenAssert(!Tags.IsEmpty(), TEXT("Tags cannot be empty"));
   }
 
+  /// 验证类型是否有效
   bool IsValid(const EActorAttributeType Type)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 使用OnScreenAssert函数来断言类型值小于EActorAttributeType枚举的大小。如果失败，则显示错误信息
     return OnScreenAssert(Type < EActorAttributeType::SIZE, TEXT("Invalid type"));
   }
 
+  /// 验证值是否有效
   bool ValueIsValid(const EActorAttributeType Type, const FString &Value)
   {
-    /// @todo Do more checks.
+    /// @todo Do more checks.（@todo 执行更多检查）
+    // 当前版本未执行任何检查，直接返回true
     return true;
   }
 
+  // 判断给定的因子变化是否有效
   bool IsValid(const FActorVariation &Variation)
   {
+    // 返回以下条件都为真的结果
     return
+
+      //因子变化的ID有效
       IsIdValid(Variation.Id) &&
+
+      //因子变化的类型有效
       IsValid(Variation.Type) &&
+
+      //因子变化的推荐值数量大于0，且推荐值不能为空
       OnScreenAssert(Variation.RecommendedValues.Num() > 0, TEXT("Recommended values cannot be empty")) &&
+
+      //对每个推荐值，调用一个lambda函数检查其是否有效，该函数根据因子变化的类型检查值的有效性
       ForEach(TEXT("Recommended Value"), Variation.RecommendedValues, [&](auto &Value) {
       return ValueIsValid(Variation.Type, Value);
     });
   }
 
+  // 判断给定的因子属性是否有效
   bool IsValid(const FActorAttribute &Attribute)
   {
+    // 返回以下条件都为真的结果
     return
+
+      //因子属性的ID有效
       IsIdValid(Attribute.Id) &&
+
+      //因子属性的类型有效
       IsValid(Attribute.Type) &&
+
+      //根据因子属性的类型，其值有效
       ValueIsValid(Attribute.Type, Attribute.Value);
   }
 
+  // 判断给定的角色定义是否有效
   bool IsValid(const FActorDefinition &ActorDefinition)
   {
-    /// @todo Validate Class and make sure IDs are not repeated.
+    /// @todo Validate Class and make sure IDs are not repeated.（@todo验证类别并确保ID不重复）
+    //返回以下条件都为真的结果
     return
+
+      //角色定义的ID有效
       IsIdValid(ActorDefinition.Id) &&
+
+      //角色定义的标签有效
       AreTagsValid(ActorDefinition.Tags) &&
+
+      //角色定义的变化（因子变化）集合有效
       AreValid(TEXT("Variation"), ActorDefinition.Variations) &&
+
+      //角色定义的属性集合有效
       AreValid(TEXT("Attribute"), ActorDefinition.Attributes);
   }
-
+  // 一个FScopedStack<FString>类型的栈实例，用于特定的字符串管理或操作
   FScopedStack<FString> Stack;
 };
 
+// 定义一个模板函数，用于将多个字符串使用指定的分隔符连接起来
 template <typename ... ARGS>
 static FString JoinStrings(const FString &Separator, ARGS && ... Args)
 {
+  // 使用FString的Join方法，将Args中的字符串使用Separator连接起来
+  // std::forward<ARGS>(Args) ... 是完美转发，用于保持参数的左值或右值属性
+  // TArray<FString>{std::forward<ARGS>(Args) ...} 创建了一个包含所有参数的FString数组
   return FString::Join(TArray<FString>{std::forward<ARGS>(Args) ...}, *Separator);
 }
-
+ 
+// 定义一个函数，用于将FColor颜色对象转换为FString字符串
+// 字符串格式为 "R,G,B"，其中R、G、B是颜色的红、绿、蓝分量
 static FString ColorToFString(const FColor &Color)
 {
+  // 调用JoinStrings函数，将颜色的红、绿、蓝分量转换为字符串并用逗号连接
   return JoinStrings(
-      TEXT(","),
-      FString::FromInt(Color.R),
-      FString::FromInt(Color.G),
-      FString::FromInt(Color.B));
+      TEXT(","), // 使用逗号作为分隔符
+      FString::FromInt(Color.R), // 将红色分量转换为字符串
+      FString::FromInt(Color.G), // 将绿色分量转换为字符串
+      FString::FromInt(Color.B)); // 将蓝色分量转换为字符串
 }
-
+ 
 /// ============================================================================
-/// -- Actor definition validators ---------------------------------------------
+/// -- Actor definition validators（Actor定义验证器） --------------------------
 /// ============================================================================
-
+ 
+// UActorBlueprintFunctionLibrary类中的成员函数，用于验证单个Actor定义的有效性
 bool UActorBlueprintFunctionLibrary::CheckActorDefinition(const FActorDefinition &ActorDefinition)
 {
+  // 创建FActorDefinitionValidator验证器对象
   FActorDefinitionValidator Validator;
+
+  // 调用验证器的SingleIsValid方法，验证单个Actor定义的有效性
   return Validator.SingleIsValid(ActorDefinition);
 }
-
+ 
+// UActorBlueprintFunctionLibrary类中的成员函数，用于验证多个Actor定义的有效性
 bool UActorBlueprintFunctionLibrary::CheckActorDefinitions(const TArray<FActorDefinition> &ActorDefinitions)
 {
+  // 创建FActorDefinitionValidator验证器对象
   FActorDefinitionValidator Validator;
+
+  // 调用验证器的AreValid方法，验证多个Actor定义的有效性
   return Validator.AreValid(ActorDefinitions);
 }
-
+ 
 /// ============================================================================
-/// -- Helpers to create actor definitions -------------------------------------
+/// -- Helpers to create actor definitions （创建Actor定义的辅助函数）----------
 /// ============================================================================
 
+// 定义一个模板函数，接受任意数量的字符串参数（可变参数模板）
 template <typename ... TStrs>
-static void FillIdAndTags(FActorDefinition &Def, TStrs && ... Strings)
+
+// 静态函数，用于填充参与者定义（FActorDefinition）的ID和标签（Tags），以及添加一些默认属性
+static void FillIdAndTags(FActorDefinition& Def, TStrs && ... Strings)
 {
-  Def.Id = JoinStrings(TEXT("."), std::forward<TStrs>(Strings) ...).ToLower();
-  Def.Tags = JoinStrings(TEXT(","), std::forward<TStrs>(Strings) ...).ToLower();
+    // 将传入的字符串参数用"."连接，并转换为小写，作为参与者的ID
+    Def.Id = JoinStrings(TEXT("."), std::forward<TStrs>(Strings) ...).ToLower();
 
-  // each actor gets an actor role name attribute (empty by default)
+    // 将传入的字符串参数用","连接，并转换为小写，作为参与者的标签
+    Def.Tags = JoinStrings(TEXT(","), std::forward<TStrs>(Strings) ...).ToLower();
+
+  // 每个参与者都会有一个角色名称属性（默认为空）
   FActorVariation ActorRole;
-  ActorRole.Id = TEXT("role_name");
-  ActorRole.Type = EActorAttributeType::String;
-  ActorRole.RecommendedValues = { TEXT("default") };
-  ActorRole.bRestrictToRecommended = false;
-  Def.Variations.Emplace(ActorRole);
+  ActorRole.Id = TEXT("role_name"); // 属性ID
+  ActorRole.Type = EActorAttributeType::String; // 属性类型：字符串
+  ActorRole.RecommendedValues = { TEXT("default") }; // 推荐值：默认
+  ActorRole.bRestrictToRecommended = false; // 是否限制为推荐值：否
+  Def.Variations.Emplace(ActorRole); // 将参与者名称属性添加到角色的属性列表中
 
-  // ROS2
+  // ROS2相关的属性设置
   FActorVariation Var;
-  Var.Id = TEXT("ros_name");
-  Var.Type = EActorAttributeType::String;
-  Var.RecommendedValues = { Def.Id };
-  Var.bRestrictToRecommended = false;
-  Def.Variations.Emplace(Var);
+  Var.Id = TEXT("ros_name"); // 属性ID：ros名称
+  Var.Type = EActorAttributeType::String; // 属性类型：字符串
+  Var.RecommendedValues = { Def.Id }; // 推荐值：参与者的ID
+  Var.bRestrictToRecommended = false; // 是否限制为推荐值：否
+  Def.Variations.Emplace(Var); // 将ROS2名称属性添加到参与者的属性列表中
 }
 
+// 定义一个静态函数，用于为参与者名称属性添加推荐值
 static void AddRecommendedValuesForActorRoleName(
-    FActorDefinition &Definition,
-    TArray<FString> &&RecommendedValues)
+    FActorDefinition &Definition, // 参与者定义引用
+    TArray<FString> &&RecommendedValues) // 推荐值的数组（右值引用）
 {
+  // 遍历参与者的属性列表
   for (auto &&ActorVariation: Definition.Variations)
   {
+    // 如果找到ID为"role_name"的属性
     if (ActorVariation.Id == "role_name")
     {
+      // 将该属性的推荐值设置为传入的推荐值
       ActorVariation.RecommendedValues = RecommendedValues;
-      return;
+      return; // 找到后直接返回，不再继续遍历
     }
   }
 }
 
-static void AddRecommendedValuesForSensorRoleNames(FActorDefinition &Definition)
+// 定义一个函数，用于为传感器的参与者名称添加推荐值
+static void AddRecommendedValuesForSensorRoleNames(FActorDefinition& Definition)
 {
-  AddRecommendedValuesForActorRoleName(Definition, {TEXT("front"), TEXT("back"), TEXT("left"), TEXT(
-      "right"), TEXT("front_left"), TEXT("front_right"), TEXT("back_left"), TEXT("back_right")});
+    // 为参与者定义的参与者名称添加推荐的传感器位置名称
+    AddRecommendedValuesForActorRoleName(Definition, { TEXT("front"), TEXT("back"), TEXT("left"), TEXT("right"), TEXT("front_left"), TEXT("front_right"), TEXT("back_left"), TEXT("back_right") });
 }
 
-static void AddVariationsForSensor(FActorDefinition &Def)
+// 定义一个函数，用于为传感器添加变化属性
+static void AddVariationsForSensor(FActorDefinition& Def)
 {
-  FActorVariation Tick;
+    // 创建一个参与者变化对象
+    FActorVariation Tick;
 
-  Tick.Id = TEXT("sensor_tick");
-  Tick.Type = EActorAttributeType::Float;
-  Tick.RecommendedValues = { TEXT("0.0") };
-  Tick.bRestrictToRecommended = false;
+    // 设置变化对象的ID为"sensor_tick"
+    Tick.Id = TEXT("sensor_tick");
 
-  Def.Variations.Emplace(Tick);
+    // 设置变化对象的类型为浮点型
+    Tick.Type = EActorAttributeType::Float;
+
+    // 设置变化对象的推荐值为"0.0"
+    Tick.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否限制只能使用推荐值，这里为false，表示不限制
+    Tick.bRestrictToRecommended = false;
+
+    // 将变化对象添加到参与者定义的变化列表中
+    Def.Variations.Emplace(Tick);
 }
 
-static void AddVariationsForTrigger(FActorDefinition &Def)
+// 定义一个函数，用于为触发器添加变化属性
+static void AddVariationsForTrigger(FActorDefinition& Def)
 {
-  // Friction
-  FActorVariation Friction;
-  Friction.Id = FString("friction");
-  Friction.Type = EActorAttributeType::Float;
-  Friction.RecommendedValues = { TEXT("3.5f") };
-  Friction.bRestrictToRecommended = false;
-  Def.Variations.Emplace(Friction);
+    // Friction（摩擦力）
+    FActorVariation Friction;
 
-  // Extent
-  FString Extent("extent");
-  FString Coordinates[3] = {FString("x"), FString("y"), FString("z")};
+    // 设置摩擦力变化对象的ID为"friction"
+    Friction.Id = FString("friction");
 
-  for (auto Coordinate : Coordinates)
-  {
-    FActorVariation ExtentCoordinate;
+    // 设置摩擦力变化对象的类型为浮点型
+    Friction.Type = EActorAttributeType::Float;
 
-    ExtentCoordinate.Id = JoinStrings(TEXT("_"), Extent, Coordinate);
-    ExtentCoordinate.Type = EActorAttributeType::Float;
-    ExtentCoordinate.RecommendedValues = { TEXT("1.0f") };
-    ExtentCoordinate.bRestrictToRecommended = false;
+    // 设置摩擦力变化对象的推荐值为"3.5f"
+    Friction.RecommendedValues = { TEXT("3.5f") };
 
-    Def.Variations.Emplace(ExtentCoordinate);
-  }
+    // 设置是否限制只能使用推荐值，这里为false，表示不限制
+    Friction.bRestrictToRecommended = false;
+
+    // 将摩擦力变化对象添加到参与者定义的变化列表中
+    Def.Variations.Emplace(Friction);
+
+    // Extent（范围）
+    FString Extent("extent");
+    FString Coordinates[3] = { FString("x"), FString("y"), FString("z") }; // 定义三个坐标轴x, y, z
+
+    // 遍历坐标轴数组
+    for (auto Coordinate : Coordinates)
+    {
+        FActorVariation ExtentCoordinate; // 为每个坐标轴创建一个变化对象
+
+        // 设置变化对象的ID，格式为"extent_x", "extent_y", "extent_z"
+        ExtentCoordinate.Id = JoinStrings(TEXT("_"), Extent, Coordinate);
+
+        // 设置变化对象的类型为浮点型
+        ExtentCoordinate.Type = EActorAttributeType::Float;
+
+        // 设置变化对象的推荐值为"1.0f"
+        ExtentCoordinate.RecommendedValues = { TEXT("1.0f") };
+
+        // 设置是否限制只能使用推荐值，这里为false，表示不限制
+        ExtentCoordinate.bRestrictToRecommended = false;
+
+        // 将变化对象添加到参与者定义的变化列表中
+        Def.Variations.Emplace(ExtentCoordinate);
+    }
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，用于创建一个通用的Actor定义。
+// 它接收三个参数：分类（Category）、类型（Type）和ID（Id），并返回一个参与者对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeGenericDefinition(
-    const FString &Category,
-    const FString &Type,
-    const FString &Id)
+
+    // 分类名称
+    const FString& Category, 
+
+    // 参与者的类型
+    const FString& Type,
+
+    // 参与者的唯一标识符
+    const FString& Id)       
 {
-  FActorDefinition Definition;
-  FillIdAndTags(Definition, Category, Type, Id);
-  return Definition;
+    // 创建一个参与者对象，用于存储Actor的定义
+    FActorDefinition Definition;
+
+    // 调用FillIdAndTags函数，填充定义中的ID和标签
+    FillIdAndTags(Definition, Category, Type, Id); 
+
+    // 返回填充后的定义
+    return Definition; 
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，专门用于创建传感器类型的Actor定义。
+// 它接收两个参数：类型（Type）和ID（Id），并返回一个FActorDefinition对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeGenericSensorDefinition(
-    const FString &Type,
-    const FString &Id)
+
+    // 传感器的类型
+    const FString& Type, 
+
+    // 传感器的唯一标识符
+    const FString& Id) 
 {
-  auto Definition = MakeGenericDefinition(TEXT("sensor"), Type, Id);
-  AddRecommendedValuesForSensorRoleNames(Definition);
-  return Definition;
+    // 调用MakeGenericDefinition函数，创建一个分类为“sensor”的通用定义
+    auto Definition = MakeGenericDefinition(TEXT("sensor"), Type, Id); 
+
+    // 调用AddRecommendedValuesForSensorRoleNames函数，为定义添加建议的传感器角色名称值
+    AddRecommendedValuesForSensorRoleNames(Definition); 
+
+    // 返回填充后的定义
+    return Definition; 
 }
 
+// 在UActorBlueprintFunctionLibrary类中定义一个成员函数，用于创建一个相机Actor的定义。
+// 它接收两个参数：ID（Id）和一个布尔值（bEnableModifyingPostProcessEffects），指示是否允许修改后处理效果。
+// 函数返回一个FActorDefinition对象。
 FActorDefinition UActorBlueprintFunctionLibrary::MakeCameraDefinition(
-    const FString &Id,
+
+    // 相机的唯一标识符
+    const FString& Id, 
+
+    // 是否允许修改后处理效果的标志
     const bool bEnableModifyingPostProcessEffects)
 {
-  FActorDefinition Definition;
-  bool Success;
-  MakeCameraDefinition(Id, bEnableModifyingPostProcessEffects, Success, Definition);
-  check(Success);
-  return Definition;
+    // 创建一个参与者对象，用于存储相机的定义
+    FActorDefinition Definition;
+
+    // 定义一个布尔变量，用于指示定义创建是否成功
+    bool Success;
+
+    // 调用一个重载版本的MakeCameraDefinition函数（未在代码片段中给出），该版本接受一个额外的Success参数用于输出操作结果
+    MakeCameraDefinition(Id, bEnableModifyingPostProcessEffects, Success, Definition);
+
+    // 使用check宏确保定义创建成功，如果失败则触发断言
+    check(Success); 
+    
+    // 返回填充后的定义
+    return Definition; 
 }
 
+// 定义一个函数，用于创建相机定义
+// 该函数属于UActorBlueprintFunctionLibrary类
 void UActorBlueprintFunctionLibrary::MakeCameraDefinition(
-    const FString &Id,
-    const bool bEnableModifyingPostProcessEffects,
-    bool &Success,
-    FActorDefinition &Definition)
+
+    // 相机的唯一标识符
+    const FString& Id, 
+
+    // 是否允许修改后处理效果
+    const bool bEnableModifyingPostProcessEffects, 
+
+    // 函数执行成功与否的标志，通过引用传递，函数内部可以修改其值
+    bool& Success, 
+
+    // 相机定义的对象，通过引用传递，函数内部会对其进行填充
+    FActorDefinition& Definition) 
 {
-  FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), Id);
-  AddRecommendedValuesForSensorRoleNames(Definition);
-  AddVariationsForSensor(Definition);
+    // 填充相机定义的基本信息，包括Id和标签（此处标签为"sensor"和"camera"）
+    FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), Id);
 
-  // FOV
-  FActorVariation FOV;
-  FOV.Id = TEXT("fov");
-  FOV.Type = EActorAttributeType::Float;
-  FOV.RecommendedValues = { TEXT("90.0") };
-  FOV.bRestrictToRecommended = false;
+    // 为相机定义添加推荐的参与者名称值，这些值通常与传感器的参与者有关
+    AddRecommendedValuesForSensorRoleNames(Definition);
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+    // 为相机定义添加传感器相关的变体（可能是不同的配置或参数集合）
+    AddVariationsForSensor(Definition);
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+    // 下面的代码块用于添加相机的视野（Field of View, FOV）定义
 
-  // Lens parameters
-  FActorVariation LensCircleFalloff;
-  LensCircleFalloff.Id = TEXT("lens_circle_falloff");
-  LensCircleFalloff.Type = EActorAttributeType::Float;
-  LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
-  LensCircleFalloff.bRestrictToRecommended = false;
+    // 创建一个FActorVariation对象，用于表示FOV的定义
+    FActorVariation FOV; 
 
-  FActorVariation LensCircleMultiplier;
-  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
-  LensCircleMultiplier.Type = EActorAttributeType::Float;
-  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
-  LensCircleMultiplier.bRestrictToRecommended = false;
+    // 设置FOV定义的标识符为"fov"
+    FOV.Id = TEXT("fov"); 
 
-  FActorVariation LensK;
-  LensK.Id = TEXT("lens_k");
-  LensK.Type = EActorAttributeType::Float;
-  LensK.RecommendedValues = { TEXT("-1.0") };
-  LensK.bRestrictToRecommended = false;
+    // 设置FOV的类型为浮点型
+    FOV.Type = EActorAttributeType::Float; 
 
-  FActorVariation LensKcube;
-  LensKcube.Id = TEXT("lens_kcube");
-  LensKcube.Type = EActorAttributeType::Float;
-  LensKcube.RecommendedValues = { TEXT("0.0") };
-  LensKcube.bRestrictToRecommended = false;
+    // 为FOV设置一个推荐的值，这里是90.0度
+    FOV.RecommendedValues = { TEXT("90.0") }; 
 
-  FActorVariation LensXSize;
-  LensXSize.Id = TEXT("lens_x_size");
-  LensXSize.Type = EActorAttributeType::Float;
-  LensXSize.RecommendedValues = { TEXT("0.08") };
-  LensXSize.bRestrictToRecommended = false;
+    // 设置是否限制用户只能使用推荐的值，这里设置为false，表示用户可以选择其他值
+    FOV.bRestrictToRecommended = false; 
 
-  FActorVariation LensYSize;
-  LensYSize.Id = TEXT("lens_y_size");
-  LensYSize.Type = EActorAttributeType::Float;
-  LensYSize.RecommendedValues = { TEXT("0.08") };
-  LensYSize.bRestrictToRecommended = false;
+    // 关于分辨率
+    // 定义图像的宽度（X轴）变化的结构体
+    FActorVariation ResX;
 
-  Definition.Variations.Append({
-      ResX,
-      ResY,
-      FOV,
-      LensCircleFalloff,
-      LensCircleMultiplier,
-      LensK,
-      LensKcube,
-      LensXSize,
-      LensYSize});
+    // 设置该变化项的标识符为"image_size_x"
+    ResX.Id = TEXT("image_size_x");
 
-  if (bEnableModifyingPostProcessEffects)
-  {
+    // 设置该变化项的类型为整数（Int）
+    ResX.Type = EActorAttributeType::Int;
+
+    // 设置推荐的值为"800"
+    ResX.RecommendedValues = { TEXT("800") };
+
+    // 设置是否限制用户只能使用推荐值，这里设置为false，意味着用户可以选择其他值
+    ResX.bRestrictToRecommended = false;
+
+    // 定义图像的高度（Y轴）变化的结构体
+    FActorVariation ResY;
+
+    // 设置该变化项的标识符为"image_size_y"
+    ResY.Id = TEXT("image_size_y");
+
+    // 设置该变化项的类型为整数（Int）
+    ResY.Type = EActorAttributeType::Int;
+
+    // 设置推荐的值为"600"（同样以文本形式给出，但实际为整数）
+    ResY.RecommendedValues = { TEXT("600") };
+
+    // 设置是否限制用户只能使用推荐值，这里同样设置为false
+    ResY.bRestrictToRecommended = false;
+
+    // 镜头参数
+    // 定义镜头圆形衰减参数的结构体
+    FActorVariation LensCircleFalloff;
+
+    // 设置该变化项的标识符为"lens_circle_falloff"
+    LensCircleFalloff.Id = TEXT("lens_circle_falloff");
+
+    // 设置该变化项的类型为浮点数（Float）
+    LensCircleFalloff.Type = EActorAttributeType::Float;
+
+    // 设置推荐的值为"5.0"
+    LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
+
+    // 设置是否限制用户只能使用推荐值，这里设置为false
+    LensCircleFalloff.bRestrictToRecommended = false;
+
+    // 定义镜头圆形倍增参数的结构体
+    FActorVariation LensCircleMultiplier;
+
+    // 设置该变化项的标识符为"lens_circle_multiplier"
+    LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
+
+    // 设置该变化项的类型为浮点数（Float）
+    LensCircleMultiplier.Type = EActorAttributeType::Float;
+
+    // 设置推荐的值为"0.0"（以文本形式给出，但实际为浮点数）
+    LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否限制用户只能使用推荐值，这里同样设置为false
+    LensCircleMultiplier.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensK，用于表示某种属性或参数的变化
+    FActorVariation LensK;
+
+    // 为LensK设置唯一标识符，这里是一个文本字符串"lens_k"
+    LensK.Id = TEXT("lens_k");
+
+    // 设置LensK的属性类型为浮点型
+    LensK.Type = EActorAttributeType::Float;
+
+    // 为LensK设置一个推荐值列表，这里只有一个值"-1.0"
+    LensK.RecommendedValues = { TEXT("-1.0") };
+
+    // 设置是否将LensK的值限制在推荐值之内，这里设置为false，表示不限制
+    LensK.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensKcube，与LensK类似，但表示不同的属性或参数
+    FActorVariation LensKcube;
+
+    // 为LensKcube设置唯一标识符"lens_kcube"
+    LensKcube.Id = TEXT("lens_kcube");
+
+    // 设置LensKcube的属性类型也为浮点型
+    LensKcube.Type = EActorAttributeType::Float;
+
+    // 为LensKcube设置一个推荐值列表，这里只有一个值"0.0"
+    LensKcube.RecommendedValues = { TEXT("0.0") };
+
+    // 设置是否将LensKcube的值限制在推荐值之内，这里也设置为false
+    LensKcube.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensXSize，表示透镜在X轴方向上的尺寸变化
+    FActorVariation LensXSize;
+
+    // 为LensXSize设置唯一标识符"lens_x_size"
+    LensXSize.Id = TEXT("lens_x_size");
+
+    // 设置LensXSize的属性类型也为浮点型
+    LensXSize.Type = EActorAttributeType::Float;
+
+    // 为LensXSize设置一个推荐值列表，这里只有一个值"0.08"
+    LensXSize.RecommendedValues = { TEXT("0.08") };
+
+    // 设置是否将LensXSize的值限制在推荐值之内，这里也设置为false
+    LensXSize.bRestrictToRecommended = false;
+
+    // 定义一个FActorVariation类型的变量LensYSize，表示透镜在Y轴方向上的尺寸变化
+    FActorVariation LensYSize;
+
+    // 为LensYSize设置唯一标识符"lens_y_size"
+    LensYSize.Id = TEXT("lens_y_size");
+
+    // 设置LensYSize的属性类型也为浮点型
+    LensYSize.Type = EActorAttributeType::Float;
+
+    // 为LensYSize设置一个推荐值列表，这里只有一个值"0.08"
+    LensYSize.RecommendedValues = { TEXT("0.08") };
+
+    // 设置是否将LensYSize的值限制在推荐值之内，这里也设置为false
+    LensYSize.bRestrictToRecommended = false;
+
+
+ // 将一系列变量（如分辨率、视野等）添加到定义的变化列表中
+Definition.Variations.Append({
+    ResX,           // 分辨率X轴
+    ResY,           // 分辨率Y轴
+    FOV,            // 视野（Field of View）
+    LensCircleFalloff, // 镜头圆形衰减
+    LensCircleMultiplier, // 镜头圆形倍增器
+    LensK,          // 镜头K值（一种镜头畸变参数）
+    LensKcube,      // 镜头K立方值（另一种镜头畸变参数）
+    LensXSize,      // 镜头X轴尺寸
+    LensYSize});    // 镜头Y轴尺寸
+ 
+// 如果启用了修改后处理效果的功能
+if (bEnableModifyingPostProcessEffects)
+{
+    // 创建一个后处理效果的变化定义
     FActorVariation PostProccess;
-    PostProccess.Id = TEXT("enable_postprocess_effects");
-    PostProccess.Type = EActorAttributeType::Bool;
-    PostProccess.RecommendedValues = { TEXT("true") };
-    PostProccess.bRestrictToRecommended = false;
-
-    // Gamma
+    PostProccess.Id = TEXT("enable_postprocess_effects"); // 设置变化的标识符
+    PostProccess.Type = EActorAttributeType::Bool;        // 设置变化类型为布尔值
+    PostProccess.RecommendedValues = { TEXT("true") };    // 设置推荐的值为"true"（启用）
+    PostProccess.bRestrictToRecommended = false;          // 不限制用户只能使用推荐值
+ 
+    // 创建一个关于Gamma值的变化定义
     FActorVariation Gamma;
-    Gamma.Id = TEXT("gamma");
-    Gamma.Type = EActorAttributeType::Float;
-    Gamma.RecommendedValues = { TEXT("2.2") };
-    Gamma.bRestrictToRecommended = false;
+    Gamma.Id = TEXT("gamma");         // 设置变化的标识符为"gamma"
+    Gamma.Type = EActorAttributeType::Float; // 设置变化类型为浮点数
+    Gamma.RecommendedValues = { TEXT("2.2") }; // 设置推荐的Gamma值为2.2
+    Gamma.bRestrictToRecommended = false;      // 不限制用户只能使用推荐的Gamma值
+}
 
-    // Motion Blur
-    FActorVariation MBIntesity;
-    MBIntesity.Id = TEXT("motion_blur_intensity");
-    MBIntesity.Type = EActorAttributeType::Float;
-    MBIntesity.RecommendedValues = { TEXT("0.45") };
-    MBIntesity.bRestrictToRecommended = false;
-
+    // 运动模糊配置
+   // 定义运动模糊强度的变化属性
+    FActorVariation MBIntesity; 
+    MBIntesity.Id = TEXT("motion_blur_intensity"); // 设置属性的唯一标识符
+    MBIntesity.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBIntesity.RecommendedValues = { TEXT("0.45") }; // 设置推荐的运动模糊强度值
+    MBIntesity.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
+ 
+    // 定义运动模糊最大扭曲的变化属性
     FActorVariation MBMaxDistortion;
-    MBMaxDistortion.Id = TEXT("motion_blur_max_distortion");
-    MBMaxDistortion.Type = EActorAttributeType::Float;
-    MBMaxDistortion.RecommendedValues = { TEXT("0.35") };
-    MBMaxDistortion.bRestrictToRecommended = false;
-
+    MBMaxDistortion.Id = TEXT("motion_blur_max_distortion"); // 设置属性的唯一标识符
+    MBMaxDistortion.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBMaxDistortion.RecommendedValues = { TEXT("0.35") }; // 设置推荐的运动模糊最大扭曲值
+    MBMaxDistortion.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
+ 
+    // 定义运动模糊最小对象屏幕尺寸的变化属性
     FActorVariation MBMinObjectScreenSize;
-    MBMinObjectScreenSize.Id = TEXT("motion_blur_min_object_screen_size");
-    MBMinObjectScreenSize.Type = EActorAttributeType::Float;
-    MBMinObjectScreenSize.RecommendedValues = { TEXT("0.1") };
-    MBMinObjectScreenSize.bRestrictToRecommended = false;
+    MBMinObjectScreenSize.Id = TEXT("motion_blur_min_object_screen_size"); // 设置属性的唯一标识符
+    MBMinObjectScreenSize.Type = EActorAttributeType::Float; // 指定属性类型为浮点数
+    MBMinObjectScreenSize.RecommendedValues = { TEXT("0.1") }; // 设置推荐的运动模糊最小对象屏幕尺寸值
+    MBMinObjectScreenSize.bRestrictToRecommended = false; // 允许用户选择不使用推荐值
 
-    // Lens Flare
-    FActorVariation LensFlareIntensity;
-    LensFlareIntensity.Id = TEXT("lens_flare_intensity");
-    LensFlareIntensity.Type = EActorAttributeType::Float;
-    LensFlareIntensity.RecommendedValues = { TEXT("0.1") };
-    LensFlareIntensity.bRestrictToRecommended = false;
+    // 关于镜头光晕效果的设置
+    FActorVariation LensFlareIntensity; // 声明一个FActorVariation类型的对象，用于存储镜头光晕强度的配置
 
-    // Bloom
+    // 设置对象的Id属性，用于唯一标识这个变量
+    LensFlareIntensity.Id = TEXT("lens_flare_intensity"); // 将Id设置为"lens_flare_intensity"，这是一个字符串标识符
+
+    // 设置对象的Type属性，指定变量的数据类型
+    LensFlareIntensity.Type = EActorAttributeType::Float; // 将类型设置为浮点型（Float），意味着镜头光晕的强度是一个浮点数
+
+    // 设置RecommendedValues属性，提供推荐的变量值列表
+    LensFlareIntensity.RecommendedValues = { TEXT("0.1") }; // 这里只提供了一个推荐值"0.1"，意味着默认情况下镜头光晕的强度被设置为0.1
+
+    // 设置bRestrictToRecommended属性，决定变量值是否必须为推荐值之一
+    LensFlareIntensity.bRestrictToRecommended = false; // 设置为false，意味着镜头光晕的强度值不仅限于推荐值，可以是任意浮点数。
+
+
+    // 初始化一个名为BloomIntensity的FActorVariation对象，用于控制Bloom效果的强度
     FActorVariation BloomIntensity;
+
+    // 设置BloomIntensity的标识符（ID）为"bloom_intensity"，用于在引擎中唯一标识这个变量
     BloomIntensity.Id = TEXT("bloom_intensity");
+
+    // 设置BloomIntensity的类型为Float，表示这个变量的值是一个浮点数
     BloomIntensity.Type = EActorAttributeType::Float;
+
+    // 设置BloomIntensity的推荐值为0.675。这通常是一个经验值，可以在编辑器中作为默认值或推荐值显示
     BloomIntensity.RecommendedValues = { TEXT("0.675") };
+
+    // 设置BloomIntensity是否限制为仅使用推荐值。这里设置为false，意味着用户可以选择任何值
     BloomIntensity.bRestrictToRecommended = false;
 
-    // More info at:
+    // 更多信息（这些链接提供了关于如何在Unreal Engine中使用和配置这些效果的详细信息）:
     // https://docs.unrealengine.com/en-US/Engine/Rendering/PostProcessEffects/AutomaticExposure/index.html
     // https://docs.unrealengine.com/en-US/Engine/Rendering/PostProcessEffects/DepthOfField/CinematicDOFMethods/index.html
     // https://docs.unrealengine.com/en-US/Engine/Rendering/PostProcessEffects/ColorGrading/index.html
 
-    // Exposure
+    // 初始化一个名为ExposureMode的FActorVariation对象，用于控制曝光模式
     FActorVariation ExposureMode;
+
+    // 设置ExposureMode的标识符（ID）为"exposure_mode"，用于在引擎中唯一标识这个变量
     ExposureMode.Id = TEXT("exposure_mode");
+
+    // 设置ExposureMode的类型为String，表示这个变量的值是一个字符串
     ExposureMode.Type = EActorAttributeType::String;
+
+    // 设置ExposureMode的推荐值为"histogram"和"manual"，表示曝光模式可以是基于直方图的自动曝光或手动曝光
     ExposureMode.RecommendedValues = { TEXT("histogram"), TEXT("manual") };
+
+    // 设置ExposureMode是否限制为仅使用推荐值。这里设置为true，意味着用户只能选择推荐值之一
     ExposureMode.bRestrictToRecommended = true;
 
-    // Logarithmic adjustment for the exposure. Only used if a tonemapper is
-    // specified.
-    //  0 : no adjustment
-    // -1 : 2x darker
-    // -2 : 4x darker
-    //  1 : 2x brighter
-    //  2 : 4x brighter.
+    // 初始化一个名为ExposureCompensation的FActorVariation对象，用于控制曝光的对数调整
     FActorVariation ExposureCompensation;
+
+    // 设置ExposureCompensation的标识符（ID）为"exposure_compensation"，用于在引擎中唯一标识这个变量
     ExposureCompensation.Id = TEXT("exposure_compensation");
+
+    // 设置ExposureCompensation的类型为Float，表示这个变量的值是一个浮点数
     ExposureCompensation.Type = EActorAttributeType::Float;
+
+    // 设置ExposureCompensation的推荐值为0.0
+    // 不同的值代表不同的亮度调整倍数：-1表示2倍暗，-2表示4倍暗；1表示2倍亮，2表示4倍亮
     ExposureCompensation.RecommendedValues = { TEXT("0.0") };
+
+    // 设置ExposureCompensation是否限制为仅使用推荐值。这里设置为false，意味着用户可以选择任何值
     ExposureCompensation.bRestrictToRecommended = false;
 
-    // - Manual ------------------------------------------------
+    // - 手动设置 ------------------------------------------------
 
-    // The formula used to compute the camera exposure scale is:
-    // Exposure = 1 / (1.2 * 2^(log2( N²/t * 100/S )))
+    // 用于计算相机曝光比例的公式是：
+    // 曝光 = 1 / (1.2 * 2^(log2( N²/t * 100/S )))
 
-    // The camera shutter speed in seconds.
-    FActorVariation ShutterSpeed; // (1/t)
-    ShutterSpeed.Id = TEXT("shutter_speed");
-    ShutterSpeed.Type = EActorAttributeType::Float;
-    ShutterSpeed.RecommendedValues = { TEXT("200.0") };
-    ShutterSpeed.bRestrictToRecommended = false;
+    // 相机的快门速度，单位为秒
+    FActorVariation ShutterSpeed; // (1/t)，t为快门时间的倒数
+    ShutterSpeed.Id = TEXT("shutter_speed"); // 设置属性ID为"shutter_speed"
+    ShutterSpeed.Type = EActorAttributeType::Float; // 设置属性类型为浮点型
+    ShutterSpeed.RecommendedValues = { TEXT("200.0") }; // 设置推荐的属性值为"200.0"
+    ShutterSpeed.bRestrictToRecommended = false; // 设置是否限制用户只能使用推荐值
 
-    // The camera sensor sensitivity.
-    FActorVariation ISO; // S
-    ISO.Id = TEXT("iso");
-    ISO.Type = EActorAttributeType::Float;
-    ISO.RecommendedValues = { TEXT("100.0") };
-    ISO.bRestrictToRecommended = false;
+    // 相机的传感器灵敏度。
+    FActorVariation ISO; // S，感光度
+    ISO.Id = TEXT("iso"); // 设置属性ID为"iso"
+    ISO.Type = EActorAttributeType::Float; // 设置属性类型为浮点型
+    ISO.RecommendedValues = { TEXT("100.0") }; // 设置推荐的属性值为"100.0"
+    ISO.bRestrictToRecommended = false; // 设置是否限制用户只能使用推荐值
 
-    // Defines the size of the opening for the camera lens.
-    // Using larger numbers will reduce the DOF effect.
-    FActorVariation Aperture; // N
-    Aperture.Id = TEXT("fstop");
-    Aperture.Type = EActorAttributeType::Float;
-    Aperture.RecommendedValues = { TEXT("1.4") };
-    Aperture.bRestrictToRecommended = false;
+    // 定义相机镜头开口的大小。
+    // 使用较大的数值将减少景深（DOF）效果。
+    FActorVariation Aperture; // N，光圈值（f值），注意这里注释中的N与代码中的fstop对应，通常f值越小，光圈越大
+    Aperture.Id = TEXT("fstop"); // 设置属性ID为"fstop"
+    Aperture.Type = EActorAttributeType::Float; // 设置属性类型为浮点型
+    Aperture.RecommendedValues = { TEXT("1.4") }; // 设置推荐的属性值为"1.4"
+    Aperture.bRestrictToRecommended = false; // 设置是否限制用户只能使用推荐值
 
-    // - Histogram ---------------------------------------------
 
-    // The minimum brightness for auto exposure that limits the lower
-    // brightness the eye can adapt within
-    FActorVariation ExposureMinBright;
-    ExposureMinBright.Id = TEXT("exposure_min_bright");
-    ExposureMinBright.Type = EActorAttributeType::Float;
-    ExposureMinBright.RecommendedValues = { TEXT("10.0") };
-    ExposureMinBright.bRestrictToRecommended = false;
+    // - 直方图相关设置 ---------------------------------------------
 
-    // The maximum brightness for auto exposure that limits the upper
-    // brightness the eye can adapt within
-    FActorVariation ExposureMaxBright;
-    ExposureMaxBright.Id = TEXT("exposure_max_bright");
-    ExposureMaxBright.Type = EActorAttributeType::Float;
-    ExposureMaxBright.RecommendedValues = { TEXT("12.0") };
-    ExposureMaxBright.bRestrictToRecommended = false;
+    // 自动曝光的最小亮度值，它限制了眼睛能够适应的最低亮度范围
+    FActorVariation ExposureMinBright; // 自动曝光最小亮度变量
+    ExposureMinBright.Id = TEXT("exposure_min_bright"); // 设置变量的ID为"exposure_min_bright"
+    ExposureMinBright.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureMinBright.RecommendedValues = { TEXT("10.0") }; // 设置推荐值为10.0
+    ExposureMinBright.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // The speed at which the adaptation occurs from a dark environment
-    // to a bright environment.
-    FActorVariation ExposureSpeedUp;
-    ExposureSpeedUp.Id = TEXT("exposure_speed_up");
-    ExposureSpeedUp.Type = EActorAttributeType::Float;
-    ExposureSpeedUp.RecommendedValues = { TEXT("3.0") };
-    ExposureSpeedUp.bRestrictToRecommended = false;
+    // 自动曝光的最大亮度值，它限制了眼睛能够适应的最高亮度范围
+    FActorVariation ExposureMaxBright; // 自动曝光最大亮度变量
+    ExposureMaxBright.Id = TEXT("exposure_max_bright"); // 设置变量的ID为"exposure_max_bright"
+    ExposureMaxBright.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureMaxBright.RecommendedValues = { TEXT("12.0") }; // 设置推荐值为12.0
+    ExposureMaxBright.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // The speed at which the adaptation occurs from a bright environment
-    // to a dark environment.
-    FActorVariation ExposureSpeedDown;
-    ExposureSpeedDown.Id = TEXT("exposure_speed_down");
-    ExposureSpeedDown.Type = EActorAttributeType::Float;
-    ExposureSpeedDown.RecommendedValues = { TEXT("1.0") };
-    ExposureSpeedDown.bRestrictToRecommended = false;
+    // 从暗环境到亮环境的适应速度
+    FActorVariation ExposureSpeedUp; // 曝光上调速度变量
+    ExposureSpeedUp.Id = TEXT("exposure_speed_up"); // 设置变量的ID为"exposure_speed_up"
+    ExposureSpeedUp.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureSpeedUp.RecommendedValues = { TEXT("3.0") }; // 设置推荐值为3.0
+    ExposureSpeedUp.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Calibration constant for 18% Albedo.
-    FActorVariation CalibrationConstant;
-    CalibrationConstant.Id = TEXT("calibration_constant");
-    CalibrationConstant.Type = EActorAttributeType::Float;
-    CalibrationConstant.RecommendedValues = { TEXT("16.0") };
-    CalibrationConstant.bRestrictToRecommended = false;
+    // 从亮环境到暗环境的适应速度
+    FActorVariation ExposureSpeedDown; // 曝光下调速度变量
+    ExposureSpeedDown.Id = TEXT("exposure_speed_down"); // 设置变量的ID为"exposure_speed_down"
+    ExposureSpeedDown.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    ExposureSpeedDown.RecommendedValues = { TEXT("1.0") }; // 设置推荐值为1.0
+    ExposureSpeedDown.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Distance in which the Depth of Field effect should be sharp,
-    // in unreal units (cm)
-    FActorVariation FocalDistance;
-    FocalDistance.Id = TEXT("focal_distance");
-    FocalDistance.Type = EActorAttributeType::Float;
-    FocalDistance.RecommendedValues = { TEXT("1000.0") };
-    FocalDistance.bRestrictToRecommended = false;
+    // 18%反射率（Albedo）的校准常数
+    FActorVariation CalibrationConstant; // 校准常数变量
+    CalibrationConstant.Id = TEXT("calibration_constant"); // 设置变量的ID为"calibration_constant"
+    CalibrationConstant.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    CalibrationConstant.RecommendedValues = { TEXT("16.0") }; // 设置推荐值为16.0
+    CalibrationConstant.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Depth blur km for 50%
-    FActorVariation DepthBlurAmount;
-    DepthBlurAmount.Id = TEXT("blur_amount");
-    DepthBlurAmount.Type = EActorAttributeType::Float;
-    DepthBlurAmount.RecommendedValues = { TEXT("1.0") };
-    DepthBlurAmount.bRestrictToRecommended = false;
+    // 景深效果应保持清晰的距离
+    // 单位为虚幻引擎单位（厘米）
+    FActorVariation FocalDistance; // 焦距距离变量
+    FocalDistance.Id = TEXT("focal_distance"); // 设置变量的ID为"focal_distance"
+    FocalDistance.Type = EActorAttributeType::Float; // 设置变量的类型为浮点型
+    FocalDistance.RecommendedValues = { TEXT("1000.0") }; // 设置推荐值为1000.0
+    FocalDistance.bRestrictToRecommended = false; // 设置不限制变量值必须为推荐值
 
-    // Depth blur radius in pixels at 1920x
-    FActorVariation DepthBlurRadius;
-    DepthBlurRadius.Id = TEXT("blur_radius");
-    DepthBlurRadius.Type = EActorAttributeType::Float;
-    DepthBlurRadius.RecommendedValues = { TEXT("0.0") };
-    DepthBlurRadius.bRestrictToRecommended = false;
+    // 50%深度模糊系数
+    FActorVariation DepthBlurAmount; // 深度模糊量
+    DepthBlurAmount.Id = TEXT("blur_amount"); // 标识符为"blur_amount"
+    DepthBlurAmount.Type = EActorAttributeType::Float; // 类型为浮点数
+    DepthBlurAmount.RecommendedValues = { TEXT("1.0") }; // 推荐值为1.0
+    DepthBlurAmount.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // Defines the opening of the camera lens, Aperture is 1.0/fstop,
-    // typical lens go down to f/1.2 (large opening),
-    // larger numbers reduce the DOF effect
-    FActorVariation MaxAperture;
-    MaxAperture.Id = TEXT("min_fstop");
-    MaxAperture.Type = EActorAttributeType::Float;
-    MaxAperture.RecommendedValues = { TEXT("1.2") };
-    MaxAperture.bRestrictToRecommended = false;
+    // 在1920x分辨率下的深度模糊半径（以像素为单位）
+    FActorVariation DepthBlurRadius; // 深度模糊半径
+    DepthBlurRadius.Id = TEXT("blur_radius"); // 标识符为"blur_radius"
+    DepthBlurRadius.Type = EActorAttributeType::Float; // 类型为浮点数
+    DepthBlurRadius.RecommendedValues = { TEXT("0.0") }; // 推荐值为0.0
+    DepthBlurRadius.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // Defines the number of blades of the diaphragm within the
-    // lens (between 4 and 16)
-    FActorVariation BladeCount;
-    BladeCount.Id = TEXT("blade_count");
-    BladeCount.Type = EActorAttributeType::Int;
-    BladeCount.RecommendedValues = { TEXT("5") };
-    BladeCount.bRestrictToRecommended = false;
+    // 定义相机镜头的开口大小，光圈是1.0/fstop，
+    // 典型的镜头可以小到f/1.2（大开口），
+    // 较大的数值会减少景深效果
+    FActorVariation MaxAperture; // 最大光圈
+    MaxAperture.Id = TEXT("min_fstop"); // 标识符为"min_fstop"
+    MaxAperture.Type = EActorAttributeType::Float; // 类型为浮点数
+    MaxAperture.RecommendedValues = { TEXT("1.2") }; // 推荐值为1.2
+    MaxAperture.bRestrictToRecommended = false; // 不限制为推荐值
 
-    // - Tonemapper Settings -----------------------------------
-    // You can adjust these tonemapper controls to emulate other
-    // types of film stock for your project
-    FActorVariation FilmSlope;
-    FilmSlope.Id = TEXT("slope");
-    FilmSlope.Type = EActorAttributeType::Float;
-    FilmSlope.RecommendedValues = { TEXT("0.88") };
-    FilmSlope.bRestrictToRecommended = false;
+    // 定义镜头内光圈叶片的数量（在4到16之间）
+    FActorVariation BladeCount; // 叶片数量
+    BladeCount.Id = TEXT("blade_count"); // 标识符为"blade_count"
+    BladeCount.Type = EActorAttributeType::Int; // 类型为整数
+    BladeCount.RecommendedValues = { TEXT("5") }; // 推荐值为5
+    BladeCount.bRestrictToRecommended = false; // 不限制为推荐值
 
-    FActorVariation FilmToe;
-    FilmToe.Id = TEXT("toe");
-    FilmToe.Type = EActorAttributeType::Float;
-    FilmToe.RecommendedValues = { TEXT("0.55") };
-    FilmToe.bRestrictToRecommended = false;
+    // - 调色映射器设置 -----------------------------------
+    // 您可以调整这些调色映射器控件，以模拟其他类型的胶片库存，用于您的项目
+    FActorVariation FilmSlope; // 胶片斜率变量
+    FilmSlope.Id = TEXT("slope"); // 变量标识符设置为"slope"
+    FilmSlope.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmSlope.RecommendedValues = { TEXT("0.88") }; // 推荐值设置为0.88
+    FilmSlope.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmShoulder;
-    FilmShoulder.Id = TEXT("shoulder");
-    FilmShoulder.Type = EActorAttributeType::Float;
-    FilmShoulder.RecommendedValues = { TEXT("0.26") };
-    FilmShoulder.bRestrictToRecommended = false;
+    FActorVariation FilmToe; // 胶片趾部变量
+    FilmToe.Id = TEXT("toe"); // 变量标识符设置为"toe"
+    FilmToe.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmToe.RecommendedValues = { TEXT("0.55") }; // 推荐值设置为0.55
+    FilmToe.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmBlackClip;
-    FilmBlackClip.Id = TEXT("black_clip");
-    FilmBlackClip.Type = EActorAttributeType::Float;
-    FilmBlackClip.RecommendedValues = { TEXT("0.0") };
-    FilmBlackClip.bRestrictToRecommended = false;
+    FActorVariation FilmShoulder; // 胶片肩部变量
+    FilmShoulder.Id = TEXT("shoulder"); // 变量标识符设置为"shoulder"
+    FilmShoulder.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmShoulder.RecommendedValues = { TEXT("0.26") }; // 推荐值设置为0.26
+    FilmShoulder.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation FilmWhiteClip;
-    FilmWhiteClip.Id = TEXT("white_clip");
-    FilmWhiteClip.Type = EActorAttributeType::Float;
-    FilmWhiteClip.RecommendedValues = { TEXT("0.04") };
-    FilmWhiteClip.bRestrictToRecommended = false;
+    FActorVariation FilmBlackClip; // 胶片黑色截断变量
+    FilmBlackClip.Id = TEXT("black_clip"); // 变量标识符设置为"black_clip"
+    FilmBlackClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmBlackClip.RecommendedValues = { TEXT("0.0") }; // 推荐值设置为0.0
+    FilmBlackClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    // Color
-    FActorVariation Temperature;
-    Temperature.Id = TEXT("temp");
-    Temperature.Type = EActorAttributeType::Float;
-    Temperature.RecommendedValues = { TEXT("6500.0") };
-    Temperature.bRestrictToRecommended = false;
+    FActorVariation FilmWhiteClip; // 胶片白色截断变量
+    FilmWhiteClip.Id = TEXT("white_clip"); // 变量标识符设置为"white_clip"
+    FilmWhiteClip.Type = EActorAttributeType::Float; // 变量类型设置为浮点型
+    FilmWhiteClip.RecommendedValues = { TEXT("0.04") }; // 推荐值设置为0.04
+    FilmWhiteClip.bRestrictToRecommended = false; // 不限制用户只能使用推荐值
 
-    FActorVariation Tint;
-    Tint.Id = TEXT("tint");
-    Tint.Type = EActorAttributeType::Float;
-    Tint.RecommendedValues = { TEXT("0.0") };
-    Tint.bRestrictToRecommended = false;
 
-    FActorVariation ChromaticIntensity;
-    ChromaticIntensity.Id = TEXT("chromatic_aberration_intensity");
-    ChromaticIntensity.Type = EActorAttributeType::Float;
-    ChromaticIntensity.RecommendedValues = { TEXT("0.0") };
-    ChromaticIntensity.bRestrictToRecommended = false;
+    // 颜色相关设置
+    FActorVariation Temperature;// 温度变量
+    Temperature.Id = TEXT("temp"); // 设置温度变量的标识符为"temp"
+    Temperature.Type = EActorAttributeType::Float;// 设置温度变量的类型为浮点数
+    Temperature.RecommendedValues = { TEXT("6500.0") };// 为温度变量设置推荐值
+    Temperature.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
-    FActorVariation ChromaticOffset;
-    ChromaticOffset.Id = TEXT("chromatic_aberration_offset");
-    ChromaticOffset.Type = EActorAttributeType::Float;
-    ChromaticOffset.RecommendedValues = { TEXT("0.0") };
-    ChromaticOffset.bRestrictToRecommended = false;
+    FActorVariation Tint; // 色调变量
+    Tint.Id = TEXT("tint");// 设置色调变量的标识符为"tint"
+    Tint.Type = EActorAttributeType::Float;// 设置色调变量的类型为浮点数
+    Tint.RecommendedValues = { TEXT("0.0") };// 为色调变量设置推荐值
+    Tint.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
 
+    FActorVariation ChromaticIntensity;// 色散强度变量
+    ChromaticIntensity.Id = TEXT("chromatic_aberration_intensity");// 设置色散强度变量的标识符为"chromatic_aberration_intensity"
+    ChromaticIntensity.Type = EActorAttributeType::Float; // 设置色散强度变量的类型为浮点数
+    ChromaticIntensity.RecommendedValues = { TEXT("0.0") };// 为色散强度变量设置推荐值
+    ChromaticIntensity.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
+
+    FActorVariation ChromaticOffset;// 色散偏移变量
+    ChromaticOffset.Id = TEXT("chromatic_aberration_offset"); // 设置色散偏移变量的标识符为"chromatic_aberration_offset"
+    ChromaticOffset.Type = EActorAttributeType::Float;// 设置色散偏移变量的类型为浮点数
+    ChromaticOffset.RecommendedValues = { TEXT("0.0") }; // 为色散偏移变量设置推荐值
+    ChromaticOffset.bRestrictToRecommended = false;// 设置是否限制变量值只能为推荐值
+
+    // 向一个名为Definition的对象的Variations属性中添加一个新的集合
     Definition.Variations.Append({
-      ExposureMode,
-      ExposureCompensation,
-      ShutterSpeed,
-      ISO,
-      Aperture,
-      PostProccess,
-      Gamma,
-      MBIntesity,
-      MBMaxDistortion,
-      LensFlareIntensity,
-      BloomIntensity,
-      MBMinObjectScreenSize,
-      ExposureMinBright,
-      ExposureMaxBright,
-      ExposureSpeedUp,
-      ExposureSpeedDown,
-      CalibrationConstant,
-      FocalDistance,
-      MaxAperture,
-      BladeCount,
-      DepthBlurAmount,
-      DepthBlurRadius,
-      FilmSlope,
-      FilmToe,
-      FilmShoulder,
-      FilmBlackClip,
-      FilmWhiteClip,
-      Temperature,
-      Tint,
-      ChromaticIntensity,
-      ChromaticOffset});
-  }
+        
+        // 曝光模式
+        ExposureMode,
 
-  Success = CheckActorDefinition(Definition);
+        // 曝光补偿
+        ExposureCompensation,
+
+        // 快门速度
+        ShutterSpeed,
+
+        // ISO感光度
+        ISO,
+
+        // 光圈大小
+        Aperture,
+
+        // 后期处理
+        PostProccess,
+
+        // Gamma值，用于调整图像的亮度
+        Gamma,
+
+        // MB强度
+        MBIntesity,
+
+        // MB最大畸变
+        MBMaxDistortion,
+
+        // 镜头光晕强度
+        LensFlareIntensity,
+
+        // 泛光强度
+        BloomIntensity,
+
+        // MB最小对象屏幕大小
+        MBMinObjectScreenSize,
+
+        // 曝光最小亮度
+        ExposureMinBright,
+
+        // 曝光最大亮度
+        ExposureMaxBright,
+
+        // 曝光加速
+        ExposureSpeedUp,
+
+        // 曝光减速
+        ExposureSpeedDown,
+
+        // 校准常数
+        CalibrationConstant,
+
+        // 焦距
+        FocalDistance,
+
+        // 最大光圈
+        MaxAperture,
+
+        // 光圈叶片数量
+        BladeCount,
+
+        // 景深模糊量
+        DepthBlurAmount,
+
+        // 景深模糊半径
+        DepthBlurRadius,
+
+        // 胶片斜率（影响图像对比度）
+        FilmSlope,
+
+        // 胶片趾部（影响图像暗部细节）
+        FilmToe,
+
+        // 胶片肩部（影响图像亮部细节）
+        FilmShoulder,
+
+        // 胶片黑剪（最暗部被剪切的程度）
+        FilmBlackClip,
+
+        // 胶片白剪（最亮部被剪切的程度）
+        FilmWhiteClip,
+
+        // 色温
+        Temperature,
+
+        // 色调
+        Tint,
+
+        // 色差强度
+        ChromaticIntensity,
+
+        // 色差偏移
+        ChromaticOffset
+        });
+
+    // 调用CheckActorDefinition函数来检查Definition对象是否有效或符合某种标准
+    // 并将结果赋值给Success变量
+    Success = CheckActorDefinition(Definition);
 }
 
+// 定义一个函数，该函数属于UActorBlueprintFunctionLibrary类，用于创建一个法线相机的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
+  // 创建一个FActorDefinition类型的对象Definition，用于存储相机定义
+  FActorDefinition Definition; 
+
+  // 定义一个布尔变量Success，用于标记操作是否成功
+  bool Success; 
+
+  // 调用重载的MakeNormalsCameraDefinition函数，传入Success和Definition的引用，以填充Definition并设置Success的值
   MakeNormalsCameraDefinition(Success, Definition);
+
+  // 使用check宏来验证Success是否为true，如果不是，则程序将在这里崩溃。这是一种调试时的保护措施。
   check(Success);
+
+  // 返回填充好的Definition对象
   return Definition;
 }
-
+ 
+// 定义一个重载的函数，该函数同样属于UActorBlueprintFunctionLibrary类，用于填充法线相机的定义
 void UActorBlueprintFunctionLibrary::MakeNormalsCameraDefinition(bool &Success, FActorDefinition &Definition)
 {
+  // 调用FillIdAndTags函数为Definition设置ID和标签，这里设置的ID为"sensor"，标签包括"camera"和"normals"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("camera"), TEXT("normals"));
+
+  // 调用AddRecommendedValuesForSensorRoleNames函数为Definition添加建议的角色名称值，这些值可能用于优化相机性能或行为
   AddRecommendedValuesForSensorRoleNames(Definition);
+
+  // 调用AddVariationsForSensor函数为Definition添加传感器的变种或变体，这可能包括不同的配置或设置以适应不同的使用场景
   AddVariationsForSensor(Definition);
 
-  // FOV
-  FActorVariation FOV;
-  FOV.Id = TEXT("fov");
-  FOV.Type = EActorAttributeType::Float;
-  FOV.RecommendedValues = { TEXT("90.0") };
-  FOV.bRestrictToRecommended = false;
+  // 视场角设置
+  FActorVariation FOV; // 创建一个FActorVariation类型的对象FOV，用于表示相机的视场角变化
+  FOV.Id = TEXT("fov"); // 设置FOV对象的ID为"fov"，这是其唯一标识符
+  FOV.Type = EActorAttributeType::Float; // 设置FOV对象的类型为浮点型，表示视场角是一个浮点数
+  FOV.RecommendedValues = { TEXT("90.0") }; // 为FOV对象设置一个推荐的视场角值
+  FOV.bRestrictToRecommended = false; // 设置FOV对象是否限制为只能使用推荐值
 
-  // Resolution
-  FActorVariation ResX;
-  ResX.Id = TEXT("image_size_x");
-  ResX.Type = EActorAttributeType::Int;
-  ResX.RecommendedValues = { TEXT("800") };
-  ResX.bRestrictToRecommended = false;
+  // 分辨率设置
+  FActorVariation ResX; // 创建一个FActorVariation类型的对象ResX，用于表示相机图像宽度的变化
+  ResX.Id = TEXT("image_size_x"); // 设置ResX对象的ID为"image_size_x"，表示图像宽度
+  ResX.Type = EActorAttributeType::Int; // 设置ResX对象的类型为整型，表示图像宽度是一个整数
+  ResX.RecommendedValues = { TEXT("800") }; // 为ResX对象设置一个推荐的图像宽度值
+  ResX.bRestrictToRecommended = false; // 设置ResX对象是否限制为只能使用推荐值
 
-  FActorVariation ResY;
-  ResY.Id = TEXT("image_size_y");
-  ResY.Type = EActorAttributeType::Int;
-  ResY.RecommendedValues = { TEXT("600") };
-  ResY.bRestrictToRecommended = false;
+  FActorVariation ResY; // 创建一个FActorVariation类型的对象ResY，用于表示相机图像高度的变化
+  ResY.Id = TEXT("image_size_y"); // 设置ResY对象的ID为"image_size_y"，表示图像高度
+  ResY.Type = EActorAttributeType::Int; // 设置ResY对象的类型为整型，表示图像高度是一个整数
+  ResY.RecommendedValues = { TEXT("600") }; // 为ResY对象设置一个推荐的图像高度值
+  ResY.bRestrictToRecommended = false; // 设置ResY对象是否限制为只能使用推荐值
 
-  // Lens parameters
-  FActorVariation LensCircleFalloff;
-  LensCircleFalloff.Id = TEXT("lens_circle_falloff");
-  LensCircleFalloff.Type = EActorAttributeType::Float;
-  LensCircleFalloff.RecommendedValues = { TEXT("5.0") };
-  LensCircleFalloff.bRestrictToRecommended = false;
+  // 镜头参数
+  FActorVariation LensCircleFalloff; // 镜头圆形衰减参数
+  LensCircleFalloff.Id = TEXT("lens_circle_falloff"); // 设置参数ID为"lens_circle_falloff"
+  LensCircleFalloff.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensCircleFalloff.RecommendedValues = { TEXT("5.0") }; // 设置推荐值为"5.0"
+  LensCircleFalloff.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensCircleMultiplier;
-  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier");
-  LensCircleMultiplier.Type = EActorAttributeType::Float;
-  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") };
-  LensCircleMultiplier.bRestrictToRecommended = false;
+  FActorVariation LensCircleMultiplier; // 镜头圆形倍增参数
+  LensCircleMultiplier.Id = TEXT("lens_circle_multiplier"); // 设置参数ID为"lens_circle_multiplier"
+  LensCircleMultiplier.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensCircleMultiplier.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
+  LensCircleMultiplier.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensK;
-  LensK.Id = TEXT("lens_k");
-  LensK.Type = EActorAttributeType::Float;
-  LensK.RecommendedValues = { TEXT("-1.0") };
-  LensK.bRestrictToRecommended = false;
+  FActorVariation LensK; // 镜头K参数
+  LensK.Id = TEXT("lens_k"); // 设置参数ID为"lens_k"
+  LensK.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensK.RecommendedValues = { TEXT("-1.0") }; // 设置推荐值为"-1.0"
+  LensK.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensKcube;
-  LensKcube.Id = TEXT("lens_kcube");
-  LensKcube.Type = EActorAttributeType::Float;
-  LensKcube.RecommendedValues = { TEXT("0.0") };
-  LensKcube.bRestrictToRecommended = false;
+  FActorVariation LensKcube; // 镜头K的三次方参数
+  LensKcube.Id = TEXT("lens_kcube"); // 设置参数ID为"lens_kcube"
+  LensKcube.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensKcube.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为"0.0"
+  LensKcube.bRestrictToRecommended = false; // 设置不限制用户只能使用推荐值
 
-  FActorVariation LensXSize;
-  LensXSize.Id = TEXT("lens_x_size");
-  LensXSize.Type = EActorAttributeType::Float;
-  LensXSize.RecommendedValues = { TEXT("0.08") };
-  LensXSize.bRestrictToRecommended = false;
+  FActorVariation LensXSize; // 镜头X轴大小参数
+  LensXSize.Id = TEXT("lens_x_size"); // 设置参数ID为"lens_x_size"
+  LensXSize.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensXSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
+  LensXSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
-  FActorVariation LensYSize;
-  LensYSize.Id = TEXT("lens_y_size");
-  LensYSize.Type = EActorAttributeType::Float;
-  LensYSize.RecommendedValues = { TEXT("0.08") };
-  LensYSize.bRestrictToRecommended = false;
+  FActorVariation LensYSize; // 镜头Y轴大小参数
+  LensYSize.Id = TEXT("lens_y_size"); // 设置参数ID为"lens_y_size"
+  LensYSize.Type = EActorAttributeType::Float; // 设置参数类型为浮点型
+  LensYSize.RecommendedValues = { TEXT("0.08") }; // 设置推荐值
+  LensYSize.bRestrictToRecommended = false; // 不限制为只能使用推荐值
 
+  // 将一个包含多个参数的集合追加到Definitions的Variations列表中
   Definition.Variations.Append({
-      ResX,
-      ResY,
-      FOV,
-      LensCircleFalloff,
-      LensCircleMultiplier,
-      LensK,
-      LensKcube,
-      LensXSize,
-      LensYSize});
+      ResX,       // 分辨率X轴
+      ResY,       // 分辨率Y轴
+      FOV,        // 视场角
+      LensCircleFalloff, // 镜头圆形衰减
+      LensCircleMultiplier, // 镜头圆形倍乘器
+      LensK,      // 镜头K系数
+      LensKcube,  // 镜头K立方系数
+      LensXSize,  // 镜头X尺寸
+      LensYSize });// 镜头Y尺寸
 
+  // 调用CheckActorDefinition函数检查Definition是否有效，并将结果存储在Success变量中
   Success = CheckActorDefinition(Definition);
 }
 
+// UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeIMUDefinition()
 {
-  FActorDefinition Definition;
-  bool Success;
-  MakeIMUDefinition(Success, Definition);
-  check(Success);
-  return Definition;
+    FActorDefinition Definition; // 创建一个FActorDefinition类型的对象Definition
+
+    bool Success; // 声明一个布尔类型的变量Success，用于存储操作的结果
+    
+    // 调用MakeIMUDefinition函数，该函数填充Definition并设置Success
+    MakeIMUDefinition(Success, Definition);
+
+    // 使用check宏断言Success为真，如果为假则触发断言错误
+    check(Success);
+
+    // 返回填充好的Definition对象
+    return Definition;
 }
 
+// 定义UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义，包含成功标志和定义结构体
 void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
-    bool &Success,
-    FActorDefinition &Definition)
+    bool &Success,         // 成功标志的引用，用于指示函数执行是否成功
+    FActorDefinition &Definition) // 定义结构体的引用，用于存储IMU的定义信息
 {
+  // 为定义填充ID和标签，分别为"sensor"、"other"和"imu"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("imu"));
+
+  // 为传感器添加变体信息
   AddVariationsForSensor(Definition);
-
-  // - Noise seed --------------------------------
+ 
+  // ------------------------ 噪声种子 --------------------------------
+  // 创建一个噪声种子的变体信息
   FActorVariation NoiseSeed;
-  NoiseSeed.Id = TEXT("noise_seed");
-  NoiseSeed.Type = EActorAttributeType::Int;
-  NoiseSeed.RecommendedValues = { TEXT("0") };
-  NoiseSeed.bRestrictToRecommended = false;
-
-  // - Accelerometer Standard Deviation ----------
-  // X Component
+  NoiseSeed.Id = TEXT("noise_seed");            // 设置ID为"noise_seed"
+  NoiseSeed.Type = EActorAttributeType::Int;    // 设置类型为整型
+  NoiseSeed.RecommendedValues = { TEXT("0") };  // 设置推荐值为0
+  NoiseSeed.bRestrictToRecommended = false;     // 设置不限制为推荐值
+ 
+  // -------------------------------- 加速度计标准差 --------------------------
+  // X分量
   FActorVariation StdDevAccelX;
-  StdDevAccelX.Id = TEXT("noise_accel_stddev_x");
-  StdDevAccelX.Type = EActorAttributeType::Float;
-  StdDevAccelX.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelX.bRestrictToRecommended = false;
-  // Y Component
+  StdDevAccelX.Id = TEXT("noise_accel_stddev_x"); // 设置ID为"noise_accel_stddev_x"
+  StdDevAccelX.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelX.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelX.bRestrictToRecommended = false;     // 设置不限制为推荐值
+  // Y分量
   FActorVariation StdDevAccelY;
-  StdDevAccelY.Id = TEXT("noise_accel_stddev_y");
-  StdDevAccelY.Type = EActorAttributeType::Float;
-  StdDevAccelY.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelY.bRestrictToRecommended = false;
-  // Z Component
+  StdDevAccelY.Id = TEXT("noise_accel_stddev_y"); // 设置ID为"noise_accel_stddev_y"
+  StdDevAccelY.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelY.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelY.bRestrictToRecommended = false;     // 设置不限制为推荐值
+  // Z分量
   FActorVariation StdDevAccelZ;
-  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z");
-  StdDevAccelZ.Type = EActorAttributeType::Float;
-  StdDevAccelZ.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelZ.bRestrictToRecommended = false;
+  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z"); // 设置ID为"noise_accel_stddev_z"
+  StdDevAccelZ.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelZ.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelZ.bRestrictToRecommended = false;     // 设置不限制为推荐值
+
 
   // - Gyroscope Standard Deviation --------------
   // X Component

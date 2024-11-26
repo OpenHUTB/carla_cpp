@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -26,17 +26,16 @@ namespace client {
         delta_seconds(in_delta_seconds),
         platform_timestamp(in_platform_timestamp) {}
 
-    /// Number of frames elapsed since the simulator was launched.
+    /// 自模拟器启动以来经过的帧数。
     std::size_t frame = 0u;
 
-    /// Simulated seconds elapsed since the beginning of the current episode.
+    /// 模拟自当前情境开始以来经过的秒数。
     double elapsed_seconds = 0.0;
 
-    /// Simulated seconds elapsed since previous frame.
+    /// 模拟自上一帧以来经过的秒数。
     double delta_seconds = 0.0;
 
-    /// Time-stamp of the frame at which this measurement was taken, in seconds
-    /// as given by the OS.
+    /// 进行此测量的帧的时间戳，以操作系统给出的秒数为单位。
     double platform_timestamp = 0.0;
 
     bool operator==(const Timestamp &rhs) const {
@@ -54,10 +53,10 @@ namespace client {
 
 namespace std {
 /**
- * \brief standard ostream operator
+ * \brief 标准输出流操作
  *
- * \param[in/out] out The output stream to write to
- * \param[in] timestamp the timestamp to stream out
+ * \param[in/out] out 要写入的输出流
+ * \param[in] timestamp 输出流的时间戳
  *
  * \returns The stream object.
  *

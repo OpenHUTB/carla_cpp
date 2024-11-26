@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 Intel Corporation
+﻿// Copyright (c) 2019-2020 Intel Corporation
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
@@ -33,23 +33,32 @@
 #include "carla/client/Waypoint.h"
 
 #define DEBUG_TIMING 0
-
+// 定义在carla命名空间的rss子命名空间中 
 namespace carla {
 namespace rss {
-
+ // 定义一个函数printRoute，用于打印路由信息  
+ // 参数包括一个描述路由的字符串route_descr和一个FullRoute类型的常量引用route 
 void printRoute(std::string const &route_descr, ::ad::map::route::FullRoute const &route) {
-  std::cout << route_descr << std::endl;
-  for (auto road_segment : route.roadSegments) {
-    for (auto lane_segment : road_segment.drivableLaneSegments) {
-      std::cout << "(" << static_cast<uint64_t>(lane_segment.laneInterval.laneId) << " | " << std::setprecision(2)
+    // 首先打印出路由的描述信息
+    std::cout << route_descr << std::endl;
+    // 遍历路由中的每一个路段（road segment）
+    for (auto road_segment : route.roadSegments) {
+        // 对于每一个路段，遍历其所有可驾驶的车道段（lane segment）
+        for (auto lane_segment : road_segment.drivableLaneSegments) {
+        // 打印出车道段的详细信息，包括：  
+         // 车道ID（laneId），转换为uint64_t类型  
+         // 车道段的起始位置（start）和结束位置（end），转换为double类型，并保留两位小数  
+         // 输出格式为：(车道ID | 起始位置:结束位置)
+            std::cout << "(" << static_cast<uint64_t>(lane_segment.laneInterval.laneId) << " | " << std::setprecision(2)
                 << static_cast<double>(lane_segment.laneInterval.start) << ":"
                 << static_cast<double>(lane_segment.laneInterval.end) << ")    ";
     }
+    // 每个路段的车道段信息打印完毕后，输出一个换行符，以便于区分不同的路段
     std::cout << std::endl;
   }
 }
 
-// constants for deg-> rad conversion PI / 180
+// 度到弧度转换常数 PI / 180
 constexpr float to_radians = static_cast<float>(M_PI) / 180.0f;
 
 EgoDynamicsOnRoute::EgoDynamicsOnRoute()
@@ -135,11 +144,11 @@ RssCheck::RssCheck(float maximum_steering_angle)
 
   _default_actor_constellation_callback_ego_vehicle_dynamics = GetDefaultVehicleDynamics();
   _default_actor_constellation_callback_other_vehicle_dynamics = GetDefaultVehicleDynamics();
-  // set the response time of others vehicles to 2 seconds; the rest stays the same
+  // 将其他车辆的响应时间设置为 2 秒；其余保持不变
   _default_actor_constellation_callback_other_vehicle_dynamics.responseTime = ::ad::physics::Duration(2.0);
   _default_actor_constellation_callback_pedestrian_dynamics = GetDefaultPedestrianDynamics();
 
-  // Create a default callback.
+  //创建一个默认回调.
   _actor_constellation_callback =
       [this](carla::SharedPtr<::carla::rss::ActorConstellationData> actor_constellation_data)
       -> ::carla::rss::ActorConstellationResult {
@@ -192,7 +201,7 @@ RssCheck::RssCheck(float maximum_steering_angle)
     return actor_constellation_result;
   };
 
-  // set the default dynamics
+  // 设置默认动态
   _carla_rss_state.default_ego_vehicle_dynamics = _default_actor_constellation_callback_ego_vehicle_dynamics;
 
   _logger->debug("RssCheck with default actor constellation callback created");
@@ -324,8 +333,8 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
               << " before  MapMatching" << std::endl;
 #endif
 
-    // allow the vehicle to be at least 2.0 m away form the route to not lose
-    // the contact to the route
+    //允许车辆距离路线至少 2.0 米，以免丧失
+    //与路线的接触
     auto const ego_match_object = GetMatchObject(carla_ego_actor, ::ad::physics::Distance(2.0));
 
     if (::ad::map::point::isValid(_carla_rss_state.ego_match_object.enuPosition.centerPoint, false)) {
@@ -392,7 +401,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     _carla_rss_state.ego_dynamics_on_route.time_since_epoch_check_end_ms =
         std::chrono::duration<double, std::milli>(std::chrono::system_clock::now().time_since_epoch()).count();
 
-    // store result
+    // 存储结果
     output_response = _carla_rss_state.proper_response;
     output_rss_state_snapshot = _carla_rss_state.rss_state_snapshot;
     output_situation_snapshot = _carla_rss_state.situation_snapshot;
@@ -478,10 +487,10 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
 void RssCheck::UpdateRoute(CarlaRssState &carla_rss_state) {
   _logger->trace("Update route start: {}", carla_rss_state.ego_route);
 
-  // remove the parts of the route already taken, try to prepend route sections
+  // 移除已走过的路线部分，尝试将路线段前置
   // (i.e. when driving backwards)
-  // try to ensure that the back of the vehicle is still within the route to
-  // support orientation calculation
+  // 尽量确保车辆的后部仍在路线范围内
+  // 支持方向计算
   ::ad::map::point::ParaPointList all_lane_matches;
   for (auto reference_point :
        {::ad::map::match::ObjectReferencePoints::RearRight, ::ad::map::match::ObjectReferencePoints::RearLeft}) {
@@ -545,11 +554,11 @@ void RssCheck::UpdateRoute(CarlaRssState &carla_rss_state) {
       reroute_required = true;
     }
   } else {
-    // on all other results we recreate the route
+    // 对于所有其他结果，我们重新创建路线
     reroute_required = true;
   }
 
-  // create the route if required
+  // 如有需要，创建路线
   if (reroute_required) {
     // try to create routes
     std::vector<::ad::map::route::FullRoute> all_new_routes;
@@ -620,14 +629,14 @@ EgoDynamicsOnRoute RssCheck::CalculateEgoDynamicsOnRoute(
     auto lane_center_point = object_center.queryPosition;
     auto lane_center_point_enu = ::ad::map::lane::getENULanePoint(lane_center_point);
     if (std::fabs(new_dynamics.route_heading) > ::ad::map::point::ENUHeading(M_PI)) {
-      // if the actual center point is already outside, try to use this extended
-      // object center for the route heading calculation
+      // 如果实际中心点已经在外部，尝试使用这个扩展
+      // 路线航向计算的物体中心
       new_dynamics.route_heading = ::ad::map::lane::getENUHeading(border, lane_center_point_enu);
     }
 
     if (object_center.laneSegmentIterator->laneInterval.wrongWay) {
-      // driving on the wrong lane, so we have to project to nominal route
-      // direction
+      // 行驶在错误的车道上，因此我们必须投影到标准路线
+      // 方向
       ::ad::map::lane::projectPositionToLaneInHeadingDirection(lane_center_point, new_dynamics.route_heading,
                                                                lane_center_point);
       lane_center_point_enu = ::ad::map::lane::getENULanePoint(lane_center_point);
@@ -635,8 +644,8 @@ EgoDynamicsOnRoute RssCheck::CalculateEgoDynamicsOnRoute(
     new_dynamics.route_nominal_center = lane_center_point_enu;
 
   } else {
-    // the ego vehicle is completely outside the route, so we can't update the
-    // values
+    // 自车完全偏离了路线，因此我们无法更新
+    // 数值
     new_dynamics.route_nominal_center = last_dynamics.route_nominal_center;
     new_dynamics.route_heading = last_dynamics.route_heading;
   }

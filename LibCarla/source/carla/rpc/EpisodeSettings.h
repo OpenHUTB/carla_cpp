@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -24,7 +24,7 @@ namespace rpc {
   public:
 
     // =========================================================================
-    // -- Public data members --------------------------------------------------
+    // -- 公开的数据成员 --------------------------------------------------------
     // =========================================================================
 
     bool synchronous_mode = false;
@@ -33,18 +33,23 @@ namespace rpc {
 
     boost::optional<double> fixed_delta_seconds;
 
-    bool substepping = true;
+    bool substepping = true; // 默认情况下，物理子步是打开的
 
-    double max_substep_delta_time = 0.01;
+    double max_substep_delta_time = 0.01;  // 两个物理子步之间的最大时间
 
-    int max_substeps = 10;
+    int max_substeps = 10;  // 一个仿真帧包含的最多物理子步数
 
+    // 距离剔除：当对象尺寸足够小，距离镜头足够远时，可以不进行渲染，以提高性能
+    // https://www.jianshu.com/p/537d297bedfa
     float max_culling_distance = 0.0f;
 
+    // 确定性布娃娃系统
     bool deterministic_ragdolls = true;
 
+    // 该关卡中 距离玩家 3km 内的地图瓦片会被加载
     float tile_stream_distance = 3000.f; // 3km
 
+    // 距离玩家 2km 内的参与者会被激活
     float actor_active_distance = 2000.f; // 2km
 
     bool spectator_as_ego = true;
@@ -54,7 +59,7 @@ namespace rpc {
         tile_stream_distance, actor_active_distance, spectator_as_ego);
 
     // =========================================================================
-    // -- Constructors ---------------------------------------------------------
+    // -- 构造函数 --------------------------------------------------------------
     // =========================================================================
 
     EpisodeSettings() = default;
@@ -85,7 +90,7 @@ namespace rpc {
         spectator_as_ego(spectator_as_ego) {}
 
     // =========================================================================
-    // -- Comparison operators -------------------------------------------------
+    // -- 比较操作符 ------------------------------------------------------------
     // =========================================================================
 
     bool operator==(const EpisodeSettings &rhs) const {
@@ -108,7 +113,7 @@ namespace rpc {
     }
 
     // =========================================================================
-    // -- Conversions to UE4 types ---------------------------------------------
+    // -- 转换成虚幻4类型 -------------------------------------------------------
     // =========================================================================
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4

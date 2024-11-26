@@ -58,13 +58,16 @@ static void FCarlaEngine_SetFixedDeltaSeconds(TOptional<double> FixedDeltaSecond
 // =============================================================================
 // -- FCarlaEngine -------------------------------------------------------------
 // =============================================================================
-
+// FCarlaEngine类的析构函数
 FCarlaEngine::~FCarlaEngine()
 {
+   // 检查成员变量bIsRunning是否为true，表示引擎是否正在运行
   if (bIsRunning)
   {
+    // 如果定义了WITH_ROS2宏，表示项目配置了ROS2（Robot Operating System 2）支持
     #if defined(WITH_ROS2)
     auto ROS2 = carla::ros2::ROS2::GetInstance();
+    // 检查ROS2是否已启用
     if (ROS2->IsEnabled())
       ROS2->Shutdown();
     #endif

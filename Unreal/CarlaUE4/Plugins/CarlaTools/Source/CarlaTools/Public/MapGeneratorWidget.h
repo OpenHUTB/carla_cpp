@@ -1,8 +1,4 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
-//
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 版权所有(c) 2022年巴塞罗那自治大学（UAB）计算机视觉中心（CVC）。本作品在麻省理工学院许可条款下获得许可。查看副本，参见<https://opensource.org/licenses/MIT>。
 
 #pragma once 
 
@@ -20,7 +16,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogCarlaToolsMapGenerator, Log, All);
 
 struct FSoilTerramechanicsProperties;
 
-/// Struct used as container of basic map information
+/// 结构体，用作基本地图信息的容器
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FMapGeneratorMetaInfo
 {
@@ -75,7 +71,7 @@ struct CARLATOOLS_API FMapGeneratorMetaInfo
   float RiverFlateningFactor;
 };
 
-/// Struct used as container of basic tile information
+/// 结构体，用作基本瓦片信息的容器
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FMapGeneratorTileMetaInfo
 {
@@ -105,7 +101,7 @@ struct CARLATOOLS_API FMapGeneratorWidgetState
 {
   GENERATED_USTRUCT_BODY();
 
-  // General Fields
+  //综合类
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary")
   bool IsPersistentState;
 
@@ -118,7 +114,7 @@ struct CARLATOOLS_API FMapGeneratorWidgetState
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary")
   FString ActiveTabName;
 
-  // Terrain
+  // 地形
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary")
   float TerrainGeneralSize;
 
@@ -214,23 +210,23 @@ enum EMapGeneratorToolMode
   MISC_EDITOR
 };
 
-/// Class UMapGeneratorWidget extends the functionality of UEditorUtilityWidget
-/// to be able to generate and manage maps and largemaps tiles for procedural
-/// map generation
+/// 类UMapGeneratorWidget扩展了
+///UEditorUtilityWidget的功能，
+///能够生成和管理地图和大型地图块，用于过程地图生成
 UCLASS(BlueprintType)
 class CARLATOOLS_API UMapGeneratorWidget : public UEditorUtilityWidget
 {
   GENERATED_BODY()
 
 public:
-  /// Sets the specified material to @a Landscape
+  /// 设置指定的材质为@a Landscape
   UFUNCTION(BlueprintImplementableEvent)
   void AssignLandscapeMaterial(ALandscape* Landscape);
 
   UFUNCTION(BlueprintImplementableEvent)
   void InstantiateRiverSublevel(UWorld* World, const FMapGeneratorTileMetaInfo TileMetaInfo);
 
-  /// PROVISIONAL
+  ///临时执照
   UFUNCTION(BlueprintImplementableEvent)
   void UpdateTileRT(const FMapGeneratorTileMetaInfo& TileMetaInfo);
 
@@ -240,14 +236,15 @@ public:
   UFUNCTION(BlueprintImplementableEvent)
   void UpdateRiverActorSplinesEvent(AActor* RiverActor);
 
-  /// Function called by Widget Blueprint which generates all tiles of map
-  /// @a mapName, and saves them in @a destinationPath
-  /// Returns a void string is success and an error message if the process failed
+  /// 由Widget Blueprint调用的函数，
+  ///该函数生成map @a mapName的所有tile，
+  ///并将它们保存在@a destinationPath中。
+  ///返回一个空字符串表示成功，如果进程失败则返回错误消息
   UFUNCTION(Category="Map Generator",BlueprintCallable)
   void GenerateMapFiles(const FMapGeneratorMetaInfo& MetaInfo);
 
-  /// Function called by Widget Blueprint used to start the whole vegetation
-  /// process for map defined in @a MetaInfo
+  /// Widget Blueprint调用的函数，
+  ///用于启动@a MetaInfo中定义的地图的整个植被过程
   UFUNCTION(Category="Map Generator|Vegetation",BlueprintCallable)
   void CookVegetation(const FMapGeneratorMetaInfo& MetaInfo);
 
@@ -263,32 +260,34 @@ public:
   UFUNCTION(Category="Map Generator|Miscellaneous", BlueprintCallable)
   void DeleteAllSpreadedActors(const FMapGeneratorMetaInfo& MetaInfo);
 
-  /// Function invoked by the widget that cooks the vegetation defined in
-  /// @a FoliageSpawners only in the world opened in the editor
+  ///由小部件调用的函数，
+  ///该小部件只在编辑器中打开的世界中处理 
+  ///@a FoliageSpawners中定义的植被
   UFUNCTION(Category="Map Generator", BlueprintCallable)
   void CookVegetationToCurrentTile(const TArray<UProceduralFoliageSpawner*> FoliageSpawners);
 
-  /// Recalculate the collisions of the loaded map
+  /// 重新计算加载地图的碰撞
   UFUNCTION(Category="Map Generator", BlueprintCallable)
   bool RecalculateCollision();
 
-  /// Traverse all tiles of map in @a MetaInfo and recalculates
-  /// the collisions of all of them. Can be called from blueprints
+  /// 遍历@a MetaInfo中所有的贴图并重新计算
+  ///它们的碰撞。可以从蓝图中调用
   UFUNCTION(Category = "MapGenerator", BlueprintCallable)
   void CookTilesCollisions(const FMapGeneratorMetaInfo& MetaInfo);
 
-  /// Utils funtion to format @a InDirectory so it gets sanitized in a 
-  /// format that unreal can access the directory, deleting unnecesary 
-  /// characters such as final '/' or '\'
+  ///Utils函数格式化@a InDirectory，
+  ///使其以虚幻可以访问该目录的格式进行清理，
+  ///删除不必要的字符，如最后的‘/’或‘\’
   UFUNCTION(Category="Map Generator", BlueprintCallable)
   FString SanitizeDirectory(FString InDirectory);
 
-  /// Used to find if the @a InDirectory contains a map. If does return true and
-  /// @a OutMapSize and @OutFoundMapName stores the information of the found map 
+  ///用于查找@a InDirectory是否包含映射。
+  ///如果确实返回true并且@a OutMapSize
+  ///和@OutFoundMapName存储找到的地图的信息
   UFUNCTION(Category="Map Generator", BlueprintCallable)
   bool LoadMapInfoFromPath(FString InDirectory, int& OutMapSize, FString& OutFoundMapName);
 
-  /// Spawns rivers of types @a RiverClass
+  /// 生成@a RiverClass类型的河流
   UFUNCTION(Category="MapGenerator|Water", BlueprintCallable)
   AActor* GenerateWater(TSubclassOf<class AActor> RiverClass);
 
@@ -298,9 +297,10 @@ public:
   UFUNCTION(Category="MapGenerator", BlueprintCallable)
   UWorld* DuplicateWorld(const FString BaseWorldPath, const FString TargetWorldPath, const FString NewWorldName);
 
-  /// Adds weather actor of type @a WeatherActorClass and sets the @a SelectedWeather
-  /// to the map specified in @a MetaInfo. Ifthe actor already exists on the map
-  /// then it is returned so only one weather actor is spawned in each map
+  /// 添加@a WeatherActorClass类型的天气actor，
+  ///并将@a SelectedWeather设置为@a MetaInfo中指定的映射。
+  ///如果角色已经存在于地图上，则返回它，
+  ///因此在每个地图中只生成一个天气角色
   UFUNCTION(Category="MapGenerator|Weather", BlueprintCallable)
   AActor* AddWeatherToExistingMap(TSubclassOf<class AActor> WeatherActorClass, 
       const FMapGeneratorMetaInfo& MetaInfo, const FString SelectedWeather);
@@ -345,59 +345,57 @@ private:
   UPROPERTY()
   TMap<FRoiTile, FTileBoundariesInfo> BoundariesInfo;
 
-  /// Loads a bunch of world objects located in @a BaseMapPath and 
-  /// returns them in @a WorldAssetsData.
-  /// The function returns true if success, otherwise false
+  ///加载一堆位于@a BaseMapPath中的世界对象，
+  ///并在@a WorldAssetsData中返回它们。
+  ///函数成功返回true，否则返回false
   UFUNCTION()
   bool LoadWorlds(TArray<FAssetData>& WorldAssetsData, const FString& BaseMapPath, bool bRecursive = true);
 
-  /// Saves @a WorldToBeSaved. It also saves all dirty packages to asure
-  /// a correct managements of landscapes
+  /// 保存@a worldtobessaved。
+  ///它还保存所有脏包，以确保正确管理景观
   UFUNCTION()
   bool SaveWorld(UWorld* WorldToBeSaved);
 
-  // UFUNCTION()
-  // bool SaveWorldPackage
+  //包裹功能
+  //bool保存世界包
 
-  /// Takes the name of the map from @a MetaInfo and created the main map
-  /// including all the actors needed by large map system
+  /// 从@a MetaInfo获取地图的名称并创建
+  ///主地图包括大型地图系统所需的所有角色
   UFUNCTION()
   bool CreateMainLargeMap(const FMapGeneratorMetaInfo& MetaInfo);
 
-  /// Creates an Opendrive file for the created map map 
-  /// specified in @a MetaInfo
+  /// 为@a MetaInfo中指定的已创建的地图创建一个开放驱动文件
   UFUNCTION()
   bool CreateOpenDriveFile(const FMapGeneratorMetaInfo& MetaInfo);
 
-  /// Takes @a MetaInfo as input and generates all tiles based on the
-  /// dimensions specified for the map
-  /// The funtions return true is success, otherwise false
+  /// 以@a MetaInfo作为输入，
+  ///并根据为地图指定的尺寸生成所有的贴图。
+  ///函数返回true表示成功，否则返回false
   UFUNCTION()
   bool CreateTilesMaps(const FMapGeneratorMetaInfo& MetaInfo);
 
-  /// Searches for the specified map in the specified path in @a MetaInfo
-  /// and starts the vegetation cooking process for each of the tile.
-  /// IMPORTANT: Only maps with '_Tile_' tag in it name are processed as
-  /// vegetation is only applied to tiles.
-  /// The function returns true if success, otherwise false
+  /// 在@a MetaInfo的指定路径中搜索指定的地图，
+  ///并为每个贴图启动植被烹饪过程。
+  ///重要提示：只有带有“Tile”标签的地图才会被处理，
+  ///因为植被只会被应用到贴图上。
+  ///如果成功，函数返回true，否则返回false
   UFUNCTION()
   bool CookVegetationToTiles(const FMapGeneratorMetaInfo& MetaInfo);
 
-  /// Instantiate a procedural foliage volume for each element in @a FoliageSpawners
-  /// and cooks the corresponding vegetation to @a World
-  /// Return true if success, false otherwise
+  ///为@a FoliageSpawners 中的每个元素实例化一个过程叶子体积，
+  ///并将相应的植被烹饪到@a World 
+  ///如果成功返回true，否则返回false
   UFUNCTION()
   bool CookVegetationToWorld(UWorld* World, const TArray<UProceduralFoliageSpawner*> FoliageSpawners);
 
   UFUNCTION()
   bool CookMiscSpreadedActors(const FMapGeneratorMetaInfo& MetaInfo);
 
-  /// Returns the world object in @a WorldAssetData
+  ///返回@a WorldAssetData中的世界对象
   UFUNCTION()
   UWorld* GetWorldFromAssetData(FAssetData& WorldAssetData);
 
-  /// Returns the Z coordinate of the landscape located in @a World at position
-  /// @a x and @a y.
+  /// 返回@a World中位于@a x和@a y位置的风景的Z坐标。
   UFUNCTION()
   float GetLandscapeSurfaceHeight(UWorld* World, float x, float y, bool bDrawDebugLines);
 
@@ -413,7 +411,7 @@ private:
   UFUNCTION()
   void SewUpperAndLeftTiles(TArray<uint16> HeightData, TArray<uint16>& OutHeightData, int IndexX, int IndexY);
 
-  // Converting a 2D coordinate to a 1D coordinate.
+  // 将2D坐标转换为1D坐标
   UFUNCTION()
   FORCEINLINE int Convert2DTo1DCoord(int IndexX, int IndexY, int TileSize)
   {

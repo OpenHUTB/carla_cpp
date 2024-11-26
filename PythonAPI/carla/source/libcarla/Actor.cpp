@@ -1,77 +1,84 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
-//
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据MIT许可证条款进行授权。
+// 许可证副本见<https://opensource.org/licenses/MIT>。
 
-#include <carla/client/Actor.h>
-#include <carla/client/TrafficLight.h>
-#include <carla/client/Vehicle.h>
-#include <carla/client/Walker.h>
-#include <carla/client/WalkerAIController.h>
-#include <carla/rpc/TrafficLightState.h>
-#include <carla/trafficmanager/TrafficManager.h>
+#include <carla/client/Actor.h> // 引入Actor功能的头文件
+#include <carla/client/TrafficLight.h> // 引入TrafficLight功能的头文件
+#include <carla/client/Vehicle.h> // 引入Vehicle功能的头文件
+#include <carla/client/Walker.h> // 引入Walker功能的头文件
+#include <carla/client/WalkerAIController.h> // 引入Walker AI控制器功能的头文件
+#include <carla/rpc/TrafficLightState.h> // 引入交通灯状态的头文件
+#include <carla/trafficmanager/TrafficManager.h> // 引入交通管理器功能的头文件
 
-#include <boost/python/suite/indexing/vector_indexing_suite.hpp>
+#include <boost/python/suite/indexing/vector_indexing_suite.hpp> // 引入Boost.Python库以支持向量索引
 
-#include <ostream>
-#include <iostream>
+#include <ostream> // 引入输出流的头文件
+#include <iostream> // 引入输入输出流的头文件
 
-namespace ctm = carla::traffic_manager;
+namespace ctm = carla::traffic_manager; // 为交通管理器命名空间创建别名
 
 namespace carla {
 namespace client {
 
-  std::ostream &operator<<(std::ostream &out, const Actor &actor) {
+// 重载输出流操作符以打印Actor信息
+std::ostream &operator<<(std::ostream &out, const Actor &actor) {
+    // 输出Actor的ID和类型
     out << "Actor(id=" << actor.GetId() << ", type=" << actor.GetTypeId() << ')';
     return out;
-  }
+}
 
 } // namespace client
 } // namespace carla
 
+// 模板函数将std::vector转换为Python列表
 template<class T>
 boost::python::list StdVectorToPyList(const std::vector<T> &vec) {
-  boost::python::list l;
-  for (auto &e : vec) {
-    l.append(e);
-  }
-  return l;
+    boost::python::list l; // 创建一个新的Python列表
+    for (auto &e : vec) { // 遍历向量中的每个元素
+        l.append(e); // 将每个元素添加到Python列表中
+    }
+    return l; // 返回填充好的Python列表
 }
 
+// 获取Actor的语义标签并转换为Python列表
 static boost::python::list GetSemanticTags(const carla::client::Actor &self) {
-  const std::vector<uint8_t> &tags = self.GetSemanticTags();
-  return StdVectorToPyList(tags);
+    const std::vector<uint8_t> &tags = self.GetSemanticTags(); // 获取语义标签
+    return StdVectorToPyList(tags); // 转换并返回为Python列表
 }
 
+// 为Actor添加冲击力
 static void AddActorImpulse(carla::client::Actor &self,
     const carla::geom::Vector3D &impulse) {
-  self.AddImpulse(impulse);
+    self.AddImpulse(impulse); // 对Actor施加冲击力
 }
 
+// 为Actor添加力
 static void AddActorForce(carla::client::Actor &self,
     const carla::geom::Vector3D &force) {
-  self.AddForce(force);
+    self.AddForce(force); // 对Actor施加力
 }
 
+// 获取与交通灯关联的组交通灯
 static auto GetGroupTrafficLights(carla::client::TrafficLight &self) {
-  auto values = self.GetGroupTrafficLights();
-  return StdVectorToPyList(values);
+    auto values = self.GetGroupTrafficLights(); // 获取组交通灯
+    return StdVectorToPyList(values); // 转换并返回为Python列表
 }
 
+// 模板函数为Walker应用控制
 template <typename ControlT>
 static void ApplyControl(carla::client::Walker &self, const ControlT &control) {
-  self.ApplyControl(control);
+    self.ApplyControl(control); // 将控制应用于Walker
 }
 
+// 获取交通灯的光源盒
 static auto GetLightBoxes(const carla::client::TrafficLight &self) {
-  boost::python::list result;
-  for (const auto &bb : self.GetLightBoxes()) {
-    result.append(bb);
-  }
-  return result;
+    boost::python::list result; // 创建一个新的Python列表用于结果
+    for (const auto &bb : self.GetLightBoxes()) { // 遍历每个边界框
+        result.append(bb); // 将边界框添加到结果列表中
+    }
+    return result; // 返回填充好的光源盒列表
 }
 
+// 将参与者的函数暴露出去
 void export_actor() {
   using namespace boost::python;
   namespace cc = carla::client;
@@ -107,6 +114,9 @@ void export_actor() {
         return attribute_dict;
       })
       .add_property("bounding_box", CALL_RETURNING_COPY(cc::Actor, GetBoundingBox))
+      // 第1个参数：carla.Actor中的get_world(self) Python方法名
+      // 第2个参数：LibCarla中的C++方法（函数名称前面加引用符号“&”的意思是返回引用类型）
+      // 返回参与者所属C++世界的一份拷贝，成为Python中的世界
       .def("get_world", CALL_RETURNING_COPY(cc::Actor, GetWorld))
       .def("get_location", &cc::Actor::GetLocation)
       .def("get_transform", &cc::Actor::GetTransform)
@@ -115,6 +125,7 @@ void export_actor() {
       .def("get_acceleration", &cc::Actor::GetAcceleration)
       .def("get_component_world_transform", &cc::Actor::GetComponentWorldTransform, (arg("component_name")))
       .def("get_component_relative_transform", &cc::Actor::GetComponentRelativeTransform, (arg("component_name")))
+      // 将返回值转换为Python列表的const请求
       .def("get_bone_world_transforms", CALL_RETURNING_LIST(cc::Actor,GetBoneWorldTransforms))
       .def("get_bone_relative_transforms", CALL_RETURNING_LIST(cc::Actor,GetBoneRelativeTransforms))
       .def("get_component_names", CALL_RETURNING_LIST(cc::Actor,GetComponentNames))
@@ -123,6 +134,7 @@ void export_actor() {
       .def("get_socket_relative_transforms", CALL_RETURNING_LIST(cc::Actor,GetSocketRelativeTransforms))   
       .def("get_socket_names", CALL_RETURNING_LIST(cc::Actor,GetSocketNames))         
       .def("set_location", &cc::Actor::SetLocation, (arg("location")))
+      // 将参与者传送到给定的变换（位置和旋转）
       .def("set_transform", &cc::Actor::SetTransform, (arg("transform")))
       .def("set_target_velocity", &cc::Actor::SetTargetVelocity, (arg("velocity")))
       .def("set_target_angular_velocity", &cc::Actor::SetTargetAngularVelocity, (arg("angular_velocity")))
@@ -195,7 +207,7 @@ void export_actor() {
       .def("apply_ackermann_controller_settings", &cc::Vehicle::ApplyAckermannControllerSettings, (arg("settings")))
       .def("get_ackermann_controller_settings", CONST_CALL_WITHOUT_GIL(cc::Vehicle, GetAckermannControllerSettings))
       .def("set_autopilot", CALL_WITHOUT_GIL_2(cc::Vehicle, SetAutopilot, bool, uint16_t), (arg("enabled") = true, arg("tm_port") = ctm::TM_DEFAULT_PORT))
-      .def("get_telemetry_data", CONST_CALL_WITHOUT_GIL(cc::Vehicle, GetTelemetryData))
+      .def("get_telemetry_data", CONST_CALL_WITHOUT_GIL(cc::Vehicle, GetTelemetryData))  // 向客户端暴露遥测数据
       .def("show_debug_telemetry", &cc::Vehicle::ShowDebugTelemetry, (arg("enabled") = true))
       .def("get_speed_limit", &cc::Vehicle::GetSpeedLimit)
       .def("get_traffic_light_state", &cc::Vehicle::GetTrafficLightState)
