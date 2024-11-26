@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+ï»¿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -8,7 +8,7 @@
 
 #include "CarlaWheeledVehicleState.generated.h"
 
-/// ÓÃÓÚµ÷ÊÔÄ¿µÄ£¬ÔÚ±à¼­Æ÷ÖĞÏÔÊ¾µÄCARLAÂÖÊ½³µÁ¾×´Ì¬¡£
+/// ç”¨äºè°ƒè¯•ç›®çš„ï¼Œåœ¨ç¼–è¾‘å™¨ä¸­æ˜¾ç¤ºçš„CARLAè½®å¼è½¦è¾†çŠ¶æ€ã€‚
 UENUM(BlueprintType)
 enum class ECarlaWheeledVehicleState : uint8
 {

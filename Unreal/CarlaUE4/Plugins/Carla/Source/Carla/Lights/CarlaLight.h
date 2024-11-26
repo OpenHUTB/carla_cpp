@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
+ï»¿// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -21,7 +21,7 @@
 UENUM(BlueprintType)
 enum class ELightType : uint8
 {
-  Null      = 0, // UE4.24 Ã¶¾ÙÎÊÌâµÄ½â¾ö·½·¨
+  Null      = 0, // UE4.24 æšä¸¾é—®é¢˜çš„è§£å†³æ–¹æ³•
   Vehicle   = CARLA_ENUM_FROM_RPC(Vehicle)    UMETA(DisplayName = "Vehicle"),
   Street    = CARLA_ENUM_FROM_RPC(Street)     UMETA(DisplayName = "Street"),
   Building  = CARLA_ENUM_FROM_RPC(Building)   UMETA(DisplayName = "Building"),
@@ -30,7 +30,7 @@ enum class ELightType : uint8
 
 #undef CARLA_ENUM_FROM_RPC
 
-// ±íÊ¾³¡¾°ÖĞµÆ¹âµÄÀà
+// è¡¨ç¤ºåœºæ™¯ä¸­ç¯å…‰çš„ç±»
 UCLASS(Blueprintable, BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class CARLA_API UCarlaLight : public UActorComponent
 {

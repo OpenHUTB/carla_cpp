@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -12,7 +12,7 @@
 
 void UCarlaLightSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
-  // TODO: ���ĵ�ͼ�仯
+  // TODO: 订阅地图变化
 }
 
 void UCarlaLightSubsystem::Deinitialize()
