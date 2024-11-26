@@ -10,18 +10,72 @@
 // https://github.com/sp4cerat/Fast-Quadric-Mesh-Simplification
 //
 // 5/2016: Chris Rorden created minimal version for OSX/Linux/Windows compile
-
+/**
+ * @brief 标准输入输出流库
+ *
+ * 提供输入输出功能，用于在控制台打印信息或读取用户输入。
+ */
 #include <iostream>
+ /**
+  * @brief 文件流库
+  *
+  * 提供文件读写功能，支持文本文件和二进制文件的操作。
+  */
 #include <fstream>
+  /**
+   * @brief 算法库
+   *
+   * 提供各种常用算法的实现，如排序、查找等。
+   */
 #include <algorithm>
+   /**
+    * @brief 字符串操作函数库（C风格）
+    *
+    * 提供一系列用于处理C风格字符串的函数，如复制、比较等。
+    */
 #include <string.h>
+    /**
+     * @brief 标准输入输出库（C风格）
+     *
+     * 提供基本的输入输出功能，如打印、读取等，通常用于控制台应用程序。
+     */
 #include <stdio.h>
+     /**
+      * @brief 标准库头文件（C风格）
+      *
+      * 提供内存分配、程序控制、环境访问等功能。
+      */
 #include <stdlib.h>
+      /**
+       * @brief 关联数组（映射）库
+       *
+       * 提供了一种存储键值对的数据结构，可以快速地根据键查找对应的值。
+       */
 #include <map>
+       /**
+        * @brief 动态数组库
+        *
+        * 提供了一种可以动态调整大小的数组数据结构，支持随机访问和高效的元素添加/删除。
+        */
 #include <vector>
+        /**
+         * @brief 字符串库（C++风格）
+         *
+         * 提供了一种表示和操作字符串的类，比C风格的字符串提供了更多的功能和安全性。
+         */
 #include <string>
+         /**
+          * @brief 数学库
+          *
+          * 提供各种数学函数，如三角函数、对数函数、幂函数等。
+          */
 #include <math.h>
-#include <float.h> //FLT_EPSILON, DBL_EPSILON
+          /**
+           * @brief 浮点型数值限制库
+           *
+           * 定义了浮点型数值的一些极限值，如最小正数（FLT_EPSILON, DBL_EPSILON）等。
+           */
+#include <float.h> 
 
 #define loopi(start_l, end_l) for (int i = start_l; i < end_l; ++i)
 #define loopi(start_l, end_l) for (int i = start_l; i < end_l; ++i)
