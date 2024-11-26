@@ -1245,42 +1245,92 @@ void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
   BiasGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
   BiasGyroZ.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
 
+  // 将一系列变量添加到Definition的Variations列表中，这些变量通常用于定义某个物体的噪声和偏差特性
   Definition.Variations.Append({
-    NoiseSeed,
-    StdDevAccelX,
-    StdDevAccelY,
-    StdDevAccelZ,
-    StdDevGyroX,
-    StdDevGyroY,
-    StdDevGyroZ,
-    BiasGyroX,
-    BiasGyroY,
-    BiasGyroZ});
+      // 噪声种子，用于生成随机数序列，以模拟噪声的随机性
+      NoiseSeed,      
 
+      // 加速度计X轴的标准偏差，表示X轴加速度测量值的噪声水平
+      StdDevAccelX,      
+
+      // 加速度计Y轴的标准偏差，表示Y轴加速度测量值的噪声水平
+      StdDevAccelY,   
+
+      // 加速度计Z轴的标准偏差，表示Z轴加速度测量值的噪声水平
+      StdDevAccelZ,  
+
+      // 陀螺仪X轴的标准偏差，表示X轴角速度测量值的噪声水平
+      StdDevGyroX,   
+
+      // 陀螺仪Y轴的标准偏差，表示Y轴角速度测量值的噪声水平
+      StdDevGyroY,     
+
+      // 陀螺仪Z轴的标准偏差，表示Z轴角速度测量值的噪声水平
+      StdDevGyroZ,     
+
+      // 陀螺仪X轴的偏差，表示X轴角速度测量值的固定偏移量
+      BiasGyroX, 
+
+      // 陀螺仪Y轴的偏差，表示Y轴角速度测量值的固定偏移量
+      BiasGyroY, 
+
+      // 陀螺仪Z轴的偏差，表示Z轴角速度测量值的固定偏移量
+      BiasGyroZ          
+      });
+
+  // 调用CheckActorDefinition函数来检查Definition对象的有效性或配置是否正确
   Success = CheckActorDefinition(Definition);
-}
 
-FActorDefinition UActorBlueprintFunctionLibrary::MakeRadarDefinition()
-{
-  FActorDefinition Definition;
-  bool Success;
-  MakeRadarDefinition(Success, Definition);
-  check(Success);
-  return Definition;
-}
 
-void UActorBlueprintFunctionLibrary::MakeRadarDefinition(
-    bool &Success,
-    FActorDefinition &Definition)
-{
-  FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("radar"));
-  AddVariationsForSensor(Definition);
+  // 在UActorBlueprintFunctionLibrary类中定义一个成员函数MakeRadarDefinition，该函数用于创建一个雷达的定义，并返回这个定义
+  FActorDefinition UActorBlueprintFunctionLibrary::MakeRadarDefinition()
+  {
+      // 定义一个FActorDefinition类型的变量Definition，用于存储雷达的定义
+      FActorDefinition Definition;
 
-  FActorVariation HorizontalFOV;
-  HorizontalFOV.Id = TEXT("horizontal_fov");
-  HorizontalFOV.Type = EActorAttributeType::Float;
-  HorizontalFOV.RecommendedValues = { TEXT("30") };
-  HorizontalFOV.bRestrictToRecommended = false;
+      // 定义一个布尔类型的变量Success，用于表示MakeRadarDefinition函数的执行结果是否成功
+      bool Success;
+
+      // 调用重载的MakeRadarDefinition函数，传入Success和Definition作为参数，用于填充雷达的定义并设置Success的值
+      MakeRadarDefinition(Success, Definition);
+
+      // 使用check宏来确保MakeRadarDefinition函数执行成功，如果不成功则会在此处触发断言失败
+      check(Success);
+
+      // 返回填充好的雷达定义
+      return Definition;
+  }
+
+  // 在UActorBlueprintFunctionLibrary类中定义一个重载的成员函数MakeRadarDefinition，该函数用于填充雷达的定义
+  void UActorBlueprintFunctionLibrary::MakeRadarDefinition(
+
+      // 引用传递，用于返回函数执行的结果是否成功
+      bool& Success, 
+
+      // 引用传递，用于接收并填充雷达的定义
+      FActorDefinition& Definition) 
+  {
+      // 调用FillIdAndTags函数，为Definition设置ID和标签，
+      FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("radar"));
+
+      // 调用AddVariationsForSensor函数，为Definition添加传感器的变化特性
+      AddVariationsForSensor(Definition);
+
+      // 定义一个FActorVariation类型的变量HorizontalFOV，用于表示雷达的水平视场角（Field of View）的变化特性
+      FActorVariation HorizontalFOV;
+
+      // 设置HorizontalFOV的ID为"horizontal_fov"
+      HorizontalFOV.Id = TEXT("horizontal_fov");
+
+      // 设置HorizontalFOV的类型为浮点型
+      HorizontalFOV.Type = EActorAttributeType::Float;
+
+      // 设置HorizontalFOV的推荐值为"30"
+      HorizontalFOV.RecommendedValues = { TEXT("30") };
+
+      // 设置HorizontalFOV是否限制为只能使用推荐值，这里设置为false
+      HorizontalFOV.bRestrictToRecommended = false;
+
 
   FActorVariation VerticalFOV;
   VerticalFOV.Id = TEXT("vertical_fov");
