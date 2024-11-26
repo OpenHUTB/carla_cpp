@@ -485,14 +485,27 @@ struct vec3f
      * 用于随机数生成的内部状态变量。
      */
   static int random_number;
-
+  /**
+     * @brief 生成一个[0, 1)范围内的随机双精度浮点数，基于给定的输入进行变换
+     *
+     * 使用一个复杂的线性同余生成器（LCG）算法，基于给定的输入a生成一个随机数。
+     *
+     * @param a 输入值，用于影响生成的随机数。
+     * @return [0, 1)范围内的随机双精度浮点数。
+     */
   double random_double_01(double a)
   {
     double rnf = a * 14.434252 + a * 364.2343 + a * 4213.45352 + a * 2341.43255 + a * 254341.43535 + a * 223454341.3523534245 + 23453.423412;
     int rni = ((int)rnf) % 100000;
     return double(rni) / (100000.0f - 1.0f);
   }
-
+  /**
+     * @brief 将当前向量的每个分量设置为[0, 1)范围内的随机数
+     *
+     * 使用random_double_01方法为每个分量生成一个随机数。
+     *
+     * @return 修改后的向量的引用。
+     */
   vec3f random01_fxyz()
   {
     x = (double)random_double_01(x);
@@ -501,7 +514,18 @@ struct vec3f
     return *this;
   }
 };
-
+/**
+ * @brief 计算点p相对于三角形abc的重心坐标
+ *
+ * 给定三角形abc和点p，计算点p的重心坐标(u, v, w)。
+ * 重心坐标满足u + v + w = 1，并且表示点p相对于三角形abc的位置。
+ *
+ * @param p 需要计算重心坐标的点
+ * @param a 三角形的第一个顶点
+ * @param b 三角形的第二个顶点
+ * @param c 三角形的第三个顶点
+ * @return vec3f 包含重心坐标(u, v, w)的向量
+ */
 vec3f barycentric(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c)
 {
   vec3f v0 = b - a;
@@ -518,7 +542,19 @@ vec3f barycentric(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c
   double u = 1.0 - v - w;
   return vec3f(u, v, w);
 }
-
+/**
+ * @brief 根据重心坐标插值属性
+ *
+ * 给定三角形abc和点p的重心坐标，以及三角形abc三个顶点的属性attrs，
+ * 计算点p处的插值属性。
+ *
+ * @param p 需要计算插值属性的点
+ * @param a 三角形的第一个顶点
+ * @param b 三角形的第二个顶点
+ * @param c 三角形的第三个顶点
+ * @param attrs 包含三角形三个顶点属性的数组
+ * @return vec3f 插值后的属性向量
+ */
 vec3f interpolate(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c, const vec3f attrs[3])
 {
   vec3f bary = barycentric(p, a, b, c);
@@ -528,20 +564,40 @@ vec3f interpolate(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c
   out = out + attrs[2] * bary.z;
   return out;
 }
-
+/**
+ * @brief 返回两个数中的较小值
+ *
+ * @param v1 第一个数
+ * @param v2 第二个数
+ * @return double 返回v1和v2中的较小值
+ */
 double min(double v1, double v2)
 {
   return fmin(v1, v2);
 }
-
+/**
+ * @brief 对称矩阵类
+ *
+ * 表示一个4x4对称矩阵，只存储上三角矩阵的元素（包括对角线）。
+ */
 class SymetricMatrix
 {
 
 public:
-  // Constructor
-
+    /**
+       * @brief 构造函数，使用默认值初始化所有元素
+       *
+       * @param c 所有元素的默认值
+       */
   SymetricMatrix(double c = 0) { loopi(0, 10) m[i] = c; }
-
+  /**
+     * @brief 构造函数，使用给定的值初始化矩阵
+     *
+     * @param m11, m12, m13, m14 上三角矩阵的第一行元素
+     * @param m22, m23, m24 上三角矩阵的第二行元素（不包括m21，因为是对称矩阵）
+     * @param m33, m34 上三角矩阵的第三行元素（不包括m31, m32，因为是对称矩阵）
+     * @param m44 上三角矩阵的第四行第四列元素（不包括m41, m42, m43，因为是对称矩阵）
+     */
   SymetricMatrix(double m11, double m12, double m13, double m14,
                  double m22, double m23, double m24,
                  double m33, double m34,
@@ -559,8 +615,17 @@ public:
     m[9] = m44;
   }
 
-  // Make plane
-
+  /**
+     * @brief 使用平面方程的参数构造对称矩阵
+     *
+     * 给定平面方程ax + by + cz + d = 0的参数a, b, c, d，
+     * 构造一个表示该平面点积矩阵的对称矩阵。
+     *
+     * @param a 平面方程的参数a
+     * @param b 平面方程的参数b
+     * @param c 平面方程的参数c
+     * @param d 平面方程的参数d
+     */
   SymetricMatrix(double a, double b, double c, double d)
   {
     m[0] = a * a;
@@ -574,11 +639,24 @@ public:
     m[8] = c * d;
     m[9] = d * d;
   }
-
+  /**
+     * @brief 访问矩阵元素
+     *
+     * @param c 要访问的元素索引
+     * @return double 返回指定索引处的矩阵元素值
+     */
   double operator[](int c) const { return m[c]; }
 
-  // Determinant
-
+  /**
+      * @brief 计算矩阵的子行列式
+      *
+      * 给定子行列式的元素索引，计算该子行列式的值。
+      *
+      * @param a11, a12, a13 子行列式的第一行元素索引
+      * @param a21, a22, a23 子行列式的第二行元素索引
+      * @param a31, a32, a33 子行列式的第三行元素索引
+      * @return double 返回子行列式的值
+      */
   double det(int a11, int a12, int a13,
              int a21, int a22, int a23,
              int a31, int a32, int a33)
@@ -586,7 +664,12 @@ public:
     double det = m[a11] * m[a22] * m[a33] + m[a13] * m[a21] * m[a32] + m[a12] * m[a23] * m[a31] - m[a13] * m[a22] * m[a31] - m[a11] * m[a23] * m[a32] - m[a12] * m[a21] * m[a33];
     return det;
   }
-
+  /**
+     * @brief 矩阵加法运算符重载
+     *
+     * @param n 要相加的另一个对称矩阵
+     * @return SymetricMatrix 返回相加后的新对称矩阵
+     */
   const SymetricMatrix operator+(const SymetricMatrix &n) const
   {
     return SymetricMatrix(m[0] + n[0], m[1] + n[1], m[2] + n[2], m[3] + n[3],
@@ -594,7 +677,12 @@ public:
                           m[7] + n[7], m[8] + n[8],
                           m[9] + n[9]);
   }
-
+  /**
+     * @brief 矩阵加法赋值运算符重载
+     *
+     * @param n 要相加的另一个对称矩阵
+     * @return SymetricMatrix& 返回当前矩阵的引用，以便链式调用
+     */
   SymetricMatrix &operator+=(const SymetricMatrix &n)
   {
     m[0] += n[0];
@@ -609,7 +697,11 @@ public:
     m[9] += n[9];
     return *this;
   }
-
+  /**
+     * @brief 存储矩阵元素的数组
+     *
+     * 只存储上三角矩阵的元素（包括对角线），共10个元素。
+     */
   double m[10];
 };
 ///////////////////////////////////////////
