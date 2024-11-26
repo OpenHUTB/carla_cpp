@@ -1054,8 +1054,22 @@ namespace Simplify
       compact_mesh();
     } // simplify_mesh_lossless()
 
-    // Check if a triangle flips when this edge is removed
-
+    /**
+ * @brief 检查移除指定边后三角形是否会翻转
+ *
+ * 遍历与顶点v0相关联的所有三角形，检查如果移除边(p, v0) -> (p, v1)后，
+ * 是否有三角形发生翻转。翻转的条件包括：
+ * 1. 边(p, v0)相邻的两向量几乎共线（点积接近1或-1）。
+ * 2. 三角形的法向量与由边(p, v0)相邻的两向量构成的平面的法向量差异较大。
+ *
+ * @param p       与v0和v1形成边的另一个端点
+ * @param i0      顶点p在顶点数组中的索引
+ * @param i1      顶点v1在顶点数组中的索引
+ * @param v0      顶点v0的引用
+ * @param v1      顶点v1的引用
+ * @param deleted 用于标记被删除的三角形的数组
+ * @return true 如果移除边后至少有一个三角形翻转，否则返回false
+ */
     bool flipped(vec3f p, int i0, int i1, Vertex &v0, Vertex &v1, std::vector<int> &deleted)
     {
 
@@ -1091,8 +1105,17 @@ namespace Simplify
       return false;
     }
 
-    // update_uvs
-
+    /**
+ * @brief 更新UV坐标
+ *
+ * 遍历与顶点v相关联的所有三角形，对于未被删除且当前顶点未被标记为删除的三角形，
+ * 更新其UV坐标。新的UV坐标通过插值计算得到。
+ *
+ * @param i0      顶点p在顶点数组中的索引
+ * @param v       顶点v的引用
+ * @param p       与v形成边的另一个端点
+ * @param deleted 用于标记被删除的三角形的数组
+ */
     void update_uvs(int i0, const Vertex &v, const vec3f &p, std::vector<int> &deleted)
     {
       loopk(0, v.tcount)
@@ -1110,8 +1133,18 @@ namespace Simplify
       }
     }
 
-    // Update triangle connections and edge error after a edge is collapsed
-
+    /**
+  * @brief 更新三角形连接和边误差
+  *
+  * 遍历与顶点v相关联的所有三角形，更新其顶点连接和边误差。如果三角形被标记为删除，
+  * 则将其标记为已删除并增加已删除三角形的计数。否则，更新三角形的顶点连接，
+  * 并重新计算其误差。
+  *
+  * @param i0                顶点p在顶点数组中的索引
+  * @param v                 顶点v的引用
+  * @param deleted           用于标记被删除的三角形的数组
+  * @param deleted_triangles 已删除三角形的计数，通过引用传递以便更新
+  */
     void update_triangles(int i0, Vertex &v, std::vector<int> &deleted, int &deleted_triangles)
     {
       vec3f p;
@@ -1137,40 +1170,48 @@ namespace Simplify
       }
     }
 
-    // compact triangles, compute edge error and build reference list
-
+    /**
+ * @brief 更新网格：压缩三角形，并建立引用列表
+ *
+ * 该函数在指定的迭代次数大于0时，会压缩三角形数组，移除被标记为删除的三角形。
+ * 接着，它会初始化顶点的三角形起始索引和三角形计数，然后遍历三角形数组来更新这些值。
+ * 最后，它会构建一个引用列表，该列表将每个顶点与其相关联的三角形以及三角形中的顶点索引相关联。
+ *
+ *
+ * @param iteration 当前迭代次数，用于判断是否进行三角形的压缩
+ */
     void update_mesh(int iteration)
-    {
-      if (iteration > 0) // compact triangles
+    {// 如果迭代次数大于0，则压缩三角形数组
+      if (iteration > 0)  
       {
-        int dst = 0;
-        loopi(0, triangles.size()) if (!triangles[i].deleted)
+        int dst = 0;// 目标索引，用于记录非删除三角形的位置
+        loopi(0, triangles.size()) if (!triangles[i].deleted)// 遍历三角形数组
         {
-          triangles[dst++] = triangles[i];
+          triangles[dst++] = triangles[i];// 将非删除三角形移动到数组前面
         }
-        triangles.resize(dst);
+        triangles.resize(dst);// 调整三角形数组大小，移除被删除的三角形
       }
       //
 
-      // Init Reference ID list
+      // 初始化顶点的三角形起始索引和三角形计数
       loopi(0, vertices.size())
       {
-        vertices[i].tstart = 0;
-        vertices[i].tcount = 0;
+        vertices[i].tstart = 0;// 初始化三角形的起始索引为0
+        vertices[i].tcount = 0;// 初始化与该顶点相关联的三角形数量为0
       }
-
+      // 更新顶点的三角形计数
       loopi(0, triangles.size())
       {
-        Triangle &t = triangles[i];
-        loopj(0, 3) vertices[t.v[j]].tcount++;
+        Triangle &t = triangles[i];// 引用当前三角形
+        loopj(0, 3) vertices[t.v[j]].tcount++;// 遍历三角形的三个顶点，增加与该顶点相关联的三角形数量
       }
-      int tstart = 0;
+      int tstart = 0;// 用于计算每个顶点的三角形起始索引
       loopi(0, vertices.size())
       {
-        Vertex &v = vertices[i];
-        v.tstart = tstart;
-        tstart += v.tcount;
-        v.tcount = 0;
+        Vertex &v = vertices[i];// 引用当前顶点
+        v.tstart = tstart;// 设置该顶点的三角形起始索引
+        tstart += v.tcount;// 更新下一个顶点的三角形起始索引
+        v.tcount = 0;// 重置顶点的三角形计数（为构建引用列表做准备）
       }
 
       // Write References
