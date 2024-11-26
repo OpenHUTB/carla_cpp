@@ -183,7 +183,12 @@ struct vec3f
     z = a.z;
     return *this;
   }
-
+  /**
+ * @brief 赋值运算符重载，用于将另一个vec3f对象的值赋给当前对象。
+ *
+ * @param a 另一个vec3f对象，其值将被赋给当前对象。
+ * @return 返回当前对象的引用。
+ */
   inline vec3f operator=(const vec3f a)
   {
     x = a.x;
@@ -191,27 +196,55 @@ struct vec3f
     z = a.z;
     return *this;
   }
-
+  /**
+ * @brief 向量除法运算符重载，计算当前对象与另一个vec3f对象对应分量相除的结果。
+ *
+ * @param a 另一个vec3f对象，其对应分量将用作除数。
+ * @return 返回一个新vec3f对象，包含除法运算的结果。
+ */
   inline vec3f operator/(const vec3f a) const
   {
     return vec3f(x / a.x, y / a.y, z / a.z);
   }
-
+  /**
+ * @brief 向量减法运算符重载，计算当前对象与另一个vec3f对象对应分量相减的结果。
+ *
+ * @param a 另一个vec3f对象，其对应分量将从当前对象的对应分量中减去。
+ * @return 返回一个新vec3f对象，包含减法运算的结果。
+ */
   inline vec3f operator-(const vec3f &a) const
   {
     return vec3f(x - a.x, y - a.y, z - a.z);
   }
-
+  /**
+ * @brief 向量与标量除法运算符重载，计算当前对象与给定标量相除的结果。
+ *
+ * @param a 一个标量，将用作除数。
+ * @return 返回一个新vec3f对象，包含除法运算的结果。
+ */
   inline vec3f operator/(const double a) const
   {
     return vec3f(x / a, y / a, z / a);
   }
-
+  /**
+ * @brief 计算当前对象与另一个vec3f对象的点积。
+ *
+ * @param a 另一个vec3f对象。
+ * @return 返回点积的结果。
+ */
   inline double dot(const vec3f &a) const
   {
     return a.x * x + a.y * y + a.z * z;
   }
-
+  /**
+ * @brief 计算两个三维向量的叉积
+ *
+ * 计算两个三维向量a和b的叉积，并将结果存储在调用对象中。
+ *
+ * @param a 第一个三维向量
+ * @param b 第二个三维向量
+ * @return 调用对象的引用，其值被更新为叉积的结果
+ */
   inline vec3f cross(const vec3f &a, const vec3f &b)
   {
     x = a.y * b.z - a.z * b.y;
@@ -219,22 +252,38 @@ struct vec3f
     z = a.x * b.y - a.y * b.x;
     return *this;
   }
-
+  /**
+ * @brief 计算当前向量与另一个向量之间的角度
+ *
+ * 计算当前向量（*this）与向量v之间的夹角（弧度）。
+ *
+ * @param v 另一个三维向量
+ * @return 夹角（以弧度为单位）
+ */
   inline double angle(const vec3f &v)
   {
     vec3f a = v, b = *this;
     double dot = v.x * x + v.y * y + v.z * z;
     double len = a.length() * b.length();
     if (len == 0)
-      len = 0.00001f;
+      len = 0.00001f;// 避免除以零
     double input = dot / len;
     if (input < -1)
-      input = -1;
+      input = -1;// 防止acos参数超出范围
     if (input > 1)
       input = 1;
     return (double)acos(input);
   }
-
+  /**
+ * @brief 计算两个向量之间的角度，考虑第三个向量定义的平面
+ *
+ * 计算向量v和当前向量（*this）之间的夹角，但考虑由第三个向量w定义的平面。
+ * 如果当前向量v在由w和b定义的平面的法线方向上投影为正，则返回负角度。
+ *
+ * @param v 第一个三维向量
+ * @param w 用于定义平面的第三个三维向量
+ * @return 夹角（以弧度为单位）
+ */
   inline double angle2(const vec3f &v, const vec3f &w)
   {
     vec3f a = v, b = *this;
@@ -244,10 +293,10 @@ struct vec3f
       len = 1;
 
     vec3f plane;
-    plane.cross(b, w);
+    plane.cross(b, w);// 计算b和w的叉积，得到平面的法向量
 
     if (plane.x * a.x + plane.y * a.y + plane.z * a.z > 0)
-      return (double)-acos(dot / len);
+      return (double)-acos(dot / len);// 如果v在法线方向上的投影为正，返回负角度
 
     return (double)acos(dot / len);
   }
