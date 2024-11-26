@@ -76,33 +76,69 @@
            * 定义了浮点型数值的一些极限值，如最小正数（FLT_EPSILON, DBL_EPSILON）等。
            */
 #include <float.h> 
-
+           /**
+            * @def loopi
+            * @brief 定义一个循环宏，使用变量i从start_l迭代到end_l（不包括end_l）。
+            *
+            * @param start_l 循环起始值（包含）。
+            * @param end_l 循环结束值（不包含）。
+            */
 #define loopi(start_l, end_l) for (int i = start_l; i < end_l; ++i)
+            /**
+             * @def loopj
+             * @brief 定义一个循环宏，使用变量j从start_l迭代到end_l（不包括end_l）。
+             *
+             * @param start_l 循环起始值（包含）。
+             * @param end_l 循环结束值（不包含）。
+             */
 #define loopi(start_l, end_l) for (int i = start_l; i < end_l; ++i)
 #define loopj(start_l, end_l) for (int j = start_l; j < end_l; ++j)
+             /**
+              * @def loopk
+              * @brief 定义一个循环宏，使用变量k从start_l迭代到end_l（不包括end_l）。
+              *
+              * @param start_l 循环起始值（包含）。
+              * @param end_l 循环结束值（不包含）。
+              */
 #define loopk(start_l, end_l) for (int k = start_l; k < end_l; ++k)
-
+              /**
+               * @struct vector3
+               * @brief 一个简单的三维向量结构体，包含x、y、z三个坐标。
+               */
 struct vector3
 {
   double x, y, z;
 };
-
+/**
+ * @struct vec3f
+ * @brief 一个包含三维浮点数坐标的向量结构体，提供了一系列向量运算。
+ */
 struct vec3f
 {
   double x, y, z;
-
+  /**
+   * @brief 默认构造函数。
+   */
   inline vec3f(void) {}
 
-  // inline vec3f operator =( vector3 a )
-  // { vec3f b ; b.x = a.x; b.y = a.y; b.z = a.z; return b;}
-
+  /**
+    * @brief 拷贝构造函数，从另一个vector3对象构造。
+    *
+    * @param a 一个vector3对象。
+    */
   inline vec3f(vector3 a)
   {
     x = a.x;
     y = a.y;
     z = a.z;
   }
-
+  /**
+   * @brief 参数化构造函数，从三个浮点数构造。
+   *
+   * @param X x坐标。
+   * @param Y y坐标。
+   * @param Z z坐标。
+   */
   inline vec3f(const double X, const double Y, const double Z)
   {
     x = X;
@@ -134,7 +170,12 @@ struct vec3f
   {
     return vec3f(x, y, z);
   }
-
+  /**
+   * @brief 赋值运算符重载，从另一个vec3f对象赋值。
+   *
+   * @param a 另一个vec3f对象。
+   * @return 返回当前对象的引用。
+   */
   inline vec3f operator=(const vector3 a)
   {
     x = a.x;
