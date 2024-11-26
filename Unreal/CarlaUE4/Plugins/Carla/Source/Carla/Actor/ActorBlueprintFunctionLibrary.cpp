@@ -1179,19 +1179,21 @@ void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
   NoiseSeed.bRestrictToRecommended = false;     // 设置不限制为推荐值
  
   // -------------------------------- 加速度计标准差 --------------------------
-  // X分量
+  // X 分量
   FActorVariation StdDevAccelX;
   StdDevAccelX.Id = TEXT("noise_accel_stddev_x"); // 设置ID为"noise_accel_stddev_x"
   StdDevAccelX.Type = EActorAttributeType::Float; // 设置类型为浮点型
   StdDevAccelX.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
   StdDevAccelX.bRestrictToRecommended = false;     // 设置不限制为推荐值
-  // Y分量
+
+  // Y 分量
   FActorVariation StdDevAccelY;
   StdDevAccelY.Id = TEXT("noise_accel_stddev_y"); // 设置ID为"noise_accel_stddev_y"
   StdDevAccelY.Type = EActorAttributeType::Float; // 设置类型为浮点型
   StdDevAccelY.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
   StdDevAccelY.bRestrictToRecommended = false;     // 设置不限制为推荐值
-  // Z分量
+
+  // Z 分量
   FActorVariation StdDevAccelZ;
   StdDevAccelZ.Id = TEXT("noise_accel_stddev_z"); // 设置ID为"noise_accel_stddev_z"
   StdDevAccelZ.Type = EActorAttributeType::Float; // 设置类型为浮点型
@@ -1199,25 +1201,27 @@ void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
   StdDevAccelZ.bRestrictToRecommended = false;     // 设置不限制为推荐值
 
 
-  // - Gyroscope Standard Deviation --------------
-  // X Component
-  FActorVariation StdDevGyroX;
-  StdDevGyroX.Id = TEXT("noise_gyro_stddev_x");
-  StdDevGyroX.Type = EActorAttributeType::Float;
-  StdDevGyroX.RecommendedValues = { TEXT("0.0") };
-  StdDevGyroX.bRestrictToRecommended = false;
-  // Y Component
-  FActorVariation StdDevGyroY;
-  StdDevGyroY.Id = TEXT("noise_gyro_stddev_y");
-  StdDevGyroY.Type = EActorAttributeType::Float;
-  StdDevGyroY.RecommendedValues = { TEXT("0.0") };
-  StdDevGyroY.bRestrictToRecommended = false;
-  // Z Component
-  FActorVariation StdDevGyroZ;
-  StdDevGyroZ.Id = TEXT("noise_gyro_stddev_z");
-  StdDevGyroZ.Type = EActorAttributeType::Float;
-  StdDevGyroZ.RecommendedValues = { TEXT("0.0") };
-  StdDevGyroZ.bRestrictToRecommended = false;
+  // - 陀螺仪标准差 --------------
+  // X 分量
+  FActorVariation StdDevGyroX; // 定义一个变量，用于存储陀螺仪X轴方向的标准差
+  StdDevGyroX.Id = TEXT("noise_gyro_stddev_x"); // 设置该变量的标识符为"noise_gyro_stddev_x"
+  StdDevGyroX.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
+  StdDevGyroX.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  StdDevGyroX.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
+
+  // Y 分量
+  FActorVariation StdDevGyroY; // 定义一个变量，用于存储陀螺仪Y轴方向的标准差
+  StdDevGyroY.Id = TEXT("noise_gyro_stddev_y"); // 设置该变量的标识符为"noise_gyro_stddev_y"
+  StdDevGyroY.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
+  StdDevGyroY.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  StdDevGyroY.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
+
+  // Z 分量
+  FActorVariation StdDevGyroZ; // 定义一个变量，用于存储陀螺仪Z轴方向的标准差
+  StdDevGyroZ.Id = TEXT("noise_gyro_stddev_z"); // 设置该变量的标识符为"noise_gyro_stddev_z"
+  StdDevGyroZ.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
+  StdDevGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  StdDevGyroZ.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
 
   // - Gyroscope Bias ----------------------------
   // X Component
