@@ -300,7 +300,14 @@ struct vec3f
 
     return (double)acos(dot / len);
   }
-
+  /**
+ * @brief 绕X轴旋转当前向量
+ *
+ * 将当前向量绕X轴旋转a弧度。
+ *
+ * @param a 旋转角度（以弧度为单位）
+ * @return 调用对象的引用，其值被更新为旋转后的结果
+ */
   inline vec3f rot_x(double a)
   {
     double yy = cos(a) * y + sin(a) * z;
@@ -309,6 +316,14 @@ struct vec3f
     z = zz;
     return *this;
   }
+  /**
+ * @brief 绕Y轴旋转当前向量
+ *
+ * 将当前向量绕Y轴旋转a弧度。
+ *
+ * @param a 旋转角度（以弧度为单位）
+ * @return 调用对象的引用，其值被更新为旋转后的结果
+ */
   inline vec3f rot_y(double a)
   {
     double xx = cos(-a) * x + sin(-a) * z;
@@ -317,6 +332,14 @@ struct vec3f
     z = zz;
     return *this;
   }
+  /**
+ * @brief 将当前向量的分量限制在最小值和最大值之间
+ *
+ * 将当前向量的x、y、z分量限制在min和max之间。
+ *
+ * @param min 最小值
+ * @param max 最大值
+ */
   inline void clamp(double min, double max)
   {
     if (x < min)
@@ -332,6 +355,14 @@ struct vec3f
     if (z > max)
       z = max;
   }
+  /**
+ * @brief 绕Z轴旋转当前向量
+ *
+ * 将当前向量绕Z轴旋转a弧度。
+ *
+ * @param a 旋转角度（以弧度为单位）
+ * @return 调用对象的引用，其值被更新为旋转后的结果
+ */
   inline vec3f rot_z(double a)
   {
     double yy = cos(a) * y + sin(a) * x;
@@ -340,6 +371,13 @@ struct vec3f
     x = xx;
     return *this;
   }
+  /**
+     * @brief 获取当前向量的相反向量
+     *
+     * 将当前向量的每个分量取反，并返回修改后的向量。
+     *
+     * @return 修改后的向量的引用。
+     */
   inline vec3f invert()
   {
     x = -x;
@@ -347,6 +385,13 @@ struct vec3f
     z = -z;
     return *this;
   }
+  /**
+     * @brief 获取当前向量的分数部分
+     *
+     * 将当前向量的每个分量转换为小数部分（即去除整数部分）。
+     *
+     * @return 一个新的包含小数部分的向量。
+     */
   inline vec3f frac()
   {
     return vec3f(
@@ -354,7 +399,13 @@ struct vec3f
         y - double(int(y)),
         z - double(int(z)));
   }
-
+  /**
+     * @brief 获取当前向量的整数部分
+     *
+     * 将当前向量的每个分量转换为整数部分（即去除小数部分）。
+     *
+     * @return 一个新的包含整数部分的向量。
+     */
   inline vec3f integer()
   {
     return vec3f(
@@ -362,12 +413,25 @@ struct vec3f
         double(int(y)),
         double(int(z)));
   }
-
+  /**
+     * @brief 获取当前向量的长度
+     *
+     * 计算并返回当前向量的长度（欧几里得范数）。
+     *
+     * @return 向量的长度。
+     */
   inline double length() const
   {
     return (double)sqrt(x * x + y * y + z * z);
   }
-
+  /**
+     * @brief 将当前向量归一化
+     *
+     * 将当前向量缩放为其单位长度（即长度为1），或者指定的长度。
+     *
+     * @param desired_length 希望的长度，默认为1。
+     * @return 修改后的向量的引用。
+     */
   inline vec3f normalize(double desired_length = 1)
   {
     double square = sqrt(x * x + y * y + z * z);
@@ -384,12 +448,42 @@ struct vec3f
 
     return *this;
   }
+  /**
+     * @brief 静态方法：归一化一个向量
+     *
+     * 计算并返回一个向量的单位长度版本。
+     *
+     * @param a 要归一化的向量。
+     * @return 归一化后的向量。
+     */
   static vec3f normalize(vec3f a);
-
+  /**
+     * @brief 静态方法：初始化随机数生成器
+     *
+     * 设置随机数生成的初始状态。
+     */
   static void random_init();
+  /**
+     * @brief 静态方法：生成一个随机双精度浮点数
+     *
+     * 生成一个在[0, 1)范围内的随机双精度浮点数。
+     *
+     * @return 随机双精度浮点数。
+     */
   static double random_double();
+  /**
+     * @brief 静态方法：生成一个随机三维向量
+     *
+     * 生成一个每个分量都在[0, 1)范围内的随机三维向量。
+     *
+     * @return 随机三维向量。
+     */
   static vec3f random();
-
+  /**
+     * @brief 静态成员变量：随机数生成器使用的随机数
+     *
+     * 用于随机数生成的内部状态变量。
+     */
   static int random_number;
 
   double random_double_01(double a)
