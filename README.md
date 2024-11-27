@@ -37,7 +37,7 @@ git push
 2.找到需要修改的文件：
 ![](./img/header_path.jpg)
 
-3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留。源代码文件采用UTF-8编码）：
+3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留。源代码文件统一采用`UTF-8-BOM`编码，即`UTF-8带签名编码`，vs2019中的 [操作方法](https://www.cnblogs.com/leokale-zz/p/11423953.html) ）：
 ![](./img/update_annotated.jpg)
 
 4.运行`doxygen`重新生成文档，查看修改后的文档：
@@ -141,16 +141,16 @@ git rm -rf .
 [xhoyh](https://github.com/xhoyh) 、
 [ggiiatr](https://github.com/ggiiatr) 、
 [suki-mina](https://github.com/suki-mina) 、
-[qqggxx](https://github.com/qqggxx)
+[qqggxx](https://github.com/qqggxx)、
 [leeyuu-z](http://github.com/leeyuu-z) 、
 [zi666zi](http://github.com/zi666zi) 、
-[dzq168](https://github.com/dzq168)
-[riset77](https://github.com/riset77)
-[ylyl551](https://github.com/yly551)
-[zhemuqi](https://github.com/zhemuqi)
-[YL007-STRONG](https://github.com/YL007-STRONG)
-[nigor-peter](https://github.com/nigor-peter)
-[jiameixiao](https://github.com/jiameixiao)
+[dzq168](https://github.com/dzq168)、
+[riset77](https://github.com/riset77)、
+[ylyl551](https://github.com/yly551)、
+[zhemuqi](https://github.com/zhemuqi)、
+[YL007-STRONG](https://github.com/YL007-STRONG)、
+[nigor-peter](https://github.com/nigor-peter)、
+[jiameixiao](https://github.com/jiameixiao)、
 [2665055983](https://github.com/2665055983)、
 [Seavey0402](https://github.com/Seavey0402)、 
 [yangf95](https://github.com/yangf95)、
@@ -168,22 +168,25 @@ git rm -rf .
 [SRX-ytk](https://github.com/SRX-ytk)、
 [xiaoyu-903](https://github.come/xiaoyu-903)、
 [zhouxinyu-a11y](https://github.come/zhouxinyu-a11y)、
-[wdlmd20](https://github.com/wdlmd20)。
+[wdlmd20](https://github.com/wdlmd20)、
 [wdlmd20](https://github.com/wdlmd20)、
 [Hcir-lk](https://github.com/Hcir-lk)、
-[S1TZ](https://github.com/S1TZ)。
-[lzg6667](https://github.com/lzg6667)。
+[S1TZ](https://github.com/S1TZ)、
+[lzg6667](https://github.com/lzg6667)、
 [RYZ-666](https://github.com/RYZ-666)、
 [Taohygge](https://github.com/Taohygge)、
-[HZY-23](https://github.com/HZY-23)。
-[hugufy](https://github.com/hugufy)
-[54zwz](https://github.com/54zwz)
-[xuebaobizui](https://github.com/xuebaobizui)
-[certain-m](https://github.com/caerain-m)。
-[kuanghy123](https://github.com/kuanghy123)。
-[longxiang06](https://github.com/longxiang06)
-[takagis](https://github.com/takagis)
-[dq1](https://github.com/dq1)
-[xiao-ice666](https://github.com/xiao-ice666)
-[bless416](https://github.com/bless416)
-[haleely](https://github.com/haleely)
+[HZY-23](https://github.com/HZY-23)、
+[hugufy](https://github.com/hugufy）、
+[54zwz](https://github.com/54zwz)、
+[xuebaobizui](https://github.com/xuebaobizui)、
+[certain-m](https://github.com/caerain-m)、
+[kuanghy123](https://github.com/kuanghy123)、
+[longxiang06](https://github.com/longxiang06)、
+[takagis](https://github.com/takagis)、
+[dq1](https://github.com/dq1)、
+[xiao-ice666](https://github.com/xiao-ice666)、
+[bless416](https://github.com/bless416)、
+[haleely](https://github.com/haleely)。
+[haohaozhuzzzz](https://github.com/haohaozhuzzzz)、
+[big-Shuaige](https://github.com/big-Shuaige)、
+[lingyanNB](https://github.com/lingyanNB)、

@@ -4,73 +4,100 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+// 包含ActorData类的头文件
 #include "ActorData.h"
+ 
+// 包含Carla库中关于游戏集、交通灯、交通标志、交通灯组件、交通灯控制器等相关的头文件
 #include "Carla/Game/CarlaEpisode.h"
 #include "Carla/Traffic/TrafficLightBase.h"
 #include "Carla/Traffic/SignComponent.h"
 #include "Carla/Traffic/TrafficLightComponent.h"
 #include "Carla/Traffic/TrafficLightController.h"
+ 
+// 包含Carla库中关于游戏模式基础类和静态类的头文件
 #include "Carla/Game/CarlaGameModeBase.h"
 #include "Carla/Game/CarlaStatics.h"
+ 
+// 包含Carla库中关于车辆的头文件
 #include "Carla/Vehicle/CarlaWheeledVehicle.h"
+ 
+// 包含游戏框架中角色移动组件的头文件
 #include "GameFramework/CharacterMovementComponent.h"
+ 
+// 包含Carla库中关于行人控制器和行人基础类的头文件
 #include "Carla/Walker/WalkerController.h"
 #include "Carla/Walker/WalkerBase.h"
+ 
+// 包含Carla库中关于传感器的头文件
 #include "Carla/Sensor/Sensor.h"
+ 
+// 包含CarlaActor类的头文件
 #include "CarlaActor.h"
-
+ 
+// FActorData类的成员函数，用于重生一个Actor
 AActor* FActorData::RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info)
 {
+  // 获取局部变换，并向上移动15个单位以避免车轮与几何体相交
   FTransform SpawnTransform = GetLocalTransform(CarlaEpisode);
-  // hack to prevent wheel intersection with geometry
   SpawnTransform.AddToTranslation(FVector(0,0,15));
+  // 使用给定的信息和变换重生Actor
   return CarlaEpisode->ReSpawnActorWithInfo(SpawnTransform, Info.Description);
 }
-
+ 
+// FActorData类的成员函数，用于记录Actor的数据
 void FActorData::RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
+  // 获取Actor及其变换
   AActor* Actor = CarlaActor->GetActor();
   FTransform Transform = Actor->GetTransform();
+  // 计算位置（考虑到当前地图的原点）
   Location = FDVector(Transform.GetLocation()) + CarlaEpisode->GetCurrentMapOrigin();
   Rotation = Transform.GetRotation();
   Scale = Transform.GetScale3D();
+  // 获取Actor的根组件，并检查是否为UPrimitiveComponent类型
   UPrimitiveComponent* Component = Cast<UPrimitiveComponent>(Actor->GetRootComponent());
   if (Component)
   {
+    // 记录物理模拟状态和角速度
     bSimulatePhysics = Component->IsSimulatingPhysics();
     AngularVelocity = Component->GetPhysicsAngularVelocityInDegrees();
   }
+  // 记录速度
   Velocity = Actor->GetVelocity();
 }
-
+ 
+// FActorData类的成员函数，用于恢复Actor的数据
 void FActorData::RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
+  // 获取Actor并设置其变换
   AActor* Actor = CarlaActor->GetActor();
   Actor->SetActorTransform(GetLocalTransform(CarlaEpisode));
+  // 获取Actor的根组件，并检查是否为UPrimitiveComponent类型
   UPrimitiveComponent* Component = Cast<UPrimitiveComponent>(Actor->GetRootComponent());
   if (Component)
   {
+    // 恢复线性和角速度
     Component->SetPhysicsLinearVelocity(
         Velocity, false, "None");
     Component->SetPhysicsAngularVelocityInDegrees(
         AngularVelocity, false, "None");
   }
+  // 尝试将Actor转换为ACharacter或ACarlaWheeledVehicle类型，以特别处理车辆和行人的物理
   auto* Character = Cast<ACharacter>(Actor);
   auto* CarlaVehicle = Cast<ACarlaWheeledVehicle>(Actor);
-  // The physics in the vehicles works in a different way so to disable them.
   if (CarlaVehicle != nullptr){
+    // 车辆物理处理方式不同，因此设置物理模拟状态
     CarlaVehicle->SetSimulatePhysics(bSimulatePhysics);
   }
-  // The physics in the walkers also works in a different way so to disable them,
-  // we need to do it in the UCharacterMovementComponent.
   else if (Character != nullptr)
   {
-
+    // 行人物理处理方式也不同，但此处未实现具体逻辑
   }
   // In the rest of actors, the physics is controlled with the UPrimitiveComponent, so we use
   // that for disable it.
   else
   {
+    // 对于其他Actor，使用UPrimitiveComponent控制物理
     auto RootComponent = Component;
     if (RootComponent != nullptr)
     {
@@ -79,10 +106,13 @@ void FActorData::RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaE
     }
   }
 }
-
+ 
+// FActorData类的成员函数，用于获取相对于当前地图原点的局部变换
 FTransform FActorData::GetLocalTransform(UCarlaEpisode* CarlaEpisode) const
 {
+  // 计算局部位置（考虑到当前地图的原点）
   FVector LocalLocation = (Location - CarlaEpisode->GetCurrentMapOrigin()).ToFVector();
+  // 返回包含位置、旋转和缩放的变换
   return FTransform(Rotation, LocalLocation, Scale);
 }
 
