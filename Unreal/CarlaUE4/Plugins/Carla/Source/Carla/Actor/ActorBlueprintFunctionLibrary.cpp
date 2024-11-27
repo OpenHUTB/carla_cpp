@@ -1331,24 +1331,50 @@ void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
       // 设置HorizontalFOV是否限制为只能使用推荐值，这里设置为false
       HorizontalFOV.bRestrictToRecommended = false;
 
+      // 定义一个FActorVariation类型的变量VerticalFOV，用于表示垂直视场角（Field of View）的可变属性
+      FActorVariation VerticalFOV;
 
-  FActorVariation VerticalFOV;
-  VerticalFOV.Id = TEXT("vertical_fov");
-  VerticalFOV.Type = EActorAttributeType::Float;
-  VerticalFOV.RecommendedValues = { TEXT("30") };
-  VerticalFOV.bRestrictToRecommended = false;
+      // 设置VerticalFOV的标识符（ID）为"vertical_fov"
+      VerticalFOV.Id = TEXT("vertical_fov");
 
-  FActorVariation Range;
-  Range.Id = TEXT("range");
-  Range.Type = EActorAttributeType::Float;
-  Range.RecommendedValues = { TEXT("100") };
-  Range.bRestrictToRecommended = false;
+      // 设置VerticalFOV的类型为浮点数（Float）
+      VerticalFOV.Type = EActorAttributeType::Float;
 
-  FActorVariation PointsPerSecond;
-  PointsPerSecond.Id = TEXT("points_per_second");
-  PointsPerSecond.Type = EActorAttributeType::Int;
-  PointsPerSecond.RecommendedValues = { TEXT("1500") };
-  PointsPerSecond.bRestrictToRecommended = false;
+      // 设置VerticalFOV的推荐值为"30"
+      VerticalFOV.RecommendedValues = { TEXT("30") };
+
+      // 设置VerticalFOV是否限制为仅使用推荐值，这里设置为false，表示不限制
+      VerticalFOV.bRestrictToRecommended = false;
+
+      // 定义一个FActorVariation类型的变量Range，用于表示范围的可变属性
+      FActorVariation Range;
+
+      // 设置Range的标识符（ID）为"range"
+      Range.Id = TEXT("range");
+
+      // 设置Range的类型为浮点数（Float）
+      Range.Type = EActorAttributeType::Float;
+
+      // 设置Range的推荐值为"100"
+      Range.RecommendedValues = { TEXT("100") };
+
+      // 设置Range是否限制为仅使用推荐值，这里设置为false，表示不限制
+      Range.bRestrictToRecommended = false;
+
+      // 定义一个FActorVariation类型的变量PointsPerSecond，用于表示每秒点数的可变属性
+      FActorVariation PointsPerSecond;
+
+      // 设置PointsPerSecond的标识符（ID）为"points_per_second"
+      PointsPerSecond.Id = TEXT("points_per_second");
+
+      // 设置PointsPerSecond的类型为整数（Int）
+      PointsPerSecond.Type = EActorAttributeType::Int;
+
+      // 设置PointsPerSecond的推荐值为"1500"
+      PointsPerSecond.RecommendedValues = { TEXT("1500") };
+
+      // 设置PointsPerSecond是否限制为仅使用推荐值，这里设置为false，表示不限制
+      PointsPerSecond.bRestrictToRecommended = false;
 
   // Noise seed
   FActorVariation NoiseSeed;
