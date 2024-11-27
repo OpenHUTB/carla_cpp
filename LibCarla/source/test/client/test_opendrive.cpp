@@ -4,35 +4,37 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "test.h"
-#include "OpenDrive.h"
-#include "Random.h"
+#include "test.h" /// @brief 包含测试相关的头文件（假设用于单元测试或示例代码）。
+#include "OpenDrive.h"/// @brief 包含OpenDrive相关的自定义头文件（可能是封装了OpenDrive解析的类）。
+#include "Random.h"/// @brief 包含随机数生成相关的头文件。
 
-#include <carla/StopWatch.h>
-#include <carla/ThreadPool.h>
-#include <carla/geom/Location.h>
-#include <carla/geom/Math.h>
-#include <carla/opendrive/OpenDriveParser.h>
-#include <carla/road/MapBuilder.h>
-#include <carla/road/element/RoadInfoElevation.h>
-#include <carla/road/element/RoadInfoGeometry.h>
-#include <carla/road/element/RoadInfoMarkRecord.h>
-#include <carla/road/element/RoadInfoVisitor.h>
+#include <carla/StopWatch.h> /// @brief 包含CARLA的计时器类，用于性能测量。
+#include <carla/ThreadPool.h>/// @brief 包含CARLA的线程池类，用于并行处理任务。
+#include <carla/geom/Location.h>/// @brief 包含地理位置相关的类，如点、向量等。
+#include <carla/geom/Math.h>/// @brief 包含几何数学运算相关的函数和类。
+#include <carla/opendrive/OpenDriveParser.h>/// @brief 包含OpenDrive解析器类，用于解析OpenDrive格式的地图文件。
+#include <carla/road/MapBuilder.h>/// @brief 包含CARLA的路网构建器类，用于构建路网。
+#include <carla/road/element/RoadInfoElevation.h>/// @brief 包含道路高程信息相关的类。
+#include <carla/road/element/RoadInfoGeometry.h>/// @brief 包含道路几何信息相关的类。
+#include <carla/road/element/RoadInfoMarkRecord.h>/// @brief 包含道路标记记录信息相关的类
+#include <carla/road/element/RoadInfoVisitor.h>/// @brief 包含道路信息访问者模式的基类，用于遍历路网元素。
 
-#include <pugixml/pugixml.hpp>
+#include <pugixml/pugixml.hpp>/// @brief 包含pugixml库的头文件，用于XML解析和生成。
 
-#include <fstream>
-#include <string>
+#include <fstream>/// @brief 包含C++标准库的文件流类，用于文件读写。
+#include <string>/// @brief 包含C++标准库的字符串类。
 
-using namespace carla::road;
-using namespace carla::road::element;
-using namespace carla::geom;
-using namespace carla::opendrive;
-using namespace util;
-
+using namespace carla::road;/// 导入CARLA的路面相关命名空间，包括道路定义和元素。
+using namespace carla::road::element;/// 导入CARLA的路面元素相关的命名空间，包括具体的道路元素定义。
+using namespace carla::geom;/// 导入CARLA的几何相关命名空间，包括位置、方向和形状的定义。
+using namespace carla::opendrive;/// 导入CARLA的OpenDRIVE数据模型相关的命名空间，用于处理道路网络数据。
+using namespace util;/// 导入CARLA的实用工具命名空间，包含常用的功能函数和类。
+/**
+ * @brief 定义了OpenDrive XML文件的基本路径。
+ */
 const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER "/OpenDrive/";
 
-// Road Elevation
+
 static void test_road_elevation(const pugi::xml_document &xml, boost::optional<Map>& map) {
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
@@ -56,7 +58,7 @@ static void test_road_elevation(const pugi::xml_document &xml, boost::optional<M
   }
 }
 
-// Geometry
+
 static void test_geometry(const pugi::xml_document &xml, boost::optional<Map>& map) {
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
@@ -78,39 +80,59 @@ static void test_geometry(const pugi::xml_document &xml, boost::optional<Map>& m
   }
 }
 
-// Road test
+/// \brief 获取车道节点中所有道路标记的总数，并对比解析得到的道路标记数量。
+/// 
+/// 该函数遍历给定的车道节点范围，对每个车道节点中的道路标记进行解析和验证。
+/// 它计算了两种道路标记的总数：一种是实际解析得到的道路标记数量，另一种是
+/// 根据道路信息记录验证得到的道路标记数量。
+/// 
+/// \param lane_nodes 车道节点的范围，这些节点包含了道路标记信息。
+/// \param lane_section 车道段对象，用于获取具体的车道信息。
+/// \return 返回一个包含两个整数的pair，第一个整数是验证得到的道路标记总数，
+///         第二个整数是解析得到的道路标记总数。
+///
+/// \note 使用Google Test的EXPECT宏进行断言验证。
+///
 static auto get_total_road_marks(
     pugi::xml_object_range<pugi::xml_named_node_iterator> &lane_nodes,
     LaneSection& lane_section) {
+    /// 定义一个极小的误差值，用于浮点数比较。
   constexpr auto error = 1e-5;
+  /// 用于存储验证得到的道路标记总数。
   auto total_road_mark = 0;
+  /// 用于存储解析得到的道路标记总数。
   auto total_road_mark_parser = 0;
+  /// 遍历车道节点范围。
   for (pugi::xml_node lane_node : lane_nodes) {
-    // Check Road Mark
-    auto road_mark_nodes = lane_node.children("roadMark");
-    total_road_mark_parser += std::distance(road_mark_nodes.begin(), road_mark_nodes.end());
 
+    auto road_mark_nodes = lane_node.children("roadMark");
+    /// 计算并累加解析得到的道路标记数量。
+    total_road_mark_parser += std::distance(road_mark_nodes.begin(), road_mark_nodes.end());
+    /// 获取当前车道节点的ID。
     const int lane_id = lane_node.attribute("id").as_int();
     Lane* lane = nullptr;
+    /// 根据车道ID获取对应的车道对象。
     lane = lane_section.GetLane(lane_id);
+    /// 断言车道对象不为空。
     EXPECT_NE(lane, nullptr);
 
-    // <roadMark sOffset="0.0000000000000000e+0" type="none" material="standard" color="white" laneChange="none"/>
+    /// 遍历当前车道节点中的所有道路标记节点。
     for (pugi::xml_node road_mark_node : road_mark_nodes) {
-      const auto s_offset = road_mark_node.attribute("sOffset").as_double();
-      const auto type = road_mark_node.attribute("type").as_string();
-      const auto material = road_mark_node.attribute("material").as_string();
-      const auto color = road_mark_node.attribute("color").as_string();
-      const auto road_mark = lane->GetInfo<RoadInfoMarkRecord>(lane->GetDistance() + s_offset);
+      const auto s_offset = road_mark_node.attribute("sOffset").as_double();/// 获取道路标记的sOffset属性值。
+      const auto type = road_mark_node.attribute("type").as_string();/// 获取道路标记的type属性值。
+      const auto material = road_mark_node.attribute("material").as_string();/// 获取道路标记的material属性值。
+      const auto color = road_mark_node.attribute("color").as_string();/// 获取道路标记的color属性值。
+      const auto road_mark = lane->GetInfo<RoadInfoMarkRecord>(lane->GetDistance() + s_offset);/// 根据距离和sOffset获取对应的道路信息记录。
+      /// 如果道路信息记录不为空，则进行验证。
       if (road_mark != nullptr) {
-        EXPECT_NEAR(lane->GetDistance() + s_offset, road_mark->GetDistance(), error);
-        EXPECT_EQ(type, road_mark->GetType());
-        EXPECT_EQ(material, road_mark->GetMaterial());
-        EXPECT_EQ(color, road_mark->GetColor());
-        ++total_road_mark;
+        EXPECT_NEAR(lane->GetDistance() + s_offset, road_mark->GetDistance(), error); /// 断言距离误差在允许范围内。
+        EXPECT_EQ(type, road_mark->GetType());/// 断言道路标记类型相同。
+        EXPECT_EQ(material, road_mark->GetMaterial());/// 断言道路标记材料相同。
+        EXPECT_EQ(color, road_mark->GetColor());/// 断言道路标记颜色相同。
+        ++total_road_mark;/// 累加验证得到的道路标记数量。
       }
     }
-  }
+  }/// 返回一个包含两个整数的pair，分别表示验证和解析得到的道路标记总数。
   return std::make_pair(total_road_mark, total_road_mark_parser);
 }
 

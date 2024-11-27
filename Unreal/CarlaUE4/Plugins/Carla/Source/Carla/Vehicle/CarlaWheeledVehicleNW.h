@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -10,7 +10,7 @@
 
 #include "CarlaWheeledVehicleNW.generated.h"
 
-/// Base class for CARLA wheeled vehicles.
+/// CARLA轮式车辆的基类
 UCLASS()
 class CARLA_API ACarlaWheeledVehicleNW : public ACarlaWheeledVehicle
 {
