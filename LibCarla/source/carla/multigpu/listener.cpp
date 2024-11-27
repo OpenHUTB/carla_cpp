@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -60,7 +60,7 @@ namespace multigpu {
   };
 
     _acceptor.async_accept(session->_socket, [=](error_code ec) {
-      // Handle query and open a new session immediately.
+      // 处理查询并立刻开启一个新会话
       boost::asio::post(_io_context, [=]() { handle_query(ec); });
       OpenSession(timeout, on_opened, on_closed, on_response);
     });
