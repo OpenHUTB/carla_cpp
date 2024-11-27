@@ -5,15 +5,17 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-import glob
-import os
-import sys
-import math
-import argparse
-import copy
-import time
-from multiprocessing import Pool
-from PIL import Image
+import glob  # 用于查找符合特定规则的文件路径名
+import os  # 提供了一种方便的使用操作系统功能的方式
+import sys  # 提供了一些变量和函数，用以操纵Python运行时环境
+import math  # 提供对浮点数学运算的支持
+import argparse  # 用于解析命令行参数
+import copy  # 提供了通用的浅拷贝和深拷贝操作
+import time  # 提供各种与时间相关的函数
+from multiprocessing import Pool  # 提供进程池对象，用于并行执行代码
+from PIL import Image  # Python Imaging Library，用于打开、操作和保存多种不同格式的图像文件
+ 
+# 尝试将CARLA的egg文件添加到系统路径中，以便可以导入CARLA模块
 
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
@@ -21,27 +23,30 @@ try:
         sys.version_info.minor,
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
 except IndexError:
-    pass
+    pass # 如果找不到CARLA的egg文件，则忽略
 
-import carla
-import random
+import carla  # 导入CARLA模块，用于与CARLA仿真环境交互
+import random  # 用于生成随机数
 
+# 尝试导入pygame模块，如果失败则抛出运行时错误
 try:
     import pygame
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
 
+# 尝试导入numpy模块，如果失败则抛出运行时错误
 try:
     import numpy as np
 except ImportError:
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
 
+# 尝试导入queue模块，如果失败则尝试导入Python 2的Queue模块
 try:
     import queue
 except ImportError:
     import Queue as queue
 
-
+# 定义一个类，用于同步来自不同传感器的输出
 class CarlaSyncMode(object):
     """
     Context manager to synchronize output from different sensors. Synchronous
@@ -53,6 +58,7 @@ class CarlaSyncMode(object):
 
     """
 
+    # 初始化方法，设置世界对象、传感器列表、帧率等
     def __init__(self, world, *sensors, **kwargs):
         self.world = world
         self.sensors = sensors
@@ -61,6 +67,7 @@ class CarlaSyncMode(object):
         self._queues = []
         self._settings = None
 
+    # 进入上下文管理器时执行的方法
     def __enter__(self):
         self._settings = self.world.get_settings()
         self.frame = self.world.apply_settings(carla.WorldSettings(
@@ -77,15 +84,19 @@ class CarlaSyncMode(object):
         for sensor in self.sensors:
             make_queue(sensor.listen)
         return self
+        
+    # 同步获取传感器数据的方法
     def tick(self, timeout):
         self.frame = self.world.tick()
         data = [self._retrieve_data(q, timeout) for q in self._queues]
         assert all(x.frame == self.frame for x in data)
         return data
 
+    # 退出上下文管理器时执行的方法
     def __exit__(self, *args, **kwargs):
         self.world.apply_settings(self._settings)
-
+    
+    # 辅助方法，用于从队列中检索数据
     def _retrieve_data(self, sensor_queue, timeout):
         while True:
             data = sensor_queue.get(timeout=timeout)
@@ -93,6 +104,7 @@ class CarlaSyncMode(object):
                 return data
     # ---------------
 
+# 构建投影矩阵的函数，用于将3D点投影到2D图像上
 def build_projection_matrix(w, h, fov):
     focal = w / (2.0 * np.tan(fov * np.pi / 360.0))
     K = np.identity(3)
@@ -101,6 +113,7 @@ def build_projection_matrix(w, h, fov):
     K[1, 2] = h / 2.0
     return K
 
+# 将图像转换为numpy数组的函数
 def get_image_as_array(image):
     array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
     array = np.reshape(array, (image.height, image.width, 4))
@@ -109,14 +122,15 @@ def get_image_as_array(image):
     # make the array writeable doing a deep copy
     array2 = copy.deepcopy(array)
     return array2
-
+    
+# 在pygame表面上绘制图像的函数
 def draw_image(surface, array, blend=False):
     image_surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
     if blend:
         image_surface.set_alpha(100)
     surface.blit(image_surface, (0, 0))
 
-
+# 获取pygame字体的函数
 def get_font():
     fonts = [x for x in pygame.font.get_fonts()]
     default_font = 'ubuntumono'
@@ -124,6 +138,7 @@ def get_font():
     font = pygame.font.match_font(font)
     return pygame.font.Font(font, 14)
 
+# 将3D点转换为屏幕坐标的函数
 def get_screen_points(camera, K, image_w, image_h, points3d):
     
     # get 4x4 matrix to transform points from world to camera coordinates
