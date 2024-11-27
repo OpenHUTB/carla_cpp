@@ -22,25 +22,40 @@
 #include <string>
 #include <math.h>
 #include <float.h> //FLT_EPSILON, DBL_EPSILON
+//这里引入了一些常用的 C++ 标准库头文件,包括输入输出、文件操作、算法、字符串处理、数学运算等。
 
 #define loopi(start_l, end_l) for (int i = start_l; i < end_l; ++i)
 #define loopi(start_l, end_l) for (int i = start_l; i < end_l; ++i)
 #define loopj(start_l, end_l) for (int j = start_l; j < end_l; ++j)
-#define loopk(start_l, end_l) for (int k = start_l; k < end_l; ++k)
+#define loopk(start_l, end_l) for (int k = start_l; k < end_l; ++k)//这些是一些常用的宏定义,用于简化 for 循环的写法。
 
-struct vector3
+
+
+
+
+struct vector3//定义了两种 3D 向量的数据结构,vector3和vec3f。vec3f中实现了一些向量运算的功能。
 {
   double x, y, z;
 };
 
 struct vec3f
 {
-  double x, y, z;
-
+  double x, y, z;//定义3D向量的三个分量
+  // 定义一个名为vec3f的结构体，用于表示3D向量
+ // 这个结构体也包含了三个双精度浮点数成员变量x、y和z，用于存储3D向量的三个分量
   inline vec3f(void) {}
 
   // inline vec3f operator =( vector3 a )
   // { vec3f b ; b.x = a.x; b.y = a.y; b.z = a.z; return b;}
+  // 下面这部分代码被注释掉了
+  // 这是一个重载的赋值运算符函数
+  // 它的作用是将一个vector3类型的向量赋值给一个vec3f类型的向量
+  // 函数内部创建了一个新的vec3f向量b，将a的x、y、z分量分别赋给b的x、y、z分量，然后返回b
+  // inline vec3f operator =( vector3 a )
+  // { vec3f b ; b.x = a.x; b.y = a.y; b.z = a.z; return b;}
+
+    // 内联构造函数，用于从一个vector3类型的向量构造一个vec3f类型的向量
+    // 它将传入的vector3类型向量a的x、y、z分量分别赋给当前vec3f对象的x、y、z分量
 
   inline vec3f(vector3 a)
   {
@@ -48,6 +63,7 @@ struct vec3f
     y = a.y;
     z = a.z;
   }
+ 
 
   inline vec3f(const double X, const double Y, const double Z)
   {
@@ -55,11 +71,15 @@ struct vec3f
     y = Y;
     z = Z;
   }
-
+  // 从三个双精度浮点数X、Y、Z构造vec3f类型的向量
+  // 将X、Y、Z分别赋给当前vec3f对象的x、y、z分量
+  
   inline vec3f operator+(const vec3f &a) const
   {
     return vec3f(x + a.x, y + a.y, z + a.z);
   }
+ // 重载加法运算符（+）
+// 返回一个新的vec3f向量，其分量是当前向量与参数向量a对应分量相加的结果
 
   inline vec3f operator+=(const vec3f &a) const
   {
@@ -70,16 +90,21 @@ struct vec3f
   {
     return vec3f(x * a, y * a, z * a);
   }
-
+  // 重载乘法运算符（*），用于向量与标量相乘
+  // 返回一个新的vec3f向量，其分量是当前向量的各分量与标量a相乘的结果
+  
   inline vec3f operator*(const vec3f a) const
   {
     return vec3f(x * a.x, y * a.y, z * a.z);
   }
+ // 重载乘法运算符（*），用于向量与向量对应分量相乘
+// 返回一个新的vec3f向量，其分量是当前向量与参数向量a对应分量相乘的结果
 
   inline vec3f v3() const
   {
     return vec3f(x, y, z);
   }
+  // 返回当前向量的副本
 
   inline vec3f operator=(const vector3 a)
   {
@@ -88,6 +113,8 @@ struct vec3f
     z = a.z;
     return *this;
   }
+  // 重载赋值运算符（=），用于从vector3类型赋值
+  // 将vector3类型向量a的x、y、z分量分别赋给当前vec3f对象的x、y、z分量，并返回当前对象
 
   inline vec3f operator=(const vec3f a)
   {
@@ -96,22 +123,31 @@ struct vec3f
     z = a.z;
     return *this;
   }
+  // 重载赋值运算符（=），用于从vec3f类型赋值
+  // 将vec3f类型向量a的x、y、z分量分别赋给当前vec3f对象的x、y、z分量，并返回当前对象
 
   inline vec3f operator/(const vec3f a) const
   {
     return vec3f(x / a.x, y / a.y, z / a.z);
   }
+  // 重载除法运算符（/），用于向量与向量对应分量相除
+  // 返回一个新的vec3f向量，其分量是当前向量与参数向量a对应分量相除的结果
+
 
   inline vec3f operator-(const vec3f &a) const
   {
     return vec3f(x - a.x, y - a.y, z - a.z);
   }
+  // 重载减法运算符（-）
+  // 返回一个新的vec3f向量，其分量是当前向量与参数向量a对应分量相减的结果
 
   inline vec3f operator/(const double a) const
   {
     return vec3f(x / a, y / a, z / a);
   }
-
+  // 计算当前向量与参数向量a的点积
+  // 返回点积结果（一个双精度浮点数）
+  
   inline double dot(const vec3f &a) const
   {
     return a.x * x + a.y * y + a.z * z;
@@ -139,6 +175,8 @@ struct vec3f
       input = 1;
     return (double)acos(input);
   }
+  // 计算当前向量与向量v之间的夹角
+  // 返回夹角（以弧度为单位）
 
   inline double angle2(const vec3f &v, const vec3f &w)
   {
@@ -156,72 +194,136 @@ struct vec3f
 
     return (double)acos(dot / len);
   }
+  // 计算向量v和w之间的夹角，考虑了平面方向
+  // 返回夹角（以弧度为单位）
 
+  // 绕x轴旋转当前向量
+// 参数a是旋转角度（以弧度为单位）
+// 对y和z分量进行旋转操作，根据旋转矩阵公式
+// 返回旋转后的当前向量
   inline vec3f rot_x(double a)
   {
-    double yy = cos(a) * y + sin(a) * z;
-    double zz = cos(a) * z - sin(a) * y;
-    y = yy;
-    z = zz;
-    return *this;
+      // 根据绕x轴旋转的矩阵公式计算新的y分量
+      double yy = cos(a) * y + sin(a) * z;
+      // 根据绕x轴旋转的矩阵公式计算新的z分量
+      double zz = cos(a) * z - sin(a) * y;
+      // 更新y分量
+      y = yy;
+      // 更新z分量
+      z = zz;
+      return *this;
   }
+
+  // 绕y轴旋转当前向量
+  // 参数a是旋转角度（以弧度为单位）
+  // 对x和z分量进行旋转操作，根据旋转矩阵公式
+  // 返回旋转后的当前向量
   inline vec3f rot_y(double a)
   {
-    double xx = cos(-a) * x + sin(-a) * z;
-    double zz = cos(-a) * z - sin(-a) * x;
-    x = xx;
-    z = zz;
-    return *this;
+      // 根据绕y轴旋转的矩阵公式计算新的x分量
+      double xx = cos(-a) * x + sin(-a) * z;
+      // 根据绕y轴旋转的矩阵公式计算新的z分量
+      double zz = cos(-a) * z - sin(-a) * x;
+      // 更新x分量
+      x = xx;
+      // 更新z分量
+      z = zz;
+      return *this;
   }
+
+  // 将向量的每个分量限制在给定的最小值和最大值之间
+  // 参数min是最小值，max是最大值
   inline void clamp(double min, double max)
   {
-    if (x < min)
-      x = min;
-    if (y < min)
-      y = min;
-    if (z < min)
-      z = min;
-    if (x > max)
-      x = max;
-    if (y > max)
-      y = max;
-    if (z > max)
-      z = max;
+      // 如果x小于最小值，则将x设置为最小值
+      if (x < min)
+          x = min;
+      // 如果y小于最小值，则将y设置为最小值
+      if (y < min)
+          y = min;
+      // 如果z小于最小值，则将z设置为最小值
+      if (z < min)
+          z = min;
+      // 如果x大于最大值，则将x设置为最大值
+      if (x > max)
+          x = max;
+      // 如果y大于最大值，则将y设置为最大值
+      if (y > max)
+          y = max;
+      // 如果z大于最大值，则将z设置为最大值
+      if (z > max)
+          z = max;
   }
+
+  // 绕z轴旋转当前向量
+  // 参数a是旋转角度（以弧度为单位）
+  // 对x和y分量进行旋转操作，根据旋转矩阵公式
+  // 返回旋转后的当前向量
   inline vec3f rot_z(double a)
   {
-    double yy = cos(a) * y + sin(a) * x;
-    double xx = cos(a) * x - sin(a) * y;
-    y = yy;
-    x = xx;
-    return *this;
+      // 根据绕z轴旋转的矩阵公式计算新的y分量
+      double yy = cos(a) * y + sin(a) * x;
+      // 根据绕z轴旋转的矩阵公式计算新的x分量
+      double xx = cos(a) * x - sin(a) * y;
+      // 更新y分量
+      y = yy;
+      // 更新x分量
+      x = xx;
+      return *this;
   }
   inline vec3f invert()
   {
-    x = -x;
-    y = -y;
-    z = -z;
-    return *this;
+      // 将向量的x分量取反，即原来的x值乘以 -1，更新当前向量的x分量值。
+      x = -x;
+      // 将向量的y分量取反，原理同x分量取反操作，更新当前向量的y分量值。
+      y = -y;
+      // 将向量的z分量取反，更新当前向量的z分量值。
+      z = -z;
+      // 返回取反后的当前vec3f向量，使得调用该函数的地方可以获取到操作后的向量结果。
+      return *this;
   }
+
+  // 函数名称：frac
+  // 功能概述：此函数的目的是获取当前vec3f向量各个分量的小数部分，并以此构建一个新的vec3f向量返回。
+  // 返回值：返回一个新的vec3f向量，其各个分量分别是原向量对应分量的小数部分。
   inline vec3f frac()
   {
-    return vec3f(
-        x - double(int(x)),
-        y - double(int(y)),
-        z - double(int(z)));
+      // 对于向量的x分量：
+      // 首先通过(int(x))将x强制转换为整数类型，这一步实现了对x取整操作，获取其整数部分。
+      // 然后用原x分量减去其整数部分（x - double(int(x))），得到x分量的小数部分。
+      // 按照同样的方式处理y分量，获取其小数部分（y - double(int(y))）。
+      // 以及处理z分量，获取其小数部分（z - double(int(z))）。
+      // 最后，使用获取到的三个小数部分作为新向量的各分量，构造并返回一个新的vec3f向量。
+      return vec3f(
+          x - double(int(x)),
+          y - double(int(y)),
+          z - double(int(z)));
   }
 
+  // 函数名称：integer
+  // 功能概述：该函数用于获取当前vec3f向量各个分量的整数部分，进而构建一个新的vec3f向量返回。
+  // 返回值：返回一个新的vec3f向量，其各个分量分别是原向量对应分量的整数部分。
   inline vec3f integer()
   {
-    return vec3f(
-        double(int(x)),
-        double(int(y)),
-        double(int(z)));
+      // 针对向量的x分量：
+      // 先通过(int(x))将x转换为整数类型，获取其整数部分，然后再将这个整数部分转换回双精度浮点数类型（double(int(x))），这是因为vec3f向量的分量类型是双精度浮点数。
+      // 同样的操作应用于y分量（double(int(y))），获取其整数部分并转换为双精度浮点数类型。
+      // 以及z分量（double(int(z))），获取其整数部分并转换为双精度浮点数类型。
+      // 最后，以这三个转换后的整数部分作为新向量的各分量，构造并返回一个新的vec3f向量。
+      return vec3f(
+          double(int(x)),
+          double(int(y)),
+          double(int(z)));
   }
 
+  // 函数名称：length
+  // 功能概述：这个函数用于计算当前vec3f向量的长度（也称作模长或者范数），其计算依据是数学上向量长度的计算公式。
+  // 返回值：返回一个双精度浮点数，表示当前vec3f向量的长度，计算结果通过对向量各分量的平方和开平方根得到。
+  // 注意：由于函数不修改对象的状态，只是获取一个计算结果，所以标记为 const 函数，意味着在该函数内部不能修改对象的成员变量。
   inline double length() const
   {
-    return (double)sqrt(x * x + y * y + z * z);
+      // 根据向量长度计算公式，调用sqrt函数（通常需要包含<math.h>头文件来使用这个数学函数）对向量各分量的平方和（x * x + y * y + z * z）进行开平方根操作，得到向量的长度，并将结果转换为双精度浮点数类型后返回。
+      return (double)sqrt(x * x + y * y + z * z);
   }
 
   inline vec3f normalize(double desired_length = 1)
@@ -264,7 +366,7 @@ struct vec3f
   }
 };
 
-vec3f barycentric(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c)
+vec3f barycentric(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c)//这些是一些辅助函数,用于计算重心坐标、插值计算以及求两个数的最小值。
 {
   vec3f v0 = b - a;
   vec3f v1 = c - a;
@@ -278,7 +380,7 @@ vec3f barycentric(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c
   double v = (d11 * d20 - d01 * d21) / denom;
   double w = (d00 * d21 - d01 * d20) / denom;
   double u = 1.0 - v - w;
-  return vec3f(u, v, w);
+  return vec3f(u, v, w);//// 计算点 p 在三角形 a-b-c 中的重心坐标
 }
 
 vec3f interpolate(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c, const vec3f attrs[3])
@@ -288,18 +390,20 @@ vec3f interpolate(const vec3f &p, const vec3f &a, const vec3f &b, const vec3f &c
   out = out + attrs[0] * bary.x;
   out = out + attrs[1] * bary.y;
   out = out + attrs[2] * bary.z;
-  return out;
+  return out;//// 根据重心坐标,在三角形 a-b-c 上插值计算某个属性
+
 }
 
 double min(double v1, double v2)
 {
-  return fmin(v1, v2);
+  return fmin(v1, v2);// // 返回两个数中的较小值
 }
 
-class SymetricMatrix
+class SymetricMatrix//SymetricMatrix是一个对称矩阵类,用于存储和计算顶点的误差值。
 {
 
 public:
+  // 对称矩阵的构造函数和成员函数,用于计算顶点误差
   // Constructor
 
   SymetricMatrix(double c = 0) { loopi(0, 10) m[i] = c; }
@@ -376,7 +480,7 @@ public:
 };
 ///////////////////////////////////////////
 
-namespace Simplify
+namespace Simplify//Simplify命名空间下定义了网格简化的相关数据结构和功能函数,其中SimplificationObject类封装了网格简化的核心实现。simplify_mesh()函数用于有损简化,simplify_mesh_lossless()函数用于无损简化。此外还有一些辅助函数,如加载和保存 OBJ 格式网格等。
 {
   // Global Variables & Strctures
   enum Attributes
