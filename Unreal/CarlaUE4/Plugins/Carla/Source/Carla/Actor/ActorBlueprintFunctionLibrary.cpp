@@ -1159,134 +1159,222 @@ FActorDefinition UActorBlueprintFunctionLibrary::MakeIMUDefinition()
     return Definition;
 }
 
+// 定义UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义，包含成功标志和定义结构体
 void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
-    bool &Success,
-    FActorDefinition &Definition)
+    bool &Success,         // 成功标志的引用，用于指示函数执行是否成功
+    FActorDefinition &Definition) // 定义结构体的引用，用于存储IMU的定义信息
 {
+  // 为定义填充ID和标签，分别为"sensor"、"other"和"imu"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("imu"));
-  AddVariationsForSensor(Definition);
 
-  // - Noise seed --------------------------------
+  // 为传感器添加变体信息
+  AddVariationsForSensor(Definition);
+ 
+  // ------------------------ 噪声种子 --------------------------------
+  // 创建一个噪声种子的变体信息
   FActorVariation NoiseSeed;
-  NoiseSeed.Id = TEXT("noise_seed");
-  NoiseSeed.Type = EActorAttributeType::Int;
-  NoiseSeed.RecommendedValues = { TEXT("0") };
-  NoiseSeed.bRestrictToRecommended = false;
-
-  // - Accelerometer Standard Deviation ----------
-  // X Component
+  NoiseSeed.Id = TEXT("noise_seed");            // 设置ID为"noise_seed"
+  NoiseSeed.Type = EActorAttributeType::Int;    // 设置类型为整型
+  NoiseSeed.RecommendedValues = { TEXT("0") };  // 设置推荐值为0
+  NoiseSeed.bRestrictToRecommended = false;     // 设置不限制为推荐值
+ 
+  // -------------------------------- 加速度计标准差 --------------------------
+  // X 分量
   FActorVariation StdDevAccelX;
-  StdDevAccelX.Id = TEXT("noise_accel_stddev_x");
-  StdDevAccelX.Type = EActorAttributeType::Float;
-  StdDevAccelX.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelX.bRestrictToRecommended = false;
-  // Y Component
+  StdDevAccelX.Id = TEXT("noise_accel_stddev_x"); // 设置ID为"noise_accel_stddev_x"
+  StdDevAccelX.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelX.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelX.bRestrictToRecommended = false;     // 设置不限制为推荐值
+
+  // Y 分量
   FActorVariation StdDevAccelY;
-  StdDevAccelY.Id = TEXT("noise_accel_stddev_y");
-  StdDevAccelY.Type = EActorAttributeType::Float;
-  StdDevAccelY.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelY.bRestrictToRecommended = false;
-  // Z Component
+  StdDevAccelY.Id = TEXT("noise_accel_stddev_y"); // 设置ID为"noise_accel_stddev_y"
+  StdDevAccelY.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelY.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelY.bRestrictToRecommended = false;     // 设置不限制为推荐值
+
+  // Z 分量
   FActorVariation StdDevAccelZ;
-  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z");
-  StdDevAccelZ.Type = EActorAttributeType::Float;
-  StdDevAccelZ.RecommendedValues = { TEXT("0.0") };
-  StdDevAccelZ.bRestrictToRecommended = false;
+  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z"); // 设置ID为"noise_accel_stddev_z"
+  StdDevAccelZ.Type = EActorAttributeType::Float; // 设置类型为浮点型
+  StdDevAccelZ.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
+  StdDevAccelZ.bRestrictToRecommended = false;     // 设置不限制为推荐值
 
-  // - Gyroscope Standard Deviation --------------
-  // X Component
-  FActorVariation StdDevGyroX;
-  StdDevGyroX.Id = TEXT("noise_gyro_stddev_x");
-  StdDevGyroX.Type = EActorAttributeType::Float;
-  StdDevGyroX.RecommendedValues = { TEXT("0.0") };
-  StdDevGyroX.bRestrictToRecommended = false;
-  // Y Component
-  FActorVariation StdDevGyroY;
-  StdDevGyroY.Id = TEXT("noise_gyro_stddev_y");
-  StdDevGyroY.Type = EActorAttributeType::Float;
-  StdDevGyroY.RecommendedValues = { TEXT("0.0") };
-  StdDevGyroY.bRestrictToRecommended = false;
-  // Z Component
-  FActorVariation StdDevGyroZ;
-  StdDevGyroZ.Id = TEXT("noise_gyro_stddev_z");
-  StdDevGyroZ.Type = EActorAttributeType::Float;
-  StdDevGyroZ.RecommendedValues = { TEXT("0.0") };
-  StdDevGyroZ.bRestrictToRecommended = false;
 
-  // - Gyroscope Bias ----------------------------
-  // X Component
-  FActorVariation BiasGyroX;
-  BiasGyroX.Id = TEXT("noise_gyro_bias_x");
-  BiasGyroX.Type = EActorAttributeType::Float;
-  BiasGyroX.RecommendedValues = { TEXT("0.0") };
-  BiasGyroX.bRestrictToRecommended = false;
-  // Y Component
-  FActorVariation BiasGyroY;
-  BiasGyroY.Id = TEXT("noise_gyro_bias_y");
-  BiasGyroY.Type = EActorAttributeType::Float;
-  BiasGyroY.RecommendedValues = { TEXT("0.0") };
-  BiasGyroY.bRestrictToRecommended = false;
-  // Z Component
-  FActorVariation BiasGyroZ;
-  BiasGyroZ.Id = TEXT("noise_gyro_bias_z");
-  BiasGyroZ.Type = EActorAttributeType::Float;
-  BiasGyroZ.RecommendedValues = { TEXT("0.0") };
-  BiasGyroZ.bRestrictToRecommended = false;
+  // - 陀螺仪标准差 --------------
+  // X 分量
+  FActorVariation StdDevGyroX; // 定义一个变量，用于存储陀螺仪X轴方向的标准差
+  StdDevGyroX.Id = TEXT("noise_gyro_stddev_x"); // 设置该变量的标识符为"noise_gyro_stddev_x"
+  StdDevGyroX.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
+  StdDevGyroX.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  StdDevGyroX.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
 
+  // Y 分量
+  FActorVariation StdDevGyroY; // 定义一个变量，用于存储陀螺仪Y轴方向的标准差
+  StdDevGyroY.Id = TEXT("noise_gyro_stddev_y"); // 设置该变量的标识符为"noise_gyro_stddev_y"
+  StdDevGyroY.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
+  StdDevGyroY.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  StdDevGyroY.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
+
+  // Z 分量
+  FActorVariation StdDevGyroZ; // 定义一个变量，用于存储陀螺仪Z轴方向的标准差
+  StdDevGyroZ.Id = TEXT("noise_gyro_stddev_z"); // 设置该变量的标识符为"noise_gyro_stddev_z"
+  StdDevGyroZ.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
+  StdDevGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  StdDevGyroZ.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
+
+  // - 陀螺仪偏差 ----------------------------
+  // X 分量
+  FActorVariation BiasGyroX; // 定义一个用于表示陀螺仪X轴偏差的变量
+  BiasGyroX.Id = TEXT("noise_gyro_bias_x"); // 设置该变量的标识符为"noise_gyro_bias_x"
+  BiasGyroX.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
+  BiasGyroX.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  BiasGyroX.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
+
+  // Y 分量
+  FActorVariation BiasGyroY; // 定义一个用于表示陀螺仪Y轴偏差的变量
+  BiasGyroY.Id = TEXT("noise_gyro_bias_y"); // 设置该变量的标识符为"noise_gyro_bias_y"
+  BiasGyroY.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
+  BiasGyroY.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  BiasGyroY.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
+
+  // Z 分量
+  FActorVariation BiasGyroZ; // 定义一个用于表示陀螺仪Z轴偏差的变量
+  BiasGyroZ.Id = TEXT("noise_gyro_bias_z"); // 设置该变量的标识符为"noise_gyro_bias_z"
+  BiasGyroZ.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
+  BiasGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
+  BiasGyroZ.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
+
+  // 将一系列变量添加到Definition的Variations列表中，这些变量通常用于定义某个物体的噪声和偏差特性
   Definition.Variations.Append({
-    NoiseSeed,
-    StdDevAccelX,
-    StdDevAccelY,
-    StdDevAccelZ,
-    StdDevGyroX,
-    StdDevGyroY,
-    StdDevGyroZ,
-    BiasGyroX,
-    BiasGyroY,
-    BiasGyroZ});
+      // 噪声种子，用于生成随机数序列，以模拟噪声的随机性
+      NoiseSeed,      
 
+      // 加速度计X轴的标准偏差，表示X轴加速度测量值的噪声水平
+      StdDevAccelX,      
+
+      // 加速度计Y轴的标准偏差，表示Y轴加速度测量值的噪声水平
+      StdDevAccelY,   
+
+      // 加速度计Z轴的标准偏差，表示Z轴加速度测量值的噪声水平
+      StdDevAccelZ,  
+
+      // 陀螺仪X轴的标准偏差，表示X轴角速度测量值的噪声水平
+      StdDevGyroX,   
+
+      // 陀螺仪Y轴的标准偏差，表示Y轴角速度测量值的噪声水平
+      StdDevGyroY,     
+
+      // 陀螺仪Z轴的标准偏差，表示Z轴角速度测量值的噪声水平
+      StdDevGyroZ,     
+
+      // 陀螺仪X轴的偏差，表示X轴角速度测量值的固定偏移量
+      BiasGyroX, 
+
+      // 陀螺仪Y轴的偏差，表示Y轴角速度测量值的固定偏移量
+      BiasGyroY, 
+
+      // 陀螺仪Z轴的偏差，表示Z轴角速度测量值的固定偏移量
+      BiasGyroZ          
+      });
+
+  // 调用CheckActorDefinition函数来检查Definition对象的有效性或配置是否正确
   Success = CheckActorDefinition(Definition);
-}
 
-FActorDefinition UActorBlueprintFunctionLibrary::MakeRadarDefinition()
-{
-  FActorDefinition Definition;
-  bool Success;
-  MakeRadarDefinition(Success, Definition);
-  check(Success);
-  return Definition;
-}
 
-void UActorBlueprintFunctionLibrary::MakeRadarDefinition(
-    bool &Success,
-    FActorDefinition &Definition)
-{
-  FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("radar"));
-  AddVariationsForSensor(Definition);
+  // 在UActorBlueprintFunctionLibrary类中定义一个成员函数MakeRadarDefinition，该函数用于创建一个雷达的定义，并返回这个定义
+  FActorDefinition UActorBlueprintFunctionLibrary::MakeRadarDefinition()
+  {
+      // 定义一个FActorDefinition类型的变量Definition，用于存储雷达的定义
+      FActorDefinition Definition;
 
-  FActorVariation HorizontalFOV;
-  HorizontalFOV.Id = TEXT("horizontal_fov");
-  HorizontalFOV.Type = EActorAttributeType::Float;
-  HorizontalFOV.RecommendedValues = { TEXT("30") };
-  HorizontalFOV.bRestrictToRecommended = false;
+      // 定义一个布尔类型的变量Success，用于表示MakeRadarDefinition函数的执行结果是否成功
+      bool Success;
 
-  FActorVariation VerticalFOV;
-  VerticalFOV.Id = TEXT("vertical_fov");
-  VerticalFOV.Type = EActorAttributeType::Float;
-  VerticalFOV.RecommendedValues = { TEXT("30") };
-  VerticalFOV.bRestrictToRecommended = false;
+      // 调用重载的MakeRadarDefinition函数，传入Success和Definition作为参数，用于填充雷达的定义并设置Success的值
+      MakeRadarDefinition(Success, Definition);
 
-  FActorVariation Range;
-  Range.Id = TEXT("range");
-  Range.Type = EActorAttributeType::Float;
-  Range.RecommendedValues = { TEXT("100") };
-  Range.bRestrictToRecommended = false;
+      // 使用check宏来确保MakeRadarDefinition函数执行成功，如果不成功则会在此处触发断言失败
+      check(Success);
 
-  FActorVariation PointsPerSecond;
-  PointsPerSecond.Id = TEXT("points_per_second");
-  PointsPerSecond.Type = EActorAttributeType::Int;
-  PointsPerSecond.RecommendedValues = { TEXT("1500") };
-  PointsPerSecond.bRestrictToRecommended = false;
+      // 返回填充好的雷达定义
+      return Definition;
+  }
+
+  // 在UActorBlueprintFunctionLibrary类中定义一个重载的成员函数MakeRadarDefinition，该函数用于填充雷达的定义
+  void UActorBlueprintFunctionLibrary::MakeRadarDefinition(
+
+      // 引用传递，用于返回函数执行的结果是否成功
+      bool& Success, 
+
+      // 引用传递，用于接收并填充雷达的定义
+      FActorDefinition& Definition) 
+  {
+      // 调用FillIdAndTags函数，为Definition设置ID和标签，
+      FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("radar"));
+
+      // 调用AddVariationsForSensor函数，为Definition添加传感器的变化特性
+      AddVariationsForSensor(Definition);
+
+      // 定义一个FActorVariation类型的变量HorizontalFOV，用于表示雷达的水平视场角（Field of View）的变化特性
+      FActorVariation HorizontalFOV;
+
+      // 设置HorizontalFOV的ID为"horizontal_fov"
+      HorizontalFOV.Id = TEXT("horizontal_fov");
+
+      // 设置HorizontalFOV的类型为浮点型
+      HorizontalFOV.Type = EActorAttributeType::Float;
+
+      // 设置HorizontalFOV的推荐值为"30"
+      HorizontalFOV.RecommendedValues = { TEXT("30") };
+
+      // 设置HorizontalFOV是否限制为只能使用推荐值，这里设置为false
+      HorizontalFOV.bRestrictToRecommended = false;
+
+      // 定义一个FActorVariation类型的变量VerticalFOV，用于表示垂直视场角（Field of View）的可变属性
+      FActorVariation VerticalFOV;
+
+      // 设置VerticalFOV的标识符（ID）为"vertical_fov"
+      VerticalFOV.Id = TEXT("vertical_fov");
+
+      // 设置VerticalFOV的类型为浮点数（Float）
+      VerticalFOV.Type = EActorAttributeType::Float;
+
+      // 设置VerticalFOV的推荐值为"30"
+      VerticalFOV.RecommendedValues = { TEXT("30") };
+
+      // 设置VerticalFOV是否限制为仅使用推荐值，这里设置为false，表示不限制
+      VerticalFOV.bRestrictToRecommended = false;
+
+      // 定义一个FActorVariation类型的变量Range，用于表示范围的可变属性
+      FActorVariation Range;
+
+      // 设置Range的标识符（ID）为"range"
+      Range.Id = TEXT("range");
+
+      // 设置Range的类型为浮点数（Float）
+      Range.Type = EActorAttributeType::Float;
+
+      // 设置Range的推荐值为"100"
+      Range.RecommendedValues = { TEXT("100") };
+
+      // 设置Range是否限制为仅使用推荐值，这里设置为false，表示不限制
+      Range.bRestrictToRecommended = false;
+
+      // 定义一个FActorVariation类型的变量PointsPerSecond，用于表示每秒点数的可变属性
+      FActorVariation PointsPerSecond;
+
+      // 设置PointsPerSecond的标识符（ID）为"points_per_second"
+      PointsPerSecond.Id = TEXT("points_per_second");
+
+      // 设置PointsPerSecond的类型为整数（Int）
+      PointsPerSecond.Type = EActorAttributeType::Int;
+
+      // 设置PointsPerSecond的推荐值为"1500"
+      PointsPerSecond.RecommendedValues = { TEXT("1500") };
+
+      // 设置PointsPerSecond是否限制为仅使用推荐值，这里设置为false，表示不限制
+      PointsPerSecond.bRestrictToRecommended = false;
 
   // Noise seed
   FActorVariation NoiseSeed;

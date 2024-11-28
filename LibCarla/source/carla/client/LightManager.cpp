@@ -221,86 +221,93 @@ std::vector<LightState> LightManager::GetLightState(std::vector<Light>& lights) 
 }
 
 Color LightManager::GetColor(LightId id) const {
+  // 返回指定灯光的颜色属性
   return RetrieveLightState(id)._color;
 }
 
 float LightManager::GetIntensity(LightId id) const {
+  // 返回指定灯光的亮度属性
   return RetrieveLightState(id)._intensity;
 }
 
 LightState LightManager::GetLightState(LightId id) const {
+  // 返回指定灯光的完整状态信息
   return RetrieveLightState(id);
 }
 
 LightGroup LightManager::GetLightGroup(LightId id) const {
+  // 返回指定灯光的分组属性
   return RetrieveLightState(id)._group;
 }
 
 bool LightManager::IsActive(LightId id) const {
+  // 返回指定灯光是否处于激活状态
   return RetrieveLightState(id)._active;
 }
 
 void LightManager::SetActive(LightId id, bool active) {
-  std::lock_guard<std::mutex> lock(_mutex);
-  LightState& state = const_cast<LightState&>(RetrieveLightState(id));
-  state._active = active;
-  _lights_changes[id] = state;
-  _dirty = true;
+  std::lock_guard<std::mutex> lock(_mutex); // 加锁以保护多线程访问
+  LightState& state = const_cast<LightState&>(RetrieveLightState(id)); // 获取灯光状态
+  state._active = active; // 更新激活状态
+  _lights_changes[id] = state; // 将更改记录到修改列表
+  _dirty = true; // 标记有更改
 }
 
 void LightManager::SetColor(LightId id, Color color) {
-  std::lock_guard<std::mutex> lock(_mutex);
-  LightState& state = const_cast<LightState&>(RetrieveLightState(id));
-  state._color = color;
-  _lights_changes[id] = state;
-  _dirty = true;
+  std::lock_guard<std::mutex> lock(_mutex); // 加锁以保护多线程访问
+  LightState& state = const_cast<LightState&>(RetrieveLightState(id)); // 获取灯光状态
+  state._color = color; // 更新颜色属性
+  _lights_changes[id] = state; // 将更改记录到修改列表中
+  _dirty = true; // 标记有更改
 }
 
 void LightManager::SetIntensity(LightId id, float intensity) {
-  std::lock_guard<std::mutex> lock(_mutex);
-  LightState& state = const_cast<LightState&>(RetrieveLightState(id));
-  state._intensity = intensity;
-  _lights_changes[id] = state;
-  _dirty = true;
+  std::lock_guard<std::mutex> lock(_mutex); // 加锁以保护多线程访问
+  LightState& state = const_cast<LightState&>(RetrieveLightState(id)); // 获取灯光状态
+  state._intensity = intensity; // 更新亮度属性
+  _lights_changes[id] = state; // 将更改记录到修改列表
+  _dirty = true; // 标记有更改
 }
 
 void LightManager::SetLightState(LightId id, const LightState& new_state) {
-  std::lock_guard<std::mutex> lock(_mutex);
-  LightState& state = const_cast<LightState&>(RetrieveLightState(id));
-  state = new_state;
-  _lights_changes[id] = state;
-  _dirty = true;
+  std::lock_guard<std::mutex> lock(_mutex); // 加锁以保护多线程访问
+  LightState& state = const_cast<LightState&>(RetrieveLightState(id)); // 获取灯光状态
+  state = new_state; //更新完整状态
+  _lights_changes[id] = state; // 将更改记录到修改列表
+  _dirty = true; // 标记有更改
 }
 
 void LightManager::SetLightStateNoLock(LightId id, const LightState& new_state) {
+  // 无需加锁设置指定灯光的完整状态信息，用于内部调用
   LightState& state = const_cast<LightState&>(RetrieveLightState(id));
-  state = new_state;
-  _lights_changes[id] = state;
+  state = new_state; // 更新完整状态
+  _lights_changes[id] = state; // 将更改记录到修改列表
 }
 
 void LightManager::SetLightGroup(LightId id, LightGroup group) {
-  std::lock_guard<std::mutex> lock(_mutex);
-  LightState& state = const_cast<LightState&>(RetrieveLightState(id));
-  state._group = group;
-  _lights_changes[id] = state;
-  _dirty = true;
+  std::lock_guard<std::mutex> lock(_mutex); // 加锁以保护多线程访问
+  LightState& state = const_cast<LightState&>(RetrieveLightState(id)); // 获取灯光状态
+  state._group = group; // 更新分组属性
+  _lights_changes[id] = state; // 将更改记录到修改列表
+  _dirty = true; // 标记有更改
 }
 
 const LightState& LightManager::RetrieveLightState(LightId id) const {
+  // 从存储中检索指定灯光的状态信息
   auto it = _lights_state.find(id);
   if(it == _lights_state.end()) {
-    carla::log_warning("Invalid light", id);
-    return _state;
+    carla::log_warning("Invalid light", id); // 记录无效灯光警告
+    return _state; // 返回默认状态
   }
-  return it->second;
+  return it->second; // 返回找到的灯光状态
 }
 
 void LightManager::QueryLightsStateToServer() {
   std::lock_guard<std::mutex> lock(_mutex);
-  // 发送 blocking 查询
+  // 发送 blocking 查询到服务器以获取灯光状态
   std::vector<rpc::LightState> lights_snapshot = _episode.Lock()->QueryLightsStateToServer();
 
-  // 更新灯
+  // 更新本地灯光状态
   SharedPtr<LightManager> lm = _episode.Lock()->GetLightManager();
 
   for(const auto& it : lights_snapshot) {
@@ -310,7 +317,7 @@ void LightManager::QueryLightsStateToServer() {
         static_cast<LightState::LightGroup>(it._group),
         it._active
     );
-
+    // 如果灯光ID不在本地记录，则创建新灯光
     if(_lights.find(it._id) == _lights.end())
     {
       _lights[it._id] = Light(lm, it._location, it._id);
@@ -319,13 +326,18 @@ void LightManager::QueryLightsStateToServer() {
 }
 
 void LightManager::UpdateServerLightsState(bool discard_client) {
+  // 创建锁以确保多线程环境下的互斥访问
   std::lock_guard<std::mutex> lock(_mutex);
-
+  // 如果灯光状态存在变更
   if(_dirty) {
+    // 定义一个存储灯光状态的消息列表
     std::vector<rpc::LightState> message;
+    // 遍历所有变更的灯光状态
     for(auto it : _lights_changes) {
+      // 在灯光映射中查找对应灯光
       auto it_light = _lights.find(it.first);
       if(it_light != _lights.end()) {
+        // 创建灯光状态对象，初始化位置、强度、分组、颜色、激活状态
         rpc::LightState state(
           it_light->second.GetLocation(),
           it.second._intensity,
@@ -333,26 +345,32 @@ void LightManager::UpdateServerLightsState(bool discard_client) {
           rpc::Color(it.second._color.r, it.second._color.g, it.second._color.b),
           it.second._active
         );
-        state._id = it.first;
+        state._id = it.first; // 设置灯光的唯一标识符
         // 添加到命令
         message.push_back(state);
       }
     }
+    // 更新服务器的灯光状态，传递消息列表和是否丢失客户端状态
     _episode.Lock()->UpdateServerLightsState(message, discard_client);
-
+    // 清空本地灯光变更列表
     _lights_changes.clear();
+    // 重置 _dirty 状态
     _dirty = false;
   }
 }
 
 void LightManager::ApplyChanges() {
+  // 创建锁以确保多线程环境下的互斥访问
   std::lock_guard<std::mutex> lock(_mutex);
+  // 遍历所有灯光变更项并应用每个更改
   for(const auto& it : _lights_changes) {
+    // 调用内部方法，不加锁地设置灯光状态
     SetLightStateNoLock(it.first, it.second);
   }
 }
 
 void LightManager::SetDayNightCycle(const bool active) {
+  // 更新昼夜循环状态，参数 active 表示是否启用
   _episode.Lock()->UpdateDayNightCycle(active);
 }
 
