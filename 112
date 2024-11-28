@@ -1,0 +1,75 @@
+%% MDCE配置
+%% 常量值设置
+%
+% 获取当前脚本所在文件夹的上一级目录，假定ssh2工具位于该目录下
+toolsPath = fileparts(fileparts(mfilename('fullpath')));
+% 构建ssh2工具的完整路径
+ssh2Path = fullfile(toolsPath, 'ssh2');
+% 将ssh2工具路径添加到MATLAB的搜索路径中
+addpath(ssh2Path);
+
+%%
+% 获取分布式计算工具箱(distcomp)的bin目录路径
+distcompBinPath = fullfile(toolboxdir('distcomp'), 'bin');
+% % 注释掉的代码：将distcomp的bin目录添加到MATLAB的搜索路径中（此处未执行）
+% addpath(distcompBinPath);
+
+% 获取当前工作目录，以便后续可以返回
+curPath = pwd;
+% 切换到distcomp的bin目录
+eval(['cd ' distcompBinPath]);
+
+% 在distcomp的bin目录下执行mdce install命令来安装MDCE
+!mdce install
+% 启动MDCE
+!mdce start
+
+%% 将主机名添加到hosts文件中
+% 如果是Windows平台
+if ispc
+    % 设置Windows的hosts文件路径
+    hostsFullpath = 'C:\Windows\System32\drivers\etc\hosts';
+end
+
+% 从名为'hosts'的文件中导入数据，假定该文件包含要添加到hosts文件的信息
+hostsInfo = importdata('hosts');
+
+% 以追加模式打开hosts文件（需要管理员权限才能修改）
+fp = fopen(hostsFullpath, 'a+');
+% 遍历hostsInfo中的每一行，并将其写入hosts文件
+for i = 1 : size(hostsInfo, 1)
+    fprintf(fp, [hostsInfo{i} newline]); % newline在MATLAB中代表换行符
+end
+% 关闭文件
+fclose(fp);
+
+%%
+% % 注释掉的代码：执行一个名为admincenter.bat的批处理文件（此处未执行）
+% !admincenter.%bat
+
+%% SSH相关操作（当前被注释掉）
+% % 获取当前用户名（Windows平台）
+% [a astr]=system('echo %USERNAME%');
+% % 获取主机名
+% system('hostname')
+% % 通过getenv函数获取环境变量中的用户名（跨平台）
+% getenv('USERNAME')
+
+% % 以下变量被设置但未使用，因为相关的ssh2操作被注释掉了
+% HOSTNAME = 'server';
+% USERNAME = 'Administrator';
+% PASSWORD = 'Admin123';
+% HOSTNAME = 'DESKTOP-1RLTDPV';
+
+% % 又一组被设置但未使用的变量，因为ssh2操作被注释
+% HOSTNAME = 'DESKTOP-1RLTDPV';
+% USERNAME = 'd';
+% PASSWORD = 'd';
+% % 使用ssh2_config函数建立SSH连接配置
+% ssh2_conn = ssh2_config(HOSTNAME, USERNAME, PASSWORD);
+% % 使用ssh2_command函数通过SSH连接执行命令
+% ssh2_conn = ssh2_command(ssh2_conn, 'ls -la *')
+
+%% 返回之前的工作目录
+% 使用eval函数和之前保存的当前工作目录路径切换回去
+eval(['cd ' curPath]);
