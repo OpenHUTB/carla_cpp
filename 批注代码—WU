@@ -1,0 +1,75 @@
+function I = latex2image(latexstr, outputfile)
+% latex2image - 将LaTeX方程转换为图像。
+%
+% 用法:
+%     I = latex2image(latexstr);  % 仅转换并返回图像矩阵
+%     I = latex2image(latexstr, outputfile);  % 转换并保存为文件，同时返回图像矩阵
+%
+% 输入参数:
+%     latexstr:    要转换的LaTeX字符串（字符行向量）
+%     outputfile:  存储LaTeX图像的输出文件路径（可选，字符行向量）
+%
+% 输出参数:
+%     I: LaTeX图像的矩阵表示（如果请求了输出）
+
+% 版权和作者信息
+% 版权所有 2015 MathWorks, Inc. 由 Sean de Wolski 编写
+
+% 错误检查
+% 检查是否在部署环境中（如MATLAB Compiler生成的独立应用程序），因为publish函数在此类环境中不可用
+if ismcc || isdeployed
+    error('latex2image无法在部署环境中使用');
+end
+% 检查输入参数数量是否在有效范围内
+narginchk(1, 2);
+% 验证latexstr是否为字符类型的行向量
+validateattributes(latexstr, {'char'}, {'row'}, 'latex2image', 'latexstr', 1);
+
+% 设置随机数种子和清理对象，确保函数执行前后随机数生成器状态一致
+rngseed = rng('shuffle');
+cleaner = onCleanup(@() rng(rngseed));
+
+% 创建临时目录和文件名
+dirname = fullfile(tempdir, 'latex');  % 在临时目录中创建'latex'子目录
+if ~isdir(dirname)
+    mkdir(dirname);  % 如果目录不存在，则创建
+end
+filename = fullfile(dirname, [arrayfun(@(x) num2str(x), randi(26, 1, 7), 'UniformOutput', false) '.m']);  % 生成随机MATLAB文件名
+
+% 编写包含LaTeX字符串的MATLAB文件
+fid = fopen(filename, 'w');
+fprintf(fid, '%%%%\n%%\n%% $$ %s$$\n%%\n', latexstr);  % 将LaTeX字符串写入文件，包裹在$$中以便作为数学公式渲染
+fclose(fid);
+
+% 添加临时目录到路径，以便publish函数可以找到文件
+addpath(dirname);
+
+% 使用publish函数发布MATLAB文件，将其中的LaTeX表达式渲染为HTML中的图像
+publish(filename);
+
+% 从路径中移除临时目录
+rmpath(dirname);
+
+% 获取HTML目录和图像文件名
+htmldir = fullfile(dirname, 'html');
+[~, justfile, ~] = fileparts(filename);
+imgname = dir(fullfile(htmldir, [justfile '*.png']));  % 查找渲染后的PNG图像文件
+imgfullfile = fullfile(htmldir, imgname(1).name);  % 获取完整文件路径
+
+% 如果请求了图像输出，则读取图像
+if nargout
+    I = imread(imgfullfile);  % 读取PNG图像文件为矩阵
+end
+
+% 如果指定了输出文件，则将图像复制到指定位置
+if nargin > 1
+    % 验证输出文件路径是否为字符类型的行向量
+    validateattributes(outputfile, {'char'}, {'row'}, 'latex2image', 'outputfile', 1);
+    try
+        copyfile(imgfullfile, outputfile);  % 复制图像文件到指定位置
+    catch ME
+        % 如果复制失败，则发出警告
+        warning('无法复制图像文件: %s', ME.message);
+    end
+end
+end
