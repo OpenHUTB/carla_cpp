@@ -1,0 +1,114 @@
+function I = latex2image(latexstr, outputfile)
+% latex2image - 将LaTeX方程转换为图像。
+%
+% 用法:
+%     I = latex2image(latexstr);
+%     I = latex2image(latexstr, outputfile);
+%
+% 输入参数:
+%     latexstr:    要转换的LaTeX字符串
+%                  字符行向量
+%                  示例: 'e^{\pi i} + 1 = 0'
+%
+%     outputfile:  存储LaTeX图像的输出文件
+%                  字符行向量
+%                  示例: 'test.png'
+%                        'C:\Documents\MATLAB\html\test.png'
+%
+% 输出参数:
+%     I: LaTeX图像的矩阵表示。
+%
+% 示例:
+%
+%    %% 示例1: 将LaTeX转换为图像并获取图像结果
+%    I = latex2image('e^{\pi i} + 1 = 0');
+%    imshow(I)
+%
+%    %% 示例2: 将LaTeX转换为一个新文件
+%    latex2image('\int_0^x\!\int_y dF(u,v) + 3','testLatex2Image.png')
+%    imshow('testLatex2Image.png')
+%
+% 另请参阅: publish, latex
+%
+
+% 版权信息
+% 2015年MathWorks公司版权所有
+% Sean de Wolski, MathWorks
+
+% 错误检查
+% 在部署环境中无法使用，因为它依赖于publish函数
+if ismcc || isdeployed
+    error('latex2image:notdeployable', 'latex2image无法部署')
+end
+% 检查输入参数数量
+narginchk(1, 2)
+% 验证latexstr的属性，确保其是字符类型的行向量
+validateattributes(latexstr, {'char'}, {'row'}, mfilename, 'latexstr', 1);
+
+% 设置随机数种子并创建清理对象，以便在函数结束时重置随机数生成器状态
+rngseed = rng('shuffle');
+cleaner = onCleanup(@() rng(rngseed));
+
+%% 构建目录和文件名
+
+% 在临时目录中创建'latex'目录
+dirname = fullfile(tempdir, 'latex');
+if ~isdir(dirname)
+    mkdir(dirname)
+end
+
+% 生成随机文件名
+alphabet = 'a':'z';
+filename = fullfile(dirname, [alphabet(randi(26, 1, 7)) '.m']);
+
+%% 编写包含LaTeX字符串的MATLAB文件
+fid = fopen(filename, 'w');
+fprintf(fid, '%%%%\n%%\n%% $$ %s$$\n%%\n', latexstr);
+fclose(fid);
+
+%% 使用publish函数发布MATLAB文件
+addpath(dirname)
+publish(filename);
+rmpath(dirname)
+
+%% 获取HTML目录和图像名称
+htmldir = fullfile(dirname, 'html');
+[~, justfile, ~] = fileparts(filename);
+imgname = dir([htmldir filesep justfile '*.png']);
+imgfullfile = fullfile(htmldir, imgname(1).name);
+
+%% 读取图像作为第一个输出
+if nargout
+    I = imread(imgfullfile);
+end
+
+%% 如果需要，则将图像移动到指定的输出文件
+if nargin > 1
+    try
+        % 验证输出文件的属性，确保其是字符类型的行向量
+        validateattributes(outputfile, {'char'}, {'row'}, mfilename, 'outputfile', 1);
+        copyfile(imgfullfile, outputfile);
+    catch ME
+        % 如果复制文件时出错，则发出警告
+        warning('latex2image:unableToCopy', ME.message);
+    end
+end
+
+end
+
+% 版权信息
+% 版权所有 (c) 2015, MathWorks, Inc.
+% 保留所有权利。
+%
+% 可以在满足以下条件的情况下重新分发和使用源代码和二进制形式：
+%
+%     * 重新分发源代码时，必须保留上述版权
+%       通知、此条件列表和以下免责声明。
+%     * 以二进制形式重新分发时，必须在文档和/或其他随分发提供的
+%       材料中重现上述版权通知、此条件列表和以下免责声明。
+%
+% 本软件按“原样”提供，由版权持有人和贡献者“按现状”提供，
+% 不提供任何明示或暗示的担保，包括但不限于适销性和特定用途的适用性担保。
+% 在任何情况下，版权所有者或贡献者均不对因使用本软件而导致的任何直接、间接、
+% 附带、特殊、范例性或后果性损害（包括但不限于采购替代商品或服务；使用损失、
+% 数据或利润损失；或业务中断）负责，即使已告知此类损害的可能性也是如此。
