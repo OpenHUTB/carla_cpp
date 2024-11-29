@@ -1376,32 +1376,54 @@ void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
       // 设置PointsPerSecond是否限制为仅使用推荐值，这里设置为false，表示不限制
       PointsPerSecond.bRestrictToRecommended = false;
 
-  // Noise seed
-  FActorVariation NoiseSeed;
-  NoiseSeed.Id = TEXT("noise_seed");
-  NoiseSeed.Type = EActorAttributeType::Int;
-  NoiseSeed.RecommendedValues = { TEXT("0") };
-  NoiseSeed.bRestrictToRecommended = false;
+      // 噪声种子设置
+      // 定义一个变量NoiseSeed，类型为FActorVariation，用于存储噪声种子的配置
+      FActorVariation NoiseSeed; 
 
-  Definition.Variations.Append({
-    HorizontalFOV,
-    VerticalFOV,
-    Range,
-    PointsPerSecond,
-    NoiseSeed});
+      // 设置NoiseSeed的标识符为"noise_seed"
+      NoiseSeed.Id = TEXT("noise_seed"); 
 
-  Success = CheckActorDefinition(Definition);
-}
+      // 设置NoiseSeed的类型为整型（Int）
+      NoiseSeed.Type = EActorAttributeType::Int; 
 
+      // 设置NoiseSeed的推荐值为"0"的字符串数组
+      NoiseSeed.RecommendedValues = { TEXT("0") }; 
+
+
+      NoiseSeed.bRestrictToRecommended = false; 
+
+      // 将HorizontalFOV, VerticalFOV, Range, PointsPerSecond, NoiseSeed添加到Definition的Variations列表中
+      Definition.Variations.Append({
+          HorizontalFOV, //水平视场角
+          VerticalFOV, //垂直视场角
+          Range, //范围
+          PointsPerSecond, //每秒点数
+          NoiseSeed }); //噪声种子
+
+      // 调用CheckActorDefinition函数检查Definition的有效性，并将结果存储在Success变量中
+      Success = CheckActorDefinition(Definition);
+  }
+
+// UActorBlueprintFunctionLibrary类的成员函数，用于创建一个激光雷达（Lidar）的定义
 FActorDefinition UActorBlueprintFunctionLibrary::MakeLidarDefinition(
-    const FString &Id)
-{
-  FActorDefinition Definition;
-  bool Success;
-  MakeLidarDefinition(Id, Success, Definition);
-  check(Success);
-  return Definition;
-}
+      // 接收一个字符串类型的Id作为参数
+      const FString& Id) 
+  {
+      // 定义一个FActorDefinition类型的变量Definition，用于存储激光雷达的定义
+      FActorDefinition Definition; 
+
+      // 定义一个布尔类型的变量Success，用于存储操作是否成功的标志
+      bool Success; 
+
+      // 调用MakeLidarDefinition的另一个重载版本，传入Id、Success和Definition，实际进行定义创建
+      MakeLidarDefinition(Id, Success, Definition);
+
+      // 使用check宏确保操作成功，如果不成功则抛出异常
+      check(Success);
+
+      // 返回创建好的激光雷达定义
+      return Definition;
+  }
 
 void UActorBlueprintFunctionLibrary::MakeLidarDefinition(
     const FString &Id,
