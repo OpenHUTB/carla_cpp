@@ -1463,26 +1463,30 @@ void UActorBlueprintFunctionLibrary::MakeLidarDefinition(
     PointsPerSecond.Type = EActorAttributeType::Int; // 变种的数据类型，这里是整型
     PointsPerSecond.RecommendedValues = { TEXT("56000") }; // 推荐值，这里是每秒56000个点
 
-  // Frequency.
-  FActorVariation Frequency;
-  Frequency.Id = TEXT("rotation_frequency");
-  Frequency.Type = EActorAttributeType::Float;
-  Frequency.RecommendedValues = { TEXT("10.0") };
-  // Upper FOV limit.
-  FActorVariation UpperFOV;
-  UpperFOV.Id = TEXT("upper_fov");
-  UpperFOV.Type = EActorAttributeType::Float;
-  UpperFOV.RecommendedValues = { TEXT("10.0") };
-  // Lower FOV limit.
-  FActorVariation LowerFOV;
-  LowerFOV.Id = TEXT("lower_fov");
-  LowerFOV.Type = EActorAttributeType::Float;
-  LowerFOV.RecommendedValues = { TEXT("-30.0") };
-  // Horizontal FOV.
-  FActorVariation HorizontalFOV;
-  HorizontalFOV.Id = TEXT("horizontal_fov");
-  HorizontalFOV.Type = EActorAttributeType::Float;
-  HorizontalFOV.RecommendedValues = { TEXT("360.0") };
+    // 频率设置
+    FActorVariation Frequency; // 定义一个用于存储频率变种的结构体变量
+    Frequency.Id = TEXT("rotation_frequency"); // 设置变种的标识符为"rotation_frequency"，表示旋转频率
+    Frequency.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
+    Frequency.RecommendedValues = { TEXT("10.0") }; // 设置推荐的频率值为10.0
+
+    // 上方视场角（FOV）限制
+    FActorVariation UpperFOV; // 定义一个用于存储上方视场角变种的结构体变量
+    UpperFOV.Id = TEXT("upper_fov"); // 设置变种的标识符为"upper_fov"，表示上方的视场角
+    UpperFOV.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
+    UpperFOV.RecommendedValues = { TEXT("10.0") }; // 设置推荐的上方视场角值为10.0度
+
+    // 下方视场角（FOV）限制
+    FActorVariation LowerFOV; // 定义一个用于存储下方视场角变种的结构体变量
+    LowerFOV.Id = TEXT("lower_fov"); // 设置变种的标识符为"lower_fov"，表示下方的视场角
+    LowerFOV.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
+    LowerFOV.RecommendedValues = { TEXT("-30.0") }; // 设置推荐的下方视场角值为-30.0度
+
+    // 水平视场角（FOV）
+    FActorVariation HorizontalFOV; // 定义一个用于存储水平视场角变种的结构体变量
+    HorizontalFOV.Id = TEXT("horizontal_fov"); // 设置变种的标识符为"horizontal_fov"，表示水平方向的视场角
+    HorizontalFOV.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
+    HorizontalFOV.RecommendedValues = { TEXT("360.0") }; // 设置推荐的水平视场角值为360.0度，表示全向视野
+
   // Atmospheric Attenuation Rate.
   FActorVariation AtmospAttenRate;
   AtmospAttenRate.Id = TEXT("atmosphere_attenuation_rate");
