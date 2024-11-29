@@ -1425,29 +1425,44 @@ FActorDefinition UActorBlueprintFunctionLibrary::MakeLidarDefinition(
       return Definition;
   }
 
+// 定义一个函数，用于创建激光雷达的定义
 void UActorBlueprintFunctionLibrary::MakeLidarDefinition(
-    const FString &Id,
-    bool &Success,
-    FActorDefinition &Definition)
+    // 激光雷达的唯一标识符
+    const FString& Id, 
+
+    // 函数执行成功与否的标志
+    bool& Success, 
+
+    // 激光雷达的定义结构体
+    FActorDefinition& Definition) 
 {
-  FillIdAndTags(Definition, TEXT("sensor"), TEXT("lidar"), Id);
-  AddRecommendedValuesForSensorRoleNames(Definition);
-  AddVariationsForSensor(Definition);
-  // Number of channels.
-  FActorVariation Channels;
-  Channels.Id = TEXT("channels");
-  Channels.Type = EActorAttributeType::Int;
-  Channels.RecommendedValues = { TEXT("32") };
-  // Range.
-  FActorVariation Range;
-  Range.Id = TEXT("range");
-  Range.Type = EActorAttributeType::Float;
-  Range.RecommendedValues = { TEXT("10.0") }; // 10 meters
-  // Points per second.
-  FActorVariation PointsPerSecond;
-  PointsPerSecond.Id = TEXT("points_per_second");
-  PointsPerSecond.Type = EActorAttributeType::Int;
-  PointsPerSecond.RecommendedValues = { TEXT("56000") };
+    // 为定义填充标识符和标签，这里将激光雷达的角色标签设置为"sensor"和"lidar"，并赋予其一个唯一Id
+    FillIdAndTags(Definition, TEXT("sensor"), TEXT("lidar"), Id);
+
+    // 为传感器角色名称添加推荐值
+    AddRecommendedValuesForSensorRoleNames(Definition);
+
+    // 为传感器添加变种
+    AddVariationsForSensor(Definition);
+
+    // 定义激光雷达的通道数量
+    FActorVariation Channels; // 创建一个用于存储通道数量变种的结构体
+    Channels.Id = TEXT("channels"); // 变种的标识符
+    Channels.Type = EActorAttributeType::Int; // 变种的数据类型，这里是整型
+    Channels.RecommendedValues = { TEXT("32") }; // 推荐值，这里是32个通道
+
+    // 定义激光雷达的探测范围
+    FActorVariation Range; // 创建一个用于存储探测范围变种的结构体
+    Range.Id = TEXT("range"); // 变种的标识符
+    Range.Type = EActorAttributeType::Float; // 变种的数据类型，这里是浮点型
+    Range.RecommendedValues = { TEXT("10.0") }; // 推荐值，这里是10米
+
+    // 定义激光雷达每秒的点数（可能是指每秒采集的数据点数）
+    FActorVariation PointsPerSecond; // 创建一个用于存储每秒点数变种的结构体
+    PointsPerSecond.Id = TEXT("points_per_second"); // 变种的标识符
+    PointsPerSecond.Type = EActorAttributeType::Int; // 变种的数据类型，这里是整型
+    PointsPerSecond.RecommendedValues = { TEXT("56000") }; // 推荐值，这里是每秒56000个点
+
   // Frequency.
   FActorVariation Frequency;
   Frequency.Id = TEXT("rotation_frequency");
