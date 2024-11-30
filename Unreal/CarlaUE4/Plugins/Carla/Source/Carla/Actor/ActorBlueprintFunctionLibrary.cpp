@@ -1487,37 +1487,42 @@ void UActorBlueprintFunctionLibrary::MakeLidarDefinition(
     HorizontalFOV.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
     HorizontalFOV.RecommendedValues = { TEXT("360.0") }; // 设置推荐的水平视场角值为360.0度，表示全向视野
 
-  // Atmospheric Attenuation Rate.
-  FActorVariation AtmospAttenRate;
-  AtmospAttenRate.Id = TEXT("atmosphere_attenuation_rate");
-  AtmospAttenRate.Type = EActorAttributeType::Float;
-  AtmospAttenRate.RecommendedValues = { TEXT("0.004") };
-  // Noise seed
-  FActorVariation NoiseSeed;
-  NoiseSeed.Id = TEXT("noise_seed");
-  NoiseSeed.Type = EActorAttributeType::Int;
-  NoiseSeed.RecommendedValues = { TEXT("0") };
-  NoiseSeed.bRestrictToRecommended = false;
-  // Dropoff General Rate
-  FActorVariation DropOffGenRate;
-  DropOffGenRate.Id = TEXT("dropoff_general_rate");
-  DropOffGenRate.Type = EActorAttributeType::Float;
-  DropOffGenRate.RecommendedValues = { TEXT("0.45") };
-  // Dropoff intensity limit.
-  FActorVariation DropOffIntensityLimit;
-  DropOffIntensityLimit.Id = TEXT("dropoff_intensity_limit");
-  DropOffIntensityLimit.Type = EActorAttributeType::Float;
-  DropOffIntensityLimit.RecommendedValues = { TEXT("0.8") };
-  // Dropoff at zero intensity.
-  FActorVariation DropOffAtZeroIntensity;
-  DropOffAtZeroIntensity.Id = TEXT("dropoff_zero_intensity");
-  DropOffAtZeroIntensity.Type = EActorAttributeType::Float;
-  DropOffAtZeroIntensity.RecommendedValues = { TEXT("0.4") };
-  // Noise in lidar cloud points.
-  FActorVariation StdDevLidar;
-  StdDevLidar.Id = TEXT("noise_stddev");
-  StdDevLidar.Type = EActorAttributeType::Float;
-  StdDevLidar.RecommendedValues = { TEXT("0.0") };
+    // 大气衰减率
+    FActorVariation AtmospAttenRate; // 定义一个大气衰减率的变化因子
+    AtmospAttenRate.Id = TEXT("atmosphere_attenuation_rate"); // 设置该因子的ID为"atmosphere_attenuation_rate"
+    AtmospAttenRate.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
+    AtmospAttenRate.RecommendedValues = { TEXT("0.004") }; // 设置该因子的推荐值为0.004
+
+    // 噪声种子
+    FActorVariation NoiseSeed; // 定义一个噪声种子的变化因子
+    NoiseSeed.Id = TEXT("noise_seed"); // 设置该因子的ID为"noise_seed"
+    NoiseSeed.Type = EActorAttributeType::Int; // 设置该因子的类型为整数
+    NoiseSeed.RecommendedValues = { TEXT("0") }; // 设置该因子的推荐值为0
+    NoiseSeed.bRestrictToRecommended = false; // 设置该因子不受推荐值的限制
+
+    // 衰减通用率
+    FActorVariation DropOffGenRate; // 定义一个衰减通用率的变化因子
+    DropOffGenRate.Id = TEXT("dropoff_general_rate"); // 设置该因子的ID为"dropoff_general_rate"
+    DropOffGenRate.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
+    DropOffGenRate.RecommendedValues = { TEXT("0.45") }; // 设置该因子的推荐值为0.45
+
+    // 衰减强度限制
+    FActorVariation DropOffIntensityLimit; // 定义一个衰减强度限制的变化因子
+    DropOffIntensityLimit.Id = TEXT("dropoff_intensity_limit"); // 设置该因子的ID为"dropoff_intensity_limit"
+    DropOffIntensityLimit.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
+    DropOffIntensityLimit.RecommendedValues = { TEXT("0.8") }; // 设置该因子的推荐值为0.8
+
+    // 零强度时的衰减
+    FActorVariation DropOffAtZeroIntensity; // 定义一个零强度时衰减的变化因子
+    DropOffAtZeroIntensity.Id = TEXT("dropoff_zero_intensity"); // 设置该因子的ID为"dropoff_zero_intensity"
+    DropOffAtZeroIntensity.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
+    DropOffAtZeroIntensity.RecommendedValues = { TEXT("0.4") }; // 设置该因子的推荐值为0.4
+
+    // 激光雷达云点中的噪声
+    FActorVariation StdDevLidar; // 定义一个激光雷达云点噪声标准差的变化因子
+    StdDevLidar.Id = TEXT("noise_stddev"); // 设置该因子的ID为"noise_stddev"
+    StdDevLidar.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
+    StdDevLidar.RecommendedValues = { TEXT("0.0") }; // 设置该因子的推荐值为0.0
 
   if (Id == "ray_cast") {
     Definition.Variations.Append({
