@@ -15,7 +15,7 @@
 #include "LargeMapManager.generated.h"
 
 
-//待办事项：缓存Carla剧集。
+//TODO: Cache CarlaEpisode。
 
 USTRUCT()
 struct FActiveActor
@@ -49,7 +49,7 @@ struct FCarlaMapTile
   // 绝对位置不依赖于重新定基准。
   UPROPERTY(VisibleAnywhere,  BlueprintReadWrite, Category = "Carla Map Tile")
   FVector Location{0.0f};
-  // 待办事项：不是 F 向量
+  //TODO: not FVector
 
   UPROPERTY(VisibleAnywhere,  BlueprintReadWrite, Category = "Carla Map Tile")
   ULevelStreamingDynamic* StreamingLevel = nullptr;
@@ -66,7 +66,7 @@ public:
 
   using TileID = uint64;
 
-  //为该角色的属性设置默认值。
+  //为该参与者的属性设置默认值。
 
   ALargeMapManager();
 
@@ -216,20 +216,20 @@ protected:
 
   void RemovePendingActorsToRemove();
 
-  //检查是否有任何处于活动状态的角色需要转换为休眠状态的角色。
-  //因为它超出了范围（角色流送距离）
- // 仅存储所选角色的数组
+  //检查是否有任何处于活动状态的参与者需要转换为休眠状态的参与者。
+  //因为它超出了范围（参与者流送距离）
+ // 仅存储所选参与者的数组
   void CheckActiveActors();
 
-  // 将超出范围的活动角色转换为休眠角色。
+  // 将超出范围的活动参与者转换为休眠参与者。
   void ConvertActiveToDormantActors();
 
-  // 检查是否有任何休眠角色需要转换为活动角色。
-// 因为它进入了范围（角色流送距离）
-// 仅存储所选角色的数组
+  // 检查是否有任何休眠参与者需要转换为活动参与者。
+// 因为它进入了范围（参与者流送距离）
+// 仅存储所选参与者的数组
   void CheckDormantActors();
 
-  // 将超出范围的活动角色转换为休眠角色。
+  // 将超出范围的活动参与者转换为休眠参与者。
   void ConvertDormantToActiveActors();
 
   void CheckIfRebaseIsNeeded();
@@ -256,9 +256,9 @@ protected:
   UPROPERTY(VisibleAnywhere, Category = "Large Map Manager")
   TMap<uint64, FCarlaMapTile> MapTiles;
 
-  // 所有要考虑用于瓦片加载的角色（所有主车）
-// 数组中的第一个角色是被选中用于重新定基准的那个角色
-// 待办事项：支持对多个主车进行重新定基准操作
+  // 所有要考虑用于瓦片加载的参与者（所有主车）
+// 数组中的第一个参与者是被选中用于重新定基准的那个参与者
+//TODO: support rebase in more than one hero vehicle
   UPROPERTY(VisibleAnywhere, Category = "Large Map Manager")
   TArray<AActor*> ActorsToConsider;
 
@@ -268,12 +268,12 @@ protected:
   TArray<FCarlaActor::IdType> ActiveActors;
   TArray<FCarlaActor::IdType> DormantActors;
 
-  //临时集合用于移除角色。这样做只是为了避免在更新循环中移除它们。
+  //临时集合用于移除参与者。这样做只是为了避免在更新循环中移除它们。
   TSet<AActor*> ActorsToRemove;
   TSet<FCarlaActor::IdType> ActivesToRemove;
   TSet<FCarlaActor::IdType> DormantsToRemove;
 
-  // 用于将角色从一个数组移动到另一个数组的辅助工具。.
+  // 用于将参与者从一个数组移动到另一个数组的辅助工具。.
   TSet<FCarlaActor::IdType> ActiveToDormantActors;
   TSet<FCarlaActor::IdType> DormantToActiveActors;
 
