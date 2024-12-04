@@ -321,24 +321,24 @@ std::pair<bool, float> MotionPlanStage::CollisionHandling(const CollisionHazardD
 
     const float other_speed_along_heading = cg::Math::Dot(other_velocity, vehicle_heading);
 
-    // Consider collision avoidance decisions only if there is positive relative velocity
-    // of the ego vehicle (meaning, ego vehicle is closing the gap to the lead vehicle).
+    //只有在存在正相对速度的情况下，才考虑避撞决策
+    // 自车（即，自车正在缩小与前车的间距）
     if (vehicle_relative_speed > EPSILON_RELATIVE_SPEED) {
-      // If other vehicle is approaching lead vehicle and lead vehicle is further
-      // than follow_lead_distance 0 kmph -> 5m, 100 kmph -> 10m.
+      // 如果其他车辆正在接近领头车辆，并且领头车辆距离更远
+      // 跟随距离：0公里/小时 -> 5米，100公里/小时 -> 10米
       float follow_lead_distance = FOLLOW_LEAD_FACTOR * vehicle_speed + MIN_FOLLOW_LEAD_DISTANCE;
       if (available_distance_margin > follow_lead_distance) {
-        // Then reduce the gap between the vehicles till FOLLOW_LEAD_DISTANCE
-        // by maintaining a relative speed of other_speed_along_heading
+        //然后缩小车辆之间的距离，直到达到跟随前车的距离
+        // 通过保持与其他_沿航向_速度的相对速度
         dynamic_target_velocity = other_speed_along_heading;
       }
-      // If vehicle is approaching a lead vehicle and the lead vehicle is further
-      // than CRITICAL_BRAKING_MARGIN but closer than FOLLOW_LEAD_DISTANCE.
+      // 如果车辆正在接近前车，而前车距离较远
+      // 但比CRITICAL_BRAKING_MARGIN更近，且比FOLLOW_LEAD_DISTANCE更近
       else if (available_distance_margin > CRITICAL_BRAKING_MARGIN) {
-        // Then follow the lead vehicle by acquiring it's speed along current heading.
+        // 然后跟随前导车辆，获取其沿当前航向的速度
         dynamic_target_velocity = std::max(other_speed_along_heading, RELATIVE_APPROACH_SPEED);
       } else {
-        // If lead vehicle closer than CRITICAL_BRAKING_MARGIN, initiate emergency stop.
+        // 如果前车距离小于紧急制动距离，则启动紧急制动
         collision_emergency_stop = true;
       }
     }
@@ -349,7 +349,7 @@ std::pair<bool, float> MotionPlanStage::CollisionHandling(const CollisionHazardD
 
   float max_gradual_velocity = PERC_MAX_SLOWDOWN * vehicle_speed;
   if (dynamic_target_velocity < vehicle_speed - max_gradual_velocity) {
-    // Don't slow more than PERC_MAX_SLOWDOWN per frame.
+    // 不要每帧减速超过PERC_MAX_SLOWDOWN
     dynamic_target_velocity = vehicle_speed - max_gradual_velocity;
   }
   dynamic_target_velocity = std::min(max_target_velocity, dynamic_target_velocity);
@@ -379,13 +379,13 @@ float MotionPlanStage::GetLandmarkTargetVelocity(const SimpleWaypoint& waypoint,
       }
 
       float minimum_velocity = max_target_velocity;
-      if (landmark_type == "1000001") {  // Traffic light
+      if (landmark_type == "1000001") {  // 交通信号灯
         minimum_velocity = TL_TARGET_VELOCITY;
-      } else if (landmark_type == "206") {  // Stop
+      } else if (landmark_type == "206") {  // 停止
         minimum_velocity = STOP_TARGET_VELOCITY;
-      } else if (landmark_type == "205") {  // Yield
+      } else if (landmark_type == "205") {  // 产出
         minimum_velocity = YIELD_TARGET_VELOCITY;
-      } else if (landmark_type == "274") {  // Speed limit
+      } else if (landmark_type == "274") {  // 速度限制
         float value = static_cast<float>(landmark->GetValue()) / 3.6f;
         value = parameters.GetVehicleTargetVelocity(actor_id, value);
         minimum_velocity = (value < max_target_velocity) ? value : max_target_velocity;
@@ -415,7 +415,7 @@ float MotionPlanStage::GetTurnTargetVelocity(const Buffer &waypoint_buffer,
                                              middle_waypoint->GetLocation(),
                                              last_waypoint->GetLocation());
 
-    // Return the max velocity at the turn
+    // 返回转弯处的最大速度
     return std::sqrt(radius * FRICTION * GRAVITY);
   }
 }
