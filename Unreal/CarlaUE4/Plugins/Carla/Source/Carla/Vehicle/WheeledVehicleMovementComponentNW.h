@@ -1,8 +1,7 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2022 巴塞罗那自治大学 (UAB) 计算机视觉中心 (CVC)。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款授权。
+// 如需副本，请访问 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 #include "WheeledVehicleMovementComponent.h"
@@ -11,157 +10,162 @@
 
 namespace physx
 {
-	class PxVehicleWheelData;
+    class PxVehicleWheelData;
 }
 
+// 车轮差速器数据结构
 USTRUCT()
 struct FVehicleNWWheelDifferentialData
 {
-	GENERATED_USTRUCT_BODY()
+    GENERATED_USTRUCT_BODY()
 
-		/** If True, torque is applied to this wheel */
-		UPROPERTY(EditAnywhere, Category = Setup)
-		bool bDriven;
+    /** 如果为 True，则对该车轮施加扭矩 */
+    UPROPERTY(EditAnywhere, Category = Setup)
+    bool bDriven;
 
-	FVehicleNWWheelDifferentialData()
-		: bDriven(true)
-	{ }
+    FVehicleNWWheelDifferentialData()
+        : bDriven(true)
+    { }
 };
 
+// 车辆引擎数据结构
 USTRUCT()
 struct FVehicleNWEngineData
 {
-	GENERATED_USTRUCT_BODY()
+    GENERATED_USTRUCT_BODY()
 
-	/** Torque (Nm) at a given RPM*/
-	UPROPERTY(EditAnywhere, Category = Setup)
-	FRuntimeFloatCurve TorqueCurve;
+    /** 给定 RPM 下的扭矩（Nm）*/
+    UPROPERTY(EditAnywhere, Category = Setup)
+    FRuntimeFloatCurve TorqueCurve;
 
-	/** Maximum revolutions per minute of the engine */
-	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.01", UIMin = "0.01"))
-	float MaxRPM;
+    /** 引擎的最大每分钟转速 */
+    UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.01", UIMin = "0.01"))
+    float MaxRPM;
 
-	/** Moment of inertia of the engine around the axis of rotation (Kgm^2). */
-	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.01", UIMin = "0.01"))
-	float MOI;
+    /** 引擎绕旋转轴的转动惯量（Kgm^2）*/
+    UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.01", UIMin = "0.01"))
+    float MOI;
 
-	/** Damping rate of engine when full throttle is applied (Kgm^2/s) */
-	UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float DampingRateFullThrottle;
+    /** 全油门时引擎的阻尼率（Kgm^2/s）*/
+    UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay, meta = (ClampMin = "0.0", UIMin = "0.0"))
+    float DampingRateFullThrottle;
 
-	/** Damping rate of engine in at zero throttle when the clutch is engaged (Kgm^2/s)*/
-	UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float DampingRateZeroThrottleClutchEngaged;
+    /** 离合器接合时零油门下引擎的阻尼率（Kgm^2/s）*/
+    UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay, meta = (ClampMin = "0.0", UIMin = "0.0"))
+    float DampingRateZeroThrottleClutchEngaged;
 
-	/** Damping rate of engine in at zero throttle when the clutch is disengaged (in neutral gear) (Kgm^2/s)*/
-	UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float DampingRateZeroThrottleClutchDisengaged;
+    /** 离合器分离时（空挡）零油门下引擎的阻尼率（Kgm^2/s）*/
+    UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay, meta = (ClampMin = "0.0", UIMin = "0.0"))
+    float DampingRateZeroThrottleClutchDisengaged;
 
-	/** Find the peak torque produced by the TorqueCurve */
-	float FindPeakTorque() const;
+    /** 查找 TorqueCurve 产生的峰值扭矩 */
+    float FindPeakTorque() const;
 };
 
+// 车辆齿轮数据结构
 USTRUCT()
 struct FVehicleNWGearData
 {
-	GENERATED_USTRUCT_BODY()
+    GENERATED_USTRUCT_BODY()
 
-	/** Determines the amount of torque multiplication*/
-	UPROPERTY(EditAnywhere, Category = Setup)
-	float Ratio;
+    /** 决定扭矩倍增量 */
+    UPROPERTY(EditAnywhere, Category = Setup)
+    float Ratio;
 
-	/** Value of engineRevs/maxEngineRevs that is low enough to gear down*/
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0", ClampMax = "1.0", UIMax = "1.0"), Category = Setup)
-	float DownRatio;
+    /** engineRevs/maxEngineRevs 的值，低于此值时降档 */
+    UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0", ClampMax = "1.0", UIMax = "1.0"), Category = Setup)
+    float DownRatio;
 
-	/** Value of engineRevs/maxEngineRevs that is high enough to gear up*/
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0", ClampMax = "1.0", UIMax = "1.0"), Category = Setup)
-	float UpRatio;
+    /** engineRevs/maxEngineRevs 的值，高于此值时升档 */
+    UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0", ClampMax = "1.0", UIMax = "1.0"), Category = Setup)
+    float UpRatio;
 };
 
+// 车辆变速器数据结构
 USTRUCT()
 struct FVehicleNWTransmissionData
 {
-	GENERATED_USTRUCT_BODY()
-	/** Whether to use automatic transmission */
-	UPROPERTY(EditAnywhere, Category = VehicleSetup, meta = (DisplayName = "Automatic Transmission"))
-	bool bUseGearAutoBox;
+    GENERATED_USTRUCT_BODY()
+    /** 是否使用自动变速器 */
+    UPROPERTY(EditAnywhere, Category = VehicleSetup, meta = (DisplayName = "Automatic Transmission"))
+    bool bUseGearAutoBox;
 
-	/** Time it takes to switch gears (seconds) */
-	UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float GearSwitchTime;
+    /** 换档所需时间（秒）*/
+    UPROPERTY(EditAnywhere, Category = Setup, meta = (ClampMin = "0.0", UIMin = "0.0"))
+    float GearSwitchTime;
 
-	/** Minimum time it takes the automatic transmission to initiate a gear change (seconds)*/
-	UPROPERTY(EditAnywhere, Category = Setup, meta = (editcondition = "bUseGearAutoBox", ClampMin = "0.0", UIMin = "0.0"))
-	float GearAutoBoxLatency;
+    /** 自动变速器启动换档所需的最小时间（秒）*/
+    UPROPERTY(EditAnywhere, Category = Setup, meta = (editcondition = "bUseGearAutoBox", ClampMin = "0.0", UIMin = "0.0"))
+    float GearAutoBoxLatency;
 
-	/** The final gear ratio multiplies the transmission gear ratios.*/
-	UPROPERTY(EditAnywhere, AdvancedDisplay, Category = Setup)
-	float FinalRatio;
+    /** 最终齿轮比乘以变速器齿轮比 */
+    UPROPERTY(EditAnywhere, AdvancedDisplay, Category = Setup)
+    float FinalRatio;
 
-	/** Forward gear ratios (up to 30) */
-	UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay)
-	TArray<FVehicleNWGearData> ForwardGears;
+    /** 前进档位齿轮比（最多30个）*/
+    UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay)
+    TArray<FVehicleNWGearData> ForwardGears;
 
-	/** Reverse gear ratio */
-	UPROPERTY(EditAnywhere, AdvancedDisplay, Category = Setup)
-	float ReverseGearRatio;
+    /** 倒档齿轮比 */
+    UPROPERTY(EditAnywhere, AdvancedDisplay, Category = Setup)
+    float ReverseGearRatio;
 
-	/** Value of engineRevs/maxEngineRevs that is high enough to increment gear*/
-	UPROPERTY(EditAnywhere, AdvancedDisplay, Category = Setup, meta = (ClampMin = "0.0", UIMin = "0.0", ClampMax = "1.0", UIMax = "1.0"))
-	float NeutralGearUpRatio;
+    /** engineRevs/maxEngineRevs 的值，高于此值时增加档位 */
+    UPROPERTY(EditAnywhere, AdvancedDisplay, Category = Setup, meta = (ClampMin = "0.0", UIMin = "0.0", ClampMax = "1.0", UIMax = "1.0"))
+    float NeutralGearUpRatio;
 
-	/** Strength of clutch (Kgm^2/s)*/
-	UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float ClutchStrength;
+    /** 离合器强度（Kgm^2/s）*/
+    UPROPERTY(EditAnywhere, Category = Setup, AdvancedDisplay, meta = (ClampMin = "0.0", UIMin = "0.0"))
+    float ClutchStrength;
 };
 
+// 轮式车辆运动组件NW类
 UCLASS(ClassGroup = (Physics), meta = (BlueprintSpawnableComponent), hidecategories = (PlanarMovement, "Components|Movement|Planar", Activation, "Components|Activation"))
 class CARLA_API UWheeledVehicleMovementComponentNW : public UWheeledVehicleMovementComponent
 {
-	GENERATED_UCLASS_BODY()
+    GENERATED_UCLASS_BODY()
 
-		/** Engine */
-	UPROPERTY(EditAnywhere, Category = MechanicalSetup)
-	FVehicleNWEngineData EngineSetup;
+    /** 引擎 */
+    UPROPERTY(EditAnywhere, Category = MechanicalSetup)
+    FVehicleNWEngineData EngineSetup;
 
-	/** Differential */
-	UPROPERTY(EditAnywhere, Category = MechanicalSetup)
-	TArray<FVehicleNWWheelDifferentialData> DifferentialSetup;
+    /** 差速器 */
+    UPROPERTY(EditAnywhere, Category = MechanicalSetup)
+    TArray<FVehicleNWWheelDifferentialData> DifferentialSetup;
 
-	/** Transmission data */
-	UPROPERTY(EditAnywhere, Category = MechanicalSetup)
-	FVehicleNWTransmissionData TransmissionSetup;
+    /** 变速器数据 */
+    UPROPERTY(EditAnywhere, Category = MechanicalSetup)
+    FVehicleNWTransmissionData TransmissionSetup;
 
-	/** Maximum steering versus forward speed (km/h) */
-	UPROPERTY(EditAnywhere, Category = SteeringSetup)
-	FRuntimeFloatCurve SteeringCurve;
+    /** 最大转向与前进速度（km/h）的关系曲线 */
+    UPROPERTY(EditAnywhere, Category = SteeringSetup)
+    FRuntimeFloatCurve SteeringCurve;
 
-	virtual void Serialize(FArchive& Ar) override;
-	virtual void ComputeConstants() override;
+    virtual void Serialize(FArchive& Ar) override;
+    virtual void ComputeConstants() override;
 #if WITH_EDITOR
-	virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
+    virtual void PostEditChangeProperty(struct FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif
 
 protected:
 
-	virtual const void* GetTireData(physx::PxVehicleWheels* Wheels, UVehicleWheel* Wheel);
-	virtual const int32 GetWheelShapeMapping(physx::PxVehicleWheels* Wheels, uint32 Wheel);
-	virtual const physx::PxVehicleWheelData GetWheelData(physx::PxVehicleWheels* Wheels, uint32 Wheel);
+    virtual const void* GetTireData(physx::PxVehicleWheels* Wheels, UVehicleWheel* Wheel);
+    virtual const int32 GetWheelShapeMapping(physx::PxVehicleWheels* Wheels, uint32 Wheel);
+    virtual const physx::PxVehicleWheelData GetWheelData(physx::PxVehicleWheels* Wheels, uint32 Wheel);
 
-	/** Allocate and setup the PhysX vehicle */
-	virtual void SetupVehicle() override;
+    /** 分配并设置 PhysX 车辆 */
+    virtual void SetupVehicle() override;
 
-	virtual int32 GetCustomGearBoxNumForwardGears() const;
+    virtual int32 GetCustomGearBoxNumForwardGears() const;
 
-	virtual void UpdateSimulation(float DeltaTime) override;
+    virtual void UpdateSimulation(float DeltaTime) override;
 
-	/** update simulation data: engine */
-	virtual void UpdateEngineSetup(const FVehicleNWEngineData& NewEngineSetup);
+    /** 更新模拟数据：引擎 */
+    virtual void UpdateEngineSetup(const FVehicleNWEngineData& NewEngineSetup);
 
-	/** update simulation data: differential */
-	virtual void UpdateDifferentialSetup(const TArray<FVehicleNWWheelDifferentialData>& NewDifferentialSetup);
+    /** 更新模拟数据：差速器 */
+    virtual void UpdateDifferentialSetup(const TArray<FVehicleNWWheelDifferentialData>& NewDifferentialSetup);
 
-	/** update simulation data: transmission */
-	virtual void UpdateTransmissionSetup(const FVehicleNWTransmissionData& NewGearSetup);
+    /** 更新模拟数据：变速器 */
+    virtual void UpdateTransmissionSetup(const FVehicleNWTransmissionData& NewGearSetup);
 };
