@@ -7,7 +7,7 @@ jobs:
   work:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4#检出仓库代码
+      - uses: actions/checkout@v4
         with:
           # github action 默认签出只包含最后一次提交
           # 解决方案参考：https://stackoverflow.com/questions/62334460/git-history-in-a-github-action

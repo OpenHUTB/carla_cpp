@@ -1,8 +1,7 @@
-// Copyright (c) 2023 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2023 巴塞罗那自治大学 (UAB) 计算机视觉中心 (CVC)。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款授权。
+// 如需副本，请访问 <https://opensource.org/licenses/MIT>。
 
 #include "MapGenFunctionLibrary.h"
 
@@ -15,23 +14,32 @@
 
 // Carla 插件头文件
 
+// 定义日志类别
 DEFINE_LOG_CATEGORY(LogCarlaMapGenFunctionLibrary);
+// 定义 OSM 到厘米的比例因子
 static const float OSMToCentimetersScaleFactor = 100.0f;
 
+// 从给定数据构建网格描述
 FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
   const FProceduralCustomMesh& Data,
   const TArray<FProcMeshTangent>& ParamTangents,
   UMaterialInstance* MaterialInstance  )
 {
-
+  // 获取顶点数量
   int32 VertexCount = Data.Vertices.Num();
+  // 获取顶点实例数量
   int32 VertexInstanceCount = Data.Triangles.Num();
+  // 计算多边形数量
   int32 PolygonCount = Data.Vertices.Num()/3;
 
-	FMeshDescription MeshDescription;
+  // 创建网格描述对象
+  FMeshDescription MeshDescription;
+  // 获取静态网格属性
   FStaticMeshAttributes AttributeGetter(MeshDescription);
+  // 注册属性
   AttributeGetter.Register();
 
+  // 获取各种网格属性引用
   TPolygonGroupAttributesRef<FName> PolygonGroupNames = AttributeGetter.GetPolygonGroupMaterialSlotNames();
   TVertexAttributesRef<FVector> VertexPositions = AttributeGetter.GetVertexPositions();
   TVertexInstanceAttributesRef<FVector> Tangents = AttributeGetter.GetVertexInstanceTangents();
@@ -40,7 +48,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
   TVertexInstanceAttributesRef<FVector4> Colors = AttributeGetter.GetVertexInstanceColors();
   TVertexInstanceAttributesRef<FVector2D> UVs = AttributeGetter.GetVertexInstanceUVs();
 
-  // 计算每个 ProcMesh 元素类型的总计
+  // 为网格描述预留空间
   FPolygonGroupID PolygonGroupForSection;
   MeshDescription.ReserveNewVertices(VertexCount);
   MeshDescription.ReserveNewVertexInstances(VertexInstanceCount);
@@ -50,8 +58,8 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
 
   // 创建材质
   TMap<UMaterialInterface*, FPolygonGroupID> UniqueMaterials;
-	const int32 NumSections = 1;
-	UniqueMaterials.Reserve(1);
+  const int32 NumSections = 1;
+  UniqueMaterials.Reserve(1);
   FPolygonGroupID NewPolygonGroup = MeshDescription.CreatePolygonGroup();
 
   if( MaterialInstance != nullptr ){
@@ -62,8 +70,6 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
     UE_LOG(LogCarla, Error, TEXT("MaterialInstance is nullptr"));
   }
   PolygonGroupForSection = NewPolygonGroup;
-
-
 
   // 创建模型顶点
   int32 NumVertex = Data.Vertices.Num();
@@ -77,8 +83,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
     VertexIndexToVertexID.Add(VertexIndex, VertexID);
   }
 
-  // 创建 VertexInstance
-  //"VertexInstance" 是三维图形学和计算机图形学中的术语，它指的是模型中一个特定顶点的实例或具体实现。
+  // 创建顶点实例
   int32 NumIndices = Data.Triangles.Num();
   int32 NumTri = NumIndices / 3;
   TMap<int32, FVertexInstanceID> IndiceIndexToVertexInstanceID;
@@ -87,18 +92,14 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
   {
     const int32 VertexIndex = Data.Triangles[IndiceIndex];
     const FVertexID VertexID = VertexIndexToVertexID[VertexIndex];
-    const FVertexInstanceID VertexInstanceID =
-    MeshDescription.CreateVertexInstance(VertexID);
+    const FVertexInstanceID VertexInstanceID = MeshDescription.CreateVertexInstance(VertexID);
     IndiceIndexToVertexInstanceID.Add(IndiceIndex, VertexInstanceID);
     Normals[VertexInstanceID] = Data.Normals[VertexIndex];
 
     if(ParamTangents.Num() == Data.Vertices.Num())
     {
       Tangents[VertexInstanceID] = ParamTangents[VertexIndex].TangentX;
-      BinormalSigns[VertexInstanceID] =
-        ParamTangents[VertexIndex].bFlipTangentY ? -1.f : 1.f;
-    }else{
-
+      BinormalSigns[VertexInstanceID] = ParamTangents[VertexIndex].bFlipTangentY ? -1.f : 1.f;
     }
     Colors[VertexInstanceID] = FLinearColor(0,0,0);
     if(Data.UV0.Num() == Data.Vertices.Num())
@@ -112,6 +113,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
     UVs.Set(VertexInstanceID, 3, FVector2D(0,0));
   }
 
+  // 创建多边形
   for (int32 TriIdx = 0; TriIdx < NumTri; TriIdx++)
   {
     FVertexID VertexIndexes[3];
@@ -123,18 +125,17 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
       const int32 IndiceIndex = (TriIdx * 3) + CornerIndex;
       const int32 VertexIndex = Data.Triangles[IndiceIndex];
       VertexIndexes[CornerIndex] = VertexIndexToVertexID[VertexIndex];
-      VertexInstanceIDs[CornerIndex] =
-        IndiceIndexToVertexInstanceID[IndiceIndex];
+      VertexInstanceIDs[CornerIndex] = IndiceIndexToVertexInstanceID[IndiceIndex];
     }
 
     // 将一个多边形插入到网格中
     MeshDescription.CreatePolygon(NewPolygonGroup, VertexInstanceIDs);
-
   }
 
   return MeshDescription;
 }
 
+// 创建静态网格
 UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
     const FProceduralCustomMesh& Data,
     const TArray<FProcMeshTangent>& ParamTangents,
@@ -155,7 +156,6 @@ UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
     //PlatformFile.CreateDirectory(*PackageName);
   }
 
-
   FMeshDescription Description = BuildMeshDescriptionFromData(Data,ParamTangents, MaterialInstance);
 
   if (Description.Polygons().Num() > 0)
@@ -172,12 +172,12 @@ UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
     Mesh->CreateBodySetup();
     Mesh->BodySetup->CollisionTraceFlag = ECollisionTraceFlag::CTF_UseComplexAsSimple;
     Mesh->BodySetup->CreatePhysicsMeshes();
-    // Build mesh from source
+    // 从源构建网格
     Mesh->NeverStream = false;
     TArray<UObject*> CreatedAssets;
     CreatedAssets.Add(Mesh);
 
-    // Notify asset registry of new asset
+    // 通知资产注册表新资产
     FAssetRegistryModule::AssetCreated(Mesh);
     //UPackage::SavePackage(Package, Mesh, EObjectFlags::RF_Public | EObjectFlags::RF_Standalone, *(MeshName.ToString()), GError, nullptr, true, true, SAVE_NoError);
     Package->MarkPackageDirty();
@@ -186,9 +186,10 @@ UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
   return nullptr;
 }
 
+// 获取横轴墨卡托投影
 FVector2D UMapGenFunctionLibrary::GetTransversemercProjection(float lat, float lon, float lat0, float lon0)
 {
-  // earth radius in m
+  // 地球半径（米）
   const float R = 6373000.0f;
   float latt = FMath::DegreesToRadians(lat);
   float lonn  = FMath::DegreesToRadians(lon - lon0);
@@ -206,15 +207,18 @@ FVector2D UMapGenFunctionLibrary::GetTransversemercProjection(float lat, float l
   return Result;
 }
 
+// 使线程休眠
 void UMapGenFunctionLibrary::SetThreadToSleep(float seconds){
   //FGenericPlatformProcess::Sleep(seconds);
 }
 
+// 在蓝图中刷新渲染命令
 void UMapGenFunctionLibrary::FlushRenderingCommandsInBlueprint(){
   FlushRenderingCommands(true);
- 	FlushPendingDeleteRHIResources_GameThread();
+  FlushPendingDeleteRHIResources_GameThread();
 }
 
+// 清理GEngine
 void UMapGenFunctionLibrary::CleanupGEngine(){
   GEngine->PerformGarbageCollectionAndCleanupActors();
 #if WITH_EDITOR
