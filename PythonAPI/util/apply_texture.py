@@ -24,7 +24,7 @@ import imageio
 # -- find carla module ---------------------------------------------------------
 # ==============================================================================
 
-try:#尝试将特定的路径添加到系统路径sys.path中
+try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
@@ -42,7 +42,7 @@ def get_8bit_texture(image):
     texture = carla.TextureColor(width,height)
     for x in range(0,width):
         for y in range(0,height):
-            color = image[y][x]
+            color = image[y][x]#获取每个像素的颜色值
             r = int(color[0])
             g = int(color[1])
             b = int(color[2])
