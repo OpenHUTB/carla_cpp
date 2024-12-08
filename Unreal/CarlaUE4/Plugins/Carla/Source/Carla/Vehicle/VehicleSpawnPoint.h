@@ -9,7 +9,7 @@
 #include "Engine/TargetPoint.h"
 #include "VehicleSpawnPoint.generated.h"
 
-/// Base class for spawner locations for walkers.
+/// 车辆生成点的基类
 UCLASS()
 class CARLA_API AVehicleSpawnPoint : public ATargetPoint
 {
