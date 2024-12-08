@@ -152,14 +152,14 @@ void TrafficManagerLocal::Run() {
     bool hybrid_physics_mode = parameters.GetHybridPhysicsMode();
     parameters.SetMaxBoundaries(20.0f, episode_proxy.Lock()->GetEpisodeSettings().actor_active_distance);
 
-    // Wait for external trigger to initiate cycle in synchronous mode.
+    // 等待外部触发以在同步模式下启动循环
     if (synchronous_mode) {
       std::unique_lock<std::mutex> lock(step_execution_mutex);
       step_begin_trigger.wait(lock, [this]() {return step_begin.load() || !run_traffic_manger.load();});
       step_begin.store(false);
     }
 
-    // Skipping velocity update if elapsed time is less than 0.05s in asynchronous, hybrid mode.
+    // 如果在异步混合模式下，经过的时间小于0.05秒，则跳过速度更新
     if (!synchronous_mode && hybrid_physics_mode) {
       TimePoint current_instance = chr::system_clock::now();
       chr::duration<float> elapsed_time = current_instance - previous_update_instance;
@@ -170,7 +170,7 @@ void TrafficManagerLocal::Run() {
       previous_update_instance = current_instance;
     }
 
-    // Stop TM from processing the same frame more than once
+    // 停止TM处理同一帧多次
     if (!synchronous_mode) {
       carla::client::Timestamp timestamp = world.GetSnapshot().GetTimestamp();
       if (timestamp.frame == last_frame) {
@@ -180,17 +180,17 @@ void TrafficManagerLocal::Run() {
     }
 
     std::unique_lock<std::mutex> registration_lock(registration_mutex);
-    // Updating simulation state, actor life cycle and performing necessary cleanup.
+    // 更新模拟状态、角色生命周期并执行必要的清理
     alsm.Update();
 
-    // Re-allocating inter-stage communication frames based on changed number of registered vehicles.
+    // 基于已注册车辆数量变化的阶段间通信帧重新分配
     int current_registered_vehicles_state = registered_vehicles.GetState();
     unsigned long number_of_vehicles = vehicle_id_list.size();
     if (registered_vehicles_state != current_registered_vehicles_state || number_of_vehicles != registered_vehicles.Size()) {
       vehicle_id_list = registered_vehicles.GetIDList();
       number_of_vehicles = vehicle_id_list.size();
 
-      // Reserve more space if needed.
+      // 如果需要，请预留更多空间
       uint64_t growth_factor = static_cast<uint64_t>(static_cast<float>(number_of_vehicles) * INV_GROWTH_STEP_SIZE);
       uint64_t new_frame_capacity = INITIAL_SIZE + GROWTH_STEP_SIZE * growth_factor;
       if (new_frame_capacity > current_reserved_capacity) {
@@ -203,7 +203,7 @@ void TrafficManagerLocal::Run() {
       registered_vehicles_state = registered_vehicles.GetState();
     }
 
-    // Reset frames for current cycle.
+    // 重置当前周期的帧
     localization_frame.clear();
     localization_frame.resize(number_of_vehicles);
     collision_frame.clear();
@@ -211,14 +211,14 @@ void TrafficManagerLocal::Run() {
     tl_frame.clear();
     tl_frame.resize(number_of_vehicles);
     control_frame.clear();
-    // Reserve two frames for each vehicle: one for the ApplyVehicleControl command,
-    // and one for the optional SetVehicleLightState command
+    // 为每辆车预留两个帧：一个用于ApplyVehicleControl命令
+    // 以及一个用于可选的 SetVehicleLightState 命令
     control_frame.reserve(2 * number_of_vehicles);
-    // Resize to accomodate at least all ApplyVehicleControl commands,
-    // that will be inserted by the motion_plan_stage stage.
+    // 调整大小以容纳至少所有 ApplyVehicleControl 命令
+    // 这将在运动规划阶段插入
     control_frame.resize(number_of_vehicles);
 
-    // Run core operation stages.
+    // 运行核心操作阶段
     for (unsigned long index = 0u; index < vehicle_id_list.size(); ++index) {
       localization_stage.Update(index);
     }
@@ -235,7 +235,7 @@ void TrafficManagerLocal::Run() {
 
     registration_lock.unlock();
 
-    // Sending the current cycle's batch command to the simulator.
+    // 将当前周期的批处理命令发送给模拟器
     if (synchronous_mode) {
       episode_proxy.Lock()->ApplyBatchSync(control_frame, false);
       step_end.store(true);
@@ -346,7 +346,7 @@ void TrafficManagerLocal::SetDesiredSpeed(const ActorPtr &actor, const float val
   parameters.SetDesiredSpeed(actor, value);
 }
 
-/// Method to set the automatic management of the vehicle lights
+/// 设置车辆灯光自动管理的方法
 void TrafficManagerLocal::SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update) {
   parameters.SetUpdateVehicleLights(actor, do_update);
 }
