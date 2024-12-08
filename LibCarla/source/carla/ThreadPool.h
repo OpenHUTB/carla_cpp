@@ -3,7 +3,7 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+//这段代码定义了一个名为 ThreadPool 的类，它实现了基于 Boost.Asio 的线程池。ThreadPool 类的主要功能是通过 Boost.Asio 提供的 io_context 来管理任务的异步执行。
 #pragma once
 
 #include "carla/MoveHandler.h"

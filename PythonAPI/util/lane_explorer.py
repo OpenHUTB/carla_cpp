@@ -9,7 +9,7 @@
 import glob
 import os
 import sys
-
+#尝试将Carla的Python包路径添加到sys.path，以便可以导入Carla模块。如果失败（例如，如果没有找到匹配的.egg文件），则忽略。
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -24,6 +24,7 @@ import argparse
 import random
 import time
 
+#定义一些Carla颜色，用于在仿真中绘制不同的图形。
 red = carla.Color(255, 0, 0)
 green = carla.Color(0, 255, 0)
 blue = carla.Color(47, 210, 231)
@@ -32,17 +33,22 @@ yellow = carla.Color(255, 255, 0)
 orange = carla.Color(255, 162, 0)
 white = carla.Color(255, 255, 255)
 
+#定义轨迹生命周期（trail_life_time）和路径点间隔（waypoint_separation）。
 trail_life_time = 10
 waypoint_separation = 4
 
 
+   #定义一个函数draw_transform，用于在仿真中绘制变换（位置和方向）。
 def draw_transform(debug, trans, col=carla.Color(255, 0, 0), lt=-1):
+    #在draw_transform函数中，使用debug.draw_arrow绘制一个箭头，表示给定变换的方向。
     debug.draw_arrow(
         trans.location, trans.location + trans.get_forward_vector(),
         thickness=0.05, arrow_size=0.1, color=col, life_time=lt)
 
 
+ #定义一个函数draw_waypoint_union，用于绘制两个路径点之间的连线。
 def draw_waypoint_union(debug, w0, w1, color=carla.Color(255, 0, 0), lt=5):
+   #在draw_waypoint_union函数中，绘制一条线和一个点，表示路径点的位置。
     debug.draw_line(
         w0.transform.location + carla.Location(z=0.25),
         w1.transform.location + carla.Location(z=0.25),
@@ -50,13 +56,17 @@ def draw_waypoint_union(debug, w0, w1, color=carla.Color(255, 0, 0), lt=5):
     debug.draw_point(w1.transform.location + carla.Location(z=0.25), 0.1, color, lt, False)
 
 
+    #定义一个函数draw_waypoint_info，用于在仿真中显示路径点的相关信息。
 def draw_waypoint_info(debug, w, lt=5):
+#在draw_waypoint_info函数中，绘制字符串，显示路径点的车道ID、道路ID和车道变化信息。
     w_loc = w.transform.location
     debug.draw_string(w_loc + carla.Location(z=0.5), "lane: " + str(w.lane_id), False, yellow, lt)
     debug.draw_string(w_loc + carla.Location(z=1.0), "road: " + str(w.road_id), False, blue, lt)
     debug.draw_string(w_loc + carla.Location(z=-.5), str(w.lane_change), False, red, lt)
 
+ #定义一个函数draw_junction，用于绘制路口的边界框和每个车道的起始和结束路径点。
 def draw_junction(debug, junction, l_time=10):
+   #在draw_junction函数中，绘制路口的边界框和每个车道的起始和结束路径点
     """Draws a junction bounding box and the initial and final waypoint of every lane."""
     # draw bounding box
     box = junction.bounding_box
@@ -88,6 +98,7 @@ def draw_junction(debug, junction, l_time=10):
         debug.draw_line(
             pair_w[0].transform.location + carla.Location(z=0.75),
             pair_w[1].transform.location + carla.Location(z=0.75), 0.1, white, l_time, False)
+
 
 def main():
     argparser = argparse.ArgumentParser()
@@ -151,44 +162,44 @@ def main():
 
         current_w = m.get_waypoint(loc)
 
-        # main loop
+        # 主循环
         while True:
             # list of potential next waypoints
             potential_w = list(current_w.next(waypoint_separation))
 
-            # check for available right driving lanes
+            # 检查可用的右侧行车道
             if current_w.lane_change & carla.LaneChange.Right:
                 right_w = current_w.get_right_lane()
                 if right_w and right_w.lane_type == carla.LaneType.Driving:
                     potential_w += list(right_w.next(waypoint_separation))
 
-            # check for available left driving lanes
+            # 检查可用的左侧行车道。
             if current_w.lane_change & carla.LaneChange.Left:
                 left_w = current_w.get_left_lane()
                 if left_w and left_w.lane_type == carla.LaneType.Driving:
                     potential_w += list(left_w.next(waypoint_separation))
 
-            # choose a random waypoint to be the next
+            #选择一个随机的路径点作为下一个目标。
             next_w = random.choice(potential_w)
             potential_w.remove(next_w)
 
-            # Render some nice information, notice that you can't see the strings if you are using an editor camera
+            #渲染一些有用的信息，请注意，如果您使用的是编辑器相机，您将无法看到这些字符串。
             if args.info:
                 draw_waypoint_info(debug, current_w, trail_life_time)
             draw_waypoint_union(debug, current_w, next_w, cyan if current_w.is_junction else green, trail_life_time)
             draw_transform(debug, current_w.transform, white, trail_life_time)
 
-            # print the remaining waypoints
+            #打印剩余的路径点。
             for p in potential_w:
                 draw_waypoint_union(debug, current_w, p, red, trail_life_time)
                 draw_transform(debug, p.transform, white, trail_life_time)
 
-            # draw all junction waypoints and bounding box
+            # 绘制所有的路口路径点和边界框。
             if next_w.is_junction:
                 junction = next_w.get_junction()
                 draw_junction(debug, junction, trail_life_time)
 
-            # update the current waypoint and sleep for some time
+            #更新当前路径点并暂停一段时间。
             current_w = next_w
             time.sleep(args.tick_time)
 
