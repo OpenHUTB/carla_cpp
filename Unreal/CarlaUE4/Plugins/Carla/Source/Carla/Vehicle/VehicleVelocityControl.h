@@ -12,14 +12,14 @@
 
 #include "VehicleVelocityControl.generated.h"
 
-/// Component that controls that the velocity of an actor is constant.
+/// 控制actor速度恒定的组件
 UCLASS(Blueprintable, BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class CARLA_API UVehicleVelocityControl : public UActorComponent
 {
   GENERATED_BODY()
 
   // ===========================================================================
-  /// @name Constructor and destructor
+  /// @name 构造函数和析构函数
   // ===========================================================================
   /// @{
 public:
@@ -27,30 +27,35 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Get functions
+  /// @name 获取函数
   // ===========================================================================
   /// @{
 public:
 
+  // 开始播放时调用
   void BeginPlay() override;
 
+  // 每帧调用的Tick函数
   virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
-  // Activate the component setting the target velocity
+  // 激活组件并设置目标速度
   virtual void Activate(bool bReset=false) override;
 
-  // Activate the component setting the target velocity
+  // 激活组件并设置指定的目标速度
   virtual void Activate(FVector Velocity, bool bReset=false);
 
-  // Deactivate the component
+  // 停用组件
   virtual void Deactivate() override;
 
 private:
-  ///
+  // 目标速度
   UPROPERTY(Category = "Vehicle Velocity Control", VisibleAnywhere)
   FVector TargetVelocity;
 
+  // 原始组件指针
   UPrimitiveComponent* PrimitiveComponent;
+
+  // 拥有该组件的车辆Actor
   AActor* OwnerVehicle;
 
 };

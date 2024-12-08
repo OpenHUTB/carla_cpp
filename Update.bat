@@ -34,10 +34,12 @@ rem ============================================================================
 rem -- Download the content ----------------------------------------------------
 rem ============================================================================
 
+rem 下载文件
 echo Downloading "%CONTENT_LINK%"...
 powershell -Command "(New-Object System.Net.WebClient).DownloadFile('%CONTENT_LINK%', '%CONTENT_FILE%')"
 if %errorlevel% neq 0 goto error_download
 
+rem 解压文件
 echo %FILE_N% Extracting content from "%CONTENT_FILE%", this can take a while...
 if exist "%ProgramW6432%/7-Zip/7z.exe" (
     "%ProgramW6432%/7-Zip/7z.exe" x "%CONTENT_FILE%" -o"%CONTENT_FOLDER%" -y
@@ -46,6 +48,8 @@ if exist "%ProgramW6432%/7-Zip/7z.exe" (
     del %CONTENT_FILE:/=\%
     "%ProgramW6432%/7-Zip/7z.exe" x "%CONTENT_FILE_TAR%" -o"%CONTENT_FOLDER%" -y
     if %errorlevel% neq 0 goto error_download
+
+rem 删除下载的文件和压缩包
     echo Deleting %CONTENT_FILE_TAR:/=\%
     del %CONTENT_FILE_TAR:/=\%
 ) else (
