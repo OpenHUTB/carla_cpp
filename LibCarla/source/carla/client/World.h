@@ -3,8 +3,10 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
+  //功能：这是文件的版权声明，表示代码版权归属于巴塞罗那大学计算机视觉中心（CVC）。该代码采用MIT开源许可证，用户可以自由使用、修改和分发代码，但需要附带相同的许可证。
 
 #pragma once
+  //功能：确保该头文件只会被编译一次，避免重复包含。
 
 #include "carla/Memory.h"
 #include "carla/Time.h"
@@ -31,6 +33,7 @@
 
 #include <string>
 #include <boost/optional.hpp>
+  //引入了一些必要的头文件，包括内存管理、时间控制、调试工具、地图层信息、车辆和环境对象的RPC接口等。这些模块共同支持CARLA模拟环境的创建和控制。
 
 namespace carla {
 namespace client {
@@ -158,6 +161,7 @@ namespace client {
     SharedPtr<Actor> GetTrafficSign(const Landmark& landmark) const;
 
     SharedPtr<Actor> GetTrafficLight(const Landmark& landmark) const;
+    ///交通灯和标志，根据提供的 获取交通标志或交通信号灯。代表地图中的特定位置。
 
     SharedPtr<Actor> GetTrafficLightFromOpenDRIVE(const road::SignId& sign_id) const;
 
@@ -183,6 +187,8 @@ namespace client {
     void EnableEnvironmentObjects(
       std::vector<uint64_t> env_objects_ids,
       bool enable) const;
+    ///GetEnvironmentObjects获取指定标签的环境物体。
+    ///EnableEnvironmentObjects启用或禁用环境物体。
 
     boost::optional<rpc::LabelledPoint> ProjectPoint(
         geom::Location location, geom::Vector3D direction, float search_distance = 10000.f) const;
@@ -244,3 +250,5 @@ namespace client {
 
 } // namespace client
 } // namespace carla
+//这个类是CARLA模拟世界的核心，提供了与模拟世界交互的多种方法，包括获取世界信息、生成参与者（演员）、控制天气、模拟时间步等。
+// 通过 类，用户可以对CARLA模拟环境进行全面的控制和管理。

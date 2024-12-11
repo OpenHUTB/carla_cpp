@@ -4,13 +4,14 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once   // 防止头文件被重复包含
 
-#include "carla/client/Timestamp.h"
-#include "carla/client/ActorSnapshot.h"
-#include "carla/client/detail/EpisodeState.h"
+#include "carla/client/Timestamp.h"   // 引入时间戳相关头文件
+#include "carla/client/ActorSnapshot.h"      // 引入参与者快照相关头文件
+#include "carla/client/detail/EpisodeState.h"   // 引入剧集状态相关头文件
 
-#include <boost/optional.hpp>
+
+#include <boost/optional.hpp>    // 引入 Boost 库中的 optional，用于处理可能为空的值
 
 namespace carla {
 namespace client {
@@ -70,7 +71,7 @@ namespace client {
 
   private:
 
-    std::shared_ptr<const detail::EpisodeState> _state;
+    std::shared_ptr<const detail::EpisodeState> _state;  // 存储与该世界快照相关的剧集状态
   };
 
 } // namespace client
