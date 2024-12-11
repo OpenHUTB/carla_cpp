@@ -76,30 +76,30 @@ void MotionPlanStage::Update(const unsigned long index) {
   current_timestamp = world.GetSnapshot().GetTimestamp();
   StateEntry current_state;
 
-  // Instanciating teleportation transform as current vehicle transform.
+  // 实例化传送变换为当前载具变换
   cg::Transform teleportation_transform = cg::Transform(vehicle_location, vehicle_rotation);
 
-  // Get information about the hero location from the actor_id state.
+  // 从actor_id状态中获取英雄位置信息
   cg::Location hero_location = track_traffic.GetHeroLocation();
   bool is_hero_alive = hero_location != cg::Location(0, 0, 0);
 
   if (simulation_state.IsDormant(actor_id) && parameters.GetRespawnDormantVehicles() && is_hero_alive) {
-    // Flushing controller state for vehicle.
+    // 冲洗车辆的控制器状态
     current_state = {current_timestamp,
                     0.0f, 0.0f,
                     0.0f};
 
-    // Add entry to teleportation duration clock table if not present.
+    // 如果表中不存在，则将条目添加到传送持续时间时钟表中
     if (teleportation_instance.find(actor_id) == teleportation_instance.end()) {
       teleportation_instance.insert({actor_id, current_timestamp});
     }
 
-    // Get lower and upper bound for teleporting vehicle.
+    // 获取传送载具的下限和上限
     float lower_bound = parameters.GetLowerBoundaryRespawnDormantVehicles();
     float upper_bound = parameters.GetUpperBoundaryRespawnDormantVehicles();
     float dilate_factor = (upper_bound-lower_bound)/100.0f;
 
-    // Measuring time elapsed since last teleportation for the vehicle.
+    // 测量车辆自上次传送以来所经过的时间
     double elapsed_time = current_timestamp.elapsed_seconds - teleportation_instance.at(actor_id).elapsed_seconds;
 
     if (parameters.GetSynchronousMode() || elapsed_time > HYBRID_MODE_DT) {
@@ -119,7 +119,7 @@ void MotionPlanStage::Update(const unsigned long index) {
     }
     output_array.at(index) = carla::rpc::Command::ApplyTransform(actor_id, teleportation_transform);
 
-    // Update the simulation state with the new transform of the vehicle after teleporting it.
+    // 在传送车辆后，使用新的变换更新模拟状态
     KinematicState kinematic_state{teleportation_transform.location,
                                    teleportation_transform.rotation,
                                    vehicle_velocity, vehicle_speed_limit,
@@ -130,26 +130,26 @@ void MotionPlanStage::Update(const unsigned long index) {
 
   else {
 
-    // Target velocity for vehicle.
+    // 目标车速
     float max_target_velocity = parameters.GetVehicleTargetVelocity(actor_id, vehicle_speed_limit) / 3.6f;
 
-    // Algorithm to reduce speed near landmarks
+    // 接近地标时减速的算法
     float max_landmark_target_velocity = GetLandmarkTargetVelocity(*(waypoint_buffer.at(0)), vehicle_location, actor_id, max_target_velocity);
 
-    // Algorithm to reduce speed near turns
+    // 转弯处减速算法
     float max_turn_target_velocity = GetTurnTargetVelocity(waypoint_buffer, max_target_velocity);
     max_target_velocity = std::min(std::min(max_target_velocity, max_landmark_target_velocity), max_turn_target_velocity);
 
-    // Collision handling and target velocity correction.
+    // 碰撞处理与目标速度修正
     std::pair<bool, float> collision_response = CollisionHandling(collision_hazard, tl_hazard, vehicle_velocity,
                                                                   vehicle_heading, max_target_velocity);
     bool collision_emergency_stop = collision_response.first;
     float dynamic_target_velocity = collision_response.second;
 
-    // Don't enter junction if there isn't enough free space after the junction.
+    // 如果路口后没有足够的空间，请勿进入路口
     bool safe_after_junction = SafeAfterJunction(localization, tl_hazard, collision_emergency_stop);
 
-    // In case of collision or traffic light hazard.
+    // 遇到碰撞或交通灯危险时
     bool emergency_stop = tl_hazard || collision_emergency_stop || !safe_after_junction;
 
     if (vehicle_physics_enabled && !simulation_state.IsDormant(actor_id)) {
@@ -173,17 +173,17 @@ void MotionPlanStage::Update(const unsigned long index) {
       }
       const float angular_deviation = dot_product;
       const float velocity_deviation = (dynamic_target_velocity - vehicle_speed) / dynamic_target_velocity;
-      // If previous state for vehicle not found, initialize state entry.
+      // 如果未找到车辆的上一个状态，则初始化状态条目
       if (pid_state_map.find(actor_id) == pid_state_map.end()) {
         const auto initial_state = StateEntry{current_timestamp, 0.0f, 0.0f, 0.0f};
         pid_state_map.insert({actor_id, initial_state});
       }
 
-      // Retrieving the previous state.
+      // 检索先前状态
       traffic_manager::StateEntry previous_state;
       previous_state = pid_state_map.at(actor_id);
 
-      // Select PID parameters.
+      // 选择PID参数
       std::vector<float> longitudinal_parameters;
       std::vector<float> lateral_parameters;
       if (vehicle_speed > HIGHWAY_SPEED) {
@@ -194,11 +194,11 @@ void MotionPlanStage::Update(const unsigned long index) {
         lateral_parameters = urban_lateral_parameters;
       }
 
-      // If physics is enabled for the vehicle, use PID controller.
-      // State update for vehicle.
+      //如果为车辆启用了物理效果，请使用PID控制器
+      // 车辆状态更新
       current_state = {current_timestamp, angular_deviation, velocity_deviation, 0.0f};
 
-      // Controller actuation.
+      // 控制器驱动
       actuation_signal = PID::RunStep(current_state, previous_state,
                                       longitudinal_parameters, lateral_parameters);
 
@@ -207,7 +207,7 @@ void MotionPlanStage::Update(const unsigned long index) {
         actuation_signal.brake = 1.0f;
       }
 
-      // Constructing the actuation signal.
+      // 构建执行信号
 
       carla::rpc::VehicleControl vehicle_control;
       vehicle_control.throttle = actuation_signal.throttle;
@@ -216,30 +216,30 @@ void MotionPlanStage::Update(const unsigned long index) {
 
       output_array.at(index) = carla::rpc::Command::ApplyVehicleControl(actor_id, vehicle_control);
 
-      // Updating PID state.
+      // 更新PID状态
       current_state.steer = actuation_signal.steer;
       StateEntry &state = pid_state_map.at(actor_id);
       state = current_state;
     }
-    // For physics-less vehicles, determine position and orientation for teleportation.
+    // 对于无物理特性的载具，确定传送时的位置和方向
     else {
-      // Flushing controller state for vehicle.
+      // 冲洗车辆的控制器状态
       current_state = {current_timestamp,
                       0.0f, 0.0f,
                       0.0f};
 
-      // Add entry to teleportation duration clock table if not present.
+      // 如果不在表中，则将条目添加到传送持续时间时钟表中
       if (teleportation_instance.find(actor_id) == teleportation_instance.end()) {
         teleportation_instance.insert({actor_id, current_timestamp});
       }
 
-      // Measuring time elapsed since last teleportation for the vehicle.
+      // 测量车辆自上次传送以来的时间
       double elapsed_time = current_timestamp.elapsed_seconds - teleportation_instance.at(actor_id).elapsed_seconds;
 
-      // Find a location ahead of the vehicle for teleportation to achieve intended velocity.
+      // 在车辆前方找到一个传送位置，以实现预期的速度
       if (!emergency_stop && (parameters.GetSynchronousMode() || elapsed_time > HYBRID_MODE_DT)) {
 
-        // Target displacement magnitude to achieve target velocity.
+        // 目标位移量以达到目标速度
         const float target_displacement = dynamic_target_velocity * HYBRID_MODE_DT_FL;
         SimpleWaypointPtr teleport_target = waypoint_buffer.front();
         cg::Transform target_base_transform = teleport_target->GetTransform();
@@ -255,12 +255,12 @@ void MotionPlanStage::Update(const unsigned long index) {
           cg::Location teleportation_location = vehicle_location + cg::Location(correct_heading * target_displacement);
           teleportation_transform = cg::Transform(teleportation_location, target_base_transform.rotation);
         }
-      // In case of an emergency stop, stay in the same location.
-      // Also, teleport only once every dt in asynchronous mode.
+      // 在紧急停止的情况下，请保持在同一位置
+      // 此外，在异步模式下，每 dt 时间仅传送一次
       } else {
         teleportation_transform = cg::Transform(vehicle_location, simulation_state.GetRotation(actor_id));
       }
-      // Constructing the actuation signal.
+      // 构建执行信号
       output_array.at(index) = carla::rpc::Command::ApplyTransform(actor_id, teleportation_transform);
       simulation_state.UpdateKinematicHybridEndLocation(actor_id, teleportation_transform.location);
     }
@@ -284,8 +284,7 @@ bool MotionPlanStage::SafeAfterJunction(const LocalizationData &localization,
     ActorIdSet passing_junction_end_point = track_traffic.GetPassingVehicles(junction_end_point->GetId());
     cg::Location mid_point = (junction_end_point->GetLocation() + safe_point->GetLocation())/2.0f;
 
-    // Only check for vehicles that have the safe point in their passing waypoint, but not
-    // the junction end point.
+    // 只检查那些在其通过路径点中具有安全点的车辆，但不连接端点
     ActorIdSet difference;
     std::set_difference(passing_safe_point.begin(), passing_safe_point.end(),
                         passing_junction_end_point.begin(), passing_junction_end_point.end(),
@@ -322,24 +321,24 @@ std::pair<bool, float> MotionPlanStage::CollisionHandling(const CollisionHazardD
 
     const float other_speed_along_heading = cg::Math::Dot(other_velocity, vehicle_heading);
 
-    // Consider collision avoidance decisions only if there is positive relative velocity
-    // of the ego vehicle (meaning, ego vehicle is closing the gap to the lead vehicle).
+    //只有在存在正相对速度的情况下，才考虑避撞决策
+    // 自车（即，自车正在缩小与前车的间距）
     if (vehicle_relative_speed > EPSILON_RELATIVE_SPEED) {
-      // If other vehicle is approaching lead vehicle and lead vehicle is further
-      // than follow_lead_distance 0 kmph -> 5m, 100 kmph -> 10m.
+      // 如果其他车辆正在接近领头车辆，并且领头车辆距离更远
+      // 跟随距离：0公里/小时 -> 5米，100公里/小时 -> 10米
       float follow_lead_distance = FOLLOW_LEAD_FACTOR * vehicle_speed + MIN_FOLLOW_LEAD_DISTANCE;
       if (available_distance_margin > follow_lead_distance) {
-        // Then reduce the gap between the vehicles till FOLLOW_LEAD_DISTANCE
-        // by maintaining a relative speed of other_speed_along_heading
+        //然后缩小车辆之间的距离，直到达到跟随前车的距离
+        // 通过保持与其他_沿航向_速度的相对速度
         dynamic_target_velocity = other_speed_along_heading;
       }
-      // If vehicle is approaching a lead vehicle and the lead vehicle is further
-      // than CRITICAL_BRAKING_MARGIN but closer than FOLLOW_LEAD_DISTANCE.
+      // 如果车辆正在接近前车，而前车距离较远
+      // 但比CRITICAL_BRAKING_MARGIN更近，且比FOLLOW_LEAD_DISTANCE更近
       else if (available_distance_margin > CRITICAL_BRAKING_MARGIN) {
-        // Then follow the lead vehicle by acquiring it's speed along current heading.
+        // 然后跟随前导车辆，获取其沿当前航向的速度
         dynamic_target_velocity = std::max(other_speed_along_heading, RELATIVE_APPROACH_SPEED);
       } else {
-        // If lead vehicle closer than CRITICAL_BRAKING_MARGIN, initiate emergency stop.
+        // 如果前车距离小于紧急制动距离，则启动紧急制动
         collision_emergency_stop = true;
       }
     }
@@ -350,7 +349,7 @@ std::pair<bool, float> MotionPlanStage::CollisionHandling(const CollisionHazardD
 
   float max_gradual_velocity = PERC_MAX_SLOWDOWN * vehicle_speed;
   if (dynamic_target_velocity < vehicle_speed - max_gradual_velocity) {
-    // Don't slow more than PERC_MAX_SLOWDOWN per frame.
+    // 不要每帧减速超过PERC_MAX_SLOWDOWN
     dynamic_target_velocity = vehicle_speed - max_gradual_velocity;
   }
   dynamic_target_velocity = std::min(max_target_velocity, dynamic_target_velocity);
@@ -380,13 +379,13 @@ float MotionPlanStage::GetLandmarkTargetVelocity(const SimpleWaypoint& waypoint,
       }
 
       float minimum_velocity = max_target_velocity;
-      if (landmark_type == "1000001") {  // Traffic light
+      if (landmark_type == "1000001") {  // 交通信号灯
         minimum_velocity = TL_TARGET_VELOCITY;
-      } else if (landmark_type == "206") {  // Stop
+      } else if (landmark_type == "206") {  // 停止
         minimum_velocity = STOP_TARGET_VELOCITY;
-      } else if (landmark_type == "205") {  // Yield
+      } else if (landmark_type == "205") {  // 产出
         minimum_velocity = YIELD_TARGET_VELOCITY;
-      } else if (landmark_type == "274") {  // Speed limit
+      } else if (landmark_type == "274") {  // 速度限制
         float value = static_cast<float>(landmark->GetValue()) / 3.6f;
         value = parameters.GetVehicleTargetVelocity(actor_id, value);
         minimum_velocity = (value < max_target_velocity) ? value : max_target_velocity;
@@ -416,7 +415,7 @@ float MotionPlanStage::GetTurnTargetVelocity(const Buffer &waypoint_buffer,
                                              middle_waypoint->GetLocation(),
                                              last_waypoint->GetLocation());
 
-    // Return the max velocity at the turn
+    // 返回转弯处的最大速度
     return std::sqrt(radius * FRICTION * GRAVITY);
   }
 }

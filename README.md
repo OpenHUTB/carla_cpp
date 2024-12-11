@@ -2,7 +2,7 @@
 注释Carla的 [LibCarla](https://github.com/OpenHUTB/carla_cpp/tree/dev/LibCarla/source/carla) 、[CarlaUE4](https://github.com/OpenHUTB/carla_cpp/tree/dev/Unreal/CarlaUE4/Plugins/Carla/Source/Carla) 模块，包括实现方式、实现原理、流程图等。做出贡献之前请查看 [指南](https://github.com/OpenHUTB/PFC/blob/main/CONTRIBUTING.md) 。
 
 ## 生成文档
-1.下载并安装[git](https://git-scm.com/downloads)  、[doxygen](https://www.doxygen.nl/download.html) ，可选软件：[GitTortoiseGit](https://tortoisegit.org/download/) 、[VS2019社区版](https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/) 、[Watt Toolkit免费加速器](https://steampp.net/)；
+1.打开 [github](https://github.com/) 注册并登录，然后下载安装[git](https://git-scm.com/downloads)  、[doxygen](https://www.doxygen.nl/download.html) ，可选软件：[GitTortoiseGit](https://tortoisegit.org/download/) 、[VS2019社区版](https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/) 、[Watt Toolkit免费加速器](https://steampp.net/)；
 
 2.在[湖工商仓库](https://github.com/OpenHUTB/carla_cpp) 页面点击`Fork`，然后点击`Create a new fork`，创建分叉到个人仓库。
 
@@ -37,7 +37,7 @@ git push
 2.找到需要修改的文件：
 ![](./img/header_path.jpg)
 
-3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留。源代码文件采用UTF-8编码）：
+3.翻译代码中的注释或添加新注释（注意：翻译后，原来的英文注释不需要保留。源代码文件统一采用`UTF-8-BOM`编码，即`UTF-8带签名编码`，vs2019中的 [操作方法](https://www.cnblogs.com/leokale-zz/p/11423953.html) ）：
 ![](./img/update_annotated.jpg)
 
 4.运行`doxygen`重新生成文档，查看修改后的文档：
@@ -176,7 +176,7 @@ git rm -rf .
 [RYZ-666](https://github.com/RYZ-666)、
 [Taohygge](https://github.com/Taohygge)、
 [HZY-23](https://github.com/HZY-23)、
-[hugufy](https://github.com/hugufy）、
+[hugufy](https://github.com/hugufy) 、
 [54zwz](https://github.com/54zwz)、
 [xuebaobizui](https://github.com/xuebaobizui)、
 [certain-m](https://github.com/caerain-m)、
@@ -187,3 +187,8 @@ git rm -rf .
 [xiao-ice666](https://github.com/xiao-ice666)、
 [bless416](https://github.com/bless416)、
 [haleely](https://github.com/haleely)。
+[haohaozhuzzzz](https://github.com/haohaozhuzzzz)、
+[big-Shuaige](https://github.com/big-Shuaige)、
+[lingyanNB](https://github.com/lingyanNB)、
+[LzQn](https://github.com/LzQn)、
+[fangao-is-not-fangao](https://github.com/fangao-is-not-fangao)
