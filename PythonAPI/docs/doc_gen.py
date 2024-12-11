@@ -380,53 +380,6 @@ def gen_doc_method_def(method, class_key, is_indx=False, with_self=True):
 
     return join([method_name, parentheses(param),snipet_link])
 
-def gen_doc_method_def(method, class_key, is_indx=False, with_self=True):
-    """Return python def as it should be written in docs"""
-    param = ''
-    snipet_link = ''
-    method_name = method['def_name']
-    full_method_name = method_name
-    if valid_dic_val(method, 'static'):
-        with_self = False
-
-    # 对以'_'开头的特殊方法名（如__init__等）进行转义处理，以便在Markdown中正确渲染
-    if method_name[0] == '_':
-        method_name = '\\' + method_name
-    if is_indx:
-        method_name = bold(method_name)
-    else:
-        method_name = bold(color(COLOR_METHOD, method_name))
-
-    if with_self:
-        if not 'params' in method or method['params'] is None:
-            method['params'] = []
-        method['params'].insert(0, {'param_name': 'self'})
-
-    if valid_dic_val(method, 'params'):
-        for p in method['params']:
-            default = join(['=', str(p['default'])]) if 'default' in p else ''
-            if is_indx:
-                param = join([param, bold(p['param_name']), default, ', '])
-            else:
-                param = join([param, color(COLOR_PARAM, bold(p['param_name']) + create_hyperlinks(default)), ', '])
-
-    if with_self:
-        method['params'] = method['params'][1:]
-        if not method['params']:  # if is empty delete it
-            del method['params']
-
-    param = param[:-2]  # delete the last ', '
-
-    # 添加代码片段相关的链接按钮（如果存在对应的代码片段）
-    current_folder = os.path.dirname(os.path.abspath(__file__))
-    snipets_path = os.path.join(current_folder, '../../Docs/python_api_snipets.md')
-    snipets = open(snipets_path, 'r')
-    if class_key + '.' + full_method_name + '-snipet' in snipets.read():
-        snipet_link = snipet(full_method_name, class_key)
-
-    return join([method_name, parentheses(param), snipet_link])
-
-
 # 根据给定的双下划线方法（dunder method）定义信息生成在文档中应呈现的方法定义格式字符串（类似gen_doc_method_def，但针对双下划线方法）
 def gen_doc_dunder_def(dunder, is_indx=False, with_self=True):
     """Return python def as it should be written in docs"""
