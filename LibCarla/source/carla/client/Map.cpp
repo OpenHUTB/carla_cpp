@@ -24,7 +24,8 @@ static auto MakeMap(const std::string &opendrive_contents) {
  auto stream = std::istringstream(opendrive_contents);
  // 调用 OpenDriveParser 类的 Load 函数加载地图，返回 boost::optional<carla::road::Map>
     auto map = opendrive::OpenDriveParser::Load(stream.str());
- // 如果 map 为空，抛出运行时异常    if (!map.has_value()) {
+ // 如果 map 为空，抛出运行时异常    
+    if (!map.has_value()) {
       throw_exception(std::runtime_error("failed to generate map"));
     }
 // 移动 map 的值
