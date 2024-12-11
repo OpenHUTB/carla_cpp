@@ -192,3 +192,4 @@ git rm -rf .
 [lingyanNB](https://github.com/lingyanNB)、
 [LzQn](https://github.com/LzQn)、
 [fangao-is-not-fangao](https://github.com/fangao-is-not-fangao)
+[kinggsa](https://github.com/kinggsa)

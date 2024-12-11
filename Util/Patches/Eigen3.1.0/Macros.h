@@ -26,61 +26,66 @@
 #ifndef EIGEN_MACROS_H
 #define EIGEN_MACROS_H
 
+// 定义 Eigen 库的主版本号
 #define EIGEN_WORLD_VERSION 3
+// 定义 Eigen 库的次版本号
 #define EIGEN_MAJOR_VERSION 1
+// 定义 Eigen 库的修订版本号
 #define EIGEN_MINOR_VERSION 0
 
+// 检查 Eigen 库的版本是否至少为 (x, y, z)
 #define EIGEN_VERSION_AT_LEAST(x,y,z) (EIGEN_WORLD_VERSION>x || (EIGEN_WORLD_VERSION>=x && \
                                       (EIGEN_MAJOR_VERSION>y || (EIGEN_MAJOR_VERSION>=y && \
-                                                                 EIGEN_MINOR_VERSION>=z))))
+                                                                 EIGEN_MINOR_VERSION>=z)))
+
+// 检查是否使用的是 GCC 编译器，并且版本是否至少为 (x, y)
 #ifdef __GNUC__
   #define EIGEN_GNUC_AT_LEAST(x,y) ((__GNUC__==x && __GNUC_MINOR__>=y) || __GNUC__>x)
 #else
   #define EIGEN_GNUC_AT_LEAST(x,y) 0
 #endif
- 
+
+// 检查是否使用的是 GCC 编译器，并且版本是否最多为 (x, y)
 #ifdef __GNUC__
   #define EIGEN_GNUC_AT_MOST(x,y) ((__GNUC__==x && __GNUC_MINOR__<=y) || __GNUC__<x)
 #else
   #define EIGEN_GNUC_AT_MOST(x,y) 0
 #endif
 
-#if EIGEN_GNUC_AT_MOST(4,3) && !defined(__clang__)
-  // see bug 89
+// 根据 GCC 版本决定是否可以安全使用标准的断言宏
+#if EIGEN_GNUC_AT_MOST(4,3) &&!defined(__clang__)
+  // 参考 bug 89
   #define EIGEN_SAFE_TO_USE_STANDARD_ASSERT_MACRO 0
 #else
   #define EIGEN_SAFE_TO_USE_STANDARD_ASSERT_MACRO 1
 #endif
 
+// 判断是否使用的是 GCC 3 或更旧的版本
 #if defined(__GNUC__) && (__GNUC__ <= 3)
 #define EIGEN_GCC3_OR_OLDER 1
 #else
 #define EIGEN_GCC3_OR_OLDER 0
 #endif
 
-// 16 byte alignment is only useful for vectorization. Since it affects the ABI, we need to enable
-// 16 byte alignment on all platforms where vectorization might be enabled. In theory we could always
-// enable alignment, but it can be a cause of problems on some platforms, so we just disable it in
-// certain common platform (compiler+architecture combinations) to avoid these problems.
-// Only static alignment is really problematic (relies on nonstandard compiler extensions that don't
-// work everywhere, for example don't work on GCC/ARM), try to keep heap alignment even
-// when we have to disable static alignment.
-#if defined(__GNUC__) && !(defined(__i386__) || defined(__x86_64__) || defined(__powerpc__) || defined(__ppc__) || defined(__ia64__))
+// 16 字节对齐仅对向量化有用，根据编译器和架构决定是否启用 16 字节对齐
+// 仅静态对齐可能会带来问题，因此在某些平台上会禁用它
+#if defined(__GNUC__) &&!(defined(__i386__) || defined(__x86_64__) || defined(__powerpc__) || defined(__ppc__) || defined(__ia64__))
 #define EIGEN_GCC_AND_ARCH_DOESNT_WANT_STACK_ALIGNMENT 1
 #else
 #define EIGEN_GCC_AND_ARCH_DOESNT_WANT_STACK_ALIGNMENT 0
 #endif
 
-// static alignment is completely disabled with GCC 3, Sun Studio, and QCC/QNX
-#if !EIGEN_GCC_AND_ARCH_DOESNT_WANT_STACK_ALIGNMENT \
- && !EIGEN_GCC3_OR_OLDER \
- && !defined(__SUNPRO_CC) \
- && !defined(__QNXNTO__)
+// 根据架构和用户选择决定是否需要堆栈对齐
+#if!EIGEN_GCC_AND_ARCH_DOESNT_WANT_STACK_ALIGNMENT \
+ &&!EIGEN_GCC3_OR_OLDER \
+ &&!defined(__SUNPRO_CC) \
+ &&!defined(__QNXNTO__)
   #define EIGEN_ARCH_WANTS_STACK_ALIGNMENT 1
 #else
   #define EIGEN_ARCH_WANTS_STACK_ALIGNMENT 0
 #endif
 
+// 根据用户选择是否禁用对齐，以及架构的需求，决定是否对齐
 #ifdef EIGEN_DONT_ALIGN
   #ifndef EIGEN_DONT_ALIGN_STATICALLY
     #define EIGEN_DONT_ALIGN_STATICALLY
@@ -90,9 +95,8 @@
   #define EIGEN_ALIGN 1
 #endif
 
-// EIGEN_ALIGN_STATICALLY is the true test whether we want to align arrays on the stack or not. It takes into account both the user choice to explicitly disable
-// alignment (EIGEN_DONT_ALIGN_STATICALLY) and the architecture config (EIGEN_ARCH_WANTS_STACK_ALIGNMENT). Henceforth, only EIGEN_ALIGN_STATICALLY should be used.
-#if EIGEN_ARCH_WANTS_STACK_ALIGNMENT && !defined(EIGEN_DONT_ALIGN_STATICALLY)
+// EIGEN_ALIGN_STATICALLY 是最终决定是否在堆栈上对齐数组的标志，考虑了用户选择和架构需求
+#if EIGEN_ARCH_WANTS_STACK_ALIGNMENT &&!defined(EIGEN_DONT_ALIGN_STATICALLY)
   #define EIGEN_ALIGN_STATICALLY 1
 #else
   #define EIGEN_ALIGN_STATICALLY 0
@@ -101,63 +105,56 @@
   #endif
 #endif
 
+// 根据用户选择或默认设置，决定矩阵的存储顺序
 #ifdef EIGEN_DEFAULT_TO_ROW_MAJOR
 #define EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION RowMajor
 #else
 #define EIGEN_DEFAULT_MATRIX_STORAGE_ORDER_OPTION ColMajor
 #endif
 
+// 如果未定义，使用 std::ptrdiff_t 作为默认的稠密索引类型
 #ifndef EIGEN_DEFAULT_DENSE_INDEX_TYPE
 #define EIGEN_DEFAULT_DENSE_INDEX_TYPE std::ptrdiff_t
 #endif
 
-/** Allows to disable some optimizations which might affect the accuracy of the result.
-  * Such optimization are enabled by default, and set EIGEN_FAST_MATH to 0 to disable them.
-  * They currently include:
-  *   - single precision Cwise::sin() and Cwise::cos() when SSE vectorization is enabled.
-  */
+// 允许禁用一些可能影响结果精度的优化，默认启用，设置 EIGEN_FAST_MATH 为 0 可禁用
 #ifndef EIGEN_FAST_MATH
 #define EIGEN_FAST_MATH 1
 #endif
 
+// 调试时输出变量的值
 #define EIGEN_DEBUG_VAR(x) std::cerr << #x << " = " << x << std::endl;
 
-// concatenate two tokens
+// 拼接两个标记
 #define EIGEN_CAT2(a,b) a ## b
 #define EIGEN_CAT(a,b) EIGEN_CAT2(a,b)
 
-// convert a token to a string
+// 将标记转换为字符串
 #define EIGEN_MAKESTRING2(a) #a
 #define EIGEN_MAKESTRING(a) EIGEN_MAKESTRING2(a)
 
-#if EIGEN_GNUC_AT_LEAST(4,1) && !defined(__clang__) && !defined(__INTEL_COMPILER)
+// 根据 GCC 版本决定是否使用 __attribute__((flatten)) 属性
+#if EIGEN_GNUC_AT_LEAST(4,1) &&!defined(__clang__) &&!defined(__INTEL_COMPILER)
 #define EIGEN_FLATTEN_ATTRIB __attribute__((flatten))
 #else
 #define EIGEN_FLATTEN_ATTRIB
 #endif
 
-// EIGEN_STRONG_INLINE is a stronger version of the inline, using __forceinline on MSVC,
-// but it still doesn't use GCC's always_inline. This is useful in (common) situations where MSVC needs forceinline
-// but GCC is still doing fine with just inline.
+// 更强的内联宏，在 MSVC 上使用 __forceinline，在其他编译器上使用 inline
 #if (defined _MSC_VER) || (defined __INTEL_COMPILER)
 #define EIGEN_STRONG_INLINE __forceinline
 #else
 #define EIGEN_STRONG_INLINE inline
 #endif
 
-// EIGEN_ALWAYS_INLINE is the stronget, it has the effect of making the function inline and adding every possible
-// attribute to maximize inlining. This should only be used when really necessary: in particular,
-// it uses __attribute__((always_inline)) on GCC, which most of the time is useless and can severely harm compile times.
-// FIXME with the always_inline attribute,
-// gcc 3.4.x reports the following compilation error:
-//   Eval.h:91: sorry, unimplemented: inlining failed in call to 'const Eigen::Eval<Derived> Eigen::MatrixBase<Scalar, Derived>::eval() const'
-//    : function body not available
+// 最强的内联宏，使用 __attribute__((always_inline))，但在某些 GCC 版本中可能导致编译问题
 #if EIGEN_GNUC_AT_LEAST(4,0)
 #define EIGEN_ALWAYS_INLINE __attribute__((always_inline)) inline
 #else
 #define EIGEN_ALWAYS_INLINE EIGEN_STRONG_INLINE
 #endif
 
+// 不内联的宏，根据编译器不同而不同
 #if (defined __GNUC__)
 #define EIGEN_DONT_INLINE __attribute__((noinline))
 #elif (defined _MSC_VER)
@@ -166,42 +163,41 @@
 #define EIGEN_DONT_INLINE
 #endif
 
-// this macro allows to get rid of linking errors about multiply defined functions.
-//  - static is not very good because it prevents definitions from different object files to be merged.
-//           So static causes the resulting linked executable to be bloated with multiple copies of the same function.
-//  - inline is not perfect either as it unwantedly hints the compiler toward inlining the function.
+// 允许函数有多个定义，避免链接错误
 #define EIGEN_DECLARE_FUNCTION_ALLOWING_MULTIPLE_DEFINITIONS
 #define EIGEN_DEFINE_FUNCTION_ALLOWING_MULTIPLE_DEFINITIONS inline
 
+// 根据是否定义了 NDEBUG，决定是否启用调试
 #ifdef NDEBUG
 # ifndef EIGEN_NO_DEBUG
 #  define EIGEN_NO_DEBUG
 # endif
 #endif
 
-// eigen_plain_assert is where we implement the workaround for the assert() bug in GCC <= 4.3, see bug 89
+// eigen_plain_assert 实现了对 GCC <= 4.3 中 assert 错误的解决方法
 #ifdef EIGEN_NO_DEBUG
   #define eigen_plain_assert(x)
 #else
   #if EIGEN_SAFE_TO_USE_STANDARD_ASSERT_MACRO
     namespace Eigen {
     namespace internal {
+    // 复制布尔值的内联函数
     inline bool copy_bool(bool b) { return b; }
     }
     }
     #define eigen_plain_assert(x) assert(x)
   #else
-    // work around bug 89
+    // 解决 bug 89 的问题
     #include <cstdlib>   // for abort
     #include <iostream>  // for std::cerr
 
     namespace Eigen {
     namespace internal {
-    // trivial function copying a bool. Must be EIGEN_DONT_INLINE, so we implement it after including Eigen headers.
-    // see bug 89.
+    // 不内联的复制布尔值函数，参考 bug 89
     namespace {
     EIGEN_DONT_INLINE bool copy_bool(bool b) { return b; }
     }
+    // 断言失败时输出错误信息并终止程序
     inline void assert_fail(const char *condition, const char *function, const char *file, int line)
     {
       std::cerr << "assertion failed: " << condition << " in function " << function << " at " << file << ":" << line << std::endl;
@@ -217,23 +213,26 @@
   #endif
 #endif
 
-// eigen_assert can be overridden
+// eigen_assert 可被重写，默认为 eigen_plain_assert
 #ifndef eigen_assert
 #define eigen_assert(x) eigen_plain_assert(x)
 #endif
 
+// 内部调试断言，可根据 EIGEN_INTERNAL_DEBUGGING 开关
 #ifdef EIGEN_INTERNAL_DEBUGGING
 #define eigen_internal_assert(x) eigen_assert(x)
 #else
 #define eigen_internal_assert(x)
 #endif
 
+// 根据是否启用调试，决定是否仅用于调试
 #ifdef EIGEN_NO_DEBUG
 #define EIGEN_ONLY_USED_FOR_DEBUG(x) (void)x
 #else
 #define EIGEN_ONLY_USED_FOR_DEBUG(x)
 #endif
 
+// 标记函数或变量已过时的宏
 #ifndef EIGEN_NO_DEPRECATED_WARNING
   #if (defined __GNUC__)
     #define EIGEN_DEPRECATED __attribute__((deprecated))
@@ -246,34 +245,30 @@
   #define EIGEN_DEPRECATED
 #endif
 
+// 标记未使用的变量，避免编译器警告
 #if (defined __GNUC__)
 #define EIGEN_UNUSED __attribute__((unused))
 #else
 #define EIGEN_UNUSED
 #endif
 
-// Suppresses 'unused variable' warnings.
+// 抑制未使用变量的警告
 #define EIGEN_UNUSED_VARIABLE(var) (void)var;
 
-#if !defined(EIGEN_ASM_COMMENT) && (defined __GNUC__)
+// 编译器相关的汇编注释宏
+#if!defined(EIGEN_ASM_COMMENT) && (defined __GNUC__)
 #define EIGEN_ASM_COMMENT(X)  asm("#" X)
 #else
 #define EIGEN_ASM_COMMENT(X)
 #endif
 
-/* EIGEN_ALIGN_TO_BOUNDARY(n) forces data to be n-byte aligned. This is used to satisfy SIMD requirements.
- * However, we do that EVEN if vectorization (EIGEN_VECTORIZE) is disabled,
- * so that vectorization doesn't affect binary compatibility.
- *
- * If we made alignment depend on whether or not EIGEN_VECTORIZE is defined, it would be impossible to link
- * vectorized and non-vectorized code.
- */
+// 强制数据按 n 字节对齐，用于满足 SIMD 要求
 #if (defined __GNUC__) || (defined __PGI) || (defined __IBMCPP__) || (defined __ARMCC_VERSION)
   #define EIGEN_ALIGN_TO_BOUNDARY(n) __attribute__((aligned(n)))
 #elif (defined _MSC_VER)
   #define EIGEN_ALIGN_TO_BOUNDARY(n) __declspec(align(n))
 #elif (defined __SUNPRO_CC)
-  // FIXME not sure about this one:
+  // 不确定此情况
   #define EIGEN_ALIGN_TO_BOUNDARY(n) __attribute__((aligned(n)))
 #else
   #error Please tell me what is the equivalent of __attribute__((aligned(n))) for your compiler
@@ -281,6 +276,7 @@
 
 #define EIGEN_ALIGN16 EIGEN_ALIGN_TO_BOUNDARY(16)
 
+// 根据是否启用静态对齐，决定用户对齐的宏
 #if EIGEN_ALIGN_STATICALLY
 #define EIGEN_USER_ALIGN_TO_BOUNDARY(n) EIGEN_ALIGN_TO_BOUNDARY(n)
 #define EIGEN_USER_ALIGN16 EIGEN_ALIGN16
@@ -289,6 +285,7 @@
 #define EIGEN_USER_ALIGN16
 #endif
 
+// 处理 restrict 关键字，根据是否禁用使用不同的宏
 #ifdef EIGEN_DONT_USE_RESTRICT_KEYWORD
   #define EIGEN_RESTRICT
 #endif
@@ -296,23 +293,26 @@
   #define EIGEN_RESTRICT __restrict
 #endif
 
+// 堆栈分配的限制大小
 #ifndef EIGEN_STACK_ALLOCATION_LIMIT
 #define EIGEN_STACK_ALLOCATION_LIMIT 20000
 #endif
 
+// 默认的输入输出格式
 #ifndef EIGEN_DEFAULT_IO_FORMAT
 #ifdef EIGEN_MAKING_DOCS
-// format used in Eigen's documentation
-// needed to define it here as escaping characters in CMake add_definition's argument seems very problematic.
+// 文档中使用的格式
+// 由于在 CMake 中添加定义时转义字符的问题，需要在此定义
 #define EIGEN_DEFAULT_IO_FORMAT Eigen::IOFormat(3, 0, " ", "\n", "", "")
 #else
 #define EIGEN_DEFAULT_IO_FORMAT Eigen::IOFormat()
 #endif
 #endif
 
-// just an empty macro !
+// 空宏
 #define EIGEN_EMPTY
 
+// 根据编译器版本决定如何继承赋值运算符
 #if defined(_MSC_VER) && (_MSC_VER < 1900) && (!defined(__INTEL_COMPILER))
 #define EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR(Derived) \
   using Base::operator =;
@@ -329,14 +329,7 @@
 #define EIGEN_INHERIT_ASSIGNMENT_OPERATORS(Derived) \
   EIGEN_INHERIT_ASSIGNMENT_EQUAL_OPERATOR(Derived)
 
-/**
-* Just a side note. Commenting within defines works only by documenting
-* behind the object (via '!<'). Comments cannot be multi-line and thus
-* we have these extra long lines. What is confusing doxygen over here is
-* that we use '\' and basically have a bunch of typedefs with their
-* documentation in a single line.
-**/
-
+// 通用的公共接口宏，包含一些常见的类型和枚举定义
 #define EIGEN_GENERIC_PUBLIC_INTERFACE(Derived) \
   typedef typename Eigen::internal::traits<Derived>::Scalar Scalar; /*!< \brief Numeric type, e.g. float, double, int or std::complex<float>. */ \
   typedef typename Eigen::NumTraits<Scalar>::Real RealScalar; /*!< \brief The underlying numeric type for composed scalar types. \details In cases where Scalar is e.g. std::complex<T>, T were corresponding to RealScalar. */ \
@@ -353,6 +346,7 @@
         IsVectorAtCompileTime = Base::IsVectorAtCompileTime };
 
 
+// 稠密矩阵的公共接口宏，包含一些额外的类型和枚举定义
 #define EIGEN_DENSE_PUBLIC_INTERFACE(Derived) \
   typedef typename Eigen::internal::traits<Derived>::Scalar Scalar; /*!< \brief Numeric type, e.g. float, double, int or std::complex<float>. */ \
   typedef typename Eigen::NumTraits<Scalar>::Real RealScalar; /*!< \brief The underlying numeric type for composed scalar types. \details In cases where Scalar is e.g. std::complex<T>, T were corresponding to RealScalar. */ \
@@ -374,35 +368,35 @@
   using Base::const_cast_derived;
 
 
-#define EIGEN_PLAIN_ENUM_MIN(a,b) (((int)a <= (int)b) ? (int)a : (int)b)
-#define EIGEN_PLAIN_ENUM_MAX(a,b) (((int)a >= (int)b) ? (int)a : (int)b)
+// 计算两个枚举值的最小值，优先考虑 0 和 1
+#define EIGEN_PLAIN_ENUM_MIN(a,b) (((int)a <= (int)b)? (int)a : (int)b)
+#define EIGEN_PLAIN_ENUM_MAX(a,b) (((int)a >= (int)b)? (int)a : (int)b)
 
-// EIGEN_SIZE_MIN_PREFER_DYNAMIC gives the min between compile-time sizes. 0 has absolute priority, followed by 1,
-// followed by Dynamic, followed by other finite values. The reason for giving Dynamic the priority over
-// finite values is that min(3, Dynamic) should be Dynamic, since that could be anything between 0 and 3.
-#define EIGEN_SIZE_MIN_PREFER_DYNAMIC(a,b) (((int)a == 0 || (int)b == 0) ? 0 \
-                           : ((int)a == 1 || (int)b == 1) ? 1 \
-                           : ((int)a == Dynamic || (int)b == Dynamic) ? Dynamic \
-                           : ((int)a <= (int)b) ? (int)a : (int)b)
+// 计算两个大小的最小值，优先考虑 0 和 1，动态大小优先于其他有限大小
+#define EIGEN_SIZE_MIN_PREFER_DYNAMIC(a,b) (((int)a == 0 || (int)b == 0)? 0 \
+                           : ((int)a == 1 || (int)b == 1)? 1 \
+                           : ((int)a == Dynamic || (int)b == Dynamic)? Dynamic \
+                           : ((int)a <= (int)b)? (int)a : (int)b)
 
-// EIGEN_SIZE_MIN_PREFER_FIXED is a variant of EIGEN_SIZE_MIN_PREFER_DYNAMIC comparing MaxSizes. The difference is that finite values
-// now have priority over Dynamic, so that min(3, Dynamic) gives 3. Indeed, whatever the actual value is
-// (between 0 and 3), it is not more than 3.
-#define EIGEN_SIZE_MIN_PREFER_FIXED(a,b)  (((int)a == 0 || (int)b == 0) ? 0 \
-                           : ((int)a == 1 || (int)b == 1) ? 1 \
-                           : ((int)a == Dynamic && (int)b == Dynamic) ? Dynamic \
-                           : ((int)a == Dynamic) ? (int)b \
-                           : ((int)b == Dynamic) ? (int)a \
-                           : ((int)a <= (int)b) ? (int)a : (int)b)
+// 计算两个最大大小的最小值，有限大小优先于动态大小
+#define EIGEN_SIZE_MIN_PREFER_FIXED(a,b)  (((int)a == 0 || (int)b == 0)? 0 \
+                           : ((int)a == 1 || (int)b == 1)? 1 \
+                           : ((int)a == Dynamic && (int)b == Dynamic)? Dynamic \
+                           : ((int)a == Dynamic)? (int)b \
+                           : ((int)b == Dynamic)? (int)a \
+                           : ((int)a <= (int)b)? (int)a : (int)b)
 
-// see EIGEN_SIZE_MIN_PREFER_DYNAMIC. No need for a separate variant for MaxSizes here.
-#define EIGEN_SIZE_MAX(a,b) (((int)a == Dynamic || (int)b == Dynamic) ? Dynamic \
-                           : ((int)a >= (int)b) ? (int)a : (int)b)
+// 计算两个大小的最大值，动态大小优先
+#define EIGEN_SIZE_MAX(a,b) (((int)a == Dynamic || (int)b == Dynamic)? Dynamic \
+                           : ((int)a >= (int)b)? (int)a : (int)b)
 
-#define EIGEN_LOGICAL_XOR(a,b) (((a) || (b)) && !((a) && (b)))
+// 逻辑异或操作
+#define EIGEN_LOGICAL_XOR(a,b) (((a) || (b)) &&!((a) && (b)))
 
+// 逻辑蕴含操作
 #define EIGEN_IMPLIES(a,b) (!(a) || (b))
 
+// 定义 Cwise 二元操作的宏
 #define EIGEN_MAKE_CWISE_BINARY_OP(METHOD,FUNCTOR) \
   template<typename OtherDerived> \
   EIGEN_STRONG_INLINE const CwiseBinaryOp<FUNCTOR<Scalar>, const Derived, const OtherDerived> \
@@ -411,7 +405,7 @@
     return CwiseBinaryOp<FUNCTOR<Scalar>, const Derived, const OtherDerived>(derived(), other.derived()); \
   }
 
-// the expression type of a cwise product
+// Cwise 乘积的表达式类型
 #define EIGEN_CWISE_PRODUCT_RETURN_TYPE(LHS,RHS) \
     CwiseBinaryOp< \
       internal::scalar_product_op< \
