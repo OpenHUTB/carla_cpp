@@ -3,7 +3,6 @@
 #include "OmniverseUSDImporter.h"
 #include "OmniverseUSDHelper.h"
 
-
 bool UUSDCARLAInterface::ImportUSD(
     const FString& Path, const FString& Dest, 
     bool bImportUnusedReferences, bool bImportAsBlueprint)
