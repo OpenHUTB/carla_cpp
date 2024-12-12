@@ -75,13 +75,22 @@ def get_file_paths(container, path, user="root",
 
 
 def extract_files(container, file_list, out_path):
+    # 遍历文件列表
     for file in file_list:
+        # 打印正在复制的文件信息
         print('Copying "' + file + '" to ' + out_path)
+        # 从容器中获取文件的存档流和信息
         strm, _ = container.get_archive(file)
+        # 以二进制写入模式打开文件 result.tar.gz
         f = open("%s/result.tar.gz" % out_path, "wb")
+        # 将存档流的数据写入文件
         for d in strm:
             f.write(d)
+        # 关闭文件
         f.close()
+        # 打开 result.tar.gz 文件作为 TarFile 对象
         pw_tar = tarfile.TarFile("%s/result.tar.gz" % out_path)
+        # 解压文件到指定输出路径
         pw_tar.extractall(out_path)
+        # 删除生成的临时压缩文件
         os.remove("%s/result.tar.gz" % out_path)
