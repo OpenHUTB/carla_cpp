@@ -78,23 +78,23 @@ class DisplayManager:
         self.window_size = window_size
         self.sensor_list = []
 
-    def get_window_size(self):
+    def get_window_size(self): """获取窗口的尺寸大小"""
         return [int(self.window_size[0]), int(self.window_size[1])]
 
-    def get_display_size(self):
+    def get_display_size(self): """根据窗口大小和网格大小，获取每个显示区域（按网格划分）的尺寸"""
         return [int(self.window_size[0]/self.grid_size[0]), int(self.window_size[1]/self.grid_size[1])]
 
-    def get_display_offset(self, gridPos):
+    def get_display_offset(self, gridPos):"""根据给定的网格位置，计算显示偏移量"""
         dis_size = self.get_display_size()
         return [int(gridPos[0] * dis_size[0]), int(gridPos[1] * dis_size[1])]
 
-    def add_sensor(self, sensor):
+    def add_sensor(self, sensor):"""向传感器列表中添加传感器对象"""
         self.sensor_list.append(sensor)
 
-    def get_sensor_list(self):
+    def get_sensor_list(self):"""获取传感器列表"""
         return self.sensor_list
 
-    def render(self):
+    def render(self): """渲染传感器数据到窗口上，如果显示窗口未启用则直接返回不进行渲染操作"""  
         if not self.render_enabled():
             return
 
