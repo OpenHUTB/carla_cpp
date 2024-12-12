@@ -7,7 +7,7 @@
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
 """
-Example script to generate realistic traffic with the InvertedAI API
+使用InvertedAI API生成交通的示例脚本
 """
 
 import os
@@ -23,10 +23,10 @@ from invertedai.common import AgentProperties, AgentState, TrafficLightState
 SpawnActor = carla.command.SpawnActor
 
 #---------
-# CARLA Utils
+# CARLA 工具
 #---------
 
-# Argument parser
+# 参数解析器
 def argument_parser():
 
     argparser = argparse.ArgumentParser(
@@ -148,15 +148,15 @@ def argument_parser():
 
     return args
 
-# Setup CARLA client and world
+# 设置CARLA客户端和世界
 def setup_carla_environment(host, port):
 
-    step_length = 0.1 # 0.1 is the only step length that is supported by invertedai so far
+    step_length = 0.1 #  0.1是目前invertedai支持的唯一步长
 
     client = carla.Client(host, port)
     client.set_timeout(200.0)
 
-    # Configure the simulation environment
+    #配置模拟环境
     world = client.get_world()
     world_settings = carla.WorldSettings(
         synchronous_mode=True,
@@ -166,7 +166,7 @@ def setup_carla_environment(host, port):
 
     return client, world
 
-# Set spectator view on a hero vehicle
+# 设置观众视角到英雄车辆
 def set_spectator(world, hero_v):
 
     spectator_offset_x = -6.
@@ -186,10 +186,10 @@ def set_spectator(world, hero_v):
     world.get_spectator().set_transform(spectator_t)
 
 #---------
-# Initialize actors
+# 初始化演员
 #---------
 
-# Initialize IAI agents from CARLA actors
+# 从CARLA演员初始化IAI代理
 def initialize_iai_agent(actor, agent_type):
 
     transf = actor.get_transform()
@@ -208,11 +208,11 @@ def initialize_iai_agent(actor, agent_type):
 
     agent_properties = AgentProperties(length=length, width=width, agent_type=agent_type)
     if agent_type=="car":
-        agent_properties.rear_axis_offset = length*0.38 # Empirical value fitted from InvertedAI initialization
+        agent_properties.rear_axis_offset = length*0.38 # 从InvertedAI初始化中拟合的经验值
 
     return agent_state, agent_properties
 
-# Initialize IAI pedestrians from CARLA actors
+# 从CARLA演员初始化IAI行人
 def initialize_pedestrians(pedestrians):
 
     iai_pedestrians_states, iai_pedestrians_properties = [], []
@@ -223,12 +223,12 @@ def initialize_pedestrians(pedestrians):
 
     return iai_pedestrians_states, iai_pedestrians_properties
 
-# Spawn pedestrians in the simulation, which are driven by CARLA controllers (not by invertedai)
+# 在模拟中生成由CARLA控制器驱动的行人（不是由invertedai驱动）
 def spawn_pedestrians(client, world, num_pedestrians, bps):
 
     batch = []
 
-    # Get spawn points for pedestrians
+    # 获取行人的生成点
     spawn_points = []
     for i in range(num_pedestrians):
         
@@ -242,7 +242,7 @@ def spawn_pedestrians(client, world, num_pedestrians, bps):
     pedestrians = []
     walkers_list = []
 
-    # Spawn pedestrians
+    # 生成行人
     for i in range(len(spawn_points)):
         walker_bp = random.choice(bps)
         if walker_bp.has_attribute('is_invincible'):
@@ -258,7 +258,7 @@ def spawn_pedestrians(client, world, num_pedestrians, bps):
         else:
             walkers_list.append({"id": results[i].actor_id})
 
-    # Spawn CARLA IA controllers for pedestrians
+    # 生成CARLA IA控制器用于行人
     batch = []
     walker_controller_bp = world.get_blueprint_library().find('controller.ai.walker')
     for i in range(len(walkers_list)):
@@ -275,21 +275,21 @@ def spawn_pedestrians(client, world, num_pedestrians, bps):
 
     return pedestrians
 
-# Get blueprints according to the given filters
+# 根据给定的过滤器获取
 def get_actor_blueprints(world, filter, generation):
     bps = world.get_blueprint_library().filter(filter)
 
     if generation.lower() == "all":
         return bps
 
-    # If the filter returns only one bp, we assume that this one needed
-    # and therefore, we ignore the generation
+    # 根据给定的过滤器获取
+    # 因此，我们忽略代
     if len(bps) == 1:
         return bps
 
     try:
         int_generation = int(generation)
-        # Check if generation is in available generations
+        # 检查代是否在可用代中
         if int_generation in [1, 2, 3, 4]:
             bps = [x for x in bps if int(x.get_attribute('generation')) == int_generation]
             return bps

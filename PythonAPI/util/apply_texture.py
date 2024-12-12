@@ -24,7 +24,7 @@ import imageio
 # -- find carla module ---------------------------------------------------------
 # ==============================================================================
 
-try:
+try:#尝试将特定的路径添加到系统路径sys.path中
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
