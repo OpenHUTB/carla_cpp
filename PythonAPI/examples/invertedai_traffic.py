@@ -166,7 +166,7 @@ def setup_carla_environment(host, port):
 
     return client, world
 
-# 设置观众视角到英雄车辆
+# 设置观众视角到相应车辆
 def set_spectator(world, hero_v):
 
     spectator_offset_x = -6.
@@ -186,10 +186,10 @@ def set_spectator(world, hero_v):
     world.get_spectator().set_transform(spectator_t)
 
 #---------
-# 初始化演员
+# 初始化参与者
 #---------
 
-# 从CARLA演员初始化IAI代理
+# 从CARLA参与者中初始化逆向代理
 def initialize_iai_agent(actor, agent_type):
 
     transf = actor.get_transform()
@@ -212,7 +212,7 @@ def initialize_iai_agent(actor, agent_type):
 
     return agent_state, agent_properties
 
-# 从CARLA演员初始化IAI行人
+# 从CARLA参与者中初始化逆向行人
 def initialize_pedestrians(pedestrians):
 
     iai_pedestrians_states, iai_pedestrians_properties = [], []
@@ -323,7 +323,7 @@ def transform_iai_to_carla(agent_state):
 def update_transforms(iai2carla,response):
     """
     推进 carla 模拟一个时间步
-    假设 carla_actors 是由 IAI 控制的 carla 演员列表
+    假设 carla_actors 是由 IAI 控制的 carla 参与者列表
     """
     for agent_id in iai2carla.keys():
         agentdict = iai2carla[agent_id]
@@ -396,7 +396,7 @@ def initialize_simulation(args, world, agent_states=None, agent_properties=None)
     traffic_lights_states, carla2iai_tl = initialize_tl_states(world)
 
     #################################################################################################
-    # 初始化国际人工智能代理
+    # 初始化逆向智能代理
     map_center = args.map_center
     print(f"Call location info.")
     location_info_response = iai.location_info(
@@ -404,7 +404,7 @@ def initialize_simulation(args, world, agent_states=None, agent_properties=None)
         rendering_center = map_center
     )
     print(f"Begin initialization.") 
-    # 获取一个100x100米区域的网格，以便初始化由国际人工智能（IAI）控制的车辆。
+    # 获取一个100x100米区域的网格，以便初始化逆向的车辆。
     regions = iai.get_regions_default(
         location = args.location,
         total_num_agents = args.number_of_vehicles,
@@ -600,13 +600,13 @@ def main():
             if args.iai_log:
                 log_writer.drive(drive_response=response)
 
-            # 用IAI代理的新变换更新CARLA角色。
+            # 用IAI代理的新变换更新CARLA参与者
             update_transforms(iai2carla,response)
 
             # 执行CARLA模拟刻。
             world.tick()
 
-            # 在IAI协同仿真中更新不受IAI控制的代理，例如行人。
+            # 在IAI协同仿真中更新逆向控制的代理，例如行人。
             for agent_id in iai2carla.keys():
                 agentdict = iai2carla[agent_id]
 
