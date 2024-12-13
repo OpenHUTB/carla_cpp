@@ -141,16 +141,16 @@ for (const auto &lane : container) {  // 遍历所有车道
 return std::make_pair(dist, tangent);  // 返回距离和切线的对
 
 geom::Transform Lane::ComputeTransform(const double s) const {  // 计算车道变换
-    const Road *road = GetRoad();  // 获取道路对象
+    const Road* road = GetRoad();  // 获取道路对象
     DEBUG_ASSERT(road != nullptr);  // 断言道路对象不为空
 
     // 确保 s 小于等于道路长度且大于等于 0
     RELEASE_ASSERT(s <= road->GetLength());
     RELEASE_ASSERT(s >= 0.0);
 
-    const auto *lane_section = GetLaneSection();  // 获取车道段
+    const auto* lane_section = GetLaneSection();  // 获取车道段
     DEBUG_ASSERT(lane_section != nullptr);  // 断言车道段不为空
-    const std::map<LaneId, Lane> &lanes = lane_section->GetLanes();  // 获取车道映射
+    const std::map<LaneId, Lane>& lanes = lane_section->GetLanes();  // 获取车道映射
 
     // 检查当前 s 上是否存在 lane_id
     RELEASE_ASSERT(!lanes.empty());
@@ -168,7 +168,8 @@ geom::Transform Lane::ComputeTransform(const double s) const {  // 计算车道�
             ComputeTotalLaneWidth(side_lanes, s, GetId());  // 计算总车道宽度
         lane_t_offset = static_cast<float>(computed_width.first);  // 设置车道横向偏移
         lane_tangent = static_cast<float>(computed_width.second);  // 设置车道方向
-    } else if (GetId() > 0) {  // 如果是左侧车道
+    }
+    else if (GetId() > 0) {  // 如果是左侧车道
         const auto side_lanes = MakeListView(lanes.lower_bound(1), lanes.end());  // 获取从 1 到当前车道的车道列表
         const auto computed_width =
             ComputeTotalLaneWidth(side_lanes, s, GetId());  // 计算总车道宽度
@@ -195,18 +196,19 @@ geom::Transform Lane::ComputeTransform(const double s) const {  // 计算车道�
 
     // Unreal 的 Y 轴转换
     dp.location.y *= -1;  // 反转 Y 轴
-    dp.tangent    *= -1;  // 反转切线
+    dp.tangent *= -1;  // 反转切线
 
     geom::Rotation rot(
         geom::Math::ToDegrees(static_cast<float>(dp.pitch)),  // 将俯仰角转换为度
         geom::Math::ToDegrees(static_cast<float>(dp.tangent)),  // 将切线角转换为度
         0.0f);  // Z 轴角度设为 0    // Fix the direction of the possitive lanes
     if (GetId() > 0) {  // 如果车道 ID 大于 0
-    rot.yaw += 180.0f;  // 将偏航角加上 180 度
-    rot.pitch = 360.0f - rot.pitch;  // 将俯仰角调整为 360 度减去当前俯仰角
-}
+        rot.yaw += 180.0f;  // 将偏航角加上 180 度
+        rot.pitch = 360.0f - rot.pitch;  // 将俯仰角调整为 360 度减去当前俯仰角
+    }
 
-return geom::Transform(dp.location, rot);  // 返回位置和旋转变换
+    return geom::Transform(dp.location, rot);  // 返回位置和旋转变换
+}
 
 std::pair<geom::Vector3D, geom::Vector3D> Lane::GetCornerPositions(  // 定义获取车道角落位置的方法
     const double s, const float extra_width) const {  // 接受参数 s 和额外的宽度

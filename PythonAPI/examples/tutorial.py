@@ -9,7 +9,8 @@
 import glob
 import os
 import sys
-
+# 尝试将Carla库对应的egg文件路径添加到系统路径中，以便能够正确导入Carla模块
+# 这里根据Python版本以及操作系统类型（Windows是win-amd64，Linux是linux-x86_64）来查找对应的egg文件
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -25,7 +26,7 @@ import time
 
 
 def main():
-    actor_list = []
+    actor_list = [] # 创建一个空列表，用于存储在Carla仿真环境中创建的各种Actor对象（比如车辆、行人、传感器等），后续可以通过这个列表对这些Actor进行管理，例如销毁它们等操作。
 
     # In this tutorial script, we are going to add a vehicle to the simulation
     # and let it drive in autopilot. We will also create a camera attached to
@@ -77,10 +78,26 @@ def main():
 
         # Let's add now a "depth" camera attached to the vehicle. Note that the
         # transform we give here is now relative to the vehicle.
+        # 从已有的蓝图库（blueprint_library）中查找名为'sensor.camera.depth'的相机蓝图（blueprint），
+        # 这个蓝图定义了要创建的深度相机的各种属性，例如分辨率、视野范围等，后续基于这个蓝图来在Carla仿真世界中生成实际的相机对象。
         camera_bp = blueprint_library.find('sensor.camera.depth')
+
+        # 创建一个Carla中的变换（Transform）对象，用于指定相机在世界坐标系中的位置和姿态。
+        # 这里通过指定位置坐标（x坐标为1.5，z坐标为2.4，y坐标默认未设置则为0）来确定相机相对某个参考点（通常是所附着的对象的原点位置等情况）的放置位置，
+        # 比如可以将相机放置在车辆上方一定位置来进行拍摄等情况。
         camera_transform = carla.Transform(carla.Location(x=1.5, z=2.4))
+
+        # 使用找到的相机蓝图（camera_bp）以及定义好的相机位置变换（camera_transform），
+        # 在Carla的仿真世界（world）中生成一个实际的相机Actor对象，
+        # 并且通过'attach_to'参数将这个相机附着到指定的车辆（vehicle）上，意味着相机的位置和姿态会跟随车辆的运动而相应变化，
+        # 这常用于车载相机的模拟场景中，例如自动驾驶车辆上的摄像头。
         camera = world.spawn_actor(camera_bp, camera_transform, attach_to=vehicle)
+
+        # 将刚刚创建并添加到仿真世界中的相机对象（camera）添加到之前定义的actor_list列表中，
+        # 这样可以方便后续统一管理所有创建的Actor对象，比如在合适的时候统一销毁它们等操作。
         actor_list.append(camera)
+
+        # 打印出创建的相机对象的类型ID（type_id），用于在控制台输出相关信息，方便确认创建的相机类型是否符合预期等情况。
         print('created %s' % camera.type_id)
 
         # Now we register the function that will be called each time the sensor
@@ -107,22 +124,38 @@ def main():
 
             # This time we are using try_spawn_actor. If the spot is already
             # occupied by another object, the function will return None.
+            # 在Carla仿真世界（world）中尝试根据给定的蓝图（bp）和位置变换（transform）生成一个非玩家角色（NPC，例如车辆、行人等）。
+            # try_spawn_actor方法会尝试创建角色，如果创建成功则返回对应的NPC对象，若创建失败（比如由于空间冲突等原因无法生成）则返回None。
             npc = world.try_spawn_actor(bp, transform)
+            # 判断是否成功创建了NPC对象，如果不为None，表示创建成功。
             if npc is not None:
+                # 将成功创建的NPC对象添加到actor_list列表中，方便后续统一管理这些在仿真世界中创建的各类Actor。
                 actor_list.append(npc)
+                # 为这个NPC对象开启自动驾驶功能（在Carla中，对于车辆等可移动的NPC可以设置自动按照一定规则行驶等自动驾驶模式），
+                # 这样它在仿真世界里就能自动进行相应的移动操作了，比如按照预设的路线行驶等情况（具体行为取决于Carla内部的自动驾驶逻辑设定）。
                 npc.set_autopilot(True)
+                # 打印出这个新创建的NPC对象的类型ID（type_id），方便在控制台查看创建的具体是什么类型的NPC，例如是某种车型等信息，便于调试和确认生成情况。
                 print('created %s' % npc.type_id)
 
-        time.sleep(5)
+            # 让程序暂停执行5秒钟，这可能用于等待一些操作完成或者给创建的角色、传感器等留出一定时间来初始化、开始运行等，
+            # 例如等待刚刚创建的NPC开始移动、相机开始采集数据等情况，具体作用取决于整个程序的功能场景需求。
+            time.sleep(5)
 
-    finally:
+            # 使用finally块来确保无论程序在前面执行过程中是否出现异常，都会执行以下的清理操作。
+            # 一般用于资源释放、清理等关键操作，保证仿真世界的资源能被正确回收，避免内存泄漏等问题。
+            finally:
+            # 打印提示信息，表示即将开始销毁在仿真世界中创建的各类Actor对象了，方便在控制台查看程序执行到这个阶段的相关情况。
+            print('destroying actors')
+            # 销毁之前创建并添加到仿真世界中的相机对象（camera），释放其占用的相关资源，比如内存、在仿真世界里对应的实体资源等。
+            camera.destroy()
+            # 通过客户端（client）向Carla服务器发送一个批量销毁命令，
+            # 这个命令是通过列表推导式创建的，针对actor_list列表中的每一个Actor对象（x）生成一个销毁命令（carla.command.DestroyActor(x)），
+            # 一次性将之前创建并添加到列表中的所有NPC、传感器等各类Actor对象全部销毁，完成整个仿真场景的清理工作。
+            client.apply_batch([carla.command.DestroyActor(x) for x in actor_list])
+            # 打印提示信息，表示销毁操作已经完成，整个程序的主要流程（创建、运行、销毁相关仿真元素）执行完毕。
+            print('done.')
 
-        print('destroying actors')
-        camera.destroy()
-        client.apply_batch([carla.command.DestroyActor(x) for x in actor_list])
-        print('done.')
-
-
-if __name__ == '__main__':
-
-    main()
+        # 这是Python中常见的主程序入口判断，当脚本直接被运行（而不是作为模块被导入到其他脚本中时），
+        # 会执行main函数，从而启动整个程序基于Carla的仿真相关流程，比如创建角色、添加传感器、运行模拟、最后清理等操作。
+        if __name__ == '__main__':
+            main()
