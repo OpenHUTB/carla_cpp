@@ -166,7 +166,7 @@ def setup_carla_environment(host, port):
 
     return client, world
 
-# 设置观众视角到英雄车辆
+# 设置观众视角到相应车辆
 def set_spectator(world, hero_v):
 
     spectator_offset_x = -6.
@@ -186,10 +186,10 @@ def set_spectator(world, hero_v):
     world.get_spectator().set_transform(spectator_t)
 
 #---------
-# 初始化演员
+# 初始化参与者
 #---------
 
-# 从CARLA演员初始化IAI代理
+# 从CARLA参与者中初始化逆向代理
 def initialize_iai_agent(actor, agent_type):
 
     transf = actor.get_transform()
@@ -212,7 +212,7 @@ def initialize_iai_agent(actor, agent_type):
 
     return agent_state, agent_properties
 
-# 从CARLA演员初始化IAI行人
+# 从CARLA参与者中初始化逆向行人
 def initialize_pedestrians(pedestrians):
 
     iai_pedestrians_states, iai_pedestrians_properties = [], []
@@ -301,10 +301,10 @@ def get_actor_blueprints(world, filter, generation):
         return []
 
 #---------
-# InvertedAI - CARLA synchronization routines
+# InvertedAI - CARLA 同步例程
 #---------
 
-# Get CARLA transform from IAI transform
+# 从 InvertedAI 转换获取 CARLA 转换
 def transform_iai_to_carla(agent_state):
     agent_transform = carla.Transform(
         carla.Location(
@@ -319,11 +319,11 @@ def transform_iai_to_carla(agent_state):
 
     return agent_transform
 
-# Update transforms of CARLA agents driven by IAI and tick the world
+# 更新由 IAI 驱动的 CARLA 代理的转换并推进世界
 def update_transforms(iai2carla,response):
     """
-    Tick the carla simulation forward one time step
-    Assume carla_actors is a list of carla actors controlled by IAI
+    推进 carla 模拟一个时间步
+    假设 carla_actors 是由 IAI 控制的 carla 参与者列表
     """
     for agent_id in iai2carla.keys():
         agentdict = iai2carla[agent_id]
@@ -336,7 +336,7 @@ def update_transforms(iai2carla,response):
             except:
                 pass
 
-# Assign existing IAI agents to CARLA vehicle blueprints and add these agents to the CARLA simulation
+# 将现有的 IAI 代理分配给 CARLA 车辆蓝图，并将这些代理添加到 CARLA 模拟中
 def assign_carla_blueprints_to_iai_agents(world,vehicle_blueprints,agent_properties,agent_states,recurrent_states,is_iai,noniai_actors):
 
     agent_properties_new = []
@@ -389,14 +389,14 @@ def assign_carla_blueprints_to_iai_agents(world,vehicle_blueprints,agent_propert
     
     return agent_properties_new, agent_states_new, recurrent_states_new, iai2carla
 
-# Initialize InvertedAI co-simulation
+# 初始化 InvertedAI 协同模拟
 def initialize_simulation(args, world, agent_states=None, agent_properties=None):
 
     iai_seed = args.seed if args.seed is not None else random.randint(1,10000)
     traffic_lights_states, carla2iai_tl = initialize_tl_states(world)
 
     #################################################################################################
-    # Initialize IAI Agents
+    # 初始化逆向智能代理
     map_center = args.map_center
     print(f"Call location info.")
     location_info_response = iai.location_info(
@@ -404,14 +404,14 @@ def initialize_simulation(args, world, agent_states=None, agent_properties=None)
         rendering_center = map_center
     )
     print(f"Begin initialization.") 
-    # Acquire a grid of 100x100m regions in which to initialize vehicles to be controlled by IAI.
+    # 获取一个100x100米区域的网格，以便初始化逆向的车辆。
     regions = iai.get_regions_default(
         location = args.location,
         total_num_agents = args.number_of_vehicles,
         area_shape = (int(args.width/2),int(args.height/2)),
         map_center = map_center, 
     )
-    # Place vehicles within the specified regions which will consider the relative states of nearby vehicles in neighbouring regions.
+    # 在指定区域内放置车辆时，需要考虑附近区域车辆的相对状态。
     response = iai.large_initialize(
         location = args.location,
         regions = regions,
@@ -424,15 +424,15 @@ def initialize_simulation(args, world, agent_states=None, agent_properties=None)
     return response, carla2iai_tl, location_info_response
 
 #---------
-# Synchronize InvertedAI and CARLA traffic lights
+#同步 InvertedAI 和 CARLA 交通灯
 #---------
 
-# Mapping between CARLA and IAI traffic lights IDs
+# CARLA 和 IAI 交通灯 ID 之间的映射
 def get_traffic_lights_mapping(world):
     tls = world.get_actors().filter('traffic.traffic_light*')
     tl_ids = sorted([tl.id for tl in list(tls)])
     carla2iai_tl = {}
-    # ID for IAI traffic lights, only valid for Town10 for now (in both UE4 and UE5 versions of the map)
+    # IAI交通灯的ID，目前仅适用于Town10地图（包括UE4和UE5版本的地图）。
     iai_tl_id = 4364
     for carla_tl_id in tl_ids:
         carla2iai_tl[str(carla_tl_id)] = [str(iai_tl_id), str(iai_tl_id+1000)]
@@ -440,7 +440,7 @@ def get_traffic_lights_mapping(world):
 
     return carla2iai_tl
 
-# Returns IAI traffic light state based on CARLA traffic light state
+# 根据 CARLA 交通灯状态返回 IAI 交通灯状态
 def get_traffic_light_state_from_carla(carla_tl_state):
 
     if carla_tl_state == carla.TrafficLightState.Red:
@@ -452,10 +452,10 @@ def get_traffic_light_state_from_carla(carla_tl_state):
     elif carla_tl_state == carla.TrafficLightState.Green:
         return TrafficLightState.green
 
-    else:  # Unknown state, turn off traffic light
+    else:  # 未知状态，关闭交通灯。
         return TrafficLightState.Off
 
-# Assign IAI traffic lights based on the CARLA ones
+# 根据 CARLA 交通灯分配 IAI 交通灯
 def assign_iai_traffic_lights_from_carla(world, iai_tl, carla2iai_tl):
 
     traffic_lights = world.get_actors().filter('traffic.traffic_light*')
@@ -471,7 +471,7 @@ def assign_iai_traffic_lights_from_carla(world, iai_tl, carla2iai_tl):
 
     return iai_tl
 
-# Initialize traffic lights states
+# 初始化交通灯状态
 def initialize_tl_states(world):
     carla2iai_tl = get_traffic_lights_mapping(world)
     iai_tl_states = {}
@@ -483,16 +483,16 @@ def initialize_tl_states(world):
     return iai_tl_states, carla2iai_tl
 
 #---------
-# Main
+# 主函数
 #---------
 def main():
 
     args = argument_parser()
 
-    # Setup CARLA client and world
+    # 设置CARLA客户端和世界。
     client, world = setup_carla_environment(args.host, args.port)
 
-    # Specify the IAI API key
+    # 指定IAI API密钥
     try:
         iai.add_apikey(args.iai_key)  
     except:
@@ -523,7 +523,7 @@ def main():
     is_iai = []
     noniai_actors = []
         
-    # Add pedestrians (not driven by IAI)
+    # 添加行人（不受IAI控制）。
     if num_pedestrians>0:
         if seed:
             world.set_pedestrians_seed(seed)
@@ -542,13 +542,13 @@ def main():
     
     num_noniai = len(agent_properties)
 
-    # Initialize InvertedAI co-simulation
+    # 初始化InvertedAI协同仿真。
     response, carla2iai_tl, location_info_response = initialize_simulation(args, world, agent_states=agent_states, agent_properties=agent_properties)
     agent_properties = response.agent_properties
     is_iai.extend( [True]*(len(agent_properties)-num_noniai) )
 
-    # Write InvertedAI log file, which can be opened afterwards to visualize a gif and further analysis
-    # See an example of usage here: https://github.com/inverted-ai/invertedai/blob/master/examples/scenario_log_example.py
+    # 编写InvertedAI日志文件，之后可以打开它来可视化gif图像并进行进一步分析。
+    # 查看这里的例子：https://github.com/inverted-ai/invertedai/blob/master/examples/scenario_log_example.py
     if args.iai_log:
 
         log_writer = iai.LogWriter()
@@ -559,14 +559,14 @@ def main():
         )
         iailog_path = os.path.join(os.getcwd(),f"iai_log.json")
 
-    # Map IAI agents to CARLA actors and update response properties and states
+    # 将IAI代理映射到CARLA角色，并更新响应属性和状态。
     agent_properties, agent_states_new, recurrent_states_new, iai2carla = assign_carla_blueprints_to_iai_agents(world,vehicle_blueprints,agent_properties,response.agent_states,response.recurrent_states,is_iai,noniai_actors)
     traffic_lights_states = assign_iai_traffic_lights_from_carla(world,response.traffic_lights_states, carla2iai_tl)
     response.agent_states = agent_states_new
     response.recurrent_states = recurrent_states_new
     response.traffic_lights_states = traffic_lights_states
 
-    # Perform first CARLA simulation tick
+    # 执行第一次CARLA模拟刻。
     world.tick()
 
     try:
@@ -574,7 +574,7 @@ def main():
         vehicles = world.get_actors().filter('vehicle.*')
         print("Total number of agents:",len(agent_properties),"Vehicles",len(vehicles), "Pedestrians:",len(pedestrians))
 
-        # Get hero vehicle
+        # 获取主车辆。
         hero_v = None
         if args.hero:
             hero_v = vehicles[0]
@@ -583,7 +583,7 @@ def main():
 
             response.traffic_lights_states = assign_iai_traffic_lights_from_carla(world, response.traffic_lights_states, carla2iai_tl)
 
-            # IAI update step
+            # IAI更新步骤。
             response = iai.large_drive(
                 location = args.location,
                 agent_states = response.agent_states,
@@ -600,13 +600,13 @@ def main():
             if args.iai_log:
                 log_writer.drive(drive_response=response)
 
-            # Update CARLA actors with new transforms from IAI agents
+            # 用IAI代理的新变换更新CARLA参与者
             update_transforms(iai2carla,response)
 
-            # Tick CARLA simulation
+            # 执行CARLA模拟刻。
             world.tick()
 
-            # Update agents not driven by IAI in IAI cosimulation, like pedestrians
+            # 在IAI协同仿真中更新逆向控制的代理，例如行人。
             for agent_id in iai2carla.keys():
                 agentdict = iai2carla[agent_id]
 
@@ -616,7 +616,7 @@ def main():
                     response.agent_states[agent_id] = state
                     agent_properties[agent_id] = properties
 
-            # Include possible new actors (vehicles) from other clients (using automatic_control.py or manual_control.py for instance)
+            # 包括来自其他客户端的可能的新角色（车辆），例如使用`automatic_control.py`或`manual_control.py`。
             actors_all = world.get_actors().filter('vehicle.*')
             actsids = [act["actor"].id for act in iai2carla.values()]
             for actor in actors_all:
@@ -627,7 +627,7 @@ def main():
                     response.recurrent_states.append( response.recurrent_states[-1] )   # temporal fix
                     iai2carla[len(iai2carla)] = {"actor":actor, "is_iai":False, "type":properties.agent_type}
 
-            # Update spectator view if there is hero vehicle
+            # 如果存在主车辆，则更新观众视角。
             if hero_v is not None:
                 set_spectator(world, hero_v)
 
