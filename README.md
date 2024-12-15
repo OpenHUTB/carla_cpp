@@ -202,3 +202,4 @@ git rm -rf .
 [ysz288](https://github.com/ysz288/carla_cpp.git)、
 [Amuamu77](https://github.com/Amuamu77/carla_cpp.git)、
 [zhong246](https://github.com/zhong246/carla_cpp.git)、
+[yaxainwang7](https://github.com/yaxianwang7/carla_cpp.git)
