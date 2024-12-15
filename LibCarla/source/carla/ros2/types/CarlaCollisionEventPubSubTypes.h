@@ -37,7 +37,6 @@ namespace carla_msgs
 {
     namespace msg
     {
-
         /*!  
          * @brief 此类表示用户在 IDL 文件中定义的类型 CarlaCollisionEvent 的 TopicDataType。  
          * @ingroup CARLACOLLISIONEVENT  
