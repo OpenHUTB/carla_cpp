@@ -3,20 +3,20 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+//这段代码定义了一个名为 ThreadPool 的类，它实现了基于 Boost.Asio 的线程池。ThreadPool 类的主要功能是通过 Boost.Asio 提供的 io_context 来管理任务的异步执行。
 #pragma once
 
-#include "carla/MoveHandler.h"
-#include "carla/NonCopyable.h"
-#include "carla/ThreadGroup.h"
-#include "carla/Time.h"
+#include "carla/MoveHandler.h"   // 引入 MoveHandler，用于在 Boost.Asio 中包装任务
+#include "carla/NonCopyable.h"   // 引入 NonCopyable 类，确保 ThreadPool 不可拷贝
+#include "carla/ThreadGroup.h"   // 引入 ThreadGroup，用于管理工作线程
+#include "carla/Time.h"          // 引入 Time 类，用于时间相关操作
 
-#include <boost/asio/io_context.hpp>
-#include <boost/asio/post.hpp>
+#include <boost/asio/io_context.hpp>   // 引入 Boost.Asio 的 io_context 类，用于调度异步任务
+#include <boost/asio/post.hpp>    // 引入 Boost.Asio 的 post 函数，用于将任务发布到 io_context
 
-#include <future>
-#include <thread>
-#include <type_traits>
+#include <future>    // 引入 future，用于支持异步任务的结果获取
+#include <thread>    // 引入 thread，用于获取硬件并发线程数
+#include <type_traits>   // 引入 type_traits，用于类型推断和 SFINAE
 
 namespace carla {
 
