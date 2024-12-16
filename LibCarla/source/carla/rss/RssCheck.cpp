@@ -9,20 +9,35 @@
 #ifdef RSS_USE_TBB
 #include <tbb/tbb.h>
 #endif
+// 包含与地图访问相关的日志记录功能的头文件，用于在地图操作等过程中记录日志
 #include <ad/map/access/Logging.hpp>
+// 包含地图访问操作相关的头文件，定义了一些对地图进行查询、修改等操作的函数或类
 #include <ad/map/access/Operation.hpp>
+// 包含与地图中交叉路口相关操作的头文件
 #include <ad/map/intersection/Intersection.hpp>
+// 包含与地图中车道相关操作的头文件，例如车道信息查询、车道变换等操作的实现可能在这里面
 #include <ad/map/lane/Operation.hpp>
+// 包含地图匹配相关功能的头文件，用于将车辆等对象与地图中的位置进行匹配等操作
 #include <ad/map/match/AdMapMatching.hpp>
+// 包含地图匹配操作相关的头文件，对地图匹配结果进一步处理等操作的定义所在
 #include <ad/map/match/MapMatchedOperation.hpp>
+// 包含与路线中车道区间操作相关的头文件，用于处理路线上车道区间相关的逻辑，比如获取区间信息等
 #include <ad/map/route/LaneIntervalOperation.hpp>
+// 包含与路线操作相关的头文件
 #include <ad/map/route/Operation.hpp>
+// 包含与路线规划相关的头文件，涉及根据一些条件规划路线的功能实现
 #include <ad/map/route/Planning.hpp>
+// 包含 RSS 相关的地图日志记录功能的头文件，用于在 RSS 模块涉及地图操作时记录日志
 #include <ad/rss/map/Logging.hpp>
+// 包含 RSS 中对象转换相关的头文件，用于将不同格式或类型的对象进行转换以适配 RSS 相关处理逻辑
 #include <ad/rss/map/RssObjectConversion.hpp>
+// 包含 RSS 中对象数据相关的头文件，定义了表示 RSS 场景中对象的数据结构及相关操作
 #include <ad/rss/map/RssObjectData.hpp>
+// 包含 RSS 场景创建相关的头文件，用于创建 RSS 场景，组合各种对象及其关系等
 #include <ad/rss/map/RssSceneCreator.hpp>
+// 包含 RSS 状态操作相关的头文件
 #include <ad/rss/state/RssStateOperation.hpp>
+// 包含时间相关的头文件，用于处理时间戳、时间间隔等时间相关的操作
 #include <chrono>
 #include <tuple>
 
@@ -81,21 +96,23 @@ EgoDynamicsOnRoute::EgoDynamicsOnRoute()
     route_accel_lon(0.),
     avg_route_accel_lat(0.),
     avg_route_accel_lon(0.) {
+   // 初始化时间戳对象中的已流逝秒数为 0
   timestamp.elapsed_seconds = 0.;
 }
-
+// 获取一个指向 spdlog::logger 的共享指针，用于记录日志信息。这里创建了一个名为 "RssCheck" 的日志记录器，并且是线程安全的（通过 stdout_color_mt 函数创建），每次调用都会返回同一个静态实例
 std::shared_ptr<spdlog::logger> getLogger() {
   static auto logger = spdlog::stdout_color_mt("RssCheck");
   return logger;
 }
-
+// 获取一个指向 spdlog::logger 的共享指针，用于记录计时相关的日志信息。创建了一个名为 "RssCheckTiming" 的日志记录器，同样是线程安全的，每次调用返回同一个静态实例，用于记录特定的计时相关内容
 std::shared_ptr<spdlog::logger> getTimingLogger() {
   static auto logger = spdlog::stdout_color_mt("RssCheckTiming");
   return logger;
 }
-
+// RssCheck 类的成员函数，用于获取默认的车辆动力学参数配置，返回一个 ::ad::rss::world::RssDynamics 类型的对象，包含了车辆在纵向、横向等方向的加速度、刹车等参数设置
 ::ad::rss::world::RssDynamics RssCheck::GetDefaultVehicleDynamics() {
   ::ad::rss::world::RssDynamics default_ego_vehicle_dynamics;
+ // 设置纵向最大加速度，单位可能与具体的物理模拟相关，这里设置为 3.5（具体单位需结合项目其他部分确定）
   default_ego_vehicle_dynamics.alphaLon.accelMax = ::ad::physics::Acceleration(3.5);
   default_ego_vehicle_dynamics.alphaLon.brakeMax = ::ad::physics::Acceleration(-8.);
   default_ego_vehicle_dynamics.alphaLon.brakeMin = ::ad::physics::Acceleration(-4.);
