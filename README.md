@@ -190,4 +190,16 @@ git rm -rf .
 [haohaozhuzzzz](https://github.com/haohaozhuzzzz)、
 [big-Shuaige](https://github.com/big-Shuaige)、
 [lingyanNB](https://github.com/lingyanNB)、
-[LzQn](https://github.com/LzQn)
+[LzQn](https://github.com/LzQn)、
+[fangao-is-not-fangao](https://github.com/fangao-is-not-fangao)、
+[hexincan](https://github.com/hexincan)、
+[kinggsa](https://github.com/kinggsa)、
+[zhengyuyan1](https://github.com/zhengyuyan1)、
+[qianyouyou007](https://github.com/qianyouyou007)、
+[hjt468](https://github.com/hjt468/carla_cpp.git)、
+[zzzzadxs](https://github.com/zzzzadxs/carla_cpp.git)、
+[LLLhutb](https://github.com/LLLhutb/carla_cpp.git)、
+[ysz288](https://github.com/ysz288/carla_cpp.git)、
+[Amuamu77](https://github.com/Amuamu77/carla_cpp.git)、
+[zhong246](https://github.com/zhong246/carla_cpp.git)、
+[mikilej](https://github.com/mikilej)、

@@ -5,30 +5,51 @@
 #
 # Helper script for code formatting using clang-format-3.9 and autopep
 
-import argparse
-import filecmp
-import os
-import re
-import sets
-import subprocess
-import sys
-from termcolor import cprint
+import argparse  # 用于解析命令行参数的标准库模块
+import filecmp  # 用于比较文件内容的模块，可帮助进行文件差异对比等操作
+import os  # 提供了与操作系统交互的函数，例如文件和目录操作相关功能
+import re  # 正则表达式模块，用于处理文本匹配、查找等操作
+import sets  # （注：在Python 3中，sets模块已被弃用，通常使用内置的set类型来替代它，此处可能需根据Python版本确认使用情况）用于处理集合相关操作
+import subprocess  # 允许在Python程序中启动新进程，执行外部命令
+import sys  # 提供了对Python解释器相关的变量和函数的访问，比如获取命令行参数等
+from termcolor import cprint  # 从termcolor库中导入cprint函数，用于给终端输出添加颜色
 
+# 定义脚本的版本号，这里版本号为 "1.3"，可以用于版本展示、兼容性判断等场景
 SCRIPT_VERSION = "1.3"
 
 
+# 定义CodeFormatter类，该类大概率是用于代码格式化相关功能的封装
 class CodeFormatter:
-
-    def __init__(self, command, expectedVersion, formatCommandArguments, verifyCommandArguments, verifyOutputIsDiff, fileEndings, fileDescription, installCommand):
+    # 类的构造函数（初始化方法），用于初始化CodeFormatter类的实例对象的各个属性
+    def __init__(self, command, expectedVersion, formatCommandArguments,
+                 verifyCommandArguments, verifyOutputIsDiff, fileEndings,
+                 fileDescription, installCommand):
+        # 用于执行代码格式化操作的命令，比如可能是类似"black"（Python代码格式化工具）这样的命令字符串，
+        # 具体值会在实例化类时传入，决定了实际调用哪个工具来进行格式化
         self.command = command
+        # 期望的代码格式化工具的版本号，后续可能会通过某种方式（比如执行命令查看版本输出并对比）来验证实际使用的工具版本是否符合预期，
+        # 以此确保格式化的效果符合要求
         self.expectedVersion = expectedVersion
+        # 这是一个列表或者元组类型（通常是这样），包含了执行代码格式化命令时需要传递的额外参数，
+        # 例如格式化工具可能有一些特定的配置选项（如控制缩进格式、换行规则等），通过这些参数传递给格式化命令
         self.formatCommandArguments = formatCommandArguments
+        # 同样是一个列表或者元组类型，存放执行验证操作（验证代码格式化后的结果是否正确等情况）时要传递给相关验证命令的参数，
+        # 不同的验证场景可能有不同的参数需求
         self.verifyCommandArguments = verifyCommandArguments
+        # 一个布尔值，表示验证输出的结果是否应该呈现为差异形式（比如对比格式化前后文件内容的差异情况），
+        # 如果为True，可能意味着后续会以展示差异的方式来体现验证结果
         self.verifyOutputIsDiff = verifyOutputIsDiff
+        # 是一个列表，存放了需要进行代码格式化操作的文件的后缀名，例如 [".py", ".cpp"]，
+        # 通过后缀名来筛选出符合要求的文件进行格式化处理
         self.fileEndings = fileEndings
+        # 对要进行格式化的文件的描述信息字符串，比如 "Python source files"（表示Python源文件），
+        # 可以让使用者更清晰地了解要处理文件的类型和性质
         self.fileDescription = fileDescription
+        # 用于安装相应代码格式化工具的命令，在需要安装格式化工具但尚未安装的情况下，可以通过执行这个命令来安装，
+        # 确保能够正常使用格式化功能
         self.installCommand = installCommand
 
+    #试图通过verifyformatterversion函数运行来获取格式化工具的版本信息
     def verifyFormatterVersion(self):
         try:
             versionOutput = subprocess.check_output([self.command, "--version"]).rstrip('\r\n')

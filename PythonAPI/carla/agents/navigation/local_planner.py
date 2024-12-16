@@ -1,9 +1,9 @@
-# Copyright (c) # Copyright (c) 2018-2020 CVC.
+# Copyright (c) # Copyright (c) 2018-2020 CVC.# 版权相关声明
 #
-# This work is licensed under the terms of the MIT license.
+# This work is licensed under the terms of the MIT license.# 遵循MIT许可协议
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-""" This module contains a local planner to perform low-level waypoint following based on PID controllers. """
+""" This module contains a local planner to perform low-level waypoint following based on PID controllers. """# 查看许可协议链接
 
 from enum import IntEnum
 from collections import deque
@@ -14,9 +14,9 @@ from agents.navigation.controller import VehiclePIDController
 from agents.tools.misc import draw_waypoints, get_speed
 
 
-class RoadOption(IntEnum):
+class RoadOption(IntEnum):# 定义道路选择的枚举类型
     """
-    RoadOption represents the possible topological configurations when moving from a segment of lane to other.
+    RoadOption represents the possible topological configurations when moving from a segment of lane to other. 表示从一个车道段移动到其他车道段时可能的拓扑配置。 
 
     """
     VOID = -1
@@ -39,7 +39,13 @@ class LocalPlanner:
     When multiple paths are available (intersections) this local planner makes a random choice,
     unless a given global plan has already been specified.
     """
-
+    
+    """
+    实现跟随实时生成的路点轨迹的基本行为。
+    通过两个PID控制器计算车辆的低级运动，一个用于横向控制，一个用于纵向控制（巡航速度）。
+    在有多个路径可选（交叉路口）时随机选择，除非已指定全局计划。
+    """
+    
     def __init__(self, vehicle, opt_dict={}, map_inst=None):
         """
         :param vehicle: actor to apply to local planner logic onto
@@ -55,6 +61,13 @@ class LocalPlanner:
             offset: distance between the route waypoints and the center of the lane
         :param map_inst: carla.Map instance to avoid the expensive call of getting it.
         """
+               
+        """
+        :param vehicle: 应用本地规划逻辑的车辆对象
+        :param opt_dict: 包含不同参数的字典，可重载默认参数
+        :param map_inst: carla.Map实例，避免重复获取地图的昂贵调用
+        """
+        
         self._vehicle = vehicle
         self._world = self._vehicle.get_world()
         if map_inst:
@@ -74,7 +87,7 @@ class LocalPlanner:
         self._min_waypoint_queue_length = 100
         self._stop_waypoint_creation = False
 
-        # Base parameters
+        # Base parameters 基本参数初始化
         self._dt = 1.0 / 20.0
         self._target_speed = 20.0  # Km/h
         self._sampling_radius = 2.0
@@ -88,7 +101,7 @@ class LocalPlanner:
         self._distance_ratio = 0.5
         self._follow_speed_limits = False
 
-        # Overload parameters
+        # Overload parameters 根据传入字典重载参数
         if opt_dict:
             if 'dt' in opt_dict:
                 self._dt = opt_dict['dt']
@@ -115,15 +128,15 @@ class LocalPlanner:
             if 'follow_speed_limits' in opt_dict:
                 self._follow_speed_limits = opt_dict['follow_speed_limits']
 
-        # initializing controller
+        # initializing controller 初始化控制器
         self._init_controller()
 
     def reset_vehicle(self):
-        """Reset the ego-vehicle"""
+        """Reset the ego-vehicle 重置自车对象"""
         self._vehicle = None
 
     def _init_controller(self):
-        """Controller initialization"""
+        """Controller initialization 控制器初始化方法"""
         self._vehicle_controller = VehiclePIDController(self._vehicle,
                                                         args_lateral=self._args_lateral_dict,
                                                         args_longitudinal=self._args_longitudinal_dict,
@@ -132,7 +145,7 @@ class LocalPlanner:
                                                         max_brake=self._max_brake,
                                                         max_steering=self._max_steer)
 
-        # Compute the current vehicle waypoint
+        # Compute the current vehicle waypoint 获取当前车辆所在路点等信息并添加到路点队列
         current_waypoint = self._map.get_waypoint(self._vehicle.get_location())
         self.target_waypoint, self.target_road_option = (current_waypoint, RoadOption.LANEFOLLOW)
         self._waypoints_queue.append((self.target_waypoint, self.target_road_option))
@@ -143,6 +156,7 @@ class LocalPlanner:
 
         :param speed: new target speed in Km/h
         :return:
+        :param speed: 新的目标速度（单位：Km/h），改变目标速度
         """
         if self._follow_speed_limits:
             print("WARNING: The max speed is currently set to follow the speed limits. "
@@ -155,6 +169,7 @@ class LocalPlanner:
 
         :param value: bool
         :return:
+        :param value: 布尔值，激活根据速度限制动态改变最大速度的标志
         """
         self._follow_speed_limits = value
 
@@ -164,6 +179,7 @@ class LocalPlanner:
 
         :param k: how many waypoints to compute
         :return:
+        :param k: 要计算的路点数，添加新的路点到轨迹队列
         """
         # check we do not overflow the queue
         available_entries = self._waypoints_queue.maxlen - len(self._waypoints_queue)
@@ -199,6 +215,9 @@ class LocalPlanner:
         :param stop_waypoint_creation: bool
         :param clean_queue: bool
         :return:
+        :param current_plan: 包含(carla.Waypoint, RoadOption)对的列表，添加新计划到本地规划器
+        :param stop_waypoint_creation: 布尔值，停止自动创建随机路点的标志
+        :param clean_queue: 布尔值，是否清除之前的计划队列
         """
         if clean_queue:
             self._waypoints_queue.clear()
@@ -217,7 +236,7 @@ class LocalPlanner:
         self._stop_waypoint_creation = stop_waypoint_creation
 
     def set_offset(self, offset):
-        """Sets an offset for the vehicle"""
+        """Sets an offset for the vehicle 设置车辆的偏移量"""
         self._vehicle_controller.set_offset(offset)
 
     def run_step(self, debug=False):
@@ -227,6 +246,8 @@ class LocalPlanner:
 
         :param debug: boolean flag to activate waypoints debugging
         :return: control to be applied
+        :param debug: 布尔值，是否激活路点调试，执行本地规划的一步，运行PID控制器跟随路点轨迹
+        :return: 要应用的车辆控制指令
         """
         if self._follow_speed_limits:
             self._target_speed = self._vehicle.get_speed_limit()
@@ -279,6 +300,7 @@ class LocalPlanner:
         Returns direction and waypoint at a distance ahead defined by the user.
 
             :param steps: number of steps to get the incoming waypoint.
+            :param steps: 获取前方路点的步数，返回指定步数后的方向和路点
         """
         if len(self._waypoints_queue) > steps:
             return self._waypoints_queue[steps]
@@ -291,7 +313,7 @@ class LocalPlanner:
                 return None, RoadOption.VOID
 
     def get_plan(self):
-        """Returns the current plan of the local planner"""
+        """Returns the current plan of the local planner  返回本地规划器当前的计划（路点队列）"""
         return self._waypoints_queue
 
     def done(self):
@@ -299,6 +321,7 @@ class LocalPlanner:
         Returns whether or not the planner has finished
 
         :return: boolean
+        返回规划器是否已完成（路点队列是否为空）
         """
         return len(self._waypoints_queue) == 0
 
@@ -312,6 +335,8 @@ def _retrieve_options(list_waypoints, current_waypoint):
     :param current_waypoint: current active waypoint
     :return: list of RoadOption enums representing the type of connection from the active waypoint to each
              candidate in list_waypoints
+    :param list_waypoints: 可能的目标路点列表，计算当前活动路点与多个路点之间的连接类型，返回RoadOption枚举列表
+    :param current_waypoint: 当前活动路点
     """
     options = []
     for next_waypoint in list_waypoints:
@@ -336,6 +361,10 @@ def _compute_connection(current_waypoint, next_waypoint, threshold=35):
              RoadOption.STRAIGHT
              RoadOption.LEFT
              RoadOption.RIGHT
+    :param current_waypoint: 活动路点
+    :param next_waypoint: 目标路点
+    :param threshold: 角度阈值，计算活动路点与目标路点之间的拓扑连接类型，返回RoadOption枚举
+ 
     """
     n = next_waypoint.transform.rotation.yaw
     n = n % 360.0
