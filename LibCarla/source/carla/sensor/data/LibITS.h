@@ -68,53 +68,89 @@ public:
     typedef long SemiAxisLength_t;
 
     /* HeadingValue Dependencies */
+ // HeadingValue枚举类型用于定义航向值相关的特定取值，
+// 这些取值基于 WGS84 坐标系（世界大地坐标系）下的基本方向角度，以特定的整数表示不同方向，方便在程序中统一引用。
     typedef enum HeadingValue
     {
+// 表示航向为 WGS84 坐标系下的正北方向，对应角度值为 0 度，以特定的整数表示便于在代码中进行方向判断等操作。
         HeadingValue_wgs84North = 0,
+// 代表航向为 WGS84 坐标系下的正东方向，对应角度值为 900，这里的数值可能是经过特定换算或按程序要求的表示形式。
         HeadingValue_wgs84East = 900,
+// 表示航向为 WGS84 坐标系下的正南方向，对应角度值为 1800，用于明确正南方向的特定数值表示。
         HeadingValue_wgs84South = 1800,
+ // 意味着航向为 WGS84 坐标系下的正西方向，对应角度值为 2700，方便在涉及方向的计算和判断中使用。
         HeadingValue_wgs84West = 2700,
+ // 用于标记航向值不可用的情况，当无法获取准确的航向信息时，通过该值来体现这一状态。
         HeadingValue_unavailable = 3601
     } e_HeadingValue;
 
     /* HeadingValue */
+ // HeadingValue_t类型别名定义为long类型，用于在程序中统一存储和操作航向值数据，
+// 可以是具体的方向角度对应的表示值或者不可用状态对应的特殊值。
     typedef long HeadingValue_t;
 
      /* HeadingConfidence Dependencies */
+// HeadingConfidence枚举类型旨在规定航向置信度相关的特定取值，
+// 反映了对航向信息准确性的信任程度，涵盖了在不同精度范围内以及特殊情况（如超出范围、不可用）下的表示值。
     typedef enum HeadingConfidence {
+ // 表示航向置信度为等于或在 0.1 度范围内，意味着对当前航向值的准确性有较高的信心，偏差较小。
         HeadingConfidence_equalOrWithinZeroPointOneDegree   = 1,
+ // 意味着航向置信度为等于或在 1 度范围内，说明对航向值的准确性把握在相对稍大一点的偏差区间内。
         HeadingConfidence_equalOrWithinOneDegree    = 10,
+ // 用于标记航向置信度超出了正常有效的取值范围，当出现不符合常规置信度定义的情况时，以此值标识。
         HeadingConfidence_outOfRange    = 126,
+ // 当无法确定航向置信度，即该信息不可用时，使用此值来表示这一状态。
         HeadingConfidence_unavailable   = 127
     } e_HeadingConfidence;
  
     /* HeadingConfidence */
+// HeadingConfidence_t类型别名定义为long类型，在程序中统一处理航向置信度数据，
+// 可以存储具体的置信度表示值或者不可用等特殊情况对应的数值。
     typedef long HeadingConfidence_t;
 
     /* PosConfidenceEllipse*/
+// PosConfidenceEllipse结构体用于表示位置置信椭圆相关的信息。
+// 它包含了描述椭圆特征的几个关键元素，这些元素共同刻画了在一定置信水平下物体位置的不确定性范围及方向等信息。
     typedef struct PosConfidenceEllipse
-    {
+    { 
+// semiMajorConfidence表示置信椭圆的长半轴长度的置信相关信息，
+// 其类型为SemiAxisLength_t，该类型在之前已定义，能够表示半轴长度的具体数值、超出范围情况或不可用状态等。
         SemiAxisLength_t semiMajorConfidence;
+// semiMinorConfidence代表置信椭圆的短半轴长度的置信相关信息，同样使用SemiAxisLength_t类型，
+// 用于体现短半轴长度方面的相关状态与数值。
         SemiAxisLength_t semiMinorConfidence;
+// semiMajorOrientation用于指明置信椭圆长半轴的方向，以HeadingValue_t类型存储，
+// 该类型能够表示如基于WGS84坐标系下的方向角度相关的特定值或者不可用状态等情况，以此确定长半轴在空间中的方位。
         HeadingValue_t semiMajorOrientation;
     } PosConfidenceEllipse_t;
     
     /* AltitudeValue Dependencies */
+// AltitudeValue枚举类型主要用于定义高度相关的特定取值情况，
+// 这些取值对应了不同的高度度量含义，比如相对于参考椭球面的高度、以厘米为单位的具体高度以及高度不可用的标识等，
+// 在涉及到描述物体垂直位置信息时会用到这些不同的表示值。
     typedef enum AltitudeValue
-    {
+    { 
+// 表示物体的高度是相对于参考椭球面的高度，其值设为0，用于明确这种特定的高度参考基准情况。
         AltitudeValue_referenceEllipsoidSurface = 0,
+ // 意味着物体的高度为1厘米，是一种以厘米为单位衡量高度的具体表示值，用于表示相对较小的垂直距离情况。
         AltitudeValue_oneCentimeter = 1,
+ // 用于标记高度信息不可用的特殊值，当无法获取准确的高度数据时，通过该值来体现这种情况。
         AltitudeValue_unavailable = 800001
     } e_AltitudeValue;
 
     /* AltitudeValue */
+// AltitudeValue_t类型别名定义为long类型，用于在程序中统一存储和操作高度值数据，
+// 它可以存放AltitudeValue枚举中定义的各种高度相关的具体数值或者不可用状态对应的特殊值，方便在不同模块间以统一类型处理高度信息。
     typedef long AltitudeValue_t;
 
     /* AltitudeConfidence Dependencies */
     typedef enum AltitudeConfidence
     {
+// 表示高度置信度对应的高度误差在 ±0.00001（单位需结合实际场景确定，可能是米等长度单位）范围内，意味着对高度值的准确性有很高的信心，误差极小。
         AltitudeConfidence_alt_000_01   = 0,
+ // 意味着高度置信度对应的高度误差在 ±0.00002范围内，说明对高度值准确性的把握在稍大一点的误差区间内。
         AltitudeConfidence_alt_000_02   = 1,
+ // 表示高度置信度对应的高度误差在 ±0.00005范围内，以此类推，不同取值对应不同的误差范围，体现不同的置信水平。
         AltitudeConfidence_alt_000_05   = 2,
         AltitudeConfidence_alt_000_10   = 3,
         AltitudeConfidence_alt_000_20   = 4,
@@ -127,11 +163,15 @@ public:
         AltitudeConfidence_alt_050_00   = 11,
         AltitudeConfidence_alt_100_00   = 12,
         AltitudeConfidence_alt_200_00   = 13,
+ // 用于标记高度置信度超出了正常有效的取值范围，当出现不符合常规置信度定义的情况时，以此值标识。
         AltitudeConfidence_outOfRange   = 14,
+ // 当无法确定高度置信度，即该信息不可用时，使用此值来表示这一状态。
         AltitudeConfidence_unavailable  = 15
     }e_AltitudeConfidence;
 
     /* AltitudeConfidence */
+// AltitudeConfidence_t类型别名定义为long类型，在程序中统一处理高度置信度数据，
+// 可以存储AltitudeConfidence枚举中定义的具体置信度表示值或者不可用等特殊情况对应的数值，便于在整个代码中规范使用。
     typedef long AltitudeConfidence_t;
 
     /* Altitude */
