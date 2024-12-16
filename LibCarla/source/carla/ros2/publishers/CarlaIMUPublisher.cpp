@@ -26,43 +26,55 @@
 
 namespace carla {
 namespace ros2 {
-  namespace efd = eprosima::fastdds::dds;
-  using erc = eprosima::fastrtps::types::ReturnCode_t;
+// eprosima::fastdds::dds 是 Fast DDS（Data Distribution Service）相关的命名空间，
+// 它提供了数据发布和订阅所需的基本类型和功能。
+  namespace efd = eprosima::fastdds::dds; // efd 是 eprosima::fastdds::dds 的别名
+  using erc = eprosima::fastrtps::types::ReturnCode_t;// erc 是 Fast RTPS 中返回码类型的别名
 
+
+  // CarlaIMUPublisherImpl 结构体，封装了所有与 IMU 数据发布器相关的成员。
   struct CarlaIMUPublisherImpl {
-    efd::DomainParticipant* _participant { nullptr };
-    efd::Publisher* _publisher { nullptr };
-    efd::Topic* _topic { nullptr };
-    efd::DataWriter* _datawriter { nullptr };
-    efd::TypeSupport _type { new sensor_msgs::msg::ImuPubSubType() };
-    CarlaListener _listener {};
+    efd::DomainParticipant* _participant { nullptr };// Fast DDS 中的 DomainParticipant，用于参与 DDS 域
+    efd::Publisher* _publisher { nullptr }; // 用于发布数据的 Publisher
+    efd::Topic* _topic { nullptr }; // 发布数据的 Topic
+    efd::DataWriter* _datawriter { nullptr };// 数据写入器，用于将数据写入 Topic
+    efd::TypeSupport _type { new sensor_msgs::msg::ImuPubSubType() };// 数据类型支持对象，定义 IMU 数据类型
+    CarlaListener _listener {};// 用于监听 DataWriter 事件的监听器
     sensor_msgs::msg::Imu _imu {};
   };
 
+  // CarlaIMUPublisher 类的 Init 函数，用于初始化发布器
   bool CarlaIMUPublisher::Init() {
+      // 检查 TypeSupport 是否有效，确保 IMU 数据类型正确注册
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
-        return false;
+        return false;// 如果无效，输出错误信息并返回 false
     }
 
+    // 设置 DomainParticipant 的 QoS（质量服务）
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    // 获取 DomainParticipantFactory 的实例，创建一个 DomainParticipant
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl->_participant = factory->create_participant(0, pqos);
     if (_impl->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
     }
+    // 注册 IMU 数据类型
     _impl->_type.register_type(_impl->_participant);
 
+    // 设置 Publisher 的 QoS
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
-    if (_impl->_publisher == nullptr) {
+    if (_impl->_publisher == nullptr) { // 如果有父类名称，则追加
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
 
+    // 设置 Topic 的 QoS
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
+    // 设置 Topic 名称，基于父类和当前类的名称构建完整 Topic 名称
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
     if (!_parent.empty())
@@ -74,9 +86,11 @@ namespace ros2 {
         return false;
     }
 
+    // 设置 DataWriter 的 QoS
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
-    efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
+    efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();// 创建 DataWriter 的监听器对象
+    // 创建 DataWriter
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
     if (_impl->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
