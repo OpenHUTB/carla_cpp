@@ -9,8 +9,11 @@ class ITSContainer
 public:
 
     typedef bool OptionalValueAvailable_t;
-    
+
+
     /* Latitude Dependencies*/
+// Latitude枚举类型用于定义表示纬度相关信息的特定取值，
+// 这些取值具有明确的物理意义，对应不同精度或特殊状态下的纬度表示。   
     typedef enum Latitude
     {
         Latitude_oneMicroDegreeNorth = 10,
