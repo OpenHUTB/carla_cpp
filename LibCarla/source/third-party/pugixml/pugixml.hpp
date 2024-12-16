@@ -12,32 +12,32 @@
  */
 
 #ifndef PUGIXML_VERSION
-// Define version macro; evaluates to major * 100 + minor so that it's safe to use in less-than comparisons
+// 定义版本宏；计算结果为主要版本 * 100 + 次要版本，以便在小于比较中安全使用。
 #	define PUGIXML_VERSION 190
 #endif
 
-// Include user configuration file (this can define various configuration macros)
+// 包含用户配置文件（这可以定义各种配置宏）
 #include "pugiconfig.hpp"
 
 #ifndef HEADER_PUGIXML_HPP
 #define HEADER_PUGIXML_HPP
 
-// Include stddef.h for size_t and ptrdiff_t
+// 包含 stddef.h 以便使用 size_t 和 ptrdiff_t
 #include <stddef.h>
 
-// Include exception header for XPath
+// 包括XPath的异常头部
 #if !defined(PUGIXML_NO_XPATH) && !defined(PUGIXML_NO_EXCEPTIONS)
 #	include <exception>
 #endif
 
-// Include STL headers
+// 包含STL头文件
 #ifndef PUGIXML_NO_STL
 #	include <iterator>
 #	include <iosfwd>
 #	include <string>
 #endif
 
-// Macro for deprecated features
+// 已弃用功能的宏
 #ifndef PUGIXML_DEPRECATED
 #	if defined(__GNUC__)
 #		define PUGIXML_DEPRECATED __attribute__((deprecated))
@@ -48,22 +48,22 @@
 #	endif
 #endif
 
-// If no API is defined, assume default
+// 如果没有定义API，则假定为默认值
 #ifndef PUGIXML_API
 #	define PUGIXML_API
 #endif
 
-// If no API for classes is defined, assume default
+// 如果没有定义类的 API，则假定为默认值
 #ifndef PUGIXML_CLASS
 #	define PUGIXML_CLASS PUGIXML_API
 #endif
 
-// If no API for functions is defined, assume default
+// 如果没有定义函数的API，则假设为默认值。
 #ifndef PUGIXML_FUNCTION
 #	define PUGIXML_FUNCTION PUGIXML_API
 #endif
 
-// If the platform is known to have long long support, enable long long functions
+//如果该平台已知具有长整型支持，请启用长整型功能。
 #ifndef PUGIXML_HAS_LONG_LONG
 #	if __cplusplus >= 201103
 #		define PUGIXML_HAS_LONG_LONG
@@ -72,7 +72,7 @@
 #	endif
 #endif
 
-// If the platform is known to have move semantics support, compile move ctor/operator implementation
+// 如果已知该平台支持移动语义，则编译移动构造函数/操作符的实现。
 #ifndef PUGIXML_HAS_MOVE
 #	if __cplusplus >= 201103
 #		define PUGIXML_HAS_MOVE
@@ -81,10 +81,10 @@
 #	endif
 #endif
 
-// HACK(Andrei): Disable exceptions as they are not available in Unreal engine
+// HACK（安德烈）：禁用异常，因为它们在虚幻引擎中不可用
 #define PUGIXML_NOEXCEPT
 
-// If C++ is 2011 or higher, add 'noexcept' specifiers
+//如果C++是2011或更高版本，添加'noexcept'说明符
 #ifndef PUGIXML_NOEXCEPT
 #	if __cplusplus >= 201103
 #		define PUGIXML_NOEXCEPT noexcept
@@ -95,14 +95,14 @@
 #	endif
 #endif
 
-// Some functions can not be noexcept in compact mode
+// 某些函数在紧凑模式下不能是 noexcept。
 #ifdef PUGIXML_COMPACT
 #	define PUGIXML_NOEXCEPT_IF_NOT_COMPACT
 #else
 #	define PUGIXML_NOEXCEPT_IF_NOT_COMPACT PUGIXML_NOEXCEPT
 #endif
 
-// If C++ is 2011 or higher, add 'override' qualifiers
+// 如果C++是2011或更高版本，请添加'override'限定符。
 #ifndef PUGIXML_OVERRIDE
 #	if __cplusplus >= 201103
 #		define PUGIXML_OVERRIDE override
@@ -113,7 +113,7 @@
 #	endif
 #endif
 
-// Character interface macros
+// 字符接口宏
 #ifdef PUGIXML_WCHAR_MODE
 #	define PUGIXML_TEXT(t) L ## t
 #	define PUGIXML_CHAR wchar_t
@@ -133,49 +133,48 @@ namespace pugi
 #endif
 }
 
-// The PugiXML namespace
+// PugiXML命名空间
 namespace pugi
 {
-	// Tree node types
+	// 树节点类型
 	enum xml_node_type
 	{
-		node_null,			// Empty (null) node handle
-		node_document,		// A document tree's absolute root
-		node_element,		// Element tag, i.e. '<node/>'
-		node_pcdata,		// Plain character data, i.e. 'text'
-		node_cdata,			// Character data, i.e. '<![CDATA[text]]>'
-		node_comment,		// Comment tag, i.e. '<!-- text -->'
-		node_pi,			// Processing instruction, i.e. '<?name?>'
-		node_declaration,	// Document declaration, i.e. '<?xml version="1.0"?>'
-		node_doctype		// Document type declaration, i.e. '<!DOCTYPE doc>'
+		node_null,			// 空（null）节点句柄
+		node_document,		//文档树的绝对根
+		node_element,		//元素标签，即 '<node/>'
+		node_pcdata,		// 普通字符数据，即'text'
+		node_cdata,			//字符数据，即 '<![CDATA[text]]>'
+		node_comment,		// 评论标签，即 '<!-- text -->'
+		node_pi,			// 处理指令，即 '<?name?>'
+		node_declaration,	// 文档声明，即 '<?xml version="1.0"?>'
+		node_doctype		// 文档类型声明，即 '<!DOCTYPE doc>'
 	};
 
-	// Parsing options
+	// 解析选项
 
-	// Minimal parsing mode (equivalent to turning all other flags off).
-	// Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.
+	// 最小解析模式（相当于关闭所有其他标志）。
+	//仅元素和PCDATA部分被添加到DOM树中，未执行文本转换。
 	const unsigned int parse_minimal = 0x0000;
 
-	// This flag determines if processing instructions (node_pi) are added to the DOM tree. This flag is off by default.
+	// 此标志用于确定是否将处理指令（节点_pi）添加到 DOM 树中。该标志默认处于关闭状态。
 	const unsigned int parse_pi = 0x0001;
 
-	// This flag determines if comments (node_comment) are added to the DOM tree. This flag is off by default.
+	// 此标志用于确定是否将注释（节点_注释）添加到 DOM 树中。该标志默认处于关闭状态。
 	const unsigned int parse_comments = 0x0002;
 
-	// This flag determines if CDATA sections (node_cdata) are added to the DOM tree. This flag is on by default.
+	// 此标志用于确定是否将 CDATA（字符数据）段（节点_cdata）添加到 DOM 树中。该标志默认处于开启状态
 	const unsigned int parse_cdata = 0x0004;
 
-	// This flag determines if plain character data (node_pcdata) that consist only of whitespace are added to the DOM tree.
-	// This flag is off by default; turning it on usually results in slower parsing and more memory consumption.
+	// 此标志用于确定仅由空白字符组成的纯文本字符数据（节点_pcdata）是否被添加到 DOM 树中。
+	// 该标志默认处于关闭状态；将其开启通常会导致解析速度变慢以及内存消耗增加。
 	const unsigned int parse_ws_pcdata = 0x0008;
 
-	// This flag determines if character and entity references are expanded during parsing. This flag is on by default.
 	const unsigned int parse_escapes = 0x0010;
 
-	// This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default.
+	// 此标志用于确定在行结束（EOL）字符在解析过程中是否被规范化（转换为十六进制的 #xA）。该标志默认处于开启状态。
 	const unsigned int parse_eol = 0x0020;
 
-	// This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.
+	// 此标志用于确定在解析期间是否依据 CDATA（字符数据）规范化规则对属性值进行规范化处理。该标志默认处于开启状态。
 	const unsigned int parse_wconv_attribute = 0x0040;
 
 	// This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
