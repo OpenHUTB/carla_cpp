@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -12,21 +12,22 @@
 namespace carla {
 namespace rpc {
 
+  // 为车轮对象定义特定物理参数的类
   class WheelPhysicsControl {
   public:
 
     WheelPhysicsControl() = default;
 
     WheelPhysicsControl(
-        float in_tire_friction,
-        float in_damping_rate,
-        float in_max_steer_angle,
-        float in_radius,
-        float in_max_brake_torque,
-        float in_max_handbrake_torque,
-        float in_lat_stiff_max_load,
-        float in_lat_stiff_value,
-        float in_long_stiff_value,
+        float in_tire_friction,         // 表示车轮摩擦力的标量值
+        float in_damping_rate,          // 车轮的阻尼率
+        float in_max_steer_angle,       // 车轮可以转向的最大角度
+        float in_radius,                // 轮子的半径（单位：厘米）
+        float in_max_brake_torque,      // 最大制动扭矩
+        float in_max_handbrake_torque,  // 最大手刹扭矩
+        float in_lat_stiff_max_load,    // 最大标准化轮胎负载，在该负载下，无论向轮胎施加多少额外负载，轮胎都不再提供侧向刚度。每辆车都有一个自定义值。
+        float in_lat_stiff_value,       // 每单位横向滑移的最大刚度。每辆车都有一个自定义值。
+        float in_long_stiff_value,      // 每单位重力加速度的轮胎纵向刚度。每辆车都有一个自定义值。
         geom::Vector3D in_position)
       : tire_friction(in_tire_friction),
         damping_rate(in_damping_rate),

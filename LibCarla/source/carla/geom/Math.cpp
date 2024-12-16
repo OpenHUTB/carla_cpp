@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -34,20 +34,17 @@ namespace geom {
       Vector3D p,
       Vector3D start_pos,
       const float length,
-      float heading,       // [radians]
+      float heading,       // [弧度]
       float curvature) {
 
-    /// @todo: Because Unreal's coordinates, hacky way to correct
-    /// the -y, this must be changed in the future
+    /// @todo: 因为虚幻的坐标，纠正-y的方法是比较老套的，这个以后必须改掉
     p.y = -p.y;
     start_pos.y = -start_pos.y;
     heading = -heading;
     curvature = -curvature;
 
-    // since this algorithm is working for positive curvatures,
-    // and we are only calculating distances, we can invert the y
-    // axis (along with the curvature and the heading), so if the
-    // curvature is negative, the algorithm will work as expected
+    // 由于此算法适用于正曲率，并且我们仅计算距离，
+    // 因此我们可以反转 y 轴（以及曲率和航向），因此如果曲率为负，算法将按预期工作
     if (curvature < 0.0f) {
       p.y = -p.y;
       start_pos.y = -start_pos.y;
@@ -55,39 +52,36 @@ namespace geom {
       curvature = -curvature;
     }
 
-    // transport point relative to the arc starting poistion and rotation
+    // 运输点(transport point)相对于圆弧起始位置的旋转
     const Vector3D rotated_p(RotatePointOnOrigin2D(p - start_pos, -heading));
 
     const float radius = 1.0f / curvature;
     const Vector3D circ_center(0.0f, radius, 0.0f);
 
-    // check if the point is in the center of the circle, so we know p
-    // is in the same distance of every possible point in the arc
+    // 检查点是否位于圆心，因此我们知道 p 与圆弧上每个可能点的距离都相同
     if (rotated_p == circ_center) {
-      return std::make_pair(0.0f, radius);
+      return std::make_pair(0.0f, radius);  // std::make_pair 用于创建包含两个元素的 std::pair，元素类型可以不同
     }
 
-    // find intersection position using the unit vector from the center
-    // of the circle to the point and multiplying by the radius
+    // 使用从圆心到该点的单位向量并乘以半径来找到交点位置
     const Vector3D intersection = ((rotated_p - circ_center).MakeUnitVector() * radius) + circ_center;
 
-    // use the arc length to calculate the angle in the last point of it
-    // circumference of a circle = 2 * PI * r
-    // last_point_angle = (length / circumference) * 2 * PI
-    // so last_point_angle = length / radius
+    // 使用弧长来计算最后一个点的角度
+    // 圆的周长(circumference) = 2 * PI * r
+    // 最后一个点的角度 last_point_angle = (length / circumference) * 2 * PI
+    // 所以，last_point_angle = length / radius
     const float last_point_angle = length / radius;
 
     constexpr float pi_half = Pi<float>() / 2.0f;
 
-    // move the point relative to the center of the circle and find
-    // the angle between the point and the center of coords in rad
+    // 相对于圆心移动该点，并找到该点与 rad 中坐标中心之间的角度
     float angle = std::atan2(intersection.y - radius, intersection.x) + pi_half;
 
     if (angle < 0.0f) {
       angle += Pi<float>() * 2.0f;
     }
 
-    // see if the angle is between 0 and last_point_angle
+    // 查看角度是否在 0 和 last_point_angle 之间
     DEBUG_ASSERT(angle >= 0.0f);
     if (angle <= last_point_angle) {
       return std::make_pair(
@@ -95,7 +89,7 @@ namespace geom {
           Distance2D(intersection, rotated_p));
     }
 
-    // find the nearest point, start or end to intersection
+    // 找到距离交叉点最近的点、起点或终点
     const float start_dist = Distance2D(Vector3D(), rotated_p);
 
     const Vector3D end_pos(

@@ -4,6 +4,7 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+// 引入CARLA几何模块中的头文件，这些文件定义了各种几何类型，如向量、位置、旋转等。
 #include <carla/geom/BoundingBox.h>
 #include <carla/geom/GeoLocation.h>
 #include <carla/geom/Location.h>
@@ -11,22 +12,27 @@
 #include <carla/geom/Transform.h>
 #include <carla/geom/Vector2D.h>
 #include <carla/geom/Vector3D.h>
-
+ 
+// 引入Boost.Python库的头文件，这些文件提供了Python和C++之间交互的接口。
 #include <boost/python/implicit.hpp>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
-
+ 
+// 引入标准输出流库，用于输出信息。
 #include <ostream>
-
+ 
+// 声明CARLA的geom命名空间，以便在其中定义函数和操作符重载。
 namespace carla {
 namespace geom {
-
+ 
+  // 模板函数，用于将Vector2D对象的x和y值输出到ostream中。
   template <typename T>
   static void WriteVector2D(std::ostream &out, const char *name, const T &vector2D) {
     out << name
         << "(x=" << std::to_string(vector2D.x)
         << ", y=" << std::to_string(vector2D.y) << ')';
   }
-
+ 
+  // 模板函数，用于将Vector3D对象的x、y和z值输出到ostream中。
   template <typename T>
   static void WriteVector3D(std::ostream &out, const char *name, const T &vector3D) {
     out << name
@@ -34,34 +40,40 @@ namespace geom {
         << ", y=" << std::to_string(vector3D.y)
         << ", z=" << std::to_string(vector3D.z) << ')';
   }
-
+ 
+  // 重载<<操作符，用于将Vector2D对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const Vector2D &vector2D) {
     WriteVector2D(out, "Vector2D", vector2D);
     return out;
   }
-
+ 
+  // 重载<<操作符，用于将Vector3D对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const Vector3D &vector3D) {
     WriteVector3D(out, "Vector3D", vector3D);
     return out;
   }
-
+ 
+  // 重载<<操作符，用于将Location对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const Location &location) {
     WriteVector3D(out, "Location", location);
     return out;
   }
-
+ 
+  // 重载<<操作符，用于将Rotation对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const Rotation &rotation) {
-    out << "Rotation(pitch=" << std::to_string(rotation.pitch)
+        out << "Rotation(pitch=" << std::to_string(rotation.pitch)
         << ", yaw=" << std::to_string(rotation.yaw)
         << ", roll=" << std::to_string(rotation.roll) << ')';
     return out;
   }
-
+   
+  // 重载<<操作符，用于将Transform对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const Transform &transform) {
     out << "Transform(" << transform.location << ", " << transform.rotation << ')';
     return out;
   }
-
+ 
+  // 重载<<操作符，用于将BoundingBox对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const BoundingBox &box) {
     out << "BoundingBox(" << box.location << ", ";
     WriteVector3D(out, "Extent", box.extent);
@@ -70,8 +82,9 @@ namespace geom {
     return out;
   }
 
+  // 重载<<操作符，用于将GeoLocation对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const GeoLocation &geo_location) {
-    out << "GeoLocation(latitude=" << std::to_string(geo_location.latitude)
+        out << "GeoLocation(latitude=" << std::to_string(geo_location.latitude)
         << ", longitude=" << std::to_string(geo_location.longitude)
         << ", altitude=" << std::to_string(geo_location.altitude) << ')';
     return out;
@@ -79,14 +92,15 @@ namespace geom {
 
 } // namespace geom
 } // namespace carla
-
+ 
+// 定义一个函数，用于将Transform对象应用于一个Vector3D对象的列表，并更新这些对象。
 static void TransformList(const carla::geom::Transform &self, boost::python::list &list) {
   auto length = boost::python::len(list);
    for (auto i = 0u; i < length; ++i) {
     self.TransformPoint(boost::python::extract<carla::geom::Vector3D &>(list[i]));
   }
 }
-
+// 定义一个函数，用于将一个16元素的float数组转换为一个4x4的boost::python::list。
 static boost::python::list BuildMatrix(const std::array<float, 16> &m) {
   boost::python::list r_out;
   boost::python::list r[4];
@@ -94,54 +108,48 @@ static boost::python::list BuildMatrix(const std::array<float, 16> &m) {
   for (uint8_t i = 0; i < 4; ++i) { r_out.append(r[i]); }
   return r_out;
 }
-
+// 定义一个函数，用于获取Transform对象的矩阵表示。
 static auto GetTransformMatrix(const carla::geom::Transform &self) {
   return BuildMatrix(self.GetMatrix());
 }
-
+// 定义一个函数，用于获取Transform对象的逆矩阵表示。
 static auto GetInverseTransformMatrix(const carla::geom::Transform &self) {
   return BuildMatrix(self.GetInverseMatrix());
 }
-
+// 定义一系列静态函数，用于处理Vector3D对象的数学运算，如叉积、点积、距离等。
 static auto Cross(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Cross(self, other);
 }
-
 static auto Dot(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Dot(self, other);
 }
-
 static auto Distance(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Distance(self, other);
 }
-
 static auto DistanceSquared(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::DistanceSquared(self, other);
 }
-
 static auto Dot2D(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Dot2D(self, other);
 }
-
 static auto Distance2D(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::Distance2D(self, other);
 }
-
 static auto DistanceSquared2D(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::DistanceSquared2D(self, other);
 }
-
 static auto GetVectorAngle(const carla::geom::Vector3D &self, const carla::geom::Vector3D &other) {
   return carla::geom::Math::GetVectorAngle(self, other);
 }
-
+// 定义export_geom函数，用于将CARLA的geom模块中的类型和函数导出到Python中。
 void export_geom() {
   using namespace boost::python;
   namespace cg = carla::geom;
   class_<std::vector<cg::Vector2D>>("vector_of_vector2D")
-      .def(boost::python::vector_indexing_suite<std::vector<cg::Vector2D>>())
-      .def(self_ns::str(self_ns::self))
+      .def(boost::python::vector_indexing_suite<std::vector<cg::Vector2D>>()) // 为std::vector<cg::Vector2D>提供Python索引支持
+      .def(self_ns::str(self_ns::self)) // 为std::vector<cg::Vector2D>提供字符串表示
   ;
+}
 
   class_<cg::Vector2D>("Vector2D")
     .def(init<float, float>((arg("x")=0.0f, arg("y")=0.0f)))

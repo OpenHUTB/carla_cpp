@@ -31,7 +31,7 @@ namespace client {
 namespace detail {
 
   // ===========================================================================
-  // -- Static local methods ---------------------------------------------------
+  // -- 静态局部方法 ------------------------------------------------------------
   // ===========================================================================
 
   static void ValidateVersions(Client &client) {
@@ -66,7 +66,7 @@ namespace detail {
   }
 
   // ===========================================================================
-  // -- Constructor ------------------------------------------------------------
+  // -- 构造函数 ----------------------------------------------------------------
   // ===========================================================================
 
   Simulator::Simulator(
@@ -81,7 +81,7 @@ namespace detail {
         GarbageCollectionPolicy::Enabled : GarbageCollectionPolicy::Disabled) {}
 
   // ===========================================================================
-  // -- 加载新的情节 -------------------------------------------------------------
+  // -- 加载新的场景 -------------------------------------------------------------
   // ===========================================================================
 
   EpisodeProxy Simulator::LoadEpisode(std::string map_name, bool reset_settings, rpc::MapLayer map_layers) {
@@ -94,7 +94,7 @@ namespace detail {
     assert(_episode.use_count() == 1);
     // 删除指向_episode的指针，以便为正确的地图加载导航信息
     _episode.reset();  // 释放 _episode 资源并转换为空 shared_ptr 对象
-    GetReadyCurrentEpisode();  // 访问当前的（新的）情节
+    GetReadyCurrentEpisode();  // 访问当前的（新的）场景
 
     // 我们正在等待服务器重新加载地图片段的50毫秒。
     // 如果此时没有检测到事件的变化，将再次尝试“number_of_attempts”次。
@@ -109,14 +109,14 @@ namespace detail {
         _client.SendTickCue();  // 如果是同步模式，则客户端向服务端发送节拍信号
 
       _episode->WaitForState(50ms);  // 每次等待50毫秒
-      auto episode = GetCurrentEpisode();  // 获取当前的情节
+      auto episode = GetCurrentEpisode();  // 获取当前的场景
 
-      // 如果当前（等待之后）的情节和进入函数时的情节不一样，表示已经切换到新的情节，则返回当前情节
+      // 如果当前（等待之后）的场景和进入函数时的场景不一样，表示已经切换到新的场景，则返回当前场景
       if (episode.GetId() != id) {
         return episode;
       }
     }
-    // 如果尝试“number_of_attempts”次后仍然没有切换到新的情节，则报错
+    // 如果尝试“number_of_attempts”次后仍然没有切换到新的场景，则报错
     throw_exception(std::runtime_error("failed to connect to newly created map"));
   }
 
@@ -132,7 +132,7 @@ namespace detail {
   }
 
   // ===========================================================================
-  // -- Access to current episode ----------------------------------------------
+  // -- 访问当前场景 ------------------------------------------------------------
   // ===========================================================================
 
   void Simulator::GetReadyCurrentEpisode() {
@@ -189,7 +189,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // ===========================================================================
-  // -- Required files ---------------------------------------------------------
+  // -- 所需要的文件 ------------------------------------------------------------
   // ===========================================================================
 
 
@@ -210,13 +210,13 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
     }
 
   // ===========================================================================
-  // -- Tick -------------------------------------------------------------------
+  // -- 节拍 -------------------------------------------------------------------
   // ===========================================================================
 
   WorldSnapshot Simulator::WaitForTick(time_duration timeout) {
     DEBUG_ASSERT(_episode != nullptr);
 
-    // tick pedestrian navigation
+    // 发出行人导航节拍
     NavigationTick();
 
     auto result = _episode->WaitForState(timeout);
@@ -229,13 +229,13 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   uint64_t Simulator::Tick(time_duration timeout) {
     DEBUG_ASSERT(_episode != nullptr);
 
-    // tick pedestrian navigation
+    // 发出行人导航节拍
     NavigationTick();
 
-    // send tick command
+    // 发送节拍命令
     const auto frame = _client.SendTickCue();
 
-    // waits until new episode is received
+    // 等待，直到收到新的场景
     bool result = SynchronizeFrame(frame, *_episode, timeout);
     if (!result) {
       throw_exception(TimeoutException(_client.GetEndpoint(), timeout));
@@ -244,7 +244,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // ===========================================================================
-  // -- Access to global objects in the episode --------------------------------
+  // -- 在场景中访问全局对象 -----------------------------------------------------
   // ===========================================================================
 
   SharedPtr<BlueprintLibrary> Simulator::GetBlueprintLibrary() {
@@ -267,6 +267,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
           "recommended to set 'fixed_delta_seconds' when running on synchronous mode.");
     }
     else if (settings.synchronous_mode && settings.substepping) {
+      // 最大物理子步数 必须在[1,16]范围之内
       if(settings.max_substeps < 1 || settings.max_substeps > 16) {
         log_warning(
             "synchronous mode and substepping are enabled but the number of substeps is not valid. "
@@ -299,7 +300,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
     return nav;
   }
 
-  // tick pedestrian navigation
+  // 行人导航的节拍
   void Simulator::NavigationTick() {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
@@ -347,9 +348,10 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // ===========================================================================
-  // -- General operations with actors -----------------------------------------
+  // -- 参与者的一般操作 --------------------------------------------------------
   // ===========================================================================
 
+    // 生成参与者
     SharedPtr<Actor> Simulator::SpawnActor(
       const ActorBlueprint &blueprint,
       const geom::Transform &transform,
@@ -396,7 +398,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // ===========================================================================
-  // -- Operations with sensors ------------------------------------------------
+  // -- 传感器的操作 ------------------------------------------------------------
   // ===========================================================================
 
   void Simulator::SubscribeToSensor(
@@ -414,7 +416,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
 
   void Simulator::UnSubscribeFromSensor(Actor &sensor) {
     _client.UnSubscribeFromStream(sensor.GetActorDescription().GetStreamToken());
-    // If in the future we need to unsubscribe from each gbuffer individually, it should be done here.
+    // 如果将来我们需要单独取消订阅每个 gbuffer，则应该在这里完成。
   }
 
   void Simulator::EnableForROS(const Sensor &sensor) {
@@ -454,7 +456,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   }
 
   // =========================================================================
-  /// -- Texture updating operations
+  /// -- 纹理更新操作
   // =========================================================================
 
   void Simulator::ApplyColorTextureToObjects(

@@ -11,13 +11,19 @@
 #include <carla/geom/BoundingBox.h>
 #include <carla/geom/Transform.h>
 #include <limits>
-
+// 定义一个名为carla的命名空间，用于组织相关的代码和类型
 namespace carla {
+// 在carla命名空间内部，再定义一个名为geom的子命名空间
 namespace geom {
-
+// 重载std::ostream的插入运算符(<<)，使其能够处理const Vector3D&类型的参数  
+// 这个函数允许我们将Vector3D对象的内容输出到std::ostream对象（如std::cout）中
   std::ostream &operator<<(std::ostream &out, const Vector3D &vector3D) {
-    out << "{x=" << vector3D.x << ", y=" << vector3D.y << ", z=" << vector3D.z << '}';
-    return out;
+  // 使用输出流out输出Vector3D对象的坐标值  
+  // 输出格式为：{x=x值, y=y值, z=z值}  
+  // 其中x、y、z是Vector3D对象中存储的三个坐标分量
+      out << "{x=" << vector3D.x << ", y=" << vector3D.y << ", z=" << vector3D.z << '}';
+      // 返回输出流out的引用，这允许进行链式调用
+      return out;
   }
 
 } // namespace geom
@@ -25,17 +31,19 @@ namespace geom {
 
 using namespace carla::geom;
 
+//验证当变换矩阵是单位矩阵（即没有任何变换）时，一个点经过变换后是否保持不变
 TEST(geom, single_point_no_transform) {
   constexpr double error = 0.001;
 
-  Location translation (0.0, 0.0, 0.0);
-  Rotation rotation(0.0, 0.0, 0.0);
-  Transform transform (translation, rotation);
+  Location translation (0.0, 0.0, 0.0);//平移变换
+  Rotation rotation(0.0, 0.0, 0.0);//旋转变换
+  Transform transform (translation, rotation);//单位变换
 
-  Location point (1.0,1.0,1.0);
-  transform.TransformPoint(point);
-  Location result_point(1.0, 1.0, 1.0);
+  Location point (1.0,1.0,1.0);//创建一个点
+  transform.TransformPoint(point);//将 point 点应用变换
+  Location result_point(1.0, 1.0, 1.0);//表示变换后的点，这里变换后的点与原点相同
 
+  //检查它们是否在指定的误差范围内相等
   ASSERT_NEAR(point.x, result_point.x, error);
   ASSERT_NEAR(point.y, result_point.y, error);
   ASSERT_NEAR(point.z, result_point.z, error);

@@ -40,7 +40,9 @@
 #include <string>
 #include <vector>
 
-// Forward declarations.
+// 前置声明，用于在声明某个实体（通常是类、函数、变量等）的名称而无需提供其详细定义。
+// 前置声明的目的是为了告诉编译器某个实体的存在，以便在稍后的代码中引用它，而不必在声明的地方提供完整的定义。
+// 这可以提高编译速度和减少编译依赖性。
 namespace carla {
   class Buffer;
 namespace rpc {
@@ -65,8 +67,7 @@ namespace carla {
 namespace client {
 namespace detail {
 
-  /// Provides communication with the rpc and streaming servers of a CARLA
-  /// simulator.
+  /// 提供与 CARLA 模拟器的 rpc 和流媒体服务器的通信。
   class Client : private NonCopyable {
   public:
 
@@ -77,14 +78,14 @@ namespace detail {
 
     ~Client();
 
-    /// Querry to know if a Traffic Manager is running on port
+    /// 查询交通管理器是否正在端口上运行
     bool IsTrafficManagerRunning(uint16_t port) const;
 
-    /// Gets a pair filled with the <IP, port> of the Trafic Manager running on port.
-    /// If there is no Traffic Manager running the pair will be ("", 0)
+    /// 获取一个填充了在端口上运行的交通管理器的 <IP, 端口> 的对。
+    /// 如果没有正在运行的交通管理器，则该对将为 ("", 0) 
     std::pair<std::string, uint16_t> GetTrafficManagerRunning(uint16_t port) const;
 
-    /// Informs the server that a Traffic Manager is running on <IP, port>
+    /// 通知正在 <IP, 端口> 上运行的交通管理器服务
     bool AddTrafficManagerRunning(std::pair<std::string, uint16_t> trafficManagerInfo) const;
 
     void DestroyTrafficManager(uint16_t port) const;
@@ -384,8 +385,7 @@ namespace detail {
     std::vector<geom::BoundingBox> GetLightBoxes(
         rpc::ActorId traffic_light) const;
 
-    /// Returns a list of pairs where the firts element is the vehicle ID
-    /// and the second one is the light state
+    /// 返回第一个元素表示交通工具ID，第二个元素表示信号灯状态的键值对
     rpc::VehicleLightStateList GetVehiclesLightStates();
 
     std::vector<ActorId> GetGroupTrafficLights(
