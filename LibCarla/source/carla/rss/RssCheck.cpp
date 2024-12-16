@@ -114,37 +114,64 @@ std::shared_ptr<spdlog::logger> getTimingLogger() {
   ::ad::rss::world::RssDynamics default_ego_vehicle_dynamics;
  // 设置纵向最大加速度，单位可能与具体的物理模拟相关，这里设置为 3.5（具体单位需结合项目其他部分确定）
   default_ego_vehicle_dynamics.alphaLon.accelMax = ::ad::physics::Acceleration(3.5);
+ // 设置纵向最大刹车加速度，为负值表示减速，这里设置为 -8.
   default_ego_vehicle_dynamics.alphaLon.brakeMax = ::ad::physics::Acceleration(-8.);
+ // 设置纵向最小刹车加速度，同样为负值，这里设置为 -4.
   default_ego_vehicle_dynamics.alphaLon.brakeMin = ::ad::physics::Acceleration(-4.);
+ // 设置纵向最小修正刹车加速度，这里设置为 -3
   default_ego_vehicle_dynamics.alphaLon.brakeMinCorrect = ::ad::physics::Acceleration(-3);
+ // 设置横向最大加速度，这里设置为 0.2
   default_ego_vehicle_dynamics.alphaLat.accelMax = ::ad::physics::Acceleration(0.2);
+ // 设置横向最小刹车加速度，这里设置为 -0.8
   default_ego_vehicle_dynamics.alphaLat.brakeMin = ::ad::physics::Acceleration(-0.8);
+ // 设置横向波动余量，单位为距离相关，这里设置为 0.1（具体单位结合项目确定）
   default_ego_vehicle_dynamics.lateralFluctuationMargin = ::ad::physics::Distance(0.1);
+ // 设置响应时间，单位为时间相关，这里设置为 1.0（具体单位结合项目确定），表示车辆对外部情况做出反应的时间
   default_ego_vehicle_dynamics.responseTime = ::ad::physics::Duration(1.0);
+  // 设置加速时的最大速度，这里设置为 100.（具体单位结合项目确定）
   default_ego_vehicle_dynamics.maxSpeedOnAcceleration = ::ad::physics::Speed(100.);
+ // 设置行人转弯半径，单位为距离相关，这里设置为 2.0
   default_ego_vehicle_dynamics.unstructuredSettings.pedestrianTurningRadius = ad::physics::Distance(2.0);
+  // 设置驶离最大角度，单位为角度相关，这里设置为 2.4（具体角度单位结合项目确定）
   default_ego_vehicle_dynamics.unstructuredSettings.driveAwayMaxAngle = ad::physics::Angle(2.4);
+  // 设置车辆偏航角速度变化率，单位为角加速度相关，这里设置为 0.3（具体单位结合项目确定）
   default_ego_vehicle_dynamics.unstructuredSettings.vehicleYawRateChange = ad::physics::AngularAcceleration(0.3);
+ // 设置车辆最小转弯半径，单位为距离相关，这里设置为 3.5
   default_ego_vehicle_dynamics.unstructuredSettings.vehicleMinRadius = ad::physics::Distance(3.5);
+ // 设置车辆轨迹计算步长，单位为时间相关，这里设置为 0.2
   default_ego_vehicle_dynamics.unstructuredSettings.vehicleTrajectoryCalculationStep = ad::physics::Duration(0.2);
   return default_ego_vehicle_dynamics;
 }
-
+// RssCheck 类的成员函数，用于获取默认的行人动力学参数配置，返回一个 ::ad::rss::world::RssDynamics 类型的对象，同样包含了行人在不同方向的加速度、刹车等相关参数设置
 ::ad::rss::world::RssDynamics RssCheck::GetDefaultPedestrianDynamics() {
   ::ad::rss::world::RssDynamics default_pedestrian_dynamics;
+ // 设置行人纵向最大加速度，这里设置为 2.0
   default_pedestrian_dynamics.alphaLon.accelMax = ::ad::physics::Acceleration(2.0);
+ // 设置行人纵向最大刹车加速度，这里设置为 -4.
   default_pedestrian_dynamics.alphaLon.brakeMax = ::ad::physics::Acceleration(-4.);
+ // 设置行人纵向最小刹车加速度，这里设置为 -2.
   default_pedestrian_dynamics.alphaLon.brakeMin = ::ad::physics::Acceleration(-2.);
+ // 设置行人纵向最小修正刹车加速度，这里设置为 -2.
   default_pedestrian_dynamics.alphaLon.brakeMinCorrect = ::ad::physics::Acceleration(-2.);
+ // 设置行人横向最大加速度，这里设置为 0.001，数值较小符合行人横向移动相对缓慢的特点
   default_pedestrian_dynamics.alphaLat.accelMax = ::ad::physics::Acceleration(0.001);
+ / 设置行人横向最小刹车加速度，这里设置为 -0.001
   default_pedestrian_dynamics.alphaLat.brakeMin = ::ad::physics::Acceleration(-0.001);
+ // 设置行人横向波动余量，这里设置为 0.1
   default_pedestrian_dynamics.lateralFluctuationMargin = ::ad::physics::Distance(0.1);
+ // 设置行人响应时间，这里设置为 0.5，通常行人反应时间相对车辆可能较短一些（具体取决于模拟设定）
   default_pedestrian_dynamics.responseTime = ::ad::physics::Duration(0.5);
+ // 设置行人加速时的最大速度，这里设置为 10.
   default_pedestrian_dynamics.maxSpeedOnAcceleration = ::ad::physics::Speed(10.);
+ // 设置行人转弯半径，这里设置为 2.0
   default_pedestrian_dynamics.unstructuredSettings.pedestrianTurningRadius = ad::physics::Distance(2.0);
+ // 设置行人驶离最大角度，这里设置为 2.4
   default_pedestrian_dynamics.unstructuredSettings.driveAwayMaxAngle = ad::physics::Angle(2.4);
+ // 设置行人相关的车辆偏航角速度变化率（虽然对于行人来说这个概念有点不太常规，但可能在统一的模拟框架中有相关用途），这里设置为 0.3
   default_pedestrian_dynamics.unstructuredSettings.vehicleYawRateChange = ad::physics::AngularAcceleration(0.3);
+ // 设置行人相关的车辆最小转弯半径（同样，可能是在统一框架下的一种设定），这里设置为 3.5
   default_pedestrian_dynamics.unstructuredSettings.vehicleMinRadius = ad::physics::Distance(3.5);
+ // 设置行人相关的车辆轨迹计算步长，这里设置为 0.2
   default_pedestrian_dynamics.unstructuredSettings.vehicleTrajectoryCalculationStep = ad::physics::Duration(0.2);
 
   return default_pedestrian_dynamics;
