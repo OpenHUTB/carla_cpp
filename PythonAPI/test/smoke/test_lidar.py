@@ -3,45 +3,66 @@
 #
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
-
+# 导入同步冒烟测试相关模块
 from . import SyncSmokeTest
+# 导入冒烟测试相关模块
 from . import SmokeTest
-
+# 导入CARLA库，用于与CARLA模拟器交互
 import carla
+# 导入时间模块，可用于实现例如等待、计时等功能
 import time
+# 导入数学模块，用于进行数学运算
 import math
+# 导入numpy库，用于处理数值计算，例如数组操作等
 import numpy as np
+#导入枚举类相关模块，用于定义枚举类型
 from enum import Enum
+# 导入队列模块，用于创建队列来存储数据等操作
 from queue import Queue
+# 导入Empty异常类，用于处理从队列取数据时队列为空的情况
 from queue import Empty
-
+# 定义一个枚举类型SensorType，表示传感器类型，这里有两种类型：LIDAR（激光雷达）和SEMLIDAR（语义激光雷达）
 class SensorType(Enum):
     LIDAR = 1
     SEMLIDAR = 2
-
+# 定义Sensor类，用于表示一个传感器
 class Sensor():
     def __init__(self, test, sensor_type, attributes, sensor_name = None, sensor_queue = None):
+        # 保存传入的测试对象，可能用于后续调用测试相关的功能或者获取相关上下文信息
         self.test = test
+        # 获取测试对象关联的世界对象（在CARLA中代表整个模拟世界）
         self.world = test.world
+        # 记录传感器的类型，通过传入的SensorType枚举值来指定
         self.sensor_type = sensor_type
+        # 用于记录传感器出现的错误信息，如果有错误会在这里保存相关的错误描述
         self.error = None
+        # 传感器的名称，如果在创建时传入了自定义名称则使用传入的，否则为None
         self.name = sensor_name
+        # 用于存储传感器数据的队列，如果创建时传入了相应队列则使用传入的，否则为None
         self.queue = sensor_queue
+        # 当前检测到的点数，初始化为0，可能用于后续统计传感器检测到的数据点数等情况
         self.curr_det_pts = 0
-
+        # 根据传入的传感器类型来获取对应的传感器蓝图（blueprint）
         if self.sensor_type == SensorType.LIDAR:
+            # 从世界对象的蓝图库中筛选出激光雷达（ray_cast类型）的蓝图，并取第一个（通常只有一个符合条件的）
             self.bp_sensor = self.world.get_blueprint_library().filter("sensor.lidar.ray_cast")[0]
         elif self.sensor_type == SensorType.SEMLIDAR:
+            # 同理，获取语义激光雷达（ray_cast_semantic类型）的蓝图
             self.bp_sensor = self.world.get_blueprint_library().filter("sensor.lidar.ray_cast_semantic")[0]
         else:
+            # 如果传入的传感器类型不在定义的枚举类型中，设置错误信息
             self.error = "Unknown type of sensor"
-
+        # 遍历传入的传感器属性字典，为传感器蓝图设置相应的属性
         for key in attributes:
             self.bp_sensor.set_attribute(key, attributes[key])
-
+        # 获取地图中的出生点列表，并取第一个出生点作为传感器的初始位置变换信息
         tranf = self.world.get_map().get_spawn_points()[0]
+        # 将传感器的初始位置在Z轴方向上抬高3个单位（可能是为了让传感器处于合适的高度位置来检测）
         tranf.location.z += 3
+        # 在世界中根据传感器蓝图和设置好的位置变换信息生成具体的传感器实例（actor）
         self.sensor = self.world.spawn_actor(self.bp_sensor, tranf)
+        # 让传感器开始监听数据，当有数据到来时，会调用callback函数进行处理，
+        # 并传入传感器数据、传感器名称以及存储数据的队列作为参数
         self.sensor.listen(lambda sensor_data: self.callback(sensor_data, self.name, self.queue))
 
     def destroy(self):

@@ -49,6 +49,7 @@ class CodeFormatter:
         # 确保能够正常使用格式化功能
         self.installCommand = installCommand
 
+    #试图通过verifyformatterversion函数运行来获取格式化工具的版本信息
     def verifyFormatterVersion(self):
         try:
             versionOutput = subprocess.check_output([self.command, "--version"]).rstrip('\r\n')
