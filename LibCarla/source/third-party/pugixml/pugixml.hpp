@@ -177,29 +177,29 @@ namespace pugi
 	// 此标志用于确定在解析期间是否依据 CDATA（字符数据）规范化规则对属性值进行规范化处理。该标志默认处于开启状态。
 	const unsigned int parse_wconv_attribute = 0x0040;
 
-	// This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
-	const unsigned int parse_wnorm_attribute = 0x0080;
+	// 此标志用于确定在解析期间是否依据名称标记（NMTOKENS）规范化规则对属性值进行规范化处理。该标志默认处于关闭状态。
+        const unsigned int parse_wnorm_attribute = 0x0080;
 
-	// This flag determines if document declaration (node_declaration) is added to the DOM tree. This flag is off by default.
+	// 此标志用于确定文档声明（节点_声明）是否被添加到 DOM 树中。该标志默认处于关闭状态。
 	const unsigned int parse_declaration = 0x0100;
 
-	// This flag determines if document type declaration (node_doctype) is added to the DOM tree. This flag is off by default.
+	// 此标志用于确定文档类型声明（节点_文档类型）是否被添加到 DOM 树中。该标志默认处于关闭状态。
 	const unsigned int parse_doctype = 0x0200;
 
-	// This flag determines if plain character data (node_pcdata) that is the only child of the parent node and that consists only
-	// of whitespace is added to the DOM tree.
-	// This flag is off by default; turning it on may result in slower parsing and more memory consumption.
+	//此标志用于确定纯文本字符数据（节点_pcdata）是否被添加到 DOM 树中，这类纯文本字符数据需满足是其父节点的唯一子节点，并且仅（由…… 组成，句子未完整，原句后面应该还有相关描述内容）。
+	// 仅由空白字符组成且为其父节点唯一子节点的纯文本字符数据（节点_pcdata）是否被添加到 DOM 树中。
+	// 该标志默认处于关闭状态；将其开启可能会导致解析速度变慢以及内存消耗增加。
 	const unsigned int parse_ws_pcdata_single = 0x0400;
 
-	// This flag determines if leading and trailing whitespace is to be removed from plain character data. This flag is off by default.
+	//此标志用于确定是否要从纯文本字符数据中去除开头和结尾处的空白字符。该标志默认处于关闭状态。
 	const unsigned int parse_trim_pcdata = 0x0800;
 
-	// This flag determines if plain character data that does not have a parent node is added to the DOM tree, and if an empty document
-	// is a valid document. This flag is off by default.
+	//此标志用于确定没有父节点的纯文本字符数据是否被添加到 DOM 树中，以及空文档（句子似乎未表述完整，后面应该还有相关内容，比如空文档会怎样等进一步的说明）。
+	// 是否为空文档也算作有效文档。该标志默认处于关闭状态。
 	const unsigned int parse_fragment = 0x1000;
 
-	// This flag determines if plain character data is be stored in the parent element's value. This significantly changes the structure of
-	// the document; this flag is only recommended for parsing documents with many PCDATA nodes in memory-constrained environments.
+	// 此标志用于确定纯文本字符数据是否存储在父元素的值中。这会极大地改变（句子似乎未表述完整，后面应该还有如 “改变什么的结构” 等相关内容）。
+	// 文档的结构；仅建议在内存受限的环境中解析包含大量纯文本字符数据（PCDATA）节点的文档时使用该标志。
 	// This flag is off by default.
 	const unsigned int parse_embed_pcdata = 0x2000;
 
