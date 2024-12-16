@@ -1,4 +1,4 @@
-#define _GLIBCXX_USE_CXX11_ABI 0
+#define _GLIBCXX_USE_CXX11_ABI 0// 定义了使用 C++11 ABI 的相关设置为 0，可能与链接的 C++ 库的 ABI 兼容性有关
 
 #include "CarlaISCameraPublisher.h"
 
@@ -41,18 +41,22 @@ namespace ros2 {
   };
 
   struct CarlaCameraInfoPublisherImpl {
+// 指向领域参与者对象的指针，用于参与 DDS 通信域，初始化为空指针
     efd::DomainParticipant* _participant { nullptr };
+// 指向发布者对象的指针，用于发布相机信息消息，初始化为空指针
     efd::Publisher* _publisher { nullptr };
     efd::Topic* _topic { nullptr };
     efd::DataWriter* _datawriter { nullptr };
     efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
     CarlaListener _listener {};
+// 用于标记相机信息是否已经初始化的布尔变量，初始化为 false
     bool _init {false};
     sensor_msgs::msg::CameraInfo _info {};
-  };
+  };// 初始化相机信息数据，设置相机信息的一些基本参数，如高度、宽度、视野等，并标记为已初始化
 
   bool CarlaISCameraPublisher::HasBeenInitialized() const {
     return _impl_info->_init;
+    // 初始化相机信息数据，设置相机信息的一些基本参数，如高度、宽度、视野等，并标记为已初始化
   }
 
   void CarlaISCameraPublisher::InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify) {
@@ -60,18 +64,21 @@ namespace ros2 {
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
     _impl_info->_init = true;
   }
-
+// 初始化整个 CarlaISCameraPublisher，包括图像和相机信息相关的初始化，只有两者都初始化成功才返回 true
   bool CarlaISCameraPublisher::Init() {
     return InitImage() && InitInfo();
   }
 
   bool CarlaISCameraPublisher::InitImage() {
+    // 检查消息类型支持是否有效，如果为空指针则输出错误信息并返回 false
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;
     }
+    // 获取默认的领域参与者 QoS 设置，并设置其名称为传入的 _name
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
     pqos.name(_name);
+    // 获取领域参与者工厂的单例实例
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl->_participant = factory->create_participant(0, pqos);
     if (_impl->_participant == nullptr) {
@@ -81,6 +88,7 @@ namespace ros2 {
     _impl->_type.register_type(_impl->_participant);
 
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
+    // 在领域参与者上创建发布者对象，如果创建失败则输出错误信息并返回 false
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
@@ -88,9 +96,11 @@ namespace ros2 {
     }
 
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
+     // 定义发布者类型对应的字符串，这里是 "/image"，表示图像类型的消息发布
     const std::string publisher_type {"/image"};
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
+    // 如果父名称不为空，则将父名称添加到主题名称中
     if (!_parent.empty())
       topic_name += _parent + "/";
     topic_name += _name;
@@ -100,15 +110,16 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
-
+ // 定义发布者类型对应的字符串，这里是 "/image"，表示图像类型的消息发布
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
+     // 定义发布者类型对应的字符串，这里是 "/image"，表示图像类型的消息发布
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
     _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
     if (_impl->_datawriter == nullptr) {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
-    }
+    } // 定义发布者类型对应的字符串，这里是 "/image"，表示图像类型的消息发布
     _frame_id = _name;
     return true;
   }
@@ -126,22 +137,25 @@ namespace ros2 {
     if (_impl_info->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
-    }
+    }//注册消息类型到领域参与者，以便 DDS 系统能够识别和处理该类型的消息
     _impl_info->_type.register_type(_impl_info->_participant);
 
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
+     // 在领域参与者上创建发布者对象，如果创建失败则输出错误信息并返回 false
     _impl_info->_publisher = _impl_info->_participant->create_publisher(pubqos, nullptr);
     if (_impl_info->_publisher == nullptr) {
       std::cerr << "Failed to create Publisher" << std::endl;
       return false;
     }
-
+// 获取默认的主题 QoS 设置
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
     const std::string publisher_type {"/camera_info"};
     const std::string base { "rt/carla/" };
     std::string topic_name = base;
+    // 如果父名称不为空，则将父名称添加到主题名称中
     if (!_parent.empty())
       topic_name += _parent + "/";
+    // 将自身名称和发布者类型添加到主题名称中，形成完整的主题名称
     topic_name += _name;
     topic_name += publisher_type;
     _impl_info->_topic = _impl_info->_participant->create_topic(topic_name, _impl_info->_type->getName(), tqos);
@@ -149,6 +163,7 @@ namespace ros2 {
         std::cerr << "Failed to create Topic" << std::endl;
         return false;
     }
+    // 获取默认的数据写入器 QoS 设置，并获取监听器对象指针，用于后续创建数据写入器时传入，以便监听写入操作相关事件
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
     efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl_info->_listener._impl.get();
     _impl_info->_datawriter = _impl_info->_publisher->create_datawriter(_impl_info->_topic, wqos, listener);
@@ -156,17 +171,19 @@ namespace ros2 {
         std::cerr << "Failed to create DataWriter" << std::endl;
         return false;
     }
-
+// 设置相机信息消息的帧 ID 为自身名称
     _frame_id = _name;
     return true;
   }
-
+// 调用数据写入器的写入方法，尝试将图像消息写入 DDS 网络，并获取返回码
   bool CarlaISCameraPublisher::Publish() {
     return PublishImage() && PublishInfo();
   }
-
+// 发布图像消息，根据数据写入器的写入操作返回码判断是否发布成功，如果失败则输出相应错误信息并返回 false
   bool CarlaISCameraPublisher::PublishImage() {
+     // 定义实例句柄，可能用于标识要写入的消息实例，具体作用与 DDS 内部机制相关
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    // 调用数据写入器的写入方法，尝试将图像消息写入 DDS 网络，并获取返回码
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_image, instance_handle);
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
