@@ -2,7 +2,9 @@
 #include <stdint.h>
 #include <vector>
 #include <cstring>
-
+// ITSContainer类可能用于处理与智能交通系统（ITS）相关的数据结构和信息表示。
+// 以下在类中定义的一系列枚举类型和类型别名，主要是为了规范和清晰地表示地理位置、方向、精度等相关信息的数据类型，
+// 方便在整个程序中统一使用这些特定含义的数据表示方式，避免混乱和歧义。
 class ITSContainer
 {
     
@@ -16,34 +18,53 @@ public:
 // 这些取值具有明确的物理意义，对应不同精度或特殊状态下的纬度表示。   
     typedef enum Latitude
     {
+// 表示北纬 1 微度，该值用于精确表示在地理坐标系中向北的微小纬度变化，单位为微度（百万分之一度）。
         Latitude_oneMicroDegreeNorth = 10,
+// 表示南纬 1 微度，对应向南的微小纬度变化，单位同样为微度。
         Latitude_oneMicroDegreeSouth = -10,
+// 表示纬度信息不可用的特定值，当无法获取准确纬度数据时，使用该值来标记
         Latitude_unavailable = 900000001
     } e_Latitude;
 
     /* Latitude */
+// Latitude_t类型别名定义为long类型，用于在程序中统一表示纬度数据，
+// 可以存储具体的纬度数值（如上述枚举中的微度表示值）或者表示不可用状态的特殊值。
     typedef long Latitude_t;
 
     /* Longitude Dependencies */
+// Longitude枚举类型用于规定表示经度相关信息的特定取值，
+// 每个取值对应不同精度或特殊情况的经度表示，与纬度类似，旨在清晰定义经度相关的不同状态。
     typedef enum Longitude
     {
+// 表示东经 1 微度，用于体现地理坐标系中向东的微小经度变化，单位是微度（百万分之一度）。
         Longitude_oneMicroDegreeEast = 10,
+ // 表示西经 1 微度，对应向西的微小经度变化，单位为微度。
         Longitude_oneMicroDegreeWest = -10,
+ // 用于标记经度信息不可用的特殊值，当无法准确获取经度数据时，以此值表示该情况。
         Longitude_unavailable = 1800000001
     } e_Longitude;
 
     /* Longitude */
+ // Longitude_t类型别名设定为long类型，用来在整个程序中统一承载经度数据，
+// 可以存储实际的经度数值（如微度表示的具体值）或者不可用状态对应的特殊值。
     typedef long Longitude_t;
 
     /* SemiAxisLength Dependencies */
+// SemiAxisLength枚举类型是为了明确表示半轴长度相关的特定取值，
+// 可能用于描述如地球半轴等相关长度在特定情境下的不同表示，涵盖正常范围、超出范围以及不可用等情况。
     typedef enum SemiAxisLength
-    {
+    { 
+// 表示半轴长度为 1 厘米，是一种特定的长度度量单位下的标准表示值，用于符合该单位的半轴长度记录。
         SemiAxisLength_oneCentimeter = 1,
+ // 表示半轴长度超出了正常的有效范围，当检测到半轴长度处于不合理的区间时，使用该值来标识。
         SemiAxisLength_outOfRange = 4094,
+ // 当半轴长度信息无法获取时，用此值来表示该半轴长度处于不可用状态。
         SemiAxisLength_unavailable = 4095
     } e_SemiAxisLength;
 
     /* SemiAxisLength*/
+// SemiAxisLength_t类型别名定义为long类型，以便在程序中统一处理半轴长度数据，
+// 可以存放具体的合理长度值、超出范围的标识值或者不可用的特殊值。
     typedef long SemiAxisLength_t;
 
     /* HeadingValue Dependencies */
