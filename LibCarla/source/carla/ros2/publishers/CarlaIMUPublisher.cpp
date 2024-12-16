@@ -28,6 +28,7 @@ namespace carla {
 namespace ros2 {
   namespace efd = eprosima::fastdds::dds;
   using erc = eprosima::fastrtps::types::ReturnCode_t;
+// 定义一个名为 CarlaIMUPublisherImpl 的结构体，用于封装与 Carla IMU 发布者相关的内部实现细节
 
   struct CarlaIMUPublisherImpl {
     efd::DomainParticipant* _participant { nullptr };
@@ -42,19 +43,19 @@ namespace ros2 {
   bool CarlaIMUPublisher::Init() {
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
-        return false;
+        return false;// 检查类型支持对象是否为空，如果为空则说明类型支持设置不正确，输出错误信息并返回 false
     }
 
-    efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
-    pqos.name(_name);
+    efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;// 获取默认的 DDS 领域参与者 QoS 配置，并赋值给 pqos 对象
+    pqos.name(_name);// 设置领域参与者的名称为类成员变量 _name 存储的值
     auto factory = efd::DomainParticipantFactory::get_instance();
     _impl->_participant = factory->create_participant(0, pqos);
     if (_impl->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
-    }
+    }// 使用创建好的领域参与者注册要发布的数据类型
     _impl->_type.register_type(_impl->_participant);
-
+// 获取默认的 DDS 发布者 QoS 配置，并赋值给 pubqos 对象
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
     _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
     if (_impl->_publisher == nullptr) {
