@@ -175,49 +175,87 @@ public:
     typedef long AltitudeConfidence_t;
 
     /* Altitude */
+// Altitude结构体用于综合表示高度相关的信息，将高度值本身以及对应的高度置信度结合在一起，
+// 这样可以更全面地描述物体在垂直方向上的位置及其准确性情况。
     typedef struct Altitude
     {
+// altitudeValue用于存储具体的高度数值，其类型为AltitudeValue_t，可包含如相对于参考面的高度、具体厘米数高度或不可用值等情况。
         AltitudeValue_t altitudeValue;
+// altitudeConfidence存放对应的高度置信度信息，类型是AltitudeConfidence_t，反映了对该高度值准确性的信任程度。
         AltitudeConfidence_t altitudeConfidence;
     }Altitude_t;
 
     /* ReferencePosition */
+// ReferencePosition结构体用于表示参考位置相关的综合信息，
+// 它整合了水平位置（纬度、经度以及位置置信椭圆信息）和垂直位置（高度相关信息），
+// 以此完整地描述一个物体在三维空间中的位置及其相关的不确定性和置信情况。
     typedef struct ReferencePosition
     {
+ // latitude用于存储物体所在位置的纬度信息，其类型为Latitude_t，可表示具体的纬度数值或不可用状态等情况，之前已对该类型进行了定义。
         Latitude_t latitude;
+// longitude用于存放物体所在位置的经度信息，类型是Longitude_t，同样能表示具体经度数值或不可用等情况，按照之前的定义使用。
         Longitude_t longitude;
+ // positionConfidenceEllipse包含了位置置信椭圆的相关信息，用于刻画在水平面上物体位置的不确定性范围及长半轴方向等，
+ // 是描述位置精度的一个重要组成部分，类型为之前定义的PosConfidenceEllipse_t结构体类型。
         PosConfidenceEllipse_t positionConfidenceEllipse;
+ // altitude结构体变量用于承载物体的高度相关信息，包括具体高度值以及对应的高度置信度，全面描述了垂直方向上的位置情况，
+// 类型为Altitude_t，是综合表示高度信息的结构体类型。
         Altitude_t altitude;
     } ReferencePosition_t;
 
     /* StationType Dependencies */
+// StationType枚举类型用于定义各种交通站点（或交通参与者类型）的分类标识，
+// 在智能交通系统相关的应用场景中，通过这些不同的枚举值来区分不同类型的交通实体，方便后续进行针对性的处理与分析。
     typedef enum StationType
     {
+// 表示未知类型的交通站点或交通参与者，当无法明确具体类型时，使用该值作为默认或初始标识。
         StationType_unknown = 0,
+ // 代表行人类型，用于标记交通场景中的行人相关信息，例如在收集交通数据或者进行交通流分析时区分行人相关的情况。
         StationType_pedestrian = 1,
+ // 对应骑自行车的人，用于标识自行车骑行者这一交通参与者类型，有助于在交通管理、规划等应用中单独考虑自行车的相关情况。
         StationType_cyclist = 2,
+  // 表示助力车类型，比如电动助力车等，用于区分这类特定的小型两轮交通工具使用者，在不同交通场景中有其独特的行为特点和处理方式。
         StationType_moped = 3,
+ // 指代摩托车类型，用于明确交通中摩托车这一相对更高速、机动性较强的交通参与者，其行驶特性等与其他类型有明显区别。
         StationType_motorcycle = 4,
+  // 代表乘用车类型，也就是常见的轿车等载人汽车，是道路交通中数量较多的一种交通参与者类型，常用于交通流量统计、路况分析等涉及汽车交通的场景。
         StationType_passengerCar = 5,
+ // 用于标识公交车类型，公交车在交通系统中有固定线路、大容量载人等特点，在公共交通管理、调度等方面有专门的处理逻辑。
         StationType_bus = 6,
+// 对应轻型卡车类型，区分载货量相对较小的载货汽车，在物流运输、道路荷载分析等应用场景中会单独考虑其影响。
         StationType_lightTruck = 7,
+ // 表示重型卡车类型，与轻型卡车相比，重型卡车载货量大、车身较重，对道路的影响以及交通规则适用等方面都有不同之处，所以单独标识。
         StationType_heavyTruck = 8,
+// 指代挂车类型，通常需要与牵引车配合使用，在交通运行、车辆追踪等方面其连接和行驶状态有独特的情况需要处理。
         StationType_trailer = 9,
+ // 用于表示特殊车辆类型，例如工程抢险车、救护车等具有特殊用途和行驶规则的车辆，它们在交通系统中有特殊的通行权限和处理方式。
         StationType_specialVehicles = 10,
+ // 代表有轨电车类型，有轨电车沿着固定轨道行驶，其运行规律、交通信号交互等与其他道路车辆有明显差异，需单独区分。
         StationType_tram = 11,
+// 表示路边单元（Road Side Unit），这是智能交通系统中部署在道路路边的设备，用于实现如车辆与基础设施通信、交通信息采集等功能。
         StationType_roadSideUnit = 15        
     } e_StationType;
 
     /* StationType */
+// StationType_t类型别名定义为long类型，用于在程序中统一存储和操作交通站点（或交通参与者类型）的标识数据，
+// 可以存放StationType枚举中定义的各种具体类型对应的数值，方便在不同模块间以统一的数据类型进行相关类型的判断与处理。
     typedef long StationType_t;
 
     /* StationID*/
+// StationID_t类型别名最初被定义为long类型，用于唯一标识交通站点（或特定交通参与者个体等），在整个交通系统相关的通信、数据管理等过程中，
+// 通过这个唯一的标识符来区分不同的站点或个体，便于进行信息的准确关联和查询等操作。
+// 不过此处也可考虑使用unsigned long类型（如下面被注释掉的那行代码所示），具体取决于实际应用场景中对标识符数值范围及特性的需求，
+// 例如如果希望避免出现负数标识或者需要更大的正整数表示范围，unsigned long可能更合适。
+// typedef unsigned long StationID_t;
     typedef long StationID_t;
     // typedef unsigned long StationID_t;
 
     /* Dependencies */
+// protocolVersion枚举类型用于定义通信协议的版本标识，
+// 在智能交通系统中，不同版本的协议可能在消息格式、功能支持等方面存在差异，通过这个枚举来明确当前使用的协议版本情况。
     typedef enum protocolVersion
     {
+ // 表示当前正在使用的通信协议版本，用于在系统中统一标识当前所遵循的协议规范，方便进行版本兼容性检查等操作。
         protocolVersion_currentVersion = 1
     } e_protocolVersion;
 
