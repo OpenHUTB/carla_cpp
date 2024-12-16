@@ -198,3 +198,8 @@ git rm -rf .
 [qianyouyou007](https://github.com/qianyouyou007)、
 [hjt468](https://github.com/hjt468/carla_cpp.git)、
 [zzzzadxs](https://github.com/zzzzadxs/carla_cpp.git)、
+[LLLhutb](https://github.com/LLLhutb/carla_cpp.git)、
+[ysz288](https://github.com/ysz288/carla_cpp.git)、
+[Amuamu77](https://github.com/Amuamu77/carla_cpp.git)、
+[zhong246](https://github.com/zhong246/carla_cpp.git)、
+[mikilej](https://github.com/mikilej)、

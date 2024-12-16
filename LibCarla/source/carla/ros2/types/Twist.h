@@ -22,17 +22,17 @@
 #ifndef _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_TWIST_H_
 #define _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_TWIST_H_
 
-#include "Vector3.h"
+#include "Vector3.h"// 包含Vector3类的头文件，Vector3类用于表示三维向量
 
-#include <fastrtps/utils/fixed_size_string.hpp>
-
+#include <fastrtps/utils/fixed_size_string.hpp>// 包含一些用于序列化的工具类
+// 包含一些标准库头文件
 #include <stdint.h>
 #include <array>
 #include <string>
 #include <vector>
 #include <map>
 #include <bitset>
-
+// Windows平台下的DLL导出宏定义
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #define eProsima_user_DllExport __declspec( dllexport )
@@ -42,7 +42,7 @@
 #else
 #define eProsima_user_DllExport
 #endif  // _WIN32
-
+// Windows平台下的DLL导入/导出宏定义
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #if defined(Twist_SOURCE)
@@ -56,13 +56,13 @@
 #else
 #define Twist_DllAPI
 #endif // _WIN32
-
+// 引入fastcdr命名空间，用于序列化
 namespace eprosima {
 namespace fastcdr {
 class Cdr;
 } // namespace fastcdr
 } // namespace eprosima
-
+// 定义geometry_msgs命名空间，其中包含msg子命名空间
 namespace geometry_msgs {
     namespace msg {
         /*!
