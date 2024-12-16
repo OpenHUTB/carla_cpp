@@ -258,30 +258,48 @@ public:
  // 表示当前正在使用的通信协议版本，用于在系统中统一标识当前所遵循的协议规范，方便进行版本兼容性检查等操作。
         protocolVersion_currentVersion = 1
     } e_protocolVersion;
-
+// messageID枚举类型用于区分不同类型的消息，在智能交通系统的通信过程中，
+// 各种消息承载着不同的信息，如车辆状态信息、交通路况信息等，通过该枚举可以清晰地识别每条消息的具体类型，便于进行针对性的处理。
     typedef enum messageID
     {
+// 表示自定义类型的消息，当系统中存在用户自行定义格式和内容的消息时，使用该值来标识，方便与标准消息类型区分开。
         messageID_custom = 0,
+ // 对应分散式环境通知消息（Decentralized Environmental Notification Message，DENM），这种消息常用于在交通场景中传播局部环境相关的事件信息。
         messageID_denm = 1,
+  // 指代协同感知消息（Cooperative Awareness Message，CAM），主要用于车辆之间互相传递自身的状态信息，实现协同感知功能。
         messageID_cam = 2,
+ // 代表兴趣点（Point of Interest，POI）消息，通常用于向交通参与者提供周边相关的兴趣点信息，比如附近的加油站、停车场等位置信息。
         messageID_poi = 3,
+ // 对应信号相位和定时（Signal Phase and Timing，SPAT）消息，主要用于传递交通信号灯的相位、时长等定时信息，辅助车辆进行合理的通行决策。
         messageID_spat = 4,
+ // 表示地图（MAP）消息，这类消息包含了交通相关的地图信息，如道路拓扑结构、限速标识位置等，帮助交通参与者更好地了解周边道路环境。
         messageID_map = 5,
+  // 指代车内信息（In-Vehicle Information，IVI）消息，用于在车辆内部或者车辆与外界交互中传递如车内设备状态、多媒体信息等相关内容。
         messageID_ivi = 6,
+  // 对应电动汽车远程服务请求（Electric Vehicle Remote Service Request，EV_RSR）消息，主要用于电动汽车与相关服务平台之间进行远程服务相关的通信。
         messageID_ev_rsr = 7
     } e_messageID;
-
+// ItsPduHeader_t结构体用于构建智能交通系统中协议数据单元（Protocol Data Unit，PDU）的头部信息，
+// 它包含了协议版本、消息ID以及发送该消息的站点（或交通参与者）的唯一标识符等关键信息，
+// 这些信息对于接收方正确解析消息、判断消息来源及兼容性等方面起着重要作用。
     typedef struct ItsPduHeader
     {
+ // 存储通信协议的版本号，其类型为long，通过该字段可以确定消息遵循的协议规范，便于进行版本相关的处理与兼容性检查。
         long protocolVersion;
+ // 存放消息的具体类型标识，类型为long，接收方可以根据这个字段的值（对应messageID枚举中的不同取值）来确定如何进一步解析消息内容。
         long messageID;
+ // 代表发送该消息的站点（或交通参与者）的唯一标识符，类型为StationID_t，用于区分不同来源的消息，方便消息的追踪与管理。
         StationID_t stationID;
     } ItsPduHeader_t;
 
     /* Heading */
+// Heading_t结构体用于综合表示方向（航向）相关的信息，将方向的具体数值（如基于特定坐标系下的角度值）以及对该方向数值准确性的置信程度结合在一起，
+// 这样在描述交通参与者的行驶方向或者其他涉及方向的场景时，能够更全面地传达相关信息，便于后续进行方向相关的计算与判断等操作。
     typedef struct Heading
     {
+// headingValue用于存储具体的方向数值，其类型为HeadingValue_t，该类型之前已定义，能够表示如基于WGS84坐标系下的具体角度值或者不可用状态等情况。
         HeadingValue_t headingValue;
+// headingConfidence存放对应的方向置信度信息，类型是HeadingConfidence_t，反映了对该方向数值准确性的信任程度，同样该类型在之前也已定义好。
         HeadingConfidence_t headingConfidence;
     } Heading_t;
 
