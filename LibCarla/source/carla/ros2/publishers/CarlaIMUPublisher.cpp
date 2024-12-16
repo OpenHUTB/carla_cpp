@@ -26,34 +26,45 @@
 
 namespace carla {
 namespace ros2 {
+// 为了方便使用 eprosima::fastdds::dds 命名空间，使用别名 efd 来指代它
   namespace efd = eprosima::fastdds::dds;
+// 使用别名 erc 来指代 eprosima::fastrtps::types::ReturnCode_t 类型，该类型通常用于表示操作的返回码
   using erc = eprosima::fastrtps::types::ReturnCode_t;
 // 定义一个名为 CarlaIMUPublisherImpl 的结构体，用于封装与 Carla IMU 发布者相关的内部实现细节
 
   struct CarlaIMUPublisherImpl {
+// 指向 DDS 领域参与者的指针，用于参与 DDS 网络通信，初始化为 nullptr
     efd::DomainParticipant* _participant { nullptr };
+ // 指向 DDS 发布者的指针，用于发布数据，初始化为 nullptr
     efd::Publisher* _publisher { nullptr };
+// 指向 DDS 主题的指针，用于定义发布的数据主题，初始化为 nullptr
     efd::Topic* _topic { nullptr };
+// 指向 DDS 数据写入器的指针，用于实际将数据写入 DDS 网络，初始化为 nullptr
     efd::DataWriter* _datawriter { nullptr };
+// 用于支持要发布的数据类型，这里实例化为 sensor_msgs::msg::ImuPubSubType 类型，用于 IMU 数据类型支持
     efd::TypeSupport _type { new sensor_msgs::msg::ImuPubSubType() };
+// Carla 监听器对象，可能用于监听发布过程中的一些事件等情况
     CarlaListener _listener {};
+// 用于存储 IMU 数据的消息对象，初始化为默认状态
     sensor_msgs::msg::Imu _imu {};
   };
-
+// CarlaIMUPublisher 类的初始化函数，用于初始化发布者相关的各种 DDS 对象等资源
   bool CarlaIMUPublisher::Init() {
     if (_impl->_type == nullptr) {
         std::cerr << "Invalid TypeSupport" << std::endl;
         return false;// 检查类型支持对象是否为空，如果为空则说明类型支持设置不正确，输出错误信息并返回 false
     }
-
+// 获取默认的 DDS 领域参与者 QoS 配置，并赋值给 pqos 对象，后续可基于此进行个性化配置
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;// 获取默认的 DDS 领域参与者 QoS 配置，并赋值给 pqos 对象
     pqos.name(_name);// 设置领域参与者的名称为类成员变量 _name 存储的值
+    // 获取 DDS 领域参与者工厂的单例实例，用于创建领域参与者对象
     auto factory = efd::DomainParticipantFactory::get_instance();
+    // 使用工厂创建一个领域参与者对象，传入领域 ID（这里为 0）和配置好的 QoS 对象 pqos，若创建失败返回 nullptr
     _impl->_participant = factory->create_participant(0, pqos);
     if (_impl->_participant == nullptr) {
         std::cerr << "Failed to create DomainParticipant" << std::endl;
         return false;
-    }// 使用创建好的领域参与者注册要发布的数据类型
+    }// // 使用创建好的领域参与者注册要发布的数据类型，确保 DDS 网络知道如何处理该类型的数据
     _impl->_type.register_type(_impl->_participant);
 // 获取默认的 DDS 发布者 QoS 配置，并赋值给 pubqos 对象
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
