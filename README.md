@@ -206,3 +206,4 @@ git rm -rf .
 [Zz1tai77](https://github.com/Zz1tai77/carla_cpp)、
 [Dennnng123](https://github.com/Dennnng123)
 [Rrr7702](https://github.com/Rrr7702)
+[longakijushuai](https://github.com/longkaijushuai/carla_cpp)、
