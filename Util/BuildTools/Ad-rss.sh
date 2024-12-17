@@ -3,9 +3,9 @@
 
 OPTS=`getopt -o h --long python-version: -n 'parse-options' -- "$@"`
 
-eval set -- "$OPTS"
+eval set -- "$OPTS"     //使用eval命令来执行set命令
 
-PY_VERSION_LIST=3
+PY_VERSION_LIST=3        //定义变量PY_VERSION_LIST并初始化为3
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
