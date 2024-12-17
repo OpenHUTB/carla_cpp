@@ -43,7 +43,9 @@ using namespace eprosima::fastcdr::exception;// 使用 Fast CDR 的异常命名�
 // 默认构造函数
 geometry_msgs::msg::TwistWithCovariance::TwistWithCovariance()
 {
-    // 初始化 m_covariance 为 0
+    // geometry_msgs::msg::Twist m_twis
+
+    // geometry_msgs::msg::geometry_msgs__TwistWithCovariance__double_array_36 m_covariance
     memset(&m_covariance, 0, (36) * 8);// 将协方差数组的每个元素初始化为 0
 }
 // 默认析构函数
@@ -127,9 +129,9 @@ void geometry_msgs::msg::TwistWithCovariance::deserialize(
     dcdr >> m_covariance;// 反序列化 m_covariance
 }
 
-/*!
- * @brief This function copies the value in member twist
- * @param _twist New value to be copied in member twist
+/*!  
+ * @brief 此函数复制成员 twist 的值  
+ * @param _twist 要复制到成员 twist 的新值  
  */
 // 设置 twist 成员的值
 void geometry_msgs::msg::TwistWithCovariance::twist(
@@ -138,9 +140,9 @@ void geometry_msgs::msg::TwistWithCovariance::twist(
     m_twist = _twist;// 复制传入的 twist 值
 }
 
-/*!
- * @brief This function moves the value in member twist
- * @param _twist New value to be moved in member twist
+/*!  
+ * @brief 此函数移动成员 twist 的值  
+ * @param _twist 要移动到成员 twist 的新值  
  */
 // 移动设置 twist 成员的值
 void geometry_msgs::msg::TwistWithCovariance::twist(
@@ -149,9 +151,9 @@ void geometry_msgs::msg::TwistWithCovariance::twist(
     m_twist = std::move(_twist);// 移动传入的 twist 值
 }
 
-/*!
- * @brief This function returns a constant reference to member twist
- * @return Constant reference to member twist
+/*!  
+ * @brief 此函数返回成员 twist 的常量引用  
+ * @return 成员 twist 的常量引用  
  */
 // 获取 twist 成员的常量引用
 const geometry_msgs::msg::Twist& geometry_msgs::msg::TwistWithCovariance::twist() const
@@ -159,19 +161,19 @@ const geometry_msgs::msg::Twist& geometry_msgs::msg::TwistWithCovariance::twist(
     return m_twist;// 返回 m_twist 的常量引用
 }
 
-/*!
- * @brief This function returns a reference to member twist
- * @return Reference to member twist
- */
+/*!  
+ * @brief 此函数返回成员 twist 的引用  
+ * @return 成员 twist 的引用  
+ */ 
 // 获取 twist 成员的引用
 geometry_msgs::msg::Twist& geometry_msgs::msg::TwistWithCovariance::twist()
 {
     return m_twist;// 返回 m_twist 的引用
 }
 
-/*!
- * @brief This function copies the value in member covariance
- * @param _covariance New value to be copied in member covariance
+/*!  
+ * @brief 此函数复制成员 covariance 的值  
+ * @param _covariance 要复制到成员 covariance 的新值  
  */
 // 设置 covariance 成员的值
 void geometry_msgs::msg::TwistWithCovariance::covariance(
@@ -180,10 +182,10 @@ void geometry_msgs::msg::TwistWithCovariance::covariance(
     m_covariance = _covariance;// 复制传入的 covariance 值
 }
 
-/*!
- * @brief This function moves the value in member covariance
- * @param _covariance New value to be moved in member covariance
- */
+/*!  
+ * @brief 此函数移动成员 covariance 的值  
+ * @param _covariance 要移动到成员 covariance 的新值  
+ */ 
 // 移动设置 covariance 成员的值
 void geometry_msgs::msg::TwistWithCovariance::covariance(
         geometry_msgs::msg::geometry_msgs__TwistWithCovariance__double_array_36&& _covariance)
@@ -191,19 +193,19 @@ void geometry_msgs::msg::TwistWithCovariance::covariance(
     m_covariance = std::move(_covariance);// 移动传入的 covariance 值
 }
 
-/*!
- * @brief This function returns a constant reference to member covariance
- * @return Constant reference to member covariance
- */
+/*!  
+ * @brief 此函数返回成员 covariance 的常量引用  
+ * @return 成员 covariance 的常量引用  
+ */ 
 // 获取 covariance 成员的常量引用
 const geometry_msgs::msg::geometry_msgs__TwistWithCovariance__double_array_36& geometry_msgs::msg::TwistWithCovariance::covariance() const
 {
     return m_covariance;// 返回 m_covariance 的常量引用
 }
 
-/*!
- * @brief This function returns a reference to member covariance
- * @return Reference to member covariance
+/*!  
+ * @brief 此函数返回成员 covariance 的引用  
+ * @return 成员 covariance 的引用  
  */
 // 获取 covariance 成员的引用
 geometry_msgs::msg::geometry_msgs__TwistWithCovariance__double_array_36& geometry_msgs::msg::TwistWithCovariance::covariance()
