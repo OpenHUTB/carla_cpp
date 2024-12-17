@@ -48,45 +48,45 @@
 
 #ifdef _MSC_VER
 #	pragma warning(push)
-#	pragma warning(disable: 4127) // conditional expression is constant
-#	pragma warning(disable: 4324) // structure was padded due to __declspec(align())
-#	pragma warning(disable: 4702) // unreachable code
-#	pragma warning(disable: 4996) // this function or variable may be unsafe
+#	pragma warning(disable: 4127) // 条件表达式是常量
+#	pragma warning(disable: 4324) //这句话表示结构体（structure）由于使用了 __declspec(align()) 声明而进行了填充（padding）操作。
+#	pragma warning(disable: 4702) //不可达代码
+#	pragma warning(disable: 4996) // 这个函数或变量可能不安全
 #endif
 
 #if defined(_MSC_VER) && defined(__c2__)
 #	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wdeprecated" // this function or variable may be unsafe
+#	pragma clang diagnostic ignored "-Wdeprecated" // 这个函数或变量可能不安全
 #endif
 
 #ifdef __INTEL_COMPILER
-#	pragma warning(disable: 177) // function was declared but never referenced
-#	pragma warning(disable: 279) // controlling expression is constant
-#	pragma warning(disable: 1478 1786) // function was declared "deprecated"
-#	pragma warning(disable: 1684) // conversion from pointer to same-sized integral type
+#	pragma warning(disable: 177) // 函数已被声明，但从未被引用
+#	pragma warning(disable: 279) // 控制表达式是常量
+#	pragma warning(disable: 1478 1786) // 函数被声明为‘弃用
+#	pragma warning(disable: 1684) //从指针转换为同等大小的整型类型。
 #endif
 
 #if defined(__BORLANDC__) && defined(PUGIXML_HEADER_ONLY)
-#	pragma warn -8080 // symbol is declared but never used; disabling this inside push/pop bracket does not make the warning go away
+#	pragma warn -8080 //符号已被声明但从未被使用；即便在入栈 / 出栈括号内禁用（相关设置），该警告也不会消失
 #endif
 
 #ifdef __BORLANDC__
 #	pragma option push
-#	pragma warn -8008 // condition is always false
-#	pragma warn -8066 // unreachable code
+#	pragma warn -8008 //条件始终为假
+#	pragma warn -8066 //不可达代码
 #endif
 
 #ifdef __SNC__
-// Using diag_push/diag_pop does not disable the warnings inside templates due to a compiler bug
-#	pragma diag_suppress=178 // function was declared but never referenced
-#	pragma diag_suppress=237 // controlling expression is constant
+// 由于编译器的一个漏洞，使用 diag_push 和 diag_pop 无法禁用模板内部的警告。
+#	pragma diag_suppress=178 // 函数已声明但从未被引用
+#	pragma diag_suppress=237 // 控制表达式是常量
 #endif
 
 #ifdef __TI_COMPILER_VERSION__
-#	pragma diag_suppress 179 // function was declared but never referenced
+#	pragma diag_suppress 179 // 函数已被声明，但从未被引用
 #endif
 
-// Inlining controls
+//内联控制
 #if defined(_MSC_VER) && _MSC_VER >= 1300
 #	define PUGI__NO_INLINE __declspec(noinline)
 #elif defined(__GNUC__)
@@ -95,14 +95,14 @@
 #	define PUGI__NO_INLINE
 #endif
 
-// Branch weight controls
+//分支权重控制
 #if defined(__GNUC__) && !defined(__c2__)
 #	define PUGI__UNLIKELY(cond) __builtin_expect(cond, 0)
 #else
 #	define PUGI__UNLIKELY(cond) (cond)
 #endif
 
-// Simple static assertion
+//简单静态断言
 #define PUGI__STATIC_ASSERT(cond) { static const char condition_failed[(cond) ? 1 : -1] = {0}; (void)condition_failed[0]; }
 
 // Digital Mars C++ bug workaround for passing char loaded from memory via stack
