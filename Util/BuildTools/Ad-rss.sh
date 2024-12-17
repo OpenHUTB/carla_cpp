@@ -7,7 +7,7 @@ eval set -- "$OPTS"
 
 PY_VERSION_LIST=3
 
-while [[ $# -gt 0 ]]; do
+while [[ $# -gt 0 ]]; do   //当参数大于0时候执行循环体：使用case语句根据不同的命令行选项进行不同的操作
   case "$1" in
     --python-version )
       PY_VERSION_LIST="$2";
