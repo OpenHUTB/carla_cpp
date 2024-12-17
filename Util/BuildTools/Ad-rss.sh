@@ -1,7 +1,7 @@
 #! /bin/bash
 
 
-OPTS=`getopt -o h --long python-version: -n 'parse-options' -- "$@"`
+OPTS=`getopt -o h --long python-version: -n 'parse-options' -- "$@"`//构建一个用于getopt命令的选项字符串
 
 eval set -- "$OPTS"
 
