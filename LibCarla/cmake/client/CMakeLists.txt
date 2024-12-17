@@ -315,6 +315,7 @@ install(FILES ${libcarla_carla_ros2_sources} DESTINATION include/carla/ros2)
 if (LIBCARLA_BUILD_RELEASE)
   add_library(carla_client${carla_target_postfix} STATIC ${libcarla_sources})  #使用CMake的add_library命令来创建一个静态库 且其源文件由变量$决定
 
+#设置目标包含目录：使用target_include_directories命令为carla_client库设置包含目录
   target_include_directories(carla_client${carla_target_postfix} SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}"
