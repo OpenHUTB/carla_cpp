@@ -353,44 +353,52 @@ public:
     typedef long DriveDirection_t;
 
     /* VehicleLength Dependencies */
+ //这里定义了一个名为VehicleLengthValue的枚举类型，用于表示车辆长度相关的值情况。
+ //枚举中的各个成员对应着不同的车辆长度状态或者具体的长度表示值。
     typedef enum VehicleLengthValue
     {
-        VehicleLengthValue_tenCentimeters = 1,
-        VehicleLengthValue_outOfRange = 1022,
-        VehicleLengthValue_unavailable = 1023
+        VehicleLengthValue_tenCentimeters = 1,// 表示车辆长度为10厘米的情况，对应枚举值为1
+        VehicleLengthValue_outOfRange = 1022, // 表示车辆长度超出了有效测量范围，对应枚举值为1022
+        VehicleLengthValue_unavailable = 1023// 表示车辆长度信息不可用，对应枚举值为1023
     } e_VehicleLengthValue;
-
+// 定义VehicleLengthValue_t类型为long类型，后续可用于存储车辆长度值相关的数据，在程序中充当相应变量的类型。
     /* VehicleLengthValue */
     typedef long VehicleLengthValue_t;
 
     /* VehicleLengthConfidenceIndication Dependencies */
+ //此部分定义了一个名为VehicleLengthConfidenceIndication的枚举类型，
+ //用于体现对车辆长度信息的置信度指示情况，不同成员代表不同的关于车辆是否带有拖车以及拖车长度是否已知等相关置信状态。
     typedef enum VehicleLengthConfidenceIndication
     {
-        VehicleLengthConfidenceIndication_noTrailerPresent = 0,
-        VehicleLengthConfidenceIndication_trailerPresentWithKnownLength = 1,
-        VehicleLengthConfidenceIndication_trailerPresentWithUnknownLength  = 2,
-        VehicleLengthConfidenceIndication_trailerPresenceIsUnknown = 3,
-        VehicleLengthConfidenceIndication_unavailable = 4
+        VehicleLengthConfidenceIndication_noTrailerPresent = 0, // 表示车辆当前没有拖车的情况，对应枚举值为0
+        VehicleLengthConfidenceIndication_trailerPresentWithKnownLength = 1, // 表示车辆带有拖车且拖车长度已知的情况，对应枚举值为1
+        VehicleLengthConfidenceIndication_trailerPresentWithUnknownLength  = 2,// 表示车辆带有拖车但拖车长度未知的情况，对应枚举值为2
+        VehicleLengthConfidenceIndication_trailerPresenceIsUnknown = 3, // 表示不确定车辆是否带有拖车的情况，对应枚举值为3
+        VehicleLengthConfidenceIndication_unavailable = 4// 表示车辆长度置信度相关信息不可用的情况，对应枚举值为4
     } e_VehicleLengthConfidenceIndication;
-
+// 定义VehicleLengthConfidenceIndication_t类型为long类型，用于存储车辆长度置信度指示相关的数据，便于在程序里作为变量类型操作。
     /* VehicleLengthConfidenceIndication */
     typedef long VehicleLengthConfidenceIndication_t;
 
     /* VehicleLength */
+// 这个结构体将车辆长度值（VehicleLengthValue_t类型）和车辆长度置信度指示（VehicleLengthConfidenceIndication_t类型）结合在一起，
+//使得在程序中可以把这两方面相关信息作为一个整体来处理、传递等，方便对车辆长度相关的综合情况进行表示。
     typedef struct VehicleLength
     {
-        VehicleLengthValue_t vehicleLengthValue;
-        VehicleLengthConfidenceIndication_t vehicleLengthConfidenceIndication;
+        VehicleLengthValue_t vehicleLengthValue;// 用于存储车辆长度具体值的成员变量
+        VehicleLengthConfidenceIndication_t vehicleLengthConfidenceIndication;// 用于存储车辆长度置信度指示情况的成员变量
     } VehicleLength_t;
 
     /* VehicleWidth Dependencies */
+ //以下定义了一个名为VehicleWidth的枚举类型，用来表示车辆宽度相关的值状态。
+ //枚举中的成员分别对应不同的车辆宽度情况，比如具体宽度数值或者特殊的宽度相关状态。
     typedef enum VehicleWidth
     {
-        VehicleWidth_tenCentimeters = 1,
-        VehicleWidth_outOfRange = 61,
-        VehicleWidth_unavailable = 62
+        VehicleWidth_tenCentimeters = 1,// 表示车辆宽度为10厘米的情况，对应枚举值为1
+        VehicleWidth_outOfRange = 61, // 表示车辆宽度超出了正常的有效范围，对应枚举值为61
+        VehicleWidth_unavailable = 62 // 表示车辆宽度信息不可用，对应枚举值为62
     } e_VehicleWidth;
-
+// 定义VehicleWidth_t类型为long类型，用于存储车辆宽度相关的数据，在程序后续操作中可以作为合适的变量类型来运用。
     /* VehicleWidth */
     typedef long VehicleWidth_t;
 
