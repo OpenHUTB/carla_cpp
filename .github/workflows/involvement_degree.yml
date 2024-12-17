@@ -1,26 +1,26 @@
 
 name: compute involvement degree
-
+#工作流名为“PR Checks”
 on: [push]
     
 jobs:
   work:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4#名称步骤：签出代码
         with:
           # github action 默认签出只包含最后一次提交
           # 解决方案参考：https://stackoverflow.com/questions/62334460/git-history-in-a-github-action
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
-      - name: Set up Python
+          ref: ${{ github.event.pull_request.head.sha }}#签出拉取请求得头部提交的哈希值
+          fetch-depth: 0#获取完整的提交历史
+      - name: Set up Python#步骤名称：设置Python环境
         # This is the version of the action for setting up Python, not the Python version.
         uses: actions/setup-python@v5
         with:
           python-version: '3.x' # 指定python版本
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
-      - name: Install Python dependencies
+      - name: Install Python dependencies#步骤名称：安装Python依赖
         run: python -m pip install --upgrade pip requests gitpython
-      - name: Display involvement degree
+      - name: Display involvement degree#步骤名称：运行scores.py脚本
         run: python scores.py -t ${{ secrets.GITHUB_TOKEN }} # 执行
