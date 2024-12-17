@@ -190,9 +190,6 @@ git rm -rf .
 [haohaozhuzzzz](https://github.com/haohaozhuzzzz)、
 [big-Shuaige](https://github.com/big-Shuaige)、
 [lingyanNB](https://github.com/lingyanNB)、
-<<<<<<< HEAD
-[266762548awa](https://github.com/266762548awa)
-=======
 [LzQn](https://github.com/LzQn)、
 [fangao-is-not-fangao](https://github.com/fangao-is-not-fangao)、
 [hexincan](https://github.com/hexincan)、
@@ -213,4 +210,5 @@ git rm -rf .
 [longakijushuai](https://github.com/longkaijushuai/carla_cpp)、
 [yaxianwang7](https://github.com/yaxianwang7)
 [dengyanyan1](https://github.com/dengyanyan1)
->>>>>>> 727253b08f4bd8bb11b98d90018d90d789a3a237
+[Blessingwish](https://github.com/Blessingwish)
+[266762548awa](https://github.com/266762548awa)
