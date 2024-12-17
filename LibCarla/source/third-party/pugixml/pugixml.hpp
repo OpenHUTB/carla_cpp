@@ -1011,99 +1011,99 @@ namespace pugi
 		void _move(xml_document& rhs) PUGIXML_NOEXCEPT_IF_NOT_COMPACT;
 
 	public:
-		// Default constructor, makes empty document
+		// 默认构造函数，创建一个空文档
 		xml_document();
 
-		// Destructor, invalidates all node/attribute handles to this document
+		//析构函数，使指向此文档的所有节点 / 属性句柄失效
 		~xml_document();
 
 	#ifdef PUGIXML_HAS_MOVE
-		// Move semantics support
+		//移动语义支持
 		xml_document(xml_document&& rhs) PUGIXML_NOEXCEPT_IF_NOT_COMPACT;
 		xml_document& operator=(xml_document&& rhs) PUGIXML_NOEXCEPT_IF_NOT_COMPACT;
 	#endif
 
-		// Removes all nodes, leaving the empty document
+		// 移除所有节点，留下一个空文档
 		void reset();
 
-		// Removes all nodes, then copies the entire contents of the specified document
+		//移除所有节点，然后复制指定文档的全部内容
 		void reset(const xml_document& proto);
 
 	#ifndef PUGIXML_NO_STL
-		// Load document from stream.
+		//从流中加载文档。
 		xml_parse_result load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 		xml_parse_result load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = parse_default);
 	#endif
 
-		// (deprecated: use load_string instead) Load document from zero-terminated string. No encoding conversions are applied.
+		// （已弃用：请改用 load_string）从以零结尾的字符串中加载文档。不应用编码转换。
 		PUGIXML_DEPRECATED xml_parse_result load(const char_t* contents, unsigned int options = parse_default);
 
-		// Load document from zero-terminated string. No encoding conversions are applied.
+		//从以零结尾的字符串中加载文档。不应用编码转换。
 		xml_parse_result load_string(const char_t* contents, unsigned int options = parse_default);
 
-		// Load document from file
+		// 从文件中加载文档
 		xml_parse_result load_file(const char* path, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 		xml_parse_result load_file(const wchar_t* path, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns.
+		//  从缓冲区加载文档。会复制 / 转换缓冲区内容，所以在函数返回后，该缓冲区可以被删除或更改。
 		xml_parse_result load_buffer(const void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
-		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed.
+		//  从缓冲区加载文档，使用该缓冲区进行原地解析（缓冲区会被修改并用于存储文档数据）。
+		//你应当确保缓冲区数据在文档的整个生命周期内都持续存在，并且在文档销毁后手动释放缓冲区内存。
 		xml_parse_result load_buffer_inplace(void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
-		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore).
+		// 从缓冲区加载文档，使用该缓冲区进行原地解析（缓冲区会被修改并用于存储文档数据）。
+		//你应当使用 pugixml 分配函数来分配缓冲区；文档在不再需要该缓冲区时会自动释放它（之后你不能再使用该缓冲区了）。
 		xml_parse_result load_buffer_inplace_own(void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		// Save XML document to writer (semantics is slightly different from xml_node::print, see documentation for details).
+		// 将 XML 文档保存到写入器（其语义与 xml_node::print 稍有不同，详见相关文档）。
 		void save(xml_writer& writer, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 
 	#ifndef PUGIXML_NO_STL
-		// Save XML document to stream (semantics is slightly different from xml_node::print, see documentation for details).
+		//将 XML 文档保存到流中（其语义与 xml_node::print 稍有不同，详见相关文档）。
 		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default) const;
 	#endif
 
-		// Save XML to file
+		//将 XML 保存到文件
 		bool save_file(const char* path, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 		bool save_file(const wchar_t* path, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 
-		// Get document element
+		// 获取文档元素
 		xml_node document_element() const;
 	};
 
 #ifndef PUGIXML_NO_XPATH
-	// XPath query return type
+	// XPath 查询返回类型
 	enum xpath_value_type
 	{
-		xpath_type_none,	  // Unknown type (query failed to compile)
-		xpath_type_node_set,  // Node set (xpath_node_set)
-		xpath_type_number,	  // Number
-		xpath_type_string,	  // String
-		xpath_type_boolean	  // Boolean
+		xpath_type_none,	  // 未知类型（查询未能编译成功）
+		xpath_type_node_set,  //节点集（xpath_node_set 类型）
+		xpath_type_number,	  //数字
+		xpath_type_string,	  // 字符串
+		xpath_type_boolean	  // 布尔值
 	};
 
-	// XPath parsing result
+	//  XPath 解析结果
 	struct PUGIXML_CLASS xpath_parse_result
 	{
-		// Error message (0 if no error)
+		// 错误消息（若无错误则为 0）
 		const char* error;
 
-		// Last parsed offset (in char_t units from string start)
+		// 最后解析的偏移量（以 char_t 为单位，从字符串起始处开始计算）
 		ptrdiff_t offset;
 
-		// Default constructor, initializes object to failed state
+		// 默认构造函数，将对象初始化为失败状态
 		xpath_parse_result();
 
-		// Cast to bool operator
+		//转换为布尔类型的运算符
 		operator bool() const;
 
-		// Get error description
+		// 获取错误描述
 		const char* description() const;
 	};
 
-	// A single XPath variable
+	//单个 XPath 变量
 	class PUGIXML_CLASS xpath_variable
 	{
 		friend class xpath_variable_set;
@@ -1114,31 +1114,31 @@ namespace pugi
 
 		xpath_variable(xpath_value_type type);
 
-		// Non-copyable semantics
+		//  不可复制语义
 		xpath_variable(const xpath_variable&);
 		xpath_variable& operator=(const xpath_variable&);
 
 	public:
-		// Get variable name
+		// 获取变量名称
 		const char_t* name() const;
 
-		// Get variable type
+		// 获取变量类型
 		xpath_value_type type() const;
 
-		// Get variable value; no type conversion is performed, default value (false, NaN, empty string, empty node set) is returned on type mismatch error
+		// 获取变量值；不进行类型转换，若出现类型不匹配错误则返回默认值（false、非数字、空字符串、空节点集）
 		bool get_boolean() const;
 		double get_number() const;
 		const char_t* get_string() const;
 		const xpath_node_set& get_node_set() const;
 
-		// Set variable value; no type conversion is performed, false is returned on type mismatch error
+		//设置变量值；不进行类型转换，若出现类型不匹配错误则返回 false
 		bool set(bool value);
 		bool set(double value);
 		bool set(const char_t* value);
 		bool set(const xpath_node_set& value);
 	};
 
-	// A set of XPath variables
+	// 一组 XPath 变量
 	class PUGIXML_CLASS xpath_variable_set
 	{
 	private:
