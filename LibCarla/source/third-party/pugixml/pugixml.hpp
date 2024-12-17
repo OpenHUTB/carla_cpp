@@ -281,39 +281,43 @@ namespace pugi
 	class xpath_variable_set;
 	#endif
 
-	// Range-based for loop support
+	//基于范围的 for 循环支持
 	template <typename It> class xml_object_range
 	{
 	public:
+// 定义常量迭代器的类型别名
 		typedef It const_iterator;
+// 定义迭代器的类型别名
 		typedef It iterator;
-
+// 构造函数，通过传入起始迭代器和结束迭代器来初始化对象
 		xml_object_range(It b, It e): _begin(b), _end(e)
 		{
 		}
-
+// 返回起始迭代器（该函数为常量成员函数，返回值为常量迭代器类型）
 		It begin() const { return _begin; }
+// 返回结束迭代器（同样是常量成员函数，返回值为常量迭代器类型）
 		It end() const { return _end; }
 
 	private:
+// 用于存储起始迭代器和结束迭代器的私有成员变量
 		It _begin, _end;
 	};
 
-	// Writer interface for node printing (see xml_node::print)
+	//  用于节点打印的写入器接口（可参考 xml_node::print 相关内容）
 	class PUGIXML_CLASS xml_writer
 	{
 	public:
 		virtual ~xml_writer() {}
 
-		// Write memory chunk into stream/file/whatever
+		//将内存块写入流 / 文件或其他对象中
 		virtual void write(const void* data, size_t size) = 0;
 	};
 
-	// xml_writer implementation for FILE*
+	//针对 FILE的 xml_writer 实现类
 	class PUGIXML_CLASS xml_writer_file: public xml_writer
 	{
 	public:
-		// Construct writer from a FILE* object; void* is used to avoid header dependencies on stdio
+		// 通过一个 FILE对象构造写入器；使用 void * 是为了避免头文件对 stdio 的依赖
 		xml_writer_file(void* file);
 
 		virtual void write(const void* data, size_t size) PUGIXML_OVERRIDE;
@@ -323,11 +327,11 @@ namespace pugi
 	};
 
 	#ifndef PUGIXML_NO_STL
-	// xml_writer implementation for streams
+	// 用于流的 xml_writer（XML 写入器）实现。
 	class PUGIXML_CLASS xml_writer_stream: public xml_writer
 	{
 	public:
-		// Construct writer from an output stream object
+		//从一个输出流对象构造写入器。例如在相关代码中
 		xml_writer_stream(std::basic_ostream<char, std::char_traits<char> >& stream);
 		xml_writer_stream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);
 
@@ -339,7 +343,7 @@ namespace pugi
 	};
 	#endif
 
-	// A light-weight handle for manipulating attributes in DOM tree
+	// 一个用于操作文档对象模型（DOM）树中属性的轻量级句柄。
 	class PUGIXML_CLASS xml_attribute
 	{
 		friend class xml_attribute_iterator;
