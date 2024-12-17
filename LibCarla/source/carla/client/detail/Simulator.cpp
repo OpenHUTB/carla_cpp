@@ -47,38 +47,39 @@ namespace detail {
   }
 
   static bool SynchronizeFrame(uint64_t frame, const Episode &episode, time_duration timeout) {
-    bool result = true;
-    auto start = std::chrono::system_clock::now();
-    while (frame > episode.GetState()->GetTimestamp().frame) {
-      std::this_thread::yield();
-      auto end = std::chrono::system_clock::now();
-      auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);
-      if(timeout.to_chrono() < diff) {
+    bool result = true;//初始化结果为true，表示默认同步成功
+    auto start = std::chrono::system_clock::now();//获取当前时间点作为开始时间
+    while (frame > episode.GetState()->GetTimestamp().frame) {//当当前帧大于episode中的状态时，循环等待
+      std::this_thread::yield();//放弃当前线程的剩余时间片，允许其他线程运行
+      auto end = std::chrono::system_clock::now();//获取当前时间点作为结束时间
+      auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);//计算从开始到结束的时间差，并转换为毫秒
+      if(timeout.to_chrono() < diff) {//如果已经超过了指定的超时时间，则设置结果为false并退出循环
         result = false;
         break;
       }
     }
-    if(result) {
+    if(result) {//如果成功同步，则调用TrafficManager的Tick方法
       carla::traffic_manager::TrafficManager::Tick();
     }
 
-    return result;
+    return result;//返回同步结果
   }
 
   // ===========================================================================
   // -- 构造函数 ----------------------------------------------------------------
   // ===========================================================================
 
-  Simulator::Simulator(
-      const std::string &host,
-      const uint16_t port,
-      const size_t worker_threads,
-      const bool enable_garbage_collection)
-    : LIBCARLA_INITIALIZE_LIFETIME_PROFILER("SimulatorClient("s + host + ":" + std::to_string(port) + ")"),
-      _client(host, port, worker_threads),
-      _light_manager(new LightManager()),
-      _gc_policy(enable_garbage_collection ?
+  Simulator::Simulator(//Simulator类的构造函数定义
+      const std::string &host,//连接到CARLA服务器的主机名或IP地址
+      const uint16_t port,//与CARLA服务器通信的端口号
+      const size_t worker_threads,//用于处理通信的工作线程的数量
+      const bool enable_garbage_collection)//是否启用垃圾回收
+    : LIBCARLA_INITIALIZE_LIFETIME_PROFILER("SimulatorClient("s + host + ":" + std::to_string(port) + ")"),//初始化性能分析器
+      _client(host, port, worker_threads),//初始化与CARLA服务器的连接
+      _light_manager(new LightManager()),//动态分配LightManager对象
+      _gc_policy(enable_garbage_collection ?//根据参数设置垃圾回收攻略
         GarbageCollectionPolicy::Enabled : GarbageCollectionPolicy::Disabled) {}
+        //构造函数完成对象的初始化，所有工作都在初始化列表中完成
 
   // ===========================================================================
   // -- 加载新的场景 -------------------------------------------------------------
