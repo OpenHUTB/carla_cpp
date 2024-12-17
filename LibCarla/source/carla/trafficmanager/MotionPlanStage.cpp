@@ -14,24 +14,24 @@
 #include "carla/trafficmanager/PIDController.h"
 
 #include "carla/trafficmanager/MotionPlanStage.h"
-
+// 定义carla空间下的traffic_manage空间
 namespace carla {
 namespace traffic_manager {
-
+// 引入相关的元素
 using namespace constants::MotionPlan;
 using namespace constants::WaypointSelection;
 using namespace constants::SpeedThreshold;
-
+// 引入HybridMode相关的常量到当前作用域
 using constants::HybridMode::HYBRID_MODE_DT;
 using constants::HybridMode::HYBRID_MODE_DT_FL;
 using constants::Collision::EPSILON;
-
+//初始化类的各个成员变量
 MotionPlanStage::MotionPlanStage(
-  const std::vector<ActorId> &vehicle_id_list,
-  SimulationState &simulation_state,
-  const Parameters &parameters,
+  const std::vector<ActorId> &vehicle_id_list,// 车辆ID列表，标识车辆
+  SimulationState &simulation_state,// 模拟状态对象
+  const Parameters &parameters,//交通管理相关的参数
   const BufferMap &buffer_map,
-  TrackTraffic &track_traffic,
+  TrackTraffic &track_traffic,//跟踪交通状况
   const std::vector<float> &urban_longitudinal_parameters,
   const std::vector<float> &highway_longitudinal_parameters,
   const std::vector<float> &urban_lateral_parameters,
