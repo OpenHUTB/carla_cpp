@@ -815,13 +815,13 @@ namespace pugi
 		typedef std::bidirectional_iterator_tag iterator_category;
 	#endif
 
-		// Default constructor
+		// 默认构造函数
 		xml_node_iterator();
 
-		// Construct an iterator which points to the specified node
+		//构造一个指向指定节点的迭代器
 		xml_node_iterator(const xml_node& node);
 
-		// Iterator operators
+		//  迭代器运算符
 		bool operator==(const xml_node_iterator& rhs) const;
 		bool operator!=(const xml_node_iterator& rhs) const;
 
@@ -835,7 +835,7 @@ namespace pugi
 		xml_node_iterator operator--(int);
 	};
 
-	// Attribute iterator (a bidirectional iterator over a collection of xml_attribute)
+	//  属性迭代器（一个针对 xml_attribute 集合的双向迭代器）
 	class PUGIXML_CLASS xml_attribute_iterator
 	{
 		friend class xml_node;
@@ -847,7 +847,7 @@ namespace pugi
 		xml_attribute_iterator(xml_attribute_struct* ref, xml_node_struct* parent);
 
 	public:
-		// Iterator traits
+		// 迭代器特性
 		typedef ptrdiff_t difference_type;
 		typedef xml_attribute value_type;
 		typedef xml_attribute* pointer;
@@ -857,13 +857,13 @@ namespace pugi
 		typedef std::bidirectional_iterator_tag iterator_category;
 	#endif
 
-		// Default constructor
+		//默认构造函数
 		xml_attribute_iterator();
 
-		// Construct an iterator which points to the specified attribute
+		//构造一个指向指定属性的迭代器
 		xml_attribute_iterator(const xml_attribute& attr, const xml_node& parent);
 
-		// Iterator operators
+		// 迭代器运算符
 		bool operator==(const xml_attribute_iterator& rhs) const;
 		bool operator!=(const xml_attribute_iterator& rhs) const;
 
@@ -877,13 +877,13 @@ namespace pugi
 		xml_attribute_iterator operator--(int);
 	};
 
-	// Named node range helper
+	// 命名节点范围辅助类
 	class PUGIXML_CLASS xml_named_node_iterator
 	{
 		friend class xml_node;
 
 	public:
-		// Iterator traits
+		//  迭代器特性
 		typedef ptrdiff_t difference_type;
 		typedef xml_node value_type;
 		typedef xml_node* pointer;
@@ -893,13 +893,13 @@ namespace pugi
 		typedef std::bidirectional_iterator_tag iterator_category;
 	#endif
 
-		// Default constructor
+		// 默认构造函数
 		xml_named_node_iterator();
 
-		// Construct an iterator which points to the specified node
+		// 构造一个指向指定节点的迭代器
 		xml_named_node_iterator(const xml_node& node, const char_t* name);
 
-		// Iterator operators
+		// 迭代器运算符
 		bool operator==(const xml_named_node_iterator& rhs) const;
 		bool operator!=(const xml_named_node_iterator& rhs) const;
 
@@ -920,7 +920,7 @@ namespace pugi
 		xml_named_node_iterator(xml_node_struct* ref, xml_node_struct* parent, const char_t* name);
 	};
 
-	// Abstract tree walker class (see xml_node::traverse)
+	// 抽象树遍历器类（详见 xml_node::traverse 方法）
 	class PUGIXML_CLASS xml_tree_walker
 	{
 		friend class xml_node;
@@ -929,73 +929,72 @@ namespace pugi
 		int _depth;
 
 	protected:
-		// Get current traversal depth
+		//获取当前遍历深度
 		int depth() const;
 
 	public:
 		xml_tree_walker();
 		virtual ~xml_tree_walker();
 
-		// Callback that is called when traversal begins
+		// 遍历开始时调用的回调函数
 		virtual bool begin(xml_node& node);
 
-		// Callback that is called for each node traversed
+		// 遍历每个节点时调用的回调函数
 		virtual bool for_each(xml_node& node) = 0;
 
-		// Callback that is called when traversal ends
+		//  遍历结束时调用的回调函数
 		virtual bool end(xml_node& node);
 	};
 
-	// Parsing status, returned as part of xml_parse_result object
+	// 解析状态，作为 xml_parse_result 对象的一部分返回
 	enum xml_parse_status
 	{
-		status_ok = 0,				// No error
+		status_ok = 0,				// 无错误
 
-		status_file_not_found,		// File was not found during load_file()
-		status_io_error,			// Error reading from file/stream
-		status_out_of_memory,		// Could not allocate memory
-		status_internal_error,		// Internal error occurred
+		status_file_not_found,		//在 load_file () 方法执行期间文件未找到
+		status_io_error,			//  从文件 / 流读取时出错
+		status_out_of_memory,		// 无法分配内存
+		status_internal_error,		// 发生内部错误
+		status_unrecognized_tag,	// 解析器无法确定标签类型
 
-		status_unrecognized_tag,	// Parser could not determine tag type
-
-		status_bad_pi,				// Parsing error occurred while parsing document declaration/processing instruction
-		status_bad_comment,			// Parsing error occurred while parsing comment
-		status_bad_cdata,			// Parsing error occurred while parsing CDATA section
-		status_bad_doctype,			// Parsing error occurred while parsing document type declaration
-		status_bad_pcdata,			// Parsing error occurred while parsing PCDATA section
-		status_bad_start_element,	// Parsing error occurred while parsing start element tag
-		status_bad_attribute,		// Parsing error occurred while parsing element attribute
+		status_bad_pi,				// 在解析文档声明 / 处理指令时发生解析错误
+		status_bad_comment,			// 在解析注释时发生解析错误
+		status_bad_pi,				//在解析 CDATA（字符数据）区段时发生解析错误
+		status_bad_cdata,			// P在解析文档类型声明时发生解析错误
+		status_bad_doctype,			// 在解析 PCDATA（已解析字符数据）区段时发生解析错误
+		status_bad_pcdata,			// 在解析起始元素标签时发生解析错误
+		status_bad_start_element,	// 在解析结束元素标签时发生解析错误
+		status_bad_attribute,		// 在解析结束元素标签时发生解析错误
 		status_bad_end_element,		// Parsing error occurred while parsing end element tag
-		status_end_element_mismatch,// There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag)
+		status_end_element_mismatch,// 存在起始 - 结束标签不匹配的情况（结束标签名称不正确、某些标签未关闭或者存在多余的结束标签）
+		status_append_invalid_root,	// 由于根节点类型不是 node_element（元素节点）或 node_document（文档节点），所以无法追加节点（这是 xml_node::append_buffer 方法特有的情况）
 
-		status_append_invalid_root,	// Unable to append nodes since root type is not node_element or node_document (exclusive to xml_node::append_buffer)
-
-		status_no_document_element	// Parsing resulted in a document without element nodes
+		status_no_document_element	//解析后得到的文档中没有元素节点
 	};
 
-	// Parsing result
+	// 解析结果
 	struct PUGIXML_CLASS xml_parse_result
 	{
-		// Parsing status (see xml_parse_status)
+		// 解析状态（参见 xml_parse_status）
 		xml_parse_status status;
 
-		// Last parsed offset (in char_t units from start of input data)
+		//  最后解析的偏移量（以 char_t 为单位，从输入数据起始处开始计算）
 		ptrdiff_t offset;
 
-		// Source document encoding
+		//  源文档编码
 		xml_encoding encoding;
 
-		// Default constructor, initializes object to failed state
+		// 默认构造函数，将对象初始化为失败状态
 		xml_parse_result();
 
-		// Cast to bool operator
+		// 转换为布尔类型的运算符
 		operator bool() const;
 
-		// Get error description
+		// 获取错误描述
 		const char* description() const;
 	};
 
-	// Document class (DOM tree root)
+	//  文档类（DOM 树的根节点）
 	class PUGIXML_CLASS xml_document: public xml_node
 	{
 	private:
@@ -1003,7 +1002,7 @@ namespace pugi
 
 		char _memory[192];
 
-		// Non-copyable semantics
+		// 不可复制语义
 		xml_document(const xml_document&);
 		xml_document& operator=(const xml_document&);
 
