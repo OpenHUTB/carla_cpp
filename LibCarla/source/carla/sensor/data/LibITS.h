@@ -304,126 +304,149 @@ public:
     } Heading_t;
 
     /* SpeedValue Dependencies */
+ //以下定义了一个名为SpeedValue的枚举类型，用于表示速度相关的值。
+ //枚举中的每个成员对应不同的速度状态或具体速度值。
     typedef enum SpeedValue
     {
-        SpeedValue_standstill = 0,
-        SpeedValue_oneCentimeterPerSec = 1,
-        SpeedValue_unavailable = 16383
+        SpeedValue_standstill = 0, // 表示静止状态，速度值为0
+        SpeedValue_oneCentimeterPerSec = 1,// 表示每秒移动1厘米的速度状态，对应值为1
+        SpeedValue_unavailable = 16383// 表示速度不可用的状态，对应值为16383
     } e_SpeedValue;
-
+// 定义SpeedValue_t类型为long类型，用于存储速度值相关的数据，可能在后续代码中作为变量类型来使用。
     /* SpeedValue */
     typedef long SpeedValue_t;
 
     /* SpeedConfidence Dependencies */
+ //定义了一个名为SpeedConfidence的枚举类型，用于表示速度的置信度相关情况。
+ //不同的枚举成员代表不同程度的速度置信范围或者特殊的置信状态。
     typedef enum SpeedConfidence
     {
-        SpeedConfidence_equalOrWithInOneCentimerterPerSec = 1,
-        SpeedConfidence_equalOrWithinOneMeterPerSec = 100,
-        SpeedConfidence_outOfRange = 126,
-        SpeedConfidence_unavailable = 127
+        SpeedConfidence_equalOrWithInOneCentimerterPerSec = 1,// 表示速度的置信度在每秒正负1厘米范围内相等，对应值为1
+        SpeedConfidence_equalOrWithinOneMeterPerSec = 100, // 表示速度的置信度在每秒正负1米范围内相等，对应值为100
+        SpeedConfidence_outOfRange = 126, // 表示速度超出了有效范围，对应值为126
+        SpeedConfidence_unavailable = 127 // 表示速度的置信度不可用，对应值为127
     } e_SpeedConfidence;
-
+/ 定义SpeedConfidence_t类型为long类型，用于存储速度置信度相关的数据，方便在程序中作为变量类型进行操作。
     /* SpeedConfidence */
     typedef long SpeedConfidence_t;
 
     /* Speed */
+ // 此结构体用于将速度值（SpeedValue_t类型）和速度置信度（SpeedConfidence_t类型）组合在一起，
+ //方便在程序中作为一个整体来处理和传递速度相关的信息。
     typedef struct speed
     {
-        SpeedValue_t speedValue;
-        SpeedConfidence_t speedConfidence;
+        SpeedValue_t speedValue; // 存储速度值的成员变量
+        SpeedConfidence_t speedConfidence; // 存储速度置信度的成员变量
     } Speed_t;
 
     /* DriveDirection Dependencies */
+ //定义了一个名为DriveDirection的枚举类型，用于表示驱动方向相关的情况。
+ //枚举成员对应不同的行驶方向或者特殊的方向状态。
     typedef enum DriveDirection 
     {
-        DriveDirection_forward  = 0,
-        DriveDirection_backward = 1,
-        DriveDirection_unavailable  = 2
+        DriveDirection_forward  = 0, // 表示向前行驶的方向，对应值为0
+        DriveDirection_backward = 1, // 表示向后行驶的方向，对应值为1
+        DriveDirection_unavailable  = 2// 表示驱动方向不可用的状态，对应值为2
     } e_DriveDirection;
- 
+ // 定义DriveDirection_t类型为long类型，用于存储驱动方向相关的数据，在后续代码中可作为变量类型使用。
     /* DriveDirection */
     typedef long DriveDirection_t;
 
     /* VehicleLength Dependencies */
+ //这里定义了一个名为VehicleLengthValue的枚举类型，用于表示车辆长度相关的值情况。
+ //枚举中的各个成员对应着不同的车辆长度状态或者具体的长度表示值。
     typedef enum VehicleLengthValue
     {
-        VehicleLengthValue_tenCentimeters = 1,
-        VehicleLengthValue_outOfRange = 1022,
-        VehicleLengthValue_unavailable = 1023
+        VehicleLengthValue_tenCentimeters = 1,// 表示车辆长度为10厘米的情况，对应枚举值为1
+        VehicleLengthValue_outOfRange = 1022, // 表示车辆长度超出了有效测量范围，对应枚举值为1022
+        VehicleLengthValue_unavailable = 1023// 表示车辆长度信息不可用，对应枚举值为1023
     } e_VehicleLengthValue;
-
+// 定义VehicleLengthValue_t类型为long类型，后续可用于存储车辆长度值相关的数据，在程序中充当相应变量的类型。
     /* VehicleLengthValue */
     typedef long VehicleLengthValue_t;
 
     /* VehicleLengthConfidenceIndication Dependencies */
+ //此部分定义了一个名为VehicleLengthConfidenceIndication的枚举类型，
+ //用于体现对车辆长度信息的置信度指示情况，不同成员代表不同的关于车辆是否带有拖车以及拖车长度是否已知等相关置信状态。
     typedef enum VehicleLengthConfidenceIndication
     {
-        VehicleLengthConfidenceIndication_noTrailerPresent = 0,
-        VehicleLengthConfidenceIndication_trailerPresentWithKnownLength = 1,
-        VehicleLengthConfidenceIndication_trailerPresentWithUnknownLength  = 2,
-        VehicleLengthConfidenceIndication_trailerPresenceIsUnknown = 3,
-        VehicleLengthConfidenceIndication_unavailable = 4
+        VehicleLengthConfidenceIndication_noTrailerPresent = 0, // 表示车辆当前没有拖车的情况，对应枚举值为0
+        VehicleLengthConfidenceIndication_trailerPresentWithKnownLength = 1, // 表示车辆带有拖车且拖车长度已知的情况，对应枚举值为1
+        VehicleLengthConfidenceIndication_trailerPresentWithUnknownLength  = 2,// 表示车辆带有拖车但拖车长度未知的情况，对应枚举值为2
+        VehicleLengthConfidenceIndication_trailerPresenceIsUnknown = 3, // 表示不确定车辆是否带有拖车的情况，对应枚举值为3
+        VehicleLengthConfidenceIndication_unavailable = 4// 表示车辆长度置信度相关信息不可用的情况，对应枚举值为4
     } e_VehicleLengthConfidenceIndication;
-
+// 定义VehicleLengthConfidenceIndication_t类型为long类型，用于存储车辆长度置信度指示相关的数据，便于在程序里作为变量类型操作。
     /* VehicleLengthConfidenceIndication */
     typedef long VehicleLengthConfidenceIndication_t;
 
     /* VehicleLength */
+// 这个结构体将车辆长度值（VehicleLengthValue_t类型）和车辆长度置信度指示（VehicleLengthConfidenceIndication_t类型）结合在一起，
+//使得在程序中可以把这两方面相关信息作为一个整体来处理、传递等，方便对车辆长度相关的综合情况进行表示。
     typedef struct VehicleLength
     {
-        VehicleLengthValue_t vehicleLengthValue;
-        VehicleLengthConfidenceIndication_t vehicleLengthConfidenceIndication;
+        VehicleLengthValue_t vehicleLengthValue;// 用于存储车辆长度具体值的成员变量
+        VehicleLengthConfidenceIndication_t vehicleLengthConfidenceIndication;// 用于存储车辆长度置信度指示情况的成员变量
     } VehicleLength_t;
 
     /* VehicleWidth Dependencies */
+ //以下定义了一个名为VehicleWidth的枚举类型，用来表示车辆宽度相关的值状态。
+ //枚举中的成员分别对应不同的车辆宽度情况，比如具体宽度数值或者特殊的宽度相关状态。
     typedef enum VehicleWidth
     {
-        VehicleWidth_tenCentimeters = 1,
-        VehicleWidth_outOfRange = 61,
-        VehicleWidth_unavailable = 62
+        VehicleWidth_tenCentimeters = 1,// 表示车辆宽度为10厘米的情况，对应枚举值为1
+        VehicleWidth_outOfRange = 61, // 表示车辆宽度超出了正常的有效范围，对应枚举值为61
+        VehicleWidth_unavailable = 62 // 表示车辆宽度信息不可用，对应枚举值为62
     } e_VehicleWidth;
-
+// 定义VehicleWidth_t类型为long类型，用于存储车辆宽度相关的数据，在程序后续操作中可以作为合适的变量类型来运用。
     /* VehicleWidth */
     typedef long VehicleWidth_t;
 
     /* LongitudinalAcceleration Dependencies */
+ //此处定义了一个名为LongitudinalAcceletationValue的枚举类型，
+ //该枚举用于表示车辆纵向加速度相关的值情况，涵盖了不同方向的加速度以及特殊的表示状态
     typedef enum LongitudinalAcceletationValue
     {
-        LongitudinalAccelerationValue_pointOneMeterPerSecSquaredForward = 1,
-        LongitudinalAccelerationValue_pointOneMeterPerSecSquaredBackWard = -1,
-        LongitudinalAccelerationValue_unavailable = 161
+        LongitudinalAccelerationValue_pointOneMeterPerSecSquaredForward = 1, // 表示车辆纵向加速度为每秒平方0.1米向前的情况，对应枚举值为1
+        LongitudinalAccelerationValue_pointOneMeterPerSecSquaredBackWard = -1, // 表示车辆纵向加速度为每秒平方0.1米向后的情况，对应枚举值为 -1
+        LongitudinalAccelerationValue_unavailable = 161// 表示车辆纵向加速度信息不可用的情况，对应枚举值为161
     } e_LongitudinalAccelerationValue;
-
+// 定义LongitudinalAccelerationValue_t类型为long类型，后续可用于存储纵向加速度值相关的数据，在程序中充当相应变量的类型。
     /* LongitudinalAcclerationValue */
     typedef long LongitudinalAccelerationValue_t;
 
-    /* AccelerationConfidence Dependencies */
+    /* AccelerationConfidence Dependencies */ 
+//这部分定义了一个名为AccelerationConfidence的枚举类型，
+// 用于体现对加速度信息的置信度相关情况，不同枚举成员代表不同程度的置信范围或者特殊的置信状态。
     typedef enum AccelerationConfidence
     {
-        AccelerationConfindence_pointOneMeterPerSecSquared = 1,
-        AccelerationConfidence_outOfRange = 101,
-        AccelerationConfidence_unavailable = 102
+        AccelerationConfindence_pointOneMeterPerSecSquared = 1,// 表示加速度的置信度在每秒平方0.1米范围内，对应枚举值为1
+        AccelerationConfidence_outOfRange = 101,// 表示加速度超出了有效范围，对应枚举值为101
+        AccelerationConfidence_unavailable = 102 // 表示加速度置信度相关信息不可用，对应枚举值为102
     } e_AccelerationConfidence;
-
+// 定义AccelerationConfidence_t类型为long类型，用于存储加速度置信度相关的数据，便于在程序里作为变量类型操作。
     /* AccelerationConfidence*/
     typedef long AccelerationConfidence_t;
 
     /* LongitudinalAcceleration */
+//该结构体将纵向加速度值（LongitudinalAccelerationValue_t类型）和纵向加速度置信度（AccelerationConfidence_t类型）结合在一起，
+// 使得在程序中可以把这两方面相关信息作为一个整体来处理、传递等，方便对车辆纵向加速度相关的综合情况进行表示。
     typedef struct LongitudinalAcceleration
     {
-        LongitudinalAccelerationValue_t longitudinalAccelerationValue;
-        AccelerationConfidence_t longitudinalAccelerationConfidence;
-    } LongitudinalAcceleration_t;
-
+        LongitudinalAccelerationValue_t longitudinalAccelerationValue;// 用于存储车辆纵向加速度具体值的成员变量
+        AccelerationConfidence_t longitudinalAccelerationConfidence; // 用于存储车辆纵向加速度置信度情况的成员变量
+    } LongitudinalAcceleration_t; 
+//以下定义了一个名为CurvatureValue的枚举类型，用来表示道路曲率相关的值状态。
+// 枚举中的成员分别对应不同的道路曲率情况，比如直线、向左或向右弯曲以及特殊的曲率相关状态。
     /* CurvatureValue Dependencies */
     typedef enum CurvatureValue
     {
-        CurvatureValue_straight = 0,
-        CurvatureValue_reciprocalOf1MeterRadiusToRight = -30000,
-        CurvatureValue_reciprocalOf1MeterRadiusToLeft = 30000,
-        CurvatureValue_unavailable = 30001
+        CurvatureValue_straight = 0,// 表示道路是直线的情况，对应枚举值为0
+        CurvatureValue_reciprocalOf1MeterRadiusToRight = -30000,// 表示道路曲率为半径1米的圆向右弯曲（曲率值为半径倒数），对应枚举值为 -30000
+        CurvatureValue_reciprocalOf1MeterRadiusToLeft = 30000, // 表示道路曲率为半径1米的圆向左弯曲（曲率值为半径倒数），对应枚举值为30000
+        CurvatureValue_unavailable = 30001// 表示道路曲率信息不可用的情况，对应枚举值为30001
     } e_CurvatureValue;
-
+// 定义CurvatureValue_t类型为long类型，用于存储道路曲率相关的数据，在程序后续操作中可以作为合适的变量类型来运用。
     /* CurvatureValue */
     typedef long CurvatureValue_t;
 

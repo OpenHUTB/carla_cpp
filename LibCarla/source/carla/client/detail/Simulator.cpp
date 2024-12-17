@@ -69,16 +69,17 @@ namespace detail {
   // -- 构造函数 ----------------------------------------------------------------
   // ===========================================================================
 
-  Simulator::Simulator(
-      const std::string &host,
-      const uint16_t port,
-      const size_t worker_threads,
-      const bool enable_garbage_collection)
-    : LIBCARLA_INITIALIZE_LIFETIME_PROFILER("SimulatorClient("s + host + ":" + std::to_string(port) + ")"),
-      _client(host, port, worker_threads),
-      _light_manager(new LightManager()),
-      _gc_policy(enable_garbage_collection ?
+  Simulator::Simulator(//Simulator类的构造函数定义
+      const std::string &host,//连接到CARLA服务器的主机名或IP地址
+      const uint16_t port,//与CARLA服务器通信的端口号
+      const size_t worker_threads,//用于处理通信的工作线程的数量
+      const bool enable_garbage_collection)//是否启用垃圾回收
+    : LIBCARLA_INITIALIZE_LIFETIME_PROFILER("SimulatorClient("s + host + ":" + std::to_string(port) + ")"),//初始化性能分析器
+      _client(host, port, worker_threads),//初始化与CARLA服务器的连接
+      _light_manager(new LightManager()),//动态分配LightManager对象
+      _gc_policy(enable_garbage_collection ?//根据参数设置垃圾回收攻略
         GarbageCollectionPolicy::Enabled : GarbageCollectionPolicy::Disabled) {}
+        //构造函数完成对象的初始化，所有工作都在初始化列表中完成
 
   // ===========================================================================
   // -- 加载新的场景 -------------------------------------------------------------
