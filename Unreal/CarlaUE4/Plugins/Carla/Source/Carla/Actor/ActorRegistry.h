@@ -16,7 +16,7 @@
 
 #include <unordered_map>
 
-/// A registry of all the Carla actors.
+/// 所有Carla角色的注册表
 class FActorRegistry
 {
 public:
@@ -26,17 +26,17 @@ public:
 
 private:
 
-  // using DatabaseType = std::unordered_map<IdType, FCarlaActor>;
+  //使用 DatabaseType = std::unordered_map<IdType, FCarlaActor>;
   using DatabaseType = TMap<IdType, TSharedPtr<FCarlaActor>>;
 
   // ===========================================================================
-  /// @name Actor registry functions
+  /// 名称 参与者注册函数
   // ===========================================================================
   /// @{
 public:
 
-  /// Register the @a Actor in the database. A new ID will be assign to this
-  /// actor.
+  /// 在数据库中注册@a Actor。将为此分配一个新的ID
+  /// 参与者
   ///
   /// @warning Undefined if an actor is registered more than once.
   FCarlaActor* Register(AActor &Actor, FActorDescription Description, IdType DesiredId = 0);
@@ -47,7 +47,7 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Look up functions
+  /// 名称 查找功能
   // ===========================================================================
   /// @{
 
@@ -98,7 +98,7 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Range iteration support
+  ///名称范围迭代支持
   // ===========================================================================
   /// @{
 public:
