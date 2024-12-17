@@ -56,7 +56,7 @@ namespace carla {
     operator boost::posix_time::time_duration() const {
       return to_posix_time();
     }
-
+// 返回以毫秒为单位的时间值，不修改对象状态，保证不抛出异常
     constexpr size_t milliseconds() const noexcept {
       return _milliseconds;
     }

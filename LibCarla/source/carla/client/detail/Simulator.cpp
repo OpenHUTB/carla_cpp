@@ -47,22 +47,22 @@ namespace detail {
   }
 
   static bool SynchronizeFrame(uint64_t frame, const Episode &episode, time_duration timeout) {
-    bool result = true;
-    auto start = std::chrono::system_clock::now();
-    while (frame > episode.GetState()->GetTimestamp().frame) {
-      std::this_thread::yield();
-      auto end = std::chrono::system_clock::now();
-      auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);
-      if(timeout.to_chrono() < diff) {
+    bool result = true;//初始化结果为true，表示默认同步成功
+    auto start = std::chrono::system_clock::now();//获取当前时间点作为开始时间
+    while (frame > episode.GetState()->GetTimestamp().frame) {//当当前帧大于episode中的状态时，循环等待
+      std::this_thread::yield();//放弃当前线程的剩余时间片，允许其他线程运行
+      auto end = std::chrono::system_clock::now();//获取当前时间点作为结束时间
+      auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);//计算从开始到结束的时间差，并转换为毫秒
+      if(timeout.to_chrono() < diff) {//如果已经超过了指定的超时时间，则设置结果为false并退出循环
         result = false;
         break;
       }
     }
-    if(result) {
+    if(result) {//如果成功同步，则调用TrafficManager的Tick方法
       carla::traffic_manager::TrafficManager::Tick();
     }
 
-    return result;
+    return result;//返回同步结果
   }
 
   // ===========================================================================
