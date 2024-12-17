@@ -314,7 +314,7 @@ install(FILES ${libcarla_carla_ros2_sources} DESTINATION include/carla/ros2)
 # 构建发布版
 if (LIBCARLA_BUILD_RELEASE)
   add_library(carla_client${carla_target_postfix} STATIC ${libcarla_sources})
-
+#设置目标包含目录（使用target_include_directories命令为Carla_client库设置包含目录）
   target_include_directories(carla_client${carla_target_postfix} SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}"
