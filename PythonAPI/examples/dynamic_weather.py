@@ -13,9 +13,9 @@ Connect to a CARLA Simulator instance and control the weather. Change Sun
 position smoothly with time and generate storms occasionally.
 """
 
-import glob
+import glob#导入glob模块
 import os
-import sys
+import sys#导入sys模块
 
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
@@ -28,10 +28,10 @@ except IndexError:
 import carla
 
 import argparse
-import math
+import math#导入python的标准数学库
 
 
-def clamp(value, minimum=0.0, maximum=100.0):
+def clamp(value, minimum=0.0, maximum=100.0):#clamp函数的定义
     return max(minimum, min(value, maximum))
 
 
