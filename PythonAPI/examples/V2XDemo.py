@@ -149,7 +149,7 @@ except ImportError:
 # ==============================================================================
 
 
-def find_weather_presets():
+def find_weather_presets():#函数定义
     rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
     name = lambda x: ' '.join(m.group(0) for m in rgx.finditer(x))
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
@@ -171,7 +171,7 @@ def get_actor_blueprints(world, filter, generation):
     if len(bps) == 1:
         return bps
 
-    try:
+    try:#可能应用的场景
         int_generation = int(generation)
         # Check if generation is in available generations
         if int_generation in [1, 2]:
