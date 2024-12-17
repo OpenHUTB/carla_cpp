@@ -332,6 +332,7 @@ if (LIBCARLA_BUILD_RELEASE)
 #使用install命令来安装carla_client库
   install(TARGETS carla_client${carla_target_postfix} DESTINATION lib)
 
+#windows平台特定处理：使用set_target_postfix命令设置carla_client库的编译标准
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
 
