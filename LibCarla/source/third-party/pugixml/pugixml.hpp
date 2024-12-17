@@ -200,65 +200,65 @@ namespace pugi
 
 	// 此标志用于确定纯文本字符数据是否存储在父元素的值中。这会极大地改变（句子似乎未表述完整，后面应该还有如 “改变什么的结构” 等相关内容）。
 	// 文档的结构；仅建议在内存受限的环境中解析包含大量纯文本字符数据（PCDATA）节点的文档时使用该标志。
-	// This flag is off by default.
+	//该标志默认是关闭的。
 	const unsigned int parse_embed_pcdata = 0x2000;
 
-	// The default parsing mode.
-	// Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded,
-	// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
+	// 默认解析模式。
+	// 元素、可解析字符数据（PCDATA）以及字符数据（CDATA）部分会被添加到文档对象模型（DOM）树中，字符 / 引用实体将被展开，
+	//行结束符会被规范化，属性值会依据字符数据规范化规则进行规范化处理。
 	const unsigned int parse_default = parse_cdata | parse_escapes | parse_wconv_attribute | parse_eol;
 
-	// The full parsing mode.
-	// Nodes of all types are added to the DOM tree, character/reference entities are expanded,
-	// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
+	//完整解析模式。
+	//所有类型的节点都会被添加到文档对象模型（DOM）树中，字符 / 引用实体将被展开，
+	//  行结束符会被规范化，属性值会使用字符数据规范化规则进行规范化处理。
 	const unsigned int parse_full = parse_default | parse_pi | parse_comments | parse_declaration | parse_doctype;
 
-	// These flags determine the encoding of input data for XML document
+	// 这些标志确定 XML 文档的输入数据的编码
 	enum xml_encoding
 	{
-		encoding_auto,		// Auto-detect input encoding using BOM or < / <? detection; use UTF8 if BOM is not found
-		encoding_utf8,		// UTF8 encoding
-		encoding_utf16_le,	// Little-endian UTF16
-		encoding_utf16_be,	// Big-endian UTF16
-		encoding_utf16,		// UTF16 with native endianness
-		encoding_utf32_le,	// Little-endian UTF32
-		encoding_utf32_be,	// Big-endian UTF32
-		encoding_utf32,		// UTF32 with native endianness
-		encoding_wchar,		// The same encoding wchar_t has (either UTF16 or UTF32)
+		encoding_auto,		//使用 BOM 或 < / < 自动检测输入编码？检波;如果未找到 BOM，请使用 UTF8
+		encoding_utf8,		// UTF8 编码
+		encoding_utf16_le,	// 小端序 UTF16
+		encoding_utf16_be,	// 大端序 UTF16
+		encoding_utf16,		// 采用本机字节序的 UTF16
+		encoding_utf32_le,	// 小端序 UTF32
+		encoding_utf32_be,	//大端序 UTF32
+		encoding_utf32,		// 采用本机字节序的 UTF32
+		encoding_wchar,		//  与 wchar_t 相同的编码（UTF16 或 UTF32）
 		encoding_latin1
 	};
 
-	// Formatting flags
+	// 格式化标志
 
-	// Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default.
+	// 根据节点在 DOM 树中的深度，使用相应数量的缩进字符串对写入输出流的节点进行缩进。此标志默认处于开启状态。
 	const unsigned int format_indent = 0x01;
 
-	// Write encoding-specific BOM to the output stream. This flag is off by default.
+	//将特定编码的字节顺序标记（BOM）写入输出流。此标志默认处于关闭状态。
 	const unsigned int format_write_bom = 0x02;
 
-	// Use raw output mode (no indentation and no line breaks are written). This flag is off by default.
+	//使用原始输出模式（不进行缩进，也不写入换行符）。此标志默认处于关闭状态。
 	const unsigned int format_raw = 0x04;
 
-	// Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
+	//  即便文档中没有 XML 声明，也省略默认的 XML 声明。此标志默认处于关闭状态。
 	const unsigned int format_no_declaration = 0x08;
 
-	// Don't escape attribute values and PCDATA contents. This flag is off by default.
+	// 不对属性值和 PCDATA 内容进行转义。此标志默认处于关闭状态。
 	const unsigned int format_no_escapes = 0x10;
 
-	// Open file using text mode in xml_document::save_file. This enables special character (i.e. new-line) conversions on some systems. This flag is off by default.
+	//在 xml_document::save_file 中使用文本模式打开文件。这会在某些系统上启用特殊字符（例如换行符）的转换。此标志默认处于关闭状态。
 	const unsigned int format_save_file_text = 0x20;
 
-	// Write every attribute on a new line with appropriate indentation. This flag is off by default.
+	// 将每个属性写在新的一行，并带有适当的缩进。此标志默认处于关闭状态。
 	const unsigned int format_indent_attributes = 0x40;
 
-	// Don't output empty element tags, instead writing an explicit start and end tag even if there are no children. This flag is off by default.
+	// 不输出空元素标签，而是即便没有子元素，也显式地写出开始标签和结束标签。此标志默认处于关闭状态。
 	const unsigned int format_no_empty_element_tags = 0x80;
 
-	// The default set of formatting flags.
-	// Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
+	//  默认的格式化标志集。
+	//根据节点在 DOM 树中的深度对其进行缩进，如果文档没有默认声明则输出该声明。
 	const unsigned int format_default = format_indent;
 
-	// Forward declarations
+	//前置声明
 	struct xml_attribute_struct;
 	struct xml_node_struct;
 
