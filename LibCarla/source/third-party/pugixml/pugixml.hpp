@@ -632,79 +632,79 @@ namespace pugi
 			return xml_node();
 		}
 
-		// Find child node by attribute name/value
+		// 通过属性名称 / 值查找子节点
 		xml_node find_child_by_attribute(const char_t* name, const char_t* attr_name, const char_t* attr_value) const;
 		xml_node find_child_by_attribute(const char_t* attr_name, const char_t* attr_value) const;
 
 	#ifndef PUGIXML_NO_STL
-		// Get the absolute node path from root as a text string.
+		// 将从根节点开始的绝对节点路径作为文本字符串获取。
 		string_t path(char_t delimiter = '/') const;
 	#endif
 
-		// Search for a node by path consisting of node names and . or .. elements.
+		//通过由节点名称以及 “.” 或 “..” 元素组成的路径来搜索节点。
 		xml_node first_element_by_path(const char_t* path, char_t delimiter = '/') const;
 
-		// Recursively traverse subtree with xml_tree_walker
+		// 使用 xml_tree_walker 递归遍历子树
 		bool traverse(xml_tree_walker& walker);
 
 	#ifndef PUGIXML_NO_XPATH
-		// Select single node by evaluating XPath query. Returns first node from the resulting node set.
+		// 通过计算 XPath 查询来选择单个节点。返回结果节点集中的第一个节点。
 		xpath_node select_node(const char_t* query, xpath_variable_set* variables = 0) const;
 		xpath_node select_node(const xpath_query& query) const;
 
-		// Select node set by evaluating XPath query
+		// 通过计算 XPath 查询来选择节点集
 		xpath_node_set select_nodes(const char_t* query, xpath_variable_set* variables = 0) const;
 		xpath_node_set select_nodes(const xpath_query& query) const;
 
-		// (deprecated: use select_node instead) Select single node by evaluating XPath query.
+		//已弃用：请改用 select_node）通过计算 XPath 查询来选择单个节点。
 		PUGIXML_DEPRECATED xpath_node select_single_node(const char_t* query, xpath_variable_set* variables = 0) const;
 		PUGIXML_DEPRECATED xpath_node select_single_node(const xpath_query& query) const;
 
 	#endif
 
-		// Print subtree using a writer object
+		// 使用写入器对象打印子树
 		void print(xml_writer& writer, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto, unsigned int depth = 0) const;
 
 	#ifndef PUGIXML_NO_STL
-		// Print subtree to stream
+		//将子树打印到流中
 		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto, unsigned int depth = 0) const;
 		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, unsigned int depth = 0) const;
 	#endif
 
-		// Child nodes iterators
+		// 子节点迭代器
 		typedef xml_node_iterator iterator;
 
 		iterator begin() const;
 		iterator end() const;
 
-		// Attribute iterators
+		// 属性迭代器
 		typedef xml_attribute_iterator attribute_iterator;
 
 		attribute_iterator attributes_begin() const;
 		attribute_iterator attributes_end() const;
 
-		// Range-based for support
+		// 基于范围的 for 循环支持
 		xml_object_range<xml_node_iterator> children() const;
 		xml_object_range<xml_named_node_iterator> children(const char_t* name) const;
 		xml_object_range<xml_attribute_iterator> attributes() const;
 
-		// Get node offset in parsed file/string (in char_t units) for debugging purposes
+		//出于调试目的，获取节点在已解析文件 / 字符串中的偏移量（以 char_t 为单位）
 		ptrdiff_t offset_debug() const;
 
-		// Get hash value (unique for handles to the same object)
+		//  获取哈希值（对于指向同一个对象的句柄来说是唯一的）
 		size_t hash_value() const;
 
-		// Get internal pointer
+		//获取内部指针
 		xml_node_struct* internal_object() const;
 	};
 
 #ifdef __BORLANDC__
-	// Borland C++ workaround
+	//Borland C++ 解决办法
 	bool PUGIXML_FUNCTION operator&&(const xml_node& lhs, bool rhs);
 	bool PUGIXML_FUNCTION operator||(const xml_node& lhs, bool rhs);
 #endif
 
-	// A helper for working with text inside PCDATA nodes
+	//一个用于处理已解析字符数据（PCDATA）节点内文本的辅助工具
 	class PUGIXML_CLASS xml_text
 	{
 		friend class xml_node;
@@ -719,25 +719,25 @@ namespace pugi
 		xml_node_struct* _data() const;
 
 	public:
-		// Default constructor. Constructs an empty object.
+		//默认构造函数。构造一个空对象。
 		xml_text();
 
-		// Safe bool conversion operator
+		//安全布尔转换操作符
 		operator unspecified_bool_type() const;
 
-		// Borland C++ workaround
+		//  Borland C++ 解决办法
 		bool operator!() const;
 
-		// Check if text object is empty
+		//检查文本对象是否为空
 		bool empty() const;
 
-		// Get text, or "" if object is empty
+		// 获取文本内容，如果对象为空则返回 ""（空字符串）
 		const char_t* get() const;
 
-		// Get text, or the default value if object is empty
+		//获取文本内容，如果对象为空则返回默认值
 		const char_t* as_string(const char_t* def = PUGIXML_TEXT("")) const;
 
-		// Get text as a number, or the default value if conversion did not succeed or object is empty
+		// 将文本内容作为数字获取，如果转换不成功或者对象为空则返回默认值
 		int as_int(int def = 0) const;
 		unsigned int as_uint(unsigned int def = 0) const;
 		double as_double(double def = 0) const;
@@ -748,13 +748,13 @@ namespace pugi
 		unsigned long long as_ullong(unsigned long long def = 0) const;
 	#endif
 
-		// Get text as bool (returns true if first character is in '1tTyY' set), or the default value if object is empty
+		//  将文本内容作为布尔值获取（如果第一个字符在 '1tTyY' 集合中则返回 true，如果对象为空则返回默认值）
 		bool as_bool(bool def = false) const;
 
-		// Set text (returns false if object is empty or there is not enough memory)
+		//设置文本（如果对象为空或者内存不足则返回 false）
 		bool set(const char_t* rhs);
 
-		// Set text with type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
+		//通过类型转换来设置文本（数字会被转换为字符串，布尔值会被转换为 "true" 或 "false"）
 		bool set(int rhs);
 		bool set(unsigned int rhs);
 		bool set(long rhs);
@@ -768,7 +768,7 @@ namespace pugi
 		bool set(unsigned long long rhs);
 	#endif
 
-		// Set text (equivalent to set without error checking)
+		// 设置文本（等同于不进行错误检查的设置操作）
 		xml_text& operator=(const char_t* rhs);
 		xml_text& operator=(int rhs);
 		xml_text& operator=(unsigned int rhs);
@@ -783,17 +783,17 @@ namespace pugi
 		xml_text& operator=(unsigned long long rhs);
 	#endif
 
-		// Get the data node (node_pcdata or node_cdata) for this object
+		// 获取此对象的数据节点（已解析字符数据节点 node_pcdata 或者字符数据节点 node_cdata）
 		xml_node data() const;
 	};
 
 #ifdef __BORLANDC__
-	// Borland C++ workaround
+	//Borland C++ 解决办法
 	bool PUGIXML_FUNCTION operator&&(const xml_text& lhs, bool rhs);
 	bool PUGIXML_FUNCTION operator||(const xml_text& lhs, bool rhs);
 #endif
 
-	// Child node iterator (a bidirectional iterator over a collection of xml_node)
+	//  子节点迭代器（一个针对 xml_node 集合的双向迭代器）
 	class PUGIXML_CLASS xml_node_iterator
 	{
 		friend class xml_node;
@@ -805,7 +805,7 @@ namespace pugi
 		xml_node_iterator(xml_node_struct* ref, xml_node_struct* parent);
 
 	public:
-		// Iterator traits
+		// 迭代器特性
 		typedef ptrdiff_t difference_type;
 		typedef xml_node value_type;
 		typedef xml_node* pointer;
