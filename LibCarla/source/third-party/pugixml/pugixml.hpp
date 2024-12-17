@@ -355,19 +355,19 @@ namespace pugi
 		typedef void (*unspecified_bool_type)(xml_attribute***);
 
 	public:
-		// Default constructor. Constructs an empty attribute.
+		//默认构造函数。构造一个空的属性。
 		xml_attribute();
 
-		// Constructs attribute from internal pointer
+		// 从内部指针构造属性
 		explicit xml_attribute(xml_attribute_struct* attr);
 
-		// Safe bool conversion operator
+		// 安全布尔转换操作符
 		operator unspecified_bool_type() const;
 
-		// Borland C++ workaround
+		//Borland C++ 解决办法
 		bool operator!() const;
 
-		// Comparison operators (compares wrapped attribute pointers)
+		// 比较操作符（比较所包装的属性指针）
 		bool operator==(const xml_attribute& r) const;
 		bool operator!=(const xml_attribute& r) const;
 		bool operator<(const xml_attribute& r) const;
@@ -375,17 +375,17 @@ namespace pugi
 		bool operator<=(const xml_attribute& r) const;
 		bool operator>=(const xml_attribute& r) const;
 
-		// Check if attribute is empty
+		// 检查属性是否为空
 		bool empty() const;
 
-		// Get attribute name/value, or "" if attribute is empty
+		//  获取属性名称 / 值，如果属性为空则返回 ""（空字符串）
 		const char_t* name() const;
 		const char_t* value() const;
 
-		// Get attribute value, or the default value if attribute is empty
+		// 获取属性值，如果属性为空则返回默认值
 		const char_t* as_string(const char_t* def = PUGIXML_TEXT("")) const;
 
-		// Get attribute value as a number, or the default value if conversion did not succeed or attribute is empty
+		//将属性值作为数字获取，如果转换不成功或者属性为空则返回默认值
 		int as_int(int def = 0) const;
 		unsigned int as_uint(unsigned int def = 0) const;
 		double as_double(double def = 0) const;
@@ -396,14 +396,14 @@ namespace pugi
 		unsigned long long as_ullong(unsigned long long def = 0) const;
 	#endif
 
-		// Get attribute value as bool (returns true if first character is in '1tTyY' set), or the default value if attribute is empty
+		//将属性值作为布尔值获取（如果第一个字符在 '1tTyY' 集合中则返回 true，如果属性为空则返回默认值）
 		bool as_bool(bool def = false) const;
 
-		// Set attribute name/value (returns false if attribute is empty or there is not enough memory)
+		// 设置属性名称 / 值（如果属性为空或者内存不足则返回 false）
 		bool set_name(const char_t* rhs);
 		bool set_value(const char_t* rhs);
 
-		// Set attribute value with type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
+		// 通过类型转换来设置属性值（数字会被转换为字符串，布尔值会被转换为 "true" 或 "false"）
 		bool set_value(int rhs);
 		bool set_value(unsigned int rhs);
 		bool set_value(long rhs);
@@ -417,7 +417,7 @@ namespace pugi
 		bool set_value(unsigned long long rhs);
 	#endif
 
-		// Set attribute value (equivalent to set_value without error checking)
+		//设置属性值（等同于不进行错误检查的 set_value 操作）
 		xml_attribute& operator=(const char_t* rhs);
 		xml_attribute& operator=(int rhs);
 		xml_attribute& operator=(unsigned int rhs);
@@ -432,24 +432,24 @@ namespace pugi
 		xml_attribute& operator=(unsigned long long rhs);
 	#endif
 
-		// Get next/previous attribute in the attribute list of the parent node
+		// 获取父节点的属性列表中的下一个 / 上一个属性
 		xml_attribute next_attribute() const;
 		xml_attribute previous_attribute() const;
 
-		// Get hash value (unique for handles to the same object)
+		//获取哈希值（对于指向同一个对象的句柄来说是唯一的）
 		size_t hash_value() const;
 
-		// Get internal pointer
+		//  获取内部指针
 		xml_attribute_struct* internal_object() const;
 	};
 
 #ifdef __BORLANDC__
-	// Borland C++ workaround
+	//Borland C++ 解决办法
 	bool PUGIXML_FUNCTION operator&&(const xml_attribute& lhs, bool rhs);
 	bool PUGIXML_FUNCTION operator||(const xml_attribute& lhs, bool rhs);
 #endif
 
-	// A light-weight handle for manipulating nodes in DOM tree
+	//一个用于操作 DOM（文档对象模型）树中节点的轻量级句柄
 	class PUGIXML_CLASS xml_node
 	{
 		friend class xml_attribute_iterator;
@@ -462,19 +462,19 @@ namespace pugi
 		typedef void (*unspecified_bool_type)(xml_node***);
 
 	public:
-		// Default constructor. Constructs an empty node.
+		// 默认构造函数。构造一个空节点。
 		xml_node();
 
-		// Constructs node from internal pointer
+		// 从内部指针构造节点
 		explicit xml_node(xml_node_struct* p);
 
-		// Safe bool conversion operator
+		// 安全布尔转换操作符
 		operator unspecified_bool_type() const;
 
-		// Borland C++ workaround
+		// Borland C++ 解决办法
 		bool operator!() const;
 
-		// Comparison operators (compares wrapped node pointers)
+		//  比较操作符（比较所包装的节点指针）
 		bool operator==(const xml_node& r) const;
 		bool operator!=(const xml_node& r) const;
 		bool operator<(const xml_node& r) const;
