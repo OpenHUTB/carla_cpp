@@ -304,43 +304,51 @@ public:
     } Heading_t;
 
     /* SpeedValue Dependencies */
+ //以下定义了一个名为SpeedValue的枚举类型，用于表示速度相关的值。
+ //枚举中的每个成员对应不同的速度状态或具体速度值。
     typedef enum SpeedValue
     {
-        SpeedValue_standstill = 0,
-        SpeedValue_oneCentimeterPerSec = 1,
-        SpeedValue_unavailable = 16383
+        SpeedValue_standstill = 0, // 表示静止状态，速度值为0
+        SpeedValue_oneCentimeterPerSec = 1,// 表示每秒移动1厘米的速度状态，对应值为1
+        SpeedValue_unavailable = 16383// 表示速度不可用的状态，对应值为16383
     } e_SpeedValue;
-
+// 定义SpeedValue_t类型为long类型，用于存储速度值相关的数据，可能在后续代码中作为变量类型来使用。
     /* SpeedValue */
     typedef long SpeedValue_t;
 
     /* SpeedConfidence Dependencies */
+ //定义了一个名为SpeedConfidence的枚举类型，用于表示速度的置信度相关情况。
+ //不同的枚举成员代表不同程度的速度置信范围或者特殊的置信状态。
     typedef enum SpeedConfidence
     {
-        SpeedConfidence_equalOrWithInOneCentimerterPerSec = 1,
-        SpeedConfidence_equalOrWithinOneMeterPerSec = 100,
-        SpeedConfidence_outOfRange = 126,
-        SpeedConfidence_unavailable = 127
+        SpeedConfidence_equalOrWithInOneCentimerterPerSec = 1,// 表示速度的置信度在每秒正负1厘米范围内相等，对应值为1
+        SpeedConfidence_equalOrWithinOneMeterPerSec = 100, // 表示速度的置信度在每秒正负1米范围内相等，对应值为100
+        SpeedConfidence_outOfRange = 126, // 表示速度超出了有效范围，对应值为126
+        SpeedConfidence_unavailable = 127 // 表示速度的置信度不可用，对应值为127
     } e_SpeedConfidence;
-
+/ 定义SpeedConfidence_t类型为long类型，用于存储速度置信度相关的数据，方便在程序中作为变量类型进行操作。
     /* SpeedConfidence */
     typedef long SpeedConfidence_t;
 
     /* Speed */
+ // 此结构体用于将速度值（SpeedValue_t类型）和速度置信度（SpeedConfidence_t类型）组合在一起，
+ //方便在程序中作为一个整体来处理和传递速度相关的信息。
     typedef struct speed
     {
-        SpeedValue_t speedValue;
-        SpeedConfidence_t speedConfidence;
+        SpeedValue_t speedValue; // 存储速度值的成员变量
+        SpeedConfidence_t speedConfidence; // 存储速度置信度的成员变量
     } Speed_t;
 
     /* DriveDirection Dependencies */
+ //定义了一个名为DriveDirection的枚举类型，用于表示驱动方向相关的情况。
+ //枚举成员对应不同的行驶方向或者特殊的方向状态。
     typedef enum DriveDirection 
     {
-        DriveDirection_forward  = 0,
-        DriveDirection_backward = 1,
-        DriveDirection_unavailable  = 2
+        DriveDirection_forward  = 0, // 表示向前行驶的方向，对应值为0
+        DriveDirection_backward = 1, // 表示向后行驶的方向，对应值为1
+        DriveDirection_unavailable  = 2// 表示驱动方向不可用的状态，对应值为2
     } e_DriveDirection;
- 
+ // 定义DriveDirection_t类型为long类型，用于存储驱动方向相关的数据，在后续代码中可作为变量类型使用。
     /* DriveDirection */
     typedef long DriveDirection_t;
 
