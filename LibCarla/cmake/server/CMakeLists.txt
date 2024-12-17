@@ -132,21 +132,21 @@ file(GLOB libcarla_server_sources
 # 在同一构建类型中创建调试和发布的目标
 # ==============================================================================
 
-if (LIBCARLA_BUILD_RELEASE)
+if (LIBCARLA_BUILD_RELEASE)#构建静态库
 
   add_library(carla_server STATIC ${libcarla_server_sources})
 
-  target_include_directories(carla_server SYSTEM PRIVATE
+  target_include_directories(carla_server SYSTEM PRIVATE#包含设置目录
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
 
   install(TARGETS carla_server DESTINATION lib OPTIONAL)
 
-  set_target_properties(carla_server PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
+ #设置编译标志 set_target_properties(carla_server PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
 
 endif()
 
-if (LIBCARLA_BUILD_DEBUG)
+if (LIBCARLA_BUILD_DEBUG)#调试操作版本
 
   add_library(carla_server_debug STATIC ${libcarla_server_sources})
 
@@ -156,7 +156,7 @@ if (LIBCARLA_BUILD_DEBUG)
 
   install(TARGETS carla_server_debug DESTINATION lib OPTIONAL)
 
-  set_target_properties(carla_server_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
-  target_compile_definitions(carla_server_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
+  set_target_properties(carla_server_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")#设置编译标志
+  target_compile_definitions(carla_server_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)#设置编译定义
 
 endif()
