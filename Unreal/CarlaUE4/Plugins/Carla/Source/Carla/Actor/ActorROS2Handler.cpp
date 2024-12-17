@@ -16,7 +16,7 @@ void ActorROS2Handler::operator()(carla::ros2::VehicleControl &Source)
   ACarlaWheeledVehicle *Vehicle = Cast<ACarlaWheeledVehicle>(_Actor);
   if (!Vehicle) return;
 
-  // setup control values
+  // 设置控制值
   FVehicleControl NewControl;
   NewControl.Throttle = Source.throttle;
   NewControl.Steer = Source.steer;
