@@ -642,7 +642,7 @@ def main():
         walkercontrollers_list = world.get_actors().filter('controller.*')
         for control in walkercontrollers_list:
             control.stop()
-            control.destroy()
+            control.destroy()#控制日志和日志记录功能
 
         walkers_list = world.get_actors().filter('walker.*')
         print('\ndestroying %d walkers' % len(walkers_list))
