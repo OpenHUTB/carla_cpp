@@ -164,6 +164,7 @@ namespace client {
     ///交通灯和标志，根据提供的 获取交通标志或交通信号灯。代表地图中的特定位置。
 
     SharedPtr<Actor> GetTrafficLightFromOpenDRIVE(const road::SignId& sign_id) const;
+    ///根据OpenDRIVE标志ID获取对应的交通灯的智能指针
 
     void ResetAllTrafficLights();
 
