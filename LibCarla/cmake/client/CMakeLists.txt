@@ -329,6 +329,7 @@ if (LIBCARLA_BUILD_RELEASE)
       ${ADRSS_INCLUDE_DIRS})
   endif()
 
+#使用install命令来安装carla_client库
   install(TARGETS carla_client${carla_target_postfix} DESTINATION lib)
 
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
