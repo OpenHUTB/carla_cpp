@@ -482,109 +482,109 @@ namespace pugi
 		bool operator<=(const xml_node& r) const;
 		bool operator>=(const xml_node& r) const;
 
-		// Check if node is empty.
+		//检查节点是否为空。
 		bool empty() const;
 
-		// Get node type
+		// 获取节点类型
 		xml_node_type type() const;
 
-		// Get node name, or "" if node is empty or it has no name
+		// 获取节点名称，如果节点为空或者没有名称则返回 ""（空字符串）
 		const char_t* name() const;
 
-		// Get node value, or "" if node is empty or it has no value
-		// Note: For <node>text</node> node.value() does not return "text"! Use child_value() or text() methods to access text inside nodes.
+		// 获取节点名称，如果节点为空或者没有名称则返回 ""（空字符串）
+		// 注意：对于 <node>文本</node> 这样的形式，node.value () 并不会返回 "文本"！请使用 child_value () 或 text () 方法来访问节点内部的文本。
 		const char_t* value() const;
 
-		// Get attribute list
+		// 获取属性列表
 		xml_attribute first_attribute() const;
 		xml_attribute last_attribute() const;
 
-		// Get children list
+		// 获取子节点列表
 		xml_node first_child() const;
 		xml_node last_child() const;
 
-		// Get next/previous sibling in the children list of the parent node
+		//获取父节点的子节点列表中的下一个 / 上一个兄弟节点
 		xml_node next_sibling() const;
 		xml_node previous_sibling() const;
 
-		// Get parent node
+		//获取父节点
 		xml_node parent() const;
 
-		// Get root of DOM tree this node belongs to
+		// 获取此节点所属的 DOM（文档对象模型）树的根节点
 		xml_node root() const;
 
-		// Get text object for the current node
+		// 获取当前节点的文本对象
 		xml_text text() const;
 
-		// Get child, attribute or next/previous sibling with the specified name
+		//  获取具有指定名称的子节点、属性或下一个 / 上一个兄弟节点
 		xml_node child(const char_t* name) const;
 		xml_attribute attribute(const char_t* name) const;
 		xml_node next_sibling(const char_t* name) const;
 		xml_node previous_sibling(const char_t* name) const;
 
-		// Get attribute, starting the search from a hint (and updating hint so that searching for a sequence of attributes is fast)
+		//从提示位置开始获取属性（并更新提示，以便快速搜索一系列属性）
 		xml_attribute attribute(const char_t* name, xml_attribute& hint) const;
 
-		// Get child value of current node; that is, value of the first child node of type PCDATA/CDATA
+		// 获取当前节点的子节点值；也就是类型为 PCDATA（已解析字符数据）/CDATA（字符数据）的第一个子节点的值
 		const char_t* child_value() const;
 
-		// Get child value of child with specified name. Equivalent to child(name).child_value().
+		// 获取具有指定名称的子节点的子节点值。等同于 child (name).child_value ()。
 		const char_t* child_value(const char_t* name) const;
 
-		// Set node name/value (returns false if node is empty, there is not enough memory, or node can not have name/value)
+		//设置节点名称 / 值（如果节点为空、内存不足或者节点不能有名称 / 值，则返回 false）
 		bool set_name(const char_t* rhs);
 		bool set_value(const char_t* rhs);
 
-		// Add attribute with specified name. Returns added attribute, or empty attribute on errors.
+		//添加具有指定名称的属性。返回添加后的属性，若出错则返回空属性。
 		xml_attribute append_attribute(const char_t* name);
 		xml_attribute prepend_attribute(const char_t* name);
 		xml_attribute insert_attribute_after(const char_t* name, const xml_attribute& attr);
 		xml_attribute insert_attribute_before(const char_t* name, const xml_attribute& attr);
 
-		// Add a copy of the specified attribute. Returns added attribute, or empty attribute on errors.
+		// 添加指定属性的副本。返回添加后的属性，若出错则返回空属性。
 		xml_attribute append_copy(const xml_attribute& proto);
 		xml_attribute prepend_copy(const xml_attribute& proto);
 		xml_attribute insert_copy_after(const xml_attribute& proto, const xml_attribute& attr);
 		xml_attribute insert_copy_before(const xml_attribute& proto, const xml_attribute& attr);
 
-		// Add child node with specified type. Returns added node, or empty node on errors.
+		// 添加具有指定类型的子节点。返回添加后的节点，若出错则返回空节点。
 		xml_node append_child(xml_node_type type = node_element);
 		xml_node prepend_child(xml_node_type type = node_element);
 		xml_node insert_child_after(xml_node_type type, const xml_node& node);
 		xml_node insert_child_before(xml_node_type type, const xml_node& node);
 
-		// Add child element with specified name. Returns added node, or empty node on errors.
+		// 添加具有指定名称的子元素。返回添加后的节点，若出错则返回空节点。
 		xml_node append_child(const char_t* name);
 		xml_node prepend_child(const char_t* name);
 		xml_node insert_child_after(const char_t* name, const xml_node& node);
 		xml_node insert_child_before(const char_t* name, const xml_node& node);
 
-		// Add a copy of the specified node as a child. Returns added node, or empty node on errors.
+		// 将指定节点的副本作为子节点添加。返回添加后的节点，若出错则返回空节点。
 		xml_node append_copy(const xml_node& proto);
 		xml_node prepend_copy(const xml_node& proto);
 		xml_node insert_copy_after(const xml_node& proto, const xml_node& node);
 		xml_node insert_copy_before(const xml_node& proto, const xml_node& node);
 
-		// Move the specified node to become a child of this node. Returns moved node, or empty node on errors.
+		// 将指定节点移动使其成为此节点的子节点。返回移动后的节点，若出错则返回空节点。
 		xml_node append_move(const xml_node& moved);
 		xml_node prepend_move(const xml_node& moved);
 		xml_node insert_move_after(const xml_node& moved, const xml_node& node);
 		xml_node insert_move_before(const xml_node& moved, const xml_node& node);
 
-		// Remove specified attribute
+		//删除指定属性
 		bool remove_attribute(const xml_attribute& a);
 		bool remove_attribute(const char_t* name);
 
-		// Remove specified child
+		//删除指定子节点
 		bool remove_child(const xml_node& n);
 		bool remove_child(const char_t* name);
 
-		// Parses buffer as an XML document fragment and appends all nodes as children of the current node.
-		// Copies/converts the buffer, so it may be deleted or changed after the function returns.
-		// Note: append_buffer allocates memory that has the lifetime of the owning document; removing the appended nodes does not immediately reclaim that memory.
-		xml_parse_result append_buffer(const void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
+		// 将缓冲区解析为一个 XML 文档片段，并将所有节点作为当前节点的子节点进行追加。
+		// 会复制 / 转换缓冲区内容，所以在函数返回后，该缓冲区可以被删除或更改。
+		//注意：append_buffer 会分配内存，其生命周期与所属文档相同；移除已追加的节点并不会立即回收该内存
+                xml_parse_result append_buffer(const void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		// Find attribute using predicate. Returns first attribute for which predicate returned true.
+		// 使用谓词查找属性。返回使谓词返回为真的第一个属性。
 		template <typename Predicate> xml_attribute find_attribute(Predicate pred) const
 		{
 			if (!_root) return xml_attribute();
@@ -596,7 +596,7 @@ namespace pugi
 			return xml_attribute();
 		}
 
-		// Find child node using predicate. Returns first child for which predicate returned true.
+		// 使用谓词查找子节点。返回使谓词返回值为真的第一个子节点。
 		template <typename Predicate> xml_node find_child(Predicate pred) const
 		{
 			if (!_root) return xml_node();
@@ -608,7 +608,7 @@ namespace pugi
 			return xml_node();
 		}
 
-		// Find node from subtree using predicate. Returns first node from subtree (depth-first), for which predicate returned true.
+		//使用谓词从子树中查找节点。返回子树中（深度优先遍历的情况下）使谓词返回值为真的第一个节点。
 		template <typename Predicate> xml_node find_node(Predicate pred) const
 		{
 			if (!_root) return xml_node();
