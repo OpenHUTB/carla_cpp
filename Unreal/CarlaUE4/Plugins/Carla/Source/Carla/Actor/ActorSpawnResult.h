@@ -8,7 +8,7 @@
 
 #include "ActorSpawnResult.generated.h"
 
-/// List of valid types for actor attributes.
+/// 参与者属性有效类型的列表
 UENUM(BlueprintType)
 enum class EActorSpawnResultStatus : uint8
 {
@@ -20,7 +20,7 @@ enum class EActorSpawnResultStatus : uint8
   SIZE                         UMETA(Hidden)
 };
 
-/// Result of an actor spawn function.
+/// 参与者生成函数的结果
 USTRUCT(BlueprintType)
 struct FActorSpawnResult
 {

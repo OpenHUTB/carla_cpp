@@ -21,7 +21,7 @@ namespace Networking {
 static const uint64_t MIN_TRY_COUNT = 20u; // 最小尝试次数
 static const unsigned short TM_DEFAULT_PORT = 8000u; // 交通管理默认端口
 static const int64_t TM_TIMEOUT = 2000; // 超时时间（毫秒）
-} // namespace Networking
+} // 命名空间 网络
 
 namespace VehicleRemoval {
 static const float STOPPED_VELOCITY_THRESHOLD = 0.8f; // 停止速度阈值
