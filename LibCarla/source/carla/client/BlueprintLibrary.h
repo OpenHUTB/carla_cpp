@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -57,19 +57,19 @@ namespace client {
     /// @warning 线性复杂度。
     /// @throw std::out_of_range if !(pos < size()).
     const_reference at(size_type pos) const;
-
+    // 返回一个指向容器中第一个元素的常量迭代器，该迭代器只能读取值。
     const_iterator begin() const /*noexcept*/ {
       return iterator::make_map_values_const_iterator(_blueprints.begin());
     }
-
+    // 返回一个指向容器末尾的常量迭代器，该迭代器只能读取值。
     const_iterator end() const /*noexcept*/ {
       return iterator::make_map_values_const_iterator(_blueprints.end());
     }
-
+    // 检查容器是否为空，如果没有任何元素则返回true。
     bool empty() const /*noexcept*/ {
       return _blueprints.empty();
     }
-
+    // 返回容器中元素的数量。
     size_type size() const /*noexcept*/ {
       return _blueprints.size();
     }

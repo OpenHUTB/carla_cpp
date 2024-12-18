@@ -81,82 +81,81 @@ void VehicleLightStage::Update(const unsigned long index) {
     }
   }
 
-  // 确定位置灯、雾灯和光束状态
+    // 确定位置灯、雾灯和光束状态
 
-  // 在日落到黎明之间开启光束和位置灯
-}
- if (weather.sun_altitude_angle < SUN_ALTITUDE_DEGREES_BEFORE_DAWN || // 如果太阳高度角小于黎明前的阈值
-    weather.sun_altitude_angle > SUN_ALTITUDE_DEGREES_AFTER_SUNSET) // 或者大于日落后的阈值
-{
-    position = true; // 开启位置灯
-    low_beam = true; // 开启近光灯
-}
-else if (weather.sun_altitude_angle < SUN_ALTITUDE_DEGREES_JUST_AFTER_DAWN || // 如果太阳高度角小于黎明后刚过的阈值
-         weather.sun_altitude_angle > SUN_ALTITUDE_DEGREES_JUST_BEFORE_SUNSET) // 或者大于日落前刚过的阈值
-{
-    position = true; // 开启位置灯
-}
+    // 在日落到黎明之间开启光束和位置灯
+     if (weather.sun_altitude_angle < SUN_ALTITUDE_DEGREES_BEFORE_DAWN || // 如果太阳高度角小于黎明前的阈值
+        weather.sun_altitude_angle > SUN_ALTITUDE_DEGREES_AFTER_SUNSET) // 或者大于日落后的阈值
+    {
+        position = true; // 开启位置灯
+        low_beam = true; // 开启近光灯
+    }
+    else if (weather.sun_altitude_angle < SUN_ALTITUDE_DEGREES_JUST_AFTER_DAWN || // 如果太阳高度角小于黎明后刚过的阈值
+             weather.sun_altitude_angle > SUN_ALTITUDE_DEGREES_JUST_BEFORE_SUNSET) // 或者大于日落前刚过的阈值
+    {
+        position = true; // 开启位置灯
+    }
 
-// 在大雨天气下开启灯光
-if (weather.precipitation > HEAVY_PRECIPITATION_THRESHOLD) { // 如果降水量超过大雨阈值
-    position = true; // 开启位置灯
-    low_beam = true; // 开启近光灯
-}
+    // 在大雨天气下开启灯光
+    if (weather.precipitation > HEAVY_PRECIPITATION_THRESHOLD) { // 如果降水量超过大雨阈值
+        position = true; // 开启位置灯
+        low_beam = true; // 开启近光灯
+    }
 
-// 开启雾灯
-if (weather.fog_density > FOG_DENSITY_THRESHOLD) { // 如果雾密度超过雾灯阈值
-    position = true; // 开启位置灯
-    low_beam = true; // 开启近光灯
-    fog_lights = true; // 开启雾灯
-}
+    // 开启雾灯
+    if (weather.fog_density > FOG_DENSITY_THRESHOLD) { // 如果雾密度超过雾灯阈值
+        position = true; // 开启位置灯
+        low_beam = true; // 开启近光灯
+        fog_lights = true; // 开启雾灯
+    }
 
-// 确定新的车辆灯光状态
-rpc::VehicleLightState::flag_type new_light_states = light_states; // 初始化新的灯光状态为当前状态
+    // 确定新的车辆灯光状态
+    rpc::VehicleLightState::flag_type new_light_states = light_states; // 初始化新的灯光状态为当前状态
 
-if (brake_lights) // 如果刹车灯开启
-    new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Brake); // 设置刹车灯状态
-else
-    new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Brake); // 关闭刹车灯状态
+    if (brake_lights) // 如果刹车灯开启
+        new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Brake); // 设置刹车灯状态
+    else
+        new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Brake); // 关闭刹车灯状态
 
-if (left_turn_indicator) // 如果左转指示灯开启
-    new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::LeftBlinker); // 设置左转指示灯状态
-else
-    new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::LeftBlinker); // 关闭左转指示灯状态
+    if (left_turn_indicator) // 如果左转指示灯开启
+        new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::LeftBlinker); // 设置左转指示灯状态
+    else
+        new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::LeftBlinker); // 关闭左转指示灯状态
 
-if (right_turn_indicator) // 如果右转指示灯开启
-    new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::RightBlinker); // 设置右转指示灯状态
-else
-    new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::RightBlinker); // 关闭右转指示灯状态
+    if (right_turn_indicator) // 如果右转指示灯开启
+        new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::RightBlinker); // 设置右转指示灯状态
+    else
+        new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::RightBlinker); // 关闭右转指示灯状态
 
-if (position) // 如果位置灯开启
-    new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Position); // 设置位置灯状态
-else
-    new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Position); // 关闭位置灯状态
+    if (position) // 如果位置灯开启
+        new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Position); // 设置位置灯状态
+    else
+        new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Position); // 关闭位置灯状态
 
-if (low_beam) // 如果近光灯开启
-    new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::LowBeam); // 设置近光灯状态
-else
-    new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::LowBeam); // 关闭近光灯状态
+    if (low_beam) // 如果近光灯开启
+        new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::LowBeam); // 设置近光灯状态
+    else
+        new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::LowBeam); // 关闭近光灯状态
 
-if (high_beam) // 如果远光灯开启
-    new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::HighBeam); // 设置远光灯状态
-else
-    new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::HighBeam); // 关闭远光灯状态
+    if (high_beam) // 如果远光灯开启
+        new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::HighBeam); // 设置远光灯状态
+    else
+        new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::HighBeam); // 关闭远光灯状态
 
-if (fog_lights) // 如果雾灯开启
-    new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Fog); // 设置雾灯状态
-else
-    new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Fog); // 关闭雾灯状态
+    if (fog_lights) // 如果雾灯开启
+        new_light_states |= rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Fog); // 设置雾灯状态
+    else
+        new_light_states &= ~rpc::VehicleLightState::flag_type(rpc::VehicleLightState::LightState::Fog); // 关闭雾灯状态
 
-// 如果灯光状态发生变化，更新车辆灯光状态
-if (new_light_states != light_states) // 检查新的灯光状态是否与当前状态不同
-    control_frame.push_back(carla::rpc::Command::SetVehicleLightState(actor_id, new_light_states)); // 更新灯光状态命令
+    // 如果灯光状态发生变化，更新车辆灯光状态
+    if (new_light_states != light_states) // 检查新的灯光状态是否与当前状态不同
+        control_frame.push_back(carla::rpc::Command::SetVehicleLightState(actor_id, new_light_states)); // 更新灯光状态命令
 
-void VehicleLightStage::RemoveActor(const ActorId) { // 移除车辆的函数（尚未实现）
-}
+    void VehicleLightStage::RemoveActor(const ActorId) { // 移除车辆的函数（尚未实现）
+    }
 
-void VehicleLightStage::Reset() { // 重置车辆灯光状态的函数（尚未实现）
-}
+    void VehicleLightStage::Reset() { // 重置车辆灯光状态的函数（尚未实现）
+    }
 
 } // namespace traffic_manager
 } // namespace carla

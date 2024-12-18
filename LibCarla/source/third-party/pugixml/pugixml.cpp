@@ -48,45 +48,45 @@
 
 #ifdef _MSC_VER
 #	pragma warning(push)
-#	pragma warning(disable: 4127) // conditional expression is constant
-#	pragma warning(disable: 4324) // structure was padded due to __declspec(align())
-#	pragma warning(disable: 4702) // unreachable code
-#	pragma warning(disable: 4996) // this function or variable may be unsafe
+#	pragma warning(disable: 4127) // 条件表达式是常量
+#	pragma warning(disable: 4324) //这句话表示结构体（structure）由于使用了 __declspec(align()) 声明而进行了填充（padding）操作。
+#	pragma warning(disable: 4702) //不可达代码
+#	pragma warning(disable: 4996) // 这个函数或变量可能不安全
 #endif
 
 #if defined(_MSC_VER) && defined(__c2__)
 #	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wdeprecated" // this function or variable may be unsafe
+#	pragma clang diagnostic ignored "-Wdeprecated" // 这个函数或变量可能不安全
 #endif
 
 #ifdef __INTEL_COMPILER
-#	pragma warning(disable: 177) // function was declared but never referenced
-#	pragma warning(disable: 279) // controlling expression is constant
-#	pragma warning(disable: 1478 1786) // function was declared "deprecated"
-#	pragma warning(disable: 1684) // conversion from pointer to same-sized integral type
+#	pragma warning(disable: 177) // 函数已被声明，但从未被引用
+#	pragma warning(disable: 279) // 控制表达式是常量
+#	pragma warning(disable: 1478 1786) // 函数被声明为‘弃用
+#	pragma warning(disable: 1684) //从指针转换为同等大小的整型类型。
 #endif
 
 #if defined(__BORLANDC__) && defined(PUGIXML_HEADER_ONLY)
-#	pragma warn -8080 // symbol is declared but never used; disabling this inside push/pop bracket does not make the warning go away
+#	pragma warn -8080 //符号已被声明但从未被使用；即便在入栈 / 出栈括号内禁用（相关设置），该警告也不会消失
 #endif
 
 #ifdef __BORLANDC__
 #	pragma option push
-#	pragma warn -8008 // condition is always false
-#	pragma warn -8066 // unreachable code
+#	pragma warn -8008 //条件始终为假
+#	pragma warn -8066 //不可达代码
 #endif
 
 #ifdef __SNC__
-// Using diag_push/diag_pop does not disable the warnings inside templates due to a compiler bug
-#	pragma diag_suppress=178 // function was declared but never referenced
-#	pragma diag_suppress=237 // controlling expression is constant
+// 由于编译器的一个漏洞，使用 diag_push 和 diag_pop 无法禁用模板内部的警告。
+#	pragma diag_suppress=178 // 函数已声明但从未被引用
+#	pragma diag_suppress=237 // 控制表达式是常量
 #endif
 
 #ifdef __TI_COMPILER_VERSION__
-#	pragma diag_suppress 179 // function was declared but never referenced
+#	pragma diag_suppress 179 // 函数已被声明，但从未被引用
 #endif
 
-// Inlining controls
+//内联控制
 #if defined(_MSC_VER) && _MSC_VER >= 1300
 #	define PUGI__NO_INLINE __declspec(noinline)
 #elif defined(__GNUC__)
@@ -95,14 +95,14 @@
 #	define PUGI__NO_INLINE
 #endif
 
-// Branch weight controls
+//分支权重控制
 #if defined(__GNUC__) && !defined(__c2__)
 #	define PUGI__UNLIKELY(cond) __builtin_expect(cond, 0)
 #else
 #	define PUGI__UNLIKELY(cond) (cond)
 #endif
 
-// Simple static assertion
+//简单静态断言
 #define PUGI__STATIC_ASSERT(cond) { static const char condition_failed[(cond) ? 1 : -1] = {0}; (void)condition_failed[0]; }
 
 // Digital Mars C++ bug workaround for passing char loaded from memory via stack
@@ -424,49 +424,55 @@ PUGI__NS_BEGIN
 			// 如果上面的断言失败，则返回0（实际上由于断言的存在，这行代码不会被执行）
 			return 0;
 		}
-
+		// 定义一个静态函数，用于计算给定键的哈希值，并处理可能的无符号整数溢出
 		static PUGI__UNSIGNED_OVERFLOW unsigned int hash(const void* key)
 		{
+			// 将指针转换为无符号整数类型（uintptr_t），然后转换为unsigned int。
+			// 这里的转换是为了获取一个可以用于哈希计算的数值。
 			unsigned int h = static_cast<unsigned int>(reinterpret_cast<uintptr_t>(key));
 
 			// MurmurHash3 32-bit finalizer
-			h ^= h >> 16;
-			h *= 0x85ebca6bu;
-			h ^= h >> 13;
-			h *= 0xc2b2ae35u;
-			h ^= h >> 16;
+			h ^= h >> 16;		// 将h右移16位后与自身异或
+			h *= 0x85ebca6bu;	// 乘以一个魔术数字（常数）
+			h ^= h >> 13;		// 再次右移13位后与自身异或
+			h *= 0xc2b2ae35u;	// 再次乘以另一个魔术数字
+			h ^= h >> 16;		// 最后，再次右移16位后与自身异或
 
 			return h;
 		}
 	};
-
+	// 定义一个函数，用于根据当前存储的元素数量重新调整哈希表的容量
 	PUGI__FN_NO_INLINE bool compact_hash_table::rehash(size_t count)
 	{
+		// 初始化容量为32
 		size_t capacity = 32;
+		// 当当前元素数量大于等于当前容量的3/4时，将容量翻倍，直到满足条件
 		while (count >= capacity - capacity / 4)
 			capacity *= 2;
-
+		// 创建一个新的哈希表实例
 		compact_hash_table rt;
+		// 设置新哈希表的容量为计算得到的新容量
 		rt._capacity = capacity;
+		// 为新哈希表分配内存空间
 		rt._items = static_cast<item_t*>(xml_memory::allocate(sizeof(item_t) * capacity));
-
+		// 如果内存分配失败，则返回false
 		if (!rt._items)
 			return false;
-
+		// 将新分配的内存空间初始化为0
 		memset(rt._items, 0, sizeof(item_t) * capacity);
-
+		// 遍历旧哈希表的每一项，如果键不为空，则将其插入到新哈希表中
 		for (size_t i = 0; i < _capacity; ++i)
 			if (_items[i].key)
 				rt.insert(_items[i].key, _items[i].value);
-
+		// 如果旧哈希表有已分配的内存，则释放它
 		if (_items)
 			xml_memory::deallocate(_items);
-
+		// 更新旧哈希表的容量为新的容量，并设置其项指针为新分配的内存
 		_capacity = capacity;
 		_items = rt._items;
-
+		// 断言确保重新哈希后元素数量未变。
 		assert(_count == rt._count);
-
+		// 返回true，表示重新哈希成功
 		return true;
 	}
 
@@ -503,36 +509,40 @@ PUGI__NS_BEGIN
 	#define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
 
 	struct xml_allocator;
-
+	// 定义xml_memory_page结构体，用于管理内存页
 	struct xml_memory_page
 	{
+		// 静态成员函数，用于在给定内存块上构造xml_memory_page对象
+		// 这个函数不分配新的内存，而是将传入的void*内存块转换为xml_memory_page*并初始化它
 		static xml_memory_page* construct(void* memory)
 		{
+			// 将传入的void*内存块转换为xml_memory_page*类型
 			xml_memory_page* result = static_cast<xml_memory_page*>(memory);
-
-			result->allocator = 0;
-			result->prev = 0;
-			result->next = 0;
-			result->busy_size = 0;
-			result->freed_size = 0;
-
+			// 初始化成员变量
+			result->allocator = 0;	// 指向xml_allocator的指针，初始化为0（空指针）
+			result->prev = 0;		// 指向前一个内存页的指针，初始化为0（空指针）
+			result->next = 0;		// 指向下一个内存页的指针，初始化为0（空指针）
+			result->busy_size = 0;	// 当前页中已分配（忙碌）的内存大小，初始化为0
+			result->freed_size = 0;	// 当前页中已释放（空闲）的内存大小，初始化为0
+			// 如果定义了PUGIXML_COMPACT宏，则初始化与紧凑模式相关的成员变量
 		#ifdef PUGIXML_COMPACT
 			result->compact_string_base = 0;
 			result->compact_shared_parent = 0;
 			result->compact_page_marker = 0;
 		#endif
-
+			// 返回构造并初始化后的xml_memory_page对象的指针
 			return result;
 		}
-
+		// 成员变量
 		xml_allocator* allocator;
-
+		// 内存页之间的双向链表链接
 		xml_memory_page* prev;
 		xml_memory_page* next;
-
+		// 内存使用情况统计
 		size_t busy_size;
 		size_t freed_size;
-
+		// 注意：如果定义了PUGIXML_COMPACT宏，则还会存在以下成员变量
+		// 这些变量在紧凑模式下用于优化内存使用和访问速度
 	#ifdef PUGIXML_COMPACT
 		char_t* compact_string_base;
 		void* compact_shared_parent;
@@ -547,57 +557,73 @@ PUGI__NS_BEGIN
 		32768
 	#endif
 		- sizeof(xml_memory_page);
-
+	// 定义xml_memory_string_header结构体，用于描述字符串在内存页中的位置和大小
 	struct xml_memory_string_header
 	{
+		// 从内存页数据起始位置到字符串起始位置的偏移量
 		uint16_t page_offset; // offset from page->data
+		// 如果字符串占据整个内存页，则为0；否则为字符串的实际大小
 		uint16_t full_size; // 0 if string occupies whole page
 	};
-
+	// 定义xml_allocator结构体，用于管理内存页的分配
 	struct xml_allocator
 	{
+		// 构造函数，接受一个指向根内存页的指针，并初始化成员变量
 		xml_allocator(xml_memory_page* root): _root(root), _busy_size(root->busy_size)
 		{
 		#ifdef PUGIXML_COMPACT
-			_hash = 0;
+			_hash = 0;// 如果定义了PUGIXML_COMPACT宏，则初始化_hash为0
 		#endif
 		}
-
+		// 成员函数：分配一个新的内存页
+		// 接受一个数据大小参数，用于确定除了结构体本身外还需要多少额外空间
 		xml_memory_page* allocate_page(size_t data_size)
 		{
+			// 计算总大小：内存页结构体的大小加上额外数据的大小
 			size_t size = sizeof(xml_memory_page) + data_size;
 
 			// allocate block with some alignment, leaving memory for worst-case padding
 			void* memory = xml_memory::allocate(size);
-			if (!memory) return 0;
+			if (!memory) return 0;// 如果分配失败，则返回0（空指针）
 
 			// prepare page structure
+			// 在分配的内存块上构造xml_memory_page对象
 			xml_memory_page* page = xml_memory_page::construct(memory);
-			assert(page);
-
+			assert(page);// 确保构造成功
+			// 设置新页面的分配器为根页面的分配器（可能是为了保持一致性或实现某种内存管理策略）
 			page->allocator = _root->allocator;
-
+			// 返回新分配的页面
 			return page;
 		}
-
+		// 定义deallocate_page函数，用于释放一个内存页
+		// 接受一个指向xml_memory_page对象的指针作为参数
 		static void deallocate_page(xml_memory_page* page)
 		{
+			// 调用xml_memory类的静态成员函数deallocate来释放内存页
+			// 假设xml_memory是一个管理内存分配的类，类似于标准库中的allocator
 			xml_memory::deallocate(page);
 		}
-
+		// 它用于在内存不足时分配内存，可能是通过分配一个新的内存页或其他机制
 		void* allocate_memory_oob(size_t size, xml_memory_page*& out_page);
-
+		// 定义allocate_memory函数，尝试在当前根内存页中分配指定大小的内存
+		// 如果内存不足，则调用allocate_memory_oob函数
 		void* allocate_memory(size_t size, xml_memory_page*& out_page)
 		{
+			// 使用PUGI__UNLIKELY宏来提示编译器这个条件可能不常发生
+			// 这有助于优化生成的代码（尽管这取决于编译器的实现）
 			if (PUGI__UNLIKELY(_busy_size + size > xml_memory_page_size))
+				// 如果当前根内存页中的已分配大小加上请求的大小超过了内存页的总大小
+				// 则调用allocate_memory_oob函数来分配内存，并传递请求的大小和out_page引用
 				return allocate_memory_oob(size, out_page);
-
+			// 计算分配内存的起始地址
+			// _root是指向当前根内存页的指针，sizeof(xml_memory_page)是内存页结构体的大小
+			// _busy_size是当前已分配（忙碌）的内存大小
 			void* buf = reinterpret_cast<char*>(_root) + sizeof(xml_memory_page) + _busy_size;
-
+			// 更新已分配（忙碌）的内存大小
 			_busy_size += size;
-
+			// 将out_page引用设置为指向当前根内存页的指针
 			out_page = _root;
-
+			// 返回分配的内存的起始地址
 			return buf;
 		}
 
@@ -633,50 +659,60 @@ PUGI__NS_BEGIN
 			}
 		}
 	#else
+		// 定义一个函数，用于分配指定大小的内存对象，并返回指向该对象的指针。
+// 同时，通过out_page参数返回该对象所在的内存页。
 		void* allocate_object(size_t size, xml_memory_page*& out_page)
 		{
+			// 调用另一个函数allocate_memory来实际进行内存分配，并返回分配的指针。
 			return allocate_memory(size, out_page);
 		}
-	#endif
-
+#endif
+		// 定义一个函数，用于释放之前分配的内存
 		void deallocate_memory(void* ptr, size_t size, xml_memory_page* page)
 		{
+			// 如果当前释放的内存页是根页（_root），则更新根页的忙碌大小（_busy_size）。
 			if (page == _root) page->busy_size = _busy_size;
-
+			// 断言检查，确保指针ptr指向的内存确实位于page所管理的内存范围内
 			assert(ptr >= reinterpret_cast<char*>(page) + sizeof(xml_memory_page) && ptr < reinterpret_cast<char*>(page) + sizeof(xml_memory_page) + page->busy_size);
 			(void)!ptr;
-
+			// 更新页面已释放内存的大小
 			page->freed_size += size;
+			// 断言检查，确保已释放的内存大小不会超过该页面的忙碌大小
 			assert(page->freed_size <= page->busy_size);
-
+			// 如果整个页面的内存都已释放，则进行清理操作
 			if (page->freed_size == page->busy_size)
 			{
+				// 如果这是最后一个页面（即没有下一个页面），
 				if (page->next == 0)
 				{
+					// 断言检查，确保这是根页面。
 					assert(_root == page);
 
+					// 如果是顶部页面被释放，则重置其大小。
 					// top page freed, just reset sizes
 					page->busy_size = 0;
 					page->freed_size = 0;
 
-				#ifdef PUGIXML_COMPACT
+#ifdef PUGIXML_COMPACT
 					// reset compact state to maximize efficiency
 					page->compact_string_base = 0;
 					page->compact_shared_parent = 0;
 					page->compact_page_marker = 0;
-				#endif
-
+#endif
+					// 重置全局忙碌大小。
 					_busy_size = 0;
 				}
 				else
 				{
+					// 断言检查，确保这不是根页面，并且它有前一个页面。
 					assert(_root != page);
 					assert(page->prev);
-
+					// 从页面中移除该页面（假设页面存储在一个双向链表中）
 					// remove from the list
 					page->prev->next = page->next;
 					page->next->prev = page->prev;
 
+					// 释放该页面。
 					// deallocate
 					deallocate_page(page);
 				}
@@ -752,123 +788,144 @@ PUGI__NS_BEGIN
 		compact_hash_table* _hash;
 	#endif
 	};
-
+	// 该函数用于在内存不足（out of bounds，简称OOB）的情况下分配内存。
+	// 参数size指定了要分配的内存大小，out_page通过引用返回分配的内存所在的页面。
 	PUGI__FN_NO_INLINE void* xml_allocator::allocate_memory_oob(size_t size, xml_memory_page*& out_page)
 	{
+		// 定义一个阈值，用于区分“大”分配和“小”分配。
+		// 这里，大分配是指超过页面大小四分之一的分配。
 		const size_t large_allocation_threshold = xml_memory_page_size / 4;
-
+		// 根据分配大小分配一个页面。如果分配大小超过阈值，则分配一个足够大的页面
 		xml_memory_page* page = allocate_page(size <= large_allocation_threshold ? xml_memory_page_size : size);
+		// 通过引用参数返回分配的页面
 		out_page = page;
-
+		// 如果页面分配失败（即page为nullptr），则返回nullptr表示分配失败。
 		if (!page) return 0;
-
+		// 如果分配大小小于或等于阈值，则执行以下操作
 		if (size <= large_allocation_threshold)
 		{
+			// 更新根页面的忙碌大小为全局忙碌大小
 			_root->busy_size = _busy_size;
 
 			// insert page at the end of linked list
 			page->prev = _root;
 			_root->next = page;
+			// 更新_root指针，使其指向新插入的页面。
 			_root = page;
-
+			// 更新全局忙碌大小为当前分配的大小。
 			_busy_size = size;
 		}
 		else
 		{
 			// insert page before the end of linked list, so that it is deleted as soon as possible
 			// the last page is not deleted even if it's empty (see deallocate_memory)
+			// 对于大分配，将页面插入到链表末尾之前的位置。
 			assert(_root->prev);
-
+			// 插入新页面到链表中。
 			page->prev = _root->prev;
 			page->next = _root;
 
 			_root->prev->next = page;
 			_root->prev = page;
-
+			// 设置新页面的忙碌大小为当前分配的大小
 			page->busy_size = size;
 		}
-
+		// 返回指向页面内部数据的指针（跳过页面头部）。
 		return reinterpret_cast<char*>(page) + sizeof(xml_memory_page);
 	}
 PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
+// 开始命名空间（假设PUGI__NS_BEGIN是一个宏，用于定义或进入特定的命名空间）
 PUGI__NS_BEGIN
+	// 定义紧凑对齐的log2值，这里为2，意味着对齐是2的2次方，即4字节对齐
 	static const uintptr_t compact_alignment_log2 = 2;
+	// 根据log2值计算紧凑对齐的实际值，这里是1 << 2 = 4
 	static const uintptr_t compact_alignment = 1 << compact_alignment_log2;
-
+	// 定义一个紧凑头部类，用于管理紧凑内存页的头部信息
 	class compact_header
 	{
 	public:
+		// 构造函数，接收一个指向xml_memory_page的指针和一个标志位
 		compact_header(xml_memory_page* page, unsigned int flags)
 		{
+			// 静态断言，确保xml_memory_block_alignment与compact_alignment相等
 			PUGI__STATIC_ASSERT(xml_memory_block_alignment == compact_alignment);
-
+			// 计算当前对象相对于page->compact_page_marker的偏移量
 			ptrdiff_t offset = (reinterpret_cast<char*>(this) - reinterpret_cast<char*>(page->compact_page_marker));
+			// 断言偏移量是对齐的，并且小于256个对齐单位
 			assert(offset % compact_alignment == 0 && static_cast<uintptr_t>(offset) < 256 * compact_alignment);
-
+			// 计算并存储页面索引
 			_page = static_cast<unsigned char>(offset >> compact_alignment_log2);
+			// 存储标志位
 			_flags = static_cast<unsigned char>(flags);
 		}
-
+		// 位与赋值操作符，用于修改标志位
 		void operator&=(uintptr_t mod)
 		{
 			_flags &= static_cast<unsigned char>(mod);
 		}
-
+		// 位或赋值操作符，用于修改标志位
 		void operator|=(uintptr_t mod)
 		{
 			_flags |= static_cast<unsigned char>(mod);
 		}
-
+		// 位与操作符，用于获取标志位与给定值的交集
 		uintptr_t operator&(uintptr_t mod) const
 		{
 			return _flags & mod;
 		}
-
+		// 获取关联的xml_memory_page对象
 		xml_memory_page* get_page() const
 		{
 			// round-trip through void* to silence 'cast increases required alignment of target type' warnings
 			const char* page_marker = reinterpret_cast<const char*>(this) - (_page << compact_alignment_log2);
 			const char* page = page_marker - *reinterpret_cast<const uint32_t*>(static_cast<const void*>(page_marker));
-
+			// 返回指向xml_memory_page的指针
 			return const_cast<xml_memory_page*>(reinterpret_cast<const xml_memory_page*>(static_cast<const void*>(page)));
 		}
-
+	// 紧凑头部类的私有成员变量定义
 	private:
+		// 存储页面索引的变量，用于标识当前对象所在的内存页
 		unsigned char _page;
+		// 存储标志位的变量，用于记录一些额外的信息或状态
 		unsigned char _flags;
 	};
-
+	// 一个函数，用于根据给定的对象和头部偏移量获取对应的xml_memory_page
+	//   指向xml_memory_page的指针，该页面包含了object
 	PUGI__FN xml_memory_page* compact_get_page(const void* object, int header_offset)
 	{
+		// 将object指针向前移动header_offset，得到compact_header的指针
 		const compact_header* header = reinterpret_cast<const compact_header*>(static_cast<const char*>(object) - header_offset);
-
+		// 调用compact_header的get_page方法获取xml_memory_page指针
 		return header->get_page();
 	}
-
+	// 一个模板函数，用于根据给定的对象和头部偏移量获取对应的值
+	//   指向T类型的指针，该值通过哈希表查找得到
 	template <int header_offset, typename T> PUGI__FN_NO_INLINE T* compact_get_value(const void* object)
-	{
+	{// 首先获取包含object的xml_memory_page,然后通过页面的allocator和_hash成员查找object对应的值
 		return static_cast<T*>(compact_get_page(object, header_offset)->allocator->_hash->find(object));
 	}
-
+	// 一个模板函数，用于根据给定的对象和头部偏移量设置对应的值
 	template <int header_offset, typename T> PUGI__FN_NO_INLINE void compact_set_value(const void* object, T* value)
 	{
+		// 首先获取包含object的xml_memory_page,然后通过页面的allocator和_hash成员插入object和value的对应关系
 		compact_get_page(object, header_offset)->allocator->_hash->insert(object, value);
 	}
-
+	// 一个模板类，用于管理紧凑指针，这些指针通过哈希表进行存储和查找
 	template <typename T, int header_offset, int start = -126> class compact_pointer
 	{
 	public:
+		// compact_pointer的默认构造函数，初始化_data成员为0
 		compact_pointer(): _data(0)
 		{
 		}
-
+		// 重载赋值运算符，用于将一个compact_pointer对象赋值给另一个
 		void operator=(const compact_pointer& rhs)
 		{
 			*this = rhs + 0;
 		}
-
+		// 重载赋值运算符，用于将一个原生指针赋值给compact_pointer对象
 		void operator=(T* value)
 		{
 			if (value)
@@ -879,58 +936,66 @@ PUGI__NS_BEGIN
 				// compensate for arithmetic shift rounding for negative values
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) - start;
-
+				// 如果计算出的偏移量（经过调整并转换为无符号后）小于等于253，
+				// 则将其加1后存储到_data中（因为0被保留用于空指针）
 				if (static_cast<uintptr_t>(offset) <= 253)
 					_data = static_cast<unsigned char>(offset + 1);
 				else
 				{
+					// compact_set_value是一个模板函数，header_offset是一个占位符，表示可能的头部偏移量
 					compact_set_value<header_offset>(this, value);
 
-					_data = 255;
+					_data = 255;// 设置_data为255，表示指针值存储在外部
 				}
 			}
 			else
+				// 如果赋值为nullptr，则将_data设置为0
 				_data = 0;
 		}
-
+		// 定义一个类型转换运算符，将compact_pointer转换为T*
 		operator T*() const
 		{
-			if (_data)
+			if (_data)// 如果_data不为0
 			{
-				if (_data < 255)
+				if (_data < 255)// 如果_data的值小于255，表示指针值直接存储在_data中（经过编码）
 				{
+					// 计算基地址：将this指针向下对齐到compact_alignment的倍数
 					uintptr_t base = reinterpret_cast<uintptr_t>(this) & ~(compact_alignment - 1);
-
+					// 根据_data计算偏移量，并加上start（可能是一个调整值），然后乘以compact_alignment得到实际地址
+					// 最后，将基地址与计算出的偏移量相加，得到目标指针的地址，并转换为T*类型
 					return reinterpret_cast<T*>(base + (_data - 1 + start) * compact_alignment);
 				}
-				else
+				else  // 如果_data的值等于255，表示指针值存储在外部
+					 // 调用compact_get_value函数来获取存储在外部的指针值
 					return compact_get_value<header_offset, T>(this);
 			}
-			else
-				return 0;
+			else// 如果_data为0，表示空指针
+				return 0;// 返回nullptr
 		}
-
+		// 定义一个成员访问运算符，允许通过compact_pointer对象直接访问目标对象的成员
 		T* operator->() const
 		{
 			return *this;
 		}
-
+	// compact_pointer类的私有成员定义结束
 	private:
+		// 用于存储编码后的指针值或标记指针值是否存储在外部
 		unsigned char _data;
 	};
-
+	// 定义一个模板类compact_pointer_parent，它可能是compact_pointer的基类或用于提供某些共享功能
 	template <typename T, int header_offset> class compact_pointer_parent
 	{
+	// 类的构造函数，初始化成员变量_data为0
 	public:
 		compact_pointer_parent(): _data(0)
 		{
 		}
-
+		// 拷贝赋值操作符
 		void operator=(const compact_pointer_parent& rhs)
 		{
 			*this = rhs + 0;
 		}
-
+		// 赋值操作符重载，接受一个T*类型的参数
 		void operator=(T* value)
 		{
 			if (value)
@@ -939,26 +1004,30 @@ PUGI__NS_BEGIN
 				// our decoding is based on 'this' aligned to compact alignment downwards (see operator T*)
 				// so for negative offsets (e.g. -3) we need to adjust the diff by compact_alignment - 1 to
 				// compensate for arithmetic shift behavior for negative values
+				// 将value和this指针转换为char*，然后计算它们之间的差值diff
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) + 65533;
-
+				// 如果计算出的offset在可存储范围内（即小于或等于65533），则直接存储为_data的值（加1是为了留出0表示null的特殊情况）
 				if (static_cast<uintptr_t>(offset) <= 65533)
 				{
 					_data = static_cast<unsigned short>(offset + 1);
 				}
 				else
 				{
+					// 如果offset超出范围，则需要使用更复杂的内存管理机制
+					// 首先，获取与this相关的内存页
 					xml_memory_page* page = compact_get_page(this, header_offset);
-
+					// 如果该页还没有共享父指针，则设置它
 					if (PUGI__UNLIKELY(page->compact_shared_parent == 0))
 						page->compact_shared_parent = value;
-
+					// 如果共享父指针已经是value，则使用特殊值65534表示
 					if (page->compact_shared_parent == value)
 					{
 						_data = 65534;
 					}
 					else
-					{
+					{\
+						// 否则，使用某种机制将value存储到内存页中，并将_data设置为特殊值65535
 						compact_set_value<header_offset>(this, value);
 
 						_data = 65535;
@@ -967,31 +1036,38 @@ PUGI__NS_BEGIN
 			}
 			else
 			{
+				// 如果value为nullptr，则将_data设置为0，表示null指针
 				_data = 0;
 			}
 		}
 
 		operator T*() const
 		{
-			if (_data)
+			if (_data)// 如果_data非零
 			{
-				if (_data < 65534)
+				if (_data < 65534)// 如果_data的值小于65534
 				{
+					// 调整当前对象的地址，使其符合compact_alignment对齐要求
 					uintptr_t base = reinterpret_cast<uintptr_t>(this) & ~(compact_alignment - 1);
-
+					// 根据_data的值计算实际存储T类型数据的地址，并返回该地址
+					// 这里假设了一个特殊的存储策略，其中65533作为偏移量的基准点
 					return reinterpret_cast<T*>(base + (_data - 1 - 65533) * compact_alignment);
 				}
-				else if (_data == 65534)
+				else if (_data == 65534)// 如果_data的值等于65534
+					// 调用compact_get_page函数获取一个特定的页面，并返回该页面中compact_shared_parent指向的T类型数据的地址
 					return static_cast<T*>(compact_get_page(this, header_offset)->compact_shared_parent);
-				else
+				else// 如果_data的值大于65534
+					// 调用compact_get_value函数，根据_data的值和header_offset获取并返回T类型数据的地址
 					return compact_get_value<header_offset, T>(this);
 			}
-			else
+			else// 如果_data为零
+				// 返回空指针，表示没有有效的T类型数据
 				return 0;
 		}
 
 		T* operator->() const
 		{
+			// 返回当前对象转换为T*的结果，允许通过->操作符访问T类型对象的成员
 			return *this;
 		}
 
@@ -1015,48 +1091,56 @@ PUGI__NS_BEGIN
 		{
 			if (value)
 			{
+				// 获取与当前对象关联的内存页面
 				xml_memory_page* page = compact_get_page(this, header_offset);
-
+				// 如果compact_string_base为0（即尚未初始化或没有存储任何字符串），则将其设置为value
 				if (PUGI__UNLIKELY(page->compact_string_base == 0))
 					page->compact_string_base = value;
-
+				// 计算value相对于compact_string_base的偏移量
 				ptrdiff_t offset = value - page->compact_string_base;
-
+				// 如果偏移量小于65535 * 128（即小于16位带符号整数能表示的最大正偏移量，但这里实际上只使用了15位加上一个标志位）
 				if (static_cast<uintptr_t>(offset) < (65535 << 7))
 				{
 					// round-trip through void* to silence 'cast increases required alignment of target type' warnings
 					uint16_t* base = reinterpret_cast<uint16_t*>(static_cast<void*>(reinterpret_cast<char*>(this) - base_offset));
-
+					// 如果base指向的值为0（即尚未存储任何偏移量）
 					if (*base == 0)
 					{
+						// 存储偏移量（右移7位以适应15位的存储，并加1作为标志）到base指向的位置
+						// 同时，将偏移量的低7位（加1作为标志）存储到_data中
 						*base = static_cast<uint16_t>((offset >> 7) + 1);
 						_data = static_cast<unsigned char>((offset & 127) + 1);
 					}
 					else
 					{
+						// 如果已经存储了一个偏移量，则计算新的偏移量是否仍然可以用当前的方式存储
 						ptrdiff_t remainder = offset - ((*base - 1) << 7);
-
+						// 如果新的偏移量的低7位（加1后）小于等于253（即实际偏移量小于等于252，因为加1作为标志）
 						if (static_cast<uintptr_t>(remainder) <= 253)
 						{
+							// 更新_data以存储新的低7位偏移量（加1作为标志）
 							_data = static_cast<unsigned char>(remainder + 1);
 						}
 						else
 						{
+							// 如果新的偏移量太大，无法用当前的方式存储，则使用另一种存储方法（可能是动态分配）
 							compact_set_value<header_offset>(this, value);
-
+							// 设置_data为255，作为使用特殊存储方法的标志
 							_data = 255;
 						}
 					}
 				}
 				else
 				{
+					// 如果偏移量太大，无法用当前的方式存储，则同样使用另一种存储方法
 					compact_set_value<header_offset>(this, value);
-
+					// 设置_data为255，作为使用特殊存储方法的标志
 					_data = 255;
 				}
 			}
 			else
 			{
+				// 如果提供的值为空，则将_data设置为0，表示没有存储任何值
 				_data = 0;
 			}
 		}
