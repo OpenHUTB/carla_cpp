@@ -5,7 +5,7 @@
 # -n 'parse-options': 设置脚本名称，以便在错误信息中显示
 OPTS=`getopt -o h --long python-version: -n 'parse-options' -- "$@"`
 # 重新设定位置参数 
-eval set -- "$OPTS"
+eval set -- "$OPTS"#使用eval命令来执行set命令
 # 默认的 Python 版本列表  
 PY_VERSION_LIST=3
 # 解析命令行参数
