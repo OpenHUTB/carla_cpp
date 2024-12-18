@@ -73,16 +73,18 @@ namespace detail {
       return LoadEpisode("", reset_settings);
     }
 
+    // 根据地图名和可选的重置设置以及地图层来加载一个场景
     EpisodeProxy LoadEpisode(std::string map_name, bool reset_settings = true, rpc::MapLayer map_layers = rpc::MapLayer::All);
-
+    // 加载指定的地图层
     void LoadLevelLayer(rpc::MapLayer map_layers) const {
       _client.LoadLevelLayer(map_layers);
     }
-
+    // 卸载指定的地图层
     void UnloadLevelLayer(rpc::MapLayer map_layers) const {
       _client.UnloadLevelLayer(map_layers);
     }
 
+    // 根据OpenDrive文件和生成参数加载一个场景
     EpisodeProxy LoadOpenDriveEpisode(
         std::string opendrive,
         const rpc::OpendriveGenerationParameters & params,
@@ -95,13 +97,15 @@ namespace detail {
     /// @{
 
     /// @pre Cannot be called previous to GetCurrentEpisode.
+    // 获取当前场景的ID，确保当前场景已准备好
     auto GetCurrentEpisodeId() {
       GetReadyCurrentEpisode();
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetId();
     }
-
+    // 确保当前场景已准备好
     void GetReadyCurrentEpisode();
+    // 获取当前场景的代理
     EpisodeProxy GetCurrentEpisode();
 
     /// @}
@@ -110,6 +114,7 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    // 获取当前世界（场景）的实例
     World GetWorld() {
       return World{GetCurrentEpisode()};
     }
@@ -120,6 +125,8 @@ namespace detail {
     // =========================================================================
     /// @{
 
+
+// 获取当前世界的快照
     WorldSnapshot GetWorldSnapshot() const {
       DEBUG_ASSERT(_episode != nullptr);
       return WorldSnapshot{_episode->GetState()};
@@ -131,8 +138,11 @@ namespace detail {
     // =========================================================================
     /// @{
 
+
+// 获取当前场景的地图实例
     SharedPtr<Map> GetCurrentMap();
 
+    // 获取所有可用的地图名
     std::vector<std::string> GetAvailableMaps() {
       return _client.GetAvailableMaps();
     }
@@ -143,12 +153,16 @@ namespace detail {
     // =========================================================================
     /// @{
 
+// 设置文件基础文件夹
     bool SetFilesBaseFolder(const std::string &path);
 
+    // 获取指定文件夹中所需的文件列表，可以选择是否下载
     std::vector<std::string> GetRequiredFiles(const std::string &folder = "", const bool download = true) const;
 
+    // 请求特定文件
     void RequestFile(const std::string &name) const;
 
+    // 从缓存中获取文件，如果缓存中没有且request_otherwise为true，则尝试请求
     std::vector<uint8_t> GetCacheFile(const std::string &name, const bool request_otherwise) const;
 
     /// @}
@@ -167,20 +181,21 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    // 设置网络超时时间
     void SetNetworkingTimeout(time_duration timeout) {
-      _client.SetTimeout(timeout);
+      _client.SetTimeout(timeout); // 设置客户端的超时时间
     }
 
     time_duration GetNetworkingTimeout() {
-      return _client.GetTimeout();
+      return _client.GetTimeout();// 获取客户端的超时时间
     }
-
+    // 获取客户端版本
     std::string GetClientVersion() {
-      return _client.GetClientVersion();
+      return _client.GetClientVersion();// 从客户端获取版本信息
     }
-
+    // 获取服务器版本
     std::string GetServerVersion() {
-      return _client.GetServerVersion();
+      return _client.GetServerVersion();// 从服务器获取版本信息
     }
 
     /// @}
@@ -189,18 +204,19 @@ namespace detail {
     // =========================================================================
     /// @{
 
+// 等待一个节拍（模拟时间步），返回该时间步的世界快照
     WorldSnapshot WaitForTick(time_duration timeout);
-
+    // 注册一个在每个节拍（模拟时间步）被调用的回调函数
     size_t RegisterOnTickEvent(std::function<void(WorldSnapshot)> callback) {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->RegisterOnTickEvent(std::move(callback));
     }
-
+    // 移除一个节拍回调
     void RemoveOnTickEvent(size_t id) {
       DEBUG_ASSERT(_episode != nullptr);
       _episode->RemoveOnTickEvent(id);
     }
-
+    // 执行一个节拍（模拟时间步），返回该时间步的模拟时间（通常以微秒为单位）
     uint64_t Tick(time_duration timeout);
 
     /// @}
