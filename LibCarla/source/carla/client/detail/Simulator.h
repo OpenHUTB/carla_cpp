@@ -251,14 +251,17 @@ namespace detail {
     }
 
     void AddPendingException(std::string e) {
+        // 调用当前章节对象的AddPendingException方法，传入异常字符串e
       _episode->AddPendingException(e);
     }
 
+    // 获取蓝图库的共享指针
     SharedPtr<BlueprintLibrary> GetBlueprintLibrary();
 
     /// 返回一个列表，其中第一个元素是车辆 ID，第二个元素是灯光状态
     rpc::VehicleLightStateList GetVehiclesLightStates();
 
+    // 获取当前观察者（Spectator）对象的共享指针
     SharedPtr<Actor> GetSpectator();
 
     rpc::EpisodeSettings GetEpisodeSettings() {
@@ -271,22 +274,29 @@ namespace detail {
       return _client.GetWeatherParameters();
     }
 
+    // 设置新的天气参数
     void SetWeatherParameters(const rpc::WeatherParameters &weather) {
+        // 调用客户端的SetWeatherParameters方法，传入新的天气参数
       _client.SetWeatherParameters(weather);
     }
 
+    // 获取IMU传感器的重力值
     float GetIMUISensorGravity() const {
+        // 调用客户端的GetIMUISensorGravity方法，返回IMU传感器的重力值
       return _client.GetIMUISensorGravity();
     }
 
+    // 设置IMU传感器的重力值
     void SetIMUISensorGravity(float NewIMUISensorGravity) {
       _client.SetIMUISensorGravity(NewIMUISensorGravity);
     }
 
+    // 获取指定车辆的物理控制状态
     rpc::VehiclePhysicsControl GetVehiclePhysicsControl(const Vehicle &vehicle) const {
+        // 调用客户端的GetVehiclePhysicsControl方法，传入车辆的ID，返回车辆的物理控制状态
       return _client.GetVehiclePhysicsControl(vehicle.GetId());
     }
-
+    // 获取指定车辆的灯光状态
     rpc::VehicleLightState GetVehicleLightState(const Vehicle &vehicle) const {
       return _client.GetVehicleLightState(vehicle.GetId());
     }
@@ -295,24 +305,29 @@ namespace detail {
     std::vector<geom::BoundingBox> GetLevelBBs(uint8_t queried_tag) const {
       return _client.GetLevelBBs(queried_tag);
     }
-
+    // 获取具有指定标签的环境对象
     std::vector<rpc::EnvironmentObject> GetEnvironmentObjects(uint8_t queried_tag) const {
       return _client.GetEnvironmentObjects(queried_tag);
     }
 
+    // 启用或禁用具有指定ID的环境对象
     void EnableEnvironmentObjects(
       std::vector<uint64_t> env_objects_ids,
       bool enable) const {
+        // 调用客户端的EnableEnvironmentObjects方法，传入环境对象的ID列表和启用状态
       _client.EnableEnvironmentObjects(env_objects_ids, enable);
     }
-
+    // 投影一个点，并返回该点在地图上的标记点和是否成功投影
     std::pair<bool,rpc::LabelledPoint> ProjectPoint(
         geom::Location location, geom::Vector3D direction, float search_distance) const {
+        // 调用客户端的ProjectPoint方法，传入起始位置、方向和搜索距离，返回是否成功投影和标记点
       return _client.ProjectPoint(location, direction, search_distance);
     }
 
+    // 从一个起始位置到结束位置投射一条光线，并返回所有碰撞点
     std::vector<rpc::LabelledPoint> CastRay(
         geom::Location start_location, geom::Location end_location) const {
+        // 调用客户端的CastRay方法，传入起始位置和结束位置，返回光线碰撞的所有标记点列表
       return _client.CastRay(start_location, end_location);
     }
 

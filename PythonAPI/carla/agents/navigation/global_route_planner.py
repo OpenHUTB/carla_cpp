@@ -185,6 +185,7 @@ class GlobalRoutePlanner:
                             break
 
         return route_trace
+        #定义一个_build_topology函数 函数目的是构建拓朴结构：从服务器获取道路拓扑信息 然后将其处理包含特定属性的字典对象列表
     def _build_topology(self):
         """
         This function retrieves topology from the server as a list of
@@ -197,20 +198,30 @@ class GlobalRoutePlanner:
         - exitxyz (tuple): (x,y,z) of exit point of road segment
         - path (list of carla.Waypoint):  list of waypoints between entry to exit, separated by the resolution
         """
+        #创建一个空列表 用于存储最终构建的拓扑结构信息
         self._topology = []
         # Retrieving waypoints to construct a detailed topology
+        #从地图中获取拓扑信息
         for segment in self._wmap.get_topology():
             wp1, wp2 = segment[0], segment[1]
+            #获取路点的位置并进行舍入（舍入的目的是为了后续避免点数精度问题，减少一定的误差）
             l1, l2 = wp1.transform.location, wp2.transform.location
-            # Rounding off to avoid floating point imprecision
+            # 舍入以避免浮点不精确
             x1, y1, z1, x2, y2, z2 = np.round([l1.x, l1.y, l1.z, l2.x, l2.y, l2.z], 0)
             wp1.transform.location, wp2.transform.location = l1, l2
+            #创建字典并填充信息 这个字典将用于存储当前道路段的拓扑信息
             seg_dict = dict()  # type: TopologyDict # type: ignore[assignment]
+            #将路点分别作为入口和出口路点添加到字典中
             seg_dict['entry'], seg_dict['exit'] = wp1, wp2
+            #将入口和出口路点的坐标以元组坐标形式添加到字典中
             seg_dict['entryxyz'], seg_dict['exitxyz'] = (x1, y1, z1), (x2, y2, z2)
+            #创建一个空的路径列表 用于存储道路段中入口到出口的路点列表
             seg_dict['path'] = []
+            #关于endloc以及路径构建逻辑
             endloc = wp2.transform.location
+            #计算两地之间的距离进行比较
             if wp1.transform.location.distance(endloc) > self._sampling_resolution:
+                #如果满足上述距离条件 获取wp1的下一点
                 w = wp1.next(self._sampling_resolution)[0]
                 while w.transform.location.distance(endloc) > self._sampling_resolution:
                     seg_dict['path'].append(w)
