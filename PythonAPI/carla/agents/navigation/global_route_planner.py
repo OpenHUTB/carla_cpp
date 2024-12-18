@@ -62,7 +62,8 @@ if TYPE_CHECKING:
     # 'intersection': 类型为布尔值，用于判断是否为交叉路口相关的边
     # 'type': 类型为RoadOption，可能表示边对应的道路选项类型（比如直行、转弯等不同道路行为类型）
     # 'change_waypoint': 类型为carla.Waypoint，不过是可选的（NotRequired），可能在某些路径变化的场景下用到的路点信息
-    EdgeDict = TypedDict('EdgeDict',
+    # 定义EdgeDict类型字典，用于描述边相关的各种属性类型
+   EdgeDict = TypedDict('EdgeDict',
         {
             'length': int,
             'path': list[carla.Waypoint],
@@ -75,75 +76,114 @@ if TYPE_CHECKING:
             'type': RoadOption,
             'change_waypoint': NotRequired[carla.Waypoint]
         })
+
+# 定义GlobalRoutePlanner类，用于提供高层次的路线规划功能
 class GlobalRoutePlanner:
     """
     This class provides a very high level route plan.
     """
-
+    # 类的初始化方法，接收地图对象和采样分辨率作为参数
     def __init__(self, wmap, sampling_resolution):
         # type: (carla.Map, float) -> None
+        # 保存采样分辨率，可能用于后续路径规划中距离相关的计算等操作
         self._sampling_resolution = sampling_resolution
+        # 保存传入的地图对象，后续会基于此地图进行拓扑结构构建、路径搜索等操作
         self._wmap = wmap
+        # 用于存储拓扑结构信息，元素类型为TopologyDict（之前定义的拓扑结构类型字典）
         self._topology = []    # type: list[TopologyDict]
+        # 用于存储构建的有向图（networkx的DiGraph类型），初始化为None，后续会进行构建
         self._graph = None     # type: nx.DiGraph # type: ignore[assignment]
+        # 用于将坐标（以三元组形式表示，可能是xyz坐标）映射到一个整数标识，初始化为None，后续构建和赋值
         self._id_map = None    # type: dict[tuple[float, float, float], int] # type: ignore[assignment]
+        # 用于将道路相关标识（道路ID、路段ID、车道ID等组合）映射到边相关信息的嵌套字典，初始化为None
         self._road_id_to_edge = None  # type: dict[int, dict[int, dict[int, tuple[int, int]]]] # type: ignore[assignment]
 
+        # 用于标记交叉路口的结束节点，初始化为 -1，具体含义和使用场景在后续路径处理相关逻辑中体现
         self._intersection_end_node = -1
+        # 用于记录上一次的决策（类型为RoadOption，可能是不同道路行驶选择如直行、转弯等），初始化为RoadOption.VOID
         self._previous_decision = RoadOption.VOID
 
-        # Build the graph
+        # 构建拓扑结构，这是初始化过程中进行的一系列准备工作之一
         self._build_topology()
+        # 基于拓扑结构构建图，用于后续的路径搜索等操作
         self._build_graph()
+        # 查找图中松散的端点（可能是孤立的节点等情况）并进行相应处理
         self._find_loose_ends()
+        # 处理车道变更相关的连接情况
         self._lane_change_link()
 
+    # 用于追踪从起点到终点的路线，返回包含路点和道路选项的元组列表
     def trace_route(self, origin, destination):
         # type: (carla.Location, carla.Location) -> list[tuple[carla.Waypoint, RoadOption]]
         """
         This method returns list of (carla.Waypoint, RoadOption)
         from origin to destination
         """
+        # 用于存储最终的路线追踪结果，初始为空列表，元素类型为包含路点和道路选项的元组
         route_trace = []  # type: list[tuple[carla.Waypoint, RoadOption]]
+        # 通过路径搜索方法获取从起点到终点的路径（以节点编号等形式表示的序列）
         route = self._path_search(origin, destination)
+        # 获取起点对应的路点信息
         current_waypoint = self._wmap.get_waypoint(origin)
+        # 获取终点对应的路点信息
         destination_waypoint = self._wmap.get_waypoint(destination)
 
+        # 遍历路径中的每一段（除了最后一段，因为是到终点了）
         for i in range(len(route) - 1):
+            # 根据当前路径段的索引等信息确定道路选项（比如该转弯还是直行等决策）
             road_option = self._turn_decision(i, route)
+            # 获取当前路径段对应的边信息（类型为EdgeDict，包含边的各种属性）
             edge = self._graph.edges[route[i], route[i + 1]]  # type: EdgeDict
             path = []  # type: list[carla.Waypoint]
 
-            if edge['type'] != RoadOption.LANEFOLLOW and edge['type'] != RoadOption.VOID:
+            # 如果边的类型不是车道跟随（正常沿着车道行驶）且不是无效类型（可能表示特殊情况等）
+            if edge['type']!= RoadOption.LANEFOLLOW and edge['type']!= RoadOption.VOID:
+                # 将当前路点和道路选项添加到路线追踪结果中
                 route_trace.append((current_waypoint, road_option))
+                # 获取边的出口路点
                 exit_wp = edge['exit_waypoint']
+                # 通过道路相关标识从_road_id_to_edge字典中获取对应的边的节点编号（可能用于后续查找下一段边等操作）
                 n1, n2 = self._road_id_to_edge[exit_wp.road_id][exit_wp.section_id][exit_wp.lane_id]
+                # 获取下一段边的信息（类型同样为EdgeDict）
                 next_edge = self._graph.edges[n1, n2]  # type: EdgeDict
+                # 如果下一段边的路径列表不为空（即存在路点路径）
                 if next_edge['path']:
+                    # 在该路径列表中查找与当前路点距离最近的路点索引
                     closest_index = self._find_closest_in_list(current_waypoint, next_edge['path'])
+                    # 对索引进行调整，限制最大索引值（防止越界等情况），这里加5可能是适当扩展范围等考虑
                     closest_index = min(len(next_edge['path']) - 1, closest_index + 5)
+                    # 更新当前路点为下一段边路径中调整后的最近路点
                     current_waypoint = next_edge['path'][closest_index]
                 else:
+                    # 如果下一段边没有路径列表（可能是特殊情况），则直接将出口路点作为当前路点
                     current_waypoint = next_edge['exit_waypoint']
+                # 再次将更新后的当前路点和道路选项添加到路线追踪结果中
                 route_trace.append((current_waypoint, road_option))
 
             else:
+                # 如果边的类型是车道跟随或者无效类型，则进行以下操作
                 path = path + [edge['entry_waypoint']] + edge['path'] + [edge['exit_waypoint']]
+                # 在完整的路径中查找与当前路点距离最近的路点索引
                 closest_index = self._find_closest_in_list(current_waypoint, path)
+                # 遍历从最近路点开始的后续路点
                 for waypoint in path[closest_index:]:
+                    # 更新当前路点为遍历到的路点
                     current_waypoint = waypoint
+                    # 将当前路点和道路选项添加到路线追踪结果中
                     route_trace.append((current_waypoint, road_option))
+                    # 判断是否接近终点（根据剩余路径段数量以及与终点的距离等条件判断）
                     if len(route) - i <= 2 and waypoint.transform.location.distance(
                             destination) < 2 * self._sampling_resolution:
                         break
+                    # 或者判断是否已经处于和终点相同的道路、路段、车道等情况
                     elif len(
                             route) - i <= 2 and current_waypoint.road_id == destination_waypoint.road_id and current_waypoint.section_id == destination_waypoint.section_id and current_waypoint.lane_id == destination_waypoint.lane_id:
+                        # 查找终点路点在当前路径中的最近索引
                         destination_index = self._find_closest_in_list(destination_waypoint, path)
                         if closest_index > destination_index:
                             break
 
         return route_trace
-
     def _build_topology(self):
         """
         This function retrieves topology from the server as a list of
