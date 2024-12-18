@@ -280,4 +280,9 @@ git rm -rf .
 [ylsj666](https://github.com/ylsj666/carla_cpp.git)、
 [2209040022ll](https://github.com/2209040022ll/carla_cpp.git)、
 [moon884](https://github.com/moon884/carla_cpp.git)、
+<<<<<<< HEAD
 >>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
+=======
+[haoCui-hutb](https://github.com/haoCui-hutb)
+[caicaiyo](https://github.com/caicaiyo)
+>>>>>>> d508a8a96f85ca560ca4b526b27aa6029ab170dd

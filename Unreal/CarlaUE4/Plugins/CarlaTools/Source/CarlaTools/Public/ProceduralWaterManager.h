@@ -6,22 +6,22 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "CoreMinimal.h"// 引入核心的Unreal引擎头文件
 
-#include "Components/SplineComponent.h"
-#include "EditorUtilityWidget.h"
-#include "Math/Vector.h"
+#include "Components/SplineComponent.h"// 引入Spline组件头文件
+#include "EditorUtilityWidget.h"// 引入编辑器工具小部件头文件
+#include "Math/Vector.h"// 引入向量数学头文件
 
-#include "ProceduralWaterManager.generated.h"
+#include "ProceduralWaterManager.generated.h"// 生成所需的头文件
 
-UENUM(BlueprintType)
+UENUM(BlueprintType)// 定义一个可在蓝图中使用的枚举类型
 enum EWaterGenerationType
 {
   RIVERS = 0,
   LAKE = 1
 };
 
-USTRUCT(BlueprintType)
+USTRUCT(BlueprintType)// 定义一个可在蓝图中使用的结构体
 struct CARLATOOLS_API FProceduralRiversMetaInfo
 {
   GENERATED_USTRUCT_BODY();
@@ -60,66 +60,65 @@ class CARLATOOLS_API UProceduralWaterManager : public UEditorUtilityWidget
   GENERATED_BODY()
   
 public:  
-  // Sets default values for this actor's properties
+  //构造函数，设置默认属性
   UProceduralWaterManager();
 
 public:  
-  /// River blueprint class, set by the user using the widget interface
+   /// 河流蓝图类，通过小部件接口由用户设置
+  /// @a MetaInfo 是此过程的输入数据
   UPROPERTY(BlueprintReadWrite)
   TSubclassOf<class AActor> RiverBlueprintClass;
 
-  /// Lake blueprint class, set by the user using the widget interface
+  /// 湖泊蓝图类，通过小部件接口由用户设置
+  /// @a MetaInfo 是此过程的输入数据
   UPROPERTY(BlueprintReadWrite)
   TSubclassOf<class AActor> LakeBlueprintClass;
 
-  /// Main function to be called from the widget to start all the generation process
-  /// @a MetaInfo is the input data for this process
+   /// 从小部件调用的主函数，用于启动所有生成过程
+  /// @a MetaInfo 是此过程的输入数据
   UFUNCTION(BlueprintCallable)
   FString StartWaterGeneration(const FProceduralRiversMetaInfo MetaInfo);
 
-  /// Add river @a riverActor spline point @a splinePoint to SplinePoint  
-  /// collection to be added in later processes to the spline component.
-  /// This is implemented in blueprint code.
+   /// 向Spline组件添加河流的控制点 @a riverActor 和 @a splinePoint  
+  /// 这些控制点将在后续处理过程中添加到Spline组件中
+  /// 该函数在蓝图中实现
   UFUNCTION(BlueprintImplementableEvent)
   void AddRiverPointFromCode(AActor* RiverActor, FSplinePoint SplinePoint);
 
-  /// It checks which is the direction the flow of the river depending on the
-  /// altitude of the start and the end of the river @a riverActor
+ /// 根据河流的起点和终点的高度，检查并决定河流的流向
+  /// @a riverActor 是河流的Actor实例
   UFUNCTION(BlueprintImplementableEvent)
   void CheckAndReverseWaterFlow(AActor* RiverActor);
 
 private:
   
-  /// It is responsible of the rivers generation, parsing the file,
-  /// intantiating the actors and setting its splline points
+  ///  负责河流的生成，解析文件，实例化Actor并设置Spline控制点
   UFUNCTION()
   FString RiverGeneration(const FProceduralRiversMetaInfo MetaInfo);
 
-  /// It is responsible of the lakes generation, pasing the file,
-  /// instantiating the actors and setting its properties
+  /// 负责湖泊的生成，解析文件，实例化Actor并设置属性
   UFUNCTION()
   FString LakeGeneration(const FProceduralRiversMetaInfo MetaInfo);
 
-  /// Instantiate a new actor of type RiverBlueprintClass
-  /// Returns the the actor created
-  UFUNCTION()
+  /// 实例化一个新的河流蓝图Actor
+  /// 返回创建的Actor
   AActor* SpawnRiverBlueprintActor();
 
-  /// Instantiate a new actor of type LakeBlueprintClass
-  /// Returns the the actor created
+  /// 实例化一个新的湖泊蓝图Actor
+  /// 返回创建的Actor
   UFUNCTION()
   AActor* SpawnLakeBlueprintActor();
 
-  /// Calculates the height of the landscape in an specific 2D coordinate ( @a x, @a y)
-  /// throwing rays and detecting the hit point. @a bDrawDebugLines allows to visualize
-  /// the rays in the viewport, only for debug purposes.
-  /// Return the Z value
+  /// 计算特定二维坐标（@a x, @a y）上的地形高度
+  /// 通过发射射线并检测碰撞点来实现。@a bDrawDebugLines 参数用于可视化调试射线，
+  /// 仅供调试用途。
+  /// 返回 Z 坐标值
   UFUNCTION()
   float GetLandscapeSurfaceHeight(float x, float y, bool bDrawDebugLines = false);
 
 
-  /************ RIVER PRESETS GENERATOR ************/
+  /************ 河流预设生成器 ************/
 public:
-  UFUNCTION(BlueprintCallable)
-  bool CreateRiverPresetFiles(TSubclassOf<AActor> RiverParentClass);
+  UFUNCTION(BlueprintCallable)// 声明该函数可以从蓝图调用
+  bool CreateRiverPresetFiles(TSubclassOf<AActor> RiverParentClass); // 创建河流预设文件
 };
