@@ -1,14 +1,14 @@
 
-name: compute involvement degree
+name: compute involvement degree  # 定义工作流的名称为 "compute involvement degree"
 
-on: [push]
+on: [push]# 定义工作流触发的事件，这里表示在代码推送（push）时触发
     
 jobs:
   work:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest# 定义工作流触发的事件，这里表示在代码推送（push）时触发
     steps:
-      - uses: actions/checkout@v4
-        with:
+      - uses: actions/checkout@v4 # 使用actions/checkout这个动作（action），版本为v4，用于签出代码仓库
+        with: # github action 默认签出只包含最后一次提交
           # github action 默认签出只包含最后一次提交
           # 解决方案参考：https://stackoverflow.com/questions/62334460/git-history-in-a-github-action
           ref: ${{ github.event.pull_request.head.sha }}
