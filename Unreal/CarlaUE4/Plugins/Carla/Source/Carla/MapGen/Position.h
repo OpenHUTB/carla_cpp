@@ -23,9 +23,9 @@ namespace MapGen {
 
     number_type y;
 
-    Position() = default;
+    Position() = default;#定义一个默认构造函数
 
-    constexpr Position(T X, T Y) : x(X), y(Y) {}
+    constexpr Position(T X, T Y) : x(X), y(Y) {}#带参数的构造函数
 
     constexpr bool operator==(const Position &rhs) const {
       return (x == rhs.x) && (y == rhs.y);
@@ -33,7 +33,7 @@ namespace MapGen {
 
     constexpr bool operator!=(const Position &rhs) const {
       return !(*this == rhs);
-    }
+    }#定义操作符重载
 
     Position &operator+=(const Position &rhs) {
       x += rhs.x;
