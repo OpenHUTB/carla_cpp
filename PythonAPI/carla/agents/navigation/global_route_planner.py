@@ -215,9 +215,13 @@ class GlobalRoutePlanner:
             seg_dict['entry'], seg_dict['exit'] = wp1, wp2
             #将入口和出口路点的坐标以元组坐标形式添加到字典中
             seg_dict['entryxyz'], seg_dict['exitxyz'] = (x1, y1, z1), (x2, y2, z2)
+            #创建一个空的路径列表 用于存储道路段中入口到出口的路点列表
             seg_dict['path'] = []
+            #关于endloc以及路径构建逻辑
             endloc = wp2.transform.location
+            #计算两地之间的距离进行比较
             if wp1.transform.location.distance(endloc) > self._sampling_resolution:
+                #如果满足上述距离条件 获取wp1的下一点
                 w = wp1.next(self._sampling_resolution)[0]
                 while w.transform.location.distance(endloc) > self._sampling_resolution:
                     seg_dict['path'].append(w)
