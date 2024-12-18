@@ -1,27 +1,29 @@
-// Copyright (c) 2023 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2023 巴塞罗那自治大学 (UAB) 的计算机视觉中心 (CVC)。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品依据 MIT 许可证的条款进行授权。
+// 如需许可证副本，请访问 <https://opensource.org/licenses/MIT>。
 
-#pragma once
+#pragma once //这是一个预处理指令，用于确保当前头文件只被包含（include）一次，避免重复包含导致的编译错误。
 
-#include "carla/Buffer.h"
-#include "carla/Debug.h"
-#include "carla/Exception.h"
-#include "carla/Logging.h"
+// 包含CARLA项目相关的头文件
+#include "carla/Buffer.h" // 包含Buffer类的定义，通常用于数据缓存。
+#include "carla/Debug.h" // 包含调试相关的宏和函数定义。
+#include "carla/Exception.h" // 包含异常类的定义，用于错误处理。
+#include "carla/Logging.h" // 包含日志记录相关的宏和函数定义。
 
-#include <boost/asio/buffer.hpp>
+// 包含第三方库的头文件
+#include <boost/asio/buffer.hpp> // 包含Boost.Asio库中用于处理缓冲区的功能。
 
-#include <cstdint>
-#include <limits>
-#include <memory>
-#include <type_traits>
+// 包含标准库的头文件
+#include <cstdint> // 包含标准整数类型的定义。
+#include <limits> // 包含各种类型属性的限制值，如最大值和最小值。
+#include <memory> // 包含内存管理相关的类和函数，如智能指针。
+#include <type_traits> // 包含类型特征相关的模板类和函数，用于类型检查和转换。
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
-#include <compiler/enable-ue4-macros.h>
-#include "Containers/Array.h"
-#include <compiler/disable-ue4-macros.h>
+#include <compiler/enable-ue4-macros.h> // 启用UE4特定的编译器宏
+#include "Containers/Array.h" // 包含UE4的Array容器类，用于存储和管理动态数组。
+#include <compiler/disable-ue4-macros.h> // 禁用UE4特定的编译器宏
 #endif // LIBCARLA_INCLUDED_FROM_UE4
 
 namespace carla {
@@ -52,8 +54,8 @@ namespace carla {
 
   public:
 
-    BufferView() = delete;
-    BufferView(const BufferView &) = delete;
+    BufferView() = delete;  // 删除默认构造函数
+    BufferView(const BufferView &) = delete; // 删除拷贝构造函数
 
     // 从一个临时缓冲区创建一个BufferView的智能指针
     static std::shared_ptr<BufferView> CreateFrom(Buffer &&buffer) {
@@ -92,7 +94,13 @@ namespace carla {
     }
 
     /// @copydoc cbuffer()
+    ///
+    /// 这个成员函数返回一个`boost::asio::const_buffer`对象，该对象封装了内部数据缓冲区。
+    /// 它通过调用`cbuffer()`成员函数来获取底层缓冲区，并返回一个不可变的缓冲区视图。
+    /// 这个函数被标记为`noexcept`，意味着它保证不会抛出异常。
     boost::asio::const_buffer buffer() const noexcept {
+      // 调用cbuffer()成员函数来获取底层的const缓冲区，并返回它。
+      // 这里假设cbuffer()返回了一个适当的、用于asio库操作的缓冲区。
       return cbuffer();
     }
 
