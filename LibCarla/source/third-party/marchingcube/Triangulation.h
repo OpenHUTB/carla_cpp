@@ -1,20 +1,40 @@
 #pragma once
-#include "Cube.h"
-#include "DataStructs.h"
+// This directive ensures that the header file is included only once in a single compilation unit,
+// preventing multiple inclusion problems (duplicate declarations or definitions).
+
+#include "Cube.h"          // Includes the header file for the Cube class or data structures.
+#include "DataStructs.h"   // Includes the header file for data structures used in mesh reconstruction, such as IntersectInfo, Fun3v, etc.
 
 namespace MeshReconstruction
 {
+  // Function declaration for Triangulate:
+  // This function is responsible for performing the triangulation of a mesh.
+  // It takes in the following arguments:
+  // - intersect: Information about the intersections during the reconstruction process (possibly a struct containing various data).
+  // - grad: A function or object that represents the gradient at a particular point (could be related to normals or other properties).
+  // - mesh: The output mesh object that will be modified during triangulation.
   void Triangulate(
-      IntersectInfo const &intersect,
-      Fun3v const &grad,
-      Mesh &mesh);
+      IntersectInfo const &intersect,  // Contains intersection data.
+      Fun3v const &grad,              // Gradient function or data, used for mesh calculations.
+      Mesh &mesh);                    // The mesh that will be updated with triangulated data.
 }
 
 namespace
 {
+  // This is an anonymous namespace, typically used for internal or private helper functions
+  // that are not meant to be exposed outside of this translation unit.
+
+  // The following comment block describes a set of indices that are likely used for vertex buffer management
+  // or vertex indexing in the context of mesh triangulation.
+
   // Indices into vertex buffer (0 - 11).
-  // Three successive entries make up one triangle.
-  // -1 means unused.
+  // Three successive entries make up one triangle. Each set of three indices represents one triangle in the mesh.
+  // The indices likely point to positions in a vertex buffer where the vertices of the triangle are stored.
+  
+  // -1 means unused: If an index is -1, it indicates that the corresponding triangle entry is not in use.
+  // This is commonly used as a placeholder for invalid or unassigned data.
+}
+
   const int signConfigToTriangles[256][16] =
       {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
        {0, 8, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
@@ -274,39 +294,49 @@ namespace
        {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
 }
 
-/// Given a grid cube and an isolevel the triangles (5 max)
-/// required to represent the isosurface in the cube are computed.
+/// 给定一个立方体网格和一个等值面，计算立方体中表示等值面的三角形（最多5个）
+/// 根据等值面在立方体中的交集，计算立方体的三角形网格表示
 void MeshReconstruction::Triangulate(
-    IntersectInfo const &intersect,
-    Fun3v const &grad,
-    Mesh &mesh)
+    IntersectInfo const &intersect,  // 包含交集信息的结构体
+    Fun3v const &grad,              // 用于计算顶点法向量的梯度函数
+    Mesh &mesh)                     // 输出的网格对象，包含顶点、法线和三角形
 {
-  // Cube is entirely in/out of the surface. Generate no triangles.
+  // 如果立方体完全位于等值面外（所有顶点都在等值面外）或完全位于等值面内（所有顶点都在等值面内）
+  // 则不生成任何三角形
   if (intersect.signConfig == 0 || intersect.signConfig == 255)
     return;
 
+  // 从预定义的三角形配置表中获取当前signConfig对应的三角形顶点索引
   auto const &tri = signConfigToTriangles[intersect.signConfig];
 
+  // 遍历每一组三角形（每组三个顶点索引），直到遇到-1，表示没有更多三角形
   for (auto i = 0; tri[i] != -1; i += 3)
   {
+    // 获取三角形的三个顶点
     auto const &v0 = intersect.edgeVertIndices[tri[i]];
     auto const &v1 = intersect.edgeVertIndices[tri[i + 1]];
     auto const &v2 = intersect.edgeVertIndices[tri[i + 2]];
 
+    // 将三个顶点添加到mesh的顶点列表中
     mesh.vertices.push_back(v0);
     mesh.vertices.push_back(v1);
     mesh.vertices.push_back(v2);
 
+    // 计算每个顶点的法向量并归一化
     auto normal0 = grad(v0).Normalized();
     auto normal1 = grad(v1).Normalized();
     auto normal2 = grad(v2).Normalized();
 
+    // 将法向量添加到mesh的法线列表中
     mesh.vertexNormals.push_back(normal0);
     mesh.vertexNormals.push_back(normal1);
     mesh.vertexNormals.push_back(normal2);
 
+    // 获取当前三角形的最后一个顶点的索引
     auto last = static_cast<int>(mesh.vertices.size() - 1);
 
+    // 添加一个三角形到网格的三角形列表，使用顶点索引
+    // last - 2, last - 1, last 表示当前三角形的三个顶点
     mesh.triangles.push_back({last - 2, last - 1, last});
   }
 }
