@@ -264,89 +264,88 @@ bool TrafficManagerLocal::SynchronousTick() {
 
 void TrafficManagerLocal::Stop() {
 // 停止交通管理器的工作线程并清理资源
-  run_traffic_manger.store(false);void TrafficManagerLocal::Stop() {
-// 停止交通管理器的工作线程并清理资源
-  run_traffic_manger.store(false);
+    run_traffic_manger.store(false);// 停止交通管理器运行
   if (parameters.GetSynchronousMode()) {
     step_begin_trigger.notify_one();
   }
-
+ // 如果工作线程存在且可连接，等待线程结束
   if (worker_thread) {
     if (worker_thread->joinable()) {
-      worker_thread->join();
+      worker_thread->join(); // 等待工作线程完成
     }
-    worker_thread.release();
+    worker_thread.release();// 释放工作线程资源
   }
-
-  vehicle_id_list.clear();
-  registered_vehicles.Clear();
-  registered_vehicles_state = -1;
-  track_traffic.Clear();
-  previous_update_instance = chr::system_clock::now();
-  current_reserved_capacity = 0u;
-
-  simulation_state.Reset();
-  localization_stage.Reset();
-  collision_stage.Reset();
-  traffic_light_stage.Reset();
-  motion_plan_stage.Reset();
-
+  // 清除所有车辆ID和注册车辆的状态
+  vehicle_id_list.clear(); // 清空车辆ID列表
+  registered_vehicles.Clear(); // 清除所有已注册的车辆
+  registered_vehicles_state = -1; // 重置注册的车辆状态
+  track_traffic.Clear();// 清除交通跟踪数据
+   // 重置模拟相关的状态数据
+  previous_update_instance = chr::system_clock::now();// 更新上次更新时间
+  current_reserved_capacity = 0u; // 重置保留的容量
+   // 清理各个阶段的数据
+  simulation_state.Reset();// 重置模拟状态
+  localization_stage.Reset(); // 重置定位阶段
+  collision_stage.Reset(); // 重置碰撞检测阶段
+  traffic_light_stage.Reset(); // 重置交通灯阶段
+  motion_plan_stage.Reset(); // 重置运动规划阶段
+  // 清空缓存数据
   buffer_map.clear();
   localization_frame.clear();
   collision_frame.clear();
   tl_frame.clear();
   control_frame.clear();
-
-  run_traffic_manger.store(true);
-  step_begin.store(false);
-  step_end.store(false);
+   // 恢复状态变量
+  run_traffic_manger.store(true); // 恢复交通管理器的运行状态
+  step_begin.store(false);// 重置步开始标志
+  step_end.store(false); // 重置步结束标志
+}
 }
 
 void TrafficManagerLocal::Release() {
 
   Stop();
 
-  local_map.reset();
+  local_map.reset();// 释放本地图资源
 }
 
-void TrafficManagerLocal::Reset() {
+void TrafficManagerLocal::Reset() { // 释放并重置资源
   Release();
-  episode_proxy = episode_proxy.Lock()->GetCurrentEpisode();
-  world = cc::World(episode_proxy);
-  SetupLocalMap();
-  Start();
+  episode_proxy = episode_proxy.Lock()->GetCurrentEpisode();// 获取当前的剧集
+  world = cc::World(episode_proxy);// 创建新的世界对象
+  SetupLocalMap(); // 设置本地图
+  Start(); // 启动交通管理器
 }
 
-void TrafficManagerLocal::RegisterVehicles(const std::vector<ActorPtr> &vehicle_list) {
-  std::lock_guard<std::mutex> registration_lock(registration_mutex);
-  registered_vehicles.Insert(vehicle_list);
+void TrafficManagerLocal::RegisterVehicles(const std::vector<ActorPtr> &vehicle_list) { // 注册新车辆到交通管理器
+  std::lock_guard<std::mutex> registration_lock(registration_mutex);// 锁定注册互斥量，避免并发问题
+  registered_vehicles.Insert(vehicle_list); // 将车辆添加到已注册列表
 }
 
-void TrafficManagerLocal::UnregisterVehicles(const std::vector<ActorPtr> &actor_list) {
-  std::lock_guard<std::mutex> registration_lock(registration_mutex);
-  std::vector<ActorId> actor_id_list;
+void TrafficManagerLocal::UnregisterVehicles(const std::vector<ActorPtr> &actor_list) { // 注销车辆并移除其ID
+  std::lock_guard<std::mutex> registration_lock(registration_mutex);// 锁定注册互斥量
+  std::vector<ActorId> actor_id_list;// 存储人物ID
   for (auto &actor : actor_list) {
-    alsm.RemoveActor(actor->GetId(), true);
+    alsm.RemoveActor(actor->GetId(), true); // 从系统中移除每个人物
   }
 }
 
-void TrafficManagerLocal::SetPercentageSpeedDifference(const ActorPtr &actor, const float percentage) {
+void TrafficManagerLocal::SetPercentageSpeedDifference(const ActorPtr &actor, const float percentage) { // 设置车辆与默认速度的差异百分比
   parameters.SetPercentageSpeedDifference(actor, percentage);
 }
 
-void TrafficManagerLocal::SetGlobalPercentageSpeedDifference(const float percentage) {
+void TrafficManagerLocal::SetGlobalPercentageSpeedDifference(const float percentage) {// 设置全局速度差异百分比
   parameters.SetGlobalPercentageSpeedDifference(percentage);
 }
 
-void TrafficManagerLocal::SetLaneOffset(const ActorPtr &actor, const float offset) {
+void TrafficManagerLocal::SetLaneOffset(const ActorPtr &actor, const float offset) { // 设置车辆在车道中的偏移
   parameters.SetLaneOffset(actor, offset);
 }
 
-void TrafficManagerLocal::SetGlobalLaneOffset(const float offset) {
-  parameters.SetGlobalLaneOffset(offset);
+void TrafficManagerLocal::SetGlobalLaneOffset(const float offset) // 设置全局车道偏移{  parameters.SetGlobalLaneOffset(offset);
 }
 
-void TrafficManagerLocal::SetDesiredSpeed(const ActorPtr &actor, const float value) {
+void TrafficManagerLocal::SetDesiredSpeed(const ActorPtr &actor, const float value) {// 设置车辆期望的行驶速度
   parameters.SetDesiredSpeed(actor, value);
 }
 
@@ -354,106 +353,106 @@ void TrafficManagerLocal::SetDesiredSpeed(const ActorPtr &actor, const float val
 void TrafficManagerLocal::SetUpdateVehicleLights(const ActorPtr &actor, const bool do_update) {
   parameters.SetUpdateVehicleLights(actor, do_update);
 }
-
+// 设置车辆与其他车辆的碰撞检测
 void TrafficManagerLocal::SetCollisionDetection(const ActorPtr &reference_actor, const ActorPtr &other_actor, const bool detect_collision) {
   parameters.SetCollisionDetection(reference_actor, other_actor, detect_collision);
 }
-
+// 强制车辆变道
 void TrafficManagerLocal::SetForceLaneChange(const ActorPtr &actor, const bool direction) {
   parameters.SetForceLaneChange(actor, direction);
 }
-
+// 设置自动变道开关
 void TrafficManagerLocal::SetAutoLaneChange(const ActorPtr &actor, const bool enable) {
   parameters.SetAutoLaneChange(actor, enable);
 }
-
+// 设置车辆与前车的距离
 void TrafficManagerLocal::SetDistanceToLeadingVehicle(const ActorPtr &actor, const float distance) {
   parameters.SetDistanceToLeadingVehicle(actor, distance);
 }
-
+// 设置全局车辆与前车的距离
 void TrafficManagerLocal::SetGlobalDistanceToLeadingVehicle(const float distance) {
   parameters.SetGlobalDistanceToLeadingVehicle(distance);
 }
-
+// 设置忽略行人的百分比
 void TrafficManagerLocal::SetPercentageIgnoreWalkers(const ActorPtr &actor, const float perc) {
   parameters.SetPercentageIgnoreWalkers(actor, perc);
 }
-
+// 设置忽略其他车辆的百分比
 void TrafficManagerLocal::SetPercentageIgnoreVehicles(const ActorPtr &actor, const float perc) {
   parameters.SetPercentageIgnoreVehicles(actor, perc);
 }
-
+// 设置车辆在绿灯时通过的百分比
 void TrafficManagerLocal::SetPercentageRunningLight(const ActorPtr &actor, const float perc) {
   parameters.SetPercentageRunningLight(actor, perc);
 }
-
+// 设置车辆在红灯时的行为
 void TrafficManagerLocal::SetPercentageRunningSign(const ActorPtr &actor, const float perc) {
   parameters.SetPercentageRunningSign(actor, perc);
 }
-
+// 设置车辆右侧行驶的百分比
 void TrafficManagerLocal::SetKeepRightPercentage(const ActorPtr &actor, const float percentage) {
   parameters.SetKeepRightPercentage(actor, percentage);
 }
-
+// 设置车辆随机变道的百分比
 void TrafficManagerLocal::SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage) {
   parameters.SetRandomLeftLaneChangePercentage(actor, percentage);
 }
-
+// 设置车辆随机变道的百分比（右侧变道）
 void TrafficManagerLocal::SetRandomRightLaneChangePercentage(const ActorPtr &actor, const float percentage) {
   parameters.SetRandomRightLaneChangePercentage(actor, percentage);
 }
-
+// 开关混合物理模式
 void TrafficManagerLocal::SetHybridPhysicsMode(const bool mode_switch) {
   parameters.SetHybridPhysicsMode(mode_switch);
 }
-
+// 设置混合物理模式下的半径
 void TrafficManagerLocal::SetHybridPhysicsRadius(const float radius) {
   parameters.SetHybridPhysicsRadius(radius);
 }
-
+// 设置是否启用OSM模式（Open Street Map）
 void TrafficManagerLocal::SetOSMMode(const bool mode_switch) {
   parameters.SetOSMMode(mode_switch);
 }
-
+// 设置自定义路径给车辆
 void TrafficManagerLocal::SetCustomPath(const ActorPtr &actor, const Path path, const bool empty_buffer) {
   parameters.SetCustomPath(actor, path, empty_buffer);
 }
-
+// 移除上传路径
 void TrafficManagerLocal::RemoveUploadPath(const ActorId &actor_id, const bool remove_path) {
   parameters.RemoveUploadPath(actor_id, remove_path);
 }
-
+// 更新上传路径
 void TrafficManagerLocal::UpdateUploadPath(const ActorId &actor_id, const Path path) {
   parameters.UpdateUploadPath(actor_id, path);
 }
-
+// 设置导入的路线
 void TrafficManagerLocal::SetImportedRoute(const ActorPtr &actor, const Route route, const bool empty_buffer) {
   parameters.SetImportedRoute(actor, route, empty_buffer);
 }
-
+// 移除导入的路线
 void TrafficManagerLocal::RemoveImportedRoute(const ActorId &actor_id, const bool remove_path) {
   parameters.RemoveImportedRoute(actor_id, remove_path);
 }
-
+// 更新导入的路线
 void TrafficManagerLocal::UpdateImportedRoute(const ActorId &actor_id, const Route route) {
   parameters.UpdateImportedRoute(actor_id, route);
 }
-
+// 设置是否重生休眠车辆
 void TrafficManagerLocal::SetRespawnDormantVehicles(const bool mode_switch) {
   parameters.SetRespawnDormantVehicles(mode_switch);
 }
-
+// 设置重生休眠车辆的边界
 void TrafficManagerLocal::SetBoundariesRespawnDormantVehicles(const float lower_bound, const float upper_bound) {
   parameters.SetBoundariesRespawnDormantVehicles(lower_bound, upper_bound);
 }
-
+// 设置最大边界
 void TrafficManagerLocal::SetMaxBoundaries(const float lower, const float upper) {
   parameters.SetMaxBoundaries(lower, upper);
 }
-
+// 获取车辆的下一动作
 Action TrafficManagerLocal::GetNextAction(const ActorId &actor_id) {
   return localization_stage.ComputeNextAction(actor_id);
-}
+}// 获取车辆的动作缓冲区
 
 ActionBuffer TrafficManagerLocal::GetActionBuffer(const ActorId &actor_id) {
   return localization_stage.ComputeActionBuffer(actor_id);
