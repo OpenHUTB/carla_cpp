@@ -4,7 +4,7 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once 
 
 #include "carla/Debug.h"
 #include "carla/Logging.h"
@@ -242,37 +242,40 @@ namespace detail {
 
     /// è¿”å›ä¸€ä¸ªåˆ—è¡¨ï¼Œå…¶ä¸­ç¬¬ä¸€ä¸ªå…ƒç´ æ˜¯è½¦è¾† IDï¼Œç¬¬äºŒä¸ªå…ƒç´ æ˜¯ç¯å…‰çŠ¶æ€
     rpc::VehicleLightStateList GetVehiclesLightStates();
-
-    SharedPtr<Actor> GetSpectator();
+// ·µ»ØÒ»¸öÖ¸ÏòActorµÄÖÇÄÜÖ¸Õë£¬Actor¿ÉÄÜ´ú±íÄ£ÄâÆ÷ÖĞµÄÒ»¸öÊµÌå£¬Èç³µÁ¾¡¢ĞĞÈËµÈ¡£
+// Spectator¿ÉÄÜÊÇÒ»¸öÌØÊâµÄÊÓ½Ç»òÊµÌå£¬ÓÃÓÚ¹Û²ìÄ£ÄâÆ÷µÄ×´Ì¬¡£
+    SharedPtr<Actor> GetSpectator();// »ñÈ¡µ±Ç°³¡¾°µÄ¼¯¼¯ÉèÖÃ£¨EpisodeSettings£©£¬Õâ¿ÉÄÜ°üÀ¨Ê±¼ä¡¢ÌìÆø¡¢½»Í¨ÃÜ¶ÈµÈ²ÎÊı
 
     rpc::EpisodeSettings GetEpisodeSettings() {
-      return _client.GetEpisodeSettings();
+      return _client.GetEpisodeSettings();// µ÷ÓÃ¿Í»§¶ËµÄGetEpisodeSettings·½·¨ÒÔ»ñÈ¡ÉèÖÃ¡£
     }
-
+// Ê¹ÓÃÌá¹©µÄÌìÆø²ÎÊı£¨WeatherParameters£©¸üĞÂµ±Ç°µÄÌìÆøÉèÖÃ¡£
     uint64_t SetEpisodeSettings(const rpc::EpisodeSettings &settings);
-
+// »ñÈ¡µ±Ç°µÄÌìÆø²ÎÊı£¨WeatherParameters£©£¬Õâ¿ÉÄÜ°üÀ¨ÎÂ¶È¡¢Êª¶È¡¢·çÏòµÈ¡£
     rpc::WeatherParameters GetWeatherParameters() {
       return _client.GetWeatherParameters();
     }
 
     void SetWeatherParameters(const rpc::WeatherParameters &weather) {
-      _client.SetWeatherParameters(weather);
+      _client.SetWeatherParameters(weather);// µ÷ÓÃ¿Í»§¶ËµÄSetWeatherParameters·½·¨ÒÔÉèÖÃÌìÆø¡£
     }
-
+// Ê¹ÓÃÌá¹©µÄÌìÆø²ÎÊı£¨WeatherParameters£©¸üĞÂµ±Ç°µÄÌìÆøÉèÖÃ¡£
     float GetIMUISensorGravity() const {
-      return _client.GetIMUISensorGravity();
+      return _client.GetIMUISensorGravity();// µ÷ÓÃ¿Í»§¶ËµÄGetIMUISensorGravity·½·¨ÒÔ»ñÈ¡ÖØÁ¦Öµ¡£
     }
 
     void SetIMUISensorGravity(float NewIMUISensorGravity) {
-      _client.SetIMUISensorGravity(NewIMUISensorGravity);
+      _client.SetIMUISensorGravity(NewIMUISensorGravity); // µ÷ÓÃ¿Í»§¶ËµÄSetWeatherParameters·½·¨ÒÔÉèÖÃÌìÆø¡£
     }
-
+// »ñÈ¡IMU£¨¹ßĞÔ²âÁ¿µ¥Ôª£©´«¸ĞÆ÷µÄÖØÁ¦Öµ¡£
+// IMU´«¸ĞÆ÷¿ÉÄÜÓÃÓÚÄ£Äâ³µÁ¾»òÉè±¸µÄÎïÀíÔË¶¯¡£
     rpc::VehiclePhysicsControl GetVehiclePhysicsControl(const Vehicle &vehicle) const {
       return _client.GetVehiclePhysicsControl(vehicle.GetId());
     }
-
+// »ñÈ¡Ö¸¶¨³µÁ¾£¨Vehicle£©µÄµÆ¹â×´Ì¬£¨VehicleLightState£©¡£
+// Õâ¿ÉÄÜ°üÀ¨³µÍ·µÆ¡¢×ªÏòµÆ¡¢É²³µµÆµÈµÄ×´Ì¬¡£
     rpc::VehicleLightState GetVehicleLightState(const Vehicle &vehicle) const {
-      return _client.GetVehicleLightState(vehicle.GetId());
+      return _client.GetVehicleLightState(vehicle.GetId()); // Ê¹ÓÃ³µÁ¾µÄIDµ÷ÓÃ¿Í»§¶ËµÄGetVehicleLightState·½·¨ÒÔ»ñÈ¡µÆ¹â×´Ì¬¡£
     }
 
     /// Returns all the BBs of all the elements of the level
