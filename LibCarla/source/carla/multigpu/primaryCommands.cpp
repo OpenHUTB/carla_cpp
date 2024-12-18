@@ -7,6 +7,7 @@
 #include "carla/multigpu/primaryCommands.h"
 
 // #include "carla/Logging.h"
+// #include "carla/Logging.h"  // 用于日志记录（目前未启用）
 #include "carla/multigpu/commands.h"
 #include "carla/multigpu/primary.h"
 #include "carla/multigpu/router.h"
@@ -17,30 +18,42 @@
 namespace carla {
 namespace multigpu {
 
+// PrimaryCommands类的默认构造函数，目前为空实现，可能后续用于对象的默认初始化等情况
 PrimaryCommands::PrimaryCommands() {
 }
 
+// PrimaryCommands类的构造函数，接受一个指向Router的智能指针作为参数，用于初始化成员变量_router
+// 参数router: 指向Router对象的智能指针，用于后续的消息路由等操作
 PrimaryCommands::PrimaryCommands(std::shared_ptr<Router> router) :
   _router(router) {
 }
 
+// 设置路由器（Router）的函数，用于更新当前PrimaryCommands对象所使用的路由器
+// 参数router: 新的指向Router对象的智能指针
 void PrimaryCommands::set_router(std::shared_ptr<Router> router) {
   _router = router;
 }
 
-// broadcast to all secondary servers the frame data
+// 向所有辅助服务器广播帧数据的函数
+// 参数buffer: 包含帧数据的carla::Buffer类型对象，会将此数据通过路由器发送给所有辅助服务器
+// 实现方式是调用_router的Write方法，传递对应的命令类型（MultiGPUCommand::SEND_FRAME）和要发送的数据（移动语义传递buffer）
 void PrimaryCommands::SendFrameData(carla::Buffer buffer) {
   _router->Write(MultiGPUCommand::SEND_FRAME, std::move(buffer));
-  // log_info("sending frame command");
+  // log_info("sending frame command");  // 此处原代码有日志输出，可能用于调试等记录发送帧命令的操作，当前被注释掉了
 }
 
-// broadcast to all secondary servers the map to load
+// 向所有辅助服务器广播要加载的地图的函数
+// 参数map: 表示地图名称的字符串，先将其转换为carla::Buffer类型，再通过路由器发送给所有辅助服务器
+// 转换为Buffer时，会包含字符串内容以及结尾的'\0'字符（通过 + 1 来保证包含结尾字符），然后调用_router的Write方法发送，命令类型为MultiGPUCommand::LOAD_MAP
 void PrimaryCommands::SendLoadMap(std::string map) {
   carla::Buffer buf((unsigned char *) map.c_str(), (size_t) map.size() + 1);
   _router->Write(MultiGPUCommand::LOAD_MAP, std::move(buf));
 }
 
-// send to who the router wants the request for a token
+// 向路由器需要令牌的人员发送请求的函数，用于获取令牌（token）
+// 参数sensor_id: 传感器的ID，用于标识请求令牌对应的传感器
+// 函数先记录请求令牌的日志信息（log_info），然后将sensor_id放入carla::Buffer中，通过路由器的WriteToNext方法异步发送请求（命令类型为MultiGPUCommand::GET_TOKEN）
+// 接着等待异步操作完成（fut.get()）获取响应，从响应中解析出新的令牌（token_type），并记录获取到的令牌信息，最后返回该令牌
 token_type PrimaryCommands::SendGetToken(stream_id sensor_id) {
   log_info("asking for a token");
   carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
@@ -53,7 +66,9 @@ token_type PrimaryCommands::SendGetToken(stream_id sensor_id) {
   return new_token;
 }
 
-// send to know if a connection is alive
+// 发送以了解连接是否处于活动状态的函数
+// 先构造一个简单的询问消息字符串，将其转换为carla::Buffer类型，记录发送命令的日志信息（log_info），然后通过路由器的WriteToNext方法异步发送（命令类型为MultiGPUCommand::YOU_ALIVE）
+// 等待异步操作完成获取响应，并记录响应内容的日志信息（log_info）
 void PrimaryCommands::SendIsAlive() {
   std::string msg("Are you alive?");
   carla::Buffer buf((unsigned char *) msg.c_str(), (size_t) msg.size());
@@ -63,10 +78,16 @@ void PrimaryCommands::SendIsAlive() {
   log_info("response from alive command: ", response.buffer.data());
 }
 
+// 发送启用ROS相关功能的命令给特定传感器所在的辅助服务器（如果传感器已在某辅助服务器中激活）
+// 参数sensor_id: 传感器的ID，用于查找对应的辅助服务器
+// 首先在已记录的服务器列表（_servers）中查找该传感器是否已在某个辅助服务器中激活，如果找到：
+//   - 将sensor_id放入carla::Buffer中，通过路由器的WriteToOne方法异步发送启用命令（命令类型为MultiGPUCommand::ENABLE_ROS）给对应的服务器
+//   - 等待异步操作完成获取响应，并从响应中解析出布尔值结果（表示启用操作是否成功等情况）
+// 如果没找到对应的服务器，记录错误日志，表示该传感器在任何服务器上都没找到
 void PrimaryCommands::SendEnableForROS(stream_id sensor_id) {
-  // search if the sensor has been activated in any secondary server
+  // 搜索传感器是否已在任何辅助服务器中激活
   auto it = _servers.find(sensor_id);
-  if (it != _servers.end()) {
+  if (it!= _servers.end()) {
     carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
                       (size_t) sizeof(stream_id));
     auto fut = _router->WriteToOne(it->second, MultiGPUCommand::ENABLE_ROS, std::move(buf));
@@ -78,10 +99,12 @@ void PrimaryCommands::SendEnableForROS(stream_id sensor_id) {
   }
 }
 
+// 发送禁用ROS相关功能的命令给特定传感器所在的辅助服务器（如果传感器已在某辅助服务器中激活）
+// 参数sensor_id: 传感器的ID，功能和逻辑与SendEnableForROS类似，只是命令类型变为MultiGPUCommand::DISABLE_ROS，用于禁用操作
 void PrimaryCommands::SendDisableForROS(stream_id sensor_id) {
-  // search if the sensor has been activated in any secondary server
+  // 搜索传感器是否已在任何辅助服务器中激活
   auto it = _servers.find(sensor_id);
-  if (it != _servers.end()) {
+  if (it!= _servers.end()) {
     carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
                       (size_t) sizeof(stream_id));
     auto fut = _router->WriteToOne(it->second, MultiGPUCommand::DISABLE_ROS, std::move(buf));
@@ -93,10 +116,14 @@ void PrimaryCommands::SendDisableForROS(stream_id sensor_id) {
   }
 }
 
+// 发送查询特定传感器是否已启用ROS相关功能的命令给对应的辅助服务器（如果传感器已在某辅助服务器中激活），并返回查询结果
+// 参数sensor_id: 传感器的ID，同样先查找传感器所在服务器，如果找到：
+//   - 通过路由器的WriteToOne方法发送查询命令（命令类型为MultiGPUCommand::IS_ENABLED_ROS），等待响应并解析出布尔值结果（表示是否启用），然后返回该结果
+// 如果没找到对应的服务器，记录错误日志，并返回false表示未找到该传感器对应的服务器，默认当作未启用
 bool PrimaryCommands::SendIsEnabledForROS(stream_id sensor_id) {
-  // search if the sensor has been activated in any secondary server
+  // 搜索传感器是否已在任何辅助服务器中激活
   auto it = _servers.find(sensor_id);
-  if (it != _servers.end()) {
+  if (it!= _servers.end()) {
     carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
                       (size_t) sizeof(stream_id));
     auto fut = _router->WriteToOne(it->second, MultiGPUCommand::IS_ENABLED_ROS, std::move(buf));
@@ -110,16 +137,23 @@ bool PrimaryCommands::SendIsEnabledForROS(stream_id sensor_id) {
   }
 }
 
+// 获取特定传感器的令牌（token）的函数
+// 参数sensor_id: 传感器的ID，首先在已记录的令牌列表（_tokens）中查找该传感器是否已有对应的令牌，如果有：
+//   - 直接返回已有的令牌（从记录中获取并返回，同时记录日志信息表明使用已激活传感器的令牌）
+// 如果没有找到对应的令牌，则执行以下操作：
+//   - 通过路由器获取下一个可用的服务器（_router->GetNextServer()）
+//   - 调用SendGetToken函数向该服务器请求获取令牌
+//   - 将获取到的令牌添加到令牌列表（_tokens）和服务器列表（_servers）中，记录日志信息表明使用新激活传感器的令牌，最后返回该令牌
 token_type PrimaryCommands::GetToken(stream_id sensor_id) {
-  // search if the sensor has been activated in any secondary server
+  // 搜索传感器是否已在任何辅助服务器中激活
   auto it = _tokens.find(sensor_id);
-  if (it != _tokens.end()) {
-    // return already activated sensor token
+  if (it!= _tokens.end()) {
+    // 返回已经激活的传感器令牌
     log_debug("Using token from already activated sensor: ", it->second.get_stream_id(), ", ", it->second.get_port());
     return it->second;
   }
   else {
-    // enable the sensor on one secondary server
+    // 在一台辅助服务器上启用传感器
     auto server = _router->GetNextServer();
     auto token = SendGetToken(sensor_id);
     // add to the maps
@@ -130,27 +164,38 @@ token_type PrimaryCommands::GetToken(stream_id sensor_id) {
   }
 }
 
+// 启用特定传感器的ROS相关功能的函数
+// 参数sensor_id: 传感器的ID，首先在服务器列表（_servers）中查找该传感器是否已在某个辅助服务器中激活，如果找到：
+//   - 直接调用SendEnableForROS函数发送启用命令
+// 如果没找到对应的服务器，则先调用GetToken函数获取该传感器的令牌（这可能会激活传感器并记录相关信息），然后再次调用EnableForROS函数自身（递归调用）尝试启用
 void PrimaryCommands::EnableForROS(stream_id sensor_id) {
   auto it = _servers.find(sensor_id);
-  if (it != _servers.end()) {
+  if (it!= _servers.end()) {
     SendEnableForROS(sensor_id);
   } else {
-    // we need to activate the sensor in any server yet, and repeat
+    // 我们需要在任何服务器上激活传感器，然后重复
     GetToken(sensor_id);
     EnableForROS(sensor_id);
   }
 }
 
+// 禁用特定传感器的ROS相关功能的函数
+// 参数sensor_id: 传感器的ID，在服务器列表（_servers）中查找该传感器是否已在某个辅助服务器中激活，如果找到：
+//   - 调用SendDisableForROS函数发送禁用命令
 void PrimaryCommands::DisableForROS(stream_id sensor_id) {
   auto it = _servers.find(sensor_id);
-  if (it != _servers.end()) {
+  if (it!= _servers.end()) {
     SendDisableForROS(sensor_id);
   }
 }
 
+// 查询特定传感器是否已启用ROS相关功能的函数
+// 参数sensor_id: 传感器的ID，在服务器列表（_servers）中查找该传感器是否已在某个辅助服务器中激活，如果找到：
+//   - 调用SendIsEnabledForROS函数发送查询命令，并返回查询结果
+// 如果没找到对应的服务器，直接返回false，表示未启用
 bool PrimaryCommands::IsEnabledForROS(stream_id sensor_id) {
   auto it = _servers.find(sensor_id);
-  if (it != _servers.end()) {
+  if (it!= _servers.end()) {
     return SendIsEnabledForROS(sensor_id);
   }
   return false;

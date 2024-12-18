@@ -14,19 +14,22 @@ namespace sensor {
 
 namespace detail {
 
+<<<<<<< HEAD
   ///  CompileTimeTypeMap的私有实现部分，是一个模板结构体，这里只是声明，具体实现在后面的特化版本中体现
+=======
+  /// CompileTimeTypeMap 的私有实现
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
   template <size_t Size, typename...>
   struct CompileTimeTypeMapImpl;
 
-  /// Specialization for an empty map, it is retrieved when a key cannot be
-  /// found.
+  /// 空映射的特化，当找不到键时返回该特化
   template <size_t Size>
   struct CompileTimeTypeMapImpl<Size> {
 
     template <typename InKey>
     struct get {
-      using type = void;
-      static constexpr size_t index = Size;
+      using type = void;// 默认类型为 void
+      static constexpr size_t index = Size;// 索引为 Size
     };
 
     template <size_t Index>
@@ -40,10 +43,10 @@ namespace detail {
   struct CompileTimeTypeMapImpl<Size, std::pair<Key, Value>, Rest...> {
 
     static constexpr size_t current_index() {
-      return Size - 1u - sizeof...(Rest);
+      return Size - 1u - sizeof...(Rest);// 计算当前索引
     }
 
-    // Recursively call this struct until the InKey matches an element.
+    // 递归调用该结构体，直到 InKey 匹配到某个元素
     template <typename InKey>
     struct get {
       using type = typename std::conditional<
@@ -57,7 +60,7 @@ namespace detail {
               CompileTimeTypeMapImpl<Size, Rest...>::template get<InKey>::index;
     };
 
-    // Recursively call this struct until the Index matches an element.
+    // 递归调用该结构体，直到 Index 匹配到某个元素
     template <size_t Index>
     struct get_by_index {
       using type = typename std::conditional<
@@ -76,8 +79,7 @@ namespace detail {
 
 } // namespace detail
 
-  /// A compile time structure for mapping two types. Lookup elements by Key or
-  /// by Index.
+  /// 一个编译时结构，用于映射两种类型。可以通过键或索引查找元素。
   ///
   /// Example usage:
   ///
@@ -90,7 +92,7 @@ namespace detail {
   struct CompileTimeTypeMap {
 
     static constexpr size_t size() {
-      return sizeof...(Items);
+      return sizeof...(Items);// 返回映射大小
     }
 
     template <typename InKey>
