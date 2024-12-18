@@ -8,6 +8,7 @@
 
 """Example of automatic vehicle control from client side."""
 
+# 导入Python 2和Python 3兼容的print函数，确保在不同Python版本下都能正确使用print功能
 from __future__ import print_function
 
 import argparse
@@ -22,6 +23,7 @@ import re
 import sys
 import weakref
 
+# 尝试导入pygame库相关模块，用于处理图形界面、用户输入等功能，如果导入失败则抛出运行时错误提示安装pygame
 try:
     import pygame
     from pygame.locals import KMOD_CTRL
@@ -30,15 +32,17 @@ try:
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
 
+# 尝试导入numpy库，用于数值计算等操作，如果导入失败则抛出运行时错误提示安装numpy
 try:
     import numpy as np
 except ImportError:
-    raise RuntimeError(
-        'cannot import numpy, make sure numpy package is installed')
+    raise RuntimeError('cannot import numpy, make sure numpy package is installed')
 
 # ==============================================================================
 # -- Find CARLA module ---------------------------------------------------------
 # ==============================================================================
+
+# 尝试将CARLA模块所在路径添加到Python系统路径中，通过查找特定格式的CARLA egg文件路径来确定模块位置，根据操作系统不同选择不同的后缀格式（win-amd64或linux-x86_64）
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -50,14 +54,18 @@ except IndexError:
 # ==============================================================================
 # -- Add PythonAPI for release mode --------------------------------------------
 # ==============================================================================
+
+# 尝试将另一种可能的CARLA Python API路径添加到系统路径中，通过获取当前文件所在目录的上层目录下的carla文件夹路径来添加
 try:
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/carla')
 except IndexError:
     pass
 
+# 导入CARLA相关模块和类，用于与CARLA模拟器进行交互，如创建场景、获取车辆等实体、设置天气等操作
 import carla
 from carla import ColorConverter as cc
 
+# 从CARLA的导航相关模块中导入不同类型的智能体类，用于实现车辆的不同行为控制，如行为智能体、基础智能体、恒速智能体等
 from agents.navigation.behavior_agent import BehaviorAgent  # pylint: disable=import-error
 from agents.navigation.basic_agent import BasicAgent  # pylint: disable=import-error
 from agents.navigation.constant_velocity_agent import ConstantVelocityAgent  # pylint: disable=import-error
@@ -70,32 +78,45 @@ from agents.navigation.constant_velocity_agent import ConstantVelocityAgent  # p
 
 def find_weather_presets():
     """Method to find weather presets"""
+    # 编译一个正则表达式，用于将驼峰命名法的字符串进行分割，以便后续处理天气预设名称
     rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
+    # 定义一个内部函数，用于将符合上述正则表达式规则拆分后的字符串重新组合，形成更易读的天气预设名称格式
     def name(x): return ' '.join(m.group(0) for m in rgx.finditer(x))
+    # 获取CARLA中WeatherParameters类下所有以大写字母开头的属性名，这些属性名对应不同的天气预设
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
+    # 将获取到的天气预设属性名对应的属性值（天气参数对象）和处理后的易读名称组成元组，放入列表中返回
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
 
 
 def get_actor_display_name(actor, truncate=250):
     """Method to get actor display name"""
+    # 将actor的类型ID字符串中的下划线替换为点，然后按点分割字符串，取后半部分（去除前缀相关信息），再将每个单词首字母大写并拼接起来，得到一个更友好的显示名称
     name = ' '.join(actor.type_id.replace('_', '.').title().split('.')[1:])
+    # 如果名称长度超过截断长度（默认为250），则截断并添加省略号后返回，否则直接返回名称
     return (name[:truncate - 1] + u'\u2026') if len(name) > truncate else name
 
+
 def get_actor_blueprints(world, filter, generation):
+    """
+    根据给定的筛选条件和车辆生成版本信息，从CARLA世界的蓝图库中获取相应的车辆蓝图。
+    """
+    # 从世界的蓝图库中根据给定的筛选条件获取蓝图列表
     bps = world.get_blueprint_library().filter(filter)
 
+    # 如果生成版本参数为'all'，表示获取所有符合筛选条件的蓝图，直接返回
     if generation.lower() == "all":
         return bps
 
-    # If the filter returns only one bp, we assume that this one needed
-    # and therefore, we ignore the generation
+    # 如果筛选后只得到一个蓝图，说明可能就是需要的那个，忽略生成版本条件直接返回
     if len(bps) == 1:
         return bps
 
     try:
+        # 将生成版本参数转换为整数，以便后续判断是否是有效的车辆生成版本
         int_generation = int(generation)
-        # Check if generation is in available generations
+        # 检查转换后的生成版本是否在有效的版本列表中（这里假设有效版本为1、2、3）
         if int_generation in [1, 2, 3]:
+            # 筛选出符合指定生成版本的蓝图列表并返回
             bps = [x for x in bps if int(x.get_attribute('generation')) == int_generation]
             return bps
         else:
@@ -104,6 +125,7 @@ def get_actor_blueprints(world, filter, generation):
     except:
         print("   Warning! Actor Generation is not valid. No actor will be spawned.")
         return []
+
 
 # ==============================================================================
 # -- World ---------------------------------------------------------------
@@ -117,6 +139,7 @@ class World(object):
         self._args = args
         self.world = carla_world
         try:
+            # 获取CARLA世界对应的地图对象，如果获取失败则抛出运行时错误并给出相应提示信息，然后退出程序
             self.map = self.world.get_map()
         except RuntimeError as error:
             print('RuntimeError: {}'.format(error))
@@ -134,27 +157,30 @@ class World(object):
         self._actor_filter = args.filter
         self._actor_generation = args.generation
         self.restart(args)
+        # 将HUD的on_world_tick函数绑定到世界对象的每一次tick事件上，以便在每次世界更新时更新HUD相关信息
         self.world.on_tick(hud.on_world_tick)
         self.recording_enabled = False
         self.recording_start = 0
 
     def restart(self, args):
         """Restart the world"""
-        # Keep same camera config if the camera manager exists.
+        # 如果相机管理器存在，则记录当前相机配置的索引和位置信息，否则使用默认值（0）
         cam_index = self.camera_manager.index if self.camera_manager is not None else 0
         cam_pos_id = self.camera_manager.transform_index if self.camera_manager is not None else 0
 
-        # Get a random blueprint.
+        # 根据给定的筛选条件和车辆生成版本获取车辆蓝图列表，如果获取不到则抛出异常
         blueprint_list = get_actor_blueprints(self.world, self._actor_filter, self._actor_generation)
         if not blueprint_list:
             raise ValueError("Couldn't find any blueprints with the specified filters")
+        # 从蓝图列表中随机选择一个蓝图作为玩家车辆的蓝图，并设置其角色名为'hero'
         blueprint = random.choice(blueprint_list)
         blueprint.set_attribute('role_name', 'hero')
         if blueprint.has_attribute('color'):
+            # 如果蓝图有颜色属性，则从推荐的颜色值列表中随机选择一个颜色并设置给蓝图
             color = random.choice(blueprint.get_attribute('color').recommended_values)
             blueprint.set_attribute('color', color)
 
-        # Spawn the player.
+        # 如果之前已经有玩家车辆存在，则在其上方一定高度（2.0单位）处重新生成车辆，并重置车辆的翻滚和俯仰角度为0，然后销毁原来的车辆对象
         if self.player is not None:
             spawn_point = self.player.get_transform()
             spawn_point.location.z += 2.0
@@ -164,21 +190,25 @@ class World(object):
             self.player = self.world.try_spawn_actor(blueprint, spawn_point)
             self.modify_vehicle_physics(self.player)
         while self.player is None:
+            # 如果地图中没有可用的生成点，则给出提示信息并退出程序
             if not self.map.get_spawn_points():
                 print('There are no spawn points available in your map/town.')
                 print('Please add some Vehicle Spawn Point to your UE4 scene.')
                 sys.exit(1)
+            # 获取地图中的所有生成点，从中随机选择一个作为车辆的生成点，如果没有生成点则使用默认的变换信息（空的Transform）
             spawn_points = self.map.get_spawn_points()
             spawn_point = random.choice(spawn_points) if spawn_points else carla.Transform()
             self.player = self.world.try_spawn_actor(blueprint, spawn_point)
             self.modify_vehicle_physics(self.player)
 
         if self._args.sync:
+            # 如果是同步模式，调用世界对象的tick方法进行一次更新
             self.world.tick()
         else:
+            # 如果是非同步模式，等待世界对象的下一次tick更新
             self.world.wait_for_tick()
 
-        # Set up the sensors.
+        # 设置各种传感器，如碰撞传感器、车道入侵传感器、全球导航卫星系统传感器以及相机管理器
         self.collision_sensor = CollisionSensor(self.player, self.hud)
         self.lane_invasion_sensor = LaneInvasionSensor(self.player, self.hud)
         self.gnss_sensor = GnssSensor(self.player)
@@ -190,14 +220,19 @@ class World(object):
 
     def next_weather(self, reverse=False):
         """Get next weather setting"""
+        # 根据传入的参数（是否反向切换）来更新天气预设的索引值，确保索引在有效范围内（通过取模操作）
         self._weather_index += -1 if reverse else 1
         self._weather_index %= len(self._weather_presets)
         preset = self._weather_presets[self._weather_index]
         self.hud.notification('Weather: %s' % preset[1])
+        # 将世界的天气设置为当前选中的天气预设参数对应的天气
         self.player.get_world().set_weather(preset[0])
 
     def modify_vehicle_physics(self, actor):
-        #If actor is not a vehicle, we cannot use the physics control
+        """
+        尝试修改车辆的物理属性，如果传入的actor不是车辆类型则捕获异常并忽略（因为非车辆无法应用车辆物理控制）。
+        """
+        # 如果actor不是车辆，应用物理控制相关操作会抛出异常，这里捕获异常并直接跳过
         try:
             physics_control = actor.get_physics_control()
             physics_control.use_sweep_wheel_collision = True
@@ -254,6 +289,7 @@ class KeyboardControl(object):
     def _is_quit_shortcut(key):
         """Shortcut for quitting"""
         return (key == K_ESCAPE) or (key == K_q and pygame.key.get_mods() & KMOD_CTRL)
+
 
 # ==============================================================================
 # -- HUD -----------------------------------------------------------------------
