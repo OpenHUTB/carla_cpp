@@ -1,12 +1,12 @@
 /* ===================================================
  *  file:       odrSpiral.c
  * ---------------------------------------------------
- *  purpose:	free method for computing spirals
- *              in OpenDRIVE applications
+ *  purpose:    Free method for computing spirals
+ *              in OpenDRIVE applications.
+ *              This implementation uses methods from
+ *              the CEPHES library.
  * ---------------------------------------------------
- *  using methods of CEPHES library
- * ---------------------------------------------------
- *  first edit:	09.03.2010 by M. Dupuis @ VIRES GmbH
+ *  first edit: 09.03.2010 by M. Dupuis @ VIRES GmbH
  *  last mod.:  09.03.2010 by M. Dupuis @ VIRES GmbH
  * ===================================================
     Copyright 2010 VIRES Simulationstechnologie GmbH
@@ -23,25 +23,31 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 
-
     NOTE:
     The methods have been realized using the CEPHES library
-
         http://www.netlib.org/cephes/
-
-    and do neither constitute the only nor the exclusive way of implementing
-    spirals for OpenDRIVE applications. Their sole purpose is to facilitate
+    These methods are not the only or exclusive way to implement
+    spirals for OpenDRIVE applications. Their purpose is to simplify
     the interpretation of OpenDRIVE spiral data.
  */
 
 /* ====== INCLUSIONS ====== */
+// Including standard I/O functions
 #include <stdio.h>
-// Edit to original file-----
-#define _USE_MATH_DEFINES // Enable windows compatibility
-// --------------------------
+
+// Enable compatibility with Windows-specific math constants
+// This macro is required when using math functions in Windows
+#define _USE_MATH_DEFINES 
+
+// Include math library for mathematical functions (e.g., trigonometric, exponential, etc.)
 #include <math.h>
 
 /* ====== LOCAL VARIABLES ====== */
+
+// Add local variable definitions here if needed, e.g.:
+// double spiralLength; // Holds the length of the spiral curve
+// double spiralRadius; // Holds the radius of the spiral curve
+
 
 /* S(x) for small x */
 static double sn[6] = {
@@ -137,114 +143,136 @@ static double gd[11] = {
   1.86958710162783236342E-22,
 };
 
-//polevl 函数
-static double polevl( double x, double* coef, int n )
-{
+// polevl 函数
+// 用于计算一个多项式的值。
+// 参数:
+//   x    - 输入值。
+//   coef - 多项式系数数组。
+//   n    - 多项式的次数（系数数组的大小）。
+// 返回值:
+//   计算得到的多项式值。
+static double polevl(double x, double* coef, int n) {
     double ans;
     double *p = coef;
     int i;
 
+    // 初始值为第一个系数
     ans = *p++;
-    i   = n;
+    i = n;
 
-    do
-    {
-        ans = ans * x + *p++;
-    }
-    while (--i);
+    // 通过逐项计算多项式的值
+    do {
+        ans = ans * x + *p++; // 逐项相加
+    } while (--i); // 重复 n 次
 
     return ans;
 }
-//p1evl 函数
-static double p1evl( double x, double* coef, int n )
-{
+
+// p1evl 函数
+// 用于计算一个多项式的值，类似于 polevl，但初始化不同。
+// 参数:
+//   x    - 输入值。
+//   coef - 多项式系数数组。
+//   n    - 多项式的次数。
+// 返回值:
+//   计算得到的多项式值。
+static double p1evl(double x, double* coef, int n) {
     double ans;
     double *p = coef;
     int i;
 
+    // 初始值为 x + 第一个系数
     ans = x + *p++;
-    i   = n - 1;
+    i = n - 1;
 
-    do
-    {
+    // 逐项计算多项式的值
+    do {
         ans = ans * x + *p++;
-    }
-    while (--i);
+    } while (--i);
 
     return ans;
 }
 
-//fresnel 函数
-static void fresnel( double xxa, double *ssa, double *cca )
-{
+// fresnel 函数
+// 计算 Fresnel 积分，给定 x，计算对应的正弦（ssa）和余弦（cca）值。
+// 参数:
+//   xxa - 输入值 x。
+//   ssa - 存储计算的正弦部分的输出。
+//   cca - 存储计算的余弦部分的输出。
+static void fresnel(double xxa, double *ssa, double *cca) {
     double f, g, cc, ss, c, s, t, u;
     double x, x2;
 
-    x  = fabs( xxa );
+    x = fabs(xxa);      // 取输入值的绝对值
     x2 = x * x;
 
-    if ( x2 < 2.5625 )
-    {
+    if (x2 < 2.5625) {
+        // 对于小的 x 值，使用多项式近似
         t = x2 * x2;
-        ss = x * x2 * polevl (t, sn, 5) / p1evl (t, sd, 6);
-        cc = x * polevl (t, cn, 5) / polevl (t, cd, 6);
-    }
-    else if ( x > 36974.0 )
-    {
+        ss = x * x2 * polevl(t, sn, 5) / p1evl(t, sd, 6); // 计算正弦部分
+        cc = x * polevl(t, cn, 5) / polevl(t, cd, 6);      // 计算余弦部分
+    } else if (x > 36974.0) {
+        // 对于大的 x 值，结果趋近于 0.5
         cc = 0.5;
         ss = 0.5;
-    }
-    else
-    {
+    } else {
+        // 对于中等大小的 x 值，进行更加复杂的计算
         x2 = x * x;
         t = M_PI * x2;
         u = 1.0 / (t * t);
         t = 1.0 / t;
-        f = 1.0 - u * polevl (u, fn, 9) / p1evl(u, fd, 10);
-        g = t * polevl (u, gn, 10) / p1evl (u, gd, 11);
 
+        // 计算 f 和 g，这两个函数是 Fresnel 积分的关键
+        f = 1.0 - u * polevl(u, fn, 9) / p1evl(u, fd, 10);
+        g = t * polevl(u, gn, 10) / p1evl(u, gd, 11);
+
+        // 使用标准的三角函数来计算正弦和余弦部分
         t = M_PI * 0.5 * x2;
-        c = cos (t);
-        s = sin (t);
+        c = cos(t);
+        s = sin(t);
         t = M_PI * x;
         cc = 0.5 + (f * s - g * c) / t;
         ss = 0.5 - (f * c + g * s) / t;
     }
 
-    if ( xxa < 0.0 )
-    {
+    // 如果原始输入值是负的，反转结果
+    if (xxa < 0.0) {
         cc = -cc;
         ss = -ss;
     }
 
+    // 返回计算结果
     *cca = cc;
     *ssa = ss;
 }
 
-
 /**
-* compute the actual "standard" spiral, starting with curvature 0
-* @param s      run-length along spiral
-* @param cDot   first derivative of curvature [1/m2]
-* @param x      resulting x-coordinate in spirals local co-ordinate system [m]
-* @param y      resulting y-coordinate in spirals local co-ordinate system [m]
-* @param t      tangent direction at s [rad]
-*/
-
-void odrSpiral( double s, double cDot, double *x, double *y, double *t )
-{
+ * 计算实际的标准螺旋线，从弯曲率为 0 开始。
+ * @param s      螺旋线的运行长度 [m]。
+ * @param cDot   曲率的导数 [1/m^2]，即曲率变化率。
+ * @param x      返回的螺旋线 x 坐标 [m]，相对于螺旋的局部坐标系。
+ * @param y      返回的螺旋线 y 坐标 [m]，相对于螺旋的局部坐标系。
+ * @param t      螺旋线的切线方向 [rad]，即方向角。
+ */
+void odrSpiral(double s, double cDot, double *x, double *y, double *t) {
     double a;
 
-    a = 1.0 / sqrt( fabs( cDot ) );
-    a *= sqrt( M_PI );
+    // 计算常数 a，取决于曲率变化率 cDot
+    a = 1.0 / sqrt(fabs(cDot));
+    a *= sqrt(M_PI);
 
-    fresnel( s / a, y, x );
+    // 调用 fresnel 函数计算 Fresnel 积分
+    fresnel(s / a, y, x);
 
+    // 计算得到的坐标按比例缩放
     *x *= a;
     *y *= a;
 
-    if ( cDot < 0.0 )
+    // 如果曲率变化率是负的，反转 y 坐标
+    if (cDot < 0.0)
         *y *= -1.0;
 
+    // 计算切线方向，根据曲率变化率和弯曲率
     *t = s * s * cDot * 0.5;
 }
+
