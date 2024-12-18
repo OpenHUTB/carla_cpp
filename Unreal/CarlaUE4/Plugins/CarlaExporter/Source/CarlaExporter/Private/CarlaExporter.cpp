@@ -32,16 +32,16 @@ static const FName CarlaExporterTabName("CarlaExporter");
 
 void FCarlaExporterModule::StartupModule()
 {
-  // This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+  // 该代码将在模块加载到内存后执行，具体的执行时间由 .uplugin 文件中的 per-module 指定
 
-  FCarlaExporterCommands::Register();
+  FCarlaExporterCommands::Register(); // 注册插件命令
 
-  PluginCommands = MakeShareable(new FUICommandList);
+  PluginCommands = MakeShareable(new FUICommandList);// 创建一个新的命令列表对象
 
   PluginCommands->MapAction(
-    FCarlaExporterCommands::Get().PluginActionExportAll,
+    FCarlaExporterCommands::Get().PluginActionExportAll,// 获取插件命令
     FExecuteAction::CreateRaw(this, &FCarlaExporterModule::PluginButtonClicked),
-    FCanExecuteAction());
+    FCanExecuteAction());// 判断是否可以执行命令
 
   FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
 
@@ -58,9 +58,8 @@ void FCarlaExporterModule::StartupModule()
 
 void FCarlaExporterModule::ShutdownModule()
 {
-  // This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
-  // we call this function before unloading the module.
-  FCarlaExporterCommands::Unregister();
+  // 在模块卸载时调用此函数进行清理
+  FCarlaExporterCommands::Unregister();// 注销插件命令
 }
 
 void FCarlaExporterModule::PluginButtonClicked()
@@ -68,31 +67,31 @@ void FCarlaExporterModule::PluginButtonClicked()
   UWorld* World = GEditor->GetEditorWorldContext().World();
   if (!World) return;
 
-  // get all selected objects (if any)
+  // 获取当前选中的所有对象（如果有的话）
   TArray<UObject*> BP_Actors;
   USelection* CurrentSelection = GEditor->GetSelectedActors();
   int32 SelectionNum = CurrentSelection->GetSelectedObjects(AActor::StaticClass(), BP_Actors);
 
-  // if no selection, then get all objects
+  //如果没有选中任何对象，则获取所有对象
   if (SelectionNum == 0)
   {
     for (TActorIterator<AActor> it(World); it; ++it)
       BP_Actors.Add(Cast<UObject>(*it));
   }
 
-  // get target path
+  // 获取目标路径
   FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir());
-  // build final name
+  // 构建文件名
   std::ostringstream name;
   name << TCHAR_TO_UTF8(*Path) << "/" << TCHAR_TO_UTF8(*World->GetMapName()) << ".obj";
-  // create the file
+  // 创建文件
   std::ofstream f(name.str());
 
-  // define the rounds
+  // 定义导出的轮次
   int rounds;
   rounds = 5;
 
-  // we need to scale the meshes (Unreal uses 'cm', Recast uses 'm')
+  // Unreal 使用的是 'cm'（厘米），Recast 使用的是 'm'（米），需要做缩放
   constexpr float TO_METERS = 0.01f;
 
   int offset = 1;
@@ -104,12 +103,12 @@ void FCarlaExporterModule::PluginButtonClicked()
       AActor* TempActor = Cast<AActor>(SelectedObject);
       if (!TempActor) continue;
 
-      // check the TAG (NoExport)
+      /检查该 Actor 是否有 "NoExport" 标签
       if (TempActor->ActorHasTag(FName("NoExport"))) continue;
 
       FString ActorName = TempActor->GetName();
 
-      // check type by nomenclature
+      // 根据命名规则检查 Actor 类型
       if (ActorName.Find("Road_Road") != -1 || ActorName.Find("Roads_Road") != -1)
         areaType = AreaType::ROAD;
       else if (ActorName.Find("Road_Marking") != -1 || ActorName.Find("Roads_Marking") != -1)
@@ -127,7 +126,7 @@ void FCarlaExporterModule::PluginButtonClicked()
       else
         areaType = AreaType::BLOCK;
 
-      // check to export in this round or not
+      // 根据导出轮次决定是否导出
       if (rounds > 1)
       {
         if (areaType == AreaType::BLOCK && round != 0)
