@@ -236,6 +236,7 @@ class GlobalRoutePlanner:
                 seg_dict['path'].append(next_wps[0])
             self._topology.append(seg_dict)
 
+    #定义一个_build_graph函数 函数功能是构建一个network有向图来表示拓扑结构同时还构建了两个字典用于映射相关信息
     def _build_graph(self):
         """
         This function builds a networkx graph representation of topology, creating several class attributes:
@@ -251,15 +252,22 @@ class GlobalRoutePlanner:
         - road_id_to_edge (dictionary): map from road id to edge in the graph
         """
 
+        #创建并初始化图和字典
         self._graph = nx.DiGraph()
         self._id_map = dict()  # Map with structure {(x,y,z): id, ... }
         self._road_id_to_edge = dict()  # Map with structure {road_id: {lane_id: edge, ... }, ... }
 
+        #遍历拓扑结构中的每个路段
         for segment in self._topology:
+            #获取路段的入口和出口的坐标
             entry_xyz, exit_xyz = segment['entryxyz'], segment['exitxyz']
+            #获取路段的路径
             path = segment['path']
+            #获取路段入口和出口的更多相关信息
             entry_wp, exit_wp = segment['entry'], segment['exit']
+            #判断入口是否是路口
             intersection = entry_wp.is_junction
+            #获取道路id路段id和车道id
             road_id, section_id, lane_id = entry_wp.road_id, entry_wp.section_id, entry_wp.lane_id
 
             for vertex in entry_xyz, exit_xyz:
