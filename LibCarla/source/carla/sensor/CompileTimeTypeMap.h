@@ -14,7 +14,7 @@ namespace sensor {
 
 namespace detail {
 
-  /// Private implementation of the CompileTimeTypeMap.
+  ///  CompileTimeTypeMap的私有实现部分，是一个模板结构体，这里只是声明，具体实现在后面的特化版本中体现
   template <size_t Size, typename...>
   struct CompileTimeTypeMapImpl;
 
