@@ -7,7 +7,7 @@ WORKDIR /home/carla#切换后续操作用户
 
 RUN cd /home/carla/ && \
   if [ -z ${GIT_BRANCH+x} ]; then git clone --depth 1 https://github.com/carla-simulator/carla.git; \
-  else git clone --depth 1 --branch $GIT_BRANCH https://github.com/carla-simulator/carla.git; fi && \
+  else git clone --depth 1 --branch $GIT_BRANCH https://github.com/carla-simulator/carla.git; fi && \ # 如果环境变量GIT_BRANCH已设置，则按照指定的分支进行克隆，同样只克隆最近一次的提交
   cd /home/carla/carla && \
   ./Update.sh && \
   make CarlaUE4Editor && \
