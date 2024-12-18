@@ -12,11 +12,11 @@
 #include <algorithm>
 #include <mutex>
 #include <vector>
- 
+ ##导入基本库
 namespace carla {
 namespace client {
 namespace detail {
- 
+ ##创建指针
   /// 持有一个指向列表的原子指针。
   ///
   /// @warning 仅 Load 方法是原子的，对列表的修改由互斥量锁定。
