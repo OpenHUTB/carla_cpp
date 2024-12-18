@@ -1,34 +1,56 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
-// 
-// 禁用虚幻4相关的宏
+// 版权所有 (c) 2017 巴塞罗那自治大学 (UAB) 计算机视觉中心 (CVC)。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 禁用与虚幻4相关的宏定义
+//
+// 本作品根据 MIT 许可证条款进行授权。
+// 如需查看许可证副本，请访问 https://opensource.org/licenses/MIT。
 
 #ifndef LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 #define LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 
-// Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Carla.h
+// 引入 Carla.h 头文件，这个文件是 Carla 项目在 UE4 中的核心头文件。
+// 它可能包含了 Unreal Engine 特有的定义和功能。
 #include "Carla.h"
 
+// 检查 BOOST_ERROR_CODE_HEADER_ONLY 是否已定义，
+// 如果没有定义，则定义它。
+// BOOST 库中有很多与错误处理相关的功能，
+// 该宏控制 Boost 库是否以头文件方式引入错误代码实现。
 #ifndef BOOST_ERROR_CODE_HEADER_ONLY
 #  define BOOST_ERROR_CODE_HEADER_ONLY
 #endif // BOOST_ERROR_CODE_HEADER_ONLY
 
+// 检查 BOOST_NO_EXCEPTIONS 是否已定义，
+// 如果没有定义，则抛出编译错误。
+// 这意味着 LibCarla 应该在 UE4 中编译时，必须显式地禁用 Boost 库的异常处理支持。
+// 通过 -DBOOST_NO_EXCEPTIONS 编译选项来实现。
 #ifndef BOOST_NO_EXCEPTIONS
 #  error LibCarla should be compiled with -DBOOST_NO_EXCEPTIONS inside UE4.
 #endif // BOOST_NO_EXCEPTIONS
+
+// 检查 ASIO_NO_EXCEPTIONS 是否已定义，
+// 如果没有定义，则抛出编译错误。
+// ASIO 是一个常用的异步 I/O 库，禁用异常以提升性能。
+// 应该通过 -DASIO_NO_EXCEPTIONS 编译选项来实现。
 #ifndef ASIO_NO_EXCEPTIONS
 #  error LibCarla should be compiled with -DASIO_NO_EXCEPTIONS inside UE4.
 #endif // ASIO_NO_EXCEPTIONS
+
+// 检查 LIBCARLA_NO_EXCEPTIONS 是否已定义，
+// 如果没有定义，则抛出编译错误。
+// 这意味着 LibCarla 项目本身应该禁用异常处理，
+// 通过 -DLIBCARLA_NO_EXCEPTIONS 编译选项来实现。
 #ifndef LIBCARLA_NO_EXCEPTIONS
 #  error LibCarla should be compiled with -DLIBCARLA_NO_EXCEPTIONS inside UE4.
 #endif // LIBCARLA_NO_EXCEPTIONS
 
 #endif // LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 
+// 这个宏定义用于标记当前文件是从 UE4 环境中包含的。
+// 它的作用是避免在 Unreal Engine 4 相关的代码中再次包含这个文件，
+// 防止出现重复的编译定义或冲突。
 #define LIBCARLA_INCLUDED_FROM_UE4
+
 
 // NOTE(Andrei): 禁用未定义​​宏生成的警告
 // __GNUC__, __GNUC_MINOR__
@@ -51,14 +73,27 @@
 // 在编译 #pragma warning(pop) 之前的代码时候，4668 4191 4647三类警告将不会出现，具体警告请查看：https://learn.microsoft.com/zh-cn/cpp/error-messages/compiler-warnings/compiler-warning-level-4-c4668?view=msvc-160
 #endif
 
+// 如果编译器是 Clang，则执行以下指令
 #if defined(__clang__)
-#  pragma clang diagnostic push
-#  pragma clang diagnostic ignored "-Wmissing-braces"
-#  pragma clang diagnostic ignored "-Wunusable-partial-specialization"
-#  pragma clang diagnostic ignored "-Wundef"
-#  pragma clang diagnostic ignored "-Wall"
-#  pragma clang diagnostic ignored "-Wshadow"
+    // 将诊断设置保存到堆栈，以便之后恢复
+    #  pragma clang diagnostic push
+
+    // 忽略 "缺失的花括号" 警告，通常用于数组初始化
+    #  pragma clang diagnostic ignored "-Wmissing-braces"
+
+    // 忽略 "无法使用的部分特化" 警告，可能是由于模板特化问题
+    #  pragma clang diagnostic ignored "-Wunusable-partial-specialization"
+
+    // 忽略 "未定义宏" 警告，可能是预处理过程中遇到未定义的宏
+    #  pragma clang diagnostic ignored "-Wundef"
+
+    // 忽略 "所有警告" 警告，实际上会启用大多数常见的警告
+    #  pragma clang diagnostic ignored "-Wall"
+
+    // 忽略 "变量名冲突" 警告，当局部变量与外部变量或参数名重复时产生
+    #  pragma clang diagnostic ignored "-Wshadow"
 #endif
+
 
 // #pragma push_macro 将指定的宏压入栈中，相当于暂时存储，以备以后使用；
 #pragma push_macro("GET_AI_CONFIG_VAR")
