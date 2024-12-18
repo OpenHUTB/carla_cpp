@@ -10,7 +10,7 @@ RUN cd /home/carla/ && \
   else git clone --depth 1 --branch $GIT_BRANCH https://github.com/carla-simulator/carla.git; fi && \
   cd /home/carla/carla && \
   ./Update.sh && \
-  make CarlaUE4Editor && \
+  make CarlaUE4Editor && \# 编译生成PythonAPI，用于支持Python相关的接口功能
   make PythonAPI && \
   make build.utils && \
   make package && \
