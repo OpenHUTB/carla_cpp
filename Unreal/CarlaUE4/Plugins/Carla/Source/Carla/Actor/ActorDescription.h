@@ -10,28 +10,28 @@
 
 #include "ActorDescription.generated.h"
 
-/// A description of a Carla Actor with all its variation.
+/// carla参与者及其所有变体的描述
 USTRUCT(BlueprintType)
 struct FActorDescription
 {
   GENERATED_BODY()
 
-  /// UId of the definition in which this description was based.
+  /// 此描述所基于的定义的UId
   uint32 UId = 0u;
 
-  /// Display ID that identifies the actor.
+  /// 用于标识参与者的显示ID
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString Id;
 
-  /// Class of the actor to be spawned.
+  /// 要生成的参与者类
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TSubclassOf<AActor> Class;
 
-  /// User selected variations of the actor. Note that at this point are
-  /// represented by non-modifiable attributes.
+  /// 用户选择了参与者的变化版本。请注意，此时是
+  /// 由不可修改的属性表示
   ///
-  ///   Key: Id of the attribute.
-  ///   Value: The attribute.
+  ///   关键：属性的标识符
+  ///   价值：属性
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TMap<FString, FActorAttribute> Variations;
 };
