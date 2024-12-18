@@ -276,8 +276,11 @@ class GlobalRoutePlanner:
                 self._road_id_to_edge[road_id][section_id] = dict()
             self._road_id_to_edge[road_id][section_id][lane_id] = (n1, n2)
 
+            #获取出入口点的旋转信息和前向向量 将结果存储在ntry_carla_vector变量中
             entry_carla_vector = entry_wp.transform.rotation.get_forward_vector()
+            #获取出出口点的旋转信息和前向向量 将结果存储在ntry_carla_vector变量中
             exit_carla_vector = exit_wp.transform.rotation.get_forward_vector()
+            #计算出口点和入口点的位置差 并转换为单位向量将其存储在net_carla_vector变量中
             net_carla_vector = (exit_wp.transform.location - entry_wp.transform.location).make_unit_vector()
 
             # Adding edge with attributes
