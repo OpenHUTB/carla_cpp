@@ -204,8 +204,11 @@ class GlobalRoutePlanner:
             # Rounding off to avoid floating point imprecision
             x1, y1, z1, x2, y2, z2 = np.round([l1.x, l1.y, l1.z, l2.x, l2.y, l2.z], 0)
             wp1.transform.location, wp2.transform.location = l1, l2
+            #创建字典并填充信息 这个字典将用于存储当前道路段的拓扑信息
             seg_dict = dict()  # type: TopologyDict # type: ignore[assignment]
+            #将路点分别作为入口和出口路点添加到字典中
             seg_dict['entry'], seg_dict['exit'] = wp1, wp2
+            #将入口和出口路点的坐标以元组坐标形式添加到字典中
             seg_dict['entryxyz'], seg_dict['exitxyz'] = (x1, y1, z1), (x2, y2, z2)
             seg_dict['path'] = []
             endloc = wp2.transform.location
