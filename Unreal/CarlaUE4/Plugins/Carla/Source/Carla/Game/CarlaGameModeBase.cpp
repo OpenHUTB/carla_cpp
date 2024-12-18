@@ -101,8 +101,7 @@ void ACarlaGameModeBase::InitGame(
 
 #if WITH_EDITOR
     {
-      // When playing in editor the map name gets an extra prefix, here we
-      // remove it.
+// 在编辑器中播放时，地图名称会获得一个额外的前缀，这里我们将其移除。
       FString CorrectedMapName = InMapName;
       constexpr auto PIEPrefix = TEXT("UEDPIE_0_");
       CorrectedMapName.RemoveFromStart(PIEPrefix);
@@ -152,7 +151,7 @@ void ACarlaGameModeBase::InitGame(
 
   SpawnActorFactories();
 
-  // make connection between Episode and Recorder
+// 在Episode和Recorder之间建立连接
   Recorder->SetEpisode(Episode);
   Episode->SetRecorder(Recorder);
 
@@ -189,13 +188,13 @@ void ACarlaGameModeBase::BeginPlay()
     TaggerDelegate->SetSemanticSegmentationEnabled();
   }
 
-  // HACK: fix transparency see-through issues
-  // The problem: transparent objects are visible through walls.
-  // This is due to a weird interaction between the SkyAtmosphere component,
-  // the shadows of a directional light (the sun)
-  // and the custom depth set to 3 used for semantic segmentation
-  // The solution: Spawn a Decal.
-  // It just works!
+// HACK: 修复透明物体透视问题
+// 问题：透明物体会透过墙壁显示。
+// 这是由于SkyAtmosphere组件之间的奇怪交互，
+// 定向光（太阳）的阴影，
+// 以及用于语义分割的自定义深度值设置为3
+// 解决方案：生成一个贴花（Decal）。
+// 它就能正常工作！
   World->SpawnActor<ADecalActor>(
       FVector(0,0,-1000000), FRotator(0,0,0), FActorSpawnParameters());
 
@@ -227,7 +226,7 @@ void ACarlaGameModeBase::BeginPlay()
     LMManager->ConsiderSpectatorAsEgo(Episode->GetSettings().SpectatorAsEgo);
   }
 
-  // Manually run begin play on lights as it may not run on sublevels
+  // 手动在光源上运行，因为它在子关卡中可能不会自动运行
   TArray<AActor*> FoundActors;
   UGameplayStatics::GetAllActorsOfClass(World, AActor::StaticClass(), FoundActors);
   for(AActor* Actor : FoundActors)
@@ -374,7 +373,7 @@ void ACarlaGameModeBase::Tick(float DeltaSeconds)
 {
   Super::Tick(DeltaSeconds);
 
-  /// @todo Recorder should not tick here, FCarlaEngine should do it.
+  /// @todo 记录器不应该在这里更新，FCarlaEngine应该处理它。
   if (Recorder)
   {
     Recorder->Tick(DeltaSeconds);
@@ -564,14 +563,14 @@ void ACarlaGameModeBase::DebugShowSignals(bool enable)
   std::unordered_set<cr::RoadId> ExploredRoads;
   for (auto & waypoint : waypoints)
   {
-    // Check if we already explored this road
+    // 检查我们是否已经探索过这条道路
     if (ExploredRoads.count(waypoint.road_id) > 0)
     {
       continue;
     }
     ExploredRoads.insert(waypoint.road_id);
 
-    // Multiple times for same road (performance impact, not in behavior)
+    // 对同一条道路进行多次检查（影响性能，但不影响行为）
     auto SignalReferences = Map->GetLane(waypoint).
         GetRoad()->GetInfos<cre::RoadInfoSignal>();
     for (auto *SignalReference : SignalReferences)
@@ -625,7 +624,7 @@ TArray<FBoundingBox> ACarlaGameModeBase::GetAllBBsOfLevel(uint8 TagQueried) cons
 {
   UWorld* World = GetWorld();
 
-  // Get all actors of the level
+  // 获取关卡中的所有实体
   TArray<AActor*> FoundActors;
   UGameplayStatics::GetAllActorsOfClass(World, AActor::StaticClass(), FoundActors);
 
@@ -637,7 +636,7 @@ TArray<FBoundingBox> ACarlaGameModeBase::GetAllBBsOfLevel(uint8 TagQueried) cons
 
 void ACarlaGameModeBase::RegisterEnvironmentObjects()
 {
-  // Get all actors of the level
+  // 获取关卡中的所有实体
   TArray<AActor*> FoundActors;
   UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActor::StaticClass(), FoundActors);
   ObjectRegister->RegisterObjects(FoundActors);
