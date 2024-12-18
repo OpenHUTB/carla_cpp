@@ -77,3 +77,6 @@ DOT_IMAGE_FORMAT        =  svg
 INTERACTIVE_SVG         =  YES
 # 允许dot工具生成多个图像目标
 DOT_MULTI_TARGETS       =  YES
+git add README.md
+git commit -m "update"
+git push
