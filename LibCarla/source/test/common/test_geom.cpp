@@ -138,126 +138,214 @@ TEST(geom, bbox_get_local_vertices_get_world_vertices_coherence) {
   }
 }
 
-
-TEST(geom, single_point_rotation) {
-  constexpr double error = 0.001;
-
-  Location translation (0.0,0.0,0.0);
-  Rotation rotation (0.0,180.0,0.0); // y z x
-  Transform transform (translation, rotation);
-
-  Location point (0.0, 0.0, 1.0);
-  transform.TransformPoint(point);
-  Location result_point(0.0, 0.0, 1.0);
-  ASSERT_NEAR(point.x, result_point.x, error);
-  ASSERT_NEAR(point.y, result_point.y, error);
-  ASSERT_NEAR(point.z, result_point.z, error);
-}
-      // 使用 TEST 宏定义一个名为 "geom" 的测试组中的 "single_point_rotation" 测试用例，用于验证当仅进行旋转变换时，点的坐标是否按照预期进行了正确的旋转变化，这里测试的是绕 y 轴旋转 180 度的情况。
+//这段代码包含了两个单元测试，分别测试了旋转变换和平移加旋转变换对 3D 点的影响。
+//第一个测试验证了绕 Y 轴旋转 180 度时，点的 Z 坐标是否正确变换。
+//第二个测试验证了绕 X 轴旋转 90 度并平移后的点坐标是否正确变化。
+//每个测试用例都使用 ASSERT_NEAR 来确保变换后的坐标与预期值相符，允许浮点数计算上的小误差。
 TEST(geom, single_point_translation_and_rotation) {
-  constexpr double error = 0.001;
-
-  Location translation (0.0,0.0,-1.0); // x y z
-  Rotation rotation (90.0,0.0,0.0); // y z x
+  constexpr double error = 0.001;  // 设定允许的误差范围
+  // 创建平移变换，(0.0, 0.0, -1.0) 表示点在 Z 轴上向下平移 1 单位
+  Location translation (0.0, 0.0, -1.0); 
+  // 创建旋转变换，(90.0, 0.0, 0.0) 表示绕 X 轴旋转 90 度
+  Rotation rotation (90.0, 0.0, 0.0); 
+  // 创建一个变换对象，将平移和旋转组合在一起
   Transform transform (translation, rotation);
-
+  // 定义一个点 (0.0, 0.0, 2.0)，该点位于 Z 轴上，离原点有 2 个单位
   Location point (0.0, 0.0, 2.0);
+  // 应用变换到该点，transform.TransformPoint(point) 修改 `point` 的值
   transform.TransformPoint(point);
+  // 定义预期的结果点，绕 X 轴旋转 90 度后，点应该变为 (-2.0, 0.0, -1.0)
   Location result_point(-2.0, 0.0, -1.0);
-  ASSERT_NEAR(point.x, result_point.x, error);
-  ASSERT_NEAR(point.y, result_point.y, error);
-  ASSERT_NEAR(point.z, result_point.z, error);
+  // 使用 ASSERT_NEAR 来比较实际的点坐标与预期坐标，误差范围是 0.001
+  ASSERT_NEAR(point.x, result_point.x, error);  // 检查 x 坐标
+  ASSERT_NEAR(point.y, result_point.y, error);  // 检查 y 坐标
+  ASSERT_NEAR(point.z, result_point.z, error);  // 检查 z 坐标
 }
 
 TEST(geom, distance) {
+  // 定义一个常量 error，用于在断言中指定容忍的误差范围
   constexpr double error = .01;
+  // 测试计算两个点之间的距离是否为 0.0，使用 ASSERT_NEAR 检查实际值与期望值的差异是否在误差范围内
   ASSERT_NEAR(Math::Distance({0, 0, 0}, {0, 0, 0}), 0.0, error);
+  // 测试计算点 (1, 1, 1) 和 (0, 0, 0) 之间的欧几里得距离，期望值为 1.732051（即 sqrt(3)）
   ASSERT_NEAR(Math::Distance({1, 1, 1}, {0, 0, 0}), 1.732051, error);
+  // 测试计算点 (0, 0, 0) 和 (1, 1, 1) 之间的欧几里得距离，期望值与上一测试相同
   ASSERT_NEAR(Math::Distance({0, 0, 0}, {1, 1, 1}), 1.732051, error);
+ // 测试计算点 (-1, -1, -1) 和 (0, 0, 0) 之间的欧几里得距离，期望值为 1.732051
   ASSERT_NEAR(Math::Distance({-1, -1, -1}, {0, 0, 0}), 1.732051, error);
+ // 测试计算点 (0, 0, 0) 和 (-1, -1, -1) 之间的欧几里得距离，期望值与上一测试相同
   ASSERT_NEAR(Math::Distance({0, 0, 0}, {-1, -1, -1}), 1.732051, error);
+   // 测试计算点 (7, 4, 3) 和 (17, 6, 2) 之间的欧几里得距离，期望值为 10.246951
   ASSERT_NEAR(Math::Distance({7, 4, 3}, {17, 6, 2}), 10.246951, error);
+    // 测试计算点 (7, -4, 3) 和 (-17, 6, 2) 之间的欧几里得距离，期望值为 26.019224
   ASSERT_NEAR(Math::Distance({7, -4, 3}, {-17, 6, 2}), 26.019224, error);
+  // 测试计算点 (5, 6, 7) 和 (-6, 3, -4) 之间的欧几里得距离，期望值为 15.84298
   ASSERT_NEAR(Math::Distance({5, 6, 7}, {-6, 3, -4}), 15.84298, error);
+    // 再次测试计算点 (7, 4, 3) 和 (17, 6, 2) 之间的欧几里得距离，期望值与之前相同
   ASSERT_NEAR(Math::Distance({7, 4, 3}, {17, 6, 2}), 10.246951, error);
 }
 
+//求最近点到线段的距离
 TEST(geom, nearest_point_segment) {
+  // 定义一个包含 3D 空间中多个线段的数组。每个线段由两个点表示，
+  // 每个点有 3 个坐标 (x, y, z)，所以每个线段有 6 个数字表示。
   const float segment[] = {
-     0,  0, 10,  0,
-     2,  5, 10,  8,
-    -6,  8,  8, -2,
-     8,  2,-10,  3,
-     3,  3, -6, -5,
-     3, -3,  2,  5,
-     4, -6,  5,  4,
-    -1, -4,-10,  8,
-    -7, -5,  5,  5,
-    -5,  6,  3, -9
+     0,  0, 10,  0,// 第一个线段的起点 (0, 0, 10)，终点 (0, 0, 0)
+     2,  5, 10,  8,// 第二个线段的起点 (2, 5, 10)，终点 (10, 8)
+    -6,  8,  8, -2,// 第三个线段的起点 (-6, 8, 8)，终点 (8, -2)
+     8,  2,-10,  3,// 第四个线段的起点 (8, 2, -10)，终点 (3, 3)
+     3,  3, -6, -5,// 第五个线段的起点 (3, 3, -6)，终点 (-5, -5)
+     3, -3,  2,  5,// 第六个线段的起点 (3, -3, 2)，终点 (2, 5)
+     4, -6,  5,  4,// 第七个线段的起点 (4, -6, 5)，终点 (4, 4)
+    -1, -4,-10,  8, // 第八个线段的起点 (-1, -4, -10)，终点 (8, 8)
+    -7, -5,  5,  5, // 第九个线段的起点 (-7, -5, 5)，终点 (5, 5)
+    -5,  6,  3, -9 // 第十个线段的起点 (-5, 6, 3)，终点 (-9, -9)
   };
 
+  //这段代码定义了一个名为 point 的数组，其中包含了 10 个二维点，每个点都是一个 Vector3D 类型的对象。虽然这些点在 3D 空间中定义，但由于 z 坐标全部为零，所以它们实际上都位于 XY 平面内
   const Vector3D point[] = {
-    {  1,  -1, 0},
-    { 10,  10, 0},
-    {-10,  10, 0},
-    { 10, -10, 0},
-    {-10, -10, 0},
-    {  0,   5, 0},
-    {  0,  -5, 0},
-    {  1,   4, 0},
-    { -1,   1, 0},
-    {  3, 2.5, 0}
-  };
+    {  1,  -1, 0},  // 第一个点，坐标为 (1, -1, 0)
+    { 10,  10, 0},  // 第二个点，坐标为 (10, 10, 0)
+    {-10,  10, 0},  // 第三个点，坐标为 (-10, 10, 0)
+    { 10, -10, 0},  // 第四个点，坐标为 (10, -10, 0)
+    {-10, -10, 0},  // 第五个点，坐标为 (-10, -10, 0)
+    {  0,   5, 0},  // 第六个点，坐标为 (0, 5, 0)
+    {  0,  -5, 0},  // 第七个点，坐标为 (0, -5, 0)
+    {  1,   4, 0},  // 第八个点，坐标为 (1, 4, 0)
+    { -1,   1, 0},  // 第九个点，坐标为 (-1, 1, 0)
+    {  3,  2.5, 0}  // 第十个点，坐标为 (3, 2.5, 0)
+};
 
+  //这段代码定义了一个常量整型数组 results，它包含了 10 个整数，初始化为 { 0, 1, 7, 9, 8, 2, 9, 2, 8, 3 }。由于是常量数组，数组的元素在程序中不可更改。这个数组可能用于存储某种固定的结果或用于其他计算。
   const int results[] = {
     0, 1, 7, 9, 8, 2, 9, 2, 8, 3
   };
 
-  for (int i = 0; i < 10; ++i) {
-    double min_dist = std::numeric_limits<double>::max();
-    int id = -1;
-    for (int j = 0; j < 40; j += 4) {
+//这段代码的主要任务是计算每个点到一系列线段的最短距离，并将计算出的最近线段的索引与预期的 results[i] 进行比较。
+//如果计算的结果与预期不符，ASSERT_EQ 会使测试失败并输出详细的错误信息，帮助开发人员定位问题
+for (int i = 0; i < 10; ++i) {  // 外层循环：遍历每个点（共有 10 个点）
+    double min_dist = std::numeric_limits<double>::max();  // 初始化 min_dist 为一个非常大的值，表示最小距离
+    int id = -1;  // 用于记录对应线段的索引
+
+    for (int j = 0; j < 40; j += 4) {  // 内层循环：遍历所有线段，每个线段由 4 个元素表示（起点和终点的 x, y 坐标）
+      
+      // 计算点 point[i] 到当前线段的最小距离
       const double dist = Math::DistanceSegmentToPoint(
-          point[i],
-          {segment[j + 0], segment[j + 1], 0},
-          {segment[j + 2], segment[j + 3], 0}).second;
+          point[i],  // 当前的点
+          {segment[j + 0], segment[j + 1], 0},  // 当前线段的起点 (x1, y1, 0)，注意 z 坐标固定为 0
+          {segment[j + 2], segment[j + 3], 0}   // 当前线段的终点 (x2, y2, 0)，注意 z 坐标固定为 0
+      ).second;  // DistanceSegmentToPoint 返回的是一个 pair，dist 为返回的第二个元素，即最小距离
+
+      // 如果当前计算的距离比已有的最小距离还小，则更新 min_dist 和 id
       if (dist < min_dist) {
         min_dist = dist;
-        id = j / 4;
+        id = j / 4;  // 通过 j / 4 获取当前线段的索引（每个线段由 4 个数字表示）
       }
     }
-    ASSERT_EQ(id, results[i]) << "Fails point number: " << i;
-  }
+
+    // 断言：检查计算的线段索引 id 是否与预期的结果 matches `results[i]`
+    ASSERT_EQ(id, results[i]) << "Fails point number: " << i;  // 如果 id 不等于预期的 results[i]，会输出失败信息
 }
 
-TEST(geom, forward_vector) {
-  auto compare = [](Rotation rotation, Vector3D expected) {
-    constexpr float eps = 2.0f * std::numeric_limits<float>::epsilon();
-    auto result = rotation.GetForwardVector();
-    EXPECT_TRUE(
+  //这段代码的目标是测试 Rotation 类的 GetForwardVector() 方法是否正确地计算了旋转后的前向向量。
+  //因为浮点数的精度问题，直接使用 == 来比较浮点数是不可靠的，所以这里使用了绝对差值比较，确保两者差异在可以接受的范围内。
+  //通过 EXPECT_TRUE 宏进行断言，如果比较失败，将输出相关的调试信息，帮助开发人员诊断问题
+  TEST(geom, forward_vector) {
+    // 定义一个 lambda 函数 compare，用于比较旋转向量与预期值是否相等
+    auto compare = [](Rotation rotation, Vector3D expected) {
+        // 设置一个浮动误差范围 epsilon，通常用于浮点数比较
+        constexpr float eps = 2.0f * std::numeric_limits<float>::epsilon();
+
+        // 获取由 rotation 对象计算出的前向向量（即旋转后的方向向量）
+        auto result = rotation.GetForwardVector();
+
+        // 使用 EXPECT_TRUE 来判断两个浮点数向量 result 和 expected 是否足够接近
+        // 通过绝对值的差异与 eps 比较，判断是否在误差范围内
+        EXPECT_TRUE(
             (std::abs(expected.x - result.x) < eps) &&
             (std::abs(expected.y - result.y) < eps) &&
             (std::abs(expected.z - result.z) < eps))
-        << "result   = " << result << '\n'
-        << "expected = " << expected;
-  };
-  //        pitch     yaw    roll       x     y     z
-  compare({  0.0f,   0.0f,   0.0f}, {1.0f, 0.0f, 0.0f});
-  compare({  0.0f,   0.0f, 123.0f}, {1.0f, 0.0f, 0.0f});
-  compare({360.0f, 360.0f,   0.0f}, {1.0f, 0.0f, 0.0f});
-  compare({  0.0f,  90.0f,   0.0f}, {0.0f, 1.0f, 0.0f});
-  compare({  0.0f, -90.0f,   0.0f}, {0.0f,-1.0f, 0.0f});
-  compare({ 90.0f,   0.0f,   0.0f}, {0.0f, 0.0f, 1.0f});
-  compare({180.0f, -90.0f,   0.0f}, {0.0f, 1.0f, 0.0f});
+            << "result   = " << result << '\n'  // 如果断言失败，输出实际的计算结果
+            << "expected = " << expected;      // 如果断言失败，输出预期的值
+    };
+
+    // 这里通常会继续调用 compare() 函数进行具体的测试，例如：
+    // compare(rotationInstance, expectedVector);
+}
+  //       物体旋转的角度（姿态）    x     y     z
+ // 比较两个向量：{0.0f, 0.0f, 0.0f} 和 {1.0f, 0.0f, 0.0f}
+// 这里测试的是零向量和单位向量的比较，期望的结果是 {1.0f, 0.0f, 0.0f}
+//这段代码测试的是不同的旋转角度下物体的方向向量（通常是前向向量）的变化。
+  compare({0.0f, 0.0f, 0.0f}, {1.0f, 0.0f, 0.0f});
+// 比较两个向量：{0.0f, 0.0f, 123.0f} 和 {1.0f, 0.0f, 0.0f}
+// 这里测试的是 {0.0f, 0.0f, 123.0f} 和单位向量的比较，期望结果为 {1.0f, 0.0f, 0.0f}
+compare({0.0f, 0.0f, 123.0f}, {1.0f, 0.0f, 0.0f});
+// 比较两个向量：{360.0f, 360.0f, 0.0f} 和 {1.0f, 0.0f, 0.0f}
+// 这里测试的是包含大角度旋转（360度）的向量，期望的结果是 {1.0f, 0.0f, 0.0f}。
+// 注意，360度的旋转会回到原始位置。
+compare({360.0f, 360.0f, 0.0f}, {1.0f, 0.0f, 0.0f});
+// 比较两个向量：{0.0f, 90.0f, 0.0f} 和 {0.0f, 1.0f, 0.0f}
+// 这里测试的是绕 Y 轴旋转 90 度后的结果，期望结果是 {0.0f, 1.0f, 0.0f}。
+// 这是因为 90度的旋转将会改变方向，使得向量沿 Y 轴指向上方。
+compare({0.0f, 90.0f, 0.0f}, {0.0f, 1.0f, 0.0f});
+
+// 比较两个向量：{0.0f, -90.0f, 0.0f} 和 {0.0f, -1.0f, 0.0f}
+// 这里测试的是绕 Y 轴旋转 -90 度后的结果，期望结果是 {0.0f, -1.0f, 0.0f}。
+// 旋转 -90度会使得向量指向 Y 轴的负方向。
+compare({0.0f, -90.0f, 0.0f}, {0.0f, -1.0f, 0.0f});
+// 比较两个向量：{90.0f, 0.0f, 0.0f} 和 {0.0f, 0.0f, 1.0f}
+// 这里测试的是绕 X 轴旋转 90 度后的结果，期望结果是 {0.0f, 0.0f, 1.0f}。
+// 旋转 90度后，前向向量会指向 Z 轴的正方向。
+compare({90.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f});
+// 比较两个向量：{180.0f, -90.0f, 0.0f} 和 {0.0f, 1.0f, 0.0f}
+// 这里测试的是绕 Y 轴旋转 -90度并且绕 X 轴旋转 180度后的结果。
+// 期望的结果是 {0.0f, 1.0f, 0.0f}，这意味着旋转后的前向向量沿 Y 轴的正方向。
+compare({180.0f, -90.0f, 0.0f}, {0.0f, 1.0f, 0.0f});
 }
 
+///检查 Math::DistanceArcToPoint 函数能否准确计算点到圆弧的距离，确保其功能在各种情况下都能如预期工作
 TEST(geom, nearest_point_arc) {
-  ASSERT_NEAR(Math::DistanceArcToPoint(Vector3D(1,0,0),
-      Vector3D(0,0,0), 1.57f, 0, 1).second, 0.414214f, 0.01f);
-  ASSERT_NEAR(Math::DistanceArcToPoint(Vector3D(2,1,0),
-      Vector3D(0,0,0), 1.57f, 0, 1).second, 1.0f, 0.01f);
-  ASSERT_NEAR(Math::DistanceArcToPoint(Vector3D(0,1,0),
-      Vector3D(0,0,0), 1.57f, 0, 1).second, 1.0f, 0.01f);
-  ASSERT_NEAR(Math::DistanceArcToPoint(Vector3D(1,2,0),
-      Vector3D(0,0,0), 1.57f, 0, 1).second, 1.0f, 0.01f);
+  // 测试 1：计算点 (1, 0, 0) 到圆弧的距离
+  // 圆弧起点在 (0, 0, 0)，圆弧的角度跨度是 1.57 弧度，圆弧的半径为 1
+  // 期望距离值为 0.414214，误差容忍范围为 0.01
+  ASSERT_NEAR(Math::DistanceArcToPoint(Vector3D(1, 0, 0),  // 点坐标 (1, 0, 0)
+      Vector3D(0, 0, 0),  // 圆弧起点 (0, 0, 0)
+      1.57f,  // 圆弧角度跨度 (弧度)
+      0,  // 圆弧的起始角度
+      1).second,  // 圆弧的半径为 1
+      0.414214f,  // 预期的距离值
+      0.01f);  // 容忍的误差范围
+
+  // 测试 2：计算点 (2, 1, 0) 到圆弧的距离
+  // 圆弧起点在 (0, 0, 0)，圆弧的角度跨度是 1.57 弧度，圆弧的半径为 1
+  // 期望距离值为 1.0，误差容忍范围为 0.01
+  ASSERT_NEAR(Math::DistanceArcToPoint(Vector3D(2, 1, 0),  // 点坐标 (2, 1, 0)
+      Vector3D(0, 0, 0),  // 圆弧起点 (0, 0, 0)
+      1.57f,  // 圆弧角度跨度 (弧度)
+      0,  // 圆弧的起始角度
+      1).second,  // 圆弧的半径为 1
+      1.0f,  // 预期的距离值
+      0.01f);  // 容忍的误差范围
+
+  // 测试 3：计算点 (0, 1, 0) 到圆弧的距离
+  // 圆弧起点在 (0, 0, 0)，圆弧的角度跨度是 1.57 弧度，圆弧的半径为 1
+  // 期望距离值为 1.0，误差容忍范围为 0.01
+  ASSERT_NEAR(Math::DistanceArcToPoint(Vector3D(0, 1, 0),  // 点坐标 (0, 1, 0)
+      Vector3D(0, 0, 0),  // 圆弧起点 (0, 0, 0)
+      1.57f,  // 圆弧角度跨度 (弧度)
+      0,  // 圆弧的起始角度
+      1).second,  // 圆弧的半径为 1
+      1.0f,  // 预期的距离值
+      0.01f);  // 容忍的误差范围
+
+  // 测试 4：计算点 (1, 2, 0) 到圆弧的距离
+  // 圆弧起点在 (0, 0, 0)，圆弧的角度跨度是 1.57 弧度，圆弧的半径为 1
+  // 期望距离值为 1.0，误差容忍范围为 0.01
+  ASSERT_NEAR(Math::DistanceArcToPoint(Vector3D(1, 2, 0),  // 点坐标 (1, 2, 0)
+      Vector3D(0, 0, 0),  // 圆弧起点 (0, 0, 0)
+      1.57f,  // 圆弧角度跨度 (弧度)
+      0,  // 圆弧的起始角度
+      1).second,  // 圆弧的半径为 1
+      1.0f,  // 预期的距离值
+      0.01f);  // 容忍的误差范围
 }
