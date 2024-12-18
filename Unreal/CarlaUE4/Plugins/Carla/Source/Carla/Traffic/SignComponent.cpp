@@ -18,14 +18,14 @@ USignComponent::USignComponent()
   PrimaryComponentTick.bCanEverTick = false;
 }
 
-// Called when the game starts
+// 游戏开始时调用
 void USignComponent::BeginPlay()
 {
   Super::BeginPlay();
 
 }
 
-// Called every frame
+// 每帧调用
 void USignComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
   Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
@@ -54,14 +54,14 @@ TArray<std::pair<cr::RoadId, const cre::RoadInfoSignal*>>
   std::unordered_set<cr::RoadId> ExploredRoads;
   for (auto & waypoint : waypoints)
   {
-    // Check if we already explored this road
+    // 检查我们是否已经探索过这条路
     if (ExploredRoads.count(waypoint.road_id) > 0)
     {
       continue;
     }
     ExploredRoads.insert(waypoint.road_id);
 
-    // Multiple times for same road (performance impact, not in behavior)
+    // 同一条路探索多次（影响性能，不影响行为）
     auto SignalReferences = Map.GetLane(waypoint).
         GetRoad()->GetInfos<cre::RoadInfoSignal>();
     for (auto *SignalReference : SignalReferences)

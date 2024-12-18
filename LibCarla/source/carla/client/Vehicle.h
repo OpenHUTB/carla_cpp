@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -14,7 +14,7 @@
 #include "carla/rpc/VehicleDoor.h"
 #include "carla/rpc/VehicleLightState.h"
 #include "carla/rpc/VehiclePhysicsControl.h"
-#include "carla/rpc/VehicleTelemetryData.h"
+#include "carla/rpc/VehicleTelemetryData.h"    // 车辆遥测数据
 #include "carla/rpc/VehicleWheels.h"
 #include "carla/trafficmanager/TrafficManager.h"
 
@@ -45,95 +45,95 @@ namespace client {
 
     explicit Vehicle(ActorInitializer init);
 
-    /// Switch on/off this vehicle's autopilot.
+    /// 开关车辆的自动驾驶仪.
     void SetAutopilot(bool enabled = true, uint16_t tm_port = TM_DEFAULT_PORT);
 
-    /// Return the telemetry data for this vehicle.
+    /// 返回车辆的遥测数据.
     ///
-    /// @warning This function does call the simulator.
+    /// @warning 此函数调用模拟器.
     TelemetryData GetTelemetryData() const;
 
-    /// Switch on/off this vehicle's autopilot.
+    /// 开关车辆的自动驾驶仪.
     void ShowDebugTelemetry(bool enabled = true);
 
-    /// Apply @a control to this vehicle.
+    /// 应用 @a 控制此车辆.
     void ApplyControl(const Control &control);
 
-    /// Apply @a control to this vehicle.
+    /// 应用 @a 控制此车辆.
     void ApplyAckermannControl(const AckermannControl &control);
 
-    /// Return the last Ackermann controller settings applied to this vehicle.
+    /// 返回最后应用于车辆的 Ackermann controller 设置.
     ///
-    /// @warning This function does call the simulator.
+    /// @warning 此函数调用模拟器.
     rpc::AckermannControllerSettings GetAckermannControllerSettings() const;
 
-    /// Apply Ackermann control settings to this vehicle
+    /// 应用 Ackermann 控制设置给此车辆
     void ApplyAckermannControllerSettings(const rpc::AckermannControllerSettings &settings);
 
-    /// Apply physics control to this vehicle.
+    /// 给此车辆应用物理控制.
     void ApplyPhysicsControl(const PhysicsControl &physics_control);
 
-    /// Open a door in this vehicle
+    /// 在车中开门
     void OpenDoor(const VehicleDoor door_idx);
 
-    /// Close a door in this vehicle
+    /// 在车中关门
     void CloseDoor(const VehicleDoor door_idx);
 
-    /// Sets a @a LightState to this vehicle.
+    /// 给车辆设置一个 @a LightState.
     void SetLightState(const LightState &light_state);
 
-    /// Sets a @a Rotation to a wheel of the vehicle (affects the bone of the car skeleton, not the physics)
+    /// 给车辆轮子一个 @a 旋转 (影响汽车的骨骼框架,而不是物理)
     void SetWheelSteerDirection(WheelLocation wheel_location, float angle_in_deg);
 
-    /// Return a @a Rotation from a wheel of the vehicle
+    /// 从车辆轮子返回一个 @a 旋转
     ///
-    /// @note The function returns the rotation of the vehicle based on the it's physics
+    /// @note 基于轮子的物理，此函数返回它的旋转
     float GetWheelSteerAngle(WheelLocation wheel_location);
 
-    /// Return the control last applied to this vehicle.
+    /// 返回最后应用于车辆的控制.
     ///
-    /// @note This function does not call the simulator, it returns the data
-    /// received in the last tick.
+    /// @note 此函数不调用模拟器.
+    /// 在最后一个节拍返回接收到的数据.
     Control GetControl() const;
 
-    /// Return the physics control last applied to this vehicle.
+    /// 返回车辆最后应用的物理控制.
     ///
-    /// @warning This function does call the simulator.
+    /// @warning 此函数调用模拟器.
     PhysicsControl GetPhysicsControl() const;
 
-    /// Return the current open lights (LightState) of this vehicle.
+    /// 返回当前车辆的打开灯(LightState).
     ///
-    /// @note This function does not call the simulator, it returns the data
-    /// received in the last tick.
+    /// @note 此函数不调用模拟器.
+    /// 在最后一个节拍返回接收到的数据.
     LightState GetLightState() const;
 
-    /// Return the speed limit currently affecting this vehicle.
+    /// 返回当前影响该车辆的速度限制.
     ///
-    /// @note This function does not call the simulator, it returns the data
-    /// received in the last tick.
+    /// @note 此函数不调用模拟器.
+    /// 在最后一个节拍返回接收到的数据.
     float GetSpeedLimit() const;
 
-    /// Return the state of the traffic light currently affecting this vehicle.
+    /// 返回当前影响该车辆的交通灯的状态.
     ///
-    /// @return Green If no traffic light is affecting the vehicle.
+    /// @return 绿灯表示车辆没有受到交通信号灯的影响.
     ///
-    /// @note This function does not call the simulator, it returns the data
-    /// received in the last tick.
+    /// @note 此函数不调用模拟器.
+    /// 在最后一个节拍返回接收到的数据.
     rpc::TrafficLightState GetTrafficLightState() const;
 
-    /// Return whether a traffic light is affecting this vehicle.
+    /// 返回交通灯是否正在影响该车辆.
     ///
-    /// @note This function does not call the simulator, it returns the data
-    /// received in the last tick.
+    /// @note 此函数不调用模拟器.
+    /// 在最后一个节拍返回接收到的数据.
     bool IsAtTrafficLight();
 
-    /// Retrieve the traffic light actor currently affecting this vehicle.
+    /// 检索当前影响该车辆的交通灯.
     SharedPtr<TrafficLight> GetTrafficLight() const;
 
-    /// Enables CarSim simulation if it is availiable
+    /// 如果可用，启用CarSim模拟
     void EnableCarSim(std::string simfile_path);
 
-    /// Enables the use of CarSim internal road definition instead of unreal's
+    /// 允许使用CarSim内部道路定义，而不是虚幻引擎的
     void UseCarSimRoad(bool enabled);
 
     void EnableChronoPhysics(
@@ -146,7 +146,7 @@ namespace client {
 
     void RestorePhysXPhysics();
 
-    /// Returns the failure state of the vehicle
+    /// 返回车辆的故障状态
     rpc::VehicleFailureState GetFailureState() const;
 
   private:

@@ -11,7 +11,7 @@
 
 namespace util {
 
-  /// Helper for loading Test OpenDrive files.
+  /// 加载OpenDrive目录下文件的工具类.
   class OpenDrive {
   public:
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -32,13 +32,13 @@ class PrimaryCommands {
 
     void set_router(std::shared_ptr<Router> router);
 
-    // broadcast to all secondary servers the frame data
+    // 向所有辅助服务器广播帧数据
     void SendFrameData(carla::Buffer buffer);
 
-    // broadcast to all secondary servers the map to load
+    // 向所有辅助服务器广播要加载的地图
     void SendLoadMap(std::string map);
 
-    // send to know if a connection is alive
+    // 发送以了解连接是否处于活动状态
     void SendIsAlive();
 
     token_type GetToken(stream_id sensor_id);
@@ -51,10 +51,10 @@ class PrimaryCommands {
 
   private:
 
-    // send to one secondary to get the token of a sensor
+    // 发送到一个辅助节点以获取传感器的令牌
     token_type SendGetToken(carla::streaming::detail::stream_id_type sensor_id);
 
-    // manage ROS enable/disable of sensor
+    // 管理 ROS 传感器的启用/禁用
     void SendEnableForROS(stream_id sensor_id);
     void SendDisableForROS(stream_id sensor_id);
     bool SendIsEnabledForROS(stream_id sensor_id);

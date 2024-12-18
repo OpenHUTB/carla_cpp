@@ -8,7 +8,7 @@
 #include "CarlaWheeledVehicle.h"
 
 // =============================================================================
-// -- Constructor and destructor -----------------------------------------------
+// -- 构造函数和析构函数 ---------------------------------------------------------
 // =============================================================================
 
 FAckermannController::~FAckermannController() {}
@@ -53,11 +53,11 @@ void FAckermannController::SetTargetPoint(const FVehicleAckermannControl& Ackerm
 }
 
 void FAckermannController::Reset() {
-  // Reset controllers
+  // 重置控制器
   SpeedController.Reset();
   AccelerationController.Reset();
 
-  // Reset control parameters
+  // 重置控制器参数
   Steer = 0.0f;
   Throttle = 0.0f;
   Brake = 0.0f;
@@ -69,7 +69,7 @@ void FAckermannController::Reset() {
   AccelControlPedalDelta = 0.0f;
   AccelControlPedalTarget = 0.0f;
 
-  // Reset vehicle state
+  // 重置车辆状态
   VehicleSpeed = 0.0f;
   VehicleAcceleration = 0.0f;
 
@@ -80,10 +80,10 @@ void FAckermannController::Reset() {
 void FAckermannController::RunLoop(FVehicleControl& Control) {
   TRACE_CPUPROFILER_EVENT_SCOPE_STR(__FUNCTION__);
 
-  // Lateral Control
+  // 横向控制
   RunControlSteering();
 
-  // Longitudinal Control
+  // 纵向控制
   bool bStopped = RunControlFullStop();
   if (!bStopped) {
     RunControlReverse();
@@ -92,7 +92,7 @@ void FAckermannController::RunLoop(FVehicleControl& Control) {
     UpdateVehicleControlCommand();
   }
 
-  // Update control command
+  // 更新控制命令
   Control.Steer = Steer / VehicleMaxSteering;
   Control.Throttle = FMath::Clamp(Throttle, 0.0f, 1.0f);
   Control.Brake = FMath::Clamp(Brake, 0.0f, 1.0f);
@@ -115,7 +115,7 @@ void FAckermannController::RunControlSteering() {
 }
 
 bool FAckermannController::RunControlFullStop() {
-  // From this velocity on full brake is turned on
+  // 从这个速度在全刹车打开
   float FullStopEpsilon = 0.1; //[m/s]
 
   if (FMath::Abs(VehicleSpeed) < FullStopEpsilon && FMath::Abs(UserTargetPoint.Speed) < FullStopEpsilon) {
@@ -127,22 +127,22 @@ bool FAckermannController::RunControlFullStop() {
 }
 
 void FAckermannController::RunControlReverse() {
-  // From this position on it is allowed to switch to reverse gear
+  // 从这个位置上可以切换到倒档
   float StandingStillEpsilon = 0.1;  // [m/s]
 
   if (FMath::Abs(VehicleSpeed) < StandingStillEpsilon) {
-    // Standing still, change of driving direction allowed
+    // 停车不动，允许改变行驶方向
     if (UserTargetPoint.Speed < 0) {
-      // Change of driving direction to reverse.
+      // 改变驾驶方向到倒车。
       bReverse = true;
     } else if (UserTargetPoint.Speed >= 0) {
-      // Change of driving direction to forward.
+      // 将驾驶方向改为前进。
       bReverse = false;
     }
   } else {
     if (FMath::Sign(VehicleSpeed) * FMath::Sign(UserTargetPoint.Speed) == -1) {
-      // Requested for change of driving direction.
-      // First we have to come to full stop before changing driving direction
+      // 请求改变驾驶方向。
+      // 首先，我们必须完全停下来，然后才能改变行驶方向
       TargetSpeed = 0.0;
     }
   }
@@ -153,11 +153,11 @@ void FAckermannController::RunControlSpeed() {
   SpeedController.SetTargetPoint(TargetSpeed);
   SpeedControlAccelDelta = SpeedController.Run(VehicleSpeed, DeltaTime);
 
-  // Clipping borders
+  // 剪裁边界
   float ClippingLowerBorder = -FMath::Abs(TargetAcceleration);
   float ClippingUpperBorder = FMath::Abs(TargetAcceleration);
   if (FMath::Abs(TargetAcceleration) < 0.0001f) {
-    // Per definition of AckermannDrive: if zero, then use max value
+    // 根据 AckermannDrive 的定义：如果为零，则使用最大值
     ClippingLowerBorder = -MaxDecel;
     ClippingUpperBorder = MaxAccel;
   }
@@ -170,7 +170,7 @@ void FAckermannController::RunControlAcceleration() {
   AccelerationController.SetTargetPoint(SpeedControlAccelTarget);
   AccelControlPedalDelta = AccelerationController.Run(VehicleAcceleration, DeltaTime);
 
-  // Clipping borders
+  // 剪裁边界
   AccelControlPedalTarget += AccelControlPedalDelta;
   AccelControlPedalTarget = FMath::Clamp(AccelControlPedalTarget, -1.0f, 1.0f);
 
@@ -203,14 +203,14 @@ void FAckermannController::UpdateVehicleState(const ACarlaWheeledVehicle* Vehicl
   LastVehicleSpeed = VehicleSpeed;
   LastVehicleAcceleration = VehicleAcceleration;
 
-  // Update simulation state
+  // 更新仿真状态
   DeltaTime = Vehicle->GetWorld()->GetDeltaSeconds();
 
-  // Update Vehicle state
+  // 更新车辆状态
   VehicleSteer = Vehicle->GetVehicleControl().Steer * VehicleMaxSteering;
   VehicleSpeed = Vehicle->GetVehicleForwardSpeed() / 100.0f;  // From cm/s to m/s
   float CurrentAcceleration = (VehicleSpeed - LastVehicleSpeed) / DeltaTime;
-  // Apply an average filter for the acceleration.
+  // 对加速度应用平均滤波器。
   VehicleAcceleration = (4.0f*LastVehicleAcceleration + CurrentAcceleration) / 5.0f;
 }
 

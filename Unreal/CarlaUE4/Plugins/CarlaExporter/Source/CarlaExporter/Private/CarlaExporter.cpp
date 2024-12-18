@@ -32,7 +32,12 @@ static const FName CarlaExporterTabName("CarlaExporter");
 
 void FCarlaExporterModule::StartupModule()
 {
+<<<<<<< HEAD
   // 该代码将在模块加载到内存后执行，具体的执行时间由 .uplugin 文件中的 per-module 指定
+=======
+  // 这段代码将在你的模块被加载到内存中后执行；
+  //具体的执行时间在每个模块的.uplugin 文件中指定。
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
 
   FCarlaExporterCommands::Register(); // 注册插件命令
 
@@ -58,8 +63,15 @@ void FCarlaExporterModule::StartupModule()
 
 void FCarlaExporterModule::ShutdownModule()
 {
+<<<<<<< HEAD
   // 在模块卸载时调用此函数进行清理
   FCarlaExporterCommands::Unregister();// 注销插件命令
+=======
+  // 对于支持动态重新加载的模块，
+  //这个函数可能会在关闭期间被调用以清理你的模块。
+  //在卸载模块之前，我们会调用这个函数。
+  FCarlaExporterCommands::Unregister();
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
 }
 
 void FCarlaExporterModule::PluginButtonClicked()
@@ -67,18 +79,27 @@ void FCarlaExporterModule::PluginButtonClicked()
   UWorld* World = GEditor->GetEditorWorldContext().World();
   if (!World) return;
 
+<<<<<<< HEAD
   // 获取当前选中的所有对象（如果有的话）
+=======
+  //获取所有选中的对象（如果有任何选中对象的话）
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
   TArray<UObject*> BP_Actors;
   USelection* CurrentSelection = GEditor->GetSelectedActors();
   int32 SelectionNum = CurrentSelection->GetSelectedObjects(AActor::StaticClass(), BP_Actors);
 
+<<<<<<< HEAD
   //如果没有选中任何对象，则获取所有对象
+=======
+  // 如果没有选中任何对象，那么获取所有对象
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
   if (SelectionNum == 0)
   {
     for (TActorIterator<AActor> it(World); it; ++it)
       BP_Actors.Add(Cast<UObject>(*it));
   }
 
+<<<<<<< HEAD
   // 获取目标路径
   FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir());
   // 构建文件名
@@ -92,6 +113,21 @@ void FCarlaExporterModule::PluginButtonClicked()
   rounds = 5;
 
   // Unreal 使用的是 'cm'（厘米），Recast 使用的是 'm'（米），需要做缩放
+=======
+  // 得到目标路径
+  FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir());
+  //构建最终名称。
+  std::ostringstream name;
+  name << TCHAR_TO_UTF8(*Path) << "/" << TCHAR_TO_UTF8(*World->GetMapName()) << ".obj";
+  //创建文件。
+  std::ofstream f(name.str());
+
+  // 定义回合数
+  int rounds;
+  rounds = 5;
+
+  // 我们需要缩放网格（虚幻引擎使用 “厘米”，Recast 使用 “米”）
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
   constexpr float TO_METERS = 0.01f;
 
   int offset = 1;
@@ -103,12 +139,20 @@ void FCarlaExporterModule::PluginButtonClicked()
       AActor* TempActor = Cast<AActor>(SelectedObject);
       if (!TempActor) continue;
 
+<<<<<<< HEAD
       /检查该 Actor 是否有 "NoExport" 标签
+=======
+      //检查标签（“NoExport”）
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
       if (TempActor->ActorHasTag(FName("NoExport"))) continue;
 
       FString ActorName = TempActor->GetName();
 
+<<<<<<< HEAD
       // 根据命名规则检查 Actor 类型
+=======
+      // 通过命名规则检查类型
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
       if (ActorName.Find("Road_Road") != -1 || ActorName.Find("Roads_Road") != -1)
         areaType = AreaType::ROAD;
       else if (ActorName.Find("Road_Marking") != -1 || ActorName.Find("Roads_Marking") != -1)
@@ -126,7 +170,11 @@ void FCarlaExporterModule::PluginButtonClicked()
       else
         areaType = AreaType::BLOCK;
 
+<<<<<<< HEAD
       // 根据导出轮次决定是否导出
+=======
+      // 检查是否在这一回合中导出
+>>>>>>> 8d1254daeddeb0654f073858a955d3f26695c945
       if (rounds > 1)
       {
         if (areaType == AreaType::BLOCK && round != 0)
@@ -147,7 +195,7 @@ void FCarlaExporterModule::PluginButtonClicked()
       for (auto *Component : Components)
       {
 
-        // check if is an instanced static mesh
+        // 检查是否是实例化静态网格。
         UInstancedStaticMeshComponent* comp2 = Cast<UInstancedStaticMeshComponent>(Component);
         if (comp2)
         {
@@ -156,10 +204,10 @@ void FCarlaExporterModule::PluginButtonClicked()
 
           for (int i=0; i<comp2->GetInstanceCount(); ++i)
           {
-            // f << " instance_" << i << "\n";
+            //将“instance_”加上索引值 i 写入文件并换行。
             FString ObjectName = ActorName +"_"+FString::FromInt(i);
 
-            // get the component position and transform
+            // 获取组件的位置和变换
             FTransform InstanceTransform;
             comp2->GetInstanceTransform(i, InstanceTransform, true);
             FVector InstanceLocation = InstanceTransform.GetTranslation();
@@ -169,7 +217,7 @@ void FCarlaExporterModule::PluginButtonClicked()
         }
         else
         {
-          // try as static mesh
+          // 尝试作为静态网格。
           UStaticMeshComponent* comp = Cast<UStaticMeshComponent>(Component);
           if (!comp) continue;
 
@@ -177,10 +225,10 @@ void FCarlaExporterModule::PluginButtonClicked()
           if (!body)
             continue;
 
-          // f << "o " << TCHAR_TO_ANSI(*(comp->GetName())) << "\n";
+          //将字母“o”以及经过转换后的组件名称写入文件并换行。
           FString ObjectName = ActorName +"_"+comp->GetName();
 
-          // get the component position and transform
+          // 获取组件的位置和变换。
           FTransform CompTransform = comp->GetComponentTransform();
           FVector CompLocation = CompTransform.GetTranslation();
 
@@ -204,7 +252,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
   // try to write the box collision if any
   for (const auto &box: body->AggGeom.BoxElems)
   {
-    // get data
+    // 得到数据
     const int32 nbVerts = 8;
     TArray<FVector> boxVerts;
     TArray<int32> indexBuffer;
@@ -213,7 +261,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
 
     f << "o " << TCHAR_TO_ANSI(*(ObjectName +"_box")) << "\n";
 
-    // define the 8 vertices
+    // 定义 8 个顶点。
     boxVerts.Add(box.Center + box.Rotation.RotateVector(FVector(-HalfExtent.X, -HalfExtent.Y, -HalfExtent.Z)));
     boxVerts.Add(box.Center + box.Rotation.RotateVector(FVector(-HalfExtent.X, -HalfExtent.Y, +HalfExtent.Z)));
     boxVerts.Add(box.Center + box.Rotation.RotateVector(FVector(-HalfExtent.X, +HalfExtent.Y, -HalfExtent.Z)));
@@ -223,7 +271,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
     boxVerts.Add(box.Center + box.Rotation.RotateVector(FVector(+HalfExtent.X, +HalfExtent.Y, -HalfExtent.Z)));
     boxVerts.Add(box.Center + box.Rotation.RotateVector(FVector(+HalfExtent.X, +HalfExtent.Y, +HalfExtent.Z)));
 
-    // define the 12 faces (36 indices)
+    // 定义 12 个面（36 个索引）。
     indexBuffer.Add(0); indexBuffer.Add(1); indexBuffer.Add(3);
     indexBuffer.Add(0); indexBuffer.Add(3); indexBuffer.Add(2);
     indexBuffer.Add(2); indexBuffer.Add(3); indexBuffer.Add(7);
@@ -237,7 +285,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
     indexBuffer.Add(7); indexBuffer.Add(3); indexBuffer.Add(1);
     indexBuffer.Add(7); indexBuffer.Add(1); indexBuffer.Add(5);
 
-    // write all vertex
+    // 写入所有顶点。
     for (int32 j=0; j<nbVerts; j++)
     {
       const FVector &v = boxVerts[j];
@@ -247,7 +295,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
 
       f << "v " << std::fixed << world.X * TO_METERS << " " << world.Z * TO_METERS << " " << world.Y * TO_METERS << "\n";
     }
-    // set the material in function of the area type
+    //根据区域类型设置材质。
     switch (Area)
     {
       case AreaType::ROAD:      f << "usemtl road"      << "\n"; break;
@@ -256,11 +304,11 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
       case AreaType::CROSSWALK: f << "usemtl crosswalk" << "\n"; break;
       case AreaType::BLOCK:     f << "usemtl block"     << "\n"; break;
     }
-    // write all faces
+    //写入所有面。
     int k = 0;
     for (int32 i=0; i<indexBuffer.Num()/3; ++i)
     {
-      // inverse order for left hand
+      // 对于左手坐标系，使用逆序。
       f << "f " << Offset + indexBuffer[k+2] << " " << Offset + indexBuffer[k+1] << " " << Offset + indexBuffer[k] << "\n";
       k += 3;
     }
@@ -269,10 +317,10 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
     Written = true;
   }
 
-  // try to write the simple collision mesh
+  // 尝试写入简单碰撞网格。
   for (const auto &convex : body->AggGeom.ConvexElems)
   {
-    // get data
+    //获取数据。
     PxConvexMesh *mesh = convex.GetConvexMesh();
     if (!mesh) continue;
     int32 nbVerts = mesh->getNbVertices();
@@ -281,7 +329,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
 
     f << "o " << TCHAR_TO_ANSI(*(ObjectName +"_convex")) << "\n";
 
-    // write all vertex
+    //写入所有顶点。
     for (int32 j=0; j<nbVerts; j++)
     {
       const PxVec3 &v = convexVerts[j];
@@ -291,7 +339,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
 
       f << "v " << std::fixed << world.X * TO_METERS << " " << world.Z * TO_METERS << " " << world.Y * TO_METERS << "\n";
     }
-    // set the material in function of the area type
+    // 根据区域类型设置材质。
     switch (Area)
     {
       case AreaType::ROAD:      f << "usemtl road"      << "\n"; break;
@@ -300,7 +348,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
       case AreaType::CROSSWALK: f << "usemtl crosswalk" << "\n"; break;
       case AreaType::BLOCK:     f << "usemtl block"     << "\n"; break;
     }
-    // write all faces
+    // 写入所有面。
     for (PxU32 i=0; i<mesh->getNbPolygons(); ++i)
     {
       PxHullPolygon face;
@@ -309,7 +357,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
       int faceNbVerts = face.mNbVerts;
       for(int32 j=2; j<faceNbVerts; j++)
       {
-        // inverse order for left hand
+        // 对于左手坐标系，使用逆序。
         f << "f " << Offset + faceIndices[j-1] << " " << Offset + faceIndices[j] << " " << Offset + faceIndices[0] << "\n";
       }
     }
@@ -320,16 +368,16 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
 
   if (!Written)
   {
-    // write the mesh
+    //写入网格。
     for (const auto &mesh : body->TriMeshes)
     {
-      // get data
+      // 得到数据
       PxU32 nbVerts = mesh->getNbVertices();
       const PxVec3* convexVerts = mesh->getVertices();
 
       f << "o " << TCHAR_TO_ANSI(*(ObjectName +"_mesh")) << "\n";
 
-      // write all vertex
+      // 写入所有顶点。
       for (PxU32 j=0; j<nbVerts; j++)
       {
         const PxVec3 &v = convexVerts[j];
@@ -339,7 +387,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
 
         f << "v " << std::fixed << world.X * TO_METERS << " " << world.Z * TO_METERS << " " << world.Y * TO_METERS << "\n";
       }
-      // set the material in function of the area type
+      // 根据区域类型设置材质。
       switch (Area)
       {
         case AreaType::ROAD:      f << "usemtl road"      << "\n"; break;
@@ -348,15 +396,15 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
         case AreaType::CROSSWALK: f << "usemtl crosswalk" << "\n"; break;
         case AreaType::BLOCK:     f << "usemtl block"     << "\n"; break;
       }
-      // write all faces
+      // 写入所有面
       int k = 0;
-      // triangle indices can be of 16 or 32 bits
+      //三角形索引可以是 16 位或 32 位。
       if (mesh->getTriangleMeshFlags() & PxTriangleMeshFlag::e16_BIT_INDICES)
       {
         PxU16 *Indices16 = (PxU16 *) mesh->getTriangles();
         for (PxU32 i=0; i<mesh->getNbTriangles(); ++i)
         {
-          // inverse order for left hand
+          //  对于左手坐标系，使用逆序。
           f << "f " << Offset + Indices16[k+2] << " " << Offset + Indices16[k+1] << " " << Offset + Indices16[k] << "\n";
           k += 3;
         }
@@ -366,7 +414,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
         PxU32 *Indices32 = (PxU32 *) mesh->getTriangles();
         for (PxU32 i=0; i<mesh->getNbTriangles(); ++i)
         {
-          // inverse order for left hand
+          //  对于左手坐标系，使用逆序。
           f << "f " << Offset + Indices32[k+2] << " " << Offset + Indices32[k+1] << " " << Offset + Indices32[k] << "\n";
           k += 3;
         }

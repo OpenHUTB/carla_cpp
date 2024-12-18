@@ -1,5 +1,7 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
+// 
+// 画质
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
@@ -14,10 +16,10 @@ namespace carla {
 namespace rpc {
 
   enum class QualityLevel : uint8_t {
-    Low,
+    Low,  // 低画质，通过命令启动：CarlaUE4.exe -quality-level=Low
     // Medium,
     // High,
-    Epic,
+    Epic,  // 高画质（史诗级）
 
     SIZE,
     INVALID
