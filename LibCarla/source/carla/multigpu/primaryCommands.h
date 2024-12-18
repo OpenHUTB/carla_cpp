@@ -1,4 +1,6 @@
-﻿// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿
+} // namespace multigpu
+} // namespace carla// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -28,6 +30,8 @@ class PrimaryCommands {
 
 
     PrimaryCommands();
+// 默认构造函数，用于创建PrimaryCommands类的对象
+
     PrimaryCommands(std::shared_ptr<Router> router);
 
     void set_router(std::shared_ptr<Router> router);
@@ -42,8 +46,11 @@ class PrimaryCommands {
     void SendIsAlive();
 
     token_type GetToken(stream_id sensor_id);
+// 向一个辅助节点发送请求以获取指定传感器的令牌，返回获取到的令牌（token_type类型）
 
+    // 管理ROS传感器的启用/禁用
     void EnableForROS(stream_id sensor_id);
+// 内部使用的函数，用于向相关节点发送启用与ROS相关的指定传感器（通过传入的传感器流ID来指定）的请求
 
     void DisableForROS(stream_id sensor_id);
 
@@ -65,5 +72,3 @@ class PrimaryCommands {
     std::unordered_map<stream_id, std::weak_ptr<Primary>> _servers;
 };
 
-} // namespace multigpu
-} // namespace carla
