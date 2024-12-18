@@ -262,13 +262,20 @@ class GlobalRoutePlanner:
             intersection = entry_wp.is_junction
             road_id, section_id, lane_id = entry_wp.road_id, entry_wp.section_id, entry_wp.lane_id
 
+            #处理节点和映射关系
+            #对入口和出口坐标进行处理
             for vertex in entry_xyz, exit_xyz:
                 # Adding unique nodes and populating id_map
+                #如果坐标不在_id_map这个字典中则为这个新坐标分配一个新id即当前字典的长度
                 if vertex not in self._id_map:
                     new_id = len(self._id_map)
+                    #将坐标和新的id添加到._id_map字典中
                     self._id_map[vertex] = new_id
+                    #在图中添加一个新的节点
                     self._graph.add_node(new_id, vertex=vertex)
+            #获取入口坐标对应的节点id
             n1 = self._id_map[entry_xyz]
+            #获取出口坐标对应的节点id
             n2 = self._id_map[exit_xyz]
             if road_id not in self._road_id_to_edge:
                 self._road_id_to_edge[road_id] = dict()
