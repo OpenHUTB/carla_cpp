@@ -43,13 +43,13 @@ TEST(listview, sequence) {
   std::vector<int> vector = {0, 1, 2, 3, 4, 5};
   
   TestSequence(MakeListView(vector));// 使用 MakeListView 创建一个 ListView 对象，并传入 std::vector 容器进行测试
-  std::list<int> list = {0, 1, 2, 3, 4, 5};
+  std::list<int> list = {0, 1, 2, 3, 4, 5};//清晰地创建了一个 std::list<int> 类型的列表（list），并初始化为包含从 0 到 5 的六个整数。
   TestSequence(MakeListView(list));
-  std::set<int> set = {0, 1, 2, 3, 4, 5};
-  TestSequence(MakeListView(set));
+  std::set<int> set = {0, 1, 2, 3, 4, 5};//创建了一个包含六个不重复整数的集合
+  TestSequence(MakeListView(set));//转换集合为特定视图或可迭代对象的函数或模板
 }
 TEST(listview, string) {
-  std::string str = "Hello list view!";
+  std::string str = "Hello list view!";//范围for循环遍历一个由MakeListView(str)返回的对象
   
   std::string result;
   
