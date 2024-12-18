@@ -1,4 +1,4 @@
-﻿
+
 } // namespace multigpu
 } // namespace carla// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
