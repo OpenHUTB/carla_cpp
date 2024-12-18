@@ -204,9 +204,15 @@ git rm -rf .
 [zhong246](https://github.com/zhong246/carla_cpp.git)、
 [mikilej](https://github.com/mikilej)、
 [Zz1tai77](https://github.com/Zz1tai77/carla_cpp)、
-
 [Dennnng123](https://github.com/Dennnng123)
 [Rrr7702](https://github.com/Rrr7702)
 [longakijushuai](https://github.com/longkaijushuai/carla_cpp)、
 [yaxianwang7](https://github.com/yaxianwang7)
 [dengyanyan1](https://github.com/dengyanyan1)
+[Blessingwish](https://github.com/Blessingwish)
+[1722698697](https://github.com/1722698697/carla_cpp.git)
+[sx2005](https://github.com/sx2005)
+[266762548awa](https://github.com/266762548awa)
+[Peng-185](https://github.com/Peng-185/carla_cpp/tree/dev)
+[ysthhhh](https://github.com/ysthhhh/carla_cpp)、
+[ylsj666](https://github.com/ylsj666/carla_cpp.git)、
