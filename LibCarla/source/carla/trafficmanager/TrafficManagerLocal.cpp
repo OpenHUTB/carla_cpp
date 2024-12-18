@@ -267,8 +267,7 @@ void TrafficManagerLocal::Stop() {
   run_traffic_manger.store(false);void TrafficManagerLocal::Stop() {
 // 停止交通管理器的工作线程并清理资源
   run_traffic_manger.store(false);
-  if (parameters.GetSynchronousMode()) {
-    step_begin_trigger.notify_one();// 如果是同步模式，开始步骤
+     step_begin_trigger.notify_one();// 如果是同步模式，开始步骤
   }
 
   if (worker_thread) {
