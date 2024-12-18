@@ -39,7 +39,7 @@ ADRSS_SRC_DIR="${ADRSS_COLCON_WORKSPACE}/src"
 # 检查源代码目录是否存在
 if [[ ! -d "${ADRSS_SRC_DIR}" ]]; then
   # 如果目录不存在，首先设置工作区
-  log "Retrieving ${ADRSS_BASENAME}."
+  log "Retrieving ${ADRSS_BASENAME}."#输出脚本中的日志语句
 
   mkdir -p "${ADRSS_SRC_DIR}"  # 创建源目录
 
