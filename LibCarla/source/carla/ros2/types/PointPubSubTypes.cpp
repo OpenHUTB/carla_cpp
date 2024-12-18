@@ -26,22 +26,32 @@
 
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
-
+// 命名空间geometry_msgs，用于组织相关的消息类型相关代码
 namespace geometry_msgs {
+	// 嵌套的msg命名空间，进一步细分消息相关的类型和操作
     namespace msg {
+    	// PointPubSubType类的定义，用于处理Point类型消息的发布/订阅相关操作（如序列化、反序列化等）
         PointPubSubType::PointPubSubType()
         {
+        	// 设置类型名称，这里明确指定了与geometry_msgs::msg::dds_::Point_相关的名称
             setName("geometry_msgs::msg::dds_::Point_");
+            // 获取Point类型的最大CDR序列化大小，CDR是一种数据序列化格式
             auto type_size = Point::getMaxCdrSerializedSize();
+            // 根据可能的子消息对齐要求，对类型大小进行对齐处理（按4字节对齐）
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
+             // 计算最终的类型大小，加上4字节用于封装
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+            // 判断Point类型是否定义了获取键（Key）的操作
             m_isGetKeyDefined = Point::isKeyDefined();
+            // 根据Point类型获取键的最大CDR序列化大小来确定键缓冲区的长度，取较大值
             size_t keyLength = Point::getKeyMaxCdrSerializedSize() > 16 ?
                     Point::getKeyMaxCdrSerializedSize() : 16;
+             // 分配键缓冲区内存空间
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+            // 将键缓冲区初始化为全0
             memset(m_keyBuffer, 0, keyLength);
         }
-
+// PointPubSubType类的析构函数，用于释放之前分配的键缓冲区内存
         PointPubSubType::~PointPubSubType()
         {
             if (m_keyBuffer != nullptr)
@@ -49,11 +59,12 @@ namespace geometry_msgs {
                 free(m_keyBuffer);
             }
         }
-
+// 序列化函数，将Point类型的数据对象序列化为可以传输的格式（存入SerializedPayload_t中）
         bool PointPubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
+        	 // 将传入的void*类型数据转换为Point*类型指针，方便后续操作
             Point* p_type = static_cast<Point*>(data);
 
             // Object that manages the raw buffer.
@@ -71,6 +82,7 @@ namespace geometry_msgs {
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+            	// 如果出现内存不足异常，返回false表示序列化失败
                 return false;
             }
 
@@ -78,7 +90,7 @@ namespace geometry_msgs {
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
             return true;
         }
-
+// 反序列化函数，将接收到的SerializedPayload_t格式的数据转换为Point类型的数据对象
         bool PointPubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
@@ -103,33 +115,35 @@ namespace geometry_msgs {
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+            	// 如果出现内存不足异常，返回false表示反序列化失败
                 return false;
             }
 
             return true;
         }
-
+// 返回一个函数对象，该函数对象用于获取给定Point数据对象序列化后的大小
         std::function<uint32_t()> PointPubSubType::getSerializedSizeProvider(
                 void* data)
         {
             return [data]() -> uint32_t
                    {
+                   	// 计算并返回序列化后的大小，包括Point类型自身序列化大小和封装的4字节
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Point*>(data))) +
                               4u /*encapsulation*/;
                    };
         }
-
+ // 创建一个新的Point类型数据对象，返回其void*指针，用于后续的赋值等操作
         void* PointPubSubType::createData()
         {
             return reinterpret_cast<void*>(new Point());
         }
-
+// 删除之前创建的Point类型数据对象，释放内存
         void PointPubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<Point*>(data));
         }
-
+ // 获取给定Point数据对象的键（Key）信息，用于标识该对象，存入InstanceHandle_t中
         bool PointPubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
@@ -137,6 +151,7 @@ namespace geometry_msgs {
         {
             if (!m_isGetKeyDefined)
             {
+            	// 如果Point类型没有定义获取键的操作，直接返回false
                 return false;
             }
 
@@ -151,6 +166,7 @@ namespace geometry_msgs {
             p_type->serializeKey(ser);
             if (force_md5 || Point::getKeyMaxCdrSerializedSize() > 16)
             {
+            	// 如果需要使用MD5计算或者键的最大序列化大小超过16字节，则进行MD5相关操作
                 m_md5.init();
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
                 m_md5.finalize();
@@ -161,6 +177,7 @@ namespace geometry_msgs {
             }
             else
             {
+            	// 否则直接将键缓冲区中的内容复制到InstanceHandle_t的value数组中
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
