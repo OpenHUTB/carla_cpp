@@ -65,27 +65,45 @@ class Sensor():
         # 并传入传感器数据、传感器名称以及存储数据的队列作为参数
         self.sensor.listen(lambda sensor_data: self.callback(sensor_data, self.name, self.queue))
 
-    def destroy(self):
+    def destroy(self): # 这里假设存在一个包含这些方法的类，原代码中未明确给出类名，需根据实际情况调整
         self.sensor.destroy()
+        """
+                用于销毁传感器相关资源的方法，调用传感器对象自身的destroy方法来执行具体的销毁操作。
+                """
 
     def callback(self, sensor_data, sensor_name=None, queue=None):
         # Compute the total sum of points adding all channels
         total_channel_points = 0
         for i in range(0, sensor_data.channels):
             total_channel_points += sensor_data.get_point_count(i)
+        """
+               回调函数，用于处理传感器数据并进行一些相关的计算和验证操作。
 
-        # Total points iterating in the LidarMeasurement
+               参数:
+               - sensor_data: 传感器采集的数据对象，包含了如通道数、原始数据等信息。
+               - sensor_name: 传感器的名称（可选参数，可为None）。
+               - queue: 用于同步数据的队列（可选参数，可为None）。
+               """
         total_detect_points = 0
         for _detection in sensor_data:
             total_detect_points += 1
 
         # Point cloud used with numpy from the raw data
         if self.sensor_type == SensorType.LIDAR:
+            """
+            如果传感器类型是普通LiDAR，从传感器数据的原始数据缓冲区创建numpy数组，
+            并进行形状重塑等操作，同时记录当前处理后的点数量。
+            """
+            # Compute the total sum of points adding all channels
             points = np.frombuffer(sensor_data.raw_data, dtype=np.dtype('f4'))
             points = np.reshape(points, (int(points.shape[0] / 4), 4))
             total_np_points = points.shape[0]
             self.curr_det_pts = total_np_points
         elif self.sensor_type == SensorType.SEMLIDAR:
+            """
+                       如果传感器类型是语义LiDAR（SEMLIDAR），从传感器数据的原始数据缓冲区按照特定的数据类型结构创建numpy数组，
+                       提取相关坐标信息组成点云数据，记录点数量并赋值给当前检测点数量属性。
+                       """
             data = np.frombuffer(sensor_data.raw_data, dtype=np.dtype([
                 ('x', np.float32), ('y', np.float32), ('z', np.float32),
                 ('CosAngle', np.float32), ('ObjIdx', np.uint32), ('ObjTag', np.uint32)]))
@@ -107,13 +125,22 @@ class Sensor():
             queue.put((sensor_data.frame, sensor_name, self.curr_det_pts))
 
     def is_correct(self):
+        """
+              判断传感器数据处理过程是否正确，通过检查是否有错误信息来确定，若error属性为None则表示正确。
+              """
         return self.error is None
 
     def get_current_detection_points():
+        """
+               获取当前检测到的点的数量，返回self.curr_det_pts的值（此处代码可能有问题，应该添加self参数，如def get_current_detection_points(self)，按实际需求调整）。
+               """
         return self.curr_det_pts
 
 class TestSyncLidar(SyncSmokeTest):
     def test_lidar_point_count(self):
+        """
+               测试同步LiDAR传感器点数量的方法，主要步骤包括创建多个LiDAR传感器对象、模拟世界时间推进、销毁传感器以及检查传感器处理过程是否正确。
+               """
         print("TestSyncLidar.test_lidar_point_count")
         sensors = []
 
@@ -141,6 +168,9 @@ class TestSyncLidar(SyncSmokeTest):
 
 
     def test_semlidar_point_count(self):
+        """
+               测试同步语义LiDAR（SEMLIDAR）传感器点数量的方法，流程与测试同步LiDAR类似，包括创建传感器、模拟世界时间推进、销毁传感器以及检查正确性。
+               """
         print("TestSyncLidar.test_semlidar_point_count")
         sensors = []
 
@@ -165,6 +195,9 @@ class TestSyncLidar(SyncSmokeTest):
 
 
 class TestASyncLidar(SmokeTest):
+    """
+            测试异步LiDAR传感器点数量的方法，创建多个LiDAR传感器对象后等待一段时间，然后销毁传感器并检查处理过程是否正确。
+            """
     def test_lidar_point_count(self):
         print("TestASyncLidar.test_lidar_point_count")
         sensors = []
@@ -191,6 +224,9 @@ class TestASyncLidar(SmokeTest):
 
 
     def test_semlidar_point_count(self):
+        """
+               比较不同类型LiDAR（语义LiDAR、普通LiDAR等）的方法，主要操作包括创建不同类型的LiDAR传感器对象并放入队列、模拟世界时间推进、从队列获取数据进行比较验证等。
+               """
         print("TestASyncLidar.test_semlidar_point_count")
         sensors = []
 
