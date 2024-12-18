@@ -100,7 +100,7 @@ static Eigen::Matrix3d OuterProduct(const Eigen::Vector3d& V1)
 {
   return V1 * V1.transpose();
 }
-// convert to right handed frame by flipping z coordinate
+// 将向量转换为右手坐标系，通过翻转z坐标来实现
 static Eigen::Vector3d ToEigenVector(const FVector& V1)
 {
   return Eigen::Vector3d(V1.X, V1.Y, -V1.Z);
@@ -109,7 +109,8 @@ static FVector ToUnrealVector(const Eigen::Vector3d& V1)
 {
   return FVector(V1(0), V1(1), -V1(2));
 }
-static Eigen::Matrix3d ToEigenMatrix(const FMatrix& Matrix) // Matrix[row][column]
+static Eigen::Matrix3d ToEigenMatrix(const FMatrix& Matrix) //用二维数组表示矩阵，
+                                                            //第一维为行，第二维为列。
 {
   Eigen::Matrix3d EigenMatrix;
   EigenMatrix << Matrix.M[0][0], Matrix.M[0][1], -Matrix.M[0][2],
@@ -119,7 +120,8 @@ static Eigen::Matrix3d ToEigenMatrix(const FMatrix& Matrix) // Matrix[row][colum
 }
 static Eigen::Matrix3d ToEigenMatrix(const FTransform& Transform)
 {
-  FMatrix Matrix = Transform.ToMatrixNoScale(); // Matrix[row][column]
+  FMatrix Matrix = Transform.ToMatrixNoScale(); //用二维数组表示矩阵，
+                                                //第一维为行，第二维为列。
   return ToEigenMatrix(Matrix);
 }
 static Eigen::Vector3d RotatorToEigenVector(const FRotator& Rotator)
@@ -154,7 +156,7 @@ void FSkeletonHierarchy::ComputeChildrenJointsAndBones()
     ParentJoint.ChildrenIds.Add(i);
   }
 
-  // debug
+  // 调试
   for (int i = 0; i < Joints.Num(); i++)
   {
     FSkeletonJoint& Joint = Joints[i];
@@ -180,10 +182,10 @@ void FSkeletonHierarchy::ComputeEndJoints()
     }
   }
 
-  // build traversal order so that parent nodes are visited before any children
+  // 构建遍历顺序，确保父节点在任何子节点之前被访问
   RootToEndOrder.Empty();
   std::vector<int> JointsToVisit;
-  JointsToVisit.emplace_back(0); // root element in the hierarchy
+  JointsToVisit.emplace_back(0); // 将根节点添加进带访问列表
   RootToEndOrder.Add(0);
   while (JointsToVisit.size())
   {
@@ -197,7 +199,7 @@ void FSkeletonHierarchy::ComputeEndJoints()
     }
   }
 
-  // build the order in reverse, children visited before parents
+  // 反转遍历顺序，在父节点之前访问子节点
   EndToRootOrder.Empty();
   FString IdOrder = "";
   FString NameOrder = "";
@@ -208,7 +210,7 @@ void FSkeletonHierarchy::ComputeEndJoints()
     IdOrder += FString::FromInt(Id) + " ";
     NameOrder += Joints[Id].JointName + " ";
   }
-  //debug
+  //调试
   OTHER_LOG(Warning, "Tree order: %s", *IdOrder);
   OTHER_LOG(Warning, "Tree order (names): %s", *NameOrder);
   OTHER_LOG(Warning, "Num elements: %d", EndToRootOrder.Num());
@@ -245,7 +247,7 @@ void USpringBasedVegetationComponent::GenerateSkeletonHierarchy()
 {
   TRACE_CPUPROFILER_EVENT_SCOPE(USpringBasedVegetationComponent::GenerateSkeletonHierarchy);
   OTHER_LOG(Warning, "Get skeleton hierarchy");
-  // Get skeleton hierarchy
+  // 获取骨骼层次结构
   if (!SkeletalMesh)
   {
     UActorComponent* Component = GetOwner()->GetComponentByClass(USkeletalMeshComponent::StaticClass());
@@ -269,7 +271,7 @@ void USpringBasedVegetationComponent::GenerateSkeletonHierarchy()
   Skeleton.ComputeChildrenJointsAndBones();
   Skeleton.ComputeEndJoints();
 
-    // Get resting pose for bones
+    // 获取骨骼的静止姿态
   auto *AnimInst = SkeletalMesh->GetAnimInstance();
   if (!AnimInst)
   {
@@ -283,11 +285,11 @@ void USpringBasedVegetationComponent::GenerateSkeletonHierarchy()
     return;
   }
 
-  // get current pose
+  // 获得当前姿态
   FPoseSnapshot TempSnapshot;
   SkeletalMesh->SnapshotPose(TempSnapshot);
 
-  // copy pose
+  // 复制这个姿态
   WalkerAnim->Snap = TempSnapshot;
 
   for (int i=0; i<Skeleton.Joints.Num(); ++i)
@@ -333,7 +335,7 @@ void USpringBasedVegetationComponent::BeginPlay()
     BaseVegetation->SetParametersToComponent();
   }
 
-  // set callbacks
+  // 设置回调函数
   SkeletalMesh->OnComponentHit.AddDynamic(this, &USpringBasedVegetationComponent::OnCollisionEvent);
   
   if (!Skeleton.Joints.Num())
@@ -370,7 +372,7 @@ void USpringBasedVegetationComponent::GenerateCollisionCapsules()
       UCapsuleComponent* Capsule = NewObject<UCapsuleComponent>(GetOwner());
       Capsule->AttachToComponent(SkeletalMesh, FAttachmentTransformRules::KeepRelativeTransform, FName(*Joint.JointName));
       Capsule->RegisterComponent();
-      // create rotation from z direction to align the capsule
+      // 根据骨骼的Z方向创建一个旋转，使得Capsule对齐
       FRotator BoneRotation = UKismetMathLibrary::MakeRotFromZ(Bone.CenterOfMass.GetSafeNormal());
       FTransform CapsuleTransform(BoneRotation, Bone.CenterOfMass, FVector(1,1,1));
       Capsule->SetRelativeTransform(CapsuleTransform);
@@ -401,7 +403,7 @@ void USpringBasedVegetationComponent::ComputeSpringStrengthForBranches()
   TRACE_CPUPROFILER_EVENT_SCOPE(USpringBasedVegetationComponent::ComputeSpringStrengthForBranches);
   FTransform RootTransform = Skeleton.GetRootJoint().GlobalTransform;
   FVector RootLocation = RootTransform.GetLocation();
-  // FVector TreeAxis = RootTransform.GetRotation().GetUpVector();
+  // 用RootTransform.GetRotation().GetUpVector()函数给FVector TreeAxis赋值
   FVector TreeAxis = FVector(0,0,1);
   for (FSkeletonJoint& Joint : Skeleton.Joints)
   {
@@ -427,7 +429,7 @@ void USpringBasedVegetationComponent::EndPlay(const EEndPlayReason::Type EndPlay
   BoneCapsules.Empty();
 }
 
-// Compute a single joint properties (Center of Mass, Inertia, Forces and Torque)
+// 计算单个关节的属性（包括质心、惯性、力和扭矩）
 void USpringBasedVegetationComponent::ComputePerJointProperties(
     std::vector<FJointProperties>& JointLocalPropertiesList,
     std::vector<FJointProperties>& JointPropertiesList)
@@ -441,7 +443,7 @@ void USpringBasedVegetationComponent::ComputePerJointProperties(
     JointPropertiesList[Joint.JointId].JointToGlobalMatrix = Properties.JointToGlobalMatrix;
     if (!Joint.Bones.Num())
       continue;
-    // COM and mass
+    // 质心和质量计算（COM-center of mass质心）
     for (FSkeletonBone& Bone : Joint.Bones)
     {
       Properties.Mass += Bone.Mass;
@@ -450,12 +452,12 @@ void USpringBasedVegetationComponent::ComputePerJointProperties(
     }
     Properties.CenterOfMass = Properties.CenterOfMass/Properties.Mass;
 
-    // force
-    Eigen::Vector3d GravityForce = ToEigenVector(Gravity)/100.f; // world space gravity
+    // 重力的计算
+    Eigen::Vector3d GravityForce = ToEigenVector(Gravity)/100.f; // 地心引力（重力）
     Properties.Force = Properties.Mass * GravityForce + ToEigenVector(Joint.ExternalForces)/100.f;
-    // torque
+    // 扭矩的计算
     Properties.Torque = (Properties.CenterOfMass - JointGlobalPosition).cross(Properties.Force);
-    // inertia tensor
+    // 惯性张量的计算
     for (FSkeletonBone& Bone : Joint.Bones)
     {
       if (Bone.Length < 1)
@@ -485,7 +487,7 @@ void USpringBasedVegetationComponent::ComputePerJointProperties(
   }
 }
 
-// Compute accumulated properties (Center of Mass, Inertia, Forces and Torque)
+// 计算属性之和（质心、惯性、力和扭矩）
 void USpringBasedVegetationComponent::ComputeCompositeBodyContribution(
     std::vector<FJointProperties>& JointLocalPropertiesList,
     std::vector<FJointProperties>& JointPropertiesList)
@@ -503,7 +505,7 @@ void USpringBasedVegetationComponent::ComputeCompositeBodyContribution(
     }
 
     Eigen::Vector3d CenterOfMass = JointLocalProperties.Mass*JointLocalProperties.CenterOfMass;
-    // compute COM and accumulate mass
+    // 计算总质心和质量之和
     JointProperties.Mass = JointLocalProperties.Mass;
     for(int ChildrenId : Joint.ChildrenIds)
     {
@@ -514,7 +516,7 @@ void USpringBasedVegetationComponent::ComputeCompositeBodyContribution(
     }
     JointProperties.CenterOfMass = CenterOfMass / JointProperties.Mass;
 
-    // compute forces
+    // 计算总力
     JointProperties.Force = JointLocalProperties.Force;
     for(int ChildrenId : Joint.ChildrenIds)
     {
@@ -523,7 +525,7 @@ void USpringBasedVegetationComponent::ComputeCompositeBodyContribution(
       JointProperties.Force += ChildrenProperties.Force;
     }
 
-    // compute torque
+    // 计算总扭矩
     JointProperties.Torque = JointLocalProperties.Torque;
     for(int ChildrenId : Joint.ChildrenIds)
     {
@@ -534,7 +536,7 @@ void USpringBasedVegetationComponent::ComputeCompositeBodyContribution(
       JointProperties.Torque += ChildrenProperties.Torque + (ChildrenJointGlobalPosition - ParentJointGlobalPosition).cross(ChildrenProperties.Force);
     }
 
-    // compute inertia tensor
+    // 计算总惯性张量
     JointProperties.InertiaTensor = JointLocalProperties.InertiaTensor + JointLocalProperties.Mass*OuterProduct(JointProperties.CenterOfMass - JointLocalProperties.CenterOfMass, JointProperties.CenterOfMass - JointLocalProperties.CenterOfMass);
     for(int ChildrenId : Joint.ChildrenIds)
     {
@@ -553,7 +555,7 @@ void USpringBasedVegetationComponent::ComputeFictitiousForces(
     std::vector<FJointProperties>& JointPropertiesList)
 {
   TRACE_CPUPROFILER_EVENT_SCOPE(USpringBasedVegetationComponent::ComputeFictitiousForces);
-  // fictitious forces
+  // 虚拟力
   FSkeletonJoint& RootJoint = Skeleton.Joints[0];
   FJointProperties& RootProperties = JointPropertiesList[0];
   for (int i = 1; i < Skeleton.RootToEndOrder.Num(); i++)
@@ -691,7 +693,7 @@ void USpringBasedVegetationComponent::ResolveContactsAndCollisions(
       FVector RepulsionForceUE = -ToUnrealVector(RepulsionForce) * 100.f;
       Primitive->AddForceAtLocation(RepulsionForceUE, ClosestPointOnCollider);
 
-      // force to repel geometry overlapping
+      // 强制阻止几何体重叠
       float ForceFactor = 1.f;
       // from eq f = 1 - a*d^p, f: ForceFactor, a: ProportionalConstant, p: ForceDistanceFalloffExponent, d: DistanceOnCapsule
       // float ProportionalConstant = 1.f/(FMath::Pow(ForceMaxDistance, ForceDistanceFalloffExponent));
@@ -711,7 +713,7 @@ void USpringBasedVegetationComponent::ResolveContactsAndCollisions(
       // COLLISION_LOG(Log, "Joint: %s \n ProjectedSpeed %f, ProportionalFactor %f \n RepulsionForce %s \n", *Joint.JointName,ProjectedSpeed,ProportionalFactor,*EigenToFString(RepulsionForce),*EigenToFString(CollisionTorque));
       //UE_LOG(LogCarla, Display, TEXT("DistanceToCollider: %f, ForceFactor: %f"), DistanceToCollider, ForceFactor);
       
-      // block forces to go to rest angles
+      // 阻止力使关节移动到其余角度
       int TempId = JointId;
       do
       {
@@ -726,7 +728,7 @@ void USpringBasedVegetationComponent::ResolveContactsAndCollisions(
       if (DebugEnableVisualization)
       {
         static constexpr float DEBUG_SPHERE_SIZE = 5.0f;
-        // drawing
+        // 绘制操作
         const FVector Start = Capsule->GetComponentLocation();
         const FVector End = Primitive->GetComponentLocation();
         const FColor LineColor(FColor::Green);
@@ -743,7 +745,7 @@ void USpringBasedVegetationComponent::ResolveContactsAndCollisions(
     }
   }
 
-    // reset iteration
+    // 重新设置迭代器
   for (auto &Joint : JointCollisionList)
   {
     if (Joint.CanRest)
@@ -778,7 +780,7 @@ void USpringBasedVegetationComponent::SolveEquationOfMotion(
     FJointProperties& JointProperties = JointPropertiesList[Joint.JointId];
     FJointCollision& JointCollision = JointCollisionList[Joint.JointId];
 
-    // debug drawing
+    // 调试绘制
     if (DebugEnableVisualization)
     {
       if (Joint.ParentId != -1)
@@ -802,7 +804,7 @@ void USpringBasedVegetationComponent::SolveEquationOfMotion(
     Eigen::Matrix3d JointSpaceIntertiaTensor = JointProperties.Mass*OuterProduct(CenterToJoint, CenterToJoint)
         + GlobalToJointMatrix*JointProperties.InertiaTensor*GlobalToJointMatrix.transpose();
     Eigen::Vector3d Torque = GlobalToJointMatrix*JointProperties.Torque + JointProperties.FictitiousTorque;
-    // build differential equation
+    // 建立微分方程
     Eigen::Matrix3d I = JointSpaceIntertiaTensor;
     float SpringStrength = Joint.SpringStrength;
     float beta = Beta;
@@ -851,7 +853,7 @@ void USpringBasedVegetationComponent::SolveEquationOfMotion(
     Eigen::Vector3d NewThetaVelocity (0.f,0.f,0.f);
     Eigen::Vector3d NewThetaAccel (0.f,0.f,0.f);
     Eigen::Vector3d Discriminant = Coeffsb.cwiseProduct(Coeffsb) - 4*Coeffsk;
-    // 1st row
+    // 第一行
     for (int i = 0; i < 3; i++)
     {
       double b = Coeffsb(i);
@@ -981,10 +983,10 @@ void USpringBasedVegetationComponent::OnCollisionEvent(
     FVector NormalImpulse,
     const FHitResult& Hit)
 {
-  // prevent self collision
+  // 防止自碰撞
   if (OtherActor == GetOwner())
     return;
-  // prevent collision with other tree actors
+  // 防止与其他树形结构Actor实例碰撞
   if(OtherActor->GetComponentByClass(USpringBasedVegetationComponent::StaticClass()) != nullptr)
     return;
   ACarlaWheeledVehicle* Vehicle = nullptr;
@@ -1011,10 +1013,10 @@ void USpringBasedVegetationComponent::OnBeginOverlapEvent(
     bool bFromSweep,
     const FHitResult& SweepResult)
 {
-  // prevent self collision
+  // 防止自碰撞
   if (OtherActor == GetOwner())
     return;
-  // prevent collision with other tree actors
+  // 防止与其他树形结构Actor实例碰撞
   if(OtherActor->GetComponentByClass(USpringBasedVegetationComponent::StaticClass()) != nullptr)
     return;
   ACarlaWheeledVehicle* Vehicle = nullptr;
@@ -1047,10 +1049,10 @@ void USpringBasedVegetationComponent::OnEndOverlapEvent(
     UPrimitiveComponent* OtherComponent,
     int32 OtherBodyIndex)
 {
-  // prevent self collision
+  // 防止自碰撞
   if (OtherActor == GetOwner())
     return;
-  // prevent collision with other tree actors
+  // 防止与其他树形结构Actor实例碰撞
   if(OtherActor->GetComponentByClass(USpringBasedVegetationComponent::StaticClass()) != nullptr)
     return;
   ACarlaWheeledVehicle* Vehicle = nullptr;
@@ -1082,16 +1084,16 @@ void USpringBasedVegetationComponent::OnEndOverlapEvent(
 void USpringBasedVegetationComponent::UpdateSkeletalMesh()
 {
   TRACE_CPUPROFILER_EVENT_SCOPE(USpringBasedVegetationComponent::UpdateSkeletalMesh);
-  // get the walker animation class
+  // 获得行人动画类
   auto *AnimInst = SkeletalMesh->GetAnimInstance();
   if (!AnimInst) return;
   UWalkerAnim *WalkerAnim = Cast<UWalkerAnim>(AnimInst);
   if (!WalkerAnim) return;
 
-  // if pose is empty, then get a first version
+  // 如果姿态为空，设定一个初始姿态
   if (WalkerAnim->Snap.BoneNames.Num() == 0)
   {
-    // get current pose
+    // 获得当前姿态
     SkeletalMesh->SnapshotPose(WalkerAnim->Snap);
   }
 
@@ -1103,7 +1105,7 @@ void USpringBasedVegetationComponent::UpdateSkeletalMesh()
     JointsMap.Add(JointName, Joint.Transform);
   }
 
-  // assign common bones
+  // 为walker animation分配通用骨骼
   for (int i=0; i<WalkerAnim->Snap.BoneNames.Num(); ++i)
   {
     FTransform *Trans = JointsMap.Find(WalkerAnim->Snap.BoneNames[i]);

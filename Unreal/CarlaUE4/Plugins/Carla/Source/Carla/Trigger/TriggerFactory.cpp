@@ -8,16 +8,17 @@
 #include "Carla/Trigger/TriggerFactory.h"
 
 #include "Carla/Actor/ActorBlueprintFunctionLibrary.h"
-#include "Carla/Game/CarlaGameInstance.h"
+#include "Carla/Game/CarlaGameInstance.h"  // 引入Game包中的相关功能
 #include "Carla/Game/CarlaStatics.h"
-#include "Carla/Actor/ActorBlueprintFunctionLibrary.h"
+#include "Carla/Actor/ActorBlueprintFunctionLibrary.h"  // 引入参与者Actor包中的相关功能
 #include "Carla/Trigger/FrictionTrigger.h"
 #include "Carla/Actor/ActorBlueprintFunctionLibrary.h"
 
 // =============================================================================
-// -- ATriggerFactory -----------------------------------------------------------
+// -- 触发器工厂 ATriggerFactory ------------------------------------------------
 // =============================================================================
 
+// 检索在SensorRegistry中注册的所有传感器的定义。
 TArray<FActorDefinition> ATriggerFactory::GetDefinitions()
 {
   FActorDefinition TriggerDefinition = FActorDefinition();
@@ -33,6 +34,7 @@ TArray<FActorDefinition> ATriggerFactory::GetDefinitions()
   return TriggerDefinitions;
 }
 
+// 生成参与者
 FActorSpawnResult ATriggerFactory::SpawnActor(
     const FTransform &Transform,
     const FActorDescription &Description)
@@ -64,18 +66,18 @@ FActorSpawnResult ATriggerFactory::SpawnActor(
   }
   else
   {
-    // Retrieve Episode
+    // 获取关卡
     auto *Episode = GameInstance->GetCarlaEpisode();
     check(Episode != nullptr);
     Trigger->SetEpisode(*Episode);
 
-    // Retrieve Friction
+    // 获取摩擦力
     float Friction = UActorBlueprintFunctionLibrary::RetrieveActorAttributeToFloat("friction",
         Description.Variations,
         3.5f);
     Trigger->SetFriction(Friction);
 
-    // Retrieve Extent
+    // 获取范围
     FVector Extent {100.0f, 100.0f, 100.0f};
 
     Extent.X = UActorBlueprintFunctionLibrary::RetrieveActorAttributeToFloat("extent_x",

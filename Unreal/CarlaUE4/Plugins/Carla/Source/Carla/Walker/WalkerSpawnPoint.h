@@ -16,16 +16,14 @@ class CARLA_API AWalkerSpawnPointBase : public ATargetPoint
   GENERATED_BODY()
 };
 
-/// Used to set spawner locations for walkers in the level. These positions will
-/// be used solely to spawn walkers at begin play.
+/// 用于设置关卡中行人的生成器位置。这些位置将仅用于在游戏开始时生成行人。
 UCLASS()
 class CARLA_API AWalkerStartSpawnPoint : public AWalkerSpawnPointBase
 {
   GENERATED_BODY()
 };
 
-/// Used to set spawner locations for walkers in the level. These positions will
-/// be used as spawn points as well as destination points for walkers.
+/// 用于设置关卡中行人的生成点位置。这些位置将用作行人的生成点和目的地点。
 UCLASS()
 class CARLA_API AWalkerSpawnPoint : public AWalkerSpawnPointBase
 {

@@ -45,7 +45,7 @@ namespace client {
 
 namespace detail {
 
-  /// Connects and controls a CARLA Simulator.
+  /// 连接并控制 CARLA 模拟器。
   class Simulator
     : public std::enable_shared_from_this<Simulator>,
       private profiler::LifetimeProfiled,
@@ -53,19 +53,19 @@ namespace detail {
   public:
 
     // =========================================================================
-    /// @name Constructor
+    /// @name 构造函数
     // =========================================================================
     /// @{
 
     explicit Simulator(
-        const std::string &host,
-        uint16_t port,
-        size_t worker_threads = 0u,
-        bool enable_garbage_collection = false);
+        const std::string &host,      // 主服务器的IP地址
+        uint16_t port,                // 连接主服务器的端口号，默认为 2000
+        size_t worker_threads = 0u,   // 仿真器使用的工作线程数，默认全部启用
+        bool enable_garbage_collection = false);    // 是否启用垃圾回收，默认不启用
 
     /// @}
     // =========================================================================
-    /// @name Load a new episode
+    /// @name 加载新的场景
     // =========================================================================
     /// @{
 
@@ -73,16 +73,18 @@ namespace detail {
       return LoadEpisode("", reset_settings);
     }
 
+    // 根据地图名和可选的重置设置以及地图层来加载一个场景
     EpisodeProxy LoadEpisode(std::string map_name, bool reset_settings = true, rpc::MapLayer map_layers = rpc::MapLayer::All);
-
+    // 加载指定的地图层
     void LoadLevelLayer(rpc::MapLayer map_layers) const {
       _client.LoadLevelLayer(map_layers);
     }
-
+    // 卸载指定的地图层
     void UnloadLevelLayer(rpc::MapLayer map_layers) const {
       _client.UnloadLevelLayer(map_layers);
     }
 
+    // 根据OpenDrive文件和生成参数加载一个场景
     EpisodeProxy LoadOpenDriveEpisode(
         std::string opendrive,
         const rpc::OpendriveGenerationParameters & params,
@@ -90,36 +92,41 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Access to current episode
+    /// @name 访问当前场景
     // =========================================================================
     /// @{
 
     /// @pre Cannot be called previous to GetCurrentEpisode.
+    // 获取当前场景的ID，确保当前场景已准备好
     auto GetCurrentEpisodeId() {
       GetReadyCurrentEpisode();
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetId();
     }
-
+    // 确保当前场景已准备好
     void GetReadyCurrentEpisode();
+    // 获取当前场景的代理
     EpisodeProxy GetCurrentEpisode();
 
     /// @}
     // =========================================================================
-    /// @name World snapshot
+    /// @name 世界快照
     // =========================================================================
     /// @{
 
+    // 获取当前世界（场景）的实例
     World GetWorld() {
       return World{GetCurrentEpisode()};
     }
 
     /// @}
     // =========================================================================
-    /// @name World snapshot
+    /// @name 世界快照
     // =========================================================================
     /// @{
 
+
+// 获取当前世界的快照
     WorldSnapshot GetWorldSnapshot() const {
       DEBUG_ASSERT(_episode != nullptr);
       return WorldSnapshot{_episode->GetState()};
@@ -127,33 +134,40 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Map related methods
+    /// @name 地图相关的方法
     // =========================================================================
     /// @{
 
+
+// 获取当前场景的地图实例
     SharedPtr<Map> GetCurrentMap();
 
+    // 获取所有可用的地图名
     std::vector<std::string> GetAvailableMaps() {
       return _client.GetAvailableMaps();
     }
 
     /// @}
     // =========================================================================
-    /// @name Required files related methods
+    /// @name 所需文件相关的方法
     // =========================================================================
     /// @{
 
+// 设置文件基础文件夹
     bool SetFilesBaseFolder(const std::string &path);
 
+    // 获取指定文件夹中所需的文件列表，可以选择是否下载
     std::vector<std::string> GetRequiredFiles(const std::string &folder = "", const bool download = true) const;
 
+    // 请求特定文件
     void RequestFile(const std::string &name) const;
 
+    // 从缓存中获取文件，如果缓存中没有且request_otherwise为true，则尝试请求
     std::vector<uint8_t> GetCacheFile(const std::string &name, const bool request_otherwise) const;
 
     /// @}
     // =========================================================================
-    /// @name Garbage collection policy
+    /// @name 垃圾收集策略
     // =========================================================================
     /// @{
 
@@ -163,49 +177,51 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Pure networking operations
+    /// @name 纯网络操作
     // =========================================================================
     /// @{
 
+    // 设置网络超时时间
     void SetNetworkingTimeout(time_duration timeout) {
-      _client.SetTimeout(timeout);
+      _client.SetTimeout(timeout); // 设置客户端的超时时间
     }
 
     time_duration GetNetworkingTimeout() {
-      return _client.GetTimeout();
+      return _client.GetTimeout();// 获取客户端的超时时间
     }
-
+    // 获取客户端版本
     std::string GetClientVersion() {
-      return _client.GetClientVersion();
+      return _client.GetClientVersion();// 从客户端获取版本信息
     }
-
+    // 获取服务器版本
     std::string GetServerVersion() {
-      return _client.GetServerVersion();
+      return _client.GetServerVersion();// 从服务器获取版本信息
     }
 
     /// @}
     // =========================================================================
-    /// @name Tick
+    /// @name 节拍
     // =========================================================================
     /// @{
 
+// 等待一个节拍（模拟时间步），返回该时间步的世界快照
     WorldSnapshot WaitForTick(time_duration timeout);
-
+    // 注册一个在每个节拍（模拟时间步）被调用的回调函数
     size_t RegisterOnTickEvent(std::function<void(WorldSnapshot)> callback) {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->RegisterOnTickEvent(std::move(callback));
     }
-
+    // 移除一个节拍回调
     void RemoveOnTickEvent(size_t id) {
       DEBUG_ASSERT(_episode != nullptr);
       _episode->RemoveOnTickEvent(id);
     }
-
+    // 执行一个节拍（模拟时间步），返回该时间步的模拟时间（通常以微秒为单位）
     uint64_t Tick(time_duration timeout);
 
     /// @}
     // =========================================================================
-    /// @name Access to global objects in the episode
+    /// @name 访问场景中的全局对象
     // =========================================================================
     /// @{
 
@@ -213,22 +229,23 @@ namespace detail {
     	return _client.GetEndpoint();
     }
 
-    /// Query to know if a Traffic Manager is running on port
+    /// 查询交通管理器是否正在端口上运行
     bool IsTrafficManagerRunning(uint16_t port) const {
       return _client.IsTrafficManagerRunning(port);
     }
 
-    /// Gets a pair filled with the <IP, port> of the Trafic Manager running on port.
-    /// If there is no Traffic Manager running the pair will be ("", 0)
+    /// 获取一个填充了在端口上运行的交通管理器的 <IP, 端口> 对。
+    /// 如果没有正在运行的流量管理器，则该对将为 ("", 0)
     std::pair<std::string, uint16_t> GetTrafficManagerRunning(uint16_t port) const {
       return _client.GetTrafficManagerRunning(port);
     }
 
-    /// Informs that a Traffic Manager is running on <IP, port>
+    /// 通知交通管理器正在 <IP, 端口> 上运行
     bool AddTrafficManagerRunning(std::pair<std::string, uint16_t> trafficManagerInfo) const {
       return _client.AddTrafficManagerRunning(trafficManagerInfo);
     }
 
+    // 根据端口销毁交通管理器
     void DestroyTrafficManager(uint16_t port) const {
       _client.DestroyTrafficManager(port);
     }
@@ -239,8 +256,7 @@ namespace detail {
 
     SharedPtr<BlueprintLibrary> GetBlueprintLibrary();
 
-    /// Returns a list of pairs where the firts element is the vehicle ID
-    /// and the second one is the light state
+    /// 返回一个列表，其中第一个元素是车辆 ID，第二个元素是灯光状态
     rpc::VehicleLightStateList GetVehiclesLightStates();
 
     SharedPtr<Actor> GetSpectator();
@@ -302,7 +318,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name AI
+    /// @name 人工智能
     // =========================================================================
     /// @{
 
@@ -322,7 +338,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name General operations with actors
+    /// @name 参与者的一般操作
     // =========================================================================
     /// @{
 
@@ -341,8 +357,7 @@ namespace detail {
       return _episode->GetActors();
     }
 
-    /// Creates an actor instance out of a description of an existing actor.
-    /// Note that this does not spawn an actor.
+    /// 根据现有参与者的描述创建一个参与者实例。请注意，这不会生成参与者。
     ///
     /// If @a gc is GarbageCollectionPolicy::Enabled, the shared pointer
     /// returned is provided with a custom deleter that calls Destroy() on the
@@ -354,7 +369,7 @@ namespace detail {
       return ActorFactory::MakeActor(GetCurrentEpisode(), std::move(actor_description), gc);
     }
 
-    /// Spawns an actor into the simulation.
+    /// 在模拟中生成一个参与者
     ///
     /// If @a gc is GarbageCollectionPolicy::Enabled, the shared pointer
     /// returned is provided with a custom deleter that calls Destroy() on the
@@ -517,7 +532,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations with vehicles
+    /// @name 车辆的操作
     // =========================================================================
     /// @{
 
@@ -627,7 +642,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations with the recorder
+    /// @name 记录器的操作
     // =========================================================================
     /// @{
 
@@ -674,7 +689,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations with sensors
+    /// @name 传感器的操作
     // =========================================================================
     /// @{
 
@@ -703,10 +718,11 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations with traffic lights
+    /// @name 交通灯的操作
     // =========================================================================
     /// @{
 
+    // 设置交通灯的状态
     void SetTrafficLightState(TrafficLight &trafficLight, const rpc::TrafficLightState trafficLightState) {
       _client.SetTrafficLightState(trafficLight.GetId(), trafficLightState);
     }
@@ -745,7 +761,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Debug
+    /// @name 调试
     // =========================================================================
     /// @{
 
@@ -769,7 +785,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Operations lights
+    /// @name 操作灯
     // =========================================================================
     /// @{
 
@@ -805,7 +821,7 @@ namespace detail {
 
     /// @}
     // =========================================================================
-    /// @name Texture updating operations
+    /// @name 纹理更新操作
     // =========================================================================
     /// @{
 
