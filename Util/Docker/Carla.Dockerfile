@@ -14,6 +14,6 @@ RUN cd /home/carla/ && \
   make PythonAPI && \
   make build.utils && \
   make package && \
-  rm -r /home/carla/carla/Dist
+  rm -r /home/carla/carla/Dist #设置工作目录为 /home/carla/carla，后续操作如果相对路径的话，会基于此目录进行
 
 WORKDIR /home/carla/carla
