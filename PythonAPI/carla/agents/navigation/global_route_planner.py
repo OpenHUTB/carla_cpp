@@ -211,9 +211,13 @@ class GlobalRoutePlanner:
             endloc = wp2.transform.location
             if wp1.transform.location.distance(endloc) > self._sampling_resolution:
                 w = wp1.next(self._sampling_resolution)[0]
+                #只要w.transform.location 和endloc两地间距离大于self._sampling_resolution就会进入该while循环
                 while w.transform.location.distance(endloc) > self._sampling_resolution:
+                    #不断构建路径
                     seg_dict['path'].append(w)
+                    #获取w的下一个点序列
                     next_ws = w.next(self._sampling_resolution)
+                    #如果next_ws的长度为0则跳出该while循环
                     if len(next_ws) == 0:
                         break
                     w = next_ws[0]
