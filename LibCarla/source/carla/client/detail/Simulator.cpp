@@ -296,8 +296,8 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   // ===========================================================================
 
   std::shared_ptr<WalkerNavigation> Simulator::GetNavigation() {
-    DEBUG_ASSERT(_episode != nullptr);
-    auto nav = _episode->CreateNavigationIfMissing();
+    DEBUG_ASSERT(_episode != nullptr);// 确保_episode不为空
+    auto nav = _episode->CreateNavigationIfMissing();// 获取导航实例，如果没有，则创建一个
     return nav;
   }
 
@@ -305,47 +305,47 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   void Simulator::NavigationTick() {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
-    nav->Tick(_episode);
+    nav->Tick(_episode);// 调用导航实例的Tick方法，传递_episode作为参数
   }
 
   void Simulator::RegisterAIController(const WalkerAIController &controller) {
     auto walker = controller.GetParent();
-    if (walker == nullptr) {
+    if (walker == nullptr) { // 获取AI控制器所控制的行人对象
       throw_exception(std::runtime_error(controller.GetDisplayId() + ": not attached to walker"));
       return;
     }
-    DEBUG_ASSERT(_episode != nullptr);
-    auto nav = _episode->CreateNavigationIfMissing();
-    nav->RegisterWalker(walker->GetId(), controller.GetId());
+    DEBUG_ASSERT(_episode != nullptr);// 确保_episode不为空
+    auto nav = _episode->CreateNavigationIfMissing();// 获取导航实例，如果没有则创建
+    nav->RegisterWalker(walker->GetId(), controller.GetId());// 注册该控制器和对应的行人ID到导航系统
   }
 
   void Simulator::UnregisterAIController(const WalkerAIController &controller) {
     auto walker = controller.GetParent();
-    if (walker == nullptr) {
+    if (walker == nullptr) {// 如果行人对象为空，则抛出异常
       throw_exception(std::runtime_error(controller.GetDisplayId() + ": not attached to walker"));
       return;
     }
     DEBUG_ASSERT(_episode != nullptr);
-    auto nav = _episode->CreateNavigationIfMissing();
-    nav->UnregisterWalker(walker->GetId(), controller.GetId());
+    auto nav = _episode->CreateNavigationIfMissing();// 获取导航实例，如果没有则创建
+    nav->UnregisterWalker(walker->GetId(), controller.GetId());// 从导航系统注销该控制器和对应的行人ID
   }
 
   boost::optional<geom::Location> Simulator::GetRandomLocationFromNavigation() {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
-    return nav->GetRandomLocation();
+    return nav->GetRandomLocation();// 从导航中获取一个随机位置
   }
 
   void Simulator::SetPedestriansCrossFactor(float percentage) {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
-    nav->SetPedestriansCrossFactor(percentage);
+    nav->SetPedestriansCrossFactor(percentage);// 设置行人穿越系数
   }
 
   void Simulator::SetPedestriansSeed(unsigned int seed) {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
-    nav->SetPedestriansSeed(seed);
+    nav->SetPedestriansSeed(seed);// 设置行人种子值，用于随机生成行人的位置等
   }
 
   // ===========================================================================
@@ -361,6 +361,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
       GarbageCollectionPolicy gc,
       const std::string& socket_name) {
     rpc::Actor actor;
+    // 如果指定了父Actor，则调用带父Actor的SpawnActor方法
     if (parent != nullptr) {
       actor = _client.SpawnActorWithParent(
           blueprint.MakeActorDescription(),
@@ -369,14 +370,20 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
           attachment_type,
           socket_name);
     } else {
+        // 否则，调用不带父Actor的SpawnActor方法
       actor = _client.SpawnActor(
           blueprint.MakeActorDescription(),
           transform);
     }
+    // 确保_episode不为空
     DEBUG_ASSERT(_episode != nullptr);
+    // 将生成的Actor注册到当前Episode中
     _episode->RegisterActor(actor);
+    // 如果垃圾回收策略是继承，则使用当前Episode的垃圾回收策略，否则使用传入的gc策略
     const auto gca = (gc == GarbageCollectionPolicy::Inherit ? _gc_policy : gc);
+    // 使用工厂方法创建Actor对象并返回
     auto result = ActorFactory::MakeActor(GetCurrentEpisode(), actor, gca);
+    // 记录日志，显示生成Actor的ID和是否启用了垃圾回收
     log_debug(
         result->GetDisplayId(),
         "created",
@@ -385,6 +392,8 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
     return result;
   }
 
+// DestroyActor函数用于销毁一个给定的Actor。
+// 它会从客户端销毁Actor并清除Actor的持久状态，确保该Actor无法再访问客户端。
   bool Simulator::DestroyActor(Actor &actor) {
     bool success = true;
     success = _client.DestroyActor(actor.GetId());
