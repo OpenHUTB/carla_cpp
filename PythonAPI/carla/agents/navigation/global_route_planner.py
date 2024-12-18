@@ -185,6 +185,7 @@ class GlobalRoutePlanner:
                             break
 
         return route_trace
+        #定义一个_build_topology函数 函数目的是构建拓朴结构：从服务器获取道路拓扑信息 然后将其处理包含特定属性的字典对象列表
     def _build_topology(self):
         """
         This function retrieves topology from the server as a list of
