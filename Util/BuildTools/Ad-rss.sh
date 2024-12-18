@@ -99,7 +99,7 @@ CXX_TAG=c10
 # 由于 boost-python 不支持同时构建多个 Python 版本（find_package 存在一些 bug），  
 # 我们必须为每个版本单独进行 colcon 构建。
 #
-for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
+for PY_VERSION in ${PY_VERSION_LIST[@]} ; do#每次循环将一个python版本赋值给PY_VERSION变量
   ADRSS_BUILD_DIR="${CARLA_BUILD_FOLDER}/${ADRSS_BASENAME}/build-python${PY_VERSION}" # 为当前 Python 版本设置构建目录
 # 如果安装目录和构建目录都已存在，则跳过构建
   if [[ -d "${ADRSS_INSTALL_DIR}" && -d "${ADRSS_BUILD_DIR}" ]]; then
