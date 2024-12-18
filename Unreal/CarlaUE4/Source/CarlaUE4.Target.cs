@@ -2,9 +2,9 @@
 
 // 引入必要的命名空间
 using UnrealBuildTool; // 此命名空间提供了用于构建Unreal Engine项目的各类工具、类型以及方法等，是整个UE4项目构建流程实现的基础，借助它可以完成如模块配置、目标类型设定等构建相关操作。
-using System.Collections.Generic;
-using System;
-using System.IO;
+using System.Collections.Generic;// 引入集合类的命名空间，用于操作集合，如List<T>等
+using System;// 引入基础系统命名空间，提供基础类和方法，如字符串、日期等操作
+using System.IO;// 引入输入输出命名空间，提供文件操作的功能，如文件读取、写入等
 
 // 定义一个用于构建目标配置的类，继承自TargetRules，通过自定义此类来配置特定项目（这里大概率是和CarlaUE4相关项目）在构建过程中的各项规则和属性。
 public class CarlaUE4Target : TargetRules
