@@ -29,7 +29,7 @@ using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace geometry_msgs {
     namespace msg {
-        Point32PubSubType::Point32PubSubType()
+        Point32PubSubType::Point32PubSubType() // Point32PubSubType类的构造函数，用于初始化与Point32类型序列化相关的一些属性和资源
         {
             setName("geometry_msgs::msg::dds_::Point32_");
             auto type_size = Point32::getMaxCdrSerializedSize();
@@ -42,28 +42,25 @@ namespace geometry_msgs {
             memset(m_keyBuffer, 0, keyLength);
         }
 
-        Point32PubSubType::~Point32PubSubType()
+        Point32PubSubType::~Point32PubSubType()// Point32PubSubType类的析构函数，用于释放构造函数中分配的键缓冲区内存资源
         {
             if (m_keyBuffer != nullptr)
             {
                 free(m_keyBuffer);
             }
         }
-
+ // 序列化函数，将给定的Point32类型的数据对象进行序列化，并将结果存储到SerializedPayload_t结构中
         bool Point32PubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
-            Point32* p_type = static_cast<Point32*>(data);
-
+            Point32* p_type = static_cast<Point32*>(data); // 将传入的void*类型数据转换为Point32*类型指针，以便后续进行具体的序列化操作
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
-            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);// 创建一个Cdr对象，用于实际的数据序列化操作，设置了字节序（默认字节序）和特定的CDR模式
             payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
             // Serialize encapsulation
             ser.serialize_encapsulation();
-
             try
             {
                 // Serialize the object.
@@ -71,65 +68,63 @@ namespace geometry_msgs {
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果在序列化过程中出现内存不足异常，则返回false表示序列化失败
                 return false;
             }
-
-            // Get the serialized length
-            payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+            payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());// 获取序列化后的数据实际长度，并设置到payload结构中，以便后续使用者知道有效数据的长度范围
             return true;
         }
-
+ // 反序列化函数，从SerializedPayload_t结构中读取数据，并反序列化到给定的Point32类型对象中
         bool Point32PubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
             try
             {
-                //Convert DATA to pointer of your type
+                // 将传入的void*类型数据转换为Point32*类型指针，以便后续进行具体的反序列化操作，将数据填充到对应的对象中
                 Point32* p_type = static_cast<Point32*>(data);
-
-                // Object that manages the raw buffer.
+                // 创建一个FastBuffer对象，关联payload中的数据指针和实际的数据长度，
+                // 用于提供反序列化操作所需的原始缓冲区数据
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
-
-                // Object that deserializes the data.
+                // 创建一个Cdr对象，用于实际的反序列化操作，设置了字节序（默认字节序）和特定的CDR模式（与序列化时对应）
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
-
-                // Deserialize encapsulation.
+                 // 先反序列化封装相关的头部信息，从中获取字节序等信息，以便后续正确解析数据
                 deser.read_encapsulation();
                 payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-
-                // Deserialize the object.
+               // 调用Point32对象自身的deserialize函数，从缓冲区中读取数据并填充到对象的各个成员变量中，完成反序列化
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果在反序列化过程中出现内存不足异常，则返回false表示反序列化失败
                 return false;
             }
 
             return true;
         }
-
+               // 返回一个函数对象，该函数对象用于获取给定Point32类型数据对象的序列化大小（包含封装等额外开销）
         std::function<uint32_t()> Point32PubSubType::getSerializedSizeProvider(
                 void* data)
         {
             return [data]() -> uint32_t
-                   {
+                   {   
+                       // 计算并返回Point32对象的CDR序列化大小加上封装相关的4字节开销
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Point32*>(data))) +
                               4u /*encapsulation*/;
                    };
         }
-
+// 创建一个新的Point32类型对象，并返回其void*类型的指针，用于在需要动态分配该类型对象的场景中
         void* Point32PubSubType::createData()
         {
             return reinterpret_cast<void*>(new Point32());
         }
-
+// 删除给定的Point32类型对象，释放其占用的内存资源，用于在对象使用完毕后进行清理
         void Point32PubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<Point32*>(data));
         }
-
+// 获取给定Point32类型数据对象的键（Key）信息，并将其填充到InstanceHandle_t结构中，用于基于键的查找等操作
         bool Point32PubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
@@ -139,18 +134,17 @@ namespace geometry_msgs {
             {
                 return false;
             }
-
             Point32* p_type = static_cast<Point32*>(data);
-
-            // Object that manages the raw buffer.
+            // 创建一个FastBuffer对象，关联键缓冲区和Point32类型的最大键CDR序列化大小，用于后续序列化键数据
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     Point32::getKeyMaxCdrSerializedSize());
 
-            // Object that serializes the data.
+            // 创建一个Cdr对象，设置为大端字节序（可能是特定要求），用于将键数据序列化到键缓冲区中
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
             p_type->serializeKey(ser);
             if (force_md5 || Point32::getKeyMaxCdrSerializedSize() > 16)
             {
+                // 如果强制使用MD5计算或者键序列化大小大于16字节，则进行MD5计算相关操作
                 m_md5.init();
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
                 m_md5.finalize();
@@ -161,6 +155,7 @@ namespace geometry_msgs {
             }
             else
             {
+                // 如果键序列化大小小于等于16字节，则直接将键缓冲区的数据复制到InstanceHandle_t结构中
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
