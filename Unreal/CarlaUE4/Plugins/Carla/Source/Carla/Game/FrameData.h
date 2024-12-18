@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+/ Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -40,7 +40,7 @@ class FCarlaActor;
 
 class FFrameData
 {
-  // structures
+  // 结构体
   CarlaRecorderInfo Info;
   CarlaRecorderFrames Frames;
   CarlaRecorderEventsAdd EventsAdd;
@@ -66,8 +66,8 @@ class FFrameData
   #pragma pack(push, 1)
   struct Header
   {
-    char Id;
-    uint32_t Size;
+    char Id; // 标识类型
+    uint32_t Size; // 数据大小
   };
   #pragma pack(pop)
 
@@ -75,16 +75,21 @@ public:
 
   void SetEpisode(UCarlaEpisode* ThisEpisode) {Episode = ThisEpisode;}
 
+  // 获取实际场景中的帧数据
   void GetFrameData(UCarlaEpisode *ThisEpisode, bool bAdditionalData = false, bool bIncludeActorsAgain = false);
 
+  // 回放帧数据
   void PlayFrameData(UCarlaEpisode *ThisEpisode, std::unordered_map<uint32_t, uint32_t>& MappedId);
 
+  // 清除当前帧数据
   void Clear();
 
+  // 写入帧数据
   void Write(std::ostream& OutStream);
+  // 读取帧数据
   void Read(std::istream& InStream);
 
-  // record functions
+  // 录制功能
   void CreateRecorderEventAdd(
       uint32_t DatabaseId,
       uint8_t Type,
@@ -96,33 +101,58 @@ public:
   void AddEvent(const CarlaRecorderEventParent &Event);
 
 private:
+  // 添加碰撞事件
   void AddCollision(AActor *Actor1, AActor *Actor2);
+  // 添加位置信息
   void AddPosition(const CarlaRecorderPosition &Position);
+  // 添加交通灯状态
   void AddState(const CarlaRecorderStateTrafficLight &State);
+  // 添加动画车信息
   void AddAnimVehicle(const CarlaRecorderAnimVehicle &Vehicle);
+  // 添加轮子动画信息
   void AddAnimVehicleWheels(const CarlaRecorderAnimWheels &VehicleWheels);
+  // 添加步行者动画
   void AddAnimWalker(const CarlaRecorderAnimWalker &Walker);
+  // 添加自行车动画
   void AddAnimBiker(const CarlaRecorderAnimBiker &Biker);
+  // 添加车辆灯状态
   void AddLightVehicle(const CarlaRecorderLightVehicle &LightVehicle);
+  // 添加场景灯状态变化事件
   void AddEventLightSceneChanged(const UCarlaLight* Light);
+  // 添加动力学数据
   void AddKinematics(const CarlaRecorderKinematics &ActorKinematics);
+  // 添加监视框信息
   void AddBoundingBox(const CarlaRecorderActorBoundingBox &ActorBoundingBox);
+  // 添加触发区域
   void AddTriggerVolume(const ATrafficSignBase &TrafficSign);
+  // 添加物理控制信息
   void AddPhysicsControl(const ACarlaWheeledVehicle& Vehicle);
+  // 添加交通灯时间
   void AddTrafficLightTime(const ATrafficLightBase& TrafficLight);
 
+  // 添加现有实体的位置信息
   void AddActorPosition(FCarlaActor *CarlaActor);
+  // 添加步行者动画
   void AddWalkerAnimation(FCarlaActor *CarlaActor);
+  // 添加自行车动画
   void AddBikerAnimation(FCarlaActor *CarlaActor);
+  // 添加车辆动画
   void AddVehicleAnimation(FCarlaActor *CarlaActor);
+  // 添加车辆轮子动画
   void AddVehicleWheelsAnimation(FCarlaActor *CarlaActor);
+  // 添加交通灯状态
   void AddTrafficLightState(FCarlaActor *CarlaActor);
+  // 添加车辆灯状态
   void AddVehicleLight(FCarlaActor *CarlaActor);
+  // 添加动力学数据
   void AddActorKinematics(FCarlaActor *CarlaActor);
+  // 添加监视框信息
   void AddActorBoundingBox(FCarlaActor *CarlaActor);
 
+  // 获取帧计数器
   void GetFrameCounter();
 
+  // 创建或重用实体
   std::pair<int, FCarlaActor*> CreateOrReuseActor(
       FVector &Location,
       FVector &Rotation,
@@ -131,7 +161,7 @@ private:
       bool SpawnSensors,
       std::unordered_map<uint32_t, uint32_t>& MappedId);
 
-    // replay event for creating actor
+    // 重放实体的创建事件
   std::pair<int, uint32_t> ProcessReplayerEventAdd(
       FVector Location,
       FVector Rotation,
@@ -141,43 +171,45 @@ private:
       bool ReplaySensors,
       std::unordered_map<uint32_t, uint32_t>& MappedId);
 
-  // replay event for removing actor
+  // 重放实体的删除事件
   bool ProcessReplayerEventDel(uint32_t DatabaseId);
-  // replay event for parenting actors
+  // 重放实体的父子关系事件
   bool ProcessReplayerEventParent(uint32_t ChildId, uint32_t ParentId);
-  // reposition actors
+  // 重置实体位置
   bool ProcessReplayerPosition(CarlaRecorderPosition Pos1, 
                                CarlaRecorderPosition Pos2, double Per, double DeltaTime);
-  // replay event for traffic light state
+  // 重放交通灯状态
   bool ProcessReplayerStateTrafficLight(CarlaRecorderStateTrafficLight State);
-  // set the animation for Vehicles
+  // 设置车辆动画
   void ProcessReplayerAnimVehicle(CarlaRecorderAnimVehicle Vehicle);
-  // set the animation for walkers
+  // 设置步行者动画
   void ProcessReplayerAnimWalker(CarlaRecorderAnimWalker Walker);
-  // set the animation for Vehicles Wheels
+  // 设置车辆轮子动画
   void ProcessReplayerAnimVehicleWheels(CarlaRecorderAnimWheels Vehicle);
-  // set the animation for bikers
+  // 设置自行车动画
   void ProcessReplayerAnimBiker(CarlaRecorderAnimBiker Biker);
-  // set the vehicle light
+  // 设置车辆灯状态
   void ProcessReplayerLightVehicle(CarlaRecorderLightVehicle LightVehicle);
-  // set scene lights
+  // 设置场景灯
   void ProcessReplayerLightScene(CarlaRecorderLightScene LightScene);
-  // replay finish
+  // 重放结束
   bool ProcessReplayerFinish(bool bApplyAutopilot, bool bIgnoreHero, 
                              std::unordered_map<uint32_t, bool> &IsHero);
-  // set the camera position to follow an actor
+  // 设置摄像机位置以跟随演员
   bool SetCameraPosition(uint32_t Id, FVector Offset, FQuat Rotation);
-  // set the velocity of the actor
+  // 设置实体的速度
   void SetActorVelocity(FCarlaActor *CarlaActor, FVector Velocity);
-  // set the animation speed for walkers
+  // 设置步行者的动画速度
   void SetWalkerSpeed(uint32_t ActorId, float Speed);
-  // enable / disable physics for an actor
+  // 启用/禁用实体的物理模拟
   bool SetActorSimulatePhysics(FCarlaActor *CarlaActor, bool bEnabled);
 
   void SetFrameCounter();
 
+  // 找到特定位置的交通灯
   FCarlaActor* FindTrafficLightAt(FVector Location);
 
+  // 添加已存实体
   void AddExistingActors(void);
 
   UCarlaEpisode *Episode;
