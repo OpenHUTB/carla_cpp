@@ -47,38 +47,39 @@ namespace detail {
   }
 
   static bool SynchronizeFrame(uint64_t frame, const Episode &episode, time_duration timeout) {
-    bool result = true;
-    auto start = std::chrono::system_clock::now();
-    while (frame > episode.GetState()->GetTimestamp().frame) {
-      std::this_thread::yield();
-      auto end = std::chrono::system_clock::now();
-      auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);
-      if(timeout.to_chrono() < diff) {
+    bool result = true;//初始化结果为true，表示默认同步成功
+    auto start = std::chrono::system_clock::now();//获取当前时间点作为开始时间
+    while (frame > episode.GetState()->GetTimestamp().frame) {//当当前帧大于episode中的状态时，循环等待
+      std::this_thread::yield();//放弃当前线程的剩余时间片，允许其他线程运行
+      auto end = std::chrono::system_clock::now();//获取当前时间点作为结束时间
+      auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);//计算从开始到结束的时间差，并转换为毫秒
+      if(timeout.to_chrono() < diff) {//如果已经超过了指定的超时时间，则设置结果为false并退出循环
         result = false;
         break;
       }
     }
-    if(result) {
+    if(result) {//如果成功同步，则调用TrafficManager的Tick方法
       carla::traffic_manager::TrafficManager::Tick();
     }
 
-    return result;
+    return result;//返回同步结果
   }
 
   // ===========================================================================
   // -- 构造函数 ----------------------------------------------------------------
   // ===========================================================================
 
-  Simulator::Simulator(
-      const std::string &host,
-      const uint16_t port,
-      const size_t worker_threads,
-      const bool enable_garbage_collection)
-    : LIBCARLA_INITIALIZE_LIFETIME_PROFILER("SimulatorClient("s + host + ":" + std::to_string(port) + ")"),
-      _client(host, port, worker_threads),
-      _light_manager(new LightManager()),
-      _gc_policy(enable_garbage_collection ?
+  Simulator::Simulator(//Simulator类的构造函数定义
+      const std::string &host,//连接到CARLA服务器的主机名或IP地址
+      const uint16_t port,//与CARLA服务器通信的端口号
+      const size_t worker_threads,//用于处理通信的工作线程的数量
+      const bool enable_garbage_collection)//是否启用垃圾回收
+    : LIBCARLA_INITIALIZE_LIFETIME_PROFILER("SimulatorClient("s + host + ":" + std::to_string(port) + ")"),//初始化性能分析器
+      _client(host, port, worker_threads),//初始化与CARLA服务器的连接
+      _light_manager(new LightManager()),//动态分配LightManager对象
+      _gc_policy(enable_garbage_collection ?//根据参数设置垃圾回收攻略
         GarbageCollectionPolicy::Enabled : GarbageCollectionPolicy::Disabled) {}
+        //构造函数完成对象的初始化，所有工作都在初始化列表中完成
 
   // ===========================================================================
   // -- 加载新的场景 -------------------------------------------------------------
@@ -267,6 +268,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
           "recommended to set 'fixed_delta_seconds' when running on synchronous mode.");
     }
     else if (settings.synchronous_mode && settings.substepping) {
+      // 最大物理子步数 必须在[1,16]范围之内
       if(settings.max_substeps < 1 || settings.max_substeps > 16) {
         log_warning(
             "synchronous mode and substepping are enabled but the number of substeps is not valid. "
@@ -294,8 +296,8 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   // ===========================================================================
 
   std::shared_ptr<WalkerNavigation> Simulator::GetNavigation() {
-    DEBUG_ASSERT(_episode != nullptr);
-    auto nav = _episode->CreateNavigationIfMissing();
+    DEBUG_ASSERT(_episode != nullptr);// 确保_episode不为空
+    auto nav = _episode->CreateNavigationIfMissing();// 获取导航实例，如果没有，则创建一个
     return nav;
   }
 
@@ -303,47 +305,47 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   void Simulator::NavigationTick() {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
-    nav->Tick(_episode);
+    nav->Tick(_episode);// 调用导航实例的Tick方法，传递_episode作为参数
   }
 
   void Simulator::RegisterAIController(const WalkerAIController &controller) {
     auto walker = controller.GetParent();
-    if (walker == nullptr) {
+    if (walker == nullptr) { // 获取AI控制器所控制的行人对象
       throw_exception(std::runtime_error(controller.GetDisplayId() + ": not attached to walker"));
       return;
     }
-    DEBUG_ASSERT(_episode != nullptr);
-    auto nav = _episode->CreateNavigationIfMissing();
-    nav->RegisterWalker(walker->GetId(), controller.GetId());
+    DEBUG_ASSERT(_episode != nullptr);// 确保_episode不为空
+    auto nav = _episode->CreateNavigationIfMissing();// 获取导航实例，如果没有则创建
+    nav->RegisterWalker(walker->GetId(), controller.GetId());// 注册该控制器和对应的行人ID到导航系统
   }
 
   void Simulator::UnregisterAIController(const WalkerAIController &controller) {
     auto walker = controller.GetParent();
-    if (walker == nullptr) {
+    if (walker == nullptr) {// 如果行人对象为空，则抛出异常
       throw_exception(std::runtime_error(controller.GetDisplayId() + ": not attached to walker"));
       return;
     }
     DEBUG_ASSERT(_episode != nullptr);
-    auto nav = _episode->CreateNavigationIfMissing();
-    nav->UnregisterWalker(walker->GetId(), controller.GetId());
+    auto nav = _episode->CreateNavigationIfMissing();// 获取导航实例，如果没有则创建
+    nav->UnregisterWalker(walker->GetId(), controller.GetId());// 从导航系统注销该控制器和对应的行人ID
   }
 
   boost::optional<geom::Location> Simulator::GetRandomLocationFromNavigation() {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
-    return nav->GetRandomLocation();
+    return nav->GetRandomLocation();// 从导航中获取一个随机位置
   }
 
   void Simulator::SetPedestriansCrossFactor(float percentage) {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
-    nav->SetPedestriansCrossFactor(percentage);
+    nav->SetPedestriansCrossFactor(percentage);// 设置行人穿越系数
   }
 
   void Simulator::SetPedestriansSeed(unsigned int seed) {
     DEBUG_ASSERT(_episode != nullptr);
     auto nav = _episode->CreateNavigationIfMissing();
-    nav->SetPedestriansSeed(seed);
+    nav->SetPedestriansSeed(seed);// 设置行人种子值，用于随机生成行人的位置等
   }
 
   // ===========================================================================
@@ -359,6 +361,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
       GarbageCollectionPolicy gc,
       const std::string& socket_name) {
     rpc::Actor actor;
+    // 如果指定了父Actor，则调用带父Actor的SpawnActor方法
     if (parent != nullptr) {
       actor = _client.SpawnActorWithParent(
           blueprint.MakeActorDescription(),
@@ -367,14 +370,20 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
           attachment_type,
           socket_name);
     } else {
+        // 否则，调用不带父Actor的SpawnActor方法
       actor = _client.SpawnActor(
           blueprint.MakeActorDescription(),
           transform);
     }
+    // 确保_episode不为空
     DEBUG_ASSERT(_episode != nullptr);
+    // 将生成的Actor注册到当前Episode中
     _episode->RegisterActor(actor);
+    // 如果垃圾回收策略是继承，则使用当前Episode的垃圾回收策略，否则使用传入的gc策略
     const auto gca = (gc == GarbageCollectionPolicy::Inherit ? _gc_policy : gc);
+    // 使用工厂方法创建Actor对象并返回
     auto result = ActorFactory::MakeActor(GetCurrentEpisode(), actor, gca);
+    // 记录日志，显示生成Actor的ID和是否启用了垃圾回收
     log_debug(
         result->GetDisplayId(),
         "created",
@@ -383,6 +392,8 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
     return result;
   }
 
+// DestroyActor函数用于销毁一个给定的Actor。
+// 它会从客户端销毁Actor并清除Actor的持久状态，确保该Actor无法再访问客户端。
   bool Simulator::DestroyActor(Actor &actor) {
     bool success = true;
     success = _client.DestroyActor(actor.GetId());

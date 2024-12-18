@@ -85,7 +85,7 @@ FCarlaActor* FActorRegistry::Register(AActor &Actor, FActorDescription Descripti
   IdType Id = ++FActorRegistry::ID_COUNTER;
 
   if (DesiredId != 0 && Id != DesiredId) {
-    // check if the desired Id is free, then use it instead
+    // 检查所需的ID是否可用，然后使用它
     if (!Actors.Contains(DesiredId))
     {
       Id = DesiredId;
@@ -153,7 +153,7 @@ TSharedPtr<FCarlaActor> FActorRegistry::MakeCarlaActor(
 
   if (Info->Description.Id.IsEmpty())
   {
-    // This is a fake actor, let's fake the id based on their semantic tags.
+    // 这是一个虚假的参与者，让我们根据他们的语义标签来伪造身份
     Info->Description.Id = TEXT("static.") + CarlaGetRelevantTagAsString(Info->SemanticTags);
   }
 
@@ -187,7 +187,7 @@ void FActorRegistry::PutActorToSleep(FCarlaActor::IdType Id, UCarlaEpisode* Carl
 {
   FCarlaActor* CarlaActor = FindCarlaActor(Id);
 
-  // update id maps
+  // 更新ID映射
   Actors[Id] = nullptr;
   AActor* Actor = CarlaActor->GetActor();
   if(Actor)
@@ -200,7 +200,7 @@ void FActorRegistry::PutActorToSleep(FCarlaActor::IdType Id, UCarlaEpisode* Carl
   {
     PutActorToSleep(ChildId, CarlaEpisode);
   }
-  // TODO: update id maps
+  // TODO：更新ID映射
 }
 
 void FActorRegistry::WakeActorUp(FCarlaActor::IdType Id, UCarlaEpisode* CarlaEpisode)
@@ -211,7 +211,7 @@ void FActorRegistry::WakeActorUp(FCarlaActor::IdType Id, UCarlaEpisode* CarlaEpi
   AActor* Actor = CarlaActor->GetActor();
   if (Actor)
   {
-    // update ids
+    //更新ID
     Actors[Id] = Actor;
     Ids.Add(Actor, Id);
     if (CarlaActor->GetParent())
@@ -241,7 +241,7 @@ FString FActorRegistry::GetDescriptionFromStream(carla::streaming::detail::strea
 {
   for (auto &Item : ActorDatabase)
   {
-    // check for a sensor
+    // 检查传感器
     ASensor *Sensor = Cast<ASensor>(Item.Value->GetActor());
     if (Sensor == nullptr) continue;
 

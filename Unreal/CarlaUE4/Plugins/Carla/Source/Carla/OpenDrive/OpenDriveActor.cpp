@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -58,13 +58,13 @@ AOpenDriveActor::AOpenDriveActor(const FObjectInitializer &ObjectInitializer)
       ObjectInitializer.CreateEditorOnlyDefaultSubobject<UBillboardComponent>(this, TEXT("Sprite"));
   if (SpriteComponent)
   {
-    // Get the sprite texture from helper class object
+    // 从辅助类对象中获取sprite纹理。
     SpriteComponent->Sprite = ConstructorStatics.TextureObject.Get();
-    // Assign sprite category name
+    // 分配sprite类别名称。 
     SpriteComponent->SpriteInfo.Category = ConstructorStatics.Category;
-    // Assign sprite display name
+    // 设置sprite显示名称
     SpriteComponent->SpriteInfo.DisplayName = ConstructorStatics.Name;
-    // Attach sprite to scene component
+    // 将sprite附加到场景组件。
     SpriteComponent->SetupAttachment(RootComponent);
     SpriteComponent->Mobility = EComponentMobility::Static;
     SpriteComponent->SetEditorScale(1.f);
@@ -84,8 +84,8 @@ void AOpenDriveActor::PostEditChangeProperty(struct FPropertyChangedEvent &Event
     {
       bGenerateRoutes = false;
 
-      RemoveRoutes(); // Avoid OpenDrive overlapping
-      RemoveSpawners(); // Restart the spawners in case OpenDrive has changed
+      RemoveRoutes(); // 避免OpenDrive重叠
+      RemoveSpawners(); // 如果OpenDRIVE发生了变化，则重新启动生成器。
       BuildRoutes();
 
       if (bAddSpawners)
@@ -141,8 +141,7 @@ void AOpenDriveActor::BuildRoutes(FString MapName)
 {
   using Waypoint = carla::road::element::Waypoint;
 
-  // As the OpenDrive file has the same name as level, build the path to the
-  // xodr file using the lavel name and the game content directory.
+  // 由于OpenDRIVE文件与关卡名称相同，因此使用关卡名称和游戏内容目录构建xodr文件的路径。
   const FString XodrContent = UOpenDrive::LoadXODR(MapName);
 
   auto map = carla::opendrive::OpenDriveParser::Load(carla::rpc::FromLongFString(XodrContent));
@@ -153,7 +152,7 @@ void AOpenDriveActor::BuildRoutes(FString MapName)
     return;
   }
 
-  // List with waypoints, each one at the end of each lane of the map
+  // 包含地图每条车道末端路点的一个列表
   const std::vector<Waypoint> LaneWaypoints =
       map->GenerateWaypointsOnRoadEntries();
 
@@ -199,7 +198,7 @@ void AOpenDriveActor::BuildRoutes(FString MapName)
         CurrentWp = Successors.front();
       } while (CurrentWp.road_id == Wp.road_id);
 
-      // connect the last wp of the current road to the first wp of the following road
+      // 将当前道路的最后一个路点连接到下一条道路的第一个路点。
       const auto FollowingWp = map->GetSuccessors(CurrentWp);
       if (!FollowingWp.empty())
       {
@@ -212,13 +211,12 @@ void AOpenDriveActor::BuildRoutes(FString MapName)
         Positions.Reserve(Waypoints.size());
         for (int i = 0; i < Waypoints.size(); ++i)
         {
-          // Add the trigger height because the z position of the points does not
-          // influence on the driver AI and is easy to visualize in the editor
+          // 添加触发器高度，因为点的Z坐标不影响驾驶员AI，并且在编辑器中易于可视化。
           Positions.Add(map->ComputeTransform(Waypoints[i]).location +
               FVector(0.f, 0.f, TriggersHeight));
         }
 
-        // If the route planner does not exist, create it
+        // 如果路线规划器不存在，则创建它。
         if (RoutePlanner == nullptr )
         {
           const auto WpTransform = map->ComputeTransform(Wp);

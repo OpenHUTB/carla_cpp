@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 Intel Corporation
+﻿// Copyright (c) 2019-2020 Intel Corporation
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
@@ -9,20 +9,35 @@
 #ifdef RSS_USE_TBB
 #include <tbb/tbb.h>
 #endif
+// 包含与地图访问相关的日志记录功能的头文件，用于在地图操作等过程中记录日志
 #include <ad/map/access/Logging.hpp>
+// 包含地图访问操作相关的头文件，定义了一些对地图进行查询、修改等操作的函数或类
 #include <ad/map/access/Operation.hpp>
+// 包含与地图中交叉路口相关操作的头文件
 #include <ad/map/intersection/Intersection.hpp>
+// 包含与地图中车道相关操作的头文件，例如车道信息查询、车道变换等操作的实现可能在这里面
 #include <ad/map/lane/Operation.hpp>
+// 包含地图匹配相关功能的头文件，用于将车辆等对象与地图中的位置进行匹配等操作
 #include <ad/map/match/AdMapMatching.hpp>
+// 包含地图匹配操作相关的头文件，对地图匹配结果进一步处理等操作的定义所在
 #include <ad/map/match/MapMatchedOperation.hpp>
+// 包含与路线中车道区间操作相关的头文件，用于处理路线上车道区间相关的逻辑，比如获取区间信息等
 #include <ad/map/route/LaneIntervalOperation.hpp>
+// 包含与路线操作相关的头文件
 #include <ad/map/route/Operation.hpp>
+// 包含与路线规划相关的头文件，涉及根据一些条件规划路线的功能实现
 #include <ad/map/route/Planning.hpp>
+// 包含 RSS 相关的地图日志记录功能的头文件，用于在 RSS 模块涉及地图操作时记录日志
 #include <ad/rss/map/Logging.hpp>
+// 包含 RSS 中对象转换相关的头文件，用于将不同格式或类型的对象进行转换以适配 RSS 相关处理逻辑
 #include <ad/rss/map/RssObjectConversion.hpp>
+// 包含 RSS 中对象数据相关的头文件，定义了表示 RSS 场景中对象的数据结构及相关操作
 #include <ad/rss/map/RssObjectData.hpp>
+// 包含 RSS 场景创建相关的头文件，用于创建 RSS 场景，组合各种对象及其关系等
 #include <ad/rss/map/RssSceneCreator.hpp>
+// 包含 RSS 状态操作相关的头文件
 #include <ad/rss/state/RssStateOperation.hpp>
+// 包含时间相关的头文件，用于处理时间戳、时间间隔等时间相关的操作
 #include <chrono>
 #include <tuple>
 
@@ -33,23 +48,32 @@
 #include "carla/client/Waypoint.h"
 
 #define DEBUG_TIMING 0
-
+// 定义在carla命名空间的rss子命名空间中 
 namespace carla {
 namespace rss {
-
+ // 定义一个函数printRoute，用于打印路由信息  
+ // 参数包括一个描述路由的字符串route_descr和一个FullRoute类型的常量引用route 
 void printRoute(std::string const &route_descr, ::ad::map::route::FullRoute const &route) {
-  std::cout << route_descr << std::endl;
-  for (auto road_segment : route.roadSegments) {
-    for (auto lane_segment : road_segment.drivableLaneSegments) {
-      std::cout << "(" << static_cast<uint64_t>(lane_segment.laneInterval.laneId) << " | " << std::setprecision(2)
+    // 首先打印出路由的描述信息
+    std::cout << route_descr << std::endl;
+    // 遍历路由中的每一个路段（road segment）
+    for (auto road_segment : route.roadSegments) {
+        // 对于每一个路段，遍历其所有可驾驶的车道段（lane segment）
+        for (auto lane_segment : road_segment.drivableLaneSegments) {
+        // 打印出车道段的详细信息，包括：  
+         // 车道ID（laneId），转换为uint64_t类型  
+         // 车道段的起始位置（start）和结束位置（end），转换为double类型，并保留两位小数  
+         // 输出格式为：(车道ID | 起始位置:结束位置)
+            std::cout << "(" << static_cast<uint64_t>(lane_segment.laneInterval.laneId) << " | " << std::setprecision(2)
                 << static_cast<double>(lane_segment.laneInterval.start) << ":"
                 << static_cast<double>(lane_segment.laneInterval.end) << ")    ";
     }
+    // 每个路段的车道段信息打印完毕后，输出一个换行符，以便于区分不同的路段
     std::cout << std::endl;
   }
 }
 
-// constants for deg-> rad conversion PI / 180
+// 度到弧度转换常数 PI / 180
 constexpr float to_radians = static_cast<float>(M_PI) / 180.0f;
 
 EgoDynamicsOnRoute::EgoDynamicsOnRoute()
@@ -72,53 +96,82 @@ EgoDynamicsOnRoute::EgoDynamicsOnRoute()
     route_accel_lon(0.),
     avg_route_accel_lat(0.),
     avg_route_accel_lon(0.) {
+   // 初始化时间戳对象中的已流逝秒数为 0
   timestamp.elapsed_seconds = 0.;
 }
-
+// 获取一个指向 spdlog::logger 的共享指针，用于记录日志信息。这里创建了一个名为 "RssCheck" 的日志记录器，并且是线程安全的（通过 stdout_color_mt 函数创建），每次调用都会返回同一个静态实例
 std::shared_ptr<spdlog::logger> getLogger() {
   static auto logger = spdlog::stdout_color_mt("RssCheck");
   return logger;
 }
-
+// 获取一个指向 spdlog::logger 的共享指针，用于记录计时相关的日志信息。创建了一个名为 "RssCheckTiming" 的日志记录器，同样是线程安全的，每次调用返回同一个静态实例，用于记录特定的计时相关内容
 std::shared_ptr<spdlog::logger> getTimingLogger() {
   static auto logger = spdlog::stdout_color_mt("RssCheckTiming");
   return logger;
 }
-
+// RssCheck 类的成员函数，用于获取默认的车辆动力学参数配置，返回一个 ::ad::rss::world::RssDynamics 类型的对象，包含了车辆在纵向、横向等方向的加速度、刹车等参数设置
 ::ad::rss::world::RssDynamics RssCheck::GetDefaultVehicleDynamics() {
   ::ad::rss::world::RssDynamics default_ego_vehicle_dynamics;
+ // 设置纵向最大加速度，单位可能与具体的物理模拟相关，这里设置为 3.5（具体单位需结合项目其他部分确定）
   default_ego_vehicle_dynamics.alphaLon.accelMax = ::ad::physics::Acceleration(3.5);
+ // 设置纵向最大刹车加速度，为负值表示减速，这里设置为 -8.
   default_ego_vehicle_dynamics.alphaLon.brakeMax = ::ad::physics::Acceleration(-8.);
+ // 设置纵向最小刹车加速度，同样为负值，这里设置为 -4.
   default_ego_vehicle_dynamics.alphaLon.brakeMin = ::ad::physics::Acceleration(-4.);
+ // 设置纵向最小修正刹车加速度，这里设置为 -3
   default_ego_vehicle_dynamics.alphaLon.brakeMinCorrect = ::ad::physics::Acceleration(-3);
+ // 设置横向最大加速度，这里设置为 0.2
   default_ego_vehicle_dynamics.alphaLat.accelMax = ::ad::physics::Acceleration(0.2);
+ // 设置横向最小刹车加速度，这里设置为 -0.8
   default_ego_vehicle_dynamics.alphaLat.brakeMin = ::ad::physics::Acceleration(-0.8);
+ // 设置横向波动余量，单位为距离相关，这里设置为 0.1（具体单位结合项目确定）
   default_ego_vehicle_dynamics.lateralFluctuationMargin = ::ad::physics::Distance(0.1);
+ // 设置响应时间，单位为时间相关，这里设置为 1.0（具体单位结合项目确定），表示车辆对外部情况做出反应的时间
   default_ego_vehicle_dynamics.responseTime = ::ad::physics::Duration(1.0);
+  // 设置加速时的最大速度，这里设置为 100.（具体单位结合项目确定）
   default_ego_vehicle_dynamics.maxSpeedOnAcceleration = ::ad::physics::Speed(100.);
+ // 设置行人转弯半径，单位为距离相关，这里设置为 2.0
   default_ego_vehicle_dynamics.unstructuredSettings.pedestrianTurningRadius = ad::physics::Distance(2.0);
+  // 设置驶离最大角度，单位为角度相关，这里设置为 2.4（具体角度单位结合项目确定）
   default_ego_vehicle_dynamics.unstructuredSettings.driveAwayMaxAngle = ad::physics::Angle(2.4);
+  // 设置车辆偏航角速度变化率，单位为角加速度相关，这里设置为 0.3（具体单位结合项目确定）
   default_ego_vehicle_dynamics.unstructuredSettings.vehicleYawRateChange = ad::physics::AngularAcceleration(0.3);
+ // 设置车辆最小转弯半径，单位为距离相关，这里设置为 3.5
   default_ego_vehicle_dynamics.unstructuredSettings.vehicleMinRadius = ad::physics::Distance(3.5);
+ // 设置车辆轨迹计算步长，单位为时间相关，这里设置为 0.2
   default_ego_vehicle_dynamics.unstructuredSettings.vehicleTrajectoryCalculationStep = ad::physics::Duration(0.2);
   return default_ego_vehicle_dynamics;
 }
-
+// RssCheck 类的成员函数，用于获取默认的行人动力学参数配置，返回一个 ::ad::rss::world::RssDynamics 类型的对象，同样包含了行人在不同方向的加速度、刹车等相关参数设置
 ::ad::rss::world::RssDynamics RssCheck::GetDefaultPedestrianDynamics() {
   ::ad::rss::world::RssDynamics default_pedestrian_dynamics;
+ // 设置行人纵向最大加速度，这里设置为 2.0
   default_pedestrian_dynamics.alphaLon.accelMax = ::ad::physics::Acceleration(2.0);
+ // 设置行人纵向最大刹车加速度，这里设置为 -4.
   default_pedestrian_dynamics.alphaLon.brakeMax = ::ad::physics::Acceleration(-4.);
+ // 设置行人纵向最小刹车加速度，这里设置为 -2.
   default_pedestrian_dynamics.alphaLon.brakeMin = ::ad::physics::Acceleration(-2.);
+ // 设置行人纵向最小修正刹车加速度，这里设置为 -2.
   default_pedestrian_dynamics.alphaLon.brakeMinCorrect = ::ad::physics::Acceleration(-2.);
+ // 设置行人横向最大加速度，这里设置为 0.001，数值较小符合行人横向移动相对缓慢的特点
   default_pedestrian_dynamics.alphaLat.accelMax = ::ad::physics::Acceleration(0.001);
+ / 设置行人横向最小刹车加速度，这里设置为 -0.001
   default_pedestrian_dynamics.alphaLat.brakeMin = ::ad::physics::Acceleration(-0.001);
+ // 设置行人横向波动余量，这里设置为 0.1
   default_pedestrian_dynamics.lateralFluctuationMargin = ::ad::physics::Distance(0.1);
+ // 设置行人响应时间，这里设置为 0.5，通常行人反应时间相对车辆可能较短一些（具体取决于模拟设定）
   default_pedestrian_dynamics.responseTime = ::ad::physics::Duration(0.5);
+ // 设置行人加速时的最大速度，这里设置为 10.
   default_pedestrian_dynamics.maxSpeedOnAcceleration = ::ad::physics::Speed(10.);
+ // 设置行人转弯半径，这里设置为 2.0
   default_pedestrian_dynamics.unstructuredSettings.pedestrianTurningRadius = ad::physics::Distance(2.0);
+ // 设置行人驶离最大角度，这里设置为 2.4
   default_pedestrian_dynamics.unstructuredSettings.driveAwayMaxAngle = ad::physics::Angle(2.4);
+ // 设置行人相关的车辆偏航角速度变化率（虽然对于行人来说这个概念有点不太常规，但可能在统一的模拟框架中有相关用途），这里设置为 0.3
   default_pedestrian_dynamics.unstructuredSettings.vehicleYawRateChange = ad::physics::AngularAcceleration(0.3);
+ // 设置行人相关的车辆最小转弯半径（同样，可能是在统一框架下的一种设定），这里设置为 3.5
   default_pedestrian_dynamics.unstructuredSettings.vehicleMinRadius = ad::physics::Distance(3.5);
+ // 设置行人相关的车辆轨迹计算步长，这里设置为 0.2
   default_pedestrian_dynamics.unstructuredSettings.vehicleTrajectoryCalculationStep = ad::physics::Duration(0.2);
 
   return default_pedestrian_dynamics;
@@ -135,11 +188,11 @@ RssCheck::RssCheck(float maximum_steering_angle)
 
   _default_actor_constellation_callback_ego_vehicle_dynamics = GetDefaultVehicleDynamics();
   _default_actor_constellation_callback_other_vehicle_dynamics = GetDefaultVehicleDynamics();
-  // set the response time of others vehicles to 2 seconds; the rest stays the same
+  // 将其他车辆的响应时间设置为 2 秒；其余保持不变
   _default_actor_constellation_callback_other_vehicle_dynamics.responseTime = ::ad::physics::Duration(2.0);
   _default_actor_constellation_callback_pedestrian_dynamics = GetDefaultPedestrianDynamics();
 
-  // Create a default callback.
+  //创建一个默认回调.
   _actor_constellation_callback =
       [this](carla::SharedPtr<::carla::rss::ActorConstellationData> actor_constellation_data)
       -> ::carla::rss::ActorConstellationResult {
@@ -192,7 +245,7 @@ RssCheck::RssCheck(float maximum_steering_angle)
     return actor_constellation_result;
   };
 
-  // set the default dynamics
+  // 设置默认动态
   _carla_rss_state.default_ego_vehicle_dynamics = _default_actor_constellation_callback_ego_vehicle_dynamics;
 
   _logger->debug("RssCheck with default actor constellation callback created");
@@ -324,8 +377,8 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
               << " before  MapMatching" << std::endl;
 #endif
 
-    // allow the vehicle to be at least 2.0 m away form the route to not lose
-    // the contact to the route
+    //允许车辆距离路线至少 2.0 米，以免丧失
+    //与路线的接触
     auto const ego_match_object = GetMatchObject(carla_ego_actor, ::ad::physics::Distance(2.0));
 
     if (::ad::map::point::isValid(_carla_rss_state.ego_match_object.enuPosition.centerPoint, false)) {
@@ -392,7 +445,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     _carla_rss_state.ego_dynamics_on_route.time_since_epoch_check_end_ms =
         std::chrono::duration<double, std::milli>(std::chrono::system_clock::now().time_since_epoch()).count();
 
-    // store result
+    // 存储结果
     output_response = _carla_rss_state.proper_response;
     output_rss_state_snapshot = _carla_rss_state.rss_state_snapshot;
     output_situation_snapshot = _carla_rss_state.situation_snapshot;
@@ -478,10 +531,10 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
 void RssCheck::UpdateRoute(CarlaRssState &carla_rss_state) {
   _logger->trace("Update route start: {}", carla_rss_state.ego_route);
 
-  // remove the parts of the route already taken, try to prepend route sections
+  // 移除已走过的路线部分，尝试将路线段前置
   // (i.e. when driving backwards)
-  // try to ensure that the back of the vehicle is still within the route to
-  // support orientation calculation
+  // 尽量确保车辆的后部仍在路线范围内
+  // 支持方向计算
   ::ad::map::point::ParaPointList all_lane_matches;
   for (auto reference_point :
        {::ad::map::match::ObjectReferencePoints::RearRight, ::ad::map::match::ObjectReferencePoints::RearLeft}) {
@@ -545,11 +598,11 @@ void RssCheck::UpdateRoute(CarlaRssState &carla_rss_state) {
       reroute_required = true;
     }
   } else {
-    // on all other results we recreate the route
+    // 对于所有其他结果，我们重新创建路线
     reroute_required = true;
   }
 
-  // create the route if required
+  // 如有需要，创建路线
   if (reroute_required) {
     // try to create routes
     std::vector<::ad::map::route::FullRoute> all_new_routes;
@@ -620,14 +673,14 @@ EgoDynamicsOnRoute RssCheck::CalculateEgoDynamicsOnRoute(
     auto lane_center_point = object_center.queryPosition;
     auto lane_center_point_enu = ::ad::map::lane::getENULanePoint(lane_center_point);
     if (std::fabs(new_dynamics.route_heading) > ::ad::map::point::ENUHeading(M_PI)) {
-      // if the actual center point is already outside, try to use this extended
-      // object center for the route heading calculation
+      // 如果实际中心点已经在外部，尝试使用这个扩展
+      // 路线航向计算的物体中心
       new_dynamics.route_heading = ::ad::map::lane::getENUHeading(border, lane_center_point_enu);
     }
 
     if (object_center.laneSegmentIterator->laneInterval.wrongWay) {
-      // driving on the wrong lane, so we have to project to nominal route
-      // direction
+      // 行驶在错误的车道上，因此我们必须投影到标准路线
+      // 方向
       ::ad::map::lane::projectPositionToLaneInHeadingDirection(lane_center_point, new_dynamics.route_heading,
                                                                lane_center_point);
       lane_center_point_enu = ::ad::map::lane::getENULanePoint(lane_center_point);
@@ -635,8 +688,8 @@ EgoDynamicsOnRoute RssCheck::CalculateEgoDynamicsOnRoute(
     new_dynamics.route_nominal_center = lane_center_point_enu;
 
   } else {
-    // the ego vehicle is completely outside the route, so we can't update the
-    // values
+    // 自车完全偏离了路线，因此我们无法更新
+    // 数值
     new_dynamics.route_nominal_center = last_dynamics.route_nominal_center;
     new_dynamics.route_heading = last_dynamics.route_heading;
   }

@@ -116,10 +116,10 @@ AActor* UActorDispatcher::ReSpawnActor(
 
 bool UActorDispatcher::DestroyActor(FCarlaActor::IdType ActorId)
 {
-  // Check if the actor is in the registry.
+  // 检查参与者是否在注册表中
   FCarlaActor* View = Registry.FindCarlaActor(ActorId);
 
-  // Invalid destruction if is not marked to PendingKill (except is dormant, dormant actors can be destroyed)
+  // 如果未标记为“待销毁”（PendingKill），则无效的销毁（除非是休眠状态，休眠的Actor可以被销毁）
   if (!View)
   {
     UE_LOG(LogCarla, Warning, TEXT("Trying to destroy actor that is not in the registry"));
@@ -128,7 +128,7 @@ bool UActorDispatcher::DestroyActor(FCarlaActor::IdType ActorId)
 
   const FString &Id = View->GetActorInfo()->Description.Id;
 
-  // Destroy its controller if present.
+  // 如果存在控制器，将其摧毁
   AActor* Actor = View->GetActor();
   if(Actor)
   {
@@ -144,7 +144,7 @@ bool UActorDispatcher::DestroyActor(FCarlaActor::IdType ActorId)
       }
     }
 
-    // Destroy the actor.
+    // 摧毁参与者
     UE_LOG(LogCarla, Log, TEXT("UActorDispatcher::Destroying actor: '%s' %x"), *Id, Actor);
     UE_LOG(LogCarla, Log, TEXT("            %s"), Actor?*Actor->GetName():*FString("None"));
     if (!Actor || !Actor->Destroy())
@@ -166,15 +166,15 @@ FCarlaActor* UActorDispatcher::RegisterActor(
   FCarlaActor* View = Registry.Register(Actor, Description, DesiredId);
   if (View)
   {
-    // TODO: support external actor destruction
+    // 待办事项：支持外部角色销毁
     Actor.OnDestroyed.AddDynamic(this, &UActorDispatcher::OnActorDestroyed);
 
-    // ROS2 mapping of actor->ros_name
+    // ROS2 中 actor 到 ros_name 的映射
     #if defined(WITH_ROS2)
     auto ROS2 = carla::ros2::ROS2::GetInstance();
     if (ROS2->IsEnabled())
     {
-      // actor ros_name
+      // 参与者 ros_name
       std::string RosName;
       for (auto &&Attr : Description.Variations)
       {
@@ -202,7 +202,7 @@ FCarlaActor* UActorDispatcher::RegisterActor(
         ROS2->AddActorRosName(static_cast<void*>(&Actor), RosName);
       }
 
-      // vehicle controller for hero
+      // 英雄载具控制器
       for (auto &&Attr : Description.Variations)
       {
         if (Attr.Key == "role_name" && (Attr.Value.Value == "hero" || Attr.Value.Value == "ego"))
