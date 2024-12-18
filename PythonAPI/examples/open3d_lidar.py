@@ -133,14 +133,14 @@ def semantic_lidar_callback(point_cloud, point_list):
     point_list.colors = o3d.utility.Vector3dVector(int_color)
 
 
-def generate_lidar_bp(arg, world, blueprint_library, delta):
+def generate_lidar_bp(arg, world, blueprint_library, delta):#定义一个函数
     """Generates a CARLA blueprint based on the script parameters"""
-    if arg.semantic:
+    if arg.semantic:#从函数内部首先检查
         lidar_bp = world.get_blueprint_library().find('sensor.lidar.ray_cast_semantic')
     else:
         lidar_bp = blueprint_library.find('sensor.lidar.ray_cast')
         if arg.no_noise:
-            lidar_bp.set_attribute('dropoff_general_rate', '0.0')
+            lidar_bp.set_attribute('dropoff_general_rate', '0.0')#设置蓝图属性
             lidar_bp.set_attribute('dropoff_intensity_limit', '1.0')
             lidar_bp.set_attribute('dropoff_zero_intensity', '0.0')
         else:
@@ -155,7 +155,7 @@ def generate_lidar_bp(arg, world, blueprint_library, delta):
     return lidar_bp
 
 
-def add_open3d_axis(vis):
+def add_open3d_axis(vis):#添加3D坐标轴
     """Add a small 3D axis on Open3D Visualizer"""
     axis = o3d.geometry.LineSet()
     axis.points = o3d.utility.Vector3dVector(np.array([

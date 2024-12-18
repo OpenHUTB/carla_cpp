@@ -329,15 +329,17 @@ if (LIBCARLA_BUILD_RELEASE)
       ${ADRSS_INCLUDE_DIRS})
   endif()
 
+#使用install命令来安装carla_client库
   install(TARGETS carla_client${carla_target_postfix} DESTINATION lib)
 
+#windows平台特定处理：使用set_target_postfix命令设置carla_client库的编译标准
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
 
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/DetourCrowd.lib")
-  else ()
+  else ()         #非Windows平台处理：使用set命令设置CMAKE_CXX_FLAGS_RELEASE_CLIENT变量 为了在非Windows平台上设置合适的编译标准
     if (NOT DEFINED CMAKE_CXX_FLAGS_RELEASE_CLIENT)
       set(CMAKE_CXX_FLAGS_RELEASE_CLIENT ${CMAKE_CXX_FLAGS_RELEASE})
     endif()
