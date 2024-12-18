@@ -184,145 +184,109 @@ class GlobalRoutePlanner:
                             break
 
         return route_trace
-    def _build_topology(self):
-        """
-        This function retrieves topology from the server as a list of
-        road segments as pairs of waypoint objects, and processes the
-        topology into a list of dictionary objects with the following attributes
+   def _build_topology(self):
+    # 计算从入口路点到出口路点的单位向量，代表网络中这段路的方向向量（以carla中的向量形式计算并处理）
+    net_carla_vector = (exit_wp.transform.location - entry_wp.transform.location).make_unit_vector()
 
-        - entry (carla.Waypoint): waypoint of entry point of road segment
-        - entryxyz (tuple): (x,y,z) of entry point of road segment
-        - exit (carla.Waypoint): waypoint of exit point of road segment
-        - exitxyz (tuple): (x,y,z) of exit point of road segment
-        - path (list of carla.Waypoint):  list of waypoints between entry to exit, separated by the resolution
-        """
-        self._topology = []
-        # Retrieving waypoints to construct a detailed topology
-        for segment in self._wmap.get_topology():
-            wp1, wp2 = segment[0], segment[1]
-            l1, l2 = wp1.transform.location, wp2.transform.location
-            # Rounding off to avoid floating point imprecision
-            x1, y1, z1, x2, y2, z2 = np.round([l1.x, l1.y, l1.z, l2.x, l2.y, l2.z], 0)
-            wp1.transform.location, wp2.transform.location = l1, l2
-            seg_dict = dict()  # type: TopologyDict # type: ignore[assignment]
-            seg_dict['entry'], seg_dict['exit'] = wp1, wp2
-            seg_dict['entryxyz'], seg_dict['exitxyz'] = (x1, y1, z1), (x2, y2, z2)
-            seg_dict['path'] = []
-            endloc = wp2.transform.location
-            if wp1.transform.location.distance(endloc) > self._sampling_resolution:
-                w = wp1.next(self._sampling_resolution)[0]
-                while w.transform.location.distance(endloc) > self._sampling_resolution:
-                    seg_dict['path'].append(w)
-                    next_ws = w.next(self._sampling_resolution)
-                    if len(next_ws) == 0:
-                        break
-                    w = next_ws[0]
-            else:
-                next_wps = wp1.next(self._sampling_resolution)
-                if len(next_wps) == 0:
-                    continue
-                seg_dict['path'].append(next_wps[0])
-            self._topology.append(seg_dict)
+    # 在内部的图结构（self._graph，应该是之前初始化的nx.DiGraph类型）中添加一条边，并设置边的各种属性
+    self._graph.add_edge(
+        n1, n2,
+        # 设置边的长度，路径中的路点数量加1（具体含义可能根据实际对长度的定义，这里加1可能有特定考量）
+        length=len(path) + 1,
+        # 设置边所经过的路点路径列表
+        path=path,
+        # 设置边的入口路点
+        entry_waypoint=entry_wp,
+        # 设置边的出口路点
+        exit_waypoint=exit_wp,
+        # 将入口路点对应的向量转换为numpy数组形式，用于后续可能的向量相关计算或判断等操作，向量包含x、y、z三个维度分量
+        entry_vector=np.array(
+            [entry_carla_vector.x, entry_carla_vector.y, entry_carla_vector.z]),
+        # 类似地，将出口路点对应的向量转换为numpy数组形式
+        exit_vector=np.array(
+            [exit_carla_vector.x, exit_carla_vector.y, exit_carla_vector.z]),
+        # 设置边对应的网络方向向量（以列表形式存储其x、y、z分量），代表这段边整体在网络中的方向情况
+        net_vector=[net_carla_vector.x, net_carla_vector.y, net_carla_vector.z],
+        # 设置是否为交叉路口相关的边（根据具体的交叉路口判断逻辑确定，此处intersection变量应该在前面有定义和赋值）
+        intersection=intersection,
+        # 设置边对应的道路选项类型为车道跟随（正常沿着车道行驶的情况）
+        type=RoadOption.LANEFOLLOW)
 
-    def _build_graph(self):
-        """
-        This function builds a networkx graph representation of topology, creating several class attributes:
-        - graph (networkx.DiGraph): networkx graph representing the world map, with:
-            Node properties:
-                vertex: (x,y,z) position in world map
-            Edge properties:
-                entry_vector: unit vector along tangent at entry point
-                exit_vector: unit vector along tangent at exit point
-                net_vector: unit vector of the chord from entry to exit
-                intersection: boolean indicating if the edge belongs to an  intersection
-        - id_map (dictionary): mapping from (x,y,z) to node id
-        - road_id_to_edge (dictionary): map from road id to edge in the graph
-        """
 
-        self._graph = nx.DiGraph()
-        self._id_map = dict()  # Map with structure {(x,y,z): id, ... }
-        self._road_id_to_edge = dict()  # Map with structure {road_id: {lane_id: edge, ... }, ... }
-
-        for segment in self._topology:
-            entry_xyz, exit_xyz = segment['entryxyz'], segment['exitxyz']
-            path = segment['path']
-            entry_wp, exit_wp = segment['entry'], segment['exit']
-            intersection = entry_wp.is_junction
-            road_id, section_id, lane_id = entry_wp.road_id, entry_wp.section_id, entry_wp.lane_id
-
-            for vertex in entry_xyz, exit_xyz:
-                # Adding unique nodes and populating id_map
-                if vertex not in self._id_map:
-                    new_id = len(self._id_map)
-                    self._id_map[vertex] = new_id
-                    self._graph.add_node(new_id, vertex=vertex)
-            n1 = self._id_map[entry_xyz]
-            n2 = self._id_map[exit_xyz]
+def _find_loose_ends(self):
+    """
+    This method finds road segments that have an unconnected end, and
+    adds them to the internal graph representation
+    """
+    # 用于统计松散端点（未连接的道路段端点）的数量，初始化为0
+    count_loose_ends = 0
+    # 定义“跳跃”分辨率，这里使用的是初始化时传入的采样分辨率，可能用于查找下一个路点等操作时的距离间隔设定
+    hop_resolution = self._sampling_resolution
+    # 遍历拓扑结构中的每一个路段（每个元素应该是之前定义的TopologyDict类型，包含路段相关信息）
+    for segment in self._topology:
+        # 获取路段的出口路点
+        end_wp = segment['exit']
+        # 获取路段出口的坐标信息（以xyz坐标组成的元组形式）
+        exit_xyz = segment['exitxyz']
+        # 分别获取出口路点对应的道路ID、路段ID、车道ID，用于后续在相关字典中查找和判断等操作
+        road_id, section_id, lane_id = end_wp.road_id, end_wp.section_id, end_wp.lane_id
+        # 判断当前道路ID是否已经在_road_id_to_edge字典中，并且其下的路段ID也存在，且对应的车道ID也存在（即判断是否已经有对应的边相关映射信息）
+        if road_id in self._road_id_to_edge \
+                and section_id in self._road_id_to_edge[road_id] \
+                and lane_id in self._road_id_to_edge[road_id][section_id]:
+            # 如果都存在，说明不是松散端点，直接跳过本次循环，继续检查下一个路段
+            pass
+        else:
+            # 如果不存在，说明是松散端点，数量加1
+            count_loose_ends += 1
+            # 如果当前道路ID不在_road_id_to_edge字典中，先创建一个空字典作为其对应的值（用于后续存放路段和车道相关的边映射信息）
             if road_id not in self._road_id_to_edge:
                 self._road_id_to_edge[road_id] = dict()
+            # 如果当前路段ID不在当前道路ID对应的字典中，同样创建一个空字典作为其对应的值
             if section_id not in self._road_id_to_edge[road_id]:
                 self._road_id_to_edge[road_id][section_id] = dict()
+            # 通过出口坐标（exit_xyz）从_id_map字典中获取对应的节点编号（可能是之前构建图等操作时建立的坐标到节点编号的映射）
+            n1 = self._id_map[exit_xyz]
+            # 为这个松散端点创建一个新的节点编号，这里用 -1乘以松散端点的数量来生成一个独特的负数编号（具体规则根据代码逻辑设定）
+            n2 = -1 * count_loose_ends
+            # 在_road_id_to_edge字典中，将当前道路、路段、车道对应的节点编号关系（从已有的节点n1到新创建的节点n2）记录下来
             self._road_id_to_edge[road_id][section_id][lane_id] = (n1, n2)
-
-            entry_carla_vector = entry_wp.transform.rotation.get_forward_vector()
-            exit_carla_vector = exit_wp.transform.rotation.get_forward_vector()
-            net_carla_vector = (exit_wp.transform.location - entry_wp.transform.location).make_unit_vector()
-
-            # Adding edge with attributes
-            self._graph.add_edge(
-                n1, n2,
-                length=len(path) + 1, path=path,
-                entry_waypoint=entry_wp, exit_waypoint=exit_wp,
-                entry_vector=np.array(
-                    [entry_carla_vector.x, entry_carla_vector.y, entry_carla_vector.z]),
-                exit_vector=np.array(
-                    [exit_carla_vector.x, exit_carla_vector.y, exit_carla_vector.z]),
-                net_vector=[net_carla_vector.x, net_carla_vector.y, net_carla_vector.z],
-                intersection=intersection, type=RoadOption.LANEFOLLOW)
-
-    def _find_loose_ends(self):
-        """
-        This method finds road segments that have an unconnected end, and
-        adds them to the internal graph representation
-        """
-        count_loose_ends = 0
-        hop_resolution = self._sampling_resolution
-        for segment in self._topology:
-            end_wp = segment['exit']
-            exit_xyz = segment['exitxyz']
-            road_id, section_id, lane_id = end_wp.road_id, end_wp.section_id, end_wp.lane_id
-            if road_id in self._road_id_to_edge \
-                    and section_id in self._road_id_to_edge[road_id] \
-                    and lane_id in self._road_id_to_edge[road_id][section_id]:
-                pass
-            else:
-                count_loose_ends += 1
-                if road_id not in self._road_id_to_edge:
-                    self._road_id_to_edge[road_id] = dict()
-                if section_id not in self._road_id_to_edge[road_id]:
-                    self._road_id_to_edge[road_id][section_id] = dict()
-                n1 = self._id_map[exit_xyz]
-                n2 = -1 * count_loose_ends
-                self._road_id_to_edge[road_id][section_id][lane_id] = (n1, n2)
-                next_wp = end_wp.next(hop_resolution)
-                path = []  # type: list[carla.Waypoint]
-                while next_wp is not None and next_wp \
-                        and next_wp[0].road_id == road_id \
-                        and next_wp[0].section_id == section_id \
-                        and next_wp[0].lane_id == lane_id:
-                    path.append(next_wp[0])
-                    next_wp = next_wp[0].next(hop_resolution)
-                if path:
-                    n2_xyz = (path[-1].transform.location.x,
-                              path[-1].transform.location.y,
-                              path[-1].transform.location.z)
-                    self._graph.add_node(n2, vertex=n2_xyz)
-                    self._graph.add_edge(
-                        n1, n2,
-                        length=len(path) + 1, path=path,
-                        entry_waypoint=end_wp, exit_waypoint=path[-1],
-                        entry_vector=None, exit_vector=None, net_vector=None,
-                        intersection=end_wp.is_junction, type=RoadOption.LANEFOLLOW)
+            # 获取出口路点按照hop_resolution（跳跃分辨率）距离后的下一个路点（可能返回一个路点或者包含路点的可迭代对象等，根据具体实现而定）
+            next_wp = end_wp.next(hop_resolution)
+            # 用于存储后续连续的路点路径，初始为空列表
+            path = []  # type: list[carla.Waypoint]
+            # 只要下一个路点存在，并且其道路ID、路段ID、车道ID都和当前松散端点的一致（即还在同一条道路段的车道上），就将其添加到路径列表中，并继续查找下一个路点
+            while next_wp is not None and next_wp \
+                    and next_wp[0].road_id == road_id \
+                    and next_wp[0].section_id == section_id \
+                    and next_wp[0].lane_id == lane_id:
+                path.append(next_wp[0])
+                next_wp = next_wp[0].next(hop_resolution)
+            # 如果找到了后续的路点路径（即路径列表不为空）
+            if path:
+                # 获取路径中最后一个路点的坐标信息（以xyz坐标组成的元组形式）
+                n2_xyz = (path[-1].transform.location.x,
+                          path[-1].transform.location.y,
+                          path[-1].transform.location.z)
+                # 在图结构（self._graph）中添加新创建的节点n2，并设置其对应的坐标信息（以vertex属性存储）
+                self._graph.add_node(n2, vertex=n2_xyz)
+                # 在图结构中添加一条从n1到n2的边，并设置边的各种属性
+                self._graph.add_edge(
+                    n1, n2,
+                    # 设置边的长度，路径中的路点数量加1（和前面边长度设置逻辑类似）
+                    length=len(path) + 1,
+                    # 设置边所经过的路点路径列表
+                    path=path,
+                    # 设置边的入口路点为当前松散端点的出口路点
+                    entry_waypoint=end_wp,
+                    # 设置边的出口路点为路径中最后一个路点
+                    exit_waypoint=path[-1],
+                    # 入口向量、出口向量、网络向量都设置为None（可能在这种松散端点补充的边情况下，这些向量信息暂不明确或者不需要等原因）
+                    entry_vector=None, exit_vector=None, net_vector=None,
+                    # 设置是否为交叉路口相关的边，根据出口路点是否为交叉路口来判断（调用is_junction方法判断）
+                    intersection=end_wp.is_junction,
+                    # 设置边对应的道路选项类型为车道跟随（正常沿着车道行驶的情况）
+                    type=RoadOption.LANEFOLLOW)
 
     def _lane_change_link(self):
         """
