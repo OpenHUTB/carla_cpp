@@ -136,35 +136,39 @@ static auto get_total_road_marks(
   return std::make_pair(total_road_mark, total_road_mark_parser);
 }
 
+/// 定义一个名为test_roads的函数，它接受一个const引用的pugi::xml_document对象和一个boost::optional<Map>对象作为参数
 static void test_roads(const pugi::xml_document &xml, boost::optional<Map>& map) {
+ /// 从XML文档中获取名为"OpenDRIVE"的子节点
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
-  // Check total Roads
+ // 解析"OpenDRIVE"节点下所有的"road"子节点，并计算它们的数量
   auto roads_parser = open_drive_node.children("road");
   auto total_roads_parser = std::distance(roads_parser.begin(), roads_parser.end());
-  auto total_roads = map->GetMap().GetRoads().size();
-  ASSERT_EQ(total_roads, total_roads_parser);
-
+  auto total_roads = map->GetMap().GetRoads().size();/// 从Map对象中获取当前存储的道路数量。
+  ASSERT_EQ(total_roads, total_roads_parser);///用于验证XML中的道路数量与Map中存储的道路数量是否一致。
+// 遍历每一个"road"节点
   for (pugi::xml_node road_node : roads_parser) {
     RoadId road_id = road_node.attribute("id").as_uint();
-
+// 遍历该道路下的所有"lanes"子节点
     for (pugi::xml_node lanes_node : road_node.children("lanes")) {
 
-      // Check total Lane Sections
+   // 解析"lanes"节点下所有的"laneSection"子节点，并计算它们的数量
       auto lane_sections_parser = lanes_node.children("laneSection");
       auto total_lane_sections_parser = std::distance(lane_sections_parser.begin(), lane_sections_parser.end());
-      auto total_lane_sections = map->GetMap().GetRoad(road_id).GetLaneSections().size();
+      auto total_lane_sections = map->GetMap().GetRoad(road_id).GetLaneSections().size(); /// 从Map对象中获取当前道路的所有车道段数量
       ASSERT_EQ(total_lane_sections, total_lane_sections_parser);
 
       for (pugi::xml_node lane_section_node : lane_sections_parser) {
 
         // Check total Lanes
-        const double s = lane_section_node.attribute("s").as_double();
-        auto lane_section = map->GetMap().GetRoad(road_id).GetLaneSectionsAt(s);
-        size_t total_lanes = 0u;
+        const double s = lane_section_node.attribute("s").as_double();/// 从"laneSection"节点中获取s属性
+        auto lane_section = map->GetMap().GetRoad(road_id).GetLaneSectionsAt(s); // 从Map对象中获取对应位置的车道段
+        size_t total_lanes = 0u;/// 初始化车道总数为0
+        //遍历车道段中的每一个车道组
         for (auto it = lane_section.begin(); it != lane_section.end(); ++it) {
-          total_lanes = it->GetLanes().size();
+          total_lanes = it->GetLanes().size();  // 更新车道总数为当前车道组中的车道数量
         }
+        // 解析"laneSection"节点下的"left"、"center"和"right"子节点中的"lane"子节点数量
         auto left_nodes = lane_section_node.child("left").children("lane");
         auto center_nodes = lane_section_node.child("center").children("lane");
         auto right_nodes = lane_section_node.child("right").children("lane");
@@ -172,12 +176,14 @@ static void test_roads(const pugi::xml_document &xml, boost::optional<Map>& map)
         total_lanes_parser += std::distance(right_nodes.begin(), right_nodes.end());
         total_lanes_parser += std::distance(center_nodes.begin(), center_nodes.end());
 
-        ASSERT_EQ(total_lanes, total_lanes_parser);
+        ASSERT_EQ(total_lanes, total_lanes_parser);//用于验证XML中的车道数量与Map中存储的车道数量是否一致
 
-
+        // 初始化道路标记总数为0
         auto total_road_mark = 0;
         auto total_road_mark_parser = 0;
+        // 遍历车道段中的每一个车道组
         for (auto it = lane_section.begin(); it != lane_section.end(); ++it) {
+        // 计算左侧、中心和右侧车道中的道路标记总数
           auto total_left = get_total_road_marks(left_nodes, *it);
           auto total_center = get_total_road_marks(center_nodes, *it);
           auto total_right = get_total_road_marks(right_nodes, *it);
