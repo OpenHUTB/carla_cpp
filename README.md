@@ -210,3 +210,8 @@ git rm -rf .
 [longakijushuai](https://github.com/longkaijushuai/carla_cpp)、
 [yaxianwang7](https://github.com/yaxianwang7)
 [dengyanyan1](https://github.com/dengyanyan1)
+[Blessingwish](https://github.com/Blessingwish)
+[1722698697](https://github.com/1722698697/carla_cpp.git)
+[sx2005](https://github.com/sx2005)
+[266762548awa](https://github.com/266762548awa)
+[Peng-185](https://github.com/Peng-185/carla_cpp/tree/dev)
