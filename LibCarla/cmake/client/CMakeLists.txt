@@ -315,6 +315,7 @@ install(FILES ${libcarla_carla_ros2_sources} DESTINATION include/carla/ros2)
 if (LIBCARLA_BUILD_RELEASE)
   add_library(carla_client${carla_target_postfix} STATIC ${libcarla_sources})  #使用CMake的add_library命令来创建一个静态库 且其源文件由变量$决定
 
+#设置目标包含目录：使用target_include_directories命令为carla_client库设置包含目录
   target_include_directories(carla_client${carla_target_postfix} SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}"
@@ -328,15 +329,17 @@ if (LIBCARLA_BUILD_RELEASE)
       ${ADRSS_INCLUDE_DIRS})
   endif()
 
+#使用install命令来安装carla_client库
   install(TARGETS carla_client${carla_target_postfix} DESTINATION lib)
 
+#windows平台特定处理：使用set_target_postfix命令设置carla_client库的编译标准
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
 
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/DetourCrowd.lib")
-  else ()
+  else ()         #非Windows平台处理：使用set命令设置CMAKE_CXX_FLAGS_RELEASE_CLIENT变量 为了在非Windows平台上设置合适的编译标准
     if (NOT DEFINED CMAKE_CXX_FLAGS_RELEASE_CLIENT)
       set(CMAKE_CXX_FLAGS_RELEASE_CLIENT ${CMAKE_CXX_FLAGS_RELEASE})
     endif()
