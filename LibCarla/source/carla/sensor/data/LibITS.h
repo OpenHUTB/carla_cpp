@@ -451,48 +451,55 @@ public:
     typedef long CurvatureValue_t;
 
     /* CurvatureConfidence Dependencies*/
+//这个枚举类型用于定义曲率置信度的不同取值情况，每个枚举值对应一种特定的曲率置信度水平，以每米为单位的不同数值表示。
     typedef enum CurvatureConfidence
     {
-        CurvatureConfidence_onePerMeter_0_00002 = 0,
-        CurvatureConfidence_onePerMeter_0_0001  = 1,
-        CurvatureConfidence_onePerMeter_0_0005  = 2,
-        CurvatureConfidence_onePerMeter_0_002   = 3,
-        CurvatureConfidence_onePerMeter_0_01    = 4,
-        CurvatureConfidence_onePerMeter_0_1 = 5,
-        CurvatureConfidence_outOfRange  = 6,
-        CurvatureConfidence_unavailable = 7
+        CurvatureConfidence_onePerMeter_0_00002 = 0,// 表示每米曲率置信度为0.00002的情况，对应枚举值为0
+        CurvatureConfidence_onePerMeter_0_0001  = 1,// 表示每米曲率置信度为0.0001的情况，对应枚举值为1
+        CurvatureConfidence_onePerMeter_0_0005  = 2,  // 表示每米曲率置信度为0.0005的情况，对应枚举值为2
+        CurvatureConfidence_onePerMeter_0_002   = 3, // 表示每米曲率置信度为0.002的情况，对应枚举值为3
+        CurvatureConfidence_onePerMeter_0_01    = 4, // 表示每米曲率置信度为0.01的情况，对应枚举值为4
+        CurvatureConfidence_onePerMeter_0_1 = 5, // 表示每米曲率置信度为0.1的情况，对应枚举值为5
+        CurvatureConfidence_outOfRange  = 6,// 表示曲率置信度超出正常范围的情况，对应枚举值为6
+        CurvatureConfidence_unavailable = 7 // 表示曲率置信度不可用的情况，对应枚举值为7
     } e_CurvatureConfidence;
-
+// 定义CurvatureConfidence_t为长整型，用于后续在代码中表示曲率置信度相关的变量类型
+typedef long CurvatureConfidence_t;
     /* CurvatureConfidence */
     typedef long CurvatureConfidence_t;
 
     /* Curvature */
+ //用于将曲率值和对应的曲率置信度组合在一起，方便在程序中作为一个整体进行处理和传递。
     typedef struct Curvature
     {
-        CurvatureValue_t curvatureValue;
-        CurvatureConfidence_t curvatureConfidence;
+        CurvatureValue_t curvatureValue; // 存储曲率的具体数值，其类型应该是之前定义好的CurvatureValue_t（此处代码未展示其定义）
+        CurvatureConfidence_t curvatureConfidence;// 存储曲率的置信度，类型为上面定义的CurvatureConfidence_t
     } Curvature_t;
 
     /* CurvatureCalculationMode Dependencies */
+//此枚举类型用于定义曲率计算模式的不同情况，例如是否使用偏航率等不同模式以及不可用状态。
+typedef enum CurvatureCalculationMode
     typedef enum CurvatureCalculationMode
     {
-        CurvatureCalculationMode_yarRateUsed = 0,
-        CurvatureCalculationMode_yarRateNotUsed = 1,
-        CurvatureCalculationMode_unavailable = 2
+        CurvatureCalculationMode_yarRateUsed = 0, // 表示在曲率计算中使用了偏航率的模式，对应枚举值为0
+        CurvatureCalculationMode_yarRateNotUsed = 1,// 表示在曲率计算中未使用偏航率的模式，对应枚举值为1
+        CurvatureCalculationMode_unavailable = 2// 表示曲率计算模式不可用的情况，对应枚举值为2
     } e_CurvatureCalculationMode;
-
+// 定义CurvatureCalculationMode_t为长整型，用于后续在代码中表示曲率计算模式相关的变量类型
     /* CurvatureCalculationMode */
     typedef long CurvatureCalculationMode_t;
 
     /* YawRateValue Dependencies */
+//该枚举类型用于定义车辆偏航率值的不同情况，包括直线行驶以及不同方向、不同大小的偏航情况和不可用状态。
+
     typedef enum YawRateValue
     {
-        YawRateValue_straight = 0,
-        YawRateValue_degSec_000_01ToRight   = -1,
-        YawRateValue_degSec_000_01ToLeft    = 1,
-        YawRateValue_unavailable    = 32767
+        YawRateValue_straight = 0, // 表示车辆处于直线行驶状态，偏航率值对应的枚举值为0
+        YawRateValue_degSec_000_01ToRight   = -1,// 表示车辆偏航率为每秒向右转0.01度，对应枚举值为 -1
+        YawRateValue_degSec_000_01ToLeft    = 1,// 表示车辆偏航率为每秒向左转0.01度，对应枚举值为1
+        YawRateValue_unavailable    = 32767// 表示偏航率值不可用的情况，对应一个较大的特定数值32767
     } e_YawRateValue;
-
+// 定义YawRateValue_t为长整型，用于后续在代码中表示偏航率值相关的变量类型
     /* YawRateValue */
     typedef long YawRateValue_t;
 
