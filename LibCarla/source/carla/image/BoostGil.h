@@ -7,6 +7,7 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
+//使用 #pragma once 预处理指令，确保该头文件在一个编译单元中只会被包含一次
 
 #if defined(__clang__)
 #  pragma clang diagnostic push

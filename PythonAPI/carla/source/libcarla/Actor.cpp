@@ -1,4 +1,4 @@
-// 本作品根据MIT许可证条款进行授权。
+// 本作品根据MIT许可证条款进行授权。asssss
 // 许可证副本见<https://opensource.org/licenses/MIT>。
 
 #include <carla/client/Actor.h> // 引入Actor功能的头文件
@@ -78,6 +78,7 @@ static auto GetLightBoxes(const carla::client::TrafficLight &self) {
     return result; // 返回填充好的光源盒列表
 }
 
+// 将参与者的函数暴露出去
 void export_actor() {
   using namespace boost::python;
   namespace cc = carla::client;
@@ -113,6 +114,9 @@ void export_actor() {
         return attribute_dict;
       })
       .add_property("bounding_box", CALL_RETURNING_COPY(cc::Actor, GetBoundingBox))
+      // 第1个参数：carla.Actor中的get_world(self) Python方法名
+      // 第2个参数：LibCarla中的C++方法（函数名称前面加引用符号“&”的意思是返回引用类型）
+      // 返回参与者所属C++世界的一份拷贝，成为Python中的世界
       .def("get_world", CALL_RETURNING_COPY(cc::Actor, GetWorld))
       .def("get_location", &cc::Actor::GetLocation)
       .def("get_transform", &cc::Actor::GetTransform)
@@ -121,6 +125,7 @@ void export_actor() {
       .def("get_acceleration", &cc::Actor::GetAcceleration)
       .def("get_component_world_transform", &cc::Actor::GetComponentWorldTransform, (arg("component_name")))
       .def("get_component_relative_transform", &cc::Actor::GetComponentRelativeTransform, (arg("component_name")))
+      // 将返回值转换为Python列表的const请求
       .def("get_bone_world_transforms", CALL_RETURNING_LIST(cc::Actor,GetBoneWorldTransforms))
       .def("get_bone_relative_transforms", CALL_RETURNING_LIST(cc::Actor,GetBoneRelativeTransforms))
       .def("get_component_names", CALL_RETURNING_LIST(cc::Actor,GetComponentNames))
@@ -129,6 +134,7 @@ void export_actor() {
       .def("get_socket_relative_transforms", CALL_RETURNING_LIST(cc::Actor,GetSocketRelativeTransforms))   
       .def("get_socket_names", CALL_RETURNING_LIST(cc::Actor,GetSocketNames))         
       .def("set_location", &cc::Actor::SetLocation, (arg("location")))
+      // 将参与者传送到给定的变换（位置和旋转）
       .def("set_transform", &cc::Actor::SetTransform, (arg("transform")))
       .def("set_target_velocity", &cc::Actor::SetTargetVelocity, (arg("velocity")))
       .def("set_target_angular_velocity", &cc::Actor::SetTargetAngularVelocity, (arg("angular_velocity")))
