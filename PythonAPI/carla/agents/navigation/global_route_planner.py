@@ -204,8 +204,9 @@ class GlobalRoutePlanner:
         #从地图中获取拓扑信息
         for segment in self._wmap.get_topology():
             wp1, wp2 = segment[0], segment[1]
+            #获取路点的位置并进行舍入（舍入的目的是为了后续避免点数精度问题，减少一定的误差）
             l1, l2 = wp1.transform.location, wp2.transform.location
-            # Rounding off to avoid floating point imprecision
+            # 舍入以避免浮点不精确
             x1, y1, z1, x2, y2, z2 = np.round([l1.x, l1.y, l1.z, l2.x, l2.y, l2.z], 0)
             wp1.transform.location, wp2.transform.location = l1, l2
             seg_dict = dict()  # type: TopologyDict # type: ignore[assignment]
