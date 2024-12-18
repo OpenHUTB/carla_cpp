@@ -13,7 +13,7 @@ RUN cd /home/carla/ && \
   make CarlaUE4Editor && \
   make PythonAPI && \
   make build.utils && \
-  make package && \
+  make package && \ #删除项目目录下的Dist目录，可能是之前打包遗留的或者不需要的目录
   rm -r /home/carla/carla/Dist
 
 WORKDIR /home/carla/carla
