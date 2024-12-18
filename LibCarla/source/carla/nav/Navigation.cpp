@@ -1,4 +1,4 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
+  // Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -52,25 +52,25 @@ namespace nav {
     _walker_manager.SetNav(this);
   }
 
-  Navigation::~Navigation() {
-    _ready = false;
-    _time_to_unblock = 0.0f;
-    _mapped_walkers_id.clear();
-    _mapped_vehicles_id.clear();
-    _mapped_by_index.clear();
-    _walkers_blocked_position.clear();
-    _yaw_walkers.clear();
-    _binary_mesh.clear();
-    dtFreeCrowd(_crowd);
-    dtFreeNavMeshQuery(_nav_query);
-    dtFreeNavMesh(_nav_mesh);
+  Navigation::~Navigation() { // 析构函数
+    _ready = false;// 在析构函数中，首先将_ready标志设置为false，表示导航系统不再可用。
+    _time_to_unblock = 0.0f;  //将_time_to_unblock设置为0.0f，表示没有阻塞时间。
+    _mapped_walkers_id.clear();// 清除所有映射的行人ID。
+    _mapped_vehicles_id.clear();// 清除所有映射的车辆ID。
+    _mapped_by_index.clear();// 清除所有按索引映射的数据。
+    _walkers_blocked_position.clear();// 清除所有阻塞行人的位置
+    _yaw_walkers.clear();// 清除所有行人的偏航数据。
+    _binary_mesh.clear();// 清除二进制网格数据。
+    dtFreeCrowd(_crowd);// 释放Recast导航中的Crowd管理器资源。
+    dtFreeNavMeshQuery(_nav_query);// 释放导航网格查询资源。
+    dtFreeNavMesh(_nav_mesh);// 释放导航网格资源。
   }
 
   // 参考模拟器访问API函数
   void Navigation::SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator)
   {
     _simulator = simulator;
-    _walker_manager.SetSimulator(simulator);
+    _walker_manager.SetSimulator(simulator);// 将simulator弱引用传递给_walker_manager，以便行人管理器可以使用模拟器API。
   }
 
   // 设置要使用的随机数种子
@@ -80,15 +80,15 @@ namespace nav {
 
   // 加载导航数据
   bool Navigation::Load(const std::string &filename) {
-    std::ifstream f;
-    std::istream_iterator<uint8_t> start(f), end;
+    std::ifstream f;// 创建一个文件输入流对象f。
+    std::istream_iterator<uint8_t> start(f), end;// 创建输入流迭代器，用于遍历文件内容。
 
     // 读取整个文件
-    f.open(filename, std::ios::binary);
+    f.open(filename, std::ios::binary);// 以二进制模式打开文件。
     if (!f.is_open()) {
-      return false;
+      return false;// 如果文件未能成功打开，返回false。
     }
-    std::vector<uint8_t> content(start, end);
+    std::vector<uint8_t> content(start, end);// 读取文件内容到content向量中
     f.close();
 
     // 解析内容
@@ -97,9 +97,9 @@ namespace nav {
 
   // 从内存中加载导航数据
   bool Navigation::Load(std::vector<uint8_t> content) {
-    const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; // 'MSET';
-    const int NAVMESHSET_VERSION = 1;
-#pragma pack(push, 1)
+    const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; // 'MSET';// 定义导航网格集合的魔术数字。
+    const int NAVMESHSET_VERSION = 1;//  定义导航网格集合的版本号。
+#pragma pack(push, 1)// 确保结构体按照1字节对齐。
 
     // 导航网格集合头的结构体
     struct NavMeshSetHeader {
@@ -113,7 +113,7 @@ namespace nav {
       dtTileRef tile_ref;
       int data_size;        // 数据大小
     };
-#pragma pack(pop)
+#pragma pack(pop)//恢复默认的对齐设置。
 
     // 检查 导航网格集合头的结构体大小
     // 如果内存中导航数据 都小于 头的大小，则报错
@@ -123,9 +123,9 @@ namespace nav {
     }
 
     // 读取文件的头
-    unsigned long pos = 0;
-    memcpy(&header, &content[pos], sizeof(header));
-    pos += sizeof(header);
+    unsigned long pos = 0;// 定义一个位置变量pos，用于跟踪读取的位置。
+    memcpy(&header, &content[pos], sizeof(header));// 从content中复制头信息到header结构体。
+    pos += sizeof(header);// 更新pos，跳过已读取的头信息。
 
     // 检查文件的魔术和版本
     if (header.magic != NAVMESHSET_MAGIC || header.version != NAVMESHSET_VERSION) {
@@ -149,11 +149,11 @@ namespace nav {
       NavMeshTileHeader tile_header;
 
       // 读取瓦片头
-      memcpy(&tile_header, &content[pos], sizeof(tile_header));
-      pos += sizeof(tile_header);
-      if (pos >= content.size()) {
+      memcpy(&tile_header, &content[pos], sizeof(tile_header));// 从content中复制瓦片头信息到tile_header结构体
+      pos += sizeof(tile_header);// 更新pos变量，跳过已读取的瓦片头信息
+      if (pos >= content.size()) {// 检查当前读取位置是否已经到达或超过了内容的末尾
         dtFreeNavMesh(mesh);
-        return false;
+        return false;// 如果超出范围，释放之前分配的导航网格资源，返回false，表示加载过程中出现问题
       }
 
       // 检查瓦片的有效性
@@ -168,9 +168,9 @@ namespace nav {
       }
 
       // 读取瓦片
-      memcpy(data, &content[pos], static_cast<size_t>(tile_header.data_size));
-      pos += static_cast<unsigned long>(tile_header.data_size);
-      if (pos > content.size()) {
+      memcpy(data, &content[pos], static_cast<size_t>(tile_header.data_size));// 复制瓦片数据到内存
+      pos += static_cast<unsigned long>(tile_header.data_size);// 更新读取位置
+      if (pos > content.size()) {//  检查更新后的读取位置`pos`是否超过了`content`数组的大小。
         dtFree(data);
         dtFreeNavMesh(mesh);
         return false;
@@ -235,19 +235,19 @@ namespace nav {
     // 主要使用默认设置，从 dtCrowd 复制。
     memcpy(&params, _crowd->getObstacleAvoidanceParams(0), sizeof(dtObstacleAvoidanceParams));
 
-    // Low (11)
-    params.velBias = 0.5f;
-    params.adaptiveDivs = 5;
-    params.adaptiveRings = 2;
-    params.adaptiveDepth = 1;
-    _crowd->setObstacleAvoidanceParams(0, &params);
+    // 低等级避让Low (11)
+    params.velBias = 0.5f;// 设置速度偏差参数，影响行人在避让障碍物时的速度调整。值为0.5表示行人在避让时会适度调整速度。
+    params.adaptiveDivs = 5;// 设置自适应分割数，影响避让行为的平滑程度。值为5表示在计算避让路径时会进行5次自适应分割。
+    params.adaptiveRings = 2;// 设置自适应环的数量，影响避让行为的预测范围。值为2表示避让时会考虑周围两个环的障碍物。
+    params.adaptiveDepth = 1;// 设置自适应深度，影响避让行为的预测深度。值为1表示避让时会预测1步的避让路径。
+    _crowd->setObstacleAvoidanceParams(0, &params);// 应用于crowd管理器的第0个避让等级。
 
-    // Medium (22)
+    // 中等级避让Medium (22)
     params.velBias = 0.5f;
     params.adaptiveDivs = 5;
     params.adaptiveRings = 2;
     params.adaptiveDepth = 2;
-    _crowd->setObstacleAvoidanceParams(1, &params);
+    _crowd->setObstacleAvoidanceParams(1, &params);// 应用于crowd管理器的第1个避让等级。
 
     // Good (45)
     params.velBias = 0.5f;
@@ -272,11 +272,11 @@ namespace nav {
                            std::vector<carla::geom::Location> &path,
                            std::vector<unsigned char> &area) {
     // 找到路径
-    float straight_path[MAX_POLYS * 3];
-    unsigned char straight_path_flags[MAX_POLYS];
-    dtPolyRef straight_path_polys[MAX_POLYS];
-    int num_straight_path;
-    int straight_path_options = DT_STRAIGHTPATH_AREA_CROSSINGS;
+    float straight_path[MAX_POLYS * 3];// 定义一个浮点数数组`straight_path`，用于存储直线路径上的点坐标。
+    unsigned char straight_path_flags[MAX_POLYS];// 定义路径标志数组
+    dtPolyRef straight_path_polys[MAX_POLYS];// 定义路径多边形引用数组
+    int num_straight_path;// 定义路径点数量变量
+    int straight_path_options = DT_STRAIGHTPATH_AREA_CROSSINGS;// 设置路径查找选项
 
     // 路径中的多边形
     dtPolyRef polys[MAX_POLYS];
@@ -290,7 +290,7 @@ namespace nav {
     DEBUG_ASSERT(_nav_query != nullptr);
 
     // 点的延伸
-    float poly_pick_ext[3];
+    float poly_pick_ext[3];// // 定义一个名为poly_pick_ext的浮点型数组，该数组包含3个元素。
     poly_pick_ext[0] = 2;
     poly_pick_ext[1] = 4;
     poly_pick_ext[2] = 2;
