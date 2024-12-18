@@ -1,8 +1,7 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2019 巴塞罗那自治大学 (UAB) 的计算机视觉中心 (CVC)。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品依据 MIT 许可证的条款进行授权。
+// 如需许可证副本，请访问 <https://opensource.org/licenses/MIT>。
 
 /// 用于断言和仅调试代码的宏实用程序。
 ///
@@ -22,25 +21,47 @@
 ///
 ///   * RELEASE_ASSERT(predicate) -如果 predicate 的计算结果为 false，则引发异常。
 
-#pragma once
+#pragma once //这是一个预处理指令，用于确保当前头文件在当前编译单元中只被包含（include）一次。
 
+// 包含CARLA项目中定义的异常类的头文件。
+// 这个头文件可能包含了一些自定义异常类，用于在CARLA项目中处理错误情况。
 #include "carla/Exception.h"
 
+// 包含标准库中的stdexcept头文件。
+// stdexcept头文件定义了一组标准异常类，这些类用于报告标准库函数中的错误情况。
+// 这些异常类包括逻辑错误（如std::invalid_argument, std::out_of_range等）和运行时错误（如std::bad_alloc等）。
 #include <stdexcept>
 
-// 定义不同的断言级别
+// 定义不同断言级别的宏，用于控制CARLA库中的断言行为。
+// 这些级别允许开发者根据编译目标（如调试、开发或发布版本）来调整断言的严格程度。
+
+// LIBCARLA_ASSERT_LEVEL_DEBUG：定义调试版本的断言级别为30。
+// 在调试版本中，断言级别最高，意味着会执行最多的断言检查，以帮助开发者发现和修复问题。
 #define LIBCARLA_ASSERT_LEVEL_DEBUG        30
+// LIBCARLA_ASSERT_LEVEL_DEVELOPMENT：定义开发版本的断言级别为20。
+// 在开发版本中，断言级别适中，提供足够的检查以确保代码在开发过程中按预期运行，但不会过于繁琐。
 #define LIBCARLA_ASSERT_LEVEL_DEVELOPMENT  20
+// LIBCARLA_ASSERT_LEVEL_RELEASE：定义发布版本的断言级别为10。
+// 在发布版本中，断言级别最低，以减少运行时检查的数量，从而提高性能。
+// 通常，发布版本中的断言主要用于捕获严重的逻辑错误，而不是用于调试目的。
 #define LIBCARLA_ASSERT_LEVEL_RELEASE      10
 
 // 如果没有显式设置 LIBCARLA_ASSERT_LEVEL，则根据是否定义了 NDEBUG 来选择断言级别
+// 检查是否已定义了LIBCARLA_ASSERT_LEVEL宏。
+// 如果没有定义，则根据编译环境（是否定义了NDEBUG）来选择合适的断言级别。
 #ifndef LIBCARLA_ASSERT_LEVEL
+// 检查是否定义了NDEBUG宏。
+// NDEBUG是一个标准预处理宏，通常在发布版本的编译中定义，以禁用assert()宏。
 #  ifdef NDEBUG
+// 如果定义了NDEBUG，则设置断言级别为开发版本级别。
+// 这意味着在发布版本中，我们希望减少断言的数量，但仍然保留一些基本的检查。
 #    define LIBCARLA_ASSERT_LEVEL LIBCARLA_ASSERT_LEVEL_DEVELOPMENT
 #  else
+// 如果没有定义NDEBUG，则设置断言级别为调试版本级别。
+// 在调试版本中，我们希望执行尽可能多的断言检查，以帮助开发者发现和修复问题。
 #    define LIBCARLA_ASSERT_LEVEL LIBCARLA_ASSERT_LEVEL_DEBUG
-#  endif // NDEBUG
-#endif // LIBCARLA_ASSERT_LEVEL
+#  endif // 结束NDEBUG的检查
+#endif // 结束LIBCARLA_ASSERT_LEVEL的检查
 
 // 如果断言级别大于或等于调试级别，且没有定义 NDEBUG（不在发布模式），则启用断言
 #if (LIBCARLA_ASSERT_LEVEL >= LIBCARLA_ASSERT_LEVEL_DEBUG)
