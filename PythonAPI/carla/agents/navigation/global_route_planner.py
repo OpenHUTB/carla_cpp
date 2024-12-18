@@ -196,8 +196,10 @@ class GlobalRoutePlanner:
         - exitxyz (tuple): (x,y,z) of exit point of road segment
         - path (list of carla.Waypoint):  list of waypoints between entry to exit, separated by the resolution
         """
+        #创建一个空列表 用于存储最终构建的拓扑结构信息
         self._topology = []
         # Retrieving waypoints to construct a detailed topology
+        #从地图中获取拓扑信息
         for segment in self._wmap.get_topology():
             wp1, wp2 = segment[0], segment[1]
             l1, l2 = wp1.transform.location, wp2.transform.location
