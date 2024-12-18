@@ -176,6 +176,7 @@ class GlobalRoutePlanner:
                             destination) < 2 * self._sampling_resolution:
                         break
                     # 或者判断是否已经处于和终点相同的道路、路段、车道等情况
+                    #首先检查route的长度为确保有元素可进行后续的操作 若route为空 则后续操作无意义 然后比较当前路点的道路id是否等于目的路点
                     elif len(
                             route) - i <= 2 and current_waypoint.road_id == destination_waypoint.road_id and current_waypoint.section_id == destination_waypoint.section_id and current_waypoint.lane_id == destination_waypoint.lane_id:
                         # 查找终点路点在当前路径中的最近索引
