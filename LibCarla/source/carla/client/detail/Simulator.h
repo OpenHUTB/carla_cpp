@@ -336,19 +336,19 @@ namespace detail {
     /// @name 人工智能
     // =========================================================================
     /// @{
-
+    // 获取当前导航对象
     std::shared_ptr<WalkerNavigation> GetNavigation();
-
+    // 通过调用此函数来更新导航状态，可能是为了处理路径计算、目标点的选择等
     void NavigationTick();
-
+    // 注册AI控制器，可能是某个虚拟角色或物体的AI控制器
     void RegisterAIController(const WalkerAIController &controller);
-
+    // 注销AI控制器，移除控制器与特定角色或物体的关联
     void UnregisterAIController(const WalkerAIController &controller);
-
+    // 从导航对象中获取一个随机位置，这可能用于生成随机目标或逃逸点
     boost::optional<geom::Location> GetRandomLocationFromNavigation();
-
+    // 设置行人交叉因素的百分比，可能影响路径规划或碰撞处理
     void SetPedestriansCrossFactor(float percentage);
-
+    // 设置行人行为的随机种子，可能影响行人生成或路径选择的随机性
     void SetPedestriansSeed(unsigned int seed);
 
     /// @}
@@ -357,16 +357,17 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    //根据参与者的ID获取对应的演员信息
     boost::optional<rpc::Actor> GetActorById(ActorId id) const {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetActorById(id);
     }
-
+    /// 根据一组演员ID获取对应的演员信息
     std::vector<rpc::Actor> GetActorsById(const std::vector<ActorId> &actor_ids) const {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetActorsById(actor_ids);
     }
-
+    /// 获取当前 episode 中所有的演员信息
     std::vector<rpc::Actor> GetAllTheActorsInTheEpisode() const {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetActors();
@@ -397,90 +398,93 @@ namespace detail {
         rpc::AttachmentType attachment_type = rpc::AttachmentType::Rigid,
         GarbageCollectionPolicy gc = GarbageCollectionPolicy::Inherit,
         const std::string& socket_name = "");
-
+    /// 销毁指定的演员
     bool DestroyActor(Actor &actor);
-
+    // 根据演员ID销毁指定的演员
     bool DestroyActor(ActorId actor_id)
     {
       return _client.DestroyActor(actor_id);
     }
-
+    // 获取指定ID演员的快照信息
     ActorSnapshot GetActorSnapshot(ActorId actor_id) const {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetState()->GetActorSnapshot(actor_id);
     }
-
+    // 获取指定演员的快照信息
     ActorSnapshot GetActorSnapshot(const Actor &actor) const {
       return GetActorSnapshot(actor.GetId());
     }
-
+    // 获取指定演员的状态信息
     rpc::ActorState GetActorState(const Actor &actor) const {
       return GetActorSnapshot(actor).actor_state;
     }
-
+    // 获取指定演员的位置
     geom::Location GetActorLocation(const Actor &actor) const {
       return GetActorSnapshot(actor).transform.location;
     }
-
+    /// 获取指定演员的变换信息（包括位置、旋转、缩放）
     geom::Transform GetActorTransform(const Actor &actor) const {
       return GetActorSnapshot(actor).transform;
     }
 
+    /// 获取指定演员的速度（可能包括线性速度和角速度）
     geom::Vector3D GetActorVelocity(const Actor &actor) const {
       return GetActorSnapshot(actor).velocity;
     }
-
+    /// 设置指定演员的目标速度
     void SetActorTargetVelocity(const Actor &actor, const geom::Vector3D &vector) {
       _client.SetActorTargetVelocity(actor.GetId(), vector);
     }
-
+    /// 获取指定演员的角速度
     geom::Vector3D GetActorAngularVelocity(const Actor &actor) const {
       return GetActorSnapshot(actor).angular_velocity;
     }
-
+    /// 设置指定演员的目标角速度
     void SetActorTargetAngularVelocity(const Actor &actor, const geom::Vector3D &vector) {
       _client.SetActorTargetAngularVelocity(actor.GetId(), vector);
     }
+    /// 启用演员的恒定速度（用于模拟持续的线性运动）
     void EnableActorConstantVelocity(const Actor &actor, const geom::Vector3D &vector) {
       _client.EnableActorConstantVelocity(actor.GetId(), vector);
     }
-
+    /// 禁用演员的恒定速度
     void DisableActorConstantVelocity(const Actor &actor) {
       _client.DisableActorConstantVelocity(actor.GetId());
     }
-
+    /// 给指定演员施加脉冲力
     void AddActorImpulse(const Actor &actor, const geom::Vector3D &impulse) {
       _client.AddActorImpulse(actor.GetId(), impulse);
     }
 
+    /// 给指定演员在特定位置施加脉冲力
     void AddActorImpulse(const Actor &actor, const geom::Vector3D &impulse, const geom::Vector3D &location) {
       _client.AddActorImpulse(actor.GetId(), impulse, location);
     }
-
+    /// 给指定演员施加持续的力
     void AddActorForce(const Actor &actor, const geom::Vector3D &force) {
       _client.AddActorForce(actor.GetId(), force);
     }
-
+    /// 给指定演员在特定位置施加持续的力
     void AddActorForce(const Actor &actor, const geom::Vector3D &force, const geom::Vector3D &location) {
       _client.AddActorForce(actor.GetId(), force, location);
     }
-
+    /// 给指定演员施加角脉冲（影响角度运动）
     void AddActorAngularImpulse(const Actor &actor, const geom::Vector3D &vector) {
       _client.AddActorAngularImpulse(actor.GetId(), vector);
     }
-
+    /// 给指定演员施加扭矩
     void AddActorTorque(const Actor &actor, const geom::Vector3D &torque) {
       _client.AddActorAngularImpulse(actor.GetId(), torque);
     }
-
+    /// 获取指定演员的加速度
     geom::Vector3D GetActorAcceleration(const Actor &actor) const {
       return GetActorSnapshot(actor).acceleration;
     }
-
+    /// 获取指定演员组件的世界坐标变换信息
     geom::Transform GetActorComponentWorldTransform(const Actor &actor, const std::string componentName) {
       return _client.GetActorComponentWorldTransform(actor.GetId(), componentName);
     }
-
+    /// 获取指定演员组件的相对坐标变换信息
     geom::Transform GetActorComponentRelativeTransform(const Actor &actor, std::string componentName) {
       return _client.GetActorComponentRelativeTransform(actor.GetId(), componentName);
     }
