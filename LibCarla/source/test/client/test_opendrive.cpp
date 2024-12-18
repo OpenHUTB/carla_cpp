@@ -196,54 +196,59 @@ static void test_roads(const pugi::xml_document &xml, boost::optional<Map>& map)
   }
 }
 
-// Junctions
+// 定义一个测试函数，用于验证XML文档中的交叉路口数据与Map对象中的交叉路口数据是否一致
 static void test_junctions(const pugi::xml_document &xml, boost::optional<Map>& map) {
-  pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
+  pugi::xml_node open_drive_node = xml.child("OpenDRIVE"); // 从XML文档中获取OpenDRIVE根节点
 
-  // Check total number of junctions
+  // 获取Map对象中的交叉路口集合，并检查XML文档中声明的交叉路口总数是否与Map对象中的一致
   auto& junctions = map->GetMap().GetJunctions();
+  // 计算XML文档中声明的交叉路口总数
   auto total_junctions_parser = std::distance(open_drive_node.children("junction").begin(), open_drive_node.children("junction").end());
-
+  // 使用ASSERT_EQ宏来断言两者数量相等
   ASSERT_EQ(junctions.size(), total_junctions_parser);
-
+  // 遍历XML文档中的每一个交叉路口节点
   for (pugi::xml_node junction_node : open_drive_node.children("junction")) {
-    // Check total number of connections
+   // 检查当前交叉路口的连接总数是否与XML文档中声明的连接总数一致
     auto total_connections_parser = std::distance(junction_node.children("connection").begin(), junction_node.children("connection").end());
-
+  // 从交叉路口节点的id属性中获取交叉路口ID
     JuncId junction_id = junction_node.attribute("id").as_int();
-    auto& junction = junctions.find(junction_id)->second;
-
+    auto& junction = junctions.find(junction_id)->second; // 在Map对象的交叉路口集合中查找对应的交叉路口
+  // 获取当前交叉路口的连接集合
     auto& connections = junction.GetConnections();
-
+    // 使用ASSERT_EQ宏来断言两者数量相等
     ASSERT_EQ(connections.size(), total_connections_parser);
-
+// 遍历当前交叉路口的每一个连接节点
     for (pugi::xml_node connection_node : junction_node.children("connection")) {
-      auto total_lane_links_parser = std::distance(connection_node.children("laneLink").begin(), connection_node.children("laneLink").end());
-
+      // 检查当前连接的车道链接总数是否与XML文档中声明的车道链接总数一致
+      auto total_lane_links_parser = std::distance(connection_node.children("laneLink").begin(), connection_node.children("laneLink").end()); 
+      // 从连接节点的id属性中获取连接ID
       ConId connection_id = connection_node.attribute("id").as_uint();
+      // 在当前交叉路口的连接集合中查找对应的连接
       auto& connection = connections.find(connection_id)->second;
-
+    // 获取当前连接的车道链接集合
     auto& lane_links = connection.lane_links;
-
+   // 使用ASSERT_EQ宏来断言两者数量相等
     ASSERT_EQ(lane_links.size(), total_lane_links_parser);
 
     }
   }
 }
-
+// 定义一个名为 test_road_links 的函数，它接受一个 boost::optional<Map> 类型的引用作为参数
 static void test_road_links(boost::optional<Map>& map) {
 
-  // process all roads, sections and lanes
+    // 使用 for 循环遍历 map 中的所有道路
   for (auto &road : map->GetMap().GetRoads()) {
+     // 对于每条道路，遍历其所有的车道段section
     for (auto &section : road.second.GetLaneSections()) {
+       // 对于每个车道段，遍历其所有的车道lane
       for (auto &lane : section.GetLanes()) {
-        // check all nexts
+        // 对于每个车道，检查其所有后续车道next lanes
         for (auto link : lane.second.GetNextLanes()) {
           ASSERT_TRUE(link != nullptr);
         }
-        // check all prevs
+       // 对于每个车道，检查其所有前置车道previous lanes
         for (auto link : lane.second.GetPreviousLanes()) {
-          ASSERT_TRUE(link != nullptr);
+          ASSERT_TRUE(link != nullptr);// 每个车道都应该有一个有效的前置车道链接
         }
       }
     }
