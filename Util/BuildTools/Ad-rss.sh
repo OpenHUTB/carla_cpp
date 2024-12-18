@@ -105,7 +105,7 @@ for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
   if [[ -d "${ADRSS_INSTALL_DIR}" && -d "${ADRSS_BUILD_DIR}" ]]; then
     log "${ADRSS_BASENAME} for python${PY_VERSION} already installed."
   else
-    log "Building ${ADRSS_BASENAME} for python${PY_VERSION}"
+    log "Building ${ADRSS_BASENAME} for python${PY_VERSION}"#log函数会输出一条消息，表示正在构建针对python${PY_VERSION}的${ADRSS_BASENAME}
 
     pushd "${ADRSS_COLCON_WORKSPACE}" >/dev/null # 切换到工作区 
       # 设置 CMake 前缀路径
