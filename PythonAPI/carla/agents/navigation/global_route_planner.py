@@ -16,17 +16,31 @@ import carla
 from agents.navigation.local_planner import RoadOption
 
 # Python 2 compatibility
+# 用于类型检查相关的标记，后续根据Python版本来决定如何导入特定的类型相关模块
 TYPE_CHECKING = False
 if TYPE_CHECKING:
     import sys
+    # 判断Python版本是否大于等于3.11
     if sys.version_info >= (3, 11):
+        # 从typing模块导入TypedDict和NotRequired，用于类型注解（Python 3.11及以上版本）
         from typing import TypedDict, NotRequired
+    # 判断Python版本是否大于等于3.8且小于3.11
     elif sys.version_info >= (3, 8):
+        # 从typing模块导入TypedDict
         from typing import TypedDict
+        # 从typing_extensions模块导入NotRequired，用于在对应Python版本下补充类型注解功能
         from typing_extensions import NotRequired
     else:
+        # 如果Python版本小于3.8，从typing_extensions模块同时导入TypedDict和NotRequired来处理类型注解相关操作
         from typing_extensions import TypedDict, NotRequired
 
+    # 定义一个名为TopologyDict的类型字典（TypedDict），用于描述拓扑结构相关信息
+    # 它包含了以下键值对的类型规范：
+    # 'entry': 类型为carla.Waypoint，表示入口的路点信息
+    # 'exit': 类型为carla.Waypoint，表示出口的路点信息
+    # 'entryxyz': 类型为包含三个浮点数的元组，表示入口的坐标信息（x, y, z）
+    # 'exitxyz': 类型为包含三个浮点数的元组，表示出口的坐标信息（x, y, z）
+    # 'path': 类型为包含carla.Waypoint元素的列表，表示路径上的一系列路点
     TopologyDict = TypedDict('TopologyDict',
         {
             'entry': carla.Waypoint,
@@ -36,6 +50,18 @@ if TYPE_CHECKING:
             'path': list[carla.Waypoint]
         })
 
+    # 定义一个名为EdgeDict的类型字典（TypedDict），用于描述边相关的信息
+    # 它包含了以下键值对的类型规范：
+    # 'length': 类型为整数，表示边的长度（具体含义可能根据应用场景而定）
+    # 'path': 类型为包含carla.Waypoint元素的列表，表示这条边所经过的路点路径
+    # 'entry_waypoint': 类型为carla.Waypoint，表示边的入口路点
+    # 'exit_waypoint': 类型为carla.Waypoint，表示边的出口路点
+    # 'entry_vector': 类型为numpy.ndarray，可能表示入口处的向量信息（比如方向向量等，依具体情况而定）
+    # 'exit_vector': 类型为numpy.ndarray，类似地表示出口处的向量信息
+    # 'net_vector': 类型为包含浮点数的列表，具体含义根据实际应用场景确定，可能与网络相关向量有关
+    # 'intersection': 类型为布尔值，用于判断是否为交叉路口相关的边
+    # 'type': 类型为RoadOption，可能表示边对应的道路选项类型（比如直行、转弯等不同道路行为类型）
+    # 'change_waypoint': 类型为carla.Waypoint，不过是可选的（NotRequired），可能在某些路径变化的场景下用到的路点信息
     EdgeDict = TypedDict('EdgeDict',
         {
             'length': int,
@@ -49,7 +75,6 @@ if TYPE_CHECKING:
             'type': RoadOption,
             'change_waypoint': NotRequired[carla.Waypoint]
         })
-
 class GlobalRoutePlanner:
     """
     This class provides a very high level route plan.
