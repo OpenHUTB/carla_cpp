@@ -93,14 +93,14 @@ void UHoudiniImporterWidget::MoveActorsToSubLevelWithLargeMap(TArray<AActor*> Ac
         UEditorLevelUtils::AddLevelToWorld(
         World, *Tile->Name, ULevelStreamingDynamic::StaticClass(), 
 FTransform());
-   // 将参与者移动到关卡中并获取移动的演员数量
+   // 将参与者移动到关卡中并获取移动的参与者数量
     int MovedActors = UEditorLevelUtils::MoveActorsToLevel(ActorList, Level, false, false);
     // StreamingLevel->SetShouldBeLoaded(false);
     UE_LOG(LogCarlaTools, Log, TEXT("Moved %d actors"), MovedActors);
     FEditorFileUtils::SaveDirtyPackages(false, true, true, false, false, false, nullptr);
     UEditorLevelUtils::RemoveLevelFromWorld(Level->GetLoadedLevel());
   }
-  // 执行垃圾回收和清理演员
+  // 执行垃圾回收和清理参与者
   GEngine->PerformGarbageCollectionAndCleanupActors();
   FText TransResetText(FText::FromString("Clean up after Move actors to sublevels"));
   if ( GEditor->Trans )
@@ -141,7 +141,7 @@ void UHoudiniImporterWidget::ForceStreamingLevelsToUnload( ALargeMapManager* Lar
 
 void UHoudiniImporterWidget::MoveActorsToSubLevel(TArray<AActor*> Actors, ULevelStreaming* Level)
 {
-  // 将参与者移动到关卡中并获取移动的演员数量
+  // 将参与者移动到关卡中并获取移动的参与者数量
   int MovedActors = UEditorLevelUtils::MoveActorsToLevel(Actors, Level, false, false);
   // 输出移动的参与者数量日志
   UE_LOG(LogCarlaTools, Log, TEXT("Moved %d actors"), MovedActors);
