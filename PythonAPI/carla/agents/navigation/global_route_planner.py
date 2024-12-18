@@ -197,7 +197,7 @@ class GlobalRoutePlanner:
         - path (list of carla.Waypoint):  list of waypoints between entry to exit, separated by the resolution
         """
         self._topology = []
-        # Retrieving waypoints to construct a detailed topology
+        #检索路点以构建详细拓扑
         for segment in self._wmap.get_topology():
             wp1, wp2 = segment[0], segment[1]
             l1, l2 = wp1.transform.location, wp2.transform.location
