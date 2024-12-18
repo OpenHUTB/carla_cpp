@@ -11,8 +11,8 @@ RUN cd /home/carla/ && \
   cd /home/carla/carla && \
   ./Update.sh && \
   make CarlaUE4Editor && \
-  make PythonAPI && \
-  make build.utils && \
+  make PythonAPI && \  #编译生成build.utils，可能是一些构建相关的工具模块
+  make build.utils && \ #进行打包操作，具体打包内容取决于项目配置
   make package && \
   rm -r /home/carla/carla/Dist
 
