@@ -10,7 +10,7 @@
 #include "carla/ros2/ROS2.h"
 #include <compiler/enable-ue4-macros.h>
 
-/// visitor class
+/// 访问者类
 class ActorROS2Handler
 {
     public:
