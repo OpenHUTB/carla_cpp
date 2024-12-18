@@ -204,8 +204,6 @@ git rm -rf .
 [zhong246](https://github.com/zhong246/carla_cpp.git)、
 [mikilej](https://github.com/mikilej)、
 [Zz1tai77](https://github.com/Zz1tai77/carla_cpp)、
-[xizhi0723](https://github.com/xizhi0723)、
-
 [Dennnng123](https://github.com/Dennnng123)
 [Rrr7702](https://github.com/Rrr7702)
 [longakijushuai](https://github.com/longkaijushuai/carla_cpp)、
