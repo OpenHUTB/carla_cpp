@@ -135,7 +135,8 @@ class Sensor():
                获取当前检测到的点的数量，返回self.curr_det_pts的值（此处代码可能有问题，应该添加self参数，如def get_current_detection_points(self)，按实际需求调整）。
                """
         return self.curr_det_pts
-
+# 以下是不同类型的测试类，用于针对不同情况对传感器相关功能进行测试
+# 测试同步LiDAR传感器点数量的类，继承自SyncSmokeTest，包含了具体的测试方法
 class TestSyncLidar(SyncSmokeTest):
     def test_lidar_point_count(self):
         """
@@ -143,25 +144,28 @@ class TestSyncLidar(SyncSmokeTest):
                """
         print("TestSyncLidar.test_lidar_point_count")
         sensors = []
-
+# 定义第一个激光雷达传感器的属性字典，包含通道数、强度衰减限制、一般衰减率、检测范围、每秒点数、旋转频率等属性
         att_l00={'channels' : '64', 'dropoff_intensity_limit': '0.0', 'dropoff_general_rate': '0.0',
           'range' : '50', 'points_per_second': '100000', 'rotation_frequency': '20'}
+        # 定义第二个激光雷达传感器的属性字典
         att_l01={'channels' : '64', 'range' : '200', 'points_per_second': '500000',
           'rotation_frequency': '5'}
+        # 定义第三个激光雷达传感器的属性字典
         att_l02={'channels' : '64', 'dropoff_intensity_limit': '1.0', 'dropoff_general_rate': '0.0',
           'range' : '50', 'points_per_second': '100000', 'rotation_frequency': '50'}
-
+         # 创建三个不同属性配置的激光雷达传感器对象，并添加到传感器列表中
         sensors.append(Sensor(self, SensorType.LIDAR, att_l00))
         sensors.append(Sensor(self, SensorType.LIDAR, att_l01))
         sensors.append(Sensor(self, SensorType.LIDAR, att_l02))
-
+        # 模拟世界时间推进10次，让传感器有足够时间采集数据
         for _ in range(0, 10):
             self.world.tick()
+            # 暂停程序0.5秒，等待一些可能的后台处理完成，确保数据稳定
         time.sleep(0.5)
-
+        # 销毁每个传感器对象，释放相关资源
         for sensor in sensors:
             sensor.destroy()
-
+        # 检查每个传感器的数据处理过程是否正确，如果有错误则使测试失败并输出错误信息
         for sensor in sensors:
             if not sensor.is_correct():
                 self.fail(sensor.error)
@@ -173,22 +177,24 @@ class TestSyncLidar(SyncSmokeTest):
                """
         print("TestSyncLidar.test_semlidar_point_count")
         sensors = []
-
+         # 定义第一个语义激光雷达传感器的属性字典，包含通道数、检测范围、每秒点数、旋转频率等属性
         att_s00 = {'channels' : '64', 'range' : '100', 'points_per_second': '100000',
           'rotation_frequency': '20'}
+        # 定义第二个语义激光雷达传感器的属性字典
         att_s01 = {'channels' : '32', 'range' : '200', 'points_per_second': '500000',
           'rotation_frequency': '50'}
-
+        # 创建两个不同属性配置的语义激光雷达传感器对象，并添加到传感器列表中
         sensors.append(Sensor(self, SensorType.SEMLIDAR, att_s00))
         sensors.append(Sensor(self, SensorType.SEMLIDAR, att_s01))
-
+        # 模拟世界时间推进10次，让传感器有足够时间采集数据
         for _ in range(0, 10):
             self.world.tick()
+            # 暂停程序0.5秒，等待一些可能的后台处理完成，确保数据稳定
         time.sleep(0.5)
-
+        # 销毁每个传感器对象，释放相关资源
         for sensor in sensors:
             sensor.destroy()
-
+        # 检查每个传感器的数据处理过程是否正确，如果有错误则使测试失败并输出错误信息
         for sensor in sensors:
             if not sensor.is_correct():
                 self.fail(sensor.error)
@@ -201,7 +207,7 @@ class TestASyncLidar(SmokeTest):
     def test_lidar_point_count(self):
         print("TestASyncLidar.test_lidar_point_count")
         sensors = []
-
+        # 定义第一个激光雷达传感器的属性字典，包含通道数、强度衰减限制、一般衰减率、检测范围、每秒点数、旋转频率等属性
         att_l00={'channels' : '64', 'dropoff_intensity_limit': '0.0', 'dropoff_general_rate': '0.0',
           'range' : '50', 'points_per_second': '100000', 'rotation_frequency': '20'}
         att_l01={'channels' : '64', 'range' : '200', 'points_per_second': '500000',
@@ -229,12 +235,13 @@ class TestASyncLidar(SmokeTest):
                """
         print("TestASyncLidar.test_semlidar_point_count")
         sensors = []
-
+        # 定义第一个激光雷达传感器的属性字典，包含通道数、强度衰减限制、一般衰减率、检测范围、每秒点数、旋转频率等属性
         att_s00 = {'channels' : '64', 'range' : '100', 'points_per_second': '100000',
           'rotation_frequency': '20'}
+        # 定义第二个语义激光雷达传感器的属性字典
         att_s01 = {'channels' : '32', 'range' : '200', 'points_per_second': '500000',
           'rotation_frequency': '50'}
-
+        # 创建两个不同属性配置的语义激光雷达传感器对象，并添加到传感器列表中
         sensors.append(Sensor(self, SensorType.SEMLIDAR, att_s00))
         sensors.append(Sensor(self, SensorType.SEMLIDAR, att_s01))
 
