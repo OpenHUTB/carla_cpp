@@ -118,7 +118,7 @@ while True:
 
         # 统计提问者
         user = issue['user']['login']
-        issue_counts[user] = issue_counts.get(user, 0) + 1
+        issue_counts[user] = issue_counts.get(user, 0) + 1#更新用户统计
 
         # 获取 Issue 的评论
         comments_url = issue['comments_url']
