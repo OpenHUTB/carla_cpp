@@ -1,32 +1,31 @@
-@echo off  ; 关闭命令回显，使批处理文件的执行更加干净
-setlocal enabledelayedexpansion  ; 启用延迟变量扩展，允许在代码块中正确更新和读取变量值
+@echo off  ; 关闭命令回显
+setlocal enabledelayedexpansion  ; 启用延迟变量扩展
 
-rem BAT script that creates the binaries for Carla (carla.org).  ; 注释：这是一个为Carla（carla.org）创建二进制文件的批处理脚本
-rem Run it through a cmd with the x64 Visual C++ Toolset enabled.  ; 注释：请在启用了x64 Visual C++工具集的命令提示符下运行此脚本
+; BAT脚本，用于为Carla（carla.org）创建二进制文件
+; 请在启用了x64 Visual C++工具集的命令提示符下运行此脚本
+set LOCAL_PATH=%~dp0  ; 设置当前批处理文件所在目录的路径
+set FILE_N=-[%~n0]:  ; 设置文件名（不含路径和扩展名），前面加上-[]
 
-set LOCAL_PATH=%~dp0  ; 设置LOCAL_PATH变量为当前批处理文件所在的目录路径
-set FILE_N=-[%~n0]:  ; 设置FILE_N变量为当前批处理文件的名称（不包括路径和扩展名），前面加上-[]
+; 打印批处理参数（用于调试）
+echo %FILE_N% [Batch params]: %*  ; 显示批处理文件名和所有传递的参数
 
-rem Print batch params (debug purpose)  ; 注释：打印批处理参数（用于调试）
-echo %FILE_N% [Batch params]: %*  ; 显示当前批处理文件的名称和所有传递给它的参数
+; ============================================================================
+; 解析参数
+; ============================================================================
 
-rem ============================================================================
-rem -- Parse arguments ---------------------------------------------------------
-rem ============================================================================
-
-set BUILD_UE4_EDITOR=false  ; 设置BUILD_UE4_EDITOR变量为false，表示不构建UE4编辑器
-set LAUNCH_UE4_EDITOR=false  ; 设置LAUNCH_UE4_EDITOR变量为false，表示不启动UE4编辑器
-set REMOVE_INTERMEDIATE=false  ; 设置REMOVE_INTERMEDIATE变量为false，表示不删除中间文件
-set USE_CARSIM=false  ; 设置USE_CARSIM变量为false，表示不使用CarSim
-set USE_CHRONO=false  ; 设置USE_CHRONO变量为false，表示不使用Chrono
-set USE_UNITY=true  ; 设置USE_UNITY变量为true，表示使用Unity
-set CARSIM_STATE="CarSim OFF"  ; 设置CARSIM_STATE变量为"CarSim OFF"，表示CarSim未启用
-set CHRONO_STATE="Chrono OFF"  ; 设置CHRONO_STATE变量为"Chrono OFF"，表示Chrono未启用
-set UNITY_STATE="Unity ON"  ; 设置UNITY_STATE变量为"Unity ON"，表示Unity已启用
-set AT_LEAST_WRITE_OPTIONALMODULES=false  ; 设置AT_LEAST_WRITE_OPTIONALMODULES变量为false，表示不写入可选模块
-set EDITOR_FLAGS=""  ; 设置EDITOR_FLAGS变量为空字符串，用于存储编辑器标志
-set USE_ROS2=false  ; 设置USE_ROS2变量为false，表示不使用ROS2
-set ROS2_STATE="Ros2 OFF"  ; 设置ROS2_STATE变量为"Ros2 OFF"，表示ROS2未启用
+set BUILD_UE4_EDITOR=false  ; 不构建UE4编辑器
+set LAUNCH_UE4_EDITOR=false  ; 不启动UE4编辑器
+set REMOVE_INTERMEDIATE=false  ; 不删除中间文件
+set USE_CARSIM=false  ; 不使用CarSim
+set USE_CHRONO=false  ; 不使用Chrono
+set USE_UNITY=true  ; 使用Unity
+set CARSIM_STATE="CarSim OFF"  ; CarSim状态设置为关闭
+set CHRONO_STATE="Chrono OFF"  ; Chrono状态设置为关闭
+set UNITY_STATE="Unity ON"  ; Unity状态设置为开启
+set AT_LEAST_WRITE_OPTIONALMODULES=false  ; 不写入可选模块
+set EDITOR_FLAGS=""  ; 编辑器标志设置为空
+set USE_ROS2=false  ; 不使用ROS2
+set ROS2_STATE="Ros2 OFF"  ; ROS2状态设置为关闭
 
 :arg-parse
 echo %1
