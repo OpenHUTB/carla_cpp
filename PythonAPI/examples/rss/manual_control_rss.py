@@ -41,9 +41,9 @@ Use ARROWS or WASD keys for control.
     T            : toggle RSS                      # 'T'键的功能，按下该键用于切换RSS（整体开启或者关闭RSS相关的功能模块等）
     N            : pause simulation                # 'N'键的功能，按下该键用于暂停模拟（比如暂停整个车辆行驶、环境变化等模拟过程，方便查看当前状态或者进行一些调整操作）
 
-    F1           : toggle HUD
-    H/?          : toggle help
-    ESC          : quit
+    F1           : toggle HUD     # 'F1'键的功能，按下该键用于切换抬头显示（HUD即Head-Up Display，通常是在驾驶视角中显示一些重要信息，如车速、导航等，通过该键可以决定是否显示这些信息）
+    H/?          : toggle help    # 'H'键或者'/?'键的功能，按下这些键用于切换帮助信息显示（可以决定是否在界面上显示操作帮助相关的提示内容，方便用户了解各个按键功能等）
+    ESC          : quit           # 'ESC'键的功能，按下该键用于退出整个程序或者当前的操作界面（quit表示完全退出，结束当前在CARLA中的相关操作）
 """
 
 from __future__ import print_function
