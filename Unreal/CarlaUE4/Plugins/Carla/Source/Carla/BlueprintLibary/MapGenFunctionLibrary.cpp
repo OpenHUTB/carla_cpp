@@ -139,7 +139,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
 
   }
 
-  return MeshDescription;
+  return MeshDescription;//返回MesDescription
 }
 
 UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
