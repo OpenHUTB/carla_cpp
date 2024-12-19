@@ -66,11 +66,10 @@ class Scenario(object):
         for _i in range(0, frames):
             self.world.tick()
 
-    def clear_scene(self):
-        for actor in self.actor_list:
-            actor[1].destroy()
-
-        self.active = False
+    def clear_scene(self):                   #函数用于清楚场景中的某个元素
+        for actor in self.actor_list:        #遍历列表中的每个元素
+            actor[1].destroy()               #用于销毁一个游戏中的某个资源
+        self.active = False                  #将被销毁的资源标记为非活动状态
 
     def reload_world(self, settings = None, spectator_tr = None):
         if settings is not None:
