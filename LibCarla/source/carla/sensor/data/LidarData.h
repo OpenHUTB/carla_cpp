@@ -59,25 +59,28 @@ namespace data {
   /// Xn, Yn, Zn, In （第n个点的x, y, z坐标和强度）
   ///    }
   ///
+// LidarDetection类用于存储单个激光雷达检测点的数据
+class LidarDetection {
+public:
+  // 点的地理位置，使用carla::geom::Location表示
+  geom::Location point;
+  // 点的强度信息
+  float intensity;
 
-  class LidarDetection {
-    public:
-      geom::Location point;
-      float intensity;
+  // 默认构造函数，初始化点为(0,0,0)，强度为0
+  LidarDetection() : point(0.0f, 0.0f, 0.0f), intensity(0.0f) {}
+  // 构造函数，根据提供的坐标和强度初始化
+  LidarDetection(float x, float y, float z, float intensity) : point(x, y, z), intensity(intensity) {}
+  // 构造函数，根据提供的geom::Location和强度初始化
+  LidarDetection(geom::Location p, float intensity) : point(p), intensity(intensity) {}
 
-      LidarDetection() :
-          point(0.0f, 0.0f, 0.0f), intensity{0.0f} { }
-      LidarDetection(float x, float y, float z, float intensity) :
-          point(x, y, z), intensity{intensity} { }
-      LidarDetection(geom::Location p, float intensity) :
-          point(p), intensity{intensity} { }
-
-      void WritePlyHeaderInfo(std::ostream& out) const{
-        out << "property float32 x\n" \
-          "property float32 y\n" \
-          "property float32 z\n" \
-          "property float32 I";
-      }
+  // 向输出流写入PLY文件头信息
+  void WritePlyHeaderInfo(std::ostream& out) const {
+    out << "property float32 x\n"
+        << "property float32 y\n"
+        << "property float32 z\n"
+        << "property float32 I";
+  }
 
       void WriteDetection(std::ostream& out) const{
         out << point.x << ' ' << point.y << ' ' << point.z << ' ' << intensity;
