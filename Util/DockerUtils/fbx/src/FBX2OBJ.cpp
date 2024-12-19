@@ -12,7 +12,10 @@ FbxSurfacePhong* gMatSidewalk;
 FbxSurfacePhong* gMatCross;
 FbxSurfacePhong* gMatGrass;
 FbxSurfacePhong* gMatBlock;
-
+// 以下这段预处理指令代码用于处理 IOS_REF 的定义情况。
+// 如果在当前编译环境中已经定义了 IOS_REF（通过 #ifdef 判断），那么先取消它原来的定义（通过 #undef 操作），
+// 然后重新定义 IOS_REF，使其指向 gSdkManager（一个可能在别处定义的全局 FbxManager 类型对象，用于管理整个 FBX SDK 的相关操作）的输入输出设置（GetIOSettings 函数获取）的解引用。
+// 这样做可能是为了确保在特定的与 iOS 相关的编译配置场景下，IOS_REF 能准确地关联到对应的设置对象，便于后续基于该设置进行一些特定的操作或逻辑处理。
 #ifdef IOS_REF
     #undef  IOS_REF
     #define IOS_REF (*(gSdkManager->GetIOSettings()))
