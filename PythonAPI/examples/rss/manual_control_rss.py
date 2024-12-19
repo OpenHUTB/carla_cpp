@@ -22,10 +22,10 @@ Use ARROWS or WASD keys for control.
     Space        : hand-brake
     P            : toggle autopilot
 
-    TAB          : change view
-    Backspace    : change vehicle
+    TAB          : change view      # 'TAB'键的功能，按下该键用于切换视图（比如切换不同的视角来查看车辆周围环境、车辆内部视角等不同的观察角度）
+    Backspace    : change vehicle   # 'Backspace'键的功能，按下该键用于切换车辆（如果场景中有多辆车可供选择操作，通过该键可以更换当前正在控制的车辆）
 
-    R            : toggle recording images to disk
+    R            : toggle recording images to disk    # 'R'键的功能，按下该键用于切换是否将图像记录到磁盘上（toggle表示切换开启或者关闭的状态，意味着可以通过该键决定是否把当前看到的图像保存到本地磁盘中，方便后续查看或者分析等）
 
     F2           : toggle RSS visualization mode
     F3           : increase log level
