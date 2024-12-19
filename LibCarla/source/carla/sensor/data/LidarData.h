@@ -55,6 +55,7 @@ namespace data {
   /// X0, Y0, Z0, I0 （第一个点的x, y, z坐标和强度）
   ///      ...
   ///      Xn, Yn, Zn, In
+
   /// Xn, Yn, Zn, In （第n个点的x, y, z坐标和强度）
   ///    }
   ///
