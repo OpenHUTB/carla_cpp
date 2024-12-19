@@ -131,19 +131,21 @@ public:
     _points.emplace_back(detection.intensity);
   }
 
-    virtual void WritePointSync(SemanticLidarDetection &detection) {
-      (void) detection;
-      DEBUG_ASSERT(false);
-    }
 
-  private:
-    std::vector<float> _points;
+  // 一个重载的WritePointSync方法，用于SemanticLidarDetection对象
+  // 但在这个实现中，它仅断言失败，表明这个方法不应该被调用
+  // 这可能是因为SemanticLidarDetection和LidarDetection有不同的数据格式
+  virtual void WritePointSync(SemanticLidarDetection &detection) {
+    (void) detection; // 避免未使用变量的警告
+    DEBUG_ASSERT(false); // 断言失败，表明这个方法不应该被调用
+  }
 
-    friend class s11n::LidarSerializer;
-    friend class s11n::LidarHeaderView;
-    friend class carla::ros2::ROS2;
-  };
+private:
+  // 存储点的数据，每个点包含x, y, z, intensity四个float值
+  std::vector<float> _points;
 
-} // namespace s11n
-} // namespace sensor
-} // namespace carla
+  // 友元类，允许它们访问私有成员_points和_header
+  friend class s11n::LidarSerializer;
+  friend class s11n::LidarHeaderView;
+  friend class carla::ros2::ROS2;
+};
