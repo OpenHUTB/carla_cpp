@@ -44,11 +44,12 @@ namespace image {
              get_color(src, red_t()) +
             (get_color(src, green_t()) * 256) +
             (get_color(src, blue_t())  * 256 * 256);
+	      //归一化深度值
         const float normalized = depth / static_cast<float>(256 * 256 * 256 - 1);
         color_convert(gray32fc_pixel_t{normalized}, dst);
       }
     };
-
+    //结构：对数深度
     struct LogarithmicDepth {};
  // CityScapesPalette 结构体，可能用于将像素转换为 CityScapes 调色板中的颜色
     struct CityScapesPalette {
