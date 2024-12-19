@@ -675,28 +675,28 @@ public:
 
     /* ProtectedCommunicationZonesRSU */
     typedef struct ProtectedCommunicationZonesRSU {
-        long ProtectedCommunicationZoneCount;
-        std::vector<ProtectedCommunicationZone_t> list;
+        long ProtectedCommunicationZoneCount; // 表示受保护通信区域的数量，使用long类型来存储，用于记录当前所涉及的受保护通信区域的总个数，方便后续遍历等操作。
+        std::vector<ProtectedCommunicationZone_t> list; // 定义一个动态数组（使用std::vector），其中元素类型为ProtectedCommunicationZone_t，用于存储各个受保护通信区域的详细信息，比如区域类型、位置、有效期等相关内容。
     } ProtectedCommunicationZonesRSU_t;
 
     /* VehicleRole Dependencies */
     typedef enum VehicleRole {
-        VehicleRole_default = 0,
-        VehicleRole_publicTransport = 1,
-        VehicleRole_specialTransport    = 2,
-        VehicleRole_dangerousGoods  = 3,
-        VehicleRole_roadWork    = 4,
-        VehicleRole_rescue  = 5,
-        VehicleRole_emergency   = 6,
-        VehicleRole_safetyCar   = 7,
-        VehicleRole_agriculture = 8,
-        VehicleRole_commercial  = 9,
-        VehicleRole_military    = 10,
-        VehicleRole_roadOperator    = 11,
-        VehicleRole_taxi    = 12,
-        VehicleRole_reserved1   = 13,
-        VehicleRole_reserved2   = 14,
-        VehicleRole_reserved3   = 15
+        VehicleRole_default = 0, // 表示默认的车辆角色，对应枚举值为0，可作为一种通用性的设定，用于那些未明确指定特殊角色的车辆情况，在一些通用处理逻辑中可能会用到。
+        VehicleRole_publicTransport = 1, // 表示公共交通车辆角色，像公交车、地铁等这类为大众提供公共出行服务的车辆，对应枚举值为1，便于在交通管理等系统中对这类车辆进行针对性处理，比如优先通行权等相关逻辑。
+        VehicleRole_specialTransport    = 2, // 表示特殊运输车辆角色，通常用于运输一些具有特殊性质、要求的物品，对应枚举值为2，例如运输文物、机密文件等特殊货物的车辆，有助于对这类有特殊运输需求的车辆进行识别和管理。
+        VehicleRole_dangerousGoods  = 3, // 表示运输危险货物的车辆角色，对应枚举值为3，像运输易燃易爆、有毒有害等危险物品的货车等，在交通管控中需要格外关注其行驶路线、安全保障等方面，方便进行特殊处理以确保道路安全。
+        VehicleRole_roadWork    = 4, // 表示道路施工相关车辆角色，对应枚举值为4，比如道路维修的工程车、压路车等，用于区分这类参与道路建设、维护作业的车辆，在交通调度等方面可能会有相应的优先安排或者限行规则。
+        VehicleRole_rescue  = 5,// 表示救援车辆角色，像救护车、消防车等执行紧急救援任务的车辆，对应枚举值为5，这类车辆在应急情况下往往具有特殊的通行权限，通过此枚举值可方便在系统中识别并给予相应通行保障。
+        VehicleRole_emergency   = 6, // 表示应急车辆角色，涵盖多种在紧急突发状况下出动的车辆，对应枚举值为6，比如应对自然灾害、重大事故等场景下的指挥车、抢险车等，突出其紧急性以及在交通中的特殊地位，便于相关应急处置逻辑的实现。
+        VehicleRole_safetyCar   = 7,// 表示安全保障车辆角色，例如赛事活动中的安全车、交通管制中的引导车等，对应枚举值为7，用于特定场景下保障交通安全、秩序等用途的车辆识别与相应处理。
+        VehicleRole_agriculture = 8, // 表示农业用途车辆角色，对应枚举值为8，像拖拉机、收割机等在农业生产活动中使用的车辆，便于在交通管理中区分这类具有特定使用场景的车辆。
+        VehicleRole_commercial  = 9, // 表示商业用途车辆角色，例如货运卡车、物流配送车等从事商业运输活动的车辆，对应枚举值为9，有助于针对这类车辆进行运输调度、费用核算等相关业务逻辑处理。
+        VehicleRole_military    = 10,// 表示军事用途车辆角色，对应枚举值为10，像军车等军队相关的车辆，在交通管理中可能涉及保密、优先通行等特殊要求，通过此枚举值可方便进行识别和相应安排。
+        VehicleRole_roadOperator    = 11, // 表示道路运营管理相关车辆角色，对应枚举值为11，比如道路巡检车、收费管理车等负责道路运营、维护及管理工作的车辆，便于在交通系统中区分这类具有特定职责的车辆。
+        VehicleRole_taxi    = 12,// 表示出租车车辆角色，对应枚举值为12，用于在交通运营系统中对出租车这类提供客运服务的车辆进行明确标识，方便进行计价、调度等相关业务处理。
+        VehicleRole_reserved1   = 13,// 表示预留的车辆角色1，对应枚举值为13，主要是为了后续可能的功能扩展、新车辆角色定义等情况预留的位置，方便代码的可扩展性维护。
+        VehicleRole_reserved2   = 14, // 表示预留的车辆角色2，对应枚举值为14，同样是出于对未来新增车辆角色的考虑，预留此位置以便后续能灵活添加新的角色分类，不影响现有代码结构。
+        VehicleRole_reserved3   = 15 // 表示预留的车辆角色3，对应枚举值为15，为后续进一步拓展车辆角色相关功能提供了空间，使代码在应对业务变化时更具适应性。
     } e_VehicleRole;
  
     /* VehicleRole */
@@ -704,23 +704,23 @@ public:
 
     /* ExteriorLights Dependencies */
     typedef enum ExteriorLights {
-        ExteriorLights_lowBeamHeadlightsOn  = 0,
-        ExteriorLights_highBeamHeadlightsOn = 1,
-        ExteriorLights_leftTurnSignalOn = 2,
-        ExteriorLights_rightTurnSignalOn    = 3,
-        ExteriorLights_daytimeRunningLightsOn   = 4,
-        ExteriorLights_reverseLightOn   = 5,
-        ExteriorLights_fogLightOn   = 6,
-        ExteriorLights_parkingLightsOn  = 7
+        ExteriorLights_lowBeamHeadlightsOn  = 0,// 表示车辆近光灯处于开启状态，对应枚举值为0，常用于判断车辆在正常行驶、光线较暗等情况下近光灯的使用情况，以便进行相关提醒或合规性检查等操作。
+        ExteriorLights_highBeamHeadlightsOn = 1, // 表示车辆远光灯处于开启状态，对应枚举值为1，可用于检测车辆是否在不适当的时候开启了远光灯（比如会车时），进而进行相应的提示或管理。
+        ExteriorLights_leftTurnSignalOn = 2, // 表示车辆左转向灯处于开启状态，对应枚举值为2，在车辆转向或者变道向左时开启，通过此枚举值可在交通监控等系统中判断车辆的转向意图和操作规范性。
+        ExteriorLights_rightTurnSignalOn    = 3,// 表示车辆右转向灯处于开启状态，对应枚举值为3，与左转向灯类似，用于判断车辆向右转向或变道的操作情况，有助于交通管理和安全保障。
+        ExteriorLights_daytimeRunningLightsOn   = 4,// 表示车辆日间行车灯处于开启状态，对应枚举值为4，可用于确认车辆在白天行驶时是否按规定开启了日间行车灯，提升车辆的辨识度和行车安全性。
+        ExteriorLights_reverseLightOn   = 5,// 表示车辆倒车灯处于开启状态，对应枚举值为5，在车辆倒车操作时点亮，便于后方车辆和行人知晓车辆的倒车动作，通过此枚举值可监控倒车操作的合法性等情况。
+        ExteriorLights_fogLightOn   = 6, // 表示车辆雾灯处于开启状态，对应枚举值为6，用于判断车辆在雾天、雨天等能见度较低的特殊天气下是否正确开启雾灯，以保障行车安全和符合交通规则。
+        ExteriorLights_parkingLightsOn  = 7// 表示车辆停车灯处于开启状态，对应枚举值为7，可用于检测车辆停车时是否按要求开启停车灯，起到提示周围交通参与者的作用。
     } e_ExteriorLights;
 
     /* ExteriorLights */
-    typedef uint8_t ExteriorLights_t;
+    typedef uint8_t ExteriorLights_t;// 为ExteriorLights类型定义一个别名ExteriorLights_t，方便在代码中使用，本质上是uint8_t类型，因为车辆灯光状态用较小的数值范围就能表示，使用8位无符号整数类型既足够存储这些状态值，又能更节省内存空间，便于统一处理车辆外部灯光相关的数据操作。
     /* DeltaLatitude Dependencies */
     typedef enum DeltaLatitude {
-        DeltaLatitude_oneMicrodegreeNorth   = 10,
-        DeltaLatitude_oneMicrodegreeSouth   = -10,
-        DeltaLatitude_unavailable   = 131072
+        DeltaLatitude_oneMicrodegreeNorth   = 10, // 表示纬度向北增加1微度的情况，对应枚举值为10，用于体现地理坐标中纬度在向北方向上极其微小的变化量，比如在高精度定位追踪等场景下会用到。
+        DeltaLatitude_oneMicrodegreeSouth   = -10,// 表示纬度向南减少1微度的情况，对应枚举值为 -10，用于体现纬度在向南方向上的微小变化情况，同样适用于精确的地理位置变化分析等用途。
+        DeltaLatitude_unavailable   = 131072// 表示纬度变化量不可用的情况，对应一个特定的枚举值131072作为标识，在无法获取、确定或者出现异常导致纬度变化量无法表示时，使用此值来标记相应状态。
     } e_DeltaLatitude;
  
     /* DeltaLatitude */
