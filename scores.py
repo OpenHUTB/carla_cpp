@@ -109,7 +109,7 @@ while True:
     # 需要把代理关掉，否则报错（原因不明）：urllib3.exceptions.MaxRetryError: HTTPSConnectionPool
     response = requests.get(url, headers=headers)
     issues = response.json()
-
+#如果没有获取到问题，退出循环
     if not issues:
         break
 
