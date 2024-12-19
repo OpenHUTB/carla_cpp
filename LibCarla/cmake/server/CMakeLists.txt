@@ -133,7 +133,7 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/opendrive/*.h"
     "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
     "${libcarla_source_path}/carla/opendrive/parser/*.h"
-    "${libcarla_source_path}/carla/road/*.cpp"
+    "${libcarla_source_path}/carla/road/*.cpp"#  收集${libcarla_source_path}/carla/road/*.cpp的源文件路径，收集该目录下所有的.cpp文件路径到变量中，便于后续在项目中使用这些源文件。
     "${libcarla_source_path}/carla/road/*.h"
     "${libcarla_source_path}/carla/road/element/*.cpp"
     "${libcarla_source_path}/carla/road/element/*.h"
