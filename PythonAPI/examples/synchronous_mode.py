@@ -122,7 +122,7 @@ def should_quit():
         if event.type == pygame.QUIT:
             return True
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_ESCAPE:
+            if event.key == pygame.K_ESCAPE:                         #检查松开的按键是否为pygame.K_ESCAPE,即用户按下并松开了Esc键
                 return True
     return False
 
