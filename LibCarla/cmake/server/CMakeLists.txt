@@ -140,7 +140,7 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/road/general/*.cpp"
     "${libcarla_source_path}/carla/road/general/*.h"
     "${libcarla_source_path}/carla/road/object/*.cpp"
-    "${libcarla_source_path}/carla/road/object/*.h"
+    "${libcarla_source_path}/carla/road/object/*.h"# 收集${libcarla_source_path}/carla/road/object/*.h的头文件路径，使得对应子目录下的头文件能被项目代码引用，将其路径添加到变量中。
     "${libcarla_source_path}/carla/road/signal/*.cpp"
     "${libcarla_source_path}/carla/road/signal/*.h"
     "${libcarla_source_path}/carla/rpc/*.cpp"
