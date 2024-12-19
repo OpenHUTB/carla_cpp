@@ -65,7 +65,10 @@ geometry_msgs::msg::PoseWithCovariance::PoseWithCovariance(
 geometry_msgs::msg::PoseWithCovariance::PoseWithCovariance(
         PoseWithCovariance&& x) noexcept
 {
+    // 使用 std::move 迁移参数 x 的成员变量 m_pose 到当前对象的 m_pose
     m_pose = std::move(x.m_pose);
+
+    // 使用 std::move 迁移参数 x 的成员变量 m_covariance 到当前对象的 m_covariance
     m_covariance = std::move(x.m_covariance);
 }
 
@@ -81,11 +84,16 @@ geometry_msgs::msg::PoseWithCovariance& geometry_msgs::msg::PoseWithCovariance::
 geometry_msgs::msg::PoseWithCovariance& geometry_msgs::msg::PoseWithCovariance::operator =(
         PoseWithCovariance&& x) noexcept
 {
+    // 使用 std::move 迁移参数 x 的成员变量 m_pose 到当前对象的 m_pose
     m_pose = std::move(x.m_pose);
+
+    // 使用 std::move 迁移参数 x 的成员变量 m_covariance 到当前对象的 m_covariance
     m_covariance = std::move(x.m_covariance);
 
+    // 返回当前对象本身，以支持链式赋值
     return *this;
 }
+
 
 bool geometry_msgs::msg::PoseWithCovariance::operator ==(
         const PoseWithCovariance& x) const
