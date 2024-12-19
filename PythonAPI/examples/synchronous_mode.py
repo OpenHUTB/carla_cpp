@@ -118,7 +118,7 @@ def get_font():                                                     # 函数用�
 
 
 def should_quit():
-    for event in pygame.event.get():
+    for event in pygame.event.get():                                #通过event对在pygame中获取的所有事件进行循环遍历
         if event.type == pygame.QUIT:
             return True
         elif event.type == pygame.KEYUP:
