@@ -271,59 +271,79 @@ RssCheck::RssCheck(float maximum_steering_angle,
 }
 
 RssCheck::~RssCheck() {}
-
+// 设置日志级别函数
+// 参数log_level：指定要设置的spdlog日志级别
+// 该函数不仅设置了全局的spdlog日志级别，还设置了本类中_logger对象的日志级别
 void RssCheck::SetLogLevel(const spdlog::level::level_enum &log_level) {
   spdlog::set_level(log_level);
   _logger->set_level(log_level);
 }
-
+// 设置地图相关的日志级别函数
+// 参数map_log_level：指定要设置的地图相关的spdlog日志级别
+// 该函数用于设置地图相关模块（ad::map::access和ad::rss::map）的日志级别
 void RssCheck::SetMapLogLevel(const spdlog::level::level_enum &map_log_level) {
   ::ad::map::access::getLogger()->set_level(map_log_level);
   ::ad::rss::map::getLogger()->set_level(map_log_level);
 }
-
+// 获取默认的本车（ego vehicle）在Actor星座回调中的动力学信息（常量函数，不会修改类的成员变量）
+// 返回值：ad::rss::world::RssDynamics类型的本车动力学信息
 const ::ad::rss::world::RssDynamics &RssCheck::GetDefaultActorConstellationCallbackEgoVehicleDynamics() const {
   return _default_actor_constellation_callback_ego_vehicle_dynamics;
 }
-
+// 设置默认的本车（ego vehicle）在Actor星座回调中的动力学信息
+// 参数ego_vehicle_dynamics：要设置的本车动力学信息
+// 该函数将传入的本车动力学信息赋值给类的对应成员变量
 void RssCheck::SetDefaultActorConstellationCallbackEgoVehicleDynamics(
     const ::ad::rss::world::RssDynamics &ego_vehicle_dynamics) {
   _default_actor_constellation_callback_ego_vehicle_dynamics = ego_vehicle_dynamics;
 }
-
+// 获取默认的其他车辆在Actor星座回调中的动力学信息（常量函数，不会修改类的成员变量）
+// 返回值：ad::rss::world::RssDynamics类型的其他车辆动力学信息
 const ::ad::rss::world::RssDynamics &RssCheck::GetDefaultActorConstellationCallbackOtherVehicleDynamics() const {
   return _default_actor_constellation_callback_other_vehicle_dynamics;
 }
-
+// 设置默认的其他车辆在Actor星座回调中的动力学信息
+// 参数other_vehicle_dynamics：要设置的其他车辆动力学信息
+// 该函数将传入的其他车辆动力学信息赋值给类的对应成员变量
 void RssCheck::SetDefaultActorConstellationCallbackOtherVehicleDynamics(
     const ::ad::rss::world::RssDynamics &other_vehicle_dynamics) {
   _default_actor_constellation_callback_other_vehicle_dynamics = other_vehicle_dynamics;
 }
-
+// 获取默认的行人在Actor星座回调中的动力学信息（常量函数，不会修改类的成员变量）
+// 返回值：ad::rss::world::RssDynamics类型的行人动力学信息
 const ::ad::rss::world::RssDynamics &RssCheck::GetDefaultActorConstellationCallbackPedestrianDynamics() const {
   return _default_actor_constellation_callback_pedestrian_dynamics;
 }
-
+// 设置默认的行人在Actor星座回调中的动力学信息
+// 参数pedestrian_dynamics：要设置的行人动力学信息
+// 该函数将传入的行人动力学信息赋值给类的对应成员变量
 void RssCheck::SetDefaultActorConstellationCallbackPedestrianDynamics(
     const ::ad::rss::world::RssDynamics &pedestrian_dynamics) {
   _default_actor_constellation_callback_pedestrian_dynamics = pedestrian_dynamics;
 }
-
+// 获取道路边界模式（常量函数，不会修改类的成员变量）
+// 返回值：carla::rss::RoadBoundariesMode类型的道路边界模式信息
 const ::carla::rss::RoadBoundariesMode &RssCheck::GetRoadBoundariesMode() const {
   return _road_boundaries_mode;
 }
-
+// 设置道路边界模式
+// 参数road_boundaries_mode：要设置的道路边界模式信息
+// 该函数将传入的道路边界模式信息赋值给类的对应成员变量
 void RssCheck::SetRoadBoundariesMode(const ::carla::rss::RoadBoundariesMode &road_boundaries_mode) {
   _road_boundaries_mode = road_boundaries_mode;
 }
-
+// 添加路由目标点的函数
+// 参数routing_target：要添加的路由目标点的坐标信息（以carla::geom::Transform类型表示）
+// 该函数将传入的路由目标点转换为特定格式（ENUPoint）后添加到待添加的路由目标列表中
 void RssCheck::AppendRoutingTarget(::carla::geom::Transform const &routing_target) {
   _routing_targets_to_append.push_back(
       ::ad::map::point::createENUPoint(routing_target.location.x, -1. * routing_target.location.y, 0.));
 }
-
+// 获取路由目标点列表的函数（常量函数，不会修改类的成员变量）
+// 返回值：std::vector<::carla::geom::Transform>类型的路由目标点列表
 const std::vector<::carla::geom::Transform> RssCheck::GetRoutingTargets() const {
   std::vector<::carla::geom::Transform> routing_targets;
+ // 判断_routing_targets是否在有效输入范围内，如果是则进行下面的转换操作
   if (withinValidInputRange(_routing_targets)) {
     for (auto const &target : _routing_targets) {
       ::carla::geom::Transform routing_target;
@@ -335,17 +355,26 @@ const std::vector<::carla::geom::Transform> RssCheck::GetRoutingTargets() const 
   }
   return routing_targets;
 }
-
+// 重置路由目标点列表的函数，清空已有的路由目标点和待添加的路由目标点列表
 void RssCheck::ResetRoutingTargets() {
   _routing_targets.clear();
   _routing_targets_to_append.clear();
 }
-
+// 丢弃当前路线的函数，在日志中输出相关信息，并将本车的路线设置为空路线
 void RssCheck::DropRoute() {
   _logger->debug("Dropping Route:: {}", _carla_rss_state.ego_route);
   _carla_rss_state.ego_route = ::ad::map::route::FullRoute();
 }
-
+/ 检查对象的核心函数，执行一系列与环境感知、路线规划、安全检查等相关的操作，并返回检查结果
+// 参数timestamp：时间戳信息，用于同步等操作
+// 参数actors：场景中的所有Actor列表
+// 参数carla_ego_actor：代表本车的Actor对象
+// 参数output_response：用于输出合适的响应信息
+// 参数output_rss_state_snapshot：用于输出RSS状态快照信息
+// 参数output_situation_snapshot：用于输出场景快照信息
+// 参数output_world_model：用于输出世界模型信息
+// 参数output_rss_ego_dynamics_on_route：用于输出本车在路线上的动力学信息
+// 返回值：表示检查结果的布尔值，true表示检查通过等正常情况，false表示出现异常等情况
 bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
                             carla::SharedPtr<carla::client::ActorList> const &actors,
                             carla::SharedPtr<carla::client::Actor> const &carla_ego_actor,
@@ -356,6 +385,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
                             EgoDynamicsOnRoute &output_rss_ego_dynamics_on_route) {
   bool result = false;
   try {
+   // 获取从纪元开始到当前检查开始的时间（以毫秒为单位），可能用于性能分析等记录时间的用途
     double const time_since_epoch_check_start_ms =
         std::chrono::duration<double, std::milli>(std::chrono::system_clock::now().time_since_epoch()).count();
 #if DEBUG_TIMING
@@ -365,7 +395,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> SC " << std::chrono::duration<double, std::milli>(t_end - t_start).count() << " start checkObjects"
               << std::endl;
 #endif
-
+ // 将传入的代表本车的Actor对象转换为Vehicle类型的智能指针，如果转换失败则为nullptr
     const auto carla_ego_vehicle = boost::dynamic_pointer_cast<carla::client::Vehicle>(carla_ego_actor);
     if (carla_ego_vehicle == nullptr) {
       _logger->error("RSS Sensor only support vehicles as ego.");
@@ -376,11 +406,11 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> ME " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " before  MapMatching" << std::endl;
 #endif
-
+// 获取匹配对象（可能是与地图等进行匹配的相关操作），允许车辆距离路线一定距离（此处为2.0米）以免失去与路线的接触
     //允许车辆距离路线至少 2.0 米，以免丧失
     //与路线的接触
     auto const ego_match_object = GetMatchObject(carla_ego_actor, ::ad::physics::Distance(2.0));
-
+// 如果当前本车匹配对象的位置信息有效，则进行下面的位置跳跃检查等操作
     if (::ad::map::point::isValid(_carla_rss_state.ego_match_object.enuPosition.centerPoint, false)) {
       // check for bigger position jumps of the ego vehicle
       auto const travelled_distance = ::ad::map::point::distance(
@@ -392,7 +422,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
         DropRoute();
       }
     }
-
+// 更新本车的匹配对象信息
     _carla_rss_state.ego_match_object = ego_match_object;
 
     _logger->trace("MapMatch:: {}", _carla_rss_state.ego_match_object);
@@ -402,7 +432,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> ME " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " after ego MapMatching" << std::endl;
 #endif
-
+// 更新路线信息
     UpdateRoute(_carla_rss_state);
 
 #if DEBUG_TIMING
@@ -410,14 +440,14 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> RU " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " after route update " << std::endl;
 #endif
-
+// 计算本车在路线上的动力学信息，涉及传入时间戳、时间信息、本车对象、本车匹配对象、本车路线、默认本车动力学信息以及之前的本车动力学信息等参数
     _carla_rss_state.ego_dynamics_on_route = CalculateEgoDynamicsOnRoute(
         timestamp, time_since_epoch_check_start_ms, *carla_ego_vehicle, _carla_rss_state.ego_match_object,
         _carla_rss_state.ego_route, _carla_rss_state.default_ego_vehicle_dynamics,
         _carla_rss_state.ego_dynamics_on_route);
-
+// 更新默认的RSS动力学信息
     UpdateDefaultRssDynamics(_carla_rss_state);
-
+// 根据传入的各种信息创建世界模型
     CreateWorldModel(timestamp, *actors, *carla_ego_vehicle, _carla_rss_state);
 
 #if DEBUG_TIMING
@@ -425,7 +455,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> WM " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " after create world model " << std::endl;
 #endif
-
+// 执行实际的检查操作，返回检查结果（具体检查逻辑在PerformCheck函数中实现）
     result = PerformCheck(_carla_rss_state);
 
 #if DEBUG_TIMING
@@ -433,7 +463,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> CH " << std::chrono::duration<double, std::milli>(t_end - t_start).count() << " end RSS check"
               << std::endl;
 #endif
-
+// 分析检查结果（具体分析逻辑在AnalyseCheckResults函数中实现）
     AnalyseCheckResults(_carla_rss_state);
 
 #if DEBUG_TIMING
@@ -441,7 +471,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> AN " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " end analyze results" << std::endl;
 #endif
-
+//更新本车动力学信息中的检查结束时间戳（记录从纪元开始到当前检查结束的时间，以毫秒为单位）
     _carla_rss_state.ego_dynamics_on_route.time_since_epoch_check_end_ms =
         std::chrono::duration<double, std::milli>(std::chrono::system_clock::now().time_since_epoch()).count();
 
@@ -467,15 +497,22 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
   }
   return result;
 }
-
+// 获取匹配对象的函数，根据传入的Actor对象和采样距离，计算并返回匹配对象相关信息（如位置、尺寸、与地图匹配后的边界框等）
+// 参数actor：要获取匹配对象的Actor对象
+// 参数sampling_distance：采样距离，用于地图匹配等相关操作中的距离判断等
+// 返回值：ad::map::match::Object类型的匹配对象信息
 ::ad::map::match::Object RssCheck::GetMatchObject(carla::SharedPtr<carla::client::Actor> const &actor,
                                                   ::ad::physics::Distance const &sampling_distance) const {
   ::ad::map::match::Object match_object;
-
+// 获取Actor对象的坐标变换信息（包含位置、旋转等）
   auto const vehicle_transform = actor->GetTransform();
+ // 设置匹配对象的中心位置坐标（x坐标，将传入的坐标转换为特定的ENUCoordinate类型）
   match_object.enuPosition.centerPoint.x = ::ad::map::point::ENUCoordinate(vehicle_transform.location.x);
+ // 设置匹配对象的中心位置坐标（y坐标，注意这里取反了传入的y坐标值，并转换为特定的ENUCoordinate类型）
   match_object.enuPosition.centerPoint.y = ::ad::map::point::ENUCoordinate(-1. * vehicle_transform.location.y);
+ // 设置匹配对象的中心位置坐标（z坐标，转换为特定的ENUCoordinate类型），此处暂按原始代码注释掉了使用vehicle_transform.location.z赋值的部分
   match_object.enuPosition.centerPoint.z = ::ad::map::point::ENUCoordinate(0.);  // vehicle_transform.location.z;
+ // 根据车辆的旋转角度（取反yaw角并转换为弧度）创建ENUHeading类型的航向信息
   match_object.enuPosition.heading =
       ::ad::map::point::createENUHeading(-1 * vehicle_transform.rotation.yaw * to_radians);
 
