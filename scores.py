@@ -108,7 +108,8 @@ while True:
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
     # 需要把代理关掉，否则报错（原因不明）：urllib3.exceptions.MaxRetryError: HTTPSConnectionPool
     response = requests.get(url, headers=headers)
-    issues = response.json()
+    #将响应转换为JSON格式
+        issues = response.json()
 
     if not issues:
         break
