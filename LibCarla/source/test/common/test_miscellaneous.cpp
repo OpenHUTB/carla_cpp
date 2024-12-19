@@ -8,6 +8,7 @@
 
 #include <carla/Version.h>
 
+#定义了一个名为TEST的函数，接受两个参数miscllaneous，version
 TEST(miscellaneous, version) {
   std::cout << "LibCarla " << carla::version() << std::endl;
 }
