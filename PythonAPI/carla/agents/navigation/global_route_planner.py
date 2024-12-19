@@ -513,70 +513,138 @@ class RoadTopologyHandler:
     def _turn_decision(self, index, route, threshold=math.radians(35)):
         # type: (int, list[int], float) -> RoadOption
         """
-        This method returns the turn decision (RoadOption) for pair of edges
-        around current index of route list
+        此方法根据路线（route）列表中当前索引（index）位置附近的边对信息，返回对应的转弯决策（RoadOption类型）。
+        通过分析当前边与下一条边的属性以及它们之间的向量关系等来判断是左转、右转还是直行等情况。
+
+        参数：
+        index：路线列表（route）中的索引位置，指明要分析的边对在路线中的位置。
+        route：由节点ID组成的列表，表示从起点到终点的完整路线。
+        threshold：角度阈值（以弧度为单位），用于判断两条边之间的夹角是否足够小以认定为直行情况，默认值为35度对应的弧度值。
+
+        返回值：
+        返回一个RoadOption类型的值，表示做出的转弯决策（例如RoadOption.LEFT表示左转等）。
         """
 
         decision = None
+        # 获取路线中当前索引前一个节点的ID，用于后续与当前边等信息结合分析
         previous_node = route[index - 1]
+        # 获取路线中当前索引对应的节点的ID，作为当前边的起始节点
         current_node = route[index]
+        # 获取路线中当前索引后一个节点的ID，作为当前边的结束节点（即下一条边的起始节点）
         next_node = route[index + 1]
+        # 从表示道路拓扑图（假设为self._graph）的对象中获取当前节点与下一个节点之间的边信息，类型标注为EdgeDict，其中包含边的各种属性
         next_edge = self._graph.edges[current_node, next_node]  # type: EdgeDict
+
         if index > 0:
-            if self._previous_decision != RoadOption.VOID \
+            # 当当前索引大于0时（即不是路线中的第一个节点，存在前序边可供参考对比），进行以下判断：
+            # 如果满足以下多个条件，则直接采用上一次的决策作为本次的转弯决策：
+            # 1. 上一次的决策不是VOID，说明之前已经有过有效的决策记录。
+            # 2. 交叉路口结束节点编号大于0，表示之前已经确定过交叉路口相关的有效结束节点（可能在之前的处理中标记过）。
+            # 3. 交叉路口结束节点编号不等于前一个节点的编号，说明当前的边对情况符合参考上一次决策的条件。
+            # 4. 下一条边的类型是车道跟随（LANEFOLLOW），表示正常沿着车道行驶的情况。
+            # 5. 下一条边处于交叉路口（intersection属性为True），说明即将进入或处于交叉路口场景。
+            if self._previous_decision!= RoadOption.VOID \
                     and self._intersection_end_node > 0 \
-                    and self._intersection_end_node != previous_node \
+                    and self._intersection_end_node!= previous_node \
                     and next_edge['type'] == RoadOption.LANEFOLLOW \
                     and next_edge['intersection']:
                 decision = self._previous_decision
             else:
                 self._intersection_end_node = -1
+                # 获取前一个节点与当前节点之间的边信息，同样类型为EdgeDict，包含边的相关属性，用于后续分析
                 current_edge = self._graph.edges[previous_node, current_node]  # type: EdgeDict
+                # 判断是否需要进行详细的转弯决策计算的条件：
+                # 当前边的类型是车道跟随（LANEFOLLOW）且当前边不在交叉路口（not current_edge['intersection']为True），
+                # 同时下一条边的类型是车道跟随（LANEFOLLOW）且下一条边处于交叉路口（next_edge['intersection']为True），
+                # 这种情况意味着车辆即将进入交叉路口，需要通过进一步分析来确定转弯方向等决策。
                 calculate_turn = current_edge['type'] == RoadOption.LANEFOLLOW and not current_edge[
                     'intersection'] and next_edge['type'] == RoadOption.LANEFOLLOW and next_edge['intersection']
                 if calculate_turn:
+                    # 调用另一个方法（_successive_last_intersection_edge）获取从当前索引开始的路线上最后连续交叉路口边缘相关信息，
+                    # 包括最后一个处于连续交叉路口情况的节点编号以及对应的边信息，这有助于更准确地处理连续经过交叉路口小段边的场景，避免误判转弯情况。
                     last_node, tail_edge = self._successive_last_intersection_edge(index, route)
                     self._intersection_end_node = last_node
                     if tail_edge is not None:
+                        # 如果获取到了最后连续交叉路口对应的边信息（tail_edge），则用它替换原本获取的下一条边信息（next_edge），
+                        # 以便后续基于更准确的边信息进行转弯决策相关的计算和判断。
                         next_edge = tail_edge
+                    # 获取当前边的出口向量（exit_vector），用于后续计算两条边之间的角度关系等，可能表示边的方向信息（具体含义根据实际情况而定）。
+                    # 获取下一条边的出口向量，同样用于角度关系等计算，以判断车辆行驶方向的变化情况。
                     cv, nv = current_edge['exit_vector'], next_edge['exit_vector']
                     if cv is None or nv is None:
+                        # 如果当前边或者下一条边的出口向量为None（可能是数据缺失或未正确初始化等原因），
+                        # 则直接返回下一条边的类型作为本次的转弯决策（无法进行更准确的角度等相关分析了）。
                         return next_edge['type']
                     cross_list = []
+                    # 遍历当前节点在图中的所有后继节点（即邻居节点），目的是收集与当前边相关的交叉向量信息，
+                    # 用于后续与当前边和下一条边的向量关系进行对比分析，辅助判断转弯方向。
                     for neighbor in self._graph.successors(current_node):
                         select_edge = self._graph.edges[current_node, neighbor]
                         if select_edge['type'] == RoadOption.LANEFOLLOW:
-                            if neighbor != route[index + 1]:
+                            if neighbor!= route[index + 1]:
+                                # 对于类型为车道跟随（LANEFOLLOW）且不是下一条边（避免重复计算下一条边相关情况）的邻居节点对应的边，
+                                # 获取该边的网络向量（net_vector，具体含义根据实际应用场景而定，可能与道路网络的方向布局等有关），
+                                # 并计算该网络向量与当前边出口向量的叉积的z分量，将结果添加到交叉向量列表（cross_list）中，
+                                # 这些叉积结果可以帮助判断当前边与其他相邻边在二维平面上的相对位置关系，进而辅助确定转弯方向。
                                 sv = select_edge['net_vector']
                                 cross_list.append(np.cross(cv, sv)[2])
+                    # 计算当前边出口向量和下一条边出口向量的叉积的z分量，同样用于判断两条边在二维平面上的相对位置关系，
+                    # 结合叉积的方向特性（在二维平面上可以辅助判断左右关系等）来分析转弯情况。
                     next_cross = np.cross(cv, nv)[2]
+                    # 计算当前边出口向量和下一条边出口向量的夹角（通过向量点积公式计算夹角的余弦值，再使用math.acos函数获取夹角弧度值），
+                    # 同时使用np.clip函数确保点积结果除以向量模长乘积得到的余弦值在[-1, 1]范围内，避免出现数学计算错误，
+                    # 这个夹角可以直观反映两条边方向上的偏差程度，用于判断是直行还是转弯等情况。
                     deviation = math.acos(np.clip(
                         np.dot(cv, nv) / (np.linalg.norm(cv) * np.linalg.norm(nv)), -1.0, 1.0))
                     if not cross_list:
                         cross_list.append(0)
+                    # 根据计算得到的夹角与设定的阈值比较以及交叉向量列表中的相关信息来确定最终的转弯决策：
                     if deviation < threshold:
+                        # 如果两条边的夹角小于设定的阈值（threshold），认为车辆基本是沿着直线行驶，决策为直行（RoadOption.STRAIGHT）。
                         decision = RoadOption.STRAIGHT
                     elif cross_list and next_cross < min(cross_list):
+                        # 如果交叉向量列表不为空，且当前边与下一条边叉积的z分量小于交叉向量列表中的最小值，
+                        # 说明当前边相对于其他相邻边更偏向左边，决策为左转（RoadOption.LEFT）。
                         decision = RoadOption.LEFT
                     elif cross_list and next_cross > max(cross_list):
+                        # 如果交叉向量列表不为空，且当前边与下一条边叉积的z分量大于交叉向量列表中的最大值，
+                        # 说明当前边相对于其他相邻边更偏向右边，决策为右转（RoadOption.RIGHT）。
                         decision = RoadOption.RIGHT
                     elif next_cross < 0:
+                        # 如果当前边与下一条边叉积的z分量小于0，基于叉积在二维平面上判断左右方向的常规逻辑，决策为左转（RoadOption.LEFT）。
                         decision = RoadOption.LEFT
                     elif next_cross > 0:
+                        # 如果当前边与下一条边叉积的z分量大于0，基于叉积在二维平面上判断左右方向的常规逻辑，决策为右转（RoadOption.RIGHT）。
                         decision = RoadOption.RIGHT
                 else:
+                    # 如果不满足需要进行详细转弯决策计算的条件（calculate_turn为False），则直接采用下一条边的类型作为本次的转弯决策。
                     decision = next_edge['type']
 
         else:
+            # 如果当前索引为0（即处理路线中的第一个边对，不存在前序边可供参考对比），直接采用下一条边的类型作为转弯决策。
             decision = next_edge['type']
 
         self._previous_decision = decision
         return decision
 
     def _find_closest_in_list(self, current_waypoint, waypoint_list):
+        """
+        在给定的路点列表（waypoint_list）中，查找距离当前路点（current_waypoint）最近的路点，并返回其在列表中的索引。
+        通过遍历列表，计算每个路点与当前路点之间的距离，比较得出距离最小的路点对应的索引。
+
+        参数：
+        current_waypoint：作为参考的当前路点，用于与列表中的路点计算距离进行比较。
+        waypoint_list：包含多个路点的列表，要在其中查找距离当前路点最近的路点。
+
+        返回值：
+        返回waypoint_list中距离current_waypoint最近的路点的索引值，如果列表为空，则返回 -1。
+        """
         min_distance = float('inf')
         closest_index = -1
         for i, waypoint in enumerate(waypoint_list):
+            # 计算当前路点（current_waypoint）与列表中每个路点（waypoint）之间的距离，
+            # 这里通过路点的位置坐标（假设transform.location表示路点的位置信息）来计算两点间的距离，
+            # 具体的距离计算方式可能是欧几里得距离或者其他符合实际场景需求的距离度量方式。
             distance = waypoint.transform.location.distance(
                 current_waypoint.transform.location)
             if distance < min_distance:
