@@ -1,8 +1,8 @@
 // Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款进行许可。
+// 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 
@@ -31,9 +31,9 @@ class CARLA_API UCarlaLightSubsystem : public UWorldSubsystem
 
 public:
 
-  // Begin USubsystem
+  // 开始 USubsystem
   void Initialize(FSubsystemCollectionBase& Collection) override;
-  // End USubsystem
+  // 结束 USubsystem
   void Deinitialize() override;
 
   void RegisterLight(UCarlaLight* CarlaLight);
@@ -70,9 +70,9 @@ private:
 
   TMap<int, UCarlaLight* > Lights;
 
-  // Flag for each client to tell if an update needs to be done
+  // 每个客户端的标志，用于指示是否需要进行更新
   TMap<FString, bool> ClientStates;
-  // Since the clients doesn't have a proper id on the simulation,
-  // I use the host : port pair.
+  // 由于客户端在模拟中没有正确的 ID，因此
+  // 我使用 host ： 端口对。
 
 };
