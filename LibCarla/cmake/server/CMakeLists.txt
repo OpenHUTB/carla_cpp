@@ -130,7 +130,7 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/geom/*.cpp" # 收集${libcarla_source_path}/carla/geom/目录下所有以.h为扩展名的头文件路径
     "${libcarla_source_path}/carla/geom/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.cpp为扩展名的源文件路径
     "${libcarla_source_path}/carla/opendrive/*.cpp"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径
-    "${libcarla_source_path}/carla/opendrive/*.h"
+    "${libcarla_source_path}/carla/opendrive/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.cpp为扩展名的源文件路径，用于定位该目录下的所有源文件，收集其路径到变量，供后续编译等环节使用。
     "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
     "${libcarla_source_path}/carla/opendrive/parser/*.h"
     "${libcarla_source_path}/carla/road/*.cpp"
