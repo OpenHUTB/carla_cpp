@@ -12,7 +12,7 @@
 
 class URandomEngine;
 
-/// Base class for actors containing a random engine with a fixed seed.
+/// 含有固定种子的随机引擎的Actor基类
 UCLASS(Abstract)
 class CARLA_API AActorWithRandomEngine : public AActor
 {
