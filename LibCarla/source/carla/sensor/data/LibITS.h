@@ -728,19 +728,20 @@ public:
 
     /* DeltaLongitude Dependencies */
     typedef enum DeltaLongitude {
-        DeltaLongitude_oneMicrodegreeEast   = 10,
-        DeltaLongitude_oneMicrodegreeWest   = -10,
-        DeltaLongitude_unavailable  = 131072
+        DeltaLongitude_oneMicrodegreeEast   = 10, // 表示经度向东增加1微度的情况，对应枚举值为10，用于体现地理坐标中经度在向东方向上极其微小的变化量，在高精度的位置追踪、地图绘制等场景下有应用价值。
+        DeltaLongitude_oneMicrodegreeWest   = -10,// 表示经度向西减少1微度的情况，对应枚举值为 -10，用于体现经度在向西方向上的微小变化情况，有助于精确分析地理位置在东西方向上的变化。
+        DeltaLongitude_unavailable  = 131072// 表示经度变化量不可用的情况，对应一个特定的枚举值131072作为标识，在无法准确获取或出现异常导致经度变化量无法确定时，以此值标记相应状态。
     } e_DeltaLongitude;
  
     /* DeltaLongitude */
-    typedef long DeltaLongitude_t;
+    typedef long DeltaLongitude_t;// 为DeltaLongitude类型定义一个别名DeltaLongitude_t，方便在代码中使用，本质上是long类型，便于统一处理与经度变化量相关的数据，使得在涉及地理坐标变化的各种操作中更加便捷、规范。
 
     /* DeltaAltitude Dependencies */
     typedef enum DeltaAltitude {
-        DeltaAltitude_oneCentimeterUp   = 1,
-        DeltaAltitude_oneCentimeterDown = -1,
-        DeltaAltitude_unavailable   = 12800
+        DeltaAltitude_oneCentimeterUp   = 1, // 表示高度向上增加1厘米的情况，对应枚举值为1，用于体现地理坐标中海拔高度在向上方向上的微小变化量，比如在一些需要精确监测高度变化的场景（如无人机飞行、地形测绘等）中会用到。
+        DeltaAltitude_oneCentimeterDown = -1, // 表示高度向下减少1厘米的情况，对应枚举值为 -1，用于体现海拔高度在向下方向上的微小变化情况，同样有助于精确分析物体在垂直方向上的位置变化。
+        DeltaAltitude_unavailable   = 12800// 表示高度变化量不可用的情况，对应一个特定的枚举值12800作为标识，在无法获取、确定或者出现异常导致高度变化量无法表示时，使用此值来标记相应状态。
+
     } e_DeltaAltitude;
  
     /* DeltaAltitude */
@@ -748,18 +749,18 @@ public:
 
     /* DeltaReferencePosition */
     typedef struct DeltaReferencePosition {
-        DeltaLatitude_t  deltaLatitude;
-        DeltaLongitude_t     deltaLongitude;
-        DeltaAltitude_t  deltaAltitude;
+        DeltaLatitude_t  deltaLatitude; // 表示纬度方向上的变化量，其类型为DeltaLatitude_t，存储了纬度的微小增减情况或者不可用状态信息，来自之前定义的DeltaLatitude相关类型。
+        DeltaLongitude_t     deltaLongitude; // 表示经度方向上的变化量，其类型为DeltaLongitude_t，记录了经度的微小变化情况或者不可用状态，对应之前定义的DeltaLongitude相关类型。
+        DeltaAltitude_t  deltaAltitude;// 表示高度方向上的变化量，其类型为DeltaAltitude_t，体现了海拔高度的微小变化情况或者不可用状态，基于之前定义的DeltaAltitude相关类型。
     } DeltaReferencePosition_t;
 
     /* PathDeltaTime Dependencies */
     typedef enum PathDeltaTime {
-        PathDeltaTime_tenMilliSecondsInPast = 1
+        PathDeltaTime_tenMilliSecondsInPast = 1 // 表示10毫秒之前的时间点，对应枚举值为1，可用于在路径分析、轨迹追踪等场景中，比如查看车辆在10毫秒前处于什么位置、状态等情况，以辅助分析路径变化规律。
     } e_PathDeltaTime;
  
     /* PathDeltaTime */
-    typedef long PathDeltaTime_t;
+    typedef long PathDeltaTime_t;// 为PathDeltaTime类型定义一个别名PathDeltaTime_t，方便在代码中使用，本质上是long类型，便于统一处理与路径时间变化量相关的数据，使得在涉及路径时间相关的各种操作中更加便捷、规范。
 
     /* PathPoint */
     typedef struct PathPoint {
