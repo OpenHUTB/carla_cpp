@@ -15,12 +15,12 @@ Welcome to CARLA manual control.
 
 Use ARROWS or WASD keys for control.
 
-    W            : throttle
-    S            : brake
-    AD           : steer
-    Q            : toggle reverse
-    Space        : hand-brake
-    P            : toggle autopilot
+    W            : throttle     # 'W'键的功能，按下该键用于控制车辆加速（相当于踩油门，throttle在这里表示给车辆提供动力使车辆加速前进的操作）
+    S            : brake        # 'S'键的功能，按下该键用于控制车辆刹车（使车辆减速，brake表示启动刹车机制来降低车速）
+    AD           : steer        # 'A'键和 'D'键的功能，按下这两个键用于控制车辆转向（steer表示改变车辆行驶的方向，'A'键通常使车辆向左转向，'D'键通常使车辆向右转向）
+    Q            : toggle reverse      # 'Q'键的功能，按下该键用于切换车辆的倒车状态（toggle表示切换，reverse表示倒车，即通过该按键可以在前进和倒车两种行驶状态之间切换）
+    Space        : hand-brake   # 'Space'键（空格键）的功能，按下该键用于拉起手刹（hand-brake表示手刹，操作后可以使车辆保持静止状态，防止车辆滑动等）
+    P            : toggle autopilot    # 'P'键的功能，按下该键用于切换自动驾驶模式（toggle表示切换，autopilot即自动驾驶，按下该键可以在手动驾驶和自动驾驶两种模式之间切换）
 
     TAB          : change view
     Backspace    : change vehicle
