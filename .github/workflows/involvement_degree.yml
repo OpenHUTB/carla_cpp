@@ -1,18 +1,21 @@
 
 name: compute involvement degree
-
+#触发条件为push事件
 on: [push]
     
 jobs:
   work:
+  #在最新版本的Ubuntu上运行
     runs-on: ubuntu-latest
     steps:
+    #使用action动作
       - uses: actions/checkout@v4
         with:
           # github action 默认签出只包含最后一次提交
           # 解决方案参考：https://stackoverflow.com/questions/62334460/git-history-in-a-github-action
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
+          #设置Python环境的步骤
       - name: Set up Python
         # This is the version of the action for setting up Python, not the Python version.
         uses: actions/setup-python@v5
@@ -20,7 +23,9 @@ jobs:
           python-version: '3.x' # 指定python版本
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
+          #安装Python依赖的步骤
       - name: Install Python dependencies
         run: python -m pip install --upgrade pip requests gitpython
+        #显示参与度的步骤
       - name: Display involvement degree
         run: python scores.py -t ${{ secrets.GITHUB_TOKEN }} # 执行
