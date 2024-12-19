@@ -17,11 +17,11 @@
 
 namespace crp = carla::rpc;
 
-/// Sets actors' custom depth stencil value for semantic segmentation according
-/// to their meshes.
+/// 根据语义分割设置 actor 的自定义深度模板值
+/// 到他们的网格中。
 ///
-/// Non-static functions present so it can be dropped into the scene for testing
-/// purposes.
+/// 存在非静态函数，因此可以将其放入场景中进行测试
+///目的。
 UCLASS()
 class CARLA_API ATagger : public AActor
 {
@@ -29,50 +29,49 @@ class CARLA_API ATagger : public AActor
 
 public:
 
-  /// Set the tag of an actor.
+  /// 设置角色的标签。
   ///
-  /// If bTagForSemanticSegmentation true, activate the custom depth pass. This
-  /// pass is necessary for rendering the semantic segmentation. However, it may
-  /// add a performance penalty since occlusion doesn't seem to be applied to
-  /// objects having this value active.
+  /// 如果 bTagForSemanticSegmentation 为 true，则激活自定义深度通道。
+  /// pass 是渲染语义分割所必需的。
+  ///添加性能损失，因为遮挡似乎未应用于
+  ///具有 active 此值的对象。
+  
   static void TagActor(const AActor &Actor, bool bTagForSemanticSegmentation);
 
 
-  /// Set the tag of every actor in level.
+  /// 设置 level 中每个 actor 的标签。
   ///
-  /// If bTagForSemanticSegmentation true, activate the custom depth pass. This
-  /// pass is necessary for rendering the semantic segmentation. However, it may
-  /// add a performance penalty since occlusion doesn't seem to be applied to
-  /// objects having this value active.
-  static void TagActorsInLevel(UWorld &World, bool bTagForSemanticSegmentation);
+  /// 如果 bTagForSemanticSegmentation 为 true，则激活自定义深度通道。这
+  /// pass 是渲染语义分割所必需的。但是，它可能会
+  ///添加性能损失，因为遮挡似乎未应用于
+   ///具有 active 此值的对象。
+  static void TagActorsInLevel（UWorld &World， bool bTagForSemanticSegmentation）;
 
   static void TagActorsInLevel(ULevel &Level, bool bTagForSemanticSegmentation);
 
-  /// Retrieve the tag of an already tagged component.
+  /// 检索已标记组件的标记。
   static crp::CityObjectLabel GetTagOfTaggedComponent(const UPrimitiveComponent &Component)
   {
     return static_cast<crp::CityObjectLabel>(Component.CustomDepthStencilValue);
   }
 
-  /// Retrieve the tags of an already tagged actor. CityObjectLabel::None is
-  /// not added to the array.
+  /// 检索已标记的角色的标记。CityObjectLabel：：None 为
+ /// 未添加到数组中。
   static void GetTagsOfTaggedActor(const AActor &Actor, TSet<crp::CityObjectLabel> &Tags);
 
-  /// Return true if @a Component has been tagged with the given @a Tag.
+  /// 如果 @a Component 已使用给定的 @a 标记进行标记，则返回 true。
   static bool MatchComponent(const UPrimitiveComponent &Component, crp::CityObjectLabel Tag)
   {
     return (Tag == GetTagOfTaggedComponent(Component));
   }
 
-  /// Retrieve the tags of an already tagged actor. CityObjectLabel::None is
-  /// not added to the array.
+  /// 检索已标记的角色的标记。CityObjectLabel：：None 为
+  ///未添加到数组中。
   static FString GetTagAsString(crp::CityObjectLabel Tag);
 
-  /// Method that computes the label corresponding to a folder path
-  static crp::CityObjectLabel GetLabelByFolderName(const FString &String);
-
-  /// Method that computes the label corresponding to an specific object
-  /// using the folder path in which it is stored
+  
+  
+  ///使用存储它的文件夹路径
   template <typename T>
   static crp::CityObjectLabel GetLabelByPath(const T *Object) {
     const FString Path = Object->GetPathName();
@@ -94,7 +93,7 @@ protected:
 
 #if WITH_EDITOR
   virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
-#endif // WITH_EDITOR
+#endif 
 
 private:
 
