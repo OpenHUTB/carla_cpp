@@ -34,7 +34,7 @@
 	"Plugins": [
 		//插件Carla，已经启用
 		{
-			"Name": "Carla",
+			"Name": "Carla",//模块名称
 			"Enabled": true
 		},
 		//下面的插件不能被启用
