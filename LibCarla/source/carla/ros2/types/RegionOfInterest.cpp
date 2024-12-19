@@ -39,17 +39,22 @@ using namespace eprosima::fastcdr::exception;
 
 sensor_msgs::msg::RegionOfInterest::RegionOfInterest()
 {
-    // unsigned long m_x_offset
+    // 初始化 m_x_offset 成员变量为 0，表示矩形区域的 x 轴偏移量（起始位置）
     m_x_offset = 0;
-    // unsigned long m_y_offset
+
+    // 初始化 m_y_offset 成员变量为 0，表示矩形区域的 y 轴偏移量（起始位置）
     m_y_offset = 0;
-    // unsigned long m_height
+
+    // 初始化 m_height 成员变量为 0，表示矩形区域的高度
     m_height = 0;
-    // unsigned long m_width
+
+    // 初始化 m_width 成员变量为 0，表示矩形区域的宽度
     m_width = 0;
-    // boolean m_do_rectify
+
+    // 初始化 m_do_rectify 成员变量为 false，表示是否进行畸变矫正
     m_do_rectify = false;
 }
+
 
 sensor_msgs::msg::RegionOfInterest::~RegionOfInterest()
 {

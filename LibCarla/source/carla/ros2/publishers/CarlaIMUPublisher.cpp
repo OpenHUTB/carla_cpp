@@ -29,15 +29,30 @@ namespace ros2 {
   namespace efd = eprosima::fastdds::dds;
   using erc = eprosima::fastrtps::types::ReturnCode_t;
 
-  struct CarlaIMUPublisherImpl {
-    efd::DomainParticipant* _participant { nullptr };
-    efd::Publisher* _publisher { nullptr };
-    efd::Topic* _topic { nullptr };
-    efd::DataWriter* _datawriter { nullptr };
-    efd::TypeSupport _type { new sensor_msgs::msg::ImuPubSubType() };
-    CarlaListener _listener {};
-    sensor_msgs::msg::Imu _imu {};
-  };
+    struct CarlaIMUPublisherImpl {
+        // 指向 efd::DomainParticipant 的指针，代表 DDS 域参与者，用于与其他 DDS 实体（如订阅者、发布者）进行通信。
+        efd::DomainParticipant* _participant { nullptr };
+
+        // 指向 efd::Publisher 的指针，表示发布者，用于发布消息。
+        efd::Publisher* _publisher { nullptr };
+
+        // 指向 efd::Topic 的指针，表示话题，是消息传递的主题，发布者和订阅者通过它进行消息交互。
+        efd::Topic* _topic { nullptr };
+
+        // 指向 efd::DataWriter 的指针，表示数据写入器，用于将数据写入到话题中进行发布。
+        efd::DataWriter* _datawriter { nullptr };
+
+        // TypeSupport 是一个类型支持对象，存储有关消息类型的元数据，这里是用于 sensor_msgs::msg::Imu 类型的支持。
+        // 该字段用于消息类型的序列化与反序列化。
+        efd::TypeSupport _type { new sensor_msgs::msg::ImuPubSubType() };
+
+        // CarlaListener 对象，用于处理消息传输过程中的回调和事件监听。
+        CarlaListener _listener {};
+
+        // sensor_msgs::msg::Imu 对象，用于存储 IMU（惯性测量单元）数据。
+        sensor_msgs::msg::Imu _imu {};
+    };
+
 
   bool CarlaIMUPublisher::Init() {
     if (_impl->_type == nullptr) {

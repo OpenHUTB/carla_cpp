@@ -49,33 +49,45 @@ namespace geometry_msgs {
                 free(m_keyBuffer);
             }
         }
-
         bool QuaternionPubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
+            // 将 void* 类型的数据指针转换为 Quaternion* 类型
+            // p_type 是指向实际数据对象 Quaternion 的指针
             Quaternion* p_type = static_cast<Quaternion*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个 FastBuffer 对象，管理原始数据缓冲区
+            // fastbuffer 操作 payload->data 中的数据，最大缓冲区大小由 payload->max_size 决定
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
+
+            // 创建一个 Cdr 对象用于序列化数据
+            // Cdr 对象基于 fastbuffer 创建，使用默认字节序（系统字节序），并且序列化采用 DDS CDR 格式
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+
+            // 根据字节序判断封装格式（大端或小端）
+            // 如果使用大端字节序，使用 CDR_BE；否则使用 CDR_LE
             payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+
+            // 序列化封装部分
             ser.serialize_encapsulation();
 
             try
             {
-                // Serialize the object.
+                // 序列化 Quaternion 对象
+                // 调用 Quaternion 类的 serialize 方法，将数据序列化到 Cdr 对象中
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果在序列化过程中内存不足，捕获异常并返回 false
                 return false;
             }
 
-            // Get the serialized length
+            // 获取序列化后的数据长度，并将其赋值给 payload->length
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+
+            // 序列化成功，返回 true
             return true;
         }
 
@@ -135,25 +147,37 @@ namespace geometry_msgs {
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
+            // 检查是否已定义获取键的方式，如果未定义，直接返回 false
             if (!m_isGetKeyDefined)
             {
                 return false;
             }
 
+            // 将 void* 类型的 data 转换为 Quaternion* 类型的指针
             Quaternion* p_type = static_cast<Quaternion*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建 FastBuffer 对象来管理原始数据缓冲区
+            // 使用 m_keyBuffer 存储序列化后的键数据，大小由 getKeyMaxCdrSerializedSize() 确定
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     Quaternion::getKeyMaxCdrSerializedSize());
 
-            // Object that serializes the data.
+            // 创建 Cdr 对象用于序列化数据
+            // 使用 BIG_ENDIANNESS 来指定字节序（大端序）
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
+
+            // 序列化键数据
             p_type->serializeKey(ser);
+
+            // 如果强制使用 MD5 或者键的最大 CDR 序列化大小大于 16 字节
             if (force_md5 || Quaternion::getKeyMaxCdrSerializedSize() > 16)
             {
+                // 初始化 MD5 对象
                 m_md5.init();
+                // 更新 MD5 摘要，使用键数据进行计算
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
+                // 完成 MD5 计算
                 m_md5.finalize();
+                // 将 MD5 的前 16 个字节存入 handle->value
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_md5.digest[i];
@@ -161,12 +185,17 @@ namespace geometry_msgs {
             }
             else
             {
+                // 如果不强制使用 MD5，且键的序列化大小小于等于 16 字节
+                // 直接将键数据存入 handle->value
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
                 }
             }
+
+            // 返回 true，表示获取键成功
             return true;
         }
+
     } //End of namespace msg
 } //End of namespace geometry_msgs

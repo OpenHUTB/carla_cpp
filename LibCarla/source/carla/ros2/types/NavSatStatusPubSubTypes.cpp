@@ -31,16 +31,35 @@ namespace sensor_msgs {
     namespace msg {
         NavSatStatusPubSubType::NavSatStatusPubSubType()
         {
+            // 设置消息类型的名称为 "sensor_msgs::msg::dds_::NavSatStatus_"。
+            // 这个名称用于在 DDS 系统中标识该消息类型。
             setName("sensor_msgs::msg::dds_::NavSatStatus_");
+
+            // 获取 NavSatStatus 类型的最大 CDR 序列化大小。
+            // CDR（Common Data Representation）是用于序列化和反序列化数据的标准格式。
             auto type_size = NavSatStatus::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+
+            // 计算可能的子消息对齐（alignment）。这里是将数据类型大小对齐到 4 字节的边界。
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);  // 可能的子消息对齐
+
+            // 设置消息类型的总大小（包括封装）。
+            // 这里的封装是指 CDR 消息的额外头部信息，通常包括对齐和类型大小等元数据。
+            m_typeSize = static_cast<uint32_t>(type_size) + 4;  // 封装（包括消息头部）
+
+            // 设置是否定义了该类型的键（Key）。在某些情况下，消息类型可能会使用键来唯一标识消息。
             m_isGetKeyDefined = NavSatStatus::isKeyDefined();
+
+            // 获取该消息类型的最大键 CDR 序列化大小。如果键大小大于 16 字节，使用键的最大序列化大小，否则使用 16 字节。
             size_t keyLength = NavSatStatus::getKeyMaxCdrSerializedSize() > 16 ?
                     NavSatStatus::getKeyMaxCdrSerializedSize() : 16;
+
+            // 为键分配内存。m_keyBuffer 用于存储消息的键数据。
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+
+            // 将分配的内存初始化为零。这样可以确保键值在使用前不含有任何随机数据。
             memset(m_keyBuffer, 0, keyLength);
         }
+
 
         NavSatStatusPubSubType::~NavSatStatusPubSubType()
         {
