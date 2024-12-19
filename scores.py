@@ -4,7 +4,7 @@ import argparse#导入argparse模块，用于处理命令行参数
 import os#导入os模块，用于提供与操作系统交互
 
 from collections import defaultdict
-from collections import Counter
+from collections import Counter#导入git模块，用于操作Git库
 
 import git  # 导入git模块，用于操作Git库
 
