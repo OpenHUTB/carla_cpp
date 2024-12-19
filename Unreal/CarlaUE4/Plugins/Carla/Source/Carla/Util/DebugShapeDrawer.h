@@ -1,8 +1,8 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+//  Copyright (c) 2017 Computer Vision Center (CVC) at the Unive
 // de Barcelona (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款进行许可。
+//有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 
