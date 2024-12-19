@@ -17,7 +17,13 @@ FbxSurfacePhong* gMatBlock;
     #undef  IOS_REF
     #define IOS_REF (*(gSdkManager->GetIOSettings()))
 #endif
-
+// 函数注释：
+// 函数名为 CreateMaterial，它的功能是创建一个材质，该材质后续将会被应用到一个多边形上（比如三维模型中的某个面）。
+// 函数接收两个参数：
+//  - pScene：这是一个指向 FbxScene 类型的指针，表示当前的 FBX 场景对象。材质需要依附于具体的场景存在，
+//            通过这个参数可以将创建的材质与特定的场景关联起来，以便在该场景渲染等操作时能正确使用该材质。
+//  - name：这是一个字符指针，用于指定要创建的材质的名称。通过给材质赋予一个有意义的名称，
+//          方便在后续的代码中（比如查找、设置材质属性等操作时）对该材质进行识别和引用。
 // Create a material that will be applied to a polygon
 FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
 {
