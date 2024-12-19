@@ -378,15 +378,19 @@ if (LIBCARLA_BUILD_DEBUG)
       ${ADRSS_INCLUDE_DIRS})
   endif()
 
+ # 安装命令，将构建的carla_client_debug库安装到系统的lib目录下
   install(TARGETS carla_client${carla_target_postfix}_debug DESTINATION lib)
 
+ # 如果是在Windows平台构建，则应用特定于Windows的设置
   if (WIN32) # @todo Fix PythonAPI build on Windows.
+      # 设置编译标志为调试模式下的C++编译标志（这可能包括优化关闭、调试信息等）
     set_target_properties(carla_client${carla_target_postfix}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
-
+ # 链接Recast及其相关库的Windows版本静态库
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/DetourCrowd.lib")
   else ()
+   # 如果未定义CMAKE_CXX_FLAGS_DEBUG_CLIENT，则将其设置为与CMAKE_CXX_FLAGS_DEBUG相同
     if (NOT DEFINED CMAKE_CXX_FLAGS_DEBUG_CLIENT)
       set(CMAKE_CXX_FLAGS_DEBUG_CLIENT ${CMAKE_CXX_FLAGS_DEBUG})
     endif()
