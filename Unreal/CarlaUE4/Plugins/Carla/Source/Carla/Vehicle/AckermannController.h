@@ -64,7 +64,7 @@ class PID
   private:
     float SetPoint;
 
-    // Out Limits
+    // 超出限制
     float MinOutput = -1.0f;
     float MaxOutput = 1.0f;
 
