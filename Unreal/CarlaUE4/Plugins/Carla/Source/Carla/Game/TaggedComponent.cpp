@@ -6,7 +6,7 @@
 #include "SkeletalRenderPublic.h"
 
 //
-// UTaggedComponent
+// UTagged组件
 //
 UTaggedComponent::UTaggedComponent(const FObjectInitializer& ObjectInitializer) :
   UPrimitiveComponent(ObjectInitializer),
@@ -101,7 +101,7 @@ FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy()
 
 FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(UStaticMeshComponent * StaticMeshComponent)
 {
-  // Make sure static mesh has render data
+  // 确保静态网格具有渲染数据
   UStaticMesh * StaticMesh = StaticMeshComponent->GetStaticMesh();
 
   if (StaticMesh == NULL)
@@ -135,13 +135,13 @@ FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(USkeletalMeshComponent
   ERHIFeatureLevel::Type SceneFeatureLevel = GetWorld()->FeatureLevel;
 	FSkeletalMeshRenderData* SkelMeshRenderData = SkeletalMeshComponent->GetSkeletalMeshRenderData();
 
-	// Only create a scene proxy for rendering if properly initialized
+	// 仅在正确初始化时创建用于渲染的场景代理
 	if (SkelMeshRenderData &&
 		SkelMeshRenderData->LODRenderData.IsValidIndex(SkeletalMeshComponent->PredictedLODLevel) &&
 		!SkeletalMeshComponent->bHideSkin &&
 		SkeletalMeshComponent->MeshObject)
 	{
-		// Only create a scene proxy if the bone count being used is supported, or if we don't have a skeleton (this is the case with destructibles)
+		// 仅当支持正在使用的骨骼数量，或者我们没有骨架时（可破坏物就是这种情况），才创建场景代理
 		int32 MinLODIndex = SkeletalMeshComponent->ComputeMinLOD();
 		int32 MaxBonesPerChunk = SkelMeshRenderData->GetMaxBonesPerSection(MinLODIndex);
 		int32 MaxSupportedNumBones = SkeletalMeshComponent->MeshObject->IsCPUSkinned() ? MAX_int32 : GetFeatureLevelMaxNumberOfBones(SceneFeatureLevel);
@@ -155,14 +155,14 @@ FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(USkeletalMeshComponent
 
 FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(UHierarchicalInstancedStaticMeshComponent * MeshComponent)
 {
-	// Verify that the mesh is valid before using it.
+	//在使用网格之前，请验证网格是否有效。
 	const bool bMeshIsValid =
-		// make sure we have instances
+		// 确保我们有实例
 		(MeshComponent->PerInstanceRenderData.IsValid()) &&
-		// make sure we have an actual staticmesh
+		// 确保我们有一个实际的 StaticMesh
 		MeshComponent->GetStaticMesh() &&
 		MeshComponent->GetStaticMesh()->HasValidRenderData(false) &&
-		// You really can't use hardware instancing on the consoles with multiple elements because they share the same index buffer.
+		// YOU 真的不能在具有多个元素的控制台上使用硬件实例化，因为它们共享相同的索引缓冲区。
 		// @todo: Level error or something to let LDs know this
 		1;//GetStaticMesh()->LODModels(0).Elements.Num() == 1;
 
@@ -176,14 +176,14 @@ FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(UHierarchicalInstanced
 
 FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(UInstancedStaticMeshComponent * MeshComponent)
 {
-	// Verify that the mesh is valid before using it.
+	// 在使用网格之前，请验证网格是否有效。
 	const bool bMeshIsValid =
-		// make sure we have instances
+		//确保我们有实例
 		(MeshComponent->PerInstanceRenderData.IsValid()) &&
-		// make sure we have an actual staticmesh
+		// 确保我们有一个实际的 StaticMesh
 		MeshComponent->GetStaticMesh() &&
 		MeshComponent->GetStaticMesh()->HasValidRenderData(false) &&
-		// You really can't use hardware instancing on the consoles with multiple elements because they share the same index buffer.
+		// YOU 真的不能在具有多个元素的控制台上使用硬件实例化，因为它们共享相同的索引缓冲区。
 		// @todo: Level error or something to let LDs know this
 		1;//GetStaticMesh()->LODModels(0).Elements.Num() == 1;
 
@@ -198,7 +198,7 @@ void UTaggedComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 {
   Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-  // // TODO: Try removing this
+  // // TODO： 尝试删除此
   if (bSkeletalMesh)
   {
     // MarkRenderTransformDirty();
@@ -222,7 +222,7 @@ FTaggedStaticMeshSceneProxy::FTaggedStaticMeshSceneProxy(UStaticMeshComponent * 
 {
   TaggedMaterialInstance = MaterialInstance;
 
-  // Replace materials with tagged material
+  //将材质替换为标记的材质
   bVerifyUsedMaterials = false;
 
   for (FLODInfo& LODInfo : LODs) {
@@ -250,7 +250,7 @@ FTaggedSkeletalMeshSceneProxy::FTaggedSkeletalMeshSceneProxy(const USkinnedMeshC
 {
   TaggedMaterialInstance = MaterialInstance;
 
-  // Replace materials with tagged material
+  // 将材质替换为标记的材质
   bVerifyUsedMaterials = false;
 
   for (FLODSectionElements& LODSection : LODSections) {
@@ -276,7 +276,7 @@ FTaggedInstancedStaticMeshSceneProxy::FTaggedInstancedStaticMeshSceneProxy(
 {
   TaggedMaterialInstance = MaterialInstance;
 
-  // Replace materials with tagged material
+  //将材质替换为标记的材质
   bVerifyUsedMaterials = false;
 
   for (FLODInfo& LODInfo : LODs) {
@@ -303,7 +303,7 @@ FTaggedHierarchicalStaticMeshSceneProxy::FTaggedHierarchicalStaticMeshSceneProxy
 {
   TaggedMaterialInstance = MaterialInstance;
 
-  // Replace materials with tagged material
+  // 将材质替换为标记的材质
   bVerifyUsedMaterials = false;
 
   for (FLODInfo& LODInfo : LODs) {
