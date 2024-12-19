@@ -65,7 +65,7 @@ if not exist "%GT_BUILD_DIR%" (
     echo %FILE_N% Creating "%GT_BUILD_DIR%"
     mkdir "%GT_BUILD_DIR%"
 )
-
+# 进入构建目录
 cd "%GT_BUILD_DIR%"
 echo %FILE_N% Generating build...
 
