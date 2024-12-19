@@ -29,7 +29,9 @@ install(FILES ${libcarla_carla_geom_headers} DESTINATION include/carla/geom)# �
 # 安装到目标目录（include/carla/geom）下。
 # 这样在进行项目安装等操作时，这些头文件就能被正确放置到指定的安装路径中，便于其他项目引用这些头文件。
 
-file(GLOB libcarla_carla_opendrive "${libcarla_source_path}/carla/opendrive/*.h")
+file(GLOB libcarla_carla_opendrive "${libcarla_source_path}/carla/opendrive/*.h")# 使用GLOB命令在指定的路径（${libcarla_source_path}/carla/opendrive/）下查找所有以.h为后缀的文件，
+# 并把查找到的这些文件的列表存放到名为libcarla_carla_opendrive的变量当中。
+# GLOB是CMake中用于文件路径匹配和收集的便捷指令，方便后续基于这些收集到的文件进行其他操作。
 install(FILES ${libcarla_carla_opendrive} DESTINATION include/carla/opendrive)
 
 file(GLOB libcarla_carla_opendrive_parser "${libcarla_source_path}/carla/opendrive/parser/*.h")
