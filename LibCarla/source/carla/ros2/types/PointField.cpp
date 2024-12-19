@@ -116,14 +116,30 @@ size_t sensor_msgs::msg::PointField::getCdrSerializedSize(
         const sensor_msgs::msg::PointField& data,
         size_t current_alignment)
 {
+    // 保存当前对齐位置
     size_t initial_alignment = current_alignment;
+
+    // 计算 `name` 字符串的序列化大小
+    // `name` 是一个字符串，先加上其大小（4字节），然后考虑到4字节对齐，
+    // 加上字符串的长度，最后再加上1字节用于字符串结束符（'\0'）
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4) + data.name().size() + 1;
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
-    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+    // 计算 `offset` 的序列化大小（4字节）
+    // 加上4字节并考虑到4字节对齐
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
+    // 计算 `datatype` 的序列化大小（1字节）
+    // 加上1字节并考虑到1字节对齐
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+    // 计算 `count` 的序列化大小（4字节）
+    // 加上4字节并考虑到4字节对齐
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    // 返回序列化后的数据总大小（当前对齐位置与初始对齐位置之差）
     return current_alignment - initial_alignment;
 }
+
 
 void sensor_msgs::msg::PointField::serialize(
         eprosima::fastcdr::Cdr& scdr) const
