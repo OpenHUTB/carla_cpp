@@ -322,6 +322,29 @@ class GlobalRoutePlanner:
                 net_vector=[net_carla_vector.x, net_carla_vector.y, net_carla_vector.z],
                 intersection=intersection, type=RoadOption.LANEFOLLOW)
 
+    import numpy as np
+import networkx as nx
+import carla
+from typing import List, Optional, Tuple, Dict
+
+# 假设这里有适当的RoadOption等相关类和类型定义，以下是示例示意
+class RoadOption:
+    LANEFOLLOW = 1
+    CHANGELANERIGHT = 2
+    CHANGELANELEFT = 3
+
+class EdgeDict:
+    pass
+
+# 这里假设是某个包含道路拓扑相关处理的类中的方法（因为有self参数），以下是类的示例示意
+class RoadTopologyHandler:
+    def __init__(self):
+        self._sampling_resolution = 1.0  # 示例采样分辨率，实际应该根据具体需求初始化
+        self._topology = []  # 存储道路拓扑的相关信息，例如道路段信息等
+        self._road_id_to_edge = {}  # 用于映射道路ID到对应边信息的字典
+        self._id_map = {}  # 用于节点ID映射的相关字典
+        self._graph = nx.Graph()  # 用于构建道路拓扑图
+
     def _find_loose_ends(self):
         """
         This method finds road segments that have an unconnected end, and
@@ -329,25 +352,31 @@ class GlobalRoutePlanner:
         """
         count_loose_ends = 0
         hop_resolution = self._sampling_resolution
+        # 遍历所有道路段信息
         for segment in self._topology:
-            end_wp = segment['exit']
-            exit_xyz = segment['exitxyz']
+            end_wp = segment['exit']  # 获取道路段的出口路点
+            exit_xyz = segment['exitxyz']  # 获取出口的坐标信息（可能是xyz坐标元组之类）
             road_id, section_id, lane_id = end_wp.road_id, end_wp.section_id, end_wp.lane_id
+            # 判断当前道路段出口对应的道路、路段、车道是否已经在边映射中存在
             if road_id in self._road_id_to_edge \
                     and section_id in self._road_id_to_edge[road_id] \
                     and lane_id in self._road_id_to_edge[road_id][section_id]:
-                pass
+                pass  # 如果存在则跳过后续处理（可能之前已经处理过该连接情况）
             else:
                 count_loose_ends += 1
+                # 如果当前道路ID不在映射字典中，初始化对应的值为一个空字典
                 if road_id not in self._road_id_to_edge:
                     self._road_id_to_edge[road_id] = dict()
+                # 如果当前路段ID不在对应道路的字典中，初始化对应的值为一个空字典
                 if section_id not in self._road_id_to_edge[road_id]:
                     self._road_id_to_edge[road_id][section_id] = dict()
                 n1 = self._id_map[exit_xyz]
                 n2 = -1 * count_loose_ends
+                # 将当前道路段出口对应的节点信息存入映射字典
                 self._road_id_to_edge[road_id][section_id][lane_id] = (n1, n2)
-                next_wp = end_wp.next(hop_resolution)
-                path = []  # type: list[carla.Waypoint]
+                next_wp = end_wp.next(hop_resolution)  # 获取下一个路点（按照一定分辨率跳跃获取）
+                path = []  # 初始化路径列表，用于存储后续连续的同车道路点
+                # 循环获取同车道的路点，直到条件不满足（例如换车道、到道路尽头等）
                 while next_wp is not None and next_wp \
                         and next_wp[0].road_id == road_id \
                         and next_wp[0].section_id == section_id \
@@ -358,7 +387,9 @@ class GlobalRoutePlanner:
                     n2_xyz = (path[-1].transform.location.x,
                               path[-1].transform.location.y,
                               path[-1].transform.location.z)
+                    # 在图中添加节点，传入节点ID和坐标信息
                     self._graph.add_node(n2, vertex=n2_xyz)
+                    # 在图中添加边，连接两个节点，并传入相关属性信息，如长度、路径、入口路点、出口路点等
                     self._graph.add_edge(
                         n1, n2,
                         length=len(path) + 1, path=path,
@@ -379,6 +410,7 @@ class GlobalRoutePlanner:
                 if not segment['entry'].is_junction:
                     next_waypoint, next_road_option, next_segment = None, None, None
 
+                    # 判断是否可以向右变道
                     if waypoint.right_lane_marking and waypoint.right_lane_marking.lane_change & carla.LaneChange.Right and not right_found:
                         next_waypoint = waypoint.get_right_lane()
                         if next_waypoint is not None \
@@ -387,11 +419,13 @@ class GlobalRoutePlanner:
                             next_road_option = RoadOption.CHANGELANERIGHT
                             next_segment = self._localize(next_waypoint.transform.location)
                             if next_segment is not None:
+                                # 在图中添加表示向右变道的边，传入相关属性信息，如起点节点、终点节点、入口路点、出口路点等
                                 self._graph.add_edge(
                                     self._id_map[segment['entryxyz']], next_segment[0], entry_waypoint=waypoint,
                                     exit_waypoint=next_waypoint, intersection=False, exit_vector=None,
                                     path=[], length=0, type=next_road_option, change_waypoint=next_waypoint)
                                 right_found = True
+                    # 判断是否可以向左变道
                     if waypoint.left_lane_marking and waypoint.left_lane_marking.lane_change & carla.LaneChange.Left and not left_found:
                         next_waypoint = waypoint.get_left_lane()
                         if next_waypoint is not None \
@@ -400,6 +434,7 @@ class GlobalRoutePlanner:
                             next_road_option = RoadOption.CHANGELANELEFT
                             next_segment = self._localize(next_waypoint.transform.location)
                             if next_segment is not None:
+                                # 在图中添加表示向左变道的边，传入相关属性信息，如起点节点、终点节点、入口路点、出口路点等
                                 self._graph.add_edge(
                                     self._id_map[segment['entryxyz']], next_segment[0], entry_waypoint=waypoint,
                                     exit_waypoint=next_waypoint, intersection=False, exit_vector=None,
@@ -409,14 +444,15 @@ class GlobalRoutePlanner:
                     break
 
     def _localize(self, location):
-        # type: (carla.Location) -> None | tuple[int, int]
+        # type: (carla.Location) -> Optional[Tuple[int, int]]
         """
         This function finds the road segment that a given location
         is part of, returning the edge it belongs to
         """
-        waypoint = self._wmap.get_waypoint(location)
-        edge = None  # type: None | tuple[int, int]
+        waypoint = self._wmap.get_waypoint(location)  # 根据给定位置获取对应的路点
+        edge = None  # 初始化边信息为None
         try:
+            # 尝试从映射字典中获取对应路点所在的边信息（道路、路段、车道对应的边）
             edge = self._road_id_to_edge[waypoint.road_id][waypoint.section_id][waypoint.lane_id]
         except KeyError:
             pass
@@ -427,12 +463,12 @@ class GlobalRoutePlanner:
         Distance heuristic calculator for path searching
         in self._graph
         """
-        l1 = np.array(self._graph.nodes[n1]['vertex'])
-        l2 = np.array(self._graph.nodes[n2]['vertex'])
-        return np.linalg.norm(l1 - l2)
+        l1 = np.array(self._graph.nodes[n1]['vertex'])  # 获取起点节点的坐标信息（转换为numpy数组形式）
+        l2 = np.array(self._graph.nodes[n2]['vertex'])  # 获取终点节点的坐标信息（转换为numpy数组形式）
+        return np.linalg.norm(l1 - l2)  # 计算两点间的欧几里得距离作为启发式距离
 
     def _path_search(self, origin, destination):
-        # type: (carla.Location, carla.Location) -> list[int]
+        # type: (carla.Location, carla.Location) -> List[int]
         """
         This function finds the shortest path connecting origin and destination
         using A* search with distance heuristic.
@@ -442,15 +478,15 @@ class GlobalRoutePlanner:
         connecting origin and destination
         """
         start, end = self._localize(origin), self._localize(destination)
-
+        # 使用A*算法在图中搜索从起点到终点的最短路径，传入图、起点、终点、启发式函数、边权重属性等信息
         route = nx.astar_path(
             self._graph, source=start[0], target=end[0],
             heuristic=self._distance_heuristic, weight='length')
-        route.append(end[1])
+        route.append(end[1])  # 将终点的另一个节点ID添加到路径中（根据具体逻辑，可能是完整路径需要的操作）
         return route
 
     def _successive_last_intersection_edge(self, index, route):
-        # type: (int, list[int]) -> tuple[int | None, EdgeDict | None]
+        # type: (int, List[int]) -> Tuple[Optional[int], Optional[EdgeDict]]
         """
         This method returns the last successive intersection edge
         from a starting index on the route.
@@ -458,12 +494,14 @@ class GlobalRoutePlanner:
         proper turn decisions.
         """
 
-        last_intersection_edge = None  # type: EdgeDict | None
+        last_intersection_edge = None  # 初始化最后交叉路口边信息为None
         last_node = None
+        # 遍历路径上的节点对（从给定索引开始，到倒数第二个节点为止）
         for node1, node2 in [(route[i], route[i + 1]) for i in range(index, len(route) - 1)]:
-            candidate_edge = self._graph.edges[node1, node2]  # type: EdgeDict
+            candidate_edge = self._graph.edges[node1, node2]  # 获取两个节点间的边信息
             if node1 == route[index]:
                 last_intersection_edge = candidate_edge
+            # 如果边类型是车道跟随且处于交叉路口，则更新最后交叉路口边信息以及最后节点
             if candidate_edge['type'] == RoadOption.LANEFOLLOW and candidate_edge['intersection']:
                 last_intersection_edge = candidate_edge
                 last_node = node2
