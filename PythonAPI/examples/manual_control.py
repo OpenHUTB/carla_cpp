@@ -238,53 +238,81 @@ class World(object):
         ]
 
     def restart(self):
+        """
+           重启相关操作的函数，主要完成以下功能：
+           1. 重置玩家最大速度相关属性。
+           2. 根据给定条件获取一个随机的蓝图（blueprint），并对蓝图的一些属性进行设置。
+           3. 销毁并重新生成玩家角色，设置其位置、旋转等信息，并对其物理属性进行修改。
+           4. 设置各类传感器，如碰撞传感器、车道入侵传感器、全球导航卫星系统传感器、惯性测量单元传感器、相机管理相关传感器等。
+           5. 根据同步状态决定世界（world）的时间推进方式（tick或wait_for_tick）。
+           """
+        # 重置玩家常规最大速度属性
         self.player_max_speed = 1.589
+        # 重置玩家快速最大速度属性
         self.player_max_speed_fast = 3.713
-        # Keep same camera config if the camera manager exists.
+        # 如果相机管理器（camera_manager）存在，则保留其索引和变换索引，否则使用默认值0
         cam_index = self.camera_manager.index if self.camera_manager is not None else 0
         cam_pos_index = self.camera_manager.transform_index if self.camera_manager is not None else 0
-        # Get a random blueprint.
+        # 获取符合条件的演员蓝图列表
         blueprint_list = get_actor_blueprints(self.world, self._actor_filter, self._actor_generation)
         if not blueprint_list:
+            # 如果没有找到符合过滤器条件的蓝图，则抛出异常
             raise ValueError("Couldn't find any blueprints with the specified filters")
+        # 从蓝图列表中随机选择一个蓝图
         blueprint = random.choice(blueprint_list)
+        # 设置蓝图的角色名称属性
         blueprint.set_attribute('role_name', self.actor_role_name)
+        # 如果蓝图有地形力学（terramechanics）属性，则设置为'true'
         if blueprint.has_attribute('terramechanics'):
             blueprint.set_attribute('terramechanics', 'true')
+            # 如果蓝图有颜色（color）属性，则随机选择一个推荐的颜色值并设置
         if blueprint.has_attribute('color'):
             color = random.choice(blueprint.get_attribute('color').recommended_values)
             blueprint.set_attribute('color', color)
+            # 如果蓝图有司机ID（driver_id）属性，则随机选择一个推荐的司机ID值并设置
         if blueprint.has_attribute('driver_id'):
             driver_id = random.choice(blueprint.get_attribute('driver_id').recommended_values)
             blueprint.set_attribute('driver_id', driver_id)
+            # 如果蓝图有无敌（is_invincible）属性，则设置为'true'
         if blueprint.has_attribute('is_invincible'):
             blueprint.set_attribute('is_invincible', 'true')
-        # set the max speed
+        # 如果蓝图有速度（speed）属性，则根据推荐值重置玩家最大速度相关属性
         if blueprint.has_attribute('speed'):
             self.player_max_speed = float(blueprint.get_attribute('speed').recommended_values[1])
             self.player_max_speed_fast = float(blueprint.get_attribute('speed').recommended_values[2])
 
-        # Spawn the player.
+        # 生成玩家角色相关操作
         if self.player is not None:
+            # 获取玩家当前的变换信息（位置、旋转等）
             spawn_point = self.player.get_transform()
+            # 将生成点的Z坐标增加2.0，可能是为了调整高度
             spawn_point.location.z += 2.0
+            # 重置滚动角（roll）为0.0
             spawn_point.rotation.roll = 0.0
+            # 重置俯仰角（pitch）为0.0
             spawn_point.rotation.pitch = 0.0
+            # 销毁当前玩家
             self.destroy()
+            # 使用新的蓝图和调整后的生成点尝试生成玩家角色
             self.player = self.world.try_spawn_actor(blueprint, spawn_point)
+            # 设置车辆遥测相关显示属性为False
             self.show_vehicle_telemetry = False
+            # 修改生成的玩家角色（车辆）的物理属性
             self.modify_vehicle_physics(self.player)
+            # 如果玩家角色生成失败，则循环尝试在可用的生成点生成玩家
         while self.player is None:
+            # 获取地图的生成点列表
             if not self.map.get_spawn_points():
                 print('There are no spawn points available in your map/town.')
                 print('Please add some Vehicle Spawn Point to your UE4 scene.')
                 sys.exit(1)
             spawn_points = self.map.get_spawn_points()
+            # 随机选择一个生成点，如果有生成点的话，否则使用默认的变换信息
             spawn_point = random.choice(spawn_points) if spawn_points else carla.Transform()
             self.player = self.world.try_spawn_actor(blueprint, spawn_point)
             self.show_vehicle_telemetry = False
             self.modify_vehicle_physics(self.player)
-        # Set up the sensors.
+        # 设置各类传感器
         self.collision_sensor = CollisionSensor(self.player, self.hud)
         self.lane_invasion_sensor = LaneInvasionSensor(self.player, self.hud)
         self.gnss_sensor = GnssSensor(self.player)
@@ -294,35 +322,65 @@ class World(object):
         self.camera_manager.set_sensor(cam_index, notify=False)
         actor_type = get_actor_display_name(self.player)
         self.hud.notification(actor_type)
-
+        # 根据是否同步决定世界的时间推进方式
         if self.sync:
             self.world.tick()
         else:
             self.world.wait_for_tick()
 
     def next_weather(self, reverse=False):
+        """
+          切换天气的函数，根据传入的reverse参数决定是向前还是向后切换天气预设。
+          1. 调整天气索引。
+          2. 根据索引获取对应的天气预设。
+          3. 在界面显示切换后的天气信息，并在游戏世界中设置对应的天气。
+          """
+        # 根据reverse参数调整天气索引，实现正向或反向切换
         self._weather_index += -1 if reverse else 1
+        # 确保天气索引在预设天气列表的范围内（取模操作）
         self._weather_index %= len(self._weather_presets)
         preset = self._weather_presets[self._weather_index]
+        # 在界面显示切换后的天气信息
         self.hud.notification('Weather: %s' % preset[1])
+        # 在游戏世界中设置对应的天气
         self.player.get_world().set_weather(preset[0])
 
     def next_map_layer(self, reverse=False):
+        """
+           切换地图图层的函数，根据传入的reverse参数决定是向前还是向后切换地图图层。
+           1. 调整当前地图图层索引。
+           2. 根据索引获取对应的地图图层名称。
+           3. 在界面显示切换后的地图图层信息。
+           """
+        # 根据reverse参数调整当前地图图层索引，实现正向或反向切换
         self.current_map_layer += -1 if reverse else 1
+        # 确保地图图层索引在地图图层名称列表的范围内（取模操作）
         self.current_map_layer %= len(self.map_layer_names)
         selected = self.map_layer_names[self.current_map_layer]
+        # 在界面显示切换后的地图图层信息
         self.hud.notification('LayerMap selected: %s' % selected)
 
     def load_map_layer(self, unload=False):
+        """
+          加载或卸载地图图层的函数，根据传入的unload参数决定是加载还是卸载当前选中的地图图层。
+          1. 获取当前选中的地图图层名称。
+          2. 根据unload参数决定执行加载还是卸载操作，并在界面显示相应的提示信息。
+          """
         selected = self.map_layer_names[self.current_map_layer]
         if unload:
+            # 如果是卸载操作，显示卸载提示信息，并执行卸载地图图层的操作
             self.hud.notification('Unloading map layer: %s' % selected)
             self.world.unload_map_layer(selected)
         else:
+            # 如果是加载操作，显示加载提示信息，并执行加载地图图层的操作
             self.hud.notification('Loading map layer: %s' % selected)
             self.world.load_map_layer(selected)
 
     def toggle_radar(self):
+        """
+           切换雷达传感器的函数，实现雷达传感器的创建和销毁操作，用于控制雷达传感器的启用和禁用。
+           如果雷达传感器不存在，则创建一个；如果存在且其传感器实体存在，则销毁该传感器实体，并将雷达传感器设置为None。
+           """
         if self.radar_sensor is None:
             self.radar_sensor = RadarSensor(self.player)
         elif self.radar_sensor.sensor is not None:
@@ -330,7 +388,11 @@ class World(object):
             self.radar_sensor = None
 
     def modify_vehicle_physics(self, actor):
-        #If actor is not a vehicle, we cannot use the physics control
+        """
+           修改车辆物理属性的函数，尝试获取演员（通常是车辆）的物理控制对象，
+           并设置其使用扫掠轮碰撞（use_sweep_wheel_collision）属性为True，然后应用新的物理控制设置到演员上。
+           如果出现异常则直接跳过（可能是演员不是车辆等不符合操作条件的情况）。
+           """
         try:
             physics_control = actor.get_physics_control()
             physics_control.use_sweep_wheel_collision = True
@@ -339,18 +401,35 @@ class World(object):
             pass
 
     def tick(self, clock):
+        """
+          每帧更新相关操作的函数，调用HUD（ Heads-Up Display，通常是游戏界面显示相关）的tick方法，传入自身和时钟参数，
+          用于更新游戏界面等相关信息，一般在游戏循环中按帧调用。
+          """
         self.hud.tick(self, clock)
 
     def render(self, display):
+        """
+            渲染相关操作的函数，调用相机管理器（camera_manager）和HUD的渲染方法，传入显示对象（可能是屏幕等渲染目标），
+            用于将游戏画面渲染到指定的显示目标上。
+            """
         self.camera_manager.render(display)
         self.hud.render(display)
 
     def destroy_sensors(self):
+        """
+           销毁传感器相关操作的函数，主要用于销毁相机管理器中的传感器，
+           并将其相关属性（传感器对象、索引等）设置为None，释放相关资源。
+           """
         self.camera_manager.sensor.destroy()
         self.camera_manager.sensor = None
         self.camera_manager.index = None
 
     def destroy(self):
+        """
+           销毁相关操作的函数，用于销毁游戏中的各种资源，包括雷达传感器（如果存在）、
+           各类传感器（如碰撞、车道入侵、全球导航卫星系统、惯性测量单元等传感器）以及玩家角色（如果存在）。
+           具体操作是先通过toggle_radar方法处理雷达传感器，然后遍历传感器列表，停止并销毁每个传感器，最后销毁玩家角色。
+           """
         if self.radar_sensor is not None:
             self.toggle_radar()
         sensors = [
