@@ -10,7 +10,7 @@ struct FUSDCARLAWheelData
 {
   GENERATED_BODY()
   UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="USD Wheeel Data")
-  float MaxBrakeTorque = 0;
+  float MaxBrakeTorque = 0;#定义了最大的手刹扭距成员变量，为float类型，用于表示车辆车轮手刹能施加的最大扭矩值
   UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="USD Wheeel Data")
   float MaxHandBrakeTorque = 0;
   UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="USD Wheeel Data")
