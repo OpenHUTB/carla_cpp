@@ -12,20 +12,24 @@
 
 """
 Welcome to CARLA manual control.
+# 欢迎来到CARLA手动控制相关说明
+# 以下是关于在CARLA环境中进行手动控制操作时各个按键对应的功能介绍
+
 
 Use ARROWS or WASD keys for control.
+# 使用方向键（ARROWS）或者W、A、S、D键来进行控制操作
 
-    W            : throttle
-    S            : brake
-    AD           : steer
-    Q            : toggle reverse
-    Space        : hand-brake
-    P            : toggle autopilot
+    W            : throttle     # 'W'键的功能，按下该键用于控制车辆加速（相当于踩油门，throttle在这里表示给车辆提供动力使车辆加速前进的操作）
+    S            : brake        # 'S'键的功能，按下该键用于控制车辆刹车（使车辆减速，brake表示启动刹车机制来降低车速）
+    AD           : steer        # 'A'键和 'D'键的功能，按下这两个键用于控制车辆转向（steer表示改变车辆行驶的方向，'A'键通常使车辆向左转向，'D'键通常使车辆向右转向）
+    Q            : toggle reverse      # 'Q'键的功能，按下该键用于切换车辆的倒车状态（toggle表示切换，reverse表示倒车，即通过该按键可以在前进和倒车两种行驶状态之间切换）
+    Space        : hand-brake   # 'Space'键（空格键）的功能，按下该键用于拉起手刹（hand-brake表示手刹，操作后可以使车辆保持静止状态，防止车辆滑动等）
+    P            : toggle autopilot    # 'P'键的功能，按下该键用于切换自动驾驶模式（toggle表示切换，autopilot即自动驾驶，按下该键可以在手动驾驶和自动驾驶两种模式之间切换）
 
-    TAB          : change view
-    Backspace    : change vehicle
+    TAB          : change view      # 'TAB'键的功能，按下该键用于切换视图（比如切换不同的视角来查看车辆周围环境、车辆内部视角等不同的观察角度）
+    Backspace    : change vehicle   # 'Backspace'键的功能，按下该键用于切换车辆（如果场景中有多辆车可供选择操作，通过该键可以更换当前正在控制的车辆）
 
-    R            : toggle recording images to disk
+    R            : toggle recording images to disk    # 'R'键的功能，按下该键用于切换是否将图像记录到磁盘上（toggle表示切换开启或者关闭的状态，意味着可以通过该键决定是否把当前看到的图像保存到本地磁盘中，方便后续查看或者分析等）
 
     F2           : toggle RSS visualization mode
     F3           : increase log level
