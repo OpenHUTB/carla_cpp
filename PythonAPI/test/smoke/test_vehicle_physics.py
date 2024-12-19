@@ -13,16 +13,16 @@ import math
 import numpy as np
 from enum import Enum
 
-def list_equal_tol(objs, tol = 1e-5):
-    if (len(objs) < 2):
+def list_equal_tol(objs, tol = 1e-5):               #函数用于接受一个对象列表objs和一个容差参数tol，默认为1e-5
+    if (len(objs) < 2):                             #如果onjs的长度小于2，则返回真
         return True
 
-    for i in range(1, len(objs)):
-        equal = equal_tol(objs[0], objs[i], tol)
-        if not equal:
-            return False
+    for i in range(1, len(objs)):                   #如果不小于2，则进入for循环，从第二个元素到最后一个元素
+        equal = equal_tol(objs[0], objs[i], tol)    #每次循环都将objs[0]与objs[i]比较，然后将结果储存到equal中
+        if not equal:                               #如果equal没有被赋值，则返回False
+            return False       
 
-    return True
+    return True                                     #如果循环后没有返回False，则说明元素都在tol的范围内，所以最后返回True
 
 def equal_tol(obj_a, obj_b, tol = 1e-5):
     if isinstance(obj_a, list):

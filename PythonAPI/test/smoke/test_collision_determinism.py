@@ -66,11 +66,10 @@ class Scenario(object):
         for _i in range(0, frames):
             self.world.tick()
 
-    def clear_scene(self):
-        for actor in self.actor_list:
-            actor[1].destroy()
-
-        self.active = False
+    def clear_scene(self):                   #函数用于清楚场景中的某个元素
+        for actor in self.actor_list:        #遍历列表中的每个元素
+            actor[1].destroy()               #用于销毁一个游戏中的某个资源
+        self.active = False                  #将被销毁的资源标记为非活动状态
 
     def reload_world(self, settings = None, spectator_tr = None):
         if settings is not None:
@@ -98,12 +97,12 @@ class Scenario(object):
                 actor.get_angular_velocity().x, actor.get_angular_velocity().y, actor.get_angular_velocity().z])
         return actor_snapshot
 
-    def save_snapshots(self):
-        if not self.save_snapshots_mode:
-            return
+    def save_snapshots(self):                      #函数用于保存snapshots（快照）
+        if not self.save_snapshots_mode:           #检查快照是否为真
+            return                                 #若不为真，则返回
 
-        for i in range (0, len(self.actor_list)):
-            self.snapshots[i] = np.vstack((self.snapshots[i], self.save_snapshot(self.actor_list[i][1])))
+        for i in range (0, len(self.actor_list)):  #若为真，则i将进行从0到self.actor_list长度的遍历
+            self.snapshots[i] = np.vstack((self.snapshots[i], self.save_snapshot(self.actor_list[i][1])))    #每次循环执行该函数
 
     def save_snapshots_to_disk(self):
         if not self.save_snapshots_mode:

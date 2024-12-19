@@ -12,30 +12,34 @@
 
 """
 Welcome to CARLA manual control.
+# 欢迎来到CARLA手动控制相关说明
+# 以下是关于在CARLA环境中进行手动控制操作时各个按键对应的功能介绍
+
 
 Use ARROWS or WASD keys for control.
+# 使用方向键（ARROWS）或者W、A、S、D键来进行控制操作
 
-    W            : throttle
-    S            : brake
-    AD           : steer
-    Q            : toggle reverse
-    Space        : hand-brake
-    P            : toggle autopilot
+    W            : throttle     # 'W'键的功能，按下该键用于控制车辆加速（相当于踩油门，throttle在这里表示给车辆提供动力使车辆加速前进的操作）
+    S            : brake        # 'S'键的功能，按下该键用于控制车辆刹车（使车辆减速，brake表示启动刹车机制来降低车速）
+    AD           : steer        # 'A'键和 'D'键的功能，按下这两个键用于控制车辆转向（steer表示改变车辆行驶的方向，'A'键通常使车辆向左转向，'D'键通常使车辆向右转向）
+    Q            : toggle reverse      # 'Q'键的功能，按下该键用于切换车辆的倒车状态（toggle表示切换，reverse表示倒车，即通过该按键可以在前进和倒车两种行驶状态之间切换）
+    Space        : hand-brake   # 'Space'键（空格键）的功能，按下该键用于拉起手刹（hand-brake表示手刹，操作后可以使车辆保持静止状态，防止车辆滑动等）
+    P            : toggle autopilot    # 'P'键的功能，按下该键用于切换自动驾驶模式（toggle表示切换，autopilot即自动驾驶，按下该键可以在手动驾驶和自动驾驶两种模式之间切换）
 
-    TAB          : change view
-    Backspace    : change vehicle
+    TAB          : change view      # 'TAB'键的功能，按下该键用于切换视图（比如切换不同的视角来查看车辆周围环境、车辆内部视角等不同的观察角度）
+    Backspace    : change vehicle   # 'Backspace'键的功能，按下该键用于切换车辆（如果场景中有多辆车可供选择操作，通过该键可以更换当前正在控制的车辆）
 
-    R            : toggle recording images to disk
+    R            : toggle recording images to disk    # 'R'键的功能，按下该键用于切换是否将图像记录到磁盘上（toggle表示切换开启或者关闭的状态，意味着可以通过该键决定是否把当前看到的图像保存到本地磁盘中，方便后续查看或者分析等）
 
-    F2           : toggle RSS visualization mode
-    F3           : increase log level
-    F4           : decrease log level
-    F5           : increase map log level
-    F6           : decrease map log level
-    B            : toggle RSS Road Boundaries Mode
-    G            : RSS check drop current route
-    T            : toggle RSS
-    N            : pause simulation
+    F2           : toggle RSS visualization mode   # 'F2'键的功能，按下该键用于切换RSS可视化模式（toggle表示切换，RSS可能是某种特定的与车辆相关的安全系统或者分析系统，visualization mode表示可视化模式，按下此键可以决定是否开启该系统的可视化展示，方便查看相关信息）
+    F3           : increase log level              # 'F3'键的功能，按下该键用于增加日志级别（日志级别通常用于控制记录信息的详细程度，increase表示提升，按此键可以让系统记录更详细的日志信息，便于调试或者分析系统运行情况）
+    F4           : decrease log level              # 'F4'键的功能，按下该键用于降低日志级别（与F3相反，按下此键可以让系统记录相对不那么详细的日志信息，在不需要过多细节时减少日志数据量等）
+    F5           : increase map log level          # 'F5'键的功能，按下该键用于增加地图日志级别（专门针对地图相关的日志，increase表示提升其详细程度，有助于更深入地了解地图相关模块运行及数据情况）
+    F6           : decrease map log level          # 'F6'键的功能，按下该键用于降低地图日志级别（与F5相反，降低地图相关日志记录的详细程度）
+    B            : toggle RSS Road Boundaries Mode # 'B'键的功能，按下该键用于切换RSS道路边界模式（toggle表示切换开启或关闭，RSS Road Boundaries Mode可能是与RSS系统中道路边界相关的一种特定显示或者处理模式）
+    G            : RSS check drop current route    # 'G'键的功能，按下该键用于让RSS检查并放弃当前路线（可能是在RSS相关功能下，触发重新规划或者放弃当前正在行驶的路线等操作，具体取决于该系统的设计逻辑）
+    T            : toggle RSS                      # 'T'键的功能，按下该键用于切换RSS（整体开启或者关闭RSS相关的功能模块等）
+    N            : pause simulation                # 'N'键的功能，按下该键用于暂停模拟（比如暂停整个车辆行驶、环境变化等模拟过程，方便查看当前状态或者进行一些调整操作）
 
     F1           : toggle HUD
     H/?          : toggle help
