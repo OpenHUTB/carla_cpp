@@ -54,7 +54,8 @@ import glob
 import os
 import sys
 import signal
-
+//尝试将特定路径添加到系统路径中，路径通过一系列目录操作和根据Python版本、操作系统类型构建的Carla相关模块路径格式来确定
+//目的是为了后续能够正确导入Carla相关的库文件（以.egg格式存在的模块）
 try:
     sys.path.append(glob.glob(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + '/carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -70,7 +71,7 @@ except IndexError:
 
 
 import carla
-
+//从Carla模块中导入ColorConverter并简称为cc，方便后续使用颜色转换相关功能
 from carla import ColorConverter as cc
 
 import argparse
@@ -78,11 +79,14 @@ import logging
 import math
 import random
 import weakref
+//相对导入rss_sensor模块中的RssSensor类，尽管有 pylint 的相对导入警告抑制，但这种导入方式依赖于特定的项目结构
 from rss_sensor import RssSensor # pylint: disable=relative-import
+//相对导入rss_visualization模块中的多个可视化相关类，同样存在 pylint 的相对导入警告抑制情况
 from rss_visualization import RssUnstructuredSceneVisualizer, RssBoundingBoxVisualizer, RssStateVisualizer # pylint: disable=relative-import
-
+//尝试导入pygame相关模块，如果导入失败则抛出运行时错误提示需要安装pygame包
 try:
     import pygame
+//从pygame.locals中导入多个按键相关的常量定义，这些常量用于后续处理键盘输入事件
     from pygame.locals import KMOD_CTRL
     from pygame.locals import KMOD_SHIFT
     from pygame.locals import K_BACKSPACE
@@ -119,7 +123,7 @@ try:
     from pygame.locals import MOUSEBUTTONUP
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
-
+//尝试导入numpy模块，如果导入失败则抛出运行时错误提示需要安装numpy包
 try:
     import numpy as np
 except ImportError:
@@ -130,44 +134,53 @@ except ImportError:
 # -- World ---------------------------------------------------------------------
 # ==============================================================================
 
-
+//定义World类，用于表示整个游戏世界相关的操作和管理等逻辑
 class World(object):
-
+//类的初始化方法，接收Carla世界对象以及命令行参数对象
     def __init__(self, carla_world, args):
+//同步模式标志，从命令行参数获取，用于控制世界是否按同步模式运行
         self.world = carla_world
         self.sync = args.sync
+//角色名称，从命令行参数获取，用于标识特定的游戏角色（如车辆等）
         self.actor_role_name = args.rolename
+//屏幕尺寸（宽度和高度），从命令行参数获取，用于后续显示相关设置
         self.dim = (args.width, args.height)
         try:
+//获取Carla世界对应的地图对象，如果出现运行时错误则打印相关错误信息并退出程序
             self.map = self.world.get_map()
         except RuntimeError as error:
             print('RuntimeError: {}'.format(error))
             print('  The server could not send the OpenDRIVE (.xodr) file:')
-            print('  Make sure it exists, has the same name of your town, and is correct.')
+          print('  Make sure it exists, has the same name of your town, and is correct.')
+//是否使用外部角色的标志，从命令行参数获取，用于决定角色创建的方式
             sys.exit(1)
         self.external_actor = args.externalActor
-
+//创建HUD（抬头显示）对象，传入屏幕宽度、高度以及Carla世界对象，用于显示游戏相关信息
         self.hud = HUD(args.width, args.height, carla_world)
+//记录当前录制的帧数，初始化为0，用于视频录制相关功能计数
         self.recording_frame_num = 0
+//录制状态标志，初始化为False，表示当前是否正在进行录制操作
         self.recording = False
+//用于记录录制文件夹编号，初始化为0，在创建多个录制文件夹时起编号作用
         self.recording_dir_num = 0
         self.player = None
         self.actors = []
         self.rss_sensor = None
         self.rss_unstructured_scene_visualizer = None
         self.rss_bounding_box_visualizer = None
+//获取Actor过滤器，从命令行参数获取，用于筛选要创建或操作的游戏角色类型等
         self._actor_filter = args.filter
         if not self._actor_filter.startswith("vehicle."):
             print('Error: RSS only supports vehicles as ego.')
             sys.exit(1)
-
+//调用重启方法来初始化世界状态
         self.restart()
         self.world_tick_id = self.world.on_tick(self.hud.on_world_tick)
-
+//切换暂停状态的方法，通过调用pause_simulation方法实现暂停或恢复模拟运行的切换
     def toggle_pause(self):
         settings = self.world.get_settings()
         self.pause_simulation(not settings.synchronous_mode)
-
+//暂停或恢复模拟运行的方法，根据传入的暂停标志来设置Carla世界的同步模式以及固定时间步长等相关设置
     def pause_simulation(self, pause):
         settings = self.world.get_settings()
         if pause and not settings.synchronous_mode:
@@ -191,15 +204,19 @@ class World(object):
             # Get a random blueprint.
             blueprint = random.choice(self.world.get_blueprint_library().filter(self._actor_filter))
             blueprint.set_attribute('role_name', self.actor_role_name)
+//如果蓝图有颜色属性，则随机选择一个推荐的颜色值并设置给蓝图
             if blueprint.has_attribute('color'):
                 color = random.choice(blueprint.get_attribute('color').recommended_values)
                 blueprint.set_attribute('color', color)
             if blueprint.has_attribute('driver_id'):
                 driver_id = random.choice(blueprint.get_attribute('driver_id').recommended_values)
+//如果蓝图有司机ID属性，则随机选择一个推荐的司机ID值并设置给蓝图
                 blueprint.set_attribute('driver_id', driver_id)
             if blueprint.has_attribute('is_invincible'):
                 blueprint.set_attribute('is_invincible', 'true')
             # Spawn the player.
+//如果已经存在玩家角色，则获取其当前位置信息，并做一些位置调整（比如升高、重置旋转角度等），然后销毁旧的玩家角色
+            if self.player is not None:
             if self.player is not None:
                 spawn_point = self.player.get_transform()
                 spawn_point.location.z += 2.0
@@ -255,6 +272,7 @@ class World(object):
         self.recording = not self.recording
 
     def render(self, display):
+//设置各种传感器，如相机、RSS相关的可视化传感器以及RSS核心传感器等
         self.camera.render(display)
         self.rss_bounding_box_visualizer.render(display, self.camera.current_frame)
         self.rss_unstructured_scene_visualizer.render(display)
@@ -263,7 +281,7 @@ class World(object):
         if self.recording:
             pygame.image.save(display, "_out%04d/%08d.bmp" % (self.recording_dir_num, self.recording_frame_num))
             self.recording_frame_num += 1
-
+//每帧更新的方法，调用HUD的tick方法传递玩家角色和时钟信息，用于更新显示相关内容
     def destroy(self):
         # stop from ticking
         if self.world_tick_id:
