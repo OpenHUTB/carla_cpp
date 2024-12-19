@@ -175,7 +175,8 @@ def main():
                 clock.tick()
 
                 # Advance the simulation and wait for the data.
-                snapshot, image_rgb, image_semseg = sync_mode.tick(timeout=2.0)
+                snapshot, image_rgb, image_semseg = sync_mode.tick(timeout=2.0)  
+                #使用sync_mode.tick函数来进行snapshot（快照），image_rgb（RGB图像数据）和image_semseg（语义分割图像数据）的模拟推进，并设置了一个时间期限2秒
 
                 # Choose the next waypoint and update the car location.
                 waypoint = random.choice(waypoint.next(1.5))
