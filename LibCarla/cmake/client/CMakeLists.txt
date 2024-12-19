@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-client)
 
-# 启用/安装 RSS VARIANT。
+# 启用/安装 RSS VARIANT
 option (BUILD_RSS_VARIANT "Enables ad-rss-lib based RSS components" OFF)
 set(carla_target_postfix "")
 if (BUILD_RSS_VARIANT)
