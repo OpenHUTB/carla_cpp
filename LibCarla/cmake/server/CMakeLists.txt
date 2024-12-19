@@ -31,7 +31,10 @@ install(FILES ${libcarla_carla_opendrive} DESTINATION include/carla/opendrive)
 file(GLOB libcarla_carla_opendrive_parser "${libcarla_source_path}/carla/opendrive/parser/*.h")
 install(FILES ${libcarla_carla_opendrive_parser} DESTINATION include/carla/opendrive/parser)
 
-file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profiler/*.h")
+file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profiler/*.h")# 使用CMake中的GLOB命令来查找符合特定模式的文件。
+# 这里是在路径${libcarla_source_path}/carla/profiler/下查找所有以.h为后缀的头文件，
+# 并将查找到的这些头文件的路径信息存储到变量libcarla_carla_profiler_headers中。
+# GLOB命令可以方便地根据扩展名等模式快速收集一批文件，为后续的安装等操作做准备。
 install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)
 
 file(GLOB libcarla_carla_road_headers "${libcarla_source_path}/carla/road/*.h")
