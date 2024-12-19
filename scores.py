@@ -128,6 +128,7 @@ while True:
         comments = comments_response.json()
 
         for comment in comments:
+                #获取评论者用户名
             commenter = comment['user']['login']
             comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
 
