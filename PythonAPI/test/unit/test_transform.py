@@ -208,7 +208,7 @@ class TestTransform(unittest.TestCase):
                       carla.Vector3D(0.0, 18.0, 2.0)
                       ]
         t.transform(point_list)
-
+        #定义预期的变化后点列表
         solution_list = [carla.Vector3D(-2.0, 0.0, -1.0),
                          carla.Vector3D(-1.0, 10.0, -1.0),
                          carla.Vector3D(-2.0, 18.0, -1.0)
