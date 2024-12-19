@@ -1481,7 +1481,10 @@ namespace Simplify
           Triangle t;
           bool tri_ok = false;
           bool has_uv = false;
-
+           // 使用sscanf函数尝试按照"f %d %d %d"的格式从line字符数组中读取三个整数，
+           // 并将读取到的整数依次存储到integers数组的前三个元素中（即&integers[0]、&integers[1]、&integers[2]）。
+           // sscanf函数返回成功读取的参数个数，如果成功读取了3个整数，说明当前面信息符合这种简单的顶点索引格式，
+           // 则将tri_ok设置为true，表示解析成功    
           if (sscanf(line, "f %d %d %d",
                      &integers[0], &integers[1], &integers[2]) == 3)
           {
