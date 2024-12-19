@@ -1,4 +1,62 @@
 Doxygen/*
+oxygen/*
+# 名为 oxygen 的目录下的所有内容
+Build
+Dist
+
+Deprecated/PythonClient/dist
+# 已弃用的 Python 客户端下的 dist（分发）目录
+TrafficManager/build
+# 交通管理器下的 build（构建）目录
+Util/Build
+# 工具（Util）目录下的构建目录
+Install
+Plugins
+!Unreal/CarlaUE4/Plugins
+Unreal/CarlaUE4/Plugins/Streetmap
+Unreal/CarlaUE4/Plugins/HoudiniEngine# 与虚幻引擎相关的目录，第一个表示排除 Unreal/CarlaUE4/Plugins 目录，后面两个分别是该路径下的特定插件目录
+
+
+
+/ExportedMaps
+/Import/*
+!/Import/README.md#目录下的所有内容，但排除 README.md 文件
+
+*.VC.db
+*.VC.opendb
+*.a
+*.egg-info
+*.kdev4
+*.log
+*.o
+*.pb.cc
+*.pb.h
+*.pid
+*.pri
+*.pro
+*.py[cod]
+*.sln
+*.so
+*.stackdump
+*.sublime-workspace
+*.workspace
+*CodeCompletionFolders.txt
+*CodeLitePreProcessor.txt
+.aria2c.input
+.codelite
+.gdb_history
+.gtest
+.idea
+.tags*
+.vs
+.vscode
+__pycache__
+_benchmarks_results
+_images*
+_out*
+_site
+core
+profiler.csv
 Build
 Dist
 
