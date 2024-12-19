@@ -608,27 +608,27 @@ namespace detail {
     void GetPoseFromAnimation(Walker &walker) {
       return _client.GetPoseFromAnimation(walker.GetId());
     }
-
+    // 应用物理控制到指定车辆
     void ApplyPhysicsControlToVehicle(Vehicle &vehicle, const rpc::VehiclePhysicsControl &physicsControl) {
       _client.ApplyPhysicsControlToVehicle(vehicle.GetId(), physicsControl);
     }
-
+    // 设置指定车辆的灯光状态
     void SetLightStateToVehicle(Vehicle &vehicle, const rpc::VehicleLightState light_state) {
       _client.SetLightStateToVehicle(vehicle.GetId(), light_state);
     }
-
+    // 打开指定车辆的某个车门
     void OpenVehicleDoor(Vehicle &vehicle, const rpc::VehicleDoor door_idx) {
       _client.OpenVehicleDoor(vehicle.GetId(), door_idx);
     }
-
+    // 关闭指定车辆的某个车门
     void CloseVehicleDoor(Vehicle &vehicle, const rpc::VehicleDoor door_idx) {
       _client.CloseVehicleDoor(vehicle.GetId(), door_idx);
     }
-
+    // 设置指定车辆的车轮转向角度
     void SetWheelSteerDirection(Vehicle &vehicle, rpc::VehicleWheelLocation wheel_location, float angle_in_deg) {
       _client.SetWheelSteerDirection(vehicle.GetId(), wheel_location, angle_in_deg);
     }
-
+    // 获取指定车辆的车轮当前转向角度
     float GetWheelSteerAngle(Vehicle &vehicle, rpc::VehicleWheelLocation wheel_location) {
       return _client.GetWheelSteerAngle(vehicle.GetId(), wheel_location);
     }
@@ -668,43 +668,49 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    // 启动录制器
     std::string StartRecorder(std::string name, bool additional_data) {
+     // _client对象调用StartRecorder方法来启动录制。
+    // additional_data: 是否记录额外的数据，控制录制的详细程度。
+    // 使用std::move()转移name的所有权，提高效率。
       return _client.StartRecorder(std::move(name), additional_data);
     }
-
+    // 停止录制器
     void StopRecorder(void) {
       _client.StopRecorder();
     }
-
+    // 显示录制文件的相关信息
     std::string ShowRecorderFileInfo(std::string name, bool show_all) {
+        // show_all: 是否显示所有信息。
       return _client.ShowRecorderFileInfo(std::move(name), show_all);
     }
-
+    // 显示录制期间的碰撞信息
     std::string ShowRecorderCollisions(std::string name, char type1, char type2) {
       return _client.ShowRecorderCollisions(std::move(name), type1, type2);
     }
-
+    // 显示在录制期间被阻挡的角色信息
     std::string ShowRecorderActorsBlocked(std::string name, double min_time, double min_distance) {
       return _client.ShowRecorderActorsBlocked(std::move(name), min_time, min_distance);
     }
-
+    // 回放录制的文件
     std::string ReplayFile(std::string name, double start, double duration,
         uint32_t follow_id, bool replay_sensors) {
       return _client.ReplayFile(std::move(name), start, duration, follow_id, replay_sensors);
     }
-
+    // 设置回放器的时间比例因子
     void SetReplayerTimeFactor(double time_factor) {
+        // time_factor: 时间比例因子，控制回放速度。
       _client.SetReplayerTimeFactor(time_factor);
     }
-
+    // 设置回放器是否忽略英雄角色
     void SetReplayerIgnoreHero(bool ignore_hero) {
       _client.SetReplayerIgnoreHero(ignore_hero);
     }
-
+    // 设置回放器是否忽略观众角色
     void SetReplayerIgnoreSpectator(bool ignore_spectator) {
       _client.SetReplayerIgnoreSpectator(ignore_spectator);
     }
-
+    // 停止回放器
     void StopReplayer(bool keep_actors) {
       _client.StopReplayer(keep_actors);
   }
@@ -715,27 +721,37 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    // 订阅传感器数据
     void SubscribeToSensor(
         const Sensor &sensor,
         std::function<void(SharedPtr<sensor::SensorData>)> callback);
+    // callback: 回调函数，当传感器数据更新时会被调用，传入数据指针。
+    // SharedPtr是智能指针，用于共享传感器数据的所有权，防止内存泄漏。
 
+    // 取消订阅传感器数据
     void UnSubscribeFromSensor(Actor &sensor);
 
+    // 启用传感器以便与ROS通信
     void EnableForROS(const Sensor &sensor);
 
+    // 禁用传感器与ROS通信
     void DisableForROS(const Sensor &sensor);
 
+    // 检查传感器是否启用了ROS通信
     bool IsEnabledForROS(const Sensor &sensor);
 
+    // 订阅传感器的GBuffer（图形缓冲区）数据
     void SubscribeToGBuffer(
         Actor & sensor,
         uint32_t gbuffer_id,
         std::function<void(SharedPtr<sensor::SensorData>)> callback);
 
+    // 取消订阅传感器的GBuffer数据
     void UnSubscribeFromGBuffer(
         Actor & sensor,
         uint32_t gbuffer_id);
 
+    // 向传感器发送消息
     void Send(const Sensor &sensor, std::string message);        
 
     /// @}
