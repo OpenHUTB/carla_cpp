@@ -1,79 +1,31 @@
-Doxygen/*
-oxygen/*
-# 名为 oxygen 的目录下的所有内容
+# 忽略 Doxygen 生成的文档
+/*
+# 忽略构建目录
 Build
+# 忽略分发目录
 Dist
 
+# 忽略已弃用的 Python 客户端的分发目录
 Deprecated/PythonClient/dist
-# 已弃用的 Python 客户端下的 dist（分发）目录
+# 忽略 TrafficManager 的构建目录
 TrafficManager/build
-# 交通管理器下的 build（构建）目录
+# 忽略 Util 的构建目录
 Util/Build
-# 工具（Util）目录下的构建目录
+# 忽略安装目录
 Install
+# 忽略插件目录
 Plugins
-!Unreal/CarlaUE4/Plugins
-Unreal/CarlaUE4/Plugins/Streetmap
-Unreal/CarlaUE4/Plugins/HoudiniEngine# 与虚幻引擎相关的目录，第一个表示排除 Unreal/CarlaUE4/Plugins 目录，后面两个分别是该路径下的特定插件目录
+# 排除 Unreal/CarlaUE4/Plugins 目录下的特定插件，以便不忽略它们
+!Unreal/CarlaUE4/Plugins/Streetmap
+!Unreal/CarlaUE4/Plugins/HoudiniEngine
 
-
-
+# 忽略导出的地图目录
 /ExportedMaps
-/Import/*
-!/Import/README.md#目录下的所有内容，但排除 README.md 文件
-
-*.VC.db
-*.VC.opendb
-*.a
-*.egg-info
-*.kdev4
-*.log
-*.o
-*.pb.cc
-*.pb.h
-*.pid
-*.pri
-*.pro
-*.py[cod]
-*.sln
-*.so
-*.stackdump
-*.sublime-workspace
-*.workspace
-*CodeCompletionFolders.txt
-*CodeLitePreProcessor.txt
-.aria2c.input
-.codelite
-.gdb_history
-.gtest
-.idea
-.tags*
-.vs
-.vscode
-__pycache__
-_benchmarks_results
-_images*
-_out*
-_site
-core
-profiler.csv
-Build
-Dist
-
-Deprecated/PythonClient/dist
-TrafficManager/build
-Util/Build
-Install
-Plugins
-!Unreal/CarlaUE4/Plugins
-Unreal/CarlaUE4/Plugins/Streetmap
-Unreal/CarlaUE4/Plugins/HoudiniEngine
-
-
-/ExportedMaps
+# 忽略导入目录下的所有文件和文件夹，但排除 README.md 文件
 /Import/*
 !/Import/README.md
 
+# 忽略各种编译和构建过程中生成的文件
 *.VC.db
 *.VC.opendb
 *.a
