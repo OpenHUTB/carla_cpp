@@ -135,7 +135,7 @@ def tutorial(args):
         camera.listen(lambda data: sensor_callback(data, image_queue))
         lidar.listen(lambda data: sensor_callback(data, lidar_queue))
 
-        for frame in range(args.frames):
+        for frame in range(args.frames):#frame从0到arg.frames-1执行循环
             world.tick()
             world_frame = world.get_snapshot().frame
 
