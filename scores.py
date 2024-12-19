@@ -18,6 +18,7 @@ args = argparser.parse_args()
 # 替换为你的个人访问令牌（可选，但推荐）
 TOKEN = args.token
 
+#设置请求头，包含授权信息和接受的内容类型
 headers = {
     'Authorization': f'token {TOKEN}',
     'Accept': 'application/vnd.github.v3+json'
