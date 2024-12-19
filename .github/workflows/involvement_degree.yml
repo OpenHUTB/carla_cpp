@@ -1,13 +1,13 @@
 
-name: compute involvement degree
+name: compute involvement degree//工作流名称
 
 on: [push]
     
 jobs:
   work:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest//工作流运行环境为最新版本
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4//作用于将仓库代码签出到运行环境中
         with:
           # github action 默认签出只包含最后一次提交
           # 解决方案参考：https://stackoverflow.com/questions/62334460/git-history-in-a-github-action
