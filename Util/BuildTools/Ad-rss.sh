@@ -5,7 +5,7 @@
 # -n 'parse-options': 设置脚本名称，以便在错误信息中显示
 OPTS=`getopt -o h --long python-version: -n 'parse-options' -- "$@"`
 # 重新设定位置参数 
-eval set -- "$OPTS"
+eval set -- "$OPTS"#使用eval命令来执行set命令
 # 默认的 Python 版本列表  
 PY_VERSION_LIST=3
 # 解析命令行参数
@@ -99,13 +99,13 @@ CXX_TAG=c10
 # 由于 boost-python 不支持同时构建多个 Python 版本（find_package 存在一些 bug），  
 # 我们必须为每个版本单独进行 colcon 构建。
 #
-for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
+for PY_VERSION in ${PY_VERSION_LIST[@]} ; do#每次循环将一个python版本赋值给PY_VERSION变量
   ADRSS_BUILD_DIR="${CARLA_BUILD_FOLDER}/${ADRSS_BASENAME}/build-python${PY_VERSION}" # 为当前 Python 版本设置构建目录
 # 如果安装目录和构建目录都已存在，则跳过构建
   if [[ -d "${ADRSS_INSTALL_DIR}" && -d "${ADRSS_BUILD_DIR}" ]]; then
     log "${ADRSS_BASENAME} for python${PY_VERSION} already installed."
   else
-    log "Building ${ADRSS_BASENAME} for python${PY_VERSION}"
+    log "Building ${ADRSS_BASENAME} for python${PY_VERSION}"#log函数会输出一条消息，表示正在构建针对python${PY_VERSION}的${ADRSS_BASENAME}
 
     pushd "${ADRSS_COLCON_WORKSPACE}" >/dev/null # 切换到工作区 
       # 设置 CMake 前缀路径
