@@ -247,26 +247,32 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   // ===========================================================================
   // -- 在场景中访问全局对象 -----------------------------------------------------
   // ===========================================================================
-
+  // 获取蓝图库对象
   SharedPtr<BlueprintLibrary> Simulator::GetBlueprintLibrary() {
+      // 获取 Actor 定义的列表
     auto defs = _client.GetActorDefinitions();
+    // 返回一个智能指针，指向 BlueprintLibrary 对象，构造时传入定义的列表
     return MakeShared<BlueprintLibrary>(std::move(defs));
   }
-
+  // 获取车辆灯光状态列表
   rpc::VehicleLightStateList Simulator::GetVehiclesLightStates() {
     return _client.GetVehiclesLightStates();
   }
-
+  // 获取观众对象
   SharedPtr<Actor> Simulator::GetSpectator() {
+      // 调用 _client 的 GetSpectator 方法获取 Spectator（观众）对象
     return MakeActor(_client.GetSpectator());
   }
 
+  // 设置仿真（Episode）配置
   uint64_t Simulator::SetEpisodeSettings(const rpc::EpisodeSettings &settings) {
+      // 检查同步模式下是否没有设置固定的时间增量
     if (settings.synchronous_mode && !settings.fixed_delta_seconds) {
       log_warning(
           "synchronous mode enabled with variable delta seconds. It is highly "
           "recommended to set 'fixed_delta_seconds' when running on synchronous mode.");
     }
+    // 检查同步模式和子步进模式同时启用的情况下，子步数是否合理
     else if (settings.synchronous_mode && settings.substepping) {
       // 最大物理子步数 必须在[1,16]范围之内
       if(settings.max_substeps < 1 || settings.max_substeps > 16) {
@@ -274,6 +280,7 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
             "synchronous mode and substepping are enabled but the number of substeps is not valid. "
             "Please be aware that this value needs to be in the range [1-16].");
       }
+      // 检查每个子步增量与最大子步数的乘积是否小于等于固定的时间增量
       double n_substeps = settings.fixed_delta_seconds.get() / settings.max_substep_delta_time;
 
       if (n_substeps > static_cast<double>(settings.max_substeps)) {
@@ -283,8 +290,9 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
             "Be very careful about that, the time deltas are not guaranteed.");
       }
     }
+    // 调用 _client 的 SetEpisodeSettings 方法，设置仿真环境的配置
     const auto frame = _client.SetEpisodeSettings(settings);
-
+    // 同步当前帧与目标帧
     using namespace std::literals::chrono_literals;
     SynchronizeFrame(frame, *_episode, 1s);
 
@@ -411,8 +419,9 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   // -- 传感器的操作 ------------------------------------------------------------
   // ===========================================================================
 
+  // Simulator 类的一个成员函数，用于订阅传感器的数据
   void Simulator::SubscribeToSensor(
-      const Sensor &sensor,
+      const Sensor &sensor, //引用传递，表示要订阅的传感器对象
       std::function<void(SharedPtr<sensor::SensorData>)> callback) {
     DEBUG_ASSERT(_episode != nullptr);
     _client.SubscribeToStream(
@@ -423,24 +432,24 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
           cb(std::move(data));
         });
   }
-
+  // 取消订阅传感器的数据
   void Simulator::UnSubscribeFromSensor(Actor &sensor) {
     _client.UnSubscribeFromStream(sensor.GetActorDescription().GetStreamToken());
     // 如果将来我们需要单独取消订阅每个 gbuffer，则应该在这里完成。
   }
-
+  // 为ROS启用传感器数据
   void Simulator::EnableForROS(const Sensor &sensor) {
     _client.EnableForROS(sensor.GetActorDescription().GetStreamToken());
   }
-
+  // 为ROS禁用传感器数据
   void Simulator::DisableForROS(const Sensor &sensor) {
     _client.DisableForROS(sensor.GetActorDescription().GetStreamToken());
   }
-
+  // 检查传感器是否为ROS启用
   bool Simulator::IsEnabledForROS(const Sensor &sensor) {
     return _client.IsEnabledForROS(sensor.GetActorDescription().GetStreamToken());
   }
-
+  // 订阅GBuffer（一种图形缓冲区）数据
   void Simulator::SubscribeToGBuffer(
       Actor &actor,
       uint32_t gbuffer_id,
@@ -452,15 +461,16 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
           cb(std::move(data));
         });
   }
-
+  // 取消订阅GBuffer数据
   void Simulator::UnSubscribeFromGBuffer(Actor &actor, uint32_t gbuffer_id) {
     _client.UnSubscribeFromGBuffer(actor.GetId(), gbuffer_id);
   }
 
+  // 冻结或解冻所有交通信号灯
   void Simulator::FreezeAllTrafficLights(bool frozen) {
-    _client.FreezeAllTrafficLights(frozen);
+    _client.FreezeAllTrafficLights(frozen);// 传递冻结状态给客户端
   }
-
+  // 向传感器发送消息
   void Simulator::Send(const Sensor &sensor, std::string message) {
     _client.Send(sensor.GetId(), message);
   }
@@ -469,20 +479,21 @@ EpisodeProxy Simulator::GetCurrentEpisode() {
   /// -- 纹理更新操作
   // =========================================================================
 
+// 应用颜色纹理到一组对象上，使用TextureColor类型
   void Simulator::ApplyColorTextureToObjects(
-      const std::vector<std::string> &objects_name,
-      const rpc::MaterialParameter& parameter,
-      const rpc::TextureColor& Texture) {
+      const std::vector<std::string> &objects_name, // 对象名称的列表
+      const rpc::MaterialParameter& parameter,// 材质参数
+      const rpc::TextureColor& Texture) {// 颜色纹理
     _client.ApplyColorTextureToObjects(objects_name, parameter, Texture);
   }
-
+  // 应用颜色纹理到一组对象上，使用TextureFloatColor类型
   void Simulator::ApplyColorTextureToObjects(
       const std::vector<std::string> &objects_name,
       const rpc::MaterialParameter& parameter,
       const rpc::TextureFloatColor& Texture) {
     _client.ApplyColorTextureToObjects(objects_name, parameter, Texture);
   }
-
+  // 获取场景中所有对象的名称列表
   std::vector<std::string> Simulator::GetNamesOfAllObjects() const {
     return _client.GetNamesOfAllObjects();
   }

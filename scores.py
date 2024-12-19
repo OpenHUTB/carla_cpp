@@ -1,15 +1,15 @@
-import requests
+import requests#导入request模块，用于请求
 
-import argparse
-import os
+import argparse#导入argparse模块，用于处理命令行参数
+import os#导入os模块，用于提供与操作系统交互
 
 from collections import defaultdict
-from collections import Counter
+from collections import Counter#导入git模块，用于操作Git库
 
 import git  # 导入git模块，用于操作Git库
 
 argparser = argparse.ArgumentParser(
-        description='Involvement Degree')
+        description='Involvement Degree')# 创建一个ArgumentParser对象，用于解析命令行参数，description参数用于给这个解析器添加一个简单的功能描述，此处为'Involvement Degree'（可能与计算参与度相关）
 argparser.add_argument(
     '-t', '--token',
     help='your personal github access token')
@@ -101,7 +101,9 @@ commit_info()
 issue_counts = {}
 comment_counts = {}
 
+#初始化页码为1
 page = 1
+#循环获取数据，直到没有更多数据为止
 while True:
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
     # 需要把代理关掉，否则报错（原因不明）：urllib3.exceptions.MaxRetryError: HTTPSConnectionPool
@@ -113,12 +115,12 @@ while True:
 
     for issue in issues:
         # 过滤掉 Pull Requests
-        if 'pull_request' in issue:
+        if 'pull_request' in issue:#如果issue是Pull Requests，跳过
             continue
 
         # 统计提问者
         user = issue['user']['login']
-        issue_counts[user] = issue_counts.get(user, 0) + 1
+        issue_counts[user] = issue_counts.get(user, 0) + 1#更新用户统计
 
         # 获取 Issue 的评论
         comments_url = issue['comments_url']
@@ -131,6 +133,7 @@ while True:
 
     page += 1
 
+#按数量排序issue_counts和comment_counts
 sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
 sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reverse=True))
 
