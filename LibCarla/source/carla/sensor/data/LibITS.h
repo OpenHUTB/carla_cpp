@@ -531,69 +531,70 @@ public:
     } e_AccelerationControl;
  
     /* AccelerationControl */
-    typedef uint8_t AccelerationControl_t;
+    typedef uint8_t AccelerationControl_t;// 将AccelerationControl_t定义为uint8_t类型，用于后续表示加速度控制相关的变量等，可能是基于其取值范围适合用8位无符号整数表示
 
     /* LanePosition Dependencies */
+// 定义枚举类型LanePosition，用于列举车辆可能处于的不同车道位置情况
     typedef enum LanePosition {
-        LanePosition_offTheRoad = -1,
-        LanePosition_hardShoulder   = 0,
-        LanePosition_outermostDrivingLane   = 1,
-        LanePosition_secondLaneFromOutside  = 2
+        LanePosition_offTheRoad = -1, // 表示车辆已经偏离正常道路范围，例如开到道路外面了，对应枚举值为 -1
+        LanePosition_hardShoulder   = 0,// 表示车辆处于硬路肩位置，通常是道路边缘供临时停车等用途的区域，对应枚举值为0
+        LanePosition_outermostDrivingLane   = 1, // 表示车辆处于最外侧的行车道上，对应枚举值为1
+        LanePosition_secondLaneFromOutside  = 2// 表示车辆处于从最外侧数起的第二车道位置，对应枚举值为2
     } e_LanePosition;
  
     /* LanePosition */
-    typedef long LanePosition_t;
+    typedef long LanePosition_t;/ 为LanePosition类型定义一个别名LanePosition_t，方便在代码其他地方使用，本质上是long类型，便于统一处理车道位置相关的数据
 
     /* SteeringWheelAngleValue Dependencies */
     typedef enum SteeringWheelAngleValue {
-        SteeringWheelAngleValue_straight    = 0,
-        SteeringWheelAngleValue_onePointFiveDegreesToRight  = -1,
-        SteeringWheelAngleValue_onePointFiveDegreesToLeft   = 1,
-        SteeringWheelAngleValue_unavailable = 512
+        SteeringWheelAngleValue_straight    = 0,// 表示方向盘处于正前方直线行驶对应的角度位置，对应枚举值为0
+        SteeringWheelAngleValue_onePointFiveDegreesToRight  = -1, // 表示方向盘向右转了1.5度的情况，用负数表示向右转动方向，对应枚举值为 -1
+        SteeringWheelAngleValue_onePointFiveDegreesToLeft   = 1, // 表示方向盘向左转了1.5度的情况，用正数表示向左转动方向，对应枚举值为1
+        SteeringWheelAngleValue_unavailable = 512 // 表示方向盘角度信息不可用的情况，对应一个特定的枚举值512作为标识
     } e_SteeringWheelAngleValue;
  
     /* SteeringWheelAngleValue */
-    typedef long SteeringWheelAngleValue_t;
+    typedef long SteeringWheelAngleValue_t;// 为SteeringWheelAngleValue类型定义一个别名SteeringWheelAngleValue_t，方便在代码中使用，本质上是long类型，便于统一处理方向盘角度值相关的数据
 
     /* SteeringWheelAngleConfidence Dependencies */
     typedef enum SteeringWheelAngleConfidence {
-        SteeringWheelAngleConfidence_equalOrWithinOnePointFiveDegree    = 1,
-        SteeringWheelAngleConfidence_outOfRange = 126,
-        SteeringWheelAngleConfidence_unavailable    = 127
+        SteeringWheelAngleConfidence_equalOrWithinOnePointFiveDegree    = 1, // 表示方向盘角度的置信度为等于或在1.5度范围内的情况，对应枚举值为1
+        SteeringWheelAngleConfidence_outOfRange = 126,// 表示方向盘角度置信度超出正常范围的情况，对应枚举值为126
+        SteeringWheelAngleConfidence_unavailable    = 127// 表示方向盘角度置信度不可用的情况，对应枚举值为127
     } e_SteeringWheelAngleConfidence;
  
     /* SteeringWheelAngleConfidence */
-    typedef long SteeringWheelAngleConfidence_t;
+    typedef long SteeringWheelAngleConfidence_t;// 为SteeringWheelAngleConfidence类型定义一个别名SteeringWheelAngleConfidence_t，方便在代码中使用，本质上是long类型，便于统一处理方向盘角度置信度相关的数据
 
     /* SteeringWheelAngle */
     typedef struct SteeringWheelAngle
     {
-        SteeringWheelAngleValue_t steeringWheelAngleValue;
-        SteeringWheelAngleConfidence_t steeringWheelAngleConfidence;
+        SteeringWheelAngleValue_t steeringWheelAngleValue;// 表示方向盘的具体角度值，其类型为之前定义的SteeringWheelAngleValue_t
+        SteeringWheelAngleConfidence_t steeringWheelAngleConfidence;// 表示该方向盘角度对应的置信度，类型为SteeringWheelAngleConfidence_t
     } SteeringWheelAngle_t;
 
     /* LateralAccelerationValue Dependencies */
     typedef enum LateralAccelerationValue {
-        LateralAccelerationValue_pointOneMeterPerSecSquaredToRight  = -1,
-        LateralAccelerationValue_pointOneMeterPerSecSquaredToLeft   = 1,
-        LateralAccelerationValue_unavailable    = 161
+        LateralAccelerationValue_pointOneMeterPerSecSquaredToRight  = -1, // 表示车辆横向加速度为每秒平方0.1米且方向向右的情况，用负数表示向右方向，对应枚举值为 -1
+        LateralAccelerationValue_pointOneMeterPerSecSquaredToLeft   = 1,  // 表示车辆横向加速度为每秒平方0.1米且方向向左的情况，用正数表示向左方向，对应枚举值为1
+        LateralAccelerationValue_unavailable    = 161// 表示车辆横向加速度信息不可用的情况，对应一个特定的枚举值161作为标识
     } e_LateralAccelerationValue;
 
     /* LateralAccelerationValue */
-    typedef long LateralAccelerationValue_t;
+    typedef long LateralAccelerationValue_t;// 为LateralAccelerationValue类型定义一个别名LateralAccelerationValue_t，方便在代码中使用，本质上是long类型，便于统一处理横向加速度值相关的数据
 
     /* LateralAcceleration */
     typedef struct LateralAcceleration
     {
-        LateralAccelerationValue_t lateralAccelerationValue;
-        AccelerationConfidence_t lateralAccelerationConfidence;
+        LateralAccelerationValue_t lateralAccelerationValue;// 表示车辆横向加速度的具体数值，其类型为之前定义的LateralAccelerationValue_t
+        AccelerationConfidence_t lateralAccelerationConfidence; // 表示该横向加速度对应的置信度，类型为AccelerationConfidence_t
     } LateralAcceleration_t;
 
     /* VerticalAccelerationValue Dependencies */
     typedef enum VerticalAccelerationValue {
-        VerticalAccelerationValue_pointOneMeterPerSecSquaredUp  = 1,
-        VerticalAccelerationValue_pointOneMeterPerSecSquaredDown    = -1,
-        VerticalAccelerationValue_unavailable   = 161
+        VerticalAccelerationValue_pointOneMeterPerSecSquaredUp  = 1, // 表示车辆垂直加速度为每秒平方0.1米且方向向上的情况，用正数表示向上方向，对应枚举值为1
+        VerticalAccelerationValue_pointOneMeterPerSecSquaredDown    = -1, // 表示车辆垂直加速度为每秒平方0.1米且方向向下的情况，用负数表示向下方向，对应枚举值为 -1
+        VerticalAccelerationValue_unavailable   = 161// 表示车辆垂直加速度信息不可用的情况，对应一个特定的枚举值161作为标识
     } e_VerticalAccelerationValue;
  
     /* VerticalAccelerationValue */
@@ -602,8 +603,8 @@ public:
     /* VerticalAcceleration */
     typedef struct VerticalAcceleration
     {
-        VerticalAccelerationValue_t verticalAccelerationValue;
-        AccelerationConfidence_t verticalAccelerationConfidence;
+        VerticalAccelerationValue_t verticalAccelerationValue; // 表示车辆垂直加速度的具体数值，其类型为之前定义的VerticalAccelerationValue_t
+        AccelerationConfidence_t verticalAccelerationConfidence;// 表示该垂直加速度对应的置信度，类型为AccelerationConfidence_t
     } VerticalAcceleration_t;
 
     /* PerformanceClass Dependencies */
