@@ -7,11 +7,11 @@
 """
 This module provides GlobalRoutePlanner implementation.
 """
-
+#导入数学库
 import math
 import numpy as np
 import networkx as nx
-
+#导入carla库
 import carla
 from agents.navigation.local_planner import RoadOption
 
@@ -184,6 +184,7 @@ class GlobalRoutePlanner:
                             break
 
         return route_trace
+        #构建拓扑结构的函数
     def _build_topology(self):
         """
         This function retrieves topology from the server as a list of
