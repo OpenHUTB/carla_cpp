@@ -1,5 +1,4 @@
 ﻿// 版权所有 (c) 2017 计算机视觉中心 (CVC) 在巴塞罗那自治大学 (UAB).
-//
 // 本作品根据 MIT 许可证的条款进行许可。
 // 如需副本，请参阅 <https://opensource.org/licenses/MIT>.
 
