@@ -4,7 +4,7 @@
 // 本作品根据 MIT 许可证的条款进行许可。
 //有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
-#pragma once
+#编译一次
 
 class UWorld;
 
