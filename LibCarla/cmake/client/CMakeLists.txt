@@ -357,17 +357,23 @@ endif()
 # 构建调试版
 if (LIBCARLA_BUILD_DEBUG)
 
+ # 添加一个静态库目标，名为 carla_client${carla_target_postfix}_debug，包含libcarla_sources中列出的所有源文件
   add_library(carla_client${carla_target_postfix}_debug STATIC ${libcarla_sources})
-
+  
+ # 指定编译此静态库时需要包含的系统头文件路径，并且这些路径只对这个目标可见（PRIVATE）
   target_include_directories(carla_client${carla_target_postfix}_debug SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}"
       "${RECAST_INCLUDE_PATH}"
       "${LIBPNG_INCLUDE_PATH}")
 
+  # 如果启用了RSS_VARIANT构建选项，则进行以下额外设置
   if (BUILD_RSS_VARIANT)
+  # 定义预处理器宏，以启用RSS功能并指定使用TBB线程库
     target_compile_definitions(carla_client${carla_target_postfix}_debug PRIVATE RSS_ENABLED RSS_USE_TBB)
+    # 链接AD-RSS库和Intel TBB库到carla_client_debug库
     target_link_libraries(carla_client${carla_target_postfix}_debug ${ADRSS_LIBS} tbb)
+    # 添加AD-RSS库的头文件路径
     target_include_directories(carla_client${carla_target_postfix}_debug SYSTEM PRIVATE
       ${ADRSS_INCLUDE_DIRS})
   endif()
