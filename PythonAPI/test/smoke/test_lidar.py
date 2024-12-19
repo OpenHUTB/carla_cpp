@@ -214,16 +214,16 @@ class TestASyncLidar(SmokeTest):
           'rotation_frequency': '5'}
         att_l02={'channels' : '64', 'dropoff_intensity_limit': '1.0', 'dropoff_general_rate': '0.0',
           'range' : '50', 'points_per_second': '100000', 'rotation_frequency': '50'}
-
+        #将三个激光雷达传感器添加到传感器列表中
         sensors.append(Sensor(self, SensorType.LIDAR, att_l00))
         sensors.append(Sensor(self, SensorType.LIDAR, att_l01))
         sensors.append(Sensor(self, SensorType.LIDAR, att_l02))
 
         time.sleep(3.0)
-
+        #销毁所有传感器
         for sensor in sensors:
             sensor.destroy()
-
+        #检查每个传感器是否正确，如果不正确则标记测试失败
         for sensor in sensors:
             if not sensor.is_correct():
                 self.fail(sensor.error)
@@ -286,7 +286,7 @@ class TestCompareLidars(SyncSmokeTest):
                 else:
                     self.fail("It should never reach this point")
 
-            # Check that frame number are correct
+            # 检查帧序号是否正确
             self.assertEqual(data_sem_lidar[0], data_lidar_nod[0], "The frame numbers of LiDAR and SemLiDAR do not match.")
             self.assertEqual(data_sem_lidar[0], data_lidar_def[0], "The frame numbers of LiDAR and SemLiDAR do not match.")
 
