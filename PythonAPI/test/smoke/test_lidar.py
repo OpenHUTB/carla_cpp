@@ -223,7 +223,7 @@ class TestASyncLidar(SmokeTest):
 
         for sensor in sensors:
             sensor.destroy()
-
+        #检查每个传感器是否正确，如果不正确则标记测试失败
         for sensor in sensors:
             if not sensor.is_correct():
                 self.fail(sensor.error)
