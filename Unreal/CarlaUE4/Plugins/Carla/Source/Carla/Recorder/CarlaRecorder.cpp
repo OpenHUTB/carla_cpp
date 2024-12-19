@@ -93,28 +93,28 @@ void ACarlaRecorder::Ticking(float DeltaSeconds)
   if (!Episode)
     return;
 
-  // check if recording
-  if (Enabled)
+    // 检查是否正在记录
+    if (Enabled)
   {
     PlatformTime.UpdateTime();
     VisualTime.SetTime(Episode->GetVisualGameTime());
 
     const FActorRegistry &Registry = Episode->GetActorRegistry();
 
-    // through all actors in registry
-    for (auto It = Registry.begin(); It != Registry.end(); ++It)
+      // 遍历注册表中的所有actors
+      for (auto It = Registry.begin(); It != Registry.end(); ++It)
     {
       FCarlaActor* View = It.Value().Get();
 
       switch (View->GetActorType())
       {
-        // save the transform for props
-        case FCarlaActor::ActorType::Other:
+          // 保存propos的变换数据
+          case FCarlaActor::ActorType::Other:
           AddActorPosition(View);
           break;
 
-        // save the transform of all vehicles
-        case FCarlaActor::ActorType::Vehicle:
+          // 保存所有车辆的变换数据
+          case FCarlaActor::ActorType::Vehicle:
           AddActorPosition(View);
           AddVehicleAnimation(View);
           AddVehicleLight(View);
@@ -125,8 +125,8 @@ void ACarlaRecorder::Ticking(float DeltaSeconds)
           }
           break;
 
-        // save the transform of all walkers
-        case FCarlaActor::ActorType::Walker:
+          // 保存所有行人的变换数据
+          case FCarlaActor::ActorType::Walker:
           AddActorPosition(View);
           AddWalkerAnimation(View);
           if (bAdditionalData)
@@ -136,20 +136,20 @@ void ACarlaRecorder::Ticking(float DeltaSeconds)
           }
           break;
 
-        // save the state of each traffic light
+        // 保存每个交通信号灯的状态
         case FCarlaActor::ActorType::TrafficLight:
           AddTrafficLightState(View);
           break;
       }
     }
 
-    // write all data for this frame
-    Write(DeltaSeconds);
+      // 写入当前帧的所有数据
+      Write(DeltaSeconds);
   }
   else if (Episode->GetReplayer()->IsEnabled())
   {
-    // replayer
-    Episode->GetReplayer()->Tick(DeltaSeconds);
+      // 回放器
+      Episode->GetReplayer()->Tick(DeltaSeconds);
   }
 }
 
@@ -170,8 +170,8 @@ void ACarlaRecorder::AddActorPosition(FCarlaActor *CarlaActor)
   check(CarlaActor != nullptr);
 
   FTransform Transform = CarlaActor->GetActorGlobalTransform();
-  // get position of the vehicle
-  AddPosition(CarlaRecorderPosition
+    // 获取车辆的位置
+    AddPosition(CarlaRecorderPosition
   {
     CarlaActor->GetActorId(),
     Transform.GetLocation(),
@@ -191,7 +191,7 @@ void ACarlaRecorder::AddVehicleAnimation(FCarlaActor *CarlaActor)
   FVehicleControl Control;
   CarlaActor->GetVehicleControl(Control);
 
-  // save
+  // 保存
   CarlaRecorderAnimVehicle Record;
   Record.DatabaseId = CarlaActor->GetActorId();
   Record.Steering = Control.Steer;
@@ -395,7 +395,7 @@ void ACarlaRecorder::AddActorBones(FCarlaActor *CarlaActor)
 {
   check(CarlaActor != nullptr);
 
-  // get the bones
+  // 获取bones
   FWalkerBoneControlOut Bones;
   CarlaActor->GetBonesTransform(Bones);
 
@@ -415,33 +415,33 @@ void ACarlaRecorder::AddActorBones(FCarlaActor *CarlaActor)
 
 std::string ACarlaRecorder::Start(std::string Name, FString MapName, bool AdditionalData)
 {
-  // stop replayer if any in course
+  // 如果在过程中，停止回放器
   if (Replayer.IsEnabled())
     Replayer.Stop();
 
-  // stop recording
+  // 停止录制
   Stop();
 
-  // reset collisions Id
+  // 重置CollisionId
   NextCollisionId = 0;
 
-  // get the final path + filename
+  // 获取最终路径+文件名
   std::string Filename = GetRecorderFilename(Name);
 
-  // binary file
+  // 二进制文件
   File.open(Filename, std::ios::binary);
   if (!File.is_open())
   {
     return "";
   }
 
-  // save info
+  // 保存info
   Info.Version = 1;
   Info.Magic = TEXT("CARLA_RECORDER");
   Info.Date = std::time(0);
   Info.Mapfile = MapName;
 
-  // write general info
+  // 写入general info
   Info.Write(File);
 
   Frames.Reset();
@@ -451,7 +451,7 @@ std::string ACarlaRecorder::Start(std::string Name, FString MapName, bool Additi
 
   bAdditionalData = AdditionalData;
 
-  // add all existing actors
+  // 添加所有现有的actors
   AddExistingActors();
 
   return std::string(Filename);
@@ -494,10 +494,10 @@ void ACarlaRecorder::Clear(void)
 
 void ACarlaRecorder::Write(double DeltaSeconds)
 {
-  // update this frame data
+  // 更新当前帧的数据
   Frames.SetFrame(DeltaSeconds);
 
-  // start
+  // 开始
   Frames.WriteStart(File);
   VisualTime.Write(File);
 
@@ -576,12 +576,12 @@ void ACarlaRecorder::AddCollision(AActor *Actor1, AActor *Actor2)
   {
     CarlaRecorderCollision Collision;
 
-    // some inits
+    // 初始化
     Collision.Id = NextCollisionId++;
     Collision.IsActor1Hero = false;
     Collision.IsActor2Hero = false;
 
-    // check actor 1
+    // 检查 actor 1
     FCarlaActor *FoundActor1 = Episode->GetActorRegistry().FindCarlaActor(Actor1);
     if (FoundActor1 != nullptr) {
       if (FoundActor1->GetActorInfo() != nullptr)
@@ -596,7 +596,7 @@ void ACarlaRecorder::AddCollision(AActor *Actor1, AActor *Actor2)
       Collision.DatabaseId1 = uint32_t(-1); // actor1 is not a registered Carla actor
     }
 
-    // check actor 2
+    // 检查 actor 2
     FCarlaActor *FoundActor2 = Episode->GetActorRegistry().FindCarlaActor(Actor2);
     if (FoundActor2 != nullptr) {
       if (FoundActor2->GetActorInfo() != nullptr)
@@ -608,7 +608,7 @@ void ACarlaRecorder::AddCollision(AActor *Actor1, AActor *Actor2)
       Collision.DatabaseId2 = FoundActor2->GetActorId();
     }
     else {
-      Collision.DatabaseId2 = uint32_t(-1); // actor2 is not a registered Carla actor
+      Collision.DatabaseId2 = uint32_t(-1); // actor2 不是已注册的 Carla actor
     }
 
     Collisions.Add(std::move(Collision));
@@ -706,14 +706,14 @@ void ACarlaRecorder::AddBoundingBox(const CarlaRecorderActorBoundingBox &ActorBo
 
 void ACarlaRecorder::AddExistingActors(void)
 {
-  // registring all existing actors in first frame
-  FActorRegistry Registry = Episode->GetActorRegistry();
+    // 在第一帧注册所有现有的 actors
+    FActorRegistry Registry = Episode->GetActorRegistry();
   for (auto& It : Registry)
   {
     const FCarlaActor* CarlaActor = It.Value.Get();
     if (CarlaActor != nullptr)
     {
-      // create event
+      // 创建 event
       CreateRecorderEventAdd(
           CarlaActor->GetActorId(),
           static_cast<uint8_t>(CarlaActor->GetActorType()),
@@ -746,7 +746,7 @@ void ACarlaRecorder::CreateRecorderEventAdd(
   Description.UId = ActorDescription.UId;
   Description.Id = ActorDescription.Id;
 
-  // attributes
+  // 属性
   Description.Attributes.reserve(ActorDescription.Variations.Num());
   for (const auto &item : ActorDescription.Variations)
   {
@@ -754,14 +754,14 @@ void ACarlaRecorder::CreateRecorderEventAdd(
     Attr.Type = static_cast<uint8_t>(item.Value.Type);
     Attr.Id = item.Value.Id;
     Attr.Value = item.Value.Value;
-    // check for empty attributes
+    // 检查空属性
     if (!Attr.Id.IsEmpty())
     {
       Description.Attributes.emplace_back(std::move(Attr));
     }
   }
 
-  // recorder event
+  // 记录事件
   CarlaRecorderEventAdd RecEvent
   {
     DatabaseId,
@@ -773,8 +773,8 @@ void ACarlaRecorder::CreateRecorderEventAdd(
   AddEvent(std::move(RecEvent));
 
   FCarlaActor* CarlaActor = Episode->FindCarlaActor(DatabaseId);
-  // Other events related to spawning actors
-  // check if it is a vehicle to get initial physics control
+  // 与生成actors相关的其他事件
+  // 检查是否为车辆，以获取初始物理控制
   ACarlaWheeledVehicle* Vehicle = Cast<ACarlaWheeledVehicle>(CarlaActor->GetActor());
   if (Vehicle)
   {
@@ -790,12 +790,12 @@ void ACarlaRecorder::CreateRecorderEventAdd(
   ATrafficSignBase* TrafficSign = Cast<ATrafficSignBase>(CarlaActor->GetActor());
   if (TrafficSign)
   {
-    // Trigger volume in global coordinates
-    AddTriggerVolume(*TrafficSign);
+      // 触发体在全局坐标系中的位置
+      AddTriggerVolume(*TrafficSign);
   }
   else
   {
-    // Bounding box in local coordinates
-    AddActorBoundingBox(CarlaActor);
+      // 包围盒在局部坐标系中的位置
+      AddActorBoundingBox(CarlaActor);
   }
 }
