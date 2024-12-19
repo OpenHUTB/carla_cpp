@@ -47,6 +47,9 @@ file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profile
 install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)
 
 file(GLOB libcarla_carla_road_headers "${libcarla_source_path}/carla/road/*.h")
+// 使用install命令将存储在变量${libcarla_carla_road_element_headers}中的头文件列表里的每一个头文件，
+// 安装到指定的目标目录“include/carla/road/element”下。
+// 这样在项目整体安装时，相应的头文件就能被准确放置在对应的目录位置，便于其他代码引用这些头文件中的定义来实现相关功能。
 install(FILES ${libcarla_carla_road_headers} DESTINATION include/carla/road)
 
 file(GLOB libcarla_carla_road_element_headers "${libcarla_source_path}/carla/road/element/*.h")
