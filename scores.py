@@ -129,7 +129,7 @@ while True:
 
         for comment in comments:
             commenter = comment['user']['login']
-            comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
+            comment_counts[commenter] = comment_counts.get(commenter, 0) + 1#更新评论计数
 
     page += 1
 
