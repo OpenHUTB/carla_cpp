@@ -223,19 +223,28 @@ class GlobalRoutePlanner:
             if wp1.transform.location.distance(endloc) > self._sampling_resolution:
                 #如果满足上述距离条件 获取wp1的下一点
                 w = wp1.next(self._sampling_resolution)[0]
+                #只要w.transform.location 和endloc两地间距离大于self._sampling_resolution就会进入该while循环
                 while w.transform.location.distance(endloc) > self._sampling_resolution:
+                    #不断构建路径
                     seg_dict['path'].append(w)
+                    #获取w的下一个点序列
                     next_ws = w.next(self._sampling_resolution)
+                    #如果next_ws的长度为0则跳出该while循环
                     if len(next_ws) == 0:
                         break
                     w = next_ws[0]
             else:
+                #如果最初距离不大于self._sampling_resolution则进入else部分 首先获取wp1的下一个点序列next_wps
                 next_wps = wp1.next(self._sampling_resolution)
+                #若next_wps的长度为0则跳过当前循环
                 if len(next_wps) == 0:
                     continue
+                    #如果next_wps不为空 就next_wps[0]将添加到seg_dict['path']字典中
                 seg_dict['path'].append(next_wps[0])
+                #将字典添加到拓扑函数中
             self._topology.append(seg_dict)
 
+    #定义一个_build_graph函数 函数功能是构建一个network有向图来表示拓扑结构同时还构建了两个字典用于映射相关信息
     def _build_graph(self):
         """
         This function builds a networkx graph representation of topology, creating several class attributes:
@@ -251,33 +260,54 @@ class GlobalRoutePlanner:
         - road_id_to_edge (dictionary): map from road id to edge in the graph
         """
 
+        #创建并初始化图和字典
         self._graph = nx.DiGraph()
         self._id_map = dict()  # Map with structure {(x,y,z): id, ... }
         self._road_id_to_edge = dict()  # Map with structure {road_id: {lane_id: edge, ... }, ... }
 
+        #遍历拓扑结构中的每个路段
         for segment in self._topology:
+            #获取路段的入口和出口的坐标
             entry_xyz, exit_xyz = segment['entryxyz'], segment['exitxyz']
+            #获取路段的路径
             path = segment['path']
+            #获取路段入口和出口的更多相关信息
             entry_wp, exit_wp = segment['entry'], segment['exit']
+            #判断入口是否是路口
             intersection = entry_wp.is_junction
+            #获取道路id路段id和车道id
             road_id, section_id, lane_id = entry_wp.road_id, entry_wp.section_id, entry_wp.lane_id
 
+            #处理节点和映射关系
+            #对入口和出口坐标进行处理
             for vertex in entry_xyz, exit_xyz:
                 # Adding unique nodes and populating id_map
+                #如果坐标不在_id_map这个字典中则为这个新坐标分配一个新id即当前字典的长度
                 if vertex not in self._id_map:
                     new_id = len(self._id_map)
+                    #将坐标和新的id添加到._id_map字典中
                     self._id_map[vertex] = new_id
+                    #在图中添加一个新的节点
                     self._graph.add_node(new_id, vertex=vertex)
+            #获取入口坐标对应的节点id
             n1 = self._id_map[entry_xyz]
+            #获取出口坐标对应的节点id
             n2 = self._id_map[exit_xyz]
+            #处理边和相关字典映射
+            #如果road_id不在_road_id_to_edge字典中就为road_id创建一个新的空子字典
             if road_id not in self._road_id_to_edge:
                 self._road_id_to_edge[road_id] = dict()
+            #如果ection_id也不在_road_id_to_edge这个字典中就为section_id创建一个新的空子字典
             if section_id not in self._road_id_to_edge[road_id]:
                 self._road_id_to_edge[road_id][section_id] = dict()
+                #将_road_id映射到由入口和出口节点id组成的元组 表示图中的一条边
             self._road_id_to_edge[road_id][section_id][lane_id] = (n1, n2)
 
+            #获取出入口点的旋转信息和前向向量 将结果存储在ntry_carla_vector变量中
             entry_carla_vector = entry_wp.transform.rotation.get_forward_vector()
+            #获取出出口点的旋转信息和前向向量 将结果存储在ntry_carla_vector变量中
             exit_carla_vector = exit_wp.transform.rotation.get_forward_vector()
+            #计算出口点和入口点的位置差 并转换为单位向量将其存储在net_carla_vector变量中
             net_carla_vector = (exit_wp.transform.location - entry_wp.transform.location).make_unit_vector()
 
             # Adding edge with attributes
