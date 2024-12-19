@@ -8,7 +8,8 @@ FbxManager*   gSdkManager = NULL;
 // 不同的材质指针大概率会对应不同的模型部分，比如道路、人行道、十字路口、草地、街区等，方便后续为不同的场景元素设置独特的材质外观。
 // materials
 FbxSurfacePhong* gMatRoad;
-FbxSurfacePhong* gMatSidewalk;
+FbxSurfacePhong* gMatSidewalk;// 声明一个指向 FbxSurfacePhong 类型的指针 gMatSidewalk，用于表示人行道材质。
+// 它将专门负责与人行道模型相关的材质配置，以便使人行道在渲染等场景应用中呈现出合适的外观效果。
 FbxSurfacePhong* gMatCross;
 FbxSurfacePhong* gMatGrass;
 FbxSurfacePhong* gMatBlock;
