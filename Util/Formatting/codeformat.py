@@ -102,12 +102,12 @@ class CodeFormatter:
             return (True, "")
         return (False, diffOutput)
 
-    def verifyFile(self, fileName, printDiff):
+    def verifyFile(self, fileName, printDiff):## 创建一个命令列表，以self.command开头，添加self.verifyCommandArguments中的元素，最后添加fileName
         commandList = [self.command]
         commandList.extend(self.verifyCommandArguments)
         commandList.append(fileName)
         try:
-            verifyOutput = subprocess.check_output(commandList, stderr=subprocess.STDOUT)
+            verifyOutput = subprocess.check_output(commandList, stderr=subprocess.STDOUT)# 使用subprocess.check_output执行命令列表中的命令，并获取输出
         except subprocess.CalledProcessError as e:
             cprint("[ERROR] " + fileName + " (" + e.output.rstrip('\r\n') + ")", "red")
             return True
@@ -135,7 +135,7 @@ class CodeFormatterClang(CodeFormatter):
     CHECKED_IN_CLANG_FORMAT_FILE = "clang-format"
     CODE_FORMAT_IGNORE_FILE = ".codeformatignore"
 
-    def __init__(self):
+    def __init__(self):# 调用父类CodeFormatter的__init__方法进行初始化
         CodeFormatter.__init__(self,
                                command="clang-format-3.9",
                                expectedVersion="clang-format version 3.9",
@@ -145,7 +145,7 @@ class CodeFormatterClang(CodeFormatter):
                                fileEndings=["cpp", "hpp", "c", "h", "cc"],
                                fileDescription="source and header",
                                installCommand="sudo apt-get install clang-format-3.9")
-        self.scriptPath = os.path.dirname(os.path.abspath(__file__))
+        self.scriptPath = os.path.dirname(os.path.abspath(__file__))#
         self.checkedInClangFormatFile = os.path.join(self.scriptPath, CodeFormatterClang.CHECKED_IN_CLANG_FORMAT_FILE)
 
     def verifyFormatterVersion(self):
