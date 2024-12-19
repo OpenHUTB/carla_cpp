@@ -70,7 +70,7 @@ bool UCarlaEpisode::LoadNewEpisode(const FString &MapString, bool ResetSettings)
 
   if (MapString.StartsWith("/Game"))
   {
-    // Some conversions...
+    // 一些转换...
     FinalPath.RemoveFromStart(TEXT("/Game/"));
     FinalPath = FPaths::ProjectContentDir() + FinalPath;
     FinalPath = IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*FinalPath);
@@ -84,7 +84,7 @@ bool UCarlaEpisode::LoadNewEpisode(const FString &MapString, bool ResetSettings)
   {
     if (MapString.Contains("/")) return false;
 
-    // Find the full path under Carla
+    // 查找 Carla 下的完整路径。
     TArray<FString> TempStrArray, PathList;
     IFileManager::Get().FindFilesRecursive(PathList, *FPaths::ProjectContentDir(), *FinalPath, true, false, false);
     if (PathList.Num() > 0)
@@ -106,7 +106,7 @@ bool UCarlaEpisode::LoadNewEpisode(const FString &MapString, bool ResetSettings)
     if (ResetSettings)
       ApplySettings(FEpisodeSettings{});
 
-    // send 'LOAD_MAP' command to all secondary servers (if any)
+    // 向所有辅助服务器（如果有）发送 “LOAD_MAP” 命令。
     if (bIsPrimaryServer)
     {
       UCarlaGameInstance *GameInstance = UCarlaStatics::GetGameInstance(GetWorld());
@@ -126,14 +126,14 @@ bool UCarlaEpisode::LoadNewEpisode(const FString &MapString, bool ResetSettings)
 
 static FString BuildRecastBuilderFile()
 {
-  // Define filename with extension depending on if we are on Windows or not
+  // 根据是否在 Windows 上，定义带有扩展名的文件名
 #if PLATFORM_WINDOWS
   const FString RecastToolName = "RecastBuilder.exe";
 #else
   const FString RecastToolName = "RecastBuilder";
 #endif // PLATFORM_WINDOWS
 
-  // Define path depending on the UE4 build type (Package or Editor)
+  // 根据 UE4 构建类型（Package 或 Editor）定义路径
 #if UE_BUILD_SHIPPING
   const FString AbsoluteRecastBuilderPath = FPaths::ConvertRelativePathToFull(
       FPaths::RootDir() + "Tools/" + RecastToolName);
@@ -154,7 +154,7 @@ bool UCarlaEpisode::LoadNewOpendriveEpisode(
     return false;
   }
 
-  // Build the Map from the OpenDRIVE data
+  // 构建来自 OpenDRIVE 数据的地图通常需要解析 OpenDRIVE 文件并将其转换为适合仿真或游戏引擎使用的格式。
   const auto CarlaMap = carla::opendrive::OpenDriveParser::Load(
       carla::rpc::FromLongFString(OpenDriveString));
 
@@ -165,7 +165,7 @@ bool UCarlaEpisode::LoadNewOpendriveEpisode(
     return false;
   }
 
-  // Generate the OBJ (as string)
+  // 根据 OpenDRIVE 数据生成 OBJ 格式的字符串
   const auto RoadMesh = CarlaMap->GenerateMesh(Params.vertex_distance);
   const auto CrosswalksMesh = CarlaMap->GetAllCrosswalkMesh();
   const auto RecastOBJ = (RoadMesh + CrosswalksMesh).GenerateOBJForRecast();
