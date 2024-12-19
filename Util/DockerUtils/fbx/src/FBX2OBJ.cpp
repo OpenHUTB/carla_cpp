@@ -9,7 +9,8 @@ FbxManager*   gSdkManager = NULL;
 // materials
 FbxSurfacePhong* gMatRoad;
 FbxSurfacePhong* gMatSidewalk;
-FbxSurfacePhong* gMatCross;
+FbxSurfacePhong* gMatCross;// 声明一个指向 FbxSurfacePhong 类型的指针 gMatCross，用于表示十字路口材质。
+// 针对十字路口部分的模型，通过这个材质指针来赋予其独特的材质表现，使其能与其他场景元素区分开来。
 FbxSurfacePhong* gMatGrass;
 FbxSurfacePhong* gMatBlock;
 
