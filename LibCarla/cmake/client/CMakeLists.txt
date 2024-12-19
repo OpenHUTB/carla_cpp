@@ -42,7 +42,8 @@ if (BUILD_RSS_VARIANT)
 
     # 如果可用，请安装相应的 Python 库
     file(GLOB ${ad_lib}_python_libs "${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}_python*.a")
-    foreach(ad_python_lib ${${ad_lib}_python_libs})
+    foreach(ad_python_lib ${${ad_lib}_python_libs})  # 通过EXISTS命令判断当前遍历到的静态库文件（由变量ad_python_lib表示其路径）是否存在。
+    # 如果文件存在，则执行下面的install操作。
       if (EXISTS ${ad_python_lib})
         install(FILES ${ad_python_lib} DESTINATION lib)
       endif()
