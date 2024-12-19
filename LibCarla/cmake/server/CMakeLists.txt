@@ -32,7 +32,11 @@ file(GLOB libcarla_carla_opendrive_parser "${libcarla_source_path}/carla/opendri
 install(FILES ${libcarla_carla_opendrive_parser} DESTINATION include/carla/opendrive/parser)
 
 file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profiler/*.h")
-install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)
+install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)# 利用install命令来指定文件的安装规则。
+# 此命令会将变量${libcarla_carla_profiler_headers}所代表的头文件列表中的每一个头文件，
+# 安装到指定的目标目录include/carla/profiler下。
+# 这样在整个项目进行安装部署时，这些头文件就能被准确地放置在相应的目录位置，
+# 方便其他可能会使用到该库的代码能够顺利地找到并包含这些头文件，从而调用相关的功能。
 
 file(GLOB libcarla_carla_road_headers "${libcarla_source_path}/carla/road/*.h")
 install(FILES ${libcarla_carla_road_headers} DESTINATION include/carla/road)
