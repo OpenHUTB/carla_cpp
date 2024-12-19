@@ -293,10 +293,14 @@ class GlobalRoutePlanner:
             n1 = self._id_map[entry_xyz]
             #获取出口坐标对应的节点id
             n2 = self._id_map[exit_xyz]
+            #处理边和相关字典映射
+            #如果road_id不在_road_id_to_edge字典中就为road_id创建一个新的空子字典
             if road_id not in self._road_id_to_edge:
                 self._road_id_to_edge[road_id] = dict()
+            #如果ection_id也不在_road_id_to_edge这个字典中就为section_id创建一个新的空子字典
             if section_id not in self._road_id_to_edge[road_id]:
                 self._road_id_to_edge[road_id][section_id] = dict()
+                #将_road_id映射到由入口和出口节点id组成的元组 表示图中的一条边
             self._road_id_to_edge[road_id][section_id][lane_id] = (n1, n2)
 
             entry_carla_vector = entry_wp.transform.rotation.get_forward_vector()
