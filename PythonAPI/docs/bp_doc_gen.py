@@ -157,15 +157,17 @@ def generate_pb_docs():
         "The Blueprint Library ([`carla.BlueprintLibrary`](../python_api/#carlablueprintlibrary-class)) " +
         "is a summary of all [`carla.ActorBlueprint`](../python_api/#carla.ActorBlueprint) " +
         "and its attributes ([`carla.ActorAttribute`](../python_api/#carla.ActorAttribute)) " +
-        "available to the user in CARLA.")
+        "available to the user in CARLA.")#
 
-    md.textn("\nHere is an example code for printing all actor blueprints and their attributes:")
+    md.textn("\nHere is an example code for printing all actor blueprints and their attributes:")# 添加文本，说明下面将展示打印所有actor blueprints及其属性的示例代码
     md.textn(md.code_block("blueprints = [bp for bp in world.get_blueprint_library().filter('*')]\n"
+# 添加代码块，展示如何获取并打印blueprints及其属性的Python代码
+
                         "for blueprint in blueprints:\n"
                         "   print(blueprint.id)\n"
                         "   for attr in blueprint:\n"
-                        "       print('  - {}'.format(attr))", "py"))
-    md.textn("Check out the [introduction to blueprints](core_actors.md).")
+                        "       print('  - {}'.format(attr))", "py"))s
+    md.textn("Check out the [introduction to blueprints](core_actors.md).")#添加文本，提供链接到blueprints介绍文档
 
     for key, value in bp_dict.items(): # bp types, bp's
         md.title(3, key) #  添加标题 Key = walker, static, controller, sensor, vehicle
