@@ -111,7 +111,10 @@ endif()
 if (LIBCARLA_BUILD_RELEASE)
   # Specific options for release.
   set_target_properties(libcarla_test_${carla_config}_release PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
+   # 将libcarla_test_${carla_config}_release链接到carla_${carla_config}${carla_target_postfix}库
   target_link_libraries(libcarla_test_${carla_config}_release "carla_${carla_config}${carla_target_postfix}")
+   # 如果当前构建类型是客户端（Client），则额外链接Boost Filesystem库
+  # 这个条件检查是为了确保只有在构建客户端时才链接这个库，可能是由于某些功能只在客户端中使用
   if (CMAKE_BUILD_TYPE STREQUAL "Client")
       target_link_libraries(libcarla_test_${carla_config}_release "${BOOST_LIB_PATH}/libboost_filesystem.a")
   endif()
