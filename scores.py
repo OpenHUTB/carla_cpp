@@ -131,7 +131,7 @@ while True:
             commenter = comment['user']['login']
             comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
 
-    page += 1
+    page += 1#增加页码，获取下一页的数据
 
 #按数量排序issue_counts和comment_counts
 sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
