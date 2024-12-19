@@ -72,7 +72,7 @@ def commit_info():
     # 解析日志，统计每个作者的增加行数
     for line in log_data.splitlines():
         line_cnt = line_cnt + 1
-        if line.strip() == "":
+        if line.strip() == "":#如果行为空行，则跳过
             continue
         # 如果是作者行，则更新当前提交的作者（作者有可能是数字开头）
         if '\t' not in line or line.isdigit():  # 提交者名字的行不会以数字开头
