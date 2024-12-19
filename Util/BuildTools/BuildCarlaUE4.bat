@@ -1,32 +1,32 @@
-@echo off
-setlocal enabledelayedexpansion
+@echo off  ; 关闭命令回显，使批处理文件的执行更加干净
+setlocal enabledelayedexpansion  ; 启用延迟变量扩展，允许在代码块中正确更新和读取变量值
 
-rem BAT script that creates the binaries for Carla (carla.org).
-rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
+rem BAT script that creates the binaries for Carla (carla.org).  ; 注释：这是一个为Carla（carla.org）创建二进制文件的批处理脚本
+rem Run it through a cmd with the x64 Visual C++ Toolset enabled.  ; 注释：请在启用了x64 Visual C++工具集的命令提示符下运行此脚本
 
-set LOCAL_PATH=%~dp0
-set FILE_N=-[%~n0]:
+set LOCAL_PATH=%~dp0  ; 设置LOCAL_PATH变量为当前批处理文件所在的目录路径
+set FILE_N=-[%~n0]:  ; 设置FILE_N变量为当前批处理文件的名称（不包括路径和扩展名），前面加上-[]
 
-rem Print batch params (debug purpose)
-echo %FILE_N% [Batch params]: %*
+rem Print batch params (debug purpose)  ; 注释：打印批处理参数（用于调试）
+echo %FILE_N% [Batch params]: %*  ; 显示当前批处理文件的名称和所有传递给它的参数
 
 rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
 
-set BUILD_UE4_EDITOR=false
-set LAUNCH_UE4_EDITOR=false
-set REMOVE_INTERMEDIATE=false
-set USE_CARSIM=false
-set USE_CHRONO=false
-set USE_UNITY=true
-set CARSIM_STATE="CarSim OFF"
-set CHRONO_STATE="Chrono OFF"
-set UNITY_STATE="Unity ON"
-set AT_LEAST_WRITE_OPTIONALMODULES=false
-set EDITOR_FLAGS=""
-set USE_ROS2=false
-set ROS2_STATE="Ros2 OFF"
+set BUILD_UE4_EDITOR=false  ; 设置BUILD_UE4_EDITOR变量为false，表示不构建UE4编辑器
+set LAUNCH_UE4_EDITOR=false  ; 设置LAUNCH_UE4_EDITOR变量为false，表示不启动UE4编辑器
+set REMOVE_INTERMEDIATE=false  ; 设置REMOVE_INTERMEDIATE变量为false，表示不删除中间文件
+set USE_CARSIM=false  ; 设置USE_CARSIM变量为false，表示不使用CarSim
+set USE_CHRONO=false  ; 设置USE_CHRONO变量为false，表示不使用Chrono
+set USE_UNITY=true  ; 设置USE_UNITY变量为true，表示使用Unity
+set CARSIM_STATE="CarSim OFF"  ; 设置CARSIM_STATE变量为"CarSim OFF"，表示CarSim未启用
+set CHRONO_STATE="Chrono OFF"  ; 设置CHRONO_STATE变量为"Chrono OFF"，表示Chrono未启用
+set UNITY_STATE="Unity ON"  ; 设置UNITY_STATE变量为"Unity ON"，表示Unity已启用
+set AT_LEAST_WRITE_OPTIONALMODULES=false  ; 设置AT_LEAST_WRITE_OPTIONALMODULES变量为false，表示不写入可选模块
+set EDITOR_FLAGS=""  ; 设置EDITOR_FLAGS变量为空字符串，用于存储编辑器标志
+set USE_ROS2=false  ; 设置USE_ROS2变量为false，表示不使用ROS2
+set ROS2_STATE="Ros2 OFF"  ; 设置ROS2_STATE变量为"Ros2 OFF"，表示ROS2未启用
 
 :arg-parse
 echo %1
