@@ -119,7 +119,7 @@ def get_font():                                                     # 函数用�
 
 def should_quit():                                                   #函数用于检测是否应该退出程序
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT:                                #如果event事件种类等于pygame.QUIT，就返回True
             return True
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_ESCAPE:
