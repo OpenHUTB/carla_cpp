@@ -155,7 +155,7 @@ int main(int argc, const char *argv[]) {
             EXPECT_TRUE(image!= nullptr);
             SaveSemSegImageToDisk(*image);
         });
-
+#让当前线程休眠10秒
         std::this_thread::sleep_for(10s);
 
         // Remove actors from the simulation.
