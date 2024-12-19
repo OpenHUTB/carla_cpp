@@ -12,7 +12,7 @@ argparser = argparse.ArgumentParser(
         description='Involvement Degree')
 argparser.add_argument(
     '-t', '--token',
-    help='your personal github access token')
+    help='your personal github access token')#解析命令行参数
 args = argparser.parse_args()
 
 # 替换为你的个人访问令牌（可选，但推荐）
