@@ -13,15 +13,15 @@ argparser = argparse.ArgumentParser(
 argparser.add_argument(
     '-t', '--token',
     help='your personal github access token')
-args = argparser.parse_args()
-
+args = argparser.parse_args()// 为 ArgumentParser 对象添加一个参数 '-t', '--token',  # 参数的短选项和长选项 help='your personal github access token'  # 参数的帮助信息
 # 替换为你的个人访问令牌（可选，但推荐）
 TOKEN = args.token
 
 headers = {
     'Authorization': f'token {TOKEN}',
     'Accept': 'application/vnd.github.v3+json'
-}
+}//headers  创建一个包含请求头信息的字典
+//'Accept': 'application/vnd.github.v3+json' 设置接受的响应格式
 
 owner = 'OpenHUTB'  # 替换为仓库所有者
 repo = 'carla_cpp'    # 替换为仓库名称
