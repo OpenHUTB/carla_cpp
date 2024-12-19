@@ -12,7 +12,7 @@ import time
 import math
 import numpy as np
 from enum import Enum
-
+# 定义一个函数，用于检查列表中的对象是否在给定的公差范围内相等，如果列表中的对象数量小于2，则返回True
 def list_equal_tol(objs, tol = 1e-5):
     if (len(objs) < 2):
         return True
