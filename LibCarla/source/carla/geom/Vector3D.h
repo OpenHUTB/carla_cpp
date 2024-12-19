@@ -4,10 +4,16 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+// 防止头文件被多重包含，确保每个头文件只被包含一次
 #pragma once
 
+// 引入 carla 库中的 MsgPack 相关头文件
 #include "carla/MsgPack.h"
+
+// 引入 C++ 标准库中的数学计算功能（例如：数学常数、三角函数等）
 #include <cmath>
+
+// 引入 C++ 标准库中的数字极限（例如：浮点数的最大最小值等）
 #include <limits>
 
 namespace carla {
@@ -20,18 +26,18 @@ public:
     // -- 公开数据成员 ----------------------------------------------------------
     // =========================================================================
 
-    // x轴分量
+    // x轴分量，表示向量在x轴方向上的大小
     float x = 0.0f;
-    // y轴分量
+    // y轴分量，表示向量在y轴方向上的大小
     float y = 0.0f;
-    // z轴分量
+    // z轴分量，表示向量在z轴方向上的大小
     float z = 0.0f;
 
     // =========================================================================
     // -- 构造函数 --------------------------------------------------------------
     // =========================================================================
 
-    // 默认构造函数，使用默认初始化，各分量为0.0f
+    // 默认构造函数，初始化向量的x、y、z分量为0.0f
     Vector3D() = default;
 
     // 带参数的构造函数，用于初始化向量的x、y、z轴分量
@@ -44,32 +50,32 @@ public:
     // -- 其他方法 --------------------------------------------------------------
     // =========================================================================
 
-    // 计算向量的长度的平方
+    // 计算向量的平方长度（即模长的平方），避免开方操作，提高效率
     float SquaredLength() const {
         return x * x + y * y + z * z;
     }
 
-    // 计算向量的长度（即模长），通过先求长度的平方再开方得到
+    // 计算向量的模长（即向量的实际长度），通过平方根计算
     float Length() const {
         return std::sqrt(SquaredLength());
     }
 
-    // 计算二维平面下向量长度的平方（只考虑x、y轴分量）
+    // 计算二维平面（只考虑x、y分量）下的向量长度的平方
     float SquaredLength2D() const {
         return x * x + y * y;
     }
 
-    // 计算二维平面下向量的长度（只考虑x、y轴分量），通过先求二维长度的平方再开方得到
+    // 计算二维平面（只考虑x、y分量）下的向量长度
     float Length2D() const {
         return std::sqrt(SquaredLength2D());
     }
 
-    // 获取向量各分量取绝对值后的新向量
+    // 获取该向量的绝对值向量，即各分量取绝对值后的新向量
     Vector3D Abs() const {
         return Vector3D(abs(x), abs(y), abs(z));
     }
 
-    // 将向量转换为单位向量，先获取向量长度，确保长度大于一定极小值（避免除以0等异常情况），然后各分量除以长度得到单位向量
+    // 将该向量转换为单位向量（长度为1的向量），确保原向量的长度大于极小值避免除以0
     Vector3D MakeUnitVector() const {
         const float length = Length();
         DEVELOPMENT_ASSERT(length > 2.0f * std::numeric_limits<float>::epsilon());
@@ -77,7 +83,7 @@ public:
         return Vector3D(x * k, y * k, z * k);
     }
 
-    // 将向量转换为安全的单位向量，根据给定的epsilon值判断长度情况，若长度大于epsilon则按正常方式转换为单位向量，否则直接返回原向量（各分量乘以1.0f，相当于不变）
+    // 将该向量转换为安全的单位向量，若长度小于给定的epsilon，则返回原向量，否则返回单位向量
     Vector3D MakeSafeUnitVector(const float epsilon) const {
         const float length = Length();
         const float k = (length > std::max(epsilon, 0.0f))? (1.0f / length) : 1.0f;
@@ -88,7 +94,7 @@ public:
     // -- 算术运算符 ------------------------------------------------------------
     // =========================================================================
 
-    // 重载 += 运算符，实现向量与另一个向量相加并更新自身，将对应分量相加
+    // 重载 += 运算符，使得向量加法可以直接通过该运算符更新向量
     Vector3D &operator+=(const Vector3D &rhs) {
         x += rhs.x;
         y += rhs.y;
@@ -96,13 +102,13 @@ public:
         return *this;
     }
 
-    // 重载 + 运算符，实现向量相加，通过调用 += 运算符实现，返回相加后的新向量
+    // 重载 + 运算符，实现向量相加，返回新向量
     friend Vector3D operator+(Vector3D lhs, const Vector3D &rhs) {
         lhs += rhs;
         return lhs;
     }
 
-    // 重载 -= 运算符，实现向量与另一个向量相减并更新自身，将对应分量相减
+    // 重载 -= 运算符，使得向量减法可以直接通过该运算符更新向量
     Vector3D &operator-=(const Vector3D &rhs) {
         x -= rhs.x;
         y -= rhs.y;
@@ -110,13 +116,13 @@ public:
         return *this;
     }
 
-    // 重载 - 运算符，实现向量相减，通过调用 -= 运算符实现，返回相减后的新向量
+    // 重载 - 运算符，实现向量相减，返回新向量
     friend Vector3D operator-(Vector3D lhs, const Vector3D &rhs) {
         lhs -= rhs;
         return lhs;
     }
 
-    // 重载 -= 运算符，实现向量减去一个浮点数并更新自身，各分量减去该浮点数
+    // 重载 -= 运算符，实现向量与一个常数相减，并更新向量
     Vector3D& operator-=(const float f) {
         x -= f;
         y -= f;
@@ -124,7 +130,7 @@ public:
         return *this;
     }
 
-    // 重载 *= 运算符，实现向量与一个浮点数相乘并更新自身，各分量乘以该浮点数
+    // 重载 *= 运算符，实现向量与一个浮点数相乘并更新向量
     Vector3D &operator*=(float rhs) {
         x *= rhs;
         y *= rhs;
@@ -168,12 +174,12 @@ public:
     // -- 比较运算符 ------------------------------------------------------------
     // =========================================================================
 
-    // 重载 == 运算符，比较两个向量是否相等，通过比较各对应分量是否相等来判断
+    // 重载 == 运算符，判断两个向量是否相等，比较每个分量是否相等
     bool operator==(const Vector3D &rhs) const {
         return (x == rhs.x) && (y == rhs.y) && (z == rhs.z);
     }
 
-    // 重载!= 运算符，比较两个向量是否不相等，通过对 == 运算符结果取反来判断
+    // 重载 != 运算符，判断两个向量是否不相等，取反 == 运算符的结果
     bool operator!=(const Vector3D &rhs) const {
         return!(*this == rhs);
     }
@@ -183,11 +189,11 @@ public:
     // =========================================================================
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
-    // 明确删除了这两种构造函数和赋值运算符重载，目的是避免其他用户错误创建它们，因为向量与位置不同，有些向量有单位，有些没有，删除这些可发现缺少单位转换的地方
+    // 删除将 Vector3D 转换为 FVector 类型的构造函数和赋值运算符，避免误用
     Vector3D(const FVector &v) = delete;
     Vector3D& operator=(const FVector &rhs) = delete;
 
-    // 将向量的单位从厘米转换为米并返回新向量，通过各分量乘以1e-2f实现
+    // 将该向量从厘米单位转换为米单位，返回新向量
     Vector3D ToMeters() const {
         return *this * 1e-2f;
     }
@@ -205,16 +211,16 @@ public:
 
     // =========================================================================
     /// @todo 以下内容是从 MSGPACK_DEFINE_ARRAY 复制粘贴的。这是 msgpack 库中问题的解决方法。
-    /// MSGPACK_DEFINE_ARRAY 宏正在遮蔽我们的“z”变量。
-    /// https://github.com/msgpack/msgpack-c/issues/709
+    /// MSGPACK_DEFINE_ARRAY 宏可能遮蔽了我们的“z”变量。
+    /// 解决方法参考：https://github.com/msgpack/msgpack-c/issues/709
     // =========================================================================
-    // 用于将该向量对象进行msgpack序列化，调用相关函数实现序列化操作
+    // 用于将 Vector3D 对象进行 msgpack 序列化，确保数据按顺序打包
     template <typename Packer>
     void msgpack_pack(Packer& pk) const
     {
         clmdep_msgpack::type::make_define_array(x, y, z).msgpack_pack(pk);
     }
-    // 用于将msgpack序列化的数据进行反序列化，恢复该向量对象
+    // 用于从 msgpack 数据反序列化，恢复 Vector3D 对象
     void msgpack_unpack(clmdep_msgpack::object const& o)
     {
         clmdep_msgpack::type::make_define_array(x, y, z).msgpack_unpack(o);
