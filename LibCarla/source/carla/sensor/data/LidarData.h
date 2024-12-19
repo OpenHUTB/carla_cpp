@@ -113,19 +113,23 @@ public:
     // 假设_header是一个包含头部信息的std::vector<uint32_t>，Index::SIZE是头部固定部分的大小
     std::memset(_header.data() + Index::SIZE, 0, sizeof(uint32_t) * GetChannelCount());
 
-      uint32_t total_points = static_cast<uint32_t>(
-          std::accumulate(points_per_channel.begin(), points_per_channel.end(), 0));
 
-      _points.clear();
-      _points.reserve(total_points * 4);
-    }
+    // 计算所有通道的总点数，并据此重置_points的大小和预留空间
+    uint32_t total_points = static_cast<uint32_t>(
+        std::accumulate(points_per_channel.begin(), points_per_channel.end(), 0));
 
-    void WritePointSync(LidarDetection &detection) {
-      _points.emplace_back(detection.point.x);
-      _points.emplace_back(detection.point.y);
-      _points.emplace_back(detection.point.z);
-      _points.emplace_back(detection.intensity);
-    }
+    _points.clear(); // 清空_points
+    _points.reserve(total_points * 4); // 预留足够的空间，每个点包含x, y, z, intensity四个float值
+  }
+
+  // 将一个LidarDetection对象的数据同步写入到内部存储中
+  void WritePointSync(LidarDetection &detection) {
+    // 将检测点的x, y, z坐标和强度依次添加到_points向量中
+    _points.emplace_back(detection.point.x);
+    _points.emplace_back(detection.point.y);
+    _points.emplace_back(detection.point.z);
+    _points.emplace_back(detection.intensity);
+  }
 
     virtual void WritePointSync(SemanticLidarDetection &detection) {
       (void) detection;
