@@ -335,7 +335,7 @@ if (LIBCARLA_BUILD_RELEASE)
 #windows平台特定处理：使用set_target_postfix命令设置carla_client库的编译标准
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
-
+ # 链接Recast及其相关库的Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/DetourCrowd.lib")
@@ -343,9 +343,10 @@ if (LIBCARLA_BUILD_RELEASE)
     if (NOT DEFINED CMAKE_CXX_FLAGS_RELEASE_CLIENT)
       set(CMAKE_CXX_FLAGS_RELEASE_CLIENT ${CMAKE_CXX_FLAGS_RELEASE})
     endif()
-
+ # 设置carla_client${carla_target_postfix}目标的编译标志为CMAKE_CXX_FLAGS_RELEASE_CLIENT中定义的值
+    # 同样地，这里也使用了已废弃的COMPILE_FLAGS属性
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE_CLIENT}")
-
+ # 链接Recast及其相关库的非Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libRecast.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetour.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetourCrowd.a")
