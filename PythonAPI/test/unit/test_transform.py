@@ -12,10 +12,13 @@ import unittest
 
 class TestLocation(unittest.TestCase):
     def test_default_values(self):
+        # 创建一个默认构造的carla.Location对象，此时预期其x、y、z属性都应为0.0
         location = carla.Location()
         # 验证默认构造的Location对象，其x、y、z属性是否都为0.0。
         self.assertEqual(location.x, 0.0)
+        # 同理，验证y属性是否为0.0
         self.assertEqual(location.y, 0.0)
+        # 验证z属性是否为0.0
         self.assertEqual(location.z, 0.0)
         location = carla.Location(1.0)
         # 验证使用一个参数构造Location对象时，x属性被赋值为传入参数，y和z属性为0.0。
