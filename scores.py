@@ -113,7 +113,7 @@ while True:
 
     for issue in issues:
         # 过滤掉 Pull Requests
-        if 'pull_request' in issue:
+        if 'pull_request' in issue:#如果issue是Pull Requests，跳过
             continue
 
         # 统计提问者
