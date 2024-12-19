@@ -764,15 +764,15 @@ public:
 
     /* PathPoint */
     typedef struct PathPoint {
-        DeltaReferencePosition_t     pathPosition;
-        PathDeltaTime_t *pathDeltaTime  /* OPTIONAL */;
+        DeltaReferencePosition_t     pathPosition;// 表示该路径点在地理坐标（纬度、经度、高度）方面的变化量信息，类型为DeltaReferencePosition_t，它整合了三个方向上的位置变化情况，能精确描述路径点的位置变化。
+        PathDeltaTime_t *pathDeltaTime  /* OPTIONAL */;// 表示该路径点对应的时间变化量信息，类型为PathDeltaTime_t指针，此成员是可选的（通过注释中的 OPTIONAL 标识），意味着在某些情况下可能不存在时间变化量信息，用于关联路径点与特定的时间节点，比如记录车辆经过该点的时间等情况。
 
     } PathPoint_t;
 
     /* PathHistory */
     typedef struct PathHistory {
-        long NumberOfPathPoint;
-        std::vector<PathPoint_t> data;
+        long NumberOfPathPoint; // 表示路径中包含的路径点的数量，使用long类型来存储，方便后续对路径点进行遍历等操作时确定循环次数等逻辑。
+        std::vector<PathPoint_t> data; // 定义一个动态数组（使用std::vector），其中元素类型为PathPoint_t，用于存储各个路径点的详细信息，从而完整地记录了一段路径的历史轨迹情况。
     } PathHistory_t;
 };
 
@@ -783,25 +783,25 @@ public:
     /* GenerationDeltaTime Dependencies*/
     typedef enum GenerationDeltaTime
     {
-        GenerationDeltaTime_oneMilliSec = 1
+        GenerationDeltaTime_oneMilliSec = 1 // 表示1毫秒的时间间隔，对应枚举值为1，可用于设定诸如消息每隔1毫秒生成一次之类的时间规则，在涉及消息定时生成、更新等逻辑中起作用。
     } e_GenerationDeltaTime;
 
     /* GenerationDeltaTime */
-    typedef long GenerationDeltaTime_t;
+    typedef long GenerationDeltaTime_t;// 为GenerationDeltaTime类型定义一个别名GenerationDeltaTime_t，方便在代码中统一使用，本质上是long类型，便于在程序中对生成时间间隔相关的数据进行处理和传递。
 
     /* BasicContainer */
     typedef struct BasicContainer
     {
-        ITSContainer::StationType_t stationType;
-        ITSContainer::ReferencePosition_t referencePosition;
+        ITSContainer::StationType_t stationType;// 表示站点类型信息，其类型为ITSContainer::StationType_t（推测ITSContainer是另一个相关的命名空间或结构体等定义了StationType_t类型，此处未完整展示其定义细节），用于明确所属站点的类型，例如是车辆端还是路边单元端等情况。
+        ITSContainer::ReferencePosition_t referencePosition; // 表示参考位置信息，类型为ITSContainer::ReferencePosition_t（同样依赖于外部定义的该类型），用于确定一个基本的地理位置参考，比如车辆的初始位置等情况。
     } BasicContainer_t;
 
     /* HighFrequencyContainer Dependencies */
     typedef enum HighFrequencyContainer_PR : long
     {
-        HighFrequencyContainer_PR_NOTHING, /* No components present */
-        HighFrequencyContainer_PR_basicVehicleContainerHighFrequency,
-        HighFrequencyContainer_PR_rsuContainerHighFrequency
+        HighFrequencyContainer_PR_NOTHING, /* No components present */// 表示高频容器中没有任何组件存在的情况，对应枚举值用于在逻辑判断中识别容器为空的状态，方便进行相应的初始化或错误处理等操作。
+        HighFrequencyContainer_PR_basicVehicleContainerHighFrequency, // 表示高频容器中包含基本车辆高频信息的情况，对应枚举值用于在处理车辆相关高频数据时进行识别和相应的数据提取、处理逻辑。
+        HighFrequencyContainer_PR_rsuContainerHighFrequency // 表示高频容器中包含路边单元（RSU）高频信息的情况，对应枚举值用于针对路边单元相关高频数据的处理逻辑，比如更新受保护通信区域信息等操作。
     } HighFrequencyContainer_PR;
 
     typedef bool OptionalStructAvailable_t;
@@ -809,36 +809,36 @@ public:
     /* BasicVehicleContainerHighFrequency*/
     typedef struct BasicVehicleContainerHighFrequency
     {
-        ITSContainer::Heading_t heading;
-        ITSContainer::Speed_t speed;
-        ITSContainer::DriveDirection_t driveDirection;
-        ITSContainer::VehicleLength_t vehicleLength;
-        ITSContainer::VehicleWidth_t vehicleWidth;
-        ITSContainer::LongitudinalAcceleration_t longitudinalAcceleration;
-        ITSContainer::Curvature_t curvature;
-        ITSContainer::CurvatureCalculationMode_t   curvatureCalculationMode;
-        ITSContainer::YawRate_t    yawRate;
+        ITSContainer::Heading_t heading;// 表示车辆的行驶方向信息，其类型为ITSContainer::Heading_t（依赖外部定义的该类型），用于明确车辆当前的车头朝向角度等情况，有助于判断车辆的行驶轨迹方向。
+        ITSContainer::Speed_t speed;// 表示车辆的速度信息，类型为ITSContainer::Speed_t，用于实时传递车辆当前的行驶速度，方便其他相关设备或系统了解车辆的运动快慢情况。
+        ITSContainer::DriveDirection_t driveDirection; // 表示车辆的行驶驱动方向信息，类型为ITSContainer::DriveDirection_t，可用于区分车辆是正向行驶还是倒车等不同驱动状态，对交通管理和车辆协作场景有重要意义。
+        ITSContainer::VehicleLength_t vehicleLength;// 表示车辆的长度信息，类型为ITSContainer::VehicleLength_t，用于告知其他参与合作感知的对象车辆的尺寸长度情况，在避免碰撞、道路规划等方面可作为参考依据。
+        ITSContainer::VehicleWidth_t vehicleWidth; // 表示车辆的宽度信息，类型为ITSContainer::VehicleWidth_t，与车辆长度信息类似，可让外界知晓车辆的横向尺寸，有助于判断车辆在道路上的占位情况等。
+        ITSContainer::LongitudinalAcceleration_t longitudinalAcceleration; // 表示车辆的纵向加速度信息，类型为ITSContainer::LongitudinalAcceleration_t，用于实时反映车辆在行驶方向上的加速或减速情况，是判断车辆行驶状态变化的重要指标。
+        ITSContainer::Curvature_t curvature; // 表示车辆行驶路径的曲率信息，类型为ITSContainer::Curvature_t，可帮助了解车辆当前行驶轨迹的弯曲程度，对于预测车辆后续行驶路线等有帮助。
+        ITSContainer::CurvatureCalculationMode_t   curvatureCalculationMode; // 表示车辆曲率计算模式的信息，类型为ITSContainer::CurvatureCalculationMode_t，用于说明曲率是通过何种方式计算得出的，例如是否使用了偏航率等信息来计算，便于对曲率数据的准确性和可靠性进行评估。
+        ITSContainer::YawRate_t    yawRate; // 表示车辆的偏航率信息，类型为ITSContainer::YawRate_t，偏航率对于分析车辆的转向特性、行驶稳定性等方面具有重要作用，能更细致地描述车辆动态行为。
         
-        OptionalStructAvailable_t accelerationControlAvailable;
-        ITSContainer::AccelerationControl_t   accelerationControl    /* OPTIONAL */;
+        OptionalStructAvailable_t accelerationControlAvailable; // 表示车辆加速度控制相关信息是否可用的标识，类型为OptionalStructAvailable_t（即bool类型），用于判断后续的accelerationControl结构体是否包含有效可用的数据，避免对无效数据进行操作。
+        ITSContainer::AccelerationControl_t   accelerationControl    /* OPTIONAL */;  // 表示车辆的加速度控制信息，类型为ITSContainer::AccelerationControl_t，此成员是可选的（通过注释中的 OPTIONAL 标识），意味着在某些情况下可能不存在该信息，它可用于描述车辆当前是通过刹车、油门等哪种控制方式来改变速度等情况。
         
-        OptionalStructAvailable_t lanePositionAvailable;
-        ITSContainer::LanePosition_t lanePosition   /* OPTIONAL */;
+        OptionalStructAvailable_t lanePositionAvailable; // 表示车辆车道位置相关信息是否可用的标识，类型为OptionalStructAvailable_t，用于判断后续的lanePosition结构体是否有有效数据，以便正确处理车道位置相关逻辑。
+        ITSContainer::LanePosition_t lanePosition   /* OPTIONAL */; // 表示车辆所在车道位置信息，类型为ITSContainer::LanePosition_t，此成员是可选的，用于明确车辆当前处于哪条车道或者是否偏离道路等位置情况，对交通流分析和车辆协作很重要。
         
-        OptionalStructAvailable_t steeringWheelAngleAvailable;
-        ITSContainer::SteeringWheelAngle_t   steeringWheelAngle /* OPTIONAL */;
+        OptionalStructAvailable_t steeringWheelAngleAvailable;// 表示车辆方向盘角度相关信息是否可用的标识，类型为OptionalStructAvailable_t，用于判断后续的steeringWheelAngle结构体是否包含有效可用的数据。
+        ITSContainer::SteeringWheelAngle_t   steeringWheelAngle /* OPTIONAL */; // 表示车辆方向盘角度信息，类型为ITSContainer::SteeringWheelAngle_t，此成员是可选的，用于了解车辆方向盘的转动情况，进而推断驾驶员的操作意图等情况。
 
-        OptionalStructAvailable_t lateralAccelerationAvailable;
-        ITSContainer::LateralAcceleration_t  lateralAcceleration    /* OPTIONAL */;
+        OptionalStructAvailable_t lateralAccelerationAvailable; // 表示车辆横向加速度相关信息是否可用的标识，类型为OptionalStructAvailable_t，用于判断后续的lateralAcceleration结构体是否有有效数据。
+        ITSContainer::LateralAcceleration_t  lateralAcceleration    /* OPTIONAL */;// 表示车辆横向加速度信息，类型为ITSContainer::LateralAcceleration_t，此成员是可选的，用于描述车辆在横向方向上的加速情况，对分析车辆转弯、变道等横向运动特性有帮助。
 
-        OptionalStructAvailable_t verticalAccelerationAvailable;
-        ITSContainer::VerticalAcceleration_t verticalAcceleration   /* OPTIONAL */;
+        OptionalStructAvailable_t verticalAccelerationAvailable; // 表示车辆垂直加速度相关信息是否可用的标识，类型为OptionalStructAvailable_t，用于判断后续的verticalAcceleration结构体是否包含有效可用的数据。
+        ITSContainer::VerticalAcceleration_t verticalAcceleration   /* OPTIONAL */; // 表示车辆垂直加速度信息，类型为ITSContainer::VerticalAcceleration_t，此成员是可选的，用于反映车辆在垂直方向上的加速情况，比如车辆经过颠簸路面等产生的上下方向的加速度变化。
 
-        OptionalStructAvailable_t performanceClassAvailable;
-        ITSContainer::PerformanceClass_t performanceClass   /* OPTIONAL */;
+        OptionalStructAvailable_t performanceClassAvailable; // 表示车辆性能等级相关信息是否可用的标识，类型为OptionalStructAvailable_t，用于判断后续的performanceClass结构体是否有有效数据。
+        ITSContainer::PerformanceClass_t performanceClass   /* OPTIONAL */; // 表示车辆性能等级信息，类型为ITSContainer::PerformanceClass_t，此成员是可选的，用于区分不同性能级别的车辆，例如高性能车与普通车辆等，在一些特定应用场景中可能会根据性能等级进行不同的处理逻辑。
 
-        OptionalStructAvailable_t cenDsrcTollingZoneAvailable;
-        ITSContainer::CenDsrcTollingZone_t   cenDsrcTollingZone /* OPTIONAL */;
+        OptionalStructAvailable_t cenDsrcTollingZoneAvailable;// 表示车辆所在的基于DSRC的收费区域相关信息是否可用的标识，类型为OptionalStructAvailable_t，用于判断后续的cenDsrcTollingZone结构体是否包含有效可用的数据
+        ITSContainer::CenDsrcTollingZone_t   cenDsrcTollingZone /* OPTIONAL */; // 表示车辆所在的基于DSRC的收费区域信息，类型为ITSContainer::CenDsrcTollingZone_t，此成员是可选的，用于确定车辆是否处于特定的收费区域以及该区域的相关详细信息等情况。
         
     } BasicVehicleContainerHighFrequency_t;
 
