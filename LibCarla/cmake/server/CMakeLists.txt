@@ -143,8 +143,11 @@ if (LIBCARA_BUILD_RELEASE) #设置目标服务器属性，包括编译选项和�
 
   target_include_directories(carla_server SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
-      "${RPCLIB_INCLUDE_PATH}")
-
+      "${RPCLIB_INCLUDE_PATH}")# 使用target_include_directories命令为名为carla_server的目标（这里就是前面创建的静态库）添加头文件包含目录。
+# SYSTEM关键字表示这些目录下的头文件被视为系统头文件。
+# PRIVATE表示这些包含目录仅对该目标（carla_server）本身可见，不会传递给依赖它的其他目标。
+# 后面跟着的是具体的头文件包含目录路径，这里分别添加了BOOST_INCLUDE_PATH和RPCLIB_INCLUDE_PATH这两个路径，
+# 以便在编译carla_server静态库时能正确找到对应的头文件。
   install(TARGETS carla_server DESTINATION lib OPTIONAL)
 
   set_target_properties(carla_server PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
