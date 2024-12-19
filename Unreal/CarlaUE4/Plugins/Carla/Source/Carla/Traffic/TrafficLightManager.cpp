@@ -28,7 +28,7 @@ ATrafficLightManager::ATrafficLightManager()
   SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
   RootComponent = SceneComponent;
 
-  // Hard codded default traffic light blueprint
+  // 硬编码默认交通灯蓝图
   static ConstructorHelpers::FClassFinder<AActor> TrafficLightFinder(
       TEXT( "/Game/Carla/Blueprints/TrafficLight/BP_TLOpenDrive" ) );
   if (TrafficLightFinder.Succeeded())
@@ -36,7 +36,7 @@ ATrafficLightManager::ATrafficLightManager()
     TSubclassOf<AActor> Model = TrafficLightFinder.Class;
     TrafficLightModel = Model;
   }
-  // Default traffic signs models
+  // 默认交通标志模型
   static ConstructorHelpers::FClassFinder<AActor> StopFinder(
       TEXT( "/Game/Carla/Static/TrafficSign/BP_Stop" ) );
   if (StopFinder.Succeeded())
@@ -131,7 +131,7 @@ void ATrafficLightManager::RegisterLightComponentFromOpenDRIVE(UTrafficLightComp
   ACarlaGameModeBase *GM = UCarlaStatics::GetGameMode(GetWorld());
   check(GM);
 
-  // Cast to std::string
+  // 强制转换 std::string
   carla::road::SignId SignId(TCHAR_TO_UTF8(*(TrafficLightComponent->GetSignId())));
 
   ATrafficLightGroup* TrafficLightGroup;
@@ -140,20 +140,20 @@ void ATrafficLightManager::RegisterLightComponentFromOpenDRIVE(UTrafficLightComp
   const auto &Signal = GetMap()->GetSignals().at(SignId);
   if(Signal->GetControllers().size())
   {
-    // Only one controller per signal
+    // 每个信号只有一个控制器
     auto ControllerId = *(Signal->GetControllers().begin());
 
-    // Get controller
+    // 获取控制器
     const auto &Controller = GetMap()->GetControllers().at(ControllerId);
     if(Controller->GetJunctions().empty())
     {
       UE_LOG(LogCarla, Error, TEXT("No junctions in controller %d"), *(ControllerId.c_str()) );
       return;
     }
-    // Get junction of the controller
+    // 获取控制器的连接
     auto JunctionId = *(Controller->GetJunctions().begin());
 
-    // Search/create TrafficGroup (junction traffic light manager)
+    // 搜索/创建TrafficGroup（路口交通灯管理器）
     if(!TrafficGroups.Contains(JunctionId))
     {
       FActorSpawnParameters SpawnParams;
@@ -165,7 +165,7 @@ void ATrafficLightManager::RegisterLightComponentFromOpenDRIVE(UTrafficLightComp
     }
     TrafficLightGroup = TrafficGroups[JunctionId];
 
-    // Search/create controller in the junction
+    // 在交叉口搜索/创建控制器
     if(!TrafficControllers.Contains(ControllerId.c_str()))
     {
       auto *NewTrafficLightController = NewObject<UTrafficLightController>();
@@ -187,7 +187,7 @@ void ATrafficLightManager::RegisterLightComponentFromOpenDRIVE(UTrafficLightComp
 
     auto *NewTrafficLightController = NewObject<UTrafficLightController>();
     NewTrafficLightController->SetControllerId(FString::FromInt(TrafficLightControllerMissingId));
-    // Set red time longer than the default 2s
+    // 将红色时间设置为长于默认值2秒
     NewTrafficLightController->SetRedTime(10);
     TrafficLightGroup->GetControllers().Add(NewTrafficLightController);
     TrafficControllers.Add(NewTrafficLightController->GetControllerId(), NewTrafficLightController);
@@ -197,11 +197,11 @@ void ATrafficLightManager::RegisterLightComponentFromOpenDRIVE(UTrafficLightComp
     --TrafficLightControllerMissingId;
   }
 
-  // Add signal to controller
+  // 向控制器添加信号
   TrafficLightController->AddTrafficLight(TrafficLightComponent);
   TrafficLightController->ResetState();
 
-  // Add signal to map
+  // 将信号添加到地图
   TrafficSignComponents.Add(TrafficLightComponent->GetSignId(), TrafficLightComponent);
 
   TrafficLightGroup->ResetGroup();
@@ -362,7 +362,7 @@ void ATrafficLightManager::MatchTrafficLightActorsWithOpenDriveSignals()
 void ATrafficLightManager::InitializeTrafficLights()
 {
 
-  // Should not run in empty maps
+  // 不应在空地图中运行
   if (!GetMap())
   {
     carla::log_warning("Coud not generate traffic lights: missing map.");
@@ -460,7 +460,7 @@ T * GetClosestTrafficSignActor(const carla::road::Signal &Signal, UWorld* World)
   auto CarlaTransform = Signal.GetTransform();
   FTransform UETransform(CarlaTransform);
   FVector Location = UETransform.GetLocation();
-  // max distance to match 500cm
+  // 最大匹配距离500cm
   constexpr float MaxDistanceMatchSqr = 250000.0;
   T * ClosestTrafficSign = nullptr;
   TArray<AActor*> Actors;
@@ -552,9 +552,9 @@ void ATrafficLightManager::SpawnTrafficLights()
 
     FVector SpawnLocation = SpawnTransform.GetLocation();
     FRotator SpawnRotation(SpawnTransform.GetRotation());
-    // Blueprints are all rotated by 90 degrees
+    // 蓝图都旋转了90度
     SpawnRotation.Yaw += 90;
-    // Remove road inclination
+    // 消除道路倾斜
     SpawnRotation.Roll = 0;
     SpawnRotation.Pitch = 0;
 
@@ -639,7 +639,7 @@ void ATrafficLightManager::SpawnSignals()
     }
     else if (TrafficSignsModels.Contains(SignalType))
     {
-      // We do not spawn stops painted in the ground
+      // 我们不会在地上画停车位
       if (Signal->GetName() == "Stencil_STOP")
       {
         continue;
@@ -649,7 +649,7 @@ void ATrafficLightManager::SpawnSignals()
       FVector SpawnLocation = SpawnTransform.GetLocation();
       FRotator SpawnRotation(SpawnTransform.GetRotation());
       SpawnRotation.Yaw += 90;
-      // Remove road inclination
+      // 消除道路倾斜
       SpawnRotation.Roll = 0;
       SpawnRotation.Pitch = 0;
 
