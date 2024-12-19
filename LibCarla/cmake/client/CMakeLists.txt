@@ -8,7 +8,9 @@ if (BUILD_RSS_VARIANT)
   set(carla_target_postfix "_rss")
   set(ADRSS_INCLUDE_DIRS)
   set(ADRSS_LIBS)
-
+if(NOT DEFINED ADRSS_INSTALL_DIR)
+    message(FATAL_ERROR "ADRSS_INSTALL_DIR is not defined")
+endif()
   find_package(spdlog CONFIG REQUIRED
     HINTS ${ADRSS_INSTALL_DIR}/spdlog/)
   get_target_property(spdlog_include_dirs spdlog::spdlog INTERFACE_INCLUDE_DIRECTORIES)
