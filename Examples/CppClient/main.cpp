@@ -144,7 +144,7 @@ int main(int argc, const char *argv[]) {
         // 在车辆上生成一个相机传感器，根据指定的位置和旋转信息创建一个变换结构体，然后将相机传感器挂载到前面生成的车辆上，使得相机可以跟随车辆运动并采集数据
         auto camera_transform = cg::Transform{
                 cg::Location{-5.5f, 0.0f, 2.8f},   // x, y, z.
-                cg::Rotation{-15.0f, 0.0f, 0.0f}}; // pitch, yaw, roll.
+                cg::Rotation{-15.0f, 0.0f, 0.0f}}; // pitch, yaw, roll.#在世界上生成一个相机演员（传感器），并将其附加到车辆上
         auto cam_actor = world.SpawnActor(*camera_bp, camera_transform, actor.get());
         auto camera = boost::static_pointer_cast<cc::Sensor>(cam_actor);
 
