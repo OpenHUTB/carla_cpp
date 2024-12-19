@@ -7,6 +7,8 @@ FbxManager*   gSdkManager = NULL;
 // 以下分别声明用于不同物体的材质指针，它们都是FbxSurfacePhong类型，这种类型常用于表示具有Phong光照模型属性的材质，
 // 不同的材质指针大概率会对应不同的模型部分，比如道路、人行道、十字路口、草地、街区等，方便后续为不同的场景元素设置独特的材质外观。
 // materials
+/ 声明一个指向 FbxSurfacePhong 类型的指针 gMatRoad，用于表示道路材质。
+// 后续可以通过这个指针来操作和设置道路相关模型所应用的材质属性，比如颜色、光泽度等。
 FbxSurfacePhong* gMatRoad;
 FbxSurfacePhong* gMatSidewalk;
 FbxSurfacePhong* gMatCross;
