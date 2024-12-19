@@ -42,15 +42,21 @@ if (BUILD_RSS_VARIANT)
 
     # 如果可用，请安装相应的 Python 库
     file(GLOB ${ad_lib}_python_libs "${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}_python*.a")
+    # 遍历找到的所有Python库文件
     foreach(ad_python_lib ${${ad_lib}_python_libs})
+     # 检查每个文件是否存在
       if (EXISTS ${ad_python_lib})
+        # 如果存在，则安装该文件到目标系统的 'lib' 目录中
         install(FILES ${ad_python_lib} DESTINATION lib)
       endif()
     endforeach()
-
+# 设置包含路径为ADRSS_INSTALL_DIR下的对应库的include目录
     set(${ad_lib}_include_dir ${ADRSS_INSTALL_DIR}/${ad_lib}/include)
+    # 使用 file(GLOB ...) 查找上述包含路径下的所有文件和子目录
     file(GLOB ${ad_lib}_includes "${${ad_lib}_include_dir}/*")
+    # 安装找到的所有头文件和子目录到目标系统的 'include/system' 目录下
     install(DIRECTORY ${${ad_lib}_includes} DESTINATION include/system)
+    # 将当前库的包含路径添加到 ADRSS_INCLUDE_DIRS 列表中，以便后续使用
     list(APPEND ADRSS_INCLUDE_DIRS ${${ad_lib}_include_dir})
   endforeach()
 endif()
