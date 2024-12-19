@@ -30,7 +30,7 @@ repo = 'carla_cpp'    # 替换为仓库名称
 #########################################
 ####### 统计代码添加和删除行数 ############
 #########################################
-def commit_info():
+def commit_info():#定义了一个名为commit_info
     import os
     from git.repo import Repo
 
@@ -101,9 +101,7 @@ commit_info()
 issue_counts = {}
 comment_counts = {}
 
-#初始化页码为1
 page = 1
-#循环获取数据，直到没有更多数据为止
 while True:
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
     # 需要把代理关掉，否则报错（原因不明）：urllib3.exceptions.MaxRetryError: HTTPSConnectionPool
