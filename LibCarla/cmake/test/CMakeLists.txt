@@ -25,12 +25,16 @@ link_directories(
 # GLOB 会产生一个由所有匹配表达式的文件组成的列表，并将其保存到libcarla_test_sources变量中
 # 包括 性能剖析器 和 测试模块（客户端/服务端）中的所有C++代码
 file(GLOB libcarla_test_sources
+# 包含性能剖析器目录下的所有 C++ 源文件和头文件
     "${libcarla_source_path}/carla/profiler/*.cpp"
     "${libcarla_source_path}/carla/profiler/*.h"
+    # 包含测试目录下的所有 C++ 源文件和头文件
     "${libcarla_source_path}/test/*.cpp"
     "${libcarla_source_path}/test/*.h"
+     # 根据当前配置 ${carla_config} 包含特定配置下的测试源文件和头文件
     "${libcarla_source_path}/test/${carla_config}/*.cpp"
     "${libcarla_source_path}/test/${carla_config}/*.h"
+    # 包含测试通用目录下的所有 C++ 源文件和头文件，这些可能是共享的测试工具或通用测试代码
     "${libcarla_source_path}/test/common/*.cpp"
     "${libcarla_source_path}/test/common/*.h")
 
