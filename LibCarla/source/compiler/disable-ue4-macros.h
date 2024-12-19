@@ -8,14 +8,14 @@
 
 #ifndef LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 #define LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
-
+// 如果未定义名为LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER的宏，则定义它，通常用于头文件的包含保护，防止重复包含
 // Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Carla.h
 #include "Carla.h"
-
+// 包含名为Carla.h的头文件，意味着会引入该头文件中声明的函数、类型等相关内容到当前代码中
 #ifndef BOOST_ERROR_CODE_HEADER_ONLY
 #  define BOOST_ERROR_CODE_HEADER_ONLY
 #endif // BOOST_ERROR_CODE_HEADER_ONLY
-
+// 如果未定义BOOST_ERROR_CODE_HEADER_ONLY这个宏，就定义它，可能是用于配置与Boost错误码相关的编译选项
 #ifndef BOOST_NO_EXCEPTIONS
 #  error LibCarla should be compiled with -DBOOST_NO_EXCEPTIONS inside UE4.
 #endif // BOOST_NO_EXCEPTIONS
@@ -25,9 +25,9 @@
 #ifndef LIBCARLA_NO_EXCEPTIONS
 #  error LibCarla should be compiled with -DLIBCARLA_NO_EXCEPTIONS inside UE4.
 #endif // LIBCARLA_NO_EXCEPTIONS
-
+// 与前面的#ifndef配套，结束头文件包含保护的定义
 #endif // LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
-
+// 定义一个宏，表示LibCarla相关代码是从UE4环境引入或者关联的
 #define LIBCARLA_INCLUDED_FROM_UE4
 
 // NOTE(Andrei): 禁用未定义​​宏生成的警告
@@ -50,45 +50,51 @@
 #  pragma warning(disable: 4668 4191 4647)  // 只在vs中禁用警告：确定这些警告是安全的或者是你有意为之的，以避免编译输出中出现大量的无关警告信息。
 // 在编译 #pragma warning(pop) 之前的代码时候，4668 4191 4647三类警告将不会出现，具体警告请查看：https://learn.microsoft.com/zh-cn/cpp/error-messages/compiler-warnings/compiler-warning-level-4-c4668?view=msvc-160
 #endif
-
+// 如果定义了__clang__宏，也就是使用的是Clang编译器时，将当前的Clang诊断状态推入堆栈保存起来
 #if defined(__clang__)
 #  pragma clang diagnostic push
+// 忽略Clang编译器下关于缺少大括号的警告
 #  pragma clang diagnostic ignored "-Wmissing-braces"
+// 忽略Clang编译器下关于无用的偏特化的警告
 #  pragma clang diagnostic ignored "-Wunusable-partial-specialization"
+// 忽略Clang编译器下关于使用未定义宏的警告
 #  pragma clang diagnostic ignored "-Wundef"
+// 忽略Clang编译器下的所有警告（Wall表示all warnings）
 #  pragma clang diagnostic ignored "-Wall"
+// 忽略Clang编译器下关于变量阴影（同名变量在不同作用域产生混淆等情况）的警告
 #  pragma clang diagnostic ignored "-Wshadow"
 #endif
 
 // #pragma push_macro 将指定的宏压入栈中，相当于暂时存储，以备以后使用；
 #pragma push_macro("GET_AI_CONFIG_VAR")
 #undef GET_AI_CONFIG_VAR
-
+// 先将名为GET_AI_CONFIG_VAR的宏压入栈中暂存，然后取消该宏的定义，使其在当前代码后续部分暂时失效
 #pragma push_macro("BT_VLOG")
 #undef BT_VLOG
-
+// 同样的操作，先暂存BT_VLOG宏，再取消其定义，让它暂时不起作用
 #pragma push_macro("BT_SEARCHLOG")
 #undef BT_SEARCHLOG
-
+// 对EQSHEADERLOG宏进行暂存后取消定义的操作
 #pragma push_macro("EQSHEADERLOG")
 #undef EQSHEADERLOG
-
+// 对MEM_STAT_UPDATE_WRAPPER宏进行暂存后取消定义的操作
 #pragma push_macro("MEM_STAT_UPDATE_WRAPPER")
 #undef MEM_STAT_UPDATE_WRAPPER
-
+// 对GET_STRUCT_NAME_CHECKED宏进行暂存后取消定义的操作
 #pragma push_macro("GET_STRUCT_NAME_CHECKED")
 #undef GET_STRUCT_NAME_CHECKED
-
+// 对PRINT_TABLE_ROW宏进行暂存后取消定义的操作
 #pragma push_macro("PRINT_TABLE_ROW")
 #undef PRINT_TABLE_ROW
-
+// 对SIGHT_LOG_SEGMENT宏进行暂存后取消定义的操作
 #pragma push_macro("SIGHT_LOG_SEGMENT")
 #undef SIGHT_LOG_SEGMENT
+// 对SIGHT_LOG_LOCATION宏进行暂存后取消定义的操作
 
 #pragma push_macro("SIGHT_LOG_LOCATION")
 #undef SIGHT_LOG_LOCATION
 
-#pragma push_macro("ANALYTICS_FLUSH_TRACKING_BEGIN")
+#// 对ANALYTICS_FLUSH_TRACKING_BEGIN宏进行暂存后取消定义的操作pragma push_macro("ANALYTICS_FLUSH_TRACKING_BEGIN")
 #undef ANALYTICS_FLUSH_TRACKING_BEGIN
 
 #pragma push_macro("ANALYTICS_FLUSH_TRACKING_END")
@@ -96,10 +102,10 @@
 
 #pragma push_macro("OCULUS_DEVICE_LOOP")
 #undef OCULUS_DEVICE_LOOP
-
+// 对OCULUS_DEVICE_LOOP宏进行暂存后取消定义的操作
 #pragma push_macro("OPENSLES_RETURN_ON_FAIL")
 #undef OPENSLES_RETURN_ON_FAIL
-
+// 对OPENSLES_RETURN_ON_FAIL宏进行暂存后取消定义的操作
 #pragma push_macro("OPENSLES_CHECK_ON_FAIL")
 #undef OPENSLES_CHECK_ON_FAIL
 
@@ -108,13 +114,13 @@
 
 #pragma push_macro("CASE_ENUM_TO_TEXT")
 #undef CASE_ENUM_TO_TEXT
-
+// 对CASE_ENUM_TO_TEXT宏进行暂存后取消定义的操作
 #pragma push_macro("TRACE_BLENDSPACE_PLAYER")
 #undef TRACE_BLENDSPACE_PLAYER
 
 #pragma push_macro("SEQUENCER_INSTANCE_PLAYER_TYPE")
 #undef SEQUENCER_INSTANCE_PLAYER_TYPE
-
+// 对IMAGE_BRUSH宏进行暂存后取消定义的操作
 #pragma push_macro("IMAGE_BRUSH")
 #undef IMAGE_BRUSH
 
@@ -123,13 +129,13 @@
 
 #pragma push_macro("BORDER_BRUSH")
 #undef BORDER_BRUSH
-
+// 对DEFAULT_FONT宏进行暂存后取消定义的操作
 #pragma push_macro("DEFAULT_FONT")
 #undef DEFAULT_FONT
 
 #pragma push_macro("INTERNAL_DECORATOR")
 #undef INTERNAL_DECORATOR
-
+// 对DEFAULT_FONT宏进行暂存后取消定义的操作
 #pragma push_macro("LLM_SCOPE_METAL")
 #undef LLM_SCOPE_METAL
 
@@ -138,16 +144,16 @@
 
 #pragma push_macro("METAL_DEBUG_OPTION")
 #undef METAL_DEBUG_OPTION
-
+// 对METAL_DEBUG_ONLY宏进行暂存后取消定义的操作
 #pragma push_macro("METAL_DEBUG_ONLY")
 #undef METAL_DEBUG_ONLY
-
+// 对METAL_DEBUG_LAYER宏进行暂存后取消定义的操作
 #pragma push_macro("METAL_DEBUG_LAYER")
 #undef METAL_DEBUG_LAYER
-
+// 对METAL_GPUPROFILE宏进行暂存后取消定义的操作
 #pragma push_macro("METAL_GPUPROFILE")
 #undef METAL_GPUPROFILE
-
+// 对UNREAL_TO_METAL_BUFFER_INDEX宏进行暂存后取消定义的操作
 #pragma push_macro("UNREAL_TO_METAL_BUFFER_INDEX")
 #undef UNREAL_TO_METAL_BUFFER_INDEX
 
