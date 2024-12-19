@@ -134,7 +134,7 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
     "${libcarla_source_path}/carla/opendrive/parser/*.h"
     "${libcarla_source_path}/carla/road/*.cpp"
-    "${libcarla_source_path}/carla/road/*.h"
+    "${libcarla_source_path}/carla/road/*.h"# 收集${libcarla_source_path}/carla/road/*.h的头文件路径，把该目录下的头文件路径整合起来，为后续代码能正确引用头文件做准备。
     "${libcarla_source_path}/carla/road/element/*.cpp"
     "${libcarla_source_path}/carla/road/element/*.h"
     "${libcarla_source_path}/carla/road/general/*.cpp"
