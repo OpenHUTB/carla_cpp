@@ -73,11 +73,15 @@ except IndexError:
 # ==============================================================================
 
 
-import carla
+import carla     # 导入CARLA模块，它是整个代码可能围绕进行操作的核心模块，提供了创建和控制虚拟驾驶场景、车辆、传感器等各种功能的接口和类。
 
 from carla import ColorConverter as cc
+# 从CARLA模块中导入`ColorConverter`类，并将其简称为`cc`。这个类通常用于在CARLA环境下进行图像颜色格式的转换操作，
+# 比如把摄像头获取的图像从一种颜色空间转换到另一种颜色空间，以满足不同的显示、处理或分析需求。
 
 import argparse
+# 导入Python标准库中的`argparse`模块，用于方便地解析命令行参数，使得程序可以在启动时通过命令行传入不同的配置选项，
+# 例如指定场景配置、模拟参数等，增强程序的灵活性和可配置性。
 import logging
 import math
 import random
