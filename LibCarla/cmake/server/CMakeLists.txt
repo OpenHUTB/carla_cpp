@@ -136,7 +136,8 @@ file(GLOB libcarla_server_sources
 # 在同一构建类型中创建调试和发布的目标
 # ==============================================================================
 
-if (LIBCARA_BUILD_RELEASE)
+if (LIBCARA_BUILD_RELEASE) #设置目标服务器属性，包括编译选项和链接选项
+
 
   add_library(carla_server STATIC ${libcarla_server_sources})
 
