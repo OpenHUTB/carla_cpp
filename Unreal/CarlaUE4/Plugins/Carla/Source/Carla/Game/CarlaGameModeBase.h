@@ -30,7 +30,7 @@
 
 #include "CarlaGameModeBase.generated.h"
 
-/// CARLA ÓÎÏ·Ä£Ê½µÄ»ùÀà¡£
+///  CARLA æ¸¸æˆæ¨¡å¼çš„åŸºç±»ã€‚
 UCLASS(HideCategories=(ActorTick))
 class CARLA_API ACarlaGameModeBase : public AGameModeBase
 {
@@ -52,7 +52,7 @@ public:
 
   const FString GetFullMapPath() const;
 
-  // »ñÈ¡Ïà¶ÔÓÚ Content ÎÄ¼ş¼ĞµÄÂ·¾¶¡£
+  // è·å–ç›¸å¯¹äº Content æ–‡ä»¶å¤¹çš„è·¯å¾„ã€‚
   const FString GetRelativeMapPath() const;
 
   UFUNCTION(Exec, Category = "CARLA Game Mode")
@@ -112,7 +112,7 @@ public:
 
   TArray<FString> GetNamesOfAllActors();
 
-  // ÖØÁ¦¼ÓËÙ¶È¡£Ä¬ÈÏÖµÎªµØÇòÖØÁ¦¼ÓËÙ¶È£¬Ô¼Îª 9.81 m/s2
+  // é‡åŠ›åŠ é€Ÿåº¦ã€‚é»˜è®¤å€¼ä¸ºåœ°çƒé‡åŠ›åŠ é€Ÿåº¦ï¼Œçº¦ä¸º 9.81 m/s2
   UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sensor Gravity")
   float IMUISensorGravity = 9.81f;
 
@@ -162,11 +162,11 @@ private:
   UPROPERTY()
   UObjectRegister* ObjectRegister = nullptr;
 
-  /// ÓÃÓÚÉú³ÉµÄÌìÆøÀà¡£
+  /// ç”¨äºç”Ÿæˆçš„å¤©æ°”ç±»ã€‚
   UPROPERTY(Category = "CARLA Game Mode", EditAnywhere)
   TSubclassOf<AWeather> WeatherClass;
 
-/// ¶¨Òå²¢Éú³ÉÓÎÏ·ÖĞ¿ÉÓÃÊµÌåµÄÊµÌåÉú³ÉÆ÷ÁĞ±í¡£ 
+/// å®šä¹‰å¹¶ç”Ÿæˆæ¸¸æˆä¸­å¯ç”¨å®ä½“çš„å®ä½“ç”Ÿæˆå™¨åˆ—è¡¨ã€‚ 
   UPROPERTY(Category = "CARLA Game Mode", EditAnywhere)
   TSet<TSubclassOf<ACarlaActorFactory>> ActorFactories;
 
@@ -191,7 +191,7 @@ private:
 
   bool ReadyToRegisterObjects = false;
 
-  // ÎÒÃÇ±£ÁôÒ»¸öÈ«¾Ö UUID£¬ÒÔ±ãÔÚÍ¬Ò»Ö¡ÄÚµ÷ÓÃ¼ÓÔØ/Ğ¶ÔØÍ¼²ãµÄ·½·¨¡£
+  // æˆ‘ä»¬ä¿ç•™ä¸€ä¸ªå…¨å±€ UUIDï¼Œä»¥ä¾¿åœ¨åŒä¸€å¸§å†…è°ƒç”¨åŠ è½½/å¸è½½å›¾å±‚çš„æ–¹æ³•ã€‚
   int32 LatentInfoUUID = 0;
 
 };
