@@ -63,29 +63,38 @@ foreach(target ${build_targets})
 # -DLIBCARLA_ENABLE_PROFILER：可能用于启用性能分析相关的功能代码，在编译时通过这个定义来控制相关代码的编译与否。
 # -DLIBCARLA_WITH_GTEST：表示该项目会使用Google Test框架，让编译器知晓并相应地处理涉及GTest相关的代码逻辑。
 
+# 为指定的目标${target}添加系统头文件搜索路径，这些路径仅对${target}私有
+# SYSTEM关键字告诉编译器这些是系统头文件，可以避免某些编译警告
+# PRIVATE关键字表示这些包含路径只对当前目标有效，不会传播给依赖它的其他目标
   target_include_directories(${target} SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}"
       "${GTEST_INCLUDE_PATH}"
       "${LIBPNG_INCLUDE_PATH}")
-
+      
+# 继续为${target}添加一个额外的私有头文件搜索路径，指向测试源码目
   target_include_directories(${target} PRIVATE
       "${libcarla_source_path}/test")
 
+      # 根据操作系统类型选择不同的链接库方式
   if (WIN32)
+   # 如果是在Windows平台上编译，则直接链接预编译好的静态库文件
       target_link_libraries(${target} "gtest_main.lib")
       target_link_libraries(${target} "gtest.lib")
       target_link_libraries(${target} "rpc.lib")
   else()
+   # 如果不是在Windows平台（例如Linux或macOS），则使用链接器命令行参数来链接库
       target_link_libraries(${target} "-lrpc")
       target_link_libraries(${target} "-lgtest_main")
       target_link_libraries(${target} "-lgtest")
   endif()
 
+# 定义安装规则，用于当执行`make install`或等效命令时将构建结果安装到系统中
   install(TARGETS ${target} DESTINATION test OPTIONAL)# 使用install命令来指定名为${target}的目标（可执行文件目标）的安装规则。
 # 表示在进行项目安装操作时，将该可执行文件安装到目标目录test下。
 # OPTIONAL关键字意味着如果在安装过程中出现某些问题（比如找不到这个目标等情况），安装过程不会报错停止，而是继续进行其他部分的安装。
 endforeach(target)
+ # 结束foreach循环，假设这是在一个更大的循环结构内部，用于遍历多个目标。
 
 # 构建调试版本
 if (LIBCARLA_BUILD_DEBUG)
