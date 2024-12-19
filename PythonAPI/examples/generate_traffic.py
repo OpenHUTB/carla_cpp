@@ -95,55 +95,80 @@ def main():
         metavar='PATTERN',
         default='vehicle.*',
         help='Filter vehicle model (default: "vehicle.*")')
-    argparser.add_argument(
+// 向参数解析器中添加一个名为'--generationv'的命令行参数
+     argparser.add_argument(
         '--generationv',
+       // 指定参数的占位符
         metavar='G',
+        // 设置参数的默认值为'All'
         default='All',
+        // 提供参数的帮助信息，说明其作用是限制车辆的代数
         help='restrict to certain vehicle generation (values: "1","2","All" - default: "All")')
+ // 向参数解析器中添加一个名为'--filterw'的命令行参数
     argparser.add_argument(
         '--filterw',
         metavar='PATTERN',
         default='walker.pedestrian.*',
+        // 提供参数的帮助信息，说明其作用是过滤行人类型
         help='Filter pedestrian type (default: "walker.pedestrian.*")')
+// 向参数解析器中添加一个名为'--generationw'的命令行参数
     argparser.add_argument(
         '--generationw',
         metavar='G',
         default='2',
+        // 提供参数的帮助信息，说明其作用是限制行人的代数
         help='restrict to certain pedestrian generation (values: "1","2","All" - default: "2")')
+// 向参数解析器中添加一个名为'--tm-port'的命令行参数
     argparser.add_argument(
         '--tm-port',
         metavar='P',
         default=8000,
         type=int,
+        // 提供参数的帮助信息，说明其作用是设置与TM（Traffic Manager）通信的端口
         help='Port to communicate with TM (default: 8000)')
+// 向参数解析器中添加一个名为'--asynch'的命令行参数    
     argparser.add_argument(
         '--asynch',
         action='store_true',
+        // 提供参数的帮助信息，说明其作用是激活异步模式执行
         help='Activate asynchronous mode execution')
+// 向参数解析器中添加一个名为'--hybrid'的命令行参数   
     argparser.add_argument(
         '--hybrid',
+       // 指定当参数存在时，将对应的值存储为True
         action='store_true',
+      // 提供参数的帮助信息，说明其作用是激活交通管理器的混合模式
         help='Activate hybrid mode for Traffic Manager')
+ // 向参数解析器中添加一个名为'-s'和'--seed'的命令行参数
     argparser.add_argument(
         '-s', '--seed',
         metavar='S',
         type=int,
+        // 提供参数的帮助信息，说明其作用是设置随机设备种子和交通管理器的确定性模式
         help='Set random device seed and deterministic mode for Traffic Manager')
+// 向参数解析器中添加一个名为'--seedw'的命令行参数
     argparser.add_argument(
         '--seedw',
         metavar='S',
         default=0,
         type=int,
+        // 提供参数的帮助信息，说明其作用是设置行人模块的种子
         help='Set the seed for pedestrians module')
+// 向参数解析器中添加一个名为'--car-lights-on'的命令行参数
     argparser.add_argument(
         '--car-lights-on',
+        // 指定当参数存在时，将对应的值存储为True，并设置默认值为False
         action='store_true',
         default=False,
+       // 提供参数的帮助信息，说明其作用是启用自动车辆灯光管理
         help='Enable automatic car light management')
+// 向参数解析器中添加一个名为'--hero'的命令行参数
     argparser.add_argument(
         '--hero',
+        // 指定当参数存在时，将对应的值存储为True，并设置默认值为False
         action='store_true',
         default=False,
+        // 提供参数的帮助信息，说明其作用是将其中一辆车设置为主角车辆
         help='Set one of the vehicles as hero')
 //添加一个名为'--respawn'的命令行参数，当指定该参数时（action='store_true'），自动重新生成休眠的车辆（仅在大地图中有效），默认值为False
     argparser.add_argument(
