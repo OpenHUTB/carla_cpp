@@ -117,7 +117,7 @@ def get_font():                                                     # 函数用�
     return pygame.font.Font(font, 14)
 
 
-def should_quit():
+def should_quit():                                                   #函数用于检测是否应该退出程序
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             return True
