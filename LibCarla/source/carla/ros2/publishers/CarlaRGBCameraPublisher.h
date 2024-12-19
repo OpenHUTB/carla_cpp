@@ -14,9 +14,15 @@
 // 引入自定义的头文件 "CarlaPublisher.h"，推测这个头文件中应该包含了基类 CarlaPublisher 的定义，可能有一些通用的发布者相关的功能、成员变量或成员函数的声明等，供当前类继承和使用。
 namespace carla {
 namespace ros2 {
+<<<<<<< HEAD
 // 定义了 carla::ros2 命名空间，将后续在此命名空间内定义的所有类型、函数等进行封装，避免与其他命名空间中的同名实体发生命名冲突，使得代码结构更加清晰，便于组织和管理相关代码逻辑。
+=======
+// 前置声明结构体CarlaRGBCameraPublisherImpl，通常用于隐藏具体实现细节，可能在后续代码中有实际的结构体定义与之对应
+>>>>>>> 38b2ef225a5b1080b93ce585d63970f525341c69
   struct CarlaRGBCameraPublisherImpl;
+  // 前置声明结构体CarlaCameraInfoPublisherImpl，作用与上面类似，也是可能用于后续具体实现相关功能的结构体声明
   struct CarlaCameraInfoPublisherImpl;
+<<<<<<< HEAD
 // 前置声明两个结构体类型，告诉编译器这两个结构体稍后会在代码中定义（通常在对应的源文件中完整定义其成员等内容），这样在当前代码位置就可以使用这两个结构体类型的指针或引用了，避免编译时因找不到完整定义而报错。
   class CarlaRGBCameraPublisher : public CarlaPublisher { // 定义一个名为 CarlaRGBCameraPublisher 的类，它继承自 CarlaPublisher 类，意味着它会继承 CarlaPublisher 类中的所有 public 和 protected 成员（成员变量和成员函数），并且可以在此基础上扩展自己特有的功能。
     public:
@@ -34,14 +40,40 @@ namespace ros2 {
       bool HasBeenInitialized() const; // 成员函数声明，用于判断对象是否已经完成初始化，返回值为 bool 类型，const 关键字表示该函数不会修改对象的内部状态，是一个常成员函数。
       void SetImageData(int32_t seconds, uint32_t nanoseconds, uint32_t height, uint32_t width, const uint8_t* data); // 成员函数声明，用于设置图像数据，接受时间戳（秒和纳秒部分）、图像的高度、宽度以及指向图像数据的字节指针作为参数，将这些数据设置到对象内部对应的成员变量中，无返回值，以便后续进行发布等操作。
       void SetCameraInfoData(int32_t seconds, uint32_t nanoseconds);
+=======
+ // 定义CarlaRGBCameraPublisher类，它继承自CarlaPublisher类，意味着它可以使用CarlaPublisher类中的公有成员以及重写（如果需要的话）虚函数等
+  class CarlaRGBCameraPublisher : public CarlaPublisher {
+    public: // 定义CarlaRGBCameraPublisher类，它继承自CarlaPublisher类，意味着它可以使用CarlaPublisher类中的公有成员以及重写（如果需要的话）虚函数等
+      CarlaRGBCameraPublisher(const char* ros_name = "", const char* parent = "");
+// 构造函数，用于创建CarlaRGBCameraPublisher类的对象。可以传入两个字符串参数，分别用于指定ROS中的名称（ros_name）和父节点名称（parent），如果不传参数则使用默认值（空字符串）
+      ~CarlaRGBCameraPublisher(); // 拷贝构造函数，用于通过已有的CarlaRGBCameraPublisher对象来创建一个新的、一模一样的对象（进行深拷贝或者浅拷贝，取决于具体实现）
+      CarlaRGBCameraPublisher(const CarlaRGBCameraPublisher&);// 移动构造函数，用于通过“窃取”资源的方式，高效地创建一个新的CarlaRGBCameraPublisher对象，常用于优化对象传递时的性能，避免不必要的拷贝
+      CarlaRGBCameraPublisher(CarlaRGBCameraPublisher&&);   / /移动赋值运算符重载函数，类似移动构造函数的作用，不过是用于赋值操作时高效地转移资源所有权     
+      CarlaRGBCameraPublisher& operator=(CarlaRGBCameraPublisher&&);        // 用于初始化相关资源或者执行一些初始化操作，返回一个布尔值表示初始化是否成功
+
+      bool Init(); // 用于初始化信息数据，传入图像在水平和垂直方向上的偏移量（x_offset、y_offset）、图像的高度（height）、宽度（width）、视场角（fov）以及是否进行矫正（do_rectify）等参数
+      void InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify); // 用于发布数据，返回布尔值表示发布操作是否成功
+      bool Publish();
+ // 用于检查该对象是否已经完成初始化，返回布尔值，const表示这个函数不会修改对象的状态
+      bool HasBeenInitialized() const;// 用于设置图像数据，传入时间相关的秒数（seconds）、纳秒数（nanoseconds）、图像的高度（height）、宽度（width）以及图像数据指针（data）
+      void SetImageData(int32_t seconds, uint32_t nanoseconds, uint32_t height, uint32_t width, const uint8_t* data); // 用于设置相机信息数据，传入时间相关的秒数（seconds）和纳秒数（nanoseconds）
+      void SetCameraInfoData(int32_t seconds, uint32_t nanoseconds);// 重写基类CarlaPublisher中的虚函数type，返回表示类型的字符串"rgb camera"，用于标识该发布者对应的是RGB相机类型
+>>>>>>> 38b2ef225a5b1080b93ce585d63970f525341c69
       const char* type() const override { return "rgb camera"; }
 // 重写了基类（CarlaPublisher）中的虚函数 type()，返回一个表示类型的字符串常量 "rgb camera"，用于标识当前发布者对象对应的是 RGB 相机相关的数据发布，const 关键字确保函数不会修改对象状态，override 关键字表明这是对基类虚函数的重写。
 
     private:
+<<<<<<< HEAD
     private: // 以下是类的私有成员部分，只能在类的内部访问，外部代码无法直接访问这些成员，用于封装类的内部实现细节。
       bool InitImage(); // 私有成员函数声明，用于初始化图像相关的内部资源或者执行图像部分的初始化操作，返回值为 bool 类型，用于表示初始化是否成功，具体实现细节可能涉及创建图像相关的底层数据结构、配置参数等，仅在类内部使用。
       bool InitInfo(); // 私有成员函数声明，类似于 InitImage()，不过是用于初始化相机信息相关的内部资源或执行对应的初始化操作，返回值为 bool 类型，用于表示初始化是否成功，同样仅在类内部使用。
       bool PublishImage(); // 私有成员函数声明，用于执行图像数据的发布操作，将内部存储的图像数据发布出去，返回值为 bool 类型，用于表示发布是否成功，属于类内部具体的发布逻辑实现，外部不需要直接调用。
+=======
+ // 用于初始化图像相关的内部资源等操作，返回布尔值表示是否初始化成功
+      bool InitImage(); // 用于初始化信息相关的内部资源等操作，返回布尔值表示是否初始化成功
+      bool InitInfo();// 用于发布图像相关的数据，返回布尔值表示发布是否成功
+      bool PublishImage(); // 用于发布信息相关的数据，返回布尔值表示发布是否成功
+>>>>>>> 38b2ef225a5b1080b93ce585d63970f525341c69
       bool PublishInfo();
 // 私有成员函数声明，用于执行相机信息数据的发布操作，将内部存储的相机信息发布出去，返回值为 bool 类型，用于表示发布是否成功，也是类内部具体的发布逻辑实现，外部不会直接调用。
       void SetImageData(int32_t seconds, uint32_t nanoseconds, uint32_t height, uint32_t width, std::vector<uint8_t>&& data);//重载的私有成员函数声明，和上面的 SetImageData 函数类似，不过这里接受的图像数据参数是右值引用形式的 std::vector<uint8_t>，用于更高效地处理图像数据传递，特别是对于临时的或者可移动的图像数据资源，无返回值，同样用于设置内部图像数据相关成员变量。
