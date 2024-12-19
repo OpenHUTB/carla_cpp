@@ -60,12 +60,15 @@ def tutorial(args):
     # 连接到服务器
     client = carla.Client(args.host, args.port)
     client.set_timeout(2.0)
+     # 获取当前世界的引用以及蓝图库（用于创建actor）
     world = client.get_world()
     bp_lib = world.get_blueprint_library()
 
+    # 获取交通管理器并配置为同步模式
     traffic_manager = client.get_trafficmanager(8000)
     traffic_manager.set_synchronous_mode(True)
 
+     # 保存原始世界设置并配置新的同步模式设置
     original_settings = world.get_settings()
     settings = world.get_settings()
     settings.synchronous_mode = True
@@ -135,7 +138,7 @@ def tutorial(args):
         camera.listen(lambda data: sensor_callback(data, image_queue))
         lidar.listen(lambda data: sensor_callback(data, lidar_queue))
 
-        for frame in range(args.frames):
+        for frame in range(args.frames):#frame从0到arg.frames-1执行循环
             world.tick()
             world_frame = world.get_snapshot().frame
 
@@ -271,79 +274,99 @@ def tutorial(args):
 
 
 def main():
-    """主函数"""
+        """
+    主函数，用于解析命令行参数并启动相关教程（tutorial）操作。
+    它通过argparse模块来定义和解析一系列的命令行参数，然后调用tutorial函数执行具体任务，
+    同时对可能出现的用户中断操作（通过键盘中断）进行了异常处理。
+    """
+    # 创建一个参数解析器对象，用于定义和解析命令行参数
     argparser = argparse.ArgumentParser(
         description='CARLA Sensor sync and projection tutorial')
+# 添加'--host'参数，指定主机服务器的IP地址，默认值为'127.0.0.1'，用于连接对应的服务器
     argparser.add_argument(
         '--host',
         metavar='H',
         default='127.0.0.1',
         help='IP of the host server (default: 127.0.0.1)')
+# 添加'-p'或'--port'参数，指定要监听的TCP端口号，类型为整数，默认值为2000
     argparser.add_argument(
         '-p', '--port',
         metavar='P',
         default=2000,
         type=int,
         help='TCP port to listen to (default: 2000)')
+# 添加'--res'参数，指定窗口分辨率，格式为'WIDTHxHEIGHT'，默认值为'1280x720'
     argparser.add_argument(
         '--res',
         metavar='WIDTHxHEIGHT',
         default='680x420',
         help='window resolution (default: 1280x720)')
+# 添加'-f'或'--frames'参数，指定要记录的帧数，类型为整数，默认值为500
     argparser.add_argument(
         '-f', '--frames',
         metavar='N',
         default=500,
         type=int,
         help='number of frames to record (default: 500)')
+# 添加'-d'或'--dot-extent'参数，指定可视化点的范围（以像素为单位），类型为整数，默认值为2，推荐范围是[1-4]
     argparser.add_argument(
         '-d', '--dot-extent',
         metavar='SIZE',
         default=2,
         type=int,
         help='visualization dot extent in pixels (Recomended [1-4]) (default: 2)')
+# 添加'--no-noise'参数，这是一个布尔型参数（action='store_true'表示如果命令行中指定了该参数，则其值为True），用于移除普通（非语义）激光雷达的衰减和噪声
     argparser.add_argument(
         '--no-noise',
         action='store_true',
         help='remove the drop off and noise from the normal (non-semantic) lidar')
+# 添加'--upper-fov'参数，指定激光雷达的上视野角度（以度为单位），类型为浮点数，默认值为30.0
     argparser.add_argument(
         '--upper-fov',
         metavar='F',
         default=30.0,
         type=float,
         help='lidar\'s upper field of view in degrees (default: 15.0)')
+# 添加'--lower-fov'参数，指定激光雷达的下视野角度（以度为单位），类型为浮点数，默认值为-25.0
     argparser.add_argument(
         '--lower-fov',
         metavar='F',
         default=-25.0,
         type=float,
         help='lidar\'s lower field of view in degrees (default: -25.0)')
+# 添加'-c'或'--channels'参数，指定激光雷达的通道数，类型为浮点数，默认值为64.0
     argparser.add_argument(
         '-c', '--channels',
         metavar='C',
         default=64.0,
         type=float,
         help='lidar\'s channel count (default: 64)')
+# 添加'-r'或'--range'参数，指定激光雷达的最大探测范围（以米为单位），类型为浮点数，默认值为100.0
     argparser.add_argument(
         '-r', '--range',
         metavar='R',
         default=100.0,
         type=float,
         help='lidar\'s maximum range in meters (default: 100.0)')
+# 添加'--points-per-second'参数，指定激光雷达每秒的点数，类型为整数，默认值为100000
     argparser.add_argument(
         '--points-per-second',
         metavar='N',
         default='100000',
         type=int,
         help='lidar points per second (default: 100000)')
+# 解析命令行参数，得到包含所有参数值的命名空间对象args
     args = argparser.parse_args()
+# 将分辨率参数（字符串形式如'WIDTHxHEIGHT'）拆分成宽度和高度两个整数，并分别赋值给args的width和height属性
     args.width, args.height = [int(x) for x in args.res.split('x')]
+# 将可视化点的范围参数减1（具体作用可能和后续可视化相关逻辑有关）
     args.dot_extent -= 1
 
     try:
         tutorial(args)
-
+ # 调用tutorial函数，并传入解析好的参数args，执行具体的教程相关操作（此处假设tutorial函数在别处定义且实现了相关功能）
     except KeyboardInterrupt:
+        # 如果用户通过键盘中断（比如按下Ctrl+C）操作中断程序执行，捕获该异常并打印相应提示信息
         print('\nCancelled by user. Bye!')
 
 

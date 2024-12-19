@@ -117,9 +117,9 @@ def get_font():                                                     # 函数用�
     return pygame.font.Font(font, 14)
 
 
-def should_quit():
+def should_quit():                                                   #函数用于检测是否应该退出程序
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT:                                #如果event事件种类等于pygame.QUIT，就返回True
             return True
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_ESCAPE:
@@ -175,7 +175,8 @@ def main():
                 clock.tick()
 
                 # Advance the simulation and wait for the data.
-                snapshot, image_rgb, image_semseg = sync_mode.tick(timeout=2.0)
+                snapshot, image_rgb, image_semseg = sync_mode.tick(timeout=2.0)  
+                #使用sync_mode.tick函数来进行snapshot（快照），image_rgb（RGB图像数据）和image_semseg（语义分割图像数据）的模拟推进，并设置了一个时间期限2秒
 
                 # Choose the next waypoint and update the car location.
                 waypoint = random.choice(waypoint.next(1.5))

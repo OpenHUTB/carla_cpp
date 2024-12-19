@@ -23,25 +23,35 @@
 #include <fastcdr/Cdr.h>
 
 #include "StringPubSubTypes.h"
-
+// 定义SerializedPayload_t类型别名，用于表示序列化后的负载数据类型，来自eProsima的相关命名空间
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
+// 定义InstanceHandle_t类型别名，用于表示实例句柄类型，同样来自eProsima的相关命名空间
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace std_msgs {
     namespace msg {
+         // StringPubSubType类的定义，用于处理特定消息类型（这里是String类型）的发布/订阅相关操作
         StringPubSubType::StringPubSubType()
-        {
-            setName("std_msgs::msg::dds_::String_");
+        { 
+            // 设置该类型的名称，用于标识消息类型
+            setName("std_msgs::msg::dds_::String_"); 
+            // 获取String类型的最大CDR序列化大小
             auto type_size = String::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+            // 进行可能的子消息对齐操作，确保数据按照4字节对齐
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);
+            // 计算最终的类型大小，加上4字节用于封装相关信息
+            m_typeSize = static_cast<uint32_t>(type_size) + 4; 
+            // 判断String类型是否定义了键（用于标识实例等用途）
             m_isGetKeyDefined = String::isKeyDefined();
+            // 根据String类型的键的最大CDR序列化大小来确定键缓冲区的长度，取较大值（自身大小或16字节）
             size_t keyLength = String::getKeyMaxCdrSerializedSize() > 16 ?
                     String::getKeyMaxCdrSerializedSize() : 16;
+             // 分配键缓冲区内存
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+             // 初始化键缓冲区内存内容为0
             memset(m_keyBuffer, 0, keyLength);
         }
-
+        // StringPubSubType类的析构函数，用于释放之前分配的键缓冲区内存
         StringPubSubType::~StringPubSubType()
         {
             if (m_keyBuffer != nullptr)
@@ -49,87 +59,88 @@ namespace std_msgs {
                 free(m_keyBuffer);
             }
         }
-
+        // 序列化函数，将给定的数据对象（这里是String类型）序列化为可传输的负载格式（SerializedPayload_t）
         bool StringPubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
-        {
+        { 
+            // 将传入的void*指针转换为String*类型指针，以便后续操作
             String* p_type = static_cast<String*>(data);
-
-            // Object that manages the raw buffer.
+            // 创建一个FastBuffer对象，用于管理原始缓冲区，将payload的数据指针和最大大小传入
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
+            // 创建一个Cdr对象，用于执行序列化操作，传入FastBuffer以及相关的字节序和CDR格式设置
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+            // 根据序列化对象的字节序设置负载的封装字节序标识（大端或小端）
             payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+            // 先序列化封装相关的头部信息（比如字节序标识等）
             ser.serialize_encapsulation();
 
             try
             {
-                // Serialize the object.
+                // 调用String对象的serialize方法，将实际的数据内容序列化到Cdr对象管理的缓冲区中
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果内存不足，序列化失败，返回false
                 return false;
             }
-
-            // Get the serialized length
+           // 获取序列化后的数据长度，并设置到负载对象的length成员中
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
             return true;
         }
-
+        // 反序列化函数，将接收到的负载数据（SerializedPayload_t）转换回对应的String类型对象
         bool StringPubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
             try
             {
-                //Convert DATA to pointer of your type
+                // 将传入的void*指针转换为String*类型指针，以便后续操作
                 String* p_type = static_cast<String*>(data);
-
-                // Object that manages the raw buffer.
+                // 创建一个FastBuffer对象，用于管理原始缓冲区，传入payload的数据指针和实际长度
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
-
-                // Object that deserializes the data.
+                // 创建一个Cdr对象，用于执行反序列化操作，传入FastBuffer以及相关的字节序和CDR格式设置
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
-
-                // Deserialize encapsulation.
+                // 先反序列化封装相关的头部信息（比如字节序标识等）
                 deser.read_encapsulation();
+                // 根据反序列化对象的字节序设置负载的封装字节序标识（大端或小端）
                 payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-
-                // Deserialize the object.
+                // 调用String对象的deserialize方法，从Cdr对象管理的缓冲区中还原出实际的数据内容到String对象中
+              
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果内存不足，反序列化失败，返回false
                 return false;
             }
 
             return true;
         }
-
+        // 返回一个函数对象，该函数对象用于获取给定数据对象（String类型）序列化后的大小（包含封装信息）
         std::function<uint32_t()> StringPubSubType::getSerializedSizeProvider(
                 void* data)
         {
             return [data]() -> uint32_t
                    {
+                       // 计算并返回String类型对象序列化后的大小，包含4字节的封装信息
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<String*>(data))) +
                               4u /*encapsulation*/;
                    };
         }
-
+        // 创建一个新的String类型对象，返回的是void*指针，方便在通用的接口中使用
         void* StringPubSubType::createData()
         {
             return reinterpret_cast<void*>(new String());
         }
-
+        // 删除之前创建的String类型对象，传入的是void*指针，需要先转换为String*类型再进行删除操作
         void StringPubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<String*>(data));
         }
-
+        // 获取给定数据对象（String类型）的键信息，用于实例标识等用途，填充到InstanceHandle_t中
         bool StringPubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
@@ -137,20 +148,21 @@ namespace std_msgs {
         {
             if (!m_isGetKeyDefined)
             {
+                // 如果该类型未定义键获取方式，直接返回false
                 return false;
             }
 
             String* p_type = static_cast<String*>(data);
-
-            // Object that manages the raw buffer.
+            // 创建一个FastBuffer对象，用于管理键序列化的缓冲区，传入键缓冲区指针和键的最大CDR序列化大小
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     String::getKeyMaxCdrSerializedSize());
-
-            // Object that serializes the data.
+            // 创建一个Cdr对象，用于执行键的序列化操作，设置为大端字节序（这里可能是固定要求）
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
+             // 调用String对象的serializeKey方法，将键相关信息序列化到Cdr对象管理的缓冲区中
             p_type->serializeKey(ser);
             if (force_md5 || String::getKeyMaxCdrSerializedSize() > 16)
             {
+                // 如果需要使用MD5或者键的序列化大小超过16字节，则进行MD5计算
                 m_md5.init();
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
                 m_md5.finalize();
@@ -160,7 +172,8 @@ namespace std_msgs {
                 }
             }
             else
-            {
+            { 
+                // 如果不需要MD5且键大小不超过16字节，直接将键缓冲区内容复制到InstanceHandle_t的value数组中
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
