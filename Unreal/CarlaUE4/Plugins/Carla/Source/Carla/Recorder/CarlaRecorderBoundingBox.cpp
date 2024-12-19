@@ -25,7 +25,7 @@ void CarlaRecorderActorBoundingBox::Write(std::ostream &OutFile)
   WriteValue<uint32_t>(OutFile, this->DatabaseId);
   BoundingBox.Write(OutFile);
 }
-
+//test
 void CarlaRecorderActorBoundingBox::Read(std::istream &InFile)
 {
   ReadValue<uint32_t>(InFile, this->DatabaseId);

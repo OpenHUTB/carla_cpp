@@ -16,14 +16,14 @@ UCLASS()
 class CARLA_API UOpenDrive : public UBlueprintFunctionLibrary
 {
   GENERATED_BODY()
-
+//test
 public:
 
-  /// ·µ»ØÓë@a MapName¹ØÁªµÄOpenDrive XML£¬Èç¹ûÕÒ²»µ½ÎÄ¼þ£¬Ôò·µ»Ø¿Õ¡£
+  /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@a MapNameï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OpenDrive XMLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ò·µ»Ø¿Õ¡ï¿½
   UFUNCTION(BlueprintCallable, Category="CARLA|OpenDrive")
   static FString GetXODR(const UWorld *World);
 
-  ///·µ»ØÓë@a MapName¹ØÁªµÄOpenDrive XML£¬Èç¹ûÕÒ²»µ½ÎÄ¼þ£¬Ôò·µ»Ø¿Õ¡£
+  ///ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½@a MapNameï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OpenDrive XMLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ò·µ»Ø¿Õ¡ï¿½
   UFUNCTION(BlueprintCallable, Category="CARLA|OpenDrive")
   static FString GetXODRByPath(FString XODRPath, FString MapName);
 
@@ -33,11 +33,11 @@ public:
   UFUNCTION(BlueprintCallable, Category="CARLA|OpenDrive")
   static FString LoadXODR(const FString &MapName);
 
-  /// ¼ÓÔØÓë¸ø¶¨MapName¹ØÁªµÄOpenDriveMap¡£Èç¹ûÕÒ²»µ½¾ßÓÐÏàÍ¬MapNameµÄODR£¬Ôò·µ»Ønullptr¡£
+  /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MapNameï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OpenDriveMapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬MapNameï¿½ï¿½ODRï¿½ï¿½ï¿½ò·µ»ï¿½nullptrï¿½ï¿½
   UFUNCTION(BlueprintCallable, Category="CARLA|OpenDrive")
   static UOpenDriveMap *LoadOpenDriveMap(const FString &MapName);
 
-  /// ¼ÓÔØÓëµ±Ç°¼ÓÔØµÄÓ³Éä¹ØÁªµÄOpenDriveMap¡£Èç¹ûÕÒ²»µ½Óëµ±Ç°Ó³ÉäÆ¥ÅäµÄXODR£¬Ôò·µ»Ønullptr¡£
+  /// ï¿½ï¿½ï¿½ï¿½ï¿½ëµ±Ç°ï¿½ï¿½ï¿½Øµï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OpenDriveMapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ëµ±Ç°Ó³ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½XODRï¿½ï¿½ï¿½ò·µ»ï¿½nullptrï¿½ï¿½
   UFUNCTION(BlueprintPure, Category="CARLA|OpenDrive", meta=(WorldContext="WorldContextObject"))
   static UOpenDriveMap *LoadCurrentOpenDriveMap(const UObject *WorldContextObject);
 };

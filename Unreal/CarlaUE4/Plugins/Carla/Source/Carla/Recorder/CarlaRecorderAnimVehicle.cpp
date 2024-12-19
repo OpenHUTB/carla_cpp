@@ -28,7 +28,7 @@ void CarlaRecorderAnimVehicle::Read(std::istream &InFile)
   ReadValue<bool>(InFile, this->bHandbrake);
   ReadValue<int32_t>(InFile, this->Gear);
 }
-
+//test
 // ---------------------------------------------
 
 void CarlaRecorderAnimVehicles::Clear(void)

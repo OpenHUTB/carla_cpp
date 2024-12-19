@@ -17,7 +17,7 @@
 
 
 #include "OpenDriveActor.generated.h"
-
+//test
 UCLASS()
 class CARLA_API AOpenDriveActor : public AActor // 定义AOpenDriveActor类，继承自AActor
 {

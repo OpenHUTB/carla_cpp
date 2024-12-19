@@ -25,7 +25,7 @@ struct CarlaRecorderCollision
     bool operator==(const CarlaRecorderCollision &Other) const;
 };
 #pragma pack(pop)
-
+//test
 // implement the hash function for the unordered_set of collisions
 namespace std
 {

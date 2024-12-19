@@ -36,7 +36,7 @@ bool CarlaRecorderCollision::operator==(const CarlaRecorderCollision &Other) con
             this->DatabaseId2 == Other.DatabaseId2);
 }
 //---------------------------------------------
-
+//test
 void CarlaRecorderCollisions::Clear(void)
 {
     Collisions.clear();

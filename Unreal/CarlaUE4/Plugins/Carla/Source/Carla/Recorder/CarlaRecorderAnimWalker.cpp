@@ -22,7 +22,7 @@ void CarlaRecorderAnimWalker::Read(std::istream &InFile)
 }
 
 // ---------------------------------------------
-
+//test
 void CarlaRecorderAnimWalkers::Clear(void)
 {
   Walkers.clear();

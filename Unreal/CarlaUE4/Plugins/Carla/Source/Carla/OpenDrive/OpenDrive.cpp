@@ -17,7 +17,7 @@
 FString UOpenDrive::FindPathToXODRFile(const FString &InMapName){
 
   FString MapName = InMapName;
-
+//test
 #if WITH_EDITOR
     {
       // 在编辑器中游玩时，地图名称会多出一个前缀，这里我们将其移除。

@@ -17,7 +17,7 @@ struct FDVector
   FDVector() : X(0.0), Y(0.0), Z(0.0) {}
 
   FDVector(float InX, float InY, float InZ) : X(InX), Y(InY), Z(InZ) {}
-
+//test
   FDVector(double InX, double InY, double InZ) : X(InX), Y(InY), Z(InZ) {}
 
   FDVector(const FVector& V) : X(V.X), Y(V.Y), Z(V.Z) {}

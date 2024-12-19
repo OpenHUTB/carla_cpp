@@ -17,7 +17,7 @@
 #include "Vehicle/VehicleSpawnPoint.h"
 
 #include "OpenDriveGenerator.generated.h"
-
+//sd
 UCLASS()
 class CARLA_API AProceduralMeshActor : public AActor
 {
@@ -38,22 +38,22 @@ public:
 
   AOpenDriveGenerator(const FObjectInitializer &ObjectInitializer);
 
-  /// ½«OpenDRIVEÐÅÏ¢ÉèÖÃÎª×Ö·û´®£¬²¢Éú³É¿É²éÑ¯µÄÓ³Éä½á¹¹¡£
+  /// ï¿½ï¿½OpenDRIVEï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Îªï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¿É²ï¿½Ñ¯ï¿½ï¿½Ó³ï¿½ï¿½á¹¹ï¿½ï¿½
   bool LoadOpenDrive(const FString &OpenDrive);
 
-  /// ÒÔ×Ö·û´®ÐÎÊ½»ñÈ¡OpenDRIVEÐÅÏ¢¡£
+  /// ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½È¡OpenDRIVEï¿½ï¿½Ï¢ï¿½ï¿½
   const FString &GetOpenDrive() const;
 
-  /// ¼ì²éÊÇ·ñÒÑ¼ÓÔØOpenDrive¼°ÆäÓÐÐ§ÐÔ¡£
+  /// ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¼ï¿½ï¿½ï¿½OpenDriveï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ô¡ï¿½
   bool IsOpenDriveValid() const;
 
-  /// »ùÓÚOpenDRIVEÐÅÏ¢Éú³ÉµÀÂ·ºÍÈËÐÐµÀÍø¸ñ¡£
+  /// ï¿½ï¿½ï¿½ï¿½OpenDRIVEï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Éµï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
   void GenerateRoadMesh();
 
-  /// »ùÓÚOpenDRIVEÐÅÏ¢Éú³É¸ËÍø¸ñ¡£
+  /// ï¿½ï¿½ï¿½ï¿½OpenDRIVEï¿½ï¿½Ï¢ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½ï¿½ï¿½
   void GeneratePoles();
 
-  /// ÑØµÀÂ·Éú³ÉÉú³ÉÉú³Éµã¡£
+  /// ï¿½Øµï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµã¡£
   void GenerateSpawnPoints();
 
   void GenerateAll();
@@ -62,7 +62,7 @@ protected:
 
   virtual void BeginPlay() override;
 
-  /// È·¶¨²úÂÑÆ÷Ïà¶ÔÓÚÃ¿¸öRoutePlannerµÄ·ÅÖÃ¸ß¶È
+  /// È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½RoutePlannerï¿½Ä·ï¿½ï¿½Ã¸ß¶ï¿½
   UPROPERTY(Category = "Spawners", EditAnywhere)
   float SpawnersHeight = 300.f;
 
