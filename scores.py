@@ -102,6 +102,7 @@ issue_counts = {}
 comment_counts = {}
 
 page = 1
+#循环获取数据，直到没有更多数据为止
 while True:
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
     # 需要把代理关掉，否则报错（原因不明）：urllib3.exceptions.MaxRetryError: HTTPSConnectionPool
