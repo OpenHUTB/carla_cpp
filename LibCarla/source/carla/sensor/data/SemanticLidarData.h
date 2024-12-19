@@ -115,15 +115,15 @@ namespace data {
       return _header[Index::ChannelCount];
     }
 
-    virtual void ResetMemory(std::vector<uint32_t> points_per_channel) {
-      DEBUG_ASSERT(GetChannelCount() > points_per_channel.size());
-      std::memset(_header.data() + Index::SIZE, 0, sizeof(uint32_t) * GetChannelCount());
+    virtual void ResetMemory(std::vector<uint32_t> points_per_channel) //虚函数，用于重置内存，参数是每个通道的点数的向量{
+      DEBUG_ASSERT(GetChannelCount() > points_per_channel.size());//断言通道数量要大于传入的每个通道点数向量的大小，用于确保数据的合理性
+      std::memset(_header.data() + Index::SIZE, 0, sizeof(uint32_t) * GetChannelCount());//将_header中从Index::SIZE位置开始的内存区域清零，清零的字节数是根据通道数量计算得到（每个元素占sizeof(uint32_t)字节）
 
-      uint32_t total_points = static_cast<uint32_t>(
-          std::accumulate(points_per_channel.begin(), points_per_channel.end(), 0));
+      uint32_t total_points = static_cast<uint32_t>//计算所有通道点数的总和，通过对points_per_channel向量中的元素求和得到，先将结果转换为uint32_t类型(
+          std::accumulate(points_per_channel.begin(), points_per_channel.end(), 0));//清空_ser_points向量中的元素
 
-      _ser_points.clear();
-      _ser_points.reserve(total_points);
+      _ser_points.clear();//为_ser_points向量预留足够的空间，空间大小为前面计算得到的总点数total_points
+      _ser_points.reserve(total_points);//虚函数，用于写入通道数量相关信息，参数是每个通道的点数的向量
     }
 
     virtual void WriteChannelCount(std::vector<uint32_t> points_per_channel) {
