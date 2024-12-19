@@ -101,6 +101,7 @@ commit_info()
 issue_counts = {}
 comment_counts = {}
 
+#初始化页码为1
 page = 1
 while True:
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
