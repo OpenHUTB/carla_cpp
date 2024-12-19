@@ -124,7 +124,7 @@ def should_quit():                                                   #函数用�
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_ESCAPE:
                 return True
-    return False
+    return False                                   #如果遍历完所有的event后，没有发现pygame.QUIT事件或pygmae.K_ESCAPE按键被松开的事件，则返回Flase,即没有满足退出程序的条件
 
 
 def main():
