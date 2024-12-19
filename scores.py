@@ -9,7 +9,7 @@ from collections import Counter
 import git  # 导入git模块，用于操作Git库
 
 argparser = argparse.ArgumentParser(
-        description='Involvement Degree')
+        description='Involvement Degree')#添加命令参数'-t'或'--token'，帮助信息为'your personal github access token'
 argparser.add_argument(
     '-t', '--token',
     help='your personal github access token')
