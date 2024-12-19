@@ -228,4 +228,3 @@ git rm -rf .
 [lu-jiahui](https://github.com/lu-jiahui)
 [28996615201](https://github.com/28996615201)
 [maokeyi](https://github.com/maokeyi)
-[qingchucheng](https://github.com/qingchucheng)
