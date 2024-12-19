@@ -21,276 +21,269 @@
 
 #ifndef _FAST_DDS_GENERATED_SENSOR_MSGS_MSG_IMAGE_H_
 #define _FAST_DDS_GENERATED_SENSOR_MSGS_MSG_IMAGE_H_
-
+// 包含 "Header.h" 头文件，具体作用需看该头文件内的内容声明
 #include "Header.h"
 
+// 包含 fastrtps 库中用于固定大小字符串的头文件，可能用于特定的字符串处理相关功能
 #include <fastrtps/utils/fixed_size_string.hpp>
-
+// 包含标准的整数类型定义头文件，用于使用如uint32_t等类型
 #include <stdint.h>
+// 包含数组相关的标准库头文件，方便使用数组类型操作
 #include <array>
+// 包含标准的字符串类型相关头文件，用于操作字符串对象
 #include <string>
+// 包含标准的向量（动态数组）类型相关头文件，用于处理可变长度的数据集合等情况
 #include <vector>
+// 包含标准的映射（关联容器）类型相关头文件，用于建立键值对的映射关系等操作
 #include <map>
+// 包含位集合相关头文件，可用于按位操作等功能
 #include <bitset>
-
+// 如果是 Windows 平台
 #if defined(_WIN32)
+// 如果定义了 EPROSIMA_USER_DLL_EXPORT 宏
 #if defined(EPROSIMA_USER_DLL_EXPORT)
+// 定义 eProsima_user_DllExport 为导出动态链接库符号的修饰符（Windows 下的 dllexport），用于向外提供接口
 #define eProsima_user_DllExport __declspec( dllexport )
+// 如果未定义 EPROSIMA_USER_DLL_EXPORT 宏
 #else
 #define eProsima_user_DllExport
+ // 定义 eProsima_user_DllExport 为空，可能表示不进行特殊的动态链接库相关处理
 #endif  // EPROSIMA_USER_DLL_EXPORT
+// 如果不是 Windows 平台
 #else
+ // 同样定义 eProsima_user_DllExport 为空，在非 Windows 环境下不做特殊处理（比如没有类似 Windows 的动态链接库导出导入概念）
+    #define eProsima_user_DllExport
 #define eProsima_user_DllExport
 #endif  // _WIN32
 
+// 如果是 Windows 平台
 #if defined(_WIN32)
+// 如果定义了 EPROSIMA_USER_DLL_EXPORT 宏
 #if defined(EPROSIMA_USER_DLL_EXPORT)
+// 定义 Image_DllAPI 为导出动态链接库符号的修饰符（Windows 下的 dllexport），用于向外提供接口（针对 Image 相关类）
 #if defined(Image_SOURCE)
+// 如果未定义 Image_SOURCE 宏
 #define Image_DllAPI __declspec( dllexport )
 #else
+// 定义 Image_DllAPI 为导入动态链接库符号的修饰符（Windows 下的 dllimport），用于使用外部动态链接库中的接口（针对 Image 相关类）
 #define Image_DllAPI __declspec( dllimport )
 #endif // Image_SOURCE
 #else
 #define Image_DllAPI
 #endif  // EPROSIMA_USER_DLL_EXPORT
+// 如果不是 Windows 平台
 #else
+// 定义 Image_DllAPI 为空，在非 Windows 环境下不做特殊处理（比如没有类似 Windows 的动态链接库导出导入概念，针对 Image 相关类）
 #define Image_DllAPI
 #endif // _WIN32
-
+// eprosima 命名空间开始，可能是某个库或模块的整体命名空间
 namespace eprosima {
+ // fastcdr 子命名空间，可能用于和快速 CDR（Common Data Representation，一种数据序列化表示方式）相关的功能
 namespace fastcdr {
+// 前置声明 Cdr 类，具体完整定义可能在其他地方，此处只是告诉编译器有这么个类，方便后续使用指针、引用等操作
 class Cdr;
 } // namespace fastcdr
 } // namespace eprosima
-
+// sensor_msgs 命名空间开始，可能用于存放传感器相关消息类型等内容
 namespace sensor_msgs {
     namespace msg {
-        /*!
+  // msg 子命名空间，通常用于存放具体消息类型的定义
+         /*!
          * @brief This class represents the structure Image defined by the user in the IDL file.
          * @ingroup IMAGE
+         * 这个类表示在 IDL（接口定义语言）文件中由用户定义的 Image 结构，用于特定的消息传递场景，可能与图像相关消息有关，@ingroup 可能用于文档生成等相关的分组标识（比如分组展示文档等）
          */
         class Image
         {
         public:
-
-            /*!
-             * @brief Default constructor.
+             /*！
+             * 这是默认构造函数，用于创建一个 Image 类的对象，初始化对象的成员到默认状态
              */
             eProsima_user_DllExport Image();
 
             /*!
-             * @brief Default destructor.
+           * 这是默认析构函数，用于在对象生命周期结束时进行资源清理等相关操作（比如释放动态分配的内存等，如果有相关需求）
              */
             eProsima_user_DllExport ~Image();
 
             /*!
-             * @brief Copy constructor.
-             * @param x Reference to the object sensor_msgs::msg::Image that will be copied.
+             * 拷贝构造函数，通过传入一个已有的 Image 类对象的引用 x，创建一个新的 Image 对象，新对象的成员值将和传入的对象相同（进行深拷贝或浅拷贝，具体看内部实现）
              */
             eProsima_user_DllExport Image(
                     const Image& x);
 
             /*!
-             * @brief Move constructor.
-             * @param x Reference to the object sensor_msgs::msg::Image that will be copied.
+            移动构造函数，通过传入一个已有的 Image 类对象的引用 x，将 x 的资源所有权转移到新创建的 Image 对象中（常用于优化对象传递时的性能，避免不必要的拷贝）
+             
              */
             eProsima_user_DllExport Image(
                     Image&& x) noexcept;
 
             /*!
-             * @brief Copy assignment.
-             * @param x Reference to the object sensor_msgs::msg::Image that will be copied.
+* 拷贝赋值运算符重载，用于将一个已有的 Image 类对象（通过引用 x 传入）的值赋值给当前的 Image 对象（同样涉及深拷贝或浅拷贝相关操作，要保证赋值后的对象状态符合预期
              */
             eProsima_user_DllExport Image& operator =(
                     const Image& x);
 
             /*!
-             * @brief Move assignment.
-             * @param x Reference to the object sensor_msgs::msg::Image that will be copied.
+              * 移动赋值运算符重载，用于将一个已有的 Image 类对象（通过引用 x 传入）的资源所有权转移给当前的 Image 对象，实现高效的资源转移（避免不必要的拷贝开销）
              */
             eProsima_user_DllExport Image& operator =(
                     Image&& x) noexcept;
 
             /*!
-             * @brief Comparison operator.
-             * @param x sensor_msgs::msg::Image object to compare.
+            * 相等比较运算符重载，用于比较当前的 Image 对象和传入的 Image 对象 x 是否相等，返回一个布尔值表示比较结果
              */
             eProsima_user_DllExport bool operator ==(
                     const Image& x) const;
 
             /*!
-             * @brief Comparison operator.
-             * @param x sensor_msgs::msg::Image object to compare.
+             * 不等比较运算符重载，与上面的相等比较运算符相对应，用于比较当前的 Image 对象和传入的 Image 对象 x 是否不相等，返回一个布尔值表示比较结果
              */
             eProsima_user_DllExport bool operator !=(
                     const Image& x) const;
 
             /*!
-             * @brief This function copies the value in member header
-             * @param _header New value to be copied in member header
+            * 此函数用于将传入的 _header（类型为 std_msgs::msg::Header）的值拷贝到当前 Image 对象的 m_header 成员中，实现对头部信息的设置（可能是图像消息头部相关信息）
              */
             eProsima_user_DllExport void header(
                     const std_msgs::msg::Header& _header);
 
             /*!
-             * @brief This function moves the value in member header
-             * @param _header New value to be moved in member header
+            * 此函数用于将传入的 _header（类型为 std_msgs::msg::Header）的值移动到当前 Image 对象的 m_header 成员中，实现对头部信息的设置（可能是图像消息头部相关信息），移动操作可能更高效地处理资源所有权转移
              */
             eProsima_user_DllExport void header(
                     std_msgs::msg::Header&& _header);
 
             /*!
-             * @brief This function returns a constant reference to member header
-             * @return Constant reference to member header
+             * 此函数返回当前 Image 对象中 m_header 成员的常量引用，外部可以通过这个引用获取头部信息但不能修改它（保证了数据的只读性，符合某些场景需求）
              */
             eProsima_user_DllExport const std_msgs::msg::Header& header() const;
 
             /*!
-             * @brief This function returns a reference to member header
-             * @return Reference to member header
+              * 此函数返回当前 Image 对象中 m_header 成员的普通引用，外部可以通过这个引用获取和修改头部信息（与上面的常量引用函数对应，用于需要修改头部信息的场景）
              */
             eProsima_user_DllExport std_msgs::msg::Header& header();
             /*!
-             * @brief This function sets a value in member height
-             * @param _height New value for member height
+            * 此函数用于设置当前 Image 对象中 m_height 成员的值，这个成员可能表示图像的高度相关信息
              */
             eProsima_user_DllExport void height(
                     uint32_t _height);
 
             /*!
-             * @brief This function returns the value of member height
-             * @return Value of member height
+              * 此函数返回当前 Image 对象中 m_height 成员的值，即获取图像高度相关信息
              */
             eProsima_user_DllExport uint32_t height() const;
 
             /*!
-             * @brief This function returns a reference to member height
-             * @return Reference to member height
+            * 此函数返回当前 Image 对象中 m_height 成员的引用，外部可以通过这个引用获取和修改图像高度相关信息
              */
             eProsima_user_DllExport uint32_t& height();
 
             /*!
-             * @brief This function sets a value in member width
-             * @param _width New value for member width
+             * 此函数用于设置当前 Image 对象中 m_width 成员的值，这个成员可能表示图像的宽度相关信息
              */
             eProsima_user_DllExport void width(
                     uint32_t _width);
 
             /*!
-             * @brief This function returns the value of member width
-             * @return Value of member width
+              * 此函数返回当前 Image 对象中 m_width 成员的值，即获取图像宽度相关信息
              */
             eProsima_user_DllExport uint32_t width() const;
 
             /*!
-             * @brief This function returns a reference to member width
-             * @return Reference to member width
+              * 此函数返回当前 Image 对象中 m_width 成员的引用，外部可以通过这个引用获取和修改图像宽度相关信息
              */
             eProsima_user_DllExport uint32_t& width();
 
             /*!
-             * @brief This function copies the value in member encoding
-             * @param _encoding New value to be copied in member encoding
+             * 此函数用于将传入的 _encoding（类型为 std::string）的值拷贝到当前 Image 对象的 m_encoding 成员中，这个成员可能表示图像的编码格式相关信息
              */
             eProsima_user_DllExport void encoding(
                     const std::string& _encoding);
 
             /*!
-             * @brief This function moves the value in member encoding
-             * @param _encoding New value to be moved in member encoding
+             * 此函数用于将传入的 _encoding（类型为 std::string）的值移动到当前 Image 对象的 m_encoding 成员中，这个成员可能表示图像的编码格式相关信息，移动操作可能更高效地处理资源所有权转移
              */
             eProsima_user_DllExport void encoding(
                     std::string&& _encoding);
 
             /*!
-             * @brief This function returns a constant reference to member encoding
-             * @return Constant reference to member encoding
+             * 此函数返回当前 Image 对象中 m_encoding 成员的常量引用，外部可以通过这个引用获取图像编码格式相关信息但不能修改它（保证了数据的只读性，符合某些场景需求）
              */
             eProsima_user_DllExport const std::string& encoding() const;
 
             /*!
-             * @brief This function returns a reference to member encoding
-             * @return Reference to member encoding
+             * 此函数返回当前 Image 对象中 m_encoding 成员的普通引用，外部可以通过这个引用获取和修改图像编码格式相关信息（与上面的常量引用函数对应，用于需要修改图像编码格式的场景）
              */
             eProsima_user_DllExport std::string& encoding();
             /*!
-             * @brief This function sets a value in member is_bigendian
-             * @param _is_bigendian New value for member is_bigendian
+             * 此函数用于设置当前 Image 对象中 m_is_bigendian 成员的值，这个成员可能用于表示图像数据存储是否是大端序相关信息
              */
             eProsima_user_DllExport void is_bigendian(
                     uint8_t _is_bigendian);
 
             /*!
-             * @brief This function returns the value of member is_bigendian
-             * @return Value of member is_bigendian
+             * 此函数返回当前 Image 对象中 m_is_bigendian 成员的值，即获取图像数据存储是否是大端序相关信息
              */
             eProsima_user_DllExport uint8_t is_bigendian() const;
 
             /*!
-             * @brief This function returns a reference to member is_bigendian
-             * @return Reference to member is_bigendian
+            * 此函数返回当前 Image 对象中 m_is_bigendian 成员的引用，外部可以通过这个引用获取和修改图像数据存储是否是大端序相关信息
              */
             eProsima_user_DllExport uint8_t& is_bigendian();
 
             /*!
-             * @brief This function sets a value in member step
-             * @param _step New value for member step
+             * 此函数用于设置当前 Image 对象中 m_step 成员的值，这个成员可能表示图像每行数据的字节跨度等相关信息（比如在处理图像像素数据存储布局方面有用）
              */
             eProsima_user_DllExport void step(
                     uint32_t _step);
 
             /*!
-             * @brief This function returns the value of member step
-             * @return Value of member step
+            * 此函数返回当前 Image 对象中 m_step 成员的值，即获取图像每行数据的字节跨度等相关信息
              */
             eProsima_user_DllExport uint32_t step() const;
 
             /*!
-             * @brief This function returns a reference to member step
-             * @return Reference to member step
+             * 此函数返回当前 Image 对象中 m_step 成员的引用，外部可以通过这个引用获取和修改图像每行数据的字节跨度等相关信息
              */
             eProsima_user_DllExport uint32_t& step();
 
             /*!
-             * @brief This function copies the value in member data
-             * @param _data New value to be copied in member data
+              * 此函数用于将传入的 _data（类型为 std::vector<uint8_t>，即字节数组，可能表示图像的像素数据等）的值拷贝到当前 Image 对象的 m_data 成员中，实现对图像数据的设置
+             */
              */
             eProsima_user_DllExport void data(
                     const std::vector<uint8_t>& _data);
 
             /*!
-             * @brief This function moves the value in member data
-             * @param _data New value to be moved in member data
+             * 此函数用于将传入的 _data（类型为 std::vector<uint8_t>，即字节数组，可能表示图像的像素数据等）的值移动到当前 Image 对象的 m_data 成员中，实现对图像数据的设置，移动操作可能更高效地处理资源所有权转移
              */
             eProsima_user_DllExport void data(
                     std::vector<uint8_t>&& _data);
 
             /*!
-             * @brief This function returns a constant reference to member data
-             * @return Constant reference to member data
+            * 此函数返回当前 Image 对象中 m_data 成员的常量引用，外部可以通过这个引用获取图像数据但不能修改它（保证了数据的只读性，符合某些场景需求）
              */
             eProsima_user_DllExport const std::vector<uint8_t>& data() const;
 
             /*!
-             * @brief This function returns a reference to member data
-             * @return Reference to member data
+            * 此函数返回当前 Image 对象中 m_data 成员的普通引用，外部可以通过这个引用获取和修改图像数据（与上面的常量引用函数对应，用于需要修改图像数据的场景）
              */
             eProsima_user_DllExport std::vector<uint8_t>& data();
 
             /*!
-            * @brief This function returns the maximum serialized size of an object
-            * depending on the buffer alignment.
-            * @param current_alignment Buffer alignment.
-            * @return Maximum serialized size.
+            * 此函数用于返回一个对象（这里指的是Image类的对象）根据缓冲区对齐方式的情况下，所能序列化后的最大尺寸（字节数）。
+ * 参数current_alignment用于指定当前的缓冲区对齐方式，如果调用时不传入该参数，则使用默认值0（具体含义可能取决于具体的序列化实现机制）。
+ * 返回值是根据相应条件计算得到的最大序列化尺寸，可用于提前预估序列化操作所需的缓冲区大小等情况。
             */
             eProsima_user_DllExport static size_t getMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function returns the serialized size of a data depending on the buffer alignment.
-             * @param data Data which is calculated its serialized size.
-             * @param current_alignment Buffer alignment.
-             * @return Serialized size.
+            * 这个函数的功能是根据缓冲区对齐方式，返回给定的Image类对象（通过参数data传入）序列化后的尺寸（字节数）。
+ * 参数data是要计算序列化尺寸的具体Image类对象，current_alignment则是缓冲区对齐方式参数，同样若不传则使用默认值0。
+ * 该函数返回对应的序列化后的准确尺寸，有助于精确地分配内存、进行数据传输等操作中判断所需空间大小。
              */
             eProsima_user_DllExport static size_t getCdrSerializedSize(
                     const sensor_msgs::msg::Image& data,
@@ -298,47 +291,58 @@ namespace sensor_msgs {
 
 
             /*!
-             * @brief This function serializes an object using CDR serialization.
-             * @param cdr CDR serialization object.
+              * 此函数用于将当前的Image类对象按照CDR（Common Data Representation，一种数据序列化表示方式）序列化机制进行序列化操作。
+ * 参数cdr是一个用于执行CDR序列化操作的对象，在函数内部会通过它来将Image类对象的各个成员变量按照相应规则转化为可传输、存储的序列化格式。
+ * 一般用于将对象转换为字节流等形式以便在网络传输、文件存储等场景下使用。
              */
             eProsima_user_DllExport void serialize(
                     eprosima::fastcdr::Cdr& cdr) const;
 
             /*!
-             * @brief This function deserializes an object using CDR serialization.
-             * @param cdr CDR serialization object.
+            * 此函数与上面的serialize函数相对应，用于将已经按照CDR序列化后的字节流（通过参数cdr关联的对象来表示）反序列化，恢复成一个Image类对象。
+ * 也就是从传输过来的或者从存储中读取的字节流数据，根据CDR的反序列化规则，重新构建出对应的Image类对象，使得对象可以在程序中继续进行后续的处理操作。
              */
             eProsima_user_DllExport void deserialize(
                     eprosima::fastcdr::Cdr& cdr);
 
             /*!
-             * @brief This function returns the maximum serialized size of the Key of an object
-             * depending on the buffer alignment.
-             * @param current_alignment Buffer alignment.
-             * @return Maximum serialized size.
+             * 这个函数用于返回一个对象（这里也是针对Image类对象）的键（Key，可能用于在某些数据结构、传输场景中唯一标识该对象等用途）根据缓冲区对齐方式的情况下，所能序列化后的最大尺寸（字节数）。
+ * 参数current_alignment指定了当前的缓冲区对齐方式，默认值为0（其含义取决于具体的序列化相关实现细节）。
+ * 返回的最大序列化尺寸值可帮助提前规划键序列化操作所需的空间等情况
              */
             eProsima_user_DllExport static size_t getKeyMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function tells you if the Key has been defined for this type
+             * 此函数用于判断对于当前的Image类型，是否已经定义了键（Key）。返回值是一个布尔类型，若返回true表示已经定义了键，返回false则表示未定义。
+ * 可用于在一些依赖键进行操作的逻辑中，提前判断是否可以进行相关键相关的处理，比如根据键进行查找、比对等操作。
+
              */
             eProsima_user_DllExport static bool isKeyDefined();
 
             /*!
-             * @brief This function serializes the key members of an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * 此函数的作用是按照CDR序列化机制，对当前Image类对象中用于作为键（Key）的相关成员变量进行序列化操作。
+ * 参数cdr是执行CDR序列化的对象，通过它将与键相关的成员按照相应规则转换为序列化格式，常用于针对键进行单独处理的场景，比如在某些基于键值对的数据存储、检索系统中使用。
              */
             eProsima_user_DllExport void serializeKey(
                     eprosima::fastcdr::Cdr& cdr) const;
+// Image类的私有成员变量定义部分，这些变量用于存储与图像相关的各种信息
 
+// m_header成员变量，类型是std_msgs::msg::Header，可能用于存放图像消息的头部信息，比如消息的时间戳、消息来源等相关内容
+private:
         private:
             std_msgs::msg::Header m_header;
+// m_height成员变量，类型是uint32_t，用于存储图像的高度相关信息，比如以像素为单位的图像高度值
             uint32_t m_height;
+// m_width成员变量，类型是uint32_t，用于存储图像的宽度相关信息，例如以像素为单位的图像宽度数值
             uint32_t m_width;
+// m_encoding成员变量，类型是std::string，用来存放图像的编码格式相关信息，例如"RGB"、"JPEG"等表示图像编码方式的字符串
             std::string m_encoding;
+// m_is_bigendian成员变量，类型是uint8_t，用于指示图像数据存储是否采用大端序（比如在跨平台传输、存储图像数据时大端序相关设置很重要）
             uint8_t m_is_bigendian;
+// m_step成员变量，类型是uint32_t，可能表示图像每行数据的字节跨度等相关信息，在处理图像像素数据存储布局以及内存对齐等方面有作用
             uint32_t m_step;
+// m_data成员变量，类型是std::vector<uint8_t>，很可能用于存放图像的像素数据等实际内容，是字节数组形式
             std::vector<uint8_t> m_data;
         };
     } // namespace msg

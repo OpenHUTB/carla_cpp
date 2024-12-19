@@ -22,19 +22,19 @@ struct FDVector
 
   FDVector(const FVector& V) : X(V.X), Y(V.Y), Z(V.Z) {}
 
-  FDVector(const FIntVector& V) : X(V.X), Y(V.Y), Z(V.Z) {}
+  FDVector(const FIntVector& V) : X(V.X), Y(V.Y), Z(V.Z) {}//构造函数，使用初始化列表来初始化
 
   double Size() const
   {
-    return std::sqrt(X*X + Y*Y + Z*Z);
+    return std::sqrt(X*X + Y*Y + Z*Z);//用于计算并返回向量长度
   }
 
-  double SizeSquared() const
+  double SizeSquared() const//用于返回向量长度的平方
   {
     return X*X + Y*Y + Z*Z;
   }
 
-  static double Dist(const FDVector &V1, const FDVector &V2)
+  static double Dist(const FDVector &V1, const FDVector &V2)//用于计算距离的静态函数
   {
     return std::sqrt(FDVector::DistSquared(V1, V2));
   }
@@ -59,7 +59,7 @@ struct FDVector
     return FIntVector((int32)X, (int32)Y, (int32)Z);
   }
 
-  FDVector& operator=(const FDVector& Other)
+  FDVector& operator=(const FDVector& Other)//将对象转换为一个格式的字符串
   {
     this->X = Other.X;
     this->Y = Other.Y;
