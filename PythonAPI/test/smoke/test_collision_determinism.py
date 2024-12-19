@@ -97,12 +97,12 @@ class Scenario(object):
                 actor.get_angular_velocity().x, actor.get_angular_velocity().y, actor.get_angular_velocity().z])
         return actor_snapshot
 
-    def save_snapshots(self):
-        if not self.save_snapshots_mode:
-            return
+    def save_snapshots(self):                      #函数用于保存snapshots（快照）
+        if not self.save_snapshots_mode:           #检查快照是否为真
+            return                                 #若不为真，则返回
 
-        for i in range (0, len(self.actor_list)):
-            self.snapshots[i] = np.vstack((self.snapshots[i], self.save_snapshot(self.actor_list[i][1])))
+        for i in range (0, len(self.actor_list)):  #若为真，则i将进行从0到self.actor_list长度的遍历
+            self.snapshots[i] = np.vstack((self.snapshots[i], self.save_snapshot(self.actor_list[i][1])))    #每次循环执行该函数
 
     def save_snapshots_to_disk(self):
         if not self.save_snapshots_mode:
