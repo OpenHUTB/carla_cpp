@@ -1,18 +1,18 @@
 // Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款进行许可。
+// 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
-#pragma once
+#指示一次
 
-#include "Carla/Util/BoundingBox.h"
+#包括 "Carla/Util/BoundingBox.h"
 
-#include "Kismet/BlueprintFunctionLibrary.h"
+#包括 "Kismet/BlueprintFunctionLibrary.h"
 
-#include "GameFramework/Actor.h"
+#包括 "GameFramework/Actor.h"
 
-#include "BoundingBoxCalculator.generated.h"
+#包括 "BoundingBoxCalculator.generated.h"
 
 UCLASS()
 class CARLA_API UBoundingBoxCalculator : public UBlueprintFunctionLibrary
@@ -84,10 +84,10 @@ public:
     const AActor* Actor,
     uint8 InTagQueried = 0xFF);
 
-  // Combines the BBs of an actor based on the distance and type of the BB
-  // The BBs not combined are included too (ie: TL BBs and pole)
-  // DistanceThreshold is the maximum distance between BBs to combine, if 0.0 the distance is ignored
-  // TagToCombine defines the type of the BBs to combine, if 0 the type is ignored
+  // 根据 BB 的距离和类型组合角色的 BB
+  // 未组合的 BB 也包括在内（即：TL BB 和极点）
+  // DistanceThreshold 是 BB 之间要组合的最大距离，如果为 0.0，则忽略该距离
+  // TagToCombine 定义要组合的 BB 的类型，如果为 0，则忽略该类型
   UFUNCTION(Category = "Carla Util", BlueprintCallable)
   static void CombineBBsOfActor(
     const AActor* Actor,
@@ -102,8 +102,8 @@ public:
   UFUNCTION(Category = "Carla Util", BlueprintCallable)
   static FBoundingBox CombineBoxes(const TArray<UBoxComponent *>& BBsToCombine);
 
-  // Returns Static Mesh Components that generate the InBB of the Actor
-  // ie: the SMComps that creates the BB of the TL light box
+  // 返回生成 Actor 的 InBB 的静态网格体组件
+  // 即：创建 TL 灯箱 BB 的 SMComps
   UFUNCTION(Category = "Carla Actor", BlueprintCallable)
   static void GetMeshCompsFromActorBoundingBox(
     const AActor* Actor,
