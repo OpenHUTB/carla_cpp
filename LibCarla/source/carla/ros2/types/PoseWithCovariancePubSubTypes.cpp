@@ -32,13 +32,26 @@ namespace geometry_msgs {
 
         PoseWithCovariancePubSubType::PoseWithCovariancePubSubType()
         {
+            // 设置消息类型的名称，表示该类型是 geometry_msgs::msg::PoseWithCovariance 类型的 DDS 消息
             setName("geometry_msgs::msg::dds_::PoseWithCovariance_");
+
+            // 获取 PoseWithCovariance 类型的最大 CDR 序列化大小
             auto type_size = PoseWithCovariance::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+
+            // 为可能存在的子消息进行对齐处理，这里假设每个子消息需要 4 字节对齐
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);
+
+            // 计算最终类型的大小，并加上 4 字节用于封装（encapsulation）
+            m_typeSize = static_cast<uint32_t>(type_size) + 4;
+
+            // 检查是否已为该类型定义键（key），并将结果保存在 m_isGetKeyDefined 中
             m_isGetKeyDefined = PoseWithCovariance::isKeyDefined();
+
+            // 计算最大键的 CDR 序列化大小，如果键的大小大于 16 字节，则使用较大的值
             size_t keyLength = PoseWithCovariance::getKeyMaxCdrSerializedSize() > 16 ?
                     PoseWithCovariance::getKeyMaxCdrSerializedSize() : 16;
+
+            // 为键分配内存，并将其初始化为零
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
             memset(m_keyBuffer, 0, keyLength);
         }
