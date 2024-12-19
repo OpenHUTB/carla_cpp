@@ -19,7 +19,7 @@ FbxSurfacePhong* gMatBlock;
 #endif
 
 // Create a material that will be applied to a polygon
-FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
+FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)#接受一个FbxScene*类型的场景指针pScene和一个字符指针name（材质名称）
 {
     // Create material
     // 使用 FbxSurfacePhong 类的静态方法 Create 为指定场景创建一个名为 name 的材质
