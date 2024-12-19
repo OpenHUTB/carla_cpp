@@ -15,31 +15,31 @@ using SimpleWaypointPtr = std::shared_ptr<SimpleWaypoint>;
 using Buffer = std::deque<SimpleWaypointPtr>;
 using GeoGridId = carla::road::JuncId;
 
-// 此类用于跟踪所有角色的航点占用情况
+// This class is used to track the waypoint occupancy of all the actors.
 class TrackTraffic {
 
 private:
-    /// 用于跟踪车辆间重叠航点的结构
+    /// Structure to keep track of overlapping waypoints between vehicles.
     using WaypointOverlap = std::unordered_map<uint64_t, ActorIdSet>;
     WaypointOverlap waypoint_overlap_tracker;
 
-    /// 用于跟踪车辆所占用航点的结构
+    /// Structure to keep track of waypoints occupied by vehicles;
     using WaypointIdSet = std::unordered_set<uint64_t>;
     using WaypointOccupancyMap = std::unordered_map<ActorId, WaypointIdSet>;
     WaypointOccupancyMap waypoint_occupied;
 
-    /// 参与者路径所占据的测地线网格
+    /// Geodesic grids occupied by actors's paths.
     std::unordered_map<ActorId, std::unordered_set<GeoGridId>> actor_to_grids;
-    /// 参与者当前经过的网格
+    /// Actors currently passing through grids.
     std::unordered_map<GeoGridId, ActorIdSet> grid_to_actors;
-    /// 当前英雄位置
+    /// Current hero location.
     cg::Location hero_location = cg::Location(0,0,0);
 
 
 public:
     TrackTraffic();
 
-    /// 更新、移除和检索经过某一路点车辆的方法
+    /// Methods to update, remove and retrieve vehicles passing through a waypoint.
     void UpdatePassingVehicle(uint64_t waypoint_id, ActorId actor_id);
     void RemovePassingVehicle(uint64_t waypoint_id, ActorId actor_id);
     ActorIdSet GetPassingVehicles(uint64_t waypoint_id) const;
@@ -56,7 +56,7 @@ public:
     cg::Location GetHeroLocation() const;
 
 
-    /// 从跟踪中删除参与者数据的方法
+    /// Method to delete actor data from tracking.
     void DeleteActor(ActorId actor_id);
 
     void Clear();

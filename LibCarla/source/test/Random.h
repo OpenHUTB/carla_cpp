@@ -12,30 +12,30 @@
 #include <random> // 提供随机数生成的功能
 
 namespace util {
-// 随机数工具类，封装了常见的随机数生成方法
+
   class Random {
   public:
 // 生成范围 [min, max) 内的随机双精度浮点数
-    static double Uniform(double min, double max) {  
-      std::uniform_real_distribution<double> distribution(min, max);  // 定义一个随机浮点数分布
+    static double Uniform(double min, double max) {
+      std::uniform_real_distribution<double> distribution(min, max);
       return distribution(_engine); // 使用随机引擎生成并返回分布中的随机数
     }
 // 生成坐标范围 [min, max) 内的随机 carla::geom::Location 对象
     static carla::geom::Location Location(float min, float max) {
-      std::uniform_real_distribution<float> distribution(min, max);   // 定义一个随机浮点数分布
+      std::uniform_real_distribution<float> distribution(min, max);
       return {distribution(_engine), distribution(_engine), distribution(_engine)};// 创建一个随机的 Location 对象，包含随机的 x, y, z 坐标值
     }
 // 使用随机引擎对提供的范围进行洗牌
- // 这个函数会将给定范围内的元素顺序随机打乱
+
     template <typename RangeT>
     static void Shuffle(RangeT &range) {
-      std::shuffle(std::begin(range), std::end(range), _engine);  // 使用 _engine 对 range 中的元素顺序进行洗牌
+      std::shuffle(std::begin(range), std::end(range), _engine);
     }
   private:
  // 线程局部随机数引擎，确保每个线程都有自己的实例
     // Defined in test.cpp.
 // 在 test.cpp 中定义，以便进行适当的初始化
-    static thread_local std::mt19937_64 _engine; // 使用 64 位的 Mersenne Twister 随机数生成器
+    static thread_local std::mt19937_64 _engine;
   };
 
 } // namespace util

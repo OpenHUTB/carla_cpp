@@ -56,27 +56,19 @@ namespace client {
     std::vector<std::string> GetAvailableMaps() const {
       return _simulator->GetAvailableMaps();
     }
-    // 设置文件系统的基文件夹。
-    // 调用_simulator对象的SetFilesBaseFolder方法，传入路径参数。
-    // 返回操作是否成功。
+
     bool SetFilesBaseFolder(const std::string &path) {
       return _simulator->SetFilesBaseFolder(path);
     }
-    // 获取所需的文件列表。
-    // 调用_simulator对象的GetRequiredFiles方法，传入文件夹路径和是否下载的标志。
-    // 如果folder参数为空字符串，则使用默认路径。
-    // 如果download参数为true，则在需要时下载文件。
+
     std::vector<std::string> GetRequiredFiles(const std::string &folder = "", const bool download = true) const {
       return _simulator->GetRequiredFiles(folder, download);
     }
-    // 请求一个文件。
-    // 调用_simulator对象的RequestFile方法，传入文件名。
+
     void RequestFile(const std::string &name) const {
       _simulator->RequestFile(name);
     }
-    // 重新加载世界环境。
-    // 调用_simulator对象的ReloadEpisode方法，并根据参数决定是否重置设置。
-    // 返回重新加载后的世界对象。
+
     World ReloadWorld(bool reset_settings = true) const {
       return World{_simulator->ReloadEpisode(reset_settings)};
     }

@@ -4,45 +4,43 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "Buffer.h" // å¼•å…¥è‡ªå®šä¹‰çš„å¤´æ–‡ä»¶ï¼ˆå¯èƒ½æ˜¯å®šä¹‰äº† Buffer ç±»å‹çš„ç›¸å…³å†…å®¹ï¼‰
+#include "Buffer.h"
 
-#include <boost/random/independent_bits.hpp>  // å¼•å…¥ Boost åº“ä¸­çš„ç‹¬ç«‹ä½ç”Ÿæˆå¼•æ“
+#include <boost/random/independent_bits.hpp>
 
-#include <climits>  // å¼•å…¥ C æ ‡å‡†åº“ï¼ŒåŒ…å«å¸¸é‡ï¼Œä¾‹å¦‚ CHAR_BITï¼ˆé€šå¸¸æ˜¯ 8ï¼‰
-#include <random>   // æä¾›æ ‡å‡† C++ éšæœºæ•°ç”Ÿæˆå™¨
-// å®šä¹‰å‘½åç©ºé—´ utilï¼Œå…¶ä¸­åŒ…å«å­å‘½åç©ºé—´ buffer
+#include <climits>
+#include <random>
+// ¶¨ÒåÃüÃû¿Õ¼ä util£¬ÆäÖĞ°üº¬×ÓÃüÃû¿Õ¼ä buffer
 namespace util {
 namespace buffer {
-// ç”ŸæˆæŒ‡å®šå¤§å°çš„éšæœºç¼“å†²åŒº
+// Éú³ÉÖ¸¶¨´óĞ¡µÄËæ»ú»º³åÇø
   shared_buffer make_random(size_t size) {
-  	// å¦‚æœä¼ å…¥çš„å¤§å°ä¸º 0ï¼Œåˆ™è¿”å›ä¸€ä¸ªç©ºçš„ç¼“å†²åŒº
+  	// Èç¹û´«ÈëµÄ´óĞ¡Îª 0£¬Ôò·µ»ØÒ»¸ö¿ÕµÄ»º³åÇø
     if (size == 0u)
       return make_empty();
-        // ä½¿ç”¨ boost::random::independent_bits_engine å’Œ std::random_device ç”Ÿæˆéšæœºå­—èŠ‚åºåˆ—
-        // independent_bits_engine æ˜¯ä¸€ä¸ªéšæœºæ•°å¼•æ“ï¼Œå®ƒä½¿ç”¨ std::random_device ä½œä¸ºåŸºç¡€éšæœºæº
-        // ç”ŸæˆæŒ‡å®šä½æ•°ï¼ˆè¿™é‡Œæ˜¯ CHAR_BITï¼Œé€šå¸¸æ˜¯ 8 ä½ï¼‰çš„ç‹¬ç«‹éšæœºä½ï¼Œå¹¶äº§ç”Ÿæ— ç¬¦å·å­—ç¬¦ç±»å‹çš„éšæœºæ•°
+        // Ê¹ÓÃ boost::random::independent_bits_engine ºÍ std::random_device Éú³ÉËæ»ú×Ö½ÚĞòÁĞ
+        // independent_bits_engine ÊÇÒ»¸öËæ»úÊıÒıÇæ£¬ËüÊ¹ÓÃ std::random_device ×÷Îª»ù´¡Ëæ»úÔ´
+        // Éú³ÉÖ¸¶¨Î»Êı£¨ÕâÀïÊÇ CHAR_BIT£¬Í¨³£ÊÇ 8 Î»£©µÄ¶ÀÁ¢Ëæ»úÎ»£¬²¢²úÉúÎŞ·ûºÅ×Ö·ûÀàĞÍµÄËæ»úÊı
     using random_bytes_engine = boost::random::independent_bits_engine<
-        std::random_device, // éšæœºæ•°æºä½¿ç”¨ std::random_device
-        CHAR_BIT,  // æ¯ä¸ªå­—èŠ‚ä½¿ç”¨ CHAR_BIT ä½ï¼ˆé€šå¸¸æ˜¯ 8 ä½ï¼‰
-        unsigned char>;  // ç”Ÿæˆéšæœºå­—èŠ‚ï¼Œç±»å‹ä¸º unsigned char
-    random_bytes_engine rbe; // å®ä¾‹åŒ–éšæœºå­—èŠ‚ç”Ÿæˆå¼•æ“
-    auto buffer = make_empty(size); // åˆ›å»ºä¸€ä¸ªæŒ‡å®šå¤§å°çš„ç©ºç¼“å†²åŒºï¼ˆè°ƒç”¨ make_empty å‡½æ•°ï¼‰
-    std::generate(buffer->begin(), buffer->end(), std::ref(rbe)); // è°ƒç”¨ boost å¼•æ“ç”Ÿæˆéšæœºå­—èŠ‚
-    return buffer; // è¿”å›ç”Ÿæˆçš„éšæœºç¼“å†²åŒº
+        std::random_device,
+        CHAR_BIT,
+        unsigned char>;
+    random_bytes_engine rbe;
+    auto buffer = make_empty(size);
+    std::generate(buffer->begin(), buffer->end(), std::ref(rbe));
+    return buffer;
   }
-  // å°† Buffer å¯¹è±¡è½¬æ¢ä¸ºåå…­è¿›åˆ¶å­—ç¬¦ä¸²
+
   std::string to_hex_string(const Buffer &buf, size_t length) {
     length = std::min(static_cast<size_t>(buf.size()), length);
-        // åˆ›å»ºä¸€ä¸ªè¶³å¤Ÿå¤§çš„å­—ç¬¦æ•°ç»„æ¥å­˜å‚¨åå…­è¿›åˆ¶å­—ç¬¦ä¸²
-        // é•¿åº¦ä¸º 2u * length + 1uï¼Œå› ä¸ºæ¯ä¸ªå­—èŠ‚éœ€è¦ç”¨ä¸¤ä¸ªåå…­è¿›åˆ¶æ•°å­—è¡¨ç¤ºï¼Œå†åŠ ä¸Šä¸€ä¸ªå­—ç¬¦ä¸²ç»“æŸç¬¦
+        // ´´½¨Ò»¸ö×ã¹»´óµÄ×Ö·ûÊı×éÀ´´æ´¢Ê®Áù½øÖÆ×Ö·û´®
+        // ³¤¶ÈÎª 2u * length + 1u£¬ÒòÎªÃ¿¸ö×Ö½ÚĞèÒªÓÃÁ½¸öÊ®Áù½øÖÆÊı×Ö±íÊ¾£¬ÔÙ¼ÓÉÏÒ»¸ö×Ö·û´®½áÊø·û
     auto buffer = std::make_unique<char[]>(2u * length + 1u);
-     // éå†ç¼“å†²åŒºçš„æ¯ä¸ªå­—èŠ‚ï¼Œå°†å…¶è½¬åŒ–ä¸ºåå…­è¿›åˆ¶å­—ç¬¦ä¸²è¡¨ç¤º
     for (auto i = 0u; i < length; ++i)
-      sprintf(&buffer[2u * i], "%02x", buf.data()[i]); // æ ¼å¼åŒ–æ¯ä¸ªå­—èŠ‚ä¸º 2 ä½åå…­è¿›åˆ¶æ•°å­—ï¼ˆ%02xï¼‰
-    // å¦‚æœè¦è½¬æ¢çš„å­—èŠ‚æ•°å°äºç¼“å†²åŒºçš„æ€»å­—èŠ‚æ•°ï¼Œåˆ™åœ¨å­—ç¬¦ä¸²æœ«å°¾åŠ ä¸Šçœç•¥å·
+      sprintf(&buffer[2u * i], "%02x", buf.data()[i]);
     if (length < buf.size())
       return std::string(buffer.get()) + std::string("...");
-    return std::string(buffer.get()); // è¿”å›è½¬æ¢åçš„åå…­è¿›åˆ¶å­—ç¬¦ä¸²
+    return std::string(buffer.get());
   }
 
 } // namespace buffer

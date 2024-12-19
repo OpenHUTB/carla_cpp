@@ -12,56 +12,56 @@
 
 #include "ActorDefinition.generated.h"
 
-///carla参与者的定义，包含所有变化和属性
+/// A definition of a Carla Actor with all the variation and attributes.
 USTRUCT(BlueprintType)
 struct FActorDefinition
 {
   GENERATED_BODY()
 
-  /// 唯一标识定义（无需填写）
+  /// Uniquely identifies the definition (no need to fill it).
   uint32 UId = 0u;
 
-  ///用于标识参与者的显示ID
+  /// Display ID that identifies the actor.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString Id;
 
-  /// 要生成的参与者类（可选）
+  /// Class of the actor to be spawned (Optional).
   ///
-  /// 请注意，此参数未在客户端公开，仅用于
-  /// 生成器本身
+  /// Note that this parameter is not exposed on the client-side, only used by
+  /// the spawner itself.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TSubclassOf<AActor> Class;
 
-  /// 一个逗号分隔的标签列表
+  /// A list of comma-separated tags.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString Tags;
 
-  /// 变体代表了用户可以修改的变量，以生成不同的变体
-  /// 关于参与者
+  /// Variations represent variables the user can modify to generate variations
+  /// of the actor.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<FActorVariation> Variations;
 
-  /// 属性表示参与者可能具有的不可修改的特性
-  /// 帮助用户识别和过滤参与者
+  /// Attributes represent non-modifiable properties of the actor that might
+  /// help the user identifying and filtering actors.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<FActorAttribute> Attributes;
 };
 
-/// 一个包含所有变体和属性的车辆角色定义
+/// A definition of a Vehicle Actor with all the variation and attributes.
 USTRUCT(BlueprintType)
 struct FVehicleActorDefinition
 {
   GENERATED_BODY()
 
-  /// 一个逗号分隔的标签列表
+  /// A list of comma-separated tags.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString Tags;
 
-  /// 将静态网格体分配给该参与者
+  /// Assign a static mesh into the actor.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   UStaticMesh* mesh;
 
-  /// 颜色代表每个参与者的可用颜色
+  /// Colors represent the avaliable colors for each actor
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<FColor> colors;
 };

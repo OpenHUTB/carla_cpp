@@ -5,14 +5,11 @@
 #
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
-#在CARLA仿真环境中控制一辆车辆，并使用pygame库显示车辆的RGB和语义分割图像。
-
 
 import glob
 import os
 import sys
 
-# 尝试将CARLA的.egg文件路径添加到sys.path，如果失败则忽略。
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -25,7 +22,6 @@ import carla
 
 import random
 
-# 尝试导入pygame模块，用于创建图形用户界面,如果导入失败，抛出运行时错误。
 try:
     import pygame
 except ImportError:
@@ -36,14 +32,13 @@ try:
 except ImportError:
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
 
-# 尝试导入queue模块,如果导入失败（在Python 2中），从Queue模块导入。
 try:
     import queue
 except ImportError:
     import Queue as queue
 
 
-class CarlaSyncMode(object):# 定义一个名为CarlaSyncMode的上下文管理器类。
+class CarlaSyncMode(object):
     """
     Context manager to synchronize output from different sensors. Synchronous
     mode is enabled as long as we are inside this context
@@ -53,63 +48,60 @@ class CarlaSyncMode(object):# 定义一个名为CarlaSyncMode的上下文管理�
                 data = sync_mode.tick(timeout=1.0)
 
     """
-    
- # 类构造函数，初始化world对象和传感器列表。
+
     def __init__(self, world, *sensors, **kwargs):
         self.world = world
         self.sensors = sensors
         self.frame = None
-        self.delta_seconds = 1.0 / kwargs.get('fps', 20)# 默认FPS为20。
-        self._queues = []                             # 用于存储传感器数据的队列。
-        self._settings = None                         # 用于存储world的当前设置。
-        
-# 进入上下文管理器时执行的操作。
+        self.delta_seconds = 1.0 / kwargs.get('fps', 20)
+        self._queues = []
+        self._settings = None
+
     def __enter__(self):
-        self._settings = self.world.get_settings()  # 获取当前world设置。
-        self.frame = self.world.apply_settings(carla.WorldSettings(# 应用新的world设置。
+        self._settings = self.world.get_settings()
+        self.frame = self.world.apply_settings(carla.WorldSettings(
             no_rendering_mode=False,
             synchronous_mode=True,
             fixed_delta_seconds=self.delta_seconds))
 
-           # 创建队列并注册事件。
         def make_queue(register_event):
             q = queue.Queue()
             register_event(q.put)
             self._queues.append(q)
 
-        make_queue(self.world.on_tick)        # 为world的tick事件创建队列。
-        for sensor in self.sensors:           # 为每个传感器创建队列。
-            make_queue(sensor.listen)       
+        make_queue(self.world.on_tick)
+        for sensor in self.sensors:
+            make_queue(sensor.listen)
         return self
 
-    def tick(self, timeout):                  # 从传感器队列中获取数据。
-        self.frame = self.world.tick()                                
+    def tick(self, timeout):
+        self.frame = self.world.tick()
         data = [self._retrieve_data(q, timeout) for q in self._queues]
-        assert all(x.frame == self.frame for x in data)         # 确保所有数据帧相同。
+        assert all(x.frame == self.frame for x in data)
         return data
 
-    def __exit__(self, *args, **kwargs):                    # 退出上下文管理器时执行的操作。
-        self.world.apply_settings(self._settings)            # 恢复之前的world设置。
+    def __exit__(self, *args, **kwargs):
+        self.world.apply_settings(self._settings)
 
-    def _retrieve_data(self, sensor_queue, timeout):        # 从传感器队列中检索数据。
+    def _retrieve_data(self, sensor_queue, timeout):
         while True:
             data = sensor_queue.get(timeout=timeout)
             if data.frame == self.frame:
                 return data
 
 
-def draw_image(surface, image, blend=False):                        # 函数用于在pygame表面绘制图像。
-    array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))  # 从图像的原始数据创建numpy数组。
-    array = np.reshape(array, (image.height, image.width, 4))         # 调整数组形状。
-    array = array[:, :, :3]                                         # 去除alpha通道。
-    array = array[:, :, ::-1]                                       # 反转颜色通道。
-    image_surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))# 创建pygame表面。
-    if blend:                                                       # 如果需要混合，则设置alpha值。
+def draw_image(surface, image, blend=False):
+    array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
+    array = np.reshape(array, (image.height, image.width, 4))
+    array = array[:, :, :3]
+    array = array[:, :, ::-1]
+    image_surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
+    if blend:
         image_surface.set_alpha(100)
-    surface.blit(image_surface, (0, 0))                             # 将图像绘制到pygame表面。
+    surface.blit(image_surface, (0, 0))
 
 
-def get_font():                                                     # 函数用于获取字体。
+def get_font():
     fonts = [x for x in pygame.font.get_fonts()]
     default_font = 'ubuntumono'
     font = default_font if default_font in fonts else fonts[0]

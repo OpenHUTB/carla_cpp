@@ -60,7 +60,7 @@ namespace multigpu {
   };
 
     _acceptor.async_accept(session->_socket, [=](error_code ec) {
-      // 处理查询并立刻开启一个新会话
+      // Handle query and open a new session immediately.
       boost::asio::post(_io_context, [=]() { handle_query(ec); });
       OpenSession(timeout, on_opened, on_closed, on_response);
     });

@@ -4,14 +4,14 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  // 防止头文件被重复包含
+#pragma once
 
 #include <type_traits>
 
 namespace carla {//定义一个叫做carla的类 
 
   template <typename... Ts>  // 定义一个模板结构体，接受可变数量的类型参数
-  struct are_same;   // 引入 type_traits 库，用于类型相关的操作，如 std::is_same
+  struct are_same;
 
   template <typename T0, typename T1, typename... Ts> // 针对至少两个类型的特化
   struct are_same<T0, T1, Ts...> {

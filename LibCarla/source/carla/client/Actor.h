@@ -54,21 +54,9 @@ namespace carla {
             ///
             /// @note 该函数不会调用模拟器，而是返回根据行为体的速度计算的加速度。
             geom::Vector3D GetAcceleration() const;
-            /**
-             * 获取指定组件的世界坐标变换。
-             * 这个函数返回一个包含位置、旋转和平移信息的Transform对象，
-             * 表示指定组件在世界坐标系中的位置和方向。
-             * @param componentName 要获取变换的组件名称。
-             * @return 组件的世界坐标变换。
-             */
+
             geom::Transform GetComponentWorldTransform(const std::string componentName) const;
-            /**
-             * 获取指定组件相对于Actor的相对坐标变换。
-             * 这个函数返回一个包含位置、旋转和平移信息的Transform对象，
-             * 表示指定组件相对于Actor原点的位置和方向。
-             * @param componentName 要获取变换的组件名称。
-             * @return 组件的相对坐标变换。
-             */
+
             geom::Transform GetComponentRelativeTransform(const std::string componentName) const;
 
             std::vector<geom::Transform> GetBoneWorldTransforms() const;

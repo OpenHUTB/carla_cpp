@@ -1,26 +1,26 @@
-cmake_minimum_required(VERSION 3.5.1)# è®¾ç½®CMakeçš„æœ€ä½ç‰ˆæœ¬è¦æ±‚
-project(libcarla-pytorch)# å®šä¹‰é¡¹ç›®åç§° 
+cmake_minimum_required(VERSION 3.5.1)# ÉèÖÃCMakeµÄ×îµÍ°æ±¾ÒªÇó
+project(libcarla-pytorch)# ¶¨ÒåÏîÄ¿Ãû³Æ 
 
-# å®‰è£…å¤´æ–‡ä»¶  
-# ä½¿ç”¨file(GLOB)å‘½ä»¤æŸ¥æ‰¾æ‰€æœ‰.hå¤´æ–‡ä»¶ï¼Œå¹¶å®‰è£…åˆ°include/carla/pytorchç›®å½•ä¸‹
+# °²×°Í·ÎÄ¼ş  
+# Ê¹ÓÃfile(GLOB)ÃüÁî²éÕÒËùÓĞ.hÍ·ÎÄ¼ş£¬²¢°²×°µ½include/carla/pytorchÄ¿Â¼ÏÂ
 
 file(GLOB libcarla_carla_pytorch_headers "${libcarla_source_path}/carla/pytorch/*.h")
 install(FILES ${libcarla_carla_pytorch_headers} DESTINATION include/carla/pytorch)
 
-# å®šä¹‰libcarla_pytorchåº“çš„æºæ–‡ä»¶  
-# åŒ…æ‹¬.hå’Œ.cppæ–‡ä»¶
+# ¶¨Òålibcarla_pytorch¿âµÄÔ´ÎÄ¼ş  
+# °üÀ¨.hºÍ.cppÎÄ¼ş
 file(GLOB libcarla_pytorch_sources
     "${libcarla_source_path}/carla/pytorch/*.h"
     "${libcarla_source_path}/carla/pytorch/*.cpp")
 
-set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)# è®¾ç½®CUDAç¼–è¯‘å™¨è·¯å¾„
-# æŸ¥æ‰¾å¹¶è¦æ±‚Torchã€TorchScatterã€TorchClusterå’ŒPython3åŒ…
+set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)# ÉèÖÃCUDA±àÒëÆ÷Â·¾¶
+# ²éÕÒ²¢ÒªÇóTorch¡¢TorchScatter¡¢TorchClusterºÍPython3°ü
 find_package(Torch REQUIRED)
 find_package(TorchScatter REQUIRED)
 find_package(TorchCluster REQUIRED)
 find_package(Python3 REQUIRED)
 
-set(PYTORCH_CPP_STD_INCLUDES "/usr/include/c++/7")# è®¾ç½®PyTorch C++ APIçš„æ ‡å‡†åº“åŒ…å«è·¯å¾„
+set(PYTORCH_CPP_STD_INCLUDES "/usr/include/c++/7")# ÉèÖÃPyTorch C++ APIµÄ±ê×¼¿â°üº¬Â·¾¶
 
 # @todo These flags need to be compatible with setup.py compilation.
 set(CMAKE_CXX_FLAGS_RELEASE "-DDEBUG -std=c++14 -O2 -fPIC -D_GLIBCXX_USE_CXX11_ABI=0 -I${PYTORCH_CPP_STD_INCLUDES}" CACHE STRING "" FORCE)
@@ -28,38 +28,38 @@ set(CMAKE_CXX_FLAGS_RELEASE "-DDEBUG -std=c++14 -O2 -fPIC -D_GLIBCXX_USE_CXX11_A
 # ==============================================================================
 # Create targets for debug and release in the same build type.
 # ==============================================================================
-# æ ¹æ®æ˜¯å¦å®šä¹‰äº†LIBCARLA_BUILD_RELEASEæˆ–LIBCARLA_BUILD_DEBUGæ¥æ„å»ºä¸åŒçš„ç›®æ ‡
+# ¸ù¾İÊÇ·ñ¶¨ÒåÁËLIBCARLA_BUILD_RELEASE»òLIBCARLA_BUILD_DEBUGÀ´¹¹½¨²»Í¬µÄÄ¿±ê
 if (LIBCARLA_BUILD_RELEASE)
- # æ·»åŠ é™æ€åº“carla_pytorch
+ # Ìí¼Ó¾²Ì¬¿âcarla_pytorch
   add_library(carla_pytorch STATIC ${libcarla_pytorch_sources})
-  # ä¸ºcarla_pytorchåº“æ·»åŠ åŒ…å«ç›®å½•
+  # Îªcarla_pytorch¿âÌí¼Ó°üº¬Ä¿Â¼
   target_include_directories(carla_pytorch SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
-# æ·»åŠ PyTorchåŠå…¶ä¾èµ–åº“çš„åŒ…å«ç›®å½•
+# Ìí¼ÓPyTorch¼°ÆäÒÀÀµ¿âµÄ°üº¬Ä¿Â¼
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TORCH_INCLUDE_DIRS}")
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchScatter_INCLUDE_DIR}")
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchCluster_INCLUDE_DIR}")
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchSparse_INCLUDE_DIR}")
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${Python3_INCLUDE_DIRS}")
-  target_link_libraries(carla_pytorch "${TORCH_LIBRARIES}") # é“¾æ¥PyTorchåº“
+  target_link_libraries(carla_pytorch "${TORCH_LIBRARIES}") # Á´½ÓPyTorch¿â
 
-  install(TARGETS carla_pytorch DESTINATION lib OPTIONAL) # å®‰è£…carla_pytorchåº“
+  install(TARGETS carla_pytorch DESTINATION lib OPTIONAL) # °²×°carla_pytorch¿â
 
-  set_target_properties(carla_pytorch PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")# è®¾ç½®carla_pytorchçš„ç¼–è¯‘æ ‡å¿—
-#é“¾æ¥åº“è®¾ç½®
+  set_target_properties(carla_pytorch PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")# ÉèÖÃcarla_pytorchµÄ±àÒë±êÖ¾
+
 endif()
 
 if (LIBCARLA_BUILD_DEBUG)
 
   add_library(carla_pytorch_debug STATIC ${libcarla_pytorch_sources})
-#å‘½ä»¤æ¥æ·»åŠ è°ƒè¯•ç‰ˆæœ¬çš„æºæ–‡ä»¶å’ŒåŒ…å«ç›®å½•
+
   target_include_directories(carla_pytorch_debug SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
 
-  install(TARGETS carla_pytorch_debug DESTINATION lib OPTIONAL)#å‘½ä»¤æ¥æŒ‡å®šè°ƒè¯•ç‰ˆæœ¬åº“çš„å®‰è£…ç›®æ ‡
-#å‘½ä»¤æ¥è®¾ç½®è°ƒè¯•ç‰ˆæœ¬åº“çš„ç¼–è¯‘å±æ€§
+  install(TARGETS carla_pytorch_debug DESTINATION lib OPTIONAL)
+
   set_target_properties(carla_pytorch_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
   target_compile_definitions(carla_pytorch_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
 

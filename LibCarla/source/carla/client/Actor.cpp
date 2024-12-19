@@ -73,124 +73,71 @@ namespace client {
   std::vector<std::string> Actor::GetSocketNames() const {
     return GetEpisode().Lock()->GetActorSocketNames(*this);
   }  
-/**
- * 设置Actor的位置。
- * @param location 新的位置信息。
- */
+
   void Actor::SetLocation(const geom::Location &location) {
     GetEpisode().Lock()->SetActorLocation(*this, location);
   }
-/**
- * 设置Actor的变换，包括位置、旋转和缩放。
- * @param transform 新的变换信息。
- */
+
   void Actor::SetTransform(const geom::Transform &transform) {
     GetEpisode().Lock()->SetActorTransform(*this, transform);
   }
-/**
- * 设置Actor的目标速度。
- * @param vector 目标速度向量。
- */
+
   void Actor::SetTargetVelocity(const geom::Vector3D &vector) {
     GetEpisode().Lock()->SetActorTargetVelocity(*this, vector);
   }
-/**
- * 设置Actor的目标角速度。
- * @param vector 目标角速度向量。
- */
+
   void Actor::SetTargetAngularVelocity(const geom::Vector3D &vector) {
     GetEpisode().Lock()->SetActorTargetAngularVelocity(*this, vector);
   }
-/**
- * 启用Actor的恒定速度。
- * @param vector 恒定速度向量。
- */
+
   void Actor::EnableConstantVelocity(const geom::Vector3D &vector) {
     GetEpisode().Lock()->EnableActorConstantVelocity(*this, vector);
   }
-/**
- * 禁用Actor的恒定速度。
- */
+
   void Actor::DisableConstantVelocity() {
     GetEpisode().Lock()->DisableActorConstantVelocity(*this);
   }
-/**
- * 向Actor添加冲量（瞬间力）。
- * @param impulse 冲量向量。
- */
+
   void Actor::AddImpulse(const geom::Vector3D &impulse) {
     GetEpisode().Lock()->AddActorImpulse(*this, impulse);
   }
-/**
- * 向Actor在特定位置添加冲量（瞬间力）。
- * @param impulse 冲量向量。
- * @param location 冲量作用的位置。
- */
+
   void Actor::AddImpulse(const geom::Vector3D &impulse, const geom::Vector3D &location) {
     GetEpisode().Lock()->AddActorImpulse(*this, impulse, location);
   }
-/**
- * 向Actor在特定位置添加冲量（瞬间力）。
- * @param impulse 冲量向量。
- * @param location 冲量作用的位置。
- */
+
   void Actor::AddForce(const geom::Vector3D &force) {
     GetEpisode().Lock()->AddActorForce(*this, force);
   }
-/**
- * 向Actor在特定位置添加力。
- * @param force 力向量。
- * @param location 力作用的位置。
- */
+
   void Actor::AddForce(const geom::Vector3D &force, const geom::Vector3D &location) {
     GetEpisode().Lock()->AddActorForce(*this, force, location);
   }
-/**
- * 向Actor添加角冲量。
- * @param vector 角冲量向量。
- */
+
   void Actor::AddAngularImpulse(const geom::Vector3D &vector) {
     GetEpisode().Lock()->AddActorAngularImpulse(*this, vector);
   }
-/**
- * 向Actor添加扭矩。
- * @param torque 扭矩向量。
- */
+
   void Actor::AddTorque(const geom::Vector3D &torque) {
     GetEpisode().Lock()->AddActorTorque(*this, torque);
   }
-/**
- * 设置Actor是否模拟物理。
- * @param enabled 是否启用物理模拟。
- */
+
   void Actor::SetSimulatePhysics(const bool enabled) {
     GetEpisode().Lock()->SetActorSimulatePhysics(*this, enabled);
   }
-/**
- * 设置Actor是否启用碰撞。
- * @param enabled 是否启用碰撞。
- */
+
   void Actor::SetCollisions(const bool enabled) {
     GetEpisode().Lock()->SetActorCollisions(*this, enabled);
   }
-/**
- * 标记Actor为死亡状态。
- */
+
   void Actor::SetActorDead() {
     GetEpisode().Lock()->SetActorDead(*this);
   }
-/**
- * 设置Actor是否启用重力。
- * @param enabled 是否启用重力。
- */
+
   void Actor::SetEnableGravity(const bool enabled) {
     GetEpisode().Lock()->SetActorEnableGravity(*this, enabled);
   }
 
-/**
- * 获取Actor的当前状态。
- * @return Actor的当前状态。
- */
   rpc::ActorState Actor::GetActorState() const {
     return GetEpisode().Lock()->GetActorState(*this);
   }

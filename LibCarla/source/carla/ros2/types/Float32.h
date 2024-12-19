@@ -21,7 +21,7 @@
 
 #ifndef _FAST_DDS_GENERATED_STD_MSGS_MSG_FLOAT32_H_
 #define _FAST_DDS_GENERATED_STD_MSGS_MSG_FLOAT32_H_
-// 包含一些必要的头文件
+
 #include <fastrtps/utils/fixed_size_string.hpp>
 
 #include <stdint.h>
@@ -30,7 +30,7 @@
 #include <vector>
 #include <map>
 #include <bitset>
-// Windows平台下的DLL导出/导入宏定义
+
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #define eProsima_user_DllExport __declspec( dllexport )
@@ -40,7 +40,7 @@
 #else
 #define eProsima_user_DllExport
 #endif  // _WIN32
-// Windows平台下的DLL导出/导入宏定义，针对Float32类
+
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #if defined(Float32_SOURCE)
@@ -54,148 +54,149 @@
 #else
 #define Float32_DllAPI
 #endif // _WIN32
-// 引入fastcdr命名空间，用于序列化和反序列化
+
 namespace eprosima {
 namespace fastcdr {
 class Cdr;
 } // namespace fastcdr
 } // namespace eprosima
-// std_msgs命名空间，包含消息类型定义
+
 namespace std_msgs {
     namespace msg {
-                /*! 
-         * @brief 这个类表示用户在IDL文件中定义的Float32结构。
+        /*!
+         * @brief This class represents the structure Float32 defined by the user in the IDL file.
          * @ingroup FLOAT32
          */
-
         class Float32
         {
         public:
-            /*! 
-             * @brief 默认构造函数。
+            /*!
+             * @brief Default constructor.
              */
             eProsima_user_DllExport Float32();
 
-            /*! 
-             * @brief 默认析构函数。
+            /*!
+             * @brief Default destructor.
              */
             eProsima_user_DllExport ~Float32();
 
-            /*! 
-             * @brief 拷贝构造函数。
-             * @param x 要拷贝的std_msgs::msg::Float32对象的引用。
+            /*!
+             * @brief Copy constructor.
+             * @param x Reference to the object std_msgs::msg::Float32 that will be copied.
              */
             eProsima_user_DllExport Float32(
                     const Float32& x);
 
-            /*! 
-             * @brief 移动构造函数。
-             * @param x 要移动的std_msgs::msg::Float32对象的引用。
+            /*!
+             * @brief Move constructor.
+             * @param x Reference to the object std_msgs::msg::Float32 that will be copied.
              */
             eProsima_user_DllExport Float32(
                     Float32&& x) noexcept;
 
-            /*! 
-             * @brief 拷贝赋值操作符。
-             * @param x 要拷贝的std_msgs::msg::Float32对象的引用。
+            /*!
+             * @brief Copy assignment.
+             * @param x Reference to the object std_msgs::msg::Float32 that will be copied.
              */
             eProsima_user_DllExport Float32& operator =(
                     const Float32& x);
 
-           /*! 
-             * @brief 移动赋值操作符。
-             * @param x 要移动的std_msgs::msg::Float32对象的引用。
+            /*!
+             * @brief Move assignment.
+             * @param x Reference to the object std_msgs::msg::Float32 that will be copied.
              */
             eProsima_user_DllExport Float32& operator =(
                     Float32&& x) noexcept;
 
-            /*! 
-             * @brief 比较操作符。
-             * @param x 要比较的std_msgs::msg::Float32对象。
+            /*!
+             * @brief Comparison operator.
+             * @param x std_msgs::msg::Float32 object to compare.
              */
             eProsima_user_DllExport bool operator ==(
                     const Float32& x) const;
 
-           /*! 
-             * @brief 比较操作符。
-             * @param x 要比较的std_msgs::msg::Float32对象。
+            /*!
+             * @brief Comparison operator.
+             * @param x std_msgs::msg::Float32 object to compare.
              */
             eProsima_user_DllExport bool operator !=(
                     const Float32& x) const;
 
-            /*! 
-             * @brief 设置成员data的值。
-             * @param _data 成员data的新值。
+            /*!
+             * @brief This function sets a value in member data
+             * @param _data New value for member data
              */
             eProsima_user_DllExport void data(
                     float _data);
 
-            /*! 
-             * @brief 获取成员data的值。
-             * @return 成员data的值。
+            /*!
+             * @brief This function returns the value of member data
+             * @return Value of member data
              */
             eProsima_user_DllExport float data() const;
 
-            /*! 
-             * @brief 获取成员data的引用。
-             * @return 成员data的引用。
+            /*!
+             * @brief This function returns a reference to member data
+             * @return Reference to member data
              */
             eProsima_user_DllExport float& data();
 
-             /*! 
-            * @brief 返回对象的最大序列化大小，取决于缓冲区对齐。
-            * @param current_alignment 缓冲区对齐。
-            * @return 最大序列化大小。
+            /*!
+            * @brief This function returns the maximum serialized size of an object
+            * depending on the buffer alignment.
+            * @param current_alignment Buffer alignment.
+            * @return Maximum serialized size.
             */
             eProsima_user_DllExport static size_t getMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
-            /*! 
-             * @brief 返回数据的序列化大小，取决于缓冲区对齐。
-             * @param data 要计算序列化大小的数据。
-             * @param current_alignment 缓冲区对齐。
-             * @return 序列化大小。
+            /*!
+             * @brief This function returns the serialized size of a data depending on the buffer alignment.
+             * @param data Data which is calculated its serialized size.
+             * @param current_alignment Buffer alignment.
+             * @return Serialized size.
              */
             eProsima_user_DllExport static size_t getCdrSerializedSize(
                     const std_msgs::msg::Float32& data,
                     size_t current_alignment = 0);
 
-            /*! 
-             * @brief 使用CDR序列化对象。
-             * @param cdr CDR序列化对象。
+            /*!
+             * @brief This function serializes an object using CDR serialization.
+             * @param cdr CDR serialization object.
              */
             eProsima_user_DllExport void serialize(
                     eprosima::fastcdr::Cdr& cdr) const;
 
-           /*! 
-             * @brief 使用CDR反序列化对象。
-             * @param cdr CDR序列化对象。
+            /*!
+             * @brief This function deserializes an object using CDR serialization.
+             * @param cdr CDR serialization object.
              */
             eProsima_user_DllExport void deserialize(
                     eprosima::fastcdr::Cdr& cdr);
 
-            /*! 
-             * @brief 返回对象的Key的最大序列化大小，取决于缓冲区对齐。
-             * @param current_alignment 缓冲区对齐。
-             * @return 最大序列化大小。
+            /*!
+             * @brief This function returns the maximum serialized size of the Key of an object
+             * depending on the buffer alignment.
+             * @param current_alignment Buffer alignment.
+             * @return Maximum serialized size.
              */
             eProsima_user_DllExport static size_t getKeyMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
-            /*! 
-             * @brief 告诉你是否为这种类型定义了Key。
+            /*!
+             * @brief This function tells you if the Key has been defined for this type
              */
             eProsima_user_DllExport static bool isKeyDefined();
 
-            /*! 
-             * @brief 使用CDR序列化对象的Key成员。
-             * @param cdr CDR序列化对象。
+            /*!
+             * @brief This function serializes the key members of an object using CDR serialization.
+             * @param cdr CDR serialization object.
              */
             eProsima_user_DllExport void serializeKey(
                     eprosima::fastcdr::Cdr& cdr) const;
 
         private:
-            float m_data;// 成员变量，存储浮点数数据
+            float m_data;
         };
     } // namespace msg
 } // namespace std_msgs

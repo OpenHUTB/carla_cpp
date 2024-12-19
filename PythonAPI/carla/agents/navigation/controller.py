@@ -3,7 +3,7 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-""" 该模块包含PID控制器，用于执行横向和纵向控制。 """
+""" This module contains PID controllers to perform lateral and longitudinal control. """
 
 from collections import deque
 import math
@@ -14,30 +14,31 @@ from agents.tools.misc import get_speed
 
 class VehiclePIDController:
     """
-    VehiclePIDController是两个PID控制器（横向和纵向）的组合
-    用于从客户端执行车辆的低层次控制
+    VehiclePIDController is the combination of two PID controllers
+    (lateral and longitudinal) to perform the
+    low level control a vehicle from client side
     """
 
 
     def __init__(self, vehicle, args_lateral, args_longitudinal, offset=0, max_throttle=0.75, max_brake=0.3,
                  max_steering=0.8):
         """
-        构造方法。
+        Constructor method.
 
-        :param vehicle: 应用局部规划逻辑的actor
-        :param args_lateral: 设置横向PID控制器的参数字典
-            使用以下语义：
-                K_P -- 比例项
-                K_D -- 微分项
-                K_I -- 积分项
-        :param args_longitudinal: 设置纵向PID控制器的参数字典
-            使用以下语义：
-                K_P -- 比例项
-                K_D -- 微分项
-                K_I -- 积分项
-        :param offset: 如果不为零，车辆将从中心线偏移驾驶。
-            正值意味着向右偏移，而负值意味着向左偏移。数值足够大
-            以至于导致车辆穿过其他车道可能会破坏控制器。
+        :param vehicle: actor to apply to local planner logic onto
+        :param args_lateral: dictionary of arguments to set the lateral PID controller
+        using the following semantics:
+            K_P -- Proportional term
+            K_D -- Differential term
+            K_I -- Integral term
+        :param args_longitudinal: dictionary of arguments to set the longitudinal
+        PID controller using the following semantics:
+            K_P -- Proportional term
+            K_D -- Differential term
+            K_I -- Integral term
+        :param offset: If different than zero, the vehicle will drive displaced from the center line.
+        Positive values imply a right offset while negative ones mean a left one. Numbers high enough
+        to cause the vehicle to drive through other lanes might break the controller.
         """
 
         self.max_brake = max_brake
@@ -52,12 +53,13 @@ class VehiclePIDController:
 
     def run_step(self, target_speed, waypoint):
         """
-       执行一步控制，调用横向和纵向PID控制器
-        以达到给定目标速度的目标路点。
+        Execute one step of control invoking both lateral and longitudinal
+        PID controllers to reach a target waypoint
+        at a given target_speed.
 
-            :param target_speed: 期望的车辆速度
-            :param waypoint: 编码为目标位置的路点
-            :return: 到路点的距离（以米为单位）
+            :param target_speed: desired vehicle speed
+            :param waypoint: target location encoded as a waypoint
+            :return: distance (in meters) to the waypoint
         """
 
         acceleration = self._lon_controller.run_step(target_speed)
@@ -70,7 +72,7 @@ class VehiclePIDController:
             control.throttle = 0.0
             control.brake = min(abs(acceleration), self.max_brake)
 
-        #方向盘调节：不能突然变化，不能转得太多。
+        # Steering regulation: changes cannot happen abruptly, can't steer too much.
 
         if current_steering > self.past_steering + 0.1:
             current_steering = self.past_steering + 0.1
@@ -91,32 +93,32 @@ class VehiclePIDController:
 
 
     def change_longitudinal_PID(self, args_longitudinal):
-        """更改PIDLongitudinalController的参数"""
+        """Changes the parameters of the PIDLongitudinalController"""
         self._lon_controller.change_parameters(**args_longitudinal)
 
     def change_lateral_PID(self, args_lateral):
-        """更改PIDLateralController的参数"""
+        """Changes the parameters of the PIDLateralController"""
         self._lat_controller.change_parameters(**args_lateral)
 
     def set_offset(self, offset):
-        """更改偏移量"""
+        """Changes the offset"""
         self._lat_controller.set_offset(offset)
 
 
 class PIDLongitudinalController:
     """
-    PIDLongitudinalController使用PID实现纵向控制。
+    PIDLongitudinalController implements longitudinal control using a PID.
     """
 
     def __init__(self, vehicle, K_P=1.0, K_I=0.0, K_D=0.0, dt=0.03):
         """
-       构造方法。
+        Constructor method.
 
-            :param vehicle: 应用局部规划逻辑的actor
-            :param K_P: 比例项
-            :param K_D: 微分项
-            :param K_I: 积分项
-            :param dt: 时间微分，以秒为单位
+            :param vehicle: actor to apply to local planner logic onto
+            :param K_P: Proportional term
+            :param K_D: Differential term
+            :param K_I: Integral term
+            :param dt: time differential in seconds
         """
         self._vehicle = vehicle
         self._k_p = K_P
@@ -127,11 +129,11 @@ class PIDLongitudinalController:
 
     def run_step(self, target_speed, debug=False):
         """
-      执行一步纵向控制以达到给定的目标速度。
+        Execute one step of longitudinal control to reach a given target speed.
 
-            :param target_speed: 目标速度，单位为Km/h
-            :param debug: 调试布尔值
-            :return: 油门控制
+            :param target_speed: target speed in Km/h
+            :param debug: boolean for debugging
+            :return: throttle control
         """
         current_speed = get_speed(self._vehicle)
 
@@ -142,11 +144,11 @@ class PIDLongitudinalController:
 
     def _pid_control(self, target_speed, current_speed):
         """
-        基于PID方程估计车辆的油门/刹车
+        Estimate the throttle/brake of the vehicle based on the PID equations
 
-            :param target_speed: 目标速度，单位为Km/h
-            :param current_speed: 车辆当前速度，单位为Km/h
-            :return: 油门/刹车控制
+            :param target_speed:  target speed in Km/h
+            :param current_speed: current speed of the vehicle in Km/h
+            :return: throttle/brake control
         """
 
         error = target_speed - current_speed
@@ -162,7 +164,7 @@ class PIDLongitudinalController:
         return np.clip((self._k_p * error) + (self._k_d * _de) + (self._k_i * _ie), -1.0, 1.0)
 
     def change_parameters(self, K_P, K_I, K_D, dt):
-        """更改PID参数"""
+        """Changes the PID parameters"""
         self._k_p = K_P
         self._k_i = K_I
         self._k_d = K_D
@@ -171,19 +173,20 @@ class PIDLongitudinalController:
 
 class PIDLateralController:
     """
-    PIDLateralController使用PID实现横向控制。
+    PIDLateralController implements lateral control using a PID.
     """
 
     def __init__(self, vehicle, offset=0, K_P=1.0, K_I=0.0, K_D=0.0, dt=0.03):
         """
-        构造方法。
+        Constructor method.
 
-            :param vehicle: 应用局部规划逻辑的actor
-            :param offset: 距离中心线的距离。如果值足够大，可能会导致车辆侵入其他车道。
-            :param K_P: 比例项
-            :param K_D: 微分项
-            :param K_I: 积分项
-            :param dt: 时间微分，以秒为单位
+            :param vehicle: actor to apply to local planner logic onto
+            :param offset: distance to the center line. If might cause issues if the value
+                is large enough to make the vehicle invade other lanes.
+            :param K_P: Proportional term
+            :param K_D: Differential term
+            :param K_I: Integral term
+            :param dt: time differential in seconds
         """
         self._vehicle = vehicle
         self._k_p = K_P
@@ -195,35 +198,36 @@ class PIDLateralController:
 
     def run_step(self, waypoint):
         """
-        执行一步横向控制，使车辆朝某个路点转向。
+        Execute one step of lateral control to steer
+        the vehicle towards a certain waypoint.
 
-            :param waypoint: 目标路点
-            :return: 方向盘控制，在[-1, 1]范围内，其中：
-            -1 表示最大左转
-            +1 表示最大右转
+            :param waypoint: target waypoint
+            :return: steering control in the range [-1, 1] where:
+            -1 maximum steering to left
+            +1 maximum steering to right
         """
         return self._pid_control(waypoint, self._vehicle.get_transform())
 
     def set_offset(self, offset):
-        """更改偏移量"""
+        """Changes the offset"""
         self._offset = offset
 
     def _pid_control(self, waypoint, vehicle_transform):
         """
-        基于PID方程估计车辆的转向角度
+        Estimate the steering angle of the vehicle based on the PID equations
 
-            :param waypoint: 目标路点
-            :param vehicle_transform: 车辆当前的变换
-            :return: 方向盘控制，在[-1, 1]范围内
+            :param waypoint: target waypoint
+            :param vehicle_transform: current transform of the vehicle
+            :return: steering control in the range [-1, 1]
         """
-        # 获取自车的定位和前向向量
+        # Get the ego's location and forward vector
         ego_loc = vehicle_transform.location
         v_vec = vehicle_transform.get_forward_vector()
         v_vec = np.array([v_vec.x, v_vec.y, 0.0])
 
-        # 获取车辆-目标路点的向量
+        # Get the vector vehicle-target_wp
         if self._offset != 0:
-            # 将路点侧移
+            # Displace the wp to the side
             w_tran = waypoint.transform
             r_vec = w_tran.get_right_vector()
             w_loc = w_tran.location + carla.Location(x=self._offset*r_vec.x,
@@ -255,7 +259,7 @@ class PIDLateralController:
         return np.clip((self._k_p * _dot) + (self._k_d * _de) + (self._k_i * _ie), -1.0, 1.0)
 
     def change_parameters(self, K_P, K_I, K_D, dt):
-        """更改PID参数"""
+        """Changes the PID parameters"""
         self._k_p = K_P
         self._k_i = K_I
         self._k_d = K_D

@@ -28,11 +28,9 @@ except IndexError:
     pass
 
 import carla
-# 获取名为'plasma'的颜色映射表中的颜色数组，用于后续根据强度值映射颜色
+
 VIRIDIS = np.array(cm.get_cmap('plasma').colors)
-# 在[0.0, 1.0]区间均匀生成与VIRIDIS颜色数组长度相同数量的数值，用于颜色映射的范围界定
 VID_RANGE = np.linspace(0.0, 1.0, VIRIDIS.shape[0])
-# 定义不同标签对应的颜色数组，并且将每个通道的值归一化到[0, 1]区间，以适配Open3D使用的颜色规范
 LABEL_COLORS = np.array([
     (255, 255, 255), # None
     (70, 70, 70),    # Building
@@ -61,49 +59,33 @@ LABEL_COLORS = np.array([
 
 
 def lidar_callback(point_cloud, point_list):
-    """
-    Prepares a point cloud with intensity
-    colors ready to be consumed by Open3D
-
-    参数:
-    point_cloud: 从传感器获取的点云数据
-    point_list: 用于存储处理后点云数据（包含点坐标和对应颜色）的Open3D点列表对象
-
-    这个函数主要完成以下操作：
-    1. 从原始点云数据中提取并整理出需要的信息（坐标、强度等）。
-    2. 根据强度值计算对应的颜色。
-    3. 对坐标进行必要的变换以适配Open3D的坐标系，最终将处理好的点坐标和颜色赋值给point_list对象，使其可被Open3D用于可视化等后续操作。
-    """
-    # 将点云的原始数据（字节流形式）复制并转换为numpy数组，数据类型为单精度浮点数（'f4'）
+    """Prepares a point cloud with intensity
+    colors ready to be consumed by Open3D"""
     data = np.copy(np.frombuffer(point_cloud.raw_data, dtype=np.dtype('f4')))
-    # 按照每4个元素一组进行重塑，因为每个点的数据可能包含坐标（3个值）和强度（1个值）等信息，共4个值一组
     data = np.reshape(data, (int(data.shape[0] / 4), 4))
 
-    # 提取每个点的强度信息，存储在intensity数组中
+    # Isolate the intensity and compute a color for it
     intensity = data[:, -1]
-    # 根据强度值计算强度对应的颜色值，这里通过对数变换等方式将强度映射到[0, 1]区间，以便后续映射到颜色范围
     intensity_col = 1.0 - np.log(intensity) / np.log(np.exp(-0.004 * 100))
-    # 通过线性插值的方式，根据强度对应的颜色值（intensity_col），在预定义的颜色范围（VID_RANGE和VIRIDIS）内获取对应的RGB颜色值
     int_color = np.c_[
         np.interp(intensity_col, VID_RANGE, VIRIDIS[:, 0]),
         np.interp(intensity_col, VID_RANGE, VIRIDIS[:, 1]),
         np.interp(intensity_col, VID_RANGE, VIRIDIS[:, 2])]
-    # 提取每个点的3D坐标信息，去掉最后一列的强度信息
+
+    # Isolate the 3D data
     points = data[:, :-1]
-    # 由于Open3D使用右手坐标系，而可能原始数据所在的坐标系（比如Unreal中的）与之不同，这里将y坐标取反来正确可视化，使其与Unreal中的世界视图相匹配
+
+    # We're negating the y to correclty visualize a world that matches
+    # what we see in Unreal since Open3D uses a right-handed coordinate system
     points[:, :1] = -points[:, :1]
 
-    # # 以下是一段示例代码，如果有一个名为"tran"的carla.Transform变量，可以通过它将点从传感器坐标系转换到车辆坐标系
-    # # 先给点云数据添加一列全1的值，用于矩阵乘法进行坐标变换
+    # # An example of converting points from sensor to vehicle space if we had
+    # # a carla.Transform variable named "tran":
     # points = np.append(points, np.ones((points.shape[0], 1)), axis=1)
-    # # 使用变换矩阵进行坐标变换，将点云坐标从传感器空间转换到车辆空间
     # points = np.dot(tran.get_matrix(), points.T).T
-    # # 去掉添加的用于矩阵乘法的那一列（全1列）
     # points = points[:, :-1]
 
-    # 将处理好的点坐标数据赋值给Open3D的点列表对象，使其包含要可视化的点的空间位置信息
     point_list.points = o3d.utility.Vector3dVector(points)
-    # 将计算好的对应颜色数据赋值给Open3D的点列表对象，使其包含要可视化的点的颜色信息
     point_list.colors = o3d.utility.Vector3dVector(int_color)
 
 
@@ -133,14 +115,14 @@ def semantic_lidar_callback(point_cloud, point_list):
     point_list.colors = o3d.utility.Vector3dVector(int_color)
 
 
-def generate_lidar_bp(arg, world, blueprint_library, delta):#定义一个函数
+def generate_lidar_bp(arg, world, blueprint_library, delta):
     """Generates a CARLA blueprint based on the script parameters"""
-    if arg.semantic:#从函数内部首先检查
+    if arg.semantic:
         lidar_bp = world.get_blueprint_library().find('sensor.lidar.ray_cast_semantic')
     else:
         lidar_bp = blueprint_library.find('sensor.lidar.ray_cast')
         if arg.no_noise:
-            lidar_bp.set_attribute('dropoff_general_rate', '0.0')#设置蓝图属性
+            lidar_bp.set_attribute('dropoff_general_rate', '0.0')
             lidar_bp.set_attribute('dropoff_intensity_limit', '1.0')
             lidar_bp.set_attribute('dropoff_zero_intensity', '0.0')
         else:
@@ -155,7 +137,7 @@ def generate_lidar_bp(arg, world, blueprint_library, delta):#定义一个函数
     return lidar_bp
 
 
-def add_open3d_axis(vis):#添加3D坐标轴
+def add_open3d_axis(vis):
     """Add a small 3D axis on Open3D Visualizer"""
     axis = o3d.geometry.LineSet()
     axis.points = o3d.utility.Vector3dVector(np.array([

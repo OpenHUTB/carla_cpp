@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -22,7 +22,7 @@ public:
   // ===========================================================================
   /// @{
 
-  /// 生成一个非确定性随机种子。
+  /// Generate a non-deterministic random id.
   static uint64 GenerateRandomId();
 
   /// @}
@@ -31,15 +31,15 @@ public:
   // ===========================================================================
   /// @{
 
-  /// 生成一个非确定性随机数种子。
+  /// Generate a non-deterministic random seed.
   UFUNCTION(BlueprintCallable)
   static int32 GenerateRandomSeed();
 
-  /// 基于前一个种子生成一个新的种子。
+  /// Generate a seed derived from previous seed.
   UFUNCTION(BlueprintCallable)
   int32 GenerateSeed();
 
-  /// 播种随机引擎/初始化随机数生成器
+  /// Seed the random engine.
   UFUNCTION(BlueprintCallable)
   void Seed(int32 InSeed)
   {

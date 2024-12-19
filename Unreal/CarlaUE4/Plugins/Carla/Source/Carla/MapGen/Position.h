@@ -23,7 +23,7 @@ namespace MapGen {
 
     number_type y;
 
-    Position() = default;//定义一个默认构造函数
+    Position() = default;
 
     constexpr Position(T X, T Y) : x(X), y(Y) {}
 

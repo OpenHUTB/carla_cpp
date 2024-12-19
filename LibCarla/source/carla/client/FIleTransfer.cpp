@@ -15,7 +15,7 @@ namespace client {
   #else
         std::string FileTransfer::_filesBaseFolder = std::string(getenv("HOME")) + "/carlaCache/";
   #endif
-  //设置文件传输的基文件夹路径
+
   bool FileTransfer::SetFilesBaseFolder(const std::string &path) {
     if (path.empty()) return false;
 
@@ -65,7 +65,7 @@ namespace client {
 
     return true;
   }
-  //取文件内容并返回一个字节向量
+
   std::vector<uint8_t> FileTransfer::ReadFile(std::string path) {
     std::string fullpath = _filesBaseFolder;
     fullpath += "/";

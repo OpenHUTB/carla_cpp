@@ -6,138 +6,135 @@
 
 #pragma once
 
-#include "Actor/ActorInfo.h" // Actor 信息头文件
-#include "Math/DVector.h" // 数学向量库
-#include "Carla/Vehicle/AckermannControllerSettings.h" // Ackermann 控制器设置
-#include "Carla/Vehicle/VehicleAckermannControl.h" // Ackermann 控制
-#include "Carla/Vehicle/VehicleControl.h" // 车辆控制
-#include "Carla/Vehicle/VehicleLightState.h" // 车辆灯光状态
-#include "Vehicle/VehicleInputPriority.h" // 车辆输入优先级
-#include "Vehicle/VehiclePhysicsControl.h" // 车辆物理控制
-#include "Carla/Sensor/DataStream.h" // 数据流类
-#include "Carla/Traffic/TrafficLightState.h" // 交通信号灯状态
+#include "Actor/ActorInfo.h"
+#include "Math/DVector.h"
+#include "Carla/Vehicle/AckermannControllerSettings.h"
+#include "Carla/Vehicle/VehicleAckermannControl.h"
+#include "Carla/Vehicle/VehicleControl.h"
+#include "Carla/Vehicle/VehicleLightState.h"
+#include "Vehicle/VehicleInputPriority.h"
+#include "Vehicle/VehiclePhysicsControl.h"
+#include "Carla/Sensor/DataStream.h"
+#include "Carla/Traffic/TrafficLightState.h"
 
-#include <compiler/disable-ue4-macros.h> // 关闭 UE4 宏的头文件
-#include <carla/rpc/WalkerControl.h> // 行人控制类
-#include <compiler/enable-ue4-macros.h> // 启用 UE4 宏的头文件
+#include <compiler/disable-ue4-macros.h>
+#include <carla/rpc/WalkerControl.h>
+#include <compiler/enable-ue4-macros.h>
 
-class UCarlaEpisode; // 声明 CARLA Episode 类
-class UTrafficLightController; // 声明交通灯控制器类
-class FCarlaActor; // 声明 CARLA Actor 类
+class UCarlaEpisode;
+class UTrafficLightController;
+class FCarlaActor;
 
 class FActorData
 {
 public:
 
-  FDVector Location; // 位置向量
+  FDVector Location;
 
-  FQuat Rotation; // 旋转四元数
+  FQuat Rotation;
 
-  FVector Scale; // 缩放向量
+  FVector Scale;
 
-  FVector Velocity; // 速度向量
+  FVector Velocity;
 
-  FVector AngularVelocity = FVector(0,0,0); // 角速度，默认为 (0,0,0)
+  FVector AngularVelocity = FVector(0,0,0);
 
-  bool bSimulatePhysics = false; // 是否模拟物理，默认为 false
+  bool bSimulatePhysics = false;
 
-  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode); // 记录 Actor 数据
+  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode);
 
-  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode); // 恢复 Actor 数据
+  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode);
 
-  virtual AActor* RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info); // 重新生成 Actor
+  virtual AActor* RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info);
 
-  FTransform GetLocalTransform(UCarlaEpisode* CarlaEpisode) const; // 获取局部变换
+  FTransform GetLocalTransform(UCarlaEpisode* CarlaEpisode) const;
 
-  virtual ~FActorData(){}; // 虚析构函数
+  virtual ~FActorData(){};
 };
 
 class FVehicleData : public FActorData
 {
 public:
 
-  FVehiclePhysicsControl PhysicsControl; // 车辆物理控制数据
+  FVehiclePhysicsControl PhysicsControl;
 
-  FVehicleControl Control; // 车辆控制数据
+  FVehicleControl Control;
 
-  FVehicleAckermannControl AckermannControl; // Ackermann 控制数据
+  FVehicleAckermannControl AckermannControl;
 
-  bool bAckermannControlActive = false; // Ackermann 控制是否激活
+  bool bAckermannControlActive = false;
 
-  FAckermannControllerSettings AckermannControllerSettings; // Ackermann 控制器设置
+  FAckermannControllerSettings AckermannControllerSettings;
 
-  FVehicleLightState LightState; // 车辆灯光状态
+  FVehicleLightState LightState;
 
-  float SpeedLimit = 30; // 车辆速度限制，默认为 30
+  float SpeedLimit = 30;
 
-  carla::rpc::VehicleFailureState FailureState; // 车辆故障状态
+  carla::rpc::VehicleFailureState FailureState;
 
-  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 记录车辆数据
+  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 
-  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 恢复车辆数据
+  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 };
 
 class FWalkerData : public FActorData
 {
 public:
 
-  carla::rpc::WalkerControl WalkerControl; // 行人控制数据
+  carla::rpc::WalkerControl WalkerControl;
 
-  bool bAlive = true; // 行人是否存活，默认为 true
+  bool bAlive = true;
 
-  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 记录行人数据
+  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 
-  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 恢复行人数据
+  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 };
 
 class FTrafficSignData : public FActorData
 {
 public:
-  FString SignId; // 交通标志 ID
+  FString SignId;
 
-  TSubclassOf<AActor> Model; // 标志模型
+  TSubclassOf<AActor> Model;
 
-  TSubclassOf<UObject> SignModel; // 标志对象模型
+  TSubclassOf<UObject> SignModel;
 
-  virtual AActor* RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info) override; // 重新生成交通标志
+  virtual AActor* RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info) override;
 
-  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 记录交通标志数据
+  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 
-  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 恢复交通标志数据
+  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 };
 
 class FTrafficLightData : public FActorData
 {
 public:
 
-  UTrafficLightController* Controller; // 交通信号灯控制器
+  UTrafficLightController* Controller;
 
-  ETrafficLightState LightState; // 信号灯状态
+  ETrafficLightState LightState;
 
-  FString SignId; // 信号灯 ID
+  FString SignId;
 
-  TSubclassOf<AActor> Model; // 信号灯模型
+  TSubclassOf<AActor> Model;
 
-  int PoleIndex; // 信号灯的杆子索引
+  int PoleIndex;
 
-  virtual AActor* RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info) override; // 重新生成信号灯
+  virtual AActor* RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info) override;
 
-  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 记录信号灯数据
+  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 
-  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 恢复信号灯数据
+  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
+
 };
 
 class FActorSensorData : public FActorData
 {
 public:
 
-  FDataStream Stream; // 传感器数据流
+  FDataStream Stream;
 
-  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 记录传感器数据
-
-  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override; // 恢复传感器数据
-};
-sode) override;
+  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 
   virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode) override;
 };

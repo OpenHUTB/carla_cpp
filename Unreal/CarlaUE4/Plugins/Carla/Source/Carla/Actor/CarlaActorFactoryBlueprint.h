@@ -13,10 +13,10 @@
 
 #include "CarlaActorFactoryBlueprint.generated.h"
 
-/// 用于实现 ACarlaActorFactory 接口的蓝图基类
+/// Base class for Blueprints implementing ACarlaActorFactory interface.
 ///
-/// 期望从此类派生的蓝图进行重写
-/// GetDefinitions 和 SpawnActor 函数
+/// Blueprints deriving from this class are expected to override
+/// GetDefinitions and SpawnActor functions.
 UCLASS(Abstract, BlueprintType, Blueprintable)
 class CARLA_API ACarlaActorFactoryBlueprint : public ACarlaActorFactory
 {

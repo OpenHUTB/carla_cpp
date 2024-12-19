@@ -1159,370 +1159,236 @@ FActorDefinition UActorBlueprintFunctionLibrary::MakeIMUDefinition()
     return Definition;
 }
 
-// 定义UActorBlueprintFunctionLibrary类的成员函数MakeIMUDefinition，用于创建一个IMU（惯性测量单元）的定义，包含成功标志和定义结构体
 void UActorBlueprintFunctionLibrary::MakeIMUDefinition(
-    bool &Success,         // 成功标志的引用，用于指示函数执行是否成功
-    FActorDefinition &Definition) // 定义结构体的引用，用于存储IMU的定义信息
+    bool &Success,
+    FActorDefinition &Definition)
 {
-  // 为定义填充ID和标签，分别为"sensor"、"other"和"imu"
   FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("imu"));
-
-  // 为传感器添加变体信息
   AddVariationsForSensor(Definition);
- 
-  // ------------------------ 噪声种子 --------------------------------
-  // 创建一个噪声种子的变体信息
+
+  // - Noise seed --------------------------------
   FActorVariation NoiseSeed;
-  NoiseSeed.Id = TEXT("noise_seed");            // 设置ID为"noise_seed"
-  NoiseSeed.Type = EActorAttributeType::Int;    // 设置类型为整型
-  NoiseSeed.RecommendedValues = { TEXT("0") };  // 设置推荐值为0
-  NoiseSeed.bRestrictToRecommended = false;     // 设置不限制为推荐值
- 
-  // -------------------------------- 加速度计标准差 --------------------------
-  // X 分量
+  NoiseSeed.Id = TEXT("noise_seed");
+  NoiseSeed.Type = EActorAttributeType::Int;
+  NoiseSeed.RecommendedValues = { TEXT("0") };
+  NoiseSeed.bRestrictToRecommended = false;
+
+  // - Accelerometer Standard Deviation ----------
+  // X Component
   FActorVariation StdDevAccelX;
-  StdDevAccelX.Id = TEXT("noise_accel_stddev_x"); // 设置ID为"noise_accel_stddev_x"
-  StdDevAccelX.Type = EActorAttributeType::Float; // 设置类型为浮点型
-  StdDevAccelX.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
-  StdDevAccelX.bRestrictToRecommended = false;     // 设置不限制为推荐值
-
-  // Y 分量
+  StdDevAccelX.Id = TEXT("noise_accel_stddev_x");
+  StdDevAccelX.Type = EActorAttributeType::Float;
+  StdDevAccelX.RecommendedValues = { TEXT("0.0") };
+  StdDevAccelX.bRestrictToRecommended = false;
+  // Y Component
   FActorVariation StdDevAccelY;
-  StdDevAccelY.Id = TEXT("noise_accel_stddev_y"); // 设置ID为"noise_accel_stddev_y"
-  StdDevAccelY.Type = EActorAttributeType::Float; // 设置类型为浮点型
-  StdDevAccelY.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
-  StdDevAccelY.bRestrictToRecommended = false;     // 设置不限制为推荐值
-
-  // Z 分量
+  StdDevAccelY.Id = TEXT("noise_accel_stddev_y");
+  StdDevAccelY.Type = EActorAttributeType::Float;
+  StdDevAccelY.RecommendedValues = { TEXT("0.0") };
+  StdDevAccelY.bRestrictToRecommended = false;
+  // Z Component
   FActorVariation StdDevAccelZ;
-  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z"); // 设置ID为"noise_accel_stddev_z"
-  StdDevAccelZ.Type = EActorAttributeType::Float; // 设置类型为浮点型
-  StdDevAccelZ.RecommendedValues = { TEXT("0.0") }; // 设置推荐值为0.0
-  StdDevAccelZ.bRestrictToRecommended = false;     // 设置不限制为推荐值
+  StdDevAccelZ.Id = TEXT("noise_accel_stddev_z");
+  StdDevAccelZ.Type = EActorAttributeType::Float;
+  StdDevAccelZ.RecommendedValues = { TEXT("0.0") };
+  StdDevAccelZ.bRestrictToRecommended = false;
 
+  // - Gyroscope Standard Deviation --------------
+  // X Component
+  FActorVariation StdDevGyroX;
+  StdDevGyroX.Id = TEXT("noise_gyro_stddev_x");
+  StdDevGyroX.Type = EActorAttributeType::Float;
+  StdDevGyroX.RecommendedValues = { TEXT("0.0") };
+  StdDevGyroX.bRestrictToRecommended = false;
+  // Y Component
+  FActorVariation StdDevGyroY;
+  StdDevGyroY.Id = TEXT("noise_gyro_stddev_y");
+  StdDevGyroY.Type = EActorAttributeType::Float;
+  StdDevGyroY.RecommendedValues = { TEXT("0.0") };
+  StdDevGyroY.bRestrictToRecommended = false;
+  // Z Component
+  FActorVariation StdDevGyroZ;
+  StdDevGyroZ.Id = TEXT("noise_gyro_stddev_z");
+  StdDevGyroZ.Type = EActorAttributeType::Float;
+  StdDevGyroZ.RecommendedValues = { TEXT("0.0") };
+  StdDevGyroZ.bRestrictToRecommended = false;
 
-  // - 陀螺仪标准差 --------------
-  // X 分量
-  FActorVariation StdDevGyroX; // 定义一个变量，用于存储陀螺仪X轴方向的标准差
-  StdDevGyroX.Id = TEXT("noise_gyro_stddev_x"); // 设置该变量的标识符为"noise_gyro_stddev_x"
-  StdDevGyroX.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
-  StdDevGyroX.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
-  StdDevGyroX.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
+  // - Gyroscope Bias ----------------------------
+  // X Component
+  FActorVariation BiasGyroX;
+  BiasGyroX.Id = TEXT("noise_gyro_bias_x");
+  BiasGyroX.Type = EActorAttributeType::Float;
+  BiasGyroX.RecommendedValues = { TEXT("0.0") };
+  BiasGyroX.bRestrictToRecommended = false;
+  // Y Component
+  FActorVariation BiasGyroY;
+  BiasGyroY.Id = TEXT("noise_gyro_bias_y");
+  BiasGyroY.Type = EActorAttributeType::Float;
+  BiasGyroY.RecommendedValues = { TEXT("0.0") };
+  BiasGyroY.bRestrictToRecommended = false;
+  // Z Component
+  FActorVariation BiasGyroZ;
+  BiasGyroZ.Id = TEXT("noise_gyro_bias_z");
+  BiasGyroZ.Type = EActorAttributeType::Float;
+  BiasGyroZ.RecommendedValues = { TEXT("0.0") };
+  BiasGyroZ.bRestrictToRecommended = false;
 
-  // Y 分量
-  FActorVariation StdDevGyroY; // 定义一个变量，用于存储陀螺仪Y轴方向的标准差
-  StdDevGyroY.Id = TEXT("noise_gyro_stddev_y"); // 设置该变量的标识符为"noise_gyro_stddev_y"
-  StdDevGyroY.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
-  StdDevGyroY.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
-  StdDevGyroY.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
-
-  // Z 分量
-  FActorVariation StdDevGyroZ; // 定义一个变量，用于存储陀螺仪Z轴方向的标准差
-  StdDevGyroZ.Id = TEXT("noise_gyro_stddev_z"); // 设置该变量的标识符为"noise_gyro_stddev_z"
-  StdDevGyroZ.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点数
-  StdDevGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
-  StdDevGyroZ.bRestrictToRecommended = false; // 设置该变量不受推荐值的限制
-
-  // - 陀螺仪偏差 ----------------------------
-  // X 分量
-  FActorVariation BiasGyroX; // 定义一个用于表示陀螺仪X轴偏差的变量
-  BiasGyroX.Id = TEXT("noise_gyro_bias_x"); // 设置该变量的标识符为"noise_gyro_bias_x"
-  BiasGyroX.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
-  BiasGyroX.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
-  BiasGyroX.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
-
-  // Y 分量
-  FActorVariation BiasGyroY; // 定义一个用于表示陀螺仪Y轴偏差的变量
-  BiasGyroY.Id = TEXT("noise_gyro_bias_y"); // 设置该变量的标识符为"noise_gyro_bias_y"
-  BiasGyroY.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
-  BiasGyroY.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
-  BiasGyroY.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
-
-  // Z 分量
-  FActorVariation BiasGyroZ; // 定义一个用于表示陀螺仪Z轴偏差的变量
-  BiasGyroZ.Id = TEXT("noise_gyro_bias_z"); // 设置该变量的标识符为"noise_gyro_bias_z"
-  BiasGyroZ.Type = EActorAttributeType::Float; // 设置该变量的类型为浮点型
-  BiasGyroZ.RecommendedValues = { TEXT("0.0") }; // 设置该变量的推荐值为0.0
-  BiasGyroZ.bRestrictToRecommended = false; // 设置该变量不强制限制为推荐值
-
-  // 将一系列变量添加到Definition的Variations列表中，这些变量通常用于定义某个物体的噪声和偏差特性
   Definition.Variations.Append({
-      // 噪声种子，用于生成随机数序列，以模拟噪声的随机性
-      NoiseSeed,      
+    NoiseSeed,
+    StdDevAccelX,
+    StdDevAccelY,
+    StdDevAccelZ,
+    StdDevGyroX,
+    StdDevGyroY,
+    StdDevGyroZ,
+    BiasGyroX,
+    BiasGyroY,
+    BiasGyroZ});
 
-      // 加速度计X轴的标准偏差，表示X轴加速度测量值的噪声水平
-      StdDevAccelX,      
-
-      // 加速度计Y轴的标准偏差，表示Y轴加速度测量值的噪声水平
-      StdDevAccelY,   
-
-      // 加速度计Z轴的标准偏差，表示Z轴加速度测量值的噪声水平
-      StdDevAccelZ,  
-
-      // 陀螺仪X轴的标准偏差，表示X轴角速度测量值的噪声水平
-      StdDevGyroX,   
-
-      // 陀螺仪Y轴的标准偏差，表示Y轴角速度测量值的噪声水平
-      StdDevGyroY,     
-
-      // 陀螺仪Z轴的标准偏差，表示Z轴角速度测量值的噪声水平
-      StdDevGyroZ,     
-
-      // 陀螺仪X轴的偏差，表示X轴角速度测量值的固定偏移量
-      BiasGyroX, 
-
-      // 陀螺仪Y轴的偏差，表示Y轴角速度测量值的固定偏移量
-      BiasGyroY, 
-
-      // 陀螺仪Z轴的偏差，表示Z轴角速度测量值的固定偏移量
-      BiasGyroZ          
-      });
-
-  // 调用CheckActorDefinition函数来检查Definition对象的有效性或配置是否正确
   Success = CheckActorDefinition(Definition);
+}
 
-
-  // 在UActorBlueprintFunctionLibrary类中定义一个成员函数MakeRadarDefinition，该函数用于创建一个雷达的定义，并返回这个定义
-  FActorDefinition UActorBlueprintFunctionLibrary::MakeRadarDefinition()
-  {
-      // 定义一个FActorDefinition类型的变量Definition，用于存储雷达的定义
-      FActorDefinition Definition;
-
-      // 定义一个布尔类型的变量Success，用于表示MakeRadarDefinition函数的执行结果是否成功
-      bool Success;
-
-      // 调用重载的MakeRadarDefinition函数，传入Success和Definition作为参数，用于填充雷达的定义并设置Success的值
-      MakeRadarDefinition(Success, Definition);
-
-      // 使用check宏来确保MakeRadarDefinition函数执行成功，如果不成功则会在此处触发断言失败
-      check(Success);
-
-      // 返回填充好的雷达定义
-      return Definition;
-  }
-
-  // 在UActorBlueprintFunctionLibrary类中定义一个重载的成员函数MakeRadarDefinition，该函数用于填充雷达的定义
-  void UActorBlueprintFunctionLibrary::MakeRadarDefinition(
-
-      // 引用传递，用于返回函数执行的结果是否成功
-      bool& Success, 
-
-      // 引用传递，用于接收并填充雷达的定义
-      FActorDefinition& Definition) 
-  {
-      // 调用FillIdAndTags函数，为Definition设置ID和标签，
-      FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("radar"));
-
-      // 调用AddVariationsForSensor函数，为Definition添加传感器的变化特性
-      AddVariationsForSensor(Definition);
-
-      // 定义一个FActorVariation类型的变量HorizontalFOV，用于表示雷达的水平视场角（Field of View）的变化特性
-      FActorVariation HorizontalFOV;
-
-      // 设置HorizontalFOV的ID为"horizontal_fov"
-      HorizontalFOV.Id = TEXT("horizontal_fov");
-
-      // 设置HorizontalFOV的类型为浮点型
-      HorizontalFOV.Type = EActorAttributeType::Float;
-
-      // 设置HorizontalFOV的推荐值为"30"
-      HorizontalFOV.RecommendedValues = { TEXT("30") };
-
-      // 设置HorizontalFOV是否限制为只能使用推荐值，这里设置为false
-      HorizontalFOV.bRestrictToRecommended = false;
-
-      // 定义一个FActorVariation类型的变量VerticalFOV，用于表示垂直视场角（Field of View）的可变属性
-      FActorVariation VerticalFOV;
-
-      // 设置VerticalFOV的标识符（ID）为"vertical_fov"
-      VerticalFOV.Id = TEXT("vertical_fov");
-
-      // 设置VerticalFOV的类型为浮点数（Float）
-      VerticalFOV.Type = EActorAttributeType::Float;
-
-      // 设置VerticalFOV的推荐值为"30"
-      VerticalFOV.RecommendedValues = { TEXT("30") };
-
-      // 设置VerticalFOV是否限制为仅使用推荐值，这里设置为false，表示不限制
-      VerticalFOV.bRestrictToRecommended = false;
-
-      // 定义一个FActorVariation类型的变量Range，用于表示范围的可变属性
-      FActorVariation Range;
-
-      // 设置Range的标识符（ID）为"range"
-      Range.Id = TEXT("range");
-
-      // 设置Range的类型为浮点数（Float）
-      Range.Type = EActorAttributeType::Float;
-
-      // 设置Range的推荐值为"100"
-      Range.RecommendedValues = { TEXT("100") };
-
-      // 设置Range是否限制为仅使用推荐值，这里设置为false，表示不限制
-      Range.bRestrictToRecommended = false;
-
-      // 定义一个FActorVariation类型的变量PointsPerSecond，用于表示每秒点数的可变属性
-      FActorVariation PointsPerSecond;
-
-      // 设置PointsPerSecond的标识符（ID）为"points_per_second"
-      PointsPerSecond.Id = TEXT("points_per_second");
-
-      // 设置PointsPerSecond的类型为整数（Int）
-      PointsPerSecond.Type = EActorAttributeType::Int;
-
-      // 设置PointsPerSecond的推荐值为"1500"
-      PointsPerSecond.RecommendedValues = { TEXT("1500") };
-
-      // 设置PointsPerSecond是否限制为仅使用推荐值，这里设置为false，表示不限制
-      PointsPerSecond.bRestrictToRecommended = false;
-
-      // 噪声种子设置
-      // 定义一个变量NoiseSeed，类型为FActorVariation，用于存储噪声种子的配置
-      FActorVariation NoiseSeed; 
-
-      // 设置NoiseSeed的标识符为"noise_seed"
-      NoiseSeed.Id = TEXT("noise_seed"); 
-
-      // 设置NoiseSeed的类型为整型（Int）
-      NoiseSeed.Type = EActorAttributeType::Int; 
-
-      // 设置NoiseSeed的推荐值为"0"的字符串数组
-      NoiseSeed.RecommendedValues = { TEXT("0") }; 
-
-
-      NoiseSeed.bRestrictToRecommended = false; 
-
-      // 将HorizontalFOV, VerticalFOV, Range, PointsPerSecond, NoiseSeed添加到Definition的Variations列表中
-      Definition.Variations.Append({
-          HorizontalFOV, //水平视场角
-          VerticalFOV, //垂直视场角
-          Range, //范围
-          PointsPerSecond, //每秒点数
-          NoiseSeed }); //噪声种子
-
-      // 调用CheckActorDefinition函数检查Definition的有效性，并将结果存储在Success变量中
-      Success = CheckActorDefinition(Definition);
-  }
-
-// UActorBlueprintFunctionLibrary类的成员函数，用于创建一个激光雷达（Lidar）的定义
-FActorDefinition UActorBlueprintFunctionLibrary::MakeLidarDefinition(
-      // 接收一个字符串类型的Id作为参数
-      const FString& Id) 
-  {
-      // 定义一个FActorDefinition类型的变量Definition，用于存储激光雷达的定义
-      FActorDefinition Definition; 
-
-      // 定义一个布尔类型的变量Success，用于存储操作是否成功的标志
-      bool Success; 
-
-      // 调用MakeLidarDefinition的另一个重载版本，传入Id、Success和Definition，实际进行定义创建
-      MakeLidarDefinition(Id, Success, Definition);
-
-      // 使用check宏确保操作成功，如果不成功则抛出异常
-      check(Success);
-
-      // 返回创建好的激光雷达定义
-      return Definition;
-  }
-
-// 定义一个函数，用于创建激光雷达的定义
-void UActorBlueprintFunctionLibrary::MakeLidarDefinition(
-    // 激光雷达的唯一标识符
-    const FString& Id, 
-
-    // 函数执行成功与否的标志
-    bool& Success, 
-
-    // 激光雷达的定义结构体
-    FActorDefinition& Definition) 
+FActorDefinition UActorBlueprintFunctionLibrary::MakeRadarDefinition()
 {
-    // 为定义填充标识符和标签，这里将激光雷达的角色标签设置为"sensor"和"lidar"，并赋予其一个唯一Id
-    FillIdAndTags(Definition, TEXT("sensor"), TEXT("lidar"), Id);
+  FActorDefinition Definition;
+  bool Success;
+  MakeRadarDefinition(Success, Definition);
+  check(Success);
+  return Definition;
+}
 
-    // 为传感器角色名称添加推荐值
-    AddRecommendedValuesForSensorRoleNames(Definition);
+void UActorBlueprintFunctionLibrary::MakeRadarDefinition(
+    bool &Success,
+    FActorDefinition &Definition)
+{
+  FillIdAndTags(Definition, TEXT("sensor"), TEXT("other"), TEXT("radar"));
+  AddVariationsForSensor(Definition);
 
-    // 为传感器添加变种
-    AddVariationsForSensor(Definition);
+  FActorVariation HorizontalFOV;
+  HorizontalFOV.Id = TEXT("horizontal_fov");
+  HorizontalFOV.Type = EActorAttributeType::Float;
+  HorizontalFOV.RecommendedValues = { TEXT("30") };
+  HorizontalFOV.bRestrictToRecommended = false;
 
-    // 定义激光雷达的通道数量
-    FActorVariation Channels; // 创建一个用于存储通道数量变种的结构体
-    Channels.Id = TEXT("channels"); // 变种的标识符
-    Channels.Type = EActorAttributeType::Int; // 变种的数据类型，这里是整型
-    Channels.RecommendedValues = { TEXT("32") }; // 推荐值，这里是32个通道
+  FActorVariation VerticalFOV;
+  VerticalFOV.Id = TEXT("vertical_fov");
+  VerticalFOV.Type = EActorAttributeType::Float;
+  VerticalFOV.RecommendedValues = { TEXT("30") };
+  VerticalFOV.bRestrictToRecommended = false;
 
-    // 定义激光雷达的探测范围
-    FActorVariation Range; // 创建一个用于存储探测范围变种的结构体
-    Range.Id = TEXT("range"); // 变种的标识符
-    Range.Type = EActorAttributeType::Float; // 变种的数据类型，这里是浮点型
-    Range.RecommendedValues = { TEXT("10.0") }; // 推荐值，这里是10米
+  FActorVariation Range;
+  Range.Id = TEXT("range");
+  Range.Type = EActorAttributeType::Float;
+  Range.RecommendedValues = { TEXT("100") };
+  Range.bRestrictToRecommended = false;
 
-    // 定义激光雷达每秒的点数（可能是指每秒采集的数据点数）
-    FActorVariation PointsPerSecond; // 创建一个用于存储每秒点数变种的结构体
-    PointsPerSecond.Id = TEXT("points_per_second"); // 变种的标识符
-    PointsPerSecond.Type = EActorAttributeType::Int; // 变种的数据类型，这里是整型
-    PointsPerSecond.RecommendedValues = { TEXT("56000") }; // 推荐值，这里是每秒56000个点
+  FActorVariation PointsPerSecond;
+  PointsPerSecond.Id = TEXT("points_per_second");
+  PointsPerSecond.Type = EActorAttributeType::Int;
+  PointsPerSecond.RecommendedValues = { TEXT("1500") };
+  PointsPerSecond.bRestrictToRecommended = false;
 
-    // 频率设置
-    FActorVariation Frequency; // 定义一个用于存储频率变种的结构体变量
-    Frequency.Id = TEXT("rotation_frequency"); // 设置变种的标识符为"rotation_frequency"，表示旋转频率
-    Frequency.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
-    Frequency.RecommendedValues = { TEXT("10.0") }; // 设置推荐的频率值为10.0
+  // Noise seed
+  FActorVariation NoiseSeed;
+  NoiseSeed.Id = TEXT("noise_seed");
+  NoiseSeed.Type = EActorAttributeType::Int;
+  NoiseSeed.RecommendedValues = { TEXT("0") };
+  NoiseSeed.bRestrictToRecommended = false;
 
-    // 上方视场角（FOV）限制
-    FActorVariation UpperFOV; // 定义一个用于存储上方视场角变种的结构体变量
-    UpperFOV.Id = TEXT("upper_fov"); // 设置变种的标识符为"upper_fov"，表示上方的视场角
-    UpperFOV.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
-    UpperFOV.RecommendedValues = { TEXT("10.0") }; // 设置推荐的上方视场角值为10.0度
+  Definition.Variations.Append({
+    HorizontalFOV,
+    VerticalFOV,
+    Range,
+    PointsPerSecond,
+    NoiseSeed});
 
-    // 下方视场角（FOV）限制
-    FActorVariation LowerFOV; // 定义一个用于存储下方视场角变种的结构体变量
-    LowerFOV.Id = TEXT("lower_fov"); // 设置变种的标识符为"lower_fov"，表示下方的视场角
-    LowerFOV.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
-    LowerFOV.RecommendedValues = { TEXT("-30.0") }; // 设置推荐的下方视场角值为-30.0度
+  Success = CheckActorDefinition(Definition);
+}
 
-    // 水平视场角（FOV）
-    FActorVariation HorizontalFOV; // 定义一个用于存储水平视场角变种的结构体变量
-    HorizontalFOV.Id = TEXT("horizontal_fov"); // 设置变种的标识符为"horizontal_fov"，表示水平方向的视场角
-    HorizontalFOV.Type = EActorAttributeType::Float; // 设置变种的数据类型为浮点型
-    HorizontalFOV.RecommendedValues = { TEXT("360.0") }; // 设置推荐的水平视场角值为360.0度，表示全向视野
+FActorDefinition UActorBlueprintFunctionLibrary::MakeLidarDefinition(
+    const FString &Id)
+{
+  FActorDefinition Definition;
+  bool Success;
+  MakeLidarDefinition(Id, Success, Definition);
+  check(Success);
+  return Definition;
+}
 
-    // 大气衰减率
-    FActorVariation AtmospAttenRate; // 定义一个大气衰减率的变化因子
-    AtmospAttenRate.Id = TEXT("atmosphere_attenuation_rate"); // 设置该因子的ID为"atmosphere_attenuation_rate"
-    AtmospAttenRate.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
-    AtmospAttenRate.RecommendedValues = { TEXT("0.004") }; // 设置该因子的推荐值为0.004
-
-    // 噪声种子
-    FActorVariation NoiseSeed; // 定义一个噪声种子的变化因子
-    NoiseSeed.Id = TEXT("noise_seed"); // 设置该因子的ID为"noise_seed"
-    NoiseSeed.Type = EActorAttributeType::Int; // 设置该因子的类型为整数
-    NoiseSeed.RecommendedValues = { TEXT("0") }; // 设置该因子的推荐值为0
-    NoiseSeed.bRestrictToRecommended = false; // 设置该因子不受推荐值的限制
-
-    // 衰减通用率
-    FActorVariation DropOffGenRate; // 定义一个衰减通用率的变化因子
-    DropOffGenRate.Id = TEXT("dropoff_general_rate"); // 设置该因子的ID为"dropoff_general_rate"
-    DropOffGenRate.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
-    DropOffGenRate.RecommendedValues = { TEXT("0.45") }; // 设置该因子的推荐值为0.45
-
-    // 衰减强度限制
-    FActorVariation DropOffIntensityLimit; // 定义一个衰减强度限制的变化因子
-    DropOffIntensityLimit.Id = TEXT("dropoff_intensity_limit"); // 设置该因子的ID为"dropoff_intensity_limit"
-    DropOffIntensityLimit.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
-    DropOffIntensityLimit.RecommendedValues = { TEXT("0.8") }; // 设置该因子的推荐值为0.8
-
-    // 零强度时的衰减
-    FActorVariation DropOffAtZeroIntensity; // 定义一个零强度时衰减的变化因子
-    DropOffAtZeroIntensity.Id = TEXT("dropoff_zero_intensity"); // 设置该因子的ID为"dropoff_zero_intensity"
-    DropOffAtZeroIntensity.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
-    DropOffAtZeroIntensity.RecommendedValues = { TEXT("0.4") }; // 设置该因子的推荐值为0.4
-
-    // 激光雷达云点中的噪声
-    FActorVariation StdDevLidar; // 定义一个激光雷达云点噪声标准差的变化因子
-    StdDevLidar.Id = TEXT("noise_stddev"); // 设置该因子的ID为"noise_stddev"
-    StdDevLidar.Type = EActorAttributeType::Float; // 设置该因子的类型为浮点数
-    StdDevLidar.RecommendedValues = { TEXT("0.0") }; // 设置该因子的推荐值为0.0
+void UActorBlueprintFunctionLibrary::MakeLidarDefinition(
+    const FString &Id,
+    bool &Success,
+    FActorDefinition &Definition)
+{
+  FillIdAndTags(Definition, TEXT("sensor"), TEXT("lidar"), Id);
+  AddRecommendedValuesForSensorRoleNames(Definition);
+  AddVariationsForSensor(Definition);
+  // Number of channels.
+  FActorVariation Channels;
+  Channels.Id = TEXT("channels");
+  Channels.Type = EActorAttributeType::Int;
+  Channels.RecommendedValues = { TEXT("32") };
+  // Range.
+  FActorVariation Range;
+  Range.Id = TEXT("range");
+  Range.Type = EActorAttributeType::Float;
+  Range.RecommendedValues = { TEXT("10.0") }; // 10 meters
+  // Points per second.
+  FActorVariation PointsPerSecond;
+  PointsPerSecond.Id = TEXT("points_per_second");
+  PointsPerSecond.Type = EActorAttributeType::Int;
+  PointsPerSecond.RecommendedValues = { TEXT("56000") };
+  // Frequency.
+  FActorVariation Frequency;
+  Frequency.Id = TEXT("rotation_frequency");
+  Frequency.Type = EActorAttributeType::Float;
+  Frequency.RecommendedValues = { TEXT("10.0") };
+  // Upper FOV limit.
+  FActorVariation UpperFOV;
+  UpperFOV.Id = TEXT("upper_fov");
+  UpperFOV.Type = EActorAttributeType::Float;
+  UpperFOV.RecommendedValues = { TEXT("10.0") };
+  // Lower FOV limit.
+  FActorVariation LowerFOV;
+  LowerFOV.Id = TEXT("lower_fov");
+  LowerFOV.Type = EActorAttributeType::Float;
+  LowerFOV.RecommendedValues = { TEXT("-30.0") };
+  // Horizontal FOV.
+  FActorVariation HorizontalFOV;
+  HorizontalFOV.Id = TEXT("horizontal_fov");
+  HorizontalFOV.Type = EActorAttributeType::Float;
+  HorizontalFOV.RecommendedValues = { TEXT("360.0") };
+  // Atmospheric Attenuation Rate.
+  FActorVariation AtmospAttenRate;
+  AtmospAttenRate.Id = TEXT("atmosphere_attenuation_rate");
+  AtmospAttenRate.Type = EActorAttributeType::Float;
+  AtmospAttenRate.RecommendedValues = { TEXT("0.004") };
+  // Noise seed
+  FActorVariation NoiseSeed;
+  NoiseSeed.Id = TEXT("noise_seed");
+  NoiseSeed.Type = EActorAttributeType::Int;
+  NoiseSeed.RecommendedValues = { TEXT("0") };
+  NoiseSeed.bRestrictToRecommended = false;
+  // Dropoff General Rate
+  FActorVariation DropOffGenRate;
+  DropOffGenRate.Id = TEXT("dropoff_general_rate");
+  DropOffGenRate.Type = EActorAttributeType::Float;
+  DropOffGenRate.RecommendedValues = { TEXT("0.45") };
+  // Dropoff intensity limit.
+  FActorVariation DropOffIntensityLimit;
+  DropOffIntensityLimit.Id = TEXT("dropoff_intensity_limit");
+  DropOffIntensityLimit.Type = EActorAttributeType::Float;
+  DropOffIntensityLimit.RecommendedValues = { TEXT("0.8") };
+  // Dropoff at zero intensity.
+  FActorVariation DropOffAtZeroIntensity;
+  DropOffAtZeroIntensity.Id = TEXT("dropoff_zero_intensity");
+  DropOffAtZeroIntensity.Type = EActorAttributeType::Float;
+  DropOffAtZeroIntensity.RecommendedValues = { TEXT("0.4") };
+  // Noise in lidar cloud points.
+  FActorVariation StdDevLidar;
+  StdDevLidar.Id = TEXT("noise_stddev");
+  StdDevLidar.Type = EActorAttributeType::Float;
+  StdDevLidar.RecommendedValues = { TEXT("0.0") };
 
   if (Id == "ray_cast") {
     Definition.Variations.Append({

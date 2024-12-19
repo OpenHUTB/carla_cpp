@@ -15,7 +15,7 @@
 #include "LargeMapManager.generated.h"
 
 
-//TODO: Cache CarlaEpisode。
+// TODO: Cache CarlaEpisode
 
 USTRUCT()
 struct FActiveActor
@@ -46,10 +46,10 @@ struct FCarlaMapTile
   UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Carla Map Tile")
   FString Name; // Tile_{TileID_X}_{TileID_Y}
 
-  // 绝对位置不依赖于重新定基准。
+  // Absolute location, does not depend on rebasing
   UPROPERTY(VisibleAnywhere,  BlueprintReadWrite, Category = "Carla Map Tile")
   FVector Location{0.0f};
-  //TODO: not FVector
+  // TODO: not FVector
 
   UPROPERTY(VisibleAnywhere,  BlueprintReadWrite, Category = "Carla Map Tile")
   ULevelStreamingDynamic* StreamingLevel = nullptr;
@@ -66,14 +66,13 @@ public:
 
   using TileID = uint64;
 
-  //为该参与者的属性设置默认值。
-
+  // Sets default values for this actor's properties
   ALargeMapManager();
 
   ~ALargeMapManager();
 
 protected:
-  //在游戏开始或生成时被调用。
+  // Called when the game starts or when spawned
   virtual void BeginPlay() override;
 
   void PreWorldOriginOffset(UWorld* InWorld, FIntVector InSrcOrigin, FIntVector InDstOrigin);
@@ -91,7 +90,7 @@ public:
   UFUNCTION(Category="Large Map Manager")
   void OnActorDestroyed(AActor* DestroyedActor);
 
-  // 每帧被调用。
+  // Called every frame
   void Tick(float DeltaTime) override;
 
   UFUNCTION(BlueprintCallable, Category = "Large Map Manager")
@@ -183,7 +182,7 @@ public:
 
   FDVector GetTileLocationD(FIntVector TileVectorID) const;
 
-  /// 从给定的位置检索覆盖该区域的图块ID。
+  /// From a given location it retrieves the TileID that covers that area
   TileID GetTileID(FVector TileLocation) const;
 
   TileID GetTileID(FDVector TileLocation) const;
@@ -203,8 +202,8 @@ public:
 
   ACarlaWheeledVehicle* GetHeroVehicle();
 
-  // 默认情况下，当周围没有其他自车时，旁观者会被当作自车来对待。
-  //但这可以通过Python应用程序编程接口（API）来更改，最终会在这个函数中体现出来。
+  // The spectator is treated as an ego vehicle by default when no other egos are around,
+  // but this can be changed from the Python API, which ends up in this function.
   bool SpectatorAsEgo = false;
   void ConsiderSpectatorAsEgo(bool _SpectatorAsEgo);
 
@@ -216,20 +215,20 @@ protected:
 
   void RemovePendingActorsToRemove();
 
-  //检查是否有任何处于活动状态的参与者需要转换为休眠状态的参与者。
-  //因为它超出了范围（参与者流送距离）
- // 仅存储所选参与者的数组
+  // Check if any active actor has to be converted into dormant actor
+  // because it went out of range (ActorStreamingDistance)
+  // Just stores the array of selected actors
   void CheckActiveActors();
 
-  // 将超出范围的活动参与者转换为休眠参与者。
+  // Converts active actors that went out of range to dormant actors
   void ConvertActiveToDormantActors();
 
-  // 检查是否有任何休眠参与者需要转换为活动参与者。
-// 因为它进入了范围（参与者流送距离）
-// 仅存储所选参与者的数组
+  // Check if any dormant actor has to be converted into active actor
+  // because it enter in range (ActorStreamingDistance)
+  // Just stores the array of selected actors
   void CheckDormantActors();
 
-  // 将超出范围的活动参与者转换为休眠参与者。
+  // Converts active actors that went out of range to dormant actors
   void ConvertDormantToActiveActors();
 
   void CheckIfRebaseIsNeeded();
@@ -256,9 +255,9 @@ protected:
   UPROPERTY(VisibleAnywhere, Category = "Large Map Manager")
   TMap<uint64, FCarlaMapTile> MapTiles;
 
-  // 所有要考虑用于瓦片加载的参与者（所有主车）
-// 数组中的第一个参与者是被选中用于重新定基准的那个参与者
-//TODO: support rebase in more than one hero vehicle
+  // All actors to be consider for tile loading (all hero vehicles)
+  // The first actor in the array is the one selected for rebase
+  // TODO: support rebase in more than one hero vehicle
   UPROPERTY(VisibleAnywhere, Category = "Large Map Manager")
   TArray<AActor*> ActorsToConsider;
 
@@ -268,19 +267,19 @@ protected:
   TArray<FCarlaActor::IdType> ActiveActors;
   TArray<FCarlaActor::IdType> DormantActors;
 
-  //临时集合用于移除参与者。这样做只是为了避免在更新循环中移除它们。
+  // Temporal sets to remove actors. Just to avoid removing them in the update loop
   TSet<AActor*> ActorsToRemove;
   TSet<FCarlaActor::IdType> ActivesToRemove;
   TSet<FCarlaActor::IdType> DormantsToRemove;
 
-  // 用于将参与者从一个数组移动到另一个数组的辅助工具。.
+  // Helpers to move Actors from one array to another.
   TSet<FCarlaActor::IdType> ActiveToDormantActors;
   TSet<FCarlaActor::IdType> DormantToActiveActors;
 
   UPROPERTY(VisibleAnywhere, Category = "Large Map Manager")
   TSet<uint64> CurrentTilesLoaded;
 
-  // 重新定基准后的当前原点。
+  // Current Origin after rebase
   UPROPERTY(VisibleAnywhere, Category = "Large Map Manager")
   FIntVector CurrentOriginInt{ 0 };
 

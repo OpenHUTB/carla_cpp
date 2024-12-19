@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2024 Institut fuer Technik der Informationsverarbeitung (ITIV) at the 
+// Copyright (c) 2024 Institut fuer Technik der Informationsverarbeitung (ITIV) at the 
 // Karlsruhe Institute of Technology
 //
 // This work is licensed under the terms of the MIT license.
@@ -23,7 +23,7 @@ ACustomV2XSensor::ACustomV2XSensor(const FObjectInitializer &ObjectInitializer)
     PrimaryActorTick.bCanEverTick = true;
     RandomEngine = CreateDefaultSubobject<URandomEngine>(TEXT("RandomEngine"));
 
-    // 初始路径损耗模型
+    // Init path loss model
     PathLossModelObj = new PathLossModel(RandomEngine);
 }
 
@@ -38,7 +38,7 @@ void ACustomV2XSensor::SetOwner(AActor *Owner)
 
     Super::SetOwner(Owner);
 
-    // 如果演员详细信息不可用，则将演员存储到静态列表中
+    // Store the actor into the static list if the actor details are not available
     if(Owner != nullptr)
     {
         if (std::find(ACustomV2XSensor::mV2XActorContainer.begin(), ACustomV2XSensor::mV2XActorContainer.end(), Owner) == ACustomV2XSensor::mV2XActorContainer.end())
@@ -64,7 +64,7 @@ FActorDefinition ACustomV2XSensor::GetSensorDefinition()
     return UActorBlueprintFunctionLibrary::MakeCustomV2XDefinition();
 }
 
-/* 添加可配置参数的功能*/
+/* Function to add configurable parameters*/
 void ACustomV2XSensor::Set(const FActorDescription &ActorDescription)
 {
     UE_LOG(LogCarla, Warning, TEXT("CustomV2XSensor: Set function called"));
@@ -82,7 +82,7 @@ void ACustomV2XSensor::SetPropagationParams(const float TransmitPower,
                                       const bool use_etsi_fading,
                                       const float custom_fading_stddev)
 {
-    // 将参数转发到PathLossModel对象
+    // forward parameters to PathLossModel Obj
     PathLossModelObj->SetParams(TransmitPower, ReceiverSensitivity, Frequency, combined_antenna_gain, path_loss_exponent, reference_distance_fspl, filter_distance, use_etsi_fading, custom_fading_stddev);
 }
 
@@ -96,25 +96,26 @@ void ACustomV2XSensor::SetScenario(EScenario scenario)
 }
 
 /*
- * 函数将参与者详细信息存储到静态列表中。
- *调用CaService对象生成CAM消息将消息存储在静态映射中
+ * Function stores the actor details in to the static list.
+ * Calls the CaService object to generate CAM message
+ * Stores the message in static map
  */
 void ACustomV2XSensor::PrePhysTick(float DeltaSeconds)
 {
     Super::PrePhysTick(DeltaSeconds);
-    // 清除上一个sim卡周期创建的消息
+    // Clear the message created during the last sim cycle
     if (GetOwner())
     {
         ACustomV2XSensor::mActorV2XDataMap.erase(GetOwner());
 
-        // 步骤0：如果满足触发条件，则创建要发送的消息
-        //这需要在预物理滴答中完成，以便在所有其他v2x传感器中实现同步接收
-        //检查消息是否生成
+        // Step 0: Create message to send, if triggering conditions fulfilled
+        // this needs to be done in pre phys tick to enable synchronous reception in all other v2x sensors
+        // Check whether the message is generated
         if (mMessageDataChanged)
         {
-            // 如果生成了消息，请将其存储
-            //制作一对消息和发送功率
-            //如果不同的v2x传感器以不同的功率发送，我们需要存储它
+            // If message is generated store it
+            // make a pair of message and sending power
+            // if different v2x sensors send with different power, we need to store that
             carla::sensor::data::CustomV2XData message_pw;
             message_pw.Message = CreateCustomV2XMessage();
             
@@ -143,15 +144,15 @@ void ACustomV2XSensor::CreateITSPduHeader(CustomV2XM_t &message)
 }
 
 /*
-*函数负责向当前参与者发送消息。
-*首先通过调用LOSComm对象来模拟通信。
-*如果存在列表，则将这些列表中的消息发送给当前参与者
-*/
+ * Function takes care of sending messages to the current actor.
+ * First simulates the communication by calling LOSComm object.
+ * If there is a list present then messages from those list are sent to the current actor
+ */
 void ACustomV2XSensor::PostPhysTick(UWorld *World, ELevelTick TickType, float DeltaTime)
 {
     TRACE_CPUPROFILER_EVENT_SCOPE(ACustomV2XSensor::PostPhysTick);
 
-    //步骤1：创建一个参与者列表，其中包含要针对此v2x传感器实例发送的消息
+    // Step 1: Create an actor list which has messages to send targeting this v2x sensor instance
     std::vector<ActorPowerPair> ActorPowerList;
     for (const auto &pair : ACustomV2XSensor::mActorV2XDataMap)
     {
@@ -159,22 +160,22 @@ void ACustomV2XSensor::PostPhysTick(UWorld *World, ELevelTick TickType, float De
         {
             ActorPowerPair actor_power_pair;
             actor_power_pair.first = pair.first;
-            //以发射功率发送的演员
+            // actor sending with transmit power
             actor_power_pair.second = pair.second.Power;
             ActorPowerList.push_back(actor_power_pair);
         }
     }
 
-    //步骤2：模拟参与者列表中的参与者与当前参与者的通信。
+    // Step 2: Simulate the communication for the actors in actor list to current actor.
     if (!ActorPowerList.empty())
     {
         UCarlaEpisode *carla_episode = UCarlaStatics::GetCurrentEpisode(GetWorld());
         PathLossModelObj->Simulate(ActorPowerList, carla_episode, GetWorld());
-        //步骤3：获取可以向当前参与者发送消息的参与者列表，以及他们的消息的接收能力。
+        // Step 3: Get the list of actors who can send message to current actor, and the receive power of their messages.
         ActorPowerMap actor_receivepower_map = PathLossModelObj->GetReceiveActorPowerList();
-        //步骤4：检索收到的参与者的消息
+        // Step 4: Retrieve the messages of the actors that are received
 
-        //获取注册表以检索carla演员ID
+        // get registry to retrieve carla actor IDs
         const FActorRegistry &Registry = carla_episode->GetActorRegistry();
 
         ACustomV2XSensor::V2XDataList msg_received_power_list;
@@ -182,9 +183,9 @@ void ACustomV2XSensor::PostPhysTick(UWorld *World, ELevelTick TickType, float De
         {
             carla::sensor::data::CustomV2XData send_msg_and_pw = ACustomV2XSensor::mActorV2XDataMap.at(pair.first);
             carla::sensor::data::CustomV2XData received_msg_and_pw;
-            //发送CAM
+            // sent CAM
             received_msg_and_pw.Message = send_msg_and_pw.Message;
-            //接收电力
+            // receive power
             received_msg_and_pw.Power = pair.second;
 
             msg_received_power_list.push_back(received_msg_and_pw);
@@ -192,7 +193,7 @@ void ACustomV2XSensor::PostPhysTick(UWorld *World, ELevelTick TickType, float De
 
         WriteMessageToV2XData(msg_received_power_list);
     }
-    //步骤5：发送消息
+    // Step 5: Send message
 
     if (mV2XData.GetMessageCount() > 0)
     {
@@ -203,8 +204,8 @@ void ACustomV2XSensor::PostPhysTick(UWorld *World, ELevelTick TickType, float De
 }
 
 /*
-*函数将消息存储到结构中，以便将其发送到python客户端
-*/
+ * Function the store the message into the structure so it can be sent to python client
+ */
 void ACustomV2XSensor::WriteMessageToV2XData(const ACustomV2XSensor::V2XDataList &msg_received_power_list)
 {
     for (const auto &elem : msg_received_power_list)
@@ -216,8 +217,8 @@ void ACustomV2XSensor::WriteMessageToV2XData(const ACustomV2XSensor::V2XDataList
 
 void ACustomV2XSensor::Send(const FString message)
 {
-    //注意：这是不安全的！
-    //应该固定在某个地方以限制长度
+    //note: this is unsafe! 
+    //should be fixed to limit length somewhere
     mMessageData = TCHAR_TO_UTF8(*message);
     mMessageDataChanged = true;
 }

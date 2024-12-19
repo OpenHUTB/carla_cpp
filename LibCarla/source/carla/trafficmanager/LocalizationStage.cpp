@@ -6,7 +6,6 @@
 namespace carla {
 namespace traffic_manager {
 
- // 引入常量定义，简化代码中的常量使用
 using namespace constants::PathBufferUpdate;
 using namespace constants::LaneChange;
 using namespace constants::WaypointSelection;
@@ -14,31 +13,28 @@ using namespace constants::SpeedThreshold;
 using namespace constants::Collision;
 using namespace constants::MotionPlan;
 
-// LocalizationStage类构造函数定义
 LocalizationStage::LocalizationStage(
-  const std::vector<ActorId> &vehicle_id_list, // 车辆ID列表，用于标识哪些车辆将进行本地化操作
-  BufferMap &buffer_map,        // 缓冲区映射表，存储每辆车的路径点数据
-  const SimulationState &simulation_state,   // 模拟状态，提供车辆的位置信息、速度等
-  TrackTraffic &track_traffic,    // 交通管理器，用于管理道路上的交通信息
-  const LocalMapPtr &local_map,     // 本地地图指针，用于存储当前的道路与交通信息
-  Parameters &parameters,          // 参数配置，包含各种控制参数
-  std::vector<ActorId>& marked_for_removal, // 需要移除的车辆ID列表
-  LocalizationFrame &output_array,   // 输出数组，存储每次更新的本地化结果
-  RandomGenerator &random_device)     // 随机数生成器，用于某些随机操作
-    : vehicle_id_list(vehicle_id_list), // 初始化车辆ID列表
-    buffer_map(buffer_map),           // 初始化缓冲区映射表
-    simulation_state(simulation_state),// 初始化模拟状态
-    track_traffic(track_traffic),     // 初始化交通管理器
-    local_map(local_map),          // 初始化本地地图
-    parameters(parameters),             // 初始化参数配置
-    marked_for_removal(marked_for_removal),  // 初始化待移除的车辆列表
-    output_array(output_array),            // 初始化输出数组
-    random_device(random_device){}        // 初始化随机数生成器
+  const std::vector<ActorId> &vehicle_id_list,
+  BufferMap &buffer_map,
+  const SimulationState &simulation_state,
+  TrackTraffic &track_traffic,
+  const LocalMapPtr &local_map,
+  Parameters &parameters,
+  std::vector<ActorId>& marked_for_removal,
+  LocalizationFrame &output_array,
+  RandomGenerator &random_device)
+    : vehicle_id_list(vehicle_id_list),
+    buffer_map(buffer_map),
+    simulation_state(simulation_state),
+    track_traffic(track_traffic),
+    local_map(local_map),
+    parameters(parameters),
+    marked_for_removal(marked_for_removal),
+    output_array(output_array),
+    random_device(random_device){}
 
-// 更新本地化信息
 void LocalizationStage::Update(const unsigned long index) {
 
-    // 获取当前车辆的ID和相关信息
   const ActorId actor_id = vehicle_id_list.at(index);
   const cg::Location vehicle_location = simulation_state.GetLocation(actor_id);
   const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id);
@@ -47,14 +43,11 @@ void LocalizationStage::Update(const unsigned long index) {
 
   // 速度相关的航点视野长度
   float horizon_length = std::max(vehicle_speed * HORIZON_RATE, MINIMUM_HORIZON_LENGTH);
-  // HORIZON_RATE是一个常量，用于根据车辆的速度计算视野长度
-   // 如果车辆的速度超过高速公路限速，则使用一个更大的视野范围
   if (vehicle_speed > HIGHWAY_SPEED) {
     horizon_length = std::max(vehicle_speed * HIGH_SPEED_HORIZON_RATE, MINIMUM_HORIZON_LENGTH);
   }
   const float horizon_square = SQUARE(horizon_length);
 
-  // 如果当前车辆ID在缓冲区映射表中没有记录，则插入一个新的缓冲区
   if (buffer_map.find(actor_id) == buffer_map.end()) {
     buffer_map.insert({actor_id, Buffer()});
   }
@@ -65,10 +58,9 @@ void LocalizationStage::Update(const unsigned long index) {
       cg::Math::DistanceSquared(waypoint_buffer.front()->GetLocation(),
                                 vehicle_location) > SQUARE(MAX_START_DISTANCE)) {
 
-      // 如果第一个路径点距离过远，清除缓冲区中的所有路径点
-    auto number_of_pops = waypoint_buffer.size(); // 获取缓冲区中路径点的数量
+    auto number_of_pops = waypoint_buffer.size();
     for (uint64_t j = 0u; j < number_of_pops; ++j) {
-      PopWaypoint(actor_id, track_traffic, waypoint_buffer);   // 从缓冲区弹出路径点
+      PopWaypoint(actor_id, track_traffic, waypoint_buffer);
     }
   }
 

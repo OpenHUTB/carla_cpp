@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
+// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -21,16 +21,17 @@ class FDataStreamTmpl;
 // -- FAsyncDataStreamTmpl -----------------------------------------------------
 // =============================================================================
 
-//用于向客户端发送传感器数据的流媒体通道，支持发送
-///异步数据。“发送”功能发送的数据被传递给
-///序列化程序在carla:：sensor:SensorRegistry上注册了传感器
-///被顺流而下。
+/// A streaming channel for sending sensor data to clients, supports sending
+/// data asynchronously. Data sent by the "Send" functions is passed to the
+/// serializer registered with the sensor at carla::sensor:SensorRegistry before
+/// being sent down the stream.
 ///
-///@warning这是一个一次性对象，需要为每个对象创建一个新对象
-///新消息。
+/// @warning This is a single-use object, a new one needs to be created for each
+/// new message.
 ///
-///FAsyncDataStream还有一个carla:：Buffer池，允许重用
-///分配内存，尽可能使用它。
+/// FAsyncDataStream also has a pool of carla::Buffer that allows reusing the
+/// allocated memory, use it whenever possible.
+template <typename T>
 class FAsyncDataStreamTmpl
 {
 public:
@@ -39,26 +40,28 @@ public:
 
   FAsyncDataStreamTmpl(FAsyncDataStreamTmpl &&) = default;
 
-  /// 返回允许订阅此流的令牌。
+  /// Return the token that allows subscribing to this stream.
   auto GetToken() const
   {
     return Stream.GetToken();
   }
 
-  /// 从池中弹出缓冲区。池中的缓冲区可以重用以前消息分配的内存，从而显著提高大消息的性能。
+  /// Pop a Buffer from the pool. Buffers in the pool can reuse the memory
+  /// allocated by previous messages, significantly improving performance for
+  /// big messages.
   carla::Buffer PopBufferFromPool()
   {
     return Stream.MakeBuffer();
   }
 
-  /// 向下游发送一些数据。
+  /// Send some data down the stream.
   template <typename SensorT, typename... ArgsT>
   void Send(SensorT &Sensor, ArgsT &&... Args);
 
   template <typename SensorT, typename... ArgsT>
   void SerializeAndSend(SensorT &Sensor, ArgsT &&... Args);
 
-  /// 允许更改标头的帧号
+  /// allow to change the frame number of the header
   void SetFrameNumber(uint64_t FrameNumber)
   {
     carla::sensor::s11n::SensorHeaderSerializer::Header *HeaderStr =
@@ -73,7 +76,7 @@ public:
     }
   }
 
-  /// 返回此流的传感器类型
+  /// return the type of sensor of this stream
   uint64_t GetSensorType()
   {
     carla::sensor::s11n::SensorHeaderSerializer::Header *HeaderStr =
@@ -85,7 +88,7 @@ public:
     return 0u;
   }
 
-  /// 返回传感器的变换
+  /// return the transform of the sensor
   FTransform GetSensorTransform()
   {
     carla::sensor::s11n::SensorHeaderSerializer::Header *HeaderStr =
@@ -97,7 +100,7 @@ public:
     return FTransform();
   }
 
-  /// 返回传感器的时间戳
+  /// return the timestamp of the sensor
   double GetSensorTimestamp()
   {
     carla::sensor::s11n::SensorHeaderSerializer::Header *HeaderStr =
@@ -113,7 +116,7 @@ private:
 
   friend class FDataStreamTmpl<T>;
 
-  /// @这个函数需要在游戏线程中调用。
+  /// @pre This functions needs to be called in the game-thread.
   template <typename SensorT>
   explicit FAsyncDataStreamTmpl(
       const SensorT &InSensor,
@@ -141,14 +144,14 @@ template <typename T>
 template <typename SensorT, typename... ArgsT>
 inline void FAsyncDataStreamTmpl<T>::SerializeAndSend(SensorT &Sensor, ArgsT &&... Args)
 {
-  // 序列化数据
+  // serialize data
   carla::Buffer Data(carla::sensor::SensorRegistry::Serialize(Sensor, std::forward<ArgsT>(Args)...));
 
-  // 创建缓冲区视图
+  // create views of buffers
   auto ViewHeader = carla::BufferView::CreateFrom(std::move(Header));
   auto ViewData = carla::BufferView::CreateFrom(std::move(Data));
 
-  // 发送视图
+  // send views
   Stream.Write(ViewHeader, ViewData);
 }
 
@@ -156,9 +159,9 @@ template <typename T>
 template <typename SensorT, typename... ArgsT>
 inline void FAsyncDataStreamTmpl<T>::Send(SensorT &Sensor, ArgsT &&... Args)
 {
-  // 创建缓冲区视图
+  // create views of buffers
   auto ViewHeader = carla::BufferView::CreateFrom(std::move(Header));
 
-  // 发送视图
+  // send views
   Stream.Write(ViewHeader, std::forward<ArgsT>(Args)...);
 }

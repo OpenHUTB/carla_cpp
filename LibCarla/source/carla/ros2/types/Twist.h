@@ -22,17 +22,17 @@
 #ifndef _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_TWIST_H_
 #define _FAST_DDS_GENERATED_GEOMETRY_MSGS_MSG_TWIST_H_
 
-#include "Vector3.h"// 包含Vector3类的头文件，Vector3类用于表示三维向量
+#include "Vector3.h"
 
-#include <fastrtps/utils/fixed_size_string.hpp>// 包含一些用于序列化的工具类
-// 包含一些标准库头文件
+#include <fastrtps/utils/fixed_size_string.hpp>
+
 #include <stdint.h>
 #include <array>
 #include <string>
 #include <vector>
 #include <map>
 #include <bitset>
-// Windows平台下的DLL导出宏定义
+
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #define eProsima_user_DllExport __declspec( dllexport )
@@ -42,7 +42,7 @@
 #else
 #define eProsima_user_DllExport
 #endif  // _WIN32
-// Windows平台下的DLL导入/导出宏定义
+
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #if defined(Twist_SOURCE)
@@ -56,125 +56,177 @@
 #else
 #define Twist_DllAPI
 #endif // _WIN32
-// 引入fastcdr命名空间，用于序列化
+
 namespace eprosima {
 namespace fastcdr {
 class Cdr;
 } // namespace fastcdr
 } // namespace eprosima
-// 定义geometry_msgs命名空间，其中包含msg子命名空间
+
 namespace geometry_msgs {
     namespace msg {
-        //这个类表示用户在 IDL 文件中定义的 Twist 结构
+        /*!
+         * @brief This class represents the structure Twist defined by the user in the IDL file.
+         * @ingroup TWIST
+         */
         class Twist
         {
         public:
 
-            //默认构造函数
+            /*!
+             * @brief Default constructor.
+             */
             eProsima_user_DllExport Twist();
 
-            //默认构造函数
+            /*!
+             * @brief Default destructor.
+             */
             eProsima_user_DllExport ~Twist();
 
-            //复制构造函数
-            //将要被复制的对象 geometry_msgs::msg::Twist 的引用
+            /*!
+             * @brief Copy constructor.
+             * @param x Reference to the object geometry_msgs::msg::Twist that will be copied.
+             */
             eProsima_user_DllExport Twist(
                     const Twist& x);
 
-            //移动构造函数
-            //将要被移动的对象 geometry_msgs::msg::Twist 的引用
+            /*!
+             * @brief Move constructor.
+             * @param x Reference to the object geometry_msgs::msg::Twist that will be copied.
+             */
             eProsima_user_DllExport Twist(
                     Twist&& x) noexcept;
 
-            //复制赋值操作符
-            //将要被复制的对象 geometry_msgs::msg::Twist 的引用
+            /*!
+             * @brief Copy assignment.
+             * @param x Reference to the object geometry_msgs::msg::Twist that will be copied.
+             */
             eProsima_user_DllExport Twist& operator =(
                     const Twist& x);
 
-            //移动赋值操作符
-            //将要被移动的对象 geometry_msgs::msg::Twist 的引用
+            /*!
+             * @brief Move assignment.
+             * @param x Reference to the object geometry_msgs::msg::Twist that will be copied.
+             */
             eProsima_user_DllExport Twist& operator =(
                     Twist&& x) noexcept;
 
-            比较操作符
-            //要比较的 geometry_msgs::msg::Twist 对象
+            /*!
+             * @brief Comparison operator.
+             * @param x geometry_msgs::msg::Twist object to compare.
+             */
             eProsima_user_DllExport bool operator ==(
                     const Twist& x) const;
-            //比较运算符
-            //要进行比较的 geometry_msgs::msg::Twist 对象
+
+            /*!
+             * @brief Comparison operator.
+             * @param x geometry_msgs::msg::Twist object to compare.
+             */
             eProsima_user_DllExport bool operator !=(
                     const Twist& x) const;
 
-            //此函数将值复制到成员 linear 中
-            //要复制到成员 linear 中的新值
+            /*!
+             * @brief This function copies the value in member linear
+             * @param _linear New value to be copied in member linear
+             */
             eProsima_user_DllExport void linear(
                     const geometry_msgs::msg::Vector3& _linear);
 
-            //此函数将值移动到成员 linear 中
-            //要移动到成员 linear 中的新值
+            /*!
+             * @brief This function moves the value in member linear
+             * @param _linear New value to be moved in member linear
+             */
             eProsima_user_DllExport void linear(
                     geometry_msgs::msg::Vector3&& _linear);
 
-            //此函数返回对成员 linear 的常量引用
-            //对成员 linear 的常量引用
+            /*!
+             * @brief This function returns a constant reference to member linear
+             * @return Constant reference to member linear
+             */
             eProsima_user_DllExport const geometry_msgs::msg::Vector3& linear() const;
 
-            //此函数返回对成员 linear 的引用
-            //对成员 linear 的引用
+            /*!
+             * @brief This function returns a reference to member linear
+             * @return Reference to member linear
+             */
             eProsima_user_DllExport geometry_msgs::msg::Vector3& linear();
-            //此函数将值复制到成员 angular 中
-            //要复制到成员 angular 中的新值
+            /*!
+             * @brief This function copies the value in member angular
+             * @param _angular New value to be copied in member angular
+             */
             eProsima_user_DllExport void angular(
                     const geometry_msgs::msg::Vector3& _angular);
 
-            //此函数将值移动到成员 angular 中
-            //要移动到成员 angular 中的新值
+            /*!
+             * @brief This function moves the value in member angular
+             * @param _angular New value to be moved in member angular
+             */
             eProsima_user_DllExport void angular(
                     geometry_msgs::msg::Vector3&& _angular);
 
-            //此函数返回对成员 angular 的常量引用
-            //对成员 angular 的常量引用
+            /*!
+             * @brief This function returns a constant reference to member angular
+             * @return Constant reference to member angular
+             */
             eProsima_user_DllExport const geometry_msgs::msg::Vector3& angular() const;
 
-            //此函数返回对成员 angular 的引用
-            //对成员 angular 的引用
+            /*!
+             * @brief This function returns a reference to member angular
+             * @return Reference to member angular
+             */
             eProsima_user_DllExport geometry_msgs::msg::Vector3& angular();
 
-            //此函数返回根据缓冲区对齐方式的对象的最大序列化大小
-            //current_alignment 缓冲区对齐方式
-            //最大序列化大小
+            /*!
+            * @brief This function returns the maximum serialized size of an object
+            * depending on the buffer alignment.
+            * @param current_alignment Buffer alignment.
+            * @return Maximum serialized size.
+            */
             eProsima_user_DllExport static size_t getMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
-            //此函数返回根据缓冲区对齐方式的数据的序列化大小
-            //要计算其序列化大小的数据
-            //current_alignment 缓冲区对齐方式
-            //序列化大小
+            /*!
+             * @brief This function returns the serialized size of a data depending on the buffer alignment.
+             * @param data Data which is calculated its serialized size.
+             * @param current_alignment Buffer alignment.
+             * @return Serialized size.
+             */
             eProsima_user_DllExport static size_t getCdrSerializedSize(
                     const geometry_msgs::msg::Twist& data,
                     size_t current_alignment = 0);
 
-            //此函数使用 CDR 序列化来序列化一个对象
-            //cdr CDR 序列化对象
+            /*!
+             * @brief This function serializes an object using CDR serialization.
+             * @param cdr CDR serialization object.
+             */
             eProsima_user_DllExport void serialize(
                     eprosima::fastcdr::Cdr& cdr) const;
 
-            //此函数使用 CDR 序列化来反序列化一个对象
-            //cdr CDR 序列化对象
+            /*!
+             * @brief This function deserializes an object using CDR serialization.
+             * @param cdr CDR serialization object.
+             */
             eProsima_user_DllExport void deserialize(
                     eprosima::fastcdr::Cdr& cdr);
 
-            //此函数返回根据缓冲区对齐方式的对象键的最大序列化大小
-            //current_alignment 缓冲区对齐方式
-            //最大序列化大小
+            /*!
+             * @brief This function returns the maximum serialized size of the Key of an object
+             * depending on the buffer alignment.
+             * @param current_alignment Buffer alignment.
+             * @return Maximum serialized size.
+             */
             eProsima_user_DllExport static size_t getKeyMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
-            //此函数告诉你是否为这种类型定义了键（Key）
+            /*!
+             * @brief This function tells you if the Key has been defined for this type
+             */
             eProsima_user_DllExport static bool isKeyDefined();
 
-            //此函数使用 CDR 序列化来序列化一个对象的键成员
-            //cdr CDR 序列化对象
+            /*!
+             * @brief This function serializes the key members of an object using CDR serialization.
+             * @param cdr CDR serialization object.
+             */
             eProsima_user_DllExport void serializeKey(
                     eprosima::fastcdr::Cdr& cdr) const;
 

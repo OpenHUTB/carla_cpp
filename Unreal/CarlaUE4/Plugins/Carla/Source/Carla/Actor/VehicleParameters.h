@@ -30,15 +30,15 @@ struct CARLA_API FVehicleParameters
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   int32 Generation = 0;
 
-  /// （可选）用于车辆的自定义分类
+  /// (OPTIONAL) Use for custom classification of vehicles.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString ObjectType;
 
-  /// （可选）用于车辆的基本分类（汽车/卡车/货车/自行车/摩托车）
+  /// (OPTIONAL) Use for a base classification of vehicles (car / truck / van / bycicle / motorcycle).
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString BaseType;
 
-  /// （可选）用于对车辆进行更深入的分类（电动/应急/出租车等）
+  /// (OPTIONAL) Use for a more in-depth classification of vehicles (electric / emergency / taxi ...).
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString SpecialType;
 
@@ -51,7 +51,8 @@ struct CARLA_API FVehicleParameters
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<FColor> RecommendedColors;
 
-  /// 此车辆支持的驾驶员（行人）的ID列表，如果没有任何驾驶员支持，则留空
+  /// List of IDs of the drivers (pedestrians) supported by this vehicle, leave
+  /// empty if no driver is supported.
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<int32> SupportedDrivers;
 };

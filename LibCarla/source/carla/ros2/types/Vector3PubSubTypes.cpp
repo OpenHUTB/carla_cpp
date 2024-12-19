@@ -1,4 +1,4 @@
-﻿// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+// Copyright 2016 Proyectos y Sistemas de Mantenimiento SL (eProsima).
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,30 +26,22 @@
 
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
-// 以下是geometry_msgs::msg命名空间，用于定义与消息相关的类型和操作
+
 namespace geometry_msgs {
     namespace msg {
-        // Vector3PubSubType类的构造函数，用于初始化该类型相关的属性
         Vector3PubSubType::Vector3PubSubType()
         {
             setName("geometry_msgs::msg::dds_::Vector3_");
-            // 设置类型的名称，这里表明是geometry_msgs::msg::dds_::Vector3_类型
             auto type_size = Vector3::getMaxCdrSerializedSize();
-            // 考虑可能的子消息对齐（按4字节对齐），调整类型大小
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            // 计算总的类型大小，加上4字节用于封装（encapsulation）相关信息
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
-            // 判断Vector3类型是否定义了获取键（Key）的操作
             m_isGetKeyDefined = Vector3::isKeyDefined();
-            // 获取Vector3类型键（Key）的最大CDR序列化大小，如果大于16则取实际大小，否则取16
             size_t keyLength = Vector3::getKeyMaxCdrSerializedSize() > 16 ?
                     Vector3::getKeyMaxCdrSerializedSize() : 16;
-            // 为存储键（Key）相关的数据分配内存空间
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
-            // 将分配的内存空间初始化为0
             memset(m_keyBuffer, 0, keyLength);
         }
-        // Vector3PubSubType类的析构函数，用于释放构造函数中分配的内存（键缓冲区内存）
+
         Vector3PubSubType::~Vector3PubSubType()
         {
             if (m_keyBuffer != nullptr)
@@ -57,92 +49,87 @@ namespace geometry_msgs {
                 free(m_keyBuffer);
             }
         }
-        // 序列化函数，将给定的数据（这里是Vector3类型的数据）序列化为SerializedPayload_t类型的对象
+
         bool Vector3PubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
-            // 将传入的void*指针转换为Vector3*指针，方便后续操作
             Vector3* p_type = static_cast<Vector3*>(data);
 
-            // 创建一个FastBuffer对象，用于管理原始缓冲区，它关联了payload的data指针和最大尺寸
+            // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // 创建一个Cdr对象，用于进行数据序列化操作，指定了缓冲区、字节序（默认字节序）以及使用DDS_CDR模式
+            // Object that serializes the data.
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
-            // 根据序列化对象的字节序设置payload的封装字节序标识（CDR_BE表示大端序，CDR_LE表示小端序）
             payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // 先序列化封装相关的信息
+            // Serialize encapsulation
             ser.serialize_encapsulation();
 
             try
             {
-                // 调用Vector3类型自身的序列化函数，将具体的数据内容序列化到ser对象中
+                // Serialize the object.
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
-                // 如果内存不足出现异常，返回false表示序列化失败
                 return false;
             }
 
-            // 获取序列化后的数据长度，并设置到payload对象中
+            // Get the serialized length
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
             return true;
         }
-        // 反序列化函数，将SerializedPayload_t类型的数据反序列化为对应的数据类型
+
         bool Vector3PubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
             try
             {
-                // 将传入的void*指针转换为Vector3*指针，用于后续操作
+                //Convert DATA to pointer of your type
                 Vector3* p_type = static_cast<Vector3*>(data);
 
-                // 创建一个FastBuffer对象，关联payload的data指针和实际的数据长度，用于管理原始缓冲区
+                // Object that manages the raw buffer.
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-                // 创建一个Cdr对象用于反序列化操作，指定了缓冲区、默认字节序以及DDS_CDR模式
+                // Object that deserializes the data.
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-                // 先反序列化封装相关的信息，读取头部等封装内容
+                // Deserialize encapsulation.
                 deser.read_encapsulation();
                 payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
 
-                // 调用Vector3类型自身的反序列化函数，从deser对象中恢复出具体的数据内容
+                // Deserialize the object.
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
-                // 如果内存不足出现异常，返回false表示反序列化失败
                 return false;
             }
 
             return true;
         }
-        // 返回一个函数对象，该函数对象用于获取给定数据（Vector3类型）序列化后的大小
+
         std::function<uint32_t()> Vector3PubSubType::getSerializedSizeProvider(
                 void* data)
         {
             return [data]() -> uint32_t
                    {
-                // 计算并返回数据序列化后的大小，包括Vector3类型自身序列化大小和封装占用的4字节
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Vector3*>(data))) +
                               4u /*encapsulation*/;
                    };
         }
-        // 创建一个新的Vector3类型的数据对象，并返回其void*指针，用于后续的操作
+
         void* Vector3PubSubType::createData()
         {
             return reinterpret_cast<void*>(new Vector3());
         }
-        // 删除传入的void*指针所指向的Vector3类型的数据对象，释放内存
+
         void Vector3PubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<Vector3*>(data));
         }
-        // 获取给定数据（Vector3类型）的键（Key）信息，并填充到InstanceHandle_t对象中
+
         bool Vector3PubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
@@ -150,23 +137,20 @@ namespace geometry_msgs {
         {
             if (!m_isGetKeyDefined)
             {
-                // 如果Vector3类型没有定义获取键的操作，直接返回false
                 return false;
             }
 
             Vector3* p_type = static_cast<Vector3*>(data);
 
-            // 创建一个FastBuffer对象，关联存储键信息的缓冲区（m_keyBuffer）和键的最大序列化大小
+            // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     Vector3::getKeyMaxCdrSerializedSize());
 
-            // 创建一个Cdr对象用于序列化键信息，指定为大端序（通常用于网络传输等场景保证字节序一致性）
+            // Object that serializes the data.
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
-            // 调用Vector3类型自身的序列化键函数，将键信息序列化到ser对象中
             p_type->serializeKey(ser);
             if (force_md5 || Vector3::getKeyMaxCdrSerializedSize() > 16)
             {
-                // 如果强制使用MD5或者键的最大序列化大小大于16字节
                 m_md5.init();
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
                 m_md5.finalize();
@@ -177,7 +161,6 @@ namespace geometry_msgs {
             }
             else
             {
-                // 如果键的序列化大小小于等于16字节，直接将键缓冲区的数据复制到handle中
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
@@ -185,5 +168,5 @@ namespace geometry_msgs {
             }
             return true;
         }
-    } 
-} 
+    } //End of namespace msg
+} //End of namespace geometry_msgs

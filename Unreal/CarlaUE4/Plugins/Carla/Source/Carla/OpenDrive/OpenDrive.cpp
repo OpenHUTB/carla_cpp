@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
+// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -20,7 +20,8 @@ FString UOpenDrive::FindPathToXODRFile(const FString &InMapName){
 
 #if WITH_EDITOR
     {
-      // 在编辑器中游玩时，地图名称会多出一个前缀，这里我们将其移除。
+      // When playing in editor the map name gets an extra prefix, here we
+      // remove it.
       FString CorrectedMapName = MapName;
       constexpr auto PIEPrefix = TEXT("UEDPIE_0_");
       CorrectedMapName.RemoveFromStart(PIEPrefix);
@@ -58,7 +59,8 @@ FString UOpenDrive::GetXODR(const UWorld *World)
 {
   auto MapName = World->GetMapName();
 
-  // 在编辑器中游玩时，地图名称会多出一个前缀，这里我们将其移除。
+  // When playing in editor the map name gets an extra prefix, here we
+  // remove it.
   #if WITH_EDITOR
   {
     FString CorrectedMapName = MapName;
@@ -74,7 +76,7 @@ FString UOpenDrive::GetXODR(const UWorld *World)
   const auto FolderDir = MapDir + "/OpenDrive/";
   const auto FileName = MapDir.EndsWith(MapName) ? "*" : MapName;
 
-  // 查找地图中所有.xodr和.bin文件。
+  // Find all the xodr and bin files from the map
   TArray<FString> Files;
   IFileManager::Get().FindFilesRecursive(Files, *FolderDir, *FString(FileName + ".xodr"), true, false, false);
 
@@ -120,7 +122,8 @@ FString UOpenDrive::LoadXODR(const FString &MapName)
 
 FString UOpenDrive::GetXODRByPath(FString XODRPath, FString MapName){
 
-  // 在编辑器中游玩时，地图名称会多出一个前缀，这里我们将其移除。
+  // When playing in editor the map name gets an extra prefix, here we
+  // remove it.
   #if WITH_EDITOR
   {
     FString CorrectedMapName = MapName;
@@ -134,7 +137,7 @@ FString UOpenDrive::GetXODRByPath(FString XODRPath, FString MapName){
   FString FolderDir = XODRPath;
   FolderDir.RemoveFromEnd(MapName + ".xodr");
 
-  // 查找地图中所有.xodr和.bin文件。
+  // Find all the xodr and bin files from the map
   TArray<FString> Files;
   IFileManager::Get().FindFilesRecursive(Files, *FolderDir, *FString(FileName + ".xodr"), true, false, false);
 

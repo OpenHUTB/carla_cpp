@@ -48,45 +48,45 @@
 
 #ifdef _MSC_VER
 #	pragma warning(push)
-#	pragma warning(disable: 4127) // 条件表达式是常量
-#	pragma warning(disable: 4324) //这句话表示结构体（structure）由于使用了 __declspec(align()) 声明而进行了填充（padding）操作。
-#	pragma warning(disable: 4702) //不可达代码
-#	pragma warning(disable: 4996) // 这个函数或变量可能不安全
+#	pragma warning(disable: 4127) // conditional expression is constant
+#	pragma warning(disable: 4324) // structure was padded due to __declspec(align())
+#	pragma warning(disable: 4702) // unreachable code
+#	pragma warning(disable: 4996) // this function or variable may be unsafe
 #endif
 
 #if defined(_MSC_VER) && defined(__c2__)
 #	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wdeprecated" // 这个函数或变量可能不安全
+#	pragma clang diagnostic ignored "-Wdeprecated" // this function or variable may be unsafe
 #endif
 
 #ifdef __INTEL_COMPILER
-#	pragma warning(disable: 177) // 函数已被声明，但从未被引用
-#	pragma warning(disable: 279) // 控制表达式是常量
-#	pragma warning(disable: 1478 1786) // 函数被声明为‘弃用
-#	pragma warning(disable: 1684) //从指针转换为同等大小的整型类型。
+#	pragma warning(disable: 177) // function was declared but never referenced
+#	pragma warning(disable: 279) // controlling expression is constant
+#	pragma warning(disable: 1478 1786) // function was declared "deprecated"
+#	pragma warning(disable: 1684) // conversion from pointer to same-sized integral type
 #endif
 
 #if defined(__BORLANDC__) && defined(PUGIXML_HEADER_ONLY)
-#	pragma warn -8080 //符号已被声明但从未被使用；即便在入栈 / 出栈括号内禁用（相关设置），该警告也不会消失
+#	pragma warn -8080 // symbol is declared but never used; disabling this inside push/pop bracket does not make the warning go away
 #endif
 
 #ifdef __BORLANDC__
 #	pragma option push
-#	pragma warn -8008 //条件始终为假
-#	pragma warn -8066 //不可达代码
+#	pragma warn -8008 // condition is always false
+#	pragma warn -8066 // unreachable code
 #endif
 
 #ifdef __SNC__
-// 由于编译器的一个漏洞，使用 diag_push 和 diag_pop 无法禁用模板内部的警告。
-#	pragma diag_suppress=178 // 函数已声明但从未被引用
-#	pragma diag_suppress=237 // 控制表达式是常量
+// Using diag_push/diag_pop does not disable the warnings inside templates due to a compiler bug
+#	pragma diag_suppress=178 // function was declared but never referenced
+#	pragma diag_suppress=237 // controlling expression is constant
 #endif
 
 #ifdef __TI_COMPILER_VERSION__
-#	pragma diag_suppress 179 // 函数已被声明，但从未被引用
+#	pragma diag_suppress 179 // function was declared but never referenced
 #endif
 
-//内联控制
+// Inlining controls
 #if defined(_MSC_VER) && _MSC_VER >= 1300
 #	define PUGI__NO_INLINE __declspec(noinline)
 #elif defined(__GNUC__)
@@ -95,14 +95,14 @@
 #	define PUGI__NO_INLINE
 #endif
 
-//分支权重控制
+// Branch weight controls
 #if defined(__GNUC__) && !defined(__c2__)
 #	define PUGI__UNLIKELY(cond) __builtin_expect(cond, 0)
 #else
 #	define PUGI__UNLIKELY(cond) (cond)
 #endif
 
-//简单静态断言
+// Simple static assertion
 #define PUGI__STATIC_ASSERT(cond) { static const char condition_failed[(cond) ? 1 : -1] = {0}; (void)condition_failed[0]; }
 
 // Digital Mars C++ bug workaround for passing char loaded from memory via stack
@@ -1043,31 +1043,25 @@ PUGI__NS_BEGIN
 
 		operator T*() const
 		{
-			if (_data)// 如果_data非零
+			if (_data)
 			{
-				if (_data < 65534)// 如果_data的值小于65534
+				if (_data < 65534)
 				{
-					// 调整当前对象的地址，使其符合compact_alignment对齐要求
 					uintptr_t base = reinterpret_cast<uintptr_t>(this) & ~(compact_alignment - 1);
-					// 根据_data的值计算实际存储T类型数据的地址，并返回该地址
-					// 这里假设了一个特殊的存储策略，其中65533作为偏移量的基准点
+
 					return reinterpret_cast<T*>(base + (_data - 1 - 65533) * compact_alignment);
 				}
-				else if (_data == 65534)// 如果_data的值等于65534
-					// 调用compact_get_page函数获取一个特定的页面，并返回该页面中compact_shared_parent指向的T类型数据的地址
+				else if (_data == 65534)
 					return static_cast<T*>(compact_get_page(this, header_offset)->compact_shared_parent);
-				else// 如果_data的值大于65534
-					// 调用compact_get_value函数，根据_data的值和header_offset获取并返回T类型数据的地址
+				else
 					return compact_get_value<header_offset, T>(this);
 			}
-			else// 如果_data为零
-				// 返回空指针，表示没有有效的T类型数据
+			else
 				return 0;
 		}
 
 		T* operator->() const
 		{
-			// 返回当前对象转换为T*的结果，允许通过->操作符访问T类型对象的成员
 			return *this;
 		}
 
@@ -1091,56 +1085,48 @@ PUGI__NS_BEGIN
 		{
 			if (value)
 			{
-				// 获取与当前对象关联的内存页面
 				xml_memory_page* page = compact_get_page(this, header_offset);
-				// 如果compact_string_base为0（即尚未初始化或没有存储任何字符串），则将其设置为value
+
 				if (PUGI__UNLIKELY(page->compact_string_base == 0))
 					page->compact_string_base = value;
-				// 计算value相对于compact_string_base的偏移量
+
 				ptrdiff_t offset = value - page->compact_string_base;
-				// 如果偏移量小于65535 * 128（即小于16位带符号整数能表示的最大正偏移量，但这里实际上只使用了15位加上一个标志位）
+
 				if (static_cast<uintptr_t>(offset) < (65535 << 7))
 				{
 					// round-trip through void* to silence 'cast increases required alignment of target type' warnings
 					uint16_t* base = reinterpret_cast<uint16_t*>(static_cast<void*>(reinterpret_cast<char*>(this) - base_offset));
-					// 如果base指向的值为0（即尚未存储任何偏移量）
+
 					if (*base == 0)
 					{
-						// 存储偏移量（右移7位以适应15位的存储，并加1作为标志）到base指向的位置
-						// 同时，将偏移量的低7位（加1作为标志）存储到_data中
 						*base = static_cast<uint16_t>((offset >> 7) + 1);
 						_data = static_cast<unsigned char>((offset & 127) + 1);
 					}
 					else
 					{
-						// 如果已经存储了一个偏移量，则计算新的偏移量是否仍然可以用当前的方式存储
 						ptrdiff_t remainder = offset - ((*base - 1) << 7);
-						// 如果新的偏移量的低7位（加1后）小于等于253（即实际偏移量小于等于252，因为加1作为标志）
+
 						if (static_cast<uintptr_t>(remainder) <= 253)
 						{
-							// 更新_data以存储新的低7位偏移量（加1作为标志）
 							_data = static_cast<unsigned char>(remainder + 1);
 						}
 						else
 						{
-							// 如果新的偏移量太大，无法用当前的方式存储，则使用另一种存储方法（可能是动态分配）
 							compact_set_value<header_offset>(this, value);
-							// 设置_data为255，作为使用特殊存储方法的标志
+
 							_data = 255;
 						}
 					}
 				}
 				else
 				{
-					// 如果偏移量太大，无法用当前的方式存储，则同样使用另一种存储方法
 					compact_set_value<header_offset>(this, value);
-					// 设置_data为255，作为使用特殊存储方法的标志
+
 					_data = 255;
 				}
 			}
 			else
 			{
-				// 如果提供的值为空，则将_data设置为0，表示没有存储任何值
 				_data = 0;
 			}
 		}

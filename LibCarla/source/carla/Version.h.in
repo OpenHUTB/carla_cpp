@@ -10,7 +10,7 @@
 
 namespace carla {
 
-  constexpr const char *version() {// 函数体只包含一个返回语句，返回一个字符串字面量
+  constexpr const char *version() {
     return "${CARLA_VERSION}";
   }
 

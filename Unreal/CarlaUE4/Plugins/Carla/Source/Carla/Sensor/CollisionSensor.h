@@ -14,7 +14,7 @@
 class UCarlaEpisode;
 class UCarlaGameInstance;
 
-///用于记录碰撞的传感器。
+/// A sensor to register collisions.
 UCLASS()
 class CARLA_API ACollisionSensor : public ASensor
 {

@@ -26,7 +26,7 @@ namespace carla {
   // 模板函数，用于创建shared_ptr实例，并转发参数给T的构造函数  
   /// 类似于boost::make_shared，但封装在carla命名空间中  
   template <typename T, typename... Args>
-  static inline auto MakeShared(Args &&... args) {   // 使用 boost::make_shared 创建一个 shared_ptr 实例，转发给 T 的构造函数
+  static inline auto MakeShared(Args &&... args) {
     return boost::make_shared<T>(std::forward<Args>(args)...);
   }
 

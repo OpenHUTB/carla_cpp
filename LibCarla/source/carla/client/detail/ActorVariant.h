@@ -26,7 +26,7 @@ namespace carla {
 namespace client {
 namespace detail {
 
-  /// 创建一个执行者, 只在需要的时候实例化.
+  /// Holds an Actor, but only instantiates it when needed.
   class ActorVariant {
   public:
 

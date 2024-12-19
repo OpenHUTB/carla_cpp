@@ -154,7 +154,6 @@ void VehicleLightStage::Update(const unsigned long index) {
     void VehicleLightStage::RemoveActor(const ActorId) { // 移除车辆的函数（尚未实现）
     }
 
-
     void VehicleLightStage::Reset() { // 重置车辆灯光状态的函数（尚未实现）
     }
 

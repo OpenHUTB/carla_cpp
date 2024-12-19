@@ -27,141 +27,114 @@
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
-// 定义在geometry_msgs命名空间下的msg命名空间，用于组织相关消息类型的代码逻辑
 namespace geometry_msgs {
     namespace msg {
-        // TransformPubSubType类的构造函数
         TransformPubSubType::TransformPubSubType()
         {
-            // 设置类型名称，这里表明是geometry_msgs::msg::dds_::Transform_类型
             setName("geometry_msgs::msg::dds_::Transform_");
-            // 获取Transform类型的最大CDR序列化大小
             auto type_size = Transform::getMaxCdrSerializedSize();
-            // 考虑可能的子消息对齐情况，进行字节对齐操作
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            // 计算最终的类型大小，加上4字节用于封装（encapsulation）相关处理
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
-            // 判断Transform类型是否定义了获取键（Key）的相关操作
             m_isGetKeyDefined = Transform::isKeyDefined();
-            // 根据Transform类型获取键的最大CDR序列化大小来确定键缓冲区的长度
-            // 如果获取键的最大CDR序列化大小大于16，则取其本身，否则取16
-            size_t keyLength = Transform::getKeyMaxCdrSerializedSize() > 16?
+            size_t keyLength = Transform::getKeyMaxCdrSerializedSize() > 16 ?
                     Transform::getKeyMaxCdrSerializedSize() : 16;
-            // 分配键缓冲区的内存空间
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
-            // 将键缓冲区的内存初始化为0
             memset(m_keyBuffer, 0, keyLength);
         }
 
-        // TransformPubSubType类的析构函数，用于释放资源
         TransformPubSubType::~TransformPubSubType()
         {
-            // 如果键缓冲区指针不为空，则释放其占用的内存空间
-            if (m_keyBuffer!= nullptr)
+            if (m_keyBuffer != nullptr)
             {
                 free(m_keyBuffer);
             }
         }
 
-        // 序列化函数，将给定的数据对象序列化为SerializedPayload_t类型的数据
         bool TransformPubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
-            // 将传入的void*类型数据转换为Transform*类型指针，方便后续操作
             Transform* p_type = static_cast<Transform*>(data);
 
-            // 创建一个FastBuffer对象，用于管理原始缓冲区，将SerializedPayload_t中的数据指针和最大尺寸传入
+            // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // 创建一个Cdr对象，用于执行序列化操作，传入FastBuffer以及相关的字节序和CDR类型参数
+            // Object that serializes the data.
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
-            // 根据序列化对象的字节序设置SerializedPayload_t的封装字节序标识
-            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
-            // 序列化封装相关信息（可能是一些头部等标识信息）
+            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
+            // Serialize encapsulation
             ser.serialize_encapsulation();
 
             try
             {
-                // 调用Transform对象的serialize方法，通过Cdr对象将其具体数据序列化到缓冲区中
+                // Serialize the object.
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
-                // 如果内存不足出现异常，返回false表示序列化失败
                 return false;
             }
 
-            // 获取序列化后数据的实际长度，设置到SerializedPayload_t结构中
+            // Get the serialized length
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
-            // 序列化成功，返回true
             return true;
         }
 
-        // 反序列化函数，将SerializedPayload_t类型的数据反序列化为对应的数据对象
         bool TransformPubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
             try
             {
-                // 将传入的void*类型数据转换为Transform*类型指针，用于接收反序列化后的数据
+                //Convert DATA to pointer of your type
                 Transform* p_type = static_cast<Transform*>(data);
 
-                // 创建一个FastBuffer对象，用于管理原始缓冲区，传入SerializedPayload_t中的数据指针和实际长度
+                // Object that manages the raw buffer.
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-                // 创建一个Cdr对象，用于执行反序列化操作，传入FastBuffer以及相关的字节序和CDR类型参数
+                // Object that deserializes the data.
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-                // 反序列化封装相关信息，获取其字节序等信息设置到SerializedPayload_t中
+                // Deserialize encapsulation.
                 deser.read_encapsulation();
-                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
+                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
 
-                // 调用Transform对象的deserialize方法，通过Cdr对象从缓冲区中反序列化数据到对象中
+                // Deserialize the object.
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
-                // 如果内存不足出现异常，返回false表示反序列化失败
                 return false;
             }
 
-            // 反序列化成功，返回true
             return true;
         }
 
-        // 获取序列化大小的函数提供者，返回一个lambda表达式，用于计算给定数据对象的序列化大小（包含封装部分）
         std::function<uint32_t()> TransformPubSubType::getSerializedSizeProvider(
                 void* data)
         {
             return [data]() -> uint32_t
                    {
-                       // 计算数据对象的CDR序列化大小，并加上4字节的封装大小，返回总的序列化大小
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Transform*>(data))) +
                               4u /*encapsulation*/;
                    };
         }
 
-        // 创建一个新的Transform类型的数据对象，并返回其void*指针，用于后续的操作（如序列化等）
         void* TransformPubSubType::createData()
         {
             return reinterpret_cast<void*>(new Transform());
         }
 
-        // 删除给定的void*指针指向的Transform类型的数据对象，释放其占用的内存资源
         void TransformPubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<Transform*>(data));
         }
 
-        // 获取数据对象的键（Key）信息，用于在某些场景下（比如消息匹配等）的标识
         bool TransformPubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
-            // 如果没有定义获取键的操作，则直接返回false
             if (!m_isGetKeyDefined)
             {
                 return false;
@@ -169,16 +142,15 @@ namespace geometry_msgs {
 
             Transform* p_type = static_cast<Transform*>(data);
 
-            // 创建一个FastBuffer对象，用于管理键缓冲区，传入键缓冲区指针和获取键的最大CDR序列化大小
+            // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     Transform::getKeyMaxCdrSerializedSize());
 
-            // 创建一个Cdr对象，用于将数据对象的键相关信息序列化到键缓冲区中，设置为大端字节序
+            // Object that serializes the data.
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
             p_type->serializeKey(ser);
             if (force_md5 || Transform::getKeyMaxCdrSerializedSize() > 16)
             {
-                // 如果需要强制使用MD5或者键的最大CDR序列化大小大于16，则进行MD5相关计算处理
                 m_md5.init();
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
                 m_md5.finalize();
@@ -189,7 +161,6 @@ namespace geometry_msgs {
             }
             else
             {
-                // 否则直接将键缓冲区中的前16字节数据复制到InstanceHandle_t结构中作为键值
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
@@ -197,5 +168,5 @@ namespace geometry_msgs {
             }
             return true;
         }
-    } //msg命名空间结尾
-} //geometry_msgs命名空间结尾
+    } //End of namespace msg
+} //End of namespace geometry_msgs

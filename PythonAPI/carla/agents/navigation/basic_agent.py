@@ -9,21 +9,14 @@ waypoints and avoiding other vehicles. The agent also responds to traffic lights
 It can also make use of the global route planner to follow a specified route
 """
 
-# 导入CARLA库，用于与CARLA仿真环境进行交互
 import carla
- 
-# 从shapely.geometry导入Polygon类，用于处理多边形几何形状
 from shapely.geometry import Polygon
- 
-# 从agents.navigation模块导入LocalPlanner和RoadOption类，用于本地路径规划
+
 from agents.navigation.local_planner import LocalPlanner, RoadOption
-# 从agents.navigation模块导入GlobalRoutePlanner类，用于全局路径规划
 from agents.navigation.global_route_planner import GlobalRoutePlanner
-# 从agents.tools.misc模块导入一些实用函数
-from agents.tools.misc import (get_speed, is_within_distance,  # 获取速度，判断是否在距离范围内
-                               get_trafficlight_trigger_location)  # 获取交通灯触发位置
- 
-# 从agents.tools.hints模块导入ObstacleDetectionResult和TrafficLightDetectionResult类型提示
+from agents.tools.misc import (get_speed, is_within_distance,
+                               get_trafficlight_trigger_location)
+
 from agents.tools.hints import ObstacleDetectionResult, TrafficLightDetectionResult
 
 

@@ -78,7 +78,7 @@ namespace carla {
     /// 可以传递给智能指针的删除器，以便在销毁对象之前获取GIL。
     class AcquireGILDeleter {
     public:
-    // 调用delete删除ptr指向的对象，如果支持Python则确保在有GIL的情况下进行
+
       template <typename T>
       void operator()(T *ptr) const {
 #ifdef LIBCARLA_WITH_PYTHON_SUPPORT

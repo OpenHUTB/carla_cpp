@@ -6,16 +6,16 @@
 
 #pragma once
 
-#include "carla/Memory.h"  // 包含智能指针和内存管理的定义
-#include "carla/sensor/RawData.h"  // 包含原始传感器数据的定义
+#include "carla/Memory.h"
+#include "carla/sensor/RawData.h"
 
-#include <cstdint>  // 用于定义固定宽度的整数类型
-#include <cstring>  // 用于操作 C 风格字符串和内存复制
+#include <cstdint>
+#include <cstring>
 
-namespace carla { 
+namespace carla {
 namespace sensor {
 
-  class SensorData; // 前向声明，表示反序列化的结果类型
+  class SensorData;
 
 namespace s11n {
 
@@ -23,38 +23,38 @@ namespace s11n {
   class GBufferFloatSerializer {
   public:
 
-#pragma pack(push, 1)  // 指定结构体按 1 字节对齐，确保与传感器数据的二进制格式一致。
+#pragma pack(push, 1)
     struct ImageHeader {
-      uint32_t width; // 图像宽度
-      uint32_t height; // 图像高度
-      float fov_angle; // 相机视场角
+      uint32_t width;
+      uint32_t height;
+      float fov_angle;
     };
-#pragma pack(pop) // 恢复默认对齐方式
+#pragma pack(pop)
 
-    constexpr static auto header_offset = sizeof(ImageHeader); // 定义头部的偏移量，用于定位图像头部
+    constexpr static auto header_offset = sizeof(ImageHeader);
 
-    static const ImageHeader &DeserializeHeader(const RawData &data) {  // 使用 reinterpret_cast 将原始数据转换为 ImageHeader 的指针，并解引用
+    static const ImageHeader &DeserializeHeader(const RawData &data) {
       return *reinterpret_cast<const ImageHeader *>(data.begin());
     }
 
-    template <typename Sensor>  // 序列化传感器图像缓冲区
+    template <typename Sensor>
     static Buffer Serialize(const Sensor &sensor, Buffer &&bitmap, 
         uint32_t ImageWidth, uint32_t ImageHeight, float FovAngle);
 
-    static SharedPtr<SensorData> Deserialize(RawData &&data); //反序列化传感器数据
+    static SharedPtr<SensorData> Deserialize(RawData &&data);
   };
 
-  template <typename Sensor> // 序列化图像数据并填充头部信息
+  template <typename Sensor>
   inline Buffer GBufferFloatSerializer::Serialize(const Sensor &/*sensor*/, Buffer &&bitmap, 
       uint32_t ImageWidth, uint32_t ImageHeight, float FovAngle) {
-    DEBUG_ASSERT(bitmap.size() > sizeof(ImageHeader)); // 断言缓冲区大小足够容纳头部信息
-    ImageHeader header = { // 构造图像头部，包含图像的元数据信息
+    DEBUG_ASSERT(bitmap.size() > sizeof(ImageHeader));
+    ImageHeader header = {
       ImageWidth,
       ImageHeight,
       FovAngle
     };
-    std::memcpy(bitmap.data(), reinterpret_cast<const void *>(&header), sizeof(header)); // 将头部信息复制到缓冲区的起始位置
-    return std::move(bitmap); // 返回更新后的缓冲区
+    std::memcpy(bitmap.data(), reinterpret_cast<const void *>(&header), sizeof(header));
+    return std::move(bitmap);
   }
 
 } // namespace s11n

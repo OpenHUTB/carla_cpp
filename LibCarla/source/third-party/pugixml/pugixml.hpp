@@ -12,32 +12,32 @@
  */
 
 #ifndef PUGIXML_VERSION
-// 定义版本宏；计算结果为主要版本 * 100 + 次要版本，以便在小于比较中安全使用。
+// Define version macro; evaluates to major * 100 + minor so that it's safe to use in less-than comparisons
 #	define PUGIXML_VERSION 190
 #endif
 
-// 包含用户配置文件（这可以定义各种配置宏）
+// Include user configuration file (this can define various configuration macros)
 #include "pugiconfig.hpp"
 
 #ifndef HEADER_PUGIXML_HPP
 #define HEADER_PUGIXML_HPP
 
-// 包含 stddef.h 以便使用 size_t 和 ptrdiff_t
+// Include stddef.h for size_t and ptrdiff_t
 #include <stddef.h>
 
-// 包括XPath的异常头部
+// Include exception header for XPath
 #if !defined(PUGIXML_NO_XPATH) && !defined(PUGIXML_NO_EXCEPTIONS)
 #	include <exception>
 #endif
 
-// 包含STL头文件
+// Include STL headers
 #ifndef PUGIXML_NO_STL
 #	include <iterator>
 #	include <iosfwd>
 #	include <string>
 #endif
 
-// 已弃用功能的宏
+// Macro for deprecated features
 #ifndef PUGIXML_DEPRECATED
 #	if defined(__GNUC__)
 #		define PUGIXML_DEPRECATED __attribute__((deprecated))
@@ -48,22 +48,22 @@
 #	endif
 #endif
 
-// 如果没有定义API，则假定为默认值
+// If no API is defined, assume default
 #ifndef PUGIXML_API
 #	define PUGIXML_API
 #endif
 
-// 如果没有定义类的 API，则假定为默认值
+// If no API for classes is defined, assume default
 #ifndef PUGIXML_CLASS
 #	define PUGIXML_CLASS PUGIXML_API
 #endif
 
-// 如果没有定义函数的API，则假设为默认值。
+// If no API for functions is defined, assume default
 #ifndef PUGIXML_FUNCTION
 #	define PUGIXML_FUNCTION PUGIXML_API
 #endif
 
-//如果该平台已知具有长整型支持，请启用长整型功能。
+// If the platform is known to have long long support, enable long long functions
 #ifndef PUGIXML_HAS_LONG_LONG
 #	if __cplusplus >= 201103
 #		define PUGIXML_HAS_LONG_LONG
@@ -72,7 +72,7 @@
 #	endif
 #endif
 
-// 如果已知该平台支持移动语义，则编译移动构造函数/操作符的实现。
+// If the platform is known to have move semantics support, compile move ctor/operator implementation
 #ifndef PUGIXML_HAS_MOVE
 #	if __cplusplus >= 201103
 #		define PUGIXML_HAS_MOVE
@@ -81,10 +81,10 @@
 #	endif
 #endif
 
-// HACK（安德烈）：禁用异常，因为它们在虚幻引擎中不可用
+// HACK(Andrei): Disable exceptions as they are not available in Unreal engine
 #define PUGIXML_NOEXCEPT
 
-//如果C++是2011或更高版本，添加'noexcept'说明符
+// If C++ is 2011 or higher, add 'noexcept' specifiers
 #ifndef PUGIXML_NOEXCEPT
 #	if __cplusplus >= 201103
 #		define PUGIXML_NOEXCEPT noexcept
@@ -95,14 +95,14 @@
 #	endif
 #endif
 
-// 某些函数在紧凑模式下不能是 noexcept。
+// Some functions can not be noexcept in compact mode
 #ifdef PUGIXML_COMPACT
 #	define PUGIXML_NOEXCEPT_IF_NOT_COMPACT
 #else
 #	define PUGIXML_NOEXCEPT_IF_NOT_COMPACT PUGIXML_NOEXCEPT
 #endif
 
-// 如果C++是2011或更高版本，请添加'override'限定符。
+// If C++ is 2011 or higher, add 'override' qualifiers
 #ifndef PUGIXML_OVERRIDE
 #	if __cplusplus >= 201103
 #		define PUGIXML_OVERRIDE override
@@ -113,7 +113,7 @@
 #	endif
 #endif
 
-// 字符接口宏
+// Character interface macros
 #ifdef PUGIXML_WCHAR_MODE
 #	define PUGIXML_TEXT(t) L ## t
 #	define PUGIXML_CHAR wchar_t
@@ -133,132 +133,133 @@ namespace pugi
 #endif
 }
 
-// PugiXML命名空间
+// The PugiXML namespace
 namespace pugi
 {
-	// 树节点类型
+	// Tree node types
 	enum xml_node_type
 	{
-		node_null,			// 空（null）节点句柄
-		node_document,		//文档树的绝对根
-		node_element,		//元素标签，即 '<node/>'
-		node_pcdata,		// 普通字符数据，即'text'
-		node_cdata,			//字符数据，即 '<![CDATA[text]]>'
-		node_comment,		// 评论标签，即 '<!-- text -->'
-		node_pi,			// 处理指令，即 '<?name?>'
-		node_declaration,	// 文档声明，即 '<?xml version="1.0"?>'
-		node_doctype		// 文档类型声明，即 '<!DOCTYPE doc>'
+		node_null,			// Empty (null) node handle
+		node_document,		// A document tree's absolute root
+		node_element,		// Element tag, i.e. '<node/>'
+		node_pcdata,		// Plain character data, i.e. 'text'
+		node_cdata,			// Character data, i.e. '<![CDATA[text]]>'
+		node_comment,		// Comment tag, i.e. '<!-- text -->'
+		node_pi,			// Processing instruction, i.e. '<?name?>'
+		node_declaration,	// Document declaration, i.e. '<?xml version="1.0"?>'
+		node_doctype		// Document type declaration, i.e. '<!DOCTYPE doc>'
 	};
 
-	// 解析选项
+	// Parsing options
 
-	// 最小解析模式（相当于关闭所有其他标志）。
-	//仅元素和PCDATA部分被添加到DOM树中，未执行文本转换。
+	// Minimal parsing mode (equivalent to turning all other flags off).
+	// Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.
 	const unsigned int parse_minimal = 0x0000;
 
-	// 此标志用于确定是否将处理指令（节点_pi）添加到 DOM 树中。该标志默认处于关闭状态。
+	// This flag determines if processing instructions (node_pi) are added to the DOM tree. This flag is off by default.
 	const unsigned int parse_pi = 0x0001;
 
-	// 此标志用于确定是否将注释（节点_注释）添加到 DOM 树中。该标志默认处于关闭状态。
+	// This flag determines if comments (node_comment) are added to the DOM tree. This flag is off by default.
 	const unsigned int parse_comments = 0x0002;
 
-	// 此标志用于确定是否将 CDATA（字符数据）段（节点_cdata）添加到 DOM 树中。该标志默认处于开启状态
+	// This flag determines if CDATA sections (node_cdata) are added to the DOM tree. This flag is on by default.
 	const unsigned int parse_cdata = 0x0004;
 
-	// 此标志用于确定仅由空白字符组成的纯文本字符数据（节点_pcdata）是否被添加到 DOM 树中。
-	// 该标志默认处于关闭状态；将其开启通常会导致解析速度变慢以及内存消耗增加。
+	// This flag determines if plain character data (node_pcdata) that consist only of whitespace are added to the DOM tree.
+	// This flag is off by default; turning it on usually results in slower parsing and more memory consumption.
 	const unsigned int parse_ws_pcdata = 0x0008;
 
+	// This flag determines if character and entity references are expanded during parsing. This flag is on by default.
 	const unsigned int parse_escapes = 0x0010;
 
-	// 此标志用于确定在行结束（EOL）字符在解析过程中是否被规范化（转换为十六进制的 #xA）。该标志默认处于开启状态。
+	// This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default.
 	const unsigned int parse_eol = 0x0020;
 
-	// 此标志用于确定在解析期间是否依据 CDATA（字符数据）规范化规则对属性值进行规范化处理。该标志默认处于开启状态。
+	// This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.
 	const unsigned int parse_wconv_attribute = 0x0040;
 
-	// 此标志用于确定在解析期间是否依据名称标记（NMTOKENS）规范化规则对属性值进行规范化处理。该标志默认处于关闭状态。
-        const unsigned int parse_wnorm_attribute = 0x0080;
+	// This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
+	const unsigned int parse_wnorm_attribute = 0x0080;
 
-	// 此标志用于确定文档声明（节点_声明）是否被添加到 DOM 树中。该标志默认处于关闭状态。
+	// This flag determines if document declaration (node_declaration) is added to the DOM tree. This flag is off by default.
 	const unsigned int parse_declaration = 0x0100;
 
-	// 此标志用于确定文档类型声明（节点_文档类型）是否被添加到 DOM 树中。该标志默认处于关闭状态。
+	// This flag determines if document type declaration (node_doctype) is added to the DOM tree. This flag is off by default.
 	const unsigned int parse_doctype = 0x0200;
 
-	//此标志用于确定纯文本字符数据（节点_pcdata）是否被添加到 DOM 树中，这类纯文本字符数据需满足是其父节点的唯一子节点，并且仅（由…… 组成，句子未完整，原句后面应该还有相关描述内容）。
-	// 仅由空白字符组成且为其父节点唯一子节点的纯文本字符数据（节点_pcdata）是否被添加到 DOM 树中。
-	// 该标志默认处于关闭状态；将其开启可能会导致解析速度变慢以及内存消耗增加。
+	// This flag determines if plain character data (node_pcdata) that is the only child of the parent node and that consists only
+	// of whitespace is added to the DOM tree.
+	// This flag is off by default; turning it on may result in slower parsing and more memory consumption.
 	const unsigned int parse_ws_pcdata_single = 0x0400;
 
-	//此标志用于确定是否要从纯文本字符数据中去除开头和结尾处的空白字符。该标志默认处于关闭状态。
+	// This flag determines if leading and trailing whitespace is to be removed from plain character data. This flag is off by default.
 	const unsigned int parse_trim_pcdata = 0x0800;
 
-	//此标志用于确定没有父节点的纯文本字符数据是否被添加到 DOM 树中，以及空文档（句子似乎未表述完整，后面应该还有相关内容，比如空文档会怎样等进一步的说明）。
-	// 是否为空文档也算作有效文档。该标志默认处于关闭状态。
+	// This flag determines if plain character data that does not have a parent node is added to the DOM tree, and if an empty document
+	// is a valid document. This flag is off by default.
 	const unsigned int parse_fragment = 0x1000;
 
-	// 此标志用于确定纯文本字符数据是否存储在父元素的值中。这会极大地改变（句子似乎未表述完整，后面应该还有如 “改变什么的结构” 等相关内容）。
-	// 文档的结构；仅建议在内存受限的环境中解析包含大量纯文本字符数据（PCDATA）节点的文档时使用该标志。
-	//该标志默认是关闭的。
+	// This flag determines if plain character data is be stored in the parent element's value. This significantly changes the structure of
+	// the document; this flag is only recommended for parsing documents with many PCDATA nodes in memory-constrained environments.
+	// This flag is off by default.
 	const unsigned int parse_embed_pcdata = 0x2000;
 
-	// 默认解析模式。
-	// 元素、可解析字符数据（PCDATA）以及字符数据（CDATA）部分会被添加到文档对象模型（DOM）树中，字符 / 引用实体将被展开，
-	//行结束符会被规范化，属性值会依据字符数据规范化规则进行规范化处理。
+	// The default parsing mode.
+	// Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded,
+	// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
 	const unsigned int parse_default = parse_cdata | parse_escapes | parse_wconv_attribute | parse_eol;
 
-	//完整解析模式。
-	//所有类型的节点都会被添加到文档对象模型（DOM）树中，字符 / 引用实体将被展开，
-	//  行结束符会被规范化，属性值会使用字符数据规范化规则进行规范化处理。
+	// The full parsing mode.
+	// Nodes of all types are added to the DOM tree, character/reference entities are expanded,
+	// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
 	const unsigned int parse_full = parse_default | parse_pi | parse_comments | parse_declaration | parse_doctype;
 
-	// 这些标志确定 XML 文档的输入数据的编码
+	// These flags determine the encoding of input data for XML document
 	enum xml_encoding
 	{
-		encoding_auto,		//使用 BOM 或 < / < 自动检测输入编码？检波;如果未找到 BOM，请使用 UTF8
-		encoding_utf8,		// UTF8 编码
-		encoding_utf16_le,	// 小端序 UTF16
-		encoding_utf16_be,	// 大端序 UTF16
-		encoding_utf16,		// 采用本机字节序的 UTF16
-		encoding_utf32_le,	// 小端序 UTF32
-		encoding_utf32_be,	//大端序 UTF32
-		encoding_utf32,		// 采用本机字节序的 UTF32
-		encoding_wchar,		//  与 wchar_t 相同的编码（UTF16 或 UTF32）
+		encoding_auto,		// Auto-detect input encoding using BOM or < / <? detection; use UTF8 if BOM is not found
+		encoding_utf8,		// UTF8 encoding
+		encoding_utf16_le,	// Little-endian UTF16
+		encoding_utf16_be,	// Big-endian UTF16
+		encoding_utf16,		// UTF16 with native endianness
+		encoding_utf32_le,	// Little-endian UTF32
+		encoding_utf32_be,	// Big-endian UTF32
+		encoding_utf32,		// UTF32 with native endianness
+		encoding_wchar,		// The same encoding wchar_t has (either UTF16 or UTF32)
 		encoding_latin1
 	};
 
-	// 格式化标志
+	// Formatting flags
 
-	// 根据节点在 DOM 树中的深度，使用相应数量的缩进字符串对写入输出流的节点进行缩进。此标志默认处于开启状态。
+	// Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default.
 	const unsigned int format_indent = 0x01;
 
-	//将特定编码的字节顺序标记（BOM）写入输出流。此标志默认处于关闭状态。
+	// Write encoding-specific BOM to the output stream. This flag is off by default.
 	const unsigned int format_write_bom = 0x02;
 
-	//使用原始输出模式（不进行缩进，也不写入换行符）。此标志默认处于关闭状态。
+	// Use raw output mode (no indentation and no line breaks are written). This flag is off by default.
 	const unsigned int format_raw = 0x04;
 
-	//  即便文档中没有 XML 声明，也省略默认的 XML 声明。此标志默认处于关闭状态。
+	// Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
 	const unsigned int format_no_declaration = 0x08;
 
-	// 不对属性值和 PCDATA 内容进行转义。此标志默认处于关闭状态。
+	// Don't escape attribute values and PCDATA contents. This flag is off by default.
 	const unsigned int format_no_escapes = 0x10;
 
-	//在 xml_document::save_file 中使用文本模式打开文件。这会在某些系统上启用特殊字符（例如换行符）的转换。此标志默认处于关闭状态。
+	// Open file using text mode in xml_document::save_file. This enables special character (i.e. new-line) conversions on some systems. This flag is off by default.
 	const unsigned int format_save_file_text = 0x20;
 
-	// 将每个属性写在新的一行，并带有适当的缩进。此标志默认处于关闭状态。
+	// Write every attribute on a new line with appropriate indentation. This flag is off by default.
 	const unsigned int format_indent_attributes = 0x40;
 
-	// 不输出空元素标签，而是即便没有子元素，也显式地写出开始标签和结束标签。此标志默认处于关闭状态。
+	// Don't output empty element tags, instead writing an explicit start and end tag even if there are no children. This flag is off by default.
 	const unsigned int format_no_empty_element_tags = 0x80;
 
-	//  默认的格式化标志集。
-	//根据节点在 DOM 树中的深度对其进行缩进，如果文档没有默认声明则输出该声明。
+	// The default set of formatting flags.
+	// Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
 	const unsigned int format_default = format_indent;
 
-	//前置声明
+	// Forward declarations
 	struct xml_attribute_struct;
 	struct xml_node_struct;
 
@@ -281,43 +282,39 @@ namespace pugi
 	class xpath_variable_set;
 	#endif
 
-	//基于范围的 for 循环支持
+	// Range-based for loop support
 	template <typename It> class xml_object_range
 	{
 	public:
-// 定义常量迭代器的类型别名
 		typedef It const_iterator;
-// 定义迭代器的类型别名
 		typedef It iterator;
-// 构造函数，通过传入起始迭代器和结束迭代器来初始化对象
+
 		xml_object_range(It b, It e): _begin(b), _end(e)
 		{
 		}
-// 返回起始迭代器（该函数为常量成员函数，返回值为常量迭代器类型）
+
 		It begin() const { return _begin; }
-// 返回结束迭代器（同样是常量成员函数，返回值为常量迭代器类型）
 		It end() const { return _end; }
 
 	private:
-// 用于存储起始迭代器和结束迭代器的私有成员变量
 		It _begin, _end;
 	};
 
-	//  用于节点打印的写入器接口（可参考 xml_node::print 相关内容）
+	// Writer interface for node printing (see xml_node::print)
 	class PUGIXML_CLASS xml_writer
 	{
 	public:
 		virtual ~xml_writer() {}
 
-		//将内存块写入流 / 文件或其他对象中
+		// Write memory chunk into stream/file/whatever
 		virtual void write(const void* data, size_t size) = 0;
 	};
 
-	//针对 FILE的 xml_writer 实现类
+	// xml_writer implementation for FILE*
 	class PUGIXML_CLASS xml_writer_file: public xml_writer
 	{
 	public:
-		// 通过一个 FILE对象构造写入器；使用 void * 是为了避免头文件对 stdio 的依赖
+		// Construct writer from a FILE* object; void* is used to avoid header dependencies on stdio
 		xml_writer_file(void* file);
 
 		virtual void write(const void* data, size_t size) PUGIXML_OVERRIDE;
@@ -327,11 +324,11 @@ namespace pugi
 	};
 
 	#ifndef PUGIXML_NO_STL
-	// 用于流的 xml_writer（XML 写入器）实现。
+	// xml_writer implementation for streams
 	class PUGIXML_CLASS xml_writer_stream: public xml_writer
 	{
 	public:
-		//从一个输出流对象构造写入器。例如在相关代码中
+		// Construct writer from an output stream object
 		xml_writer_stream(std::basic_ostream<char, std::char_traits<char> >& stream);
 		xml_writer_stream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);
 
@@ -343,7 +340,7 @@ namespace pugi
 	};
 	#endif
 
-	// 一个用于操作文档对象模型（DOM）树中属性的轻量级句柄。
+	// A light-weight handle for manipulating attributes in DOM tree
 	class PUGIXML_CLASS xml_attribute
 	{
 		friend class xml_attribute_iterator;
@@ -355,19 +352,19 @@ namespace pugi
 		typedef void (*unspecified_bool_type)(xml_attribute***);
 
 	public:
-		//默认构造函数。构造一个空的属性。
+		// Default constructor. Constructs an empty attribute.
 		xml_attribute();
 
-		// 从内部指针构造属性
+		// Constructs attribute from internal pointer
 		explicit xml_attribute(xml_attribute_struct* attr);
 
-		// 安全布尔转换操作符
+		// Safe bool conversion operator
 		operator unspecified_bool_type() const;
 
-		//Borland C++ 解决办法
+		// Borland C++ workaround
 		bool operator!() const;
 
-		// 比较操作符（比较所包装的属性指针）
+		// Comparison operators (compares wrapped attribute pointers)
 		bool operator==(const xml_attribute& r) const;
 		bool operator!=(const xml_attribute& r) const;
 		bool operator<(const xml_attribute& r) const;
@@ -375,17 +372,17 @@ namespace pugi
 		bool operator<=(const xml_attribute& r) const;
 		bool operator>=(const xml_attribute& r) const;
 
-		// 检查属性是否为空
+		// Check if attribute is empty
 		bool empty() const;
 
-		//  获取属性名称 / 值，如果属性为空则返回 ""（空字符串）
+		// Get attribute name/value, or "" if attribute is empty
 		const char_t* name() const;
 		const char_t* value() const;
 
-		// 获取属性值，如果属性为空则返回默认值
+		// Get attribute value, or the default value if attribute is empty
 		const char_t* as_string(const char_t* def = PUGIXML_TEXT("")) const;
 
-		//将属性值作为数字获取，如果转换不成功或者属性为空则返回默认值
+		// Get attribute value as a number, or the default value if conversion did not succeed or attribute is empty
 		int as_int(int def = 0) const;
 		unsigned int as_uint(unsigned int def = 0) const;
 		double as_double(double def = 0) const;
@@ -396,14 +393,14 @@ namespace pugi
 		unsigned long long as_ullong(unsigned long long def = 0) const;
 	#endif
 
-		//将属性值作为布尔值获取（如果第一个字符在 '1tTyY' 集合中则返回 true，如果属性为空则返回默认值）
+		// Get attribute value as bool (returns true if first character is in '1tTyY' set), or the default value if attribute is empty
 		bool as_bool(bool def = false) const;
 
-		// 设置属性名称 / 值（如果属性为空或者内存不足则返回 false）
+		// Set attribute name/value (returns false if attribute is empty or there is not enough memory)
 		bool set_name(const char_t* rhs);
 		bool set_value(const char_t* rhs);
 
-		// 通过类型转换来设置属性值（数字会被转换为字符串，布尔值会被转换为 "true" 或 "false"）
+		// Set attribute value with type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
 		bool set_value(int rhs);
 		bool set_value(unsigned int rhs);
 		bool set_value(long rhs);
@@ -417,7 +414,7 @@ namespace pugi
 		bool set_value(unsigned long long rhs);
 	#endif
 
-		//设置属性值（等同于不进行错误检查的 set_value 操作）
+		// Set attribute value (equivalent to set_value without error checking)
 		xml_attribute& operator=(const char_t* rhs);
 		xml_attribute& operator=(int rhs);
 		xml_attribute& operator=(unsigned int rhs);
@@ -432,24 +429,24 @@ namespace pugi
 		xml_attribute& operator=(unsigned long long rhs);
 	#endif
 
-		// 获取父节点的属性列表中的下一个 / 上一个属性
+		// Get next/previous attribute in the attribute list of the parent node
 		xml_attribute next_attribute() const;
 		xml_attribute previous_attribute() const;
 
-		//获取哈希值（对于指向同一个对象的句柄来说是唯一的）
+		// Get hash value (unique for handles to the same object)
 		size_t hash_value() const;
 
-		//  获取内部指针
+		// Get internal pointer
 		xml_attribute_struct* internal_object() const;
 	};
 
 #ifdef __BORLANDC__
-	//Borland C++ 解决办法
+	// Borland C++ workaround
 	bool PUGIXML_FUNCTION operator&&(const xml_attribute& lhs, bool rhs);
 	bool PUGIXML_FUNCTION operator||(const xml_attribute& lhs, bool rhs);
 #endif
 
-	//一个用于操作 DOM（文档对象模型）树中节点的轻量级句柄
+	// A light-weight handle for manipulating nodes in DOM tree
 	class PUGIXML_CLASS xml_node
 	{
 		friend class xml_attribute_iterator;
@@ -462,19 +459,19 @@ namespace pugi
 		typedef void (*unspecified_bool_type)(xml_node***);
 
 	public:
-		// 默认构造函数。构造一个空节点。
+		// Default constructor. Constructs an empty node.
 		xml_node();
 
-		// 从内部指针构造节点
+		// Constructs node from internal pointer
 		explicit xml_node(xml_node_struct* p);
 
-		// 安全布尔转换操作符
+		// Safe bool conversion operator
 		operator unspecified_bool_type() const;
 
-		// Borland C++ 解决办法
+		// Borland C++ workaround
 		bool operator!() const;
 
-		//  比较操作符（比较所包装的节点指针）
+		// Comparison operators (compares wrapped node pointers)
 		bool operator==(const xml_node& r) const;
 		bool operator!=(const xml_node& r) const;
 		bool operator<(const xml_node& r) const;
@@ -482,109 +479,109 @@ namespace pugi
 		bool operator<=(const xml_node& r) const;
 		bool operator>=(const xml_node& r) const;
 
-		//检查节点是否为空。
+		// Check if node is empty.
 		bool empty() const;
 
-		// 获取节点类型
+		// Get node type
 		xml_node_type type() const;
 
-		// 获取节点名称，如果节点为空或者没有名称则返回 ""（空字符串）
+		// Get node name, or "" if node is empty or it has no name
 		const char_t* name() const;
 
-		// 获取节点名称，如果节点为空或者没有名称则返回 ""（空字符串）
-		// 注意：对于 <node>文本</node> 这样的形式，node.value () 并不会返回 "文本"！请使用 child_value () 或 text () 方法来访问节点内部的文本。
+		// Get node value, or "" if node is empty or it has no value
+		// Note: For <node>text</node> node.value() does not return "text"! Use child_value() or text() methods to access text inside nodes.
 		const char_t* value() const;
 
-		// 获取属性列表
+		// Get attribute list
 		xml_attribute first_attribute() const;
 		xml_attribute last_attribute() const;
 
-		// 获取子节点列表
+		// Get children list
 		xml_node first_child() const;
 		xml_node last_child() const;
 
-		//获取父节点的子节点列表中的下一个 / 上一个兄弟节点
+		// Get next/previous sibling in the children list of the parent node
 		xml_node next_sibling() const;
 		xml_node previous_sibling() const;
 
-		//获取父节点
+		// Get parent node
 		xml_node parent() const;
 
-		// 获取此节点所属的 DOM（文档对象模型）树的根节点
+		// Get root of DOM tree this node belongs to
 		xml_node root() const;
 
-		// 获取当前节点的文本对象
+		// Get text object for the current node
 		xml_text text() const;
 
-		//  获取具有指定名称的子节点、属性或下一个 / 上一个兄弟节点
+		// Get child, attribute or next/previous sibling with the specified name
 		xml_node child(const char_t* name) const;
 		xml_attribute attribute(const char_t* name) const;
 		xml_node next_sibling(const char_t* name) const;
 		xml_node previous_sibling(const char_t* name) const;
 
-		//从提示位置开始获取属性（并更新提示，以便快速搜索一系列属性）
+		// Get attribute, starting the search from a hint (and updating hint so that searching for a sequence of attributes is fast)
 		xml_attribute attribute(const char_t* name, xml_attribute& hint) const;
 
-		// 获取当前节点的子节点值；也就是类型为 PCDATA（已解析字符数据）/CDATA（字符数据）的第一个子节点的值
+		// Get child value of current node; that is, value of the first child node of type PCDATA/CDATA
 		const char_t* child_value() const;
 
-		// 获取具有指定名称的子节点的子节点值。等同于 child (name).child_value ()。
+		// Get child value of child with specified name. Equivalent to child(name).child_value().
 		const char_t* child_value(const char_t* name) const;
 
-		//设置节点名称 / 值（如果节点为空、内存不足或者节点不能有名称 / 值，则返回 false）
+		// Set node name/value (returns false if node is empty, there is not enough memory, or node can not have name/value)
 		bool set_name(const char_t* rhs);
 		bool set_value(const char_t* rhs);
 
-		//添加具有指定名称的属性。返回添加后的属性，若出错则返回空属性。
+		// Add attribute with specified name. Returns added attribute, or empty attribute on errors.
 		xml_attribute append_attribute(const char_t* name);
 		xml_attribute prepend_attribute(const char_t* name);
 		xml_attribute insert_attribute_after(const char_t* name, const xml_attribute& attr);
 		xml_attribute insert_attribute_before(const char_t* name, const xml_attribute& attr);
 
-		// 添加指定属性的副本。返回添加后的属性，若出错则返回空属性。
+		// Add a copy of the specified attribute. Returns added attribute, or empty attribute on errors.
 		xml_attribute append_copy(const xml_attribute& proto);
 		xml_attribute prepend_copy(const xml_attribute& proto);
 		xml_attribute insert_copy_after(const xml_attribute& proto, const xml_attribute& attr);
 		xml_attribute insert_copy_before(const xml_attribute& proto, const xml_attribute& attr);
 
-		// 添加具有指定类型的子节点。返回添加后的节点，若出错则返回空节点。
+		// Add child node with specified type. Returns added node, or empty node on errors.
 		xml_node append_child(xml_node_type type = node_element);
 		xml_node prepend_child(xml_node_type type = node_element);
 		xml_node insert_child_after(xml_node_type type, const xml_node& node);
 		xml_node insert_child_before(xml_node_type type, const xml_node& node);
 
-		// 添加具有指定名称的子元素。返回添加后的节点，若出错则返回空节点。
+		// Add child element with specified name. Returns added node, or empty node on errors.
 		xml_node append_child(const char_t* name);
 		xml_node prepend_child(const char_t* name);
 		xml_node insert_child_after(const char_t* name, const xml_node& node);
 		xml_node insert_child_before(const char_t* name, const xml_node& node);
 
-		// 将指定节点的副本作为子节点添加。返回添加后的节点，若出错则返回空节点。
+		// Add a copy of the specified node as a child. Returns added node, or empty node on errors.
 		xml_node append_copy(const xml_node& proto);
 		xml_node prepend_copy(const xml_node& proto);
 		xml_node insert_copy_after(const xml_node& proto, const xml_node& node);
 		xml_node insert_copy_before(const xml_node& proto, const xml_node& node);
 
-		// 将指定节点移动使其成为此节点的子节点。返回移动后的节点，若出错则返回空节点。
+		// Move the specified node to become a child of this node. Returns moved node, or empty node on errors.
 		xml_node append_move(const xml_node& moved);
 		xml_node prepend_move(const xml_node& moved);
 		xml_node insert_move_after(const xml_node& moved, const xml_node& node);
 		xml_node insert_move_before(const xml_node& moved, const xml_node& node);
 
-		//删除指定属性
+		// Remove specified attribute
 		bool remove_attribute(const xml_attribute& a);
 		bool remove_attribute(const char_t* name);
 
-		//删除指定子节点
+		// Remove specified child
 		bool remove_child(const xml_node& n);
 		bool remove_child(const char_t* name);
 
-		// 将缓冲区解析为一个 XML 文档片段，并将所有节点作为当前节点的子节点进行追加。
-		// 会复制 / 转换缓冲区内容，所以在函数返回后，该缓冲区可以被删除或更改。
-		//注意：append_buffer 会分配内存，其生命周期与所属文档相同；移除已追加的节点并不会立即回收该内存
-                xml_parse_result append_buffer(const void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
+		// Parses buffer as an XML document fragment and appends all nodes as children of the current node.
+		// Copies/converts the buffer, so it may be deleted or changed after the function returns.
+		// Note: append_buffer allocates memory that has the lifetime of the owning document; removing the appended nodes does not immediately reclaim that memory.
+		xml_parse_result append_buffer(const void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		// 使用谓词查找属性。返回使谓词返回为真的第一个属性。
+		// Find attribute using predicate. Returns first attribute for which predicate returned true.
 		template <typename Predicate> xml_attribute find_attribute(Predicate pred) const
 		{
 			if (!_root) return xml_attribute();
@@ -596,7 +593,7 @@ namespace pugi
 			return xml_attribute();
 		}
 
-		// 使用谓词查找子节点。返回使谓词返回值为真的第一个子节点。
+		// Find child node using predicate. Returns first child for which predicate returned true.
 		template <typename Predicate> xml_node find_child(Predicate pred) const
 		{
 			if (!_root) return xml_node();
@@ -608,7 +605,7 @@ namespace pugi
 			return xml_node();
 		}
 
-		//使用谓词从子树中查找节点。返回子树中（深度优先遍历的情况下）使谓词返回值为真的第一个节点。
+		// Find node from subtree using predicate. Returns first node from subtree (depth-first), for which predicate returned true.
 		template <typename Predicate> xml_node find_node(Predicate pred) const
 		{
 			if (!_root) return xml_node();
@@ -632,79 +629,79 @@ namespace pugi
 			return xml_node();
 		}
 
-		// 通过属性名称 / 值查找子节点
+		// Find child node by attribute name/value
 		xml_node find_child_by_attribute(const char_t* name, const char_t* attr_name, const char_t* attr_value) const;
 		xml_node find_child_by_attribute(const char_t* attr_name, const char_t* attr_value) const;
 
 	#ifndef PUGIXML_NO_STL
-		// 将从根节点开始的绝对节点路径作为文本字符串获取。
+		// Get the absolute node path from root as a text string.
 		string_t path(char_t delimiter = '/') const;
 	#endif
 
-		//通过由节点名称以及 “.” 或 “..” 元素组成的路径来搜索节点。
+		// Search for a node by path consisting of node names and . or .. elements.
 		xml_node first_element_by_path(const char_t* path, char_t delimiter = '/') const;
 
-		// 使用 xml_tree_walker 递归遍历子树
+		// Recursively traverse subtree with xml_tree_walker
 		bool traverse(xml_tree_walker& walker);
 
 	#ifndef PUGIXML_NO_XPATH
-		// 通过计算 XPath 查询来选择单个节点。返回结果节点集中的第一个节点。
+		// Select single node by evaluating XPath query. Returns first node from the resulting node set.
 		xpath_node select_node(const char_t* query, xpath_variable_set* variables = 0) const;
 		xpath_node select_node(const xpath_query& query) const;
 
-		// 通过计算 XPath 查询来选择节点集
+		// Select node set by evaluating XPath query
 		xpath_node_set select_nodes(const char_t* query, xpath_variable_set* variables = 0) const;
 		xpath_node_set select_nodes(const xpath_query& query) const;
 
-		//已弃用：请改用 select_node）通过计算 XPath 查询来选择单个节点。
+		// (deprecated: use select_node instead) Select single node by evaluating XPath query.
 		PUGIXML_DEPRECATED xpath_node select_single_node(const char_t* query, xpath_variable_set* variables = 0) const;
 		PUGIXML_DEPRECATED xpath_node select_single_node(const xpath_query& query) const;
 
 	#endif
 
-		// 使用写入器对象打印子树
+		// Print subtree using a writer object
 		void print(xml_writer& writer, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto, unsigned int depth = 0) const;
 
 	#ifndef PUGIXML_NO_STL
-		//将子树打印到流中
+		// Print subtree to stream
 		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto, unsigned int depth = 0) const;
 		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, unsigned int depth = 0) const;
 	#endif
 
-		// 子节点迭代器
+		// Child nodes iterators
 		typedef xml_node_iterator iterator;
 
 		iterator begin() const;
 		iterator end() const;
 
-		// 属性迭代器
+		// Attribute iterators
 		typedef xml_attribute_iterator attribute_iterator;
 
 		attribute_iterator attributes_begin() const;
 		attribute_iterator attributes_end() const;
 
-		// 基于范围的 for 循环支持
+		// Range-based for support
 		xml_object_range<xml_node_iterator> children() const;
 		xml_object_range<xml_named_node_iterator> children(const char_t* name) const;
 		xml_object_range<xml_attribute_iterator> attributes() const;
 
-		//出于调试目的，获取节点在已解析文件 / 字符串中的偏移量（以 char_t 为单位）
+		// Get node offset in parsed file/string (in char_t units) for debugging purposes
 		ptrdiff_t offset_debug() const;
 
-		//  获取哈希值（对于指向同一个对象的句柄来说是唯一的）
+		// Get hash value (unique for handles to the same object)
 		size_t hash_value() const;
 
-		//获取内部指针
+		// Get internal pointer
 		xml_node_struct* internal_object() const;
 	};
 
 #ifdef __BORLANDC__
-	//Borland C++ 解决办法
+	// Borland C++ workaround
 	bool PUGIXML_FUNCTION operator&&(const xml_node& lhs, bool rhs);
 	bool PUGIXML_FUNCTION operator||(const xml_node& lhs, bool rhs);
 #endif
 
-	//一个用于处理已解析字符数据（PCDATA）节点内文本的辅助工具
+	// A helper for working with text inside PCDATA nodes
 	class PUGIXML_CLASS xml_text
 	{
 		friend class xml_node;
@@ -719,25 +716,25 @@ namespace pugi
 		xml_node_struct* _data() const;
 
 	public:
-		//默认构造函数。构造一个空对象。
+		// Default constructor. Constructs an empty object.
 		xml_text();
 
-		//安全布尔转换操作符
+		// Safe bool conversion operator
 		operator unspecified_bool_type() const;
 
-		//  Borland C++ 解决办法
+		// Borland C++ workaround
 		bool operator!() const;
 
-		//检查文本对象是否为空
+		// Check if text object is empty
 		bool empty() const;
 
-		// 获取文本内容，如果对象为空则返回 ""（空字符串）
+		// Get text, or "" if object is empty
 		const char_t* get() const;
 
-		//获取文本内容，如果对象为空则返回默认值
+		// Get text, or the default value if object is empty
 		const char_t* as_string(const char_t* def = PUGIXML_TEXT("")) const;
 
-		// 将文本内容作为数字获取，如果转换不成功或者对象为空则返回默认值
+		// Get text as a number, or the default value if conversion did not succeed or object is empty
 		int as_int(int def = 0) const;
 		unsigned int as_uint(unsigned int def = 0) const;
 		double as_double(double def = 0) const;
@@ -748,13 +745,13 @@ namespace pugi
 		unsigned long long as_ullong(unsigned long long def = 0) const;
 	#endif
 
-		//  将文本内容作为布尔值获取（如果第一个字符在 '1tTyY' 集合中则返回 true，如果对象为空则返回默认值）
+		// Get text as bool (returns true if first character is in '1tTyY' set), or the default value if object is empty
 		bool as_bool(bool def = false) const;
 
-		//设置文本（如果对象为空或者内存不足则返回 false）
+		// Set text (returns false if object is empty or there is not enough memory)
 		bool set(const char_t* rhs);
 
-		//通过类型转换来设置文本（数字会被转换为字符串，布尔值会被转换为 "true" 或 "false"）
+		// Set text with type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
 		bool set(int rhs);
 		bool set(unsigned int rhs);
 		bool set(long rhs);
@@ -768,7 +765,7 @@ namespace pugi
 		bool set(unsigned long long rhs);
 	#endif
 
-		// 设置文本（等同于不进行错误检查的设置操作）
+		// Set text (equivalent to set without error checking)
 		xml_text& operator=(const char_t* rhs);
 		xml_text& operator=(int rhs);
 		xml_text& operator=(unsigned int rhs);
@@ -783,17 +780,17 @@ namespace pugi
 		xml_text& operator=(unsigned long long rhs);
 	#endif
 
-		// 获取此对象的数据节点（已解析字符数据节点 node_pcdata 或者字符数据节点 node_cdata）
+		// Get the data node (node_pcdata or node_cdata) for this object
 		xml_node data() const;
 	};
 
 #ifdef __BORLANDC__
-	//Borland C++ 解决办法
+	// Borland C++ workaround
 	bool PUGIXML_FUNCTION operator&&(const xml_text& lhs, bool rhs);
 	bool PUGIXML_FUNCTION operator||(const xml_text& lhs, bool rhs);
 #endif
 
-	//  子节点迭代器（一个针对 xml_node 集合的双向迭代器）
+	// Child node iterator (a bidirectional iterator over a collection of xml_node)
 	class PUGIXML_CLASS xml_node_iterator
 	{
 		friend class xml_node;
@@ -805,7 +802,7 @@ namespace pugi
 		xml_node_iterator(xml_node_struct* ref, xml_node_struct* parent);
 
 	public:
-		// 迭代器特性
+		// Iterator traits
 		typedef ptrdiff_t difference_type;
 		typedef xml_node value_type;
 		typedef xml_node* pointer;
@@ -815,13 +812,13 @@ namespace pugi
 		typedef std::bidirectional_iterator_tag iterator_category;
 	#endif
 
-		// 默认构造函数
+		// Default constructor
 		xml_node_iterator();
 
-		//构造一个指向指定节点的迭代器
+		// Construct an iterator which points to the specified node
 		xml_node_iterator(const xml_node& node);
 
-		//  迭代器运算符
+		// Iterator operators
 		bool operator==(const xml_node_iterator& rhs) const;
 		bool operator!=(const xml_node_iterator& rhs) const;
 
@@ -835,7 +832,7 @@ namespace pugi
 		xml_node_iterator operator--(int);
 	};
 
-	//  属性迭代器（一个针对 xml_attribute 集合的双向迭代器）
+	// Attribute iterator (a bidirectional iterator over a collection of xml_attribute)
 	class PUGIXML_CLASS xml_attribute_iterator
 	{
 		friend class xml_node;
@@ -847,7 +844,7 @@ namespace pugi
 		xml_attribute_iterator(xml_attribute_struct* ref, xml_node_struct* parent);
 
 	public:
-		// 迭代器特性
+		// Iterator traits
 		typedef ptrdiff_t difference_type;
 		typedef xml_attribute value_type;
 		typedef xml_attribute* pointer;
@@ -857,13 +854,13 @@ namespace pugi
 		typedef std::bidirectional_iterator_tag iterator_category;
 	#endif
 
-		//默认构造函数
+		// Default constructor
 		xml_attribute_iterator();
 
-		//构造一个指向指定属性的迭代器
+		// Construct an iterator which points to the specified attribute
 		xml_attribute_iterator(const xml_attribute& attr, const xml_node& parent);
 
-		// 迭代器运算符
+		// Iterator operators
 		bool operator==(const xml_attribute_iterator& rhs) const;
 		bool operator!=(const xml_attribute_iterator& rhs) const;
 
@@ -877,13 +874,13 @@ namespace pugi
 		xml_attribute_iterator operator--(int);
 	};
 
-	// 命名节点范围辅助类
+	// Named node range helper
 	class PUGIXML_CLASS xml_named_node_iterator
 	{
 		friend class xml_node;
 
 	public:
-		//  迭代器特性
+		// Iterator traits
 		typedef ptrdiff_t difference_type;
 		typedef xml_node value_type;
 		typedef xml_node* pointer;
@@ -893,13 +890,13 @@ namespace pugi
 		typedef std::bidirectional_iterator_tag iterator_category;
 	#endif
 
-		// 默认构造函数
+		// Default constructor
 		xml_named_node_iterator();
 
-		// 构造一个指向指定节点的迭代器
+		// Construct an iterator which points to the specified node
 		xml_named_node_iterator(const xml_node& node, const char_t* name);
 
-		// 迭代器运算符
+		// Iterator operators
 		bool operator==(const xml_named_node_iterator& rhs) const;
 		bool operator!=(const xml_named_node_iterator& rhs) const;
 
@@ -920,7 +917,7 @@ namespace pugi
 		xml_named_node_iterator(xml_node_struct* ref, xml_node_struct* parent, const char_t* name);
 	};
 
-	// 抽象树遍历器类（详见 xml_node::traverse 方法）
+	// Abstract tree walker class (see xml_node::traverse)
 	class PUGIXML_CLASS xml_tree_walker
 	{
 		friend class xml_node;
@@ -929,72 +926,73 @@ namespace pugi
 		int _depth;
 
 	protected:
-		//获取当前遍历深度
+		// Get current traversal depth
 		int depth() const;
 
 	public:
 		xml_tree_walker();
 		virtual ~xml_tree_walker();
 
-		// 遍历开始时调用的回调函数
+		// Callback that is called when traversal begins
 		virtual bool begin(xml_node& node);
 
-		// 遍历每个节点时调用的回调函数
+		// Callback that is called for each node traversed
 		virtual bool for_each(xml_node& node) = 0;
 
-		//  遍历结束时调用的回调函数
+		// Callback that is called when traversal ends
 		virtual bool end(xml_node& node);
 	};
 
-	// 解析状态，作为 xml_parse_result 对象的一部分返回
+	// Parsing status, returned as part of xml_parse_result object
 	enum xml_parse_status
 	{
-		status_ok = 0,				// 无错误
+		status_ok = 0,				// No error
 
-		status_file_not_found,		//在 load_file () 方法执行期间文件未找到
-		status_io_error,			//  从文件 / 流读取时出错
-		status_out_of_memory,		// 无法分配内存
-		status_internal_error,		// 发生内部错误
-		status_unrecognized_tag,	// 解析器无法确定标签类型
+		status_file_not_found,		// File was not found during load_file()
+		status_io_error,			// Error reading from file/stream
+		status_out_of_memory,		// Could not allocate memory
+		status_internal_error,		// Internal error occurred
 
-		status_bad_pi,				// 在解析文档声明 / 处理指令时发生解析错误
-		status_bad_comment,			// 在解析注释时发生解析错误
-		status_bad_pi,				//在解析 CDATA（字符数据）区段时发生解析错误
-		status_bad_cdata,			// P在解析文档类型声明时发生解析错误
-		status_bad_doctype,			// 在解析 PCDATA（已解析字符数据）区段时发生解析错误
-		status_bad_pcdata,			// 在解析起始元素标签时发生解析错误
-		status_bad_start_element,	// 在解析结束元素标签时发生解析错误
-		status_bad_attribute,		// 在解析结束元素标签时发生解析错误
+		status_unrecognized_tag,	// Parser could not determine tag type
+
+		status_bad_pi,				// Parsing error occurred while parsing document declaration/processing instruction
+		status_bad_comment,			// Parsing error occurred while parsing comment
+		status_bad_cdata,			// Parsing error occurred while parsing CDATA section
+		status_bad_doctype,			// Parsing error occurred while parsing document type declaration
+		status_bad_pcdata,			// Parsing error occurred while parsing PCDATA section
+		status_bad_start_element,	// Parsing error occurred while parsing start element tag
+		status_bad_attribute,		// Parsing error occurred while parsing element attribute
 		status_bad_end_element,		// Parsing error occurred while parsing end element tag
-		status_end_element_mismatch,// 存在起始 - 结束标签不匹配的情况（结束标签名称不正确、某些标签未关闭或者存在多余的结束标签）
-		status_append_invalid_root,	// 由于根节点类型不是 node_element（元素节点）或 node_document（文档节点），所以无法追加节点（这是 xml_node::append_buffer 方法特有的情况）
+		status_end_element_mismatch,// There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag)
 
-		status_no_document_element	//解析后得到的文档中没有元素节点
+		status_append_invalid_root,	// Unable to append nodes since root type is not node_element or node_document (exclusive to xml_node::append_buffer)
+
+		status_no_document_element	// Parsing resulted in a document without element nodes
 	};
 
-	// 解析结果
+	// Parsing result
 	struct PUGIXML_CLASS xml_parse_result
 	{
-		// 解析状态（参见 xml_parse_status）
+		// Parsing status (see xml_parse_status)
 		xml_parse_status status;
 
-		//  最后解析的偏移量（以 char_t 为单位，从输入数据起始处开始计算）
+		// Last parsed offset (in char_t units from start of input data)
 		ptrdiff_t offset;
 
-		//  源文档编码
+		// Source document encoding
 		xml_encoding encoding;
 
-		// 默认构造函数，将对象初始化为失败状态
+		// Default constructor, initializes object to failed state
 		xml_parse_result();
 
-		// 转换为布尔类型的运算符
+		// Cast to bool operator
 		operator bool() const;
 
-		// 获取错误描述
+		// Get error description
 		const char* description() const;
 	};
 
-	//  文档类（DOM 树的根节点）
+	// Document class (DOM tree root)
 	class PUGIXML_CLASS xml_document: public xml_node
 	{
 	private:
@@ -1002,7 +1000,7 @@ namespace pugi
 
 		char _memory[192];
 
-		// 不可复制语义
+		// Non-copyable semantics
 		xml_document(const xml_document&);
 		xml_document& operator=(const xml_document&);
 
@@ -1011,99 +1009,99 @@ namespace pugi
 		void _move(xml_document& rhs) PUGIXML_NOEXCEPT_IF_NOT_COMPACT;
 
 	public:
-		// 默认构造函数，创建一个空文档
+		// Default constructor, makes empty document
 		xml_document();
 
-		//析构函数，使指向此文档的所有节点 / 属性句柄失效
+		// Destructor, invalidates all node/attribute handles to this document
 		~xml_document();
 
 	#ifdef PUGIXML_HAS_MOVE
-		//移动语义支持
+		// Move semantics support
 		xml_document(xml_document&& rhs) PUGIXML_NOEXCEPT_IF_NOT_COMPACT;
 		xml_document& operator=(xml_document&& rhs) PUGIXML_NOEXCEPT_IF_NOT_COMPACT;
 	#endif
 
-		// 移除所有节点，留下一个空文档
+		// Removes all nodes, leaving the empty document
 		void reset();
 
-		//移除所有节点，然后复制指定文档的全部内容
+		// Removes all nodes, then copies the entire contents of the specified document
 		void reset(const xml_document& proto);
 
 	#ifndef PUGIXML_NO_STL
-		//从流中加载文档。
+		// Load document from stream.
 		xml_parse_result load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 		xml_parse_result load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = parse_default);
 	#endif
 
-		// （已弃用：请改用 load_string）从以零结尾的字符串中加载文档。不应用编码转换。
+		// (deprecated: use load_string instead) Load document from zero-terminated string. No encoding conversions are applied.
 		PUGIXML_DEPRECATED xml_parse_result load(const char_t* contents, unsigned int options = parse_default);
 
-		//从以零结尾的字符串中加载文档。不应用编码转换。
+		// Load document from zero-terminated string. No encoding conversions are applied.
 		xml_parse_result load_string(const char_t* contents, unsigned int options = parse_default);
 
-		// 从文件中加载文档
+		// Load document from file
 		xml_parse_result load_file(const char* path, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 		xml_parse_result load_file(const wchar_t* path, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		//  从缓冲区加载文档。会复制 / 转换缓冲区内容，所以在函数返回后，该缓冲区可以被删除或更改。
+		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns.
 		xml_parse_result load_buffer(const void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		//  从缓冲区加载文档，使用该缓冲区进行原地解析（缓冲区会被修改并用于存储文档数据）。
-		//你应当确保缓冲区数据在文档的整个生命周期内都持续存在，并且在文档销毁后手动释放缓冲区内存。
+		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
+		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed.
 		xml_parse_result load_buffer_inplace(void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		// 从缓冲区加载文档，使用该缓冲区进行原地解析（缓冲区会被修改并用于存储文档数据）。
-		//你应当使用 pugixml 分配函数来分配缓冲区；文档在不再需要该缓冲区时会自动释放它（之后你不能再使用该缓冲区了）。
+		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
+		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore).
 		xml_parse_result load_buffer_inplace_own(void* contents, size_t size, unsigned int options = parse_default, xml_encoding encoding = encoding_auto);
 
-		// 将 XML 文档保存到写入器（其语义与 xml_node::print 稍有不同，详见相关文档）。
+		// Save XML document to writer (semantics is slightly different from xml_node::print, see documentation for details).
 		void save(xml_writer& writer, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 
 	#ifndef PUGIXML_NO_STL
-		//将 XML 文档保存到流中（其语义与 xml_node::print 稍有不同，详见相关文档）。
+		// Save XML document to stream (semantics is slightly different from xml_node::print, see documentation for details).
 		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default) const;
 	#endif
 
-		//将 XML 保存到文件
+		// Save XML to file
 		bool save_file(const char* path, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 		bool save_file(const wchar_t* path, const char_t* indent = PUGIXML_TEXT("\t"), unsigned int flags = format_default, xml_encoding encoding = encoding_auto) const;
 
-		// 获取文档元素
+		// Get document element
 		xml_node document_element() const;
 	};
 
 #ifndef PUGIXML_NO_XPATH
-	// XPath 查询返回类型
+	// XPath query return type
 	enum xpath_value_type
 	{
-		xpath_type_none,	  // 未知类型（查询未能编译成功）
-		xpath_type_node_set,  //节点集（xpath_node_set 类型）
-		xpath_type_number,	  //数字
-		xpath_type_string,	  // 字符串
-		xpath_type_boolean	  // 布尔值
+		xpath_type_none,	  // Unknown type (query failed to compile)
+		xpath_type_node_set,  // Node set (xpath_node_set)
+		xpath_type_number,	  // Number
+		xpath_type_string,	  // String
+		xpath_type_boolean	  // Boolean
 	};
 
-	//  XPath 解析结果
+	// XPath parsing result
 	struct PUGIXML_CLASS xpath_parse_result
 	{
-		// 错误消息（若无错误则为 0）
+		// Error message (0 if no error)
 		const char* error;
 
-		// 最后解析的偏移量（以 char_t 为单位，从字符串起始处开始计算）
+		// Last parsed offset (in char_t units from string start)
 		ptrdiff_t offset;
 
-		// 默认构造函数，将对象初始化为失败状态
+		// Default constructor, initializes object to failed state
 		xpath_parse_result();
 
-		//转换为布尔类型的运算符
+		// Cast to bool operator
 		operator bool() const;
 
-		// 获取错误描述
+		// Get error description
 		const char* description() const;
 	};
 
-	//单个 XPath 变量
+	// A single XPath variable
 	class PUGIXML_CLASS xpath_variable
 	{
 		friend class xpath_variable_set;
@@ -1114,31 +1112,31 @@ namespace pugi
 
 		xpath_variable(xpath_value_type type);
 
-		//  不可复制语义
+		// Non-copyable semantics
 		xpath_variable(const xpath_variable&);
 		xpath_variable& operator=(const xpath_variable&);
 
 	public:
-		// 获取变量名称
+		// Get variable name
 		const char_t* name() const;
 
-		// 获取变量类型
+		// Get variable type
 		xpath_value_type type() const;
 
-		// 获取变量值；不进行类型转换，若出现类型不匹配错误则返回默认值（false、非数字、空字符串、空节点集）
+		// Get variable value; no type conversion is performed, default value (false, NaN, empty string, empty node set) is returned on type mismatch error
 		bool get_boolean() const;
 		double get_number() const;
 		const char_t* get_string() const;
 		const xpath_node_set& get_node_set() const;
 
-		//设置变量值；不进行类型转换，若出现类型不匹配错误则返回 false
+		// Set variable value; no type conversion is performed, false is returned on type mismatch error
 		bool set(bool value);
 		bool set(double value);
 		bool set(const char_t* value);
 		bool set(const xpath_node_set& value);
 	};
 
-	// 一组 XPath 变量
+	// A set of XPath variables
 	class PUGIXML_CLASS xpath_variable_set
 	{
 	private:

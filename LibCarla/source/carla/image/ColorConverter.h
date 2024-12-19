@@ -34,8 +34,6 @@ namespace image {
       template <typename SrcPixelT, typename DstPixelT>
       void operator()(const SrcPixelT &src, DstPixelT &dst) const {
         using namespace boost::gil;
-	        
-        // 检查源像素类型是否为 uint8_t 类型的颜色分量
         static_assert(
             sizeof(typename color_space_type<SrcPixelT>::type) == sizeof(uint8_t),
             "Invalid pixel type.");
@@ -55,8 +53,6 @@ namespace image {
       template <typename SrcPixelT, typename DstPixelT>
       void operator()(const SrcPixelT &src, DstPixelT &dst) const {
         using namespace boost::gil;
-	        
-        // 检查源像素类型是否为 uint8_t 类型的颜色分量
         static_assert(
             sizeof(typename color_space_type<SrcPixelT>::type) == sizeof(uint8_t),
             "Invalid pixel type.");

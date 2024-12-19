@@ -53,7 +53,7 @@ void AFrictionTrigger::OnTriggerBeginOverlap(
     const FHitResult & /*SweepResult*/)
 {
 
-  // 保存车轮的原始摩擦力。
+  // Save original friction of the wheels
   ACarlaWheeledVehicle *Vehicle = Cast<ACarlaWheeledVehicle>(OtherActor);
   if(Vehicle == nullptr)
     return;
@@ -69,7 +69,7 @@ void AFrictionTrigger::OnTriggerEndOverlap(
     UPrimitiveComponent * /*OtherComp*/,
     int32 /*OtherBodyIndex*/)
 {
-  // 恢复默认摩擦力值
+  // Set Back Default Friction Value
   UpdateWheelsFriction(OtherActor, OldFrictionValues);
 
   ACarlaWheeledVehicle *Vehicle = Cast<ACarlaWheeledVehicle>(OtherActor);
@@ -79,7 +79,7 @@ void AFrictionTrigger::OnTriggerEndOverlap(
   TArray<float> CurrFriction = Vehicle->GetWheelsFrictionScale();
 }
 
-// 游戏开始或生成时调用
+// Called when the game starts or when spawned
 void AFrictionTrigger::BeginPlay()
 {
   Super::BeginPlay();
@@ -88,7 +88,7 @@ void AFrictionTrigger::BeginPlay()
 
 void AFrictionTrigger::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-  // 取消注册委托
+  // Deregister delegates
   if (TriggerVolume->OnComponentBeginOverlap.IsAlreadyBound(this, &AFrictionTrigger::OnTriggerBeginOverlap))
   {
     TriggerVolume->OnComponentBeginOverlap.RemoveDynamic(this, &AFrictionTrigger::OnTriggerBeginOverlap);
@@ -102,7 +102,7 @@ void AFrictionTrigger::EndPlay(const EEndPlayReason::Type EndPlayReason)
   Super::EndPlay(EndPlayReason);
 }
 
-// 每一帧都调用
+// Called every frame
 void AFrictionTrigger::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);

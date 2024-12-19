@@ -10,7 +10,7 @@
 #include "carla/NonCopyable.h"  // 包含定义 NonCopyable 类的头文件，避免类被复制
 
 #include <thread> // 包含线程相关的库
-#include <vector>   // 包含迭代器相关的头文件，定义了与迭代器操作相关的功能
+#include <vector>
 
 namespace carla {
 

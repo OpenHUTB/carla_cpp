@@ -32,7 +32,7 @@ And for profiling one radar:
 import glob
 import os
 import sys
-# 尝试将 CARLA 库的路径添加到系统路径
+
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -47,14 +47,14 @@ import random
 import time
 import numpy as np
 
-# 如果无法导入 pygame 库，则抛出错误
+
 try:
     import pygame
     from pygame.locals import K_ESCAPE
     from pygame.locals import K_q
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
-# 定义一个自定义定时器类，用于测量处理时间
+
 class CustomTimer:
     def __init__(self):
         try:
@@ -64,7 +64,7 @@ class CustomTimer:
 
     def time(self):
         return self.timer()
-# 显示管理器类，用于管理渲染窗口和传感器的显示
+
 class DisplayManager:
     def __init__(self, grid_size, window_size, show_window=True):
         if show_window:
@@ -78,23 +78,23 @@ class DisplayManager:
         self.window_size = window_size
         self.sensor_list = []
 
-    def get_window_size(self): """获取窗口的尺寸大小"""
+    def get_window_size(self):
         return [int(self.window_size[0]), int(self.window_size[1])]
 
-    def get_display_size(self): """根据窗口大小和网格大小，获取每个显示区域（按网格划分）的尺寸"""
+    def get_display_size(self):
         return [int(self.window_size[0]/self.grid_size[0]), int(self.window_size[1]/self.grid_size[1])]
 
-    def get_display_offset(self, gridPos):"""根据给定的网格位置，计算显示偏移量"""
+    def get_display_offset(self, gridPos):
         dis_size = self.get_display_size()
         return [int(gridPos[0] * dis_size[0]), int(gridPos[1] * dis_size[1])]
 
-    def add_sensor(self, sensor):"""向传感器列表中添加传感器对象"""
+    def add_sensor(self, sensor):
         self.sensor_list.append(sensor)
 
-    def get_sensor_list(self):"""获取传感器列表"""
+    def get_sensor_list(self):
         return self.sensor_list
 
-    def render(self): """渲染传感器数据到窗口上，如果显示窗口未启用则直接返回不进行渲染操作"""  
+    def render(self):
         if not self.render_enabled():
             return
 
@@ -109,7 +109,7 @@ class DisplayManager:
 
     def render_enabled(self):
         return self.display != None
-# 传感器管理器类，用于管理各类传感器的创建、数据采集和渲染
+
 class SensorManager:
     def __init__(self, world, display_man, sensor_type, transform, attached, sensor_options, display_pos):
         self.surface = None

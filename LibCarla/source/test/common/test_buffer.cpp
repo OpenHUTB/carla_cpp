@@ -136,6 +136,6 @@ TEST(buffer, buffer_pool) {
   ASSERT_EQ(as_string(buff1), str);
   auto buff2 = pool->Pop();
   ASSERT_NE(as_string(buff2), str);
-  // 现在清空缓存池来测试缓存里面的弱引用
+  // Now delete the pool to test the weak reference inside the buffers.
   pool.reset();
 }

@@ -142,7 +142,7 @@ namespace detail {
     }
     _cv.notify_all();  // 通知所有线程
   }
- // 设置一个异常，并通知所有等待的线程
+
   template <typename T>
   template <typename ExceptionT>
   void RecurrentSharedFuture<T>::SetException(ExceptionT &&e) {

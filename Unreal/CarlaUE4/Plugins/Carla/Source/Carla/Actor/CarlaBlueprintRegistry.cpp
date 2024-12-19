@@ -50,7 +50,7 @@ void UCarlaBlueprintRegistry::AddToCarlaBlueprintRegistry(const TArray<FPropPara
 {
   TArray<TSharedPtr<FJsonValue>> ResultPropJsonArray;
 
-  // 加载默认属性文件
+  // Load default props file
   FString DefaultPropFilePath = CommonAttributes::PATH + CommonAttributes::DEFAULT +
       PropAttributes::REGISTRY_FORMAT;
   FString JsonString;
@@ -59,7 +59,7 @@ void UCarlaBlueprintRegistry::AddToCarlaBlueprintRegistry(const TArray<FPropPara
   TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
   TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(JsonString);
 
-  //填充属性数组并将每个属性的索引保存到 PropIndexes 地图中
+  // Fill Array of Props and save indexes of each prop in PropIndexes Map
   TMap<FString, int> PropIndexes;
   if (FJsonSerializer::Deserialize(JsonReader, JsonObject) && JsonObject.IsValid())
   {
@@ -74,12 +74,12 @@ void UCarlaBlueprintRegistry::AddToCarlaBlueprintRegistry(const TArray<FPropPara
     }
   }
 
-  // 添加输入属性或更新它们（如果已存在）
+  // Add Input Props or Update them if already exists
   for (auto &PropParameter : PropParametersArray)
   {
     TSharedPtr<FJsonObject> PropJsonObject;
 
-    // 创建对象或更新现有对象
+    // Create object or update existing one
     int *PropIndex = PropIndexes.Find(PropParameter.Name);
     if (PropIndex)
     {
@@ -90,12 +90,12 @@ void UCarlaBlueprintRegistry::AddToCarlaBlueprintRegistry(const TArray<FPropPara
       PropJsonObject = MakeShareable(new FJsonObject);
     }
 
-    // 填充属性 JSON
+    // Fill Prop Json
     PropJsonObject->SetStringField(PropAttributes::NAME, PropParameter.Name);
     PropJsonObject->SetStringField(PropAttributes::MESH_PATH, PropParameter.Mesh->GetPathName());
     PropJsonObject->SetStringField(PropAttributes::SIZE, PropSizeTypeToString(PropParameter.Size));
 
-    //添加或更新
+    // Add or Update
     TSharedRef<FJsonValue> PropJsonValue = MakeShareable(new FJsonValueObject(PropJsonObject));
     if (PropIndex)
     {
@@ -109,15 +109,15 @@ void UCarlaBlueprintRegistry::AddToCarlaBlueprintRegistry(const TArray<FPropPara
     }
   }
 
-  // 更新Json对象
+  // Update Json Object
   JsonObject->SetArrayField(CommonAttributes::DEFINITIONS, ResultPropJsonArray);
 
-  // 序列化文件
+  // Serialize file
   FString OutputString;
   TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
   FJsonSerializer::Serialize(JsonObject.ToSharedRef(), Writer);
 
-  // 保存文件
+  // Save file
   FFileHelper::SaveStringToFile(OutputString, *DefaultPropFilePath);
 
 }
@@ -125,7 +125,7 @@ void UCarlaBlueprintRegistry::AddToCarlaBlueprintRegistry(const TArray<FPropPara
 void UCarlaBlueprintRegistry::LoadPropDefinitions(TArray<FPropParameters> &PropParametersArray)
 {
 
-  // 在Unreal Content文件夹中查找所有Package.json文件
+  // Find all Package.json files inside Unreal Content folder
   const FString WildCard = FString("*").Append(PropAttributes::REGISTRY_FORMAT);
 
   TArray<FString> PropFileNames;
@@ -136,7 +136,7 @@ void UCarlaBlueprintRegistry::LoadPropDefinitions(TArray<FPropParameters> &PropP
       false,
       false);
 
-  // 如果存在，则先排序并放置默认文件
+  // Sort and place Default File First if it exists
   PropFileNames.Sort();
   FString DefaultFileName;
   for (int32 i = 0; i < PropFileNames.Num() && DefaultFileName.IsEmpty(); ++i)
@@ -152,8 +152,8 @@ void UCarlaBlueprintRegistry::LoadPropDefinitions(TArray<FPropParameters> &PropP
     PropFileNames.Insert(DefaultFileName, 0);
   }
 
-  // 读取所有注册表文件并用用户值覆盖默认注册表值
-  // 注册表文件
+  // Read all registry files and overwrite default registry values with user
+  // registry files
   TMap<FString, int> PropIndexes;
 
   for (int32 i = 0; i < PropFileNames.Num(); ++i)
@@ -169,19 +169,19 @@ void UCarlaBlueprintRegistry::LoadPropDefinitions(TArray<FPropParameters> &PropP
 
         for (auto &PropJsonValue : PropJsonArray)
         {
-          // 读取属性JSON
+          // Read Prop Json
           TSharedPtr<FJsonObject> PropJsonObject = PropJsonValue->AsObject();
 
           FString PropName = PropJsonObject->GetStringField(PropAttributes::NAME);
           FString PropMeshPath = PropJsonObject->GetStringField(PropAttributes::MESH_PATH);
           FString PropSize = PropJsonObject->GetStringField(PropAttributes::SIZE);
 
-          // 构建属性参数
+          // Build Prop Parameter
           UStaticMesh *PropMesh = LoadObject<UStaticMesh>(nullptr, *PropMeshPath);
           EPropSize PropSizeType = StringToPropSizeType(PropSize);
           FPropParameters Params {PropName, PropMesh, PropSizeType};
 
-          // 添加或更新
+          // Add or Update
           if (PropIndexes.Contains(PropName))
           {
             PropParametersArray[PropIndexes[PropName]] = Params;

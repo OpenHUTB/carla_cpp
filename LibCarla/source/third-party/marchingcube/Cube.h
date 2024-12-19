@@ -12,7 +12,7 @@ namespace MeshReconstruction
     //关于边的编号和位置，请参见numberings.png
     std::array<Vec3, 12> edgeVertIndices;
   };
-//这段代码定义了一个名为 Cube 的类这段代码定义了一个名为 Cube 的类
+
   class Cube
   {
     Vec3 pos[8];
@@ -24,7 +24,7 @@ namespace MeshReconstruction
   public:
     Cube(Rect3 const &space, Fun3s const &sdf);
 
-    // 找出曲面与立方体相交的顶点。
+    // Find the vertices where the surface intersects the cube.
     IntersectInfo Intersect(double isoLevel = 0) const;
   };
 

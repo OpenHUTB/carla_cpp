@@ -35,8 +35,6 @@ void FCarlaExporterModule::StartupModule()
   // 这段代码将在你的模块被加载到内存中后执行；
   //具体的执行时间在每个模块的.uplugin 文件中指定。
 
-  // 调用FCarlaExporterCommands类的静态函数Register，通常这个函数用于注册相关的命令，
-// 可能是将一些自定义的操作命令注册到系统中，以便后续能够被识别和触发执行，比如在编辑器环境下响应特定的用户操作。
   FCarlaExporterCommands::Register();
 
   PluginCommands = MakeShareable(new FUICommandList);

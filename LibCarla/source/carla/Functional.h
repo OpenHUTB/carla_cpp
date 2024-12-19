@@ -65,9 +65,9 @@ namespace carla {
     struct Recursive {  // 定义 Recursive 结构体，用于递归调用
 
       explicit Recursive(T &&func) : _func(std::forward<T>(func)) {}  // 构造函数，初始化 _func
-       
-      template<typename... Ts>           // 重载 operator() 实现递归调用
-      auto operator()(Ts &&... arguments) const {     // 将自身 (*this) 作为第一个参数传递给 _func，实现递归
+
+      template<typename... Ts>
+      auto operator()(Ts &&... arguments) const {
         return _func(*this, std::forward<Ts>(arguments)...);
       }
 

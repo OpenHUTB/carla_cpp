@@ -56,8 +56,8 @@ namespace detail {
     }
  
     void Clear() {
-      std::lock_guard<std::mutex> lock(_mutex);// 使用std::lock_guard自动管理互斥锁的锁定和解锁。
-      _list = std::make_shared<ListT>(); // 将_list重置为一个新的共享列表，清空所有之前的内容。
+      std::lock_guard<std::mutex> lock(_mutex);
+      _list = std::make_shared<ListT>();
     }
  
       /// 返回指向列表的指针。

@@ -212,87 +212,87 @@ namespace carla {
             /// 更新已设置路线的方法
             void UpdateImportedRoute(const ActorId& actor_id, const Route route);///< 车辆ID和新的路线数据
 
-            ///////////////////////////////// 获取器 /////////////////////////////////////
+            ///////////////////////////////// GETTERS /////////////////////////////////////
 
-            /// 获取混合物理半径的方法
+            /// Method to retrieve hybrid physics radius.
             float GetHybridPhysicsRadius() const;
 
-            /// 查询车辆目标速度的方法
+            /// Method to query target velocity for a vehicle.
             float GetVehicleTargetVelocity(const ActorId& actor_id, const float speed_limit) const;
 
-            /// 查询车辆车道偏移量的方法
+            /// Method to query lane offset for a vehicle.
             float GetLaneOffset(const ActorId& actor_id) const;
 
-            /// 查询一对车辆之间避碰规则的方法
+            /// Method to query collision avoidance rule between a pair of vehicles.
             bool GetCollisionDetection(const ActorId& reference_actor_id, const ActorId& other_actor_id) const;
 
-            ///查询车辆变道指令的方法
+            /// Method to query lane change command for a vehicle.
             ChangeLaneInfo GetForceLaneChange(const ActorId& actor_id);
 
-            /// 查询车辆保持右侧规则的百分比概率的方法
+            /// Method to query percentage probability of keep right rule for a vehicle.
             float GetKeepRightPercentage(const ActorId& actor_id);
 
-            /// 查询车辆随机右变道百分比概率的方法
+            /// Method to query percentage probability of a random right lane change for a vehicle.
             float GetRandomLeftLaneChangePercentage(const ActorId& actor_id);
 
-            ///查询车辆随机向左变道百分比概率的方法
+            /// Method to query percentage probability of a random left lane change for a vehicle.
             float GetRandomRightLaneChangePercentage(const ActorId& actor_id);
 
-            /// 查询车辆自动变道规则的方法
+            /// Method to query auto lane change rule for a vehicle.
             bool GetAutoLaneChange(const ActorId& actor_id) const;
 
-            /// 查询给定车辆与前方车辆之间距离的方法
+            /// Method to query distance to leading vehicle for a given vehicle.
             float GetDistanceToLeadingVehicle(const ActorId& actor_id) const;
 
-            /// 获取百分比以运行任何交通灯的方法
+            /// Method to get % to run any traffic light.
             float GetPercentageRunningSign(const ActorId& actor_id) const;
 
-            /// 获取百分比以运行任何交通灯的方法
+            /// Method to get % to run any traffic light.
             float GetPercentageRunningLight(const ActorId& actor_id) const;
 
-            /// 方法获取百分比以忽略任何车辆
+            /// Method to get % to ignore any vehicle.
             float GetPercentageIgnoreVehicles(const ActorId& actor_id) const;
 
-            ///获取百分比以忽略任何步行者的方法
+            /// Method to get % to ignore any walker.
             float GetPercentageIgnoreWalkers(const ActorId& actor_id) const;
 
-            /// 获取车辆灯光是否应自动更新的方法
+            /// Method to get if the vehicle lights should be updates automatically
             bool GetUpdateVehicleLights(const ActorId& actor_id) const;
 
-            /// 获取同步模式的方法
+            /// Method to get synchronous mode.
             bool GetSynchronousMode() const;
 
-            /// 获取同步模式超时
+            /// Get synchronous mode time out
             double GetSynchronousModeTimeOutInMiliSecond() const;
 
-            /// 获取混合物理模式的方法
+            /// Method to retrieve hybrid physics mode.
             bool GetHybridPhysicsMode() const;
 
-            /// 获取是否自动重生载具的方法
+            /// Method to retrieve if we are automatically respawning vehicles.
             bool GetRespawnDormantVehicles() const;
 
-            /// 获取车辆重生时与英雄车辆之间最小距离的方法
+            /// Method to retrieve minimum distance from hero vehicle when respawning vehicles.
             float GetLowerBoundaryRespawnDormantVehicles() const;
 
-            /// 获取车辆重生时与英雄车辆之间最大距离的方法
+            /// Method to retrieve maximum distance from hero vehicle when respawning vehicles.
             float GetUpperBoundaryRespawnDormantVehicles() const;
 
-            /// 获取Open Street Map模式的方法
+            /// Method to get Open Street Map mode.
             bool GetOSMMode() const;
 
-            /// 获取是否正在上传路径的方法
+            /// Method to get if we are uploading a path.
             bool GetUploadPath(const ActorId& actor_id) const;
 
-            /// 获取自定义路径的方法
+            /// Method to get a custom path.
             Path GetCustomPath(const ActorId& actor_id) const;
 
-            /// 获取是否正在上传路线的方法
+            /// Method to get if we are uploading a route.
             bool GetUploadRoute(const ActorId& actor_id) const;
 
-            /// 获取自定义路由的方法
+            /// Method to get a custom route.
             Route GetImportedRoute(const ActorId& actor_id) const;
 
-            /// 同步模式超时变量
+            /// Synchronous mode time out variable.
             std::chrono::duration<double, std::milli> synchronous_time_out;
         };
 

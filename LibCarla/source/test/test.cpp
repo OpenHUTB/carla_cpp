@@ -12,13 +12,11 @@
 #include <exception>
 
 namespace carla {
-  //处理异常
+
   void throw_exception(const std::exception &e) {
-    // 记录一个严重级别的日志，包含异常的描述信息
     log_critical("carla::throw_exception:", e.what());
-    // 记录一个严重级别的日志，说明因为异常被禁用
-    log_critical("calling std::terminate because exceptions are disabled."); 
-    std::terminate();//终止程序的执行
+    log_critical("calling std::terminate because exceptions are disabled.");
+    std::terminate();
   }
 
 } // namespace carla

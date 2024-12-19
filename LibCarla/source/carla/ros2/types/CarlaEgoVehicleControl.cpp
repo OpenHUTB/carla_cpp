@@ -21,54 +21,51 @@
 
 #ifdef _WIN32
 // Remove linker warning LNK4221 on Visual Studio
-// 解决 Visual Studio 中的链接器警告 LNK4221
 namespace {
 char dummy;
 }  // namespace
 #endif  // _WIN32
 
 #include "CarlaEgoVehicleControl.h"
-#include <fastcdr/Cdr.h>// 用于序列化和反序列化
+#include <fastcdr/Cdr.h>
 
-#include <fastcdr/exceptions/BadParamException.h> 
+#include <fastcdr/exceptions/BadParamException.h>
 using namespace eprosima::fastcdr::exception;
 
 #include <utility>
-// 定义序列化时不同数据类型的最大对齐大小
+
 #define builtin_interfaces_msg_Time_max_cdr_typesize 8ULL;
 #define std_msgs_msg_Header_max_cdr_typesize 268ULL;
 #define carla_msgs_msg_CarlaEgoVehicleControl_max_cdr_typesize 289ULL;
 #define builtin_interfaces_msg_Time_max_key_cdr_typesize 0ULL;
 #define std_msgs_msg_Header_max_key_cdr_typesize 0ULL;
 #define carla_msgs_msg_CarlaEgoVehicleControl_max_key_cdr_typesize 0ULL;
-// **构造函数**：初始化类的成员变量
+
 carla_msgs::msg::CarlaEgoVehicleControl::CarlaEgoVehicleControl()
 {
     // std_msgs::msg::Header m_header
 
     // float m_throttle
-    m_throttle = 0.0;        // 油门值，初始为0
+    m_throttle = 0.0;
     // float m_steer
-    m_steer = 0.0;            // 转向值，初始为0
+    m_steer = 0.0;
     // float m_brake
-    m_brake = 0.0;            // 刹车值
+    m_brake = 0.0;
     // boolean m_hand_brake
-    m_hand_brake = false;    // 手刹状态
+    m_hand_brake = false;
     // boolean m_reverse
-    m_reverse = false;        // 倒车状态
+    m_reverse = false;
     // long m_gear
-    m_gear = 0;                // 挡位
+    m_gear = 0;
     // boolean m_manual_gear_shift
-    m_manual_gear_shift = false;    // 是否手动换挡，初始为false
+    m_manual_gear_shift = false;
 
 }
 
-// **析构函数**
 carla_msgs::msg::CarlaEgoVehicleControl::~CarlaEgoVehicleControl()
 {
 }
 
-// **拷贝构造函数**：基于已有对象 x 初始化当前对象
 carla_msgs::msg::CarlaEgoVehicleControl::CarlaEgoVehicleControl(
         const CarlaEgoVehicleControl& x)
 {
@@ -82,11 +79,10 @@ carla_msgs::msg::CarlaEgoVehicleControl::CarlaEgoVehicleControl(
     m_manual_gear_shift = x.m_manual_gear_shift;
 }
 
-// **移动构造函数**：基于已有对象 x（临时对象）移动资源到当前对象
 carla_msgs::msg::CarlaEgoVehicleControl::CarlaEgoVehicleControl(
         CarlaEgoVehicleControl&& x) noexcept
 {
-    m_header = std::move(x.m_header);        // 使用 std::move 移动 m_header
+    m_header = std::move(x.m_header);
     m_throttle = x.m_throttle;
     m_steer = x.m_steer;
     m_brake = x.m_brake;
@@ -96,7 +92,6 @@ carla_msgs::msg::CarlaEgoVehicleControl::CarlaEgoVehicleControl(
     m_manual_gear_shift = x.m_manual_gear_shift;
 }
 
-// **拷贝赋值运算符**：将对象 x 的值赋给当前对象
 carla_msgs::msg::CarlaEgoVehicleControl& carla_msgs::msg::CarlaEgoVehicleControl::operator =(
         const CarlaEgoVehicleControl& x)
 {
@@ -109,11 +104,9 @@ carla_msgs::msg::CarlaEgoVehicleControl& carla_msgs::msg::CarlaEgoVehicleControl
     m_gear = x.m_gear;
     m_manual_gear_shift = x.m_manual_gear_shift;
 
-    return *this;            // 返回当前对象的引用
+    return *this;
 }
 
-
-// **移动赋值运算符**：将临时对象 x 的值移动到当前对象
 carla_msgs::msg::CarlaEgoVehicleControl& carla_msgs::msg::CarlaEgoVehicleControl::operator =(
         CarlaEgoVehicleControl&& x) noexcept
 {
@@ -126,11 +119,8 @@ carla_msgs::msg::CarlaEgoVehicleControl& carla_msgs::msg::CarlaEgoVehicleControl
     m_gear = x.m_gear;
     m_manual_gear_shift = x.m_manual_gear_shift;
 
-    return *this;// 返回当前对象的引用
+    return *this;
 }
-
-
-// **比较运算符**：判断两个对象是否相等
 
 bool carla_msgs::msg::CarlaEgoVehicleControl::operator ==(
         const CarlaEgoVehicleControl& x) const
@@ -138,15 +128,12 @@ bool carla_msgs::msg::CarlaEgoVehicleControl::operator ==(
     return (m_header == x.m_header && m_throttle == x.m_throttle && m_steer == x.m_steer && m_brake == x.m_brake && m_hand_brake == x.m_hand_brake && m_reverse == x.m_reverse && m_gear == x.m_gear && m_manual_gear_shift == x.m_manual_gear_shift);
 }
 
-
-// **不等运算符**：判断两个对象是否不相等
 bool carla_msgs::msg::CarlaEgoVehicleControl::operator !=(
         const CarlaEgoVehicleControl& x) const
 {
     return !(*this == x);
 }
 
-// **获取最大序列化大小**：返回最大序列化所需的空间大小
 size_t carla_msgs::msg::CarlaEgoVehicleControl::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
@@ -154,25 +141,22 @@ size_t carla_msgs::msg::CarlaEgoVehicleControl::getMaxCdrSerializedSize(
     return carla_msgs_msg_CarlaEgoVehicleControl_max_cdr_typesize;
 }
 
-// **计算当前对象的序列化大小**：基于当前对齐值
-
 size_t carla_msgs::msg::CarlaEgoVehicleControl::getCdrSerializedSize(
         const carla_msgs::msg::CarlaEgoVehicleControl& data,
         size_t current_alignment)
 {
     size_t initial_alignment = current_alignment;
     current_alignment += std_msgs::msg::Header::getCdrSerializedSize(data.header(), current_alignment);
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);// throttle
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);// steer
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);// brake
-    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);// hand_brake
-    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);// reverse
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);// gear
-    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);// manual_gear_shift
-    return current_alignment - initial_alignment;// 返回序列化大小
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    return current_alignment - initial_alignment;
 }
 
-// **序列化函数**：将对象数据写入 CDR 流
 void carla_msgs::msg::CarlaEgoVehicleControl::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
@@ -185,8 +169,6 @@ void carla_msgs::msg::CarlaEgoVehicleControl::serialize(
     scdr << m_gear;
     scdr << m_manual_gear_shift;
 }
-
-// **反序列化函数**：从 CDR 流中读取数据到对象
 
 void carla_msgs::msg::CarlaEgoVehicleControl::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
@@ -205,7 +187,6 @@ void carla_msgs::msg::CarlaEgoVehicleControl::deserialize(
  * @brief This function copies the value in member header
  * @param _header New value to be copied in member header
  */
-// **设置 header 值**
 void carla_msgs::msg::CarlaEgoVehicleControl::header(
         const std_msgs::msg::Header& _header)
 {
@@ -216,10 +197,6 @@ void carla_msgs::msg::CarlaEgoVehicleControl::header(
  * @brief This function moves the value in member header
  * @param _header New value to be moved in member header
  */
-/*
- * @brief 通过移动语义设置header成员的值，减少拷贝，提高性能
- * @param _header 待移动的std_msgs::msg::Header对象
-*/
 void carla_msgs::msg::CarlaEgoVehicleControl::header(
         std_msgs::msg::Header&& _header)
 {
@@ -227,8 +204,8 @@ void carla_msgs::msg::CarlaEgoVehicleControl::header(
 }
 
 /*!
- * @brief This function returns a constant reference to member header（返回header成员的常量引用，用于只读访问）
- * @return Constant reference to member header（return header的常量引用）
+ * @brief This function returns a constant reference to member header
+ * @return Constant reference to member header
  */
 const std_msgs::msg::Header& carla_msgs::msg::CarlaEgoVehicleControl::header() const
 {
@@ -236,16 +213,16 @@ const std_msgs::msg::Header& carla_msgs::msg::CarlaEgoVehicleControl::header() c
 }
 
 /*!
- * @brief This function returns a reference to member header（返回header成员的引用，用于修改header的值）
- * @return Reference to member header（）
+ * @brief This function returns a reference to member header
+ * @return Reference to member header
  */
 std_msgs::msg::Header& carla_msgs::msg::CarlaEgoVehicleControl::header()
 {
     return m_header;
 }
 /*!
- * @brief This function sets a value in member throttle（设置throttle成员的值（油门））
- * @param _throttle New value for member throttle（param _throttle 新的油门值，范围通常在0.0到1.0之间）
+ * @brief This function sets a value in member throttle
+ * @param _throttle New value for member throttle
  */
 void carla_msgs::msg::CarlaEgoVehicleControl::throttle(
         float _throttle)
@@ -257,14 +234,13 @@ void carla_msgs::msg::CarlaEgoVehicleControl::throttle(
  * @brief This function returns the value of member throttle
  * @return Value of member throttle
  */
-//返回throttle的值
 float carla_msgs::msg::CarlaEgoVehicleControl::throttle() const
 {
     return m_throttle;
 }
 
 /*!
- * @brief This function returns a reference to member throttle（用于修改油门值）
+ * @brief This function returns a reference to member throttle
  * @return Reference to member throttle
  */
 float& carla_msgs::msg::CarlaEgoVehicleControl::throttle()
@@ -273,8 +249,8 @@ float& carla_msgs::msg::CarlaEgoVehicleControl::throttle()
 }
 
 /*!
- * @brief This function sets a value in member steer（设置转向角度）
- * @param _steer New value for member steer（新的转向值，范围通常在-1.0到1.0之间）
+ * @brief This function sets a value in member steer
+ * @param _steer New value for member steer
  */
 void carla_msgs::msg::CarlaEgoVehicleControl::steer(
         float _steer)
@@ -283,8 +259,8 @@ void carla_msgs::msg::CarlaEgoVehicleControl::steer(
 }
 
 /*!
- * @brief This function returns the value of member steer（返回steer的值）
- * @return Value of member steer（当前转向的值）
+ * @brief This function returns the value of member steer
+ * @return Value of member steer
  */
 float carla_msgs::msg::CarlaEgoVehicleControl::steer() const
 {
@@ -292,7 +268,7 @@ float carla_msgs::msg::CarlaEgoVehicleControl::steer() const
 }
 
 /*!
- * @brief This function returns a reference to member steer（返回steer的引用，用于修改转向值）
+ * @brief This function returns a reference to member steer
  * @return Reference to member steer
  */
 float& carla_msgs::msg::CarlaEgoVehicleControl::steer()
@@ -301,8 +277,8 @@ float& carla_msgs::msg::CarlaEgoVehicleControl::steer()
 }
 
 /*!
- * @brief This function sets a value in member brake（设置break成员的值，也就是刹车力度）
- * @param _brake New value for member brake（新的刹车值，范围在0到1之间）
+ * @brief This function sets a value in member brake
+ * @param _brake New value for member brake
  */
 void carla_msgs::msg::CarlaEgoVehicleControl::brake(
         float _brake)
@@ -311,7 +287,7 @@ void carla_msgs::msg::CarlaEgoVehicleControl::brake(
 }
 
 /*!
- * @brief This function returns the value of member brake（返回break的值）
+ * @brief This function returns the value of member brake
  * @return Value of member brake
  */
 float carla_msgs::msg::CarlaEgoVehicleControl::brake() const
@@ -320,7 +296,7 @@ float carla_msgs::msg::CarlaEgoVehicleControl::brake() const
 }
 
 /*!
- * @brief This function returns a reference to member brake（刹车值的修改）
+ * @brief This function returns a reference to member brake
  * @return Reference to member brake
  */
 float& carla_msgs::msg::CarlaEgoVehicleControl::brake()
@@ -329,8 +305,8 @@ float& carla_msgs::msg::CarlaEgoVehicleControl::brake()
 }
 
 /*!
- * @brief This function sets a value in member hand_brake（设置手刹的状态）
- * @param _hand_brake New value for member hand_brake（true是使用手刹）
+ * @brief This function sets a value in member hand_brake
+ * @param _hand_brake New value for member hand_brake
  */
 void carla_msgs::msg::CarlaEgoVehicleControl::hand_brake(
         bool _hand_brake)
@@ -339,7 +315,7 @@ void carla_msgs::msg::CarlaEgoVehicleControl::hand_brake(
 }
 
 /*!
- * @brief This function returns the value of member hand_brake（返回手刹的值，用于修改手刹的状态）
+ * @brief This function returns the value of member hand_brake
  * @return Value of member hand_brake
  */
 bool carla_msgs::msg::CarlaEgoVehicleControl::hand_brake() const
@@ -348,7 +324,7 @@ bool carla_msgs::msg::CarlaEgoVehicleControl::hand_brake() const
 }
 
 /*!
- * @brief This function returns a reference to member hand_brake（修改修改手刹状态）
+ * @brief This function returns a reference to member hand_brake
  * @return Reference to member hand_brake
  */
 bool& carla_msgs::msg::CarlaEgoVehicleControl::hand_brake()
@@ -357,8 +333,8 @@ bool& carla_msgs::msg::CarlaEgoVehicleControl::hand_brake()
 }
 
 /*!
- * @brief This function sets a value in member reverse（倒车状态）
- * @param _reverse New value for member reverse（布尔值，true表示车辆处于倒车状态）
+ * @brief This function sets a value in member reverse
+ * @param _reverse New value for member reverse
  */
 void carla_msgs::msg::CarlaEgoVehicleControl::reverse(
         bool _reverse)
@@ -367,8 +343,8 @@ void carla_msgs::msg::CarlaEgoVehicleControl::reverse(
 }
 
 /*!
- * @brief This function returns the value of member reverse（返回reverse的值）
- * @return Value of member reverse（当前倒车状态，true表示正在倒车）
+ * @brief This function returns the value of member reverse
+ * @return Value of member reverse
  */
 bool carla_msgs::msg::CarlaEgoVehicleControl::reverse() const
 {
@@ -376,7 +352,7 @@ bool carla_msgs::msg::CarlaEgoVehicleControl::reverse() const
 }
 
 /*!
- * @brief This function returns a reference to member reverse（返回reverse的引用，用于修改倒车状态）
+ * @brief This function returns a reference to member reverse
  * @return Reference to member reverse
  */
 bool& carla_msgs::msg::CarlaEgoVehicleControl::reverse()
@@ -385,8 +361,8 @@ bool& carla_msgs::msg::CarlaEgoVehicleControl::reverse()
 }
 
 /*!
- * @brief This function sets a value in member gear（档位的修改）
- * @param _gear New value for member gear（整数型，表示当前状态下是几档）
+ * @brief This function sets a value in member gear
+ * @param _gear New value for member gear
  */
 void carla_msgs::msg::CarlaEgoVehicleControl::gear(
         int32_t _gear)
@@ -395,8 +371,8 @@ void carla_msgs::msg::CarlaEgoVehicleControl::gear(
 }
 
 /*!
- * @brief This function returns the value of member gear（返回gear的值）
- * @return Value of member gear（当前档位的值）
+ * @brief This function returns the value of member gear
+ * @return Value of member gear
  */
 int32_t carla_msgs::msg::CarlaEgoVehicleControl::gear() const
 {
@@ -404,8 +380,8 @@ int32_t carla_msgs::msg::CarlaEgoVehicleControl::gear() const
 }
 
 /*!
- * @brief This function returns a reference to member gear（返回gear的引用，用于修改档位值）
- * @return Reference to member gear（ gear的引用）
+ * @brief This function returns a reference to member gear
+ * @return Reference to member gear
  */
 int32_t& carla_msgs::msg::CarlaEgoVehicleControl::gear()
 {
@@ -413,8 +389,8 @@ int32_t& carla_msgs::msg::CarlaEgoVehicleControl::gear()
 }
 
 /*!
- * @brief This function sets a value in member manual_gear_shift（设置manual_gear_shift成员的值（手动换挡状态））
- * @param _manual_gear_shift New value for member manual_gear_shift（布尔值，true表示启用手动换挡）
+ * @brief This function sets a value in member manual_gear_shift
+ * @param _manual_gear_shift New value for member manual_gear_shift
  */
 void carla_msgs::msg::CarlaEgoVehicleControl::manual_gear_shift(
         bool _manual_gear_shift)
@@ -423,8 +399,8 @@ void carla_msgs::msg::CarlaEgoVehicleControl::manual_gear_shift(
 }
 
 /*!
- * @brief This function returns the value of member manual_gear_shift（返回manual_gear_shift的值）
- * @return Value of member manual_gear_shift（当前手动换挡状态，true表示启用手动换挡）
+ * @brief This function returns the value of member manual_gear_shift
+ * @return Value of member manual_gear_shift
  */
 bool carla_msgs::msg::CarlaEgoVehicleControl::manual_gear_shift() const
 {
@@ -432,7 +408,7 @@ bool carla_msgs::msg::CarlaEgoVehicleControl::manual_gear_shift() const
 }
 
 /*!
- * @brief This function returns a reference to member manual_gear_shift（返回manual_gear_shift的引用，用于修改手动换挡状态）
+ * @brief This function returns a reference to member manual_gear_shift
  * @return Reference to member manual_gear_shift
  */
 bool& carla_msgs::msg::CarlaEgoVehicleControl::manual_gear_shift()

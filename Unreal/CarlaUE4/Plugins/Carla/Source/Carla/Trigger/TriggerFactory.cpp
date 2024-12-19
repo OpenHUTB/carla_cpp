@@ -66,18 +66,18 @@ FActorSpawnResult ATriggerFactory::SpawnActor(
   }
   else
   {
-    // 获取关卡
+    // Retrieve Episode
     auto *Episode = GameInstance->GetCarlaEpisode();
     check(Episode != nullptr);
     Trigger->SetEpisode(*Episode);
 
-    // 获取摩擦力
+    // Retrieve Friction
     float Friction = UActorBlueprintFunctionLibrary::RetrieveActorAttributeToFloat("friction",
         Description.Variations,
         3.5f);
     Trigger->SetFriction(Friction);
 
-    // 获取范围
+    // Retrieve Extent
     FVector Extent {100.0f, 100.0f, 100.0f};
 
     Extent.X = UActorBlueprintFunctionLibrary::RetrieveActorAttributeToFloat("extent_x",

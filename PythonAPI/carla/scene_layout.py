@@ -142,58 +142,42 @@ def get_dynamic_objects(carla_world, carla_map):
         return corners
 
     def _split_actors(actors):
-     #定义一个函数 _split_actors，它接受一个包含所有actor的列表 actors 作为参数。
         vehicles = []
         traffic_lights = []
         speed_limits = []
         walkers = []
         stops = []
         static_obstacles = []
-     #初始化六个空列表，用于存储不同类型的actor。
         for actor in actors:
-         #遍历传入的 actors 列表中的每个actor。
             if 'vehicle' in actor.type_id:
                 vehicles.append(actor)
-             #检查actor的 type_id 是否包含字符串 "vehicle"，如果是，则将该actor添加到 vehicles 列表中。
             elif 'traffic_light' in actor.type_id:
                 traffic_lights.append(actor)
-             #检查actor的 type_id 是否包含字符串 "traffic_light"，如果是，则将该actor添加到 traffic_lights 列表中。
             elif 'speed_limit' in actor.type_id:
                 speed_limits.append(actor)
-             #检查actor的 type_id 是否包含字符串 "speed_limit"，如果是，则将该actor添加到 speed_limits 列表中。
             elif 'walker' in actor.type_id:
                 walkers.append(actor)
-             #检查actor的 type_id 是否包含字符串 "walker"，如果是，则将该actor添加到 walkers 列表中。
             elif 'stop' in actor.type_id:
                 stops.append(actor)
-             #检查actor的 type_id 是否包含字符串 "stop"，如果是，则将该actor添加到 stops 列表中。
             elif 'static.prop' in actor.type_id:
                 static_obstacles.append(actor)
-             #检查actor的 type_id 是否包含字符串 "static.prop"，如果是，则将该actor添加到 static_obstacles 列表中。
 
 
         return (vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles)
-        #函数返回六个列表，包含分类后的actors。
 
-    #定义一个函数 get_stop_signals，它接受一个包含所有stop actor的列表 stops 作为参数。
+    # Public functions
     def get_stop_signals(stops):
         stop_signals_dict = dict()
-     #初始化一个空字典 stop_signals_dict，用于存储stop信号的信息。
         for stop in stops:
-         #遍历传入的 stops 列表中的每个stop actor。
             st_transform = stop.get_transform()
             location_gnss = carla_map.transform_to_geolocation(st_transform.location)
-         #获取stop actor的变换信息 st_transform，然后使用 carla_map.transform_to_geolocation 方法将变换位置转换为GNSS坐标 location_gnss。
             st_dict = {
                 "id": stop.id,
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
                 "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(stop)]
             }
-         #创建一个字典 st_dict，包含stop actor的ID、位置和触发体积信息。触发体积信息是通过调用 _get_trigger_volume 函数获得的。
             stop_signals_dict[stop.id] = st_dict
-         #将 st_dict 添加到 stop_signals_dict 字典中，以stop actor的ID作为键。
         return stop_signals_dict
-     #函数返回包含所有stop信号信息的字典 stop_signals_dict。
 
     def get_traffic_lights(traffic_lights):
         traffic_lights_dict = dict()

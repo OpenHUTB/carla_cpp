@@ -18,8 +18,8 @@
 
 class ACarlaActorFactory;
 
-/// 负责将ActorDefinitions绑定到生成函数，以及
-/// 维护所有已生成参与者的注册表
+/// Object in charge of binding ActorDefinitions to spawn functions, as well as
+/// keeping the registry of all the actors spawned.
 UCLASS()
 class CARLA_API UActorDispatcher : public UObject
 {
@@ -29,33 +29,33 @@ public:
 
   using SpawnFunctionType = TFunction<FActorSpawnResult(const FTransform &, const FActorDescription &)>;
 
-  /// 将定义绑定到一个生成函数。当使用一个
-  /// 匹配描述的Functer被称为
+  /// Bind a definition to a spawn function. When SpawnActor is called with a
+  /// matching description @a Functor is called.
   ///
-  /// 警告：无效的定义将被忽略
+  /// @warning Invalid definitions are ignored.
   void Bind(FActorDefinition Definition, SpawnFunctionType SpawnFunction);
 
-  /// 将所有@a ActorFactory 的定义绑定到其 spawn 函数
+  /// Bind all the definitions of @a ActorFactory to its spawn function.
   ///
-  ///警告 无效的定义将被忽略
+  /// @warning Invalid definitions are ignored.
   void Bind(ACarlaActorFactory &ActorFactory);
 
-  ///在 @a Transform 位置基于 @a ActorDescription 生成一个角色。为了正确地
-  /// 使用此函数创建的actor可以通过调用DestroyActor来销毁
+  /// Spawns an actor based on @a ActorDescription at @a Transform. To properly
+  /// despawn an actor created with this function call DestroyActor.
   ///
-  /// 回复包含 spawn 函数结果和视图的一对
-  /// 参与者及其属性。如果状态不是成功，则
-  /// 视图无效
+  /// @return A pair containing the result of the spawn function and a view over
+  /// the actor and its properties. If the status is different of Success the
+  /// view is invalid.
   TPair<EActorSpawnResultStatus, FCarlaActor*> SpawnActor(
       const FTransform &Transform,
       FActorDescription ActorDescription,
       FCarlaActor::IdType DesiredId = 0);
 
-  /// 在给定的变换位置@a Transform 处重新生成一个基于@a ActorDescription 的演员。为了正确地
-  /// 使用此函数创建的 actor 可以通过调用 DestroyActor 来销毁
-  /// 用于重新生成休眠的参与者
+  /// ReSpawns an actor based on @a ActorDescription at @a Transform. To properly
+  /// despawn an actor created with this function call DestroyActor.
+  /// Used to respawn dormant actors.
   ///
-  ///返回要重生的角色
+  /// @return The actor to be respawned
   AActor* ReSpawnActor(
       const FTransform &Transform,
       FActorDescription ActorDescription);
@@ -64,15 +64,16 @@ public:
 
   void WakeActorUp(FCarlaActor::IdType Id, UCarlaEpisode* CarlaEpisode);
 
-  /// 销毁一个角色，并将其从注册表中正确移除
+  /// Destroys an actor, properly removing it from the registry.
   ///
-  /// 如果@a Actor已被销毁或已标记为销毁，则返回true
-  /// 如果不可破坏或为空指针，则返回 false
+  /// Return true if the @a Actor is destroyed or already marked for
+  /// destruction, false if indestructible or nullptr.
   //bool DestroyActor(AActor *Actor);
 
   bool DestroyActor(FCarlaActor::IdType ActorId);
 
-  /// 注册一个未使用“SpawnActor”函数创建但应保留在注册表中的角色
+  /// Register an actor that was not created using "SpawnActor" function but
+  /// that should be kept in the registry.
   FCarlaActor* RegisterActor(
       AActor &Actor,
       FActorDescription ActorDescription,

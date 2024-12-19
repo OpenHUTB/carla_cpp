@@ -9,37 +9,27 @@
 #include "carla/trafficmanager/Constants.h"
 #include "carla/trafficmanager/InMemoryMap.h"
 #include <boost/geometry/geometries/box.hpp>
-// 定义在carla命名空间下的traffic_manager命名空间
+
 namespace carla {
 namespace traffic_manager {
-//为carla::geom命名空间定义别名cg
+
   namespace cg = carla::geom;
- // 引入constants::Map命名空间内的元素到当前作用域
   using namespace constants::Map;
-// 定义拓扑列表类型
+
   using TopologyList = std::vector<std::pair<WaypointPtr, WaypointPtr>>;
- // 定义原始节点列表类型
   using RawNodeList = std::vector<WaypointPtr>;
-// InMemoryMap类的构造函数，接受一个WorldMap类型的参数  
-// 用于初始化类中的_world_map变量
+
   InMemoryMap::InMemoryMap(WorldMap world_map) : _world_map(world_map) {}
-// InMemoryMap类的析构函数
   InMemoryMap::~InMemoryMap() {}
-// 获取给定路点对应的路段ID
-//假设SegmentId类型是std::tuple或者类似可容纳这几个ID的类型
+
   SegmentId InMemoryMap::GetSegmentId(const WaypointPtr &wp) const {
     return std::make_tuple(wp->GetRoadId(), wp->GetLaneId(), wp->GetSectionId());
   }
-//获取SimpleWaypoint对应路段
-// 再调用上面的GetSegmentId函数来获取相应的路段ID
+
   SegmentId InMemoryMap::GetSegmentId(const SimpleWaypointPtr &swp) const {
     return GetSegmentId(swp->GetWaypoint());
   }
-// 获取给定路段ID的后继节点列表（NodeList）
-// 参数说明：
-// segment_id：要查找后继节点的路段ID
-// segment_topology：记录各路段之间的连接拓扑情况
-// segment_map：路段地图
+
   NodeList InMemoryMap::GetSuccessors(const SegmentId segment_id,
                                       const SegmentTopology &segment_topology,
                                       const SegmentMap &segment_map) {
