@@ -220,7 +220,7 @@ class TestASyncLidar(SmokeTest):
         sensors.append(Sensor(self, SensorType.LIDAR, att_l02))
 
         time.sleep(3.0)
-
+        #销毁所有传感器
         for sensor in sensors:
             sensor.destroy()
 
