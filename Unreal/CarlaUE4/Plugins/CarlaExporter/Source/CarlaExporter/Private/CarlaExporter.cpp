@@ -40,6 +40,10 @@ void FCarlaExporterModule::StartupModule()
   FCarlaExporterCommands::Register();
 
   PluginCommands = MakeShareable(new FUICommandList);
+// 将一个具体的操作（Action）映射（MapAction）到前面创建的命令列表（PluginCommands）中。
+// 这里的操作对应的是FCarlaExporterCommands类获取到的PluginActionExportAll动作，也就是定义好的一个具体可执行的导出所有内容的操作。
+// 通过FExecuteAction::CreateRaw函数创建一个执行动作的绑定，将这个动作与当前类（this指针所指向的类，应该是FCarlaExporterModule类）中的PluginButtonClicked函数关联起来，
+// 意味着当这个动作被触发时，就会执行PluginButtonClicked函数来处理具体的逻辑，最后的FCanExecuteAction()可能是用于定义这个动作是否可执行的相关条件判断等内容（虽然这里暂时没传入具体逻辑）
 
   PluginCommands->MapAction(
     FCarlaExporterCommands::Get().PluginActionExportAll,
