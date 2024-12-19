@@ -37,7 +37,13 @@ install(FILES ${libcarla_carla_opendrive} DESTINATION include/carla/opendrive)# 
 # 这样在整个项目进行安装过程时，相应的头文件就能被准确放置在期望的位置，
 # 便于其他可能依赖该项目的代码在需要时能顺利找到并包含这些头文件。
 
+# 使用file(GLOB)命令查找位于${libcarla_source_path}/carla/opendrive/parser/目录下所有的.h文件，
+# 并将查找到的这些.h文件的路径列表存储到变量libcarla_carla_opendrive_parser中。
+# GLOB是一种文件通配符查找机制，在这里用于快速定位特定目录下符合指定后缀（.h）的文件。
 file(GLOB libcarla_carla_opendrive_parser "${libcarla_source_path}/carla/opendrive/parser/*.h")
+# 使用install命令将之前通过file(GLOB)查找到并存储在变量libcarla_carla_opendrive_parser中的头文件（.h文件），
+# 安装到目标目录include/carla/opendrive/parser下。这样在整个项目进行安装构建的过程中，
+# 这些头文件就能被放置在正确的位置，方便后续其他代码在编译等操作时能够顺利找到并引用它们。
 install(FILES ${libcarla_carla_opendrive_parser} DESTINATION include/carla/opendrive/parser)
 
 file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profiler/*.h")# 使用CMake中的GLOB命令来查找符合特定模式的文件。
