@@ -12,14 +12,15 @@
 
 #include <cstdint>
 #include <cstring>
-class CAMContainer;
+class CAMContainer;// 前向声明一个名为CAMContainer的类，告知编译器后续会有这个类的完整定义，在这里先允许使用该类的指针或引用类型
+
 namespace carla
 {
     namespace sensor
     {
 
         class SensorData;
-
+// 前向声明一个名为SensorData的类，同样是先告知编译器有这个类存在，后续会有完整定义，方便在这里使用其指针等相关类型
         namespace s11n
         {
 
@@ -36,10 +37,13 @@ namespace carla
                 static Buffer Serialize(
                     const Sensor &sensor,
                     const data::CAMDataS &data,
-                    Buffer &&output);
+                    Buffer &&output); // 定义一个静态模板函数Serialize，用于将特定传感器（由模板参数Sensor指定类型）产生的
+// CAMDataS类型的数据进行序列化操作，参数sensor是传感器对象引用，data是要序列化的数据， output是用于存放序列化结果的缓冲区，函数返回序列化后的缓冲区（通过移动语义返回）
 
                 static SharedPtr<SensorData> Deserialize(RawData &&data);
             };
+ // 定义一个静态函数Deserialize，用于将传入的原始数据（RawData类型，通过右值引用接收，避免不必要的拷贝）
+// 反序列化为SensorData类型的智能指针（SharedPtr表示共享所有权的智能指针）
 
             template <typename Sensor>
             inline Buffer CAMDataSerializer::Serialize(
@@ -48,7 +52,8 @@ namespace carla
                 Buffer &&output)
             {
                 output.copy_from(data.MessageList);
-                return std::move(output);
+// 将data中的MessageList数据复制到output缓冲区中，实现序列化的具体操作，即将相关数据填充到缓冲区
+                return std::move(output); // 通过移动语义返回填充好数据的缓冲区，避免不必要的拷贝开销
             }
 
             // Custom message
@@ -59,9 +64,12 @@ namespace carla
                 static Buffer Serialize(
                     const Sensor &sensor,
                     const data::CustomV2XDataS &data,
-                    Buffer &&output);
+                    Buffer &&output);// 定义一个静态模板函数Serialize，用于将特定传感器（由模板参数Sensor指定类型）产生的
+ // CustomV2XDataS类型的数据进行序列化操作，参数含义与上面CAMDataSerializer中的Serialize类似
 
                 static SharedPtr<SensorData> Deserialize(RawData &&data);
+            }; // 定义一个静态函数Deserialize，用于将传入的对应原始数据反序列化为SensorData类型的智能指针
+
             };
 
             template <typename Sensor>
@@ -69,9 +77,9 @@ namespace carla
                 const Sensor &,
                 const data::CustomV2XDataS &data,
                 Buffer &&output)
-            {
-                output.copy_from(data.MessageList);
-                return std::move(output);
+            { 
+                output.copy_from(data.MessageList); // 将data中的MessageList数据复制到output缓冲区中，实现CustomV2XDataS数据序列化的具体操作
+                return std::move(output); // 通过移动语义返回填充好数据的缓冲区，避免拷贝开销
             }
 
         } // namespace s11n
