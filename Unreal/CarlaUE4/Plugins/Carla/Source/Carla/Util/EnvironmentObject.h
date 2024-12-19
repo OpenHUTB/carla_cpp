@@ -1,18 +1,18 @@
-// Copyright (c) 2020 Computer Vision Center (CVC) at the Universitat Autonoma
+//  版权所有 （c） 2020 Uniive 计算机视觉中心 （CVC）
 // de Barcelona (UAB).
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款进行许可。
+//有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
-#pragma once
+#编译一次
 
-#include "Carla/Util/BoundingBox.h"
-#include <compiler/disable-ue4-macros.h>
-#include <carla/rpc/ObjectLabel.h>
-#include <compiler/enable-ue4-macros.h>
+#包括"Carla/Util/BoundingBox.h"
+#包括 <compiler/disable-ue4-macros.h>
+#包括 <carla/rpc/ObjectLabel.h>
+#包括 <compiler/enable-ue4-macros.h>
 
-#include "BoundingBox.h"
+#包括 "BoundingBox.h"
 
-#include "EnvironmentObject.generated.h"
+#包括 "EnvironmentObject.generated.h"
 
 namespace crp = carla::rpc;
 
@@ -27,7 +27,7 @@ enum EnvironmentObjectType
   SKMComp
 };
 
-// Name is under discussion
+// 姓名正在讨论中
 USTRUCT(BlueprintType)
 struct CARLA_API FEnvironmentObject
 {
