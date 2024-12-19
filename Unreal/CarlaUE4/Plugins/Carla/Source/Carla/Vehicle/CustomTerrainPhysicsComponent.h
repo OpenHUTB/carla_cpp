@@ -56,7 +56,7 @@ public:
 
 struct FParticle
 {
-  FDVector Position; // position in m
+  FDVector Position; // 位置（米）
   FVector Velocity;
   float Radius = 0.02f;
 };
@@ -66,7 +66,7 @@ struct FHeightMapData
   void InitializeHeightmap(
       UHeightMapDataAsset* DataAsset, FDVector Size, FDVector Origin,
       FDVector Tile0, float ScaleZ);
-  float GetHeight(FDVector Position) const; // get height at a given global 2d position
+  float GetHeight(FDVector Position) const; // 获取给定全局2D位置的高度
   void Clear();
 // private:
   FDVector WorldSize;
@@ -210,7 +210,7 @@ private:
   std::unordered_map<uint64_t, FDenseTile> TilesToWrite;
   FDVector Tile0Position;
   FDVector Extension;
-  float TileSize = 1.f; // 1m per tile
+  float TileSize = 1.f; // 每一个瓦片1米
   FHeightMapData Heightmap;
   float ParticleSize = 0.02f;
   float TerrainDepth = 0.4f;
@@ -218,10 +218,10 @@ private:
   uint32 TextureSize = 0;
   float AffectedRadius = 0.0f;
   FVector PositionToUpdate;
-  FCriticalSection Lock_Map; // UE4 Mutex
-  FCriticalSection Lock_CacheMap; // UE4 Mutex
+  FCriticalSection Lock_Map; // UE4 互斥锁
+  FCriticalSection Lock_CacheMap; // UE4 互斥锁
   FCriticalSection Lock_GetTile;
-  FCriticalSection Lock_Position; // UE4 Mutex
+  FCriticalSection Lock_Position; // UE4 互斥锁
 
 };
 
@@ -400,10 +400,10 @@ public:
   bool DrawDebugInfo = true;
   UPROPERTY(EditAnywhere)
   bool bUpdateParticles = false;
-  // Radius of the data loaded in memory
+  // 内存中加载的数据半径
   UPROPERTY(EditAnywhere, Category="Tiles")
   FVector TileRadius = FVector( 100, 100, 0 );
-  // Radius of the data loaded in memory
+  // 内存中加载的数据半径
   UPROPERTY(EditAnywhere, Category="Tiles")
   FVector CacheRadius = FVector( 50, 50, 0 );
   UPROPERTY(EditAnywhere, Category="Tiles")
@@ -413,21 +413,21 @@ public:
   UPROPERTY(EditAnywhere, Category="Tiles")
   bool bRemoveLandscapeColliders = false;
 private:
-  // TimeToTriggerCacheReload In seconds
+  // 触发缓存重新加载的时间（秒）
   UPROPERTY(EditAnywhere, Category="Tiles")
   float TimeToTriggerCacheReload = 20.0f;
-  // TimeToTriggerLoadTiles in MS
+  // 触发加载瓦片的时间（毫秒）
   UPROPERTY(EditAnywhere, Category="Tiles")
   float TimeToTriggerLoadTiles = 1.0f;
   UPROPERTY(EditAnywhere, Category="Tiles")
   float TimeToTriggerUnLoadTiles = 5.0f;
-  // Radius of the data collected by the texture in METERS
+  // 纹理收集的数据半径（米）
   UPROPERTY(EditAnywhere, Category="MaterialParameters")
   float TextureRadius = 4.0f;
-  // Radius of the data collected by the texture in METERS
+  // 大纹理收集的数据半径（米）
   UPROPERTY(EditAnywhere, Category="MaterialParameters")
   float LargeTextureRadius = 50.0f;
-  // Scalar Factor of deformation effect applied in the landscape
+  // 应用于地形的变形效果的标量因子
   UPROPERTY(EditAnywhere, Category="MaterialParameters")
   float EffectMultiplayer = 10.0f;
 

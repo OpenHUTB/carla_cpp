@@ -50,13 +50,13 @@ enum class EVehicleWheelLocation : uint8 {
   BR_Wheel = 3,
   ML_Wheel = 4,
   MR_Wheel = 5,
-  //Use for bikes and bicycles
+  // 用于自行车和摩托车
   Front_Wheel = 0,
   Back_Wheel = 1,
 };
 
-/// Type of door to open/close
-// When adding new door types, make sure that All is the last one.
+/// 要打开/关闭的门的类型
+// 添加新的门类型时，确保所有类型都是最后一种
 UENUM(BlueprintType)
 enum class EVehicleDoor : uint8 {
   FL = 0,
@@ -68,7 +68,7 @@ enum class EVehicleDoor : uint8 {
   All = 6
 };
 
-/// Base class for CARLA wheeled vehicles.
+/// CARLA轮式车辆的基类
 UCLASS()
 class CARLA_API ACarlaWheeledVehicle : public AWheeledVehicle
 {
@@ -91,21 +91,21 @@ public:
   /// @{
 public:
 
-  /// Vehicle control currently applied to this vehicle.
+  /// 当前应用于此车辆的车辆控制
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   const FVehicleControl &GetVehicleControl() const
   {
     return LastAppliedControl;
   }
 
-  /// Vehicle Ackermann control currently applied to this vehicle.
+  /// 车辆阿克曼控制目前应用于该车辆
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   const FVehicleAckermannControl &GetVehicleAckermannControl() const
   {
     return LastAppliedAckermannControl;
   }
 
-  /// Transform of the vehicle. Location is shifted so it matches center of the
+  /// 车辆的变换。位置被移动以匹配车辆边界的中心，而不是 actor 的位置
   /// vehicle bounds rather than the actor's location.
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   FTransform GetVehicleTransform() const
@@ -113,34 +113,34 @@ public:
     return GetActorTransform();
   }
 
-  /// Forward speed in cm/s. Might be negative if goes backwards.
+  /// 前进速度，单位为cm/s。如果倒车可能为负值。
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   float GetVehicleForwardSpeed() const;
 
-  /// Orientation vector of the vehicle, pointing forward.
+  /// 车辆的方向向量，指向前方
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   FVector GetVehicleOrientation() const;
 
-  /// Active gear of the vehicle.
+  /// 车辆的当前档位
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   int32 GetVehicleCurrentGear() const;
 
-  /// Transform of the vehicle's bounding box relative to the vehicle.
+  /// 车辆边界框相对于车辆的变换
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   FTransform GetVehicleBoundingBoxTransform() const;
 
-  /// Extent of the vehicle's bounding box.
+  /// 车辆边界框的范围
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   FVector GetVehicleBoundingBoxExtent() const;
 
-  /// Get vehicle's bounding box component.
+  /// 获取车辆的边界框组件
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   UBoxComponent *GetVehicleBoundingBox() const
   {
     return VehicleBounds;
   }
 
-  /// Get the maximum angle at which the front wheel can steer.
+  /// 获取前轮可以转向的最大角度
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   float GetMaximumSteerAngle() const;
 
@@ -151,7 +151,7 @@ public:
   /// @{
 public:
 
-  /// @todo This function should be private to AWheeledVehicleAIController.
+  /// @todo 这个函数应该是 AWheeledVehicleAIController 的私有函数
   void SetAIVehicleState(ECarlaWheeledVehicleState InState)
   {
     State = InState;
@@ -247,7 +247,7 @@ public:
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   void ShowDebugTelemetry(bool Enabled);
 
-  /// @todo This function should be private to AWheeledVehicleAIController.
+  /// @todo 这个函数应该是 AWheeledVehicleAIController 的私有函数
   void FlushVehicleControl();
 
   /// @}
@@ -330,7 +330,7 @@ protected:
 
 private:
 
-  /// Current state of the vehicle controller (for debugging purposes).
+  /// 车辆控制器的当前状态（用于调试目的）
   UPROPERTY(Category = "AI Controller", VisibleAnywhere)
   ECarlaWheeledVehicleState State = ECarlaWheeledVehicleState::UNKNOWN;
 
@@ -389,9 +389,9 @@ public:
   UFUNCTION()
   bool IsInVehicleRange(const FVector& Location) const;
 
-  /// Set the rotation of the car wheels indicated by the user
+  /// 设置用户指定的车轮旋转
   /// 0 = FL_VehicleWheel, 1 = FR_VehicleWheel, 2 = BL_VehicleWheel, 3 = BR_VehicleWheel
-  /// NOTE : This is purely aesthetic. It will not modify the physics of the car in any way
+  /// 注意：这仅仅是视觉效果。它不会以任何方式修改车辆的物理特性
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   void SetWheelSteerDirection(EVehicleWheelLocation WheelLocation, float AngleInDeg);
 
@@ -438,7 +438,7 @@ private:
   UPROPERTY(Category="CARLA Wheeled Vehicle", VisibleAnywhere)
   bool bPhysicsEnabled = true;
 
-  // Small workarround to allow optional CarSim plugin usage
+  // 小技巧，允许可选的 CarSim 插件使用
   UPROPERTY(Category="CARLA Wheeled Vehicle", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
   UBaseCarlaMovementComponent * BaseMovementComponent = nullptr;
 
@@ -448,15 +448,15 @@ private:
   UPROPERTY(Category="CARLA Wheeled Vehicle", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
   TMap<UPhysicsConstraintComponent*, UPrimitiveComponent*> ConstraintDoor;
 
-  // container of the initial transform of the door, used to reset its position
+  // 车门初始变换的容器，用于重置其位置
   UPROPERTY(Category="CARLA Wheeled Vehicle", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
   TMap<UPrimitiveComponent*, FTransform> DoorComponentsTransform;
 
   UPROPERTY(Category="CARLA Wheeled Vehicle", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
   TMap<UPrimitiveComponent*, UPhysicsConstraintComponent*> CollisionDisableConstraints;
 
-  /// Rollovers tend to have too much angular velocity, resulting in the vehicle doing a full 360º flip.
-  /// This function progressively reduces the vehicle's angular velocity so that it ends up upside down instead.
+  /// 翻车时通常会有过大的角速度，导致车辆完成360度翻转
+  /// 这个函数逐渐减小车辆的角速度，使其最终倒置而不是完全翻转
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   void ApplyRolloverBehavior();
 
