@@ -83,24 +83,35 @@ public:
   }
 
       void WriteDetection(std::ostream& out) const{
+      // 写入检测点的x, y, z坐标和强度，以空格分隔
         out << point.x << ' ' << point.y << ' ' << point.z << ' ' << intensity;
       }
   };
 
-  class LidarData : public SemanticLidarData{
+  // LidarData类继承自SemanticLidarData，用于存储和序列化激光雷达生成的数据
+class LidarData : public SemanticLidarData {
 
-  public:
-    explicit LidarData(uint32_t ChannelCount = 0u)
-      : SemanticLidarData(ChannelCount) {
-    }
+public:
+  // 构造函数，接受一个可选的通道数参数，默认值为0
+  explicit LidarData(uint32_t ChannelCount = 0u)
+    : SemanticLidarData(ChannelCount) {
+  }
 
-    LidarData &operator=(LidarData &&) = default;
+  // 移动赋值运算符，使用默认实现
+  LidarData &operator=(LidarData &&) = default;
 
-    ~LidarData() = default;
+  // 析构函数，使用默认实现
+  ~LidarData() = default;
 
-    virtual void ResetMemory(std::vector<uint32_t> points_per_channel) {
-      DEBUG_ASSERT(GetChannelCount() > points_per_channel.size());
-      std::memset(_header.data() + Index::SIZE, 0, sizeof(uint32_t) * GetChannelCount());
+  // 重置内存的方法，接受一个包含每个通道点数的向量
+  // 根据提供的点数重新分配和初始化内部存储
+  virtual void ResetMemory(std::vector<uint32_t> points_per_channel) {
+    // 断言确保通道数大于points_per_channel的大小（这里可能是逻辑上的错误，通常应检查points_per_channel的大小不超过通道数）
+    DEBUG_ASSERT(GetChannelCount() > points_per_channel.size());
+
+    // 使用memset将_header中特定位置后的内存清零，准备存储新的数据
+    // 假设_header是一个包含头部信息的std::vector<uint32_t>，Index::SIZE是头部固定部分的大小
+    std::memset(_header.data() + Index::SIZE, 0, sizeof(uint32_t) * GetChannelCount());
 
       uint32_t total_points = static_cast<uint32_t>(
           std::accumulate(points_per_channel.begin(), points_per_channel.end(), 0));
