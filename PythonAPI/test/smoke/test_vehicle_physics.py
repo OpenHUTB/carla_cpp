@@ -16,7 +16,7 @@ from enum import Enum
 def list_equal_tol(objs, tol = 1e-5):
     if (len(objs) < 2):
         return True
-
+    # 遍历列表中的对象，检查它们是否在公差范围内相等
     for i in range(1, len(objs)):
         equal = equal_tol(objs[0], objs[i], tol)
         if not equal:
