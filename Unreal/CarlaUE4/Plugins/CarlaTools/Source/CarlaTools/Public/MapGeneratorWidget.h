@@ -1,13 +1,16 @@
 // 版权所有(c) 2022年巴塞罗那自治大学（UAB）计算机视觉中心（CVC）。本作品在麻省理工学院许可条款下获得许可。查看副本，参见<https://opensource.org/licenses/MIT>。
-
+/ 此预处理指令确保该头文件在整个项目中仅被包含一次，避免重复定义导致的编译错误。
 #pragma once 
-
+// 引入Unreal Engine的核心最小化头文件，其中包含了许多基本类型、宏定义和常用功能的声明，是其他Unreal Engine相关头文件的基础依赖项。
 #include "CoreMinimal.h"
-
+// 包含用于创建编辑器实用工具小部件的头文件，这些小部件可在虚幻编辑器中提供特定的用户界面功能，可能用于地图生成过程中的参数设置、操作控制等与用户交互相关的功能。
 #include "EditorUtilityWidget.h"
+// 引入用于处理2D纹理渲染目标的头文件，在地图生成场景下，可能用于创建和操作用于地形纹理、地表覆盖物纹理等的渲染目标，以实现高质量的视觉效果。
 #include "Engine/TextureRenderTarget2D.h"
-#include "ProceduralFoliageSpawner.h"
+
+#include "ProceduralFoliageSpawn// 包含程序化植被生成器相关的头文件，这是用于在地图上自动生成植被的组件，通过定义的规则和参数在地图的合适位置生成树木、草丛等植被元素，增强地图的真实感和丰富度。er.h"
 #include "RegionOfInterest.h"
+//包含虚幻引擎中处理字符串的相关头文件，用于操作和处理文本数据，在地图生成过程中，可能用于存储路径、名称、配置信息等字符串类型的数据。
 #include "UnrealString.h"
 
 #include "MapGeneratorWidget.generated.h"
