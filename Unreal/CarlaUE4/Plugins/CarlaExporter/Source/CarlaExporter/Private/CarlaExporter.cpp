@@ -49,6 +49,8 @@ void FCarlaExporterModule::StartupModule()
     FCarlaExporterCommands::Get().PluginActionExportAll,
     FExecuteAction::CreateRaw(this, &FCarlaExporterModule::PluginButtonClicked),
     FCanExecuteAction());
+// 通过模块管理器（FModuleManager）加载名为"LevelEditor"的模块，并获取其引用（LoadModuleChecked会确保模块加载成功，若加载失败会抛出异常），
+// 这个"LevelEditor"模块通常是和游戏引擎等编辑器相关的核心模块，后续操作可能会基于这个模块来扩展编辑器的菜单等功能。
 
   FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
 
