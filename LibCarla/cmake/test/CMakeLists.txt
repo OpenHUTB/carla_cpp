@@ -53,7 +53,11 @@ foreach(target ${build_targets})
 
   target_compile_definitions(${target} PUBLIC
       -DLIBCARLA_ENABLE_PROFILER
-      -DLIBCARLA_WITH_GTEST)
+      -DLIBCARLA_WITH_GTEST)# 使用target_compile_definitions命令为名为${target}的目标（也就是前面创建的可执行文件目标）添加编译时的定义。
+# PUBLIC关键字表示这些定义不仅在当前目标内可用，而且对于依赖这个目标的其他目标也是可见的。
+# 这里添加了两个编译定义：
+# -DLIBCARLA_ENABLE_PROFILER：可能用于启用性能分析相关的功能代码，在编译时通过这个定义来控制相关代码的编译与否。
+# -DLIBCARLA_WITH_GTEST：表示该项目会使用Google Test框架，让编译器知晓并相应地处理涉及GTest相关的代码逻辑。
 
   target_include_directories(${target} SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"

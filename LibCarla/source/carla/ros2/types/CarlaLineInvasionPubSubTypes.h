@@ -21,72 +21,82 @@
 
 #ifndef _FAST_DDS_GENERATED_CARLA_MSGS_MSG_CARLALINEINVASION_PUBSUBTYPES_H_
 #define _FAST_DDS_GENERATED_CARLA_MSGS_MSG_CARLALINEINVASION_PUBSUBTYPES_H_
-
+// 这是头文件保护宏的开始和结束定义。作用是防止该头文件被重复包含，
+// 如果这个宏没有被定义过，就定义它然后编译该头文件内容，若已定义则跳过，避免重复编译造成的错误。
 #include <fastdds/dds/topic/TopicDataType.hpp>
 #include <fastrtps/utils/md5.h>
 
 #include "CarlaLineInvasion.h"
 #include "HeaderPubSubTypes.h"
-
+// 引入了Fast DDS相关的头文件，用于处理主题数据类型（TopicDataType）相关的功能。
+// 引入了MD5相关的头文件，可能用于数据校验等操作（比如计算消息的MD5值等情况）。
+// 同时包含了自定义的 "CarlaLineInvasion.h" 和 "HeaderPubSubTypes.h" 头文件，
+// 推测这两个头文件中定义了和具体消息内容以及发布订阅相关的类型等信息。
 #if !defined(GEN_API_VER) || (GEN_API_VER != 1)
 #error \
     Generated CarlaLineInvasion is not compatible with current installed Fast DDS. Please, regenerate it with fastddsgen.
 #endif  // GEN_API_VER
-
+// 这段代码检查是否定义了GEN_API_VER宏以及其值是否为1，如果不满足条件，
+// 就会输出错误信息，提示生成的CarlaLineInvasion与当前安装的Fast DDS不兼容，
+// 需要使用fastddsgen工具重新生成相关内容，用于保证版本的一致性和兼容性。
 namespace carla_msgs
 {
     namespace msg
     {
-        /*!
-         * @brief This class represents the TopicDataType of the type LaneInvasionEvent defined by the user in the IDL file.
-         * @ingroup CARLALINEINVASION
-         */
         class LaneInvasionEventPubSubType : public eprosima::fastdds::dds::TopicDataType
         {
+        // 定义在carla_msgs::msg命名空间下的LaneInvasionEventPubSubType类，
+        // 它继承自eprosima::fastdds::dds::TopicDataType类，意味着它会重写一些
+        // 与主题数据类型相关的虚函数，来实现特定消息类型（这里是LaneInvasionEvent）
+        // 在Fast DDS中的发布和订阅等相关操作逻辑。
         public:
             typedef LaneInvasionEvent type;
-
+// 定义了一个类型别名type，它代表LaneInvasionEvent类型，方便后续代码中使用这个类型指代。
             eProsima_user_DllExport LaneInvasionEventPubSubType();
-
+            // 类的默认构造函数声明，使用了eProsima_user_DllExport修饰，可能与动态链接库导出相关，
+            // 用于创建该类型的对象实例。
             eProsima_user_DllExport virtual ~LaneInvasionEventPubSubType() override;
-
+            // 虚析构函数声明，用于在对象销毁时进行资源清理等相关操作，保证正确释放内存等资源。
             eProsima_user_DllExport virtual bool serialize(
                     void* data,
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload) override;
-
+            // 序列化函数声明，作用是将给定的数据（data指针指向的数据，通常是消息对象）转换为适合在网络上传输的格式，
+            // 存储在SerializedPayload_t结构中，若序列化成功返回true，否则返回false。
             eProsima_user_DllExport virtual bool deserialize(
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload,
                     void* data) override;
-
+ // 反序列化函数声明，与序列化相反，它从SerializedPayload_t结构中的数据还原出原始的消息对象，
+            // 存放在data指针指向的内存位置，操作成功返回true，失败返回false。
             eProsima_user_DllExport virtual std::function<uint32_t()> getSerializedSizeProvider(
                     void* data) override;
-
+            // 获取序列化后数据大小的函数声明，返回一个函数对象，调用该函数对象可以得到给定数据序列化后的大小（以字节为单位）。
             eProsima_user_DllExport virtual bool getKey(
                     void* data,
                     eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
                     bool force_md5 = false) override;
-
+            // 获取消息的键值（可能用于标识消息实例等作用）的函数声明，根据给定的数据计算出对应的键值，
+            // 存储在InstanceHandle_t结构中，可选择是否强制使用MD5方式计算（默认不强制），成功返回true，失败返回false。
             eProsima_user_DllExport virtual void* createData() override;
-
+            // 创建数据对象的函数声明，用于分配内存并创建一个适合存储消息数据的对象实例，返回指向该对象的指针。
             eProsima_user_DllExport virtual void deleteData(
                     void* data) override;
-
+// 删除数据对象的函数声明，用于释放由createData函数创建的对象所占用的内存资源。
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
             eProsima_user_DllExport inline bool is_bounded() const override
             {
                 return false;
             }
-
         #endif  // TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
-
+// 如果定义了TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED宏，就会编译这个内联函数声明，
+// 用于判断该主题数据类型是否是有界的（比如数据长度是否固定等情况），这里默认返回false。
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_PLAIN
             eProsima_user_DllExport inline bool is_plain() const override
             {
                 return false;
             }
-
         #endif  // TOPIC_DATA_TYPE_API_HAS_IS_PLAIN
-
+// 类似地，若定义了TOPIC_DATA_TYPE_API_HAS_IS_PLAIN宏，编译这个内联函数声明，
+// 判断该主题数据类型是否是简单类型（可能涉及到数据结构复杂度等概念），默认返回false。
         #ifdef TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE
             eProsima_user_DllExport inline bool construct_sample(
                     void* memory) const override
@@ -94,10 +104,13 @@ namespace carla_msgs
                 (void)memory;
                 return false;
             }
-
         #endif  // TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE
+// 当定义了TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE宏时，编译此内联函数声明，
+// 可能用于构造一个示例消息对象（比如初始化一些默认值等），这里暂时返回false，并且传入的memory参数未使用（只是为了满足函数参数要求进行了(void)memory的转换，避免编译警告）。
             MD5 m_md5;
             unsigned char* m_keyBuffer;
+ // 声明了两个成员变量，m_md5 可能是用于计算MD5相关操作的对象（结合前面引入的MD5相关头文件），
+            // m_keyBuffer 可能用于存储消息的键值等相关数据的缓冲区指针，具体作用要看后续在类的成员函数中如何使用它们。
         };
     }
 }
