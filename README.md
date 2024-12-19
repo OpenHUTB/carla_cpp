@@ -159,7 +159,7 @@ git rm -rf .
 [weidinghe](https://github.com/weidinghe)、
 [xinderruila](https://github.com/xinderruila)、
 [YJY336](https://github.com/YJY336)、
-[Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrilky](https://github.com/hyjrilky)、
+[Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrikyh](https://github.com/hyjrilky)、
 [vv313](https://github.com/vv313)、
 [lwh0954](https://github.com/lwh0954)、
 [csgo3553](https://github.com/csgo3553) 、
@@ -203,3 +203,21 @@ git rm -rf .
 [Amuamu77](https://github.com/Amuamu77/carla_cpp.git)、
 [zhong246](https://github.com/zhong246/carla_cpp.git)、
 [mikilej](https://github.com/mikilej)、
+[Zz1tai77](https://github.com/Zz1tai77/carla_cpp)、
+[Dennnng123](https://github.com/Dennnng123)
+[Rrr7702](https://github.com/Rrr7702)
+[longakijushuai](https://github.com/longkaijushuai/carla_cpp)、
+[yaxianwang7](https://github.com/yaxianwang7)
+[dengyanyan1](https://github.com/dengyanyan1)
+[Blessingwish](https://github.com/Blessingwish)
+[1722698697](https://github.com/1722698697/carla_cpp.git)
+[sx2005](https://github.com/sx2005)
+[266762548awa](https://github.com/266762548awa)
+[Peng-185](https://github.com/Peng-185/carla_cpp/tree/dev)
+[ysthhhh](https://github.com/ysthhhh/carla_cpp)、
+[ylsj666](https://github.com/ylsj666/carla_cpp.git)、
+[2209040022ll](https://github.com/2209040022ll/carla_cpp.git)、
+[moon884](https://github.com/moon884/carla_cpp.git)、
+[haoCui-hutb](https://github.com/haoCui-hutb)
+[caicaiyo](https://github.com/caicaiyo)
+[2899661520](https://github.com/2899661520)
