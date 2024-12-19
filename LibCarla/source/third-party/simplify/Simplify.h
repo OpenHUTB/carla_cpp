@@ -1416,6 +1416,7 @@ namespace Simplify
       FILE *fn;
       if (filename == NULL)
         return;
+      // 如果文件名的第一个字符为'\0'（即空字符，表示空字符串），同样直接返回，说明文件名不合法，无法进行加载。
       if ((char)filename[0] == 0)
         return;
       if ((fn = fopen(filename, "rb")) == NULL)
