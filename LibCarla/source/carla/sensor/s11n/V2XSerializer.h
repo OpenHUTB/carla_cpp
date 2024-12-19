@@ -70,7 +70,7 @@ namespace carla
                 static SharedPtr<SensorData> Deserialize(RawData &&data);
             }; // 定义一个静态函数Deserialize，用于将传入的对应原始数据反序列化为SensorData类型的智能指针
 
-            };
+       
 
             template <typename Sensor>
             inline Buffer CustomV2XDataSerializer::Serialize(
