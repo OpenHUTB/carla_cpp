@@ -233,6 +233,7 @@ install(FILES ${libcarla_carla_sensor_data_sources} DESTINATION include/carla/se
 file(GLOB libcarla_carla_sensor_s11n_sources
     "${libcarla_source_path}/carla/sensor/s11n/*.cpp"
     "${libcarla_source_path}/carla/sensor/s11n/*.h")
+# 将找到的源文件添加到libcarla_sources变量中
 set(libcarla_sources "${libcarla_sources};${libcarla_carla_sensor_s11n_sources}")
 install(FILES ${libcarla_carla_sensor_s11n_sources} DESTINATION include/carla/sensor/s11n)
 

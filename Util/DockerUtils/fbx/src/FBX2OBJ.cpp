@@ -1,8 +1,11 @@
 #include <fbxsdk.h>
 
+// 声明一个全局的 FbxManager 指针，初始化为 NULL，FbxManager 是 FBX SDK 中的核心管理类，
+// 用于管理整个 FBX 相关的资源、场景等操作，这里先声明，后续应该会在合适地方进行初始化
 // declare global
 FbxManager*   gSdkManager = NULL;
-
+// 以下分别声明用于不同物体的材质指针，它们都是FbxSurfacePhong类型，这种类型常用于表示具有Phong光照模型属性的材质，
+// 不同的材质指针大概率会对应不同的模型部分，比如道路、人行道、十字路口、草地、街区等，方便后续为不同的场景元素设置独特的材质外观。
 // materials
 FbxSurfacePhong* gMatRoad;
 FbxSurfacePhong* gMatSidewalk;
