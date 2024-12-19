@@ -453,147 +453,148 @@ public:
     /* CurvatureConfidence Dependencies*/
     typedef enum CurvatureConfidence
     {
-        CurvatureConfidence_onePerMeter_0_00002 = 0,
-        CurvatureConfidence_onePerMeter_0_0001  = 1,
-        CurvatureConfidence_onePerMeter_0_0005  = 2,
-        CurvatureConfidence_onePerMeter_0_002   = 3,
-        CurvatureConfidence_onePerMeter_0_01    = 4,
-        CurvatureConfidence_onePerMeter_0_1 = 5,
-        CurvatureConfidence_outOfRange  = 6,
-        CurvatureConfidence_unavailable = 7
+        CurvatureConfidence_onePerMeter_0_00002 = 0, // 表示每米的曲率置信度为0.00002的情况，对应枚举值为0
+        CurvatureConfidence_onePerMeter_0_0001  = 1, // 表示每米的曲率置信度为0.0001的情况，对应枚举值为1
+        CurvatureConfidence_onePerMeter_0_0005  = 2, // 表示每米的曲率置信度为0.0005的情况，对应枚举值为2
+        CurvatureConfidence_onePerMeter_0_002   = 3, // 表示每米的曲率置信度为0.002的情况，对应枚举值为3
+        CurvatureConfidence_onePerMeter_0_01    = 4, // 表示每米的曲率置信度为0.01的情况，对应枚举值为4
+        CurvatureConfidence_onePerMeter_0_1 = 5,// 表示每米的曲率置信度为0.1的情况，对应枚举值为5
+        CurvatureConfidence_outOfRange  = 6,// 表示超出范围的曲率置信度情况，对应枚举值为6
+        CurvatureConfidence_unavailable = 7 // 表示不可用的曲率置信度情况，对应枚举值为7
     } e_CurvatureConfidence;
-
+// 为CurvatureConfidence类型定义一个别名CurvatureConfidence_t，方便代码中使用，本质上是long类型
     /* CurvatureConfidence */
     typedef long CurvatureConfidence_t;
 
-    /* Curvature */
+    /* Curvature */// 定义结构体Curvature，用于封装曲率相关的信息，包含曲率值和曲率置信度两个成员
     typedef struct Curvature
     {
-        CurvatureValue_t curvatureValue;
-        CurvatureConfidence_t curvatureConfidence;
+        CurvatureValue_t curvatureValue; // 表示曲率的具体数值，其类型应该是之前定义的CurvatureValue_t（此处未给出其定义细节）
+        CurvatureConfidence_t curvatureConfidence; // 表示该曲率对应的置信度，类型为CurvatureConfidence_t（即long类型的别名）
     } Curvature_t;
 
     /* CurvatureCalculationMode Dependencies */
-    typedef enum CurvatureCalculationMode
+    typedef enum CurvatureCalculationMode// 定义枚举类型CurvatureCalculationMode，用于表示不同的曲率计算模式取值情况
     {
-        CurvatureCalculationMode_yarRateUsed = 0,
-        CurvatureCalculationMode_yarRateNotUsed = 1,
-        CurvatureCalculationMode_unavailable = 2
+        CurvatureCalculationMode_yarRateUsed = 0, // 表示使用偏航率（yaw rate）进行曲率计算的模式，对应枚举值为0
+        CurvatureCalculationMode_yarRateNotUsed = 1, // 表示不使用偏航率进行曲率计算的模式，对应枚举值为1
+        CurvatureCalculationMode_unavailable = 2 // 表示曲率计算模式不可用的情况，对应枚举值为2
     } e_CurvatureCalculationMode;
 
-    /* CurvatureCalculationMode */
+    /* CurvatureCalculationMode */// 为CurvatureCalculationMode类型定义一个别名CurvatureCalculationMode_t，方便代码中使用，本质上是long类型
     typedef long CurvatureCalculationMode_t;
 
-    /* YawRateValue Dependencies */
+    /* YawRateValue Dependencies */// 定义枚举类型YawRateValue，用于表示不同的偏航率值情况
     typedef enum YawRateValue
     {
-        YawRateValue_straight = 0,
-        YawRateValue_degSec_000_01ToRight   = -1,
-        YawRateValue_degSec_000_01ToLeft    = 1,
-        YawRateValue_unavailable    = 32767
+        YawRateValue_straight = 0, // 表示车辆处于直线行驶状态，对应的偏航率值为0，枚举值设为0
+        YawRateValue_degSec_000_01ToRight   = -1, // 表示偏航率为每秒向右转0.01度的情况，用负数表示方向，对应枚举值为 -1
+        YawRateValue_degSec_000_01ToLeft    = 1, // 表示偏航率为每秒向左转0.01度的情况，用正数表示方向，对应枚举值为1
+        YawRateValue_unavailable    = 32767// 表示偏航率不可用的情况，对应一个较大的特定值32767作为标识
     } e_YawRateValue;
 
-    /* YawRateValue */
+    /* YawRateValue */// 为YawRateValue类型定义一个别名YawRateValue_t，方便代码中使用，本质上是long类型
     typedef long YawRateValue_t;
 
     /* YawRateConfidence Dependencies */
     typedef enum YawRateConfidence {
-        YawRateConfidence_degSec_000_01 = 0,
-        YawRateConfidence_degSec_000_05 = 1,
-        YawRateConfidence_degSec_000_10 = 2,
-        YawRateConfidence_degSec_001_00 = 3,
-        YawRateConfidence_degSec_005_00 = 4,
-        YawRateConfidence_degSec_010_00 = 5,
-        YawRateConfidence_degSec_100_00 = 6,
-        YawRateConfidence_outOfRange    = 7,
-        YawRateConfidence_unavailable   = 8
+        YawRateConfidence_degSec_000_01 = 0,// 表示偏航率的置信度为每秒0.00001度的级别，对应枚举值为0
+        YawRateConfidence_degSec_000_05 = 1,  // 表示偏航率的置信度为每秒0.00005度的级别，对应枚举值为1
+        YawRateConfidence_degSec_000_10 = 2, // 表示偏航率的置信度为每秒0.00010度的级别，对应枚举值为2
+        YawRateConfidence_degSec_001_00 = 3,// 表示偏航率的置信度为每秒0.00100度的级别，对应枚举值为3
+        YawRateConfidence_degSec_005_00 = 4,// 表示偏航率的置信度为每秒0.00500度的级别，对应枚举值为4
+        YawRateConfidence_degSec_010_00 = 5, // 表示偏航率的置信度为每秒0.01000度的级别，对应枚举值为5
+        YawRateConfidence_degSec_100_00 = 6,// 表示偏航率的置信度为每秒0.10000度的级别，对应枚举值为6
+        YawRateConfidence_outOfRange    = 7, // 表示偏航率置信度超出正常范围的情况，对应枚举值为7
+        YawRateConfidence_unavailable   = 8 // 表示偏航率置信度不可用的情况，对应枚举值为8
     } e_YawRateConfidence;
  
     /* YawRateConfidence */
-    typedef long YawRateConfidence_t;
+    typedef long YawRateConfidence_t;// 为YawRateConfidence类型定义一个别名YawRateConfidence_t，方便在代码中使用，其本质上是long类型
 
     /* YawRate */
     typedef struct YawRate
     {
-        YawRateValue_t yawRateValue;
-        YawRateConfidence_t yawRateConfidence;
+        YawRateValue_t yawRateValue; // 表示偏航率的具体数值，其类型为之前定义的YawRateValue_t（应该在其他地方有对应定义）
+        YawRateConfidence_t yawRateConfidence; // 表示该偏航率对应的置信度，类型为YawRateConfidence_t（即long类型别名）
     } YawRate_t;
 
     /* AccelerationControl Dependencies */
     typedef enum AccelerationControl {
-        AccelerationControl_brakePedalEngaged   = 0,
-        AccelerationControl_gasPedalEngaged = 1,
-        AccelerationControl_emergencyBrakeEngaged   = 2,
-        AccelerationControl_collisionWarningEngaged = 3,
-        AccelerationControl_accEngaged  = 4,
-        AccelerationControl_cruiseControlEngaged    = 5,
-        AccelerationControl_speedLimiterEngaged = 6
+        AccelerationControl_brakePedalEngaged   = 0, // 表示刹车踏板被踩下的状态，对应枚举值为0
+        AccelerationControl_gasPedalEngaged = 1, // 表示油门踏板被踩下的状态，对应枚举值为1
+        AccelerationControl_emergencyBrakeEngaged   = 2,// 表示紧急刹车被启动的状态，对应枚举值为2
+        AccelerationControl_collisionWarningEngaged = 3,// 表示碰撞预警系统被触发的状态，对应枚举值为3
+        AccelerationControl_accEngaged  = 4, // 表示加速功能被启用的状态（此处具体哪种加速功能可根据上下文确定），对应枚举值为4
+        AccelerationControl_cruiseControlEngaged    = 5, // 表示定速巡航功能被启用的状态，对应枚举值为5
+        AccelerationControl_speedLimiterEngaged = 6// 表示限速功能被启用的状态，对应枚举值为6
     } e_AccelerationControl;
  
     /* AccelerationControl */
-    typedef uint8_t AccelerationControl_t;
+    typedef uint8_t AccelerationControl_t;// 将AccelerationControl_t定义为uint8_t类型，用于后续表示加速度控制相关的变量等，可能是基于其取值范围适合用8位无符号整数表示
 
     /* LanePosition Dependencies */
+// 定义枚举类型LanePosition，用于列举车辆可能处于的不同车道位置情况
     typedef enum LanePosition {
-        LanePosition_offTheRoad = -1,
-        LanePosition_hardShoulder   = 0,
-        LanePosition_outermostDrivingLane   = 1,
-        LanePosition_secondLaneFromOutside  = 2
+        LanePosition_offTheRoad = -1, // 表示车辆已经偏离正常道路范围，例如开到道路外面了，对应枚举值为 -1
+        LanePosition_hardShoulder   = 0,// 表示车辆处于硬路肩位置，通常是道路边缘供临时停车等用途的区域，对应枚举值为0
+        LanePosition_outermostDrivingLane   = 1, // 表示车辆处于最外侧的行车道上，对应枚举值为1
+        LanePosition_secondLaneFromOutside  = 2// 表示车辆处于从最外侧数起的第二车道位置，对应枚举值为2
     } e_LanePosition;
  
     /* LanePosition */
-    typedef long LanePosition_t;
+    typedef long LanePosition_t;/ 为LanePosition类型定义一个别名LanePosition_t，方便在代码其他地方使用，本质上是long类型，便于统一处理车道位置相关的数据
 
     /* SteeringWheelAngleValue Dependencies */
     typedef enum SteeringWheelAngleValue {
-        SteeringWheelAngleValue_straight    = 0,
-        SteeringWheelAngleValue_onePointFiveDegreesToRight  = -1,
-        SteeringWheelAngleValue_onePointFiveDegreesToLeft   = 1,
-        SteeringWheelAngleValue_unavailable = 512
+        SteeringWheelAngleValue_straight    = 0,// 表示方向盘处于正前方直线行驶对应的角度位置，对应枚举值为0
+        SteeringWheelAngleValue_onePointFiveDegreesToRight  = -1, // 表示方向盘向右转了1.5度的情况，用负数表示向右转动方向，对应枚举值为 -1
+        SteeringWheelAngleValue_onePointFiveDegreesToLeft   = 1, // 表示方向盘向左转了1.5度的情况，用正数表示向左转动方向，对应枚举值为1
+        SteeringWheelAngleValue_unavailable = 512 // 表示方向盘角度信息不可用的情况，对应一个特定的枚举值512作为标识
     } e_SteeringWheelAngleValue;
  
     /* SteeringWheelAngleValue */
-    typedef long SteeringWheelAngleValue_t;
+    typedef long SteeringWheelAngleValue_t;// 为SteeringWheelAngleValue类型定义一个别名SteeringWheelAngleValue_t，方便在代码中使用，本质上是long类型，便于统一处理方向盘角度值相关的数据
 
     /* SteeringWheelAngleConfidence Dependencies */
     typedef enum SteeringWheelAngleConfidence {
-        SteeringWheelAngleConfidence_equalOrWithinOnePointFiveDegree    = 1,
-        SteeringWheelAngleConfidence_outOfRange = 126,
-        SteeringWheelAngleConfidence_unavailable    = 127
+        SteeringWheelAngleConfidence_equalOrWithinOnePointFiveDegree    = 1, // 表示方向盘角度的置信度为等于或在1.5度范围内的情况，对应枚举值为1
+        SteeringWheelAngleConfidence_outOfRange = 126,// 表示方向盘角度置信度超出正常范围的情况，对应枚举值为126
+        SteeringWheelAngleConfidence_unavailable    = 127// 表示方向盘角度置信度不可用的情况，对应枚举值为127
     } e_SteeringWheelAngleConfidence;
  
     /* SteeringWheelAngleConfidence */
-    typedef long SteeringWheelAngleConfidence_t;
+    typedef long SteeringWheelAngleConfidence_t;// 为SteeringWheelAngleConfidence类型定义一个别名SteeringWheelAngleConfidence_t，方便在代码中使用，本质上是long类型，便于统一处理方向盘角度置信度相关的数据
 
     /* SteeringWheelAngle */
     typedef struct SteeringWheelAngle
     {
-        SteeringWheelAngleValue_t steeringWheelAngleValue;
-        SteeringWheelAngleConfidence_t steeringWheelAngleConfidence;
+        SteeringWheelAngleValue_t steeringWheelAngleValue;// 表示方向盘的具体角度值，其类型为之前定义的SteeringWheelAngleValue_t
+        SteeringWheelAngleConfidence_t steeringWheelAngleConfidence;// 表示该方向盘角度对应的置信度，类型为SteeringWheelAngleConfidence_t
     } SteeringWheelAngle_t;
 
     /* LateralAccelerationValue Dependencies */
     typedef enum LateralAccelerationValue {
-        LateralAccelerationValue_pointOneMeterPerSecSquaredToRight  = -1,
-        LateralAccelerationValue_pointOneMeterPerSecSquaredToLeft   = 1,
-        LateralAccelerationValue_unavailable    = 161
+        LateralAccelerationValue_pointOneMeterPerSecSquaredToRight  = -1, // 表示车辆横向加速度为每秒平方0.1米且方向向右的情况，用负数表示向右方向，对应枚举值为 -1
+        LateralAccelerationValue_pointOneMeterPerSecSquaredToLeft   = 1,  // 表示车辆横向加速度为每秒平方0.1米且方向向左的情况，用正数表示向左方向，对应枚举值为1
+        LateralAccelerationValue_unavailable    = 161// 表示车辆横向加速度信息不可用的情况，对应一个特定的枚举值161作为标识
     } e_LateralAccelerationValue;
 
     /* LateralAccelerationValue */
-    typedef long LateralAccelerationValue_t;
+    typedef long LateralAccelerationValue_t;// 为LateralAccelerationValue类型定义一个别名LateralAccelerationValue_t，方便在代码中使用，本质上是long类型，便于统一处理横向加速度值相关的数据
 
     /* LateralAcceleration */
     typedef struct LateralAcceleration
     {
-        LateralAccelerationValue_t lateralAccelerationValue;
-        AccelerationConfidence_t lateralAccelerationConfidence;
+        LateralAccelerationValue_t lateralAccelerationValue;// 表示车辆横向加速度的具体数值，其类型为之前定义的LateralAccelerationValue_t
+        AccelerationConfidence_t lateralAccelerationConfidence; // 表示该横向加速度对应的置信度，类型为AccelerationConfidence_t
     } LateralAcceleration_t;
 
     /* VerticalAccelerationValue Dependencies */
     typedef enum VerticalAccelerationValue {
-        VerticalAccelerationValue_pointOneMeterPerSecSquaredUp  = 1,
-        VerticalAccelerationValue_pointOneMeterPerSecSquaredDown    = -1,
-        VerticalAccelerationValue_unavailable   = 161
+        VerticalAccelerationValue_pointOneMeterPerSecSquaredUp  = 1, // 表示车辆垂直加速度为每秒平方0.1米且方向向上的情况，用正数表示向上方向，对应枚举值为1
+        VerticalAccelerationValue_pointOneMeterPerSecSquaredDown    = -1, // 表示车辆垂直加速度为每秒平方0.1米且方向向下的情况，用负数表示向下方向，对应枚举值为 -1
+        VerticalAccelerationValue_unavailable   = 161// 表示车辆垂直加速度信息不可用的情况，对应一个特定的枚举值161作为标识
     } e_VerticalAccelerationValue;
  
     /* VerticalAccelerationValue */
@@ -602,32 +603,33 @@ public:
     /* VerticalAcceleration */
     typedef struct VerticalAcceleration
     {
-        VerticalAccelerationValue_t verticalAccelerationValue;
-        AccelerationConfidence_t verticalAccelerationConfidence;
+        VerticalAccelerationValue_t verticalAccelerationValue; // 表示车辆垂直加速度的具体数值，其类型为之前定义的VerticalAccelerationValue_t
+        AccelerationConfidence_t verticalAccelerationConfidence;// 表示该垂直加速度对应的置信度，类型为AccelerationConfidence_t
     } VerticalAcceleration_t;
 
     /* PerformanceClass Dependencies */
     typedef enum PerformanceClass {
-        PerformanceClass_unavailable    = 0,
-        PerformanceClass_performanceClassA  = 1,
-        PerformanceClass_performanceClassB  = 2
+        PerformanceClass_unavailable    = 0,// 表示车辆性能等级不可用的情况，对应枚举值为0
+        PerformanceClass_performanceClassA  = 1,// 表示车辆属于性能等级A的情况，对应枚举值为1
+        PerformanceClass_performanceClassB  = 2 // 表示车辆属于性能等级B的情况，对应枚举值为2
     } e_PerformanceClass;
  
     /* PerformanceClass */
-    typedef long PerformanceClass_t;
+    typedef long PerformanceClass_t;// 为PerformanceClass类型定义一个别名PerformanceClass_t，方便在代码中使用，本质上是long类型，便于统一处理车辆性能等级相关的数据
 
     /* ProtectedZoneID */
     typedef long ProtectedZoneID_t;
+// 定义类型别名ProtectedZoneID_t，用于表示保护区（可能是特定区域相关的概念）的标识，本质上是long类型，方便在后续代码中使用该类型处理相关逻辑
 
     /* CenDsrcTollingZoneID */
-    typedef ProtectedZoneID_t CenDsrcTollingZoneID_t;
+    typedef ProtectedZoneID_t CenDsrcTollingZoneID_t;// 定义类型别名CenDsrcTollingZoneID_t，它等同于ProtectedZoneID_t类型，可能用于表示特定的基于DSRC（专用短程通信）的收费区域标识，方便代码中统一使用该类型进行相关操作。
 
     /* CenDsrcTollingZone */
     typedef struct CenDsrcTollingZone {
-        Latitude_t   protectedZoneLatitude;
-        Longitude_t  protectedZoneLongitude;
-        CenDsrcTollingZoneID_t  cenDsrcTollingZoneID;   /* OPTIONAL */
-        OptionalValueAvailable_t cenDsrcTollingZoneIDAvailable;
+        Latitude_t   protectedZoneLatitude;// 表示该收费区域的纬度信息，其类型应该是之前定义的Latitude_t（可能在其他地方有定义）
+        Longitude_t  protectedZoneLongitude; // 表示该收费区域的经度信息，其类型应该是之前定义的Longitude_t（可能在其他地方有定义）
+        CenDsrcTollingZoneID_t  cenDsrcTollingZoneID;   /* OPTIONAL */// 表示该基于DSRC的收费区域的标识，类型为CenDsrcTollingZoneID_t，并且此成员是可选的（可能在某些情况下不存在）
+        OptionalValueAvailable_t cenDsrcTollingZoneIDAvailable; // 表示上述收费区域标识是否可用的信息，其类型应该是OptionalValueAvailable_t（可能在其他地方有定义）
     } CenDsrcTollingZone_t;
 
     /* ProtectedZoneType Dependencies */
@@ -637,22 +639,22 @@ public:
     } e_ProtectedZoneType;
  
     /* ProtectedZoneType */
-    typedef long     ProtectedZoneType_t;
+    typedef long     ProtectedZoneType_t;// 为ProtectedZoneType类型定义一个别名ProtectedZoneType_t，方便在代码中统一使用，本质上是long类型，便于后续处理与保护区类型相关的数据。
 
     /* TimestampIts Dependencies */
     typedef enum TimestampIts {
-        TimestampIts_utcStartOf2004 = 0,
-        TimestampIts_oneMillisecAfterUTCStartOf2004 = 1
+        TimestampIts_utcStartOf2004 = 0,// 表示2004年UTC时间起始时刻对应的时间戳，对应枚举值为0，可作为一个基准时间参考点。
+        TimestampIts_oneMillisecAfterUTCStartOf2004 = 1 // 表示在2004年UTC时间起始时刻之后1毫秒的时间戳，对应枚举值为1，用于表示相对起始时刻稍有延迟的时间点。
     } e_TimestampIts;
 
 
 
     /* TimestampIts */
-    typedef long TimestampIts_t; 
+    typedef long TimestampIts_t; // 为TimestampIts类型定义一个别名TimestampIts_t，方便在代码中使用，本质上是long类型，便于统一处理与ITS时间戳相关的数据。
 
     /* ProtectedZoneRadius Dependencies */
     typedef enum ProtectedZoneRadius {
-        ProtectedZoneRadius_oneMeter    = 1
+        ProtectedZoneRadius_oneMeter    = 1 // 表示保护区半径为1米的情况，对应枚举值为1，用于界定保护区的空间范围大小。
     } e_ProtectedZoneRadius;
  
     /* ProtectedZoneRadius */
@@ -660,15 +662,15 @@ public:
 
     /* ProtectedCommunicationZone */
     typedef struct ProtectedCommunicationZone {
-        ProtectedZoneType_t  protectedZoneType;
-        TimestampIts_t  expiryTime /* OPTIONAL */;
-        OptionalValueAvailable_t expiryTimeAvailable;
-        Latitude_t   protectedZoneLatitude;
-        Longitude_t  protectedZoneLongitude;
-        ProtectedZoneRadius_t   protectedZoneRadius    /* OPTIONAL */;
-        OptionalValueAvailable_t protectedZoneRadiusAvailable;
-        ProtectedZoneID_t   protectedZoneID    /* OPTIONAL */;
-        OptionalValueAvailable_t protectedZoneIDAvailable;
+        ProtectedZoneType_t  protectedZoneType;// 表示该受保护通信区域的类型，其类型为之前定义的ProtectedZoneType_t，用于明确此区域所属的具体类型。
+        TimestampIts_t  expiryTime /* OPTIONAL */; // 表示该受保护通信区域的过期时间，类型为TimestampIts_t，此成员是可选的（可能在某些情况下不存在），用于限定区域有效的时间范围。
+        OptionalValueAvailable_t expiryTimeAvailable; // 表示上述过期时间是否可用的信息，其类型应该是OptionalValueAvailable_t（可能在其他地方有定义），用于判断过期时间信息的有效性。
+        Latitude_t   protectedZoneLatitude; // 表示该受保护通信区域的纬度信息，其类型应该是之前定义的Latitude_t（可能在其他地方有定义），用于确定区域在地理上的纬度位置。
+        Longitude_t  protectedZoneLongitude;// 表示该受保护通信区域的经度信息，其类型应该是之前定义的Longitude_t（可能在其他地方有定义），用于确定区域在地理上的经度位置。
+        ProtectedZoneRadius_t   protectedZoneRadius    /* OPTIONAL */; // 表示该受保护通信区域的半径信息，类型为ProtectedZoneRadius_t，此成员是可选的（可能在某些情况下不存在），用于进一步明确区域的范围大小。
+        OptionalValueAvailable_t protectedZoneRadiusAvailable; // 表示上述区域半径是否可用的信息，其类型应该是OptionalValueAvailable_t（可能在其他地方有定义），用于判断半径信息的有效性。
+        ProtectedZoneID_t   protectedZoneID    /* OPTIONAL */;// 表示该受保护通信区域的标识信息，类型为ProtectedZoneID_t，此成员是可选的（可能在某些情况下不存在），用于唯一标识该区域。
+        OptionalValueAvailable_t protectedZoneIDAvailable;// 表示上述区域标识是否可用的信息，其类型应该是OptionalValueAvailable_t（可能在其他地方有定义），用于判断标识信息的有效性。
     } ProtectedCommunicationZone_t;
 
     /* ProtectedCommunicationZonesRSU */

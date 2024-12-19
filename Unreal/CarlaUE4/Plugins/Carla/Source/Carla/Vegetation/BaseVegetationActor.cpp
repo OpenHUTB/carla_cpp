@@ -8,13 +8,14 @@
 
 #include "Carla/Carla.h"
 
-
+// 开始时初始化植物 Actor，记录性能分析事件并调用父类初始化函数
 void ABaseVegetationActor::BeginPlay()
 {
   TRACE_CPUPROFILER_EVENT_SCOPE(ABaseVegetationActor::BeginPlay);
   Super::BeginPlay();
 }
 
+// 从 SpringBasedVegetationComponent 组件获取参数并复制到 SpringParameters 结构体中
 void ABaseVegetationActor::GetParametersFromComponent()
 {
   UActorComponent* Component = 
@@ -55,6 +56,7 @@ void ABaseVegetationActor::GetParametersFromComponent()
       TEXT("ABaseVegetationActor::GetParametersFromComponent Copy successful"));
 }
 
+// 将 SpringParameters 结构体中的参数设置到 SpringBasedVegetationComponent 组件中
 void ABaseVegetationActor::SetParametersToComponent()
 {
   UActorComponent* Component = 
@@ -91,6 +93,8 @@ void ABaseVegetationActor::SetParametersToComponent()
 
 }
 
+
+// 更新 SpringBasedVegetationComponent 组件的骨架和参数，并计算分支的弹簧强度
 void ABaseVegetationActor::UpdateSkeletonAndParameters()
 {
   UActorComponent* Component = 
