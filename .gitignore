@@ -1,10 +1,11 @@
-# 忽略 Doxygen 生成的文档文件夹
+# 忽略 Doxygen 生成的文档
 /*
-# 忽略构建和分发目录
+# 忽略构建目录
 Build
+# 忽略分发目录
 Dist
 
-# 忽略 Python 客户端的构建目录
+# 忽略已弃用的 Python 客户端的分发目录
 Deprecated/PythonClient/dist
 # 忽略 TrafficManager 的构建目录
 TrafficManager/build
@@ -14,14 +15,13 @@ Util/Build
 Install
 # 忽略插件目录
 Plugins
-# 忽略 Unreal 项目的 CarlaUE4 插件目录，除了 Streetmap 和 HoudiniEngine 插件
-!Unreal/CarlaUE4/Plugins
-Unreal/CarlaUE4/Plugins/Streetmap
-Unreal/CarlaUE4/Plugins/HoudiniEngine
+# 排除 Unreal/CarlaUE4/Plugins 目录下的特定插件，以便不忽略它们
+!Unreal/CarlaUE4/Plugins/Streetmap
+!Unreal/CarlaUE4/Plugins/HoudiniEngine
 
 # 忽略导出的地图目录
 /ExportedMaps
-# 忽略导入的目录，除了 README.md 文件
+# 忽略导入目录下的所有文件和文件夹，但排除 README.md 文件
 /Import/*
 !/Import/README.md
 
