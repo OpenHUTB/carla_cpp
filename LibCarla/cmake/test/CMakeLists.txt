@@ -78,7 +78,9 @@ foreach(target ${build_targets})
       target_link_libraries(${target} "-lgtest")
   endif()
 
-  install(TARGETS ${target} DESTINATION test OPTIONAL)
+  install(TARGETS ${target} DESTINATION test OPTIONAL)# 使用install命令来指定名为${target}的目标（可执行文件目标）的安装规则。
+# 表示在进行项目安装操作时，将该可执行文件安装到目标目录test下。
+# OPTIONAL关键字意味着如果在安装过程中出现某些问题（比如找不到这个目标等情况），安装过程不会报错停止，而是继续进行其他部分的安装。
 endforeach(target)
 
 # 构建调试版本
