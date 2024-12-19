@@ -31,16 +31,36 @@ namespace nav_msgs {
     namespace msg {
         OdometryPubSubType::OdometryPubSubType()
         {
+            // 设置消息类型的名称为 "nav_msgs::msg::dds_::Odometry_"。
+            // 该名称用于在 DDS（数据分发服务）系统中唯一标识 Odometry 消息类型。
             setName("nav_msgs::msg::dds_::Odometry_");
+
+            // 获取 Odometry 类型的最大 CDR 序列化大小。
+            // CDR（Common Data Representation）是数据交换格式，用于序列化和反序列化消息数据。
             auto type_size = Odometry::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+
+            // 计算可能的子消息对齐。这里将序列化大小对齐到 4 字节边界。
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);  // 可能的子消息对齐
+
+            // 设置消息类型的总大小（包括封装头部）。封装是指在消息的实际数据前后添加的头部信息。
+            m_typeSize = static_cast<uint32_t>(type_size) + 4;  // 封装（包括数据和头部）
+
+            // 设置是否定义了该消息的键（Key）。在一些情况下，消息会定义一个唯一标识符（键），用于识别该消息。
             m_isGetKeyDefined = Odometry::isKeyDefined();
+
+            // 获取 Odometry 消息类型的最大键 CDR 序列化大小。
+            // 如果键的序列化大小大于 16 字节，则使用实际的键大小，否则使用 16 字节。
             size_t keyLength = Odometry::getKeyMaxCdrSerializedSize() > 16 ?
                     Odometry::getKeyMaxCdrSerializedSize() : 16;
+
+            // 为消息键分配内存，存储在 m_keyBuffer 中。
+            // 键通常用于标识消息的唯一性。
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+
+            // 将分配的内存初始化为零，确保 m_keyBuffer 在使用时不会包含任何未初始化的数据。
             memset(m_keyBuffer, 0, keyLength);
         }
+
 
         OdometryPubSubType::~OdometryPubSubType()
         {
