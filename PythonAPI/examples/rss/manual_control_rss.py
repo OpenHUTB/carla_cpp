@@ -12,12 +12,8 @@
 
 """
 Welcome to CARLA manual control.
-# 欢迎来到CARLA手动控制相关说明
-# 以下是关于在CARLA环境中进行手动控制操作时各个按键对应的功能介绍
-
 
 Use ARROWS or WASD keys for control.
-# 使用方向键（ARROWS）或者W、A、S、D键来进行控制操作
 
     W            : throttle
     S            : brake
@@ -54,10 +50,10 @@ from __future__ import print_function
 # ==============================================================================
 
 
-import glob
-import os
-import sys
-import signal
+import glob     # 导入用于文件路径通配符匹配的`glob`模块，常用于查找符合特定模式的文件或目录路径
+import os       # 导入用于操作系统相关功能的`os`模块，比如文件和目录操作、获取系统环境信息等
+import sys      # 导入用于处理Python运行时环境相关功能的`sys`模块，像操作Python解释器的路径、获取命令行参数等
+import signal   # 导入用于处理信号相关操作的`signal`模块，例如可以捕捉和处理操作系统发送给进程的信号（如终止信号等）
 
 try:
     sys.path.append(glob.glob(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + '/carla/dist/carla-*%d.%d-%s.egg' % (
