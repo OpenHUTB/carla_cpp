@@ -1,15 +1,15 @@
-// Copyright (c) 2023 Computer Vision Center (CVC) at the Universitat Autonoma
+// 版权所有 （c） 2023 Universitat Autonoma 计算机视觉中心 （CVC）
 // de Barcelona (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款获得许可.
+// 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
-#pragma once
+#编译一次
 
-#include "Carla/Actor/ActorSpawnResult.h"
-#include "Carla/Actor/CarlaActorFactory.h"
+#包括 "Carla/Actor/ActorSpawnResult.h"
+#包括 "Carla/Actor/CarlaActorFactory.h"
 
-#include "UtilActorFactory.generated.h"
+#包括 "UtilActorFactory.generated.h"
 
 /// 负责生成静态网格体的工厂。该工厂能够生成
 /// 内容中的任何网格
