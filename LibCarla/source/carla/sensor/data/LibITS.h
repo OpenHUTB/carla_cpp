@@ -498,36 +498,36 @@ public:
 
     /* YawRateConfidence Dependencies */
     typedef enum YawRateConfidence {
-        YawRateConfidence_degSec_000_01 = 0,
-        YawRateConfidence_degSec_000_05 = 1,
-        YawRateConfidence_degSec_000_10 = 2,
-        YawRateConfidence_degSec_001_00 = 3,
-        YawRateConfidence_degSec_005_00 = 4,
-        YawRateConfidence_degSec_010_00 = 5,
-        YawRateConfidence_degSec_100_00 = 6,
-        YawRateConfidence_outOfRange    = 7,
-        YawRateConfidence_unavailable   = 8
+        YawRateConfidence_degSec_000_01 = 0,// 表示偏航率的置信度为每秒0.00001度的级别，对应枚举值为0
+        YawRateConfidence_degSec_000_05 = 1,  // 表示偏航率的置信度为每秒0.00005度的级别，对应枚举值为1
+        YawRateConfidence_degSec_000_10 = 2, // 表示偏航率的置信度为每秒0.00010度的级别，对应枚举值为2
+        YawRateConfidence_degSec_001_00 = 3,// 表示偏航率的置信度为每秒0.00100度的级别，对应枚举值为3
+        YawRateConfidence_degSec_005_00 = 4,// 表示偏航率的置信度为每秒0.00500度的级别，对应枚举值为4
+        YawRateConfidence_degSec_010_00 = 5, // 表示偏航率的置信度为每秒0.01000度的级别，对应枚举值为5
+        YawRateConfidence_degSec_100_00 = 6,// 表示偏航率的置信度为每秒0.10000度的级别，对应枚举值为6
+        YawRateConfidence_outOfRange    = 7, // 表示偏航率置信度超出正常范围的情况，对应枚举值为7
+        YawRateConfidence_unavailable   = 8 // 表示偏航率置信度不可用的情况，对应枚举值为8
     } e_YawRateConfidence;
  
     /* YawRateConfidence */
-    typedef long YawRateConfidence_t;
+    typedef long YawRateConfidence_t;// 为YawRateConfidence类型定义一个别名YawRateConfidence_t，方便在代码中使用，其本质上是long类型
 
     /* YawRate */
     typedef struct YawRate
     {
-        YawRateValue_t yawRateValue;
-        YawRateConfidence_t yawRateConfidence;
+        YawRateValue_t yawRateValue; // 表示偏航率的具体数值，其类型为之前定义的YawRateValue_t（应该在其他地方有对应定义）
+        YawRateConfidence_t yawRateConfidence; // 表示该偏航率对应的置信度，类型为YawRateConfidence_t（即long类型别名）
     } YawRate_t;
 
     /* AccelerationControl Dependencies */
     typedef enum AccelerationControl {
-        AccelerationControl_brakePedalEngaged   = 0,
-        AccelerationControl_gasPedalEngaged = 1,
-        AccelerationControl_emergencyBrakeEngaged   = 2,
-        AccelerationControl_collisionWarningEngaged = 3,
-        AccelerationControl_accEngaged  = 4,
-        AccelerationControl_cruiseControlEngaged    = 5,
-        AccelerationControl_speedLimiterEngaged = 6
+        AccelerationControl_brakePedalEngaged   = 0, // 表示刹车踏板被踩下的状态，对应枚举值为0
+        AccelerationControl_gasPedalEngaged = 1, // 表示油门踏板被踩下的状态，对应枚举值为1
+        AccelerationControl_emergencyBrakeEngaged   = 2,// 表示紧急刹车被启动的状态，对应枚举值为2
+        AccelerationControl_collisionWarningEngaged = 3,// 表示碰撞预警系统被触发的状态，对应枚举值为3
+        AccelerationControl_accEngaged  = 4, // 表示加速功能被启用的状态（此处具体哪种加速功能可根据上下文确定），对应枚举值为4
+        AccelerationControl_cruiseControlEngaged    = 5, // 表示定速巡航功能被启用的状态，对应枚举值为5
+        AccelerationControl_speedLimiterEngaged = 6// 表示限速功能被启用的状态，对应枚举值为6
     } e_AccelerationControl;
  
     /* AccelerationControl */
