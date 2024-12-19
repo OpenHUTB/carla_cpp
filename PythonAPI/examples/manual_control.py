@@ -170,7 +170,7 @@ def get_actor_blueprints(world, filter, generation):
     # and therefore, we ignore the generation
     if len(bps) == 1:
         return bps
-
+#如果bps的长度等于1，就返回bps
     try:
         int_generation = int(generation)
         # Check if generation is in available generations

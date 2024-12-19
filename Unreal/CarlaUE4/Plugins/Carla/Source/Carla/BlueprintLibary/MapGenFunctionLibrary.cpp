@@ -14,16 +14,23 @@
 // Carla C++ 头文件
 
 // Carla 插件头文件
-
+// 定义一个日志类别，名为LogCarlaMapGenFunctionLibrary。
+// 这个类别在程序运行过程中可用于输出特定的日志信息，便于开发者调试代码以及追踪与Carla地图生成功能库相关的执行情况、错误等内容，方便定位问题所在。
 DEFINE_LOG_CATEGORY(LogCarlaMapGenFunctionLibrary);
+// 声明一个静态的常量，类型为单精度浮点数（float），用于表示从OpenStreetMap（OSM）单位到厘米单位的缩放因子。
+// 这里将其值设定为100.0f，意思是在涉及到OSM相关数据转换为厘米单位的操作时，每1个OSM单位对应100厘米，方便后续进行长度、距离等相关的换算。
 static const float OSMToCentimetersScaleFactor = 100.0f;
+
+// 这是一个类UMapGenFunctionLibrary的成员函数BuildMeshDescriptionFromData的定义。
+// 该函数的目的是根据传入的不同参数构建一个FMeshDescription类型的网格描述信息，这个网格描述会包含诸如顶点、三角形、材质等构建一个完整网格所需要的各种元素信息，下面是具体的函数参数和函数体逻辑。
 
 FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
   const FProceduralCustomMesh& Data,
   const TArray<FProcMeshTangent>& ParamTangents,
   UMaterialInstance* MaterialInstance  )
 {
-
+// 获取传入的自定义网格数据结构（Data）中顶点的数量，存储到名为VertexCount的整型变量中。
+    // 通过调用Num()函数获取数组元素个数的方式来得到顶点数量，后续可以基于这个数量进行循环遍历顶点等操作，比如依次设置每个顶点的坐标等信息。
   int32 VertexCount = Data.Vertices.Num();
   int32 VertexInstanceCount = Data.Triangles.Num();
   int32 PolygonCount = Data.Vertices.Num()/3;
