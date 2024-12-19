@@ -23,7 +23,7 @@ if (BUILD_RSS_VARIANT)
   install(FILES ${spdlog_file} DESTINATION lib)
   list(APPEND ADRSS_LIBS ${spdlog_file})
   #完成项目的包含目录和库目录的路径设置 安装位置指定以及相关列表的添加操作
-  set(proj_include_dir ${ADRSS_INSTALL_DIR}/../../proj-install/include)
+  set(proj_include_dir ${ADRSS_INSTALL_DIR}/../../proj-install/include)#创建了一个名为proj_include_dir的变量
   set(proj_lib ${ADRSS_INSTALL_DIR}/../../proj-install/lib/libproj.a)
   install(DIRECTORY ${proj_include_dir} DESTINATION include/system)
   list(APPEND ADRSS_INCLUDE_DIRS ${proj_include_dir})
