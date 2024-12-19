@@ -47,6 +47,12 @@ file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profile
 install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)
 
 file(GLOB libcarla_carla_road_headers "${libcarla_source_path}/carla/road/*.h")
+// 使用install命令来设置文件的安装规则。
+// 此命令会将存储在变量${libcarla_carla_road_headers}里的头文件列表中的每一个头文件，
+// 安装到指定的目标目录“include/carla/road”下。
+// 这样在整个项目进行安装的过程中，这些头文件就能按照预期被准确放置在对应的目录位置，
+// 方便其他需要使用该库相关功能的代码（例如基于这个库开发的外部应用程序代码等）可以顺利地找到并包含这些头文件，
+// 进而能够使用头文件中所声明的各种类型、函数等内容来实现相应的业务逻辑。
 install(FILES ${libcarla_carla_road_headers} DESTINATION include/carla/road)
 
 file(GLOB libcarla_carla_road_element_headers "${libcarla_source_path}/carla/road/element/*.h")
