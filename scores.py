@@ -131,6 +131,7 @@ while True:
 
     page += 1
 
+#按数量排序issue_counts和comment_counts
 sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
 sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reverse=True))
 
