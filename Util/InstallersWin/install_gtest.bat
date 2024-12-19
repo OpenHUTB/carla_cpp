@@ -38,10 +38,10 @@ if not "%1"=="" (
 if %GENERATOR% == "" set GENERATOR="Visual Studio 16 2019"
 
 rem If not set set the build dir to the current dir
-if "%BUILD_DIR%" == "" set BUILD_DIR=%~dp0
+if "%BUILD_DIR%" == "" set BUILD_DIR=%~dp0//判断语句，如果为真，则把环境变量设置为当前目录
 if not "%BUILD_DIR:~-1%"=="\" set BUILD_DIR=%BUILD_DIR%\
-
-set GT_VERSION=release-1.8.1
+//如果 BUILD_DIR 变量的最后一个字符不是反斜杠，就在其末尾添加一个反斜杠，以确保是标准的目录路径格式。
+set GT_VERSION=release-1.8.1//这里 GT_VERSION 可能是用于表示Google Test的版本号
 set GT_SRC=gtest-src
 set GT_SRC_DIR=%BUILD_DIR%%GT_SRC%\
 set GT_INSTALL=gtest-install
