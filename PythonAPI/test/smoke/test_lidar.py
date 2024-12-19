@@ -214,7 +214,7 @@ class TestASyncLidar(SmokeTest):
           'rotation_frequency': '5'}
         att_l02={'channels' : '64', 'dropoff_intensity_limit': '1.0', 'dropoff_general_rate': '0.0',
           'range' : '50', 'points_per_second': '100000', 'rotation_frequency': '50'}
-
+        #将三个激光雷达传感器添加到传感器列表中
         sensors.append(Sensor(self, SensorType.LIDAR, att_l00))
         sensors.append(Sensor(self, SensorType.LIDAR, att_l01))
         sensors.append(Sensor(self, SensorType.LIDAR, att_l02))
