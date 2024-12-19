@@ -12,8 +12,12 @@
 
 """
 Welcome to CARLA manual control.
+# 欢迎来到CARLA手动控制相关说明
+# 以下是关于在CARLA环境中进行手动控制操作时各个按键对应的功能介绍
+
 
 Use ARROWS or WASD keys for control.
+# 使用方向键（ARROWS）或者W、A、S、D键来进行控制操作
 
     W            : throttle
     S            : brake
