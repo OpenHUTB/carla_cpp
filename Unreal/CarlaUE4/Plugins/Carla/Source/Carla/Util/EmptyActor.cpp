@@ -6,7 +6,7 @@
 
 #include "EmptyActor.h"
 
-// 为 AEmptyActor 类设置一个静态（不需要 Tick）的根组件，并确保根组件是可移动的。
+// 为 AEmptyActor 类设置一个静态（不需要Tick）的根组件，并确保根组件是可移动的。
 AEmptyActor::AEmptyActor(const FObjectInitializer &ObjectInitializer)
   : Super(ObjectInitializer)
 {
