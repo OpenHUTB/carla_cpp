@@ -88,8 +88,8 @@ class TestSynchronousMode(SyncSmokeTest):
         car.apply_control(carla.VehicleControl(0.75))
         # car.set_autopilot(True)
 
-        def sensor_callback(data, name, queue):
-            queue.put((data, name))
+        def sensor_callback(data, name, queue):            #定义一个函数用于存放data（传感器采集到的数据）、name（传感器的名称）和queue（一个队列对象）
+            queue.put((data, name))                        #将data和name的元组放入queue队列中
 
         try:
             for i in range(len(sensors)):
