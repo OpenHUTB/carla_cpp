@@ -145,7 +145,7 @@ struct vec3f
     y = Y;
     z = Z;
   }
-
+#重载 + 运算符，用于实现两个vec3f类型向量的加法运算
   inline vec3f operator+(const vec3f &a) const
   {
     return vec3f(x + a.x, y + a.y, z + a.z);
