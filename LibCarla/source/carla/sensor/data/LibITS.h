@@ -845,33 +845,33 @@ public:
     /* RsuContainerHighFrequency */
     typedef struct RSUContainerHighFrequency
     {
-        ITSContainer::ProtectedCommunicationZonesRSU_t protectedCommunicationZonesRSU;
+        ITSContainer::ProtectedCommunicationZonesRSU_t protectedCommunicationZonesRSU; // 表示路边单元的受保护通信区域相关信息，类型为ITSContainer::ProtectedCommunicationZonesRSU_t，包含了区域数量、各个区域的详细信息等内容，是路边单元在通信等场景下对外展示自身关键状态的一部分。
     } RSUContainerHighFrequency_t;
 
     /* HighFrequencyContainer */
     typedef struct HighFrequencyContainer
     {
-        HighFrequencyContainer_PR present;
+        HighFrequencyContainer_PR present; // 表示当前高频容器的呈现形式，通过HighFrequencyContainer_PR枚举类型来标识，用于判断当前容器中包含的是车辆高频信息还是路边单元高频信息或者为空等情况，进而进行相应的数据处理逻辑分支选择。
 
-        BasicVehicleContainerHighFrequency_t basicVehicleContainerHighFrequency;
-        RSUContainerHighFrequency_t rsuContainerHighFrequency;
+        BasicVehicleContainerHighFrequency_t basicVehicleContainerHighFrequency;// 表示基本车辆的高频信息结构体，包含了车辆众多的高频状态数据，用于在present标识为车辆高频信息情况时，提取和处理相关车辆状态数据。
+        RSUContainerHighFrequency_t rsuContainerHighFrequency;// 表示路边单元的高频信息结构体，包含了路边单元的相关高频数据，用于在present标识为路边单元高频信息情况时，操作和更新路边单元相关的状态信息。
 
     } HighFrequencyContainer_t;
 
     /* Dependencies */
     typedef enum LowFrequencyContainer_PR : long
     {
-        LowFrequencyContainer_PR_NOTHING,   /* No components present */
-        LowFrequencyContainer_PR_basicVehicleContainerLowFrequency,
+        LowFrequencyContainer_PR_NOTHING,   /* No components present */// 表示低频容器中没有任何组件存在的情况，对应枚举值用于在逻辑判断中识别容器为空的状态，便于进行初始化或错误处理等操作。
+        LowFrequencyContainer_PR_basicVehicleContainerLowFrequency,// 表示低频容器中包含基本车辆低频信息的情况，对应枚举值用于在处理车辆低频数据时进行识别和相应的数据提取、处理逻辑，当前只定义了这一种包含车辆低频信息的情况，后续可能会根据需求扩展更多选项。
         /* Extensions may appear below */
      
     } LowFrequencyContainer_PR;
 
     /* BasicVehicleContainerLowFrequency */
     typedef struct BasicVehicleContainerLowFrequency {
-        ITSContainer::VehicleRole_t    vehicleRole;
-        ITSContainer::ExteriorLights_t     exteriorLights;
-        ITSContainer::PathHistory_t    pathHistory;
+        ITSContainer::VehicleRole_t    vehicleRole; // 表示车辆的角色信息，类型为ITSContainer::VehicleRole_t，用于明确车辆在不同场景下所扮演的角色，例如是公共交通车辆、救援车辆还是普通私家车等，有助于交通管理和协同作业等场景下对车辆进行分类处理。
+        ITSContainer::ExteriorLights_t     exteriorLights; // 表示车辆外部灯光的状态信息，类型为ITSContainer::ExteriorLights_t，用于实时传递车辆各个外部灯光（如近光灯、转向灯等）的开启或关闭情况，方便其他交通参与者知晓车辆的灯光提示信息。
+        ITSContainer::PathHistory_t    pathHistory; // 表示车辆的路径历史信息，类型为ITSContainer::PathHistory_t，包含了车辆过去一段时间内经过的多个路径点信息，可用于分析车辆的行驶轨迹、出行习惯等情况。
     } BasicVehicleContainerLowFrequency_t;
 
     /* LowFrequencyContainer */
