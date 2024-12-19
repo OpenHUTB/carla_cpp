@@ -11,7 +11,8 @@ FbxSurfacePhong* gMatRoad;
 FbxSurfacePhong* gMatSidewalk;
 FbxSurfacePhong* gMatCross;
 FbxSurfacePhong* gMatGrass;
-FbxSurfacePhong* gMatBlock;
+FbxSurfacePhong* gMatBlock;// 声明一个指向 FbxSurfacePhong 类型的指针 gMatGrass，用于表示草地材质。
+// 可以利用这个指针来设置草地模型对应的材质参数，例如模拟草地的纹理、颜色以及光影效果等。
 
 #ifdef IOS_REF
     #undef  IOS_REF
