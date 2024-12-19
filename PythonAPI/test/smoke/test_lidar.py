@@ -258,7 +258,7 @@ class TestCompareLidars(SyncSmokeTest):
     def test_lidar_comparison(self):
         print("TestCompareLidars.test_lidar_comparison")
         sensors = []
-
+        # 定义两个激光雷达传感器的属性字典
         att_sem_lidar={'channels' : '64', 'range' : '200', 'points_per_second': '500000'}
         att_lidar_nod={'channels' : '64', 'dropoff_intensity_limit': '0.0', 'dropoff_general_rate': '0.0',
           'range' : '200', 'points_per_second': '500000'}
