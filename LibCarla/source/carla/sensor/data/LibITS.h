@@ -639,22 +639,22 @@ public:
     } e_ProtectedZoneType;
  
     /* ProtectedZoneType */
-    typedef long     ProtectedZoneType_t;
+    typedef long     ProtectedZoneType_t;// 为ProtectedZoneType类型定义一个别名ProtectedZoneType_t，方便在代码中统一使用，本质上是long类型，便于后续处理与保护区类型相关的数据。
 
     /* TimestampIts Dependencies */
     typedef enum TimestampIts {
-        TimestampIts_utcStartOf2004 = 0,
-        TimestampIts_oneMillisecAfterUTCStartOf2004 = 1
+        TimestampIts_utcStartOf2004 = 0,// 表示2004年UTC时间起始时刻对应的时间戳，对应枚举值为0，可作为一个基准时间参考点。
+        TimestampIts_oneMillisecAfterUTCStartOf2004 = 1 // 表示在2004年UTC时间起始时刻之后1毫秒的时间戳，对应枚举值为1，用于表示相对起始时刻稍有延迟的时间点。
     } e_TimestampIts;
 
 
 
     /* TimestampIts */
-    typedef long TimestampIts_t; 
+    typedef long TimestampIts_t; // 为TimestampIts类型定义一个别名TimestampIts_t，方便在代码中使用，本质上是long类型，便于统一处理与ITS时间戳相关的数据。
 
     /* ProtectedZoneRadius Dependencies */
     typedef enum ProtectedZoneRadius {
-        ProtectedZoneRadius_oneMeter    = 1
+        ProtectedZoneRadius_oneMeter    = 1 // 表示保护区半径为1米的情况，对应枚举值为1，用于界定保护区的空间范围大小。
     } e_ProtectedZoneRadius;
  
     /* ProtectedZoneRadius */
@@ -662,15 +662,15 @@ public:
 
     /* ProtectedCommunicationZone */
     typedef struct ProtectedCommunicationZone {
-        ProtectedZoneType_t  protectedZoneType;
-        TimestampIts_t  expiryTime /* OPTIONAL */;
-        OptionalValueAvailable_t expiryTimeAvailable;
-        Latitude_t   protectedZoneLatitude;
-        Longitude_t  protectedZoneLongitude;
-        ProtectedZoneRadius_t   protectedZoneRadius    /* OPTIONAL */;
-        OptionalValueAvailable_t protectedZoneRadiusAvailable;
-        ProtectedZoneID_t   protectedZoneID    /* OPTIONAL */;
-        OptionalValueAvailable_t protectedZoneIDAvailable;
+        ProtectedZoneType_t  protectedZoneType;// 表示该受保护通信区域的类型，其类型为之前定义的ProtectedZoneType_t，用于明确此区域所属的具体类型。
+        TimestampIts_t  expiryTime /* OPTIONAL */; // 表示该受保护通信区域的过期时间，类型为TimestampIts_t，此成员是可选的（可能在某些情况下不存在），用于限定区域有效的时间范围。
+        OptionalValueAvailable_t expiryTimeAvailable; // 表示上述过期时间是否可用的信息，其类型应该是OptionalValueAvailable_t（可能在其他地方有定义），用于判断过期时间信息的有效性。
+        Latitude_t   protectedZoneLatitude; // 表示该受保护通信区域的纬度信息，其类型应该是之前定义的Latitude_t（可能在其他地方有定义），用于确定区域在地理上的纬度位置。
+        Longitude_t  protectedZoneLongitude;// 表示该受保护通信区域的经度信息，其类型应该是之前定义的Longitude_t（可能在其他地方有定义），用于确定区域在地理上的经度位置。
+        ProtectedZoneRadius_t   protectedZoneRadius    /* OPTIONAL */; // 表示该受保护通信区域的半径信息，类型为ProtectedZoneRadius_t，此成员是可选的（可能在某些情况下不存在），用于进一步明确区域的范围大小。
+        OptionalValueAvailable_t protectedZoneRadiusAvailable; // 表示上述区域半径是否可用的信息，其类型应该是OptionalValueAvailable_t（可能在其他地方有定义），用于判断半径信息的有效性。
+        ProtectedZoneID_t   protectedZoneID    /* OPTIONAL */;// 表示该受保护通信区域的标识信息，类型为ProtectedZoneID_t，此成员是可选的（可能在某些情况下不存在），用于唯一标识该区域。
+        OptionalValueAvailable_t protectedZoneIDAvailable;// 表示上述区域标识是否可用的信息，其类型应该是OptionalValueAvailable_t（可能在其他地方有定义），用于判断标识信息的有效性。
     } ProtectedCommunicationZone_t;
 
     /* ProtectedCommunicationZonesRSU */
