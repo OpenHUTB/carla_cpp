@@ -76,7 +76,7 @@ def commit_info():
             continue
         # 如果是作者行，则更新当前提交的作者（作者有可能是数字开头）
         if '\t' not in line or line.isdigit():  # 提交者名字的行不会以数字开头
-            current_author = line.strip()
+            current_author = line.strip()#如果行中包含'\t' ，则认为是numstat格式的增删行
         elif '\t' in line:
             # 解析 numstat 格式的增删行
             added, deleted, _ = line.split('\t')
