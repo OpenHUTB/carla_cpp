@@ -5,16 +5,22 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
+// 预处理指令，确保该头文件在整个编译过程中只会被包含一次，避免重复包含导致的编译错误，如重复定义等问题
 
 #include "carla/Debug.h"
+// 引入carla项目中名为Debug的头文件
 #include "carla/Memory.h"
+// 引入carla项目中关于内存管理相关的头文件
 #include "carla/sensor/RawData.h"
+// 引入carla项目里传感器相关的RawData头文件
 #include "carla/sensor/data/SemanticLidarData.h"
+// 引入carla项目中传感器数据里关于语义激光雷达数据（Semantic Lidar Data）的头文件，应该包含了语义激光雷达数据相关的结构体、类等具体定义
 
 namespace carla {
 namespace sensor {
 
 class SensorData;
+// 前向声明SensorData类，告知编译器后续会有这个类的完整定义，先允许在这里使用该类的指针、引用等相关类型，方便代码的组织结构和编译流程
 
 namespace s11n {
 
@@ -23,32 +29,47 @@ namespace s11n {
   // ===========================================================================
 
   /// A view over the header of a Lidar measurement.
+// 类的功能注释，说明这个类用于提供对激光雷达测量数据头部信息的一种视图（也就是一种访问方式，不实际拥有数据，只是查看）
+
   class SemanticLidarHeaderView {
     using Index = data::SemanticLidarData::Index;
+ // 使用using关键字定义一个类型别名Index，它等同于data::SemanticLidarData::Index类型，这样后续使用Index时就相当于使用那个具体的索引相关类型，方便代码书写和理解，应该是用于在访问头部数据成员时做索引定位用
 
     public:
 
     float GetHorizontalAngle() const {
       return reinterpret_cast<const float &>(_begin[Index::HorizontalAngle]);
+// 定义一个常成员函数，用于获取水平角度信息。
+// 位置的数据强制转换为float类型的引用并返回，这里使用reinterpret_cast进行强制类型转换，从底层内存角度获取对应的数据并转换为期望的类型
+ // 前提是内存中对应位置存储的数据确实符合float类型的格式要求
+    
     }
 
     uint32_t GetChannelCount() const {
       return _begin[Index::ChannelCount];
+ // 常成员函数，用于获取通道数量信息。
     }
 
     uint32_t GetPointCount(size_t channel) const {
       DEBUG_ASSERT(channel < GetChannelCount());
-      return _begin[Index::SIZE + channel];
+// 先使用DEBUG_ASSERT宏（来自之前引入的Debug.h文件）进行断言检查，确保传入的通道索引（channel）小于获取到的总通道数量
+// 即保证访问的通道索引是合法有效的，防止越界访问等错误情况发生
+      return _begin[Index::SIZE + channel]; // 返回指定通道的点数量信息。
     }
 
   protected:
     friend class SemanticLidarSerializer;
+// 声明SemanticLidarSerializer类为友元类
+ // 一般用于在相关联的类之间提供一种特殊的访问权限，便于协同完成功能，比如这里可能是在序列化和反序列化过程中需要这种访问权限
 
     explicit SemanticLidarHeaderView(const uint32_t *begin) : _begin(begin) {
       DEBUG_ASSERT(_begin != nullptr);
+// 在构造函数中，使用DEBUG_ASSERT宏进行断言检查，确保传入的指向头部数据起始地址的指针（begin）不为空，
+      // 保证后续基于这个指针访问数据的操作是安全可靠的
     }
 
     const uint32_t *_begin;
+ // 定义一个指向uint32_t类型的常指针成员变量
   };
 
   // ===========================================================================
@@ -61,11 +82,16 @@ namespace s11n {
 
     static SemanticLidarHeaderView DeserializeHeader(const RawData &data) {
       return SemanticLidarHeaderView{reinterpret_cast<const uint32_t *>(data.begin())};
+// 定义一个静态函数DeserializeHeader
     }
 
     static size_t GetHeaderOffset(const RawData &data) {
       auto View = DeserializeHeader(data);
       return sizeof(uint32_t) * (View.GetChannelCount() + data::SemanticLidarData::Index::SIZE);
+ // 定义一个静态函数GetHeaderOffset，用于获取原始数据中头部信息所占的偏移量（字节数）。
+// 首先调用DeserializeHeader函数获取头部信息的视图对象（View），然后根据视图对象获取的通道数量（View.GetChannelCount()）以及data::SemanticLidarData::Index::SIZE来计算总的偏移量
+// 通过将uint32_t类型的大小（sizeof(uint32_t)）乘以相应的数量得出字节数形式的偏移量
+    
     }
 
     template <typename Sensor>
@@ -73,8 +99,13 @@ namespace s11n {
         const Sensor &sensor,
         const data::SemanticLidarData &measurement,
         Buffer &&output);
+// 定义一个静态模板函数Serialize
+// 参数sensor是传感器对象引用，measurement是要序列化的语义激光雷达数据，output是用于存放序列化结果的缓冲区
 
     static SharedPtr<SensorData> Deserialize(RawData &&data);
+ // 定义一个静态函数Deserialize
+// 最终返回一个指向SensorData类型的共享智能指针（SharedPtr表示共享所有权，便于内存管理和对象生命周期控制），将原始数据还原为相应的传感器数据对象
+
   };
 
   // ===========================================================================
@@ -91,6 +122,11 @@ namespace s11n {
         boost::asio::buffer(measurement._ser_points)};
     output.copy_from(seq);
     return std::move(output);
+ // 这是SemanticLidarSerializer类中Serialize函数的具体实现（针对特定模板参数Sensor的情况）。
+ // 首先创建一个包含两个const_buffer类型元素的数组（seq），这两个元素分别通过boost::asio::buffer函数将语义激光雷达数据（measurement）中的
+ // _header和_ser_points成员（具体含义由SemanticLidarData结构体定义决定）转换为const_buffer类型，以便后续进行数据复制操作。
+// 然后调用output缓冲区的copy_from函数，将数组seq中的数据复制到output缓冲区中，实现将语义激光雷达数据序列化到缓冲区的操作，
+ // 最后通过移动语义（std::move）返回填充好数据的output缓冲区，避免不必要的拷贝开销，提高效率
   }
 
 } // namespace s11n
