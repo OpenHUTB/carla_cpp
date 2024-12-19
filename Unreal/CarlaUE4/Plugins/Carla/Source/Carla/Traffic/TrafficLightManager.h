@@ -13,8 +13,7 @@
 
 #include "TrafficLightManager.generated.h"
 
-/// Class In charge of creating and assigning traffic
-/// light groups, controllers and components.
+/// 负责创建和分配交通灯组、控制器和组件的类。
 UCLASS()
 class CARLA_API ATrafficLightManager : public AActor
 {
@@ -69,25 +68,25 @@ private:
 
   void RemoveAttachedProps(TArray<AActor*> Actors) const;
 
-  // Mapped references to ATrafficLightGroup (junction)
+  // 映射对 ATrafficLightGroup (交叉路口) 的引用
   UPROPERTY()
   TMap<int, ATrafficLightGroup *> TrafficGroups;
 
-  // Mapped references to UTrafficLightController (controllers)
+  // 映射对 UTrafficLightController（控制器）的引用
   UPROPERTY()
   TMap<FString, UTrafficLightController *> TrafficControllers;
 
-  // Mapped references to individual TrafficLightComponents
+  // 映射到单个 TrafficLightComponents 的引用
   UPROPERTY()
   TMap<FString, USignComponent *> TrafficSignComponents;
 
-  // Mapped references to TrafficSigns
+  // 交通标志 TrafficSigns 的映射引用
   TArray<ATrafficSignBase*> TrafficSigns;
 
   UPROPERTY(EditAnywhere, Category= "Traffic Light Manager")
   TSubclassOf<AActor> TrafficLightModel;
 
-  // Relates an OpenDRIVE type to a traffic sign blueprint
+  // 将 OpenDRIVE 类型与交通标志蓝图关联起来
   UPROPERTY(EditAnywhere, Category= "Traffic Light Manager")
   TMap<FString, TSubclassOf<AActor>> TrafficSignsModels;
 
@@ -103,15 +102,15 @@ private:
   UPROPERTY(EditAnywhere, Category= "Traffic Light Manager")
   bool TrafficLightsGenerated = false;
 
-  // Id for TrafficLightGroups without corresponding OpenDRIVE junction
+  // 没有对应 OpenDRIVE 交叉路口的 TrafficLightGroups 的 ID
   UPROPERTY()
   int TrafficLightGroupMissingId = -2;
 
-  // Id for TrafficLightControllers without corresponding OpenDRIVE junction
+  // 没有对应 OpenDRIVE 交叉路口的 TrafficLightControllers 的 ID
   UPROPERTY()
   int TrafficLightControllerMissingId = -1;
 
-  // Id for TrafficLightComponents without corresponding OpenDRIVE junction
+  // 没有对应 OpenDRIVE 交叉路口的 TrafficLightComponents 的 ID
   UPROPERTY()
   int TrafficLightComponentMissingId = -1;
 

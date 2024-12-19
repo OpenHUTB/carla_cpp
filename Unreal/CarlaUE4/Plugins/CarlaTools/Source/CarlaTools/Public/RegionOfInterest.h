@@ -21,7 +21,7 @@ enum ERegionOfInterestType
 {
   NONE_REGION,
   TERRAIN_REGION,
-  WATERBODIES_REGION,  // Not Supported yet
+  WATERBODIES_REGION,  // 尚未支持
   VEGETATION_REGION,
   MISC_SPREADED_ACTORS_REGION,
   MISC_SPECIFIC_LOCATION_ACTORS_REGION,
@@ -70,28 +70,28 @@ public:
     return (this->X == Other.X) && (this->Y == Other.Y);
   }
 
-  /// A function that returns the tile that is above the current tile.
+  /// 一个返回位于当前瓦片上方的瓦片的函数。
   FORCEINLINE FRoiTile Up()
   {
     // return FRoiTile(X, Y-1);
     return FRoiTile(X-1, Y);
   }
 
-  /// A function that returns the tile that is below the current tile.
+  /// 一个返回位于当前瓦片下方的瓦片的函数。
   FORCEINLINE FRoiTile Down()
   {
     // return FRoiTile(X, Y+1);
     return FRoiTile(X+1, Y);
   }
 
-  /// A function that returns the tile that is to the left of the current tile.
+  ///一个返回位于当前瓦片左侧的瓦片的函数。
   FORCEINLINE FRoiTile Left()
   {
     // return FRoiTile(X-1, Y);
     return FRoiTile(X, Y+1);
   }
 
-  /// A function that returns the tile that is to the right of the current tile.
+  ///一个返回位于当前瓦片右侧的瓦片的函数。
   FORCEINLINE FRoiTile Right()
   {
     // return FRoiTile(X+1, Y);
@@ -99,8 +99,8 @@ public:
   }
 };
 
-/// A function that is used to hash the FRoiTile struct.
-/// It is used to hash the struct so that it can be used as a key in a TMap.
+///一个用于对FRoiTile结构体进行哈希处理的函数。
+/// 它被用于对该结构体进行哈希处理，以便其能在TMap中用作键。
 FORCEINLINE uint32 GetTypeHash(const FRoiTile& Thing)
 {
   uint32 Hash = FCrc::MemCrc32(&Thing, sizeof(FRoiTile));
@@ -137,7 +137,7 @@ struct CARLATOOLS_API FCarlaRegionOfInterest
     return this->RegionType;
   }
 
-  // A template function that checks if a tile is in a map of regions.
+  //一个模板函数，用于检查一个瓦片是否在区域映射图中。
   template <typename R>
   static FORCEINLINE bool IsTileInRegionsSet(FRoiTile RoiTile, TMap<FRoiTile, R> RoisMap)
   {
@@ -146,16 +146,16 @@ struct CARLATOOLS_API FCarlaRegionOfInterest
     return RoisMap.Contains(RoiTile);
   }
 
-  /// Checking if two regions of interest are equal.
+  /// 检查两个感兴趣的区域是否相等。
   bool Equals(const FCarlaRegionOfInterest& Other)
   {
-    // Checking if the number of tiles in the two regions is the same.
+    // 检查这两个区域中的瓦片数量是否相同。
     if(this->TilesList.Num() != Other.TilesList.Num())
     {
       return false;
     }
 
-    // Checking if the two regions have the same tiles.
+    // 检查这两个区域是否具有相同的瓦片。
     TMap<FRoiTile, int> TileCount;
     for(FRoiTile Tile : Other.TilesList)
     {
@@ -202,8 +202,8 @@ struct CARLATOOLS_API FVegetationROI : public FCarlaRegionOfInterest
     FoliageSpawners.Add(Spawner);
   }
 
-  // A function that adds a list of spawners to the list of spawners of the ROI.
-  void AddFoliageSpawners(TArray<UProceduralFoliageSpawner*> Spawners)
+  // 一个将一组生成器添加到感兴趣区域（ROI）的生成器列表中的函数。
+void AddFoliageSpawners(TArray<UProceduralFoliageSpawner*> Spawners)
   {
     for(UProceduralFoliageSpawner* Spawner : Spawners)
     {
@@ -222,12 +222,12 @@ struct CARLATOOLS_API FTerrainROI : public FCarlaRegionOfInterest
 {
   GENERATED_BODY()
 
-  // A pointer to a material instance that is used to change the heightmap material of the ROI.
-  UPROPERTY(BlueprintReadWrite)
+  // 一个指向材质实例的指针，该材质实例用于更改感兴趣区域（ROI）的高度图材质。
+UPROPERTY(BlueprintReadWrite)
   UMaterialInstanceDynamic* RoiMaterialInstance;
 
-  // A render target that is used to store the heightmap of the ROI.
-  UPROPERTY(BlueprintReadWrite)
+  // 一个用于存储感兴趣区域（ROI）高度图的渲染目标。
+ UPROPERTY(BlueprintReadWrite)
   UTextureRenderTarget2D* RoiHeightmapRenderTarget;
 
   FTerrainROI() : FCarlaRegionOfInterest(), RoiMaterialInstance(), RoiHeightmapRenderTarget()
@@ -276,8 +276,7 @@ struct CARLATOOLS_API FMiscSpreadedActorsROI : public FCarlaRegionOfInterest
   {}
 };
 
-/// A struct that is used to store the information of a region of interest that is used to
-/// spawn actors in specific locations.
+/// 一个用于存储特定位置生成演员的感兴趣区域相关信息的结构体。
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FMiscSpecificLocationActorsROI : public FCarlaRegionOfInterest
 {

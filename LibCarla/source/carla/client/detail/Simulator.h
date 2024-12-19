@@ -73,16 +73,18 @@ namespace detail {
       return LoadEpisode("", reset_settings);
     }
 
+    // 根据地图名和可选的重置设置以及地图层来加载一个场景
     EpisodeProxy LoadEpisode(std::string map_name, bool reset_settings = true, rpc::MapLayer map_layers = rpc::MapLayer::All);
-
+    // 加载指定的地图层
     void LoadLevelLayer(rpc::MapLayer map_layers) const {
       _client.LoadLevelLayer(map_layers);
     }
-
+    // 卸载指定的地图层
     void UnloadLevelLayer(rpc::MapLayer map_layers) const {
       _client.UnloadLevelLayer(map_layers);
     }
 
+    // 根据OpenDrive文件和生成参数加载一个场景
     EpisodeProxy LoadOpenDriveEpisode(
         std::string opendrive,
         const rpc::OpendriveGenerationParameters & params,
@@ -95,13 +97,15 @@ namespace detail {
     /// @{
 
     /// @pre Cannot be called previous to GetCurrentEpisode.
+    // 获取当前场景的ID，确保当前场景已准备好
     auto GetCurrentEpisodeId() {
       GetReadyCurrentEpisode();
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetId();
     }
-
+    // 确保当前场景已准备好
     void GetReadyCurrentEpisode();
+    // 获取当前场景的代理
     EpisodeProxy GetCurrentEpisode();
 
     /// @}
@@ -110,6 +114,7 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    // 获取当前世界（场景）的实例
     World GetWorld() {
       return World{GetCurrentEpisode()};
     }
@@ -120,6 +125,8 @@ namespace detail {
     // =========================================================================
     /// @{
 
+
+// 获取当前世界的快照
     WorldSnapshot GetWorldSnapshot() const {
       DEBUG_ASSERT(_episode != nullptr);
       return WorldSnapshot{_episode->GetState()};
@@ -131,8 +138,11 @@ namespace detail {
     // =========================================================================
     /// @{
 
+
+// 获取当前场景的地图实例
     SharedPtr<Map> GetCurrentMap();
 
+    // 获取所有可用的地图名
     std::vector<std::string> GetAvailableMaps() {
       return _client.GetAvailableMaps();
     }
@@ -143,12 +153,16 @@ namespace detail {
     // =========================================================================
     /// @{
 
+// 设置文件基础文件夹
     bool SetFilesBaseFolder(const std::string &path);
 
+    // 获取指定文件夹中所需的文件列表，可以选择是否下载
     std::vector<std::string> GetRequiredFiles(const std::string &folder = "", const bool download = true) const;
 
+    // 请求特定文件
     void RequestFile(const std::string &name) const;
 
+    // 从缓存中获取文件，如果缓存中没有且request_otherwise为true，则尝试请求
     std::vector<uint8_t> GetCacheFile(const std::string &name, const bool request_otherwise) const;
 
     /// @}
@@ -167,20 +181,21 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    // 设置网络超时时间
     void SetNetworkingTimeout(time_duration timeout) {
-      _client.SetTimeout(timeout);
+      _client.SetTimeout(timeout); // 设置客户端的超时时间
     }
 
     time_duration GetNetworkingTimeout() {
-      return _client.GetTimeout();
+      return _client.GetTimeout();// 获取客户端的超时时间
     }
-
+    // 获取客户端版本
     std::string GetClientVersion() {
-      return _client.GetClientVersion();
+      return _client.GetClientVersion();// 从客户端获取版本信息
     }
-
+    // 获取服务器版本
     std::string GetServerVersion() {
-      return _client.GetServerVersion();
+      return _client.GetServerVersion();// 从服务器获取版本信息
     }
 
     /// @}
@@ -189,18 +204,19 @@ namespace detail {
     // =========================================================================
     /// @{
 
+// 等待一个节拍（模拟时间步），返回该时间步的世界快照
     WorldSnapshot WaitForTick(time_duration timeout);
-
+    // 注册一个在每个节拍（模拟时间步）被调用的回调函数
     size_t RegisterOnTickEvent(std::function<void(WorldSnapshot)> callback) {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->RegisterOnTickEvent(std::move(callback));
     }
-
+    // 移除一个节拍回调
     void RemoveOnTickEvent(size_t id) {
       DEBUG_ASSERT(_episode != nullptr);
       _episode->RemoveOnTickEvent(id);
     }
-
+    // 执行一个节拍（模拟时间步），返回该时间步的模拟时间（通常以微秒为单位）
     uint64_t Tick(time_duration timeout);
 
     /// @}
@@ -235,14 +251,17 @@ namespace detail {
     }
 
     void AddPendingException(std::string e) {
+        // 调用当前章节对象的AddPendingException方法，传入异常字符串e
       _episode->AddPendingException(e);
     }
 
+    // 获取蓝图库的共享指针
     SharedPtr<BlueprintLibrary> GetBlueprintLibrary();
 
     /// 返回一个列表，其中第一个元素是车辆 ID，第二个元素是灯光状态
     rpc::VehicleLightStateList GetVehiclesLightStates();
 
+    // 获取当前观察者（Spectator）对象的共享指针
     SharedPtr<Actor> GetSpectator();
 
     rpc::EpisodeSettings GetEpisodeSettings() {
@@ -255,22 +274,29 @@ namespace detail {
       return _client.GetWeatherParameters();
     }
 
+    // 设置新的天气参数
     void SetWeatherParameters(const rpc::WeatherParameters &weather) {
+        // 调用客户端的SetWeatherParameters方法，传入新的天气参数
       _client.SetWeatherParameters(weather);
     }
 
+    // 获取IMU传感器的重力值
     float GetIMUISensorGravity() const {
+        // 调用客户端的GetIMUISensorGravity方法，返回IMU传感器的重力值
       return _client.GetIMUISensorGravity();
     }
 
+    // 设置IMU传感器的重力值
     void SetIMUISensorGravity(float NewIMUISensorGravity) {
       _client.SetIMUISensorGravity(NewIMUISensorGravity);
     }
 
+    // 获取指定车辆的物理控制状态
     rpc::VehiclePhysicsControl GetVehiclePhysicsControl(const Vehicle &vehicle) const {
+        // 调用客户端的GetVehiclePhysicsControl方法，传入车辆的ID，返回车辆的物理控制状态
       return _client.GetVehiclePhysicsControl(vehicle.GetId());
     }
-
+    // 获取指定车辆的灯光状态
     rpc::VehicleLightState GetVehicleLightState(const Vehicle &vehicle) const {
       return _client.GetVehicleLightState(vehicle.GetId());
     }
@@ -279,24 +305,29 @@ namespace detail {
     std::vector<geom::BoundingBox> GetLevelBBs(uint8_t queried_tag) const {
       return _client.GetLevelBBs(queried_tag);
     }
-
+    // 获取具有指定标签的环境对象
     std::vector<rpc::EnvironmentObject> GetEnvironmentObjects(uint8_t queried_tag) const {
       return _client.GetEnvironmentObjects(queried_tag);
     }
 
+    // 启用或禁用具有指定ID的环境对象
     void EnableEnvironmentObjects(
       std::vector<uint64_t> env_objects_ids,
       bool enable) const {
+        // 调用客户端的EnableEnvironmentObjects方法，传入环境对象的ID列表和启用状态
       _client.EnableEnvironmentObjects(env_objects_ids, enable);
     }
-
+    // 投影一个点，并返回该点在地图上的标记点和是否成功投影
     std::pair<bool,rpc::LabelledPoint> ProjectPoint(
         geom::Location location, geom::Vector3D direction, float search_distance) const {
+        // 调用客户端的ProjectPoint方法，传入起始位置、方向和搜索距离，返回是否成功投影和标记点
       return _client.ProjectPoint(location, direction, search_distance);
     }
 
+    // 从一个起始位置到结束位置投射一条光线，并返回所有碰撞点
     std::vector<rpc::LabelledPoint> CastRay(
         geom::Location start_location, geom::Location end_location) const {
+        // 调用客户端的CastRay方法，传入起始位置和结束位置，返回光线碰撞的所有标记点列表
       return _client.CastRay(start_location, end_location);
     }
 
@@ -305,19 +336,19 @@ namespace detail {
     /// @name 人工智能
     // =========================================================================
     /// @{
-
+    // 获取当前导航对象
     std::shared_ptr<WalkerNavigation> GetNavigation();
-
+    // 通过调用此函数来更新导航状态，可能是为了处理路径计算、目标点的选择等
     void NavigationTick();
-
+    // 注册AI控制器，可能是某个虚拟角色或物体的AI控制器
     void RegisterAIController(const WalkerAIController &controller);
-
+    // 注销AI控制器，移除控制器与特定角色或物体的关联
     void UnregisterAIController(const WalkerAIController &controller);
-
+    // 从导航对象中获取一个随机位置，这可能用于生成随机目标或逃逸点
     boost::optional<geom::Location> GetRandomLocationFromNavigation();
-
+    // 设置行人交叉因素的百分比，可能影响路径规划或碰撞处理
     void SetPedestriansCrossFactor(float percentage);
-
+    // 设置行人行为的随机种子，可能影响行人生成或路径选择的随机性
     void SetPedestriansSeed(unsigned int seed);
 
     /// @}
@@ -326,16 +357,17 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    //根据参与者的ID获取对应的演员信息
     boost::optional<rpc::Actor> GetActorById(ActorId id) const {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetActorById(id);
     }
-
+    /// 根据一组演员ID获取对应的演员信息
     std::vector<rpc::Actor> GetActorsById(const std::vector<ActorId> &actor_ids) const {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetActorsById(actor_ids);
     }
-
+    /// 获取当前 episode 中所有的演员信息
     std::vector<rpc::Actor> GetAllTheActorsInTheEpisode() const {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetActors();
@@ -366,90 +398,93 @@ namespace detail {
         rpc::AttachmentType attachment_type = rpc::AttachmentType::Rigid,
         GarbageCollectionPolicy gc = GarbageCollectionPolicy::Inherit,
         const std::string& socket_name = "");
-
+    /// 销毁指定的演员
     bool DestroyActor(Actor &actor);
-
+    // 根据演员ID销毁指定的演员
     bool DestroyActor(ActorId actor_id)
     {
       return _client.DestroyActor(actor_id);
     }
-
+    // 获取指定ID演员的快照信息
     ActorSnapshot GetActorSnapshot(ActorId actor_id) const {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->GetState()->GetActorSnapshot(actor_id);
     }
-
+    // 获取指定演员的快照信息
     ActorSnapshot GetActorSnapshot(const Actor &actor) const {
       return GetActorSnapshot(actor.GetId());
     }
-
+    // 获取指定演员的状态信息
     rpc::ActorState GetActorState(const Actor &actor) const {
       return GetActorSnapshot(actor).actor_state;
     }
-
+    // 获取指定演员的位置
     geom::Location GetActorLocation(const Actor &actor) const {
       return GetActorSnapshot(actor).transform.location;
     }
-
+    /// 获取指定演员的变换信息（包括位置、旋转、缩放）
     geom::Transform GetActorTransform(const Actor &actor) const {
       return GetActorSnapshot(actor).transform;
     }
 
+    /// 获取指定演员的速度（可能包括线性速度和角速度）
     geom::Vector3D GetActorVelocity(const Actor &actor) const {
       return GetActorSnapshot(actor).velocity;
     }
-
+    /// 设置指定演员的目标速度
     void SetActorTargetVelocity(const Actor &actor, const geom::Vector3D &vector) {
       _client.SetActorTargetVelocity(actor.GetId(), vector);
     }
-
+    /// 获取指定演员的角速度
     geom::Vector3D GetActorAngularVelocity(const Actor &actor) const {
       return GetActorSnapshot(actor).angular_velocity;
     }
-
+    /// 设置指定演员的目标角速度
     void SetActorTargetAngularVelocity(const Actor &actor, const geom::Vector3D &vector) {
       _client.SetActorTargetAngularVelocity(actor.GetId(), vector);
     }
+    /// 启用演员的恒定速度（用于模拟持续的线性运动）
     void EnableActorConstantVelocity(const Actor &actor, const geom::Vector3D &vector) {
       _client.EnableActorConstantVelocity(actor.GetId(), vector);
     }
-
+    /// 禁用演员的恒定速度
     void DisableActorConstantVelocity(const Actor &actor) {
       _client.DisableActorConstantVelocity(actor.GetId());
     }
-
+    /// 给指定演员施加脉冲力
     void AddActorImpulse(const Actor &actor, const geom::Vector3D &impulse) {
       _client.AddActorImpulse(actor.GetId(), impulse);
     }
 
+    /// 给指定演员在特定位置施加脉冲力
     void AddActorImpulse(const Actor &actor, const geom::Vector3D &impulse, const geom::Vector3D &location) {
       _client.AddActorImpulse(actor.GetId(), impulse, location);
     }
-
+    /// 给指定演员施加持续的力
     void AddActorForce(const Actor &actor, const geom::Vector3D &force) {
       _client.AddActorForce(actor.GetId(), force);
     }
-
+    /// 给指定演员在特定位置施加持续的力
     void AddActorForce(const Actor &actor, const geom::Vector3D &force, const geom::Vector3D &location) {
       _client.AddActorForce(actor.GetId(), force, location);
     }
-
+    /// 给指定演员施加角脉冲（影响角度运动）
     void AddActorAngularImpulse(const Actor &actor, const geom::Vector3D &vector) {
       _client.AddActorAngularImpulse(actor.GetId(), vector);
     }
-
+    /// 给指定演员施加扭矩
     void AddActorTorque(const Actor &actor, const geom::Vector3D &torque) {
       _client.AddActorAngularImpulse(actor.GetId(), torque);
     }
-
+    /// 获取指定演员的加速度
     geom::Vector3D GetActorAcceleration(const Actor &actor) const {
       return GetActorSnapshot(actor).acceleration;
     }
-
+    /// 获取指定演员组件的世界坐标变换信息
     geom::Transform GetActorComponentWorldTransform(const Actor &actor, const std::string componentName) {
       return _client.GetActorComponentWorldTransform(actor.GetId(), componentName);
     }
-
+    /// 获取指定演员组件的相对坐标变换信息
     geom::Transform GetActorComponentRelativeTransform(const Actor &actor, std::string componentName) {
       return _client.GetActorComponentRelativeTransform(actor.GetId(), componentName);
     }

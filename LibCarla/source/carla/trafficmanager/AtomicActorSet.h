@@ -51,7 +51,7 @@ namespace traffic_manager {
       std::vector<ActorId> actor_list;
       for (auto it = actor_set.begin(); it != actor_set.end(); ++it) {
         actor_list.push_back(it->first);
-      }
+      }//将 actor_set 集合中的所有元素的 second 值提取并添加到 actor_list 列表中
       return actor_list;
     }
 // 将一个 ActorPtr 向量中的所有元素插入到集合中

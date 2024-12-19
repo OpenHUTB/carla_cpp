@@ -16,28 +16,35 @@ class ATrafficLightManager;
 class ATrafficLightGroup;
 class UTrafficLightController;
 
-// Delegate to define dispatcher
+// 委托定义调度程序：declare_dynamic_multicast_delegate
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FLightChangeDispatcher);
 
-/// Class representing an OpenDRIVE Traffic Signal
+/// 表示 OpenDRIVE 交通信号灯的类
 UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CARLA_API UTrafficLightComponent : public USignComponent
 {
   GENERATED_BODY()
 
 public:
-  // Sets default values for this component's properties
+  // 设置此组件属性的默认值
   UTrafficLightComponent();
 
+  // 通过 UFUNCTION宏 来注册函数到蓝图中；
+  // BlueprintCallable 表示这个函数可以被蓝图调用；
+  // 这个成员函数由其蓝图的子类实现，你不应该尝试在C++中给出函数的实现，这会导致链接错误。
+  // 设置交通灯的状态
   UFUNCTION(Category = "Traffic Light", BlueprintCallable)
   void SetLightState(ETrafficLightState NewState);
 
+  // 获得交通灯的状态
   UFUNCTION(Category = "Traffic Light", BlueprintCallable)
   ETrafficLightState GetLightState() const;
 
+  // 修改冻结的交通信号灯
   UFUNCTION(Category = "Traffic Light", BlueprintCallable)
   void SetFrozenGroup(bool InFreeze);
 
+  // 获得交通灯组（列表）
   UFUNCTION(Category = "Traffic Light", BlueprintPure)
   ATrafficLightGroup* GetGroup();
 
@@ -78,6 +85,8 @@ private:
       const FTransform BoxTransform,
       const FVector BoxSize);
 
+  // 借助 UPROPERTY 宏 将一个 UObject 类的子类的成员变量注册到蓝图中（让蓝图能够调用这个C++类中的函数）
+  // 可以传递更多参数来控制 UPROPERTY 宏的行为
   UPROPERTY(Category = "Traffic Light", EditAnywhere)
   ETrafficLightState LightState;
 
@@ -90,7 +99,7 @@ private:
   UPROPERTY(Category = "Traffic Light", VisibleAnywhere)
   UTrafficLightController *TrafficLightController = nullptr;
 
-  // Vehicles that have entered the trigger box of the traffic light
+  // 进入交通信号灯触发框的车辆
   UPROPERTY()
   TArray<AWheeledVehicleAIController*> Vehicles;
 
