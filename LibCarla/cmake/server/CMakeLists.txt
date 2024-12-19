@@ -46,6 +46,11 @@ file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profile
 # GLOB命令可以方便地根据扩展名等模式快速收集一批文件，为后续的安装等操作做准备。
 install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)
 
+// 利用CMake中的file函数与GLOB命令来查找符合特定模式的文件。
+// 这里是在由变量${libcarla_source_path}所指定的基础路径下的“carla/road/”子目录中（即完整路径为${libcarla_source_path}/carla/road/ ），
+// 查找所有以“.h”为后缀的头文件。
+// 然后把找到的这些头文件的路径列表存储到名为libcarla_carla_road_headers的变量中。
+// GLOB命令在CMake里常用于按文件扩展名等特定模式收集一批文件，便于后续围绕这些文件开展进一步操作，比如安装、编译配置等相关操作。
 file(GLOB libcarla_carla_road_headers "${libcarla_source_path}/carla/road/*.h")
 install(FILES ${libcarla_carla_road_headers} DESTINATION include/carla/road)
 
