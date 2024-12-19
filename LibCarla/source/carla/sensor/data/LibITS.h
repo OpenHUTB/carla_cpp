@@ -609,26 +609,27 @@ public:
 
     /* PerformanceClass Dependencies */
     typedef enum PerformanceClass {
-        PerformanceClass_unavailable    = 0,
-        PerformanceClass_performanceClassA  = 1,
-        PerformanceClass_performanceClassB  = 2
+        PerformanceClass_unavailable    = 0,// 表示车辆性能等级不可用的情况，对应枚举值为0
+        PerformanceClass_performanceClassA  = 1,// 表示车辆属于性能等级A的情况，对应枚举值为1
+        PerformanceClass_performanceClassB  = 2 // 表示车辆属于性能等级B的情况，对应枚举值为2
     } e_PerformanceClass;
  
     /* PerformanceClass */
-    typedef long PerformanceClass_t;
+    typedef long PerformanceClass_t;// 为PerformanceClass类型定义一个别名PerformanceClass_t，方便在代码中使用，本质上是long类型，便于统一处理车辆性能等级相关的数据
 
     /* ProtectedZoneID */
     typedef long ProtectedZoneID_t;
+// 定义类型别名ProtectedZoneID_t，用于表示保护区（可能是特定区域相关的概念）的标识，本质上是long类型，方便在后续代码中使用该类型处理相关逻辑
 
     /* CenDsrcTollingZoneID */
-    typedef ProtectedZoneID_t CenDsrcTollingZoneID_t;
+    typedef ProtectedZoneID_t CenDsrcTollingZoneID_t;// 定义类型别名CenDsrcTollingZoneID_t，它等同于ProtectedZoneID_t类型，可能用于表示特定的基于DSRC（专用短程通信）的收费区域标识，方便代码中统一使用该类型进行相关操作。
 
     /* CenDsrcTollingZone */
     typedef struct CenDsrcTollingZone {
-        Latitude_t   protectedZoneLatitude;
-        Longitude_t  protectedZoneLongitude;
-        CenDsrcTollingZoneID_t  cenDsrcTollingZoneID;   /* OPTIONAL */
-        OptionalValueAvailable_t cenDsrcTollingZoneIDAvailable;
+        Latitude_t   protectedZoneLatitude;// 表示该收费区域的纬度信息，其类型应该是之前定义的Latitude_t（可能在其他地方有定义）
+        Longitude_t  protectedZoneLongitude; // 表示该收费区域的经度信息，其类型应该是之前定义的Longitude_t（可能在其他地方有定义）
+        CenDsrcTollingZoneID_t  cenDsrcTollingZoneID;   /* OPTIONAL */// 表示该基于DSRC的收费区域的标识，类型为CenDsrcTollingZoneID_t，并且此成员是可选的（可能在某些情况下不存在）
+        OptionalValueAvailable_t cenDsrcTollingZoneIDAvailable; // 表示上述收费区域标识是否可用的信息，其类型应该是OptionalValueAvailable_t（可能在其他地方有定义）
     } CenDsrcTollingZone_t;
 
     /* ProtectedZoneType Dependencies */
