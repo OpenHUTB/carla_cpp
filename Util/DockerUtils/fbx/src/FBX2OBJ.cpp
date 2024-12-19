@@ -1,5 +1,7 @@
 #include <fbxsdk.h>
 
+// 声明一个全局的 FbxManager 指针，初始化为 NULL，FbxManager 是 FBX SDK 中的核心管理类，
+// 用于管理整个 FBX 相关的资源、场景等操作，这里先声明，后续应该会在合适地方进行初始化
 // declare global
 FbxManager*   gSdkManager = NULL;
 
