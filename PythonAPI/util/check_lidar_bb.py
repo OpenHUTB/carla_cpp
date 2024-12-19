@@ -71,8 +71,8 @@ class ActorTrace(object):
         self.set_actor(actor)
         self._lidar_pc_local = np.array([])
         self._bb_vertices = np.array([])
-        self._bb_minlimits = [0, 0, 0]
-        self._bb_maxlimits = [0, 0, 0]
+        self._bb_minlimits = [0, 0, 0] # 定义边界框的最小坐标，初始值为（0，0，0）
+        self._bb_maxlimits = [0, 0, 0] # 定义边界框的最大坐标，初始值为（0，0，0）
 
     def set_lidar(self, lidar):
         self._frame = lidar[0]
