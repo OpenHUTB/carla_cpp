@@ -27,17 +27,17 @@ namespace carla {
 // åˆ¤æ–­è¾“å…¥èŒƒå›´ input æ˜¯å¦ä»¥èŒƒå›´ test å¼€å¤´
 // åœ¨ UTF-8 ç¼–ç ä¸‹ï¼Œèƒ½å¤Ÿå‡†ç¡®åˆ¤æ–­åŒ…å«å¤šè¯­è¨€å­—ç¬¦çš„å­—ç¬¦ä¸²æ˜¯å¦ä»¥ç‰¹å®šå­ä¸²å¼€å¤´ã€‚
     template <typename Range1T, typename Range2T>
-    static bool StartsWith(const Range1T &input, const Range2T &test) {
+    static bool StartsWith(const Range1T &input, const Range2T &test) {// Ê¹ÓÃBoostËã·¨¿âÖĞµÄistarts_withº¯ÊıÀ´Ö´ĞĞ²»Çø·Ö´óĞ¡Ğ´µÄ¿ªÍ·Æ¥Åä¼ì²é¡£
       return boost::algorithm::istarts_with(input, test);
-    }
+    }// ¶¨ÒåÒ»¸öÄ£°åº¯Êı£¬ÓÃÓÚ¼ì²éÒ»¸ö·¶Î§ÊÇ·ñÒÔÁíÒ»¸ö·¶Î§½áÎ²£¬²»Çø·Ö´óĞ¡Ğ´
 
     template <typename Range1T, typename Range2T>
-    static bool EndsWith(const Range1T &input, const Range2T &test) {
+    static bool EndsWith(const Range1T &input, const Range2T &test) {// Ê¹ÓÃBoostËã·¨¿âÖĞµÄiends_withº¯ÊıÀ´Ö´ĞĞ²»Çø·Ö´óĞ¡Ğ´µÄ½áÎ²Æ¥Åä¼ì²é¡£
       return boost::algorithm::iends_with(input, test);
-    }
+    }// ¶¨ÒåÒ»¸öÄ£°åº¯Êı£¬ÓÃÓÚ½«¿ÉĞ´·¶Î§ÖĞµÄËùÓĞ×Ö·û×ª»»ÎªĞ¡Ğ´¡£
 
     template <typename WritableRangeT>
-    static void ToLower(WritableRangeT &str) {
+    static void ToLower(WritableRangeT &str) {// Ê¹ÓÃBoostËã·¨¿âÖĞµÄto_lowerº¯ÊıÀ´½«·¶Î§ÖĞµÄËùÓĞ×Ö·û×ª»»ÎªĞ¡Ğ´¡£
       boost::algorithm::to_lower(str);
     }
 // å°†å¯å†™èŒƒå›´çš„å­—ç¬¦ä¸²è½¬æ¢ä¸ºå°å†™å½¢å¼
