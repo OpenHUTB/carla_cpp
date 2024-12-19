@@ -23,7 +23,9 @@ file(GLOB libcarla_carla_headers "${libcarla_source_path}/carla/*.h")# 将之前
 install(FILES ${libcarla_carla_headers} DESTINATION include/carla)# 使用 file(GLOB...) 命令查找 ${libcarla_source_path}/carla/geom 目录下所有以.h 为扩展名的头文件，
 
 file(GLOB libcarla_carla_geom_headers "${libcarla_source_path}/carla/geom/*.h")
-install(FILES ${libcarla_carla_geom_headers} DESTINATION include/carla/geom)
+install(FILES ${libcarla_carla_geom_headers} DESTINATION include/carla/geom)# 使用install命令将之前通过GLOB获取到的头文件列表（${libcarla_carla_geom_headers}）中的文件
+# 安装到目标目录（include/carla/geom）下。
+# 这样在进行项目安装等操作时，这些头文件就能被正确放置到指定的安装路径中，便于其他项目引用这些头文件。
 
 file(GLOB libcarla_carla_opendrive "${libcarla_source_path}/carla/opendrive/*.h")
 install(FILES ${libcarla_carla_opendrive} DESTINATION include/carla/opendrive)
