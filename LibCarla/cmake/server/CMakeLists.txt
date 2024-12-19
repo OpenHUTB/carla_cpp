@@ -141,7 +141,7 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/road/general/*.h"
     "${libcarla_source_path}/carla/road/object/*.cpp"
     "${libcarla_source_path}/carla/road/object/*.h"
-    "${libcarla_source_path}/carla/road/signal/*.cpp"
+    "${libcarla_source_path}/carla/road/signal/*.cpp"# 收集${libcarla_source_path}/carla/road/signal/*.cpp的源文件路径，用于获取该子目录下的源文件路径，便于后续在项目构建等操作中使用它们。
     "${libcarla_source_path}/carla/road/signal/*.h"
     "${libcarla_source_path}/carla/rpc/*.cpp"
     "${libcarla_source_path}/carla/rpc/*.h"
