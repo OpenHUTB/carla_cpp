@@ -22,7 +22,7 @@ except IndexError:
     pass
 
 import carla
-
+//从Carla库中导入VehicleLightState并将其重命名为vls，可能用于后续控制车辆灯光状态相关操作
 from carla import VehicleLightState as vls
 
 import argparse
@@ -30,6 +30,7 @@ import logging
 from numpy import random
 
 def get_actor_blueprints(world, filter, generation):
+//从世界场景的蓝图库中筛选出符合给定过滤器条件的蓝图列表
     bps = world.get_blueprint_library().filter(filter)
 
     if generation.lower() == "all":
@@ -37,12 +38,14 @@ def get_actor_blueprints(world, filter, generation):
 
     # If the filter returns only one bp, we assume that this one needed
     # and therefore, we ignore the generation
+// 如果过滤器返回的蓝图只有一个，那么就认为这就是需要的那个，此时忽略生成版本的限制
     if len(bps) == 1:
         return bps
-
+//将传入的生成版本字符串转换为整数类型，以便后续进行数值比较判断
     try:
         int_generation = int(generation)
         # Check if generation is in available generations
+//检查转换后的生成版本数值是否在可用的版本列表中（这里限定为1、2、3）
         if int_generation in [1, 2, 3]:
             bps = [x for x in bps if int(x.get_attribute('generation')) == int_generation]
             return bps
@@ -56,6 +59,7 @@ def get_actor_blueprints(world, filter, generation):
 def main():
     argparser = argparse.ArgumentParser(
         description=__doc__)
+//添加一个名为'--host'的命令行参数，用于指定主机服务器的IP地址，默认值为'127.0.0.1'
     argparser.add_argument(
         '--host',
         metavar='H',
@@ -66,6 +70,7 @@ def main():
         metavar='P',
         default=2000,
         type=int,
+// 添加一个名为'-p'（短格式）或'--port'（长格式）的命令行参数，用于指定要监听的TCP端口号，默认值为2000，类型为整数
         help='TCP port to listen to (default: 2000)')
     argparser.add_argument(
         '-n', '--number-of-vehicles',
@@ -73,6 +78,7 @@ def main():
         default=30,
         type=int,
         help='Number of vehicles (default: 30)')
+//添加一个名为'-w'（短格式）或'--number-of-walkers'（长格式）的命令行参数，用于指定要生成的行人数量，默认值为10，类型为整数
     argparser.add_argument(
         '-w', '--number-of-walkers',
         metavar='W',
@@ -83,6 +89,7 @@ def main():
         '--safe',
         action='store_true',
         help='Avoid spawning vehicles prone to accidents')
+// 添加一个名为'--seedw'的命令行参数，用于设置行人模块的种子，默认值为0，类型为整数
     argparser.add_argument(
         '--filterv',
         metavar='PATTERN',
@@ -138,6 +145,7 @@ def main():
         action='store_true',
         default=False,
         help='Set one of the vehicles as hero')
+//添加一个名为'--respawn'的命令行参数，当指定该参数时（action='store_true'），自动重新生成休眠的车辆（仅在大地图中有效），默认值为False
     argparser.add_argument(
         '--respawn',
         action='store_true',
@@ -152,15 +160,20 @@ def main():
     args = argparser.parse_args()
 
     logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
-
+//用于存储生成的车辆的ID列表，初始化为空列表
     vehicles_list = []
+// 用于存储生成的行人的相关信息（以字典形式，包含ID等）的列表，初始化为空列表
     walkers_list = []
+//用于存储所有相关角色（车辆、行人等）的ID的列表，初始化为空列表
     all_id = []
+// 创建一个Carla客户端对象，用于连接到Carla服务器，传入之前解析得到的主机IP地址和端口号参数
+    client = carla.Client(args.host, args.port)
+//设置客户端的超时时间为10.0秒，即如果在10秒内没有收到服务器响应，则认为操作超时
     client = carla.Client(args.host, args.port)
     client.set_timeout(10.0)
     synchronous_master = False
     random.seed(args.seed if args.seed is not None else int(time.time()))
-
+//通过客户端获取Carla世界场景对象，后续所有与世界场景相关的操作（如获取地图、获取角色等）都基于这个对象进行
     try:
         world = client.get_world()
 
@@ -176,7 +189,9 @@ def main():
 
         settings = world.get_settings()
         if not args.asynch:
+// 如果没有激活异步模式（即运行在同步模式下），则设置交通管理器为同步模式
             traffic_manager.set_synchronous_mode(True)
+//如果当前世界场景的设置中不是同步模式，则将同步主控制者标记为True，表示当前脚本将作为同步模式的控制者进行相关设置和操作，同时将世界场景的同步模式设置为True，并设置固定的时间步长为0.05秒（用于同步更新世界场景等操作）
             if not settings.synchronous_mode:
                 synchronous_master = True
                 settings.synchronous_mode = True
@@ -205,6 +220,7 @@ def main():
         blueprints = sorted(blueprints, key=lambda bp: bp.id)
 
         spawn_points = world.get_map().get_spawn_points()
+// 获取生成点的数量，用于后续判断要生成的角色数量是否超过了可用生成点数量等情况
         number_of_spawn_points = len(spawn_points)
 
         if args.number_of_vehicles < number_of_spawn_points:
