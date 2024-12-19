@@ -1418,11 +1418,15 @@ namespace Simplify
         return;
       if ((char)filename[0] == 0)
         return;
+
+      // 尝试使用fopen函数以二进制只读模式（"rb"）打开指定文件名的文件，并将文件指针赋值给fn。
+      // 如果打开文件失败（fopen返回NULL），则输出相应的错误提示信息到控制台，告知用户文件未找到，然后从函数返回，不再继续加载操作。
       if ((fn = fopen(filename, "rb")) == NULL)
       {
         printf("File %s not found!\n", filename);
         return;
       }
+
       char line[1000];
       memset(line, 0, 1000);
       int vertex_cnt = 0;
