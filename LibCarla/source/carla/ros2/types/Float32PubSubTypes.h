@@ -36,11 +36,16 @@ namespace std_msgs
 {
     namespace msg
     {
+        // 检查是否未定义SWIG宏，通常SWIG用于代码生成相关的工具，这里表示如果没有使用SWIG相关功能时进入下面的代码块
         #ifndef SWIG
         namespace detail {
+            // 定义一个模板结构体Float32_rob，它有两个模板参数，Tag类型和Tag::type类型的M
+            // 这个结构体可能用于通过特定的标签（Tag）来获取一个特定的值（M），常用于元编程等相关技巧中
             template<typename Tag, typename Tag::type M>
             struct Float32_rob
             {
+                // 定义一个友元函数（常量表达式函数），用于获取Tag相关联的值，也就是返回模板参数传入的M值
+                // 通过这种方式，外部可以通过Tag来获取对应的固定值，是一种比较巧妙的元编程手法
                 friend constexpr typename Tag::type get(
                         Tag)
                 {
@@ -48,21 +53,35 @@ namespace std_msgs
                 }
             };
 
+            // 定义一个结构体Float32_f，它用于定义一种类型别名（typedef），表示指向Float32类中成员的指针类型
+            // 这里定义的类型别名会在后续相关代码中用于定位和操作Float32类中的成员变量等情况
             struct Float32_f
             {
                 typedef float Float32::* type;
+                // 声明一个友元函数（其定义在后面应该有相应的实现或者通过一些模板特化等方式来确定具体行为），用于获取相关的值
+                // 从整体结构推测可能是获取与Float32相关的某个成员指针相关的信息
                 friend constexpr type get(
                         Float32_f);
             };
 
+            // 显式实例化模板结构体Float32_rob，将Float32_f作为Tag类型，&Float32::m_data作为具体的值传入
+            // 意味着通过Float32_f这个“标签”可以获取到Float32类中m_data成员的相关信息（这里具体就是其地址相关信息）
             template struct Float32_rob<Float32_f, &Float32::m_data>;
 
+            // 定义一个内联的常量表达式函数模板Float32_offset_of，它接受两个模板参数T和Tag
+            // 这个函数的目的可能是用于计算在类型T中，通过Tag所关联的成员的偏移量（以字节为单位等相关计算）
             template <typename T, typename Tag>
             inline size_t constexpr Float32_offset_of() {
+                // 这行代码比较复杂，它通过一系列类型转换和指针操作来计算偏移量
+                // 首先将空指针0强制转换为T*类型，然后通过get(Tag())获取对应的成员指针，再通过一些复杂的类型转换和取地址操作，
+                // 最终获取到该成员相对于对象起始地址的偏移量，以size_t类型返回，整体用于在编译期进行偏移量相关的计算和确定
                 return ((::size_t) &reinterpret_cast<char const volatile&>((((T*)0)->*get(Tag()))));
             }
         }
         #endif
+    }
+}
+        
 
         /*!
          * @brief This class represents the TopicDataType of the type Float32 defined by the user in the IDL file.
