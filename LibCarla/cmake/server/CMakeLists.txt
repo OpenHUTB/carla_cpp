@@ -22,7 +22,9 @@ file(GLOB libcarla_carla_headers "${libcarla_source_path}/carla/*.h")# 将之前
 # 以便在使用该项目时能正确引用这些头文件。
 install(FILES ${libcarla_carla_headers} DESTINATION include/carla)# 使用 file(GLOB...) 命令查找 ${libcarla_source_path}/carla/geom 目录下所有以.h 为扩展名的头文件，
 
-file(GLOB libcarla_carla_geom_headers "${libcarla_source_path}/carla/geom/*.h")
+file(GLOB libcarla_carla_geom_headers "${libcarla_source_path}/carla/geom/*.h")# 使用GLOB命令查找指定路径下（${libcarla_source_path}/carla/geom/）所有以.h为后缀的头文件，
+# 并将找到的文件列表存储在变量libcarla_carla_geom_headers中。
+# GLOB命令用于生成符合特定模式的文件列表，方便后续操作使用这些文件。
 install(FILES ${libcarla_carla_geom_headers} DESTINATION include/carla/geom)
 
 file(GLOB libcarla_carla_opendrive "${libcarla_source_path}/carla/opendrive/*.h")
