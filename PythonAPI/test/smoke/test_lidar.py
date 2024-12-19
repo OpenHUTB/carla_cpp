@@ -286,7 +286,7 @@ class TestCompareLidars(SyncSmokeTest):
                 else:
                     self.fail("It should never reach this point")
 
-            # Check that frame number are correct
+            # 检查帧序号是否正确
             self.assertEqual(data_sem_lidar[0], data_lidar_nod[0], "The frame numbers of LiDAR and SemLiDAR do not match.")
             self.assertEqual(data_sem_lidar[0], data_lidar_def[0], "The frame numbers of LiDAR and SemLiDAR do not match.")
 
