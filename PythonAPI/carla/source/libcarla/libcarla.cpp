@@ -1,8 +1,7 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2019 计算机视觉中心 (CVC) 在巴塞罗那自治大学 (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据MIT许可证的条款进行许可。
+// 如需副本，请参阅 <https://opensource.org/licenses/MIT>.
 
 #include <carla/Memory.h>
 #include <carla/PythonUtil.h>
@@ -11,7 +10,7 @@
 #include <ostream>
 // 类型萃取，定义了一系列的类模板，用于获取类型
 // 可以用来在编译期判断类型的属性、对给定类型进行一些操作获得另一种特定类型、判断类型和类型之间的关系等
-#include <type_traits> 
+#include <type_traits>
 #include <vector>
 
 // 对于Python中的变量类型，Boost.Python都有相应的类对应，他们都是boost::python::object的子类。
@@ -25,7 +24,7 @@ static boost::python::object OptionalToPythonObject(OptionalT &optional) {
 // 方便地进行没有参数的请求。
 // carla::PythonUtil::ReleaseGIL 文档：https://carla.org/Doxygen/html/d1/d0a/classcarla_1_1PythonUtil_1_1ReleaseGIL.html
 // GIL的全称为Global Interpreter Lock，全局解释器锁
-// GIL(全局解释锁)不是Python的特性，而是解释器CPtyhton的特性。
+// GIL(全局解释器锁)不是Python的特性，而是解释器CPtyhon的特性。
 // GIL简言之是一个互斥锁，只允许一个线程控制 Python 解释器，也就是说，在任一时间点都只有一个线程处于执行状态。
 #define CALL_WITHOUT_GIL(cls, fn) +[](cls &self) { \
       carla::PythonUtil::ReleaseGIL unlock; \
@@ -33,7 +32,7 @@ static boost::python::object OptionalToPythonObject(OptionalT &optional) {
     }
 
 // 方便地进行带有1个参数的请求。
-// std::forward 主要用于完美转发，能够保留传递给函数参数的值类别（lvalue 或 rvalue），确保在转发参数时不丢失其原有的值性质。
+// std::forward 主要用于完美转发，能够保留传递给函数参数的值类别（左值或右值），确保在转发参数时不丢失其原有的值性质。
 #define CALL_WITHOUT_GIL_1(cls, fn, T1_) +[](cls &self, T1_ t1) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(std::forward<T1_>(t1)); \
@@ -70,7 +69,7 @@ static boost::python::object OptionalToPythonObject(OptionalT &optional) {
 #define CONST_CALL_WITHOUT_GIL_3(cls, fn, T1_, T2_, T3_) CALL_WITHOUT_GIL_3(const cls, fn, T1_, T2_, T3_)
 #define CONST_CALL_WITHOUT_GIL_4(cls, fn, T1_, T2_, T3_, T4_) CALL_WITHOUT_GIL_4(const cls, fn, T1_, T2_, T3_, T4_)
 
-// 方便用于需要复制返回值的const请求。 
+// 方便用于需要复制返回值的const请求。
 // cls：类名class
 // fn: 函数名function name
 // 例如：CALL_RETURNING_COPY(cc::Actor, GetWorld)

@@ -1,227 +1,282 @@
-// Copyright (c) 2019-2020 Intel Corporation
+// 版权所有 (c) 2019 计算机视觉中心 (CVC) 在巴塞罗那自治大学 (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据MIT许可证的条款进行许可。
+// 如需副本，请参阅 <https://opensource.org/licenses/MIT>.
 
-#include <carla/rss/RssRestrictor.h>
-#include <carla/rss/RssSensor.h>
-#include <carla/sensor/data/RssResponse.h>
+#include <carla/Memory.h>
+#include <carla/PythonUtil.h>
+#include <carla/Time.h>
 
-#include <ad/physics/python/AdPhysicsPython.hpp>
-#include <ad/map/python/AdMapAccessPython.hpp>
-#include <ad/rss/python/AdRssPython.hpp>
-#include <ad/rss/python/AdRssMapIntegrationPython.hpp>
-#include <ad/rss/world/RssDynamics.hpp>
-#include <boost/python/suite/indexing/vector_indexing_suite.hpp>
+#include <ostream>
+// 类型萃取，定义了一系列的类模板，用于获取类型
+// 可以用来在编译期判断类型的属性、对给定类型进行一些操作获得另一种特定类型、判断类型和类型之间的关系等
+#include <type_traits>
+#include <vector>
 
-//包含了 Carla RSS 模块中关于限制器（RssRestrictor）、传感器（RssSensor）以及传感器数据响应（RssResponse）等相关的头文件，这些文件应该定义了对应的 C++ 类和函数，用于处理 RSS 相关的逻辑，比如车辆的安全限制、传感器数据获取与处理等。
-//同时还包含了一些以ad开头的头文件，可能是与特定的物理模拟、地图访问、RSS 相关的 Python 绑定辅助库，用于在 C++ 和 Python 之间进行数据传递和功能调用的对接。
-//boost/python/suite/indexing/vector_indexing_suite.hpp 是 Boost.Python 库中的文件，用于在 Python 和 C++ 之间方便地处理vector类型的数据绑定，使得在 Python 中可以像操作原生list一样操作 C++ 的vector类型数据。
+// 对于Python中的变量类型，Boost.Python都有相应的类对应，他们都是boost::python::object的子类。
+// boost::python::object 包装了PyObject *, 通过这种方式，C++可以平滑的操作python对象。
+// Boost.Python的主要目标既保持Python的编程风格同时又提供C++和Python的双向映射。
+template <typename OptionalT>
+static boost::python::object OptionalToPythonObject(OptionalT &optional) {
+  return optional.has_value() ? boost::python::object(*optional) : boost::python::object();
+}
 
-namespace carla {
-namespace rss {
+// 方便地进行没有参数的请求。
+// carla::PythonUtil::ReleaseGIL 文档：https://carla.org/Doxygen/html/d1/d0a/classcarla_1_1PythonUtil_1_1ReleaseGIL.html
+// GIL的全称为Global Interpreter Lock，全局解释器锁
+// GIL(全局解释器锁)不是Python的特性，而是解释器CPtyhon的特性。
+// GIL简言之是一个互斥锁，只允许一个线程控制 Python 解释器，也就是说，在任一时间点都只有一个线程处于执行状态。
+#define CALL_WITHOUT_GIL(cls, fn) +[](cls &self) { \
+      carla::PythonUtil::ReleaseGIL unlock; \
+      return self.fn(); \
+    }
 
-std::ostream &operator<<(std::ostream &out, const RssRestrictor &) {
-  out << "RssRestrictor()";
+// 方便地进行带有1个参数的请求。
+// std::forward 主要用于完美转发，能够保留传递给函数参数的值类别（左值或右值），确保在转发参数时不丢失其原有的值性质。
+#define CALL_WITHOUT_GIL_1(cls, fn, T1_) +[](cls &self, T1_ t1) { \
+      carla::PythonUtil::ReleaseGIL unlock; \
+      return self.fn(std::forward<T1_>(t1)); \
+    }
+
+// 方便地进行带有2个参数的请求。
+#define CALL_WITHOUT_GIL_2(cls, fn, T1_, T2_) +[](cls &self, T1_ t1, T2_ t2) { \
+      carla::PythonUtil::ReleaseGIL unlock; \
+      return self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2)); \
+    }
+
+// 方便地进行带有3个参数的请求。
+#define CALL_WITHOUT_GIL_3(cls, fn, T1_, T2_, T3_) +[](cls &self, T1_ t1, T2_ t2, T3_ t3) { \
+      carla::PythonUtil::ReleaseGIL unlock; \
+      return self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2), std::forward<T3_>(t3)); \
+    }
+
+// 方便地进行带有4个参数的请求。
+#define CALL_WITHOUT_GIL_4(cls, fn, T1_, T2_, T3_, T4_) +[](cls &self, T1_ t1, T2_ t2, T3_ t3, T4_ t4) { \
+      carla::PythonUtil::ReleaseGIL unlock; \
+      return self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2), std::forward<T3_>(t3), std::forward<T4_>(t4)); \
+    }
+
+// 方便地进行带有5个参数的请求。
+#define CALL_WITHOUT_GIL_5(cls, fn, T1_, T2_, T3_, T4_, T5_) +[](cls &self, T1_ t1, T2_ t2, T3_ t3, T4_ t4, T5_ t5) { \
+      carla::PythonUtil::ReleaseGIL unlock; \
+      return self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2), std::forward<T3_>(t3), std::forward<T4_>(t4), std::forward<T5_>(t5)); \
+    }
+
+// 方便地进行没有参数的常量请求。
+#define CONST_CALL_WITHOUT_GIL(cls, fn) CALL_WITHOUT_GIL(const cls, fn)
+#define CONST_CALL_WITHOUT_GIL_1(cls, fn, T1_) CALL_WITHOUT_GIL_1(const cls, fn, T1_)
+#define CONST_CALL_WITHOUT_GIL_2(cls, fn, T1_, T2_) CALL_WITHOUT_GIL_2(const cls, fn, T1_, T2_)
+#define CONST_CALL_WITHOUT_GIL_3(cls, fn, T1_, T2_, T3_) CALL_WITHOUT_GIL_3(const cls, fn, T1_, T2_, T3_)
+#define CONST_CALL_WITHOUT_GIL_4(cls, fn, T1_, T2_, T3_, T4_) CALL_WITHOUT_GIL_4(const cls, fn, T1_, T2_, T3_, T4_)
+
+// 方便用于需要复制返回值的const请求。
+// cls：类名class
+// fn: 函数名function name
+// 例如：CALL_RETURNING_COPY(cc::Actor, GetWorld)
+// decltype 类型说明符生成指定表达式的类型（用于进行编译时类型推导）
+// std::result_of_t 用于获取函数对象调用后的返回类型。
+// 它的用法是 std::result_of_t<F(Args...)>，其中 F是函数对象类型，Args...是函数参数类型列表。
+// std::decay_t 是一个类型转换工具，它可以帮助我们处理类型退化（decay）的情况
+// +[](const cls &self) -> std::decay_t<std::result_of_t<decltype(&cls::fn)(cls*)>> { return self.fn(); }
+#define CALL_RETURNING_COPY(cls, fn) +[](const cls &self) \
+        -> std::decay_t<std::result_of_t<decltype(&cls::fn)(cls*)>> { \
+      return self.fn(); \
+    }
+
+// 方便用于需要复制返回值的const请求。
+#define CALL_RETURNING_COPY_1(cls, fn, T1_) +[](const cls &self, T1_ t1) \
+        -> std::decay_t<std::result_of_t<decltype(&cls::fn)(cls*, T1_)>> { \
+      return self.fn(std::forward<T1_>(t1)); \
+    }
+
+template<typename T>
+std::vector<T> PythonLitstToVector(boost::python::list &input) {
+  std::vector<T> result;
+  boost::python::ssize_t list_size = boost::python::len(input);
+  for (boost::python::ssize_t i = 0; i < list_size; ++i) {
+    result.emplace_back(boost::python::extract<T>(input[i]));
+  }
+  return result;
+}
+
+// 方便地需要将返回值转换为Python列表的const请求。
+#define CALL_RETURNING_LIST(cls, fn) +[](const cls &self) { \
+      boost::python::list result; \
+      for (auto &&item : self.fn()) { \
+        result.append(item); \
+      } \
+      return result; \
+    }
+
+// 方便需要将返回值转换为Python列表的const请求。
+#define CALL_RETURNING_LIST_1(cls, fn, T1_) +[](const cls &self, T1_ t1) { \
+      boost::python::list result; \
+      for (auto &&item : self.fn(std::forward<T1_>(t1))) { \
+        result.append(item); \
+      } \
+      return result; \
+    }
+
+#define CALL_RETURNING_LIST_2(cls, fn, T1_, T2_) +[](const cls &self, T1_ t1, T2_ t2) { \
+      boost::python::list result; \
+      for (auto &&item : self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2))) { \
+        result.append(item); \
+      } \
+      return result; \
+    }
+
+#define CALL_RETURNING_LIST_3(cls, fn, T1_, T2_, T3_) +[](const cls &self, T1_ t1, T2_ t2, T3_ t3) { \
+      boost::python::list result; \
+      for (auto &&item : self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2), std::forward<T3_>(t3))) { \
+        result.append(item); \
+      } \
+      return result; \
+    }
+
+#define CALL_RETURNING_OPTIONAL(cls, fn) +[](const cls &self) { \
+      auto optional = self.fn(); \
+      return OptionalToPythonObject(optional); \
+    }
+
+#define CALL_RETURNING_OPTIONAL_1(cls, fn, T1_) +[](const cls &self, T1_ t1) { \
+      auto optional = self.fn(std::forward<T1_>(t1)); \
+      return OptionalToPythonObject(optional); \
+    }
+
+#define CALL_RETURNING_OPTIONAL_2(cls, fn, T1_, T2_) +[](const cls &self, T1_ t1, T2_ t2) { \
+      auto optional = self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2)); \
+      return OptionalToPythonObject(optional); \
+    }
+
+#define CALL_RETURNING_OPTIONAL_3(cls, fn, T1_, T2_, T3_) +[](const cls &self, T1_ t1, T2_ t2, T3_ t3) { \
+      auto optional = self.fn(std::forward<T1_>(t1), std::forward<T2_>(t2), std::forward<T3_>(t3)); \
+      return OptionalToPythonObject(optional); \
+    }
+
+#define CALL_RETURNING_OPTIONAL_WITHOUT_GIL(cls, fn) +[](const cls &self) { \
+      auto call = CONST_CALL_WITHOUT_GIL(cls, fn); \
+      auto optional = call(self); \
+      return optional.has_value() ? boost::python::object(*optional) : boost::python::object(); \
+    }
+
+template <typename T>
+static void PrintListItem_(std::ostream &out, const T &item) {
+  out << item;
+}
+
+template <typename T>
+static void PrintListItem_(std::ostream &out, const carla::SharedPtr<T> &item) {
+  if (item == nullptr) {
+    out << "nullptr";
+  } else {
+    out << *item;
+  }
+}
+
+template <typename Iterable>
+static std::ostream &PrintList(std::ostream &out, const Iterable &list) {
+  out << '[';
+  if (!list.empty()) {
+    auto it = list.begin();
+    PrintListItem_(out, *it);
+    for (++it; it != list.end(); ++it) {
+      out << ", ";
+      PrintListItem_(out, *it);
+    }
+  }
+  out << ']';
   return out;
 }
 
-}  // namespace rss
+namespace std {
 
-namespace sensor {
-namespace data {
+  template <typename T>
+  std::ostream &operator<<(std::ostream &out, const std::vector<T> &vector_of_stuff) {
+    return PrintList(out, vector_of_stuff);
+  }
 
-std::ostream &operator<<(std::ostream &out, const RssResponse &resp) {
-  out << "RssResponse(frame=" << resp.GetFrame() << ", timestamp=" << resp.GetTimestamp()
-      << ", valid=" << resp.GetResponseValid() << ", proper_response=" << resp.GetProperResponse()
-      << ", rss_state_snapshot=" << resp.GetRssStateSnapshot() << ", situation_snapshot=" << resp.GetSituationSnapshot()
-      << ", world_model=" << resp.GetWorldModel() << ", ego_dynamics_on_route=" << resp.GetEgoDynamicsOnRoute() << ')';
-  return out;
-}
-//在carla命名空间下，进一步细分了rss和sensor::data等子命名空间。
-//分别为RssRestrictor和RssResponse类重载了<<操作符，用于将这些对象以特定的格式输出到流中。这样在需要打印这些对象信息时，可以方便地使用cout等输出流进行操作，输出对象的关键属性信息，方便调试和查看对象状态。
+  template <typename T, typename H>
+  std::ostream &operator<<(std::ostream &out, const std::pair<T,H> &data) {
+    out << "(" << data.first << "," << data.second << ")";
+    return out;
+  }
 
-}  // namespace data
-}  // namespace sensor
-}  // namespace carla
+} // namespace std
 
-static auto GetEgoVehicleDynamics(const carla::client::RssSensor &self) {
-  ad::rss::world::RssDynamics ego_dynamics(self.GetEgoVehicleDynamics());
-  return ego_dynamics;
+static carla::time_duration TimeDurationFromSeconds(double seconds) {
+  size_t ms = static_cast<size_t>(1e3 * seconds);
+  return carla::time_duration::milliseconds(ms);
 }
 
-static auto GetOtherVehicleDynamics(const carla::client::RssSensor &self) {
-  ad::rss::world::RssDynamics other_dynamics(self.GetOtherVehicleDynamics());
-  return other_dynamics;
-}
-
-static auto GetPedestrianDynamics(const carla::client::RssSensor &self) {
-  ad::rss::world::RssDynamics pedestrian_dynamics(self.GetPedestrianDynamics());
-  return pedestrian_dynamics;
-}
-
-static auto GetRoadBoundariesMode(const carla::client::RssSensor &self) {
-  carla::rss::RoadBoundariesMode road_boundaries_mode(self.GetRoadBoundariesMode());
-  return road_boundaries_mode;
-}
-
-static auto GetRoutingTargets(const carla::client::RssSensor &self) {
-  std::vector<carla::geom::Transform> routing_targets(self.GetRoutingTargets());
-  return routing_targets;
-}
-//这些函数都是静态函数，用于从carla::client::RssSensor对象中获取不同类型的动力学数据或模式信息。
-//例如，GetEgoVehicleDynamics函数通过调用RssSensor对象的GetEgoVehicleDynamics方法获取车辆自身的动力学数据，并将其转换为ad::rss::world::RssDynamics类型返回，方便后续在 Python 绑定中使用统一的数据类型进行处理。
-//类似地，GetOtherVehicleDynamics、GetPedestrianDynamics分别获取其他车辆和行人的动力学数据，GetRoadBoundariesMode获取道路边界模式，GetRoutingTargets获取路由目标信息（以carla::geom::Transform类型的向量形式）
-
-static void RegisterActorConstellationCallback(carla::client::RssSensor &self, boost::python::object callback) {
+static auto MakeCallback(boost::python::object callback) {
   namespace py = boost::python;
-  // Make sure the callback is actually callable.
+  // 确保回调实际上是可调用的。
   if (!PyCallable_Check(callback.ptr())) {
     PyErr_SetString(PyExc_TypeError, "callback argument must be callable!");
     py::throw_error_already_set();
   }
 
-  // We need to delete the callback while holding the GIL.
+  // 我们需要在持有GIL的同时删除回调。
   using Deleter = carla::PythonUtil::AcquireGILDeleter;
   auto callback_ptr = carla::SharedPtr<py::object>{new py::object(callback), Deleter()};
 
-  // Make a lambda callback.
-  auto callback_function = [callback = std::move(callback_ptr)](
-                               carla::SharedPtr<::carla::rss::ActorConstellationData> actor_constellation_data)
-                               ->::carla::rss::ActorConstellationResult {
+  // 做一个lambda回调。
+  return [callback=std::move(callback_ptr)](auto message) {
     carla::PythonUtil::AcquireGIL lock;
-    ::carla::rss::ActorConstellationResult actor_constellation_result;
     try {
-      actor_constellation_result =
-          py::call<::carla::rss::ActorConstellationResult>(callback->ptr(), py::object(actor_constellation_data));
+      py::call<void>(callback->ptr(), py::object(message));
     } catch (const py::error_already_set &) {
       PyErr_Print();
     }
-    return actor_constellation_result;
   };
-  self.RegisterActorConstellationCallback(callback_function);
 }
 
-//这个函数用于在RssSensor对象上注册一个演员星座（ActorConstellation）回调函数。
-//首先，它检查传入的boost::python::object类型的回调函数是否是可调用的，如果不是则抛出类型错误异常。
-//然后，创建一个SharedPtr来管理回调函数对象，并使用carla::PythonUtil::AcquireGILDeleter确保在删除回调函数时能够正确获取和释放全局解释器锁（GIL），这是在多线程环境下与 Python 解释器交互时需要注意的，以保证数据的一致性和线程安全性。
-//接着，定义了一个 lambda 函数作为实际要注册到RssSensor的回调函数，在这个 lambda 函数内部，先获取 GIL 锁，然后通过boost::python的call函数调用传入的原始回调函数，并处理可能出现的异常（如果回调函数执行过程中抛出异常，会打印异常信息），最后返回回调函数的执行结果给RssSensor。
+// 17个模块的源代码文件+1个RSS模块
+#include "V2XData.cpp"
+#include "Geom.cpp"
+#include "Actor.cpp"
+#include "Blueprint.cpp"
+#include "Client.cpp"
+#include "Control.cpp"
+#include "Exception.cpp"
+#include "Map.cpp"
+#include "Sensor.cpp"
+#include "SensorData.cpp"
+#include "Snapshot.cpp"
+#include "Weather.cpp"
+#include "World.cpp"
+#include "Commands.cpp"
+#include "TrafficManager.cpp"
+#include "LightManager.cpp"
+#include "OSM2ODR.cpp"
 
-static void Stop(carla::client::RssSensor &self) {
-  // ensure the RssSensor is stopped with GIL released to sync on processing lock
-  carla::PythonUtil::ReleaseGIL unlock;
-  self.Stop();
-}
-//这个函数用于停止RssSensor的运行。
-//在调用RssSensor的Stop方法之前，先释放全局解释器锁（GIL），这样可以让其他 Python 线程在传感器停止操作期间能够继续执行，避免因为锁的占用导致其他线程阻塞，同时也能保证传感器停止操作的同步性和正确性。
+#ifdef LIBCARLA_RSS_ENABLED
+#include "AdRss.cpp"
+#endif
 
-void export_ad() {
+BOOST_PYTHON_MODULE(libcarla) {
   using namespace boost::python;
-
-  // create/import the ad module scope
-  object ad_module(handle<>(borrowed(PyImport_AddModule("ad"))));
-  scope().attr("ad") = ad_module;
-  scope submodule_scope = ad_module;
-  scope().attr("__doc__") = "Python binding of ad namespace C++ code";
-  scope().attr("__copyright__") = "Copyright (C) 2019-2020 Intel Corporation";
-
-  export_ad_physics_python();
-  export_ad_map_access_python();
-  export_ad_rss_python();
-  export_ad_rss_map_integration_python();
-}
-
-void export_ad_rss() {
-
-  export_ad();
-
-  using namespace boost::python;
-  namespace cc = carla::client;
-  namespace cs = carla::sensor;
-  namespace csd = carla::sensor::data;
-
-  class_<carla::rss::EgoDynamicsOnRoute>("RssEgoDynamicsOnRoute")
-      .def_readwrite("timestamp", &carla::rss::EgoDynamicsOnRoute::timestamp)
-      .def_readwrite("time_since_epoch_check_start_ms",
-                     &carla::rss::EgoDynamicsOnRoute::time_since_epoch_check_start_ms)
-      .def_readwrite("time_since_epoch_check_end_ms", &carla::rss::EgoDynamicsOnRoute::time_since_epoch_check_end_ms)
-      .def_readwrite("ego_speed", &carla::rss::EgoDynamicsOnRoute::ego_speed)
-      .def_readwrite("min_stopping_distance", &carla::rss::EgoDynamicsOnRoute::min_stopping_distance)
-      .def_readwrite("ego_center", &carla::rss::EgoDynamicsOnRoute::ego_center)
-      .def_readwrite("ego_heading", &carla::rss::EgoDynamicsOnRoute::ego_heading)
-      .def_readwrite("ego_center_within_route", &carla::rss::EgoDynamicsOnRoute::ego_center_within_route)
-      .def_readwrite("crossing_border", &carla::rss::EgoDynamicsOnRoute::crossing_border)
-      .def_readwrite("route_heading", &carla::rss::EgoDynamicsOnRoute::route_heading)
-      .def_readwrite("route_nominal_center", &carla::rss::EgoDynamicsOnRoute::route_nominal_center)
-      .def_readwrite("heading_diff", &carla::rss::EgoDynamicsOnRoute::heading_diff)
-      .def_readwrite("route_speed_lat", &carla::rss::EgoDynamicsOnRoute::route_speed_lat)
-      .def_readwrite("route_speed_lon", &carla::rss::EgoDynamicsOnRoute::route_speed_lon)
-      .def_readwrite("route_accel_lat", &carla::rss::EgoDynamicsOnRoute::route_accel_lat)
-      .def_readwrite("route_accel_lon", &carla::rss::EgoDynamicsOnRoute::route_accel_lon)
-      .def_readwrite("avg_route_accel_lat", &carla::rss::EgoDynamicsOnRoute::avg_route_accel_lat)
-      .def_readwrite("avg_route_accel_lon", &carla::rss::EgoDynamicsOnRoute::avg_route_accel_lon)
-      .def(self_ns::str(self_ns::self));
-
-  class_<carla::rss::ActorConstellationResult>("RssActorConstellationResult")
-      .def_readwrite("rss_calculation_mode", &carla::rss::ActorConstellationResult::rss_calculation_mode)
-      .def_readwrite("restrict_speed_limit_mode", &carla::rss::ActorConstellationResult::restrict_speed_limit_mode)
-      .def_readwrite("ego_vehicle_dynamics", &carla::rss::ActorConstellationResult::ego_vehicle_dynamics)
-      .def_readwrite("actor_object_type", &carla::rss::ActorConstellationResult::actor_object_type)
-      .def_readwrite("actor_dynamics", &carla::rss::ActorConstellationResult::actor_dynamics)
-      .def(self_ns::str(self_ns::self));
-
-  class_<carla::rss::ActorConstellationData, boost::noncopyable, boost::shared_ptr<carla::rss::ActorConstellationData>>(
-      "RssActorConstellationData", no_init)
-      .def_readonly("ego_match_object", &carla::rss::ActorConstellationData::ego_match_object)
-      .def_readonly("ego_route", &carla::rss::ActorConstellationData::ego_route)
-      .def_readonly("ego_dynamics_on_route", &carla::rss::ActorConstellationData::ego_dynamics_on_route)
-      .def_readonly("other_match_object", &carla::rss::ActorConstellationData::other_match_object)
-      .def_readonly("other_actor", &carla::rss::ActorConstellationData::other_actor)
-      .def(self_ns::str(self_ns::self));
-
-  enum_<spdlog::level::level_enum>("RssLogLevel")
-      .value("trace", spdlog::level::trace)
-      .value("debug", spdlog::level::debug)
-      .value("info", spdlog::level::info)
-      .value("warn", spdlog::level::warn)
-      .value("err", spdlog::level::err)
-      .value("critical", spdlog::level::critical)
-      .value("off", spdlog::level::off);
-
-  enum_<carla::rss::RoadBoundariesMode>("RssRoadBoundariesMode")
-      .value("Off", carla::rss::RoadBoundariesMode::Off)
-      .value("On", carla::rss::RoadBoundariesMode::On);
-
-  class_<csd::RssResponse, bases<cs::SensorData>, boost::noncopyable, boost::shared_ptr<csd::RssResponse>>(
-      "RssResponse", no_init)
-      .add_property("response_valid", &csd::RssResponse::GetResponseValid)
-      .add_property("proper_response", CALL_RETURNING_COPY(csd::RssResponse, GetProperResponse))
-      .add_property("rss_state_snapshot", CALL_RETURNING_COPY(csd::RssResponse, GetRssStateSnapshot))
-      .add_property("situation_snapshot", CALL_RETURNING_COPY(csd::RssResponse, GetSituationSnapshot))
-      .add_property("world_model", CALL_RETURNING_COPY(csd::RssResponse, GetWorldModel))
-      .add_property("ego_dynamics_on_route", CALL_RETURNING_COPY(csd::RssResponse, GetEgoDynamicsOnRoute))
-      .def(self_ns::str(self_ns::self));
-
-  class_<cc::RssSensor, bases<cc::Sensor>, boost::noncopyable, boost::shared_ptr<cc::RssSensor>>("RssSensor", no_init)
-      .add_property("ego_vehicle_dynamics", &GetEgoVehicleDynamics, &cc::RssSensor::SetEgoVehicleDynamics)
-      .add_property("other_vehicle_dynamics", &GetOtherVehicleDynamics, &cc::RssSensor::SetOtherVehicleDynamics)
-      .add_property("pedestrian_dynamics", &GetPedestrianDynamics, &cc::RssSensor::SetPedestrianDynamics)
-      .add_property("road_boundaries_mode", &GetRoadBoundariesMode, &cc::RssSensor::SetRoadBoundariesMode)
-      .add_property("routing_targets", &GetRoutingTargets)
-      .def("stop", &Stop)
-      .def("register_actor_constellation_callback", &RegisterActorConstellationCallback, (arg("callback")))
-      .def("append_routing_target", &cc::RssSensor::AppendRoutingTarget, (arg("routing_target")))
-      .def("reset_routing_targets", &cc::RssSensor::ResetRoutingTargets)
-      .def("drop_route", &cc::RssSensor::DropRoute)
-      .def("set_log_level", &cc::RssSensor::SetLogLevel, (arg("log_level")))
-      .def("set_map_log_level", &cc::RssSensor::SetMapLogLevel, (arg("map_log_level")))
-      .def(self_ns::str(self_ns::self));
-
-  class_<carla::rss::RssRestrictor, boost::noncopyable, boost::shared_ptr<carla::rss::RssRestrictor>>("RssRestrictor",
-                                                                                                      no_init)
-      .def(init<>())
-      .def("restrict_vehicle_control", &carla::rss::RssRestrictor::RestrictVehicleControl,
-           (arg("vehicle_control"), arg("proper_response"), arg("ego_dynamics_on_route"), arg("vehicle_physics")))
-      .def("set_log_level", &carla::rss::RssRestrictor::SetLogLevel, (arg("log_level")))
-      .def(self_ns::str(self_ns::self));
+#if PY_MAJOR_VERSION < 3 || PY_MINOR_VERSION < 7
+  PyEval_InitThreads();
+#endif
+  scope().attr("__path__") = "libcarla";
+  export_geom();
+  export_control();
+  export_blueprint();
+  export_actor();
+  export_sensor();
+  export_sensor_data();
+  export_snapshot();
+  export_weather();
+  export_world();
+  export_map();
+  export_client();
+  export_exception();
+  export_commands();
+  export_trafficmanager();
+  export_lightmanager();
+  #ifdef LIBCARLA_RSS_ENABLED
+  export_ad_rss();
+  #endif
+  export_osm2odr();
 }
