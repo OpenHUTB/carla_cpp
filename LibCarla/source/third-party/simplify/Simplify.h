@@ -148,7 +148,8 @@ struct vec3f
 
   inline vec3f operator+(const vec3f &a) const
   {
-    return vec3f(x + a.x, y + a.y, z + a.z);
+    return vec3f(x + a.x, y + a.y, z + a.z);#创建一个新的vec3f对象，其坐标分量分别是当前向量（通过this指针隐式访问自身的x、y、z）
+    #与参数a所代表向量对应坐标分量相加的结果
   }
 
   inline vec3f operator+=(const vec3f &a) const
