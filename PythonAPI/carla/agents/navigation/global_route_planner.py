@@ -234,10 +234,14 @@ class GlobalRoutePlanner:
                         break
                     w = next_ws[0]
             else:
+                #如果最初距离不大于self._sampling_resolution则进入else部分 首先获取wp1的下一个点序列next_wps
                 next_wps = wp1.next(self._sampling_resolution)
+                #若next_wps的长度为0则跳过当前循环
                 if len(next_wps) == 0:
                     continue
+                    #如果next_wps不为空 就next_wps[0]将添加到seg_dict['path']字典中
                 seg_dict['path'].append(next_wps[0])
+                #将字典添加到拓扑函数中
             self._topology.append(seg_dict)
 
     def _build_graph(self):
