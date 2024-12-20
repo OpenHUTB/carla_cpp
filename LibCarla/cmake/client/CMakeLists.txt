@@ -1,20 +1,20 @@
-cmake_minimum_required(VERSION 3.5.1)
-project(libcarla-client)
+cmake_minimum_required(VERSION 3.5.1)# 指定CMake的最低版本要求为3.5.1，确保使用的CMake版本具备后续代码所需的功能特性
+project(libcarla-client)# 设置项目名称为libcarla-client，这将用于后续生成库文件等相关操作中对项目的标识
 
 # 启用/安装 RSS VARIANT
 option (BUILD_RSS_VARIANT "Enables ad-rss-lib based RSS components" OFF)
-set(carla_target_postfix "")
+set(carla_target_postfix "")# 设置一个变量carla_target_postfix，初始值为空字符串，后续会根据是否启用RSS VARIANT来改变其值
 if (BUILD_RSS_VARIANT)
-  set(carla_target_postfix "_rss")
+  set(carla_target_postfix "_rss") # 修改carla_target_postfix的值为"_rss"
   set(ADRSS_INCLUDE_DIRS)
   set(ADRSS_LIBS)
 
   # 快速C++日志库：spdlog
   find_package(spdlog CONFIG REQUIRED
     HINTS ${ADRSS_INSTALL_DIR}/spdlog/)
-  get_target_property(spdlog_include_dirs spdlog::spdlog INTERFACE_INCLUDE_DIRECTORIES)
-  get_target_property(spdlog_file spdlog::spdlog LOCATION)
-  foreach(dir ${spdlog_include_dirs})
+  get_target_property(spdlog_include_dirs spdlog::spdlog INTERFACE_INCLUDE_DIRECTORIES)# 获取spdlog::spdlog目标的接口包含目录属性
+  get_target_property(spdlog_file spdlog::spdlog LOCATION)# 获取spdlog::spdlog目标对应的库文件的路径
+  foreach(dir ${spdlog_include_dirs})# 遍历获取到的spdlog的包含目录列表
     file(GLOB spdlog_includes "${dir}/*")
     install(DIRECTORY ${spdlog_includes} DESTINATION include/system)
     list(APPEND ADRSS_INCLUDE_DIRS ${dir})
