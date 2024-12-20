@@ -15,7 +15,7 @@ namespace MeshReconstruction
 //这段代码定义了一个名为 Cube 的类这段代码定义了一个名为 Cube 的类
   class Cube
   {
-    Vec3 pos[8];
+    Vec3 pos[8];// 存储立方体的8个顶点的位置。
     double sdf[8];
 
     Vec3 LerpVertex(double isoLevel, int i1, int i2) const;
@@ -91,14 +91,14 @@ namespace MeshReconstruction
     };
   }
 
-  Vec3 Cube::LerpVertex(double isoLevel, int i1, int i2) const
+  Vec3 Cube::LerpVertex(double isoLevel, int i1, int i2) const 
   {
-    auto const Eps = 1e-5;
-    auto const v1 = sdf[i1];
+    auto const Eps = 1e-5; // 定义一个用于比较浮点数的精度阈值
+    auto const v1 = sdf[i1]; // 定义一个用于比较浮点数的精度阈值
     auto const v2 = sdf[i2];
-    auto const &p1 = pos[i1];
+    auto const &p1 = pos[i1]; // 定义一个用于比较浮点数的精度阈值
     auto const &p2 = pos[i2];
-
+    // 如果isoLevel与其中一个顶点的SDF值非常接近，则直接返回该顶点位置
     if (abs(isoLevel - v1) < Eps)
       return p1;
     if (abs(isoLevel - v2) < Eps)
@@ -106,8 +106,8 @@ namespace MeshReconstruction
     if (abs(v1 - v2) < Eps)
       return p1;
 
-    auto mu = (isoLevel - v1) / (v2 - v1);
-    return p1 + (p2 - p1) * mu;
+    auto mu = (isoLevel - v1) / (v2 - v1); // 计算线性插值参数
+    return p1 + (p2 - p1) * mu; // 返回插值后的位置
   }
 
   Cube::Cube(Rect3 const &space, Fun3s const &sdf)
@@ -119,7 +119,7 @@ namespace MeshReconstruction
     auto sx = space.size.x;
     auto sy = space.size.y;
     auto sz = space.size.z;
-
+    // 初始化立方体的8个顶点位置
     pos[0] = space.min;
     pos[1] = {mx + sx, my, mz};
     pos[2] = {mx + sx, my, mz + sz};
@@ -128,12 +128,12 @@ namespace MeshReconstruction
     pos[5] = {mx + sx, my + sy, mz};
     pos[6] = {mx + sx, my + sy, mz + sz};
     pos[7] = {mx, my + sy, mz + sz};
-
+    // 计算每个顶点的SDF值
     for (auto i = 0; i < 8; ++i)
     {
       auto sd = sdf(pos[i]);
       if (sd == 0)
-        sd += 1e-6;
+        sd += 1e-6; // 避免除以零
       this->sdf[i] = sd;
     }
   }
@@ -146,7 +146,7 @@ namespace MeshReconstruction
     {
       if (sdf[i] < isoLevel)
       {
-        edgeIndex |= 1 << i;
+        edgeIndex |= 1 << i; // 将对应的顶点标记为穿过
       }
     }
 
