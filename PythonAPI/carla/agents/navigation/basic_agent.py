@@ -381,22 +381,38 @@ class BasicAgent:
                 If None, the base threshold value is used
         """
         def get_route_polygon():
-            route_bb = []
+            """
+    此函数用于构建表示车辆行驶路线的多边形（Polygon），该多边形基于车辆自身以及规划路径中的路点（waypoint）来确定边界点。
+    """
+            route_bb = [] # 用于存储构成多边形的边界点列表，初始为空列表
+            # 获取车辆包围盒（bounding box）在y轴方向上的范围（extent），包围盒用于表示物体在空间中的大致范围
             extent_y = self._vehicle.bounding_box.extent.y
+            # 根据车辆包围盒的y轴范围和一个偏移量（_offset）计算右侧扩展后的距离
             r_ext = extent_y + self._offset
+            # 根据车辆包围盒的y轴范围和一个偏移量（_offset）计算左侧扩展后的距离
             l_ext = -extent_y + self._offset
+            # 获取车辆自身坐标系下的右方向向量，用于后续计算边界点在空间中的位置
             r_vec = ego_transform.get_right_vector()
+            # 根据车辆当前位置（ego_location）和右侧扩展距离（r_ext）以及右方向向量（r_vec）计算多边形的一个边界点p1
             p1 = ego_location + carla.Location(r_ext * r_vec.x, r_ext * r_vec.y)
+            # 根据车辆当前位置（ego_location）和左侧扩展距离（l_ext）以及右方向向量（r_vec）计算多边形的另一个边界点p2
             p2 = ego_location + carla.Location(l_ext * r_vec.x, l_ext * r_vec.y)
+            # 将计算得到的两个边界点（以坐标列表形式）添加到route_bb列表中，作为多边形的初始边界点
             route_bb.extend([[p1.x, p1.y, p1.z], [p2.x, p2.y, p2.z]])
 
+            # 遍历局部规划器（_local_planner）中的规划路径（plan），每个元素包含路点（wp）和相关信息（这里忽略了后者）
             for wp, _ in self._local_planner.get_plan():
+                # 如果当前车辆位置与路点位置的距离大于最大距离（max_distance，此处未定义，应该是外部传入或在更外层定义的变量），则停止遍历
                 if ego_location.distance(wp.transform.location) > max_distance:
                     break
 
+                # 获取路点坐标系下的右方向向量，用于计算基于该路点的多边形边界点位置
                 r_vec = wp.transform.get_right_vector()
+                # 根据路点位置（wp.transform.location）和右侧扩展距离（r_ext）以及右方向向量（r_vec）计算基于该路点的多边形的一个边界点p1
                 p1 = wp.transform.location + carla.Location(r_ext * r_vec.x, r_ext * r_vec.y)
+                # 根据路点位置（wp.transform.location）和左侧扩展距离（l_ext）以及右方向向量（r_vec）计算基于该路点的多边形的另一个边界点p2
                 p2 = wp.transform.location + carla.Location(l_ext * r_vec.x, l_ext * r_vec.y)
+                # 将基于该路点计算得到的两个边界点（以坐标列表形式）添加到route_bb列表中，逐步构建多边形的边界点集合
                 route_bb.extend([[p1.x, p1.y, p1.z], [p2.x, p2.y, p2.z]])
 
             # Two points don't create a polygon, nothing to check
