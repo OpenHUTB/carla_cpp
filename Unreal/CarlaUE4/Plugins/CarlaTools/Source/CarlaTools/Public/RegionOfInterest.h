@@ -15,7 +15,8 @@
 
 #include "RegionOfInterest.generated.h"
 
-
+// 定义一个可以用于蓝图系统的枚举类型 ERegionOfInterestType
+// 用来表示不同类型的感兴趣区域（Region of Interest, ROI）
 UENUM(BlueprintType)
 enum ERegionOfInterestType
 {
@@ -27,7 +28,8 @@ enum ERegionOfInterestType
   MISC_SPECIFIC_LOCATION_ACTORS_REGION,
   SOIL_TYPE_REGION
 };
-
+// 定义一个可以用于蓝图系统的枚举类型 ESpreadedActorsDensity
+// 用来表示区域内分散演员（spreaded actors）的密度级别
 UENUM(BlueprintType)
 enum ESpreadedActorsDensity
 {
