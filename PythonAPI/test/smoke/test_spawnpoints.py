@@ -76,14 +76,17 @@ class TestSpawnpoints(SyncSmokeTest):
                     frame = self.world.tick()
                     snapshot = self.world.get_snapshot()
                     self.assertEqual(frame, snapshot.timestamp.frame)
-
+# 获取当前世界中的所有Actor（包括生成的车辆等）
                     actors = self.world.get_actors()
+# 断言快照中包含了所有当前世界中的Actor，确保数据的一致性
                     self.assertTrue(all(snapshot.has_actor(x.id) for x in actors))
 
                     for actor_id, t0 in zip(ids, spawn_points):
+# 根据Actor ID在快照中查找对应的Actor快照信息
                         actor_snapshot = snapshot.find(actor_id)
                         self.assertIsNotNone(actor_snapshot)
                         t1 = actor_snapshot.get_transform()
+# 忽略Z轴坐标（因为车辆可能处于下落状态等原因），比较生成点和实际车辆位置在X、Y轴上的坐标是否近似相等
                         # Ignore Z cause vehicle is falling.
                         self.assertAlmostEqual(t0.location.x, t1.location.x, places=2)
                         self.assertAlmostEqual(t0.location.y, t1.location.y, places=2)
