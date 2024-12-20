@@ -37,11 +37,19 @@ if (LIBCARLA_BUILD_RELEASE)
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
 # 添加PyTorch及其依赖库的包含目录
+# 添加PyTorch库的头文件路径
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TORCH_INCLUDE_DIRS}")
+  # 添加TorchScatter库的头文件路径，TorchScatter是用于高效图操作的扩展库
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchScatter_INCLUDE_DIR}")
+  # 添加TorchCluster库的头文件路径，TorchCluster专注于聚类算法的实现
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchCluster_INCLUDE_DIR}")
+  # 添加TorchSparse库的头文件路径，TorchSparse提供了稀疏张量的支持
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchSparse_INCLUDE_DIR}")
+  # 添加Python3的头文件路径，以便于与Python进行交互和使用Python API
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${Python3_INCLUDE_DIRS}")
+  # 链接PyTorch库到carla_pytorch目标
+# 这里假设${TORCH_LIBRARIES}变量包含了所有需要链接的PyTorch相关库
+# 通过这种方式，确保在编译和链接时能够找到并正确引用PyTorch库
   target_link_libraries(carla_pytorch "${TORCH_LIBRARIES}") # 链接PyTorch库
 
   install(TARGETS carla_pytorch DESTINATION lib OPTIONAL) # 安装carla_pytorch库

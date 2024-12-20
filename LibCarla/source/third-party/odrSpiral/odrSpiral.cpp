@@ -1,10 +1,9 @@
 /* ===================================================
- *  file:       odrSpiral.c
+ *   文件名：odrSpiral.c
  * ---------------------------------------------------
- *  purpose:	free method for computing spirals
- *              in OpenDRIVE applications
+ *  目的：用于计算OpenDRIVE应用程序中螺旋线的免费方法
  * ---------------------------------------------------
- *  using methods of CEPHES library
+ *  使用CEPHES库的方法。
  * ---------------------------------------------------
  *  first edit:	09.03.2010 by M. Dupuis @ VIRES GmbH
  *  last mod.:  09.03.2010 by M. Dupuis @ VIRES GmbH
@@ -34,16 +33,17 @@
     the interpretation of OpenDRIVE spiral data.
  */
 
-/* ====== INCLUSIONS ====== */
+/* ====== 头文件包含 ======  */
 #include <stdio.h>
-// Edit to original file-----
-#define _USE_MATH_DEFINES // Enable windows compatibility
+// 对原文件的编辑-----
+#define _USE_MATH_DEFINES //  启用与Windows的兼容性
 // --------------------------
 #include <math.h>
 
-/* ====== LOCAL VARIABLES ====== */
+/* ====== 局部变量 ======*/
 
-/* S(x) for small x */
+/* 小 x 值对应的 S(x)*/
+// 定义一个静态双精度数组sn，用于存储特定的数值，这些数值可能会在后续计算S(x)（小x值情况）时用到
 static double sn[6] = {
 -2.99181919401019853726E3,
  7.08840045257738576863E5,
@@ -52,6 +52,7 @@ static double sn[6] = {
 -4.42979518059697779103E10,
  3.18016297876567817986E11,
 };
+// 定义一个静态双精度数组sd，同样用于后续相关计算（可能是配合sn一起用于S(x)的计算等）
 static double sd[6] = {
 /* 1.00000000000000000000E0,*/
  2.81376268889994315696E2,
