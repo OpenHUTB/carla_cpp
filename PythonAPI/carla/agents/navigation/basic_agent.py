@@ -121,6 +121,7 @@ class BasicAgent:
         self._lights_list = self._world.get_actors().filter("*traffic_light*")
         self._lights_map = {}  # Dictionary mapping a traffic light to a wp corresponding to its trigger volume location
 
+    #修改一个车辆控制对象的油门和刹车值来执行紧急停车操作
     def add_emergency_stop(self, control):
         """
         Overwrites the throttle a brake values of a control to perform an emergency stop.
@@ -128,17 +129,23 @@ class BasicAgent:
 
             :param speed (carl.VehicleControl): control to be modified
         """
+        #将油门的值设置为0.0
         control.throttle = 0.0
+        #将刹车设置为self._max_brake
         control.brake = self._max_brake
+        #将手刹设置为Flase
         control.hand_brake = False
         return control
 
+    #改变某个agent的目标速度
     def set_target_speed(self, speed):
         """
         Changes the target speed of the agent
             :param speed (float): target speed in Km/h
         """
+        #将传入的目标速度speed赋值给对象
         self._target_speed = speed
+        #将目标速度设置到规划器中
         self._local_planner.set_speed(speed)
 
     #定义一个函数：接收参数
