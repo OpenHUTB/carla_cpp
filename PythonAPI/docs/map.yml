@@ -76,15 +76,15 @@
   - class_name: LaneMarkingColor
     # - DESCRIPTION ------------------------
     doc: >
-      Class that defines the lane marking colors according to OpenDRIVE 1.4.
+      Class that defines the lane marking colors according to OpenDRIVE 1.4.-# 这是对整个类的功能描述，说明这个类是根据OpenDRIVE 1.4标准来定义车道标线颜色的。
     # - PROPERTIES -------------------------
     instance_variables:
-    - var_name: Standard
+    - var_name: Standard-# 这行定义了一个名为 Standard 的实例变量，这个变量在类中用于表示某种车道标线颜色相关的属性。 
       doc: >
         White by default.
     - var_name: Blue
       doc: >
-    - var_name: Green
+    - var_name: Green #- 定义了名为 Green 的实例变量，用于表示绿色车道标线相关的属性。
       doc: >
     - var_name: Red
       doc: >
