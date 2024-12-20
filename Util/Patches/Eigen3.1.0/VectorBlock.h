@@ -618,15 +618,6 @@ DenseBase<Derived>::tail()
   return typename FixedSegmentReturnType<Size>::Type(derived(), size() - Size);
 }
 
-/** 这是 tail<int> 的 const 版本。*/
-template<typename Derived>
-template<int Size>
-inline typename DenseBase<Derived>::template ConstFixedSegmentReturnType<Size>::Type
-DenseBase<Derived>::tail() const
-{
-  EIGEN_STATIC_ASSERT_VECTOR_ONLY(Derived)
-  return typename ConstFixedSegmentReturnType<Size>::Type(derived(), size() - Size);
-}
 // 这是一个模板成员函数模板，定义在 DenseBase 类中，用于获取当前对象（*this）开头部分固定大小（由模板参数 Size 指定系数数量）的子向量表达式。
 // 函数先进行静态断言确保类型用于向量操作，
 
