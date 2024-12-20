@@ -2,16 +2,20 @@
 setlocal enabledelayedexpansion 
 
 set LIBOSMSCOUT_REPO=https://github.com/Framstag/libosmscout
+#设置libosmscout库的GitHub仓库地址
 set LUNASVG_REPO=https://github.com/sammycage/lunasvg
+#设置lunasvg库的GitHub仓库地址
 
 set LIBOSMSCOUT_SOURCE_PATH=%INSTALLATION_DIR:/=\%libosmscout-source\
 set LIBOSMSCOUT_VSPROJECT_PATH=%INSTALLATION_DIR:/=\%libosmscout-visualstudio\
-
+#设置lunasvg库的GitHub仓库地址
 set LUNASVG_SOURCE_PATH=%INSTALLATION_DIR:/=\%lunasvg-source\
 set LUNASVG_VSPROJECT_PATH=%INSTALLATION_DIR:/=\%lunasvg-visualstudio\
-
+#设置libosmscout库的Visual Studio项目文件在本地的存放路径
 set OSM_RENDERER_SOURCE=%ROOT_PATH:/=\%osm-world-renderer\
+#设置osm-world-renderer项目的源代码路径
 set OSM_RENDERER_VSPROJECT_PATH=%INSTALLATION_DIR:/=\%%osm-world-renderer-visualstudio\
+#设置osm-world-renderer项目的Visual Studio项目文件路径
 
 rem Installation path for server dependencies
 set DEPENDENCIES_INSTALLATION_PATH=%OSM_RENDERER_SOURCE:/=\%ThirdParties\
