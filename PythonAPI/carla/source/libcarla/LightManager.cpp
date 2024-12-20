@@ -130,57 +130,69 @@ static boost::python::list LightManagerGetColor(
 
 /****** 交通灯亮度管理器 ******/
 static void LightManagerSetIntensity(
-  cc::LightManager& self,
-  const boost::python::object& py_lights,
-  const float intensity) {
+  cc::LightManager& self, // 灯光管理器对象引用，对其进行操作
+  const boost::python::object& py_lights,// Python对象，包含要设置强度的灯光相关信息，需转换为C++的灯光向量
+  const float intensity) { // 要设置的灯光强度值，为一个浮点数
 
+  // 通过Boost.Python的迭代器将Python对象中的灯光信息转换为C++的std::vector<cc::Light>类型，方便后续操作
   std::vector<cc::Light> lights {
     boost::python::stl_input_iterator<cc::Light>(py_lights),
     boost::python::stl_input_iterator<cc::Light>()
   };
 
-  self.SetIntensity(lights, intensity);
+ // 调用灯光管理器对象的SetIntensity方法，传入转换后的灯光向量和强度值，实现设置灯光强度的功能 
+ self.SetIntensity(lights, intensity);
 }
 
+// 函数用于设置灯光管理器中一组灯光的强度，每个灯光可对应不同的强度值，强度值从传入的Python对象中获取
 static void LightManagerSetVectorIntensity(
   cc::LightManager& self,
   const boost::python::object& py_lights,
   const boost::python::object& py_intensities) {
 
-  std::vector<cc::Light> lights {
+ // 将Python对象中的灯光信息转换为C++的std::vector<cc::Light>类型，用于后续设置对应灯光的强度
+ std::vector<cc::Light> lights {
     boost::python::stl_input_iterator<cc::Light>(py_lights),
     boost::python::stl_input_iterator<cc::Light>()
   };
 
-  std::vector<float> intensities {
+ // 将Python对象中的强度信息转换为C++的std::vector<float>类型，每个元素对应前面灯光向量中相应灯光的强度值 
+ std::vector<float> intensities {
     boost::python::stl_input_iterator<float>(py_intensities),
     boost::python::stl_input_iterator<float>()
   };
 
-  self.SetIntensity(lights, intensities);
+ // 调用灯光管理器对象的SetIntensity方法，传入灯光向量和强度值向量，为不同灯光设置各自对应的强度 
+ self.SetIntensity(lights, intensities);
 }
 
+// 函数用于获取灯光管理器中一组灯光的强度，并以Boost.Python的列表形式返回
 static boost::python::list LightManagerGetIntensity(
     cc::LightManager& self,
     const boost::python::object& py_lights) {
 
-  boost::python::list result;
+  boost::python::list result;// 创建一个Boost.Python的列表对象，用于存储获取到的灯光强度值
 
-  std::vector<cc::Light> lights {
+ // 将Python对象中的灯光信息转换为C++的std::vector<cc::Light>类型，方便后续获取这些灯光的强度 
+ std::vector<cc::Light> lights {
     boost::python::stl_input_iterator<cc::Light>(py_lights),
     boost::python::stl_input_iterator<cc::Light>()
   };
 
-  for (auto &&item : self.GetIntensity(lights)) {
+ //遍历通过灯光管理器对象获取到的灯光强度值（可能是一个容器，比如向量等），将每个强度值添加到Python列表中 
+ for (auto &&item : self.GetIntensity(lights)) {
     result.append(item);
   }
 
-  return result;
+ // 返回包含灯光强度值的Python列表，可供Python代码使用
+  return result; 
+ return result;
 }
 
 /*******************/
 
 /****** 红绿灯组 ******/
+// 函数用于设置灯光管理器中一组灯光所属的灯光组，所有灯光设置为同一个传入的灯光组
 static void LightManagerSetLightGroup(
   cc::LightManager& self,
   const boost::python::object& py_lights,
@@ -191,9 +203,11 @@ static void LightManagerSetLightGroup(
     boost::python::stl_input_iterator<cc::Light>()
   };
 
-  self.SetLightGroup(lights, light_group);
+ //  调用灯光管理器对象的SetLightGroup方法，传入灯光向量和灯光组信息，将这些灯光设置到指定的灯光组
+ self.SetLightGroup(lights, light_group);
 }
 
+// 函数用于设置灯光管理器中一组灯光所属的灯光组，每个灯光可对应不同的灯光组，灯光组信息从Python对象中获取
 static void LightManagerSetVectorLightGroup(
   cc::LightManager& self,
   const boost::python::object& py_lights,
@@ -204,12 +218,14 @@ static void LightManagerSetVectorLightGroup(
     boost::python::stl_input_iterator<cc::Light>()
   };
 
-  std::vector<cr::LightState::LightGroup> light_groups {
+ // 将Python对象中的灯光组信息转换为C++的std::vector<cr::LightState::LightGroup>类型，每个元素对应前面灯光向量中相应灯光的灯光组
+ std::vector<cr::LightState::LightGroup> light_groups {
     boost::python::stl_input_iterator<cr::LightState::LightGroup>(py_light_group),
     boost::python::stl_input_iterator<cr::LightState::LightGroup>()
   };
 
-  self.SetLightGroup(lights, light_groups);
+ // 函数用于获取灯光管理器中一组灯光所属的灯光组，并以Boost.Python的列表形式返回 
+ self.SetLightGroup(lights, light_groups);
 }
 
 static boost::python::list LightManagerGetLightGroup(
@@ -223,7 +239,8 @@ static boost::python::list LightManagerGetLightGroup(
     boost::python::stl_input_iterator<cc::Light>()
   };
 
-  for (auto &&item : self.GetLightGroup(lights)) {
+ // 遍历通过灯光管理器对象获取到的灯光组信息（可能是一个容器，比如向量等），将每个灯光组添加到Python列表中 
+ for (auto &&item : self.GetLightGroup(lights)) {
     result.append(item);
   }
 
