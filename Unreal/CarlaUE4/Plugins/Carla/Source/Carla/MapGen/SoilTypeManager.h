@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB). This work is licensed under the terms of the MIT license. For a copy, see <https://opensource.org/licenses/MIT>.
+// 版权所有 （c） 2017 巴塞罗那自治大学 （UAB） 计算机视觉中心 （CVC）。本作品根据 MIT 许可证的条款进行许可。有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 
@@ -54,14 +54,14 @@ private:
   ALargeMapManager* LargeMapManager;
   
 public:  
-  // Sets default values for this actor's properties
+  //设置此角色属性的默认值
   ASoilTypeManager();
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TSubclassOf<AActor> CarClass;
 
 protected:
-  // Called when the game starts or when spawned
+  //在游戏开始时或生成时调用
   virtual void BeginPlay() override;
 
 public:  

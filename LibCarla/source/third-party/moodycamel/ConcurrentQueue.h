@@ -1,4 +1,4 @@
-// 提供多生产者、多消费者无锁队列的 C++ 11实现。
+﻿// 提供多生产者、多消费者无锁队列的 C++ 11实现。
 // 这里提供了一个概述，包括基准测试结果:
 //     http://moodycamel.com/blog/2014/a-fast-general-purpose-lock-free-queue-for-c++
 // 完整的设计也有详细的描述：
@@ -94,26 +94,37 @@ namespace moodycamel { namespace details {
 
   // 请注意，我们不定义 invalid_thread_id2，因为 std::thread::id 没有无效值；它
   // 仅在 MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED 定义时才会使用，但实际上不会定义它。
-  static inline thread_id_t thread_id() { return std::this_thread::get_id(); }
+  static inline thread_id_t thread_id() { return std::this_thread::get_id(); }// 定义一个内联函数thread_id()，用于返回当前线程的ID。
+// std::this_thread::get_id() 是C++标准库中获取当前线程ID的函数。
 
-  template<std::size_t> struct thread_id_size { };
-  template<> struct thread_id_size<4> { typedef std::uint32_t numeric_t; };
-  template<> struct thread_id_size<8> { typedef std::uint64_t numeric_t; };
+  template<std::size_t> struct thread_id_size { };// 定义一个模板结构体thread_id_size，它接受一个std::size_t类型的模板参数，
+// 这里先进行一个通用的模板声明，后续会特化该模板来针对不同大小情况进行处理。
+  template<> struct thread_id_size<4> { typedef std::uint32_t numeric_t; };// 针对模板参数为4的情况特化thread_id_size结构体，
+// 表示当相关类型大小为4字节时，定义其内部的numeric_t类型别名为std::uint32_t。
+  template<> struct thread_id_size<8> { typedef std::uint64_t numeric_t; };// 针对模板参数为8的情况特化thread_id_size结构体，
+// 表示当相关类型大小为8字节时，定义其内部的numeric_t类型别名为std::uint64_t。
 
-  template<> struct thread_id_converter<thread_id_t> {
-    typedef thread_id_size<sizeof(thread_id_t)>::numeric_t thread_id_numeric_size_t;
-#ifndef __APPLE__
-    typedef std::size_t thread_id_hash_t;
+  template<> struct thread_id_converter<thread_id_t> {// 特化thread_id_converter模板结构体，针对thread_id_t类型进行特化处理。
+// 这个结构体大概率是用于对线程ID进行一些转换相关的操作。
+    typedef thread_id_size<sizeof(thread_id_t)>::numeric_t thread_id_numeric_size_t;// 根据thread_id_t类型的大小（通过sizeof获取），
+    // 从thread_id_size特化结构体中获取对应的numeric_t类型，
+    // 并将其重命名为thread_id_numeric_size_t，用于后续操作。
+#ifndef __APPLE__// 在非苹果系统下，定义thread_id_hash_t类型别名为std::size_t，
+    // 可能用于后续哈希相关计算中表示哈希值的类型。
+    typedef std::size_t thread_id_hash_t;// 定义一个静态函数prehash，用于对传入的线程ID（thread_id_t类型的x）进行预处理（可能是哈希相关的前置计算）。
 #else
-    typedef thread_id_numeric_size_t thread_id_hash_t;
+    typedef thread_id_numeric_size_t thread_id_hash_t;// 在苹果系统下，定义thread_id_hash_t类型与thread_id_numeric_size_t类型相同，
+    // 说明在苹果系统下哈希值相关类型的处理与其他情况有所不同。
 #endif
 
-    static thread_id_hash_t prehash(thread_id_t const& x)
+    static thread_id_hash_t prehash(thread_id_t const& x)// 定义一个静态函数prehash，用于对传入的线程ID（thread_id_t类型的x）进行预处理（可能是哈希相关的前置计算）。
     {
 #ifndef __APPLE__
-      return std::hash<std::thread::id>()(x);
+      return std::hash<std::thread::id>()(x);// 在非苹果系统下，使用C++标准库中的std::hash对线程ID进行哈希计算，
+        // std::hash<std::thread::id>()(x)会返回对应的哈希值，其类型由前面定义的thread_id_hash_t决定（非苹果下为std::size_t）。
 #else
-      return *reinterpret_cast<thread_id_hash_t const*>(&x);
+      return *reinterpret_cast<thread_id_hash_t const*>(&x);// 在苹果系统下，通过将线程ID的地址进行重新解释转换（reinterpret_cast）为thread_id_hash_t类型的指针，
+        // 然后取其指向的值作为哈希值返回，这种方式是针对苹果系统特有的对线程ID生成哈希值的处理逻辑。
 #endif
     }
   };
@@ -213,28 +224,37 @@ namespace moodycamel { namespace details {
 #endif
 
 // 编译器特定的 likely/unlikely 提示
-namespace moodycamel { namespace details {
-#if defined(__GNUC__)
-  static inline bool (likely)(bool x) { return __builtin_expect((x), true); }
-  static inline bool (unlikely)(bool x) { return __builtin_expect((x), false); }
+namespace moodycamel { namespace details {// 定义在moodycamel命名空间下的details子命名空间，通常这样的嵌套命名空间用于对相关功能模块进行更细致的组织和隔离。
+#if defined(__GNUC__)// 针对GNU编译器（__GNUC__宏在使用GNU编译器时被定义）进行条件编译。
+  static inline bool (likely)(bool x) { return __builtin_expect((x), true); }// __builtin_expect是GNU C/C++ 编译器提供的一个内建函数，用于向编译器提供分支预测的提示信息，
+// 帮助编译器优化代码执行顺序，提高性能。
+// likely函数表示期望传入的布尔值参数大概率为真，通过__builtin_expect向编译器传达这个预期。
+  static inline bool (unlikely)(bool x) { return __builtin_expect((x), false); }// unlikely函数表示期望传入的布尔值参数大概率为假，同样通过__builtin_expect向编译器传达这个预期，
+  // 以便编译器在生成代码时能基于这种概率情况进行优化。
 #else
-  static inline bool (likely)(bool x) { return x; }
-  static inline bool (unlikely)(bool x) { return x; }
+  static inline bool (likely)(bool x) { return x; }// 如果不是GNU编译器环境，则以下两个函数只是简单地返回传入的布尔值。
+  static inline bool (unlikely)(bool x) { return x; }// 因为没有对应的编译器内建机制来提供分支预测提示了。
 #endif
 } }
 
 #ifdef MOODYCAMEL_QUEUE_INTERNAL_DEBUG
-#include "internal/concurrentqueue_internal_debug.h"
+#include "internal/concurrentqueue_internal_debug.h"// 如果定义了MOODYCAMEL_QUEUE_INTERNAL_DEBUG宏，就包含名为"internal/concurrentqueue_internal_debug.h"的头文件，
+// 这通常意味着在开启了特定内部调试功能时，引入相关的调试代码实现。
 #endif
 
 namespace moodycamel {
-namespace details {
+namespace details {// 再次进入moodycamel命名空间下的details子命名空间，继续定义相关的模板结构体等内容
   template<typename T>
-  struct const_numeric_max {
-    static_assert(std::is_integral<T>::value, "const_numeric_max can only be used with integers");
-    static const T value = std::numeric_limits<T>::is_signed
+  struct const_numeric_max {// 定义一个模板结构体const_numeric_max，用于获取特定整数类型的最大值，
+  // 这个结构体是基于模板的，意味着可以针对不同的整数类型来获取其对应的最大值。
+    static_assert(std::is_integral<T>::value, "const_numeric_max can only be used with integers");// 使用静态断言（static_assert）来确保模板参数T必须是整数类型（std::is_integral<T>::value为真时才合法），
+    // 如果传入的不是整数类型，编译时就会报错并显示后面的提示信息。
+    static const T value = std::numeric_limits<T>::is_signed// 通过条件表达式来计算并定义静态常量value，用于表示类型T对应的数值最大值。
+    // 如果类型T是有符号整数类型（std::numeric_limits<T>::is_signed为真）。
       ? (static_cast<T>(1) << (sizeof(T) * CHAR_BIT - 1)) - static_cast<T>(1)
-      : static_cast<T>(-1);
+      : static_cast<T>(-1);// 则通过位运算和类型转换来计算其最大值（先将1左移到符号位前面的最高位，再减1得到有符号整数的最大值）。
+    // 如果类型T是无符号整数类型（即std::numeric_limits<T>::is_signed为假），则直接将 -1 转换为该无符号类型，
+    // 对于无符号整数来说， -1 转换后的结果就是其所能表示的最大值。
   };
 
 #if defined(__GLIBCXX__)
