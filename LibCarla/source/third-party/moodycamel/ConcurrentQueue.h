@@ -4,9 +4,9 @@
 // 完整的设计也有详细的描述：
 //    http://moodycamel.com/blog/2014/detailed-design-of-a-lock-free-queue
 
-// Simplified BSD license:
-// Copyright (c) 2013-2016, Cameron Desrochers.
-// All rights reserved.
+//简化的 BSD 许可证：
+// 版权所有 （c） 2013-2016，Cameron Desrochers。
+// 保留所有权利。
 //
 // 允许源代码和二进制形式的再分发和使用，无论是否经过修改，只要满足以下条件：
 //
@@ -57,7 +57,7 @@
 #include <limits>
 #include <climits>    // for CHAR_BIT
 #include <array>
-#include <thread>    // partly for __WINPTHREADS_VERSION if on MinGW-w64 w/ POSIX threading
+#include <thread>    // 部分用于 __WINPTHREADS_VERSION如果在 MinGW-w64 上带有 POSIX 线程
 
 // 平台特定的数字线程 ID 类型和无效值定义
 namespace moodycamel { namespace details {
@@ -81,8 +81,8 @@ extern "C" __declspec(dllimport) unsigned long __stdcall GetCurrentThreadId(void
 namespace moodycamel { namespace details {
   static_assert(sizeof(unsigned long) == sizeof(std::uint32_t), "Expected size of unsigned long to be 32 bits on Windows");
   typedef std::uint32_t thread_id_t;
-  static const thread_id_t invalid_thread_id  = 0;      // See http://blogs.msdn.com/b/oldnewthing/archive/2004/02/23/78395.aspx
-  static const thread_id_t invalid_thread_id2 = 0xFFFFFFFFU;  // Not technically guaranteed to be invalid, but is never used in practice. Note that all Win32 thread IDs are presently multiples of 4.
+  static const thread_id_t invalid_thread_id  = 0;      //查看 http://blogs.msdn.com/b/oldnewthing/archive/2004/02/23/78395.aspx
+  static const thread_id_t invalid_thread_id2 = 0xFFFFFFFFU;  // 在技术上不能保证无效，但在实践中从未使用过。请注意，所有 Win32 线程 ID 目前都是 4 的倍数。
   static inline thread_id_t thread_id() { return static_cast<thread_id_t>(::GetCurrentThreadId()); }
 } }
 #elif defined(__arm__) || defined(_M_ARM) || defined(__aarch64__) || (defined(__APPLE__) && TARGET_OS_IPHONE)
@@ -90,7 +90,7 @@ namespace moodycamel { namespace details {
   static_assert(sizeof(std::thread::id) == 4 || sizeof(std::thread::id) == 8, "std::thread::id is expected to be either 4 or 8 bytes");
 
   typedef std::thread::id thread_id_t;
-  static const thread_id_t invalid_thread_id;         // Default ctor creates invalid ID
+  static const thread_id_t invalid_thread_id;         // 默认 ctor 创建无效 ID
 
   // 请注意，我们不定义 invalid_thread_id2，因为 std::thread::id 没有无效值；它
   // 仅在 MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED 定义时才会使用，但实际上不会定义它。
@@ -126,18 +126,18 @@ namespace moodycamel { namespace details {
 #elif defined(_MSC_VER)
 #define MOODYCAMEL_THREADLOCAL __declspec(thread)
 #else
-// Assume C++11 compliant compiler
+//假设编译器符合 C++11 标准
 #define MOODYCAMEL_THREADLOCAL thread_local
 #endif
 namespace moodycamel { namespace details {
   typedef std::uintptr_t thread_id_t;
-  static const thread_id_t invalid_thread_id  = 0;    // Address can't be nullptr
-  static const thread_id_t invalid_thread_id2 = 1;    // Member accesses off a null pointer are also generally invalid. Plus it's not aligned.
+  static const thread_id_t invalid_thread_id  = 0;    //地址不能为 nullptr
+  static const thread_id_t invalid_thread_id2 = 1;    // 对 null 指针的成员访问通常也是无效的。另外，它没有对齐。
   static inline thread_id_t thread_id() { static MOODYCAMEL_THREADLOCAL int x; return reinterpret_cast<thread_id_t>(&x); }
 } }
 #endif
 
-// Exceptions
+//异常
 #ifndef MOODYCAMEL_EXCEPTIONS_ENABLED
 #if (defined(_MSC_VER) && defined(_CPPUNWIND)) || (defined(__GNUC__) && defined(__EXCEPTIONS)) || (!defined(_MSC_VER) && !defined(__GNUC__))
 #define MOODYCAMEL_EXCEPTIONS_ENABLED
@@ -286,8 +286,8 @@ struct ConcurrentQueueDefaultTraits
   // 必须是 2 的幂。
   static const size_t EXPLICIT_INITIAL_INDEX_SIZE = 32;
 
-  // How many full blocks can be expected for a single implicit producer? This should
-  // reflect that number's maximum for optimal performance. Must be a power of 2.
+  // 单个隐式 producer 可以预期有多少个完整块？这应该
+  // 反映该数字的最大值以获得最佳性能。必须是 2 的幂。
   static const size_t IMPLICIT_INITIAL_INDEX_SIZE = 32;
 
   // 线程 ID 到隐式生产者的哈希表的初始大小。
@@ -321,11 +321,11 @@ static const size_t MAX_SUBQUEUE_SIZE = details::const_numeric_max<size_t>::valu
 
 
 #ifndef MCDBGQ_USE_RELACY
-  // Memory allocation can be customized if needed.
-  // malloc should return nullptr on failure, and handle alignment like std::malloc.
+  // 如果需要，可以自定义内存分配。
+  // malloc 应在失败时返回 nullptr，并像 std：：malloc 一样处理对齐。
 #if defined(malloc) || defined(free)
-  // Gah, this is 2015, stop defining macros that break standard code already!
-  // Work around malloc/free being special macros:
+  // 噢，现在是 2015 年，别再定义违反标准代码的宏了！
+  // 解决 malloc/free 作为特殊宏的问题：
   static inline void* WORKAROUND_malloc(size_t size) { return malloc(size); }
   static inline void WORKAROUND_free(void* ptr) { return free(ptr); }
   static inline void* (malloc)(size_t size) { return WORKAROUND_malloc(size); }
@@ -624,7 +624,7 @@ struct ProducerToken
     }
   }
 
-  // Disable copying and assignment
+  // 禁用复制和分配
   ProducerToken(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;
   ProducerToken& operator=(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;
 
@@ -705,8 +705,8 @@ public:
   static const std::uint32_t EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE = static_cast<std::uint32_t>(Traits::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE);
 #ifdef _MSC_VER
 #pragma warning(push)
-#pragma warning(disable: 4307)    // + integral constant overflow (that's what the ternary expression is for!)
-#pragma warning(disable: 4309)    // static_cast: Truncation of constant value
+#pragma warning(disable: 4307)    //+ 整型常量溢出（这就是三元表达式的用途！
+#pragma warning(disable: 4309)    // static_cast：常量值的截断
 #endif
   static const size_t MAX_SUBQUEUE_SIZE = (details::const_numeric_max<size_t>::value - static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) < BLOCK_SIZE) ? details::const_numeric_max<size_t>::value : ((static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) + (BLOCK_SIZE - 1)) / BLOCK_SIZE * BLOCK_SIZE);
 #ifdef _MSC_VER
@@ -743,10 +743,10 @@ public:
     populate_initial_block_list(capacity / BLOCK_SIZE + ((capacity & (BLOCK_SIZE - 1)) == 0 ? 0 : 1));
 
 #ifdef MOODYCAMEL_QUEUE_INTERNAL_DEBUG
-    // Track all the producers using a fully-resolved typed list for
-    // each kind; this makes it possible to debug them starting from
-    // the root queue object (otherwise wacky casts are needed that
-    // don't compile in the debugger's expression evaluator).
+    // 使用完全解析的类型化列表跟踪所有生产者
+    // 每一种;这使得可以从
+    // 根队列对象（否则需要
+    // 不要在 Debugger 的 Expression Evaluator 中编译）。
     explicitProducers.store(nullptr, std::memory_order_relaxed);
     implicitProducers.store(nullptr, std::memory_order_relaxed);
 #endif
@@ -794,7 +794,7 @@ public:
       auto hash = implicitProducerHash.load(std::memory_order_relaxed);
       while (hash != nullptr) {
         auto prev = hash->prev;
-        if (prev != nullptr) {    // The last hash is part of this object and was not allocated dynamically
+        if (prev != nullptr) {    // 最后一个哈希是此对象的一部分，不是动态分配的
           for (size_t i = 0; i != hash->capacity; ++i) {
             hash->entries[i].~ImplicitProducerKVP();
           }
@@ -2991,64 +2991,101 @@ private:
 
 #if MCDBGQ_TRACKMEM
   public:
+// 定义一个名为MemStats的结构体，用于统计内存相关的各种信息
     struct MemStats {
+ // 已分配的块数量
       size_t allocatedBlocks;
+ // 已分配的块数量
       size_t usedBlocks;
+ // 空闲的块数量
       size_t freeBlocks;
+ // 显式拥有的块数量
       size_t ownedBlocksExplicit;
+ // 显式拥有的块数量
       size_t ownedBlocksImplicit;
+// 隐式生产者的数量
       size_t implicitProducers;
+// 隐式生产者的数量
       size_t explicitProducers;
+// 入队元素的数量
       size_t elementsEnqueued;
+ // 块类所占用的字节数
       size_t blockClassBytes;
+ // 队列类所占用的字节数
       size_t queueClassBytes;
+ // 隐式块索引所占用的字节数
       size_t implicitBlockIndexBytes;
+// 显式块索引所占用的字节数
       size_t explicitBlockIndexBytes;
-
+ // 声明ConcurrentQueue类为友元类，意味着ConcurrentQueue类可以访问MemStats的私有成员
       friend class ConcurrentQueue;
 
     private:
+ // 静态成员函数，用于获取给定ConcurrentQueue对象的内存统计信息，参数为指向ConcurrentQueue的指针
       static MemStats getFor(ConcurrentQueue* q)
       {
+// 创建一个MemStats结构体实例，并将所有成员初始化为0
         MemStats stats = { 0 };
-
+ // 获取队列中大约的元素数量，并赋值给stats的elementsEnqueued成员，这里size_approx()应该是ConcurrentQueue类提供的用于估算队列元素个数的函数
         stats.elementsEnqueued = q->size_approx();
-
+     // 获取队列空闲链表的头节点，这里假设freeList是ConcurrentQueue类中用于管理空闲块链表的数据成员，head_unsafe()用于获取头节点（可能是一种非线程安全的获取方式，具体取决于实现）
         auto block = q->freeList.head_unsafe();
+ // 循环遍历空闲链表，直到遍历到链表末尾（节点为nullptr表示链表结束）
         while (block != nullptr) {
+ // 已分配块数量加1，因为当前遍历到的是一个已分配的空闲块
           ++stats.allocatedBlocks;
+ // 空闲块数量加1，当前块处于空闲状态
           ++stats.freeBlocks;
+ // 获取下一个空闲块节点，通过原子加载操作（memory_order_relaxed表示一种较宽松的内存顺序要求，常用于性能优先的场景）获取下一个节点指针
           block = block->freeListNext.load(std::memory_order_relaxed);
         }
-
+  // 加载队列生产者链表的尾节点，使用memory_order_acquire内存顺序保证获取到的是其他线程已完成写入的最新值，用于后续遍历生产者链表
         for (auto ptr = q->producerListTail.load(std::memory_order_acquire); ptr != nullptr; ptr = ptr->next_prod()) {
+                // 通过动态类型转换判断当前生产者指针指向的是否是隐式生产者（ImplicitProducer类型），如果转换成功（不为nullptr）则表示是隐式生产者
           bool implicit = dynamic_cast<ImplicitProducer*>(ptr) != nullptr;
+// 如果是隐式生产者，隐式生产者数量加1
           stats.implicitProducers += implicit ? 1 : 0;
+ // 如果不是隐式生产者（即显式生产者），显式生产者数量加1
           stats.explicitProducers += implicit ? 0 : 1;
-
-          if (implicit) {
+ // 如果是隐式生产者，进入以下逻辑进行相关统计信息的更新
+       if (implicit) {
+ // 将ptr指针转换为ImplicitProducer*类型，以便后续访问ImplicitProducer类相关的成员变量和函数
             auto prod = static_cast<ImplicitProducer*>(ptr);
+// 累加ImplicitProducer类型对象所占用的字节数到queueClassBytes成员，用于统计队列类相关的内存占用情况
             stats.queueClassBytes += sizeof(ImplicitProducer);
+// 原子加载隐式生产者的头索引，同样使用memory_order_relaxed内存顺序
             auto head = prod->headIndex.load(std::memory_order_relaxed);
+ // 原子加载隐式生产者的尾索引
             auto tail = prod->tailIndex.load(std::memory_order_relaxed);
+// 原子加载隐式生产者的块索引（这里假设是一个指向某种数据结构用于管理块索引的指针）
             auto hash = prod->blockIndex.load(std::memory_order_relaxed);
+ // 如果块索引指针不为nullptr，说明存在块索引相关的数据结构，进入以下循环处理逻辑
             if (hash != nullptr) {
+// 循环遍历块索引数据结构中每个索引位置（假设index是一个数组或者类似可遍历的数据结构）
               for (size_t i = 0; i != hash->capacity; ++i) {
+                 // 检查当前索引位置对应的块索引条目的键是否不等于无效块基值（这里INVALID_BLOCK_BASE应该是ImplicitProducer类中定义的表示无效块的一个常量之类的），并且对应的值指针不为nullptr，表示该块是有效的已分配块
                 if (hash->index[i]->key.load(std::memory_order_relaxed) != ImplicitProducer::INVALID_BLOCK_BASE && hash->index[i]->value.load(std::memory_order_relaxed) != nullptr) {
+ // 已分配块数量加1，因为找到了一个有效的已分配块
                   ++stats.allocatedBlocks;
+ // 隐式拥有的块数量加1，因为这是隐式生产者拥有的有效块
                   ++stats.ownedBlocksImplicit;
                 }
               }
+ // 累加隐式块索引所占用的字节数，计算方式为索引容量乘以每个索引条目的字节大小（这里假设BlockIndexEntry是用于表示块索引条目的结构体之类的）
               stats.implicitBlockIndexBytes += hash->capacity * sizeof(typename ImplicitProducer::BlockIndexEntry);
+   // 循环遍历块索引数据结构的链表（假设通过prev指针连接），用于统计整个链表结构所占用的字节数，包括头部和每个节点相关的字节数
               for (; hash != nullptr; hash = hash->prev) {
                 stats.implicitBlockIndexBytes += sizeof(typename ImplicitProducer::BlockIndexHeader) + hash->capacity * sizeof(typename ImplicitProducer::BlockIndexEntry*);
               }
             }
+// 根据头索引和尾索引循环处理已使用块的统计，这里假设circular_less_than是用于比较循环索引大小的函数，BLOCK_SIZE是块大小相关的常量之类的
             for (; details::circular_less_than<index_t>(head, tail); head += BLOCK_SIZE) {
+// 已使用块数量加1，说明对应位置的块正在被使用
               //auto block = prod->get_block_index_entry_for_index(head);
               ++stats.usedBlocks;
             }
           }
+ // 如果不是隐式生产者（即显式生产者），进入以下逻辑进行相关统计信息的更新
           else {
             auto prod = static_cast<ExplicitProducer*>(ptr);
             stats.queueClassBytes += sizeof(ExplicitProducer);

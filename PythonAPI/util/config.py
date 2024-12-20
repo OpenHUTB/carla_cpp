@@ -87,14 +87,20 @@ def list_options(client):
        该函数首先获取服务器端可用的地图列表，然后通过`find_weather_presets`函数获取天气预设信息，
        接着将这些信息进行格式化输出，每行缩进一定空格，方便查看。
        """
+     # 获取所有可用的地图名称，并去掉路径前缀'/Game/Carla/Maps/'以简化显示
     maps = [m.replace('/Game/Carla/Maps/', '') for m in client.get_available_maps()]
+    # 设置缩进格式，每个层次缩进4个空格
     indent = 4 * ' '
+     # 定义一个辅助函数 wrap，用来对文本进行格式化处理，使其适合输出
     def wrap(text):
         return '\n'.join(textwrap.wrap(text, initial_indent=indent, subsequent_indent=indent))
+        # 输出天气预设信息。这里假设有一个名为 find_weather_presets 的函数，
+    # 它返回一系列天气预设，其中包含两个元素的元组，但我们只对第二个元素感兴趣（即预设的名字）
     print('weather presets:\n')
-    print(wrap(', '.join(x for _, x in find_weather_presets())) + '.\n')
+    print(wrap(', '.join(x for _, x in find_weather_presets())) + '.\n')# 使用辅助函数 wrap 对天气预设列表进行格式化后输出
+     # 输出可用地图信息。首先对地图名称进行排序，然后使用辅助函数 wrap 进行格式化后输出
     print('available maps:\n')
-    print(wrap(', '.join(sorted(maps))) + '.\n')
+    print(wrap(', '.join(sorted(maps))) + '.\n') # 格式化并打印排序后的地图名称
 
 
 def list_blueprints(world, bp_filter):

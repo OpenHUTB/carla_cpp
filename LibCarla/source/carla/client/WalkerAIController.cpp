@@ -6,71 +6,84 @@
 //文件头部注释,版权声明和许可信息.
 
 //包含头文件
-#include "carla/client/WalkerAIController.h"
+#include "carla/client/WalkerAIController.h" // 引入 WalkerAIController 类的头文件，用于控制虚拟行人AI行为
 
-#include "carla/client/detail/Simulator.h"
-#include "carla/client/detail/WalkerNavigation.h"
+#include "carla/client/detail/Simulator.h" // 引入 Simulator 类的头文件，用于访问 Carla 仿真环境的模拟器功能
+#include "carla/client/detail/WalkerNavigation.h" // 引入 WalkerNavigation 类的头文件，用于虚拟行人的导航系统
 
 namespace carla {
 namespace client {
 
-  //构造函数,初始化WalkerAIController并传递初始化参数给父类Actor
+  // 构造函数: 初始化 WalkerAIController 对象，并将初始化参数传递给父类 Actor。
+  // 该控制器用于管理 AI 行人行为，并与导航系统交互。
   WalkerAIController::WalkerAIController(ActorInitializer init)
     : Actor(std::move(init)) {} 
 
-  //方法Start,Start()方法在控制器启动时调用，注册AI控制器并让行人加入导航系统。
+  // 方法 Start: 启动控制器时调用，注册该 AI 控制器到模拟环境，并将行人添加到导航系统中。
+  // 在 Recast & Detour 导航系统中为行人创建路径，并禁用物理与碰撞计算。
   void WalkerAIController::Start() {
+    // 注册 AI 控制器以启用模拟中的控制功能
     GetEpisode().Lock()->RegisterAIController(*this);
 
-    // 在 Recast & Detour 中添加行人
+    // 获取当前控制的行人对象（如果存在）
     auto walker = GetParent();   
     //GetParent()获取控制器控制的行人对象
     if (walker != nullptr) {
+      // 获取当前模拟环境的导航系统
       auto nav = GetEpisode().Lock()->GetNavigation();
       //GetEpisode().Lock()获取当前模拟环境（Episode）的锁，确保线程安全。
       if (nav != nullptr) {
+        // 将行人添加到导航系统中，提供行人 ID 和当前位置
         nav->AddWalker(walker->GetId(), walker->GetLocation());
-        // 禁用行人参与者的物理和碰撞
-        //AddWalker(walker->GetId(), walker->GetLocation())将行人添加到导航系统中，传递行人的ID和位置。
+        // 禁用行人的物理模拟与碰撞计算
         GetEpisode().Lock()->SetActorSimulatePhysics(*walker, false);
         GetEpisode().Lock()->SetActorCollisions(*walker, false);
       }
     }
   }
 
-  //方法Stop,Stop()方法用于停止控制器的工作，解除对行人对象的管理。
+  // 方法 Stop: 停止控制器的工作，取消注册并从导航系统中移除行人。
+  // 此方法用于关闭控制器，解除对行人对象的管理。
   void WalkerAIController::Stop() {
+    // 取消注册该 AI 控制器
     GetEpisode().Lock()->UnregisterAIController(*this);
 
-    // 从 Recast & Detour 中移除行人
+    // 获取当前控制的行人对象（如果存在）
     auto walker = GetParent();
     if (walker != nullptr) {
+      // 获取当前模拟环境的导航系统
       auto nav = GetEpisode().Lock()->GetNavigation();
       if (nav != nullptr) {
+        // 从导航系统中移除该行人
         nav->RemoveWalker(walker->GetId());
       }
     }
   }
 
-  // 方法GetRandomLocation
-  // 获取一个随机的导航位置，供行人AI使用
+  // 方法 GetRandomLocation: 获取一个随机的导航位置，供 AI 行人使用。
+  // 返回值是一个可选的地点（如果导航系统可用），通常用于设置行人的随机目标位置。
   boost::optional<geom::Location> WalkerAIController::GetRandomLocation() {
       //GetRandomLocation()方法返回一个随机的位置，通常用于让AI行人随机选择一个目标位置。
-    auto nav = GetEpisode().Lock()->GetNavigation();
+    auto nav = GetEpisode().Lock()->GetNavigation(); // 获取当前模拟环境的导航系统
     if (nav != nullptr) {
+      // 从导航系统中获取一个随机的可行走位置
       return nav->GetRandomLocation();
     }
     return {};
   }
 
-  //方法GoToLocation,GoToLocation()方法使得AI行人朝着指定的目标位置前进。
+  // 方法 GoToLocation: 使 AI 行人朝着指定的目标位置前进。
+  // 行人将根据导航系统规划的路径向目标位置移动。
   void WalkerAIController::GoToLocation(const carla::geom::Location &destination) {
+    // 获取当前模拟环境的导航系统
     auto nav = GetEpisode().Lock()->GetNavigation();
     if (nav != nullptr) {
+      // 获取控制的行人对象
       auto walker = GetParent();
       if (walker != nullptr) {
+        // 请求导航系统为该行人设置目标位置
         if (!nav->SetWalkerTarget(walker->GetId(), destination)) {
-            //SetWalkerTarget(walker->GetId(), destination)设置行人的目标位置
+          // 如果设置目标失败，输出警告日志
           log_warning("NAV: Failed to set request to go to ", destination.x, destination.y, destination.z);
         }
       } else {
@@ -79,12 +92,16 @@ namespace client {
     }
   }
 
-  //方法SetMaxSpeed,SetMaxSpeed()方法设置行人的最大速度。
+  // 方法 SetMaxSpeed: 设置行人的最大速度，控制行人移动的速度限制。
+  // 行人速度的最大值将影响其在导航中的运动表现。
   void WalkerAIController::SetMaxSpeed(const float max_speed) {
+    // 获取当前模拟环境的导航系统
     auto nav = GetEpisode().Lock()->GetNavigation();
     if (nav != nullptr) {
+      // 获取控制的行人对象
       auto walker = GetParent();
       if (walker != nullptr) {
+        // 设置行人的最大速度，如果设置失败，输出警告日志
         if (!nav->SetWalkerMaxSpeed(walker->GetId(), max_speed)) {
           log_warning("NAV: failed to set max speed");
         }

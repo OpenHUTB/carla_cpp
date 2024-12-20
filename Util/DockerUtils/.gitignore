@@ -1,9 +1,9 @@
-dist/*
+dist/*#忽略 dist 目录下的所有文件和子目录。
 
-!dist/addOBJ.py
-!dist/build.bat
-!dist/build.sh
-!dist/get_xodr_crosswalks.py
+!dist/addOBJ.py#这是一个例外规则，它表示 dist 目录下的 addOBJ.py 文件应该被 Git 跟踪
+!dist/build.bat#表示 dist 目录下的 build.bat 文件应该被 Git 跟踪
+!dist/build.sh#表示 dist 目录下的 build.sh 文件应该被 Git 跟踪。
+!dist/get_xodr_crosswalks.py#表示 dist 目录下的 get_xodr_crosswalks.py 文件应该被 Git 跟踪。
 
-fbx/build
-fbx/dependencies
+fbx/build#忽略 fbx/build 目录及其所有内容
+fbx/dependencies#忽略 fbx/dependencies 目录及其所有内容
