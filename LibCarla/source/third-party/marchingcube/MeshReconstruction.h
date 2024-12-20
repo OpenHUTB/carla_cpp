@@ -5,21 +5,21 @@
 
 namespace MeshReconstruction// 命名空间 MeshReconstruction，用于网格重建相关的功能
 {
-  /// Reconstructs a triangle mesh from a given signed distance function using <a href="https://en.wikipedia.org/wiki/Marching_cubes">Marching Cubes</a>.
-  /// @param sdf The <a href="http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm">Signed Distance Function</a>.
-  /// @param domain Domain of reconstruction.
-  /// @returns The reconstructed mesh.
+  ///使用 <a href=“https://en.wikipedia.org/wiki/Marching_cubes”>Marching Cube 从给定的有向距离函数重建三角形网格</a>。
+  ///@param sdf <a href=“http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm”>有符号距离函数</a>。
+  /// @param 域 重建域。
+  /// @returns 重建的网格。
   Mesh MarchCube(
       Fun3s const &sdf,
       Rect3 const &domain);
 
-  /// Reconstructs a triangle mesh from a given signed distance function using <a href="https://en.wikipedia.org/wiki/Marching_cubes">Marching Cubes</a>.
-  /// @param sdf The <a href="http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm">Signed Distance Function</a>.
-  /// @param domain Domain of reconstruction.
-  /// @param cubeSize Size of marching cubes. Smaller cubes yields meshes of higher resolution.
-  /// @param isoLevel Level set of the SDF for which triangulation should be done. Changing this value moves the reconstructed surface.
-  /// @param sdfGrad Gradient of the SDF which yields the vertex normals of the reconstructed mesh. If none is provided a numerical approximation is used.
-  /// @returns The reconstructed mesh.
+  /// 使用 <a href=“https://en.wikipedia.org/wiki/Marching_cubes”>Marching Cube 从给定的有向距离函数重建三角形网格</a>。
+  ///@param sdf <a href=“http://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm”>有符号距离函数</a>。
+  ///@param 域 重建域。
+  /// @param cubeSize 行进立方体的大小。立方体越小，生成的网格分辨率越高。
+  /// @param应对其进行三角剖分的 SDF 的 isoLevel Level 集。更改此值将移动重建的表面。
+  /// @param SDF 的 sdfGrad 梯度，可生成重建网格的顶点法线。如果未提供任何参数，则使用数值近似值。
+  /// @returns 重建的网格。
   Mesh MarchCube(
       Fun3s const &sdf,
       Rect3 const &domain,
@@ -95,7 +95,7 @@ Mesh MeshReconstruction::MarchCube(
         auto z = domain.min.z + iz * cubeSize.z;// 当前立方体的 z 坐标
         Vec3 min{x, y, z};// 当前立方体的最小坐标
 
-        // Process only if cube lies within narrow band around surface.
+        // 仅当立方体位于表面周围的窄带内时才处理。
         auto cubeCenter = min + HalfCubeSize;// 计算立方体的中心坐标
         auto dist = abs(sdf(cubeCenter) - isoLevel);// 计算立方体中心到等值面的距离
         if (dist > HalfCubeDiag)
