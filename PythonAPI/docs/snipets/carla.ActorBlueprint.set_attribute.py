@@ -1,6 +1,6 @@
 
 #此代码片段用于更改不同类型蓝图（blueprint）角色的属性。
-
+print（"你好呀"）
 #获取名为'walker.pedestrian.0002'的行人蓝图对象
 walker_bp = world.get_blueprint_library().filter('walker.pedestrian.0002')
 # 将行人蓝图对象的'is_invincible'（无敌）属性设置为True
