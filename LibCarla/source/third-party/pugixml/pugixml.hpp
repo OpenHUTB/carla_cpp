@@ -124,11 +124,11 @@
 
 namespace pugi
 {
-	//用于所有内部存储和操作的字符类型;取决于 PUGIXML_WCHAR_MODE
+	// Character type used for all internal storage and operations; depends on PUGIXML_WCHAR_MODE
 	typedef PUGIXML_CHAR char_t;
 
 #ifndef PUGIXML_NO_STL
-	// String 类型，用于使用 STL 字符串的操作;取决于 PUGIXML_WCHAR_MODE
+	// String type used for operations that work with STL string; depends on PUGIXML_WCHAR_MODE
 	typedef std::basic_string<PUGIXML_CHAR, std::char_traits<PUGIXML_CHAR>, std::allocator<PUGIXML_CHAR> > string_t;
 #endif
 }
@@ -1153,35 +1153,35 @@ namespace pugi
 		static void _destroy(xpath_variable* var);
 
 	public:
-		// 默认构造函数/析构函数
+		// Default constructor/destructor
 		xpath_variable_set();
 		~xpath_variable_set();
 
-		// 复制构造函数/赋值运算符
+		// Copy constructor/assignment operator
 		xpath_variable_set(const xpath_variable_set& rhs);
 		xpath_variable_set& operator=(const xpath_variable_set& rhs);
 
 	#ifdef PUGIXML_HAS_MOVE
-		//移动语义支持
+		// Move semantics support
 		xpath_variable_set(xpath_variable_set&& rhs) PUGIXML_NOEXCEPT;
 		xpath_variable_set& operator=(xpath_variable_set&& rhs) PUGIXML_NOEXCEPT;
 	#endif
 
-		//添加新变量或获取现有变量（如果类型匹配）
+		// Add a new variable or get the existing one, if the types match
 		xpath_variable* add(const char_t* name, xpath_value_type type);
 
-		//设置现有变量的值;不执行类型转换，如果没有此类变量或类型不匹配，则返回 false
+		// Set value of an existing variable; no type conversion is performed, false is returned if there is no such variable or if types mismatch
 		bool set(const char_t* name, bool value);
 		bool set(const char_t* name, double value);
 		bool set(const char_t* name, const char_t* value);
 		bool set(const char_t* name, const xpath_node_set& value);
 
-		//按名称获取现有变量
+		// Get existing variable by name
 		xpath_variable* get(const char_t* name);
 		const xpath_variable* get(const char_t* name) const;
 	};
 
-	// 已编译的 XPath 查询对象
+	// A compiled XPath query object
 	class PUGIXML_CLASS xpath_query
 	{
 	private:
@@ -1190,73 +1190,73 @@ namespace pugi
 
 		typedef void (*unspecified_bool_type)(xpath_query***);
 
-		//不可复制的语义
+		// Non-copyable semantics
 		xpath_query(const xpath_query&);
 		xpath_query& operator=(const xpath_query&);
 
 	public:
-		//从 XPath 表达式构造一个编译的对象。
-		// 如果未定义 PUGIXML_NO_EXCEPTIONS，则在编译错误时引发xpath_exception。
+		// Construct a compiled object from XPath expression.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on compilation errors.
 		explicit xpath_query(const char_t* query, xpath_variable_set* variables = 0);
 
-		// 构造 函数
+		// Constructor
 		xpath_query();
 
-		//破坏者
+		// Destructor
 		~xpath_query();
 
 	#ifdef PUGIXML_HAS_MOVE
-		// 移动语义支持
+		// Move semantics support
 		xpath_query(xpath_query&& rhs) PUGIXML_NOEXCEPT;
 		xpath_query& operator=(xpath_query&& rhs) PUGIXML_NOEXCEPT;
 	#endif
 
-		//获取查询表达式返回类型
+		// Get query expression return type
 		xpath_value_type return_type() const;
 
-		// 在指定上下文中将表达式计算为布尔值;如有必要，执行类型转换。
-		//如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 std：：bad_alloc on 内存不足错误。
+		// Evaluate expression as boolean value in the specified context; performs type conversion if necessary.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		bool evaluate_boolean(const xpath_node& n) const;
 
-		//在指定上下文中将 expression 评估为 double 值;如有必要，执行类型转换。
-		//如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 std：：bad_alloc on 内存不足错误。
+		// Evaluate expression as double value in the specified context; performs type conversion if necessary.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		double evaluate_number(const xpath_node& n) const;
 
 	#ifndef PUGIXML_NO_STL
-		// 在指定上下文中将表达式评估为字符串值;如有必要，执行类型转换。
-		// 如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 std：：bad_alloc on 内存不足错误。
+		// Evaluate expression as string value in the specified context; performs type conversion if necessary.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		string_t evaluate_string(const xpath_node& n) const;
 	#endif
 
-		//在指定上下文中将表达式评估为字符串值;如有必要，执行类型转换。
-		// 大多数容量字符都会写入目标缓冲区，并返回完整的结果大小（包括终止零）。
-		// 如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 std：：bad_alloc on 内存不足错误。
-		//如果定义了 PUGIXML_NO_EXCEPTIONS，则返回空集。
+		// Evaluate expression as string value in the specified context; performs type conversion if necessary.
+		// At most capacity characters are written to the destination buffer, full result size is returned (includes terminating zero).
+		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty  set instead.
 		size_t evaluate_string(char_t* buffer, size_t capacity, const xpath_node& n) const;
 
-		// 将表达式评估为指定上下文中的节点集。
-		//如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 xpath_exception 类型 mismatch 和 std：：bad_alloc 内存不足错误。
-		// 如果定义了 PUGIXML_NO_EXCEPTIONS，则返回空节点集。
+		// Evaluate expression as node set in the specified context.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on type mismatch and std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty node set instead.
 		xpath_node_set evaluate_node_set(const xpath_node& n) const;
 
-		// 将表达式评估为指定上下文中的节点集。
-		// 按文档顺序返回第一个节点，如果节点集为空，则返回空节点。
-		//如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 xpath_exception 类型 mismatch 和 std：：bad_alloc 内存不足错误。
-		//如果定义了 PUGIXML_NO_EXCEPTIONS，则返回空节点。
+		// Evaluate expression as node set in the specified context.
+		// Return first node in document order, or empty node if node set is empty.
+		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on type mismatch and std::bad_alloc on out of memory errors.
+		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty node instead.
 		xpath_node evaluate_node(const xpath_node& n) const;
 
-		// 获取解析结果（用于在 PUGIXML_NO_EXCEPTIONS 模式下获取编译错误）
+		// Get parsing result (used to get compilation errors in PUGIXML_NO_EXCEPTIONS mode)
 		const xpath_parse_result& result() const;
 
-		//安全的 bool 转换运算符
+		// Safe bool conversion operator
 		operator unspecified_bool_type() const;
 
-		//Borland C++ 解决方法
+		// Borland C++ workaround
 		bool operator!() const;
 	};
 
 	#ifndef PUGIXML_NO_EXCEPTIONS
-	// XPath 异常类
+	// XPath exception class
 	class PUGIXML_CLASS xpath_exception: public std::exception
 	{
 	private:
@@ -1284,94 +1284,94 @@ namespace pugi
 		typedef void (*unspecified_bool_type)(xpath_node***);
 
 	public:
-		// Default constructor; constructs empty XPath node
+		// 默认构造函数;构造空 XPath 节点
 		xpath_node();
 
-		// Construct XPath node from XML node/attribute
+		// 从 XML 节点/属性构造 XPath 节点
 		xpath_node(const xml_node& node);
 		xpath_node(const xml_attribute& attribute, const xml_node& parent);
 
-		// Get node/attribute, if any
+		//获取节点/属性（如果有）
 		xml_node node() const;
 		xml_attribute attribute() const;
 
-		// Get parent of contained node/attribute
+		//获取包含的节点/属性的父级
 		xml_node parent() const;
 
-		// Safe bool conversion operator
+		// 安全的 bool 转换运算符
 		operator unspecified_bool_type() const;
 
-		// Borland C++ workaround
+		// Borland C++ 解决方法
 		bool operator!() const;
 
-		// Comparison operators
+		// 比较运算符
 		bool operator==(const xpath_node& n) const;
 		bool operator!=(const xpath_node& n) const;
 	};
 
 #ifdef __BORLANDC__
-	// Borland C++ workaround
+	//Borland C++ 解决方法
 	bool PUGIXML_FUNCTION operator&&(const xpath_node& lhs, bool rhs);
 	bool PUGIXML_FUNCTION operator||(const xpath_node& lhs, bool rhs);
 #endif
 
-	// A fixed-size collection of XPath nodes
+	// XPath 节点的固定大小集合
 	class PUGIXML_CLASS xpath_node_set
 	{
 	public:
-		// Collection type
+		// 集合类型
 		enum type_t
 		{
-			type_unsorted,			// Not ordered
-			type_sorted,			// Sorted by document order (ascending)
-			type_sorted_reverse		// Sorted by document order (descending)
+			type_unsorted,			// 未订购
+			type_sorted,			//按文档顺序排序（升序）
+			type_sorted_reverse		// 按文档顺序排序（降序）
 		};
 
-		// Constant iterator type
+		// 常量迭代器类型
 		typedef const xpath_node* const_iterator;
 
-		// We define non-constant iterator to be the same as constant iterator so that various generic algorithms (i.e. boost foreach) work
+		//我们将 non-constant iterator 定义为与 constant iterator 相同，以便各种通用算法（即 boost foreach）工作
 		typedef const xpath_node* iterator;
 
-		// Default constructor. Constructs empty set.
+		//默认构造函数。构造空集。
 		xpath_node_set();
 
-		// Constructs a set from iterator range; data is not checked for duplicates and is not sorted according to provided type, so be careful
+		// 从迭代器范围构造一个集;不会检查数据是否重复，也不会根据提供的类型进行排序，因此请小心
 		xpath_node_set(const_iterator begin, const_iterator end, type_t type = type_unsorted);
 
-		// Destructor
+		//析构函数
 		~xpath_node_set();
 
-		// Copy constructor/assignment operator
+		//复制构造函数/赋值运算符
 		xpath_node_set(const xpath_node_set& ns);
 		xpath_node_set& operator=(const xpath_node_set& ns);
 
 	#ifdef PUGIXML_HAS_MOVE
-		// Move semantics support
+		// 移动语义支持
 		xpath_node_set(xpath_node_set&& rhs) PUGIXML_NOEXCEPT;
 		xpath_node_set& operator=(xpath_node_set&& rhs) PUGIXML_NOEXCEPT;
 	#endif
 
-		// Get collection type
+		//获取集合类型
 		type_t type() const;
 
-		// Get collection size
+		// 获取集合大小
 		size_t size() const;
 
-		// Indexing operator
+		// 索引运算符
 		const xpath_node& operator[](size_t index) const;
 
-		// Collection iterators
+		// 集合迭代器
 		const_iterator begin() const;
 		const_iterator end() const;
 
-		// Sort the collection in ascending/descending order by document order
+		// 按文档顺序按升序/降序对集合进行排序
 		void sort(bool reverse = false);
 
-		// Get first node in the collection by document order
+		// 按文档顺序获取集合中的第一个节点
 		xpath_node first() const;
 
-		// Check if collection is empty
+		// 检查集合是否为空
 		bool empty() const;
 
 	private:
@@ -1388,25 +1388,25 @@ namespace pugi
 #endif
 
 #ifndef PUGIXML_NO_STL
-	// Convert wide string to UTF8
+	// 将宽字符串转换为 UTF8
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PUGIXML_FUNCTION as_utf8(const wchar_t* str);
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PUGIXML_FUNCTION as_utf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str);
 
-	// Convert UTF8 to wide string
+	//将 UTF8 转换为宽字符串
 	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PUGIXML_FUNCTION as_wide(const char* str);
 	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PUGIXML_FUNCTION as_wide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str);
 #endif
 
-	// Memory allocation function interface; returns pointer to allocated memory or NULL on failure
+	// 内存分配功能接口;返回指向已分配内存的指针，或在失败时返回 NULL
 	typedef void* (*allocation_function)(size_t size);
 
-	// Memory deallocation function interface
+	// 内存释放函数接口
 	typedef void (*deallocation_function)(void* ptr);
 
-	// Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions.
+	//覆盖默认内存管理功能。所有后续的 allocations/disallocation 都将通过提供的函数执行。
 	void PUGIXML_FUNCTION set_memory_management_functions(allocation_function allocate, deallocation_function deallocate);
 
-	// Get current memory management functions
+	// 获取当前的内存管理函数
 	allocation_function PUGIXML_FUNCTION get_memory_allocation_function();
 	deallocation_function PUGIXML_FUNCTION get_memory_deallocation_function();
 }
@@ -1414,7 +1414,7 @@ namespace pugi
 #if !defined(PUGIXML_NO_STL) && (defined(_MSC_VER) || defined(__ICC))
 namespace std
 {
-	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier)
+	//旧版本（MSVC7/IC8 及更早版本）的（非标准）迭代器类别检测的解决方法
 	std::bidirectional_iterator_tag PUGIXML_FUNCTION _Iter_cat(const pugi::xml_node_iterator&);
 	std::bidirectional_iterator_tag PUGIXML_FUNCTION _Iter_cat(const pugi::xml_attribute_iterator&);
 	std::bidirectional_iterator_tag PUGIXML_FUNCTION _Iter_cat(const pugi::xml_named_node_iterator&);
@@ -1424,7 +1424,7 @@ namespace std
 #if !defined(PUGIXML_NO_STL) && defined(__SUNPRO_CC)
 namespace std
 {
-	// Workarounds for (non-standard) iterator category detection
+	// （非标准）迭代器类别检测的解决方法
 	std::bidirectional_iterator_tag PUGIXML_FUNCTION __iterator_category(const pugi::xml_node_iterator&);
 	std::bidirectional_iterator_tag PUGIXML_FUNCTION __iterator_category(const pugi::xml_attribute_iterator&);
 	std::bidirectional_iterator_tag PUGIXML_FUNCTION __iterator_category(const pugi::xml_named_node_iterator&);
@@ -1433,8 +1433,8 @@ namespace std
 
 #endif
 
-// Make sure implementation is included in header-only mode
-// Use macro expansion in #include to work around QMake (QTBUG-11923)
+// 确保 implementation 包含在 header-only 模式中
+//在 #include 中使用宏扩展来解决 QMake （QTBUG-11923）
 #if defined(PUGIXML_HEADER_ONLY) && !defined(PUGIXML_SOURCE)
 #	define PUGIXML_SOURCE "pugixml.cpp"
 #	include PUGIXML_SOURCE
