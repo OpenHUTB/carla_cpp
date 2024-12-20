@@ -321,44 +321,68 @@ class GlobalRoutePlanner:
                     [exit_carla_vector.x, exit_carla_vector.y, exit_carla_vector.z]),
                 net_vector=[net_carla_vector.x, net_carla_vector.y, net_carla_vector.z],
                 intersection=intersection, type=RoadOption.LANEFOLLOW)
-
+    #定义一个函数，用于查找未连接的端点
     def _find_loose_ends(self):
         """
         This method finds road segments that have an unconnected end, and
         adds them to the internal graph representation
         """
+        #初始化一个计数器，用于纪录未连接端点的数量
         count_loose_ends = 0
+        #获取采样分辨率，可能用于后续的计算
         hop_resolution = self._sampling_resolution
+        #循环遍历拓扑结构
         for segment in self._topology:
+            #获取路段的出口端点
             end_wp = segment['exit']
+            #获取出口端点的坐标
             exit_xyz = segment['exitxyz']
+            #从出口端点获取道路ID、路段ID和车道ID
             road_id, section_id, lane_id = end_wp.road_id, end_wp.section_id, end_wp.lane_id
+            #检查端点连接情况
+            #如果存在，则不进行任何操作
             if road_id in self._road_id_to_edge \
                     and section_id in self._road_id_to_edge[road_id] \
                     and lane_id in self._road_id_to_edge[road_id][section_id]:
                 pass
+            #如果端点没有连接，则将count_loose_ends加1
             else:
                 count_loose_ends += 1
+                #初始化数据结构
+                #如果道路 ID 不在self.road_id_to_edge中，则初始化一个空字典
                 if road_id not in self._road_id_to_edge:
                     self._road_id_to_edge[road_id] = dict()
+                #如果路段 ID 不在对应道路 ID 的字典中，则初始化一个空字典
                 if section_id not in self._road_id_to_edge[road_id]:
                     self._road_id_to_edge[road_id][section_id] = dict()
+                #获取出口坐标对应的节点 ID
                 n1 = self._id_map[exit_xyz]
+                #计算未连接端点的节点 ID
                 n2 = -1 * count_loose_ends
+                #将节点 ID 存储在self.road_id_to_edge数据结构中
                 self._road_id_to_edge[road_id][section_id][lane_id] = (n1, n2)
+                #获取下一个端点
                 next_wp = end_wp.next(hop_resolution)
+                #初始化路径列表
                 path = []  # type: list[carla.Waypoint]
+                #构建路径和图
+                #循环直到下一个端点不存在或不匹配当前的道路 ID、路段 ID 和车道 ID
                 while next_wp is not None and next_wp \
                         and next_wp[0].road_id == road_id \
                         and next_wp[0].section_id == section_id \
                         and next_wp[0].lane_id == lane_id:
+                    #将下一个端点添加到路径列表中
                     path.append(next_wp[0])
+                    #获取下一个端点
                     next_wp = next_wp[0].next(hop_resolution)
+                #如果路径列表不为空,获取路径最后一个端点的坐标
                 if path:
                     n2_xyz = (path[-1].transform.location.x,
                               path[-1].transform.location.y,
                               path[-1].transform.location.z)
+                    #在图中添加节点
                     self._graph.add_node(n2, vertex=n2_xyz)
+                    #在图中添加边，连接两个节点，并设置边的属性
                     self._graph.add_edge(
                         n1, n2,
                         length=len(path) + 1, path=path,
