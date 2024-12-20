@@ -83,9 +83,17 @@ import argparse
 # 导入Python标准库中的`argparse`模块，用于方便地解析命令行参数，使得程序可以在启动时通过命令行传入不同的配置选项，
 # 例如指定场景配置、模拟参数等，增强程序的灵活性和可配置性。
 import logging
+# 导入Python标准库中的`logging`模块，用于记录程序运行过程中的各种信息，比如调试信息、警告信息、错误信息等，
+# 方便在开发、测试以及实际运行中排查问题、了解程序状态以及跟踪执行流程等。
 import math
+# 导入Python标准库中的`math`模块，提供了各种数学函数和常量，用于进行常见的数学运算，例如三角函数计算、数值运算、几何计算等，
+# 在涉及车辆运动模拟、坐标计算等场景下会经常用到。
 import random
+# 导入Python标准库中的`random`模块，用于生成随机数，可在模拟场景中实现一些随机化的行为，比如随机初始化车辆的位置、速度、生成随机的交通参与者等，
+# 让模拟环境更接近真实且多样化。
 import weakref
+# 导入Python标准库中的`weakref`模块，它提供了创建弱引用的功能。弱引用是一种特殊的对象引用方式，不会增加对象的引用计数，
+# 常用于避免循环引用导致的内存泄漏问题，或者在一些需要对对象进行松散关联管理的场景中使用，比如对临时创建的对象进行管理等。
 from rss_sensor import RssSensor # pylint: disable=relative-import
 from rss_visualization import RssUnstructuredSceneVisualizer, RssBoundingBoxVisualizer, RssStateVisualizer # pylint: disable=relative-import
 
