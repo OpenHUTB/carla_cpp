@@ -12,6 +12,9 @@
 
 namespace crp = carla::rpc;
 
+// 发射一条射线，并返回射线与场景中物体的所有交点信息。
+// 该函数通过 `LineTraceMultiByChannel` 方法进行射线检测，收集所有与射线相交的物体信息。
+// 每个交点的信息包括交点位置和物体的标签（标签由 `ATagger::GetTagOfTaggedComponent` 获取）。
 std::vector<crp::LabelledPoint> URayTracer::CastRay(
     FVector StartLocation, FVector EndLocation, UWorld * World)
 {
