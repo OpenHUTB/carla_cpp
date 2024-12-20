@@ -27,6 +27,7 @@ if (BUILD_RSS_VARIANT)
   get_target_property(spdlog_include_dirs spdlog::spdlog INTERFACE_INCLUDE_DIRECTORIES)
   get_target_property(spdlog_file spdlog::spdlog LOCATION)
   foreach(dir ${spdlog_include_dirs})
+  # 遍历 spdlog_include_dirs 列表中的每个目录
     file(GLOB spdlog_includes "${dir}/*")
     install(DIRECTORY ${spdlog_includes} DESTINATION include/system)
     list(APPEND ADRSS_INCLUDE_DIRS ${dir})
