@@ -76,6 +76,7 @@ TArray<std::pair<cr::RoadId, const cre::RoadInfoSignal*>>
   return Result;
 }
 
+// 根据信号 ID 从给定的地图中获取对应的信号对象。
 const cr::Signal* USignComponent::GetSignal(const cr::Map &Map) const
 {
   std::string std_signal_id = carla::rpc::FromFString(GetSignId());
@@ -86,6 +87,8 @@ const cr::Signal* USignComponent::GetSignal(const cr::Map &Map) const
   return nullptr;
 }
 
+// 创建并生成一个新的触发器盒子组件，并将其附加到父 Actor 上。
+// 设置触发器盒子的位置、大小和附加规则，并返回创建的 UBoxComponent 对象。
 UBoxComponent* USignComponent::GenerateTriggerBox(const FTransform &BoxTransform,
     float BoxSize)
 {
