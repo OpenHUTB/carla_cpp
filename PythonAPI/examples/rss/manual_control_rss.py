@@ -207,12 +207,18 @@ class World(object):
         self.dim = (args.width, args.height)
         try:
             self.map = self.world.get_map()
+            # 通过 `self.world`（也就是CARLA世界对象）调用 `get_map` 方法尝试获取模拟世界的地图对象，并赋值给实例属性 `self.map`。
+            # 如果获取过程出现运行时错误（比如地图文件不存在、加载失败等情况），会进入下面的 `except` 块进行相应处理。
         except RuntimeError as error:
             print('RuntimeError: {}'.format(error))
             print('  The server could not send the OpenDRIVE (.xodr) file:')
             print('  Make sure it exists, has the same name of your town, and is correct.')
+            # 如果在获取地图时出现运行时错误，打印出错误信息，方便调试和排查问题。
             sys.exit(1)
+            # 使用 `sys.exit(1)` 终止程序运行，返回状态码为1，表示程序因错误而异常退出，这里提示用户确保地图文件（OpenDRIVE格式的 `.xodr` 文件）存在、名称与当前模拟的城镇名称一致且文件内容正确。
         self.external_actor = args.externalActor
+        # 将传入的 `args.externalActor` 参数赋值给实例属性 `self.external_actor`，从名称推测这个属性可能用于标识是否使用外部定义的演员对象，
+        # 后续会根据这个属性的值来决定如何创建或获取模拟世界中的主要演员（比如车辆等）。
 
         self.hud = HUD(args.width, args.height, carla_world)
         self.recording_frame_num = 0
