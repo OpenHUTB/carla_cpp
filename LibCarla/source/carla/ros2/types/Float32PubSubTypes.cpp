@@ -23,16 +23,24 @@
 #include <fastcdr/Cdr.h>
 
 #include "Float32PubSubTypes.h"
-
+// 为eprosima::fastrtps::rtps::SerializedPayload_t类型定义一个更简洁的别名SerializedPayload_t，
+// 方便后续代码中使用，SerializedPayload_t通常用于表示经过序列化后的消息负载相关的数据结构
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
+// 为eprosima::fastrtps::rtps::InstanceHandle_t类型定义别名InstanceHandle_t，
+// 该类型一般与实例的标识、操作句柄相关，在消息交互等场景中会用到
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace std_msgs {
     namespace msg {
+// Float32PubSubType类的构造函数定义，用于初始化该类的各个成员变量，完成相关的资源准备工作
         Float32PubSubType::Float32PubSubType()
-        {
+        {// 设置此类型的名称，这里将名称设置为 "std_msgs::msg::dds_::Float32_"，
+            // 该名称可能在整个消息发布/订阅系统中用于标识这个特定的消息类型
             setName("std_msgs::msg::dds_::Float32_");
             auto type_size = Float32::getMaxCdrSerializedSize();
+              // 根据给定的对齐要求（这里是按4字节对齐），对获取到的类型尺寸进行调整，
+            // 确保数据在存储或传输等过程中符合特定的对齐规范，有助于提高数据处理效率等，
+            // 例如某些硬件架构或者通信协议可能对数据的对齐有要求
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
             m_isGetKeyDefined = Float32::isKeyDefined();
