@@ -1,51 +1,62 @@
-import requests  # 用于发起网络请求
-import argparse  # 用于解析命令行参数
-import os  # 用于操作系统级别的操作
-from collections import defaultdict, Counter  # 用于数据结构操作
-import git  # 用于操作Git库
+import requests#导入request模块，用于请求
 
-# 设置命令行参数解析
-argparser = argparse.ArgumentParser(description='Involvement Degree')
-argparser.add_argument('-t', '--token', help='your personal github access token')
+import argparse#导入argparse模块，用于处理命令行参数
+import os#导入os模块，用于提供与操作系统交互
+
+from collections import defaultdict
+from collections import Counter#导入git模块，用于操作Git库
+
+import git  # 导入git模块，用于操作Git库
+
+argparser = argparse.ArgumentParser(
+        description='Involvement Degree')# 创建一个ArgumentParser对象，用于解析命令行参数，description参数用于给这个解析器添加一个简单的功能描述，此处为'Involvement Degree'（可能与计算参与度相关）
+argparser.add_argument(
+    '-t', '--token',
+    help='your personal github access token')
 args = argparser.parse_args()
 
-# 获取GitHub访问令牌
+# 替换为你的个人访问令牌（可选，但推荐）
 TOKEN = args.token
 
-# 设置请求头
 headers = {
     'Authorization': f'token {TOKEN}',
     'Accept': 'application/vnd.github.v3+json'
 }
 
-# 仓库信息
-owner = 'OpenHUTB'  # 仓库所有者
-repo = 'carla_cpp'  # 仓库名称
+owner = 'OpenHUTB'  # 替换为仓库所有者
+repo = 'carla_cpp'    # 替换为仓库名称
+
 
 #########################################
-####### 统计代码添加和删除行数 ########
+####### 统计代码添加和删除行数 ############
 #########################################
 def commit_info():
+    import os
     from git.repo import Repo
 
-    # 初始化本地仓库路径
     local_path = os.path.join('.')
     repo = Repo(local_path)
 
+
     # 获取提交日志，格式为作者名字
     log_info = repo.git.log('--pretty=format:%an')
+
+    # 将提交日志按行分割
     authors = log_info.splitlines()
 
     # 定义别名映射
     alias_map = {
         '王海东': 'donghaiwang',
+        # 你可以在这里添加更多的别名
     }
 
-    # 标准化作者名字
+    # 将所有作者名字替换为标准化名字
     normalized_authors = [alias_map.get(author, author) for author in authors]
 
-    # 统计每个作者的提交次数
+    # 使用 Counter 统计每个标准化作者的提交次数
     author_counts = Counter(normalized_authors)
+
+    # 打印统计结果
     print("提交次数：")
     for author, count in author_counts.most_common():
         print(f"{author}: {count} 次提交")
@@ -53,51 +64,65 @@ def commit_info():
     # 获取提交日志，格式为作者名字，并包含增删行数
     log_data = repo.git.log('--pretty=format:%an', '--numstat')
 
-    # 统计每个作者的增加行数
-    author_stats = defaultdict(lambda: {'added': 0, 'deleted': 0})
+    # 处理 log 数据
+    author_stats = defaultdict(lambda: {'added': 0, 'deleted': 0})  # 使用 defaultdict 来统计每个作者的增加行数
     current_author = None
+
+    line_cnt = 0
+    # 解析日志，统计每个作者的增加行数
     for line in log_data.splitlines():
-        if '\t' not in line or line.isdigit():
+        line_cnt = line_cnt + 1
+        if line.strip() == "":
+            continue
+        # 如果是作者行，则更新当前提交的作者（作者有可能是数字开头）
+        if '\t' not in line or line.isdigit():  # 提交者名字的行不会以数字开头
             current_author = line.strip()
         elif '\t' in line:
+            # 解析 numstat 格式的增删行
             added, deleted, _ = line.split('\t')
-            if added != '-':
+            if added != '-':  # 处理新增的行数
                 author_stats[current_author]['added'] += int(added)
-            if deleted != '-':
+            if deleted != '-':  # 处理删除的行数
                 author_stats[current_author]['deleted'] += int(deleted)
 
     # 输出每个作者的增加行数
     for author, stats in author_stats.items():
         print(f"{author}: 添加 {stats['added']} 行, 删除 {stats['deleted']} 行")
+    pass
 
 commit_info()
+
+
 
 #########################################
 ####### 统计用户提问和评论数 ##############
 #########################################
+# 初始化统计字典
 issue_counts = {}
 comment_counts = {}
 
+#初始化页码为1
 page = 1
+#循环获取数据，直到没有更多数据为止
 while True:
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
+    # 需要把代理关掉，否则报错（原因不明）：urllib3.exceptions.MaxRetryError: HTTPSConnectionPool
     response = requests.get(url, headers=headers)
-    
-    if response.status_code != 200:
-        print("请求失败，请检查网络连接或GitHub令牌。")
-        break
-
     issues = response.json()
+
     if not issues:
         break
 
     for issue in issues:
-        if 'pull_request' in issue:
+        # 过滤掉 Pull Requests
+        if 'pull_request' in issue:#如果issue是Pull Requests，跳过
             continue
 
+        # 统计提问者
         user = issue['user']['login']
-        issue_counts[user] = issue_counts.get(user, 0) + 1
+        issue_counts[user] = issue_counts.get(user, 0) + 1#更新用户统计
 
+        # 获取 Issue 的评论
         comments_url = issue['comments_url']
         comments_response = requests.get(comments_url, headers=headers)
         comments = comments_response.json()
@@ -108,9 +133,11 @@ while True:
 
     page += 1
 
+#按数量排序issue_counts和comment_counts
 sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
 sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reverse=True))
 
+# 输出结果
 print("提问次数：")
 for user, count in sorted_issue_counts.items():
     print(f"{user}: {count}")
