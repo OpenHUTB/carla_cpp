@@ -5,7 +5,7 @@
 //    http://moodycamel.com/blog/2014/detailed-design-of-a-lock-free-queue
 
 // Simplified BSD license:
-// Copyright (c) 2013-2016, Cameron Desrochers.
+//版权所有 （c） 2013-2016，Cameron Desrochers。
 // All rights reserved.
 //
 // 允许源代码和二进制形式的再分发和使用，无论是否经过修改，只要满足以下条件：
