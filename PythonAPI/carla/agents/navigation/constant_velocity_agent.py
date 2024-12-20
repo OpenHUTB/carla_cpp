@@ -119,6 +119,7 @@ class ConstantVelocityAgent(BasicAgent):
         return control
 
     def _set_collision_sensor(self):
+    # 获取碰撞传感器的蓝图（blueprint）
         blueprint = self._world.get_blueprint_library().find('sensor.other.collision')
         self._collision_sensor = self._world.spawn_actor(blueprint, carla.Transform(), attach_to=self._vehicle)
         self._collision_sensor.listen(lambda event: self.stop_constant_velocity())
