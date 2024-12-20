@@ -265,6 +265,7 @@ public:
   {
     if (bIsPrimaryServer)
     {
+      #获取帧数据并添加事件
       GetFrameData().AddEvent(
           CarlaRecorderEventDel{ActorId});
     }
