@@ -1,10 +1,13 @@
 #pragma once
+// 引入名为“DataStructs.h”的头文件，通常其中包含了该代码所依赖的一些数据结构等相关的定义
 #include "DataStructs.h"
-
+// 引入名为“DataStructs.h”的头文件，通常其中包含了该代码所依赖的一些数据结构等相关的定义
 namespace MeshReconstruction
 {
+// 定义名为“IntersectInfo”的结构体，用于存储与相交相关的信息
   struct IntersectInfo
   {
+// 用于存储符号配置，取值范围是0 - 255，可能用于表示某种特定的状态或标识
     // 0 - 255
     int signConfig;
 
@@ -17,17 +20,19 @@ namespace MeshReconstruction
   {
     Vec3 pos[8];// 存储立方体的8个顶点的位置。
     double sdf[8];
-
+// 私有成员函数，用于对两个顶点进行线性插值计算得到新的顶点位置
     Vec3 LerpVertex(double isoLevel, int i1, int i2) const;
+// 私有成员函数，根据给定的等值面水平值（isoLevel）计算符号配置
     int SignConfig(double isoLevel) const;
 
   public:
+// 构造函数，用于初始化立方体对象，接受一个Rect3类型
     Cube(Rect3 const &space, Fun3s const &sdf);
-
+// 成员函数，用于找出曲面与立方体相交的顶点信息，返回一个IntersectInfo结构体对象
     // 找出曲面与立方体相交的顶点。
     IntersectInfo Intersect(double isoLevel = 0) const;
   };
-
+// 在“MeshReconstruction”命名空间内定义一个未命名的内部命名
   namespace
   {
     // Cube有8个顶点。每个顶点可以有正号或负号
@@ -66,14 +71,17 @@ namespace MeshReconstruction
         0x69c, 0x795, 0x49f, 0x596, 0x29a, 0x393, 0x99, 0x190,
         0xf00, 0xe09, 0xd03, 0xc0a, 0xb06, 0xa0f, 0x905, 0x80c,
         0x70c, 0x605, 0x50f, 0x406, 0x30a, 0x203, 0x109, 0x0};
-
+// 定义名为“Edge”的结构体，用于描述立方体的边相关信息
     struct Edge
     {
+// 用于存储边的标志，使用位域（bit-field）定义，占12位
       int edgeFlag : 12; // flag: 1, 2, 4, ... 2048
+// 存储边的一个顶点索引，取值范围是0 - 7，对应立方体8个顶点中的一个
       int vert0;         // 0-7
+// 存储边的另一个顶点索引，取值范围同样是0 - 7
       int vert1;         // 0-7
     };
-
+// 定义一个长度为12的Edge类型数组，用于表示立方体的12条边的具体信息
     const Edge edges[12] =
         {
             {1, 0, 1}, // edge 0
@@ -90,13 +98,17 @@ namespace MeshReconstruction
             {2048, 3, 7} // edge 11
     };
   }
-
+// “Cube”类的成员函数“LerpVertex”的定义，用于对两个顶点进行线性插值计算得到新的顶点位置
   Vec3 Cube::LerpVertex(double isoLevel, int i1, int i2) const 
   {
+// 获取索引为i1的顶点对应的SDF值，用于后续插值计算判断等操作
     auto const Eps = 1e-5; // 定义一个用于比较浮点数的精度阈值
     auto const v1 = sdf[i1]; // 定义一个用于比较浮点数的精度阈值
+// 获取索引为i2的顶点对应的SDF值
     auto const v2 = sdf[i2];
+// 获取索引为i1的顶点位置引用，用于后续插值计算新顶点位置
     auto const &p1 = pos[i1]; // 定义一个用于比较浮点数的精度阈值
+// 获取索引为i2的顶点位置引用
     auto const &p2 = pos[i2];
     // 如果isoLevel与其中一个顶点的SDF值非常接近，则直接返回该顶点位置
     if (abs(isoLevel - v1) < Eps)
@@ -107,21 +119,30 @@ namespace MeshReconstruction
       return p1;
 
     auto mu = (isoLevel - v1) / (v2 - v1); // 计算线性插值参数
-    return p1 + (p2 - p1) * mu; // 返回插值后的位置
+ // 根据线性插值公式，返回插值后的位置，即由两个顶点位置（p1和p2）
+   return p1 + (p2 - p1) * mu; // 返回插值后的位置
   }
-
+// “Cube”类的构造函数定义，用于初始化立方体对象的顶点位置和对应的SDF值
   Cube::Cube(Rect3 const &space, Fun3s const &sdf)
   {
+// 获取给定空间范围（Rect3类型）的最小x坐标值，用于初始化立方体顶点位置
     auto mx = space.min.x;
+// 获取最小y坐标值
     auto my = space.min.y;
+// 获取最小z坐标值
     auto mz = space.min.z;
-
+// 获取给定空间范围的x方向尺寸大小，用于确定立方体在x方向的跨度
     auto sx = space.size.x;
+// 获取y方向尺寸大小
     auto sy = space.size.y;
+// 获取z方向尺寸大小
     auto sz = space.size.z;
     // 初始化立方体的8个顶点位置
+// 初始化立方体的第一个顶点位置，即空间范围的最小坐标点位置，对应立方体的一个角顶点
     pos[0] = space.min;
+// 初始化第二个顶点位置，在x方向增加空间的x方向尺寸大小
     pos[1] = {mx + sx, my, mz};
+// 依次初始化其他顶点位置，按照立方体顶点的相对位置关系进行赋值
     pos[2] = {mx + sx, my, mz + sz};
     pos[3] = {mx, my, mz + sz};
     pos[4] = {mx, my + sy, mz};
@@ -132,14 +153,17 @@ namespace MeshReconstruction
     for (auto i = 0; i < 8; ++i)
     {
       auto sd = sdf(pos[i]);
+// 如果计算得到的SDF值为0，为了避免后续可能出现除以零等问题，给其增加一个极小的值1e-6
       if (sd == 0)
         sd += 1e-6; // 避免除以零
+// 将计算并处理后的SDF值存储到对应顶点的sdf数组元素中
       this->sdf[i] = sd;
     }
   }
-
+// “Cube”类的成员函数“SignConfig”的定义，用于根据给定的等值面水平值（isoLevel）计算符号配置
   int Cube::SignConfig(double isoLevel) const
   {
+// 初始化一个用于记录符号配置的索引值，初始为0
     auto edgeIndex = 0;
 
     for (auto i = 0; i < 8; ++i)
