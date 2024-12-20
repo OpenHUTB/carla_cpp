@@ -6,7 +6,7 @@
 
 // Simplified BSD license:
 // Copyright (c) 2013-2016, Cameron Desrochers.
-// All rights reserved.
+// 保留所有权利。
 //
 // 允许源代码和二进制形式的再分发和使用，无论是否经过修改，只要满足以下条件：
 //
