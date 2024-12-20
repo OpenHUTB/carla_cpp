@@ -100,21 +100,21 @@ while True:
 
         comments_url = issue['comments_url']
         comments_response = requests.get(comments_url, headers=headers)
-        comments = comments_response.json()
+        comments = comments_response.json() # 将评论数据解析为JSON格式
 
         for comment in comments:
-            commenter = comment['user']['login']
+            commenter = comment['user']['login']# 获取评论者的用户名
             comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
 
-    page += 1
+    page += 1# 假设page变量用于跟踪当前处理的页码，每处理完一页问题就加1
 
-sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
-sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reverse=True))
+sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))# 将issue_counts字典按用户提问次数降序排序
+sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reverse=True))# 将comment_counts字典按用户回答次数降序排序
 
 print("提问次数：")
 for user, count in sorted_issue_counts.items():
     print(f"{user}: {count}")
 
 print("\n回答次数：")
-for user, count in sorted_comment_counts.items():
-    print(f"{user}: {count}")
+for user, count in sorted_comment_counts.items():# 遍历排序后的回答次数
+    print(f"{user}: {count}")# 打印用户名和回答次数
