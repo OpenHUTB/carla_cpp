@@ -281,14 +281,14 @@ class CodeFormat:
                           not os.path.exists(os.path.join(root, directory, CodeFormatterClang.CODE_FORMAT_IGNORE_FILE))]
         return directories
 
-    def isFileNotExcluded(self, fileName):
-        if self.args.exclude is not None:
-            for excluded in self.args.exclude:
-                if excluded in fileName:
+    def isFileNotExcluded(self, fileName):#定义一个类的方法，用于判断文件是否不被排除
+        if self.args.exclude is not None:    # 如果存在排除规则（self.args.exclude不为None）
+            for excluded in self.args.exclude:        # 遍历所有的排除项
+                if excluded in fileName:            # 如果文件名包含任何一个排除项，则文件被排除，返回False
                     return False
-        if os.path.islink(fileName):
+        if os.path.islink(fileName):    # 如果文件是一个符号链接（软链接），则认为文件被排除，返回False
             return False
-
+    # 如果文件不满足以上被排除的条件，则返回True，表示文件不被排除
         return True
 
     def confirmWithUserFileIsOutsideGit(self, fileName):
@@ -296,26 +296,26 @@ class CodeFormat:
         answer = raw_input("Are you sure to code format it anyway? (y/Q)")
         if answer != "y":
             sys.exit(1)
-
-    def confirmWithUserFileIsUntracked(self, fileName):
-        cprint("[WARN] File is untracked in Git: " + fileName, "yellow")
-        answer = raw_input("Are you sure to code format it anyway? (y/Q)")
+# 定义一个类的方法，用于当文件不在Git仓库时与用户确认是否仍要对其进行代码格式化操作
+    def confirmWithUserFileIsUntracked(self, fileName):    # 打印警告信息，提示文件不在Git仓库
+        cprint("[WARN] File is untracked in Git: " + fileName, "yellow")    # 获取用户输入，询问用户是否仍要格式化代码
+        answer = raw_input("Are you sure to code format it anyway? (y/Q)")    # 如果用户输入不是"y"，则以错误状态退出程序（sys.exit(1)）
         if answer != "y":
             sys.exit(1)
 
-    def confirmWithUserGitRepoIsNotClean(self, gitRepo):
-        cprint("[WARN] Git repo is not clean: " + gitRepo, "yellow")
-        answer = raw_input("Are you sure to code format files in it anyway? (y/Q)")
-        if answer != "y":
+    def confirmWithUserGitRepoIsNotClean(self, gitRepo):# 定义一个类的方法，用于当文件在Git中未被跟踪时与用户确认是否仍要对其进行代码格式化操作
+        cprint("[WARN] Git repo is not clean: " + gitRepo, "yellow")    # 打印警告信息，提示文件在Git中未被跟踪
+        answer = raw_input("Are you sure to code format files in it anyway? (y/Q)")    # 获取用户输入，询问用户是否仍要格式化代码
+        if answer != "y":    # 如果用户输入不是"y"，则以错误状态退出程序（sys.exit(1)）
             sys.exit(1)
 
     def checkInputFilesAreInCleanGitReposAndAreTracked(self):
         if self.args.verify or self.args.yes:
             return
-        gitRepos = sets.Set()
+        gitRepos = sets.Set()#gitRepos = sets.Set()创建了一个空集合。这个集合将用来存储已经处理过的Git仓库路径，目的是避免对同一个Git仓库进行重复的检查。
         for formatterInstance in self.codeFormatterInstances:
             for fileName in formatterInstance.inputFiles:
-                gitRepo = self.getGitRepoForFile(fileName)
+                gitRepo = self.getGitRepoForFile(fileName)#gitRepo = self.getGitRepoForFile(fileName)调用了getGitRepoForFile函数来获取fileName所在的Git仓库的路径。
                 if gitRepo is None:
                     self.confirmWithUserFileIsOutsideGit(fileName)
                 else:
@@ -404,33 +404,34 @@ class CodeFormat:
             if len(formatterInstance.inputFiles) > 0:
                 formatterInstance.verifyFormatterVersion()
 
-    def printMode(self):
+    def printMode(self):#这个函数的目的是根据self.args.verify的值来打印不同的模式。
         if self.args.verify:
             cprint("VERIFY MODE", attrs=["bold"])
         else:
             cprint("FORMAT MODE", attrs=["bold"])
 
-    def processFiles(self):
+    def processFiles(self):#这个函数的目的是处理文件，根据self.args.verify的值执行不同的操作。
         for formatterInstance in self.codeFormatterInstances:
             for fileName in formatterInstance.inputFiles:
-                if self.args.verify:
-                    self.failure |= formatterInstance.verifyFile(fileName, self.args.diff)
+                if self.args.verify:#对于每个文件，再次检查self.args.verify的值
+                    self.failure |= formatterInstance.verifyFile(fileName, self.args.diff)#如果self.args.verify为True，则调用formatterInstance.verifyFile函数处理文件fileName，并且将结果与self.failure进行按位或操作
                 else:
-                    self.failure |= formatterInstance.formatFile(fileName)
+                    self.failure |= formatterInstance.formatFile(fileName)#如果self.args.verify为False，则调用formatterInstance.formatFile函数处理文件fileName，并且将结果与self.failure进行按位或操作
 
-    def numberOfInputFiles(self):
-        count = 0
-        for formatterInstance in self.codeFormatterInstances:
-            count += len(formatterInstance.inputFiles)
+    def numberOfInputFiles(self):#这个函数的目的是计算输入文件的数量。
+        count = 0#首先初始化一个变量count为0
+        for formatterInstance in self.codeFormatterInstances:#然后遍历self.codeFormatterInstances
+            count += len(formatterInstance.inputFiles)#对于每个formatterInstance，将其inputFiles的长度累加到count中
         return count
 
-    def confirmWithUser(self):
+    def confirmWithUser(self):#这个函数的目的是与用户确认操作。
         if self.numberOfInputFiles() == 0:
             cprint("[WARN] No input files (or file endings unknown)", "yellow")
         elif (not self.args.verify) and (not self.args.yes) and self.numberOfInputFiles() > 1:
             for formatterInstance in self.codeFormatterInstances:
                 formatterInstance.printInputFiles()
             answer = raw_input("Are you sure to code format " + str(self.numberOfInputFiles()) + " files? (y/N)")
+            #如果用户输入不是y，则使用sys.exit(1)退出程序（第12行）。这里sys.exit(1)表示以非0状态退出，通常表示程序出现错误或者用户取消操作。
             if answer != "y":
                 sys.exit(1)
 
