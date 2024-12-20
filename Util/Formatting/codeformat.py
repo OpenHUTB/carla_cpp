@@ -435,23 +435,47 @@ class CodeFormat:
                 sys.exit(1)
 
 
+
 def main():
+    # 创建CodeFormat类的实例，这个类可能封装了代码格式化的整个流程
     codeFormat = CodeFormat()
+    
+    # 解析命令行参数，可能包括输入文件路径、格式化选项等
     codeFormat.parseCommandLine()
+    
+    # 打印当前的操作模式或配置信息
     codeFormat.printMode()
-
+    
+    # 添加Clang风格的代码格式化器，用于C/C++代码的格式化
     codeFormat.addCodeFormatter(CodeFormatterClang())
+    
+    # 添加Autopep8的代码格式化器，用于Python代码的格式化
     codeFormat.addCodeFormatter(CodeFormatterAutopep())
-
+    
+    # 扫描指定目录或文件，找到需要格式化的代码文件
     codeFormat.scanForInputFiles()
+    
+    # 验证所使用的格式化器版本是否与要求相匹配
     codeFormat.verifyFormatterVersion()
+    
+    # 在继续之前请求用户的确认，以避免意外地修改文件
     codeFormat.confirmWithUser()
+    
+    # 检查输入文件是否位于干净的Git仓库中，并且这些文件是否被Git跟踪
+    # 这是为了确保代码格式化操作在一个可预测的环境中执行
     codeFormat.checkInputFilesAreInCleanGitReposAndAreTracked()
+    
+    # 对找到的文件执行格式化操作
     codeFormat.processFiles()
+    
+    # 检查是否有任何格式化操作失败
     if codeFormat.failure:
+        # 如果有失败，则以红色打印“FAILURE”并以状态码1退出程序
+        # cprint可能是一个自定义或第三方库函数，用于彩色打印
         cprint("FAILURE", "red")
         sys.exit(1)
     else:
+        # 如果没有失败，则以绿色打印“SUCCESS”并以状态码0退出程序
         cprint("SUCCESS", "green")
         sys.exit(0)
 
