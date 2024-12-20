@@ -5,18 +5,20 @@ rem BAT script that creates the library for conversion from OSM to OpenDRIVE (ca
 rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
 
 set LOCAL_PATH=%~dp0
+#设置本地路径，%~dp0表示当前批处理脚本所在的目录路径
 set FILE_N=-[%~n0]:
-
+#设置一个用于在输出信息中标识脚本名称的变量，方便在日志等输出中查看来源
 rem Print batch params (debug purpose)
 echo %FILE_N% [Batch params]: %*
-
+#打印批处理脚本的参数
 rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
 
 set DOC_STRING=Build LibCarla.
+#定义文档字符串，用于描述脚本的主要功能
 set USAGE_STRING=Usage: %FILE_N% [-h^|--help] [--rebuild] [--build] [--clean] [--no-pull]
-
+#定义使用说明字符串，展示脚本的正确使用方式及可用的命令行参数选项
 set REMOVE_INTERMEDIATE=false
 set BUILD_OSM2ODR=false
 set GIT_PULL=true
@@ -25,6 +27,7 @@ set OSM2ODR_BRANCH=aaron/defaultsidewalkwidth
 set OSM2ODR_REPO=https://github.com/carla-simulator/sumo.git
 
 :arg-parse
+#开始解析命令行参数的循环标签
 if not "%1"=="" (
     if "%1"=="--rebuild" (
         set REMOVE_INTERMEDIATE=true
@@ -129,7 +132,7 @@ rem ============================================================================
 :success
     if %BUILD_OSM2ODR% == true echo %FILE_N% OSM2ODR has been successfully installed in "%OSM2ODR_INSTALL_PATH%"!
     goto good_exit
-
+#成功处理的标签，如果构建了OSM2ODR，输出成功安装的信息，显示安装路径
 :error_cmake
     echo.
     echo %FILE_N% [ERROR] An error ocurred while executing the cmake.
@@ -138,7 +141,7 @@ rem ============================================================================
     echo           [ERROR]  - Make sure it is available on your Windows "path".
     echo           [ERROR]  - CMake 3.9.0 or higher is required.
     goto bad_exit
-
+#cmake执行出错处理的标签，输出错误信息，并提示可能导致错误的原因
 :error_install
     echo.
     echo %FILE_N% [ERROR] An error ocurred while installing using %GENERATOR% Win64.
@@ -148,11 +151,12 @@ rem ============================================================================
     echo           [ERROR]    For example using the "Visual Studio x64 Native Tools Command Prompt",
     echo           [ERROR]    or the "vcvarsall.bat".
     goto bad_exit
-
+#使用指定生成器安装出错处理的标签，输出错误信息，并提示可能导致错误的原因
 :good_exit
     endlocal
     exit /b 0
-
+#正常结束脚本的标签，结束局部变量作用域并以成功码0退出脚本
 :bad_exit
     endlocal
     exit /b %errorlevel%
+#错误结束脚本的标签，结束局部变量作用域并以当前错误码退出脚本
