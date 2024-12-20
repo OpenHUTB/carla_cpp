@@ -1,22 +1,40 @@
 Binaries
+#二进制文件
 Build
+#建造
 Debug
+#调试文件
 DerivedDataCache
+#派生数据缓存
 Intermediate
+#中间
 Saved
+#保存
 Plugins/Carla/Binaries
+#插件/Carla/二进制文件
 Plugins/Carla/Build
+#插件/Carla/建造
 Plugins/Carla/CarlaServer
+#插件/Carla/Carla服务器
 Plugins/Carla/CarlaDependencies
+#插件/Carla/Carla依赖项
 Plugins/Carla/Debug
+#插件/Carla/调试
 Plugins/Carla/DerivedDataCache
+#插件/Carla/派生数据缓存
 Plugins/Carla/Intermediate
+#插件/Carla/中间
 Plugins/Carla/Saved
+#插件/Carla/保存
 
 /Content
+#内容
 Config/CarlaSettings.ini
 Config/DefaultEditor.ini
 Config/CarSimConfig.ini
+#配置/CarlaSettings.ini
+     /DefaultEditor.ini
+     /CarSimConfig.ini 
 
 *.code-workspace
 .idea
