@@ -31,6 +31,7 @@ try:
 except IndexError:
     pass
 
+#导入Carla相关的库
 import carla
 
 import argparse
@@ -40,6 +41,7 @@ import socket
 import textwrap
 
 
+#定义获取IP地址的函数
 def get_ip(host):
     """
         获取给定主机名对应的IP地址。
