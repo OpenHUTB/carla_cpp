@@ -14,8 +14,11 @@
 #include "carla/client/Sensor.h"
 
 namespace ad {
+// 命名空间ad的定义
 namespace rss {
+// 命名空间rss的定义，位于ad命名空间内
 namespace world {
+// 命名空间world的定义，位于rss命名空间内
 
 /// forward declaration of the RssDynamics struct
 struct RssDynamics;
@@ -25,9 +28,9 @@ struct RssDynamics;
 }  // namespace ad
 
 namespace carla {
-
+// carla命名空间的定义开始
 namespace rss {
-
+// rss命名空间的定义，位于carla命名空间内
 /// 前向声明 RoadBoundariesMode 枚举类
 enum class RoadBoundariesMode;
 /// 前向声明 RssCheck 类
@@ -116,35 +119,36 @@ public:
   void DropRoute();
 
 private:
+ /// 传感器滴答（tick，可以理解为周期性触发的操作）回调函数，实际执行传感器相关逻辑的函数
   /// the acutal sensor tick callback function
   void TickRssSensor(const client::Timestamp &timestamp, CallbackFunctionType callback);
   void TickRssSensorThreadLocked(const client::Timestamp &timestamp, SharedPtr<carla::client::ActorList> actors,
                                  CallbackFunctionType callback);
-
+// 在相关线程加锁的情况下执行传感器滴答操作的函数，传入时间戳、演员列表和回调函数等参数
   //// the object actually performing the RSS processing
   std::shared_ptr<::carla::rss::RssCheck> _rss_check;
-
+ // 实际执行RSS处理的对象，是一个智能指针指向RssCheck类的实例，用于进行RSS相关的核心处理逻辑
   /// the id got when registering for the on tick event
   std::size_t _on_tick_register_id;
-
+/// 注册滴答事件（on tick event，周期性触发的事件）时获取的ID，用于标识该注册操作等相关用途
   /// the mutex to protect the actual RSS processing and in case it takes too long to process ever frame
   std::mutex _processing_lock;
-
+/// 互斥锁，用于保护实际的RSS处理过程，防止在处理每帧数据耗时过长等情况下出现并发问题
   /// the future for the async ticking thread
   std::future<void> _tick_future;
-
+/// 用于异步滴答线程的未来（future，用于异步获取线程执行结果等操作）对象
   /// some debug timings
   std::list<double> _rss_check_timings;
-
+/// 一些用于调试的时间记录，可能记录RSS检查等操作的耗时情况等，以列表形式存储
   //// the rss actor constellation callback function
   ActorConstellationCallbackFunctionType _rss_actor_constellation_callback;
-
+/ /RSS行为体星座（周围物体分布相关）回调函数，用于在相关场景下执行自定义的回调逻辑
   /// reqired to store DropRoute() requests until next sensor tick
   bool _drop_route;
-
+ /// 用于存储DropRoute()请求的标志，直到下一次传感器滴答时处理，用于控制路由丢弃相关逻辑的标记
   /// last processed frame
   std::size_t _last_processed_frame;
-
+/// 上一次处理的帧编号，用于记录处理进度等相关情况
   static std::atomic_uint _global_map_initialization_counter_;
 };
 
