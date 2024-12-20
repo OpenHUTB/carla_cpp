@@ -70,7 +70,7 @@ install(FILES ${libcarla_carla_road_headers} DESTINATION include/carla/road)
 file(GLOB libcarla_carla_road_element_headers "${libcarla_source_path}/carla/road/element/*.h")
 // 使用install命令将存储在变量${libcarla_carla_road_element_headers}中的头文件列表里的每一个头文件，
 // 安装到指定的目标目录“include/carla/road/element”下。
-// 这样在项目整体安装时，相应的头文件就能被准确放置在对应的目录位置，便于其他代码引用这些头文件中的定义来实现相关功能。
+// 这样在项目整体安装时，相应的头文件就能被准确放置在对应的目录位置，便于其他代码引用这些头文件中的定义来实现相关功能
 install(FILES ${libcarla_carla_road_element_headers} DESTINATION include/carla/road/element)
 
 # 类似地为其他模块收集头文件，并指定了各自的安装路径
@@ -119,14 +119,14 @@ install(DIRECTORY "${BOOST_INCLUDE_PATH}/boost" DESTINATION include)
 # 如果是在 Windows 平台上编译，则进一步处理特定版本的 Boost 库文件
 if(WIN32)
 # 定义一个名为 boostlibs 的变量，用于存储要安装的 Boost 库文件路径列表
-  file(GLOB boostlibs# 定义一个名为boostlibs的变量，用于存储要安装的Boost库文件路径列表。
+  file(GLOB boostlibs# 定义一个名为boostlibs的变量，用于存储要安装的Boost库文件路径列表
       "${BOOST_LIB_PATH}/libboost_date_time-*-mt-*.lib"
       "${BOOST_LIB_PATH}/libboost_system-*-mt-*.lib"
       "${BOOST_LIB_PATH}/libboost_filesystem-*-mt-*.lib")
   install(FILES ${boostlibs} DESTINATION lib)
 endif()
 
-# carla_server 库。
+# carla_server 库
 
 file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/*.h" # 收集${libcarla_source_path}/carla/目录下名为Buffer.cpp的源文件路径
@@ -179,12 +179,12 @@ if (LIBCARA_BUILD_RELEASE) #设置目标服务器属性，包括编译选项和�
   add_library(carla_server STATIC ${libcarla_server_sources})
 
   target_include_directories(carla_server SYSTEM PRIVATE
-      "${BOOST_INCLUDE_PATH}"
-      "${RPCLIB_INCLUDE_PATH}")# 使用target_include_directories命令为名为carla_server的目标（这里就是前面创建的静态库）添加头文件包含目录。
-# SYSTEM关键字表示这些目录下的头文件被视为系统头文件（在一些编译器行为上可能会有区别对待，比如抑制警告等情况）。
-# PRIVATE表示这些包含目录仅对该目标（carla_server）本身可见，不会传递给依赖它的其他目标。
-# 后面跟着的是具体的头文件包含目录路径，这里分别添加了BOOST_INCLUDE_PATH和RPCLIB_INCLUDE_PATH这两个路径，
-# 以便在编译carla_server静态库时能正确找到对应的头文件。
+      "${BOOST_INCLUDE_PATH}
+      "${RPCLIB_INCLUDE_PATH}")# 使用target_include_directories命令为名为carla_server的目标（这里就是前面创建的静态库）添加头文件包含目录
+# SYSTEM关键字表示这些目录下的头文件被视为系统头文件（在一些编译器行为上可能会有区别对待，比如抑制警告等情况）
+# PRIVATE表示这些包含目录仅对该目标（carla_server）本身可见，不会传递给依赖它的其他目标
+# 后面跟着的是具体的头文件包含目录路径，这里分别添加了BOOST_INCLUDE_PATH和RPCLIB_INCLUDE_PATH这两个路径
+# 以便在编译carla_server静态库时能正确找到对应的头文件
 
   install(TARGETS carla_server DESTINATION lib OPTIONAL)
 
