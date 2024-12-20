@@ -106,12 +106,12 @@ bool LoadScene(
         printf("Error returned: %s", error.Buffer());
         if (lImporter->GetStatus().GetCode() == FbxStatus::eInvalidFileVersion)
         {
-            printf("FBX version number for this FBX SDK is %d.%d.%d",
+            printf("FBX version number for this FBX SDK is %d.%d.%d", // 输出当前FBX SDK对应的版本号，分别输出主版本号、次版本号、修订版本号
                 lSDKMajor, lSDKMinor, lSDKRevision);
-            printf("FBX version number for file %s is %d.%d.%d",
+            printf("FBX version number for file %s is %d.%d.%d", // 输出要导入的文件（通过文件名pFilename指定）对应的版本号，同样分别输出主版本号、次版本号、修订版本号
                 pFilename, lFileMajor, lFileMinor, lFileRevision);
         }
-        return false;
+        return false;// 由于导入出现问题，返回false表示导入操作不成功
     }
     if (lImporter->IsFBX())
     {
