@@ -16,12 +16,15 @@ class TestSpawnpoints(SyncSmokeTest):
         self.world = self.client.get_world()
         blueprints = self.world.get_blueprint_library().filter("vehicle.*")
         blueprints = self.filter_vehicles_for_old_towns(blueprints)
+# 获取客户端可用的所有地图列表
 
         # get all available maps
         maps = self.client.get_available_maps()
         for m in maps:
+# 排除特定的地图（BaseMap、Town11、Town12），对其他地图进行下面的测试操作
 
             if m != '/Game/Carla/Maps/BaseMap/BaseMap' and m != '/Game/Carla/Maps/Town11/Town11' and m != '/Game/Carla/Maps/Town12/Town12':
+# 加载指定的地图
 
                 # load the map
                 self.client.load_world(m)
