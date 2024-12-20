@@ -4,10 +4,17 @@ project(libcarla-client)
 # 启用/安装 RSS VARIANT
 #默认是禁用
 option (BUILD_RSS_VARIANT "Enables ad-rss-lib based RSS components" OFF)
+# 设置目标后缀为空字符串，这是默认情况
 set(carla_target_postfix "")
+# 如果用户启用了 BUILD_RSS_VARIANT 选项，则执行以下操作
 if (BUILD_RSS_VARIANT)
+  # 更新目标后缀以包含 "_rss" 字符串，这可能用于区分不同变体的目标文件或库
   set(carla_target_postfix "_rss")
+   # 初始化 ADRSS_INCLUDE_DIRS 变量为空列表
+  # 这个变量将用来存储 RSS 变体所需的所有包含路径
   set(ADRSS_INCLUDE_DIRS)
+    # 初始化 ADRSS_LIBS 变量为空列表
+  # 这个变量将用来存储 RSS 变体所需的所有链接库
   set(ADRSS_LIBS)
 
   # 快速C++日志库：spdlog
