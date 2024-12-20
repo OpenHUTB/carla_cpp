@@ -1,4 +1,6 @@
+#设置CMake最低版本要求
 cmake_minimum_required(VERSION 3.5.1)
+#定义项目名称
 project(libcarla-client)
 
 # 启用/安装 RSS VARIANT
@@ -11,8 +13,10 @@ if (BUILD_RSS_VARIANT)
   set(ADRSS_LIBS)
 
   # 快速C++日志库：spdlog
+  #寻找并配置外部库spdlog
   find_package(spdlog CONFIG REQUIRED
     HINTS ${ADRSS_INSTALL_DIR}/spdlog/)
+    #获得和处理spdlog的属性
   get_target_property(spdlog_include_dirs spdlog::spdlog INTERFACE_INCLUDE_DIRECTORIES)
   get_target_property(spdlog_file spdlog::spdlog LOCATION)
   foreach(dir ${spdlog_include_dirs})
