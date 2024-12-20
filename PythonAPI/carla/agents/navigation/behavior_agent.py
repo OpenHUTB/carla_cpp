@@ -278,15 +278,20 @@ class BehaviorAgent(BasicAgent):
                 control = self.car_following_manager(vehicle, distance)
 
         # 3: Intersection behavior
+        #条件判断即将到达路口方向是左还是右
         elif self._incoming_waypoint.is_junction and (self._incoming_direction in [RoadOption.LEFT, RoadOption.RIGHT]):
+            #确定目标速度，获取较小值
             target_speed = min([
                 self._behavior.max_speed,
                 self._speed_limit - 5])
+            #计算得到的目标速度target_speed设置到self._local_planner中
             self._local_planner.set_speed(target_speed)
+            #计算出车辆的控制指令
             control = self._local_planner.run_step(debug=debug)
 
         # 4: Normal behavior
         else:
+            #目标速度取最小值
             target_speed = min([
                 self._behavior.max_speed,
                 self._speed_limit - self._behavior.speed_lim_dist])
@@ -295,6 +300,7 @@ class BehaviorAgent(BasicAgent):
 
         return control
 
+    #目的是对车辆控制进行修改，以实现紧急制动
     def emergency_stop(self):
         """
         Overwrites the throttle a brake values of a control to perform an emergency stop.
@@ -302,8 +308,13 @@ class BehaviorAgent(BasicAgent):
 
             :param speed (carl.VehicleControl): control to be modified
         """
+        #创建一个新的对象VehicleControl
         control = carla.VehicleControl()
+        #将油门值设置为0.0
         control.throttle = 0.0
+        #将刹车值设置为最大
         control.brake = self._max_brake
+        #将手刹设置为Flase
         control.hand_brake = False
+        #将修改后的车辆控制对象返回
         return control
