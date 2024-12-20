@@ -1,8 +1,8 @@
-import requests  # 用于发起网络请求
-import argparse  # 用于解析命令行参数
-import os  # 用于操作系统级别的操作
-from collections import defaultdict, Counter  # 用于数据结构操作
-import git  # 用于操作Git库
+import requests
+import argparse
+import os
+from collections import defaultdict, Counter
+import git
 
 # 设置命令行参数解析
 argparser = argparse.ArgumentParser(description='Involvement Degree')
@@ -75,37 +75,35 @@ commit_info()
 #########################################
 ####### 统计用户提问和评论数 ##############
 #########################################
+def count_contributions(url, counts_dict):
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # 将触发异常，如果状态码不是 200
+        issues = response.json()
+        for issue in issues:
+            if 'pull_request' in issue:
+                continue
+            user = issue['user']['login']
+            counts_dict[user] = counts_dict.get(user, 0) + 1
+            comments_url = issue['comments_url']
+            comments_response = requests.get(comments_url, headers=headers)
+            comments_response.raise_for_status()
+            comments = comments_response.json()
+            for comment in comments:
+                commenter = comment['user']['login']
+                counts_dict[commenter] = counts_dict.get(commenter, 0) + 1
+    except requests.exceptions.RequestException as e:
+        print(f"请求失败：{e}")
+
 issue_counts = {}
 comment_counts = {}
 
 page = 1
 while True:
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
-    response = requests.get(url, headers=headers)
-    
-    if response.status_code != 200:
-        print("请求失败，请检查网络连接或GitHub令牌。")
+    count_contributions(url, issue_counts)
+    if not issue_counts:
         break
-
-    issues = response.json()
-    if not issues:
-        break
-
-    for issue in issues:
-        if 'pull_request' in issue:
-            continue
-
-        user = issue['user']['login']
-        issue_counts[user] = issue_counts.get(user, 0) + 1
-
-        comments_url = issue['comments_url']
-        comments_response = requests.get(comments_url, headers=headers)
-        comments = comments_response.json()
-
-        for comment in comments:
-            commenter = comment['user']['login']
-            comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
-
     page += 1
 
 sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
