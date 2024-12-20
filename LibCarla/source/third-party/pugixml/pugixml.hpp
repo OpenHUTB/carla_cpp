@@ -128,7 +128,7 @@ namespace pugi
 	typedef PUGIXML_CHAR char_t;
 
 #ifndef PUGIXML_NO_STL
-	// String type used for operations that work with STL string; depends on PUGIXML_WCHAR_MODE
+	// String 类型，用于使用 STL 字符串的操作;取决于 PUGIXML_WCHAR_MODE
 	typedef std::basic_string<PUGIXML_CHAR, std::char_traits<PUGIXML_CHAR>, std::allocator<PUGIXML_CHAR> > string_t;
 #endif
 }
