@@ -129,21 +129,21 @@ def should_quit():                                                   #函数用�
 
 def main():
     actor_list = []
-    pygame.init()
+    pygame.init()# 初始化pygame库
 
     display = pygame.display.set_mode(
         (800, 600),
-        pygame.HWSURFACE | pygame.DOUBLEBUF)
-    font = get_font()
+        pygame.HWSURFACE | pygame.DOUBLEBUF)# 使用硬件加速和双缓冲
+    font = get_font()#获取字体，假设get_font是一个自定义函数
     clock = pygame.time.Clock()
 
-    client = carla.Client('localhost', 2000)
-    client.set_timeout(2.0)
+    client = carla.Client('localhost', 2000)# 创建CARLA客户端，连接到本地的2000端口
+    client.set_timeout(2.0)设置客户端的超时时间为2秒
 
     world = client.get_world()
 
     try:
-        m = world.get_map()
+        m = world.get_map()# 获取CARLA世界中的地图
         start_pose = random.choice(m.get_spawn_points())
         waypoint = m.get_waypoint(start_pose.location)
 
