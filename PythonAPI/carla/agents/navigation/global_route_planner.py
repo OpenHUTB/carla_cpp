@@ -430,7 +430,7 @@ class GlobalRoutePlanner:
         l1 = np.array(self._graph.nodes[n1]['vertex'])
         l2 = np.array(self._graph.nodes[n2]['vertex'])
         return np.linalg.norm(l1 - l2)
-
+    #定义一个函数，用于在图中搜索路径
     def _path_search(self, origin, destination):
         # type: (carla.Location, carla.Location) -> list[int]
         """
@@ -441,12 +441,17 @@ class GlobalRoutePlanner:
         return      :   path as list of node ids (as int) of the graph self._graph
         connecting origin and destination
         """
+        #使用self._localize方法将起点和终点的位置转换为图中的节点
         start, end = self._localize(origin), self._localize(destination)
-
+        #使用networkx的astar_path函数来寻找最短路径
+        #图是self._graph，起点是start[0]，终点是end[0]
+        #使用self._distance_heuristic作为启发式函数，边的权重是'length'
         route = nx.astar_path(
             self._graph, source=start[0], target=end[0],
             heuristic=self._distance_heuristic, weight='length')
+        #将终点的第二个元素添加到路径中（可能是终点的另一个属性）
         route.append(end[1])
+        #返回找到的路径
         return route
 
     def _successive_last_intersection_edge(self, index, route):
