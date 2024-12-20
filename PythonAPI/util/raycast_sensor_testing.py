@@ -456,26 +456,43 @@ def main():
         default=2000,
         type=int,
         help='TCP port to listen to (default: 2000)')
+   #添加参数--sync
     argparser.add_argument(
+        #这个参数没有默认值，当在命令行中指定 --sync 时，其值为 True
         '--sync',
+        #表示如果指定了这个参数，其值为 True，否则为 False
         action='store_true',
+        #提供了参数的帮助信息
         help='Synchronous mode execution')
+    #添加参数--async
     argparser.add_argument(
+        #这个参数与 --sync 相反，当指定 --async 时，sync 的值为 False
         '--async',
+        #表示这个参数的值会存储在 sync 变量中
         dest='sync',
+        #如果指定了这个参数，其值为 False，否则为 True
         action='store_false',
+        #提供了参数的帮助信息
         help='Asynchronous mode execution')
+    #将 sync 参数的默认值设置为 True
     argparser.set_defaults(sync=True)
+    #添加参数--res
     argparser.add_argument(
+        #用于设置窗口分辨率
         '--res',
         metavar='WIDTHxHEIGHT',
         default='1280x720',
         help='window resolution (default: 1280x720)')
+    #添加了一个命令行参数--lp或--lidar_points
     argparser.add_argument(
         '-lp', '--lidar_points',
+        #指定了在帮助信息中显示的参数名称为LP
         metavar='LP',
+        #设置了该参数的默认值为100000
         default='100000',
+        #提供了该参数的帮助信息，说明这是每秒激光雷达点数，默认值为100000
         help='lidar points per second (default: "100000")')
+    #添加了一个命令行参数--ln或--lidar_number
     argparser.add_argument(
         '-ln', '--lidar_number',
         metavar='LN',
@@ -483,6 +500,7 @@ def main():
         type=int,
         choices=range(0, 4),
         help='Number of lidars to render (from zero to three)')
+    #添加了一个命令行参数--slp或--semanticlidar_points
     argparser.add_argument(
         '-slp', '--semanticlidar_points',
         metavar='SLP',
