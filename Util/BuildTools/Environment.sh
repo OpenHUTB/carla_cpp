@@ -3,9 +3,10 @@
 # Sets the environment for other shell scripts.
 
 set -e
-
-CURDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../.." && pwd )"
+# 获取当前脚本所在的目录的上两级目录，并将其设置为 CURDIR 变量
+CURDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../.." && pwd )"# 导入同一目录下的 Vars.mk 文件，该文件可能包含一些变量定义
 source $(dirname "$0")/Vars.mk
+# 取消 CURDIR 变量的设置
 unset CURDIR
 
 # 检查环境变量CARLA_BUILD_NO_COLOR是否已设置且非空。
@@ -41,30 +42,32 @@ if [ -n "${CARLA_BUILD_NO_COLOR}" ]; then
 # 那么相关的颜色处理逻辑可能需要在脚本的其他部分实现。
 
 else
-
+# 如果没有设置 CARLA_BUILD_NO_COLOR，则定义 log 函数，输出带颜色的日志
   function log {
     echo -e "\033[1;35m`basename "$0"`: $1\033[0m"
   }
-
+# 定义 fatal_error 函数，输出带颜色的错误信息，并退出
   function fatal_error {
     echo -e >&2 "\033[0;31m`basename "$0"`: ERROR: $1\033[0m"
     exit 2
   }
 
 fi
-
+# 定义 get_git_repository_version 函数，用于获取 git 仓库的版本信息
 function get_git_repository_version {
   git describe --tags --dirty --always
 }
 
+# 定义 copy_if_changed 函数，用于复制文件，仅当文件发生变化时才复制
 function copy_if_changed {
   mkdir -p $(dirname $2)
   rsync -cIr --out-format="%n" $1 $2
 }
 
+# 定义 move_if_changed 函数，用于移动文件，仅当文件发生变化时才移动
 function move_if_changed {
   copy_if_changed $1 $2
   rm -f $1
 }
-
+# 设置 CARLA_BUILD_CONCURRENCY 变量，其值为当前系统的核心数，用于并行构建
 CARLA_BUILD_CONCURRENCY=`nproc --all`
