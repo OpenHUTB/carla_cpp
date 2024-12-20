@@ -227,13 +227,22 @@ class World(object):
         if not self._actor_filter.startswith("vehicle."):
             print('Error: RSS only supports vehicles as ego.')
             sys.exit(1)
+        # 如果 `_actor_filter` 参数所表示的筛选条件不是以 "vehicle." 开头，说明不符合RSS系统要求（RSS可能只支持以车辆作为主要关注对象，也就是所谓的“ego”主体），
+        # 则打印错误信息提示用户，并终止程序运行，返回状态码为1，表示出现了不符合预期的参数配置错误。
 
         self.restart()
+        # 调用 `restart` 方法，这个方法可能用于重新初始化模拟世界中的各种元素，比如重新创建车辆、设置传感器等，使世界恢复到一个初始可用状态。
         self.world_tick_id = self.world.on_tick(self.hud.on_world_tick)
+        # 通过 `self.world`（CARLA世界对象）调用 `on_tick` 方法，并传入 `self.hud.on_world_tick` 作为回调函数，
+        # 用于在模拟世界每一次更新（tick）时执行 `self.hud.on_world_tick` 函数来更新抬头显示等相关信息，将返回的标识（可能是用于后续取消这个回调绑定的一个唯一标识符等）赋值给 `self.world_tick_id` 属性。
 
     def toggle_pause(self):
+    # 定义一个方法用于切换模拟世界的暂停状态，也就是在暂停和继续运行之间切换。
         settings = self.world.get_settings()
+        # 通过 `self.world`（CARLA世界对象）调用 `get_settings` 方法获取当前世界的设置信息，比如同步模式、时间步长等设置，赋值给 `settings` 变量。
         self.pause_simulation(not settings.synchronous_mode)
+        # 调用 `pause_simulation` 方法，传入当前同步模式的取反值（即如果当前是同步模式就传入 `False`，如果当前是非同步模式就传入 `True`），
+        # 来实现切换暂停状态的操作，根据传入的值来决定是暂停还是继续运行模拟世界。
 
     def pause_simulation(self, pause):
         settings = self.world.get_settings()
