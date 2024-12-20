@@ -43,7 +43,9 @@ if (LIBCARLA_BUILD_RELEASE)
   # 链接依赖库
   target_link_libraries(carla_fastdds fastrtps fastcdr "${FAST_DDS_LIBRARIES}")
   # 安装库到lib目录
-  install(TARGETS carla_fastdds DESTINATION lib)
+  install(TARGETS carla_fastdds DESTINATION lib)// 使用CMake的install命令来进行安装相关的配置操作。
+// TARGETS关键字表明后面跟着的是要安装的目标，此处目标为carla_fastdds，通常指的是一个编译生成的库（比如动态库或静态库等）。
+// DESTINATION关键字用于指定安装的目标路径，这里将carla_fastdds安装到lib目录下，意味着在执行安装过程后，carla_fastdds这个目标文件会被放置到系统或指定环境中的lib目录中，方便后续其他项目引用等操作。
   set_target_properties(carla_fastdds PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
 
 endif()
@@ -51,7 +53,7 @@ endif()
 if (LIBCARLA_BUILD_DEBUG)
  # 添加一个静态库目标（调试版）
   add_library(carla_fastdds_debug STATIC ${libcarla_fastdds_sources})# 设置包含目录
- target_include_directories(carla_fastdds_debug SYSTEM PRIVATE
+ target_include_directories(carla_fastdds_debug SYSTEM PRIVATE# 使用target_include_directories命令，针对名为carla_fastdds_debug的目标（通常是一个库或者可执行文件目标，在Debug配置下）进行操作。
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
       # 安装调试版库到lib目录 
