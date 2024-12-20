@@ -21,11 +21,16 @@
 
 #ifndef _FAST_DDS_GENERATED_BUILTIN_INTERFACES_MSG_TIME_PUBSUBTYPES_H_
 #define _FAST_DDS_GENERATED_BUILTIN_INTERFACES_MSG_TIME_PUBSUBTYPES_H_
+// 这是预处理指令中的条件编译指令，用于防止头文件被重复包含。
 
 #include <fastdds/dds/topic/TopicDataType.hpp>
+// 引入Fast DDS库中与主题数据类型（TopicDataType）相关的头文件
+
 #include <fastrtps/utils/md5.h>
+// 引入Fast RTPS（Fast DDS的一部分）中与MD5相关的工具头文件
 
 #include "Time.h"
+// 引入名为“Time.h”的头文件
 
 #if !defined(GEN_API_VER) || (GEN_API_VER != 1)
 #error \
@@ -42,40 +47,59 @@ namespace builtin_interfaces
          */
         class TimePubSubType : public eprosima::fastdds::dds::TopicDataType
         {
+// 上述是一段Doxygen风格的注释，用于说明这个类（TimePubSubType）的作用，
+// 即它代表了用户在IDL文件中定义的“Time”类型的主题数据类型
         public:
 
             typedef Time type;
+ // 使用typedef为“Time”类型定义一个别名“type”，在类内部可以更方便地引用“Time”这个数据类型
 
             eProsima_user_DllExport TimePubSubType();
+ // 声明类的构造函数 
+// 使得该函数可以在库外被调用，构造函数用于创建TimePubSubType类的对象实例。
 
             eProsima_user_DllExport virtual ~TimePubSubType() override;
+// 声明类的析构函数，同样使用“eProsima_user_DllExport”修饰，并且使用“override”关键字表示重写了基类的析构函数，
+// 用于在对象销毁时释放相关资源。
 
             eProsima_user_DllExport virtual bool serialize(
                     void* data,
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload) override;
+ // 声明一个虚函数“serialize”，用于将给定的数据进行序列化，
+ // 并将序列化后的结果存储到“eprosima::fastrtps::rtps::SerializedPayload_t”类型的对象中
 
             eProsima_user_DllExport virtual bool deserialize(
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload,
                     void* data) override;
+ // 声明一个虚函数“deserialize”，用于将给定的序列化后的数据（参数“payload”指向的对象）进行反序列化，
+// 并将结果存储到“data”指向的内存空间中
 
             eProsima_user_DllExport virtual std::function<uint32_t()> getSerializedSizeProvider(
                     void* data) override;
+// 声明一个虚函数“getSerializedSizeProvider”，它返回一个可调用对象
 
             eProsima_user_DllExport virtual bool getKey(
                     void* data,
                     eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
                     bool force_md5 = false) override;
+// 声明一个虚函数“getKey”，用于获取给定数据的关键信息
+ // 将关键信息存储到“eprosima::fastrtps::rtps::InstanceHandle_t”类型的对象中
+ // “force_md5”参数默认值为“false”
 
             eProsima_user_DllExport virtual void* createData() override;
+// 声明一个虚函数“createData”，用于创建与该主题数据类型相关的数据对象
 
             eProsima_user_DllExport virtual void deleteData(
                     void* data) override;
+// 声明一个虚函数“deleteData”，用于删除给定的数据对象
 
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
             eProsima_user_DllExport inline bool is_bounded() const override
             {
                 return true;
             }
+ // 条件编译部分，如果定义了“TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED”宏，
+ // 则定义一个内联函数“is_bounded”，它重写了基类的相应函数（通过“override”标识），
 
         #endif  // TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
 
@@ -94,10 +118,14 @@ namespace builtin_interfaces
                 new (memory) Time();
                 return true;
             }
+// 在给定的内存空间（“memory”指向的内存）中使用定位new操作符创建一个“Time”类型的数据对象
 
         #endif  // TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE
             MD5 m_md5;
+// 定义一个成员变量“m_md5”，类型为“MD5”
+
             unsigned char* m_keyBuffer;
+ // 定义一个成员变量“m_keyBuffer”，类型为指向无符号字符
         };
     }
 }

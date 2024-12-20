@@ -7,13 +7,15 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #ifndef LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
+// 如果未定义 LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER 宏
 #define LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
-
+// 则定义此宏
 // Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Carla.h
 #include "Carla.h"
-
+// 包含 Carla.h 头文件
 #ifndef BOOST_ERROR_CODE_HEADER_ONLY
 #  define BOOST_ERROR_CODE_HEADER_ONLY
+// 如果未定义 BOOST_ERROR_CODE_HEADER_ONLY 宏，则定义它
 #endif // BOOST_ERROR_CODE_HEADER_ONLY
 
 #ifndef BOOST_NO_EXCEPTIONS
@@ -58,15 +60,18 @@
 #  pragma clang diagnostic ignored "-Wundef"
 #  pragma clang diagnostic ignored "-Wall"
 #  pragma clang diagnostic ignored "-Wshadow"
+// 如果是 clang 编译器，执行一系列的诊断操作，忽略一些特定的警告
 #endif
 
 // #pragma push_macro 将指定的宏压入栈中，相当于暂时存储，以备以后使用；
 #pragma push_macro("GET_AI_CONFIG_VAR")
 #undef GET_AI_CONFIG_VAR
-
+// 压入 GET_AI_CONFIG_VAR 宏并取消其定义
 #pragma push_macro("BT_VLOG")
 #undef BT_VLOG
+// 压入 BT_VLOG 宏并取消其定义
 
+// 以下类似，对一系列宏进行压入栈和取消定义的操作
 #pragma push_macro("BT_SEARCHLOG")
 #undef BT_SEARCHLOG
 

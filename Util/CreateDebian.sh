@@ -31,14 +31,14 @@ CARLA_DIR=carla-simulator-${CARLA_VERSION}
 CARLA_RELEASE_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/CARLA_${CARLA_VERSION}.tar.gz
 ADDITIONAL_MAPS_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/AdditionalMaps_${CARLA_VERSION}.tar.gz
 
-# Adding maintainer name.
+# 添加维护者名称
 DEBFULLNAME=Carla\ Simulator\ Team
 export DEBFULLNAME
 
 # ==================================================================================================
 # -- Dependencies ----------------------------------------------------------------------------------
 # ==================================================================================================
-# Installing required dependencies.
+# 安装所需的依赖项
 sudo apt-get install build-essential dh-make
 
 # ==================================================================================================
@@ -60,14 +60,14 @@ fi
 # Importing new maps.
 ./ImportAssets.sh
 
-# Removing unnecessary files
+#删除不必要的文件
 rm CarlaUE4/Binaries/Linux/CarlaUE4-Linux-Shipping.debug
 rm CarlaUE4/Binaries/Linux/CarlaUE4-Linux-Shipping.sym
 
 # ==================================================================================================
 # -- Debian package --------------------------------------------------------------------------------
 # ==================================================================================================
-# Updating CarlaUE4.sh script
+# 更新CarlaUE4.sh脚本
 rm CarlaUE4.sh
 cat >> CarlaUE4.sh <<EOF
 #!/bin/sh
@@ -98,7 +98,7 @@ timeout --signal=SIGINT 10 dh_make -e carla.simulator@gmail.com --indep --create
 
 cd debian/
 
-# Removing unnecessary files
+# 删除不必要文件
 rm ./*.ex
 rm ./*.EX
 
@@ -166,7 +166,7 @@ esac
 exit 0
 EOF
 
-# Removing Carla library from site-packages
+#从网站软件包中删除Carla库
 rm prerm
 cat>> prerm << EOF
 #!/bin/sh
@@ -195,7 +195,7 @@ esac
 exit 0
 EOF
 
-# Updating copyright.
+#更新版权
 rm copyright
 cp ../LICENSE ./copyright
 

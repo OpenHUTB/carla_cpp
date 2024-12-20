@@ -3,16 +3,16 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include <carla/rss/RssRestrictor.h>
-#include <carla/rss/RssSensor.h>
-#include <carla/sensor/data/RssResponse.h>
+#include <carla/rss/RssRestrictor.h>// 引入 Carla RSS 限制器头文件
+#include <carla/rss/RssSensor.h> // 引入 Carla RSS 传感器头文件
+#include <carla/sensor/data/RssResponse.h>// 引入 Carla 传感器数据中的 RssResponse 头文件
 
-#include <ad/physics/python/AdPhysicsPython.hpp>
-#include <ad/map/python/AdMapAccessPython.hpp>
-#include <ad/rss/python/AdRssPython.hpp>
-#include <ad/rss/python/AdRssMapIntegrationPython.hpp>
-#include <ad/rss/world/RssDynamics.hpp>
-#include <boost/python/suite/indexing/vector_indexing_suite.hpp>
+#include <ad/physics/python/AdPhysicsPython.hpp>// 引入 AdPhysics Python 接口头文件
+#include <ad/map/python/AdMapAccessPython.hpp> // 引入 AdMap 访问 Python 接口头文件
+#include <ad/rss/python/AdRssPython.hpp> // 引入 AdRss Python 接口头文件
+#include <ad/rss/python/AdRssMapIntegrationPython.hpp>// 引入 AdRss 地图集成 Python 接口头文件
+#include <ad/rss/world/RssDynamics.hpp>// 引入 AdRss 世界中的动态头文件
+#include <boost/python/suite/indexing/vector_indexing_suite.hpp>// 引入 Boost Python 库中的向量索引套件
 
 //包含了 Carla RSS 模块中关于限制器（RssRestrictor）、传感器（RssSensor）以及传感器数据响应（RssResponse）等相关的头文件，这些文件应该定义了对应的 C++ 类和函数，用于处理 RSS 相关的逻辑，比如车辆的安全限制、传感器数据获取与处理等。
 //同时还包含了一些以ad开头的头文件，可能是与特定的物理模拟、地图访问、RSS 相关的 Python 绑定辅助库，用于在 C++ 和 Python 之间进行数据传递和功能调用的对接。

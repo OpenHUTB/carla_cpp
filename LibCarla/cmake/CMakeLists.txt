@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5.1)# 设置 CMake 最低版本要求为 3.5.1
 project(libcarla)# 定义项目名称为 libcarla
 
 # 定义构建选项，用户可以选择是否启用调试、发布和测试构建
+#这三行代码分别用于控制是否启用调试配置、发布配置和单元测试
 option(LIBCARLA_BUILD_DEBUG "Build debug configuration" ON)
 option(LIBCARLA_BUILD_RELEASE "Build release configuration" ON)
 option(LIBCARLA_BUILD_TEST "Build unit tests" ON)
@@ -17,6 +18,7 @@ set(libcarla_source_thirdparty_path "${libcarla_source_path}/third-party")
 
 # 如果定义了 CARLA_VERSION，则配置文件 Version.h
 # 包含源码目录和第三方库目录
+#将源码目录添加到包含目录列表中，以便在编译时能够找到相关的头文件
 include_directories(${libcarla_source_path})
 include_directories(${libcarla_source_thirdparty_path})
 
