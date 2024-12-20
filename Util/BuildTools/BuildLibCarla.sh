@@ -11,20 +11,19 @@ DOC_STRING="Build LibCarla."
 USAGE_STRING=$(cat <<- END
 Usage: $0 [-h|--help]
 
-Choose one or more build configurations
+选择一个或多个构建配置
 
-    [--server]   Build server-side configuration.
-    [--client]   Build client-side configuration.
+    [--server]  构建服务器端配置.
+    [--client]   这个选项用于指示构建系统只构建那些与服务器端相关的部分.
 
-and choose one or more build options
+选择一个或多个构建选项
+    [--debug]    构建调试目标.
+    [--release]  构建发布目标.
 
-    [--debug]    Build debug targets.
-    [--release]  Build release targets.
+其他命令
 
-Other commands
-
-    [--clean]    Clean intermediate files.
-    [--rebuild]  Clean and rebuild both configurations.
+    [--clean]    清理中间文件.
+    [--rebuild]  清理并重新构建两个配置.
 END
 )
 
