@@ -10,7 +10,10 @@
 	"CreatedByURL": "http://carla.org",
 	"DocsURL": "http://carla.readthedocs.io",
 	"MarketplaceURL": "",
-	"SupportURL": "https://github.com/carla-simulator/carla/issues",
+	"SupportURL": "https://github.com/carla-simulator/carla/issues",// "SupportURL"是一个键（key），通常用于表示支持相关的链接地址。
+// 对应的值"https://github.com/carla-simulator/carla/issues"是一个具体的URL链接，
+// 意味着当遇到与相关项目（此处可能是carla-simulator项目）有关的问题、需要支持或者反馈情况时，
+// 可以通过访问这个GitHub仓库对应的问题页面（issues页面）来进行相应操作，比如提交问题、查看已有问题的解决办法等。
 	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": true,
