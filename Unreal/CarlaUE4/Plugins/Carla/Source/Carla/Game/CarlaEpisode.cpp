@@ -70,7 +70,7 @@ bool UCarlaEpisode::LoadNewEpisode(const FString &MapString, bool ResetSettings)
 
   if (MapString.StartsWith("/Game"))
   {
-    // Some conversions...
+    // 一些转化...
     FinalPath.RemoveFromStart(TEXT("/Game/"));
     FinalPath = FPaths::ProjectContentDir() + FinalPath;
     FinalPath = IFileManager::Get().ConvertToAbsolutePathForExternalAppForRead(*FinalPath);
@@ -84,7 +84,7 @@ bool UCarlaEpisode::LoadNewEpisode(const FString &MapString, bool ResetSettings)
   {
     if (MapString.Contains("/")) return false;
 
-    // Find the full path under Carla
+    // 在 Carla 下查找完整路径
     TArray<FString> TempStrArray, PathList;
     IFileManager::Get().FindFilesRecursive(PathList, *FPaths::ProjectContentDir(), *FinalPath, true, false, false);
     if (PathList.Num() > 0)
@@ -106,7 +106,7 @@ bool UCarlaEpisode::LoadNewEpisode(const FString &MapString, bool ResetSettings)
     if (ResetSettings)
       ApplySettings(FEpisodeSettings{});
 
-    // send 'LOAD_MAP' command to all secondary servers (if any)
+    // 向所有辅助服务器发送 'LOAD_MAP' 命令（如果有）
     if (bIsPrimaryServer)
     {
       UCarlaGameInstance *GameInstance = UCarlaStatics::GetGameInstance(GetWorld());
@@ -126,14 +126,14 @@ bool UCarlaEpisode::LoadNewEpisode(const FString &MapString, bool ResetSettings)
 
 static FString BuildRecastBuilderFile()
 {
-  // Define filename with extension depending on if we are on Windows or not
+  // 定义带扩展名的文件名，具体取决于我们是否在 Windows 上
 #if PLATFORM_WINDOWS
   const FString RecastToolName = "RecastBuilder.exe";
 #else
   const FString RecastToolName = "RecastBuilder";
 #endif // PLATFORM_WINDOWS
 
-  // Define path depending on the UE4 build type (Package or Editor)
+  // 根据 UE4 构建类型（包或编辑器）定义路径
 #if UE_BUILD_SHIPPING
   const FString AbsoluteRecastBuilderPath = FPaths::ConvertRelativePathToFull(
       FPaths::RootDir() + "Tools/" + RecastToolName);
@@ -154,18 +154,18 @@ bool UCarlaEpisode::LoadNewOpendriveEpisode(
     return false;
   }
 
-  // Build the Map from the OpenDRIVE data
+  // 根据 OpenDRIVE 数据构建地图
   const auto CarlaMap = carla::opendrive::OpenDriveParser::Load(
       carla::rpc::FromLongFString(OpenDriveString));
 
-  // Check the Map is correclty generated
+  // 检查地图是否正确生成
   if (!CarlaMap.has_value())
   {
     UE_LOG(LogCarla, Error, TEXT("The OpenDrive string is invalid or not supported"));
     return false;
   }
 
-  // Generate the OBJ (as string)
+  // 生成 OBJ（作为字符串）
   const auto RoadMesh = CarlaMap->GenerateMesh(Params.vertex_distance);
   const auto CrosswalksMesh = CarlaMap->GetAllCrosswalkMesh();
   const auto RecastOBJ = (RoadMesh + CrosswalksMesh).GenerateOBJForRecast();
@@ -173,7 +173,7 @@ bool UCarlaEpisode::LoadNewOpendriveEpisode(
   const FString AbsoluteOBJPath = FPaths::ConvertRelativePathToFull(
       FPaths::ProjectContentDir() + "Carla/Maps/Nav/OpenDriveMap.obj");
 
-  // Store the OBJ string to a file in order to that RecastBuilder can load it
+  // 将 OBJ 字符串存储到文件中，以便 RecastBuilder 可以加载它
   FFileHelper::SaveStringToFile(
       carla::rpc::ToLongFString(RecastOBJ),
       *AbsoluteOBJPath,
@@ -183,7 +183,7 @@ bool UCarlaEpisode::LoadNewOpendriveEpisode(
   const FString AbsoluteXODRPath = FPaths::ConvertRelativePathToFull(
       FPaths::ProjectContentDir() + "Carla/Maps/OpenDrive/OpenDriveMap.xodr");
 
-  // Copy the OpenDrive as a file in the serverside
+  // 将 OpenDrive 作为文件复制到服务器端
   FFileHelper::SaveStringToFile(
       OpenDriveString,
       *AbsoluteXODRPath,
@@ -211,8 +211,8 @@ bool UCarlaEpisode::LoadNewOpendriveEpisode(
   if (FPaths::FileExists(AbsoluteRecastBuilderPath) &&
       Params.enable_pedestrian_navigation)
   {
-    /// @todo this can take too long to finish, clients need a method
-    /// to know if the navigation is available or not.
+    /// @todo 这可能需要很长时间才能完成，客户端需要一个方法
+   /// 了解导航是否可用。
     FPlatformProcess::CreateProc(
         *AbsoluteRecastBuilderPath, *AbsoluteOBJPath,
         true, true, true, nullptr, 0, nullptr, nullptr);
@@ -308,7 +308,7 @@ void UCarlaEpisode::AttachActors(
           FindCarlaActor(Child)->GetActorId(),
           FindCarlaActor(Parent)->GetActorId()});
   }
-  // recorder event
+  // 记录器事件
   if (Recorder->IsEnabled())
   {
     CarlaRecorderEventParent RecEvent
@@ -343,7 +343,7 @@ void UCarlaEpisode::InitializeAtBeginPlay()
     UE_LOG(LogCarla, Error, TEXT("Can't find spectator!"));
   }
 
-  // material parameters collection
+  // 材质参数集合
   UMaterialParameterCollection *Collection = LoadObject<UMaterialParameterCollection>(nullptr, TEXT("/Game/Carla/Blueprints/Game/CarlaParameters.CarlaParameters"), nullptr, LOAD_None, nullptr);
 	if (Collection != nullptr)
   {
@@ -368,7 +368,7 @@ void UCarlaEpisode::InitializeAtBeginPlay()
     ActorDispatcher->RegisterActor(*Actor, Description);
   }
 
-  // get the definition id for static.prop.mesh
+  // 获取 static.prop.mesh 的定义 ID
   auto Definitions = GetActorDefinitions();
   uint32 StaticMeshUId = 0;
   for (auto& Definition : Definitions)
@@ -405,7 +405,7 @@ void UCarlaEpisode::InitializeAtBeginPlay()
 
 void UCarlaEpisode::EndPlay(void)
 {
-  // stop recorder and replayer
+  // 停止录制器和播放器
   if (Recorder)
   {
     Recorder->Stop();

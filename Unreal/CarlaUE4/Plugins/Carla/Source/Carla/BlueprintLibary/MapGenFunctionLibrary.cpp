@@ -99,32 +99,39 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
     IndiceIndexToVertexInstanceID.Add(IndiceIndex, VertexInstanceID);
     Normals[VertexInstanceID] = Data.Normals[VertexIndex];
 
+    // 检查传入的参数Tangents数量是否与顶点数量相等，如果相等则设置切线和双法线符号
     if(ParamTangents.Num() == Data.Vertices.Num())
     {
       Tangents[VertexInstanceID] = ParamTangents[VertexIndex].TangentX;
       BinormalSigns[VertexInstanceID] =
         ParamTangents[VertexIndex].bFlipTangentY ? -1.f : 1.f;
     }else{
-
+    // 如果不相等，这里没有代码，可能需要处理不匹配的情况
     }
+    // 设置顶点颜色为黑色
     Colors[VertexInstanceID] = FLinearColor(0,0,0);
+    // 检查UV0数量是否与顶点数量相等，如果相等则设置UV坐标
     if(Data.UV0.Num() == Data.Vertices.Num())
     {
+       // 如果不相等，则设置UV坐标为(0,0)
       UVs.Set(VertexInstanceID, 0, Data.UV0[VertexIndex]);
     }else{
       UVs.Set(VertexInstanceID, 0, FVector2D(0,0));
     }
+    // 将其他UV通道设置为(0,0)
     UVs.Set(VertexInstanceID, 1, FVector2D(0,0));
     UVs.Set(VertexInstanceID, 2, FVector2D(0,0));
     UVs.Set(VertexInstanceID, 3, FVector2D(0,0));
   }
 
+  // 遍历三角形，将每个多边形添加到网格描述中
   for (int32 TriIdx = 0; TriIdx < NumTri; TriIdx++)
   {
     FVertexID VertexIndexes[3];
     TArray<FVertexInstanceID> VertexInstanceIDs;
     VertexInstanceIDs.SetNum(3);
 
+     // 获取三角形的每个角的顶点索引和实例ID
     for (int32 CornerIndex = 0; CornerIndex < 3; ++CornerIndex)
     {
       const int32 IndiceIndex = (TriIdx * 3) + CornerIndex;
@@ -142,6 +149,7 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
   return MeshDescription;
 }
 
+// UMapGenFunctionLibrary类的静态方法，用于根据给定的数据创建网格
 UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
     const FProceduralCustomMesh& Data,
     const TArray<FProcMeshTangent>& ParamTangents,
@@ -155,29 +163,42 @@ UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
   UStaticMesh::FBuildMeshDescriptionsParams Params;
   Params.bBuildSimpleCollision = true;
 
+  // 构建包的路径
   FString PackageName = "/Game/CustomMaps/" + MapName + "/Static/" + FolderName + "/" + MeshName.ToString();
 
+  // 检查包路径是否存在，如果不存在则创建目录
   if (!PlatformFile.DirectoryExists(*PackageName))
   {
     //PlatformFile.CreateDirectory(*PackageName);
   }
 
 
+  // 从给定的数据和切线信息构建网格描述
   FMeshDescription Description = BuildMeshDescriptionFromData(Data,ParamTangents, MaterialInstance);
 
+  // 检查构建的网格描述中是否有多边形
   if (Description.Polygons().Num() > 0)
   {
+     // 创建一个新的包（Package），用于存储静态网格
     UPackage* Package = CreatePackage(*PackageName);
+    // 检查包是否创建成功
     check(Package);
+    // 在新建的包中创建一个新的静态网格对象
     UStaticMesh* Mesh = NewObject<UStaticMesh>( Package, MeshName, RF_Public | RF_Standalone);
 
+    // 初始化网格资源
     Mesh->InitResources();
-
+    // 为网格设置一个新的光照Guid
     Mesh->LightingGuid = FGuid::NewGuid();
+    // 将材质实例添加到网格的静态材质列表中
     Mesh->StaticMaterials.Add(FStaticMaterial(MaterialInstance));
+    // 从网格描述构建网格
     Mesh->BuildFromMeshDescriptions({ &Description }, Params);
+    // 为网格创建刚体设置
     Mesh->CreateBodySetup();
+    // 设置网格的碰撞追踪标志，使用复杂网格作为简单网格
     Mesh->BodySetup->CollisionTraceFlag = ECollisionTraceFlag::CTF_UseComplexAsSimple;
+    // 为网格的刚体设置创建物理网格
     Mesh->BodySetup->CreatePhysicsMeshes();
     // Build mesh from source
     Mesh->NeverStream = false;
@@ -213,22 +234,33 @@ FVector2D UMapGenFunctionLibrary::GetTransversemercProjection(float lat, float l
   return Result;
 }
 
+// UMapGenFunctionLibrary类的方法，用于使当前线程休眠指定的秒数
 void UMapGenFunctionLibrary::SetThreadToSleep(float seconds){
   //FGenericPlatformProcess::Sleep(seconds);
 }
 
+// UMapGenFunctionLibrary类的方法，用于在蓝图中刷新渲染命令
 void UMapGenFunctionLibrary::FlushRenderingCommandsInBlueprint(){
+  // 刷新渲染命令，确保所有图形操作都已完成
   FlushRenderingCommands(true);
+	// 在游戏线程中刷新待删除的RHI资源
  	FlushPendingDeleteRHIResources_GameThread();
 }
 
+// UMapGenFunctionLibrary类的方法，用于清理GEngine
 void UMapGenFunctionLibrary::CleanupGEngine(){
+  // 执行垃圾回收并清理Actor
   GEngine->PerformGarbageCollectionAndCleanupActors();
+// 如果编译器配置为使用编辑器
 #if WITH_EDITOR
+  // 创建一个文本对象，用于重置操作的描述
   FText TransResetText(FText::FromString("Clean up after Move actors to sublevels"));
+  // 如果GEditor的Trans对象存在
   if ( GEditor->Trans )
   {
+    // 重置事务
     GEditor->Trans->Reset(TransResetText);
+    // 清理编辑器，包括移动Actor到子级别
     GEditor->Cleanse(true, true, TransResetText);
   }
 #endif
