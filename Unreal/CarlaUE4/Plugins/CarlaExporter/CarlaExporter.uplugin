@@ -1,15 +1,15 @@
 {
-	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0",
-	"FriendlyName": "CarlaExporter",
-	"Description": "Export geometry for using in Recast",
-	"Category": "Other",
-	"CreatedBy": "Carla Team",
-	"CreatedByURL": "",
-	"DocsURL": "",
-	"MarketplaceURL": "",
-	"SupportURL": "",
+	"FileVersion": 3, //表示文件的版本号
+	"Version": 1, //表示插件的内部版本号
+	"VersionName": "1.0", //表示插件的可读版本名称
+	"FriendlyName": "CarlaExporter", //插件的友好名称，通常用于用户界面中显示给用户
+	"Description": "Export geometry for using in Recast", //对插件的简短描述
+	"Category": "Other", //插件的分类，指示插件的类型或用途
+	"CreatedBy": "Carla Team", //插件的创建者名称
+	"CreatedByURL": "", //创建者的 URL，通常指向创建者的官方网站或 GitHub 页面在这个例子中，该字段为空。
+	"DocsURL": "", //指向插件文档的 URL，用户可以在这里找到有关插件的详细信息和使用说明。在这个例子中，该字段为空。
+	"MarketplaceURL": "", 
+	"SupportURL": "", 
 	"CanContainContent": false,
 	"IsBetaVersion": false,
 	"Installed": false,
