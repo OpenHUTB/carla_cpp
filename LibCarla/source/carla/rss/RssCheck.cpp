@@ -389,17 +389,18 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
         DropRoute();
       }
     }
-
+// 将计算得到的与自车匹配的对象赋值给_carla_rss_state中的对应成员变量
     _carla_rss_state.ego_match_object = ego_match_object;
-
+// 在日志中以跟踪级别（trace）输出自车匹配对象的相关信息，方便调试查看具体匹配情况
     _logger->trace("MapMatch:: {}", _carla_rss_state.ego_match_object);
 
 #if DEBUG_TIMING
+    // 获取当前时间，用于记录时间相关的调试信息，此处表示地图匹配自车部分结束的时间记录
     t_end = std::chrono::high_resolution_clock::now();
     std::cout << "-> ME " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " after ego MapMatching" << std::endl;
 #endif
-
+// 根据当前状态更新路线信息，可能涉及根据匹配对象等重新规划、调整自车的行驶路线等操作
     UpdateRoute(_carla_rss_state);
 
 #if DEBUG_TIMING
@@ -407,14 +408,14 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> RU " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " after route update " << std::endl;
 #endif
-
+// 计算自车在路线上的动力学信息，传入多个相关参数，包括时间戳、起始检查时间、自车车辆信息、自车匹配对象、自车路线以及默认的自车动力学信息等，并结合之前的动力学信息进行更新计算
     _carla_rss_state.ego_dynamics_on_route = CalculateEgoDynamicsOnRoute(
         timestamp, time_since_epoch_check_start_ms, *carla_ego_vehicle, _carla_rss_state.ego_match_object,
         _carla_rss_state.ego_route, _carla_rss_state.default_ego_vehicle_dynamics,
         _carla_rss_state.ego_dynamics_on_route);
-
+// 根据当前的_carla_rss_state状态更新默认的RSS动力学相关信息，可能涉及根据自车当前状态调整一些默认的动力学参数等
     UpdateDefaultRssDynamics(_carla_rss_state);
-
+// 根据传入的时间戳、参与者列表、自车车辆信息以及当前的_carla_rss_state状态来创建世界模型，这个世界模型应该包含了整个场景中相关对象的信息等
     CreateWorldModel(timestamp, *actors, *carla_ego_vehicle, _carla_rss_state);
 
 #if DEBUG_TIMING
@@ -422,7 +423,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> WM " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " after create world model " << std::endl;
 #endif
-
+// 执行实际的检查操作，根据当前的_carla_rss_state状态来判断是否存在某些情况（比如安全风险等），返回检查结果（布尔值），并将结果赋值给result变量
     result = PerformCheck(_carla_rss_state);
 
 #if DEBUG_TIMING
@@ -430,7 +431,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> CH " << std::chrono::duration<double, std::milli>(t_end - t_start).count() << " end RSS check"
               << std::endl;
 #endif
-
+// 对检查结果进行分析，可能涉及更深入地查看结果中的各项指标、状态等，以便后续进一步处理或者记录相关信息
     AnalyseCheckResults(_carla_rss_state);
 
 #if DEBUG_TIMING
@@ -438,16 +439,21 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
     std::cout << "-> AN " << std::chrono::duration<double, std::milli>(t_end - t_start).count()
               << " end analyze results" << std::endl;
 #endif
-
+// 记录自车动力学在检查结束时的时间戳（从纪元开始到当前的时间，以毫秒为单位），用于后续统计或者记录整个检查过程的时间相关信息
     _carla_rss_state.ego_dynamics_on_route.time_since_epoch_check_end_ms =
         std::chrono::duration<double, std::milli>(std::chrono::system_clock::now().time_since_epoch()).count();
-
+// 将检查过程中得到的相关结果存储到输出参数中，方便外部调用者获取此次检查的各项信息，例如合适的响应、RSS状态快照、情况快照、世界模型以及自车在路线上的动力学信息等
+// 存储合适响应信息
     // 存储结果
     output_response = _carla_rss_state.proper_response;
+   // 存储RSS状态快照信息
     output_rss_state_snapshot = _carla_rss_state.rss_state_snapshot;
+   // 存储情况快照信息
     output_situation_snapshot = _carla_rss_state.situation_snapshot;
+   // 存储世界模型信息
     output_world_model = _carla_rss_state.world_model;
     output_rss_ego_dynamics_on_route = _carla_rss_state.ego_dynamics_on_route;
+   // 存储自车在路线上的动力学信息
     if (_carla_rss_state.dangerous_state) {
       _logger->debug("===== ROUTE NOT SAFE =====");
     } else {
@@ -460,56 +466,77 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
               << std::endl;
 #endif
   } catch (...) {
+    // 如果在检查过程中出现任何异常，在日志中记录错误信息，表示检查失败
     _logger->error("Exception -> Check failed");
   }
+ // 返回最终的检查结果（布尔值），外部调用者可根据此结果判断整体检查情况
   return result;
 }
-
+// 获取与给定参与者（actor）匹配的对象信息，传入参与者指针以及采样距离作为参数，返回匹配后的对象信息
 ::ad::map::match::Object RssCheck::GetMatchObject(carla::SharedPtr<carla::client::Actor> const &actor,
                                                   ::ad::physics::Distance const &sampling_distance) const {
+ // 创建一个待返回的匹配对象实例
   ::ad::map::match::Object match_object;
-
+// 获取参与者（actor）的坐标变换信息，可能包含位置、旋转等信息
   auto const vehicle_transform = actor->GetTransform();
+   // 将参与者在世界坐标系中的x坐标转换为ENU坐标格式，并赋值给匹配对象的中心坐标x分量
   match_object.enuPosition.centerPoint.x = ::ad::map::point::ENUCoordinate(vehicle_transform.location.x);
+   // 将参与者在世界坐标系中的y坐标取反后转换为ENU坐标格式，并赋值给匹配对象的中心坐标y分量
   match_object.enuPosition.centerPoint.y = ::ad::map::point::ENUCoordinate(-1. * vehicle_transform.location.y);
+  // 将参与者在世界坐标系中的z坐标转换为ENU坐标格式（此处原代码注释掉了直接使用vehicle_transform.location.z的部分，可能存在特殊考虑），并赋值给匹配对象的中心坐标z分量
   match_object.enuPosition.centerPoint.z = ::ad::map::point::ENUCoordinate(0.);  // vehicle_transform.location.z;
+ // 根据参与者的旋转角度（yaw，偏航角）创建ENU坐标下的朝向信息，并赋值给匹配对象的朝向属性，这里进行了角度单位转换（可能是转换为弧度制，假设to_radians是角度转弧度的常量或者函数）
   match_object.enuPosition.heading =
       ::ad::map::point::createENUHeading(-1 * vehicle_transform.rotation.yaw * to_radians);
-
+ // 将参与者指针尝试转换为车辆类型的共享指针，如果转换成功，表示参与者是车辆类型
   auto const vehicle = boost::dynamic_pointer_cast<carla::client::Vehicle>(actor);
+ // 将参与者指针尝试转换为行人类型的共享指针，如果转换成功，表示参与者是行人类型
   auto const walker = boost::dynamic_pointer_cast<carla::client::Walker>(actor);
   if (vehicle != nullptr) {
+   // 如果参与者是车辆类型，获取车辆的包围盒信息（bounding box），通常包含车辆在各个方向上的尺寸范围
     const auto &bounding_box = vehicle->GetBoundingBox();
+   // 根据包围盒在x方向上的尺寸（extent.x）计算并设置匹配对象在ENU坐标下的长度属性，乘以2可能是考虑包围盒尺寸是从中心到边缘的距离，这里获取整体长度
     match_object.enuPosition.dimension.length = ::ad::physics::Distance(2 * bounding_box.extent.x);
+    // 同理，根据包围盒在y方向上的尺寸计算并设置匹配对象在ENU坐标下的宽度属性
     match_object.enuPosition.dimension.width = ::ad::physics::Distance(2 * bounding_box.extent.y);
+    // 根据包围盒在z方向上的尺寸计算并设置匹配对象在ENU坐标下的高度属性
     match_object.enuPosition.dimension.height = ::ad::physics::Distance(2 * bounding_box.extent.z);
   } else if (walker != nullptr) {
+    // 如果参与者是行人类型，获取行人的包围盒信息
     const auto &bounding_box = walker->GetBoundingBox();
+    // 按照与车辆类似的方式，根据行人包围盒在各个方向上的尺寸设置匹配对象相应的长度、宽度、高度属性
     match_object.enuPosition.dimension.length = ::ad::physics::Distance(2 * bounding_box.extent.x);
     match_object.enuPosition.dimension.width = ::ad::physics::Distance(2 * bounding_box.extent.y);
     match_object.enuPosition.dimension.height = ::ad::physics::Distance(2 * bounding_box.extent.z);
   } else {
+    // 如果参与者既不是车辆也不是行人类型，在日志中记录错误信息，提示无法获取该参与者的包围盒信息，并输出参与者的ID，方便排查问题
     _logger->error("Could not get bounding box of actor {}", actor->GetId());
   }
+  // 获取ENU坐标参考点信息，并赋值给匹配对象的ENU参考点属性，这个参考点可能用于后续的坐标转换、匹配等相关操作的基准
   match_object.enuPosition.enuReferencePoint = ::ad::map::access::getENUReferencePoint();
-
+// 创建地图匹配相关的实例，用于执行地图匹配操作，获取匹配后的包围盒信息
   ::ad::map::match::AdMapMatching map_matching;
+ // 通过地图匹配实例，根据匹配对象的ENU位置信息以及给定的采样距离，获取地图匹配后的包围盒信息，并赋值给匹配对象的相应属性
   match_object.mapMatchedBoundingBox =
       map_matching.getMapMatchedBoundingBox(match_object.enuPosition, sampling_distance);
-
+ // 返回最终构建好的匹配对象信息，包含了坐标、尺寸、朝向以及地图匹配后的包围盒等相关信息
   return match_object;
 }
-
+// 根据给定的参与者（actor）获取其速度信息，返回对应的物理速度（Speed）类型的数值
 ::ad::physics::Speed RssCheck::GetSpeed(carla::client::Actor const &actor) const {
+  // 获取参与者的速度向量信息，通常包含在各个坐标轴方向上的速度分量
   auto velocity = actor.GetVelocity();
+  // 获取参与者的坐标变换信息（可能包含旋转等信息），用于后续对速度向量进行旋转操作
   auto const actor_transform = actor.GetTransform();
+ // 根据参与者的旋转信息对速度向量进行反向旋转操作，可能是为了将速度转换到某个特定的参考坐标系下
   actor_transform.rotation.InverseRotateVector(velocity);
-
+ // 根据旋转后的速度向量在x和y方向上的分量计算速度的大小（二维平面上的速度大小），通过勾股定理计算，创建一个物理速度类型（::ad::physics::Speed）的实例
   ::ad::physics::Speed speed(std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y));
+ // 如果速度在x方向上的分量小于0，表示速度方向与设定的正方向相反，将速度取反，以符合特定的速度正负表示规则
   if (velocity.x < 0.) {
     speed = -speed;
   }
-
+ // 返回最终计算得到的参与者的速度信息，以符合要求的物理速度类型返回
   return speed;
 }
 
