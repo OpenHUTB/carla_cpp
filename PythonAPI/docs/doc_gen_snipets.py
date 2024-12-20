@@ -189,25 +189,35 @@ class Documentation:
             for snipet_path_to_image in self._snipets_images:
                 snipet_image_name = os.path.splitext(os.path.basename(snipet_path_to_image))[0]
                 if snipet_name == snipet_image_name:
+                    #在md.text中添加图像源路径
                     md.textn("\n<img src=\"/img/snipets_images/"+os.path.basename(snipet_path_to_image)+"\">\n")
+                    #在md.text中添加HTML的div标签结束部分
             md.textn("</div>\n")
         # Closing div
+        #在md.text中添加HTML的div标签结束部分
         md.textn("\n</div>\n")
+        返回md.data 的字符串表现形式
         return md.data().strip()
 
 
+    #生成整个标记文件的函数
     def gen_markdown(self):
+        #返回连接后的字符串
         """Generates the whole markdown file"""
         return join([self.gen_body()], '\n').strip()
 
 
+#主函数
 def main():
     """Main function"""
     print("Generating PythonAPI snipets...")
+    #脚本路径
     script_path = os.path.dirname(os.path.abspath(__file__)+'/snipets')
     snipets_images_path = os.path.dirname(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__)))) + '/Docs/img/snipets_images'
+    #文档对象
     docs = Documentation(script_path, snipets_images_path)
+    #代码片段标记文档路径
     snipets_md_path = os.path.join(os.path.dirname(os.path.dirname(
         os.path.dirname(script_path))), 'Docs/python_api_snipets.md')
     with open(snipets_md_path, 'w') as md_file:
