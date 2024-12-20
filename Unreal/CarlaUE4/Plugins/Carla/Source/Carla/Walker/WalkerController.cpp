@@ -15,10 +15,10 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Pawn.h"
 
-AWalkerController::AWalkerController(const FObjectInitializer &ObjectInitializer)
-  : Super(ObjectInitializer)
+AWalkerController::AWalkerController(const FObjectInitializer &ObjectInitializer)//这个构造函数接收一个FObjectInitializer类型的参数，这是Unreal Engine中用于初始化对象的常用方式
+  : Super(ObjectInitializer)//调用父类的构造函数，确保父类被正确初始化
 {
-  PrimaryActorTick.bCanEverTick = true;
+  PrimaryActorTick.bCanEverTick = true;//设置了这个控制器所附着的Actor（游戏对象）可以被引擎的tick系统调用。Tick系统是Unreal Engine中用于定期更新游戏状态（如位置、动画等）的机制。
 }
 
 void AWalkerController::OnPossess(APawn *InPawn)
