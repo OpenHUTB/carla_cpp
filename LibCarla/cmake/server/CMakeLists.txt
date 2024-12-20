@@ -22,24 +22,58 @@ file(GLOB libcarla_carla_headers "${libcarla_source_path}/carla/*.h")# 将之前
 # 以便在使用该项目时能正确引用这些头文件。
 install(FILES ${libcarla_carla_headers} DESTINATION include/carla)# 使用 file(GLOB...) 命令查找 ${libcarla_source_path}/carla/geom 目录下所有以.h 为扩展名的头文件，
 
-file(GLOB libcarla_carla_geom_headers "${libcarla_source_path}/carla/geom/*.h")
-install(FILES ${libcarla_carla_geom_headers} DESTINATION include/carla/geom)
+file(GLOB libcarla_carla_geom_headers "${libcarla_source_path}/carla/geom/*.h")# 使用GLOB命令查找指定路径下（${libcarla_source_path}/carla/geom/）所有以.h为后缀的头文件，
+# 并将找到的文件列表存储在变量libcarla_carla_geom_headers中。
+# GLOB命令用于生成符合特定模式的文件列表，方便后续操作使用这些文件。
+install(FILES ${libcarla_carla_geom_headers} DESTINATION include/carla/geom)# 使用install命令将之前通过GLOB获取到的头文件列表（${libcarla_carla_geom_headers}）中的文件
+# 安装到目标目录（include/carla/geom）下。
+# 这样在进行项目安装等操作时，这些头文件就能被正确放置到指定的安装路径中，便于其他项目引用这些头文件。
 
-file(GLOB libcarla_carla_opendrive "${libcarla_source_path}/carla/opendrive/*.h")
-install(FILES ${libcarla_carla_opendrive} DESTINATION include/carla/opendrive)
+file(GLOB libcarla_carla_opendrive "${libcarla_source_path}/carla/opendrive/*.h")# 使用GLOB命令在指定的路径（${libcarla_source_path}/carla/opendrive/）下查找所有以.h为后缀的文件，
+# 并把查找到的这些文件的列表存放到名为libcarla_carla_opendrive的变量当中。
+# GLOB是CMake中用于文件路径匹配和收集的便捷指令，方便后续基于这些收集到的文件进行其他操作。
+install(FILES ${libcarla_carla_opendrive} DESTINATION include/carla/opendrive)# 通过install命令将变量libcarla_carla_opendrive所代表的文件列表中的所有文件，
+# 安装到目标安装目录（include/carla/opendrive）下。
+# 这样在整个项目进行安装过程时，相应的头文件就能被准确放置在期望的位置，
+# 便于其他可能依赖该项目的代码在需要时能顺利找到并包含这些头文件。
 
+# 使用file(GLOB)命令查找位于${libcarla_source_path}/carla/opendrive/parser/目录下所有的.h文件，
+# 并将查找到的这些.h文件的路径列表存储到变量libcarla_carla_opendrive_parser中。
+# GLOB是一种文件通配符查找机制，在这里用于快速定位特定目录下符合指定后缀（.h）的文件。
 file(GLOB libcarla_carla_opendrive_parser "${libcarla_source_path}/carla/opendrive/parser/*.h")
+# 使用install命令将之前通过file(GLOB)查找到并存储在变量libcarla_carla_opendrive_parser中的头文件（.h文件），
+# 安装到目标目录include/carla/opendrive/parser下。这样在整个项目进行安装构建的过程中，
+# 这些头文件就能被放置在正确的位置，方便后续其他代码在编译等操作时能够顺利找到并引用它们。
 install(FILES ${libcarla_carla_opendrive_parser} DESTINATION include/carla/opendrive/parser)
 
-file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profiler/*.h")
+file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profiler/*.h")# 使用CMake中的GLOB命令来查找符合特定模式的文件。
+# 这里是在路径${libcarla_source_path}/carla/profiler/下查找所有以.h为后缀的头文件，
+# 并将查找到的这些头文件的路径信息存储到变量libcarla_carla_profiler_headers中。
+# GLOB命令可以方便地根据扩展名等模式快速收集一批文件，为后续的安装等操作做准备。
 install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)
 
+// 利用CMake中的file函数与GLOB命令来查找符合特定模式的文件。
+// 这里是在由变量${libcarla_source_path}所指定的基础路径下的“carla/road/”子目录中（即完整路径为${libcarla_source_path}/carla/road/ ），
+// 查找所有以“.h”为后缀的头文件。
+// 然后把找到的这些头文件的路径列表存储到名为libcarla_carla_road_headers的变量中。
+// GLOB命令在CMake里常用于按文件扩展名等特定模式收集一批文件，便于后续围绕这些文件开展进一步操作，比如安装、编译配置等相关操作。
 file(GLOB libcarla_carla_road_headers "${libcarla_source_path}/carla/road/*.h")
+// 使用install命令来设置文件的安装规则。
+// 此命令会将存储在变量${libcarla_carla_road_headers}里的头文件列表中的每一个头文件，
+// 安装到指定的目标目录“include/carla/road”下。
+// 这样在整个项目进行安装的过程中，这些头文件就能按照预期被准确放置在对应的目录位置，
+// 方便其他需要使用该库相关功能的代码（例如基于这个库开发的外部应用程序代码等）可以顺利地找到并包含这些头文件，
+// 进而能够使用头文件中所声明的各种类型、函数等内容来实现相应的业务逻辑。
 install(FILES ${libcarla_carla_road_headers} DESTINATION include/carla/road)
 
+# 收集 carla/road/element 目录下的所有头文件，并将它们存储在变量 libcarla_carla_road_element_headers 中
 file(GLOB libcarla_carla_road_element_headers "${libcarla_source_path}/carla/road/element/*.h")
+// 使用install命令将存储在变量${libcarla_carla_road_element_headers}中的头文件列表里的每一个头文件，
+// 安装到指定的目标目录“include/carla/road/element”下。
+// 这样在项目整体安装时，相应的头文件就能被准确放置在对应的目录位置，便于其他代码引用这些头文件中的定义来实现相关功能。
 install(FILES ${libcarla_carla_road_element_headers} DESTINATION include/carla/road/element)
 
+# 类似地为其他模块收集头文件，并指定了各自的安装路径
 file(GLOB libcarla_carla_road_general_headers "${libcarla_source_path}/carla/road/general/*.h")
 install(FILES ${libcarla_carla_road_general_headers} DESTINATION include/carla/road/general)
 
@@ -79,9 +113,12 @@ install(FILES ${libcarla_carla_multigpu_headers} DESTINATION include/carla/multi
 file(GLOB libcarla_carla_ros2_headers "${libcarla_source_path}/carla/ros2/*.h")
 install(FILES ${libcarla_carla_ros2_headers} DESTINATION include/carla/ros2)
 
+# 安装 Boost 头文件到目标 'include' 目录
 install(DIRECTORY "${BOOST_INCLUDE_PATH}/boost" DESTINATION include)
 
+# 如果是在 Windows 平台上编译，则进一步处理特定版本的 Boost 库文件
 if(WIN32)
+# 定义一个名为 boostlibs 的变量，用于存储要安装的 Boost 库文件路径列表
   file(GLOB boostlibs# 定义一个名为boostlibs的变量，用于存储要安装的Boost库文件路径列表。
       "${BOOST_LIB_PATH}/libboost_date_time-*-mt-*.lib"
       "${BOOST_LIB_PATH}/libboost_system-*-mt-*.lib"
@@ -98,7 +135,7 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/geom/*.cpp" # 收集${libcarla_source_path}/carla/geom/目录下所有以.h为扩展名的头文件路径
     "${libcarla_source_path}/carla/geom/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.cpp为扩展名的源文件路径
     "${libcarla_source_path}/carla/opendrive/*.cpp"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径
-    "${libcarla_source_path}/carla/opendrive/*.h"
+    "${libcarla_source_path}/carla/opendrive/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径，把该目录下的头文件路径都整合进变量里，以满足后续代码对这些头文件的引用需求。
     "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
     "${libcarla_source_path}/carla/opendrive/parser/*.h"
     "${libcarla_source_path}/carla/road/*.cpp"
@@ -136,13 +173,18 @@ file(GLOB libcarla_server_sources
 # 在同一构建类型中创建调试和发布的目标
 # ==============================================================================
 
-if (LIBCARA_BUILD_RELEASE)
+if (LIBCARA_BUILD_RELEASE) #设置目标服务器属性，包括编译选项和链接选项
+
 
   add_library(carla_server STATIC ${libcarla_server_sources})
 
   target_include_directories(carla_server SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
-      "${RPCLIB_INCLUDE_PATH}")
+      "${RPCLIB_INCLUDE_PATH}")# 使用target_include_directories命令为名为carla_server的目标（这里就是前面创建的静态库）添加头文件包含目录。
+# SYSTEM关键字表示这些目录下的头文件被视为系统头文件（在一些编译器行为上可能会有区别对待，比如抑制警告等情况）。
+# PRIVATE表示这些包含目录仅对该目标（carla_server）本身可见，不会传递给依赖它的其他目标。
+# 后面跟着的是具体的头文件包含目录路径，这里分别添加了BOOST_INCLUDE_PATH和RPCLIB_INCLUDE_PATH这两个路径，
+# 以便在编译carla_server静态库时能正确找到对应的头文件。
 
   install(TARGETS carla_server DESTINATION lib OPTIONAL)
 

@@ -159,7 +159,7 @@ git rm -rf .
 [weidinghe](https://github.com/weidinghe)、
 [xinderruila](https://github.com/xinderruila)、
 [YJY336](https://github.com/YJY336)、
-[Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrilky](https://github.com/hyjrilky)、
+[Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrikyh](https://github.com/hyjrilky)、
 [vv313](https://github.com/vv313)、
 [lwh0954](https://github.com/lwh0954)、
 [csgo3553](https://github.com/csgo3553) 、
@@ -218,3 +218,19 @@ git rm -rf .
 [ylsj666](https://github.com/ylsj666/carla_cpp.git)、
 [2209040022ll](https://github.com/2209040022ll/carla_cpp.git)、
 [moon884](https://github.com/moon884/carla_cpp.git)、
+[haoCui-hutb](https://github.com/haoCui-hutb)
+[caicaiyo](https://github.com/caicaiyo)
+[2899661520](https://github.com/2899661520)
+[ALKAID540](https://github.com/ALKAID540)
+[kifiliketomato](https://github.com/kifiliketomato)
+[Platycodon7](https://github.com/Platycodon7)
+[Yule-eeeeee](https://github.com/Yule-eeeeee)
+[lu-jiahui](https://github.com/lu-jiahui)
+[28996615201](https://github.com/28996615201)
+[maokeyi](https://github.com/maokeyi)
+[qingchucheng](https://github.com/qingchucheng)
+[tw-tw1215](https://github.com/tw-tw1215)
+[zkrspec](https://github.com/zkrspec)
+[tangruixin170](https://github.com/tangruixin170)
+[EvilBatman](https://github.com/EvilBatman)
+[Tcowl](https://github.com/Tcowl)

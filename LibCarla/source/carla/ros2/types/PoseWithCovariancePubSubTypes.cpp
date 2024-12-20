@@ -32,13 +32,26 @@ namespace geometry_msgs {
 
         PoseWithCovariancePubSubType::PoseWithCovariancePubSubType()
         {
+            // 设置消息类型的名称，表示该类型是 geometry_msgs::msg::PoseWithCovariance 类型的 DDS 消息
             setName("geometry_msgs::msg::dds_::PoseWithCovariance_");
+
+            // 获取 PoseWithCovariance 类型的最大 CDR 序列化大小
             auto type_size = PoseWithCovariance::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+
+            // 为可能存在的子消息进行对齐处理，这里假设每个子消息需要 4 字节对齐
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);
+
+            // 计算最终类型的大小，并加上 4 字节用于封装（encapsulation）
+            m_typeSize = static_cast<uint32_t>(type_size) + 4;
+
+            // 检查是否已为该类型定义键（key），并将结果保存在 m_isGetKeyDefined 中
             m_isGetKeyDefined = PoseWithCovariance::isKeyDefined();
+
+            // 计算最大键的 CDR 序列化大小，如果键的大小大于 16 字节，则使用较大的值
             size_t keyLength = PoseWithCovariance::getKeyMaxCdrSerializedSize() > 16 ?
                     PoseWithCovariance::getKeyMaxCdrSerializedSize() : 16;
+
+            // 为键分配内存，并将其初始化为零
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
             memset(m_keyBuffer, 0, keyLength);
         }
@@ -52,31 +65,39 @@ namespace geometry_msgs {
         }
 
         bool PoseWithCovariancePubSubType::serialize(
-                void* data,
-                SerializedPayload_t* payload)
+                 void* data,
+                 SerializedPayload_t* payload)
         {
+            // 将输入数据指针转换为 PoseWithCovariance 类型的指针
             PoseWithCovariance* p_type = static_cast<PoseWithCovariance*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个 eprosima::fastcdr::FastBuffer 对象，负责管理序列化过程中的原始缓冲区
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
+
+            // 创建一个 eprosima::fastcdr::Cdr 对象，负责执行实际的序列化操作
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+
+            // 根据序列化器的字节序设置封装格式（大端或小端）
             payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+
+            // 序列化封装头（可能包含字节序和其他元数据）
             ser.serialize_encapsulation();
 
             try
             {
-                // Serialize the object.
+                // 序列化 PoseWithCovariance 类型的对象
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果序列化过程中发生内存不足的异常，返回 false
                 return false;
             }
 
-            // Get the serialized length
+            // 获取序列化后的数据长度，并设置到 payload->length
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+
+            // 返回序列化成功
             return true;
         }
 
