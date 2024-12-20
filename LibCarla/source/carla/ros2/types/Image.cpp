@@ -62,44 +62,88 @@ sensor_msgs::msg::Image::~Image()
 {
 }
 
+// 定义拷贝构造函数，用于通过已有的 sensor_msgs::msg::Image 对象 x 来初始化一个新的对象
+// 此构造函数以常量引用的方式接收参数 x，意味着不会修改传入的对象 x，常用于对象复制的场景
 sensor_msgs::msg::Image::Image(
         const Image& x)
 {
+    // 将传入对象 x 的 m_header 成员赋值给当前正在构造的对象的 m_header 成员
+    // 实现了头部信息的复制
     m_header = x.m_header;
+    // 将传入对象 x 的 m_height 成员赋值给当前正在构造的对象的 m_height 成员
+    // 完成图像高度信息的复制
     m_height = x.m_height;
+    // 将传入对象 x 的 m_width 成员赋值给当前正在构造的对象的 m_width 成员
+    // 完成图像宽度信息的复制
     m_width = x.m_width;
+    // 将传入对象 x 的 m_encoding 成员赋值给当前正在构造的对象的 m_encoding 成员
+    // 复制图像的编码相关信息
     m_encoding = x.m_encoding;
+    // 将传入对象 x 的 m_is_bigendian 成员赋值给当前正在构造的对象的 m_is_bigendian 成员
+    // 复制图像数据是否为大端序的标识信息
     m_is_bigendian = x.m_is_bigendian;
+    // 将传入对象 x 的 m_step 成员赋值给当前正在构造的对象的 m_step 成员
+    // 复制图像每行数据的字节跨度信息
     m_step = x.m_step;
+    // 将传入对象 x 的 m_data 成员赋值给当前正在构造的对象的 m_data 成员
+    // 复制图像的实际数据内容
     m_data = x.m_data;
 }
 
+// 定义移动构造函数，用于通过右值引用的方式从一个临时对象（或者即将被销毁的对象）x 来初始化新对象
+// 这种方式避免了不必要的复制开销，常用于资源转移的场景，并且声明为 noexcept 表示不会抛出异常
 sensor_msgs::msg::Image::Image(
         Image&& x) noexcept
 {
+    // 使用 std::move 对传入对象 x 的 m_header 成员进行移动语义操作，将其资源所有权转移给当前正在构造的对象的 m_header 成员
+    // 之后 x 的 m_header 对应的资源就归当前对象所有了
     m_header = std::move(x.m_header);
+    // 将传入对象 x 的 m_height 成员赋值给当前正在构造的对象的 m_height 成员
+    // 这里因为是基本类型，不存在资源所有权转移等复杂情况，直接赋值即可
     m_height = x.m_height;
+    // 将传入对象 x 的 m_width 成员赋值给当前正在构造的对象的 m_width 成员
+    // 同理，对于基本类型直接赋值
     m_width = x.m_width;
+    // 使用 std::move 对传入对象 x 的 m_encoding 成员进行移动语义操作，转移其资源所有权到当前正在构造的对象的 m_encoding 成员
     m_encoding = std::move(x.m_encoding);
+    // 将传入对象 x 的 m_is_bigendian 成员赋值给当前正在构造的对象的 m_is_bigendian 成员
     m_is_bigendian = x.m_is_bigendian;
+    // 将传入对象 x 的 m_step 成员赋值给当前正在构造的对象的 m_step 成员
     m_step = x.m_step;
+    // 使用 std::move 对传入对象 x 的 m_data 成员进行移动语义操作，将其数据资源所有权转移给当前正在构造的对象的 m_data 成员
     m_data = std::move(x.m_data);
 }
 
+// 定义赋值运算符重载函数，用于将一个 sensor_msgs::msg::Image 对象 x 赋值给当前对象
+// 返回当前对象的引用，以便支持连续赋值操作，例如 a = b = c; 这样的语法形式
 sensor_msgs::msg::Image& sensor_msgs::msg::Image::operator =(
         const Image& x)
 {
+    // 将传入对象 x 的 m_header 成员赋值给当前对象的 m_header 成员
+    // 实现头部信息的更新赋值
     m_header = x.m_header;
+    // 将传入对象 x 的 m_height 成员赋值给当前对象的 m_height 成员
+    // 完成图像高度信息的赋值更新
     m_height = x.m_height;
+    // 将传入对象 x 的 m_width 成员赋值给当前对象的 m_width 成员
+    // 进行图像宽度信息的赋值更新
     m_width = x.m_width;
+    // 将传入对象 x 的 m_encoding 成员赋值给当前对象的 m_encoding 成员
+    // 更新图像的编码相关信息
     m_encoding = x.m_encoding;
+    // 将传入对象 x 的 m_is_bigendian 成员赋值给当前对象的 m_is_bigendian 成员
+    // 更新图像数据是否为大端序的标识信息
     m_is_bigendian = x.m_is_bigendian;
+    // 将传入对象 x 的 m_step 成员赋值给当前对象的 m_step 成员
+    // 更新图像每行数据的字节跨度信息
     m_step = x.m_step;
+    // 将传入对象 x 的 m_data 成员赋值给当前对象的 m_data 成员
+    // 更新图像的实际数据内容
     m_data = x.m_data;
 
+    // 返回当前对象的引用，以支持连续赋值操作
     return *this;
 }
-
 sensor_msgs::msg::Image& sensor_msgs::msg::Image::operator =(
         Image&& x) noexcept
 {
