@@ -314,14 +314,20 @@ struct CARLATOOLS_API FSoilTypeROI : public FCarlaRegionOfInterest
   {}
 };
 
+// 使用 USTRUCT 宏定义一个可以用于蓝图系统的结构体 FMiscWidgetState
+// CARLATOOLS_API 是一个宏，通常用于导出类或结构体以便在其他模块中使用
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FMiscWidgetState
 {
   GENERATED_USTRUCT_BODY()
-
+	
+// IsPersistentState 是一个布尔值属性，表示小部件状态是否持久化
+// 可以在编辑器中编辑，并且可以在蓝图中读取和修改
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary|Misc")
   bool IsPersistentState;
-
+	
+// InTileCoordinates 是一个 FIntPoint 类型的属性，表示小部件在瓦片坐标系中的位置
+  // FIntPoint 是一个包含两个整数坐标的结构体，通常用于表示二维平面上的点
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary|Misc")
   FIntPoint InTileCoordinates;
 };
