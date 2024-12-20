@@ -14,10 +14,10 @@
     instance_variables:
     # - METHODS ----------------------------
     methods:
-    - def_name: __init__
+    - def_name: __init__//方法名：__init__（构造函数）
       params:
-      - param_name: host
-        type: str
+      - param_name: host//参数名：host（主机地址）
+        type: str//参数类型：字符串
         default: '127.0.0.1'
         doc: >
           IP address where a CARLA Simulator instance is running. Default is localhost (127.0.0.1).
