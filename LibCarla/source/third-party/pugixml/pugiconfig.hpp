@@ -26,7 +26,7 @@
 // Uncomment this to disable STL
 // #define PUGIXML_NO_STL
 
-// Uncomment this to disable exceptions
+// 取消注释此项以禁用异常
 // #define PUGIXML_NO_EXCEPTIONS
 
 // Set this to control attributes for public classes/functions, i.e.:
