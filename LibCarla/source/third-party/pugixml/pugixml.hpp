@@ -1167,7 +1167,7 @@ namespace pugi
 		xpath_variable_set& operator=(xpath_variable_set&& rhs) PUGIXML_NOEXCEPT;
 	#endif
 
-		// Add a new variable or get the existing one, if the types match
+	        // 添加新变量或获取现有变量（如果类型匹配）
 		xpath_variable* add(const char_t* name, xpath_value_type type);
 
 		// Set value of an existing variable; no type conversion is performed, false is returned if there is no such variable or if types mismatch
