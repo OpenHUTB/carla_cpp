@@ -231,14 +231,20 @@ class BasicAgent:
     def done(self):
         """Check whether the agent has reached its destination."""
         return self._local_planner.done()
+    #定义名为follow_speed_limits的方法，接受一个参数active,默认值为True
+    def follow_speed_limits(self, active=True):
+        """
+        #取消激活对交通信号灯的检查
+        (De)activates the checks for traffic lights"""
+       #将传入的active赋值给实例属性 _ignore_traffic_lights    
+ self._ignore_traffic_lights = active
 
-    def ignore_traffic_lights(self, active=True):
-        """(De)activates the checks for traffic lights"""
-        self._ignore_traffic_lights = active
-
-    def ignore_stop_signs(self, active=True):
-        """(De)activates the checks for stop signs"""
-        self._ignore_stop_signs = active
+    #定义名为_ignore_traffic_lights 的方法
+def ignore_stop_signs(self, active=True):
+    #取消激活对停车标志的检查    
+ """(De)activates the checks for stop signs"""
+    #将active赋值给实例属性_ignore_stop_signs    
+ self._ignore_stop_signs = active
 
     def ignore_vehicles(self, active=True):
         """(De)activates the checks for stop signs"""
