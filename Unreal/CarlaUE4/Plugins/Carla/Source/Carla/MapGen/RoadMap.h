@@ -10,22 +10,22 @@
 #include "MapGen/CityMapMeshTag.h"
 #include "RoadMap.generated.h"
 
-/// Road map intersection result. See URoadMap.
+/// 路线图交叉路口结果。请参阅 URoadMap。
 USTRUCT(BlueprintType)
 struct CARLA_API FRoadMapIntersectionResult
 {
   GENERATED_BODY()
 
-  /// Percentage of the box lying off-road.
+  /// 箱子在越野时的百分比。
   UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
   float OffRoad;
 
-  /// Percentage of the box invading opposite lane (wrong direction).
+  ///框侵入对面车道的百分比（方向错误）。
   UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
   float OppositeLane;
 };
 
-/// Data stored in a road map pixel. See URoadMap.
+/// 数据存储在路线图像素中。请参阅 URoadMap。
 struct FRoadMapPixelData
 {
   friend class URoadMap;
@@ -42,33 +42,33 @@ public:
 
   explicit FRoadMapPixelData(uint16 inValue) : Value(inValue) {}
 
-  /// Whether this pixel lies in-road.
+  ///此像素是否位于道路上。
   bool IsRoad() const
   {
     return (Value & (1 << IsRoadRow)) != 0;
   }
 
-  /// Whether this pixel has a direction defined (e.g. road intersections are
-  /// not off-road but neither have defined direction).
+  ///此像素是否定义了方向（例如，道路交叉口为
+  ///不是越野，但都没有明确的方向）。
   bool HasDirection() const
   {
     return (Value & (1 << HasDirectionRow)) != 0;
   }
 
-  /// Get the azimuth angle [-PI, PI] of the road direction (in spherical
-  /// coordinates) at this pixel.
+  /// 获取道路方向的方位角 [-PI， PI]（球面
+  ///坐标）的 S Package。
   ///
-  /// Undefined if !HasDirection().
+  /// 未定义 if ！HasDirection（）.
   float GetDirectionAzimuthalAngle() const
   {
     const float Angle = AngleMask & Value;
-    // Internally the angle is rotated by PI.
+    // 在内部，角度由 PI 旋转。
     return (Angle * 2.0f * PI / MaximumEncodedAngle) - PI;
   }
 
-  /// Get the road direction at this pixel.
+  ///获取此像素处的道路方向。
   ///
-  /// Undefined if !HasDirection().
+  /// 为定义 if !HasDirection().
   FVector GetDirection() const
   {
     const FVector2D SphericalCoords(HALF_PI, GetDirectionAzimuthalAngle());
@@ -84,8 +84,8 @@ private:
   uint16 Value;
 };
 
-/// Road map of the level. Contains information in 2D of which areas are road
-/// and lane directions.
+/// 关卡路线图。包含哪些区域是道路的 2D 信息
+///和车道方向。
 UCLASS()
 class CARLA_API URoadMap : public UObject
 {
@@ -93,10 +93,10 @@ class CARLA_API URoadMap : public UObject
 
 public:
 
-  /// Creates a valid empty map (every point is off-road).
+  /// 创建有效的空地图（每个点都是越野的）。
   URoadMap(const FObjectInitializer& ObjectInitializer);
 
-  /// Resets current map an initializes an empty map of the given size.
+  /// 重置当前映射 - 初始化给定大小的空映射。
   void Reset(
       uint32 Width,
       uint32 Height,
@@ -121,37 +121,37 @@ public:
     return Height;
   }
 
-  /// Return the world location of a given pixel.
+  /// 返回给定像素的世界位置。
   FVector GetWorldLocation(uint32 PixelX, uint32 PixelY) const;
 
-  /// Retrieve the data stored at a given pixel.
+  /// 检索存储在给定像素处的数据。
   FRoadMapPixelData GetDataAt(uint32 PixelX, uint32 PixelY) const
   {
     check(IsValid());
     return FRoadMapPixelData(RoadMapData[GetIndex(PixelX, PixelY)]);
   }
 
-  /// Clamps value if lies outside map limits.
+  /// 如果位于映射限制之外，则钳制值。
   FRoadMapPixelData GetDataAt(const FVector &WorldLocation) const;
 
-  /// Intersect actor bounds with map.
+  /// 将角色边界与地图相交。
   ///
-  /// Bounds box is projected to the map and checked against it for possible
-  /// intersections with off-road areas and opposite lanes.
+  ///边界框将投影到地图上，并尽可能地对照它进行检查
+  ///与越野区域和对面车道的交叉路口.
   FRoadMapIntersectionResult Intersect(
       const FTransform &BoxTransform,
       const FVector &BoxExtent,
       float ChecksPerCentimeter) const;
 
-  /// Save the current map as PNG with the pixel data encoded as color.
+  ///将当前地图另存为 PNG，并将像素数据编码为颜色。
   bool SaveAsPNG(const FString &Folder, const FString &MapName) const;
 
 #if WITH_EDITOR
 
-  /// Log status of the map to the console.
+  /// 将映射的状态记录到控制台。
   void Log() const;
 
-  /// Draw every pixel of the image as debug point.
+  /// 将图像的每个像素绘制为调试点。
   void DrawDebugPixelsToLevel(UWorld *World, bool bJustFlushDoNotDraw = false) const;
 
 #endif // WITH_EDITOR
@@ -168,23 +168,23 @@ private:
     return ((RoadMapData.Num() > 0) && (RoadMapData.Num() == Height * Width));
   }
 
-  /// World-to-map transform.
+  /// 世界到地图的转换。
   UPROPERTY(VisibleAnywhere)
   FTransform WorldToMap;
 
-  /// Offset of the map in map coordinates.
+  /// 地图坐标中的偏移量。
   UPROPERTY(VisibleAnywhere)
   FVector MapOffset;
 
-  /// Number of pixels per centimeter.
+  /// 每厘米像素数。
   UPROPERTY(VisibleAnywhere)
   float PixelsPerCentimeter;
 
-  /// Width of the map in pixels.
+  /// 地图的宽度（以像素为单位）。
   UPROPERTY(VisibleAnywhere)
   uint32 Width;
 
-  /// Height of the map in pixels.
+  /// 地图的高度（以像素为单位）。
   UPROPERTY(VisibleAnywhere)
   uint32 Height;
 
