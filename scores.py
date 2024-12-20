@@ -82,19 +82,23 @@ page = 1
 while True:
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
     response = requests.get(url, headers=headers)
-    
+
+    #如果响应状态码不等于 200，代码将打印请求失败，请检查网络连接或GitHub令牌，并使用 break 语句退出当前的循环
     if response.status_code != 200:
         print("请求失败，请检查网络连接或GitHub令牌。")
         break
-
+        
+    #调用 response 对象的 .json() 方法,如果 issues 为空，则执行 break 语句，退出当前的循环。
     issues = response.json()
     if not issues:
         break
 
+    #使用 for 循环遍历 issues 列表中的每个 issue;如果 issue 包含 'pull_request' 键,，使用 continue 语句跳过当前迭代。
     for issue in issues:
         if 'pull_request' in issue:
-            continue
-
+            continue 
+            
+        #从 issue 中获取用户信息 user['login']，并将其作为键更新 issue_counts 字典，统计每个用户的 issue 提问次数。
         user = issue['user']['login']
         issue_counts[user] = issue_counts.get(user, 0) + 1
 
