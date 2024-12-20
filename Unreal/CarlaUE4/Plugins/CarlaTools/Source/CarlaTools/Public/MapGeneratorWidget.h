@@ -182,26 +182,35 @@ struct CARLATOOLS_API FMapGeneratorWidgetState
   bool bShowDetailedNoise;
 };
 
+# 使用USTRUCT宏定义一个结构体，并且标记为可在蓝图中使用（BlueprintType），该结构体属于CARLATOOLS_API这个命名空间
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FMapGeneratorPreset//定义一个结构体
 {
   GENERATED_USTRUCT_BODY()
 
+  # UPROPERTY是UE4（假设基于Unreal Engine 4开发）中的宏，用于给成员变量添加属性，这里表示该变量可以在编辑器的任何地方进行编辑（EditAnywhere），并且可以在蓝图中进行读写操作（BlueprintReadWrite），所属类别为"MapGenerator|TerrainPresets"，方便在编辑器中分类展示和查找。
+  # 该成员变量用于存储预设名称，类型为FString（UE4中的字符串类型）。
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|TerrainPresets")
   FString PresetName;
 
+  # 同样是一个带有属性修饰的成员变量，可在编辑器任何地方编辑以及在蓝图中读写，所属类别也是"MapGenerator|TerrainPresets"。
+  # 其类型为FMapGeneratorWidgetState
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|TerrainPresets")
   FMapGeneratorWidgetState WidgetState;
 };
 
+# 再次使用USTRUCT宏定义另一个可在蓝图中使用的结构体，同样属于CARLATOOLS_API命名空间。
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FTileBoundariesInfo
 {
   GENERATED_USTRUCT_BODY()
 
+  # UPROPERTY宏声明一个成员变量属性，这里没有详细指定如编辑、蓝图读写等额外特性（使用默认设置）。
+  # 该成员变量是一个数组，元素类型为uint16（无符号16位整数），用于存储右侧高度数据，可能与地图瓦片边界的右侧高度相关。
   UPROPERTY()
   TArray<uint16> RightHeightData;
 
+  # 类似的，这也是一个使用默认属性设置的成员变量，类型为TArray<uint16>，用于存储底部高度数据，可能涉及地图瓦片边界底部的高度信息。
   UPROPERTY()
   TArray<uint16> BottomHeightData;
 };
