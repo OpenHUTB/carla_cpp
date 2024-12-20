@@ -879,29 +879,33 @@ class World(object):
 # -- FadingText ----------------------------------------------------------------
 # ==============================================================================
 
-
+# FadingText类用于创建一个随时间逐渐消失的文本
 class FadingText(object):
     def __init__(self, font, dim, pos):
+        # 初始化字体、尺寸和位置属性
         self.font = font
         self.dim = dim
         self.pos = pos
-        self.seconds_left = 0
-        self.surface = pygame.Surface(self.dim)
+        self.seconds_left = 0# 剩余时间，初始为0
+        self.surface = pygame.Surface(self.dim)# 创建一个pygame表面对象，用于绘制文本
 
     def set_text(self, text, color=(255, 255, 255), seconds=2.0):
-        text_texture = self.font.render(text, True, color)
-        self.surface = pygame.Surface(self.dim)
-        self.seconds_left = seconds
+         # 设置要显示的文本、颜色和显示时间
+        text_texture = self.font.render(text, True, color)# 使用字体渲染文本
+        self.surface = pygame.Surface(self.dim) # 重新创建表面对象
+        self.seconds_left = seconds# 设置文本显示的总时间
         self.surface.fill((0, 0, 0, 0))
         self.surface.blit(text_texture, (10, 11))
 
     def tick(self, _, clock):
+       # 每帧更新，减少剩余时间，并调整透明度
         delta_seconds = 1e-3 * clock.get_time()
         self.seconds_left = max(0.0, self.seconds_left - delta_seconds)
         self.surface.set_alpha(500.0 * self.seconds_left)
 
     def render(self, display):
-        display.blit(self.surface, self.pos)
+        # 将文本表面绘制到显示屏幕上     
+        display.blit(self.surface, self.pos)# 将表面绘制到指定位置
 
 
 # ==============================================================================
@@ -912,13 +916,14 @@ class FadingText(object):
 class HelpText(object):
     """Helper class to handle text output using pygame"""
     def __init__(self, font, width, height):
-        lines = __doc__.split('\n')
+         # 初始化帮助文本类
+        lines = __doc__.split('\n')# 将文档字符串按行分割
         self.font = font
         self.line_space = 18
-        self.dim = (780, len(lines) * self.line_space + 12)
+        self.dim = (780, len(lines) * self.line_space + 12)# 计算帮助文本的尺寸
         self.pos = (0.5 * width - 0.5 * self.dim[0], 0.5 * height - 0.5 * self.dim[1])
-        self.seconds_left = 0
-        self.surface = pygame.Surface(self.dim)
+        self.seconds_left = 0# 剩余时间，初始为0
+        self.surface = pygame.Surface(self.dim)# 创建pygame表面对象
         self.surface.fill((0, 0, 0, 0))
         for n, line in enumerate(lines):
             text_texture = self.font.render(line, True, (255, 255, 255))
@@ -927,12 +932,14 @@ class HelpText(object):
         self.surface.set_alpha(220)
 
     def toggle(self):
+        # 切换帮助文本的显示状态
         self._render = not self._render
 
     def render(self, display):
+          # 将帮助文本绘制到显示屏幕上
         if self._render:
             display.blit(self.surface, self.pos)
-
+            # 如果渲染状态为True，则绘制表面
 
 # ==============================================================================
 # -- CollisionSensor -----------------------------------------------------------
