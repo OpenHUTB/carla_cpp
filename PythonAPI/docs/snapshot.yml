@@ -1,104 +1,111 @@
----
-- module_name: carla
-  # - CLASSES ------------------------------
+# 模块名为carla，这里可能是定义了与Carla相关的一些类和功能（Carla可能是某个模拟、游戏等相关的项目框架）
+module_name: carla  
 
-  classes:
-  - class_name: WorldSnapshot
-    # - DESCRIPTION ------------------------
-    doc: >
-      This snapshot comprises all the information for every actor on scene at a certain moment of time. It creates and gives acces to a data structure containing a series of carla.ActorSnapshot. The client recieves a new snapshot on every tick that cannot be stored.  
-    # - PROPERTIES -------------------------
-    instance_variables:
-    - var_name: id
-      type: int
-      doc: >
-        A value unique for every snapshot to differentiate them. 
-    - var_name: frame
-      type: int
-      doc: >
-        Simulation frame in which the snapshot was taken. 
-    - var_name: timestamp
-      type: carla.Timestamp
-      var_units: seconds
-      doc: >
-         Precise moment in time when snapshot was taken. This class works in seconds as given by the operative system. 
-    # - METHODS ----------------------------
-    methods:
-    - def_name: find
-      return: carla.ActorSnapshot
-      params: 
-        - param_name: actor_id
-          type: int
-      doc: > 
-        Given a certain actor ID, returns its corresponding snapshot or <b>None</b> if it is not found. 
-    # --------------------------------------
-    - def_name: has_actor
-      return: bool
-      params:
-        - param_name: actor_id
-          type: int
-      doc: >
-        Given a certain actor ID, checks if there is a snapshot corresponding it and so, if the actor was present at that moment.
-    # --------------------------------------
-    - def_name: __iter__
-      doc: >
-        Iterate over the carla.ActorSnapshot stored in the snapshot.  
-    # --------------------------------------
-    - def_name: __len__
-      return: int
-      doc: >
-        Returns the amount of carla.ActorSnapshot present in this snapshot.
-    # --------------------------------------
-    - def_name: __eq__
-      return: bool
-      params:
-        - param_name: other
-          type: carla.WorldSnapshot
-      doc: >
-        Returns __True__ if both **<font color="#f8805a">timestamp</font>** are the same. 
-    # --------------------------------------
-    - def_name: __ne__
-      return: bool
-      params:
-        - param_name: other
-          type: carla.WorldSnapshot
-      doc: >
-        Returns <b>True</b> if both **<font color="#f8805a">timestamp</font>** are different. 
-    # --------------------------------------
+# 以下开始定义不同的类
+classes:
+    # WorldSnapshot类，表示在某个特定时刻场景中所有参与者（actor）信息的快照
+    - class_name: WorldSnapshot  
+        # 该类的描述信息
+        doc: >  
+            This snapshot comprises all the information for every actor on scene at a certain moment of time. It creates and gives acces to a data structure containing a series of carla.ActorSnapshot. The client recieves a new snapshot on every tick that cannot be stored.  
+        # 类的实例变量（属性）定义部分
+        instance_variables:
+            # 每个快照的唯一标识符，用于区分不同的快照
+            - var_name: id  
+              type: int  
+              doc: >
+                A value unique for every snapshot to differentiate them. 
+            # 表示获取该快照时所处的模拟帧数
+            - var_name: frame  
+              type: int  
+              doc: >
+                Simulation frame in which the snapshot was taken. 
+            # 表示获取快照时的精确时间戳，类型为carla.Timestamp，单位是秒，其时间依据操作系统给定的时间来确定
+            - var_name: timestamp  
+              type: carla.Timestamp  
+              var_units: seconds  
+              doc: >
+                 Precise moment in time when snapshot was taken. This class works in seconds as given by the operative system. 
+        # 类的方法定义部分
+        methods:
+            # 根据给定的参与者（actor）ID，查找对应的ActorSnapshot，如果没找到则返回None
+            - def_name: find  
+              return: carla.ActorSnapshot  
+              params: 
+                - param_name: actor_id  
+                  type: int  
+              doc: > 
+                Given a certain actor ID, returns its corresponding snapshot or <b>None</b> if it is not found. 
+            # 给定一个参与者（actor）ID，检查是否存在对应的快照，即检查该参与者在那个时刻是否存在
+            - def_name: has_actor  
+              return: bool  
+              params:
+                - param_name: actor_id  
+                  type: int  
+              doc: >
+                Given a certain actor ID, checks if there is a snapshot corresponding it and so, if the actor was present at that moment.
+            # 允许迭代该快照中存储的carla.ActorSnapshot对象
+            - def_name: __iter__  
+              doc: >
+                Iterate over the carla.ActorSnapshot stored in the snapshot.  
+            # 返回此快照中存在的carla.ActorSnapshot的数量
+            - def_name: __len__  
+              return: int  
+              doc: >
+                Returns the amount of carla.ActorSnapshot present in this snapshot.
+            # 如果两个WorldSnapshot对象的时间戳（timestamp）相同，则返回True
+            - def_name: __eq__  
+              return: bool  
+              params:
+                - param_name: other  
+                  type: carla.WorldSnapshot  
+              doc: >
+                Returns __True__ if both **<font color="#f8805a">timestamp</font>** are the same. 
+            # 如果两个WorldSnapshot对象的时间戳（timestamp）不同，则返回True
+            - def_name: __ne__  
+              return: bool  
+              params:
+                - param_name: other  
+                  type: carla.WorldSnapshot  
+              doc: >
+                Returns <b>True</b> if both **<font color="#f8805a">timestamp</font>** are different. 
+    
+    # ActorSnapshot类，表示在某个特定时刻单个参与者（actor）的所有信息
+    - class_name: ActorSnapshot  
+        # 该类的描述信息
+        doc: >
+            A class that comprises all the information for an actor at a certain moment in time. These objects are contained in a carla.WorldSnapshot and sent to the client once every tick. 
+        # 类的实例变量（属性）定义部分
+        instance_variables:
+            # 该快照自身的标识符
+            - var_name: id  
+              type: int  
+              doc: >
+                An identifier for the snapshot itself. 
+        # 类的方法定义部分
+        methods:
+            # 获取该参与者在对应时刻（tick）注册的加速度向量，单位是m/s²
+            - def_name: get_acceleration  
+              return: carla.Vector3D  
+              return_units: m/s<sup>2</sup>  
+              doc: >
+                Returns the acceleration vector registered for an actor in that tick. 
+            # 获取该参与者在对应时刻（tick）注册的角速度向量，单位是rad/s
+            - def_name: get_angular_velocity  
+              return: carla.Vector3D  
+              return_units: rad/s  
+              doc: >
+                Returns the angular velocity vector registered for an actor in that tick.
+            # 获取该参与者在对应时刻（tick）的变换信息（位置和旋转）
+            - def_name: get_transform  
+              return: carla.Transform  
+              doc: >
+                Returns the actor's transform (location and rotation) for an actor in that tick. 
+            # 获取该参与者在对应时刻（tick）注册的速度向量，单位是m/s
+            - def_name: get_velocity  
+              return: carla.Vector3D  
+              return_units: m/s  
+              doc: > 
+                Returns the velocity vector registered for an actor in that tick.
 
-  - class_name: ActorSnapshot
-    # - DESCRIPTION ------------------------
-    doc: >
-      A class that comprises all the information for an actor at a certain moment in time. These objects are contained in a carla.WorldSnapshot and sent to the client once every tick. 
-    # - PROPERTIES -------------------------
-    instance_variables:
-    - var_name: id
-      type: int
-      doc: >
-        An identifier for the snapshot itself. 
-    # - METHODS ----------------------------
-    methods:
-    - def_name: get_acceleration
-      return: carla.Vector3D
-      return_units: m/s<sup>2</sup>
-      doc: >
-        Returns the acceleration vector registered for an actor in that tick. 
-    # --------------------------------------
-    - def_name: get_angular_velocity
-      return: carla.Vector3D
-      return_units: rad/s
-      doc: >
-        Returns the angular velocity vector registered for an actor in that tick.
-    # --------------------------------------
-    - def_name: get_transform
-      return: carla.Transform
-      doc: >
-        Returns the actor's transform (location and rotation) for an actor in that tick. 
-    # --------------------------------------
-    - def_name: get_velocity
-      return: carla.Vector3D
-      return_units: m/s
-      doc: > 
-        Returns the velocity vector registered for an actor in that tick.
-    # --------------------------------------
-...
+    # 以下可能还有其他类的定义，这里省略了未展示的部分内容

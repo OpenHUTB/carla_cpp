@@ -52,28 +52,37 @@ class CodeFormatter:
     #试图通过verifyformatterversion函数运行来获取格式化工具的版本信息
     def verifyFormatterVersion(self):
         try:
+             # 使用 subprocess.check_output 执行命令并捕获输出，去除末尾的换行符
             versionOutput = subprocess.check_output([self.command, "--version"]).rstrip('\r\n')
             if self.expectedVersion != "":
+                 # 如果设置了预期版本，检查实际版本是否符合预期
                 if versionOutput.startswith(self.expectedVersion):
                     print("[OK] Found formatter '" + versionOutput + "'")
                     return
                 else:
+                     # 版本不匹配时，打印错误信息
                     cprint("[NOT OK] Found '" + versionOutput + "'", "red")
                     cprint("[NOT OK] Version string does not start with '" + self.expectedVersion + "'", "red")
             else:
+                # 如果没有设置预期版本，则直接返回
                 return
         except:
+             # 捕获所有异常，包括但不限于找不到命令、权限问题等，并打印错误信息
             cprint("[ERROR] Could not run " + self.command, "red")
             cprint("[INFO] Please check if correct version is installed or install with '" +
                    self.installCommand + "'", "blue")
+              # 如果出现任何问题，退出程序，状态码为1表示有错误发生
         sys.exit(1)
 
     def printInputFiles(self):
         if len(self.inputFiles) > 0:
+             # 打印找到的文件数量和类型描述
             print("Found " + self.fileDescription + " files:")
             for fileName in self.inputFiles:
+                # 逐个打印文件名
                 print(fileName)
             print("")
+            # 打印空行以分隔输出内容
 
     def formatFile(self, fileName):
         commandList = [self.command]
@@ -102,12 +111,12 @@ class CodeFormatter:
             return (True, "")
         return (False, diffOutput)
 
-    def verifyFile(self, fileName, printDiff):
+    def verifyFile(self, fileName, printDiff):## 创建一个命令列表，以self.command开头，添加self.verifyCommandArguments中的元素，最后添加fileName
         commandList = [self.command]
         commandList.extend(self.verifyCommandArguments)
         commandList.append(fileName)
         try:
-            verifyOutput = subprocess.check_output(commandList, stderr=subprocess.STDOUT)
+            verifyOutput = subprocess.check_output(commandList, stderr=subprocess.STDOUT)# 使用subprocess.check_output执行命令列表中的命令，并获取输出
         except subprocess.CalledProcessError as e:
             cprint("[ERROR] " + fileName + " (" + e.output.rstrip('\r\n') + ")", "red")
             return True
@@ -135,7 +144,7 @@ class CodeFormatterClang(CodeFormatter):
     CHECKED_IN_CLANG_FORMAT_FILE = "clang-format"
     CODE_FORMAT_IGNORE_FILE = ".codeformatignore"
 
-    def __init__(self):
+    def __init__(self):# 调用父类CodeFormatter的__init__方法进行初始化
         CodeFormatter.__init__(self,
                                command="clang-format-3.9",
                                expectedVersion="clang-format version 3.9",
@@ -145,7 +154,7 @@ class CodeFormatterClang(CodeFormatter):
                                fileEndings=["cpp", "hpp", "c", "h", "cc"],
                                fileDescription="source and header",
                                installCommand="sudo apt-get install clang-format-3.9")
-        self.scriptPath = os.path.dirname(os.path.abspath(__file__))
+        self.scriptPath = os.path.dirname(os.path.abspath(__file__))#
         self.checkedInClangFormatFile = os.path.join(self.scriptPath, CodeFormatterClang.CHECKED_IN_CLANG_FORMAT_FILE)
 
     def verifyFormatterVersion(self):

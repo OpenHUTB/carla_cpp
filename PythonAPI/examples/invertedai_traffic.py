@@ -28,46 +28,65 @@ SpawnActor = carla.command.SpawnActor
 
 # 参数解析器
 def argument_parser():
-
+    # 创建一个 ArgumentParser 对象，用于解析命令行参数
     argparser = argparse.ArgumentParser(
+        # 描述信息，通常使用 __doc__ 变量来提供模块级别的文档字符串
         description=__doc__)
+    # 添加一个命令行参数 '--host'，用于指定服务器的IP地址
     argparser.add_argument(
         '--host',
+        # 指定参数的占位符
         metavar='H',
+        # 设置参数的默认值为 '127.0.0.1'
         default='127.0.0.1',
+        # 提供参数的帮助信息，说明其作用是设置主机服务器的IP地址
         help='IP of the host server (default: 127.0.0.1)')
+    # 添加一个命令行参数 '--port' 或 '-p'，用于指定TCP端口
     argparser.add_argument(
         '-p', '--port',
         metavar='P',
         default=2000,
         type=int,
+        # 提供参数的帮助信息，说明其作用是设置监听的TCP端口
         help='TCP port to listen to (default: 2000)')
+    # 添加一个命令行参数 '--number-of-vehicles' 或 '-n'，用于指定生成的车辆数量
     argparser.add_argument(
         '-n', '--number-of-vehicles',
         metavar='N',
         default=30,
         type=int,
+        # 提供参数的帮助信息，说明其作用是设置由InvertedAI生成的车辆数量
         help='Number of vehicles spawned by InvertedAI (default: 30)')
+    # 添加一个命令行参数 '--number-of-walkers' 或 '-w'，用于指定生成的行人数量
     argparser.add_argument(
         '-w', '--number-of-walkers',
         metavar='W',
         default=10,
         type=int,
+        # 提供参数的帮助信息，说明其作用是设置行人的数量
         help='Number of walkers (default: 10)')
+    # 添加一个命令行参数 '--safe'，用于指定是否避免生成容易发生事故的车辆
     argparser.add_argument(
         '--safe',
+        # 指定参数的类型为布尔值
         type=bool,
+        # 设置参数的默认值为 True
         default=True,
+        # 提供参数的帮助信息，说明其作用是避免生成容易发生事故的车辆
         help='Avoid spawning vehicles prone to accidents (default True)')
+    # 添加一个命令行参数 '--filterv'，用于指定车辆模型的过滤模式
     argparser.add_argument(
         '--filterv',
         metavar='PATTERN',
         default='vehicle.*',
+        # 提供参数的帮助信息，说明其作用是过滤车辆模型
         help='Filter vehicle model (default: "vehicle.*")')
+    # 添加一个命令行参数 '--generationv'，用于限制车辆的代数
     argparser.add_argument(
         '--generationv',
         metavar='G',
         default='All',
+        # 提供参数的帮助信息，说明其作用是限制车辆的代数
         help='restrict to certain vehicle generation (default: "All")')
     argparser.add_argument(
         '--filterw',
@@ -169,20 +188,27 @@ def setup_carla_environment(host, port):
 # 设置观众视角到相应车辆
 def set_spectator(world, hero_v):
 
-    spectator_offset_x = -6.
-    spectator_offset_z = 6.
-    spectator_offset_pitch = 20
-
+    # 定义观察者相对于车辆的位置偏移量
+    spectator_offset_x = -6.# X轴偏移量
+    spectator_offset_z = 6.# Z轴偏移量
+    spectator_offset_pitch = 20# 观察者俯仰角偏移量
+    
+    # 获取对应车辆的变换信息，包括位置和旋转
     hero_t = hero_v.get_transform()
 
+    # 获取对应车辆的偏航角
     yaw = hero_t.rotation.yaw
+    # 计算观察者的位置，基于英雄车辆的位置和偏移量
     spectator_l = hero_t.location + carla.Location(
-        spectator_offset_x * math.cos(math.radians(yaw)),
-        spectator_offset_x * math.sin(math.radians(yaw)),
-        spectator_offset_z,
+        spectator_offset_x * math.cos(math.radians(yaw)), # 计算X轴上的偏移
+        spectator_offset_x * math.sin(math.radians(yaw)), # 计算Y轴上的偏移
+        spectator_offset_z,# Z轴上的偏移量
     )
+     # 创建观察者的变换信息，包括位置和旋转
     spectator_t = carla.Transform(spectator_l, hero_t.rotation)
+    # 调整观察者的俯仰角
     spectator_t.rotation.pitch -= spectator_offset_pitch
+    # 设置世界中的观察者变换，使观察者视角跟随英雄车辆
     world.get_spectator().set_transform(spectator_t)
 
 #---------
