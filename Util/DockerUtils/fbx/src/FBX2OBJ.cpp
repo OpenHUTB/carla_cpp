@@ -102,8 +102,9 @@ bool LoadScene(
     if(!lImportStatus )  // Problem with the file to be imported
     {
         FbxString error = lImporter->GetStatus().GetErrorString();
-        printf("Call to FbxImporter::Initialize() failed.");
-        printf("Error returned: %s", error.Buffer());
+        printf("Call to FbxImporter::Initialize() failed.");// 输出提示信息，表示调用FbxImporter::Initialize()函数失败了
+        printf("Error returned: %s", error.Buffer());// 输出具体的错误返回信息，展示更详细的错误内容，方便排查问题
+        // 进一步检查错误状态码是否表示文件版本无效（eInvalidFileVersion）
         if (lImporter->GetStatus().GetCode() == FbxStatus::eInvalidFileVersion)
         {
             printf("FBX version number for this FBX SDK is %d.%d.%d",
