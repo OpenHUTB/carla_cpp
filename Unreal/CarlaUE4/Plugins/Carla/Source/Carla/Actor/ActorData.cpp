@@ -272,31 +272,49 @@ void FTrafficLightData::RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* 
 
 void FTrafficLightData::RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
+  #从CarlaActor对象中得到实际的Actor实例
   AActor* Actor = CarlaActor->GetActor();
+  #将通用的Actor转换为特定的交通信号灯Actor类型
   ATrafficLightBase* TrafficLight = Cast<ATrafficLightBase>(Actor);
+  #获取交通信号灯组件UTrafficLightComponent* Component
   UTrafficLightComponent* Component = TrafficLight->GetTrafficLightComponent();
+  #设置标识
   Component->SetSignId(SignId);
+  #移除与CarlaActor相关的交通信号灯信息
   Controller->RemoveCarlaActorTrafficLight(CarlaActor);
+  #将更新的交通信号灯组件添加到控制器中
   Controller->AddTrafficLight(Component);
+  #获取游戏的模式信息
   ACarlaGameModeBase *GameMode = UCarlaStatics::GetGameMode(CarlaEpisode->GetWorld());
+  #设置标识
   Component->InitializeSign(GameMode->GetMap().get());
+  #获取当前状态
   Component->SetLightState(Controller->GetCurrentState().State);
+  #设置杆索引和交通信号灯的整体状况
   TrafficLight->SetPoleIndex(PoleIndex);
   TrafficLight->SetTrafficLightState(LightState);
 }
 
+#函数调用
 void FActorSensorData::RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
   FActorData::RecordActorData(CarlaActor, CarlaEpisode);
+ #获取AActor指针
   AActor* Actor = CarlaActor->GetActor();
+ #类型转换
   ASensor* Sensor = Cast<ASensor>(Actor);
+ #获取传感器的数据流
   Stream = Sensor->MoveDataStream();
 }
 
+#执行以下与恢复演员数据相关的通用操作
 void FActorSensorData::RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
   FActorData::RestoreActorData(CarlaActor, CarlaEpisode);
+  #获取演员对象
   AActor* Actor = CarlaActor->GetActor();
+  #将获取到的AActor对象尝试转换为ASensor类型
   ASensor* Sensor = Cast<ASensor>(Actor);
+  #设置数据流，以恢复传感器相关数据状态
   Sensor->SetDataStream(std::move(Stream));
 }
