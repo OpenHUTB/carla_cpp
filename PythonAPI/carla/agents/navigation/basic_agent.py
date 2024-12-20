@@ -60,16 +60,27 @@ class BasicAgent:
         self._last_traffic_light = None
 
         # Base parameters
+        #自身的_ignore_traffic_lights属性被设置为False
         self._ignore_traffic_lights = False
+        #自身的_ignore_stop_signs属性被设置为Flase
         self._ignore_stop_signs = False
+        #自身的_ignore_vehicles被设置为Flase
         self._ignore_vehicles = False
+        #自身的_use_bbs_detection被设置为Flase
         self._use_bbs_detection = False
+        #自身的_target_speed被设置为target_speed
         self._target_speed = target_speed
+        #自身的_sampling_resolution属性被设置为2.0
         self._sampling_resolution = 2.0
+        #自身的_base_tlight_threshold属性被设置为5.0
         self._base_tlight_threshold = 5.0  # meters
+        #自身的_base_vehicle_threshold属性被设置为5.0
         self._base_vehicle_threshold = 5.0  # meters
+        #自身的_speed_ratio被设置为1
         self._speed_ratio = 1
+        #自身的_max_brake被设置为0.5
         self._max_brake = 0.5
+        #自身的_offset被设置为0
         self._offset = 0
 
         # Change parameters according to the dictionary
