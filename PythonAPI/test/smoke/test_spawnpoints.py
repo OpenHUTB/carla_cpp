@@ -25,13 +25,17 @@ class TestSpawnpoints(SyncSmokeTest):
 
                 # load the map
                 self.client.load_world(m)
+# 工作区解决办法：给UE4一些时间来清理加载旧资产后的内存，等待5秒
                 # workaround: give time to UE4 to clean memory after loading (old assets)
                 time.sleep(5)
+# 重新获取加载地图后的世界对象，确保后续操作基于新加载的地图
                 
                 self.world = self.client.get_world()
+# 获取当前地图上所有的生成点，后续将在这些点上生成车辆
 
                 # get all spawn points
                 spawn_points = self.world.get_map().get_spawn_points()
+# 检查为什么世界设置在重新加载地图后没有应用，获取当前世界的设置
 
                 # Check why the world settings aren't applied after a reload
                 self.settings = self.world.get_settings()
