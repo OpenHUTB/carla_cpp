@@ -21,11 +21,11 @@
 
 #ifndef _FAST_DDS_GENERATED_STD_MSGS_MSG_HEADER_H_
 #define _FAST_DDS_GENERATED_STD_MSGS_MSG_HEADER_H_
-
+// 包含Time.h头文件，可能是用于处理时间相关的数据结构或操作，具体依赖于该头文件的定义内容
 #include "Time.h"
-
+// 包含fastrtps库中用于固定大小字符串的头文件，可能提供了一些特定的字符串处理功能，适用于特定场景下的内存管理等需求
 #include <fastrtps/utils/fixed_size_string.hpp>
-
+// 引入C++标准库中的一些常用头文件，用于支持不同的数据类型和容器操作
 #include <stdint.h>
 #include <array>
 #include <string>
@@ -62,7 +62,8 @@ namespace fastcdr {
 class Cdr;
 } // namespace fastcdr
 } // namespace eprosima
-
+// 定义在std_msgs命名空间下的msg命名空间中，用于组织相关的消息类型定义，避免命名冲突
+namespace std_msgs {
 namespace std_msgs {
     namespace msg {
         /*!
@@ -230,8 +231,8 @@ namespace std_msgs {
             eProsima_user_DllExport void serializeKey(
                     eprosima::fastcdr::Cdr& cdr) const;
 
-        private:
-            builtin_interfaces::msg::Time m_stamp;
+        private: // 定义成员变量m_stamp，用于存储时间相关的信息，类型为builtin_interfaces::msg::Time，具体含义和用途依赖于该类型的定义
+            builtin_interfaces::msg::Time m_stamp; // 定义成员变量m_frame_id，用于存储一个字符串标识信息，例如可能表示消息所属的框架等相关标识，类型为std::string
             std::string m_frame_id;
         };
     } // namespace msg
