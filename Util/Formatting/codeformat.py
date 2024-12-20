@@ -52,28 +52,37 @@ class CodeFormatter:
     #试图通过verifyformatterversion函数运行来获取格式化工具的版本信息
     def verifyFormatterVersion(self):
         try:
+             # 使用 subprocess.check_output 执行命令并捕获输出，去除末尾的换行符
             versionOutput = subprocess.check_output([self.command, "--version"]).rstrip('\r\n')
             if self.expectedVersion != "":
+                 # 如果设置了预期版本，检查实际版本是否符合预期
                 if versionOutput.startswith(self.expectedVersion):
                     print("[OK] Found formatter '" + versionOutput + "'")
                     return
                 else:
+                     # 版本不匹配时，打印错误信息
                     cprint("[NOT OK] Found '" + versionOutput + "'", "red")
                     cprint("[NOT OK] Version string does not start with '" + self.expectedVersion + "'", "red")
             else:
+                # 如果没有设置预期版本，则直接返回
                 return
         except:
+             # 捕获所有异常，包括但不限于找不到命令、权限问题等，并打印错误信息
             cprint("[ERROR] Could not run " + self.command, "red")
             cprint("[INFO] Please check if correct version is installed or install with '" +
                    self.installCommand + "'", "blue")
+              # 如果出现任何问题，退出程序，状态码为1表示有错误发生
         sys.exit(1)
 
     def printInputFiles(self):
         if len(self.inputFiles) > 0:
+             # 打印找到的文件数量和类型描述
             print("Found " + self.fileDescription + " files:")
             for fileName in self.inputFiles:
+                # 逐个打印文件名
                 print(fileName)
             print("")
+            # 打印空行以分隔输出内容
 
     def formatFile(self, fileName):
         commandList = [self.command]
