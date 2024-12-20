@@ -82,41 +82,50 @@ namespace data {
       }
   };
   #pragma pack(pop)
-
+// 使用静态断言来检查 `float` 类型的大小是否和 `uint32_t` 类型的大小相等，若不相等则在编译时输出指定的错误信息 "Invalid float size"
   class SemanticLidarData {
     static_assert(sizeof(float) == sizeof(uint32_t), "Invalid float size");
 
   protected:
+    // 定义一个名为 `Index` 的强类型枚举（enum class），其底层类型为 `size_t`，用于表示不同的索引含义
     enum Index : size_t {
+// 表示水平角度对应的索引，枚举值
       HorizontalAngle,
+ // 表示通道数量对应的索引，枚举值
       ChannelCount,
+  // 用于表示总的大小相关的一个枚举值，可能作为一种边界或者偏移量相关的标识，具体取决于使用场景
       SIZE
     };
 
   public:
+// 显式的构造函数，参数 `ChannelCount` 有默认值 `0u`，用于初始化 `SemanticLidarData` 类的对象
     explicit SemanticLidarData(uint32_t ChannelCount = 0u)
+// 使用初始化列表初始化 `_header` 成员变量，将其大小初始化为 `Index::SIZE + ChannelCount`，并将所有元素初始化为 `0u`
       : _header(Index::SIZE + ChannelCount, 0u) {
+// 将 `_header` 向量中对应 `Index::ChannelCount` 索引位置的元素设置为传入的通道数量 `ChannelCount`
       _header[Index::ChannelCount] = ChannelCount;
     }
-
+    // 默认实现移动赋值运算符，这里使用 `= default` 语法让编译器自动生成默认的移动赋值操作逻辑，以提高代码简洁性
     SemanticLidarData &operator=(SemanticLidarData &&) = default;
-
+    // 虚析构函数，用于在派生类对象销毁时进行正确的资源清理等操作，这里为空实现，具体清理逻辑可在派生类中按需重写
     virtual ~SemanticLidarData() {}
-
+ // 获取水平角度的函数，返回值类型为 `float`，通过将 `_header` 中对应 `Index::HorizontalAngle` 索引位置的元素进行类型重解释转换为 `float` 类型后返回
     float GetHorizontalAngle() const {
       return reinterpret_cast<const float &>(_header[Index::HorizontalAngle]);
     }
-
+ // 设置水平角度的函数，参数 `angle` 为要设置的角度值（`float` 类型）
     void SetHorizontalAngle(float angle) {
       std::memcpy(&_header[Index::HorizontalAngle], &angle, sizeof(uint32_t));
     }
-
+// 获取通道数量的函数，返回值类型为 `uint32_t`，直接返回 `_header` 向量中对应 `Index::ChannelCount` 索引位置的元素值
     uint32_t GetChannelCount() const {
       return _header[Index::ChannelCount];
     }
-
+ // 虚函数，用于重置内存相关操作，参数 `points_per_channel` 是一个存储每个通道点数的无符号32位整数向量，具体重置逻辑可能因不同派生类而有差异（因为是虚函数）
     virtual void ResetMemory(std::vector<uint32_t> points_per_channel) {
+        // 使用断言来确保当前对象的通道数量大于传入的 `points_per_channel` 向量的大小，可能是基于某种前置逻辑要求做的检查，若不满足条件则会触发调试断言失败（具体行为取决于 `DEBUG_ASSERT` 的实现）
       DEBUG_ASSERT(GetChannelCount() > points_per_channel.size());
+  // 使用 `std::memset` 函数将 `_header` 数据（从 `Index::SIZE` 位置开始）所指向的内存区域设置为 `0`，设置的字节数为 `sizeof(uint32_t) * GetChannelCount()`，也就是按照每个通道对应 `uint32_t` 大小的空间来进行内存清零操作
       std::memset(_header.data() + Index::SIZE, 0, sizeof(uint32_t) * GetChannelCount());
 
       uint32_t total_points = static_cast<uint32_t>(

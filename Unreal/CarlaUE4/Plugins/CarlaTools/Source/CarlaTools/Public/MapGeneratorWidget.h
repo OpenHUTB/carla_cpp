@@ -183,7 +183,7 @@ struct CARLATOOLS_API FMapGeneratorWidgetState
 };
 
 USTRUCT(BlueprintType)
-struct CARLATOOLS_API FMapGeneratorPreset
+struct CARLATOOLS_API FMapGeneratorPreset//定义一个结构体
 {
   GENERATED_USTRUCT_BODY()
 
