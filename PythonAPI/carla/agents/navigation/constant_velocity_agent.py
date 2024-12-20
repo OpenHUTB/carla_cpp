@@ -117,12 +117,15 @@ class ConstantVelocityAgent(BasicAgent):
             self._set_constant_velocity(self._target_speed)
 
         return control
-
+    #定义一个名为set_collision_sensor的方法，用于设置碰撞传感器
     def _set_collision_sensor(self):
+        #从self.world的get_blueprint_library中查找sensor.other.collision的蓝图，并将其赋值给blueprint
         blueprint = self._world.get_blueprint_library().find('sensor.other.collision')
+        #在世界中生成一个使用blueprint的碰撞传感器，设置其初始变换，并将其附加到self.vehicle上
         self._collision_sensor = self._world.spawn_actor(blueprint, carla.Transform(), attach_to=self._vehicle)
+        #让碰撞传感器开始监听，当发生碰撞事件时，调用self.stop_constant_velocity
         self._collision_sensor.listen(lambda event: self.stop_constant_velocity())
-
+    #定义一个名为destroy_sensor的方法，用于销毁传感器
     def destroy_sensor(self):
         if self._collision_sensor:
             self._collision_sensor.destroy()
