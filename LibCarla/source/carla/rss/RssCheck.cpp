@@ -268,52 +268,52 @@ RssCheck::RssCheck(float maximum_steering_angle,
 }
 
 RssCheck::~RssCheck() {}
-
+// 设置日志级别，对spdlog库和RssCheck类的内部_logger都生效
 void RssCheck::SetLogLevel(const spdlog::level::level_enum &log_level) {
-  spdlog::set_level(log_level);
-  _logger->set_level(log_level);
+  spdlog::set_level(log_level); // 设置全局spdlog日志级别
+  _logger->set_level(log_level); // 设置RssCheck类内部_logger的日志级别
 }
-
+// 设置地图日志级别，对ad::map和ad::rss::map模块的日志器生效
 void RssCheck::SetMapLogLevel(const spdlog::level::level_enum &map_log_level) {
-  ::ad::map::access::getLogger()->set_level(map_log_level);
-  ::ad::rss::map::getLogger()->set_level(map_log_level);
+  ::ad::map::access::getLogger()->set_level(map_log_level); // 设置ad::map模块的日志级别
+  ::ad::rss::map::getLogger()->set_level(map_log_level); // 设置ad::rss::map模块的日志级别
 }
-
+// 获取默认的自我车辆动态参数，这些参数用于RSS检查回调
 const ::ad::rss::world::RssDynamics &RssCheck::GetDefaultActorConstellationCallbackEgoVehicleDynamics() const {
   return _default_actor_constellation_callback_ego_vehicle_dynamics;
 }
-
+// 设置默认的自我车辆动态参数
 void RssCheck::SetDefaultActorConstellationCallbackEgoVehicleDynamics(
     const ::ad::rss::world::RssDynamics &ego_vehicle_dynamics) {
   _default_actor_constellation_callback_ego_vehicle_dynamics = ego_vehicle_dynamics;
 }
-
+// 获取默认的其他车辆动态参数，这些参数用于RSS检查回调
 const ::ad::rss::world::RssDynamics &RssCheck::GetDefaultActorConstellationCallbackOtherVehicleDynamics() const {
   return _default_actor_constellation_callback_other_vehicle_dynamics;
 }
-
+// 设置默认的其他车辆动态参数
 void RssCheck::SetDefaultActorConstellationCallbackOtherVehicleDynamics(
     const ::ad::rss::world::RssDynamics &other_vehicle_dynamics) {
   _default_actor_constellation_callback_other_vehicle_dynamics = other_vehicle_dynamics;
 }
-
+// 获取默认的行人动态参数
 const ::ad::rss::world::RssDynamics &RssCheck::GetDefaultActorConstellationCallbackPedestrianDynamics() const {
   return _default_actor_constellation_callback_pedestrian_dynamics;
 }
-
+// 设置默认的行人动态参数
 void RssCheck::SetDefaultActorConstellationCallbackPedestrianDynamics(
     const ::ad::rss::world::RssDynamics &pedestrian_dynamics) {
   _default_actor_constellation_callback_pedestrian_dynamics = pedestrian_dynamics;
 }
-
+// 获取道路边界模式
 const ::carla::rss::RoadBoundariesMode &RssCheck::GetRoadBoundariesMode() const {
   return _road_boundaries_mode;
 }
-
+// 设置道路边界模式
 void RssCheck::SetRoadBoundariesMode(const ::carla::rss::RoadBoundariesMode &road_boundaries_mode) {
   _road_boundaries_mode = road_boundaries_mode;
 }
-
+// 向RssCheck类添加路由目标，这些目标用于RSS检查
 void RssCheck::AppendRoutingTarget(::carla::geom::Transform const &routing_target) {
   _routing_targets_to_append.push_back(
       ::ad::map::point::createENUPoint(routing_target.location.x, -1. * routing_target.location.y, 0.));

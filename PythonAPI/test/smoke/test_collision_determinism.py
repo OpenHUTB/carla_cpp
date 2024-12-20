@@ -4,21 +4,30 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
+#从当前目录导入SmokeTest
 from . import SmokeTest
 
+#导入carla
 import carla
+#导入time
 import time
+#导入numpy并将其简称为np
 import numpy as np
+#导入filecmp
 import filecmp
+#导入shutil
 import shutil
+#导入os
 import os
 
 try:
     # python 3
-    from queue import Queue as Queue
+    #从queue模块导入Queue并将其命名为Queue
+    from  import Queue as Queue
     from queue import Empty
 except ImportError:
     # python 2
+    #从queue模块导入Queue并将其命名为Queue
     from Queue import Queue as Queue
     from Queue import Empty
 

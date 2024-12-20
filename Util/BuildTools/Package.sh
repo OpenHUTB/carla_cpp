@@ -8,13 +8,28 @@ DOC_STRING="Makes a packaged version of CARLA and other content packages ready f
 
 USAGE_STRING="Usage: $0 [-h|--help] [--config={Debug,Development,Shipping}] [--no-zip] [--clean-intermediate] [--packages=Name1,Name2,...] [--target-archive=] [--archive-sufix=]"
 
+# 定义一个变量PACKAGES，并将其值设置为"Carla"。
 PACKAGES="Carla"
+
+# 定义一个变量DO_TARBALL，并将其值设置为true。
 DO_TARBALL=true
+
+# 定义一个变量DO_CLEAN_INTERMEDIATE，并将其值设置为false。
 DO_CLEAN_INTERMEDIATE=false
+
+# 定义一个变量PROPS_MAP_NAME，并将其值设置为"PropsMap"。
 PROPS_MAP_NAME=PropsMap
+
+# 定义一个变量PACKAGE_CONFIG，并将其值设置为"Shipping"。
 PACKAGE_CONFIG=Shipping
+
+# 定义一个变量USE_CARSIM，并将其值设置为false。
 USE_CARSIM=false
+
+# 定义一个变量SINGLE_PACKAGE，并将其值设置为false。
 SINGLE_PACKAGE=false
+
+# 定义一个变量ARCHIVE_SUFIX，并将其值设置为空字符串。
 ARCHIVE_SUFIX=""
 
 OPTS=`getopt -o h --long help,config:,no-zip,clean-intermediate,carsim,packages:,python-version,target-archive:,archive-sufix:, -n 'parse-options' -- "$@"`

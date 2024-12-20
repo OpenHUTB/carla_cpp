@@ -37,27 +37,43 @@ using namespace eprosima::fastcdr::exception;
 #define std_msgs_msg_Float32_max_cdr_typesize 4ULL;
 #define std_msgs_msg_Float32_max_key_cdr_typesize 0ULL;
 
+// 定义std_msgs::msg::Float32类型的默认构造函数
+// 它会将成员变量m_data初始化为0.0
 std_msgs::msg::Float32::Float32()
 {
     m_data = 0.0;
 }
 
+// 定义std_msgs::msg::Float32类型的析构函数，这里析构函数体为空，
+// 通常如果类中没有动态分配的资源需要释放等操作，析构函数可以为空
 std_msgs::msg::Float32::~Float32()
 {
 }
 
+// 定义std_msgs::msg::Float32类型的拷贝构造函数
+// 它接受一个同类型的常量引用x作为参数，
+// 作用是用传入对象x的成员变量m_data的值来初始化当前正在构造的对象的m_data成员变量，
+// 实现将一个已有对象的数据复制到新创建的同类型对象中
 std_msgs::msg::Float32::Float32(
         const Float32& x)
 {
     m_data = x.m_data;
 }
 
+// 定义std_msgs::msg::Float32类型的移动构造函数
+// 它接受一个同类型的右值引用x作为参数，且声明为noexcept（表示不会抛出异常），
+// 作用也是将传入对象x的成员变量m_data的值赋给当前正在构造的对象的m_data成员变量，
+// 移动构造函数常用于优化对象资源的转移，比如当涉及到临时对象资源的高效获取时会用到
 std_msgs::msg::Float32::Float32(
         Float32&& x) noexcept
 {
     m_data = x.m_data;
 }
 
+// 定义std_msgs::msg::Float32类型的赋值运算符重载函数
+// 它接受一个同类型的常量引用x作为参数，
+// 作用是将当前对象的成员变量m_data赋值为传入对象x的m_data的值，
+// 然后返回当前对象的引用，以便支持连续赋值操作，例如 a = b = c这种形式
 std_msgs::msg::Float32& std_msgs::msg::Float32::operator =(
         const Float32& x)
 {
