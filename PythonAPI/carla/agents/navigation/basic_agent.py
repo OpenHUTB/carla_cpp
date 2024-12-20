@@ -294,37 +294,54 @@ class BasicAgent:
             else:
                 return TrafficLightDetectionResult(True, self._last_traffic_light)
 
+        #获取自行车位置，通过指定方法从车辆对象获取
         ego_vehicle_location = self._vehicle.get_location()
+        #根据自行车位置获取对应的路点，借助地图对象的相关方法
         ego_vehicle_waypoint = self._map.get_waypoint(ego_vehicle_location)
 
+        #开始遍历交通信号灯列表
         for traffic_light in lights_list:
+            #如果交通信号灯的id在self.light_map中
             if traffic_light.id in self._lights_map:
+                #将trigger_wp设置为self.lights_map中对应交通信号灯id的值
                 trigger_wp = self._lights_map[traffic_light.id]
+            #否则
             else:
+                #获取交通信号灯的trigger_location
                 trigger_location = get_trafficlight_trigger_location(traffic_light)
+                #根据出发位置获取waypoint并赋值给trigger_wap
                 trigger_wp = self._map.get_waypoint(trigger_location)
+                #将self.lights_map中对应交通信号灯id的值设置为trigger_wp
                 self._lights_map[traffic_light.id] = trigger_wp
-
+            #如果触发trigger_wp转换后的位置与自车位置(ego_vehicle_location)的距离大于最大距离
             if trigger_wp.transform.location.distance(ego_vehicle_location) > max_distance:
+                #跳过当前循环
                 continue
-
+            #如果触发trigger_wp转换后的位置与自车位置(ego_vehicle_location)的距离大于最大距离
             if trigger_wp.road_id != ego_vehicle_waypoint.road_id:
+                #跳过当前循环
                 continue
-
+            #获取ego_vehicle_waypoint变换后的forward vector并赋值给ve_dir
             ve_dir = ego_vehicle_waypoint.transform.get_forward_vector()
+            #获取trgger_wp变换后的forward vector并赋值给wp_dir
             wp_dir = trigger_wp.transform.get_forward_vector()
+            #计算ve_dir和wp_dir的点积并赋值给dot_ve_wp
             dot_ve_wp = ve_dir.x * wp_dir.x + ve_dir.y * wp_dir.y + ve_dir.z * wp_dir.z
-
+            #如果点积小于0
             if dot_ve_wp < 0:
+                #跳过当前循环
                 continue
-
+            #如果traffic_light的状态不等于红色
             if traffic_light.state != carla.TrafficLightState.Red:
+                #跳过当前循环
                 continue
-
+            #如果触发路点变换后的位置与自车变换后的位置在最大距离内且角度在[90]度范围内
             if is_within_distance(trigger_wp.transform, self._vehicle.get_transform(), max_distance, [0, 90]):
+                #将当前交通信号灯设置为最后检测到的交通信号灯
                 self._last_traffic_light = traffic_light
+                #返回交通信号灯检测结果为True以及对应的交通信号灯对象
                 return TrafficLightDetectionResult(True, traffic_light)
-
+        #返回交通信号灯检测结果为False以及None
         return TrafficLightDetectionResult(False, None)
 
     def _vehicle_obstacle_detected(self, vehicle_list=None, max_distance=None, up_angle_th=90, low_angle_th=0, lane_offset=0):
