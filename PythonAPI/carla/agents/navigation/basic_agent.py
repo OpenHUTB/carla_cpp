@@ -130,12 +130,15 @@ class BasicAgent:
         self._target_speed = speed
         self._local_planner.set_speed(speed)
 
+    #定义一个函数：接收参数
     def follow_speed_limits(self, value=True):
         """
+        #描述函数功能：如果激活agent将根据速度限制动态改变目标速度
         If active, the agent will dynamically change the target speed according to the speed limits
-
+            #说明value是一个布尔类型参数用于决定是否激活这个行为
             :param value (bool): whether or not to activate this behavior
         """
+     #调用self._local_planner对象的follow_speed_limits方法将value接收到的信息传递进去
         self._local_planner.follow_speed_limits(value)
 
     def get_local_planner(self):
