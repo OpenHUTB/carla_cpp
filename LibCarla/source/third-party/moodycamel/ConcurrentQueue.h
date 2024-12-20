@@ -2914,7 +2914,7 @@ private:
 
 
   //////////////////////////////////
-  // Block pool manipulation
+  // 区块池操作
   //////////////////////////////////
 
   void populate_initial_block_list(size_t blockCount)
