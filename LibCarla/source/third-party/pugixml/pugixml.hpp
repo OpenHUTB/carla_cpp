@@ -124,7 +124,7 @@
 
 namespace pugi
 {
-	// Character type used for all internal storage and operations; depends on PUGIXML_WCHAR_MODE
+	// 用于所有内部存储和操作的字符类型;取决于 PUGIXML_WCHAR_MODE
 	typedef PUGIXML_CHAR char_t;
 
 #ifndef PUGIXML_NO_STL
