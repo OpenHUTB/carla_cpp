@@ -15,7 +15,7 @@ namespace MeshReconstruction
 //这段代码定义了一个名为 Cube 的类这段代码定义了一个名为 Cube 的类
   class Cube
   {
-    Vec3 pos[8];
+    Vec3 pos[8];// 存储立方体的8个顶点的位置。
     double sdf[8];
 
     Vec3 LerpVertex(double isoLevel, int i1, int i2) const;
