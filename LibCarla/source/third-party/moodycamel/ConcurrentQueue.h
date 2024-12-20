@@ -1,4 +1,4 @@
-﻿// 提供多生产者、多消费者无锁队列的 C++ 11实现。
+// 提供多生产者、多消费者无锁队列的 C++ 11实现。
 // 这里提供了一个概述，包括基准测试结果:
 //     http://moodycamel.com/blog/2014/a-fast-general-purpose-lock-free-queue-for-c++
 // 完整的设计也有详细的描述：
@@ -369,10 +369,11 @@ static const size_t MAX_SUBQUEUE_SIZE = details::const_numeric_max<size_t>::valu
 //    3) 如果仍然无法使用，创建一个 token，并使用它来调用单项方法
 //    4) 如果以上方法都不可用，使用队列的单参数方法
 // 需要注意的是，不要随意创建 tokens —— 理想情况下，每个线程（每种类型）应该最多只有一个 token。
-
+// 前置声明结构体ProducerToken，通常用于表示生产者相关的令牌信息，具体定义后续给出
 struct ProducerToken;
+// 前置声明结构体ConsumerToken，通常用于表示消费者相关的令牌信息，具体定义后续给出struct ConsumerToken;
 struct ConsumerToken;
-
+/ 模板类ConcurrentQueue的前置声明，它是一个并发队列模板类，具体类型参数为T（表示队列中存储的数据类型）和Traits（可能表示一些队列相关的特性类型），具体定义后续给出
 template<typename T, typename Traits> class ConcurrentQueue;
 template<typename T, typename Traits> class BlockingConcurrentQueue;
 class ConcurrentQueueTests;
@@ -380,19 +381,23 @@ class ConcurrentQueueTests;
 
 namespace details
 {
+// 指向下一个相关节点的指针，可能用于构建某种链表结构来管理生产者相关信息
   struct ConcurrentQueueProducerTypelessBase
   {
     ConcurrentQueueProducerTypelessBase* next;
+// 原子类型的布尔值，用于标记是否处于非活动状态，常用于多线程环境下的状态标识
     std::atomic<bool> inactive;
+// 指向ProducerToken的指针，关联到对应的生产者令牌，用于标识和操作生产者相关权限等
     ProducerToken* token;
-
+// 默认构造函数，用于初始化成员变量
     ConcurrentQueueProducerTypelessBase()
       : next(nullptr), inactive(false), token(nullptr)
     {
     }
   };
-
+// 模板结构体_hash_32_or_64，根据模板参数use32的值来特化不同的哈希函数逻辑
   template<bool use32> struct _hash_32_or_64 {
+// 静态内联函数，用于计算32位数据的哈希值，接受一个32位无符号整数作为输入参数h
     static inline std::uint32_t hash(std::uint32_t h)
     {
       
@@ -406,7 +411,9 @@ namespace details
       return h ^ (h >> 16);
     }
   };
+// 针对use32为1（即处理32位情况）的模板结构体_hash_32_or_64的特化版本，用于计算64位数据的哈希值
   template<> struct _hash_32_or_64<1> {
+// 静态内联函数，用于计算64位数据的哈希值，接受一个64位无符号整数作为输入参数h
     static inline std::uint64_t hash(std::uint64_t h)
     {
       h ^= h >> 33;
@@ -416,15 +423,19 @@ namespace details
       return h ^ (h >> 33);
     }
   };
+// 根据模板参数size的大小来选择继承_hash_32_or_64的特化版本，用于根据实际数据大小（以字节为单位）选择
   template<std::size_t size> struct hash_32_or_64 : public _hash_32_or_64<(size > 4)> {  };
-
+// 静态内联函数，用于对线程ID进行哈希计算，接受一个thread_id_t类型的线程ID作为参数
   static inline size_t hash_thread_id(thread_id_t id)
   {
+// 静态断言，确保线程ID的大小在平台上最多为64位，否则可能不符合此函数的预期处理范围
     static_assert(sizeof(thread_id_t) <= 8, "Expected a platform where thread IDs are at most 64-bit values");
+// 调用hash_32_or_64的哈希函数对转换后的线程ID进行哈希计算，并将结果转换为size_t类型返回
+        // 其中thread_id_converter<thread_id_t>::prehash(id)是对线程ID进行预处理的操作
     return static_cast<size_t>(hash_32_or_64<sizeof(thread_id_converter<thread_id_t>::thread_id_hash_t)>::hash(
       thread_id_converter<thread_id_t>::prehash(id)));
   }
-
+// 模板函数，用于比较两个无符号整数类型的值，判断是否满足循环小于的关系
   template<typename T>
   static inline bool circular_less_than(T a, T b)
   {
@@ -432,23 +443,28 @@ namespace details
 #pragma warning(push)
 #pragma warning(disable: 4554)
 #endif
+// 静态断言，确保传入的类型T是无符号整数类型，因为此函数只适用于这种类型的比较
     static_assert(std::is_integral<T>::value && !std::numeric_limits<T>::is_signed, "circular_less_than is intended to be used only with unsigned integer types");
+// 通过计算差值并与最大值的一半比较来判断是否循环小于，返回比较结果
     return static_cast<T>(a - b) > static_cast<T>(static_cast<T>(1) << static_cast<T>(sizeof(T) * CHAR_BIT - 1));
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
   }
-
+// 模板函数，用于将指针按照指定类型U的对齐要求进行对齐调整，接受一个char*类型的指针作为参数
   template<typename U>
   static inline char* align_for(char* ptr)
   {
+// 获取类型U的对齐要求（以字节为单位）
     const std::size_t alignment = std::alignment_of<U>::value;
+// 通过计算调整指针位置，使其满足指定的对齐要求，计算公式确保指针按照对齐字节数进行对齐
     return ptr + (alignment - (reinterpret_cast<std::uintptr_t>(ptr) % alignment)) % alignment;
   }
-
+// 模板函数，用于将一个无符号整数类型的值向上取整到最近的2的幂次方
   template<typename T>
   static inline T ceil_to_pow_2(T x)
   {
+// 静态断言，确保传入的类型T是无符号整数类型
     static_assert(std::is_integral<T>::value && !std::numeric_limits<T>::is_signed, "ceil_to_pow_2 is intended to be used only with unsigned integer types");
 
     // Adapted from http://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
@@ -462,31 +478,35 @@ namespace details
     ++x;
     return x;
   }
-
+// 模板函数，用于在宽松内存序
   template<typename T>
   static inline void swap_relaxed(std::atomic<T>& left, std::atomic<T>& right)
   {
+// 先将左边原子变量的值以宽松内存序读取出来，存储到临时变量temp中
     T temp = std::move(left.load(std::memory_order_relaxed));
+// 将右边原子变量的值以宽松内存序读取出来，存储到左边原子变量中
     left.store(std::move(right.load(std::memory_order_relaxed)), std::memory_order_relaxed);
+// 再将临时变量temp的值以宽松内存序存储到右边原子变量中，完成交换操作
     right.store(std::move(temp), std::memory_order_relaxed);
   }
-
+// 模板函数，返回传入的常量引用参数本身
   template<typename T>
   static inline T const& nomove(T const& x)
   {
     return x;
   }
-
+// 模板结构体nomove_if，根据模板参数Enable的值来决定如何处理传入的参数
   template<bool Enable>
   struct nomove_if
   {
+// 当Enable为true时，模板函数eval直接返回传入的常量引用参数本身
     template<typename T>
     static inline T const& eval(T const& x)
     {
       return x;
     }
   };
-
+// 针对Enable为false的模板结构体nomove_if的特化版本
   template<>
   struct nomove_if<false>
   {
@@ -497,7 +517,7 @@ namespace details
       return std::forward<U>(x);
     }
   };
-
+// 模板函数，用于安全地解引用迭代器it，返回迭代器指向的元素的引用
   template<typename It>
   static inline auto deref_noexcept(It& it) MOODYCAMEL_NOEXCEPT -> decltype(*it)
   {
@@ -507,20 +527,26 @@ namespace details
 #if defined(__clang__) || !defined(__GNUC__) || __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)
   template<typename T> struct is_trivially_destructible : std::is_trivially_destructible<T> { };
 #else
+// 在其他编译器条件下，模板结构体is_trivially_destructible通过判断类型T是否具有平凡析构器
   template<typename T> struct is_trivially_destructible : std::has_trivial_destructor<T> { };
 #endif
 
 #ifdef MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED
 #ifdef MCDBGQ_USE_RELACY
+// 如果定义了MCDBGQ_USE_RELACY宏，使用RelacyThreadExitListener类型定义ThreadExitListener
   typedef RelacyThreadExitListener ThreadExitListener;
   typedef RelacyThreadExitNotifier ThreadExitNotifier;
 #else
+// 如果没有定义MCDBGQ_USE_RELACY宏，定义一个结构体ThreadExitListener
   struct ThreadExitListener
   {
+// 定义一个函数指针类型callback_t，指向的函数接受一个void*类型的参数
     typedef void (*callback_t)(void*);
+// 指向具体的回调函数，当线程退出时会调用此函数
     callback_t callback;
+// 用于传递给回调函数的用户数据指针，用户可以通过此指针传递自定义的数据给回调函数
     void* userData;
-
+// 指向下一个ThreadExitListener节点的指针，用于构建链表结构，可能用于管理多个监听者
     ThreadExitListener* next;    // 保留供 ThreadExitNotifier 使用
 
   };
@@ -533,6 +559,8 @@ namespace details
     // 将监听器添加到订阅者列表中
     static void subscribe(ThreadExitListener* listener)
     {
+// 获取单例实例的引用，通过instance函数实现单例模式获取唯一的ThreadExitNotifier对象实例
+            auto& tlsInst = instance();
       auto& tlsInst = instance();
       listener->next = tlsInst.tail;
       tlsInst.tail = listener;
@@ -541,13 +569,18 @@ namespace details
     // 从订阅者列表中移除监听器
     static void unsubscribe(ThreadExitListener* listener)
     {
+// 获取单例实例的引用
       auto& tlsInst = instance();
+// 用于指向当前监听器节点的前一个节点的指针，初始化为指向链表尾部指针的地址
       ThreadExitListener** prev = &tlsInst.tail;
+// 遍历链表，查找要移除的监听器节点
       for (auto ptr = tlsInst.tail; ptr != nullptr; ptr = ptr->next) {
         if (ptr == listener) {
+// 如果找到要移除的监听器节点，更新前一个节点的next指针
           *prev = ptr->next;
           break;
         }
+// 更新前一个节点的指针到当前节点的next，继续遍历链表
         prev = &ptr->next;// 更新前一个节点的指针到当前节点的 next
       }
     }
@@ -557,11 +590,13 @@ namespace details
     ThreadExitNotifier() : tail(nullptr) { }
     ThreadExitNotifier(ThreadExitNotifier const&) MOODYCAMEL_DELETE_FUNCTION;
     ThreadExitNotifier& operator=(ThreadExitNotifier const&) MOODYCAMEL_DELETE_FUNCTION;
-
+// 析构函数，在线程退出时会被调用，用于遍历链表并调用每个监听器的回调函数
     ~ThreadExitNotifier()
     {
       // 该线程即将退出，通知所有人！
+// 断言当前对象是单例实例，确保析构函数的正确调用
       assert(this == &instance() && "If this assert fails, you likely have a buggy compiler! Change the preprocessor conditions such that MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED is no longer defined.");
+// 遍历链表，依次调用每个监听器的回调函数，传递相应的用户数据指针
       for (auto ptr = tail; ptr != nullptr; ptr = ptr->next) {
         ptr->callback(ptr->userData);
       }
@@ -573,14 +608,15 @@ namespace details
       static thread_local ThreadExitNotifier notifier;
       return notifier;
     }
-
+// 指向链表尾部的指针，用于管理ThreadExitListener链表，构建监听者列表
   private:
     ThreadExitListener* tail;
   };
 #endif
 #endif
-
+// 模板结构体static_is_lock_free_num
   template<typename T> struct static_is_lock_free_num { enum { value = 0 }; };
+// 针对signed char类型的特化版本
   template<> struct static_is_lock_free_num<signed char> { enum { value = ATOMIC_CHAR_LOCK_FREE }; };
   template<> struct static_is_lock_free_num<short> { enum { value = ATOMIC_SHORT_LOCK_FREE }; };
   template<> struct static_is_lock_free_num<int> { enum { value = ATOMIC_INT_LOCK_FREE }; };
