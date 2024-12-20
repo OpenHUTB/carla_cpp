@@ -14,7 +14,7 @@
 #ifndef HEADER_PUGICONFIG_HPP
 #define HEADER_PUGICONFIG_HPP
 
-// Uncomment this to enable wchar_t mode
+// 取消注释以启用 wchar_t 模式
 // #define PUGIXML_WCHAR_MODE
 
 // Uncomment this to enable compact mode
