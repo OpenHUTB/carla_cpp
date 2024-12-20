@@ -385,30 +385,59 @@ class CodeFormat:
             cprint("[ERROR] Failed to run 'git diff-index --quiet HEAD --' for " + gitRepo, "red")
         return False
 
+   import subprocess  # 导入subprocess模块，用于执行外部命令
+from some_module import cprint  # 假设cprint是从某个模块导入的，用于打印彩色文本（需要替换为实际模块）
+
+class YourClass:  # 假设这些方法属于一个类，需要定义类名（这里用YourClass作为示例）
+    # 其他类属性和方法...
+
+    # 定义一个方法，用于在指定的Git仓库中刷新索引
     def gitUpdateIndexRefresh(self, gitRepo):
         try:
-            gitProcess = subprocess.Popen(["git", "update-index", "-q", "--ignore-submodules", "--refresh"],
-                                          stdin=subprocess.PIPE,
-                                          stdout=subprocess.PIPE,
-                                          stderr=subprocess.PIPE,
-                                          cwd=gitRepo)
+            # 使用subprocess.Popen执行git命令，参数包括'git', 'update-index', '-q', '--ignore-submodules', '--refresh'
+            # stdin, stdout, stderr均设置为PIPE以便捕获输入输出和错误
+            # cwd参数设置为git仓库的路径
+            gitProcess = subprocess.Popen(
+                ["git", "update-index", "-q", "--ignore-submodules", "--refresh"],
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=gitRepo
+            )
+            # 使用communicate()方法等待进程完成，并获取输出和错误（这里将输出和错误忽略）
             _, _ = gitProcess.communicate()
+            # 如果git进程的返回码为0，表示命令成功执行
             if gitProcess.returncode == 0:
                 return True
         except OSError:
+            # 如果捕获到OSError异常，表示git命令执行失败（可能是git未安装或路径不正确）
+            # 使用cprint打印红色错误信息
             cprint("[ERROR] Failed to run 'git update-index -q --ignore-submodules --refresh' for " + gitRepo, "red")
+        # 如果命令执行失败或发生异常，返回False
         return False
 
+    # 定义一个方法，用于验证代码格式化器的版本
     def verifyFormatterVersion(self):
+        # 遍历所有的代码格式化器实例
         for formatterInstance in self.codeFormatterInstances:
+            # 如果当前格式化器实例有输入文件，则调用其verifyFormatterVersion方法验证版本
             if len(formatterInstance.inputFiles) > 0:
                 formatterInstance.verifyFormatterVersion()
 
+    # 定义一个方法，用于打印当前模式（验证模式或格式化模式）
     def printMode(self):
+        # 根据self.args.verify的值判断当前模式
         if self.args.verify:
+            # 如果是验证模式，则打印"VERIFY MODE"并使用粗体属性
             cprint("VERIFY MODE", attrs=["bold"])
         else:
+            # 如果是格式化模式，则打印"FORMAT MODE"并使用粗体属性
             cprint("FORMAT MODE", attrs=["bold"])
+
+# 注意：
+# 1. 需要将'YourClass'替换为实际的类名。
+# 2. 需要确保'cprint'函数是从正确的模块导入的，或者替换为其他打印彩色文本的方法。
+# 3. 'self.codeFormatterInstances'和'self.args'应该是类的属性，分别存储代码格式化器实例和命令行参数。
 
     def processFiles(self):
         for formatterInstance in self.codeFormatterInstances:
