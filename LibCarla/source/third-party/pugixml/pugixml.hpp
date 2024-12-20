@@ -1284,7 +1284,7 @@ namespace pugi
 		typedef void (*unspecified_bool_type)(xpath_node***);
 
 	public:
-		// Default constructor; constructs empty XPath node
+		//默认构造函数;构造空 XPath 节点
 		xpath_node();
 
 		// Construct XPath node from XML node/attribute
