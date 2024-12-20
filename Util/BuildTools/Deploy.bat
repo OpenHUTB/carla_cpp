@@ -7,15 +7,15 @@ rem ============================================================================
 
 set REPLACE_LATEST=true
 set AWS_COPY=aws s3 cp
-
+#定义用于执行AWS S3复制操作的命令字符串
 rem ==============================================================================
 rem -- Parse arguments -----------------------------------------------------------
 rem ==============================================================================
 
 set DOC_STRING=Upload latest build to S3
-
+#定义文档字符串，用于描述脚本的主要功能，即上传最新构建到S3
 set USAGE_STRING="Usage: $0 [-h|--help] [--replace-latest] [--dry-run]"
-
+#定义使用说明字符串，展示脚本的正确使用方式
 :arg-parse
 if not "%1"=="" (
     if "%1"=="--replace-latest" (
@@ -40,7 +40,7 @@ rem Get repository version
 for /f %%i in ('git describe --tags --dirty --always') do set REPOSITORY_TAG=%%i
 if not defined REPOSITORY_TAG goto error_carla_version
 echo REPOSITORY_TAG = !REPOSITORY_TAG!
-
+#如果版本号变量未定义，跳转到error_carla_version标签处处理错误情况
 rem Last package data
 set CARLA_DIST_FOLDER=%~dp0%\Build\UE4Carla
 set PACKAGE=CARLA_%REPOSITORY_TAG%.zip
@@ -114,16 +114,17 @@ echo Success!
 :success
     echo.
     goto good_exit
-
+#成功结束的标签，输出空行后跳转到good_exit标签处结束脚本并返回成功码0
 :error_carla_version
     echo.
     echo %FILE_N% [ERROR] Carla Version is not set
     goto bad_exit
-
+#处理Carla版本未设置的错误情况，输出错误信息后跳转到bad_exit标签处结束脚本并返回错误码1
 :good_exit
     endlocal
     exit /b 0
-
+#正常结束脚本的标签，结束局部变量作用域并以成功码0退出脚本
 :bad_exit
     endlocal
     exit /b 1
+#错误结束脚本的标签，结束局部变量作用域并以错误码1退出脚本

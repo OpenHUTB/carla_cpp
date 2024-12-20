@@ -69,6 +69,7 @@ if (LIBCARLA_BUILD_DEBUG)
   install(TARGETS carla_pytorch_debug DESTINATION lib OPTIONAL)#命令来指定调试版本库的安装目标
 #命令来设置调试版本库的编译属性
   set_target_properties(carla_pytorch_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
-  target_compile_definitions(carla_pytorch_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
+  target_compile_definitions(carla_pytorch_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)# 为目标 carla_pytorch_debug 添加编译定义
+
 
 endif()
