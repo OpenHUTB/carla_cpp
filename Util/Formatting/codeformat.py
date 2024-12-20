@@ -84,11 +84,11 @@ class CodeFormatter:
             print("")
             # 打印空行以分隔输出内容
 
-    def formatFile(self, fileName):
-        commandList = [self.command]
-        commandList.extend(self.formatCommandArguments)
-        commandList.append(fileName)
-        try:
+    def formatFile(self, fileName):#这个函数的目的是执行一个命令（由self.command和self.formatCommandArguments组成）对指定的fileName进行操作。
+        commandList = [self.command]#创建了一个名为commandList的列表，首先将self.command添加到列表中。这是构建要执行的命令的开始部分。
+        commandList.extend(self.formatCommandArguments)#使用extend方法将self.formatCommandArguments添加到commandList中。extend方法用于将一个可迭代对象（如列表）中的元素逐个添加到另一个列表中，这样就逐步构建了完整的命令参数列表。
+        commandList.append(fileName)#将fileName添加到commandList中，至此，commandList包含了要执行的完整命令及其参数。
+        try:#使用subprocess.check_output来执行commandList中的命令。stderr = subprocess.STDOUT表示将标准错误输出重定向到标准输出。如果命令执行成功（没有引发CalledProcessError异常），则在第93行打印[OK]加上文件名，表示操作成功。
             subprocess.check_output(commandList, stderr=subprocess.STDOUT)
             print("[OK] " + fileName)
         except subprocess.CalledProcessError as e:
@@ -96,50 +96,50 @@ class CodeFormatter:
             return True
         return False
 
-    def performGitDiff(self, fileName, verifyOutput):
-        try:
+    def performGitDiff(self, fileName, verifyOutput):#这个函数的目的是对指定的fileName执行git diff操作，并根据操作结果和是否提供verifyOutput进行相应处理。
+        try:#使用try - except块来执行git diff操作并处理可能的错误。
             diffProcess = subprocess.Popen(
                 ["git", "diff", "--color=always", "--exit-code", "--no-index", "--", fileName, "-"],
                                            stdin=subprocess.PIPE,
                                            stdout=subprocess.PIPE,
                                            stderr=subprocess.PIPE)
-            diffOutput, _ = diffProcess.communicate(verifyOutput)
+            diffOutput, _ = diffProcess.communicate(verifyOutput)#使用diffProcess.communicate方法向进程发送verifyOutput（如果有的话）并获取输出。这里将输出赋值给diffOutput（假设_是一个不需要使用的占位符，表示忽略stderr的输出内容）。
             if diffProcess.returncode == 0:
-                diffOutput = ""
+                diffOutput = ""#如果diffProcess的返回码为0，表示git diff操作成功（根据--exit - code参数的含义），则将diffOutput设置为空字符串。
         except OSError:
             cprint("[ERROR] Failed to run git diff on " + fileName, "red")
-            return (True, "")
+            return (True, "")#函数返回一个元组，第一个元素是True（这里可能存在逻辑问题，因为前面的操作并没有明确表明总是返回True，可能需要根据实际情况调整），第二个元素是""（可能是根据前面的逻辑，如果git diff成功则diffOutput为空字符串）。
         return (False, diffOutput)
 
     def verifyFile(self, fileName, printDiff):## 创建一个命令列表，以self.command开头，添加self.verifyCommandArguments中的元素，最后添加fileName
-        commandList = [self.command]
+        commandList = [self.command]#创建了一个初始的命令列表commandList，它以self.command作为起始元素。
         commandList.extend(self.verifyCommandArguments)
-        commandList.append(fileName)
+        commandList.append(fileName)#将fileName添加到commandList中。
         try:
             verifyOutput = subprocess.check_output(commandList, stderr=subprocess.STDOUT)# 使用subprocess.check_output执行命令列表中的命令，并获取输出
-        except subprocess.CalledProcessError as e:
-            cprint("[ERROR] " + fileName + " (" + e.output.rstrip('\r\n') + ")", "red")
+        except subprocess.CalledProcessError as e:#如果执行命令时出现subprocess.CalledProcessError异常（即命令执行失败），则执行以下操作。
+            cprint("[ERROR] " + fileName + " (" + e.output.rstrip('\r\n') + ")", "red")#使用cprint（假设是自定义的打印函数，可能用于彩色输出）输出错误信息，包括文件名和错误输出内容（去除末尾的\r\n），颜色为红色。
             return True
 
-        diffOutput = ""
+        diffOutput = ""#初始化diffOutput为空字符串。
         if self.verifyOutputIsDiff:
             diffOutput = verifyOutput
         else:
             status, diffOutput = self.performGitDiff(fileName, verifyOutput)
-            if status:
+            if status:#如果status为True，则直接返回True。
                 return True
 
-        if diffOutput != "":
-            cprint("[NOT OK] " + fileName, "red")
-            if printDiff:
+        if diffOutput != "":#如果diffOutput不为空字符串，则执行以下操作。
+            cprint("[NOT OK] " + fileName, "red")#使用cprint输出[NOT OK]和文件名，颜色为红色，表示文件验证未通过。
+            if printDiff:#如果printDiff为True，则打印diffOutput（去除末尾的\r\n）。然后在136行返回True。
                 print(diffOutput.rstrip('\r\n'))
             return True
 
-        print("[OK] " + fileName)
+        print("[OK] " + fileName)#如果前面的条件都不满足，则打印[OK]和文件名，表示文件验证通过。然后在139行返回False。
         return False
 
 
-class CodeFormatterClang(CodeFormatter):
+class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的类，它继承自CodeFormatter类（虽然代码中没有明确显示CodeFormatter类的定义，但从_init_方法中调用父类的_init_可以推断）。这个类主要是用于处理与clang - format相关的代码格式化功能。
     CLANG_FORMAT_FILE = ".clang-format"
     CHECKED_IN_CLANG_FORMAT_FILE = "clang-format"
     CODE_FORMAT_IGNORE_FILE = ".codeformatignore"
