@@ -15,7 +15,7 @@ FbxSurfacePhong* gMatBlock;
 
 #ifdef IOS_REF
     #undef  IOS_REF
-    #define IOS_REF (*(gSdkManager->GetIOSettings()))
+    #define IOS_REF (*(gSdkManager->GetIOSettings()))// 定义IOS_REF为gSdkManager的IO设置
 #endif
 
 // 创建一个材质并返回该材质
@@ -24,7 +24,7 @@ FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
     // Create material
     // 使用 FbxSurfacePhong 类的静态方法 Create 为指定场景创建一个名为 name 的材质
     FbxSurfacePhong* lMaterial = FbxSurfacePhong::Create(pScene, name);
-    return lMaterial;
+    return lMaterial;// 返回创建的材质
 }
 // 查找字符串函数，检查name是否包含str
 bool Find(const char *name, const char *str)
@@ -34,17 +34,17 @@ bool Find(const char *name, const char *str)
     size_t lenStr = strlen(str);
     // 如果长度不满足条件，返回 false
     if (lenName == 0 || lenStr == 0 || lenStr > lenName) return false;
-    std::string strName(name);
-    std::string strSub(str);
+    std::string strName(name);// 将name转换为std::string类型
+    std::string strSub(str);// 将str转换为std::string类型
     // 在 strName 中查找 strSub，如果找到返回 true，否则返回 false
     return (strName.find(strSub)!= std::string::npos);
 }
 // 设置节点材质的函数
 void SetMaterials(FbxNode* pNode)
 {
-    if (!pNode) return;
+    if (!pNode) return;// 将str转换为std::string类型
     // 初始化使用的材质为 gMatBlock
-    FbxSurfacePhong* mat = gMatBlock;
+    FbxSurfacePhong* mat = gMatBlock;// 将str转换为std::string类型
     // 仅对网格节点进行操作
     FbxMesh* lMesh = pNode->GetMesh();
     if(lMesh)
