@@ -1,67 +1,104 @@
 #!/usr/bin/env python
+# 这是一个被称为“shebang”（也叫“hashbang”）的特殊注释行，用于指定该Python脚本的解释器路径。
+# 在类Unix系统（如Linux、macOS等）中，当脚本文件具有可执行权限时，通过这行指定的解释器来运行该脚本。
+# 这里指定使用系统环境变量中找到的 `python` 解释器来执行脚本内容，如果系统中安装了多个Python版本，会根据环境变量的配置来选择对应的解释器。
 
 # Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB).
 # Copyright (c) 2019-2020 Intel Corporation
-#
+# 这部分是版权声明信息，指出该代码的版权归属情况。表明该代码的版权在2019年归属于巴塞罗那自治大学（Universitat Autonoma de Barcelona，简称UAB）的计算机视觉中心（Computer Vision Center，简称CVC），
+# 以及在2019 - 2020年归属于英特尔公司（Intel Corporation），意味着未经授权不能随意使用、修改或分发该代码，需遵循相应的版权规则。
+
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
+# 这是关于代码许可协议的说明，告知使用者该代码是依据麻省理工学院（MIT）许可协议进行授权的。
+# 同时提供了获取该许可协议具体内容的链接，使用者可以通过访问指定的网址（https://opensource.org/licenses/MIT）查看详细的许可条款，
+# 例如在符合哪些条件下可以对代码进行再分发、修改、使用等情况。
 
 # Allows controlling a vehicle with a keyboard. For a simpler and more
 # documented example, please take a look at tutorial.py.
+# 这是一段对该脚本功能的简要描述性注释，说明这个Python脚本的主要作用是实现通过键盘来控制一辆车辆（在对应的模拟环境或者特定应用场景中）。
+# 并且还提示使用者，如果想要查看一个更简单且有更详细文档注释的示例代码，可以去查看名为 `tutorial.py` 的文件，这可能是项目中提供的用于学习和参考的示例代码，有助于更好地理解相关功能的实现方式。
 
 """
 Welcome to CARLA manual control.
+# 欢迎来到CARLA手动控制相关说明
+# 以下是关于在CARLA环境中进行手动控制操作时各个按键对应的功能介绍
+
 
 Use ARROWS or WASD keys for control.
+# 使用方向键（ARROWS）或者W、A、S、D键来进行控制操作
 
-    W            : throttle
-    S            : brake
-    AD           : steer
-    Q            : toggle reverse
-    Space        : hand-brake
-    P            : toggle autopilot
+    W            : throttle     # 'W'键的功能，按下该键用于控制车辆加速（相当于踩油门，throttle在这里表示给车辆提供动力使车辆加速前进的操作）
+    S            : brake        # 'S'键的功能，按下该键用于控制车辆刹车（使车辆减速，brake表示启动刹车机制来降低车速）
+    AD           : steer        # 'A'键和 'D'键的功能，按下这两个键用于控制车辆转向（steer表示改变车辆行驶的方向，'A'键通常使车辆向左转向，'D'键通常使车辆向右转向）
+    Q            : toggle reverse      # 'Q'键的功能，按下该键用于切换车辆的倒车状态（toggle表示切换，reverse表示倒车，即通过该按键可以在前进和倒车两种行驶状态之间切换）
+    Space        : hand-brake   # 'Space'键（空格键）的功能，按下该键用于拉起手刹（hand-brake表示手刹，操作后可以使车辆保持静止状态，防止车辆滑动等）
+    P            : toggle autopilot    # 'P'键的功能，按下该键用于切换自动驾驶模式（toggle表示切换，autopilot即自动驾驶，按下该键可以在手动驾驶和自动驾驶两种模式之间切换）
 
-    TAB          : change view
-    Backspace    : change vehicle
+    TAB          : change view      # 'TAB'键的功能，按下该键用于切换视图（比如切换不同的视角来查看车辆周围环境、车辆内部视角等不同的观察角度）
+    Backspace    : change vehicle   # 'Backspace'键的功能，按下该键用于切换车辆（如果场景中有多辆车可供选择操作，通过该键可以更换当前正在控制的车辆）
 
-    R            : toggle recording images to disk
+    R            : toggle recording images to disk    # 'R'键的功能，按下该键用于切换是否将图像记录到磁盘上（toggle表示切换开启或者关闭的状态，意味着可以通过该键决定是否把当前看到的图像保存到本地磁盘中，方便后续查看或者分析等）
 
-    F2           : toggle RSS visualization mode
-    F3           : increase log level
-    F4           : decrease log level
-    F5           : increase map log level
-    F6           : decrease map log level
-    B            : toggle RSS Road Boundaries Mode
-    G            : RSS check drop current route
-    T            : toggle RSS
-    N            : pause simulation
+    F2           : toggle RSS visualization mode   # 'F2'键的功能，按下该键用于切换RSS可视化模式（toggle表示切换，RSS可能是某种特定的与车辆相关的安全系统或者分析系统，visualization mode表示可视化模式，按下此键可以决定是否开启该系统的可视化展示，方便查看相关信息）
+    F3           : increase log level              # 'F3'键的功能，按下该键用于增加日志级别（日志级别通常用于控制记录信息的详细程度，increase表示提升，按此键可以让系统记录更详细的日志信息，便于调试或者分析系统运行情况）
+    F4           : decrease log level              # 'F4'键的功能，按下该键用于降低日志级别（与F3相反，按下此键可以让系统记录相对不那么详细的日志信息，在不需要过多细节时减少日志数据量等）
+    F5           : increase map log level          # 'F5'键的功能，按下该键用于增加地图日志级别（专门针对地图相关的日志，increase表示提升其详细程度，有助于更深入地了解地图相关模块运行及数据情况）
+    F6           : decrease map log level          # 'F6'键的功能，按下该键用于降低地图日志级别（与F5相反，降低地图相关日志记录的详细程度）
+    B            : toggle RSS Road Boundaries Mode # 'B'键的功能，按下该键用于切换RSS道路边界模式（toggle表示切换开启或关闭，RSS Road Boundaries Mode可能是与RSS系统中道路边界相关的一种特定显示或者处理模式）
+    G            : RSS check drop current route    # 'G'键的功能，按下该键用于让RSS检查并放弃当前路线（可能是在RSS相关功能下，触发重新规划或者放弃当前正在行驶的路线等操作，具体取决于该系统的设计逻辑）
+    T            : toggle RSS                      # 'T'键的功能，按下该键用于切换RSS（整体开启或者关闭RSS相关的功能模块等）
+    N            : pause simulation                # 'N'键的功能，按下该键用于暂停模拟（比如暂停整个车辆行驶、环境变化等模拟过程，方便查看当前状态或者进行一些调整操作）
 
-    F1           : toggle HUD
-    H/?          : toggle help
-    ESC          : quit
+    F1           : toggle HUD     # 'F1'键的功能，按下该键用于切换抬头显示（HUD即Head-Up Display，通常是在驾驶视角中显示一些重要信息，如车速、导航等，通过该键可以决定是否显示这些信息）
+    H/?          : toggle help    # 'H'键或者'/?'键的功能，按下这些键用于切换帮助信息显示（可以决定是否在界面上显示操作帮助相关的提示内容，方便用户了解各个按键功能等）
+    ESC          : quit           # 'ESC'键的功能，按下该键用于退出整个程序或者当前的操作界面（quit表示完全退出，结束当前在CARLA中的相关操作）
 """
 
 from __future__ import print_function
+# 这行代码的作用是从Python的`__future__`模块中导入`print_function`特性。在Python 2中，`print`是一条语句，例如：`print "hello"`。
+# 而在Python 3中，`print`被当作函数来使用，形式为`print("hello")`。导入这个特性使得在Python 2环境下编写代码时，也可以按照Python 3中`print`函数的使用方式来书写，
+# 方便代码在不同Python版本间保持一定的兼容性，避免因`print`语法差异在迁移代码时带来过多修改成本，后续代码中就能统一以函数形式来使用`print`操作了。
 
 
 # ==============================================================================
 # -- find carla module ---------------------------------------------------------
 # ==============================================================================
 
-
+# 下面这一组导入语句引入了一些Python标准库中常用的模块，它们各自有着特定的功能用途。
 import glob
+# `glob`模块主要用于文件路径的通配符搜索，它可以根据指定的模式（比如包含通配符`*`、`?`等的路径表达式）来查找匹配的文件或目录路径，
+# 在后续代码中很可能用于定位特定格式或名称的文件（在这里大概率与CARLA模块相关文件的查找有关）。
 import os
+# `os`模块提供了与操作系统交互的各种功能接口，例如文件和目录的操作（创建、删除、重命名等）、获取系统环境变量、操作进程相关信息以及路径处理等，
+# 是在Python中进行系统级操作不可或缺的模块，此处用于辅助完成诸如获取文件路径、判断操作系统类型等任务。
 import sys
+# `sys`模块主要用于处理Python运行时的环境相关操作，像获取命令行参数、操作Python解释器的模块搜索路径（也就是`sys.path`）、控制标准输出和错误输出等，
+# 在本代码中核心作用之一就是对模块搜索路径进行调整，以便后续能正确导入需要的模块。
 import signal
+# `signal`模块用于处理各种操作系统发送给Python进程的信号，例如常见的终止信号（如`SIGINT`表示通过Ctrl+C发送的中断信号等），
+# 可以通过该模块来注册信号处理函数，以实现对进程收到特定信号时执行相应的自定义操作，不过在此处代码当前阶段可能暂时未直接体现其功能运用，也许后续会涉及相关处理。
 
 try:
     sys.path.append(glob.glob(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + '/carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+# 这段代码是这一部分的核心，目的是将CARLA模块所在的路径添加到Python的模块搜索路径（`sys.path`）中，使得Python解释器能够找到并正确导入CARLA相关的模块。
+# 详细的执行逻辑如下：
+# 1. 首先，通过多次调用`os.path.dirname`函数来获取当前文件（`__file__`表示当前Python脚本文件的路径）的多层上级目录路径。
+#    每次调用`os.path.dirname`都会向上回溯一层目录，这里连续调用三次的目的是从当前脚本所在目录向上定位到更上层的目录结构，期望找到CARLA模块所在的大致位置，
+#    因为CARLA模块在项目的文件系统布局中可能处于特定的相对目录层级下。
+# 2. 接着，拼接上一个特定格式的字符串，该字符串用于描述CARLA模块在不同操作系统下所在的相对路径以及与Python版本对应的部分路径格式。
+#    其中`carla/dist/carla-*%d.%d-%s.egg`是基本的路径模式，`*`是通配符，用于匹配具体的版本号等可变部分，`%d.%d`会分别被替换为Python的主版本号（通过`sys.version_info.major`获取）和次版本号（通过`sys.version_info.minor`获取），
+#    而`win-amd64`（当`os.name == 'nt'`时，`nt`表示Windows操作系统）或者`linux-x86_64`（用于Linux操作系统）则是根据当前操作系统类型来确定的特定平台相关后缀，整体构成了一个能适配不同操作系统和Python版本的CARLA模块路径模式。
+# 3. 然后，使用`glob.glob`函数按照上述拼接好的路径模式去查找匹配的文件路径，它会返回一个符合条件的文件路径列表（理论上期望只有一个正确的CARLA模块路径，但也可能因为文件系统情况返回多个或者空列表）。
+# 4. 最后，取列表中的第一个元素（也就是假设找到的CARLA模块所在的`.egg`文件路径），并通过`sys.path.append`将其添加到Python的模块搜索路径中，这样Python在后续导入模块时就能在这个新增的路径下查找CARLA相关模块了。
 except IndexError:
     pass
+# 如果在上述`glob.glob`操作中没有找到符合条件的路径（即返回的列表为空，此时尝试取第一个元素会引发`IndexError`异常），
+# 那么通过`pass`语句忽略这次添加操作，不过这可能导致后续尝试导入CARLA模块时因找不到对应路径而失败，需要确保CARLA模块的安装路径符合预期且可被正确查找。
 
 
 # ==============================================================================
@@ -69,17 +106,38 @@ except IndexError:
 # ==============================================================================
 
 
-import carla
+import carla     # 导入CARLA模块，它是整个代码可能围绕进行操作的核心模块，提供了创建和控制虚拟驾驶场景、车辆、传感器等各种功能的接口和类。
 
 from carla import ColorConverter as cc
+# 从CARLA模块中导入`ColorConverter`类，并将其简称为`cc`。这个类通常用于在CARLA环境下进行图像颜色格式的转换操作，
+# 比如把摄像头获取的图像从一种颜色空间转换到另一种颜色空间，以满足不同的显示、处理或分析需求。
 
 import argparse
+# 导入Python标准库中的`argparse`模块，用于方便地解析命令行参数，使得程序可以在启动时通过命令行传入不同的配置选项，
+# 例如指定场景配置、模拟参数等，增强程序的灵活性和可配置性。
 import logging
+# 导入Python标准库中的`logging`模块，用于记录程序运行过程中的各种信息，比如调试信息、警告信息、错误信息等，
+# 方便在开发、测试以及实际运行中排查问题、了解程序状态以及跟踪执行流程等。
 import math
+# 导入Python标准库中的`math`模块，提供了各种数学函数和常量，用于进行常见的数学运算，例如三角函数计算、数值运算、几何计算等，
+# 在涉及车辆运动模拟、坐标计算等场景下会经常用到。
 import random
+# 导入Python标准库中的`random`模块，用于生成随机数，可在模拟场景中实现一些随机化的行为，比如随机初始化车辆的位置、速度、生成随机的交通参与者等，
+# 让模拟环境更接近真实且多样化。
 import weakref
+# 导入Python标准库中的`weakref`模块，它提供了创建弱引用的功能。弱引用是一种特殊的对象引用方式，不会增加对象的引用计数，
+# 常用于避免循环引用导致的内存泄漏问题，或者在一些需要对对象进行松散关联管理的场景中使用，比如对临时创建的对象进行管理等。
 from rss_sensor import RssSensor # pylint: disable=relative-import
+# 从名为`rss_sensor`的模块中导入`RssSensor`类。这里通过相对导入的方式（虽然禁用了`pylint`关于相对导入的检查提示，
+# 可能是由于项目的目录结构或特定需求使得相对导入在代码静态检查工具中会产生一些告警，但实际上符合代码逻辑要求），
+# 这个`RssSensor`类可能是用于实现与某种RSS（可能是Responsive Safety System等与车辆安全相关的系统概念）相关的传感器功能，
+# 比如检测车辆周边环境信息以保障行车安全等。
 from rss_visualization import RssUnstructuredSceneVisualizer, RssBoundingBoxVisualizer, RssStateVisualizer # pylint: disable=relative-import
+# 从名为`rss_visualization`的模块中导入多个与RSS可视化相关的类，同样是相对导入方式且禁用了`pylint`的相关检查提示。
+# 这些类分别为`RssUnstructuredSceneVisualizer`、`RssBoundingBoxVisualizer`、`RssStateVisualizer`，
+# 它们可能各自承担着不同方面的可视化任务，例如`RssUnstructuredSceneVisualizer`可能用于展示无结构场景（比如不规则的道路周边环境等）相关的可视化效果，
+# `RssBoundingBoxVisualizer`可能用于显示物体的边界框（如车辆、障碍物等的包围框，方便识别其位置和范围）可视化，
+# `RssStateVisualizer`可能用于展示RSS系统自身的状态信息可视化，帮助开发人员或使用者直观地了解系统的运行情况。
 
 try:
     import pygame
@@ -117,13 +175,22 @@ try:
     from pygame.locals import K_x
     from pygame.locals import MOUSEBUTTONDOWN
     from pygame.locals import MOUSEBUTTONUP
+# 尝试导入`pygame`模块，`pygame`是一个广泛用于Python的游戏开发和多媒体应用开发的库，在这里的应用场景可能是用于创建图形界面、
+# 处理用户输入（如键盘按键、鼠标操作等）以及进行一些简单的图形渲染和交互相关操作，为整个模拟环境提供可视化展示和交互的基础功能。
+# 同时从`pygame.locals`模块中导入一系列表示键盘按键状态和鼠标按键状态的常量，这些常量对应了键盘上不同按键对应的代码值以及鼠标按键的相关代码值，
+# 后续代码可以通过检测这些常量来判断用户具体按下了哪个按键或者操作了哪个鼠标按键，从而执行相应的程序逻辑，例如根据按键来控制车辆的操作、切换视图等。
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
+# 如果导入`pygame`模块失败，即出现`ImportError`异常，说明`pygame`包没有安装或者安装出现问题，
+# 此时抛出一个运行时错误（`RuntimeError`），提示用户需要确保`pygame`包已经正确安装，因为后续代码依赖`pygame`来实现相关的可视化、交互等功能。
 
 try:
     import numpy as np
+# 尝试导入`numpy`模块，`numpy`是Python中用于高效进行数值计算、处理多维数组以及实现各种科学计算相关功能的核心库，
+# 在很多涉及数据处理、数学运算、图像数据操作（比如处理传感器获取的图像数据等）等场景下会起到关键作用，是很多科学计算和数据处理项目中不可或缺的一部分。
 except ImportError:
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
+# 如果导入`numpy`模块失败，抛出运行时错误，提示用户需要确保`numpy`包已经安装，因为后续代码很可能会用到`numpy`提供的功能来进行相应的计算和数据处理操作。
 
 
 # ==============================================================================

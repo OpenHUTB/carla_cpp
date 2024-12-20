@@ -55,7 +55,7 @@ public:
   std::string ReplayFile(std::string Filename, double TimeStart = 0.0f, double Duration = 0.0f,
       uint32_t FollowId = 0, bool ReplaySensors = false);
 
-  // void Start(void);
+  // 启动重放（已注释）
   void Stop(bool KeepActors = false);
 
   void Enable(void);
@@ -67,35 +67,35 @@ public:
     return Enabled;
   }
 
-  // set episode
+  // 设置当前剧集
   void SetEpisode(UCarlaEpisode *ThisEpisode)
   {
     Episode = ThisEpisode;
     Helper.SetEpisode(ThisEpisode);
   }
 
-  // playback speed (time factor)
+  //设置播放速度（时间因子）
   void SetTimeFactor(double NewTimeFactor)
   {
     TimeFactor = NewTimeFactor;
   }
 
-  // set ignore hero
+  // 设置是否忽略英雄车辆
   void SetIgnoreHero(bool InIgnoreHero)
   {
     IgnoreHero = InIgnoreHero;
   }
 
-  // set ignore spectator
+  //设置是否忽略旁观者
   void SetIgnoreSpectator(bool InIgnoreSpectator)
   {
     IgnoreSpectator = InIgnoreSpectator;
   }
 
-  // check if after a map is loaded, we need to replay
+  // 检查是否在加载地图后需要重放
   void CheckPlayAfterMapLoaded(void);
 
-  // tick for the replayer
+  // 重放器的 Tick 函数
   void Tick(float Time);
 
 private:
@@ -103,32 +103,32 @@ private:
   bool Enabled;
   bool bReplaySensors = false;
   UCarlaEpisode *Episode = nullptr;
-  // binary file reader
+  // 二进制文件读取器
   std::ifstream File;
   Header Header;
   CarlaRecorderInfo RecInfo;
   CarlaRecorderFrame Frame;
-  // positions (to be able to interpolate)
+  //位置（用于插值）
   std::vector<CarlaRecorderPosition> CurrPos;
   std::vector<CarlaRecorderPosition> PrevPos;
-  // mapping id
+  //  映射 ID
   std::unordered_map<uint32_t, uint32_t> MappedId;
-  // times
+  //  时间相关
   double CurrentTime;
   double TimeToStop;
   double TotalTime;
-  // helper
+  //辅助器
   CarlaReplayerHelper Helper;
-  // follow camera
+  // 跟随摄像机
   uint32_t FollowId;
-  // speed (time factor)
+  // 速度（时间因子）
   double TimeFactor { 1.0 };
-  // ignore hero vehicles
+  // 忽略英雄车辆
   bool IgnoreHero { false };
   bool IgnoreSpectator { true };
   std::unordered_map<uint32_t, bool> IsHeroMap;
 
-  // utils
+  //实用工具函数
   bool ReadHeader();
 
   void SkipPacket();
@@ -137,7 +137,7 @@ private:
 
   void Rewind(void);
 
-  // processing packets
+  //处理数据包
   void ProcessToTime(double Time, bool IsFirstTime = false);
 
   void ProcessVisualTime(void);
@@ -162,7 +162,7 @@ private:
 
   void ProcessWalkerBones(void);
 
-  // positions
+  // 位置相关
   void UpdatePositions(double Per, double DeltaTime);
 
   void InterpolatePosition(const CarlaRecorderPosition &Start, const CarlaRecorderPosition &End, double Per, double DeltaTime);

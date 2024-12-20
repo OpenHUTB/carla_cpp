@@ -47,10 +47,15 @@ class BasicAgent:
             :param grp_inst: GlobalRoutePlanner instance to avoid the expensive call of getting it.
 
         """
+        #将vehicle赋值给自身的_vehicle属性
         self._vehicle = vehicle
+        #将自身的_vehicle的get_world对象赋值给自身的_world
         self._world = self._vehicle.get_world()
+        #如果存在map_inst
         if map_inst:
+            #判断对象是否是某个类的实例
             if isinstance(map_inst, carla.Map):
+                #将map_inst赋值给self._map
                 self._map = map_inst
             else:
                 print("Warning: Ignoring the given map as it is not a 'carla.Map'")
@@ -60,16 +65,27 @@ class BasicAgent:
         self._last_traffic_light = None
 
         # Base parameters
+        #自身的_ignore_traffic_lights属性被设置为False
         self._ignore_traffic_lights = False
+        #自身的_ignore_stop_signs属性被设置为Flase
         self._ignore_stop_signs = False
+        #自身的_ignore_vehicles被设置为Flase
         self._ignore_vehicles = False
+        #自身的_use_bbs_detection被设置为Flase
         self._use_bbs_detection = False
+        #自身的_target_speed被设置为target_speed
         self._target_speed = target_speed
+        #自身的_sampling_resolution属性被设置为2.0
         self._sampling_resolution = 2.0
+        #自身的_base_tlight_threshold属性被设置为5.0
         self._base_tlight_threshold = 5.0  # meters
+        #自身的_base_vehicle_threshold属性被设置为5.0
         self._base_vehicle_threshold = 5.0  # meters
+        #自身的_speed_ratio被设置为1
         self._speed_ratio = 1
+        #自身的_max_brake被设置为0.5
         self._max_brake = 0.5
+        #自身的_offset被设置为0
         self._offset = 0
 
         # Change parameters according to the dictionary
@@ -117,28 +133,39 @@ class BasicAgent:
 
             :param speed (carl.VehicleControl): control to be modified
         """
+        #油门的值设置为0
         control.throttle = 0.0
+        #将刹车的值设置为最大
         control.brake = self._max_brake
+        #将手刹设置为Flase
         control.hand_brake = False
+        #返回修改对象
         return control
 
     def set_target_speed(self, speed):
         """
         Changes the target speed of the agent
             :param speed (float): target speed in Km/h
-        """
+        ""
+        #将传入的目标速度speed赋值给对象的_target_speed属性
         self._target_speed = speed
+        #调用它的set_speed方法并传入speed参数
         self._local_planner.set_speed(speed)
 
+    #接受一个布尔类型参数value，默认值为True
     def follow_speed_limits(self, value=True):
         """
         If active, the agent will dynamically change the target speed according to the speed limits
 
+            #参数value是否激活这个行为
             :param value (bool): whether or not to activate this behavior
         """
+        #调用ollow_speed_limits方法并传入value参数
         self._local_planner.follow_speed_limits(value)
 
+    #定义一个方法，获取受保护的成员变量local_planner的值
     def get_local_planner(self):
+           #获取受保护成员的方法
         """Get method for protected member local planner"""
         return self._local_planner
 
@@ -294,37 +321,54 @@ class BasicAgent:
             else:
                 return TrafficLightDetectionResult(True, self._last_traffic_light)
 
+        #获取自行车位置，通过指定方法从车辆对象获取
         ego_vehicle_location = self._vehicle.get_location()
+        #根据自行车位置获取对应的路点，借助地图对象的相关方法
         ego_vehicle_waypoint = self._map.get_waypoint(ego_vehicle_location)
 
+        #开始遍历交通信号灯列表
         for traffic_light in lights_list:
+            #如果交通信号灯的id在self.light_map中
             if traffic_light.id in self._lights_map:
+                #将trigger_wp设置为self.lights_map中对应交通信号灯id的值
                 trigger_wp = self._lights_map[traffic_light.id]
+            #否则
             else:
+                #获取交通信号灯的trigger_location
                 trigger_location = get_trafficlight_trigger_location(traffic_light)
+                #根据出发位置获取waypoint并赋值给trigger_wap
                 trigger_wp = self._map.get_waypoint(trigger_location)
+                #将self.lights_map中对应交通信号灯id的值设置为trigger_wp
                 self._lights_map[traffic_light.id] = trigger_wp
-
+            #如果触发trigger_wp转换后的位置与自车位置(ego_vehicle_location)的距离大于最大距离
             if trigger_wp.transform.location.distance(ego_vehicle_location) > max_distance:
+                #跳过当前循环
                 continue
-
+            #如果触发trigger_wp转换后的位置与自车位置(ego_vehicle_location)的距离大于最大距离
             if trigger_wp.road_id != ego_vehicle_waypoint.road_id:
+                #跳过当前循环
                 continue
-
+            #获取ego_vehicle_waypoint变换后的forward vector并赋值给ve_dir
             ve_dir = ego_vehicle_waypoint.transform.get_forward_vector()
+            #获取trgger_wp变换后的forward vector并赋值给wp_dir
             wp_dir = trigger_wp.transform.get_forward_vector()
+            #计算ve_dir和wp_dir的点积并赋值给dot_ve_wp
             dot_ve_wp = ve_dir.x * wp_dir.x + ve_dir.y * wp_dir.y + ve_dir.z * wp_dir.z
-
+            #如果点积小于0
             if dot_ve_wp < 0:
+                #跳过当前循环
                 continue
-
+            #如果traffic_light的状态不等于红色
             if traffic_light.state != carla.TrafficLightState.Red:
+                #跳过当前循环
                 continue
-
+            #如果触发路点变换后的位置与自车变换后的位置在最大距离内且角度在[90]度范围内
             if is_within_distance(trigger_wp.transform, self._vehicle.get_transform(), max_distance, [0, 90]):
+                #将当前交通信号灯设置为最后检测到的交通信号灯
                 self._last_traffic_light = traffic_light
+                #返回交通信号灯检测结果为True以及对应的交通信号灯对象
                 return TrafficLightDetectionResult(True, traffic_light)
-
+        #返回交通信号灯检测结果为False以及None
         return TrafficLightDetectionResult(False, None)
 
     def _vehicle_obstacle_detected(self, vehicle_list=None, max_distance=None, up_angle_th=90, low_angle_th=0, lane_offset=0):

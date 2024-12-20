@@ -101,8 +101,8 @@ void ACarlaGameModeBase::InitGame(
 
 #if WITH_EDITOR
     {
-      // When playing in editor the map name gets an extra prefix, here we
-      // remove it.
+      //在编辑器中播放时，地图名称会得到一个额外的前缀，这里我们
+      //删除它。
       FString CorrectedMapName = InMapName;
       constexpr auto PIEPrefix = TEXT("UEDPIE_0_");
       CorrectedMapName.RemoveFromStart(PIEPrefix);
@@ -152,7 +152,7 @@ void ACarlaGameModeBase::InitGame(
 
   SpawnActorFactories();
 
-  // make connection between Episode and Recorder
+  //在 Episode 和 Recorder 之间建立连接
   Recorder->SetEpisode(Episode);
   Episode->SetRecorder(Recorder);
 
@@ -184,17 +184,17 @@ void ACarlaGameModeBase::BeginPlay()
   LoadMapLayer(GameInstance->GetCurrentMapLayer());
   ReadyToRegisterObjects = true;
 
-  if (true) { /// @todo If semantic segmentation enabled.
+  if (true) { /// @todo 如果启用了语义分割。
     ATagger::TagActorsInLevel(*World, true);
     TaggerDelegate->SetSemanticSegmentationEnabled();
   }
 
-  // HACK: fix transparency see-through issues
-  // The problem: transparent objects are visible through walls.
-  // This is due to a weird interaction between the SkyAtmosphere component,
-  // the shadows of a directional light (the sun)
-  // and the custom depth set to 3 used for semantic segmentation
-  // The solution: Spawn a Decal.
+  // HACK: 修复透明度透视问题
+  // 问题：透过墙壁可以看到透明物体。
+  // 这是由于 SkyAtmosphere 组件
+  // 定向光源 （太阳） 的阴影
+  //并将 Custom depth 设置为 3，用于语义分割
+  // 解决方案：生成一个贴花。
   // It just works!
   World->SpawnActor<ADecalActor>(
       FVector(0,0,-1000000), FRotator(0,0,0), FActorSpawnParameters());
@@ -210,8 +210,8 @@ void ACarlaGameModeBase::BeginPlay()
     Episode->Weather->ApplyWeather(carla::rpc::WeatherParameters::Default);
   }
 
-  /// @todo Recorder should not tick here, FCarlaEngine should do it.
-  // check if replayer is waiting to autostart
+  /// @todoRecorder 不应该在这里打勾，FCarlaEngine 应该这样做。
+  // 检查 Replayer 是否正在等待自动启动
   if (Recorder)
   {
     Recorder->GetReplayer()->CheckPlayAfterMapLoaded();
@@ -227,7 +227,7 @@ void ACarlaGameModeBase::BeginPlay()
     LMManager->ConsiderSpectatorAsEgo(Episode->GetSettings().SpectatorAsEgo);
   }
 
-  // Manually run begin play on lights as it may not run on sublevels
+  // 手动运行 begin play on lights（开始在灯光上播放），因为它可能不会在子关卡上运行
   TArray<AActor*> FoundActors;
   UGameplayStatics::GetAllActorsOfClass(World, AActor::StaticClass(), FoundActors);
   for(AActor* Actor : FoundActors)
@@ -374,7 +374,7 @@ void ACarlaGameModeBase::Tick(float DeltaSeconds)
 {
   Super::Tick(DeltaSeconds);
 
-  /// @todo Recorder should not tick here, FCarlaEngine should do it.
+  /// @todo Recorder 不应该在这里打勾，FCarlaEngine 应该这样做。
   if (Recorder)
   {
     Recorder->Tick(DeltaSeconds);
@@ -564,14 +564,14 @@ void ACarlaGameModeBase::DebugShowSignals(bool enable)
   std::unordered_set<cr::RoadId> ExploredRoads;
   for (auto & waypoint : waypoints)
   {
-    // Check if we already explored this road
+    // 检查我们是否已经探索过这条路
     if (ExploredRoads.count(waypoint.road_id) > 0)
     {
       continue;
     }
     ExploredRoads.insert(waypoint.road_id);
 
-    // Multiple times for same road (performance impact, not in behavior)
+    //同一条道路多次（性能影响，而不是行为）
     auto SignalReferences = Map->GetLane(waypoint).
         GetRoad()->GetInfos<cre::RoadInfoSignal>();
     for (auto *SignalReference : SignalReferences)
@@ -625,7 +625,7 @@ TArray<FBoundingBox> ACarlaGameModeBase::GetAllBBsOfLevel(uint8 TagQueried) cons
 {
   UWorld* World = GetWorld();
 
-  // Get all actors of the level
+  // 获取该级别的所有 Actor
   TArray<AActor*> FoundActors;
   UGameplayStatics::GetAllActorsOfClass(World, AActor::StaticClass(), FoundActors);
 
@@ -637,7 +637,7 @@ TArray<FBoundingBox> ACarlaGameModeBase::GetAllBBsOfLevel(uint8 TagQueried) cons
 
 void ACarlaGameModeBase::RegisterEnvironmentObjects()
 {
-  // Get all actors of the level
+  //获取该级别的所有 Actor
   TArray<AActor*> FoundActors;
   UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActor::StaticClass(), FoundActors);
   ObjectRegister->RegisterObjects(FoundActors);
@@ -706,13 +706,13 @@ void ACarlaGameModeBase::ConvertMapLayerMaskToMapNames(int32 MapLayer, TArray<FN
   const TArray <ULevelStreaming*> Levels = World->GetStreamingLevels();
   TArray<FString> LayersToLoad;
 
-  // Get all the requested layers
+  // 获取所有请求的图层
   int32 LayerMask = 1;
   int32 AllLayersMask = static_cast<crp::MapLayerType>(crp::MapLayer::All);
 
   while(LayerMask > 0)
   {
-    // Convert enum to FString
+    //将枚举转换为 FString
     FString LayerName = UTF8_TO_TCHAR(MapLayerToString(static_cast<crp::MapLayer>(LayerMask)).c_str());
     bool included = static_cast<crp::MapLayerType>(MapLayer) & LayerMask;
     if(included)
@@ -722,12 +722,12 @@ void ACarlaGameModeBase::ConvertMapLayerMaskToMapNames(int32 MapLayer, TArray<FN
     LayerMask = (LayerMask << 1) & AllLayersMask;
   }
 
-  // Get all the requested level maps
+  // 获取所有请求的关卡地图
   for(ULevelStreaming* Level : Levels)
   {
     TArray<FString> StringArray;
     FString FullSubMapName = Level->GetWorldAssetPackageFName().ToString();
-    // Discard full path, we just need the umap name
+    // 丢弃完整路径，我们只需要 umap 名称
     FullSubMapName.ParseIntoArray(StringArray, TEXT("/"), false);
     FString SubMapName = StringArray[StringArray.Num() - 1];
     for(FString LayerName : LayersToLoad)
@@ -769,7 +769,7 @@ void ACarlaGameModeBase::OnLoadStreamLevel()
 {
   PendingLevelsToLoad--;
 
-  // Register new actors and tag them
+  // 注册新 actor 并标记他们
   if(ReadyToRegisterObjects && PendingLevelsToLoad == 0)
   {
     RegisterEnvironmentObjects();
@@ -780,7 +780,7 @@ void ACarlaGameModeBase::OnLoadStreamLevel()
 void ACarlaGameModeBase::OnUnloadStreamLevel()
 {
   PendingLevelsToUnLoad--;
-  // Update stored registered objects (discarding the deleted objects)
+  // 更新已存储的已注册对象（丢弃已删除的对象）
   if(ReadyToRegisterObjects && PendingLevelsToUnLoad == 0)
   {
     RegisterEnvironmentObjects();

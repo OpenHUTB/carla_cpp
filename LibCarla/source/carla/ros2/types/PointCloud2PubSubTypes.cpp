@@ -24,112 +24,137 @@
 
 #include "PointCloud2PubSubTypes.h"
 
+// 定义SerializedPayload_t类型别名，等同于eprosima::fastrtps::rtps::SerializedPayload_t，用于表示序列化后的负载数据类型，通常在数据传输、存储等场景中承载具体要处理的数据
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
+// 定义InstanceHandle_t类型别名，等同于eprosima::fastrtps::rtps::InstanceHandle_t，一般用于标识数据实例，例如在发布/订阅系统中区分不同的消息实例
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace sensor_msgs {
     namespace msg {
+        // PointCloud2PubSubType类的构造函数，用于初始化该类型相关的属性和资源
         PointCloud2PubSubType::PointCloud2PubSubType()
         {
+            // 设置此类型的名称，这里明确指定为 "sensor_msgs::msg::dds_::PointCloud2_"，方便在系统中识别和管理该类型
             setName("sensor_msgs::msg::dds_::PointCloud2_");
+            // 获取PointCloud2类型数据能被CDR（Common Data Representation，一种通用数据表示格式）序列化后的最大尺寸
             auto type_size = PointCloud2::getMaxCdrSerializedSize();
+            // 考虑可能存在的子消息对齐情况，按照4字节对齐规则对类型尺寸进行调整（增加必要的填充字节等），以满足数据存储或传输时的对齐要求
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
+            // 计算最终包含封装部分（可能用于添加头部等额外信息）的类型尺寸，额外加上4字节作为封装相关的尺寸
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+            // 判断PointCloud2类型是否定义了获取键（通常用于唯一标识一个数据实例）的相关操作
             m_isGetKeyDefined = PointCloud2::isKeyDefined();
-            size_t keyLength = PointCloud2::getKeyMaxCdrSerializedSize() > 16 ?
+            // 根据PointCloud2获取键的最大CDR序列化尺寸来确定键缓冲区的长度
+            // 如果尺寸大于16字节就用实际尺寸，否则用16字节作为长度，为后续存储键相关数据分配合适的内存空间
+            size_t keyLength = PointCloud2::getKeyMaxCdrSerializedSize() > 16?
                     PointCloud2::getKeyMaxCdrSerializedSize() : 16;
+            // 分配键缓冲区的内存空间，将返回的无符号字符指针转换为合适类型后赋值给m_keyBuffer
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+            // 将键缓冲区的内存初始化为0，确保内存中的数据处于已知的初始状态
             memset(m_keyBuffer, 0, keyLength);
         }
 
+        // PointCloud2PubSubType类的析构函数，用于释放构造函数中分配的键缓冲区内存资源
         PointCloud2PubSubType::~PointCloud2PubSubType()
         {
-            if (m_keyBuffer != nullptr)
+            if (m_keyBuffer!= nullptr)
             {
                 free(m_keyBuffer);
             }
         }
 
+        // 序列化函数，将PointCloud2类型的数据对象序列化为SerializedPayload_t格式，以便进行数据传输、存储等操作
         bool PointCloud2PubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
+            // 将传入的void*类型数据转换为PointCloud2*类型指针，方便后续按照PointCloud2类型的规则进行序列化操作
             PointCloud2* p_type = static_cast<PointCloud2*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个FastBuffer对象，用于管理原始缓冲区，它关联到payload的data（实际存储数据的内存位置）和max_size（缓冲区最大尺寸）
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
+            // 创建一个Cdr对象，用于执行序列化操作，设置了默认字节序（DEFAULT_ENDIAN）以及特定的CDR模式（DDS_CDR，与数据分发服务相关的模式）
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
-            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+            // 根据序列化对象的字节序设置payload的封装字节序标识（大端或小端），以便后续在反序列化等操作中能正确识别数据的字节序
+            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
+            // 序列化封装相关的头部等信息（具体内容由相关协议或实现定义），这一步可能是添加一些用于标识、校验等的额外数据
             ser.serialize_encapsulation();
 
             try
             {
-                // Serialize the object.
+                // 调用PointCloud2对象的serialize函数，将实际的PointCloud2类型的数据内容按照Cdr对象设置的规则序列化到ser所管理的缓冲区中
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果在序列化过程中出现内存不足的异常情况，返回false表示序列化失败
                 return false;
             }
 
-            // Get the serialized length
+            // 获取序列化后数据的实际长度，将其设置到payload的length字段中，以便后续使用者能知道有效数据的长度
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
             return true;
         }
 
+        // 反序列化函数，将SerializedPayload_t格式的数据还原为PointCloud2类型的数据对象
         bool PointCloud2PubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
             try
             {
-                //Convert DATA to pointer of your type
+                // 将传入的void*类型数据转换为PointCloud2*类型指针，方便后续按照PointCloud2类型的规则进行反序列化操作
                 PointCloud2* p_type = static_cast<PointCloud2*>(data);
 
-                // Object that manages the raw buffer.
+                // 创建一个FastBuffer对象，用于管理原始缓冲区，关联到payload的data（实际存储数据的内存位置）和length（实际有效数据的长度）
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-                // Object that deserializes the data.
+                // 创建一个Cdr对象，用于执行反序列化操作，设置了默认字节序（DEFAULT_ENDIAN）以及特定的CDR模式（DDS_CDR，与数据分发服务相关的模式）
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-                // Deserialize encapsulation.
+                // 反序列化封装相关的头部等信息（具体内容由相关协议或实现定义），恢复之前序列化时添加的用于标识、校验等的额外数据
                 deser.read_encapsulation();
-                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
+                // 根据反序列化对象的字节序设置payload的封装字节序标识（大端或小端），确保后续对数据的解析能按照正确的字节序进行
+                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
 
-                // Deserialize the object.
+                // 调用PointCloud2对象的deserialize函数，从deser所管理的缓冲区中按照PointCloud2类型的规则还原出实际的数据内容
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果在反序列化过程中出现内存不足的异常情况，返回false表示反序列化失败
                 return false;
             }
 
             return true;
         }
 
+        // 获取序列化尺寸提供函数，返回一个lambda表达式，用于计算给定的PointCloud2类型数据序列化后的尺寸（包含封装部分）
         std::function<uint32_t()> PointCloud2PubSubType::getSerializedSizeProvider(
                 void* data)
         {
             return [data]() -> uint32_t
                    {
+                       // 先获取PointCloud2类型数据本身的CDR序列化尺寸，再加上4字节的封装部分尺寸，以此得到总的序列化后尺寸
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<PointCloud2*>(data))) +
                               4u /*encapsulation*/;
                    };
         }
 
+        // 创建PointCloud2类型的数据对象，返回的是转换为void*类型的指针，这样在一些需要统一管理不同类型数据的场景（如基于多态的设计）中能方便地进行操作
         void* PointCloud2PubSubType::createData()
         {
             return reinterpret_cast<void*>(new PointCloud2());
         }
 
+        // 删除PointCloud2类型的数据对象，释放之前创建该对象时分配的内存资源，避免内存泄漏
         void PointCloud2PubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<PointCloud2*>(data));
         }
 
+        // 获取用于唯一标识的键（根据PointCloud2类型的数据生成实例句柄的键值部分），用于在系统中区分不同的实例
         bool PointCloud2PubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
@@ -137,20 +162,23 @@ namespace sensor_msgs {
         {
             if (!m_isGetKeyDefined)
             {
+                // 如果PointCloud2类型没有定义获取键的相关操作，直接返回false，表示无法获取键
                 return false;
             }
 
             PointCloud2* p_type = static_cast<PointCloud2*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个FastBuffer对象，用于管理键相关的原始缓冲区，关联到m_keyBuffer（之前分配的键缓冲区内存）和PointCloud2获取键的最大CDR序列化尺寸
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     PointCloud2::getKeyMaxCdrSerializedSize());
 
-            // Object that serializes the data.
+            // 创建一个Cdr对象，用于将PointCloud2类型的数据序列化为键相关的格式，这里设置为大端字节序（通常在键相关处理中有特定要求）
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
+            // 调用PointCloud2对象的serializeKey函数，将相关数据按照键的格式要求序列化到ser所管理的缓冲区中
             p_type->serializeKey(ser);
             if (force_md5 || PointCloud2::getKeyMaxCdrSerializedSize() > 16)
             {
+                // 如果强制使用MD5（可能用于生成更可靠、唯一的标识）或者键的序列化尺寸大于16字节，进行MD5计算相关操作
                 m_md5.init();
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
                 m_md5.finalize();
@@ -161,6 +189,7 @@ namespace sensor_msgs {
             }
             else
             {
+                // 如果键的序列化尺寸小于等于16字节，直接将键缓冲区的内容复制到实例句柄的键值部分，作为实例的标识
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];

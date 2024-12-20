@@ -41,11 +41,11 @@ class CarlaRecorderQuery
 
 public:
 
-  // get general info
+  // 获取通用信息
   std::string QueryInfo(std::string Filename, bool bShowAll = false);
-  // get info about collisions
+  //获取碰撞信息
   std::string QueryCollisions(std::string Filename, char Category1 = 'a', char Category2 = 'a');
-  // get info about blocked actors
+  //  获取被阻塞的演员信息
   std::string QueryBlocked(std::string Filename, double MinTime = 30, double MinDistance = 10);
 
 private:
@@ -72,12 +72,12 @@ private:
   CarlaRecorderWalkerBones WalkerBones;
   CarlaRecorderDoorVehicle DoorVehicle;
 
-  // read next header packet
+  // 读取下一个数据包头部
   bool ReadHeader(void);
 
-  // skip current packet
+  //跳过当前数据包
   void SkipPacket(void);
 
-  // read the start info structure and check the magic string
+  //  读取开始信息结构并检查魔法字符串
   bool CheckFileInfo(std::stringstream &Info);
 };
