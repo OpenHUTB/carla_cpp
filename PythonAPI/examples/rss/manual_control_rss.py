@@ -1,14 +1,24 @@
 #!/usr/bin/env python
+# 这是一个被称为“shebang”（也叫“hashbang”）的特殊注释行，用于指定该Python脚本的解释器路径。
+# 在类Unix系统（如Linux、macOS等）中，当脚本文件具有可执行权限时，通过这行指定的解释器来运行该脚本。
+# 这里指定使用系统环境变量中找到的 `python` 解释器来执行脚本内容，如果系统中安装了多个Python版本，会根据环境变量的配置来选择对应的解释器。
 
 # Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB).
 # Copyright (c) 2019-2020 Intel Corporation
-#
+# 这部分是版权声明信息，指出该代码的版权归属情况。表明该代码的版权在2019年归属于巴塞罗那自治大学（Universitat Autonoma de Barcelona，简称UAB）的计算机视觉中心（Computer Vision Center，简称CVC），
+# 以及在2019 - 2020年归属于英特尔公司（Intel Corporation），意味着未经授权不能随意使用、修改或分发该代码，需遵循相应的版权规则。
+
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
+# 这是关于代码许可协议的说明，告知使用者该代码是依据麻省理工学院（MIT）许可协议进行授权的。
+# 同时提供了获取该许可协议具体内容的链接，使用者可以通过访问指定的网址（https://opensource.org/licenses/MIT）查看详细的许可条款，
+# 例如在符合哪些条件下可以对代码进行再分发、修改、使用等情况。
 
 # Allows controlling a vehicle with a keyboard. For a simpler and more
 # documented example, please take a look at tutorial.py.
+# 这是一段对该脚本功能的简要描述性注释，说明这个Python脚本的主要作用是实现通过键盘来控制一辆车辆（在对应的模拟环境或者特定应用场景中）。
+# 并且还提示使用者，如果想要查看一个更简单且有更详细文档注释的示例代码，可以去查看名为 `tutorial.py` 的文件，这可能是项目中提供的用于学习和参考的示例代码，有助于更好地理解相关功能的实现方式。
 
 """
 Welcome to CARLA manual control.
@@ -83,11 +93,28 @@ import argparse
 # 导入Python标准库中的`argparse`模块，用于方便地解析命令行参数，使得程序可以在启动时通过命令行传入不同的配置选项，
 # 例如指定场景配置、模拟参数等，增强程序的灵活性和可配置性。
 import logging
+# 导入Python标准库中的`logging`模块，用于记录程序运行过程中的各种信息，比如调试信息、警告信息、错误信息等，
+# 方便在开发、测试以及实际运行中排查问题、了解程序状态以及跟踪执行流程等。
 import math
+# 导入Python标准库中的`math`模块，提供了各种数学函数和常量，用于进行常见的数学运算，例如三角函数计算、数值运算、几何计算等，
+# 在涉及车辆运动模拟、坐标计算等场景下会经常用到。
 import random
+# 导入Python标准库中的`random`模块，用于生成随机数，可在模拟场景中实现一些随机化的行为，比如随机初始化车辆的位置、速度、生成随机的交通参与者等，
+# 让模拟环境更接近真实且多样化。
 import weakref
+# 导入Python标准库中的`weakref`模块，它提供了创建弱引用的功能。弱引用是一种特殊的对象引用方式，不会增加对象的引用计数，
+# 常用于避免循环引用导致的内存泄漏问题，或者在一些需要对对象进行松散关联管理的场景中使用，比如对临时创建的对象进行管理等。
 from rss_sensor import RssSensor # pylint: disable=relative-import
+# 从名为`rss_sensor`的模块中导入`RssSensor`类。这里通过相对导入的方式（虽然禁用了`pylint`关于相对导入的检查提示，
+# 可能是由于项目的目录结构或特定需求使得相对导入在代码静态检查工具中会产生一些告警，但实际上符合代码逻辑要求），
+# 这个`RssSensor`类可能是用于实现与某种RSS（可能是Responsive Safety System等与车辆安全相关的系统概念）相关的传感器功能，
+# 比如检测车辆周边环境信息以保障行车安全等。
 from rss_visualization import RssUnstructuredSceneVisualizer, RssBoundingBoxVisualizer, RssStateVisualizer # pylint: disable=relative-import
+# 从名为`rss_visualization`的模块中导入多个与RSS可视化相关的类，同样是相对导入方式且禁用了`pylint`的相关检查提示。
+# 这些类分别为`RssUnstructuredSceneVisualizer`、`RssBoundingBoxVisualizer`、`RssStateVisualizer`，
+# 它们可能各自承担着不同方面的可视化任务，例如`RssUnstructuredSceneVisualizer`可能用于展示无结构场景（比如不规则的道路周边环境等）相关的可视化效果，
+# `RssBoundingBoxVisualizer`可能用于显示物体的边界框（如车辆、障碍物等的包围框，方便识别其位置和范围）可视化，
+# `RssStateVisualizer`可能用于展示RSS系统自身的状态信息可视化，帮助开发人员或使用者直观地了解系统的运行情况。
 
 try:
     import pygame
@@ -125,13 +152,22 @@ try:
     from pygame.locals import K_x
     from pygame.locals import MOUSEBUTTONDOWN
     from pygame.locals import MOUSEBUTTONUP
+# 尝试导入`pygame`模块，`pygame`是一个广泛用于Python的游戏开发和多媒体应用开发的库，在这里的应用场景可能是用于创建图形界面、
+# 处理用户输入（如键盘按键、鼠标操作等）以及进行一些简单的图形渲染和交互相关操作，为整个模拟环境提供可视化展示和交互的基础功能。
+# 同时从`pygame.locals`模块中导入一系列表示键盘按键状态和鼠标按键状态的常量，这些常量对应了键盘上不同按键对应的代码值以及鼠标按键的相关代码值，
+# 后续代码可以通过检测这些常量来判断用户具体按下了哪个按键或者操作了哪个鼠标按键，从而执行相应的程序逻辑，例如根据按键来控制车辆的操作、切换视图等。
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
+# 如果导入`pygame`模块失败，即出现`ImportError`异常，说明`pygame`包没有安装或者安装出现问题，
+# 此时抛出一个运行时错误（`RuntimeError`），提示用户需要确保`pygame`包已经正确安装，因为后续代码依赖`pygame`来实现相关的可视化、交互等功能。
 
 try:
     import numpy as np
+# 尝试导入`numpy`模块，`numpy`是Python中用于高效进行数值计算、处理多维数组以及实现各种科学计算相关功能的核心库，
+# 在很多涉及数据处理、数学运算、图像数据操作（比如处理传感器获取的图像数据等）等场景下会起到关键作用，是很多科学计算和数据处理项目中不可或缺的一部分。
 except ImportError:
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
+# 如果导入`numpy`模块失败，抛出运行时错误，提示用户需要确保`numpy`包已经安装，因为后续代码很可能会用到`numpy`提供的功能来进行相应的计算和数据处理操作。
 
 
 # ==============================================================================
