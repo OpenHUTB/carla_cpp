@@ -25,7 +25,7 @@
 namespace crp = carla::rpc;
 
 // =============================================================================
-// -- Private types ------------------------------------------------------------
+// -- 私有类型 ------------------------------------------------------------
 // =============================================================================
 
 class FHalfEdgeCounter {
@@ -45,7 +45,7 @@ private:
 };
 
 // =============================================================================
-// -- Constructor and destructor -----------------------------------------------
+// -- 构造函数和析构函数 -----------------------------------------------
 // =============================================================================
 
 ACityMapGenerator::ACityMapGenerator(const FObjectInitializer& ObjectInitializer)
@@ -57,14 +57,14 @@ ACityMapGenerator::ACityMapGenerator(const FObjectInitializer& ObjectInitializer
 ACityMapGenerator::~ACityMapGenerator() {}
 
 // =============================================================================
-// -- Overriden from UObject ---------------------------------------------------
+// -- 覆盖对象 ---------------------------------------------------
 // =============================================================================
 
 void ACityMapGenerator::PreSave(const ITargetPlatform *TargetPlatform)
 {
 #if WITH_EDITOR
   if (bGenerateRoadMapOnSave) {
-    // Generate road map only if we are not cooking.
+    // 仅在我们不作出反应时才生成路线图。
     FCoreUObjectDelegates::OnObjectSaved.Broadcast(this);
     if (!GIsCookerLoadingPackage) {
       check(RoadMap != nullptr);
@@ -77,7 +77,7 @@ void ACityMapGenerator::PreSave(const ITargetPlatform *TargetPlatform)
 }
 
 // =============================================================================
-// -- Overriden from ACityMapMeshHolder ----------------------------------------
+// -- 覆盖ACityMapMeshHolder ----------------------------------------
 // =============================================================================
 
 void ACityMapGenerator::UpdateMap()
@@ -94,7 +94,7 @@ void ACityMapGenerator::UpdateMap()
 }
 
 // =============================================================================
-// -- Map construction and update related methods ------------------------------
+// -- 地图构建及更新的相关方法 ------------------------------
 // =============================================================================
 
 void ACityMapGenerator::UpdateSeeds()
@@ -114,7 +114,7 @@ void ACityMapGenerator::GenerateGraph()
     UE_LOG(LogCarla, Warning, TEXT("Map size changed, was too small"));
   }
 #ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG
-  // Delete the dcel before the new one is created so indices are restored.
+  // 在创建新双向边链表之前删除旧双向边链表，以便恢复索引。
   Dcel.Reset(nullptr);
 #endif // CARLA_ROAD_GENERATOR_EXTRA_LOG
   Dcel = MapGen::GraphGenerator::Generate(MapSizeX, MapSizeY, Seed);
@@ -125,7 +125,7 @@ void ACityMapGenerator::GenerateGraph()
       Dcel->CountFaces());
   DcelParser = MakeUnique<MapGen::GraphParser>(*Dcel);
 #ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG
-  { // print the results of the parser.
+  { // 打印解析器的结果。
     std::wstringstream sout;
     sout << "\nGenerated " << DcelParser->CityAreaCount() << " city areas: ";
     for (auto i = 0u; i < DcelParser->CityAreaCount(); ++i) {
@@ -160,7 +160,7 @@ void ACityMapGenerator::GenerateRoads()
 
   FHalfEdgeCounter HalfEdgeCounter;
 
-  // For each edge add road segment.
+  // 为每条边添加路段。
   for (auto &edge : graph.GetHalfEdges()) {
     if (HalfEdgeCounter.Insert(edge)) {
       auto source = Graph::GetSource(edge).GetPosition();
@@ -211,7 +211,7 @@ void ACityMapGenerator::GenerateRoads()
     AddInstance(tag ##_Sidewalk3, x, y, angle); \
     AddInstance(tag ##_LaneMarking, x, y, angle);
 
-  // For each node add the intersection.
+  // 为每个节点添加交集。
   for (auto &node : graph.GetNodes()) {
     const auto coords = node.GetPosition();
     switch (node.IntersectionType) {
@@ -232,7 +232,7 @@ void ACityMapGenerator::GenerateRoads()
 #undef ADD_INTERSECTION
 }
 
-// Find first component of type road.
+// 查找 road 类型的第一个组件。
 static bool LineTrace(
     UWorld *World,
     const FVector &Start,
@@ -290,7 +290,7 @@ void ACityMapGenerator::GenerateRoadMap()
       const FVector Start = ActorTransform.TransformPosition(FVector(X, Y, 50.0f));
       const FVector End = ActorTransform.TransformPosition(FVector(X, Y, -50.0f));
 
-      // Do the ray tracing.
+      // 执行光线追踪。
       FHitResult Hit;
       if (LineTrace(World, Start, End, Hit)) {
         auto StaticMeshComponent = Cast<UStaticMeshComponent>(Hit.Component.Get());
