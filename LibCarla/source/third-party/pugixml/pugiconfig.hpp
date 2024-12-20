@@ -20,7 +20,7 @@
 // Uncomment this to enable compact mode
 // #define PUGIXML_COMPACT
 
-// Uncomment this to disable XPath
+// 取消注释以禁用 XPath
 // #define PUGIXML_NO_XPATH
 
 // Uncomment this to disable STL
