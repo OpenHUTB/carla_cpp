@@ -386,14 +386,14 @@ class World(object):
 class KeyboardControl(object):
     """Class that handles keyboard input."""
     def __init__(self, world, start_in_autopilot):
-        self._autopilot_enabled = start_in_autopilot
-        self._ackermann_enabled = False
-        self._ackermann_reverse = 1
-        if isinstance(world.player, carla.Vehicle):
+        self._autopilot_enabled = start_in_autopilot# 是否启用自动驾驶
+        self._ackermann_enabled = False# 是否启用Ackermann转向控制
+        self._ackermann_reverse = 1# Ackermann转向控制的反向系数
+        if isinstance(world.player, carla.Vehicle):# 如果玩家是车辆
             self._control = carla.VehicleControl()
             self._ackermann_control = carla.VehicleAckermannControl()
-            self._lights = carla.VehicleLightState.NONE
-            world.player.set_autopilot(self._autopilot_enabled)
+            self._lights = carla.VehicleLightState.NONE# 设置车辆灯光状态
+            world.player.set_autopilot(self._autopilot_enabled)# 设置玩家的自动驾驶状态
             world.player.set_light_state(self._lights)
         elif isinstance(world.player, carla.Walker):
             self._control = carla.WalkerControl()
