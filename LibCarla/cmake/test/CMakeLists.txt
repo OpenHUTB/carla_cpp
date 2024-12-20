@@ -109,7 +109,7 @@ endif()
 
 # 构建发布版本
 if (LIBCARLA_BUILD_RELEASE)
-  # Specific options for release.
+  # 发布的特定选项。
   set_target_properties(libcarla_test_${carla_config}_release PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
    # 将libcarla_test_${carla_config}_release链接到carla_${carla_config}${carla_target_postfix}库
   target_link_libraries(libcarla_test_${carla_config}_release "carla_${carla_config}${carla_target_postfix}")
