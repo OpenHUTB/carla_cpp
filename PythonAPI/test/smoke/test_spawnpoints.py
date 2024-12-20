@@ -13,13 +13,16 @@ from . import SyncSmokeTest
 class TestSpawnpoints(SyncSmokeTest):
     def test_spawn_points(self):
         print("TestSpawnpoints.test_spawn_points")
+//获取Carla客户端对应的世界对象，后续很多操作都基于这个世界对象展开
         self.world = self.client.get_world()
+//从世界的蓝图库中筛选出所有车辆类型的蓝图
         blueprints = self.world.get_blueprint_library().filter("vehicle.*")
         blueprints = self.filter_vehicles_for_old_towns(blueprints)
 
         # get all available maps
         maps = self.client.get_available_maps()
         for m in maps:
+//排除特定的地图（BaseMap、Town11、Town12），对其他地图进行以下测试操作
 
             if m != '/Game/Carla/Maps/BaseMap/BaseMap' and m != '/Game/Carla/Maps/Town11/Town11' and m != '/Game/Carla/Maps/Town12/Town12':
 
