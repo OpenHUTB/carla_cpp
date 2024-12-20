@@ -43,10 +43,13 @@ class TestSpawnpoints(SyncSmokeTest):
 
                 # spawn all kind of vehicle
                 for vehicle in blueprints:
+# 为每个生成点和对应的车辆蓝图创建一个命令列表，用于生成车辆
                     batch = [(vehicle, t) for t in spawn_points]
+# 将命令列表中的每个元素转换为生成Actor（车辆在这里属于Actor）的命令对象
                     batch = [carla.command.SpawnActor(*args) for args in batch]
+# 同步应用生成车辆的命令批次，并获取响应结果
                     response = self.client.apply_batch_sync(batch, False)
-
+# 断言响应结果中没有任何错误，即车辆生成过程没有出现问题
                     self.assertFalse(any(x.error for x in response))
                     ids = [x.actor_id for x in response]
                     self.assertEqual(len(ids), len(spawn_points))
