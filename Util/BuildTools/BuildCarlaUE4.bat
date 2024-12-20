@@ -8,8 +8,7 @@ set LOCAL_PATH=%~dp0
 set FILE_N=-[%~n0]:
 
 rem 打印批处理参数（用于调试）
-echo %FILE_N% [批处理参数]: %*
-
+echo %FILE_N% [Batch params]: %*
 rem ============================================================================
 rem -- 解析参数 --------------------------------------------------------------
 rem ============================================================================
@@ -175,7 +174,7 @@ echo %OPTIONAL_MODULES_TEXT% > "%ROOT_PATH%Unreal/CarlaUE4/Config/OptionalModule
 
 rem 检查是否构建Unreal Editor
 if %BUILD_UE4_EDITOR% == true (
-    echo %FILE_N% 正在构建Unreal Editor...
+    echo %FILE_N% Building Unreal Editor...
 
     call "%UE4_ROOT%Engine\Build\BatchFiles\Build.bat"^
         CarlaUE4Editor^
