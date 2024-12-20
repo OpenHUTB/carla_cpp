@@ -1,38 +1,38 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// åœ¨é¡¹ç›®è®¾ç½®çš„ â€œæè¿°â€ é¡µé¢å¡«å†™ä½ çš„ç‰ˆæƒå£°æ˜ã€‚
 
-using UnrealBuildTool;// ÒıÈëUnreal Build ToolµÄÃüÃû¿Õ¼ä£¬ÒÔ±ãÊ¹ÓÃUBTµÄÀàºÍ¹¦ÄÜ
-using System.Collections.Generic;// ÒıÈë¼¯ºÏµÄÃüÃû¿Õ¼ä£¬ÓÃÓÚ²Ù×÷¼¯ºÏ£¨ÈçÁĞ±í£©
-using System;// ÒıÈë»ù´¡ÏµÍ³ÃüÃû¿Õ¼ä£¬Ìá¹©»ù´¡ÀàºÍ·½·¨  
-using System.IO; // ÒıÈëÊäÈëÊä³öÃüÃû¿Õ¼ä£¬Ìá¹©ÎÄ¼ş²Ù×÷µÄ¹¦ÄÜ
-// ¶¨ÒåÒ»¸ö¼Ì³Ğ×ÔTargetRulesµÄÀàCarlaUE4EditorTarget£¬ÓÃÓÚÉèÖÃCARLA UE4±à¼­Æ÷°æ±¾µÄ¹¹½¨¹æÔò
+using UnrealBuildTool;// å¼•å…¥Unreal Build Toolçš„å‘½åç©ºé—´ï¼Œä»¥ä¾¿ä½¿ç”¨UBTçš„ç±»å’ŒåŠŸèƒ½
+using System.Collections.Generic;// å¼•å…¥é›†åˆçš„å‘½åç©ºé—´ï¼Œç”¨äºæ“ä½œé›†åˆï¼ˆå¦‚åˆ—è¡¨ï¼‰
+using System;// å¼•å…¥åŸºç¡€ç³»ç»Ÿå‘½åç©ºé—´ï¼Œæä¾›åŸºç¡€ç±»å’Œæ–¹æ³•  
+using System.IO; // å¼•å…¥è¾“å…¥è¾“å‡ºå‘½åç©ºé—´ï¼Œæä¾›æ–‡ä»¶æ“ä½œçš„åŠŸèƒ½
+// å®šä¹‰ä¸€ä¸ªç»§æ‰¿è‡ªTargetRulesçš„ç±»CarlaUE4EditorTargetï¼Œç”¨äºè®¾ç½®CARLA UE4ç¼–è¾‘å™¨ç‰ˆæœ¬çš„æ„å»ºè§„åˆ™
 public class CarlaUE4EditorTarget : TargetRules
-{// ¹¹Ôìº¯Êı£¬½ÓÊÕÒ»¸öTargetInfo¶ÔÏó×÷Îª²ÎÊı£¬²¢µ÷ÓÃ»ùÀà¹¹Ôìº¯Êı
+{// æ„é€ å‡½æ•°ï¼Œæ¥æ”¶ä¸€ä¸ªTargetInfoå¯¹è±¡ä½œä¸ºå‚æ•°ï¼Œå¹¶è°ƒç”¨åŸºç±»æ„é€ å‡½æ•°
     public CarlaUE4EditorTarget(TargetInfo Target) : base(Target)
-    {// ÉèÖÃÄ¿±êÀàĞÍÎª±à¼­Æ÷ 
-        Type = TargetType.Editor;// ½«CARLAUE4Ä£¿éÌí¼Óµ½¶îÍâÄ£¿éÁĞ±íÖĞ£¬±íÊ¾Õâ¸ö¹¹½¨Ä¿±êĞèÒªCARLAUE4Ä£¿é 
+    {// è®¾ç½®ç›®æ ‡ç±»å‹ä¸ºç¼–è¾‘å™¨ 
+        Type = TargetType.Editor;// å°†CARLAUE4æ¨¡å—æ·»åŠ åˆ°é¢å¤–æ¨¡å—åˆ—è¡¨ä¸­ï¼Œè¡¨ç¤ºè¿™ä¸ªæ„å»ºç›®æ ‡éœ€è¦CARLAUE4æ¨¡å— 
         ExtraModuleNames.Add("CarlaUE4");
-        // ¼ÆËãÅäÖÃÎÄ¼şÄ¿Â¼µÄÂ·¾¶
-        string ConfigDir = Path.GetDirectoryName(ProjectFile.ToString()) + "/Config/";// ¼ÆËãOptionalModules.iniÎÄ¼şµÄÍêÕûÂ·¾¶ 
-        string OptionalModulesFile = Path.Combine(ConfigDir, "OptionalModules.ini");// ¶ÁÈ¡OptionalModules.iniÎÄ¼şµÄËùÓĞĞĞµ½×Ö·û´®Êı×éÖĞ
+        // è®¡ç®—é…ç½®æ–‡ä»¶ç›®å½•çš„è·¯å¾„
+        string ConfigDir = Path.GetDirectoryName(ProjectFile.ToString()) + "/Config/";// è®¡ç®—OptionalModules.iniæ–‡ä»¶çš„å®Œæ•´è·¯å¾„ 
+        string OptionalModulesFile = Path.Combine(ConfigDir, "OptionalModules.ini");// è¯»å–OptionalModules.iniæ–‡ä»¶çš„æ‰€æœ‰è¡Œåˆ°å­—ç¬¦ä¸²æ•°ç»„ä¸­
         string[] text = System.IO.File.ReadAllLines(OptionalModulesFile);
-        // ¼ÙÉèUnity¹¹½¨ÊÇ¿ªÆôµÄ
+        // å‡è®¾Unityæ„å»ºæ˜¯å¼€å¯çš„
         bool UnityOn = true;
-        // ±éÀúOptionalModules.iniÎÄ¼şµÄÃ¿Ò»ĞĞ
+        // éå†OptionalModules.iniæ–‡ä»¶çš„æ¯ä¸€è¡Œ
         foreach (string line in text)
-        {// Èç¹ûÄ³ĞĞ°üº¬"Unity OFF"£¬Ôò½«UnityOnÉèÖÃÎªfalse
+        {// å¦‚æœæŸè¡ŒåŒ…å«"Unity OFF"ï¼Œåˆ™å°†UnityOnè®¾ç½®ä¸ºfalse
             if (line.Contains("Unity OFF"))
 			{
 				UnityOn = false;
 			}
 		}
-        // Èç¹ûUnityOnÎªfalse£¬¼´OptionalModules.iniÖĞÖ¸¶¨ÁË¹Ø±ÕUnity¹¹½¨
+        // å¦‚æœUnityOnä¸ºfalseï¼Œå³OptionalModules.iniä¸­æŒ‡å®šäº†å…³é—­Unityæ„å»º
         if (!UnityOn)
-        {// ´òÓ¡ÈÕÖ¾ĞÅÏ¢£¬±íÊ¾ÕıÔÚ½ûÓÃUnity¹¹½¨
+        {// æ‰“å°æ—¥å¿—ä¿¡æ¯ï¼Œè¡¨ç¤ºæ­£åœ¨ç¦ç”¨Unityæ„å»º
             Console.WriteLine("Disabling unity");
-            // ½ûÓÃUnity¹¹½¨Ïà¹ØµÄÑ¡Ïî  
-            bUseUnityBuild = false;// ²»Ê¹ÓÃUnity¹¹½¨
-            bForceUnityBuild = false;// ²»Ç¿ÖÆÊ¹ÓÃUnity¹¹½¨
-            bUseAdaptiveUnityBuild = false;// ²»Ê¹ÓÃ×ÔÊÊÓ¦Unity¹¹½¨ 
+            // ç¦ç”¨Unityæ„å»ºç›¸å…³çš„é€‰é¡¹  
+            bUseUnityBuild = false;// ä¸ä½¿ç”¨Unityæ„å»º
+            bForceUnityBuild = false;// ä¸å¼ºåˆ¶ä½¿ç”¨Unityæ„å»º
+            bUseAdaptiveUnityBuild = false;// ä¸ä½¿ç”¨è‡ªé€‚åº”Unityæ„å»º 
         }
 	}
 }

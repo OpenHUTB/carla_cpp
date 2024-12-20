@@ -66,12 +66,14 @@ file(GLOB libcarla_carla_road_headers "${libcarla_source_path}/carla/road/*.h")
 // 进而能够使用头文件中所声明的各种类型、函数等内容来实现相应的业务逻辑。
 install(FILES ${libcarla_carla_road_headers} DESTINATION include/carla/road)
 
+# 收集 carla/road/element 目录下的所有头文件，并将它们存储在变量 libcarla_carla_road_element_headers 中
 file(GLOB libcarla_carla_road_element_headers "${libcarla_source_path}/carla/road/element/*.h")
 // 使用install命令将存储在变量${libcarla_carla_road_element_headers}中的头文件列表里的每一个头文件，
 // 安装到指定的目标目录“include/carla/road/element”下。
 // 这样在项目整体安装时，相应的头文件就能被准确放置在对应的目录位置，便于其他代码引用这些头文件中的定义来实现相关功能。
 install(FILES ${libcarla_carla_road_element_headers} DESTINATION include/carla/road/element)
 
+# 类似地为其他模块收集头文件，并指定了各自的安装路径
 file(GLOB libcarla_carla_road_general_headers "${libcarla_source_path}/carla/road/general/*.h")
 install(FILES ${libcarla_carla_road_general_headers} DESTINATION include/carla/road/general)
 
@@ -111,9 +113,12 @@ install(FILES ${libcarla_carla_multigpu_headers} DESTINATION include/carla/multi
 file(GLOB libcarla_carla_ros2_headers "${libcarla_source_path}/carla/ros2/*.h")
 install(FILES ${libcarla_carla_ros2_headers} DESTINATION include/carla/ros2)
 
+# 安装 Boost 头文件到目标 'include' 目录
 install(DIRECTORY "${BOOST_INCLUDE_PATH}/boost" DESTINATION include)
 
+# 如果是在 Windows 平台上编译，则进一步处理特定版本的 Boost 库文件
 if(WIN32)
+# 定义一个名为 boostlibs 的变量，用于存储要安装的 Boost 库文件路径列表
   file(GLOB boostlibs# 定义一个名为boostlibs的变量，用于存储要安装的Boost库文件路径列表。
       "${BOOST_LIB_PATH}/libboost_date_time-*-mt-*.lib"
       "${BOOST_LIB_PATH}/libboost_system-*-mt-*.lib"
@@ -130,7 +135,7 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/geom/*.cpp" # 收集${libcarla_source_path}/carla/geom/目录下所有以.h为扩展名的头文件路径
     "${libcarla_source_path}/carla/geom/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.cpp为扩展名的源文件路径
     "${libcarla_source_path}/carla/opendrive/*.cpp"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径
-    "${libcarla_source_path}/carla/opendrive/*.h"
+    "${libcarla_source_path}/carla/opendrive/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径，把该目录下的头文件路径都整合进变量里，以满足后续代码对这些头文件的引用需求。
     "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
     "${libcarla_source_path}/carla/opendrive/parser/*.h"
     "${libcarla_source_path}/carla/road/*.cpp"
