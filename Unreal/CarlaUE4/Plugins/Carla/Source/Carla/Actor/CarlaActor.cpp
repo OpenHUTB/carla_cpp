@@ -38,6 +38,7 @@
 #include <compiler/enable-ue4-macros.h>
 
 
+// FCarlaActor类的构造函数
 FCarlaActor::FCarlaActor(
     IdType ActorId,
     AActor* Actor,
@@ -50,51 +51,57 @@ FCarlaActor::FCarlaActor(
       State(InState),
       World(World)
 {
+    // 构造函数体内为空，初始化列表已经完成了所有成员变量的初始化
 }
+// FVehicleActor类的构造函数
 FVehicleActor::FVehicleActor(
     IdType ActorId,
     AActor* Actor,
     TSharedPtr<const FActorInfo> Info,
     carla::rpc::ActorState InState,
     UWorld* World)
-    : FCarlaActor(ActorId, Actor, Info, InState, World)
+    : FCarlaActor(ActorId, Actor, Info, InState, World) // 调用基类构造函数
 {
-  Type = ActorType::Vehicle;
-  ActorData = MakeShared<FVehicleData>();
+  Type = ActorType::Vehicle; // 设置Actor类型为车辆
+  ActorData = MakeShared<FVehicleData>();  // 创建车辆数据的共享指针
 }
+// FSensorActor类的构造函数
 FSensorActor::FSensorActor(
     IdType ActorId,
     AActor* Actor,
     TSharedPtr<const FActorInfo> Info,
     carla::rpc::ActorState InState,
     UWorld* World)
-    : FCarlaActor(ActorId, Actor, Info, InState, World)
+    : FCarlaActor(ActorId, Actor, Info, InState, World)// 调用基类构造函数
 {
-  Type = ActorType::Sensor;
-  ActorData = MakeShared<FActorSensorData>();
+  Type = ActorType::Sensor; // 设置Actor类型为传感器
+  ActorData = MakeShared<FActorSensorData>(); // 创建传感器数据的共享指针
 }
+// FTrafficSignActor类的构造函数
 FTrafficSignActor::FTrafficSignActor(
     IdType ActorId,
     AActor* Actor,
     TSharedPtr<const FActorInfo> Info,
     carla::rpc::ActorState InState,
     UWorld* World)
-    : FCarlaActor(ActorId, Actor, Info, InState, World)
+    : FCarlaActor(ActorId, Actor, Info, InState, World)// 调用基类构造函数
 {
-  Type = ActorType::TrafficSign;
-  ActorData = MakeShared<FTrafficSignData>();
+  Type = ActorType::TrafficSign; // 设置Actor类型为交通标志
+  ActorData = MakeShared<FTrafficSignData>(); // 创建交通标志数据的共享指针
 }
+// FTrafficLightActor类的构造函数
 FTrafficLightActor::FTrafficLightActor(
     IdType ActorId,
     AActor* Actor,
     TSharedPtr<const FActorInfo> Info,
     carla::rpc::ActorState InState,
     UWorld* World)
-    : FCarlaActor(ActorId, Actor, Info, InState, World)
+    : FCarlaActor(ActorId, Actor, Info, InState, World)  // 调用基类构造函数
 {
-  Type = ActorType::TrafficLight;
-  ActorData = MakeShared<FTrafficLightData>();
+  Type = ActorType::TrafficLight;  // 设置Actor类型为交通灯
+  ActorData = MakeShared<FTrafficLightData>();  // 创建交通灯数据的共享指针
 }
+// FWalkerActor类的构造函数
 FWalkerActor::FWalkerActor(
     IdType ActorId,
     AActor* Actor,
@@ -103,9 +110,10 @@ FWalkerActor::FWalkerActor(
     UWorld* World)
     : FCarlaActor(ActorId, Actor, Info, InState, World)
 {
-  Type = ActorType::Walker;
-  ActorData = MakeShared<FWalkerData>();
+  Type = ActorType::Walker;// 设置Actor类型为行人
+  ActorData = MakeShared<FWalkerData>(); // 创建行人数据的共享指针
 }
+// FOtherActor类的构造函数
 FOtherActor::FOtherActor(
     IdType ActorId,
     AActor* Actor,
@@ -114,10 +122,11 @@ FOtherActor::FOtherActor(
     UWorld* World)
     : FCarlaActor(ActorId, Actor, Info, InState, World)
 {
-  Type = ActorType::Other;
-  ActorData = MakeShared<FActorData>();
+  Type = ActorType::Other;  // 设置Actor类型为其他
+  ActorData = MakeShared<FActorData>();  // 创建其他Actor数据的共享指针
 }
 
+// FCarlaActor类的静态函数，用于根据不同的Actor类型构造相应的FCarlaActor派生类实例
 TSharedPtr<FCarlaActor> FCarlaActor::ConstructCarlaActor(
       IdType ActorId,
       AActor* Actor,
@@ -126,24 +135,25 @@ TSharedPtr<FCarlaActor> FCarlaActor::ConstructCarlaActor(
       carla::rpc::ActorState InState,
       UWorld* World)
 {
+ // 根据传入的Actor类型进行判断，并创建对应的派生类实例
   switch(Type)
   {
-  case ActorType::TrafficSign:
+  case ActorType::TrafficSign:// 创建交通标志Actor的实例
     return MakeShared<FTrafficSignActor>(ActorId, Actor, std::move(Info), InState, World);
     break;
-  case ActorType::TrafficLight:
+  case ActorType::TrafficLight: // 创建交通灯Actor的实例
     return MakeShared<FTrafficLightActor>(ActorId, Actor, std::move(Info), InState, World);
     break;
-  case ActorType::Vehicle:
+  case ActorType::Vehicle: // 创建车辆Actor的实例
     return MakeShared<FVehicleActor>(ActorId, Actor, std::move(Info), InState, World);
     break;
-  case ActorType::Walker:
+  case ActorType::Walker: // 创建行人Actor的实例
     return MakeShared<FWalkerActor>(ActorId, Actor, std::move(Info), InState, World);
     break;
-  case ActorType::Sensor:
+  case ActorType::Sensor:// 创建传感器Actor的实例
     return MakeShared<FSensorActor>(ActorId, Actor, std::move(Info), InState, World);
     break;
-  default:
+  default: // 如果类型不匹配以上任何一种，则创建其他类型的Actor实例
     return MakeShared<FOtherActor>(ActorId, Actor, std::move(Info), InState, World);
     break;
   }
