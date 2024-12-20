@@ -517,6 +517,18 @@ class GlobalRoutePlanner:
         return last_node, last_intersection_edge
 
     def _turn_decision(self, index, route, threshold=math.radians(35)):
+         """
+        函数功能：
+        该方法用于返回路线列表（route）中当前索引（index）位置前后两条边对应的转向决策（RoadOption类型）。
+
+        参数说明：
+        - index: 当前在路线列表中的索引位置，用于确定要分析的边对所处位置，类型为int。
+        - route: 表示路线的节点列表，其中每个元素是一个节点的标识（假设为int类型），类型为list[int]。
+        - threshold: 用于判断转向决策的角度阈值，默认值是将35度转换为弧度后的值，类型为float。
+
+        返回值：
+        返回对应的转向决策，类型为RoadOption。
+        """
         # type: (int, list[int], float) -> RoadOption
         """
         This method returns the turn decision (RoadOption) for pair of edges
@@ -527,8 +539,15 @@ class GlobalRoutePlanner:
         previous_node = route[index - 1]
         current_node = route[index]
         next_node = route[index + 1]
+        # 获取当前节点与下一个节点之间的边信息（假设EdgeDict是存储边属性的字典类型）
         next_edge = self._graph.edges[current_node, next_node]  # type: EdgeDict
         if index > 0:
+            # 如果满足以下一系列条件：
+            # 1. 之前的决策不是RoadOption.VOID（表示之前有有效的决策）。
+            # 2. 交叉路口结束节点大于0（表示存在有效的交叉路口结束节点）。
+            # 3. 交叉路口结束节点不等于前一个节点。
+            # 4. 下一条边的类型是RoadOption.LANEFOLLOW（表示沿着车道行驶）。
+            # 5. 下一条边处于交叉路口。
             if self._previous_decision != RoadOption.VOID \
                     and self._intersection_end_node > 0 \
                     and self._intersection_end_node != previous_node \
@@ -536,30 +555,48 @@ class GlobalRoutePlanner:
                     and next_edge['intersection']:
                 decision = self._previous_decision
             else:
+                # 重置交叉路口结束节点为 -1，表示当前不在特定的交叉路口相关情境中
                 self._intersection_end_node = -1
+                # 获取前一个节点与当前节点之间的边信息
                 current_edge = self._graph.edges[previous_node, current_node]  # type: EdgeDict
+                # 判断是否需要计算转向，条件为：
+                # 1. 当前边类型是RoadOption.LANEFOLLOW且不在交叉路口。
+                # 2. 下一条边类型是RoadOption.LANEFOLLOW且在交叉路口。
                 calculate_turn = current_edge['type'] == RoadOption.LANEFOLLOW and not current_edge[
                     'intersection'] and next_edge['type'] == RoadOption.LANEFOLLOW and next_edge['intersection']
                 if calculate_turn:
+                    # 查找当前索引位置往后连续的最后一个处于交叉路口的边相关信息（包括节点和边本身）
                     last_node, tail_edge = self._successive_last_intersection_edge(index, route)
                     self._intersection_end_node = last_node
                     if tail_edge is not None:
                         next_edge = tail_edge
+                    # 获取当前边的出口向量和下一条边的出口向量（假设边的属性中有这些向量相关信息）
                     cv, nv = current_edge['exit_vector'], next_edge['exit_vector']
                     if cv is None or nv is None:
                         return next_edge['type']
                     cross_list = []
+                    # 遍历当前节点的所有后继节点（邻居节点）
                     for neighbor in self._graph.successors(current_node):
+                        # 获取当前节点到邻居节点的边信息
                         select_edge = self._graph.edges[current_node, neighbor]
                         if select_edge['type'] == RoadOption.LANEFOLLOW:
                             if neighbor != route[index + 1]:
+                                # 获取该边的网络向量（假设边属性中有此向量），并计算与当前边出口向量的叉积的z分量，添加到叉积列表中
                                 sv = select_edge['net_vector']
                                 cross_list.append(np.cross(cv, sv)[2])
+                    # 计算当前边出口向量与下一条边出口向量的叉积的z分量
                     next_cross = np.cross(cv, nv)[2]
+                    # 计算当前边出口向量与下一条边出口向量的夹角偏差（通过向量点积和向量模长来计算夹角的余弦值，再反余弦得到夹角）
                     deviation = math.acos(np.clip(
                         np.dot(cv, nv) / (np.linalg.norm(cv) * np.linalg.norm(nv)), -1.0, 1.0))
                     if not cross_list:
                         cross_list.append(0)
+                    # 根据夹角偏差和叉积结果来确定转向决策：
+                    # 1. 如果夹角偏差小于阈值，决策为直走（RoadOption.STRAIGHT）。
+                    # 2. 如果叉积列表不为空且当前边与下一条边的叉积小于叉积列表中的最小值，决策为左转（RoadOption.LEFT）。
+                    # 3. 如果叉积列表不为空且当前边与下一条边的叉积大于叉积列表中的最大值，决策为右转（RoadOption.RIGHT）。
+                    # 4. 如果当前边与下一条边的叉积小于0，决策为左转。
+                    # 5. 如果当前边与下一条边的叉积大于0，决策为右转。
                     if deviation < threshold:
                         decision = RoadOption.STRAIGHT
                     elif cross_list and next_cross < min(cross_list):
@@ -576,12 +613,26 @@ class GlobalRoutePlanner:
         else:
             decision = next_edge['type']
 
+        # 更新之前的决策为当前决策，方便后续使用
         self._previous_decision = decision
         return decision
 
     def _find_closest_in_list(self, current_waypoint, waypoint_list):
+         """
+        函数功能：
+        在给定的路点列表（waypoint_list）中，查找距离当前路点（current_waypoint）最近的路点的索引。
+
+        参数说明：
+        - current_waypoint: 当前要作为参考的路点，其具有位置等相关属性（假设通过transform.location获取位置信息），类型根据实际情况而定。
+        - waypoint_list: 包含多个路点的列表，每个路点同样有位置等相关属性，类型为List[某种路点类型]（这里用某种路点类型表示实际对应的路点类或结构体等）。
+
+        返回值：
+        返回距离当前路点最近的路点在waypoint_list中的索引，类型为int，如果没有找到更近的路点（理论上不会出现此情况，除非列表为空），则返回 -1。
+        """
+        # 初始化最小距离为正无穷大，方便后续比较找到真正的最小距离
         min_distance = float('inf')
         closest_index = -1
+        # 初始化最小距离为正无穷大，方便后续比较找到真正的最小距离
         for i, waypoint in enumerate(waypoint_list):
             distance = waypoint.transform.location.distance(
                 current_waypoint.transform.location)
