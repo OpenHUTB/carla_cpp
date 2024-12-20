@@ -1,17 +1,17 @@
-Binaries
-Build
-Debug
-DerivedDataCache
-Intermediate
-Saved
-Plugins/Carla/Binaries
-Plugins/Carla/Build
-Plugins/Carla/CarlaServer
-Plugins/Carla/CarlaDependencies
-Plugins/Carla/Debug
-Plugins/Carla/DerivedDataCache
-Plugins/Carla/Intermediate
-Plugins/Carla/Saved
+Binaries //包含编译生成的可执行文件和库文件
+Build //包含构建过程中的中间文件或构建脚本
+Debug //包含调试信息或调试构建的输出
+DerivedDataCache //包含编译器生成的派生数据
+Intermediate //包含编译过程中的中间文件
+Saved //包含运行时生成的数据
+Plugins/Carla/Binaries //Carla 插件的二进制文件目录
+Plugins/Carla/Build //Carla 插件的构建相关文件目录
+Plugins/Carla/CarlaServer //Carla 服务器相关文件目录
+Plugins/Carla/CarlaDependencies //Carla 插件的依赖项目录
+Plugins/Carla/DebugCarla //插件的调试信息目录
+Plugins/Carla/DerivedDataCache //Carla 插件的派生数据缓存目录
+Plugins/Carla/Intermediate //Carla 插件的中间文件目录
+Plugins/Carla/Saved //Carla 插件的运行时数据目录
 
 /Content
 Config/CarlaSettings.ini
