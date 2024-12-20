@@ -1,14 +1,15 @@
 ---
-- module_name: carla
+- module_name: carla- #这行定义了模块的名称为 carla 。它是整个代码结构所属的模块名
   # - CLASSES ------------------------------
   classes:
   - class_name: Actor
     # - DESCRIPTION ------------------------
-    doc: >
+    doc: >- #这可能是文档字符串（docstring）的开始标记，用于对 Actor 类进行详细的描述。
       CARLA defines actors as anything that plays a role in the simulation or can be moved around. That includes: pedestrians, vehicles, sensors and traffic signs (considering traffic lights as part of these). Actors are spawned in the simulation by carla.World and they need for a carla.ActorBlueprint to be created. These blueprints belong into a library provided by CARLA, find more about them [here](bp_library.md).
     # - PROPERTIES -------------------------
     instance_variables:
-    - var_name: attributes
+    - var_name: attributesutes ：
+ - #这里定义了一个名为 attributes 的实例变量。从后面的 type: dict 可以知道，这个变量是一个字典类型。它可能用于存储与这个 Actor 相关的各种属性信息。
       type: dict
       doc: >
         A dictionary containing the attributes of the blueprint this actor was based on.
