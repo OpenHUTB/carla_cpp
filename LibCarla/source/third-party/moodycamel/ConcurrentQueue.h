@@ -55,9 +55,9 @@
 #include <algorithm>
 #include <utility>
 #include <limits>
-#include <climits>    // for CHAR_BIT
+#include <climits>    // 为了 CHAR_BIT
 #include <array>
-#include <thread>    // partly for __WINPTHREADS_VERSION if on MinGW-w64 w/ POSIX threading
+#include <thread>    // 部分用于 __WINPTHREADS_VERSION如果在 MinGW-w64 上带有 POSIX 线程
 
 // 平台特定的数字线程 ID 类型和无效值定义
 namespace moodycamel { namespace details {
