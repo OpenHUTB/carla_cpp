@@ -534,15 +534,22 @@ class GlobalRoutePlanner:
 
         self._previous_decision = decision
         return decision
-
+    #定义一个函数，其功能是在给定的路点列表（waypoint_list）中找到距离当前路点（current_waypoint）最近的路点
     def _find_closest_in_list(self, current_waypoint, waypoint_list):
+        #初始化最小距离min_distance为正无穷大，用于比较找到的最小距离
         min_distance = float('inf')
+        #初始化最近路点的索引closest_index为 -1，表示初始时没有找到最近路点
         closest_index = -1
+        #使用enumerate函数遍历waypoint_list，同时获取路点的索引i和路点本身waypoint
         for i, waypoint in enumerate(waypoint_list):
+            #计算当前路点current_waypoint与列表中的路点waypoint之间的距离，并将结果存储在distance变量中
             distance = waypoint.transform.location.distance(
                 current_waypoint.transform.location)
+            #如果计算出的距离distance小于当前的最小距离min_distance
             if distance < min_distance:
+                #更新最小距离min_distance为新计算出的距离
                 min_distance = distance
+                #更新最近路点的索引closest_index为当前路点的索引i
                 closest_index = i
-
+        #返回最近路点的索引closest_index，如果没有找到更近的路点，则返回 -1
         return closest_index
