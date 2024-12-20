@@ -31,13 +31,28 @@ namespace sensor_msgs {
     namespace msg {
         PointFieldPubSubType::PointFieldPubSubType()
         {
+            // 设置类型名称，这里是 "sensor_msgs::msg::dds_::PointField_"
+            // 该名称通常用于数据交换中的类型识别
             setName("sensor_msgs::msg::dds_::PointField_");
+
+            // 获取 PointField 类型的最大序列化大小（以字节为单位）
             auto type_size = PointField::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+
+            // 考虑到可能的子消息对齐，计算对齐大小（以4字节对齐）
+            // 并将其加到原有的类型大小中
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);
+
+            // 设置类型的总大小，包括封装头（4字节）
+            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*封装头*/
+
+            // 判断该类型是否定义了Key（通常是主键）
             m_isGetKeyDefined = PointField::isKeyDefined();
+
+            // 获取最大键序列化大小，保证键长度至少为16字节（如没有键则使用默认长度）
             size_t keyLength = PointField::getKeyMaxCdrSerializedSize() > 16 ?
                     PointField::getKeyMaxCdrSerializedSize() : 16;
+
+            // 为键分配内存，并将其初始化为0
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
             memset(m_keyBuffer, 0, keyLength);
         }

@@ -36,22 +36,22 @@ public:
 
   /// @}
   /// ==========================================================================
-  /// @name Actor definition validators
+  /// @name 参与者定义验证器
   /// ==========================================================================
   /// @{
 
-  /// Return whether the actor definition is valid. Prints all the errors found.
+  /// 返回角色定义是否有效。打印所有找到的错误
   UFUNCTION(Category = "Carla Actor", BlueprintCallable)
   static bool CheckActorDefinition(const FActorDefinition &ActorDefinitions);
 
-  /// Return whether the list of actor definitions is valid. Prints all the
-  /// errors found.
+  /// 返回演员定义列表是否有效。打印所有
+  /// 发现错误
   UFUNCTION(Category = "Carla Actor", BlueprintCallable)
   static bool CheckActorDefinitions(const TArray<FActorDefinition> &ActorDefinitions);
 
   /// @}
   /// ==========================================================================
-  /// @name Helpers to create actor definitions
+  /// @name 创建角色定义的辅助工具
   /// ==========================================================================
   /// @{
 
@@ -178,7 +178,7 @@ public:
 
   /// @}
   /// ==========================================================================
-  /// @name Helpers to retrieve attribute values
+  /// @name 获取属性值的帮助程序
   /// ==========================================================================
   /// @{
 
@@ -229,7 +229,7 @@ public:
 
   /// @}
   /// ==========================================================================
-  /// @name Helpers to set Actors
+  /// @name 设置角色的辅助工具
   /// ==========================================================================
   /// @{
 

@@ -34,7 +34,7 @@ namespace carla {
     void store(std::shared_ptr<T> ptr) noexcept {
       std::atomic_store_explicit(&_ptr, ptr, std::memory_order_release);
     }
- 	
+ 	// 存储新的指针到内部。
     void reset(std::shared_ptr<T> ptr = nullptr) noexcept {
       store(ptr);
     }

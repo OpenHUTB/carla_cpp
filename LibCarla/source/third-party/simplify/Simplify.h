@@ -16,73 +16,86 @@
  * 提供输入输出功能，用于在控制台打印信息或读取用户输入。
  */
 #include <iostream>
+// 包含标准输入输出流库，用于输入输出操作
  /**
   * @brief 文件流库
   *
   * 提供文件读写功能，支持文本文件和二进制文件的操作。
   */
 #include <fstream>
+// 包含文件流库，用于文件的读写
   /**
    * @brief 算法库
    *
    * 提供各种常用算法的实现，如排序、查找等。
    */
 #include <algorithm>
+// 包含算法库，提供各种常用算法的实现
    /**
     * @brief 字符串操作函数库（C风格）
     *
     * 提供一系列用于处理C风格字符串的函数，如复制、比较等。
     */
 #include <string.h>
+// 包含字符串操作函数库（C 风格）
     /**
      * @brief 标准输入输出库（C风格）
      *
      * 提供基本的输入输出功能，如打印、读取等，通常用于控制台应用程序。
      */
 #include <stdio.h>
+// 包含标准输入输出库（C 风格）
      /**
       * @brief 标准库头文件（C风格）
       *
       * 提供内存分配、程序控制、环境访问等功能。
       */
 #include <stdlib.h>
+// 包含标准库头文件（C 风格），提供内存分配等功能
       /**
        * @brief 关联数组（映射）库
        *
        * 提供了一种存储键值对的数据结构，可以快速地根据键查找对应的值。
        */
 #include <map>
+// 包含关联数组（映射）库
        /**
         * @brief 动态数组库
         *
         * 提供了一种可以动态调整大小的数组数据结构，支持随机访问和高效的元素添加/删除。
         */
 #include <vector>
+// 包含动态数组库
         /**
          * @brief 字符串库（C++风格）
          *
          * 提供了一种表示和操作字符串的类，比C风格的字符串提供了更多的功能和安全性。
          */
 #include <string>
+// 包含字符串库（C++ 风格）
          /**
           * @brief 数学库
           *
           * 提供各种数学函数，如三角函数、对数函数、幂函数等。
           */
 #include <math.h>
+// 包含数学库
           /**
            * @brief 浮点型数值限制库
            *
            * 定义了浮点型数值的一些极限值，如最小正数（FLT_EPSILON, DBL_EPSILON）等。
            */
 #include <float.h> 
+// 包含浮点型数值限制库
            /**
             * @def loopi
             * @brief 定义一个循环宏，使用变量i从start_l迭代到end_l（不包括end_l）。
             *
             * @param start_l 循环起始值（包含）。
             * @param end_l 循环结束值（不包含）。
-            */
+ // 定义一个循环宏，使用变量 i 从 start_l 迭代到 end_l（不包括 end_l）
+           */
+
 #define loopi(start_l, end_l) for (int i = start_l; i < end_l; ++i)
             /**
              * @def loopj
@@ -105,6 +118,7 @@
                * @struct vector3
                * @brief 一个简单的三维向量结构体，包含x、y、z三个坐标。
                */
+// 定义一个简单的三维向量结构体
 struct vector3
 {
   double x, y, z;
@@ -113,8 +127,11 @@ struct vector3
  * @struct vec3f
  * @brief 一个包含三维浮点数坐标的向量结构体，提供了一系列向量运算。
  */
+
+// 定义一个包含更多功能的三维浮点数坐标的向量结构体
 struct vec3f
 {
+// 默认构造函数
   double x, y, z;
   /**
    * @brief 默认构造函数。
@@ -1148,25 +1165,26 @@ namespace Simplify
     void update_triangles(int i0, Vertex &v, std::vector<int> &deleted, int &deleted_triangles)
     {
       vec3f p;
-      loopk(0, v.tcount)
+      loopk(0, v.tcount)// 遍历与顶点v相关联的所有三角形
       {
-        Ref &r = refs[v.tstart + k];
-        Triangle &t = triangles[r.tid];
-        if (t.deleted)
+        Ref &r = refs[v.tstart + k];// 获取三角形r的引用
+        Triangle &t = triangles[r.tid];// 获取该三角形t
+        if (t.deleted)// 如果三角形已经标记为删除，跳过
           continue;
-        if (deleted[k])
+        if (deleted[k]) // 如果当前三角形被标记为删除
         {
-          t.deleted = 1;
-          deleted_triangles++;
+          t.deleted = 1;// 将该三角形标记为删除
+          deleted_triangles++;// 增加删除的三角形计数
           continue;
-        }
-        t.v[r.tvertex] = i0;
-        t.dirty = 1;
+        } // 如果三角形未被删除，更新三角形的顶点索引
+        t.v[r.tvertex] = i0;// 用新顶点索引替换
+        t.dirty = 1;// 标记三角形为错误·，需要重新计算
+       // 计算三角形的误差值
         t.err[0] = calculate_error(t.v[0], t.v[1], p);
         t.err[1] = calculate_error(t.v[1], t.v[2], p);
         t.err[2] = calculate_error(t.v[2], t.v[0], p);
-        t.err[3] = min(t.err[0], min(t.err[1], t.err[2]));
-        refs.push_back(r);
+        t.err[3] = min(t.err[0], min(t.err[1], t.err[2]));// 获取最小的误差
+        refs.push_back(r);// 将更新后的引用加入引用列表
       }
     }
 
@@ -1215,16 +1233,16 @@ namespace Simplify
       }
 
       // Write References
-      refs.resize(triangles.size() * 3);
+      refs.resize(triangles.size() * 3); // 每个三角形有三个顶点，因此引用列表的大小是三角形数的三倍
       loopi(0, triangles.size())
       {
         Triangle &t = triangles[i];
         loopj(0, 3)
         {
           Vertex &v = vertices[t.v[j]];
-          refs[v.tstart + v.tcount].tid = i;
-          refs[v.tstart + v.tcount].tvertex = j;
-          v.tcount++;
+          refs[v.tstart + v.tcount].tid = i;// 记录三角形ID
+          refs[v.tstart + v.tcount].tvertex = j;// 记录该顶点在三角形中的位置
+          v.tcount++;// 更新顶点的计数
         }
       }
 
@@ -1235,14 +1253,14 @@ namespace Simplify
       // but mostly improves the result for closed meshes
       //
       if (iteration == 0)
-      {
+      {    // 标记边界顶点
         // Identify boundary : vertices[].border=0,1
 
         std::vector<int> vcount, vids;
 
         loopi(0, vertices.size())
             vertices[i]
-                .border = 0;
+                .border = 0; // 初始化边界标志
 
         loopi(0, vertices.size())
         {
@@ -1251,12 +1269,12 @@ namespace Simplify
           vids.clear();
           loopj(0, v.tcount)
           {
-            int k = refs[v.tstart + j].tid;
+            int k = refs[v.tstart + j].tid;// 获取三角形ID
             Triangle &t = triangles[k];
             loopk(0, 3)
             {
-              int ofs = 0, id = t.v[k];
-              while (ofs < vcount.size())
+              int ofs = 0, id = t.v[k];// 获取三角形中的顶点ID
+              while (ofs < vcount.size())// 检查该顶点是否已在vcount中，如果没有，则添加
               {
                 if (vids[ofs] == id)
                   break;
@@ -1270,7 +1288,7 @@ namespace Simplify
               else
                 vcount[ofs]++;
             }
-          }
+          } // 标记仅与一个三角形相邻的顶点为边界顶点
           loopj(0, vcount.size()) if (vcount[j] == 1)
               vertices[vids[j]]
                   .border = 1;
@@ -1279,7 +1297,7 @@ namespace Simplify
         loopi(0, vertices.size())
             vertices[i]
                 .q = SymetricMatrix(0.0);
-
+       // 计算三角形法向量和误差矩阵
         loopi(0, triangles.size())
         {
           Triangle &t = triangles[i];
@@ -1290,14 +1308,15 @@ namespace Simplify
           t.n = n;
           loopj(0, 3) vertices[t.v[j]].q =
               vertices[t.v[j]].q + SymetricMatrix(n.x, n.y, n.z, -n.dot(p[0]));
-        }
+        }        // 计算每条边的误差
+
         loopi(0, triangles.size())
         {
           // Calc Edge Error
           Triangle &t = triangles[i];
           vec3f p;
           loopj(0, 3) t.err[j] = calculate_error(t.v[j], t.v[(j + 1) % 3], p);
-          t.err[3] = min(t.err[0], min(t.err[1], t.err[2]));
+          t.err[3] = min(t.err[0], min(t.err[1], t.err[2])); // 获取最小误差
         }
       }
     }
@@ -1309,66 +1328,69 @@ namespace Simplify
       int dst = 0;
       loopi(0, vertices.size())
       {
-        vertices[i].tcount = 0;
-      }
+        vertices[i].tcount = 0;// 重置顶点的三角形计数
+      }// 压缩三角形和顶点
       loopi(0, triangles.size()) if (!triangles[i].deleted)
       {
         Triangle &t = triangles[i];
-        triangles[dst++] = t;
-        loopj(0, 3) vertices[t.v[j]].tcount = 1;
+        triangles[dst++] = t;// 将非删除三角形压缩到数组前面
+        loopj(0, 3) vertices[t.v[j]].tcount = 1;// 更新顶点的三角形计数
       }
-      triangles.resize(dst);
+      triangles.resize(dst);// 调整三角形数组大小
       dst = 0;
       loopi(0, vertices.size()) if (vertices[i].tcount)
       {
-        vertices[i].tstart = dst;
-        vertices[dst].p = vertices[i].p;
+        vertices[i].tstart = dst;// 更新顶点的起始索引
+        vertices[dst].p = vertices[i].p;// 将顶点坐标复制到新的位置
         dst++;
       }
+    // 更新三角形的顶点索引
       loopi(0, triangles.size())
       {
         Triangle &t = triangles[i];
-        loopj(0, 3) t.v[j] = vertices[t.v[j]].tstart;
+        loopj(0, 3) t.v[j] = vertices[t.v[j]].tstart;// 更新三角形的顶点索引
       }
       vertices.resize(dst);
     }
 
     // Error between vertex and Quadric
-
+   // 计算顶点的误差
     double vertex_error(SymetricMatrix q, double x, double y, double z)
     {
       return q[0] * x * x + 2 * q[1] * x * y + 2 * q[2] * x * z + 2 * q[3] * x + q[4] * y * y + 2 * q[5] * y * z + 2 * q[6] * y + q[7] * z * z + 2 * q[8] * z + q[9];
     }
-
-    // Error for one edge
-
+// 计算并返回一个顶点 (x, y, z) 处的误差，误差公式根据对称矩阵 q 给定
+   // 计算一个边缘的误差
     double calculate_error(int id_v1, int id_v2, vec3f &p_result)
     {
-      // compute interpolated vertex
-
+         // 计算两顶点 (id_v1 和 id_v2) 之间的误差并返回最小误差。
+        // p_result 存储计算出的最优点。
+       // 获取两个顶点的对称矩阵并求和
       SymetricMatrix q = vertices[id_v1].q + vertices[id_v2].q;
+      // 判断是否为边界顶点
       bool border = vertices[id_v1].border & vertices[id_v2].border;
       double error = 0;
-      double det = q.det(0, 1, 2, 1, 4, 5, 2, 5, 7);
+      double det = q.det(0, 1, 2, 1, 4, 5, 2, 5, 7);// 计算矩阵 q 的行列式
       if (det != 0 && !border)
-      {
+      {// 如果行列式不为 0 并且不在边界，则计算最优插值顶点 p_result
+        // q_delta 的逆可用
 
-        // q_delta is invertible
-        p_result.x = -1 / det * (q.det(1, 2, 3, 4, 5, 6, 5, 7, 8)); // vx = A41/det(q_delta)
+               p_result.x = -1 / det * (q.det(1, 2, 3, 4, 5, 6, 5, 7, 8)); // vx = A41/det(q_delta)
         p_result.y = 1 / det * (q.det(0, 2, 3, 1, 5, 6, 2, 7, 8));  // vy = A42/det(q_delta)
         p_result.z = -1 / det * (q.det(0, 1, 3, 1, 4, 6, 2, 5, 8)); // vz = A43/det(q_delta)
-
+      // 计算此插值顶点的误差
         error = vertex_error(q, p_result.x, p_result.y, p_result.z);
       }
       else
-      {
-        // det = 0 -> try to find best result
-        vec3f p1 = vertices[id_v1].p;
-        vec3f p2 = vertices[id_v2].p;
-        vec3f p3 = (p1 + p2) / 2;
+      {// 如果行列式为 0（不可逆），则选择最小误差的点
+        vec3f p1 = vertices[id_v1].p;// 获取第一个顶点的位置
+        vec3f p2 = vertices[id_v2].p; // 获取第二个顶点的位置
+        vec3f p3 = (p1 + p2) / 2;  // 计算两点的中点
+           // 计算每个顶点的误差
         double error1 = vertex_error(q, p1.x, p1.y, p1.z);
         double error2 = vertex_error(q, p2.x, p2.y, p2.z);
         double error3 = vertex_error(q, p3.x, p3.y, p3.z);
+         // 选择最小的误差，并将结果存储到 p_result
         error = min(error1, min(error2, error3));
         if (error1 == error)
           p_result = p1;
@@ -1379,32 +1401,32 @@ namespace Simplify
       }
       return error;
     }
-
+// 修剪字符串两端的空格
     char *trimwhitespace(char *str)
     {
       char *end;
-
-      // Trim leading space
-      while (isspace((unsigned char)*str))
+    // 修剪前导空格
+            while (isspace((unsigned char)*str))
         str++;
 
-      if (*str == 0) // All spaces?
+      if (*str == 0) // 如果全部为空格
         return str;
 
-      // Trim trailing space
+        // 修剪尾部空格
       end = str + strlen(str) - 1;
       while (end > str && isspace((unsigned char)*end))
         end--;
 
-      // Write new null terminator
+             // 写入新的终止符
       *(end + 1) = 0;
 
       return str;
     }
 
-    // Option : Load OBJ
+    // 加载 OBJ 文件
     void load_obj(const char *filename, bool process_uv = false)
     {
+      
       vertices.clear();
       triangles.clear();
       // printf ( "Loading Objects %s ... \n",filename);
@@ -1425,12 +1447,12 @@ namespace Simplify
       std::map<std::string, int> material_map;
       std::vector<vec3f> uvs;
       std::vector<std::vector<int>> uvMap;
-
+          // 逐行读取文件内容
       while (fgets(line, 1000, fn) != NULL)
       {
         Vertex v;
         vec3f uv;
-
+     // 解析材质库
         if (strncmp(line, "mtllib", 6) == 0)
         {
           mtllib = trimwhitespace(&line[7]);
@@ -1445,7 +1467,7 @@ namespace Simplify
           }
           material = material_map[usemtl];
         }
-
+      // 解析纹理坐标
         if (line[0] == 'v' && line[1] == 't')
         {
           if (line[2] == ' ')
@@ -1462,7 +1484,7 @@ namespace Simplify
             }
         }
         else if (line[0] == 'v')
-        {
+        {         // 解析顶点坐标
           if (line[1] == ' ')
             if (sscanf(line, "v %lf %lf %lf",
                        &v.p.x, &v.p.y, &v.p.z) == 3)

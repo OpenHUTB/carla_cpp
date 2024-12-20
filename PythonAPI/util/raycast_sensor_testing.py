@@ -32,7 +32,7 @@ And for profiling one radar:
 import glob
 import os
 import sys
-
+# 尝试将 CARLA 库的路径添加到系统路径
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -47,14 +47,14 @@ import random
 import time
 import numpy as np
 
-
+# 如果无法导入 pygame 库，则抛出错误
 try:
     import pygame
     from pygame.locals import K_ESCAPE
     from pygame.locals import K_q
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
-
+# 定义一个自定义定时器类，用于测量处理时间
 class CustomTimer:
     def __init__(self):
         try:
@@ -64,7 +64,7 @@ class CustomTimer:
 
     def time(self):
         return self.timer()
-
+# 显示管理器类，用于管理渲染窗口和传感器的显示
 class DisplayManager:
     def __init__(self, grid_size, window_size, show_window=True):
         if show_window:
@@ -109,7 +109,7 @@ class DisplayManager:
 
     def render_enabled(self):
         return self.display != None
-
+# 传感器管理器类，用于管理各类传感器的创建、数据采集和渲染
 class SensorManager:
     def __init__(self, world, display_man, sensor_type, transform, attached, sensor_options, display_pos):
         self.surface = None

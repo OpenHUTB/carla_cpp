@@ -140,31 +140,46 @@ def get_font():
 
 # 将3D点转换为屏幕坐标的函数
 def get_screen_points(camera, K, image_w, image_h, points3d):
-    
-    # get 4x4 matrix to transform points from world to camera coordinates
-    world_2_camera = np.array(camera.get_transform().get_inverse_matrix())
+    """
+        函数功能：
+        将三维世界坐标中的点转换为屏幕坐标（二维图像坐标）。
 
+        参数说明：
+        - camera: 相机对象，用于获取相机相关的变换信息。
+        - K: 相机内参矩阵，用于3D到2D的投影变换。
+        - image_w: 图像的宽度，用于后续对坐标范围的判断。
+        - image_h: 图像的高度，用于后续对坐标范围的判断。
+        - points3d: 三维世界坐标中的点的集合（通常是一个包含多个点坐标的列表等可迭代对象）。
+
+        返回值：
+        经过转换后的二维屏幕坐标点的数组。
+        """
+    # get 4x4 matrix to transform points from world to camera coordinates
+    # 获取将点从世界坐标转换到相机坐标的4x4变换矩阵，这里取相机变换矩阵的逆矩阵
+    world_2_camera = np.array(camera.get_transform().get_inverse_matrix())
     # build the points array in numpy format as (x, y, z, 1) to be operable with a 4x4 matrix
+    # 将输入的三维点数据构建成适合与4x4矩阵进行运算的numpy数组格式，即每个点表示为(x, y, z, 1)
     points_temp = []
     for p in points3d:
         points_temp += [p.x, p.y, p.z, 1]
     points = np.array(points_temp).reshape(-1, 4).T
-    
     # convert world points to camera space
+    # 通过矩阵乘法将世界坐标中的点转换到相机坐标空间下
     points_camera = np.dot(world_2_camera, points)
-    
     # New we must change from UE4's coordinate system to an "standard"
-    # (x, y ,z) -> (y, -z, x)
+    # (x, y,z) -> (y, -z, x)
     # and we remove the fourth component also
+    # 将UE4的坐标系统转换为常规坐标系统（进行坐标顺序调整），并去掉第四维分量（齐次坐标中的1）
     points = np.array([
         points_camera[1],
         points_camera[2] * -1,
         points_camera[0]])
-    
     # Finally we can use our K matrix to do the actual 3D -> 2D.
+    # 使用相机内参矩阵K进行实际的从三维到二维的投影变换
     points_2d = np.dot(K, points)
 
     # normalize the values and transpose
+    # 对投影后的坐标值进行归一化处理（通过除以第三维的值），然后进行转置操作
     points_2d = np.array([
         points_2d[0, :] / points_2d[2, :],
         points_2d[1, :] / points_2d[2, :],
@@ -173,30 +188,63 @@ def get_screen_points(camera, K, image_w, image_h, points3d):
     return points_2d
 
 def draw_points_on_buffer(buffer, image_w, image_h, points_2d, color, size=4):
+    """
+       函数功能：
+       在给定的图像缓冲区（通常是一个表示图像像素数据的多维数组）上绘制点。
+
+       参数说明：
+       - buffer: 图像缓冲区，例如一个三维数组表示图像的RGB通道像素值，维度通常为[height, width, channels]。
+       - image_w: 图像的宽度，用于判断绘制点的横坐标范围是否合法。
+       - image_h: 图像的高度，用于判断绘制点的纵坐标范围是否合法。
+       - points_2d: 要绘制的二维坐标点的集合。
+       - color: 点的颜色，以RGB三个分量表示的列表或元组，例如[R, G, B]。
+       - size: 点的大小（以像素为单位），默认为4，表示绘制的点在图像上占据的大致边长像素数。
+
+       返回值：无（直接在传入的缓冲区上修改绘制点的像素值）
+       """
     half = int(size / 2)
     # draw each point
+    # 遍历每个要绘制的二维点
     for p in points_2d:
         x = int(p[0])
         y = int(p[1])
         for j in range(y - half, y + half):
+            # 判断纵坐标是否在图像高度范围内
             if (j >=0 and j <image_h):
                 for i in range(x - half, x + half):
+                    # 判断横坐标是否在图像宽度范围内
                     if (i >=0 and i <image_w):
                         buffer[j][i][0] = color[0]
                         buffer[j][i][1] = color[1]
                         buffer[j][i][2] = color[2]
 
 def draw_line_on_buffer(buffer, image_w, image_h, points_2d, color, size=4):
+    """
+       函数功能：
+       在给定的图像缓冲区上绘制线段。
+
+       参数说明：
+       - buffer: 图像缓冲区，用于绘制线段的像素区域，格式类似[height, width, channels]。
+       - image_w: 图像的宽度，用于判断绘制线段的横坐标范围是否合法。
+       - image_h: 图像的高度，用于判断绘制线段的纵坐标范围是否合法。
+       - points_2d: 线段的两个端点的二维坐标，以包含两个坐标元组的列表形式传入，例如[(x0, y0), (x1, y1)]。
+       - color: 线段的颜色，以RGB三个分量表示的列表或元组，例如[R, G, B]。
+       - size: 线段的粗细（以像素为单位），默认为4，影响绘制线段时实际占据的像素范围。
+
+       返回值：无（直接在传入的缓冲区上修改绘制线段对应的像素值）
+       """
   x0 = int(points_2d[0][0])
   y0 = int(points_2d[0][1])
   x1 = int(points_2d[1][0])
   y1 = int(points_2d[1][1])
   dx = abs(x1 - x0)
+# 根据线段起点和终点横坐标的大小关系确定横坐标的步进方向（1表示正向，-1表示反向）
   if x0 < x1:
     sx = 1
   else:
     sx = -1
   dy = -abs(y1 - y0)
+# 根据线段起点和终点纵坐标的大小关系确定纵坐标的步进方向（1表示正向，-1表示反向）
   if y0 < y1:
     sy = 1
   else:

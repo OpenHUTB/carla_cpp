@@ -8,14 +8,14 @@
 
 #pragma once
 
-#include "carla/MsgPack.h"
-#include "carla/geom/Location.h"
-#include "carla/geom/Math.h"
-#include "carla/geom/Rotation.h"
+#include "carla/MsgPack.h"  // 引入MsgPack库，用于序列化和反序列化
+#include "carla/geom/Location.h"  // 引入Location类，表示位置
+#include "carla/geom/Math.h"   // 引入数学工具库
+#include "carla/geom/Rotation.h"  // 引入Rotation类，表示旋转
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
-#include <compiler/enable-ue4-macros.h>
-#include "Math/Transform.h"
+#include <compiler/enable-ue4-macros.h>// 用于处理UE4的宏定义
+#include "Math/Transform.h"    // 引入UE4的Transform类
 #include <compiler/disable-ue4-macros.h>
 #endif // LIBCARLA_INCLUDED_FROM_UE4
 

@@ -7,6 +7,7 @@
 #include "carla/multigpu/primaryCommands.h"
 
 // #include "carla/Logging.h"
+// #include "carla/Logging.h"  // 用于日志记录（目前未启用）
 #include "carla/multigpu/commands.h"
 #include "carla/multigpu/primary.h"
 #include "carla/multigpu/router.h"

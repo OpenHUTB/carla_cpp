@@ -1,8 +1,11 @@
 #include <fbxsdk.h>
 
+// 声明一个全局的 FbxManager 指针，初始化为 NULL，FbxManager 是 FBX SDK 中的核心管理类，
+// 用于管理整个 FBX 相关的资源、场景等操作，这里先声明，后续应该会在合适地方进行初始化
 // declare global
 FbxManager*   gSdkManager = NULL;
-
+// 以下分别声明用于不同物体的材质指针，它们都是FbxSurfacePhong类型，这种类型常用于表示具有Phong光照模型属性的材质，
+// 不同的材质指针大概率会对应不同的模型部分，比如道路、人行道、十字路口、草地、街区等，方便后续为不同的场景元素设置独特的材质外观。
 // materials
 FbxSurfacePhong* gMatRoad;
 FbxSurfacePhong* gMatSidewalk;
@@ -15,7 +18,7 @@ FbxSurfacePhong* gMatBlock;
     #define IOS_REF (*(gSdkManager->GetIOSettings()))
 #endif
 
-// Create a material that will be applied to a polygon
+// 创建一个材质并返回该材质
 FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
 {
     // Create material
@@ -23,7 +26,7 @@ FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
     FbxSurfacePhong* lMaterial = FbxSurfacePhong::Create(pScene, name);
     return lMaterial;
 }
-
+// 查找字符串函数，检查name是否包含str
 bool Find(const char *name, const char *str)
 {
     // 获取输入字符串 name 和 str 的长度
@@ -36,7 +39,7 @@ bool Find(const char *name, const char *str)
     // 在 strName 中查找 strSub，如果找到返回 true，否则返回 false
     return (strName.find(strSub)!= std::string::npos);
 }
-
+// 设置节点材质的函数
 void SetMaterials(FbxNode* pNode)
 {
     if (!pNode) return;
@@ -77,8 +80,7 @@ void SetMaterials(FbxNode* pNode)
     }
 }
 
-// Creates an importer object, and uses it to
-// import a file into a scene.
+// 从文件加载场景的函数
 bool LoadScene(
                FbxManager* pSdkManager,  // Use this memory manager...
                FbxScene* pScene,            // to import into this scene
@@ -129,6 +131,16 @@ bool LoadScene(
 }
 
 // Exports a scene to a file
+// SaveScene函数用于将给定的FBX场景保存为指定格式的文件
+// 它接受一系列参数来控制保存的相关设置，并根据操作结果返回成功（true）或失败（false）
+// 参数说明如下：
+// pSdkManager：指向FbxManager对象的指针，FbxManager是FBX SDK的核心管理类，用于管理整个FBX相关的资源、插件等操作，在这里作为保存场景操作的基础管理器，提供必要的上下文环境和功能支持。
+// pScene：指向FbxScene对象的指针，代表了要保存的FBX场景，包含了场景中的所有模型、动画、材质等相关数据，是实际要保存到文件中的内容主体。
+// pFilename：以字符串形式指定了要保存的文件路径及文件名，例如可以是"example.fbx"这样的形式，用于明确保存的目标位置和文件名称。
+// pFileFormat：指定了保存文件时所采用的文件格式，不同的整数值对应不同的FBX支持的格式选项，通过这个参数可以控制生成的文件格式符合特定的需求。
+// pEmbedMedia：布尔类型的参数，用于决定是否将相关的媒体资源（比如纹理图片等）嵌入到保存的FBX文件中，如果为true则嵌入，为false则不嵌入，具体取决于使用场景的需求。
+
+// 将场景导出到文件的函数
 bool SaveScene(
                FbxManager* pSdkManager,
                FbxScene* pScene,

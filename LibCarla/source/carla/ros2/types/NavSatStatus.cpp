@@ -52,9 +52,13 @@ sensor_msgs::msg::NavSatStatus::~NavSatStatus()
 sensor_msgs::msg::NavSatStatus::NavSatStatus(
         const NavSatStatus& x)
 {
+    // 将传入对象 x 的 m_status 成员复制到当前对象的 m_status 成员中
     m_status = x.m_status;
+
+    // 将传入对象 x 的 m_service 成员复制到当前对象的 m_service 成员中
     m_service = x.m_service;
 }
+
 
 sensor_msgs::msg::NavSatStatus::NavSatStatus(
         NavSatStatus&& x) noexcept

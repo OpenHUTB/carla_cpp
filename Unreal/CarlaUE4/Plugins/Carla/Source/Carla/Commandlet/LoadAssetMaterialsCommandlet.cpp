@@ -22,7 +22,7 @@
 
 ULoadAssetMaterialsCommandlet::ULoadAssetMaterialsCommandlet()
 {
-  // Set necessary flags to run commandlet
+  // 设置必要的标志以运行命令行工具
   IsClient = false;
   IsEditor = true;
   IsServer = false;
@@ -37,31 +37,31 @@ ULoadAssetMaterialsCommandlet::ULoadAssetMaterialsCommandlet()
 
   RoadPainterSubclass = (UClass*)RoadPainterBlueprint.Object->GeneratedClass;
 
-  // Dirt
+  // 泥土
   DecalNamesMap.Add("dirt1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadDirt_01.DI_RoadDirt_01'");
   DecalNamesMap.Add("dirt2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadDirt_02.DI_RoadDirt_02'");
   DecalNamesMap.Add("dirt3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadDirt_03.DI_RoadDirt_03'");
   DecalNamesMap.Add("dirt4", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadDirt_04.DI_RoadDirt_04'");
   DecalNamesMap.Add("dirt5", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadDirt_05.DI_RoadDirt_05'");
 
-  // Drip
+  //滴水
   DecalNamesMap.Add("drip1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadDrip_01.DI_RoadDrip_01'");
   DecalNamesMap.Add("drip2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadDrip_02.DI_RoadDrip_02'");
   DecalNamesMap.Add("drip3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadDrip_03.DI_RoadDrip_03'");
 
-  // Road lines
+  // 道路标线
   DecalNamesMap.Add("roadline1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadLine_01.DI_RoadLine_01'");
   DecalNamesMap.Add("roadline2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadLine_02.DI_RoadLine_02'");
   DecalNamesMap.Add("roadline3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadLine_03.DI_RoadLine_03'");
   DecalNamesMap.Add("roadline4", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadLine_04.DI_RoadLine_04'");
   DecalNamesMap.Add("roadline5", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_RoadLine_05.DI_RoadLine_05'");
 
-  // Tiremarks
+  // 轮胎痕迹
   DecalNamesMap.Add("tiremark1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_TireMark_01.DI_TireMark_01'");
   DecalNamesMap.Add("tiremark2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_TireMark_02.DI_TireMark_02'");
   DecalNamesMap.Add("tiremark3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/RoadDirt/DI_TireMark_03.DI_TireMark_03'");
 
-  // Tarsnakes
+  //钩吻
   DecalNamesMap.Add("tarsnake1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/TarSnakes/DI_tarsnake1.DI_tarsnake1'");
   DecalNamesMap.Add("tarsnake2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/TarSnakes/DI_tarsnake2.DI_tarsnake2'");
   DecalNamesMap.Add("tarsnake3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/TarSnakes/DI_tarsnake3.DI_tarsnake3'");
@@ -74,7 +74,7 @@ ULoadAssetMaterialsCommandlet::ULoadAssetMaterialsCommandlet()
   DecalNamesMap.Add("tarsnake10", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/TarSnakes/DI_tarsnake10.DI_tarsnake10'");
   DecalNamesMap.Add("tarsnake11", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/TarSnakes/DI_tarsnake11.DI_tarsnake11'");
 
-  // Cracks big
+  // 裂缝很大
   DecalNamesMap.Add("cracksbig1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_cracksBig1.DI_cracksBig1'");
   DecalNamesMap.Add("cracksbig2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_cracksBig2.DI_cracksBig2'");
   DecalNamesMap.Add("cracksbig3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_cracksBig3.DI_cracksBig3'");
@@ -84,7 +84,7 @@ ULoadAssetMaterialsCommandlet::ULoadAssetMaterialsCommandlet()
   DecalNamesMap.Add("cracksbig7", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_cracksBig7.DI_cracksBig7'");
   DecalNamesMap.Add("cracksbig8", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_cracksBig8.DI_cracksBig8'");
 
-  // Cracks
+  //裂缝
   DecalNamesMap.Add("crack1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_RoadCrack01.DI_RoadCrack01'");
   DecalNamesMap.Add("crack2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_RoadCrack02.DI_RoadCrack02'");
   DecalNamesMap.Add("crack3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_RoadCrack05.DI_RoadCrack05'");
@@ -94,26 +94,26 @@ ULoadAssetMaterialsCommandlet::ULoadAssetMaterialsCommandlet()
   DecalNamesMap.Add("crack7", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_RoadCrack15.DI_RoadCrack15'");
   DecalNamesMap.Add("crack8", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Cracks/DI_RoadCrack16.DI_RoadCrack16'");
 
-  // Manholes
+  // 井盖
   DecalNamesMap.Add("manhole1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Manhole/DI_Manhole01.DI_Manhole01'");
   DecalNamesMap.Add("manhole2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Manhole/DI_Manhole02.DI_Manhole02'");
   DecalNamesMap.Add("manhole3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Manhole/DI_Manhole03.DI_Manhole03'");
 
-  // Mud
+  //泥
   DecalNamesMap.Add("mud1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/MudDecal/DI_Mud_1.DI_Mud_1'");
   DecalNamesMap.Add("mud2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/MudDecal/DI_Mud_2.DI_Mud_2'");
   DecalNamesMap.Add("mud3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/MudDecal/DI_Mud_3.DI_Mud_3'");
   DecalNamesMap.Add("mud4", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/MudDecal/DI_Mud_4.DI_Mud_4'");
   DecalNamesMap.Add("mud5", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/MudDecal/DI_Mud_5.DI_Mud_5'");
 
-  // Oil splats
+  // 油渍
   DecalNamesMap.Add("oilsplat1", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/OilSplats/DI_OilSplat1.DI_OilSplat1'");
   DecalNamesMap.Add("oilsplat2", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/OilSplats/DI_OilSplat2.DI_OilSplat2'");
   DecalNamesMap.Add("oilsplat3", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/OilSplats/DI_OilSplat3.DI_OilSplat3'");
   DecalNamesMap.Add("oilsplat4", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/OilSplats/DI_OilSplat4.DI_OilSplat4'");
   DecalNamesMap.Add("oilsplat5", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/OilSplats/DI_OilSplat5.DI_OilSplat5'");
 
-  // Misc
+  // 杂项
   DecalNamesMap.Add("gum", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/OilSplats/DI_Gum.DI_Gum'");
   DecalNamesMap.Add("grate", "MaterialInstanceConstant'/Game/Carla/Static/Decals/Road/Manhole/DI_Grate_01_v2.DI_Grate_01_v2'");
 
@@ -128,8 +128,7 @@ void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &Loa
 
     if (FilledData == false) {
 
-      // As the OpenDrive file has the same name as level, build the path to the
-      // xodr file using the label name and the game content directory.
+      // 由于 OpenDrive 文件与关卡同名，使用标签名称和游戏内容目录来构建 xodr 文件的路径
       FString MapName = LoadedMapName;
       if (IsInTiles)
       {
@@ -142,7 +141,7 @@ void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &Loa
       const FString XodrContent = UOpenDrive::LoadXODR(MapName);
       XODRMap = carla::opendrive::OpenDriveParser::Load(carla::rpc::FromLongFString(XodrContent));
 
-      // Acquire the TilesInfo.txt file for storing the tile data (offset and size)
+      //获取TilesInfo.txt文件以存储瓦片数据（偏移量和大小）
       TArray<FString> FileList;
       IFileManager::Get().FindFilesRecursive(FileList, *(FPaths::ProjectContentDir() + "/" + PackageName + "/Maps/" + MapName), *(FString("TilesInfo.txt")), true, false, false);
 
@@ -166,12 +165,12 @@ void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &Loa
 
     TArray<FString> StringArray = {};
     LoadedMapName.ParseIntoArray(StringArray, TEXT("_"), false);
-    // From the loaded map name (in style mymap_Tile_200_400) get the X and the Y (Tile_200_400 -> X = 200, Y = 400)
+    // 从加载的地图名称（如 mymap_Tile_200_400）中获取 X 和 Y（Tile_200_400 -> X = 200, Y = 400）
     int32 XIndex = FCString::Atoi(*StringArray[StringArray.Num() - 2]);
     int32 YIndex = FCString::Atoi(*StringArray[StringArray.Num() - 1]);
     FVector TilePosition;
-    // This means it's the initial tile (mymap_Tile_0_0)
-    // This is in RELATIVE coords
+    // 这意味着它是初始的瓦片（mymap_Tile_0_0）
+    // 这是相对坐标
     TilePosition.X = TileData.FirstTileCenterX + (TileData.Size * (float)XIndex);
     TilePosition.Y = TileData.FirstTileCenterY - (TileData.Size * (float)YIndex);
     TilePosition.Z = 0.0f;
@@ -192,7 +191,7 @@ void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &Loa
 
     carla::geom::Location DecalLocation;
 
-    //Store results for avoiding excessive calculations
+    //存储结果以避免过度计算
     float MinXSizeCm = MinXSize * 100.0f;
     float MaxXSizeCm = MaxXSize * 100.0f;
     float MinYSizeCm = MinYSize * 100.0f;
@@ -213,21 +212,21 @@ void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &Loa
         DecalLocation.y = FMath::RandRange(MinYSize, MaxYSize);
         DecalLocation.z = 0.0f;
   
-        // Get the closest road waypoint from the random location calculated
+        // 获取从计算的随机位置到最近的道路航点
         auto Wp = XODRMap->GetClosestWaypointOnRoad(DecalLocation);
         carla::geom::Location RoadLocation = XODRMap->ComputeTransform(Wp.get()).location;
         FVector FinalLocation(RoadLocation);
 
-        // Check we don't exceed the map boundaries
+        // 检查我们是否超出了地图边界
         if (FinalLocation.X > MinXSizeCm && FinalLocation.X < MaxXSizeCm) {
 
           if (FinalLocation.Y > MinYSizeCm && FinalLocation.Y < MaxYSizeCm) {
 
             FRotator FinalRotation(XODRMap->ComputeTransform(Wp.get()).rotation);
 
-            // Transform the location from world coords to tile coordinates.
-            // The location we get is the location of the XODR waypoint, which is in WORLD coordinates
-            // The Y coordinates are reversed! -Y = Y and Y = -Y
+            // 将位置从世界坐标转换为瓦片坐标
+            // 我们得到的定位是XODR路径点的定位，该定位采用的是世界坐标系
+            // Y坐标被反转了！-Y = Y，而Y = -Y
 
             FinalLocation.X -= CenterOfTileX;
             FinalLocation.Y -= CenterOfTileY;
@@ -238,7 +237,7 @@ void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &Loa
             ADecalActor* Decal = World->SpawnActor<ADecalActor>(FinalLocation, FRotator(), SpawnParams);
             Decal->SetDecalMaterial(DecalsProperties.DecalMaterials[i]);
 
-            // Calculate random scale for decal
+            // 计算贴花的随机缩放比例
             float RandScale = FMath::RandRange(DecalsProperties.DecalMinScale, DecalsProperties.DecalMaxScale);
             FVector FinalDecalScale;
             FinalDecalScale.X = DecalsProperties.DecalScale.X + RandScale;
@@ -246,7 +245,7 @@ void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &Loa
             FinalDecalScale.Z = 1.0f;
             Decal->SetActorScale3D(FinalDecalScale);
 
-            // Calculate random yaw for decal
+            // 计算贴花的随机偏航角
             float RandomYaw = FMath::RandRange(0.0f, DecalsProperties.DecalRandomYaw);
             FinalRotation.Yaw += RandomYaw;
             FinalRotation.Pitch = -90.0f;
@@ -265,7 +264,7 @@ void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &Loa
 
 FDecalsProperties ULoadAssetMaterialsCommandlet::ReadDecalsConfigurationFile(const FString &PackageName) {
 
-  // Get road painter configuration file
+  //获取道路画笔配置文件
   FString JsonConfigFile;
 
   TArray<FString> FileList;
@@ -279,14 +278,14 @@ FDecalsProperties ULoadAssetMaterialsCommandlet::ReadDecalsConfigurationFile(con
     TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(JsonConfigFile);
     if (FJsonSerializer::Deserialize(JsonReader, JsonParsed))
     {
-      // Get decals object array
+      // 获取贴花对象数组
       auto DecalJsonArray = JsonParsed->GetArrayField(TEXT("decals"));
       for (auto &DecalJsonValue : DecalJsonArray)
       {
         const auto DecalJsonObject = DecalJsonValue->AsObject();
 
-        // With the decal name array we created earlier, we traverse it 
-        // and look up it's name in the .json file
+        // 使用我们之前创建的贴花名称数组，我们遍历它  
+        // 并在.json文件中查找它的名称
         for (const TPair<FString, FString>& Pair : DecalNamesMap) {
           if (DecalJsonObject->HasField(Pair.Key) == true) {
             DecalConfiguration.DecalMaterials.Add(LoadObject<UMaterialInstanceConstant>(nullptr, *Pair.Value));
@@ -313,7 +312,7 @@ FDecalsProperties ULoadAssetMaterialsCommandlet::ReadDecalsConfigurationFile(con
 
 FString ULoadAssetMaterialsCommandlet::GetFirstPackagePath(const FString &PackageName) const
 {
-  // Get all Package names
+  // 获取所有包名
   TArray<FString> PackageList;
   IFileManager::Get().FindFilesRecursive(PackageList, *(FPaths::ProjectContentDir()),
       *(PackageName + TEXT(".Package.json")), true, false, false);
@@ -329,7 +328,7 @@ FString ULoadAssetMaterialsCommandlet::GetFirstPackagePath(const FString &Packag
 
 void ULoadAssetMaterialsCommandlet::LoadAssetsMaterials(const FString &PackageName, const TArray<FMapData> &MapsPaths)
 {
-  // Load World
+  //加载世界
   FAssetData AssetData;
   MapObjectLibrary = UObjectLibrary::CreateLibrary(UWorld::StaticClass(), false, GIsEditor);
   const FString DefaultPath = TEXT("/Game/") + PackageName + TEXT("/Maps/");
@@ -344,17 +343,17 @@ void ULoadAssetMaterialsCommandlet::LoadAssetsMaterials(const FString &PackageNa
   if (AssetDatas.Num() > 0)
   {
     int32 NumAssets = AssetDatas.Num();
-    //If the map is tiled, there will be several umaps in the same folder
+    //如果地图是分块的，那么在同一个文件夹中会有多个umaps文件
     for (int32 i = 0; i < NumAssets; ++i) {
 
-      // Extract first asset found in folder path (i.e. the imported map)
+      //提取文件夹路径中找到的第一个资源（即导入的地图）
       AssetData = AssetDatas.Pop();
       World = Cast<UWorld>(AssetData.GetAsset());
       if (World != nullptr) {
 
         World->InitWorld();
 
-        // Check if there's any road meshes in the world for spawning the decals.
+        //检查世界中是否存在用于生成贴花的路面网格
         TArray<AActor*> FoundActors;
         UGameplayStatics::GetAllActorsOfClass(World, AStaticMeshActor::StaticClass(), FoundActors);
         bool HasRoadMesh = false;
@@ -391,7 +390,7 @@ FPackageParams ULoadAssetMaterialsCommandlet::ParseParams(const FString &InParam
 
   FPackageParams PackageParams;
 
-  // Parse and store Package name
+  // 解析并存储包名
   FParse::Value(*InParams, TEXT("PackageName="), PackageParams.Name);
 
   return PackageParams;
@@ -403,7 +402,7 @@ FAssetsPaths ULoadAssetMaterialsCommandlet::GetAssetsPathFromPackage(const FStri
 
   FAssetsPaths AssetsPaths;
 
-  // Get All Maps Path
+  // 获取所有地图路径
   FString MapsFileJsonContent;
   if (FFileHelper::LoadFileToString(MapsFileJsonContent, *PackageJsonFilePath))
   {
@@ -411,7 +410,7 @@ FAssetsPaths ULoadAssetMaterialsCommandlet::GetAssetsPathFromPackage(const FStri
     TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<TCHAR>::Create(MapsFileJsonContent);
     if (FJsonSerializer::Deserialize(JsonReader, JsonParsed))
     {
-      // Add Maps Path
+      // 添加地图路径
       auto MapsJsonArray = JsonParsed->GetArrayField(TEXT("maps"));
 
       for (auto &MapJsonValue : MapsJsonArray)
@@ -426,7 +425,7 @@ FAssetsPaths ULoadAssetMaterialsCommandlet::GetAssetsPathFromPackage(const FStri
         AssetsPaths.MapsPaths.Add(std::move(MapData));
       }
 
-      // Add Props Path
+      // 添加属性路径
       auto PropJsonArray = JsonParsed->GetArrayField(TEXT("props"));
 
       for (auto &PropJsonValue : PropJsonArray)
@@ -446,7 +445,7 @@ int32 ULoadAssetMaterialsCommandlet::Main(const FString &Params)
 {
   FPackageParams PackageParams = ParseParams(Params);
 
-  // Get Props and Maps Path
+  // 获取属性和地图路径
   FAssetsPaths AssetsPaths = GetAssetsPathFromPackage(PackageParams.Name);
 
   LoadAssetsMaterials(PackageParams.Name, AssetsPaths.MapsPaths);

@@ -4,10 +4,10 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-import carla
+import carla  # 导入CARLA模块，用于与CARLA模拟器进行交互
 
-import sys
-import unittest
+import sys  # 导入系统模块，用于获取Python版本信息
+import unittest  # 导入unittest模块，用于编写和运行测试用例
 
 from subprocess import check_output
 # 定义一个继承自unittest.TestCase的测试用例类，用于对相关功能进行单元测试

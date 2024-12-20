@@ -17,21 +17,33 @@ rem ============================================================================
 
 :arg-parse
 if not "%1"=="" (
+    rem 判断第一个参数是否为 --build-dir
     if "%1"=="--build-dir" (
+        rem 如果是 --build-dir，设置 BUILD_DIR 变量为第二个参数代表的路径相关内容（含盘符、路径、文件名）
         set BUILD_DIR=%~dpn2
+        rem 将命令行参数向左移动一位，为处理后续参数做准备
         shift
     )
+    rem 判断第一个参数是否为 --zlib-install-dir
     if "%1"=="--zlib-install-dir" (
+        rem 如果是 --zlib-install-dir，设置 ZLIB_INST_DIR 变量为第二个参数代表的路径相关内容（含盘符、路径、文件名）
         set ZLIB_INST_DIR=%~dpn2
+        rem 将命令行参数向左移动一位，为处理后续参数做准备
         shift
     )
+    rem 判断第一个参数是否为 -h（短格式帮助参数）
     if "%1"=="-h" (
+        rem 如果是 -h，跳转到 help 标签处显示帮助信息
         goto help
     )
+    rem 判断第一个参数是否为 --help（长格式帮助参数）
     if "%1"=="--help" (
+        rem 如果是 --help，跳转到 help 标签处显示帮助信息
         goto help
     )
+    rem 将命令行参数向左移动一位，为处理后续参数做准备
     shift
+    rem 跳转到 :arg-parse 标签处，继续解析下一组参数
     goto :arg-parse
 )
 

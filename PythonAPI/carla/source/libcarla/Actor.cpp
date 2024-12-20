@@ -1,4 +1,4 @@
-// 本作品根据MIT许可证条款进行授权。
+// 本作品根据MIT许可证条款进行授权。asssss
 // 许可证副本见<https://opensource.org/licenses/MIT>。
 
 #include <carla/client/Actor.h> // 引入Actor功能的头文件

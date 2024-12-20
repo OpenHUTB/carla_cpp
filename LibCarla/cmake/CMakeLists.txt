@@ -21,13 +21,21 @@ include_directories(${libcarla_source_path})
 include_directories(${libcarla_source_thirdparty_path})
 
 # 根据构建类型选择要添加的子目录
+# 如果定义了CARLA_VERSION，那么就使用configure_file命令从模板文件Version.h.in生成最终的Version.h文件
+# 这个文件通常包含了版本信息等在编译时需要确定的内容
 if (CARLA_VERSION)
   configure_file(${libcarla_source_path}/carla/Version.h.in ${libcarla_source_path}/carla/Version.h)
 endif()
 
+# 根据CMAKE_BUILD_TYPE变量的值选择要添加的子目录
+# CMAKE_BUILD_TYPE通常用于指定构建配置（例如：Debug、Release），但在这里它被用来区分不同类型的构建
 if (CMAKE_BUILD_TYPE STREQUAL "Client")
+ # 如果构建类型是"Client"，则添加"client"子目录到构建系统中
+  # 这意味着只有当构建客户端时，才会编译和链接位于"client"目录下的源文件
   add_subdirectory("client")
 elseif (CMAKE_BUILD_TYPE STREQUAL "Server")
+ # 如果构建类型是"Server"，则添加"server"子目录到构建系统中。
+  # 类似于客户端，这将确保仅在构建服务器端代码时包含"server"目录下的文件
   add_subdirectory("server")
 elseif (CMAKE_BUILD_TYPE STREQUAL "Pytorch")
 add_subdirectory("pytorch")

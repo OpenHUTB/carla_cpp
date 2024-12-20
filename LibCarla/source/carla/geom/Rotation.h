@@ -14,11 +14,11 @@
 #include "carla/geom/Vector3D.h"
 
 // 如果是从UE4中包含此文件（定义了相应宏），则引入UE4相关的宏启用和禁用头文件以及UE4的旋转器相关头文件
-#ifdef LIBCARLA_INCLUDED_FROM_UE4
-#include <compiler/enable-ue4-macros.h>
-#include "Math/Rotator.h"
-#include <compiler/disable-ue4-macros.h>
-#endif // LIBCARLA_INCLUDED_FROM_UE4
+#ifdef LIBCARLA_INCLUDED_FROM_UE4   // 判断是否从UE4编译该文件
+#include <compiler/enable-ue4-macros.h>  // 启用UE4相关的宏
+#include "Math/Rotator.h"  // 引入UE4的旋转器类（FRotator）
+#include <compiler/disable-ue4-macros.h>  // 禁用UE4相关的宏
+#endif // LIBCARLA_INCLUDED_FROM_UE4   // 结束条件编译
 
 namespace carla {
 namespace geom {

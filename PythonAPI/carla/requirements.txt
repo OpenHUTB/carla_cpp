@@ -1,5 +1,11 @@
+# 导入networkx库，通常用于构建和操作复杂网络、图结构等相关操作
 networkx
+# 根据Python版本来选择不同的numpy版本进行导入
+# 如果Python版本小于3.0，就导入普通的numpy库（使用默认的版本规则，这里没有明确指定具体版本号）
 numpy; python_version < '3.0'
+# 如果Python版本大于等于3.0，就导入指定版本1.18.4的numpy库
 numpy==1.18.4; python_version >= '3.0'
+# 导入distro库，这个库常用于获取操作系统发行版相关的信息等（具体取决于其功能实现）
 distro
+# 导入指定版本为1.6.4.post2的Shapely库，Shapely库常用于处理几何对象等相关操作
 Shapely==1.6.4.post2
