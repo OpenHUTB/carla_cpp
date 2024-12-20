@@ -169,6 +169,7 @@ if %USE_UNITY% == true (
 ) else (
     set UNITY_STATE="Unity OFF"
 )
+#设置可选模块文本，包含各个模块的状态和配置文件路径
 set OPTIONAL_MODULES_TEXT=%CARSIM_STATE% %CHRONO_STATE% %ROS2_STATE% %OMNIVERSE_PLUGIN_INSTALLED% %UNITY_STATE%
 echo %OPTIONAL_MODULES_TEXT% > "%ROOT_PATH%Unreal/CarlaUE4/Config/OptionalModules.ini"
 
