@@ -533,28 +533,37 @@ def main():
     args.width, args.height = [int(x) for x in args.res.split('x')]
 
     try:
+        #创建了一个carla.Client对象，用于连接到 CARLA 模拟器
         client = carla.Client(args.host, args.port)
+        #设置客户端的超时时间为 5 秒
         client.set_timeout(5.0)
-
+        #如果args.profiling为True
         if args.profiling:
             print("-------------------------------------------------------")
             print("# Running profiling with %s lidars, %s semantic lidars and %s radars." % (args.lidar_number, args.semanticlidar_number, args.radar_number))
+            #禁用摄像头渲染和可视化窗口
             args.render_cam = False
+            #初始化一些变量，用于存储运行结果和测试的点数范围
             args.render_window = False
             runs_output = []
 
             points_range = ['100000', '200000', '300000', '400000', '500000',
                             '600000', '700000', '800000', '900000', '1000000',
                             '1100000', '1200000', '1300000', '1400000', '1500000']
+            #外层循环遍历points_range中的每个点数
+            #内层循环设置args.lidar_points、args.semanticlidar_points和args.radar_points为当前点数
             for points in points_range:
                 args.lidar_points = points
                 args.semanticlidar_points = points
                 args.radar_points = points
+                #调用one_run函数进行一次运行，并将结果存储在run_str中
                 run_str = one_run(args, client)
+                #将运行结果添加到runs_output列表中
                 runs_output.append(run_str)
-
+            #打印性能分析相关的信息
             print("-------------------------------------------------------")
             print("# Profiling of parallel raycast sensors (LiDAR and Radar)")
+            #尝试导入multiprocessing模块来获取 CPU 核心数信息
             try:
                 import multiprocessing
                 print("#Number of cores: %d" % multiprocessing.cpu_count())
@@ -565,14 +574,15 @@ def main():
             print("#NumLidars NumSemLids NumRadars PointsPerSecond FPS     PercentageProcessing")
             for o  in runs_output:
                 print(o)
-
+        #如果args.profiling为False
         else:
+            #直接调用one_run函数进行一次运行
             one_run(args, client)
-
+    #如果用户中断（KeyboardInterrupt），则打印取消信息
     except KeyboardInterrupt:
         print('\nCancelled by user. Bye!')
 
-
+#当脚本作为主程序运行时，调用main()函数
 if __name__ == '__main__':
 
     main()
