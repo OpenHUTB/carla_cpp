@@ -35,7 +35,7 @@ void UCarlaLightSubsystem::RegisterLight(UCarlaLight* CarlaLight)
   SetClientStatesdirty("");
 }
 
-void UCarlaLightSubsystem::UnregisterLight(UCarlaLight* CarlaLight)
+void UCarlaLightSubsystem::UnregisterLight(UCarlaLight* CarlaLight)//用于从灯光子系统中注销一个灯光对象。UCarlaLight* CarlaLight - 指向要注销的灯光对象的指针。
 {
   if(CarlaLight)
   {
@@ -73,10 +73,10 @@ std::vector<carla::rpc::LightState> UCarlaLightSubsystem::GetLights(FString Clie
 
 void UCarlaLightSubsystem::SetLights(
   FString Client,
-  std::vector<carla::rpc::LightState> LightsToSet,
+  std::vector<carla::rpc::LightState> LightsToSet,//一个std::vector容器，包含carla::rpc::LightState类型的对象，这些对象表示要设置的灯光状态。
   bool DiscardClient)
 {
-  bool* ClientState = ClientStates.Find(Client);
+  bool* ClientState = ClientStates.Find(Client);//在ClientStates容器中查找与给定Client标识符相关联的客户端状态。返回的是一个指向布尔值的指针，表示该客户端是否有待处理的更新。
 
   if(ClientState) {
     for(auto& LightState : LightsToSet) {
@@ -85,7 +85,7 @@ void UCarlaLightSubsystem::SetLights(
         CarlaLight->SetLightState(LightState);
       }
     }
-    *ClientState = true;
+    *ClientState = true;//最后，将找到的客户端状态设置为true，表示有灯光状态更新待处理。这里直接修改了指针指向的值，而不是通过引用或返回值来更新状态。
 
     if(DiscardClient)
     {
