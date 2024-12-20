@@ -88,6 +88,8 @@ rm CarlaUE4/Binaries/Linux/CarlaUE4-Linux-Shipping.sym
 # ==================================================================================================
 # 更新CarlaUE4.sh脚本
 rm CarlaUE4.sh
+# 使用 cat 命令和 EOF 标记创建或追加内容到 CarlaUE4.sh 文件中
+# 该脚本设置为可执行，并调用 CarlaUE4 的 Linux 发行版二进制文件，传递所有命令行参数给它
 cat >> CarlaUE4.sh <<EOF
 #!/bin/sh
 "/opt/carla-simulator/CarlaUE4/Binaries/Linux/CarlaUE4-Linux-Shipping" CarlaUE4 \$@
@@ -101,7 +103,9 @@ binary:
 	# we are not going to build anything
 
 install:
+# 创建目标安装路径，确保即使目录不存在也会被创建
 	mkdir -p \$(DESTDIR)/opt/carla-simulator/bin
+ # 将 CarlaUE4.sh 复制到目标安装路径下的 bin 文件夹中
 	cp CarlaUE4.sh \$(DESTDIR)/opt/carla-simulator/bin
 	cp ImportAssets.sh \$(DESTDIR)/opt/carla-simulator
 	cp -r CarlaUE4 \$(DESTDIR)/opt/carla-simulator
