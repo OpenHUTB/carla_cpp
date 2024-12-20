@@ -32,16 +32,17 @@ MotionPlanStage::MotionPlanStage(
   const Parameters &parameters,//交通管理相关的参数
   const BufferMap &buffer_map,
   TrackTraffic &track_traffic,//跟踪交通状况
-  const std::vector<float> &urban_longitudinal_parameters,
-  const std::vector<float> &highway_longitudinal_parameters,
-  const std::vector<float> &urban_lateral_parameters,
-  const std::vector<float> &highway_lateral_parameters,
-  const LocalizationFrame &localization_frame,
-  const CollisionFrame&collision_frame,
-  const TLFrame &tl_frame,
-  const cc::World &world,
-  ControlFrame &output_array,
-  RandomGenerator &random_device,
+  const std::vector<float> &urban_longitudinal_parameters,//车辆纵向运动控制
+  const std::vector<float> &highway_longitudinal_parameters,//纵向控制相关的参数列表
+  const std::vector<float> &urban_lateral_parameters,//车辆横向运动控制相关操作
+  const std::vector<float> &highway_lateral_parameters,//横向控制相关的参数列表
+  const LocalizationFrame &localization_frame,//获取车辆的定位信息
+  const CollisionFrame&collision_frame,//获取车辆周围的碰撞危险相关数据
+  const TLFrame &tl_frame,//获取交通信号灯相关状态信息
+  const cc::World &world,//获取世界的快照等全局信息
+  ControlFrame &output_array,//输出最终的控制指令控制车辆的行为
+  RandomGenerator &random_device,// 随机数生成器对象
+ // 局部地图指针，用于在局部范围内进行路径规划
   const LocalMapPtr &local_map)
     : vehicle_id_list(vehicle_id_list),
     simulation_state(simulation_state),
@@ -59,21 +60,21 @@ MotionPlanStage::MotionPlanStage(
     output_array(output_array),
     random_device(random_device),
     local_map(local_map) {}
-
+//对车辆的运动规划进行更新
 void MotionPlanStage::Update(const unsigned long index) {
-  const ActorId actor_id = vehicle_id_list.at(index);
-  const cg::Location vehicle_location = simulation_state.GetLocation(actor_id);
-  const cg::Vector3D vehicle_velocity = simulation_state.GetVelocity(actor_id);
-  const cg::Rotation vehicle_rotation = simulation_state.GetRotation(actor_id);
-  const float vehicle_speed = vehicle_velocity.Length();
-  const cg::Vector3D vehicle_heading = simulation_state.GetHeading(actor_id);
-  const bool vehicle_physics_enabled = simulation_state.IsPhysicsEnabled(actor_id);
-  const float vehicle_speed_limit = simulation_state.GetSpeedLimit(actor_id);
-  const Buffer &waypoint_buffer = buffer_map.at(actor_id);
-  const LocalizationData &localization = localization_frame.at(index);
-  const CollisionHazardData &collision_hazard = collision_frame.at(index);
-  const bool &tl_hazard = tl_frame.at(index);
-  current_timestamp = world.GetSnapshot().GetTimestamp();
+  const ActorId actor_id = vehicle_id_list.at(index);// 获取指定索引对应的车辆ID
+  const cg::Location vehicle_location = simulation_state.GetLocation(actor_id);//获取获取该车辆当前的位置信息
+  const cg::Vector3D vehicle_velocity = simulation_state.GetVelocity(actor_id);//获取该车辆当前的速度向量信息
+  const cg::Rotation vehicle_rotation = simulation_state.GetRotation(actor_id);//获取该车辆当前的旋转角度信息
+  const float vehicle_speed = vehicle_velocity.Length();// 计算车辆当前的速度大小
+  const cg::Vector3D vehicle_heading = simulation_state.GetHeading(actor_id);// 获取车辆当前的行驶方向向量
+  const bool vehicle_physics_enabled = simulation_state.IsPhysicsEnabled(actor_id); // 获取该车辆的物理模拟是否启用的状态
+  const float vehicle_speed_limit = simulation_state.GetSpeedLimit(actor_id);// 获取该车辆当前所处位置的速度限制信息
+  const Buffer &waypoint_buffer = buffer_map.at(actor_id);// 获取与该车辆对应的路点缓冲区数据
+  const LocalizationData &localization = localization_frame.at(index);// 获取与该车辆对应的定位数据
+  const CollisionHazardData &collision_hazard = collision_frame.at(index); // 获取与该车辆对应的碰撞危险数据
+  const bool &tl_hazard = tl_frame.at(index);// 获取与该车辆对应的交通信号灯危险状态
+  current_timestamp = world.GetSnapshot().GetTimestamp();//记录更新操作发生的时间等用途
   StateEntry current_state;
 
   // 实例化传送变换为当前载具变换
