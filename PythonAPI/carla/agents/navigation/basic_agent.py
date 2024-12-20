@@ -508,6 +508,7 @@ class BasicAgent:
             distance += next_wp.transform.location.distance(plan[-1][0].transform.location)
             plan.append((next_wp, RoadOption.LANEFOLLOW))
 
+        #用于车辆的路径规划
         if direction == 'left':
             option = RoadOption.CHANGELANELEFT
         elif direction == 'right':
@@ -517,27 +518,37 @@ class BasicAgent:
             return []
 
         lane_changes_done = 0
+        #计算每次车道变换的平均距离
         lane_change_distance = lane_change_distance / lane_changes
 
         # Lane change
+        #while循环条件
         while lane_changes_done < lane_changes:
 
             # Move forward
+            #取这个最后一个子结构中的第一个元素
             next_wps = plan[-1][0].next(lane_change_distance)
+            #条件判断
             if not next_wps:
                 return []
+            #如果前面不为空，就取next_wps中的第一个元素，并赋值给next_wp   
             next_wp = next_wps[0]
 
+            #根据给定的方向获取侧边车道
             # Get the side lane
+            #方向为left时的情况
             if direction == 'left':
+                #条件判断
                 if check and str(next_wp.lane_change) not in ['Left', 'Both']:
                     return []
                 side_wp = next_wp.get_left_lane()
             else:
                 if check and str(next_wp.lane_change) not in ['Right', 'Both']:
                     return []
+                #用于获取下一个路点右边的车道    
                 side_wp = next_wp.get_right_lane()
 
+            #检查获取到的车道是否有效
             if not side_wp or side_wp.lane_type != carla.LaneType.Driving:
                 return []
 
@@ -546,13 +557,20 @@ class BasicAgent:
             lane_changes_done += 1
 
         # Other lane
+        #初始化一个距离变量distance为0
         distance = 0
+        #进入一个while循环
         while distance < distance_other_lane:
+            #获取路径规划中的最后一个元素
             next_wps = plan[-1][0].next(step_distance)
+            #检查是否为空
             if not next_wps:
                 return []
+            #如果不为空，就取其中的第一个路径点作为next_wp   
             next_wp = next_wps[0]
+            #计算新的distance值
             distance += next_wp.transform.location.distance(plan[-1][0].transform.location)
+            #将新的路径点next_wp和 RoadOption.LANEFOLLOW的选项作为一个新的元组添加
             plan.append((next_wp, RoadOption.LANEFOLLOW))
 
         return plan
