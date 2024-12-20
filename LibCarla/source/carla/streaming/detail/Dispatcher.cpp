@@ -17,24 +17,28 @@ namespace streaming {
 namespace detail {
 
   // Dispatcher 析构函数
+// 作用：在对象销毁时断开所有会话与其流的连接，确保此时 io_context 已停止
   Dispatcher::~Dispatcher() {
-    
+    // 遍历存储流状态的映射表
      // 断开所有会话与其流的连接，确保在此时 io_context 已停止
     for (auto &pair : _stream_map) {
-#ifndef LIBCARLA_NO_EXCEPTIONS
+#ifndef LIBCARLA_NO_EXCEPTIONS // 如果没有定义 LIBCARLA_NO_EXCEPTIONS，即允许异常
       try {
 #endif // LIBCARLA_NO_EXCEPTIONS
         auto stream_state = pair.second;// 获取流状态
         stream_state->ClearSessions();// 清除会话
 #ifndef LIBCARLA_NO_EXCEPTIONS
       } catch (const std::exception &e) {
+         // 如果在清除会话时发生异常，记录错误信息
         log_error("failed to clear sessions:", e.what());
       }
 #endif // LIBCARLA_NO_EXCEPTIONS
     }
   }
 
+  // Dispatcher 类成员函数
   // 创建一个新的流或重用现有流
+// 返回值：carla::streaming::Stream 对象，代表创建的或重用的流
   carla::streaming::Stream Dispatcher::MakeStream() {
     std::lock_guard<std::mutex> lock(_mutex);// 确保线程安全
     ++_cached_token._token.stream_id; // 增加流ID，防止溢出
@@ -44,11 +48,16 @@ namespace detail {
     if (search == _stream_map.end()) {
       // 如果没有找到，创建新的流
       ptr = std::make_shared<MultiStreamState>(_cached_token);
+      
+      // 尝试将新创建的流状态对象插入到流映射表中
       auto result = _stream_map.emplace(std::make_pair(_cached_token.get_stream_id(), ptr));
       if (!result.second) {
+        // 如果插入失败（理论上不应该发生，除非有并发问题），抛出异常
         throw_exception(std::runtime_error("failed to create stream!"));
       }
+       // 记录新流的创建
       log_debug("Stream created");
+      // 返回代表新创建的流的 Stream 对象
       return carla::streaming::Stream(ptr);
     } else {
       // 将新流插入流映射表中
