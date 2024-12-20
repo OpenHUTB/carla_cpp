@@ -100,8 +100,9 @@ bool LoadScene(
     // 获取要导入的 FBX 文件的版本号
     lImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
     if(!lImportStatus )  // Problem with the file to be imported
+    // 检查导入状态是否为假，通常意味着要导入的文件出现了问题
     {
-        FbxString error = lImporter->GetStatus().GetErrorString();
+        FbxString error = lImporter->GetStatus().GetErrorString(); // 获取导入器（lImporter）当前状态中的错误信息字符串，用于后续输出详细的错误内容
         printf("Call to FbxImporter::Initialize() failed.");
         printf("Error returned: %s", error.Buffer());
         if (lImporter->GetStatus().GetCode() == FbxStatus::eInvalidFileVersion)
