@@ -1,13 +1,19 @@
 REM @echo off
 setlocal
+//关闭命令回显，执行批处理中的命令时不会在命令行窗口显示具体命令内容，使界面更简洁。
+// 设置本地化环境，确保脚本中定义的变量等设置在脚本执行完毕后不会影响到外部环境。
+
 
 rem BAT script that downloads and installs a ready to use
 rem x64 chrono for CARLA (carla.org).
 rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
+// 这是一段注释，说明此批处理脚本的用途，即用于下载并安装一个可直接使用的、适用于CARLA（carla.org网站相关项目）的x64版本的Chrono库，
+// 并且提示需要在启用了x64 Visual C++工具集的命令提示符（cmd）中运行该脚本。
 
 set LOCAL_PATH=%~dp0
-set FILE_N=    -[%~n0]:
-
+set FILE_N=    -[%~n0]
+//设置LOCAL_PATH变量，其值为当前批处理脚本所在的目录路径（%~dp0表示获取当前批处理文件所在的驱动器和路径）。
+// 设置FILE_N变量，其值是以特定格式表示的当前批处理脚本的文件名（-%~n0表示获取当前批处理文件的文件名部分），用于后续输出信息时的标识，方便查看信息
 rem Print batch params (debug purpose)
 echo %FILE_N% [Batch params]: %*
 
