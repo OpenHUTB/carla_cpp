@@ -13,86 +13,105 @@ import math
 import numpy as np
 from enum import Enum
 
-def list_equal_tol(objs, tol = 1e-5):
-    if (len(objs) < 2):
+def list_equal_tol(objs, tol = 1e-5):               #函数用于接受一个对象列表objs和一个容差参数tol，默认为1e-5
+    if (len(objs) < 2):                             #如果onjs的长度小于2，则返回真
         return True
 
-    for i in range(1, len(objs)):
-        equal = equal_tol(objs[0], objs[i], tol)
-        if not equal:
-            return False
+    for i in range(1, len(objs)):                   #如果不小于2，则进入for循环，从第二个元素到最后一个元素
+        equal = equal_tol(objs[0], objs[i], tol)    #每次循环都将objs[0]与objs[i]比较，然后将结果储存到equal中
+        if not equal:                               #如果equal没有被赋值，则返回False
+            return False       
 
-    return True
+    return True                                     #如果循环后没有返回False，则说明元素都在tol的范围内，所以最后返回True
 
+# 比较两个对象是否在给定的容忍度内相等
 def equal_tol(obj_a, obj_b, tol = 1e-5):
+    # 如果obj_a是列表，直接比较obj_a和obj_b
     if isinstance(obj_a, list):
         return obj_a == obj_b
 
+    # 如果obj_a是carla.libcarla.Vector3D类型，比较向量的每个分量是否在容忍度内相等
     if isinstance(obj_a, carla.libcarla.Vector3D):
         diff = abs(obj_a - obj_b)
         return diff.x < tol and diff.y < tol and diff.z < tol
 
+    # 对于其他类型，直接比较它们的值是否在容忍度内相等
     return abs(obj_a - obj_b) < tol
 
+# 比较两个物理控制对象是否相等
 def equal_physics_control(pc_a, pc_b):
     error_msg = ""
 
+    # 遍历pc_a的所有属性，并与pc_b的对应属性进行比较
     for key in dir(pc_a):
-        if key.startswith('__') or key == "wheels":
+        if key.startswith('__') or key == "wheels":# 忽略特殊方法和wheels属性
             continue
 
+        # 如果属性值不在容忍度内相等，记录错误信息并返回False
         if not equal_tol(getattr(pc_a, key), getattr(pc_b, key), 1e-3):
             error_msg = "Car property: '%s' in VehiclePhysicsControl does not match: %.4f %.4f" \
               % (key, getattr(pc_a, key), getattr(pc_b, key))
             return False, error_msg
 
+    # 比较车轮数量是否相等
     if len(pc_a.wheels) != len(pc_b.wheels):
         error_msg = "The number of wheels does not match %d, %d" \
             % (len(pc_a.wheels) != len(pc_b.wheels))
         return False, error_msg
 
+    # 遍历每个车轮的所有属性，并与另一个物理控制对象的对应车轮属性进行比较
     for w in range(0, len(pc_a.wheels)):
         for key in dir(pc_a.wheels[w]):
-            if key.startswith('__') or key == "position":
+            if key.startswith('__') or key == "position":# 忽略特殊方法和position属性
                 continue
 
+            # 如果属性值不在容忍度内相等，记录错误信息并返回False
             if not equal_tol(getattr(pc_a.wheels[w], key), getattr(pc_b.wheels[w], key), 1e-3):
                 error_msg = "Wheel property: '%s' in VehiclePhysicsControl does not match: %.4f %.4f" \
                 % (key, getattr(pc_a.wheels[w], key), getattr(pc_b.wheels[w], key))
                 return False, error_msg
 
+     # 如果所有属性都相等，返回True和空错误信息
     return True, error_msg
 
+# 改变车辆的物理控制参数
 def change_physics_control(vehicle, tire_friction = None, drag = None, wheel_sweep = None, long_stiff = None):
-    # Change Vehicle Physics Control parameters of the vehicle
+    # Change Vehicle Physics Control parameters of the vehicle获取车辆当前的物理控制参数
     physics_control = vehicle.get_physics_control()
 
+    # 如果提供了阻力系数，则更新物理控制参数中的阻力系数
     if drag is not None:
         physics_control.drag_coefficient = drag
 
+    # 如果提供了轮子碰撞检测方式，则更新物理控制参数中的轮子碰撞检测方式
     if wheel_sweep is not None:
         physics_control.use_sweep_wheel_collision = wheel_sweep
 
+    # 获取前后左右四个轮子的控制参数
     front_left_wheel = physics_control.wheels[0]
     front_right_wheel = physics_control.wheels[1]
     rear_left_wheel = physics_control.wheels[2]
     rear_right_wheel = physics_control.wheels[3]
 
+    # 如果提供了轮胎摩擦系数，则更新所有轮子的摩擦系数
     if tire_friction is not None:
         front_left_wheel.tire_friction = tire_friction
         front_right_wheel.tire_friction = tire_friction
         rear_left_wheel.tire_friction = tire_friction
         rear_right_wheel.tire_friction = tire_friction
 
+    # 如果提供了纵向刚度，则更新所有轮子的纵向刚度
     if long_stiff is not None:
         front_left_wheel.long_stiff_value = long_stiff
         front_right_wheel.long_stiff_value = long_stiff
         rear_left_wheel.long_stiff_value = long_stiff
         rear_right_wheel.long_stiff_value = long_stiff
 
+    # 更新物理控制参数中的轮子控制参数
     wheels = [front_left_wheel, front_right_wheel, rear_left_wheel, rear_right_wheel]
     physics_control.wheels = wheels
 
+    # 返回更新后的物理控制参数
     return physics_control
 
 SpawnActor = carla.command.SpawnActor
