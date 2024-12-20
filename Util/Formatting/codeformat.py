@@ -84,32 +84,73 @@ class CodeFormatter:
             print("")
             # 打印空行以分隔输出内容
 
+    import subprocess  # 导入subprocess模块，用于执行外部命令
+from some_module import cprint  # 假设cprint是从某个模块导入的，用于打印彩色文本（需要替换为实际模块）
+
+class CodeFormatter:  # 假设这些方法属于一个名为CodeFormatter的类
+    # 类的其他属性和方法...
+    # 假设self.command是格式化命令的路径或名称
+    # 假设self.formatCommandArguments是格式化命令的附加参数列表
+
+    # 定义一个方法，用于格式化指定的文件
     def formatFile(self, fileName):
+        # 构建命令列表，首先添加格式化命令，然后添加附加参数，最后添加文件名
         commandList = [self.command]
         commandList.extend(self.formatCommandArguments)
         commandList.append(fileName)
+        
         try:
+            # 使用subprocess.check_output执行命令，如果命令成功执行，则捕获其输出（这里不需要输出，所以忽略）
+            # stderr=subprocess.STDOUT表示将stderr重定向到stdout，这样错误信息也会包含在输出中（如果需要的话）
+            # 但由于我们不需要输出内容，这里主要是为了捕获异常
             subprocess.check_output(commandList, stderr=subprocess.STDOUT)
+            # 如果命令成功执行，打印成功信息
             print("[OK] " + fileName)
+            # 格式化成功，返回False（这里返回值的逻辑可能需要根据实际情况调整）
+            return False
         except subprocess.CalledProcessError as e:
+            # 如果命令执行失败（返回非零退出码），则捕获CalledProcessError异常
+            # e.output包含命令的输出（包括错误信息，因为stderr被重定向到了stdout）
+            # 使用cprint打印错误信息，并返回True表示格式化失败（或需要进一步检查）
             cprint("[ERROR] " + fileName + " (" + e.output.rstrip('\r\n') + ")", "red")
             return True
-        return False
 
+    # 定义一个方法，用于比较指定文件与标准输入（可能是一个格式化后的版本）的差异
     def performGitDiff(self, fileName, verifyOutput):
         try:
+            # 使用subprocess.Popen执行git diff命令
+            # --color=always表示始终输出彩色差异（尽管在某些环境下可能无效）
+            # --exit-code表示如果文件没有差异则退出码为0，有差异则为1
+            # --no-index表示比较两个非Git跟踪的文件
+            # --后面跟着的是要比较的两个文件，第一个是要检查的文件，第二个是通过stdin提供的内容（即verifyOutput）
             diffProcess = subprocess.Popen(
                 ["git", "diff", "--color=always", "--exit-code", "--no-index", "--", fileName, "-"],
-                                           stdin=subprocess.PIPE,
-                                           stdout=subprocess.PIPE,
-                                           stderr=subprocess.PIPE)
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            # 将verifyOutput（可能是格式化后的文件内容）作为输入传递给git diff
+            # 并获取diff的输出和错误信息（但这里我们只关心输出）
             diffOutput, _ = diffProcess.communicate(verifyOutput)
+            # 如果diffProcess的返回码为0，表示文件没有差异，将diffOutput置为空字符串
             if diffProcess.returncode == 0:
                 diffOutput = ""
+            # 返回元组，第一个元素表示是否有差异（False表示无差异），第二个元素是差异内容
+            return (False, diffOutput)
         except OSError:
+            # 如果捕获到OSError异常，表示git命令执行失败（可能是git未安装或路径不正确）
+            # 使用cprint打印错误信息，并返回元组表示有差异且差异内容为空字符串
             cprint("[ERROR] Failed to run git diff on " + fileName, "red")
             return (True, "")
-        return (False, diffOutput)
+
+# 注意：
+# 1. 需要将'CodeFormatter'替换为实际的类名（如果类名不同的话）。
+# 2. 需要确保'cprint'函数是从正确的模块导入的，或者替换为其他打印彩色文本的方法。
+# 3. 'self.command'和'self.formatCommandArguments'应该是类的属性，分别存储格式化命令的路径或名称和附加参数列表。
+# 4. 'verifyOutput'参数可能是一个字节串，它包含了与'fileName'进行比较的内容（例如，格式化后的文件内容）。
+# 5. 'performGitDiff'方法中的逻辑是将'verifyOutput'作为标准输入传递给'git diff'，并与'fileName'指定的文件进行比较。
+#    这种用法比较特殊，通常'git diff'是用来比较两个文件或文件与Git仓库中的版本的，但在这里它被用来比较文件与标准输入。
+#    这种方法可能不适用于所有情况，特别是当'verifyOutput'非常大时，因为它需要通过PIPE传递给子进程。
 
     def verifyFile(self, fileName, printDiff):## 创建一个命令列表，以self.command开头，添加self.verifyCommandArguments中的元素，最后添加fileName
         commandList = [self.command]
