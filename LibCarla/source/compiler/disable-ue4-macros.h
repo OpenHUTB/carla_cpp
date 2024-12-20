@@ -9,7 +9,7 @@
 #ifndef LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 #define LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 
-// Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Carla.h
+// 引入 "Carla.h" 文件，其路径为 Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Carla.h
 #include "Carla.h"
 
 #ifndef BOOST_ERROR_CODE_HEADER_ONLY
