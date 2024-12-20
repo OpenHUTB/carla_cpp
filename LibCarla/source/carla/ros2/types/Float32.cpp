@@ -20,44 +20,57 @@
  */
 
 #ifdef _WIN32
-// Remove linker warning LNK4221 on Visual Studio
+// 以下代码用于移除Visual Studio中的链接器警告LNK4221
+// 通过定义一个匿名命名空间，里面声明一个未使用的字符变量dummy来达到此目的
 namespace {
-char dummy;
+    char dummy;
 }  // namespace
 #endif  // _WIN32
 
+// 包含自定义的Float32头文件，可能定义了与Float32相关的数据结构、类等内容
 #include "Float32.h"
+// 包含FastCDR库中的Cdr头文件，FastCDR通常用于序列化和反序列化等操作
 #include <fastcdr/Cdr.h>
 
+// 包含FastCDR库中异常相关的头文件，用于处理参数异常情况
 #include <fastcdr/exceptions/BadParamException.h>
+// 使用eprosima::fastcdr::exception命名空间，方便后续使用其中定义的内容
 using namespace eprosima::fastcdr::exception;
 
+// 包含标准库中的utility头文件，里面包含一些实用的工具、模板等，比如std::move等函数就在此头文件中（虽然此处未明确体现其使用）
 #include <utility>
 
+// 定义一个宏，表示std_msgs::msg::Float32类型在CDR序列化时最大的类型大小为4字节（ULL表示无符号长整型字面量后缀），通常用于确定内存分配等相关操作的大小限制
 #define std_msgs_msg_Float32_max_cdr_typesize 4ULL;
+// 定义一个宏，表示std_msgs::msg::Float32类型在CDR序列化时最大的键相关的类型大小为0字节，可能用于特定的序列化场景中对键相关数据大小的界定
 #define std_msgs_msg_Float32_max_key_cdr_typesize 0ULL;
 
+// std_msgs::msg::Float32类的默认构造函数，用于创建一个Float32类型的对象，并将其数据成员m_data初始化为0.0
 std_msgs::msg::Float32::Float32()
 {
     m_data = 0.0;
 }
 
+// std_msgs::msg::Float32类的析构函数，此处目前为空，可能后续会添加释放相关资源等操作的代码（如果有需要的话）
 std_msgs::msg::Float32::~Float32()
 {
 }
 
+// std_msgs::msg::Float32类的拷贝构造函数，接受一个同类型的常引用参数x，用于创建一个新的对象，新对象的数据成员m_data的值会被初始化为参数x的m_data值，实现对象的拷贝创建
 std_msgs::msg::Float32::Float32(
         const Float32& x)
 {
     m_data = x.m_data;
 }
 
+// std_msgs::msg::Float32类的移动构造函数，接受一个同类型的右值引用参数x，通过将新对象的数据成员m_data赋值为参数x的m_data值，实现资源的转移（这里目前看起来和拷贝构造函数逻辑类似，但对于有资源管理的复杂类型，移动构造函数可以避免不必要的深拷贝等开销），并且标记为noexcept，表示不会抛出异常
 std_msgs::msg::Float32::Float32(
         Float32&& x) noexcept
 {
     m_data = x.m_data;
 }
 
+// std_msgs::msg::Float32类的拷贝赋值运算符重载函数，接受一个同类型的常引用参数x，将当前对象的数据成员m_data赋值为参数x的m_data值，并返回当前对象的引用，用于实现对象之间的拷贝赋值操作
 std_msgs::msg::Float32& std_msgs::msg::Float32::operator =(
         const Float32& x)
 {
@@ -65,6 +78,7 @@ std_msgs::msg::Float32& std_msgs::msg::Float32::operator =(
     return *this;
 }
 
+// std_msgs::msg::Float32类的移动赋值运算符重载函数，接受一个同类型的右值引用参数x，将当前对象的数据成员m_data赋值为参数x的m_data值，并返回当前对象的引用，用于实现对象之间的资源移动赋值操作（同样，这里目前逻辑较简单，对于复杂类型意义更大），且标记为noexcept，表示不会抛出异常
 std_msgs::msg::Float32& std_msgs::msg::Float32::operator =(
         Float32&& x) noexcept
 {
