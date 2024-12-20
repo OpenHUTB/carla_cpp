@@ -1405,7 +1405,7 @@ private:
           // 这是因为在节点被取下之前，没有其他人知道它已经被取下，所以它不能被放回列表中。
           assert((head->freeListRefs.load(std::memory_order_relaxed) & SHOULD_BE_ON_FREELIST) == 0);
 
-          // Decrease refcount twice, once for our ref, and once for the list's ref
+          // 减少 refcount 两次，一次用于我们的 ref，一次用于列表的 ref
           head->freeListRefs.fetch_sub(2, std::memory_order_release);
           return head;
         }
@@ -1462,7 +1462,7 @@ private:
 
 
   ///////////////////////////
-  // Block
+  //块
   ///////////////////////////
 
   enum InnerQueueContext { implicit_context = 0, explicit_context = 1 };
@@ -1493,7 +1493,7 @@ private:
         return true;
       }
       else {
-        // Check counter
+        //检查柜台
         if (elementsCompletelyDequeued.load(std::memory_order_relaxed) == BLOCK_SIZE) {
           std::atomic_thread_fence(std::memory_order_acquire);
           return true;
@@ -1508,13 +1508,13 @@ private:
     inline bool set_empty(index_t i)
     {
       if (context == explicit_context && BLOCK_SIZE <= EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD) {
-        // Set flag
+        //设置标志
         assert(!emptyFlags[BLOCK_SIZE - 1 - static_cast<size_t>(i & static_cast<index_t>(BLOCK_SIZE - 1))].load(std::memory_order_relaxed));
         emptyFlags[BLOCK_SIZE - 1 - static_cast<size_t>(i & static_cast<index_t>(BLOCK_SIZE - 1))].store(true, std::memory_order_release);
         return false;
       }
       else {
-        // Increment counter
+        //增量计数器
         auto prevVal = elementsCompletelyDequeued.fetch_add(1, std::memory_order_release);
         assert(prevVal < BLOCK_SIZE);
         return prevVal == BLOCK_SIZE - 1;
@@ -1527,7 +1527,7 @@ private:
     inline bool set_many_empty(index_t i, size_t count)
     {
       if (context == explicit_context && BLOCK_SIZE <= EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD) {
-        // Set flags
+        // 设置标志
         std::atomic_thread_fence(std::memory_order_release);
         i = BLOCK_SIZE - 1 - static_cast<size_t>(i & static_cast<index_t>(BLOCK_SIZE - 1)) - count + 1;
         for (size_t j = 0; j != count; ++j) {
@@ -1537,7 +1537,7 @@ private:
         return false;
       }
       else {
-        // Increment counter
+        //增量计数器
         auto prevVal = elementsCompletelyDequeued.fetch_add(count, std::memory_order_release);
         assert(prevVal + count <= BLOCK_SIZE);
         return prevVal + count == BLOCK_SIZE;
@@ -1548,13 +1548,13 @@ private:
     inline void set_all_empty()
     {
       if (context == explicit_context && BLOCK_SIZE <= EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD) {
-        // Set all flags
+        // 设置所有标志
         for (size_t i = 0; i != BLOCK_SIZE; ++i) {
           emptyFlags[i].store(true, std::memory_order_relaxed);
         }
       }
       else {
-        // Reset counter
+        // 重置计数器
         elementsCompletelyDequeued.store(BLOCK_SIZE, std::memory_order_relaxed);
       }
     }
@@ -1563,13 +1563,13 @@ private:
     inline void reset_empty()
     {
       if (context == explicit_context && BLOCK_SIZE <= EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD) {
-        // Reset flags
+        // 重置标志
         for (size_t i = 0; i != BLOCK_SIZE; ++i) {
           emptyFlags[i].store(false, std::memory_order_relaxed);
         }
       }
       else {
-        // Reset counter
+        //重置计数器
         elementsCompletelyDequeued.store(0, std::memory_order_relaxed);
       }
     }
@@ -1613,7 +1613,7 @@ private:
 #endif
 
   ///////////////////////////
-  // Producer base
+  // 生产者基础
   ///////////////////////////
 
   struct ProducerBase : public details::ConcurrentQueueProducerTypelessBase
@@ -1664,8 +1664,8 @@ private:
 
     inline index_t getTail() const { return tailIndex.load(std::memory_order_relaxed); }
   protected:
-    std::atomic<index_t> tailIndex;    // Where to enqueue to next
-    std::atomic<index_t> headIndex;    // Where to dequeue from next
+    std::atomic<index_t> tailIndex;    //在何处排队到下一个
+    std::atomic<index_t> headIndex;    //从下一步取消排队的位置
 
     std::atomic<index_t> dequeueOptimisticCount;
     std::atomic<index_t> dequeueOvercommit;
@@ -1684,7 +1684,7 @@ private:
 
 
   ///////////////////////////
-  // Explicit queue
+  //显式队列
   ///////////////////////////
 
   struct ExplicitProducer : public ProducerBase
@@ -1716,7 +1716,7 @@ private:
       // 首先找到部分出队的块（如果有的话）
 
       if (this->tailBlock != nullptr) {    // Note this means there must be a block index too
-        // First find the block that's partially dequeued, if any
+        // 首先找到部分出队的块（如果有）
         Block* halfDequeuedBlock = nullptr;
         if ((this->headIndex.load(std::memory_order_relaxed) & static_cast<index_t>(BLOCK_SIZE - 1)) != 0) {
           // 头部不在块边界上，意味着某个块部分出队
@@ -2003,7 +2003,7 @@ private:
           bool full = !details::circular_less_than<index_t>(head, currentTailIndex + BLOCK_SIZE) || (MAX_SUBQUEUE_SIZE != details::const_numeric_max<size_t>::value && (MAX_SUBQUEUE_SIZE == 0 || MAX_SUBQUEUE_SIZE - BLOCK_SIZE < currentTailIndex - head));
           if (pr_blockIndexRaw == nullptr || pr_blockIndexSlotsUsed == pr_blockIndexSize || full) {
             if (allocMode == CannotAlloc || full || !new_block_index(originalBlockIndexSlotsUsed)) {
-              // Failed to allocate, undo changes (but keep injected blocks)
+              // 分配、撤消更改失败（但保留注入的块）
               pr_blockIndexFront = originalBlockIndexFront;
               pr_blockIndexSlotsUsed = originalBlockIndexSlotsUsed;
               this->tailBlock = startBlock == nullptr ? firstAllocatedBlock : startBlock;
@@ -2044,8 +2044,8 @@ private:
           pr_blockIndexFront = (pr_blockIndexFront + 1) & (pr_blockIndexSize - 1);
         }
 
-        // Excellent, all allocations succeeded. Reset each block's emptiness before we fill them up, and
-        // publish the new block index front
+        // 太好了，所有分配都成功了。在我们填满每个区块之前重置它们的空度，然后
+        //发布新的区块索引前端
         auto block = firstAllocatedBlock;
         while (true) {
           block->ConcurrentQueue::Block::template reset_empty<explicit_context>();
@@ -2174,7 +2174,7 @@ private:
           auto offset = static_cast<size_t>(static_cast<typename std::make_signed<index_t>::type>(firstBlockBaseIndex - headBase) / BLOCK_SIZE);
           auto indexIndex = (localBlockIndexHead + offset) & (localBlockIndex->size - 1);
 
-          // Iterate the blocks and dequeue
+          //迭代区块并取消排队
           auto index = firstIndex;
           do {
             auto firstIndexInBlock = index;
@@ -2255,7 +2255,7 @@ private:
     {
       auto prevBlockSizeMask = pr_blockIndexSize - 1;
 
-      // Create the new block
+      //创建新块
       pr_blockIndexSize <<= 1;
       auto newRawPtr = static_cast<char*>((Traits::malloc)(sizeof(BlockIndexHeader) + std::alignment_of<BlockIndexEntry>::value - 1 + sizeof(BlockIndexEntry) * pr_blockIndexSize));
       if (newRawPtr == nullptr) {
@@ -2275,7 +2275,7 @@ private:
         } while (i != pr_blockIndexFront);
       }
 
-      // Update everything
+      //更新所有内容
       auto header = new (newRawPtr) BlockIndexHeader;
       header->size = pr_blockIndexSize;
       header->front.store(numberOfFilledSlotsToExpose - 1, std::memory_order_relaxed);
