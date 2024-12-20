@@ -5,6 +5,7 @@
 walker_bp = world.get_blueprint_library().filter('walker.pedestrian.0002')
 # 将行人蓝图对象的'is_invincible'（无敌）属性设置为True
 walker_bp.set_attribute('is_invincible', True)
+#调用用了walker的方法
 
 # 从世界（world）的蓝图库中筛选出名称匹配'vehicle.bmw.*'的车辆蓝图对象
 # Changes attribute randomly by the recommended value
