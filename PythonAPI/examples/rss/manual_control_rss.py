@@ -282,8 +282,14 @@ class World(object):
                 spawn_point.location.z += 2.0
                 spawn_point.rotation.roll = 0.0
                 spawn_point.rotation.pitch = 0.0
+                # 如果之前已经存在 `self.player`（可能之前创建过主要演员对象），则获取它的位置和姿态信息（通过 `get_transform` 方法获取 `Transform` 对象，包含位置、旋转等信息），
+                # 然后将位置的 `z` 坐标（垂直方向）增加2.0（可能是将其抬高一点，避免与之前的位置冲突等），并将旋转的 `roll`（翻滚）和 `pitch`（俯仰）角度设置为0.0，保证姿态正常，
+                # 最后将修改后的位置和姿态信息赋值给 `spawn_point` 变量，用于作为新创建演员的出生点。
                 self.destroy()
+                # 调用 `destroy` 方法（这个方法应该是用于销毁之前创建的相关对象，比如之前的主要演员等），清理之前的相关资源。
                 self.player = self.world.try_spawn_actor(blueprint, spawn_point)
+                # 使用修改后的 `spawn_point` 作为出生点，通过 `self.world.try_spawn_actor` 方法尝试根据 `blueprint` 蓝图对象创建新的演员对象，
+                # 如果创建成功则赋值给 `self.player`，否则继续下面的循环尝试操作。
             while self.player is None:
                 if not self.map.get_spawn_points():
                     print('There are no spawn points available in your map/town.')
@@ -292,7 +298,11 @@ class World(object):
                 spawn_points = self.map.get_spawn_points()
                 spawn_point = random.choice(spawn_points) if spawn_points else carla.Transform()
                 self.player = self.world.try_spawn_actor(blueprint, spawn_point)
-
+                # 如果地图中没有可用的出生点（通过 `self.map.get_spawn_points` 方法获取出生点列表，如果为空则表示没有可用出生点），
+                # 则打印提示信息，告知用户在地图（UE4场景中对应的地图）里添加一些车辆出生点，并终止程序运行，返回状态码为1，表示出现了无法创建演员的错误情况。
+                # 尝试从地图获取可用的出生点列表，如果有则随机选择一个作为出生点，否则使用默认的 `carla.Transform`（可能是一个默认的位置和姿态）作为出生点，
+                # 然后再次尝试根据 `blueprint` 蓝图对象和选择的出生点创建新的演员对象，直到创建成功（ `self.player` 不为 `None` ）为止。
+        
         if self.external_actor:
             ego_sensors = []
             for actor in self.world.get_actors():
