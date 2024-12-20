@@ -332,14 +332,28 @@ class World(object):
         self.recording = not self.recording
 
     def render(self, display):
+        # 这个方法名为 `render`，通常用于将模拟世界中的各种元素渲染显示出来，比如渲染车辆、场景、传感器数据可视化等内容，接收一个参数 `display`，
+        # 从名称推测这个参数可能是用于显示图像或者图形界面的对象，例如在 `pygame` 等图形库中，可能是代表屏幕显示的对象。
         self.camera.render(display)
+        # 调用 `self.camera`（应该是摄像头相关的对象，用于获取图像数据等）的 `render` 方法，传入 `display` 参数，目的是将摄像头获取到的图像内容渲染显示到指定的显示界面上，
+        # 让用户可以看到模拟世界中相应视角下的画面。
         self.rss_bounding_box_visualizer.render(display, self.camera.current_frame)
+        # 调用 `self.rss_bounding_box_visualizer`（边界框可视化相关对象，可能用于显示车辆、障碍物等物体的边界框）的 `render` 方法，传入 `display`（显示界面对象）和 `self.camera.current_frame`（摄像头当前获取到的图像帧）参数，
+        # 这样可以在显示界面上根据摄像头获取的当前画面，渲染出相应物体的边界框，方便用户直观地看到物体的位置和范围等信息。
         self.rss_unstructured_scene_visualizer.render(display)
+        # 调用 `self.rss_unstructured_scene_visualizer`（无结构场景可视化相关对象，可能用于展示模拟世界中不规则场景元素的可视化情况）的 `render` 方法，传入 `display` 参数，
+        # 将无结构场景相关的可视化内容渲染显示到显示界面上，丰富用户看到的模拟世界的整体视觉呈现效果。
         self.hud.render(display)
+        # 调用 `self.hud`（抬头显示对象）的 `render` 方法，传入 `display` 参数，将抬头显示相关的信息（如车速、车辆状态等文字或图形信息）渲染显示到显示界面上，
+        # 使得用户可以同时看到模拟世界画面以及相关的重要提示信息。
 
         if self.recording:
+            # 判断当前是否处于录制状态（`self.recording` 为 `True` 表示正在录制），如果是，则执行以下操作来保存当前渲染的画面到文件中，用于录制模拟过程。
             pygame.image.save(display, "_out%04d/%08d.bmp" % (self.recording_dir_num, self.recording_frame_num))
+            # 使用 `pygame` 库的 `image.save` 方法，将 `display`（显示界面当前的画面内容）保存为一个 `.bmp` 格式的图像文件，文件路径由录制目录编号（`self.recording_dir_num`）和当前录制帧数（`self.recording_frame_num`）组成，
+            # 例如 `_out0000/00000000.bmp`，这样每个录制的画面都会有一个按照顺序编号的文件名，方便后续查看和整理。
             self.recording_frame_num += 1
+            # 将当前录制帧数递增1，用于下一次保存图像文件时的文件名编号，保证每个文件的编号是依次递增的，符合录制顺序。
 
     def destroy(self):
         # stop from ticking
