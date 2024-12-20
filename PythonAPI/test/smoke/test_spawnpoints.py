@@ -26,28 +26,36 @@ class TestSpawnpoints(SyncSmokeTest):
                 # load the map
                 self.client.load_world(m)
                 # workaround: give time to UE4 to clean memory after loading (old assets)
+//由于加载地图后UE4可能需要时间清理旧资源占用的内存，所以等待5秒，
+//这是一种临时的解决办法（workaround）来确保后续操作稳定。
                 time.sleep(5)
                 
                 self.world = self.client.get_world()
 
                 # get all spawn points
+//获取当前地图的所有生成点，这些点可以用于后续生成车辆等对象
                 spawn_points = self.world.get_map().get_spawn_points()
 
                 # Check why the world settings aren't applied after a reload
+//获取当前世界的设置，可能是为了后续对比或者检查重新加载地图后设置应用的情况。
                 self.settings = self.world.get_settings()
                 settings = carla.WorldSettings(
                     no_rendering_mode=False,
                     synchronous_mode=True,
                     fixed_delta_seconds=0.05)
+//创建新的世界设置对象，设置了诸如渲染模式、同步模式以及固定时间步长等参数，
+然后准备将这些设置应用到当前世界中。
                 self.world.apply_settings(settings)
 
                 # spawn all kind of vehicle
+//遍历所有车辆蓝图，准备在每个生成点生成对应的车辆，通过批量生成的方式来操作。
                 for vehicle in blueprints:
                     batch = [(vehicle, t) for t in spawn_points]
                     batch = [carla.command.SpawnActor(*args) for args in batch]
                     response = self.client.apply_batch_sync(batch, False)
 
                     self.assertFalse(any(x.error for x in response))
+//检查生成车辆的响应中是否有错误，如果有错误则说明生成过程出现问题，这里确保没有错误。
                     ids = [x.actor_id for x in response]
                     self.assertEqual(len(ids), len(spawn_points))
 
