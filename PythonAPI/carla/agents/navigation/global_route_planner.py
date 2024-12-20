@@ -474,7 +474,7 @@ class GlobalRoutePlanner:
         l1 = np.array(self._graph.nodes[n1]['vertex'])
         l2 = np.array(self._graph.nodes[n2]['vertex'])
         return np.linalg.norm(l1 - l2)
-
+    #定义一个函数，用于在图中搜索路径
     def _path_search(self, origin, destination):
         # type: (carla.Location, carla.Location) -> list[int]
         """
@@ -485,14 +485,19 @@ class GlobalRoutePlanner:
         return      :   path as list of node ids (as int) of the graph self._graph
         connecting origin and destination
         """
+        #使用self._localize方法将起点和终点的位置转换为图中的节点
         start, end = self._localize(origin), self._localize(destination)
-
+        #使用networkx的astar_path函数来寻找最短路径
+        #图是self._graph，起点是start[0]，终点是end[0]
+        #使用self._distance_heuristic作为启发式函数，边的权重是'length'
         route = nx.astar_path(
             self._graph, source=start[0], target=end[0],
             heuristic=self._distance_heuristic, weight='length')
+        #将终点的第二个元素添加到路径中（可能是终点的另一个属性）
         route.append(end[1])
+        #返回找到的路径
         return route
-
+    #定义一个函数，从路线中的一个起始索引开始，返回最后一个连续的交叉路口边。这有助于跳过微小的交叉路口边，以便正确计算转弯决策。
     def _successive_last_intersection_edge(self, index, route):
         # type: (int, list[int]) -> tuple[int | None, EdgeDict | None]
         """
@@ -501,17 +506,28 @@ class GlobalRoutePlanner:
         This helps moving past tiny intersection edges to calculate
         proper turn decisions.
         """
-
+        #初始化一个变量last_intersection_edge，用于存储最后一个交叉路口边，初始值为None
         last_intersection_edge = None  # type: EdgeDict | None
+        #初始化一个变量last_node，用于存储最后一个节点，初始值为None
         last_node = None
+        #遍历从index开始到route列表末尾的节点对
+        #node1和node2分别代表路线中的两个连续节点
         for node1, node2 in [(route[i], route[i + 1]) for i in range(index, len(route) - 1)]:
+            #获取self._graph中连接node1和node2的边，存储在candidate_edge中
             candidate_edge = self._graph.edges[node1, node2]  # type: EdgeDict
+            #如果node1等于route列表中的index位置的节点
             if node1 == route[index]:
+                #将candidate_edge赋值给last_intersection_edge
                 last_intersection_edge = candidate_edge
+            #如果candidate_edge的类型是RoadOption.LANEFLLOW且是一个交叉路口
             if candidate_edge['type'] == RoadOption.LANEFOLLOW and candidate_edge['intersection']:
+                #将candidate_edge赋值给last_intersection_edge
                 last_intersection_edge = candidate_edge
+                #将node2赋值给last_node
                 last_node = node2
+            #如果上述条件不满足
             else:
+                #跳出循环
                 break
 
         return last_node, last_intersection_edge

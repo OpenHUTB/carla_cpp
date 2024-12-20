@@ -139,6 +139,7 @@ static double gd[11] = {
 };
 
 //polevl 函数
+//计算多项式值的函数
 static double polevl( double x, double* coef, int n )
 {
     double ans;
@@ -157,6 +158,8 @@ static double polevl( double x, double* coef, int n )
     return ans;
 }
 //p1evl 函数
+//计算1开始的多项式值的函数，即多项式第一项为x
+//参数与返回值与polevl函数相同
 static double p1evl( double x, double* coef, int n )
 {
     double ans;
@@ -176,6 +179,7 @@ static double p1evl( double x, double* coef, int n )
 }
 
 //fresnel 函数
+//计算Fresnel积分的函数
 static void fresnel( double xxa, double *ssa, double *cca )
 {
     double f, g, cc, ss, c, s, t, u;
@@ -211,7 +215,7 @@ static void fresnel( double xxa, double *ssa, double *cca )
         cc = 0.5 + (f * s - g * c) / t;
         ss = 0.5 - (f * c + g * s) / t;
     }
-
+// 根据xxa的符号调整cc和ss的符号
     if ( xxa < 0.0 )
     {
         cc = -cc;
@@ -232,6 +236,7 @@ static void fresnel( double xxa, double *ssa, double *cca )
 * @param t      tangent direction at s [rad]
 */
 
+//计算螺旋线参数的主要函数
 void odrSpiral( double s, double cDot, double *x, double *y, double *t )
 {
     double a;
@@ -239,11 +244,14 @@ void odrSpiral( double s, double cDot, double *x, double *y, double *t )
     a = 1.0 / sqrt( fabs( cDot ) );
     a *= sqrt( M_PI );
 
+    // 计算Fresnel积分，得到螺旋线的x和y坐标（经过缩放）
     fresnel( s / a, y, x );
-
+    
+   // 应用缩放因子a到x和y坐标上
     *x *= a;
     *y *= a;
 
+    // 如果cDot小于0，则反转y轴的方向
     if ( cDot < 0.0 )
         *y *= -1.0;
 

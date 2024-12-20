@@ -5,16 +5,16 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
-
-#include "Carla/OpenDrive/OpenDriveActor.h"
-#include "Commandlets/Commandlet.h"
-#include "Runtime/Engine/Classes/Engine/ObjectLibrary.h"
+//这是预处理指令
+#include "Carla/OpenDrive/OpenDriveActor.h"//这是将Carla/OpenDrive/OpenDriveActor.h头文件包含进来。这意味着当前文件可能会使用到OpenDriveActor.h中定义的类、函数或者其他类型。
+#include "Commandlets/Commandlet.h"//这表明MoveAssetsCommandlet类可能是从Commandlet类派生而来或者使用了Commandlet类中的功能。
+#include "Runtime/Engine/Classes/Engine/ObjectLibrary.h"//包含ObjectLibrary.h头文件，这可能是因为MoveAssetsCommandlet类需要使用ObjectLibrary类的功能。
 
 #if WITH_EDITORONLY_DATA
-#include "AssetRegistry/Public/AssetRegistryModule.h"
-#include "Developer/AssetTools/Public/AssetToolsModule.h"
-#endif // WITH_EDITORONLY_DATA
-#include "MoveAssetsCommandlet.generated.h"
+#include "AssetRegistry/Public/AssetRegistryModule.h"//AssetRegistryModule可能用于在编辑器中管理资产注册表相关的功能。
+#include "Developer/AssetTools/Public/AssetToolsModule.h"//AssetToolsModule可能提供了一些在编辑器中操作资产的工具函数或者类。
+#endif // WITH_EDITORONLY_DATA//表示条件编译块结束
+#include "MoveAssetsCommandlet.generated.h"//这是一个自动生成的头文件（通常由虚幻引擎的代码生成工具生成）
 
 ///包含 “包参数” 的结构体，
 ///用于在调用此命令行工具时存储已解析的参数。
