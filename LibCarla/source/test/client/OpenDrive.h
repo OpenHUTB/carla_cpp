@@ -1,8 +1,8 @@
-// Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 （c） 2019 Universitat Autonoma 计算机视觉中心 （CVC）
+//巴塞罗那 （UAB）。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+//本作品根据 MIT 许可证的条款进行许可。
+// 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 
@@ -20,4 +20,4 @@ namespace util {
     static std::string Load(const std::string &filename);
   };
 
-} // namespace util
+} // 命名空间实用程序
