@@ -17,7 +17,7 @@
 // Uncomment this to enable wchar_t mode
 // #define PUGIXML_WCHAR_MODE
 
-// Uncomment this to enable compact mode
+// 取消注释以启用压缩模式
 // #define PUGIXML_COMPACT
 
 // Uncomment this to disable XPath
