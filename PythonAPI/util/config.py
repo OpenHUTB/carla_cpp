@@ -132,20 +132,24 @@ def inspect(args, client):
        接着根据获取到的信息进行格式化输出，展示服务器端的详细运行状态和资源情况。
        """
     address = '%s:%d' % (get_ip(args.host), args.port)
-
+    #获取Carla世界对象
     world = client.get_world()
+    #获取经过的时间（以秒为单位）
     elapsed_time = world.get_snapshot().timestamp.elapsed_seconds
     elapsed_time = datetime.timedelta(seconds=int(elapsed_time))
-
+    #获取世界中的所有角色（演员）
     actors = world.get_actors()
+    #获取世界的设置
     s = world.get_settings()
 
+    #设置天气为自定义
     weather = 'Custom'
     current_weather = world.get_weather()
     for preset, name in find_weather_presets():
         if current_weather == preset:
             weather = name
 
+    #根据固定时间步长设置帧率
     if s.fixed_delta_seconds is None:
         frame_rate = 'variable'
     else:
@@ -153,6 +157,7 @@ def inspect(args, client):
             1000.0 * s.fixed_delta_seconds,
             1.0 / s.fixed_delta_seconds)
 
+    #打印一些信息
     print('-' * 34)
     print('address:% 26s' % address)
     print('version:% 26s\n' % client.get_server_version())
