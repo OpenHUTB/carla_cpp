@@ -26,7 +26,7 @@ set(PYTORCH_CPP_STD_INCLUDES "/usr/include/c++/7")# 设置PyTorch C++ API的标�
 set(CMAKE_CXX_FLAGS_RELEASE "-DDEBUG -std=c++14 -O2 -fPIC -D_GLIBCXX_USE_CXX11_ABI=0 -I${PYTORCH_CPP_STD_INCLUDES}" CACHE STRING "" FORCE)
  
 # ==============================================================================
-# Create targets for debug and release in the same build type.
+# 在同一 build 类型中创建用于 debug 和 release 的目标。
 # ==============================================================================
 # 根据是否定义了LIBCARLA_BUILD_RELEASE或LIBCARLA_BUILD_DEBUG来构建不同的目标
 if (LIBCARLA_BUILD_RELEASE)
