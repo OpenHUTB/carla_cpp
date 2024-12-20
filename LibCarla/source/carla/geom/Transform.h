@@ -126,29 +126,29 @@ namespace geom {
 
         /// 计算逆变换的 4 矩阵形式
         /// 首先通过逆变换操作（InverseTransformPoint）得到一个用于逆变换的位置偏移向量，然后结合当前的旋转角度信息，按照特定数学规则计算出逆变换对应的 4x4 矩阵
-        std::array<float, 16> GetInverseMatrix() const {
-            const float yaw = rotation.yaw;
-            const float cy = std::cos(Math::ToRadians(yaw));
-            const float sy = std::sin(Math::ToRadians(yaw));
-
+        std::array<float, 16> GetInverseMatrix() const { 
+            const float yaw = rotation.yaw; // 提取旋转对象中的偏航角（yaw），并将其从度转换为弧度
+            const float cy = std::cos(Math::ToRadians(yaw)); // 计算偏航角的余弦值
+            const float sy = std::sin(Math::ToRadians(yaw)); // 计算偏航角的正弦值
+            // 提取旋转对象中的翻滚角（roll），并将其从度转换为弧度
             const float roll = rotation.roll;
-            const float cr = std::cos(Math::ToRadians(roll));
-            const float sr = std::sin(Math::ToRadians(roll));
-
+            const float cr = std::cos(Math::ToRadians(roll)); // 计算翻滚角的余弦值
+            const float sr = std::sin(Math::ToRadians(roll));  // 计算翻滚角的正弦值
+            // 提取旋转对象中的俯仰角（pitch），并将其从度转换为弧度
             const float pitch = rotation.pitch;
-            const float cp = std::cos(Math::ToRadians(pitch));
-            const float sp = std::sin(Math::ToRadians(pitch));
-
+            const float cp = std::cos(Math::ToRadians(pitch)); // 计算俯仰角的余弦值
+            const float sp = std::sin(Math::ToRadians(pitch)); // 计算俯仰角的正弦值
+           // 创建一个3D向量，并初始化为0，用于后续的逆变换点计算
             Vector3D a = {0.0f, 0.0f, 0.0f};
-            InverseTransformPoint(a);
-
-            std::array<float, 16> transform = {
+            InverseTransformPoint(a); // 调用逆变换点函数，传入向量a，并更新向量a的值
+           
+            std::array<float, 16> transform = { // 以下为3x3旋转矩阵和位移向量组成的4x4矩阵
                 cp * cy, cp * sy, sp, a.x,
                 cy * sp * sr - sy * cr, sy * sp * sr + cy * cr, -cp * sr, a.y,
                 -cy * sp * cr - sy * sr, -sy * sp * cr + cy * sr, cp * cr, a.z,
-                0.0f, 0.0f, 0.0f, 1.0};
+                0.0f, 0.0f, 0.0f, 1.0}; // 最后一列，代表位移和齐次坐标
 
-            return transform;
+            return transform; // 返回计算得到的逆变换矩阵
         }
 
         // =========================================================================
