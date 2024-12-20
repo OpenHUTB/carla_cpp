@@ -90,6 +90,7 @@ if %errorlevel% neq 0 goto error_install
 
 rem Remove the downloaded Google Test source because is no more needed
 if %DEL_SRC% == true (
+//rem 使用rd命令递归地删除指定目录及其所有子目录和文件，并且不提示确认
     rd /s /q "%GT_SRC_DIR%"
 )
 
