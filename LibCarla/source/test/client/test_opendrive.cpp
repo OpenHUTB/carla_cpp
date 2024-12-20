@@ -254,11 +254,13 @@ static void test_road_links(boost::optional<Map>& map) {
     }
   }
 }
-
+// 定义一个测试用例
 TEST(road, parse_files) {
+   // 使用 util::OpenDrive::Load 函数加载文件
   for (const auto &file : util::OpenDrive::GetAvailableFiles()) {
     // std::cerr << file << std::endl;
     auto map = OpenDriveParser::Load(util::OpenDrive::Load(file));
+   // 使用 ASSERT_TRUE 断言来确保 map 不是 nullptr
     ASSERT_TRUE(map);
     // print_roads(map, file);
   }
@@ -335,30 +337,42 @@ TEST(road, parse_geometry) {
 }
 
 TEST(road, iterate_waypoints) {
+  // 创建一个线程池
   carla::ThreadPool pool;
   pool.AsyncRun();
+  // 用于存储异步任务结果的向量
   std::vector<std::future<void>> results;
+  // 遍历所有可用的OpenDrive文件
   for (const auto& file : util::OpenDrive::GetAvailableFiles()) {
-    carla::logging::log("Parsing", file);
+    carla::logging::log("Parsing", file);// 日志记录开始解析的文件名
+     // 向线程池提交一个异步任务，任务内容是解析和验证地图
     results.push_back(pool.Post([file]() {
-      carla::StopWatch stop_watch;
-      auto m = OpenDriveParser::Load(util::OpenDrive::Load(file));
-      ASSERT_TRUE(m.has_value());
+      carla::StopWatch stop_watch;  // 创建一个计时器，用于测量解析和验证地图所需的时间
+      auto m = OpenDriveParser::Load(util::OpenDrive::Load(file)); // 加载OpenDrive文件并解析为地图
+      ASSERT_TRUE(m.has_value()); // 断言解析成功，m不为空
       auto &map = *m;
+      // 生成地图的拓扑结构，并断言拓扑不为空
       const auto topology = map.GenerateTopology();
       ASSERT_FALSE(topology.empty());
       auto count = 0u;
+      // 生成地图的轨迹点（waypoints），每个轨迹点间隔0.5米
       auto waypoints = map.GenerateWaypoints(0.5);
       ASSERT_FALSE(waypoints.empty());
+      // 随机打乱轨迹点顺序
       Random::Shuffle(waypoints);
+      // 确定要探索的轨迹点数量，最多2000个
       const auto number_of_waypoints_to_explore =
           std::min<size_t>(2000u, waypoints.size());
+       // 遍历选定的轨迹点进行探索
       for (auto i = 0u; i < number_of_waypoints_to_explore; ++i) {
         auto wp = waypoints[i];
+       // 计算轨迹点的变换
         map.ComputeTransform(wp);
+       // 对于非第一个轨迹点，断言它与第一个轨迹点不同
         if (i != 0u) {
           ASSERT_NE(wp, waypoints[0u]);
         }
+        // 遍历当前轨迹点的所有后继轨迹点
         for (auto &&successor : map.GetSuccessors(wp)) {
           ASSERT_TRUE(
               successor.road_id != wp.road_id ||
@@ -367,22 +381,29 @@ TEST(road, iterate_waypoints) {
               successor.s != wp.s);
         }
         auto origin = wp;
+        // 从当前轨迹点出发，探索最多200次后续轨迹点
         for (auto j = 0u; j < 200u; ++j) {
+          // 获取从当前轨迹点出发，在0.0001到150米范围内的后续轨迹点
           auto next_wps = map.GetNext(origin, Random::Uniform(0.0001, 150.0));
           if (next_wps.empty()) {
             break;
           }
+          // 确定要探索的后续轨迹点数量，最多10个
           const auto number_of_next_wps_to_explore =
               std::min<size_t>(10u, next_wps.size());
+          // 随机打乱后续轨迹点顺序
           Random::Shuffle(next_wps);
+          // 遍历选定的后续轨迹点进行探索
           for (auto k = 0u; k < number_of_next_wps_to_explore; ++k) {
             auto next = next_wps[k];
             ++count;
+            // 断言后续轨迹点与当前轨迹点至少有一个属性不同
             ASSERT_TRUE(
                 next.road_id != wp.road_id ||
                 next.section_id != wp.section_id ||
                 next.lane_id != wp.lane_id ||
                 next.s != wp.s);
+            // 获取当前后续轨迹点的右侧轨迹点
             auto right = map.GetRight(next);
             if (right.has_value()) {
               ASSERT_EQ(right->road_id, next.road_id);
@@ -390,22 +411,25 @@ TEST(road, iterate_waypoints) {
               ASSERT_NE(right->lane_id, next.lane_id);
               ASSERT_EQ(right->s, next.s);
             }
+             // 获取当前后续轨迹点的左侧轨迹点
             auto left = map.GetLeft(next);
             if (left.has_value()) {
+              // 断言左侧轨迹点与当前后续轨迹点在同一道路和路段，但车道不同
               ASSERT_EQ(left->road_id, next.road_id);
               ASSERT_EQ(left->section_id, next.section_id);
               ASSERT_NE(left->lane_id, next.lane_id);
               ASSERT_EQ(left->s, next.s);
             }
           }
-          origin = next_wps[0u];
+          origin = next_wps[0u];  // 将下一个探索的起点设置为当前探索的后续轨迹点中的第一个
         }
       }
-      ASSERT_GT(count, 0u);
-      float seconds = 1e-3f * stop_watch.GetElapsedTime();
+      ASSERT_GT(count, 0u);// 断言至少探索了一个轨迹点
+      float seconds = 1e-3f * stop_watch.GetElapsedTime();   // 获取解析和验证地图所需的时间，并记录日志
       carla::logging::log(file, "done in", seconds, "seconds.");
     }));
   }
+  // 等待所有异步任务完成
   for (auto &result : results) {
     result.get();
   }

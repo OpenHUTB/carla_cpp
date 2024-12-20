@@ -60,12 +60,15 @@ def tutorial(args):
     # 连接到服务器
     client = carla.Client(args.host, args.port)
     client.set_timeout(2.0)
+     # 获取当前世界的引用以及蓝图库（用于创建actor）
     world = client.get_world()
     bp_lib = world.get_blueprint_library()
 
+    # 获取交通管理器并配置为同步模式
     traffic_manager = client.get_trafficmanager(8000)
     traffic_manager.set_synchronous_mode(True)
 
+     # 保存原始世界设置并配置新的同步模式设置
     original_settings = world.get_settings()
     settings = world.get_settings()
     settings.synchronous_mode = True
@@ -135,7 +138,7 @@ def tutorial(args):
         camera.listen(lambda data: sensor_callback(data, image_queue))
         lidar.listen(lambda data: sensor_callback(data, lidar_queue))
 
-        for frame in range(args.frames):
+        for frame in range(args.frames):#frame从0到arg.frames-1执行循环
             world.tick()
             world_frame = world.get_snapshot().frame
 
