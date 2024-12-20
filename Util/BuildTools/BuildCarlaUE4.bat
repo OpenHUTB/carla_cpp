@@ -1,52 +1,60 @@
-@echo off
-setlocal enabledelayedexpansion
+@echo off                       ; 关闭命令回显
+setlocal enabledelayedexpansion ; 启用延迟变量扩展
 
-rem BAT script that creates the binaries for Carla (carla.org).
-rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
-
+; 设置脚本的本地路径和文件名标签
 set LOCAL_PATH=%~dp0
 set FILE_N=-[%~n0]:
 
-rem Print batch params (debug purpose)
+; 打印批处理参数（用于调试）
 echo %FILE_N% [Batch params]: %*
 
-rem ============================================================================
-rem -- Parse arguments ---------------------------------------------------------
-rem ============================================================================
+; -------------------------------------------
+; 解析命令行参数
+; -------------------------------------------
 
-set BUILD_UE4_EDITOR=false
-set LAUNCH_UE4_EDITOR=false
-set REMOVE_INTERMEDIATE=false
-set USE_CARSIM=false
-set USE_CHRONO=false
-set USE_UNITY=true
-set CARSIM_STATE="CarSim OFF"
-set CHRONO_STATE="Chrono OFF"
-set UNITY_STATE="Unity ON"
-set AT_LEAST_WRITE_OPTIONALMODULES=false
-set EDITOR_FLAGS=""
-set USE_ROS2=false
-set ROS2_STATE="Ros2 OFF"
+; 初始化各种标志和状态变量
+set BUILD_UE4_EDITOR=false      ; 是否构建Unreal Engine 4编辑器
+set LAUNCH_UE4_EDITOR=false     ; 是否启动Unreal Engine 4编辑器
+set REMOVE_INTERMEDIATE=false   ; 是否移除中间文件
+set USE_CARSIM=false            ; 是否使用CarSim
+set USE_CHRONO=false            ; 是否使用Chrono
+set USE_UNITY=true              ; 是否使用Unity
+set CARSIM_STATE="CarSim OFF"   ; CarSim状态
+set CHRONO_STATE="Chrono OFF"   ; Chrono状态
+set UNITY_STATE="Unity ON"      ; Unity状态
+set AT_LEAST_WRITE_OPTIONALMODULES=false ; 是否至少写入可选模块
+set EDITOR_FLAGS=""             ; 编辑器标志
+set USE_ROS2=false              ; 是否使用ROS2
+set ROS2_STATE="Ros2 OFF"       ; ROS2状态
 
+; 参数解析循环
 :arg-parse
-echo %1
+echo %1                         ; 打印当前参数
 if not "%1"=="" (
+    ; 根据参数设置相应的变量
     if "%1"=="--editor-flags" (
-        set EDITOR_FLAGS=%2
-        shift
+        set EDITOR_FLAGS=%2     ; 设置编辑器标志
+        shift                   ; 移动到下一个参数
     )
     if "%1"=="--build" (
-        set BUILD_UE4_EDITOR=true
+        set BUILD_UE4_EDITOR=true ; 设置构建编辑器标志
     )
     if "%1"=="--launch" (
-        set LAUNCH_UE4_EDITOR=true
+        set LAUNCH_UE4_EDITOR=true ; 设置启动编辑器标志
     )
     if "%1"=="--clean" (
-        set REMOVE_INTERMEDIATE=true
+        set REMOVE_INTERMEDIATE=true ; 设置移除中间文件标志
     )
     if "%1"=="--carsim" (
-        set USE_CARSIM=true
+        set USE_CARSIM=true       ; 设置使用CarSim标志
     )
+    ; ...（其他参数解析代码省略）
+    
+    ; 移动到下一个参数并继续解析
+    shift
+    goto arg-parse
+)
+
     if "%1"=="--chrono" (
         set USE_CHRONO=true
     )
