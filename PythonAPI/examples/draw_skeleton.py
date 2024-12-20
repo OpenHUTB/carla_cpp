@@ -74,7 +74,7 @@ class CarlaSyncMode(object):
             no_rendering_mode=False,
             synchronous_mode=True,
             fixed_delta_seconds=self.delta_seconds))
-
+        #创建队列并注册事件
         def make_queue(register_event):
             q = queue.Queue()
             register_event(q.put)
