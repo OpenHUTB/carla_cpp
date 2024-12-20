@@ -39,9 +39,9 @@ void AWalkerController::OnPossess(APawn *InPawn)
     return;
   }
 
-  MovementComponent->MaxWalkSpeed = GetMaximumWalkSpeed();
-  MovementComponent->JumpZVelocity = 500.0f;
-  Character->JumpMaxCount = 2;
+  MovementComponent->MaxWalkSpeed = GetMaximumWalkSpeed();//设置角色的最大行走速度为GetMaximumWalkSpeed()方法的返回值。这个方法应该在这个类或其父类中定义，用于获取行走者的最大行走速度。
+  MovementComponent->JumpZVelocity = 500.0f;//设置角色跳跃时的垂直速度
+  Character->JumpMaxCount = 2;//设置角色可以连续跳跃的最大次数为2次
 }
 
 void AWalkerController::ApplyWalkerControl(const FWalkerControl &InControl)
