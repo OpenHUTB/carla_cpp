@@ -51,6 +51,7 @@ except IndexError:
 # -- Add PythonAPI for release mode --------------------------------------------
 # ==============================================================================
 try:
+# 尝试将当前文件所在目录的上一级目录添加到系统路径中，以便能够导入 'carla' 模块。
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/carla')
 except IndexError:
     pass
