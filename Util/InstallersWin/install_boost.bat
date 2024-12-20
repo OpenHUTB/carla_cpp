@@ -13,7 +13,7 @@ echo %FILE_N% [Batch params]: %*
 rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
-
+//以下是一个大的注释块，用于标识下面的代码是用于解析传入批处理脚本的参数的功能部分。
 :arg-parse
 if not "%1"=="" (
     if "%1"=="-j" (
@@ -54,6 +54,8 @@ if "%BOOST_VERSION%" == "" (
 rem If not set set the build dir to the current dir
 if "%BUILD_DIR%" == "" set BUILD_DIR=%~dp0
 if not "%BUILD_DIR:~-1%"=="\" set BUILD_DIR=%BUILD_DIR%\
+//如果BUILD_DIR变量没有被设置（即值为空），则将其设置为当前批处理脚本所在的目录路径（%~dp0）。
+//接着检查BUILD_DIR变量所表示的路径字符串的最后一个字符，如果不是反斜杠"\"，则在路径末尾添加一个反斜杠，确保路径格式的规范性。
 
 rem If not defined, use Visual Studio 2019 as tool set
 if "%TOOLSET%" == "" set TOOLSET=msvc-14.2
