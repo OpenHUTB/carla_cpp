@@ -3,11 +3,11 @@
 # ==============================================================================
 # -- Parse arguments -----------------------------------------------------------
 # ==============================================================================
-
+# 描述脚本的功能：制作CARLA和其他内容包的打包版本，准备分发。
 DOC_STRING="Makes a packaged version of CARLA and other content packages ready for distribution."
-
+# 使用说明字符串，显示如何使用这个脚本
 USAGE_STRING="Usage: $0 [-h|--help] [--config={Debug,Development,Shipping}] [--no-zip] [--clean-intermediate] [--packages=Name1,Name2,...] [--target-archive=] [--archive-sufix=]"
-
+# 初始化变量
 PACKAGES="Carla"
 DO_TARBALL=true
 DO_CLEAN_INTERMEDIATE=false
@@ -16,41 +16,50 @@ PACKAGE_CONFIG=Shipping
 USE_CARSIM=false
 SINGLE_PACKAGE=false
 ARCHIVE_SUFIX=""
-
+# 使用getopt命令解析短选项和长选项
 OPTS=`getopt -o h --long help,config:,no-zip,clean-intermediate,carsim,packages:,python-version,target-archive:,archive-sufix:, -n 'parse-options' -- "$@"`
-
+# 将getopt的结果赋值给OPTS变量，并将其设置为位置参数
 eval set -- "$OPTS"
-
+# 循环处理传入的参数
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --config )
+    # 设置打包配置
       PACKAGE_CONFIG="$2"
       shift 2 ;;
     --no-zip )
+    # 不创建压缩包
       DO_TARBALL=false
       shift ;;
     --clean-intermediate )
+    # 清除中间文件
       DO_CLEAN_INTERMEDIATE=true
       shift ;;
     --packages )
+    # 设置要打包的包名
       PACKAGES="$2"
       shift 2 ;;
     --target-archive )
+    # 单包模式
       SINGLE_PACKAGE=true
       TARGET_ARCHIVE="$2"
       shift 2 ;;
     --archive-sufix )
+    # 设置归档文件的后缀
       ARCHIVE_SUFIX="$2"
       shift 2 ;;
     --carsim )
+    # 使用CarSim
       USE_CARSIM=true;
       shift ;;
     -h | --help )
+     # 打印帮助信息并退出
       echo "$DOC_STRING"
       echo "$USAGE_STRING"
       exit 1
       ;;
     * )
+     # 忽略未知参数
       shift ;;
   esac
 done
@@ -58,57 +67,58 @@ done
 # ==============================================================================
 # -- Prepare environment -------------------------------------------------------
 # ==============================================================================
+# 导入环境变量和函数，假设有一个名为Environment.sh的脚本在同一目录下
 source $(dirname "$0")/Environment.sh
-
+# 检查UE4_ROOT环境变量是否设置并且指向存在的目录
 if [ ! -d "${UE4_ROOT}" ]; then
   fatal_error "UE4_ROOT is not defined, or points to a non-existent directory, please set this environment variable."
 fi
-
+# 如果没有指定要打包的包，则报错
 if [ ! -n "${PACKAGES}" ] ; then
   fatal_error "Nothing to be done."
 fi
-
+# 将逗号分隔的字符串转换为数组
 # Convert comma-separated string to array of unique elements.
 PACKAGES="$(echo "${PACKAGES}" | tr ',' '\n' | sort -u | tr '\n' ',')"
 IFS=',' read -r -a PACKAGES <<< "${PACKAGES}"
-
+# 如果包含了名为"Carla"的元素
 # If contains an element called "Carla".
 if [[ "${PACKAGES[@]}" =~ "Carla" ]] ; then
   DO_CARLA_RELEASE=true
 else
   DO_CARLA_RELEASE=false
 fi
-
+# 获取git仓库的版本号
 REPOSITORY_TAG=$(get_git_repository_version)
-
+# 根据是否设置了后缀来设置发布构建文件夹的路径
 if [[ ${ARCHIVE_SUFIX} != "" ]] ; then
   RELEASE_BUILD_FOLDER=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}_${ARCHIVE_SUFIX}
 else
   RELEASE_BUILD_FOLDER=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}
 fi
-
+# 根据打包配置设置发布包的路径
 if [[ ${PACKAGE_CONFIG} == "Shipping" ]] ; then
   RELEASE_PACKAGE_PATH=${CARLA_DIST_FOLDER}/CARLA_${REPOSITORY_TAG}
 else
   RELEASE_PACKAGE_PATH=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}
 fi
-
+# 如果设置了后缀，则添加到发布包路径
 if [[ ${ARCHIVE_SUFIX} != "" ]] ; then
   RELEASE_PACKAGE_PATH=${RELEASE_PACKAGE_PATH}_${ARCHIVE_SUFIX}
 fi
-
+# 设置发布包的路径为.tar.gz格式
 RELEASE_PACKAGE_PATH=${RELEASE_PACKAGE_PATH}.tar.gz
-
+# 打印正在打包的版本信息
 log "Packaging version '${REPOSITORY_TAG}' (${PACKAGE_CONFIG})."
 
 # ==============================================================================
 # -- Cook CARLA project --------------------------------------------------------
 # ==============================================================================
-
+# 如果需要打包CARLA项目
 if ${DO_CARLA_RELEASE} ; then
-
+# 进入CARLAUE4项目的根目录
   pushd "${CARLAUE4_ROOT_FOLDER}" >/dev/null
-
+# 如果使用了CarSim，则启用CarSim
   if ${USE_CARSIM} ; then
     python ${PWD}/../../Util/BuildTools/enable_carsim_to_uproject.py -f="CarlaUE4.uproject" -e
     echo "CarSim ON" > ${PWD}/Config/CarSimConfig.ini
@@ -116,43 +126,43 @@ if ${DO_CARLA_RELEASE} ; then
     python ${PWD}/../../Util/BuildTools/enable_carsim_to_uproject.py -f="CarlaUE4.uproject"
     echo "CarSim OFF" > ${PWD}/Config/CarSimConfig.ini
   fi
-
+# 打印正在打包CARLA项目的信息
   log "Cooking CARLA project."
-
+# 删除旧的发布构建文件夹并创建新的
   rm -Rf ${RELEASE_BUILD_FOLDER}
   mkdir -p ${RELEASE_BUILD_FOLDER}
-
+# 使用Unreal Engine的RunUAT.sh脚本打包CARLA项目
   ${UE4_ROOT}/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
       -project="${PWD}/CarlaUE4.uproject" \
       -nocompileeditor -nop4 -cook -stage -archive -package -iterate \
       -clientconfig=${PACKAGE_CONFIG} -ue4exe=UE4Editor \
       -prereqs -targetplatform=Linux -build -utf8output \
       -archivedirectory="${RELEASE_BUILD_FOLDER}"
-
+# 退出目录
   popd >/dev/null
 
   if [[ ! -d ${RELEASE_BUILD_FOLDER}/LinuxNoEditor ]] ; then
     fatal_error "Failed to cook the project!"
   fi
-
+ # 如果打包失败，则报错
 fi
 
 # ==============================================================================
 # -- Copy files (Python API, README, etc) --------------------------------------
 # ==============================================================================
-
+# 如果需要打包CARLA项目，则复制额外的文件（Python API、README等）
 if ${DO_CARLA_RELEASE} ; then
-
+# 设置目标路径
   DESTINATION=${RELEASE_BUILD_FOLDER}/LinuxNoEditor
-
+# 打印正在添加额外文件到CARLA包的信息
   log "Adding extra files to CARLA package."
-
+ # 进入CARLA项目的根目录
   pushd ${CARLA_ROOT_FOLDER} >/dev/null
-
+# 创建Import目录
   mkdir -p "${DESTINATION}/Import"
-
+# 创建VERSION文件
   echo "${REPOSITORY_TAG}" > ${DESTINATION}/VERSION
-
+# 复制文件到目标路径，如果文件有变化则复制
   copy_if_changed "./LICENSE" "${DESTINATION}/LICENSE"
   copy_if_changed "./CHANGELOG.md" "${DESTINATION}/CHANGELOG"
   copy_if_changed "./Docs/release_readme.md" "${DESTINATION}/README"
@@ -160,17 +170,17 @@ if ${DO_CARLA_RELEASE} ; then
   copy_if_changed "./Util/Docker/Release.Dockerfile" "${DESTINATION}/Dockerfile"
   copy_if_changed "./Util/ImportAssets.sh" "${DESTINATION}/ImportAssets.sh"
   copy_if_changed "./Util/DockerUtils/dist/RecastBuilder" "${DESTINATION}/Tools/"
-
+# 复制Python API文件
   copy_if_changed "./PythonAPI/carla/dist/*.egg" "${DESTINATION}/PythonAPI/carla/dist/"
   copy_if_changed "./PythonAPI/carla/dist/*.whl" "${DESTINATION}/PythonAPI/carla/dist/"
   copy_if_changed "./PythonAPI/carla/agents/" "${DESTINATION}/PythonAPI/carla/agents"
   copy_if_changed "./PythonAPI/carla/scene_layout.py" "${DESTINATION}/PythonAPI/carla/"
   copy_if_changed "./PythonAPI/carla/requirements.txt" "${DESTINATION}/PythonAPI/carla/"
-
+# 复制Python API示例文件
   copy_if_changed "./PythonAPI/examples/*.py" "${DESTINATION}/PythonAPI/examples/"
   copy_if_changed "./PythonAPI/examples/rss/*.py" "${DESTINATION}/PythonAPI/examples/rss/"
   copy_if_changed "./PythonAPI/examples/requirements.txt" "${DESTINATION}/PythonAPI/examples/"
-
+ # 复制Python API工具文件
   copy_if_changed "./PythonAPI/util/*.py" "${DESTINATION}/PythonAPI/util/"
   copy_if_changed "./PythonAPI/util/opendrive/" "${DESTINATION}/PythonAPI/util/opendrive/"
   copy_if_changed "./PythonAPI/util/requirements.txt" "${DESTINATION}/PythonAPI/util/"
