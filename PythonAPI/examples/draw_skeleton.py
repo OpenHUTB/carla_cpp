@@ -380,11 +380,15 @@ def main():
 
     # spawn a camera 
     camera_bp = world.get_blueprint_library().find('sensor.camera.rgb')
+    #设置摄像头图库的宽度属性
     camera_bp.set_attribute("image_size_x", str(args.width))
+    #设置摄像头的高度属性
     camera_bp.set_attribute("image_size_y", str(args.height))
+    #设置摄像头的事业、、视野属性
     camera_bp.set_attribute("fov", str(args.fov))
+    #在世界中生成摄像头演员并应用变换
     camera = world.spawn_actor(camera_bp, carla.Transform())
-    
+    #获取行人蓝图并随机选择一个
     # spawn a pedestrian
     world.set_pedestrians_seed(1235)
     ped_bp = random.choice(world.get_blueprint_library().filter("walker.pedestrian.*"))
