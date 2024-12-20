@@ -65,7 +65,10 @@ geometry_msgs::msg::PoseWithCovariance::PoseWithCovariance(
 geometry_msgs::msg::PoseWithCovariance::PoseWithCovariance(
         PoseWithCovariance&& x) noexcept
 {
+    // 使用 std::move 迁移参数 x 的成员变量 m_pose 到当前对象的 m_pose
     m_pose = std::move(x.m_pose);
+
+    // 使用 std::move 迁移参数 x 的成员变量 m_covariance 到当前对象的 m_covariance
     m_covariance = std::move(x.m_covariance);
 }
 
@@ -81,11 +84,16 @@ geometry_msgs::msg::PoseWithCovariance& geometry_msgs::msg::PoseWithCovariance::
 geometry_msgs::msg::PoseWithCovariance& geometry_msgs::msg::PoseWithCovariance::operator =(
         PoseWithCovariance&& x) noexcept
 {
+    // 使用 std::move 迁移参数 x 的成员变量 m_pose 到当前对象的 m_pose
     m_pose = std::move(x.m_pose);
+
+    // 使用 std::move 迁移参数 x 的成员变量 m_covariance 到当前对象的 m_covariance
     m_covariance = std::move(x.m_covariance);
 
+    // 返回当前对象本身，以支持链式赋值
     return *this;
 }
+
 
 bool geometry_msgs::msg::PoseWithCovariance::operator ==(
         const PoseWithCovariance& x) const
@@ -110,12 +118,21 @@ size_t geometry_msgs::msg::PoseWithCovariance::getCdrSerializedSize(
         const geometry_msgs::msg::PoseWithCovariance& data,
         size_t current_alignment)
 {
+    // 保存当前的对齐位置
     size_t initial_alignment = current_alignment;
+
+    // 计算 Pose 部分序列化后的大小
+    // 获取 Pose 类型的对象（data.pose()）序列化后的大小，并更新 current_alignment
     current_alignment += geometry_msgs::msg::Pose::getCdrSerializedSize(data.pose(), current_alignment);
+
+    // 计算协方差（covariance）数组的序列化大小
+    // 协方差是一个 6x6 的矩阵，共 36 个元素，每个元素 8 字节（double 类型）
     current_alignment += ((36) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
 
+    // 返回序列化数据的总大小（当前对齐位置与初始对齐位置之差）
     return current_alignment - initial_alignment;
 }
+
 
 void geometry_msgs::msg::PoseWithCovariance::serialize(
         eprosima::fastcdr::Cdr& scdr) const

@@ -15,7 +15,8 @@
 
 #include "RegionOfInterest.generated.h"
 
-
+// 定义一个可以用于蓝图系统的枚举类型 ERegionOfInterestType
+// 用来表示不同类型的感兴趣区域（Region of Interest, ROI）
 UENUM(BlueprintType)
 enum ERegionOfInterestType
 {
@@ -27,7 +28,8 @@ enum ERegionOfInterestType
   MISC_SPECIFIC_LOCATION_ACTORS_REGION,
   SOIL_TYPE_REGION
 };
-
+// 定义一个可以用于蓝图系统的枚举类型 ESpreadedActorsDensity
+// 用来表示区域内分散演员（spreaded actors）的密度级别
 UENUM(BlueprintType)
 enum ESpreadedActorsDensity
 {
@@ -47,19 +49,22 @@ struct CARLATOOLS_API FRoiTile
   int Y;
 
 public:
+// 默认构造函数，初始化 X 和 Y 为 -1，表示无效或未指定的瓦片
   FRoiTile() : X(-1), Y(-1)
   {};
-
+  // 构造函数，接受两个整数参数 X 和 Y，用来初始化瓦片的具体位置
   FRoiTile(int X, int Y)
   {
-    this->X = X;
+    this->X = X;// 使用 this 指针来区分成员变量和参数名称
     this->Y = Y;
   };
-
+  // 拷贝构造函数，使用另一个 FRoiTile 对象的 X 和 Y 来初始化新的对象
+  // 这里调用了带参数的构造函数来进行初始化
   FRoiTile(const FRoiTile& Other)
     : FRoiTile(Other.X, Other.Y)
   {}
-
+  // 重载等号运算符 (==)，允许直接比较两个 FRoiTile 对象
+  // 它通过调用 Equals 方法来进行比较，并返回比较结果
   bool operator==(const FRoiTile& Other) const
   {
     return Equals(Other);
@@ -314,14 +319,20 @@ struct CARLATOOLS_API FSoilTypeROI : public FCarlaRegionOfInterest
   {}
 };
 
+// 使用 USTRUCT 宏定义一个可以用于蓝图系统的结构体 FMiscWidgetState
+// CARLATOOLS_API 是一个宏，通常用于导出类或结构体以便在其他模块中使用
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FMiscWidgetState
 {
   GENERATED_USTRUCT_BODY()
-
+	
+// IsPersistentState 是一个布尔值属性，表示小部件状态是否持久化
+// 可以在编辑器中编辑，并且可以在蓝图中读取和修改
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary|Misc")
   bool IsPersistentState;
-
+	
+// InTileCoordinates 是一个 FIntPoint 类型的属性，表示小部件在瓦片坐标系中的位置
+  // FIntPoint 是一个包含两个整数坐标的结构体，通常用于表示二维平面上的点
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary|Misc")
   FIntPoint InTileCoordinates;
 };

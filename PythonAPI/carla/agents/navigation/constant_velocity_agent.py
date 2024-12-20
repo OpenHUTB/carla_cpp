@@ -9,18 +9,25 @@ waypoints and avoiding other vehicles. The agent also responds to traffic lights
 It can also make use of the global route planner to follow a specified route
 """
 
+#导入carla模块
 import carla
 
+#从agents.navigation.basic_agent模块中导入BasicAgent类
 from agents.navigation.basic_agent import BasicAgent
 
+#定义ConstantVelocityAgent，并且继承BasicAgent
 class ConstantVelocityAgent(BasicAgent):
     """
+    #快速了解这个类的主要功能
     ConstantVelocityAgent implements an agent that navigates the scene at a fixed velocity.
+    #说明局限性
     This agent will fail if asked to perform turns that are impossible are the desired speed.
+    #行为逻辑
     This includes lane changes. When a collision is detected, the constant velocity will stop,
     wait for a bit, and then start again.
     """
 
+    #初始化一个对象的属性
     def __init__(self, vehicle, target_speed=20, opt_dict={}, map_inst=None, grp_inst=None):
         """
         Initialization the agent parameters, the local and the global planner.
@@ -32,12 +39,18 @@ class ConstantVelocityAgent(BasicAgent):
             :param map_inst: carla.Map instance to avoid the expensive call of getting it.
             :param grp_inst: GlobalRoutePlanner instance to avoid the expensive call of getting it.
         """
+        #使super()调用父类的初始化方法
         super().__init__(vehicle, target_speed, opt_dict=opt_dict, map_inst=map_inst, grp_inst=grp_inst)
 
+        #在类的实例中设置一个属性_use_basic_behavior的值为Flase解释用途
         self._use_basic_behavior = False  # Whether or not to use the BasicAgent behavior when the constant velocity is down
-        self._target_speed = target_speed / 3.6  # [m/s]
+        #值除以3.6
+        self. _target_speed = target_speed / 3.6  # [m/s]
+        #获取车辆的速度
         self._current_speed = vehicle.get_velocity().length()  # [m/s]
+        #在后续代码中根据某些条件进行赋值
         self._constant_velocity_stop_time = None
+        #初始时还没有关联对象
         self._collision_sensor = None
 
         self._restart_time = float('inf')  # Time after collision before the constant velocity behavior starts again
@@ -119,6 +132,7 @@ class ConstantVelocityAgent(BasicAgent):
         return control
 
     def _set_collision_sensor(self):
+    # 获取碰撞传感器的蓝图（blueprint）
         blueprint = self._world.get_blueprint_library().find('sensor.other.collision')
         self._collision_sensor = self._world.spawn_actor(blueprint, carla.Transform(), attach_to=self._vehicle)
         self._collision_sensor.listen(lambda event: self.stop_constant_velocity())

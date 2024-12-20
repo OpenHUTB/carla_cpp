@@ -2,15 +2,17 @@
 
 """
 Script to control weather parameters in simulations
+This script interfaces with the Carla simulator, allowing the user to modify environmental conditions such as weather, lighting, and sun position. 
+It offers functionality to apply presets or custom values to various simulation parameters like cloudiness, precipitation, sun altitude, wind intensity, and vehicle light states.
 """
 
 import glob
 import os
 import sys
 import argparse
-# 尝试将特定路径下符合条件的 Carla 库文件路径添加到系统路径中，以便后续能正确导入 carla 库
+# 尝试将 Carla 库文件路径添加到系统路径中，以便后续能正确导入 carla 库
 # 根据当前 Python 版本（主版本号和次版本号）以及操作系统类型（Windows 或 Linux）来构建路径通配符模式
-# 查找符合模式的.egg 文件，并将其路径添加到系统路径 sys.path 中，这样 Python 就能找到并导入 carla 库了
+# 查找符合模式的 .egg 文件，并将其路径添加到系统路径 sys.path 中，这样 Python 就能找到并导入 carla 库了
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -20,45 +22,46 @@ except IndexError:
     pass
 # 导入 carla 库，用于与 Carla 模拟器进行交互，比如获取世界场景、车辆、天气等相关对象及操作它们
 import carla
+
 # 定义一个字典，用于存储不同日照预设情况对应的太阳高度角和方位角数值
 # 'day'、'night'、'sunset' 是预设的场景名称，对应的元组中第一个元素是太阳高度角，第二个元素是太阳方位角
 SUN_PRESETS = {
-    'day': (45.0, 0.0),
-    'night': (-90.0, 0.0),
-    'sunset': (0.5, 0.0)}
+    'day': (45.0, 0.0),  # 白天：太阳高度角 45.0°，太阳方位角 0.0°
+    'night': (-90.0, 0.0),  # 夜晚：太阳高度角 -90.0°，太阳方位角 0.0°（即太阳不可见）
+    'sunset': (0.5, 0.0)} # 日落：太阳高度角 0.5°，太阳方位角 0.0°
+
 # 定义一个字典，用于存储不同天气预设情况对应的各种天气参数数值
 # 每个列表中的元素依次对应 cloudiness（云量）、precipitation（降水量）等不同天气参数的值
-# 键名如 'clear'、'overcast'、'rain' 代表不同的天气状况预设
 WEATHER_PRESETS = {
     'clear': [10.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.2, 0.0, 0.0, 0.0, 0.0331, 0.0],
     'overcast': [80.0, 0.0, 0.0, 50.0, 2.0, 0.75, 0.1, 10.0, 0.0, 0.03, 0.0331, 0.0],
     'rain': [100.0, 80.0, 90.0, 100.0, 7.0, 0.75, 0.1, 100.0, 0.0, 0.03, 0.0331, 0.0]}
+
 # 定义一个字典，用于表示车辆灯光的不同状态选项
-# 键名是不同灯光状态的描述，值是对应的 carla.VehicleLightState 枚举值组成的列表（这里每个键对应只有一个枚举值）
-# 例如 'None' 表示车辆灯光全部关闭状态，对应的枚举值是 carla.VehicleLightState.NONE
+# 键名是不同灯光状态的描述，值是对应的 carla.VehicleLightState 枚举值组成的列表
 CAR_LIGHTS = {
-    'None' : [carla.VehicleLightState.NONE],
-    'Position' : [carla.VehicleLightState.Position],
-    'LowBeam' : [carla.VehicleLightState.LowBeam],
-    'HighBeam' : [carla.VehicleLightState.HighBeam],
-    'Brake' : [carla.VehicleLightState.Brake],
-    'RightBlinker' : [carla.VehicleLightState.RightBlinker],
-    'LeftBlinker' : [carla.VehicleLightState.LeftBlinker],
-    'Reverse' : [carla.VehicleLightState.Reverse],
-    'Fog' : [carla.VehicleLightState.Fog],
-    'Interior' : [carla.VehicleLightState.Interior],
-    'Special1' : [carla.VehicleLightState.Special1],
-    'Special2' : [carla.VehicleLightState.Special2],
-    'All' : [carla.VehicleLightState.All]}
+    'None' : [carla.VehicleLightState.NONE], # 所有灯光关闭
+    'Position' : [carla.VehicleLightState.Position], # 位置灯
+    'LowBeam' : [carla.VehicleLightState.LowBeam], # 近光灯
+    'HighBeam' : [carla.VehicleLightState.HighBeam], # 高光灯
+    'Brake' : [carla.VehicleLightState.Brake], # 刹车灯
+    'RightBlinker' : [carla.VehicleLightState.RightBlinker], # 右转向灯
+    'LeftBlinker' : [carla.VehicleLightState.LeftBlinker], # 左转向灯
+    'Reverse' : [carla.VehicleLightState.Reverse], # 倒车灯
+    'Fog' : [carla.VehicleLightState.Fog], # 雾灯
+    'Interior' : [carla.VehicleLightState.Interior], # 内饰灯
+    'Special1' : [carla.VehicleLightState.Special1], # 特殊灯光1
+    'Special2' : [carla.VehicleLightState.Special2], # 特殊灯光2
+    'All' : [carla.VehicleLightState.All]} # 所有灯光
+
 # 定义一个字典，用于表示灯光组的不同选项
-# 键名是不同灯光组的描述，值是对应的 carla.LightGroup 枚举值组成的列表（这里每个键对应只有一个枚举值）
-# 例如 'Street' 对应 carla.LightGroup.Street，表示街道灯光组等
+# 键名是不同灯光组的描述，值是对应的 carla.LightGroup 枚举值组成的列表
 LIGHT_GROUP = {
-    'None' : [carla.LightGroup.NONE],
-    # 'Vehicle' : [carla.LightGroup.Vehicle],
-    'Street' : [carla.LightGroup.Street],
-    'Building' : [carla.LightGroup.Building],
-    'Other' : [carla.LightGroup.Other]}
+    'None' : [carla.LightGroup.NONE], # 无灯光组
+    # 'Vehicle' : [carla.LightGroup.Vehicle], 
+    'Street' : [carla.LightGroup.Street],  # 街道灯光组
+    'Building' : [carla.LightGroup.Building],  # 建筑灯光组
+    'Other' : [carla.LightGroup.Other]} # 其他灯光组
 # 函数功能：根据传入的命令行参数 args 和天气对象 weather，应用日照预设来设置太阳位置
 # 如果命令行中指定的日照预设（通过 args.sun 获取）在 SUN_PRESETS 字典中有定义，则将对应的太阳高度角和方位角赋值给天气对象的相应属性
 # 如果指定的预设不存在，则打印错误信息并退出程序
@@ -66,8 +69,8 @@ def apply_sun_presets(args, weather):
     """Uses sun presets to set the sun position"""
     if args.sun is not None:
         if args.sun in SUN_PRESETS:
-            weather.sun_altitude_angle = SUN_PRESETS[args.sun][0]
-            weather.sun_azimuth_angle = SUN_PRESETS[args.sun][1]
+            weather.sun_altitude_angle = SUN_PRESETS[args.sun][0] # 设置太阳高度角
+            weather.sun_azimuth_angle = SUN_PRESETS[args.sun][1] # 设置太阳方位角
         else:
             print("[ERROR]: Command [--sun | -s] '" + args.sun + "' not known")
             sys.exit(1)
