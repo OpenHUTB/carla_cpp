@@ -1176,7 +1176,7 @@ namespace pugi
 		bool set(const char_t* name, const char_t* value);
 		bool set(const char_t* name, const xpath_node_set& value);
 
-		// Get existing variable by name
+		// 按名称获取现有变量
 		xpath_variable* get(const char_t* name);
 		const xpath_variable* get(const char_t* name) const;
 	};
