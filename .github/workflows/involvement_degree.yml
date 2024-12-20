@@ -1,10 +1,10 @@
 
 name: compute involvement degree
-
+# 当有push事件触发时执行下面定义的任务
 on: [push]
     
 jobs:
-  work:
+  work: # 指定运行环境为最新的Ubuntu系统
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
           python-version: '3.x' # 指定python版本
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
-      - name: Install Python dependencies
+      - name: Install Python dependencies # 使用pip安装或升级相关的Python依赖包
         run: python -m pip install --upgrade pip requests gitpython
       - name: Display involvement degree
         run: python scores.py -t ${{ secrets.GITHUB_TOKEN }} # 执行
