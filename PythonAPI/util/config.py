@@ -42,16 +42,13 @@ import textwrap
 
 def get_ip(host):
     """
-        获取给定主机名对应的IP地址。
-        如果主机名是'localhost'或者'127.0.0.1'，则尝试通过创建UDP套接字连接到一个特定的IP地址（10.255.255.255:1）来获取本地实际IP地址，
-        如果在获取过程中出现运行时错误则忽略，最后关闭套接字并返回IP地址。
-
-        参数:
-        host: 要获取IP地址的主机名，可能是字符串形式的IP地址或者像'localhost'这样的特殊标识。
-
-        返回值:
-        返回对应的IP地址（字符串形式）。
-        """
+    根据给定的主机名获取对应的IP地址。
+    对于'localhost'或'127.0.0.1'，通过UDP连接特定地址来确定实际的IP。
+    参数:
+    host: 主机名或IP地址字符串。
+    返回:
+    对应的IP地址字符串。
+    """
     if host in ['localhost', '127.0.0.1']:
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         try:
@@ -63,96 +60,66 @@ def get_ip(host):
             sock.close()
     return host
 
-
 def find_weather_presets():
     """
-        查找CARLA中所有天气预设的相关信息。
-        通过反射获取`carla.WeatherParameters`类中所有符合特定命名规范（以大写字母开头的属性名）的属性，
-        然后将这些属性及其对应的名称组成元组列表返回，这些属性代表了不同的天气预设，名称则是对应的预设名称字符串。
-
-        返回值:
-        返回一个包含元组的列表，每个元组包含一个`carla.WeatherParameters`类中的天气预设属性和对应的预设名称字符串。
-        """
+    查找CARLA中所有可用的天气预设。
+    通过检查carla.WeatherParameters类中以大写字母开头的属性来获取。
+    返回:
+    包含天气预设属性和名称的元组列表。
+    """
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
     return [(getattr(carla.WeatherParameters, x), x) for x in presets]
 
-
 def list_options(client):
     """
-       列出CARLA服务器端可用的一些选项信息，包括天气预设和可用地图。
-
-       参数:
-       client: CARLA客户端对象，通过它可以与CARLA服务器进行交互，获取服务器端的相关资源和信息。
-
-       该函数首先获取服务器端可用的地图列表，然后通过`find_weather_presets`函数获取天气预设信息，
-       接着将这些信息进行格式化输出，每行缩进一定空格，方便查看。
-       """
-     # 获取所有可用的地图名称，并去掉路径前缀'/Game/Carla/Maps/'以简化显示
+    列出CARLA服务器端可用的选项信息，包括天气预设和地图。
+    参数:
+    client: CARLA客户端对象，用于获取服务器信息。
+    """
     maps = [m.replace('/Game/Carla/Maps/', '') for m in client.get_available_maps()]
-    # 设置缩进格式，每个层次缩进4个空格
     indent = 4 * ' '
-     # 定义一个辅助函数 wrap，用来对文本进行格式化处理，使其适合输出
     def wrap(text):
         return '\n'.join(textwrap.wrap(text, initial_indent=indent, subsequent_indent=indent))
-        # 输出天气预设信息。这里假设有一个名为 find_weather_presets 的函数，
-    # 它返回一系列天气预设，其中包含两个元素的元组，但我们只对第二个元素感兴趣（即预设的名字）
-    print('weather presets:\n')
-    print(wrap(', '.join(x for _, x in find_weather_presets())) + '.\n')# 使用辅助函数 wrap 对天气预设列表进行格式化后输出
-     # 输出可用地图信息。首先对地图名称进行排序，然后使用辅助函数 wrap 进行格式化后输出
-    print('available maps:\n')
-    print(wrap(', '.join(sorted(maps))) + '.\n') # 格式化并打印排序后的地图名称
-
+    print('weather presets:')
+    print(wrap(', '.join(x for _, x in find_weather_presets())) + '.')
+    print('available maps:')
+    print(wrap(', '.join(sorted(maps))) + '.')
 
 def list_blueprints(world, bp_filter):
     """
-       列出符合给定过滤器条件的CARLA蓝图（blueprint）信息。
-       参数:
-       world: CARLA世界对象，通过它可以获取世界中的蓝图库等资源。
-       bp_filter: 蓝图过滤器字符串，用于筛选蓝图库中的蓝图。
-       该函数从世界对象获取蓝图库，然后根据给定的过滤器筛选出符合条件的蓝图，获取它们的ID并进行排序后输出，
-       输出时每个蓝图ID前有一定的缩进，方便查看。
-       """
+    列出符合给定过滤器条件的CARLA蓝图信息。
+    参数:
+    world: CARLA世界对象，用于获取蓝图库。
+    bp_filter: 蓝图过滤器字符串，用于筛选蓝图。
+    """
     blueprint_library = world.get_blueprint_library()
     blueprints = [bp.id for bp in blueprint_library.filter(bp_filter)]
-    print('available blueprints (filter %r):\n' % bp_filter)
+    print('available blueprints (filter %r):' % bp_filter)
     for bp in sorted(blueprints):
         print('    ' + bp)
     print('')
 
-
 def inspect(args, client):
     """
-       检查CARLA服务器端的详细信息并进行输出展示，包括服务器地址、版本、地图名称、天气情况、时间、帧率、渲染状态、同步模式以及各类演员数量等信息。
-
-       参数:
-       args: 命令行参数对象，包含了像主机名、端口号等配置信息。
-       client: CARLA客户端对象，用于获取服务器端的各种资源和信息来进行检查。
-
-       该函数首先获取服务器端的IP地址和端口号组成地址字符串，然后获取世界对象、时间、各种设置以及天气等相关信息，
-       接着根据获取到的信息进行格式化输出，展示服务器端的详细运行状态和资源情况。
-       """
+    检查并输出CARLA服务器的详细信息，包括地址、版本、地图、天气等。
+    参数:
+    args: 命令行参数对象，包含配置信息。
+    client: CARLA客户端对象，用于获取服务器信息。
+    """
     address = '%s:%d' % (get_ip(args.host), args.port)
-
     world = client.get_world()
     elapsed_time = world.get_snapshot().timestamp.elapsed_seconds
     elapsed_time = datetime.timedelta(seconds=int(elapsed_time))
-
     actors = world.get_actors()
     s = world.get_settings()
-
     weather = 'Custom'
     current_weather = world.get_weather()
     for preset, name in find_weather_presets():
         if current_weather == preset:
             weather = name
-
-    if s.fixed_delta_seconds is None:
-        frame_rate = 'variable'
-    else:
-        frame_rate = '%.2f ms (%d FPS)' % (
-            1000.0 * s.fixed_delta_seconds,
-            1.0 / s.fixed_delta_seconds)
-
+    frame_rate = 'variable' if s.fixed_delta_seconds is None else '%.2f ms (%d FPS)' % (
+        1000.0 * s.fixed_delta_seconds,
+        1.0 / s.fixed_delta_seconds)
     print('-' * 34)
     print('address:% 26s' % address)
     print('version:% 26s\n' % client.get_server_version())
@@ -169,7 +136,6 @@ def inspect(args, client):
     print('  * vehicles: % 20d' % len(actors.filter('vehicle.*')))
     print('  * walkers:  % 20d' % len(actors.filter('walker.*')))
     print('-' * 34)
-
 # 主函数，整个脚本的核心逻辑入口，负责解析命令行参数并根据参数执行相应的CARLA模拟器相关操作
 def main():
     """
