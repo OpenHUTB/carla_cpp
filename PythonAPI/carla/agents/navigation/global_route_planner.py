@@ -444,18 +444,25 @@ class GlobalRoutePlanner:
                 #如果已经找到了向左和向右的车道变更，则跳出循环
                 if left_found and right_found:
                     break
-
+    #定义一个函数，用于定位给定位置的道路段
     def _localize(self, location):
         # type: (carla.Location) -> None | tuple[int, int]
         """
         This function finds the road segment that a given location
         is part of, returning the edge it belongs to
         """
+        #使用self._wmap（可能是地图对象）的get_waypoint方法获取给定位置的路点（waypoint）
         waypoint = self._wmap.get_waypoint(location)
+        #初始化edge变量为None，它可能最终存储一个包含两个整数的元组
         edge = None  # type: None | tuple[int, int]
+        #查找道路段所属的边
+        #开始一个try块，用于捕获可能的键错误（KeyError）
         try:
+            #尝试从self._road_id_to_edge字典中获取给定路点的道路 ID、路段 ID 和车道 ID 对应的边
             edge = self._road_id_to_edge[waypoint.road_id][waypoint.section_id][waypoint.lane_id]
+        #如果发生键错误（即找不到对应的边）
         except KeyError:
+            #不做任何操作，直接跳过
             pass
         return edge
 
