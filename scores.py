@@ -1,8 +1,8 @@
-import requests  # 用于发起网络请求
-import argparse  # 用于解析命令行参数
-import os  # 用于操作系统级别的操作
-from collections import defaultdict, Counter  # 用于数据结构操作
-import git  # 用于操作Git库
+import requests  # 发起网络请求
+import argparse  # 解析命令行参数
+import os  # 操作系统级别的操作
+from collections import defaultdict, Counter  # 数据结构操作
+import git  # 操作Git库
 
 # 设置命令行参数解析
 argparser = argparse.ArgumentParser(description='Involvement Degree')
@@ -37,9 +37,7 @@ def commit_info():
     authors = log_info.splitlines()
 
     # 定义别名映射
-    alias_map = {
-        '王海东': 'donghaiwang',
-    }
+    alias_map = {'王海东': 'donghaiwang'}
 
     # 标准化作者名字
     normalized_authors = [alias_map.get(author, author) for author in authors]
