@@ -47,13 +47,23 @@ sudo apt-get install build-essential dh-make
 mkdir -p carla-debian/"${CARLA_DIR}"
 cd carla-debian/"${CARLA_DIR}"
 
+# 定义变量FILE，存储当前目录下ImportAssets.sh脚本的路径
 FILE=$(pwd)/ImportAssets.sh
+
+# 检查FILE变量所指向的文件是否存在
 if [ -f "$FILE" ]; then
+  # 如果文件存在，输出"Package already downloaded!"表示包已经下载好了
   echo "Package already downloaded!"
 else
+  # 如果文件不存在，则执行以下下载和解压操作
+  
+  # 使用curl命令从CARLA_RELEASE_URL下载CARLA的发布包，并通过管道传递给tar命令进行解压
   curl "${CARLA_RELEASE_URL}" | tar xz
-
+  
+  # 使用wget命令从ADDITIONAL_MAPS_URL下载额外的地图包
   wget "${ADDITIONAL_MAPS_URL}"
+  
+  # 将下载下来的地图包（假设文件名中包含CARLA_VERSION变量指定的版本号）移动到Import/目录下
   mv AdditionalMaps_"${CARLA_VERSION}".tar.gz Import/
 fi
 
