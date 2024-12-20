@@ -72,60 +72,78 @@ AOpenDriveActor::AOpenDriveActor(const FObjectInitializer &ObjectInitializer)
 #endif // WITH_EDITORONLY_DATA
 }
 
+// 如果编译器配置为使用编辑器（即在编辑器环境中）
 #if WITH_EDITOR
+// AOpenDriveActor类的成员函数，用于处理属性更改后的事件
 void AOpenDriveActor::PostEditChangeProperty(struct FPropertyChangedEvent &Event)
 {
+  // 调用父类的PostEditChangeProperty函数
   Super::PostEditChangeProperty(Event);
 
+   // 获取发生更改的属性名称
   const FName PropertyName = (Event.Property != NULL ? Event.Property->GetFName() : NAME_None);
+   // 如果更改的属性是bGenerateRoutes
   if (PropertyName == GET_MEMBER_NAME_CHECKED(AOpenDriveActor, bGenerateRoutes))
   {
+    // 如果bGenerateRoutes被设置为true
     if (bGenerateRoutes)
     {
       bGenerateRoutes = false;
 
-      RemoveRoutes(); // 避免OpenDrive重叠
+      RemoveRoutes(); //  移除现有的路线，避免OpenDrive重叠避免OpenDrive重叠
       RemoveSpawners(); // 如果OpenDRIVE发生了变化，则重新启动生成器。
-      BuildRoutes();
+      BuildRoutes();// 构建新的路线
 
+      // 如果bAddSpawners为true，则添加生成器
       if (bAddSpawners)
       {
         AddSpawners();
       }
+      // 如果bShowDebug为true，则显示调试信息
       if (bShowDebug)
       {
         DebugRoutes();
       }
     }
   }
+  // 如果更改的属性是bRemoveRoutes
   if (PropertyName == GET_MEMBER_NAME_CHECKED(AOpenDriveActor, bRemoveRoutes))
   {
+    // 如果bRemoveRoutes被设置为true
     if (bRemoveRoutes)
     {
+      // 将bRemoveRoutes设置为false，以避免重复执行
       bRemoveRoutes = false;
 
-      RemoveDebugRoutes();
-      RemoveSpawners();
-      RemoveRoutes();
+      RemoveDebugRoutes();// 移除调试路线
+      RemoveSpawners();// 移除生成器
+      RemoveRoutes(); // 移除路线
     }
   }
+  // 如果更改的属性是bShowDebug
   if (PropertyName == GET_MEMBER_NAME_CHECKED(AOpenDriveActor, bShowDebug))
   {
+    // 如果bShowDebug被设置为true，则显示调试信息
     if (bShowDebug)
     {
       DebugRoutes();
     }
+    // 如果bShowDebug被设置为false，则移除调试信息
     else
     {
       RemoveDebugRoutes();
     }
   }
+  // 如果更改的属性是bRemoveCurrentSpawners
   if (PropertyName == GET_MEMBER_NAME_CHECKED(AOpenDriveActor, bRemoveCurrentSpawners))
   {
+    // 如果bRemoveCurrentSpawners被设置为true
     if (bRemoveCurrentSpawners)
     {
+      // 将bRemoveCurrentSpawners设置为false，以避免重复执行
       bRemoveCurrentSpawners = false;
 
+      // 移除生成器
       RemoveSpawners();
     }
   }
