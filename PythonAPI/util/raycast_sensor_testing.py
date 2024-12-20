@@ -420,24 +420,35 @@ def one_run(args, client):
 
             if call_exit:
                 break
-
+              
+    #用于确保某些操作在程序结束时一定会被执行，无论是否发生异常
     finally:
+        #检查display_manager是否存在
         if display_manager:
+            #如果存在，则调用display_manager.destroy()
+            #用于销毁显示管理器相关资源的操作，通常在图形界面程序中用于释放资源
             display_manager.destroy()
-
+        #销毁vehicle_list中的所有车辆
         client.apply_batch([carla.command.DestroyActor(x) for x in vehicle_list])
-
+        #检查args.sync是否为True
+        #args通常是通过命令行参数传入的参数对象
         if args.sync:
+            #获取当前世界的设置
             settings = world.get_settings()
+            #将同步模式设置为False
             settings.synchronous_mode = False
+            #将固定时间步长设置为None
             settings.fixed_delta_seconds = None
+            #应用新的设置到世界中
             world.apply_settings(settings)
-
+        #检查args.profiling是否为True
         if args.profiling:
+            #将无渲染模式设置为False
             settings.no_rendering_mode = False
+            #应用新的设置到世界中
             world.apply_settings(settings)
 
-
+    
     return prof_str
 
 
