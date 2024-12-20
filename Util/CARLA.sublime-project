@@ -1,66 +1,67 @@
 {
-    // 定义项目的文件夹相关信息
-    "folders":[
-        {
-            // 文件夹的路径
-            "path":"..",
-            // 要排除的文件模式列表
-            "file_exclude_patterns":[
-                "*.VC.db",
-                "*.VC.opendb",
-                "*.gdb_history",
-                "*.kdev4",
-                "*.pri",
-                "*.pro",
-                "*.py[cod]",
-                "*.sln",
-                "*.stackdump",
-                "*.sublime-workspace",
-                "*.uasset",
-                "*.umap",
-                "*.workspace",
-                "*CodeCompletionFolders.txt",
-                "*CodeLitePreProcessor.txt",
-                ".tags*",
-                "core"
-            ],
-            // 要排除的文件夹模式列表
-            "folder_exclude_patterns":[
-                "*.egg-info",
-                ".clang",
-                ".codelite",
-                ".kdev4",
-                ".vs",
-                ".vscode",
-                "Binaries",
-                "Build",
-                "DerivedDataCache",
-                "Dist",
-                "Doxygen",
-                "Examples/CppClient/*",
-                "Intermediate",
-                "PythonAPI/carla/build",
-                "PythonAPI/carla/dependencies",
-                "PythonAPI/carla/dist",
-                "Saved",
-                "Unreal/CarlaUE4/Content/Carla/*",
-                "Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies",
-                "__pycache__",
-                "_site"
-            ]
-        }
-    ],
-    // 项目的设置信息
-    "settings":{
-        // 保存时确保文件末尾有新行
-        "ensure_newline_at_eof_on_save":true,
-        // 制表符大小
-        "tab_size":2,
-        // 将制表符转换为空格
-        "translate_tabs_to_spaces":true,
-        // 保存时裁剪尾随的空格
-        "trim_trailing_white_space_on_save":true
-    },
+  // 配置项目的文件夹路径和排除规则
+  "folders": [
+    {
+      // 指定根目录为上一级目录
+      "path": "..",
+      // 定义需要排除的文件模式，使用通配符匹配
+      "file_exclude_patterns": [
+        "*.VC.db", // 排除Visual Studio数据库文件
+        "*.VC.opendb", // 排除Visual Studio打开数据库文件
+        "*.gdb_history", // 排除GDB历史文件
+        "*.kdev4", // 排除KDevelop4项目文件
+        "*.pri", // 排除Qt项目文件
+        "*.pro", // 排除Qt项目文件
+        "*.py[cod]", // 排除Python编译文件
+        "*.sln", // 排除Visual Studio解决方案文件
+        "*.stackdump", // 排除堆栈转储文件
+        "*.sublime-workspace", // 排除Sublime Text工作区文件
+        "*.uasset", // 排除Unreal Engine资产文件
+        "*.umap", // 排除Unreal Engine地图文件
+        "*.workspace", // 排除工作区文件
+        "*CodeCompletionFolders.txt", // 排除代码完成文件夹列表文件
+        "*CodeLitePreProcessor.txt", // 排除CodeLite预处理器文件
+        ".tags*", // 排除CTags文件
+        "core" // 排除核心转储文件
+      ],
+      // 定义需要排除的文件夹模式，使用通配符匹配
+      "folder_exclude_patterns": [
+        "*.egg-info", // 排除Python分发元数据文件夹
+        ".clang", // 排除Clang工具文件夹
+        ".codelite", // 排除CodeLite项目文件夹
+        ".kdev4", // 排除KDevelop4项目文件夹
+        ".vs", // 排除Visual Studio项目文件夹
+        ".vscode", // 排除Visual Studio Code项目文件夹
+        "Binaries", // 排除二进制文件夹
+        "Build", // 排除构建文件夹
+        "DerivedDataCache", // 排除派生数据缓存文件夹
+        "Dist", // 排除分发文件夹
+        "Doxygen", // 排除Doxygen文档文件夹
+        "Examples/CppClient/*", // 排除CppClient示例文件夹及其内容
+        "Intermediate", // 排除中间文件文件夹
+        "PythonAPI/carla/build", // 排除Carla Python API构建文件夹
+        "PythonAPI/carla/dependencies", // 排除Carla Python API依赖文件夹
+        "PythonAPI/carla/dist", // 排除Carla Python API分发文件夹
+        "Saved", // 排除保存文件夹
+        "Unreal/CarlaUE4/Content/Carla/*", // 排除Unreal Engine Carla内容文件夹及其内容
+        "Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies", // 排除Unreal Engine Carla插件依赖文件夹
+        "__pycache__", // 排除Python缓存文件夹
+        "_site" // 排除网站构建文件夹
+      ]
+    }
+  ],
+  // 配置项目的基本设置
+  "settings": {
+    // 设置保存文件时确保文件末尾有新行
+    "ensure_newline_at_eof_on_save": true,
+    // 设置制表符大小为2个空格
+    "tab_size": 2,
+    // 设置将制表符转换为空格
+    "translate_tabs_to_spaces": true,
+    // 设置保存文件时裁剪尾随的空格
+    "trim_trailing_white_space_on_save": true
+  }
+}
     // 构建系统信息
     "build_systems":[
         {
