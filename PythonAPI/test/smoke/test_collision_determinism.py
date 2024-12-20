@@ -71,7 +71,7 @@ class Scenario(object):
         if self.save_snapshots_mode:
             self.snapshots.append(np.empty((0,11), float))
 
-    def wait(self, frames=100):
+    def wait(self, frames=100):              #函数用于等待一定帧数，此处为等待100帧
         for _i in range(0, frames):
             self.world.tick()
 
