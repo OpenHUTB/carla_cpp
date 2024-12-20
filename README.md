@@ -234,3 +234,4 @@ git rm -rf .
 [tangruixin170](https://github.com/tangruixin170)
 [EvilBatman](https://github.com/EvilBatman)
 [Tcowl](https://github.com/Tcowl)
+[yinzhixiong](https://github.com/yinzhixiong)
