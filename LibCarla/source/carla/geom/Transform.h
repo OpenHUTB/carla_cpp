@@ -31,7 +31,7 @@ namespace geom {
         // =========================================================================
 
         // 表示位置信息，存储了在三维空间中的坐标位置
-        Location location;
+地址location;
         // 表示旋转信息，用于描述物体在空间中的旋转状态
         Rotation rotation;
 
@@ -103,18 +103,18 @@ namespace geom {
         /// 计算变换的 4 矩阵形式
         /// 通过当前的旋转角度（偏航、俯仰、翻滚）以及位置信息，按照特定的数学变换规则计算出一个 4x4 的变换矩阵，用于更通用的线性变换操作表示
         std::array<float, 16> GetMatrix() const {
-            const float yaw = rotation.yaw;
-            const float cy = std::cos(Math::ToRadians(yaw));
-            const float sy = std::sin(Math::ToRadians(yaw));
-
+            const float yaw = rotation.yaw; 
+            const float cy = std::cos(Math::ToRadians(yaw)); 
+            const float sy = std::sin(Math::ToRadians(yaw)); 
+           
             const float roll = rotation.roll;
-            const float cr = std::cos(Math::ToRadians(roll));
-            const float sr = std::sin(Math::ToRadians(roll));
-
+            const float cr = std::cos(Math::ToRadians(roll)); 
+            const float sr = std::sin(Math::ToRadians(roll)); 
+            
             const float pitch = rotation.pitch;
-            const float cp = std::cos(Math::ToRadians(pitch));
-            const float sp = std::sin(Math::ToRadians(pitch));
-
+            const float cp = std::cos(Math::ToRadians(pitch)); 
+            const float sp = std::sin(Math::ToRadians(pitch)); 
+            
             std::array<float, 16> transform = {
                 cp * cy, cy * sp * sr - sy * cr, -cy * sp * cr - sy * sr, location.x,
                 cp * sy, sy * sp * sr + cy * cr, -sy * sp * cr + cy * sr, location.y,
@@ -127,26 +127,26 @@ namespace geom {
         /// 计算逆变换的 4 矩阵形式
         /// 首先通过逆变换操作（InverseTransformPoint）得到一个用于逆变换的位置偏移向量，然后结合当前的旋转角度信息，按照特定数学规则计算出逆变换对应的 4x4 矩阵
         std::array<float, 16> GetInverseMatrix() const {
-            const float yaw = rotation.yaw;
-            const float cy = std::cos(Math::ToRadians(yaw));
-            const float sy = std::sin(Math::ToRadians(yaw));
-
+            const float yaw = rotation.yaw; // 提取旋转对象中的偏航角（yaw），并将其从度转换为弧度
+            const float cy = std::cos(Math::ToRadians(yaw)); // 计算偏航角的余弦值
+            const float sy = std::sin(Math::ToRadians(yaw)); // 计算偏航角的正弦值
+             // 提取旋转对象中的翻滚角（roll），并将其从度转换为弧度
             const float roll = rotation.roll;
-            const float cr = std::cos(Math::ToRadians(roll));
-            const float sr = std::sin(Math::ToRadians(roll));
-
+            const float cr = std::cos(Math::ToRadians(roll)); // 计算翻滚角的余弦值
+            const float sr = std::sin(Math::ToRadians(roll)); // 计算翻滚角的正弦值
+            // 提取旋转对象中的俯仰角（pitch），并将其从度转换为弧度
             const float pitch = rotation.pitch;
-            const float cp = std::cos(Math::ToRadians(pitch));
-            const float sp = std::sin(Math::ToRadians(pitch));
-
+            const float cp = std::cos(Math::ToRadians(pitch)); // 计算俯仰角的余弦值
+            const float sp = std::sin(Math::ToRadians(pitch)); // 计算俯仰角的正弦值
+            // 创建一个3D向量，并初始化为0，用于后续的逆变换点计算
             Vector3D a = {0.0f, 0.0f, 0.0f};
-            InverseTransformPoint(a);
+            InverseTransformPoint(a); // 调用逆变换点函数，传入向量a，并更新向量a的值
 
-            std::array<float, 16> transform = {
-                cp * cy, cp * sy, sp, a.x,
+            std::array<float, 16> transform = { // 以下为3x3旋转矩阵和位移向量组成的4x4矩阵
+                cp * cy, cp * sy, sp, a.x, 
                 cy * sp * sr - sy * cr, sy * sp * sr + cy * cr, -cp * sr, a.y,
                 -cy * sp * cr - sy * sr, -sy * sp * cr + cy * sr, cp * cr, a.z,
-                0.0f, 0.0f, 0.0f, 1.0};
+                0.0f, 0.0f, 0.0f, 1.0}; // 最后一列，代表位移和齐次坐标
 
             return transform;
         }
@@ -173,7 +173,7 @@ namespace geom {
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
         // 从UE4的FTransform类型构造当前的Transform对象，提取其中的位置信息和旋转信息进行初始化
         Transform(const FTransform &transform)
-            : Transform(Location(transform.GetLocation()), Rotation(transform.Rotator())) {}
+            : Transform(地址(transform.GetLocation()), Rotation(transform.Rotator())) {}
 
         // 类型转换运算符，将当前的Transform对象转换为UE4的FTransform类型，按照一定的规则构建对应的UE4变换对象（设置旋转、位置以及缩放信息）
         operator FTransform() const {
