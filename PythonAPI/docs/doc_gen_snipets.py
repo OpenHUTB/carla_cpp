@@ -193,7 +193,14 @@ class Documentation:
             md.textn("</div>\n")
         # Closing div
         md.textn("\n</div>\n")
-        return md.data().strip()
+        return md.data().strip()# 创建一个MarkdownFile对象，用于后续构建文档内容，可能是用于生成特定格式的文档（比如将内容最终转换为Markdown格式的文档等）
+    md = MarkdownFile()
+
+    # Create header for snipets (div container and script to copy)
+    # 在Markdown文档中添加一系列文本内容，这些内容看起来像是用于构建文档中代码片段相关的展示区域及复制代码的功能逻辑。
+    # 以下通过多行字符串拼接的形式添加注释（在Markdown中实际不会显示这些注释内容，但可用于标记、说明等）以及HTML、JavaScript代码。
+    # HTML部分创建了一个id为"snipets-container"的div容器，用于放置代码片段，并设置了鼠标悬停和移开时水平滚动条的显示逻辑。
+    # JavaScript部分定义了两个函数，CopyToClipboard用于实现将指定容器内的文本复制到剪贴板的功能（通过不同浏览器的API兼容写法实现），CloseSnipet用于清空"snipets-container"的内容。
 
 
     def gen_markdown(self):
