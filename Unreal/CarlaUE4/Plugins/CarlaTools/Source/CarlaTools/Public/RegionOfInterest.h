@@ -49,19 +49,22 @@ struct CARLATOOLS_API FRoiTile
   int Y;
 
 public:
+// 默认构造函数，初始化 X 和 Y 为 -1，表示无效或未指定的瓦片
   FRoiTile() : X(-1), Y(-1)
   {};
-
+  // 构造函数，接受两个整数参数 X 和 Y，用来初始化瓦片的具体位置
   FRoiTile(int X, int Y)
   {
-    this->X = X;
+    this->X = X;// 使用 this 指针来区分成员变量和参数名称
     this->Y = Y;
   };
-
+  // 拷贝构造函数，使用另一个 FRoiTile 对象的 X 和 Y 来初始化新的对象
+  // 这里调用了带参数的构造函数来进行初始化
   FRoiTile(const FRoiTile& Other)
     : FRoiTile(Other.X, Other.Y)
   {}
-
+  // 重载等号运算符 (==)，允许直接比较两个 FRoiTile 对象
+  // 它通过调用 Equals 方法来进行比较，并返回比较结果
   bool operator==(const FRoiTile& Other) const
   {
     return Equals(Other);
