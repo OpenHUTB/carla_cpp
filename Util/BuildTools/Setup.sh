@@ -1,22 +1,23 @@
 #! /bin/bash
-
+# 指定脚本执行时使用的 shell
 # ==============================================================================
 # -- Parse arguments -----------------------------------------------------------
 # ==============================================================================
+# 说明文档字符串
 
 DOC_STRING="Download and install the required libraries for carla."
-
+# 使用方法字符串
 USAGE_STRING="Usage: $0 [--python-version=VERSION]"
-
+# 解析命令行参数
 OPTS=`getopt -o h --long help,chrono,ros2,pytorch,python-version: -n 'parse-options' -- "$@"`
 
 eval set -- "$OPTS"
-
+# 初始化变量
 PY_VERSION_LIST=3
 USE_CHRONO=false
 USE_PYTORCH=false
 USE_ROS2=false
-
+# 循环处理每个参数
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --python-version )
@@ -44,21 +45,22 @@ done
 # ==============================================================================
 # -- Set up environment --------------------------------------------------------
 # ==============================================================================
-
+# 导入环境变量
 source $(dirname "$0")/Environment.sh
-
+# 设置编译器路径
 export CC="$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v17_clang-10.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang"
 export CXX="$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v17_clang-10.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++"
 export PATH="$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v17_clang-10.0.1-centos7/x86_64-unknown-linux-gnu/bin:$PATH"
-
+# 定义 CXX_TAG 变量
 CXX_TAG=c10
 
 # Convert comma-separated string to array of unique elements.
 IFS="," read -r -a PY_VERSION_LIST <<< "${PY_VERSION_LIST}"
-
+# 将逗号分隔的字符串转换为数组
+# 创建 CARLA_BUILD_FOLDER 目录并进入
 mkdir -p ${CARLA_BUILD_FOLDER}
 pushd ${CARLA_BUILD_FOLDER} >/dev/null
-
+# 设置 LLVM 包含路径和库路径
 LLVM_INCLUDE="$UE4_ROOT/Engine/Source/ThirdParty/Linux/LibCxx/include/c++/v1"
 LLVM_LIBPATH="$UE4_ROOT/Engine/Source/ThirdParty/Linux/LibCxx/lib/Linux/x86_64-unknown-linux-gnu"
 UNREAL_HOSTED_CFLAGS="--sysroot=$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v17_clang-10.0.1-centos7/x86_64-unknown-linux-gnu/"
