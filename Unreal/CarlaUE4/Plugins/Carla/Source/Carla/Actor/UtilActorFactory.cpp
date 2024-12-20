@@ -10,6 +10,7 @@
 #include "Carla/Util/EmptyActor.h"
 #include "Carla/Game/CarlaEpisode.h"
 
+// AUtilActorFactory类的方法，用于获取定义的Actor数组
 TArray<FActorDefinition> AUtilActorFactory::GetDefinitions()
 {
   using ABFL = UActorBlueprintFunctionLibrary;

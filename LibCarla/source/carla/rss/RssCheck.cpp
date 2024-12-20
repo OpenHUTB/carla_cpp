@@ -217,25 +217,22 @@ RssCheck::RssCheck(float maximum_steering_angle)
 
         if (GetSpeed(*actor_constellation_data->other_actor) == ::ad::physics::Speed(0.)) {
           /*
-             special handling for vehicles standing still
-             to cope with not yet implemented lateral intersection checks in core RSS implementation
-             if the other is standing still, we don't assume that he will accelerate
-             otherwise if standing at the intersection the acceleration within reaction time
-             will allow to enter the intersection which current RSS implementation will immediately consider
-             as dangerous
+             对静止不动的车辆进行特殊处理，以应对核心 RSS 实现中尚未实现的横向交叉路口检查。
+             如果另一个待着不动，我们就不会假设他会加速；
+             否则，如果待在十字路口，反应时间内的加速度将使车进入十字路口，当前的 RSS 实现将会立即认为这是危险的。
+
            */
           actor_constellation_result.actor_dynamics.alphaLon.accelMax = ::ad::physics::Acceleration(0.);
         }
       }
     }
 
-    /* since the ego vehicle is controlled manually, it is easy possible that the ego vehicle
-      accelerates far more in lateral direction than the ego_dynamics indicate
-      in an automated vehicle this would be considered by the low-level controller when the RSS restriction
-      is taken into account properly
-      but the simple RSS restrictor within CARLA is not able to do so...
-      So we should at least tell RSS about the fact that we acceleration more than this
-      to be able to react on this
+    /* 
+      由于 Ego 车辆是手动控制的，因此 Ego 车辆在横向加速度很可能远高于自动控制时的加速度
+      在自动驾驶汽车中，当合理利用 RSS 实现时，会考虑到低级控制器
+      但是 CARLA 中的简单 RSS 限制器无法做到这一点...
+      因此，我们至少应该告诉 RSS 我们的加速度超过这个数值时，及时对此做出反应。
+
       */
     auto const abs_avg_route_accel_lat = std::fabs(actor_constellation_data->ego_dynamics_on_route.avg_route_accel_lat);
     if (abs_avg_route_accel_lat > actor_constellation_result.ego_vehicle_dynamics.alphaLat.accelMax) {
@@ -583,14 +580,14 @@ void RssCheck::UpdateRoute(CarlaRssState &carla_rss_state) {
 
     if (route_valid) {
       if (additional_routes.size() > 0u) {
-        // take a random extension to the route
+        // 对路由进行随机扩展
         std::size_t route_index = static_cast<std::size_t>(std::rand()) % (additional_routes.size() + 1);
         if (route_index < additional_routes.size()) {
-          // we decided for one of the additional routes
+          // 我们决定选择其中一条额外的路线
           _logger->debug("Additional Routes: {}->{}", additional_routes.size(), route_index);
           carla_rss_state.ego_route = additional_routes[route_index];
         } else {
-          // we decided for the extension within route, nothing to be done
+          // 我们决定在路线内进行扩展，不进行任何改动
           _logger->debug("Additional Routes: expand current");
         }
       }
@@ -631,7 +628,7 @@ void RssCheck::UpdateRoute(CarlaRssState &carla_rss_state) {
             routing_start_point, route_target_length, ::ad::map::route::RouteCreationMode::AllRoutableLanes);
 
         for (const auto &new_route : new_routes) {
-          // extend route with all lanes
+          // 延长所有车道的路线
           all_new_routes.push_back(new_route);
         }
       }

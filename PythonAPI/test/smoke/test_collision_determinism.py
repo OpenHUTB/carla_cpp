@@ -104,47 +104,58 @@ class Scenario(object):
         for i in range (0, len(self.actor_list)):  #若为真，则i将进行从0到self.actor_list长度的遍历
             self.snapshots[i] = np.vstack((self.snapshots[i], self.save_snapshot(self.actor_list[i][1])))    #每次循环执行该函数
 
+    # 保存快照到磁盘的方法
     def save_snapshots_to_disk(self):
+        # 如果不开启保存快照模式，则直接返回
         if not self.save_snapshots_mode:
             return
 
+        # 遍历所有actor，并保存每个actor的快照
         for i, actor in enumerate(self.actor_list):
             np.savetxt(self.get_filename(actor[0]), self.snapshots[i])
 
+    # 获取带前缀的文件名的方法
     def get_filename_with_prefix(self, prefix, actor_id=None, frame=None):
-        add_id = "" if actor_id is None else "_" + actor_id
-        add_frame = "" if frame is None else ("_%04d") % frame
-        return prefix + add_id + add_frame + ".out"
+        add_id = "" if actor_id is None else "_" + actor_id # 如果actor_id为空，则不添加ID
+        add_frame = "" if frame is None else ("_%04d") % frame  # 如果frame为空，则不添加帧编号
+        return prefix + add_id + add_frame + ".out" # 返回完整的文件名
 
+     # 获取文件名的方法
     def get_filename(self, actor_id=None, frame=None):
-        return self.get_filename_with_prefix(self.prefix, actor_id, frame)
+        return self.get_filename_with_prefix(self.prefix, actor_id, frame)# 使用默认前缀
 
-    def run_simulation(self, prefix, run_settings, spectator_tr, tics = 200):
-        original_settings = self.world.get_settings()
+     # 运行仿真的方法
+    def run_simulation(self, prefix, run_settings, spectator_tr, tics = 200): 
+        original_settings = self.world.get_settings() # 获取原始设置
 
-        self.init_scene(prefix, run_settings, spectator_tr)
+        self.init_scene(prefix, run_settings, spectator_tr)# 初始化场景
 
+         # 运行仿真指定的帧数
         for _i in range(0, tics):
-            self.world.tick()
-            self.save_snapshots()
+            self.world.tick()# 仿真世界前进一帧
+            self.save_snapshots() # 保存快照
 
-        self.world.apply_settings(original_settings)
-        self.save_snapshots_to_disk()
-        self.clear_scene()
+        self.world.apply_settings(original_settings) # 恢复原始设置
+        self.save_snapshots_to_disk() # 保存快照到磁盘
+        self.clear_scene() # 清理场景
 
 
-class TwoCarsHighSpeedCollision(Scenario):
+class TwoCarsHighSpeedCollision(Scenario):  # 继承Scenario类，定义一个高速碰撞场景
+     # 初始化场景的方法
     def init_scene(self, prefix, settings = None, spectator_tr = None):
-        super(TwoCarsHighSpeedCollision, self).init_scene(prefix, settings, spectator_tr)
+        super(TwoCarsHighSpeedCollision, self).init_scene(prefix, settings, spectator_tr) # 调用基类的初始化方法
 
-        blueprint_library = self.world.get_blueprint_library()
+        blueprint_library = self.world.get_blueprint_library()# 获取蓝图库
 
+        # 获取车辆蓝图
         vehicle00_bp = blueprint_library.filter("tt")[0]
         vehicle01_bp = blueprint_library.filter("mkz_2017")[0]
 
+        # 设置车辆的初始位置和朝向
         vehicle00_tr = carla.Transform(carla.Location(140, -256, 0.015), carla.Rotation(yaw=180))
         vehicle01_tr = carla.Transform(carla.Location(40, -255, 0.04), carla.Rotation(yaw=0))
 
+        # 创建一个批量请求，用于生成两个车辆并设置它们的目标速度
         batch = [
             SpawnActor(vehicle00_bp, vehicle00_tr)
             .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(-50, 0, 0))),
