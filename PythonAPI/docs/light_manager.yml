@@ -84,10 +84,11 @@
       Lights are automatically turned on when the simulator enters night mode (sun altitude is below zero).
     # - PROPERTIES -------------------------
     instance_variables:
-    - var_name: color
-      type: carla.Color
+    - var_name: color2. #var_name: color这行定义了一个名为 color 的变量。在这个关于灯光的代码结构中，这个变量用于表示灯光的颜色。
+- 
+      type: carla.Color-# 这行明确了 color 变量的类型是 carla.Color ，这可能是一个自定义的类型，专门用于表示颜色相关的属性，可能包含了一些颜色的数值表示或者颜色相关的操作方法等。
       doc: >
-        Color of the light.
+        Color of the light.- #这是 color 变量的文档字符串内容，简单明了地说明了这个变量代表灯光的颜色。
     # --------------------------------------
     - var_name: id
       type: int
