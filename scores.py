@@ -9,10 +9,10 @@ from collections import Counter
 import git  # 导入git模块，用于操作Git库
 
 argparser = argparse.ArgumentParser(
-        description='Involvement Degree')
+        description='Involvement Degree')# 创建命令行参数解析器，用于解析用户输入的参数
 argparser.add_argument(
     '-t', '--token',
-    help='your personal github access token')
+    help='your personal github access token')# 添加一个名为'token'的命令行参数，用于接收用户的个人github访问令牌
 args = argparser.parse_args()
 
 # 替换为你的个人访问令牌（可选，但推荐）
@@ -30,16 +30,16 @@ repo = 'carla_cpp'    # 替换为仓库名称
 #########################################
 ####### 统计代码添加和删除行数 ############
 #########################################
-def commit_info():
+def commit_info():# 统计代码添加和删除行数的函数
     import os
     from git.repo import Repo
 
-    local_path = os.path.join('.')
+    local_path = os.path.join('.')# 获取当前目录路径，作为本地Git仓库的路径
     repo = Repo(local_path)
 
 
     # 获取提交日志，格式为作者名字
-    log_info = repo.git.log('--pretty=format:%an')
+    log_info = repo.git.log('--pretty=format:%an') 
 
     # 将提交日志按行分割
     authors = log_info.splitlines()
