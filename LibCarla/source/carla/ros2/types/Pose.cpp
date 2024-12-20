@@ -49,6 +49,10 @@ geometry_msgs::msg::Pose::~Pose()
 {
 }
 
+// 定义了一个名为Pose的类，它属于geometry_msgs::msg命名空间
+// 拷贝构造函数，用于从另一个Pose对象创建一个新的Pose对象
+// 参数x是要拷贝的源Pose对象
+// 实现将源对象的位置和方向成员变量拷贝到新创建的对象中
 geometry_msgs::msg::Pose::Pose(
         const Pose& x)
 {
@@ -56,6 +60,9 @@ geometry_msgs::msg::Pose::Pose(
     m_orientation = x.m_orientation;
 }
 
+// 移动构造函数，用于从右值引用的Pose对象创建一个新的Pose对象
+// 参数x是要移动的源Pose对象，使用noexcept关键字表示该函数不会抛出异常
+// 实现将源对象的位置和方向成员变量移动到新创建的对象中，源对象的成员变量将处于有效但未指定的状态
 geometry_msgs::msg::Pose::Pose(
         Pose&& x) noexcept
 {
@@ -63,6 +70,9 @@ geometry_msgs::msg::Pose::Pose(
     m_orientation = std::move(x.m_orientation);
 }
 
+// 拷贝赋值运算符重载，用于将一个Pose对象赋值给另一个已存在的Pose对象
+// 参数x是要赋值的源Pose对象
+// 实现将源对象的位置和方向成员变量赋值给目标对象，并返回目标对象的引用
 geometry_msgs::msg::Pose& geometry_msgs::msg::Pose::operator =(
         const Pose& x)
 {
@@ -72,6 +82,9 @@ geometry_msgs::msg::Pose& geometry_msgs::msg::Pose::operator =(
     return *this;
 }
 
+// 移动赋值运算符重载，用于将一个右值引用的Pose对象赋值给另一个已存在的Pose对象
+// 参数x是要赋值的源Pose对象，使用noexcept关键字表示该函数不会抛出异常
+// 实现将源对象的位置和方向成员变量移动到目标对象中，源对象的成员变量将处于有效但未指定的状态，并返回目标对象的引用
 geometry_msgs::msg::Pose& geometry_msgs::msg::Pose::operator =(
         Pose&& x) noexcept
 {
@@ -81,18 +94,26 @@ geometry_msgs::msg::Pose& geometry_msgs::msg::Pose::operator =(
     return *this;
 }
 
+// 相等运算符重载，用于比较两个Pose对象是否相等
+// 参数x是要比较的另一个Pose对象
+// 比较两个对象的位置和方向成员变量是否相等，如果都相等则返回true，否则返回false
 bool geometry_msgs::msg::Pose::operator ==(
         const Pose& x) const
 {
     return (m_position == x.m_position && m_orientation == x.m_orientation);
 }
 
-bool geometry_msgs::msg::Pose::operator !=(
+// 不等运算符重载，用于比较两个Pose对象是否不相等
+// 参数x是要比较的另一个Pose对象
+// 通过调用相等运算符并取反来实现不等比较，如果两个对象不相等则返回true，否则返回false
+bool geometry_msgs::msg::Pose::operator!=(
         const Pose& x) const
 {
-    return !(*this == x);
+    return!(*this == x);
 }
 
+// 获取最大CDR序列化大小，这里忽略了当前对齐参数，直接返回预定义的最大CDR类型大小
+// 参数current_alignment是当前的对齐要求，但在这个函数中未被使用
 size_t geometry_msgs::msg::Pose::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
@@ -100,6 +121,9 @@ size_t geometry_msgs::msg::Pose::getMaxCdrSerializedSize(
     return geometry_msgs_msg_Pose_max_cdr_typesize;
 }
 
+// 获取CDR序列化大小，计算给定Pose对象的CDR序列化所需的字节数
+// 参数data是要序列化的Pose对象，current_alignment是当前的对齐要求
+// 首先获取初始对齐，然后分别计算位置和方向成员变量的序列化大小，并将它们累加到当前对齐中，最后返回总大小与初始对齐的差值
 size_t geometry_msgs::msg::Pose::getCdrSerializedSize(
         const geometry_msgs::msg::Pose& data,
         size_t current_alignment)
@@ -111,6 +135,8 @@ size_t geometry_msgs::msg::Pose::getCdrSerializedSize(
     return current_alignment - initial_alignment;
 }
 
+// 将Pose对象序列化为CDR格式，将位置和方向成员变量写入到CDR流中
+// 参数scdr是要写入的CDR流对象
 void geometry_msgs::msg::Pose::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
@@ -118,6 +144,8 @@ void geometry_msgs::msg::Pose::serialize(
     scdr << m_orientation;
 }
 
+// 从CDR格式反序列化Pose对象，从CDR流中读取位置和方向成员变量
+// 参数dcdr是要读取的CDR流对象
 void geometry_msgs::msg::Pose::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
 {
