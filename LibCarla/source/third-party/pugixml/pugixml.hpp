@@ -1181,7 +1181,7 @@ namespace pugi
 		const xpath_variable* get(const char_t* name) const;
 	};
 
-	// A compiled XPath query object
+	//已编译的 XPath 查询对象
 	class PUGIXML_CLASS xpath_query
 	{
 	private:
