@@ -410,31 +410,51 @@ class CodeFormat:
         else:
             cprint("FORMAT MODE", attrs=["bold"])
 
-    def processFiles(self):
+    # 定义一个方法，用于处理文件（格式化或验证）
+def processFiles(self):
+    # 遍历所有的代码格式化器实例
+    for formatterInstance in self.codeFormatterInstances:
+        # 遍历当前格式化器实例中的所有输入文件
+        for fileName in formatterInstance.inputFiles:
+            # 如果用户指定了验证模式（--verify）
+            if self.args.verify:
+                # 调用验证文件的方法，并根据结果更新失败标志
+                # self.failure 是一个布尔值，表示是否有处理失败的文件
+                # self.args.diff 是一个参数，可能用于指定在验证时是否显示差异
+                self.failure |= formatterInstance.verifyFile(fileName, self.args.diff)
+            else:
+                # 如果不是验证模式，则调用格式化文件的方法，并更新失败标志
+                self.failure |= formatterInstance.formatFile(fileName)
+
+# 定义一个方法，用于获取输入文件的总数
+def numberOfInputFiles(self):
+    count = 0  # 初始化计数器
+    # 遍历所有的代码格式化器实例
+    for formatterInstance in self.codeFormatterInstances:
+        # 将当前格式化器实例中的输入文件数量加到计数器上
+        count += len(formatterInstance.inputFiles)
+    # 返回输入文件的总数
+    return count
+
+# 定义一个方法，用于在格式化多个文件前与用户确认
+def confirmWithUser(self):
+    # 获取输入文件的总数
+    num_files = self.numberOfInputFiles()
+    # 如果没有输入文件，则打印警告信息
+    if num_files == 0:
+        # 使用cprint打印彩色文本（需要colorama等库）
+        # 这里打印的是黄色警告信息
+        cprint("[WARN] No input files (or file endings unknown)", "yellow")
+    # 如果不是验证模式，没有使用自动确认（--yes），且有多于一个文件要处理
+    elif (not self.args.verify) and (not self.args.yes) and num_files > 1:
+        # 遍历所有的代码格式化器实例，打印每个实例中的输入文件
         for formatterInstance in self.codeFormatterInstances:
-            for fileName in formatterInstance.inputFiles:
-                if self.args.verify:
-                    self.failure |= formatterInstance.verifyFile(fileName, self.args.diff)
-                else:
-                    self.failure |= formatterInstance.formatFile(fileName)
-
-    def numberOfInputFiles(self):
-        count = 0
-        for formatterInstance in self.codeFormatterInstances:
-            count += len(formatterInstance.inputFiles)
-        return count
-
-    def confirmWithUser(self):
-        if self.numberOfInputFiles() == 0:
-            cprint("[WARN] No input files (or file endings unknown)", "yellow")
-        elif (not self.args.verify) and (not self.args.yes) and self.numberOfInputFiles() > 1:
-            for formatterInstance in self.codeFormatterInstances:
-                formatterInstance.printInputFiles()
-            answer = raw_input("Are you sure to code format " + str(self.numberOfInputFiles()) + " files? (y/N)")
-            if answer != "y":
-                sys.exit(1)
-
-
+            formatterInstance.printInputFiles()
+        # 向用户询问是否确定要格式化这么多文件，并等待用户输入
+        answer = raw_input("Are you sure to code format " + str(num_files) + " files? (y/N)")
+        # 如果用户输入的不是 'y'，则退出程序
+        if answer != "y":
+            sys.exit(1)  # 使用sys.exit(1)表示程序异常退出
 def main():
     codeFormat = CodeFormat()
     codeFormat.parseCommandLine()
