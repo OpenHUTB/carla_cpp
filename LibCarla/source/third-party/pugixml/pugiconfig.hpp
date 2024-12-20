@@ -23,7 +23,7 @@
 // Uncomment this to disable XPath
 // #define PUGIXML_NO_XPATH
 
-// Uncomment this to disable STL
+// 取消注释以禁用 STL
 // #define PUGIXML_NO_STL
 
 // Uncomment this to disable exceptions
