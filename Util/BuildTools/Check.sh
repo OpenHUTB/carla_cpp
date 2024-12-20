@@ -44,49 +44,74 @@ source $(dirname "$0")/Environment.sh
 
 PY_VERSION_LIST=3
 
+# 这是一个while循环，它会一直执行，直到所有的命令行参数都被处理完毕（$# -gt 0 表示参数个数大于0）。
 while [[ $# -gt 0 ]]; do
+  # case语句用于根据$1（第一个参数）的值执行不同的代码块。
   case "$1" in
+    # 如果参数是--gdb，则设置GDB变量为"gdb --args"，并移除第一个参数以便处理下一个。
     --gdb )
       GDB="gdb --args";
       shift ;;
+    
+    # 如果参数是--xml，则设置XML_OUTPUT为true，并创建一个用于存储测试结果的文件夹。
     --xml )
       XML_OUTPUT=true;
-      # Create the folder for the test-results
+      # 使用mkdir -p命令创建测试结果文件夹，如果文件夹已存在则不会报错。
       mkdir -p "${CARLA_TEST_RESULTS_FOLDER}"
       shift ;;
+    
+    # 如果参数是--gtest_args，则把下一个参数（$2）赋值给GTEST_ARGS，并移除这两个参数。
     --gtest_args )
       GTEST_ARGS="$2";
       shift 2 ;;
+    
+    # 如果参数是--all，则设置LIBCARLA_RELEASE、LIBCARLA_DEBUG和PYTHON_API为true。
     --all )
       LIBCARLA_RELEASE=true;
       LIBCARLA_DEBUG=true;
       PYTHON_API=true;
       shift ;;
+    
+    # 如果参数是--libcarla-release，则设置LIBCARLA_RELEASE为true。
     --libcarla-release )
       LIBCARLA_RELEASE=true;
       shift ;;
+    
+    # 如果参数是--libcarla-debug，则设置LIBCARLA_DEBUG为true。
     --libcarla-debug )
       LIBCARLA_DEBUG=true;
       shift ;;
+    
+    # 如果参数是--smoke，则设置SMOKE_TESTS为true。
     --smoke )
       SMOKE_TESTS=true;
       shift ;;
+    
+    # 如果参数是--python-api，则设置PYTHON_API为true。
     --python-api )
       PYTHON_API=true;
       shift ;;
+    
+    # 如果参数是--benchmark，则设置LIBCARLA_RELEASE和RUN_BENCHMARK为true，并设置GTEST_ARGS为"--gtest_filter=benchmark*"。
     --benchmark )
       LIBCARLA_RELEASE=true;
       RUN_BENCHMARK=true;
       GTEST_ARGS="--gtest_filter=benchmark*";
       shift ;;
+    
+    # 如果参数是--python-version，则把下一个参数（$2）赋值给PY_VERSION_LIST，并移除这两个参数。
     --python-version )
       PY_VERSION_LIST="$2"
       shift 2 ;;
+    
+    # 如果参数是-h或--help，则打印帮助信息并退出脚本。
     -h | --help )
       echo "$DOC_STRING"
       echo -e "$USAGE_STRING"
       exit 1
       ;;
+    
+    # 如果参数不匹配上述任何一个，则简单地移除第一个参数以便处理下一个（这里可能是一个错误处理或忽略未知参数的机制）。
     * )
       shift ;;
   esac
