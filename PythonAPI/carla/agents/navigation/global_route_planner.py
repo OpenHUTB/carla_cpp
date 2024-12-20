@@ -365,33 +365,44 @@ class GlobalRoutePlanner:
                         entry_waypoint=end_wp, exit_waypoint=path[-1],
                         entry_vector=None, exit_vector=None, net_vector=None,
                         intersection=end_wp.is_junction, type=RoadOption.LANEFOLLOW)
-
+    #定义一个函数，用于添加车道变更链接
     def _lane_change_link(self):
         """
         This method places zero cost links in the topology graph
         representing availability of lane changes.
         """
-
+        #遍历self.topology中的每个路段（segment）
         for segment in self._topology:
+            #初始化两个布尔变量，用于跟踪是否找到了向左和向右的车道变更
             left_found, right_found = False, False
-
+            #遍历路段中的每个路点（waypoint）
             for waypoint in segment['path']:
+                #如果路段的入口不是交叉路口
                 if not segment['entry'].is_junction:
+                    #初始化下一个路点、下一个道路选项和下一个路段为None
                     next_waypoint, next_road_option, next_segment = None, None, None
-
+                    #如果路点有右车道标记、允许右车道变更且尚未找到右车道变更
                     if waypoint.right_lane_marking and waypoint.right_lane_marking.lane_change & carla.LaneChange.Right and not right_found:
+                        #获取右车道的下一个路点
                         next_waypoint = waypoint.get_right_lane()
+                        #检查下一个路点是否存在、车道类型是否为行驶车道、道路 ID 是否相同等
                         if next_waypoint is not None \
                                 and next_waypoint.lane_type == carla.LaneType.Driving \
                                 and waypoint.road_id == next_waypoint.road_id:
+                            #设置下一个道路选项为向右变更车道
                             next_road_option = RoadOption.CHANGELANERIGHT
+                            #获取下一个路段
                             next_segment = self._localize(next_waypoint.transform.location)
+                            #如果下一个路段存在，则在图中添加一条边，表示向右车道变更
                             if next_segment is not None:
                                 self._graph.add_edge(
                                     self._id_map[segment['entryxyz']], next_segment[0], entry_waypoint=waypoint,
                                     exit_waypoint=next_waypoint, intersection=False, exit_vector=None,
                                     path=[], length=0, type=next_road_option, change_waypoint=next_waypoint)
+                                #标记已经找到了向右车道变更
                                 right_found = True
+                    #如果路点有左车道标记、允许左车道变更且尚未找到左车道变更
+                    #类似的操作，获取左车道的下一个路点、设置下一个道路选项为向左变更车道、获取下一个路段，并在图中添加边
                     if waypoint.left_lane_marking and waypoint.left_lane_marking.lane_change & carla.LaneChange.Left and not left_found:
                         next_waypoint = waypoint.get_left_lane()
                         if next_waypoint is not None \
@@ -404,7 +415,9 @@ class GlobalRoutePlanner:
                                     self._id_map[segment['entryxyz']], next_segment[0], entry_waypoint=waypoint,
                                     exit_waypoint=next_waypoint, intersection=False, exit_vector=None,
                                     path=[], length=0, type=next_road_option, change_waypoint=next_waypoint)
+                                #标记已经找到了向左车道变更
                                 left_found = True
+                #如果已经找到了向左和向右的车道变更，则跳出循环
                 if left_found and right_found:
                     break
 
