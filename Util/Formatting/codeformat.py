@@ -274,34 +274,87 @@ class CodeFormat:
                 fileList.append(fileOrDirectory)
         return fileList
 
+    import os  # 导入os模块，用于处理文件和目录路径
+import sys  # 导入sys模块，用于访问与Python解释器紧密相关的变量和函数
+from some_module import cprint  # 假设cprint是从某个模块导入的，用于打印彩色文本（需要替换为实际模块）
+
+class CodeFormatter:  # 假设这些方法属于一个名为CodeFormatter的类
+    # 类的其他属性和方法...
+    # 假设CODE_FORMAT_IGNORE_FILE是一个类属性，存储了用于标识忽略格式化的文件名的字符串
+    CODE_FORMAT_IGNORE_FILE = ".codeformatignore"  # 示例文件名，表示该目录下的文件将被忽略格式化
+
+    # 定义一个方法，用于过滤掉隐藏目录和包含忽略文件的目录
     def filterDirectories(self, root, directories):
-        # Exclude hidden directories and all directories that have a CODE_FORMAT_IGNORE_FILE
+        """
+        过滤掉隐藏目录（以'.'开头的目录）和包含CODE_FORMAT_IGNORE_FILE文件的目录。
+
+        参数:
+            root (str): 根目录的路径。
+            directories (list of str): 要过滤的目录名列表。
+
+        返回:
+            list of str: 过滤后的目录名列表。
+        """
+        # 使用列表推导式过滤目录
         directories[:] = [directory for directory in directories if
-                          not directory.startswith(".") and
-                          not os.path.exists(os.path.join(root, directory, CodeFormatterClang.CODE_FORMAT_IGNORE_FILE))]
+                          not directory.startswith(".") and  # 排除隐藏目录
+                          not os.path.exists(os.path.join(root, directory, self.CODE_FORMAT_IGNORE_FILE))]  # 排除包含忽略文件的目录
         return directories
 
+    # 定义一个方法，用于检查文件是否不被排除
     def isFileNotExcluded(self, fileName):
+        """
+        检查文件是否不被排除。如果文件名包含在任何排除项中，或者文件是符号链接，则返回False。
+
+        参数:
+            fileName (str): 要检查的文件名。
+
+        返回:
+            bool: 如果文件不被排除，则返回True；否则返回False。
+        """
+        # 检查文件名是否包含在任何排除项中
         if self.args.exclude is not None:
             for excluded in self.args.exclude:
                 if excluded in fileName:
                     return False
+        # 检查文件是否是符号链接
         if os.path.islink(fileName):
             return False
 
         return True
 
+    # 定义一个方法，用于确认用户是否要格式化不在Git仓库中的文件
     def confirmWithUserFileIsOutsideGit(self, fileName):
+        """
+        打印警告信息，并确认用户是否要格式化不在Git仓库中的文件。
+
+        参数:
+            fileName (str): 要格式化的文件名。
+        """
+        # 打印警告信息
         cprint("[WARN] File is not in a Git repo: " + fileName, "yellow")
-        answer = raw_input("Are you sure to code format it anyway? (y/Q)")
+        # 询问用户是否确定要格式化文件
+        answer = raw_input("Are you sure to code format it anyway? (y/Q)")  # 注意：在Python 3中，应使用input()而不是raw_input()
+        # 如果用户回答不是'y'，则退出程序
         if answer != "y":
             sys.exit(1)
 
+    # 定义一个方法，用于确认用户是否要格式化Git仓库中未跟踪的文件
     def confirmWithUserFileIsUntracked(self, fileName):
+        """
+        打印警告信息，并确认用户是否要格式化Git仓库中未跟踪的文件。
+
+        参数:
+            fileName (str): 要格式化的文件名。
+        """
+        # 打印警告信息
         cprint("[WARN] File is untracked in Git: " + fileName, "yellow")
-        answer = raw_input("Are you sure to code format it anyway? (y/Q)")
+        # 询问用户是否确定要格式化文件
+        answer = raw_input("Are you sure to code format it anyway? (y/Q)")  # 注意：在Python 3中，应使用input()而不是raw_input()
+        # 如果用户回答不是'y'，则退出程序
         if answer != "y":
             sys.exit(1)
+
 
     def confirmWithUserGitRepoIsNotClean(self, gitRepo):
         cprint("[WARN] Git repo is not clean: " + gitRepo, "yellow")
