@@ -1,15 +1,15 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+//版权所有 （c） 2017 Universitat Autonoma 计算机视觉中心 （CVC）
+// 巴塞罗那 （UAB）。
 // 
 // 禁用虚幻4相关的宏
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款进行许可。
+// 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 #ifndef LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 #define LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 
-// Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Carla.h
+// 虚幻/CarlaUE4/插件/Carla/Source/Carla/Carla.h
 #include "Carla.h"
 
 #ifndef BOOST_ERROR_CODE_HEADER_ONLY
