@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // 参考PythonAPI：https://openhutb.github.io/carla_doc/python_api/
@@ -8,11 +8,11 @@
 
 #pragma once
 
-#include "carla/client/detail/Simulator.h"
-#include "carla/client/World.h"
-#include "carla/client/Map.h"
-#include "carla/PythonUtil.h"
-#include "carla/trafficmanager/TrafficManager.h"
+#include "carla/client/detail/Simulator.h" // 引入Simulator相关的头文件，用于控制和模拟仿真环境中的车辆、传感器等。
+#include "carla/client/World.h" // 引入World相关的头文件，提供了对CARLA模拟世界的访问接口，包括控制和交互等功能。
+#include "carla/client/Map.h" // 引入Map相关的头文件，用于访问和操作CARLA世界中的地图。
+#include "carla/PythonUtil.h" // 引入PythonUtil头文件，这通常用于将C++与Python代码交互或提供Python脚本的调用接口。
+#include "carla/trafficmanager/TrafficManager.h" // 引入TrafficManager相关的头文件，用于管理交通流量并控制自动驾驶行为。
 
 namespace carla {
 namespace client {
@@ -26,18 +26,18 @@ namespace client {
     ///
     /// @param host 运行模拟器的主机IP地址。
     /// @param port 连接到模拟器的TCP端口。
-    /// @param worker_threads 要使用的异步线程数，或 0 以使用所有可用的硬件并发。
+    /// @param worker_threads 要使用的异步线程数，默认为 0（即使用所有可用的硬件并发线程）。
     explicit Client(
         const std::string &host,
         uint16_t port,
         size_t worker_threads = 0u);
 
-    /// 设置网络操作的超时时间。如果设置，任何超过 @a 超时时间的网络操作都会抛出 rpc::timeout 异常。 
+    /// 设置网络操作的超时时间。超时将抛出 rpc::timeout 异常
     void SetTimeout(time_duration timeout) {
       _simulator->SetNetworkingTimeout(timeout);
     }
 
-    // 获取当前客户端的超时时间
+    // 获取当前客户端的网络超时时间。
     time_duration GetTimeout() {
       return _simulator->GetNetworkingTimeout();
     }
@@ -47,33 +47,41 @@ namespace client {
       return _simulator->GetClientVersion();
     }
 
-    /// 返回我们连接的模拟器版本的字符串。
+    ///  获取当前连接的模拟器版本字符串。
     std::string GetServerVersion() const {
       return _simulator->GetServerVersion();
     }
 
-    // 获得当前连接服务中心所有可用的地图
+    /// 获取当前服务中心提供的所有可用地图名称。
     std::vector<std::string> GetAvailableMaps() const {
       return _simulator->GetAvailableMaps();
     }
-
+    /// 设置文件系统的基路径（文件夹）。 
+    /// 用于设置模拟器读取文件的路径。
+    /// 返回操作是否成功。
     bool SetFilesBaseFolder(const std::string &path) {
       return _simulator->SetFilesBaseFolder(path);
     }
-
+    /// 获取指定文件夹中的所需文件列表，默认情况下会下载所需文件。
+    /// 如果文件夹路径为空，则使用默认路径。
     std::vector<std::string> GetRequiredFiles(const std::string &folder = "", const bool download = true) const {
       return _simulator->GetRequiredFiles(folder, download);
     }
-
+    /// 请求指定名称的文件，模拟器会处理文件的加载或下载。
     void RequestFile(const std::string &name) const {
       _simulator->RequestFile(name);
     }
-
+    /// 重新加载世界环境。 
+    /// 通过调用 _simulator->ReloadEpisode 来实现，是否重置设置由参数决定。
+    /// 返回重载后的世界对象。
     World ReloadWorld(bool reset_settings = true) const {
       return World{_simulator->ReloadEpisode(reset_settings)};
     }
 
-    // 加载场景世界
+    /// 加载指定名称的场景地图。
+    /// @param map_name 地图名称。
+    /// @param reset_settings 是否重置设置。
+    /// @param map_layers 需要加载的地图层。
     World LoadWorld(
         std::string map_name,           // 地图名
         bool reset_settings = true,
@@ -82,8 +90,7 @@ namespace client {
       return World{_simulator->LoadEpisode(std::move(map_name), reset_settings, map_layers)};
     }
 
-    /// 仅当请求的地图与当前地图不同时才返回（并加载）一个新的世界（地图）
-
+    /// 如果当前地图与请求地图不同，则加载新地图。
     void LoadWorldIfDifferent(
         std::string map_name,
         bool reset_settings = true,
@@ -94,12 +101,16 @@ namespace client {
       std::string map_name_prefix = "Carla/Maps/";
       std::string map_name_without_prefix = map_name;
       std::string map_name_with_prefix = map_name_prefix + map_name;
+      // 仅当当前地图不同于目标地图时，才重新加载世界
       if(!(map_name_without_prefix == current_map_name) && !(map_name_with_prefix == current_map_name)){
         World World{_simulator->LoadEpisode(std::move(map_name), reset_settings, map_layers)};
       }else{}
     }
     
-    // 根据OpenDrive文件生成场景世界
+    /// 通过 OpenDrive 文件生成一个新的世界。
+    /// @param opendrive OpenDrive 格式的文件路径。
+    /// @param params 生成 OpenDrive 世界时的参数。
+    /// @param reset_settings 是否重置设置。
     World GenerateOpenDriveWorld(
         std::string opendrive,
         const rpc::OpendriveGenerationParameters & params,
@@ -108,32 +119,35 @@ namespace client {
           std::move(opendrive), params, reset_settings)};
     }
 
-    /// 返回模拟器中当前活跃世界的一个实例。
+    /// 获取当前模拟器中的活跃世界实例。
     World GetWorld() const {
       return World{_simulator->GetCurrentEpisode()};
     }
 
-    /// 返回模拟器中当前活动的 TrafficManager 实例。
+    /// 获取当前模拟器中的 TrafficManager 实例。
+    /// @param port TrafficManager 使用的端口，默认为 TM_DEFAULT_PORT。
     TrafficManager GetInstanceTM(uint16_t port = TM_DEFAULT_PORT) const {
       return TrafficManager(_simulator->GetCurrentEpisode(), port);
     }
 
-    /// 返回当前在模拟器中活动的场景实例。
+    /// 获取当前模拟器中的活动场景实例。
     carla::client::detail::EpisodeProxy GetCurrentEpisode() const {
       return _simulator->GetCurrentEpisode();
     }
 
-    // 启用记录功能，该功能将开始保存服务器重放仿真所需的所有信息。
+    // 启动录像功能，开始记录服务器重放仿真所需的所有信息。
     std::string StartRecorder(std::string name, bool additional_data = false) {
       return _simulator->StartRecorder(name, additional_data);
     }
 
-    // 停止记录日志数据
+    // 停止记录并保存日志数据。
     void StopRecorder(void) {
       _simulator->StopRecorder();
     }
 
-    // 根据文件名 name 显示记录文件信息
+    // 显示指定记录文件的详细信息。
+    /// @param name 文件名。
+    /// @param show_all 是否显示所有记录信息。
     std::string ShowRecorderFileInfo(std::string name, bool show_all) {
       return _simulator->ShowRecorderFileInfo(name, show_all);
     }
@@ -161,7 +175,7 @@ namespace client {
       return _simulator->ReplayFile(name, start, duration, follow_id, replay_sensors);
     }
 
-    // 停止当前重放。
+    // 停止当前的重放过程。
     void StopReplayer(bool keep_actors) {
       _simulator->StopReplayer(keep_actors);
     }
@@ -193,26 +207,28 @@ namespace client {
     // 可用于确定单个命令是否成功的响应。
     std::vector<rpc::CommandResponse> ApplyBatchSync(
         std::vector<rpc::Command> commands,  // 要批量执行的命令列表。
-        bool do_tick_cue = false) const {
+        bool do_tick_cue = false) const {  // 是否在执行后触发 tick 事件。
       auto responses = _simulator->ApplyBatchSync(std::move(commands), false);
       if (do_tick_cue)
         _simulator->Tick(_simulator->GetNetworkingTimeout());
 
-      return responses;
+      return responses;  // 返回所有命令的响应列表。
     }
 
   private:
-
-    std::shared_ptr<detail::Simulator> _simulator;  // 当前仿真器的智能指针
+  
+    // 当前仿真器实例的智能指针，用于管理仿真器的生命周期。
+    std::shared_ptr<detail::Simulator> _simulator;  
   };
 
+  // Client 构造函数，初始化与仿真器的连接。
   inline Client::Client(
-      const std::string &host,
-      uint16_t port,
-      size_t worker_threads)
+      const std::string &host,  // 仿真器主机地址。
+      uint16_t port,  // 仿真器端口号。
+      size_t worker_threads)  // 使用的工作线程数量。
     : _simulator(
         new detail::Simulator(host, port, worker_threads),
-        PythonUtil::ReleaseGILDeleter()) {}
+        PythonUtil::ReleaseGILDeleter()) {}  // 初始化仿真器并传递 GIL 解锁器以支持 Python 集成。
 
 } // namespace client
 } // namespace carla

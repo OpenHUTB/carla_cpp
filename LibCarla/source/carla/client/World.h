@@ -1,36 +1,39 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
+  //功能：这是文件的版权声明，表示代码版权归属于巴塞罗那大学计算机视觉中心（CVC）。该代码采用MIT开源许可证，用户可以自由使用、修改和分发代码，但需要附带相同的许可证。
 
 #pragma once
+  //功能：确保该头文件只会被编译一次，避免重复包含。
 
-#include "carla/Memory.h"
-#include "carla/Time.h"
-#include "carla/client/DebugHelper.h"
-#include "carla/client/Landmark.h"
-#include "carla/client/Waypoint.h"
-#include "carla/client/Junction.h"
-#include "carla/client/LightManager.h"
-#include "carla/client/Timestamp.h"
-#include "carla/client/WorldSnapshot.h"
-#include "carla/client/detail/EpisodeProxy.h"
-#include "carla/geom/Transform.h"
-#include "carla/rpc/Actor.h"
-#include "carla/rpc/AttachmentType.h"
-#include "carla/rpc/EpisodeSettings.h"
-#include "carla/rpc/EnvironmentObject.h"
-#include "carla/rpc/LabelledPoint.h"
-#include "carla/rpc/MapLayer.h"
-#include "carla/rpc/VehiclePhysicsControl.h"
-#include "carla/rpc/WeatherParameters.h"
-#include "carla/rpc/VehicleLightStateList.h"
-#include "carla/rpc/Texture.h"
-#include "carla/rpc/MaterialParameter.h"
+#include "carla/Memory.h"  // 包含内存相关的头文件
+#include "carla/Time.h"  // 包含时间相关的头文件
+#include "carla/client/DebugHelper.h"  // 包含调试辅助工具相关的头文件
+#include "carla/client/Landmark.h"  // 包含地标相关的头文件
+#include "carla/client/Waypoint.h"  // 包含路径点相关的头文件
+#include "carla/client/Junction.h"  // 包含交叉口相关的头文件
+#include "carla/client/LightManager.h"  // 包含灯光管理器相关的头文件
+#include "carla/client/Timestamp.h"  // 包含时间戳相关的头文件
+#include "carla/client/WorldSnapshot.h"  // 包含世界快照相关的头文件
+#include "carla/client/detail/EpisodeProxy.h"  // 包含EpisodeProxy相关的头文件
+#include "carla/geom/Transform.h"  // 包含变换矩阵相关的头文件
+#include "carla/rpc/Actor.h"  // 包含演员（对象）相关的头文件
+#include "carla/rpc/AttachmentType.h"  // 包含附加物类型相关的头文件
+#include "carla/rpc/EpisodeSettings.h"  // 包含剧集设置相关的头文件
+#include "carla/rpc/EnvironmentObject.h"  // 包含环境对象相关的头文件
+#include "carla/rpc/LabelledPoint.h"  // 包含带标签点的头文件
+#include "carla/rpc/MapLayer.h"  // 包含地图图层相关的头文件
+#include "carla/rpc/VehiclePhysicsControl.h"  // 包含车辆物理控制相关的头文件
+#include "carla/rpc/WeatherParameters.h"  // 包含天气参数相关的头文件
+#include "carla/rpc/VehicleLightStateList.h"  // 包含车辆灯光状态列表相关的头文件
+#include "carla/rpc/Texture.h"  // 包含纹理相关的头文件
+#include "carla/rpc/MaterialParameter.h"  // 包含材质参数相关的头文件
 
-#include <string>
+#include <string>  // 包含字符串处理相关的头文件
 #include <boost/optional.hpp>
+  //引入了一些必要的头文件，包括内存管理、时间控制、调试工具、地图层信息、车辆和环境对象的RPC接口等。这些模块共同支持CARLA模拟环境的创建和控制。
 
 namespace carla {
 namespace client {
@@ -158,8 +161,10 @@ namespace client {
     SharedPtr<Actor> GetTrafficSign(const Landmark& landmark) const;
 
     SharedPtr<Actor> GetTrafficLight(const Landmark& landmark) const;
+    ///交通灯和标志，根据提供的 获取交通标志或交通信号灯。代表地图中的特定位置。
 
     SharedPtr<Actor> GetTrafficLightFromOpenDRIVE(const road::SignId& sign_id) const;
+    ///根据OpenDRIVE标志ID获取对应的交通灯的智能指针
 
     void ResetAllTrafficLights();
 
@@ -183,6 +188,8 @@ namespace client {
     void EnableEnvironmentObjects(
       std::vector<uint64_t> env_objects_ids,
       bool enable) const;
+    ///GetEnvironmentObjects获取指定标签的环境物体。
+    ///EnableEnvironmentObjects启用或禁用环境物体。
 
     boost::optional<rpc::LabelledPoint> ProjectPoint(
         geom::Location location, geom::Vector3D direction, float search_distance = 10000.f) const;
@@ -244,3 +251,5 @@ namespace client {
 
 } // namespace client
 } // namespace carla
+//这个类是CARLA模拟世界的核心，提供了与模拟世界交互的多种方法，包括获取世界信息、生成参与者（演员）、控制天气、模拟时间步等。
+// 通过 类，用户可以对CARLA模拟环境进行全面的控制和管理。

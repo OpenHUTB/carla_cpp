@@ -65,54 +65,56 @@ namespace geom {
 
   // 根据车道和给定的起始、结束位置生成网格
   std::unique_ptr<Mesh> MeshFactory::Generate(
-      const road::Lane &lane, const double s_start, const double s_end) const {
-    RELEASE_ASSERT(road_param.resolution > 0.0); // 确保分辨率大于0
-    DEBUG_ASSERT(s_start >= 0.0); // 确保起始点合法
-    DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束点合法
-    DEBUG_ASSERT(s_end >= EPSILON); // 确保结束点大于Epsilon
-    DEBUG_ASSERT(s_start < s_end); // 确保起始点小于结束点
-    
-    // ID为0的车道在OpenDRIVE中没有物理表示
-    Mesh out_mesh; 
-    if (lane.GetId() == 0) {
-      return std::make_unique<Mesh>(out_mesh); // 返回空网格
-    }
-    
-    double s_current = s_start; // 当前s值初始化为起始点
+      const road::Lane& lane, const double s_start, const double s_end) const {
+      RELEASE_ASSERT(road_param.resolution > 0.0); // 确保分辨率大于0
+      DEBUG_ASSERT(s_start >= 0.0); // 确保起始点合法
+      DEBUG_ASSERT(s_end <= lane.GetDistance() + lane.GetLength()); // 确保结束点合法
+      DEBUG_ASSERT(s_end >= EPSILON); // 确保结束点大于Epsilon
+      DEBUG_ASSERT(s_start < s_end); // 确保起始点小于结束点
 
-    std::vector<geom::Vector3D> vertices; // 存储顶点的向量
-    if (lane.IsStraight()) { // 如果车道是直的
-      // 网格优化：如果车道是直的，只需在开始和结束处添加顶点
-      const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width); // 获取当前车道边缘位置
-      vertices.push_back(edges.first); // 添加左边缘顶点
-      vertices.push_back(edges.second); // 添加右边缘顶点
-    } else {
-      // 遍历车道的's'并根据宽度存储顶点
-      do {
-        // 获取当前路径点的车道边缘位置
-        const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
-        vertices.push_back(edges.first); // 添加左边缘顶点
-        vertices.push_back(edges.second); // 添加右边缘顶点
+      // ID为0的车道在OpenDRIVE中没有物理表示
+      Mesh out_mesh;
+      if (lane.GetId() == 0) {
+          return std::make_unique<Mesh>(out_mesh); // 返回空网格
+      }
 
-        // 更新当前路径点的"s"
-        s_current += road_param.resolution; // 增加当前s值
-      } while(s_current < s_end); // 继续直到达到结束点
-    }
+      double s_current = s_start; // 当前s值初始化为起始点
 
-    // 确保网格是连续的，并且车道之间没有间隙，
-    // 在车道的末尾添加几何形状
-    if (s_end - (s_current - road_param.resolution) > EPSILON) {
-      const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width); // 获取结束点的车道边缘位置
-      vertices.push_back(edges.first); // 添加左边缘顶点
-      vertices.push_back(edges.second); // 添加右边缘顶点
-    }
+      std::vector<geom::Vector3D> vertices; // 存储顶点的向量
+      if (lane.IsStraight()) { // 如果车道是直的
+        // 网格优化：如果车道是直的，只需在开始和结束处添加顶点
+          const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width); // 获取当前车道边缘位置
+          vertices.push_back(edges.first); // 添加左边缘顶点
+          vertices.push_back(edges.second); // 添加右边缘顶点
+      }
+      else {
+          // 遍历车道的's'并根据宽度存储顶点
+          do {
+              // 获取当前路径点的车道边缘位置
+              const auto edges = lane.GetCornerPositions(s_current, road_param.extra_lane_width);
+              vertices.push_back(edges.first); // 添加左边缘顶点
+              vertices.push_back(edges.second); // 添加右边缘顶点
 
-    // 添加材质，创建三角形带并结束材质
-    out_mesh.AddMaterial(
-        lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型选择材质
-    out_mesh.AddTriangleStrip(vertices); // 添加三角形带
-    out_mesh.EndMaterial(); // 结束材质
-    return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
+              // 更新当前路径点的"s"
+              s_current += road_param.resolution; // 增加当前s值
+          } while (s_current < s_end); // 继续直到达到结束点
+      }
+
+      // 确保网格是连续的，并且车道之间没有间隙，
+      // 在车道的末尾添加几何形状
+      if (s_end - (s_current - road_param.resolution) > EPSILON) {
+          const auto edges = lane.GetCornerPositions(s_end - MESH_EPSILON, road_param.extra_lane_width); // 获取结束点的车道边缘位置
+          vertices.push_back(edges.first); // 添加左边缘顶点
+          vertices.push_back(edges.second); // 添加右边缘顶点
+      }
+
+      // 添加材质，创建三角形带并结束材质
+      out_mesh.AddMaterial(
+          lane.GetType() == road::Lane::LaneType::Sidewalk ? "sidewalk" : "road"); // 根据车道类型选择材质
+      out_mesh.AddTriangleStrip(vertices); // 添加三角形带
+      out_mesh.EndMaterial(); // 结束材质
+      return std::make_unique<Mesh>(out_mesh); // 返回生成的网格
+  }
 
   std::unique_ptr<Mesh> MeshFactory::GenerateTesselated(
     const road::Lane& lane, const double s_start, const double s_end) const { // 生成细分网格
@@ -548,102 +550,110 @@ std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>> MeshFactory:
     return mesh_uptr_list;  // 返回按类型排序的Mesh列表
   }
 
-std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>> MeshFactory::GenerateOrderedWithMaxLen(
-    const road::LaneSection &lane_section) const { // 定义函数，生成具有最大长度的有序Mesh
-      const int vertices_in_width = road_param.vertex_width_resolution >= 2 ? road_param.vertex_width_resolution : 2; // 确定宽度方向上的顶点数量
-      std::map<road::Lane::LaneType , std::vector<std::unique_ptr<Mesh>>> mesh_uptr_list; // 创建一个映射，用于存储不同车道类型的Mesh指针
+std::map<road::Lane::LaneType, std::vector<std::unique_ptr<Mesh>>> MeshFactory::GenerateOrderedWithMaxLen(
+    const road::LaneSection& lane_section) const { // 定义函数，生成具有最大长度的有序Mesh
+    const int vertices_in_width = road_param.vertex_width_resolution >= 2 ? road_param.vertex_width_resolution : 2; // 确定宽度方向上的顶点数量
+    std::map<road::Lane::LaneType, std::vector<std::unique_ptr<Mesh>>> mesh_uptr_list; // 创建一个映射，用于存储不同车道类型的Mesh指针
 
-      if (lane_section.GetLength() < road_param.max_road_len) { // 如果车道段长度小于最大道路长度
+    if (lane_section.GetLength() < road_param.max_road_len) { // 如果车道段长度小于最大道路长度
         GenerateLaneSectionOrdered(lane_section, mesh_uptr_list); // 生成有序车道段Mesh
-      } else {
+    }
+    else {
         double s_current = lane_section.GetDistance() + EPSILON; // 当前的s值，初始为车道段的起始距离加上一个非常小的值
         const double s_end = lane_section.GetDistance() + lane_section.GetLength() - EPSILON; // 结束的s值
         std::vector<size_t> redirections; // 用于存储车道索引的重定向
-        
-        while(s_current + road_param.max_road_len < s_end) { // 当当前s值加上最大道路长度小于结束的s值时
-          const auto s_until = s_current + road_param.max_road_len; // 计算当前片段的结束s值
 
-          for (auto &&lane_pair : lane_section.GetLanes()) { // 遍历车道段中的每个车道
-            Mesh lane_section_mesh; // 创建一个Mesh对象用于存储当前车道段的Mesh
-            
-            switch(lane_pair.second.GetType()) // 根据车道类型生成Mesh
-            {
-              case road::Lane::LaneType::Driving: // 驾驶车道
-              case road::Lane::LaneType::Parking: // 停车车道
-              case road::Lane::LaneType::Bidirectional: // 双向车道
-              {
-                lane_section_mesh += *GenerateTesselated(lane_pair.second, s_current, s_until); // 生成细分网格并累加到mesh中
-                break;
-              }
-              case road::Lane::LaneType::Shoulder: // 路肩
-              case road::Lane::LaneType::Sidewalk: // 人行道
-              case road::Lane::LaneType::Biking: // 自行车道
-              {
-                lane_section_mesh += *GenerateSidewalk(lane_pair.second, s_current, s_until); // 生成人行道Mesh并累加
-                break;
-              }
-              default: // 默认情况
-              {
-                 lane_section_mesh += *GenerateTesselated(lane_pair.second, s_current, s_until); // 生成细分网格并累加
-                break;
-              }
-            }
-            auto it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 查找当前车道的索引
-            if (it == redirections.end()) { // 如果未找到
-              redirections.push_back(lane_pair.first); // 将车道索引添加到重定向列表中
-              it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 再次查找以获取迭代器
-            }
+        while (s_current + road_param.max_road_len < s_end) { // 当当前s值加上最大道路长度小于结束的s值时
+            const auto s_until = s_current + road_param.max_road_len; // 计算当前片段的结束s值
 
-            size_t PosToAdd = it - redirections.begin(); // 计算要添加的位置
-            if (mesh_uptr_list[lane_pair.second.GetType()].size() <= PosToAdd) { // 如果该类型的Mesh数量不足
-              mesh_uptr_list[lane_pair.second.GetType()].push_back(std::make_unique<Mesh>(lane_section_mesh)); // 新建一个Mesh并添加
-            } else {
-              uint32_t verticesinwidth = SelectVerticesInWidth(vertices_in_width, lane_pair.second.GetType()); // 根据车道类型选择宽度方向的顶点数
-              (mesh_uptr_list[lane_pair.second.GetType()][PosToAdd])->ConcatMesh(lane_section_mesh, verticesinwidth); // 拼接当前Mesh到已有Mesh中
+            for (auto&& lane_pair : lane_section.GetLanes()) { // 遍历车道段中的每个车道
+                Mesh lane_section_mesh; // 创建一个Mesh对象用于存储当前车道段的Mesh
+
+                switch (lane_pair.second.GetType()) // 根据车道类型生成Mesh
+                {
+                case road::Lane::LaneType::Driving: // 驾驶车道
+                case road::Lane::LaneType::Parking: // 停车车道
+                case road::Lane::LaneType::Bidirectional: // 双向车道
+                {
+                    lane_section_mesh += *GenerateTesselated(lane_pair.second, s_current, s_until); // 生成细分网格并累加到mesh中
+                    break;
+                }
+                case road::Lane::LaneType::Shoulder: // 路肩
+                case road::Lane::LaneType::Sidewalk: // 人行道
+                case road::Lane::LaneType::Biking: // 自行车道
+                {
+                    lane_section_mesh += *GenerateSidewalk(lane_pair.second, s_current, s_until); // 生成人行道Mesh并累加
+                    break;
+                }
+                default: // 默认情况
+                {
+                    lane_section_mesh += *GenerateTesselated(lane_pair.second, s_current, s_until); // 生成细分网格并累加
+                    break;
+                }
+                }
+                auto it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 查找当前车道的索引
+                if (it == redirections.end()) { // 如果未找到
+                    redirections.push_back(lane_pair.first); // 将车道索引添加到重定向列表中
+                    it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 再次查找以获取迭代器
+                }
+
+                size_t PosToAdd = it - redirections.begin(); // 计算要添加的位置
+                if (mesh_uptr_list[lane_pair.second.GetType()].size() <= PosToAdd) { // 如果该类型的Mesh数量不足
+                    mesh_uptr_list[lane_pair.second.GetType()].push_back(std::make_unique<Mesh>(lane_section_mesh)); // 新建一个Mesh并添加
+                }
+                else {
+                    uint32_t verticesinwidth = SelectVerticesInWidth(vertices_in_width, lane_pair.second.GetType()); // 根据车道类型选择宽度方向的顶点数
+                    (mesh_uptr_list[lane_pair.second.GetType()][PosToAdd])->ConcatMesh(lane_section_mesh, verticesinwidth); // 拼接当前Mesh到已有Mesh中
+                }
             }
-          }
-          s_current = s_until; // 更新当前s值
+            s_current = s_until; // 更新当前s值
         }
         if (s_end - s_current > EPSILON) { // 如果还有剩余的段落
-          for (auto &&lane_pair : lane_section.GetLanes()) { // 遍历车道段中的每个车道
-            Mesh lane_section_mesh; // 创建一个Mesh对象
-            
-            switch(lane_pair.second.GetType()) // 根据车道类型生成Mesh
-            {
-              case road::Lane::LaneType::Driving: // 驾驶车道
-              case road::Lane::LaneType::Parking: // 停车车道
-              case road::Lane::LaneType::Bidirectional: // 双向车道
-              {
-                lane_section_mesh += *GenerateTesselated(lane_pair.second, s_current, s_end); // 生成细分网格并累加
-                break;
-              }
-              case road::Lane::LaneType::Shoulder: // 路肩
-              case road::Lane::LaneType::Sidewalk: // 人行道
-              case road::Lane::LaneType::Biking: // 自行车道
-              {
-                lane_section_mesh += *GenerateSidewalk(lane_pair.second, s_current, s_end); // 生成人行道Mesh并累加
-                break;
-              }
-              default: // 默认情况
-              {
-                lane_section_mesh += *GenerateTesselated(lane_pair.second, s_current, s_end); // 生成细分网格并累加
-                break;
-              }
-            }
+            for (auto&& lane_pair : lane_section.GetLanes()) { // 遍历车道段中的每个车道
+                Mesh lane_section_mesh; // 创建一个Mesh对象
 
-            auto it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 查找当前车道的索引
-            if (it == redirections.end()) { // 如果未找到该车道索引
-              redirections.push_back(lane_pair.first); // 将车道索引添加到重定向列表中
-              it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 再次查找以获取迭代器
-            }
+                switch (lane_pair.second.GetType()) // 根据车道类型生成Mesh
+                {
+                case road::Lane::LaneType::Driving: // 驾驶车道
+                case road::Lane::LaneType::Parking: // 停车车道
+                case road::Lane::LaneType::Bidirectional: // 双向车道
+                {
+                    lane_section_mesh += *GenerateTesselated(lane_pair.second, s_current, s_end); // 生成细分网格并累加
+                    break;
+                }
+                case road::Lane::LaneType::Shoulder: // 路肩
+                case road::Lane::LaneType::Sidewalk: // 人行道
+                case road::Lane::LaneType::Biking: // 自行车道
+                {
+                    lane_section_mesh += *GenerateSidewalk(lane_pair.second, s_current, s_end); // 生成人行道Mesh并累加
+                    break;
+                }
+                default: // 默认情况
+                {
+                    lane_section_mesh += *GenerateTesselated(lane_pair.second, s_current, s_end); // 生成细分网格并累加
+                    break;
+                }
+                }
 
-            size_t PosToAdd = it - redirections.begin(); // 计算要添加的位置
+                auto it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 查找当前车道的索引
+                if (it == redirections.end()) { // 如果未找到该车道索引
+                    redirections.push_back(lane_pair.first); // 将车道索引添加到重定向列表中
+                    it = std::find(redirections.begin(), redirections.end(), lane_pair.first); // 再次查找以获取迭代器
+                }
 
-            if (mesh_uptr_list[lane_pair.second.GetType()].size() <= PosToAdd) { // 如果该类型的Mesh数量不足
-              mesh_uptr_list[lane_pair.second.GetType()].push_back(std::make_unique<Mesh>(lane_section_mesh)); // 新建一个Mesh并添加到列表中
-            } else {
-              *(mesh_uptr_list[lane_pair.second.GetType()][PosToAdd]) += lane_section_mesh; // 将当前Mesh累加到已有Mesh中
+                size_t PosToAdd = it - redirections.begin(); // 计算要添加的位置
+
+                if (mesh_uptr_list[lane_pair.second.GetType()].size() <= PosToAdd) { // 如果该类型的Mesh数量不足
+                    mesh_uptr_list[lane_pair.second.GetType()].push_back(std::make_unique<Mesh>(lane_section_mesh)); // 新建一个Mesh并添加到列表中
+                }
+                else {
+                    *(mesh_uptr_list[lane_pair.second.GetType()][PosToAdd]) += lane_section_mesh; // 将当前Mesh累加到已有Mesh中
+                }
             }
+        }
+    }
+    return mesh_uptr_list;
+}
 
   std::vector<std::unique_ptr<Mesh>> MeshFactory::GenerateWallsWithMaxLen(
       const road::Road &road) const { // 根据给定的道路生成最大长度的墙体

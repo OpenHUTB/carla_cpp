@@ -13,15 +13,15 @@ struct CARLA_API FBoundingBox
 {
   GENERATED_BODY()
 
-  /// Origin of the bounding box relative to its owner.
+  /// 边界框相对于其所有者的原点
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FVector Origin = {0.0f, 0.0f, 0.0f};
 
-  /// Radii extent of the bounding box.
+  /// 边界框的半径范围
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FVector Extent = {0.0f, 0.0f, 0.0f};
 
-  /// Rotation of the bounding box.
+  /// 边界框的旋转
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FRotator Rotation = {0.0f, 0.0f, 0.0f};
 };

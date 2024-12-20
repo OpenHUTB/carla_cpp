@@ -5,20 +5,21 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
-
+// 包含非复制类的定义，可能用于限制类对象不能被复制，以确保某些特定的语义和资源管理逻辑
+#include "carla/NonCopyable.h"
 #include "carla/NonCopyable.h" // 包含非复制类的定义
 #include "carla/Time.h" // 包含时间相关的类定义
 #include "carla/Buffer.h" // 包含缓冲区类的定义
-
+// 引入Boost库中asio模块的io_context类，用于管理异步I/O操作的上下文环境
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/post.hpp>
-
+// 包含原子操作类，用于实现多线程环境下对变量的原子性操作，保证数据的一致性和并发安全
 #include <atomic> // 包含原子操作类
 
 namespace carla {
 namespace multigpu {
-  
+  // 前置声明一个名为Primary的类，这个类在其他地方定义，意味着此处只是告知编译器有这么一个类存在，后续会在别处完整定义它，并且它与Listener类存在交互关系
   class Primary; // 声明一个名为Primary的类，这个类在其他地方定义，与Listener类有交互
 
   /// 警告：在它的io_context停止之前，这个服务器不能被销毁。

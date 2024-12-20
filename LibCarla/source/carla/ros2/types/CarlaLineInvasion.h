@@ -23,9 +23,7 @@
 #define _FAST_DDS_GENERATED_CARLA_MSGS_MSG_CARLALINEINVASION_H_
 
 #include "Header.h"
-
 #include <fastrtps/utils/fixed_size_string.hpp>
-
 #include <stdint.h>
 #include <array>
 #include <string>
@@ -33,30 +31,40 @@
 #include <map>
 #include <bitset>
 
+// 根据_WIN32宏定义来处理动态链接库相关的导出导入声明（Windows平台下）
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #define eProsima_user_DllExport __declspec( dllexport )
+// 如果定义了EPROSIMA_USER_DLL_EXPORT，表示当前是作为动态链接库导出符号，使用__declspec(dllexport)声明
 #else
 #define eProsima_user_DllExport
+// 否则不做额外处理，通常是在使用该动态链接库时（导入符号情况）
 #endif  // EPROSIMA_USER_DLL_EXPORT
 #else
 #define eProsima_user_DllExport
+// 非Windows平台下，暂不做特殊处理，这里只是定义一个空的宏替换，方便代码跨平台编写时统一语法结构
 #endif  // _WIN32
 
+// 同样根据_WIN32和相关宏定义来处理CarlaLineInvasion相关的动态链接库API声明（Windows平台下）
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #if defined(CarlaLineInvasion_SOURCE)
 #define CarlaLineInvasion_DllAPI __declspec( dllexport )
+// 如果定义了CarlaLineInvasion_SOURCE，说明是在定义该类所在的源文件中，作为导出接口使用__declspec(dllexport)
 #else
 #define CarlaLineInvasion_DllAPI __declspec( dllimport )
+// 否则就是在使用该类的其他地方，作为导入接口使用__declspec(dllimport)
 #endif // CarlaLineInvasion_SOURCE
 #else
 #define CarlaLineInvasion_DllAPI
+// 未定义相关导出宏时，不做特殊处理，类似前面的情况，便于跨平台代码结构统一
 #endif  // EPROSIMA_USER_DLL_EXPORT
 #else
 #define CarlaLineInvasion_DllAPI
+// 非Windows平台下，同样暂不做特殊处理
 #endif // _WIN32
 
+// eprosima命名空间，可能包含了一些和该库相关的基础功能等，这里先声明fastcdr命名空间下的Cdr类，后续应该会用于序列化反序列化操作相关
 namespace eprosima {
 namespace fastcdr {
 class Cdr;
@@ -65,178 +73,204 @@ class Cdr;
 
 namespace carla_msgs {
     namespace msg {
+        // 定义车道标线类型的枚举值，分别表示其他类型、虚线、实线
         const int32_t LANE_MARKING_OTHER = 0;
         const int32_t LANE_MARKING_BROKEN = 1;
         const int32_t LANE_MARKING_SOLID = 2;
+
         /*!
-         * @brief This class represents the structure LaneInvasionEvent defined by the user in the IDL file.
+         * @brief 此类表示用户在IDL文件中定义的LaneInvasionEvent结构。
          * @ingroup CARLALINEINVASION
+         * 这个类表示在IDL文件中用户定义的LaneInvasionEvent结构，通常用于处理车道入侵相关的消息事件，是整个消息结构体的主体类定义
          */
         class LaneInvasionEvent
         {
         public:
             /*!
-             * @brief Default constructor.
+             * @brief 默认构造函数。
+             * 默认构造函数，用于创建一个默认初始化状态的LaneInvasionEvent对象
              */
             eProsima_user_DllExport LaneInvasionEvent();
 
             /*!
-             * @brief Default destructor.
+             * @brief 默认析构函数。
+             * 默认析构函数，用于释放该对象占用的资源等清理操作
              */
             eProsima_user_DllExport ~LaneInvasionEvent();
 
             /*!
-             * @brief Copy constructor.
-             * @param x Reference to the object carla_msgs::msg::LaneInvasionEvent that will be copied.
+             * @brief 拷贝构造函数。
+             * @param x 要被拷贝的carla_msgs::msg::LaneInvasionEvent对象的引用。
+             * 拷贝构造函数，用于根据已有的LaneInvasionEvent对象创建一个新的副本，参数x是要拷贝的对象引用
              */
             eProsima_user_DllExport LaneInvasionEvent(
                     const LaneInvasionEvent& x);
 
             /*!
-             * @brief Move constructor.
-             * @param x Reference to the object carla_msgs::msg::LaneInvasionEvent that will be copied.
+             * @brief 移动构造函数。
+             * @param x 要被拷贝的carla_msgs::msg::LaneInvasionEvent对象的引用。
+             * 移动构造函数，用于将一个LaneInvasionEvent对象的资源所有权转移给新创建的对象，参数x是要移动的对象引用，相比拷贝构造更高效，适用于临时对象等情况
              */
             eProsima_user_DllExport LaneInvasionEvent(
                     LaneInvasionEvent&& x) noexcept;
 
             /*!
-             * @brief Copy assignment.
-             * @param x Reference to the object carla_msgs::msg::LaneInvasionEvent that will be copied.
+             * @brief 拷贝赋值运算符重载。
+             * @param x 要被拷贝的carla_msgs::msg::LaneInvasionEvent对象的引用。
+             * 拷贝赋值运算符重载，用于将一个LaneInvasionEvent对象的值拷贝给另一个已存在的对象，参数x是要拷贝的对象引用
              */
             eProsima_user_DllExport LaneInvasionEvent& operator =(
                     const LaneInvasionEvent& x);
 
             /*!
-             * @brief Move assignment.
-             * @param x Reference to the object carla_msgs::msg::LaneInvasionEvent that will be copied.
+             * @brief 移动赋值运算符重载。
+             * @param x 要被拷贝的carla_msgs::msg::LaneInvasionEvent对象的引用。
+             * 移动赋值运算符重载，用于将一个LaneInvasionEvent对象的资源所有权转移给另一个已存在的对象，参数x是要移动的对象引用
              */
             eProsima_user_DllExport LaneInvasionEvent& operator =(
                     LaneInvasionEvent&& x) noexcept;
 
             /*!
-             * @brief Comparison operator.
-             * @param x carla_msgs::msg::LaneInvasionEvent object to compare.
+             * @brief 相等比较运算符重载。
+             * @param x 用于比较的carla_msgs::msg::LaneInvasionEvent对象。
+             * 相等比较运算符重载，用于比较两个LaneInvasionEvent对象是否相等，参数x是要比较的对象，返回布尔值表示是否相等
              */
             eProsima_user_DllExport bool operator ==(
                     const LaneInvasionEvent& x) const;
 
             /*!
-             * @brief Comparison operator.
-             * @param x carla_msgs::msg::LaneInvasionEvent object to compare.
+             * @brief 不等比较运算符重载。
+             * @param x 用于比较的carla_msgs::msg::LaneInvasionEvent对象。
+             * 不等比较运算符重载，用于比较两个LaneInvasionEvent对象是否不相等，参数x是要比较的对象，返回布尔值表示是否不相等
              */
-            eProsima_user_DllExport bool operator !=(
+            eProsima_user_DllExport bool operator!=(
                     const LaneInvasionEvent& x) const;
 
             /*!
-             * @brief This function copies the value in member header
-             * @param _header New value to be copied in member header
+             * @brief 此函数将成员header中的值进行拷贝。
+             * @param _header 要拷贝到成员header中的新值。
+             * 该函数用于将传入的std_msgs::msg::Header类型的对象值拷贝到本类的成员变量m_header中，参数_header是要拷贝的新值
              */
             eProsima_user_DllExport void header(
                     const std_msgs::msg::Header& _header);
 
             /*!
-             * @brief This function moves the value in member header
-             * @param _header New value to be moved in member header
+             * @brief 此函数将成员header中的值进行移动（转移资源所有权）。
+             * @param _header 要移动到成员header中的新值。
+             * 该函数用于将传入的std_msgs::msg::Header类型的对象值移动（转移资源所有权）到本类的成员变量m_header中，参数_header是要移动的新值
              */
             eProsima_user_DllExport void header(
                     std_msgs::msg::Header&& _header);
 
             /*!
-             * @brief This function returns a constant reference to member header
-             * @return Constant reference to member header
+             * @brief 此函数返回成员header的常量引用。
+             * @return 成员header的常量引用。
+             * 该函数返回成员变量m_header的常量引用，用于外部以只读方式访问该成员变量，不会修改其值
              */
             eProsima_user_DllExport const std_msgs::msg::Header& header() const;
 
             /*!
-             * @brief This function returns a reference to member header
-             * @return Reference to member header
+             * @brief 此函数返回成员header的引用。
+             * @return 成员header的引用。
+             * 该函数返回成员变量m_header的普通引用，外部可以通过该引用修改成员变量的值
              */
             eProsima_user_DllExport std_msgs::msg::Header& header();
+
             /*!
-             * @brief This function copies the value in member crossed_lane_markings
-             * @param _crossed_lane_markings New value to be copied in member crossed_lane_markings
+             * @brief 此函数将成员crossed_lane_markings中的值进行拷贝。
+             * @param _crossed_lane_markings 要拷贝到成员crossed_lane_markings中的新值。
+             * 该函数用于将传入的std::vector<int32_t>类型的对象值拷贝到本类的成员变量m_crossed_lane_markings中，参数_crossed_lane_markings是要拷贝的新值
              */
             eProsima_user_DllExport void crossed_lane_markings(
                     const std::vector<int32_t>& _crossed_lane_markings);
 
             /*!
-             * @brief This function moves the value in member crossed_lane_markings
-             * @param _crossed_lane_markings New value to be moved in member crossed_lane_markings
+             * @brief 此函数将成员crossed_lane_markings中的值进行移动（转移资源所有权）。
+             * @param _crossed_lane_markings 要移动到成员crossed_lane_markings中的新值。
+             * 该函数用于将传入的std::vector<int32_t>类型的对象值移动（转移资源所有权）到本类的成员变量m_crossed_lane_markings中，参数_crossed_lane_markings是要移动的新值
              */
             eProsima_user_DllExport void crossed_lane_markings(
                     std::vector<int32_t>&& _crossed_lane_markings);
 
             /*!
-             * @brief This function returns a constant reference to member crossed_lane_markings
-             * @return Constant reference to member crossed_lane_markings
+             * @brief 此函数返回成员crossed_lane_markings的常量引用。
+             * @return 成员crossed_lane_markings的常量引用。
+             * 该函数返回成员变量m_crossed_lane_markings的常量引用，用于外部以只读方式访问该成员变量，不会修改其值
              */
             eProsima_user_DllExport const std::vector<int32_t>& crossed_lane_markings() const;
 
             /*!
-             * @brief This function returns a reference to member crossed_lane_markings
-             * @return Reference to member crossed_lane_markings
+             * @brief 此函数返回成员crossed_lane_markings的引用。
+             * @return 成员crossed_lane_markings的引用。
+             * 该函数返回成员变量m_crossed_lane_markings的普通引用，外部可以通过该引用修改成员变量的值
              */
             eProsima_user_DllExport std::vector<int32_t>& crossed_lane_markings();
 
             /*!
-            * @brief This function returns the maximum serialized size of an object
-            * depending on the buffer alignment.
-            * @param current_alignment Buffer alignment.
-            * @return Maximum serialized size.
+            * @brief 此函数根据缓冲区对齐方式返回对象的最大序列化大小。
+            * @param current_alignment 缓冲区对齐方式。
+            * @return 最大序列化大小。
+            * 该静态函数用于根据给定的缓冲区对齐方式（参数current_alignment），计算并返回该对象最大的序列化尺寸，常用于确定存储该对象序列化数据所需的缓冲区大小等操作
             */
             eProsima_user_DllExport static size_t getMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function returns the serialized size of a data depending on the buffer alignment.
-             * @param data Data which is calculated its serialized size.
-             * @param current_alignment Buffer alignment.
-             * @return Serialized size.
+             * @brief 此函数根据缓冲区对齐方式返回数据的序列化大小。
+             * @param data 要计算其序列化大小的数据。
+             * @param current_alignment 缓冲区对齐方式。
+             * @return 序列化大小。
+             * 该静态函数用于根据给定的缓冲区对齐方式（参数current_alignment），计算并返回指定数据（参数data）的序列化尺寸，用于精确知道某个具体对象序列化后的数据大小情况
              */
             eProsima_user_DllExport static size_t getCdrSerializedSize(
                     const carla_msgs::msg::LaneInvasionEvent& data,
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function serializes an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief 此函数使用CDR序列化方式对对象进行序列化。
+             * @param cdr CDR序列化对象。
+             * 该函数用于使用CDR序列化方式将本对象进行序列化，参数cdr是用于执行序列化操作的对象，通常会按照特定的格式将对象的数据转换为字节流等形式以便存储或传输
              */
             eProsima_user_DllExport void serialize(
                     eprosima::fastcdr::Cdr& cdr) const;
 
             /*!
-             * @brief This function deserializes an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief 此函数使用CDR序列化方式对对象进行反序列化。
+             * @param cdr CDR序列化对象。
+             * 该函数用于使用CDR反序列化方式将接收到的字节流等数据还原为该对象，参数cdr是包含了序列化数据以及相关操作的对象，通过它来解析数据并填充到本对象的各个成员变量中
              */
             eProsima_user_DllExport void deserialize(
                     eprosima::fastcdr::Cdr& cdr);
 
             /*!
-             * @brief This function returns the maximum serialized size of the Key of an object
-             * depending on the buffer alignment.
-             * @param current_alignment Buffer alignment.
-             * @return Maximum serialized size.
+             * @brief 此函数根据缓冲区对齐方式返回对象的键（Key）的最大序列化大小。
+             * @param current_alignment 缓冲区对齐方式。
+             * @return 最大序列化大小。
+             * 该静态函数用于根据给定的缓冲区对齐方式（参数current_alignment），计算并返回该对象的键（Key，如果有的话）最大的序列化尺寸，常用于在一些基于键值查找等相关操作场景下确定存储键序列化数据所需的缓冲区大小等
              */
             eProsima_user_DllExport static size_t getKeyMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function tells you if the Key has been defined for this type
+             * @brief 此函数告知是否已为该类型定义了键（Key）。
+             * 该静态函数用于判断该类型是否已经定义了键（Key），返回布尔值表示是否已定义
              */
             eProsima_user_DllExport static bool isKeyDefined();
 
             /*!
-             * @brief This function serializes the key members of an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief 此函数使用CDR序列化方式对对象的键（Key）成员进行序列化。
+             * @param cdr CDR序列化对象。
+             * 该函数用于使用CDR序列化方式将本对象的键（Key，如果有的话）相关成员进行序列化，参数cdr是用于执行序列化操作的对象
              */
             eProsima_user_DllExport void serializeKey(
                     eprosima::fastcdr::Cdr& cdr) const;
 
         private:
             std_msgs::msg::Header m_header;
+            // 用于存储车辆越过的车道标线类型的向量，每个元素是前面定义的车道标线类型枚举值之一，表示对应的标线被越过了
             std::vector<int32_t> m_crossed_lane_markings;
         };
     } // namespace msg
 } // namespace carla_msgs
 
-#endif // _FAST_DDS_GENERATED_CARLA_MSGS_MSG_CARLALINEINVASION_H_
+#endif 

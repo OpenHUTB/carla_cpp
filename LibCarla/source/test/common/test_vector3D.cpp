@@ -12,6 +12,7 @@
 
 using namespace carla::geom;
 
+// 统一测试向量归一化后的结果值
 TEST(vector3D, make_unit_vec) {
   ASSERT_EQ(Vector3D(10,0,0).MakeUnitVector(), Vector3D(1,0,0));//测试向量 (10,0,0) 归一化后是否等于 (1,0,0)
   ASSERT_NE(Vector3D(10,0,0).MakeUnitVector(), Vector3D(0,1,0));//测试向量 (10,0,0) 归一化后是否不等于 (0,1,0)

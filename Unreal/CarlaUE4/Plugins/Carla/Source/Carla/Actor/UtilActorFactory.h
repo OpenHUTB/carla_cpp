@@ -11,14 +11,14 @@
 
 #include "UtilActorFactory.generated.h"
 
-/// Factory in charge of spawning static meshes. This factory is able to spawn
-/// any mesh in content.
+/// 负责生成静态网格体的工厂。该工厂能够生成
+/// 内容中的任何网格
 UCLASS()
 class CARLA_API AUtilActorFactory : public ACarlaActorFactory
 {
   GENERATED_BODY()
 
-  /// Retrieve the definitions of the static mesh actor
+  /// 获取静态网格体演员的定义
   TArray<FActorDefinition> GetDefinitions() final;
 
   FActorSpawnResult SpawnActor(

@@ -21,32 +21,31 @@
 
 static constexpr float CARLA_SETTINGS_MAX_SCALE_SIZE = 50.0f;
 
-/// quality settings configuration between runs
+/// 运行之间的画质设置配置
 EQualityLevel UCarlaSettingsDelegate::AppliedLowPostResetQualityLevel = EQualityLevel::Epic;
-
+// 默认的低画质设置
 UCarlaSettingsDelegate::UCarlaSettingsDelegate()
-  : ActorSpawnedDelegate(FOnActorSpawned::FDelegate::CreateUObject(
+  : ActorSpawnedDelegate(FOnActorSpawned::FDelegate::CreateUObject(// 在构造函数中设置演员生成委托
         this,
         &UCarlaSettingsDelegate::OnActorSpawned)) {}
 
-void UCarlaSettingsDelegate::Reset()
+void UCarlaSettingsDelegate::Reset()// 重置设置代理
 {
-  AppliedLowPostResetQualityLevel = EQualityLevel::Epic;
+  AppliedLowPostResetQualityLevel = EQualityLevel::Epic;// 重置画质级别
 }
 
 void UCarlaSettingsDelegate::RegisterSpawnHandler(UWorld *InWorld)
 {
   CheckCarlaSettings(InWorld);
-  InWorld->AddOnActorSpawnedHandler(ActorSpawnedDelegate);
+  InWorld->AddOnActorSpawnedHandler(ActorSpawnedDelegate);// 添加演员生成处理器
 }
 
 void UCarlaSettingsDelegate::OnActorSpawned(AActor *InActor)
 {
   check(CarlaSettings != nullptr);
   if (InActor != nullptr && IsValid(InActor) && !InActor->IsPendingKill() &&
-      !InActor->IsA<AInstancedFoliageActor>() && // foliage culling is
-                                                 // controlled per instance
-      !InActor->IsA<ALandscape>() && // dont touch landscapes nor roads
+      !InActor->IsA<AInstancedFoliageActor>() && // 植被剔除由每个实例控制
+      !InActor->IsA<ALandscape>() && // 不要触碰景观和道路
       !InActor->ActorHasTag(UCarlaSettings::CARLA_ROAD_TAG) &&
       !InActor->ActorHasTag(UCarlaSettings::CARLA_SKY_TAG))
   {
@@ -55,10 +54,10 @@ void UCarlaSettingsDelegate::OnActorSpawned(AActor *InActor)
     switch (CarlaSettings->GetQualityLevel())
     {
       case EQualityLevel::Low: {
-        // apply settings for this actor for the current quality level
+        // 将设置应用于此参与者的当前画质级别
         float dist = CarlaSettings->LowStaticMeshMaxDrawDistance;
         const float maxscale = InActor->GetActorScale().GetMax();
-        if (maxscale > CARLA_SETTINGS_MAX_SCALE_SIZE)
+        if (maxscale > CARLA_SETTINGS_MAX_SCALE_SIZE)// 如果缩放尺寸超过最大值
         {
           dist *= 100.0f;
         }
@@ -70,7 +69,7 @@ void UCarlaSettingsDelegate::OnActorSpawned(AActor *InActor)
   }
 }
 
-void UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()
+void UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()应用画质级别（重启后）
 {
   CheckCarlaSettings(nullptr);
   UWorld *InWorld = CarlaSettings->GetWorld();
@@ -82,21 +81,20 @@ void UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()
     return;
   }
 
-  // enable temporal changes of quality (prevent saving last quality settings to file)
+  // 启用画质的临时变化（防止将最后的画质设置保存到文件）
   Scalability::ToggleTemporaryQualityLevels(true);
 
   switch (QualityLevel)
   {
     case EQualityLevel::Low:
     {
-      // execute tweaks for quality
+      // 执行画质调整
       LaunchLowQualityCommands(InWorld);
-      // iterate all directional lights, deactivate shadows
+      // 迭代遍历所有方向光，停用阴影
       SetAllLights(InWorld, CarlaSettings->LowLightFadeDistance, false, true);
-      // Set all the roads the low quality materials
+      // 将所有道路设置为低质量材料
       SetAllRoads(InWorld, CarlaSettings->LowRoadPieceMeshMaxDrawDistance, CarlaSettings->LowRoadMaterials);
-      // Set all actors with static meshes a max disntace configured in the
-      // global settings for the low quality
+      // 为所有具有静态网格的参与者设置全局设置中配置的最大距离，以实现低质量画质
       SetAllActorsDrawDistance(InWorld, CarlaSettings->LowStaticMeshMaxDrawDistance);
       // Disable all post process volumes
       SetPostProcessEffectsEnabled(InWorld, false);
@@ -106,11 +104,11 @@ void UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()
       UE_LOG(LogCarla, Warning, TEXT("Unknown quality level, falling back to default."));
     case EQualityLevel::Epic:
     {
-      LaunchEpicQualityCommands(InWorld);
-      SetAllLights(InWorld, 0.0f, true, false);
-      SetAllRoads(InWorld, 0, CarlaSettings->EpicRoadMaterials);
-      SetAllActorsDrawDistance(InWorld, 0);
-      SetPostProcessEffectsEnabled(InWorld, true);
+      LaunchEpicQualityCommands(InWorld);// 启动史诗画质命令
+      SetAllLights(InWorld, 0.0f, true, false);// 设置所有灯光
+      SetAllRoads(InWorld, 0, CarlaSettings->EpicRoadMaterials);// 设置所有道路
+      SetAllActorsDrawDistance(InWorld, 0); // 设置所有演员的绘制距离
+      SetPostProcessEffectsEnabled(InWorld, true);// 启用后处理效果
       break;
     }
   }
@@ -121,20 +119,20 @@ void UCarlaSettingsDelegate::ApplyQualityLevelPreRestart()
 {
   CheckCarlaSettings(nullptr);
   UWorld *InWorld = CarlaSettings->GetWorld();
-  if (!IsValid(InWorld) || InWorld->IsPendingKill())
+  if (!IsValid(InWorld) || InWorld->IsPendingKill())// 如果世界无效或即将销毁
   {
     return;
   }
-  // enable or disable world and hud rendering
+  // 启用或禁用世界和头显渲染
   APlayerController *playercontroller = UGameplayStatics::GetPlayerController(InWorld, 0);
   if (playercontroller)
   {
-    ULocalPlayer *player = playercontroller->GetLocalPlayer();
-    if (player)
+    ULocalPlayer *player = playercontroller->GetLocalPlayer();// 获取本地玩家
+    if (player) // 如果本地玩家有效
     {
-      player->ViewportClient->bDisableWorldRendering = CarlaSettings->bDisableRendering;
+      player->ViewportClient->bDisableWorldRendering = CarlaSettings->bDisableRendering;// 设置是否禁用世界渲染
     }
-    // if we already have a hud class:
+    // 如果我们已经有一个头显类：
     AHUD *hud = playercontroller->GetHUD();
     if (hud)
     {
@@ -146,7 +144,7 @@ void UCarlaSettingsDelegate::ApplyQualityLevelPreRestart()
 
 UWorld *UCarlaSettingsDelegate::GetLocalWorld()
 {
-  return GEngine->GetWorldFromContextObjectChecked(this);
+  return GEngine->GetWorldFromContextObjectChecked(this);// 从上下文对象获取世界
 }
 
 void UCarlaSettingsDelegate::CheckCarlaSettings(UWorld *world)
@@ -160,20 +158,20 @@ void UCarlaSettingsDelegate::CheckCarlaSettings(UWorld *world)
     world = GetLocalWorld();
   }
   check(world != nullptr);
-  auto GameInstance  = Cast<UCarlaGameInstance>(world->GetGameInstance());
-  check(GameInstance != nullptr);
+  auto GameInstance  = Cast<UCarlaGameInstance>(world->GetGameInstance());// 将游戏实例转换为Carla游戏实例
+  check(GameInstance != nullptr); // 确保游戏实例不为空
   CarlaSettings = &GameInstance->GetCarlaSettings();
   check(CarlaSettings != nullptr);
 }
 
-void UCarlaSettingsDelegate::LaunchLowQualityCommands(UWorld *world) const
+void UCarlaSettingsDelegate::LaunchLowQualityCommands(UWorld *world) const// 启动低画质命令
 {
   if (!world)
   {
     return;
   }
 
-  // launch commands to lower quality settings
+  // 启动命令以降低画质设置
   GEngine->Exec(world, TEXT("r.DefaultFeature.MotionBlur 0"));
   GEngine->Exec(world, TEXT("r.DefaultFeature.Bloom 0"));
   GEngine->Exec(world, TEXT("r.DefaultFeature.AmbientOcclusion 0"));
@@ -201,13 +199,13 @@ void UCarlaSettingsDelegate::LaunchLowQualityCommands(UWorld *world) const
   GEngine->Exec(world, TEXT("r.SSR.MaxRoughness 0.1"));
   GEngine->Exec(world, TEXT("r.AllowOcclusionQueries 1"));
   GEngine->Exec(world, TEXT("r.SSR 0"));
-  // GEngine->Exec(world,TEXT("r.StencilForLODDither 1")); //readonly
-  GEngine->Exec(world, TEXT("r.EarlyZPass 2")); // transparent before opaque
+  // GEngine->Exec(world,TEXT("r.StencilForLODDither 1")); // 只读
+  GEngine->Exec(world, TEXT("r.EarlyZPass 2")); // 透明先于不透明
   GEngine->Exec(world, TEXT("r.EarlyZPassMovable 1"));
   GEngine->Exec(world, TEXT("Foliage.DitheredLOD 0"));
-  // GEngine->Exec(world,TEXT("r.ForwardShading 0")); //readonly
+  // GEngine->Exec(world,TEXT("r.ForwardShading 0")); // 只读
   GEngine->Exec(world, TEXT("sg.PostProcessQuality 0"));
-  // GEngine->Exec(world,TEXT("r.ViewDistanceScale 0.1")); //--> too extreme
+  // GEngine->Exec(world,TEXT("r.ViewDistanceScale 0.1")); //--> 太过极端
   // (far clip too short)
   GEngine->Exec(world, TEXT("sg.ShadowQuality 0"));
   GEngine->Exec(world, TEXT("sg.TextureQuality 0"));
@@ -218,7 +216,7 @@ void UCarlaSettingsDelegate::LaunchLowQualityCommands(UWorld *world) const
   GEngine->Exec(world, TEXT("r.TranslucentLightingVolume 0"));
   GEngine->Exec(world, TEXT("r.LightShaftDownSampleFactor 4"));
   GEngine->Exec(world, TEXT("r.OcclusionQueryLocation 1"));
-  // GEngine->Exec(world,TEXT("r.BasePassOutputsVelocity 0")); //--> readonly
+  // GEngine->Exec(world,TEXT("r.BasePassOutputsVelocity 0")); //--> 只读
   // GEngine->Exec(world,TEXT("r.DetailMode 0")); //-->will change to lods 0
   GEngine->Exec(world, TEXT("r.DefaultFeature.AutoExposure 1"));
 
@@ -317,9 +315,7 @@ void UCarlaSettingsDelegate::SetActorComponentsDrawDistance(
 
 void UCarlaSettingsDelegate::SetAllActorsDrawDistance(UWorld *world, const float max_draw_distance) const
 {
-  /// @TODO: use semantics to grab all actors by type
-  /// (vehicles,ground,people,props) and set different distances configured in
-  /// the global properties
+  /// @TODO: 使用语义按类型（车辆、地面、人物、道具）抓取所有参与者，并设置全局属性中配置的不同距离
   if (!world || !IsValid(world) || world->IsPendingKill())
   {
     return;
@@ -330,7 +326,7 @@ void UCarlaSettingsDelegate::SetAllActorsDrawDistance(UWorld *world, const float
       return;
     }
     TArray<AActor *> actors;
-    // set the lower quality - max draw distance
+    // 设置较低画质 - 最大绘制距离
     UGameplayStatics::GetAllActorsOfClass(world, AActor::StaticClass(), actors);
     for (int32 i = 0; i < actors.Num(); i++)
     {
@@ -338,7 +334,7 @@ void UCarlaSettingsDelegate::SetAllActorsDrawDistance(UWorld *world, const float
       if (!IsValid(actor) || actor->IsPendingKill() ||
       actor->IsA<AInstancedFoliageActor>() ||   // foliage culling is controlled
                                                 // per instance
-      actor->IsA<ALandscape>() ||   // dont touch landscapes nor roads
+      actor->IsA<ALandscape>() ||   // 不要触碰景观和道路
       actor->ActorHasTag(UCarlaSettings::CARLA_ROAD_TAG) ||
       actor->ActorHasTag(UCarlaSettings::CARLA_SKY_TAG))
       {
@@ -393,7 +389,7 @@ void UCarlaSettingsDelegate::LaunchEpicQualityCommands(UWorld *world) const
   GEngine->Exec(world, TEXT("r.SceneColorFringeQuality 1"));
   GEngine->Exec(world, TEXT("r.FastBlurThreshold 100"));
   GEngine->Exec(world, TEXT("r.SSR.MaxRoughness -1"));
-  // GEngine->Exec(world,TEXT("r.StencilForLODDither 0")); //readonly
+  // GEngine->Exec(world,TEXT("r.StencilForLODDither 0")); // 只读
   GEngine->Exec(world, TEXT("r.EarlyZPass 3"));
   GEngine->Exec(world, TEXT("r.EarlyZPassMovable 1"));
   GEngine->Exec(world, TEXT("Foliage.DitheredLOD 1"));
@@ -409,7 +405,7 @@ void UCarlaSettingsDelegate::LaunchEpicQualityCommands(UWorld *world) const
   GEngine->Exec(world, TEXT("r.TranslucentLightingVolume 1"));
   GEngine->Exec(world, TEXT("r.LightShaftDownSampleFactor 2"));
   // GEngine->Exec(world,TEXT("r.OcclusionQueryLocation 0"));
-  // GEngine->Exec(world,TEXT("r.BasePassOutputsVelocity 0")); //readonly
+  // GEngine->Exec(world,TEXT("r.BasePassOutputsVelocity 0")); // 只读
   GEngine->Exec(world, TEXT("r.DetailMode 2"));
 }
 
@@ -436,7 +432,7 @@ void UCarlaSettingsDelegate::SetAllLights(
       {
         continue;
       }
-      // tweak directional lights
+      // 调整方向光
       ADirectionalLight *directionallight = Cast<ADirectionalLight>(actors[i]);
       if (directionallight)
       {
@@ -444,7 +440,7 @@ void UCarlaSettingsDelegate::SetAllLights(
         directionallight->SetLightFunctionFadeDistance(max_distance_fade);
         continue;
       }
-      // disable any other type of light
+      // 禁用任何其他类型的灯
       actors[i]->SetActorHiddenInGame(hide_non_directional);
     }
   });
