@@ -125,13 +125,22 @@ try:
     from pygame.locals import K_x
     from pygame.locals import MOUSEBUTTONDOWN
     from pygame.locals import MOUSEBUTTONUP
+# 尝试导入`pygame`模块，`pygame`是一个广泛用于Python的游戏开发和多媒体应用开发的库，在这里的应用场景可能是用于创建图形界面、
+# 处理用户输入（如键盘按键、鼠标操作等）以及进行一些简单的图形渲染和交互相关操作，为整个模拟环境提供可视化展示和交互的基础功能。
+# 同时从`pygame.locals`模块中导入一系列表示键盘按键状态和鼠标按键状态的常量，这些常量对应了键盘上不同按键对应的代码值以及鼠标按键的相关代码值，
+# 后续代码可以通过检测这些常量来判断用户具体按下了哪个按键或者操作了哪个鼠标按键，从而执行相应的程序逻辑，例如根据按键来控制车辆的操作、切换视图等。
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
+# 如果导入`pygame`模块失败，即出现`ImportError`异常，说明`pygame`包没有安装或者安装出现问题，
+# 此时抛出一个运行时错误（`RuntimeError`），提示用户需要确保`pygame`包已经正确安装，因为后续代码依赖`pygame`来实现相关的可视化、交互等功能。
 
 try:
     import numpy as np
+# 尝试导入`numpy`模块，`numpy`是Python中用于高效进行数值计算、处理多维数组以及实现各种科学计算相关功能的核心库，
+# 在很多涉及数据处理、数学运算、图像数据操作（比如处理传感器获取的图像数据等）等场景下会起到关键作用，是很多科学计算和数据处理项目中不可或缺的一部分。
 except ImportError:
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
+# 如果导入`numpy`模块失败，抛出运行时错误，提示用户需要确保`numpy`包已经安装，因为后续代码很可能会用到`numpy`提供的功能来进行相应的计算和数据处理操作。
 
 
 # ==============================================================================
