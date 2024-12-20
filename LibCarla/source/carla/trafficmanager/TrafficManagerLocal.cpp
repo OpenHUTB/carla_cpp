@@ -11,21 +11,21 @@
 #include "carla/client/detail/Simulator.h"
 
 #include "carla/trafficmanager/TrafficManagerLocal.h"
-
+// 定义在carla命名空间下的traffic_manager命名空间
 namespace carla {
 namespace traffic_manager {
-
+//引入constants::FrameMemory命名空间内的所有元素
 using namespace constants::FrameMemory;
-
+//用于本地交通管理
 TrafficManagerLocal::TrafficManagerLocal(
-  std::vector<float> longitudinal_PID_parameters,
-  std::vector<float> longitudinal_highway_PID_parameters,
-  std::vector<float> lateral_PID_parameters,
-  std::vector<float> lateral_highway_PID_parameters,
-  float perc_difference_from_limit,
-  cc::detail::EpisodeProxy &episode_proxy,
-  uint16_t &RPCportTM)
-
+  std::vector<float> longitudinal_PID_parameters,// 在高速公路场景下纵向PID控制的参数列表
+  std::vector<float> longitudinal_highway_PID_parameters,//在普通道路场景下横向PID控制的参数列表
+  std::vector<float> lateral_PID_parameters,//在普通道路场景下横向PID控制的参数列表
+  std::vector<float> lateral_highway_PID_parameters,。//在高速公路场景下横向PID控制的参数列表
+  float perc_difference_from_limit,//控制车辆行驶速度相对速度限制
+  cc::detail::EpisodeProxy &episode_proxy,//用于与模拟器中的某个情节进行交互，获取相关信息
+  uint16_t &RPCportTM)//用于网络通信等相关操作
+//处理车辆定位相关逻辑
   : longitudinal_PID_parameters(longitudinal_PID_parameters),
     longitudinal_highway_PID_parameters(longitudinal_highway_PID_parameters),
     lateral_PID_parameters(lateral_PID_parameters),
@@ -43,7 +43,7 @@ TrafficManagerLocal::TrafficManagerLocal(
                                          marked_for_removal,
                                          localization_frame,
                                          random_device)),
-
+//用于处理车辆碰撞检测、避免碰撞等相关逻辑
     collision_stage(CollisionStage(vehicle_id_list,
                                    simulation_state,
                                    buffer_map,
@@ -51,7 +51,7 @@ TrafficManagerLocal::TrafficManagerLocal(
                                    parameters,
                                    collision_frame,
                                    random_device)),
-
+//用于处理车辆与交通信号灯交互相关逻辑
     traffic_light_stage(TrafficLightStage(vehicle_id_list,
                                           simulation_state,
                                           buffer_map,
@@ -59,7 +59,7 @@ TrafficManagerLocal::TrafficManagerLocal(
                                           world,
                                           tl_frame,
                                           random_device)),
-
+//根据车辆各种状态信息制定运动计划
     motion_plan_stage(MotionPlanStage(vehicle_id_list,
                                       simulation_state,
                                       parameters,
@@ -76,13 +76,13 @@ TrafficManagerLocal::TrafficManagerLocal(
                                       control_frame,
                                       random_device,
                                       local_map)),
-
+//用于控制车辆灯光状态
     vehicle_light_stage(VehicleLightStage(vehicle_id_list,
                                           buffer_map,
                                           parameters,
                                           world,
                                           control_frame)),
-
+//处理车道选择等更复杂的交通管理逻辑
     alsm(ALSM(registered_vehicles,
               buffer_map,
               track_traffic,
@@ -96,25 +96,25 @@ TrafficManagerLocal::TrafficManagerLocal(
               traffic_light_stage,
               motion_plan_stage,
               vehicle_light_stage)),
-
+//用于网络通信
     server(TrafficManagerServer(RPCportTM, static_cast<carla::traffic_manager::TrafficManagerBase *>(this))) {
-
+//统一调整车辆相对速度限制的行驶速度
   parameters.SetGlobalPercentageSpeedDifference(perc_difference_from_limit);
-
+//表示尚未有效注册等情况
   registered_vehicles_state = -1;
-
+//加载地图数据、初始化地图结构
   SetupLocalMap();
-
+//启动交通管理相关的运行流程
   Start();
 }
-
+//模拟器交互关闭交通管理器
 TrafficManagerLocal::~TrafficManagerLocal() {
-  episode_proxy.Lock()->DestroyTrafficManager(server.port());
+  episode_proxy.Lock()->DestroyTrafficManager(server.port());//销毁交通管理器对应的服务器端口，释放相关网络资源等
   Release();
 }
-
+//可能从缓存加载地图数据，如果缓存不存在则进行地图初始化
 void TrafficManagerLocal::SetupLocalMap() {
-  const carla::SharedPtr<const cc::Map> world_map = world.GetMap();
+  const carla::SharedPtr<const cc::Map> world_map = world.GetMap();//获取世界地图的共享指针
   local_map = std::make_shared<InMemoryMap>(world_map);
 
   auto files = episode_proxy.Lock()->GetRequiredFiles("TM");
@@ -131,12 +131,12 @@ void TrafficManagerLocal::SetupLocalMap() {
     local_map->SetUp();
   }
 }
-
+ // 启动交通管理相关运行流程的函数
 void TrafficManagerLocal::Start() {
   run_traffic_manger.store(true);
   worker_thread = std::make_unique<std::thread>(&TrafficManagerLocal::Run, this);
 }
-
+//处理交通管理的各种任务，如更新车辆状态、执行阶段操作、与模拟器交互等
 void TrafficManagerLocal::Run() {
 
   localization_frame.reserve(INITIAL_SIZE);
@@ -144,7 +144,7 @@ void TrafficManagerLocal::Run() {
   tl_frame.reserve(INITIAL_SIZE);
   control_frame.reserve(INITIAL_SIZE);
   current_reserved_capacity = INITIAL_SIZE;
-
+//// 记录上一帧的序号，初始化为0，用于后续判断是否重复处理同一帧等情况
   size_t last_frame = 0;
   while (run_traffic_manger.load()) {
 
