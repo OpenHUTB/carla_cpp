@@ -2314,7 +2314,7 @@ private:
 
 
   //////////////////////////////////
-  // Implicit queue
+  //隐式队列
   //////////////////////////////////
 
   struct ImplicitProducer : public ProducerBase
@@ -2350,7 +2350,7 @@ private:
       while (index != tail) {
         if ((index & static_cast<index_t>(BLOCK_SIZE - 1)) == 0 || block == nullptr) {
           if (block != nullptr) {
-            // Free the old block
+            //释放旧块
             this->parent->add_block_to_free_list(block);
           }
 
@@ -2396,13 +2396,13 @@ private:
 #if MCDBGQ_NOLOCKFREE_IMPLICITPRODBLOCKINDEX
         debug::DebugLock lock(mutex);
 #endif
-        // Find out where we'll be inserting this block in the block index
+        //找出我们将在区块索引中插入此区块的位置
         BlockIndexEntry* idxEntry;
         if (!insert_block_index_entry<allocMode>(idxEntry, currentTailIndex)) {
           return false;
         }
 
-        // Get ahold of a new block
+        //获取新区块
         auto newBlock = this->parent->ConcurrentQueue::template requisition_block<allocMode>();
         if (newBlock == nullptr) {
           rewind_block_index_tail();
@@ -2427,7 +2427,7 @@ private:
           }
         }
 
-        // Insert the new block into the index
+        // 将新块插入索引
         idxEntry->value.store(newBlock, std::memory_order_relaxed);
 
         this->tailBlock = newBlock;
@@ -2438,7 +2438,7 @@ private:
         }
       }
 
-      // Enqueue
+      // 入队
       new ((*this->tailBlock)[currentTailIndex]) T(std::forward<U>(element));
 
       this->tailIndex.store(newTailIndex, std::memory_order_release);
@@ -2462,7 +2462,7 @@ private:
           // 确定元素所在的块
           auto entry = get_block_index_entry_for_index(index);
 
-          // Dequeue
+          // 出列
           auto block = entry->value.load(std::memory_order_relaxed);
           auto& el = *((*block)[index]);
 
@@ -2498,7 +2498,7 @@ private:
 #if MCDBGQ_NOLOCKFREE_IMPLICITPRODBLOCKINDEX
                 debug::DebugLock lock(mutex);
 #endif
-                // Add the block back into the global free pool (and remove from block index)
+                //将区块添加回全局空闲池（并从区块索引中删除）
                 entry->value.store(nullptr, std::memory_order_relaxed);
               }
               this->parent->add_block_to_free_list(block);    // releases the above store
@@ -2589,7 +2589,7 @@ private:
         } while (blockBaseDiff > 0);
       }
 
-      // Enqueue, one block at a time
+      //入队，一次一个区块
       index_t newTailIndex = startTailIndex + static_cast<index_t>(count);
       currentTailIndex = startTailIndex;
       this->tailBlock = startBlock;
@@ -2687,7 +2687,7 @@ private:
 
           auto firstIndex = this->headIndex.fetch_add(actualCount, std::memory_order_acq_rel);
 
-          // Iterate the blocks and dequeue
+          //迭代区块并取消排队
           auto index = firstIndex;
           BlockIndexHeader* localBlockIndex;
           auto indexIndex = get_block_index_index_for_index(index, localBlockIndex);
@@ -2789,7 +2789,7 @@ private:
     {
       auto localBlockIndex = blockIndex.load(std::memory_order_relaxed);    // We're the only writer thread, relaxed is OK
       if (localBlockIndex == nullptr) {
-        return false;  // this can happen if new_block_index failed in the constructor
+        return false;  // 如果构造函数new_block_index失败，则可能会发生这种情况
       }
       auto newTail = (localBlockIndex->tail.load(std::memory_order_relaxed) + 1) & (localBlockIndex->capacity - 1);
       idxEntry = localBlockIndex->index[newTail];
@@ -2914,7 +2914,7 @@ private:
 
 
   //////////////////////////////////
-  // Block pool manipulation
+  // 区块池操作
   //////////////////////////////////
 
   void populate_initial_block_list(size_t blockCount)
@@ -3045,7 +3045,7 @@ private:
               }
             }
             for (; details::circular_less_than<index_t>(head, tail); head += BLOCK_SIZE) {
-              //auto block = prod->get_block_index_entry_for_index(head);
+              //自动阻止 = prod->get_block_index_entry_for_index（head）;
               ++stats.usedBlocks;
             }
           }
