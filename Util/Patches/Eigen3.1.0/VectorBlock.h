@@ -62,12 +62,13 @@ namespace internal {
 template<typename VectorType, int Size>
 struct traits<VectorBlock<VectorType, Size> >
   : public traits<Block<VectorType,
-                     traits<VectorType>::Flags & RowMajorBit? 1 : Size,
+                     traits<VectorType>::Flags & RowMajorBit? 1 : Size
                      traits<VectorType>::Flags & RowMajorBit? Size : 1> >
 {
 };
 }
 
+//VectorBlock类模板定义
 template<typename VectorType, int Size> class VectorBlock
   : public Block<VectorType,
                      internal::traits<VectorType>::Flags & RowMajorBit? 1 : Size,
