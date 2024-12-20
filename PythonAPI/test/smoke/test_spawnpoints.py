@@ -20,25 +20,32 @@ class TestSpawnpoints(SyncSmokeTest):
 # 从世界对象的蓝图库中获取所有车辆类型的蓝图，可用于后续生成车辆
         blueprints = self.world.get_blueprint_library().filter("vehicle.*")
         blueprints = self.filter_vehicles_for_old_towns(blueprints)
+# 获取客户端可用的所有地图列表
 
         # get all available maps
         maps = self.client.get_available_maps()
         for m in maps:
+# 排除特定的地图（BaseMap、Town11、Town12），对其他地图进行下面的测试操作
 
             if m != '/Game/Carla/Maps/BaseMap/BaseMap' and m != '/Game/Carla/Maps/Town11/Town11' and m != '/Game/Carla/Maps/Town12/Town12':
+# 加载指定的地图
 
                 # load the map
                 self.client.load_world(m)
+# 工作区解决办法：给UE4一些时间来清理加载旧资产后的内存，等待5秒
                 # workaround: give time to UE4 to clean memory after loading (old assets)
 //由于加载地图后UE4可能需要时间清理旧资源占用的内存，所以等待5秒，
 //这是一种临时的解决办法（workaround）来确保后续操作稳定。
                 time.sleep(5)
+# 重新获取加载地图后的世界对象，确保后续操作基于新加载的地图
                 
                 self.world = self.client.get_world()
+# 获取当前地图上所有的生成点，后续将在这些点上生成车辆
 
                 # get all spawn points
 //获取当前地图的所有生成点，这些点可以用于后续生成车辆等对象
                 spawn_points = self.world.get_map().get_spawn_points()
+# 检查为什么世界设置在重新加载地图后没有应用，获取当前世界的设置
 
                 # Check why the world settings aren't applied after a reload
 //获取当前世界的设置，可能是为了后续对比或者检查重新加载地图后设置应用的情况。
