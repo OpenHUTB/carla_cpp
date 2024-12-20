@@ -236,60 +236,94 @@ void export_geom() {
   ;
 
   // inverse_transform 逆变换
-  class_<cg::Transform>("Transform")
+  class_<cg::Transform>("Transform")// 将cg::Transform类暴露给Python
     .def(init<cg::Location, cg::Rotation>(
         (arg("location")=cg::Location(), arg("rotation")=cg::Rotation())))
+// 定义location属性的读写接口
     .def_readwrite("location", &cg::Transform::location)
+ // 定义rotation属性的读写接口
     .def_readwrite("rotation", &cg::Transform::rotation)
+ // 定义一个transform方法，接受一个TransformList函数
     .def("transform", &TransformList)
+// 定义一个重载的transform方法，接受一个cg::Vector3D对象，通过lambda表达式调用TransformPoint方法并返回修改后的点
     .def("transform", +[](const cg::Transform &self, cg::Vector3D &location) {
       self.TransformPoint(location);
       return location;
     }, arg("in_point"))
+  // 定义一个inverse_transform方法，功能类似transform，但调用InverseTransformPoint
     .def("inverse_transform", +[](const cg::Transform &self, cg::Vector3D &location) {
       self.InverseTransformPoint(location);
       return location;
     }, arg("in_point"))
+ // 定义一个transform_vector方法，用于变换向量
     .def("transform_vector", +[](const cg::Transform &self, cg::Vector3D &vector) {
       self.TransformVector(vector);
       return vector;
     }, arg("in_point"))
+// 定义获取前方向向量的方法
     .def("get_forward_vector", &cg::Transform::GetForwardVector)
+ // 定义获取右方向向量的方法
     .def("get_right_vector", &cg::Transform::GetRightVector)
+ // 定义获取上方向向量的方法
     .def("get_up_vector", &cg::Transform::GetUpVector)
+// 定义获取变换矩阵的方法
     .def("get_matrix", &GetTransformMatrix)
+// 定义获取逆变换矩阵的方法
     .def("get_inverse_matrix", &GetInverseTransformMatrix)
+// 定义等于操作符的重载
     .def("__eq__", &cg::Transform::operator==)
+// 定义不等于操作符的重载
     .def("__ne__", &cg::Transform::operator!=)
+  // 定义转换为字符串的方法，用于打印
     .def(self_ns::str(self_ns::self))
   ;
-
+// 将std::vector<cg::Transform>类暴露给Python
   class_<std::vector<cg::Transform>>("vector_of_transform")
+ // 启用对向量的索引访问
       .def(boost::python::vector_indexing_suite<std::vector<cg::Transform>>())
-      .def(self_ns::str(self_ns::self))
+ // 定义转换为字符串的方法，用于打印    
+  .def(self_ns::str(self_ns::self))
   ;
-
+// 将cg::BoundingBox类暴露给Python
   class_<cg::BoundingBox>("BoundingBox")
+ // 定义一个构造函数，接受位置、大小和旋转，这些参数都有默认值
     .def(init<cg::Location, cg::Vector3D>(
         (arg("location")=cg::Location(), arg("extent")=cg::Vector3D(), arg("rotation")=cg::Rotation())))
+ // 定义location属性的读写接口
     .def_readwrite("location", &cg::BoundingBox::location)
+// 定义extent属性的读写接口
     .def_readwrite("extent", &cg::BoundingBox::extent)
+ // 定义rotation属性的读写接口
     .def_readwrite("rotation", &cg::BoundingBox::rotation)
+// 定义一个contains方法，检查点是否在边界框内
     .def("contains", &cg::BoundingBox::Contains, arg("point"), arg("bbox_transform"))
+// 定义一个获取局部顶点的方法
     .def("get_local_vertices", CALL_RETURNING_LIST(cg::BoundingBox, GetLocalVertices))
+// 定义一个获取世界坐标中顶点的方法
     .def("get_world_vertices", CALL_RETURNING_LIST_1(cg::BoundingBox, GetWorldVertices, const cg::Transform&), arg("bbox_transform"))
+// 定义等于操作符的重载
     .def("__eq__", &cg::BoundingBox::operator==)
+// 定义不等于操作符的重载
     .def("__ne__", &cg::BoundingBox::operator!=)
+// 定义转换为字符串的方法，用于打印
     .def(self_ns::str(self_ns::self))
   ;
 
+// 将cg::GeoLocation类暴露给Python
   class_<cg::GeoLocation>("GeoLocation")
+// 定义一个构造函数，接受纬度、经度和高度，这些参数都有默认值
     .def(init<double, double, double>((arg("latitude")=0.0, arg("longitude")=0.0, arg("altitude")=0.0)))
+// 定义latitude属性的读写接口
     .def_readwrite("latitude", &cg::GeoLocation::latitude)
+ // 定义longitude属性的读写接口
     .def_readwrite("longitude", &cg::GeoLocation::longitude)
+ // 定义altitude属性的读写接口
     .def_readwrite("altitude", &cg::GeoLocation::altitude)
+// 定义等于操作符的重载
     .def("__eq__", &cg::GeoLocation::operator==)
+// 定义不等于操作符的重载
     .def("__ne__", &cg::GeoLocation::operator!=)
+// 定义转换为字符串的方法，用于打印
     .def(self_ns::str(self_ns::self))
   ;
 }
