@@ -14,36 +14,36 @@
 #ifndef HEADER_PUGICONFIG_HPP
 #define HEADER_PUGICONFIG_HPP
 
-// Uncomment this to enable wchar_t mode
+// 取消注释以启用 wchar_t 模式
 // #define PUGIXML_WCHAR_MODE
 
-// Uncomment this to enable compact mode
+// 取消注释以启用压缩模式
 // #define PUGIXML_COMPACT
 
-// Uncomment this to disable XPath
+// 取消注释以禁用 XPath
 // #define PUGIXML_NO_XPATH
 
-// Uncomment this to disable STL
+// 取消注释以禁用 STL
 // #define PUGIXML_NO_STL
 
-// Uncomment this to disable exceptions
+// 取消注释此项以禁用异常
 // #define PUGIXML_NO_EXCEPTIONS
 
-// Set this to control attributes for public classes/functions, i.e.:
-// #define PUGIXML_API __declspec(dllexport) // to export all public symbols from DLL
-// #define PUGIXML_CLASS __declspec(dllimport) // to import all classes from DLL
-// #define PUGIXML_FUNCTION __fastcall // to set calling conventions to all public functions to fastcall
-// In absence of PUGIXML_CLASS/PUGIXML_FUNCTION definitions PUGIXML_API is used instead
+// 将此项设置为控制公共类/函数的属性，即：
+// #define PUGIXML_API __declspec（dllexport） // 从 DLL 导出所有公共符号
+// #define PUGIXML_CLASS __declspec（dllimport） // 从 DLL 导入所有类
+// #define PUGIXML_FUNCTION __fastcall // 将所有公共函数的调用约定设置为 fastcall
+// 在没有 PUGIXML_CLASS/PUGIXML_FUNCTION 定义的情况下，改用 PUGIXML_API
 
-// Tune these constants to adjust memory-related behavior
+// 调整这些常量以调整与内存相关的行为
 // #define PUGIXML_MEMORY_PAGE_SIZE 32768
 // #define PUGIXML_MEMORY_OUTPUT_STACK 10240
 // #define PUGIXML_MEMORY_XPATH_PAGE_SIZE 4096
 
-// Uncomment this to switch to header-only version
+// 取消注释此项以切换到仅标头版本
 // #define PUGIXML_HEADER_ONLY
 
-// Uncomment this to enable long long support
+//取消注释以启用 long long support
 // #define PUGIXML_HAS_LONG_LONG
 
 #endif
