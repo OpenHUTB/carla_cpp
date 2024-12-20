@@ -15,10 +15,9 @@ methods to a vehicle.
 import glob
 import os
 import sys
-import argparse
-
+import argparse在CARLA中控制车辆，并通过不同的控制输入来模拟不同的“冲量”或“力”的效果。
 try:
-    # 将 CARLA 库的路径添加到系统路径中，根据操作系统和 Python 版本选择正确的文件
+# 将 CARLA 库的路径添加到系统路径中，根据操作系统和 Python 版本选择正确的文件
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
