@@ -176,14 +176,21 @@ class BasicAgent:
         route_trace = self.trace_route(start_waypoint, end_waypoint)
         self._local_planner.set_global_plan(route_trace, clean_queue=clean_queue)
 
-    def set_global_plan(self, plan, stop_waypoint_creation=True, clean_queue=True):
+  
+ #定义一个set_global_plan的函数，他接收三个参数
+def set_global_plan(self, plan, stop_waypoint_creation=True, clean_queue=True):
         """
+       #为agent添加一个特定的计划
         Adds a specific plan to the agent.
 
+            #定义要遵循的路线
             :param plan: list of [carla.Waypoint, RoadOption] representing the route to be followed
+            #这个标志用于停止路点的自动随机创建
             :param stop_waypoint_creation: stops the automatic random creation of waypoints
+            #clean_queue这个标志用于重置当前agent的计划
             :param clean_queue: resets the current agent's plan
         """
+        #定义一个名为set_global_plan的方法，它接受self、plan、stop_waypoint_creation路点创建
         self._local_planner.set_global_plan(
             plan,
             stop_waypoint_creation=stop_waypoint_creation,
@@ -198,8 +205,8 @@ class BasicAgent:
             :param end_waypoint (carla.Waypoint): final waypoint
         """
         start_location = start_waypoint.transform.location
-        end_location = end_waypoint.transform.location
-        return self._global_planner.trace_route(start_location, end_location)
+        end_location = end_waypoint.transform.location   
+     return self._global_planner.trace_route(start_location, end_location)
 
     def run_step(self):
         """Execute one step of navigation."""
@@ -228,12 +235,18 @@ class BasicAgent:
 
         return control
 
-    def done(self):
+#定义一个名为done的方法，接受self作为参数    
+def done(self):
+        #描述方法的功能agent是否到达其目的地
         """Check whether the agent has reached its destination."""
+        #返回调用self的_local_planner对象的done方法的结果
         return self._local_planner.done()
 
+    #定义一个名为ignore_traffic_lights的方法
     def ignore_traffic_lights(self, active=True):
+           #激活或停用对交通信号灯的检查
         """(De)activates the checks for traffic lights"""
+       #将self的_ignore_traffic_lights属性设置为active的值
         self._ignore_traffic_lights = active
 
     def ignore_stop_signs(self, active=True):
