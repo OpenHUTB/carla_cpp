@@ -6,16 +6,21 @@ rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
 
 set LOCAL_PATH=%~dp0
 set FILE_N=-[%~n0]:
+# 设置 LOCAL_PATH 变量为当前批处理脚本所在的目录路径（%~dp0 表示获取当前批处理文件所在的驱动器和路径）。
+# 设置 FILE_N 变量，格式为 [-脚本文件名:]，用于后续在输出信息中标识是哪个脚本产生的内容（%~n0 表示获取当前批处理文件的文件名，不包含扩展名和路径）。
 
 rem Print batch params (debug purpose)
 echo %FILE_N% [Batch params]: %*
-
+# 输出批处理脚本接收到的参数（用于调试目的），格式为 [脚本文件名:] [批处理参数列表]，%* 表示获取传递给脚本的所有参数
+  
 rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
 
 set DOC_STRING=Build LibCarla.
 set USAGE_STRING=Usage: %FILE_N% [-h^|--help] [--rebuild] [--build] [--clean] [--no-pull]
+# 设置 DOC_STRING 变量，描述了脚本的主要功能（构建 LibCarla 库）。
+# 设置 USAGE_STRING 变量，定义了脚本的使用帮助信息，说明了脚本接受的参数选项及格式。
 
 set REMOVE_INTERMEDIATE=false
 set BUILD_OSM2ODR=false
@@ -23,6 +28,13 @@ set GIT_PULL=true
 set CURRENT_OSM2ODR_COMMIT=1835e1e9538d0778971acc8b19b111834aae7261
 set OSM2ODR_BRANCH=aaron/defaultsidewalkwidth
 set OSM2ODR_REPO=https://github.com/carla-simulator/sumo.git
+# 设置多个变量的初始值：
+# REMOVE_INTERMEDIATE 用于控制是否移除中间文件，初始设为 false，表示默认不移除。
+# BUILD_OSM2ODR 用于控制是否构建 OSM2ODR 相关内容，初始设为 false，表示默认不构建。
+# GIT_PULL 用于控制是否执行 Git 拉取操作，初始设为 true，表示默认执行拉取。
+# CURRENT_OSM2ODR_COMMIT 记录了 OSM2ODR 相关的一个提交哈希值（具体用途需结合相关代码逻辑确定）。
+# OSM2ODR_BRANCH 指定了 OSM2ODR 对应的 Git 仓库分支名称。
+# OSM2ODR_REPO 定义了 OSM2ODR 对应的 Git 仓库的 URL 地址。
 
 :arg-parse
 if not "%1"=="" (
@@ -56,6 +68,15 @@ if not "%1"=="" (
     shift
     goto :arg-parse
 )
+# 定义了一个标签为 :arg-parse 的代码块，用于解析传递给脚本的参数：
+# 首先判断第一个参数（%1）是否为空，如果不为空，则进入参数匹配判断：
+# 如果参数是 "--rebuild"，则将 REMOVE_INTERMEDIATE 和 BUILD_OSM2ODR 都设置为 true，意味着要移除中间文件并且构建 OSM2ODR 相关内容。
+# 如果参数是 "--build"，则将 BUILD_OSM2ODR 设置为 true，即执行构建操作。
+# 如果参数是 "--no-pull"，则将 GIT_PULL 设置为 false，也就是不执行 Git 拉取操作。
+# 如果参数是 "--clean"，则将 REMOVE_INTERMEDIATE 设置为 true，仅移除中间文件。
+# 如果参数是 "--generator"，则将第二个参数（%2）的值赋给 GENERATOR 变量，并通过 shift 命令将参数列表向左移动一位（去掉已处理的第一个参数）。
+# 如果参数是 "-h" 或者 "--help"，则输出文档说明（DOC_STRING）和使用帮助信息（USAGE_STRING），然后通过 GOTO :eof 跳转到文件末尾结束脚本执行。
+# 最后无论哪种情况，执行 shift 命令处理下一个参数，并跳转到 :arg-parse 标签处继续解析参数，直到所有参数都处理完。
 
 if %REMOVE_INTERMEDIATE% == false (
     if %BUILD_OSM2ODR% == false (
