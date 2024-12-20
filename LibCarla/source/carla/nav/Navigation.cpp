@@ -29,18 +29,18 @@ namespace nav {
   };
 
   // 这些设置与 RecastBuilder 中的设置相同，因此如果您更改代理的高度，则应该在 RecastBuilder 中执行相同的操作
-  static const int   MAX_POLYS = 256;
-  static const int   MAX_AGENTS = 500;
-  static const int   MAX_QUERY_SEARCH_NODES = 2048;
-  static const float AGENT_HEIGHT = 1.8f;
-  static const float AGENT_RADIUS = 0.3f;
+  static const int   MAX_POLYS = 256; // 定义最大多边形数量为256
+  static const int   MAX_AGENTS = 500; // 定义最大代理（Agent）数量为500
+  static const int   MAX_QUERY_SEARCH_NODES = 2048; // 定义最大查询搜索节点数量为2048
+  static const float AGENT_HEIGHT = 1.8f; // 定义代理的高度为1.8米
+  static const float AGENT_RADIUS = 0.3f; // 定义代理的半径为0.3米
 
-  static const float AGENT_UNBLOCK_DISTANCE = 0.5f;
-  static const float AGENT_UNBLOCK_DISTANCE_SQUARED = AGENT_UNBLOCK_DISTANCE * AGENT_UNBLOCK_DISTANCE;
-  static const float AGENT_UNBLOCK_TIME = 4.0f;
+  static const float AGENT_UNBLOCK_DISTANCE = 0.5f; // 定义代理解堵距离为0.5米，即代理在被阻挡后需要保持的距离
+  static const float AGENT_UNBLOCK_DISTANCE_SQUARED = AGENT_UNBLOCK_DISTANCE * AGENT_UNBLOCK_DISTANCE; // 定义代理解堵距离的平方，用于计算距离时避免开方操作，提高效率
+  static const float AGENT_UNBLOCK_TIME = 4.0f; // 定义代理解堵时间为4秒，即代理在被阻挡后等待的时间
 
-  static const float AREA_GRASS_COST =  1.0f;
-  static const float AREA_ROAD_COST  = 10.0f;
+  static const float AREA_GRASS_COST =  1.0f; // 定义草地区域的成本为1.0，用于路径规划时的权重计算
+  static const float AREA_ROAD_COST  = 10.0f; // 定义道路区域的成本为10.0，用于路径规划时的权重计算，通常道路的成本高于草地
 
   // 返回一个随机的浮点数 float
   static float frand() {
@@ -53,17 +53,17 @@ namespace nav {
   }
 
   Navigation::~Navigation() {
-    _ready = false;
-    _time_to_unblock = 0.0f;
-    _mapped_walkers_id.clear();
-    _mapped_vehicles_id.clear();
-    _mapped_by_index.clear();
-    _walkers_blocked_position.clear();
-    _yaw_walkers.clear();
-    _binary_mesh.clear();
-    dtFreeCrowd(_crowd);
-    dtFreeNavMeshQuery(_nav_query);
-    dtFreeNavMesh(_nav_mesh);
+    _ready = false; // 将_ready标志设置为false，表示导航系统不再就绪
+    _time_to_unblock = 0.0f; // 将_time_to_unblock重置为0.0f，表示没有等待解堵的时间
+    _mapped_walkers_id.clear(); // 清空_mapped_walkers_id列表，该列表存储了映射的步行者ID
+    _mapped_vehicles_id.clear(); // 清空_mapped_vehicles_id列表，该列表存储了映射的车辆ID
+    _mapped_by_index.clear(); // 清空_mapped_by_index列表，该列表可能存储了按索引映射的对象
+    _walkers_blocked_position.clear(); // 清空_walkers_blocked_position列表，该列表存储了被阻塞步行者的位置
+    _yaw_walkers.clear(); // 清空_yaw_walkers列表，该列表可能存储了步行者的朝向信息
+    _binary_mesh.clear(); // 清空_binary_mesh，该变量可能存储了二进制网格数据
+    dtFreeCrowd(_crowd); // 释放_crowd资源，_crowd是用于人群模拟的动态组件
+    dtFreeNavMeshQuery(_nav_query); // 释放_nav_query资源，_nav_query是用于路径查询的组件
+    dtFreeNavMesh(_nav_mesh); // 释放_nav_mesh资源，_nav_mesh是用于路径规划的导航网格
   }
 
   // 参考模拟器访问API函数
