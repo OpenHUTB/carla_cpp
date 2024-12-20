@@ -6,30 +6,30 @@
 
 #pragma once
 
-#include "carla/Memory.h"
-#include "carla/Time.h"
-#include "carla/client/DebugHelper.h"
-#include "carla/client/Landmark.h"
-#include "carla/client/Waypoint.h"
-#include "carla/client/Junction.h"
-#include "carla/client/LightManager.h"
-#include "carla/client/Timestamp.h"
-#include "carla/client/WorldSnapshot.h"
-#include "carla/client/detail/EpisodeProxy.h"
-#include "carla/geom/Transform.h"
-#include "carla/rpc/Actor.h"
-#include "carla/rpc/AttachmentType.h"
-#include "carla/rpc/EpisodeSettings.h"
-#include "carla/rpc/EnvironmentObject.h"
-#include "carla/rpc/LabelledPoint.h"
-#include "carla/rpc/MapLayer.h"
-#include "carla/rpc/VehiclePhysicsControl.h"
-#include "carla/rpc/WeatherParameters.h"
-#include "carla/rpc/VehicleLightStateList.h"
-#include "carla/rpc/Texture.h"
-#include "carla/rpc/MaterialParameter.h"
+#include "carla/Memory.h"  // 包含内存相关的头文件
+#include "carla/Time.h"  // 包含时间相关的头文件
+#include "carla/client/DebugHelper.h"  // 包含调试辅助工具相关的头文件
+#include "carla/client/Landmark.h"  // 包含地标相关的头文件
+#include "carla/client/Waypoint.h"  // 包含路径点相关的头文件
+#include "carla/client/Junction.h"  // 包含交叉口相关的头文件
+#include "carla/client/LightManager.h"  // 包含灯光管理器相关的头文件
+#include "carla/client/Timestamp.h"  // 包含时间戳相关的头文件
+#include "carla/client/WorldSnapshot.h"  // 包含世界快照相关的头文件
+#include "carla/client/detail/EpisodeProxy.h"  // 包含EpisodeProxy相关的头文件
+#include "carla/geom/Transform.h"  // 包含变换矩阵相关的头文件
+#include "carla/rpc/Actor.h"  // 包含演员（对象）相关的头文件
+#include "carla/rpc/AttachmentType.h"  // 包含附加物类型相关的头文件
+#include "carla/rpc/EpisodeSettings.h"  // 包含剧集设置相关的头文件
+#include "carla/rpc/EnvironmentObject.h"  // 包含环境对象相关的头文件
+#include "carla/rpc/LabelledPoint.h"  // 包含带标签点的头文件
+#include "carla/rpc/MapLayer.h"  // 包含地图图层相关的头文件
+#include "carla/rpc/VehiclePhysicsControl.h"  // 包含车辆物理控制相关的头文件
+#include "carla/rpc/WeatherParameters.h"  // 包含天气参数相关的头文件
+#include "carla/rpc/VehicleLightStateList.h"  // 包含车辆灯光状态列表相关的头文件
+#include "carla/rpc/Texture.h"  // 包含纹理相关的头文件
+#include "carla/rpc/MaterialParameter.h"  // 包含材质参数相关的头文件
 
-#include <string>
+#include <string>  // 包含字符串处理相关的头文件
 #include <boost/optional.hpp>
 
 namespace carla {

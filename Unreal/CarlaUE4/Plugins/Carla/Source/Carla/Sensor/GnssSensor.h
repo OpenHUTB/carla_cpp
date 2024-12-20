@@ -17,10 +17,10 @@
 
 #include "GnssSensor.generated.h"
 
-/// Gnss sensor representation
-/// The actual position calculation is done one server side
+///GNSS传感器表示类
+/// 实际的位置信息计算是在服务器端进行的
 UCLASS()
-class CARLA_API AGnssSensor : public ASensor
+class CARLA_API AGnssSensor : public ASensor// 继承自ASensor类，表示GNSS传感器
 {
   GENERATED_BODY()
 
@@ -32,7 +32,7 @@ public:
 
   void Set(const FActorDescription &ActorDescription);
 
-  // virtual void PrePhysTick(float DeltaSeconds) override;
+  // 虚拟的物理更新函数（已被注释掉）
   virtual void PostPhysTick(UWorld *World, ELevelTick TickType, float DeltaSeconds) override;
 
   void SetLatitudeDeviation(float Value);

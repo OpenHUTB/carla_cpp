@@ -3,8 +3,10 @@
 
 OPTS=`getopt -o h --long python-version: -n 'parse-options' -- "$@"`
 
-eval set -- "$OPTS"
-
+# 使用 getopt 命令来解析命令行参数。这里定义了短选项为'h'，长选项为'python-version'，并设置了脚本名称为'parse-options'。$@表示所有的命令行参数，getopt 的输出被赋值给变量 OPTS。
+# 重新设定位置参数 
+eval set -- "$OPTS"#使用eval命令来执行set命令
+# 默认的 Python 版本列表  
 PY_VERSION_LIST=3
 
 while [[ $# -gt 0 ]]; do
@@ -38,7 +40,8 @@ if [[ ! -d "${ADRSS_SRC_DIR}" ]]; then
   # ad-rss is built inside a colcon workspace, therefore we have to setup the workspace first
   log "Retrieving ${ADRSS_BASENAME}."
 
-  mkdir -p "${ADRSS_SRC_DIR}"
+# 使用条件判断检查 ad-rss 的源代码目录是否存在，如果不存在，可能会执行一些获取或创建该目录的操作，这里只是输出一条日志信息表示正在获取相关内容。
+  mkdir -p "${ADRSS_SRC_DIR}"  # 创建源目录
 
   # clone ad-rss with all submodules, but remove proj, as CARLA already uses it
   pushd "${ADRSS_SRC_DIR}" >/dev/null

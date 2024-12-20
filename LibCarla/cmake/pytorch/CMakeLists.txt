@@ -1,26 +1,26 @@
-cmake_minimum_required(VERSION 3.5.1)# ÉèÖÃCMakeµÄ×îµÍ°æ±¾ÒªÇó
-project(libcarla-pytorch)# ¶¨ÒåÏîÄ¿Ãû³Æ 
+cmake_minimum_required(VERSION 3.5.1)# ï¿½ï¿½ï¿½ï¿½CMakeï¿½ï¿½ï¿½ï¿½Í°æ±¾Òªï¿½ï¿½
+project(libcarla-pytorch)# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ 
 
-# °²×°Í·ÎÄ¼ş  
-# Ê¹ÓÃfile(GLOB)ÃüÁî²éÕÒËùÓĞ.hÍ·ÎÄ¼ş£¬²¢°²×°µ½include/carla/pytorchÄ¿Â¼ÏÂ
+# ï¿½ï¿½×°Í·ï¿½Ä¼ï¿½  
+# Ê¹ï¿½ï¿½file(GLOB)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.hÍ·ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½include/carla/pytorchÄ¿Â¼ï¿½ï¿½
 
 file(GLOB libcarla_carla_pytorch_headers "${libcarla_source_path}/carla/pytorch/*.h")
 install(FILES ${libcarla_carla_pytorch_headers} DESTINATION include/carla/pytorch)
 
-# ¶¨Òålibcarla_pytorch¿âµÄÔ´ÎÄ¼ş  
-# °üÀ¨.hºÍ.cppÎÄ¼ş
+# ï¿½ï¿½ï¿½ï¿½libcarla_pytorchï¿½ï¿½ï¿½Ô´ï¿½Ä¼ï¿½  
+# ï¿½ï¿½ï¿½ï¿½.hï¿½ï¿½.cppï¿½Ä¼ï¿½
 file(GLOB libcarla_pytorch_sources
     "${libcarla_source_path}/carla/pytorch/*.h"
     "${libcarla_source_path}/carla/pytorch/*.cpp")
 
-set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)# ÉèÖÃCUDA±àÒëÆ÷Â·¾¶
-# ²éÕÒ²¢ÒªÇóTorch¡¢TorchScatter¡¢TorchClusterºÍPython3°ü
+set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)# ï¿½ï¿½ï¿½ï¿½CUDAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+# ï¿½ï¿½ï¿½Ò²ï¿½Òªï¿½ï¿½Torchï¿½ï¿½TorchScatterï¿½ï¿½TorchClusterï¿½ï¿½Python3ï¿½ï¿½
 find_package(Torch REQUIRED)
 find_package(TorchScatter REQUIRED)
 find_package(TorchCluster REQUIRED)
 find_package(Python3 REQUIRED)
 
-set(PYTORCH_CPP_STD_INCLUDES "/usr/include/c++/7")# ÉèÖÃPyTorch C++ APIµÄ±ê×¼¿â°üº¬Â·¾¶
+set(PYTORCH_CPP_STD_INCLUDES "/usr/include/c++/7")# ï¿½ï¿½ï¿½ï¿½PyTorch C++ APIï¿½Ä±ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 
 # @todo These flags need to be compatible with setup.py compilation.
 set(CMAKE_CXX_FLAGS_RELEASE "-DDEBUG -std=c++14 -O2 -fPIC -D_GLIBCXX_USE_CXX11_ABI=0 -I${PYTORCH_CPP_STD_INCLUDES}" CACHE STRING "" FORCE)
@@ -28,25 +28,35 @@ set(CMAKE_CXX_FLAGS_RELEASE "-DDEBUG -std=c++14 -O2 -fPIC -D_GLIBCXX_USE_CXX11_A
 # ==============================================================================
 # Create targets for debug and release in the same build type.
 # ==============================================================================
-# ¸ù¾İÊÇ·ñ¶¨ÒåÁËLIBCARLA_BUILD_RELEASE»òLIBCARLA_BUILD_DEBUGÀ´¹¹½¨²»Í¬µÄÄ¿±ê
+# ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½LIBCARLA_BUILD_RELEASEï¿½ï¿½LIBCARLA_BUILD_DEBUGï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ä¿ï¿½ï¿½
 if (LIBCARLA_BUILD_RELEASE)
- # Ìí¼Ó¾²Ì¬¿âcarla_pytorch
+ # ï¿½ï¿½ï¿½Ó¾ï¿½Ì¬ï¿½ï¿½carla_pytorch
   add_library(carla_pytorch STATIC ${libcarla_pytorch_sources})
-  # Îªcarla_pytorch¿âÌí¼Ó°üº¬Ä¿Â¼
+  # Îªcarla_pytorchï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½Ä¿Â¼
   target_include_directories(carla_pytorch SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
-# Ìí¼ÓPyTorch¼°ÆäÒÀÀµ¿âµÄ°üº¬Ä¿Â¼
+
+# æ·»åŠ PyTorchåŠå…¶ä¾èµ–åº“çš„åŒ…å«ç›®å½•
+# æ·»åŠ PyTorchåº“çš„å¤´æ–‡ä»¶è·¯å¾„
+
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TORCH_INCLUDE_DIRS}")
+  # æ·»åŠ TorchScatteråº“çš„å¤´æ–‡ä»¶è·¯å¾„ï¼ŒTorchScatteræ˜¯ç”¨äºé«˜æ•ˆå›¾æ“ä½œçš„æ‰©å±•åº“
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchScatter_INCLUDE_DIR}")
+  # æ·»åŠ TorchClusteråº“çš„å¤´æ–‡ä»¶è·¯å¾„ï¼ŒTorchClusterä¸“æ³¨äºèšç±»ç®—æ³•çš„å®ç°
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchCluster_INCLUDE_DIR}")
+  # æ·»åŠ TorchSparseåº“çš„å¤´æ–‡ä»¶è·¯å¾„ï¼ŒTorchSparseæä¾›äº†ç¨€ç–å¼ é‡çš„æ”¯æŒ
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchSparse_INCLUDE_DIR}")
+  # æ·»åŠ Python3çš„å¤´æ–‡ä»¶è·¯å¾„ï¼Œä»¥ä¾¿äºä¸Pythonè¿›è¡Œäº¤äº’å’Œä½¿ç”¨Python API
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${Python3_INCLUDE_DIRS}")
-  target_link_libraries(carla_pytorch "${TORCH_LIBRARIES}") # Á´½ÓPyTorch¿â
+  # é“¾æ¥PyTorchåº“åˆ°carla_pytorchç›®æ ‡
+# è¿™é‡Œå‡è®¾${TORCH_LIBRARIES}å˜é‡åŒ…å«äº†æ‰€æœ‰éœ€è¦é“¾æ¥çš„PyTorchç›¸å…³åº“
+# é€šè¿‡è¿™ç§æ–¹å¼ï¼Œç¡®ä¿åœ¨ç¼–è¯‘å’Œé“¾æ¥æ—¶èƒ½å¤Ÿæ‰¾åˆ°å¹¶æ­£ç¡®å¼•ç”¨PyTorchåº“
+  target_link_libraries(carla_pytorch "${TORCH_LIBRARIES}") # é“¾æ¥PyTorchåº“
 
-  install(TARGETS carla_pytorch DESTINATION lib OPTIONAL) # °²×°carla_pytorch¿â
+  install(TARGETS carla_pytorch DESTINATION lib OPTIONAL) # ï¿½ï¿½×°carla_pytorchï¿½ï¿½
 
-  set_target_properties(carla_pytorch PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")# ÉèÖÃcarla_pytorchµÄ±àÒë±êÖ¾
+  set_target_properties(carla_pytorch PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")# ï¿½ï¿½ï¿½ï¿½carla_pytorchï¿½Ä±ï¿½ï¿½ï¿½ï¿½Ö¾
 
 endif()
 

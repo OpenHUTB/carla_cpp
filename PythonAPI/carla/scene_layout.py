@@ -179,31 +179,53 @@ def get_dynamic_objects(carla_world, carla_map):
             stop_signals_dict[stop.id] = st_dict
         return stop_signals_dict
 
+    # 定义一个函数，用于获取交通灯信息
     def get_traffic_lights(traffic_lights):
+        # 初始化一个空字典，用于存储交通灯信息
         traffic_lights_dict = dict()
+        # 遍历传入的交通灯列表
         for traffic_light in traffic_lights:
+            # 获取当前交通灯的变换信息
             tl_transform = traffic_light.get_transform()
+             # 将交通灯的位置从游戏世界坐标转换为全球导航卫星系统坐标
             location_gnss = carla_map.transform_to_geolocation(tl_transform.location)
+            # 创建一个字典，用于存储当前交通灯的详细信息
             tl_dict = {
+                # 交通灯的ID
                 "id": traffic_light.id,
+                # 交通灯的状态，转换为整数
                 "state": int(traffic_light.state),
+                # 交通灯的位置信息，包括纬度、经度和高度
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+                # 交通灯触发区域的坐标列表，通过调用_get_trigger_volume函数获取
                 "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(traffic_light)]
             }
+            # 将当前交通灯的信息字典存储到交通灯字典中，以交通灯ID为键
             traffic_lights_dict[traffic_light.id] = tl_dict
+        # 返回包含所有交通灯信息的字典
         return traffic_lights_dict
 
+    # 定义一个函数，用于获取车辆信息
     def get_vehicles(vehicles):
+        # 初始化一个空字典，用于存储车辆信息
         vehicles_dict = dict()
+        # 遍历传入的车辆列表
         for vehicle in vehicles:
+            # 获取当前车辆的变换信息，包括位置和旋转
             v_transform = vehicle.get_transform()
+            # 将车辆的位置从游戏世界坐标转换为全球导航卫星系统坐标
             location_gnss = carla_map.transform_to_geolocation(v_transform.location)
+            # 创建一个字典，用于存储当前车辆的详细信息
             v_dict = {
                 "id": vehicle.id,
+                 # 车辆的位置信息，包括纬度、经度和高度
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+                # 车辆的朝向信息，包括横滚角、俯仰角和偏航角
                 "orientation": [v_transform.rotation.roll, v_transform.rotation.pitch, v_transform.rotation.yaw],
+                 # 车辆的包围盒信息，通过调用_get_bounding_box函数获取，包含四个角点的坐标
                 "bounding_box": [[v.longitude, v.latitude, v.altitude] for v in _get_bounding_box(vehicle)]
             }
+             # 将当前车辆的信息字典存储到车辆字典中，以车辆ID为键
             vehicles_dict[vehicle.id] = v_dict
         return vehicles_dict
 

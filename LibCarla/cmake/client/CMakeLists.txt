@@ -42,15 +42,21 @@ if (BUILD_RSS_VARIANT)
 
     # 如果可用，请安装相应的 Python 库
     file(GLOB ${ad_lib}_python_libs "${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}_python*.a")
+    # 遍历找到的所有Python库文件
     foreach(ad_python_lib ${${ad_lib}_python_libs})
+     # 检查每个文件是否存在
       if (EXISTS ${ad_python_lib})
+        # 如果存在，则安装该文件到目标系统的 'lib' 目录中
         install(FILES ${ad_python_lib} DESTINATION lib)
       endif()
     endforeach()
-
+# 设置包含路径为ADRSS_INSTALL_DIR下的对应库的include目录
     set(${ad_lib}_include_dir ${ADRSS_INSTALL_DIR}/${ad_lib}/include)
+    # 使用 file(GLOB ...) 查找上述包含路径下的所有文件和子目录
     file(GLOB ${ad_lib}_includes "${${ad_lib}_include_dir}/*")
+    # 安装找到的所有头文件和子目录到目标系统的 'include/system' 目录下
     install(DIRECTORY ${${ad_lib}_includes} DESTINATION include/system)
+    # 将当前库的包含路径添加到 ADRSS_INCLUDE_DIRS 列表中，以便后续使用
     list(APPEND ADRSS_INCLUDE_DIRS ${${ad_lib}_include_dir})
   endforeach()
 endif()
@@ -233,6 +239,7 @@ install(FILES ${libcarla_carla_sensor_data_sources} DESTINATION include/carla/se
 file(GLOB libcarla_carla_sensor_s11n_sources
     "${libcarla_source_path}/carla/sensor/s11n/*.cpp"
     "${libcarla_source_path}/carla/sensor/s11n/*.h")
+# 将找到的源文件添加到libcarla_sources变量中
 set(libcarla_sources "${libcarla_sources};${libcarla_carla_sensor_s11n_sources}")
 install(FILES ${libcarla_carla_sensor_s11n_sources} DESTINATION include/carla/sensor/s11n)
 
@@ -332,7 +339,7 @@ if (LIBCARLA_BUILD_RELEASE)
 
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
-
+ # 链接Recast及其相关库的Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/DetourCrowd.lib")
@@ -340,9 +347,10 @@ if (LIBCARLA_BUILD_RELEASE)
     if (NOT DEFINED CMAKE_CXX_FLAGS_RELEASE_CLIENT)
       set(CMAKE_CXX_FLAGS_RELEASE_CLIENT ${CMAKE_CXX_FLAGS_RELEASE})
     endif()
-
+ # 设置carla_client${carla_target_postfix}目标的编译标志为CMAKE_CXX_FLAGS_RELEASE_CLIENT中定义的值
+    # 同样地，这里也使用了已废弃的COMPILE_FLAGS属性
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE_CLIENT}")
-
+ # 链接Recast及其相关库的非Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libRecast.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetour.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetourCrowd.a")
@@ -354,30 +362,40 @@ endif()
 # 构建调试版
 if (LIBCARLA_BUILD_DEBUG)
 
+ # 添加一个静态库目标，名为 carla_client${carla_target_postfix}_debug，包含libcarla_sources中列出的所有源文件
   add_library(carla_client${carla_target_postfix}_debug STATIC ${libcarla_sources})
-
+  
+ # 指定编译此静态库时需要包含的系统头文件路径，并且这些路径只对这个目标可见（PRIVATE）
   target_include_directories(carla_client${carla_target_postfix}_debug SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}"
       "${RECAST_INCLUDE_PATH}"
       "${LIBPNG_INCLUDE_PATH}")
 
+  # 如果启用了RSS_VARIANT构建选项，则进行以下额外设置
   if (BUILD_RSS_VARIANT)
+  # 定义预处理器宏，以启用RSS功能并指定使用TBB线程库
     target_compile_definitions(carla_client${carla_target_postfix}_debug PRIVATE RSS_ENABLED RSS_USE_TBB)
+    # 链接AD-RSS库和Intel TBB库到carla_client_debug库
     target_link_libraries(carla_client${carla_target_postfix}_debug ${ADRSS_LIBS} tbb)
+    # 添加AD-RSS库的头文件路径
     target_include_directories(carla_client${carla_target_postfix}_debug SYSTEM PRIVATE
       ${ADRSS_INCLUDE_DIRS})
   endif()
 
+ # 安装命令，将构建的carla_client_debug库安装到系统的lib目录下
   install(TARGETS carla_client${carla_target_postfix}_debug DESTINATION lib)
 
+ # 如果是在Windows平台构建，则应用特定于Windows的设置
   if (WIN32) # @todo Fix PythonAPI build on Windows.
+      # 设置编译标志为调试模式下的C++编译标志（这可能包括优化关闭、调试信息等）
     set_target_properties(carla_client${carla_target_postfix}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
-
+ # 链接Recast及其相关库的Windows版本静态库
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/DetourCrowd.lib")
   else ()
+   # 如果未定义CMAKE_CXX_FLAGS_DEBUG_CLIENT，则将其设置为与CMAKE_CXX_FLAGS_DEBUG相同
     if (NOT DEFINED CMAKE_CXX_FLAGS_DEBUG_CLIENT)
       set(CMAKE_CXX_FLAGS_DEBUG_CLIENT ${CMAKE_CXX_FLAGS_DEBUG})
     endif()

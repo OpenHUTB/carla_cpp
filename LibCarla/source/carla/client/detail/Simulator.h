@@ -571,27 +571,27 @@ namespace detail {
     void GetPoseFromAnimation(Walker &walker) {
       return _client.GetPoseFromAnimation(walker.GetId());
     }
-
+    // 应用物理控制到指定车辆
     void ApplyPhysicsControlToVehicle(Vehicle &vehicle, const rpc::VehiclePhysicsControl &physicsControl) {
       _client.ApplyPhysicsControlToVehicle(vehicle.GetId(), physicsControl);
     }
-
+    // 设置指定车辆的灯光状态
     void SetLightStateToVehicle(Vehicle &vehicle, const rpc::VehicleLightState light_state) {
       _client.SetLightStateToVehicle(vehicle.GetId(), light_state);
     }
-
+    // 打开指定车辆的某个车门
     void OpenVehicleDoor(Vehicle &vehicle, const rpc::VehicleDoor door_idx) {
       _client.OpenVehicleDoor(vehicle.GetId(), door_idx);
     }
-
+    // 关闭指定车辆的某个车门
     void CloseVehicleDoor(Vehicle &vehicle, const rpc::VehicleDoor door_idx) {
       _client.CloseVehicleDoor(vehicle.GetId(), door_idx);
     }
-
+    // 设置指定车辆的车轮转向角度
     void SetWheelSteerDirection(Vehicle &vehicle, rpc::VehicleWheelLocation wheel_location, float angle_in_deg) {
       _client.SetWheelSteerDirection(vehicle.GetId(), wheel_location, angle_in_deg);
     }
-
+    // 获取指定车辆的车轮当前转向角度
     float GetWheelSteerAngle(Vehicle &vehicle, rpc::VehicleWheelLocation wheel_location) {
       return _client.GetWheelSteerAngle(vehicle.GetId(), wheel_location);
     }
@@ -630,43 +630,49 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    // 启动录制器
     std::string StartRecorder(std::string name, bool additional_data) {
+     // _client对象调用StartRecorder方法来启动录制。
+    // additional_data: 是否记录额外的数据，控制录制的详细程度。
+    // 使用std::move()转移name的所有权，提高效率。
       return _client.StartRecorder(std::move(name), additional_data);
     }
-
+    // 停止录制器
     void StopRecorder(void) {
       _client.StopRecorder();
     }
-
+    // 显示录制文件的相关信息
     std::string ShowRecorderFileInfo(std::string name, bool show_all) {
+        // show_all: 是否显示所有信息。
       return _client.ShowRecorderFileInfo(std::move(name), show_all);
     }
-
+    // 显示录制期间的碰撞信息
     std::string ShowRecorderCollisions(std::string name, char type1, char type2) {
       return _client.ShowRecorderCollisions(std::move(name), type1, type2);
     }
-
+    // 显示在录制期间被阻挡的角色信息
     std::string ShowRecorderActorsBlocked(std::string name, double min_time, double min_distance) {
       return _client.ShowRecorderActorsBlocked(std::move(name), min_time, min_distance);
     }
-
+    // 回放录制的文件
     std::string ReplayFile(std::string name, double start, double duration,
         uint32_t follow_id, bool replay_sensors) {
       return _client.ReplayFile(std::move(name), start, duration, follow_id, replay_sensors);
     }
-
+    // 设置回放器的时间比例因子
     void SetReplayerTimeFactor(double time_factor) {
+        // time_factor: 时间比例因子，控制回放速度。
       _client.SetReplayerTimeFactor(time_factor);
     }
-
+    // 设置回放器是否忽略英雄角色
     void SetReplayerIgnoreHero(bool ignore_hero) {
       _client.SetReplayerIgnoreHero(ignore_hero);
     }
-
+    // 设置回放器是否忽略观众角色
     void SetReplayerIgnoreSpectator(bool ignore_spectator) {
       _client.SetReplayerIgnoreSpectator(ignore_spectator);
     }
-
+    // 停止回放器
     void StopReplayer(bool keep_actors) {
       _client.StopReplayer(keep_actors);
   }
@@ -677,27 +683,37 @@ namespace detail {
     // =========================================================================
     /// @{
 
+    // 订阅传感器数据
     void SubscribeToSensor(
         const Sensor &sensor,
         std::function<void(SharedPtr<sensor::SensorData>)> callback);
+    // callback: 回调函数，当传感器数据更新时会被调用，传入数据指针。
+    // SharedPtr是智能指针，用于共享传感器数据的所有权，防止内存泄漏。
 
+    // 取消订阅传感器数据
     void UnSubscribeFromSensor(Actor &sensor);
 
+    // 启用传感器以便与ROS通信
     void EnableForROS(const Sensor &sensor);
 
+    // 禁用传感器与ROS通信
     void DisableForROS(const Sensor &sensor);
 
+    // 检查传感器是否启用了ROS通信
     bool IsEnabledForROS(const Sensor &sensor);
 
+    // 订阅传感器的GBuffer（图形缓冲区）数据
     void SubscribeToGBuffer(
         Actor & sensor,
         uint32_t gbuffer_id,
         std::function<void(SharedPtr<sensor::SensorData>)> callback);
 
+    // 取消订阅传感器的GBuffer数据
     void UnSubscribeFromGBuffer(
         Actor & sensor,
         uint32_t gbuffer_id);
 
+    // 向传感器发送消息
     void Send(const Sensor &sensor, std::string message);        
 
     /// @}
@@ -710,35 +726,35 @@ namespace detail {
     void SetTrafficLightState(TrafficLight &trafficLight, const rpc::TrafficLightState trafficLightState) {
       _client.SetTrafficLightState(trafficLight.GetId(), trafficLightState);
     }
-
+    // 设置交通灯的绿灯时间
     void SetTrafficLightGreenTime(TrafficLight &trafficLight, float greenTime) {
       _client.SetTrafficLightGreenTime(trafficLight.GetId(), greenTime);
     }
-
+    // 设置交通灯的黄灯时间
     void SetTrafficLightYellowTime(TrafficLight &trafficLight, float yellowTime) {
       _client.SetTrafficLightYellowTime(trafficLight.GetId(), yellowTime);
     }
-
+    // 设置交通灯的红灯时间
     void SetTrafficLightRedTime(TrafficLight &trafficLight, float redTime) {
       _client.SetTrafficLightRedTime(trafficLight.GetId(), redTime);
     }
-
+    // 冻结或解冻交通灯（使交通灯保持当前状态）
     void FreezeTrafficLight(TrafficLight &trafficLight, bool freeze) {
       _client.FreezeTrafficLight(trafficLight.GetId(), freeze);
     }
-
+    // 重置单个交通灯组的状态
     void ResetTrafficLightGroup(TrafficLight &trafficLight) {
       _client.ResetTrafficLightGroup(trafficLight.GetId());
     }
-
+    // 重置所有交通灯
     void ResetAllTrafficLights() {
       _client.ResetAllTrafficLights();
     }
-
+    // 获取与给定交通灯相关的所有 BoundingBox 对象（通常用于碰撞检测或可视化调试）
     std::vector<geom::BoundingBox> GetLightBoxes(const TrafficLight &trafficLight) const {
       return _client.GetLightBoxes(trafficLight.GetId());
     }
-
+    // 获取与给定交通灯属于同一组的所有交通灯的 ID
     std::vector<ActorId> GetGroupTrafficLights(TrafficLight &trafficLight) {
       return _client.GetGroupTrafficLights(trafficLight.GetId());
     }
@@ -750,6 +766,7 @@ namespace detail {
     /// @{
 
     void DrawDebugShape(const rpc::DebugShape &shape) {
+        // 绘制一个调试用的形状，用于调试或可视化
       _client.DrawDebugShape(shape);
     }
 
@@ -760,10 +777,12 @@ namespace detail {
     /// @{
 
     void ApplyBatch(std::vector<rpc::Command> commands, bool do_tick_cue) {
+        // 将多个命令批量应用到服务端
       _client.ApplyBatch(std::move(commands), do_tick_cue);
     }
-
+    // 批量应用命令并同步等待结果
     auto ApplyBatchSync(std::vector<rpc::Command> commands, bool do_tick_cue) {
+        // 同步执行批量命令
       return _client.ApplyBatchSync(std::move(commands), do_tick_cue);
     }
 
@@ -774,33 +793,39 @@ namespace detail {
     /// @{
 
     SharedPtr<LightManager> GetLightManager() const {
+        // 获取当前的灯光管理器
       return _light_manager;
     }
 
     std::vector<rpc::LightState> QueryLightsStateToServer() const {
+        // 查询服务器上所有灯光的状态
       return _client.QueryLightsStateToServer();
+      // 向服务器查询当前所有灯光的状态并返回
     }
 
+    // 更新服务器上的灯光状态
     void UpdateServerLightsState(
         std::vector<rpc::LightState>& lights,
         bool discard_client = false) const {
       _client.UpdateServerLightsState(lights, discard_client);
     }
 
+    // 更新昼夜循环（控制白天/黑夜的切换）
     void UpdateDayNightCycle(const bool active) const {
       _client.UpdateDayNightCycle(active);
     }
 
+    // 注册一个灯光状态更新的事件回调
     size_t RegisterLightUpdateChangeEvent(std::function<void(WorldSnapshot)> callback) {
       DEBUG_ASSERT(_episode != nullptr);
       return _episode->RegisterLightUpdateChangeEvent(std::move(callback));
     }
-
+    // 移除一个灯光状态更新的事件回调
     void RemoveLightUpdateChangeEvent(size_t id) {
       DEBUG_ASSERT(_episode != nullptr);
       _episode->RemoveLightUpdateChangeEvent(id);
     }
-
+    // 冻结或解冻所有交通灯
     void FreezeAllTrafficLights(bool frozen);
 
     /// @}
@@ -813,30 +838,39 @@ namespace detail {
         const std::vector<std::string> &objects_name,
         const rpc::MaterialParameter& parameter,
         const rpc::TextureColor& Texture);
+    // 将颜色纹理应用到一组对象上
 
     void ApplyColorTextureToObjects(
         const std::vector<std::string> &objects_name,
         const rpc::MaterialParameter& parameter,
         const rpc::TextureFloatColor& Texture);
+    // 将浮动颜色纹理应用到一组对象上
 
     std::vector<std::string> GetNamesOfAllObjects() const;
+    // 获取所有对象的名称
 
     /// @}
 
   private:
-
+      // 判断是否需要更新地图
     bool ShouldUpdateMap(rpc::MapInfo& map_info);
 
+    // 客户端对象，负责与服务器交互
     Client _client;
 
+    // 灯光管理器，用于管理和操作场景中的灯光
     SharedPtr<LightManager> _light_manager;
 
+    // 任务场景的 Episode（任务执行环境）
     std::shared_ptr<Episode> _episode;
 
+    // 垃圾回收策略
     const GarbageCollectionPolicy _gc_policy;
 
+    // 缓存的地图对象
     SharedPtr<Map> _cached_map;
 
+    // 存储打开的道路文件
     std::string _open_drive_file;
   };
 

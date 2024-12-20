@@ -18,6 +18,11 @@ import os
 import sys
 
 try:
+    # 使用glob模块来查找符合特定模式的文件路径。
+    # 这里构造的查找模式是基于当前Python的版本号以及操作系统类型来生成的。
+    # 通过格式化字符串的方式，构造出类似'../carla/dist/carla-<Python主版本号>.<Python次版本号>-<操作系统类型>.egg'这样的模式。
+    # 例如在Python 3.8的Windows系统下，模式就是'../carla/dist/carla-3.8-win-amd64.egg'。
+    # glob.glob会返回所有匹配该模式的文件路径列表，由于期望只有一个匹配的CARLA egg文件路径，所以取列表中的第一个元素（通过[0]索引获取）添加到系统路径中。
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
@@ -53,14 +58,30 @@ def find_weather_presets():
 
 
 def list_options(client):
+    """
+       列出CARLA服务器端可用的一些选项信息，包括天气预设和可用地图。
+
+       参数:
+       client: CARLA客户端对象，通过它可以与CARLA服务器进行交互，获取服务器端的相关资源和信息。
+
+       该函数首先获取服务器端可用的地图列表，然后通过`find_weather_presets`函数获取天气预设信息，
+       接着将这些信息进行格式化输出，每行缩进一定空格，方便查看。
+       """
+     # 获取所有可用的地图名称，并去掉路径前缀'/Game/Carla/Maps/'以简化显示
+
     maps = [m.replace('/Game/Carla/Maps/', '') for m in client.get_available_maps()]
+    # 设置缩进格式，每个层次缩进4个空格
     indent = 4 * ' '
+     # 定义一个辅助函数 wrap，用来对文本进行格式化处理，使其适合输出
     def wrap(text):
         return '\n'.join(textwrap.wrap(text, initial_indent=indent, subsequent_indent=indent))
+        # 输出天气预设信息。这里假设有一个名为 find_weather_presets 的函数，
+    # 它返回一系列天气预设，其中包含两个元素的元组，但我们只对第二个元素感兴趣（即预设的名字）
     print('weather presets:\n')
-    print(wrap(', '.join(x for _, x in find_weather_presets())) + '.\n')
+    print(wrap(', '.join(x for _, x in find_weather_presets())) + '.\n')# 使用辅助函数 wrap 对天气预设列表进行格式化后输出
+     # 输出可用地图信息。首先对地图名称进行排序，然后使用辅助函数 wrap 进行格式化后输出
     print('available maps:\n')
-    print(wrap(', '.join(sorted(maps))) + '.\n')
+    print(wrap(', '.join(sorted(maps))) + '.\n') # 格式化并打印排序后的地图名称
 
 
 def list_blueprints(world, bp_filter):

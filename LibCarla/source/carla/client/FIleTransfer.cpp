@@ -16,7 +16,6 @@ namespace client {
   #else
         std::string FileTransfer::_filesBaseFolder = std::string(getenv("HOME")) + "/carlaCache/";
   #endif
-
   bool FileTransfer::SetFilesBaseFolder(const std::string &path) {
     // 首先判断传入的路径字符串是否为空。如果path为空字符串（即没有实际内容，长度为0）
     // 那就意味着传入的路径不合法或者不符合预期，无法进行有效的基础文件夹路径设置操作
@@ -74,7 +73,6 @@ namespace client {
 
     return true;
   }
-
 
   std::vector<uint8_t> FileTransfer::ReadFile(std::string path) {
     // 构建文件的完整路径

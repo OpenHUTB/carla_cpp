@@ -4,8 +4,8 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#if defined(_MSC_VER)
-#  pragma warning(pop)
+#if defined(_MSC_VER)//是一个条件编译指令
+#  pragma warning(pop)//用于恢复之前被保存的警告状态
 #  ifdef UpdateResource
 #    undef UpdateResource
 #  endif
@@ -13,7 +13,7 @@
 
 #if defined(__clang__)
 #  pragma clang diagnostic pop
-#endif
+#endif//这是结束标志
 
 // #pragma push_macro 将指定的宏压入栈中，相当于暂时存储，以备以后使用；
 // #pragma pop_macro 将栈顶的宏出栈，弹出的宏将覆盖当前名称相同的宏

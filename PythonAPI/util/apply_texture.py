@@ -49,7 +49,7 @@ def get_8bit_texture(image):
             a = int(color[3])
             texture.set(x, height - y - 1, carla.Color(r,g,b,a))
     return texture
-
+# 定义一个函数，用于获取一个浮点纹理
 def get_float_texture(image):
     if image is None:
         return carla.TextureFloatColor(0,0)

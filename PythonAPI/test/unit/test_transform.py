@@ -11,9 +11,12 @@ import unittest
 
 class TestLocation(unittest.TestCase):
     def test_default_values(self):
+        # 创建一个默认构造的carla.Location对象，此时预期其x、y、z属性都应为0.0
         location = carla.Location()
         self.assertEqual(location.x, 0.0)
+        # 同理，验证y属性是否为0.0
         self.assertEqual(location.y, 0.0)
+        # 验证z属性是否为0.0
         self.assertEqual(location.z, 0.0)
         location = carla.Location(1.0)
         self.assertEqual(location.x, 1.0)
@@ -184,7 +187,7 @@ class TestTransform(unittest.TestCase):
                       carla.Vector3D(0.0, 18.0, 2.0)
                       ]
         t.transform(point_list)
-
+        #定义预期的变化后点列表
         solution_list = [carla.Vector3D(-2.0, 0.0, -1.0),
                          carla.Vector3D(-1.0, 10.0, -1.0),
                          carla.Vector3D(-2.0, 18.0, -1.0)
