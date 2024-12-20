@@ -304,6 +304,7 @@ class World(object):
                     ego_sensor.destroy()
 
         # Set up the sensors.
+        # 设置各种传感器相关的操作，以下分别创建不同类型的传感器对象并进行初始化赋值。
         self.camera = Camera(self.player, self.dim)
         self.rss_unstructured_scene_visualizer = RssUnstructuredSceneVisualizer(self.player, self.world, self.dim)
         self.rss_bounding_box_visualizer = RssBoundingBoxVisualizer(self.dim, self.world, self.camera.sensor)
@@ -312,8 +313,12 @@ class World(object):
 
         if self.sync:
             self.world.tick()
+            # 如果 `self.sync` 属性为 `True`（表示处于同步模式），则调用 `self.world.tick` 方法，触发模拟世界进行一次更新操作，
+            # 按照之前设置的固定时间步长等同步模式规则来更新世界状态。
         else:
             self.world.wait_for_tick()
+            # 如果 `self.sync` 属性为 `False`（表示处于非同步模式），则调用 `self.world.wait_for_tick` 方法，等待模拟世界进行一次更新操作，
+            # 非同步模式下更新时间间隔可能不固定，通过这个方法等待世界自然更新。
 
     def tick(self, clock):
         self.hud.tick(self.player, clock)
