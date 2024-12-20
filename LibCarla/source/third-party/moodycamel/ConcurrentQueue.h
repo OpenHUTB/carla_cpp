@@ -2991,64 +2991,101 @@ private:
 
 #if MCDBGQ_TRACKMEM
   public:
+// 定义一个名为MemStats的结构体，用于统计内存相关的各种信息
     struct MemStats {
+ // 已分配的块数量
       size_t allocatedBlocks;
+ // 已分配的块数量
       size_t usedBlocks;
+ // 空闲的块数量
       size_t freeBlocks;
+ // 显式拥有的块数量
       size_t ownedBlocksExplicit;
+ // 显式拥有的块数量
       size_t ownedBlocksImplicit;
+// 隐式生产者的数量
       size_t implicitProducers;
+// 隐式生产者的数量
       size_t explicitProducers;
+// 入队元素的数量
       size_t elementsEnqueued;
+ // 块类所占用的字节数
       size_t blockClassBytes;
+ // 队列类所占用的字节数
       size_t queueClassBytes;
+ // 隐式块索引所占用的字节数
       size_t implicitBlockIndexBytes;
+// 显式块索引所占用的字节数
       size_t explicitBlockIndexBytes;
-
+ // 声明ConcurrentQueue类为友元类，意味着ConcurrentQueue类可以访问MemStats的私有成员
       friend class ConcurrentQueue;
 
     private:
+ // 静态成员函数，用于获取给定ConcurrentQueue对象的内存统计信息，参数为指向ConcurrentQueue的指针
       static MemStats getFor(ConcurrentQueue* q)
       {
+// 创建一个MemStats结构体实例，并将所有成员初始化为0
         MemStats stats = { 0 };
-
+ // 获取队列中大约的元素数量，并赋值给stats的elementsEnqueued成员，这里size_approx()应该是ConcurrentQueue类提供的用于估算队列元素个数的函数
         stats.elementsEnqueued = q->size_approx();
-
+     // 获取队列空闲链表的头节点，这里假设freeList是ConcurrentQueue类中用于管理空闲块链表的数据成员，head_unsafe()用于获取头节点（可能是一种非线程安全的获取方式，具体取决于实现）
         auto block = q->freeList.head_unsafe();
+ // 循环遍历空闲链表，直到遍历到链表末尾（节点为nullptr表示链表结束）
         while (block != nullptr) {
+ // 已分配块数量加1，因为当前遍历到的是一个已分配的空闲块
           ++stats.allocatedBlocks;
+ // 空闲块数量加1，当前块处于空闲状态
           ++stats.freeBlocks;
+ // 获取下一个空闲块节点，通过原子加载操作（memory_order_relaxed表示一种较宽松的内存顺序要求，常用于性能优先的场景）获取下一个节点指针
           block = block->freeListNext.load(std::memory_order_relaxed);
         }
-
+  // 加载队列生产者链表的尾节点，使用memory_order_acquire内存顺序保证获取到的是其他线程已完成写入的最新值，用于后续遍历生产者链表
         for (auto ptr = q->producerListTail.load(std::memory_order_acquire); ptr != nullptr; ptr = ptr->next_prod()) {
+                // 通过动态类型转换判断当前生产者指针指向的是否是隐式生产者（ImplicitProducer类型），如果转换成功（不为nullptr）则表示是隐式生产者
           bool implicit = dynamic_cast<ImplicitProducer*>(ptr) != nullptr;
+// 如果是隐式生产者，隐式生产者数量加1
           stats.implicitProducers += implicit ? 1 : 0;
+ // 如果不是隐式生产者（即显式生产者），显式生产者数量加1
           stats.explicitProducers += implicit ? 0 : 1;
-
-          if (implicit) {
+ // 如果是隐式生产者，进入以下逻辑进行相关统计信息的更新
+       if (implicit) {
+ // 将ptr指针转换为ImplicitProducer*类型，以便后续访问ImplicitProducer类相关的成员变量和函数
             auto prod = static_cast<ImplicitProducer*>(ptr);
+// 累加ImplicitProducer类型对象所占用的字节数到queueClassBytes成员，用于统计队列类相关的内存占用情况
             stats.queueClassBytes += sizeof(ImplicitProducer);
+// 原子加载隐式生产者的头索引，同样使用memory_order_relaxed内存顺序
             auto head = prod->headIndex.load(std::memory_order_relaxed);
+ // 原子加载隐式生产者的尾索引
             auto tail = prod->tailIndex.load(std::memory_order_relaxed);
+// 原子加载隐式生产者的块索引（这里假设是一个指向某种数据结构用于管理块索引的指针）
             auto hash = prod->blockIndex.load(std::memory_order_relaxed);
+ // 如果块索引指针不为nullptr，说明存在块索引相关的数据结构，进入以下循环处理逻辑
             if (hash != nullptr) {
+// 循环遍历块索引数据结构中每个索引位置（假设index是一个数组或者类似可遍历的数据结构）
               for (size_t i = 0; i != hash->capacity; ++i) {
+                 // 检查当前索引位置对应的块索引条目的键是否不等于无效块基值（这里INVALID_BLOCK_BASE应该是ImplicitProducer类中定义的表示无效块的一个常量之类的），并且对应的值指针不为nullptr，表示该块是有效的已分配块
                 if (hash->index[i]->key.load(std::memory_order_relaxed) != ImplicitProducer::INVALID_BLOCK_BASE && hash->index[i]->value.load(std::memory_order_relaxed) != nullptr) {
+ // 已分配块数量加1，因为找到了一个有效的已分配块
                   ++stats.allocatedBlocks;
+ // 隐式拥有的块数量加1，因为这是隐式生产者拥有的有效块
                   ++stats.ownedBlocksImplicit;
                 }
               }
+ // 累加隐式块索引所占用的字节数，计算方式为索引容量乘以每个索引条目的字节大小（这里假设BlockIndexEntry是用于表示块索引条目的结构体之类的）
               stats.implicitBlockIndexBytes += hash->capacity * sizeof(typename ImplicitProducer::BlockIndexEntry);
+   // 循环遍历块索引数据结构的链表（假设通过prev指针连接），用于统计整个链表结构所占用的字节数，包括头部和每个节点相关的字节数
               for (; hash != nullptr; hash = hash->prev) {
                 stats.implicitBlockIndexBytes += sizeof(typename ImplicitProducer::BlockIndexHeader) + hash->capacity * sizeof(typename ImplicitProducer::BlockIndexEntry*);
               }
             }
+// 根据头索引和尾索引循环处理已使用块的统计，这里假设circular_less_than是用于比较循环索引大小的函数，BLOCK_SIZE是块大小相关的常量之类的
             for (; details::circular_less_than<index_t>(head, tail); head += BLOCK_SIZE) {
+// 已使用块数量加1，说明对应位置的块正在被使用
               //auto block = prod->get_block_index_entry_for_index(head);
               ++stats.usedBlocks;
             }
           }
+ // 如果不是隐式生产者（即显式生产者），进入以下逻辑进行相关统计信息的更新
           else {
             auto prod = static_cast<ExplicitProducer*>(ptr);
             stats.queueClassBytes += sizeof(ExplicitProducer);
