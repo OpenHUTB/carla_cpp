@@ -4,9 +4,9 @@
 // 完整的设计也有详细的描述：
 //    http://moodycamel.com/blog/2014/detailed-design-of-a-lock-free-queue
 
-//简化的 BSD 许可证：
-// 版权所有 （c） 2013-2016，Cameron Desrochers。
-// 保留所有权利。
+// Simplified BSD license:
+// Copyright (c) 2013-2016, Cameron Desrochers.
+// All rights reserved.
 //
 // 允许源代码和二进制形式的再分发和使用，无论是否经过修改，只要满足以下条件：
 //
@@ -57,7 +57,7 @@
 #include <limits>
 #include <climits>    // for CHAR_BIT
 #include <array>
-#include <thread>    // 部分用于 __WINPTHREADS_VERSION如果在 MinGW-w64 上带有 POSIX 线程
+#include <thread>    // partly for __WINPTHREADS_VERSION if on MinGW-w64 w/ POSIX threading
 
 // 平台特定的数字线程 ID 类型和无效值定义
 namespace moodycamel { namespace details {
@@ -81,8 +81,8 @@ extern "C" __declspec(dllimport) unsigned long __stdcall GetCurrentThreadId(void
 namespace moodycamel { namespace details {
   static_assert(sizeof(unsigned long) == sizeof(std::uint32_t), "Expected size of unsigned long to be 32 bits on Windows");
   typedef std::uint32_t thread_id_t;
-  static const thread_id_t invalid_thread_id  = 0;      //查看 http://blogs.msdn.com/b/oldnewthing/archive/2004/02/23/78395.aspx
-  static const thread_id_t invalid_thread_id2 = 0xFFFFFFFFU;  // 在技术上不能保证无效，但在实践中从未使用过。请注意，所有 Win32 线程 ID 目前都是 4 的倍数。
+  static const thread_id_t invalid_thread_id  = 0;      // See http://blogs.msdn.com/b/oldnewthing/archive/2004/02/23/78395.aspx
+  static const thread_id_t invalid_thread_id2 = 0xFFFFFFFFU;  // Not technically guaranteed to be invalid, but is never used in practice. Note that all Win32 thread IDs are presently multiples of 4.
   static inline thread_id_t thread_id() { return static_cast<thread_id_t>(::GetCurrentThreadId()); }
 } }
 #elif defined(__arm__) || defined(_M_ARM) || defined(__aarch64__) || (defined(__APPLE__) && TARGET_OS_IPHONE)
@@ -90,7 +90,7 @@ namespace moodycamel { namespace details {
   static_assert(sizeof(std::thread::id) == 4 || sizeof(std::thread::id) == 8, "std::thread::id is expected to be either 4 or 8 bytes");
 
   typedef std::thread::id thread_id_t;
-  static const thread_id_t invalid_thread_id;         // 默认 ctor 创建无效 ID
+  static const thread_id_t invalid_thread_id;         // Default ctor creates invalid ID
 
   // 请注意，我们不定义 invalid_thread_id2，因为 std::thread::id 没有无效值；它
   // 仅在 MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED 定义时才会使用，但实际上不会定义它。
@@ -126,18 +126,18 @@ namespace moodycamel { namespace details {
 #elif defined(_MSC_VER)
 #define MOODYCAMEL_THREADLOCAL __declspec(thread)
 #else
-//假设编译器符合 C++11 标准
+// Assume C++11 compliant compiler
 #define MOODYCAMEL_THREADLOCAL thread_local
 #endif
 namespace moodycamel { namespace details {
   typedef std::uintptr_t thread_id_t;
-  static const thread_id_t invalid_thread_id  = 0;    //地址不能为 nullptr
-  static const thread_id_t invalid_thread_id2 = 1;    // 对 null 指针的成员访问通常也是无效的。另外，它没有对齐。
+  static const thread_id_t invalid_thread_id  = 0;    // Address can't be nullptr
+  static const thread_id_t invalid_thread_id2 = 1;    // Member accesses off a null pointer are also generally invalid. Plus it's not aligned.
   static inline thread_id_t thread_id() { static MOODYCAMEL_THREADLOCAL int x; return reinterpret_cast<thread_id_t>(&x); }
 } }
 #endif
 
-//异常
+// Exceptions
 #ifndef MOODYCAMEL_EXCEPTIONS_ENABLED
 #if (defined(_MSC_VER) && defined(_CPPUNWIND)) || (defined(__GNUC__) && defined(__EXCEPTIONS)) || (!defined(_MSC_VER) && !defined(__GNUC__))
 #define MOODYCAMEL_EXCEPTIONS_ENABLED
@@ -286,8 +286,8 @@ struct ConcurrentQueueDefaultTraits
   // 必须是 2 的幂。
   static const size_t EXPLICIT_INITIAL_INDEX_SIZE = 32;
 
-  // 单个隐式 producer 可以预期有多少个完整块？这应该
-  // 反映该数字的最大值以获得最佳性能。必须是 2 的幂。
+  // How many full blocks can be expected for a single implicit producer? This should
+  // reflect that number's maximum for optimal performance. Must be a power of 2.
   static const size_t IMPLICIT_INITIAL_INDEX_SIZE = 32;
 
   // 线程 ID 到隐式生产者的哈希表的初始大小。
@@ -321,11 +321,11 @@ static const size_t MAX_SUBQUEUE_SIZE = details::const_numeric_max<size_t>::valu
 
 
 #ifndef MCDBGQ_USE_RELACY
-  // 如果需要，可以自定义内存分配。
-  // malloc 应在失败时返回 nullptr，并像 std：：malloc 一样处理对齐。
+  // Memory allocation can be customized if needed.
+  // malloc should return nullptr on failure, and handle alignment like std::malloc.
 #if defined(malloc) || defined(free)
-  // 噢，现在是 2015 年，别再定义违反标准代码的宏了！
-  // 解决 malloc/free 作为特殊宏的问题：
+  // Gah, this is 2015, stop defining macros that break standard code already!
+  // Work around malloc/free being special macros:
   static inline void* WORKAROUND_malloc(size_t size) { return malloc(size); }
   static inline void WORKAROUND_free(void* ptr) { return free(ptr); }
   static inline void* (malloc)(size_t size) { return WORKAROUND_malloc(size); }
@@ -624,7 +624,7 @@ struct ProducerToken
     }
   }
 
-  // 禁用复制和分配
+  // Disable copying and assignment
   ProducerToken(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;
   ProducerToken& operator=(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;
 
@@ -705,8 +705,8 @@ public:
   static const std::uint32_t EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE = static_cast<std::uint32_t>(Traits::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE);
 #ifdef _MSC_VER
 #pragma warning(push)
-#pragma warning(disable: 4307)    //+ 整型常量溢出（这就是三元表达式的用途！
-#pragma warning(disable: 4309)    // static_cast：常量值的截断
+#pragma warning(disable: 4307)    // + integral constant overflow (that's what the ternary expression is for!)
+#pragma warning(disable: 4309)    // static_cast: Truncation of constant value
 #endif
   static const size_t MAX_SUBQUEUE_SIZE = (details::const_numeric_max<size_t>::value - static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) < BLOCK_SIZE) ? details::const_numeric_max<size_t>::value : ((static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) + (BLOCK_SIZE - 1)) / BLOCK_SIZE * BLOCK_SIZE);
 #ifdef _MSC_VER
@@ -743,10 +743,10 @@ public:
     populate_initial_block_list(capacity / BLOCK_SIZE + ((capacity & (BLOCK_SIZE - 1)) == 0 ? 0 : 1));
 
 #ifdef MOODYCAMEL_QUEUE_INTERNAL_DEBUG
-    // 使用完全解析的类型化列表跟踪所有生产者
-    // 每一种;这使得可以从
-    // 根队列对象（否则需要
-    // 不要在 Debugger 的 Expression Evaluator 中编译）。
+    // Track all the producers using a fully-resolved typed list for
+    // each kind; this makes it possible to debug them starting from
+    // the root queue object (otherwise wacky casts are needed that
+    // don't compile in the debugger's expression evaluator).
     explicitProducers.store(nullptr, std::memory_order_relaxed);
     implicitProducers.store(nullptr, std::memory_order_relaxed);
 #endif
@@ -794,7 +794,7 @@ public:
       auto hash = implicitProducerHash.load(std::memory_order_relaxed);
       while (hash != nullptr) {
         auto prev = hash->prev;
-        if (prev != nullptr) {    // 最后一个哈希是此对象的一部分，不是动态分配的
+        if (prev != nullptr) {    // The last hash is part of this object and was not allocated dynamically
           for (size_t i = 0; i != hash->capacity; ++i) {
             hash->entries[i].~ImplicitProducerKVP();
           }
@@ -960,11 +960,11 @@ public:
   }
 
   // 使用显式生产者令牌将多个项目入队。
-  // Allocates memory if required. Only fails if memory allocation fails
-  // (or Traits::MAX_SUBQUEUE_SIZE has been defined and would be surpassed).
-  // Note: Use std::make_move_iterator if the elements should be moved
-  // instead of copied.
-  // Thread-safe.
+  // 根据需要分配内存。仅当内存分配失败时失败
+  // （或 Traits：：MAX_SUBQUEUE_SIZE 已定义，将被超越）。
+  // 注意：如果元素应该移动，请使用 std：：make_move_iterator
+  // 而不是复制。
+  // 线程安全。
   template<typename It>
   bool enqueue_bulk(producer_token_t const& token, It itemFirst, size_t count)
   {
@@ -972,10 +972,10 @@ public:
   }
 
   // 将单个项目（通过复制）入队。
-  // Does not allocate memory. Fails if not enough room to enqueue (or implicit
-  // production is disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE
-  // is 0).
-  // Thread-safe.
+  // 不分配内存。如果没有足够的空间来排队（或隐式
+  //production 被禁用，因为 Traits：：INITIAL_IMPLICIT_PRODUCER_HASH_SIZE
+  // 为 0）。
+  // 线程安全。
   inline bool try_enqueue(T const& item)
   {
     if (INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0) return false;
@@ -983,10 +983,10 @@ public:
   }
 
   // 将单个项目入队（如果可能，通过移动）。
-  // Does not allocate memory (except for one-time implicit producer).
-  // Fails if not enough room to enqueue (or implicit production is
-  // disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE is 0).
-  // Thread-safe.
+  // 不分配内存（一次性隐式 producer 除外）。
+  // 如果没有足够的空间来排队（或隐式生产是
+  // disabled because Traits：：INITIAL_IMPLICIT_PRODUCER_HASH_SIZE 为 0）。
+  // 线程安全。
   inline bool try_enqueue(T&& item)
   {
     if (INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0) return false;
@@ -994,16 +994,16 @@ public:
   }
 
   // 使用显式生产者令牌将单个项目入队（通过复制）。
-  // Does not allocate memory. Fails if not enough room to enqueue.
-  // Thread-safe.
+  //不分配内存。如果没有足够的空间加入队列，则失败。
+  //线程安全。
   inline bool try_enqueue(producer_token_t const& token, T const& item)
   {
     return inner_enqueue<CannotAlloc>(token, item);
   }
 
-  // Enqueues a single item (by moving it, if possible) using an explicit producer token.
-  // Does not allocate memory. Fails if not enough room to enqueue.
-  // Thread-safe.
+  // 使用显式生产者令牌将单个项目排入队列（如果可能，通过移动它）。
+  // 不分配内存。如果没有足够的空间加入队列，则失败。
+  // 线程安全。
   inline bool try_enqueue(producer_token_t const& token, T&& item)
   {
     return inner_enqueue<CannotAlloc>(token, std::move(item));
@@ -1011,11 +1011,11 @@ public:
 
   // 批量入队多个项目。
   // 不会分配内存（除了一个一次性的隐式生产者）。
-  // Fails if not enough room to enqueue (or implicit production is
-  // disabled because Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE is 0).
-  // Note: Use std::make_move_iterator if the elements should be moved
-  // instead of copied.
-  // Thread-safe.
+  // 如果没有足够的空间来排队（或隐式生产是
+  // disabled because Traits：：INITIAL_IMPLICIT_PRODUCER_HASH_SIZE 为 0）。
+  // 注意：如果元素应该移动，请使用 std：：make_move_iterator
+  // 而不是复制。
+  // 线程安全。
   template<typename It>
   bool try_enqueue_bulk(It itemFirst, size_t count)
   {
@@ -1024,10 +1024,10 @@ public:
   }
 
   // 使用显式生产者令牌批量入队多个项目。
-  // Does not allocate memory. Fails if not enough room to enqueue.
-  // Note: Use std::make_move_iterator if the elements should be moved
-  // instead of copied.
-  // Thread-safe.
+  // 不分配内存。如果没有足够的空间加入队列，则失败。
+  // 注意：如果元素应该移动，请使用 std：：make_move_iterator
+  // 而不是复制。
+  // 线程安全。
   template<typename It>
   bool try_enqueue_bulk(producer_token_t const& token, It itemFirst, size_t count)
   {
@@ -1090,10 +1090,10 @@ public:
     return false;
   }
 
-  // Attempts to dequeue from the queue using an explicit consumer token.
-  // Returns false if all producer streams appeared empty at the time they
-  // were checked (so, the queue is likely but not guaranteed to be empty).
-  // Never allocates. Thread-safe.
+  //尝试使用显式使用者令牌从队列中出队。
+  // 如果所有创建者流在此时都显示为空，则返回 false
+  // （因此，队列可能但不能保证为空）。
+  // 从不分配。线程安全。
   template<typename U>
   bool try_dequeue(consumer_token_t& token, U& item)
   {
@@ -1154,10 +1154,10 @@ public:
   }
 
   // 尝试使用显式消费者令牌从队列中取出多个元素。
-  // Returns the number of items actually dequeued.
-  // Returns 0 if all producer streams appeared empty at the time they
-  // were checked (so, the queue is likely but not guaranteed to be empty).
-  // Never allocates. Thread-safe.
+  // 返回实际出队的项目数。
+  //如果所有创建者流在它们
+  // （因此，队列可能但不能保证为空）。
+  //从不分配。线程安全。
   template<typename It>
   size_t try_dequeue_bulk(consumer_token_t& token, It itemFirst, size_t max)
   {
@@ -1203,25 +1203,25 @@ public:
 
 
 
-  // Attempts to dequeue from a specific producer's inner queue.
-  // If you happen to know which producer you want to dequeue from, this
-  // is significantly faster than using the general-case try_dequeue methods.
-  // Returns false if the producer's queue appeared empty at the time it
-  // was checked (so, the queue is likely but not guaranteed to be empty).
-  // Never allocates. Thread-safe.
+  // 尝试从特定创建者的内部队列中出队。
+  //如果您碰巧知道要从哪个 producer 中出队，则此
+  //比使用一般大小写的 try_dequeue 方法快得多。
+  // 如果生产者的队列在运行时显示为空，则返回 false
+  // 已选中（因此，队列可能但不能保证为空）。
+  // 从不分配。线程安全。
   template<typename U>
   inline bool try_dequeue_from_producer(producer_token_t const& producer, U& item)
   {
     return static_cast<ExplicitProducer*>(producer.producer)->dequeue(item);
   }
 
-  // Attempts to dequeue several elements from a specific producer's inner queue.
-  // Returns the number of items actually dequeued.
-  // If you happen to know which producer you want to dequeue from, this
-  // is significantly faster than using the general-case try_dequeue methods.
-  // Returns 0 if the producer's queue appeared empty at the time it
-  // was checked (so, the queue is likely but not guaranteed to be empty).
-  // Never allocates. Thread-safe.
+  // 尝试从特定生产者的内部队列中取消多个元素的排队。
+  // 返回实际出队的项目数。
+  // 如果您碰巧知道要从哪个 producer 中出队，则此
+  // 比使用一般大小写的 try_dequeue 方法快得多。
+  // 如果生产者的队列在运行时为空，则返回 0
+  // 已选中（因此，队列可能但不能保证为空）。
+  //从不分配。线程安全。
   template<typename It>
   inline size_t try_dequeue_bulk_from_producer(producer_token_t const& producer, It itemFirst, size_t max)
   {
@@ -1229,12 +1229,12 @@ public:
   }
 
 
-  // Returns an estimate of the total number of elements currently in the queue. This
-  // estimate is only accurate if the queue has completely stabilized before it is called
-  // (i.e. all enqueue and dequeue operations have completed and their memory effects are
-  // visible on the calling thread, and no further operations start while this method is
-  // being called).
-  // Thread-safe.
+  // 返回队列中当前元素总数的估计值。这
+  // 仅当队列在调用之前完全稳定时，估计才准确
+  // （即所有 enqueue 和 dequeue 操作都已完成，并且它们的内存影响是
+  //在调用线程上可见，并且当此方法为
+  // 被叫）。
+  // 线程安全。
   size_t size_approx() const
   {
     size_t size = 0;
@@ -1245,9 +1245,9 @@ public:
   }
 
 
-  // Returns true if the underlying atomic variables used by
-  // the queue are lock-free (they should be on most platforms).
-  // Thread-safe.
+  // 如果
+  // 队列是无锁的（它们应该在大多数平台上）。
+  // 线程安全。
   static bool is_lock_free()
   {
     return
