@@ -257,6 +257,7 @@ class World(object):
             self.world.apply_settings(settings)
 
     def restart(self):
+    # 定义一个方法用于重新启动模拟世界相关的各种元素，比如重新创建车辆、传感器等，使其恢复到一个初始可用状态。
 
         if self.external_actor:
             # Check whether there is already an actor with defined role name
@@ -264,18 +265,31 @@ class World(object):
                 if actor.attributes.get('role_name') == self.actor_role_name:
                     self.player = actor
                     break
+        # 如果 `self.external_actor` 属性为 `True`，表示使用外部定义的演员对象，那么执行以下操作来查找并设置 `self.player`（主要演员，可能是车辆）。
+        # 遍历模拟世界中所有的演员对象（通过 `self.world.get_actors` 方法获取），查找属性 `role_name` 与 `self.actor_role_name`（之前初始化时设置的特定角色名称）相等的演员对象，
+        # 如果找到则将其赋值给 `self.player`，并跳出循环，表示找到了对应的外部定义的演员。
         else:
             # Get a random blueprint.
             blueprint = random.choice(self.world.get_blueprint_library().filter(self._actor_filter))
+            # 如果不使用外部定义的演员对象，那么执行以下操作来创建一个新的主要演员（可能是车辆）。
+            # 首先，从世界的蓝图库（ `self.world.get_blueprint_library` 方法返回所有可用的蓝图对象列表，蓝图可以理解为创建各种演员的模板）中，
+            # 通过 `filter` 方法根据 `self._actor_filter`（之前设置的筛选条件，应该是筛选车辆相关蓝图）筛选出符合条件的蓝图对象，然后随机选择一个蓝图，赋值给 `blueprint` 变量。
             blueprint.set_attribute('role_name', self.actor_role_name)
+            # 给选中的蓝图对象设置 `role_name` 属性为 `self.actor_role_name`（特定角色名称），用于标识这个即将创建的演员对象的角色。
             if blueprint.has_attribute('color'):
                 color = random.choice(blueprint.get_attribute('color').recommended_values)
                 blueprint.set_attribute('color', color)
+                # 如果蓝图对象有 `color` 属性（表示可以设置颜色），则从 `color` 属性推荐的颜色值列表（ `recommended_values` ）中随机选择一个颜色，
+                # 并将其设置为蓝图对象的颜色属性值，这样创建出来的演员（比如车辆）就会有随机的外观颜色。
             if blueprint.has_attribute('driver_id'):
                 driver_id = random.choice(blueprint.get_attribute('driver_id').recommended_values)
                 blueprint.set_attribute('driver_id', driver_id)
+                # 如果蓝图对象有 `driver_id` 属性（表示可以设置驾驶员标识等相关信息），则从 `driver_id` 属性推荐的标识值列表中随机选择一个标识，
+                # 并将其设置为蓝图对象的 `driver_id` 属性值，用于模拟不同驾驶员等情况。
             if blueprint.has_attribute('is_invincible'):
                 blueprint.set_attribute('is_invincible', 'true')
+                #如果蓝图对象有 `is_invincible` 属性（表示是否无敌，可能在模拟中不受碰撞等影响），则将其设置为 `true`，使创建出来的演员具有无敌属性，
+                # 这可能在一些特定的测试或模拟场景下有需要，避免演员过早被破坏等情况。
             # Spawn the player.
             if self.player is not None:
                 spawn_point = self.player.get_transform()
