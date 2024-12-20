@@ -20,47 +20,64 @@
 #include "carla/ros2/ROS2.h"
 #include <compiler/enable-ue4-macros.h>
 
+// UActorDispatcher类中的Bind函数，用于绑定一个Actor定义和生成函数
 void UActorDispatcher::Bind(FActorDefinition Definition, SpawnFunctionType Functor)
 {
+  // 检查Actor定义是否有效
   if (UActorBlueprintFunctionLibrary::CheckActorDefinition(Definition))
   {
+    // 分配一个唯一的ID给这个定义
     Definition.UId = static_cast<uint32>(SpawnFunctions.Num()) + 1u;
+    // 将定义添加到定义列表中
     Definitions.Emplace(Definition);
+    // 将生成函数添加到生成函数列表中
     SpawnFunctions.Emplace(Functor);
+    // 将对应的类添加到类列表中
     Classes.Emplace(Definition.Class);
   }
   else
   {
+    // 如果定义无效，记录警告日志
     UE_LOG(LogCarla, Warning, TEXT("Invalid definition '%s' ignored"), *Definition.Id);
   }
 }
 
+// UActorDispatcher类中的另一个Bind函数，用于绑定一个Actor工厂
 void UActorDispatcher::Bind(ACarlaActorFactory &ActorFactory)
 {
+   // 遍历Actor工厂中所有定义，并绑定它们
   for (const auto &Definition : ActorFactory.GetDefinitions())
   {
     Bind(Definition, [&](const FTransform &Transform, const FActorDescription &Description) {
+       // 返回Actor工厂生成的Actor
       return ActorFactory.SpawnActor(Transform, Description);
     });
   }
 }
 
+// UActorDispatcher类中的SpawnActor函数，用于生成Actor
 TPair<EActorSpawnResultStatus, FCarlaActor*> UActorDispatcher::SpawnActor(
     const FTransform &Transform,
     FActorDescription Description,
     FCarlaActor::IdType DesiredId)
 {
+  // 检查Actor描述是否有效
   if ((Description.UId == 0u) || (Description.UId > static_cast<uint32>(SpawnFunctions.Num())))
   {
+    // 如果无效，记录错误日志并返回失败结果
     UE_LOG(LogCarla, Error, TEXT("Invalid ActorDescription '%s' (UId=%d)"), *Description.Id, Description.UId);
     return MakeTuple(EActorSpawnResultStatus::InvalidDescription, nullptr);
   }
 
+  // 记录生成Actor的日志
   UE_LOG(LogCarla, Log, TEXT("Spawning actor '%s'"), *Description.Id);
 
+  // 设置Actor描述中的类
   Description.Class = Classes[Description.UId - 1];
+  // 调用对应的生成函数生成Actor
   FActorSpawnResult Result = SpawnFunctions[Description.UId - 1](Transform, Description);
 
+  // 如果生成结果状态为成功但未返回Actor，记录警告日志并将状态设置为未知错误
   if ((Result.Status == EActorSpawnResultStatus::Success) && (Result.Actor == nullptr))
   {
     UE_LOG(LogCarla, Warning, TEXT("ActorSpawnResult: Trying to spawn '%s'"), *Description.Id);
@@ -68,8 +85,10 @@ TPair<EActorSpawnResultStatus, FCarlaActor*> UActorDispatcher::SpawnActor(
     Result.Status = EActorSpawnResultStatus::UnknownError;
   }
 
+  // 如果生成结果有效，则注册Actor，否则设置为nullptr
   FCarlaActor* View = Result.IsValid() ?
       RegisterActor(*Result.Actor, std::move(Description), DesiredId) : nullptr;
+   // 如果注册失败，记录警告日志并检查结果状态不应为成功
   if (!View)
   {
     UE_LOG(LogCarla, Warning, TEXT("Failed to spawn actor '%s'"), *Description.Id);
@@ -77,9 +96,10 @@ TPair<EActorSpawnResultStatus, FCarlaActor*> UActorDispatcher::SpawnActor(
   }
   else
   {
+    // 如果注册成功，对Actor进行标记
     ATagger::TagActor(*View->GetActor(), true);
   }
-
+  // 返回生成结果状态和Actor指针
   return MakeTuple(Result.Status, View);
 }
 

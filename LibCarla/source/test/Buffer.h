@@ -1,8 +1,8 @@
-﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+﻿// 版权所有 （c） 2017 Universitat Autonoma 计算机视觉中心 （CVC）
+// 巴塞罗那 （UAB）。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据 MIT 许可证的条款进行许可。
+//有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 // 引入 carla 的 Buffer 类
@@ -41,8 +41,8 @@ namespace buffer {
 // 将一个 Buffer 对象转换为十六进制字符串，可指定输出的长度
   std::string to_hex_string(const Buffer &buf, size_t length = 16u);
 
-} // namespace buffer
-} // namespace util
+} //命名空间缓冲区
+} // 命名空间实用程序
 // 为 carla 命名空间定义输出流操作符重载
 namespace carla {
 // 重载输出流操作符，用于将 Buffer 对象输出到输出流中
@@ -61,4 +61,4 @@ namespace carla {
     return !(lhs == rhs);
   }
 
-} // namespace carla
+} //命名空间 carla
