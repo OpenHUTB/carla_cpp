@@ -321,8 +321,8 @@ static const size_t MAX_SUBQUEUE_SIZE = details::const_numeric_max<size_t>::valu
 
 
 #ifndef MCDBGQ_USE_RELACY
-  // Memory allocation can be customized if needed.
-  // malloc should return nullptr on failure, and handle alignment like std::malloc.
+  // 如果需要，可以自定义内存分配。
+  // malloc 应在失败时返回 nullptr，并像 std：：malloc 一样处理对齐。
 #if defined(malloc) || defined(free)
   // Gah, this is 2015, stop defining macros that break standard code already!
   // Work around malloc/free being special macros:
