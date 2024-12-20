@@ -116,90 +116,96 @@ FTransform FActorData::GetLocalTransform(UCarlaEpisode* CarlaEpisode) const
   return FTransform(Rotation, LocalLocation, Scale);
 }
 
+
+// 记录车辆相关数据
 void FVehicleData::RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
-  FActorData::RecordActorData(CarlaActor, CarlaEpisode);
-  AActor* Actor = CarlaActor->GetActor();
-  ACarlaWheeledVehicle* Vehicle = Cast<ACarlaWheeledVehicle>(Actor);
-  if (bSimulatePhysics)
+  FActorData::RecordActorData(CarlaActor, CarlaEpisode);// 继承自基类的记录数据方法
+  AActor* Actor = CarlaActor->GetActor(); // 获取Actor对象
+  ACarlaWheeledVehicle* Vehicle = Cast<ACarlaWheeledVehicle>(Actor); // 将Actor转换为车辆类型
+  if (bSimulatePhysics) // 如果需要模拟物理
   {
-    PhysicsControl = Vehicle->GetVehiclePhysicsControl();
+    PhysicsControl = Vehicle->GetVehiclePhysicsControl();// 获取车辆物理控制数据
   }
-  Control = Vehicle->GetVehicleControl();
-  AckermannControl = Vehicle->GetVehicleAckermannControl();
-  bAckermannControlActive = Vehicle->IsAckermannControlActive();
-  AckermannControllerSettings = Vehicle->GetAckermannControllerSettings();
-  LightState = Vehicle->GetVehicleLightState();
-  auto Controller = Cast<AWheeledVehicleAIController>(Vehicle->GetController());
+  Control = Vehicle->GetVehicleControl(); // 获取车辆控制数据
+  AckermannControl = Vehicle->GetVehicleAckermannControl();// 获取Ackermann控制数据
+  bAckermannControlActive = Vehicle->IsAckermannControlActive(); // 检查Ackermann控制是否激活
+  AckermannControllerSettings = Vehicle->GetAckermannControllerSettings();// 获取Ackermann控制器设置
+  LightState = Vehicle->GetVehicleLightState();// 获取车辆灯光状态
+  auto Controller = Cast<AWheeledVehicleAIController>(Vehicle->GetController());// 获取车辆AI控制器
   if (Controller)
   {
-    SpeedLimit = Controller->GetSpeedLimit();
+    SpeedLimit = Controller->GetSpeedLimit();// 获取速度限制
   }
-  FailureState = Vehicle->GetFailureState();
+  FailureState = Vehicle->GetFailureState();// 获取车辆故障状态
 }
 
+// 恢复车辆相关数据
 void FVehicleData::RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
-  FActorData::RestoreActorData(CarlaActor, CarlaEpisode);
-  AActor* Actor = CarlaActor->GetActor();
-  ACarlaWheeledVehicle* Vehicle = Cast<ACarlaWheeledVehicle>(Actor);
-  Vehicle->SetSimulatePhysics(bSimulatePhysics);
-  if (bSimulatePhysics)
+  FActorData::RestoreActorData(CarlaActor, CarlaEpisode);// 继承自基类的恢复数据方法
+  AActor* Actor = CarlaActor->GetActor();// 获取Actor对象
+  ACarlaWheeledVehicle* Vehicle = Cast<ACarlaWheeledVehicle>(Actor);// 将Actor转换为车辆类型
+  Vehicle->SetSimulatePhysics(bSimulatePhysics);// 设置是否模拟物理
+  if (bSimulatePhysics)// 如果需要模拟物理
   {
-    Vehicle->ApplyVehiclePhysicsControl(PhysicsControl);
+    Vehicle->ApplyVehiclePhysicsControl(PhysicsControl);// 应用车辆物理控制数据
   }
-  Vehicle->ApplyAckermannControllerSettings(AckermannControllerSettings);
-  if (!bAckermannControlActive)
+  Vehicle->ApplyAckermannControllerSettings(AckermannControllerSettings);// 应用Ackermann控制器设置
+  if (!bAckermannControlActive)// 如果Ackermann控制不激活
   {
-    Vehicle->ApplyVehicleControl(Control, EVehicleInputPriority::Client);
+    Vehicle->ApplyVehicleControl(Control, EVehicleInputPriority::Client);// 应用车辆控制数据
   }
   else
   {
-    Vehicle->ApplyVehicleAckermannControl(AckermannControl, EVehicleInputPriority::Client);
+    Vehicle->ApplyVehicleAckermannControl(AckermannControl, EVehicleInputPriority::Client);// 应用Ackermann控制数据
   }
-  Vehicle->SetVehicleLightState(LightState);
-  auto Controller = Cast<AWheeledVehicleAIController>(Vehicle->GetController());
-  if (Controller)
+  Vehicle->SetVehicleLightState(LightState);// 设置车辆灯光状态
+  auto Controller = Cast<AWheeledVehicleAIController>(Vehicle->GetController());/ 获取车辆AI控制器
+  if (Controller)// 如果控制器存在
   {
-    Controller->SetSpeedLimit(SpeedLimit);
+    Controller->SetSpeedLimit(SpeedLimit);// 设置速度限制
   }
-  Vehicle->SetFailureState(FailureState);
+  Vehicle->SetFailureState(FailureState);// 设置车辆故障状态
 }
 
+// 记录行人相关数据
 void FWalkerData::RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
-  FActorData::RecordActorData(CarlaActor, CarlaEpisode);
-  AActor* Actor = CarlaActor->GetActor();
-  auto Walker = Cast<AWalkerBase>(Actor);
-  auto Controller = Walker != nullptr ? Cast<AWalkerController>(Walker->GetController()) : nullptr;
+  FActorData::RecordActorData(CarlaActor, CarlaEpisode);// 继承自基类的记录数据方法
+  AActor* Actor = CarlaActor->GetActor();// 获取Actor对象
+  auto Walker = Cast<AWalkerBase>(Actor);// 将Actor转换为行人类型
+  auto Controller = Walker != nullptr ? Cast<AWalkerController>(Walker->GetController()) : nullptr;// 获取行人控制器
   if (Controller != nullptr)
   {
-    WalkerControl = carla::rpc::WalkerControl{Controller->GetWalkerControl()};
+    WalkerControl = carla::rpc::WalkerControl{Controller->GetWalkerControl()};// 获取行人控制数据
   }
-  bAlive = Walker->bAlive;
+  bAlive = Walker->bAlive;// 获取行人是否存活的状态
 }
 
+// 恢复行人相关数据
 void FWalkerData::RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
-  FActorData::RestoreActorData(CarlaActor, CarlaEpisode);
+  FActorData::RestoreActorData(CarlaActor, CarlaEpisode);// 继承自基类的恢复数据方法
   AActor* Actor = CarlaActor->GetActor();
-  auto Walker = Cast<ACharacter>(Actor);
+  auto Walker = Cast<ACharacter>(Actor); // 将Actor转换为角色类型
   auto Controller = Walker != nullptr ? Cast<AWalkerController>(Walker->GetController()) : nullptr;
   if (Controller != nullptr)
   {
     Controller->ApplyWalkerControl(WalkerControl);
   }
-  auto CharacterMovement = Cast<UCharacterMovementComponent>(Walker->GetCharacterMovement());
+  auto CharacterMovement = Cast<UCharacterMovementComponent>(Walker->GetCharacterMovement());// 获取角色运动组件
   // TODO: Handle death timer
 }
 
-AActor* FTrafficSignData::RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info)
+// 重新生成交通标志Actor
+AActor* FTrafficSignData::RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info)// 获取本地变换
 {
-  FTransform SpawnTransform = GetLocalTransform(CarlaEpisode);
+  FTransform SpawnTransform = GetLocalTransform(CarlaEpisode);// 创建Actor生成参数
   FActorSpawnParameters SpawnParams;
   SpawnParams.SpawnCollisionHandlingOverride =
-      ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-  return CarlaEpisode->GetWorld()->SpawnActor<ATrafficSignBase>(
+      ESpawnActorCollisionHandlingMethod::AlwaysSpawn;// 设置碰撞处理方式为总是生成
+  return CarlaEpisode->GetWorld()->SpawnActor<ATrafficSignBase>(// 在世界中生成交通标志Actor
         Model,
         SpawnTransform,
         SpawnParams);

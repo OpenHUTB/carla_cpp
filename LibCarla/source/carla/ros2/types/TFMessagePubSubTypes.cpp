@@ -27,88 +27,108 @@
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
+// 定义在tf2_msgs命名空间下的msg命名空间
 namespace tf2_msgs {
     namespace msg {
+        // TFMessagePubSubType类的构造函数
         TFMessagePubSubType::TFMessagePubSubType()
         {
+            // 设置类型名称
             setName("tf2_msgs::msg::dds_::TFMessage_");
+            // 获取TFMessage的最大CDR序列化大小
             auto type_size = TFMessage::getMaxCdrSerializedSize();
+            // 考虑可能的子消息对齐（按4字节对齐）
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
+            // 计算最终的类型大小（加上封装相关的4字节）
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+            // 判断TFMessage是否定义了获取键的操作
             m_isGetKeyDefined = TFMessage::isKeyDefined();
-            size_t keyLength = TFMessage::getKeyMaxCdrSerializedSize() > 16 ?
+            // 根据TFMessage获取键的最大CDR序列化大小来确定键缓冲区的长度，如果大于16则取其本身大小，否则取16
+            size_t keyLength = TFMessage::getKeyMaxCdrSerializedSize() > 16?
                     TFMessage::getKeyMaxCdrSerializedSize() : 16;
+            // 分配键缓冲区内存
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+            // 初始化键缓冲区内存为0
             memset(m_keyBuffer, 0, keyLength);
         }
 
+        // TFMessagePubSubType类的析构函数
         TFMessagePubSubType::~TFMessagePubSubType()
         {
-            if (m_keyBuffer != nullptr)
+            // 如果键缓冲区不为空，则释放其内存
+            if (m_keyBuffer!= nullptr)
             {
                 free(m_keyBuffer);
             }
         }
 
+        // 序列化函数，用于将数据序列化为特定格式（可能用于网络传输等）
         bool TFMessagePubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
+            // 将传入的void*类型数据转换为TFMessage*类型指针，方便后续操作
             TFMessage* p_type = static_cast<TFMessage*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个FastBuffer对象，用于管理原始缓冲区，它关联了payload中的数据指针和最大尺寸
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
+            // 创建一个Cdr对象，用于进行序列化操作，指定了缓冲区、字节序（默认字节序）以及相关的CDR模式
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
-            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+            // 根据序列化对象的字节序来设置payload的封装字节序（大端序或小端序）
+            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
+            // 序列化封装相关信息（可能是一些头部等通用的封装结构）
             ser.serialize_encapsulation();
 
             try
             {
-                // Serialize the object.
+                // 调用TFMessage对象的serialize方法，将实际的数据进行序列化到之前创建的Cdr对象（也就是关联的缓冲区中）
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果内存不足导致序列化失败，返回false
                 return false;
             }
 
-            // Get the serialized length
+            // 获取序列化后的数据长度，并设置到payload结构体中
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
             return true;
         }
 
+        // 反序列化函数，用于将特定格式的数据还原为原始数据对象
         bool TFMessagePubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
             try
             {
-                //Convert DATA to pointer of your type
+                // 将传入的void*类型数据转换为TFMessage*类型指针，方便后续操作
                 TFMessage* p_type = static_cast<TFMessage*>(data);
 
-                // Object that manages the raw buffer.
+                // 创建一个FastBuffer对象，用于管理原始缓冲区，它关联了payload中的数据指针和实际的数据长度（这里用的是payload的length字段）
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-                // Object that deserializes the data.
+                // 创建一个Cdr对象，用于进行反序列化操作，指定了缓冲区、字节序（默认字节序）以及相关的CDR模式
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-                // Deserialize encapsulation.
+                // 先反序列化封装相关信息（可能解析头部等通用的封装结构）
                 deser.read_encapsulation();
-                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
+                // 根据反序列化对象的字节序来设置payload的封装字节序（大端序或小端序）
+                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
 
-                // Deserialize the object.
+                // 调用TFMessage对象的deserialize方法，将缓冲区中的数据反序列化到对应的TFMessage对象中
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果内存不足导致反序列化失败，返回false
                 return false;
             }
 
             return true;
         }
 
+        // 返回一个函数对象，该函数对象用于获取给定数据的序列化大小（包含封装相关的额外大小）
         std::function<uint32_t()> TFMessagePubSubType::getSerializedSizeProvider(
                 void* data)
         {
@@ -119,17 +139,20 @@ namespace tf2_msgs {
                    };
         }
 
+        // 创建一个TFMessage类型的数据对象（在堆上分配内存），并返回其void*类型的指针
         void* TFMessagePubSubType::createData()
         {
             return reinterpret_cast<void*>(new TFMessage());
         }
 
+        // 删除之前通过createData函数创建的数据对象（释放其内存）
         void TFMessagePubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<TFMessage*>(data));
         }
 
+        // 获取给定数据的键值（可能用于标识等目的），根据情况可能使用MD5计算等操作
         bool TFMessagePubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
@@ -142,17 +165,20 @@ namespace tf2_msgs {
 
             TFMessage* p_type = static_cast<TFMessage*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个FastBuffer对象，用于管理键缓冲区，关联了m_keyBuffer指针和TFMessage获取键的最大CDR序列化大小
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     TFMessage::getKeyMaxCdrSerializedSize());
 
-            // Object that serializes the data.
+            // 创建一个Cdr对象，用于序列化键数据，指定了字节序（大端序）
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
             p_type->serializeKey(ser);
             if (force_md5 || TFMessage::getKeyMaxCdrSerializedSize() > 16)
             {
+                // 初始化MD5对象
                 m_md5.init();
+                // 使用MD5对象更新数据，传入键缓冲区和序列化后的数据长度
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
+                // 完成MD5计算
                 m_md5.finalize();
                 for (uint8_t i = 0; i < 16; ++i)
                 {

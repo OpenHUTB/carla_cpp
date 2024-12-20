@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-client)
 
 # 启用/安装 RSS VARIANT
+#默认是禁用
 option (BUILD_RSS_VARIANT "Enables ad-rss-lib based RSS components" OFF)
 set(carla_target_postfix "")
 if (BUILD_RSS_VARIANT)
@@ -20,6 +21,7 @@ if (BUILD_RSS_VARIANT)
     list(APPEND ADRSS_INCLUDE_DIRS ${dir})
   endforeach()
   # DESTINATION给出相对路径时，它将相对于 CMAKE_INSTALL_PREFIX 变量（PythonAPI\carla\dependencies）
+  #将spdlog库安装到目标位置
   install(FILES ${spdlog_file} DESTINATION lib)
   list(APPEND ADRSS_LIBS ${spdlog_file})
   #完成项目的包含目录和库目录的路径设置 安装位置指定以及相关列表的添加操作
@@ -42,15 +44,21 @@ if (BUILD_RSS_VARIANT)
 
     # 如果可用，请安装相应的 Python 库
     file(GLOB ${ad_lib}_python_libs "${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}_python*.a")
+    # 遍历找到的所有Python库文件
     foreach(ad_python_lib ${${ad_lib}_python_libs})
+     # 检查每个文件是否存在
       if (EXISTS ${ad_python_lib})
+        # 如果存在，则安装该文件到目标系统的 'lib' 目录中
         install(FILES ${ad_python_lib} DESTINATION lib)
       endif()
     endforeach()
-
+# 设置包含路径为ADRSS_INSTALL_DIR下的对应库的include目录
     set(${ad_lib}_include_dir ${ADRSS_INSTALL_DIR}/${ad_lib}/include)
+    # 使用 file(GLOB ...) 查找上述包含路径下的所有文件和子目录
     file(GLOB ${ad_lib}_includes "${${ad_lib}_include_dir}/*")
+    # 安装找到的所有头文件和子目录到目标系统的 'include/system' 目录下
     install(DIRECTORY ${${ad_lib}_includes} DESTINATION include/system)
+    # 将当前库的包含路径添加到 ADRSS_INCLUDE_DIRS 列表中，以便后续使用
     list(APPEND ADRSS_INCLUDE_DIRS ${${ad_lib}_include_dir})
   endforeach()
 endif()
@@ -336,7 +344,7 @@ if (LIBCARLA_BUILD_RELEASE)
 #windows平台特定处理：使用set_target_postfix命令设置carla_client库的编译标准
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
-
+ # 链接Recast及其相关库的Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/DetourCrowd.lib")
@@ -344,9 +352,10 @@ if (LIBCARLA_BUILD_RELEASE)
     if (NOT DEFINED CMAKE_CXX_FLAGS_RELEASE_CLIENT)
       set(CMAKE_CXX_FLAGS_RELEASE_CLIENT ${CMAKE_CXX_FLAGS_RELEASE})
     endif()
-
+ # 设置carla_client${carla_target_postfix}目标的编译标志为CMAKE_CXX_FLAGS_RELEASE_CLIENT中定义的值
+    # 同样地，这里也使用了已废弃的COMPILE_FLAGS属性
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE_CLIENT}")
-
+ # 链接Recast及其相关库的非Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libRecast.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetour.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetourCrowd.a")
