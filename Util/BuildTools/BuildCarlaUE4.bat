@@ -2,19 +2,19 @@
 setlocal enabledelayedexpansion ; 启用延迟变量扩展
 
 ; 设置脚本的本地路径和文件名标签
-set LOCAL_PATH=%~dp0
-set FILE_N=-[%~n0]:
+set LOCAL_PATH=%~dp0            ; 本地路径
+set FILE_N=-[%~n0]:             ; 文件名标签
 
 ; 打印批处理参数（用于调试）
-echo %FILE_N% [Batch params]: %*
+echo %FILE_N% [Batch params]: %* ; 打印所有参数
 
 ; -------------------------------------------
 ; 解析命令行参数
 ; -------------------------------------------
 
 ; 初始化各种标志和状态变量
-set BUILD_UE4_EDITOR=false      ; 是否构建Unreal Engine 4编辑器
-set LAUNCH_UE4_EDITOR=false     ; 是否启动Unreal Engine 4编辑器
+set BUILD_UE4_EDITOR=false      ; 是否构建UE4编辑器
+set LAUNCH_UE4_EDITOR=false     ; 是否启动UE4编辑器
 set REMOVE_INTERMEDIATE=false   ; 是否移除中间文件
 set USE_CARSIM=false            ; 是否使用CarSim
 set USE_CHRONO=false            ; 是否使用Chrono
@@ -48,13 +48,13 @@ if not "%1"=="" (
     if "%1"=="--carsim" (
         set USE_CARSIM=true       ; 设置使用CarSim标志
     )
-    ; ...（其他参数解析代码省略）
+    ; 省略其他参数解析代码...
     
     ; 移动到下一个参数并继续解析
     shift
     goto arg-parse
-)
-
+) else (
+    ; 处理剩余参数（注意：原代码逻辑有误，这部分应该在循环外处理）
     if "%1"=="--chrono" (
         set USE_CHRONO=true
     )
@@ -74,11 +74,14 @@ if not "%1"=="" (
         goto help
     )
     shift
-    goto arg-parse
+    ; 注意：这里的goto arg-parse会导致无限循环，因为已经在else分支末尾
+    ; 正确的做法应该是直接结束参数解析逻辑
 )
-rem remove quotes from arguments
+
+rem 移除参数中的引号
 set EDITOR_FLAGS=%EDITOR_FLAGS:"=%
 
+; 根据条件判断执行操作或显示帮助
 if %REMOVE_INTERMEDIATE% == false (
     if %LAUNCH_UE4_EDITOR% == false (
         if %BUILD_UE4_EDITOR% == false (
