@@ -4,9 +4,9 @@
 // 完整的设计也有详细的描述：
 //    http://moodycamel.com/blog/2014/detailed-design-of-a-lock-free-queue
 
-// Simplified BSD license:
-// Copyright (c) 2013-2016, Cameron Desrochers.
-// All rights reserved.
+//简化的 BSD 许可证：
+// 版权所有 （c） 2013-2016，Cameron Desrochers。
+// 保留所有权利。
 //
 // 允许源代码和二进制形式的再分发和使用，无论是否经过修改，只要满足以下条件：
 //
@@ -57,7 +57,7 @@
 #include <limits>
 #include <climits>    // for CHAR_BIT
 #include <array>
-#include <thread>    // partly for __WINPTHREADS_VERSION if on MinGW-w64 w/ POSIX threading
+#include <thread>    // 部分用于 __WINPTHREADS_VERSION如果在 MinGW-w64 上带有 POSIX 线程
 
 // 平台特定的数字线程 ID 类型和无效值定义
 namespace moodycamel { namespace details {
@@ -81,8 +81,8 @@ extern "C" __declspec(dllimport) unsigned long __stdcall GetCurrentThreadId(void
 namespace moodycamel { namespace details {
   static_assert(sizeof(unsigned long) == sizeof(std::uint32_t), "Expected size of unsigned long to be 32 bits on Windows");
   typedef std::uint32_t thread_id_t;
-  static const thread_id_t invalid_thread_id  = 0;      // See http://blogs.msdn.com/b/oldnewthing/archive/2004/02/23/78395.aspx
-  static const thread_id_t invalid_thread_id2 = 0xFFFFFFFFU;  // Not technically guaranteed to be invalid, but is never used in practice. Note that all Win32 thread IDs are presently multiples of 4.
+  static const thread_id_t invalid_thread_id  = 0;      //查看 http://blogs.msdn.com/b/oldnewthing/archive/2004/02/23/78395.aspx
+  static const thread_id_t invalid_thread_id2 = 0xFFFFFFFFU;  // 在技术上不能保证无效，但在实践中从未使用过。请注意，所有 Win32 线程 ID 目前都是 4 的倍数。
   static inline thread_id_t thread_id() { return static_cast<thread_id_t>(::GetCurrentThreadId()); }
 } }
 #elif defined(__arm__) || defined(_M_ARM) || defined(__aarch64__) || (defined(__APPLE__) && TARGET_OS_IPHONE)
@@ -90,7 +90,7 @@ namespace moodycamel { namespace details {
   static_assert(sizeof(std::thread::id) == 4 || sizeof(std::thread::id) == 8, "std::thread::id is expected to be either 4 or 8 bytes");
 
   typedef std::thread::id thread_id_t;
-  static const thread_id_t invalid_thread_id;         // Default ctor creates invalid ID
+  static const thread_id_t invalid_thread_id;         // 默认 ctor 创建无效 ID
 
   // 请注意，我们不定义 invalid_thread_id2，因为 std::thread::id 没有无效值；它
   // 仅在 MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED 定义时才会使用，但实际上不会定义它。
@@ -126,18 +126,18 @@ namespace moodycamel { namespace details {
 #elif defined(_MSC_VER)
 #define MOODYCAMEL_THREADLOCAL __declspec(thread)
 #else
-// Assume C++11 compliant compiler
+//假设编译器符合 C++11 标准
 #define MOODYCAMEL_THREADLOCAL thread_local
 #endif
 namespace moodycamel { namespace details {
   typedef std::uintptr_t thread_id_t;
-  static const thread_id_t invalid_thread_id  = 0;    // Address can't be nullptr
-  static const thread_id_t invalid_thread_id2 = 1;    // Member accesses off a null pointer are also generally invalid. Plus it's not aligned.
+  static const thread_id_t invalid_thread_id  = 0;    //地址不能为 nullptr
+  static const thread_id_t invalid_thread_id2 = 1;    // 对 null 指针的成员访问通常也是无效的。另外，它没有对齐。
   static inline thread_id_t thread_id() { static MOODYCAMEL_THREADLOCAL int x; return reinterpret_cast<thread_id_t>(&x); }
 } }
 #endif
 
-// Exceptions
+//异常
 #ifndef MOODYCAMEL_EXCEPTIONS_ENABLED
 #if (defined(_MSC_VER) && defined(_CPPUNWIND)) || (defined(__GNUC__) && defined(__EXCEPTIONS)) || (!defined(_MSC_VER) && !defined(__GNUC__))
 #define MOODYCAMEL_EXCEPTIONS_ENABLED
@@ -286,8 +286,8 @@ struct ConcurrentQueueDefaultTraits
   // 必须是 2 的幂。
   static const size_t EXPLICIT_INITIAL_INDEX_SIZE = 32;
 
-  // How many full blocks can be expected for a single implicit producer? This should
-  // reflect that number's maximum for optimal performance. Must be a power of 2.
+  // 单个隐式 producer 可以预期有多少个完整块？这应该
+  // 反映该数字的最大值以获得最佳性能。必须是 2 的幂。
   static const size_t IMPLICIT_INITIAL_INDEX_SIZE = 32;
 
   // 线程 ID 到隐式生产者的哈希表的初始大小。
@@ -321,11 +321,11 @@ static const size_t MAX_SUBQUEUE_SIZE = details::const_numeric_max<size_t>::valu
 
 
 #ifndef MCDBGQ_USE_RELACY
-  // Memory allocation can be customized if needed.
-  // malloc should return nullptr on failure, and handle alignment like std::malloc.
+  // 如果需要，可以自定义内存分配。
+  // malloc 应在失败时返回 nullptr，并像 std：：malloc 一样处理对齐。
 #if defined(malloc) || defined(free)
-  // Gah, this is 2015, stop defining macros that break standard code already!
-  // Work around malloc/free being special macros:
+  // 噢，现在是 2015 年，别再定义违反标准代码的宏了！
+  // 解决 malloc/free 作为特殊宏的问题：
   static inline void* WORKAROUND_malloc(size_t size) { return malloc(size); }
   static inline void WORKAROUND_free(void* ptr) { return free(ptr); }
   static inline void* (malloc)(size_t size) { return WORKAROUND_malloc(size); }
@@ -624,7 +624,7 @@ struct ProducerToken
     }
   }
 
-  // Disable copying and assignment
+  // 禁用复制和分配
   ProducerToken(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;
   ProducerToken& operator=(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;
 
@@ -705,8 +705,8 @@ public:
   static const std::uint32_t EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE = static_cast<std::uint32_t>(Traits::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE);
 #ifdef _MSC_VER
 #pragma warning(push)
-#pragma warning(disable: 4307)    // + integral constant overflow (that's what the ternary expression is for!)
-#pragma warning(disable: 4309)    // static_cast: Truncation of constant value
+#pragma warning(disable: 4307)    //+ 整型常量溢出（这就是三元表达式的用途！
+#pragma warning(disable: 4309)    // static_cast：常量值的截断
 #endif
   static const size_t MAX_SUBQUEUE_SIZE = (details::const_numeric_max<size_t>::value - static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) < BLOCK_SIZE) ? details::const_numeric_max<size_t>::value : ((static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) + (BLOCK_SIZE - 1)) / BLOCK_SIZE * BLOCK_SIZE);
 #ifdef _MSC_VER
@@ -743,10 +743,10 @@ public:
     populate_initial_block_list(capacity / BLOCK_SIZE + ((capacity & (BLOCK_SIZE - 1)) == 0 ? 0 : 1));
 
 #ifdef MOODYCAMEL_QUEUE_INTERNAL_DEBUG
-    // Track all the producers using a fully-resolved typed list for
-    // each kind; this makes it possible to debug them starting from
-    // the root queue object (otherwise wacky casts are needed that
-    // don't compile in the debugger's expression evaluator).
+    // 使用完全解析的类型化列表跟踪所有生产者
+    // 每一种;这使得可以从
+    // 根队列对象（否则需要
+    // 不要在 Debugger 的 Expression Evaluator 中编译）。
     explicitProducers.store(nullptr, std::memory_order_relaxed);
     implicitProducers.store(nullptr, std::memory_order_relaxed);
 #endif
@@ -794,7 +794,7 @@ public:
       auto hash = implicitProducerHash.load(std::memory_order_relaxed);
       while (hash != nullptr) {
         auto prev = hash->prev;
-        if (prev != nullptr) {    // The last hash is part of this object and was not allocated dynamically
+        if (prev != nullptr) {    // 最后一个哈希是此对象的一部分，不是动态分配的
           for (size_t i = 0; i != hash->capacity; ++i) {
             hash->entries[i].~ImplicitProducerKVP();
           }
