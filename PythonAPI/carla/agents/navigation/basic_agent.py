@@ -47,10 +47,15 @@ class BasicAgent:
             :param grp_inst: GlobalRoutePlanner instance to avoid the expensive call of getting it.
 
         """
+        #将vehicle赋值给自身的_vehicle属性
         self._vehicle = vehicle
+        #将自身的_vehicle的get_world对象赋值给自身的_world
         self._world = self._vehicle.get_world()
+        #如果存在map_inst
         if map_inst:
+            #判断对象是否是某个类的实例
             if isinstance(map_inst, carla.Map):
+                #将map_inst赋值给self._map
                 self._map = map_inst
             else:
                 print("Warning: Ignoring the given map as it is not a 'carla.Map'")
@@ -128,31 +133,39 @@ class BasicAgent:
 
             :param speed (carl.VehicleControl): control to be modified
         """
+        #油门的值设置为0
         control.throttle = 0.0
+        #将刹车的值设置为最大
         control.brake = self._max_brake
+        #将手刹设置为Flase
         control.hand_brake = False
+        #返回修改对象
         return control
 
     def set_target_speed(self, speed):
         """
         Changes the target speed of the agent
             :param speed (float): target speed in Km/h
-        """
+        ""
+        #将传入的目标速度speed赋值给对象的_target_speed属性
         self._target_speed = speed
+        #调用它的set_speed方法并传入speed参数
         self._local_planner.set_speed(speed)
 
-    #定义一个函数：接收参数
+    #接受一个布尔类型参数value，默认值为True
     def follow_speed_limits(self, value=True):
         """
-        #描述函数功能：如果激活agent将根据速度限制动态改变目标速度
         If active, the agent will dynamically change the target speed according to the speed limits
-            #说明value是一个布尔类型参数用于决定是否激活这个行为
+
+            #参数value是否激活这个行为
             :param value (bool): whether or not to activate this behavior
         """
-     #调用self._local_planner对象的follow_speed_limits方法将value接收到的信息传递进去
+        #调用ollow_speed_limits方法并传入value参数
         self._local_planner.follow_speed_limits(value)
 
+    #定义一个方法，获取受保护的成员变量local_planner的值
     def get_local_planner(self):
+           #获取受保护成员的方法
         """Get method for protected member local planner"""
         return self._local_planner
 
