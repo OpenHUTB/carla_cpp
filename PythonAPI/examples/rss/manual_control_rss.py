@@ -342,18 +342,30 @@ class World(object):
             self.recording_frame_num += 1
 
     def destroy(self):
+        # 这个方法名为 `destroy`，从名称推测其功能是用于销毁或清理与模拟世界相关的各种资源，比如释放内存、关闭文件、删除对象等操作，避免资源泄漏以及为程序结束或重新初始化做准备。
         # stop from ticking
         if self.world_tick_id:
+            # 判断 `self.world_tick_id` 是否存在（不为 `None`），这个属性在之前的代码中可能是用于标识世界每一次更新（tick）时的回调绑定等相关操作的一个标识符，
+            # 如果存在，则执行以下操作来移除这个在世界更新时的回调绑定，避免后续不必要的调用或者出现异常。
             self.world.remove_on_tick(self.world_tick_id)
+            # 通过 `self.world`（模拟世界对象）调用 `remove_on_tick` 方法，传入 `self.world_tick_id` 参数，解除之前在世界更新时注册的回调关联，停止相应的回调操作。
 
         if self.camera:
+             # 判断 `self.camera`（摄像头相关对象）是否存在（不为 `None`），如果存在，则执行以下操作来销毁摄像头相关的资源，例如释放摄像头占用的内存、关闭相关设备等（具体取决于其实现）。
             self.camera.destroy()
+            # 调用 `self.camera` 的 `destroy` 方法，进行摄像头资源的清理操作。
         if self.rss_sensor:
+            # 判断 `self.rss_sensor`（与RSS相关的传感器对象）是否存在（不为 `None`），如果存在，则执行以下操作来销毁这个传感器相关的资源。
             self.rss_sensor.destroy()
+            # 调用 `self.rss_sensor` 的 `destroy` 方法，进行传感器资源的清理操作。
         if self.rss_unstructured_scene_visualizer:
+            # 判断 `self.rss_unstructured_scene_visualizer`（无结构场景可视化对象）是否存在（不为 `None`），如果存在，则执行以下操作来销毁这个可视化相关的资源。
             self.rss_unstructured_scene_visualizer.destroy()
+            # 调用 `self.rss_unstructured_scene_visualizer` 的 `destroy` 方法，进行可视化资源的清理操作。
         if self.player:
+            # 判断 `self.player`（模拟世界中的主要演员对象，可能是车辆等）是否存在（不为 `None`），如果存在，则执行以下操作来销毁这个演员对象，例如从模拟世界中移除、释放相关内存等（具体取决于其实现）。
             self.player.destroy()
+            # 调用 `self.player` 的 `destroy` 方法，进行主要演员对象的清理操作。
 
 
 # ==============================================================================
