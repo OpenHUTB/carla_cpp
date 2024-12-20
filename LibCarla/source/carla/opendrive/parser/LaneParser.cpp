@@ -194,27 +194,27 @@ namespace parser {
       const pugi::xml_document &xml,
       carla::road::MapBuilder &map_builder) {
 
-    pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
+    pugi::xml_node open_drive_node = xml.child("OpenDRIVE"); // 获取OpenDRIVE根节点
 
     // 车道
-    for (pugi::xml_node road_node : open_drive_node.children("road")) {
-      road::RoadId road_id = road_node.attribute("id").as_uint();
+    for (pugi::xml_node road_node : open_drive_node.children("road")) { // 遍历每个道路节点
+      road::RoadId road_id = road_node.attribute("id").as_uint(); // 获取道路ID
 
-      for (pugi::xml_node lanes_node : road_node.children("lanes")) {
+      for (pugi::xml_node lanes_node : road_node.children("lanes")) { // 遍历每个车道节点
 
-        for (pugi::xml_node lane_section_node : lanes_node.children("laneSection")) {
-          double s = lane_section_node.attribute("s").as_double();
-          pugi::xml_node left_node = lane_section_node.child("left");
+        for (pugi::xml_node lane_section_node : lanes_node.children("laneSection")) { // 遍历每个车道段节点
+          double s = lane_section_node.attribute("s").as_double(); // 获取车道段的s属性，表示沿道路的距离
+          pugi::xml_node left_node = lane_section_node.child("left"); // 解析左侧车道
           if (left_node) {
             ParseLanes(road_id, s, left_node, map_builder);
           }
 
-          pugi::xml_node center_node = lane_section_node.child("center");
+          pugi::xml_node center_node = lane_section_node.child("center"); // 解析中间车道
           if (center_node) {
             ParseLanes(road_id, s, center_node, map_builder);
           }
 
-          pugi::xml_node right_node = lane_section_node.child("right");
+          pugi::xml_node right_node = lane_section_node.child("right"); // 解析右侧车道
           if (right_node) {
             ParseLanes(road_id, s, right_node, map_builder);
           }

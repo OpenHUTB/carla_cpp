@@ -190,7 +190,7 @@ namespace client {
       bool enable) const;
     ///GetEnvironmentObjects获取指定标签的环境物体。
     ///EnableEnvironmentObjects启用或禁用环境物体。
-
+    // 这个函数接受一个3D空间中的点（location）和方向（direction），然后沿着这个方向在指定的搜索距离（search_distance）内投影这个点到2D平面上
     boost::optional<rpc::LabelledPoint> ProjectPoint(
         geom::Location location, geom::Vector3D direction, float search_distance = 10000.f) const;
 
@@ -207,11 +207,11 @@ namespace client {
         const road::JuncId junc_id) const;
 
     // std::vector<std::string> GetObjectNameList();
-
+    // 将颜色纹理应用到指定的对象上
     void ApplyColorTextureToObject(
-        const std::string &actor_name,
-        const rpc::MaterialParameter& parameter,
-        const rpc::TextureColor& Texture);
+        const std::string &actor_name, // 要应用纹理的对象名称
+        const rpc::MaterialParameter& parameter, // 材质参数，可能包含影响纹理显示的其他设置
+        const rpc::TextureColor& Texture); // 要应用的颜色纹理
 
     void ApplyColorTextureToObjects(
         const std::vector<std::string> &objects_names,
@@ -226,21 +226,21 @@ namespace client {
     void ApplyFloatColorTextureToObjects(
         const std::vector<std::string> &objects_names,
         const rpc::MaterialParameter& parameter,
-        const rpc::TextureFloatColor& Texture);
+        const rpc::TextureFloatColor& Texture); // 要应用的浮点颜色纹理
 
     void ApplyTexturesToObject(
         const std::string &actor_name,
-        const rpc::TextureColor& diffuse_texture,
-        const rpc::TextureFloatColor& emissive_texture,
-        const rpc::TextureFloatColor& normal_texture,
+        const rpc::TextureColor& diffuse_texture, 
+        const rpc::TextureFloatColor& emissive_texture, 
+        const rpc::TextureFloatColor& normal_texture, 
         const rpc::TextureFloatColor& ao_roughness_metallic_emissive_texture);
 
     void ApplyTexturesToObjects(
         const std::vector<std::string> &objects_names,
-        const rpc::TextureColor& diffuse_texture,
-        const rpc::TextureFloatColor& emissive_texture,
-        const rpc::TextureFloatColor& normal_texture,
-        const rpc::TextureFloatColor& ao_roughness_metallic_emissive_texture);
+        const rpc::TextureColor& diffuse_texture, // 漫反射纹理
+        const rpc::TextureFloatColor& emissive_texture, // 自发光纹理
+        const rpc::TextureFloatColor& normal_texture, //法线纹理
+        const rpc::TextureFloatColor& ao_roughness_metallic_emissive_texture); //AO粗糙度金属度自发光纹理
 
     std::vector<std::string> GetNamesOfAllObjects() const;
 

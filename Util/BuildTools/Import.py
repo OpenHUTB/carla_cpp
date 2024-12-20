@@ -41,16 +41,33 @@ import carla
 
 
 def get_packages_json_list(folder):
-    """Returns a list with the paths of each package's json
-    files that has been found recursively in the input folder.
     """
+    递归地在输入文件夹中查找每个包的json文件路径，并将这些路径作为列表返回。
+    
+    参数:
+    folder (str): 要搜索的文件夹路径。
+    
+    返回:
+    list: 包含找到的json文件路径（以[根目录, 文件名]形式）的列表，排除了"roadpainter_decals.json"文件。
+    """
+    # 初始化一个空列表，用于存储找到的json文件路径。
     json_files = []
 
+    # 使用os.walk函数递归地遍历输入文件夹及其所有子文件夹。
+    # os.walk返回一个三元组(root, dirs, files)，其中root是当前正在遍历的文件夹路径，
+    # dirs是当前文件夹下的子文件夹列表（此函数中未使用），files是当前文件夹下的文件列表。
     for root, _, filenames in os.walk(folder):
+        # 使用fnmatch.filter函数过滤出所有以".json"结尾的文件名。
+        # 这允许我们找到所有json格式的文件。
         for filename in fnmatch.filter(filenames, "*.json"):
+            # 排除名为"roadpainter_decals.json"的文件，因为它可能不包含我们感兴趣的数据。
             if filename != "roadpainter_decals.json":
+                # 将找到的json文件的路径（以[根目录, 文件名]形式）添加到列表中。
+                # 注意：这里只记录了文件的相对路径信息，没有包含完整的绝对路径。
+                # 如果需要绝对路径，可以使用os.path.join(root, filename)来获取。
                 json_files.append([root, filename])
 
+    # 返回包含所有找到的json文件路径的列表。
     return json_files
 
 def get_decals_json_file(folder):
