@@ -39,15 +39,19 @@ class TestSpawnpoints(SyncSmokeTest):
                     no_rendering_mode=False,
                     synchronous_mode=True,
                     fixed_delta_seconds=0.05)
+//创建新的世界设置对象，设置了诸如渲染模式、同步模式以及固定时间步长等参数，
+然后准备将这些设置应用到当前世界中。
                 self.world.apply_settings(settings)
 
                 # spawn all kind of vehicle
+//遍历所有车辆蓝图，准备在每个生成点生成对应的车辆，通过批量生成的方式来操作。
                 for vehicle in blueprints:
                     batch = [(vehicle, t) for t in spawn_points]
                     batch = [carla.command.SpawnActor(*args) for args in batch]
                     response = self.client.apply_batch_sync(batch, False)
 
                     self.assertFalse(any(x.error for x in response))
+//检查生成车辆的响应中是否有错误，如果有错误则说明生成过程出现问题，这里确保没有错误。
                     ids = [x.actor_id for x in response]
                     self.assertEqual(len(ids), len(spawn_points))
 
