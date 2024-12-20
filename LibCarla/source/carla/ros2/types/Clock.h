@@ -21,11 +21,12 @@
 
 #ifndef _FAST_DDS_GENERATED_ROSGRAPH_MSG_CLOCK_H_
 #define _FAST_DDS_GENERATED_ROSGRAPH_MSG_CLOCK_H_
-
+// 条件编译预处理指令，用于防止头文件被重复包含。如果未定义_FAST_DDS_GENERATED_ROSGRAPH_MSG_CLOCK_H_这个宏，
+// 则下面的代码内容会被编译，直到遇到#endif，若已定义该宏，则这段代码会被跳过，避免重复定义导致的编译错误。
 #include "Time.h"
-
+// 包含名为“Time.h”的头文件，可能是引入和时间相关的数据结构、函数等定义，用于当前类的实现或与之相关的操作。
 #include <fastrtps/utils/fixed_size_string.hpp>
-
+// 引入FastRTPS库中用于处理固定大小字符串的工具头文件，也许在当前类中会使用到相关功能来处理字符串数据。
 #include <stdint.h>
 #include <array>
 #include <string>

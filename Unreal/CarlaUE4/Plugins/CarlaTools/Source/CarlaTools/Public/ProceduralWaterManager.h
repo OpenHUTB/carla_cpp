@@ -4,122 +4,113 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once// 确保头文件只被包含一次
 
-#include "CoreMinimal.h"
+#include "CoreMinimal.h"// 包含UE4核心编程环境的基本类型
 
-#include "Components/SplineComponent.h"
-#include "EditorUtilityWidget.h"
-#include "Math/Vector.h"
+#include "Components/SplineComponent.h"// 包含SplineComponent组件的定义
+#include "EditorUtilityWidget.h"// 包含编辑器实用工具窗口的定义
+#include "Math/Vector.h"// 包含数学向量的定义
 
-#include "ProceduralWaterManager.generated.h"
+#include "ProceduralWaterManager.generated.h"// 包含UProceduralWaterManager类的生成代码
 
+// 枚举类型，定义了水体生成的类型
 UENUM(BlueprintType)
 enum EWaterGenerationType
 {
-  RIVERS = 0,
-  LAKE = 1
+  RIVERS = 0,// 河流
+  LAKE = 1// 湖泊
 };
-
+// 结构体，存储河流生成的元信息
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FProceduralRiversMetaInfo
 {
   GENERATED_USTRUCT_BODY();
 
-  UPROPERTY(BlueprintReadWrite)
+  UPROPERTY(BlueprintReadWrite)// 可读写属性
   TEnumAsByte<EWaterGenerationType> WaterGenerationType;
+// 水体生成类型
+  UPROPERTY(BlueprintReadWrite)
+  FString WaterInfoPath;// 水体信息路径
 
   UPROPERTY(BlueprintReadWrite)
-  FString WaterInfoPath;
+  int CustomSampling;// 自定义采样
+
 
   UPROPERTY(BlueprintReadWrite)
-  int CustomSampling;
+  float CustomScaleFactor;// 自定义缩放因子
 
   UPROPERTY(BlueprintReadWrite)
-  float CustomScaleFactor;
+  float CustomRiverWidth;// 自定义河流宽度
 
   UPROPERTY(BlueprintReadWrite)
-  float CustomRiverWidth;
+  FVector CustomLocationOffset;// 自定义位置偏移
 
   UPROPERTY(BlueprintReadWrite)
-  FVector CustomLocationOffset;
+  float CustomHeight;// 自定义高度
 
   UPROPERTY(BlueprintReadWrite)
-  float CustomHeight;
+  int SizeOfLandscape;// 景观尺寸
 
   UPROPERTY(BlueprintReadWrite)
-  int SizeOfLandscape;
-
-  UPROPERTY(BlueprintReadWrite)
-  int SizeOfTexture;
+  int SizeOfTexture;// 纹理尺寸
 };
-
+// 类，负责生成和管理程序化水体（河流和湖泊）
 UCLASS(BlueprintType)
 class CARLATOOLS_API UProceduralWaterManager : public UEditorUtilityWidget
 {
   GENERATED_BODY()
   
 public:  
-  // Sets default values for this actor's properties
+  // 构造函数，设置默认值
   UProceduralWaterManager();
 
 public:  
-  /// River blueprint class, set by the user using the widget interface
+  /// 河流蓝图类，由用户通过界面设置
   UPROPERTY(BlueprintReadWrite)
   TSubclassOf<class AActor> RiverBlueprintClass;
 
-  /// Lake blueprint class, set by the user using the widget interface
+  /// 湖泊蓝图类，由用户通过界面设置
   UPROPERTY(BlueprintReadWrite)
   TSubclassOf<class AActor> LakeBlueprintClass;
 
-  /// Main function to be called from the widget to start all the generation process
-  /// @a MetaInfo is the input data for this process
+  /// 主函数，从界面调用以启动生成过程
   UFUNCTION(BlueprintCallable)
   FString StartWaterGeneration(const FProceduralRiversMetaInfo MetaInfo);
 
-  /// Add river @a riverActor spline point @a splinePoint to SplinePoint  
-  /// collection to be added in later processes to the spline component.
-  /// This is implemented in blueprint code.
+  /// 从代码中添加河流点到SplinePoint集合
   UFUNCTION(BlueprintImplementableEvent)
   void AddRiverPointFromCode(AActor* RiverActor, FSplinePoint SplinePoint);
 
-  /// It checks which is the direction the flow of the river depending on the
-  /// altitude of the start and the end of the river @a riverActor
+  /// // 检查并反转水流方向
   UFUNCTION(BlueprintImplementableEvent)
   void CheckAndReverseWaterFlow(AActor* RiverActor);
 
 private:
   
-  /// It is responsible of the rivers generation, parsing the file,
-  /// intantiating the actors and setting its splline points
+  /// // 负责河流生成，解析文件，实例化演员和设置其Spline点
   UFUNCTION()
   FString RiverGeneration(const FProceduralRiversMetaInfo MetaInfo);
 
-  /// It is responsible of the lakes generation, pasing the file,
-  /// instantiating the actors and setting its properties
+  /// 负责湖泊生成，解析文件，实例化演员和设置其属性
   UFUNCTION()
   FString LakeGeneration(const FProceduralRiversMetaInfo MetaInfo);
 
-  /// Instantiate a new actor of type RiverBlueprintClass
-  /// Returns the the actor created
+  ///  实例化一个新的河流蓝图演员
   UFUNCTION()
   AActor* SpawnRiverBlueprintActor();
 
-  /// Instantiate a new actor of type LakeBlueprintClass
-  /// Returns the the actor created
+  // 实例化一个新的湖泊蓝图演员
   UFUNCTION()
   AActor* SpawnLakeBlueprintActor();
 
-  /// Calculates the height of the landscape in an specific 2D coordinate ( @a x, @a y)
-  /// throwing rays and detecting the hit point. @a bDrawDebugLines allows to visualize
-  /// the rays in the viewport, only for debug purposes.
-  /// Return the Z value
+  // 计算特定2D坐标点的地形高度
   UFUNCTION()
   float GetLandscapeSurfaceHeight(float x, float y, bool bDrawDebugLines = false);
 
 
   /************ RIVER PRESETS GENERATOR ************/
-public:
+public:// 创建河流预设文件
   UFUNCTION(BlueprintCallable)
   bool CreateRiverPresetFiles(TSubclassOf<AActor> RiverParentClass);
 };

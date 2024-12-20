@@ -23,21 +23,21 @@ static constexpr float CARLA_SETTINGS_MAX_SCALE_SIZE = 50.0f;
 
 /// 运行之间的画质设置配置
 EQualityLevel UCarlaSettingsDelegate::AppliedLowPostResetQualityLevel = EQualityLevel::Epic;
-
+// 默认的低画质设置
 UCarlaSettingsDelegate::UCarlaSettingsDelegate()
-  : ActorSpawnedDelegate(FOnActorSpawned::FDelegate::CreateUObject(
+  : ActorSpawnedDelegate(FOnActorSpawned::FDelegate::CreateUObject(// 在构造函数中设置演员生成委托
         this,
         &UCarlaSettingsDelegate::OnActorSpawned)) {}
 
-void UCarlaSettingsDelegate::Reset()
+void UCarlaSettingsDelegate::Reset()// 重置设置代理
 {
-  AppliedLowPostResetQualityLevel = EQualityLevel::Epic;
+  AppliedLowPostResetQualityLevel = EQualityLevel::Epic;// 重置画质级别
 }
 
 void UCarlaSettingsDelegate::RegisterSpawnHandler(UWorld *InWorld)
 {
   CheckCarlaSettings(InWorld);
-  InWorld->AddOnActorSpawnedHandler(ActorSpawnedDelegate);
+  InWorld->AddOnActorSpawnedHandler(ActorSpawnedDelegate);// 添加演员生成处理器
 }
 
 void UCarlaSettingsDelegate::OnActorSpawned(AActor *InActor)
@@ -57,7 +57,7 @@ void UCarlaSettingsDelegate::OnActorSpawned(AActor *InActor)
         // 将设置应用于此参与者的当前画质级别
         float dist = CarlaSettings->LowStaticMeshMaxDrawDistance;
         const float maxscale = InActor->GetActorScale().GetMax();
-        if (maxscale > CARLA_SETTINGS_MAX_SCALE_SIZE)
+        if (maxscale > CARLA_SETTINGS_MAX_SCALE_SIZE)// 如果缩放尺寸超过最大值
         {
           dist *= 100.0f;
         }
@@ -69,7 +69,7 @@ void UCarlaSettingsDelegate::OnActorSpawned(AActor *InActor)
   }
 }
 
-void UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()
+void UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()应用画质级别（重启后）
 {
   CheckCarlaSettings(nullptr);
   UWorld *InWorld = CarlaSettings->GetWorld();
@@ -104,11 +104,11 @@ void UCarlaSettingsDelegate::ApplyQualityLevelPostRestart()
       UE_LOG(LogCarla, Warning, TEXT("Unknown quality level, falling back to default."));
     case EQualityLevel::Epic:
     {
-      LaunchEpicQualityCommands(InWorld);
-      SetAllLights(InWorld, 0.0f, true, false);
-      SetAllRoads(InWorld, 0, CarlaSettings->EpicRoadMaterials);
-      SetAllActorsDrawDistance(InWorld, 0);
-      SetPostProcessEffectsEnabled(InWorld, true);
+      LaunchEpicQualityCommands(InWorld);// 启动史诗画质命令
+      SetAllLights(InWorld, 0.0f, true, false);// 设置所有灯光
+      SetAllRoads(InWorld, 0, CarlaSettings->EpicRoadMaterials);// 设置所有道路
+      SetAllActorsDrawDistance(InWorld, 0); // 设置所有演员的绘制距离
+      SetPostProcessEffectsEnabled(InWorld, true);// 启用后处理效果
       break;
     }
   }
@@ -119,7 +119,7 @@ void UCarlaSettingsDelegate::ApplyQualityLevelPreRestart()
 {
   CheckCarlaSettings(nullptr);
   UWorld *InWorld = CarlaSettings->GetWorld();
-  if (!IsValid(InWorld) || InWorld->IsPendingKill())
+  if (!IsValid(InWorld) || InWorld->IsPendingKill())// 如果世界无效或即将销毁
   {
     return;
   }
@@ -127,10 +127,10 @@ void UCarlaSettingsDelegate::ApplyQualityLevelPreRestart()
   APlayerController *playercontroller = UGameplayStatics::GetPlayerController(InWorld, 0);
   if (playercontroller)
   {
-    ULocalPlayer *player = playercontroller->GetLocalPlayer();
-    if (player)
+    ULocalPlayer *player = playercontroller->GetLocalPlayer();// 获取本地玩家
+    if (player) // 如果本地玩家有效
     {
-      player->ViewportClient->bDisableWorldRendering = CarlaSettings->bDisableRendering;
+      player->ViewportClient->bDisableWorldRendering = CarlaSettings->bDisableRendering;// 设置是否禁用世界渲染
     }
     // 如果我们已经有一个头显类：
     AHUD *hud = playercontroller->GetHUD();
@@ -144,7 +144,7 @@ void UCarlaSettingsDelegate::ApplyQualityLevelPreRestart()
 
 UWorld *UCarlaSettingsDelegate::GetLocalWorld()
 {
-  return GEngine->GetWorldFromContextObjectChecked(this);
+  return GEngine->GetWorldFromContextObjectChecked(this);// 从上下文对象获取世界
 }
 
 void UCarlaSettingsDelegate::CheckCarlaSettings(UWorld *world)
@@ -158,13 +158,13 @@ void UCarlaSettingsDelegate::CheckCarlaSettings(UWorld *world)
     world = GetLocalWorld();
   }
   check(world != nullptr);
-  auto GameInstance  = Cast<UCarlaGameInstance>(world->GetGameInstance());
-  check(GameInstance != nullptr);
+  auto GameInstance  = Cast<UCarlaGameInstance>(world->GetGameInstance());// 将游戏实例转换为Carla游戏实例
+  check(GameInstance != nullptr); // 确保游戏实例不为空
   CarlaSettings = &GameInstance->GetCarlaSettings();
   check(CarlaSettings != nullptr);
 }
 
-void UCarlaSettingsDelegate::LaunchLowQualityCommands(UWorld *world) const
+void UCarlaSettingsDelegate::LaunchLowQualityCommands(UWorld *world) const// 启动低画质命令
 {
   if (!world)
   {
