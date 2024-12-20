@@ -40,7 +40,7 @@ class FCarlaActor;
 
 class FFrameData
 {
-  // structures
+  // 结构
   CarlaRecorderInfo Info;
   CarlaRecorderFrames Frames;
   CarlaRecorderEventsAdd EventsAdd;
@@ -84,7 +84,7 @@ public:
   void Write(std::ostream& OutStream);
   void Read(std::istream& InStream);
 
-  // record functions
+  // 记录函数
   void CreateRecorderEventAdd(
       uint32_t DatabaseId,
       uint8_t Type,
@@ -131,7 +131,7 @@ private:
       bool SpawnSensors,
       std::unordered_map<uint32_t, uint32_t>& MappedId);
 
-    // replay event for creating actor
+    // 用于创建 Actor 的 Replay 事件
   std::pair<int, uint32_t> ProcessReplayerEventAdd(
       FVector Location,
       FVector Rotation,
@@ -141,37 +141,37 @@ private:
       bool ReplaySensors,
       std::unordered_map<uint32_t, uint32_t>& MappedId);
 
-  // replay event for removing actor
+  // 用于删除 Actor 的 replay 事件
   bool ProcessReplayerEventDel(uint32_t DatabaseId);
-  // replay event for parenting actors
+  // Replay 事件
   bool ProcessReplayerEventParent(uint32_t ChildId, uint32_t ParentId);
-  // reposition actors
+  // 重新定位角色
   bool ProcessReplayerPosition(CarlaRecorderPosition Pos1, 
                                CarlaRecorderPosition Pos2, double Per, double DeltaTime);
-  // replay event for traffic light state
+  //红绿灯状态的重放事件
   bool ProcessReplayerStateTrafficLight(CarlaRecorderStateTrafficLight State);
-  // set the animation for Vehicles
+  // 为 Vehicles 设置动画
   void ProcessReplayerAnimVehicle(CarlaRecorderAnimVehicle Vehicle);
-  // set the animation for walkers
+  // 设置行走者的动画
   void ProcessReplayerAnimWalker(CarlaRecorderAnimWalker Walker);
-  // set the animation for Vehicles Wheels
+  // 设置 Vehicles Wheels 的动画
   void ProcessReplayerAnimVehicleWheels(CarlaRecorderAnimWheels Vehicle);
-  // set the animation for bikers
+  //为骑自行车的人设置动画
   void ProcessReplayerAnimBiker(CarlaRecorderAnimBiker Biker);
-  // set the vehicle light
+  //设置车灯
   void ProcessReplayerLightVehicle(CarlaRecorderLightVehicle LightVehicle);
-  // set scene lights
+  // 设置场景灯光
   void ProcessReplayerLightScene(CarlaRecorderLightScene LightScene);
-  // replay finish
+  // 重播结束
   bool ProcessReplayerFinish(bool bApplyAutopilot, bool bIgnoreHero, 
                              std::unordered_map<uint32_t, bool> &IsHero);
-  // set the camera position to follow an actor
+  // 将摄像机位置设置为跟随角色
   bool SetCameraPosition(uint32_t Id, FVector Offset, FQuat Rotation);
-  // set the velocity of the actor
+  // 设置角色的速度
   void SetActorVelocity(FCarlaActor *CarlaActor, FVector Velocity);
-  // set the animation speed for walkers
+  // 设置行走者的动画速度
   void SetWalkerSpeed(uint32_t ActorId, float Speed);
-  // enable / disable physics for an actor
+  // 启用/禁用 Actor 的物理特性）
   bool SetActorSimulatePhysics(FCarlaActor *CarlaActor, bool bEnabled);
 
   void SetFrameCounter();
