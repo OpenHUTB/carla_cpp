@@ -1,9 +1,12 @@
 @echo off
 setlocal enabledelayedexpansion
+//关闭命令回显，即执行命令时不会在命令行窗口显示具体命令内容。
+//设置本地化环境，确保变量等设置在脚本执行结束后不会影响外部环境。
 
 rem BAT script that downloads and installs a ready to use
 rem boost build for CARLA (carla.org).
-
+//这段注释说明这是一个批处理脚本，用于下载并安装可直接使用的、适用于CARLA（carla.org网站相关项目）的x64版本的Eigen库，
+//并且提示需要在启用了x64 Visual C++工具集的命令提示符（cmd）中运行此脚本。
 set LOCAL_PATH=%~dp0
 set FILE_N=    -[%~n0]:
 
