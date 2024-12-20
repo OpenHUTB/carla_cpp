@@ -18,7 +18,7 @@ FbxSurfacePhong* gMatBlock;
     #define IOS_REF (*(gSdkManager->GetIOSettings()))
 #endif
 
-// Create a material that will be applied to a polygon
+// 创建一个材质并返回该材质
 FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
 {
     // Create material
@@ -26,7 +26,7 @@ FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
     FbxSurfacePhong* lMaterial = FbxSurfacePhong::Create(pScene, name);
     return lMaterial;
 }
-
+// 查找字符串函数，检查name是否包含str
 bool Find(const char *name, const char *str)
 {
     // 获取输入字符串 name 和 str 的长度
@@ -39,7 +39,7 @@ bool Find(const char *name, const char *str)
     // 在 strName 中查找 strSub，如果找到返回 true，否则返回 false
     return (strName.find(strSub)!= std::string::npos);
 }
-
+// 设置节点材质的函数
 void SetMaterials(FbxNode* pNode)
 {
     if (!pNode) return;
@@ -80,8 +80,7 @@ void SetMaterials(FbxNode* pNode)
     }
 }
 
-// Creates an importer object, and uses it to
-// import a file into a scene.
+// 从文件加载场景的函数
 bool LoadScene(
                FbxManager* pSdkManager,  // Use this memory manager...
                FbxScene* pScene,            // to import into this scene
@@ -140,6 +139,8 @@ bool LoadScene(
 // pFilename：以字符串形式指定了要保存的文件路径及文件名，例如可以是"example.fbx"这样的形式，用于明确保存的目标位置和文件名称。
 // pFileFormat：指定了保存文件时所采用的文件格式，不同的整数值对应不同的FBX支持的格式选项，通过这个参数可以控制生成的文件格式符合特定的需求。
 // pEmbedMedia：布尔类型的参数，用于决定是否将相关的媒体资源（比如纹理图片等）嵌入到保存的FBX文件中，如果为true则嵌入，为false则不嵌入，具体取决于使用场景的需求。
+
+// 将场景导出到文件的函数
 bool SaveScene(
                FbxManager* pSdkManager,
                FbxScene* pScene,
