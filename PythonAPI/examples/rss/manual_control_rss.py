@@ -1,14 +1,24 @@
 #!/usr/bin/env python
+# 这是一个被称为“shebang”（也叫“hashbang”）的特殊注释行，用于指定该Python脚本的解释器路径。
+# 在类Unix系统（如Linux、macOS等）中，当脚本文件具有可执行权限时，通过这行指定的解释器来运行该脚本。
+# 这里指定使用系统环境变量中找到的 `python` 解释器来执行脚本内容，如果系统中安装了多个Python版本，会根据环境变量的配置来选择对应的解释器。
 
 # Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB).
 # Copyright (c) 2019-2020 Intel Corporation
-#
+# 这部分是版权声明信息，指出该代码的版权归属情况。表明该代码的版权在2019年归属于巴塞罗那自治大学（Universitat Autonoma de Barcelona，简称UAB）的计算机视觉中心（Computer Vision Center，简称CVC），
+# 以及在2019 - 2020年归属于英特尔公司（Intel Corporation），意味着未经授权不能随意使用、修改或分发该代码，需遵循相应的版权规则。
+
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
+# 这是关于代码许可协议的说明，告知使用者该代码是依据麻省理工学院（MIT）许可协议进行授权的。
+# 同时提供了获取该许可协议具体内容的链接，使用者可以通过访问指定的网址（https://opensource.org/licenses/MIT）查看详细的许可条款，
+# 例如在符合哪些条件下可以对代码进行再分发、修改、使用等情况。
 
 # Allows controlling a vehicle with a keyboard. For a simpler and more
 # documented example, please take a look at tutorial.py.
+# 这是一段对该脚本功能的简要描述性注释，说明这个Python脚本的主要作用是实现通过键盘来控制一辆车辆（在对应的模拟环境或者特定应用场景中）。
+# 并且还提示使用者，如果想要查看一个更简单且有更详细文档注释的示例代码，可以去查看名为 `tutorial.py` 的文件，这可能是项目中提供的用于学习和参考的示例代码，有助于更好地理解相关功能的实现方式。
 
 """
 Welcome to CARLA manual control.
@@ -142,13 +152,22 @@ try:
     from pygame.locals import K_x
     from pygame.locals import MOUSEBUTTONDOWN
     from pygame.locals import MOUSEBUTTONUP
+# 尝试导入`pygame`模块，`pygame`是一个广泛用于Python的游戏开发和多媒体应用开发的库，在这里的应用场景可能是用于创建图形界面、
+# 处理用户输入（如键盘按键、鼠标操作等）以及进行一些简单的图形渲染和交互相关操作，为整个模拟环境提供可视化展示和交互的基础功能。
+# 同时从`pygame.locals`模块中导入一系列表示键盘按键状态和鼠标按键状态的常量，这些常量对应了键盘上不同按键对应的代码值以及鼠标按键的相关代码值，
+# 后续代码可以通过检测这些常量来判断用户具体按下了哪个按键或者操作了哪个鼠标按键，从而执行相应的程序逻辑，例如根据按键来控制车辆的操作、切换视图等。
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
+# 如果导入`pygame`模块失败，即出现`ImportError`异常，说明`pygame`包没有安装或者安装出现问题，
+# 此时抛出一个运行时错误（`RuntimeError`），提示用户需要确保`pygame`包已经正确安装，因为后续代码依赖`pygame`来实现相关的可视化、交互等功能。
 
 try:
     import numpy as np
+# 尝试导入`numpy`模块，`numpy`是Python中用于高效进行数值计算、处理多维数组以及实现各种科学计算相关功能的核心库，
+# 在很多涉及数据处理、数学运算、图像数据操作（比如处理传感器获取的图像数据等）等场景下会起到关键作用，是很多科学计算和数据处理项目中不可或缺的一部分。
 except ImportError:
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
+# 如果导入`numpy`模块失败，抛出运行时错误，提示用户需要确保`numpy`包已经安装，因为后续代码很可能会用到`numpy`提供的功能来进行相应的计算和数据处理操作。
 
 
 # ==============================================================================
