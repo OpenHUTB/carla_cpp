@@ -3,21 +3,21 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+// 防止头文件被多次包含
 #pragma once
-
+// 包含CARLA模拟器中Walker相关的头文件
 #include "Carla/Walker/WalkerBoneControlIn.h"
 #include "Carla/Walker/WalkerBoneControlOut.h"
 #include "Carla/Walker/WalkerControl.h"
-
+// 包含Unreal Engine的核心头文件和游戏框架控制器头文件
 #include "CoreMinimal.h"
 #include "GameFramework/Controller.h"
 
-#include <compiler/disable-ue4-macros.h>
-#include <carla/rpc/WalkerBoneControlIn.h>
-#include <compiler/enable-ue4-macros.h>
+#include <compiler/disable-ue4-macros.h>// 禁用UE4特定的宏，以便包含CARLA RPC头文件
+#include <carla/rpc/WalkerBoneControlIn.h>// 包含CARLA RPC库中WalkerBoneControlIn的定义
+#include <compiler/enable-ue4-macros.h>// 重新启用UE4特定的宏
 
-#include "WalkerController.generated.h"
+#include "WalkerController.generated.h"// 自动生成类的元数据和函数
 
 UCLASS()
 class CARLA_API AWalkerController : public AController
