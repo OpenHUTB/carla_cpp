@@ -20,6 +20,24 @@
 #include <carla/image/ImageView.h>            // 定义图像视图（ImageView）类，表示图像数据的访问和操作，通常用于访问传感器拍摄的图像内容。
 #include <carla/sensor/data/Image.h>          // 定义图像数据类，用于表示传感器（如相机）拍摄到的图像数据，支持多种图像格式。
 
+
+
+// 在CARLA模拟器中，这些头文件提供了丰富的功能，允许用户与模拟器进行交互，创建和管理模拟世界中的实体，以及处理传感器数据。下面是对每个头文件及其功能的简要说明：
+
+// <carla/client/ActorBlueprint.h>：
+// 功能：用于获取和操作CARLA模拟器中的角色蓝图（Actor Blueprint）。角色蓝图定义了模拟实体（如车辆、行人等）的属性，可以用来生成或配置这些实体。
+// <carla/client/BlueprintLibrary.h>：
+// 功能：提供访问CARLA模拟器中各种蓝图资源的功能。通过这个库，用户可以加载不同类型的对象蓝图，如车辆、建筑、传感器等。
+// <carla/client/Client.h>：
+// 功能：定义了与CARLA模拟器客户端通信的接口。这个接口允许用户连接到模拟器服务器，管理会话（如开始、结束会话），以及获取世界对象等。
+// <carla/client/Map.h>：
+// 功能：提供对CARLA模拟器中的地图的访问。这个接口支持查询地图信息（如道路、交叉路口等），以及执行地图相关的操作。
+// <carla/client/Sensor.h>：
+// 功能：用于创建和配置各种传感器（如相机、激光雷达、GPS等）。这个接口还允许用户处理传感器的输出数据，如图像、点云等。
+// <carla/client/TimeoutException.h>：
+// 功能：定义了在CARLA模拟器客户端操作中可能遇到的超时异常。这个异常类用于处理那些因为长时间未响应而需要中断的操作。
+
+    
 // 为CARLA命名空间创建别名，简化代码书写，后续使用cc、cg、csd来代表相应的carla命名空间，使代码更简洁易读
 namespace cc = carla::client;
 namespace cg = carla::geom;
