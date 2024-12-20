@@ -16,73 +16,86 @@
  * 提供输入输出功能，用于在控制台打印信息或读取用户输入。
  */
 #include <iostream>
+// 包含标准输入输出流库，用于输入输出操作
  /**
   * @brief 文件流库
   *
   * 提供文件读写功能，支持文本文件和二进制文件的操作。
   */
 #include <fstream>
+// 包含文件流库，用于文件的读写
   /**
    * @brief 算法库
    *
    * 提供各种常用算法的实现，如排序、查找等。
    */
 #include <algorithm>
+// 包含算法库，提供各种常用算法的实现
    /**
     * @brief 字符串操作函数库（C风格）
     *
     * 提供一系列用于处理C风格字符串的函数，如复制、比较等。
     */
 #include <string.h>
+// 包含字符串操作函数库（C 风格）
     /**
      * @brief 标准输入输出库（C风格）
      *
      * 提供基本的输入输出功能，如打印、读取等，通常用于控制台应用程序。
      */
 #include <stdio.h>
+// 包含标准输入输出库（C 风格）
      /**
       * @brief 标准库头文件（C风格）
       *
       * 提供内存分配、程序控制、环境访问等功能。
       */
 #include <stdlib.h>
+// 包含标准库头文件（C 风格），提供内存分配等功能
       /**
        * @brief 关联数组（映射）库
        *
        * 提供了一种存储键值对的数据结构，可以快速地根据键查找对应的值。
        */
 #include <map>
+// 包含关联数组（映射）库
        /**
         * @brief 动态数组库
         *
         * 提供了一种可以动态调整大小的数组数据结构，支持随机访问和高效的元素添加/删除。
         */
 #include <vector>
+// 包含动态数组库
         /**
          * @brief 字符串库（C++风格）
          *
          * 提供了一种表示和操作字符串的类，比C风格的字符串提供了更多的功能和安全性。
          */
 #include <string>
+// 包含字符串库（C++ 风格）
          /**
           * @brief 数学库
           *
           * 提供各种数学函数，如三角函数、对数函数、幂函数等。
           */
 #include <math.h>
+// 包含数学库
           /**
            * @brief 浮点型数值限制库
            *
            * 定义了浮点型数值的一些极限值，如最小正数（FLT_EPSILON, DBL_EPSILON）等。
            */
 #include <float.h> 
+// 包含浮点型数值限制库
            /**
             * @def loopi
             * @brief 定义一个循环宏，使用变量i从start_l迭代到end_l（不包括end_l）。
             *
             * @param start_l 循环起始值（包含）。
             * @param end_l 循环结束值（不包含）。
-            */
+ // 定义一个循环宏，使用变量 i 从 start_l 迭代到 end_l（不包括 end_l）
+           */
+
 #define loopi(start_l, end_l) for (int i = start_l; i < end_l; ++i)
             /**
              * @def loopj
@@ -105,6 +118,7 @@
                * @struct vector3
                * @brief 一个简单的三维向量结构体，包含x、y、z三个坐标。
                */
+// 定义一个简单的三维向量结构体
 struct vector3
 {
   double x, y, z;
@@ -113,8 +127,11 @@ struct vector3
  * @struct vec3f
  * @brief 一个包含三维浮点数坐标的向量结构体，提供了一系列向量运算。
  */
+
+// 定义一个包含更多功能的三维浮点数坐标的向量结构体
 struct vec3f
 {
+// 默认构造函数
   double x, y, z;
   /**
    * @brief 默认构造函数。
