@@ -14,30 +14,49 @@ rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
 
+# 设置构建UE4编辑器相关的变量为false，表示不构建UE4编辑器，具体含义取决于整个项目的构建配置逻辑
 set BUILD_UE4_EDITOR=false
+# 设置启动UE4编辑器相关的变量为false，即不启动UE4编辑器
 set LAUNCH_UE4_EDITOR=false
+#  设置是否移除中间文件的变量为false，意味着不会去清理中间生成的文件（比如编译等过程产生的临时文件等）
 set REMOVE_INTERMEDIATE=false
+#  设置是否使用CarSim的变量为false，表明此项目运行过程中不启用CarSim模块（CarSim可能是一个特定的汽车模拟相关软件或组件）
 set USE_CARSIM=false
+# 设置是否使用Chrono的变量为false，说明不使用Chrono模块（Chrono可能是一个和时间、物理模拟等相关的库或组件）
 set USE_CHRONO=false
+# 设置是否使用Unity的变量为true，代表此项目会使用Unity相关功能（可能用于渲染、交互等方面，具体取决于项目需求）
 set USE_UNITY=true
+# 设置CarSim状态相关的描述信息为"CarSim OFF"，用于后续可能的状态显示或者日志记录等用途
 set CARSIM_STATE="CarSim OFF"
+# 设置Chrono状态相关的描述信息为"Chrono OFF"，同样可用于展示模块的启用与否情况
 set CHRONO_STATE="Chrono OFF"
+# 设置Unity状态相关的描述信息为"Unity ON"，便于清晰知晓Unity模块的使用状态
 set UNITY_STATE="Unity ON"
+# 设置一个关于至少写入可选模块的变量为false，具体含义需结合整个项目中可选模块相关的处理逻辑来理解
 set AT_LEAST_WRITE_OPTIONALMODULES=false
+# 设置编辑器相关的标志位为空字符串，后续可能根据不同需求往里面添加具体的标志内容
 set EDITOR_FLAGS=""
+# 设置是否使用ROS2的变量为false，意味着项目运行时不涉及ROS2相关功能（ROS2是机器人操作系统的一个版本）
 set USE_ROS2=false
+# 设置ROS2状态相关的描述信息为"Ros2 OFF"，用于体现ROS2模块是否启用
 set ROS2_STATE="Ros2 OFF"
 
+# 定义一个标签，用于后续的参数解析逻辑跳转，这里开启参数解析的流程
 :arg-parse
 echo %1
+# 判断第一个参数是否为空字符串，如果不为空则进入下面的条件判断分支进行参数解析
 if not "%1"=="" (
+    # 判断第一个参数是否为"--editor-flags"，如果是则将第二个参数（%2）赋值给EDITOR_FLAGS变量，用于设置编辑器相关标志位
+    # 然后使用shift命令将命令行参数整体向左移动一位，这样下次循环时 %1 就变成原来的 %2 了，依次类推处理后续参数
     if "%1"=="--editor-flags" (
         set EDITOR_FLAGS=%2
         shift
     )
+    # 判断第一个参数是否为"--build"，若是则将BUILD_UE4_EDITOR变量设置为true，表示要进行UE4编辑器的构建操作
     if "%1"=="--build" (
         set BUILD_UE4_EDITOR=true
     )
+    #判断第一个参数是否为"--launch"，如果是则把LAUNCH_UE4_EDITOR变量设为true，意味着要启动UE4编辑器
     if "%1"=="--launch" (
         set LAUNCH_UE4_EDITOR=true
     )
@@ -65,9 +84,12 @@ if not "%1"=="" (
     if "%1"=="--help" (
         goto help
     )
+   # 将命令行参数整体向左移动一位，继续循环解析下一个参数
     shift
+   #  跳转到arg-parse标签处，继续进行下一轮参数解析循环
     goto arg-parse
 )
+# 移除EDITOR_FLAGS变量值中的引号（如果有的话），使得其内容更符合后续使用要求
 rem remove quotes from arguments
 set EDITOR_FLAGS=%EDITOR_FLAGS:"=%
 
