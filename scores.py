@@ -87,6 +87,7 @@ while True:
         print("请求失败，请检查网络连接或GitHub令牌。")
         break
 
+    #将响应数据解析为JSON格式
     issues = response.json()
     if not issues:
         break
