@@ -431,7 +431,7 @@ namespace details
   {
     static_assert(std::is_integral<T>::value && !std::numeric_limits<T>::is_signed, "ceil_to_pow_2 is intended to be used only with unsigned integer types");
 
-    // Adapted from http://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
+    // 改编自 http://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
     --x;
     x |= x >> 1;
     x |= x >> 2;
@@ -705,8 +705,8 @@ public:
   static const std::uint32_t EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE = static_cast<std::uint32_t>(Traits::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE);
 #ifdef _MSC_VER
 #pragma warning(push)
-#pragma warning(disable: 4307)    // + integral constant overflow (that's what the ternary expression is for!)
-#pragma warning(disable: 4309)    // static_cast: Truncation of constant value
+#pragma warning(disable: 4307)    //+ 整型常量溢出（这就是三元表达式的用途！
+#pragma warning(disable: 4309)    // static_cast：常量值的截断
 #endif
   static const size_t MAX_SUBQUEUE_SIZE = (details::const_numeric_max<size_t>::value - static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) < BLOCK_SIZE) ? details::const_numeric_max<size_t>::value : ((static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) + (BLOCK_SIZE - 1)) / BLOCK_SIZE * BLOCK_SIZE);
 #ifdef _MSC_VER
