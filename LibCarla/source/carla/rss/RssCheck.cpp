@@ -247,26 +247,35 @@ RssCheck::RssCheck(float maximum_steering_angle)
 
   _logger->debug("RssCheck with default actor constellation callback created");
 }
-
+// RssCheck类的构造函数
+// 参数：
+// - maximum_steering_angle：最大转向角度
+// - rss_actor_constellation_callback：参与者星座回调函数类型，用于获取参与者星座相关信息
+// - carla_ego_actor：指向CARLA中自车参与者的共享指针
 RssCheck::RssCheck(float maximum_steering_angle,
                    ActorConstellationCallbackFunctionType rss_actor_constellation_callback,
                    carla::SharedPtr<carla::client::Actor> const &carla_ego_actor)
   : _maximum_steering_angle(maximum_steering_angle),
     _actor_constellation_callback(rss_actor_constellation_callback),
     _road_boundaries_mode(GetDefaultRoadBoundariesMode()) {
+   // 获取日志记录器实例，用于记录各类日志信息
   _logger = getLogger();
+   // 获取计时日志记录器实例，用于记录时间相关的日志信息
   _timing_logger = getTimingLogger();
+   // 将计时日志记录器的日志级别设置为关闭（不记录）
   _timing_logger->set_level(spdlog::level::off);
-
+// 设置整体的日志级别为警告级别
   SetLogLevel(spdlog::level::warn);
+   // 设置地图相关的日志级别为警告级别
   SetMapLogLevel(spdlog::level::warn);
-
+ // 获取与自车参与者匹配的对象，允许车辆距离路线至少2.0米，以免丧失与路线的接触
   _carla_rss_state.ego_match_object = GetMatchObject(carla_ego_actor, ::ad::physics::Distance(2.0));
+     // 更新默认的RSS动力学相关信息
   UpdateDefaultRssDynamics(_carla_rss_state);
-
+ // 在日志中输出调试信息，表示RssCheck对象已创建
   _logger->debug("RssCheck created");
 }
-
+// RssCheck类的析构函数，这里为空实现，可能在子类中会有具体的资源释放等操作
 RssCheck::~RssCheck() {}
 // 设置日志级别，对spdlog库和RssCheck类的内部_logger都生效
 void RssCheck::SetLogLevel(const spdlog::level::level_enum &log_level) {
@@ -318,9 +327,11 @@ void RssCheck::AppendRoutingTarget(::carla::geom::Transform const &routing_targe
   _routing_targets_to_append.push_back(
       ::ad::map::point::createENUPoint(routing_target.location.x, -1. * routing_target.location.y, 0.));
 }
-
+// 获取路由目标列表信息（常量函数）
+// 返回值：包含路由目标坐标变换信息的向量
 const std::vector<::carla::geom::Transform> RssCheck::GetRoutingTargets() const {
   std::vector<::carla::geom::Transform> routing_targets;
+  // 判断输入范围是否有效，如果有效则进行后续处理
   if (withinValidInputRange(_routing_targets)) {
     for (auto const &target : _routing_targets) {
       ::carla::geom::Transform routing_target;
@@ -332,17 +343,27 @@ const std::vector<::carla::geom::Transform> RssCheck::GetRoutingTargets() const 
   }
   return routing_targets;
 }
-
+// 重置路由目标，清空已有的路由目标列表和待添加的路由目标列表
 void RssCheck::ResetRoutingTargets() {
   _routing_targets.clear();
   _routing_targets_to_append.clear();
 }
-
+// 放弃当前路线，在日志中输出相关调试信息，并将自车的路线设置为空路线
 void RssCheck::DropRoute() {
   _logger->debug("Dropping Route:: {}", _carla_rss_state.ego_route);
   _carla_rss_state.ego_route = ::ad::map::route::FullRoute();
 }
-
+// 检查对象相关信息，进行一系列的逻辑判断和操作
+// 参数：
+// - timestamp：时间戳信息
+// - actors：指向参与者列表的共享指针
+// - carla_ego_actor：指向自车参与者的共享指针
+// - output_response：用于输出合适响应的对象
+// - output_rss_state_snapshot：用于输出RSS状态快照的对象
+// - output_situation_snapshot：用于输出情况快照的对象
+// - output_world_model：用于输出世界模型的对象
+// - output_rss_ego_dynamics_on_route：用于输出自车在路线上的RSS动力学信息的对象
+// 返回值：表示检查结果的布尔值，成功为true，失败为false
 bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
                             carla::SharedPtr<carla::client::ActorList> const &actors,
                             carla::SharedPtr<carla::client::Actor> const &carla_ego_actor,
@@ -353,18 +374,21 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
                             EgoDynamicsOnRoute &output_rss_ego_dynamics_on_route) {
   bool result = false;
   try {
+ // 获取从纪元开始到当前检查开始的时间（以毫秒为单位）
     double const time_since_epoch_check_start_ms =
         std::chrono::duration<double, std::milli>(std::chrono::system_clock::now().time_since_epoch()).count();
 #if DEBUG_TIMING
+    // 在调试模式下，输出时间相关信息以及开始检查对象的提示信息
     std::cout << "--- time: " << timestamp.frame << ", " << timestamp.elapsed_seconds << std::endl;
     auto t_start = std::chrono::high_resolution_clock::now();
     auto t_end = std::chrono::high_resolution_clock::now();
     std::cout << "-> SC " << std::chrono::duration<double, std::milli>(t_end - t_start).count() << " start checkObjects"
               << std::endl;
 #endif
-
+// 将传入的自车参与者指针转换为车辆类型的共享指针，如果转换失败则返回nullptr
     const auto carla_ego_vehicle = boost::dynamic_pointer_cast<carla::client::Vehicle>(carla_ego_actor);
     if (carla_ego_vehicle == nullptr) {
+     // 如果自车不是车辆类型，则在日志中输出错误信息，提示RSS传感器仅支持车辆作为自车
       _logger->error("RSS Sensor only support vehicles as ego.");
     }
 
@@ -383,6 +407,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
       auto const travelled_distance = ::ad::map::point::distance(
           _carla_rss_state.ego_match_object.enuPosition.centerPoint, ego_match_object.enuPosition.centerPoint);
       if (travelled_distance > ::ad::physics::Distance(10.)) {
+        // 如果距离大于设定值（10.），则在日志中输出警告信息，提示检测到自车位置跳跃，并强制重新规划路线
         _logger->warn("Jump in ego vehicle position detected {} -> {}! Force reroute!",
                       _carla_rss_state.ego_match_object.enuPosition.centerPoint,
                       ego_match_object.enuPosition.centerPoint);
