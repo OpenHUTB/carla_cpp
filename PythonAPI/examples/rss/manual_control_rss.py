@@ -31,19 +31,19 @@ Use ARROWS or WASD keys for control.
 
     R            : toggle recording images to disk    # 'R'键的功能，按下该键用于切换是否将图像记录到磁盘上（toggle表示切换开启或者关闭的状态，意味着可以通过该键决定是否把当前看到的图像保存到本地磁盘中，方便后续查看或者分析等）
 
-    F2           : toggle RSS visualization mode
-    F3           : increase log level
-    F4           : decrease log level
-    F5           : increase map log level
-    F6           : decrease map log level
-    B            : toggle RSS Road Boundaries Mode
-    G            : RSS check drop current route
-    T            : toggle RSS
-    N            : pause simulation
+    F2           : toggle RSS visualization mode   # 'F2'键的功能，按下该键用于切换RSS可视化模式（toggle表示切换，RSS可能是某种特定的与车辆相关的安全系统或者分析系统，visualization mode表示可视化模式，按下此键可以决定是否开启该系统的可视化展示，方便查看相关信息）
+    F3           : increase log level              # 'F3'键的功能，按下该键用于增加日志级别（日志级别通常用于控制记录信息的详细程度，increase表示提升，按此键可以让系统记录更详细的日志信息，便于调试或者分析系统运行情况）
+    F4           : decrease log level              # 'F4'键的功能，按下该键用于降低日志级别（与F3相反，按下此键可以让系统记录相对不那么详细的日志信息，在不需要过多细节时减少日志数据量等）
+    F5           : increase map log level          # 'F5'键的功能，按下该键用于增加地图日志级别（专门针对地图相关的日志，increase表示提升其详细程度，有助于更深入地了解地图相关模块运行及数据情况）
+    F6           : decrease map log level          # 'F6'键的功能，按下该键用于降低地图日志级别（与F5相反，降低地图相关日志记录的详细程度）
+    B            : toggle RSS Road Boundaries Mode # 'B'键的功能，按下该键用于切换RSS道路边界模式（toggle表示切换开启或关闭，RSS Road Boundaries Mode可能是与RSS系统中道路边界相关的一种特定显示或者处理模式）
+    G            : RSS check drop current route    # 'G'键的功能，按下该键用于让RSS检查并放弃当前路线（可能是在RSS相关功能下，触发重新规划或者放弃当前正在行驶的路线等操作，具体取决于该系统的设计逻辑）
+    T            : toggle RSS                      # 'T'键的功能，按下该键用于切换RSS（整体开启或者关闭RSS相关的功能模块等）
+    N            : pause simulation                # 'N'键的功能，按下该键用于暂停模拟（比如暂停整个车辆行驶、环境变化等模拟过程，方便查看当前状态或者进行一些调整操作）
 
-    F1           : toggle HUD
-    H/?          : toggle help
-    ESC          : quit
+    F1           : toggle HUD     # 'F1'键的功能，按下该键用于切换抬头显示（HUD即Head-Up Display，通常是在驾驶视角中显示一些重要信息，如车速、导航等，通过该键可以决定是否显示这些信息）
+    H/?          : toggle help    # 'H'键或者'/?'键的功能，按下这些键用于切换帮助信息显示（可以决定是否在界面上显示操作帮助相关的提示内容，方便用户了解各个按键功能等）
+    ESC          : quit           # 'ESC'键的功能，按下该键用于退出整个程序或者当前的操作界面（quit表示完全退出，结束当前在CARLA中的相关操作）
 """
 
 from __future__ import print_function
@@ -73,11 +73,15 @@ except IndexError:
 # ==============================================================================
 
 
-import carla
+import carla     # 导入CARLA模块，它是整个代码可能围绕进行操作的核心模块，提供了创建和控制虚拟驾驶场景、车辆、传感器等各种功能的接口和类。
 
 from carla import ColorConverter as cc
+# 从CARLA模块中导入`ColorConverter`类，并将其简称为`cc`。这个类通常用于在CARLA环境下进行图像颜色格式的转换操作，
+# 比如把摄像头获取的图像从一种颜色空间转换到另一种颜色空间，以满足不同的显示、处理或分析需求。
 
 import argparse
+# 导入Python标准库中的`argparse`模块，用于方便地解析命令行参数，使得程序可以在启动时通过命令行传入不同的配置选项，
+# 例如指定场景配置、模拟参数等，增强程序的灵活性和可配置性。
 import logging
 import math
 import random
