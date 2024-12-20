@@ -6,25 +6,32 @@
 
 DOC_STRING="Run unit tests."# 脚本的文档字符串，描述脚本的功能
 
+# 将多行字符串赋值给 USAGE_STRING 变量，用于描述脚本的使用方法
 USAGE_STRING=$(cat <<- END
+# 显示脚本的基本使用格式，$0 代表脚本名称
 Usage: $0 [-h|--help] [--gdb] [--xml] [--gtest_args=ARGS] [--python-version=VERSION]
 
+# 接下来的部分说明可以选择运行所有测试
 Then either ran all the tests
 
     [--all]
 
+# 或者选择以下一个或多个选项来运行特定测试
 Or choose one or more of the following
 
-    [--libcarla-release] [--libcarla-debug]
-    [--benchmark]
+    [--libcarla-release] [--libcarla-debug]  # 运行 Carla 库的不同构建版本（发布或调试）
+    [--benchmark]                            # 运行基准测试
 
+# 还可以通过在 Carla 项目主文件夹中的 ".gtest" 配置文件中设置传递给 GTest 的命令行参数
+# 例如，可以在 "${CARLA_ROOT_FOLDER}/.gtest" 文件中指定 gtest_shuffle 和 gtest_filter 参数
 You can also set the command-line arguments passed to GTest on a ".gtest"
 config file in the Carla project main folder. E.g.
 
-    # Contents of ${CARLA_ROOT_FOLDER}/.gtest
-    gtest_shuffle
-    gtest_filter=misc*
+    # ${CARLA_ROOT_FOLDER}/.gtest 文件的内容示例
+    gtest_shuffle            # 启用测试随机化
+    gtest_filter=misc*       # 仅运行名称以 "misc" 开头的测试
 END
+)
 )# 脚本的使用说明
 
 # 初始化变量
