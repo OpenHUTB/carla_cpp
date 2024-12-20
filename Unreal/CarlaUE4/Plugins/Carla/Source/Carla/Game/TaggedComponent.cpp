@@ -101,7 +101,7 @@ FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy()
 
 FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(UStaticMeshComponent * StaticMeshComponent)
 {
-  // Make sure static mesh has render data
+  // 确保静态网格具有渲染数据。
   UStaticMesh * StaticMesh = StaticMeshComponent->GetStaticMesh();
 
   if (StaticMesh == NULL)
@@ -135,13 +135,13 @@ FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(USkeletalMeshComponent
   ERHIFeatureLevel::Type SceneFeatureLevel = GetWorld()->FeatureLevel;
 	FSkeletalMeshRenderData* SkelMeshRenderData = SkeletalMeshComponent->GetSkeletalMeshRenderData();
 
-	// Only create a scene proxy for rendering if properly initialized
+	// 只有在正确初始化后，才为渲染创建场景代理。
 	if (SkelMeshRenderData &&
 		SkelMeshRenderData->LODRenderData.IsValidIndex(SkeletalMeshComponent->PredictedLODLevel) &&
 		!SkeletalMeshComponent->bHideSkin &&
 		SkeletalMeshComponent->MeshObject)
 	{
-		// Only create a scene proxy if the bone count being used is supported, or if we don't have a skeleton (this is the case with destructibles)
+		// 只有在使用的骨骼数量被支持的情况下，或者如果没有骨架（如破坏物体的情况），才创建场景代理。
 		int32 MinLODIndex = SkeletalMeshComponent->ComputeMinLOD();
 		int32 MaxBonesPerChunk = SkelMeshRenderData->GetMaxBonesPerSection(MinLODIndex);
 		int32 MaxSupportedNumBones = SkeletalMeshComponent->MeshObject->IsCPUSkinned() ? MAX_int32 : GetFeatureLevelMaxNumberOfBones(SceneFeatureLevel);
@@ -155,14 +155,14 @@ FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(USkeletalMeshComponent
 
 FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(UHierarchicalInstancedStaticMeshComponent * MeshComponent)
 {
-	// Verify that the mesh is valid before using it.
+	// 在使用网格之前，验证其是否有效。
 	const bool bMeshIsValid =
-		// make sure we have instances
+		//确保我们拥有实例。
 		(MeshComponent->PerInstanceRenderData.IsValid()) &&
-		// make sure we have an actual staticmesh
+		// 确保我们拥有一个实际的静态网格。
 		MeshComponent->GetStaticMesh() &&
 		MeshComponent->GetStaticMesh()->HasValidRenderData(false) &&
-		// You really can't use hardware instancing on the consoles with multiple elements because they share the same index buffer.
+		// 在控制台上，无法使用硬件实例化处理多个元素，因为它们共享相同的索引缓冲区。
 		// @todo: Level error or something to let LDs know this
 		1;//GetStaticMesh()->LODModels(0).Elements.Num() == 1;
 
@@ -176,14 +176,14 @@ FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(UHierarchicalInstanced
 
 FPrimitiveSceneProxy * UTaggedComponent::CreateSceneProxy(UInstancedStaticMeshComponent * MeshComponent)
 {
-	// Verify that the mesh is valid before using it.
+	// 在使用网格之前，验证其是否有效。
 	const bool bMeshIsValid =
-		// make sure we have instances
+		// 确保我们拥有实例。
 		(MeshComponent->PerInstanceRenderData.IsValid()) &&
-		// make sure we have an actual staticmesh
+		// 确保我们拥有一个实际的静态网格。
 		MeshComponent->GetStaticMesh() &&
 		MeshComponent->GetStaticMesh()->HasValidRenderData(false) &&
-		// You really can't use hardware instancing on the consoles with multiple elements because they share the same index buffer.
+		// 在控制台上，无法使用硬件实例化处理多个元素，因为它们共享相同的索引缓冲区。
 		// @todo: Level error or something to let LDs know this
 		1;//GetStaticMesh()->LODModels(0).Elements.Num() == 1;
 
@@ -222,7 +222,7 @@ FTaggedStaticMeshSceneProxy::FTaggedStaticMeshSceneProxy(UStaticMeshComponent * 
 {
   TaggedMaterialInstance = MaterialInstance;
 
-  // Replace materials with tagged material
+  // 用带标签的材质替换材质。
   bVerifyUsedMaterials = false;
 
   for (FLODInfo& LODInfo : LODs) {

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -20,11 +20,11 @@ namespace sensor {
   // -- CompositeSerializer ----------------------------------------------------
   // ===========================================================================
 
-  /// Compile-time map for mapping sensor objects to serializers. The
-  /// appropriate serializer is called for each sensor to serialize and
-  /// deserialize its data.
-  ///
-  /// Do not use directly, use the SensorRegistry instantiation.
+   /// 编译时映射表，用于将传感器对象映射到序列化器。
+    ///
+    /// 针对每个传感器，会调用相应的序列化器对其数据进行序列化和反序列化操作。
+    ///
+    /// 请勿直接使用，请使用传感器注册实例（SensorRegistry实例）。
   template <typename... Items>
   class CompositeSerializer : public CompileTimeTypeMap<Items...> {
     using Super = CompileTimeTypeMap<Items...>;

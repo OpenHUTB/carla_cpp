@@ -34,7 +34,7 @@
 
 #include "EngineUtils.h"
 
-// create or reuse an actor for replaying
+// 创建或重用 Actor 以进行重放
 std::pair<int, FCarlaActor*>CarlaReplayerHelper::TryToCreateReplayerActor(
     FVector &Location,
     FVector &Rotation,
@@ -44,7 +44,7 @@ std::pair<int, FCarlaActor*>CarlaReplayerHelper::TryToCreateReplayerActor(
 {
   check(Episode != nullptr);
 
-  // check type of actor we need
+  // 检查我们需要的 actor 类型
   if (ActorDesc.Id.StartsWith("traffic."))
   {
     FCarlaActor* CarlaActor = FindTrafficLightAt(Location);
@@ -62,7 +62,7 @@ std::pair<int, FCarlaActor*>CarlaReplayerHelper::TryToCreateReplayerActor(
   }
   else if (SpawnSensors || !ActorDesc.Id.StartsWith("sensor."))
   {
-    // check if an actor of that type already exist with same id
+    // 检查是否已经存在具有相同 ID 的该类型的 Actor
     if (Episode->GetActorRegistry().Contains(DesiredId))
     {
       auto* CarlaActor = Episode->FindCarlaActor(DesiredId);
@@ -119,7 +119,7 @@ FCarlaActor *CarlaReplayerHelper::FindTrafficLightAt(FVector Location)
   int z = static_cast<int>(Location.Z);
 
   const FActorRegistry &Registry = Episode->GetActorRegistry();
-  // through all actors in registry
+  // 通过 Registry 中的所有参与者
   for (auto It = Registry.begin(); It != Registry.end(); ++It)
   {
     FCarlaActor* CarlaActor = It.Value().Get();
@@ -140,7 +140,7 @@ FCarlaActor *CarlaReplayerHelper::FindTrafficLightAt(FVector Location)
   return nullptr;
 }
 
-// enable / disable physics for an actor
+// Enable / disable Physics for an Actor （启用/禁用 Actor 的物理特性）
 bool CarlaReplayerHelper::SetActorSimulatePhysics(FCarlaActor* CarlaActor, bool bEnabled)
 {
   if (!CarlaActor)
@@ -156,7 +156,7 @@ bool CarlaReplayerHelper::SetActorSimulatePhysics(FCarlaActor* CarlaActor, bool 
   return true;
 }
 
-// enable / disable autopilot for an actor
+// 为 Actor 启用/禁用 Autopilot
 bool CarlaReplayerHelper::SetActorAutopilot(FCarlaActor* CarlaActor, bool bEnabled, bool bKeepState)
 {
   if (!CarlaActor)
@@ -172,7 +172,7 @@ bool CarlaReplayerHelper::SetActorAutopilot(FCarlaActor* CarlaActor, bool bEnabl
   return true;
 }
 
-// replay event for creating actor
+// 用于创建 Actor 的 Replay 事件
 std::pair<int, uint32_t> CarlaReplayerHelper::ProcessReplayerEventAdd(
     FVector Location,
     FVector Rotation,
@@ -186,7 +186,7 @@ std::pair<int, uint32_t> CarlaReplayerHelper::ProcessReplayerEventAdd(
   FActorDescription ActorDesc;
   bool IsHero = false;
 
-  // prepare actor description
+  // 准备角色描述
   ActorDesc.UId = Description.UId;
   ActorDesc.Id = Description.Id;
   for (const auto &Item : Description.Attributes)
@@ -217,7 +217,7 @@ std::pair<int, uint32_t> CarlaReplayerHelper::ProcessReplayerEventAdd(
 
   if (result.first != 0)
   {
-    // disable physics and autopilot on vehicles
+        // 在车辆上禁用 Physics 和 Autopilot
     if (result.second->GetActorType() == FCarlaActor::ActorType::Vehicle ||
         result.second->GetActorType() == FCarlaActor::ActorType::Walker)
     {
@@ -308,7 +308,7 @@ bool CarlaReplayerHelper::ProcessReplayerPosition(CarlaRecorderPosition Pos1, Ca
   FRotator Rotation;
   if(CarlaActor)
   {
-    //Hot fix to avoid spectator we should investigate why this case is possible here
+    //为避免旁观者而修复，我们应该在这里调查为什么这种情况是可能的
     if(bIgnoreSpectator && CarlaActor->GetActor()->GetClass()->GetFName().ToString().Contains("Spectator"))
     {
       return false;
@@ -406,7 +406,7 @@ bool CarlaReplayerHelper::ProcessReplayerStateTrafficLight(CarlaRecorderStateTra
   return false;
 }
 
-// set the animation for Vehicles
+// 为 Vehicles 设置动画
 void CarlaReplayerHelper::ProcessReplayerAnimVehicle(CarlaRecorderAnimVehicle Vehicle)
 {
   check(Episode != nullptr);
@@ -425,7 +425,7 @@ void CarlaReplayerHelper::ProcessReplayerAnimVehicle(CarlaRecorderAnimVehicle Ve
   }
 }
 
-// set the openings and closings of vehicle doors
+// 设置车门的打开和关闭
 void CarlaReplayerHelper::ProcessReplayerDoorVehicle(CarlaRecorderDoorVehicle DoorVehicle)
 {
   check(Episode != nullptr);
@@ -443,7 +443,7 @@ void CarlaReplayerHelper::ProcessReplayerDoorVehicle(CarlaRecorderDoorVehicle Do
   }
 }
 
-// set the lights for vehicles
+// 为车辆设置灯光
 void CarlaReplayerHelper::ProcessReplayerLightVehicle(CarlaRecorderLightVehicle LightVehicle)
 {
   check(Episode != nullptr);
@@ -477,7 +477,7 @@ void CarlaReplayerHelper::ProcessReplayerLightScene(CarlaRecorderLightScene Ligh
   }
 }
 
-// set the animation for walkers
+// 设置行走者的动画
 void CarlaReplayerHelper::ProcessReplayerAnimWalker(CarlaRecorderAnimWalker Walker)
 {
   SetWalkerSpeed(Walker.DatabaseId, Walker.Speed);
@@ -575,7 +575,7 @@ void CarlaReplayerHelper::SetActorVelocity(FCarlaActor *CarlaActor, FVector Velo
   CarlaActor->SetActorTargetVelocity(Velocity);
 }
 
-// set the animation speed for walkers
+// 设置行走者的动画速度
 void CarlaReplayerHelper::SetWalkerSpeed(uint32_t ActorId, float Speed)
 {
   check(Episode != nullptr);

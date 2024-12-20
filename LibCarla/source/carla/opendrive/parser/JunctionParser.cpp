@@ -28,11 +28,22 @@ namespace parser {
     };
 
     struct Connection {
+      // id 表示连接的唯一标识符，类型为 road::ConId。这个字段用于唯一标识一条连接关系。
       road::ConId id;
+
+      // incoming_road 表示进入连接的道路标识符，类型为 road::RoadId。
+      // 该字段指向当前连接的起始道路，即车辆从哪个道路进入当前连接。
       road::RoadId incoming_road;
+
+      // connecting_road 表示与连接道路相关的目标道路标识符，类型为 road::RoadId。
+      // 该字段指向与当前连接相关的目标道路，即车辆从连接点驶向的道路。
       road::RoadId connecting_road;
+
+      // lane_links 是一个 std::vector<LaneLink>，表示连接道路上的车道关系。
+      // 每个 LaneLink 描述了如何从进入的道路的某个车道切换到连接道路的某个车道。
       std::vector<LaneLink> lane_links;
     };
+
 
     // 路口
     struct Junction {

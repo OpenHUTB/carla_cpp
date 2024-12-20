@@ -124,11 +124,11 @@
 
 namespace pugi
 {
-	// Character type used for all internal storage and operations; depends on PUGIXML_WCHAR_MODE
+	//用于所有内部存储和操作的字符类型;取决于 PUGIXML_WCHAR_MODE
 	typedef PUGIXML_CHAR char_t;
 
 #ifndef PUGIXML_NO_STL
-	// String type used for operations that work with STL string; depends on PUGIXML_WCHAR_MODE
+	// String 类型，用于使用 STL 字符串的操作;取决于 PUGIXML_WCHAR_MODE
 	typedef std::basic_string<PUGIXML_CHAR, std::char_traits<PUGIXML_CHAR>, std::allocator<PUGIXML_CHAR> > string_t;
 #endif
 }
@@ -1153,35 +1153,35 @@ namespace pugi
 		static void _destroy(xpath_variable* var);
 
 	public:
-		// Default constructor/destructor
+		// 默认构造函数/析构函数
 		xpath_variable_set();
 		~xpath_variable_set();
 
-		// Copy constructor/assignment operator
+		// 复制构造函数/赋值运算符
 		xpath_variable_set(const xpath_variable_set& rhs);
 		xpath_variable_set& operator=(const xpath_variable_set& rhs);
 
 	#ifdef PUGIXML_HAS_MOVE
-		// Move semantics support
+		//移动语义支持
 		xpath_variable_set(xpath_variable_set&& rhs) PUGIXML_NOEXCEPT;
 		xpath_variable_set& operator=(xpath_variable_set&& rhs) PUGIXML_NOEXCEPT;
 	#endif
 
-		// Add a new variable or get the existing one, if the types match
+		//添加新变量或获取现有变量（如果类型匹配）
 		xpath_variable* add(const char_t* name, xpath_value_type type);
 
-		// Set value of an existing variable; no type conversion is performed, false is returned if there is no such variable or if types mismatch
+		//设置现有变量的值;不执行类型转换，如果没有此类变量或类型不匹配，则返回 false
 		bool set(const char_t* name, bool value);
 		bool set(const char_t* name, double value);
 		bool set(const char_t* name, const char_t* value);
 		bool set(const char_t* name, const xpath_node_set& value);
 
-		// Get existing variable by name
+		//按名称获取现有变量
 		xpath_variable* get(const char_t* name);
 		const xpath_variable* get(const char_t* name) const;
 	};
 
-	// A compiled XPath query object
+	// 已编译的 XPath 查询对象
 	class PUGIXML_CLASS xpath_query
 	{
 	private:
@@ -1190,73 +1190,73 @@ namespace pugi
 
 		typedef void (*unspecified_bool_type)(xpath_query***);
 
-		// Non-copyable semantics
+		//不可复制的语义
 		xpath_query(const xpath_query&);
 		xpath_query& operator=(const xpath_query&);
 
 	public:
-		// Construct a compiled object from XPath expression.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on compilation errors.
+		//从 XPath 表达式构造一个编译的对象。
+		// 如果未定义 PUGIXML_NO_EXCEPTIONS，则在编译错误时引发xpath_exception。
 		explicit xpath_query(const char_t* query, xpath_variable_set* variables = 0);
 
-		// Constructor
+		// 构造 函数
 		xpath_query();
 
-		// Destructor
+		//破坏者
 		~xpath_query();
 
 	#ifdef PUGIXML_HAS_MOVE
-		// Move semantics support
+		// 移动语义支持
 		xpath_query(xpath_query&& rhs) PUGIXML_NOEXCEPT;
 		xpath_query& operator=(xpath_query&& rhs) PUGIXML_NOEXCEPT;
 	#endif
 
-		// Get query expression return type
+		//获取查询表达式返回类型
 		xpath_value_type return_type() const;
 
-		// Evaluate expression as boolean value in the specified context; performs type conversion if necessary.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+		// 在指定上下文中将表达式计算为布尔值;如有必要，执行类型转换。
+		//如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 std：：bad_alloc on 内存不足错误。
 		bool evaluate_boolean(const xpath_node& n) const;
 
-		// Evaluate expression as double value in the specified context; performs type conversion if necessary.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+		//在指定上下文中将 expression 评估为 double 值;如有必要，执行类型转换。
+		//如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 std：：bad_alloc on 内存不足错误。
 		double evaluate_number(const xpath_node& n) const;
 
 	#ifndef PUGIXML_NO_STL
-		// Evaluate expression as string value in the specified context; performs type conversion if necessary.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+		// 在指定上下文中将表达式评估为字符串值;如有必要，执行类型转换。
+		// 如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 std：：bad_alloc on 内存不足错误。
 		string_t evaluate_string(const xpath_node& n) const;
 	#endif
 
-		// Evaluate expression as string value in the specified context; performs type conversion if necessary.
-		// At most capacity characters are written to the destination buffer, full result size is returned (includes terminating zero).
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
-		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty  set instead.
+		//在指定上下文中将表达式评估为字符串值;如有必要，执行类型转换。
+		// 大多数容量字符都会写入目标缓冲区，并返回完整的结果大小（包括终止零）。
+		// 如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 std：：bad_alloc on 内存不足错误。
+		//如果定义了 PUGIXML_NO_EXCEPTIONS，则返回空集。
 		size_t evaluate_string(char_t* buffer, size_t capacity, const xpath_node& n) const;
 
-		// Evaluate expression as node set in the specified context.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on type mismatch and std::bad_alloc on out of memory errors.
-		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty node set instead.
+		// 将表达式评估为指定上下文中的节点集。
+		//如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 xpath_exception 类型 mismatch 和 std：：bad_alloc 内存不足错误。
+		// 如果定义了 PUGIXML_NO_EXCEPTIONS，则返回空节点集。
 		xpath_node_set evaluate_node_set(const xpath_node& n) const;
 
-		// Evaluate expression as node set in the specified context.
-		// Return first node in document order, or empty node if node set is empty.
-		// If PUGIXML_NO_EXCEPTIONS is not defined, throws xpath_exception on type mismatch and std::bad_alloc on out of memory errors.
-		// If PUGIXML_NO_EXCEPTIONS is defined, returns empty node instead.
+		// 将表达式评估为指定上下文中的节点集。
+		// 按文档顺序返回第一个节点，如果节点集为空，则返回空节点。
+		//如果未定义 PUGIXML_NO_EXCEPTIONS，则引发 xpath_exception 类型 mismatch 和 std：：bad_alloc 内存不足错误。
+		//如果定义了 PUGIXML_NO_EXCEPTIONS，则返回空节点。
 		xpath_node evaluate_node(const xpath_node& n) const;
 
-		// Get parsing result (used to get compilation errors in PUGIXML_NO_EXCEPTIONS mode)
+		// 获取解析结果（用于在 PUGIXML_NO_EXCEPTIONS 模式下获取编译错误）
 		const xpath_parse_result& result() const;
 
-		// Safe bool conversion operator
+		//安全的 bool 转换运算符
 		operator unspecified_bool_type() const;
 
-		// Borland C++ workaround
+		//Borland C++ 解决方法
 		bool operator!() const;
 	};
 
 	#ifndef PUGIXML_NO_EXCEPTIONS
-	// XPath exception class
+	// XPath 异常类
 	class PUGIXML_CLASS xpath_exception: public std::exception
 	{
 	private:
