@@ -1,23 +1,24 @@
-#include <iostream>
-#include <random>
-#include <sstream>
-#include <stdexcept>
-#include <string>
-#include <thread>
-#include <tuple>
+// 引入 C++ 标准库头文件
+#include <iostream>    // 提供输入输出流功能
+#include <random>      // 提供随机数生成器功能
+#include <sstream>     // 提供字符串流功能
+#include <stdexcept>   // 提供异常处理功能
+#include <string>      // 提供字符串类型功能
+#include <thread>      // 提供多线程功能
+#include <tuple>       // 提供元组类型和操作功能
 
 // 引入CARLA客户端库的头文件，用于与CARLA模拟器进行交互，包含获取蓝图、世界、传感器等相关功能的接口
-#include <carla/client/ActorBlueprint.h>
-#include <carla/client/BlueprintLibrary.h>
-#include <carla/client/Client.h>
-#include <carla/client/Map.h>
-#include <carla/client/Sensor.h>
-#include <carla/client/TimeoutException.h>
-#include <carla/client/World.h>
-#include <carla/geom/Transform.h>
-#include <carla/image/ImageIO.h>
-#include <carla/image/ImageView.h>
-#include <carla/sensor/data/Image.h>
+#include <carla/client/ActorBlueprint.h>       // 用于获取和操作CARLA模拟器中的角色蓝图 (Actor Blueprint)，可以用于生成或配置车辆、行人等模拟实体的属性。
+#include <carla/client/BlueprintLibrary.h>     // 提供访问CARLA模拟器中各种蓝图资源的功能，能够加载车辆、建筑、传感器等各种对象的蓝图。
+#include <carla/client/Client.h>               // 定义与CARLA模拟器客户端通信的接口，主要用于连接到模拟器服务器，管理会话，获取世界对象等。
+#include <carla/client/Map.h>                  // 提供对CARLA模拟器中的地图（包括地图的相关信息和操作）的访问，支持查询和操作地图。
+#include <carla/client/Sensor.h>               // 用于创建和配置各种传感器（如相机、激光雷达、GPS等），并处理传感器的输出数据。
+#include <carla/client/TimeoutException.h>     // 定义在CARLA模拟器客户端操作中可能遇到的超时异常，用于处理长时间未响应的情形。
+#include <carla/client/World.h>               // 定义模拟器中的世界对象，提供对世界中的所有实体（如车辆、行人、道路、传感器等）的访问和管理。
+#include <carla/geom/Transform.h>              // 定义转换（Transform）类，用于表示和操作位置、旋转、缩放等几何变换，常用于描述物体的位置和姿态。
+#include <carla/image/ImageIO.h>              // 提供对图像数据输入输出的功能，可以读取和写入图像文件，常用于处理传感器生成的图像数据。
+#include <carla/image/ImageView.h>            // 定义图像视图（ImageView）类，表示图像数据的访问和操作，通常用于访问传感器拍摄的图像内容。
+#include <carla/sensor/data/Image.h>          // 定义图像数据类，用于表示传感器（如相机）拍摄到的图像数据，支持多种图像格式。
 
 // 为CARLA命名空间创建别名，简化代码书写，后续使用cc、cg、csd来代表相应的carla命名空间，使代码更简洁易读
 namespace cc = carla::client;
@@ -45,17 +46,22 @@ static auto &RandomChoice(const RangeT &range, RNG &&generator) {
     return range[dist(std::forward<RNG>(generator))];
 }
 
-/// Save a semantic segmentation image to disk converting to CityScapes palette.
-// 以下函数原本的功能是将语义分割图像保存到磁盘，并转换为CityScapes调色板格式，当前代码中被注释掉暂未使用
-// 若后续需要保存图像相关功能，可取消注释并完善可能缺失的依赖等部分
+// 该函数的功能是将语义分割图像保存到磁盘，并将图像转换为CityScapes调色板格式。
+// 目前该函数被注释掉，尚未启用，可能是因为没有相应的图像处理库或保存功能暂时不需要。
+// 如果后续需要保存图像，可以取消注释并确保相关的依赖和功能已正确实现。
 /*
 static void SaveSemSegImageToDisk(const csd::Image &image) {
     using namespace carla::image;
 
+    // 构造保存文件的文件名，文件名由图像的帧编号组成
+    // 使用std::snprintf生成一个具有固定格式（8位数字）的字符串
     char buffer[9u];
     std::snprintf(buffer, sizeof(buffer), "%08zu", image.GetFrame());
     auto filename = "_images/"s + buffer + ".png";
 
+    // 创建一个ColorConvertedView视图，将原始图像转换为CityScapes调色板格式
+    // ImageView::MakeView(image) 创建一个基本的图像视图，
+    // ColorConverter::CityScapesPalette() 将图像颜色转换为CityScapes调色板
     auto view = ImageView::MakeColorConvertedView(
             ImageView::MakeView(image),
             ColorConverter::CityScapesPalette());
