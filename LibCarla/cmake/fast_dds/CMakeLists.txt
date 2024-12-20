@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.5.1)# Ö¸¶¨CMakeµÄ×îµÍ°æ±¾ÒªÇó
-project(libcarla_fastdds)# ÉèÖÃÏîÄ¿Ãû³ÆºÍ°æ±¾
+cmake_minimum_required(VERSION 3.5.1)# æŒ‡å®šCMakeçš„æœ€ä½ç‰ˆæœ¬è¦æ±‚
+project(libcarla_fastdds)# è®¾ç½®é¡¹ç›®åç§°å’Œç‰ˆæœ¬
 
 
-# °²×°Í·ÎÄ¼ş  
-# Ê¹ÓÃfile(GLOB)ÃüÁîÊÕ¼¯ËùÓĞÏà¹ØµÄÍ·ÎÄ¼ş£¬²¢½«ËüÃÇ°²×°µ½include/carla/ros2Ä¿Â¼ÏÂ
+# å®‰è£…å¤´æ–‡ä»¶  
+# ä½¿ç”¨file(GLOB)å‘½ä»¤æ”¶é›†æ‰€æœ‰ç›¸å…³çš„å¤´æ–‡ä»¶ï¼Œå¹¶å°†å®ƒä»¬å®‰è£…åˆ°include/carla/ros2ç›®å½•ä¸‹
 file(GLOB libcarla_carla_fastdds_headers
   "${libcarla_source_path}/carla/ros2/publishers/*.h"
   "${libcarla_source_path}/carla/ros2/subscribers/*.h"
@@ -11,51 +11,51 @@ file(GLOB libcarla_carla_fastdds_headers
   "${libcarla_source_path}/carla/ros2/types/*.h"
   )
 install(FILES ${libcarla_carla_fastdds_headers} DESTINATION include/carla/ros2)
-# °²×°Fast DDSµÄ¶¯Ì¬Á´½Ó¿âÎÄ¼ş
+# å®‰è£…Fast DDSçš„åŠ¨æ€é“¾æ¥åº“æ–‡ä»¶
 file(GLOB fast_dds_dependencies "${FASTDDS_LIB_PATH}/*.so*")
 install(FILES ${fast_dds_dependencies} DESTINATION lib)
 
-# ÊÕ¼¯libcarla_fastddsµÄÔ´ÎÄ¼ş
+# æ”¶é›†libcarla_fastddsçš„æºæ–‡ä»¶
 file(GLOB libcarla_fastdds_sources
   "${libcarla_source_path}/carla/ros2/publishers/*.cpp"
   "${libcarla_source_path}/carla/ros2/subscribers/*.cpp"
   "${libcarla_source_path}/carla/ros2/listeners/*.cpp"
   "${libcarla_source_path}/carla/ros2/types/*.cpp")
-# ÉèÖÃC++±ê×¼¿âÍ·ÎÄ¼şÂ·¾¶ºÍ±àÒëÑ¡Ïî
+# è®¾ç½®C++æ ‡å‡†åº“å¤´æ–‡ä»¶è·¯å¾„å’Œç¼–è¯‘é€‰é¡¹
 set(FASTDDS_CPP_STD_INCLUDES "/usr/include/c++/7")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -fPIC -D_GLIBCXX_USE_CXX11_ABI=0 -I${FASTDDS_CPP_STD_INCLUDES}" CACHE STRING "" FORCE)
-# ¸ù¾İÊÇ·ñÆôÓÃ·¢²¼»òµ÷ÊÔ¹¹½¨£¬´´½¨ÏàÓ¦µÄÄ¿±ê
+# æ ¹æ®æ˜¯å¦å¯ç”¨å‘å¸ƒæˆ–è°ƒè¯•æ„å»ºï¼Œåˆ›å»ºç›¸åº”çš„ç›®æ ‡
 # ==============================================================================
-# Create targets for debug and release in the same build type.
+# åœ¨åŒä¸€ build ç±»å‹ä¸­åˆ›å»ºç”¨äº debug å’Œ release çš„ç›®æ ‡ã€‚
 # ==============================================================================
-# Èç¹ûÆôÓÃÁË·¢²¼°æ±¾¹¹½¨
+# å¦‚æœå¯ç”¨äº†å‘å¸ƒç‰ˆæœ¬æ„å»º
 if (LIBCARLA_BUILD_RELEASE)
-# Ìí¼ÓÒ»¸ö¾²Ì¬¿âÄ¿±ê
+# æ·»åŠ ä¸€ä¸ªé™æ€åº“ç›®æ ‡
   add_library(carla_fastdds STATIC ${libcarla_fastdds_sources})
-   # ÉèÖÃ°üº¬Ä¿Â¼
+   # è®¾ç½®åŒ…å«ç›®å½•
   target_include_directories(carla_fastdds SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
-   # Ìí¼ÓFast DDSºÍÆäËûË½ÓĞ°üº¬Ä¿Â¼
+   # æ·»åŠ Fast DDSå’Œå…¶ä»–ç§æœ‰åŒ…å«ç›®å½•
   target_include_directories(carla_fastdds PRIVATE "${FASTDDS_INCLUDE_PATH}")
   target_include_directories(carla_fastdds PRIVATE "${libcarla_source_path}/carla/ros2")
-  # Á´½ÓÒÀÀµ¿â
+  # é“¾æ¥ä¾èµ–åº“
   target_link_libraries(carla_fastdds fastrtps fastcdr "${FAST_DDS_LIBRARIES}")
-  # °²×°¿âµ½libÄ¿Â¼
+  # å®‰è£…åº“åˆ°libç›®å½•
   install(TARGETS carla_fastdds DESTINATION lib)
   set_target_properties(carla_fastdds PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
 
 endif()
-# Èç¹ûÆôÓÃÁËµ÷ÊÔ°æ±¾¹¹½¨
+# å¦‚æœå¯ç”¨äº†è°ƒè¯•ç‰ˆæœ¬æ„å»º
 if (LIBCARLA_BUILD_DEBUG)
- # Ìí¼ÓÒ»¸ö¾²Ì¬¿âÄ¿±ê£¨µ÷ÊÔ°æ£©
-  add_library(carla_fastdds_debug STATIC ${libcarla_fastdds_sources})# ÉèÖÃ°üº¬Ä¿Â¼
+ # æ·»åŠ ä¸€ä¸ªé™æ€åº“ç›®æ ‡ï¼ˆè°ƒè¯•ç‰ˆï¼‰
+  add_library(carla_fastdds_debug STATIC ${libcarla_fastdds_sources})# è®¾ç½®åŒ…å«ç›®å½•
  target_include_directories(carla_fastdds_debug SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
-      # °²×°µ÷ÊÔ°æ¿âµ½libÄ¿Â¼ 
+      # å®‰è£…è°ƒè¯•ç‰ˆåº“åˆ°libç›®å½• 
   install(TARGETS carla_fastdds_debug DESTINATION lib)
-  set_target_properties(carla_fastdds_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")# ÉèÖÃ±àÒë±êÖ¾
-  target_compile_definitions(carla_fastdds_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)# ÆôÓÃBoostµÄASIOµ÷ÊÔ
+  set_target_properties(carla_fastdds_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")# è®¾ç½®ç¼–è¯‘æ ‡å¿—
+  target_compile_definitions(carla_fastdds_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)# å¯ç”¨Boostçš„ASIOè°ƒè¯•
 
 endif()
