@@ -147,7 +147,14 @@ bool SaveScene(
                const char* pFilename,
                int pFileFormat,
                bool pEmbedMedia
-               )
+               )// 函数SaveScene用于将一个Fbx场景保存到文件中。
+// 参数：
+// pSdkManager：指向FbxManager对象的指针，FbxManager是管理整个FBX SDK的核心对象，通常用于处理与FBX文件相关的各种操作，如创建场景、加载/保存文件等。
+// pScene：指向要保存的FbxScene对象的指针，该对象包含了场景中的所有数据，如节点、几何体、动画等。
+// pFilename：以字符数组形式表示的文件名，指定了要保存场景的目标文件路径和名称。
+// pFileFormat：整数类型的参数，用于指定保存文件时所使用的文件格式。不同的整数值可能对应不同的FBX文件格式版本或其他支持的格式。
+// pEmbedMedia：布尔类型的参数，用于指示是否将媒体数据（如纹理等）嵌入到保存的文件中。如果为true，则媒体数据会被嵌入到文件内；如果为false，则可能会单独存储媒体数据，文件中仅保留引用信息。
+// 返回值：函数返回一个布尔值，表示场景保存操作是否成功。如果成功保存场景，则返回true；否则返回false。
 {
     bool lStatus = true;
     // 创建一个导出器
