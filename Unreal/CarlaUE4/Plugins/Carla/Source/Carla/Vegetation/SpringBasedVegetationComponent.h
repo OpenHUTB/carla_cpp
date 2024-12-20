@@ -10,7 +10,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include <vector>
 
-// disable warnings for eigen 3.1.0
+// 禁用Eigen 3.1.0中的警告
 #if defined(__clang__)
 #  pragma clang diagnostic push
 #  pragma clang diagnostic ignored "-Wdeprecated-register"
@@ -28,7 +28,7 @@
 
 #include "SpringBasedVegetationComponent.generated.h"
 
-USTRUCT(BlueprintType)
+USTRUCT(BlueprintType)// 定义一个可在蓝图中使用的结构体
 struct FSkeletonBone
 {
   GENERATED_BODY()
@@ -41,8 +41,8 @@ struct FSkeletonBone
   FVector CenterOfMass = FVector(0,0,0);
 };
 
-USTRUCT(BlueprintType)
-struct FSkeletonJoint
+USTRUCT(BlueprintType) // 定义一个可在蓝图中使用的结构体
+struct FSkeletonJoint// 骨骼关节的结构体
 {
   GENERATED_BODY()
 
@@ -80,7 +80,7 @@ struct FSkeletonJoint
   float CollisionForceProportionalFactor = 1.0f;
 };
 
-struct FJointCollision
+struct FJointCollision// 关节碰撞结构体
 {
   bool CanRest = true;
   int Iteration = 1;
