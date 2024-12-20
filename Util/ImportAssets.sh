@@ -6,10 +6,13 @@
 
 DOC_STRING="Unpack and copy over CarlaUE4's Exported Assets"
 
+#使用说明字符串
 USAGE_STRING="Usage: $0 [-h|--help] [-d|--dir] <outdir>"
 
+#输出目录变量
 OUTPUT_DIRECTORY=""
 
+#获取选项字符串
 OPTS=`getopt -o h,d:: --long help,dir:: -n 'parse-options' -- "$@"`
 
 if [ $? != 0 ] ; then echo "$USAGE_STRING" ; exit 2; fi
