@@ -471,39 +471,52 @@ class GlobalRoutePlanner:
                 break
 
         return last_node, last_intersection_edge
-
+    #定义一个函数，用于表示转弯决策
     def _turn_decision(self, index, route, threshold=math.radians(35)):
         # type: (int, list[int], float) -> RoadOption
         """
         This method returns the turn decision (RoadOption) for pair of edges
         around current index of route list
         """
-
+        #初始化变量
         decision = None
         previous_node = route[index - 1]
         current_node = route[index]
         next_node = route[index + 1]
         next_edge = self._graph.edges[current_node, next_node]  # type: EdgeDict
+        #如果index大于 0，进行一系列条件判断:
         if index > 0:
+            #如果之前的决策不是RoadOption.VOID
+            #并且存在交叉路口终点节点，且该节点不等于previous_node
+            #并且next_edge是车道跟随类型且有交叉路口
             if self._previous_decision != RoadOption.VOID \
                     and self._intersection_end_node > 0 \
                     and self._intersection_end_node != previous_node \
                     and next_edge['type'] == RoadOption.LANEFOLLOW \
                     and next_edge['intersection']:
+                #则decision等于之前的决策
                 decision = self._previous_decision
+            #否则，重置self._intersection_end_node为 -1
+            #并获取从previous_node到current_node的边（current_edge）
             else:
                 self._intersection_end_node = -1
                 current_edge = self._graph.edges[previous_node, current_node]  # type: EdgeDict
                 calculate_turn = current_edge['type'] == RoadOption.LANEFOLLOW and not current_edge[
                     'intersection'] and next_edge['type'] == RoadOption.LANEFOLLOW and next_edge['intersection']
+                #计算是否需要转弯
                 if calculate_turn:
+                    #获取最后一个连续交叉路口边（tail_edge）及其对应的节点（last_node）
                     last_node, tail_edge = self._successive_last_intersection_edge(index, route)
+                    #更新self._intersection_end_node为last_node
                     self._intersection_end_node = last_node
+                    #如果tail_edge不为None，更新next_edge为tail_edge，并获取当前边和下一边的出口向量（cv和nv）
                     if tail_edge is not None:
                         next_edge = tail_edge
                     cv, nv = current_edge['exit_vector'], next_edge['exit_vector']
+                    #如果cv或nv为None，返回next_edge的类型
                     if cv is None or nv is None:
                         return next_edge['type']
+                    #初始化cross_list，并计算与当前节点相邻的边的交叉向量
                     cross_list = []
                     for neighbor in self._graph.successors(current_node):
                         select_edge = self._graph.edges[current_node, neighbor]
@@ -511,9 +524,11 @@ class GlobalRoutePlanner:
                             if neighbor != route[index + 1]:
                                 sv = select_edge['net_vector']
                                 cross_list.append(np.cross(cv, sv)[2])
+                    #计算下一个交叉向量（next_cross）和偏差（deviation）
                     next_cross = np.cross(cv, nv)[2]
                     deviation = math.acos(np.clip(
                         np.dot(cv, nv) / (np.linalg.norm(cv) * np.linalg.norm(nv)), -1.0, 1.0))
+                    #根据偏差和交叉向量的值，做出转弯决策（decision）
                     if not cross_list:
                         cross_list.append(0)
                     if deviation < threshold:
@@ -528,10 +543,10 @@ class GlobalRoutePlanner:
                         decision = RoadOption.RIGHT
                 else:
                     decision = next_edge['type']
-
+        #如果不需要转弯，decision等于next_edge的类型
         else:
             decision = next_edge['type']
-
+        #更新self._previous_decision为decision并返回decision
         self._previous_decision = decision
         return decision
 
