@@ -86,17 +86,22 @@ while True:
     if response.status_code != 200:
         print("请求失败，请检查网络连接或GitHub令牌。")
         break
+    #如果 回应状态密码不等于200
+      打印("请求失败，请检查网络连接或GitHub令牌。")
+      结束循环
 
-    issues = response.json()
+    issues = response.json()#从GitHub API获取的响应对象转换为JSON格式，并赋值给变量 issues
     if not issues:
         break
+    #如果 issues 为空，即没有更多的问题可以处理，那么使用 break 语句跳出循环。
 
-    for issue in issues:
+    for issue in issues: #遍历 issues 列表中的每个问题
         if 'pull_request' in issue:
             continue
+        #如果当前的问题实际上是一个拉取请求（pull request），则跳过当前循环的剩余部分，继续处理下一个问题
 
-        user = issue['user']['login']
-        issue_counts[user] = issue_counts.get(user, 0) + 1
+        user = issue['user']['login'] #获取创建当前问题的用户的登录名
+        issue_counts[user] = issue_counts.get(user, 0) + 1 #在字典 issue_counts 中为该用户增加问题计数。如果用户之前没有记录，则从0开始计数
 
         comments_url = issue['comments_url']
         comments_response = requests.get(comments_url, headers=headers)
