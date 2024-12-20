@@ -6,9 +6,13 @@ rem boost build for CARLA (carla.org).
 
 set LOCAL_PATH=%~dp0
 set FILE_N=    -[%~n0]:
+//设置LOCAL_PATH变量，其值为当前批处理脚本所在的目录路径（%~dp0表示获取当前批处理文件所在的驱动器和路径）。
+//设置FILE_N变量，其值是以特定格式表示的当前批处理脚本的文件名（-%~n0表示获取当前批处理文件的文件名部分），用于后续输出信息时的标识。
+
 
 rem Print batch params (debug purpose)
 echo %FILE_N% [Batch params]: %*
+//输出批处理脚本接收到的参数（这里主要用于调试目的，%*表示获取传递给批处理脚本的所有参数），并在前面加上之前定义的FILE_N标识。
 
 rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
@@ -19,6 +23,8 @@ if not "%1"=="" (
     if "%1"=="-j" (
         set NUMBER_OF_ASYNC_JOBS=%~2
         shift
+        //如果传入的第一个参数是"--build-dir"，则设置BUILD_DIR变量的值为传入的第二个参数所表示的路径（%~dpn2表示获取第二个参数的驱动器、路径和文件名部分），
+        //然后使用shift命令将参数列表向左移动一位，去掉已经处理过的参数。
     )
     if "%1"=="--build-dir" (
         set BUILD_DIR=%~dpn2
