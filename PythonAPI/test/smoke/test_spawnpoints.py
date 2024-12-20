@@ -12,8 +12,12 @@ from . import SyncSmokeTest
 
 class TestSpawnpoints(SyncSmokeTest):
     def test_spawn_points(self):
+#这个方法用于测试生成点（Spawnpoints）相关的功能，包括加载不同地图、在地图上生成车辆、
+#检查车辆的相关属性以及销毁车辆等一系列操作，并进行相应的断言验证。
         print("TestSpawnpoints.test_spawn_points")
+# 获取Carla客户端连接的世界对象，后续很多操作都基于这个世界对象展开
         self.world = self.client.get_world()
+# 从世界对象的蓝图库中获取所有车辆类型的蓝图，可用于后续生成车辆
         blueprints = self.world.get_blueprint_library().filter("vehicle.*")
         blueprints = self.filter_vehicles_for_old_towns(blueprints)
 
