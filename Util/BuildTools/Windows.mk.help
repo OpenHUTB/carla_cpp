@@ -2,60 +2,77 @@ Welcome to CARLA Simulator!
 ===========================
 
 This Makefile will help you building the different CARLA utilities.
-
+# 此Makefile文件将有助于你构建不同的CARLA实用工具。
 Use the following commands:
-
+# 使用以下命令：
     help:
-
+# “help”命令：
         Display this help message.
-
+ # 功能：显示此帮助信息。
+    # 也就是当你在命令行中执行与该Makefile相关的“help”目标（通常通过“make help”命令）时，会展示出下面罗列的这些关于各个命令功能的说明内容，方便你了解每个命令的作用。
     launch:
-
+# “launch”命令：
         Compile CarlaUE4 project and launch it in Unreal Engine's Editor.
-
+# 功能：编译CarlaUE4项目，并在虚幻引擎（Unreal Engine）的编辑器中启动它。
+    # 意味着会先对CarlaUE4这个项目进行编译构建操作，使其生成可在虚幻引擎编辑器中运行的相关文件，然后启动虚幻引擎编辑器并加载该项目，以便进行进一步的查看、调试或者其他基于编辑器环境的操作。
     package:
-
+# “package”命令：
         Makes a packaged version of CARLA ready for distribution.
-
+# 功能：制作一个可供分发的CARLA打包版本。
+    # 会将CARLA相关的文件、资源等按照一定的规范打包成一个完整的版本，方便分享给其他用户或者部署到其他环境中使用，这个打包版本通常会包含运行CARLA所需要的各种组件等内容。
     docs:
-
+# “docs”命令：
         Build CARLA Doxygen documentation.
-
+# 功能：构建CARLA的Doxygen文档。
+    # Doxygen是一个用于从代码中提取注释等信息生成文档的工具，执行此命令会基于CARLA项目中的代码注释等内容生成相应的文档，便于开发者查阅代码结构、函数功能等详细信息，更好地理解和使用CARLA项目。
     clean:
-
+# “clean”命令：
         Remove intermediate build files.
+# 功能：移除中间构建文件。
+    # 在编译构建项目过程中会产生一些临时的、中间过程的文件，比如编译生成的目标文件、链接文件等，执行此命令可以清理掉这些文件，释放磁盘空间，同时让项目目录结构更简洁，便于后续重新构建等操作。
 
     rebuild:
-
+# “rebuild”命令：
         Remove intermediate build files and rebuild the whole project.
-
+# 功能：移除中间构建文件并重新构建整个项目。
+    # 相当于先执行“clean”命令的清理操作，然后再对整个CARLA项目进行完整的构建过程，重新生成所有需要的可执行文件、库文件等，常用于在代码有更新或者想重新生成项目文件的场景下。
 There are also some lower level commands for building individual modules helpful
 for developers:
+# 还有一些面向开发者的、用于构建单个模块的更低层级命令，这些命令在开发过程中会很有帮助：
 
     check:
-
+# “check”命令：
         Run unit test suites for LibCarla and PythonAPI.
-
+# 功能：运行LibCarla和PythonAPI的单元测试套件。
+    # 单元测试是用于验证代码中各个单元（比如函数、类等）是否按照预期工作的测试方法，通过执行此命令可以对LibCarla和PythonAPI这两个模块分别运行其对应的单元测试代码，以便及时发现代码中的逻辑错误、功能异常等问题。
     benchmark:
-
+# “benchmark”命令：
         Run the benchmark tests for LibCarla.
-
+# 功能：运行LibCarla的基准测试。
+    # 基准测试用于衡量LibCarla模块在不同条件下的性能表现，比如运行速度、资源占用等方面的指标，通过执行此命令可以获取相关性能数据，帮助开发者评估和优化该模块的性能。
     PythonAPI:
-
+# “PythonAPI”命令：
         Build and package the Python API module for Python 2 and 3.
-
+# 功能：为Python 2和Python 3构建并打包Python API模块。
+    # 会针对Python的这两个常用版本分别进行Python API模块的构建操作，使其能够被Python程序正确调用，然后将其打包成合适的形式，方便在不同的Python环境中使用该API与CARLA进行交互。
     Server:
-
+# “Server”命令：
         Build the "Server" LibCarla library configuration.
-
+ # 功能：构建“Server”的LibCarla库配置。
+    # 意味着会按照服务器端相关的需求和配置要求来构建LibCarla库，使其能在服务器端的环境中正确运行，提供相应的服务功能，比如处理客户端的连接请求、数据交互等。
     Client:
-
+# “Client”命令：
         Build the "Client" LibCarla library configuration.
-
+# 功能：构建“Client”的LibCarla库配置。
+    # 与“Server”相对应，此命令是按照客户端的需求和配置来构建LibCarla库，以便客户端能够通过该库与CARLA服务器端进行通信、发送请求并接收处理结果等操作。
     LibCarla:
-
+# “LibCarla”命令：
         Build the LibCarla library, both "Server" and "Client" configurations.
+# 功能：构建LibCarla库，包括“Server”和“Client”两种配置。
+    # 即一次性完成针对服务器端和客户端使用场景的LibCarla库的构建工作，生成完整的库文件，满足整个CARLA项目在不同角色（服务器和客户端）下的运行需求。
 
     setup:
-
+# “setup”命令：
         Run the setup step only.
+ # 功能：仅运行设置步骤。
+    # 通常在项目构建或者运行之前，会有一些初始化、配置相关的设置操作，执行此命令就只执行这些设置相关的步骤，而不进行完整的编译、构建等后续操作，比如设置环境变量、安装依赖等前置准备工作。
