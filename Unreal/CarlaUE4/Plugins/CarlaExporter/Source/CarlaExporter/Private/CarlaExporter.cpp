@@ -29,7 +29,7 @@
 static const FName CarlaExporterTabName("CarlaExporter");
 
 #define LOCTEXT_NAMESPACE "FCarlaExporterModule"
-
+// 模块启动时调用的函数
 void FCarlaExporterModule::StartupModule()
 {
   // 这段代码将在你的模块被加载到内存中后执行；
@@ -64,7 +64,7 @@ void FCarlaExporterModule::StartupModule()
     LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
   }
 }
-
+// 模块关闭时调用的函数
 void FCarlaExporterModule::ShutdownModule()
 {
   // 对于支持动态重新加载的模块，
@@ -72,7 +72,7 @@ void FCarlaExporterModule::ShutdownModule()
   //在卸载模块之前，我们会调用这个函数。
   FCarlaExporterCommands::Unregister();
 }
-
+// 插件按钮点击事件的处理函数
 void FCarlaExporterModule::PluginButtonClicked()
 {
   UWorld* World = GEditor->GetEditorWorldContext().World();
@@ -202,7 +202,7 @@ void FCarlaExporterModule::PluginButtonClicked()
   }
   f.close();
 }
-
+// 写入对象几何体到文件
 int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName, UBodySetup *body, FTransform &CompTransform, AreaType Area, int32 Offset)
 {
   if (!body) return 0;
@@ -212,7 +212,7 @@ int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName
   int TotalVerticesAdded = 0;
   bool Written = false;
 
-  // try to write the box collision if any
+  // 尝试写入盒形碰撞体
   for (const auto &box: body->AggGeom.BoxElems)
   {
     // 得到数据
