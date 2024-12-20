@@ -199,12 +199,22 @@ except ImportError:
 
 
 class World(object):
+# 定义一个名为 `World` 的类，这个类很可能是用于表示整个模拟世界相关的操作和状态管理，它继承自Python的 `object` 基类。
 
     def __init__(self, carla_world, args):
+    # 类的初始化方法，在创建 `World` 类的实例时会被调用，用于初始化实例的各种属性和执行一些必要的初始化操作。
         self.world = carla_world
+        # 将传入的 `carla_world` 参数赋值给实例属性 `self.world`，这个 `carla_world` 应该是来自CARLA模拟环境的世界对象，
+        # 通过它可以访问和操作模拟世界中的各种元素，比如车辆、地图、传感器等。
         self.sync = args.sync
+        # 将传入的 `args.sync` 参数赋值给实例属性 `self.sync`，从参数名推测这个属性可能用于控制模拟世界是否以同步模式运行，
+        # 同步模式下可能需要按照固定的时间间隔来更新世界状态等操作，具体取决于CARLA的实现逻辑。
         self.actor_role_name = args.rolename
+        # 将传入的 `args.rolename` 参数赋值给实例属性 `self.actor_role_name`，这个属性可能用于标识某个特定角色的演员（actor，在CARLA中可以指代车辆、行人等各种参与模拟的对象）名称，
+        # 可能在后续寻找、创建或管理特定角色的对象时会用到。
         self.dim = (args.width, args.height)
+        # 将传入的 `args.width` 和 `args.height` 组成的元组赋值给实例属性 `self.dim`，从名称推测这可能表示屏幕显示或者图像相关的维度信息，
+        # 比如窗口的宽和高，也许用于后续图像渲染、显示等操作的尺寸设置。
         try:
             self.map = self.world.get_map()
         except RuntimeError as error:
