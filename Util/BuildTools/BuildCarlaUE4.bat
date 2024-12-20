@@ -54,7 +54,7 @@ if not "%1"=="" (
     shift
     goto arg-parse
 ) else (
-    ; 处理剩余参数（注意：原代码逻辑有误，这部分应该在循环外处理）
+    ; 处理剩余参数
     if "%1"=="--chrono" (
         set USE_CHRONO=true
     )
