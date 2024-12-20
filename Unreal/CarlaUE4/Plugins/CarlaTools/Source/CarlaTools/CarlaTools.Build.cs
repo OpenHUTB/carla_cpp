@@ -6,6 +6,7 @@ using UnrealBuildTool;
 
 public class CarlaTools : ModuleRules
 {
+// 定义一个布尔类型的成员变量bUsingOmniverseConnector，并初始化为false
   bool bUsingOmniverseConnector = false;
   private bool IsWindows(ReadOnlyTargetRules Target)
   {
