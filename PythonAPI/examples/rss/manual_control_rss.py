@@ -57,25 +57,48 @@ Use ARROWS or WASD keys for control.
 """
 
 from __future__ import print_function
+# 这行代码的作用是从Python的`__future__`模块中导入`print_function`特性。在Python 2中，`print`是一条语句，例如：`print "hello"`。
+# 而在Python 3中，`print`被当作函数来使用，形式为`print("hello")`。导入这个特性使得在Python 2环境下编写代码时，也可以按照Python 3中`print`函数的使用方式来书写，
+# 方便代码在不同Python版本间保持一定的兼容性，避免因`print`语法差异在迁移代码时带来过多修改成本，后续代码中就能统一以函数形式来使用`print`操作了。
 
 
 # ==============================================================================
 # -- find carla module ---------------------------------------------------------
 # ==============================================================================
 
-
+# 下面这一组导入语句引入了一些Python标准库中常用的模块，它们各自有着特定的功能用途。
 import glob
+# `glob`模块主要用于文件路径的通配符搜索，它可以根据指定的模式（比如包含通配符`*`、`?`等的路径表达式）来查找匹配的文件或目录路径，
+# 在后续代码中很可能用于定位特定格式或名称的文件（在这里大概率与CARLA模块相关文件的查找有关）。
 import os
+# `os`模块提供了与操作系统交互的各种功能接口，例如文件和目录的操作（创建、删除、重命名等）、获取系统环境变量、操作进程相关信息以及路径处理等，
+# 是在Python中进行系统级操作不可或缺的模块，此处用于辅助完成诸如获取文件路径、判断操作系统类型等任务。
 import sys
+# `sys`模块主要用于处理Python运行时的环境相关操作，像获取命令行参数、操作Python解释器的模块搜索路径（也就是`sys.path`）、控制标准输出和错误输出等，
+# 在本代码中核心作用之一就是对模块搜索路径进行调整，以便后续能正确导入需要的模块。
 import signal
+# `signal`模块用于处理各种操作系统发送给Python进程的信号，例如常见的终止信号（如`SIGINT`表示通过Ctrl+C发送的中断信号等），
+# 可以通过该模块来注册信号处理函数，以实现对进程收到特定信号时执行相应的自定义操作，不过在此处代码当前阶段可能暂时未直接体现其功能运用，也许后续会涉及相关处理。
 
 try:
     sys.path.append(glob.glob(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + '/carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+# 这段代码是这一部分的核心，目的是将CARLA模块所在的路径添加到Python的模块搜索路径（`sys.path`）中，使得Python解释器能够找到并正确导入CARLA相关的模块。
+# 详细的执行逻辑如下：
+# 1. 首先，通过多次调用`os.path.dirname`函数来获取当前文件（`__file__`表示当前Python脚本文件的路径）的多层上级目录路径。
+#    每次调用`os.path.dirname`都会向上回溯一层目录，这里连续调用三次的目的是从当前脚本所在目录向上定位到更上层的目录结构，期望找到CARLA模块所在的大致位置，
+#    因为CARLA模块在项目的文件系统布局中可能处于特定的相对目录层级下。
+# 2. 接着，拼接上一个特定格式的字符串，该字符串用于描述CARLA模块在不同操作系统下所在的相对路径以及与Python版本对应的部分路径格式。
+#    其中`carla/dist/carla-*%d.%d-%s.egg`是基本的路径模式，`*`是通配符，用于匹配具体的版本号等可变部分，`%d.%d`会分别被替换为Python的主版本号（通过`sys.version_info.major`获取）和次版本号（通过`sys.version_info.minor`获取），
+#    而`win-amd64`（当`os.name == 'nt'`时，`nt`表示Windows操作系统）或者`linux-x86_64`（用于Linux操作系统）则是根据当前操作系统类型来确定的特定平台相关后缀，整体构成了一个能适配不同操作系统和Python版本的CARLA模块路径模式。
+# 3. 然后，使用`glob.glob`函数按照上述拼接好的路径模式去查找匹配的文件路径，它会返回一个符合条件的文件路径列表（理论上期望只有一个正确的CARLA模块路径，但也可能因为文件系统情况返回多个或者空列表）。
+# 4. 最后，取列表中的第一个元素（也就是假设找到的CARLA模块所在的`.egg`文件路径），并通过`sys.path.append`将其添加到Python的模块搜索路径中，这样Python在后续导入模块时就能在这个新增的路径下查找CARLA相关模块了。
 except IndexError:
     pass
+# 如果在上述`glob.glob`操作中没有找到符合条件的路径（即返回的列表为空，此时尝试取第一个元素会引发`IndexError`异常），
+# 那么通过`pass`语句忽略这次添加操作，不过这可能导致后续尝试导入CARLA模块时因找不到对应路径而失败，需要确保CARLA模块的安装路径符合预期且可被正确查找。
 
 
 # ==============================================================================
@@ -176,12 +199,22 @@ except ImportError:
 
 
 class World(object):
+# 定义一个名为 `World` 的类，这个类很可能是用于表示整个模拟世界相关的操作和状态管理，它继承自Python的 `object` 基类。
 
     def __init__(self, carla_world, args):
+    # 类的初始化方法，在创建 `World` 类的实例时会被调用，用于初始化实例的各种属性和执行一些必要的初始化操作。
         self.world = carla_world
+        # 将传入的 `carla_world` 参数赋值给实例属性 `self.world`，这个 `carla_world` 应该是来自CARLA模拟环境的世界对象，
+        # 通过它可以访问和操作模拟世界中的各种元素，比如车辆、地图、传感器等。
         self.sync = args.sync
+        # 将传入的 `args.sync` 参数赋值给实例属性 `self.sync`，从参数名推测这个属性可能用于控制模拟世界是否以同步模式运行，
+        # 同步模式下可能需要按照固定的时间间隔来更新世界状态等操作，具体取决于CARLA的实现逻辑。
         self.actor_role_name = args.rolename
+        # 将传入的 `args.rolename` 参数赋值给实例属性 `self.actor_role_name`，这个属性可能用于标识某个特定角色的演员（actor，在CARLA中可以指代车辆、行人等各种参与模拟的对象）名称，
+        # 可能在后续寻找、创建或管理特定角色的对象时会用到。
         self.dim = (args.width, args.height)
+        # 将传入的 `args.width` 和 `args.height` 组成的元组赋值给实例属性 `self.dim`，从名称推测这可能表示屏幕显示或者图像相关的维度信息，
+        # 比如窗口的宽和高，也许用于后续图像渲染、显示等操作的尺寸设置。
         try:
             self.map = self.world.get_map()
         except RuntimeError as error:

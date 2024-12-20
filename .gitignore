@@ -14,8 +14,10 @@ Util/Build
 # 忽略安装目录
 Install
 # 忽略插件目录
+#告诉Git忽略名为Plugins的目录，这个目录可能包含了各种可选的插件或扩展
 Plugins
 # 排除 Unreal/CarlaUE4/Plugins 目录下的特定插件，以便不忽略它们
+#两个子问题不应该被忽略
 !Unreal/CarlaUE4/Plugins/Streetmap
 !Unreal/CarlaUE4/Plugins/HoudiniEngine
 
@@ -44,6 +46,7 @@ Plugins
 *.stackdump
 *.sublime-workspace
 *.workspace
+#忽略特定的用户配置文件和缓存
 *CodeCompletionFolders.txt
 *CodeLitePreProcessor.txt
 .aria2c.input
@@ -54,6 +57,7 @@ Plugins
 .tags*
 .vs
 .vscode
+#忽略特定的临时目录和文件
 __pycache__
 _benchmarks_results
 _images*
