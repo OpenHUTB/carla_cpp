@@ -121,29 +121,37 @@ namespace data {
 
       uint32_t total_points = static_cast<uint32_t>(
           std::accumulate(points_per_channel.begin(), points_per_channel.end(), 0));
-
+// 清空 _ser_points 向量，通常用于清除之前存储的数据，以便重新填充新的数据
       _ser_points.clear();
+// 为 _ser_points 向量预留足够的空间，以容纳 total_points 个元素，避免后续插入元素时频繁重新分配内存，提高性能
       _ser_points.reserve(total_points);
     }
-
+// 虚函数，用于写入通道计数信息。参数 points_per_channel 是一个存储每个通道点数的无符号32位整数向量
     virtual void WriteChannelCount(std::vector<uint32_t> points_per_channel) {
+// 循环遍历每个通道，idxChannel 从0开始，直到通道数量（通过 GetChannelCount() 获取
       for (auto idxChannel = 0u; idxChannel < GetChannelCount(); ++idxChannel)
+ // 将 points_per_channel 中对应通道索引的点数赋值给 _header 向量中相应的位置，Index::SIZE 应该是一个自定义的索引偏移量相关的常量之类的
         _header[Index::SIZE + idxChannel] = points_per_channel[idxChannel];
     }
-
+// 虚函数，用于写入点同步信息，参数 detection 是一个语义激光雷达检测相关的对象
     virtual void WritePointSync(SemanticLidarDetection &detection) {
+ // 将传入的 SemanticLidarDetection 类型的 detection 对象添加到 _ser_points 向量末尾
       _ser_points.emplace_back(detection);
     }
-
+// 受保护的成员变量，用于存储一些头部相关的信息，元素类型是无符号32位整数
   protected:
     std::vector<uint32_t> _header;
+// 用于存储每个通道最大点数的无符号32位整数变量
     uint32_t _max_channel_points;
-
+// 私有成员变量，用于存储语义激光雷达检测相关对象的向量，也就是具体的检测数据集合
   private:
     std::vector<SemanticLidarDetection> _ser_points;
 
+// 声明友元类，允许 s11n::SemanticLidarHeaderView 类访问当前类的私有和受保护成员
   friend class s11n::SemanticLidarHeaderView;
+// 声明友元类，允许 s11n::SemanticLidarSerializer 类访问当前类的私有和受保护成员
   friend class s11n::SemanticLidarSerializer;
+// 声明友元类，允许 carla::ros2::ROS2 类访问当前类的私有和受保护成员
   friend class carla::ros2::ROS2;
 
   };
