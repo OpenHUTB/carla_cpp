@@ -99,32 +99,39 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
     IndiceIndexToVertexInstanceID.Add(IndiceIndex, VertexInstanceID);
     Normals[VertexInstanceID] = Data.Normals[VertexIndex];
 
+    // 检查传入的参数Tangents数量是否与顶点数量相等，如果相等则设置切线和双法线符号
     if(ParamTangents.Num() == Data.Vertices.Num())
     {
       Tangents[VertexInstanceID] = ParamTangents[VertexIndex].TangentX;
       BinormalSigns[VertexInstanceID] =
         ParamTangents[VertexIndex].bFlipTangentY ? -1.f : 1.f;
     }else{
-
+    // 如果不相等，这里没有代码，可能需要处理不匹配的情况
     }
+    // 设置顶点颜色为黑色
     Colors[VertexInstanceID] = FLinearColor(0,0,0);
+    // 检查UV0数量是否与顶点数量相等，如果相等则设置UV坐标
     if(Data.UV0.Num() == Data.Vertices.Num())
     {
       UVs.Set(VertexInstanceID, 0, Data.UV0[VertexIndex]);
     }else{
+      // 如果不相等，则设置UV坐标为(0,0)
       UVs.Set(VertexInstanceID, 0, FVector2D(0,0));
     }
+    // 将其他UV通道设置为(0,0)
     UVs.Set(VertexInstanceID, 1, FVector2D(0,0));
     UVs.Set(VertexInstanceID, 2, FVector2D(0,0));
     UVs.Set(VertexInstanceID, 3, FVector2D(0,0));
   }
 
+  // 遍历三角形，将每个多边形添加到网格描述中  
   for (int32 TriIdx = 0; TriIdx < NumTri; TriIdx++)
   {
     FVertexID VertexIndexes[3];
     TArray<FVertexInstanceID> VertexInstanceIDs;
     VertexInstanceIDs.SetNum(3);
 
+    // 获取三角形的每个角的顶点索引和实例ID	  
     for (int32 CornerIndex = 0; CornerIndex < 3; ++CornerIndex)
     {
       const int32 IndiceIndex = (TriIdx * 3) + CornerIndex;
@@ -138,10 +145,11 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
     MeshDescription.CreatePolygon(NewPolygonGroup, VertexInstanceIDs);
 
   }
-
+  // 返回构建的网格描述
   return MeshDescription;
 }
 
+// UMapGenFunctionLibrary类的静态方法，用于根据给定的数据创建网格
 UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
     const FProceduralCustomMesh& Data,
     const TArray<FProcMeshTangent>& ParamTangents,
@@ -155,8 +163,10 @@ UStaticMesh* UMapGenFunctionLibrary::CreateMesh(
   UStaticMesh::FBuildMeshDescriptionsParams Params;
   Params.bBuildSimpleCollision = true;
 
+  // 构建包的路径	
   FString PackageName = "/Game/CustomMaps/" + MapName + "/Static/" + FolderName + "/" + MeshName.ToString();
 
+  // 检查包路径是否存在，如果不存在则创建目录
   if (!PlatformFile.DirectoryExists(*PackageName))
   {
     //PlatformFile.CreateDirectory(*PackageName);
