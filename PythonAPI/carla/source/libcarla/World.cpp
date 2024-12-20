@@ -74,6 +74,7 @@ namespace rpc {
 
 
 static auto WaitForTick(const carla::client::World &world, double seconds) {
+// 释放Python全局解释器锁（GIL），以便在多线程环境中允许其他Python线程运行
   carla::PythonUtil::ReleaseGIL unlock;
   return world.WaitForTick(TimeDurationFromSeconds(seconds));
 }
