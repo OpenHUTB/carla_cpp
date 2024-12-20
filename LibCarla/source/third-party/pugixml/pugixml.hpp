@@ -1157,7 +1157,7 @@ namespace pugi
 		xpath_variable_set();
 		~xpath_variable_set();
 
-		// Copy constructor/assignment operator
+		// 复制构造函数/赋值运算符
 		xpath_variable_set(const xpath_variable_set& rhs);
 		xpath_variable_set& operator=(const xpath_variable_set& rhs);
 
