@@ -95,7 +95,16 @@ import weakref
 # 导入Python标准库中的`weakref`模块，它提供了创建弱引用的功能。弱引用是一种特殊的对象引用方式，不会增加对象的引用计数，
 # 常用于避免循环引用导致的内存泄漏问题，或者在一些需要对对象进行松散关联管理的场景中使用，比如对临时创建的对象进行管理等。
 from rss_sensor import RssSensor # pylint: disable=relative-import
+# 从名为`rss_sensor`的模块中导入`RssSensor`类。这里通过相对导入的方式（虽然禁用了`pylint`关于相对导入的检查提示，
+# 可能是由于项目的目录结构或特定需求使得相对导入在代码静态检查工具中会产生一些告警，但实际上符合代码逻辑要求），
+# 这个`RssSensor`类可能是用于实现与某种RSS（可能是Responsive Safety System等与车辆安全相关的系统概念）相关的传感器功能，
+# 比如检测车辆周边环境信息以保障行车安全等。
 from rss_visualization import RssUnstructuredSceneVisualizer, RssBoundingBoxVisualizer, RssStateVisualizer # pylint: disable=relative-import
+# 从名为`rss_visualization`的模块中导入多个与RSS可视化相关的类，同样是相对导入方式且禁用了`pylint`的相关检查提示。
+# 这些类分别为`RssUnstructuredSceneVisualizer`、`RssBoundingBoxVisualizer`、`RssStateVisualizer`，
+# 它们可能各自承担着不同方面的可视化任务，例如`RssUnstructuredSceneVisualizer`可能用于展示无结构场景（比如不规则的道路周边环境等）相关的可视化效果，
+# `RssBoundingBoxVisualizer`可能用于显示物体的边界框（如车辆、障碍物等的包围框，方便识别其位置和范围）可视化，
+# `RssStateVisualizer`可能用于展示RSS系统自身的状态信息可视化，帮助开发人员或使用者直观地了解系统的运行情况。
 
 try:
     import pygame
