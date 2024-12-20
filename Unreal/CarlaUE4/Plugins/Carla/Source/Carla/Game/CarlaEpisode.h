@@ -114,7 +114,11 @@ public:
     // Material Parameters 中的更新时间
     if (MaterialParameters)
     {
-      MaterialParameters->SetScalarParameterValue(FName("VisualTime"), VisualGameTime);
+      MaterialParameters->SetScalarParameterValue(FName("VisualTime"), VisualGameTime);// 通过MaterialParameters指针调用SetScalarParameterValue函数
+// 第一个参数使用FName构造函数创建了一个名为"VisualTime"的参数名
+// 第二个参数VisualGameTime应该是要设置给"VisualTime"这个参数的具体数值（具体类型需看VisualGameTime的定义）
+// 整体作用大概率是在程序中（可能是游戏开发等场景涉及材质相关操作）为名为"VisualTime"的材质参数设置对应的值，以影响材质的某种表现特性。
+MaterialParameters->SetScalarParameterValue(FName("VisualTime"), VisualGameTi
     }
   }
 
