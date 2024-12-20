@@ -150,7 +150,7 @@ class ActorTrace(object):
 
         return False
     
-    def check_lidar_data(self):
+    def check_lidar_data(self):// 定义类方法check_lidar_data，可能用于检查激光雷达数据，具体功能看内部实现。
         if self.lidar_is_outside_bb():
             print("Error!!! Points of lidar point cloud are outside its BB for car %d: %s " % (self._actor_id, self._actor_type))
             self.print()
