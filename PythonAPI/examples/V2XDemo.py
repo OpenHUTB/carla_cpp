@@ -149,20 +149,31 @@ except ImportError:
 # ==============================================================================
 
 
+#获取一些预设的天气相关参数
 def find_weather_presets():
+    #创建一个正则表达式对象rgx
     rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
+    #对于了一个匿名函数name
     name = lambda x: ' '.join(m.group(0) for m in rgx.finditer(x))
+    #列表推导式
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
+    #将两个结果组成一个元组，所有元组组成列表作为函数的返回值
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
 
 
+#目的是为了处理actor对象的类型标识，返回处理后的名称
 def get_actor_display_name(actor, truncate=250):
+    #替换
     name = ' '.join(actor.type_id.replace('_', '.').title().split('.')[1:])
+    #比较长度
     return (name[:truncate - 1] + u'\u2026') if len(name) > truncate else name
 
+#获取bps
 def get_actor_blueprints(world, filter, generation):
+    #从world对象的蓝图库获取经过filter过滤的列表存储在bps变量中
     bps = world.get_blueprint_library().filter(filter)
 
+    #bps的长度是否为1
     if generation.lower() == "all":
         return bps
 

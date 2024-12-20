@@ -47,10 +47,15 @@ class BasicAgent:
             :param grp_inst: GlobalRoutePlanner instance to avoid the expensive call of getting it.
 
         """
+        #将vehicle赋值给自身的_vehicle属性
         self._vehicle = vehicle
+        #将自身的_vehicle的get_world对象赋值给自身的_world
         self._world = self._vehicle.get_world()
+        #如果存在map_inst
         if map_inst:
+            #判断对象是否是某个类的实例
             if isinstance(map_inst, carla.Map):
+                #将map_inst赋值给self._map
                 self._map = map_inst
             else:
                 print("Warning: Ignoring the given map as it is not a 'carla.Map'")
@@ -128,31 +133,39 @@ class BasicAgent:
 
             :param speed (carl.VehicleControl): control to be modified
         """
+        #油门的值设置为0
         control.throttle = 0.0
+        #将刹车的值设置为最大
         control.brake = self._max_brake
+        #将手刹设置为Flase
         control.hand_brake = False
+        #返回修改对象
         return control
 
     def set_target_speed(self, speed):
         """
         Changes the target speed of the agent
             :param speed (float): target speed in Km/h
-        """
+        ""
+        #将传入的目标速度speed赋值给对象的_target_speed属性
         self._target_speed = speed
+        #调用它的set_speed方法并传入speed参数
         self._local_planner.set_speed(speed)
 
-    #定义一个函数：接收参数
+    #接受一个布尔类型参数value，默认值为True
     def follow_speed_limits(self, value=True):
         """
-        #描述函数功能：如果激活agent将根据速度限制动态改变目标速度
         If active, the agent will dynamically change the target speed according to the speed limits
-            #说明value是一个布尔类型参数用于决定是否激活这个行为
+
+            #参数value是否激活这个行为
             :param value (bool): whether or not to activate this behavior
         """
-     #调用self._local_planner对象的follow_speed_limits方法将value接收到的信息传递进去
+        #调用ollow_speed_limits方法并传入value参数
         self._local_planner.follow_speed_limits(value)
 
+    #定义一个方法，获取受保护的成员变量local_planner的值
     def get_local_planner(self):
+           #获取受保护成员的方法
         """Get method for protected member local planner"""
         return self._local_planner
 
@@ -368,22 +381,38 @@ class BasicAgent:
                 If None, the base threshold value is used
         """
         def get_route_polygon():
-            route_bb = []
+            """
+    此函数用于构建表示车辆行驶路线的多边形（Polygon），该多边形基于车辆自身以及规划路径中的路点（waypoint）来确定边界点。
+    """
+            route_bb = [] # 用于存储构成多边形的边界点列表，初始为空列表
+            # 获取车辆包围盒（bounding box）在y轴方向上的范围（extent），包围盒用于表示物体在空间中的大致范围
             extent_y = self._vehicle.bounding_box.extent.y
+            # 根据车辆包围盒的y轴范围和一个偏移量（_offset）计算右侧扩展后的距离
             r_ext = extent_y + self._offset
+            # 根据车辆包围盒的y轴范围和一个偏移量（_offset）计算左侧扩展后的距离
             l_ext = -extent_y + self._offset
+            # 获取车辆自身坐标系下的右方向向量，用于后续计算边界点在空间中的位置
             r_vec = ego_transform.get_right_vector()
+            # 根据车辆当前位置（ego_location）和右侧扩展距离（r_ext）以及右方向向量（r_vec）计算多边形的一个边界点p1
             p1 = ego_location + carla.Location(r_ext * r_vec.x, r_ext * r_vec.y)
+            # 根据车辆当前位置（ego_location）和左侧扩展距离（l_ext）以及右方向向量（r_vec）计算多边形的另一个边界点p2
             p2 = ego_location + carla.Location(l_ext * r_vec.x, l_ext * r_vec.y)
+            # 将计算得到的两个边界点（以坐标列表形式）添加到route_bb列表中，作为多边形的初始边界点
             route_bb.extend([[p1.x, p1.y, p1.z], [p2.x, p2.y, p2.z]])
 
+            # 遍历局部规划器（_local_planner）中的规划路径（plan），每个元素包含路点（wp）和相关信息（这里忽略了后者）
             for wp, _ in self._local_planner.get_plan():
+                # 如果当前车辆位置与路点位置的距离大于最大距离（max_distance，此处未定义，应该是外部传入或在更外层定义的变量），则停止遍历
                 if ego_location.distance(wp.transform.location) > max_distance:
                     break
 
+                # 获取路点坐标系下的右方向向量，用于计算基于该路点的多边形边界点位置
                 r_vec = wp.transform.get_right_vector()
+                # 根据路点位置（wp.transform.location）和右侧扩展距离（r_ext）以及右方向向量（r_vec）计算基于该路点的多边形的一个边界点p1
                 p1 = wp.transform.location + carla.Location(r_ext * r_vec.x, r_ext * r_vec.y)
+                # 根据路点位置（wp.transform.location）和左侧扩展距离（l_ext）以及右方向向量（r_vec）计算基于该路点的多边形的另一个边界点p2
                 p2 = wp.transform.location + carla.Location(l_ext * r_vec.x, l_ext * r_vec.y)
+                # 将基于该路点计算得到的两个边界点（以坐标列表形式）添加到route_bb列表中，逐步构建多边形的边界点集合
                 route_bb.extend([[p1.x, p1.y, p1.z], [p2.x, p2.y, p2.z]])
 
             # Two points don't create a polygon, nothing to check
@@ -515,10 +544,13 @@ class BasicAgent:
                 return []
             next_wp = next_wps[0]
 
+            #根据车辆的行驶方向来获取相邻车道的路点，同时统计车道变化的次数
             # Get the side lane
+            #检查方向是否为左
             if direction == 'left':
                 if check and str(next_wp.lane_change) not in ['Left', 'Both']:
                     return []
+                #不满足获取下一个路点的左侧车道的路点，并赋值    
                 side_wp = next_wp.get_left_lane()
             else:
                 if check and str(next_wp.lane_change) not in ['Right', 'Both']:
@@ -529,17 +561,26 @@ class BasicAgent:
                 return []
 
             # Update the plan
+            #将之前定义好的元组添加到plan中
             plan.append((side_wp, option))
+            #完成一次车道变换操作
             lane_changes_done += 1
 
         # Other lane
+        #初始化一个变量distance为0
         distance = 0
+        #循环条件
         while distance < distance_other_lane:
+            #获取路径计划中最后一个元素的第一部分，然后调用这个对象的next方法，并传入一个步长距离
             next_wps = plan[-1][0].next(step_distance)
+            #条件判断
             if not next_wps:
                 return []
             next_wp = next_wps[0]
+            #计算新的距离
             distance += next_wp.transform.location.distance(plan[-1][0].transform.location)
+            #将next_wp和LANEFOLLOW的选项作为一个元组添加到plan中
             plan.append((next_wp, RoadOption.LANEFOLLOW))
 
+        #返回最终构建的plan
         return plan

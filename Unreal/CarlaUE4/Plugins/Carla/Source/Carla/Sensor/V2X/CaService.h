@@ -20,6 +20,7 @@
 class CaService
 {
 public:
+// 构造函数，接收一个随机数引擎指针作为参数，可能用于生成噪声或其他随机化操作
   CaService(URandomEngine *random_engine);
   void SetOwner(UWorld *world, AActor *Owner);
 
@@ -27,6 +28,7 @@ public:
   void SetVelDeviation(const float noise_vel_stddev_x);
   void SetYawrateDeviation(const float noise_yawrate_stddev, const float noise_yawrate_bias);
   void SetAccelerationStandardDeviation(const FVector &Vec);
+// 设置GNSS（全球导航卫星系统）位置和方向的偏差，包括纬度、经度、高度和航向的标准差及偏置
   void SetGNSSDeviation(const float noise_lat_stddev,
                         const float noise_lon_stddev,
                         const float noise_alt_stddev,
@@ -35,7 +37,10 @@ public:
                         const float noise_lon_bias,
                         const float noise_alt_bias,
                         const float noise_head_bias);
+// 触发一次服务更新，基于给定的时间间隔 DeltaSeconds。返回值可能是表示成功与否的布尔值
   bool Trigger(float DeltaSeconds);
+// 获取当前生成的CAM（Cooperative Awareness Message，合作意识消息）信息
+  // CAM_t 是一个自定义类型，代表要生成的消息格式
   CAM_t GetCamMessage();
 
 private:

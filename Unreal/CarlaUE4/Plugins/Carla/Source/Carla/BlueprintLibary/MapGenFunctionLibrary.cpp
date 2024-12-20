@@ -218,19 +218,24 @@ FVector2D UMapGenFunctionLibrary::GetTransversemercProjection(float lat, float l
 {
   // earth radius in m
   const float R = 6373000.0f;
+	// 将输入的纬度和经度从度数转换为弧度，并调整经度以相对于中央经线 (lon0)
   float latt = FMath::DegreesToRadians(lat);
   float lonn  = FMath::DegreesToRadians(lon - lon0);
   float latt0 = FMath::DegreesToRadians(lat0);
+	// 计算中间变量 eps 和 nab，用于后续计算 x 和 y 坐标
   float eps = atan(tan(latt)/cos(lonn));
   float nab = asinh(sin(lonn)/sqrt(tan(latt)*tan(latt)+cos(lonn)*cos(lonn)));
+	// 根据地球半径和拉伸量计算投影后的 x 和 y 坐标
   float x = R*nab;
   float y = R*eps;
+	// 计算参考点 (lat0, lon0) 的投影坐标
   float eps0 = atan(tan(latt0)/cos(0));
   float nab0 = asinh(sin(0)/sqrt(tan(latt0)*tan(latt0)+cos(0)*cos(0)));
   float x0 = R*nab0;
   float y0 = R*eps0;
+	// 计算最终的投影坐标，并应用缩放因子 OSMToCentimetersScaleFactor 将单位转换为厘米
   FVector2D Result = FVector2D(x, -(y - y0)) * OSMToCentimetersScaleFactor;
-
+ // 返回计算得到的投影坐标
   return Result;
 }
 

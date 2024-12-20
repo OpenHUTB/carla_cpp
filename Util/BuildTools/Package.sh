@@ -8,19 +8,34 @@ DOC_STRING="Makes a packaged version of CARLA and other content packages ready f
 
 USAGE_STRING="Usage: $0 [-h|--help] [--config={Debug,Development,Shipping}] [--no-zip] [--clean-intermediate] [--packages=Name1,Name2,...] [--target-archive=] [--archive-sufix=]"
 
+# 定义一个变量PACKAGES，并将其值设置为"Carla"。
 PACKAGES="Carla"
-DO_TARBALL=true
-DO_CLEAN_INTERMEDIATE=false
-PROPS_MAP_NAME=PropsMap
-PACKAGE_CONFIG=Shipping
-USE_CARSIM=false
-SINGLE_PACKAGE=false
-ARCHIVE_SUFIX=""
 
+# 定义一个变量DO_TARBALL，并将其值设置为true。
+DO_TARBALL=true
+
+# 定义一个变量DO_CLEAN_INTERMEDIATE，并将其值设置为false。
+DO_CLEAN_INTERMEDIATE=false
+
+# 定义一个变量PROPS_MAP_NAME，并将其值设置为"PropsMap"。
+PROPS_MAP_NAME=PropsMap
+
+# 定义一个变量PACKAGE_CONFIG，并将其值设置为"Shipping"。
+PACKAGE_CONFIG=Shipping
+
+# 定义一个变量USE_CARSIM，并将其值设置为false。
+USE_CARSIM=false
+
+# 定义一个变量SINGLE_PACKAGE，并将其值设置为false。
+SINGLE_PACKAGE=false
+
+# 定义一个变量ARCHIVE_SUFIX，并将其值设置为空字符串。
+ARCHIVE_SUFIX=""
+# 使用 getopt 解析命令行参数
 OPTS=`getopt -o h --long help,config:,no-zip,clean-intermediate,carsim,packages:,python-version,target-archive:,archive-sufix:, -n 'parse-options' -- "$@"`
 
 eval set -- "$OPTS"
-
+# 循环处理每个参数
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --config )
@@ -58,45 +73,46 @@ done
 # ==============================================================================
 # -- Prepare environment -------------------------------------------------------
 # ==============================================================================
+# 导入环境设置脚本
 source $(dirname "$0")/Environment.sh
-
+# 检查 UE4_ROOT 环境变量是否设置并指向存在的目录
 if [ ! -d "${UE4_ROOT}" ]; then
   fatal_error "UE4_ROOT is not defined, or points to a non-existent directory, please set this environment variable."
 fi
-
+# 如果 PACKAGES 变量为空，则报错退出
 if [ ! -n "${PACKAGES}" ] ; then
   fatal_error "Nothing to be done."
 fi
 
-# Convert comma-separated string to array of unique elements.
+# 将逗号分隔的字符串转换为数组
 PACKAGES="$(echo "${PACKAGES}" | tr ',' '\n' | sort -u | tr '\n' ',')"
 IFS=',' read -r -a PACKAGES <<< "${PACKAGES}"
 
-# If contains an element called "Carla".
+# 如果数组包含 "Carla" 元素，则设置 DO_CARLA_RELEASE 为 true
 if [[ "${PACKAGES[@]}" =~ "Carla" ]] ; then
   DO_CARLA_RELEASE=true
 else
   DO_CARLA_RELEASE=false
 fi
-
+# 获取 git 仓库版本号
 REPOSITORY_TAG=$(get_git_repository_version)
-
+# 获取 git 仓库版本号
 if [[ ${ARCHIVE_SUFIX} != "" ]] ; then
   RELEASE_BUILD_FOLDER=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}_${ARCHIVE_SUFIX}
 else
   RELEASE_BUILD_FOLDER=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}
 fi
-
+# 根据 PACKAGE_CONFIG 变量设置发布包路径
 if [[ ${PACKAGE_CONFIG} == "Shipping" ]] ; then
   RELEASE_PACKAGE_PATH=${CARLA_DIST_FOLDER}/CARLA_${REPOSITORY_TAG}
 else
   RELEASE_PACKAGE_PATH=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}
 fi
-
+# 如果设置了 ARCHIVE_SUFIX，则添加到发布包路径
 if [[ ${ARCHIVE_SUFIX} != "" ]] ; then
   RELEASE_PACKAGE_PATH=${RELEASE_PACKAGE_PATH}_${ARCHIVE_SUFIX}
 fi
-
+# 设置发布包路径的文件名
 RELEASE_PACKAGE_PATH=${RELEASE_PACKAGE_PATH}.tar.gz
 
 log "Packaging version '${REPOSITORY_TAG}' (${PACKAGE_CONFIG})."
@@ -104,11 +120,11 @@ log "Packaging version '${REPOSITORY_TAG}' (${PACKAGE_CONFIG})."
 # ==============================================================================
 # -- Cook CARLA project --------------------------------------------------------
 # ==============================================================================
-
+# 如果设置了 DO_CARLA_RELEASE，则执行 CARLA 项目的构建
 if ${DO_CARLA_RELEASE} ; then
 
   pushd "${CARLAUE4_ROOT_FOLDER}" >/dev/null
-
+# 如果设置了 USE_CARSIM，则启用 CarSim
   if ${USE_CARSIM} ; then
     python ${PWD}/../../Util/BuildTools/enable_carsim_to_uproject.py -f="CarlaUE4.uproject" -e
     echo "CarSim ON" > ${PWD}/Config/CarSimConfig.ini
@@ -118,10 +134,10 @@ if ${DO_CARLA_RELEASE} ; then
   fi
 
   log "Cooking CARLA project."
-
+# 删除旧的发布构建文件夹并创建新的
   rm -Rf ${RELEASE_BUILD_FOLDER}
   mkdir -p ${RELEASE_BUILD_FOLDER}
-
+# 使用 Unreal Engine 4 的 UAT 工具构建项目
   ${UE4_ROOT}/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
       -project="${PWD}/CarlaUE4.uproject" \
       -nocompileeditor -nop4 -cook -stage -archive -package -iterate \
@@ -130,7 +146,7 @@ if ${DO_CARLA_RELEASE} ; then
       -archivedirectory="${RELEASE_BUILD_FOLDER}"
 
   popd >/dev/null
-
+# 如果构建失败，则报错退出
   if [[ ! -d ${RELEASE_BUILD_FOLDER}/LinuxNoEditor ]] ; then
     fatal_error "Failed to cook the project!"
   fi
@@ -140,7 +156,7 @@ fi
 # ==============================================================================
 # -- Copy files (Python API, README, etc) --------------------------------------
 # ==============================================================================
-
+# 如果设置了 DO_CARLA_RELEASE，则执行额外文件的复制
 if ${DO_CARLA_RELEASE} ; then
 
   DESTINATION=${RELEASE_BUILD_FOLDER}/LinuxNoEditor

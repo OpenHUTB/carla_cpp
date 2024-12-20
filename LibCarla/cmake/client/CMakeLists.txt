@@ -1,18 +1,29 @@
+#设置CMake最低版本要求
 cmake_minimum_required(VERSION 3.5.1)
+#定义项目名称
 project(libcarla-client)
 
 # 启用/安装 RSS VARIANT
 #默认是禁用
 option (BUILD_RSS_VARIANT "Enables ad-rss-lib based RSS components" OFF)
+# 设置目标后缀为空字符串，这是默认情况
 set(carla_target_postfix "")
+# 如果用户启用了 BUILD_RSS_VARIANT 选项，则执行以下操作
 if (BUILD_RSS_VARIANT)
+  # 更新目标后缀以包含 "_rss" 字符串，这可能用于区分不同变体的目标文件或库
   set(carla_target_postfix "_rss")
+   # 初始化 ADRSS_INCLUDE_DIRS 变量为空列表
+  # 这个变量将用来存储 RSS 变体所需的所有包含路径
   set(ADRSS_INCLUDE_DIRS)
+    # 初始化 ADRSS_LIBS 变量为空列表
+  # 这个变量将用来存储 RSS 变体所需的所有链接库
   set(ADRSS_LIBS)
 
   # 快速C++日志库：spdlog
+  #寻找并配置外部库spdlog
   find_package(spdlog CONFIG REQUIRED
     HINTS ${ADRSS_INSTALL_DIR}/spdlog/)
+    #获得和处理spdlog的属性
   get_target_property(spdlog_include_dirs spdlog::spdlog INTERFACE_INCLUDE_DIRECTORIES)
   get_target_property(spdlog_file spdlog::spdlog LOCATION)
   foreach(dir ${spdlog_include_dirs})
@@ -406,13 +417,13 @@ if (LIBCARLA_BUILD_DEBUG)
     endif()
 
     set_target_properties(carla_client${carla_target_postfix}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG_CLIENT}")
-
+#设置编译标志
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libRecast.a")
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetour.a")
-    target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetourCrowd.a")
+    target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetourCrowd.a")#链接更多库
 
   endif (WIN32)
-
+#条件结束和编译定义
   target_compile_definitions(carla_client${carla_target_postfix}_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
 
 endif()
