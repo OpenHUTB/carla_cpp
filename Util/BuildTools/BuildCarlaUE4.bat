@@ -14,19 +14,19 @@ rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
 
-set BUILD_UE4_EDITOR=false
-set LAUNCH_UE4_EDITOR=false
-set REMOVE_INTERMEDIATE=false
-set USE_CARSIM=false
-set USE_CHRONO=false
-set USE_UNITY=true
-set CARSIM_STATE="CarSim OFF"
-set CHRONO_STATE="Chrono OFF"
-set UNITY_STATE="Unity ON"
-set AT_LEAST_WRITE_OPTIONALMODULES=false
-set EDITOR_FLAGS=""
-set USE_ROS2=false
-set ROS2_STATE="Ros2 OFF"
+set BUILD_UE4_EDITOR=false  // 设置不构建UE4（Unreal Engine 4）编辑器
+set LAUNCH_UE4_EDITOR=false // 设置不启动UE4编辑器
+set REMOVE_INTERMEDIATE=false // 设置不删除中间文件
+set USE_CARSIM=false        // 设置不使用CarSim（一款车辆动力学仿真软件）
+set USE_CHRONO=false        // 设置不使用Chrono（一款开源的物理引擎和仿真工具）
+set USE_UNITY=true          // 设置使用Unity（一款流行的游戏开发引擎）
+set CARSIM_STATE="CarSim OFF" // 设置CarSim的状态为关闭
+set CHRONO_STATE="Chrono OFF" // 设置Chrono的状态为关闭
+set UNITY_STATE="Unity ON"   // 设置Unity的状态为开启
+set AT_LEAST_WRITE_OPTIONALMODULES=false // 设置不写入可选模块（可能是指不生成或修改某些非必需的文件或组件）
+set EDITOR_FLAGS=""         // 设置编辑器标志为空（可能用于传递给编辑器的特定参数或选项）
+set USE_ROS2=false          // 设置不使用ROS2（Robot Operating System 2，一种用于机器人的开源操作系统）
+set ROS2_STATE="Ros2 OFF"   // 设置ROS2的状态为关闭
 
 :arg-parse
 echo %1
