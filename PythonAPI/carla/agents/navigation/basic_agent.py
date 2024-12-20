@@ -528,10 +528,13 @@ class BasicAgent:
                 return []
             next_wp = next_wps[0]
 
+            #根据车辆的行驶方向来获取相邻车道的路点，同时统计车道变化的次数
             # Get the side lane
+            #检查方向是否为左
             if direction == 'left':
                 if check and str(next_wp.lane_change) not in ['Left', 'Both']:
                     return []
+                #不满足获取下一个路点的左侧车道的路点，并赋值    
                 side_wp = next_wp.get_left_lane()
             else:
                 if check and str(next_wp.lane_change) not in ['Right', 'Both']:
@@ -542,17 +545,26 @@ class BasicAgent:
                 return []
 
             # Update the plan
+            #将之前定义好的元组添加到plan中
             plan.append((side_wp, option))
+            #完成一次车道变换操作
             lane_changes_done += 1
 
         # Other lane
+        #初始化一个变量distance为0
         distance = 0
+        #循环条件
         while distance < distance_other_lane:
+            #获取路径计划中最后一个元素的第一部分，然后调用这个对象的next方法，并传入一个步长距离
             next_wps = plan[-1][0].next(step_distance)
+            #条件判断
             if not next_wps:
                 return []
             next_wp = next_wps[0]
+            #计算新的距离
             distance += next_wp.transform.location.distance(plan[-1][0].transform.location)
+            #将next_wp和LANEFOLLOW的选项作为一个元组添加到plan中
             plan.append((next_wp, RoadOption.LANEFOLLOW))
 
+        #返回最终构建的plan
         return plan
