@@ -8,7 +8,7 @@
 
 #ifndef LIBCARLA_ENABLE_PROFILER // 如果没有启用性能分析器
 #  define CARLA_PROFILE_SCOPE(context, profiler_name) // 定义宏，空操作
-#  define CARLA_PROFILE_FPS(context, profiler_name) // 定义宏，空操作
+#  define CARLA_PROFILE_FPS(context, profiler_name) // 定义宏，空操作，这里的代码将用于开始或更新一个性能分析器，与给定的上下文和名称相关，它包括获取当前时间戳，更新帧率统计，或者开始一个新的性能分析区间
 #else
 
 #include "carla/StopWatch.h" // 引入计时器头文件
@@ -39,7 +39,7 @@ namespace detail { // 开始 detail 命名空间
     }
 
     float average() const { // 计算平均时间
-      return ms(_total_microseconds) / static_cast<float>(_count); // 返回毫秒为单位的平均时间
+      return ms(_total_microseconds) / static_cast<float>(_count); // 将总时间（微秒）转换为毫秒，然后除以事件发生的次数，得到平均每次事件的毫秒数
     }
 
     float maximum() const { // 获取最大时间
@@ -57,7 +57,7 @@ namespace detail { // 开始 detail 命名空间
     }
 
     static inline float fps(float milliseconds) { // 根据毫秒计算FPS
-      return milliseconds > 0.0f ? (1e3f / milliseconds) : std::numeric_limits<float>::max(); // FPS计算
+      return milliseconds > 0.0f ? (1e3f / milliseconds) : std::numeric_limits<float>::max(); // 如果 milliseconds 大于 0，则返回其倒数（每秒），否则返回无穷大
     }
 
     const std::string _name; // 性能监测名称
@@ -80,7 +80,7 @@ namespace detail { // 开始 detail 命名空间
 
     ~ScopedProfiler() { // 析构函数
       _stop_watch.Stop(); // 停止计时器
-      _profiler.Annotate(_stop_watch); // 注解性能数据
+      _profiler.Annotate(_stop_watch); // 使用_stop_watch对象的信息来标注或更新_profiler的性能分析数据
     }
 
   private:
@@ -97,13 +97,13 @@ namespace detail { // 开始 detail 命名空间
 #ifdef LIBCARLA_WITH_GTEST // 如果启用了 GTest
 #  define LIBCARLA_GTEST_GET_TEST_NAME() std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()) // 获取当前测试名称
 #else
-#  define LIBCARLA_GTEST_GET_TEST_NAME() std::string("") // 否则返回空字符串
+#  define LIBCARLA_GTEST_GET_TEST_NAME() std::string("") // 定义一个宏，用于获取当前测试的名称，但当前实现仅返回一个空字符串
 #endif // LIBCARLA_WITH_GTEST
 
 #define CARLA_PROFILE_SCOPE(context, profiler_name) \ // 定义性能分析作用域宏
     static thread_local ::carla::profiler::detail::ProfilerData carla_profiler_ ## context ## _ ## profiler_name ## _data( \ // 创建性能数据实例
         LIBCARLA_GTEST_GET_TEST_NAME() + "." #context "." #profiler_name); \ // 初始化性能数据名称
-    ::carla::profiler::detail::ScopedProfiler carla_profiler_ ## context ## _ ## profiler_name ## _scoped_profiler( \ // 创建作用域性能分析器
+    ::carla::profiler::detail::ScopedProfiler carla_profiler_ ## context ## _ ## profiler_name ## _scoped_profiler( \ // 创建作用域性能分析器，创建一个 ScopedProfiler实例，用于性能分析
         carla_profiler_ ## context ## _ ## profiler_name ## _data); // 关联到性能数据
 
 #define CARLA_PROFILE_FPS(context, profiler_name) \ // 定义性能分析FPS宏

@@ -21,31 +21,42 @@
 #include "Materials/MaterialInstanceConstant.h"
 #include "Carla/MapGen/LargeMapManager.h"
 
+// 静态函数，用于验证静态网格是否符合某些条件
 static bool ValidateStaticMesh(UStaticMesh *Mesh)
 {
+  // 获取网格资源的名称
   const FString AssetName = Mesh->GetName();
 
+  // 检查网格名称是否包含“light”或“sign”，忽略大小写
   if (AssetName.Contains(TEXT("light"), ESearchCase::IgnoreCase) ||
       AssetName.Contains(TEXT("sign"), ESearchCase::IgnoreCase))
   {
+    // 如果包含，则返回false，表示验证不通过
     return false;
   }
 
+  // 遍历网格的所有静态材质
   for (int i = 0; i < Mesh->StaticMaterials.Num(); i++)
   {
+    // 获取当前索引处的材质
     UMaterialInterface *Material = Mesh->GetMaterial(i);
     if (!Material) {
+      // 如果材质为空，则使用默认的表面材质
       Material = UMaterial::GetDefaultMaterial(MD_Surface);
     }
+    // 获取材质的名称
     const FString MaterialName = Material->GetName();
 
+    // 检查材质名称是否包含“light”或“sign”，忽略大小写
     if (MaterialName.Contains(TEXT("light"), ESearchCase::IgnoreCase) ||
         MaterialName.Contains(TEXT("sign"), ESearchCase::IgnoreCase))
     {
+      // 如果包含，则返回false，表示验证不通过
       return false;
     }
   }
 
+  // 如果所有检查都通过，则返回true，表示验证通过
   return true;
 }
 
@@ -490,35 +501,45 @@ bool UPrepareAssetsForCookingCommandlet::SavePackage(const FString &PackagePath,
       SAVE_NoError);
 }
 
+// UPrepareAssetsForCookingCommandlet类的方法，用于生成地图路径文件
 void UPrepareAssetsForCookingCommandlet::GenerateMapPathsFile(
     const FAssetsPaths &AssetsPaths,
     const FString &PropsMapPath)
 {
+  // 存储地图路径数据，用于Windows和Linux
   FString MapPathData;
   FString MapPathDataLinux;
+  // 获取文件管理器
   IFileManager &FileManager = IFileManager::Get();
+  // 遍历所有地图路径
   for (const auto &Map : AssetsPaths.MapsPaths)
   {
+    // 追加地图路径和名称，用于Windows和Linux
     MapPathData.Append(Map.Path + TEXT("/") + Map.Name + TEXT("\n"));
     MapPathDataLinux.Append(Map.Path + TEXT("/") + Map.Name + TEXT("+"));
+    // 获取地图路径下的资产数据
     TArray<FAssetData> AssetsData;
     UObjectLibrary* ObjectLibrary = UObjectLibrary::CreateLibrary(UWorld::StaticClass(), true, true);
     ObjectLibrary->LoadAssetDataFromPath(Map.Path);
     ObjectLibrary->GetAssetDataList(AssetsData);
     int NumTiles = 0;
+    // 遍历资产数据，查找与地图名称匹配的tiles
     for (FAssetData &AssetData : AssetsData)
     {
       FString AssetName = AssetData.AssetName.ToString();
       if (AssetName.Contains(Map.Name + "_Tile_"))
       {
+        // 追加tiles的路径和名称，用于Windows和Linux
         MapPathData.Append(Map.Path + TEXT("/") + AssetName + TEXT("\n"));
         MapPathDataLinux.Append(Map.Path + TEXT("/") + AssetName + TEXT("+"));
         NumTiles++;
       }
     }
+    // 记录找到的tiles数量
     UE_LOG(LogTemp, Warning, TEXT("Found %d tiles"), NumTiles);
   }
 
+  // 如果提供了PropsMapPath，则追加到路径数据中
   if (!PropsMapPath.IsEmpty())
   {
     MapPathData.Append(PropsMapPath + TEXT("/PropsMap"));
@@ -526,21 +547,28 @@ void UPrepareAssetsForCookingCommandlet::GenerateMapPathsFile(
   }
   else
   {
+     // 否则，从Linux路径数据中移除最后一个"+"
     MapPathDataLinux.RemoveFromEnd(TEXT("+"));
   }
 
+  // 获取保存目录和文件名
   const FString SaveDirectory = FPaths::ProjectContentDir();
   const FString FileName = FString("MapPaths.txt");
+  // 将路径数据保存到文件中
   const FString FileNameLinux = FString("MapPathsLinux.txt");
   SaveStringTextToFile(SaveDirectory, FileName, MapPathData, true);
   SaveStringTextToFile(SaveDirectory, FileNameLinux, MapPathDataLinux, true);
 }
 
+// UPrepareAssetsForCookingCommandlet类的方法，用于生成包路径文件
 void UPrepareAssetsForCookingCommandlet::GeneratePackagePathFile(const FString &PackageName)
 {
+  // 获取保存目录和文件名
   FString SaveDirectory = FPaths::ProjectContentDir();
   FString FileName = FString("PackagePath.txt");
+  // 获取包的路径
   FString PackageJsonFilePath = GetFirstPackagePath(PackageName);
+  // 将包路径保存到文件中
   SaveStringTextToFile(SaveDirectory, FileName, PackageJsonFilePath, true);
 }
 
@@ -548,12 +576,16 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
     const FString &PackageName,
     const TArray<FMapData> &MapsPaths)
 {
+  // 设置基础路径
   FString BasePath = TEXT("/Game/") + PackageName + TEXT("/Static/");
 
+  // 遍历所有地图路径
   for (const auto &Map : MapsPaths)
   {
+    // 设置地图路径
     const FString MapPath = TEXT("/") + Map.Name;
 
+    // 设置默认路径、道路路径、道路线路径、地形路径和人行道路径
     const FString DefaultPath   = TEXT("/Game/") + PackageName + TEXT("/Maps/") + Map.Name;
     const FString RoadsPath     = BasePath + SSTags::ROAD      + MapPath;
     const FString RoadLinesPath = BasePath + SSTags::ROADLINE  + MapPath;
@@ -586,30 +618,44 @@ void UPrepareAssetsForCookingCommandlet::PrepareMapsForCooking(
     }
     else
     {
+      // 定义一个数组，用于存储地图路径和对应的ID
       TArray<TPair<FString, FIntVector>> MapPathsIds;
 
+      // 定义一个FVector变量，用于存储第0个瓦片的位置
       FVector PositionTile0 = FVector();
+      // 定义瓦片的大小（以米为单位）
       float TileSize = 200000.f;
+      // 定义一个字符串变量，用于存储从文件中读取的文本
       FString TxtFile;
+      // 定义瓦片信息文件的路径
       FString TilesInfoPath = FPaths::ProjectContentDir() + PackageName + TEXT("/Maps/") + Map.Name + "/TilesInfo.txt";
+      // 记录日志，表示正在加载瓦片信息文件
       UE_LOG(LogTemp, Warning, TEXT("Loading %s ..."), *TilesInfoPath);
+      // 尝试从文件中加载文本内容到TxtFile变量中
       if (FFileHelper::LoadFileToString(TxtFile, *(TilesInfoPath)) == true) {
-
+        
+        // 将文件内容按逗号分隔，并存储到Out数组中
         TArray<FString> Out;
         TxtFile.ParseIntoArray(Out, TEXT(","), true);
+        // 检查数组中是否至少有3个元素（X, Y, TileSize）
         if (Out.Num() >= 3)
         {
+          // 定义从米到厘米的转换系数
           const float METERSTOCM = 100.f;
+          // 从文件中读取第0个瓦片的X和Y坐标，并转换为厘米
           PositionTile0.X = METERSTOCM * FCString::Atof(*Out[0]);
           PositionTile0.Y = METERSTOCM * FCString::Atof(*Out[1]);
+          // 从文件中读取瓦片的大小，并转换为厘米
           TileSize = METERSTOCM * FCString::Atof(*Out[2]);
         }
         else
         {
+          // 如果数组元素不足3个，则记录日志表示瓦片信息文件格式无效
           UE_LOG(LogTemp, Warning, TEXT("TilesInfo.txt format is invalid file"));
         }
       }
       else {
+        // 如果无法加载文件，则记录日志表示找不到瓦片信息文件
         UE_LOG(LogTemp, Warning, TEXT("Could not find TilesInfo.txt file"));
       }
 

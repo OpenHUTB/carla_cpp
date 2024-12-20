@@ -77,42 +77,45 @@ std::string GetSemiOrientationString(const long orientation)
   }
 }
 // 根据海拔置信度枚举值返回对应的字符串描述
+// 定义一个函数，用于将ITSContainer中的AltitudeConfidence枚举值转换为对应的字符串表示
 std::string GetAltitudeConfidenceString(ITSContainer::AltitudeConfidence_t altitudeConfidence)
 {
+// 使用switch语句根据altitudeConfidence的值选择对应的字符串
   switch(altitudeConfidence)
   {
+// 对于每个AltitudeConfidence枚举值，都返回一个描述性的字符串
     case ITSContainer::AltitudeConfidence_alt_000_01:
-      return "AltitudeConfidence_alt_000_01";
+      return "AltitudeConfidence_alt_000_01";                // 1%的置信度
     case ITSContainer::AltitudeConfidence_alt_000_02:
-      return "AltitudeConfidence_alt_000_02";
+      return "AltitudeConfidence_alt_000_02";                 // 2%的置信度
     case ITSContainer::AltitudeConfidence_alt_000_05:
-      return "AltitudeConfidence_alt_000_05";
+      return "AltitudeConfidence_alt_000_05";                   // 5%的置信度
     case ITSContainer::AltitudeConfidence_alt_000_10:
-      return "AltitudeConfidence_alt_000_10";
+      return "AltitudeConfidence_alt_000_10";                    // 10%的置信度
     case ITSContainer::AltitudeConfidence_alt_000_20:
-      return "AltitudeConfidence_alt_000_20";
+      return "AltitudeConfidence_alt_000_20";                 // 20%的置信度
     case ITSContainer::AltitudeConfidence_alt_000_50:
-      return "AltitudeConfidence_alt_000_50";
+      return "AltitudeConfidence_alt_000_50";                   // 50%的置信度
     case ITSContainer::AltitudeConfidence_alt_001_00:
-      return "AltitudeConfidence_alt_001_00";
+      return "AltitudeConfidence_alt_001_00";                    // 100%的置信度，即1.00
     case ITSContainer::AltitudeConfidence_alt_002_00:
-      return "AltitudeConfidence_alt_002_00";
+      return "AltitudeConfidence_alt_002_00";                   / 200%的置信度
     case ITSContainer::AltitudeConfidence_alt_005_00:
-      return "AltitudeConfidence_alt_005_00";
+      return "AltitudeConfidence_alt_005_00";                     // 500%的置信度
     case ITSContainer::AltitudeConfidence_alt_010_00:
-      return "AltitudeConfidence_alt_010_00";
+      return "AltitudeConfidence_alt_010_00";                  // 1000%的置信度
     case ITSContainer::AltitudeConfidence_alt_020_00:
-      return "AltitudeConfidence_alt_020_00";
+      return "AltitudeConfidence_alt_020_00";               // 2000%的置信度
     case ITSContainer::AltitudeConfidence_alt_050_00:
-      return "AltitudeConfidence_alt_050_00";
+      return "AltitudeConfidence_alt_050_00";                    // 5000%的置信度
     case ITSContainer::AltitudeConfidence_alt_100_00:
-      return "AltitudeConfidence_alt_100_00";
+      return "AltitudeConfidence_alt_100_00";                  // 10000%的置信度
     case ITSContainer::AltitudeConfidence_alt_200_00:
-      return "AltitudeConfidence_alt_200_00";
+      return "AltitudeConfidence_alt_200_00";               // 20000%的置信度
     case ITSContainer::AltitudeConfidence_outOfRange:
-      return "AltitudeConfidence_alt_outOfRange";
+      return "AltitudeConfidence_alt_outOfRange";           // 表示高度置信度值超出范围
     default:
-      return "AltitudeConfidence_unavailable";
+      return "AltitudeConfidence_unavailable";          // 表示高度置信度信息不可用
   }
 }
 // 获取参考容器信息并以字典形式返回

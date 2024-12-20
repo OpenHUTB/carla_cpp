@@ -6,17 +6,17 @@
 
 #pragma once
 
-#include "carla/Exception.h"
-#include "carla/MsgPack.h"
+#include "carla/Exception.h"//包含 Carla 项目中定义的异常类的头文件
+#include "carla/MsgPack.h"//包含 Carla 项目中用于消息打包（可能是序列化）的头文件
 
-#include <boost/optional.hpp>
+#include <boost/optional.hpp>//包含 Boost.Optional 库的头文件
 
-#ifdef _MSC_VER
-#pragma warning(push)
+#ifdef _MSC_VER//这是一个条件编译指令，用于检查是否定义了宏 _MSC_VER
+#pragma warning(push)//将当前的警告设置保存到一个堆栈中
 #pragma warning(disable:4583)
 #pragma warning(disable:4582)
-#include <boost/variant2/variant.hpp>
-#pragma warning(pop)
+#include <boost/variant2/variant.hpp>//包含 Boost.Variant2 库的头文件
+#pragma warning(pop)//恢复之前保存的警告设置
 #else
 #include <boost/variant2/variant.hpp>
 #endif
