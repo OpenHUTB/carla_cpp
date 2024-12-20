@@ -414,6 +414,7 @@ class GlobalRoutePlanner:
         This function finds the road segment that a given location
         is part of, returning the edge it belongs to
         """
+        #
         waypoint = self._wmap.get_waypoint(location)
         edge = None  # type: None | tuple[int, int]
         try:
@@ -421,14 +422,17 @@ class GlobalRoutePlanner:
         except KeyError:
             pass
         return edge
-
+    #定义一个函数，用于路径规划算法（如 A * 算法）中的启发式函数，用于估计两个节点之间的距离
     def _distance_heuristic(self, n1, n2):
         """
         Distance heuristic calculator for path searching
         in self._graph
         """
+        #获取self._graph中节点n1的坐标，并转换为numpy数组
         l1 = np.array(self._graph.nodes[n1]['vertex'])
+        #获取self._graph中节点n2的坐标，并转换为numpy数组
         l2 = np.array(self._graph.nodes[n2]['vertex'])
+        #计算l1和l2之间的欧几里得距离并返回
         return np.linalg.norm(l1 - l2)
 
     def _path_search(self, origin, destination):
