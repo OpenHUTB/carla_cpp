@@ -35,12 +35,14 @@ class TestSpawnpoints(SyncSmokeTest):
 
                 # Check why the world settings aren't applied after a reload
                 self.settings = self.world.get_settings()
+# 创建新的世界设置，这里设置了渲染模式、同步模式以及固定时间步长等参数
                 settings = carla.WorldSettings(
                     no_rendering_mode=False,
                     synchronous_mode=True,
                     fixed_delta_seconds=0.05)
+# 将新的世界设置应用到当前世界
                 self.world.apply_settings(settings)
-
+# 遍历所有车辆蓝图，准备在每个生成点上生成车辆
                 # spawn all kind of vehicle
                 for vehicle in blueprints:
                     batch = [(vehicle, t) for t in spawn_points]
