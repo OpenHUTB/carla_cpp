@@ -19,18 +19,27 @@
 # -- Variables -------------------------------------------------------------------------------------
 # ==================================================================================================
 
-if [[ -z $1 ]];
-then
+# 检查脚本的第一个参数（即CARLA的版本号）是否为空
+if [[ -z $1 ]]; then
+  # 如果第一个参数为空，则打印当前日期和时间，并提示缺少必要的参数：CARLA的版本号
   echo "$(date) - Missing mandatory arguments: CARLA version. "
+  # 打印当前日期和时间，以及脚本的正确使用方法
   echo "$(date) - Usage: ./CreateDebian.sh [version]. "
+  # 退出脚本，并返回状态码1，表示发生错误
   exit 1
 fi
 
+# 将第一个参数（即传入的CARLA版本号）赋值给变量CARLA_VERSION
 CARLA_VERSION=$1
-CARLA_DIR=carla-simulator-${CARLA_VERSION}
-CARLA_RELEASE_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/CARLA_${CARLA_VERSION}.tar.gz
-ADDITIONAL_MAPS_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/AdditionalMaps_${CARLA_VERSION}.tar.gz
 
+# 根据CARLA版本号构建CARLA模拟器的目录名
+CARLA_DIR=carla-simulator-${CARLA_VERSION}
+
+# 设置CARLA的发布版本下载URL，其中包含版本号
+CARLA_RELEASE_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/CARLA_${CARLA_VERSION}.tar.gz
+
+# 设置附加地图的下载URL，其中也包含版本号
+ADDITIONAL_MAPS_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/AdditionalMaps_${CARLA_VERSION}.tar.gz
 # 添加维护者名称
 DEBFULLNAME=Carla\ Simulator\ Team
 export DEBFULLNAME
