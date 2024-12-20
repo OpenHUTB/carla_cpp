@@ -1,20 +1,22 @@
 REM @echo off
 setlocal
-
+// 关闭命令回显，即执行脚本中的命令时，不会在命令行窗口显示具体的命令内容，只显示命令的输出结果。
+// 设置本地化环境，确保脚本中的变量等设置在当前脚本执行环境内有效，不会影响外部环境。
 rem BAT script that downloads and installs a ready to use
 rem x64 xerces-c build for CARLA (carla.org).
 rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
-
+// 这部分是脚本功能的描述注释，说明该批处理脚本用于下载并安装一个可直接使用的、适用于CARLA（carla.org网站相关项目）的64位xerces-c构建版本。
+// 并且提示需要在启用了x64 Visual C++工具集的命令提示符（cmd）窗口中运行此脚本。
 set LOCAL_PATH=%~dp0
 set FILE_N=    -[%~n0]:
 
 rem Print batch params (debug purpose)
 echo %FILE_N% [Batch params]: %*
-
+// 输出当前批处理脚本接收到的所有命令行参数（%*表示获取所有的命令行参数），主要用于调试目的，方便查看传入的参数情况。
 rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
-
+// 以下是解析命令行参数的代码段，用于从传入的命令行参数中获取特定的参数值并赋值给相应的变量。
 :arg-parse
 if not "%1"=="" (
     if "%1"=="--build-dir" (
