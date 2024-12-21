@@ -117,37 +117,61 @@ namespace detail {
             _sessions.end());
 
         // set single session if only one
-        if (_sessions.size() == 1)
-          _session.store(_sessions[0]);
+        if (_sessions.size() == 1)// 检查当前会话集合的大小
+          _session.store(_sessions[0]);  // 如果会话集合中只有一个会话，
+  // 则将该会话存储到某个全局或成员变量 _session 中
         else
           _session.store(nullptr);
-      }
+      }  
+    // 如果会话集合中有多个会话或没有会话，
+    // 则将 nullptr 存储到 _session 中，
+    // 表示当前没有活动的会话或不确定哪个会话是活动的
       log_debug("Disconnecting multistream sessions:", _sessions.size());
     }
-// 清空所有的会话
+     // 使用 log_debug 函数记录一条调试信息，
+     // 显示正在断开连接的多流会话的数量
+     // 清空所有的会话
     void ClearSessions() final {
-      std::lock_guard<std::mutex> lock(_mutex);
+     // ClearSessions 是一个成员函数，用于清除所有会话并重置相关状态
+      std::lock_guard<std::mutex> lock(_mutex);  
+      // 使用 std::lock_guard 自动管理互斥锁 _mutex 的锁定和解锁
+      // 这确保了在多线程环境中对 _sessions 的访问是线程安全的
       for (auto &s : _sessions) {
-        if (s != nullptr) {
+      // 遍历 _sessions 容器中的每个会话对象
+        if (s != nullptr) {  
           s->Close();
+      // 如果会话对象不是 nullptr，则调用其 Close 方法来关闭会话
         }
       }
-      _sessions.clear();
-      _force_active = false;
+     _sessions.clear();
+     // 清空 _sessions 容器，移除所有会话对象
+      _force_active = false;   // 将 _force_active 标志设置为 false，表示没有强制活动的会话
       _session.store(nullptr);
-      log_debug("Disconnecting all multistream sessions");
+    // 将 _session 变量重置为 nullptr，表示当前没有活动的会话
+      log_debug("Disconnecting all multistream sessions"); 
+    // 使用 log_debug 函数记录一条调试信息，表示正在断开所有多流会话
     }
 
   private:
 
     std::mutex _mutex;
-
+    // 私有成员变量
+    // _mutex 是一个互斥锁，用于保护对 _sessions 容器的并发访问
     // if there is only one session, then we use atomic
     AtomicSharedPtr<Session> _session;
     // if there are more than one session, we use vector of sessions with mutex
-    std::vector<std::shared_ptr<Session>> _sessions;
-    bool _force_active {false};
-    bool _enabled_for_ros {false};
+    std::vector<std::shared_ptr<Session>> _sessions; 
+    // _sessions 是一个向量（动态数组），存储了多个指向 Session 对象的智能指针
+    // 这些智能指针是 std::shared_ptr 类型，它们自动管理 Session 对象的生命周期
+    // 当没有任何 std::shared_ptr 指向一个 Session 对象时，该对象会被自动删除
+    bool _force_active {false};   // _force_active 是一个布尔变量，用于指示是否存在一个或多个会话被强制标记为活动状态
+    // 如果为 true，则可能表示有会话需要被特别处理，即使按照正常逻辑它们可能不应该处于活动状态
+    // 初始化为 false，表示默认没有会话被强制标记为活动状态
+    bool _enabled_for_ros {false};    // _enabled_for_ros 是一个布尔变量，用于指示该类或其中的会话是否启用了对 ROS（Robot Operating System）的支持
+    // 如果为 true，则可能表示该类或其中的会话能够与 ROS 系统进行交互，例如发送或接收消息
+    // 类的其他成员变量、方法和构造函数应该在这里定义
+    // 注意：这些变量是公开的（public），但在实际设计中，您可能希望将它们设为私有（private）
+    // 并通过公共的 getter 和 setter 方法来访问它们，以封装类的内部状态
   };
 
 } // namespace detail
