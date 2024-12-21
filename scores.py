@@ -94,33 +94,33 @@ while True:
 
     #将响应数据解析为JSON格式
     issues = response.json()
-    if not issues:
+    if not issues:# 如果条件为真，即issues为空或者为假，则执行break语句
         break
 
-    for issue in issues:
-        if 'pull_request' in issue:
+    for issue in issues:# 遍历issues列表
+        if 'pull_request' in issue:# 如果issue是pull_request类型，则跳过
             continue
 
-        user = issue['user']['login']
-        issue_counts[user] = issue_counts.get(user, 0) + 1
+        user = issue['user']['login']# 获取issue的用户登录名
+        issue_counts[user] = issue_counts.get(user, 0) + 1# 统计该用户在issue中的计数
 
-        comments_url = issue['comments_url']
-        comments_response = requests.get(comments_url, headers=headers)
+        comments_url = issue['comments_url']# 获取issue的评论URL
+        comments_response = requests.get(comments_url, headers=headers)# 发送GET请求获取评论数据
         comments = comments_response.json()
 
-        for comment in comments:
-            commenter = comment['user']['login']
+        for comment in comments:#遍历评论
+            commenter = comment['user']['login']# 获取评论者的用户登录名
             comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
 
-    page += 1
+    page += 1# 增加分页计数
 
-sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
-sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reverse=True))
+sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))# 将issue计数按次数降序排序
+sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reverse=True))# 将评论计数按次数降序排序
 #将统计结果按照次数从高到低排序并打印出来
 print("提问次数：")
-for user, count in sorted_issue_counts.items():
-    print(f"{user}: {count}")
+for user, count in sorted_issue_counts.items():#遍历sorted_issue_counts字典，该字典包含了用户和他们提出issue的数量
+    print(f"{user}: {count}")# 打印一个换行符，以便在输出中分隔issue和评论的统计
 
 print("\n回答次数：")
-for user, count in sorted_comment_counts.items():
-    print(f"{user}: {count}")
+for user, count in sorted_comment_counts.items():# 遍历sorted_comment_counts字典，该字典包含了用户和他们发表评论的数量
+    print(f"{user}: {count}")# 打印每个用户及其对应的评论数量
