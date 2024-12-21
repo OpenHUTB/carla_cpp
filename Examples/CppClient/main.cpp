@@ -136,10 +136,15 @@ int main(int argc, const char *argv[]) {
 
         // 调整观察者位置以便在模拟器窗口中看到车辆，获取模拟世界中的观察者（相当于模拟窗口的视角），通过对其位置和旋转角度进行一系列计算和调整，改变视角位置和方向，使得可以在模拟窗口中看到生成并正在运动的车辆
         auto spectator = world.GetSpectator();
+        #调整观察者的位置，使其向前移动32个单位
         transform.location += 32.0f * transform.GetForwardVector();
+        #将观察者的z坐标增加2个单位
         transform.location.z += 2.0f;
+        #将观察者的偏航角增加180度
         transform.rotation.yaw += 180.0f;
+        #将观察者的俯仰角设置为-15度
         transform.rotation.pitch = -15.0f;
+        #设置观察者的变换信息
         spectator->SetTransform(transform);
 
         /*
