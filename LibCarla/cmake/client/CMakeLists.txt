@@ -1,6 +1,6 @@
 #设置CMake最低版本要求
 cmake_minimum_required(VERSION 3.5.1)
-#定义项目名称
+
 project(libcarla-client)
 
 # 启用/安装 RSS VARIANT
