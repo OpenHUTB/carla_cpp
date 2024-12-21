@@ -625,15 +625,25 @@ class VehicleControl(object):
 
     @staticmethod
     def signal_handler(signum, _):
+    # 这是一个静态方法，用于处理接收到的信号。静态方法属于类本身，不需要实例化类就可以调用，通常用于处理与类相关但不依赖于具体实例状态的操作。
+    # 接收信号编号 `signum` 参数以及一个未使用的占位参数（按照Python惯例，用下划线 `_` 表示不使用的参数）
         print('\nReceived signal {}. Trigger stopping...'.format(signum))
+        # 当接收到信号时，打印出接收到的信号编号以及提示信息，表示接收到信号并即将触发停止相关操作。
         VehicleControl.signal_received = True
+        # 将类属性 `signal_received` 设置为 `True`，这个类属性用于在其他地方（比如循环控制等逻辑中）判断是否接收到了信号，从而决定是否停止某些操作或者整个程序的运行等情况。
 
     def parse_events(self, world, clock, sync_mode):
+    # `parse_events` 方法用于解析处理各种输入事件（如键盘按键事件、鼠标点击事件等），并根据不同的事件类型执行相应的操作，以控制车辆的状态以及模拟世界中的相关显示等功能。
+    # 接收 `world`（模拟世界对象，通过它可以访问和操作世界中的各种元素）、`clock`（可能是用于记录时间相关信息的对象，用于控制更新节奏或者获取当前时间等信息）和 `sync_mode`（可能表示同步模式相关的参数，用于确定模拟世界是否以同步方式运行等情况）这几个参数
         if VehicleControl.signal_received:
+        # 首先判断类属性 `VehicleControl.signal_received` 是否为 `True`，即是否接收到了特定信号，如果是，则执行以下操作来停止相关循环或操作流程。
             print('\nAccepted signal. Stopping loop...')
             return True
+             # 打印提示信息表示接受了信号并即将停止循环，然后返回 `True`，这个返回值可能在调用该方法的外层循环等逻辑中用于判断是否跳出循环，终止后续操作。
         if isinstance(self._control, carla.VehicleControl):
+        # 判断 `self._control` 是否是 `carla.VehicleControl` 类型的对象（在初始化时创建了这个对象用于存储车辆的控制指令），如果是，则执行以下操作来获取当前的车辆灯光状态备份。
             current_lights = self._lights
+             # 将当前车辆的灯光状态（记录在 `self._lights` 属性中）赋值给 `current_lights` 变量，用于后续在处理事件过程中，根据车辆控制指令的变化来相应地更新车辆灯光状态时做对比和判断等操作。
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return True
