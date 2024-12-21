@@ -12,9 +12,9 @@ conditions, for both sensors and traffic.
 
 Please, make sure you install the following dependencies:
 
-    * python -m pip install -U py-cpuinfo
-    * python -m pip install psutil
-    * python -m pip install python-tr
+    * python -m pip install #-U py-cpuinfo这个命令用于安装或更新  py-cpuinfo  库。  -U  标志表示升级已经安装的包到最新版本。  py-cpuinfo  是一个Python模块，用于获取CPU的信息
+    * python -m pip install psutil#这个命令用于安装  psutil  库。  psutil  （process and system utilities）是一个跨平台库，用于访问系统详细信息和进程管理。
+    * python -m pip install python-trpython -m pip install python-tr  # 这个命令用于安装  python-tr  库，但这个库名可能是一个错误。通常，你可能想要安装的是  python-trace  或者  trace  库，这取决于你想要实现的功能。如果是想要安装  trace  库，用于跟踪Python程序的执行，正确的命令可能是  pip install trace  。
     * python -m pip install gpuinfo
 
 """
