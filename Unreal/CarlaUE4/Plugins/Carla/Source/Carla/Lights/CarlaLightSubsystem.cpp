@@ -4,9 +4,9 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "CarlaLightSubsystem.h"
-#include "Carla/Weather/Weather.h"
-#include "Kismet/GameplayStatics.h"
+#include "CarlaLightSubsystem.h"//这里的“CarlaLightSubsystem.h”是一个头文件。这个头文件可能包含了与“CarlaLightSubsystem”相关的类定义、函数声明等内容。
+#include "Carla/Weather/Weather.h"//同样是“#include”预处理指令。“Carla/Weather/Weather.h”是一个头文件，按照这个路径结构，它可能是属于“Carla”项目中与天气（Weather）相关的头文件。这个头文件可能包含了与天气相关的类、结构体或者函数的定义和声明，比如天气状态的定义、获取天气信息的函数声明等内容。
+#include "Kismet/GameplayStatics.h"//“Kismet/GameplayStatics.h”头文件可能包含了与游戏玩法相关的静态函数等内容。
 
 //using cr = carla::rpc;
 
