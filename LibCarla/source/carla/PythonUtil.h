@@ -128,9 +128,6 @@ namespace carla {
 
     /// 可以传递给智能指针的删除器，以便在销毁对象之前释放GIL。
 
-class PythonUtil {
-// 假设PythonUtil是一个提供Python相关实用功能的类
-// 假设ThisThreadHasTheGIL是一个静态函数，用于检查当前线程是否持有GIL
 public:
     static bool ThisThreadHasTheGIL(); 
 // 检查当前线程是否持有GIL的静态函数
