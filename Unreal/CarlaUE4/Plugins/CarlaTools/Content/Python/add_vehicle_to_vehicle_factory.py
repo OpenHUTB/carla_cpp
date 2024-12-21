@@ -21,7 +21,7 @@ argparser.add_argument(
     help='vehicle name')
 args = argparser.parse_args()
 
-# load vehicle and factory
+# 装载车辆和工厂
 vehicle_factory_path = '/Game/Carla/Blueprints/Vehicles/VehicleFactory.VehicleFactory_C'
 vehicle_factory_class = unreal.load_object(None, vehicle_factory_path)
 vehicle_factory_default_object = unreal.get_default_object(vehicle_factory_class)
@@ -29,7 +29,7 @@ vehicle_blueprint_path = args.vehicle_blueprint_path + '_C'
 vehicle_blueprint = unreal.load_object(None, vehicle_blueprint_path)
 vehicle_list = vehicle_factory_default_object.get_editor_property("Vehicles")
 
-# generate the new field
+# 生成新字段
 new_vehicle_parameters = unreal.VehicleParameters()
 new_vehicle_parameters.make = 'usd'
 new_vehicle_parameters.model = args.name
@@ -37,5 +37,5 @@ new_vehicle_parameters.class_ = vehicle_blueprint
 new_vehicle_parameters.generation = 2
 new_vehicle_parameters.base_type = 'car'
 
-# add to the vehicle list
+# 添加到车辆列表
 vehicle_list.append(new_vehicle_parameters)
