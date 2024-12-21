@@ -204,17 +204,17 @@
       doc: >
         The terminal will show the information registered for actors considered blocked. An actor is considered blocked when it does not move a minimum distance in a period of time, being these `min_distance` and `min_time`.
      # --------------------------------------
-    - def_name: show_recorder_collisions
+    - def_name: show_recorder_collisions# 定义函数名称为 show_recorder_collisions，用于显示记录器记录的碰撞信息
       params:
-      - param_name: filename
+      - param_name: filename# 参数 filename，类型为字符串，用于指定要显示碰撞信息的记录文件的名称或绝对路径
         type: str
         doc: >
           Name or absolute path of the file recorded, depending on your previous choice.
-      - param_name: category1
+      - param_name: category1# 参数 category1，类型为单个字符，用于指定参与碰撞的第一种角色类型
         type: single char
         doc: >
           Character variable specifying a first type of actor involved in the collision.
-      - param_name: category2
+      - param_name: category2# 参数 category2，类型为单个字符，用于指定参与碰撞的第二种角色类型
         type: single char
         doc: >
           Character variable specifying the second type of actor involved in the collision.

@@ -101,14 +101,14 @@ def draw_junction(debug, junction, l_time=10):
 
 
 def main():
-    argparser = argparse.ArgumentParser()
+    argparser = argparse.ArgumentParser()# 创建 ArgumentParser 对象，用于处理命令行参数
     argparser.add_argument(
-        '--host',
+        '--host',#添加 --host 参数，用于指定主机IP地址
         metavar='H',
         default='127.0.0.1',
         help='IP of the host server (default: 127.0.0.1)')
     argparser.add_argument(
-        '-p', '--port',
+        '-p', '--port',# 参数的短名称和长名称
         metavar='P',
         default=2000,
         type=int,
@@ -116,12 +116,12 @@ def main():
     argparser.add_argument(
         '-i', '--info',
         action='store_true',
-        help='Show text information')
+        help='Show text information')  
     argparser.add_argument(
         '-x',
         default=0.0,
         type=float,
-        help='X start position (default: 0.0)')
+        help='X start position (default: 0.0)')# 添加 -x 参数，用于指定X轴起始位置 ，如果不指定，则默认为 0.0
     argparser.add_argument(
         '-y',
         default=0.0,

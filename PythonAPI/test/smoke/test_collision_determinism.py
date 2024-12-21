@@ -83,16 +83,19 @@ class Scenario(object):
             actor[1].destroy()               #用于销毁一个游戏中的某个资源
         self.active = False                  #将被销毁的资源标记为非活动状态
 
-    def reload_world(self, settings = None, spectator_tr = None):
-        if settings is not None:
-            self.world.apply_settings(settings)
-        self.wait(5)
+   def reload_world(self, settings=None, spectator_tr=None):
+    # 检查是否提供了设置（settings）。如果提供了，就应用这些设置到世界（world）中。
+    if settings is not None:
+        self.world.apply_settings(settings)  # 应用新的世界设置
 
-        self.client.reload_world(False)
-        # workaround: give time to UE4 to clean memory after loading (old assets)
-        time.sleep(5)
+    self.wait(5)  # 调用实例方法wait，暂停5秒钟
 
-        self.wait(5)
+    self.client.reload_world(False)  # 调用客户端的重新加载世界方法，参数False可能表示不重载资源
+
+    # 注释说明接下来的代码行是为了解决一个临时性问题：给UE4（虚幻引擎4）一些时间来清理加载后（旧资源）的内存。
+    time.sleep(5)  # 使程序暂停5秒，以便内存清理完成
+
+    self.wait(5)  # 再次调用实例方法wait，暂停5秒钟
 
     def reset_spectator(self, spectator_tr):
         spectator = self.world.get_spectator()
