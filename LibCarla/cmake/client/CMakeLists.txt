@@ -50,7 +50,11 @@ if (BUILD_RSS_VARIANT)
   list(APPEND ADRSS_LIBS ${odr_lib})
 
   foreach(ad_lib ad_physics ad_rss ad_map_access ad_map_opendrive_reader ad_rss_map_integration)
-    set(${ad_lib}_file ${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}.a)
+  set(${ad_lib}_file ${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}.a)
+  # 使用install命令将上一步中设置的静态库文件安装到目标位置，
+  # 这里的目标位置是安装目录下的"lib"文件夹。
+  # ${${ad_lib}_file}是CMake的变量间接引用语法，它首先解析${ad_lib}_file得到变量名（如ad_physics_file），
+  # 然后再解析该变量名对应的值（如/path/to/adrss_install/ad_physics/lib/libad_physics.a）。
     install(FILES ${${ad_lib}_file} DESTINATION lib)
     list(APPEND ADRSS_LIBS ${${ad_lib}_file})
 

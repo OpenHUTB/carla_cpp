@@ -100,35 +100,55 @@ class BehaviorAgent(BasicAgent):
             :param vehicle_list: list of all the nearby vehicles
         """
 
-        left_turn = waypoint.left_lane_marking.lane_change
-        right_turn = waypoint.right_lane_marking.lane_change
-
-        left_wpt = waypoint.get_left_lane()
-        right_wpt = waypoint.get_right_lane()
-
-        behind_vehicle_state, behind_vehicle, _ = self._vehicle_obstacle_detected(vehicle_list, max(
-            self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, low_angle_th=160)
-        if behind_vehicle_state and self._speed < get_speed(behind_vehicle):
-            if (right_turn == carla.LaneChange.Right or right_turn ==
-                    carla.LaneChange.Both) and waypoint.lane_id * right_wpt.lane_id > 0 and right_wpt.lane_type == carla.LaneType.Driving:
-                new_vehicle_state, _, _ = self._vehicle_obstacle_detected(vehicle_list, max(
-                    self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, lane_offset=1)
-                if not new_vehicle_state:
-                    print("Tailgating, moving to the right!")
-                    end_waypoint = self._local_planner.target_waypoint
-                    self._behavior.tailgate_counter = 200
-                    self.set_destination(end_waypoint.transform.location,
-                                         right_wpt.transform.location)
-            elif left_turn == carla.LaneChange.Left and waypoint.lane_id * left_wpt.lane_id > 0 and left_wpt.lane_type == carla.LaneType.Driving:
-                new_vehicle_state, _, _ = self._vehicle_obstacle_detected(vehicle_list, max(
-                    self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, lane_offset=-1)
-                if not new_vehicle_state:
-                    print("Tailgating, moving to the left!")
-                    end_waypoint = self._local_planner.target_waypoint
-                    self._behavior.tailgate_counter = 200
-                    self.set_destination(end_waypoint.transform.location,
-                                         left_wpt.transform.location)
-
+        # 获取当前路径点（waypoint）的左车道标记中的换道信息
+    left_turn = waypoint.left_lane_marking.lane_change
+    # 获取当前路径点的右车道标记中的换道信息
+    right_turn = waypoint.right_lane_marking.lane_change
+    # 获取当前路径点的左车道信息
+    left_wpt = waypoint.get_left_lane()
+    # 获取当前路径点的右车道信息
+    right_wpt = waypoint.get_right_lane()
+    # 检测当前车辆后方是否有其他车辆接近，并获取相关信息
+    # vehicle_list 是车辆列表，min_proximity_threshold 是最小接近阈值，self._speed_limit 是速度限制
+    # up_angle_th 和 low_angle_th 是检测角度的阈值
+    behind_vehicle_state, behind_vehicle, _ = self._vehicle_obstacle_detected(vehicle_list, max(
+        self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, low_angle_th=160)
+ 
+    # 如果检测到后方有车辆且当前车辆速度低于后方车辆速度，则执行换道逻辑
+    if behind_vehicle_state and self._speed < get_speed(behind_vehicle):
+    # 如果可以向右换道（右换道或双向换道）且右车道是有效的驾驶车道
+    if (right_turn == carla.LaneChange.Right or right_turn ==
+            carla.LaneChange.Both) and waypoint.lane_id * right_wpt.lane_id > 0 and right_wpt.lane_type == carla.LaneType.Driving:
+        # 在右车道上检测是否有新的障碍物
+        # lane_offset=1 表示在右侧车道进行检测
+        new_vehicle_state, _, _ = self._vehicle_obstacle_detected(vehicle_list, max(
+            self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, lane_offset=1)
+        # 如果没有新的障碍物，则执行向右换道的动作
+        if not new_vehicle_state:
+            print("尾随车辆，向右换道！")
+            # 获取目标路径点和右车道路径点的位置
+            end_waypoint = self._local_planner.target_waypoint
+            # 设置一个尾随计数器（可能用于后续的逻辑处理）
+            self._behavior.tailgate_counter = 200
+            # 设置新的目的地为右车道路径点的位置
+            self.set_destination(end_waypoint.transform.location,
+                                 right_wpt.transform.location)
+    # 如果可以向左换道且左车道是有效的驾驶车道
+    elif left_turn == carla.LaneChange.Left and waypoint.lane_id * left_wpt.lane_id > 0 and left_wpt.lane_type == carla.LaneType.Driving:
+        # 在左车道上检测是否有新的障碍物
+        # lane_offset=-1 表示在左侧车道进行检测
+        new_vehicle_state, _, _ = self._vehicle_obstacle_detected(vehicle_list, max(
+            self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, lane_offset=-1)
+        # 如果没有新的障碍物，则执行向左换道的动作
+        if not new_vehicle_state:
+            print("尾随车辆，向左换道！")
+            # 获取目标路径点和左车道路径点的位置
+            end_waypoint = self._local_planner.target_waypoint
+            # 设置尾随计数器
+            self._behavior.tailgate_counter = 200
+            # 设置新的目的地为左车道路径点的位置
+            self.set_destination(end_waypoint.transform.location,
+                                 left_wpt.transform.location)
     def collision_and_car_avoid_manager(self, waypoint):
         """
         这个模块负责在发生碰撞的情况下发出警告，并管理可能的尾随机会。
