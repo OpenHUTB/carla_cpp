@@ -16,9 +16,9 @@ class TestStreamming(SmokeTest):
     lat = 0.0
     lon = 0.0
 
-    def on_gnss_set(self, event):
-        self.lat = event.latitude
-        self.lon = event.longitude
+    def on_gnss_set(self, event):           #函数用于处理gnss事件
+        self.lat = event.latitude           #将从event中获取的latitude（纬度）赋值给self.lat
+        self.lon = event.longitude          #将从event中获取的longitude（经度）赋值给self.lon
 
     def on_gnss_check(self, event):
         self.assertAlmostEqual(event.latitude, self.lat, places=4)

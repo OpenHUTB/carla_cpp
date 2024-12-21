@@ -98,15 +98,15 @@ class TestDeterminism(SmokeTest):
         # --------------
         # Spawn vehicles
         # --------------
-        blueprint_transform_list = []
-        hero = True
-        for n, transform in enumerate(spawn_points):
-            if n >= number_of_vehicles:
+        blueprint_transform_list = []                       #创建一个列表
+        hero = True                                         #设置一个布尔变量，用于区分不同的蓝图
+        for n, transform in enumerate(spawn_points):        #用for循环和enumerate函数遍历spawm_points
+            if n >= number_of_vehicles:                     #如果n大于等于车辆的数量，则停止循环
                 break
-            blueprint = random.choice(blueprints)
-            if blueprint.has_attribute('color'):
-                color = random.choice(blueprint.get_attribute('color').recommended_values)
-                blueprint.set_attribute('color', color)
+            blueprint = random.choice(blueprints)           #从blueprints中随机选择一个蓝图
+            if blueprint.has_attribute('color'):            #检查蓝图是否有color属性
+                color = random.choice(blueprint.get_attribute('color').recommended_values)  
+                blueprint.set_attribute('color', color)     #如果有color属性，就从color属性中随机选择一个，并设置给blueprint（蓝图）
             if blueprint.has_attribute('driver_id'):
                 driver_id = random.choice(blueprint.get_attribute('driver_id').recommended_values)
                 blueprint.set_attribute('driver_id', driver_id)

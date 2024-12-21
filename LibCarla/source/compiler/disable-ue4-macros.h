@@ -7,13 +7,17 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #ifndef LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
+// 如果未定义 LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER 宏
 #define LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
-
+// 则定义此宏
+// 则定义此宏，即定义了一个头文件包含的保护宏，确保头文件内容只被编译一次
 // Unreal/CarlaUE4/Plugins/Carla/Source/Carla/Carla.h
 #include "Carla.h"
-
+// 包含 Carla.h 头文件
+// 包含 Carla.h 头文件，引入相关的声明等内容用于后续代码使用
 #ifndef BOOST_ERROR_CODE_HEADER_ONLY
 #  define BOOST_ERROR_CODE_HEADER_ONLY
+// 如果未定义 BOOST_ERROR_CODE_HEADER_ONLY 宏，则定义它
 #endif // BOOST_ERROR_CODE_HEADER_ONLY
 
 #ifndef BOOST_NO_EXCEPTIONS
@@ -28,6 +32,7 @@
 
 #endif // LIBCARLA_INCLUDED_DISABLE_UE4_MACROS_HEADER
 
+//定义LIBCARLA_INCLUDED_FROM_UE4宏
 #define LIBCARLA_INCLUDED_FROM_UE4
 
 // NOTE(Andrei): 禁用未定义​​宏生成的警告
@@ -53,20 +58,31 @@
 
 #if defined(__clang__)
 #  pragma clang diagnostic push
+// 将当前Clang编译器的诊断设置压入一个栈中保存起来，以便后续恢复
+// 将当前的警告状态推入警告状态堆栈中，保存了当前的警告设置，以便可以在稍后的代码中进行还原。
+// 把当前的警告状态保存起来，方便后续如果需要恢复到当前状态时使用
 #  pragma clang diagnostic ignored "-Wmissing-braces"
+// 在使用Clang编译器时，忽略“缺少花括号”相关的警告
 #  pragma clang diagnostic ignored "-Wunusable-partial-specialization"
+// 忽略“不可用的偏特化”相关的警告
 #  pragma clang diagnostic ignored "-Wundef"
+// 忽略“使用未定义的标识符”相关的警告
 #  pragma clang diagnostic ignored "-Wall"
+// 忽略“启用所有警告”相关的警告（Wall通常表示开启所有常见警告，这里选择忽略它开启的一些警告）
 #  pragma clang diagnostic ignored "-Wshadow"
+// 如果是 clang 编译器，执行一系列的诊断操作，忽略一些特定的警告
 #endif
 
 // #pragma push_macro 将指定的宏压入栈中，相当于暂时存储，以备以后使用；
 #pragma push_macro("GET_AI_CONFIG_VAR")
 #undef GET_AI_CONFIG_VAR
-
+// 压入 GET_AI_CONFIG_VAR 宏并取消其定义
 #pragma push_macro("BT_VLOG")
+// 将名为BT_VLOG的宏压入栈中暂存
 #undef BT_VLOG
+// 压入 BT_VLOG 宏并取消其定义
 
+// 以下类似，对一系列宏进行压入栈和取消定义的操作
 #pragma push_macro("BT_SEARCHLOG")
 #undef BT_SEARCHLOG
 

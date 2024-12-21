@@ -41,56 +41,69 @@ except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
 
 class CustomTimer:
+    # 自定义计时器类的构造函数
     def __init__(self):
         try:
+            # 尝试使用高精度的性能计数器
             self.timer = time.perf_counter
         except AttributeError:
+            # 如果不支持perf_counter，则使用标准时间函数
             self.timer = time.time
 
+    # 获取当前时间的方法
     def time(self):
         return self.timer()
 
 class DisplayManager:
+    # 显示管理器类的构造函数
     def __init__(self, grid_size, window_size):
-        pygame.init()
-        pygame.font.init()
+        pygame.init()# 初始化pygame
+        pygame.font.init() # 初始化pygame字体模块
         self.display = pygame.display.set_mode(window_size, pygame.HWSURFACE | pygame.DOUBLEBUF)
 
-        self.grid_size = grid_size
-        self.window_size = window_size
-        self.sensor_list = []
+        self.grid_size = grid_size # 网格大小
+        self.window_size = window_size # 窗口大小
+        self.sensor_list = [] # 传感器列表
 
+    # 获取窗口大小的方法
     def get_window_size(self):
         return [int(self.window_size[0]), int(self.window_size[1])]
 
+    # 获取显示大小的方法
     def get_display_size(self):
         return [int(self.window_size[0]/self.grid_size[1]), int(self.window_size[1]/self.grid_size[0])]
 
+    # 获取显示偏移量的方法
     def get_display_offset(self, gridPos):
         dis_size = self.get_display_size()
         return [int(gridPos[1] * dis_size[0]), int(gridPos[0] * dis_size[1])]
 
+    # 添加传感器的方法
     def add_sensor(self, sensor):
         self.sensor_list.append(sensor)
 
+    # 获取传感器列表的方法
     def get_sensor_list(self):
         return self.sensor_list
 
+    # 渲染显示的方法
     def render(self):
-        if not self.render_enabled():
+        if not self.render_enabled(): # 如果渲染不被允许，则直接返回
             return
 
-        for s in self.sensor_list:
+        for s in self.sensor_list:  # 遍历传感器列表并渲染
             s.render()
 
-        pygame.display.flip()
+        pygame.display.flip() # 交换前后缓冲区，更新显示
 
+    # 销毁显示资源的方法
     def destroy(self):
-        for s in self.sensor_list:
+        for s in self.sensor_list: # 遍历传感器列表并销毁
             s.destroy()
 
+    # 检查渲染是否被允许的方法
     def render_enabled(self):
-        return self.display != None
+        return self.display != None # 如果display对象不为空，则渲染被允许
 
 class SensorManager:
     def __init__(self, world, display_man, sensor_type, transform, attached, sensor_options, display_pos):
@@ -139,15 +152,15 @@ class SensorManager:
             return lidar
         
         elif sensor_type == 'SemanticLiDAR':
-            lidar_bp = self.world.get_blueprint_library().find('sensor.lidar.ray_cast_semantic')
-            lidar_bp.set_attribute('range', '100')
+            lidar_bp = self.world.get_blueprint_library().find('sensor.lidar.ray_cast_semantic')# 从蓝图库中获取语义激光雷达的蓝图
+            lidar_bp.set_attribute('range', '100')# 设置激光雷达的属性，例如范围设置为100米
 
-            for key in sensor_options:
+            for key in sensor_options:# 遍历sensor_options字典，为激光雷达设置其他属性
                 lidar_bp.set_attribute(key, sensor_options[key])
 
-            lidar = self.world.spawn_actor(lidar_bp, transform, attach_to=attached)
+            lidar = self.world.spawn_actor(lidar_bp, transform, attach_to=attached)#在仿真世界中生成激光雷达对象，并设置其位置和附着对象
 
-            lidar.listen(self.save_semanticlidar_image)
+            lidar.listen(self.save_semanticlidar_image)# 让激光雷达监听并保存语义激光雷达图像
 
             return lidar
         

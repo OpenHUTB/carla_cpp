@@ -4,8 +4,9 @@
 # --long python-version: 长选项 python-version  
 # -n 'parse-options': 设置脚本名称，以便在错误信息中显示
 OPTS=`getopt -o h --long python-version: -n 'parse-options' -- "$@"`
+# 使用 getopt 命令来解析命令行参数。这里定义了短选项为'h'，长选项为'python-version'，并设置了脚本名称为'parse-options'。$@表示所有的命令行参数，getopt 的输出被赋值给变量 OPTS。
 # 重新设定位置参数 
-eval set -- "$OPTS"
+eval set -- "$OPTS"#使用eval命令来执行set命令
 # 默认的 Python 版本列表  
 PY_VERSION_LIST=3
 # 解析命令行参数
@@ -36,11 +37,13 @@ ADRSS_VERSION=4.4.4
 ADRSS_BASENAME=ad-rss-${ADRSS_VERSION}
 ADRSS_COLCON_WORKSPACE="${CARLA_BUILD_FOLDER}/${ADRSS_BASENAME}"
 ADRSS_SRC_DIR="${ADRSS_COLCON_WORKSPACE}/src"
+# 设置了 ad-rss 的版本号，并基于此定义了一些目录名称，这些目录可能与 ad-rss 相关的项目构建或源代码存储有关。
+
 # 检查源代码目录是否存在
 if [[ ! -d "${ADRSS_SRC_DIR}" ]]; then
   # 如果目录不存在，首先设置工作区
   log "Retrieving ${ADRSS_BASENAME}."
-
+# 使用条件判断检查 ad-rss 的源代码目录是否存在，如果不存在，可能会执行一些获取或创建该目录的操作，这里只是输出一条日志信息表示正在获取相关内容。
   mkdir -p "${ADRSS_SRC_DIR}"  # 创建源目录
 
  # 从 GitHub 克隆 ad-rss 仓库，初始化所有子模块，并删除 proj 依赖项
@@ -99,13 +102,13 @@ CXX_TAG=c10
 # 由于 boost-python 不支持同时构建多个 Python 版本（find_package 存在一些 bug），  
 # 我们必须为每个版本单独进行 colcon 构建。
 #
-for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
+for PY_VERSION in ${PY_VERSION_LIST[@]} ; do#每次循环将一个python版本赋值给PY_VERSION变量
   ADRSS_BUILD_DIR="${CARLA_BUILD_FOLDER}/${ADRSS_BASENAME}/build-python${PY_VERSION}" # 为当前 Python 版本设置构建目录
 # 如果安装目录和构建目录都已存在，则跳过构建
   if [[ -d "${ADRSS_INSTALL_DIR}" && -d "${ADRSS_BUILD_DIR}" ]]; then
     log "${ADRSS_BASENAME} for python${PY_VERSION} already installed."
   else
-    log "Building ${ADRSS_BASENAME} for python${PY_VERSION}"
+    log "Building ${ADRSS_BASENAME} for python${PY_VERSION}"#log函数会输出一条消息，表示正在构建针对python${PY_VERSION}的${ADRSS_BASENAME}
 
     pushd "${ADRSS_COLCON_WORKSPACE}" >/dev/null # 切换到工作区 
       # 设置 CMake 前缀路径

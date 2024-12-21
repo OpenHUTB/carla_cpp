@@ -90,7 +90,7 @@ namespace streaming {
 
   private:
 
-    // The order of these two arguments is very important.
+    // 这两个参数的顺序非常重要。
 
     ThreadPool _pool;
 

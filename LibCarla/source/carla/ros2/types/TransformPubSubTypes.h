@@ -76,31 +76,31 @@ namespace geometry_msgs
         class TransformPubSubType : public eprosima::fastdds::dds::TopicDataType
         {
         public:
-
+// 定义一个类型别名，将 `Transform` 类型重命名为 `type`，方便后续在代码中使用该类型时书写更简洁，通常用于表示一种特定的数据类型（这里 `Transform` 具体是什么类型需看前置定义）
             typedef Transform type;
-
+ // 导出函数（可能用于动态链接库相关场景，具体取决于 `eProsima_user_DllExport` 的定义），该函数返回 `Transform` 类型对应的发布/订阅类型相关信息，函数名以大写字母开头符合某种命名规范（可能是类相关接口函数的命名风格）
             eProsima_user_DllExport TransformPubSubType();
-
+// 导出函数（用于动态链接库相关场景），定义虚析构函数，使用 `override` 关键字表示重写了基类中的虚析构函数，用于在对象销毁时进行正确的资源清理等操作，具体清理逻辑取决于该类及其派生类的具体实现
             eProsima_user_DllExport virtual ~TransformPubSubType() override;
-
+    // 导出函数（用于动态链接库相关场景），定义一个虚函数用于序列化操作。参数 `data` 表示要被序列化的数据（具体类型可能是 `Transform` 或者与之相关，取决于上下文），`payload` 是用于存储序列化后的数据负载的结构体（`SerializedPayload_t` 类型，其定义应该来自 `eprosima::fastrtps::rtps` 命名空间），函数返回值为布尔类型，用于表示序列化操作是否成功
             eProsima_user_DllExport virtual bool serialize(
                     void* data,
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload) override;
-
+  // 导出函数（用于动态链接库相关场景），定义一个虚函数用于反序列化操作。参数 `payload` 是包含序列化后数据负载的结构体（从中获取数据进行反序列化），`data` 是用于存储反序列化后得到的数据的内存地址（指针），函数返回值为布尔类型，用于表示反序列化操作是否成功
             eProsima_user_DllExport virtual bool deserialize(
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload,
                     void* data) override;
-
+// 导出函数（用于动态链接库相关场景），定义一个虚函数，用于获取序列化后数据大小的提供函数（以 `std::function` 形式返回一个无符号32位整数的函数对象），参数 `data` 是要获取序列化大小所对应的原始数据，通过该函数可以动态地根据具体数据内容确定其序列化后的大小，方便在一些场景下进行内存分配等操作
             eProsima_user_DllExport virtual std::function<uint32_t()> getSerializedSizeProvider(
                     void* data) override;
-
+   // 导出函数（用于动态链接库相关场景），定义一个虚函数用于获取数据的键值（可能用于在发布/订阅系统中标识、查找等用途）。参数 `data` 是原始数据，`ihandle` 是用于存储实例句柄的结构体（`InstanceHandle_t` 类型，来自 `eprosima::fastrtps::rtps` 命名空间），`force_md5` 是一个布尔类型的可选参数，用于指定是否强制使用MD5相关的方式获取键值（具体含义取决于具体实现逻辑），函数返回值为布尔类型，表示获取键值操作是否成功
             eProsima_user_DllExport virtual bool getKey(
                     void* data,
                     eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
                     bool force_md5 = false) override;
-
+  // 导出函数（用于动态链接库相关场景），定义一个虚函数用于创建数据，返回一个指向新创建的数据的指针（`void*` 类型，具体指向的数据类型应该与该类所处理的数据类型相关，比如 `Transform` 相关），该函数可能用于在发布/订阅等操作中初始化要处理的数据对象
             eProsima_user_DllExport virtual void* createData() override;
-
+// 导出函数（用于动态链接库相关场景），定义一个虚函数用于删除数据，参数 `data` 是要删除的指向数据的指针（指向之前创建的数据对象），该函数负责释放对应的数据所占用的内存资源等操作，确保数据被正确清理
             eProsima_user_DllExport virtual void deleteData(
                     void* data) override;
 
