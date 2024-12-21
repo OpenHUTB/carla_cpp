@@ -8,13 +8,14 @@
 
 #include "carla/Exception.h"
 
-#include <cstring>
-#include <exception>
+#include <cstring> // 包含memcpy函数的头文件
+#include <exception> // 包含异常处理相关的头文件
 
 namespace carla {
 namespace streaming {
 namespace detail {
 
+// token_type类的成员函数，用于设置token中的IP地址
   void token_type::set_address(const boost::asio::ip::address &addr) {
     // 首先检查传入的地址是否是IPv4地址。
     if (addr.is_v4()) {
@@ -24,6 +25,7 @@ namespace detail {
       _token.address.v4 = addr.to_v4().to_bytes();
     // 否则，检查传入的地址是否是IPv6地址。  
     } else if (addr.is_v6()) {
+      // 检查传入的地址是否是IPv6地址
       // 如果是IPv6地址，则将token中的地址类型设置为IPv6。
       _token.address_type = token_data::address::ip_v6;
       // 并将IPv6地址转换为字节数组后存储到token的相应位置。  
@@ -48,8 +50,9 @@ namespace detail {
     std::memcpy(&token.data[0u], &_token, token.data.size());
     return token;
   }
-
+  // token_type类的成员函数，用于获取token中存储的IP地址
   boost::asio::ip::address token_type::get_address() const {
+    // 根据token中存储的地址类型，返回相应的IPv4或IPv6地址
     if (_token.address_type == token_data::address::ip_v4) {
       return boost::asio::ip::address_v4(_token.address.v4);
     }
