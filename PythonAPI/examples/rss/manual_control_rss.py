@@ -217,12 +217,18 @@ class World(object):
         # 比如窗口的宽和高，也许用于后续图像渲染、显示等操作的尺寸设置。
         try:
             self.map = self.world.get_map()
+            # 通过 `self.world`（也就是CARLA世界对象）调用 `get_map` 方法尝试获取模拟世界的地图对象，并赋值给实例属性 `self.map`。
+            # 如果获取过程出现运行时错误（比如地图文件不存在、加载失败等情况），会进入下面的 `except` 块进行相应处理。
         except RuntimeError as error:
             print('RuntimeError: {}'.format(error))
             print('  The server could not send the OpenDRIVE (.xodr) file:')
             print('  Make sure it exists, has the same name of your town, and is correct.')
+            # 如果在获取地图时出现运行时错误，打印出错误信息，方便调试和排查问题。
             sys.exit(1)
+            # 使用 `sys.exit(1)` 终止程序运行，返回状态码为1，表示程序因错误而异常退出，这里提示用户确保地图文件（OpenDRIVE格式的 `.xodr` 文件）存在、名称与当前模拟的城镇名称一致且文件内容正确。
         self.external_actor = args.externalActor
+        # 将传入的 `args.externalActor` 参数赋值给实例属性 `self.external_actor`，从名称推测这个属性可能用于标识是否使用外部定义的演员对象，
+        # 后续会根据这个属性的值来决定如何创建或获取模拟世界中的主要演员（比如车辆等）。
 
         self.hud = HUD(args.width, args.height, carla_world)
         self.recording_frame_num = 0
@@ -237,13 +243,22 @@ class World(object):
         if not self._actor_filter.startswith("vehicle."):
             print('Error: RSS only supports vehicles as ego.')
             sys.exit(1)
+        # 如果 `_actor_filter` 参数所表示的筛选条件不是以 "vehicle." 开头，说明不符合RSS系统要求（RSS可能只支持以车辆作为主要关注对象，也就是所谓的“ego”主体），
+        # 则打印错误信息提示用户，并终止程序运行，返回状态码为1，表示出现了不符合预期的参数配置错误。
 
         self.restart()
+        # 调用 `restart` 方法，这个方法可能用于重新初始化模拟世界中的各种元素，比如重新创建车辆、设置传感器等，使世界恢复到一个初始可用状态。
         self.world_tick_id = self.world.on_tick(self.hud.on_world_tick)
+        # 通过 `self.world`（CARLA世界对象）调用 `on_tick` 方法，并传入 `self.hud.on_world_tick` 作为回调函数，
+        # 用于在模拟世界每一次更新（tick）时执行 `self.hud.on_world_tick` 函数来更新抬头显示等相关信息，将返回的标识（可能是用于后续取消这个回调绑定的一个唯一标识符等）赋值给 `self.world_tick_id` 属性。
 
     def toggle_pause(self):
+    # 定义一个方法用于切换模拟世界的暂停状态，也就是在暂停和继续运行之间切换。
         settings = self.world.get_settings()
+        # 通过 `self.world`（CARLA世界对象）调用 `get_settings` 方法获取当前世界的设置信息，比如同步模式、时间步长等设置，赋值给 `settings` 变量。
         self.pause_simulation(not settings.synchronous_mode)
+        # 调用 `pause_simulation` 方法，传入当前同步模式的取反值（即如果当前是同步模式就传入 `False`，如果当前是非同步模式就传入 `True`），
+        # 来实现切换暂停状态的操作，根据传入的值来决定是暂停还是继续运行模拟世界。
 
     def pause_simulation(self, pause):
         settings = self.world.get_settings()
@@ -257,6 +272,7 @@ class World(object):
             self.world.apply_settings(settings)
 
     def restart(self):
+    # 定义一个方法用于重新启动模拟世界相关的各种元素，比如重新创建车辆、传感器等，使其恢复到一个初始可用状态。
 
         if self.external_actor:
             # Check whether there is already an actor with defined role name
@@ -264,18 +280,31 @@ class World(object):
                 if actor.attributes.get('role_name') == self.actor_role_name:
                     self.player = actor
                     break
+        # 如果 `self.external_actor` 属性为 `True`，表示使用外部定义的演员对象，那么执行以下操作来查找并设置 `self.player`（主要演员，可能是车辆）。
+        # 遍历模拟世界中所有的演员对象（通过 `self.world.get_actors` 方法获取），查找属性 `role_name` 与 `self.actor_role_name`（之前初始化时设置的特定角色名称）相等的演员对象，
+        # 如果找到则将其赋值给 `self.player`，并跳出循环，表示找到了对应的外部定义的演员。
         else:
             # Get a random blueprint.
             blueprint = random.choice(self.world.get_blueprint_library().filter(self._actor_filter))
+            # 如果不使用外部定义的演员对象，那么执行以下操作来创建一个新的主要演员（可能是车辆）。
+            # 首先，从世界的蓝图库（ `self.world.get_blueprint_library` 方法返回所有可用的蓝图对象列表，蓝图可以理解为创建各种演员的模板）中，
+            # 通过 `filter` 方法根据 `self._actor_filter`（之前设置的筛选条件，应该是筛选车辆相关蓝图）筛选出符合条件的蓝图对象，然后随机选择一个蓝图，赋值给 `blueprint` 变量。
             blueprint.set_attribute('role_name', self.actor_role_name)
+            # 给选中的蓝图对象设置 `role_name` 属性为 `self.actor_role_name`（特定角色名称），用于标识这个即将创建的演员对象的角色。
             if blueprint.has_attribute('color'):
                 color = random.choice(blueprint.get_attribute('color').recommended_values)
                 blueprint.set_attribute('color', color)
+                # 如果蓝图对象有 `color` 属性（表示可以设置颜色），则从 `color` 属性推荐的颜色值列表（ `recommended_values` ）中随机选择一个颜色，
+                # 并将其设置为蓝图对象的颜色属性值，这样创建出来的演员（比如车辆）就会有随机的外观颜色。
             if blueprint.has_attribute('driver_id'):
                 driver_id = random.choice(blueprint.get_attribute('driver_id').recommended_values)
                 blueprint.set_attribute('driver_id', driver_id)
+                # 如果蓝图对象有 `driver_id` 属性（表示可以设置驾驶员标识等相关信息），则从 `driver_id` 属性推荐的标识值列表中随机选择一个标识，
+                # 并将其设置为蓝图对象的 `driver_id` 属性值，用于模拟不同驾驶员等情况。
             if blueprint.has_attribute('is_invincible'):
                 blueprint.set_attribute('is_invincible', 'true')
+                #如果蓝图对象有 `is_invincible` 属性（表示是否无敌，可能在模拟中不受碰撞等影响），则将其设置为 `true`，使创建出来的演员具有无敌属性，
+                # 这可能在一些特定的测试或模拟场景下有需要，避免演员过早被破坏等情况。
             # Spawn the player.
             if self.player is not None:
                 spawn_point = self.player.get_transform()

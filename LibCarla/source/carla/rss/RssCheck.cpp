@@ -247,26 +247,35 @@ RssCheck::RssCheck(float maximum_steering_angle)
 
   _logger->debug("RssCheck with default actor constellation callback created");
 }
-
+// RssCheck类的构造函数
+// 参数：
+// - maximum_steering_angle：最大转向角度
+// - rss_actor_constellation_callback：参与者星座回调函数类型，用于获取参与者星座相关信息
+// - carla_ego_actor：指向CARLA中自车参与者的共享指针
 RssCheck::RssCheck(float maximum_steering_angle,
                    ActorConstellationCallbackFunctionType rss_actor_constellation_callback,
                    carla::SharedPtr<carla::client::Actor> const &carla_ego_actor)
   : _maximum_steering_angle(maximum_steering_angle),
     _actor_constellation_callback(rss_actor_constellation_callback),
     _road_boundaries_mode(GetDefaultRoadBoundariesMode()) {
+   // 获取日志记录器实例，用于记录各类日志信息
   _logger = getLogger();
+   // 获取计时日志记录器实例，用于记录时间相关的日志信息
   _timing_logger = getTimingLogger();
+   // 将计时日志记录器的日志级别设置为关闭（不记录）
   _timing_logger->set_level(spdlog::level::off);
-
+// 设置整体的日志级别为警告级别
   SetLogLevel(spdlog::level::warn);
+   // 设置地图相关的日志级别为警告级别
   SetMapLogLevel(spdlog::level::warn);
-
+ // 获取与自车参与者匹配的对象，允许车辆距离路线至少2.0米，以免丧失与路线的接触
   _carla_rss_state.ego_match_object = GetMatchObject(carla_ego_actor, ::ad::physics::Distance(2.0));
+     // 更新默认的RSS动力学相关信息
   UpdateDefaultRssDynamics(_carla_rss_state);
-
+ // 在日志中输出调试信息，表示RssCheck对象已创建
   _logger->debug("RssCheck created");
 }
-
+// RssCheck类的析构函数，这里为空实现，可能在子类中会有具体的资源释放等操作
 RssCheck::~RssCheck() {}
 // 设置日志级别，对spdlog库和RssCheck类的内部_logger都生效
 void RssCheck::SetLogLevel(const spdlog::level::level_enum &log_level) {
@@ -318,9 +327,11 @@ void RssCheck::AppendRoutingTarget(::carla::geom::Transform const &routing_targe
   _routing_targets_to_append.push_back(
       ::ad::map::point::createENUPoint(routing_target.location.x, -1. * routing_target.location.y, 0.));
 }
-
+// 获取路由目标列表信息（常量函数）
+// 返回值：包含路由目标坐标变换信息的向量
 const std::vector<::carla::geom::Transform> RssCheck::GetRoutingTargets() const {
   std::vector<::carla::geom::Transform> routing_targets;
+  // 判断输入范围是否有效，如果有效则进行后续处理
   if (withinValidInputRange(_routing_targets)) {
     for (auto const &target : _routing_targets) {
       ::carla::geom::Transform routing_target;
@@ -332,17 +343,27 @@ const std::vector<::carla::geom::Transform> RssCheck::GetRoutingTargets() const 
   }
   return routing_targets;
 }
-
+// 重置路由目标，清空已有的路由目标列表和待添加的路由目标列表
 void RssCheck::ResetRoutingTargets() {
   _routing_targets.clear();
   _routing_targets_to_append.clear();
 }
-
+// 放弃当前路线，在日志中输出相关调试信息，并将自车的路线设置为空路线
 void RssCheck::DropRoute() {
   _logger->debug("Dropping Route:: {}", _carla_rss_state.ego_route);
   _carla_rss_state.ego_route = ::ad::map::route::FullRoute();
 }
-
+// 检查对象相关信息，进行一系列的逻辑判断和操作
+// 参数：
+// - timestamp：时间戳信息
+// - actors：指向参与者列表的共享指针
+// - carla_ego_actor：指向自车参与者的共享指针
+// - output_response：用于输出合适响应的对象
+// - output_rss_state_snapshot：用于输出RSS状态快照的对象
+// - output_situation_snapshot：用于输出情况快照的对象
+// - output_world_model：用于输出世界模型的对象
+// - output_rss_ego_dynamics_on_route：用于输出自车在路线上的RSS动力学信息的对象
+// 返回值：表示检查结果的布尔值，成功为true，失败为false
 bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
                             carla::SharedPtr<carla::client::ActorList> const &actors,
                             carla::SharedPtr<carla::client::Actor> const &carla_ego_actor,
@@ -353,18 +374,21 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
                             EgoDynamicsOnRoute &output_rss_ego_dynamics_on_route) {
   bool result = false;
   try {
+ // 获取从纪元开始到当前检查开始的时间（以毫秒为单位）
     double const time_since_epoch_check_start_ms =
         std::chrono::duration<double, std::milli>(std::chrono::system_clock::now().time_since_epoch()).count();
 #if DEBUG_TIMING
+    // 在调试模式下，输出时间相关信息以及开始检查对象的提示信息
     std::cout << "--- time: " << timestamp.frame << ", " << timestamp.elapsed_seconds << std::endl;
     auto t_start = std::chrono::high_resolution_clock::now();
     auto t_end = std::chrono::high_resolution_clock::now();
     std::cout << "-> SC " << std::chrono::duration<double, std::milli>(t_end - t_start).count() << " start checkObjects"
               << std::endl;
 #endif
-
+// 将传入的自车参与者指针转换为车辆类型的共享指针，如果转换失败则返回nullptr
     const auto carla_ego_vehicle = boost::dynamic_pointer_cast<carla::client::Vehicle>(carla_ego_actor);
     if (carla_ego_vehicle == nullptr) {
+     // 如果自车不是车辆类型，则在日志中输出错误信息，提示RSS传感器仅支持车辆作为自车
       _logger->error("RSS Sensor only support vehicles as ego.");
     }
 
@@ -383,6 +407,7 @@ bool RssCheck::CheckObjects(carla::client::Timestamp const &timestamp,
       auto const travelled_distance = ::ad::map::point::distance(
           _carla_rss_state.ego_match_object.enuPosition.centerPoint, ego_match_object.enuPosition.centerPoint);
       if (travelled_distance > ::ad::physics::Distance(10.)) {
+        // 如果距离大于设定值（10.），则在日志中输出警告信息，提示检测到自车位置跳跃，并强制重新规划路线
         _logger->warn("Jump in ego vehicle position detected {} -> {}! Force reroute!",
                       _carla_rss_state.ego_match_object.enuPosition.centerPoint,
                       ego_match_object.enuPosition.centerPoint);
@@ -602,73 +627,104 @@ void RssCheck::UpdateRoute(CarlaRssState &carla_rss_state) {
   // 如有需要，创建路线
   if (reroute_required) {
     // try to create routes
+    // 创建一个用于存储所有新路线的向量，每条路线的类型为::ad::map::route::FullRoute
     std::vector<::ad::map::route::FullRoute> all_new_routes;
+   // 遍历自车匹配对象的地图匹配包围盒中的参考点位置（这里取的是中心位置对应的参考点集合）
     for (const auto &position :
          carla_rss_state.ego_match_object.mapMatchedBoundingBox
              .referencePointPositions[int32_t(::ad::map::match::ObjectReferencePoints::Center)]) {
+            // 获取起始点信息，这里是从参考点位置中的车道点（lanePoint）里获取参数化点（paraPoint）作为起始点
       auto start_point = position.lanePoint.paraPoint;
+          // 初始化一个投影后的起始点，初始值与原始起始点相同，后续可能根据一些条件进行更新
       auto projected_start_point = start_point;
       if (!::ad::map::lane::isHeadingInLaneDirection(start_point,
                                                      carla_rss_state.ego_match_object.enuPosition.heading)) {
+        // 如果自车朝向与车道方向相反，在日志中输出调试信息提示
         _logger->debug("EgoVehicle heading in opposite lane direction");
+       // 尝试将起始点投影到与自车朝向一致的车道方向上，若投影成功
         if (::ad::map::lane::projectPositionToLaneInHeadingDirection(
                 start_point, carla_rss_state.ego_match_object.enuPosition.heading, projected_start_point)) {
+          // 在日志中输出调试信息，显示投影后的车道ID，方便调试查看具体投影情况
           _logger->debug("Projected to lane {}", projected_start_point.laneId);
         }
       }
+          // 在日志中输出调试信息，显示原始起始点和投影后的起始点信息，方便对比查看
       _logger->debug("Route start_point: {}, projected_start_point: {}", start_point, projected_start_point);
+           // 根据投影后的起始点和自车的朝向信息创建一个用于路径规划的起始点（routing_start_point），用于后续生成路线
       auto routing_start_point = ::ad::map::route::planning::createRoutingPoint(
           projected_start_point, carla_rss_state.ego_match_object.enuPosition.heading);
+          // 判断是否存在目标路由点（_routing_targets）且其是有效的
       if (!_routing_targets.empty() && ::ad::map::point::isValid(_routing_targets)) {
+        // 根据起始点和目标路由点规划一条新的路线，使用指定的路线创建模式（AllRoutableLanes，可能表示可通行的所有车道）
         auto new_route = ::ad::map::route::planning::planRoute(routing_start_point, _routing_targets,
                                                                ::ad::map::route::RouteCreationMode::AllRoutableLanes);
+        // 将新规划的路线添加到所有新路线的向量中
         all_new_routes.push_back(new_route);
       } else {
+       // 如果没有指定目标路由点，则根据起始点、预设的路线目标长度以及指定的路线创建模式预测生成一系列路线（可能是基于一定距离延伸的多条路线）
         auto new_routes = ::ad::map::route::planning::predictRoutesOnDistance(
             routing_start_point, route_target_length, ::ad::map::route::RouteCreationMode::AllRoutableLanes);
-
+// 遍历预测生成的每条新路线，并将它们都添加到所有新路线的向量中
         for (const auto &new_route : new_routes) {
           // 延长所有车道的路线
           all_new_routes.push_back(new_route);
         }
       }
     }
-
+ // 在日志中输出调试信息，显示新生成的路线数量，方便查看规划情况
     _logger->debug("New routes: {}", all_new_routes.size());
-
+// 判断是否成功生成了新的路线
     if (!all_new_routes.empty()) {
       // take a random route
+     // 如果有新路线，随机选择一条路线作为最终采用的路线
+      // 通过生成一个随机数作为索引来选择路线，将随机数转换为合适的size_t类型，确保索引在有效范围内（取模运算保证不会越界）
       std::size_t route_index = static_cast<std::size_t>(std::rand()) % (all_new_routes.size());
+      // 将随机选择的路线赋值给自车的路线（carla_rss_state.ego_route），更新自车的行驶路线
       carla_rss_state.ego_route = all_new_routes[route_index];
     }
   }
-
+ // 在日志中以跟踪级别（trace）输出更新路线后的结果信息，方便调试查看具体的路线情况
   _logger->trace("Update route result: {}", carla_rss_state.ego_route);
 }
-
+// 定义函数CalculateEgoDynamicsOnRoute，用于计算自车在路线上的动力学信息
+// 参数包括当前时间戳、从纪元开始到检查开始的时间（以毫秒为单位）、自车车辆信息、自车匹配对象、完整的路线信息、默认的自车动力学信息以及上一次的自车动力学信息
 EgoDynamicsOnRoute RssCheck::CalculateEgoDynamicsOnRoute(
     carla::client::Timestamp const &current_timestamp, double const &time_since_epoch_check_start_ms,
     carla::client::Vehicle const &carla_vehicle, ::ad::map::match::Object match_object,
     ::ad::map::route::FullRoute const &route, ::ad::rss::world::RssDynamics const &default_ego_vehicle_dynamics,
     EgoDynamicsOnRoute const &last_dynamics) const {
+  // 创建一个新的自车动力学信息结构体实例，用于存储本次计算得到的动力学信息
   EgoDynamicsOnRoute new_dynamics;
+ // 将传入的当前时间戳赋值给新的动力学信息结构体中的时间戳成员变量
   new_dynamics.timestamp = current_timestamp;
+ // 将传入的从纪元开始到检查开始的时间赋值给新的动力学信息结构体中的对应成员变量
   new_dynamics.time_since_epoch_check_start_ms = time_since_epoch_check_start_ms;
+ // 调用GetSpeed函数获取自车的速度信息，并赋值给新的动力学信息结构体中的速度成员变量
   new_dynamics.ego_speed = GetSpeed(carla_vehicle);
+    // 将自车匹配对象的中心坐标赋值给新的动力学信息结构体中的自车中心坐标成员变量
   new_dynamics.ego_center = match_object.enuPosition.centerPoint;
+  // 将自车匹配对象的朝向信息赋值给新的动力学信息结构体中的自车朝向成员变量
   new_dynamics.ego_heading = match_object.enuPosition.heading;
+  // 调用GetHeadingChange函数获取自车的航向变化信息，并赋值给新的动力学信息结构体中的相应成员变量
   new_dynamics.ego_heading_change = GetHeadingChange(carla_vehicle);
+ // 调用GetSteeringAngle函数获取自车的转向角度信息，并赋值给新的动力学信息结构体中的相应成员变量
   new_dynamics.ego_steering_angle = GetSteeringAngle(carla_vehicle);
-
+// 根据自车匹配对象和完整路线信息获取与自车相关的路线区间信息，使用指定的路线区间创建模式（AllRouteLanes，可能表示所有车道相关的路线区间）
   auto object_route =
       ::ad::map::route::getRouteSection(match_object, route, ::ad::map::route::RouteSectionCreationMode::AllRouteLanes);
+ // 获取该路线区间对应的ENU边界信息（可能是用于后续判断位置、方向等相关操作的边界数据）
   auto border = ::ad::map::route::getENUBorderOfRoute(object_route);
   new_dynamics.route_heading = ::ad::map::lane::getENUHeading(border, match_object.enuPosition.centerPoint);
-
+ 
+// 根据自车匹配对象和相关路线区间查找路线的中心点信息（可能是车道中心等相关的点）
   auto const object_center = ::ad::map::route::findCenterWaypoint(match_object, object_route);
   if (object_center.isValid()) {
+   // 如果找到的中心点信息是有效的
+        // 获取中心点对应的位置信息（可能是车道上的某个位置点）
     auto lane_center_point = object_center.queryPosition;
+   // 将该位置点转换为ENU坐标下的车道点信息
     auto lane_center_point_enu = ::ad::map::lane::getENULanePoint(lane_center_point);
+   // 将该位置点转换为ENU坐标下的车道点信息
     if (std::fabs(new_dynamics.route_heading) > ::ad::map::point::ENUHeading(M_PI)) {
       // 如果实际中心点已经在外部，尝试使用这个扩展
       // 路线航向计算的物体中心
@@ -690,34 +746,46 @@ EgoDynamicsOnRoute RssCheck::CalculateEgoDynamicsOnRoute(
     new_dynamics.route_nominal_center = last_dynamics.route_nominal_center;
     new_dynamics.route_heading = last_dynamics.route_heading;
   }
-
+// 计算自车航向与路线航向的差值，并进行归一化处理（可能是将角度差值限制在一定范围内，比如 -π 到 π 之间），将结果赋值给新的动力学信息结构体中的航向差值成员变量
   new_dynamics.heading_diff =
       ::ad::map::point::normalizeENUHeading(new_dynamics.route_heading - new_dynamics.ego_heading);
+ // 计算自车航向与路线航向的差值，并进行归一化处理（可能是将角度差值限制在一定范围内，比如 -π 到 π 之间），将结果赋值给新的动力学信息结构体中的航向差值成员变量
   new_dynamics.route_speed_lon =
       std::fabs(std::cos(static_cast<double>(new_dynamics.heading_diff))) * new_dynamics.ego_speed;
+  // 根据航向差值和自车速度计算路线横向速度（通过三角函数，横向速度是速度在垂直于路线方向上的分量），并赋值给相应成员变量
   new_dynamics.route_speed_lat = std::sin(static_cast<double>(new_dynamics.heading_diff)) * new_dynamics.ego_speed;
-
+ 
+ // 初始化一个标志变量，用于表示是否保留上一次的加速度信息，初始值设为true，表示默认保留
   bool keep_last_acceleration = true;
+  // 判断上一次动力学信息中的时间戳的经过秒数是否大于0，即上一次记录是否有时间间隔
   if (last_dynamics.timestamp.elapsed_seconds > 0.) {
+    // 计算本次时间戳与上一次时间戳之间的时间间隔，创建一个时间间隔类型（::ad::physics::Duration）的实例
     ::ad::physics::Duration const delta_time(current_timestamp.elapsed_seconds -
                                              last_dynamics.timestamp.elapsed_seconds);
+    // 判断时间间隔是否大于一个极小值（0.0001，可能是为了避免除以极小时间间隔导致数值异常等情况）
     if (delta_time > ::ad::physics::Duration(0.0001)) {
       try {
+        // 根据本次和上一次的横向路线速度以及时间间隔计算横向路线加速度，并赋值给相应成员变量
         new_dynamics.route_accel_lat = (new_dynamics.route_speed_lat - last_dynamics.route_speed_lat) / delta_time;
+        // 计算横向路线平均加速度（可能是一种平滑处理方式，结合了上一次平均加速度和本次计算的加速度），并赋值给相应成员变量
         new_dynamics.avg_route_accel_lat =
             ((last_dynamics.avg_route_accel_lat * 2.) + new_dynamics.route_accel_lat) / 3.;
+        // 同理，根据纵向路线速度计算纵向路线加速度，并赋值给相应成员变量
         new_dynamics.route_accel_lon = (new_dynamics.route_speed_lon - last_dynamics.route_speed_lon) / delta_time;
+       // 计算纵向路线平均加速度，并赋值给相应成员变量
         new_dynamics.avg_route_accel_lon =
             ((last_dynamics.avg_route_accel_lon * 2.) + new_dynamics.route_accel_lon) / 3.;
-
+ // 判断横向路线平均加速度是否等于0，如果等于0，为了防止出现数值下溢等问题，将其设置为0（可能是在特定的逻辑处理中避免出现意外情况）
         if (new_dynamics.avg_route_accel_lat == ::ad::physics::Acceleration(0.)) {
           // prevent from underrun
           new_dynamics.avg_route_accel_lat = ::ad::physics::Acceleration(0.);
         }
+       // 同样地，判断纵向路线平均加速度是否等于0，如果等于0，进行相应的处理，将其设置为0
         if (new_dynamics.avg_route_accel_lon == ::ad::physics::Acceleration(0.)) {
           // prevent from underrun
           new_dynamics.avg_route_accel_lon = ::ad::physics::Acceleration(0.);
         }
+       // 如果成功计算了加速度相关信息，将标志变量设为false，表示不需要保留上一次的加速度信息了
         keep_last_acceleration = false;
       } catch (...) {
       }

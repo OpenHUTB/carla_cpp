@@ -356,7 +356,7 @@ class CodeFormat:
         except OSError:
             cprint("[ERROR] Failed to run 'git rev-parse --is-inside-work-tree' for " + fileName, "red")
         return False
-
+#此函数用来检查指定的文件是否被Git版本控制系统追踪
     def isTrackedFile(self, fileName):
         try:
             gitProcess = subprocess.Popen(["git", "ls-files", "--error-unmatch", "--", os.path.basename(fileName)],
@@ -370,7 +370,7 @@ class CodeFormat:
         except OSError:
             cprint("[ERROR] Failed to run 'git ls-files --error-unmatch' for " + fileName, "red")
         return False
-
+#检查给定的Git仓库是否干净
     def isCleanGitRepo(self, gitRepo):
         try:
             gitProcess = subprocess.Popen(["git", "diff-index", "--quiet", "HEAD", "--"],
@@ -384,7 +384,7 @@ class CodeFormat:
         except OSError:
             cprint("[ERROR] Failed to run 'git diff-index --quiet HEAD --' for " + gitRepo, "red")
         return False
-
+#尝试刷新Git索引，忽略子模块
     def gitUpdateIndexRefresh(self, gitRepo):
         try:
             gitProcess = subprocess.Popen(["git", "update-index", "-q", "--ignore-submodules", "--refresh"],
