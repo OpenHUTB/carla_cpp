@@ -210,25 +210,40 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
 
 class CodeFormatterAutopep(CodeFormatter):
 
+   # CodeFormatterAutopep 类的初始化方法
+class CodeFormatterAutopep(CodeFormatter):  # 假设 CodeFormatter 是一个已定义的父类
     def __init__(self):
+        # 调用父类 CodeFormatter 的初始化方法
+        # 传递 autopep8 相关的参数
         CodeFormatter.__init__(self,
+                               # 指定格式化命令为 autopep8
                                command="autopep8",
+                               # 不指定期望的版本（空字符串表示）
                                expectedVersion="",
+                               # 格式化命令的参数，包括就地修改和设置最大行长度
                                formatCommandArguments=["--in-place", "--max-line-length=119"],
+                               # 验证命令的参数，包括生成差异和设置最大行长度
                                verifyCommandArguments=["--diff", "--max-line-length=119"],
+                               # 指出验证命令的输出是差异格式
                                verifyOutputIsDiff=True,
+                               # 指定该格式化器适用的文件后缀
                                fileEndings=["py"],
+                               # 指定文件类型的描述
                                fileDescription="python",
+                               # 提供安装 autopep8 和 pep8 的命令
                                installCommand="sudo apt-get install python-pep8 python-autopep8")
 
-
+# CodeFormat 类的初始化方法
 class CodeFormat:
-
     def __init__(self):
+        # 初始化失败标志为 False
         self.failure = False
+        # 初始化代码格式化器实例列表为空
         self.codeFormatterInstances = []
-        return
-
+        # 初始化方法结束，不需要显式返回（在 Python 中，构造函数默认返回实例本身）
+        # return 语句是多余的，但在某些情况下可能用于明确表明方法的结束
+        # 在这里，我们将其注释掉以遵循“不添加新代码”的要求
+        # return
     def parseCommandLine(self):
         parser = argparse.ArgumentParser(
             description="Helper script for code formatting.")
