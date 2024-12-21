@@ -98,7 +98,7 @@ FLinearColor ATagger::GetActorLabelColor(const AActor &Actor, const crp::CityObj
 
 
 // =============================================================================
-// -- static ATagger functions -------------------------------------------------
+// -- ATagger类的静态函数 -------------------------------------------------
 // =============================================================================
 
 void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
@@ -107,7 +107,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
   UE_LOG(LogCarla, Log, TEXT("Actor: %s"), *Actor.GetName());
 #endif // CARLA_TAGGER_EXTRA_LOG
 
-  // Iterate static meshes.
+  // 遍历静态网格.
   TArray<UStaticMeshComponent *> StaticMeshComponents;
   Actor.GetComponents<UStaticMeshComponent>(StaticMeshComponents);
   for (UStaticMeshComponent *Component : StaticMeshComponents) {
@@ -128,7 +128,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
       continue;
     }
 
-    // Find a tagged component that is attached to this component
+    // 查找附加到此组件上的带标签的组件
     UTaggedComponent *TaggedComponent = NULL;
     TArray<USceneComponent *> AttachedComponents = Component->GetAttachChildren();
     for (USceneComponent *SceneComponent : AttachedComponents) {
@@ -142,7 +142,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
       }
     }
 
-    // If not found, then create new tagged component and attach it to this component
+    // 如果没有找到，则创建一个新的带标签的组件，并将其附加到此组件上
     if (!TaggedComponent) {
       TaggedComponent = NewObject<UTaggedComponent>(Component);
       TaggedComponent->SetupAttachment(Component);
@@ -152,7 +152,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
 #endif // CARLA_TAGGER_EXTRA_LOG
     }
 
-    // Set tagged component color
+    // 设置带标签的组件颜色
     FLinearColor Color = GetActorLabelColor(Actor, Label);
 #ifdef CARLA_TAGGER_EXTRA_LOG
     UE_LOG(LogCarla, Log, TEXT("    - Color: %s"), *Color.ToString());
@@ -162,7 +162,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
     TaggedComponent->MarkRenderStateDirty();
   }
 
-  // Iterate skeletal meshes.
+  // 遍历骨骼网格
   TArray<USkeletalMeshComponent *> SkeletalMeshComponents;
   Actor.GetComponents<USkeletalMeshComponent>(SkeletalMeshComponents);
   for (USkeletalMeshComponent *Component : SkeletalMeshComponents) {
@@ -183,7 +183,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
       continue;
     }
 
-    // Find a tagged component that is attached to this component
+    // 查找附加到此组件上的带标签的组件
     UTaggedComponent *TaggedComponent = NULL;
     TArray<USceneComponent *> AttachedComponents = Component->GetAttachChildren();
     for (USceneComponent *SceneComponent : AttachedComponents) {
@@ -197,7 +197,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
       }
     }
 
-    // If not found, then create new tagged component and attach it to this component
+    // 如果没有找到，则创建一个新的带标签的组件，并将其附加到此组件
     if (!TaggedComponent) {
       TaggedComponent = NewObject<UTaggedComponent>(Component);
       TaggedComponent->SetupAttachment(Component);
@@ -207,7 +207,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
 #endif // CARLA_TAGGER_EXTRA_LOG
     }
 
-    // Set tagged component color
+    // 设置带标签组件的颜色
     FLinearColor Color = GetActorLabelColor(Actor, Label);
 #ifdef CARLA_TAGGER_EXTRA_LOG
     UE_LOG(LogCarla, Log, TEXT("    - Color: %s"), *Color.ToString());
@@ -307,4 +307,4 @@ void ATagger::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent
   }
   bTriggerTagObjects = false;
 }
-#endif // WITH_EDITOR
+#endif // 与编辑器集成

@@ -1,13 +1,15 @@
----
+---# 定义模块名称
 - module_name: carla
 
   # - CLASSES ------------------------------
+  # 定义模块中的类
   classes:
+  # 定义一个类：ActorAttributeType
   - class_name: ActorAttributeType
-    # - DESCRIPTION ------------------------
+    #类的描述 ------------------------
     doc: >
       CARLA provides a library of blueprints for actors in carla.BlueprintLibrary with different attributes each. This class defines the types those at carla.ActorAttribute can be as a series of enum. All this information is managed internally and listed here for a better comprehension of how CARLA works.
-    # - PROPERTIES -------------------------
+    # 类的属性 -------------------------
     instance_variables:
     - var_name: Bool
     - var_name: Int
@@ -37,7 +39,7 @@
       type: int
       doc: >
         Alpha channel (0-255).
-    # - METHODS ----------------------------
+    # 类的方法 ----------------------------
     methods:
     - def_name: __init__
       params:
@@ -135,7 +137,7 @@
       type: float
       doc: >
         Optical flow in the y component.
-    # - METHODS ----------------------------
+    # 类的方法 ----------------------------
     methods:
     - def_name: __init__
       params:

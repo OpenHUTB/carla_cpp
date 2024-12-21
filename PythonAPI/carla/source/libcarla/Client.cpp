@@ -68,14 +68,21 @@ static auto ApplyBatchCommandsSync(
     const boost::python::object &commands,
     bool do_tick) {
 
+   // 使用别名简化类型名称，提高代码可读性
   using CommandType = carla::rpc::Command;
+   // 将来自 Python 的命令列表转换为 C++ 的 std::vector<CommandType>
+  // 这里使用了 boost::python::stl_input_iterator 来迭代 Python 对象
   std::vector<CommandType> cmds {
     boost::python::stl_input_iterator<CommandType>(commands),
     boost::python::stl_input_iterator<CommandType>()
   };
 
+  // 创建一个空的 Python 列表，用于存储从 Carla 模拟器收到的响应
   boost::python::list result;
+   // 调用 Carla 客户端的 ApplyBatchSync 方法，同步应用命令批次
+  // 如果 do_tick 为 true，则在应用命令后模拟器会前进一个时间步
   auto responses = self.ApplyBatchSync(cmds, do_tick);
+  // 遍历从 ApplyBatchSync 得到的所有响应，并将它们添加到 Python 列表中
   for (auto &response : responses) {
     result.append(std::move(response));
   }

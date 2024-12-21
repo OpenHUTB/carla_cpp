@@ -83,7 +83,25 @@
 #endif // LIBCARLA_WITH_GTEST
 
 #define LIBCARLA_ASSERT_THROW__(pred, msg)  if (!(pred)) { ::carla::throw_exception(std::runtime_error(msg)); }
-
+// LIBCARLA_ASSERT_THROW__ 是一个宏，用于在断言失败时抛出异常
+// 它接受两个参数：pred（一个布尔表达式）和 msg（一个错误消息字符串）
+// 如果 pred 为 false（即断言失败），则调用 ::carla::throw_exception 函数抛出一个 std::runtime_error 异常，异常信息为 msg
 #define DEVELOPMENT_ASSERT(pred) DEVELOPMENT_ONLY(LIBCARLA_ASSERT_THROW__(pred, #pred))
-
+// DEVELOPMENT_ASSERT 是一个宏，用于在开发阶段进行断言检查
+// 它接受一个参数：pred（一个布尔表达式）
+// 在开发版本中，它使用 DEVELOPMENT_ONLY 宏来包含 LIBCARLA_ASSERT_THROW__ 宏的调用
+// 而在发布版本中，DEVELOPMENT_ONLY 宏可能定义为空，因此 DEVELOPMENT_ASSERT 不会有任何效果
 #define RELEASE_ASSERT(pred) LIBCARLA_ASSERT_THROW__(pred, #pred)
+// RELEASE_ASSERT 是一个宏，用于在发布版本中进行断言检查
+// 它与 DEVELOPMENT_ASSERT 类似，但不受 DEVELOPMENT_ONLY 宏的影响
+// 因此，在发布版本中，RELEASE_ASSERT 仍然会进行断言检查，并在断言失败时抛出异常
+// 注意事项：
+// 1. #pred 是一个预处理操作符，用于将 pred 表达式转换为字符串字面量
+//    这样，当断言失败时，抛出的异常信息将包含导致失败的表达式文本
+// 2. ::carla::throw_exception 可能是一个在 carla 命名空间中定义的函数，用于统一处理异常抛出
+//    这个函数可能包含了一些额外的日志记录或错误处理逻辑
+// 3. DEVELOPMENT_ONLY 是一个宏，其定义取决于编译时的配置（例如，通过预处理器定义）
+//    在开发版本中，它可能定义为 #define DEVELOPMENT_ONLY(x) x
+//    而在发布版本中，它可能定义为 #define DEVELOPMENT_ONLY(x) /* 空操作 */ 或类似的东西
+// 4. 使用这些宏时，请确保您的项目中已经定义了 carla 命名空间和 ::carla::throw_exception 函数
+//    否则，编译时将出现错误
