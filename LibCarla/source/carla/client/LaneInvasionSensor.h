@@ -3,39 +3,45 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+// “一次包含”（pragma once）的预处理指令
 #pragma once
 /**
  * @file LaneInvasionSensor.h
  * @brief 包含LaneInvasionSensor类的声明，这是一个继承自ClientSideSensor的类，用于检测车辆压线。
  */
+// 引入CARLA客户端中定义的ClientSideSensor头文件
 #include "carla/client/ClientSideSensor.h"
-
+// 引入原子类型相关的头文件
 #include <atomic>
  /**
   * @namespace carla
   * @brief CARLA模拟器的主命名空间。
   */
+// 定义CARLA模拟器的主命名空间
 namespace carla {
     /**
  * @namespace client
  * @brief 包含CARLA客户端相关类和函数的命名空间。
  */
+// 在CARLA主命名空间下，定义名为client的子命名空间
 namespace client {
     /**
    * @class Map
    * @brief 地图类的前向声明，用于在LaneInvasionSensor类中可能的引用。
    */
+// 前向声明Map类
   class Map;
   /**
    * @class Vehicle
    * @brief 车辆类的前向声明，用于在LaneInvasionSensor类中可能的引用。
    */
+// 前向声明Vehicle类
   class Vehicle;
   /**
    * @class LaneInvasionSensor
    * @brief LaneInvasionSensor类是一个检测车辆压线的传感器，继承自ClientSideSensor。
    */
+// 定义LaneInvasionSensor类
   class LaneInvasionSensor final : public ClientSideSensor {
   public:
       /**
@@ -78,5 +84,5 @@ namespace client {
     std::atomic_size_t _callback_id{0u};
   };
 
-} // namespace client
-} // namespace carla
+} // 结束client命名空间的定义
+} // 结束carla命名空间的定义
