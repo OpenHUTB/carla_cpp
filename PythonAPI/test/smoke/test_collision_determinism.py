@@ -71,7 +71,7 @@ class Scenario(object):
         if self.save_snapshots_mode:
             self.snapshots.append(np.empty((0,11), float))
 
-    def wait(self, frames=100):
+    def wait(self, frames=100):              #函数用于等待一定帧数，此处为等待100帧
         for _i in range(0, frames):
             self.world.tick()
 
@@ -222,32 +222,36 @@ class ThreeCarsSlowSpeedCollision(Scenario):
 
 
 class CarBikeCollision(Scenario):
+    # 初始化场景的方法，接收前缀、设置和观察者变换矩阵作为参数
     def init_scene(self, prefix, settings = None, spectator_tr = None):
+        #调用父类的init_scene方法，传递相同的参数
         super(CarBikeCollision, self).init_scene(prefix, settings, spectator_tr)
-
+        #从世界环境中获取蓝图库，蓝图库包含了可以生成的所有物体的蓝图
         blueprint_library = self.world.get_blueprint_library()
-
+        # 从蓝图库中筛选出汽车的蓝图
         car_bp = blueprint_library.filter("mkz_2017")[0]
+         # 从蓝图库中筛选出自行车（gazelle）的蓝图
         bike_bp = blueprint_library.filter("gazelle")[0]
-
+        # 定义汽车的初始位置和朝向，位置为(50, -255, 0.04)，朝向为0度（
         car_tr = carla.Transform(carla.Location(50, -255, 0.04), carla.Rotation(yaw=0))
+        # 定义自行车的初始位置和朝向
         bike_tr = carla.Transform(carla.Location(85, -245, 0.04), carla.Rotation(yaw=-90))
 
         batch = [
             SpawnActor(car_bp, car_tr)
-            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(30, 0, 0))),
+            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(30, 0, 0))), # 生成汽车，并设置其目标速度为(30, 0, 0)
             SpawnActor(bike_bp, bike_tr)
-            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(0, -12, 0)))
+            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(0, -12, 0))) # 生成自行车，并设置其目标速度为(0, -12, 0)（即向左12米每秒）
         ]
 
         responses = self.client.apply_batch_sync(batch)
-
+      # 检查响应中的每个元素，确保加入组件被正确创建
         veh_ids = [x.actor_id for x in responses]
         veh_refs = [self.world.get_actor(x) for x in veh_ids]
 
         if (0 in veh_ids) or (None in veh_refs):
             self.fail("%s: The test cars could not be correctly spawned" % (bp_veh.id))
-
+        # 将组件添加到场景中
         self.add_actor(veh_refs[0], "Car")
         self.add_actor(veh_refs[1], "Bike")
 
@@ -275,7 +279,7 @@ class CarWalkerCollision(Scenario):
         ]
 
         responses = self.client.apply_batch_sync(batch)
-
+        # 检查响应中的每个元素，确保被正确创建
         veh_ids = [x.actor_id for x in responses]
         veh_refs = [self.world.get_actor(x) for x in veh_ids]
 

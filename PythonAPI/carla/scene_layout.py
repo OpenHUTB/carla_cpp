@@ -287,7 +287,7 @@ def get_dynamic_objects(carla_world, carla_map):
             }
             speed_limits_dict[speed_limit.id] = sl_dict
         return speed_limits_dict
-
+#遍历静态障碍物列表，将每个障碍物的位置信息提取出来并存储在一个字典里
     def get_static_obstacles(static_obstacles):
         static_obstacles_dict = dict()
         for static_prop in static_obstacles:
@@ -299,14 +299,14 @@ def get_dynamic_objects(carla_world, carla_map):
             }
             static_obstacles_dict[static_prop.id] = sl_dict
         return static_obstacles_dict
-
+#从一个更大的actors列表中分离出不类型的actors
     actors = carla_world.get_actors()
     vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles = _split_actors(actors)
 
     hero_vehicles = [vehicle for vehicle in vehicles if
                      'vehicle' in vehicle.type_id and vehicle.attributes['role_name'] == 'hero']
     hero = None if len(hero_vehicles) == 0 else random.choice(hero_vehicles)
-
+#将信息整合到一个字典中，并返回
     return {
         'vehicles': get_vehicles(vehicles),
         'hero_vehicle': get_hero_vehicle(hero),
