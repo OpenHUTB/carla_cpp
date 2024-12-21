@@ -173,15 +173,25 @@ void export_world() {
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cc::ActorList类型绑定到Python中名为"ActorList"的类，无默认构造函数
+  // 为Python中的"ActorList"类定义一些方法，使其能调用对应的C++方法
   class_<cc::ActorList, boost::shared_ptr<cc::ActorList>>("ActorList", no_init)
+    // 绑定C++中ActorList类的Find方法到Python类的"find"方法，参数为"id"
     .def("find", &cc::ActorList::Find, (arg("id")))
+    // 绑定Filter方法到Python类的"filter"方法，参数是"wildcard_pattern"
     .def("filter", &cc::ActorList::Filter, (arg("wildcard_pattern")))
+    // 绑定at方法，使Python类支持通过索引访问，对应Python的"__getitem__"操作
     .def("__getitem__", &cc::ActorList::at)
+    // 绑定size方法，让Python中可用len获取其长度，对应Python的"__len__"操作
     .def("__len__", &cc::ActorList::size)
+    // 绑定迭代相关逻辑，使Python类可迭代，对应Python的"__iter__"操作
     .def("__iter__", range(&cc::ActorList::begin, &cc::ActorList::end))
+    // 绑定流输出相关逻辑，让Python中可用str函数转为字符串表示
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cr::EpisodeSettings类型绑定到Python里名为"WorldSettings"的类
+  // 定义构造函数及各参数默认值，方便Python中创建对象
   class_<cr::EpisodeSettings>("WorldSettings")
     .def(init<bool, bool, double, bool, double, int, float, bool, float, float, bool>(
         (arg("synchronous_mode")=false,
@@ -195,6 +205,7 @@ void export_world() {
          arg("tile_stream_distance")=3000.f,
          arg("actor_active_distance")=2000.f,
          arg("spectator_as_ego")=true)))
+    // 暴露C++类中的成员变量为Python类的可读写属性
     .def_readwrite("synchronous_mode", &cr::EpisodeSettings::synchronous_mode)
     .def_readwrite("no_rendering_mode", &cr::EpisodeSettings::no_rendering_mode)
     .def_readwrite("substepping", &cr::EpisodeSettings::substepping)
@@ -202,6 +213,7 @@ void export_world() {
     .def_readwrite("max_substeps", &cr::EpisodeSettings::max_substeps)
     .def_readwrite("max_culling_distance", &cr::EpisodeSettings::max_culling_distance)
     .def_readwrite("deterministic_ragdolls", &cr::EpisodeSettings::deterministic_ragdolls)
+    // 定义名为"fixed_delta_seconds"的属性，有获取和设置的逻辑（通过lambda表达式实现）
     .add_property("fixed_delta_seconds",
         +[](const cr::EpisodeSettings &self) {
           return OptionalToPythonObject(self.fixed_delta_seconds);
@@ -213,11 +225,15 @@ void export_world() {
     .def_readwrite("tile_stream_distance", &cr::EpisodeSettings::tile_stream_distance)
     .def_readwrite("actor_active_distance", &cr::EpisodeSettings::actor_active_distance)
     .def_readwrite("spectator_as_ego", &cr::EpisodeSettings::spectator_as_ego)
+     // 绑定相等比较（==）和不等比较（!=）的操作到Python类对应的方法
     .def("__eq__", &cr::EpisodeSettings::operator==)
     .def("__ne__", &cr::EpisodeSettings::operator!=)
+     // 绑定流输出相关逻辑，使Python中可用str函数转换为字符串表示  
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将cr::EnvironmentObject类型绑定到Python中名为"EnvironmentObject"的类
+  // 把C++类的多个成员变量暴露为Python类的可读写属性 
   class_<cr::EnvironmentObject>("EnvironmentObject", no_init)
     .def_readwrite("transform", &cr::EnvironmentObject::transform)
     .def_readwrite("bounding_box", &cr::EnvironmentObject::bounding_box)
