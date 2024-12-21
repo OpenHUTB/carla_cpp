@@ -18,18 +18,24 @@ except IndexError:
 import carla
 
 
+#从Carla模拟器中提取地图的生成点信息，并将其保存到一个CSV文件中的程序
 def extract(args):
+    #在 try语句块中，创建一个carla.Client对象
     try:
         client = carla.Client(args.host, args.port, worker_threads=1)
         client.set_timeout(2.0)
 
+        #通过client.get_world获取Carla世界对象
         world = client.get_world()
+        #获取地图对象
         try:
             _map = world.get_map()
+        #检查地图的生成点是否为空     
         except RuntimeError as error:
             logging.info('RuntimeError: %s', error)
             sys.exit(1)
 
+        #目的是将生成的信息写入这个CSV文件中
         if not _map.get_spawn_points():
             logging.info('There are no spawn points available in your map/town.')
             logging.info('Please add some Vehicle Spawn Point to your UE4 scene.')
@@ -40,6 +46,7 @@ def extract(args):
             for index, spawn_point in enumerate(spawn_points):
                 file.write(f'{index},{spawn_point.location.x},{spawn_point.location.y},{spawn_point.location.z}\n')
 
+    #通常用于无论是否发生用异常都要执行的清理操作
     finally:
         world = None
 
