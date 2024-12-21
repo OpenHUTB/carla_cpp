@@ -177,42 +177,80 @@ class SensorManager:#定义了一个名为  SensorManager  的类。
         else:
             return None
 
+
+    # 获取传感器对象的方法，直接返回实例的sensor属性（该属性应该在外部被正确赋值过，代表对应的传感器对象）
     def get_sensor(self):
         return self.sensor
 
+
+    # 用于保存RGB图像数据的方法，从接收到的Carla图像数据进行处理，转换格式、调整通道顺序等，并记录处理时间相关信息
     def save_rgb_image(self, image):
+        """
+    功能：
+        接收Carla的RGB图像数据，对其进行处理以便后续显示等操作，同时记录处理该图像所花费的时间以及处理次数，用于性能统计等用途。
+    参数：
+        image (carla.Image): 从Carla环境获取的原始RGB图像对象。
+    """
+        # 记录处理该图像开始的时间
         t_start = self.timer.time()
 
-        image.convert(carla.ColorConverter.Raw)
-        array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
-        array = np.reshape(array, (image.height, image.width, 4))
-        array = array[:, :, :3]
-        array = array[:, :, ::-1]
+         # 将图像转换为原始格式（可能是去除了一些默认的编码、色彩空间转换等，获取最原始的数据表示形式）
+         image.convert(carla.ColorConverter.Raw)
+         # 从图像的原始字节数据创建一个numpy数组，指定数据类型为无符号8位整数（对应图像像素的字节表示）
+         array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
+         # 将一维的数组重新调整为三维数组，维度分别对应图像的高度、宽度以及颜色通道（这里可能包含了透明度通道，共4个通道）
+         array = np.reshape(array, (image.height, image.width, 4))
+         # 去除颜色通道中的透明度通道，只保留RGB三个颜色通道的数据，因为通常在显示图像时不需要透明度信息（如果图像本身是带透明度的，这里可能需要根据实际情况处理）
+         array = array[:, :, :3]
+         # 对图像的颜色通道顺序进行反转，将RGB顺序转换为BGR顺序，可能是因为后续使用的显示库（如Pygame）对颜色通道顺序的要求（不同的图像库或显示系统对颜色通道顺序的默认设置可能不同）
+         array = array[:, :, ::-1]
 
+
+      # 如果显示管理器（display_man）的渲染功能是启用状态（render_enabled方法返回True），则根据处理后的图像数据创建一个Pygame的表面对象，用于后续在窗口中显示
         if self.display_man.render_enabled():
             self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
 
+       # 记录处理该图像结束的时间
         t_end = self.timer.time()
+# 将本次处理图像所花费的时间累加到总的处理时间中（self.time_processing用于累计处理时间）
         self.time_processing += (t_end-t_start)
+# 将处理次数加1（self.tics_processing用于统计处理图像的次数）
         self.tics_processing += 1
 
+# 用于保存LiDAR（激光雷达）图像数据的方法，对接收到的LiDAR数据进行解析、坐标转换、生成可视化图像等操作，并记录处理时间相关信息
     def save_lidar_image(self, image):
+        """
+    功能：
+        接收Carla的LiDAR图像数据，对其进行处理以生成可视化的二维图像（通常是将点云数据转换为灰度图形式用于显示），同时记录处理该图像所花费的时间以及处理次数，用于性能统计等用途。
+    参数：
+        image (carla.Image 或对应LiDAR数据结构): 从Carla环境获取的原始LiDAR数据对象（这里假设其数据格式符合后续解析的要求）。
+    """
         t_start = self.timer.time()
 
+        # 获取显示管理器中设置的显示尺寸（宽度和高度），用于后续根据尺寸对LiDAR数据进行坐标转换等操作，使其适配显示区域
         disp_size = self.display_man.get_display_size()
         lidar_range = 2.0*float(self.sensor_options['range'])
 
+        # 从LiDAR图像的原始字节数据创建一个numpy数组，指定数据类型为单精度浮点数（f4），用于存储点云数据（每个点可能包含坐标、强度等信息）
         points = np.frombuffer(image.raw_data, dtype=np.dtype('f4'))
+    # 将一维的点云数据数组重新调整为二维数组，每一行代表一个点的数据，假设每个点的数据由4个元素组成（具体取决于LiDAR数据格式），这里按照每4个元素一组进行重塑
         points = np.reshape(points, (int(points.shape[0] / 4), 4))
+    # 提取点云数据中的前两个元素（通常是x、y坐标信息）作为LiDAR数据用于后续处理，构建二维的坐标数组
         lidar_data = np.array(points[:, :2])
+    # 根据显示尺寸和LiDAR探测范围对坐标数据进行缩放，使得点云数据能适配到显示尺寸范围内，min(disp_size)可能是取宽度和高度中的较小值作为统一的缩放基准
         lidar_data *= min(disp_size) / lidar_range
+    # 将坐标数据进行偏移，使其中心位于显示区域的中心位置（加上显示尺寸的一半作为偏移量）
         lidar_data += (0.5 * disp_size[0], 0.5 * disp_size[1])
+    # 取坐标数据的绝对值，确保坐标值都是非负的（可能是为了符合后续图像索引等操作的要求，避免出现负数索引情况）
         lidar_data = np.fabs(lidar_data)  # pylint: disable=E1111
+    # 将坐标数据转换为整数类型（int32），因为图像的像素坐标是整数形式，准备用于在图像上绘制点云对应的像素点
         lidar_data = lidar_data.astype(np.int32)
+    # 将二维的坐标数组重新调整为二维形式（这里只是进行形状重塑，方便后续操作，实际数据内容不变），每一行代表一个点的坐标信息
         lidar_data = np.reshape(lidar_data, (-1, 2))
+    # 创建一个与显示尺寸对应的三维数组，用于表示空白的LiDAR图像（初始化为全0，数据类型为无符号8位整数，对应图像的像素表示），三个通道可用于后续可能的彩色显示等扩展（这里暂时都设置为白色表示点云位置）
         lidar_img_size = (disp_size[0], disp_size[1], 3)
         lidar_img = np.zeros((lidar_img_size), dtype=np.uint8)
-
+        # 根据处理后的LiDAR坐标数据，将对应的图像像素位置设置为白色（RGB值为 (255, 255, 255)），实现将点云数据可视化在图像上的效果
         lidar_img[tuple(lidar_data.T)] = (255, 255, 255)
 
         if self.display_man.render_enabled():
@@ -222,7 +260,14 @@ class SensorManager:#定义了一个名为  SensorManager  的类。
         self.time_processing += (t_end-t_start)
         self.tics_processing += 1
 
+    # 用于保存语义LiDAR（SemanticLiDAR，带有语义信息的激光雷达）图像数据的方法，与save_lidar_image方法类似，但处理的数据格式和具体含义可能有所不同，同样记录处理时间相关信息
     def save_semanticlidar_image(self, image):
+        """
+    功能：
+        接收Carla的语义LiDAR图像数据，对其进行处理以生成可视化的二维图像（将带有语义信息的点云数据转换为可视化形式用于显示），同时记录处理该图像所花费的时间以及处理次数，用于性能统计等用途。
+    参数：
+        image (carla.Image 或对应语义LiDAR数据结构): 从Carla环境获取的原始语义LiDAR数据对象（这里假设其数据格式符合后续解析的要求）。
+    """
         t_start = self.timer.time()
 
         disp_size = self.display_man.get_display_size()
