@@ -34,25 +34,36 @@ using namespace util;/// 导入CARLA的实用工具命名空间，包含常用�
  */
 const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER "/OpenDrive/";
 
-
+// 静态函数，用于测试道路海拔相关情况，接收XML文档和地图（可选）引用
 static void test_road_elevation(const pugi::xml_document &xml, boost::optional<Map>& map) {
+  // 获取XML中"OpenDRIVE"节点
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
+  // 遍历"OpenDRIVE"下的"road"节点
   for (pugi::xml_node road_node : open_drive_node.children("road")) {
+    // 获取道路id
     RoadId road_id = road_node.attribute("id").as_uint();
+    // 获取此道路下的"elevationProfile"节点们
     auto elevation_profile_nodes = road_node.children("elevationProfile");
 
+    // 遍历各"elevationProfile"节点
     for (pugi::xml_node elevation_profile_node : elevation_profile_nodes) {
+      // 统计有效海拔数量的计数器
       auto total_elevations = 0;
+      // 获取"elevation"节点们
       auto elevation_nodes = elevation_profile_node.children("elevation");
+      // 计算"elevation"节点总数
       auto total_elevation_parser = std::distance(elevation_nodes.begin(), elevation_nodes.end());
-
+      
+      // 遍历"elevation"节点
       for (pugi::xml_node elevation_node : elevation_nodes) {
+        // 获取节点中表示位置的属性值
         float s = elevation_node.attribute("s").as_float();
+        // 尝试获取地图中对应道路位置的海拔信息
         const auto elevation = map->GetMap().GetRoad(road_id).GetInfo<RoadInfoElevation>(s);
         if (elevation != nullptr)
           ++total_elevations;
-      }
+      }// 验证获取到的海拔数量与解析出的节点数量是否一致
       ASSERT_EQ(total_elevations, total_elevation_parser);
     }
   }
