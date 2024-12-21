@@ -19,8 +19,8 @@ import argparse
 import time
 import filecmp
 import shutil
-from queue import Queue
-from queue import Empty
+from queue import Queue#从  queue  模块导入Queue类和Empty异常。Queue  用于创建线程安全的队列
+from queue import Empty #从  queue  模块导入Empty，Empty 异常异常用于处理队列空时的情况。
 
 import numpy as np
 
@@ -28,7 +28,7 @@ try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])#尝试将CARLA的Python API添加到系统路径中。这里使用  glob  模块来查找匹配特定模式的文件路径，并将其添加到  sys.path  中，以便可以导入CARLA。
 except IndexError:
     pass
 
