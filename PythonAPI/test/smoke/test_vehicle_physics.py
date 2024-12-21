@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de
+   # Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB).
 #
 # This work is licensed under the terms of the MIT license.
@@ -125,10 +125,9 @@ ApplyVehiclePhysicsControl = carla.command.ApplyVehiclePhysicsControl
 class TestApplyVehiclePhysics(SyncSmokeTest):
     def wait(self, frames=100):
         for _i in range(0, frames):
-            self.world.tick()# 调用CARLA的tick方法，模拟时间的流逝
-   
-    #用于检查单个车辆的物理控制设置
-    def check_single_physics_control(self, bp_vehicle):
+            self.world.tick() # 调用CARLA的tick方法，模拟时间的流逝
+  
+    def check_single_physics_control(self, bp_vehicle):  #用于检查单个车辆的物理控制设置
         # 获取地图上的第一个出生点位置
         veh_tranf = self.world.get_map().get_spawn_points()[0]
         # 在指定位置生成一个车辆实例
