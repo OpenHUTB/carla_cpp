@@ -49,12 +49,12 @@ Plugins
 #忽略特定的用户配置文件和缓存
 *CodeCompletionFolders.txt
 *CodeLitePreProcessor.txt
-.aria2c.input
-.codelite
+.aria2c.input# aria2下载管理器的输入文件
+.codelite# GDB调试器的历史命令记录文件
 .gdb_history
-.gtest
+.gtest# Google Test的测试相关文件
 .idea
-.tags*
+.tags*# Vim或VSCode等编辑器的标签文件
 .vs
 .vscode
 #忽略特定的临时目录和文件
