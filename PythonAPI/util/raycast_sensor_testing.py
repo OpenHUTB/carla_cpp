@@ -179,22 +179,28 @@ class SensorManager:
             return radar
         else:
             return None
-
+    #定义一个函数，返回self.sensor
     def get_sensor(self):
         return self.sensor
-
+    #定义一个函数，用于保存 RGB 图像
     def save_rgb_image(self, image):
+        记录处理开始的时间
         t_start = self.timer.time()
-
+        #将图像转换为原始格式
         image.convert(carla.ColorConverter.Raw)
+        #从图像的原始数据中读取数据，数据类型为无符号 8 位整数
         array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
+        #将数组重塑为一个三维数组，形状为(height, width, 4)，其中 4 可能代表 RGBA 通道
         array = np.reshape(array, (image.height, image.width, 4))
+        #去除 alpha 通道，只保留 RGB 通道
         array = array[:, :, :3]
+        #反转颜色通道的顺序，可能是从 BGR 转换为 RGB
         array = array[:, :, ::-1]
-
+        #如果显示管理器允许渲染
         if self.display_man.render_enabled():
+            #将numpy数组转换为pygame表面，可能需要交换轴来正确显示图像
             self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
-
+        #记录处理结束的时间，并更新处理时间和处理次数
         t_end = self.timer.time()
         self.time_processing += (t_end-t_start)
         self.tics_processing += 1
