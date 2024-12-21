@@ -27,10 +27,10 @@ void CarlaRecorderPlatformTime::Read(std::istream &InFile)
 
 void CarlaRecorderPlatformTime::Write(std::ostream &OutFile)
 {
-  // write the packet id
+  //写入数据包 ID
   WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::PlatformTime));
 
-  // write packet size
+  // 写入数据包大小
   uint32_t Total = sizeof(double);
   WriteValue<uint32_t>(OutFile, Total);
 
