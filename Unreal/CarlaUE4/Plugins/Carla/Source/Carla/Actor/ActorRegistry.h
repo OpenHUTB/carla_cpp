@@ -16,7 +16,7 @@
 
 #include <unordered_map>
 
-/// A registry of all the Carla actors.
+/// 所有Carla角色的注册表
 class FActorRegistry
 {
 public:
@@ -26,17 +26,17 @@ public:
 
 private:
 
-  // using DatabaseType = std::unordered_map<IdType, FCarlaActor>;
+  //使用 DatabaseType = std::unordered_map<IdType, FCarlaActor>;
   using DatabaseType = TMap<IdType, TSharedPtr<FCarlaActor>>;
 
   // ===========================================================================
-  /// @name Actor registry functions
+  /// 名称 参与者注册函数
   // ===========================================================================
   /// @{
 public:
 
-  /// Register the @a Actor in the database. A new ID will be assign to this
-  /// actor.
+  /// 在数据库中注册@a Actor。将为此分配一个新的ID
+  /// 参与者
   ///
   /// @warning Undefined if an actor is registered more than once.
   FCarlaActor* Register(AActor &Actor, FActorDescription Description, IdType DesiredId = 0);
@@ -47,16 +47,16 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Look up functions
+  /// 名称 查找功能
   // ===========================================================================
   /// @{
 
-  int32 Num() const
+  int32 Num() const//返回当前管理的演员数量。const关键字表示这个函数不会修改任何成员变量
   {
     return Actors.Num();
   }
 
-  bool IsEmpty() const
+  bool IsEmpty() const//检查当前是否有任何演员。如果没有演员（即数量为0），则返回true；否则返回false
   {
     return Num() == 0;
   }
@@ -65,7 +65,8 @@ public:
   {
     return ActorDatabase.Find(Id) != nullptr;
   }
-
+//四个FindCarlaActor函数是类的成员函数，用于在不同的上下文中查找FCarlaActor对象
+//这些函数展示了如何在C++中处理const正确性，即如何编写不会修改对象状态的函数，并返回指向const对象的指针以防止调用者修改这些对象
   FCarlaActor* FindCarlaActor(IdType Id)
   {
     ValueType* CarlaActorPtr = ActorDatabase.Find(Id);
@@ -92,13 +93,13 @@ public:
 
   FString GetDescriptionFromStream(carla::streaming::detail::stream_id_type Id);
 
-  void PutActorToSleep(IdType Id, UCarlaEpisode* CarlaEpisode);
+  void PutActorToSleep(IdType Id, UCarlaEpisode* CarlaEpisode);//用于将指定ID的演员设置为“睡眠”状态。UCarlaEpisode参数用于指定这个操作是在哪个特定的情节或场景中进行的
 
   void WakeActorUp(IdType Id, UCarlaEpisode* CarlaEpisode);
 
   /// @}
   // ===========================================================================
-  /// @name Range iteration support
+  ///名称范围迭代支持
   // ===========================================================================
   /// @{
 public:
@@ -114,8 +115,8 @@ public:
   }
 
   /// @}
-private:
-
+private://类的私有部分，用于管理CARLA模拟环境中的演员
+//创建一个FCarlaActor对象，并返回一个智能指针指向它。它接受一个演员ID、一个AActor引用、一个描述对象和一个状态对象作为参数。
   TSharedPtr<FCarlaActor> MakeCarlaActor(
     IdType Id,
     AActor &Actor,
@@ -125,11 +126,11 @@ private:
   FCarlaActor MakeFakeActor(
     AActor &Actor) const;
 
-  TMap<IdType, AActor *> Actors;
+  TMap<IdType, AActor *> Actors;//一个映射，将演员ID映射到AActor指针。这允许通过ID快速查找演员对象
 
-  TMap<AActor *, IdType> Ids;
+  TMap<AActor *, IdType> Ids;//另一个映射，将AActor指针映射到演员ID。这允许通过演员对象快速查找其ID
 
-  DatabaseType ActorDatabase;
+  DatabaseType ActorDatabase;//数据库类型的成员变量，用于存储演员信息
 
-  static IdType ID_COUNTER;
+  static IdType ID_COUNTER;//一个静态成员变量，用于生成唯一的演员ID。每次创建新演员时，这个计数器可能会递增，以确保每个演员都有一个唯一的ID。
 };

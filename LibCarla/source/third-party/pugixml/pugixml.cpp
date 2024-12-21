@@ -48,45 +48,45 @@
 
 #ifdef _MSC_VER
 #	pragma warning(push)
-#	pragma warning(disable: 4127) // conditional expression is constant
-#	pragma warning(disable: 4324) // structure was padded due to __declspec(align())
-#	pragma warning(disable: 4702) // unreachable code
-#	pragma warning(disable: 4996) // this function or variable may be unsafe
+#	pragma warning(disable: 4127) // 条件表达式是常量
+#	pragma warning(disable: 4324) //这句话表示结构体（structure）由于使用了 __declspec(align()) 声明而进行了填充（padding）操作。
+#	pragma warning(disable: 4702) //不可达代码
+#	pragma warning(disable: 4996) // 这个函数或变量可能不安全
 #endif
 
 #if defined(_MSC_VER) && defined(__c2__)
 #	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wdeprecated" // this function or variable may be unsafe
+#	pragma clang diagnostic ignored "-Wdeprecated" // 这个函数或变量可能不安全
 #endif
 
 #ifdef __INTEL_COMPILER
-#	pragma warning(disable: 177) // function was declared but never referenced
-#	pragma warning(disable: 279) // controlling expression is constant
-#	pragma warning(disable: 1478 1786) // function was declared "deprecated"
-#	pragma warning(disable: 1684) // conversion from pointer to same-sized integral type
+#	pragma warning(disable: 177) // 函数已被声明，但从未被引用
+#	pragma warning(disable: 279) // 控制表达式是常量
+#	pragma warning(disable: 1478 1786) // 函数被声明为‘弃用
+#	pragma warning(disable: 1684) //从指针转换为同等大小的整型类型。
 #endif
 
 #if defined(__BORLANDC__) && defined(PUGIXML_HEADER_ONLY)
-#	pragma warn -8080 // symbol is declared but never used; disabling this inside push/pop bracket does not make the warning go away
+#	pragma warn -8080 //符号已被声明但从未被使用；即便在入栈 / 出栈括号内禁用（相关设置），该警告也不会消失
 #endif
 
 #ifdef __BORLANDC__
 #	pragma option push
-#	pragma warn -8008 // condition is always false
-#	pragma warn -8066 // unreachable code
+#	pragma warn -8008 //条件始终为假
+#	pragma warn -8066 //不可达代码
 #endif
 
 #ifdef __SNC__
-// Using diag_push/diag_pop does not disable the warnings inside templates due to a compiler bug
-#	pragma diag_suppress=178 // function was declared but never referenced
-#	pragma diag_suppress=237 // controlling expression is constant
+// 由于编译器的一个漏洞，使用 diag_push 和 diag_pop 无法禁用模板内部的警告。
+#	pragma diag_suppress=178 // 函数已声明但从未被引用
+#	pragma diag_suppress=237 // 控制表达式是常量
 #endif
 
 #ifdef __TI_COMPILER_VERSION__
-#	pragma diag_suppress 179 // function was declared but never referenced
+#	pragma diag_suppress 179 // 函数已被声明，但从未被引用
 #endif
 
-// Inlining controls
+//内联控制
 #if defined(_MSC_VER) && _MSC_VER >= 1300
 #	define PUGI__NO_INLINE __declspec(noinline)
 #elif defined(__GNUC__)
@@ -95,14 +95,14 @@
 #	define PUGI__NO_INLINE
 #endif
 
-// Branch weight controls
+//分支权重控制
 #if defined(__GNUC__) && !defined(__c2__)
 #	define PUGI__UNLIKELY(cond) __builtin_expect(cond, 0)
 #else
 #	define PUGI__UNLIKELY(cond) (cond)
 #endif
 
-// Simple static assertion
+//简单静态断言
 #define PUGI__STATIC_ASSERT(cond) { static const char condition_failed[(cond) ? 1 : -1] = {0}; (void)condition_failed[0]; }
 
 // Digital Mars C++ bug workaround for passing char loaded from memory via stack
@@ -476,38 +476,46 @@ PUGI__NS_BEGIN
 		return true;
 	}
 
+// PUGI__NS_END 和 PUGI__NS_BEGIN 是命名空间结束和开始的宏，用于创建一个命名空间。
+// 这样可以避免全局命名冲突，并组织代码结构。
 PUGI__NS_END
 #endif
 
 PUGI__NS_BEGIN
 #ifdef PUGIXML_COMPACT
-	static const uintptr_t xml_memory_block_alignment = 4;
+    // 在紧凑模式下，内存块对齐的字节数为4。
+    static const uintptr_t xml_memory_block_alignment = 4;
 #else
-	static const uintptr_t xml_memory_block_alignment = sizeof(void*);
+    // 在非紧凑模式下，内存块对齐的字节数为指针大小，通常是4字节或8字节，取决于平台。
+    static const uintptr_t xml_memory_block_alignment = sizeof(void*);
 #endif
 
-	// extra metadata bits
-	static const uintptr_t xml_memory_page_contents_shared_mask = 64;
-	static const uintptr_t xml_memory_page_name_allocated_mask = 32;
-	static const uintptr_t xml_memory_page_value_allocated_mask = 16;
-	static const uintptr_t xml_memory_page_type_mask = 15;
+    // 以下是一些额外的元数据位掩码，用于标记XML页面的特定属性。
+    static const uintptr_t xml_memory_page_contents_shared_mask = 64;  // 内容是否共享
+    static const uintptr_t xml_memory_page_name_allocated_mask = 32;   // 名称是否已分配
+    static const uintptr_t xml_memory_page_value_allocated_mask = 16;   // 值是否已分配
+    static const uintptr_t xml_memory_page_type_mask = 15;             // 节点类型掩码
 
-	// combined masks for string uniqueness
-	static const uintptr_t xml_memory_page_name_allocated_or_shared_mask = xml_memory_page_name_allocated_mask | xml_memory_page_contents_shared_mask;
-	static const uintptr_t xml_memory_page_value_allocated_or_shared_mask = xml_memory_page_value_allocated_mask | xml_memory_page_contents_shared_mask;
+    // 组合掩码，用于字符串的唯一性检查。
+    static const uintptr_t xml_memory_page_name_allocated_or_shared_mask = xml_memory_page_name_allocated_mask | xml_memory_page_contents_shared_mask;
+    static const uintptr_t xml_memory_page_value_allocated_or_shared_mask = xml_memory_page_value_allocated_mask | xml_memory_page_contents_shared_mask;
 
 #ifdef PUGIXML_COMPACT
-	#define PUGI__GETHEADER_IMPL(object, page, flags) // unused
-	#define PUGI__GETPAGE_IMPL(header) (header).get_page()
+    #define PUGI__GETHEADER_IMPL(object, page, flags)// 在紧凑模式下，以下宏定义为空，因为它们不被使用。 
+    #define PUGI__GETPAGE_IMPL(header) (header).get_page()
 #else
-	#define PUGI__GETHEADER_IMPL(object, page, flags) (((reinterpret_cast<char*>(object) - reinterpret_cast<char*>(page)) << 8) | (flags))
-	// this macro casts pointers through void* to avoid 'cast increases required alignment of target type' warnings
-	#define PUGI__GETPAGE_IMPL(header) static_cast<impl::xml_memory_page*>(const_cast<void*>(static_cast<const void*>(reinterpret_cast<const char*>(&header) - (header >> 8))))
+    // 在非紧凑模式下，定义了如何从对象获取其头部信息和页面信息的宏。
+    // PUGI__GETHEADER_IMPL 宏用于计算对象头部信息，包括对象相对于页面的位置和标志。
+    #define PUGI__GETHEADER_IMPL(object, page, flags) (((reinterpret_cast<char*>(object) - reinterpret_cast<char*>(page)) << 8) | (flags))
+    // PUGI__GETPAGE_IMPL 宏用于从头部信息中获取页面指针。
+    // 这个宏通过void*类型转换指针，以避免增加目标类型的对齐要求的警告。
+    #define PUGI__GETPAGE_IMPL(header) static_cast<impl::xml_memory_page*>(const_cast<void*>(static_cast<const void*>(reinterpret_cast<const char*>(&header) - (header >> 8))))
 #endif
 
-	#define PUGI__GETPAGE(n) PUGI__GETPAGE_IMPL((n)->header)
-	#define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
-
+    // PUGI__GETPAGE 宏用于从节点中获取页面。
+    #define PUGI__GETPAGE(n) PUGI__GETPAGE_IMPL((n)->header)
+    // PUGI__NODETYPE 宏用于从节点中获取节点类型。
+    #define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
 	struct xml_allocator;
 	// 定义xml_memory_page结构体，用于管理内存页
 	struct xml_memory_page
@@ -628,36 +636,40 @@ PUGI__NS_BEGIN
 		}
 
 	#ifdef PUGIXML_COMPACT
-		void* allocate_object(size_t size, xml_memory_page*& out_page)
-		{
-			void* result = allocate_memory(size + sizeof(uint32_t), out_page);
-			if (!result) return 0;
+    // allocate_object 函数用于在紧凑模式下分配指定大小的对象，并返回指向分配的内存的指针。
+    // 同时，它还更新 out_page 参数以指向包含该内存的对象页。
+    void* allocate_object(size_t size, xml_memory_page*& out_page)
+    {
+        // 首先，调用 allocate_memory 函数分配比请求大小多出 uint32_t 大小的内存块。
+        // 额外的空间用于存储一个标记，用于跟踪内存页的元数据。
+        void* result = allocate_memory(size + sizeof(uint32_t), out_page);
+        if (!result) return 0; // 如果内存分配失败，则返回 nullptr。
 
-			// adjust for marker
-			ptrdiff_t offset = static_cast<char*>(result) - reinterpret_cast<char*>(out_page->compact_page_marker);
+        // 计算 result 指针与页标记之间的偏移量。
+        ptrdiff_t offset = static_cast<char*>(result) - reinterpret_cast<char*>(out_page->compact_page_marker);
 
-			if (PUGI__UNLIKELY(static_cast<uintptr_t>(offset) >= 256 * xml_memory_block_alignment))
-			{
-				// insert new marker
-				uint32_t* marker = static_cast<uint32_t*>(result);
+        // 如果偏移量超过了一个阈值（意味着 result 距离页标记足够远），则需要插入一个新的标记。
+        if (PUGI__UNLIKELY(static_cast<uintptr_t>(offset) >= 256 * xml_memory_block_alignment))
+        {
+            // 将 result 指针转换为 uint32_t 指针，并设置标记。
+            uint32_t* marker = static_cast<uint32_t*>(result);
+            *marker = static_cast<uint32_t>(reinterpret_cast<char*>(marker) - reinterpret_cast<char*>(out_page));
+            out_page->compact_page_marker = marker; // 更新页的标记指针。
 
-				*marker = static_cast<uint32_t>(reinterpret_cast<char*>(marker) - reinterpret_cast<char*>(out_page));
-				out_page->compact_page_marker = marker;
+            // 因为我们不会重用页空间直到重新分配它，所以我们可以将标记块视为已释放。
+            // 这将确保 deallocate_memory 正确地跟踪大小。
+            out_page->freed_size += sizeof(uint32_t); // 更新已释放的大小。
 
-				// since we don't reuse the page space until we reallocate it, we can just pretend that we freed the marker block
-				// this will make sure deallocate_memory correctly tracks the size
-				out_page->freed_size += sizeof(uint32_t);
+            return marker + 1; // 返回指向标记后的对象内存的指针。
+        }
+        else
+        {
+            // 如果不需要插入新标记，则回滚 uint32_t 的部分，并更新 busy_size。
+            _busy_size -= sizeof(uint32_t);
 
-				return marker + 1;
-			}
-			else
-			{
-				// roll back uint32_t part
-				_busy_size -= sizeof(uint32_t);
-
-				return result;
-			}
-		}
+            return result; // 返回原始的内存分配指针。
+        }
+    }
 	#else
 		// 定义一个函数，用于分配指定大小的内存对象，并返回指向该对象的指针。
 // 同时，通过out_page参数返回该对象所在的内存页。

@@ -1,95 +1,251 @@
----
+
 Language:        Cpp
-# BasedOnStyle:  Google
+# 基于的样式，这里是Google风格
+# BasedOnStyle:  Google  # 此行已被注释掉，因为您直接在Language下方写了配置
+
+# 访问修饰符（public, private等）的缩进偏移量，相对于类成员减少2个空格
 AccessModifierOffset: -2
+
+# 在开放括号 `{` 后对齐内容
 AlignAfterOpenBracket: Align
+
+# 不对齐连续的赋值语句
 AlignConsecutiveAssignments: false
+
+# 不对齐连续的声明语句
 AlignConsecutiveDeclarations: false
+
+# 对齐转义后的新行到左边
 AlignEscapedNewlinesLeft: true
+
+# 对齐操作符（如 `+`, `-`, `*` 等）的两边
 AlignOperands:   true
+
+# 对齐尾随注释
 AlignTrailingComments: true
+
+# 允许函数声明的所有参数在新的一行上
 AllowAllParametersOfDeclarationOnNextLine: true
+
+# 不允许将短代码块放在同一行上
 AllowShortBlocksOnASingleLine: false
+
+# 不允许将短的case标签放在同一行上
 AllowShortCaseLabelsOnASingleLine: false
+
+# 对于空的函数体，可以选择是否允许将函数放在同一行上（这里设置为未指定，由其他规则决定）
 AllowShortFunctionsOnASingleLine: Empty
+
+# 允许将短的if语句放在同一行上
 AllowShortIfStatementsOnASingleLine: true
+
+# 允许将短的循环语句放在同一行上
 AllowShortLoopsOnASingleLine: true
+
+# 在返回类型后是否总是换行（None表示不强制换行）
 AlwaysBreakAfterDefinitionReturnType: None
+
+# 在返回类型声明后是否总是换行（None表示不强制换行）
 AlwaysBreakAfterReturnType: None
+
+# 在多行字符串前是否总是换行
 AlwaysBreakBeforeMultilineStrings: true
+
+# 在模板声明后是否总是换行
 AlwaysBreakTemplateDeclarations: true
+
+# 是否将参数分组到多行（true表示启用参数分组）
 BinPackArguments: true
+
+# 是否将函数参数分组到多行（true表示启用参数分组）
 BinPackParameters: true
+
+# 大括号包裹风格的配置
 BraceWrapping:   
+  # 类定义后的大括号不换行
   AfterClass:      false
+  # 控制语句（如if, for, while等）后的大括号不换行
   AfterControlStatement: false
+  # 枚举定义后的大括号不换行
   AfterEnum:       false
+  # 函数定义后的大括号不换行
   AfterFunction:   false
+  # 命名空间定义后的大括号不换行
   AfterNamespace:  false
+  # ObjC声明后的大括号不换行
   AfterObjCDeclaration: false
+  # 结构体定义后的大括号不换行
   AfterStruct:     false
+  # 联合定义后的大括号不换行
   AfterUnion:      false
+  # catch语句前的大括号不换行
   BeforeCatch:     false
+  # else语句前的大括号不换行
   BeforeElse:      false
+  # 大括号不额外缩进
   IndentBraces:    false
+
+# 在二元操作符前是否换行（None表示不强制换行）
 BreakBeforeBinaryOperators: None
+
+# 在大括号 `{` 前是否换行（Attach表示紧贴）
 BreakBeforeBraces: Attach
+
+# 在三元操作符 `? :` 前是否换行
 BreakBeforeTernaryOperators: true
+
+# 构造函数初始化列表中的逗号前是否换行
 BreakConstructorInitializersBeforeComma: false
+
+# 在Java字段注解后是否换行
 BreakAfterJavaFieldAnnotations: false
+
+# 长字符串字面量是否换行
 BreakStringLiterals: true
+
+# 每行的字符数限制
 ColumnLimit:     120
+
+# 识别特殊注释的正则表达式，这里用于识别IWYU pragma注释
 CommentPragmas:  '^ IWYU pragma:'
+
+# 构造函数初始化列表的所有项是否放在同一行或每行一个
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
+# 构造函数初始化列表的缩进宽度
 ConstructorInitializerIndentWidth: 2
+
+# 后续行的缩进宽度
 ContinuationIndentWidth: 4
+
+# C++11风格的列表初始化是否使用大括号包裹
 Cpp11BracedListStyle: true
+
+# 是否从指针类型派生对齐方式
 DerivePointerAlignment: true
+
+# 是否禁用格式化
 DisableFormat:   false
+
+# 是否自动检测参数和参数的分组
 ExperimentalAutoDetectBinPacking: false
+
+# 识别foreach宏的正则表达式列表
 ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]
+
+# 包含文件的分类和优先级
 IncludeCategories: 
   - Regex:           '^<.*\.h>'
-    Priority:        1
+    Priority:        1  # 系统头文件优先级最高
   - Regex:           '^<.*'
-    Priority:        2
+    Priority:        2  # 其他以<>包围的头文件
   - Regex:           '.*'
-    Priority:        3
-IncludeIsMainRegex: '([-_](test|unittest))?$'
-IndentCaseLabels: true
-IndentWidth:     2
-IndentWrappedFunctionNames: false
-JavaScriptQuotes: Leave
-JavaScriptWrapImports: true
-KeepEmptyLinesAtTheStartOfBlocks: false
-MacroBlockBegin: ''
-MacroBlockEnd:   ''
-MaxEmptyLinesToKeep: 1
-NamespaceIndentation: None
-ObjCBlockIndentWidth: 2
-ObjCSpaceAfterProperty: false
-ObjCSpaceBeforeProtocolList: false
-PenaltyBreakBeforeFirstCallParameter: 1
-PenaltyBreakComment: 300
-PenaltyBreakFirstLessLess: 120
-PenaltyBreakString: 1000
-PenaltyExcessCharacter: 1000000
-PenaltyReturnTypeOnItsOwnLine: 200
-PointerAlignment: Left
-ReflowComments:  true
-SortIncludes:    true
-SpaceAfterCStyleCast: false
-SpaceBeforeAssignmentOperators: true
-SpaceBeforeParens: ControlStatements
-SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 2
-SpacesInAngles:  false
-SpacesInContainerLiterals: true
-SpacesInCStyleCastParentheses: false
-SpacesInParentheses: false
-SpacesInSquareBrackets: false
-Standard:        Auto
-TabWidth:        8
-UseTab:          Never
-...
+    Priority:        3  # 以""包围的头文件
 
+# 识别主文件（如main.cpp）的正则表达式
+IncludeIsMainRegex: '([-_](test|unittest))?$'
+
+# case标签是否缩进
+IndentCaseLabels: true
+
+# 缩进宽度
+IndentWidth:     2
+
+# 是否对长函数名进行换行缩进
+IndentWrappedFunctionNames: false
+
+# JavaScript字符串字面量的引号风格（这里设置为保持原样）
+JavaScriptQuotes: Leave
+
+# 是否对JavaScript的import语句进行换行
+JavaScriptWrapImports: true
+
+# 在块开始处是否保留空行
+KeepEmptyLinesAtTheStartOfBlocks: false
+
+# 宏块开始的标记（这里没有设置）
+MacroBlockBegin: ''
+
+# 宏块结束的标记（这里没有设置）
+MacroBlockEnd:   ''
+
+# 要保留的最大空行数
+MaxEmptyLinesToKeep: 1
+
+# 命名空间的缩进方式（None表示不额外缩进）
+NamespaceIndentation: None
+
+# ObjC块内的缩进宽度
+ObjCBlockIndentWidth: 2
+
+# ObjC属性后是否加空格
+ObjCSpaceAfterProperty: false
+
+# ObjC协议列表前是否加空格
+ObjCSpaceBeforeProtocolList: false
+
+# 在第一个调用参数前换行的惩罚分数
+PenaltyBreakBeforeFirstCallParameter: 1
+
+# 在注释前换行的惩罚分数
+PenaltyBreakComment: 300
+
+# 在第一个 `<<` 操作符前换行的惩罚分数
+PenaltyBreakFirstLessLess: 120
+
+# 在字符串字面量中断行的惩罚分数
+PenaltyBreakString: 1000
+
+# 超出字符限制的惩罚分数
+PenaltyExcessCharacter: 1000000
+
+# 返回类型单独占一行的惩罚分数
+PenaltyReturnTypeOnItsOwnLine: 200
+
+# 指针的对齐方式（Left表示左对齐）
+PointerAlignment: Left
+
+# 是否重新格式化注释
+ReflowComments:  true
+
+# 是否对包含指令进行排序
+SortIncludes:    true
+
+# C风格类型转换后是否加空格
+SpaceAfterCStyleCast: false
+
+# 赋值操作符前是否加空格
+SpaceBeforeAssignmentOperators: true
+
+# 控制语句的圆括号前是否加空格（这里设置为仅在控制语句前加空格）
+SpaceBeforeParens: ControlStatements
+
+# 空的圆括号内是否加空格
+SpaceInEmptyParentheses: false
+
+# 尾随注释前是否加空格
+SpacesBeforeTrailingComments: 2
+
+# 尖括号内是否加空格（false表示不加）
+SpacesInAngles:  false
+
+# 容器字面量内是否加空格（true表示加空格）
+SpacesInContainerLiterals: true
+
+# C风格转换的圆括号内是否加空格
+SpacesInCStyleCastParentheses: false
+
+# 普通圆括号内是否加空格
+SpacesInParentheses: false
+
+# 方括号内是否加空格
+SpacesInSquareBrackets: false
+
+# 使用的编码标准（Auto表示自动检测）
+Standard:        Auto
+
+# Tab字符的宽度
+TabWidth:        8
+
+# 是否使用Tab字符进行缩进（Never表示从不使用Tab）
+UseTab:          Never

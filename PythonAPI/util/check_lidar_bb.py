@@ -69,38 +69,41 @@ class ActorTrace(object):
     def __init__(self, actor, lidar):
         self.set_lidar(lidar)
         self.set_actor(actor)
+# 初始化本地坐标系下的激光雷达点云数据为空数组
         self._lidar_pc_local = np.array([])
+# 初始化边界框顶点为空数组
         self._bb_vertices = np.array([])
-        self._bb_minlimits = [0, 0, 0]
-        self._bb_maxlimits = [0, 0, 0]
+# 初始化边界框的最小和最大坐标限制
+        self._bb_minlimits = [0, 0, 0] # 定义边界框的最小坐标，初始值为（0，0，0）
+        self._bb_maxlimits = [0, 0, 0] # 定义边界框的最大坐标，初始值为（0，0，0）
 
     def set_lidar(self, lidar):
-        self._frame = lidar[0]
-        self._lidar_data = lidar[2]
-        self._lidar_transf = lidar[3]
+        self._frame = lidar[0]                      # 帧信息
+        self._lidar_data = lidar[2]              # 点云数据
+        self._lidar_transf = lidar[3]            # 激光雷达的全局变换
 
     def set_actor(self, actor):
-        self._actor_id = actor[0]
-        self._actor_type = actor[1]
-        self._actor_transf = actor[2]
-        self._actor_bb = actor[3]
+        self._actor_id = actor[0]              # 行为者ID
+        self._actor_type = actor[1]             # 行为者类型
+        self._actor_transf = actor[2]            # 行为者的全局变换
+        self._actor_bb = actor[3]             # 行为者的边界框
 
     def process(self):
+ # 过滤出与当前行为者ID对应的激光雷达点云数据
         # Filter lidar points that correspond to my actor id
         data_actor = self._lidar_data[self._lidar_data['ObjIdx'] == self._actor_id]
-
+  # 将点云数据从传感器坐标系转换到世界坐标系，再转换到行为者本地坐标系
         # Take the xyz point cloud data and transform it to actor's frame
-        points = np.array([data_actor['x'], data_actor['y'], data_actor['z']]).T
+        points = np.array([data_actor['x'], data_actor['y'], data_actor['z']]).T                                    # 添加齐次坐标
         points = np.append(points, np.ones((points.shape[0], 1)), axis=1)
-        points = np.dot(self._lidar_transf.get_matrix(), points.T).T         # sensor -> world
-        points = np.dot(self._actor_transf.get_inverse_matrix(), points.T).T # world -> actor
-        points = points[:, :-1]
+        points = np.dot(self._lidar_transf.get_matrix(), points.T).T         # sensor -> world                 # 传感器 -> 世界
+        points = np.dot(self._actor_transf.get_inverse_matrix(), points.T).T # world -> actor                 
+        points = points[:, :-1]                      # 移除齐次坐标
 
-        # Saving the points in 'local' coordinates
+        # 保存转换后的点云数据到本地坐标系
         self._lidar_pc_local = points
 
-        # We compute the limits in the local frame of reference using the
-        # vertices of the bounding box
+        # 计算边界框在本地坐标系下的顶点
         vertices = self._actor_bb.get_local_vertices()
         ver_py = []
         for v in vertices:
@@ -109,6 +112,7 @@ class ActorTrace(object):
 
         self._bb_vertices = ver_np
 
+ # 计算边界框的最小和最大坐标限制（加减一个小数以避免浮点误差）
         self._bb_minlimits = ver_np.min(axis=0) - 0.001
         self._bb_maxlimits = ver_np.max(axis=0) + 0.001
 
@@ -117,33 +121,43 @@ class ActorTrace(object):
             np.savetxt("veh_data_%d_%s_%d.out" % (self._frame, self._actor_type, self._actor_id), self._lidar_pc_local)
             np.savetxt("bb_data_%d_%s_%d.out"  % (self._frame, self._actor_type, self._actor_id), self._bb_vertices)
 
-    def lidar_is_outside_bb(self, check_axis = [True, True, True]):
+    def lidar_is_outside_bb(self, check_axis=[True, True, True]):
+        """
+        检查激光雷达点云是否超出了边界框的范围。
+ 
+        参数:
+            check_axis (list of bool): 一个包含三个布尔值的列表，分别表示是否检查x、y、z轴。
+ 
+        返回:
+            bool: 如果点云在任一检查的轴上超出了边界框，则返回True；否则返回False。
+        """
+        # 获取本地激光雷达点云数据
         lidar_pc = self._lidar_pc_local
-
+ 
+        # 检查x轴
         if check_axis[0]:
-            xmin = self._bb_minlimits[0]
-            xmax = self._bb_maxlimits[0]
-            out = np.any((lidar_pc[:,0] > xmax) | (lidar_pc[:,0] < xmin))
-            if out:
+            # 获取边界框在x轴上的最小和最大限制
+            xmin, xmax = self._bb_minlimits[0], self._bb_maxlimits[0]
+            # 检查点云中是否有任何点在x轴上超出了边界框的范围
+            if np.any((lidar_pc[:, 0] > xmax) | (lidar_pc[:, 0] < xmin)):
                 print("Problem with x axis")
                 return True
-
+ 
+        # 检查y轴（逻辑与x轴相同）
         if check_axis[1]:
-            ymin = self._bb_minlimits[1]
-            ymax = self._bb_maxlimits[1]
-            out = np.any((lidar_pc[:, 1] > ymax) | (lidar_pc[:, 1] < ymin))
-            if out:
+            ymin, ymax = self._bb_minlimits[1], self._bb_maxlimits[1]
+            if np.any((lidar_pc[:, 1] > ymax) | (lidar_pc[:, 1] < ymin)):
                 print("Problem with y axis")
                 return True
-
+ 
+        # 检查z轴（逻辑与x轴和y轴相同）
         if check_axis[2]:
-            zmin = self._bb_minlimits[2]
-            zmax = self._bb_maxlimits[2]
-            out = np.any((lidar_pc[:, 2] > zmax) | (lidar_pc[:, 2] < zmin))
-            if out:
+            zmin, zmax = self._bb_minlimits[2], self._bb_maxlimits[2]
+            if np.any((lidar_pc[:, 2] > zmax) | (lidar_pc[:, 2] < zmin)):
                 print("Problem with z axis")
                 return True
-
+ 
+        # 如果点云在所有检查的轴上都没有超出边界框，则返回False
         return False
     
     def check_lidar_data(self):

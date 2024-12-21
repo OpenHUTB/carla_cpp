@@ -91,13 +91,22 @@ nav_msgs::msg::Odometry::Odometry(
 nav_msgs::msg::Odometry& nav_msgs::msg::Odometry::operator =(
         const Odometry& x)
 {
+    // 将传入对象 x 的 m_header 成员复制到当前对象的 m_header 成员中
     m_header = x.m_header;
+
+    // 将传入对象 x 的 m_child_frame_id 成员复制到当前对象的 m_child_frame_id 成员中
     m_child_frame_id = x.m_child_frame_id;
+
+    // 将传入对象 x 的 m_pose 成员复制到当前对象的 m_pose 成员中
     m_pose = x.m_pose;
+
+    // 将传入对象 x 的 m_twist 成员复制到当前对象的 m_twist 成员中
     m_twist = x.m_twist;
 
+    // 返回当前对象的引用，支持链式赋值操作（例如 obj1 = obj2 = obj3）
     return *this;
 }
+
 
 nav_msgs::msg::Odometry& nav_msgs::msg::Odometry::operator =(
         Odometry&& x) noexcept

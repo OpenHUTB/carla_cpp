@@ -34,25 +34,36 @@ using namespace util;/// 导入CARLA的实用工具命名空间，包含常用�
  */
 const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER "/OpenDrive/";
 
-
+// 静态函数，用于测试道路海拔相关情况，接收XML文档和地图（可选）引用
 static void test_road_elevation(const pugi::xml_document &xml, boost::optional<Map>& map) {
+  // 获取XML中"OpenDRIVE"节点
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
+  // 遍历"OpenDRIVE"下的"road"节点
   for (pugi::xml_node road_node : open_drive_node.children("road")) {
+    // 获取道路id
     RoadId road_id = road_node.attribute("id").as_uint();
+    // 获取此道路下的"elevationProfile"节点们
     auto elevation_profile_nodes = road_node.children("elevationProfile");
 
+    // 遍历各"elevationProfile"节点
     for (pugi::xml_node elevation_profile_node : elevation_profile_nodes) {
+      // 统计有效海拔数量的计数器
       auto total_elevations = 0;
+      // 获取"elevation"节点们
       auto elevation_nodes = elevation_profile_node.children("elevation");
+      // 计算"elevation"节点总数
       auto total_elevation_parser = std::distance(elevation_nodes.begin(), elevation_nodes.end());
-
+      
+      // 遍历"elevation"节点
       for (pugi::xml_node elevation_node : elevation_nodes) {
+        // 获取节点中表示位置的属性值
         float s = elevation_node.attribute("s").as_float();
+        // 尝试获取地图中对应道路位置的海拔信息
         const auto elevation = map->GetMap().GetRoad(road_id).GetInfo<RoadInfoElevation>(s);
         if (elevation != nullptr)
           ++total_elevations;
-      }
+      }// 验证获取到的海拔数量与解析出的节点数量是否一致
       ASSERT_EQ(total_elevations, total_elevation_parser);
     }
   }
@@ -136,35 +147,39 @@ static auto get_total_road_marks(
   return std::make_pair(total_road_mark, total_road_mark_parser);
 }
 
+/// 定义一个名为test_roads的函数，它接受一个const引用的pugi::xml_document对象和一个boost::optional<Map>对象作为参数
 static void test_roads(const pugi::xml_document &xml, boost::optional<Map>& map) {
+ /// 从XML文档中获取名为"OpenDRIVE"的子节点
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
-  // Check total Roads
+ // 解析"OpenDRIVE"节点下所有的"road"子节点，并计算它们的数量
   auto roads_parser = open_drive_node.children("road");
   auto total_roads_parser = std::distance(roads_parser.begin(), roads_parser.end());
-  auto total_roads = map->GetMap().GetRoads().size();
-  ASSERT_EQ(total_roads, total_roads_parser);
-
+  auto total_roads = map->GetMap().GetRoads().size();/// 从Map对象中获取当前存储的道路数量。
+  ASSERT_EQ(total_roads, total_roads_parser);///用于验证XML中的道路数量与Map中存储的道路数量是否一致。
+// 遍历每一个"road"节点
   for (pugi::xml_node road_node : roads_parser) {
     RoadId road_id = road_node.attribute("id").as_uint();
-
+// 遍历该道路下的所有"lanes"子节点
     for (pugi::xml_node lanes_node : road_node.children("lanes")) {
 
-      // Check total Lane Sections
+   // 解析"lanes"节点下所有的"laneSection"子节点，并计算它们的数量
       auto lane_sections_parser = lanes_node.children("laneSection");
       auto total_lane_sections_parser = std::distance(lane_sections_parser.begin(), lane_sections_parser.end());
-      auto total_lane_sections = map->GetMap().GetRoad(road_id).GetLaneSections().size();
+      auto total_lane_sections = map->GetMap().GetRoad(road_id).GetLaneSections().size(); /// 从Map对象中获取当前道路的所有车道段数量
       ASSERT_EQ(total_lane_sections, total_lane_sections_parser);
 
       for (pugi::xml_node lane_section_node : lane_sections_parser) {
 
         // Check total Lanes
-        const double s = lane_section_node.attribute("s").as_double();
-        auto lane_section = map->GetMap().GetRoad(road_id).GetLaneSectionsAt(s);
-        size_t total_lanes = 0u;
+        const double s = lane_section_node.attribute("s").as_double();/// 从"laneSection"节点中获取s属性
+        auto lane_section = map->GetMap().GetRoad(road_id).GetLaneSectionsAt(s); // 从Map对象中获取对应位置的车道段
+        size_t total_lanes = 0u;/// 初始化车道总数为0
+        //遍历车道段中的每一个车道组
         for (auto it = lane_section.begin(); it != lane_section.end(); ++it) {
-          total_lanes = it->GetLanes().size();
+          total_lanes = it->GetLanes().size();  // 更新车道总数为当前车道组中的车道数量
         }
+        // 解析"laneSection"节点下的"left"、"center"和"right"子节点中的"lane"子节点数量
         auto left_nodes = lane_section_node.child("left").children("lane");
         auto center_nodes = lane_section_node.child("center").children("lane");
         auto right_nodes = lane_section_node.child("right").children("lane");
@@ -172,12 +187,14 @@ static void test_roads(const pugi::xml_document &xml, boost::optional<Map>& map)
         total_lanes_parser += std::distance(right_nodes.begin(), right_nodes.end());
         total_lanes_parser += std::distance(center_nodes.begin(), center_nodes.end());
 
-        ASSERT_EQ(total_lanes, total_lanes_parser);
+        ASSERT_EQ(total_lanes, total_lanes_parser);//用于验证XML中的车道数量与Map中存储的车道数量是否一致
 
-
+        // 初始化道路标记总数为0
         auto total_road_mark = 0;
         auto total_road_mark_parser = 0;
+        // 遍历车道段中的每一个车道组
         for (auto it = lane_section.begin(); it != lane_section.end(); ++it) {
+        // 计算左侧、中心和右侧车道中的道路标记总数
           auto total_left = get_total_road_marks(left_nodes, *it);
           auto total_center = get_total_road_marks(center_nodes, *it);
           auto total_right = get_total_road_marks(right_nodes, *it);
@@ -190,64 +207,71 @@ static void test_roads(const pugi::xml_document &xml, boost::optional<Map>& map)
   }
 }
 
-// Junctions
+// 定义一个测试函数，用于验证XML文档中的交叉路口数据与Map对象中的交叉路口数据是否一致
 static void test_junctions(const pugi::xml_document &xml, boost::optional<Map>& map) {
-  pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
+  pugi::xml_node open_drive_node = xml.child("OpenDRIVE"); // 从XML文档中获取OpenDRIVE根节点
 
-  // Check total number of junctions
+  // 获取Map对象中的交叉路口集合，并检查XML文档中声明的交叉路口总数是否与Map对象中的一致
   auto& junctions = map->GetMap().GetJunctions();
+  // 计算XML文档中声明的交叉路口总数
   auto total_junctions_parser = std::distance(open_drive_node.children("junction").begin(), open_drive_node.children("junction").end());
-
+  // 使用ASSERT_EQ宏来断言两者数量相等
   ASSERT_EQ(junctions.size(), total_junctions_parser);
-
+  // 遍历XML文档中的每一个交叉路口节点
   for (pugi::xml_node junction_node : open_drive_node.children("junction")) {
-    // Check total number of connections
+   // 检查当前交叉路口的连接总数是否与XML文档中声明的连接总数一致
     auto total_connections_parser = std::distance(junction_node.children("connection").begin(), junction_node.children("connection").end());
-
+  // 从交叉路口节点的id属性中获取交叉路口ID
     JuncId junction_id = junction_node.attribute("id").as_int();
-    auto& junction = junctions.find(junction_id)->second;
-
+    auto& junction = junctions.find(junction_id)->second; // 在Map对象的交叉路口集合中查找对应的交叉路口
+  // 获取当前交叉路口的连接集合
     auto& connections = junction.GetConnections();
-
+    // 使用ASSERT_EQ宏来断言两者数量相等
     ASSERT_EQ(connections.size(), total_connections_parser);
-
+// 遍历当前交叉路口的每一个连接节点
     for (pugi::xml_node connection_node : junction_node.children("connection")) {
-      auto total_lane_links_parser = std::distance(connection_node.children("laneLink").begin(), connection_node.children("laneLink").end());
-
+      // 检查当前连接的车道链接总数是否与XML文档中声明的车道链接总数一致
+      auto total_lane_links_parser = std::distance(connection_node.children("laneLink").begin(), connection_node.children("laneLink").end()); 
+      // 从连接节点的id属性中获取连接ID
       ConId connection_id = connection_node.attribute("id").as_uint();
+      // 在当前交叉路口的连接集合中查找对应的连接
       auto& connection = connections.find(connection_id)->second;
-
+    // 获取当前连接的车道链接集合
     auto& lane_links = connection.lane_links;
-
+   // 使用ASSERT_EQ宏来断言两者数量相等
     ASSERT_EQ(lane_links.size(), total_lane_links_parser);
 
     }
   }
 }
-
+// 定义一个名为 test_road_links 的函数，它接受一个 boost::optional<Map> 类型的引用作为参数
 static void test_road_links(boost::optional<Map>& map) {
 
-  // process all roads, sections and lanes
+    // 使用 for 循环遍历 map 中的所有道路
   for (auto &road : map->GetMap().GetRoads()) {
+     // 对于每条道路，遍历其所有的车道段section
     for (auto &section : road.second.GetLaneSections()) {
+       // 对于每个车道段，遍历其所有的车道lane
       for (auto &lane : section.GetLanes()) {
-        // check all nexts
+        // 对于每个车道，检查其所有后续车道next lanes
         for (auto link : lane.second.GetNextLanes()) {
           ASSERT_TRUE(link != nullptr);
         }
-        // check all prevs
+       // 对于每个车道，检查其所有前置车道previous lanes
         for (auto link : lane.second.GetPreviousLanes()) {
-          ASSERT_TRUE(link != nullptr);
+          ASSERT_TRUE(link != nullptr);// 每个车道都应该有一个有效的前置车道链接
         }
       }
     }
   }
 }
-
+// 定义一个测试用例
 TEST(road, parse_files) {
+   // 使用 util::OpenDrive::Load 函数加载文件
   for (const auto &file : util::OpenDrive::GetAvailableFiles()) {
     // std::cerr << file << std::endl;
     auto map = OpenDriveParser::Load(util::OpenDrive::Load(file));
+   // 使用 ASSERT_TRUE 断言来确保 map 不是 nullptr
     ASSERT_TRUE(map);
     // print_roads(map, file);
   }
@@ -324,30 +348,42 @@ TEST(road, parse_geometry) {
 }
 
 TEST(road, iterate_waypoints) {
+  // 创建一个线程池
   carla::ThreadPool pool;
   pool.AsyncRun();
+  // 用于存储异步任务结果的向量
   std::vector<std::future<void>> results;
+  // 遍历所有可用的OpenDrive文件
   for (const auto& file : util::OpenDrive::GetAvailableFiles()) {
-    carla::logging::log("Parsing", file);
+    carla::logging::log("Parsing", file);// 日志记录开始解析的文件名
+     // 向线程池提交一个异步任务，任务内容是解析和验证地图
     results.push_back(pool.Post([file]() {
-      carla::StopWatch stop_watch;
-      auto m = OpenDriveParser::Load(util::OpenDrive::Load(file));
-      ASSERT_TRUE(m.has_value());
+      carla::StopWatch stop_watch;  // 创建一个计时器，用于测量解析和验证地图所需的时间
+      auto m = OpenDriveParser::Load(util::OpenDrive::Load(file)); // 加载OpenDrive文件并解析为地图
+      ASSERT_TRUE(m.has_value()); // 断言解析成功，m不为空
       auto &map = *m;
+      // 生成地图的拓扑结构，并断言拓扑不为空
       const auto topology = map.GenerateTopology();
       ASSERT_FALSE(topology.empty());
       auto count = 0u;
+      // 生成地图的轨迹点（waypoints），每个轨迹点间隔0.5米
       auto waypoints = map.GenerateWaypoints(0.5);
       ASSERT_FALSE(waypoints.empty());
+      // 随机打乱轨迹点顺序
       Random::Shuffle(waypoints);
+      // 确定要探索的轨迹点数量，最多2000个
       const auto number_of_waypoints_to_explore =
           std::min<size_t>(2000u, waypoints.size());
+       // 遍历选定的轨迹点进行探索
       for (auto i = 0u; i < number_of_waypoints_to_explore; ++i) {
         auto wp = waypoints[i];
+       // 计算轨迹点的变换
         map.ComputeTransform(wp);
+       // 对于非第一个轨迹点，断言它与第一个轨迹点不同
         if (i != 0u) {
           ASSERT_NE(wp, waypoints[0u]);
         }
+        // 遍历当前轨迹点的所有后继轨迹点
         for (auto &&successor : map.GetSuccessors(wp)) {
           ASSERT_TRUE(
               successor.road_id != wp.road_id ||
@@ -356,22 +392,29 @@ TEST(road, iterate_waypoints) {
               successor.s != wp.s);
         }
         auto origin = wp;
+        // 从当前轨迹点出发，探索最多200次后续轨迹点
         for (auto j = 0u; j < 200u; ++j) {
+          // 获取从当前轨迹点出发，在0.0001到150米范围内的后续轨迹点
           auto next_wps = map.GetNext(origin, Random::Uniform(0.0001, 150.0));
           if (next_wps.empty()) {
             break;
           }
+          // 确定要探索的后续轨迹点数量，最多10个
           const auto number_of_next_wps_to_explore =
               std::min<size_t>(10u, next_wps.size());
+          // 随机打乱后续轨迹点顺序
           Random::Shuffle(next_wps);
+          // 遍历选定的后续轨迹点进行探索
           for (auto k = 0u; k < number_of_next_wps_to_explore; ++k) {
             auto next = next_wps[k];
             ++count;
+            // 断言后续轨迹点与当前轨迹点至少有一个属性不同
             ASSERT_TRUE(
                 next.road_id != wp.road_id ||
                 next.section_id != wp.section_id ||
                 next.lane_id != wp.lane_id ||
                 next.s != wp.s);
+            // 获取当前后续轨迹点的右侧轨迹点
             auto right = map.GetRight(next);
             if (right.has_value()) {
               ASSERT_EQ(right->road_id, next.road_id);
@@ -379,43 +422,54 @@ TEST(road, iterate_waypoints) {
               ASSERT_NE(right->lane_id, next.lane_id);
               ASSERT_EQ(right->s, next.s);
             }
+             // 获取当前后续轨迹点的左侧轨迹点
             auto left = map.GetLeft(next);
             if (left.has_value()) {
+              // 断言左侧轨迹点与当前后续轨迹点在同一道路和路段，但车道不同
               ASSERT_EQ(left->road_id, next.road_id);
               ASSERT_EQ(left->section_id, next.section_id);
               ASSERT_NE(left->lane_id, next.lane_id);
               ASSERT_EQ(left->s, next.s);
             }
           }
-          origin = next_wps[0u];
+          origin = next_wps[0u];  // 将下一个探索的起点设置为当前探索的后续轨迹点中的第一个
         }
       }
-      ASSERT_GT(count, 0u);
-      float seconds = 1e-3f * stop_watch.GetElapsedTime();
+      ASSERT_GT(count, 0u);// 断言至少探索了一个轨迹点
+      float seconds = 1e-3f * stop_watch.GetElapsedTime();   // 获取解析和验证地图所需的时间，并记录日志
       carla::logging::log(file, "done in", seconds, "seconds.");
     }));
   }
+  // 等待所有异步任务完成
   for (auto &result : results) {
     result.get();
   }
 }
 
 TEST(road, get_waypoint) {
+  // 创建一个线程池
   carla::ThreadPool pool;
+  // 启动线程池中的异步任务执行
   pool.AsyncRun();
+  // 创建一个容器来存储异步任务的返回值
   std::vector<std::future<void>> results;
+  // 遍历所有可用的OpenDrive文件 
   for (const auto& file : util::OpenDrive::GetAvailableFiles()) {
     carla::logging::log("Parsing", file);
     results.push_back(pool.Post([file]() {
+      // 创建一个计时器，用于测量任务执行时间
       carla::StopWatch stop_watch;
+      // 使用OpenDriveParser加载OpenDrive文件
       auto m = OpenDriveParser::Load(util::OpenDrive::Load(file));
-      ASSERT_TRUE(m.has_value());
-      auto &map = *m;
+      ASSERT_TRUE(m.has_value());// 确保地图被成功加载
+      auto &map = *m;// 获取地图的引用
+      // 进行10000次随机位置测试
       for (auto i = 0u; i < 10'000u; ++i) {
-        const auto location = Random::Location(-500.0f, 500.0f);
-        auto owp = map.GetClosestWaypointOnRoad(location);
+        const auto location = Random::Location(-500.0f, 500.0f);  // 在指定的范围内生成一个随机位置
+        auto owp = map.GetClosestWaypointOnRoad(location); // 在地图上找到离该位置最近的道路点
         ASSERT_TRUE(owp.has_value());
-        auto &wp = *owp;
+        auto &wp = *owp;// 获取道路点的引用
+        // 获取当前道路点的下一个道路点
         for (auto &next : map.GetNext(wp, 0.5)) {
           ASSERT_TRUE(
               next.road_id != wp.road_id ||
@@ -423,6 +477,7 @@ TEST(road, get_waypoint) {
               next.lane_id != wp.lane_id ||
               next.s != wp.s);
         }
+        // 获取当前道路点的左侧相邻道路点
         auto left = map.GetLeft(wp);
         if (left.has_value()) {
           ASSERT_EQ(left->road_id, wp.road_id);
@@ -430,6 +485,7 @@ TEST(road, get_waypoint) {
           ASSERT_NE(left->lane_id, wp.lane_id);
           ASSERT_EQ(left->s, wp.s);
         }
+        // 获取当前道路点的右侧相邻道路点
         auto right = map.GetRight(wp);
         if (right.has_value()) {
           ASSERT_EQ(right->road_id, wp.road_id);
@@ -438,10 +494,12 @@ TEST(road, get_waypoint) {
           ASSERT_EQ(right->s, wp.s);
         }
       }
+      // 计算并记录任务执行时间
       float seconds = 1e-3f * stop_watch.GetElapsedTime();
       carla::logging::log(file, "done in", seconds, "seconds.");
     }));
   }
+    // 等待所有异步任务完成
   for (auto &result : results) {
     result.get();
   }

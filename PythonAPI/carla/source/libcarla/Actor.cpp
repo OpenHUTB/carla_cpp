@@ -1,4 +1,4 @@
-// 本作品根据MIT许可证条款进行授权。
+// 本作品根据MIT许可证条款进行授权。asssss
 // 许可证副本见<https://opensource.org/licenses/MIT>。
 
 #include <carla/client/Actor.h> // 引入Actor功能的头文件
@@ -81,21 +81,23 @@ static auto GetLightBoxes(const carla::client::TrafficLight &self) {
 // 将参与者的函数暴露出去
 void export_actor() {
   using namespace boost::python;
-  namespace cc = carla::client;
-  namespace cr = carla::rpc;
-  namespace ctm = carla::traffic_manager;
+  namespace cc = carla::client; // carla客户端相关的命名空间
+  namespace cr = carla::rpc;// carla远程过程调用相关的命名空间
+  namespace ctm = carla::traffic_manager;// carla交通管理相关的命名空间
 
-  enum_<cr::ActorState>("ActorState")
+   // 定义ActorState枚举类型到Python的映射，将C++中的枚举值暴露给Python
+    enum_<cr::ActorState>("ActorState")
     .value("Invalid", cr::ActorState::Invalid)
     .value("Active", cr::ActorState::Active)
     .value("Dormant", cr::ActorState::Dormant)
   ;
 
-  class_<std::vector<int>>("vector_of_ints")
+    // 为std::vector<int>类型定义Python类，使其在Python中能像普通类一样使用，支持索引和转换为字符串等操作
+    class_<std::vector<int>>("vector_of_ints")
       .def(vector_indexing_suite<std::vector<int>>())
       .def(self_ns::str(self_ns::self))
   ;
-
+  // 定义Actor类到Python的映射，继承相关特性，设置不可拷贝，通过智能指针管理，定义多个属性和方法的Python接口
   class_<cc::Actor, boost::noncopyable, boost::shared_ptr<cc::Actor>>("Actor", no_init)
   // 变通方法，强制返回副本以解决Actor而不是ActorState
       .add_property("id", CALL_RETURNING_COPY(cc::Actor, GetId))
@@ -151,6 +153,7 @@ void export_actor() {
       .def(self_ns::str(self_ns::self))
   ;
 
+  // 定义VehicleLightState中的LightState枚举类型到Python的映射，将不同灯光状态枚举值暴露给Python
   enum_<cr::VehicleLightState::LightState>("VehicleLightState")
     .value("NONE", cr::VehicleLightState::LightState::None) // None is reserved in Python3
     .value("Position", cr::VehicleLightState::LightState::Position)
@@ -167,6 +170,7 @@ void export_actor() {
     .value("All", cr::VehicleLightState::LightState::All)
   ;
 
+  // 定义VehicleWheelLocation枚举类型到Python的映射，将车辆车轮位置的枚举值暴露给Python
   enum_<cr::VehicleWheelLocation>("VehicleWheelLocation")
     .value("FL_Wheel", cr::VehicleWheelLocation::FL_Wheel)
     .value("FR_Wheel", cr::VehicleWheelLocation::FR_Wheel)
@@ -176,7 +180,8 @@ void export_actor() {
     .value("Back_Wheel", cr::VehicleWheelLocation::Back_Wheel)
   ;
 
-  enum_<cr::VehicleDoor>("VehicleDoor")
+    // 定义VehicleDoor枚举类型到Python的映射，将车辆车门相关的枚举值暴露给Python
+    enum_<cr::VehicleDoor>("VehicleDoor")
     .value("FL", cr::VehicleDoor::FL)
     .value("FR", cr::VehicleDoor::FR)
     .value("RL", cr::VehicleDoor::RL)
@@ -184,6 +189,7 @@ void export_actor() {
     .value("All", cr::VehicleDoor::All)
   ;
 
+  // 定义VehicleFailureState枚举类型到Python的映射，将车辆故障状态的枚举值暴露给Python
   enum_<cr::VehicleFailureState>("VehicleFailureState")
     .value("NONE", cr::VehicleFailureState::None)
     .value("Rollover", cr::VehicleFailureState::Rollover)
@@ -191,6 +197,7 @@ void export_actor() {
     .value("TirePuncture", cr::VehicleFailureState::TirePuncture)
   ;
 
+  // 定义Vehicle类到Python的映射，继承自Actor类，设置相关特性，定义多个Vehicle类特有的方法和属性的Python接口
   class_<cc::Vehicle, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::Vehicle>>("Vehicle",
       no_init)
       .def("apply_control", &cc::Vehicle::ApplyControl, (arg("control")))
@@ -221,7 +228,8 @@ void export_actor() {
       .def(self_ns::str(self_ns::self))
   ;
 
-  class_<cc::Walker, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::Walker>>("Walker", no_init)
+    //定义Walker类到Python的映射，继承自Actor类，设置相关特性，定义多个Walker类特有的方法的Python接口
+    class_<cc::Walker, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::Walker>>("Walker", no_init)
       .def("apply_control", &ApplyControl<cr::WalkerControl>, (arg("control")))
       .def("get_control", &cc::Walker::GetWalkerControl)
       .def("get_bones", &cc::Walker::GetBonesTransform)
@@ -233,7 +241,8 @@ void export_actor() {
       .def(self_ns::str(self_ns::self))
   ;
 
-  class_<cc::WalkerAIController, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::WalkerAIController>>("WalkerAIController", no_init)
+    // 定义WalkerAIController类到Python的映射，继承自Actor类，设置相关特性，定义多个该类特有的方法的Python接口
+    class_<cc::WalkerAIController, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::WalkerAIController>>("WalkerAIController", no_init)
     .def("start", &cc::WalkerAIController::Start)
     .def("stop", &cc::WalkerAIController::Stop)
     .def("go_to_location", &cc::WalkerAIController::GoToLocation, (arg("destination")))
@@ -241,13 +250,15 @@ void export_actor() {
     .def(self_ns::str(self_ns::self))
   ;
 
-  class_<cc::TrafficSign, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::TrafficSign>>(
+    // 定义TrafficSign类到Python的映射，继承自Actor类，设置相关特性，添加获取触发体积属性的Python接口
+    class_<cc::TrafficSign, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::TrafficSign>>(
       "TrafficSign",
       no_init)
       .add_property("trigger_volume", CALL_RETURNING_COPY(cc::TrafficSign, GetTriggerVolume))
   ;
 
-  enum_<cr::TrafficLightState>("TrafficLightState")
+    // 定义TrafficLightState枚举类型到Python的映射，将交通信号灯状态的枚举值暴露给Python
+    enum_<cr::TrafficLightState>("TrafficLightState")
       .value("Red", cr::TrafficLightState::Red)
       .value("Yellow", cr::TrafficLightState::Yellow)
       .value("Green", cr::TrafficLightState::Green)
@@ -255,7 +266,8 @@ void export_actor() {
       .value("Unknown", cr::TrafficLightState::Unknown)
   ;
 
-  class_<cc::TrafficLight, bases<cc::TrafficSign>, boost::noncopyable, boost::shared_ptr<cc::TrafficLight>>(
+    // 定义TrafficLight类到Python的映射，继承自TrafficSign类，设置相关特性，定义多个交通信号灯相关操作的Python接口，如设置、获取状态等
+    class_<cc::TrafficLight, bases<cc::TrafficSign>, boost::noncopyable, boost::shared_ptr<cc::TrafficLight>>(
       "TrafficLight",
       no_init)
       .add_property("state", &cc::TrafficLight::GetState)

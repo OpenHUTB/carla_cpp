@@ -31,56 +31,61 @@
         default: 0
         doc: >
           Number of working threads used for background updates. If 0, use all
-          available concurrency.
+          available concurrency. # 背景更新所使用的工作线程数。如果为0，则使用所有可用的并发线程。
       doc: >
-        Client constructor
+        Client constructor # 客户端构造函数
     # --------------------------------------
     - def_name: apply_batch
       params:
       - param_name: commands
         type: list
         doc: >
-          A list of commands to execute in batch. Each command is different and has its own parameters. They appear listed at the bottom of this page.
+          A list of commands to execute in batch. Each command is different and has its own parameters. They appear listed at the bottom of this page. # 一组要批量执行的命令，每个命令有不同的参数，它们在页面底部列出。
       doc: >
         Executes a list of commands on a single simulation step and retrieves no information. If you need information about the response of each command, use the __<font color="#7fb800">apply_batch_sync()</font>__ method.
-        [Here](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py) is an example on how to delete the actors that appear in carla.ActorList all at once.
+        [Here](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py) is an example on how to delete the actors that appear in carla.ActorList all at once. # 在单次模拟步骤中执行一组命令，并且不获取任何信息。如果需要获取每个命令的响应信息，可以使用__<font color="#7fb800">apply_batch_sync()</font>__方法。
+        [这里](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py)是一个示例，展示如何一次性删除出现在carla.ActorList中的所有actor。
     # --------------------------------------
     - def_name: apply_batch_sync
       params:
       - param_name: commands
         type: list
         doc: >
-          A list of commands to execute in batch. The commands available are listed right above, in the method **<font color="#7fb800">apply_batch()</font>**.
+          A list of commands to execute in batch. The commands available are listed right above, in the method **<font color="#7fb800">apply_batch()</font>**.# 一组要批量执行的命令，可用命令列表请参考上面的方法**<font color="#7fb800">apply_batch()</font>**。
       - param_name: due_tick_cue
         type: bool
         default: false
         doc: >
-          A boolean parameter to specify whether or not to perform a carla.World.tick after applying the batch in _synchronous mode_. It is __False__ by default.
+          A boolean parameter to specify whether or not to perform a carla.World.tick after applying the batch in _synchronous mode_. It is __False__ by default. # 一个布尔值参数，指定在同步模式下应用批量命令后是否执行carla.World.tick。默认值为__False__。
       return: list(command.Response)
       doc: >
-        Executes a list of commands on a single simulation step, blocks until the commands are linked, and returns a list of <b>command.Response</b> that can be used to determine whether a single command succeeded or not. [Here](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py) is an example of it being used to spawn actors.
+        Executes a list of commands on a single simulation step, blocks until the commands are linked, and returns a list of <b>command.Response</b> that can be used to determine whether a single command succeeded or not. [Here](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py) is an example of it being used to spawn actors. # 在单次模拟步骤中执行一组命令，直到命令链接完成才返回，并返回一个<b>command.Response</b>列表，可以用于判断每个命令是否成功执行。
+        [这里](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py)是一个示例，展示如何使用它来生成actor。
     # --------------------------------------
     - def_name: generate_opendrive_world
       params:
       - param_name: opendrive
         type: str
         doc: >
-          Content of an ASAM OpenDRIVE file as `string`, __not the path to the `.xodr`__.
+          Content of an ASAM OpenDRIVE file as `string`, __not the path to the `.xodr`__. # OpenDRIVE文件的内容作为字符串传递，__不是`.xodr`文件的路径__。
       - param_name: parameters
         type: carla.OpendriveGenerationParameters
         default: (2.0, 50.0, 1.0, 0.6, true, true)
         doc: >
-           Additional settings for the mesh generation. If none are provided, default values will be used.
+           Additional settings for the mesh generation. If none are provided, default values will be used. # 网格生成的额外设置。如果未提供，默认值将会被使用。
       - param_name: reset_settings
         type: bool
         default: true
         doc: >
           Option to reset the episode setting to default values, set to false to keep the current settings.
-          This is useful to keep sync mode when changing map and to keep deterministic scenarios.
+          This is useful to keep sync mode when changing map and to keep deterministic scenarios.# 选择是否重置设置为默认值，若设为false，则保持当前设置。这对在更换地图时保持同步模式和确定性场景非常有用。
       doc: >
         Loads a new world with a basic 3D topology generated from the content of an OpenDRIVE file. This content is passed as a `string` parameter.
         It is similar to `client.load_world(map_name)` but allows for custom OpenDRIVE maps in server side.
-        Cars can drive around the map, but there are no graphics besides the road and sidewalks.
+        Cars can drive around the map, but there are no graphics besides the road and sidewalks. # 加载一个新的世界，并基于OpenDRIVE文件的内容生成一个基本的3D拓扑结构。内容作为字符串参数传递。
+    # 它类似于`client.load_world(map_name)`，但允许在服务器端加载自定义的OpenDRIVE地图。
+    # 汽车可以在地图上行驶，但除了道路和人行道外，没有其他图形。
+
     # --------------------------------------
     - def_name: load_world
       params:
@@ -88,24 +93,24 @@
         type: str
         doc: >
           Name of the map to be used in this world. Accepts both full paths and map names, e.g.
-          '/Game/Carla/Maps/Town01' or 'Town01'. Remember that these paths are dynamic.
+          '/Game/Carla/Maps/Town01' or 'Town01'. Remember that these paths are dynamic. # 用于此世界的地图名称。接受完整路径和地图名称，例如 '/Game/Carla/Maps/Town01' 或 'Town01'。请记住，这些路径是动态的。
       - param_name: reset_settings
         type: bool
         default: true
         doc: >
           Option to reset the episode setting to default values, set to false to keep the current settings.
-          This is useful to keep sync mode when changing map and to keep deterministic scenarios.
+          This is useful to keep sync mode when changing map and to keep deterministic scenarios.# 选择是否重置设置为默认值，若设为false，则保持当前设置。这对在更换地图时保持同步模式和确定性场景非常有用。
       - param_name: map_layers
         type: carla.MapLayer
         default: carla.MapLayer.All
         doc: >
           Layers of the map that will be loaded. By default all layers are loaded.
-          This parameter works like a flag mask.
+          This parameter works like a flag mask. # 要加载的地图层。默认情况下，所有层都会加载。此参数类似于标志掩码。
       return: carla.World
       warning: >
-        `map_layers` are only available for "Opt" maps
+        `map_layers` are only available for "Opt" maps# `map_layers` 仅适用于“Opt”地图。
       doc: >
-        Creates a new world with default settings using `map_name` map. All actors in the current world will be destroyed.
+        Creates a new world with default settings using `map_name` map. All actors in the current world will be destroyed. # 使用`map_name`地图创建一个新的世界，并使用默认设置。当前世界中的所有演员将被销毁。
     # --------------------------------------
     - def_name: reload_world
       params:
@@ -204,17 +209,17 @@
       doc: >
         The terminal will show the information registered for actors considered blocked. An actor is considered blocked when it does not move a minimum distance in a period of time, being these `min_distance` and `min_time`.
      # --------------------------------------
-    - def_name: show_recorder_collisions
+    - def_name: show_recorder_collisions# 定义函数名称为 show_recorder_collisions，用于显示记录器记录的碰撞信息
       params:
-      - param_name: filename
+      - param_name: filename# 参数 filename，类型为字符串，用于指定要显示碰撞信息的记录文件的名称或绝对路径
         type: str
         doc: >
           Name or absolute path of the file recorded, depending on your previous choice.
-      - param_name: category1
+      - param_name: category1# 参数 category1，类型为单个字符，用于指定参与碰撞的第一种角色类型
         type: single char
         doc: >
           Character variable specifying a first type of actor involved in the collision.
-      - param_name: category2
+      - param_name: category2# 参数 category2，类型为单个字符，用于指定参与碰撞的第二种角色类型
         type: single char
         doc: >
           Character variable specifying the second type of actor involved in the collision.

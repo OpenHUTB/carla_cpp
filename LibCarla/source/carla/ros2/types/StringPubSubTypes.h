@@ -20,22 +20,34 @@
  */
 
 #ifndef _FAST_DDS_GENERATED_STD_MSGS_MSG_STRING_PUBSUBTYPES_H_
+// 条件编译指令的判断部分，如果在此之前没有定义过 _FAST_DDS_GENERATED_STD_MSGS_MSG_STRING_PUBSUBTYPES_H_ 这个宏，
+// 那么后续的代码将会被编译处理，用于防止头文件被重复包含导致的编译错误。
 #define _FAST_DDS_GENERATED_STD_MSGS_MSG_STRING_PUBSUBTYPES_H_
+// 定义 _FAST_DDS_GENERATED_STD_MSGS_MSG_STRING_PUBSUBTYPES_H_ 这个宏，与上面的 #ifndef 配合使用，实现头文件重复包含的防护机制。
 
 #include <fastdds/dds/topic/TopicDataType.hpp>
+// 引入 Fast DDS 库中与主题数据类型（TopicDataType）相关的头文件，里面可能定义了主题数据类型的基类以及相关的通用接口等内容，
+// 为后续自定义的数据类型类继承和实现相应功能提供基础。
 #include <fastrtps/utils/md5.h>
+// 引入 FastRTPS 库中与 MD5 相关的工具头文件，大概率是用于处理诸如数据校验、生成唯一标识等与 MD5 算法相关的操作，
+// 可能在本类中会借助 MD5 算法来实现某些功能，比如生成数据的标识等。
 
 #include "String.h"
+// 引入名为 "String.h" 的头文件，从文件名推测这里面可能定义了与字符串相关的数据结构或者类，也许是本模块中自定义的字符串类型相关定义，
 
 #if !defined(GEN_API_VER) || (GEN_API_VER != 1)
 #error \
     Generated String is not compatible with current installed Fast DDS. Please, regenerate it with fastddsgen.
 #endif  // GEN_API_VER
+// 条件编译判断，如果没有定义 GEN_API_VER 这个宏，或者定义了但它的值不等于1，就会产生一个编译错误，并输出相应的错误提示信息，
+// 提示生成的字符串相关内容与当前安装的 Fast DDS 不兼容，需要使用 fastddsgen 工具重新生成，以此来确保代码生成版本与当前使用的库版本的兼容性。
 
 namespace std_msgs
 {
+// 定义名为 "std_msgs" 的命名空间，通常用于组织和归类与标准消息相关的类型、类、函数等内容，使得代码结构更清晰，避免命名冲突。
     namespace msg
     {
+// 在 "std_msgs" 命名空间内再定义一个名为 "msg" 的子命名空间，进一步细分相关的消息类型相关的定义，更细致地对代码进行分类管理。
 
         /*!
          * @brief This class represents the TopicDataType of the type String defined by the user in the IDL file.
@@ -43,40 +55,65 @@ namespace std_msgs
          */
         class StringPubSubType : public eprosima::fastdds::dds::TopicDataType
         {
+// 定义一个名为 StringPubSubType 的类，它继承自 eprosima::fastdds::dds::TopicDataType，表明这个类是用于自定义的主题数据类型，
+        // 从注释可知它代表了用户在接口定义语言（IDL）文件中定义的 String 类型的主题数据类型，并且通过 @ingroup 标签将其归到 STRING 分组中，方便文档生成等相关操作进行分类展示。
         public:
 
             typedef String type;
+// 使用 typedef 为类中的一个类型定义了别名 "type"，将其与 String 类型关联起来，方便在类的其他地方统一使用这个别名来指代 String 类型，
+            // 使得代码在修改具体类型时可能只需要修改这一处 typedef 定义，增强代码的可维护性。
+
 
             eProsima_user_DllExport StringPubSubType();
+ // 声明类的构造函数，使用了 eProsima_user_DllExport 这个宏（可能是用于在特定编译环境下控制函数的导出等相关特性，比如动态链接库中函数的可见性），
+            // 用于创建 StringPubSubType 类的对象，在构造函数中可能会进行一些初始化相关的操作，例如初始化与主题数据类型相关的成员变量等。
 
             eProsima_user_DllExport virtual ~StringPubSubType() override;
+ // 声明类的析构函数，同样使用了 eProsima_user_DllExport 宏，并且通过 override 关键字表明这是重写了父类（TopicDataType）的析构函数，
+            // 用于在对象销毁时释放该类所占用的资源，比如可能释放一些在构造函数中申请的内存等操作。
 
             eProsima_user_DllExport virtual bool serialize(
                     void* data,
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload) override;
+ // 声明一个虚函数 serialize，用于实现序列化功能，接收两个参数：一个 void* 类型的指针 data（指向要被序列化的数据）和一个 eprosima::fastrtps::rtps::SerializedPayload_t* 类型的指针 payload（用于存储序列化后的结果数据），
+            // 通过 override 关键字表明重写了父类的相应虚函数，函数返回值为 bool 类型，用于表示序列化操作是否成功，在函数内部需要实现将传入的 data 所指向的数据按照特定的规则序列化为 payload 所指向的结构中。
 
             eProsima_user_DllExport virtual bool deserialize(
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload,
                     void* data) override;
+ // 声明一个虚函数 deserialize，用于实现反序列化功能，接收两个参数：一个 eprosima::fastrtps::rtps::SerializedPayload_t* 类型的指针 payload（指向已经序列化的数据）和一个 void* 类型的指针 data（用于存储反序列化后得到的数据），
+            // 同样重写了父类的对应虚函数，返回值为 bool 类型，用于表示反序列化操作是否成功，在函数内部需要将 payload 所指向的序列化数据按照相应规则还原为原始的数据结构并存放在 data 所指向的内存空间中。
 
             eProsima_user_DllExport virtual std::function<uint32_t()> getSerializedSizeProvider(
                     void* data) override;
+// 声明一个虚函数 getSerializedSizeProvider，返回类型是 std::function<uint32_t()>（表示一个可调用对象，调用它会返回一个无符号 32 位整数），
+            // 接收一个 void* 类型的指针 data（指向相关数据），重写了父类的对应虚函数，其功能可能是根据传入的数据（data）来获取序列化后数据的大小，返回的可调用对象在被调用时会返回相应的序列化数据大小值。
+
 
             eProsima_user_DllExport virtual bool getKey(
                     void* data,
                     eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
                     bool force_md5 = false) override;
+// 声明一个虚函数 getKey，用于获取数据的键值（可能用于在某些数据存储、查找等场景中作为唯一标识等用途），接收三个参数：
+            // 一个 void* 类型的指针 data（指向相关数据）、一个 eprosima::fastrtps::rtps::InstanceHandle_t* 类型的指针 ihandle（用于存储获取到的实例句柄相关信息，也许与数据的标识关联）以及一个可选的布尔类型参数 force_md5（默认值为 false，可能用于控制是否强制使用 MD5 算法来生成键值等相关操作），
+            // 重写了父类的对应虚函数，返回值为 bool 类型，用于表示获取键值的操作是否成功。
 
             eProsima_user_DllExport virtual void* createData() override;
+// 声明一个虚函数 createData，返回类型为 void*（通常用于返回指向新创建的数据内存空间的指针），重写了父类的对应虚函数，
+            // 其功能应该是创建与本主题数据类型相关的数据对象所占用的内存空间，并返回指向该内存空间的指针，方便后续对数据进行操作。
 
             eProsima_user_DllExport virtual void deleteData(
                     void* data) override;
+// 声明一个虚函数 deleteData，接收一个 void* 类型的指针 data（指向要被删除的数据内存空间），重写了父类的对应虚函数，
+            // 其功能是释放由 createData 等函数创建的数据对象所占用的内存资源，进行内存清理操作，避免内存泄漏等问题。
 
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
             eProsima_user_DllExport inline bool is_bounded() const override
             {
                 return false;
             }
+// 如果定义了 TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED 这个宏，就会编译这段代码。这里定义了一个内联函数 is_bounded，用于判断数据类型是否是有界的（可能在某些数据存储、传输等场景中有不同的处理方式），
+            // 函数被声明为 const，表示调用该函数不会修改对象的状态，重写了父类的对应函数，这里直接返回 false，表示该数据类型不是有界的，具体返回值需要根据实际数据类型的特性来确定。
 
         #endif  // TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
 
@@ -85,6 +122,7 @@ namespace std_msgs
             {
                 return false;
             }
+ // 如果定义了 TOPIC_DATA_TYPE_API_HAS_IS_PLAIN 这个宏，就会编译这段代码。定义了内联函数 is_plain，用于判断数据类型是否是简单类型（同样在不同的数据处理场景中有不同含义），
 
         #endif  // TOPIC_DATA_TYPE_API_HAS_IS_PLAIN
 
@@ -95,12 +133,19 @@ namespace std_msgs
                 (void)memory;
                 return false;
             }
+// 如果定义了 TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE 这个宏，就会编译这段代码。定义了内联函数 construct_sample，用于构建数据样本（可能在数据测试、初始化等场景中使用），
+            // 接收一个 void* 类型的指针 memory（可能指向用于构建样本的内存空间），函数被声明为 const，重写了父类的对应函数，这里暂时将传入的 memory 参数忽略（通过 (void)memory 进行空使用声明，避免编译器警告），并返回 false，
+            // 实际的构建样本逻辑需要根据具体数据类型的要求来实现，这里只是一个默认的占位实现。
 
         #endif  // TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE
             MD5 m_md5;
+// 定义一个名为 m_md5 的成员变量，类型为 MD5（前面引入了相关的头文件，应该是用于处理 MD5 相关操作的类型），可能用于在类的某些操作中（比如生成键值等）借助 MD5 算法来实现相应功能。
             unsigned char* m_keyBuffer;
+ // 定义一个名为 m_keyBuffer 的指针类型成员变量，指向无符号字符类型（unsigned char）的内存空间，可能用于存储生成的键值等相关数据，
+            // 作为数据处理过程中的一个临时或者长期使用的缓冲区，具体用途要结合类中各个函数的实现来确定。
         };
     }
 }
 
 #endif // _FAST_DDS_GENERATED_STD_MSGS_MSG_STRING_PUBSUBTYPES_H_
+// 结束条件编译的 #endif 部分，与开头的 #ifndef 对应，确保整个头文件的内容只在未重复包含的情况下被编译一次。

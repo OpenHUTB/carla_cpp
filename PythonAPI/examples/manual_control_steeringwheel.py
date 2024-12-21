@@ -24,7 +24,8 @@ from __future__ import print_function
 # ==============================================================================
 # -- find carla module ---------------------------------------------------------
 # ==============================================================================
-
+// 尝试将特定路径添加到系统路径中，该路径根据Python版本、操作系统类型以及Carla相关信息来构建
+// 目的是能够正确导入Carla相关的模块
 
 import glob
 import os
@@ -45,7 +46,7 @@ except IndexError:
 
 
 import carla
-
+// 从Carla模块中导入ColorConverter并简称为cc，方便后续使用颜色转换相关功能
 from carla import ColorConverter as cc
 
 import argparse
@@ -57,6 +58,7 @@ import random
 import re
 import weakref
 
+// 根据Python版本不同来导入ConfigParser相关模块，Python 3及以上版本从configparser导入，否则从ConfigParser导入
 if sys.version_info >= (3, 0):
 
     from configparser import ConfigParser
@@ -64,9 +66,10 @@ if sys.version_info >= (3, 0):
 else:
 
     from ConfigParser import RawConfigParser as ConfigParser
-
+// 尝试导入pygame相关模块，如果导入失败则抛出运行时错误提示需要安装pygame包
 try:
     import pygame
+//从pygame.locals中导入多个按键相关的常量定义，这些常量用于后续处理键盘输入事件
     from pygame.locals import KMOD_CTRL
     from pygame.locals import KMOD_SHIFT
     from pygame.locals import K_0
@@ -96,7 +99,7 @@ try:
     from pygame.locals import K_w
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
-
+//尝试导入numpy模块，如果导入失败则抛出运行时错误提示需要安装numpy包
 try:
     import numpy as np
 except ImportError:
@@ -107,14 +110,14 @@ except ImportError:
 # -- Global functions ----------------------------------------------------------
 # ==============================================================================
 
-
+//定义函数用于查找天气预设相关信息，通过正则表达式等操作处理Carla中WeatherParameters里符合特定命名规则的预设信息
 def find_weather_presets():
     rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
     name = lambda x: ' '.join(m.group(0) for m in rgx.finditer(x))
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
 
-
+//定义函数用于获取Actor（游戏中的角色、物体等）的显示名称，对类型ID进行处理，比如替换下划线、转换格式等，必要时进行截断处理并添加省略号
 def get_actor_display_name(actor, truncate=250):
     name = ' '.join(actor.type_id.replace('_', '.').title().split('.')[1:])
     return (name[:truncate - 1] + u'\u2026') if len(name) > truncate else name
@@ -124,8 +127,9 @@ def get_actor_display_name(actor, truncate=250):
 # -- World ---------------------------------------------------------------------
 # ==============================================================================
 
-
+// 定义World类，用于表示整个游戏世界相关的操作和管理
 class World(object):
+//类的初始化方法，接收Carla世界对象、HUD（抬头显示相关对象）、Actor过滤器等参数
     def __init__(self, carla_world, hud, actor_filter):
         self.world = carla_world
         self.hud = hud
@@ -134,19 +138,24 @@ class World(object):
         self.lane_invasion_sensor = None
         self.gnss_sensor = None
         self.camera_manager = None
+//获取天气预设信息列表
         self._weather_presets = find_weather_presets()
         self._weather_index = 0
         self._actor_filter = actor_filter
+//调用重启方法来初始化世界状态
         self.restart()
         self.world.on_tick(hud.on_world_tick)
-
+//重启世界的方法，用于重新初始化游戏世界中的各种元素，比如角色、传感器等
     def restart(self):
         # Keep same camera config if the camera manager exists.
+//如果相机管理器存在，则获取当前相机索引和相机位置索引，否则设为默认值0
         cam_index = self.camera_manager.index if self.camera_manager is not None else 0
         cam_pos_index = self.camera_manager.transform_index if self.camera_manager is not None else 0
         # Get a random blueprint.
+//从Carla世界的蓝图库中根据过滤器筛选出一个随机蓝图，用于生成游戏中的角色等对象
         blueprint = random.choice(self.world.get_blueprint_library().filter(self._actor_filter))
         blueprint.set_attribute('role_name', 'hero')
+//如果蓝图有颜色属性，则随机选择一个推荐的颜色值并设置给蓝图
         if blueprint.has_attribute('color'):
             color = random.choice(blueprint.get_attribute('color').recommended_values)
             blueprint.set_attribute('color', color)
@@ -157,18 +166,22 @@ class World(object):
             spawn_point.rotation.roll = 0.0
             spawn_point.rotation.pitch = 0.0
             self.destroy()
-            self.player = self.world.try_spawn_actor(blueprint, spawn_point)
+ // 如果玩家角色还未生成成功，则不断尝试从地图的出生点或者默认位置生成玩家角色      
+self.player = self.world.try_spawn_actor(blueprint, spawn_point)
         while self.player is None:
             spawn_points = self.world.get_map().get_spawn_points()
             spawn_point = random.choice(spawn_points) if spawn_points else carla.Transform()
             self.player = self.world.try_spawn_actor(blueprint, spawn_point)
-        # Set up the sensors.
+   //设置各种传感器，如碰撞传感器、车道入侵传感器、全球导航卫星系统传感器以及相机管理器等
+ # Set up the sensors.
+
         self.collision_sensor = CollisionSensor(self.player, self.hud)
         self.lane_invasion_sensor = LaneInvasionSensor(self.player, self.hud)
         self.gnss_sensor = GnssSensor(self.player)
         self.camera_manager = CameraManager(self.player, self.hud)
         self.camera_manager.transform_index = cam_pos_index
         self.camera_manager.set_sensor(cam_index, notify=False)
+//获取玩家角色的显示名称，并通过HUD显示相关通知信息
         actor_type = get_actor_display_name(self.player)
         self.hud.notification(actor_type)
 
@@ -178,14 +191,14 @@ class World(object):
         preset = self._weather_presets[self._weather_index]
         self.hud.notification('Weather: %s' % preset[1])
         self.player.get_world().set_weather(preset[0])
-
+//每帧更新的方法，调用HUD的tick方法传递当前世界对象和时钟信息，用于更新显示相关内容
     def tick(self, clock):
         self.hud.tick(self, clock)
-
+//渲染方法，调用相机管理器的渲染方法来渲染画面，并调用HUD的渲染方法来显示抬头显示相关内容
     def render(self, display):
         self.camera_manager.render(display)
         self.hud.render(display)
-
+//销毁方法，用于停止并销毁各种传感器以及玩家角色，释放相关资源
     def destroy(self):
         sensors = [
             self.camera_manager.sensor,
