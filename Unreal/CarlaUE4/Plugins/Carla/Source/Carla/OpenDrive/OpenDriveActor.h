@@ -4,21 +4,21 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once//预处理指令，用于确保这个头文件在单个编译单元中只被包含（include）一次。这有助于防止多重包含问题
 
 #include "GameFramework/Actor.h"
 
-#include "Traffic/RoutePlanner.h"
-#include "Vehicle/VehicleSpawnPoint.h"
+#include "Traffic/RoutePlanner.h"//用于规划交通路线的类或函数的定义
+#include "Vehicle/VehicleSpawnPoint.h"//用于定义车辆生成点的类或函数
 
 #include "Components/BillboardComponent.h"
 #include "Components/SceneComponent.h"
-#include "CoreMinimal.h"
+#include "CoreMinimal.h"//包含了Unreal Engine核心功能的一些基本定义和宏
 
-
+//由Unreal Engine的Unreal Header Tool（UHT）自动生成的，包含了OpenDriveActor类的反射系统所需的代码。反射系统允许Unreal Engine在运行时动态地查询和操作类的属性和方法
 #include "OpenDriveActor.generated.h"
 
-UCLASS()
+UCLASS()//这是一个宏，用于在Unreal Engine中声明一个类
 class CARLA_API AOpenDriveActor : public AActor // 定义AOpenDriveActor类，继承自AActor
 {
   GENERATED_BODY()
