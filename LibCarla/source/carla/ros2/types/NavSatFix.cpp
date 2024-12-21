@@ -104,32 +104,45 @@ sensor_msgs::msg::NavSatFix& sensor_msgs::msg::NavSatFix::operator =(
     return *this;
 }
 
+// 重载赋值运算符（移动赋值），用于将一个NavSatFix右值对象的内容移动赋值给当前对象，声明为noexcept表示不会抛出异常
 sensor_msgs::msg::NavSatFix& sensor_msgs::msg::NavSatFix::operator =(
         NavSatFix&& x) noexcept
 {
+    // 将传入对象的头部信息通过移动语义赋值给当前对象的头部信息，避免不必要的拷贝，提高效率
     m_header = std::move(x.m_header);
+    // 将传入对象的状态信息通过移动语义赋值给当前对象的状态信息
     m_status = std::move(x.m_status);
+    // 将传入对象的纬度值直接赋值给当前对象的纬度值（这里可能是普通赋值，具体看成员类型的设计）
     m_latitude = x.m_latitude;
+    // 将传入对象的经度值直接赋值给当前对象的经度值
     m_longitude = x.m_longitude;
+    // 将传入对象的高度值直接赋值给当前对象的高度值
     m_altitude = x.m_altitude;
+    // 将传入对象的位置协方差信息通过移动语义赋值给当前对象的对应信息
     m_position_covariance = std::move(x.m_position_covariance);
+    // 将传入对象的位置协方差类型直接赋值给当前对象的对应类型
     m_position_covariance_type = x.m_position_covariance_type;
 
+    // 返回当前对象的引用，以支持连续赋值等操作
     return *this;
 }
 
+// 重载相等比较运算符，用于比较当前对象和传入的另一个NavSatFix对象是否相等，返回布尔值表示比较结果
 bool sensor_msgs::msg::NavSatFix::operator ==(
         const NavSatFix& x) const
 {
+    // 通过依次比较各个成员变量是否相等，来判断两个NavSatFix对象整体是否相等，只有所有成员都相等时才返回true
     return (m_header == x.m_header && m_status == x.m_status && m_latitude == x.m_latitude && m_longitude == x.m_longitude && m_altitude == x.m_altitude && m_position_covariance == x.m_position_covariance && m_position_covariance_type == x.m_position_covariance_type);
 }
 
-bool sensor_msgs::msg::NavSatFix::operator !=(
+// 重载不等比较运算符，通过对相等比较结果取反来判断当前对象和传入对象是否不相等，返回布尔值
+bool sensor_msgs::msg::NavSatFix::operator!=(
         const NavSatFix& x) const
 {
-    return !(*this == x);
+    return!(*this == x);
 }
 
+// 获取最大的CDR序列化大小，参数current_alignment可能用于处理对齐相关的情况，但此处被强制转换为void忽略了，直接返回预定义的最大CDR类型大小
 size_t sensor_msgs::msg::NavSatFix::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
@@ -137,19 +150,25 @@ size_t sensor_msgs::msg::NavSatFix::getMaxCdrSerializedSize(
     return sensor_msgs_msg_NavSatFix_max_cdr_typesize;
 }
 
+// 获取给定NavSatFix对象的CDR序列化大小，根据对象各个成员的序列化大小逐步累加计算，同时考虑对齐等因素
 size_t sensor_msgs::msg::NavSatFix::getCdrSerializedSize(
         const sensor_msgs::msg::NavSatFix& data,
         size_t current_alignment)
 {
+    // 记录初始的对齐值，用于后面计算相对于初始状态增加的序列化大小
     size_t initial_alignment = current_alignment;
+    // 将当前对齐值更新为加上头部信息序列化大小后的新对齐值，递归调用相关函数来计算头部的序列化大小
     current_alignment += std_msgs::msg::Header::getCdrSerializedSize(data.header(), current_alignment);
+    // 类似地，更新对齐值为加上状态信息序列化大小后的新值，调用对应函数计算状态信息的序列化大小
     current_alignment += sensor_msgs::msg::NavSatStatus::getCdrSerializedSize(data.status(), current_alignment);
+    // 增加8字节（可能是某个成员数据的大小），并根据当前对齐情况进行对齐调整，将调整后的对齐值更新回来
     current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
     current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
     current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
     current_alignment += ((9) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
     current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
+    // 返回相对于初始对齐值增加的序列化大小，即对象整体的序列化大小
     return current_alignment - initial_alignment;
 }
 

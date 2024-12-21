@@ -62,17 +62,17 @@ from __future__ import print_function
 # ==============================================================================
 
 
-import glob
-import os
+import glob# 导入glob模块，用于文件名模式匹配
+import os# 导入os模块，用于操作系统相关功能
 import sys
 
-try:
+try:# 尝试添加CARLA的Python API路径到系统路径中
     sys.path.append(glob.glob('../carla/dist/carla-0.9.15-py*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])# 使用glob.glob搜索匹配的CARLA Python API .egg文件
 except IndexError:
-    pass
+    pass# 如果找不到匹配的文件，忽略异常
 
 
 # ==============================================================================
@@ -80,7 +80,7 @@ except IndexError:
 # ==============================================================================
 
 
-import carla
+import carla# 导入carla模块，CARLA模拟器的Python API
 
 from carla import ColorConverter as cc
 
@@ -149,20 +149,31 @@ except ImportError:
 # ==============================================================================
 
 
+#获取一些预设的天气相关参数
 def find_weather_presets():
+    #创建一个正则表达式对象rgx
     rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
+    #对于了一个匿名函数name
     name = lambda x: ' '.join(m.group(0) for m in rgx.finditer(x))
+    #列表推导式
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
+    #将两个结果组成一个元组，所有元组组成列表作为函数的返回值
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
 
 
+#目的是为了处理actor对象的类型标识，返回处理后的名称
 def get_actor_display_name(actor, truncate=250):
+    #替换
     name = ' '.join(actor.type_id.replace('_', '.').title().split('.')[1:])
+    #比较长度
     return (name[:truncate - 1] + u'\u2026') if len(name) > truncate else name
 
+#获取bps
 def get_actor_blueprints(world, filter, generation):
+    #从world对象的蓝图库获取经过filter过滤的列表存储在bps变量中
     bps = world.get_blueprint_library().filter(filter)
 
+    #bps的长度是否为1
     if generation.lower() == "all":
         return bps
 
@@ -315,8 +326,8 @@ class World(object):
     def load_map_layer(self, unload=False):
         selected = self.map_layer_names[self.current_map_layer]
         if unload:
-            self.hud.notification('Unloading map layer: %s' % selected)
-            self.world.unload_map_layer(selected)
+            self.hud.notification('Unloading map layer: %s' % selected)# 显示正在卸载的地图层
+            self.world.unload_map_layer(selected)# 从世界中卸载地图层
         else:
             self.hud.notification('Loading map layer: %s' % selected)
             self.world.load_map_layer(selected)
@@ -324,16 +335,16 @@ class World(object):
     def toggle_radar(self):
         if self.radar_sensor is None:
             self.radar_sensor = RadarSensor(self.player)
-        elif self.radar_sensor.sensor is not None:
+        elif self.radar_sensor.sensor is not None:# 如果雷达传感器已创建但未销毁
             self.radar_sensor.sensor.destroy()
             self.radar_sensor = None
 
     def modify_vehicle_physics(self, actor):
         #If actor is not a vehicle, we cannot use the physics control
         try:
-            physics_control = actor.get_physics_control()
-            physics_control.use_sweep_wheel_collision = True
-            actor.apply_physics_control(physics_control)
+            physics_control = actor.get_physics_control()# 获取车辆的物理控制属性
+            physics_control.use_sweep_wheel_collision = True# 启用扫掠轮碰撞
+            actor.apply_physics_control(physics_control)# 应用物理控制属性
         except Exception:
             pass
 
@@ -375,14 +386,14 @@ class World(object):
 class KeyboardControl(object):
     """Class that handles keyboard input."""
     def __init__(self, world, start_in_autopilot):
-        self._autopilot_enabled = start_in_autopilot
-        self._ackermann_enabled = False
-        self._ackermann_reverse = 1
-        if isinstance(world.player, carla.Vehicle):
+        self._autopilot_enabled = start_in_autopilot# 是否启用自动驾驶
+        self._ackermann_enabled = False# 是否启用Ackermann转向控制
+        self._ackermann_reverse = 1# Ackermann转向控制的反向系数
+        if isinstance(world.player, carla.Vehicle):# 如果玩家是车辆
             self._control = carla.VehicleControl()
             self._ackermann_control = carla.VehicleAckermannControl()
-            self._lights = carla.VehicleLightState.NONE
-            world.player.set_autopilot(self._autopilot_enabled)
+            self._lights = carla.VehicleLightState.NONE# 设置车辆灯光状态
+            world.player.set_autopilot(self._autopilot_enabled)# 设置玩家的自动驾驶状态
             world.player.set_light_state(self._lights)
         elif isinstance(world.player, carla.Walker):
             self._control = carla.WalkerControl()

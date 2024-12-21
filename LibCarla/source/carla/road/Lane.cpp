@@ -84,21 +84,27 @@ namespace road {
     }
     // 检查距离是否在几何范围内
     if(GetDistance() < geometry->GetDistance() ||
+       // 检查当前对象的起点是否在几何对象的起点之前
         GetDistance() + GetLength() >
+      // 检查当前对象的终点是否在几何对象的终点之后
         geometry->GetDistance() + geometry->GetGeometry().GetLength()) {
       return false; // 如果不在范围内，返回false
     }
     // 检查车道偏移信息
-    auto lane_offsets = GetInfos<element::RoadInfoLaneOffset>();
-    for (auto *lane_offset : lane_offsets) {
+    // 车道偏移信息通过多项式表示，其中C和D是多项式的系数。
+    // 如果C或D不为0，表示车道有偏移（不是直线）。
+    auto lane_offsets = GetInfos<element::RoadInfoLaneOffset>();// 获取车道偏移信息
+    for (auto *lane_offset : lane_offsets) {// 遍历每个车道偏移信息
       if (std::abs(lane_offset->GetPolynomial().GetC()) > 0 ||
           std::abs(lane_offset->GetPolynomial().GetD()) > 0) {
         return false; // 如果偏移量不为0，返回false
       }
     }
     // 检查道路高程信息
-    auto elevations = road->GetInfos<element::RoadInfoElevation>();
-    for (auto *elevation : elevations) {
+    // 道路高程信息也通过多项式表示，其中C和D是多项式的系数。
+    // 如果C或D不为0，表示道路有高程变化（不是平面）。
+    auto elevations = road->GetInfos<element::RoadInfoElevation>(); // 获取道路高程信息
+    for (auto *elevation : elevations) {  // 遍历每个道路高程信息
       if (std::abs(elevation->GetPolynomial().GetC()) > 0 ||
           std::abs(elevation->GetPolynomial().GetD()) > 0) {
         return false; // 如果高程不为0，返回false
@@ -108,11 +114,13 @@ namespace road {
   }
 
   /// 返回一对包含特定车道在给定s和车道迭代器下的宽度和切线
+// 这个模板函数计算并返回一个包含车道宽度和切线的pair。
+// 它接受一个容器（可能是道路、路径等），一个s值（沿路径的距离），以及一个车道ID。
   template <typename T>
   static std::pair<double, double> ComputeTotalLaneWidth(
-      const T container,
-      const double s,
-      const LaneId lane_id) {
+      const T container,// 容器，可能代表道路或路径的抽象
+      const double s, // s值，表示沿路径的特定位置
+      const LaneId lane_id) {// 车道ID，用于标识特定的车道
 
     // lane_id不能为0
   RELEASE_ASSERT(lane_id != 0);  // 断言 lane_id 不为 0

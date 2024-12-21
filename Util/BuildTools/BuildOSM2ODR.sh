@@ -114,14 +114,14 @@ if ${BUILD_OSM2ODR} ; then
   echo $LLVM_INCLUDE
   echo $LLVM_LIBPATH
 # 使用CMake配置项目并构建服务器版本的OSM2ODR
-  cmake ${OSM2ODR_SOURCE_FOLDER} \
-      -G "Eclipse CDT4 - Ninja" \
-      -DCMAKE_CXX_FLAGS="-fPIC -std=c++14 -stdlib=libc++ -I${LLVM_INCLUDE} -L${LLVM_LIBPATH}" \
-      -DCMAKE_INSTALL_PREFIX=${LIBCARLA_INSTALL_SERVER_FOLDER} \
-      -DPROJ_INCLUDE_DIR=${CARLA_BUILD_FOLDER}/proj-install-server/include \
-      -DPROJ_LIBRARY=${CARLA_BUILD_FOLDER}/proj-install-server/lib/libproj.a \
-      -DXercesC_INCLUDE_DIR=${CARLA_BUILD_FOLDER}/xerces-c-3.2.3-install-server/include \
-      -DXercesC_LIBRARY=${CARLA_BUILD_FOLDER}/xerces-c-3.2.3-install-server/lib/libxerces-c.a
+  cmake ${OSM2ODR_SOURCE_FOLDER} \#这一步是告诉cmake要处理的源代码文件夹路径为${OSM2ODR_SOURCE_FOLDER}（这里${OSM2ODR_SOURCE_FOLDER}是一个变量，应该在之前的脚本环境中被定义）。
+      -G "Eclipse CDT4 - Ninja" \#指定生成器（generator）为“Eclipse CDT4 - Ninja”。生成器是cmake用来生成特定构建系统（如Make、Ninja等）的构建文件的。
+      -DCMAKE_CXX_FLAGS="-fPIC -std=c++14 -stdlib=libc++ -I${LLVM_INCLUDE} -L${LLVM_LIBPATH}" \#这是设置C++编译标志。-fPIC（Position - Independent Code）用于生成位置无关代码，这在共享库的构建中很有用。-std = c++14指定使用C++14标准。-stdlib=libc++指定使用libc++标准库。-I${LLVM_INCLUDE}添加LLVM的头文件搜索路径（${LLVM_INCLUDE}是一个应该已定义的变量），-L${LLVM_LIBPATH}添加LLVM的库文件搜索路径（${LLVM_LIBPATH}也是一个已定义变量）。
+      -DCMAKE_INSTALL_PREFIX=${LIBCARLA_INSTALL_SERVER_FOLDER} \#指定安装目录为${LIBCARLA_INSTALL_SERVER_FOLDER}（变量定义的路径），当执行make install或者ninja install时，文件将会被安装到这个目录下。
+      -DPROJ_INCLUDE_DIR=${CARLA_BUILD_FOLDER}/proj-install-server/include \#为项目设置PROJ的头文件包含目录，方便项目找到PROJ相关的头文件。
+      -DPROJ_LIBRARY=${CARLA_BUILD_FOLDER}/proj-install-server/lib/libproj.a \#指定PROJ库文件的路径，使链接器能够找到PROJ库。
+      -DXercesC_INCLUDE_DIR=${CARLA_BUILD_FOLDER}/xerces-c-3.2.3-install-server/include \#设置XercesC的头文件包含目录。
+      -DXercesC_LIBRARY=${CARLA_BUILD_FOLDER}/xerces-c-3.2.3-install-server/lib/libxerces-c.a#指定XercesC库文件的路径，不过这里看起来库文件名似乎不完整。
 
   ninja osm2odr
   ninja install
