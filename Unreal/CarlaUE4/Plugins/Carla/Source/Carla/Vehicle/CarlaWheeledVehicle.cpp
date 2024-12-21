@@ -29,7 +29,7 @@
 #include "Carla/Vehicle/CarlaWheeledVehicle.h"
 
 // =============================================================================
-// -- Constructor and destructor -----------------------------------------------
+// -- 构造函数和析构函数 -----------------------------------------------
 // =============================================================================
 
 ACarlaWheeledVehicle::ACarlaWheeledVehicle(const FObjectInitializer& ObjectInitializer) :
@@ -101,7 +101,7 @@ void ACarlaWheeledVehicle::BeginPlay()
 
   UDefaultMovementComponent::CreateDefaultMovementComponent(this);
 
-  // Get constraint components and their initial transforms
+  // 获取约束组件及其初始变换
   FTransform ActorInverseTransform = GetActorTransform().Inverse();
   ConstraintsComponents.Empty();
   DoorComponentsTransform.Empty();
@@ -132,7 +132,7 @@ void ACarlaWheeledVehicle::BeginPlay()
   }
   ResetConstraints();
 
-  // get collision disable constraints (used to prevent doors from colliding with each other)
+  // 获取碰撞禁用约束（用于防止门相互碰撞）
   CollisionDisableConstraints.Empty();
   TArray<UPhysicsConstraintComponent*> Constraints;
   GetComponents(Constraints);
@@ -163,15 +163,15 @@ void ACarlaWheeledVehicle::BeginPlay()
   {
     check(MovementComponent != nullptr);
 
-    // Setup Tire Configs with default value. This is needed to avoid getting
-    // friction values of previously created TireConfigs for the same vehicle
-    // blueprint.
+    // 使用默认值设置 Tire Configs。
+    // 这是为了避免获取之前为同一车辆蓝图创建的 Tire Configs 的摩擦值
+    // 所必需的。
     TArray<float> OriginalFrictions;
     OriginalFrictions.Init(FrictionScale, MovementComponent->Wheels.Num());
     SetWheelsFrictionScale(OriginalFrictions);
 
-    // Check if it overlaps with a Friction trigger, if so, update the friction
-    // scale.
+    // 检查它是否与 Friction 触发器重叠，如果重叠，请更新
+    // 摩擦力刻度。
     TArray<AActor *> OverlapActors;
     GetOverlappingActors(OverlapActors, AFrictionTrigger::StaticClass());
     for (const auto &Actor : OverlapActors)
@@ -183,7 +183,7 @@ void ACarlaWheeledVehicle::BeginPlay()
       }
     }
 
-    // Set the friction scale to Wheel CDO and update wheel setups
+    // 将摩擦力刻度设置为 Wheel CDO 并更新车轮设置
     TArray<FWheelSetup> NewWheelSetups = MovementComponent->WheelSetups;
     for (const auto &WheelSetup : NewWheelSetups)
     {
@@ -195,7 +195,7 @@ void ACarlaWheeledVehicle::BeginPlay()
 
     LastPhysicsControl = GetVehiclePhysicsControl();
 
-    // Update physics in the Ackermann Controller
+    // 在 Ackermann 控制器中更新物理特性
     AckermannController.UpdateVehiclePhysics(this);
   }
 
@@ -276,7 +276,7 @@ void ACarlaWheeledVehicle::AdjustVehicleBounds()
 }
 
 // =============================================================================
-// -- Get functions ------------------------------------------------------------
+// -- 获取函数 ------------------------------------------------------------
 // =============================================================================
 
 float ACarlaWheeledVehicle::GetVehicleForwardSpeed() const
@@ -314,7 +314,7 @@ float ACarlaWheeledVehicle::GetMaximumSteerAngle() const
 }
 
 // =============================================================================
-// -- Set functions ------------------------------------------------------------
+// -- 设置函数 ------------------------------------------------------------
 // =============================================================================
 
 void ACarlaWheeledVehicle::FlushVehicleControl()
