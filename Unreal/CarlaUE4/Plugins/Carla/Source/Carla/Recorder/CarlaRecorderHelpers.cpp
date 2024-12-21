@@ -16,18 +16,24 @@ static std::vector<uint8_t> CarlaRecorderHelperBuffer;
 // get the final path + filename
 std::string GetRecorderFilename(std::string Filename)
 {
-  std::string Filename2;
+    std::string Filename2;  // 定义一个新的字符串来存储最终的文件路径
 
-  // check if a relative path was specified
-  if (Filename.find("\\") != std::string::npos || Filename.find("/") != std::string::npos || Filename.find(":") != std::string::npos)
-    Filename2 = Filename;
-  else
-  {
-    FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir());
-    Filename2 = TCHAR_TO_UTF8(*Path) + Filename;
-  }
+    // 检查 Filename 是否包含相对路径或绝对路径的元素
+    // 通过判断路径中是否包含反斜杠（\）、正斜杠（/）或者冒号（:）来判断是否包含路径
+    if (Filename.find("\\") != std::string::npos || Filename.find("/") != std::string::npos || Filename.find(":") != std::string::npos)
+        Filename2 = Filename;  // 如果 Filename 已经包含路径，则直接将其赋值给 Filename2
+    else
+    {
+        // 如果 Filename 没有包含路径，说明是相对路径或仅是文件名
+        // 获取当前项目的保存目录的完整路径
+        FString Path = FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir());
 
-  return Filename2;
+        // 将路径转换为 UTF-8 编码的字符串并拼接文件名
+        // `TCHAR_TO_UTF8(*Path)` 将 Unreal Engine 的 FString 类型转换为 UTF-8 编码的 std::string
+        Filename2 = TCHAR_TO_UTF8(*Path) + Filename;  // 拼接路径和文件名，得到完整路径
+    }
+
+    return Filename2;  // 返回最终的完整文件路径
 }
 
 // ------
