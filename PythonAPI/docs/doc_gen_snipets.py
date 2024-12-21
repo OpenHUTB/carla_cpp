@@ -202,9 +202,12 @@ class Documentation:
 
 
 def main():
+    #打印提示信息
     """Main function"""
     print("Generating PythonAPI snipets...")
+    #获取脚本路径
     script_path = os.path.dirname(os.path.abspath(__file__)+'/snipets')
+    #获取代码片段图片路径
     snipets_images_path = os.path.dirname(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__)))) + '/Docs/img/snipets_images'
     docs = Documentation(script_path, snipets_images_path)

@@ -326,8 +326,8 @@ class World(object):
     def load_map_layer(self, unload=False):
         selected = self.map_layer_names[self.current_map_layer]
         if unload:
-            self.hud.notification('Unloading map layer: %s' % selected)
-            self.world.unload_map_layer(selected)
+            self.hud.notification('Unloading map layer: %s' % selected)# 显示正在卸载的地图层
+            self.world.unload_map_layer(selected)# 从世界中卸载地图层
         else:
             self.hud.notification('Loading map layer: %s' % selected)
             self.world.load_map_layer(selected)
@@ -335,16 +335,16 @@ class World(object):
     def toggle_radar(self):
         if self.radar_sensor is None:
             self.radar_sensor = RadarSensor(self.player)
-        elif self.radar_sensor.sensor is not None:
+        elif self.radar_sensor.sensor is not None:# 如果雷达传感器已创建但未销毁
             self.radar_sensor.sensor.destroy()
             self.radar_sensor = None
 
     def modify_vehicle_physics(self, actor):
         #If actor is not a vehicle, we cannot use the physics control
         try:
-            physics_control = actor.get_physics_control()
-            physics_control.use_sweep_wheel_collision = True
-            actor.apply_physics_control(physics_control)
+            physics_control = actor.get_physics_control()# 获取车辆的物理控制属性
+            physics_control.use_sweep_wheel_collision = True# 启用扫掠轮碰撞
+            actor.apply_physics_control(physics_control)# 应用物理控制属性
         except Exception:
             pass
 
