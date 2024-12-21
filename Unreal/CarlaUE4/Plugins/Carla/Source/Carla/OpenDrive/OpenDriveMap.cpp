@@ -15,7 +15,7 @@
 // 定义一个私有命名空间UOpenDriveMap_Private，用于存放模板函数
 namespace UOpenDriveMap_Private {
 
-  // 模板函数，用于获取任意范围类型的尺寸
+  // 模板函数，用于获取任意范围类型的尺寸。
   template <typename RangeT>
   static auto GetSize(const RangeT &Range)
   {
@@ -76,7 +76,7 @@ bool UOpenDriveMap::Load(const FString &XODRContent)
 // UOpenDriveMap类的成员函数，用于获取道路上最近的路点
 FWaypoint UOpenDriveMap::GetClosestWaypointOnRoad(FVector Location, bool &Success) const
 {
-  // 检查是否有地图数据
+  // 检查是否有地图数据。
   check(HasMap());
   // 获取最近的路点
   auto Result = Map->GetClosestWaypointOnRoad(Location);
