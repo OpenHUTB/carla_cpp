@@ -50,14 +50,14 @@ class TestStreamming(SmokeTest):
         world.wait_for_tick()
 
         # create 5 clients
-        t = [0] * 5
-        for i in range(5):
+        t = [0] * 5                 #创建一个长度为5的列表t，用于存储5个线程对象，初始值都设为0 
+        for i in range(5):          #循环创建5个线程对象，每个线程的目标函数是self.create_client
             t[i] = threading.Thread(target=self.create_client)
-            t[i].setDaemon(True)
-            t[i].start()
+            t[i].setDaemon(True)    #将每个线程设置为守护线程。守护线程会在主线程结束时自动退出
+            t[i].start()            #启动每个线程，使线程开始执行其目标函数self.create_client中的代码
 
-        # wait for ending clients
+        # wait for ending clients    #主线程等待之前创建的 5 个子线程全部执行完毕
         for i in range(5):
             t[i].join()
 
-        gnss_sensor.destroy()
+        gnss_sensor.destroy()       #销毁gnss_sensor对象，释放相关资源
