@@ -1,4 +1,4 @@
-# Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de
+   # Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB).
 #
 # This work is licensed under the terms of the MIT license.
@@ -125,78 +125,95 @@ ApplyVehiclePhysicsControl = carla.command.ApplyVehiclePhysicsControl
 class TestApplyVehiclePhysics(SyncSmokeTest):
     def wait(self, frames=100):
         for _i in range(0, frames):
-            self.world.tick()
-
-    def check_single_physics_control(self, bp_vehicle):
+            self.world.tick() # 调用CARLA的tick方法，模拟时间的流逝
+  
+    def check_single_physics_control(self, bp_vehicle):  #用于检查单个车辆的物理控制设置
+        # 获取地图上的第一个出生点位置
         veh_tranf = self.world.get_map().get_spawn_points()[0]
-
+        # 在指定位置生成一个车辆实例
         vehicle = self.world.spawn_actor(bp_vehicle, veh_tranf)
 
-        # Checking the setting of car variables (drag coefficient)
+        # 创建一个新的物理控制对象，设置空气阻力系数为5
         pc_a = change_physics_control(vehicle, drag=5)
+        # 应用这个物理控制到车辆上
         vehicle.apply_physics_control(pc_a)
         self.wait(2)
+        # 获取当前应用的物理控制设置
         pc_b = vehicle.get_physics_control()
-
+        # 比较设置的物理控制和获取的物理控制是否相同
         equal, msg = equal_physics_control(pc_a, pc_b)
+        # 如果不相同，测试失败，并打印错误信息
         if not equal:
             self.fail("%s: %s" % (bp_vehicle.id, msg))
 
         self.wait(2)
 
-        # Checking the setting of wheel variables (tire friction)
+        #创建一个新的物理控制对象，设置轮胎摩擦力和纵向刚度
         pc_a = change_physics_control(vehicle, tire_friction=5, long_stiff=987)
         vehicle.apply_physics_control(pc_a)
         self.wait(2)
+        # 获取当前应用的物理控制设置
         pc_b = vehicle.get_physics_control()
 
         equal, msg = equal_physics_control(pc_a, pc_b)
         if not equal:
             self.fail("%s: %s" % (bp_vehicle.id, msg))
-
+        # 销毁车辆实例，清理测试环境
         vehicle.destroy()
 
     def check_multiple_physics_control(self, bp_vehicles, index_bp = None):
+        #定义生成的车辆数量
         num_veh = 10
+         # 初始化空列表，用于存储车辆实例和物理控制对象
         vehicles = []
         pc_a = []
         pc_b = []
+        # 循环生成车辆，并设置它们的物理控制参数
         for i in range(0, num_veh):
+            # 从地图中获取一个随机的车辆生成点
             veh_tranf = self.world.get_map().get_spawn_points()[i]
             bp_vehicle = bp_vehicles[index_bp] if index_bp is not None else bp_vehicles[i]
+            # 在仿真世界中生成车辆，并将其添加到vehicles列表中
             vehicles.append(self.world.spawn_actor(bp_vehicle, veh_tranf))
+            # 计算每个车辆的阻力系数
             drag_coeff = 3.0 + 0.1*i
+             # 为每个车辆创建一个新的物理控制对象，并设置阻力系数
             pc_a.append(change_physics_control(vehicles[i], drag=drag_coeff))
+            # 应用物理控制到车辆上
             vehicles[i].apply_physics_control(pc_a[i])
 
         self.wait(2)
-
+        # 获取每个车辆当前的物理控制参数
         for i in range(0, num_veh):
             pc_b.append(vehicles[i].get_physics_control())
 
+        # 检查设置的物理控制参数是否生效
         for i in range(0, num_veh):
             equal, msg = equal_physics_control(pc_a[i], pc_b[i])
             if not equal:
                 self.fail("%s: %s" % (bp_vehicle.id, msg))
-
+        # 清空pc_a和pc_b列表，为下一轮物理控制参数设置做准备
         pc_a = []
         pc_b = []
+        #再次循环，为车辆设置轮胎摩擦系数和纵向刚度
         for i in range(0, num_veh):
             friction = 1.0 + 0.1*i
             lstiff = 500 + 100*i
+            #创建新的物理控制对象，并设置轮胎摩擦系数和纵向刚度
             pc_a.append(change_physics_control(vehicles[i], tire_friction=friction, long_stiff=lstiff))
+            #应用物理控制到车辆上
             vehicles[i].apply_physics_control(pc_a[i])
 
         self.wait(2)
-
+        #获取每个车辆当前的物理控制参数
         for i in range(0, num_veh):
             pc_b.append(vehicles[i].get_physics_control())
-
+        #再次检查设置的物理控制参数是否生效
         for i in range(0, num_veh):
             equal, msg = equal_physics_control(pc_a[i], pc_b[i])
             if not equal:
                 self.fail("%s: %s" % (bp_vehicle.id, msg))
-
+      # 销毁所有生成的车辆
         for i in range(0, num_veh):
             vehicles[i].destroy()
 

@@ -157,9 +157,9 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
         self.scriptPath = os.path.dirname(os.path.abspath(__file__))#
         self.checkedInClangFormatFile = os.path.join(self.scriptPath, CodeFormatterClang.CHECKED_IN_CLANG_FORMAT_FILE)
 
-    def verifyFormatterVersion(self):
-        CodeFormatter.verifyFormatterVersion(self)
-        self.verifyClangFormatFileExistsAndMatchesCheckedIn()
+    def verifyFormatterVersion(self):# 定义一个方法，用于验证格式化工具的版本
+        CodeFormatter.verifyFormatterVersion(self)# 调用父类或基类的 verifyFormatterVersion 方法
+        self.verifyClangFormatFileExistsAndMatchesCheckedIn()# 调用自身的另一个方法，用于验证 Clang 格式化文件是否存在并且与预期的一致
 
     def verifyCheckedInClangFormatFileExists(self):
         if os.path.exists(self.checkedInClangFormatFile):
