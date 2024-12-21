@@ -38,14 +38,14 @@ void CarlaRecorderStates::Add(const CarlaRecorderStateTrafficLight &State)
 
 void CarlaRecorderStates::Write(std::ostream &OutFile)
 {
-  // write the packet id
+  // 写入数据包 ID
   WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::State));
 
-  // write the packet size
+  // 写入数据包大小
   uint32_t Total = 2 + StatesTrafficLights.size() * sizeof(CarlaRecorderStateTrafficLight);
   WriteValue<uint32_t>(OutFile, Total);
 
-  // write total records
+  // 写入总记录数
   Total = StatesTrafficLights.size();
   WriteValue<uint16_t>(OutFile, Total);
 
@@ -60,7 +60,7 @@ void CarlaRecorderStates::Read(std::istream &InFile)
   uint16_t i, Total;
   CarlaRecorderStateTrafficLight StateTrafficLight;
 
-  // read Total traffic light states
+  // 读取红绿灯状态总数
   ReadValue<uint16_t>(InFile, Total);
   for (i = 0; i < Total; ++i)
   {
