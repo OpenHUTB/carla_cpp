@@ -1,1 +1,49 @@
-smoke.test_client smoke.test_sync smoke.test_sensor_determinism smoke.test_collision_determinism smoke.test_vehicle_physics smoke.test_props_loading smoke.test_sensor_tick_time smoke.test_map smoke.test_snapshot smoke.test_lidar smoke.test_streamming smoke.test_spawnpoints smoke.test_blueprint smoke.test_collision_sensor smoke.test_world smoke.test_determinism
+# 以下这些看起来像是一系列测试相关的名称，可能用于标识不同功能或特性方面的测试用例、测试套件等，以下分别对每个名称进行注释说明。
+
+# 可能是针对客户端相关功能进行冒烟测试（smoke test，一种初步的、简单快速的测试，用于验证主要功能是否能正常运行）的标识，用于检查客户端部分的基础功能是否正常工作，比如客户端与服务器的连接、基本的交互等是否符合预期。
+smoke.test_client 
+
+# 针对同步相关功能进行冒烟测试的标识，也许是验证在系统中某些操作、数据传输等是否按照预期进行同步，例如多线程、多模块之间的数据同步机制是否正确运作。
+smoke.test_sync 
+
+# 针对传感器确定性（determinism，意味着在相同条件下每次运行结果应该是一致的、可预测的）方面进行冒烟测试的标识，主要检查传感器相关的操作和输出在不同次运行中是否具有确定性，保证传感器数据的稳定和可重复性。
+smoke.test_sensor_determinism 
+
+# 针对碰撞确定性进行冒烟测试的标识，旨在验证在相同的碰撞场景条件下，每次碰撞的结果、相关物理表现等是否总是一致的，确保碰撞相关的模拟具有可预测性和确定性。
+smoke.test_collision_determinism 
+
+# 针对车辆物理特性进行冒烟测试的标识，用于检测车辆在模拟环境中的物理行为，比如加速、刹车、转向、受力等物理表现是否符合实际物理规律以及预期的模拟设定。
+smoke.test_vehicle_physics 
+
+# 针对道具加载相关功能进行冒烟测试的标识，可能是检查游戏或模拟场景中各种道具（如场景中的物体、装饰等）是否能正确从资源文件等地方加载并显示在相应场景里。
+smoke.test_props_loading 
+
+# 针对传感器滴答时间（tick time，一般指传感器数据更新的时间间隔相关情况）进行冒烟测试的标识，用来确认传感器数据更新的时间间隔是否符合预期设定，保障传感器数据获取的及时性和准确性。
+smoke.test_sensor_tick_time 
+
+# 针对地图相关功能进行冒烟测试的标识，例如地图的加载、显示、地图元素的完整性以及地图与其他游戏元素（如车辆、道具等）的交互等是否正常，验证地图模块的功能正确性。
+smoke.test_map 
+
+# 针对快照（snapshot，可能是某个时间点系统状态的一个记录，常用于数据备份、状态恢复等场景）相关功能进行冒烟测试的标识，检查快照的生成、存储、恢复等操作是否正确执行，确保可以准确记录和还原系统状态。
+smoke.test_snapshot 
+
+# 针对激光雷达（Lidar，一种用于获取环境三维信息的传感器）相关功能进行冒烟测试的标识，检测激光雷达在模拟环境中的探测范围、精度、数据输出等是否正常，保证激光雷达功能的有效性。
+smoke.test_lidar 
+
+# 这里可能是拼写有误，正确的应该是“smoke.test_streaming”，针对流数据相关功能进行冒烟测试的标识，可能用于验证如传感器数据、游戏状态等信息以流的形式传输时的稳定性、完整性以及实时性等情况。
+smoke.test_streamming 
+
+# 针对生成点（spawnpoints，通常指游戏或模拟场景中物体、角色等可以生成出现的位置点）相关功能进行冒烟测试的标识，确认生成点的设置、获取以及物体在生成点上能否正确生成等功能是否正常运作。
+smoke.test_spawnpoints 
+
+# 针对蓝图（blueprint，一般是用于创建游戏中各种对象、实体的模板，定义了其属性、外观、行为等方面的配置）相关功能进行冒烟测试的标识，检查蓝图的加载、使用以及基于蓝图创建对应对象的过程是否正确执行。
+smoke.test_blueprint 
+
+# 针对碰撞传感器（用于检测碰撞事件发生的一种传感器）相关功能进行冒烟测试的标识，确保碰撞传感器能够准确检测到碰撞发生的时间、位置以及相关碰撞对象等信息，其功能符合预期要求。
+smoke.test_collision_sensor 
+
+# 针对整个世界（world，代表整个游戏或模拟环境的总体空间、包含其中所有元素等）相关功能进行冒烟测试的标识，对世界模块整体的初始化、更新、元素管理等功能进行验证，保证整个模拟环境的正常运行。
+smoke.test_world 
+
+# 再次强调针对确定性相关功能进行冒烟测试，不过这里可能是一个综合性的确定性测试，涵盖了多个方面（如前面提到的传感器、碰撞等方面的确定性），用于整体验证系统的可预测性和结果的一致性。
+smoke.test_determinism 
