@@ -490,26 +490,41 @@ class Camera(object):
         self.sensor.listen(lambda image: Camera._parse_image(weak_self, image))
 
     def destroy(self):
+     # 定义一个方法用于销毁相机相关的资源，比如停止传感器监听、释放传感器对象等操作，通常在不需要相机或者程序结束等场景下调用。
         self.sensor.stop()
+        # 首先调用相机传感器的 `stop` 方法，停止传感器继续获取新的图像数据，避免后续不必要的数据处理以及可能的资源占用。
         self.sensor.destroy()
         self.sensor = None
+        # 接着调用相机传感器的 `destroy` 方法，释放与传感器相关的资源，例如内存等，将传感器对象设置为 `None`，表示该相机传感器已被销毁。
 
     def render(self, display):
+    # 定义一个方法用于将相机获取的图像渲染显示到指定的显示界面上，接收一个 `display` 参数，这个参数可能是代表图形显示界面的对象（例如在 `pygame` 等图形库中用于显示图像的对象）。
         if self.surface is not None:
             display.blit(self.surface, (0, 0))
+        # 判断 `self.surface`（相机图像渲染后的表面对象）是否不为 `None`，如果是，则将其绘制（ `blit` 操作在图形库中常用于将一个图像表面绘制到另一个表面上）到 `display`（显示界面）的 `(0, 0)` 坐标位置，实现图像的显示。
 
     @staticmethod
     def _parse_image(weak_self, image):
+    # 定义一个静态方法，用于解析处理相机获取到的图像数据，这个方法接收一个弱引用 `weak_self`（指向 `Camera` 类的实例）和图像数据 `image` 作为参数。
+    # 静态方法属于类本身，不需要实例化类就可以调用，通常用于处理与类相关但不依赖于具体实例状态的操作。
         self = weak_self()
         if not self:
             return
+        # 通过弱引用 `weak_self` 获取对应的 `Camera` 类的实例对象，如果弱引用对应的实例已经被垃圾回收（不存在了），则返回，不进行后续处理。
         self.current_frame = image.frame
+        # 将获取到的图像的当前帧编号赋值给实例的 `current_frame` 属性，用于记录当前是第几帧图像，方便后续可能的按帧处理或者显示顺序控制等操作。
         image.convert(cc.Raw)
+        # 将图像的数据格式转换为原始数据格式（ `cc.Raw` 应该是代表某种预定义的原始数据格式，通过 `convert` 方法进行转换），方便后续以字节流等形式进行处理。
         array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
+        # 使用 `numpy` 库（导入时简记为 `np`）的 `frombuffer` 方法，从图像的原始数据字节流（ `image.raw_data` ）中创建一个 `numpy` 数组，指定数据类型为无符号8位整数（ `dtype=np.dtype("uint8")` ），这样就可以像操作普通数组一样对图像数据进行处理了。
         array = np.reshape(array, (image.height, image.width, 4))
+        # 根据图像的高度、宽度以及通道数（这里从原始数据解析出来后可能是4通道，包含透明度等信息），使用 `reshape` 方法将数组重新调整形状，使其符合图像数据的维度结构，得到一个三维数组，分别表示图像的高度、宽度和通道维度。
         array = array[:, :, :3]
+        # 去除数组中表示透明度的通道（只取前三个通道，也就是RGB通道），得到一个只包含彩色信息的三维数组，用于后续转换为可显示的图像表面对象。
         array = array[:, :, ::-1]
+        # 对数组的通道顺序进行反转，将RGB顺序转换为BGR顺序（不同的图形库或者图像显示系统可能对颜色通道顺序有不同要求，这里可能是为了适配后续使用的图形显示相关的操作）。
         self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
+        # 使用 `pygame` 库的 `surfarray.make_surface` 方法，将处理后的 `numpy` 数组转换为 `pygame` 中的图像表面对象（ `surface` ），在转换前先交换数组的第一维和第二维（也就是图像的高度和宽度维度，通过 `swapaxes(0, 1)` 操作），以符合 `pygame` 对图像数据维度的要求，最后将生成的图像表面对象赋值给实例的 `self.surface` 属性，以便后续可以通过 `render` 方法将其显示出来。
 
 # ==============================================================================
 # -- VehicleControl -----------------------------------------------------------
