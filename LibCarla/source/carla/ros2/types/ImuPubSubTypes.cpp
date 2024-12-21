@@ -24,38 +24,65 @@
 
 #include "ImuPubSubTypes.h"
 
+#include <fastcdr/FastBuffer.h>
+#include <fastcdr/Cdr.h>
+
+#include "ImuPubSubTypes.h"
+
+// 定义SerializedPayload_t类型别名，它来自eprosima::fastrtps::rtps命名空间，用于表示序列化后的负载数据类型
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
+// 定义InstanceHandle_t类型别名，同样来自eprosima::fastrtps::rtps命名空间，用于表示实例句柄类型
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace sensor_msgs {
     namespace msg {
 
+        // ImuPubSubType类的构造函数
         ImuPubSubType::ImuPubSubType()
         {
+            // 设置该类型的名称，这里名称被设置为 "sensor_msgs::msg::dds_::Imu_"
             setName("sensor_msgs::msg::dds_::Imu_");
+
+            // 获取Imu类型能够序列化后的最大尺寸（以CDR格式序列化）
             auto type_size = Imu::getMaxCdrSerializedSize();
+            // 进行可能的子消息对齐操作，确保数据按照4字节对齐，将对齐后的尺寸更新到type_size变量
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
+            // 计算最终的类型尺寸，加上4字节用于封装（具体封装相关含义可能要看整体框架约定），并转换为uint32_t类型赋值给m_typeSize成员变量
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+
+            // 判断Imu类型是否定义了获取键（Key）的操作，将结果赋值给m_isGetKeyDefined成员变量
             m_isGetKeyDefined = Imu::isKeyDefined();
-            size_t keyLength = Imu::getKeyMaxCdrSerializedSize() > 16 ?
+
+            // 获取Imu类型的键（Key）序列化后的最大尺寸，若其大于16字节，则使用实际的最大尺寸，否则使用16字节作为键缓冲区的长度
+            size_t keyLength = Imu::getKeyMaxCdrSerializedSize() > 16?
                     Imu::getKeyMaxCdrSerializedSize() : 16;
+            // 分配一块内存空间用于存储键数据，内存大小由keyLength决定，并将指向这块内存的指针赋值给m_keyBuffer成员变量
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+            // 将分配的键缓冲区内存初始化为0
             memset(m_keyBuffer, 0, keyLength);
         }
 
+        // ImuPubSubType类的析构函数
         ImuPubSubType::~ImuPubSubType()
         {
-            if (m_keyBuffer != nullptr)
+            // 如果键缓冲区指针不为空，说明之前分配了内存，则释放这块内存空间
+            if (m_keyBuffer!= nullptr)
             {
                 free(m_keyBuffer);
             }
         }
 
+        // 用于将给定的数据（这里是Imu类型的数据）序列化到SerializedPayload_t结构中
         bool ImuPubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
+            // 将传入的void*类型数据指针转换为Imu*类型指针，方便后续操作，前提是传入的数据实际类型确实是Imu类型
             Imu* p_type = static_cast<Imu*>(data);
+            // 此处后续应该还有具体的序列化逻辑代码来填充payload，目前暂时省略了这部分完整逻辑
+        }
+    }
+}
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
@@ -102,44 +129,64 @@ namespace sensor_msgs {
                 // Deserialize the object.
                 p_type->deserialize(deser);
             }
-            catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
-            {
-                return false;
-            }
+            // 捕获 eprosima::fastcdr::exception::NotEnoughMemoryException 类型的异常，异常对象在这里被忽略（通过注释掉参数名表示不使用该异常对象）
+// 如果捕获到该异常，意味着内存不足，无法完成相关操作，此时直接返回 false
+catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+{
+    return false;
+}
 
-            return true;
-        }
+// 如果没有出现上述内存不足等导致序列化失败的情况，就返回 true，表示序列化操作成功完成
+return true;
+}
 
-        std::function<uint32_t()> ImuPubSubType::getSerializedSizeProvider(
-                void* data)
-        {
-            return [data]() -> uint32_t
-                   {
-                       return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Imu*>(data))) +
-                              4u /*encapsulation*/;
-                   };
-        }
+// 定义一个函数类型的成员函数 getSerializedSizeProvider，它返回一个可调用对象（具体是一个 lambda 表达式函数），
+// 该函数用于获取给定数据序列化后的尺寸（以 uint32_t 类型表示），这个可调用对象接收 void* 类型的参数 data，
+// 用于指定要获取序列化尺寸的数据（实际应该是 Imu 类型的数据）
+std::function<uint32_t()> ImuPubSubType::getSerializedSizeProvider(
+        void* data)
+{
+    return [data]() -> uint32_t
+           {
+               // 通过调用 type::getCdrSerializedSize 函数获取 Imu 类型数据序列化后的尺寸（这里将 void* 转换为 Imu* 类型来调用相应函数），
+               // 然后加上 4 字节（注释中提到是用于封装相关的处理，具体要看整体框架要求），最终返回计算得到的序列化尺寸
+               return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Imu*>(data))) +
+                      4u /*encapsulation*/;
+           };
+}
 
-        void* ImuPubSubType::createData()
-        {
-            return reinterpret_cast<void*>(new Imu());
-        }
+// 创建并返回一个新的 Imu 类型对象的指针，通过 reinterpret_cast 将 void* 类型转换为 Imu* 类型，
+// 这里意味着调用者可以获取到一个新分配内存的 Imu 类型数据对象，以便后续进行赋值等操作
+void* ImuPubSubType::createData()
+{
+    return reinterpret_cast<void*>(new Imu());
+}
 
-        void ImuPubSubType::deleteData(
-                void* data)
-        {
-            delete(reinterpret_cast<Imu*>(data));
-        }
+// 用于释放之前通过 createData 等方式创建的 Imu 类型数据对象所占用的内存空间，
+// 先将传入的 void* 类型指针转换为 Imu* 类型指针，然后调用 delete 操作符来释放内存
+void ImuPubSubType::deleteData(
+        void* data)
+{
+    delete(reinterpret_cast<Imu*>(data));
+}
 
-        bool ImuPubSubType::getKey(
-                void* data,
-                InstanceHandle_t* handle,
-                bool force_md5)
-        {
-            if (!m_isGetKeyDefined)
-            {
-                return false;
-            }
+// 用于获取给定数据（这里是 Imu 类型数据）对应的键（Key）信息，传入的参数包括：
+// data：指向实际数据（Imu 类型）的指针，用于从中提取键相关信息；
+// handle：指向 InstanceHandle_t 类型的指针，可能用于存储获取到的键相关信息或者与实例句柄相关的内容；
+// force_md5：一个布尔类型参数，具体作用可能和是否强制使用 MD5 算法等相关逻辑有关（需要看整体上下文）
+bool ImuPubSubType::getKey(
+        void* data,
+        InstanceHandle_t* handle,
+        bool force_md5)
+{
+    // 如果之前在构造函数中判断出 Imu 类型没有定义获取键（Key）的操作（m_isGetKeyDefined 为 false），
+    // 那么直接返回 false，表示无法获取键信息
+    if (!m_isGetKeyDefined)
+    {
+        return false;
+    }
+    // 此处后续应该还有具体获取键信息并填充到 handle 等相关的逻辑代码，当前暂时省略了这部分完整逻辑
+}
 
             Imu* p_type = static_cast<Imu*>(data);
 
@@ -150,24 +197,42 @@ namespace sensor_msgs {
             // Object that serializes the data.
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
             p_type->serializeKey(ser);
-            if (force_md5 || Imu::getKeyMaxCdrSerializedSize() > 16)
-            {
-                m_md5.init();
-                m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
-                m_md5.finalize();
-                for (uint8_t i = 0; i < 16; ++i)
-                {
-                    handle->value[i] = m_md5.digest[i];
-                }
-            }
-            else
-            {
-                for (uint8_t i = 0; i < 16; ++i)
-                {
-                    handle->value[i] = m_keyBuffer[i];
-                }
-            }
-            return true;
-        }
+            // 判断是否满足以下两个条件之一：
+// 1. force_md5 为 true，意味着强制使用MD5算法（可能在某些特定场景下要求使用MD5来处理键相关信息）；
+// 2. Imu::getKeyMaxCdrSerializedSize() > 16，即Imu类型的键（Key）最大CDR序列化尺寸大于16字节，
+//    这种情况下可能也需要使用MD5算法等更复杂的处理方式来生成或处理键相关信息。
+if (force_md5 || Imu::getKeyMaxCdrSerializedSize() > 16)
+{
+    // 初始化MD5相关的操作对象（假设m_md5是用于处理MD5计算的类对象，这里进行初始化准备开始计算）
+    m_md5.init();
+
+    // 使用m_md5对象的update方法，传入键缓冲区（m_keyBuffer）以及序列化数据长度（通过ser对象获取序列化数据长度并转换为无符号整数类型），
+    // 目的是将键缓冲区中的数据纳入MD5计算范围，不断更新MD5计算的中间状态，此处的ser应该是之前序列化操作得到的相关结果对象（可能在前面代码中定义）。
+    m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
+
+    // 完成MD5计算，得到最终的MD5摘要结果，这个结果会保存在m_md5对象内部的相关成员中（例如digest数组等），以便后续提取使用。
+    m_md5.finalize();
+
+    // 通过循环，将计算得到的MD5摘要结果（m_md5.digest）中的每个字节依次赋值给handle->value数组的前16个元素，
+    // 这里handle是InstanceHandle_t* 类型指针，其成员value可能用于存储最终的键信息，通过这种方式填充键信息。
+    // 循环变量i是uint8_t类型，从0开始每次递增1，直到小于16为止。
+    for (uint8_t i = 0; i < 16; ++i)
+    {
+        handle->value[i] = m_md5.digest[i];
+    }
+}
+else
+{
+    // 如果不满足上述使用MD5处理的条件，那么直接将键缓冲区（m_keyBuffer）中的前16个字节的数据依次赋值给handle->value数组，
+    // 以此来填充键信息，同样也是通过循环逐个字节赋值。
+    for (uint8_t i = 0; i < 16; ++i)
+    {
+        handle->value[i] = m_keyBuffer[i];
+    }
+}
+
+// 表示成功获取并设置好了键信息，返回true告知调用者键获取操作已顺利完成。
+return true;
+}
     } //End of namespace msg
 } //End of namespace sensor_msgs
