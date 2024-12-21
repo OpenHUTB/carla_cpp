@@ -128,19 +128,7 @@ namespace carla {
 
     /// 可以传递给智能指针的删除器，以便在销毁对象之前释放GIL。
 
-public:
-    static bool ThisThreadHasTheGIL(); 
-// 检查当前线程是否持有GIL的静态函数
-};
- 
-// 假设ReleaseGIL是一个已经定义的类，用于在构造时释放GIL，在析构时重新获取GIL
-class ReleaseGIL {
-public:
-    ReleaseGIL(); 
-// 构造函数，释放GIL
-    ~ReleaseGIL(); 
-// 析构函数，重新获取GIL
-};
+
  
     class ReleaseGILDeleter {
 // ReleaseGILDeleter类：一个自定义的删除器类，用于在删除对象时处理GIL
