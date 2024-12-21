@@ -231,12 +231,18 @@ public:
   /// Afterwards a new route is selected randomly (if multiple routes are
   /// possible).
   ///
+// 函数声明，用于丢弃当前的路线信息，具体实现可能是清除与当前路线相关的数据、重置路线相关的状态等操作，
+// 后续可能会根据需要重新选择或生成新的路线（例如在存在多条可选路线的情况下随机选择等）
   void DropRoute();
 
   /// @returns the default vehicle dynamics
+// 静态函数声明，返回默认的车辆动力学信息，以 ::ad::rss::world::RssDynamics 类型返回，这里的默认车辆动力学应该是指在没有特殊设置情况下车辆所遵循的动力学相关属性配置，
+// 比如速度、加速度等方面的默认参数设置情况，供其他地方使用该默认值进行相关计算或判断等操作
   static ::ad::rss::world::RssDynamics GetDefaultVehicleDynamics();
 
   /// @returns the default pedestrian dynamics
+// 静态函数声明，返回默认的行人动力学信息，同样以 ::ad::rss::world::RssDynamics 类型返回，虽然行人与车辆在动力学表现上有很大不同，但在这里统一用类似的类型表示，
+// 该函数提供了在没有特别配置时行人所对应的动力学相关属性默认值，方便在涉及行人的RSS相关处理中使用这些默认设置来进行计算等操作
   static ::ad::rss::world::RssDynamics GetDefaultPedestrianDynamics();
 
   /// @returns the default road boundaries mode
@@ -246,14 +252,22 @@ public:
 
 private:
   /// @brief standard logger
+// 定义一个标准的日志记录器对象的智能指针，用于记录一般性的日志信息，方便在代码执行过程中输出调试信息、运行状态信息、错误信息等，
+    // 通过 spdlog 库来实现日志功能，不同的日志级别（如 debug、info、warn、error 等）可以控制输出哪些内容
   std::shared_ptr<spdlog::logger> _logger;
   /// @brief logger for timing log messages
+// 定义一个专门用于记录时间相关日志消息的日志记录器对象的智能指针，可能用于记录代码中各个操作、函数调用等所花费的时间情况，
+    // 便于进行性能分析、时间消耗统计等，同样借助 spdlog 库实现
   std::shared_ptr<spdlog::logger> _timing_logger;
 
   /// @brief maximum steering angle
+// 定义一个浮点数变量，用于表示最大转向角度，这个角度值可能会在车辆操控、路径规划、RSS 相关安全检查等涉及车辆转向情况的计算中起到限制或参考作用，
+    // 比如判断车辆是否超过了允许的最大转向范围等
   float _maximum_steering_angle;
 
   /// @brief current used vehicle dynamics for ego vehicle by the default actor constellation callback
+// 定义一个 ::ad::rss::world::RssDynamics 类型的变量，用于存储在默认的演员星座回调（default actor constellation callback）中应用于自主车辆（ego vehicle）的当前车辆动力学信息，
+    // 也就是在默认回调机制下自主车辆所使用的动力学相关属性设置情况，像速度、加速度等具体参数的当前取值情况
   ::ad::rss::world::RssDynamics _default_actor_constellation_callback_ego_vehicle_dynamics;
   /// @brief current used vehicle dynamics for other vehicle by the default actor constellation callback
   ::ad::rss::world::RssDynamics _default_actor_constellation_callback_other_vehicle_dynamics;
@@ -261,30 +275,45 @@ private:
   ::ad::rss::world::RssDynamics _default_actor_constellation_callback_pedestrian_dynamics;
 
   /// @brief the current actor constellation callback
+// 定义一个函数类型的变量（通过类型别名 ActorConstellationCallbackFunctionType 定义的函数指针类型），用于存储当前的演员星座回调函数，
+    // 这个回调函数可以根据传入的相关演员配置数据（ActorConstellationData 类型）返回对应的演员星座结果（ActorConstellationResult 类型），
+    // 在不同的场景或配置下可以灵活地替换这个回调函数来实现不同的 RSS 相关处理逻辑
   ActorConstellationCallbackFunctionType _actor_constellation_callback;
 
   /// @brief current used road boundaries mode
+// 定义一个 RoadBoundariesMode 类型的变量，用于存储当前所使用的道路边界模式，即当前 RSS 相关检查和计算是按照考虑道路边界还是不考虑道路边界的模式在运行，
+    // 其取值会根据实际设置情况在 RoadBoundariesMode 枚举定义的 Off 和 On 之间变化
   ::carla::rss::RoadBoundariesMode _road_boundaries_mode;
   /// @brief current used routing targets
   std::vector<::ad::map::point::ENUPoint> _routing_targets;
   /// @brief routing targets to be appended next run
+// 定义一个同样是向量类型的变量，元素类型也是 ::ad::map::point::ENUPoint，用于存储下一次运行时要添加的路由目标点，
+    // 可以理解为是一个待添加的目标点队列，在合适的时机（比如下一轮路径规划、更新路由等操作时）会将这些目标点添加到当前的路由目标集合中
   std::vector<::ad::map::point::ENUPoint> _routing_targets_to_append;
 
   /// @brief struct collecting the rss states required
   struct CarlaRssState {
     /// @brief the actual RSS checker object
+// 定义一个 ::ad::rss::core::RssCheck 类型的变量，代表实际的 RSS 检查器对象，用于执行 RSS 相关的核心检查逻辑，
+        // 比如判断车辆之间是否存在碰撞风险、是否符合安全规则等 RSS 相关的安全检查操作
     ::ad::rss::core::RssCheck rss_check;
 
     /// @brief the ego map matched information
+// 定义一个 ::ad::map::match::Object 类型的变量，用于存储自主车辆（ego）在地图上匹配得到的相关信息，比如车辆在地图中的位置、与地图中地标等元素的关联情况等，
+        // 这对于确定车辆的准确位置以及与周围环境的关系很重要
     ::ad::map::match::Object ego_match_object;
 
     /// @brief the ego route
     ::ad::map::route::FullRoute ego_route;
 
     /// @brief the ego dynamics on the route
+// 定义一个 EgoDynamicsOnRoute 类型的变量，用于存储自主车辆在当前行驶路线上的各种动力学相关属性情况，
+        // 像车辆的速度、加速度、位置、航向等方面的具体数值和状态，反映车辆在路线上的运动特性
     EgoDynamicsOnRoute ego_dynamics_on_route;
 
     /// @brief current used default vehicle dynamics for ego vehicle
+// 定义一个 ::ad::rss::world::RssDynamics 类型的变量，用于存储当前应用于自主车辆（ego vehicle）的默认车辆动力学信息，
+        // 也就是在没有特殊设置时自主车辆所遵循的动力学相关属性配置情况，比如速度、加速度等方面的默认参数设置情况
     ::ad::rss::world::RssDynamics default_ego_vehicle_dynamics;
 
     /// @brief check input: the RSS world model
@@ -295,14 +324,20 @@ private:
     /// @brief check result: the rss state snapshot
     ::ad::rss::state::RssStateSnapshot rss_state_snapshot;
     /// @brief check result: the proper response
+// 定义一个 ::ad::rss::state::ProperResponse 类型的变量，用于存储 RSS 检查后得到的合适响应信息，
+        // 例如在检测到潜在危险时应该采取的合理应对措施（如减速、变道等建议操作）等相关信息
     ::ad::rss::state::ProperResponse proper_response;
     /// @brief flag indicating if the current state is overall dangerous
+// 定义一个布尔类型的变量，用于指示当前的整体状态是否处于危险状态，通过 RSS 相关检查和计算后根据一定的规则判断当前整个交通场景是否存在危险情况，
     bool dangerous_state;
     /// @brief flag indicating if the current state is dangerous because of a
     /// vehicle
+// 定义一个布尔类型的变量，用于指示当前状态是否因为某辆车（可能是其他车辆与自主车辆之间的交互情况等）而处于危险状态，
     bool dangerous_vehicle;
     /// @brief flag indicating if the current state is dangerous because of an
     /// opposite vehicle
+// 定义一个布尔类型的变量，用于指示当前状态是否因为对面来车（opposite vehicle，通常指行驶方向相反的车辆）而处于危险状态，
+        // 对于分析相向行驶车辆之间的安全情况、危险原因等很有帮助
     bool dangerous_opposite_state;
   };
 
@@ -311,10 +346,17 @@ private:
     RssObjectChecker(RssCheck const &rss_check, ::ad::rss::map::RssSceneCreation &scene_creation,
                      carla::client::Vehicle const &carla_ego_vehicle, CarlaRssState const &carla_rss_state,
                      ::ad::map::landmark::LandmarkIdSet const &green_traffic_lights);
+// 定义 RssObjectChecker 类的构造函数，接受多个参数，包括一个 RssCheck 类型的常量引用（可能用于获取 RSS 相关的检查设置等信息）、
+        // 一个 ::ad::rss::map::RssSceneCreation 类型的引用（用于 RSS 场景创建相关操作）、一个 carla::client::Vehicle 类型的常量引用（代表自主车辆对象，用于获取车辆相关信息）、
+        // 一个 CarlaRssState 类型的常量引用（提供当前 RSS 相关的状态信息）以及一个 ::ad::map::landmark::LandmarkIdSet 类型的常量引用（存储绿灯交通信号灯的地标集合信息，
+        // 可能用于判断交通信号灯状态对 RSS 计算的影响等），通过这些参数来初始化该类对象，以便后续进行针对交通参与者的 RSS 相关检查操作
     void operator()(const carla::SharedPtr<carla::client::Actor> other_traffic_participant) const;
-
+// 定义函数调用运算符重载函数，接受一个指向 carla::client::Actor 类型的智能指针参数（代表其他交通参与者对象），
+        // 用于对传入的其他交通参与者执行具体的 RSS 相关检查操作，并且该函数声明为 const 类型，表示不会修改类的成员变量状态，是一个只读操作的函数
   private:
     RssCheck const &_rss_check;
+// 定义一个 RssCheck 类型的常量引用成员变量，用于在类内部获取外部传入的 RSS 检查相关的设置、功能等信息，
+        // 方便在执行针对其他交通参与者的检查操作时使用统一的 RSS 检查配置情况
     ::ad::rss::map::RssSceneCreation &_scene_creation;
     carla::client::Vehicle const &_carla_ego_vehicle;
     CarlaRssState const &_carla_rss_state;
