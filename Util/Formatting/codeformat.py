@@ -176,23 +176,38 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
             if answer != "y":
                 sys.exit(1)
 
+    #验证与clang-format文件相关的操作
     def verifyClangFormatFileExistsAndMatchesCheckedIn(self):
+        #检查已经签入的文件是否存在
         self.verifyCheckedInClangFormatFileExists()
+        #用于存储找到的clang-format文件相关信息
         foundClangFormatFiles = sets.Set()
+        #遍历self.inputFiles中的每个文件名fileName
         for fileName in self.inputFiles:
+            #获取绝对路径的目录部分
             dirName = os.path.dirname(os.path.abspath(fileName))
+            #查找结果
             if not self.findClangFormatFileStartingFrom(dirName, fileName, foundClangFormatFiles):
                 sys.exit(1)
 
+    #从给定的目录中查找
     def findClangFormatFileStartingFrom(self, dirName, fileName, foundClangFormatFiles):
+        #得到可能存在clangFormat文件的完整路径
         clangFormatFile = os.path.join(dirName, CodeFormatterClang.CLANG_FORMAT_FILE)
+        #检查上一步构建的路径对应的文件是否存在
         if os.path.exists(clangFormatFile):
+            #检查当前找到的clangFormatFile是否在foundClangFormatFiles集合中
             if clangFormatFile not in foundClangFormatFiles:
+                #把当前找到的并且之前没有处理过的clangFormatFile添加到foundClangFormatFiles集合中
                 foundClangFormatFiles.add(clangFormatFile)
+                #比较两个文件内容是否相同
                 if os.path.exists(self.checkedInClangFormatFile) and \
                    not filecmp.cmp(self.checkedInClangFormatFile, clangFormatFile):
+                    #打印警告信息   
                     cprint("[WARN] " + clangFormatFile + " does not match " + self.checkedInClangFormatFile, "yellow")
+                    #调用这个函数来处理文件无法验证的情况   
                     self.confirmWithUserClangFormatFileCantBeVerified()
+                #与前面文件不匹配的情况        
                 else:
                     print("[OK] Found " + CodeFormatterClang.CLANG_FORMAT_FILE +
                           " file (used by the formatter) " + clangFormatFile)
