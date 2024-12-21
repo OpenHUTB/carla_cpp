@@ -82,15 +82,20 @@ goto success
 rem ============================================================================
 rem -- Messages and Errors -----------------------------------------------------
 rem ============================================================================
-
+rem 以下是名为:help的代码标签部分，通常用于显示帮助信息，告知用户该脚本的功能及使用方法等相关内容
 :help
+    rem 输出提示信息，向用户说明这个脚本的主要功能是下载并安装Chrono库（虽然这里文本里写的是Chrono库，但前面代码似乎是关于Eigen库的，可能存在一些不一致，需根据实际情况确认），%FILE_N%应该是一个自定义的文件名相关变量，用于标识具体操作的对象
     echo %FILE_N% Download and install a the Chrono library.
+    rem 输出该脚本的使用方法说明，展示了可用的命令行参数选项，比如-h或者--help用于获取帮助，--build-dir和--zlib-install-dir可能是用于指定构建目录、zlib安装目录等相关功能的参数，这里告知用户如何正确使用该脚本
     echo "Usage: %FILE_N% [-h^|--help] [--build-dir] [--zlib-install-dir]"
+    rem 跳转到名为:eof的代码标签处，可能在那里有脚本结束相关的处理逻辑，比如清理临时变量、关闭文件等操作（具体需结合:eof标签对应的代码来看）
     goto eof
-
+rem 以下是名为:success的代码标签部分，一般用于在操作成功（这里推测是Eigen库安装成功的情况）时向用户显示相应的成功提示信息
 :success
     echo.
+    rem 输出成功提示信息，告知用户Eigen库已经成功安装到了EIGEN_INSTALL_DIR所指定的目录下，同样%FILE_N%用于标识操作对象，方便用户明确是哪个脚本执行的操作以及对应的结果
     echo %FILE_N% Eigen has been successfully installed in "%EIGEN_INSTALL_DIR%"!
+    rem  跳转到名为:good_exit的代码标签处，可能那里有统一的正常退出脚本的相关处理逻辑，比如释放资源、返回合适的退出码等（具体要结合:good_exit标签对应的代码来确定）
     goto good_exit
 
 :already_build
