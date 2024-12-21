@@ -157,33 +157,87 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
         self.scriptPath = os.path.dirname(os.path.abspath(__file__))#
         self.checkedInClangFormatFile = os.path.join(self.scriptPath, CodeFormatterClang.CHECKED_IN_CLANG_FORMAT_FILE)
 
+   import os  # 导入os模块，用于处理文件和目录路径
+import sys  # 导入sys模块，用于访问与Python解释器紧密相关的变量和函数
+from some_module import cprint  # 假设cprint是从某个模块导入的，用于打印彩色文本（需要替换为实际模块）
+
+class CodeFormatter:  # 假设这些方法属于一个名为CodeFormatter的类
+    # 类的其他属性和方法...
+    # 假设CHECKED_IN_CLANG_FORMAT_FILE是一个类属性，存储了.clang-format文件的期望名称
+    # 假设checkedInClangFormatFile是一个实例属性，存储了.clang-format文件的实际路径
+    # 假设inputFiles是一个实例属性，存储了要处理的文件列表
+    # 假设args是一个实例属性，包含了命令行参数（例如，--yes用于自动确认）
+
     def verifyFormatterVersion(self):
+        """
+        验证代码格式化工具的版本。
+
+        首先调用基类（假设CodeFormatter继承自某个基类）的verifyFormatterVersion方法，
+        然后验证已签入的.clang-format文件是否存在并且与期望的版本匹配。
+        """
+        # 调用基类的verifyFormatterVersion方法（这里假设存在继承关系）
+        # 注意：如果CodeFormatter没有基类，这里会抛出AttributeError
         CodeFormatter.verifyFormatterVersion(self)
+        
+        # 验证.clang-format文件的存在性和匹配性
         self.verifyClangFormatFileExistsAndMatchesCheckedIn()
 
     def verifyCheckedInClangFormatFileExists(self):
+        """
+        验证已签入的.clang-format文件是否存在。
+
+        如果文件存在，则打印确认信息；如果文件不存在，则打印警告信息并询问用户是否继续。
+        """
+        # 检查文件是否存在
         if os.path.exists(self.checkedInClangFormatFile):
-            print("[OK] Found " + CodeFormatterClang.CHECKED_IN_CLANG_FORMAT_FILE + " file (the one that should be in a repository) " +
+            # 打印确认信息
+            print("[OK] Found " + CodeFormatter.CHECKED_IN_CLANG_FORMAT_FILE + " file (the one that should be in a repository) " +
                   self.checkedInClangFormatFile)
         else:
-            cprint("[WARN] Not found " + CodeFormatterClang.CHECKED_IN_CLANG_FORMAT_FILE + " file " +
+            # 打印警告信息
+            cprint("[WARN] Not found " + CodeFormatter.CHECKED_IN_CLANG_FORMAT_FILE + " file " +
                    self.checkedInClangFormatFile, "yellow")
+            # 询问用户是否继续
             self.confirmWithUserClangFormatFileCantBeVerified()
 
     def confirmWithUserClangFormatFileCantBeVerified(self):
+        """
+        当用户无法验证.clang-format文件时，询问用户是否继续。
+
+        如果用户没有通过--yes参数自动确认，则询问用户；如果用户回答不是'y'，则退出程序。
+        """
+        # 如果用户没有通过--yes参数自动确认
         if not self.args.yes:
+            # 询问用户是否继续
             answer = raw_input("Are you sure your .clang-format file is up-to-date and you want to continue? (y/N)")
+            # 如果用户回答不是'y'
             if answer != "y":
+                # 退出程序
                 sys.exit(1)
 
     def verifyClangFormatFileExistsAndMatchesCheckedIn(self):
-        self.verifyCheckedInClangFormatFileExists()
-        foundClangFormatFiles = sets.Set()
-        for fileName in self.inputFiles:
-            dirName = os.path.dirname(os.path.abspath(fileName))
-            if not self.findClangFormatFileStartingFrom(dirName, fileName, foundClangFormatFiles):
-                sys.exit(1)
+        """
+        验证.clang-format文件是否存在，并且从输入文件的目录开始向上查找，直到找到匹配的文件或到达根目录。
 
+        首先验证已签入的.clang-format文件是否存在，然后对于每个输入文件，从其目录开始向上查找.clang-format文件。
+        如果找不到匹配的文件，则退出程序。
+        """
+        # 验证已签入的.clang-format文件是否存在
+        self.verifyCheckedInClangFormatFileExists()
+        
+        # 创建一个集合来存储找到的.clang-format文件路径（这里使用了sets.Set，但在Python 3中应使用set()）
+        # 注意：在Python 3中，应使用内置的set()而不是sets.Set（后者在Python 2中已废弃）
+        foundClangFormatFiles = sets.Set()  # 在Python 3中应替换为 foundClangFormatFiles = set()
+        
+        # 遍历输入文件列表
+        for fileName in self.inputFiles:
+            # 获取输入文件的目录路径
+            dirName = os.path.dirname(os.path.abspath(fileName))
+            # 从该目录开始向上查找.clang-format文件
+            if not self.findClangFormatFileStartingFrom(dirName, fileName, foundClangFormatFiles):
+                # 如果找不到匹配的文件，则退出程序
+                sys.exit(1)
+                
     def findClangFormatFileStartingFrom(self, dirName, fileName, foundClangFormatFiles):
         clangFormatFile = os.path.join(dirName, CodeFormatterClang.CLANG_FORMAT_FILE)
         if os.path.exists(clangFormatFile):
