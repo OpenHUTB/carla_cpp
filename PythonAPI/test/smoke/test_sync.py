@@ -134,18 +134,18 @@ class TestSynchronousMode(SyncSmokeTest):
                     self.assertEqual(
                         queues[i].qsize(), 0, "\nQueue " + str(sensor_ids[i]) + "oversized")
 
-                # Just in case some sensors do not have the correct transform the same frame
-                # they are spawned, like the IMU.
+                 # 对于一些传感器（比如IMU），可能在生成的同一帧中没有正确设置变换信息
+                #如果当前帧号小于1，则跳过下面的验证步骤，直接进入下一次循环。
                 if local_frame < 1:
                     continue
 
-                # All the data has been correclty retrieved
+                # 验证是否正确获取到了所有传感器的数据
                 self.assertEqual(len(sensors_data), len(sensor_bps))
 
-                # All the sensor frame number are the same
+                # 验证所有传感器数据的帧号是否都和当前世界快照的帧号相同
                 for sensor_data in sensors_data:
                     self.assertEqual(sensor_data[0].frame, snapshot_frame)
-                # All the sensor transforms match in the snapshot and the callback
+                # 验证每个传感器的变换信息是否一致
                 for i in range(len(sensors_data)):
                     self.assertEqual(
                         sensors_data[i][0].transform,
@@ -170,6 +170,7 @@ class TestSynchronousMode(SyncSmokeTest):
      # 从世界的蓝图库中选择第一个可用的车辆蓝图
     def batch_scenario(self, batch_tick, after_tick):
         bp_veh = self.world.get_blueprint_library().filter("vehicle.*")[0]
+        # 获取世界地图中的第一个生成点，用于确定车辆的生成位置。
         veh_transf = self.world.get_map().get_spawn_points()[0]
 
         frame_init = self.world.get_snapshot().frame
