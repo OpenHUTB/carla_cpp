@@ -59,6 +59,7 @@ public class CarlaExporter : ModuleRules
         "SlateCore",
         "Physx",
         "EditorStyle",
+        //添加模块名称
         //... add private dependencies that you statically link with here...
         // 在这里添加其他需要静态链接的私有依赖模块
       }

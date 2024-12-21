@@ -47,10 +47,10 @@ Plugins
 *.sublime-workspace
 *.workspace
 #忽略特定的用户配置文件和缓存
-*CodeCompletionFolders.txt
-*CodeLitePreProcessor.txt
-.aria2c.input
-.codelite
+*CodeCompletionFolders.txt#这个文件可能用于配置代码自动完成功能，列出了代码编辑器应该搜索代码补全建议的文件夹。
+*CodeLitePreProcessor.txt#这个文件可能用于CodeLite IDE的预处理器配置，定义了预处理器指令。
+.aria2c.input#这是aria2（一个命令行下载管理器）的输入文件，包含了下载任务的列表。
+.codelite#这个文件夹可能包含CodeLite IDE的项目配置文件。
 .gdb_history
 .gtest
 .idea
