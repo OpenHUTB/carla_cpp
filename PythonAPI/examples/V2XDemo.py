@@ -62,17 +62,17 @@ from __future__ import print_function
 # ==============================================================================
 
 
-import glob
-import os
+import glob# 导入glob模块，用于文件名模式匹配
+import os# 导入os模块，用于操作系统相关功能
 import sys
 
-try:
+try:# 尝试添加CARLA的Python API路径到系统路径中
     sys.path.append(glob.glob('../carla/dist/carla-0.9.15-py*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])# 使用glob.glob搜索匹配的CARLA Python API .egg文件
 except IndexError:
-    pass
+    pass# 如果找不到匹配的文件，忽略异常
 
 
 # ==============================================================================
@@ -80,7 +80,7 @@ except IndexError:
 # ==============================================================================
 
 
-import carla
+import carla# 导入carla模块，CARLA模拟器的Python API
 
 from carla import ColorConverter as cc
 

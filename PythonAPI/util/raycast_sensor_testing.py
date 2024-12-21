@@ -126,16 +126,16 @@ class SensorManager:
         self.display_man.add_sensor(self)
 
     def init_sensor(self, sensor_type, transform, attached, sensor_options):
-        if sensor_type == 'RGBCamera':
+        if sensor_type == 'RGBCamera':# 如果传感器类型是 'RGBCamera'（彩色摄像头）
             camera_bp = self.world.get_blueprint_library().find('sensor.camera.rgb')
-            disp_size = self.display_man.get_display_size()
-            camera_bp.set_attribute('image_size_x', str(disp_size[0]))
+            disp_size = self.display_man.get_display_size()# 获取显示管理器的显示尺寸
+            camera_bp.set_attribute('image_size_x', str(disp_size[0]))# 设置摄像头的图像尺寸
             camera_bp.set_attribute('image_size_y', str(disp_size[1]))
 
-            for key in sensor_options:
+            for key in sensor_options:# 遍历传感器选项字典，设置摄像头的属性
                 camera_bp.set_attribute(key, sensor_options[key])
 
-            camera = self.world.spawn_actor(camera_bp, transform, attach_to=attached)
+            camera = self.world.spawn_actor(camera_bp, transform, attach_to=attached)# 在世界中生成摄像头 actor，并附加到指定的 vehicle 或其他 actor
             camera.listen(self.save_rgb_image)
 
             return camera
@@ -333,7 +333,7 @@ def one_run(args, client):
             world.apply_settings(settings)
 
 
-        # Instanciating the vehicle to which we attached the sensors
+        # 启动我们安装传感器的车辆
         bp = world.get_blueprint_library().filter('vehicle')[0]
 
         if bp.has_attribute('color'):
@@ -346,16 +346,16 @@ def one_run(args, client):
         vehicle.set_autopilot(True)
 
 
-        # Display Manager organize all the sensors an its display in a window
+        # 显示管理器将所有传感器组织在一个窗口中显示
         display_manager = DisplayManager(grid_size=[2, 2], window_size=[args.width, args.height], show_window=args.render_window)
 
 
-        # If require, we instanciate the RGB camera
+        # 如果需要，我们会安装 RGB 相机
         if args.render_cam:
             SensorManager(world, display_manager, 'RGBCamera', carla.Transform(carla.Location(x=1.5, z=2.4)), vehicle, {}, [0, 0])
 
 
-        # If any, we instanciate the required lidars
+        #如果有，我们会确定所需的激光雷达
         lidar_points_per_second = args.lidar_points
 
         if args.lidar_number >= 3:
@@ -368,7 +368,7 @@ def one_run(args, client):
             SensorManager(world, display_manager, 'LiDAR', carla.Transform(carla.Location(x=0, z=2.4)), vehicle, {'channels' : '64', 'range' : '200', 'points_per_second': lidar_points_per_second, 'rotation_frequency': '20'}, [1, 1])
 
 
-        # If any, we instanciate the required semantic lidars
+        # 如果有，我们会确定所需的语义激光雷达
         semanticlidar_points_per_second = args.semanticlidar_points
 
         if args.semanticlidar_number >= 3:
@@ -381,7 +381,7 @@ def one_run(args, client):
             SensorManager(world, display_manager, 'SemanticLiDAR', carla.Transform(carla.Location(x=0, z=2.4)), vehicle, {'channels' : '64', 'range' : '200', 'points_per_second': semanticlidar_points_per_second, 'rotation_frequency': '20'}, [1, 1])
 
 
-        # If any, we instanciate the required radars
+        # 如果有，我们会安装所需的雷达
         radar_points_per_second = args.radar_points
 
         if args.radar_number >= 3:
@@ -409,10 +409,10 @@ def one_run(args, client):
             else:
                 world.wait_for_tick()
 
-            # Render received data
+            # 渲染接收的数据
             display_manager.render()
 
-            # Time measurement for profiling or to output
+            # 用于分析或输出的时间测量
             if not args.profiling:
                 if frame == 30:
                     time_frames = timer.time() - time0
