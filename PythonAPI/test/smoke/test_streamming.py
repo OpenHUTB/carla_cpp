@@ -33,7 +33,7 @@ class TestStreamming(SmokeTest):
             if (actor.type_id == "sensor.other.gnss"):
                 actor.listen(self.on_gnss_check)
         time.sleep(5)
-        # stop
+        # 停止所有类型为'sensor.other.gnss'的传感器，结束数据监听
         for actor in actors:
             if (actor.type_id == "sensor.other.gnss"):
                 actor.stop()
@@ -41,7 +41,7 @@ class TestStreamming(SmokeTest):
 
     def test_multistream(self):
         print("TestStreamming.test_multistream")
-        # create the sensor
+        # 通过客户端获取对应的世界对象，用于后续创建传感器等操作
         world = self.client.get_world()
         bp = world.get_blueprint_library().find('sensor.other.gnss')
         bp.set_attribute("sensor_tick", str(1.0))
@@ -49,14 +49,14 @@ class TestStreamming(SmokeTest):
         gnss_sensor.listen(self.on_gnss_set)
         world.wait_for_tick()
 
-        # create 5 clients
+         # 创建一个包含5个元素的列表，用于存储后续创建的线程对象
         t = [0] * 5
         for i in range(5):
             t[i] = threading.Thread(target=self.create_client)
             t[i].setDaemon(True)
             t[i].start()
 
-        # wait for ending clients
+       # 循环等待所有线程执行结束
         for i in range(5):
             t[i].join()
 
