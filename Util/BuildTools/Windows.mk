@@ -2,16 +2,16 @@ ARGS=--all
 
 default: help
 
-# root of the project (makefile directory)
+# 定义一个环境变量ROOT_PATH
 export ROOT_PATH=$(CURDIR)/
 
-# dependecy install/build directory (rpclib, gtest, boost)
+# 定义一个环境变量INSTALLATION_DIR，用于表示依赖项安装/构建的目录位置
 export INSTALLATION_DIR=$(ROOT_PATH)Build/
 
 help:
 	@type "${CARLA_BUILD_TOOLS_FOLDER}\Windows.mk.help"
 
-# use PHONY to force next line as command and avoid conflict with folders of the same name
+# 使用.PHONY声明import为伪目标，即使有与import同名的文件夹存在也能确保make命令将其当作命令来执行
 .PHONY: import
 import: server
 	@"${CARLA_BUILD_TOOLS_FOLDER}/Import.py" $(ARGS)
