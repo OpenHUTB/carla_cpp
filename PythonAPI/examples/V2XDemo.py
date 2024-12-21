@@ -311,10 +311,22 @@ class World(object):
             self.world.wait_for_tick()
 
     def next_weather(self, reverse=False):
-        self._weather_index += -1 if reverse else 1
-        self._weather_index %= len(self._weather_presets)
-        preset = self._weather_presets[self._weather_index]
+    # 根据reverse参数的值调整天气索引
+    # 如果reverse为True，索引减1；如果为False，索引加1
+        self._weather_index += -1 if reverse else 1 
+    # 使用模运算确保索引值在预设天气列表的长度范围内循环
+        self._weather_index %= len(self._weather_presets) 
+    # 从预设天气列表中获取当前索引对应的天气预设
+    # 假设_weather_presets是一个列表，每个元素都是一个包含两个元素的元组或列表
+    # 第一个元素是天气类型（用于设置天气），第二个元素是天气名称（用于显示）
+        preset = self._weather_presets[self._weather_index] 
+    # 在游戏HUD上显示当前天气
+    # 假设hud有一个notification方法，用于显示通知信息
         self.hud.notification('Weather: %s' % preset[1])
+    # 设置游戏世界的天气
+    # 假设player对象有一个get_world方法，返回游戏世界的对象
+    # 游戏世界的对象有一个set_weather方法，用于设置天气
+    # 传入预设天气中的天气类型（preset[0]）作为参数
         self.player.get_world().set_weather(preset[0])
 
     def next_map_layer(self, reverse=False):
