@@ -365,20 +365,37 @@ class World(object):
             # 非同步模式下更新时间间隔可能不固定，通过这个方法等待世界自然更新。
 
     def tick(self, clock):
+    # 这个方法名为 `tick`，通常在模拟相关的程序中，`tick` 表示一次时间步的更新操作，这里可能是用于更新与世界相关的一些显示或者状态信息等。
+    # 接收一个参数 `clock`，从名称推测这个参数可能是用于记录时间相关信息的对象，比如模拟世界的时钟，用于控制更新的节奏或者获取当前时间等信息。
         self.hud.tick(self.player, clock)
+        # 调用 `self.hud`（应该是抬头显示相关的对象，之前在类的初始化等操作中已经创建）的 `tick` 方法，传入 `self.player`（可能是模拟世界中的主要演员，比如车辆等可操控对象）和 `clock` 参数。
+        # 目的是根据当前模拟世界中的主要演员状态以及时间信息，来更新抬头显示的内容，例如更新车辆的速度、位置等信息在抬头显示界面上的展示情况。
+   
 
     def toggle_recording(self):
+    # 这个方法名为 `toggle_recording`，从名称可以推断其功能是用于切换录制状态，也就是实现开启或关闭模拟过程的录制功能。
         if not self.recording:
+        # 判断当前是否没有处于录制状态（`self.recording` 为 `False` 表示未录制），如果是，则执行以下操作来开启录制相关的初始化设置。
             dir_name = "_out%04d" % self.recording_dir_num
+            # 根据 `self.recording_dir_num`（录制目录编号，初始化为0，每次创建新的录制目录时可能会递增）来生成一个目录名称格式为 `_out` 加上四位数字编号的字符串，
+            # 例如 `_out0000`，这个目录将用于存放录制过程中的相关文件，比如图像文件等。
             while os.path.exists(dir_name):
+            # 检查当前生成的目录名称对应的目录是否已经存在于文件系统中，如果存在，则执行以下操作来生成一个新的、不存在的目录名称。
                 self.recording_dir_num += 1
+                # 将录制目录编号递增1，以便生成一个不同的编号用于新的目录名称。
                 dir_name = "_out%04d" % self.recording_dir_num
+                # 根据更新后的编号重新生成目录名称。
             self.recording_frame_num = 0
+            # 将记录当前录制帧数的变量 `self.recording_frame_num` 重置为0，因为即将开启新的录制过程，从第一帧开始记录。
             os.mkdir(dir_name)
+            # 使用 `os.mkdir` 函数创建以 `dir_name` 命名的新目录，用于存放本次录制的文件。
         else:
+            # 如果当前已经处于录制状态（`self.recording` 为 `True`），则执行以下操作来结束录制，并给出相应提示信息。
             self.hud.notification('Recording finished (folder: _out%04d)' % self.recording_dir_num)
+            # 通过 `self.hud`（抬头显示对象）调用 `notification` 方法，向用户显示一条提示信息，告知用户录制已经完成，并显示本次录制文件存放的目录名称（使用 `self.recording_dir_num` 编号来表示）。
 
         self.recording = not self.recording
+        # 对 `self.recording` 属性取反，实现切换录制状态的操作。如果之前是未录制状态（`False`），现在就变为录制状态（`True`），反之亦然。
 
     def render(self, display):
         self.camera.render(display)
