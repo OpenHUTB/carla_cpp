@@ -413,25 +413,45 @@ class CodeFormatterManager:  # 假设这个类名是根据上下文推断的，�
         answer = raw_input("Are you sure to code format files in it anyway? (y/Q)")    # 获取用户输入，询问用户是否仍要格式化代码
         if answer != "y":    # 如果用户输入不是"y"，则以错误状态退出程序（sys.exit(1)）
             sys.exit(1)
-
-    def checkInputFilesAreInCleanGitReposAndAreTracked(self):
-        if self.args.verify or self.args.yes:
-            return
-        gitRepos = sets.Set()#gitRepos = sets.Set()创建了一个空集合。这个集合将用来存储已经处理过的Git仓库路径，目的是避免对同一个Git仓库进行重复的检查。
-        for formatterInstance in self.codeFormatterInstances:
-            for fileName in formatterInstance.inputFiles:
-                gitRepo = self.getGitRepoForFile(fileName)#gitRepo = self.getGitRepoForFile(fileName)调用了getGitRepoForFile函数来获取fileName所在的Git仓库的路径。
-                if gitRepo is None:
-                    self.confirmWithUserFileIsOutsideGit(fileName)
+            
+def checkInputFilesAreInCleanGitReposAndAreTracked(self):
+    # 如果用户指定了验证模式或自动确认模式，则直接返回，不进行额外检查
+    if self.args.verify or self.args.yes:
+        return
+    
+    # 创建一个空集合来存储已经处理过的Git仓库路径
+    gitRepos = set()  # 使用 Python 3 中的 set() 而不是 sets.Set()
+    
+    # 遍历所有的代码格式化器实例
+    for formatterInstance in self.codeFormatterInstances:
+        # 遍历每个格式化器实例中的输入文件
+        for fileName in formatterInstance.inputFiles:
+            # 获取文件所在的Git仓库路径
+            gitRepo = self.getGitRepoForFile(fileName)
+            
+            # 如果文件不在任何Git仓库中
+            if gitRepo is None:
+                # 提示用户文件在Git仓库之外
+                self.confirmWithUserFileIsOutsideGit(fileName)
+            else:
+                # 刷新Git仓库的索引
+                self.gitUpdateIndexRefresh(gitRepo)
+                
+                # 如果文件未被Git跟踪
+                if not self.isTrackedFile(fileName):
+                    # 提示用户文件是未跟踪的
+                    self.confirmWithUserFileIsUntracked(fileName)
                 else:
-                    self.gitUpdateIndexRefresh(gitRepo)
-                    if not self.isTrackedFile(fileName):
-                        self.confirmWithUserFileIsUntracked(fileName)
-                    elif gitRepo not in gitRepos:
+                    # 如果Git仓库路径尚未添加到集合中
+                    if gitRepo not in gitRepos:
+                        # 将Git仓库路径添加到集合中
                         gitRepos.add(gitRepo)
+                        
+                        # 检查Git仓库是否干净（没有未提交的更改）
                         if not self.isCleanGitRepo(gitRepo):
+                            # 提示用户Git仓库不干净
                             self.confirmWithUserGitRepoIsNotClean(gitRepo)
-
+                            
     def getGitRepoForFile(self, fileName):
         """
         确定给定文件是否位于Git仓库中，并返回该仓库的顶级目录路径。
