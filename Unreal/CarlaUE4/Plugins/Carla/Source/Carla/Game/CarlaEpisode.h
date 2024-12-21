@@ -341,7 +341,7 @@ private:
   friend class ACarlaGameModeBase;// 将 `ACarlaGameModeBase` 类声明为友元类
   friend class FCarlaEngine;// 将 `FCarlaEngine` 类声明为友元类
 
-  void InitializeAtBeginPlay//进行初始化相关的操作
+  void InitializeAtBeginPlay()//进行初始化相关的操作
 
   void EndPlay();//执行清理、资源释放等操作
 
