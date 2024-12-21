@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -22,7 +22,7 @@ public:
   // ===========================================================================
   /// @{
 
-  /// Generate a non-deterministic random id.
+  /// 生成一个非确定性随机种子。
   static uint64 GenerateRandomId();
 
   /// @}
@@ -31,15 +31,15 @@ public:
   // ===========================================================================
   /// @{
 
-  /// Generate a non-deterministic random seed.
+  /// 生成一个非确定性随机数种子。
   UFUNCTION(BlueprintCallable)
   static int32 GenerateRandomSeed();
 
-  /// Generate a seed derived from previous seed.
+  /// 基于前一个种子生成一个新的种子。
   UFUNCTION(BlueprintCallable)
   int32 GenerateSeed();
 
-  /// Seed the random engine.
+  /// 播种随机引擎/初始化随机数生成器
   UFUNCTION(BlueprintCallable)
   void Seed(int32 InSeed)
   {
@@ -53,13 +53,13 @@ public:
   /// @{
 
   UFUNCTION(BlueprintCallable)
-  float GetUniformFloat()
+  float GetUniformFloat()  //返回一个在0到1之间（包括0但不包括1）均匀分布的随机浮点数
   {
     return std::uniform_real_distribution<float>()(Engine);
   }
 
   UFUNCTION(BlueprintCallable)
-  float GetUniformFloatInRange(float Minimum, float Maximum)
+  float GetUniformFloatInRange(float Minimum, float Maximum)//返回一个在指定的最小值和最大值之间均匀分布的随机浮点数
   {
     return std::uniform_real_distribution<float>(Minimum, Maximum)(Engine);
   }
@@ -139,14 +139,14 @@ public:
   /// @{
 
   template <typename T>
-  auto &PickOne(const TArray<T> &Array)
+  auto &PickOne(const TArray<T> &Array)//函数参数是 const TArray<T> &，这意味着数组本身在函数内部是不可修改的
   {
     check(Array.Num() > 0);
     return Array[GetUniformIntInRange(0, Array.Num() - 1)];
   }
 
   template <typename T>
-  void Shuffle(TArray<T> &Array)
+  void Shuffle(TArray<T> &Array)//std::shuffle 来打乱数组的顺序
   {
     std::shuffle(Array.GetData(), Array.GetData() + Array.Num(), Engine);
   }

@@ -31,17 +31,16 @@
 
 #include "CarlaEpisode.generated.h"
 
-/// A simulation episode.
+/// 模拟剧集。
 ///
-/// Each time the level is restarted a new episode is created.
-/// @brief `UCarlaEpisode` 类表示一个模拟情节，在Carla模拟中，每次重新加载关卡（地图）时会创建一个新的情节实例，用于管理该次模拟过程中的各种元素和操作。
+/// 每次重新启动关卡时，都会创建一个新的剧集。
 UCLASS(BlueprintType, Blueprintable)
 class CARLA_API UCarlaEpisode : public UObject
 {
   GENERATED_BODY()
 
   // ===========================================================================
-  // --构造函数相关部分 ------------------------------------------------------------
+  // -- 构造 函数 ------------------------------------------------------------
   // ===========================================================================
 
 public:
@@ -49,10 +48,10 @@ public:
   UCarlaEpisode(const FObjectInitializer &ObjectInitializer);
 
   // ===========================================================================
-  // -- 加载新情节相关部分-----------------------------------------------------
+  // -- 加载新剧集 -----------------------------------------------------
   // ===========================================================================
 
-  /// Load a new map and start a new episode.
+  /// 加载新地图并开始新剧集。
   ///
   /// If @a MapString is empty, the current map is reloaded.
   /// @brief 加载新的地图并启动一个新的模拟情节。
@@ -61,12 +60,9 @@ public:
   /// @return 如果地图加载成功并成功启动新情节，则返回 `true`；否则返回 `false`。
   UFUNCTION(BlueprintCallable)
   bool LoadNewEpisode(const FString &MapString, bool ResetSettings = true);
-    /// @brief 加载新的地图，该地图根据OpenDRIVE数据生成网格，并启动一个新的模拟情节。
-    /// @param OpenDriveString 包含OpenDRIVE数据的字符串，用于生成地图的相关信息。
-    /// @param Params OpenDRIVE生成参数对象，用于指定地图生成过程中的详细参数设置。
-    /// @return 如果地图成功根据OpenDRIVE数据生成并启动新情节，则返回 `true`；否则返回 `false`，注意如果 `OpenDriveString` 为空字符串则会导致加载失败。
-  /// Load a new map generating the mesh from OpenDRIVE data and
-  /// start a new episode.
+
+  ///加载从 OpenDRIVE 数据生成网格的新地图，然后
+  ///开始新剧集。
   ///
   /// If @a MapString is empty, it fails.
   bool LoadNewOpendriveEpisode(
@@ -74,7 +70,7 @@ public:
       const carla::rpc::OpendriveGenerationParameters &Params);
 
   // ===========================================================================
-  // -- 情节设置相关部分 -------------------------------------------------------
+  // -- 剧集设置 -------------------------------------------------------
   // ===========================================================================
 /// @brief 获取当前模拟情节的设置信息，返回一个常量引用，确保不会意外修改设置内容，外部只能读取当前的设置情况。
     UFUNCTION(BlueprintCallable)
@@ -88,29 +84,29 @@ public:
   void ApplySettings(const FEpisodeSettings &Settings);
 
   // ===========================================================================
-  // -- 获取本情节相关信息部分 ---------------------------------------
+  // -- 检索有关此剧集的信息---------------------------------------
   // ===========================================================================
 
-  /// Return the unique id of this episode.
-/// @brief 返回当前模拟情节的唯一标识符，用于区分不同的模拟情节实例，方便在多个情节存在的场景下进行识别和管理。
+  /// 返回此剧集的唯一 ID。
   auto GetId() const
   {
     return Id;
   }
-/// @brief 返回当前模拟情节中加载的地图名称，以 `FString` 类型返回，方便在UI显示、日志记录等场景中使用地图名称信息。
-  /// Return the name of the map loaded in this episode.
+
+  ///返回本集中加载的地图的名称。
   UFUNCTION(BlueprintCallable)
   const FString &GetMapName() const
   {
     return MapName;
   }
-/// @brief 记录模拟过程的时间流逝情况，例如可以根据时间来触发某些事件等。
-  /// Game seconds since the start of this episode.
+
+  /// 游戏秒数。
   double GetElapsedGameTime() const
   {
     return ElapsedGameTime;
   }
- /// @brief 获取视觉游戏时间行
+
+  /// 视觉游戏秒
   double GetVisualGameTime() const
   {
     return VisualGameTime;
@@ -120,8 +116,7 @@ public:
   void SetVisualGameTime(double Time)
   {
     VisualGameTime = Time;
-// 如果材质参数实例存在，更新材质参数集合实例中名为 "VisualTime" 的标量参数值为新的视觉游戏时间，
-        // 这样可能会影响使用该材质的视觉效果，使其与设置的时间相关联
+    // Material Parameters 中的更新时间
     if (MaterialParameters)
     {
       MaterialParameters->SetScalarParameterValue(FName("VisualTime"), VisualGameTime);
@@ -134,18 +129,19 @@ public:
   {
     return ActorDispatcher->GetActorDefinitions();
   }
-/// @brief 返回推荐的车辆生成点列表，方便快速找到合适的位置来创建车辆Actor
+
+  ///返回推荐的载具重生点列表。
   UFUNCTION(BlueprintCallable)
   TArray<FTransform> GetRecommendedSpawnPoints() const;
-/// @brief 返回当前加载地图的地理位置参考信息
-  /// Return the GeoLocation point of the map loaded
+
+  /// 返回加载的地图的 GeoLocation 点
   const carla::geom::GeoLocation &GetGeoReference() const
   {
     return MapGeoReference;
   }
 
   // ===========================================================================
-  // -- 获取特殊Actor相关部分------------------------------------------------
+  // -- 检索特殊演员 ------------------------------------------------
   // ===========================================================================
 /// @brief 获取当前模拟情节中的旁观者Pawn
   UFUNCTION(BlueprintCallable)
@@ -171,28 +167,29 @@ public:
   }
 
   // ===========================================================================
-  // -- Actor查找方法相关部分  --------------------------------------------------
+  // -- Actor 查找方法 --------------------------------------------------
   // ===========================================================================
 
-  /// invalid./// @brief 根据给定的Actor标识符（`ActorId`）查找对应的Carla Actor
-    /// @param ActorId 要查找的Actor的唯一标识符，类型为 `FCarlaActor::IdType`。
-    /// @return 如果找到对应的Actor且该Actor未处于待销毁状态，则返回指向该Actor的有效指针（`FCarlaActor*` 类型）
-//否则返回无效指针（表示未找到或Actor即将被销毁）。
+  ///按 id 查找 Carla 演员。
+  ///
+  /// 如果未找到 actor 或正在等待 kill，则返回的视图为
+  ///无效。
   FCarlaActor* FindCarlaActor(FCarlaActor::IdType ActorId)
   {
     return ActorDispatcher->GetActorRegistry().FindCarlaActor(ActorId);
   }
-
-   /// @brief 根据给定的 `AActor` 指针查找对应的Carla Actor
-    /// @param Actor 指向要查找的 `AActor` 对象的指针。
-    /// @return 如果找到对应的Actor且该Actor未处于待销毁状态，则返回指向该Actor的有效指针（`FCarlaActor*` 类型）；
-  //否则返回无效指针（表示未找到或Actor即将被销毁）。
-    FCarlaActor* FindCarlaActor(AActor *Actor) constspatcher->GetActorRegistry().FindCarlaActor(Actor);
+  /// 找到 @a Actor 的 actor 视图。
+  ///
+  /// 如果未找到 actor 或正在等待 kill，则返回的视图为
+  ///无效。
+  FCarlaActor* FindCarlaActor(AActor *Actor) const
+  {
+    return ActorDispatcher->GetActorRegistry().FindCarlaActor(Actor);
   }
 
- /// @brief 根据给定的流标识符（`StreamId`）获取对应的Carla Actor（传感器）的描述信息，如果未找到该Actor则返回空字符串。
-    /// @param StreamId 用于标识特定数据流的标识符通过该标识符查找对应的Actor描述信息。
-    /// @return 如果找到对应的Actor，则返回其描述信息（以 `FString` 类型表示）；否则返回空字符串，表示未找到相关Actor。
+  ///使用特定流 ID 获取 Carla actor （sensor） 的描述。
+  ///
+  /// 如果未找到 actor，则返回空字符串
   FString GetActorDescriptionFromStream(carla::streaming::detail::stream_id_type StreamId)
   {
     return ActorDispatcher->GetActorRegistry().GetDescriptionFromStream(StreamId);

@@ -6,20 +6,20 @@
 
 #pragma once
 
-#include "Carla/Actor/ActorSpawnResult.h"
-#include "Carla/Actor/CarlaActorFactory.h"
+#include "Carla/Actor/ActorSpawnResult.h" // 包含生成操作结果类型 FActorSpawnResult 的头文件
+#include "Carla/Actor/CarlaActorFactory.h" // 包含 CARLA 仿真平台 actor 工厂的基类
 
 #include "AIControllerFactory.generated.h"
 
-/// 负责生成AI控制器的工厂
-UCLASS()
-class CARLA_API AAIControllerFactory final : public ACarlaActorFactory
+UCLASS() // 声明这是一个 Unreal Engine 的类，用于反射和对象系统集成
+class CARLA_API AAIControllerFactory final : public ACarlaActorFactory // 定义一个用于生成 AI 控制器的工厂类，继承自 ACarlaActorFactory
 {
   GENERATED_BODY()
 
-  TArray<FActorDefinition> GetDefinitions() final;
+  TArray<FActorDefinition> GetDefinitions() final; // 返回该工厂支持生成的 actor 类型集合
 
   FActorSpawnResult SpawnActor(
-      const FTransform &SpawnAtTransform,
-      const FActorDescription &ActorDescription) final;
+      const FTransform &SpawnAtTransform, // 指定 actor 的生成位置和方向
+      const FActorDescription &ActorDescription) final; // 提供 actor 的描述信息，例如类型和配置
 };
+

@@ -80,9 +80,9 @@ template<typename VectorType, int Size> class VectorBlock
       IsColVector =!(internal::traits<VectorType>::Flags & RowMajorBit)
     };
   public:
-    EIGEN_DENSE_PUBLIC_INTERFACE(VectorBlock)
+    EIGEN_DENSE_PUBLIC_INTERFACE(VectorBlock)//这是Eigen库中用于继承公共接口的宏，允许   VectorBlock   类使用   VectorType   的公共接口。
 
-    using Base::operator=;
+    using Base::operator=;//允许   VectorBlock   类使用其基类   Base   的赋值运算符。
 
     /** 动态大小的构造函数
       */

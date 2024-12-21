@@ -1,15 +1,15 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.04 #指定基础镜像为 Ubuntu 18.04
 
-USER root
+USER root #指定当前用户为 root，以便执行后续的安装和配置操作
 
-ARG EPIC_USER=user
-ARG EPIC_PASS=pass
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update ; \
-  apt-get install -y wget software-properties-common && \
-  add-apt-repository ppa:ubuntu-toolchain-r/test && \
-  wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add - && \
-  apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main" && \
+ARG EPIC_USER=user #定义了两个构建参数，用于 GitHub 认证
+ARG EPIC_PASS=pass #定义了两个构建参数，用于 GitHub 认证
+ENV DEBIAN_FRONTEND=noninteractive #设置环境变量，避免在安装过程中出现交互式提示
+RUN apt-get update ; \#更新 apt 包索引
+  apt-get install -y wget software-properties-common && \#安装 wget 和软件源管理工具
+  add-apt-repository ppa:ubuntu-toolchain-r/test && \#添加 Ubuntu Toolchain 测试 PPA，用于安装新版本的编译工具。
+  wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add - && \#添加 LLVM 的 GPG 密钥。
+  apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main" && \#添加 LLVM 的软件源。
   apt-get update ; \
   apt-get install -y build-essential \
     clang-8 \

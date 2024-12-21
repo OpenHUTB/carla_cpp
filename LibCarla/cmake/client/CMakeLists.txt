@@ -1,25 +1,39 @@
+#设置CMake最低版本要求
 cmake_minimum_required(VERSION 3.5.1)
+#定义项目名称
 project(libcarla-client)
 
 # 启用/安装 RSS VARIANT
+#默认是禁用
 option (BUILD_RSS_VARIANT "Enables ad-rss-lib based RSS components" OFF)
+# 设置目标后缀为空字符串，这是默认情况
 set(carla_target_postfix "")
+# 如果用户启用了 BUILD_RSS_VARIANT 选项，则执行以下操作
 if (BUILD_RSS_VARIANT)
+  # 更新目标后缀以包含 "_rss" 字符串，这可能用于区分不同变体的目标文件或库
   set(carla_target_postfix "_rss")
+   # 初始化 ADRSS_INCLUDE_DIRS 变量为空列表
+  # 这个变量将用来存储 RSS 变体所需的所有包含路径
   set(ADRSS_INCLUDE_DIRS)
+    # 初始化 ADRSS_LIBS 变量为空列表
+  # 这个变量将用来存储 RSS 变体所需的所有链接库
   set(ADRSS_LIBS)
 
   # 快速C++日志库：spdlog
+  #寻找并配置外部库spdlog
   find_package(spdlog CONFIG REQUIRED
     HINTS ${ADRSS_INSTALL_DIR}/spdlog/)
+    #获得和处理spdlog的属性
   get_target_property(spdlog_include_dirs spdlog::spdlog INTERFACE_INCLUDE_DIRECTORIES)
   get_target_property(spdlog_file spdlog::spdlog LOCATION)
   foreach(dir ${spdlog_include_dirs})
+  # 遍历 spdlog_include_dirs 列表中的每个目录
     file(GLOB spdlog_includes "${dir}/*")
     install(DIRECTORY ${spdlog_includes} DESTINATION include/system)
     list(APPEND ADRSS_INCLUDE_DIRS ${dir})
   endforeach()
   # DESTINATION给出相对路径时，它将相对于 CMAKE_INSTALL_PREFIX 变量（PythonAPI\carla\dependencies）
+  #将spdlog库安装到目标位置
   install(FILES ${spdlog_file} DESTINATION lib)
   list(APPEND ADRSS_LIBS ${spdlog_file})
   #完成项目的包含目录和库目录的路径设置 安装位置指定以及相关列表的添加操作
@@ -36,21 +50,31 @@ if (BUILD_RSS_VARIANT)
   list(APPEND ADRSS_LIBS ${odr_lib})
 
   foreach(ad_lib ad_physics ad_rss ad_map_access ad_map_opendrive_reader ad_rss_map_integration)
-    set(${ad_lib}_file ${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}.a)
+  set(${ad_lib}_file ${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}.a)
+  # 使用install命令将上一步中设置的静态库文件安装到目标位置，
+  # 这里的目标位置是安装目录下的"lib"文件夹。
+  # ${${ad_lib}_file}是CMake的变量间接引用语法，它首先解析${ad_lib}_file得到变量名（如ad_physics_file），
+  # 然后再解析该变量名对应的值（如/path/to/adrss_install/ad_physics/lib/libad_physics.a）。
     install(FILES ${${ad_lib}_file} DESTINATION lib)
     list(APPEND ADRSS_LIBS ${${ad_lib}_file})
 
     # 如果可用，请安装相应的 Python 库
     file(GLOB ${ad_lib}_python_libs "${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}_python*.a")
+    # 遍历找到的所有Python库文件
     foreach(ad_python_lib ${${ad_lib}_python_libs})
+     # 检查每个文件是否存在
       if (EXISTS ${ad_python_lib})
+        # 如果存在，则安装该文件到目标系统的 'lib' 目录中
         install(FILES ${ad_python_lib} DESTINATION lib)
       endif()
     endforeach()
-
+# 设置包含路径为ADRSS_INSTALL_DIR下的对应库的include目录
     set(${ad_lib}_include_dir ${ADRSS_INSTALL_DIR}/${ad_lib}/include)
+    # 使用 file(GLOB ...) 查找上述包含路径下的所有文件和子目录
     file(GLOB ${ad_lib}_includes "${${ad_lib}_include_dir}/*")
+    # 安装找到的所有头文件和子目录到目标系统的 'include/system' 目录下
     install(DIRECTORY ${${ad_lib}_includes} DESTINATION include/system)
+    # 将当前库的包含路径添加到 ADRSS_INCLUDE_DIRS 列表中，以便后续使用
     list(APPEND ADRSS_INCLUDE_DIRS ${${ad_lib}_include_dir})
   endforeach()
 endif()
@@ -233,6 +257,7 @@ install(FILES ${libcarla_carla_sensor_data_sources} DESTINATION include/carla/se
 file(GLOB libcarla_carla_sensor_s11n_sources
     "${libcarla_source_path}/carla/sensor/s11n/*.cpp"
     "${libcarla_source_path}/carla/sensor/s11n/*.h")
+# 将找到的源文件添加到libcarla_sources变量中
 set(libcarla_sources "${libcarla_sources};${libcarla_carla_sensor_s11n_sources}")
 install(FILES ${libcarla_carla_sensor_s11n_sources} DESTINATION include/carla/sensor/s11n)
 
@@ -313,8 +338,9 @@ install(FILES ${libcarla_carla_ros2_sources} DESTINATION include/carla/ros2)
 
 # 构建发布版
 if (LIBCARLA_BUILD_RELEASE)
-  add_library(carla_client${carla_target_postfix} STATIC ${libcarla_sources})
+  add_library(carla_client${carla_target_postfix} STATIC ${libcarla_sources})  #使用CMake的add_library命令来创建一个静态库 且其源文件由变量$决定
 
+#设置目标包含目录：使用target_include_directories命令为carla_client库设置包含目录
   target_include_directories(carla_client${carla_target_postfix} SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}"
@@ -328,21 +354,24 @@ if (LIBCARLA_BUILD_RELEASE)
       ${ADRSS_INCLUDE_DIRS})
   endif()
 
+#使用install命令来安装carla_client库
   install(TARGETS carla_client${carla_target_postfix} DESTINATION lib)
 
+#windows平台特定处理：使用set_target_postfix命令设置carla_client库的编译标准
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
-
+ # 链接Recast及其相关库的Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/DetourCrowd.lib")
-  else ()
+  else ()         #非Windows平台处理：使用set命令设置CMAKE_CXX_FLAGS_RELEASE_CLIENT变量 为了在非Windows平台上设置合适的编译标准
     if (NOT DEFINED CMAKE_CXX_FLAGS_RELEASE_CLIENT)
       set(CMAKE_CXX_FLAGS_RELEASE_CLIENT ${CMAKE_CXX_FLAGS_RELEASE})
     endif()
-
+ # 设置carla_client${carla_target_postfix}目标的编译标志为CMAKE_CXX_FLAGS_RELEASE_CLIENT中定义的值
+    # 同样地，这里也使用了已废弃的COMPILE_FLAGS属性
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE_CLIENT}")
-
+ # 链接Recast及其相关库的非Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libRecast.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetour.a")
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/libDetourCrowd.a")
@@ -354,42 +383,52 @@ endif()
 # 构建调试版
 if (LIBCARLA_BUILD_DEBUG)
 
+ # 添加一个静态库目标，名为 carla_client${carla_target_postfix}_debug，包含libcarla_sources中列出的所有源文件
   add_library(carla_client${carla_target_postfix}_debug STATIC ${libcarla_sources})
-
+  
+ # 指定编译此静态库时需要包含的系统头文件路径，并且这些路径只对这个目标可见（PRIVATE）
   target_include_directories(carla_client${carla_target_postfix}_debug SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}"
       "${RECAST_INCLUDE_PATH}"
       "${LIBPNG_INCLUDE_PATH}")
 
+  # 如果启用了RSS_VARIANT构建选项，则进行以下额外设置
   if (BUILD_RSS_VARIANT)
+  # 定义预处理器宏，以启用RSS功能并指定使用TBB线程库
     target_compile_definitions(carla_client${carla_target_postfix}_debug PRIVATE RSS_ENABLED RSS_USE_TBB)
+    # 链接AD-RSS库和Intel TBB库到carla_client_debug库
     target_link_libraries(carla_client${carla_target_postfix}_debug ${ADRSS_LIBS} tbb)
+    # 添加AD-RSS库的头文件路径
     target_include_directories(carla_client${carla_target_postfix}_debug SYSTEM PRIVATE
       ${ADRSS_INCLUDE_DIRS})
   endif()
 
+ # 安装命令，将构建的carla_client_debug库安装到系统的lib目录下
   install(TARGETS carla_client${carla_target_postfix}_debug DESTINATION lib)
 
+ # 如果是在Windows平台构建，则应用特定于Windows的设置
   if (WIN32) # @todo Fix PythonAPI build on Windows.
+      # 设置编译标志为调试模式下的C++编译标志（这可能包括优化关闭、调试信息等）
     set_target_properties(carla_client${carla_target_postfix}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
-
+ # 链接Recast及其相关库的Windows版本静态库
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/Recast.lib")
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/Detour.lib")
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/DetourCrowd.lib")
   else ()
+   # 如果未定义CMAKE_CXX_FLAGS_DEBUG_CLIENT，则将其设置为与CMAKE_CXX_FLAGS_DEBUG相同
     if (NOT DEFINED CMAKE_CXX_FLAGS_DEBUG_CLIENT)
       set(CMAKE_CXX_FLAGS_DEBUG_CLIENT ${CMAKE_CXX_FLAGS_DEBUG})
     endif()
 
     set_target_properties(carla_client${carla_target_postfix}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG_CLIENT}")
-
+#设置编译标志
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libRecast.a")
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetour.a")
-    target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetourCrowd.a")
+    target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetourCrowd.a")#链接更多库
 
   endif (WIN32)
-
+#条件结束和编译定义
   target_compile_definitions(carla_client${carla_target_postfix}_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
 
 endif()

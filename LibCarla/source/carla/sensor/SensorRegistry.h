@@ -1,22 +1,21 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#ifndef LIBCARLA_SENSOR_REGISTRY_INCLUDE_H
+#ifndef LIBCARLA_SENSOR_REGISTRY_INCLUDE_H	// 该头文件定义了传感器注册相关的内容，用于管理不同类型传感器及其序列化操作
 #define LIBCARLA_SENSOR_REGISTRY_INCLUDE_H
 // 引入CompositeSerializer头文件，它可能是一个用于组合多个序列化相关功能的类模板，
 // 在后续构建传感器数据序列化和反序列化的注册机制中会起到关键作用
 #include "carla/sensor/CompositeSerializer.h"
 
 // =============================================================================
-// 以下是注册一个新传感器需要遵循的4个步骤说明。
+// Follow the 4 steps to register a new sensor.	// 以下是注册新传感器需要遵循的4个步骤相关的代码区域说明
 // =============================================================================
 
-//  1. 在这里包含传感器对应的序列化器头文件。
-// 以下这些头文件分别对应不同传感器类型的数据序列化功能，每个头文件中应该定义了如何将对应传感器的数据转换为可存储或传输的格式（序列化）。
-#include "carla/sensor/s11n/CollisionEventSerializer.h"
+// 1. Include the serializer here.
+#include "carla/sensor/s11n/CollisionEventSerializer.h"	// 包含各种传感器对应的序列化器头文件，这些序列化器用于将传感器相关数据进行序列化操作
 #include "carla/sensor/s11n/DVSEventArraySerializer.h"
 #include "carla/sensor/s11n/EpisodeStateSerializer.h"
 #include "carla/sensor/s11n/GnssSerializer.h"
@@ -33,10 +32,8 @@
 #include "carla/sensor/s11n/GBufferFloatSerializer.h"
 #include "carla/sensor/s11n/V2XSerializer.h"
 
-// 2. 在这里添加传感器类的前置声明。
-// 前置声明这些传感器类，告知编译器存在这些类的定义，但具体的类定义在其他地方（可能后续包含的头文件中或者其他源文件中），
-// 这样可以解决在当前代码中使用这些类作为类型时的编译顺序问题，避免编译错误。
-class ACollisionSensor;
+// 2. Add a forward-declaration of the sensor here.	// 对各种传感器类进行前置声明，告知编译器这些类在后续会被定义，避免编译时找不到类型定义的错误
+class ACollisionSensor;	
 class ADepthCamera;
 class ANormalsCamera;
 class ADVSCamera;
@@ -61,14 +58,13 @@ class ACustomV2XSensor;
 namespace carla {
 namespace sensor {
 
-  // 3. 在SensorRegistry中注册传感器及其对应的序列化器。
- /// @brief SensorRegistry类，它包含了所有可用传感器的注册信息，并且允许对已注册类型的传感器数据进行序列化和反序列化操作。
-    /// @details 对于那些不发送数据（仅在客户端工作的传感器），可以使用s11n::NoopSerializer（空操作序列化器，可能不进行实际的数据转换等操作）。
+
+  // 3. Register the sensor and its serializer in the SensorRegistry.	// 在SensorRegistry中注册传感器及其对应的序列化器，使得可以通过该注册表对相应传感器数据进行序列化和反序列化操作
   /// Contains a registry of all the sensors available and allows serializing
-  /// and deserializing sensor data for the types registered.
+  /// and deserializing sensor data for the types registered.	// 包含了所有可用传感器的注册表，允许对已注册类型的传感器数据进行序列化和反序列化操作
   ///
   /// Use s11n::NoopSerializer if the sensor does not send data (sensors that
-  /// work only on client-side).
+  /// work only on client-side).	// 如果传感器不发送数据（仅在客户端工作的传感器），则使用s11n::NoopSerializer
   using SensorRegistry = CompositeSerializer<
     std::pair<ACollisionSensor *, s11n::CollisionEventSerializer>,
     std::pair<ADepthCamera *, s11n::ImageSerializer>,
@@ -102,8 +98,7 @@ namespace sensor {
 
 #ifdef LIBCARLA_SENSOR_REGISTRY_WITH_SENSOR_INCLUDES
 
-// 4. 在这里包含传感器对应的头文件，这些头文件中定义了传感器类的具体实现，包括其成员变量、成员函数等内容，
-// 使得在前面只是前置声明的传感器类在这里有了完整的定义，可在后续代码中进行更全面的使用（比如创建对象、调用成员函数等）。
+// 4. Include the sensor here.		// 包含实际的传感器类定义的头文件，这些头文件中定义了各种传感器类的具体实现等内容
 #include "Carla/Sensor/CollisionSensor.h"
 #include "Carla/Sensor/DepthCamera.h"
 #include "Carla/Sensor/NormalsCamera.h"

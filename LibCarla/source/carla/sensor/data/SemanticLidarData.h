@@ -96,113 +96,95 @@ namespace data {
       }
   };
   #pragma pack(pop)
-/// @brief SemanticLidarData类，用于存储和操作语义激光雷达整体的数据，包括头部信息、各通道数据等，并且提供了一些对数据进行设置、获取和修改的方法。
 
+// 使用静态断言来检查 `float` 类型的大小是否和 `uint32_t` 类型的大小相等，若不相等则在编译时输出指定的错误信息 "Invalid float size"
   class SemanticLidarData {
     static_assert(sizeof(float) == sizeof(uint32_t), "Invalid float size");
 //静态断言，用于在编译时期检查 `float` 类型的大小是否与 `uint32_t` 类型的大小相等。
 // 之所以进行这样的检查，是因为后续代码在内存操作等方面可能基于二者大小一致的假设来实现某些功能，
 // 如果大小不相等，编译时就会报错，并显示 "Invalid float size" 这个错误提示信息。
   protected:
-// 定义一个枚举类型 `Index`，用于清晰地标识存储在 `_header` 向量中的不同数据元素的位置索引，方便代码的可读性和维护性。
-    // 这里定义了三个索引值，分别对应水平角度、通道数量以及整个数据结构的总大小（以一种相对抽象的方式表示）。
+    // 定义一个名为 `Index` 的强类型枚举（enum class），其底层类型为 `size_t`，用于表示不同的索引含义
     enum Index : size_t {
-      HorizontalAngle,// 表示水平角度信息在 `_header` 向量中的存储位置索引
-      ChannelCount,// 表示通道数量信息在 `_header` 向量中的存储位置索引
-      SIZE// 表示整个数据结构中与头部相关部分的总大小索引
+// 表示水平角度对应的索引，枚举值
+      HorizontalAngle,
+ // 表示通道数量对应的索引，枚举值
+      ChannelCount,
+  // 用于表示总的大小相关的一个枚举值，可能作为一种边界或者偏移量相关的标识，具体取决于使用场景
+      SIZE
     };
 
   public:
-// 构造函数，用于创建 `SemanticLidarData` 类的对象。
+// 显式的构造函数，参数 `ChannelCount` 有默认值 `0u`，用于初始化 `SemanticLidarData` 类的对象
     explicit SemanticLidarData(uint32_t ChannelCount = 0u)
-// 使用初始化列表初始化 `_header` 成员变量，它是一个 `std::vector<uint32_t>` 类型的向量。
-// 根据传入的通道数量（或者默认的0）来确定 `_header` 向量的初始大小，初始化为全部元素值为0。
-// 具体大小是 `Index::SIZE + ChannelCount`，意味着预留了存储水平角度、通道数量以及每个通道相关信息（比如每个通道点数等，后续可按需填充）的空间。
+// 使用初始化列表初始化 `_header` 成员变量，将其大小初始化为 `Index::SIZE + ChannelCount`，并将所有元素初始化为 `0u`
       : _header(Index::SIZE + ChannelCount, 0u) {
-        // 将 `_header` 向量中对应通道数量的位置设置为传入的 `ChannelCount` 参数值，确保 `_header` 中正确记录了当前对象所表示的激光雷达的通道数量信息。
+// 将 `_header` 向量中对应 `Index::ChannelCount` 索引位置的元素设置为传入的通道数量 `ChannelCount`
       _header[Index::ChannelCount] = ChannelCount;
     }
-// 移动赋值运算符，这里使用默认生成的移动赋值操作实现。
-// 移动赋值运算符允许将一个 `SemanticLidarData` 对象的资源（例如动态分配的内存、已存储的数据等）高效地移动到另一个对象中，
-// 避免了像普通赋值那样进行深拷贝带来的不必要的性能开销，常用于对象之间数据所有权转移的场景，比如在容器中重新分配元素等情况。
+    // 默认实现移动赋值运算符，这里使用 `= default` 语法让编译器自动生成默认的移动赋值操作逻辑，以提高代码简洁性
     SemanticLidarData &operator=(SemanticLidarData &&) = default;
-    SemanticLidarData &operator=(SemanticLidarData &&) = default;
-// 虚析构函数，定义为虚函数是为了支持多态的销毁机制。
-// 当通过基类指针或引用删除派生类对象时，能够正确地调用派生类的析构函数，进而释放派生类中额外申请的资源（如果有）。
-// 虽然在当前类中没有明显看到需要释放的特定资源，但这样的定义为后续可能的继承扩展做了准备，确保在多态场景下内存管理的正确性。
+    // 虚析构函数，用于在派生类对象销毁时进行正确的资源清理等操作，这里为空实现，具体清理逻辑可在派生类中按需重写
     virtual ~SemanticLidarData() {}
-// 获取激光雷达测量的水平角度值的函数，该函数为 `const` 成员函数，表示不会修改对象的内部状态。
-// 通过将 `_header` 向量中对应 `Index::HorizontalAngle` 索引位置的数据重新解释为 `float` 类型来获取角度值并返回。
-// 这里利用了 `reinterpret_cast` 进行类型转换，前提是前面提到的 `float` 和 `uint32_t` 大小一致的假设成立，才能保证这样的转换在内存层面是合理的。
+ // 获取水平角度的函数，返回值类型为 `float`，通过将 `_header` 中对应 `Index::HorizontalAngle` 索引位置的元素进行类型重解释转换为 `float` 类型后返回
     float GetHorizontalAngle() const {
       return reinterpret_cast<const float &>(_header[Index::HorizontalAngle]);
     }
-// 设置激光雷达测量的水平角度值的函数，用于更新对象中存储的水平角度信息。
-// 通过 `std::memcpy` 函数将给定的 `angle` 参数（`float` 类型的角度值）以内存拷贝的方式复制到 `_header` 向量中对应 `Index::HorizontalAngle` 索引位置，
-// 覆盖原来存储在该位置的数据，实现角度值的更新。拷贝的数据大小为 `sizeof(uint32_t)`，同样依赖于前面提到的类型大小一致性假设。
-    void SetHorizontalAngle(float angle) {
+ // 设置水平角度的函数，参数 `angle` 为要设置的角度值（`float` 类型）
     void SetHorizontalAngle(float angle) {
       std::memcpy(&_header[Index::HorizontalAngle], &angle, sizeof(uint32_t));
     }
-// 获取激光雷达的通道数量的函数，为 `const` 成员函数，直接返回 `_header` 向量中对应 `Index::ChannelCount` 索引位置存储的 `uint32_t` 类型的数值，
-// 该数值在对象构造时或者后续通过相关函数修改通道数量时被设置，反映了当前激光雷达数据对应的通道数量情况。
+// 获取通道数量的函数，返回值类型为 `uint32_t`，直接返回 `_header` 向量中对应 `Index::ChannelCount` 索引位置的元素值
     uint32_t GetChannelCount() const {
       return _header[Index::ChannelCount];
     }
-// 虚函数，用于重置内存相关的数据结构，根据传入的每个通道的点数列表来重新初始化内部存储的数据信息。
-// 通常在需要重新使用该对象存储新的激光雷达数据，或者清除已有数据进行重新配置等场景下调用。
+ // 虚函数，用于重置内存相关操作，参数 `points_per_channel` 是一个存储每个通道点数的无符号32位整数向量，具体重置逻辑可能因不同派生类而有差异（因为是虚函数）
     virtual void ResetMemory(std::vector<uint32_t> points_per_channel) {
-      // 使用 `DEBUG_ASSERT` 进行调试断言检查，确保当前对象记录的通道数量大于传入的每个通道点数列表的大小。
-      // 这是一种调试手段，在开发过程中如果这个条件不满足，意味着数据设置可能不符合预期逻辑（比如通道点数总和超过了总的通道容量等情况），
-      // 会触发断言失败提示，帮助开发者发现代码中的潜在问题，但在发布版本中，这个断言可能会被优化掉（取决于具体的编译配置和实现方式）。
+        // 使用断言来确保当前对象的通道数量大于传入的 `points_per_channel` 向量的大小，可能是基于某种前置逻辑要求做的检查，若不满足条件则会触发调试断言失败（具体行为取决于 `DEBUG_ASSERT` 的实现）
       DEBUG_ASSERT(GetChannelCount() > points_per_channel.size());
-      // 将 `_header` 向量中从表示总大小（`Index::SIZE`）之后的数据区域全部清零，即清除之前存储的每个通道的点数相关信息，为重新设置做准备。
-      // 通过 `std::memset` 函数按字节进行内存设置，设置的字节数为每个通道数量乘以 `sizeof(uint32_t)`，确保整个通道点数相关区域都被重置为0。
+  // 使用 `std::memset` 函数将 `_header` 数据（从 `Index::SIZE` 位置开始）所指向的内存区域设置为 `0`，设置的字节数为 `sizeof(uint32_t) * GetChannelCount()`，也就是按照每个通道对应 `uint32_t` 大小的空间来进行内存清零操作
       std::memset(_header.data() + Index::SIZE, 0, sizeof(uint32_t) * GetChannelCount());
       // 计算所有通道的总点数，通过使用 `std::accumulate` 函数对传入的每个通道点数列表进行求和操作，将所有通道的点数累加起来，得到总的点数。
       // `std::accumulate` 函数从给定范围的起始位置（`points_per_channel.begin()`）到结束位置（`points_per_channel.end()`），以初始值0为基础，
       // 依次将每个元素累加到这个初始值上，最终得到总和，并将结果转换为 `uint32_t` 类型存储在 `total_points` 变量中。
       uint32_t total_points = static_cast<uint32_t>(
           std::accumulate(points_per_channel.begin(), points_per_channel.end(), 0));
-      // 清空存储检测点数据的 `_ser_points` 向量，释放之前占用的内存空间，以便后续重新填充新的检测点数据。
+// 清空 _ser_points 向量，通常用于清除之前存储的数据，以便重新填充新的数据
       _ser_points.clear();
-      // 为存储检测点数据的 `_ser_points` 向量重新预留足够的内存空间，根据计算出的总点数 `total_points` 来确定需要的内存大小，
-      // 这样在后续添加检测点数据时可以减少内存分配的次数，提高效率，避免频繁的内存重新分配操作带来的性能损耗。
+// 为 _ser_points 向量预留足够的空间，以容纳 total_points 个元素，避免后续插入元素时频繁重新分配内存，提高性能
       _ser_points.reserve(total_points);
     }
-    // 虚函数，用于将每个通道的点数信息写入到内部的 `_header` 向量中，以更新对象中存储的每个通道实际包含的点数情况。
-    // 通常在获取到新的一轮激光雷达各通道点数数据后调用，用于更新内部记录，方便后续其他操作基于准确的通道点数信息进行。
+// 虚函数，用于写入通道计数信息。参数 points_per_channel 是一个存储每个通道点数的无符号32位整数向量
     virtual void WriteChannelCount(std::vector<uint32_t> points_per_channel) {
-      // 循环遍历每个通道索引，从0开始，直到达到当前对象记录的通道数量（通过 `GetChannelCount()` 获取）。
+// 循环遍历每个通道，idxChannel 从0开始，直到通道数量（通过 GetChannelCount() 获取
       for (auto idxChannel = 0u; idxChannel < GetChannelCount(); ++idxChannel)
-        // 将对应通道的点数设置到 `_header` 向量的相应位置，即 `Index::SIZE + idxChannel` 索引处，
-        // 用传入的 `points_per_channel` 向量中对应索引位置的元素值进行更新，确保 `_header` 中存储的通道点数信息与实际情况相符。
+ // 将 points_per_channel 中对应通道索引的点数赋值给 _header 向量中相应的位置，Index::SIZE 应该是一个自定义的索引偏移量相关的常量之类的
         _header[Index::SIZE + idxChannel] = points_per_channel[idxChannel];
     }
-    // 虚函数，用于将一个 `SemanticLidarDetection` 类型的检测点数据同步写入到内部存储检测点数据的 `_ser_points` 向量中。
-    // 这个函数常用于在接收到新的激光雷达检测点数据时，逐个将这些数据添加到对象中进行统一管理，方便后续对所有检测点数据进行序列化、分析等操作。
+// 虚函数，用于写入点同步信息，参数 detection 是一个语义激光雷达检测相关的对象
     virtual void WritePointSync(SemanticLidarDetection &detection) {
+ // 将传入的 SemanticLidarDetection 类型的 detection 对象添加到 _ser_points 向量末尾
       _ser_points.emplace_back(detection);
     }
-
+// 受保护的成员变量，用于存储一些头部相关的信息，元素类型是无符号32位整数
   protected:
   // 存储激光雷达数据头部信息的向量，其中包含了水平角度、通道数量以及每个通道的点数等相关信息，以 `uint32_t` 类型的数据进行存储。
   // 通过这种方式可以方便地进行内存操作（如拷贝、清零等）以及按照特定索引访问不同的数据元素，为整个激光雷达数据的管理提供了基础的数据结构支持。
     std::vector<uint32_t> _header;
-  // 用于记录最大通道点数的变量，虽然在当前代码中没有明显看到其具体的使用场景，但可能在后续的一些逻辑中用于判断数据是否超出某个范围、
-  // 进行内存优化或者与其他相关限制条件进行比较等情况，具体用途取决于该类在整个项目中的完整功能实现和使用方式。
+// 用于存储每个通道最大点数的无符号32位整数变量
     uint32_t _max_channel_points;
-
+// 私有成员变量，用于存储语义激光雷达检测相关对象的向量，也就是具体的检测数据集合
   private:
     // 存储所有检测点数据的向量，每个元素都是一个 `SemanticLidarDetection` 类型的对象，用于保存激光雷达实际检测到的各个点的详细信息，
     // 包括点的位置（通过 `SemanticLidarDetection` 类中的 `point` 成员表示）、检测光线与被击中物体法线之间夹角的余弦值（`cos_inc_angle` 成员）、
     // 被检测物体的索引（`object_idx` 成员）以及被检测物体的语义标签（`object_tag` 成员）等。通过这个向量可以集中管理和操作所有的检测点数据。
     std::vector<SemanticLidarDetection> _ser_points;
-    // 将 `s11n::SemanticLidarHeaderView`、`s11n::SemanticLidarSerializer` 和 `carla::ros2::ROS2` 这三个类声明为友元类。
-    // 友元类的作用是可以访问 `SemanticLidarData` 类的私有成员和受保护成员，这样做的目的通常是为了方便在这些相关类中实现特定功能时，
-    // 能够直接操作 `SemanticLidarData` 类内部的数据结构，而不受访问控制的限制，例如在序列化、头视图展示以及和 ROS2 相关的功能实现过程中可能需要直接访问其私有或受保护成员变量和函数。
+
+// 声明友元类，允许 s11n::SemanticLidarHeaderView 类访问当前类的私有和受保护成员
   friend class s11n::SemanticLidarHeaderView;
+// 声明友元类，允许 s11n::SemanticLidarSerializer 类访问当前类的私有和受保护成员
   friend class s11n::SemanticLidarSerializer;
+// 声明友元类，允许 carla::ros2::ROS2 类访问当前类的私有和受保护成员
   friend class carla::ros2::ROS2;
 
   };

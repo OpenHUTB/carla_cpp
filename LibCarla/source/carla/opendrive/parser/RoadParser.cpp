@@ -48,23 +48,53 @@ namespace parser {
   };
 
   struct RoadTypeSpeed {
+    // s 表示道路的某个位置（例如，位置坐标），类型为 double。
     double s;
+
+    // type 表示道路类型的字符串（例如，城市道路、高速公路等），类型为 std::string。
     std::string type;
+
+    // max 表示该道路类型的最大允许速度，类型为 double。
     double max;
+
+    // unit 表示速度单位的字符串（例如 "km/h" 或 "m/s"），类型为 std::string。
     std::string unit;
   };
 
+
   struct Road {
+    // id 表示道路的唯一标识符，类型为 RoadId。通常是一个整数或字符串，用于唯一标识一条道路。
     RoadId id;
+
+    // name 表示道路的名称，类型为 std::string。这个字段存储道路的名字，便于识别。
     std::string name;
+
+    // length 表示道路的长度，类型为 double。通常单位为米（m）。
     double length;
+
+    // junction_id 表示道路连接的交叉口的标识符，类型为 JuncId。
+    // 交叉口通常是两个或多个道路相交的地方，这个字段指向该道路所连接的交叉口。
     JuncId junction_id;
+
+    // predecessor 表示前继道路的标识符，类型为 RoadId。前继道路是指行驶方向上的上一条道路。
     RoadId predecessor;
+
+    // successor 表示后继道路的标识符，类型为 RoadId。后继道路是指行驶方向上的下一条道路。
     RoadId successor;
+
+    // speed 是一个 std::vector<RoadTypeSpeed>，表示道路上的速度限制信息。
+    // 它包含多个不同类型的速度限制，可能针对不同类型的道路部分设置不同的速度限制。
     std::vector<RoadTypeSpeed> speed;
+
+    // section_offsets 是一个 std::vector<LaneOffset>，表示道路各车道的偏移量。
+    // 这个字段可以用来表示道路车道的具体位置和相对位置，通常用于精确地图绘制。
     std::vector<LaneOffset> section_offsets;
+
+    // sections 是一个 std::vector<LaneSection>，表示道路的多个车道段。
+    // 每个车道段可以包含多个车道，车道段的顺序通常对应道路的实际布局或设计。
     std::vector<LaneSection> sections;
   };
+
 
   // 字符串转车道类型
   static road::Lane::LaneType StringToLaneType(std::string &&str) {

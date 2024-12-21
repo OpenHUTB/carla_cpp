@@ -20,7 +20,7 @@
 
 class AActor;
 
-/// A view over an actor and its properties.
+/// 查看一个参与者和它的属性
 class FCarlaActor
 {
 public:
@@ -176,9 +176,9 @@ public:
     return dynamic_cast<T*>(ActorData.Get());
   }
 
-  // Actor function interface ----------------------
+  // 参与者功能接口 ----------------------
 
-  // General functions
+  // 通用功能
 
   FTransform GetActorLocalTransform() const;
 
@@ -230,7 +230,7 @@ public:
 
   virtual ECarlaServerResponse SetActorEnableGravity(bool bEnabled);
 
-  // Vehicle functions
+  // 车辆功能
   virtual ECarlaServerResponse EnableActorConstantVelocity(const FVector&)
   {
     return ECarlaServerResponse::ActorTypeMismatch;
@@ -354,7 +354,7 @@ public:
     return ECarlaServerResponse::ActorTypeMismatch;
   }
 
-  // Traffic light functions
+  // 交通信号灯功能
 
   virtual ECarlaServerResponse SetTrafficLightState(const ETrafficLightState&)
   {
@@ -386,9 +386,9 @@ public:
     return ECarlaServerResponse::ActorTypeMismatch;
   }
 
-  // Traffic sign functions
+  //交通标志功能
 
-  // Walker functions
+  // Walker函数
   virtual ECarlaServerResponse SetWalkerState(
       const FTransform& Transform,
       carla::rpc::WalkerControl WalkerControl)
@@ -441,7 +441,7 @@ public:
     return ECarlaServerResponse::ActorTypeMismatch;
   }
 
-  // Sensor functions
+  //传感器功能
 
   static TSharedPtr<FCarlaActor> ConstructCarlaActor(
       IdType ActorId,
