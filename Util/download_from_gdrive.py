@@ -15,7 +15,7 @@ import requests
 
 
 # 将字节大小的数字转换为合适的带单位的格式化字符串表示（如KB、MB等）
-# 参考自：https://stackoverflow.com/a/1094933/5308925
+# 参考自：https://stackoverflow.com/a/1094933/5308925.
 # 此函数将文件大小数字转换为更易读的格式，添加适当的单位后缀（B、K、M、G等）
 def sizeof_fmt(num, suffix='B'):
     for unit in ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z']:
@@ -23,7 +23,7 @@ def sizeof_fmt(num, suffix='B'):
             # 当数字小于1000时，使用当前单位并保留两位小数
             return "%3.2f%s%s" % (num, unit, suffix)
         num /= 1000.0
-    # 对于非常大的数字，使用Yi作为单位
+    # 对于非常大的数字，使用Yi作为单位.
     return "%.2f%s%s" % (num, 'Yi', suffix)
 
 
@@ -44,7 +44,7 @@ def download_file_from_google_drive(id, destination):
     def save_response_content(response, destination):
         chunk_size = 32768
         written_size = 0
-        # 以二进制写入模式打开文件
+        # 以二进制写入模式打开文件.
         with open(destination, "wb") as f:
             # 迭代下载内容，每次读取一个块，过滤掉keep-alive新块，将块写入文件，更新已写入大小并打印下载状态
             for chunk in response.iter_content(chunk_size):
