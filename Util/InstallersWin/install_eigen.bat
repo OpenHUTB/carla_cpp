@@ -111,10 +111,13 @@ rem 以下是名为:success的代码标签部分，一般用于在操作成功�
     echo %FILE_N% Eigen has been successfully installed in "%EIGEN_INSTALL_DIR%"!
     rem  跳转到名为:good_exit的代码标签处，可能那里有统一的正常退出脚本的相关处理逻辑，比如释放资源、返回合适的退出码等（具体要结合:good_exit标签对应的代码来确定）
     goto good_exit
-
+rem 以下是名为:already_build的代码标签部分，大概率用于处理已经存在相关安装（这里推测是Eigen库安装）的情况，告知用户相应的信息以及后续如果要强制重新构建需要做的操作
 :already_build
+    rem 输出提示信息，告知用户已经存在一个Eigen库的安装（这里根据代码文本推测，实际情况需结合更多上下文判断）
     echo %FILE_N% A xerces installation already exists.
+    rem     :: 进一步输出提示信息，告诉用户如果想要强制重新构建Eigen库，需要删除EIGEN_INSTALL_DIR所指定的目录，引导用户进行后续操作
     echo %FILE_N% Delete "%EIGEN_INSTALL_DIR%" if you want to force a rebuild.
+    rem 跳转到名为:good_exit的代码标签处，和上面类似，去执行统一的正常退出脚本的相关处理逻辑
     goto good_exit
 
 :error_download_eigen
