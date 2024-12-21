@@ -1,8 +1,8 @@
-future
-numpy; python_version < '3.0'
-numpy==1.18.4; python_version >= '3.0'
-pygame
-matplotlib
-open3d
-Pillow
-invertedai@git+https://github.com/inverted-ai/invertedai.git@develop
+future//指Python中的__future__模块，它用于将一些新的语言特性引入到旧版本的Python中，使得在旧版本中也能使用新版本才有的功能。
+numpy; python_version < '3.0'//这里提到了numpy库，并且给出了一个关于Python版本的条件，即Python版本小于某个特定版本（这里'3.θ'可能是表示3.0，也许是书写上的特殊表示或者笔误）。这可能暗示在Python版本小于3.0时与numpy相关的某种情况，也许是兼容性或者安装要求等相关的说明。
+numpy==1.18.4; python_version >= '3.0'//明确了版本为1.18.4，并且是在Python版本大于等于某个特定版本（同样'3.θ'可能表示3.0）时的情况，可能是在这种Python版本下推荐使用的numpy版本或者是针对这个版本组合的特殊说明。
+pygame//pygame是一个用于开发2D游戏的Python库，它提供了一系列功能，如创建游戏窗口、处理图像、声音、输入等。
+matplotlib//这是一个非常流行的Python数据可视化库，可以用于创建各种类型的图表，如折线图、柱状图、散点图等，方便数据的展示和分析。
+open3d//open3d是一个用于处理3D数据的库，例如进行3D点云处理、3D模型可视化等操作。
+Pillow//Pillow是Python中用于处理图像的库，它提供了很多图像操作的功能，如打开、保存、裁剪、调整大小、添加滤镜等。
+invertedai@git+https://github.com/inverted-ai/invertedai.git@develop//用于安装或者获取该库的开发版本。
