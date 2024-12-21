@@ -24,16 +24,16 @@ import copy
 
 # Global variables
 IMPORT_SETTING_FILENAME = "importsetting.json"
-SCRIPT_NAME = os.path.basename(__file__)
-SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+SCRIPT_NAME = os.path.basename(__file__)#获取当前脚本的名称。
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))#获取当前脚本所在的目录。
 # Go two directories above the current script
-CARLA_ROOT_PATH = os.path.normpath(SCRIPT_DIR + '/../..')
+CARLA_ROOT_PATH = os.path.normpath(SCRIPT_DIR + '/../..')#被设置为脚本目录的上两级目录，
 
 try:
     sys.path.append(glob.glob(os.path.join(CARLA_ROOT_PATH, "PythonAPI/carla/dist/carla-*%d.%d-%s.egg" % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64')))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64')))[0])#使用   sys.path.append   将CARLA的Python API模块添加到系统路径中。这里使用   glob.glob   来查找匹配特定模式的文件
 except IndexError:
     pass
 
@@ -84,7 +84,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
     """
     json_files = []
 
-    # search for all .fbx and .xodr pair of files
+    # 搜索所有 .fbx 和 .xodr 文件对
     maps = []
     for root, _, filenames in os.walk(folder):
         files = fnmatch.filter(filenames, "*.xodr")
@@ -99,9 +99,9 @@ def generate_json_package(folder, package_name, use_carla_materials):
                 if (len(tiles) > 0):
                     maps.append([os.path.relpath(root, folder), xodr, tiles])
 
-    # write the json
+    # 编写 JSON
     if (len(maps) > 0):
-        # build all the maps in .json format
+        # 以 .json 格式构建所有地图
         json_maps = []
         for map_name in maps:
             path = map_name[0].replace('\\', '/')
@@ -113,7 +113,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
                 'xodr':   '%s/%s.xodr' % (path, name),
                 'use_carla_materials': use_carla_materials
             }
-            # check for only one 'source' or map in 'tiles'
+            # 在 'tiles' 中只检查一个 'source' 或 map
             if (len(tiles) == 1):
                 map_dict['source'] = tiles[0]
             else:
@@ -122,7 +122,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
 
             # write
             json_maps.append(map_dict)
-        # build and write the .json
+        # 构建和编写 .json
         f = open("%s/%s.json" % (folder, package_name), "w")
         my_json = {'maps': json_maps, 'props': []}
         serialized = json.dumps(my_json, sort_keys=False, indent=3)
