@@ -12,7 +12,7 @@
 #include "carla/trafficmanager/SimulationState.h"
 #include "carla/trafficmanager/Stage.h"
 #include "carla/trafficmanager/TrackTraffic.h"
-
+// 定义在carla命名空间下的traffic_manager命名空间
 namespace carla {
 namespace traffic_manager {
 // 使用 shared_ptr 定义一个指向 InMemoryMap 的别名。
@@ -27,15 +27,15 @@ private:
   const Parameters &parameters; // 引用参数对象。
   const BufferMap &buffer_map;// 引用缓冲区映射对象。
   TrackTraffic &track_traffic;// 引用跟踪交通对象。
-  // PID paramenters for various road conditions.
+//PID控制参数等用于车辆纵向运动控制
   const std::vector<float> urban_longitudinal_parameters;
-  const std::vector<float> highway_longitudinal_parameters;
-  const std::vector<float> urban_lateral_parameters;
-  const std::vector<float> highway_lateral_parameters;
+  const std::vector<float> highway_longitudinal_parameters;//纵向控制相关的参数列表
+  const std::vector<float> urban_lateral_parameters;//车辆横向运动控制相关操作
+  const std::vector<float> highway_lateral_parameters;//横向控制相关的参数列表
   const LocalizationFrame &localization_frame;// 引用定位帧对象。
   const CollisionFrame &collision_frame;// 引用碰撞帧对象。
-  const TLFrame &tl_frame;
-  const cc::World &world;
+  const TLFrame &tl_frame;//获取交通信号灯相关状态信息
+  const cc::World &world;//获取世界的快照等全局信息
   // Structure holding the controller state for registered vehicles.
   std::unordered_map<ActorId, StateEntry> pid_state_map;
   // Structure to keep track of duration between teleportation
