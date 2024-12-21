@@ -184,32 +184,43 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
             if not self.findClangFormatFileStartingFrom(dirName, fileName, foundClangFormatFiles):
                 sys.exit(1)
 
-    def findClangFormatFileStartingFrom(self, dirName, fileName, foundClangFormatFiles):
-        clangFormatFile = os.path.join(dirName, CodeFormatterClang.CLANG_FORMAT_FILE)
-        if os.path.exists(clangFormatFile):
-            if clangFormatFile not in foundClangFormatFiles:
-                foundClangFormatFiles.add(clangFormatFile)
-                if os.path.exists(self.checkedInClangFormatFile) and \
-                   not filecmp.cmp(self.checkedInClangFormatFile, clangFormatFile):
-                    cprint("[WARN] " + clangFormatFile + " does not match " + self.checkedInClangFormatFile, "yellow")
-                    self.confirmWithUserClangFormatFileCantBeVerified()
-                else:
-                    print("[OK] Found " + CodeFormatterClang.CLANG_FORMAT_FILE +
-                          " file (used by the formatter) " + clangFormatFile)
-            return True
-        else:
-            dirNameOneLevelUp = os.path.dirname(dirName)
-            if dirNameOneLevelUp == dirName:
-                # dirName was already root folder -> clang-format file not found
-                cprint("[ERROR] Not found " + CodeFormatterClang.CLANG_FORMAT_FILE + " for " +
-                       fileName + " in same directory or in any parent directory", "red")
-                return False
+  def findClangFormatFileStartingFrom(self, dirName, fileName, foundClangFormatFiles):
+    # 构建当前目录下的.clang-format文件路径
+    clangFormatFile = os.path.join(dirName, CodeFormatterClang.CLANG_FORMAT_FILE)
+    
+    # 检查.clang-format文件是否存在
+    if os.path.exists(clangFormatFile):
+        # 如果该文件尚未被记录到已找到的列表中
+        if clangFormatFile not in foundClangFormatFiles:
+            # 将该文件添加到已找到的列表中
+            foundClangFormatFiles.add(clangFormatFile)
+            
+            # 如果存在一个已检查的.clang-format文件，并且它与当前找到的文件不相同
+            if os.path.exists(self.checkedInClangFormatFile) and \
+               not filecmp.cmp(self.checkedInClangFormatFile, clangFormatFile):
+                # 输出警告信息，并提示用户确认
+                cprint("[WARN] " + clangFormatFile + " does not match " + self.checkedInClangFormatFile, "yellow")
+                self.confirmWithUserClangFormatFileCantBeVerified()
             else:
-                return self.findClangFormatFileStartingFrom(dirNameOneLevelUp, fileName, foundClangFormatFiles)
-
-
-class CodeFormatterAutopep(CodeFormatter):
-
+                # 输出找到.clang-format文件的信息
+                print("[OK] Found " + CodeFormatterClang.CLANG_FORMAT_FILE +
+                      " file (used by the formatter) " + clangFormatFile)
+            
+            # 返回True表示找到了.clang-format文件
+            return True
+    else:
+        # 获取上一级目录的路径
+        dirNameOneLevelUp = os.path.dirname(dirName)
+        
+        # 如果上一级目录与当前目录相同（即已经到达根目录），则.clang-format文件未找到
+        if dirNameOneLevelUp == dirName:
+            # 输出错误信息，表示在给定文件及其父目录中未找到.clang-format文件
+            cprint("[ERROR] Not found " + CodeFormatterClang.CLANG_FORMAT_FILE + " for " +
+                   fileName + " in same directory or in any parent directory", "red")
+            return False
+        else:
+            # 在上一级目录中继续查找.clang-format文件
+            return self.findClangFormatFileStartingFrom(dirNameOneLevelUp, fileName, foundClangFormatFiles)
     def __init__(self):
         CodeFormatter.__init__(self,
                                command="autopep8",
