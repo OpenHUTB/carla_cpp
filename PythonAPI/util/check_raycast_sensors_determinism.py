@@ -59,18 +59,18 @@ class Scenario():
         self.reload_world(settings, spectator_tr)
 
         # Init timestamp
-        snapshot = self.world.get_snapshot()
-        self.init_timestamp = {'frame0' : snapshot.frame, 'time0' : snapshot.timestamp.elapsed_seconds}
+        snapshot = self.world.get_snapshot()#这行代码调用self.world对象的get_snapshot()方法来获取当前世界的状态快照。
+        self.init_timestamp = {'frame0' : snapshot.frame, 'time0' : snapshot.timestamp.elapsed_seconds}#包含两个键'frame' 和 'time' 分别对应快照中的帧数和经过的秒数。
 
-    def add_actor(self, actor, actor_name="Actor"):
-        actor_idx = len(self.actor_list)
+    def add_actor(self, actor, actor_name="Actor"):#定义了一个名为  add_actor  的方法，用于添加一个演员到系统中
+        actor_idx = len(self.actor_list)#这行代码获取  self.actor_list  列表的长度，这个长度将用作新演员的索引。
 
-        name = str(actor_idx) + "_" + actor_name
+        name = str(actor_idx) + "_" + actor_name#这行代码创建一个新的演员名称，格式为“索引_演员名
 
         self.actor_list.append((name, actor))
 
         if self.save_snapshots_mode:
-            self.snapshots.append(np.empty((0,11), float))
+            self.snapshots.append(np.empty((0,11), float))#会向  self.snapshots  列表中添加一个空的NumPy数组，这个数组有11列，但行数为0。
 
     def wait(self, frames=100):
         for _i in range(0, frames):
