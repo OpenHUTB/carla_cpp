@@ -225,18 +225,29 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
 
 class CodeFormatterAutopep(CodeFormatter):
 
-    def __init__(self):
-        CodeFormatter.__init__(self,
-                               command="autopep8",
-                               expectedVersion="",
-                               formatCommandArguments=["--in-place", "--max-line-length=119"],
-                               verifyCommandArguments=["--diff", "--max-line-length=119"],
-                               verifyOutputIsDiff=True,
-                               fileEndings=["py"],
-                               fileDescription="python",
-                               installCommand="sudo apt-get install python-pep8 python-autopep8")
-
-
+   def __init__(self):
+    # 调用基类的初始化方法，传入一系列参数来配置代码格式化器
+    # 这些参数指定了使用的命令、期望的版本、格式化命令的参数、验证命令的参数等
+    CodeFormatter.__init__(self,
+                           # 指定用于格式化代码的命令是autopep8
+                           command="autopep8",
+                           # 不指定期望的autopep8版本（可能表示接受任何版本）
+                           expectedVersion="",
+                           # 格式化命令的参数列表，这里指定了--in-place（原地修改文件）和--max-line-length=119（最大行长度为119）
+                           formatCommandArguments=["--in-place", "--max-line-length=119"],
+                           # 验证命令的参数列表，这里指定了--diff（显示差异）和--max-line-length=119（同上）
+                           # 验证命令通常用于检查代码是否符合格式要求，而不实际修改代码
+                           verifyCommandArguments=["--diff", "--max-line-length=119"],
+                           # 指定验证命令的输出应该是diff格式，这有助于比较代码修改前后的差异
+                           verifyOutputIsDiff=True,
+                           # 指定该格式化器支持的文件扩展名，这里是.py，表示Python文件
+                           fileEndings=["py"],
+                           # 对支持的文件类型的描述，这里是"python"
+                           fileDescription="python",
+                           # 指定安装autopep8的命令，这里使用了sudo apt-get来安装python-pep8（注意：python-pep8可能已过时，现在通常直接安装autopep8）
+                           # 注意：在实际应用中，直接在代码中执行安装命令可能不是最佳实践，因为这可能需要管理员权限，并且可能会干扰用户的系统
+                           installCommand="sudo apt-get install python-pep8 python-autopep8")
+       
 class CodeFormat:
 
     def __init__(self):
