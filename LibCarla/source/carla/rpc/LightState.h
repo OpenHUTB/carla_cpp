@@ -30,6 +30,7 @@ public:
 
   LightState() {}
 
+  #用于表示某种灯光状态相关信息
   LightState(
       geom::Location location,
       float intensity,
@@ -42,13 +43,20 @@ public:
     _color(color),
     _active(active) {}
 
+  #定义了一个名为_location的geom::Location变量
   geom::Location _location;
+  #定义了一个名为_intensity的float类型变量
   float _intensity = 0.0f;
+  #定义了一个名为_id的LightId类型变量
   LightId _id;
+  #定义了一个名为_group的flag_type变量
   flag_type _group = static_cast<flag_type>(LightGroup::None);
+  #定义了一个 名为_color的Color变量
   Color _color;
+  #定义了一个名为_active的bool类型变量
   bool _active = false;
 
+  #使用宏来定义一个数组
   MSGPACK_DEFINE_ARRAY(_id, _location, _intensity, _group, _color, _active);
 
 };
