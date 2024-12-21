@@ -157,9 +157,9 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
         self.scriptPath = os.path.dirname(os.path.abspath(__file__))#
         self.checkedInClangFormatFile = os.path.join(self.scriptPath, CodeFormatterClang.CHECKED_IN_CLANG_FORMAT_FILE)
 
-    def verifyFormatterVersion(self):
-        CodeFormatter.verifyFormatterVersion(self)
-        self.verifyClangFormatFileExistsAndMatchesCheckedIn()
+    def verifyFormatterVersion(self):# 定义一个方法，用于验证格式化工具的版本
+        CodeFormatter.verifyFormatterVersion(self)# 调用父类或基类的 verifyFormatterVersion 方法
+        self.verifyClangFormatFileExistsAndMatchesCheckedIn()# 调用自身的另一个方法，用于验证 Clang 格式化文件是否存在并且与预期的一致
 
     def verifyCheckedInClangFormatFileExists(self):
         if os.path.exists(self.checkedInClangFormatFile):
@@ -176,23 +176,38 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
             if answer != "y":
                 sys.exit(1)
 
+    #验证与clang-format文件相关的操作
     def verifyClangFormatFileExistsAndMatchesCheckedIn(self):
+        #检查已经签入的文件是否存在
         self.verifyCheckedInClangFormatFileExists()
+        #用于存储找到的clang-format文件相关信息
         foundClangFormatFiles = sets.Set()
+        #遍历self.inputFiles中的每个文件名fileName
         for fileName in self.inputFiles:
+            #获取绝对路径的目录部分
             dirName = os.path.dirname(os.path.abspath(fileName))
+            #查找结果
             if not self.findClangFormatFileStartingFrom(dirName, fileName, foundClangFormatFiles):
                 sys.exit(1)
 
+    #从给定的目录中查找
     def findClangFormatFileStartingFrom(self, dirName, fileName, foundClangFormatFiles):
+        #得到可能存在clangFormat文件的完整路径
         clangFormatFile = os.path.join(dirName, CodeFormatterClang.CLANG_FORMAT_FILE)
+        #检查上一步构建的路径对应的文件是否存在
         if os.path.exists(clangFormatFile):
+            #检查当前找到的clangFormatFile是否在foundClangFormatFiles集合中
             if clangFormatFile not in foundClangFormatFiles:
+                #把当前找到的并且之前没有处理过的clangFormatFile添加到foundClangFormatFiles集合中
                 foundClangFormatFiles.add(clangFormatFile)
+                #比较两个文件内容是否相同
                 if os.path.exists(self.checkedInClangFormatFile) and \
                    not filecmp.cmp(self.checkedInClangFormatFile, clangFormatFile):
+                    #打印警告信息   
                     cprint("[WARN] " + clangFormatFile + " does not match " + self.checkedInClangFormatFile, "yellow")
+                    #调用这个函数来处理文件无法验证的情况   
                     self.confirmWithUserClangFormatFileCantBeVerified()
+                #与前面文件不匹配的情况        
                 else:
                     print("[OK] Found " + CodeFormatterClang.CLANG_FORMAT_FILE +
                           " file (used by the formatter) " + clangFormatFile)
@@ -210,18 +225,29 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
 
 class CodeFormatterAutopep(CodeFormatter):
 
-    def __init__(self):
-        CodeFormatter.__init__(self,
-                               command="autopep8",
-                               expectedVersion="",
-                               formatCommandArguments=["--in-place", "--max-line-length=119"],
-                               verifyCommandArguments=["--diff", "--max-line-length=119"],
-                               verifyOutputIsDiff=True,
-                               fileEndings=["py"],
-                               fileDescription="python",
-                               installCommand="sudo apt-get install python-pep8 python-autopep8")
-
-
+   def __init__(self):
+    # 调用基类的初始化方法，传入一系列参数来配置代码格式化器
+    # 这些参数指定了使用的命令、期望的版本、格式化命令的参数、验证命令的参数等
+    CodeFormatter.__init__(self,
+                           # 指定用于格式化代码的命令是autopep8
+                           command="autopep8",
+                           # 不指定期望的autopep8版本（可能表示接受任何版本）
+                           expectedVersion="",
+                           # 格式化命令的参数列表，这里指定了--in-place（原地修改文件）和--max-line-length=119（最大行长度为119）
+                           formatCommandArguments=["--in-place", "--max-line-length=119"],
+                           # 验证命令的参数列表，这里指定了--diff（显示差异）和--max-line-length=119（同上）
+                           # 验证命令通常用于检查代码是否符合格式要求，而不实际修改代码
+                           verifyCommandArguments=["--diff", "--max-line-length=119"],
+                           # 指定验证命令的输出应该是diff格式，这有助于比较代码修改前后的差异
+                           verifyOutputIsDiff=True,
+                           # 指定该格式化器支持的文件扩展名，这里是.py，表示Python文件
+                           fileEndings=["py"],
+                           # 对支持的文件类型的描述，这里是"python"
+                           fileDescription="python",
+                           # 指定安装autopep8的命令，这里使用了sudo apt-get来安装python-pep8（注意：python-pep8可能已过时，现在通常直接安装autopep8）
+                           # 注意：在实际应用中，直接在代码中执行安装命令可能不是最佳实践，因为这可能需要管理员权限，并且可能会干扰用户的系统
+                           installCommand="sudo apt-get install python-pep8 python-autopep8")
+       
 class CodeFormat:
 
     def __init__(self):
@@ -229,56 +255,135 @@ class CodeFormat:
         self.codeFormatterInstances = []
         return
 
+    import argparse
+import os
+import re
+# 假设cprint和SCRIPT_VERSION是从某个模块中导入的，这里不展示该模块的导入代码
+# from some_module import cprint, SCRIPT_VERSION
+
+class CodeFormatterManager:  # 假设这个类名是根据上下文推断的，因为您没有提供类定义
     def parseCommandLine(self):
+        # 创建一个ArgumentParser对象，用于解析命令行参数
         parser = argparse.ArgumentParser(
             description="Helper script for code formatting.")
+        
+        # 添加一个位置参数，用于指定要处理的文件或目录，允许多个值
         parser.add_argument("input", nargs="+",
                             help="files or directories to process")
+        
+        # 添加一个可选参数-v或--verify，如果指定，则不更改文件，只验证格式是否正确
         parser.add_argument("-v", "--verify", action="store_true",
                             help="do not change file, but only verify the format is correct")
+        
+        # 添加一个可选参数-d或--diff，如果指定，则显示差异，并隐含验证模式
         parser.add_argument("-d", "--diff", action="store_true",
                             help="show diff, implies verify mode")
+        
+        # 添加一个可选参数-e或--exclude，用于指定要从输入中排除的文件或目录名称中包含的单词列表
         parser.add_argument("-e", "--exclude", nargs="+", metavar="exclude",
                             help="exclude files or directories containing words from the exclude list in their names")
+        
+        # 添加一个可选参数-y或--yes，如果指定，则在格式化多个文件之前不询问确认
         parser.add_argument("-y", "--yes", action="store_true",
                             help="do not ask for confirmation before formatting more than one file")
+        
+        # 添加一个版本参数--version，显示脚本的版本信息
         parser.add_argument("--version", action="version", version="%(prog)s " + SCRIPT_VERSION)
+        
+        # 解析命令行参数，并将结果存储在self.args中
         self.args = parser.parse_args()
+        
+        # 如果指定了--diff参数，则自动将--verify参数设置为True
         if self.args.diff:
             self.args.verify = True
 
     def addCodeFormatter(self, codeFormatterInstance):
+        # 将一个代码格式化器实例添加到self.codeFormatterInstances列表中
         self.codeFormatterInstances.append(codeFormatterInstance)
 
     def scanForInputFiles(self):
+        # 遍历self.codeFormatterInstances列表中的每个代码格式化器实例
         for formatterInstance in self.codeFormatterInstances:
+            # 根据代码格式化器实例支持的文件后缀构建正则表达式模式
             filePattern = re.compile("^[^.].*\.(" + "|".join(formatterInstance.fileEndings) + ")$")
+            
+            # 初始化代码格式化器实例的inputFiles列表为空
             formatterInstance.inputFiles = []
+            
+            # 遍历命令行参数中指定的每个文件或目录
             for fileOrDirectory in self.args.input:
+                # 如果文件或目录存在
                 if os.path.exists(fileOrDirectory):
+                    # 调用scanFileOrDirectory方法（该方法未在代码片段中定义，可能是类的其他部分或外部函数）
+                    # 将匹配的文件添加到代码格式化器实例的inputFiles列表中
                     formatterInstance.inputFiles.extend(self.scanFileOrDirectory(fileOrDirectory, filePattern))
                 else:
+                    # 如果文件或目录不存在，则打印警告信息（cprint函数未在代码片段中定义，可能是从某个模块导入的）
                     cprint("[WARN] Cannot find '" + fileOrDirectory + "'", "yellow")
 
+# 注意：scanFileOrDirectory方法和cprint函数以及SCRIPT_VERSION常量在提供的代码片段中未定义，
+# 这里假设它们是类的其他部分或外部模块中定义的。
+
     def scanFileOrDirectory(self, fileOrDirectory, filePattern):
-        fileList = []
+        """
+        扫描指定的文件或目录，并返回与给定文件模式匹配且未被排除的文件列表。
+
+        参数:
+            fileOrDirectory (str): 要扫描的文件或目录的路径。
+            filePattern (re.Pattern): 用于匹配文件名的正则表达式模式。
+
+        返回:
+            list: 与文件模式匹配且未被排除的文件路径列表。
+        """
+        fileList = []  # 初始化空列表以存储匹配的文件路径
+
+        # 检查给定路径是否为目录
         if os.path.isdir(fileOrDirectory):
+            # 使用os.walk遍历目录树
             for root, directories, fileNames in os.walk(fileOrDirectory):
+                # 过滤目录列表（排除隐藏目录和包含特定忽略文件的目录）
                 directories[:] = self.filterDirectories(root, directories)
+                
+                # 遍历当前目录下的文件名
                 for filename in filter(lambda name: filePattern.match(name), fileNames):
+                    # 构建文件的完整路径
                     fullFilename = os.path.join(root, filename)
+                    # 检查文件是否未被排除
                     if self.isFileNotExcluded(fullFilename):
+                        # 将文件添加到列表中
                         fileList.append(fullFilename)
         else:
+            # 如果给定路径不是目录，则检查它是否是一个文件且未被排除
             if self.isFileNotExcluded(fileOrDirectory) and (filePattern.match(os.path.basename(fileOrDirectory)) is not None):
+                # 将文件添加到列表中
                 fileList.append(fileOrDirectory)
+        
+        # 返回匹配的文件列表
         return fileList
 
     def filterDirectories(self, root, directories):
-        # Exclude hidden directories and all directories that have a CODE_FORMAT_IGNORE_FILE
+        """
+        过滤目录列表，排除隐藏目录和包含特定忽略文件的目录。
+
+        参数:
+            root (str): 当前遍历的根目录路径。
+            directories (list): 要过滤的目录名称列表。
+
+        返回:
+            list: 过滤后的目录名称列表。
+        """
+        # 假设CodeFormatterClang.CODE_FORMAT_IGNORE_FILE是一个类变量，表示忽略文件的名称
+        # 这里需要注意，因为CodeFormatterClang类在代码片段中没有定义，我们假设它是存在的
+        ignore_file = CodeFormatterClang.CODE_FORMAT_IGNORE_FILE  # 获取忽略文件的名称
+
+        # 使用列表推导式过滤目录
         directories[:] = [directory for directory in directories if
+                          # 排除以点开头的隐藏目录
                           not directory.startswith(".") and
-                          not os.path.exists(os.path.join(root, directory, CodeFormatterClang.CODE_FORMAT_IGNORE_FILE))]
+                          # 排除包含忽略文件的目录
+                          not os.path.exists(os.path.join(root, directory, ignore_file))]
+        
+        # 返回过滤后的目录列表
         return directories
 
     def isFileNotExcluded(self, fileName):#定义一个类的方法，用于判断文件是否不被排除
@@ -328,19 +433,46 @@ class CodeFormat:
                             self.confirmWithUserGitRepoIsNotClean(gitRepo)
 
     def getGitRepoForFile(self, fileName):
+        """
+        确定给定文件是否位于Git仓库中，并返回该仓库的顶级目录路径。
+
+        参数:
+            fileName (str): 要检查的文件路径。
+
+        返回:
+            str 或 None: 如果文件位于Git仓库中，则返回仓库的顶级目录路径；否则返回None。
+        """
+        # 首先检查文件是否位于Git仓库内
         if not self.isInsideGitRepo(fileName):
             return None
+
         try:
-            gitProcess = subprocess.Popen(["git", "rev-parse", "--show-toplevel"],
-                                          stdin=subprocess.PIPE,
-                                          stdout=subprocess.PIPE,
-                                          stderr=subprocess.PIPE,
-                                          cwd=os.path.dirname(fileName))
+            # 尝试在文件的所在目录执行'git rev-parse --show-toplevel'命令
+            gitProcess = subprocess.Popen(
+                ["git", "rev-parse", "--show-toplevel"],
+                stdin=subprocess.PIPE,  # 不需要向git进程发送输入，但保持PIPE以避免错误
+                stdout=subprocess.PIPE,  # 捕获git进程的输出
+                stderr=subprocess.PIPE,  # 捕获git进程的错误输出（虽然这里未使用）
+                cwd=os.path.dirname(fileName)  # 在文件的父目录中执行命令
+            )
+            # 与git进程通信并获取其输出
             gitOutput, _ = gitProcess.communicate()
+
+            # 检查git进程的返回码是否为0（表示成功）
             if gitProcess.returncode == 0:
-                return gitOutput.rstrip('\r\n')
+                # 移除输出字符串末尾的换行符（如果存在）
+                # 注意：这里假设gitOutput是字节串，因此使用rstrip('\r\n')后可能需要解码
+                # 但由于我们直接返回了字节串，所以这里不进行解码操作
+                # 如果需要字符串，可以添加.decode('utf-8')
+                return gitOutput.rstrip(b'\r\n')  # 返回仓库的顶级目录路径（字节串形式）
+
         except OSError:
+            # 如果在尝试执行git命令时发生OS错误（例如，git未安装）
+            # 使用cprint打印错误信息（这里假设cprint能够处理彩色输出）
+            # 注意：cprint函数和模块需要事先定义或导入
             cprint("[ERROR] Failed to run 'git rev-parse --show-toplevel' for " + fileName, "red")
+
+        # 如果发生任何错误，返回None
         return None
 
     def isInsideGitRepo(self, fileName):

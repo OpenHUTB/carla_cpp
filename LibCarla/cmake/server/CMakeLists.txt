@@ -74,44 +74,44 @@ file(GLOB libcarla_carla_road_element_headers "${libcarla_source_path}/carla/roa
 install(FILES ${libcarla_carla_road_element_headers} DESTINATION include/carla/road/element)
 
 # 类似地为其他模块收集头文件，并指定了各自的安装路径
-file(GLOB libcarla_carla_road_general_headers "${libcarla_source_path}/carla/road/general/*.h")
-install(FILES ${libcarla_carla_road_general_headers} DESTINATION include/carla/road/general)
+file(GLOB libcarla_carla_road_general_headers "${libcarla_source_path}/carla/road/general/*.h")#这里使用file(GLOB...命令来查找${libcarla_source_path}/carla/road/general/目录下的所有头文件（*.h）。GLOB操作会将匹配的文件路径存储到变量libcarla_carla_road_general_headers中。
+install(FILES ${libcarla_carla_road_general_headers} DESTINATION include/carla/road/general)#install(FILES...命令用于将前面通过GLOB操作获取到的文件（存储在libcarla_carla_road_general_headers变量中的文件）安装到目标目录include/carla/road/general。这样做的目的可能是为了在构建项目时，确保这些头文件被正确放置在项目结构中的相应位置，以便其他部分的代码可以引用它们。
 
-file(GLOB libcarla_carla_road_object_headers "${libcarla_source_path}/carla/road/object/*.h")
-install(FILES ${libcarla_carla_road_object_headers} DESTINATION include/carla/road/object)
+file(GLOB libcarla_carla_road_object_headers "${libcarla_source_path}/carla/road/object/*.h")#结果存储在libcarla_carla_road_object_headers变量中。
+install(FILES ${libcarla_carla_road_object_headers} DESTINATION include/carla/road/object)#将libcarla_carla_road_object_headers中的文件安装到include/carla/road/object目录。
 
-file(GLOB libcarla_carla_road_signal_headers "${libcarla_source_path}/carla/road/signal/*.h")
-install(FILES ${libcarla_carla_road_signal_headers} DESTINATION include/carla/road/signal)
+file(GLOB libcarla_carla_road_signal_headers "${libcarla_source_path}/carla/road/signal/*.h")#查找${libcarla_source_path}/carla/road/signal/下的头文件并存入libcarla_carla_road_signal_headers。
+install(FILES ${libcarla_carla_road_signal_headers} DESTINATION include/carla/road/signal)#将文件安装到include/carla/road/signal目录。
 
-file(GLOB libcarla_carla_rpc_headers "${libcarla_source_path}/carla/rpc/*.h")
-install(FILES ${libcarla_carla_rpc_headers} DESTINATION include/carla/rpc)
+file(GLOB libcarla_carla_rpc_headers "${libcarla_source_path}/carla/rpc/*.h")#查找${libcarla_source_path}/carla/rpc/目录下的头文件，结果存入libcarla_carla_rpc_headers。
+install(FILES ${libcarla_carla_rpc_headers} DESTINATION include/carla/rpc)#将头文件安装到include/carla/rpc目录。
 
-file(GLOB libcarla_carla_sensor_headers "${libcarla_source_path}/carla/sensor/*.h")
-install(FILES ${libcarla_carla_sensor_headers} DESTINATION include/carla/sensor)
+file(GLOB libcarla_carla_sensor_headers "${libcarla_source_path}/carla/sensor/*.h")#查找${libcarla_source_path}/carla/sensor/目录下的头文件，存入libcarla_carla_sensor_headers。
+install(FILES ${libcarla_carla_sensor_headers} DESTINATION include/carla/sensor)#将头文件安装到include/carla/sensor目录。
 
-file(GLOB libcarla_carla_sensor_data_headers "${libcarla_source_path}/carla/sensor/data/*.h")
-install(FILES ${libcarla_carla_sensor_data_headers} DESTINATION include/carla/sensor/data)
+file(GLOB libcarla_carla_sensor_data_headers "${libcarla_source_path}/carla/sensor/data/*.h")#查找${libcarla_source_path}/carla/sensor/data/目录下的头文件，存入libcarla_carla_sensor_data_headers。
+install(FILES ${libcarla_carla_sensor_data_headers} DESTINATION include/carla/sensor/data)#将头文件安装到include/carla/sensor/data目录。
 
-file(GLOB libcarla_carla_sensor_s11n_headers "${libcarla_source_path}/carla/sensor/s11n/*.h")
-install(FILES ${libcarla_carla_sensor_s11n_headers} DESTINATION include/carla/sensor/s11n)
+file(GLOB libcarla_carla_sensor_s11n_headers "${libcarla_source_path}/carla/sensor/s11n/*.h")#查找${libcarla_source_path}/carla/sensor/s11n/目录下的头文件，存入libcarla_carla_sensor_s11n_headers。
+install(FILES ${libcarla_carla_sensor_s11n_headers} DESTINATION include/carla/sensor/s11n)#将头文件安装到include/carla/sensor/s11n目录。
 
-file(GLOB libcarla_carla_streaming_headers "${libcarla_source_path}/carla/streaming/*.h")
-install(FILES ${libcarla_carla_streaming_headers} DESTINATION include/carla/streaming)
+file(GLOB libcarla_carla_streaming_headers "${libcarla_source_path}/carla/streaming/*.h")#查找${libcarla_source_path}/carla/streaming/目录下的头文件，存入libcarla_carla_streaming_headers。
+install(FILES ${libcarla_carla_streaming_headers} DESTINATION include/carla/streaming)#将头文件安装到include/carla/streaming目录。
 
-file(GLOB libcarla_carla_streaming_detail_headers "${libcarla_source_path}/carla/streaming/detail/*.h")
-install(FILES ${libcarla_carla_streaming_detail_headers} DESTINATION include/carla/streaming/detail)
+file(GLOB libcarla_carla_streaming_detail_headers "${libcarla_source_path}/carla/streaming/detail/*.h")#这里的GLOB是file命令的一个操作。
+install(FILES ${libcarla_carla_streaming_detail_headers} DESTINATION include/carla/streaming/detail)#file(GLOB libcarla_carla_streaming_detail_tcp_headers "${libcarla_source_path}/carla/streaming/detail/tcp/*.h"会在${libcarla_source_path}/carla/streaming/detail/tcp/目录下查找所有.h文件，并将其路径存储到libcarla_carla_streaming_detail_tcp_headers变量中。
 
-file(GLOB libcarla_carla_streaming_detail_tcp_headers "${libcarla_source_path}/carla/streaming/detail/tcp/*.h")
-install(FILES ${libcarla_carla_streaming_detail_tcp_headers} DESTINATION include/carla/streaming/detail/tcp)
+file(GLOB libcarla_carla_streaming_detail_tcp_headers "${libcarla_source_path}/carla/streaming/detail/tcp/*.h")#使用file(GLOB...)命令。GLOB是CMake中的一个操作，它会根据指定的通配符模式查找文件。
+install(FILES ${libcarla_carla_streaming_detail_tcp_headers} DESTINATION include/carla/streaming/detail/tcp)#使用install(FILES...)命令。install命令用于指定在安装项目时要执行的操作。这里它将第104行找到的头文件（存储在${libcarla_carla_streaming_detail_tcp_headers}变量中的文件）安装到include/carla/streaming/detail/tcp目录下。
 
-file(GLOB libcarla_carla_streaming_low_level_headers "${libcarla_source_path}/carla/streaming/low_level/*.h")
-install(FILES ${libcarla_carla_streaming_low_level_headers} DESTINATION include/carla/streaming/low_level)
+file(GLOB libcarla_carla_streaming_low_level_headers "${libcarla_source_path}/carla/streaming/low_level/*.h")#查找${libcarla_source_path}/carla/streaming/low_level/目录下所有的.h文件，并将文件路径存储到变量libcarla_carla_streaming_low_level_headers中。
+install(FILES ${libcarla_carla_streaming_low_level_headers} DESTINATION include/carla/streaming/low_level)#将头文件安装到include/carla/streaming/low_level目录下。
 
-file(GLOB libcarla_carla_multigpu_headers "${libcarla_source_path}/carla/multigpu/*.h")
-install(FILES ${libcarla_carla_multigpu_headers} DESTINATION include/carla/multigpu)
+file(GLOB libcarla_carla_multigpu_headers "${libcarla_source_path}/carla/multigpu/*.h")#file(GLOB libcarla_carla_multigpu_headers "${libcarla_source_path}/carla/multigpu/*.h"查找${libcarla_source_path}/carla/multigpu/目录下的所有.h文件，并将文件路径存储到变量libcarla_carla_multigpu_headers中。
+install(FILES ${libcarla_carla_multigpu_headers} DESTINATION include/carla/multigpu)#将头文件安装到include/carla/multigpu目录下。
 
-file(GLOB libcarla_carla_ros2_headers "${libcarla_source_path}/carla/ros2/*.h")
-install(FILES ${libcarla_carla_ros2_headers} DESTINATION include/carla/ros2)
+file(GLOB libcarla_carla_ros2_headers "${libcarla_source_path}/carla/ros2/*.h")#查找${libcarla_source_path}/carla/ros2/目录下的所有.h文件，并将文件路径存储到变量libcarla_carla_ros2_headers中。
+install(FILES ${libcarla_carla_ros2_headers} DESTINATION include/carla/ros2)#将头文件安装到include/carla/ros2目录下。
 
 # 安装 Boost 头文件到目标 'include' 目录
 install(DIRECTORY "${BOOST_INCLUDE_PATH}/boost" DESTINATION include)
@@ -136,38 +136,38 @@ file(GLOB libcarla_server_sources
     "${libcarla_source_path}/carla/geom/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.cpp为扩展名的源文件路径
     "${libcarla_source_path}/carla/opendrive/*.cpp"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径
     "${libcarla_source_path}/carla/opendrive/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径，把该目录下的头文件路径都整合进变量里，以满足后续代码对这些头文件的引用需求。
-    "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
-    "${libcarla_source_path}/carla/opendrive/parser/*.h"
-    "${libcarla_source_path}/carla/road/*.cpp"
-    "${libcarla_source_path}/carla/road/*.h"
-    "${libcarla_source_path}/carla/road/element/*.cpp"
-    "${libcarla_source_path}/carla/road/element/*.h"
-    "${libcarla_source_path}/carla/road/general/*.cpp"
-    "${libcarla_source_path}/carla/road/general/*.h"
-    "${libcarla_source_path}/carla/road/object/*.cpp"
-    "${libcarla_source_path}/carla/road/object/*.h"
-    "${libcarla_source_path}/carla/road/signal/*.cpp"
-    "${libcarla_source_path}/carla/road/signal/*.h"
-    "${libcarla_source_path}/carla/rpc/*.cpp"
-    "${libcarla_source_path}/carla/rpc/*.h"
-    "${libcarla_source_path}/carla/sensor/*.h"
-    "${libcarla_source_path}/carla/sensor/s11n/*.h"
-    "${libcarla_source_path}/carla/sensor/s11n/SensorHeaderSerializer.cpp"
-    "${libcarla_source_path}/carla/streaming/*.h"
-    "${libcarla_source_path}/carla/streaming/detail/*.cpp"
-    "${libcarla_source_path}/carla/streaming/detail/*.h"
-    "${libcarla_source_path}/carla/streaming/detail/tcp/*.cpp"
-    "${libcarla_source_path}/carla/streaming/low_level/*.h"
-    "${libcarla_source_path}/carla/multigpu/*.h"
-    "${libcarla_source_path}/carla/multigpu/*.cpp"
-    "${libcarla_source_path}/carla/ros2/*.h"
-    "${libcarla_source_path}/carla/ros2/*.cpp"
-    "${libcarla_source_thirdparty_path}/odrSpiral/*.cpp"
-    "${libcarla_source_thirdparty_path}/odrSpiral/*.h"
-    "${libcarla_source_thirdparty_path}/moodycamel/*.cpp"
-    "${libcarla_source_thirdparty_path}/moodycamel/*.h"
-    "${libcarla_source_thirdparty_path}/pugixml/*.cpp"
-    "${libcarla_source_thirdparty_path}/pugixml/*.hpp")
+    "${libcarla_source_path}/carla/opendrive/parser/*.cpp"#carla/opendrive/parser目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/opendrive/parser/*.h"#carla/opendrive/parser目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/road/*.cpp"# carla/road目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/road/*.h"#carla/road目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/road/element/*.cpp"#carla/road/element目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/road/element/*.h"#carla/road/element目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/road/general/*.cpp"#carla/road/general目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/road/general/*.h"#carla/road/general目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/road/object/*.cpp"#carla/road/object目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/road/object/*.h"#carla/road/object目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/road/signal/*.cpp"#carla/road/signal目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/road/signal/*.h"#carla/road/signal目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/rpc/*.cpp"# carla/rpc目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/rpc/*.h"#carla/rpc目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/sensor/*.h"#carla/sensor目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/sensor/s11n/*.h"#carla/sensor/s11n目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/sensor/s11n/SensorHeaderSerializer.cpp"#carla/sensor/s11n目录下的SensorHeaderSerializer.cpp文件路径
+    "${libcarla_source_path}/carla/streaming/*.h"# carla/streaming目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/streaming/detail/*.cpp"# carla/streaming/detail目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/streaming/detail/*.h"# carla/streaming/detail目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/streaming/detail/tcp/*.cpp"#carla/streaming/detail/tcp目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/streaming/low_level/*.h"#carla/streaming/low_level目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/multigpu/*.h"# carla/multigpu目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/multigpu/*.cpp"# carla/multigpu目录下的所有.cpp文件路径
+    "${libcarla_source_path}/carla/ros2/*.h"#carla/ros2目录下的所有.h文件路径
+    "${libcarla_source_path}/carla/ros2/*.cpp"# carla/ros2目录下的所有.cpp文件路径
+    "${libcarla_source_thirdparty_path}/odrSpiral/*.cpp"#第三方库odrSpiral目录下的所有.cpp文件路径
+    "${libcarla_source_thirdparty_path}/odrSpiral/*.h"#第三方库odrSpiral目录下的所有.h文件路径
+    "${libcarla_source_thirdparty_path}/moodycamel/*.cpp"# 第三方库moodycamel目录下的所有.cpp文件路径
+    "${libcarla_source_thirdparty_path}/moodycamel/*.h"#第三方库moodycamel目录下的所有.h文件路径
+    "${libcarla_source_thirdparty_path}/pugixml/*.cpp"# 第三方库pugixml目录下的所有.cpp文件路径
+    "${libcarla_source_thirdparty_path}/pugixml/*.hpp")# 第三方库pugixml目录下的所有.hpp文件路径
 
 # ==============================================================================
 # 在同一构建类型中创建调试和发布的目标
