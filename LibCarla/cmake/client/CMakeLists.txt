@@ -37,26 +37,26 @@ if (BUILD_RSS_VARIANT)
   install(FILES ${spdlog_file} DESTINATION lib)
   list(APPEND ADRSS_LIBS ${spdlog_file})
   #完成项目的包含目录和库目录的路径设置 安装位置指定以及相关列表的添加操作
-  set(proj_include_dir ${ADRSS_INSTALL_DIR}/../../proj-install/include)
-  set(proj_lib ${ADRSS_INSTALL_DIR}/../../proj-install/lib/libproj.a)
-  install(DIRECTORY ${proj_include_dir} DESTINATION include/system)
-  list(APPEND ADRSS_INCLUDE_DIRS ${proj_include_dir})
-  install(FILES ${proj_lib} DESTINATION lib)
-  list(APPEND ADRSS_LIBS ${proj_lib})
+  set(proj_include_dir ${ADRSS_INSTALL_DIR}/../../proj-install/include)#在CMake中，set命令用于设置变量。
+  set(proj_lib ${ADRSS_INSTALL_DIR}/../../proj-install/lib/libproj.a)#定义了名为proj_lib的变量，其值为${ADRSS_INSTALL_DIR}/../../proj - install/lib/libproj.a。这很可能是proj项目的库文件（静态库，因为后缀是.a）的路径，同样依赖于ADRSS_INSTALL_DIR变量。
+  install(DIRECTORY ${proj_include_dir} DESTINATION include/system)#在CMake构建系统中，install命令用于指定安装规则。这里是将proj_include_dir所指向的目录安装到目标目录include/system下。这意味着在安装过程中，proj项目的头文件将会被复制到include/system目录中，以便其他项目可以找到这些头文件。
+  list(APPEND ADRSS_INCLUDE_DIRS ${proj_include_dir})#list命令用于操作列表。这里的APPEND操作是将proj_include_dir的值添加到ADRSS_INCLUDE_DIRS列表中。这可能是为了在后续的构建过程中，方便地管理所有需要包含的头文件目录。
+  install(FILES ${proj_lib} DESTINATION lib)#这是将proj_lib所指向的库文件（libproj.a）安装到目标目录lib下。
+  list(APPEND ADRSS_LIBS ${proj_lib})#将proj_lib的值添加到ADRSS_LIBS列表中。这有助于在构建过程中管理所有需要链接的库文件。
 
   # 只要 libosm2odr 使用相同的 odrSpiral 接口，复制构建的静态库就足够了
-  set(odr_lib ${ADRSS_INSTALL_DIR}/../src/ad-rss-lib/dependencies/map/dependencies/odrSpiral/lib/libodrSpiral.a)
-  install(FILES ${odr_lib} DESTINATION lib)
-  list(APPEND ADRSS_LIBS ${odr_lib})
+  set(odr_lib ${ADRSS_INSTALL_DIR}/../src/ad-rss-lib/dependencies/map/dependencies/odrSpiral/lib/libodrSpiral.a)#定义了一个名为odr_lib的变量，它指向了odrSpiral库的路径。这里使用${ADRSS_INSTALL_DIR}等变量（假设这些变量在之前的CMake脚本中已经定义）来构建库文件的完整路径。
+  install(FILES ${odr_lib} DESTINATION lib)#install(FILES${odr_lib} DESTINATION_lib)将odrSpiral库安装到名为_lib的目标位置（这里看起来DESTINATION_lib可能是一个笔误，也许是DESTINATION lib的意思，表示安装到名为lib的目标文件夹下）。
+  list(APPEND ADRSS_LIBS ${odr_lib})#list(APPEND ADRSS_LIBS${odr_lib})把odr_lib所指向的库文件添加到ADRSS_LIBS列表中，以便后续在项目构建中使用。
 
   foreach(ad_lib ad_physics ad_rss ad_map_access ad_map_opendrive_reader ad_rss_map_integration)
-  set(${ad_lib}_file ${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}.a)
+  set(${ad_lib}_file ${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}.a)#设置每个库的文件路径
   # 使用install命令将上一步中设置的静态库文件安装到目标位置，
   # 这里的目标位置是安装目录下的"lib"文件夹。
   # ${${ad_lib}_file}是CMake的变量间接引用语法，它首先解析${ad_lib}_file得到变量名（如ad_physics_file），
   # 然后再解析该变量名对应的值（如/path/to/adrss_install/ad_physics/lib/libad_physics.a）。
-    install(FILES ${${ad_lib}_file} DESTINATION lib)
-    list(APPEND ADRSS_LIBS ${${ad_lib}_file})
+    install(FILES ${${ad_lib}_file} DESTINATION lib)#安装库文件
+    list(APPEND ADRSS_LIBS ${${ad_lib}_file})#将库添加到ADRSS_LIBS列表
 
     # 如果可用，请安装相应的 Python 库
     file(GLOB ${ad_lib}_python_libs "${ADRSS_INSTALL_DIR}/${ad_lib}/lib/lib${ad_lib}_python*.a")
@@ -80,29 +80,30 @@ if (BUILD_RSS_VARIANT)
 endif()
 
 # 安装 Recast&Detour 库
-install(DIRECTORY "${RECAST_INCLUDE_PATH}/recast" DESTINATION include/system)
-file(GLOB libcarla_carla_recastlib "${RECAST_LIB_PATH}/*.*")
-install(FILES ${libcarla_carla_recastlib} DESTINATION lib)
+install(DIRECTORY "${RECAST_INCLUDE_PATH}/recast" DESTINATION include/system)#这行代码使用 install 命令将Recast库的头文件安装到指定目录。
+file(GLOB libcarla_carla_recastlib "${RECAST_LIB_PATH}/*.*")#file(GLOB libcarla_carla_recastlib "${RECAST_LIB_PATH}/*.*") 使用 GLOB 命令来获取 RECAST_LIB_PATH 下的所有文件。
+install(FILES ${libcarla_carla_recastlib} DESTINATION lib)#install(FILES${libcarla_carla_recastlib} DESTINATION lib) 这行将上一步获取的Recast库文件安装到项目的 lib 目录下。
 
 #安装 rpclib
-install(DIRECTORY "${RPCLIB_INCLUDE_PATH}/rpc" DESTINATION include/system)
-file(GLOB libcarla_carla_rpclib "${RPCLIB_LIB_PATH}/*.*")
-install(FILES ${libcarla_carla_rpclib} DESTINATION lib)
+install(DIRECTORY "${RPCLIB_INCLUDE_PATH}/rpc" DESTINATION include/system)#install(DIRECTORY "${RPCLIB_INCLUDE_PATH}/rpc" DESTINATION include/system) 将 RPCLIB_INCLUDE_PATH 下名为 rpc 的目录中的头文件安装到项目的 include/system 目录下。这里的 RPCLIB_INCLUDE_PATH 是指向rpclib头文件所在目录的预定义变量。
+file(GLOB libcarla_carla_rpclib "${RPCLIB_LIB_PATH}/*.*")#file(GLOB libcarla_carla_rpclib "${RPCLIB_LIB_PATH}/*.*") 使用 GLOB 命令获取 RPCLIB_LIB_PATH 下的所有文件，并存储到变量 libcarla_carla_rpclib 中。这里的 RPCLIB_LIB_PATH 是指向rpclib库文件所在目录的预定义变量。
+install(FILES ${libcarla_carla_rpclib} DESTINATION lib)#install(FILES${libcarla_carla_rpclib} DESTINATION lib) 将获取的rpclib库文件安装到项目的 lib 目录下。
 
 # 安装 Boost 头文件
 # 待办：从 LibCarla.client 的公共接口中移除 Boost
-install(DIRECTORY "${BOOST_INCLUDE_PATH}/boost" DESTINATION include/system)
-file(GLOB boost_libraries "${BOOST_LIB_PATH}/*.*")
-install(FILES ${boost_libraries} DESTINATION lib)
+install(DIRECTORY "${BOOST_INCLUDE_PATH}/boost" DESTINATION include/system)#install(DIRECTORY "${BOOST_INCLUDE_PATH}/boost" DESTINATION include/system) 将 BOOST_INCLUDE_PATH 下名为 boost 的目录中的头文件安装到项目的 include/system 目录下。这里的 BOOST_INCLUDE_PATH 是指向Boost头文件所在目录的预定义变量。
+file(GLOB boost_libraries "${BOOST_LIB_PATH}/*.*")#file(GLOB boost_libraries "${BOOST_LIB_PATH}/*.*") 使用 GLOB 命令获取 BOOST_LIB_PATH 下的所有文件，并存储到变量 boost_libraries 中。这里的 BOOST_LIB_PATH 是指向Boost库文件所在目录的预定义变量。
+install(FILES ${boost_libraries} DESTINATION lib)#install(FILES${boost_libraries} DESTINATION lib) 将获取的Boost库文件安装到项目的 lib 目录下。
 
 # Windows 需要安装 libpng 以及 zlib。
-if (WIN32)
+if (WIN32)#if (WIN32) 是一个条件判断，如果当前构建系统是Windows平台（WIN32 是CMake中的一个预定义变量，在Windows平台下为真），则执行下面的代码块。
     # 安装 zlib 头文件
-    file(GLOB zlib_includes "${ZLIB_INCLUDE_PATH}/*")
-    install(FILES ${zlib_includes} DESTINATION include)
+    file(GLOB zlib_includes "${ZLIB_INCLUDE_PATH}/*")#file(GLOB zlib_includes "${ZLIB_INCLUDE_PATH}/*") 使用 GLOB 命令获取 ZLIB_INCLUDE_PATH 下的所有文件，并存储到变量 zlib_includes 中。这里的 ZLIB_INCLUDE_PATH 是指向zlib头文件所在目录的预定义变量。
+
+    install(FILES ${zlib_includes} DESTINATION include)#install(FILES${zlib_includes} DESTINATION include) 将获取的zlib头文件安装到项目的 include 目录下。
     # 安装 zlib 库
-    file(GLOB zlib_libraries "${ZLIB_LIB_PATH}/*")
-    install(FILES ${zlib_libraries} DESTINATION lib)
+    file(GLOB zlib_libraries "${ZLIB_LIB_PATH}/*")#file(GLOB zlib_libraries "${ZLIB_LIB_PATH}/*") 使用 GLOB 命令获取 ZLIB_LIB_PATH 下的所有文件，并存储到变量 zlib_libraries 中。这里的 ZLIB_LIB_PATH 是指向zlib库文件所在目录的预定义变量。
+    install(FILES ${zlib_libraries} DESTINATION lib)#install(FILES${zlib_libraries} DESTINATION lib) 将获取的zlib库文件安装到项目的 lib 目录下。
 
     # 安装 libpng 头文件
     file(GLOB pnglib_includes "${LIBPNG_INCLUDE_PATH}/*")
