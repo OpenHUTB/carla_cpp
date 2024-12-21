@@ -10,17 +10,17 @@
 
 void CarlaRecorderPosition::Write(std::ostream &OutFile)
 {
-  // database id
+  // 数据库 ID
   WriteValue<uint32_t>(OutFile, this->DatabaseId);
-  // transform
+  // 变换
   WriteFVector(OutFile, this->Location);
   WriteFVector(OutFile, this->Rotation);
 }
 void CarlaRecorderPosition::Read(std::istream &InFile)
 {
-  // database id
+  // 数据库 ID
   ReadValue<uint32_t>(InFile, this->DatabaseId);
-  // transform
+  // 变换
   ReadFVector(InFile, this->Location);
   ReadFVector(InFile, this->Rotation);
 }
@@ -39,18 +39,18 @@ void CarlaRecorderPositions::Add(const CarlaRecorderPosition &Position)
 
 void CarlaRecorderPositions::Write(std::ostream &OutFile)
 {
-  // write the packet id
+  // 写入数据包 ID
   WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::Position));
 
-  // write the packet size
+  // 写入数据包大小
   uint32_t Total = 2 + Positions.size() * sizeof(CarlaRecorderPosition);
   WriteValue<uint32_t>(OutFile, Total);
 
-  // write total records
+  // 写入总记录数
   Total = Positions.size();
   WriteValue<uint16_t>(OutFile, Total);
 
-  // write records
+  // 写入记录
   if (Total > 0)
   {
     OutFile.write(reinterpret_cast<const char *>(Positions.data()),
@@ -62,7 +62,7 @@ void CarlaRecorderPositions::Read(std::istream &InFile)
 {
   uint16_t i, Total;
 
-  // read all positions
+  // 阅读所有位置
   ReadValue<uint16_t>(InFile, Total);
   for (i = 0; i < Total; ++i)
   {
