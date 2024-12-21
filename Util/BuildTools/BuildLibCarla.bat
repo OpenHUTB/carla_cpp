@@ -55,6 +55,7 @@ if not "%1"=="" (
     goto :arg-parse
 )
 
+#判断环境变量的值是否为假
 if %REMOVE_INTERMEDIATE% == false (
     if %BUILD_SERVER% == false (
         if %BUILD_CLIENT% == false (
@@ -70,14 +71,18 @@ rem ============================================================================
 
 rem Set the visual studio solution directory
 rem
+#变量设置
 set LIBCARLA_VSPROJECT_PATH=%INSTALLATION_DIR:/=\%libcarla-visualstudio\
 
+#为了确保GENERATOR变量有一个默认值
 if %GENERATOR% == "" set GENERATOR="Visual Studio 16 2019"
 
 
+#分别设置两个变量
 set LIBCARLA_SERVER_INSTALL_PATH=%ROOT_PATH:/=\%Unreal\CarlaUE4\Plugins\Carla\CarlaDependencies\
 set LIBCARLA_CLIENT_INSTALL_PATH=%ROOT_PATH:/=\%PythonAPI\carla\dependencies\
 
+#条件判断
 if %REMOVE_INTERMEDIATE% == true (
     rem Remove directories
     for %%G in (
@@ -90,20 +95,25 @@ if %REMOVE_INTERMEDIATE% == true (
         )
     )
 
+    #对一个文件路径进行操作
     rem Remove files
     for %%G in (
         "%ROOT_PATH:/=\%LibCarla\source\carla\Version.h"
     ) do (
         if exist %%G (
             echo %FILE_N% Cleaning %%G
+            #如果文件存在就会删除这个文件
             del %%G
         )
     )
 )
 
+#判断%LIBCARLA_VSPROJECT_PATH%这个变量所代表的目录是否存在
 if not exist "%LIBCARLA_VSPROJECT_PATH%" mkdir "%LIBCARLA_VSPROJECT_PATH%"
+#切换到这个目录下
 cd "%LIBCARLA_VSPROJECT_PATH%"
 
+#根据生成器设置平台
 echo.%GENERATOR% | findstr /C:"Visual Studio" >nul && (
     set PLATFORM=-A x64
 ) || (
