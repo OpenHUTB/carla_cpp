@@ -7,6 +7,8 @@ import glob
 import os
 import sys
 
+# 尝试将Carla相关的模块路径添加到系统路径中，以便能够正确导入Carla相关的库。
+# 这里根据不同的操作系统（Windows或Linux）以及Python版本信息来构建正确的模块路径格式。
 try:
     sys.path.append(glob.glob(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + '/carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -24,30 +26,41 @@ import carla
 from carla import ad
 
 
+# RssStateVisualizer类用于可视化RSS状态信息，接收显示尺寸、字体、Carla世界对象等参数进行初始化，并提供更新可视化内容的方法
 class RssStateVisualizer(object):
 
     def __init__(self, display_dimensions, font, world):
+        # 初始化用于绘制的Surface对象为None，后续会根据实际情况创建和更新
         self._surface = None
+        # 保存传入的显示尺寸信息（如屏幕宽高），用于确定绘制区域大小等
         self._display_dimensions = display_dimensions
+        # 保存传入的字体对象，用于后续渲染文字
         self._font = font
+        # 保存传入的Carla世界对象，方便获取场景中的相关Actor等信息
         self._world = world
 
     def tick(self, individual_rss_states):
+        # 创建一个用于绘制RSS状态信息的Surface，设置背景色为透明（以黑色为透明色）
         state_surface = pygame.Surface((220, self._display_dimensions[1]))
         state_surface.set_colorkey(pygame.Color('black'))
         v_offset = 0
 
+        # 如果存在RSS状态信息则进行绘制相关操作
         if individual_rss_states:
+            # 使用传入的字体渲染"RSS States:"文字，颜色为白色，准备绘制到Surface上
             surface = self._font.render('RSS States:', True, (255, 255, 255))
             state_surface.blit(surface, (8, v_offset))
             v_offset += 26
+        # 遍历每个RSS状态信息进行详细绘制
         for state in individual_rss_states:
             object_name = "Obj"
+            # 根据对象ID判断是否是特定边界对象，并设置相应名称
             if state.rss_state.objectId == 18446744073709551614:
                 object_name = "Border Left"
             elif state.rss_state.objectId == 18446744073709551615:
                 object_name = "Border Right"
             else:
+                # 获取对应Actor对象（如果存在），并尝试从其类型ID提取出合适的名称用于展示
                 other_actor = state.get_actor(self._world)
                 if other_actor:
                     li = list(other_actor.type_id.split("."))
@@ -58,24 +71,30 @@ class RssStateVisualizer(object):
                     object_name = " ".join(li).strip()[:15]
 
             mode = "?"
+            # 根据计算模式设置对应的显示字符
             if state.actor_calculation_mode == ad.rss.map.RssMode.Structured:
                 mode = "S"
             elif state.actor_calculation_mode == ad.rss.map.RssMode.Unstructured:
                 mode = "U"
             elif state.actor_calculation_mode == ad.rss.map.RssMode.NotRelevant:
                 mode = "-"
+            # 格式化要显示的信息字符串，包含计算模式、距离、对象名称
             item = '%4s % 2dm %8s' % (mode, state.distance, object_name)
 
+            # 使用字体渲染要显示的信息字符串，颜色为白色，准备绘制到Surface上
             surface = self._font.render(item, True, (255, 255, 255))
             state_surface.blit(surface, (5, v_offset))
             color = (128, 128, 128)
+            # 根据计算模式和是否危险来设置显示颜色（危险为红色，非危险且相关为绿色，不相关为灰色）
             if state.actor_calculation_mode != ad.rss.map.RssMode.NotRelevant:
                 if state.is_dangerous:
                     color = (255, 0, 0)
                 else:
                     color = (0, 255, 0)
+            # 在Surface上绘制一个表示状态的圆形，位置和颜色根据上述条件确定，半径为5
             pygame.draw.circle(state_surface, color, (12, v_offset + 7), 5)
             xpos = 184
+            # 如果是结构化计算模式，根据不同的纵向、横向安全状态等条件绘制相应多边形图形来进一步展示状态细节
             if state.actor_calculation_mode == ad.rss.map.RssMode.Structured:
                 if not state.rss_state.longitudinalState.isSafe and ((state.rss_state.longitudinalState.rssStateInformation.evaluator == "LongitudinalDistanceSameDirectionOtherInFront") or (state.rss_state.longitudinalState.rssStateInformation.evaluator == "LongitudinalDistanceSameDirectionEgoFront")):
                     pygame.draw.polygon(

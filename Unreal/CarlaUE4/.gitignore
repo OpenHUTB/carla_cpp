@@ -7,8 +7,8 @@ Saved#保存目录
 Plugins/Carla/Binaries#这个目录可能包含CARLA的二进制文件，即编译后的可执行文件。
 Plugins/Carla/Build#这个目录可能包含构建CARLA时生成的文件，比如编译过程中的输出。
 Plugins/Carla/CarlaServer#这个目录可能包含CARLA服务器的代码或相关文件。
-Plugins/Carla/CarlaDependencies
-Plugins/Carla/Debug
+Plugins/Carla/CarlaDependencies#可能是CARLA相关的依赖文件或目录
+Plugins/Carla/Debug#CARLA相关的文件调试文件或目录
 Plugins/Carla/DerivedDataCache
 Plugins/Carla/Intermediate
 Plugins/Carla/Saved

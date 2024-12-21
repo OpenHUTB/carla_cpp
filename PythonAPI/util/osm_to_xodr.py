@@ -105,11 +105,11 @@ def main():
         print('\nAn error has occurred in conversion.')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':#检查这个脚本是否作为主程序运行。如果是，执行下面的代码块。
 
     try:
         main()
-    except KeyboardInterrupt:
+    except KeyboardInterrupt:#捕获 KeyboardInterrupt 异常，这通常是由用户中断程序（如按Ctrl+C）引起的。
         print('\nCancelled by user. Bye!')
-    except RuntimeError as e:
+    except RuntimeError as e:#捕获 RuntimeError 异常，并将其赋值给变量 e
         print(e)
