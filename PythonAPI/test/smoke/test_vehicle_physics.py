@@ -156,20 +156,57 @@ class TestApplyVehiclePhysics(SyncSmokeTest):
 
         vehicle.destroy()
 
-    def check_multiple_physics_control(self, bp_vehicles, index_bp = None):
-        num_veh = 10
-        vehicles = []
-        pc_a = []
-        pc_b = []
-        for i in range(0, num_veh):
-            veh_tranf = self.world.get_map().get_spawn_points()[i]
-            bp_vehicle = bp_vehicles[index_bp] if index_bp is not None else bp_vehicles[i]
-            vehicles.append(self.world.spawn_actor(bp_vehicle, veh_tranf))
-            drag_coeff = 3.0 + 0.1*i
-            pc_a.append(change_physics_control(vehicles[i], drag=drag_coeff))
-            vehicles[i].apply_physics_control(pc_a[i])
+def check_multiple_physics_control(self, bp_vehicles, index_bp=None):
+    """
+    在CARLA仿真环境中创建多个车辆，并为每个车辆应用不同的物理控制设置。
 
-        self.wait(2)
+    参数:
+    bp_vehicles (list of carla.Blueprint): 车辆蓝图列表，用于创建车辆。
+    index_bp (int, optional): 要使用的车辆蓝图索引。如果为None，则循环使用蓝图列表。
+
+    无返回值。
+    """
+
+    num_veh = 10  # 要创建的车辆数量
+    vehicles = []  # 用于存储创建的车辆对象的列表
+    pc_a = []  # 用于存储每个车辆的物理控制设置的列表
+
+    # 注意：pc_b被初始化但未在后续代码中使用，可能是遗留代码或计划中的扩展
+    pc_b = []
+
+    # 循环创建车辆并应用物理控制
+    for i in range(0, num_veh):
+        # 获取地图上的随机或指定生成点
+        # 注意：这里直接使用索引i从get_spawn_points()返回的列表中获取点，
+        # 但这可能导致索引越界错误，如果生成点数量少于num_veh。
+        # 一种更安全的做法是使用随机选择或循环遍历生成的点。
+        veh_tranf = self.world.get_map().get_spawn_points()[i]
+
+        # 选择车辆蓝图
+        # 如果提供了index_bp，则使用它；否则，循环使用bp_vehicles列表中的蓝图。
+        bp_vehicle = bp_vehicles[index_bp] if index_bp is not None else bp_vehicles[i % len(bp_vehicles)]
+
+        # 创建车辆并添加到列表中
+        vehicles.append(self.world.spawn_actor(bp_vehicle, veh_tranf))
+
+        # 计算空气阻力系数（这里只是示例，实际应用中可能需要根据具体需求调整）
+        drag_coeff = 3.0 + 0.1 * i
+
+        # 假设change_physics_control是一个函数，它接受一个车辆对象和物理控制参数，
+        # 并返回一个物理控制对象（这在CARLA API中不是直接可用的，可能是自定义函数）。
+        # 注意：这里的代码片段没有提供change_physics_control函数的实现。
+        pc_a.append(change_physics_control(vehicles[i], drag=drag_coeff))
+
+        # 应用物理控制到车辆上
+        # 注意：在CARLA的较新版本中，应该使用set_physics_control而不是apply_physics_control，
+        # 因为apply_physics_control在旧版本中已被弃用。
+        # 但由于代码片段没有提供完整的上下文，这里保留原样。
+        vehicles[i].apply_physics_control(pc_a[i])
+
+    # 等待一段时间，以便观察物理控制的效果
+    # 注意：self.wait可能是一个自定义方法，用于在仿真中暂停一段时间。
+    # 在CARLA的Python API中，通常使用world.wait_for_tick()或world.tick()结合时间控制。
+    self.wait(2)
 
         for i in range(0, num_veh):
             pc_b.append(vehicles[i].get_physics_control())
