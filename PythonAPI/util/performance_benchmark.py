@@ -21,9 +21,10 @@ Please, make sure you install the following dependencies:
 
 # @todo Include this file in the Pylint checks.
 # pylint: skip-file
-
+#导入了sys模块，然后检查 Python 的主版本号
 import sys
-
+#如果小于 3，说明脚本是在 Python 2 环境下运行，脚本会输出一条提示信息
+#告知用户该脚本只能在 Python 3 下运行，然后通过sys.exit(1)退出脚本
 if sys.version_info[0] < 3:
     print('This script is only available for Python 3')
     sys.exit(1)
@@ -42,15 +43,18 @@ import GPUtil
 import threading
 import time
 import logging
-
+#尝试将carla模块的路径添加到sys.path中
 try:
+    #使用glob.glob来查找符合特定模式的carla模块的.egg文件路径，并将其添加到sys.path中
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+#如果在查找过程中出现IndexError
 except IndexError:
+    #捕获异常并pass
     pass
-
+#添加carla模块的路径以便能够导入carla模块
 import carla
 
 # ======================================================================================================================
