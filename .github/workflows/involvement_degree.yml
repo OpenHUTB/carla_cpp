@@ -20,8 +20,11 @@ jobs:
         with:
           python-version: '3.x' # 指定python版本
           # Optional - x64 or x86 architecture, defaults to x64
+          #可选参数：指定架构为x64或x86，默认为x64
           architecture: 'x64'
+          #任务名称：安装Python依赖
       - name: Install Python dependencies
         run: python -m pip install --upgrade pip requests gitpython
+        #任务名称：显示参与度
       - name: Display involvement degree
         run: python scores.py -t ${{ secrets.GITHUB_TOKEN }} # 执行
