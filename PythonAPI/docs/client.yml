@@ -577,29 +577,36 @@
       doc: >
         Sets the minimum distance in meters that vehicles have to keep with the rest. The distance is in meters and will affect the minimum moving distance. It is computed from center to center of the vehicle objects.
     # --------------------------------------
+    # 函数：设置车辆的期望速度
+    # 参数：
+    # - actor：要改变速度的车辆对象，类型为carla.Actor，代表那个速度即将被改变的车辆
+    # - speed：期望车辆达到并移动的速度值，类型为float
     - def_name: set_desired_speed
       params:
       - param_name: actor
-        type: carla.Actor
+        type: carla.Actor # carla.Actor类型，对应的是要操作的车辆
         doc: >
           Vehicle whose speed is being changed.
-      - param_name: speed
+      - param_name: speed # float类型，指定的目标速度
         type: float
         doc: >
           Desired speed at which the vehicle will move.
       doc: >
         Sets the speed of a vehicle to the specified value.
     # --------------------------------------
+    # 函数：启用或禁用混合物理模式
+    # - enabled：布尔类型，默认值为False，取值为True时启用混合物理模式，False时禁用
     - def_name: set_hybrid_physics_mode
       params:
       - param_name: enabled
-        type: bool
+        type: bool # bool类型，控制混合物理模式的启用（True）或禁用（False），默认禁用
         default: False
         doc: >
           If __True__, enables the hybrid physics.
       doc: >
         Enables or disables the hybrid physics mode. In this mode, vehicle's farther than a certain radius from the ego vehicle will have their physics disabled. Computation cost will be reduced by not calculating vehicle dynamics. Vehicles will be teleported.
     # --------------------------------------
+    # 设置混合物理模式的半径值
     - def_name: set_hybrid_physics_radius
       params:
       - param_name: r
