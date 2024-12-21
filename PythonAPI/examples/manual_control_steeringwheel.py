@@ -27,16 +27,31 @@ from __future__ import print_function
 // 尝试将特定路径添加到系统路径中，该路径根据Python版本、操作系统类型以及Carla相关信息来构建
 // 目的是能够正确导入Carla相关的模块
 
-import glob
-import os
-import sys
+import sys  # 导入sys模块，用于访问与Python解释器紧密相关的变量和函数
+import glob  # 导入glob模块，用于查找符合特定模式的文件路径名
+import os  # 导入os模块，提供了许多与操作系统交互的功能
 
+# 尝试执行以下代码块
 try:
+    # 使用glob.glob()函数搜索匹配给定模式的文件路径
+    # 模式字符串是动态构建的，依赖于Python解释器的版本号（major.minor）和操作系统类型
+    # '../carla/dist/carla-*%d.%d-%s.egg' 是搜索模式，其中：
+    # %d.%d 被替换为Python的主版本号和次版本号（例如，对于Python 3.8，它是3.8）
+    # %s 被替换为操作系统特定的字符串（'win-amd64' 对于Windows，'linux-x86_64' 对于Linux）
+    # 这个模式旨在找到与当前Python版本和操作系统匹配的CARLA egg包
+    # sys.path.append() 将找到的egg包路径添加到Python的模块搜索路径列表中
+    # [0] 是因为glob.glob()返回一个列表，我们假设它只会找到一个匹配的egg包（这是预期的行为）
+    # 并取该列表的第一个元素（即路径字符串）
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'
+    ))[0])
 except IndexError:
+    # 如果glob.glob()没有找到任何匹配的egg包，它会返回一个空列表
+    # 尝试访问空列表的第一个元素（[0]）会引发IndexError异常
+    # 在这个异常处理块中，我们简单地使用pass语句，意味着“什么都不做”
+    # 这通常是因为开发者认为在找不到egg包的情况下，程序应该继续运行，尽管可能缺少某些功能
     pass
 
 
