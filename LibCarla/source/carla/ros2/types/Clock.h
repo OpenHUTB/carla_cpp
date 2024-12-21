@@ -57,13 +57,15 @@
 #else
 #define CLOCK_DllAPI
 #endif // _WIN32
-
+// 声明eprosima命名空间
 namespace eprosima {
+// 在eprosima命名空间内再声明fastcdr子命名空间
 namespace fastcdr {
+// 前向声明Cdr类
 class Cdr;
 } // namespace fastcdr
 } // namespace eprosima
-
+// 声明rosgraph命名空间
 namespace rosgraph {
     namespace msg {
         /*!
@@ -207,9 +209,10 @@ namespace rosgraph {
                     eprosima::fastcdr::Cdr& cdr) const;
 
         private:
+// 成员变量，用于存储和时钟相关的数据
             builtin_interfaces::msg::Time m_clock;
         };
     } // namespace msg
 } // namespace rosgraph
-
+// 结束头文件的条件编译，确保头文件内容只在未被包含过时才会被编译处理
 #endif // _FAST_DDS_GENERATED_ROSGRAPH_MSG_CLOCK_H_
