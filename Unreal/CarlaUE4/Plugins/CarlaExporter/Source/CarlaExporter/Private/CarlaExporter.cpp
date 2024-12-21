@@ -27,7 +27,7 @@
 #include <fstream>// 引入fstream头文件，用于文件读写操作
 #include <sstream>// 引入sstream头文件，用于字符串流处理
 
-static const FName CarlaExporterTabName("CarlaExporter");
+static const FName CarlaExporterTabName("CarlaExporter");//声明了一个名为CarlaExporterTabName的静态常量，类型为FName，并初始化为"CarlaExporter"。
 
 #define LOCTEXT_NAMESPACE "FCarlaExporterModule"
 // 模块启动时调用的函数
