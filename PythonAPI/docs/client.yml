@@ -286,13 +286,14 @@
       params:
       return: str
       doc: >
-        Returns the client libcarla version by consulting it in the "Version.h" file. Both client and server can use different libcarla versions but some issues may arise regarding unexpected incompatibilities.
+        Returns the client libcarla version by consulting it in the "Version.h" file. Both client and server can use different libcarla versions but some issues may arise regarding unexpected incompatibilities.# 返回客户端的 libcarla 版本，通过查阅 "Version.h" 文件。客户端和服务器可能使用不同版本的 libcarla，但可能会因为不兼容性问题产生意外错误。
+
     # --------------------------------------
     - def_name: get_server_version
       params:
       return: str
       doc: >
-        Returns the server libcarla version by consulting it in the "Version.h" file. Both client and server should use the same libcarla version.
+        Returns the server libcarla version by consulting it in the "Version.h" file. Both client and server should use the same libcarla version. # 返回服务器的 libcarla 版本，通过查阅 "Version.h" 文件。客户端和服务器应该使用相同版本的 libcarla。
     # --------------------------------------
     - def_name: get_trafficmanager
       params:
@@ -303,13 +304,13 @@
           Port that will be used by the traffic manager. Default is `8000`.
       return: carla.TrafficManager
       doc: >
-        Returns an instance of the traffic manager related to the specified port. If it does not exist, this will be created.
+        Returns an instance of the traffic manager related to the specified port. If it does not exist, this will be created. # 返回与指定端口关联的交通管理器实例。如果不存在，该实例将被创建。
     # --------------------------------------
     - def_name: get_world
       params:
       return: carla.World
       doc: >
-        Returns the world object currently active in the simulation. This world will be later used for example to load maps.
+        Returns the world object currently active in the simulation. This world will be later used for example to load maps. # 返回当前在仿真中活动的世界对象。该世界对象稍后将用于加载地图等操作。
     # --------------------------------------
     - def_name: set_replayer_time_factor
       params:
@@ -319,9 +320,9 @@
         doc: >
             1.0 means normal time speed. Greater than 1.0 means fast motion (2.0 would be double speed) and lesser means slow motion (0.5 would be half speed).
       doc: >
-        When used, the time speed of the reenacted simulation is modified at will. It can be used several times while a playback is in curse.
-    # --------------------------------------
-    - def_name: set_timeout
+        When used, the time speed of the reenacted simulation is modified at will. It can be used several times while a playback is in curse. # 设置回放仿真时的时间速度。1.0表示正常速度，大于1.0表示加速（例如，2.0为双倍速度），小于1.0表示慢速（例如，0.5为半速）。在回放过程中，可以多次调整时间速度。
+    # ------------------------------------- 
+   - def_name: set_timeout
       params:
       - param_name: seconds
         type: float
@@ -329,28 +330,28 @@
         doc: >
           New timeout value. Default is 5 seconds.
       doc: >
-        Sets the maximum time a network call is allowed before blocking it and raising a timeout exceeded error.
+        Sets the maximum time a network call is allowed before blocking it and raising a timeout exceeded error. # 设置网络调用的最大超时时间，超过这个时间会阻塞并抛出超时错误。默认值为5秒。
      # --------------------------------------
     - def_name: set_replayer_ignore_hero
       params:
       - param_name: ignore_hero
         type: bool
         doc: >
-          Enables or disables playback of the hero vehicle during a playback of a recorded simulation.
+          Enables or disables playback of the hero vehicle during a playback of a recorded simulation. # 设置是否在回放录制仿真时忽略英雄车辆的回放。传入True则忽略，False则播放。
     # --------------------------------------
     - def_name: set_replayer_ignore_spectator
       params:
       - param_name: ignore_spectator
         type: bool
         doc: >
-          Determines whether the recorded spectator movements will be replicated by the replayer.
+          Determines whether the recorded spectator movements will be replicated by the replayer. # 设置是否回放录制中的旁观者的运动。传入True则忽略旁观者，False则进行回放。
      # --------------------------------------
     - def_name: set_files_base_folder
       params:
       - param_name: path
         type: str
         doc: >
-           Specifies the base folder where the local cache for required files will be placed.
+           Specifies the base folder where the local cache for required files will be placed.# 设置本地缓存所需文件的基础文件夹路径。
      # --------------------------------------
     - def_name: get_required_files
       params:
@@ -364,7 +365,7 @@
         doc: >
           If True, downloads files that are not already in cache. The cache can be found at "HOME\carlaCache" or "USERPROFILE\carlaCache", depending on OS.
       doc: >
-         Asks the server which files are required by the client to use the current map. Option to download files automatically if they are not already in the cache.
+         Asks the server which files are required by the client to use the current map. Option to download files automatically if they are not already in the cache. # 查询服务器上当前地图所需的文件。可以选择自动下载缓存中没有的文件，默认情况下会下载缺失的文件，缓存文件会存储在 "HOME\carlaCache" 或 "USERPROFILE\carlaCache" 目录下。
      # --------------------------------------
     - def_name: request_file
       params:
