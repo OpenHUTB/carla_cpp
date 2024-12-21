@@ -231,15 +231,27 @@ class World(object):
         # 后续会根据这个属性的值来决定如何创建或获取模拟世界中的主要演员（比如车辆等）。
 
         self.hud = HUD(args.width, args.height, carla_world)
+        # 创建一个 `HUD`（抬头显示，Head-Up Display）类的实例，传入窗口的宽 `args.width`、高 `args.height` 以及 `carla_world` 对象，
+        # 用于管理和显示模拟世界中的一些抬头显示相关信息，比如车速、车辆状态等信息展示，将创建好的实例赋值给 `self.hud` 属性。
         self.recording_frame_num = 0
+        # 用于记录当前正在录制的帧数，初始化为0，在开启录制功能后会随着每一帧的渲染逐步递增，用于给录制的图像文件命名等操作。
         self.recording = False
+        # 用于标识当前是否正在进行录制操作，初始化为 `False`，通过调用 `toggle_recording` 方法可以切换这个状态。
         self.recording_dir_num = 0
+        # 用于记录录制目录的编号，初始化为0，当创建新的录制目录时，如果目录已存在会递增这个编号，以保证每次录制生成的目录名称不重复。
         self.player = None
+         # 用于存储模拟世界中的主要演员对象（很可能是车辆等可控制对象），初始化为 `None`，会在后续 `restart` 等方法中进行赋值。
         self.actors = []
+         # 用于存储模拟世界中的各种演员（actor）对象列表，初始为空列表，后续会在创建或获取演员对象后将它们添加到这个列表中进行统一管理。
         self.rss_sensor = None
+         # 用于存储与RSS（可能是某种车辆安全相关系统，如Responsive Safety System等）相关的传感器对象，初始化为 `None`，会在后续 `restart` 等操作中进行实例化和赋值。
         self.rss_unstructured_scene_visualizer = None
+         # 用于存储无结构场景可视化相关的对象（可能是用于将模拟世界中的一些不规则场景元素进行可视化展示的对象），初始化为 `None`，同样会在相关操作中进行初始化和赋值。
         self.rss_bounding_box_visualizer = None
+        # 用于存储边界框可视化相关的对象（可能用于显示车辆、障碍物等物体的边界框，方便直观看到它们的位置和范围等信息），初始化为 `None`，后续会按需进行初始化和赋值。
         self._actor_filter = args.filter
+         # 将传入的 `args.filter` 参数赋值给实例属性 `_actor_filter`，从名称推测这个属性可能用于筛选特定类型的演员对象，
+         # 例如只筛选车辆类型的演员等，会在后续创建或获取演员对象时起到过滤作用。
         if not self._actor_filter.startswith("vehicle."):
             print('Error: RSS only supports vehicles as ego.')
             sys.exit(1)
