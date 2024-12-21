@@ -364,27 +364,47 @@ private:
   };
 
   friend class RssObjectChecker;
-
+// 声明 `RssObjectChecker` 类为友元类，意味着 `RssObjectChecker` 类的成员函数可以访问当前类（包含此声明的类，从上下文看应该是 `RssCheck` 类）的私有成员变量和私有函数，
+// 方便 `RssObjectChecker` 类在执行相关操作时能获取到当前类内部的一些私有信息，从而实现更紧密的协作，例如使用当前类内部的状态来进行一些与 `RSS` 相关的检查操作等。
   /// @brief the current state of the ego vehicle
   CarlaRssState _carla_rss_state;
-
+// 定义了一个 `CarlaRssState` 类型的变量 `_carla_rss_state`，用于存储自主车辆当前与 `RSS`（Responsibility-Sensitive Safety，责任敏感安全）相关的各种状态信息，
+// 例如车辆的行驶路线、动力学信息、检查结果等内容，通过这个变量可以在类的不同成员函数中传递和操作自主车辆的相关状态数据。
   /// @brief calculate the map matched object from the actor
+// 函数功能的简要注释，说明该函数用于根据传入的 `actor`（演员，在这里可能代表交通场景中的某个参与者，比如车辆、行人等）计算出与之对应的地图匹配对象，
+// 也就是将参与者在实际场景中的位置等信息与地图上的元素进行匹配，进而得到在地图层面相关的对象表示，方便后续基于地图进行更多的操作和分析，比如判断位置关系、规划路径等。
   ::ad::map::match::Object GetMatchObject(carla::SharedPtr<carla::client::Actor> const &actor,
                                           ::ad::physics::Distance const &sampling_distance) const;
-
+// 函数声明，它是一个 `const` 成员函数（意味着不会修改类的成员变量状态），接受两个参数：一个是指向 `carla::client::Actor` 类型的智能指针 `actor`，
+// 代表要进行地图匹配操作的交通参与者对象；另一个是 `::ad::physics::Distance` 类型的常量参数 `sampling_distance`，可能用于在地图匹配过程中确定采样距离等相关操作，
+// 函数的返回值类型为 `::ad::map::match::Object`，即返回匹配后的地图相关对象信息。
   /// @brief calculate the speed from the actor
+// 函数功能注释，表明该函数的作用是根据传入的 `actor`（交通参与者对象）来计算其速度信息，方便获取不同参与者（如车辆、行人等）在交通场景中的速度情况，
+// 进而基于速度进行各种分析，例如判断是否超速、进行碰撞风险评估等与 `RSS` 相关的计算操作。
   ::ad::physics::Speed GetSpeed(carla::client::Actor const &actor) const;
-
+// 函数声明，同样是 `const` 成员函数，接受一个 `carla::client::Actor` 类型的常量参数 `actor`，代表要获取速度信息的交通参与者对象
   /// @brief calculate the heading change from the actor
+// 函数功能注释，说明此函数用于根据传入的 `actor`（交通参与者对象）计算其航向变化信息，航向变化可以反映参与者在行驶过程中方向角度的改变情况，
+// 对于分析车辆操控、判断是否偏离预期路线以及评估与其他参与者之间的相对位置关系等方面都很有帮助，尤其在 `RSS` 相关的安全分析场景中是重要的依据之一。
   ::ad::physics::AngularVelocity GetHeadingChange(carla::client::Actor const &actor) const;
-
+// 函数声明，为 `const` 成员函数，参数 `actor` 是 `carla::client::Actor` 类型的常量，代表交通参与者对象，返回值类型为 `::ad::physics::AngularVelocity`，
+// 用于返回计算得出的参与者的航向变化速率等相关信息。
   /// @brief calculate the steering angle from the actor
+// 函数功能注释，指出该函数的功能是根据传入的 `actor`（这里明确要求是 `carla::client::Vehicle` 类型，即车辆对象）来计算其转向角度信息，
+// 转向角度对于了解车辆的操控状态、判断车辆是否在合理的转向范围内以及在进行路径规划和 `RSS` 相关安全检查等操作时都具有重要意义，
+// 比如可以通过转向角度判断车辆是否有异常转向行为，是否可能导致碰撞风险等。
   ::ad::physics::Angle GetSteeringAngle(carla::client::Vehicle const &actor) const;
-
+// 函数声明，是 `const` 成员函数，参数 `actor` 限定为 `carla::client::Vehicle` 类型的常量，代表车辆对象，返回值类型为 `::ad::physics::Angle`，
+// 即返回计算得到的车辆的转向角度信息。
   /// @brief update the desired ego vehicle route
+// 函数功能注释，说明此函数用于更新期望的自主车辆（ego vehicle）行驶路线，可能会根据交通场景的变化、车辆当前状态以及其他相关因素，
+// 对自主车辆原本规划的路线进行调整，确保车辆沿着更合适、更安全的路线行驶，例如避开拥堵、避开危险区域等情况时会用到该函数来更新路线信息。
   void UpdateRoute(CarlaRssState &carla_rss_state);
-
+// 函数声明，接受一个 `CarlaRssState` 类型的引用参数 `carla_rss_state`，这个参数可能包含了自主车辆当前的各种状态信息（如位置、速度、已有路线等），
+// 通过传入这个参数，函数内部可以基于当前状态来更新车辆的行驶路线，由于是引用传递，函数内部对该参数所代表的状态信息的修改会反映到外部传入的实际对象上。
   /// @brief calculate ego vehicle dynamics on the route
+// 函数功能注释，表明该函数的作用是计算自主车辆（ego vehicle）在行驶路线上的动力学相关信息，动力学信息包括车辆的速度、加速度、方向变化等多个方面，
+// 这些信息对于全面了解车辆在路线上的运动状态、进行 `RSS` 相关的安全分析以及后续的路径规划和决策等操作都非常关键。
   EgoDynamicsOnRoute CalculateEgoDynamicsOnRoute(carla::client::Timestamp const &current_timestamp,
                                                  double const &time_since_epoch_check_start_ms,
                                                  carla::client::Vehicle const &carla_vehicle,
@@ -392,29 +412,63 @@ private:
                                                  ::ad::map::route::FullRoute const &route,
                                                  ::ad::rss::world::RssDynamics const &default_ego_vehicle_dynamics,
                                                  EgoDynamicsOnRoute const &last_dynamics) const;
-
+// 函数声明，是一个 `const` 成员函数，接受多个参数：
+// - `carla::client::Timestamp` 类型的常量参数 `current_timestamp`，代表当前的时间戳，用于确定计算的时间点以及基于时间顺序进行相关的分析；
+// - `double` 类型的常量参数 `time_since_epoch_check_start_ms`，表示从某个起始时间点（epoch，通常可以理解为程序启动时刻等）开始到检查开始时所经过的时间，单位是毫秒，
+//  有助于分析时间相关的信息，比如不同阶段的时间消耗、操作的时效性等；
+// - `carla::client::Vehicle` 类型的常量参数 `carla_vehicle`，代表自主车辆对象，用于获取车辆自身的相关属性信息，如位置、速度等基础数据；
+// - `::ad::map::match::Object` 类型的常量参数 `match_object`，是前面提到的地图匹配对象，包含车辆在地图上的匹配信息，可辅助分析车辆与地图元素的关系以及位置情况；
+// - `::ad::map::route::FullRoute` 类型的常量参数 `route`，表示完整的行驶路线信息，是计算车辆在路线上动力学情况的基础，比如沿着路线的不同位置速度如何变化等；
+// - `::ad::rss::world::RssDynamics` 类型的常量参数 `default_ego_vehicle_dynamics`，提供了默认的自主车辆动力学相关设置信息，例如默认的速度、加速度等参数，
+//  用于在计算中参考或使用这些默认值；
+// - `EgoDynamicsOnRoute` 类型的常量参数 `last_dynamics`，可能代表上一次计算得到的车辆动力学信息，便于对比分析车辆动力学的变化情况等。
+// 函数返回值类型为 `EgoDynamicsOnRoute`，即返回计算得出的自主车辆在当前路线上的最新动力学相关信息。
   void UpdateDefaultRssDynamics(CarlaRssState &carla_rss_state);
-
+// 函数声明，接受一个 `CarlaRssState` 类型的引用参数 `carla_rss_state`，该函数的作用可能是更新 `CarlaRssState` 中与默认 `RSS` 动力学相关的信息，
+// 例如根据交通场景的变化、新的配置要求或者其他相关因素，对默认情况下的 `RSS` 动力学参数（如速度、加速度等方面的默认设置）进行调整，
+// 并且通过引用传递参数，函数内部的更新操作会直接影响外部传入的实际 `CarlaRssState` 对象中的相关数据。
   /// @brief collect the green traffic lights on the current route
+// 函数功能注释，说明此函数用于收集当前行驶路线上的绿灯交通信号灯信息，在交通场景中，交通信号灯的状态对于车辆的行驶决策、路径规划以及 `RSS` 相关的安全分析等都有重要影响，
+// 通过收集绿灯信息，可以帮助车辆判断是否能够顺利通行、是否需要停车等待等情况，从而做出更合理的行驶操作。
   ::ad::map::landmark::LandmarkIdSet GetGreenTrafficLightsOnRoute(
       std::vector<SharedPtr<carla::client::TrafficLight>> const &traffic_lights,
-      ::ad::map::route::FullRoute const &route) const;
+// 函数声明，是一个 `const` 成员函数，接受两个参数：
+// - `std::vector<SharedPtr<carla::client::TrafficLight>>` 类型的常量参数 `traffic_lights`，它是一个智能指针向量，每个元素指向 `carla::client::TrafficLight` 类型的交通信号灯对象，
+//  代表交通场景中所有的交通信号灯集合，函数会从中筛选出与当前路线相关的信号灯；
+// - `::ad::map::route::FullRoute` 类型的常量参数 `route`，表示完整的行驶路线信息，用于确定哪些交通信号灯处于当前路线上，以便准确收集对应的绿灯信息。
+// 函数返回值类型为 `::ad::map::landmark::LandmarkIdSet`，返回的是一个包含绿灯交通信号灯地标标识的集合，方便后续基于这些标识进行进一步的操作和判断。      ::ad::map::route::FullRoute const &route) const;
 
   /// @brief Create the RSS world model
   void CreateWorldModel(carla::client::Timestamp const &timestamp, carla::client::ActorList const &actors,
                         carla::client::Vehicle const &carla_ego_vehicle, CarlaRssState &carla_rss_state) const;
-
+// 函数声明，是一个 `const` 成员函数，接受四个参数：
+// - `carla::client::Timestamp` 类型的常量参数 `timestamp`，代表当前的时间戳，用于标记世界模型创建的时间点，同时也方便基于时间顺序对模型中的数据进行更新和分析；
+// - `carla::client::ActorList` 类型的常量参数 `actors`，它是一个演员列表，包含了交通场景中所有的参与者对象（如各种车辆、行人等），是构建世界模型中参与者相关信息的基础数据来源；
+// - `carla::client::Vehicle` 类型的常量参数 `carla_ego_vehicle`，特指自主车辆对象，用于在世界模型中明确表示自主车辆的相关信息，例如位置、速度、行驶方向等，
+//  它在整个 `RSS` 世界模型中是核心关注对象之一；
+// - `CarlaRssState` 类型的引用参数 `carla_rss_state`，这个参数可能用于存储创建好的世界模型以及相关的中间状态信息等，通过引用传递方便函数内部对其进行修改和赋值操作，
+//  使得外部传入的实际对象能获取到最新的世界模型数据。
   /// @brief Perform the actual RSS check
   bool PerformCheck(CarlaRssState &carla_rss_state) const;
-
+// 函数声明，是一个 `const` 成员函数，接受一个 `CarlaRssState` 类型的引用参数 `carla_rss_state`，这个参数包含了进行 `RSS` 检查所需要的各种数据，
+// 如世界模型、车辆状态等信息，函数会基于这些数据进行检查操作，并返回一个布尔值，用于表示检查结果，通常 `true` 表示通过检查（即当前状态符合 `RSS` 安全要求），
+// `false` 表示未通过检查（即存在潜在安全风险）。
   /// @brief Analyse the RSS check results
+// 函数功能注释，表明该函数用于分析 `RSS` 检查的结果，在执行完 `RSS` 检查后，得到的结果可能只是一个简单的通过或未通过的标识，
+// 而此函数则会进一步深入分析结果中的具体情况，例如判断风险的具体来源（是因为车辆超速、距离过近还是其他原因等）、危险程度的量化评估等，
+// 以便后续基于分析结果采取更合适的应对措施，如发出警告、调整车辆行驶策略等操作。
   void AnalyseCheckResults(CarlaRssState &carla_rss_state) const;
+// 函数声明，是一个 `const` 成员函数，同样接受 `CarlaRssState` 类型的引用参数 `carla_rss_state`，这个参数包含了 `RSS` 检查后的结果信息，
+// 函数会对这些结果数据进行详细分析，虽然函数没有返回值，但通过对传入参数所代表的结果数据的内部分析和修改（例如设置一些表示分析结果的标志位等），
+// 可以使外部在获取这个参数对象时能获取到分析后的详细情况，从而做出相应的决策和操作。
 };
 
 }  // namespace rss
 }  // namespace carla
 
 namespace std {
+// 进入 `std` 标准命名空间，这里是在标准命名空间内对一些操作符进行重载定义，方便对自定义类型进行像内置类型一样的输出等操作，
+// 使得代码在使用这些自定义类型时更加方便和直观，符合 `C++` 语言的常规使用习惯。
 /**
  * \brief standard ostream operator
  *
