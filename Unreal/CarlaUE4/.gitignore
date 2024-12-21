@@ -3,7 +3,7 @@ Build
 Debug
 DerivedDataCache
 Intermediate#中间数据缓存
-Saved
+Saved#保存目录
 Plugins/Carla/Binaries
 Plugins/Carla/Build
 Plugins/Carla/CarlaServer
@@ -13,12 +13,12 @@ Plugins/Carla/DerivedDataCache
 Plugins/Carla/Intermediate
 Plugins/Carla/Saved
 
-/Content
+/Content#内容目录
 Config/CarlaSettings.ini
 Config/DefaultEditor.ini
 Config/CarSimConfig.ini
 
-*.code-workspace
+*.code-workspace#代码工作区文件
 .idea
 .vscode
 CMakeLists.txt
