@@ -454,6 +454,7 @@ static std::string SaveImageToDisk(T &self, std::string path, EColorConverter cc
 }
 
 template <typename T>
+// 定义一个静态函数 SavePointCloudToDisk，用于将点云数据保存到磁盘
 static std::string SavePointCloudToDisk(T &self, std::string path) {
   carla::PythonUtil::ReleaseGIL unlock;
   return carla::pointcloud::PointCloudIO::SaveToDisk(std::move(path), self.begin(), self.end());

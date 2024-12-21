@@ -217,12 +217,18 @@ class World(object):
         # 比如窗口的宽和高，也许用于后续图像渲染、显示等操作的尺寸设置。
         try:
             self.map = self.world.get_map()
+            # 通过 `self.world`（也就是CARLA世界对象）调用 `get_map` 方法尝试获取模拟世界的地图对象，并赋值给实例属性 `self.map`。
+            # 如果获取过程出现运行时错误（比如地图文件不存在、加载失败等情况），会进入下面的 `except` 块进行相应处理。
         except RuntimeError as error:
             print('RuntimeError: {}'.format(error))
             print('  The server could not send the OpenDRIVE (.xodr) file:')
             print('  Make sure it exists, has the same name of your town, and is correct.')
+            # 如果在获取地图时出现运行时错误，打印出错误信息，方便调试和排查问题。
             sys.exit(1)
+            # 使用 `sys.exit(1)` 终止程序运行，返回状态码为1，表示程序因错误而异常退出，这里提示用户确保地图文件（OpenDRIVE格式的 `.xodr` 文件）存在、名称与当前模拟的城镇名称一致且文件内容正确。
         self.external_actor = args.externalActor
+        # 将传入的 `args.externalActor` 参数赋值给实例属性 `self.external_actor`，从名称推测这个属性可能用于标识是否使用外部定义的演员对象，
+        # 后续会根据这个属性的值来决定如何创建或获取模拟世界中的主要演员（比如车辆等）。
 
         self.hud = HUD(args.width, args.height, carla_world)
         self.recording_frame_num = 0
@@ -237,13 +243,22 @@ class World(object):
         if not self._actor_filter.startswith("vehicle."):
             print('Error: RSS only supports vehicles as ego.')
             sys.exit(1)
+        # 如果 `_actor_filter` 参数所表示的筛选条件不是以 "vehicle." 开头，说明不符合RSS系统要求（RSS可能只支持以车辆作为主要关注对象，也就是所谓的“ego”主体），
+        # 则打印错误信息提示用户，并终止程序运行，返回状态码为1，表示出现了不符合预期的参数配置错误。
 
         self.restart()
+        # 调用 `restart` 方法，这个方法可能用于重新初始化模拟世界中的各种元素，比如重新创建车辆、设置传感器等，使世界恢复到一个初始可用状态。
         self.world_tick_id = self.world.on_tick(self.hud.on_world_tick)
+        # 通过 `self.world`（CARLA世界对象）调用 `on_tick` 方法，并传入 `self.hud.on_world_tick` 作为回调函数，
+        # 用于在模拟世界每一次更新（tick）时执行 `self.hud.on_world_tick` 函数来更新抬头显示等相关信息，将返回的标识（可能是用于后续取消这个回调绑定的一个唯一标识符等）赋值给 `self.world_tick_id` 属性。
 
     def toggle_pause(self):
+    # 定义一个方法用于切换模拟世界的暂停状态，也就是在暂停和继续运行之间切换。
         settings = self.world.get_settings()
+        # 通过 `self.world`（CARLA世界对象）调用 `get_settings` 方法获取当前世界的设置信息，比如同步模式、时间步长等设置，赋值给 `settings` 变量。
         self.pause_simulation(not settings.synchronous_mode)
+        # 调用 `pause_simulation` 方法，传入当前同步模式的取反值（即如果当前是同步模式就传入 `False`，如果当前是非同步模式就传入 `True`），
+        # 来实现切换暂停状态的操作，根据传入的值来决定是暂停还是继续运行模拟世界。
 
     def pause_simulation(self, pause):
         settings = self.world.get_settings()
@@ -257,6 +272,7 @@ class World(object):
             self.world.apply_settings(settings)
 
     def restart(self):
+    # 定义一个方法用于重新启动模拟世界相关的各种元素，比如重新创建车辆、传感器等，使其恢复到一个初始可用状态。
 
         if self.external_actor:
             # Check whether there is already an actor with defined role name
@@ -264,26 +280,45 @@ class World(object):
                 if actor.attributes.get('role_name') == self.actor_role_name:
                     self.player = actor
                     break
+        # 如果 `self.external_actor` 属性为 `True`，表示使用外部定义的演员对象，那么执行以下操作来查找并设置 `self.player`（主要演员，可能是车辆）。
+        # 遍历模拟世界中所有的演员对象（通过 `self.world.get_actors` 方法获取），查找属性 `role_name` 与 `self.actor_role_name`（之前初始化时设置的特定角色名称）相等的演员对象，
+        # 如果找到则将其赋值给 `self.player`，并跳出循环，表示找到了对应的外部定义的演员。
         else:
             # Get a random blueprint.
             blueprint = random.choice(self.world.get_blueprint_library().filter(self._actor_filter))
+            # 如果不使用外部定义的演员对象，那么执行以下操作来创建一个新的主要演员（可能是车辆）。
+            # 首先，从世界的蓝图库（ `self.world.get_blueprint_library` 方法返回所有可用的蓝图对象列表，蓝图可以理解为创建各种演员的模板）中，
+            # 通过 `filter` 方法根据 `self._actor_filter`（之前设置的筛选条件，应该是筛选车辆相关蓝图）筛选出符合条件的蓝图对象，然后随机选择一个蓝图，赋值给 `blueprint` 变量。
             blueprint.set_attribute('role_name', self.actor_role_name)
+            # 给选中的蓝图对象设置 `role_name` 属性为 `self.actor_role_name`（特定角色名称），用于标识这个即将创建的演员对象的角色。
             if blueprint.has_attribute('color'):
                 color = random.choice(blueprint.get_attribute('color').recommended_values)
                 blueprint.set_attribute('color', color)
+                # 如果蓝图对象有 `color` 属性（表示可以设置颜色），则从 `color` 属性推荐的颜色值列表（ `recommended_values` ）中随机选择一个颜色，
+                # 并将其设置为蓝图对象的颜色属性值，这样创建出来的演员（比如车辆）就会有随机的外观颜色。
             if blueprint.has_attribute('driver_id'):
                 driver_id = random.choice(blueprint.get_attribute('driver_id').recommended_values)
                 blueprint.set_attribute('driver_id', driver_id)
+                # 如果蓝图对象有 `driver_id` 属性（表示可以设置驾驶员标识等相关信息），则从 `driver_id` 属性推荐的标识值列表中随机选择一个标识，
+                # 并将其设置为蓝图对象的 `driver_id` 属性值，用于模拟不同驾驶员等情况。
             if blueprint.has_attribute('is_invincible'):
                 blueprint.set_attribute('is_invincible', 'true')
+                #如果蓝图对象有 `is_invincible` 属性（表示是否无敌，可能在模拟中不受碰撞等影响），则将其设置为 `true`，使创建出来的演员具有无敌属性，
+                # 这可能在一些特定的测试或模拟场景下有需要，避免演员过早被破坏等情况。
             # Spawn the player.
             if self.player is not None:
                 spawn_point = self.player.get_transform()
                 spawn_point.location.z += 2.0
                 spawn_point.rotation.roll = 0.0
                 spawn_point.rotation.pitch = 0.0
+                # 如果之前已经存在 `self.player`（可能之前创建过主要演员对象），则获取它的位置和姿态信息（通过 `get_transform` 方法获取 `Transform` 对象，包含位置、旋转等信息），
+                # 然后将位置的 `z` 坐标（垂直方向）增加2.0（可能是将其抬高一点，避免与之前的位置冲突等），并将旋转的 `roll`（翻滚）和 `pitch`（俯仰）角度设置为0.0，保证姿态正常，
+                # 最后将修改后的位置和姿态信息赋值给 `spawn_point` 变量，用于作为新创建演员的出生点。
                 self.destroy()
+                # 调用 `destroy` 方法（这个方法应该是用于销毁之前创建的相关对象，比如之前的主要演员等），清理之前的相关资源。
                 self.player = self.world.try_spawn_actor(blueprint, spawn_point)
+                # 使用修改后的 `spawn_point` 作为出生点，通过 `self.world.try_spawn_actor` 方法尝试根据 `blueprint` 蓝图对象创建新的演员对象，
+                # 如果创建成功则赋值给 `self.player`，否则继续下面的循环尝试操作。
             while self.player is None:
                 if not self.map.get_spawn_points():
                     print('There are no spawn points available in your map/town.')
@@ -292,18 +327,28 @@ class World(object):
                 spawn_points = self.map.get_spawn_points()
                 spawn_point = random.choice(spawn_points) if spawn_points else carla.Transform()
                 self.player = self.world.try_spawn_actor(blueprint, spawn_point)
-
+                # 如果地图中没有可用的出生点（通过 `self.map.get_spawn_points` 方法获取出生点列表，如果为空则表示没有可用出生点），
+                # 则打印提示信息，告知用户在地图（UE4场景中对应的地图）里添加一些车辆出生点，并终止程序运行，返回状态码为1，表示出现了无法创建演员的错误情况。
+                # 尝试从地图获取可用的出生点列表，如果有则随机选择一个作为出生点，否则使用默认的 `carla.Transform`（可能是一个默认的位置和姿态）作为出生点，
+                # 然后再次尝试根据 `blueprint` 蓝图对象和选择的出生点创建新的演员对象，直到创建成功（ `self.player` 不为 `None` ）为止。
+        
         if self.external_actor:
+            # 如果使用外部定义的演员对象，那么执行以下操作来处理与之相关的传感器等附属对象。
             ego_sensors = []
             for actor in self.world.get_actors():
                 if actor.parent == self.player:
                     ego_sensors.append(actor)
+            # 遍历模拟世界中的所有演员对象，查找父对象是 `self.player`（主要演员）的演员对象，将它们添加到 `ego_sensors` 列表中，
+            # 这些对象可能是与主要演员相关的传感器等附属对象，后续需要进行相应处理。
 
             for ego_sensor in ego_sensors:
                 if ego_sensor is not None:
                     ego_sensor.destroy()
+            # 遍历 `ego_sensors` 列表，对于不为 `None` 的传感器等附属对象，调用 `destroy` 方法将它们销毁，清理相关资源，
+            # 可能是为了重新设置或更新这些附属对象做准备。
 
         # Set up the sensors.
+        # 设置各种传感器相关的操作，以下分别创建不同类型的传感器对象并进行初始化赋值。
         self.camera = Camera(self.player, self.dim)
         self.rss_unstructured_scene_visualizer = RssUnstructuredSceneVisualizer(self.player, self.world, self.dim)
         self.rss_bounding_box_visualizer = RssBoundingBoxVisualizer(self.dim, self.world, self.camera.sensor)
@@ -312,48 +357,95 @@ class World(object):
 
         if self.sync:
             self.world.tick()
+            # 如果 `self.sync` 属性为 `True`（表示处于同步模式），则调用 `self.world.tick` 方法，触发模拟世界进行一次更新操作，
+            # 按照之前设置的固定时间步长等同步模式规则来更新世界状态。
         else:
             self.world.wait_for_tick()
+            # 如果 `self.sync` 属性为 `False`（表示处于非同步模式），则调用 `self.world.wait_for_tick` 方法，等待模拟世界进行一次更新操作，
+            # 非同步模式下更新时间间隔可能不固定，通过这个方法等待世界自然更新。
 
     def tick(self, clock):
+    # 这个方法名为 `tick`，通常在模拟相关的程序中，`tick` 表示一次时间步的更新操作，这里可能是用于更新与世界相关的一些显示或者状态信息等。
+    # 接收一个参数 `clock`，从名称推测这个参数可能是用于记录时间相关信息的对象，比如模拟世界的时钟，用于控制更新的节奏或者获取当前时间等信息。
         self.hud.tick(self.player, clock)
+        # 调用 `self.hud`（应该是抬头显示相关的对象，之前在类的初始化等操作中已经创建）的 `tick` 方法，传入 `self.player`（可能是模拟世界中的主要演员，比如车辆等可操控对象）和 `clock` 参数。
+        # 目的是根据当前模拟世界中的主要演员状态以及时间信息，来更新抬头显示的内容，例如更新车辆的速度、位置等信息在抬头显示界面上的展示情况。
+   
 
     def toggle_recording(self):
+    # 这个方法名为 `toggle_recording`，从名称可以推断其功能是用于切换录制状态，也就是实现开启或关闭模拟过程的录制功能。
         if not self.recording:
+        # 判断当前是否没有处于录制状态（`self.recording` 为 `False` 表示未录制），如果是，则执行以下操作来开启录制相关的初始化设置。
             dir_name = "_out%04d" % self.recording_dir_num
+            # 根据 `self.recording_dir_num`（录制目录编号，初始化为0，每次创建新的录制目录时可能会递增）来生成一个目录名称格式为 `_out` 加上四位数字编号的字符串，
+            # 例如 `_out0000`，这个目录将用于存放录制过程中的相关文件，比如图像文件等。
             while os.path.exists(dir_name):
+            # 检查当前生成的目录名称对应的目录是否已经存在于文件系统中，如果存在，则执行以下操作来生成一个新的、不存在的目录名称。
                 self.recording_dir_num += 1
+                # 将录制目录编号递增1，以便生成一个不同的编号用于新的目录名称。
                 dir_name = "_out%04d" % self.recording_dir_num
+                # 根据更新后的编号重新生成目录名称。
             self.recording_frame_num = 0
+            # 将记录当前录制帧数的变量 `self.recording_frame_num` 重置为0，因为即将开启新的录制过程，从第一帧开始记录。
             os.mkdir(dir_name)
+            # 使用 `os.mkdir` 函数创建以 `dir_name` 命名的新目录，用于存放本次录制的文件。
         else:
+            # 如果当前已经处于录制状态（`self.recording` 为 `True`），则执行以下操作来结束录制，并给出相应提示信息。
             self.hud.notification('Recording finished (folder: _out%04d)' % self.recording_dir_num)
+            # 通过 `self.hud`（抬头显示对象）调用 `notification` 方法，向用户显示一条提示信息，告知用户录制已经完成，并显示本次录制文件存放的目录名称（使用 `self.recording_dir_num` 编号来表示）。
 
         self.recording = not self.recording
+        # 对 `self.recording` 属性取反，实现切换录制状态的操作。如果之前是未录制状态（`False`），现在就变为录制状态（`True`），反之亦然。
 
     def render(self, display):
+        # 这个方法名为 `render`，通常用于将模拟世界中的各种元素渲染显示出来，比如渲染车辆、场景、传感器数据可视化等内容，接收一个参数 `display`，
+        # 从名称推测这个参数可能是用于显示图像或者图形界面的对象，例如在 `pygame` 等图形库中，可能是代表屏幕显示的对象。
         self.camera.render(display)
+        # 调用 `self.camera`（应该是摄像头相关的对象，用于获取图像数据等）的 `render` 方法，传入 `display` 参数，目的是将摄像头获取到的图像内容渲染显示到指定的显示界面上，
+        # 让用户可以看到模拟世界中相应视角下的画面。
         self.rss_bounding_box_visualizer.render(display, self.camera.current_frame)
+        # 调用 `self.rss_bounding_box_visualizer`（边界框可视化相关对象，可能用于显示车辆、障碍物等物体的边界框）的 `render` 方法，传入 `display`（显示界面对象）和 `self.camera.current_frame`（摄像头当前获取到的图像帧）参数，
+        # 这样可以在显示界面上根据摄像头获取的当前画面，渲染出相应物体的边界框，方便用户直观地看到物体的位置和范围等信息。
         self.rss_unstructured_scene_visualizer.render(display)
+        # 调用 `self.rss_unstructured_scene_visualizer`（无结构场景可视化相关对象，可能用于展示模拟世界中不规则场景元素的可视化情况）的 `render` 方法，传入 `display` 参数，
+        # 将无结构场景相关的可视化内容渲染显示到显示界面上，丰富用户看到的模拟世界的整体视觉呈现效果。
         self.hud.render(display)
+        # 调用 `self.hud`（抬头显示对象）的 `render` 方法，传入 `display` 参数，将抬头显示相关的信息（如车速、车辆状态等文字或图形信息）渲染显示到显示界面上，
+        # 使得用户可以同时看到模拟世界画面以及相关的重要提示信息。
 
         if self.recording:
+            # 判断当前是否处于录制状态（`self.recording` 为 `True` 表示正在录制），如果是，则执行以下操作来保存当前渲染的画面到文件中，用于录制模拟过程。
             pygame.image.save(display, "_out%04d/%08d.bmp" % (self.recording_dir_num, self.recording_frame_num))
+            # 使用 `pygame` 库的 `image.save` 方法，将 `display`（显示界面当前的画面内容）保存为一个 `.bmp` 格式的图像文件，文件路径由录制目录编号（`self.recording_dir_num`）和当前录制帧数（`self.recording_frame_num`）组成，
+            # 例如 `_out0000/00000000.bmp`，这样每个录制的画面都会有一个按照顺序编号的文件名，方便后续查看和整理。
             self.recording_frame_num += 1
+            # 将当前录制帧数递增1，用于下一次保存图像文件时的文件名编号，保证每个文件的编号是依次递增的，符合录制顺序。
 
     def destroy(self):
+        # 这个方法名为 `destroy`，从名称推测其功能是用于销毁或清理与模拟世界相关的各种资源，比如释放内存、关闭文件、删除对象等操作，避免资源泄漏以及为程序结束或重新初始化做准备。
         # stop from ticking
         if self.world_tick_id:
+            # 判断 `self.world_tick_id` 是否存在（不为 `None`），这个属性在之前的代码中可能是用于标识世界每一次更新（tick）时的回调绑定等相关操作的一个标识符，
+            # 如果存在，则执行以下操作来移除这个在世界更新时的回调绑定，避免后续不必要的调用或者出现异常。
             self.world.remove_on_tick(self.world_tick_id)
+            # 通过 `self.world`（模拟世界对象）调用 `remove_on_tick` 方法，传入 `self.world_tick_id` 参数，解除之前在世界更新时注册的回调关联，停止相应的回调操作。
 
         if self.camera:
+             # 判断 `self.camera`（摄像头相关对象）是否存在（不为 `None`），如果存在，则执行以下操作来销毁摄像头相关的资源，例如释放摄像头占用的内存、关闭相关设备等（具体取决于其实现）。
             self.camera.destroy()
+            # 调用 `self.camera` 的 `destroy` 方法，进行摄像头资源的清理操作。
         if self.rss_sensor:
+            # 判断 `self.rss_sensor`（与RSS相关的传感器对象）是否存在（不为 `None`），如果存在，则执行以下操作来销毁这个传感器相关的资源。
             self.rss_sensor.destroy()
+            # 调用 `self.rss_sensor` 的 `destroy` 方法，进行传感器资源的清理操作。
         if self.rss_unstructured_scene_visualizer:
+            # 判断 `self.rss_unstructured_scene_visualizer`（无结构场景可视化对象）是否存在（不为 `None`），如果存在，则执行以下操作来销毁这个可视化相关的资源。
             self.rss_unstructured_scene_visualizer.destroy()
+            # 调用 `self.rss_unstructured_scene_visualizer` 的 `destroy` 方法，进行可视化资源的清理操作。
         if self.player:
+            # 判断 `self.player`（模拟世界中的主要演员对象，可能是车辆等）是否存在（不为 `None`），如果存在，则执行以下操作来销毁这个演员对象，例如从模拟世界中移除、释放相关内存等（具体取决于其实现）。
             self.player.destroy()
+            # 调用 `self.player` 的 `destroy` 方法，进行主要演员对象的清理操作。
 
 
 # ==============================================================================
