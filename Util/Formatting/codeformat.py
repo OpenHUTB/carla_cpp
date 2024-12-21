@@ -392,19 +392,46 @@ class CodeFormatterManager:  # 假设这个类名是根据上下文推断的，�
                             self.confirmWithUserGitRepoIsNotClean(gitRepo)
 
     def getGitRepoForFile(self, fileName):
+        """
+        确定给定文件是否位于Git仓库中，并返回该仓库的顶级目录路径。
+
+        参数:
+            fileName (str): 要检查的文件路径。
+
+        返回:
+            str 或 None: 如果文件位于Git仓库中，则返回仓库的顶级目录路径；否则返回None。
+        """
+        # 首先检查文件是否位于Git仓库内
         if not self.isInsideGitRepo(fileName):
             return None
+
         try:
-            gitProcess = subprocess.Popen(["git", "rev-parse", "--show-toplevel"],
-                                          stdin=subprocess.PIPE,
-                                          stdout=subprocess.PIPE,
-                                          stderr=subprocess.PIPE,
-                                          cwd=os.path.dirname(fileName))
+            # 尝试在文件的所在目录执行'git rev-parse --show-toplevel'命令
+            gitProcess = subprocess.Popen(
+                ["git", "rev-parse", "--show-toplevel"],
+                stdin=subprocess.PIPE,  # 不需要向git进程发送输入，但保持PIPE以避免错误
+                stdout=subprocess.PIPE,  # 捕获git进程的输出
+                stderr=subprocess.PIPE,  # 捕获git进程的错误输出（虽然这里未使用）
+                cwd=os.path.dirname(fileName)  # 在文件的父目录中执行命令
+            )
+            # 与git进程通信并获取其输出
             gitOutput, _ = gitProcess.communicate()
+
+            # 检查git进程的返回码是否为0（表示成功）
             if gitProcess.returncode == 0:
-                return gitOutput.rstrip('\r\n')
+                # 移除输出字符串末尾的换行符（如果存在）
+                # 注意：这里假设gitOutput是字节串，因此使用rstrip('\r\n')后可能需要解码
+                # 但由于我们直接返回了字节串，所以这里不进行解码操作
+                # 如果需要字符串，可以添加.decode('utf-8')
+                return gitOutput.rstrip(b'\r\n')  # 返回仓库的顶级目录路径（字节串形式）
+
         except OSError:
+            # 如果在尝试执行git命令时发生OS错误（例如，git未安装）
+            # 使用cprint打印错误信息（这里假设cprint能够处理彩色输出）
+            # 注意：cprint函数和模块需要事先定义或导入
             cprint("[ERROR] Failed to run 'git rev-parse --show-toplevel' for " + fileName, "red")
+
+        # 如果发生任何错误，返回None
         return None
 
     def isInsideGitRepo(self, fileName):
