@@ -195,56 +195,73 @@ def valid_dic_val(dic, value):
     return value in dic and dic[value]
 
 
+# YamlFile类，用于处理YAML文件相关操作
 class YamlFile:
     """Yaml file class"""
 
     def __init__(self, path):
         self._path = path
+        # 打开YAML文件并安全加载其内容到self.data属性中
         with open(path) as yaml_file:
             self.data = yaml.safe_load(yaml_file)
+        # 调用验证方法，对加载的数据进行合法性验证
         self.validate()
 
+    # 验证方法，用于检查加载的YAML数据是否符合特定要求
     def validate(self):
         # print('Validating ' + str(self._path.replace('\\', '/').split('/')[-1:][0]))
         if self.data is None:
             print('\n[ERROR] File: ' + self._path)
             print("This file has no data:")
             exit(0)
+        # 遍历数据中的每个模块（假设self.data是包含多个模块信息的结构，比如列表中包含字典形式的模块信息）
         for module in self.data:
+            # 如果模块中有'module_name'键且其值为None，输出错误信息并退出程序
             if 'module_name' in module and module['module_name'] is None:
                 print('\n[ERROR] File: ' + self._path)
                 print("'module_name' is empty in:")
                 exit(0)
+            # 如果模块中有'classes'键，说明包含类相关信息，进行进一步验证
             if 'classes' in module:
+                # 如果'classes'对应的列表为空，输出错误信息并退出程序
                 if not module['classes']:
                     print('\n[ERROR] File: ' + self._path)
                     print("'classes' is empty in:")
                     exit(0)
+                # 遍历'classes'列表中的每个类信息（假设是字典形式）
                 for cl in module['classes']:
+                    # 如果类信息中有'class_name'键且其值为None，输出错误信息并退出程序
                     if 'class_name' in cl and cl['class_name'] is None:
                         print('\n[ERROR] File: ' + self._path)
                         print("'class_name' is empty in:")
                         exit(0)
+                    # 如果类信息中有'instance_variables'键且其值不为空（即包含实例变量相关信息），进一步验证实例变量
                     if 'instance_variables' in cl and cl['instance_variables']:
                         for iv in cl['instance_variables']:
+                            # 如果实例变量字典中没有'var_name'键，输出错误信息并退出程序
                             if 'var_name' not in iv:
                                 print('\n[ERROR] File: ' + self._path)
                                 print("'var_name' not found inside 'instance_variables' of class: " + cl['class_name'])
                                 exit(0)
+                            # 如果实例变量字典中有'var_name'键但其值为None，输出错误信息并退出程序
                             if 'var_name' in iv and iv['var_name'] is None:
                                 print('\n[ERROR] File: ' + self._path)
                                 print("'var_name' is empty in:")
                                 exit(0)
+                    # 如果类信息中有'methods'键且其值不为空（即包含方法相关信息），进一步验证方法
                     if 'methods' in cl and cl['methods']:
                         for met in cl['methods']:
+                            # 如果方法字典中没有'def_name'键，输出错误信息并退出程序
                             if 'def_name' not in met:
                                 print('\n[ERROR] File: ' + self._path)
                                 print("'def_name' not found inside 'methods' of class: " + cl['class_name'])
                                 exit(0)
+                            # 如果方法字典中有'def_name'键但其值为None，输出错误信息并退出程序
                             if 'def_name' in met and met['def_name'] is None:
                                 print('\n[ERROR] File: ' + self._path)
                                 print("'def_name' is empty in:")
                                 exit(0)
+                            # 如果方法字典中有'params'键且其值不为空（即包含参数相关信息），进一步验证参数
                             if 'params' in met and met['params']:
                                 for param in met['params']:
                                     if 'param_name' not in param:
