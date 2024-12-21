@@ -517,23 +517,38 @@ class Camera(object):
 
 
 class VehicleControl(object):
+# 定义一个名为 `VehicleControl` 的类，从名称推测这个类主要用于处理模拟环境中车辆的控制相关操作，比如接收用户输入（键盘、鼠标等）来控制车辆的行驶、灯光等状态。
 
     MOUSE_STEERING_RANGE = 200
+    # 定义一个类属性，表示鼠标转向操作时的有效范围，这里设置为200，可能用于控制鼠标在屏幕上操作车辆转向时的灵敏度或者有效操作区域范围等，单位可能与屏幕坐标等相关（具体取决于整个模拟环境的坐标系设定）。
     signal_received = False
+    # 定义一个类属性，用于记录是否接收到特定的信号，初始化为 `False`，在后续的信号处理相关方法中会根据实际情况更新这个值，用于控制程序的一些行为，比如是否停止循环等。
 
     """Class that handles keyboard input."""
+    # 这是一个类的文档字符串，简要说明了这个类的作用是处理键盘输入，用于控制车辆相关操作（实际上从后续代码看也处理了鼠标等其他输入，但这里主要强调了键盘输入方面的功能）。
 
     def __init__(self, world, start_in_autopilot):
+    # 类的初始化方法，在创建 `VehicleControl` 类的实例时会被调用，用于初始化车辆控制相关的各种属性以及设置车辆的初始状态等操作。
         self._autopilot_enabled = start_in_autopilot
+        # 将传入的 `start_in_autopilot` 参数赋值给实例属性 `_autopilot_enabled`，用于标识车辆初始是否开启自动驾驶模式，传入的参数应该是一个布尔值， `True` 表示开启， `False` 表示关闭。
         self._world = world
+        # 将传入的 `world` 参数赋值给实例属性 `_world`，这个 `world` 参数应该是代表整个模拟世界的对象，通过它可以访问和操作世界中的各种元素，比如车辆、地图、传感器等，后续会用于获取车辆对象以及与世界相关的其他操作。
         self._control = carla.VehicleControl()
+        # 创建一个 `carla.VehicleControl` 类的实例，用于存储和管理车辆的控制指令（如油门、刹车、转向等操作指令），并赋值给实例属性 `_control`，初始状态下这些指令的值应该是默认值，后续会根据用户输入等情况进行更新调整。
         self._lights = carla.VehicleLightState.NONE
+        # 设置车辆的灯光状态初始化为 `carla.VehicleLightState.NONE`，表示所有灯光都关闭，后续会根据用户操作来切换不同的灯光状态，通过 `_lights` 属性来记录和管理车辆的灯光状态。
         world.player.set_autopilot(self._autopilot_enabled)
+        # 通过模拟世界对象 `_world` 获取其中的主要车辆对象（ `world.player` 可能表示模拟世界中的玩家控制车辆，也就是要进行控制操作的目标车辆），并调用其 `set_autopilot` 方法，根据 `_autopilot_enabled` 的值来设置车辆是否开启自动驾驶模式。
         self._restrictor = carla.RssRestrictor()
+        # 创建一个 `carla.RssRestrictor` 类的实例（从名称推测这个类可能与某种限制车辆操作的功能相关，也许是基于RSS，即可能是Responsive Safety System等车辆安全相关系统的限制机制），用于后续对车辆控制进行一些限制操作，将其赋值给实例属性 `_restrictor`。
         self._vehicle_physics = world.player.get_physics_control()
+        # 获取模拟世界中主要车辆（ `world.player` ）的物理控制相关属性对象（通过 `get_physics_control` 方法获取，这个对象包含了车辆物理特性相关的各种参数，如质量、摩擦力等，可能会影响车辆的行驶行为以及与其他物体的交互情况），并赋值给实例属性 `_vehicle_physics`，用于后续可能的基于车辆物理特性的控制操作。
         world.player.set_light_state(self._lights)
+        # 通过模拟世界中的主要车辆对象（ `world.player` ）调用 `set_light_state` 方法，将车辆灯光状态设置为之前初始化的 `_lights` 的值，也就是初始关闭所有灯光。
         self._steer_cache = 0.0
+        # 用于缓存车辆的转向值，初始化为0.0，在处理键盘或者鼠标输入的转向操作时，会先将转向值暂存到这个变量中，然后再更新到 `_control` 对象里的正式转向指令属性中，可能用于平滑转向操作或者处理一些特殊的转向逻辑等情况。
         self._mouse_steering_center = None
+        # 用于记录鼠标转向操作时的中心位置坐标，初始化为 `None`，当鼠标按下进行转向操作时会记录下鼠标的当前位置作为中心位置，鼠标松开时会重置为 `None`，用于后续根据鼠标移动相对于这个中心位置来计算转向等操作。
 
         self._surface = pygame.Surface((self.MOUSE_STEERING_RANGE * 2, self.MOUSE_STEERING_RANGE * 2))
         self._surface.set_colorkey(pygame.Color('black'))
