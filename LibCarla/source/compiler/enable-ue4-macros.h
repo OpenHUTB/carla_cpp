@@ -8,6 +8,7 @@
 #  pragma warning(pop)//用于恢复之前被保存的警告状态
 #  ifdef UpdateResource
 #    undef UpdateResource
+//#endif用于结束#ifdef块
 #  endif
 #endif
 

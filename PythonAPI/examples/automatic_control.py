@@ -7,7 +7,7 @@
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
 """Example of automatic vehicle control from client side."""
-
+# 导入必要的库
 from __future__ import print_function
 
 import argparse
@@ -21,7 +21,7 @@ import numpy.random as random
 import re
 import sys
 import weakref
-
+# 导入pygame库，用于创建图形界面
 try:
     import pygame
     from pygame.locals import KMOD_CTRL
@@ -29,7 +29,7 @@ try:
     from pygame.locals import K_q
 except ImportError:
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
-
+# 导入numpy库，用于数学运算
 try:
     import numpy as np
 except ImportError:
@@ -39,6 +39,7 @@ except ImportError:
 # ==============================================================================
 # -- Find CARLA module ---------------------------------------------------------
 # ==============================================================================
+# 导入CARLA模块
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -55,10 +56,10 @@ try:
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/carla')
 except IndexError:
     pass
-
+# 导入carla库
 import carla
 from carla import ColorConverter as cc
-
+# 导入行为代理相关类
 from agents.navigation.behavior_agent import BehaviorAgent  # pylint: disable=import-error
 from agents.navigation.basic_agent import BasicAgent  # pylint: disable=import-error
 from agents.navigation.constant_velocity_agent import ConstantVelocityAgent  # pylint: disable=import-error
@@ -68,7 +69,7 @@ from agents.navigation.constant_velocity_agent import ConstantVelocityAgent  # p
 # -- Global functions ----------------------------------------------------------
 # ==============================================================================
 
-
+# 查找天气预设
 def find_weather_presets():
     """
     Method to find weather presets
@@ -82,7 +83,7 @@ def find_weather_presets():
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
 
-
+# 获取actor显示名称
 def get_actor_display_name(actor, truncate=250):
     """
     Method to get actor display name
@@ -92,7 +93,7 @@ def get_actor_display_name(actor, truncate=250):
     """
     name = ' '.join(actor.type_id.replace('_', '.').title().split('.')[1:])
     return (name[:truncate - 1] + u'\u2026') if len(name) > truncate else name
-
+# 获取actor蓝图
 def get_actor_blueprints(world, filter, generation):
     """
     根据给定的世界 `world`、筛选条件 `filter` 和生成版本 `generation` 获取符合要求的 actor 蓝图列表。

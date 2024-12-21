@@ -188,6 +188,7 @@ TEST(streaming, low_level_unsubscribing) {
   io.service.stop();
 }
 
+// 这是一个测试用例，测试低级别TCP小消息流
 TEST(streaming, low_level_tcp_small_message) {
   using namespace carla::streaming;
   using namespace carla::streaming::detail;
@@ -196,25 +197,35 @@ TEST(streaming, low_level_tcp_small_message) {
   tcp::Server::endpoint ep(boost::asio::ip::tcp::v4(), TESTING_PORT);
 
   tcp::Server srv(io_context, ep);
+    / 设置服务器超时时间
   srv.SetTimeout(1s);
+    // 初始化一个原子布尔变量，表示任务是否完成
   std::atomic_bool done{false};
+    // 初始化一个原子整数变量，表示接收到的消息数量
   std::atomic_size_t message_count{0u};
 
   const std::string msg = "Hola!";
 
+    // 开始监听服务器会话
   srv.Listen([&](std::shared_ptr<tcp::ServerSession> session) {
     ASSERT_EQ(session->get_stream_id(), 1u);
 
+      // 创建一个缓冲区对象，传入消息内容和大小
     carla::Buffer Buf(boost::asio::buffer(msg.c_str(), msg.size()));
+       // 创建一个共享缓冲区视图对象
     carla::SharedBufferView BufView = carla::BufferView::CreateFrom(std::move(Buf));
+      // 循环直到完成标志被设置
     while (!done) {
+        // 线程休眠一段时间
       std::this_thread::sleep_for(1ns);
+        // 写入共享缓冲区视图到会话
       carla::SharedBufferView View = BufView;
       session->Write(View);
     }
     std::cout << "done!\n";
   }, [](std::shared_ptr<tcp::ServerSession>) { std::cout << "session closed!\n"; });
 
+     // 创建一个调度器对象，传入本地端点
   Dispatcher dispatcher{make_endpoint<tcp::Client::protocol_type>(srv.GetLocalEndpoint())};
   auto stream = dispatcher.MakeStream();
   auto c = std::make_shared<tcp::Client>(io_context, stream.token(), [&](carla::Buffer message) {
@@ -222,8 +233,10 @@ TEST(streaming, low_level_tcp_small_message) {
     ASSERT_FALSE(message.empty());
     ASSERT_EQ(message.size(), 5u);
     const std::string received = util::buffer::as_string(message);
+      // 断言接收到的消息与原始消息相同
     ASSERT_EQ(received, msg);
   });
+    // 连接客户端
   c->Connect();
 
   // 需要至少两个线程，因为这个服务循环要使用其中一个
@@ -245,8 +258,9 @@ struct DoneGuard {
   std::atomic_bool &done;
 };
 
+// 测试流是否可以在服务器停止后继续存在。
 TEST(streaming, stream_outlives_server) {
-  using namespace carla::streaming;
+  using namespace carla::streaming;// 使用carla流命名空间。
   using namespace util::buffer;
   constexpr size_t iterations = 10u;
   std::atomic_bool done{false};
@@ -293,44 +307,51 @@ TEST(streaming, stream_outlives_server) {
   done = true;
 } // stream dies here.
 
+// 测试多个客户端订阅同一个流的情况
 TEST(streaming, multi_stream) {
-  using namespace carla::streaming;
-  using namespace util::buffer;
-  constexpr size_t number_of_messages = 100u;
-  constexpr size_t number_of_clients = 6u;
-  constexpr size_t iterations = 10u;
+  using namespace carla::streaming;// 使用carla流命名空间。
+  using namespace util::buffer;// 使用缓冲区工具命名空间。
+  constexpr size_t number_of_messages = 100u;// 消息数量。
+  constexpr size_t number_of_clients = 6u;// 客户端数量。
+  constexpr size_t iterations = 10u; // 迭代次数。
   const std::string message = "Hi y'all!";
 
   Server srv(TESTING_PORT);
-  srv.AsyncRun(number_of_clients);
+    // 创建服务器。
+  srv.AsyncRun(number_of_clients);// 异步运行服务器。
   auto stream = srv.MakeStream();
-
+// 创建流。
+    
   for (auto i = 0u; i < iterations; ++i) {
     std::vector<std::pair<std::atomic_size_t, std::unique_ptr<Client>>> v(number_of_clients);
+    // 创建客户端向量。
 
     for (auto &pair : v) {
-      pair.first = 0u;
+        // 遍历客户端向量。
+      pair.first = 0u; // 初始化接收到的消息数。
       pair.second = std::make_unique<Client>();
-      pair.second->AsyncRun(1u);
+      pair.second->AsyncRun(1u);// 异步运行客户端。
       pair.second->Subscribe(stream.token(), [&](auto buffer) {
         const std::string result = as_string(buffer);
-        ASSERT_EQ(result, message);
-        ++pair.first;
+        ASSERT_EQ(result, message);// 断言结果等于发送的消息。
+        ++pair.first;// 增加接收到的消息数。
       });
     }
 
-    carla::Buffer Buf(boost::asio::buffer(message.c_str(), message.size()));
-    carla::SharedBufferView BufView = carla::BufferView::CreateFrom(std::move(Buf));
+    carla::Buffer Buf(boost::asio::buffer(message.c_str(), message.size()));// 创建缓冲区。
+    carla::SharedBufferView BufView = carla::BufferView::CreateFrom(std::move(Buf));// 创建缓冲区视图
     std::this_thread::sleep_for(6ms);
     for (auto j = 0u; j < number_of_messages; ++j) {
       std::this_thread::sleep_for(6ms);
-      carla::SharedBufferView View = BufView;
+      carla::SharedBufferView View = BufView;// 创建缓冲区视图。
       stream.Write(View);
     }
     std::this_thread::sleep_for(6ms);
 
     for (auto &pair : v) {
+        // 遍历客户端向量。
       ASSERT_GE(pair.first, number_of_messages - 3u);
+        // 断言接收到的消息数至少为发送消息数减3。
     }
   }
 }

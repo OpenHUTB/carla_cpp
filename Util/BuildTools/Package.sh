@@ -164,11 +164,11 @@ if ${DO_CARLA_RELEASE} ; then
   log "Adding extra files to CARLA package."
 
   pushd ${CARLA_ROOT_FOLDER} >/dev/null
-
+# 创建Import文件夹并复制版本号
   mkdir -p "${DESTINATION}/Import"
 
   echo "${REPOSITORY_TAG}" > ${DESTINATION}/VERSION
-
+# 复制文件到发布构建文件夹
   copy_if_changed "./LICENSE" "${DESTINATION}/LICENSE"
   copy_if_changed "./CHANGELOG.md" "${DESTINATION}/CHANGELOG"
   copy_if_changed "./Docs/release_readme.md" "${DESTINATION}/README"
@@ -176,31 +176,31 @@ if ${DO_CARLA_RELEASE} ; then
   copy_if_changed "./Util/Docker/Release.Dockerfile" "${DESTINATION}/Dockerfile"
   copy_if_changed "./Util/ImportAssets.sh" "${DESTINATION}/ImportAssets.sh"
   copy_if_changed "./Util/DockerUtils/dist/RecastBuilder" "${DESTINATION}/Tools/"
-
+ # 复制Python API文件
   copy_if_changed "./PythonAPI/carla/dist/*.egg" "${DESTINATION}/PythonAPI/carla/dist/"
   copy_if_changed "./PythonAPI/carla/dist/*.whl" "${DESTINATION}/PythonAPI/carla/dist/"
   copy_if_changed "./PythonAPI/carla/agents/" "${DESTINATION}/PythonAPI/carla/agents"
   copy_if_changed "./PythonAPI/carla/scene_layout.py" "${DESTINATION}/PythonAPI/carla/"
   copy_if_changed "./PythonAPI/carla/requirements.txt" "${DESTINATION}/PythonAPI/carla/"
-
+# 复制Python API示例文件
   copy_if_changed "./PythonAPI/examples/*.py" "${DESTINATION}/PythonAPI/examples/"
   copy_if_changed "./PythonAPI/examples/rss/*.py" "${DESTINATION}/PythonAPI/examples/rss/"
   copy_if_changed "./PythonAPI/examples/requirements.txt" "${DESTINATION}/PythonAPI/examples/"
-
+ # 复制Python API工具文件
   copy_if_changed "./PythonAPI/util/*.py" "${DESTINATION}/PythonAPI/util/"
   copy_if_changed "./PythonAPI/util/opendrive/" "${DESTINATION}/PythonAPI/util/opendrive/"
   copy_if_changed "./PythonAPI/util/requirements.txt" "${DESTINATION}/PythonAPI/util/"
-
+# 复制Co-Simulation文件夹
   copy_if_changed "./Co-Simulation/" "${DESTINATION}/Co-Simulation/"
-
+# 复制插件文件夹
   if [ -d "./Plugins/" ] ; then
     copy_if_changed "./Plugins/" "${DESTINATION}/Plugins/"
   fi
-
+# 复制Carla依赖库
   if [ -d "./Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies/lib" ] ; then
     cp -r "./Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies/lib" "${DESTINATION}/CarlaUE4/Plugins/Carla/CarlaDependencies"
   fi
-
+# 复制HDMaps文件夹
   copy_if_changed "./Unreal/CarlaUE4/Content/Carla/HDMaps/*.pcd" "${DESTINATION}/HDMaps/"
   copy_if_changed "./Unreal/CarlaUE4/Content/Carla/HDMaps/Readme.md" "${DESTINATION}/HDMaps/README"
 
@@ -212,22 +212,28 @@ fi
 # -- Zip the project -----------------------------------------------------------
 # ==============================================================================
 
+#确定源文件的位置和目标文件的存放路径
 if ${DO_CARLA_RELEASE} && ${DO_TARBALL} ; then
 
   DESTINATION=${RELEASE_PACKAGE_PATH}
   SOURCE=${RELEASE_BUILD_FOLDER}/LinuxNoEditor
 
+  #将当前目录切换到指定的目录
   pushd "${SOURCE}" >/dev/null
 
+  #记录正在进行的CARLA版本的打包操作
   log "Packaging CARLA release."
 
+  #进行了一系列的文件删除操作
   rm -f ./Manifest_NonUFSFiles_Linux.txt
   rm -f ./Manifest_UFSFiles_Linux.txt
   rm -Rf ./CarlaUE4/Saved
   rm -Rf ./Engine/Saved
 
+  #用于打包和压缩文件
   tar -czf ${DESTINATION} *
 
+  #从目录栈中弹出一个目录，并将当前目录切换到弹出的目录
   popd >/dev/null
 
 fi
@@ -236,10 +242,13 @@ fi
 # -- Remove intermediate files -------------------------------------------------
 # ==============================================================================
 
+#条件判断
 if ${DO_CARLA_RELEASE} && ${DO_CLEAN_INTERMEDIATE} ; then
 
+  #记录一条日志信息
   log "Removing intermediate build."
 
+  #删除与RELEASE_BUILD_FOLDER变量所指定路段相关的中间构建文件或目录
   rm -Rf ${RELEASE_BUILD_FOLDER}
 
 fi
