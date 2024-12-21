@@ -126,16 +126,16 @@ class SensorManager:
         self.display_man.add_sensor(self)
 
     def init_sensor(self, sensor_type, transform, attached, sensor_options):
-        if sensor_type == 'RGBCamera':
+        if sensor_type == 'RGBCamera':# 如果传感器类型是 'RGBCamera'（彩色摄像头）
             camera_bp = self.world.get_blueprint_library().find('sensor.camera.rgb')
-            disp_size = self.display_man.get_display_size()
-            camera_bp.set_attribute('image_size_x', str(disp_size[0]))
+            disp_size = self.display_man.get_display_size()# 获取显示管理器的显示尺寸
+            camera_bp.set_attribute('image_size_x', str(disp_size[0]))# 设置摄像头的图像尺寸
             camera_bp.set_attribute('image_size_y', str(disp_size[1]))
 
-            for key in sensor_options:
+            for key in sensor_options:# 遍历传感器选项字典，设置摄像头的属性
                 camera_bp.set_attribute(key, sensor_options[key])
 
-            camera = self.world.spawn_actor(camera_bp, transform, attach_to=attached)
+            camera = self.world.spawn_actor(camera_bp, transform, attach_to=attached)# 在世界中生成摄像头 actor，并附加到指定的 vehicle 或其他 actor
             camera.listen(self.save_rgb_image)
 
             return camera
