@@ -41,10 +41,19 @@ try:
 except IndexError:
     pass
 
+# 导入carla模块，CARLA是一个开源的自动驾驶模拟器，用于开发和测试自动驾驶系统
 import carla
+
+# 导入argparse模块，用于解析命令行参数和选项，便于用户通过命令行与程序交互
 import argparse
+
+# 导入random模块，提供生成随机数的函数，用于需要随机性的场景，如随机选择、随机初始化等
 import random
+
+# 导入time模块，提供时间相关的函数，用于处理时间延迟、时间测量、时间格式化等操作
 import time
+
+# 导入numpy模块并简写为np，numpy是Python的一个科学计算库，提供了大量的数学函数工具，特别适用于大型多维数组和矩阵运算
 import numpy as np
 
 # 如果无法导入 pygame 库，则抛出错误
