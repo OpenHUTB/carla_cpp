@@ -37,11 +37,19 @@ if (LIBCARLA_BUILD_RELEASE)
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
 # 添加PyTorch及其依赖库的包含目录
+# 添加PyTorch库的头文件路径
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TORCH_INCLUDE_DIRS}")
+  # 添加TorchScatter库的头文件路径，TorchScatter是用于高效图操作的扩展库
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchScatter_INCLUDE_DIR}")
+  # 添加TorchCluster库的头文件路径，TorchCluster专注于聚类算法的实现
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchCluster_INCLUDE_DIR}")
+  # 添加TorchSparse库的头文件路径，TorchSparse提供了稀疏张量的支持
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${TorchSparse_INCLUDE_DIR}")
+  # 添加Python3的头文件路径，以便于与Python进行交互和使用Python API
   target_include_directories(carla_pytorch PRIVATE SYSTEM "${Python3_INCLUDE_DIRS}")
+  # 链接PyTorch库到carla_pytorch目标
+# 这里假设${TORCH_LIBRARIES}变量包含了所有需要链接的PyTorch相关库
+# 通过这种方式，确保在编译和链接时能够找到并正确引用PyTorch库
   target_link_libraries(carla_pytorch "${TORCH_LIBRARIES}") # 链接PyTorch库
 
   install(TARGETS carla_pytorch DESTINATION lib OPTIONAL) # 安装carla_pytorch库
@@ -51,7 +59,7 @@ if (LIBCARLA_BUILD_RELEASE)
 endif()
 
 if (LIBCARLA_BUILD_DEBUG)
-
+ # 添加一个名为 carla_pytorch_debug 的静态库，并指定其源文件
   add_library(carla_pytorch_debug STATIC ${libcarla_pytorch_sources})
 #命令来添加调试版本的源文件和包含目录
   target_include_directories(carla_pytorch_debug SYSTEM PRIVATE
@@ -61,6 +69,7 @@ if (LIBCARLA_BUILD_DEBUG)
   install(TARGETS carla_pytorch_debug DESTINATION lib OPTIONAL)#命令来指定调试版本库的安装目标
 #命令来设置调试版本库的编译属性
   set_target_properties(carla_pytorch_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
-  target_compile_definitions(carla_pytorch_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
+  target_compile_definitions(carla_pytorch_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)# 为目标 carla_pytorch_debug 添加编译定义
+
 
 endif()

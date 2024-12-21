@@ -148,39 +148,51 @@ except ImportError:
 # -- Global functions ----------------------------------------------------------
 # ==============================================================================
 
-
+# 定义一个函数，用于查找天气预设
 def find_weather_presets():
+    # 编译一个正则表达式，用于分割命名的字符串
     rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
+    # 定义一个lambda函数，用于将字符串转换为带空格的标题格式
     name = lambda x: ' '.join(m.group(0) for m in rgx.finditer(x))
+    # 获取carla.WeatherParameters中所有以大写字母开头的属性名
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
+    # 返回一个列表，包含天气预设的值和它们的名称
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
 
-
+# 定义一个函数，用于actor获取的显示名称
 def get_actor_display_name(actor, truncate=250):
+    # 将actor的type_id属性从下划线分隔转换为点分隔，并转换为标题格式
     name = ' '.join(actor.type_id.replace('_', '.').title().split('.')[1:])
+    # 如果名称长度超过截断值，则截断并添加省略号
     return (name[:truncate - 1] + u'\u2026') if len(name) > truncate else name
 
+# 定义一个函数，用于获取actor蓝图
 def get_actor_blueprints(world, filter, generation):
+    # 从word中获取蓝图库，并根据过滤器过滤蓝图
     bps = world.get_blueprint_library().filter(filter)
 
+    # 如果generation参数为"all"，则返回所有过滤后的蓝图
     if generation.lower() == "all":
         return bps
 
-    # If the filter returns only one bp, we assume that this one needed
+    # If the filter returns only one bp, we assume that this one needed 如果过滤后的蓝图只有一个，我们假设这是需要的蓝图，忽略generation参数
     # and therefore, we ignore the generation
     if len(bps) == 1:
         return bps
 #如果bps的长度等于1，就返回bps
     try:
         int_generation = int(generation)
-        # Check if generation is in available generations
+        # Check if generation is in available generations检查generation是否在可用的代数中
         if int_generation in [1, 2, 3]:
+            # 过滤出对应代数的蓝图
             bps = [x for x in bps if int(x.get_attribute('generation')) == int_generation]
             return bps
         else:
+            # 如果generation无效，打印警告信息并返回空列表
             print("   Warning! Actor Generation is not valid. No actor will be spawned.")
             return []
     except:
+        # 如果generation转换为整数失败，打印警告信息并返回空列表
         print("   Warning! Actor Generation is not valid. No actor will be spawned.")
         return []
 
@@ -190,17 +202,26 @@ def get_actor_blueprints(world, filter, generation):
 # ==============================================================================
 
 
+# 定义一个名为 World 的类，用于封装和操作CARLA仿真世界
 class World(object):
+    # 类的构造函数，初始化 World 类的实例
     def __init__(self, carla_world, hud, args):
+        # 将传入的 CARLA 世界对象保存为实例变量
         self.world = carla_world
+        # 从参数中获取同步模式设置，并保存为实例变量
         self.sync = args.sync
+        # 从参数中获取角色名称，并保存为实例变量
         self.actor_role_name = args.rolename
         try:
+            # 尝试从 CARLA 世界对象中获取地图对象，并保存为实例变量
             self.map = self.world.get_map()
         except RuntimeError as error:
+            # 如果在获取地图时发生运行时错误，打印错误信息
             print('RuntimeError: {}'.format(error))
+            # 提示用户检查 OpenDRIVE (.xodr) 文件是否存在、命名是否正确以及文件是否正确
             print('  The server could not send the OpenDRIVE (.xodr) file:')
             print('  Make sure it exists, has the same name of your town, and is correct.')
+            # 退出程序
             sys.exit(1)
         self.hud = hud
         self.player = None
