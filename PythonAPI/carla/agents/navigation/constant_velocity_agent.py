@@ -72,31 +72,31 @@ class ConstantVelocityAgent(BasicAgent):
         self._target_speed = speed / 3.6
         self._local_planner.set_speed(speed)
 
-    def stop_constant_velocity(self):
+    def stop_constant_velocity(self):#用于停止车辆的恒定速度行为。
         """Stops the constant velocity behavior"""
-        self.is_constant_velocity_active = False
-        self._vehicle.disable_constant_velocity()
-        self._constant_velocity_stop_time = self._world.get_snapshot().timestamp.elapsed_seconds
+        self.is_constant_velocity_active = False#这可能是用来标记恒定速度行为是否激活的布尔值。
+        self._vehicle.disable_constant_velocity()#这可能是一个用来停止车辆恒定速度的函数。
+        self._constant_velocity_stop_time = self._world.get_snapshot().timestamp.elapsed_seconds#获取当前时间戳，并将其赋值给self._constant_velocity_stop_time
 
-    def restart_constant_velocity(self):
+    def restart_constant_velocity(self):#方法用于重新启动车辆的恒定速度行为。
         """Public method to restart the constant velocity"""
         self.is_constant_velocity_active = True
-        self._set_constant_velocity(self._target_speed)
+        self._set_constant_velocity(self._target_speed)#这可能是一个用来设置车辆恒定速度的函数 
 
-    def _set_constant_velocity(self, speed):
+    def _set_constant_velocity(self, speed):#它接受一个参数 speed 用于设置车辆的恒定速度。
         """Forces the agent to drive at the specified speed"""
-        self._vehicle.enable_constant_velocity(carla.Vector3D(speed, 0, 0))
+        self._vehicle.enable_constant_velocity(carla.Vector3D(speed, 0, 0))#创建了一个三维向量，其中速度值用于x轴（前进方向），y轴和z轴（横向和垂直方向）的速度被设置为0。
 
-    def run_step(self):
+    def run_step(self):#这是导航过程中执行每一步的方法。
         """Execute one step of navigation."""
         if not self.is_constant_velocity_active:
-            if self._world.get_snapshot().timestamp.elapsed_seconds - self._constant_velocity_stop_time > self._restart_time:
+            if self._world.get_snapshot().timestamp.elapsed_seconds - self._constant_velocity_stop_time > self._restart_time:#获取当前世界的时间戳，并计算自   _constant_velocity_stop_time   以来经过的时间。
                 self.restart_constant_velocity()
-                self.is_constant_velocity_active = True
+                self.is_constant_velocity_active = True#表示恒定速度模式现在是激活状态。
             elif self._use_basic_behavior:
                 return super(ConstantVelocityAgent, self).run_step()
             else:
-                return carla.VehicleControl()
+                return carla.VehicleControl()#这通常是一个空的控制命令，意味着不改变车辆的当前状态。
 
         hazard_detected = False
         # 初始化危险检测标志为False，代表还未检测到危险情况
