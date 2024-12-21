@@ -198,31 +198,45 @@ class SensorManager:
         t_end = self.timer.time()
         self.time_processing += (t_end-t_start)
         self.tics_processing += 1
-
+    #定义一个函数，用于保存激光雷达图像
     def save_lidar_image(self, image):
+        #记录处理开始时的时间
         t_start = self.timer.time()
-
+        #获取显示尺寸
         disp_size = self.display_man.get_display_size()
+        #根据传感器选项中的range参数计算激光雷达的范围
         lidar_range = 2.0*float(self.sensor_options['range'])
-
+        #从图像的原始数据中读取数据
         points = np.frombuffer(image.raw_data, dtype=np.dtype('f4'))
+        #对数据进行重塑操作，将数据分成 4 列的矩阵
         points = np.reshape(points, (int(points.shape[0] / 4), 4))
+        #提取前两列数据作为激光雷达数据
         lidar_data = np.array(points[:, :2])
+        #根据范围和最小显示尺寸对数据进行缩放
         lidar_data *= min(disp_size) / lidar_range
+        #对数据进行偏移操作
         lidar_data += (0.5 * disp_size[0], 0.5 * disp_size[1])
+        #取数据的绝对值
         lidar_data = np.fabs(lidar_data)  # pylint: disable=E1111
+        #将数据转换为 32 位整数类型
         lidar_data = lidar_data.astype(np.int32)
+        #再次对数据进行重塑操作
         lidar_data = np.reshape(lidar_data, (-1, 2))
+        #定义图像尺寸
         lidar_img_size = (disp_size[0], disp_size[1], 3)
+        #创建一个全零的图像数组，类型为无符号 8 位整数
         lidar_img = np.zeros((lidar_img_size), dtype=np.uint8)
-
+        #根据激光雷达数据在图像中绘制白色像素
         lidar_img[tuple(lidar_data.T)] = (255, 255, 255)
-
+        #如果显示管理器允许渲染
         if self.display_man.render_enabled():
+            #使用pygame库将激光雷达图像转换为可渲染的表面
             self.surface = pygame.surfarray.make_surface(lidar_img)
-
+        #记录处理结束时的时间
         t_end = self.timer.time()
+        #累加处理时间
         self.time_processing += (t_end-t_start)
+        #累加处理次数
         self.tics_processing += 1
     #定义一个函数，用于保存语义激光雷达图像
     def save_semanticlidar_image(self, image):
