@@ -24,16 +24,16 @@ import copy
 
 # Global variables
 IMPORT_SETTING_FILENAME = "importsetting.json"
-SCRIPT_NAME = os.path.basename(__file__)
-SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+SCRIPT_NAME = os.path.basename(__file__)#获取当前脚本的名称。
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))#获取当前脚本所在的目录。
 # Go two directories above the current script
-CARLA_ROOT_PATH = os.path.normpath(SCRIPT_DIR + '/../..')
+CARLA_ROOT_PATH = os.path.normpath(SCRIPT_DIR + '/../..')#被设置为脚本目录的上两级目录，
 
 try:
     sys.path.append(glob.glob(os.path.join(CARLA_ROOT_PATH, "PythonAPI/carla/dist/carla-*%d.%d-%s.egg" % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64')))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64')))[0])#使用   sys.path.append   将CARLA的Python API模块添加到系统路径中。这里使用   glob.glob   来查找匹配特定模式的文件
 except IndexError:
     pass
 
