@@ -273,15 +273,22 @@ class World(object):
         # 来实现切换暂停状态的操作，根据传入的值来决定是暂停还是继续运行模拟世界。
 
     def pause_simulation(self, pause):
+    # 定义一个方法用于设置模拟世界的暂停状态，根据传入的 `pause` 参数值来决定是暂停还是恢复运行。
         settings = self.world.get_settings()
+        # 通过 `self.world`（CARLA世界对象）调用 `get_settings` 方法获取当前世界的设置信息，赋值给 `settings` 变量。
         if pause and not settings.synchronous_mode:
             settings.synchronous_mode = True
             settings.fixed_delta_seconds = 0.05
             self.world.apply_settings(settings)
+            # 如果 `pause` 参数为 `True`（表示要暂停）且当前世界不是同步模式，那么将同步模式设置为 `True`，
+            # 也就是开启同步模式，同时设置固定的时间步长为0.05秒（ `fixed_delta_seconds` 属性用于控制每次世界更新的时间间隔，在同步模式下通常需要设置一个固定值），
+            # 最后通过 `self.world.apply_settings` 方法将修改后的设置应用到模拟世界中，使其生效。
         elif not pause and settings.synchronous_mode:
             settings.synchronous_mode = False
             settings.fixed_delta_seconds = None
             self.world.apply_settings(settings)
+            # 如果 `pause` 参数为 `False`（表示要恢复运行）且当前世界处于同步模式，那么将同步模式设置为 `False`，关闭同步模式，
+            # 并将固定时间步长设置为 `None`（在非同步模式下不需要固定的时间步长），再通过 `self.world.apply_settings` 方法将新设置应用到模拟世界中，实现恢复运行的操作。
 
     def restart(self):
     # 定义一个方法用于重新启动模拟世界相关的各种元素，比如重新创建车辆、传感器等，使其恢复到一个初始可用状态。
