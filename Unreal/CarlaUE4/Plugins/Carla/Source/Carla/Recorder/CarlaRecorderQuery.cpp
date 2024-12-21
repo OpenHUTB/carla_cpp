@@ -41,17 +41,17 @@ inline void CarlaRecorderQuery::SkipPacket(void)
 
 inline bool CarlaRecorderQuery::CheckFileInfo(std::stringstream &Info)
 {
-  // read Info
+  // 阅读信息
   RecInfo.Read(File);
 
-  // check magic string
+  // 检查魔术字符串
   if (RecInfo.Magic != "CARLA_RECORDER")
   {
     Info << "File is not a CARLA recorder" << std::endl;
     return false;
   }
 
-  // show general Info
+  // 显示常规信息
   Info << "Version: " << RecInfo.Version << std::endl;
   Info << "Map: " << TCHAR_TO_UTF8(*RecInfo.Mapfile) << std::endl;
   tm *TimeInfo = localtime(&RecInfo.Date);
@@ -66,10 +66,10 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
 {
   std::stringstream Info;
 
-  // get the final path + filename
+  // 获取最终路径 + 文件名
   std::string Filename2 = GetRecorderFilename(Filename);
 
-  // try to open
+  // 尝试打开
   File.open(Filename2, std::ios::binary);
   if (!File.is_open())
   {
@@ -80,7 +80,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
   uint16_t i, Total;
   bool bFramePrinted = false;
 
-  // lambda for repeating task
+  // 用于重复任务的 Lambda
   auto PrintFrame = [this](std::stringstream &Info)
   {
     Info << "Frame " << Frame.Id << " at " << Frame.Elapsed << " seconds\n";
@@ -89,19 +89,19 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
   if (!CheckFileInfo(Info))
     return Info.str();
 
-  // parse only frames
+  // 仅解析帧
   while (File)
   {
-    // get header
+    // 获取标头
     if (!ReadHeader())
     {
       break;
     }
 
-    // check for a frame packet
+    // 检查帧数据包
     switch (Header.Id)
     {
-      // frame
+      // 框架
       case static_cast<char>(CarlaRecorderPacketId::FrameStart):
         Frame.Read(File);
         if (bShowAll)
@@ -123,7 +123,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
         }
         for (i = 0; i < Total; ++i)
         {
-          // add
+          // 添加
           EventAdd.Read(File);
           Info << " Create " << EventAdd.DatabaseId << ": " << TCHAR_TO_UTF8(*EventAdd.Description.Id) <<
             " (" <<
@@ -136,7 +136,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
         }
         break;
 
-      // events del
+      // 事件删除
       case static_cast<char>(CarlaRecorderPacketId::EventDel):
         ReadValue<uint16_t>(File, Total);
         if (Total > 0 && !bFramePrinted)
@@ -151,7 +151,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
         }
         break;
 
-      // events parenting
+      // 活动育儿
       case static_cast<char>(CarlaRecorderPacketId::EventParent):
         ReadValue<uint16_t>(File, Total);
         if (Total > 0 && !bFramePrinted)
@@ -167,7 +167,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
         }
         break;
 
-      // collisions
+      // 碰撞
       case static_cast<char>(CarlaRecorderPacketId::Collision):
         ReadValue<uint16_t>(File, Total);
         if (Total > 0 && !bFramePrinted)
@@ -188,7 +188,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
         }
         break;
 
-      // positions
+      // 碰撞
       case static_cast<char>(CarlaRecorderPacketId::Position):
         if (bShowAll)
         {
@@ -209,7 +209,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // traffic light
+      // 交通灯
       case static_cast<char>(CarlaRecorderPacketId::State):
         if (bShowAll)
         {
@@ -231,7 +231,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // vehicle animations
+      // 车辆动画
       case static_cast<char>(CarlaRecorderPacketId::AnimVehicle):
         if (bShowAll)
         {
@@ -252,7 +252,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // walker animations
+      // 行走者动画
       case static_cast<char>(CarlaRecorderPacketId::AnimWalker):
         if (bShowAll)
         {
@@ -273,7 +273,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // vehicle door animations
+      // 车辆门动画
       case static_cast<char>(CarlaRecorderPacketId::VehicleDoor):
         if (bShowAll)
         {
@@ -316,7 +316,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
         break;
 
 
-      // vehicle light animations
+      // 车辆灯光动画
       case static_cast<char>(CarlaRecorderPacketId::VehicleLight):
         if (bShowAll)
         {
@@ -372,7 +372,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // scene light animations
+      // 场景光照动画
       case static_cast<char>(CarlaRecorderPacketId::SceneLight):
         if (bShowAll)
         {
@@ -396,7 +396,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // dynamic actor kinematics
+      // 动态 Actor 运动学
       case static_cast<char>(CarlaRecorderPacketId::Kinematics):
         if (bShowAll)
         {
@@ -421,7 +421,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // actors bounding boxes
+      // Actor 边界框
       case static_cast<char>(CarlaRecorderPacketId::BoundingBox):
         if (bShowAll)
         {
@@ -450,7 +450,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // actors trigger volumes
+      // Actor 触发器卷
       case static_cast<char>(CarlaRecorderPacketId::TriggerVolume):
         if (bShowAll)
         {
@@ -479,7 +479,7 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-      // Platform time
+      // 平台时间
       case static_cast<char>(CarlaRecorderPacketId::PlatformTime):
         if (bShowAll)
         {
@@ -619,9 +619,9 @@ std::string CarlaRecorderQuery::QueryInfo(std::string Filename, bool bShowAll)
           SkipPacket();
         break;
 
-        // frame end
+        // 帧终点
       case static_cast<char>(CarlaRecorderPacketId::FrameEnd):
-        // do nothing, it is empty
+        // 什么都不做，它是空的
         break;
 
       default:
@@ -642,10 +642,10 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
 {
   std::stringstream Info;
 
-  // get the final path + filename
+  // 获取最终路径 + 文件名
   std::string Filename2 = GetRecorderFilename(Filename);
 
-  // try to open
+  // 尝试打开
   File.open(Filename2, std::ios::binary);
   if (!File.is_open())
   {
@@ -656,7 +656,7 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
   if (!CheckFileInfo(Info))
     return Info.str();
 
-  // other, vehicle, walkers, trafficLight, hero, any
+  // 其他， 车辆， 步行者， 交通灯， 英雄， 任何
   char Categories[] = { 'o', 'v', 'w', 't', 'h', 'a' };
   uint16_t i, Total;
   struct ReplayerActorInfo
@@ -677,7 +677,7 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
   };
   std::unordered_set<std::pair<uint32_t, uint32_t>, PairHash > oldCollisions, newCollisions;
 
-  // header
+  // 页眉
   Info << std::setw(8) << "Time";
   Info << " " << std::setw(6) << "Types";
   Info << " " << std::setw(6) << std::right << "Id";
@@ -686,39 +686,39 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
   Info << " " << std::setw(35) << std::left << "Actor 2";
   Info << std::endl;
 
-  // parse only frames
+  // 仅解析帧
   while (File)
   {
 
-    // get header
+    // 获取标头
     if (!ReadHeader())
     {
       break;
     }
 
-    // check for a frame packet
+    // 检查帧数据包
     switch (Header.Id)
     {
-      // frame
+      // 框架
       case static_cast<char>(CarlaRecorderPacketId::FrameStart):
         Frame.Read(File);
-        // exchange sets of collisions (to know when a collision is new or continue from previous frame)
+        // 交换碰撞集（以了解碰撞是新的还是从上一帧继续的）
         oldCollisions = std::move(newCollisions);
         newCollisions.clear();
         break;
 
-      // events add
+      // 事件添加
       case static_cast<char>(CarlaRecorderPacketId::EventAdd):
         ReadValue<uint16_t>(File, Total);
         for (i = 0; i < Total; ++i)
         {
-          // add
+          // 添加
           EventAdd.Read(File);
           Actors[EventAdd.DatabaseId] = ReplayerActorInfo { EventAdd.Type, EventAdd.Description.Id };
         }
         break;
 
-      // events del
+      // 事件删除
       case static_cast<char>(CarlaRecorderPacketId::EventDel):
         ReadValue<uint16_t>(File, Total);
         for (i = 0; i < Total; ++i)
@@ -728,12 +728,12 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
         }
         break;
 
-      // events parenting
+      // 活动育儿
       case static_cast<char>(CarlaRecorderPacketId::EventParent):
         SkipPacket();
         break;
 
-      // collisions
+      // 碰撞
       case static_cast<char>(CarlaRecorderPacketId::Collision):
         ReadValue<uint16_t>(File, Total);
         for (i = 0; i < Total; ++i)
@@ -742,19 +742,19 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
 
           int Valid = 0;
 
-          // get categories for both actors
+          // 获取两个 Actor 的类别
           uint8_t Type1, Type2;
           if (Collision.DatabaseId1 != uint32_t(-1))
             Type1 = Categories[Actors[Collision.DatabaseId1].Type];
           else
-            Type1 = 'o'; // other non-actor object
+            Type1 = 'o'; // 其他非执行组件对象
           
           if (Collision.DatabaseId2 != uint32_t(-1))
             Type2 = Categories[Actors[Collision.DatabaseId2].Type];
           else
-            Type2 = 'o'; // other non-actor object
+            Type2 = 'o'; // 其他非执行组件对象
 
-          // filter actor 1
+          // 过滤器角色 1
           if (Category1 == 'a')
             ++Valid;
           else if (Category1 == Type1)
@@ -762,7 +762,7 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
           else if (Category1 == 'h' && Collision.IsActor1Hero)
             ++Valid;
 
-          // filter actor 2
+          // 过滤器角色  2
           if (Category2 == 'a')
             ++Valid;
           else if (Category2 == Type2)
@@ -770,10 +770,10 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
           else if (Category2 == 'h' && Collision.IsActor2Hero)
             ++Valid;
 
-          // only show if both actors has passed the filter
+          // 仅当两个 Actor 都通过过滤器时显示
           if (Valid == 2)
           {
-            // check if we need to show as a starting collision or it is a continuation one
+            // 检查我们是否需要显示为 starting collision 还是 continuation 冲突
             auto collisionPair = std::make_pair(Collision.DatabaseId1, Collision.DatabaseId2);
             if (oldCollisions.count(collisionPair) == 0)
             {
@@ -785,7 +785,7 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
               Info << " " << std::setw(35) << std::left << TCHAR_TO_UTF8(*Actors[Collision.DatabaseId2].Id);
               Info << std::endl;
             }
-            // save current collision
+            // 保存当前碰撞
             newCollisions.insert(collisionPair);
           }
         }
@@ -799,9 +799,9 @@ std::string CarlaRecorderQuery::QueryCollisions(std::string Filename, char Categ
         SkipPacket();
         break;
 
-      // frame end
+      // 帧终点
       case static_cast<char>(CarlaRecorderPacketId::FrameEnd):
-        // do nothing, it is empty
+        // 什么都不做，它是空的
         break;
 
       default:
@@ -822,10 +822,10 @@ std::string CarlaRecorderQuery::QueryBlocked(std::string Filename, double MinTim
 {
   std::stringstream Info;
 
-  // get the final path + filename
+  // 获取最终路径 + 文件名
   std::string Filename2 = GetRecorderFilename(Filename);
 
-  // try to open
+  // 尝试打开
   File.open(Filename2, std::ios::binary);
   if (!File.is_open())
   {
@@ -836,7 +836,7 @@ std::string CarlaRecorderQuery::QueryBlocked(std::string Filename, double MinTim
   if (!CheckFileInfo(Info))
     return Info.str();
 
-  // other, vehicle, walkers, trafficLight, hero, any
+  // 其他， 车辆， 步行者， 交通灯， 英雄， 任何
   uint16_t i, Total;
   struct ReplayerActorInfo
   {
@@ -847,46 +847,46 @@ std::string CarlaRecorderQuery::QueryBlocked(std::string Filename, double MinTim
     double Duration;
   };
   std::unordered_map<uint32_t, ReplayerActorInfo> Actors;
-  // to be able to sort the results by the duration of each actor (decreasing order)
+  // 能够按每个角色的持续时间对结果进行排序（降序）
   std::multimap<double, std::string, std::greater<double>> Results;
 
-  // header
+  // 页眉
   Info << std::setw(8) << "Time";
   Info << " " << std::setw(6) << "Id";
   Info << " " << std::setw(35) << std::left << "Actor";
   Info << " " << std::setw(10) << std::right << "Duration";
   Info << std::endl;
 
-  // parse only frames
+  // 仅解析帧
   while (File)
   {
 
-    // get header
+    // 获取标头
     if (!ReadHeader())
     {
       break;
     }
 
-    // check for a frame packet
+    // 检查帧数据包
     switch (Header.Id)
     {
-      // frame
+      // 页眉
       case static_cast<char>(CarlaRecorderPacketId::FrameStart):
         Frame.Read(File);
         break;
 
-      // events add
+      // 事件添加
       case static_cast<char>(CarlaRecorderPacketId::EventAdd):
         ReadValue<uint16_t>(File, Total);
         for (i = 0; i < Total; ++i)
         {
-          // add
+          //添加
           EventAdd.Read(File);
           Actors[EventAdd.DatabaseId] = ReplayerActorInfo { EventAdd.Type, EventAdd.Description.Id, FVector(0, 0, 0), 0.0, 0.0 };
         }
         break;
 
-      // events del
+      // 事件删除
       case static_cast<char>(CarlaRecorderPacketId::EventDel):
         ReadValue<uint16_t>(File, Total);
         for (i = 0; i < Total; ++i)
@@ -896,34 +896,34 @@ std::string CarlaRecorderQuery::QueryBlocked(std::string Filename, double MinTim
         }
         break;
 
-      // events parenting
+      // 活动育儿
       case static_cast<char>(CarlaRecorderPacketId::EventParent):
         SkipPacket();
         break;
 
-      // collisions
+      // 碰撞
       case static_cast<char>(CarlaRecorderPacketId::Collision):
         SkipPacket();
         break;
 
-      // positions
+      // 位置
       case static_cast<char>(CarlaRecorderPacketId::Position):
-        // read all positions
+        // 阅读所有位置
         ReadValue<uint16_t>(File, Total);
         for (i=0; i<Total; ++i)
         {
           Position.Read(File);
-          // check if actor moved less than a distance
+          // 检查 Actor 是否移动的距离小于
           if (FVector::Distance(Actors[Position.DatabaseId].LastPosition, Position.Location) < MinDistance)
           {
-            // actor stopped
+            // Actor 已停止
             if (Actors[Position.DatabaseId].Duration == 0)
               Actors[Position.DatabaseId].Time = Frame.Elapsed;
             Actors[Position.DatabaseId].Duration += Frame.DurationThis;
           }
           else
           {
-            // check to show info
+            // Actor 已停止
             if (Actors[Position.DatabaseId].Duration >= MinTime)
             {
               std::stringstream Result;
@@ -934,21 +934,21 @@ std::string CarlaRecorderQuery::QueryBlocked(std::string Filename, double MinTim
               Result << std::endl;
               Results.insert(std::make_pair(Actors[Position.DatabaseId].Duration, Result.str()));
             }
-            // actor moving
+            // Actor 移动
             Actors[Position.DatabaseId].Duration = 0;
             Actors[Position.DatabaseId].LastPosition = Position.Location;
           }
         }
         break;
 
-      // traffic light
+      // 交通灯
       case static_cast<char>(CarlaRecorderPacketId::State):
         SkipPacket();
         break;
 
-      // frame end
+      //  帧终点
       case static_cast<char>(CarlaRecorderPacketId::FrameEnd):
-        // do nothing, it is empty
+        //什么都不做，它是空的
         break;
 
       default:
@@ -957,10 +957,10 @@ std::string CarlaRecorderQuery::QueryBlocked(std::string Filename, double MinTim
     }
   }
 
-  // show actors stopped that were not moving again
+  // 停止的 Show Actors 不再移动
   for (auto &Actor : Actors)
   {
-    // check to show info
+    // 检查以显示信息
     if (Actor.second.Duration >= MinTime)
     {
       std::stringstream Result;
@@ -973,7 +973,7 @@ std::string CarlaRecorderQuery::QueryBlocked(std::string Filename, double MinTim
     }
   }
 
-  // show the result
+  // 显示结果
   for (auto &Result : Results)
   {
     Info << Result.second;
