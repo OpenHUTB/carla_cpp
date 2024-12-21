@@ -108,8 +108,11 @@ while True:
         comments_response = requests.get(comments_url, headers=headers)
         comments = comments_response.json()
 
+        #遍历所有评论
         for comment in comments:
+            #获取评论者的登录名
             commenter = comment['user']['login']
+            #更新评论者评论的技术
             comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
 
     page += 1
