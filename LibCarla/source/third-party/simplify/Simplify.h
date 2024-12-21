@@ -1603,8 +1603,10 @@ namespace Simplify
         // fprintf(file, "v %lf %lf %lf\n", vertices[i].p.x,vertices[i].p.y,vertices[i].p.z);
         fprintf(file, "v %g %g %g\n", vertices[i].p.x, vertices[i].p.y, vertices[i].p.z); // more compact: remove trailing zeros
       }
+//如果有UV坐标
       if (has_uv)
       {
+//写入UV坐标到文件
         loopi(0, triangles.size()) if (!triangles[i].deleted)
         {
           fprintf(file, "vt %g %g\n", triangles[i].uvs[0].x, triangles[i].uvs[0].y);
@@ -1612,7 +1614,9 @@ namespace Simplify
           fprintf(file, "vt %g %g\n", triangles[i].uvs[2].x, triangles[i].uvs[2].y);
         }
       }
+//初始化索引为1
       int uv = 1;
+//如果有UV坐标且三角形未被删除
       loopi(0, triangles.size()) if (!triangles[i].deleted)
       {
         if (has_uv)
