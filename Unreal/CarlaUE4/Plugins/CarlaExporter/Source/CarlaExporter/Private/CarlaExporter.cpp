@@ -4,32 +4,33 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "CarlaExporter.h"
-#include "CarlaExporterCommands.h"
-#include "Misc/MessageDialog.h"
-#include "Framework/MultiBox/MultiBoxBuilder.h"
-#include "SlateBasics.h"
-#include "SlateExtras.h"
-#include "Runtime/Engine/Classes/Engine/Selection.h"
-#include "Runtime/Engine/Classes/Engine/StaticMeshActor.h"
-#include "Components/InstancedStaticMeshComponent.h"
-#include "PhysicsEngine/BodySetup.h"
-#include "PhysicsEngine/ConvexElem.h"
-#include "PxTriangleMesh.h"
-#include "PxVec3.h"
-#include "LevelEditor.h"
-#include "EngineUtils.h"
-#include "PhysXPublic.h"
-#include "PhysicsPublic.h"
-#include "PhysXIncludes.h"
-#include "PxSimpleTypes.h"
-#include <fstream>
-#include <sstream>
+#include "CarlaExporter.h"// 引入CarlaExporter头文件
+#include "CarlaExporterCommands.h"// 引入CarlaExporterCommands头文件
+#include "Misc/MessageDialog.h"// 引入MessageDialog头文件，用于显示消息对话框
+#include "Framework/MultiBox/MultiBoxBuilder.h"// 引入MultiBoxBuilder头文件，用于构建多功能菜单
+#include "SlateBasics.h" // 引入Slate基础组件库
+#include "SlateExtras.h" // 引入Slate扩展组件库
+#include "Runtime/Engine/Classes/Engine/Selection.h"// 引入Selection头文件，用于获取选中的对象
+#include "Runtime/Engine/Classes/Engine/StaticMeshActor.h"// 引入StaticMeshActor头文件，用于操作静态网格体Actor
 
-static const FName CarlaExporterTabName("CarlaExporter");
+#include "Components/InstancedStaticMeshComponent.h"// 引入InstancedStaticMeshComponent头文件，用于操作实例化静态网格组件
+#include "PhysicsEngine/BodySetup.h" // 引入BodySetup头文件，用于设置物理体的碰撞体
+#include "PhysicsEngine/ConvexElem.h"  // 引入ConvexElem头文件，用于描述凸体碰撞元素
+#include "PxTriangleMesh.h" // 引入PxTriangleMesh头文件，用于处理三角网格的物理计算
+#include "PxVec3.h"// 引入PxVec3头文件，表示三维向量
+#include "LevelEditor.h"// 引入LevelEditor头文件，用于操作关卡编辑器
+#include "EngineUtils.h"// 引入EngineUtils头文件，提供引擎工具函数
+#include "PhysXPublic.h"// 引入PhysXPublic头文件，提供物理引擎的公共接口
+#include "PhysicsPublic.h" // 引入PhysicsPublic头文件，提供物理引擎公共的物理学功能
+#include "PhysXIncludes.h"// 引入PhysXIncludes头文件，用于包含PhysX物理引擎的相关文件
+#include "PxSimpleTypes.h" // 引入PxSimpleTypes头文件，提供PhysX物理引擎的简单类型
+#include <fstream>// 引入fstream头文件，用于文件读写操作
+#include <sstream>// 引入sstream头文件，用于字符串流处理
+
+static const FName CarlaExporterTabName("CarlaExporter");//声明了一个名为CarlaExporterTabName的静态常量，类型为FName，并初始化为"CarlaExporter"。
 
 #define LOCTEXT_NAMESPACE "FCarlaExporterModule"
-
+// 模块启动时调用的函数
 void FCarlaExporterModule::StartupModule()
 {
   // 这段代码将在你的模块被加载到内存中后执行；
@@ -64,7 +65,7 @@ void FCarlaExporterModule::StartupModule()
     LevelEditorModule.GetMenuExtensibilityManager()->AddExtender(MenuExtender);
   }
 }
-
+// 模块关闭时调用的函数
 void FCarlaExporterModule::ShutdownModule()
 {
   // 对于支持动态重新加载的模块，
@@ -72,7 +73,7 @@ void FCarlaExporterModule::ShutdownModule()
   //在卸载模块之前，我们会调用这个函数。
   FCarlaExporterCommands::Unregister();
 }
-
+// 插件按钮点击事件的处理函数
 void FCarlaExporterModule::PluginButtonClicked()
 {
   UWorld* World = GEditor->GetEditorWorldContext().World();
@@ -202,17 +203,20 @@ void FCarlaExporterModule::PluginButtonClicked()
   }
   f.close();
 }
-
+// 写入对象几何体到文件
 int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName, UBodySetup *body, FTransform &CompTransform, AreaType Area, int32 Offset)
 {
+  // 如果传入的 UBodySetup 指针为空，则直接返回 0，表示没有添加任何顶点
   if (!body) return 0;
 
+  // 定义常量 TO_METERS，用于将 Unreal Engine 的单位转换为米（Unreal Engine 默认使用厘米）
   constexpr float TO_METERS = 0.01f;
   FVector CompLocation = CompTransform.GetTranslation();
+  // 初始化计数器 TotalVerticesAdded 为 0，用于记录本次调用中添加的总顶点数
   int TotalVerticesAdded = 0;
   bool Written = false;
 
-  // try to write the box collision if any
+  // 尝试写入盒形碰撞体
   for (const auto &box: body->AggGeom.BoxElems)
   {
     // 得到数据

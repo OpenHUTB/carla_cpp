@@ -19,18 +19,27 @@
 # -- Variables -------------------------------------------------------------------------------------
 # ==================================================================================================
 
-if [[ -z $1 ]];
-then
+# 检查脚本的第一个参数（即CARLA的版本号）是否为空
+if [[ -z $1 ]]; then
+  # 如果第一个参数为空，则打印当前日期和时间，并提示缺少必要的参数：CARLA的版本号
   echo "$(date) - Missing mandatory arguments: CARLA version. "
+  # 打印当前日期和时间，以及脚本的正确使用方法
   echo "$(date) - Usage: ./CreateDebian.sh [version]. "
+  # 退出脚本，并返回状态码1，表示发生错误
   exit 1
 fi
 
+# 将第一个参数（即传入的CARLA版本号）赋值给变量CARLA_VERSION
 CARLA_VERSION=$1
-CARLA_DIR=carla-simulator-${CARLA_VERSION}
-CARLA_RELEASE_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/CARLA_${CARLA_VERSION}.tar.gz
-ADDITIONAL_MAPS_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/AdditionalMaps_${CARLA_VERSION}.tar.gz
 
+# 根据CARLA版本号构建CARLA模拟器的目录名
+CARLA_DIR=carla-simulator-${CARLA_VERSION}
+
+# 设置CARLA的发布版本下载URL，其中包含版本号
+CARLA_RELEASE_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/CARLA_${CARLA_VERSION}.tar.gz
+
+# 设置附加地图的下载URL，其中也包含版本号
+ADDITIONAL_MAPS_URL=https://carla-releases.s3.us-east-005.backblazeb2.com/Linux/AdditionalMaps_${CARLA_VERSION}.tar.gz
 # 添加维护者名称
 DEBFULLNAME=Carla\ Simulator\ Team
 export DEBFULLNAME
@@ -47,13 +56,23 @@ sudo apt-get install build-essential dh-make
 mkdir -p carla-debian/"${CARLA_DIR}"
 cd carla-debian/"${CARLA_DIR}"
 
+# 定义变量FILE，存储当前目录下ImportAssets.sh脚本的路径
 FILE=$(pwd)/ImportAssets.sh
+
+# 检查FILE变量所指向的文件是否存在
 if [ -f "$FILE" ]; then
+  # 如果文件存在，输出"Package already downloaded!"表示包已经下载好了
   echo "Package already downloaded!"
 else
+  # 如果文件不存在，则执行以下下载和解压操作
+  
+  # 使用curl命令从CARLA_RELEASE_URL下载CARLA的发布包，并通过管道传递给tar命令进行解压
   curl "${CARLA_RELEASE_URL}" | tar xz
-
+  
+  # 使用wget命令从ADDITIONAL_MAPS_URL下载额外的地图包
   wget "${ADDITIONAL_MAPS_URL}"
+  
+  # 将下载下来的地图包（假设文件名中包含CARLA_VERSION变量指定的版本号）移动到Import/目录下
   mv AdditionalMaps_"${CARLA_VERSION}".tar.gz Import/
 fi
 
@@ -69,6 +88,8 @@ rm CarlaUE4/Binaries/Linux/CarlaUE4-Linux-Shipping.sym
 # ==================================================================================================
 # 更新CarlaUE4.sh脚本
 rm CarlaUE4.sh
+# 使用 cat 命令和 EOF 标记创建或追加内容到 CarlaUE4.sh 文件中
+# 该脚本设置为可执行，并调用 CarlaUE4 的 Linux 发行版二进制文件，传递所有命令行参数给它
 cat >> CarlaUE4.sh <<EOF
 #!/bin/sh
 "/opt/carla-simulator/CarlaUE4/Binaries/Linux/CarlaUE4-Linux-Shipping" CarlaUE4 \$@
@@ -82,7 +103,9 @@ binary:
 	# we are not going to build anything
 
 install:
+# 创建目标安装路径，确保即使目录不存在也会被创建
 	mkdir -p \$(DESTDIR)/opt/carla-simulator/bin
+ # 将 CarlaUE4.sh 复制到目标安装路径下的 bin 文件夹中
 	cp CarlaUE4.sh \$(DESTDIR)/opt/carla-simulator/bin
 	cp ImportAssets.sh \$(DESTDIR)/opt/carla-simulator
 	cp -r CarlaUE4 \$(DESTDIR)/opt/carla-simulator

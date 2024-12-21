@@ -105,33 +105,33 @@ class DisplayManager:
     def render_enabled(self):
         return self.display != None # 如果display对象不为空，则渲染被允许
 
-class SensorManager:
-    def __init__(self, world, display_man, sensor_type, transform, attached, sensor_options, display_pos):
+class SensorManager:#定义了一个名为  SensorManager  的类。
+    def __init__(self, world, display_man, sensor_type, transform, attached, sensor_options, display_pos):#这是类的构造函数，用于初始化对象。它接受以下参数
         self.surface = None
-        self.world = world
-        self.display_man = display_man
+        self.world = world#仿真世界的对象。
+        self.display_man = display_man#管理显示的对象
         self.display_pos = display_pos
-        self.sensor = self.init_sensor(sensor_type, transform, attached, sensor_options)
+        self.sensor = self.init_sensor(sensor_type, transform, attached, sensor_options)#调用  init_sensor  方法初始化传感器，并将其赋值给实例变量。
         self.sensor_options = sensor_options
         self.timer = CustomTimer()
 
         self.time_processing = 0.0
         self.tics_processing = 0
 
-        self.display_man.add_sensor(self)
+        self.display_man.add_sensor(self)#将传感器添加到显示管理器中
 
-    def init_sensor(self, sensor_type, transform, attached, sensor_options):
+    def init_sensor(self, sensor_type, transform, attached, sensor_options):#这是  init_sensor  方法的定义，它接受传感器类型、变换（位置和方向）、附着对象和传感器选项作为参数。
         if sensor_type == 'RGBCamera':
-            camera_bp = self.world.get_blueprint_library().find('sensor.camera.rgb')
-            disp_size = self.display_man.get_display_size()
-            camera_bp.set_attribute('image_size_x', str(disp_size[0]))
-            camera_bp.set_attribute('image_size_y', str(disp_size[1]))
+            camera_bp = self.world.get_blueprint_library().find('sensor.camera.rgb')#如果传感器类型是  RGBCamera  ，这行代码从仿真世界的蓝图库中找到RGB相机的蓝图
+            disp_size = self.display_man.get_display_size()#获取显示管理器的显示大小，这通常用于设置相机捕获图像的分辨率。
+            camera_bp.set_attribute('image_size_x', str(disp_size[0]))#设置相机蓝图的  image_size_x  属性，即图像的宽度
+            camera_bp.set_attribute('image_size_y', str(disp_size[1]))#设置相机蓝图的  image_size_x  属性，即图像的宽度
 
             for key in sensor_options:
-                camera_bp.set_attribute(key, sensor_options[key])
+                camera_bp.set_attribute(key, sensor_options[key])#为相机蓝图设置额外的属性，这些属性由  sensor_options  字典提供。
 
-            camera = self.world.spawn_actor(camera_bp, transform, attach_to=attached)
-            camera.listen(self.save_rgb_image)
+            camera = self.world.spawn_actor(camera_bp, transform, attach_to=attached)#在仿真世界中生成（spawn）一个相机 actor，使用之前设置的蓝图、变换和附着对象。
+            camera.listen(self.save_rgb_image)#设置相机监听器，当相机捕获到图像时，会调用  self.save_rgb_image 方法来保存图像。
 
             return camera
 
@@ -152,15 +152,15 @@ class SensorManager:
             return lidar
         
         elif sensor_type == 'SemanticLiDAR':
-            lidar_bp = self.world.get_blueprint_library().find('sensor.lidar.ray_cast_semantic')
-            lidar_bp.set_attribute('range', '100')
+            lidar_bp = self.world.get_blueprint_library().find('sensor.lidar.ray_cast_semantic')# 从蓝图库中获取语义激光雷达的蓝图
+            lidar_bp.set_attribute('range', '100')# 设置激光雷达的属性，例如范围设置为100米
 
-            for key in sensor_options:
+            for key in sensor_options:# 遍历sensor_options字典，为激光雷达设置其他属性
                 lidar_bp.set_attribute(key, sensor_options[key])
 
-            lidar = self.world.spawn_actor(lidar_bp, transform, attach_to=attached)
+            lidar = self.world.spawn_actor(lidar_bp, transform, attach_to=attached)#在仿真世界中生成激光雷达对象，并设置其位置和附着对象
 
-            lidar.listen(self.save_semanticlidar_image)
+            lidar.listen(self.save_semanticlidar_image)# 让激光雷达监听并保存语义激光雷达图像
 
             return lidar
         

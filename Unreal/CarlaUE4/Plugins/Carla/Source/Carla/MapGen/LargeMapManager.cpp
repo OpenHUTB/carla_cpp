@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).
+﻿// Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
@@ -32,7 +32,7 @@
 #define LM_LOG(...)
 #endif
 
-// Sets default values
+// 设置默认值
 ALargeMapManager::ALargeMapManager()
 {
   PrimaryActorTick.bCanEverTick = true;
@@ -41,32 +41,32 @@ ALargeMapManager::ALargeMapManager()
 
 ALargeMapManager::~ALargeMapManager()
 {
-  /// Remove delegates
-  // Origin rebase
+  /// 删除代理
+  // 原点重设基准
   FCoreDelegates::PreWorldOriginOffset.RemoveAll(this);
   FCoreDelegates::PostWorldOriginOffset.RemoveAll(this);
-  // Level added/removed from world
+  // 世界上添加/删除的级别
   FWorldDelegates::LevelRemovedFromWorld.RemoveAll(this);
   FWorldDelegates::LevelAddedToWorld.RemoveAll(this);
 
 }
 
-// Called when the game starts or when spawned
+// 在游戏开始或生成时调用
 void ALargeMapManager::BeginPlay()
 {
   Super::BeginPlay();
   RegisterTilesInWorldComposition();
 
   UWorld* World = GetWorld();
-  /// Setup delegates
-  // Origin rebase
+  /// 设置代理
+  // 原点重设基准
   FCoreDelegates::PreWorldOriginOffset.AddUObject(this, &ALargeMapManager::PreWorldOriginOffset);
   FCoreDelegates::PostWorldOriginOffset.AddUObject(this, &ALargeMapManager::PostWorldOriginOffset);
-  // Level added/removed from world
+  // 设置原点重基设置
   FWorldDelegates::LevelAddedToWorld.AddUObject(this, &ALargeMapManager::OnLevelAddedToWorld);
   FWorldDelegates::LevelRemovedFromWorld.AddUObject(this, &ALargeMapManager::OnLevelRemovedFromWorld);
 
-  // Setup Origin rebase settings
+  // 设置原点重基设置
   UWorldComposition* WorldComposition = World->WorldComposition;
   WorldComposition->bRebaseOriginIn3DSpace = true;
   WorldComposition->RebaseOriginDistance = RebaseOriginDistance;
@@ -75,7 +75,7 @@ void ALargeMapManager::BeginPlay()
   ActorStreamingDistanceSquared = ActorStreamingDistance * ActorStreamingDistance;
   RebaseOriginDistanceSquared = RebaseOriginDistance * RebaseOriginDistance;
 
-  // Look for terramechanics actor
+  // 寻找 terramechanics 演员
   TArray<AActor*> FoundActors;
   UGameplayStatics::GetAllActorsOfClass(GetWorld(), AActor::StaticClass(), FoundActors);
   for(auto CurrentActor : FoundActors)
@@ -115,7 +115,7 @@ void ALargeMapManager::PostWorldOriginOffset(UWorld* InWorld, FIntVector InSrcOr
     FString::Printf(TEXT("Src: %s  ->  Dst: %s"), *InSrcOrigin.ToString(), *InDstOrigin.ToString()));
   LM_LOG(Log, "PostWorldOriginOffset Src: %s  ->  Dst: %s", *InSrcOrigin.ToString(), *InDstOrigin.ToString());
 
-  // This is just to update the color of the msg with the same as the closest map
+  // 这只是为了将消息的颜色更新为与最近的地图相同的颜色
   const TArray<ULevelStreaming*>& StreamingLevels = World->GetStreamingLevels();
   FColor LevelColor = FColor::White;
   float MinDistance = 10000000.0f;
@@ -179,13 +179,13 @@ void ALargeMapManager::OnActorSpawned(
   // LM_LOG(Warning, "ALargeMapManager::OnActorSpawned func %s %s", *Actor->GetName(), *Actor->GetTranslation().ToString());
 
   if (Actor)
-  { // Check if is hero vehicle
+  { // 检查是否为英雄车
 
     assert(ActorInfo);
 
     const FActorDescription& Description = ActorInfo->Description;
     const FActorAttribute* Attribute = Description.Variations.Find("role_name");
-    // If is the hero vehicle
+    // 如果是英雄车
     if(Attribute && (Attribute->Value.Contains("hero") || Attribute->Value.Contains("ego_vehicle")))
     {
       LM_LOG(Log, "HERO VEHICLE DETECTED");
@@ -200,25 +200,25 @@ void ALargeMapManager::OnActorSpawned(
 
       UpdateTilesState();
 
-      // Wait until the pending levels changes are finished to avoid spawning
-      // the car without ground underneath
+      // 等待等待的级别更改完成，以避免产卵
+      //下面没有地面的汽车
       World->FlushLevelStreaming();
 
       IsHeroVehicle = true;
     }
   }
 
-  // Any other actor that its role is not "hero"
+  //任何其他角色不是“英雄”的演员
   if(!IsHeroVehicle)
   {
     UCarlaEpisode* CurrentEpisode = UCarlaStatics::GetCurrentEpisode(World);
     const FActorRegistry& ActorRegistry = CurrentEpisode->GetActorRegistry();
 
-    // Any actor that is not the hero vehicle could possible be destroyed at some point
-    // we need to store the CarlaActor information to be able to spawn it again if needed
+    // 任何不是英雄车辆的演员都有可能在某个时候被摧毁
+    //我们需要存储CarlaActor信息，以便在需要时能够再次生成它
 
     if(IsValid(Actor))
-    { // Actor was spwaned succesfully
+    { // 演员被成功解雇了
       // TODO: not dormant but not hero => ActiveActor
       //       LM: Map<AActor* FActiveActor>  maybe per tile and in a tile sublevel?
 
@@ -226,7 +226,7 @@ void ALargeMapManager::OnActorSpawned(
       ActiveActors.Add(CarlaActor.GetActorId());
     }
     else
-    { // Actor was spawned as dormant
+    { // 演员被培养成休眠状态
       // TODO: dormant => no actor so Actorview stored per tile
       //       LM: Map<ActorId, TileID> , Tile: Map<ActorID, FDormantActor>
       //       In case of update: update Tile Map, update LM Map
@@ -264,7 +264,7 @@ void ALargeMapManager::OnActorDestroyed(AActor* DestroyedActor)
   if (CarlaActor)
     const FActorInfo* ActorInfo = CarlaActor->GetActorInfo();
 
-  // Hero has been removed?
+  //英雄被移除了吗？
   //
 
 }
@@ -345,17 +345,17 @@ void ALargeMapManager::Tick(float DeltaTime)
 {
   Super::Tick(DeltaTime);
 
-  // Update map tiles, load/unload based on actors to consider (heros) position
-  // Also, to avoid looping over the heros again, it checks if any actor to consider has been removed
+  // 更新地图图块，根据演员考虑（英雄）位置进行加载/卸载
+  //此外，为了避免再次循环英雄，它会检查是否有任何要考虑的演员被删除
   UpdateTilesState();
 
-  // Check if active actors are still in range and inside a loaded tile or have to be converted to dormant
+  // 检查活动参与者是否仍在范围内，是否在加载的互动程序内，或者是否必须转换为休眠状态
   CheckActiveActors();
 
-  // Check if dormant actors have been moved to the load range
+  // 检查休眠演员是否已移动到负载范围
   CheckDormantActors();
 
-  // Remove the hero actors that doesn't exits any more from the ActorsToConsider vector
+  // 从ActorToConsider向量中删除不再存在的英雄角色
   RemovePendingActorsToRemove();
 
   ConvertActiveToDormantActors();
@@ -382,13 +382,13 @@ void ALargeMapManager::GenerateMap(FString InAssetsPath)
 
   AssetsPath = InAssetsPath;
 
-  /// Retrive all the assets in the path
+  /// 重新获取路径中的所有资产
   TArray<FAssetData> AssetsData;
   UObjectLibrary* ObjectLibrary = UObjectLibrary::CreateLibrary(UWorld::StaticClass(), true, true);
   ObjectLibrary->LoadAssetDataFromPath(InAssetsPath);
   ObjectLibrary->GetAssetDataList(AssetsData);
 
-  /// Generate tiles based on mesh positions
+  /// 基于网格位置生成图块
   UWorld* World = GetWorld();
   MapTiles.Reset();
   for (const FAssetData& AssetData : AssetsData)
@@ -482,7 +482,7 @@ void ALargeMapManager::RegisterTilesInWorldComposition()
   }
 }
 
-// TODO: maybe remove this, I think I will not need it any more
+// TODO: 也许删除这个，我想我不再需要它了
 void ALargeMapManager::AddActorToUnloadedList(const FCarlaActor& CarlaActor, const FTransform& Transform)
 {
   // ActiveActors.Add(CarlaActor.GetActorId(), {Transform, CarlaActor});
@@ -635,7 +635,7 @@ FCarlaMapTile* ALargeMapManager::GetCarlaMapTile(TileID TileID)
 
 FCarlaMapTile& ALargeMapManager::LoadCarlaMapTile(FString TileMapPath, TileID TileId) {
   TRACE_CPUPROFILER_EVENT_SCOPE(ALargeMapManager::LoadCarlaMapTile);
-  // Need to generate a new Tile
+  // 需要生成新的磁贴
   FCarlaMapTile NewTile;
   // 1 - Calculate the Tile position
   FIntVector VTileID = GetTileVectorID(TileId);
@@ -686,7 +686,7 @@ FCarlaMapTile& ALargeMapManager::LoadCarlaMapTile(FString TileMapPath, TileID Ti
     LM_LOG(Error, "Level does not exist in package with LongLevelPackageName variable -> %s", *LongLevelPackageName);
   }
 
-  //Actual map package to load
+  //要加载的实际地图包
   StreamingLevel->PackageNameToLoad = *LongLevelPackageName;
 
   NewTile.StreamingLevel = StreamingLevel;
@@ -700,8 +700,8 @@ void ALargeMapManager::UpdateTilesState()
   TRACE_CPUPROFILER_EVENT_SCOPE(ALargeMapManager::UpdateTilesState);
   TSet<TileID> TilesToConsider;
 
-  // Loop over ActorsToConsider to update the state of the map tiles
-  // if the actor is not valid will be removed
+  // 循环ActorToConsider以更新地图图块的状态
+  //如果演员无效，将被删除
   for (AActor* Actor : ActorsToConsider)
   {
     if (IsValid(Actor))
@@ -763,7 +763,7 @@ void ALargeMapManager::CheckActiveActors()
   TRACE_CPUPROFILER_EVENT_SCOPE(ALargeMapManager::CheckActiveActors);
   UWorld* World = GetWorld();
   UCarlaEpisode* CarlaEpisode = UCarlaStatics::GetCurrentEpisode(World);
-  // Check if they have to be destroyed
+  // 检查是否必须销毁
   for(FCarlaActor::IdType Id : ActiveActors)
   {
     FCarlaActor* View = CarlaEpisode->FindCarlaActor(Id);
@@ -775,7 +775,7 @@ void ALargeMapManager::CheckActiveActors()
 
       if(!IsTileLoaded(WorldLocation))
       {
-        // Save to temporal container. Later will be converted to dormant
+        // 保存到临时容器。稍后将转换为休眠状态
         ActiveToDormantActors.Add(Id);
         ActivesToRemove.Add(Id);
         continue;
@@ -789,7 +789,7 @@ void ALargeMapManager::CheckActiveActors()
 
         if (DistanceSquared > ActorStreamingDistanceSquared && View->GetActorType() != FCarlaActor::ActorType::Sensor)
         {
-          // Save to temporal container. Later will be converted to dormant
+          // 保存到临时容器。稍后将转换为休眠状态
           ActiveToDormantActors.Add(Id);
           ActivesToRemove.Add(Id);
         }
@@ -809,16 +809,16 @@ void ALargeMapManager::ConvertActiveToDormantActors()
   UWorld* World = GetWorld();
   UCarlaEpisode* CarlaEpisode = UCarlaStatics::GetCurrentEpisode(World);
 
-  // These actors are on dormant state so remove them from active actors
-  // But save them on the dormant array first
+  // 这些参与者处于休眠状态，因此将其从活动参与者中删除
+  //但请先将它们保存在休眠阵列中
   for(FCarlaActor::IdType Id : ActiveToDormantActors)
   {
-    // To dormant state
+    // 进入休眠状态
     CarlaEpisode->PutActorToSleep(Id);
 
     LM_LOG(Warning, "Converting Active To Dormant... %d", Id);
 
-    // Need the ID of the dormant actor and save it
+    // 需要休眠演员的ID并保存
     DormantActors.Add(Id);
   }
 
@@ -836,7 +836,7 @@ void ALargeMapManager::CheckDormantActors()
   {
     FCarlaActor* CarlaActor = CarlaEpisode->FindCarlaActor(Id);
 
-    // If the Ids don't match, the actor has been removed
+    // 如果ID不匹配，则演员已被删除
     if(!CarlaActor)
     {
       LM_LOG(Log, "CheckDormantActors Carla Actor %d not found", Id);
@@ -915,7 +915,7 @@ void ALargeMapManager::CheckIfRebaseIsNeeded()
   {
     UWorld* World = GetWorld();
     UWorldComposition* WorldComposition = World->WorldComposition;
-    // TODO: consider multiple hero vehicles for rebasing
+    // TODO: 考虑多辆英雄车辆进行重设基础
     AActor* ActorToConsider = ActorsToConsider[0];
     if( IsValid(ActorToConsider) )
     {
@@ -936,13 +936,13 @@ void ALargeMapManager::GetTilesToConsider(const AActor* ActorToConsider,
 {
   TRACE_CPUPROFILER_EVENT_SCOPE(ALargeMapManager::GetTilesToConsider);
   check(ActorToConsider);
-  // World location
+  // 世界位置
   FDVector ActorLocation = CurrentOriginD + ActorToConsider->GetActorLocation();
 
-  // Calculate Current Tile
+  // 计算当前磁贴
   FIntVector CurrentTile = GetTileVectorID(ActorLocation);
 
-  // Calculate tile bounds
+  // 计算图块边界
   FDVector UpperPos = ActorLocation + FDVector(LayerStreamingDistance,LayerStreamingDistance,0);
   FDVector LowerPos = ActorLocation + FDVector(-LayerStreamingDistance,-LayerStreamingDistance,0);
   FIntVector UpperTileId = GetTileVectorID(UpperPos);
@@ -951,8 +951,8 @@ void ALargeMapManager::GetTilesToConsider(const AActor* ActorToConsider,
   {
     for (int X = LowerTileId.X; X <= UpperTileId.X; X++)
     {
-      // I don't check the bounds of the Tile map, if the Tile does not exist
-      // I just simply discard it
+      // 如果磁贴不存在，我不会检查磁贴贴图的边界
+      //我只是把它扔掉
       FIntVector TileToCheck = FIntVector(X, Y, 0);
 
       TileID TileID = GetTileID(TileToCheck);
@@ -960,7 +960,7 @@ void ALargeMapManager::GetTilesToConsider(const AActor* ActorToConsider,
       if (!Tile)
       {
         // LM_LOG(Warning, "Requested tile %d, %d  but tile was not found", TileToCheck.X, TileToCheck.Y);
-        continue; // Tile does not exist, discard
+        continue; // 磁贴不存在，丢弃
       }
 
         OutTilesToConsider.Add(TileID);
@@ -988,11 +988,11 @@ void ALargeMapManager::UpdateTileState(
   UWorld* World = GetWorld();
   UWorldComposition* WorldComposition = World->WorldComposition;
 
-  // Gather all the locations of the levels to load
+  // 收集所有要装载的楼层位置
   for (const TileID TileID : InTilesToUpdate)
   {
       FCarlaMapTile* CarlaTile = MapTiles.Find(TileID);
-      check(CarlaTile); // If an invalid ID reach here, we did something very wrong
+      check(CarlaTile); // 如果一个无效的ID到达这里，我们就做错了什么
       ULevelStreamingDynamic* StreamingLevel = CarlaTile->StreamingLevel;
       StreamingLevel->bShouldBlockOnLoad = InShouldBlockOnLoad;
       StreamingLevel->SetShouldBeLoaded(InShouldBeLoaded);
@@ -1044,7 +1044,7 @@ void ALargeMapManager::DumpTilesTable() const
   }
   FileContent += FString::Printf(TEXT("\nNum generated tiles: %d\n"), MapTiles.Num());
 
-  // Generate the map name with the assets folder name
+  // 使用资源文件夹名称生成映射名称
   TArray<FString> StringArray;
   AssetsPath.ParseIntoArray(StringArray, TEXT("/"), false);
 
@@ -1124,12 +1124,12 @@ void ALargeMapManager::ConsiderSpectatorAsEgo(bool _SpectatorAsEgo)
   SpectatorAsEgo = _SpectatorAsEgo;
   if(SpectatorAsEgo && ActorsToConsider.Num() == 0 && Spectator)
   {
-    // Activating the spectator in an empty world
+    // 在空虚的世界中激活观众
     ActorsToConsider.Add(Spectator);
   }
   if (!SpectatorAsEgo && ActorsToConsider.Num() == 1 && ActorsToConsider.Contains(Spectator))
   {
-    // Deactivating the spectator in a world with no other egos
+    // 在一个没有其他自我的世界里，让观众失去活力
     ActorsToConsider.Reset();
   }
 }

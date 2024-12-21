@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -22,28 +22,33 @@ namespace rpc {
 
   class EpisodeSettings {
   public:
-
     // =========================================================================
     // -- 公开的数据成员 --------------------------------------------------------
     // =========================================================================
 
+    // 是否启用同步模式
     bool synchronous_mode = false;
 
+    // 是否启用无渲染模式
     bool no_rendering_mode = false;
 
+    // 可选的固定时间间隔，使用 boost::optional 来表示该值可能存在也可能不存在
     boost::optional<double> fixed_delta_seconds;
 
-    bool substepping = true; // 默认情况下，物理子步是打开的
+    // 是否启用子步，默认为 true
+    bool substepping = true; 
 
-    double max_substep_delta_time = 0.01;  // 两个物理子步之间的最大时间
+    // 两个物理子步之间的最大时间
+    double max_substep_delta_time = 0.01;  
 
-    int max_substeps = 10;  // 一个仿真帧包含的最多物理子步数
+    // 一个仿真帧包含的最多物理子步数
+    int max_substeps = 10;  
 
     // 距离剔除：当对象尺寸足够小，距离镜头足够远时，可以不进行渲染，以提高性能
     // https://www.jianshu.com/p/537d297bedfa
     float max_culling_distance = 0.0f;
 
-    // 确定性布娃娃系统
+    // 确定性布娃娃系统，默认为 true
     bool deterministic_ragdolls = true;
 
     // 该关卡中 距离玩家 3km 内的地图瓦片会被加载
@@ -52,8 +57,10 @@ namespace rpc {
     // 距离玩家 2km 内的参与者会被激活
     float actor_active_distance = 2000.f; // 2km
 
+    // 是否将观众视为自我，默认为 true
     bool spectator_as_ego = true;
 
+    // 使用 MSGPACK_DEFINE_ARRAY 宏将类的成员变量按顺序打包到 msgpack 中，用于序列化
     MSGPACK_DEFINE_ARRAY(synchronous_mode, no_rendering_mode, fixed_delta_seconds, substepping,
         max_substep_delta_time, max_substeps, max_culling_distance, deterministic_ragdolls,
         tile_stream_distance, actor_active_distance, spectator_as_ego);
@@ -62,8 +69,10 @@ namespace rpc {
     // -- 构造函数 --------------------------------------------------------------
     // =========================================================================
 
+    // 默认构造函数，使用编译器生成的默认实现
     EpisodeSettings() = default;
 
+    // 带有参数的构造函数，可以指定各项设置
     EpisodeSettings(
         bool synchronous_mode,
         bool no_rendering_mode,
@@ -79,7 +88,7 @@ namespace rpc {
       : synchronous_mode(synchronous_mode),
         no_rendering_mode(no_rendering_mode),
         fixed_delta_seconds(
-            fixed_delta_seconds > 0.0 ? fixed_delta_seconds : boost::optional<double>{}),
+            fixed_delta_seconds > 0.0? fixed_delta_seconds : boost::optional<double>{}),
         substepping(substepping),
         max_substep_delta_time(max_substep_delta_time),
         max_substeps(max_substeps),
@@ -93,6 +102,7 @@ namespace rpc {
     // -- 比较操作符 ------------------------------------------------------------
     // =========================================================================
 
+    // 重载 == 操作符，用于比较两个 EpisodeSettings 对象是否相等
     bool operator==(const EpisodeSettings &rhs) const {
       return
           (synchronous_mode == rhs.synchronous_mode) &&
@@ -108,8 +118,9 @@ namespace rpc {
           (spectator_as_ego == rhs.spectator_as_ego);
     }
 
+    // 重载!= 操作符，使用 == 操作符的结果取反
     bool operator!=(const EpisodeSettings &rhs) const {
-      return !(*this == rhs);
+      return!(*this == rhs);
     }
 
     // =========================================================================
@@ -117,7 +128,7 @@ namespace rpc {
     // =========================================================================
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
-
+    // 从虚幻4的 FEpisodeSettings 类型构造 EpisodeSettings
     EpisodeSettings(const FEpisodeSettings &Settings)
       : EpisodeSettings(
             Settings.bSynchronousMode,
@@ -136,6 +147,7 @@ namespace rpc {
       actor_active_distance = CMTOM * Settings.ActorActiveDistance;
     }
 
+    // 类型转换运算符，将 EpisodeSettings 转换为虚幻4的 FEpisodeSettings 类型
     operator FEpisodeSettings() const {
       constexpr float MTOCM = 100.f;
       FEpisodeSettings Settings;
@@ -155,7 +167,6 @@ namespace rpc {
 
       return Settings;
     }
-
 #endif // LIBCARLA_INCLUDED_FROM_UE4
   };
 

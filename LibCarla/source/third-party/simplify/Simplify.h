@@ -1411,24 +1411,30 @@ namespace Simplify
 
       if (*str == 0) // 如果全部为空格
         return str;
-
+// 解释：判断传入的字符串指针所指向的字符是否为 '\0'（字符串结束标志，在这里表示字符串为空或者全是空格的情况），
+// 如果是，则直接返回该字符串指针，意味着不需要进行后续处理，直接将原字符串返回。
         // 修剪尾部空格
       end = str + strlen(str) - 1;
+// 解释：先获取字符串的末尾指针位置，通过将字符串指针 `str` 加上字符串长度（`strlen(str)`）再减去 1，得到指向字符串最后一个字符的指针，
+// 这里减 1 是因为字符串长度是从 1 开始计数，而指针指向的是字符在内存中的地址，要指向最后一个实际字符需要减去 1。
       while (end > str && isspace((unsigned char)*end))
         end--;
-
+// 解释：从字符串末尾开始向前遍历，只要当前指针 `end` 大于起始指针 `str`（表示还没遍历到字符串开头）并且当前指针所指向的字符是空格（通过 `isspace` 函数判断，
+// 将字符强制转换为 `unsigned char` 类型是为了符合函数参数要求），就将指针 `end` 向前移动一位（即 `end--`），目的是找到最后一个非空格字符的位置，从而去除尾部空格。
              // 写入新的终止符
       *(end + 1) = 0;
 
       return str;
     }
-
+// 解释：返回处理后的字符串指针，这个指针指向的字符串已经去除了尾部空格，可用于后续需要使用该字符串的地方。
     // 加载 OBJ 文件
     void load_obj(const char *filename, bool process_uv = false)
     {
       
       vertices.clear();
       triangles.clear();
+// 解释：清空存储顶点数据的 `vertices` 容器和存储三角形数据的 `triangles` 容器，通常这两个容器可能是 `vector` 等类型，
+    // 这样做是为了在加载新的 `OBJ` 文件前清除之前可能存在的数据，避免数据混淆。
       // printf ( "Loading Objects %s ... \n",filename);
       FILE *fn;
       if (filename == NULL)
@@ -1440,23 +1446,37 @@ namespace Simplify
         printf("File %s not found!\n", filename);
         return;
       }
+// 解释：尝试以二进制只读模式（"rb"）打开指定的文件，如果打开文件失败（`fopen` 函数返回 `NULL`），则输出提示文件未找到的信息，并直接返回，
+    // 无法进行后续从文件读取数据的操作。
       char line[1000];
       memset(line, 0, 1000);
+// 解释：创建一个长度为 1000 的字符数组 `line`，用于逐行读取文件中的内容，并通过 `memset` 函数将数组的所有元素初始化为 '\0'，
+    // 确保数组内容初始为空，避免出现未初始化的垃圾数据影响后续操作。
       int vertex_cnt = 0;
       int material = -1;
       std::map<std::string, int> material_map;
       std::vector<vec3f> uvs;
       std::vector<std::vector<int>> uvMap;
+// 解释：初始化一些变量和容器，`vertex_cnt` 可能用于记录顶点的数量计数，`material` 用于表示当前使用的材质编号（初始化为 -1 表示未确定），
+    // `material_map` 是一个 `map` 容器，用于将材质名称映射到对应的编号，方便后续查找和管理材质信息；`uvs` 是一个存储纹理坐标的向量容器，
+    // `uvMap` 是一个二维向量容器，可能用于存储纹理坐标与三角形顶点之间的映射关系等相关信息。
           // 逐行读取文件内容
       while (fgets(line, 1000, fn) != NULL)
       {
         Vertex v;
         vec3f uv;
+ // 解释：在每次循环中，创建一个 `Vertex` 类型的对象 `v`（`Vertex` 类型应该是自定义的顶点结构体等类似类型）和一个 `vec3f` 类型的纹理坐标对象 `uv`，
+        // 用于临时存储从文件中解析出的顶点和纹理坐标信息。
+
      // 解析材质库
         if (strncmp(line, "mtllib", 6) == 0)
         {
           mtllib = trimwhitespace(&line[7]);
         }
+// 解释：判断当前读取的行内容是否以 "mtllib" 开头（通过 `strncmp` 函数比较前 6 个字符），如果是，表示这一行是材质库相关的信息，
+        // 调用 `trimwhitespace` 函数（前面定义的用于去除空格的函数）处理该行从第 7 个字符开始的内容（即材质库文件名部分），去除可能存在的空格后赋值给 `mtllib` 变量，
+        // `mtllib` 变量应该是用于存储材质库文件名的。
+
         if (strncmp(line, "usemtl", 6) == 0)
         {
           std::string usemtl = trimwhitespace(&line[7]);
@@ -1467,6 +1487,10 @@ namespace Simplify
           }
           material = material_map[usemtl];
         }
+// 解释：判断当前行是否以 "usemtl" 开头，如果是，表示这一行指定了使用的材质名称。先调用 `trimwhitespace` 函数处理从第 7 个字符开始的材质名称部分，
+        // 得到去除空格后的材质名称字符串，然后在 `material_map` 中查找该材质名称是否已经存在映射关系，如果不存在，则将该材质名称添加到 `material_map` 中，
+        // 其编号为 `materials` 容器的当前大小（即新的材质编号），同时将材质名称也添加到 `materials` 容器中（`materials` 可能用于存储所有出现过的材质名称列表），
+        // 最后通过 `material_map` 获取该材质名称对应的编号并赋值给 `material` 变量，用于记录当前使用的材质编号。
       // 解析纹理坐标
         if (line[0] == 'v' && line[1] == 't')
         {
@@ -1483,6 +1507,10 @@ namespace Simplify
               uvs.push_back(uv);
             }
         }
+// 解释：判断当前行是否以 "v" 开头且第二个字符是 "t"，表示这一行是纹理坐标信息。如果第三个字符是空格，说明格式符合简单的二维纹理坐标格式，
+        // 尝试通过 `sscanf` 函数按照 "vt %lf %lf" 的格式从该行提取两个浮点数（分别赋值给 `uv` 对象的 `x` 和 `y` 成员变量），如果成功提取到两个值（`sscanf` 返回 2），
+        // 则将 `uv` 对象的 `z` 成员变量设置为 0，并将该 `uv` 对象添加到 `uvs` 容器中；如果按照二维格式提取失败，但按照 "vt %lf %lf %lf" 格式能成功提取三个浮点数（`sscanf` 返回 3），
+        // 则直接将 `uv` 对象添加到 `uvs` 容器中，说明这是三维纹理坐标信息。
         else if (line[0] == 'v')
         {         // 解析顶点坐标
           if (line[1] == ' ')
@@ -1492,6 +1520,9 @@ namespace Simplify
               vertices.push_back(v);
             }
         }
+// 解释：判断当前行是否仅以 "v" 开头，表示这一行是顶点坐标信息。如果第二个字符是空格，说明格式符合常见的顶点坐标格式，
+        // 尝试通过 `sscanf` 函数按照 "v %lf %lf %lf" 的格式从该行提取三个浮点数（分别赋值给 `v` 对象的 `p`（`p` 应该是 `Vertex` 结构体中表示坐标的成员变量，类型可能是 `vec3f` 等）的 `x`、`y`、`z` 成员变量），
+        // 如果成功提取到三个值（`sscanf` 返回 3），则将该 `v` 对象添加到 `vertices` 容器中，用于存储所有解析出的顶点坐标信息。
         int integers[9];
         if (line[0] == 'f')
         {
@@ -1603,8 +1634,10 @@ namespace Simplify
         // fprintf(file, "v %lf %lf %lf\n", vertices[i].p.x,vertices[i].p.y,vertices[i].p.z);
         fprintf(file, "v %g %g %g\n", vertices[i].p.x, vertices[i].p.y, vertices[i].p.z); // more compact: remove trailing zeros
       }
+//如果有UV坐标
       if (has_uv)
       {
+//写入UV坐标到文件
         loopi(0, triangles.size()) if (!triangles[i].deleted)
         {
           fprintf(file, "vt %g %g\n", triangles[i].uvs[0].x, triangles[i].uvs[0].y);
@@ -1612,7 +1645,9 @@ namespace Simplify
           fprintf(file, "vt %g %g\n", triangles[i].uvs[2].x, triangles[i].uvs[2].y);
         }
       }
+//初始化索引为1
       int uv = 1;
+//如果有UV坐标且三角形未被删除
       loopi(0, triangles.size()) if (!triangles[i].deleted)
       {
         if (has_uv)

@@ -47,6 +47,7 @@ build: $(BINDIR)/cpp_client
 # 生成 $(BINDIR)/cpp_client 可执行文件，依赖于 build_libcarla 目标
 $(BINDIR)/cpp_client: | build_libcarla
     # 输出编译 C++ 客户端的日志信息
+#创建了二进制目录，并使用c++编译器编译main.cpp文件
     $(call log,Compiling C++ Client...)
     @mkdir -p $(BINDIR)
     @$(CXX) $(CXXFLAGS) -I$(INSTALLDIR)/include -isystem $(INSTALLDIR)/include/system -L$(INSTALLDIR)/lib \
@@ -94,6 +95,7 @@ build_libcarla: $(TOOLCHAIN)
     }
 
 # 生成工具链文件
+#生成工具链文件，并设置c编译器、c++编译器和c++编译选项。这些设置被写入到工具链文件中，用于后续的构建过程
 $(TOOLCHAIN):
     # 生成工具链文件，设置 C 编译器
     @echo "set(CMAKE_C_COMPILER $(CC))" > $(TOOLCHAIN)

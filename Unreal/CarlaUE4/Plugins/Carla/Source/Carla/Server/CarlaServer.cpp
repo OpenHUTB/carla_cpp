@@ -181,6 +181,8 @@ carla::rpc::ResponseError RespondError(
   return RespondError(FuncName, CarlaGetStringError(Error), ExtraInfo);
 }
 
+//将自定义函数绑定到 CARLA 模拟器中的 RPC 服务器，以响应来自模拟器的请求或事件
+//通过指定同步或异步模式，控制这些函数是如何被调用的，这对于处理实时数据或模拟中的事件非常重要
 class ServerBinder
 {
 public:
@@ -217,7 +219,7 @@ private:
 #define BIND_ASYNC(name)  auto name = ServerBinder(# name, Server, false)
 
 // =============================================================================
-// -- Bind Actions -------------------------------------------------------------
+// -- 绑定操作 -------------------------------------------------------------
 // =============================================================================
 
 void FCarlaServer::FPimpl::BindActions()
@@ -225,14 +227,14 @@ void FCarlaServer::FPimpl::BindActions()
   namespace cr = carla::rpc;
   namespace cg = carla::geom;
 
-  /// Looks for a Traffic Manager running on port
+  /// 寻找运行在指定端口上的流量管理器
   BIND_SYNC(is_traffic_manager_running) << [this] (uint16_t port) ->R<bool>
   {
     return (TrafficManagerInfo.find(port) != TrafficManagerInfo.end());
   };
 
-  /// Gets a pair filled with the <IP, port> of the Trafic Manager running on port.
-  /// If there is no Traffic Manager running the pair will be ("", 0)
+  /// 获取一个包含流量管理器的 <IP, port> 的键值对，该流量管理器运行在指定端口上。
+  /// 如果没有流量管理器在运行，则返回的键值对为 ("", 0)。
   BIND_SYNC(get_traffic_manager_running) << [this] (uint16_t port) ->R<std::pair<std::string, uint16_t>>
   {
     auto it = TrafficManagerInfo.find(port);
@@ -242,7 +244,7 @@ void FCarlaServer::FPimpl::BindActions()
     return std::pair<std::string, uint16_t>("",0);
   };
 
-  /// Add a new Traffic Manager running on <IP, port>
+  /// 添加在<IP，端口>上运行的新Traffic Manager
   BIND_SYNC(add_traffic_manager_running) << [this] (std::pair<std::string, uint16_t> trafficManagerInfo) ->R<bool>
   {
     uint16_t port = trafficManagerInfo.second;
@@ -255,9 +257,10 @@ void FCarlaServer::FPimpl::BindActions()
     return false;
 
   };
-
+// 绑定一个同步RPC函数，用于销毁指定端口的交通管理器
   BIND_SYNC(destroy_traffic_manager) << [this] (uint16_t port) ->R<bool>
   {
+    // 在TrafficManagerInfo容器中查找指定端口的交通管理器信息
     auto it = TrafficManagerInfo.find(port);
     if(it != TrafficManagerInfo.end()) {
       TrafficManagerInfo.erase(it);
@@ -265,13 +268,13 @@ void FCarlaServer::FPimpl::BindActions()
     }
     return false;
   };
-
+// 绑定一个异步RPC函数，用于获取CARLA的版本号
   BIND_ASYNC(version) << [] () -> R<std::string>
   {
     return carla::version();
   };
 
-  // ~~ Tick ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~ 时钟周期 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   BIND_SYNC(tick_cue) << [this]() -> R<uint64_t>
   {
@@ -281,7 +284,7 @@ void FCarlaServer::FPimpl::BindActions()
     return Current + 1;
   };
 
-  // ~~ Load new episode ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~ 加载新章节 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   BIND_ASYNC(get_available_maps) << [this]() -> R<std::vector<std::string>>
   {
@@ -306,7 +309,7 @@ void FCarlaServer::FPimpl::BindActions()
 
   BIND_SYNC(load_new_episode) << [this](const std::string &map_name, const bool reset_settings, cr::MapLayer MapLayers) -> R<void>
   {
-    REQUIRE_CARLA_EPISODE();
+    REQUIRE_CARLA_EPISODE();//检查当前是否存在有效的 CARLA 场景。如果不存在，它会抛出异常或返回错误
 
     UCarlaGameInstance* GameInstance = UCarlaStatics::GetGameInstance(Episode->GetWorld());
     if (!GameInstance)
@@ -457,7 +460,7 @@ void FCarlaServer::FPimpl::BindActions()
     return NamesStd;
   };
 
-  // ~~ Episode settings and info ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // ~~ 章节设置与信息 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   BIND_SYNC(get_episode_info) << [this]() -> R<cr::EpisodeInfo>
   {
@@ -488,7 +491,7 @@ void FCarlaServer::FPimpl::BindActions()
   {
     REQUIRE_CARLA_EPISODE();
     auto FileContents = FNavigationMesh::Load(Episode->GetMapName());
-    // make a mem copy (from TArray to std::vector)
+    // 进行内存复制（从TArray到std::vector）
     std::vector<uint8_t> Result(FileContents.Num());
     memcpy(&Result[0], FileContents.GetData(), FileContents.Num());
     return Result;
@@ -498,23 +501,23 @@ void FCarlaServer::FPimpl::BindActions()
   {
     REQUIRE_CARLA_EPISODE();
 
-    // Check that the path ends in a slash, add it otherwise
+    // 检查路径是否以斜杠结尾，如果没有则添加它
     if (folder[folder.size() - 1] != '/' && folder[folder.size() - 1] != '\\') {
       folder += "/";
     }
 
-    // Get the map's folder absolute path and check if it's in its own folder
+    // 获取地图文件夹的绝对路径，并检查它是否位于其自身的文件夹内
     ACarlaGameModeBase* GameMode = UCarlaStatics::GetGameMode(Episode->GetWorld());
     const auto mapDir = GameMode->GetFullMapPath();
     const auto folderDir = mapDir + "/" + folder.c_str();
     const auto fileName = mapDir.EndsWith(Episode->GetMapName()) ? "*" : Episode->GetMapName();
 
-    // Find all the xodr and bin files from the map
+    // 从地图中找到所有的xodr和bin文件
     TArray<FString> Files;
     IFileManager::Get().FindFilesRecursive(Files, *folderDir, *(fileName + ".xodr"), true, false, false);
     IFileManager::Get().FindFilesRecursive(Files, *folderDir, *(fileName + ".bin"), true, false, false);
 
-    // Remove the start of the path until the content folder and put each file in the result
+    // 移除路径的起始部分直到内容文件夹，并将每个文件放入结果中
     std::vector<std::string> result;
     for (auto File : Files) {
       File.RemoveFromStart(FPaths::ConvertRelativePathToFull(FPaths::ProjectContentDir()));
@@ -527,11 +530,11 @@ void FCarlaServer::FPimpl::BindActions()
   {
     REQUIRE_CARLA_EPISODE();
 
-    // Get the absolute path of the file
+    // 获取文件的绝对路径
     FString path(FPaths::ConvertRelativePathToFull(FPaths::ProjectContentDir()));
     path.Append(name.c_str());
 
-    // Copy the binary data of the file into the result and return it
+    // 将文件的二进制数据复制到结果中并返回它
     TArray<uint8_t> Content;
     FFileHelper::LoadFileToArray(Content, *path, 0);
     std::vector<uint8_t> Result(Content.Num());
@@ -789,8 +792,7 @@ void FCarlaServer::FPimpl::BindActions()
     }
     #endif
 
-    // Only is possible to attach if the actor has been really spawned and
-    // is not in dormant state
+    // 只有在actor确实已经被生成（spawned）并且不处于休眠状态时，才能进行附加（attach）操作。
     if(!ParentCarlaActor->IsDormant())
     {
       Episode->AttachActors(
@@ -816,8 +818,7 @@ void FCarlaServer::FPimpl::BindActions()
       RESPOND_ERROR("unable to destroy actor: not found");
     }
     UE_LOG(LogCarla, Log, TEXT("CarlaServer destroy_actor %d"), ActorId);
-    // We need to force the actor state change, since dormant actors
-    //  will ignore the FCarlaActor destruction
+    // 我们需要强制改变actor的状态，因为处于休眠状态的actors会忽略FCarlaActor的销毁指令。
     CarlaActor->SetActorState(cr::ActorState::PendingKill);
     if (!Episode->DestroyActor(ActorId))
     {

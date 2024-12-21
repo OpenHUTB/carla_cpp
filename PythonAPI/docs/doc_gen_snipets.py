@@ -144,7 +144,7 @@ class Documentation:
     def gen_body(self):
         """Generates the documentation body"""
         md = MarkdownFile()
-        # Create header for snipets (div container and script to copy)
+        # 创建snipets的头部（div容器和复制脚本）
         md.textn(
         "[comment]: <> (=========================)\n"+
         "[comment]: <> (PYTHON API SCRIPT SNIPETS)\n"+
@@ -170,28 +170,28 @@ class Documentation:
         "document.getElementById(\"snipets-container\").innerHTML = null;\n"+
         "}\n"+
         "</script>\n")
-        # Create content for every snipet
+         # 为每个snipet创建内容
         for snipet_path in self._snipets:
             current_snipet = open(snipet_path, 'r')
-            snipet_name = os.path.basename(current_snipet.name) # Remove path
-            snipet_name = os.path.splitext(snipet_name)[0] # Remove extension
-            # Header for a snipet
+            snipet_name = os.path.basename(current_snipet.name) # 移除路径
+            snipet_name = os.path.splitext(snipet_name)[0] # 移除扩展名
+            # snipet的头部
             md.textn("<div id =\""+snipet_name+"-snipet\" style=\"display: none;\">\n"+
             "<p class=\"SnipetFont\">\n"+
             "Snippet for "+snipet_name+"\n"+
             "</p>\n"+
             "<div id=\""+snipet_name+"-code\" class=\"SnipetContent\">\n\n```py\n")
-            # The snipet code
+            # snipet代码
             md.textn(current_snipet.read())
-            # Closing for a snipet
+            # snipet的结束
             md.textn("\n```\n<button id=\"button1\" class=\"CopyScript\" onclick=\"CopyToClipboard('"+snipet_name+"-code')\">Copy snippet</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id=\"button1\" class=\"CloseSnipet\" onclick=\"CloseSnipet()\">Close snippet</button><br><br>\n")
-            # Check if snipet image exists, and add it
+            # 检查是否存在snipet图像，并添加它
             for snipet_path_to_image in self._snipets_images:
                 snipet_image_name = os.path.splitext(os.path.basename(snipet_path_to_image))[0]
                 if snipet_name == snipet_image_name:
                     md.textn("\n<img src=\"/img/snipets_images/"+os.path.basename(snipet_path_to_image)+"\">\n")
             md.textn("</div>\n")
-        # Closing div
+        # 结束div
         md.textn("\n</div>\n")
         return md.data().strip()
 
@@ -202,9 +202,12 @@ class Documentation:
 
 
 def main():
+    #打印提示信息
     """Main function"""
     print("Generating PythonAPI snipets...")
+    #获取脚本路径
     script_path = os.path.dirname(os.path.abspath(__file__)+'/snipets')
+    #获取代码片段图片路径
     snipets_images_path = os.path.dirname(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__)))) + '/Docs/img/snipets_images'
     docs = Documentation(script_path, snipets_images_path)
