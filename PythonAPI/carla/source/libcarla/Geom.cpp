@@ -151,10 +151,14 @@ void export_geom() {
   ;
 }
 
+// 定义一个名为 "Vector2D" 的 Python 类，对应于 C++ 的 cg::Vector2D 类
   class_<cg::Vector2D>("Vector2D")
+ // 定义构造函数，允许在 Python 中创建 Vector2D 对象时提供 x 和 y 参数，默认值为 0.0f
     .def(init<float, float>((arg("x")=0.0f, arg("y")=0.0f)))
+// 定义可读写的属性 "x" 和 "y"，使 Python 可以访问和修改这些成员变量
     .def_readwrite("x", &cg::Vector2D::x)
     .def_readwrite("y", &cg::Vector2D::y)
+ // 将 C++ 方法绑定到 Python 方法
     .def("squared_length", &cg::Vector2D::SquaredLength)
     .def("length", &cg::Vector2D::Length)
     .def("make_unit_vector", &cg::Vector2D::MakeUnitVector)

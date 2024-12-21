@@ -24,16 +24,16 @@ import copy
 
 # Global variables
 IMPORT_SETTING_FILENAME = "importsetting.json"
-SCRIPT_NAME = os.path.basename(__file__)
-SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+SCRIPT_NAME = os.path.basename(__file__)#获取当前脚本的名称。
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))#获取当前脚本所在的目录。
 # Go two directories above the current script
-CARLA_ROOT_PATH = os.path.normpath(SCRIPT_DIR + '/../..')
+CARLA_ROOT_PATH = os.path.normpath(SCRIPT_DIR + '/../..')#被设置为脚本目录的上两级目录，
 
 try:
     sys.path.append(glob.glob(os.path.join(CARLA_ROOT_PATH, "PythonAPI/carla/dist/carla-*%d.%d-%s.egg" % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64')))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64')))[0])#使用   sys.path.append   将CARLA的Python API模块添加到系统路径中。这里使用   glob.glob   来查找匹配特定模式的文件
 except IndexError:
     pass
 
@@ -84,7 +84,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
     """
     json_files = []
 
-    # search for all .fbx and .xodr pair of files
+    # 搜索所有 .fbx 和 .xodr 文件对
     maps = []
     for root, _, filenames in os.walk(folder):
         files = fnmatch.filter(filenames, "*.xodr")
@@ -99,9 +99,9 @@ def generate_json_package(folder, package_name, use_carla_materials):
                 if (len(tiles) > 0):
                     maps.append([os.path.relpath(root, folder), xodr, tiles])
 
-    # write the json
+    # 编写 JSON
     if (len(maps) > 0):
-        # build all the maps in .json format
+        # 以 .json 格式构建所有地图
         json_maps = []
         for map_name in maps:
             path = map_name[0].replace('\\', '/')
@@ -113,7 +113,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
                 'xodr':   '%s/%s.xodr' % (path, name),
                 'use_carla_materials': use_carla_materials
             }
-            # check for only one 'source' or map in 'tiles'
+            # 在 'tiles' 中只检查一个 'source' 或 map
             if (len(tiles) == 1):
                 map_dict['source'] = tiles[0]
             else:
@@ -122,7 +122,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
 
             # write
             json_maps.append(map_dict)
-        # build and write the .json
+        # 构建和编写 .json
         f = open("%s/%s.json" % (folder, package_name), "w")
         my_json = {'maps': json_maps, 'props': []}
         serialized = json.dumps(my_json, sort_keys=False, indent=3)
@@ -342,20 +342,42 @@ def generate_package_file(package_name, props, maps):
         json.dump(output_json, fh, indent=4)
 
 
-def copy_roadpainter_config_files(package_name):
-    """Copies roadpainter configuration files into Unreal content folder"""
 
+# 假设 CARLA_ROOT_PATH 是一个全局变量或之前已经定义的变量，指向 Carla 项目的根目录
+
+def copy_roadpainter_config_files(package_name):
+    """
+    将 roadpainter 配置文件复制到 Unreal 内容文件夹中。
+
+    参数:
+    package_name (str): 目标包的名称，配置文件将被复制到此包下的 Config 目录中。
+    """
+
+    # 获取当前脚本文件上两级目录的路径（假设这是相对于 Carla 项目根目录的位置）
     two_directories_up = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    
+    # 构造最终要复制的配置文件的完整路径
     final_path = os.path.join(two_directories_up, "Import", "roadpainter_decals.json")
+    
+    # 检查配置文件是否存在
     if os.path.exists(final_path):
+        # 构造目标路径，即将配置文件复制到的位置
         package_config_path = os.path.join(CARLA_ROOT_PATH, "Unreal", "CarlaUE4", "Content", package_name, "Config")
+        
+        # 检查目标目录是否存在，如果不存在则创建它
         if not os.path.exists(package_config_path):
             try:
-                os.makedirs(package_config_path)
+                os.makedirs(package_config_path)  # 创建目标目录及其所有不存在的父目录
             except OSError as exc:
+                # 如果错误不是由于目录已存在（errno.EEXIST），则抛出异常
                 if exc.errno != errno.EEXIST:
                     raise
-        shutil.copy(final_path, package_config_path)
+        
+        # 将配置文件复制到目标目录
+        shutil.copy(final_path, package_config_path)  
+      
+
+
 
 
 def import_assets(package_name, json_dirname, props, maps, do_tiles, tile_size, batch_size):

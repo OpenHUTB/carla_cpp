@@ -1,8 +1,6 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
-//
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 版权所有 （c） 2017 巴塞罗那自治大学 （UAB） 计算机视觉中心 （CVC）。
+// 本作品根据 MIT 许可证的条款进行许可。
+// 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 #include "carla/PythonUtil.h"
 #include "carla/client/Client.h"
@@ -68,20 +66,27 @@ static auto ApplyBatchCommandsSync(
     const boost::python::object &commands,
     bool do_tick) {
 
+   // 使用别名简化类型名称，提高代码可读性
   using CommandType = carla::rpc::Command;
+   // 将来自 Python 的命令列表转换为 C++ 的 std::vector<CommandType>
+  // 这里使用了 boost::python::stl_input_iterator 来迭代 Python 对象
   std::vector<CommandType> cmds {
     boost::python::stl_input_iterator<CommandType>(commands),
     boost::python::stl_input_iterator<CommandType>()
   };
 
+  // 创建一个空的 Python 列表，用于存储从 Carla 模拟器收到的响应
   boost::python::list result;
+   // 调用 Carla 客户端的 ApplyBatchSync 方法，同步应用命令批次
+  // 如果 do_tick 为 true，则在应用命令后模拟器会前进一个时间步
   auto responses = self.ApplyBatchSync(cmds, do_tick);
+  // 遍历从 ApplyBatchSync 得到的所有响应，并将它们添加到 Python 列表中
   for (auto &response : responses) {
     result.append(std::move(response));
   }
 
   #向量初始化
-  // check for autopilot command
+  // 检查 autopilot 命令
   #使用std::vector的构造函数，指定cmds.size作为初始大小
   std::vector<carla::traffic_manager::ActorPtr> vehicles_to_enable(cmds.size(), nullptr);
   #每个元素初始化为nullptr
@@ -109,9 +114,9 @@ static auto ApplyBatchCommandsSync(
         #避免不必要的复制操作
         CommandType::CommandType& cmd_type = cmds[i].command;
 
-        // check SpawnActor command
+        // 检查 SpawnActor 命令
         if (const auto *maybe_spawn_actor_cmd = boost::variant2::get_if<carla::rpc::Command::SpawnActor>(&cmd_type)) {
-          // check inside 'do_after'
+          // 在“do_after”中检查
           for (auto &cmd : maybe_spawn_actor_cmd->do_after) {
             if (const auto *maybe_set_autopilot_command = boost::variant2::get_if<carla::rpc::Command::SetAutopilot>(&cmd.command)) {
               tm_port = maybe_set_autopilot_command->tm_port;
@@ -120,23 +125,23 @@ static auto ApplyBatchCommandsSync(
             }
           }
         }
-        // check SetAutopilot command
+        // 检查SetAutopilot 命令
         else if (const auto *maybe_set_autopilot_command = boost::variant2::get_if<carla::rpc::Command::SetAutopilot>(&cmd_type)) {
           tm_port = maybe_set_autopilot_command->tm_port;
           autopilotValue = maybe_set_autopilot_command->enabled;
           isAutopilot = true;
         }
 
-        // check if found any SetAutopilot command
+        // 检查是否找到任何 SetAutopilot 命令
         if (isAutopilot) {
-          // get the id
+          // 获取 ID
           carla::rpc::ActorId id = static_cast<carla::rpc::ActorId>(responses[i].Get());
 
-          // get all actors
+          // 获取所有 Actor
           carla::SharedPtr<carla::client::Actor> actor;
           actor = world.GetActor(id);
 
-          // check to enable or disable
+          // 选中以启用或禁用
           if (actor) {
             if (autopilotValue) {
               size_t index = vehicles_to_enable_index.fetch_add(1);
@@ -169,21 +174,21 @@ static auto ApplyBatchCommandsSync(
     delete t[n];
   }
 
-  // Fix vector size
+  // 固定向量大小
   vehicles_to_enable.resize(vehicles_to_enable_index.load());
   vehicles_to_disable.resize(vehicles_to_disable_index.load());
-  // Release memory
+  // 释放内存
   vehicles_to_enable.shrink_to_fit();
   vehicles_to_disable.shrink_to_fit();
 
-  // Ensure the TM always receives the same vector by sorting the elements
+  // 通过对元素进行排序，确保 TM 始终接收相同的向量
   std::vector<carla::traffic_manager::ActorPtr> sorted_vehicle_to_enable = vehicles_to_enable;
   std::sort(sorted_vehicle_to_enable.begin(), sorted_vehicle_to_enable.end(), [](carla::traffic_manager::ActorPtr &a, carla::traffic_manager::ActorPtr &b) {return a->GetId() < b->GetId(); });
 
   std::vector<carla::traffic_manager::ActorPtr> sorted_vehicle_to_disable = vehicles_to_disable;
   std::sort(sorted_vehicle_to_disable.begin(), sorted_vehicle_to_disable.end(), [](carla::traffic_manager::ActorPtr &a, carla::traffic_manager::ActorPtr &b) {return a->GetId() < b->GetId(); });
 
-  // check if any autopilot command was sent
+  // 检查是否发送了任何 Autopilot 命令
   if (sorted_vehicle_to_enable.size() || sorted_vehicle_to_disable.size()) {
     self.GetInstanceTM(tm_port).RegisterVehicles(sorted_vehicle_to_enable);
     self.GetInstanceTM(tm_port).UnregisterVehicles(sorted_vehicle_to_disable);

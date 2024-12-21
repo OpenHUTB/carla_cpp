@@ -29,6 +29,7 @@ namespace geom {
   // 构造函数，用于创建一个 CubicPolynomial 类的对象，接受四个参数，分别对应三次多项式的系数 a、b、c、d
   // 例如对于三次多项式 f(x) = a + b * x + c * x^2 + d * x^3，这里传入的参数就是各项的系数，
   // 并使用初始化列表对类的成员进行初始化，将传入的系数依次放入 _v 数组中，同时将表示偏移量的 _s 初始化为 0.0
+  //无偏移量版本的构造函数
     CubicPolynomial(
         const value_type &a,
         const value_type &b,
@@ -37,6 +38,7 @@ namespace geom {
       : _v{ {a, b, c, d} },
         _s(0.0) {}
 
+  //有偏移量版本的构造函数
     CubicPolynomial(
         const value_type &a,
         const value_type &b,
@@ -102,7 +104,9 @@ namespace geom {
         const value_type &b,
         const value_type &c,
         const value_type &d) {
+      //将系数a,b,c,d放入 _v 数组
       _v = {a, b, c, d};
+      //将偏移量 _s 设为 0.0
       _s = 0.0;
     }
 

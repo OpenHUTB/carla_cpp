@@ -146,6 +146,7 @@ namespace detail {
   template <typename T>
   template <typename ExceptionT>
   void RecurrentSharedFuture<T>::SetException(ExceptionT &&e) {
+  // 将异常封装为一个共享指针，并将其设置为当前值
     SetValue(SharedException(std::make_shared<ExceptionT>(std::forward<ExceptionT>(e))));
   }
 

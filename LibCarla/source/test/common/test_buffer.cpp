@@ -45,6 +45,7 @@ TEST(buffer, copy_buffer_sequence) {
   std::string message;
   std::array<Buffer, number_of_buffers> buffers;
   std::array<boost::asio::const_buffer, number_of_buffers> sequence;
+// 循环遍历每一个缓冲区
   for (auto i = 0u; i < number_of_buffers; ++i) {
     message += str;
     buffers[i].copy_from(str);

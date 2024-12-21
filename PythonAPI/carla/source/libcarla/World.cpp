@@ -73,25 +73,31 @@ namespace rpc {
 } // namespace carla
 
 
+// 等待世界对象的一次 tick（时间步更新），在等待期间释放全局解释器锁（GIL），方便Python多线程等操作，返回等待后的结果
 static auto WaitForTick(const carla::client::World &world, double seconds) {
+// 释放Python全局解释器锁（GIL），以便在多线程环境中允许其他Python线程运行
   carla::PythonUtil::ReleaseGIL unlock;
   return world.WaitForTick(TimeDurationFromSeconds(seconds));
 }
 
+// 为世界对象注册一个 tick 回调函数，返回注册的回调函数的相关标识
 static size_t OnTick(carla::client::World &self, boost::python::object callback) {
   return self.OnTick(MakeCallback(std::move(callback)));
 }
 
+// 执行世界对象的一次 tick（时间步更新）操作，期间释放全局解释器锁（GIL），并返回操作后的结果
 static auto Tick(carla::client::World &world, double seconds) {
   carla::PythonUtil::ReleaseGIL unlock;
   return world.Tick(TimeDurationFromSeconds(seconds));
 }
 
+// 将给定的剧集设置应用到世界对象上，操作过程中释放全局解释器锁（GIL），并返回应用设置后的结果
 static auto ApplySettings(carla::client::World &world, carla::rpc::EpisodeSettings settings, double seconds) {
   carla::PythonUtil::ReleaseGIL unlock;
   return world.ApplySettings(settings, TimeDurationFromSeconds(seconds));
 }
 
+// 根据给定的演员（Actor）ID列表，从世界对象中获取对应的演员列表，先将Python列表形式的ID转换为C++的向量形式，再获取演员，操作时释放GIL
 static auto GetActorsById(carla::client::World &self, const boost::python::list &actor_ids) {
   std::vector<carla::ActorId> ids{
       boost::python::stl_input_iterator<carla::ActorId>(actor_ids),
@@ -100,6 +106,7 @@ static auto GetActorsById(carla::client::World &self, const boost::python::list 
   return self.GetActors(ids);
 }
 
+// 获取世界对象中所有车辆的灯光状态，并以Python字典形式返回，字典的键为车辆相关标识，值为对应的灯光状态
 static auto GetVehiclesLightStates(carla::client::World &self) {
   boost::python::dict dict;
   auto list = self.GetVehiclesLightStates();
@@ -109,6 +116,7 @@ static auto GetVehiclesLightStates(carla::client::World &self) {
   return dict;
 }
 
+// 获取世界对象中特定标签对应的关卡边界框（Bounding Boxes）信息，并以Python列表形式返回，方便在Python环境中使用这些数据
 static auto GetLevelBBs(const carla::client::World &self, uint8_t queried_tag) {
   boost::python::list result;
   for (const auto &bb : self.GetLevelBBs(queried_tag)) {
@@ -117,6 +125,7 @@ static auto GetLevelBBs(const carla::client::World &self, uint8_t queried_tag) {
   return result;
 }
 
+// 获取世界对象中特定标签对应的环境对象信息，并以Python列表形式返回，便于在Python中进一步处理这些环境对象相关数据
 static auto GetEnvironmentObjects(const carla::client::World &self, uint8_t queried_tag) {
   boost::python::list result;
   for (const auto &object : self.GetEnvironmentObjects(queried_tag)) {
@@ -125,6 +134,7 @@ static auto GetEnvironmentObjects(const carla::client::World &self, uint8_t quer
   return result;
 }
 
+// 根据Python对象中包含的环境对象ID列表，启用或禁用世界对象中的相应环境对象，先将Python对象中的ID转换为C++向量形式再操作
 static void EnableEnvironmentObjects(
   carla::client::World &self,
   const boost::python::object& py_env_objects_ids,
@@ -138,6 +148,7 @@ static void EnableEnvironmentObjects(
   self.EnableEnvironmentObjects(env_objects_ids, enable);
 }
 
+// 定义函数export_world，用于将Carla相关的一些C++类通过Boost.Python库导出到Python环境，使其能在Python中使用
 void export_world() {
   using namespace boost::python;
   namespace cc = carla::client;
@@ -145,6 +156,7 @@ void export_world() {
   namespace cr = carla::rpc;
   namespace csd = carla::sensor::data;
 
+  // 定义Timestamp类到Python的映射，设置初始化参数、可读可写属性以及相等和不相等比较等操作的Python接口
   class_<cc::Timestamp>("Timestamp")
     .def(init<size_t, double, double, double>(
         (arg("frame")=0u,
