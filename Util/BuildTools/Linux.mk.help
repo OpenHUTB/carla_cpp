@@ -1,103 +1,127 @@
 Welcome to CARLA Simulator!
 ===========================
 
+// 以下内容说明这个Makefile的作用，即帮助构建不同的CARLA模拟器相关的实用工具或模块等。
 This Makefile will help you building the different CARLA utilities.
 
+// 说明可以使用的命令列表及对应的功能描述，以下依次展开介绍各个命令。
 Use the following commands:
 
     help:
 
+        // 当执行'make help'命令时，会显示当前这些帮助信息，方便使用者了解可用的命令及其作用。
         Display this help message.
 
     launch:
 
+        // 执行'make launch'命令时，会编译CarlaUE4项目，并在虚幻引擎（Unreal Engine）的编辑器中启动它，也就是先构建项目然后启动编辑器来运行项目。
         Compile CarlaUE4 project and launch it in Unreal Engine's Editor.
 
     launch-only:
 
+        // 执行'make launch-only'命令时，直接在虚幻引擎的编辑器中启动CarlaUE4项目，跳过编译构建这一步骤，前提是假设项目已经事先构建好了。
         Launch CarlaUE4 project in Unreal Engine's Editor, but skip building
         step (assume the project is already built).
 
     import:
 
+        // 执行'make import'命令，会将位于"carla/Import"目录下的地图和资源直接导入到虚幻引擎中，使得它们可以准备好被导出使用。
         Import maps and assets that are located in "carla/Import" directly to Unreal,
         so they will be ready to export.
 
     package:
 
+        // 执行'make package'命令，会创建一个可供分发的CARLA打包版本。如果配合使用ARGS="--package=PackageNames"参数，将会创建特定的资源包。
         Makes a packaged version of CARLA ready for distribution. Used with
         ARGS="--package=PackageNames" will create specific asset packages.
 
     docs:
 
+        // 执行'make docs'命令，会构建CARLA的Doxygen文档，用于生成项目相关的代码文档说明。
         Build CARLA Doxygen documentation.
 
     clean:
 
+        // 执行'make clean'命令，会删除中间构建过程产生的文件，清理构建过程中生成的一些临时文件等。
         Remove intermediate build files.
 
     rebuild:
 
+        // 执行'make rebuild'命令，先删除中间构建文件（如同执行clean操作），然后重新构建整个项目，相当于进行一次完整的重新构建流程。
         Remove intermediate build files and rebuild the whole project.
 
     hard-clean:
 
+        // 执行'make hard-clean'命令，同样先删除中间构建文件，并且强制重新编译虚幻引擎的预编译头文件。这对于修复类似“version.h has been
+        modified since the precompiled header”这样的错误很有用，不过要注意，重新编译预编译头文件通常会花费较长时间。
         Remove intermediate build files and force a recompilation of Unreal
         Engine's pre-compiled headers. Useful for fixing "version.h has been
         modified since the precompiled header" errors. Beware, recompilation
         takes a long time!
 
 
+// 以下介绍一些面向开发者的、用于构建单个模块的更底层命令，方便开发者在特定模块开发调试等场景下使用。
 There are also some lower level commands for building individual modules helpful
 for developers:
 
     check:
 
+        // 执行'make check'命令，会运行LibCarla和PythonAPI的单元测试套件，用于检测这两个模块的代码功能是否符合预期。
         Run unit test suites for LibCarla and PythonAPI.
 
     check.LibCarla(.debug|.release):
 
+        // 执行'make check.LibCarla.debug' 或者'make check.LibCarla.release'命令时，只会运行LibCarla模块的单元测试套件，并且可以根据.debug或.release指定不同的编译配置（调试或发布配置）来进行测试。
         Run unit test suites for LibCarla only.
 
     check.PythonAPI(.2|.3):
 
+        // 执行'make check.PythonAPI.2'或者'make check.PythonAPI.3'命令时，只会运行PythonAPI模块的单元测试套件，并且可以指定针对Python 2或者Python 3版本的相关测试。
         Run unit test suites for PythonAPI only.
 
     benchmark:
 
+        // 执行'make benchmark'命令，会运行针对LibCarla模块的基准测试，用于评估其性能表现等情况。
         Run the benchmark tests for LibCarla.
 
     (run-)examples:
 
+        // 执行'make examples'命令会构建C++客户端示例代码，执行'make run-examples'命令不仅构建还会运行这些C++客户端示例代码，方便查看示例代码的运行效果。
         Build (and run) the C++ client examples.
 
     CarlaUE4Editor:
 
+        // 执行'make CarlaUE4Editor'命令，会构建CarlaUE4项目，但不会启动编辑器，仅完成构建操作。
         Build CarlaUE4 project, but do not launch the editor.
 
     PythonAPI(.2|.3):
 
+        // 执行'make PythonAPI.2'或者'make PythonAPI.3'命令，会构建并打包Python API模块，使其适用于Python 2或者Python 3版本，方便在对应Python环境下使用该模块。
         Build and package the Python API module for Python 2 and/or 3.
 
     LibCarla(.server|.client)(.debug|.release):
 
+        // 执行类似'make LibCarla.server.debug'、'make LibCarla.server.release'、'make LibCarla.client.debug'、'make LibCarla.client.release'等命令，会构建LibCarla模块，并且可以指定是构建“Server”（服务器端）或者“Client”（客户端）配置，同时还能指定调试（debug）或者发布（release）的编译配置。
         Build LibCarla, "Server" and/or "Client" configurations.
 
     clean.(LibCarla|PythonAPI|CarlaUE4Editor)
 
+        // 执行类似'make clean.LibCarla'、'make clean.PythonAPI'、'make clean.CarlaUE4Editor'这样的命令，会删除对应特定模块（LibCarla、PythonAPI或者CarlaUE4Editor）在构建过程中产生的中间文件，用于针对单个模块进行清理操作。
         Remove intermediate build files for the specific module.
 
     setup:
 
+        // 执行'make setup'命令，只会运行设置步骤相关操作，具体的设置内容需要参考Makefile中对应部分的逻辑实现。
         Run the setup step only.
 
     deploy:
 
+        // 执行'make deploy'命令，会上传每晚构建的版本，可能用于持续集成等相关场景下向特定服务器等位置上传构建产物。
         Upload nightly build.
 
     pretty:
 
+        // 执行'make pretty'命令，会对代码文件进行美化操作。对于C++文件会使用uncrustify工具进行美化，对于Python文件会使用AutoPEP8工具进行美化。如果要美化单个文件，可以使用'make pretty ARGS=-f/path/to/file'这种形式指定文件路径来操作。
         Prettify code files. Run uncrustify on C++ files or AutoPEP8 on Python
         files. To prettify a single file, use: make pretty ARGS=-f/path/to/file.
-
 
