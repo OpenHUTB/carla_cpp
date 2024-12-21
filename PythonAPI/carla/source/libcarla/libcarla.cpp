@@ -160,7 +160,7 @@ std::vector<T> PythonLitstToVector(boost::python::list &input) {
       return optional.has_value() ? boost::python::object(*optional) : boost::python::object(); \
     }
 
-template <typename T>
+// template <typename T>
 static void PrintListItem_(std::ostream &out, const T &item) {
   out << item;
 }
@@ -209,6 +209,160 @@ static carla::time_duration TimeDurationFromSeconds(double seconds) {
   return carla::time_duration::milliseconds(ms);
 }
 
+static auto MakeCallback(boost::python::object callback) {
+  namespace py = boost::python;
+  // 确保回调实际上是可调用的。
+  if (!PyCallable_Check(callback.ptr())) {
+    PyErr_SetString(PyExc_TypeError, "callback argument must be callable!");
+    py::throw_error_already_set();
+  }
+
+  // 我们需要在持有GIL的同时删除回调。
+  using Deleter = carla::PythonUtil::AcquireGILDeleter;
+  auto callback_ptr = carla::SharedPtr<py::object>{new py::object(callback), Deleter()};
+
+  // 做一个lambda回调。
+  return [callback=std::move(callback_ptr)](auto message) {
+    carla::PythonUtil::AcquireGIL lock;
+    try {
+      py::call<void>(callback->ptr(), py::object(message));
+    } catch (const py::error_already_set &) {
+      PyErr_Print();
+    }
+  };
+}
+
+//template <typename T>
+static void PrintListItem_(std::ostream &out, const T &item) {
+  out << item;
+}
+
+template <typename T>
+static void PrintListItem_(std::ostream &out, const carla::SharedPtr<T> &item) {
+  if (item == nullptr) {
+    out << "nullptr";
+  } else {
+    out << *item;
+  }
+}
+
+template <typename Iterable>
+static std::ostream &PrintList(std::ostream &out, const Iterable &list) {
+  out << '[';
+  if (!list.empty()) {
+    auto it = list.begin();
+    PrintListItem_(out, *it);
+    for (++it; it != list.end(); ++it) {
+      out << ", ";
+      PrintListItem_(out, *it);
+    }
+  }
+  out << ']';
+  return out;
+}
+
+namespace std {
+
+  template <typename T>
+  std::ostream &operator<<(std::ostream &out, const std::vector<T> &vector_of_stuff) {
+    return PrintList(out, vector_of_stuff);
+  }
+
+  template <typename T, typename H>
+  std::ostream &operator<<(std::ostream &out, const std::pair<T,H> &data) {
+    out << "(" << data.first << "," << data.second << ")";
+    return out;
+  }
+
+} // namespace std
+
+static carla::time_duration TimeDurationFromSeconds(double seconds) {
+  size_t ms = static_cast<size_t>(1e3 * seconds);
+  return carla::time_duration::milliseconds(ms);
+}
+
+// MakeCallback函数，用于创建一个回调相关的对象（最终返回一个lambda表达式形式的回调函数），参数是boost::python::object类型的回调对象
+static auto MakeCallback(boost::python::object callback) {
+  namespace py = boost::python;
+  // 确保回调实际上是可调用的。
+  if (!PyCallable_Check(callback.ptr())) {
+    PyErr_SetString(PyExc_TypeError, "callback argument must be callable!");
+    py::throw_error_already_set();
+  }
+
+  // 我们需要在持有GIL的同时删除回调。
+  using Deleter = carla::PythonUtil::AcquireGILDeleter;
+  // 创建一个指向boost::python::object的智能指针，将传入的回调对象包装进去，并关联上述定义的资源释放器，用于后续正确管理回调对象的生命周期
+  auto callback_ptr = carla::SharedPtr<py::object>{new py::object(callback), Deleter()};
+
+  // 做一个lambda回调。
+  return [callback=std::move(callback_ptr)](auto message) {
+    // 获取Python全局解释器锁（GIL），保证在执行Python相关代码时的线程安全
+    carla::PythonUtil::AcquireGIL lock;
+    try {
+      // 使用boost::python库的功能，调用之前传入且经过包装的回调对象，传入message参数（这里假设message能适配回调函数的参数要求），并执行回调逻辑
+      py::call<void>(callback->ptr(), py::object(message));
+    } catch (const py::error_already_set &) {
+      PyErr_Print();
+    }
+  };
+}
+
+// 通用的打印列表项函数模板，简单将元素输出到流
+template <typename T>
+static void PrintListItem_(std::ostream &out, const T &item) {
+  out << item;
+}
+
+// 针对carla::SharedPtr<T>类型列表项的打印函数模板，若指针为空输出"nullptr"，否则输出所指对象内容
+template <typename T>
+static void PrintListItem_(std::ostream &out, const carla::SharedPtr<T> &item) {
+  if (item == nullptr) {
+    out << "nullptr";
+  } else {
+    out << *item;
+  }
+}
+
+// 打印可迭代容器元素的函数模板，将容器元素按格式输出到流（用方括号括起，元素间用逗号空格分隔）
+template <typename Iterable>
+static std::ostream &PrintList(std::ostream &out, const Iterable &list) {
+  out << '[';
+  if (!list.empty()) {
+    auto it = list.begin();
+    PrintListItem_(out, *it);
+    for (++it; it != list.end(); ++it) {
+      out << ", ";
+      PrintListItem_(out, *it);
+    }
+  }
+  out << ']';
+  return out;
+}
+
+namespace std {
+  // 重载<<操作符，使std::vector<T>能按自定义格式（调用PrintList）输出到流
+  template <typename T>
+  std::ostream &operator<<(std::ostream &out, const std::vector<T> &vector_of_stuff) {
+    return PrintList(out, vector_of_stuff);
+  }
+
+// 重载<<操作符，使std::pair<T, H>按特定格式（括号括起两元素用逗号分隔）输出到流
+template <typename T, typename H>
+  std::ostream &operator<<(std::ostream &out, const std::pair<T,H> &data) {
+    out << "(" << data.first << "," << data.second << ")";
+    return out;
+  }
+
+} // namespace std
+
+static carla::time_duration TimeDurationFromSeconds(double seconds) {
+  size_t ms = static_cast<size_t>(1e3 * seconds);
+  return carla::time_duration::milliseconds(ms);
+}
+
+// 创建一个回调函数，先检查传入的回调对象是否可调用，若不可调用则抛异常，
+// 然后包装回调对象成智能指针并关联资源释放操作，最后返回一个lambda表达式形式的回调函数
 static auto MakeCallback(boost::python::object callback) {
   namespace py = boost::python;
   // 确保回调实际上是可调用的。
