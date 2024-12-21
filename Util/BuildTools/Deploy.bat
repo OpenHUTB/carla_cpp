@@ -41,33 +41,9 @@ for /f %%i in ('git describe --tags --dirty --always') do set REPOSITORY_TAG=%%i
 if not defined REPOSITORY_TAG goto error_carla_version
 echo REPOSITORY_TAG = !REPOSITORY_TAG!
 #如果版本号变量未定义，跳转到error_carla_version标签处处理错误情况
-rem Last package data
-set CARLA_DIST_FOLDER=%~dp0%\Build\UE4Carla
-set PACKAGE=CARLA_%REPOSITORY_TAG%.zip
-set PACKAGE_PATH=%CARLA_DIST_FOLDER%\%PACKAGE%
-set PACKAGE2=AdditionalMaps_%REPOSITORY_TAG%.zip
-set PACKAGE_PATH2=%CARLA_DIST_FOLDER%\%PACKAGE2%
+ echo deploy name = !DEPLOY_NAME!
+  rem 删除临时文件
 
-set S3_PREFIX=s3://carla-releases/Windows
-
-set LATEST_DEPLOY_URI=!S3_PREFIX!/Dev/CARLA_Latest.zip
-set LATEST_DEPLOY_URI2=!S3_PREFIX!/Dev/AdditionalMaps_Latest.zip
-
-rem Check for TAG version
-echo %REPOSITORY_TAG% | findstr /R /C:"^[0-9]*\.[0-9]*\.[0-9]*.$" 1>nul
-if %errorlevel% == 0 (
-  echo Detected release version with tag %REPOSITORY_TAG%
-  set DEPLOY_NAME=CARLA_%REPOSITORY_TAG%.zip
-  set DEPLOY_NAME2=AdditionalMaps_%REPOSITORY_TAG%.zip
-) else (
-  echo Detected non-release version with tag %REPOSITORY_TAG%
-  set S3_PREFIX=!S3_PREFIX!/Dev
-  git log --pretty=format:%%cd_%%h --date=format:%%Y%%m%%d -n 1 > tempo1234
-  set /p DEPLOY_NAME= < tempo1234
-  del tempo1234
-  set DEPLOY_NAME=!DEPLOY_NAME!.zip
-  echo deploy name = !DEPLOY_NAME!
-  
   git log --pretty=format:%%h -n 1 > tempo1234
   set /p DEPLOY_NAME2= < tempo1234
   del tempo1234
