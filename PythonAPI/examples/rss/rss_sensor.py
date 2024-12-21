@@ -38,7 +38,7 @@ class RssStateInfo(object):
         else:
             self.actor_calculation_mode = ad.rss.map.RssMode.Structured
 
-        # calculate distance to other vehicle
+        # 以下代码用于计算与其他车辆的距离
         object_state = None
         for scene in world_model.scenes:
             if scene.object.objectId == rss_state.objectId:
@@ -63,9 +63,9 @@ class RssStateInfo(object):
 
     def get_actor(self, world):
         if self.rss_state.objectId == 18446744073709551614:
-            return None # "Border Left"
+            return None # 如果对象ID表示边界左（特定的标识值），返回None
         elif self.rss_state.objectId == 18446744073709551615:
-            return None # "Border Right"
+            return None # 如果对象ID表示边界右（特定的标识值），返回None
         else:
             return world.get_actor(self.rss_state.objectId)
 
@@ -95,7 +95,7 @@ class RssSensor(object):
         self.state_visualizer = state_visualizer
         self.change_to_unstructured_position_map = dict()
 
-        # get max steering angle
+        # 获取父参与者的物理控制信息，用于后续获取最大转向角度
         physics_control = parent_actor.get_physics_control()
         self._max_steer_angle = 0.0
         for wheel in physics_control.wheels:
@@ -137,7 +137,7 @@ class RssSensor(object):
                 self.sensor.append_routing_target(target)
 
     def _on_actor_constellation_request(self, actor_constellation_data):
-        # print("_on_actor_constellation_request: ", str(actor_constellation_data))
+        # 打印接收到的参与者星座请求信息
 
         actor_constellation_result = carla.RssActorConstellationResult()
         actor_constellation_result.rss_calculation_mode = ad.rss.map.RssMode.NotRelevant
