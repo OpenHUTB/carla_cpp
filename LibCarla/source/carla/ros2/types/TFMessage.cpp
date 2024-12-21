@@ -90,7 +90,6 @@ bool tf2_msgs::msg::TFMessage::operator ==(
 {
     return (m_transforms == x.m_transforms);
 }
-
 bool tf2_msgs::msg::TFMessage::operator !=(
         const TFMessage& x) const
 {
