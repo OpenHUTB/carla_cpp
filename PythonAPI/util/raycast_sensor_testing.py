@@ -441,24 +441,38 @@ def one_run(args, client):
     return prof_str
 
 
-
+#定义一个函数，通常是程序的主入口点
 def main():
+    #创建了一个 ArgumentParser 对象，用于解析命令行参数
+    #description 参数提供了对这个参数解析器用途的描述
     argparser = argparse.ArgumentParser(
         description='CARLA Sensor tutorial')
+    #添加参数--host
     argparser.add_argument(
+        #命令行参数的名称
         '--host',
+        #定义了在帮助信息中显示的参数名称
         metavar='H',
+        #定义了参数的默认值
         default='127.0.0.1',
+        #提供了参数的帮助信息
         help='IP of the host server (default: 127.0.0.1)')
+    #添加参数-p 或 --port
     argparser.add_argument(
         '-p', '--port',
         metavar='P',
         default=2000,
+        #type 被指定为 int，表示这个参数应该是一个整数
         type=int,
+        #help 提供了参数的帮助信息
         help='TCP port to listen to (default: 2000)')
+    #添加参数--sync
     argparser.add_argument(
+        #这个参数没有默认值，当在命令行中指定 --sync 时，其值为 True
         '--sync',
+        #如果指定了这个参数，其值为 True，否则为 False
         action='store_true',
+        #help 提供了参数的帮助信息
         help='Synchronous mode execution')
     argparser.add_argument(
         '--async',
