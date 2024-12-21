@@ -3,12 +3,12 @@
 import argparse
 import glob
 import os
-import sys
+import sys# 导入sys模块，用于访问与Python解释器紧密相关的变量和函数
 
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
-        sys.version_info.major,
-        sys.version_info.minor,
+        sys.version_info.major,# 获取Python的主版本号
+        sys.version_info.minor,# 获取Python的次版本号
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
 except IndexError:
     pass
