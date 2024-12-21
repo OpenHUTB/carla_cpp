@@ -42,7 +42,9 @@ using namespace std::string_literals;
 template <typename RangeT, typename RNG>
 static auto &RandomChoice(const RangeT &range, RNG &&generator) {
     EXPECT_TRUE(range.size() > 0u);  // 断言值一定大于0，确保可迭代范围中有元素可供选择，否则就抛出异常
+    //定义一个均匀分布的随机整数生成器，范围从0到range.size()-1
     std::uniform_int_distribution<size_t> dist{0u, range.size() - 1u};
+    //返回范围内随机选择的元素
     return range[dist(std::forward<RNG>(generator))];
 }
 
