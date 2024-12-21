@@ -29,6 +29,17 @@ import random
 # 定义一个函数，用于获取特定的坐标变换（Transform）信息，这个变换通常用于在Carla模拟环境中设置物体的位置和姿态。
 # 参数vehicle_location表示车辆的位置（carla.Location类型），angle表示角度（单位可能是角度制，后续会转换为弧度制），d是一个距离参数，默认值为6.4，用于计算相对位置。
 def get_transform(vehicle_location, angle, d=6.4):
+    """
+    根据车辆位置、角度和距离参数计算并返回一个坐标变换（Transform）对象。
+
+    参数:
+    vehicle_location (carla.Location): 车辆的位置信息。
+    angle (float): 角度值（通常为角度制，会在函数内转换为弧度制）。
+    d (float, 可选): 距离参数，默认值为6.4，用于计算相对位置。
+
+    返回:
+    carla.Transform: 包含计算得出的位置和特定旋转信息的坐标变换对象。
+    """
     # 将输入的角度从角度制转换为弧度制，因为在后续的三角函数计算中需要使用弧度制。
     a = math.radians(angle)
     # 根据给定的距离d、角度a（已转换为弧度制）以及车辆的位置vehicle_location，计算出一个新的位置location。
@@ -39,6 +50,9 @@ def get_transform(vehicle_location, angle, d=6.4):
 
 
 def main():
+    """
+    主函数，用于连接Carla服务器，在模拟世界中创建车辆并控制观察者视角围绕车辆旋转观察。
+    """
     # 创建一个Carla客户端对象，连接到本地主机（'localhost'）的2000端口，这是与Carla服务器进行通信的入口点。
     client = carla.Client('localhost', 2000)
     # 设置客户端的超时时间为2.0秒，意味着如果客户端向服务器发送请求后，在2.0秒内没有收到服务器的响应，就会判定此次操作超时，避免程序长时间无响应地等待。
