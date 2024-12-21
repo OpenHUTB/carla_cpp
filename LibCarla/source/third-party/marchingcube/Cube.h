@@ -111,6 +111,7 @@ namespace MeshReconstruction
   }
 
   Cube::Cube(Rect3 const &space, Fun3s const &sdf)
+// 定义一个名为 Cube 的构造函数，接受两个参数：space 和 sdf
   {
     auto mx = space.min.x;
     auto my = space.min.y;

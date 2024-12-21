@@ -1,11 +1,12 @@
----
+---# 定义模块名称
 - module_name: carla
-  classes:
+# 定义模块中的类
+  classes:# 定义一个类：Vector2D
   - class_name: Vector2D
-    # - DESCRIPTION ------------------------
+    # 类的描述-----------------------
     doc: >
       Helper class to perform 2D operations.
-    # - PROPERTIES -------------------------
+    # 类的属性-------------------------
     instance_variables:
     - var_name: x
       type: float
@@ -85,12 +86,12 @@
       doc: >
         Returns the axis values for the vector parsed as string.
     # --------------------------------------
-
+# 定义一个类：Vector3D
   - class_name: Vector3D
-    # - DESCRIPTION ------------------------
+    # 类的描述------------------
     doc: >
       Helper class to perform 3D operations.
-    # - PROPERTIES -------------------------
+    # 类的属性--------------
     instance_variables:
     - var_name: x
       type: float

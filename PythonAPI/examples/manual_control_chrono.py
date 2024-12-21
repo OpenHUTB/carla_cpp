@@ -879,29 +879,33 @@ class World(object):
 # -- FadingText ----------------------------------------------------------------
 # ==============================================================================
 
-
+# FadingText类用于创建一个随时间逐渐消失的文本
 class FadingText(object):
     def __init__(self, font, dim, pos):
+        # 初始化字体、尺寸和位置属性
         self.font = font
         self.dim = dim
         self.pos = pos
-        self.seconds_left = 0
-        self.surface = pygame.Surface(self.dim)
+        self.seconds_left = 0# 剩余时间，初始为0
+        self.surface = pygame.Surface(self.dim)# 创建一个pygame表面对象，用于绘制文本
 
     def set_text(self, text, color=(255, 255, 255), seconds=2.0):
-        text_texture = self.font.render(text, True, color)
-        self.surface = pygame.Surface(self.dim)
-        self.seconds_left = seconds
+         # 设置要显示的文本、颜色和显示时间
+        text_texture = self.font.render(text, True, color)# 使用字体渲染文本
+        self.surface = pygame.Surface(self.dim) # 重新创建表面对象
+        self.seconds_left = seconds# 设置文本显示的总时间
         self.surface.fill((0, 0, 0, 0))
         self.surface.blit(text_texture, (10, 11))
 
     def tick(self, _, clock):
+       # 每帧更新，减少剩余时间，并调整透明度
         delta_seconds = 1e-3 * clock.get_time()
         self.seconds_left = max(0.0, self.seconds_left - delta_seconds)
         self.surface.set_alpha(500.0 * self.seconds_left)
 
     def render(self, display):
-        display.blit(self.surface, self.pos)
+        # 将文本表面绘制到显示屏幕上     
+        display.blit(self.surface, self.pos)# 将表面绘制到指定位置
 
 
 # ==============================================================================
@@ -912,13 +916,14 @@ class FadingText(object):
 class HelpText(object):
     """Helper class to handle text output using pygame"""
     def __init__(self, font, width, height):
-        lines = __doc__.split('\n')
+         # 初始化帮助文本类
+        lines = __doc__.split('\n')# 将文档字符串按行分割
         self.font = font
         self.line_space = 18
-        self.dim = (780, len(lines) * self.line_space + 12)
+        self.dim = (780, len(lines) * self.line_space + 12)# 计算帮助文本的尺寸
         self.pos = (0.5 * width - 0.5 * self.dim[0], 0.5 * height - 0.5 * self.dim[1])
-        self.seconds_left = 0
-        self.surface = pygame.Surface(self.dim)
+        self.seconds_left = 0# 剩余时间，初始为0
+        self.surface = pygame.Surface(self.dim)# 创建pygame表面对象
         self.surface.fill((0, 0, 0, 0))
         for n, line in enumerate(lines):
             text_texture = self.font.render(line, True, (255, 255, 255))
@@ -927,33 +932,37 @@ class HelpText(object):
         self.surface.set_alpha(220)
 
     def toggle(self):
+        # 切换帮助文本的显示状态
         self._render = not self._render
 
     def render(self, display):
+          # 将帮助文本绘制到显示屏幕上
         if self._render:
             display.blit(self.surface, self.pos)
-
+            # 如果渲染状态为True，则绘制表面
 
 # ==============================================================================
 # -- CollisionSensor -----------------------------------------------------------
 # ==============================================================================
 
-
+# CollisionSensor类用于检测和记录与其它actor的碰撞事件
 class CollisionSensor(object):
     def __init__(self, parent_actor, hud):
-        self.sensor = None
+        self.sensor = None # 初始化传感器属性
         self.history = []
         self._parent = parent_actor
         self.hud = hud
-        world = self._parent.get_world()
+        world = self._parent.get_world() # 获取碰撞传感器的蓝图
         bp = world.get_blueprint_library().find('sensor.other.collision')
-        self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent)
+        self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent)# 创建并附加碰撞传感器
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
+            # 使用弱引用避免循环引用，并监听碰撞事件
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda event: CollisionSensor._on_collision(weak_self, event))
 
     def get_collision_history(self):
+                 # 获取碰撞历史记录
         history = collections.defaultdict(int)
         for frame, intensity in self.history:
             history[frame] += intensity
@@ -961,15 +970,17 @@ class CollisionSensor(object):
 
     @staticmethod
     def _on_collision(weak_self, event):
+                 # 静态方法处理碰撞事件
         self = weak_self()
         if not self:
             return
-        actor_type = get_actor_display_name(event.other_actor)
-        self.hud.notification('Collision with %r' % actor_type)
+        actor_type = get_actor_display_name(event.other_actor)# 获取碰撞的actor类型
+        self.hud.notification('Collision with %r' % actor_type)# 在HUD上显示碰撞通知
         impulse = event.normal_impulse
-        intensity = math.sqrt(impulse.x**2 + impulse.y**2 + impulse.z**2)
+        intensity = math.sqrt(impulse.x**2 + impulse.y**2 + impulse.z**2) # 计算碰撞强度
         self.history.append((event.frame, intensity))
-        if len(self.history) > 4000:
+                  # 将碰撞记录添加到历史记录
+        if len(self.history) > 4000:# 如果历史记录超过4000条，移除最早的记录
             self.history.pop(0)
 
 
@@ -977,7 +988,7 @@ class CollisionSensor(object):
 # -- LaneInvasionSensor --------------------------------------------------------
 # ==============================================================================
 
-
+# LaneInvasionSensor类用于检测和记录车道侵扰事件
 class LaneInvasionSensor(object):
     def __init__(self, parent_actor, hud):
         self.sensor = None
@@ -988,45 +999,49 @@ class LaneInvasionSensor(object):
         self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent)
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
+            # 使用弱引用避免循环引用，并监听车道侵扰事件
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda event: LaneInvasionSensor._on_invasion(weak_self, event))
 
     @staticmethod
-    def _on_invasion(weak_self, event):
+    def _on_invasion(weak_self, event): 
+                 # 静态方法处理车道侵扰事件
         self = weak_self()
         if not self:
             return
         lane_types = set(x.type for x in event.crossed_lane_markings)
-        text = ['%r' % str(x).split()[-1] for x in lane_types]
+        text = ['%r' % str(x).split()[-1] for x in lane_types] # 获取侵扰的车道标记类型
         self.hud.notification('Crossed line %s' % ' and '.join(text))
-
+        # 在HUD上显示车道侵扰通知
 
 # ==============================================================================
 # -- GnssSensor ----------------------------------------------------------------
 # ==============================================================================
 
-
+ # GnssSensor类用于检测和记录GPS传感器事件
 class GnssSensor(object):
     def __init__(self, parent_actor):
         self.sensor = None
         self._parent = parent_actor
-        self.lat = 0.0
-        self.lon = 0.0
-        world = self._parent.get_world()
+        self.lat = 0.0 # 存储纬度
+        self.lon = 0.0 # 存储经度
+        world = self._parent.get_world()# 获取CARLA世界对象
         bp = world.get_blueprint_library().find('sensor.other.gnss')
-        self.sensor = world.spawn_actor(bp, carla.Transform(carla.Location(x=1.0, z=2.8)), attach_to=self._parent)
+        self.sensor = world.spawn_actor(bp, carla.Transform(carla.Location(x=1.0, z=2.8)), attach_to=self._parent)# 创建并附加GPS传感器
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
+        # 使用弱引用避免循环引用，并监听GPS事件
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda event: GnssSensor._on_gnss_event(weak_self, event))
 
     @staticmethod
-    def _on_gnss_event(weak_self, event):
+    def _on_gnss_event(weak_self, event): 
+                 # 静态方法处理GPS事件
         self = weak_self()
         if not self:
             return
-        self.lat = event.latitude
-        self.lon = event.longitude
+        self.lat = event.latitude # 更新纬度
+        self.lon = event.longitude# 更新经度
 
 
 # ==============================================================================

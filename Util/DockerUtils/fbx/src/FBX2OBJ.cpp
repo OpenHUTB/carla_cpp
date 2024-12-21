@@ -102,26 +102,31 @@ bool LoadScene(
     {
         FbxString error = lImporter->GetStatus().GetErrorString();
         printf("Call to FbxImporter::Initialize() failed.");
+        //打印返回的错误信息
         printf("Error returned: %s", error.Buffer());
+        //如果导入器的状态码表示文件版本无效
         if (lImporter->GetStatus().GetCode() == FbxStatus::eInvalidFileVersion)
         {
+            //打印文件的FBX SDK版本号
             printf("FBX version number for this FBX SDK is %d.%d.%d",
                 lSDKMajor, lSDKMinor, lSDKRevision);
+            //打印文件的FBX版本号
             printf("FBX version number for file %s is %d.%d.%d",
                 pFilename, lFileMajor, lFileMinor, lFileRevision);
         }
+        //返回false，表示导入失败
         return false;
     }
     if (lImporter->IsFBX())
     {
         // 设置导入时的属性，如不导入材质、纹理、链接等
-        IOS_REF.SetBoolProp(IMP_FBX_MATERIAL,        false);
-        IOS_REF.SetBoolProp(IMP_FBX_TEXTURE,         false);
-        IOS_REF.SetBoolProp(IMP_FBX_LINK,            false);
-        IOS_REF.SetBoolProp(IMP_FBX_SHAPE,           false);
-        IOS_REF.SetBoolProp(IMP_FBX_GOBO,            false);
-        IOS_REF.SetBoolProp(IMP_FBX_ANIMATION,       false);
-        IOS_REF.SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, false);
+        IOS_REF.SetBoolProp(IMP_FBX_MATERIAL,        false);//这一行代码的目的是设置与IMP_FBX_MATERIAL相关的布尔属性为false。
+        IOS_REF.SetBoolProp(IMP_FBX_TEXTURE,         false);//这里是设置与纹理相关的属性。
+        IOS_REF.SetBoolProp(IMP_FBX_LINK,            false);//是设置链接相关的属性为不导入（false）。
+        IOS_REF.SetBoolProp(IMP_FBX_SHAPE,           false);//这是针对形状相关属性的设置，将其设置为不导入。
+        IOS_REF.SetBoolProp(IMP_FBX_GOBO,            false);//把与IMP_FBX_GOBO相关的属性设置为不导入。
+        IOS_REF.SetBoolProp(IMP_FBX_ANIMATION,       false);//表示在导入时不导入动画相关的内容。
+        IOS_REF.SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, false);//设置全局设置相关的属性为不导入。
     }
     // 导入场景
     lStatus = lImporter->Import(pScene);
@@ -204,11 +209,11 @@ int main(int argc, char **argv)
         return 0;
     }
     // 创建不同的材质
-    gMatRoad     = CreateMaterial(lScene, "road");
-    gMatSidewalk = CreateMaterial(lScene, "sidewalk");
-    gMatCross    = CreateMaterial(lScene, "crosswalk");
-    gMatGrass    = CreateMaterial(lScene, "grass");
-    gMatBlock    = CreateMaterial(lScene, "block");
+    gMatRoad     = CreateMaterial(lScene, "road");//创建材质，它接受两个参数，lScene可能是一个场景对象（也许是这个材质将被应用到的场景），"road"是材质的名称。
+    gMatSidewalk = CreateMaterial(lScene, "sidewalk");//创建名为sidewalk的材质并存储到gMatSidewalk变量中。
+    gMatCross    = CreateMaterial(lScene, "crosswalk");//创建名为crosswalk的材质并存储到gMatCross变量。
+    gMatGrass    = CreateMaterial(lScene, "grass");//创建名为grass的材质并存储到gMatGrass变量。
+    gMatBlock    = CreateMaterial(lScene, "block");//创建名为block的材质并存储到gMatBlock变量。
     // 导出场景
     r = SaveScene(gSdkManager, lScene, argv[2], -1, false);
     if(!r)

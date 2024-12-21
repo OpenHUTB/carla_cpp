@@ -152,15 +152,15 @@ class SensorManager:
             return lidar
         
         elif sensor_type == 'SemanticLiDAR':
-            lidar_bp = self.world.get_blueprint_library().find('sensor.lidar.ray_cast_semantic')
-            lidar_bp.set_attribute('range', '100')
+            lidar_bp = self.world.get_blueprint_library().find('sensor.lidar.ray_cast_semantic')# 从蓝图库中获取语义激光雷达的蓝图
+            lidar_bp.set_attribute('range', '100')# 设置激光雷达的属性，例如范围设置为100米
 
-            for key in sensor_options:
+            for key in sensor_options:# 遍历sensor_options字典，为激光雷达设置其他属性
                 lidar_bp.set_attribute(key, sensor_options[key])
 
-            lidar = self.world.spawn_actor(lidar_bp, transform, attach_to=attached)
+            lidar = self.world.spawn_actor(lidar_bp, transform, attach_to=attached)#在仿真世界中生成激光雷达对象，并设置其位置和附着对象
 
-            lidar.listen(self.save_semanticlidar_image)
+            lidar.listen(self.save_semanticlidar_image)# 让激光雷达监听并保存语义激光雷达图像
 
             return lidar
         

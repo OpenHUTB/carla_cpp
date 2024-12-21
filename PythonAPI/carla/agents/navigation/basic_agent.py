@@ -26,7 +26,13 @@ from agents.tools.misc import (get_speed, is_within_distance,  # 获取速度，
 # 从agents.tools.hints模块导入ObstacleDetectionResult和TrafficLightDetectionResult类型提示
 from agents.tools.hints import ObstacleDetectionResult, TrafficLightDetectionResult
 
-
+# 定义一个名为BasicAgent的类
+#class BasicAgent:
+# """
+#BasicAgent类实现了一个能够在场景中导航的代理（Agent）。
+#这个代理遵循交通信号灯和其他车辆的规则，但会忽略停车标志（stop signs） 
+#该类提供了多个函数，用于指定代理必须遵循的路线，
+# 以及根据需求更改其参数，以实现不同的驾驶模式。
 class BasicAgent:
     """
     BasicAgent implements an agent that navigates the scene.
@@ -34,7 +40,6 @@ class BasicAgent:
     It has several functions available to specify the route that the agent must follow,
     as well as to change its parameters in case a different driving mode is desired.
     """
-
     def __init__(self, vehicle, target_speed=20, opt_dict={}, map_inst=None, grp_inst=None):
         """
         Initialization the agent parameters, the local and the global planner.
