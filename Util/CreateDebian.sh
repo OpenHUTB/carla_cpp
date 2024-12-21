@@ -21,7 +21,7 @@
 
 # 检查脚本的第一个参数（即CARLA的版本号）是否为空
 if [[ -z $1 ]]; then
-  # 如果第一个参数为空，则打印当前日期和时间，并提示缺少必要的参数：CARLA的版本号
+  # 如果第一个参数为空，则打印当前日期和时间，并提示缺少必要的参数：CARLA的版本号。
   echo "$(date) - Missing mandatory arguments: CARLA version. "
   # 打印当前日期和时间，以及脚本的正确使用方法
   echo "$(date) - Usage: ./CreateDebian.sh [version]. "
