@@ -31,9 +31,11 @@ except ImportError:
     from Queue import Queue as Queue
     from Queue import Empty
 
+# 定义一个自定义异常 DeterminismError，用于处理场景中可能出现的确定性问题
 class DeterminismError(Exception):
     pass
 
+# 导入 Carla 模拟器中的命令，以便在场景中使用
 SpawnActor = carla.command.SpawnActor
 FutureActor = carla.command.FutureActor
 ApplyTargetVelocity = carla.command.ApplyTargetVelocity
@@ -55,6 +57,7 @@ class Scenario(object):
         self.active = True
         self.snapshots = []
 
+         # 重新加载世界设置，并可选择设置观众的位置
         self.reload_world(settings, spectator_tr)
 
         # Init timestamp
@@ -71,7 +74,7 @@ class Scenario(object):
         if self.save_snapshots_mode:
             self.snapshots.append(np.empty((0,11), float))
 
-    def wait(self, frames=100):
+    def wait(self, frames=100):              #函数用于等待一定帧数，此处为等待100帧
         for _i in range(0, frames):
             self.world.tick()
 
@@ -80,16 +83,19 @@ class Scenario(object):
             actor[1].destroy()               #用于销毁一个游戏中的某个资源
         self.active = False                  #将被销毁的资源标记为非活动状态
 
-    def reload_world(self, settings = None, spectator_tr = None):
-        if settings is not None:
-            self.world.apply_settings(settings)
-        self.wait(5)
+   def reload_world(self, settings=None, spectator_tr=None):
+    # 检查是否提供了设置（settings）。如果提供了，就应用这些设置到世界（world）中。
+    if settings is not None:
+        self.world.apply_settings(settings)  # 应用新的世界设置
 
-        self.client.reload_world(False)
-        # workaround: give time to UE4 to clean memory after loading (old assets)
-        time.sleep(5)
+    self.wait(5)  # 调用实例方法wait，暂停5秒钟
 
-        self.wait(5)
+    self.client.reload_world(False)  # 调用客户端的重新加载世界方法，参数False可能表示不重载资源
+
+    # 注释说明接下来的代码行是为了解决一个临时性问题：给UE4（虚幻引擎4）一些时间来清理加载后（旧资源）的内存。
+    time.sleep(5)  # 使程序暂停5秒，以便内存清理完成
+
+    self.wait(5)  # 再次调用实例方法wait，暂停5秒钟
 
     def reset_spectator(self, spectator_tr):
         spectator = self.world.get_spectator()
@@ -186,20 +192,21 @@ class TwoCarsHighSpeedCollision(Scenario):  # 继承Scenario类，定义一个�
         self.wait(1)
 
 
-class ThreeCarsSlowSpeedCollision(Scenario):
+class ThreeCarsSlowSpeedCollision(Scenario):# 继承Scenario类，定义一个低速碰撞场景
+     # 初始化场景的方法
     def init_scene(self, prefix, settings = None, spectator_tr = None):
-        super(ThreeCarsSlowSpeedCollision, self).init_scene(prefix, settings, spectator_tr)
+        super(ThreeCarsSlowSpeedCollision, self).init_scene(prefix, settings, spectator_tr)  # 调用基类的初始化方法
 
-        blueprint_library = self.world.get_blueprint_library()
-
+        blueprint_library = self.world.get_blueprint_library()# 获取蓝图库
+        # 获取车辆蓝图
         vehicle00_bp = blueprint_library.filter("prius")[0]
         vehicle01_bp = blueprint_library.filter("a2")[0]
         vehicle02_bp = blueprint_library.filter("lincoln")[0]
-
+         # 设置车辆的初始位置和朝向
         vehicle00_tr = carla.Transform(carla.Location(110, -255, 0.05), carla.Rotation(yaw=180))
         vehicle01_tr = carla.Transform(carla.Location(53, -257, 0.00), carla.Rotation(yaw=0))
         vehicle02_tr = carla.Transform(carla.Location(85, -230, 0.04), carla.Rotation(yaw=-90))
-
+         # 创建一个批量请求，用于生成两个车辆并设置它们的目标速度
         batch = [
             SpawnActor(vehicle00_bp, vehicle00_tr)
             .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(-15, 0, 0))),
@@ -222,32 +229,36 @@ class ThreeCarsSlowSpeedCollision(Scenario):
 
 
 class CarBikeCollision(Scenario):
+    # 初始化场景的方法，接收前缀、设置和观察者变换矩阵作为参数
     def init_scene(self, prefix, settings = None, spectator_tr = None):
+        #调用父类的init_scene方法，传递相同的参数
         super(CarBikeCollision, self).init_scene(prefix, settings, spectator_tr)
-
+        #从世界环境中获取蓝图库，蓝图库包含了可以生成的所有物体的蓝图
         blueprint_library = self.world.get_blueprint_library()
-
+        # 从蓝图库中筛选出汽车的蓝图
         car_bp = blueprint_library.filter("mkz_2017")[0]
+         # 从蓝图库中筛选出自行车（gazelle）的蓝图
         bike_bp = blueprint_library.filter("gazelle")[0]
-
+        # 定义汽车的初始位置和朝向，位置为(50, -255, 0.04)，朝向为0度（
         car_tr = carla.Transform(carla.Location(50, -255, 0.04), carla.Rotation(yaw=0))
+        # 定义自行车的初始位置和朝向
         bike_tr = carla.Transform(carla.Location(85, -245, 0.04), carla.Rotation(yaw=-90))
 
         batch = [
             SpawnActor(car_bp, car_tr)
-            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(30, 0, 0))),
+            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(30, 0, 0))), # 生成汽车，并设置其目标速度为(30, 0, 0)
             SpawnActor(bike_bp, bike_tr)
-            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(0, -12, 0)))
+            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(0, -12, 0))) # 生成自行车，并设置其目标速度为(0, -12, 0)（即向左12米每秒）
         ]
 
         responses = self.client.apply_batch_sync(batch)
-
+      # 检查响应中的每个元素，确保加入组件被正确创建
         veh_ids = [x.actor_id for x in responses]
         veh_refs = [self.world.get_actor(x) for x in veh_ids]
 
         if (0 in veh_ids) or (None in veh_refs):
             self.fail("%s: The test cars could not be correctly spawned" % (bp_veh.id))
-
+        # 将组件添加到场景中
         self.add_actor(veh_refs[0], "Car")
         self.add_actor(veh_refs[1], "Bike")
 
@@ -275,7 +286,7 @@ class CarWalkerCollision(Scenario):
         ]
 
         responses = self.client.apply_batch_sync(batch)
-
+        # 检查响应中的每个元素，确保被正确创建
         veh_ids = [x.actor_id for x in responses]
         veh_refs = [self.world.get_actor(x) for x in veh_ids]
 

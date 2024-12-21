@@ -1,16 +1,16 @@
 @REM @echo off
 setlocal enabledelayedexpansion
 
-rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
+rem 通过启用x64 Visual C++工具集的cmd运行此脚本。
 
 set LOCAL_PATH=%~dp0
-set FILE_N=-[%~n0]:
+set FILE_N=-[%~n0]：
 
-rem Print batch params (debug purpose)
+rem 打印批处理参数（调试目的）
 echo %FILE_N% [Batch params]: %*
 
 rem ============================================================================
-rem -- Parse arguments ---------------------------------------------------------
+rem -- 解析参数 ---------------------------------------------------------
 rem ============================================================================
 
 set DOC_STRING=Build LibCarla.
@@ -20,7 +20,7 @@ set BUILD_STREETMAP=false
 set GIT_PULL=true
 set CURRENT_STREETMAP_COMMIT=260273d6b7c3f28988cda31fd33441de7e272958
 set STREETMAP_BRANCH=master
-set STREETMAP_REPO=https://github.com/carla-simulator/StreetMap.git
+set STREETMAP_REPO=https://github.com/carla-simulator/StreetMap.git 
 
 :arg-parse
 if not "%1"=="" (
@@ -52,7 +52,7 @@ if not "%1"=="" (
 )
 
 rem ============================================================================
-rem -- Local Variables ---------------------------------------------------------
+rem -- 本地变量 ---------------------------------------------------------
 rem ============================================================================
 
 rem Set the visual studio solution directory
@@ -60,7 +60,7 @@ rem
 set CARLA_PLUGINS_PATH=%ROOT_PATH:/=\%Unreal\CarlaUE4\Plugins\
 set CARLA_STREETMAP_PLUGINS_PATH=%ROOT_PATH:/=\%Unreal\CarlaUE4\Plugins\StreetMap\
 
-rem Build STREETMAP
+rem 构建STREETMAP
 
 if  %GIT_PULL% == true (
     if not exist "%CARLA_STREETMAP_PLUGINS_PATH%" git clone -b %STREETMAP_BRANCH% %STREETMAP_REPO% %CARLA_STREETMAP_PLUGINS_PATH%
@@ -69,11 +69,11 @@ if  %GIT_PULL% == true (
     git checkout %CURRENT_STREETMAP_COMMIT%
 )
 
-
+rem 如果需要执行构建操作，则跳转到成功消息
 goto success
 
 rem ============================================================================
-rem -- Messages and Errors -----------------------------------------------------
+rem -- 消息和错误 -----------------------------------------------------
 rem ============================================================================
 
 :success

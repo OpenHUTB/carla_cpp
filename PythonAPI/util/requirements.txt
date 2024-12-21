@@ -1,6 +1,6 @@
-numpy; python_version < '3.0'
-numpy==1.18.4; python_version >= '3.0'
-psutil
-py-cpuinfo
-pygame
-python-tr
+numpy; python_version < '3.0'  # 如果Python版本小于3.0，安装numpy库（使用默认适配该Python版本范围的版本，未明确指定具体版本号）
+numpy==1.18.4; python_version >= '3.0'  # 如果Python版本大于等于3.0，则安装指定版本为1.18.4的numpy库，这可能是项目针对Python 3.x环境测试通过或者适配的特定版本
+psutil  # 需要安装psutil库，这里未指定版本号，通常会安装最新的稳定版本，psutil常用于获取系统相关的信息，比如进程、CPU、内存等使用情况
+py-cpuinfo  # 需要安装py-cpuinfo库，用于获取CPU相关的详细信息，同样未指定版本，默认安装最新可用版本
+pygame  # 需要安装pygame库，该库常用于游戏开发、创建图形界面以及处理用户交互等相关场景，未指定版本会安装其最新稳定版本
+python-tr  # 此处可能是想要安装名为python-tr的库，但看起来不太完整，不清楚具体用途，也未指定版本号，按常规会尝试安装最新版本（前提是有对应的包存在于可用的包索引中）

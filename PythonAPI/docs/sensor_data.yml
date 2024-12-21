@@ -1,7 +1,7 @@
----
+---# 定义了一个名为 carla 的模块，其中包含了 CARLA 模拟器中传感器数据相关的类。
 - module_name: carla
   # - CLASSES ------------------------------
-  classes:
+  classes:# 定义了一个名为 SensorData 的基类，用于包含由 carla.Sensor 生成的数据对象。
   - class_name: SensorData
     # - DESCRIPTION ------------------------
     doc: >
@@ -19,22 +19,22 @@
         - Cooperative awareness messages V2X sensor: carla.CAMEvent.<br>
         - Custom V2X messages V2X sensor: carla.CustomV2XEvent.
     # - PROPERTIES -------------------------
-    instance_variables:
+    instance_variables:#定义了类的实例变量。
     - var_name: frame
-      type: int
-      doc: >
+      type: int#表示帧计数的数据类型为整数。
+      doc: >#描述了这个变量，表示数据生成时的帧计数。
         Frame count when the data was generated.
     - var_name: timestamp
       type: float
       var_units: seconds
       doc: >
         Simulation-time when the data was generated.
-    - var_name: transform
+    - var_name: transform#表示传感器转换的数据类型为CARLA中的变换类型。
       type: carla.Transform
       doc: >
         Sensor's transform when the data was generated.
     # --------------------------------------
-
+ # 定义了一个名为 ColorConverter 的类，包含应用于 carla.Image 的转换模式。
   - class_name: ColorConverter
     # - DESCRIPTION ------------------------
     doc: >
@@ -53,7 +53,7 @@
     - var_name: Raw
       doc: >
         No changes applied to the image. Used by the [RGB camera](ref_sensors.md#rgb-camera).
-
+# 定义了一个名为 CityObjectLabel 的枚举类，包含用于过滤 carla.World.get_level_bbs() 返回的边界框的不同标签。
   - class_name: CityObjectLabel
     # - DESCRIPTION ------------------------
     doc: >
@@ -91,7 +91,7 @@
     - var_name: Water
     - var_name: Terrain
     - var_name: Any
-
+# 定义了一个名为 Image 的类，表示由相机传感器检索的 32 位 BGRA 颜色图像。
   - class_name: Image
     parent: carla.SensorData
     # - DESCRIPTION ------------------------
@@ -159,7 +159,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
+# 定义了一个名为 OpticalFlowImage 的类，表示一个光流图像，包含 2D 浮点（32 位）向量，表示视野中检测到的光流。
   - class_name: OpticalFlowImage
     parent: carla.SensorData
     # - DESCRIPTION ------------------------
@@ -211,7 +211,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
+ # 定义了一个名为 LidarMeasurement 的类，定义了由 sensor.lidar.ray_cast 检索的 LIDAR 数据。
   - class_name: LidarMeasurement
     parent: carla.SensorData
     # - DESCRIPTION ------------------------
@@ -270,8 +270,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
-
+# 定义了一个名为 LidarDetection 的类，包含在 carla.LidarMeasurement 中的数据。
   - class_name: LidarDetection
     # - DESCRIPTION ------------------------
     doc: >
@@ -292,7 +291,7 @@
     methods:
     - def_name: __str__
     # --------------------------------------
-
+ # 定义了一个名为 SemanticLidarMeasurement 的类，定义了由 sensor.lidar.ray_cast_semantic 检索的语义 LIDAR 数据。
   - class_name: SemanticLidarMeasurement
     parent: carla.SensorData
     # - DESCRIPTION ------------------------
@@ -351,7 +350,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
+# 定义了一个名为 SemanticLidarDetection 的类，包含在 carla.SemanticLidarMeasurement 中的数据。
   - class_name: SemanticLidarDetection
     # - DESCRIPTION ------------------------
     doc: >
@@ -382,7 +381,7 @@
     methods:
     - def_name: __str__
     # --------------------------------------
-
+# 定义了一个名为 CollisionEvent 的类，定义了 sensor.other.collision 的碰撞数据。
   - class_name: CollisionEvent
     parent: carla.SensorData
     # - DESCRIPTION ------------------------
@@ -403,7 +402,7 @@
       var_units: N*s
       doc: >
         Normal impulse resulting of the collision.
-
+# 定义了一个名为 ObstacleDetectionEvent 的类，定义了 sensor.other.obstacle 的障碍物数据。
   - class_name: ObstacleDetectionEvent
     parent: carla.SensorData
     # - DESCRIPTION ------------------------

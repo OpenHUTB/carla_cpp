@@ -218,7 +218,7 @@ class TestASyncLidar(SmokeTest):
         sensors.append(Sensor(self, SensorType.LIDAR, att_l00))
         sensors.append(Sensor(self, SensorType.LIDAR, att_l01))
         sensors.append(Sensor(self, SensorType.LIDAR, att_l02))
-
+        # 暂停程序3秒，等待一些可能的后台处理完成，确保数据稳定
         time.sleep(3.0)
         #销毁所有传感器
         for sensor in sensors:

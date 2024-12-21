@@ -1,14 +1,13 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
-//
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+//版权所有(c) 2017，巴塞罗那自治大学（UAB）的计算机视觉中心（CVC）
+//本作品依据 MIT 许可证的条款获得许可
+// 如需获取副本，请访问<https://opensource.org/licenses/MIT>.
 
 #ifdef LIBCARLA_NO_EXCEPTIONS
-
+// 包含CARLA异常处理相关的头文件
 #include <carla/Exception.h>
+// 包含CARLA日志记录相关的头文件
 #include <carla/Logging.h>
-
+// 包含C++标准库中的异常处理头文件
 #include <exception>
 
 namespace carla {
@@ -28,7 +27,8 @@ namespace carla {
 #include "Random.h"
 
 namespace util {
-
+  // 定义一个线程局部变量 _engine，其类型为std::mt19937_64（一个基于梅森旋转算法的64位伪随机数生成器），
+  // 并使用std::random_device来初始化它，以获取一个初始的随机种子
   thread_local std::mt19937_64 Random::_engine((std::random_device())());
 
 } // namespace util
