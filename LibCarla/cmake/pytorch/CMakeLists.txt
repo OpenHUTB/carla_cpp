@@ -50,16 +50,18 @@ if (LIBCARLA_BUILD_RELEASE)
 endif()
 # 结束LIBCARLA_BUILD_RELEASE配置的代码块
 if (LIBCARLA_BUILD_DEBUG)
-
+# 如果是LIBCARLA_BUILD_DEBUG配置
   add_library(carla_pytorch_debug STATIC ${libcarla_pytorch_sources})
-
+# 创建carla_pytorch_debug静态
   target_include_directories(carla_pytorch_debug SYSTEM PRIVATE
       "${BOOST_INCLUDE_PATH}"
       "${RPCLIB_INCLUDE_PATH}")
-
+# 为目标carla_pytorch_debug添加包含目录
   install(TARGETS carla_pytorch_debug DESTINATION lib OPTIONAL)
-
+# 安装carla_pytorch_debug目标到lib目录，可选安装
   set_target_properties(carla_pytorch_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
+# 设置carla_pytorch_debug目标的编译标志为CMAKE_CXX_FLAGS_DEBUG
   target_compile_definitions(carla_pytorch_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
-
+# 为目标添加编译定义，启用Boost ASIO的调试功能
 endif()
+# 结束LIBCARLA_BUILD_DEBUG配置的代码块
