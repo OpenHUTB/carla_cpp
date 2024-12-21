@@ -8,11 +8,14 @@
 
 """Blocks until the simulator is ready or the time-out is met."""
 
+#导入三个模块
 import glob
 import os
 import sys
 
+#异常处理结构
 try:
+    #确保能够正确导入carla模块
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
@@ -21,12 +24,16 @@ except IndexError:
     pass
 
 
+#尝试导入carla模块，以便在后续代码中使用carla相关的功能
 import carla
 
+#argparse模块用于处理命令行参数
 import argparse
+#这个模块用于处理时间相关的操作
 import time
 
 
+#将主要的逻辑放在这样一个函数中，以便组织代码和在脚本的其他部分调用
 def main():
     argparser = argparse.ArgumentParser(
         description=__doc__)

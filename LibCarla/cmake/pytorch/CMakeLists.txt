@@ -59,7 +59,7 @@ if (LIBCARLA_BUILD_RELEASE)
 endif()
 
 if (LIBCARLA_BUILD_DEBUG)
-
+ # 添加一个名为 carla_pytorch_debug 的静态库，并指定其源文件
   add_library(carla_pytorch_debug STATIC ${libcarla_pytorch_sources})
 #命令来添加调试版本的源文件和包含目录
   target_include_directories(carla_pytorch_debug SYSTEM PRIVATE
