@@ -224,6 +224,7 @@ class PIDLateralController:
         # 获取车辆-目标路点的向量
         if self._offset != 0:
             # 将路点侧移
+            # 如果有偏移量，将目标路点按偏移方向侧移（通过右向量和偏移量计算新位置）
             w_tran = waypoint.transform
             r_vec = w_tran.get_right_vector()
             w_loc = w_tran.location + carla.Location(x=self._offset*r_vec.x,
@@ -235,16 +236,21 @@ class PIDLateralController:
                           w_loc.y - ego_loc.y,
                           0.0])
 
+        # 计算向量的模长乘积，用于后续角度计算的分母部分，若为0则做特殊处理
         wv_linalg = np.linalg.norm(w_vec) * np.linalg.norm(v_vec)
         if wv_linalg == 0:
             _dot = 1
         else:
+            # 计算两向量夹角的余弦值，通过点积除以模长乘积得到，并限制在[-1.0, 1.0]范围，再求反余弦得到夹角
             _dot = math.acos(np.clip(np.dot(w_vec, v_vec) / (wv_linalg), -1.0, 1.0))
+        # 计算两向量的叉积，用于判断方向关系
         _cross = np.cross(v_vec, w_vec)
         if _cross[2] < 0:
             _dot *= -1.0
 
+        # 将当前夹角值添加到误差缓冲区
         self._e_buffer.append(_dot)
+        # 根据误差缓冲区中的数据计算微分项和积分项，至少有两个值时才能正常计算微分项和积分项
         if len(self._e_buffer) >= 2:
             _de = (self._e_buffer[-1] - self._e_buffer[-2]) / self._dt
             _ie = sum(self._e_buffer) * self._dt
@@ -252,6 +258,7 @@ class PIDLateralController:
             _de = 0.0
             _ie = 0.0
 
+        # 利用PID公式（比例、微分、积分项结合）计算并限制方向盘控制值在[-1.0, 1.0]范围，然后返回
         return np.clip((self._k_p * _dot) + (self._k_d * _de) + (self._k_i * _ie), -1.0, 1.0)
 
     def change_parameters(self, K_P, K_I, K_D, dt):

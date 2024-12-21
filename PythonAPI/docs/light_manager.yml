@@ -1,8 +1,8 @@
----
+---# 定义了一个名为 carla 的模块，其中包含了管理 CARLA 模拟器中灯光的类。
 - module_name: carla
 
-  # - CLASSES ------------------------------
-  classes:
+ # 定义了模块中的类----------------
+  classes:# 定义了一个名为 LightGroup 的类，用于将场景中的灯光分类到不同的组中。
   - class_name: LightGroup
     # - DESCRIPTION ------------------------
     doc: >
@@ -20,7 +20,7 @@
     - var_name: Building
     - var_name: Other
     # --------------------------------------
-
+# 定义了一个名为 LightState 的类，代表灯光的所有变量，除了标识符和位置，这些应该是静态的。
   - class_name: LightState
     # - DESCRIPTION ------------------------
     doc: >
@@ -75,7 +75,7 @@
         doc: >
           Swith of the light. Default is `False`, light is off.
     # --------------------------------------
-
+# 定义了一个名为 Light 的类，用于展示场景中存在的灯光（除了车辆灯光）。
   - class_name: Light
     # - DESCRIPTION ------------------------
     doc: >
@@ -159,7 +159,7 @@
       - param_name: light_state
         type: carla.LightState
     # --------------------------------------
-
+# 定义了一个名为 LightManager 的类，用于处理场景中的灯光。
   - class_name: LightManager
     # - DESCRIPTION ------------------------
     doc: >

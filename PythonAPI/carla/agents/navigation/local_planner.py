@@ -257,13 +257,18 @@ class LocalPlanner:
             self._compute_next_waypoints(k=self._min_waypoint_queue_length)
 
         # Purge the queue of obsolete waypoints
+        #获取车辆位置
         veh_location = self._vehicle.get_location()
+        #进行单位换算
         vehicle_speed = get_speed(self._vehicle) / 3.6
+        #设置最小距离
         self._min_distance = self._base_min_distance + self._distance_ratio * vehicle_speed
 
         num_waypoint_removed = 0
+        #遍历路点队列
         for waypoint, _ in self._waypoints_queue:
 
+            #判断队列中的每一个路点
             if len(self._waypoints_queue) - num_waypoint_removed == 1:
                 min_distance = 1  # Don't remove the last waypoint until very close by
             else:
@@ -274,13 +279,20 @@ class LocalPlanner:
             else:
                 break
 
+        #条件判断
         if num_waypoint_removed > 0:
+            #根据要移出的路点数量进行循环操作
             for _ in range(num_waypoint_removed):
+                #每次循环都会移动一个队首元素
                 self._waypoints_queue.popleft()
 
+        #根据是否存在waypoint来决定车辆的控制方式
         # Get the target waypoint and move using the PID controllers. Stop if no target waypoint
+        #没有目标路点
         if len(self._waypoints_queue) == 0:
+            #创建一个carla.VehicleControl对象
             control = carla.VehicleControl()
+            #设置控制对象的各个参数
             control.steer = 0.0
             control.throttle = 0.0
             control.brake = 1.0

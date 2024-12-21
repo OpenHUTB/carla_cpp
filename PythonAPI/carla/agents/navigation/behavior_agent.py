@@ -16,6 +16,7 @@ from agents.navigation.behavior_types import Cautious, Aggressive, Normal
 
 from agents.tools.misc import get_speed, positive
 
+# 定义行为代理类，继承自BasicAgent，用于实现具有不同行为特性的车辆代理控制逻辑
 class BehaviorAgent(BasicAgent):
     """
   BehaviorAgent实现了一个代理，它能够在场景中导航以到达给定的目标目的地，通过计算到达目的地的最短可能路径。
@@ -33,18 +34,19 @@ class BehaviorAgent(BasicAgent):
             :param behavior: type of agent to apply
         """
 
+       # 调用父类（BasicAgent）的构造函数来初始化一些基础属性和功能
         super().__init__(vehicle, opt_dict=opt_dict, map_inst=map_inst, grp_inst=grp_inst)
         self._look_ahead_steps = 0
 
         # 车辆信息
-        self._speed = 0
-        self._speed_limit = 0
-        self._direction = None
-        self._incoming_direction = None
-        self._incoming_waypoint = None
-        self._min_speed = 5
-        self._behavior = None
-        self._sampling_resolution = 4.5
+        self._speed = 0  # 当前车辆速度
+        self._speed_limit = 0 # 当前道路的限速
+        self._direction = None  # 车辆行驶的目标道路选项（例如车道跟随、变道等）
+        self._incoming_direction = None  # 即将进入路段的行驶方向
+        self._incoming_waypoint = None  # 即将进入路段对应的路点
+        self._min_speed = 5 # 最小速度设定
+        self._behavior = None # 代理行为对象，具体类型根据传入的behavior参数确定
+        self._sampling_resolution = 4.5 # 采样分辨率，可能用于路径规划等采样相关操作
 
         # 代理行为参数
         if behavior == 'cautious':
@@ -60,15 +62,20 @@ class BehaviorAgent(BasicAgent):
         """
         这个方法更新了关于自车（ego vehicle）基于周围世界的信息。
         """
+        # 获取当前车辆的速度
         self._speed = get_speed(self._vehicle)
+        # 获取当前车辆所在道路的限速，并设置到局部规划器中
         self._speed_limit = self._vehicle.get_speed_limit()
         self._local_planner.set_speed(self._speed_limit)
+        # 获取车辆当前的目标道路选项，如果为None则默认为车道跟随
         self._direction = self._local_planner.target_road_option
         if self._direction is None:
             self._direction = RoadOption.LANEFOLLOW
 
+        # 根据限速计算前瞻的步数，这里简单地以限速除以10来估算（具体数值可能需要根据实际情况调整）
         self._look_ahead_steps = int((self._speed_limit) / 10)
-
+     
+        # 获取即将进入路段的路点和行驶方向
         self._incoming_waypoint, self._incoming_direction = self._local_planner.get_incoming_waypoint_and_direction(
             steps=self._look_ahead_steps)
         if self._incoming_direction is None:
