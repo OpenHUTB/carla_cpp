@@ -12,9 +12,9 @@
 // 包含启用UE4宏的编译器指令
 #include <compiler/enable-ue4-macros.h>
 
-#include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
-#include "CarlaLight.generated.h"
+#include "CoreMinimal.h"//CoreMinimal.h是虚幻引擎的一个基础头文件。
+#include "Components/ActorComponent.h"//这表示这个源文件（假设是一个.cpp文件）正在包含ActorComponent.h头文件。
+#include "CarlaLight.generated.h"//这是一个自定义的头文件
 
 
 // 将carla的rpc枚举值转换为UE4的枚举值
