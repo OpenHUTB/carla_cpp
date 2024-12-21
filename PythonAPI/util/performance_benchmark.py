@@ -144,26 +144,28 @@ def define_sensors():
         print("Warning!! The list of sensors introduced is not valid. Using all available.")
 
   return list_sensor_specs
-
+#定义一个函数，目的是创建一个空列表list_env_specs，用于存储环境规格
 def define_environments():
   list_env_specs = []
-
+  #如果args.tm为True
   if args.tm:
+    #定义四种不同的环境规格
     env00 = {'vehicles': 10, 'walkers': 0}
     env01 = {'vehicles': 50, 'walkers': 50}
     env02 = {'vehicles': 250, 'walkers': 0}
     env03 = {'vehicles': 150, 'walkers': 50}
-
+    #将这四种环境规格依次添加到list_env_specs列表中
     list_env_specs.append(env00)
     list_env_specs.append(env01)
     list_env_specs.append(env02)
     list_env_specs.append(env03)
-
+  #如果args.tm为False
   else:
+    #只定义一种环境规格env00，有 1 辆车，0 个行人，并将其添加到list_env_specs列表中
     env00 = {'vehicles': 1, 'walkers': 0}
 
     list_env_specs.append(env00)
-
+  #函数返回list_env_specs列表
   return list_env_specs
 
 def define_maps(client):
