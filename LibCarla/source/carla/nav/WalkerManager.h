@@ -3,21 +3,23 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+// 这是一个头文件保护指令，确保该头文件在被多次包含时，其内容只会被编译一次
 #pragma once
-
+// 包含Carla项目中定义的不可复制（NonCopyable）相关的头文件，可能用于禁止类对象被拷贝，
+// 以此来确保某些对象在使用过程中的唯一性或者符合特定的资源管理逻辑
 #include "carla/NonCopyable.h"
-
-#include "carla/client/TrafficLight.h"
-#include "carla/client/World.h"
-#include "carla/geom/Location.h"
-#include "carla/nav/WalkerEvent.h"
-#include "carla/rpc/ActorId.h"
+// 包含Carla客户端中与交通信号灯（TrafficLight）相关的头文件，用于处理交通信号灯的状态、属性等相关操作
+#include "carla/client/TrafficLight.h" // 包含Carla客户端中与整个虚拟世界（World）相关的头文件，可能用于访问世界中的各种实体、获取世界相关的属性等操作
+#include "carla/client/World.h"// 包含Carla项目中几何位置（Location）相关的头文件，用于表示虚拟世界中的点坐标等几何信息，比如行人、车辆等的位置
+#include "carla/geom/Location.h"// 包含Carla项目中导航（nav）相关的行人事件（WalkerEvent）头文件，可能用于定义行人在行走过程中遇到的各种事件类型
+#include "carla/nav/WalkerEvent.h"// 包含Carla项目中远程过程调用（RPC）相关的演员（Actor）标识符（ActorId）头文件，用于唯一标识虚拟世界中的各种实体（如行人、车辆等）
+#include "carla/rpc/ActorId.h"// 包含Carla项目中远程过程调用（RPC）相关的交通信号灯状态（TrafficLightState）头文件，用于表示交通信号灯的不同状态（如红灯、绿灯等）
 #include "carla/rpc/TrafficLightState.h"
-
+// 定义在Carla项目的nav命名空间下，表明这些类、结构体和函数是与导航相关功能实现的一部分，特别是针对行人导航方面
 namespace carla {
 namespace nav {
-
+// 前向声明Navigation类，告知编译器后续会定义该类，但在此处先不用知道其具体实现细节，
+    // 这样可以解决类之间相互包含时可能出现的编译顺序问题
     class Navigation;
 
     // 定义行人状态的枚举类型
@@ -63,30 +65,40 @@ namespace nav {
 // 以防止 WalkerManager 对象被意外地拷贝或赋值。
   public:
 
-    WalkerManager();    // WalkerManager 的构造函数。
-    // 它是一个无参构造函数，用于初始化 WalkerManager 对象。
-    // 构造函数体可能包含了对成员变量的初始化，或者设置了某些初始状态。
+    WalkerManager();   // 构造函数，用于创建WalkerManager对象，初始化该对象的内部状态，
+                         // 可能会对成员变量进行初始化或者设置一些默认值，为后续管理行人及其路径做好准备。
+  
     ~WalkerManager();    // WalkerManager 的析构函数。
     // 它是一个虚函数（尽管这里没有使用 virtual 关键字，但在实际设计中可能会是虚的，
     // 特别是如果 WalkerManager 是多态基类的话），用于在 WalkerManager 对象被销毁时执行清理操作。
     // 析构函数体可能释放了对象在生命周期中分配的资源，或者执行了其他必要的清理工作。
 
-    // 设置导航模块的函数
+ // 设置导航模块的函数，接受一个Navigation类型的指针参数，用于将外部定义的导航模块关联到WalkerManager对象中，
+        // 使得WalkerManager可以利用该导航模块来进行行人路径规划等相关操作
     void SetNav(Navigation *nav);
-
-    // 设置模拟器的引用，允许访问 API 函数
+// 设置模拟器的引用，接受一个指向weak_ptr<carla::client::detail::Simulator>类型的参数，
+        // 通过这种弱引用的方式，可以访问模拟器相关的API函数，同时避免了循环引用等可能导致的资源管理问题，
+        // 方便在管理行人时与模拟器进行交互，比如获取世界状态、更新实体信息等操作
+   
     void SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator);
-
-    // 创建新的行人路线
+// 创建新的行人路线，接受一个ActorId类型的参数，用于唯一标识要创建路线的行人，
+        // 函数内部会根据相关逻辑为该行人创建合适的行走路线，返回一个布尔值表示创建操作是否成功
+   
     bool AddWalker(ActorId id);
-
-    // 移除现有的行人路线
+// 移除现有的行人路线，同样接受一个ActorId类型的参数，用于指定要移除路线的行人，
+        // 函数会清理与该行人路线相关的各种资源和信息，返回布尔值表示移除操作是否成功
+  
     bool RemoveWalker(ActorId id);
+// 更新所有的行人路线，接受一个双精度浮点数类型的参数delta，该参数可能表示时间间隔等信息，
+        // 函数会根据这个时间间隔以及行人的当前状态、路线等信息，对所有行人的路线进行更新，比如调整行人位置、处理事件等操作，
+        // 返回布尔值表示更新操作是否成功
 
-    // 更新所有的行人路线
     bool Update(double delta);
+// 从当前路径点设置新的行人路线，有两个重载版本：
 
-    // 从当前路径点设置新的行人路线
+        // 第一个重载版本只接受一个ActorId类型的参数，用于指定要设置路线的行人，
+        // 函数会基于当前路径点等相关信息为该行人重新规划路线，返回布尔值表示操作是否成功
+   
     bool SetWalkerRoute(ActorId id);// SetWalkerRoute 函数的一个重载版本，它接受一个参数：
 // ActorId id - 一个标识符，用于唯一指定要设置路线的行人（Walker）。
 // 这个函数的作用是设置指定行人的路线，但具体的路线信息（如起点、途经点、终点等）
@@ -118,13 +130,18 @@ namespace nav {
 
     // 获取所有交通灯的路径点
     void GetAllTrafficLightWaypoints();
-
-    // 执行特定事件的处理
+// 执行特定事件的处理，接受一个ActorId类型的参数用于指定行人，一个WalkerInfo类型的引用参数用于获取和更新行人的信息，
+        // 以及一个双精度浮点数类型的参数delta（可能表示时间间隔等信息），
+        // 函数会根据行人当前遇到的事件以及相关状态，执行相应的处理逻辑，比如等待交通灯、通过路口等操作，返回处理结果（EventResult类型，具体类型定义可能在别处）
+  
     EventResult ExecuteEvent(ActorId id, WalkerInfo &info, double delta);
-
-    std::unordered_map<ActorId, WalkerInfo> _walkers;
-    std::vector<std::pair<SharedPtr<carla::client::TrafficLight>, carla::geom::Location>> _traffic_lights;
-    Navigation *_nav { nullptr };
+// 使用无序映射（unordered_map）数据结构来存储每个行人（以ActorId作为键）对应的行人信息（WalkerInfo结构体），
+        // 方便快速查找、添加、删除和更新每个行人的相关信息
+    std::unordered_map<ActorId, WalkerInfo> _walkers;// 使用向量（vector）数据结构来存储交通灯相关的信息，每个元素是一个包含交通灯共享指针（SharedPtr<carla::client::TrafficLight>）
+        // 和对应的地理位置（carla::geom::Location）的pair结构体，用于管理和查询交通灯及其位置信息
+    std::vector<std::pair<SharedPtr<carla::client::TrafficLight>, carla::geom::Location>> _traffic_lights;// 指向Navigation对象的指针，用于关联外部的导航模块，初始化为nullptr，后续通过SetNav函数进行赋值
+    Navigation *_nav { nullptr };// 使用弱引用（weak_ptr）来存储指向模拟器（Simulator）对象的指针，避免强引用可能导致的循环引用问题，
+        // 同时又能通过该弱引用在需要时访问模拟器相关的API函数
     std::weak_ptr<carla::client::detail::Simulator> _simulator;
   };
 

@@ -1185,132 +1185,144 @@ PUGI__NS_BEGIN
 	private:
 		unsigned char _data;
 	};
+// PUGI__NS_END 和 PUGI__NS_BEGIN 是命名空间结束和开始的宏，用于创建一个命名空间。
+// 这样可以避免全局命名冲突，并组织代码结构。
 PUGI__NS_END
 #endif
 
 #ifdef PUGIXML_COMPACT
 namespace pugi
 {
-	struct xml_attribute_struct
-	{
-		xml_attribute_struct(impl::xml_memory_page* page): header(page, 0), namevalue_base(0)
-		{
-			PUGI__STATIC_ASSERT(sizeof(xml_attribute_struct) == 8);
-		}
+    // xml_attribute_struct 结构体表示一个 XML 属性。
+    struct xml_attribute_struct
+    {
+        // 构造函数初始化属性结构。
+        xml_attribute_struct(impl::xml_memory_page* page): header(page, 0), namevalue_base(0)
+        {
+            PUGI__STATIC_ASSERT(sizeof(xml_attribute_struct) == 8);  // 确保结构体大小为 8 字节。
+        }
 
-		impl::compact_header header;
+        impl::compact_header header;  // 紧凑模式下的头部信息。
 
-		uint16_t namevalue_base;
+        uint16_t namevalue_base;  // 名称和值的基础偏移量。
 
-		impl::compact_string<4, 2> name;
-		impl::compact_string<5, 3> value;
+        impl::compact_string<4, 2> name;  // 紧凑字符串，用于存储属性名。
+        impl::compact_string<5, 3> value;  // 紧凑字符串，用于存储属性值。
 
-		impl::compact_pointer<xml_attribute_struct, 6> prev_attribute_c;
-		impl::compact_pointer<xml_attribute_struct, 7, 0> next_attribute;
-	};
+        impl::compact_pointer<xml_attribute_struct, 6> prev_attribute_c;  // 前一个属性的指针。
+        impl::compact_pointer<xml_attribute_struct, 7, 0> next_attribute;  // 下一个属性的指针。
+    };
 
-	struct xml_node_struct
-	{
-		xml_node_struct(impl::xml_memory_page* page, xml_node_type type): header(page, type), namevalue_base(0)
-		{
-			PUGI__STATIC_ASSERT(sizeof(xml_node_struct) == 12);
-		}
+    // xml_node_struct 结构体表示一个 XML 节点。
+    struct xml_node_struct
+    {
+        // 构造函数初始化节点结构。
+        xml_node_struct(impl::xml_memory_page* page, xml_node_type type): header(page, type), namevalue_base(0)
+        {
+            PUGI__STATIC_ASSERT(sizeof(xml_node_struct) == 12);  // 确保结构体大小为 12 字节。
+        }
 
-		impl::compact_header header;
+        impl::compact_header header;  // 紧凑模式下的头部信息。
 
-		uint16_t namevalue_base;
+        uint16_t namevalue_base;  // 名称和值的基础偏移量。
 
-		impl::compact_string<4, 2> name;
-		impl::compact_string<5, 3> value;
+        impl::compact_string<4, 2> name;  // 紧凑字符串，用于存储节点名。
+        impl::compact_string<5, 3> value;  // 紧凑字符串，用于存储节点值。
 
-		impl::compact_pointer_parent<xml_node_struct, 6> parent;
+        impl::compact_pointer_parent<xml_node_struct, 6> parent;  // 父节点的指针。
 
-		impl::compact_pointer<xml_node_struct, 8, 0> first_child;
+        impl::compact_pointer<xml_node_struct, 8, 0> first_child;  // 第一个子节点的指针。
 
-		impl::compact_pointer<xml_node_struct,  9>    prev_sibling_c;
-		impl::compact_pointer<xml_node_struct, 10, 0> next_sibling;
+        impl::compact_pointer<xml_node_struct, 9> prev_sibling_c;  // 前一个兄弟节点的指针。
+        impl::compact_pointer<xml_node_struct, 10, 0> next_sibling;  // 下一个兄弟节点的指针。
 
-		impl::compact_pointer<xml_attribute_struct, 11, 0> first_attribute;
-	};
+        impl::compact_pointer<xml_attribute_struct, 11, 0> first_attribute;  // 第一个属性的指针。
+    };
 }
 #else
 namespace pugi
 {
-	struct xml_attribute_struct
-	{
-		xml_attribute_struct(impl::xml_memory_page* page): name(0), value(0), prev_attribute_c(0), next_attribute(0)
-		{
-			header = PUGI__GETHEADER_IMPL(this, page, 0);
-		}
+    // 在非紧凑模式下，xml_attribute_struct 和 xml_node_struct 结构体的定义与紧凑模式略有不同。
+    // 它们使用常规指针和简单的成员变量，而不是紧凑模式下的紧凑指针和字符串。
+    struct xml_attribute_struct
+    {
+        xml_attribute_struct(impl::xml_memory_page* page): name(0), value(0), prev_attribute_c(0), next_attribute(0)
+        {
+            header = PUGI__GETHEADER_IMPL(this, page, 0);  // 初始化头部信息。
+        }
 
-		uintptr_t header;
+        uintptr_t header;  // 头部信息。
 
-		char_t*	name;
-		char_t*	value;
+        char_t* name;  // 属性名。
+        char_t* value;  // 属性值。
 
-		xml_attribute_struct* prev_attribute_c;
-		xml_attribute_struct* next_attribute;
-	};
+        xml_attribute_struct* prev_attribute_c;  // 前一个属性的指针。
+        xml_attribute_struct* next_attribute;  // 下一个属性的指针。
+    };
 
-	struct xml_node_struct
-	{
-		xml_node_struct(impl::xml_memory_page* page, xml_node_type type): name(0), value(0), parent(0), first_child(0), prev_sibling_c(0), next_sibling(0), first_attribute(0)
-		{
-			header = PUGI__GETHEADER_IMPL(this, page, type);
-		}
+    struct xml_node_struct
+    {
+        xml_node_struct(impl::xml_memory_page* page, xml_node_type type): name(0), value(0), parent(0), first_child(0), prev_sibling_c(0), next_sibling(0), first_attribute(0)
+        {
+            header = PUGI__GETHEADER_IMPL(this, page, type);  // 初始化头部信息。
+        }
 
-		uintptr_t header;
+        uintptr_t header;  // 头部信息。
 
-		char_t* name;
-		char_t* value;
+        char_t* name;  // 节点名。
+        char_t* value;  // 节点值。
 
-		xml_node_struct* parent;
+        xml_node_struct* parent;  // 父节点的指针。
 
-		xml_node_struct* first_child;
+        xml_node_struct* first_child;  // 第一个子节点的指针。
 
-		xml_node_struct* prev_sibling_c;
-		xml_node_struct* next_sibling;
+        xml_node_struct* prev_sibling_c;  // 前一个兄弟节点的指针。
+        xml_node_struct* next_sibling;  // 下一个兄弟节点的指针。
 
-		xml_attribute_struct* first_attribute;
-	};
+        xml_attribute_struct* first_attribute;  // 第一个属性的指针。
+    };
 }
 #endif
 
 PUGI__NS_BEGIN
-	struct xml_extra_buffer
-	{
-		char_t* buffer;
-		xml_extra_buffer* next;
-	};
+    // xml_extra_buffer 结构体表示一个额外的缓冲区，用于存储 XML 文档中的字符数据。
+    struct xml_extra_buffer
+    {
+        char_t* buffer;  // 缓冲区指针。
+        xml_extra_buffer* next;  // 下一个额外缓冲区的指针。
+    };
 
-	struct xml_document_struct: public xml_node_struct, public xml_allocator
-	{
-		xml_document_struct(xml_memory_page* page): xml_node_struct(page, node_document), xml_allocator(page), buffer(0), extra_buffers(0)
-		{
-		}
+    // xml_document_struct 结构体表示一个 XML 文档，继承自 xml_node_struct 和 xml_allocator。
+    struct xml_document_struct: public xml_node_struct, public xml_allocator
+    {
+        xml_document_struct(xml_memory_page* page): xml_node_struct(page, node_document), xml_allocator(page), buffer(0), extra_buffers(0)
+        {
+        }
 
-		const char_t* buffer;
+        const char_t* buffer;  // 文档缓冲区指针。
 
-		xml_extra_buffer* extra_buffers;
+        xml_extra_buffer* extra_buffers;  // 额外缓冲区指针。
 
-	#ifdef PUGIXML_COMPACT
-		compact_hash_table hash;
-	#endif
-	};
+    #ifdef PUGIXML_COMPACT
+        compact_hash_table hash;  // 紧凑模式下的哈希表。
+    #endif
+    };
 
-	template <typename Object> inline xml_allocator& get_allocator(const Object* object)
-	{
-		assert(object);
+    // get_allocator 模板函数返回给定对象的分配器。
+    template <typename Object> inline xml_allocator& get_allocator(const Object* object)
+    {
+        assert(object);  // 确保对象非空。
 
-		return *PUGI__GETPAGE(object)->allocator;
-	}
+        return *PUGI__GETPAGE(object)->allocator;  // 返回对象所在页面的分配器。
+    }
 
-	template <typename Object> inline xml_document_struct& get_document(const Object* object)
-	{
-		assert(object);
+    // get_document 模板函数返回给定对象所属的文档。
+    template <typename Object> inline xml_document_struct& get_document(const Object* object)
+    {
+        assert(object);  // 确保对象非空。
 
-		return *static_cast<xml_document_struct*>(PUGI__GETPAGE(object)->allocator);
-	}
+        return *static_cast<xml_document_struct*>(PUGI__GETPAGE(object)->allocator);  // 返回对象所在页面的文档。
+    }
 PUGI__NS_END
 
 // Low-level DOM operations
