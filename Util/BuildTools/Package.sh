@@ -164,11 +164,11 @@ if ${DO_CARLA_RELEASE} ; then
   log "Adding extra files to CARLA package."
 
   pushd ${CARLA_ROOT_FOLDER} >/dev/null
-
+# 创建Import文件夹并复制版本号
   mkdir -p "${DESTINATION}/Import"
 
   echo "${REPOSITORY_TAG}" > ${DESTINATION}/VERSION
-
+# 复制文件到发布构建文件夹
   copy_if_changed "./LICENSE" "${DESTINATION}/LICENSE"
   copy_if_changed "./CHANGELOG.md" "${DESTINATION}/CHANGELOG"
   copy_if_changed "./Docs/release_readme.md" "${DESTINATION}/README"
@@ -176,31 +176,31 @@ if ${DO_CARLA_RELEASE} ; then
   copy_if_changed "./Util/Docker/Release.Dockerfile" "${DESTINATION}/Dockerfile"
   copy_if_changed "./Util/ImportAssets.sh" "${DESTINATION}/ImportAssets.sh"
   copy_if_changed "./Util/DockerUtils/dist/RecastBuilder" "${DESTINATION}/Tools/"
-
+ # 复制Python API文件
   copy_if_changed "./PythonAPI/carla/dist/*.egg" "${DESTINATION}/PythonAPI/carla/dist/"
   copy_if_changed "./PythonAPI/carla/dist/*.whl" "${DESTINATION}/PythonAPI/carla/dist/"
   copy_if_changed "./PythonAPI/carla/agents/" "${DESTINATION}/PythonAPI/carla/agents"
   copy_if_changed "./PythonAPI/carla/scene_layout.py" "${DESTINATION}/PythonAPI/carla/"
   copy_if_changed "./PythonAPI/carla/requirements.txt" "${DESTINATION}/PythonAPI/carla/"
-
+# 复制Python API示例文件
   copy_if_changed "./PythonAPI/examples/*.py" "${DESTINATION}/PythonAPI/examples/"
   copy_if_changed "./PythonAPI/examples/rss/*.py" "${DESTINATION}/PythonAPI/examples/rss/"
   copy_if_changed "./PythonAPI/examples/requirements.txt" "${DESTINATION}/PythonAPI/examples/"
-
+ # 复制Python API工具文件
   copy_if_changed "./PythonAPI/util/*.py" "${DESTINATION}/PythonAPI/util/"
   copy_if_changed "./PythonAPI/util/opendrive/" "${DESTINATION}/PythonAPI/util/opendrive/"
   copy_if_changed "./PythonAPI/util/requirements.txt" "${DESTINATION}/PythonAPI/util/"
-
+# 复制Co-Simulation文件夹
   copy_if_changed "./Co-Simulation/" "${DESTINATION}/Co-Simulation/"
-
+# 复制插件文件夹
   if [ -d "./Plugins/" ] ; then
     copy_if_changed "./Plugins/" "${DESTINATION}/Plugins/"
   fi
-
+# 复制Carla依赖库
   if [ -d "./Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies/lib" ] ; then
     cp -r "./Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies/lib" "${DESTINATION}/CarlaUE4/Plugins/Carla/CarlaDependencies"
   fi
-
+# 复制HDMaps文件夹
   copy_if_changed "./Unreal/CarlaUE4/Content/Carla/HDMaps/*.pcd" "${DESTINATION}/HDMaps/"
   copy_if_changed "./Unreal/CarlaUE4/Content/Carla/HDMaps/Readme.md" "${DESTINATION}/HDMaps/README"
 
