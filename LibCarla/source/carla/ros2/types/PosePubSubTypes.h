@@ -72,34 +72,52 @@ namespace geometry_msgs
          * @brief This class represents the TopicDataType of the type Pose defined by the user in the IDL file.
          * @ingroup POSE
          */
+// 定义一个名为PosePubSubType的类，它继承自eprosima::fastdds::dds::TopicDataType类
         class PosePubSubType : public eprosima::fastdds::dds::TopicDataType
         {
         public:
 
+// 定义一个类型别名，将类型名Pose作为该类内部使用的类型指代，方便后续代码中使用
             typedef Pose type;
 
+// 构造函数，使用eProsima_user_DllExport修饰，通常用于在动态链接库中导出该函数，方便外部调用
             eProsima_user_DllExport PosePubSubType();
 
+ // 析构函数，使用virtual关键字表示这是一个虚析构函数，且使用eProsima_user_DllExport修饰用于在动态链接库中导出，
+    // override关键字表明它重写了基类中的虚析构函数，用于在对象销毁时进行正确的资源清理等操作
             eProsima_user_DllExport virtual ~PosePubSubType() override;
 
+// 序列化函数，使用eProsima_user_DllExport修饰用于在动态链接库中导出，它接收要序列化的数据指针和一个用于存放序列化后负载的结构体指针，
+    // override关键字表明重写了基类中的相应虚函数，用于将给定的数据按照特定规则进行序列化，以便在网络等场景中传输
             eProsima_user_DllExport virtual bool serialize(
                     void* data,
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload) override;
 
+// 反序列化函数，使用eProsima_user_DllExport修饰用于在动态链接库中导出，接收序列化后的负载结构体指针以及用于存放反序列化后数据的指针，
+    // override关键字表明重写了基类中的相应虚函数，用于将接收到的序列化数据还原成原始的数据结构
             eProsima_user_DllExport virtual bool deserialize(
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload,
                     void* data) override;
 
+ // 获取序列化后数据大小的函数提供者函数，使用eProsima_user_DllExport修饰用于在动态链接库中导出，
+    // 接收一个数据指针，返回一个无符号32位整数的函数对象，override关键字表明重写了基类中的相应虚函数，
+    // 该函数主要用于获取给定数据序列化后的大小信息
             eProsima_user_DllExport virtual std::function<uint32_t()> getSerializedSizeProvider(
                     void* data) override;
 
+// 获取键值的函数，使用eProsima_user_DllExport修饰用于在动态链接库中导出，接收数据指针、实例句柄指针以及一个布尔值（用于指定是否强制使用MD5等相关操作），
+    // override关键字表明重写了基类中的相应虚函数，用于根据数据获取对应的键值，键值在一些数据关联、查找等操作中会起到重要作用
             eProsima_user_DllExport virtual bool getKey(
                     void* data,
                     eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
                     bool force_md5 = false) override;
 
+// 创建数据的函数，使用eProsima_user_DllExport修饰用于在动态链接库中导出，override关键字表明重写了基类中的相应虚函数，
+    // 该函数用于创建对应类型的数据对象，通常在需要初始化一个新的数据实例时调用
             eProsima_user_DllExport virtual void* createData() override;
 
+// 删除数据的函数，使用eProsima_user_DllExport修饰用于在动态链接库中导出，接收一个数据指针，
+    // override关键字表明重写了基类中的相应虚函数，用于释放由createData等方式创建的数据所占用的内存资源等
             eProsima_user_DllExport virtual void deleteData(
                     void* data) override;
 
