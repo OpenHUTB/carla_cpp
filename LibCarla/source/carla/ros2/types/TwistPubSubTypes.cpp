@@ -31,16 +31,32 @@ namespace geometry_msgs {
     namespace msg {
         TwistPubSubType::TwistPubSubType()
         {
+            // 设置类型的名称为 "geometry_msgs::msg::dds_::Twist_"，这是 ROS 2 中的 Twist 消息类型
             setName("geometry_msgs::msg::dds_::Twist_");
+
+            // 计算 Twist 类型的最大序列化大小
             auto type_size = Twist::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+
+            // 计算序列化数据的对齐（为了处理可能存在的子消息）
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);
+
+            // 将类型大小加上 4 字节的封装大小（ROS 2 消息通常采用封装格式）
+            m_typeSize = static_cast<uint32_t>(type_size) + 4;  // encapsulation
+
+            // 检查 Twist 类型是否定义了键值（key），并保存其状态
             m_isGetKeyDefined = Twist::isKeyDefined();
+
+            // 计算 Twist 类型键的最大序列化大小，如果大于 16 字节，则选择较大的键大小，否则选择 16 字节
             size_t keyLength = Twist::getKeyMaxCdrSerializedSize() > 16 ?
                     Twist::getKeyMaxCdrSerializedSize() : 16;
+
+            // 为键值缓冲区分配内存，存储最大可能的键长度
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+
+            // 初始化缓冲区内容为零，确保没有未初始化的数据
             memset(m_keyBuffer, 0, keyLength);
         }
+
 
         TwistPubSubType::~TwistPubSubType()
         {
@@ -51,33 +67,44 @@ namespace geometry_msgs {
         }
 
         bool TwistPubSubType::serialize(
-                void* data,
-                SerializedPayload_t* payload)
+                  void* data,
+                  SerializedPayload_t* payload)
         {
+            // 将传入的 void* 类型数据指针转换为 Twist 类型指针
             Twist* p_type = static_cast<Twist*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理原始数据缓冲区
+            // 将 payload->data 指针作为缓冲区，并使用 payload->max_size 作为缓冲区的最大大小
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
+
+            // 创建一个 eprosima::fastcdr::Cdr 对象，用于序列化数据
+            // 默认字节序，使用 DDS CDR 序列化格式
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+
+            // 设置封装格式（字节序）：如果是大端字节序，封装类型为 CDR_BE，否则为 CDR_LE
             payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+
+            // 序列化封装头（用于支持不同的数据序列化格式）
             ser.serialize_encapsulation();
 
             try
             {
-                // Serialize the object.
+                // 序列化实际的数据（Twist 对象）
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果内存不足，捕获异常并返回 false
                 return false;
             }
 
-            // Get the serialized length
+            // 获取序列化数据的长度，并设置到 payload->length 中
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+
+            // 返回 true 表示序列化成功
             return true;
         }
+
 
         bool TwistPubSubType::deserialize(
                 SerializedPayload_t* payload,
