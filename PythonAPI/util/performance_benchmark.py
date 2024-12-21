@@ -165,18 +165,23 @@ def define_environments():
     list_env_specs.append(env00)
 
   return list_env_specs
-
+#定义一个函数，主要功能是处理地图列表
 def define_maps(client):
+  #获取可用地图的完整路径列表，然后使用列表推导式将每个路径中的/Game/Carla/Maps/替换为空字符串
   maps = [m.replace('/Game/Carla/Maps/', '') for m in client.get_available_maps()]
+  #对处理后的地图名称列表进行排序
   maps = sorted(maps)
-
+  #如果args.maps不为None
   if args.maps is not None:
+    #检查args.maps中的所有元素是否都在maps列表中
     all_good = all(elem in maps for elem in args.maps)
+    #如果是，则将maps列表设置为args.maps并进行排序
     if all_good:
       maps = sorted(args.maps)
+    #如果不是，则打印警告信息，表示传入的地图列表无效，将继续使用所有可用地图
     else:
       print("Warning!! The list of maps introduced is not valid. Using all available.")
-
+  #函数返回处理后的地图列表
   return maps
 class CallBack(object):
     def __init__(self):
