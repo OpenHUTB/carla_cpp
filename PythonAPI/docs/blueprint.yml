@@ -165,10 +165,13 @@
 
   - class_name: ActorAttribute
     # - DESCRIPTION ------------------------
+    #描述
     doc: >
       CARLA provides a library of blueprints for actors that can be accessed as carla.BlueprintLibrary. Each of these blueprints has a series of attributes defined internally. Some of these are modifiable, others are not. A list of recommended values is provided for those that can be set.
     # - PROPERTIES -------------------------
+    #属性
     instance_variables:
+    变量名：id
     - var_name: id
       type: str
       doc: >
@@ -186,6 +189,7 @@
       doc: >
         The attribute's parameter type.
     # - METHODS ----------------------------
+    #方法
     methods:
     - def_name: as_bool
       doc: >

@@ -675,38 +675,44 @@ struct ProducerToken// 定义 ProducerToken 结构体，从名字推测它用于
   }
 
   // 禁用复制和分配
-  ProducerToken(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;
-  ProducerToken& operator=(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;
+  ProducerToken(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;// 定义ProducerToken类，这里通过一些特殊的宏（MOODYCAMEL_DELETE_FUNCTION）禁止了拷贝构造函数和赋值运算符的默认生成
+// 意味着这个类的对象不能通过拷贝构造或者赋值的常规方式来复制
+  ProducerToken& operator=(ProducerToken const&) MOODYCAMEL_DELETE_FUNCTION;// 声明赋值运算符为删除函数，禁止对该类对象进行赋值操作
 
 private:
-  template<typename T, typename Traits> friend class ConcurrentQueue;
-  friend class ConcurrentQueueTests;
+  template<typename T, typename Traits> friend class ConcurrentQueue;// 将ConcurrentQueue类模板（针对任意类型T和相关特性Traits）声明为友元，这样ConcurrentQueue类模板可以访问ProducerToken类的私有成员
+  friend class ConcurrentQueueTests;// 将ConcurrentQueueTests类声明为友元，该类可以访问ProducerToken类的私有成员，可能用于测试相关功能
 
 protected:
-  details::ConcurrentQueueProducerTypelessBase* producer;
+  details::ConcurrentQueueProducerTypelessBase* producer;// 指向一个无类型的并发队列生产者基础类的指针，用于后续在并发队列相关操作中涉及生产者的功能实现
 };
 
 
-struct ConsumerToken
+struct ConsumerToken// 定义ConsumerToken结构体，通常用于表示在并发队列消费者端相关操作的一些状态或标识信息
 {
   template<typename T, typename Traits>
-  explicit ConsumerToken(ConcurrentQueue<T, Traits>& q);
+  explicit ConsumerToken(ConcurrentQueue<T, Traits>& q);// 显式的构造函数模板，用于根据指定的并发队列（类型为ConcurrentQueue<T, Traits>）来构造ConsumerToken对象
+    // 可能在创建消费者相关标识时，初始化一些与该队列相关的属性等
 
   template<typename T, typename Traits>
-  explicit ConsumerToken(BlockingConcurrentQueue<T, Traits>& q);
+  explicit ConsumerToken(BlockingConcurrentQueue<T, Traits>& q);// 另一个显式的构造函数模板，用于根据指定的阻塞式并发队列（类型为BlockingConcurrentQueue<T, Traits>）来构造ConsumerToken对象
+    // 与上面不同的是针对阻塞式并发队列的情况进行相应初始化操作
 
-  ConsumerToken(ConsumerToken&& other) MOODYCAMEL_NOEXCEPT
+  ConsumerToken(ConsumerToken&& other) MOODYCAMEL_NOEXCEPT// 移动构造函数，用于将其他ConsumerToken对象（通过右值引用other接收）的资源转移到当前正在构造的对象中
+    // 这里按照成员变量逐个进行了初始化，实现了资源的高效转移，不会进行深拷贝等开销较大的操作，并且标记为不抛出异常（MOODYCAMEL_NOEXCEPT）
     : initialOffset(other.initialOffset), lastKnownGlobalOffset(other.lastKnownGlobalOffset), itemsConsumedFromCurrent(other.itemsConsumedFromCurrent), currentProducer(other.currentProducer), desiredProducer(other.desiredProducer)
   {
   }
 
-  inline ConsumerToken& operator=(ConsumerToken&& other) MOODYCAMEL_NOEXCEPT
+  inline ConsumerToken& operator=(ConsumerToken&& other) MOODYCAMEL_NOEXCEPT// 移动赋值运算符，用于将右值引用的其他ConsumerToken对象（other）的资源转移到当前对象
+    // 通过调用swap函数来交换两个对象的内部成员，实现资源的转移，返回当前对象的引用，同样标记为不抛出异常（MOODYCAMEL_NOEXCEPT）
   {
     swap(other);
     return *this;
   }
 
-  void swap(ConsumerToken& other) MOODYCAMEL_NOEXCEPT
+  void swap(ConsumerToken& other) MOODYCAMEL_NOEXCEPT// 交换函数，用于交换当前ConsumerToken对象与另一个ConsumerToken对象（other）的内部成员变量的值
+    // 通过标准库的std::swap来实现各个成员变量的交换，达到交换两个对象状态的目的，标记为不抛出异常（MOODYCAMEL_NOEXCEPT）
   {
     std::swap(initialOffset, other.initialOffset);
     std::swap(lastKnownGlobalOffset, other.lastKnownGlobalOffset);
@@ -830,21 +836,31 @@ public:
   // 根据您希望在任何给定时间可用的最小元素数量和每种生产者的最大并发数量，
   // 计算适当的预分配块数量。
 
-  ConcurrentQueue(size_t minCapacity, size_t maxExplicitProducers, size_t maxImplicitProducers)
-    : producerListTail(nullptr),
-    producerCount(0),
-    initialBlockPoolIndex(0),
-    nextExplicitConsumerId(0),
-    globalExplicitConsumerOffset(0)
+  ConcurrentQueue(size_t minCapacity, size_t maxExplicitProducers, size_t maxImplicitProducers)// ConcurrentQueue是一个类的构造函数，用于初始化并发队列对象，接受三个参数：
+// minCapacity表示并发队列期望的最小容量，即队列至少要能容纳这么多元素；
+// maxExplicitProducers表示显式生产者的最大数量，也就是可以明确创建并参与操作的生产者的最大个数；
+// maxImplicitProducers表示隐式生产者的最大数量，可能涉及一些间接或者默认创建参与队列操作的生产者的最大个数
+    : producerListTail(nullptr),// 初始化成员变量producerListTail为nullptr，它可能用于指向生产者列表的尾部，在这里初始化为空指针
+    producerCount(0),// 初始化成员变量producerCount为0，用于记录当前生产者的数量，构造时初始化为0个生产者
+    initialBlockPoolIndex(0),// 初始化成员变量initialBlockPoolIndex为0，可能用于标识初始的块池索引，初始值设为0
+    nextExplicitConsumerId(0),// 初始化成员变量nextExplicitConsumerId为0，用于给下一个显式消费者分配唯一标识，初始化为0
+    globalExplicitConsumerOffset(0)// 初始化成员变量globalExplicitConsumerOffset为0，可能用于记录显式消费者在全局范围内的偏移量等相关信息，初始化为0
   {
-    implicitProducerHashResizeInProgress.clear(std::memory_order_relaxed);
-    populate_initial_implicit_producer_hash();
-    size_t blocks = (((minCapacity + BLOCK_SIZE - 1) / BLOCK_SIZE) - 1) * (maxExplicitProducers + 1) + 2 * (maxExplicitProducers + maxImplicitProducers);
-    populate_initial_block_list(blocks);
+    implicitProducerHashResizeInProgress.clear(std::memory_order_relaxed);// 清除隐式生产者哈希调整进行中的相关标识，采用宽松内存顺序（std::memory_order_relaxed），
+    // 这意味着该操作不需要与其他内存操作有严格的顺序依赖关系，主要用于多线程环境下的高效处理，减少不必要的同步开销
+    populate_initial_implicit_producer_hash();// 调用populate_initial_implicit_producer_hash函数，从函数名推测可能是用于初始化或填充初始的隐式生产者哈希相关数据结构，
+    // 比如设置初始的哈希表大小、插入默认的隐式生产者相关记录等
+    size_t blocks = (((minCapacity + BLOCK_SIZE - 1) / BLOCK_SIZE) - 1) * (maxExplicitProducers + 1) + 2 * (maxExplicitProducers + maxImplicitProducers);// 根据给定的参数计算需要初始化的块（blocks）的数量，计算逻辑是先根据最小容量和固定的块大小（BLOCK_SIZE）计算出大致的块数，
+    // 再结合显式生产者和隐式生产者的最大数量进行调整，以确保有足够的块来满足队列容量以及生产者操作的需求
+    populate_initial_block_list(blocks);// 调用populate_initial_block_list函数，根据计算出的块数量（blocks）来初始化或填充初始的块列表，
+    // 比如创建相应数量的块对象、设置块之间的连接关系等，为队列存储数据做准备
 
 #ifdef MOODYCAMEL_QUEUE_INTERNAL_DEBUG
-    explicitProducers.store(nullptr, std::memory_order_relaxed);
-    implicitProducers.store(nullptr, std::memory_order_relaxed);
+    explicitProducers.store(nullptr, std::memory_order_relaxed);// 如果定义了MOODYCAMEL_QUEUE_INTERNAL_DEBUG宏（通常用于调试目的），
+    // 则将explicitProducers成员变量存储的值设为nullptr，采用宽松内存顺序（std::memory_order_relaxed），
+    // 可能用于调试场景下初始化显式生产者相关的数据结构或标识其初始状态为空
+    implicitProducers.store(nullptr, std::memory_order_relaxed);// 同样在调试宏定义的情况下，将implicitProducers成员变量存储的值设为nullptr，采用宽松内存顺序，
+    // 用于调试场景下初始化隐式生产者相关的数据结构或标识其初始状态为空
 #endif
   }
 
