@@ -1,5 +1,7 @@
 /ToolChain.cmake
+#bin目录通常用于存放可执行文件
 /bin
+#build目录通常是编译构建过程中产生的中间文件和目标文件存放的目录
 /build
 /libcarla-install
 _*
