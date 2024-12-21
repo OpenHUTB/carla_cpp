@@ -502,6 +502,7 @@ def main():
         metavar='SLP',
         default='100000',
         help='semantic lidar points per second (default: "100000")')
+    #添加语义激光雷达（Semantic LiDAR）相关参数
     argparser.add_argument(
         '-sln', '--semanticlidar_number',
         metavar='SLN',
@@ -509,11 +510,13 @@ def main():
         type=int,
         choices=range(0, 4),
         help='Number of semantic lidars to render (from zero to three)')
+    #添加雷达（Radar）相关参数
     argparser.add_argument(
         '-rp', '--radar_points',
         metavar='RP',
         default='100000',
         help='radar points per second (default: "100000")')
+    #添加雷达（Radar）相关参数
     argparser.add_argument(
         '-rn', '--radar_number',
         metavar='LN',
@@ -521,29 +524,33 @@ def main():
         type=int,
         choices=range(0, 4),
         help='Number of radars to render (from zero to three)')
+    #添加雷达（Radar）相关参数
     argparser.add_argument(
         '--camera',
         dest='render_cam', action='store_true',
         help='render also RGB camera (camera enable by default)')
+    #添加雷达（Radar）相关参数
     argparser.add_argument('--no-camera',
         dest='render_cam', action='store_false',
         help='no render RGB camera (camera disable by default)')
+    #添加雷达（Radar）相关参数
     argparser.set_defaults(render_cam=True)
+    #添加性能分析和窗口渲染参数
     argparser.add_argument(
         '--profiling',
         action='store_true',
         help='Use the script in profiling mode. It measures the performance of \
          the lidar for different number of points.')
     argparser.set_defaults(profiling=False)
+    #添加性能分析和窗口渲染参数
     argparser.add_argument(
         '--no-render-window',
         action='store_false',
         dest='render_window',
         help='Render visualization window.')
     argparser.set_defaults(render_window=True)
-
+    #通过parse_args方法解析命令行参数，并将res参数（窗口分辨率）拆分为宽度和高度的整数
     args = argparser.parse_args()
-
     args.width, args.height = [int(x) for x in args.res.split('x')]
 
     try:
