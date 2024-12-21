@@ -325,24 +325,65 @@ class CodeFormatterManager:  # 假设这个类名是根据上下文推断的，�
 # 这里假设它们是类的其他部分或外部模块中定义的。
 
     def scanFileOrDirectory(self, fileOrDirectory, filePattern):
-        fileList = []
+        """
+        扫描指定的文件或目录，并返回与给定文件模式匹配且未被排除的文件列表。
+
+        参数:
+            fileOrDirectory (str): 要扫描的文件或目录的路径。
+            filePattern (re.Pattern): 用于匹配文件名的正则表达式模式。
+
+        返回:
+            list: 与文件模式匹配且未被排除的文件路径列表。
+        """
+        fileList = []  # 初始化空列表以存储匹配的文件路径
+
+        # 检查给定路径是否为目录
         if os.path.isdir(fileOrDirectory):
+            # 使用os.walk遍历目录树
             for root, directories, fileNames in os.walk(fileOrDirectory):
+                # 过滤目录列表（排除隐藏目录和包含特定忽略文件的目录）
                 directories[:] = self.filterDirectories(root, directories)
+                
+                # 遍历当前目录下的文件名
                 for filename in filter(lambda name: filePattern.match(name), fileNames):
+                    # 构建文件的完整路径
                     fullFilename = os.path.join(root, filename)
+                    # 检查文件是否未被排除
                     if self.isFileNotExcluded(fullFilename):
+                        # 将文件添加到列表中
                         fileList.append(fullFilename)
         else:
+            # 如果给定路径不是目录，则检查它是否是一个文件且未被排除
             if self.isFileNotExcluded(fileOrDirectory) and (filePattern.match(os.path.basename(fileOrDirectory)) is not None):
+                # 将文件添加到列表中
                 fileList.append(fileOrDirectory)
+        
+        # 返回匹配的文件列表
         return fileList
 
     def filterDirectories(self, root, directories):
-        # Exclude hidden directories and all directories that have a CODE_FORMAT_IGNORE_FILE
+        """
+        过滤目录列表，排除隐藏目录和包含特定忽略文件的目录。
+
+        参数:
+            root (str): 当前遍历的根目录路径。
+            directories (list): 要过滤的目录名称列表。
+
+        返回:
+            list: 过滤后的目录名称列表。
+        """
+        # 假设CodeFormatterClang.CODE_FORMAT_IGNORE_FILE是一个类变量，表示忽略文件的名称
+        # 这里需要注意，因为CodeFormatterClang类在代码片段中没有定义，我们假设它是存在的
+        ignore_file = CodeFormatterClang.CODE_FORMAT_IGNORE_FILE  # 获取忽略文件的名称
+
+        # 使用列表推导式过滤目录
         directories[:] = [directory for directory in directories if
+                          # 排除以点开头的隐藏目录
                           not directory.startswith(".") and
-                          not os.path.exists(os.path.join(root, directory, CodeFormatterClang.CODE_FORMAT_IGNORE_FILE))]
+                          # 排除包含忽略文件的目录
+                          not os.path.exists(os.path.join(root, directory, ignore_file))]
+        
+        # 返回过滤后的目录列表
         return directories
 
     def isFileNotExcluded(self, fileName):#定义一个类的方法，用于判断文件是否不被排除
@@ -392,19 +433,46 @@ class CodeFormatterManager:  # 假设这个类名是根据上下文推断的，�
                             self.confirmWithUserGitRepoIsNotClean(gitRepo)
 
     def getGitRepoForFile(self, fileName):
+        """
+        确定给定文件是否位于Git仓库中，并返回该仓库的顶级目录路径。
+
+        参数:
+            fileName (str): 要检查的文件路径。
+
+        返回:
+            str 或 None: 如果文件位于Git仓库中，则返回仓库的顶级目录路径；否则返回None。
+        """
+        # 首先检查文件是否位于Git仓库内
         if not self.isInsideGitRepo(fileName):
             return None
+
         try:
-            gitProcess = subprocess.Popen(["git", "rev-parse", "--show-toplevel"],
-                                          stdin=subprocess.PIPE,
-                                          stdout=subprocess.PIPE,
-                                          stderr=subprocess.PIPE,
-                                          cwd=os.path.dirname(fileName))
+            # 尝试在文件的所在目录执行'git rev-parse --show-toplevel'命令
+            gitProcess = subprocess.Popen(
+                ["git", "rev-parse", "--show-toplevel"],
+                stdin=subprocess.PIPE,  # 不需要向git进程发送输入，但保持PIPE以避免错误
+                stdout=subprocess.PIPE,  # 捕获git进程的输出
+                stderr=subprocess.PIPE,  # 捕获git进程的错误输出（虽然这里未使用）
+                cwd=os.path.dirname(fileName)  # 在文件的父目录中执行命令
+            )
+            # 与git进程通信并获取其输出
             gitOutput, _ = gitProcess.communicate()
+
+            # 检查git进程的返回码是否为0（表示成功）
             if gitProcess.returncode == 0:
-                return gitOutput.rstrip('\r\n')
+                # 移除输出字符串末尾的换行符（如果存在）
+                # 注意：这里假设gitOutput是字节串，因此使用rstrip('\r\n')后可能需要解码
+                # 但由于我们直接返回了字节串，所以这里不进行解码操作
+                # 如果需要字符串，可以添加.decode('utf-8')
+                return gitOutput.rstrip(b'\r\n')  # 返回仓库的顶级目录路径（字节串形式）
+
         except OSError:
+            # 如果在尝试执行git命令时发生OS错误（例如，git未安装）
+            # 使用cprint打印错误信息（这里假设cprint能够处理彩色输出）
+            # 注意：cprint函数和模块需要事先定义或导入
             cprint("[ERROR] Failed to run 'git rev-parse --show-toplevel' for " + fileName, "red")
+
+        # 如果发生任何错误，返回None
         return None
 
     def isInsideGitRepo(self, fileName):
