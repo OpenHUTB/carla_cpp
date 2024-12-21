@@ -4,16 +4,16 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/PythonUtil.h"
-#include "carla/client/Client.h"
-#include "carla/client/World.h"
-#include "carla/Logging.h"
-#include "carla/rpc/ActorId.h"
-#include "carla/trafficmanager/TrafficManager.h"
+#include "carla/PythonUtil.h"// 引入PythonUtil头文件，提供与Python相关的实用工具
+#include "carla/client/Client.h"// 引入Client头文件，定义与CARLA服务器交互的客户端功能
+#include "carla/client/World.h"// 引入World头文件，定义操作CARLA世界的接口
+#include "carla/Logging.h"// 引入Logging头文件，用于日志记录
+#include "carla/rpc/ActorId.h"// 引入ActorId头文件，定义与CARLA中Actor相关的ID操作
+#include "carla/trafficmanager/TrafficManager.h"// 引入TrafficManager头文件，用于管理和控制交通
 
-#include <thread>
+#include <thread> // 引入thread头文件，用于多线程处理
 
-#include <boost/python/stl_iterator.hpp>
+#include <boost/python/stl_iterator.hpp>// 引入boost::python::stl_iterator头文件，用于Python与C++ STL容器的交互
 
 //包含了 Carla 客户端相关的各种头文件，如PythonUtil.h用于处理 Python 相关的工具函数，可能涉及到与 Python 解释器交互时的全局解释器锁（GIL）等操作；client/Client.h和client/World.h分别定义了客户端和世界相关的类，用于与 Carla 模拟器进行连接、获取世界信息等操作；Logging.h用于日志记录；rpc/ActorId.h涉及到处理演员（在 Carla 场景中可以理解为各种实体对象）的唯一标识；trafficmanager/TrafficManager.h与交通管理相关，可能用于控制场景中的交通流量、车辆行为等。
 //<thread>头文件用于支持多线程操作，在代码中用于并行处理批量命令等场景。
