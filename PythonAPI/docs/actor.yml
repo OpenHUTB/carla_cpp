@@ -38,6 +38,7 @@
     - var_name: parent
       type: carla.Actor
       doc: >
+      # 文档字符串开始
         Actors may be attached to a parent actor that they will follow around. This is said actor.
     - var_name: semantic_tags
       type: list(int)
