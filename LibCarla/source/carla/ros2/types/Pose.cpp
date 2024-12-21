@@ -40,29 +40,35 @@ using namespace eprosima::fastcdr::exception;
 #define geometry_msgs_msg_Pose_max_key_cdr_typesize 0ULL;
 #define geometry_msgs_msg_Point_max_key_cdr_typesize 0ULL;
 #define geometry_msgs_msg_Quaternion_max_key_cdr_typesize 0ULL;
-
+// 定义geometry_msgs::msg::Pose类的默认构造函数，目前函数体为空，可能用于创建一个默认初始化的Pose对象
 geometry_msgs::msg::Pose::Pose()
 {
 }
-
+// 定义geometry_msgs::msg::Pose类的析构函数，函数体为空，通常用于释放该类对象占用的资源等相关清理工作
 geometry_msgs::msg::Pose::~Pose()
 {
 }
-
+// 定义geometry_msgs::msg::Pose类的拷贝构造函数
+// 参数x是一个const引用，表示要拷贝的另一个Pose对象
+// 函数的作用是将传入的Pose对象x的成员变量m_position和m_orientation的值拷贝到当前正在创建的对象中
 geometry_msgs::msg::Pose::Pose(
         const Pose& x)
 {
     m_position = x.m_position;
     m_orientation = x.m_orientation;
 }
-
+// 定义geometry_msgs::msg::Pose类的移动构造函数
+// 参数x是一个右值引用，用于实现资源的转移（避免不必要的拷贝），noexcept表示该函数不会抛出异常
+// 函数的作用是将传入的右值引用对象x的成员变量m_position和m_orientation通过移动语义进行转移到当前正在创建的对象中
 geometry_msgs::msg::Pose::Pose(
         Pose&& x) noexcept
 {
     m_position = std::move(x.m_position);
     m_orientation = std::move(x.m_orientation);
 }
-
+// 定义geometry_msgs::msg::Pose类的拷贝赋值运算符重载函数
+// 参数x是一个const引用，表示要赋值的另一个Pose对象
+// 函数将对象x的成员变量m_position和m_orientation的值赋给当前对象的相应成员变量，并返回当前对象的引用，以支持连续赋值操作
 geometry_msgs::msg::Pose& geometry_msgs::msg::Pose::operator =(
         const Pose& x)
 {
@@ -71,7 +77,9 @@ geometry_msgs::msg::Pose& geometry_msgs::msg::Pose::operator =(
 
     return *this;
 }
-
+// 定义geometry_msgs::msg::Pose类的移动赋值运算符重载函数
+// 参数x是一个右值引用，用于通过移动语义实现资源的转移赋值，noexcept表示不会抛出异常
+// 函数将右值引用对象x的成员变量m_position和m_orientation移动到当前对象的相应成员变量中，并返回当前对象的引用，支持连续赋值操作
 geometry_msgs::msg::Pose& geometry_msgs::msg::Pose::operator =(
         Pose&& x) noexcept
 {
@@ -80,26 +88,33 @@ geometry_msgs::msg::Pose& geometry_msgs::msg::Pose::operator =(
 
     return *this;
 }
-
+// 定义geometry_msgs::msg::Pose类的相等运算符重载函数
+// 参数x是一个const引用，表示要与之比较的另一个Pose对象
+// 函数通过比较两个对象的成员变量m_position和m_orientation是否相等，来判断两个Pose对象是否相等，返回比较结果（true或false）
 bool geometry_msgs::msg::Pose::operator ==(
         const Pose& x) const
 {
     return (m_position == x.m_position && m_orientation == x.m_orientation);
 }
-
+// 定义geometry_msgs::msg::Pose类的不等运算符重载函数
+// 参数x是一个const引用，表示要与之比较的另一个Pose对象
+// 函数通过对相等运算符取反来判断两个Pose对象是否不相等，返回相应的比较结果（true或false）
 bool geometry_msgs::msg::Pose::operator !=(
         const Pose& x) const
 {
     return !(*this == x);
 }
-
+// 获取Pose对象在CDR序列化时的最大可能尺寸（考虑对齐等因素），当前函数忽略传入的current_alignment参数
+// 返回geometry_msgs_msg_Pose_max_cdr_typesize这个静态定义的尺寸值（具体值应该在别处定义）
 size_t geometry_msgs::msg::Pose::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
     static_cast<void>(current_alignment);
     return geometry_msgs_msg_Pose_max_cdr_typesize;
 }
-
+// 获取给定Pose对象在当前对齐要求下的CDR序列化尺寸
+// 参数data是要序列化的Pose对象，current_alignment是当前的对齐要求
+// 先记录初始的对齐情况initial_alignment，然后分别计算其包含的Point类型的成员变量position和Quaternion类型的成员变量orientation的序列化尺寸，并累加到current_alignment上，最后返回尺寸差值，即该Pose对象的序列化尺寸
 size_t geometry_msgs::msg::Pose::getCdrSerializedSize(
         const geometry_msgs::msg::Pose& data,
         size_t current_alignment)
@@ -110,14 +125,14 @@ size_t geometry_msgs::msg::Pose::getCdrSerializedSize(
 
     return current_alignment - initial_alignment;
 }
-
+// 将当前Pose对象进行CDR序列化，将成员变量m_position和m_orientation按照CDR格式依次写入到给定的Cdr对象scdr中
 void geometry_msgs::msg::Pose::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
     scdr << m_position;
     scdr << m_orientation;
 }
-
+// 从给定的Cdr对象dcdr中反序列化数据到当前Pose对象的成员变量m_position和m_orientation中，按照CDR格式进行读取赋值
 void geometry_msgs::msg::Pose::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
 {
