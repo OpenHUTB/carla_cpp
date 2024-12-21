@@ -156,23 +156,32 @@ namespace detail {
     if (search != _stream_map.end()) { // 如果找到了对应的传感器流
         // 记录日志，表示找到了传感器ID
       log_debug("Found sensor id: ", sensor_id);
-      auto stream_state = search->second;
+      auto stream_state = search->second;// 获取流状态
+      // 强制流状态为活动状态
       stream_state->ForceActive();
+      // 记录日志，表示正在从指定流获取令牌
       log_debug("Getting token from stream ", sensor_id, " on port ", stream_state->token().get_port());
+     // 返回流状态中的令牌
       return stream_state->token();
     } else {
-      
-      // 如果没有找到，创建新的传感器流
+      // 如果没有找到对应的传感器流
+      // 记录日志，表示没有找到传感器ID，需要创建新的传感器流
       log_debug("Not Found sensor id, creating sensor stream: ", sensor_id);
+      // 使用缓存的令牌创建一个临时令牌，并设置其流ID
       token_type temp_token(_cached_token);
       temp_token.set_stream_id(sensor_id);
+      // 创建一个新的MultiStreamState实例，并尝试将其插入到_stream_map中
       auto ptr = std::make_shared<MultiStreamState>(temp_token);
       auto result = _stream_map.emplace(std::make_pair(temp_token.get_stream_id(), ptr));
+       // 强制新流状态为活动状态
       ptr->ForceActive();
-      if (!result.second) {
+      if (!result.second) {// 如果插入失败（理论上不应该发生，因为使用了唯一的sensor_id）
+         // 记录日志，表示创建多流失败
         log_debug("Failed to create multistream for stream ", sensor_id, " on port ", temp_token.get_port());
       }
+      // 记录日志，表示已创建令牌
       log_debug("Created token from stream ", sensor_id, " on port ", temp_token.get_port());
+       // 返回创建的临时令牌
       return temp_token;
     }
     return token_type();// 如果未找到流，返回默认令牌
