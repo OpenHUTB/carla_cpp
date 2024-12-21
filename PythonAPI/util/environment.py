@@ -161,18 +161,18 @@ def apply_lights_manager(args, light_manager):
     # filter by group
     lights = light_manager.get_all_lights(LIGHT_GROUP[light_group][0]) # light_group
 
-    i = 0
+    i = 0#初始化
     while (i < len(args.lights)):
         option = args.lights[i]
 
-        if option == "on":
+        if option == "on":# 如果选项是"on"，则调用light_manager的turn_on方法来打开灯光
             light_manager.turn_on(lights)
-        elif option == "off":
+        elif option == "off":# 如果选项是"off"，则调用light_manager的turn_off方法来关闭灯光
             light_manager.turn_off(lights)
-        elif option == "intensity":
-            light_manager.set_intensity(lights, int(args.lights[i + 1]))
-            i += 1
-        elif option == "color":
+        elif option == "intensity":# 如果选项是"intensity"，则设置灯光的强度
+            light_manager.set_intensity(lights, int(args.lights[i + 1]))# 将下一个列表元素转换为整数，并设置灯光的强度
+            i += 1# 移动到下一个选项，因为已经处理了强度值
+        elif option == "color:# 如果选项是"color"，则设置灯光的颜色
             r = int(args.lights[i + 1])
             g = int(args.lights[i + 2])
             b = int(args.lights[i + 3])

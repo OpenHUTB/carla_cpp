@@ -53,39 +53,39 @@ def get_scene_layout(carla_map):
             nxt = nxt[0].next(precision)  # 继续获取下一个路径点
         
         # 计算左右车道线的位置
-        left_marking = [_lateral_shift(w.transform, -w.lane_width * 0.5) for w in waypoints]
-        right_marking = [_lateral_shift(w.transform, w.lane_width * 0.5) for w in waypoints]
+        left_marking = [_lateral_shift(w.transform, -w.lane_width * 0.5) for w in waypoints]# 使用_lateral_shift函数，将每个路径点的transform（位置和朝向）沿横向移动半个车道宽度的距离
+        right_marking = [_lateral_shift(w.transform, w.lane_width * 0.5) for w in waypoints]# 同样使用_lateral_shift函数，将每个路径点的transform沿横向移动半个车道宽度的距离，但方向相反
         
         # 将路径点及其左右车道线信息添加到map_dict中
-        lane = {"waypoints": waypoints, "left_marking": left_marking, "right_marking": right_marking}
-        if map_dict.get(waypoint.road_id) is None:
-            map_dict[waypoint.road_id] = {}
-        map_dict[waypoint.road_id][waypoint.lane_id] = lane
+        lane = {"waypoints": waypoints, "left_marking": left_marking, "right_marking": right_marking}# 创建一个字典，包含路径点、左车道线和右车道线的信息
+        if map_dict.get(waypoint.road_id) is None:# 检查map_dict中是否存在当前路径点的道路ID
+            map_dict[waypoint.road_id] = {}# 如果不存在，初始化一个空字典
+        map_dict[waypoint.road_id][waypoint.lane_id] = lane# 将车道信息添加到对应道路ID的字典中
     
     # 生成路径点图
-    waypoints_graph = dict()
-    for road_key in map_dict:
-        for lane_key in map_dict[road_key]:
+    waypoints_graph = dict()# 初始化一个空字典，用于存储路径点图
+    for road_key in map_dict:# 遍历map_dict中的每个道路键（road_key）
+        for lane_key in map_dict[road_key]:# 遍历当前道路下的所有车道键（lane_key）
             lane = map_dict[road_key][lane_key]
             for i in range(len(lane["waypoints"])):
                 # 获取当前路径点的后续路径点ID
                 next_ids = [w.id for w in lane["waypoints"][i + 1:]]
                 
                 # 计算左右车道键
-                left_lane_key = lane_key - 1 if lane_key - 1 else lane_key - 2
-                right_lane_key = lane_key + 1 if lane_key + 1 else lane_key + 2
+                left_lane_key = lane_key - 1 if lane_key - 1 else lane_key - 2# 如果lane_key减1的结果是非零值，则left_lane_key为lane_key减1，否则为lane_key减2
+                right_lane_key = lane_key + 1 if lane_key + 1 else lane_key + 2# 如果lane_key加1的结果是非零值，则right_lane_key为lane_key加1，否则为lane_key加2
                 
                 # 获取左右车道路径点的ID（如果存在）
-                left_lane_waypoint_id = -1
-                if left_lane_key in map_dict[road_key]:
+                left_lane_waypoint_id = -1# 初始化左右车道的路径点ID为-1，表示默认不存在
+                if left_lane_key in map_dict[road_key]:# 如果左车道key存在于地图字典中，则获取左车道的路径点
                     left_lane_waypoints = map_dict[road_key][left_lane_key]["waypoints"]
-                    if i < len(left_lane_waypoints):
+                    if i < len(left_lane_waypoints):# 如果索引i小于左车道路径点列表的长度，则获取第i个路径点的ID
                         left_lane_waypoint_id = left_lane_waypoints[i].id
                 
-                right_lane_waypoint_id = -1
-                if right_lane_key in map_dict[road_key]:
+                right_lane_waypoint_id = -1# 初始化左右车道的路径点ID为-1，表示默认不存在
+                if right_lane_key in map_dict[road_key]:# 如果右车道key存在于地图字典中，则获取右车道的路径点
                     right_lane_waypoints = map_dict[road_key][right_lane_key]["waypoints"]
-                    if i < len(right_lane_waypoints):
+                    if i < len(right_lane_waypoints):# 如果索引i小于右车道路径点列表的长度，则获取第i个路径点的ID
                         right_lane_waypoint_id = right_lane_waypoints[i].id
                 
                 # 获取左右边界（车道线）和当前路径点的地理位置和朝向

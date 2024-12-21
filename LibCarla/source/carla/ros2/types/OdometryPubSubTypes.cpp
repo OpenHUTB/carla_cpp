@@ -100,32 +100,35 @@ namespace nav_msgs {
         }
 
         bool OdometryPubSubType::deserialize(
-                SerializedPayload_t* payload,
-                void* data)
+                 SerializedPayload_t* payload,
+                 void* data)
         {
             try
             {
-                //Convert DATA to pointer of your type
+                // 将 data 转换为指向 Odometry 类型的指针
                 Odometry* p_type = static_cast<Odometry*>(data);
 
-                // Object that manages the raw buffer.
+                // 管理原始缓冲区的对象。
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-                // Object that deserializes the data.
+                // 用于反序列化数据的对象。
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-                // Deserialize encapsulation.
+                // 反序列化封装数据。
                 deser.read_encapsulation();
+                // 根据反序列化的字节序设置封装类型（大端或小端）
                 payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
 
-                // Deserialize the object.
+                // 反序列化 Odometry 对象。
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果内存不足，返回 false 表示反序列化失败
                 return false;
             }
 
+            // 反序列化成功，返回 true
             return true;
         }
 
