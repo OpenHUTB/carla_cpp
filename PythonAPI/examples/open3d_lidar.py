@@ -176,14 +176,19 @@ def add_open3d_axis(vis):#添加3D坐标轴
 
 def main(arg):
     """Main function of the script"""
+     # 创建一个 Carla 客户端实例，连接到指定的主机和端口
     client = carla.Client(arg.host, arg.port)
     client.set_timeout(2.0)
     world = client.get_world()
 
     try:
+          # 保存原始世界设置，以便稍后恢复
         original_settings = world.get_settings()
+          # 获取当前世界设置的副本用于修改
         settings = world.get_settings()
+        # 获取交通管理器并指定其端口号（默认8000）
         traffic_manager = client.get_trafficmanager(8000)
+          # 将交通管理器设置为同步模式，确保模拟器与客户端同步运行
         traffic_manager.set_synchronous_mode(True)
 
         delta = 0.05

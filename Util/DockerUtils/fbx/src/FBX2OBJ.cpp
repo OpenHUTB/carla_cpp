@@ -15,7 +15,7 @@ FbxSurfacePhong* gMatBlock;
 
 #ifdef IOS_REF
     #undef  IOS_REF
-    #define IOS_REF (*(gSdkManager->GetIOSettings()))
+    #define IOS_REF (*(gSdkManager->GetIOSettings()))// 定义IOS_REF为gSdkManager的IO设置
 #endif
 
 // 创建一个材质并返回该材质
@@ -24,7 +24,7 @@ FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
     // Create material
     // 使用 FbxSurfacePhong 类的静态方法 Create 为指定场景创建一个名为 name 的材质
     FbxSurfacePhong* lMaterial = FbxSurfacePhong::Create(pScene, name);
-    return lMaterial;
+    return lMaterial;// 返回创建的材质
 }
 // 查找字符串函数，检查name是否包含str
 bool Find(const char *name, const char *str)
@@ -34,17 +34,17 @@ bool Find(const char *name, const char *str)
     size_t lenStr = strlen(str);
     // 如果长度不满足条件，返回 false
     if (lenName == 0 || lenStr == 0 || lenStr > lenName) return false;
-    std::string strName(name);
-    std::string strSub(str);
+    std::string strName(name);// 将name转换为std::string类型
+    std::string strSub(str);// 将str转换为std::string类型
     // 在 strName 中查找 strSub，如果找到返回 true，否则返回 false
     return (strName.find(strSub)!= std::string::npos);
 }
 // 设置节点材质的函数
 void SetMaterials(FbxNode* pNode)
 {
-    if (!pNode) return;
+    if (!pNode) return;// 将str转换为std::string类型
     // 初始化使用的材质为 gMatBlock
-    FbxSurfacePhong* mat = gMatBlock;
+    FbxSurfacePhong* mat = gMatBlock;// 将str转换为std::string类型
     // 仅对网格节点进行操作
     FbxMesh* lMesh = pNode->GetMesh();
     if(lMesh)
@@ -115,13 +115,13 @@ bool LoadScene(
     if (lImporter->IsFBX())
     {
         // 设置导入时的属性，如不导入材质、纹理、链接等
-        IOS_REF.SetBoolProp(IMP_FBX_MATERIAL,        false);
-        IOS_REF.SetBoolProp(IMP_FBX_TEXTURE,         false);
-        IOS_REF.SetBoolProp(IMP_FBX_LINK,            false);
-        IOS_REF.SetBoolProp(IMP_FBX_SHAPE,           false);
-        IOS_REF.SetBoolProp(IMP_FBX_GOBO,            false);
-        IOS_REF.SetBoolProp(IMP_FBX_ANIMATION,       false);
-        IOS_REF.SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, false);
+        IOS_REF.SetBoolProp(IMP_FBX_MATERIAL,        false);//这一行代码的目的是设置与IMP_FBX_MATERIAL相关的布尔属性为false。
+        IOS_REF.SetBoolProp(IMP_FBX_TEXTURE,         false);//这里是设置与纹理相关的属性。
+        IOS_REF.SetBoolProp(IMP_FBX_LINK,            false);//是设置链接相关的属性为不导入（false）。
+        IOS_REF.SetBoolProp(IMP_FBX_SHAPE,           false);//这是针对形状相关属性的设置，将其设置为不导入。
+        IOS_REF.SetBoolProp(IMP_FBX_GOBO,            false);//把与IMP_FBX_GOBO相关的属性设置为不导入。
+        IOS_REF.SetBoolProp(IMP_FBX_ANIMATION,       false);//表示在导入时不导入动画相关的内容。
+        IOS_REF.SetBoolProp(IMP_FBX_GLOBAL_SETTINGS, false);//设置全局设置相关的属性为不导入。
     }
     // 导入场景
     lStatus = lImporter->Import(pScene);
@@ -204,11 +204,11 @@ int main(int argc, char **argv)
         return 0;
     }
     // 创建不同的材质
-    gMatRoad     = CreateMaterial(lScene, "road");
-    gMatSidewalk = CreateMaterial(lScene, "sidewalk");
-    gMatCross    = CreateMaterial(lScene, "crosswalk");
-    gMatGrass    = CreateMaterial(lScene, "grass");
-    gMatBlock    = CreateMaterial(lScene, "block");
+    gMatRoad     = CreateMaterial(lScene, "road");//创建材质，它接受两个参数，lScene可能是一个场景对象（也许是这个材质将被应用到的场景），"road"是材质的名称。
+    gMatSidewalk = CreateMaterial(lScene, "sidewalk");//创建名为sidewalk的材质并存储到gMatSidewalk变量中。
+    gMatCross    = CreateMaterial(lScene, "crosswalk");//创建名为crosswalk的材质并存储到gMatCross变量。
+    gMatGrass    = CreateMaterial(lScene, "grass");//创建名为grass的材质并存储到gMatGrass变量。
+    gMatBlock    = CreateMaterial(lScene, "block");//创建名为block的材质并存储到gMatBlock变量。
     // 导出场景
     r = SaveScene(gSdkManager, lScene, argv[2], -1, false);
     if(!r)

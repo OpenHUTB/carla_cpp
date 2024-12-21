@@ -1,7 +1,7 @@
----
+---# 定义了一个名为 carla 的模块，其中包含了与 CARLA 模拟器中地图相关的类。
 - module_name: carla
-  # - CLASSES ------------------------------
-  classes:
+  # 定义了模块中的类-----------
+  classes: # 定义了一个名为 LaneType 的枚举类，包含了 OpenDRIVE 1.4 标准中定义的可能的车道类型。
   - class_name: LaneType
     # - DESCRIPTION ------------------------
     doc: >
@@ -53,7 +53,7 @@
     - var_name: Any
       doc: >
         Every type except for NONE.
-
+ # 定义了一个名为 LaneChange 的枚举类，包含了允许左转、右转、两者都允许或不允许（只能直行）的权限。
   - class_name: LaneChange
     # - DESCRIPTION ------------------------
     doc: >
@@ -72,7 +72,7 @@
     - var_name: Both
       doc: >
         Traffic rules allow turning either right or left.
-
+# 定义了一个名为 LaneMarkingColor 的枚举类，包含了 OpenDRIVE 1.4 标准中定义的车道标记颜色。
   - class_name: LaneMarkingColor
     # - DESCRIPTION ------------------------
     doc: >
@@ -94,7 +94,7 @@
       doc: >
     - var_name: Other
       doc: >
-
+# 定义了一个名为 LaneMarkingType 的枚举类，包含了 OpenDRIVE 1.4 标准中接受的车道标记类型。
   - class_name: LaneMarkingType
     # - DESCRIPTION ------------------------
     doc: >
@@ -125,7 +125,7 @@
       doc: >
     - var_name: Curb
       doc: >
-
+# 定义了一个名为 Map 的类，包含了道路信息和航点管理。
   - class_name: Map
     # - DESCRIPTION ------------------------
     doc: >
@@ -286,7 +286,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
+# 定义了一个名为 LaneMarking 的类，汇总了有关车道标记的所有信息。
   - class_name: LaneMarking
     # - DESCRIPTION ------------------------
     doc: >
@@ -310,7 +310,7 @@
       doc: >
         Horizontal lane marking thickness.
     # --------------------------------------
-
+# 定义了一个名为 Waypoint 的类，描述了 CARLA 中的 3D 有向点。
   - class_name: Waypoint
     # - DESCRIPTION ------------------------
     doc: >
@@ -480,7 +480,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
+# 定义了一个名为 Junction 的类，体现了 OpenDRIVE 文件中描述的交叉路口。
   - class_name: Junction
     # - DESCRIPTION ------------------------
     doc: >
@@ -507,7 +507,7 @@
       doc: >
         Returns a list of pairs of waypoints. Every tuple on the list contains first an initial and then a final waypoint within the intersection boundaries that describe the beginning and the end of said lane along the junction. Lanes follow their OpenDRIVE definitions so there may be many different tuples with the same starting waypoint due to possible deviations, as this are considered different lanes.
     # --------------------------------------
-
+# 定义了一个名为 LandmarkOrientation 的辅助类，定义了道路上里程碑的方向。
   - class_name: LandmarkOrientation
     # - DESCRIPTION ------------------------
     doc: >
@@ -524,7 +524,7 @@
       doc: >
         Affects vehicles going in both directions of the road.
     # --------------------------------------
-
+ # 定义了一个名为 LandmarkType 的辅助类，包含了一组常用的里程碑类型。
   - class_name: LandmarkType
     # - DESCRIPTION ------------------------
     doc: >
@@ -639,7 +639,7 @@
       doc: >
         Type 381.
     # --------------------------------------
-
+# 定义了一个名为 Landmark 的类，定义了影响道路的任何类型的交通里程碑或标志。
   - class_name: Landmark
     # - DESCRIPTION ------------------------
     doc: >

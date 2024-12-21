@@ -158,13 +158,16 @@ class TestSynchronousMode(SyncSmokeTest):
                 local_frame += 1
 
         finally:
+              # 遍历所有传感器，确保它们被停止并销毁
             for sensor in sensors:
                 if sensor is not None:
                     sensor.stop()
                     sensor.destroy()
+                     # 如果 car 对象存在，则销毁它
             if car is not None:
                 car.destroy()
 
+     # 从世界的蓝图库中选择第一个可用的车辆蓝图
     def batch_scenario(self, batch_tick, after_tick):
         bp_veh = self.world.get_blueprint_library().filter("vehicle.*")[0]
         veh_transf = self.world.get_map().get_spawn_points()[0]
@@ -177,6 +180,7 @@ class TestSynchronousMode(SyncSmokeTest):
         if after_tick:
             self.world.tick()
 
+         # 检查响应结果，确保车辆成功生成
         if len(responses) != 1 or responses[0].error:
             self.fail("%s: The test car could not be correctly spawned" % (bp_veh.id))
 
