@@ -79,6 +79,9 @@ namespace geometry_msgs
                 return ((::size_t) &reinterpret_cast<char const volatile&>((((T*)0)->*get(Tag()))));
             }
         }
+        #endif
+
+        /*！
 @@ -72,74 +83,96 @@ namespace geometry_msgs
          * @brief 此类表示用户在 IDL 文件中定义的类型 Twist 的 TopicDataType。  
          * @ingroup TWIST  
