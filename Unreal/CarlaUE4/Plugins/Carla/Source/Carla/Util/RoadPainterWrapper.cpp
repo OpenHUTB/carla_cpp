@@ -48,6 +48,9 @@ void ARoadPainterWrapper::BeginPlay()
 
 }
 
+// 读取并解析指定地图的路面绘制配置文件，设置 decal 属性。
+// 配置文件为 JSON 格式，包含了在特定地图上应用 decal 的信息。
+// 如果 JSON 配置文件中存在与当前地图名称匹配的配置，则将其应用到当前对象的 `DecalPropertiesConfig` 中。
 void ARoadPainterWrapper::ReadConfigFile(const FString &CurrentMapName, const TMap<FString, FString> &DecalNamesMap)
 {
   // Get road painter configuration file

@@ -1,24 +1,25 @@
-﻿// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
-
+// 包含非复制类的定义，可能用于限制类对象不能被复制，以确保某些特定的语义和资源管理逻辑
+#include "carla/NonCopyable.h"
 #include "carla/NonCopyable.h" // 包含非复制类的定义
 #include "carla/Time.h" // 包含时间相关的类定义
 #include "carla/Buffer.h" // 包含缓冲区类的定义
-
+// 引入Boost库中asio模块的io_context类，用于管理异步I/O操作的上下文环境
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/post.hpp>
-
+// 包含原子操作类，用于实现多线程环境下对变量的原子性操作，保证数据的一致性和并发安全
 #include <atomic> // 包含原子操作类
 
 namespace carla {
 namespace multigpu {
-  
+  // 前置声明一个名为Primary的类，这个类在其他地方定义，意味着此处只是告知编译器有这么一个类存在，后续会在别处完整定义它，并且它与Listener类存在交互关系
   class Primary; // 声明一个名为Primary的类，这个类在其他地方定义，与Listener类有交互
 
   /// 警告：在它的io_context停止之前，这个服务器不能被销毁。
@@ -64,9 +65,12 @@ namespace multigpu {
   private:
 
     void OpenSession(
-        time_duration timeout,
-        callback_function_type on_session_opened,
-        callback_function_type on_session_closed,
+        time_duration timeout,// time_duration 是一个表示时间长度的类型，可能是自定义的结构体或类
+// timeout 参数指定了某个操作（如打开或保持会话）的最大允许时间
+        callback_function_type on_session_opened,// callback_function_type 是一个函数类型别名，用于指定回调函数的签名
+// on_session_opened 是一个回调函数，当会话成功打开时被调用
+        callback_function_type on_session_closed,// on_session_closed 是一个回调函数，当会话关闭时被调用
+// 它允许开发者执行清理操作或处理会话结束后的逻辑
         callback_function_type_response on_response); // 私有成员函数，用于处理新会话的打开
 
     boost::asio::io_context         &_io_context; // 引用io_context

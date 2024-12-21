@@ -196,18 +196,18 @@ class FadingText(object):
 
     def __init__(self, font, dim, pos):
         """Initializes variables such as text font, dimensions and position"""
-        self.font = font
+        self.font = font# 设置文本的字体
         self.dim = dim
-        self.pos = pos
+        self.pos = pos#设置文本显示的位置
         self.seconds_left = 0
-        self.surface = pygame.Surface(self.dim)
+        self.surface = pygame.Surface(self.dim)# 创建一个Surface对象，用于绘制文本
 
     def set_text(self, text, color=COLOR_WHITE, seconds=2.0):
         """Sets the text, color and seconds until fade out"""
-        text_texture = self.font.render(text, True, color)
-        self.surface = pygame.Surface(self.dim)
-        self.seconds_left = seconds
-        self.surface.fill(COLOR_BLACK)
+        text_texture = self.font.render(text, True, color)# 使用字体渲染文本，返回纹理
+        self.surface = pygame.Surface(self.dim)# 重新创建Surface对象，清除之前的文本
+        self.seconds_left = seconds# 设置文本淡出的总时间
+        self.surface.fill(COLOR_BLACK)# 用黑色填充Surface对象，作为背景
         self.surface.blit(text_texture, (10, 11))
 
     def tick(self, clock):

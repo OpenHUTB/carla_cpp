@@ -72,16 +72,36 @@ sensor_msgs::msg::PointCloud2::~PointCloud2()
 sensor_msgs::msg::PointCloud2::PointCloud2(
         const PointCloud2& x)
 {
+    // 拷贝构造函数，将另一个 PointCloud2 对象 x 的成员变量复制到当前对象
+
+    // 将 x 的 m_header 成员复制到当前对象的 m_header
     m_header = x.m_header;
+
+    // 将 x 的 m_height 成员复制到当前对象的 m_height
     m_height = x.m_height;
+
+    // 将 x 的 m_width 成员复制到当前对象的 m_width
     m_width = x.m_width;
+
+    // 将 x 的 m_fields 成员复制到当前对象的 m_fields
     m_fields = x.m_fields;
+
+    // 将 x 的 m_is_bigendian 成员复制到当前对象的 m_is_bigendian
     m_is_bigendian = x.m_is_bigendian;
+
+    // 将 x 的 m_point_step 成员复制到当前对象的 m_point_step
     m_point_step = x.m_point_step;
+
+    // 将 x 的 m_row_step 成员复制到当前对象的 m_row_step
     m_row_step = x.m_row_step;
+
+    // 将 x 的 m_data 成员复制到当前对象的 m_data
     m_data = x.m_data;
+
+    // 将 x 的 m_is_dense 成员复制到当前对象的 m_is_dense
     m_is_dense = x.m_is_dense;
 }
+
 
 sensor_msgs::msg::PointCloud2::PointCloud2(
         PointCloud2&& x) noexcept

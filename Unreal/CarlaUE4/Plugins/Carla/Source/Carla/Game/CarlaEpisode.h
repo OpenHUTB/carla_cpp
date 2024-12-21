@@ -31,16 +31,16 @@
 
 #include "CarlaEpisode.generated.h"
 
-/// A simulation episode.
+/// 模拟剧集。
 ///
-/// Each time the level is restarted a new episode is created.
+/// 每次重新启动关卡时，都会创建一个新的剧集。
 UCLASS(BlueprintType, Blueprintable)
 class CARLA_API UCarlaEpisode : public UObject
 {
   GENERATED_BODY()
 
   // ===========================================================================
-  // -- Constructor ------------------------------------------------------------
+  // -- 构造 函数 ------------------------------------------------------------
   // ===========================================================================
 
 public:
@@ -48,17 +48,17 @@ public:
   UCarlaEpisode(const FObjectInitializer &ObjectInitializer);
 
   // ===========================================================================
-  // -- Load a new episode -----------------------------------------------------
+  // -- 加载新剧集 -----------------------------------------------------
   // ===========================================================================
 
-  /// Load a new map and start a new episode.
+  /// 加载新地图并开始新剧集。
   ///
   /// If @a MapString is empty, the current map is reloaded.
   UFUNCTION(BlueprintCallable)
   bool LoadNewEpisode(const FString &MapString, bool ResetSettings = true);
 
-  /// Load a new map generating the mesh from OpenDRIVE data and
-  /// start a new episode.
+  ///加载从 OpenDRIVE 数据生成网格的新地图，然后
+  ///开始新剧集。
   ///
   /// If @a MapString is empty, it fails.
   bool LoadNewOpendriveEpisode(
@@ -66,7 +66,7 @@ public:
       const carla::rpc::OpendriveGenerationParameters &Params);
 
   // ===========================================================================
-  // -- Episode settings -------------------------------------------------------
+  // -- 剧集设置 -------------------------------------------------------
   // ===========================================================================
 
   UFUNCTION(BlueprintCallable)
@@ -79,29 +79,29 @@ public:
   void ApplySettings(const FEpisodeSettings &Settings);
 
   // ===========================================================================
-  // -- Retrieve info about this episode ---------------------------------------
+  // -- 检索有关此剧集的信息---------------------------------------
   // ===========================================================================
 
-  /// Return the unique id of this episode.
+  /// 返回此剧集的唯一 ID。
   auto GetId() const
   {
     return Id;
   }
 
-  /// Return the name of the map loaded in this episode.
+  ///返回本集中加载的地图的名称。
   UFUNCTION(BlueprintCallable)
   const FString &GetMapName() const
   {
     return MapName;
   }
 
-  /// Game seconds since the start of this episode.
+  /// 游戏秒数。
   double GetElapsedGameTime() const
   {
     return ElapsedGameTime;
   }
 
-  /// Visual game seconds
+  /// 视觉游戏秒
   double GetVisualGameTime() const
   {
     return VisualGameTime;
@@ -111,7 +111,7 @@ public:
   {
     VisualGameTime = Time;
 
-    // update time in material parameters also
+    // Material Parameters 中的更新时间
     if (MaterialParameters)
     {
       MaterialParameters->SetScalarParameterValue(FName("VisualTime"), VisualGameTime);
@@ -126,18 +126,18 @@ public:
     return ActorDispatcher->GetActorDefinitions();
   }
 
-  /// Return the list of recommended spawn points for vehicles.
+  ///返回推荐的载具重生点列表。
   UFUNCTION(BlueprintCallable)
   TArray<FTransform> GetRecommendedSpawnPoints() const;
 
-  /// Return the GeoLocation point of the map loaded
+  /// 返回加载的地图的 GeoLocation 点
   const carla::geom::GeoLocation &GetGeoReference() const
   {
     return MapGeoReference;
   }
 
   // ===========================================================================
-  // -- Retrieve special actors ------------------------------------------------
+  // -- 检索特殊演员 ------------------------------------------------
   // ===========================================================================
 
   UFUNCTION(BlueprintCallable)
@@ -163,30 +163,30 @@ public:
   }
 
   // ===========================================================================
-  // -- Actor look up methods --------------------------------------------------
+  // -- Actor 查找方法 --------------------------------------------------
   // ===========================================================================
 
-  /// Find a Carla actor by id.
+  ///按 id 查找 Carla 演员。
   ///
-  /// If the actor is not found or is pending kill, the returned view is
-  /// invalid.
+  /// 如果未找到 actor 或正在等待 kill，则返回的视图为
+  ///无效。
   FCarlaActor* FindCarlaActor(FCarlaActor::IdType ActorId)
   {
     return ActorDispatcher->GetActorRegistry().FindCarlaActor(ActorId);
   }
 
-  /// Find the actor view of @a Actor.
+  /// 找到 @a Actor 的 actor 视图。
   ///
-  /// If the actor is not found or is pending kill, the returned view is
-  /// invalid.
+  /// 如果未找到 actor 或正在等待 kill，则返回的视图为
+  ///无效。
   FCarlaActor* FindCarlaActor(AActor *Actor) const
   {
     return ActorDispatcher->GetActorRegistry().FindCarlaActor(Actor);
   }
 
-  /// Get the description of the Carla actor (sensor) using specific stream id.
+  ///使用特定流 ID 获取 Carla actor （sensor） 的描述。
   ///
-  /// If the actor is not found returns an empty string
+  /// 如果未找到 actor，则返回空字符串
   FString GetActorDescriptionFromStream(carla::streaming::detail::stream_id_type StreamId)
   {
     return ActorDispatcher->GetActorRegistry().GetDescriptionFromStream(StreamId);
