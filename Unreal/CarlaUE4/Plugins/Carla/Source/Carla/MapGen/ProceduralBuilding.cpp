@@ -4,10 +4,10 @@
 #include "ProceduralBuilding.h"
 
 
-// Sets default values
+// 设置默认值
 AProceduralBuilding::AProceduralBuilding()
 {
-   // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+   // 将此 actor 设置为每帧调用 Tick（）。 如果不需要，您可以关闭此功能以提高性能。
   PrimaryActorTick.bCanEverTick = true;
 
   SideVisibility.Init(true, 4);
@@ -31,16 +31,16 @@ UHierarchicalInstancedStaticMeshComponent* AProceduralBuilding::GetHISMComp(
 
   UHierarchicalInstancedStaticMeshComponent* HISMComp = *HISMCompPtr;
 
-  // If it doesn't exist, create the component
+  // 如果不存在，请创建组件
   HISMComp = NewObject<UHierarchicalInstancedStaticMeshComponent>(this,
     FName(*FString::Printf(TEXT("HISMComp_%d"), HISMComps.Num())));
   HISMComp->SetupAttachment(RootComponent);
   HISMComp->RegisterComponent();
 
-  // Set the mesh that will be used
+  // 设置将使用的网格
   HISMComp->SetStaticMesh(const_cast<UStaticMesh*>(SM));
 
-  // Add to the map
+  // 添加到地图
   HISMComps.Emplace(SMName, HISMComp);
 
   return HISMComp;
@@ -58,7 +58,7 @@ void AProceduralBuilding::ConvertOldBP_ToNativeCodeObject(AActor* BP_Building)
 {
   AProceduralBuilding* ProceduralBuilding = nullptr;
 
-  // Look for all the HISMComps
+  // 查找所有 HISMComps
   TArray<UHierarchicalInstancedStaticMeshComponent*> OtherHISMComps;
   BP_Building->GetComponents<UHierarchicalInstancedStaticMeshComponent>(OtherHISMComps);
 
@@ -66,10 +66,10 @@ void AProceduralBuilding::ConvertOldBP_ToNativeCodeObject(AActor* BP_Building)
   {
     const UStaticMesh* SM = OtherHISMComp->GetStaticMesh();
 
-    // Create a new HISMComp and set the SM
+    // 创建新的 HISMComp 并将 SM
     UHierarchicalInstancedStaticMeshComponent* NewHISMComp = GetHISMComp(SM);
 
-    // Create the instances
+    // 创建实例
     const TArray<FInstancedStaticMeshInstanceData>& PerInstanceSMData =  OtherHISMComp->PerInstanceSMData;
 
     for(const FInstancedStaticMeshInstanceData& InstSMIData : PerInstanceSMData)
@@ -80,37 +80,37 @@ void AProceduralBuilding::ConvertOldBP_ToNativeCodeObject(AActor* BP_Building)
     }
   }
 
-  // TODO: Look for all ChildActors -> Add new Child
+  // TODO： 查找所有 ChildActors-> 添加新子项
   TArray<UChildActorComponent*> OtherChildComps;
   BP_Building->GetComponents<UChildActorComponent>(OtherChildComps);
 
   for(const UChildActorComponent* OtherChildActor : OtherChildComps)
   {
-    // Create a new ChildActorComponent
+    // 创建一个新的 ChildActorComponent
     UChildActorComponent* ChildActorComp = NewObject<UChildActorComponent>(this,
       FName(*FString::Printf(TEXT("ChildActorComp_%d"), ChildActorComps.Num() )));
     ChildActorComp->SetMobility(EComponentMobility::Type::Static);
     ChildActorComp->SetupAttachment(RootComponent);
 
-    // Set the class that it will use
+    // 设置它将使用的类
     ChildActorComp->SetChildActorClass(OtherChildActor->GetChildActorClass());
     ChildActorComp->SetRelativeTransform(OtherChildActor->GetRelativeTransform());
 
-    // Spawns the actor referenced by UChildActorComponent
+    // 生成 UChildActorComponent 引用的 actor
     ChildActorComp->RegisterComponent();
 
     AActor* NewChildActor = ChildActorComp->GetChildActor();
 
 #if WITH_EDITOR
-    // Add the child actor to a subfolder of the actor's name
+    将子角色添加到角色名称的子文件夹中
     NewChildActor->SetFolderPath(FName( *FString::Printf(TEXT("/Buildings/%s"), *GetName())));
  #endif
 
-    // Look for all the SMComps
+    // 查找所有 SMComps
     TArray<UStaticMeshComponent*> NewSMComps;
     NewChildActor->GetComponents<UStaticMeshComponent>(NewSMComps);
 
-    // Make it invisible on the child actor to avoid duplication with the HISMComp
+    // 使其在子 actor 上不可见，以避免与 HISMComp 重复
     UStaticMeshComponent* PivotSMComp = NewSMComps[0];
     PivotSMComp->SetVisibility(false, false);
 
@@ -242,12 +242,12 @@ void AProceduralBuilding::Reset()
 {
   CurrentTransform = FTransform::Identity;
 
-  // Discard previous calculation
+  // 放弃以前的计算
   SidesLength.Reset();
 
   const TSet <UActorComponent*> Comps = GetComponents();
 
-  // Remove all the instances of each HISMComp
+  // 删除每个 HISMComp 的所有实例
   for(auto& It : HISMComps)
   {
     const FString& MeshName = It.Key;
@@ -255,10 +255,10 @@ void AProceduralBuilding::Reset()
 
     HISMComp->ClearInstances();
   }
-  // Empties out the map but preserves all allocations and capacities
+  // 清空地图，但保留所有分配和容量
   HISMComps.Reset();
 
-  // Remove all child actors
+  // 删除所有子角色
   for(UChildActorComponent* ChildActorComp : ChildActorComps)
   {
     if(ChildActorComp)
@@ -284,7 +284,7 @@ void AProceduralBuilding::CreateFloor(
 {
   float MaxZ = 0.0f;
 
-  // Stores the total length covered. This is needed to place the doors.
+  // 存储覆盖的总长度。这是放置门所必需的。
   int SideLengthAcumulator = 0;
 
   for(int i = 0; i < SidesLength.Num(); i++)
@@ -305,14 +305,14 @@ void AProceduralBuilding::CreateFloor(
 
     CalculateSideVisibilities(i, MainVisibility, CornerVisbility);
 
-    // Update Max Z
+    // 更新最大 Z
     float SideMaxZ = CreateSide(MeshCollection, AuxiliarPositions, SideLength, MainVisibility, CornerVisbility);
     MaxZ = (MaxZ < SideMaxZ) ? SideMaxZ : MaxZ;
 
-    // Update the acumulator to calculate doors index in next sides
+    // 更新累加器以计算下一个侧面的门索引
     SideLengthAcumulator += SideLength;
 
-    // Update transform rotation for the next side
+    // 更新下一侧的变换旋转
     if(!UseFullBlocks)
     {
       const FQuat RotationToAdd = FRotator(0.0f, 90.0f, 0.0f).Quaternion();
@@ -320,7 +320,7 @@ void AProceduralBuilding::CreateFloor(
     }
   }
 
-  // Update transform for the next floor
+  // 更新下一楼层的转换
   FVector NewLocation = CurrentTransform.GetTranslation() + FVector(0.0f, 0.0f, MaxZ);
   CurrentTransform.SetTranslation(NewLocation);
 
@@ -348,13 +348,13 @@ void AProceduralBuilding::CreateRoof()
       FVector PivotLocation = CurrentTransform.GetTranslation();
       for(int j = 0; j < LengthX; j++)
       {
-        // Choose a roof mesh
+        // 选择屋顶网格
         ChooseGeometryToSpawn(RoofMeshes, RoofBPs, &SelectedMesh, &SelectedBP);
 
         AddChunck(SelectedMesh, SelectedBP, RoofVisibility, SelectedMeshBounds);
 
       }
-      // Move the Transform location to the beginning of the next row
+      // 将 Transform 位置移动到下一行的开头
       CurrentTransform.SetTranslation(PivotLocation);
       UpdateTransformPositionToNextSide(SelectedMeshBounds);
     }
@@ -386,7 +386,7 @@ float AProceduralBuilding::CreateSide(
   FBox SelectedMeshBounds;
   float MaxZ = 0.0f;
 
-  // Check to know if there are meshes for the main part available
+  // 检查是否有主零件的网格可用
   bool AreMainMeshesAvailable = (MainMeshes && (MainMeshes->Num() > 0)) || (MainBPs && (MainBPs->Num() > 0));
   bool AreAuxMeshesAvailable = (MainMeshes && (MainMeshes->Num() > 0)) || (MainBPs && (MainBPs->Num() > 0));
 
@@ -395,12 +395,12 @@ float AProceduralBuilding::CreateSide(
     const int* AuxiliarPosition = AuxiliarPositions.Find(i);
     if(AreAuxMeshesAvailable && AuxiliarPosition)
     {
-      // Choose an auxiliar mesh
+      // 选择辅助网格
       ChooseGeometryToSpawn(*AuxiliarMeshes, *AuxiliarBPs, &SelectedMesh, &SelectedBP);
     }
     else
     {
-      // Choose a main mesh
+      // 选择主网格
       ChooseGeometryToSpawn(*MainMeshes, *MainBPs, &SelectedMesh, &SelectedBP);
     }
 
@@ -414,13 +414,13 @@ float AProceduralBuilding::CreateSide(
   bool AreCornerMeshesAvailable = (CornerMeshes && (CornerMeshes->Num() > 0)) || (CornerBPs && (CornerBPs->Num() > 0));
   if(Corners && AreCornerMeshesAvailable)
   {
-    // Choose a corner mesh
+    // 选择角网格
     ChooseGeometryToSpawn(*CornerMeshes, *CornerBPs, &SelectedMesh, &SelectedBP);
     float ChunkZ = AddChunck(SelectedMesh, SelectedBP, CornerVisbility, SelectedMeshBounds);
     MaxZ = (MaxZ < ChunkZ) ? ChunkZ : MaxZ;
 
-    // Move the Transform location to the next side of the building
-    // because corners can be in two sides
+    // 将 Transform 位置移动到建筑物的另一侧
+    // 因为拐角可以在两个侧面
     UpdateTransformPositionToNextSide(SelectedMeshBounds);
   }
 
@@ -431,12 +431,12 @@ float AProceduralBuilding::CreateSide(
 
 void AProceduralBuilding::CalculateSidesLength()
 {
-  // Discard previous calculation
+  // 放弃以前的计算
   SidesLength.Reset();
 
   if(UseFullBlocks)
   {
-    // The full block configuration covers all the sides of the floor with one mesh
+    // 完整的块配置用一个网格覆盖地板的所有侧面
     SidesLength.Emplace(1);
   }
   else
@@ -511,7 +511,7 @@ float AProceduralBuilding::AddChunck(
 {
   float Result = 0.0f;
 
-  // Static Mesh
+  // 静态网格体
   if(SelectedMesh)
   {
     if(Visible)
@@ -527,33 +527,33 @@ float AProceduralBuilding::AddChunck(
   // BP
   else if(SelectedBP)
   {
-    // Create a new ChildActorComponent
+    // 创建一个新的 ChildActorComponent
     UChildActorComponent* ChildActorComp = NewObject<UChildActorComponent>(this,
       FName(*FString::Printf(TEXT("ChildActorComp_%d"), ChildActorComps.Num() )));
     ChildActorComp->SetMobility(EComponentMobility::Type::Static);
     ChildActorComp->SetupAttachment(RootComponent);
 
-    // Set the class that it will use
+    // 设置它将使用的类
     ChildActorComp->SetChildActorClass(SelectedBP);
     ChildActorComp->SetRelativeTransform(CurrentTransform);
 
-    // Spawns the actor referenced by UChildActorComponent
+    // 生成 UChildActorComponent 引用的 actor
     ChildActorComp->RegisterComponent();
 
     AActor* ChildActor = ChildActorComp->GetChildActor();
 
 #if WITH_EDITOR
-    // Add the child actor to a subfolder of the actor's name
+    // 将子角色添加到角色名称的子文件夹中
     ChildActor->SetFolderPath(FName( *FString::Printf(TEXT("/Buildings/%s"), *GetName())));
  #endif
 
-    // Look for all the SMComps
+    // 查找所有 SMComps
     TArray<UStaticMeshComponent*> SMComps;
     UStaticMeshComponent* PivotSMComp = nullptr;
 
     ChildActor->GetComponents<UStaticMeshComponent>(SMComps);
 
-    // The first mesh on the BP is the pivot to continue creating the floor
+    // 蓝图上的第一个网格是继续创建地板的枢轴
     PivotSMComp = SMComps[0];
     const UStaticMesh* SM = PivotSMComp->GetStaticMesh();
 
@@ -572,7 +572,7 @@ float AProceduralBuilding::AddChunck(
 
     UpdateTransformPositionToNextChunk(MeshBound);
 
-    // Make it invisible on the child actor to avoid duplication with the HISMComp
+    // 使其在子 actor 上不可见，以避免与 HISMComp 重复
     PivotSMComp->SetVisibility(false, false);
     OutSelectedMeshBounds = SM->GetBoundingBox();
 
@@ -596,8 +596,8 @@ FVector AProceduralBuilding::GetMeshSize(const UStaticMesh* SM)
 
 void AProceduralBuilding::UpdateTransformPositionToNextChunk(const FVector& Box)
 {
-  // Update Current Transform to the right side of the added chunk
-  // Nothing to change if the chunk is the size of a floor
+  // 将 Current Transform 更新到添加的数据块的右侧
+  // 如果块是 floor 的大小，则无需更改任何内容
   if(!UseFullBlocks)
   {
     FQuat Rotation = CurrentTransform.GetRotation();
@@ -610,8 +610,8 @@ void AProceduralBuilding::UpdateTransformPositionToNextChunk(const FVector& Box)
 
 void AProceduralBuilding::UpdateTransformPositionToNextSide(const FBox& Box)
 {
-  // Update Current Transform to the right side of the added chunk
-  // Nothing to change if the chunk is the size of a floor
+  // 将 Current Transform 更新到添加的数据块的右侧
+  // 如果块是 floor 的大小，则无需更改任何内容
   if(!UseFullBlocks)
   {
     FQuat Rotation = CurrentTransform.GetRotation();
