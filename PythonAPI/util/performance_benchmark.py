@@ -19,8 +19,8 @@ Please, make sure you install the following dependencies:
 
 """
 
-# @todo Include this file in the Pylint checks.
-# pylint: skip-file
+#@todo 将此文件包含在 Pylint 检查中。
+# pylint： 跳过文件
 
 import sys
 
@@ -198,7 +198,7 @@ def create_environment(world, sensors, n_vehicles, n_walkers, spawn_points, clie
   sensors_ret = []
   blueprint_library = world.get_blueprint_library()
 
-  # setup sensors
+  # 设置传感器
   for sensor_spec in sensors:
     bp = blueprint_library.find(sensor_spec['type'])
 
@@ -235,11 +235,11 @@ def create_environment(world, sensors, n_vehicles, n_walkers, spawn_points, clie
       sensor_location = carla.Location(x=sensor_spec['x'], y=sensor_spec['y'], z=sensor_spec['z'])
       sensor_rotation = carla.Rotation()
 
-    # create sensor
+    # 创建传感器
     sensor_transform = carla.Transform(sensor_location, sensor_rotation)
     sensor = world.spawn_actor(bp, sensor_transform)
 
-    # add callbacks
+    # 添加回调
     sc = CallBack()
     sensor.listen(sc)
 
@@ -253,7 +253,7 @@ def create_environment(world, sensors, n_vehicles, n_walkers, spawn_points, clie
   blueprint = world.get_blueprint_library().filter('vehicle.audi.a2')[0]
   walker_bp = world.get_blueprint_library().filter("walker.pedestrian.0001")[0]
 
-  # @todo cannot import these directly.
+  # @todo无法直接导入这些内容。
   SpawnActor = carla.command.SpawnActor
   SetAutopilot = carla.command.SetAutopilot
   FutureActor = carla.command.FutureActor
@@ -278,10 +278,10 @@ def create_environment(world, sensors, n_vehicles, n_walkers, spawn_points, clie
   # Spawn Walkers
   # -------------
   # some settings
-  percentagePedestriansRunning = 0.0      # how many pedestrians will run
-  percentagePedestriansCrossing = 0.0     # how many pedestrians will walk through the road
+  percentagePedestriansRunning = 0.0      # 有多少行人会跑
+  percentagePedestriansCrossing = 0.0     # 有多少行人会穿过这条路
   if n_walkers > 0:
-    # 1. take all the random locations to spawn
+    # 1. 获取所有随机位置进行生成
     spawn_points = []
     for i in range(n_walkers):
       spawn_point = carla.Transform()
@@ -289,14 +289,14 @@ def create_environment(world, sensors, n_vehicles, n_walkers, spawn_points, clie
       if (loc != None):
         spawn_point.location = loc
         spawn_points.append(spawn_point)
-    # 2. we spawn the walker object
+    # 2. 我们生成 Walker 对象
     batch = []
     walker_speed = []
     for spawn_point in spawn_points:
-      # set as not invincible
+      # 设为非无敌
       if walker_bp.has_attribute('is_invincible'):
         walker_bp.set_attribute('is_invincible', 'false')
-      # set the max speed
+      # 设置最大速度
       if walker_bp.has_attribute('speed'):
         # walking
         walker_speed.append(walker_bp.get_attribute('speed').recommended_values[1])
@@ -313,7 +313,7 @@ def create_environment(world, sensors, n_vehicles, n_walkers, spawn_points, clie
         walkers_list.append({"id": results[i].actor_id})
         walker_speed2.append(walker_speed[i])
     walker_speed = walker_speed2
-    # 3. we spawn the walker controller
+    # 3. 我们生成 Walker 控制器
     batch = []
     walker_controller_bp = world.get_blueprint_library().find('controller.ai.walker')
     for i in range(len(walkers_list)):
@@ -324,18 +324,18 @@ def create_environment(world, sensors, n_vehicles, n_walkers, spawn_points, clie
         logging.error(results[i].error)
       else:
         walkers_list[i]["con"] = results[i].actor_id
-      # 4. we put altogether the walkers and controllers id to get the objects from their id
+      # 4. 我们将 walker 和 controllers 放在一起，以从它们的 ID 中获取对象
     for i in range(len(walkers_list)):
       all_id.append(walkers_list[i]["con"])
       all_id.append(walkers_list[i]["id"])
 
   all_actors = world.get_actors(all_id)
 
-  # ensures client has received the last transform of the walkers we have just created
+  # 确保客户端已收到我们刚刚创建的 Walker 的最后一个转换
   tick()
 
-  # 5. initialize each controller and set target to walk to (list is [controler, actor, controller, actor ...])
-  # set how many pedestrians can cross the road
+  # 5. 初始化每个控制器并设置要步行到的目标（列表为 [controler， actor， controller， actor ...]）
+  # 设置可以过马路的行人数量
   world.set_pedestrians_cross_factor(percentagePedestriansCrossing)
   for i in range(0, len(all_id), 2):
     # start walker
@@ -386,7 +386,7 @@ def run_benchmark(world, sensors, n_vehicles, n_walkers, client, debug=False):
   if sensors_ret:
     sensor_list = sensors_ret
 
-  # Allow some time for the server to finish the initialization
+  # 请留出一些时间让服务器完成初始化
   for _i in range(0, 50):
     tick()
 
@@ -528,7 +528,7 @@ def main(args):
       # set to async mode
       set_world_settings(world)
 
-      # spectator pointing to the sky to reduce rendering impact
+      # 旁观者指向天空以减少渲染影响
       spectator = world.get_spectator()
       spectator.set_transform(carla.Transform(carla.Location(z=500), carla.Rotation(pitch=90)))
 
