@@ -21,5 +21,5 @@ Config/CarSimConfig.ini
 *.code-workspace#代码工作区文件
 .idea
 .vscode
-CMakeLists.txt
+CMakeLists.txt#可能是构建清单文件，用于项目构建
 Makefile#构建项目时常用的文件，用于指导构建系统如何构建项目
