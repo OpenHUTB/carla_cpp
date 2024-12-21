@@ -128,18 +128,39 @@ def should_quit():                                                   #函数用�
 
 
 def main():
+    """
+    主函数，用于初始化游戏（或仿真）环境，创建窗口，
+    并与CARLA仿真器建立连接，以获取和控制仿真世界。
+    """
+    # 初始化一个空列表，用于存储游戏（或仿真）中的参与者（actor）
     actor_list = []
+    
+    # 初始化pygame库，准备进行图形显示
     pygame.init()
-
-    display = pygame.display.set_mode(
-        (800, 600),
-        pygame.HWSURFACE | pygame.DOUBLEBUF)
+    
+    # 设置pygame的显示模式，创建一个窗口
+    # (800, 600)是窗口的大小，单位是像素
+    # pygame.HWSURFACE和pygame.DOUBLEBUF是显示模式的标志
+    # HWSURFACE表示使用硬件加速，DOUBLEBUF表示使用双缓冲以减少画面撕裂
+    display = pygame.display.set_mode((800, 600),pygame.HWSURFACE | pygame.DOUBLEBUF)   
+    # 调用一个假设存在的函数get_font()，用于获取字体对象
+    # 该函数在代码段中未定义，可能是在其他地方定义的
     font = get_font()
+    
+    # 创建一个pygame时钟对象，用于控制帧率
     clock = pygame.time.Clock()
-
+    
+    # 与CARLA仿真器建立连接
+    # 'localhost'是仿真器运行的主机地址，2000是仿真器监听的端口号
     client = carla.Client('localhost', 2000)
+    
+    # 设置与CARLA仿真器交互时的超时时间（秒）
+    # 如果在指定时间内没有收到仿真器的响应，将抛出异常
     client.set_timeout(2.0)
-
+    
+    # 通过客户端对象获取当前的仿真世界
+    # 该世界对象包含了仿真中的所有参与者（如车辆、行人等）
+    # 以及用于控制这些参与者的方法和属性
     world = client.get_world()
 
     try:
