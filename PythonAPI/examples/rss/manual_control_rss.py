@@ -578,8 +578,11 @@ class VehicleControl(object):
         # 用于记录鼠标转向操作时的中心位置坐标，初始化为 `None`，当鼠标按下进行转向操作时会记录下鼠标的当前位置作为中心位置，鼠标松开时会重置为 `None`，用于后续根据鼠标移动相对于这个中心位置来计算转向等操作。
 
         self._surface = pygame.Surface((self.MOUSE_STEERING_RANGE * 2, self.MOUSE_STEERING_RANGE * 2))
+        # 创建一个 `pygame` 库中的 `Surface` 对象（表面对象，用于图形绘制、显示等操作），其大小由 `MOUSE_STEERING_RANGE` 属性决定，这里创建的表面大小是 `(MOUSE_STEERING_RANGE * 2, MOUSE_STEERING_RANGE * 2)`，可能用于后续在屏幕上显示与鼠标转向相关的提示信息或者可视化元素等操作，将其赋值给实例属性 `_surface`。
         self._surface.set_colorkey(pygame.Color('black'))
+        # 设置表面对象的透明颜色键（ `colorkey` ）为黑色（ `pygame.Color('black')` ），这意味着在显示这个表面时，所有黑色的像素点会被当作透明处理，方便实现一些特殊的图形显示效果，比如只显示特定颜色部分的图像等。
         self._surface.set_alpha(60)
+        # 设置表面对象的透明度为60（取值范围通常是0 - 255，表示从完全透明到完全不透明，这里设置为60表示半透明效果），使得这个表面在显示时呈现出一定的透明状态，可能用于叠加显示在其他图形元素之上，不遮挡太多背景内容等情况。
 
         line_width = 2
         pygame.draw.polygon(self._surface,
@@ -604,13 +607,21 @@ class VehicleControl(object):
                                 (self.MOUSE_STEERING_RANGE, 0),
                                 (self.MOUSE_STEERING_RANGE, self.MOUSE_STEERING_RANGE * 2)
                             ], line_width)
+        # 使用 `pygame` 库的 `draw.polygon` 方法在之前创建的表面对象 `_surface` 上绘制多边形，这里绘制的是一个蓝色（颜色值为 `(0, 0, 255)` ）的多边形，多边形的顶点坐标通过给定的列表来指定，并且设置多边形的线宽为2像素，这个多边形可能是用于在屏幕上显示与鼠标转向相关的操作提示或者区域范围等可视化信息。        
 
         world.hud.notification("Press 'H' or '?' for help.", seconds=4.0)
+        # 通过模拟世界对象的 `hud`（抬头显示相关对象，用于显示各种提示信息等）调用 `notification` 方法，向用户显示一条提示信息，告知用户可以按下 `H` 键或者 `?` 键获取帮助信息，并且设置这条提示信息显示的时长为4.0秒，之后会自动消失。
 
     def render(self, display):
+    # `render` 方法用于将与鼠标转向相关的可视化元素渲染显示到指定的显示界面上。
+    # 接收一个 `display` 参数，这个参数通常代表图形显示界面的对象（例如在 `pygame` 等图形库中用于显示图像的对象）。
         if self._mouse_steering_center:
+        # 判断 `self._mouse_steering_center` 是否存在（不为 `None`），它记录着鼠标转向操作时的中心位置坐标。
+        # 如果存在，则执行以下操作将之前创建的带有转向提示等可视化元素的表面对象（`self._surface`）绘制到显示界面上。
             display.blit(
                 self._surface, (self._mouse_steering_center[0] - self.MOUSE_STEERING_RANGE, self._mouse_steering_center[1] - self.MOUSE_STEERING_RANGE))
+            # 使用 `display` 对象的 `blit` 方法将 `self._surface` 绘制到显示界面上，绘制的位置根据 `self._mouse_steering_center` 坐标进行偏移，
+            # 通过减去 `MOUSE_STEERING_RANGE` 来确保可视化元素能以鼠标转向中心位置为参照，正确地显示在合适的区域，方便用户直观地看到与鼠标转向操作相关的提示信息。
 
     @staticmethod
     def signal_handler(signum, _):
