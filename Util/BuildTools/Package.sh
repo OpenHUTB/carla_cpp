@@ -212,22 +212,28 @@ fi
 # -- Zip the project -----------------------------------------------------------
 # ==============================================================================
 
+#确定源文件的位置和目标文件的存放路径
 if ${DO_CARLA_RELEASE} && ${DO_TARBALL} ; then
 
   DESTINATION=${RELEASE_PACKAGE_PATH}
   SOURCE=${RELEASE_BUILD_FOLDER}/LinuxNoEditor
 
+  #将当前目录切换到指定的目录
   pushd "${SOURCE}" >/dev/null
 
+  #记录正在进行的CARLA版本的打包操作
   log "Packaging CARLA release."
 
+  #进行了一系列的文件删除操作
   rm -f ./Manifest_NonUFSFiles_Linux.txt
   rm -f ./Manifest_UFSFiles_Linux.txt
   rm -Rf ./CarlaUE4/Saved
   rm -Rf ./Engine/Saved
 
+  #用于打包和压缩文件
   tar -czf ${DESTINATION} *
 
+  #从目录栈中弹出一个目录，并将当前目录切换到弹出的目录
   popd >/dev/null
 
 fi
@@ -236,10 +242,13 @@ fi
 # -- Remove intermediate files -------------------------------------------------
 # ==============================================================================
 
+#条件判断
 if ${DO_CARLA_RELEASE} && ${DO_CLEAN_INTERMEDIATE} ; then
 
+  #记录一条日志信息
   log "Removing intermediate build."
 
+  #删除与RELEASE_BUILD_FOLDER变量所指定路段相关的中间构建文件或目录
   rm -Rf ${RELEASE_BUILD_FOLDER}
 
 fi
