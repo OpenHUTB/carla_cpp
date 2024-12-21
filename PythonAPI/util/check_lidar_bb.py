@@ -121,33 +121,43 @@ class ActorTrace(object):
             np.savetxt("veh_data_%d_%s_%d.out" % (self._frame, self._actor_type, self._actor_id), self._lidar_pc_local)
             np.savetxt("bb_data_%d_%s_%d.out"  % (self._frame, self._actor_type, self._actor_id), self._bb_vertices)
 
-    def lidar_is_outside_bb(self, check_axis = [True, True, True]):
+    def lidar_is_outside_bb(self, check_axis=[True, True, True]):
+        """
+        检查激光雷达点云是否超出了边界框的范围。
+ 
+        参数:
+            check_axis (list of bool): 一个包含三个布尔值的列表，分别表示是否检查x、y、z轴。
+ 
+        返回:
+            bool: 如果点云在任一检查的轴上超出了边界框，则返回True；否则返回False。
+        """
+        # 获取本地激光雷达点云数据
         lidar_pc = self._lidar_pc_local
-
+ 
+        # 检查x轴
         if check_axis[0]:
-            xmin = self._bb_minlimits[0]
-            xmax = self._bb_maxlimits[0]
-            out = np.any((lidar_pc[:,0] > xmax) | (lidar_pc[:,0] < xmin))
-            if out:
+            # 获取边界框在x轴上的最小和最大限制
+            xmin, xmax = self._bb_minlimits[0], self._bb_maxlimits[0]
+            # 检查点云中是否有任何点在x轴上超出了边界框的范围
+            if np.any((lidar_pc[:, 0] > xmax) | (lidar_pc[:, 0] < xmin)):
                 print("Problem with x axis")
                 return True
-
+ 
+        # 检查y轴（逻辑与x轴相同）
         if check_axis[1]:
-            ymin = self._bb_minlimits[1]
-            ymax = self._bb_maxlimits[1]
-            out = np.any((lidar_pc[:, 1] > ymax) | (lidar_pc[:, 1] < ymin))
-            if out:
+            ymin, ymax = self._bb_minlimits[1], self._bb_maxlimits[1]
+            if np.any((lidar_pc[:, 1] > ymax) | (lidar_pc[:, 1] < ymin)):
                 print("Problem with y axis")
                 return True
-
+ 
+        # 检查z轴（逻辑与x轴和y轴相同）
         if check_axis[2]:
-            zmin = self._bb_minlimits[2]
-            zmax = self._bb_maxlimits[2]
-            out = np.any((lidar_pc[:, 2] > zmax) | (lidar_pc[:, 2] < zmin))
-            if out:
+            zmin, zmax = self._bb_minlimits[2], self._bb_maxlimits[2]
+            if np.any((lidar_pc[:, 2] > zmax) | (lidar_pc[:, 2] < zmin)):
                 print("Problem with z axis")
                 return True
-
+ 
+        # 如果点云在所有检查的轴上都没有超出边界框，则返回False
         return False
     
     def check_lidar_data(self):

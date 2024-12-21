@@ -139,11 +139,11 @@ def generate_pb_docs():
     blueprint_ids = [bp.id for bp in world.get_blueprint_library().filter('*')] # Returns list of all blueprint ids # 获取所有蓝图ID
 
     #  # 根据蓝图类型分类蓝图Creates a dict key = walker, static, prop, vehicle, sensor, controller; value = [bp_id, blueprint]
-    for bp_id in sorted(blueprint_ids):
+    for bp_id in sorted(blueprint_ids):# 对blueprints列表中的每个bp_id进行遍历，假设blueprints是一个包含所有蓝图id
         bp_type = bp_id.split('.')[0]
-        value = []
+        value = []# 初始化一个空列表，用于存储当前类型下的所有蓝图信息
         for bp in blueprints:
-            if bp.id == bp_id:
+            if bp.id == bp_id:# 如果蓝图的id与当前的bp_id相匹配
                 value = [bp_id, bp]
         if bp_type in bp_dict:
             bp_dict[bp_type].append(value)
@@ -157,9 +157,9 @@ def generate_pb_docs():
         "The Blueprint Library ([`carla.BlueprintLibrary`](../python_api/#carlablueprintlibrary-class)) " +
         "is a summary of all [`carla.ActorBlueprint`](../python_api/#carla.ActorBlueprint) " +
         "and its attributes ([`carla.ActorAttribute`](../python_api/#carla.ActorAttribute)) " +
-        "available to the user in CARLA.")
+        "available to the user in CARLA.")# 描述Blueprint Library
 
-    md.textn("\nHere is an example code for printing all actor blueprints and their attributes:")
+    md.textn("\nHere is an example code for printing all actor blueprints and their attributes:")# 添加示例代码文本
     md.textn(md.code_block("blueprints = [bp for bp in world.get_blueprint_library().filter('*')]\n"
                         "for blueprint in blueprints:\n"
                         "   print(blueprint.id)\n"
@@ -168,6 +168,7 @@ def generate_pb_docs():
     md.textn("Check out the [introduction to blueprints](core_actors.md).")
 
     for key, value in bp_dict.items(): # bp types, bp's
+# 遍历bp_dict字典，其中包含不同类型的blueprints
         md.title(3, key) #  添加标题 Key = walker, static, controller, sensor, vehicle
         for bp in sorted(value): # Value = bp[0]= name bp[1]= blueprint
             md.list_pushn(bold(color(COLOR_LIST, bp[0]))) # 添加列表项

@@ -101,34 +101,34 @@ def draw_junction(debug, junction, l_time=10):
 
 
 def main():
-    argparser = argparse.ArgumentParser()
+    argparser = argparse.ArgumentParser()# 创建 ArgumentParser 对象，用于处理命令行参数
     argparser.add_argument(
-        '--host',
+        '--host',#添加 --host 参数，用于指定主机IP地址
         metavar='H',
         default='127.0.0.1',
         help='IP of the host server (default: 127.0.0.1)')
     argparser.add_argument(
-        '-p', '--port',
+        '-p', '--port',# 参数的短名称和长名称
         metavar='P',
         default=2000,
         type=int,
         help='TCP port to listen to (default: 2000)')
     argparser.add_argument(
-        '-i', '--info',
+        '-i', '--info', # 添加显示信息的参数，若指定该参数则显示相关文本信息，布尔类型
         action='store_true',
-        help='Show text information')
+        help='Show text information')  
     argparser.add_argument(
         '-x',
         default=0.0,
         type=float,
-        help='X start position (default: 0.0)')
+        help='X start position (default: 0.0)')# 添加 -x 参数，用于指定X轴起始位置 ，如果不指定，则默认为 0.0
     argparser.add_argument(
         '-y',
         default=0.0,
         type=float,
         help='Y start position (default: 0.0)')
     argparser.add_argument(
-        '-z',
+        '-z', # 添加Z轴起始位置参数，默认值是0.0，类型为浮点数
         default=0.0,
         type=float,
         help='Z start position (default: 0.0)')
@@ -147,19 +147,24 @@ def main():
     args = argparser.parse_args()
 
     try:
+        # 创建Carla客户端，连接到指定IP和端口的服务器
         client = carla.Client(args.host, args.port)
         client.set_timeout(2.0)
 
+        # 获取Carla世界对象、地图对象以及调试工具对象
         world = client.get_world()
         m = world.get_map()
         debug = world.debug
 
+        # 设置随机种子，方便复现随机结果，并打印种子值
         random.seed(args.seed)
         print("Seed: ", args.seed)
 
+        # 根据传入的起始坐标创建位置对象，并打印初始位置
         loc = carla.Location(args.x, args.y, args.z)
         print("Initial location: ", loc)
 
+        # 获取初始位置对应的路径点
         current_w = m.get_waypoint(loc)
 
         # 主循环

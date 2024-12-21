@@ -128,44 +128,89 @@ def should_quit():                                                   #函数用�
 
 
 def main():
+    """
+    主函数，用于初始化游戏（或仿真）环境，创建窗口，
+    并与CARLA仿真器建立连接，以获取和控制仿真世界。
+    """
+    # 初始化一个空列表，用于存储游戏（或仿真）中的参与者（actor）
     actor_list = []
+    
+    # 初始化pygame库，准备进行图形显示
     pygame.init()
-
-    display = pygame.display.set_mode(
-        (800, 600),
-        pygame.HWSURFACE | pygame.DOUBLEBUF)
+    
+    # 设置pygame的显示模式，创建一个窗口
+    # (800, 600)是窗口的大小，单位是像素
+    # pygame.HWSURFACE和pygame.DOUBLEBUF是显示模式的标志
+    # HWSURFACE表示使用硬件加速，DOUBLEBUF表示使用双缓冲以减少画面撕裂
+    display = pygame.display.set_mode((800, 600),pygame.HWSURFACE | pygame.DOUBLEBUF)   
+    # 调用一个假设存在的函数get_font()，用于获取字体对象
+    # 该函数在代码段中未定义，可能是在其他地方定义的
     font = get_font()
+    
+    # 创建一个pygame时钟对象，用于控制帧率
     clock = pygame.time.Clock()
-
+    
+    # 与CARLA仿真器建立连接
+    # 'localhost'是仿真器运行的主机地址，2000是仿真器监听的端口号
     client = carla.Client('localhost', 2000)
+    
+    # 设置与CARLA仿真器交互时的超时时间（秒）
+    # 如果在指定时间内没有收到仿真器的响应，将抛出异常
     client.set_timeout(2.0)
-
+    
+    # 通过客户端对象获取当前的仿真世界
+    # 该世界对象包含了仿真中的所有参与者（如车辆、行人等）
+    # 以及用于控制这些参与者的方法和属性
     world = client.get_world()
 
-    try:
-        m = world.get_map()
-        start_pose = random.choice(m.get_spawn_points())
-        waypoint = m.get_waypoint(start_pose.location)
-
-        blueprint_library = world.get_blueprint_library()
-
-        vehicle = world.spawn_actor(
-            random.choice(blueprint_library.filter('vehicle.*')),
-            start_pose)
-        actor_list.append(vehicle)
-        vehicle.set_simulate_physics(False)
-
-        camera_rgb = world.spawn_actor(
-            blueprint_library.find('sensor.camera.rgb'),
-            carla.Transform(carla.Location(x=-5.5, z=2.8), carla.Rotation(pitch=-15)),
-            attach_to=vehicle)
-        actor_list.append(camera_rgb)
-
-        camera_semseg = world.spawn_actor(
-            blueprint_library.find('sensor.camera.semantic_segmentation'),
-            carla.Transform(carla.Location(x=-5.5, z=2.8), carla.Rotation(pitch=-15)),
-            attach_to=vehicle)
-        actor_list.append(camera_semseg)
+try:
+    # 从仿真世界对象中获取地图
+    m = world.get_map()
+    
+    # 从地图的随机生成点中选择一个作为车辆的起始位置
+    # 这些生成点通常是预先定义在地图上的，适合车辆安全出现的位置
+    start_pose = random.choice(m.get_spawn_points())
+    
+    # 根据起始位置获取该位置的道路信息（如方向、交通规则等）
+    waypoint = m.get_waypoint(start_pose.location)
+    
+    # 从仿真世界的蓝图库中获取所有车辆蓝图
+    # 蓝图定义了车辆的类型、外观、性能等属性
+    blueprint_library = world.get_blueprint_library()
+    
+    # 从所有车辆蓝图中随机选择一个，并在起始位置生成对应的车辆参与者
+    # start_pose包含了位置和旋转信息，用于确定车辆在游戏世界中的初始状态
+    vehicle = world.spawn_actor(
+        random.choice(blueprint_library.filter('vehicle.*')),  # 匹配所有车辆蓝图
+        start_pose)
+    
+    # 将生成的车辆参与者添加到actor_list列表中，以便后续管理
+    actor_list.append(vehicle)
+    
+    # 禁用车辆的物理模拟，以减少计算负担并提高仿真效率
+    # 在某些情况下，你可能希望车辆按照物理规律移动；但在其他情况下，你可能希望直接控制车辆
+    vehicle.set_simulate_physics(False)
+    
+    # 生成并附加一个RGB相机传感器到车辆上
+    # 该传感器用于捕获车辆周围环境的彩色图像
+    camera_rgb = world.spawn_actor(
+        blueprint_library.find('sensor.camera.rgb'),  # 查找RGB相机蓝图
+        carla.Transform(carla.Location(x=-5.5, z=2.8), carla.Rotation(pitch=-15)),  # 传感器的位置和旋转
+        attach_to=vehicle)  # 将传感器附加到车辆上
+    
+    # 将生成的RGB相机传感器添加到actor_list列表中
+    actor_list.append(camera_rgb)
+    
+    # 生成并附加一个语义分割相机传感器到车辆上
+    # 该传感器用于捕获车辆周围环境的语义分割图像
+    # 语义分割图像中的每个像素都标记了对应物体的类别（如道路、车辆、行人等）
+    camera_semseg = world.spawn_actor(
+        blueprint_library.find('sensor.camera.semantic_segmentation'),  # 查找语义分割相机蓝图
+        carla.Transform(carla.Location(x=-5.5, z=2.8), carla.Rotation(pitch=-15)),  # 传感器的位置和旋转
+        attach_to=vehicle)  # 将传感器附加到车辆上
+    
+    # 将生成的语义分割相机传感器添加到actor_list列表中
+    actor_list.append(camera_semseg)
 
         # Create a synchronous mode context.
         with CarlaSyncMode(world, camera_rgb, camera_semseg, fps=30) as sync_mode:
