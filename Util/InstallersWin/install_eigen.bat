@@ -50,11 +50,16 @@ set EIGEN_TEMP_FILE=eigen-%EIGEN_VERSION%.zip
 set EIGEN_TEMP_FILE_DIR=%BUILD_DIR%eigen-%EIGEN_VERSION%.zip
 
 if not exist "%EIGEN_SRC_DIR%" (
+    rem 在上面的目录不存在的基础上，进一步判断EIGEN_TEMP_FILE_DIR环境变量代表的目录是否也不存在，如果不存在则执行后续下载相关操作
     if not exist "%EIGEN_TEMP_FILE_DIR%" (
+        rem 输出提示信息，告知当前正在获取（下载）EIGEN_TEMP_FILE_DIR所代表的文件或目录，这里的%FILE_N%应该是一个自定义的文件名相关变量，用于标识具体操作的对象
         echo %FILE_N% Retrieving %EIGEN_TEMP_FILE_DIR%.
+        rem 使用PowerShell命令，通过System.Net.WebClient类来下载文件，将从EIGEN_REPO所指定的地址下载文件到EIGEN_TEMP_FILE_DIR所指定的目标位置
         powershell -Command "(New-Object System.Net.WebClient).DownloadFile('%EIGEN_REPO%', '%EIGEN_TEMP_FILE_DIR%')"
     )
+    rem 判断上一步执行PowerShell下载命令后的错误级别（errorlevel），如果不等于0（意味着出现错误），则跳转到error_download_eigen标签处执行相应的错误处理逻辑
     if %errorlevel% neq 0 goto error_download_eigen
+    rem 这里是一个注释，提醒接下来的代码功能是解压已下载的库文件，方便阅读代码时能快速知晓下面代码的大致意图
     rem Extract the downloaded library
     echo %FILE_N% Extracting eigen from "%EIGEN_TEMP_FILE%".
     powershell -Command "Expand-Archive '%EIGEN_TEMP_FILE_DIR%' -DestinationPath '%BUILD_DIR%'"
