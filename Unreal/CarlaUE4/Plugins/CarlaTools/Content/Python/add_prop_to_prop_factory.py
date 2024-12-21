@@ -2,9 +2,9 @@
 """
 Script to add new props to the prop factory and json file
 """
-import unreal
-import argparse
-import json
+import unreal#导入unreal模块
+import argparse#导入argparse模块
+import json#导入json模块
 
 # 此函数将 PropSize 枚举值转换为字符串表示
 def size_to_str(prop_size):

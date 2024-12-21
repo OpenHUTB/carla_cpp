@@ -32,16 +32,32 @@ namespace sensor_msgs {
 
         ImuPubSubType::ImuPubSubType()
         {
+            // 设置类型的名称为 "sensor_msgs::msg::dds_::Imu_"，这是 ROS 2 中的 IMU 消息类型
             setName("sensor_msgs::msg::dds_::Imu_");
+
+            // 计算 Imu 类型的最大序列化大小
             auto type_size = Imu::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+
+            // 计算序列化数据的对齐（为了处理可能存在的子消息）
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);
+
+            // 将类型大小加上 4 字节的封装大小（ROS 2 消息通常采用封装格式）
+            m_typeSize = static_cast<uint32_t>(type_size) + 4;  // encapsulation
+
+            // 检查 Imu 类型是否定义了键值（key），并保存其状态
             m_isGetKeyDefined = Imu::isKeyDefined();
+
+            // 计算 Imu 类型键的最大序列化大小，如果大于 16 字节，则选择较大的键长度，否则选择 16 字节
             size_t keyLength = Imu::getKeyMaxCdrSerializedSize() > 16 ?
                     Imu::getKeyMaxCdrSerializedSize() : 16;
+
+            // 为键值缓冲区分配内存，存储最大可能的键长度
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+
+            // 初始化缓冲区内容为零，确保没有未初始化的数据
             memset(m_keyBuffer, 0, keyLength);
         }
+
 
         ImuPubSubType::~ImuPubSubType()
         {
@@ -86,29 +102,36 @@ namespace sensor_msgs {
         {
             try
             {
-                //Convert DATA to pointer of your type
+                // 将传入的 void* 类型数据指针转换为 Imu 类型指针
                 Imu* p_type = static_cast<Imu*>(data);
 
-                // Object that manages the raw buffer.
+                // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理原始数据缓冲区
+                // 将 payload->data 指针作为缓冲区，并使用 payload->length 作为缓冲区的大小
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-                // Object that deserializes the data.
+                // 创建一个 eprosima::fastcdr::Cdr 对象，用于反序列化数据
+                // 使用默认字节序（系统字节序），并选择 DDS_CDR 格式进行反序列化
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-                // Deserialize encapsulation.
+                // 反序列化封装头（处理序列化数据的结构和顺序）
                 deser.read_encapsulation();
+
+                // 根据反序列化的数据的字节序，设置封装格式（大端或小端）
                 payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
 
-                // Deserialize the object.
+                // 反序列化具体的 Imu 对象数据
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果内存不足，捕获异常并返回 false，表示反序列化失败
                 return false;
             }
 
+            // 反序列化成功，返回 true
             return true;
         }
+
 
         std::function<uint32_t()> ImuPubSubType::getSerializedSizeProvider(
                 void* data)

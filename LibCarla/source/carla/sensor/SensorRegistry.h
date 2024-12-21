@@ -6,7 +6,8 @@
 
 #ifndef LIBCARLA_SENSOR_REGISTRY_INCLUDE_H	// 该头文件定义了传感器注册相关的内容，用于管理不同类型传感器及其序列化操作
 #define LIBCARLA_SENSOR_REGISTRY_INCLUDE_H
-
+// 引入CompositeSerializer头文件，它可能是一个用于组合多个序列化相关功能的类模板，
+// 在后续构建传感器数据序列化和反序列化的注册机制中会起到关键作用
 #include "carla/sensor/CompositeSerializer.h"
 
 // =============================================================================
@@ -57,8 +58,8 @@ class ACustomV2XSensor;
 namespace carla {
 namespace sensor {
 
-  // 3. Register the sensor and its serializer in the SensorRegistry.	// 在SensorRegistry中注册传感器及其对应的序列化器，使得可以通过该注册表对相应传感器数据进行序列化和反序列化操作
 
+  // 3. Register the sensor and its serializer in the SensorRegistry.	// 在SensorRegistry中注册传感器及其对应的序列化器，使得可以通过该注册表对相应传感器数据进行序列化和反序列化操作
   /// Contains a registry of all the sensors available and allows serializing
   /// and deserializing sensor data for the types registered.	// 包含了所有可用传感器的注册表，允许对已注册类型的传感器数据进行序列化和反序列化操作
   ///

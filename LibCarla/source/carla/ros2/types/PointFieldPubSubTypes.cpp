@@ -146,29 +146,42 @@ namespace sensor_msgs {
         }
 
         bool PointFieldPubSubType::getKey(
-                void* data,
-                InstanceHandle_t* handle,
-                bool force_md5)
+                 void* data,
+                 InstanceHandle_t* handle,
+                 bool force_md5)
         {
+            // 如果没有定义获取键的功能，则直接返回 false
             if (!m_isGetKeyDefined)
             {
                 return false;
             }
 
+            // 将传入的 data 指针转换为 PointField 类型指针
             PointField* p_type = static_cast<PointField*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个用于管理原始缓冲区的 eprosima::fastcdr::FastBuffer 对象
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
-                    PointField::getKeyMaxCdrSerializedSize());
+                            PointField::getKeyMaxCdrSerializedSize());
 
-            // Object that serializes the data.
+            // 创建一个用于序列化数据的 eprosima::fastcdr::Cdr 对象
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
+
+            // 序列化 PointField 对象的键值
             p_type->serializeKey(ser);
+
+            // 如果强制使用 MD5 或者键的最大序列化大小大于 16 字节
             if (force_md5 || PointField::getKeyMaxCdrSerializedSize() > 16)
             {
+                // 初始化 MD5 对象
                 m_md5.init();
+
+                // 更新 MD5 哈希值，使用序列化后的数据进行更新
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
+
+                // 计算最终的 MD5 哈希值
                 m_md5.finalize();
+
+                // 将 MD5 的前 16 字节结果存储到 handle->value 中
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_md5.digest[i];
@@ -176,12 +189,15 @@ namespace sensor_msgs {
             }
             else
             {
+                // 如果不需要 MD5，则直接将前 16 字节的键值存储到 handle->value 中
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
                 }
             }
+            // 返回成功，表示已经获取并设置了键值
             return true;
         }
+
     } //End of namespace msg
 } //End of namespace sensor_msgs
