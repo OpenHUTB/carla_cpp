@@ -61,16 +61,19 @@ import carla
 # -- Global variables. So sorry... -------------------------------------------------------------------------------------
 # ======================================================================================================================
 sensors_callback = []
-
+#定义一个函数，目的是定义一个天气列表
 def define_weather():
+  #初始化了一个空列表list_weather
   list_weather = []
-
+  #如果args.tm为True
   if args.tm:
+    #只将ClearNoon天气添加到list_weather中
     weather00 = { 'parameter' : carla.WeatherParameters.ClearNoon, 'name': 'ClearNoon'}
-
+     
     list_weather.append(weather00)
-
+  #如果args.tm为False
   else:
+    #ClearNoon、CloudyNoon和SoftRainSunset三种天气添加到list_weather中
     weather00 = { 'parameter' : carla.WeatherParameters.ClearNoon, 'name' : 'ClearNoon'}
     weather01 = { 'parameter' : carla.WeatherParameters.CloudyNoon, 'name' : 'CloudyNoon'}
     weather02 = { 'parameter' : carla.WeatherParameters.SoftRainSunset, 'name' : 'SoftRainSunset'}
@@ -78,14 +81,17 @@ def define_weather():
     list_weather.append(weather00)
     list_weather.append(weather01)
     list_weather.append(weather02)
-
+    #如果args.weather不为None
     if args.weather is not None:
+      #尝试根据args.weather中的索引来筛选list_weather中的天气
       try:
         new_list = [list_weather[int(i)] for i in args.weather]
         list_weather = new_list
+      #如果在索引过程中出现IndexError
       except IndexError as error:
+        #打印一条警告信息，并使用原始的list_weather
         print("Warning!! The list of types of weather introduced is not valid. Using all available.")
-
+  #函数返回list_weather列表
   return list_weather
 
 
