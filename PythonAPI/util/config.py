@@ -33,10 +33,19 @@ except IndexError:
 
 import carla
 
+# 导入argparse模块，用于编写用户友好的命令行接口
 import argparse
+
+# 导入datetime模块，提供日期和时间的类，用于处理日期和时间相关的操作
 import datetime
+
+# 导入re模块，提供正则表达式相关的操作，用于字符串的匹配、查找、替换等
 import re
+
+# 导入socket模块，提供BSD套接字接口的访问，用于实现网络通信（客户端和服务器）
 import socket
+
+# 导入textwrap模块，提供文本包装和填充功能，用于格式化多行文本
 import textwrap
 
 
