@@ -82,12 +82,16 @@ def main():
     except:
         print('\nAn error has occurred in extraction.')
 
-
+#判断当前脚本是否作为主程序运行
 if __name__ == '__main__':
-
+    #尝试调用main()函数。这意味着在这个脚本中，main()函数应该是主要的执行逻辑所在
     try:
         main()
+    #如果用户在程序运行时按下Ctrl + C（KeyboardInterrupt）
     except KeyboardInterrupt:
+        #捕获这个异常并打印'Cancelled by user. Bye!'
         print('\nCancelled by user. Bye!')
+    #如果在main()函数执行过程中出现RuntimeError
     except RuntimeError as e:
+        #捕获这个异常并打印出具体的错误信息e
         print(e)
