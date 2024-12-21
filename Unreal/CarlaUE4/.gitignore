@@ -19,7 +19,11 @@ Config/DefaultEditor.ini
 Config/CarSimConfig.ini
 
 *.code-workspace
+#IDEA项目文件目录
 .idea
+#Visual Studio Code目录
 .vscode
+#CMake列表文件
 CMakeLists.txt
+#Makefile文件
 Makefile
