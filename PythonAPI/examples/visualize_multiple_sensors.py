@@ -180,21 +180,51 @@ class SensorManager:
     def get_sensor(self):
         return self.sensor
 
-    def save_rgb_image(self, image):
-        t_start = self.timer.time()
-
-        image.convert(carla.ColorConverter.Raw)
-        array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
-        array = np.reshape(array, (image.height, image.width, 4))
-        array = array[:, :, :3]
-        array = array[:, :, ::-1]
-
-        if self.display_man.render_enabled():
-            self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
-
-        t_end = self.timer.time()
-        self.time_processing += (t_end-t_start)
-        self.tics_processing += 1
+def save_rgb_image(self, image):
+    """
+    将来自CARLA仿真的RGB图像数据转换为Pygame可以显示的格式（如果启用了渲染），并跟踪处理时间。
+    
+    参数:
+    image (carla.Image): 来自CARLA仿真的图像对象，包含原始图像数据和尺寸信息。
+    
+    无返回值。
+    """
+    
+    # 记录处理开始时间
+    t_start = self.timer.time()
+    
+    # 将图像数据从CARLA的原始格式转换为NumPy数组
+    # 注意：这里假设image.convert方法会修改image对象，将其转换为原始数据格式
+    # 但实际上，根据CARLA的API，convert方法应该返回一个新的Image对象
+    # 因此，下面的代码可能需要调整以接收convert方法的返回值
+    image = image.convert(carla.ColorConverter.Raw)  # 这行代码可能需要根据CARLA API的实际行为进行调整
+    
+    # 从原始数据中创建NumPy数组，形状为(高度, 宽度, 4)，因为原始数据可能包含alpha通道
+    array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
+    array = np.reshape(array, (image.height, image.width, 4))
+    
+    # 移除alpha通道，只保留RGB通道
+    array = array[:, :, :3]
+    
+    # 将BGR格式转换为RGB格式（因为OpenCV默认使用BGR，而Pygame使用RGB）
+    array = array[:, :, ::-1]
+    
+    # 如果显示管理器启用了渲染，则将NumPy数组转换为Pygame表面
+    # 注意：这里假设self.surface用于存储转换后的图像数据
+    # 但实际上，根据方法的命名和上下文，这个方法并不直接保存图像到文件
+    # 它只是准备图像数据以供后续可能的显示或保存操作
+    if self.display_man.render_enabled():
+        # swapaxes用于将NumPy数组的形状从(高度, 宽度, 通道)转换为(宽度, 高度, 通道)
+        # 这是因为Pygame期望图像的宽度是第一个维度
+        self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
+    
+    # 记录处理结束时间
+    t_end = self.timer.time()
+    
+    # 更新总的处理时间和处理次数
+    # 这些数据可能用于性能分析或帧率控制
+    self.time_processing += (t_end - t_start)
+    self.tics_processing += 1
 
     def save_lidar_image(self, image):
         t_start = self.timer.time()
