@@ -181,6 +181,8 @@ carla::rpc::ResponseError RespondError(
   return RespondError(FuncName, CarlaGetStringError(Error), ExtraInfo);
 }
 
+//将自定义函数绑定到 CARLA 模拟器中的 RPC 服务器，以响应来自模拟器的请求或事件
+//通过指定同步或异步模式，控制这些函数是如何被调用的，这对于处理实时数据或模拟中的事件非常重要
 class ServerBinder
 {
 public:
@@ -255,9 +257,10 @@ void FCarlaServer::FPimpl::BindActions()
     return false;
 
   };
-
+// 绑定一个同步RPC函数，用于销毁指定端口的交通管理器
   BIND_SYNC(destroy_traffic_manager) << [this] (uint16_t port) ->R<bool>
   {
+    // 在TrafficManagerInfo容器中查找指定端口的交通管理器信息
     auto it = TrafficManagerInfo.find(port);
     if(it != TrafficManagerInfo.end()) {
       TrafficManagerInfo.erase(it);
@@ -265,7 +268,7 @@ void FCarlaServer::FPimpl::BindActions()
     }
     return false;
   };
-
+// 绑定一个异步RPC函数，用于获取CARLA的版本号
   BIND_ASYNC(version) << [] () -> R<std::string>
   {
     return carla::version();
@@ -306,7 +309,7 @@ void FCarlaServer::FPimpl::BindActions()
 
   BIND_SYNC(load_new_episode) << [this](const std::string &map_name, const bool reset_settings, cr::MapLayer MapLayers) -> R<void>
   {
-    REQUIRE_CARLA_EPISODE();
+    REQUIRE_CARLA_EPISODE();//检查当前是否存在有效的 CARLA 场景。如果不存在，它会抛出异常或返回错误
 
     UCarlaGameInstance* GameInstance = UCarlaStatics::GetGameInstance(Episode->GetWorld());
     if (!GameInstance)
