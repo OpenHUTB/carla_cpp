@@ -47,38 +47,43 @@ def extract(args):
 # -- main() --------------------------------------------------------------------
 # ==============================================================================
 
-
+#定义一个函数，功能是配置命令行参数并调用extract函数来提取 CARLA 地图中的生成点（spawn points）
 def main():
+    #创建了一个ArgumentParser对象来处理命令行参数
     argparser = argparse.ArgumentParser(
         description='CARLA map spawn points extractor')
+    #--host：指定主机服务器的 IP 地址，默认为127.0.0.1
     argparser.add_argument(
         '--host',
         metavar='H',
         default='127.0.0.1',
         help='IP of the host server (default: 127.0.0.1)')
+    #-p或--port：指定要监听的 TCP 端口，默认为2000
     argparser.add_argument(
         '-p', '--port',
         metavar='P',
         default=2000,
         type=int,
         help='TCP port to listen to (default: 2000)')
+    #-o或--output - dir：指定提取结果的输出目录路径，这个参数是必需的
     argparser.add_argument(
         '-o', '--output-dir',
         required=True,
         help='Output directory path for extraction result')
     args = argparser.parse_args()
-
+    #如果输出目录未指定或不存在，则打印错误信息
     if args.output_dir is None or not os.path.exists(args.output_dir):
         print('output directory not found.')
-
+    #设置日志级别为INFO，并记录正在监听的服务器地址和端口
     logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 
     logging.info('listening to server %s:%s', args.host, args.port)
 
     print(__doc__)
-
+    #调用extract函数来提取生成点
     try:
         extract(args)
+    #如果在提取过程中发生错误，则打印错误信息
     except:
         print('\nAn error has occurred in extraction.')
 
