@@ -64,7 +64,8 @@ rem 如果没有设置删除中间文件，且没有选择为Python3或Python2�
 if %REMOVE_INTERMEDIATE% == false (
     if %BUILD_FOR_PYTHON3% == false (
         if %BUILD_FOR_PYTHON2% == false (
-          echo 没有选择任何要执行的操作。
+          echo Nothing selected to be done.
+
           goto :eof
         )
     )
@@ -141,11 +142,11 @@ rem ============================================================================
 
 :error_py
     echo.
-    echo %FILE_N% [ERROR] 执行py时出错。
-    echo %FILE_N% [ERROR] 可能的原因：
-    echo %FILE_N% [ERROR]  - 确保已安装"py"。
-    echo %FILE_N% [ERROR]  - py是Python启动器。此实用程序随Python安装一起提供，但不是默认安装的。
-    echo %FILE_N% [ERROR]  - 确保在Windows上可用"py"。
+    echo %FILE_N% [ERROR] An error ocurred while executing the py.
+    echo %FILE_N% [ERROR] Possible causes:
+    echo %FILE_N% [ERROR]  - Make sure "py" is installed.
+    echo %FILE_N% [ERROR]  - py = python launcher. This utility is bundled with Python installation but not installed by default.
+    echo %FILE_N% [ERROR]  - Make sure it is available on your Windows "py".
     goto bad_exit
 
 :error_build_wheel
