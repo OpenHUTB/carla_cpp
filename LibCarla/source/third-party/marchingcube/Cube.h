@@ -1,9 +1,9 @@
-#pragma once
-#include "DataStructs.h"
+#pragma once//程序预处理
+#include "DataStructs.h"//这行代码包含了一个名为DataStructs.h的头文件。头文件通常包含函数声明、结构体定义和宏定义等内容。
 
-namespace MeshReconstruction
+namespace MeshReconstruction//这行代码声明了一个名为MeshReconstruction的命名空间。命名空间用于将代码组织成逻辑组，避免名称冲突。
 {
-  struct IntersectInfo
+  struct IntersectInfo//这行代码定义了一个名为IntersectInfo的结构体。结构体是一种用户自定义的数据类型，可以包含多个不同类型的成员变量。
   {
     // 0 - 255
     int signConfig;
