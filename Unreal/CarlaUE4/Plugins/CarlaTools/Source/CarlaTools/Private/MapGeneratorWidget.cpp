@@ -213,13 +213,17 @@ void UMapGeneratorWidget::DeleteAllSpreadedActors(const FMapGeneratorMetaInfo& M
   }
 }
 
+// UnapGeneratorWidget类的CookVegetationToCurrentTile函数
 void UMapGeneratorWidget::CookVegetationToCurrentTile(const TArray<UProceduralFoliageSpawner*> FoliageSpawners)
 {
+	// 记录日志信息
   UE_LOG(LogCarlaToolsMapGenerator, Log, 
       TEXT("%s: Cooking vegetation to current tile. Vegetation type num: %d"), 
       *CUR_CLASS_FUNC_LINE, FoliageSpawners.Num());
 
+	// 调用CookVegetationToWorld函数，并将结果存储在result变量中
   bool result = CookVegetationToWorld(GEditor->GetEditorWorldContext().World(), FoliageSpawners);
+	// 如果结果为false，记录错误日志
   if(!result)
     UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error Cooking vegetation for Current Tile"), 
         *CUR_CLASS_FUNC_LINE);
@@ -227,17 +231,23 @@ void UMapGeneratorWidget::CookVegetationToCurrentTile(const TArray<UProceduralFo
 
 bool UMapGeneratorWidget::RecalculateCollision()
 {
+	// 获取当前世界
   UWorld* World = GEditor->GetEditorWorldContext().World();
+	 // 如果世界为空，返回false
   if(World == nullptr)
     return false;
-    
+
+	// 获取世界中的地形
   ALandscape* Landscape = (ALandscape*) UGameplayStatics::GetActorOfClass(
       World, 
       ALandscape::StaticClass());
 
+	// 重新创建碰撞组件
   Landscape->RecreateCollisionComponents();
+	// 重新注册所有组件
   Landscape->ReregisterAllComponents();
 
+	// 保存世界
   SaveWorld(World);
 
   return true;
