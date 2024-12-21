@@ -74,24 +74,6 @@ namespace carla {
     };
     // 用于保存GIL状态的成员变量
     /// 释放Python的全局解释器锁，在执行阻塞I/O操作时使用它。
-    
-class NonCopyable {
-protected:
-    NonCopyable() = default; // 默认构造函数
-    ~NonCopyable() = default; // 默认析构函数
-    NonCopyable(const NonCopyable&) = delete; // 删除拷贝构造函数
-    NonCopyable& operator=(const NonCopyable&) = delete; // 删除赋值运算符
-}; 
-// 假设NonCopyable是一个已经定义的基类，用于禁止对象的拷贝和赋值操作
-class ReleaseGIL : private NonCopyable {
-// ReleaseGIL类：在构造时释放GIL（暂时），在析构时重新获取GIL
-    public:
-
-      ReleaseGIL() : _state(PyEval_SaveThread()) {}
-    // 构造函数：调用PyEval_SaveThread()释放GIL，并保存当前线程状态到_state成员中
-    // 注意：PyEval_SaveThread()实际上会使当前线程退出Python解释器的执行，
-    // 并返回与该线程关联的PyThreadState对象。如果当前线程不是Python线程，
-    // 则返回NULL，并且不会释放GIL（因为GIL只与Python线程相关）。
       ~ReleaseGIL() {
         PyEval_RestoreThread(_state);
       }
