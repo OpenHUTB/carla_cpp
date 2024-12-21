@@ -139,11 +139,11 @@ def generate_pb_docs():
     blueprint_ids = [bp.id for bp in world.get_blueprint_library().filter('*')] # Returns list of all blueprint ids # 获取所有蓝图ID
 
     #  # 根据蓝图类型分类蓝图Creates a dict key = walker, static, prop, vehicle, sensor, controller; value = [bp_id, blueprint]
-    for bp_id in sorted(blueprint_ids):
+    for bp_id in sorted(blueprint_ids):# 对blueprints列表中的每个bp_id进行遍历，假设blueprints是一个包含所有蓝图id
         bp_type = bp_id.split('.')[0]
-        value = []
+        value = []# 初始化一个空列表，用于存储当前类型下的所有蓝图信息
         for bp in blueprints:
-            if bp.id == bp_id:
+            if bp.id == bp_id:# 如果蓝图的id与当前的bp_id相匹配
                 value = [bp_id, bp]
         if bp_type in bp_dict:
             bp_dict[bp_type].append(value)
