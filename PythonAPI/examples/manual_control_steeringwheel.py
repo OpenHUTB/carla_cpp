@@ -49,15 +49,38 @@ import carla
 // 从Carla模块中导入ColorConverter并简称为cc，方便后续使用颜色转换相关功能
 from carla import ColorConverter as cc
 
+# 导入argparse模块，用于解析命令行参数和选项
+# 它帮助开发者编写用户友好的命令行接口
 import argparse
-import collections
-import datetime
-import logging
-import math
-import random
-import re
-import weakref
 
+# 导入collections模块，它实现了一个特殊的数据类型容器
+# 提供了一系列有用的容器数据类型，如deque、Counter、OrderedDict等
+import collections
+
+# 导入datetime模块，它提供了日期和时间的类
+# 用于执行日期和时间相关的操作，如获取当前时间、格式化日期等
+import datetime
+
+# 导入logging模块，它为Python提供了一个灵活的日志记录系统
+# 可以将日志输出到不同的目的地，如控制台、文件、网络等
+import logging
+
+# 导入math模块，它提供了对浮点数学运算的基本函数
+# 如幂运算、开方、对数、三角函数等
+import math
+
+# 导入random模块，它提供了生成随机数的函数
+# 用于需要随机性的场景，如随机选择、随机初始化等
+import random
+
+# 导入re模块，它提供了正则表达式的相关操作
+# 用于字符串的匹配、查找、替换等复杂的文本处理任务
+import re
+
+# 导入weakref模块，它提供了一种方式来引用对象而不增加其引用计数
+# 这允许对象在没有其他强引用时由垃圾回收器回收
+# weakref主要用于缓存或防止循环引用等情况
+import weakref
 // 根据Python版本不同来导入ConfigParser相关模块，Python 3及以上版本从configparser导入，否则从ConfigParser导入
 if sys.version_info >= (3, 0):
 
