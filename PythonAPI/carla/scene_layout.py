@@ -245,15 +245,21 @@ def get_dynamic_objects(carla_world, carla_map):
             vehicles_dict[vehicle.id] = v_dict
         return vehicles_dict
 
+    #定义了一个用于接受hero_vehicle的函数并实现对其的操作
     def get_hero_vehicle(hero_vehicle):
         if hero_vehicle is None:
             return hero_vehicle
 
+        #获取与hero_vehicle所在位置相关的路点信息
         hero_waypoint = carla_map.get_waypoint(hero_vehicle.get_location())
+        #获取hero_vehicle的变换信息
         hero_transform = hero_vehicle.get_transform()
+        #将hero_vehicle的变换位置转换为地理位置信息（经纬度高度）
         location_gnss = carla_map.transform_to_geolocation(hero_transform.location)
 
+       #创建一个新字典 其中包含hero_vehicle的id信息
         hero_vehicle_dict = {
+            #使用之前转换获取的地理位置信息 并在字典中添加hero_waypoint的id信息
             "id": hero_vehicle.id,
             "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
             "road_id": hero_waypoint.road_id,
@@ -261,17 +267,26 @@ def get_dynamic_objects(carla_world, carla_map):
         }
         return hero_vehicle_dict
 
+    #定义了一个叫get_walkers的函数 用于获取与walkers相关的一些信息并进行处理
     def get_walkers(walkers):
+       #创建一个新字典 用于存储与每个walkers相关的信息
         walkers_dict = dict()
         for walker in walkers:
+           #调用获取walkers的变换信息
             w_transform = walker.get_transform()
+            #将walkers的位置信息转换为地理的地位信息形式
             location_gnss = carla_map.transform_to_geolocation(w_transform.location)
+           
             w_dict = {
                 "id": walker.id,
+                #在字典中添加名为position的键值对 其值为一个包含location_gnss的经纬度高度的列表 把walkers的位置信息以特定形式存储在字典中
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+                #添加名为orientation的键值对 值为一个包含w_transform的旋转信息的列表 存储walkers的方向信息
                 "orientation": [w_transform.rotation.roll, w_transform.rotation.pitch, w_transform.rotation.yaw],
+                #添加名为bounding_box的键值对 构建walkers的包围盒信息
                 "bounding_box": [[v.longitude, v.latitude, v.altitude] for v in _get_bounding_box(walker)]
             }
+            #把w_dict字典添加到walkers_dict字典中 便以通过walkers的id来获取信息
             walkers_dict[walker.id] = w_dict
         return walkers_dict
 

@@ -441,24 +441,38 @@ def one_run(args, client):
     return prof_str
 
 
-
+#定义一个函数，通常是程序的主入口点
 def main():
+    #创建了一个 ArgumentParser 对象，用于解析命令行参数
+    #description 参数提供了对这个参数解析器用途的描述
     argparser = argparse.ArgumentParser(
         description='CARLA Sensor tutorial')
+    #添加参数--host
     argparser.add_argument(
+        #命令行参数的名称
         '--host',
+        #定义了在帮助信息中显示的参数名称
         metavar='H',
+        #定义了参数的默认值
         default='127.0.0.1',
+        #提供了参数的帮助信息
         help='IP of the host server (default: 127.0.0.1)')
+    #添加参数-p 或 --port
     argparser.add_argument(
         '-p', '--port',
         metavar='P',
         default=2000,
+        #type 被指定为 int，表示这个参数应该是一个整数
         type=int,
+        #help 提供了参数的帮助信息
         help='TCP port to listen to (default: 2000)')
+    #添加参数--sync
     argparser.add_argument(
+        #这个参数没有默认值，当在命令行中指定 --sync 时，其值为 True
         '--sync',
+        #如果指定了这个参数，其值为 True，否则为 False
         action='store_true',
+        #help 提供了参数的帮助信息
         help='Synchronous mode execution')
     argparser.add_argument(
         '--async',
@@ -488,6 +502,7 @@ def main():
         metavar='SLP',
         default='100000',
         help='semantic lidar points per second (default: "100000")')
+    #添加语义激光雷达（Semantic LiDAR）相关参数
     argparser.add_argument(
         '-sln', '--semanticlidar_number',
         metavar='SLN',
@@ -495,11 +510,13 @@ def main():
         type=int,
         choices=range(0, 4),
         help='Number of semantic lidars to render (from zero to three)')
+    #添加雷达（Radar）相关参数
     argparser.add_argument(
         '-rp', '--radar_points',
         metavar='RP',
         default='100000',
         help='radar points per second (default: "100000")')
+    #添加雷达（Radar）相关参数
     argparser.add_argument(
         '-rn', '--radar_number',
         metavar='LN',
@@ -507,29 +524,33 @@ def main():
         type=int,
         choices=range(0, 4),
         help='Number of radars to render (from zero to three)')
+    #添加雷达（Radar）相关参数
     argparser.add_argument(
         '--camera',
         dest='render_cam', action='store_true',
         help='render also RGB camera (camera enable by default)')
+    #添加雷达（Radar）相关参数
     argparser.add_argument('--no-camera',
         dest='render_cam', action='store_false',
         help='no render RGB camera (camera disable by default)')
+    #添加雷达（Radar）相关参数
     argparser.set_defaults(render_cam=True)
+    #添加性能分析和窗口渲染参数
     argparser.add_argument(
         '--profiling',
         action='store_true',
         help='Use the script in profiling mode. It measures the performance of \
          the lidar for different number of points.')
     argparser.set_defaults(profiling=False)
+    #添加性能分析和窗口渲染参数
     argparser.add_argument(
         '--no-render-window',
         action='store_false',
         dest='render_window',
         help='Render visualization window.')
     argparser.set_defaults(render_window=True)
-
+    #通过parse_args方法解析命令行参数，并将res参数（窗口分辨率）拆分为宽度和高度的整数
     args = argparser.parse_args()
-
     args.width, args.height = [int(x) for x in args.res.split('x')]
 
     try:
