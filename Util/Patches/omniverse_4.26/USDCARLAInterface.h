@@ -10,7 +10,7 @@ USTRUCT(BlueprintType)
 struct FUSDCARLAWheelData
 {
   GENERATED_BODY()
- // 这是一个由虚幻引擎的代码生成系统使用的宏，用于自动生成结构体相关的必要代码
+ // 这是一个由虚幻引擎的代码生成系统使用的宏，用于自动生成结构体相关的必要代码，
   UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="USD Wheeel Data")
   float MaxBrakeTorque = 0;#定义了最大的手刹扭距成员变量，为float类型，用于表示车辆车轮手刹能施加的最大扭矩值
   UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="USD Wheeel Data")
