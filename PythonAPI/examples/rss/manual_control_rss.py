@@ -333,14 +333,19 @@ class World(object):
                 # 然后再次尝试根据 `blueprint` 蓝图对象和选择的出生点创建新的演员对象，直到创建成功（ `self.player` 不为 `None` ）为止。
         
         if self.external_actor:
+            # 如果使用外部定义的演员对象，那么执行以下操作来处理与之相关的传感器等附属对象。
             ego_sensors = []
             for actor in self.world.get_actors():
                 if actor.parent == self.player:
                     ego_sensors.append(actor)
+            # 遍历模拟世界中的所有演员对象，查找父对象是 `self.player`（主要演员）的演员对象，将它们添加到 `ego_sensors` 列表中，
+            # 这些对象可能是与主要演员相关的传感器等附属对象，后续需要进行相应处理。
 
             for ego_sensor in ego_sensors:
                 if ego_sensor is not None:
                     ego_sensor.destroy()
+            # 遍历 `ego_sensors` 列表，对于不为 `None` 的传感器等附属对象，调用 `destroy` 方法将它们销毁，清理相关资源，
+            # 可能是为了重新设置或更新这些附属对象做准备。
 
         # Set up the sensors.
         self.camera = Camera(self.player, self.dim)
