@@ -421,10 +421,10 @@ if (LIBCARLA_BUILD_DEBUG)
       set(CMAKE_CXX_FLAGS_DEBUG_CLIENT ${CMAKE_CXX_FLAGS_DEBUG})
     endif()
 
-    set_target_properties(carla_client${carla_target_postfix}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG_CLIENT}")
+    set_target_properties(carla_client${carla_target_postfix}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG_CLIENT}")#    # 在非DEBUG模式下，将Recast库（以.a格式）链接到carla_client目标（带有特定后缀的debug版本）
 #设置编译标志
-    target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libRecast.a")
-    target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetour.a")
+    target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libRecast.a")#    # 在非DEBUG模式下，将Detour库（以.a格式）链接到carla_client目标（带有特定后缀的debug版本）
+    target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetour.a") # 在非DEBUG模式下，将DetourCrowd库（以.a格式，此处可能存在书写错误，应为libDetourCrowd.a）
     target_link_libraries(carla_client${carla_target_postfix}_debug "${RECAST_LIB_PATH}/libDetourCrowd.a")#链接更多库
 
   endif (WIN32)
