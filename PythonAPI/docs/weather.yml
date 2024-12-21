@@ -128,50 +128,50 @@
         default: 0.0
         param_units: meters
         doc: >
-          Distance where the fog starts in meters.  
+          Distance where the fog starts in meters.  # 雾霾开始的距离，单位为米。
       - param_name: wetness
         type: float
         default: 0.0
         doc: >
-          Humidity percentages of the road, from 0 to 100.  
+          Humidity percentages of the road, from 0 to 100.  # 道路湿度的百分比，范围从0到100
       - param_name: fog_falloff
         type: float
         default: 0.0
         doc: >
-          Density (specific mass) of the fog, from 0 to infinity.  
+          Density (specific mass) of the fog, from 0 to infinity.   # 雾霾的密度（比重），范围从0到无限大。
       - param_name: scattering_intensity
         type: float
         default: 0.0
         doc: >
-          Controls how much the light will contribute to volumetric fog. When set to 0, there is no contribution.
+          Controls how much the light will contribute to volumetric fog. When set to 0, there is no contribution. # 控制光源对体积雾霾的贡献程度。当值为0时，表示没有贡献。
       - param_name: mie_scattering_scale
         type: float
         default: 0.0
         doc: >
-          Controls interaction of light with large particles like pollen or air pollution resulting in a hazy sky with halos around the light sources. When set to 0, there is no contribution.
+          Controls interaction of light with large particles like pollen or air pollution resulting in a hazy sky with halos around the light sources. When set to 0, there is no contribution.# 控制光源与较大粒子（如花粉或空气污染物）相互作用，产生雾霾天空并在光源周围形成光晕。当值为0时，表示没有贡献。
       - param_name: rayleigh_scattering_scale
         type: float
         default: 0.0331
         doc: >
-          Controls interaction of light with small particles like air molecules. Dependent on light wavelength, resulting in a blue sky in the day or red sky in the evening.
+          Controls interaction of light with small particles like air molecules. Dependent on light wavelength, resulting in a blue sky in the day or red sky in the evening. # 控制光源与小粒子（如空气分子）相互作用，取决于光的波长，导致白天蓝色的天空或黄昏时红色的天空。
       note: >
-        ClearNoon, CloudyNoon, WetNoon, WetCloudyNoon, SoftRainNoon, MidRainyNoon, HardRainNoon, ClearSunset, CloudySunset, WetSunset, WetCloudySunset, SoftRainSunset, MidRainSunset, HardRainSunset. 
+        ClearNoon, CloudyNoon, WetNoon, WetCloudyNoon, SoftRainNoon, MidRainyNoon, HardRainNoon, ClearSunset, CloudySunset, WetSunset, WetCloudySunset, SoftRainSunset, MidRainSunset, HardRainSunset.  # 这些是不同的天气条件预设，分别对应晴朗正午、阴天正午、湿润正午等不同的情况。
       doc: >
-        Method to initialize an object defining weather conditions. This class has some presets for different noon and sunset conditions listed in a note below. 
+        Method to initialize an object defining weather conditions. This class has some presets for different noon and sunset conditions listed in a note below. # 初始化定义天气条件的对象的方法。此类有一些不同的预设，列出了不同的正午和日落天气条件。
     # --------------------------------------
     - def_name: __eq__
       params:
       - param_name: other
       return: bool
       doc: >
-        Returns <b>True</b> if both objects' variables are the same. 
+        Returns <b>True</b> if both objects' variables are the same.  # 如果两个对象的变量相同，返回<b>True</b>。
     # --------------------------------------
     - def_name: __ne__
       params:
       - param_name: other
       return: bool
       doc: >
-        Returns <b>True</b> if both objects' variables are different. 
+        Returns <b>True</b> if both objects' variables are different. # 如果两个对象的变量不同，返回<b>True</b>。
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
