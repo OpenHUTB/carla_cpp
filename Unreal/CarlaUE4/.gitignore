@@ -16,7 +16,7 @@ Plugins/Carla/Saved
 /Content#内容目录
 Config/CarlaSettings.ini
 Config/DefaultEditor.ini
-Config/CarSimConfig.ini
+Config/CarSimConfig.ini#可能与汽车模拟相关的配置文件
 
 *.code-workspace#代码工作区文件
 .idea
