@@ -34,90 +34,62 @@ using namespace util;/// 导入CARLA的实用工具命名空间，包含常用�
  */
 const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER "/OpenDrive/";
 
-
+// 静态函数，用于测试道路海拔相关情况，接收XML文档和地图（可选）引用
 static void test_road_elevation(const pugi::xml_document &xml, boost::optional<Map>& map) {
-  // 获取 OpenDRIVE XML 文档中的根节点
+  // 获取XML中"OpenDRIVE"节点
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
-  // 遍历所有的 "road" 子节点
+  // 遍历"OpenDRIVE"下的"road"节点
   for (pugi::xml_node road_node : open_drive_node.children("road")) {
-    // 获取道路的 ID（"id" 属性）
+    // 获取道路id
     RoadId road_id = road_node.attribute("id").as_uint();
-
-    // 获取当前道路的 "elevationProfile" 子节点，表示道路的高程配置
+    // 获取此道路下的"elevationProfile"节点们
     auto elevation_profile_nodes = road_node.children("elevationProfile");
 
-    // 遍历所有的 "elevationProfile" 节点
+    // 遍历各"elevationProfile"节点
     for (pugi::xml_node elevation_profile_node : elevation_profile_nodes) {
-      // 初始化计数器，记录有多少个有效的高程数据
+      // 统计有效海拔数量的计数器
       auto total_elevations = 0;
-
-      // 获取当前 "elevationProfile" 中的所有 "elevation" 子节点
+      // 获取"elevation"节点们
       auto elevation_nodes = elevation_profile_node.children("elevation");
-
-      // 计算当前 "elevationProfile" 中 "elevation" 节点的总数量
+      // 计算"elevation"节点总数
       auto total_elevation_parser = std::distance(elevation_nodes.begin(), elevation_nodes.end());
-
-      // 遍历所有的 "elevation" 子节点
+      
+      // 遍历"elevation"节点
       for (pugi::xml_node elevation_node : elevation_nodes) {
-        // 获取每个 "elevation" 节点的 "s" 属性值，表示位置（或距离）
+        // 获取节点中表示位置的属性值
         float s = elevation_node.attribute("s").as_float();
-
-        // 根据道路 ID 和位置 s，从地图中获取当前道路的高程信息
+        // 尝试获取地图中对应道路位置的海拔信息
         const auto elevation = map->GetMap().GetRoad(road_id).GetInfo<RoadInfoElevation>(s);
-
-        // 如果成功获取到高程信息，说明该位置有有效的高程数据
         if (elevation != nullptr)
-          ++total_elevations;  // 增加有效高程的计数
-      }
-
-      // 断言：当前 "elevationProfile" 中的有效高程数量应与 XML 中的 "elevation" 节点数量一致
+          ++total_elevations;
+      }// 验证获取到的海拔数量与解析出的节点数量是否一致
       ASSERT_EQ(total_elevations, total_elevation_parser);
     }
   }
 }
 
 
-
 static void test_geometry(const pugi::xml_document &xml, boost::optional<Map>& map) {
-  // 获取 OpenDRIVE XML 文档中的根节点
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
-  // 遍历所有的 "road" 子节点
   for (pugi::xml_node road_node : open_drive_node.children("road")) {
-    // 获取当前道路的 ID（"id" 属性）
     RoadId road_id = road_node.attribute("id").as_uint();
 
-    // 遍历当前道路下的 "planView" 子节点，表示道路的平面视图
     for (pugi::xml_node plan_view_nodes : road_node.children("planView")) {
-      // 获取 "planView" 中的所有 "geometry" 子节点，表示道路几何信息
       auto geometries_parser = plan_view_nodes.children("geometry");
-
-      // 计算当前 "planView" 中 "geometry" 节点的总数量
       auto total_geometries_parser = std::distance(geometries_parser.begin(), geometries_parser.end());
-
-      // 初始化计数器，记录有多少个有效的几何数据
       auto total_geometries = 0;
-
-      // 遍历所有的 "geometry" 子节点
       for (pugi::xml_node geometry_node : plan_view_nodes.children("geometry")){
-        // 获取每个 "geometry" 节点的 "s" 属性值，表示位置（或距离）
         float s = geometry_node.attribute("s").as_float();
-
-        // 根据道路 ID 和位置 s，从地图中获取当前道路的几何信息
         auto geometry = map->GetMap().GetRoad(road_id).GetInfo<RoadInfoGeometry>(s);
-
-        // 如果成功获取到几何信息，说明该位置有有效的几何数据
         if (geometry != nullptr)
-          ++total_geometries;  // 增加有效几何的计数
+          ++total_geometries;
       }
-
-      // 断言：当前 "planView" 中的有效几何数量应与 XML 中的 "geometry" 节点数量一致
       ASSERT_EQ(total_geometries, total_geometries_parser);
     }
   }
 }
-
 
 /// \brief 获取车道节点中所有道路标记的总数，并对比解析得到的道路标记数量。
 /// 
@@ -475,21 +447,29 @@ TEST(road, iterate_waypoints) {
 }
 
 TEST(road, get_waypoint) {
+  // 创建一个线程池
   carla::ThreadPool pool;
+  // 启动线程池中的异步任务执行
   pool.AsyncRun();
+  // 创建一个容器来存储异步任务的返回值
   std::vector<std::future<void>> results;
+  // 遍历所有可用的OpenDrive文件 
   for (const auto& file : util::OpenDrive::GetAvailableFiles()) {
     carla::logging::log("Parsing", file);
     results.push_back(pool.Post([file]() {
+      // 创建一个计时器，用于测量任务执行时间
       carla::StopWatch stop_watch;
+      // 使用OpenDriveParser加载OpenDrive文件
       auto m = OpenDriveParser::Load(util::OpenDrive::Load(file));
-      ASSERT_TRUE(m.has_value());
-      auto &map = *m;
+      ASSERT_TRUE(m.has_value());// 确保地图被成功加载
+      auto &map = *m;// 获取地图的引用
+      // 进行10000次随机位置测试
       for (auto i = 0u; i < 10'000u; ++i) {
-        const auto location = Random::Location(-500.0f, 500.0f);
-        auto owp = map.GetClosestWaypointOnRoad(location);
+        const auto location = Random::Location(-500.0f, 500.0f);  // 在指定的范围内生成一个随机位置
+        auto owp = map.GetClosestWaypointOnRoad(location); // 在地图上找到离该位置最近的道路点
         ASSERT_TRUE(owp.has_value());
-        auto &wp = *owp;
+        auto &wp = *owp;// 获取道路点的引用
+        // 获取当前道路点的下一个道路点
         for (auto &next : map.GetNext(wp, 0.5)) {
           ASSERT_TRUE(
               next.road_id != wp.road_id ||
@@ -497,6 +477,7 @@ TEST(road, get_waypoint) {
               next.lane_id != wp.lane_id ||
               next.s != wp.s);
         }
+        // 获取当前道路点的左侧相邻道路点
         auto left = map.GetLeft(wp);
         if (left.has_value()) {
           ASSERT_EQ(left->road_id, wp.road_id);
@@ -504,6 +485,7 @@ TEST(road, get_waypoint) {
           ASSERT_NE(left->lane_id, wp.lane_id);
           ASSERT_EQ(left->s, wp.s);
         }
+        // 获取当前道路点的右侧相邻道路点
         auto right = map.GetRight(wp);
         if (right.has_value()) {
           ASSERT_EQ(right->road_id, wp.road_id);
@@ -512,10 +494,12 @@ TEST(road, get_waypoint) {
           ASSERT_EQ(right->s, wp.s);
         }
       }
+      // 计算并记录任务执行时间
       float seconds = 1e-3f * stop_watch.GetElapsedTime();
       carla::logging::log(file, "done in", seconds, "seconds.");
     }));
   }
+    // 等待所有异步任务完成
   for (auto &result : results) {
     result.get();
   }

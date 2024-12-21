@@ -39,15 +39,23 @@ using namespace eprosima::fastcdr::exception;
 #define builtin_interfaces_msg_Time_max_key_cdr_typesize 0ULL;
 #define std_msgs_msg_Header_max_key_cdr_typesize 0ULL;
 
+// 默认构造函数，用于创建一个std_msgs::msg::Header类的对象
+// 在构造函数中，将成员变量m_frame_id初始化为空字符串，
+// 但未对m_stamp进行显示初始化，可能依赖其自身类型默认构造行为
 std_msgs::msg::Header::Header()
 {
     m_frame_id ="";
 }
 
+// 析构函数，当Header类的对象销毁时会调用该函数
+// 此处函数体为空，意味着该类对象销毁时不需要进行额外的资源释放等特定操作，
+// 成员变量相关资源管理可能由它们各自类型处理
 std_msgs::msg::Header::~Header()
 {
 }
 
+// 拷贝构造函数，用于从已有的Header类对象x创建一个新的Header类对象
+// 会将传入对象x的成员变量m_stamp和m_frame_id的值拷贝到新创建的对象中，实现深拷贝（简单类型为值拷贝）
 std_msgs::msg::Header::Header(
         const Header& x)
 {
@@ -55,6 +63,9 @@ std_msgs::msg::Header::Header(
     m_frame_id = x.m_frame_id;
 }
 
+// 移动构造函数，接受一个右值引用类型的Header类对象x
+// 通过std::move操作，将x对象中的成员变量m_stamp和m_frame_id资源“移动”（转移所有权）到新创建的对象中，
+// 常用于避免不必要的深拷贝开销，提高效率，且标记为noexcept表示不会抛出异常
 std_msgs::msg::Header::Header(
         Header&& x) noexcept
 {
@@ -62,6 +73,9 @@ std_msgs::msg::Header::Header(
     m_frame_id = std::move(x.m_frame_id);
 }
 
+// 拷贝赋值运算符重载函数，用于将一个const引用的Header类对象x的成员变量值
+// 赋值给当前的Header类对象，更新当前对象的m_stamp和m_frame_id成员变量，
+// 最后返回当前对象的引用，以支持连续赋值操作（如a = b = c这种语法形式）
 std_msgs::msg::Header& std_msgs::msg::Header::operator =(
         const Header& x)
 {
@@ -71,6 +85,9 @@ std_msgs::msg::Header& std_msgs::msg::Header::operator =(
     return *this;
 }
 
+// 移动赋值运算符重载函数，接受一个右值引用的Header类对象x
+// 通过std::move操作将x对象的成员变量m_stamp和m_frame_id资源转移到当前对象中，
+// 同样标记为noexcept表示不会抛出异常，更新当前对象状态后返回当前对象的引用，便于连续赋值等操作
 std_msgs::msg::Header& std_msgs::msg::Header::operator =(
         Header&& x) noexcept
 {

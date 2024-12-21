@@ -64,69 +64,74 @@ namespace logging {
 
 } // namespace logging
 
+    // 如果当前定义的日志级别（LIBCARLA_LOG_LEVEL）小于等于DEBUG级别，定义log_debug函数模板，用于输出DEBUG级别的日志
 #if LIBCARLA_LOG_LEVEL <= LIBCARLA_LOG_LEVEL_DEBUG
 
   template <typename ... Args>
   static inline void log_debug(Args && ... args) {
+                // 在输出的日志内容前添加"DEBUG:"前缀，以标识这是DEBUG级别的日志，然后调用write_to_stream将参数输出到标准输出流（std::cout）
     logging::write_to_stream(std::cout, "DEBUG:", std::forward<Args>(args) ..., '\n');
   }
-
+    // 如果当前日志级别大于DEBUG级别，定义一个空的log_debug函数模板（即不执行任何实际操作），这样在该级别下不会输出DEBUG日志
 #else
 
   template <typename ... Args>
   static inline void log_debug(Args && ...) {}
 
 #endif
-
+    // 如果当前定义的日志级别（LIBCARLA_LOG_LEVEL）小于等于INFO级别，定义log_info函数模板，用于输出INFO级别的日志
 #if LIBCARLA_LOG_LEVEL <= LIBCARLA_LOG_LEVEL_INFO
 
   template <typename ... Args>
   static inline void log_info(Args && ... args) {
+                // 在输出的日志内容前添加"INFO: "前缀，以标识这是INFO级别的日志，然后调用write_to_stream将参数输出到标准输出流（std::cout）
     logging::write_to_stream(std::cout, "INFO: ", std::forward<Args>(args) ..., '\n');
   }
-
+    // 如果当前日志级别大于INFO级别，定义一个空的log_info函数模板（即不执行任何实际操作），这样在该级别下不会输出INFO日志
 #else
 
   template <typename ... Args>
   static inline void log_info(Args && ...) {}
 
 #endif
-
+    // 如果当前定义的日志级别（LIBCARLA_LOG_LEVEL）小于等于WARNING级别，定义log_warning函数模板，用于输出WARNING级别的日志
 #if LIBCARLA_LOG_LEVEL <= LIBCARLA_LOG_LEVEL_WARNING
 
   template <typename ... Args>
   static inline void log_warning(Args && ... args) {
     logging::write_to_stream(std::cerr, "WARNING:", std::forward<Args>(args) ..., '\n');
   }
-
+    // 如果当前日志级别大于WARNING级别，定义一个空的log_warning函数模板（即不执行任何实际操作），这样在该级别下不会输出WARNING日志
 #else
 
   template <typename ... Args>
   static inline void log_warning(Args && ...) {}
 
 #endif
-
+    // 如果当前定义的日志级别（LIBCARLA_LOG_LEVEL）小于等于ERROR级别，定义log_error函数模板，用于输出ERROR级别的日志
 #if LIBCARLA_LOG_LEVEL <= LIBCARLA_LOG_LEVEL_ERROR
 
   template <typename ... Args>
   static inline void log_error(Args && ... args) {
+                // 在输出的日志内容前添加"ERROR:"前缀，以标识这是ERROR级别的日志，然后调用write_to_stream将参数输出到标准错误输出流（std::cerr）
     logging::write_to_stream(std::cerr, "ERROR:", std::forward<Args>(args) ..., '\n');
   }
-
+    // 如果当前日志级别大于ERROR级别，定义一个空的log_error函数模板（即不执行任何实际操作），这样在该级别下不会输出ERROR日志
 #else
 
   template <typename ... Args>
   static inline void log_error(Args && ...) {}
 
 #endif
-
+    // 如果当前定义的日志级别（LIBCARLA_LOG_LEVEL）小于等于CRITICAL级别，定义log_critical函数模板，用于输出CRITICAL级别的日志
 #if LIBCARLA_LOG_LEVEL <= LIBCARLA_LOG_LEVEL_CRITICAL
 
   template <typename ... Args>
   static inline void log_critical(Args && ... args) {
+                // 在输出的日志内容前添加"CRITICAL:"前缀，以标识这是CRITICAL级别的日志，然后调用write_to_stream将参数输出到标准错误输出流（std::cerr）
     logging::write_to_stream(std::cerr, "CRITICAL:", std::forward<Args>(args) ..., '\n');
   }
-
+    // 如果当前日志级别大于CRITICAL级别，定义一个空的log_critical函数模板（即不执行任何实际操作），这样在该级别下不会输出CRITICAL日志
 #else
 
   template <typename ... Args>
@@ -142,12 +147,15 @@ namespace logging {
 
 #if LIBCARLA_LOG_LEVEL <= LIBCARLA_LOG_LEVEL_DEBUG
 #  define LOG_DEBUG_ONLY(code) code
+// 如果当前日志级别大于DEBUG级别，定义LOG_DEBUG_ONLY宏为空，即传入的代码片段不会执行，相当于在该级别下屏蔽了DEBUG相关代码块
 #else
 #  define LOG_DEBUG_ONLY(code)
 #endif
 
 #if LIBCARLA_LOG_LEVEL <= LIBCARLA_LOG_LEVEL_INFO
 #  define LOG_INFO_ONLY(code) code
+// 如果当前日志级别大于INFO级别，定义LOG_INFO_ONLY宏为空，即传入的代码片段不会执行，相当于在该级别下屏蔽了INFO相关代码块
+
 #else
 #  define LOG_INFO_ONLY(code)
 #endif

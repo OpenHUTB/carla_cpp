@@ -257,13 +257,18 @@ class LocalPlanner:
             self._compute_next_waypoints(k=self._min_waypoint_queue_length)
 
         # Purge the queue of obsolete waypoints
+        #获取车辆位置
         veh_location = self._vehicle.get_location()
+        #进行单位换算
         vehicle_speed = get_speed(self._vehicle) / 3.6
+        #设置最小距离
         self._min_distance = self._base_min_distance + self._distance_ratio * vehicle_speed
 
         num_waypoint_removed = 0
+        #遍历路点队列
         for waypoint, _ in self._waypoints_queue:
 
+            #判断队列中的每一个路点
             if len(self._waypoints_queue) - num_waypoint_removed == 1:
                 min_distance = 1  # Don't remove the last waypoint until very close by
             else:
@@ -274,13 +279,20 @@ class LocalPlanner:
             else:
                 break
 
+        #条件判断
         if num_waypoint_removed > 0:
+            #根据要移出的路点数量进行循环操作
             for _ in range(num_waypoint_removed):
+                #每次循环都会移动一个队首元素
                 self._waypoints_queue.popleft()
 
+        #根据是否存在waypoint来决定车辆的控制方式
         # Get the target waypoint and move using the PID controllers. Stop if no target waypoint
+        #没有目标路点
         if len(self._waypoints_queue) == 0:
+            #创建一个carla.VehicleControl对象
             control = carla.VehicleControl()
+            #设置控制对象的各个参数
             control.steer = 0.0
             control.throttle = 0.0
             control.brake = 1.0
@@ -349,7 +361,7 @@ def _retrieve_options(list_waypoints, current_waypoint):
 
     return options
 
-
+#定义一个函数，其功能是计算两个路点（waypoint）之间的拓扑连接类型
 def _compute_connection(current_waypoint, next_waypoint, threshold=35):
     """
     Compute the type of topological connection between an active waypoint (current_waypoint) and a target waypoint
@@ -366,16 +378,25 @@ def _compute_connection(current_waypoint, next_waypoint, threshold=35):
     :param threshold: 角度阈值，计算活动路点与目标路点之间的拓扑连接类型，返回RoadOption枚举
  
     """
+    #获取下一个路点的偏航角（yaw angle）
     n = next_waypoint.transform.rotation.yaw
+    #将偏航角转换到 0 到 360 度的范围内
     n = n % 360.0
-
+    #获取当前路点的偏航角
     c = current_waypoint.transform.rotation.yaw
+    #将当前路点的偏航角转换到 0 到 360 度的范围内
     c = c % 360.0
-
+    #计算两个路点之间的角度差，并将结果转换到 0 到 180 度的范围内
     diff_angle = (n - c) % 180.0
+    #如果角度差小于阈值或者大于 180 度减去阈值
     if diff_angle < threshold or diff_angle > (180 - threshold):
+        #返回RoadOption.STRAIGHT，表示直走
         return RoadOption.STRAIGHT
+    #如果角度差大于 90 度
     elif diff_angle > 90.0:
+        #返回RoadOption.LEFT，表示左转
         return RoadOption.LEFT
+    #其他情况
     else:
+        #返回RoadOption.RIGHT，表示右转
         return RoadOption.RIGHT
