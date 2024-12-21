@@ -69,35 +69,55 @@ namespace detail {
 
   // 关闭指定ID的流
   void Dispatcher::CloseStream(carla::streaming::detail::stream_id_type id) {
+      // 使用互斥锁保护共享资源_stream_map，避免多线程同时访问导致数据竞争
     std::lock_guard<std::mutex> lock(_mutex);
+    // 打印日志，记录关闭流的请求，包括流的ID
     log_debug("Calling CloseStream for ", id);
+  // 在_stream_map中查找指定ID的流
     auto search = _stream_map.find(id);
+  // 如果找到了指定ID的流
     if (search != _stream_map.end()) {
+      // 获取流的状态（可能是一个指向流状态对象的智能指针或其他容器）
       auto stream_state = search->second;
+         // 如果流状态有效（非空）
       if (stream_state) {
+        // 打印日志，记录断开所有会话的操作，包括流的ID
         log_debug("Disconnecting all sessions (stream ", id, ")");
+        // 断开与该流关联的所有会话
         stream_state->ClearSessions();
       }
+    // 从_stream_map中删除该流的状态信息
       _stream_map.erase(search);
     }
   }
 
   // 注册会话到指定流
   bool Dispatcher::RegisterSession(std::shared_ptr<Session> session) {
+      // 确保传入的会话指针不为空
     DEBUG_ASSERT(session != nullptr);
+     // 使用互斥锁保护共享资源_stream_map，避免多线程同时访问导致数据竞争
     std::lock_guard<std::mutex> lock(_mutex);
+      // 在_stream_map中查找与会话关联的流的ID
     auto search = _stream_map.find(session->get_stream_id());
+     // 如果找到了对应的流
     if (search != _stream_map.end()) {
+       // 获取流的状态（可能是一个指向流状态对象的智能指针或其他容器）
       auto stream_state = search->second;
+       // 如果流状态有效（非空）
       if (stream_state) {
+         // 打印日志，记录连接会话的操作，包括流的ID
         log_debug("Connecting session (stream ", session->get_stream_id(), ")");
+        // 将会话连接到该流
         stream_state->ConnectSession(std::move(session));
+        // 打印日志，记录当前_stream_map中的流数量
         log_debug("Current streams: ", _stream_map.size());
         return true;
       }
     }
+     // 如果流不存在或无效，打印错误日志
     log_error("Invalid session: no stream available with id", session->get_stream_id());
     return false;
+  // 返回false，表示会话注册失败
   }
 
   // 从流中注销会话
