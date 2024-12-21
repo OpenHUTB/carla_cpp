@@ -263,7 +263,9 @@ namespace learning {
       TorchInputs.push_back(GetWheelTensorInputs(_input.wheel2));
       TorchInputs.push_back(GetWheelTensorInputs(_input.wheel3));
       auto drv_inputs = torch::tensor(
+       // 输入参数：转向、油门、刹车
           {_input.steering, _input.throttle, _input.braking}, torch::kFloat32); //steer, throtle, brake
+       // 数据类型为float32
       TorchInputs.push_back(drv_inputs);
       if (_input.terrain_type >= 0) {
         TorchInputs.push_back(_input.terrain_type);
@@ -272,18 +274,24 @@ namespace learning {
 
       torch::jit::IValue Output;
       try {
+         // 调用Model的forward函数，传入TorchInputs，结果存储在Output中
         Output = Model->module.forward(TorchInputs);
       } catch (const c10::Error& e) {
+        // 如果捕获到错误，打印错误信息
         std::cout << "Error running model: " << e.msg() << std::endl;
       }
 
       std::vector<torch::jit::IValue> Tensors =  Output.toTuple()->elements();
+      // 获取车轮0的输出动态张量
       _output.wheel0 = GetWheelTensorOutputDynamic(
           Tensors[0].toTensor().cpu(), Tensors[4].toTensor().cpu());
+      // 获取车轮1的输出动态张量
       _output.wheel1 = GetWheelTensorOutputDynamic(
           Tensors[1].toTensor().cpu(), Tensors[5].toTensor().cpu());
+      // 获取车轮2的输出动态张量
       _output.wheel2 = GetWheelTensorOutputDynamic(
           Tensors[2].toTensor().cpu(), Tensors[6].toTensor().cpu());
+      // 获取车轮3的输出动态张量
       _output.wheel3 = GetWheelTensorOutputDynamic(
           Tensors[3].toTensor().cpu(), Tensors[7].toTensor().cpu());
 
