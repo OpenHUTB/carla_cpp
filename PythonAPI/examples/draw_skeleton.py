@@ -383,16 +383,16 @@ def main():
     camera_bp.set_attribute("image_size_x", str(args.width))
     camera_bp.set_attribute("image_size_y", str(args.height))
     camera_bp.set_attribute("fov", str(args.fov))
-    camera = world.spawn_actor(camera_bp, carla.Transform())
+    camera = world.spawn_actor(camera_bp, carla.Transform())# 在世界中生成摄像头
     
     # spawn a pedestrian
-    world.set_pedestrians_seed(1235)
+    world.set_pedestrians_seed(1235)# 设置行人的随机种子，确保生成的行人是可预测的
     ped_bp = random.choice(world.get_blueprint_library().filter("walker.pedestrian.*"))
-    trans = carla.Transform()
+    trans = carla.Transform()# 创建一个变换对象，用于设置行人的位置和方向
     trans.location = world.get_random_location_from_navigation()
     ped = world.spawn_actor(ped_bp, trans)
     walker_controller_bp = world.get_blueprint_library().find('controller.ai.walker')
-    controller = world.spawn_actor(walker_controller_bp, carla.Transform(), ped)
+    controller = world.spawn_actor(walker_controller_bp, carla.Transform(), ped)# 在世界中生成行人控制器，并将其附加到行人
     controller.start()
     controller.go_to_location(world.get_random_location_from_navigation())
     controller.set_max_speed(1.7)

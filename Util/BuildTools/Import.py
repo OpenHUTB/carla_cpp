@@ -342,20 +342,42 @@ def generate_package_file(package_name, props, maps):
         json.dump(output_json, fh, indent=4)
 
 
-def copy_roadpainter_config_files(package_name):
-    """Copies roadpainter configuration files into Unreal content folder"""
 
+# 假设 CARLA_ROOT_PATH 是一个全局变量或之前已经定义的变量，指向 Carla 项目的根目录
+
+def copy_roadpainter_config_files(package_name):
+    """
+    将 roadpainter 配置文件复制到 Unreal 内容文件夹中。
+
+    参数:
+    package_name (str): 目标包的名称，配置文件将被复制到此包下的 Config 目录中。
+    """
+
+    # 获取当前脚本文件上两级目录的路径（假设这是相对于 Carla 项目根目录的位置）
     two_directories_up = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    
+    # 构造最终要复制的配置文件的完整路径
     final_path = os.path.join(two_directories_up, "Import", "roadpainter_decals.json")
+    
+    # 检查配置文件是否存在
     if os.path.exists(final_path):
+        # 构造目标路径，即将配置文件复制到的位置
         package_config_path = os.path.join(CARLA_ROOT_PATH, "Unreal", "CarlaUE4", "Content", package_name, "Config")
+        
+        # 检查目标目录是否存在，如果不存在则创建它
         if not os.path.exists(package_config_path):
             try:
-                os.makedirs(package_config_path)
+                os.makedirs(package_config_path)  # 创建目标目录及其所有不存在的父目录
             except OSError as exc:
+                # 如果错误不是由于目录已存在（errno.EEXIST），则抛出异常
                 if exc.errno != errno.EEXIST:
                     raise
-        shutil.copy(final_path, package_config_path)
+        
+        # 将配置文件复制到目标目录
+        shutil.copy(final_path, package_config_path)  
+      
+
+
 
 
 def import_assets(package_name, json_dirname, props, maps, do_tiles, tile_size, batch_size):
