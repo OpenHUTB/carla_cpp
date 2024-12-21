@@ -18,13 +18,13 @@
 //包括但不限于采购替代商品或服务、使用、数据或利润的损失或业务中断，是否基于合同、严格责任或侵权（包括疏忽或其他）理论，即使已经被告知可能发生这样的损害。
 // 注意：这个文件为了被 CARLA 使用做了略微的修改。
 
-#pragma once
+#pragma once//程序预处理
 
 #if defined(__GNUC__)
 // 禁用 -Wconversion 警告（当 Traits::size_t 和 Traits::index_t 设置为小于 32 位时，整数提升可能引发这些警告
 // 在赋值计算值时会出现警告）
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic push//用于保存当前的编译器诊断设置
+#pragma GCC diagnostic ignored "-Wconversion"//用于忽略特定的警告或错误。
 
 #ifdef MCDBGQ_USE_RELACY
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
