@@ -23,7 +23,7 @@ AV2XSensor::AV2XSensor(const FObjectInitializer &ObjectInitializer)
     PrimaryActorTick.bCanEverTick = true;
     RandomEngine = CreateDefaultSubobject<URandomEngine>(TEXT("RandomEngine"));
 
-    // Init path loss model
+    // 初始化路径损失模型
     PathLossModelObj = new PathLossModel(RandomEngine);
     CaServiceObj = new CaService(RandomEngine);
 }
@@ -39,7 +39,7 @@ void AV2XSensor::SetOwner(AActor *Owner)
 
     Super::SetOwner(Owner);
 
-    // Store the actor into the static list if the actor details are not available
+    // 如果 actor 详细信息不可用，则将 actor 存储到静态列表中
     if (Owner != nullptr)
     {
         if (std::find(AV2XSensor::mV2XActorContainer.begin(), AV2XSensor::mV2XActorContainer.end(), Owner) == AV2XSensor::mV2XActorContainer.end())
@@ -58,7 +58,7 @@ FActorDefinition AV2XSensor::GetSensorDefinition()
     return UActorBlueprintFunctionLibrary::MakeV2XDefinition();
 }
 
-/* Function to add configurable parameters*/
+/* 添加可配置参数的函数*/
 void AV2XSensor::Set(const FActorDescription &ActorDescription)
 {
     UE_LOG(LogCarla, Warning, TEXT("V2XSensor: Set function called"));
@@ -68,7 +68,7 @@ void AV2XSensor::Set(const FActorDescription &ActorDescription)
 
 void AV2XSensor::SetCaServiceParams(const float GenCamMin, const float GenCamMax, const bool FixedRate)
 {
-    // forward parameters to CaService Obj
+    // 将参数转发到 CaService Obj
     CaServiceObj->SetParams(GenCamMin, GenCamMax, FixedRate);
 }
 
@@ -82,7 +82,7 @@ void AV2XSensor::SetPropagationParams(const float TransmitPower,
                                       const bool use_etsi_fading,
                                       const float custom_fading_stddev)
 {
-    // forward parameters to PathLossModel Obj
+    // 将参数转发到 CaService Obj
     PathLossModelObj->SetParams(TransmitPower, ReceiverSensitivity, Frequency, combined_antenna_gain, path_loss_exponent, reference_distance_fspl, filter_distance, use_etsi_fading, custom_fading_stddev);
 }
 
@@ -97,26 +97,26 @@ void AV2XSensor::SetScenario(EScenario scenario)
 }
 
 /*
- * Function stores the actor details in to the static list.
- * Calls the CaService object to generate CAM message
- * Stores the message in static map
+ * Function 将 actor 详细信息存储在 static 列表中。
+ * 调用 CaService 对象生成 CAM 消息
+ * 将消息存储在静态 map 中
  */
 void AV2XSensor::PrePhysTick(float DeltaSeconds)
 {
     Super::PrePhysTick(DeltaSeconds);
-    // Clear the message created during the last sim cycle
+    // 清除在上一个 sim 周期中创建的消息
     if (GetOwner())
     {
         AV2XSensor::mActorV2XDataMap.erase(GetOwner());
 
-        // Step 0: Create message to send, if triggering conditions fulfilled
-        // this needs to be done in pre phys tick to enable synchronous reception in all other v2x sensors
-        // Check whether the message is generated
+        // 步骤 0：如果满足触发条件，则创建要发送的消息
+        // 这需要在 Pre Phys Tick 中完成，以便在所有其他 V2X 传感器中启用同步接收
+        // 检查是否生成了消息
         if (CaServiceObj->Trigger(DeltaSeconds))
         {
-            // If message is generated store it
-            // make a pair of message and sending power
-            // if different v2x sensors send with different power, we need to store that
+            // 如果生成了 message，请存储它
+            // 产生一对消息并发送功率
+            // 如果不同的 V2X 传感器以不同的功率发送，我们需要将其存储
             carla::sensor::data::CAMData cam_pw;
             cam_pw.Message = CaServiceObj->GetCamMessage();
             cam_pw.Power = PathLossModelObj->GetTransmitPower();
@@ -160,7 +160,7 @@ void AV2XSensor::SetYawrateDeviation(const float noise_yawrate_stddev, const flo
 }
 
 /*
- * Function takes care of sending messages to the current actor.
+ * Function 负责向当前 actor 发送消息。
  * First simulates the communication by calling LOSComm object.
  * If there is a list present then messages from those list are sent to the current actor
  */
@@ -169,7 +169,7 @@ void AV2XSensor::PostPhysTick(UWorld *World, ELevelTick TickType, float DeltaTim
     TRACE_CPUPROFILER_EVENT_SCOPE(AV2XSensor::PostPhysTick);
     if (GetOwner())
     {
-        // Step 1: Create an actor list which has messages to send targeting this v2x sensor instance
+        // 第 1 步：创建一个参与者列表，其中包含要针对此 v2x 传感器实例发送的消息
         std::vector<ActorPowerPair> ActorPowerList;
         for (const auto &pair : AV2XSensor::mActorV2XDataMap)
         {
@@ -183,14 +183,14 @@ void AV2XSensor::PostPhysTick(UWorld *World, ELevelTick TickType, float DeltaTim
             }
         }
 
-        // Step 2: Simulate the communication for the actors in actor list to current actor.
+        // 第 2 步：模拟 actor 列表中的 actor 与当前 actor 的通信。
         if (!ActorPowerList.empty())
         {
             UCarlaEpisode *carla_episode = UCarlaStatics::GetCurrentEpisode(GetWorld());
             PathLossModelObj->Simulate(ActorPowerList, carla_episode, GetWorld());
-            // Step 3: Get the list of actors who can send message to current actor, and the receive power of their messages.
+            // 第 3 步：获取可以向当前参与者发送消息的参与者列表，以及对他们消息的接收能力。
             ActorPowerMap actor_receivepower_map = PathLossModelObj->GetReceiveActorPowerList();
-            // Step 4: Retrieve the messages of the actors that are received
+            // 第 4 步：检索收到的 actor 的消息
 
             // get registry to retrieve carla actor IDs
             const FActorRegistry &Registry = carla_episode->GetActorRegistry();
@@ -211,7 +211,7 @@ void AV2XSensor::PostPhysTick(UWorld *World, ELevelTick TickType, float DeltaTim
 
             WriteMessageToV2XData(msg_received_power_list);
         }
-        // Step 5: Send message
+        // 第 5 步：发送消息
 
         if (mV2XData.GetMessageCount() > 0)
         {
