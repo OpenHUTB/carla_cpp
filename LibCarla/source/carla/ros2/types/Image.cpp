@@ -29,16 +29,23 @@ char dummy;
 #include "Image.h"
 #include <fastcdr/Cdr.h>
 
+// 引入fastcdr库中关于异常处理的头文件，以便后续能处理相关异常情况
 #include <fastcdr/exceptions/BadParamException.h>
 using namespace eprosima::fastcdr::exception;
 
 #include <utility>
 
+// 定义一个宏，表示builtin_interfaces_msg_Time类型在CDR序列化时最大的类型大小为8字节（无符号长整型字面量）
 #define builtin_interfaces_msg_Time_max_cdr_typesize 8ULL;
+// 定义一个宏，表示sensor_msgs_msg_Image类型在CDR序列化时最大的类型大小为648字节（无符号长整型字面量）
 #define sensor_msgs_msg_Image_max_cdr_typesize 648ULL;
+// 定义一个宏，表示std_msgs_msg_Header类型在CDR序列化时最大的类型大小为268字节（无符号长整型字面量）
 #define std_msgs_msg_Header_max_cdr_typesize 268ULL;
+// 定义一个宏，表示builtin_interfaces_msg_Time类型在CDR键相关序列化时最大的类型大小为0字节（无符号长整型字面量），可能意味着该类型不存在键相关序列化的特定大小情况
 #define builtin_interfaces_msg_Time_max_key_cdr_typesize 0ULL;
+// 定义一个宏，类似于上面，sensor_msgs_msg_Image类型在CDR键相关序列化时最大的类型大小为0字节，可能表示其键相关序列化无额外大小开销
 #define sensor_msgs_msg_Image_max_key_cdr_typesize 0ULL;
+// 定义一个宏，std_msgs_msg_Header类型在CDR键相关序列化时最大的类型大小为0字节，同样可能意味着对应情况不存在额外大小占用
 #define std_msgs_msg_Header_max_key_cdr_typesize 0ULL;
 
 sensor_msgs::msg::Image::Image()
@@ -58,74 +65,110 @@ sensor_msgs::msg::Image::Image()
     // sequence<uint8> m_data
 }
 
+// sensor_msgs::msg::Image类的析构函数，当前函数体为空，可能在子类中会有具体的资源释放等相关实现逻辑（如果有需要释放的资源的话）
 sensor_msgs::msg::Image::~Image()
 {
 }
 
+// sensor_msgs::msg::Image类的拷贝构造函数，用于通过已有的同类型对象（这里是const Image& x）来创建一个新的Image对象，并将传入对象的各个成员变量的值复制到新创建的对象中
 sensor_msgs::msg::Image::Image(
         const Image& x)
 {
+    // 复制Header成员变量的值
     m_header = x.m_header;
+    // 复制图像高度成员变量的值
     m_height = x.m_height;
+    // 复制图像宽度成员变量的值
     m_width = x.m_width;
+    // 复制图像编码格式成员变量的值
     m_encoding = x.m_encoding;
+    // 复制是否大端序成员变量的值
     m_is_bigendian = x.m_is_bigendian;
+    // 复制图像每行字节数（步长）成员变量的值
     m_step = x.m_step;
+    // 复制图像数据成员变量的值（这里可能是存储图像像素数据等的容器，比如数组或某种数据结构）
     m_data = x.m_data;
 }
 
+// sensor_msgs::msg::Image类的移动构造函数，用于通过右值引用的方式，将传入对象（这里是Image&& x，表示可以将其资源“移动”过来而不是复制，避免不必要的深拷贝开销）的资源转移到新创建的Image对象中
 sensor_msgs::msg::Image::Image(
         Image&& x) noexcept
 {
+    // 使用std::move将传入对象的Header成员变量的资源转移给新对象的对应成员变量，原对象的该成员变量之后应处于一种可析构但不应再访问其原有资源的有效状态（通常是一些内部指针等被置空等情况）
     m_header = std::move(x.m_header);
+    // 移动图像高度成员变量的值（这里实际只是简单赋值，因为基本类型不存在资源管理的转移问题，但保持统一的移动语义写法）
     m_height = x.m_height;
+    // 移动图像宽度成员变量的值（同理，基本类型简单赋值）
     m_width = x.m_width;
+    // 使用std::move转移图像编码格式成员变量的资源（若其内部有动态分配内存等资源管理情况）
     m_encoding = std::move(x.m_encoding);
+    // 移动是否大端序成员变量的值（基本类型简单赋值）
     m_is_bigendian = x.m_is_bigendian;
+    // 移动图像每行字节数（步长）成员变量的值（基本类型简单赋值）
     m_step = x.m_step;
+    // 使用std::move转移图像数据成员变量的资源（比如如果是动态分配内存存储图像数据的情况，转移内存所有权）
     m_data = std::move(x.m_data);
 }
 
+// sensor_msgs::msg::Image类的拷贝赋值运算符重载函数，用于将一个已有的Image对象（const Image& x）的各成员变量值复制到当前对象（*this）中，并返回当前对象的引用，以支持链式赋值操作
 sensor_msgs::msg::Image& sensor_msgs::msg::Image::operator =(
         const Image& x)
 {
+    // 复制Header成员变量的值到当前对象
     m_header = x.m_header;
+    // 复制图像高度成员变量的值到当前对象
     m_height = x.m_height;
+    // 复制图像宽度成员变量的值到当前对象
     m_width = x.m_width;
+    // 复制图像编码格式成员变量的值到当前对象
     m_encoding = x.m_encoding;
+    // 复制是否大端序成员变量的值到当前对象
     m_is_bigendian = x.m_is_bigendian;
+    // 复制图像每行字节数（步长）成员变量的值到当前对象
     m_step = x.m_step;
+    // 复制图像数据成员变量的值到当前对象
     m_data = x.m_data;
 
     return *this;
 }
 
+// sensor_msgs::msg::Image类的移动赋值运算符重载函数，用于将一个右值引用的Image对象（Image&& x）的资源转移到当前对象（*this）中，并返回当前对象的引用，支持链式赋值，同时避免不必要的复制开销
 sensor_msgs::msg::Image& sensor_msgs::msg::Image::operator =(
         Image&& x) noexcept
 {
+    // 使用std::move转移Header成员变量的资源到当前对象
     m_header = std::move(x.m_header);
+    // 移动图像高度成员变量的值到当前对象（基本类型简单赋值，遵循移动语义写法）
     m_height = x.m_height;
+    // 移动图像宽度成员变量的值到当前对象（基本类型简单赋值）
     m_width = x.m_width;
+    // 使用std::move转移图像编码格式成员变量的资源到当前对象
     m_encoding = std::move(x.m_encoding);
+    // 移动是否大端序成员变量的值到当前对象（基本类型简单赋值）
     m_is_bigendian = x.m_is_bigendian;
+    // 移动图像每行字节数（步长）成员变量的值到当前对象（基本类型简单赋值）
     m_step = x.m_step;
+    // 使用std::move转移图像数据成员变量的资源到当前对象
     m_data = std::move(x.m_data);
 
     return *this;
 }
 
+// 重载相等运算符（==），用于比较当前Image对象和另一个Image对象（const Image& x）是否相等，通过逐个比较各成员变量的值来判断，若所有成员变量都相等，则返回true，否则返回false
 bool sensor_msgs::msg::Image::operator ==(
         const Image& x) const
 {
     return (m_header == x.m_header && m_height == x.m_height && m_width == x.m_width && m_encoding == x.m_encoding && m_is_bigendian == x.m_is_bigendian && m_step == x.m_step && m_data == x.m_data);
 }
 
-bool sensor_msgs::msg::Image::operator !=(
+// 重载不等运算符（!=），通过调用相等运算符（==）取反的方式来判断当前Image对象和另一个Image对象（const Image& x）是否不相等，若相等运算符返回false，则该函数返回true，反之返回false
+bool sensor_msgs::msg::Image::operator!=(
         const Image& x) const
 {
-    return !(*this == x);
+    return!(*this == x);
 }
 
+// 获取该Image对象在CDR序列化时的最大尺寸（以字节为单位），这里忽略传入的当前对齐参数（current_alignment），直接返回之前定义好的该类型的最大CDR序列化类型大小（通过宏定义sensor_msgs_msg_Image_max_cdr_typesize获取）
 size_t sensor_msgs::msg::Image::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
@@ -133,19 +176,25 @@ size_t sensor_msgs::msg::Image::getMaxCdrSerializedSize(
     return sensor_msgs_msg_Image_max_cdr_typesize;
 }
 
+// 获取给定Image对象（const sensor_msgs::msg::Image& data）在CDR序列化后的实际大小（以字节为单位），考虑了当前的对齐要求（current_alignment），按照一定顺序依次计算各成员变量序列化后占用的字节数，并累加起来得到最终的序列化大小，最后返回当前对齐位置与初始对齐位置的差值作为序列化后的大小
 size_t sensor_msgs::msg::Image::getCdrSerializedSize(
         const sensor_msgs::msg::Image& data,
         size_t current_alignment)
 {
     size_t initial_alignment = current_alignment;
+    // 先计算Header成员变量序列化后的大小，并更新当前对齐位置
     current_alignment += std_msgs::msg::Header::getCdrSerializedSize(data.header(), current_alignment);
+    // 处理图像高度成员变量，考虑对齐要求后增加相应字节数（这里可能是按4字节对齐，具体由Cdr::alignment函数确定）
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    // 处理图像宽度成员变量，类似地考虑对齐后增加字节数
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    // 处理图像编码格式成员变量，计算其序列化后的大小（包含字符串长度及可能的额外字节用于表示结束符等，同时考虑对齐）
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4) + data.encoding().size() + 1;
+    // 处理是否大端序成员变量，考虑对齐后增加字节数（这里按1字节对齐）
     current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    // 处理图像每行字节数（步长）成员变量，考虑对齐后增加字节数（按4字节对齐）
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
-
+    // 处理图像数据成员变量，如果数据大小大于0，则根据数据的实际大小及对齐要求计算序列化后的字节数
     if (data.data().size() > 0)
     {
         current_alignment += (data.data().size() * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
@@ -154,6 +203,7 @@ size_t sensor_msgs::msg::Image::getCdrSerializedSize(
     return current_alignment - initial_alignment;
 }
 
+// 将当前Image对象进行CDR序列化，将各成员变量按照一定顺序写入到给定的CDR对象（eprosima::fastcdr::Cdr& scdr）中，这里使用了CDR对象的流插入运算符（<<）来实现各成员变量的序列化操作
 void sensor_msgs::msg::Image::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
@@ -166,6 +216,7 @@ void sensor_msgs::msg::Image::serialize(
     scdr << m_data;
 }
 
+// 从给定的CDR对象（eprosima::fastcdr::Cdr& dcdr）中进行反序列化操作，将各成员变量的值按照序列化时的顺序依次读取出来，赋值给当前Image对象的各对应成员变量，这里使用了CDR对象的流提取运算符（>>）来实现各成员变量的反序列化操作
 void sensor_msgs::msg::Image::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
 {
@@ -399,11 +450,16 @@ const std::vector<uint8_t>& sensor_msgs::msg::Image::data() const
  * @brief This function returns a reference to member data
  * @return Reference to member data
  */
+// 定义一个成员函数，用于返回存储图像数据的std::vector<uint8_t>类型的成员变量m_data的引用。
+// 通过返回引用，可以方便地在外部对该图像数据容器进行操作，比如读取、修改其中的数据等。
 std::vector<uint8_t>& sensor_msgs::msg::Image::data()
 {
     return m_data;
 }
 
+// 获取该Image对象在CDR键相关序列化时的最大尺寸（以字节为单位）。
+// 这里忽略传入的当前对齐参数（current_alignment），直接返回之前定义好的该类型的最大CDR键相关序列化类型大小（通过宏定义sensor_msgs_msg_Image_max_key_cdr_typesize获取）。
+// 此函数可能用于在某些特定场景下提前预估键相关序列化所需要的最大空间情况。
 size_t sensor_msgs::msg::Image::getKeyMaxCdrSerializedSize(
         size_t current_alignment)
 {
@@ -411,11 +467,15 @@ size_t sensor_msgs::msg::Image::getKeyMaxCdrSerializedSize(
     return sensor_msgs_msg_Image_max_key_cdr_typesize;
 }
 
+// 判断该Image对象的键（Key）是否已被定义，这里直接返回false，表示默认情况下该图像对象的键未被定义。
+// 在更复杂的应用场景中，如果存在键相关概念用于标识、检索等操作，可根据实际情况修改该函数逻辑来准确反映键的定义状态。
 bool sensor_msgs::msg::Image::isKeyDefined()
 {
     return false;
 }
 
+// 用于对该Image对象执行键相关的序列化操作，不过当前函数实现中只是将传入的CDR对象（eprosima::fastcdr::Cdr& scdr）进行了忽略（通过(void) scdr语句），意味着可能暂时没有实际的键序列化逻辑。
+// 在实际应用中，如果有键相关的序列化需求，需要按照具体的序列化规则和数据格式在此函数内填充相应代码，将图像对象中与键相关的数据正确序列化到给定的CDR对象中。
 void sensor_msgs::msg::Image::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {

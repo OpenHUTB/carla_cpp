@@ -164,6 +164,7 @@ static boost::python::list LightManagerGetIntensity(
     cc::LightManager& self,
     const boost::python::object& py_lights) {
 
+ // 创建一个空的 Python 列表，用于存储结果
   boost::python::list result;
 
   std::vector<cc::Light> lights {

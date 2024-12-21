@@ -63,18 +63,22 @@ def get_libcarla_extensions():
                 # 否则，添加普通的Carla客户端库文件到链接参数中
                 extra_link_args = [ os.path.join(pwd, 'dependencies/lib/libcarla_client.a') ]
                 
-            extra_link_args += [
-                os.path.join(pwd, 'dependencies/lib/librpc.a'),
+            extra_link_args += [#构建列表参数
+                os.path.join(pwd, 'dependencies/lib/librpc.a'),#将路径的各个组成部分组合成完整的路径
                 os.path.join(pwd, 'dependencies/lib/libboost_filesystem.a'),
                 os.path.join(pwd, 'dependencies/lib/libRecast.a'),
                 os.path.join(pwd, 'dependencies/lib/libDetour.a'),
                 os.path.join(pwd, 'dependencies/lib/libDetourCrowd.a'),
                 os.path.join(pwd, 'dependencies/lib/libosm2odr.a'),
                 os.path.join(pwd, 'dependencies/lib/libxerces-c.a')]
-            extra_link_args += ['-lz']
+            extra_link_args += ['-lz']#编译参数列表
             extra_compile_args = [
-                '-isystem', os.path.join(pwd, 'dependencies/include/system'), '-fPIC', '-std=c++14',
-                '-Werror', '-Wall', '-Wextra', '-Wpedantic', '-Wno-self-assign-overloaded',
+                '-isystem', os.path.join(pwd, 'dependencies/include/system'), '-fPIC', '-std=c++14',#指定额外的系统文件搜索路径
+                '-Werror',#将警告当作错误处理
+                '-Wall', #开启大多数常见的警告
+                '-Wextra', #开启额外的警告
+                '-Wpedantic', #阐述更多关于不符合标志的警告
+                '-Wno-self-assign-overloaded',
                 '-Wdeprecated', '-Wno-shadow', '-Wuninitialized', '-Wunreachable-code',
                 '-Wpessimizing-move', '-Wold-style-cast', '-Wnull-dereference',
                 '-Wduplicate-enum', '-Wnon-virtual-dtor', '-Wheader-hygiene',

@@ -545,23 +545,34 @@ void UOpenDriveToMap::GenerateAll(const boost::optional<carla::road::Map>& Param
 // 生成道路网格
 void UOpenDriveToMap::GenerateRoadMesh( const boost::optional<carla::road::Map>& ParamCarlaMap, FVector MinLocation, FVector MaxLocation )
 {
+  // 设置用于生成道路网格的参数
   opg_parameters.vertex_distance = 0.5f;
   opg_parameters.vertex_width_resolution = 8.0f;
+  // simplification_percentage用于指定后续网格简化的比例
   opg_parameters.simplification_percentage = 50.0f;
+  // 记录生成道路网格操作开始的时间
   double start = FPlatformTime::Seconds();
 
   carla::geom::Vector3D CarlaMinLocation(MinLocation.X / 100, MinLocation.Y / 100, MinLocation.Z /100);
   carla::geom::Vector3D CarlaMaxLocation(MaxLocation.X / 100, MaxLocation.Y / 100, MaxLocation.Z /100);
+  // 调用ParamCarlaMap的GenerateOrderedChunkedMeshInLocations函数，传入之前设置的参数和转换后的坐标范围，
+  // 生成网格数据并存储在Meshes变量中
   const auto Meshes = ParamCarlaMap->GenerateOrderedChunkedMeshInLocations(opg_parameters, CarlaMinLocation, CarlaMaxLocation);
+  // 记录生成道路网格操作结束的时间
   double end = FPlatformTime::Seconds();
+  // 使用UE_LOG输出一条日志信息，记录生成网格代码的执行时间以及当前的网格简化百分比
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT(" GenerateOrderedChunkedMesh code executed in %f seconds. Simplification percentage is %f"), end - start, opg_parameters.simplification_percentage);
 
   start = FPlatformTime::Seconds();
+  // 定义一个静态变量index，用于给创建的静态网格演员设置唯一标签
   static int index = 0;
   for (const auto &PairMap : Meshes)
   {
+    // 遍历每个键值对中的网格数据（Mesh）
     for( auto& Mesh : PairMap.second )
     {
+      // 网格数据有效性检查
+      // 如果网格顶点数量为0，则跳过当前网格的处理
       if (!Mesh->GetVertices().size())
       {
         continue;
@@ -622,6 +633,7 @@ void UOpenDriveToMap::GenerateRoadMesh( const boost::optional<carla::road::Map>&
       TArray<FVector> Normals;
       TArray<FProcMeshTangent> Tangents;
 
+      #调用UKismetProceduralMeshLibrary类中的CalculateTangentsForMesh函数
       UKismetProceduralMeshLibrary::CalculateTangentsForMesh(
         MeshData.Vertices,
         MeshData.Triangles,
@@ -630,27 +642,38 @@ void UOpenDriveToMap::GenerateRoadMesh( const boost::optional<carla::road::Map>&
         Tangents
       );
 
+      #条件判断，检查PairMap 中的第一个元素是否等于carla::road::Lane::LaneType::Sidewalk
       if(PairMap.first == carla::road::Lane::LaneType::Sidewalk)
       {
+        #构建一个静态网格对象
         UStaticMesh* MeshToSet = UMapGenFunctionLibrary::CreateMesh(MeshData,  Tangents, DefaultSidewalksMaterial, MapName, "DrivingLane", FName(TEXT("SM_SidewalkMesh" + FString::FromInt(index) + GetStringForCurrentTile() )));
         StaticMeshComponent->SetStaticMesh(MeshToSet);
       }
 
+      #条件判断检查
       if(PairMap.first == carla::road::Lane::LaneType::Driving)
       {
         UStaticMesh* MeshToSet = UMapGenFunctionLibrary::CreateMesh(MeshData,  Tangents, DefaultRoadMaterial, MapName, "DrivingLane", FName(TEXT("SM_DrivingLaneMesh" + FString::FromInt(index) + GetStringForCurrentTile() )));
         StaticMeshComponent->SetStaticMesh(MeshToSet);
       }
+      #设置临时演员TempActor的位置
       TempActor->SetActorLocation(MeshCentroid * 100);
+      #给临时演员添加一个RoadLane
       TempActor->Tags.Add(FName("RoadLane"));
+      #用于将一个TempActor添加到ActorMeshList中
       // ActorMeshList.Add(TempActor);
+      #设置静态网格组件的碰撞属性
       StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+      #设置一个TempActor的启用碰撞
       TempActor->SetActorEnableCollision(true);
+      #计数器自增操作
       index++;
     }
   }
 
+  #获取当前平台时间
   end = FPlatformTime::Seconds();
+  #输出一条日志信息
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("Mesh spawnning and translation code executed in %f seconds."), end - start);
 }
 

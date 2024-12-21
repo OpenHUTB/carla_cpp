@@ -68,30 +68,44 @@ static auto ApplyBatchCommandsSync(
     const boost::python::object &commands,
     bool do_tick) {
 
+   // 使用别名简化类型名称，提高代码可读性
   using CommandType = carla::rpc::Command;
+   // 将来自 Python 的命令列表转换为 C++ 的 std::vector<CommandType>
+  // 这里使用了 boost::python::stl_input_iterator 来迭代 Python 对象
   std::vector<CommandType> cmds {
     boost::python::stl_input_iterator<CommandType>(commands),
     boost::python::stl_input_iterator<CommandType>()
   };
 
+  // 创建一个空的 Python 列表，用于存储从 Carla 模拟器收到的响应
   boost::python::list result;
+   // 调用 Carla 客户端的 ApplyBatchSync 方法，同步应用命令批次
+  // 如果 do_tick 为 true，则在应用命令后模拟器会前进一个时间步
   auto responses = self.ApplyBatchSync(cmds, do_tick);
+  // 遍历从 ApplyBatchSync 得到的所有响应，并将它们添加到 Python 列表中
   for (auto &response : responses) {
     result.append(std::move(response));
   }
 
+  #向量初始化
   // check for autopilot command
+  #使用std::vector的构造函数，指定cmds.size作为初始大小
   std::vector<carla::traffic_manager::ActorPtr> vehicles_to_enable(cmds.size(), nullptr);
+  #每个元素初始化为nullptr
   std::vector<carla::traffic_manager::ActorPtr> vehicles_to_disable(cmds.size(), nullptr);
+  #获取carla::client::World world对象
   carla::client::World world = self.GetWorld();
+  #定义变量初始化为8800
   uint16_t tm_port = 8000;
 
   std::atomic<size_t> vehicles_to_enable_index;
   std::atomic<size_t> vehicles_to_disable_index;
 
+  #原子变量初始化
   vehicles_to_enable_index.store(0);
   vehicles_to_disable_index.store(0);
 
+  #定义一个Lambda表达式ProcessCommand捕获外部变量
   auto ProcessCommand = [&](size_t min_index, size_t max_index) {
     for (size_t i = min_index; i < max_index; ++i) {
       if (!responses[i].HasError()) {
@@ -99,6 +113,7 @@ static auto ApplyBatchCommandsSync(
         bool isAutopilot = false;
         bool autopilotValue = false;
 
+        #避免不必要的复制操作
         CommandType::CommandType& cmd_type = cmds[i].command;
 
         // check SpawnActor command
