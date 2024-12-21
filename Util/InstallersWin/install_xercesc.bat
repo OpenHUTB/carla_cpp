@@ -1,20 +1,3 @@
-REM @echo off
-setlocal
-
-rem BAT script that downloads and installs a ready to use
-rem x64 xerces-c build for CARLA (carla.org).
-rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
-
-set LOCAL_PATH=%~dp0
-set FILE_N=    -[%~n0]:
-
-rem Print batch params (debug purpose)
-echo %FILE_N% [Batch params]: %*
-
-rem ============================================================================
-rem -- Parse arguments ---------------------------------------------------------
-rem ============================================================================
-
 :arg-parse
 if not "%1"=="" (
     if "%1"=="--build-dir" (
@@ -37,42 +20,24 @@ if not "%1"=="" (
 
 if %GENERATOR% == "" set GENERATOR="Visual Studio 16 2019"
 
-rem If not set set the build dir to the current dir
 if "%BUILD_DIR%" == "" set BUILD_DIR=%~dp0
 if not "%BUILD_DIR:~-1%"=="\" set BUILD_DIR=%BUILD_DIR%\
-
-rem ============================================================================
-rem -- Local Variables ---------------------------------------------------------
-rem ============================================================================
-
 set XERCESC_BASENAME=xerces-c
 set XERCESC_VERSION=3.2.3
 
-rem xerces-c-x.x.x
 set XERCESC_TEMP_FOLDER=%XERCESC_BASENAME%-%XERCESC_VERSION%
-rem ../xerces-c-x.x.x
 set XERCESC_TEMP_FOLDER_DIR=%BUILD_DIR%%XERCESC_TEMP_FOLDER%
-rem xerces-c-x.x.x-src.zip
 set XERCESC_TEMP_FILE=%XERCESC_TEMP_FOLDER%-src.zip
-rem ../xerces-c-x.x.x-src.zip
 set XERCESC_TEMP_FILE_DIR=%BUILD_DIR%%XERCESC_TEMP_FILE%
 
 set XERCESC_REPO=https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-%XERCESC_VERSION%.zip
 set XERCESC_BACKUP_REPO=https://carla-releases.s3.us-east-005.backblazeb2.com/Backup/xerces-c-%XERCESC_VERSION%.zip
 
-rem ../xerces-c-x.x.x-source/
 set XERCESC_SRC_DIR=%BUILD_DIR%%XERCESC_BASENAME%-%XERCESC_VERSION%-source\
-rem ../xerces-c-x.x.x-install/
 set XERCESC_INSTALL_DIR=%BUILD_DIR%%XERCESC_BASENAME%-%XERCESC_VERSION%-install\
-
-rem ============================================================================
-rem -- Get xerces --------------------------------------------------------------
-rem ============================================================================
-
 if exist "%XERCESC_INSTALL_DIR%" (
     goto already_build
 )
-
 if not exist "%XERCESC_SRC_DIR%" (
     if not exist "%XERCESC_TEMP_FILE_DIR%" (
         echo %FILE_N% Retrieving %XERCESC_BASENAME%.
@@ -99,11 +64,6 @@ if not exist "%XERCESC_SRC_DIR%" (
 ) else (
     echo %FILE_N% Not downloading xerces because already exists the folder "%XERCESC_SRC_DIR%".
 )
-
-rem ============================================================================
-rem -- Compile xerces ----------------------------------------------------------
-rem ============================================================================
-
 if not exist "%XERCESC_SRC_DIR%build" (
     echo %FILE_N% Creating "%XERCESC_SRC_DIR%build"
     mkdir "%XERCESC_SRC_DIR%build"
@@ -120,88 +80,74 @@ if not exist "%XERCESC_INSTALL_DIR%include" (
     echo %FILE_N% Creating "%XERCESC_INSTALL_DIR%include"
     mkdir "%XERCESC_INSTALL_DIR%include"
 )
-
 echo.%GENERATOR% | findstr /C:"Visual Studio" >nul && (
     set PLATFORM=-A x64
 ) || (
     set PLATFORM=
 )
 
-cmake .. -G %GENERATOR% %PLATFORM%^
+cmake.. -G %GENERATOR% %PLATFORM%^
   -DCMAKE_INSTALL_PREFIX="%XERCESC_INSTALL_DIR:\=/%"^
   -DBUILD_SHARED_LIBS=OFF^
   "%BUILD_DIR%%XERCESC_BASENAME%-%XERCESC_VERSION%-source"
 if %errorlevel% neq 0 goto error_cmake
 
-cmake --build . --config Release --target install
+cmake --build. --config Release --target install
+set NEWLIB_BASENAME=newlib
+set NEWLIB_VERSION=1.0.0
 
-goto success
+set NEWLIB_TEMP_FOLDER=%NEWLIB_BASENAME%-%NEWLIB_VERSION%
+set NEWLIB_TEMP_FOLDER_DIR=%BUILD_DIR%%NEWLIB_TEMP_FOLDER%
+set NEWLIB_TEMP_FILE=%NEWLIB_TEMP_FOLDER%-src.zip
+set NEWLIB_TEMP_FILE_DIR=%BUILD_DIR%%NEWLIB_TEMP_FILE%
 
-rem ============================================================================
-rem -- Messages and Errors -----------------------------------------------------
-rem ============================================================================
+set NEWLIB_REPO=https://example.com/newlib-%NEWLIB_VERSION%.zip
+set NEWLIB_BACKUP_REPO=https://backup.example.com/newlib-%NEWLIB_VERSION%.zip
 
-:help
-    echo %FILE_N% Download and install a xerces.
-    echo "Usage: %FILE_N% [-h^|--help] [--build-dir] [--zlib-install-dir]"
-    goto eof
+set NEWLIB_SRC_DIR=%BUILD_DIR%%NEWLIB_BASENAME%-%NEWLIB_VERSION%-source\
+set NEWLIB_INSTALL_DIR=%BUILD_DIR%%NEWLIB_BASENAME%-%NEWLIB_VERSION%-install\
+if not exist "%NEWLIB_SRC_DIR%" (
+    if not exist "%NEWLIB_TEMP_FILE_DIR%" (
+        echo %FILE_N% Retrieving %NEWLIB_BASENAME%.
+        powershell -Command "(New-Object System.Net.WebClient).DownloadFile('%NEWLIB_REPO%', '%NEWLIB_TEMP_FILE_DIR%')"
+    )
+    if not exist "%NEWLIB_TEMP_FILE_DIR%" (
+        echo %FILE_N% Using %NEWLIB_BASENAME% from backup.
+        powershell -Command "(New-Object System.Net.WebClient).DownloadFile('%NEWLIB_BACKUP_REPO%', '%NEWLIB_TEMP_FILE_DIR%')"
+    )
+    if %errorlevel% neq 0 goto error_download_newlib
+    rem Extract the downloaded library
+    echo %FILE_N% Extracting newlib from "%NEWLIB_TEMP_FILE%".
+    powershell -Command "Expand-Archive '%NEWLIB_TEMP_FILE_DIR%' -DestinationPath '%BUILD_DIR%'"
+    if %errorlevel% neq 0 goto error_extracting_newlib
 
-:success
-    echo.
-    echo %FILE_N% xerces has been successfully installed in "%XERCESC_INSTALL_DIR%"!
-    goto good_exit
+    rem Remove unnecessary files and folders
+    echo %FILE_N% Removing "%NEWLIB_TEMP_FILE%"
+    del "%NEWLIB_TEMP_FILE_DIR%"
+    echo %FILE_N% Removing dir "%BUILD_DIR%unnecessary_folder"
+    rmdir /s/q "%BUILD_DIR%unnecessary_folder"
 
-:already_build
-    echo %FILE_N% A xerces installation already exists.
-    echo %FILE_N% Delete "%XERCESC_INSTALL_DIR%" if you want to force a rebuild.
-    goto good_exit
+    echo %FILE_N% Renaming dir %NEWLIB_TEMP_FOLDER_DIR% to %NEWLIB_BASENAME%-%NEWLIB_VERSION%-source
+    rename "%NEWLIB_TEMP_FOLDER_DIR%" "%NEWLIB_BASENAME%-%NEWLIB_VERSION%-source"
+) else {
+    echo %FILE_N% Not downloading newlib because already exists the folder "%NEWLIB_SRC_DIR%".
+}
+cmake.. -G %GENERATOR% %PLATFORM%^
+  -DCMAKE_INSTALL_PREFIX="%XERCESC_INSTALL_DIR:\=/%"^
+  -DBUILD_SHARED_LIBS=OFF^
+  -DNewLib_INCLUDE_DIR="%NEWLIB_INSTALL_DIR%\include"^
+  -DNewLib_LIBRARY_DIR="%NEWLIB_INSTALL_DIR%\lib"^
+  -DLINK_LIBRARIES="%NEWLIB_INSTALL_DIR%\lib\newlib.lib"^
+  "%BUILD_DIR%%XERCESC_BASENAME%-%XERCESC_VERSION%-source"
+if %errorlevel% neq 0 goto error_cmake
 
-:error_download
-    echo.
-    echo %FILE_N% [DOWNLOAD ERROR] An error ocurred while downloading xerces.
-    echo %FILE_N% [DOWNLOAD ERROR] Possible causes:
-    echo %FILE_N%              - Make sure that the following url is valid:
-    echo %FILE_N% "%XERCESC_REPO%"
-    echo %FILE_N% [DOWNLOAD ERROR] Workaround:
-    echo %FILE_N%              - Download the xerces's source code and
-    echo %FILE_N%                extract the content in
-    echo %FILE_N%                "%XERCESC_SRC_DIR%"
-    echo %FILE_N%                And re-run the setup script.
-    goto bad_exit
+cmake --build. --config Release --target install
+cmake.. -G %GENERATOR% %PLATFORM%^
+  -DCMAKE_INSTALL_PREFIX="%XERCESC_INSTALL_DIR:\=/%"^
+  -DBUILD_SHARED_LIBS=OFF^
+  -DZLIB_INCLUDE_DIR="C:/path/to/zlib/include"^
+  -DZLIB_LIBRARY="C:/path/to/zlib/lib/zlib.lib"^
+  "%BUILD_DIR%%XERCESC_BASENAME%-%XERCESC_VERSION%-source"
+if %errorlevel% neq 0 goto error_cmake
 
-:error_extracting
-    echo.
-    echo %FILE_N% [EXTRACTING ERROR] An error ocurred while extracting the zip.
-    echo %FILE_N% [EXTRACTING ERROR] Workaround:
-    echo %FILE_N%              - Download the xerces's source code and
-    echo %FILE_N%                extract the content manually in
-    echo %FILE_N%                "%XERCESC_SRC_DIR%"
-    echo %FILE_N%                And re-run the setup script.
-    goto bad_exit
-
-:error_compiling
-    echo.
-    echo %FILE_N% [COMPILING ERROR] An error ocurred while compiling with cl.exe.
-    echo %FILE_N%              Possible causes:
-    echo %FILE_N%              - Make sure you have Visual Studio installed.
-    echo %FILE_N%              - Make sure you have the "x64 Visual C++ Toolset" in your path.
-    echo %FILE_N%                For example, using the "Visual Studio x64 Native Tools Command Prompt",
-    echo %FILE_N%                or the "vcvarsall.bat".
-    goto bad_exit
-
-:error_generating_lib
-    echo.
-    echo %FILE_N% [NMAKE ERROR] An error ocurred while compiling and installing using nmake.
-    goto bad_exit
-
-:good_exit
-    echo %FILE_N% Exiting...
-    rem A return value used for checking for errors
-    endlocal & set install_xerces=%XERCESC_INSTALL_DIR%
-    exit /b 0
-
-:bad_exit
-    if exist "%XERCESC_INSTALL_DIR%" rd /s /q "%XERCESC_INSTALL_DIR%"
-    echo %FILE_N% Exiting with error...
-    endlocal
-    exit /b %errorlevel%
+cmake --build. --config Release --target install
