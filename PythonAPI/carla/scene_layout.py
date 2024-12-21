@@ -290,36 +290,49 @@ def get_dynamic_objects(carla_world, carla_map):
             walkers_dict[walker.id] = w_dict
         return walkers_dict
 
-    def get_speed_limits(speed_limits):
+# 函数功能：将速度限制相关信息转换为字典形式存储
+# 参数：speed_limits 应该是包含速度限制相关对象（可能是Carla中表示速度限制的特定对象类型）的可迭代对象
+# 返回值：以速度限制对象的id为键，对应包含速度限制详细信息（如位置、速度等）的字典为值的字典
+def get_speed_limits(speed_limits):   
+ def get_speed_limits(speed_limits):
         speed_limits_dict = dict()
+        # 遍历速度限制相关对象列表
         for speed_limit in speed_limits:
+            # 获取速度限制对象的变换信息（可能包含位置、旋转等信息）
             sl_transform = speed_limit.get_transform()
+            # 将速度限制对象的位置信息从Carla地图坐标转换为地理坐标（经纬度、海拔高度等形式）
             location_gnss = carla_map.transform_to_geolocation(sl_transform.location)
             sl_dict = {
-                "id": speed_limit.id,
-                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
-                "speed": int(speed_limit.type_id.split('.')[2])
+                "id": speed_limit.id, # 记录速度限制对象的唯一标识id
+                "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude], # 记录其地理坐标位置信息
+                "speed": int(speed_limit.type_id.split('.')[2]) # 从类型id中提取并转换速度值为整数，作为速度限制的值（这里假设类型id的格式符合特定拆分逻辑来获取速度信息）
             }
             speed_limits_dict[speed_limit.id] = sl_dict
         return speed_limits_dict
 #遍历静态障碍物列表，将每个障碍物的位置信息提取出来并存储在一个字典里
     def get_static_obstacles(static_obstacles):
         static_obstacles_dict = dict()
+        # 遍历静态障碍物列表
         for static_prop in static_obstacles:
+            # 获取静态障碍物对象的变换信息
             sl_transform = static_prop.get_transform()
+            # 将静态障碍物的位置信息转换为地理坐标形式
             location_gnss = carla_map.transform_to_geolocation(sl_transform.location)
             sl_dict = {
-                "id": static_prop.id,
+                "id": static_prop.id, # 记录静态障碍物的唯一标识id
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude]
             }
             static_obstacles_dict[static_prop.id] = sl_dict
         return static_obstacles_dict
 #从一个更大的actors列表中分离出不类型的actors
     actors = carla_world.get_actors()
+    # 调用函数
     vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles = _split_actors(actors)
 
+    # 从所有车辆中筛选出角色名为'hero'的车辆
     hero_vehicles = [vehicle for vehicle in vehicles if
                      'vehicle' in vehicle.type_id and vehicle.attributes['role_name'] == 'hero']
+    # 如果没有筛选出'hero'车辆，则将hero设为None，否则随机选择一辆'hero'车辆作为hero
     hero = None if len(hero_vehicles) == 0 else random.choice(hero_vehicles)
 #将信息整合到一个字典中，并返回
     return {
