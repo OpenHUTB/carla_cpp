@@ -55,13 +55,16 @@ class ConstantVelocityAgent(BasicAgent):
 
         self._restart_time = float('inf')  # Time after collision before the constant velocity behavior starts again
 
+        # 检查选项字典中是否存在 'restart_time' 键，并将其值赋给 self._restart_time
         if 'restart_time' in opt_dict:
             self._restart_time = opt_dict['restart_time']
         if 'use_basic_behavior' in opt_dict:
             self._use_basic_behavior = opt_dict['use_basic_behavior']
 
         self.is_constant_velocity_active = True
+        # 初始化碰撞传感器
         self._set_collision_sensor()
+        # 设置车辆的恒定速度为目标速度 target_speed
         self._set_constant_velocity(target_speed)
 
     def set_target_speed(self, speed):
@@ -96,29 +99,43 @@ class ConstantVelocityAgent(BasicAgent):
                 return carla.VehicleControl()
 
         hazard_detected = False
+        # 初始化危险检测标志为False，代表还未检测到危险情况
 
+        #获取模拟世界中的所有参与者
         # Retrieve all relevant actors
         actor_list = self._world.get_actors()
+        # 筛选出参与者中的车辆列表
         vehicle_list = actor_list.filter("*vehicle*")
+        # 筛选出参与者中的交通信号灯列表
         lights_list = actor_list.filter("*traffic_light*")
 
+        # 获取当前车辆速度大小
         vehicle_speed = self._vehicle.get_velocity().length()
 
+        # 计算检测车辆相关危险的最大距离（结合基础阈值和当前车速）
         max_vehicle_distance = self._base_vehicle_threshold + vehicle_speed
+        # 检测车辆是否受其他车辆影响，返回是否受影响、相关车辆对象等信息
         affected_by_vehicle, adversary, _ = self._vehicle_obstacle_detected(vehicle_list, max_vehicle_distance)
         if affected_by_vehicle:
+            # 获取自身车辆速度向量
             vehicle_velocity = self._vehicle.get_velocity()
             if vehicle_velocity.length() == 0:
+                # 若自身车速为0，危险速度设为0
                 hazard_speed = 0
             else:
+                # 计算危险速度（根据自身与相关车辆速度向量点积等计算）
                 hazard_speed = vehicle_velocity.dot(adversary.get_velocity()) / vehicle_velocity.length()
+            # 标记检测到危险情况
             hazard_detected = True
 
         # Check if the vehicle is affected by a red traffic light
         max_tlight_distance = self._base_tlight_threshold + 0.3 * vehicle_speed
+        # 检测车辆是否受交通信号灯影响，返回是否受影响等信息
         affected_by_tlight, _ = self._affected_by_traffic_light(lights_list, max_tlight_distance)
         if affected_by_tlight:
+            # 若受交通信号灯影响，危险速度设为0
             hazard_speed = 0
+            # 标记检测到危险情况
             hazard_detected = True
 
         # The longitudinal PID is overwritten by the constant velocity but it is

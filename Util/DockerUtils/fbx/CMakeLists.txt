@@ -27,7 +27,8 @@ add_executable(FBX2OBJ ${SOURCES})
 install(TARGETS FBX2OBJ DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/../dist")
 
 # 链接需要的库文件
-target_link_libraries(FBX2OBJ fbxsdk)
-target_link_libraries(FBX2OBJ dl)
-target_link_libraries(FBX2OBJ z)
-target_link_libraries(FBX2OBJ xml2)
+target_link_libraries(FBX2OBJ fbxsdk)#这表明目标 FBX20BJ 需要与 fbxsdk 库进行链接。fbxsdk 库可能包含与处理FBX（一种3D数据交换格式）相关的功能，比如读取、写入FBX文件，处理其中的3D模型、动画等数据。
+target_link_libraries(FBX2OBJ dl)#将其与 FBX20BJ 链接，可能是因为目标程序在运行时需要动态加载其他模块或者库。
+target_link_libraries(FBX2OBJ z)#z 库是与压缩相关的库。如果 FBX20BJ 在处理数据时涉及到压缩或者解压缩操作，比如对FBX文件中的某些数据进行压缩存储或者传输，就需要链接 z 库。
+
+target_link_libraries(FBX2OBJ xml2)#将 xml2 库与 FBX20BJ 链接，意味着 FBX20BJ 可能需要使用 xml2 库来解析或者生成XML内容，以处理与FBX文件相关的XML数据部分。

@@ -61,6 +61,7 @@
 
 // 平台特定的数字线程 ID 类型和无效值定义
 namespace moodycamel { namespace details {
+// 模板结构体 thread_id_converter，用于将线程 ID 转换为数值类型和哈希值
   template<typename thread_id_t> struct thread_id_converter {
     typedef thread_id_t thread_id_numeric_size_t;
     typedef thread_id_t thread_id_hash_t;
