@@ -287,24 +287,65 @@ class CodeFormat:
                     cprint("[WARN] Cannot find '" + fileOrDirectory + "'", "yellow")
 
     def scanFileOrDirectory(self, fileOrDirectory, filePattern):
-        fileList = []
+        """
+        扫描指定的文件或目录，并返回与给定文件模式匹配且未被排除的文件列表。
+
+        参数:
+            fileOrDirectory (str): 要扫描的文件或目录的路径。
+            filePattern (re.Pattern): 用于匹配文件名的正则表达式模式。
+
+        返回:
+            list: 与文件模式匹配且未被排除的文件路径列表。
+        """
+        fileList = []  # 初始化空列表以存储匹配的文件路径
+
+        # 检查给定路径是否为目录
         if os.path.isdir(fileOrDirectory):
+            # 使用os.walk遍历目录树
             for root, directories, fileNames in os.walk(fileOrDirectory):
+                # 过滤目录列表（排除隐藏目录和包含特定忽略文件的目录）
                 directories[:] = self.filterDirectories(root, directories)
+                
+                # 遍历当前目录下的文件名
                 for filename in filter(lambda name: filePattern.match(name), fileNames):
+                    # 构建文件的完整路径
                     fullFilename = os.path.join(root, filename)
+                    # 检查文件是否未被排除
                     if self.isFileNotExcluded(fullFilename):
+                        # 将文件添加到列表中
                         fileList.append(fullFilename)
         else:
+            # 如果给定路径不是目录，则检查它是否是一个文件且未被排除
             if self.isFileNotExcluded(fileOrDirectory) and (filePattern.match(os.path.basename(fileOrDirectory)) is not None):
+                # 将文件添加到列表中
                 fileList.append(fileOrDirectory)
+        
+        # 返回匹配的文件列表
         return fileList
 
     def filterDirectories(self, root, directories):
-        # Exclude hidden directories and all directories that have a CODE_FORMAT_IGNORE_FILE
+        """
+        过滤目录列表，排除隐藏目录和包含特定忽略文件的目录。
+
+        参数:
+            root (str): 当前遍历的根目录路径。
+            directories (list): 要过滤的目录名称列表。
+
+        返回:
+            list: 过滤后的目录名称列表。
+        """
+        # 假设CodeFormatterClang.CODE_FORMAT_IGNORE_FILE是一个类变量，表示忽略文件的名称
+        # 这里需要注意，因为CodeFormatterClang类在代码片段中没有定义，我们假设它是存在的
+        ignore_file = CodeFormatterClang.CODE_FORMAT_IGNORE_FILE  # 获取忽略文件的名称
+
+        # 使用列表推导式过滤目录
         directories[:] = [directory for directory in directories if
+                          # 排除以点开头的隐藏目录
                           not directory.startswith(".") and
-                          not os.path.exists(os.path.join(root, directory, CodeFormatterClang.CODE_FORMAT_IGNORE_FILE))]
+                          # 排除包含忽略文件的目录
+                          not os.path.exists(os.path.join(root, directory, ignore_file))]
+        
+        # 返回过滤后的目录列表
         return directories
 
     def isFileNotExcluded(self, fileName):#定义一个类的方法，用于判断文件是否不被排除
