@@ -106,64 +106,65 @@ if (WIN32)#if (WIN32) 是一个条件判断，如果当前构建系统是Windows
     install(FILES ${zlib_libraries} DESTINATION lib)#install(FILES${zlib_libraries} DESTINATION lib) 将获取的zlib库文件安装到项目的 lib 目录下。
 
     # 安装 libpng 头文件
-    file(GLOB pnglib_includes "${LIBPNG_INCLUDE_PATH}/*")
-    install(FILES ${pnglib_includes} DESTINATION include)
+    file(GLOB pnglib_includes "${LIBPNG_INCLUDE_PATH}/*")#查找${LIBPNG_INCLUDE_PATH}目录下的所有文件，并将结果存储在pnglib_includes变量中。GLOB命令用于生成符合特定模式的文件列表。
+    install(FILES ${pnglib_includes} DESTINATION include)#将pnglib_includes变量中的文件安装到include目录下。这意味着将libpng库的头文件安装到项目的include目录。
     # 安装 zlib 库.
     file(GLOB libpng_libraries "${LIBPNG_LIB_PATH}/*")
     install(FILES ${libpng_libraries} DESTINATION lib)
+    #使用file(GLOB...)命令查找${LIBPNG_LIB_PATH}目录下的所有文件，并将结果存储在libpng_libraries变量中。然后使用install(FILES...)命令将这些文件安装到lib目录下。这意味着将libpng库的库文件安装到项目的lib目录。
 else ()
   # 安装图片库（libpng）
-  install(DIRECTORY "${LIBPNG_INCLUDE_PATH}" DESTINATION include/system)
-  file(GLOB libcarla_carla_libpnglib "${LIBPNG_LIB_PATH}/*.*")
-  install(FILES ${libcarla_carla_libpnglib} DESTINATION lib)
+  install(DIRECTORY "${LIBPNG_INCLUDE_PATH}" DESTINATION include/system)#使用install(DIRECTORY...)命令将${LIBPNG_INCLUDE_PATH}目录安装到include/system目录下，这可能是为了将libpng库的头文件安装到特定的系统级别的include目录。
+  file(GLOB libcarla_carla_libpnglib "${LIBPNG_LIB_PATH}/*.*")#命令查找${LIBPNG_LIB_PATH}目录下的所有文件，并将结果存储在libcarla_carla_libpnglib变量中。
+  install(FILES ${libcarla_carla_libpnglib} DESTINATION lib)#使用install(FILES...)命令将libcarla_carla_libpnglib变量中的文件安装到lib目录下。
 endif (WIN32)
 
 
 # 添加和libcarla客户端相关的源代码
 # 添加 LibCarla 目录（LibCarla/source/carla）下的*.cpp和.h文件
-file(GLOB libcarla_carla_sources
+file(GLOB libcarla_carla_sources#使用file(GLOB...)命令查找${libcarla_source_path}/carla/目录下的所有.cpp和.h文件，并将结果存储在libcarla_carla_sources变量中。
     "${libcarla_source_path}/carla/*.cpp"
     "${libcarla_source_path}/carla/*.h")
-set(libcarla_sources "${libcarla_sources};${libcarla_carla_sources}")
-install(FILES ${libcarla_carla_sources} DESTINATION include/carla)
+set(libcarla_sources "${libcarla_sources};${libcarla_carla_sources}")#将libcarla_carla_sources变量中的文件路径添加到libcarla_sources变量中。
+install(FILES ${libcarla_carla_sources} DESTINATION include/carla)#将libcarla_carla_sources变量中的文件安装到include/carla目录下。
 
 # 添加客户端目录（LibCarla/source/carla/client）下的*.cpp和.h文件
-file(GLOB libcarla_carla_client_sources
+file(GLOB libcarla_carla_client_sources#使用file(GLOB...)命令来查找${libcarla_source_path}/carla/client/目录下的所有.cpp和.h文件，并将结果存储在libcarla_carla_client_sources变量中。
     "${libcarla_source_path}/carla/client/*.cpp"
     "${libcarla_source_path}/carla/client/*.h")
-set(libcarla_sources "${libcarla_sources};${libcarla_carla_client_sources}")
-install(FILES ${libcarla_carla_client_sources} DESTINATION include/carla/client)
+set(libcarla_sources "${libcarla_sources};${libcarla_carla_client_sources}")#将libcarla_carla_client_sources变量中的文件路径添加到libcarla_sources变量中。
+install(FILES ${libcarla_carla_client_sources} DESTINATION include/carla/client)#将libcarla_carla_client_sources变量中的文件安装到include/carla/client目录下。
 
 # 添加客户端详细目录（LibCarla/source/carla/client/detail）下的*.cpp和.h文件
-file(GLOB libcarla_carla_client_detail_sources
+file(GLOB libcarla_carla_client_detail_sources#使用file(GLOB...)命令来查找${libcarla_source_path}/carla/client/detail/目录下的所有.cpp和.h文件，并将结果存储在libcarla_carla_client_detail_sources变量中。
     "${libcarla_source_path}/carla/client/detail/*.cpp"
     "${libcarla_source_path}/carla/client/detail/*.h")
-set(libcarla_sources "${libcarla_sources};${libcarla_carla_client_detail_sources}")
-install(FILES ${libcarla_carla_client_detail_sources} DESTINATION include/carla/client/detail)
+set(libcarla_sources "${libcarla_sources};${libcarla_carla_client_detail_sources}")#将libcarla_carla_client_detail_sources变量中的文件路径添加到libcarla_sources变量中。
+install(FILES ${libcarla_carla_client_detail_sources} DESTINATION include/carla/client/detail)#将libcarla_carla_client_detail_sources变量中的文件安装到include/carla/client/detail目录下。
 
 # 添加几何（LibCarla/source/carla/geom）相关代码
-file(GLOB libcarla_carla_geom_sources
+file(GLOB libcarla_carla_geom_sources#使用file(GLOB...)命令来查找${libcarla_source_path}/carla/geom/目录下的所有.cpp和.h文件，并将结果存储在libcarla_carla_geom_sources变量中。
     "${libcarla_source_path}/carla/geom/*.cpp"
     "${libcarla_source_path}/carla/geom/*.h")
-set(libcarla_sources "${libcarla_sources};${libcarla_carla_geom_sources}")
-install(FILES ${libcarla_carla_geom_sources} DESTINATION include/carla/geom)
+set(libcarla_sources "${libcarla_sources};${libcarla_carla_geom_sources}")#将libcarla_carla_geom_sources变量中的文件路径添加到libcarla_sources变量中。
+install(FILES ${libcarla_carla_geom_sources} DESTINATION include/carla/geom)#将libcarla_carla_geom_sources变量中的文件安装到include/carla/geom目录下。
 
 # 添加图像（LibCarla/source/carla/image）相关代码
-file(GLOB libcarla_carla_image_sources
+file(GLOB libcarla_carla_image_sources#使用file(GLOB...)命令来查找${libcarla_source_path}/carla/image/目录下的所有.cpp和.h文件，并将结果存储在libcarla_carla_image_sources变量中。
     "${libcarla_source_path}/carla/image/*.cpp"
     "${libcarla_source_path}/carla/image/*.h")
-set(libcarla_sources "${libcarla_sources};${libcarla_carla_image_sources}")
-install(FILES ${libcarla_carla_image_sources} DESTINATION include/carla/image)
+set(libcarla_sources "${libcarla_sources};${libcarla_carla_image_sources}")#将libcarla_carla_image_sources变量中的文件路径添加到libcarla_sources变量中。
+install(FILES ${libcarla_carla_image_sources} DESTINATION include/carla/image)将libcarla_carla_image_sources变量中的文件安装到include/carla/image目录下。
 
 # 添加导航（LibCarla/source/carla/nav）相关代码
-file(GLOB libcarla_carla_nav_sources
+file(GLOB libcarla_carla_nav_sources#查找${libcarla_source_path}/carla/nav/目录下的所有.cpp和.h文件，并将结果存储在libcarla_carla_nav_sources变量中。
     "${libcarla_source_path}/carla/nav/*.cpp"
     "${libcarla_source_path}/carla/nav/*.h")
-set(libcarla_sources "${libcarla_sources};${libcarla_carla_nav_sources}")
-install(FILES ${libcarla_carla_nav_sources} DESTINATION include/carla/nav)
+set(libcarla_sources "${libcarla_sources};${libcarla_carla_nav_sources}")#将libcarla_carla_nav_sources变量中的文件路径添加到libcarla_sources变量中。
+install(FILES ${libcarla_carla_nav_sources} DESTINATION include/carla/nav)#将libcarla_carla_nav_sources变量中的文件安装到include/carla/nav目录下。
 
 # 添加开源路网（LibCarla/source/carla/opendrive/）相关代码
-file(GLOB libcarla_carla_opendrive_sources
+file(GLOB libcarla_carla_opendrive_sources#
     "${libcarla_source_path}/carla/opendrive/*.cpp"
     "${libcarla_source_path}/carla/opendrive/*.h")
 set(libcarla_sources "${libcarla_sources};${libcarla_carla_opendrive_sources}")
