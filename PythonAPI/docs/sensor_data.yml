@@ -19,17 +19,17 @@
         - Cooperative awareness messages V2X sensor: carla.CAMEvent.<br>
         - Custom V2X messages V2X sensor: carla.CustomV2XEvent.
     # - PROPERTIES -------------------------
-    instance_variables:
+    instance_variables:#定义了类的实例变量。
     - var_name: frame
-      type: int
-      doc: >
+      type: int#表示帧计数的数据类型为整数。
+      doc: >#描述了这个变量，表示数据生成时的帧计数。
         Frame count when the data was generated.
     - var_name: timestamp
       type: float
       var_units: seconds
       doc: >
         Simulation-time when the data was generated.
-    - var_name: transform
+    - var_name: transform#表示传感器转换的数据类型为CARLA中的变换类型。
       type: carla.Transform
       doc: >
         Sensor's transform when the data was generated.

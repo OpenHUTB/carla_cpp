@@ -121,26 +121,40 @@ namespace detail {
   }
 
   // 从流中注销会话
+// 参数：session - 要注销的会话的shared_ptr
   void Dispatcher::DeregisterSession(std::shared_ptr<Session> session) {
+    // 断言session不为空
     DEBUG_ASSERT(session != nullptr);
+      // 使用互斥锁进行线程安全的操作
     std::lock_guard<std::mutex> lock(_mutex);
+    // 记录日志，表示正在调用DeregisterSession函数
     log_debug("Calling DeregisterSession for ", session->get_stream_id());
+     // 在_stream_map中查找给定会话的流ID
     auto search = _stream_map.find(session->get_stream_id());
-    if (search != _stream_map.end()) {
-      auto stream_state = search->second;
-      if (stream_state) {
+    if (search != _stream_map.end()) { // 如果找到了对应的流
+      auto stream_state = search->second;// 获取流状态
+      if (stream_state) { // 如果流状态有效
+                // 记录日志，表示正在断开会话
         log_debug("Disconnecting session (stream ", session->get_stream_id(), ")");
+         // 从流状态中断开该会话
         stream_state->DisconnectSession(session);
+         // 记录日志，显示当前流的数量
         log_debug("Current streams: ", _stream_map.size());
       }
     }
   }
-  
+  // 根据传感器ID获取令牌的函数
+    // 参数：sensor_id - 要获取令牌的传感器ID
+    // 返回值：对应的令牌
   token_type Dispatcher::GetToken(stream_id_type sensor_id) {
+     // 使用互斥锁进行线程安全的操作
     std::lock_guard<std::mutex> lock(_mutex);
+     // 记录日志，表示正在搜索传感器ID
     log_debug("Searching sensor id: ", sensor_id);
+    // 在_stream_map中查找给定的传感器ID
     auto search = _stream_map.find(sensor_id);
-    if (search != _stream_map.end()) {
+    if (search != _stream_map.end()) { // 如果找到了对应的传感器流
+        // 记录日志，表示找到了传感器ID
       log_debug("Found sensor id: ", sensor_id);
       auto stream_state = search->second;
       stream_state->ForceActive();
