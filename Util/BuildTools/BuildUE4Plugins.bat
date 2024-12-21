@@ -3,23 +3,33 @@ setlocal enabledelayedexpansion
 
 rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
 
+#获取批处理脚本所在的路径，并将其存储在LOCAL_PATH变量中
 set LOCAL_PATH=%~dp0
+#批处理脚本自身的文件名
 set FILE_N=-[%~n0]:
 
 rem Print batch params (debug purpose)
+#调试目的
 echo %FILE_N% [Batch params]: %*
 
 rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
 
+#设置描述性的字符串变量DOC_STRING
 set DOC_STRING=Build LibCarla.
+#定义一个用法字符串
 set USAGE_STRING=Usage: %FILE_N% [-h^|--help] [--rebuild] [--build] [--clean] [--no-pull]
 
+#设置为假
 set BUILD_STREETMAP=false
+#设置为真
 set GIT_PULL=true
+#设置当前街道地图的提交编号
 set CURRENT_STREETMAP_COMMIT=260273d6b7c3f28988cda31fd33441de7e272958
+#将街道地图的分支设置为master
 set STREETMAP_BRANCH=master
+#设置街道地图的仓库地址
 set STREETMAP_REPO=https://github.com/carla-simulator/StreetMap.git
 
 :arg-parse
