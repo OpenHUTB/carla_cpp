@@ -4,15 +4,23 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+//这是Carla仿真器相关的头文件
 #include "carla/PythonUtil.h"
+//此头文件与Carla客户端相关
 #include "carla/client/Client.h"
+//定义与Carla世界相关的类与函数
 #include "carla/client/World.h"
+//用于Carla相关的日志功能
 #include "carla/Logging.h"
+//与Carla中Actor的唯一标识符相关
 #include "carla/rpc/ActorId.h"
+//与Carla中的交通管理相关
 #include "carla/trafficmanager/TrafficManager.h"
 
+//支持多线程编程，允许创建和管理线程
 #include <thread>
 
+//一个头文件，用于进行STL容器的迭代器转换功能
 #include <boost/python/stl_iterator.hpp>
 
 //包含了 Carla 客户端相关的各种头文件，如PythonUtil.h用于处理 Python 相关的工具函数，可能涉及到与 Python 解释器交互时的全局解释器锁（GIL）等操作；client/Client.h和client/World.h分别定义了客户端和世界相关的类，用于与 Carla 模拟器进行连接、获取世界信息等操作；Logging.h用于日志记录；rpc/ActorId.h涉及到处理演员（在 Carla 场景中可以理解为各种实体对象）的唯一标识；trafficmanager/TrafficManager.h与交通管理相关，可能用于控制场景中的交通流量、车辆行为等。
@@ -68,21 +76,14 @@ static auto ApplyBatchCommandsSync(
     const boost::python::object &commands,
     bool do_tick) {
 
-   // 使用别名简化类型名称，提高代码可读性
   using CommandType = carla::rpc::Command;
-   // 将来自 Python 的命令列表转换为 C++ 的 std::vector<CommandType>
-  // 这里使用了 boost::python::stl_input_iterator 来迭代 Python 对象
   std::vector<CommandType> cmds {
     boost::python::stl_input_iterator<CommandType>(commands),
     boost::python::stl_input_iterator<CommandType>()
   };
 
-  // 创建一个空的 Python 列表，用于存储从 Carla 模拟器收到的响应
   boost::python::list result;
-   // 调用 Carla 客户端的 ApplyBatchSync 方法，同步应用命令批次
-  // 如果 do_tick 为 true，则在应用命令后模拟器会前进一个时间步
   auto responses = self.ApplyBatchSync(cmds, do_tick);
-  // 遍历从 ApplyBatchSync 得到的所有响应，并将它们添加到 Python 列表中
   for (auto &response : responses) {
     result.append(std::move(response));
   }
