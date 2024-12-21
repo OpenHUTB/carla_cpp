@@ -545,23 +545,34 @@ void UOpenDriveToMap::GenerateAll(const boost::optional<carla::road::Map>& Param
 // 生成道路网格
 void UOpenDriveToMap::GenerateRoadMesh( const boost::optional<carla::road::Map>& ParamCarlaMap, FVector MinLocation, FVector MaxLocation )
 {
+  // 设置用于生成道路网格的参数
   opg_parameters.vertex_distance = 0.5f;
   opg_parameters.vertex_width_resolution = 8.0f;
+  // simplification_percentage用于指定后续网格简化的比例
   opg_parameters.simplification_percentage = 50.0f;
+  // 记录生成道路网格操作开始的时间
   double start = FPlatformTime::Seconds();
 
   carla::geom::Vector3D CarlaMinLocation(MinLocation.X / 100, MinLocation.Y / 100, MinLocation.Z /100);
   carla::geom::Vector3D CarlaMaxLocation(MaxLocation.X / 100, MaxLocation.Y / 100, MaxLocation.Z /100);
+  // 调用ParamCarlaMap的GenerateOrderedChunkedMeshInLocations函数，传入之前设置的参数和转换后的坐标范围，
+  // 生成网格数据并存储在Meshes变量中
   const auto Meshes = ParamCarlaMap->GenerateOrderedChunkedMeshInLocations(opg_parameters, CarlaMinLocation, CarlaMaxLocation);
+  // 记录生成道路网格操作结束的时间
   double end = FPlatformTime::Seconds();
+  // 使用UE_LOG输出一条日志信息，记录生成网格代码的执行时间以及当前的网格简化百分比
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT(" GenerateOrderedChunkedMesh code executed in %f seconds. Simplification percentage is %f"), end - start, opg_parameters.simplification_percentage);
 
   start = FPlatformTime::Seconds();
+  // 定义一个静态变量index，用于给创建的静态网格演员设置唯一标签
   static int index = 0;
   for (const auto &PairMap : Meshes)
   {
+    // 遍历每个键值对中的网格数据（Mesh）
     for( auto& Mesh : PairMap.second )
     {
+      // 网格数据有效性检查
+      // 如果网格顶点数量为0，则跳过当前网格的处理
       if (!Mesh->GetVertices().size())
       {
         continue;

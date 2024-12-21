@@ -1,3 +1,11 @@
+#这段代码的主要功能是在CARLA仿真环境中生成交通流量。具体来说，它能够：根据用户提供的参数，生成指定数量的车辆（--number-of-vehicles 或 -n）和行人（--number-of-walkers 或 -w）。
+#允许用户指定车辆和行人的模型过滤器（--filterv 和 --filterw），以及它们的生成版本（--generationv 和 --generationw）。将生成的车辆设置为自动驾驶模式（使用CARLA的交通管理器），并可控制车辆的灯光状态（--car-lights-on）。
+#支持异步模式（--asynch）和混合模式（--hybrid）的交通管理，允许更灵活的交通仿真。
+#允许设置随机种子（--seed 和 --seedw），以便于结果的复现。
+#支持在大型地图上自动重新生成休眠的车辆（--respawn）。
+#支持无渲染模式（--no-rendering），可以提高仿真性能。
+#通过命令行参数接受用户的输入，并根据这些输入在仿真世界中生成相应的车辆和行人。
+#总的来说，这个脚本是一个用于在CARLA仿真环境中创建和管理交通流量的工具，可以用来测试和模拟各种交通场景。
 #!/usr/bin/env python
 
 # Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de
@@ -7,13 +15,14 @@
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
 """Example script to generate traffic in the simulation"""
-
+# 导入必要的库
 import glob
 import os
 import sys
 import time
 
 try:
+     # 尝试添加CARLA模块到系统路径中
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
@@ -28,7 +37,7 @@ from carla import VehicleLightState as vls
 import argparse
 import logging
 from numpy import random
-
+# 从世界场景的蓝图库中筛选出符合给定过滤器条件的蓝图列表
 def get_actor_blueprints(world, filter, generation):
 //从世界场景的蓝图库中筛选出符合给定过滤器条件的蓝图列表
     bps = world.get_blueprint_library().filter(filter)
@@ -55,7 +64,7 @@ def get_actor_blueprints(world, filter, generation):
     except:
         print("   Warning! Actor Generation is not valid. No actor will be spawned.")
         return []
-
+# 主函数
 def main():
     argparser = argparse.ArgumentParser(
         description=__doc__)
