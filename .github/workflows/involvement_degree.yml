@@ -1,13 +1,14 @@
-
+# 工作流的名称命名为“compute involvement degree”
 name: compute involvement degree
-
+# 定义触发该工作流的事件
 on: [push]
-    
+# 定义工作流中的任务（jobs）
 jobs:
   work:
+  # 指定任务运行所使用的操作系统环境
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4# 第一步，使用名为“actions/checkout@v4”的 GitHub Action
         with:
           # github action 默认签出只包含最后一次提交
           # 解决方案参考：https://stackoverflow.com/questions/62334460/git-history-in-a-github-action
@@ -15,7 +16,7 @@ jobs:
           fetch-depth: 0
           #任务名称：设置Python环境
       - name: Set up Python
-        # This is the version of the action for setting up Python, not the Python version.
+        # “actions/setup-python@v5”是用于设置 Python 环境的 Action，而不是指 Python 本身的版本
         uses: actions/setup-python@v5
         with:
           python-version: '3.x' # 指定python版本
