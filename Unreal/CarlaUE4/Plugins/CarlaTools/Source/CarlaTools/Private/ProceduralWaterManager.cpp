@@ -27,9 +27,11 @@ FString UProceduralWaterManager::StartWaterGeneration(const FProceduralRiversMet
 {
   FString ErrorMsg="";
 
+    // 根据 MetaInfo 中指定的 WaterGenerationType 来决定生成哪种类型的水体
   if(MetaInfo.WaterGenerationType == EWaterGenerationType::RIVERS)
   {
     if(RiverBlueprintClass)
+         // 调用 RiverGeneration 函数来生成河流，并获取任何可能的错误消息
       ErrorMsg = RiverGeneration(MetaInfo);
     else
       ErrorMsg = "ERROR: River class not assigned";

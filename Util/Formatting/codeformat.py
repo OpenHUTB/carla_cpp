@@ -84,11 +84,11 @@ class CodeFormatter:
             print("")
             # 打印空行以分隔输出内容
 
-    def formatFile(self, fileName):
-        commandList = [self.command]
-        commandList.extend(self.formatCommandArguments)
-        commandList.append(fileName)
-        try:
+    def formatFile(self, fileName):#这个函数的目的是执行一个命令（由self.command和self.formatCommandArguments组成）对指定的fileName进行操作。
+        commandList = [self.command]#创建了一个名为commandList的列表，首先将self.command添加到列表中。这是构建要执行的命令的开始部分。
+        commandList.extend(self.formatCommandArguments)#使用extend方法将self.formatCommandArguments添加到commandList中。extend方法用于将一个可迭代对象（如列表）中的元素逐个添加到另一个列表中，这样就逐步构建了完整的命令参数列表。
+        commandList.append(fileName)#将fileName添加到commandList中，至此，commandList包含了要执行的完整命令及其参数。
+        try:#使用subprocess.check_output来执行commandList中的命令。stderr = subprocess.STDOUT表示将标准错误输出重定向到标准输出。如果命令执行成功（没有引发CalledProcessError异常），则在第93行打印[OK]加上文件名，表示操作成功。
             subprocess.check_output(commandList, stderr=subprocess.STDOUT)
             print("[OK] " + fileName)
         except subprocess.CalledProcessError as e:
@@ -96,50 +96,50 @@ class CodeFormatter:
             return True
         return False
 
-    def performGitDiff(self, fileName, verifyOutput):
-        try:
+    def performGitDiff(self, fileName, verifyOutput):#这个函数的目的是对指定的fileName执行git diff操作，并根据操作结果和是否提供verifyOutput进行相应处理。
+        try:#使用try - except块来执行git diff操作并处理可能的错误。
             diffProcess = subprocess.Popen(
                 ["git", "diff", "--color=always", "--exit-code", "--no-index", "--", fileName, "-"],
                                            stdin=subprocess.PIPE,
                                            stdout=subprocess.PIPE,
                                            stderr=subprocess.PIPE)
-            diffOutput, _ = diffProcess.communicate(verifyOutput)
+            diffOutput, _ = diffProcess.communicate(verifyOutput)#使用diffProcess.communicate方法向进程发送verifyOutput（如果有的话）并获取输出。这里将输出赋值给diffOutput（假设_是一个不需要使用的占位符，表示忽略stderr的输出内容）。
             if diffProcess.returncode == 0:
-                diffOutput = ""
+                diffOutput = ""#如果diffProcess的返回码为0，表示git diff操作成功（根据--exit - code参数的含义），则将diffOutput设置为空字符串。
         except OSError:
             cprint("[ERROR] Failed to run git diff on " + fileName, "red")
-            return (True, "")
+            return (True, "")#函数返回一个元组，第一个元素是True（这里可能存在逻辑问题，因为前面的操作并没有明确表明总是返回True，可能需要根据实际情况调整），第二个元素是""（可能是根据前面的逻辑，如果git diff成功则diffOutput为空字符串）。
         return (False, diffOutput)
 
     def verifyFile(self, fileName, printDiff):## 创建一个命令列表，以self.command开头，添加self.verifyCommandArguments中的元素，最后添加fileName
-        commandList = [self.command]
+        commandList = [self.command]#创建了一个初始的命令列表commandList，它以self.command作为起始元素。
         commandList.extend(self.verifyCommandArguments)
-        commandList.append(fileName)
+        commandList.append(fileName)#将fileName添加到commandList中。
         try:
             verifyOutput = subprocess.check_output(commandList, stderr=subprocess.STDOUT)# 使用subprocess.check_output执行命令列表中的命令，并获取输出
-        except subprocess.CalledProcessError as e:
-            cprint("[ERROR] " + fileName + " (" + e.output.rstrip('\r\n') + ")", "red")
+        except subprocess.CalledProcessError as e:#如果执行命令时出现subprocess.CalledProcessError异常（即命令执行失败），则执行以下操作。
+            cprint("[ERROR] " + fileName + " (" + e.output.rstrip('\r\n') + ")", "red")#使用cprint（假设是自定义的打印函数，可能用于彩色输出）输出错误信息，包括文件名和错误输出内容（去除末尾的\r\n），颜色为红色。
             return True
 
-        diffOutput = ""
+        diffOutput = ""#初始化diffOutput为空字符串。
         if self.verifyOutputIsDiff:
             diffOutput = verifyOutput
         else:
             status, diffOutput = self.performGitDiff(fileName, verifyOutput)
-            if status:
+            if status:#如果status为True，则直接返回True。
                 return True
 
-        if diffOutput != "":
-            cprint("[NOT OK] " + fileName, "red")
-            if printDiff:
+        if diffOutput != "":#如果diffOutput不为空字符串，则执行以下操作。
+            cprint("[NOT OK] " + fileName, "red")#使用cprint输出[NOT OK]和文件名，颜色为红色，表示文件验证未通过。
+            if printDiff:#如果printDiff为True，则打印diffOutput（去除末尾的\r\n）。然后在136行返回True。
                 print(diffOutput.rstrip('\r\n'))
             return True
 
-        print("[OK] " + fileName)
+        print("[OK] " + fileName)#如果前面的条件都不满足，则打印[OK]和文件名，表示文件验证通过。然后在139行返回False。
         return False
 
 
-class CodeFormatterClang(CodeFormatter):
+class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的类，它继承自CodeFormatter类（虽然代码中没有明确显示CodeFormatter类的定义，但从_init_方法中调用父类的_init_可以推断）。这个类主要是用于处理与clang - format相关的代码格式化功能。
     CLANG_FORMAT_FILE = ".clang-format"
     CHECKED_IN_CLANG_FORMAT_FILE = "clang-format"
     CODE_FORMAT_IGNORE_FILE = ".codeformatignore"
@@ -281,14 +281,14 @@ class CodeFormat:
                           not os.path.exists(os.path.join(root, directory, CodeFormatterClang.CODE_FORMAT_IGNORE_FILE))]
         return directories
 
-    def isFileNotExcluded(self, fileName):
-        if self.args.exclude is not None:
-            for excluded in self.args.exclude:
-                if excluded in fileName:
+    def isFileNotExcluded(self, fileName):#定义一个类的方法，用于判断文件是否不被排除
+        if self.args.exclude is not None:    # 如果存在排除规则（self.args.exclude不为None）
+            for excluded in self.args.exclude:        # 遍历所有的排除项
+                if excluded in fileName:            # 如果文件名包含任何一个排除项，则文件被排除，返回False
                     return False
-        if os.path.islink(fileName):
+        if os.path.islink(fileName):    # 如果文件是一个符号链接（软链接），则认为文件被排除，返回False
             return False
-
+    # 如果文件不满足以上被排除的条件，则返回True，表示文件不被排除
         return True
 
     def confirmWithUserFileIsOutsideGit(self, fileName):
@@ -296,26 +296,26 @@ class CodeFormat:
         answer = raw_input("Are you sure to code format it anyway? (y/Q)")
         if answer != "y":
             sys.exit(1)
-
-    def confirmWithUserFileIsUntracked(self, fileName):
-        cprint("[WARN] File is untracked in Git: " + fileName, "yellow")
-        answer = raw_input("Are you sure to code format it anyway? (y/Q)")
+# 定义一个类的方法，用于当文件不在Git仓库时与用户确认是否仍要对其进行代码格式化操作
+    def confirmWithUserFileIsUntracked(self, fileName):    # 打印警告信息，提示文件不在Git仓库
+        cprint("[WARN] File is untracked in Git: " + fileName, "yellow")    # 获取用户输入，询问用户是否仍要格式化代码
+        answer = raw_input("Are you sure to code format it anyway? (y/Q)")    # 如果用户输入不是"y"，则以错误状态退出程序（sys.exit(1)）
         if answer != "y":
             sys.exit(1)
 
-    def confirmWithUserGitRepoIsNotClean(self, gitRepo):
-        cprint("[WARN] Git repo is not clean: " + gitRepo, "yellow")
-        answer = raw_input("Are you sure to code format files in it anyway? (y/Q)")
-        if answer != "y":
+    def confirmWithUserGitRepoIsNotClean(self, gitRepo):# 定义一个类的方法，用于当文件在Git中未被跟踪时与用户确认是否仍要对其进行代码格式化操作
+        cprint("[WARN] Git repo is not clean: " + gitRepo, "yellow")    # 打印警告信息，提示文件在Git中未被跟踪
+        answer = raw_input("Are you sure to code format files in it anyway? (y/Q)")    # 获取用户输入，询问用户是否仍要格式化代码
+        if answer != "y":    # 如果用户输入不是"y"，则以错误状态退出程序（sys.exit(1)）
             sys.exit(1)
 
     def checkInputFilesAreInCleanGitReposAndAreTracked(self):
         if self.args.verify or self.args.yes:
             return
-        gitRepos = sets.Set()
+        gitRepos = sets.Set()#gitRepos = sets.Set()创建了一个空集合。这个集合将用来存储已经处理过的Git仓库路径，目的是避免对同一个Git仓库进行重复的检查。
         for formatterInstance in self.codeFormatterInstances:
             for fileName in formatterInstance.inputFiles:
-                gitRepo = self.getGitRepoForFile(fileName)
+                gitRepo = self.getGitRepoForFile(fileName)#gitRepo = self.getGitRepoForFile(fileName)调用了getGitRepoForFile函数来获取fileName所在的Git仓库的路径。
                 if gitRepo is None:
                     self.confirmWithUserFileIsOutsideGit(fileName)
                 else:
@@ -404,33 +404,34 @@ class CodeFormat:
             if len(formatterInstance.inputFiles) > 0:
                 formatterInstance.verifyFormatterVersion()
 
-    def printMode(self):
+    def printMode(self):#这个函数的目的是根据self.args.verify的值来打印不同的模式。
         if self.args.verify:
             cprint("VERIFY MODE", attrs=["bold"])
         else:
             cprint("FORMAT MODE", attrs=["bold"])
 
-    def processFiles(self):
+    def processFiles(self):#这个函数的目的是处理文件，根据self.args.verify的值执行不同的操作。
         for formatterInstance in self.codeFormatterInstances:
             for fileName in formatterInstance.inputFiles:
-                if self.args.verify:
-                    self.failure |= formatterInstance.verifyFile(fileName, self.args.diff)
+                if self.args.verify:#对于每个文件，再次检查self.args.verify的值
+                    self.failure |= formatterInstance.verifyFile(fileName, self.args.diff)#如果self.args.verify为True，则调用formatterInstance.verifyFile函数处理文件fileName，并且将结果与self.failure进行按位或操作
                 else:
-                    self.failure |= formatterInstance.formatFile(fileName)
+                    self.failure |= formatterInstance.formatFile(fileName)#如果self.args.verify为False，则调用formatterInstance.formatFile函数处理文件fileName，并且将结果与self.failure进行按位或操作
 
-    def numberOfInputFiles(self):
-        count = 0
-        for formatterInstance in self.codeFormatterInstances:
-            count += len(formatterInstance.inputFiles)
+    def numberOfInputFiles(self):#这个函数的目的是计算输入文件的数量。
+        count = 0#首先初始化一个变量count为0
+        for formatterInstance in self.codeFormatterInstances:#然后遍历self.codeFormatterInstances
+            count += len(formatterInstance.inputFiles)#对于每个formatterInstance，将其inputFiles的长度累加到count中
         return count
 
-    def confirmWithUser(self):
+    def confirmWithUser(self):#这个函数的目的是与用户确认操作。
         if self.numberOfInputFiles() == 0:
             cprint("[WARN] No input files (or file endings unknown)", "yellow")
         elif (not self.args.verify) and (not self.args.yes) and self.numberOfInputFiles() > 1:
             for formatterInstance in self.codeFormatterInstances:
                 formatterInstance.printInputFiles()
             answer = raw_input("Are you sure to code format " + str(self.numberOfInputFiles()) + " files? (y/N)")
+            #如果用户输入不是y，则使用sys.exit(1)退出程序（第12行）。这里sys.exit(1)表示以非0状态退出，通常表示程序出现错误或者用户取消操作。
             if answer != "y":
                 sys.exit(1)
 

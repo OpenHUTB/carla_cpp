@@ -161,19 +161,24 @@ namespace moodycamel { namespace details {
 #include <carla/Exception.h>
 
 #if (defined(LIBCARLA_NO_EXCEPTIONS) && defined(MOODYCAMEL_EXCEPTIONS_ENABLED))
-#  undef MOODYCAMEL_EXCEPTIONS_ENABLED
+#  undef MOODYCAMEL_EXCEPTIONS_ENABLED// 如果定义了LIBCARLA_NO_EXCEPTIONS并且同时定义了MOODYCAMEL_EXCEPTIONS_ENABLED，
+// 那么取消定义MOODYCAMEL_EXCEPTIONS_ENABLED，意味着在这种特定配置下不启用相关异常功能
 #endif
 
-#ifdef MOODYCAMEL_EXCEPTIONS_ENABLED
-#define MOODYCAMEL_TRY try
-#define MOODYCAMEL_CATCH(...) catch(__VA_ARGS__)
-#define MOODYCAMEL_RETHROW throw
-#define MOODYCAMEL_THROW(expr) ::carla::throw_exception(expr)
+#ifdef MOODYCAMEL_EXCEPTIONS_ENABLED// 根据是否定义了MOODYCAMEL_EXCEPTIONS_ENABLED来进行不同宏定义，以适配不同的异常处理情况
+#define MOODYCAMEL_TRY try// 当MOODYCAMEL_EXCEPTIONS_ENABLED被定义时，宏MOODYCAMEL_TRY定义为C++中的try关键字，
+    // 用于开始一个异常处理块，尝试执行可能抛出异常的代码
+#define MOODYCAMEL_CATCH(...) catch(__VA_ARGS__)// 宏MOODYCAMEL_CATCH用于定义catch块，接收参数（__VA_ARGS__表示可变参数），用于捕获特定类型的异常
+#define MOODYCAMEL_RETHROW throw// 宏MOODYCAMEL_RETHROW定义为C++中的throw关键字，用于重新抛出当前捕获的异常
+#define MOODYCAMEL_THROW(expr) ::carla::throw_exception(expr)// 宏MOODYCAMEL_THROW用于抛出一个异常，这里调用了carla命名空间下的throw_exception函数来抛出指定表达式的异常
 #else
-#define MOODYCAMEL_TRY if (true)
-#define MOODYCAMEL_CATCH(...) else if (false)
-#define MOODYCAMEL_RETHROW
-#define MOODYCAMEL_THROW(expr) ::carla::throw_exception(expr)
+#define MOODYCAMEL_TRY if (true)// 当MOODYCAMEL_EXCEPTIONS_ENABLED未被定义时，宏MOODYCAMEL_TRY定义为一个恒为真的if语句，
+    // 实际上相当于去掉了try-catch这种异常处理机制的结构，可能是为了在不支持异常的环境下做一种模拟处理
+#define MOODYCAMEL_CATCH(...) else if (false)// 宏MOODYCAMEL_CATCH定义为一个恒为假的else if语句，意味着不会真正进入这个“catch”块，
+    // 同样是在不支持异常的情况下的一种模拟定义方式
+#define MOODYCAMEL_RETHROW// 宏MOODYCAMEL_RETHROW为空定义，因为在不支持异常的环境下不存在重新抛出异常的操作
+#define MOODYCAMEL_THROW(expr) ::carla::throw_exception(expr)// 宏MOODYCAMEL_THROW同样是调用carla命名空间下的throw_exception函数来抛出异常，
+    // 即使在不支持常规异常处理的环境下，可能也通过这种方式来进行错误报告等相关处理
 #endif
 
 // ~~~ @end 为 CARLA 所做的修改 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -372,29 +377,29 @@ static const size_t MAX_SUBQUEUE_SIZE = details::const_numeric_max<size_t>::valu
 // 需要注意的是，不要随意创建 tokens —— 理想情况下，每个线程（每种类型）应该最多只有一个 token。
 
 struct ProducerToken;
-struct ConsumerToken;
+struct ConsumerToken;// 前置声明两个结构体，通常用于表示生产者和消费者相关的某种标识或对象，具体定义可能在其他地方
 
-template<typename T, typename Traits> class ConcurrentQueue;
-template<typename T, typename Traits> class BlockingConcurrentQueue;
-class ConcurrentQueueTests;
+template<typename T, typename Traits> class ConcurrentQueue;// 声明一个模板类 ConcurrentQueue，用于实现并发队列，具体功能依赖于模板参数 T（队列中存储的数据类型）和 Traits（可能是一些特性相关的模板参数）
+template<typename T, typename Traits> class BlockingConcurrentQueue;// 声明一个模板类 BlockingConcurrentQueue，可能是基于 ConcurrentQueue 实现的具有阻塞特性的并发队列，同样依赖特定模板参数
+class ConcurrentQueueTests;// 声明一个类 ConcurrentQueueTests，推测是用于对并发队列相关功能进行测试的类，具体实现应该在别处定义
 
 
-namespace details
+namespace details// 定义名为 details 的命名空间，通常用于放置一些内部实现细节相关的代码，对外部隐藏这些具体实现逻辑
 {
-  struct ConcurrentQueueProducerTypelessBase
+  struct ConcurrentQueueProducerTypelessBase// 定义 ConcurrentQueueProducerTypelessBase 结构体，它可能作为某种基础结构用于并发队列中生产者相关的逻辑实现
   {
-    ConcurrentQueueProducerTypelessBase* next;
-    std::atomic<bool> inactive;
-    ProducerToken* token;
+    ConcurrentQueueProducerTypelessBase* next;// 指向下一个相关结构的指针，用于构建某种链表结构或者关联结构
+    std::atomic<bool> inactive;// 原子类型的布尔变量，用于标记是否处于非活动状态，可用于并发环境下安全地判断生产者的状态
+    ProducerToken* token;// 指向 ProducerToken 类型的指针，可能用于标识特定的生产者或者关联生产者相关的其他信息
 
-    ConcurrentQueueProducerTypelessBase()
+    ConcurrentQueueProducerTypelessBase()// 结构体的默认构造函数，初始化各个成员变量
       : next(nullptr), inactive(false), token(nullptr)
     {
     }
   };
 
-  template<bool use32> struct _hash_32_or_64 {
-    static inline std::uint32_t hash(std::uint32_t h)
+  template<bool use32> struct _hash_32_or_64 {// 定义一个模板结构体 _hash_32_or_64，根据模板参数 use32 的值来特化不同的哈希函数逻辑
+    static inline std::uint32_t hash(std::uint32_t h)// 当 use32 为 true 时（处理 32 位情况）的静态内联函数，实现对 32 位整数的哈希计算
     {
       
       // MurmurHash3 完成器 -- 参见 https://code.google.com/p/smhasher/source/browse/trunk/MurmurHash3.cpp
@@ -407,8 +412,8 @@ namespace details
       return h ^ (h >> 16);
     }
   };
-  template<> struct _hash_32_or_64<1> {
-    static inline std::uint64_t hash(std::uint64_t h)
+  template<> struct _hash_32_or_64<1> {// 对 _hash_32_or_64 结构体的特化，当 use32 为 1（即 true）时的情况，处理 64 位整数的哈希计算
+    static inline std::uint64_t hash(std::uint64_t h)// 实现对 64 位整数的哈希计算函数
     {
       h ^= h >> 33;
       h *= 0xff51afd7ed558ccd;
@@ -417,37 +422,39 @@ namespace details
       return h ^ (h >> 33);
     }
   };
-  template<std::size_t size> struct hash_32_or_64 : public _hash_32_or_64<(size > 4)> {  };
+  template<std::size_t size> struct hash_32_or_64 : public _hash_32_or_64<(size > 4)> {  };// 定义一个根据 size 大小来继承不同 _hash_32_or_64 特化版本的模板结构体，用于选择合适的哈希计算方式（32 位或 64 位）
 
-  static inline size_t hash_thread_id(thread_id_t id)
+  static inline size_t hash_thread_id(thread_id_t id)// 定义一个内联函数，用于对线程 ID 进行哈希计算
   {
-    static_assert(sizeof(thread_id_t) <= 8, "Expected a platform where thread IDs are at most 64-bit values");
-    return static_cast<size_t>(hash_32_or_64<sizeof(thread_id_converter<thread_id_t>::thread_id_hash_t)>::hash(
+    static_assert(sizeof(thread_id_t) <= 8, "Expected a platform where thread IDs are at most 64-bit values");// 静态断言确保线程 ID 的大小在期望范围内（最多 64 位），这是基于当前平台假设的约束条件
+    return static_cast<size_t>(hash_32_or_64<sizeof(thread_id_converter<thread_id_t>::thread_id_hash_t)>::hash(// 通过调用 hash_32_or_64 结构体的哈希函数（根据线程 ID 转换后的哈希类型大小选择合适的特化版本）来计算线程 ID 的哈希值，
+        // 并将结果转换为 size_t 类型返回
       thread_id_converter<thread_id_t>::prehash(id)));
   }
 
-  template<typename T>
+  template<typename T>// 定义一个模板函数，用于比较两个无符号整数类型的值，判断是否满足一种循环意义下的小于关系
   static inline bool circular_less_than(T a, T b)
   {
 #ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable: 4554)
 #endif
-    static_assert(std::is_integral<T>::value && !std::numeric_limits<T>::is_signed, "circular_less_than is intended to be used only with unsigned integer types");
-    return static_cast<T>(a - b) > static_cast<T>(static_cast<T>(1) << static_cast<T>(sizeof(T) * CHAR_BIT - 1));
+    static_assert(std::is_integral<T>::value && !std::numeric_limits<T>::is_signed, "circular_less_than is intended to be used only with unsigned integer types");// 静态断言确保传入的类型是无符号整数类型，因为此函数是专门为这种类型设计用于特定的比较逻辑
+    return static_cast<T>(a - b) > static_cast<T>(static_cast<T>(1) << static_cast<T>(sizeof(T) * CHAR_BIT - 1));// 比较逻辑：通过计算差值并判断是否大于无符号整数类型所能表示的最大值的一半来确定循环意义下的小于关系，
+        // 常用于循环队列等场景中判断元素位置的先后关系等情况
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
   }
 
-  template<typename U>
+  template<typename U>// 定义一个模板函数，用于对指针进行对齐操作，使其按照指定类型 U 的对齐要求对齐
   static inline char* align_for(char* ptr)
   {
-    const std::size_t alignment = std::alignment_of<U>::value;
-    return ptr + (alignment - (reinterpret_cast<std::uintptr_t>(ptr) % alignment)) % alignment;
+    const std::size_t alignment = std::alignment_of<U>::value;// 获取类型 U 的对齐要求（字节数）
+    return ptr + (alignment - (reinterpret_cast<std::uintptr_t>(ptr) % alignment)) % alignment;// 通过计算偏移量来调整指针，使其满足对齐要求并返回对齐后的指针
   }
 
-  template<typename T>
+  template<typename T>// 定义一个模板函数，用于将输入的无符号整数向上取整到最近的 2 的幂次方数
   static inline T ceil_to_pow_2(T x)
   {
     static_assert(std::is_integral<T>::value && !std::numeric_limits<T>::is_signed, "ceil_to_pow_2 is intended to be used only with unsigned integer types");
@@ -464,24 +471,24 @@ namespace details
     return x;
   }
 
-  template<typename T>
+  template<typename T>// 定义一个模板函数，用于在宽松内存顺序下交换两个原子类型的值，实现原子交换操作
   static inline void swap_relaxed(std::atomic<T>& left, std::atomic<T>& right)
   {
-    T temp = std::move(left.load(std::memory_order_relaxed));
-    left.store(std::move(right.load(std::memory_order_relaxed)), std::memory_order_relaxed);
-    right.store(std::move(temp), std::memory_order_relaxed);
+    T temp = std::move(left.load(std::memory_order_relaxed));// 先将左边原子变量的值读取到临时变量中（宽松内存顺序）
+    left.store(std::move(right.load(std::memory_order_relaxed)), std::memory_order_relaxed);// 将右边原子变量的值存储到左边原子变量中（宽松内存顺序）
+    right.store(std::move(temp), std::memory_order_relaxed);// 将临时变量中保存的原来左边原子变量的值存储到右边原子变量中（宽松内存顺序）
   }
 
-  template<typename T>
+  template<typename T>// 定义一个模板函数，返回传入的常量引用本身，通常用于避免不必要的移动语义（比如在某些需要保持对象不可移动的场景中）
   static inline T const& nomove(T const& x)
   {
     return x;
   }
 
-  template<bool Enable>
+  template<bool Enable>// 定义一个模板结构体 nomove_if，根据模板参数 Enable 的值来决定返回传入参数的不同方式（主要涉及移动语义相关处理）
   struct nomove_if
   {
-    template<typename T>
+    template<typename T>// 当 Enable 为 true 时，模板函数 eval 返回传入的常量引用本身，类似于 nomove 函数的功能
     static inline T const& eval(T const& x)
     {
       return x;
@@ -489,7 +496,8 @@ namespace details
   };
 
   template<>
-  struct nomove_if<false>
+  struct nomove_if<false>// 对 nomove_if 结构体的特化，当 Enable 为 false 时的情况，模板函数 eval 会根据传入参数的类型使用完美转发来返回相应的值，
+    // 可能在需要根据不同条件启用或禁用移动语义的场景中使用
   {
     template<typename U>
     static inline auto eval(U&& x)
@@ -499,28 +507,30 @@ namespace details
     }
   };
 
-  template<typename It>
+  template<typename It>// 定义一个模板函数，用于对迭代器进行解引用操作，并标记为 noexcept（表明此操作不会抛出异常），
+    // 返回迭代器所指向元素的引用，方便在一些要求不抛异常的上下文中使用迭代器解引用功能
   static inline auto deref_noexcept(It& it) MOODYCAMEL_NOEXCEPT -> decltype(*it)
   {
     return *it;
   }
 
-#if defined(__clang__) || !defined(__GNUC__) || __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)
+#if defined(__clang__) || !defined(__GNUC__) || __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 8)// 根据不同的编译器版本来定义结构体 is_trivially_destructible，用于判断类型 T 是否具有平凡析构函数
+    // 在较新的编译器（__GNUC__ > 4 或者特定版本及以上）按照 C++11 标准的方式定义，否则按照旧的方式（通过判断是否有平凡析构器）定义
   template<typename T> struct is_trivially_destructible : std::is_trivially_destructible<T> { };
 #else
   template<typename T> struct is_trivially_destructible : std::has_trivial_destructor<T> { };
 #endif
 
-#ifdef MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED
+#ifdef MOODYCAMEL_CPP11_THREAD_LOCAL_SUPPORTED// 根据是否支持 C++11 线程局部存储特性以及是否使用 Relacy 库来定义不同的线程退出监听器相关类型
 #ifdef MCDBGQ_USE_RELACY
   typedef RelacyThreadExitListener ThreadExitListener;
   typedef RelacyThreadExitNotifier ThreadExitNotifier;
 #else
   struct ThreadExitListener
   {
-    typedef void (*callback_t)(void*);
-    callback_t callback;
-    void* userData;
+    typedef void (*callback_t)(void*);// 定义一个函数指针类型，用于指向回调函数，回调函数接收一个 void* 类型的参数
+    callback_t callback;// 保存回调函数的指针
+    void* userData;// 保存传递给回调函数的用户数据指针
 
     ThreadExitListener* next;    // 保留供 ThreadExitNotifier 使用
 
@@ -581,28 +591,44 @@ namespace details
 #endif
 #endif
 
-  template<typename T> struct static_is_lock_free_num { enum { value = 0 }; };
-  template<> struct static_is_lock_free_num<signed char> { enum { value = ATOMIC_CHAR_LOCK_FREE }; };
-  template<> struct static_is_lock_free_num<short> { enum { value = ATOMIC_SHORT_LOCK_FREE }; };
-  template<> struct static_is_lock_free_num<int> { enum { value = ATOMIC_INT_LOCK_FREE }; };
-  template<> struct static_is_lock_free_num<long> { enum { value = ATOMIC_LONG_LOCK_FREE }; };
-  template<> struct static_is_lock_free_num<long long> { enum { value = ATOMIC_LLONG_LOCK_FREE }; };
-  template<typename T> struct static_is_lock_free : static_is_lock_free_num<typename std::make_signed<T>::type> {  };
-  template<> struct static_is_lock_free<bool> { enum { value = ATOMIC_BOOL_LOCK_FREE }; };
-  template<typename U> struct static_is_lock_free<U*> { enum { value = ATOMIC_POINTER_LOCK_FREE }; };
-}
+  template<typename T> struct static_is_lock_free_num { enum { value = 0 }; };// 定义一个模板结构体 static_is_lock_free_num，用于判断特定类型是否是无锁（lock-free）的。
+// 这里先给出一个通用的默认定义，将 value 设为 0，表示默认不是无锁的，后续会针对具体类型进行特化来改变这个值。
+  template<> struct static_is_lock_free_num<signed char> { enum { value = ATOMIC_CHAR_LOCK_FREE }; };// 对 static_is_lock_free_num 结构体针对 signed char 类型进行特化，通过使用预定义的宏 ATOMIC_CHAR_LOCK_FREE
+// 来设置 value 的值，以表明 signed char 类型是否是无锁的（具体取决于对应平台下该宏的值）。
+  template<> struct static_is_lock_free_num<short> { enum { value = ATOMIC_SHORT_LOCK_FREE }; };// 对 static_is_lock_free_num 结构体针对 short 类型进行特化，使用 ATOMIC_SHORT_LOCK_FREE 宏来设置 value，
+// 判断 short 类型在对应平台下是否为无锁类型。
+  template<> struct static_is_lock_free_num<int> { enum { value = ATOMIC_INT_LOCK_FREE }; };// 对 static_is_lock_free_num 结构体针对 int 类型进行特化，依据 ATOMIC_INT_LOCK_FREE 宏设置 value，
+// 确定 int 类型在当前平台是否能以无锁方式操作。
+  template<> struct static_is_lock_free_num<long> { enum { value = ATOMIC_LONG_LOCK_FREE }; };// 对 static_is_lock_free_num 结构体针对 long 类型进行特化，借助 ATOMIC_LONG_LOCK_FREE 宏来设定 value，
+// 表示 long 类型是否具备无锁特性（由平台相关定义决定）。
+  template<> struct static_is_lock_free_num<long long> { enum { value = ATOMIC_LLONG_LOCK_FREE }; };// 对 static_is_lock_free_num 结构体针对 long long 类型进行特化，通过 ATOMIC_LLONG_LOCK_FREE 宏来设置 value，
+// 以此判断 long long 类型是否可以无锁操作（取决于平台对该宏的定义情况）。
+  template<typename T> struct static_is_lock_free : static_is_lock_free_num<typename std::make_signed<T>::type> {  };// 定义一个模板结构体 static_is_lock_free，它继承自 static_is_lock_free_num，
+// 并且传入的类型会先通过 std::make_signed 转换为有符号类型后再进行相关无锁判断，
+// 这样可以复用前面针对有符号基本整数类型定义的无锁判断逻辑。
+  template<> struct static_is_lock_free<bool> { enum { value = ATOMIC_BOOL_LOCK_FREE }; };// 对 static_is_lock_free 结构体针对 bool 类型进行特化，直接使用 ATOMIC_BOOL_LOCK_FREE 宏来设置 value，
+// 确定 bool 类型在对应平台下是否能以无锁方式进行操作。
+  template<typename U> struct static_is_lock_free<U*> { enum { value = ATOMIC_POINTER_LOCK_FREE }; };// 对 static_is_lock_free 结构体针对指针类型（U*）进行特化，使用 ATOMIC_POINTER_LOCK_FREE 宏来设置 value，
+// 用于判断指针类型在当前平台是否支持无锁操作。
+}// 这里的大括号结束了前面的 details 命名空间（在完整代码中应该有对应的开头大括号来界定命名空间范围）
 
 
-struct ProducerToken
+struct ProducerToken// 定义 ProducerToken 结构体，从名字推测它用于标识生产者相关的一些信息，可能在并发队列等场景中使用。
 {
   template<typename T, typename Traits>
-  explicit ProducerToken(ConcurrentQueue<T, Traits>& queue);
+  explicit ProducerToken(ConcurrentQueue<T, Traits>& queue);// 定义一个显式构造函数，接受一个 ConcurrentQueue 类型的引用作为参数，
+    // 用于创建与特定 ConcurrentQueue 关联的 ProducerToken 对象，具体实现可能在别处（这里只有声明）。
+    // 模板参数 T 表示队列中存储的数据类型，Traits 表示相关特性参数。
 
   template<typename T, typename Traits>
-  explicit ProducerToken(BlockingConcurrentQueue<T, Traits>& queue);
+  explicit ProducerToken(BlockingConcurrentQueue<T, Traits>& queue);// 类似上面的构造函数，不过这里是针对 BlockingConcurrentQueue 类型的显式构造函数，
+    // 用于创建与特定 BlockingConcurrentQueue 相关联的 ProducerToken 对象（同样只有声明，具体实现在其他地方）。
 
   ProducerToken(ProducerToken&& other) MOODYCAMEL_NOEXCEPT
-    : producer(other.producer)
+    : producer(other.producer)// 定义移动构造函数，用于通过移动语义从另一个 ProducerToken 对象构造当前对象，标记为 MOODYCAMEL_NOEXCEPT
+    // 表示此函数不会抛出异常（这在一些对异常敏感的场景很重要，比如在某些资源管理和并发操作中）。
+    // 它将传入的 other 对象的 producer 指针赋值给当前对象，并将 other 的 producer 指针置空，
+    // 然后如果当前对象的 producer 指针不为空，会将其关联的 token 指向当前对象本身，确保相关指针关系的正确性。
   {
     other.producer = nullptr;
     if (producer != nullptr) {
@@ -610,13 +636,16 @@ struct ProducerToken
     }
   }
 
-  inline ProducerToken& operator=(ProducerToken&& other) MOODYCAMEL_NOEXCEPT
+  inline ProducerToken& operator=(ProducerToken&& other) MOODYCAMEL_NOEXCEPT// 定义移动赋值运算符重载函数，同样标记为 MOODYCAMEL_NOEXCEPT，实现将另一个 ProducerToken 对象
+    // 通过移动语义赋值给当前对象的功能，内部通过调用 swap 函数来交换相关成员的状态，最后返回当前对象的引用。
   {
     swap(other);
     return *this;
   }
 
-  void swap(ProducerToken& other) MOODYCAMEL_NOEXCEPT
+  void swap(ProducerToken& other) MOODYCAMEL_NOEXCEPT// 定义一个交换函数，用于交换当前 ProducerToken 对象和传入的 other 对象的相关成员状态（这里主要是 producer 指针），
+    // 并且在交换后正确地更新相关指针（如 producer 所指向对象中的 token 指针）指向，确保数据结构的一致性和关联性，
+    // 同样标记为 MOODYCAMEL_NOEXCEPT 表示不会抛出异常。
   {
     std::swap(producer, other.producer);
     if (producer != nullptr) {
@@ -705,44 +734,69 @@ private: // 但与并发队列共享
 // 需要前向声明这个 swap，因为它在一个命名空间中。
 // 参见 http://stackoverflow.com/questions/4492062/why-does-a-c-friend-class-need-a-forward-declaration-only-in-other-namespaces
 template<typename T, typename Traits>
-inline void swap(typename ConcurrentQueue<T, Traits>::ImplicitProducerKVP& a, typename ConcurrentQueue<T, Traits>::ImplicitProducerKVP& b) MOODYCAMEL_NOEXCEPT;
+inline void swap(typename ConcurrentQueue<T, Traits>::ImplicitProducerKVP& a, typename ConcurrentQueue<T, Traits>::ImplicitProducerKVP& b) MOODYCAMEL_NOEXCEPT;// 定义一个模板函数 swap，用于交换 ConcurrentQueue<T, Traits> 类型中 ImplicitProducerKVP 类型的两个对象 a 和 b。
+// 函数标记为 MOODYCAMEL_NOEXCEPT，表示此函数不会抛出异常，具体函数实现应该在其他地方（这里仅为声明）。
+// 注意这里使用 typename 关键字来明确指定 ImplicitProducerKVP 是 ConcurrentQueue<T, Traits> 内部定义的类型，避免编译歧义。
 
 
 template<typename T, typename Traits = ConcurrentQueueDefaultTraits>
-class ConcurrentQueue
+class ConcurrentQueue// 定义 ConcurrentQueue 模板类，用于实现并发队列功能，它依赖两个模板参数 T（队列中存储的数据类型）和 Traits（用于定制队列相关特性的类型），
+// Traits 有一个默认值 ConcurrentQueueDefaultTraits，意味着如果用户没有显式指定 Traits 参数，将使用默认的特性配置。
 {
 public:
-  typedef ::moodycamel::ProducerToken producer_token_t;
-  typedef ::moodycamel::ConsumerToken consumer_token_t;
+  typedef ::moodycamel::ProducerToken producer_token_t;// 定义一个类型别名 producer_token_t，它指向 moodycamel 命名空间下的 ProducerToken 类型，
+    // 方便在 ConcurrentQueue 类内部使用这个代表生产者标识的类型，增强代码可读性。
+  typedef ::moodycamel::ConsumerToken consumer_token_t;// 类似地，定义类型别名 consumer_token_t，指向 moodycamel 命名空间下的 ConsumerToken 类型，用于表示消费者相关的标识类型。
 
-  typedef typename Traits::index_t index_t;
-  typedef typename Traits::size_t size_t;
+  typedef typename Traits::index_t index_t;// 根据传入的 Traits 类型中的 index_t 类型定义一个类型别名 index_t，用于在类内部表示索引相关的数据类型，
+    // 具体的类型由 Traits 来定制，一般用于队列内部元素索引等操作。
+  typedef typename Traits::size_t size_t;// 同样根据 Traits 中的 size_t 类型定义类型别名 size_t，用于表示与队列大小等相关的尺寸数据类型，
+    // 比如队列长度、块大小等相关计量使用该类型，要求是无符号整数类型（由后面的静态断言约束）。
 
-  static const size_t BLOCK_SIZE = static_cast<size_t>(Traits::BLOCK_SIZE);
-  static const size_t EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD = static_cast<size_t>(Traits::EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD);
-  static const size_t EXPLICIT_INITIAL_INDEX_SIZE = static_cast<size_t>(Traits::EXPLICIT_INITIAL_INDEX_SIZE);
-  static const size_t IMPLICIT_INITIAL_INDEX_SIZE = static_cast<size_t>(Traits::IMPLICIT_INITIAL_INDEX_SIZE);
-  static const size_t INITIAL_IMPLICIT_PRODUCER_HASH_SIZE = static_cast<size_t>(Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE);
-  static const std::uint32_t EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE = static_cast<std::uint32_t>(Traits::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE);
+  static const size_t BLOCK_SIZE = static_cast<size_t>(Traits::BLOCK_SIZE);// 定义一个静态常量 BLOCK_SIZE，其值通过将 Traits 中定义的 BLOCK_SIZE 转换为 size_t 类型后得到，
+    // 这个常量通常用于表示并发队列内部数据块的大小，比如每次分配内存等操作以这个大小为单位进行。
+  static const size_t EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD = static_cast<size_t>(Traits::EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD);// 定义静态常量 EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD，转换自 Traits 中的对应值，
+    // 可能用于在明确块为空的计数达到某个阈值时触发特定的操作，比如内存回收或者队列结构调整等相关逻辑（具体取决于实现）。
+  static const size_t EXPLICIT_INITIAL_INDEX_SIZE = static_cast<size_t>(Traits::EXPLICIT_INITIAL_INDEX_SIZE);// 定义静态常量 EXPLICIT_INITIAL_INDEX_SIZE，由 Traits 中的对应值转换而来，
+    // 可能用于初始化队列索引相关结构的大小，确保其初始状态满足一定的要求（例如是2的幂次方等，由后面静态断言约束）。
+  static const size_t IMPLICIT_INITIAL_INDEX_SIZE = static_cast<size_t>(Traits::IMPLICIT_INITIAL_INDEX_SIZE);// 定义静态常量 IMPLICIT_INITIAL_INDEX_SIZE，同样取自 Traits 中的对应值转换，
+    // 大概率用于和隐式操作（比如隐式入队等相关逻辑）相关的索引结构初始大小设定。
+  static const size_t INITIAL_IMPLICIT_PRODUCER_HASH_SIZE = static_cast<size_t>(Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE);// 定义静态常量 INITIAL_IMPLICIT_PRODUCER_HASH_SIZE，转换自 Traits 里的对应值，
+    // 可能涉及到对生产者进行哈希相关操作时初始哈希表大小等方面的设定（比如用于快速查找生产者等功能）。
+  static const std::uint32_t EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE = static_cast<std::uint32_t>(Traits::EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE);// 定义静态常量 EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE，转换自 Traits 中的对应值，
+    // 也许用于规定消费者在进行某种轮转（比如切换消费的数据块等情况）操作之前可以消费的数量配额，便于队列内部负载均衡等相关管理。
 #ifdef _MSC_VER
 #pragma warning(push)
 #pragma warning(disable: 4307)    //+ 整型常量溢出（这就是三元表达式的用途！
 #pragma warning(disable: 4309)    // static_cast：常量值的截断
 #endif
-  static const size_t MAX_SUBQUEUE_SIZE = (details::const_numeric_max<size_t>::value - static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) < BLOCK_SIZE) ? details::const_numeric_max<size_t>::value : ((static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) + (BLOCK_SIZE - 1)) / BLOCK_SIZE * BLOCK_SIZE);
+  static const size_t MAX_SUBQUEUE_SIZE = (details::const_numeric_max<size_t>::value - static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) < BLOCK_SIZE) ? details::const_numeric_max<size_t>::value : ((static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) + (BLOCK_SIZE - 1)) / BLOCK_SIZE * BLOCK_SIZE);// 定义静态常量 MAX_SUBQUEUE_SIZE，其值通过一个三元表达式来确定。
+    // 如果 (details::const_numeric_max<size_t>::value - static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) < BLOCK_SIZE) 这个条件成立，
+    // 则 MAX_SUBQUEUE_SIZE 取 details::const_numeric_max<size_t>::value（可能是 size_t 类型能表示的最大值），
+    // 否则取 ((static_cast<size_t>(Traits::MAX_SUBQUEUE_SIZE) + (BLOCK_SIZE - 1)) / BLOCK_SIZE * BLOCK_SIZE)，
+    // 目的可能是确保子队列大小在满足一定条件下合理设置，避免出现一些边界情况导致的问题，比如内存溢出等情况。
 #ifdef _MSC_VER
 #pragma warning(pop)
 #endif
 
-  static_assert(!std::numeric_limits<size_t>::is_signed && std::is_integral<size_t>::value, "Traits::size_t must be an unsigned integral type");
-  static_assert(!std::numeric_limits<index_t>::is_signed && std::is_integral<index_t>::value, "Traits::index_t must be an unsigned integral type");
-  static_assert(sizeof(index_t) >= sizeof(size_t), "Traits::index_t must be at least as wide as Traits::size_t");
-  static_assert((BLOCK_SIZE > 1) && !(BLOCK_SIZE & (BLOCK_SIZE - 1)), "Traits::BLOCK_SIZE must be a power of 2 (and at least 2)");
-  static_assert((EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD > 1) && !(EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD & (EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD - 1)), "Traits::EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD must be a power of 2 (and greater than 1)");
-  static_assert((EXPLICIT_INITIAL_INDEX_SIZE > 1) && !(EXPLICIT_INITIAL_INDEX_SIZE & (EXPLICIT_INITIAL_INDEX_SIZE - 1)), "Traits::EXPLICIT_INITIAL_INDEX_SIZE must be a power of 2 (and greater than 1)");
-  static_assert((IMPLICIT_INITIAL_INDEX_SIZE > 1) && !(IMPLICIT_INITIAL_INDEX_SIZE & (IMPLICIT_INITIAL_INDEX_SIZE - 1)), "Traits::IMPLICIT_INITIAL_INDEX_SIZE must be a power of 2 (and greater than 1)");
-  static_assert((INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0) || !(INITIAL_IMPLICIT_PRODUCER_HASH_SIZE & (INITIAL_IMPLICIT_PRODUCER_HASH_SIZE - 1)), "Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE must be a power of 2");
-  static_assert(INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0 || INITIAL_IMPLICIT_PRODUCER_HASH_SIZE >= 1, "Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE must be at least 1 (or 0 to disable implicit enqueueing)");
+  static_assert(!std::numeric_limits<size_t>::is_signed && std::is_integral<size_t>::value, "Traits::size_t must be an unsigned integral type");// 静态断言，用于在编译期检查 Traits 中定义的 size_t 类型必须是无符号整数类型，
+    // 如果不符合要求，编译将会报错，确保后续基于该类型的各种操作（如队列大小计算等）符合预期的数学逻辑和内存使用逻辑。
+  static_assert(!std::numeric_limits<index_t>::is_signed && std::is_integral<index_t>::value, "Traits::index_t must be an unsigned integral type");// 类似的静态断言，检查 Traits 中的 index_t 类型也必须是无符号整数类型，
+    // 因为索引通常是用于计数、定位等操作，使用无符号整数可以避免一些负数相关的逻辑错误和边界问题。
+  static_assert(sizeof(index_t) >= sizeof(size_t), "Traits::index_t must be at least as wide as Traits::size_t");// 静态断言要求 index_t 类型的字节大小至少要和 size_t 类型一样大，
+    // 这样在一些涉及到两者比较、赋值等操作时可以保证数据不会出现截断等错误情况，确保数据完整性和逻辑正确性。
+  static_assert((BLOCK_SIZE > 1) && !(BLOCK_SIZE & (BLOCK_SIZE - 1)), "Traits::BLOCK_SIZE must be a power of 2 (and at least 2)");// 静态断言检查 Traits 中定义的 BLOCK_SIZE 必须是2的幂次方且至少为2，
+    // 以满足并发队列内部可能基于2的幂次方进行内存对齐、分块等优化操作的要求，方便快速定位、计算等操作。
+  static_assert((EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD > 1) && !(EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD & (EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD - 1)), "Traits::EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD must be a power of 2 (and greater than 1)");// 静态断言确保 EXPLICIT_BLOCK_EMPTY_COUNTER_THRESHOLD 是2的幂次方且大于1，
+    // 这样在基于计数触发相关操作时可以利用位运算等高效方式进行判断，同时大于1保证有实际的计数意义。
+  static_assert((EXPLICIT_INITIAL_INDEX_SIZE > 1) && !(EXPLICIT_INITIAL_INDEX_SIZE & (EXPLICIT_INITIAL_INDEX_SIZE - 1)), "Traits::EXPLICIT_INITIAL_INDEX_SIZE must be a power of 2 (and greater than 1)");// 静态断言要求 EXPLICIT_INITIAL_INDEX_SIZE 是2的幂次方且大于1，
+    // 保证索引相关的初始结构大小设置合理，便于后续进行扩展、定位等操作（比如基于位运算的快速索引查找等）。
+  static_assert((IMPLICIT_INITIAL_INDEX_SIZE > 1) && !(IMPLICIT_INITIAL_INDEX_SIZE & (IMPLICIT_INITIAL_INDEX_SIZE - 1)), "Traits::IMPLICIT_INITIAL_INDEX_SIZE must be a power of 2 (and greater than 1)");// 同样的静态断言，针对 IMPLICIT_INITIAL_INDEX_SIZE，确保其是2的幂次方且大于1，
+    // 用于保障和隐式操作相关的索引初始设置符合高效处理的要求。
+  static_assert((INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0) || !(INITIAL_IMPLICIT_PRODUCER_HASH_SIZE & (INITIAL_IMPLICIT_PRODUCER_HASH_SIZE - 1)), "Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE must be a power of 2");// 静态断言检查 INITIAL_IMPLICIT_PRODUCER_HASH_SIZE 要么是0（可能表示禁用相关隐式入队等哈希操作），要么是2的幂次方，
+    // 这样在进行哈希相关计算、存储等操作时可以利用位运算等技巧提高效率，保证哈希表结构的合理性。
+  static_assert(INITIAL_IMPLICIT_PRODUCER_HASH_SIZE == 0 || INITIAL_IMPLICIT_PRODUCER_HASH_SIZE >= 1, "Traits::INITIAL_IMPLICIT_PRODUCER_HASH_SIZE must be at least 1 (or 0 to disable implicit enqueueing)");// 静态断言要求 INITIAL_IMPLICIT_PRODUCER_HASH_SIZE 要么是0（表示禁用对应功能），要么至少是1，
+    // 保证在启用相关隐式操作涉及的哈希功能时有合理的初始状态和有效的哈希处理能力。
 
 public:
 

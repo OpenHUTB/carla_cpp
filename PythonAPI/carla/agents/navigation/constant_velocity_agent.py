@@ -55,13 +55,16 @@ class ConstantVelocityAgent(BasicAgent):
 
         self._restart_time = float('inf')  # Time after collision before the constant velocity behavior starts again
 
+        # 检查选项字典中是否存在 'restart_time' 键，并将其值赋给 self._restart_time
         if 'restart_time' in opt_dict:
             self._restart_time = opt_dict['restart_time']
         if 'use_basic_behavior' in opt_dict:
             self._use_basic_behavior = opt_dict['use_basic_behavior']
 
         self.is_constant_velocity_active = True
+        # 初始化碰撞传感器
         self._set_collision_sensor()
+        # 设置车辆的恒定速度为目标速度 target_speed
         self._set_constant_velocity(target_speed)
 
     def set_target_speed(self, speed):
