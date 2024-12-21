@@ -633,6 +633,7 @@ void UOpenDriveToMap::GenerateRoadMesh( const boost::optional<carla::road::Map>&
       TArray<FVector> Normals;
       TArray<FProcMeshTangent> Tangents;
 
+      #调用UKismetProceduralMeshLibrary类中的CalculateTangentsForMesh函数
       UKismetProceduralMeshLibrary::CalculateTangentsForMesh(
         MeshData.Vertices,
         MeshData.Triangles,
@@ -641,27 +642,38 @@ void UOpenDriveToMap::GenerateRoadMesh( const boost::optional<carla::road::Map>&
         Tangents
       );
 
+      #条件判断，检查PairMap 中的第一个元素是否等于carla::road::Lane::LaneType::Sidewalk
       if(PairMap.first == carla::road::Lane::LaneType::Sidewalk)
       {
+        #构建一个静态网格对象
         UStaticMesh* MeshToSet = UMapGenFunctionLibrary::CreateMesh(MeshData,  Tangents, DefaultSidewalksMaterial, MapName, "DrivingLane", FName(TEXT("SM_SidewalkMesh" + FString::FromInt(index) + GetStringForCurrentTile() )));
         StaticMeshComponent->SetStaticMesh(MeshToSet);
       }
 
+      #条件判断检查
       if(PairMap.first == carla::road::Lane::LaneType::Driving)
       {
         UStaticMesh* MeshToSet = UMapGenFunctionLibrary::CreateMesh(MeshData,  Tangents, DefaultRoadMaterial, MapName, "DrivingLane", FName(TEXT("SM_DrivingLaneMesh" + FString::FromInt(index) + GetStringForCurrentTile() )));
         StaticMeshComponent->SetStaticMesh(MeshToSet);
       }
+      #设置临时演员TempActor的位置
       TempActor->SetActorLocation(MeshCentroid * 100);
+      #给临时演员添加一个RoadLane
       TempActor->Tags.Add(FName("RoadLane"));
+      #用于将一个TempActor添加到ActorMeshList中
       // ActorMeshList.Add(TempActor);
+      #设置静态网格组件的碰撞属性
       StaticMeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+      #设置一个TempActor的启用碰撞
       TempActor->SetActorEnableCollision(true);
+      #计数器自增操作
       index++;
     }
   }
 
+  #获取当前平台时间
   end = FPlatformTime::Seconds();
+  #输出一条日志信息
   UE_LOG(LogCarlaToolsMapGenerator, Log, TEXT("Mesh spawnning and translation code executed in %f seconds."), end - start);
 }
 
