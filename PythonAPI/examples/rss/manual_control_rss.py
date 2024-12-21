@@ -472,18 +472,30 @@ class World(object):
 # ==============================================================================
 
 class Camera(object):
+# 定义一个名为 `Camera` 的类，这个类大概率是用于模拟环境中相机相关的功能实现，比如相机图像的获取、处理以及显示等操作。
 
     def __init__(self, parent_actor, display_dimensions):
+    # 类的初始化方法，在创建 `Camera` 类的实例时会被调用，用于初始化相机相关的各种属性以及设置相机在模拟世界中的相关参数。
         self.surface = None
+        # 用于存储相机获取的图像数据渲染后的表面对象（在图形库中，表面 `surface` 通常是用于最终显示或者进一步处理图像的对象表示），初始化为 `None`，后续会在获取并处理图像后进行赋值。
         self._parent = parent_actor
+        # 将传入的 `parent_actor` 参数赋值给实例属性 `_parent`，从名称推测这个参数可能是相机所依附的父对象，比如在模拟世界中相机可能挂载在车辆等主体上，这个父对象就是对应的车辆等主体对象。
         self.current_frame = None
+        # 用于存储相机当前获取到的图像帧数据，初始化为 `None`，每当相机获取到新的一帧图像时会进行更新赋值。
         bp_library = self._parent.get_world().get_blueprint_library()
+        # 获取相机父对象（也就是 `_parent` 所代表的对象，如车辆）所在的模拟世界的蓝图库（蓝图库中包含了可以创建各种模拟元素的蓝图模板），通过先获取父对象所在的世界，再调用世界对象的 `get_blueprint_library` 方法来实现。
         bp = bp_library.find('sensor.camera.rgb')
+        # 从蓝图库中查找名为 `sensor.camera.rgb` 的蓝图，这个蓝图应该是用于创建一个能获取RGB彩色图像的相机传感器，后续会基于这个蓝图来创建实际的相机传感器对象。
         bp.set_attribute('image_size_x', str(display_dimensions[0]))
+        # 设置相机蓝图的 `image_size_x` 属性，将其值设置为传入的 `display_dimensions` 参数中表示宽度的元素（通过索引 `0` 获取宽度值，并转换为字符串类型，因为蓝图属性设置可能要求字符串格式的参数），用于指定相机获取图像的宽度尺寸。
         bp.set_attribute('image_size_y', str(display_dimensions[1]))
+        # 类似地，设置相机蓝图的 `image_size_y` 属性，将其值设置为 `display_dimensions` 参数中表示高度的元素（通过索引 `1` 获取高度值，并转换为字符串类型），用于指定相机获取图像的高度尺寸。
         self.sensor = self._parent.get_world().spawn_actor(bp, carla.Transform(carla.Location(
             x=-5.5, z=2.5), carla.Rotation(pitch=8.0)), attach_to=self._parent, attachment_type=carla.AttachmentType.SpringArmGhost)
+        # 在相机父对象所在的世界中，根据上述配置好的蓝图 `bp`，在指定的位置和姿态（通过 `carla.Transform` 来描述位置和旋转信息，这里位置在 `x = -5.5`，`z = 2.5` 处，旋转的 `pitch` 角度为 `8.0` 度）创建相机传感器对象，并将其附着在父对象 `_parent` 上，附着类型为 `carla.AttachmentType.SpringArmGhost`（一种特定的附着方式，可能实现类似弹簧臂的效果，使相机相对父对象有一定的位置和姿态调整灵活性），将创建好的相机传感器对象赋值给实例属性 `self.sensor`。
 
+        # 以下是为了避免循环引用问题的相关操作。在Python中，如果对象之间相互引用形成闭环，可能会导致内存无法正确回收等问题。
+        # 通过 `weakref.ref` 创建对当前 `Camera` 实例（也就是 `self`）的弱引用，弱引用不会增加对象的引用计数，使得对象可以在合适的时候被垃圾回收机制正常回收，将弱引用对象赋值给 `weak_self`。
         # We need to pass the lambda a weak reference to self to avoid
         # circular reference.
         weak_self = weakref.ref(self)
