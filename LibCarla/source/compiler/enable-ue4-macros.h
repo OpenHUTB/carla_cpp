@@ -89,36 +89,36 @@
 #pragma pop_macro("NV_RESULT")
 #pragma pop_macro("B")
 #pragma pop_macro("AMF_DECLARE_IID")
-#pragma pop_macro("AMF_MACRO_STRING2")
-#pragma pop_macro("AMF_MACRO_STRING")
-#pragma pop_macro("AMF_TODO")
-#pragma pop_macro("AMF_ALIGN")
-#pragma pop_macro("amf_countof")
-#pragma pop_macro("AMF_MIN")
-#pragma pop_macro("AMF_MAX")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_DATA")
-#pragma pop_macro("AMF_QUERY_INTERFACE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_INTERFACE")
-#pragma pop_macro("AMF_GET_PROPERTY_INTERFACE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_TYPE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_INT64")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_DOUBLE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_BOOL")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_RECT")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_SIZE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_POINT")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_RATE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_RATIO")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_COLOR")
-#pragma pop_macro("AMFVariantEmpty")
-#pragma pop_macro("AMFVariantBool")
-#pragma pop_macro("AMFVariantInt64")
-#pragma pop_macro("AMFVariantDouble")
-#pragma pop_macro("AMFVariantRect")
-#pragma pop_macro("AMFVariantSize")
-#pragma pop_macro("AMFVariantPoint")
-#pragma pop_macro("AMFVariantRate")
-#pragma pop_macro("AMFVariantRatio")
+#pragma pop_macro("AMF_MACRO_STRING2")// 这行代码用于取消之前定义的名为"AMF_MACRO_STRING2"的宏。
+#pragma pop_macro("AMF_MACRO_STRING")// 取消名为"AMF_MACRO_STRING"的宏。
+#pragma pop_macro("AMF_TODO")// 取消名为"AMF_TODO"的宏。
+#pragma pop_macro("AMF_ALIGN")// 取消名为"AMF_ALIGN"的宏。
+#pragma pop_macro("amf_countof")// 取消名为"amf_countof"的宏。
+#pragma pop_macro("AMF_MIN")// 取消名为"AMF_MIN"的宏。
+#pragma pop_macro("AMF_MAX")// 取消名为"AMF_MAX"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_DATA")// 取消名为"AMF_ASSIGN_PROPERTY_DATA"的宏。
+#pragma pop_macro("AMF_QUERY_INTERFACE")// 取消名为"AMF_QUERY_INTERFACE"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_INTERFACE")// 取消名为"AMF_ASSIGN_PROPERTY_INTERFACE"的宏。
+#pragma pop_macro("AMF_GET_PROPERTY_INTERFACE")// 取消名为"AMF_GET_PROPERTY_INTERFACE"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_TYPE")// 取消名为"AMF_ASSIGN_PROPERTY_TYPE"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_INT64")// 取消名为"AMF_ASSIGN_PROPERTY_INT64"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_DOUBLE")// 取消名为"AMF_ASSIGN_PROPERTY_DOUBLE"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_BOOL")// 取消名为"AMF_ASSIGN_PROPERTY_BOOL"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_RECT")// 取消名为"AMF_ASSIGN_PROPERTY_RECT"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_SIZE")// 取消名为"AMF_ASSIGN_PROPERTY_SIZE"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_POINT")// 取消名为"AMF_ASSIGN_PROPERTY_POINT"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_RATE")// 取消名为"AMF_ASSIGN_PROPERTY_RATE"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_RATIO")// 取消名为"AMF_ASSIGN_PROPERTY_RATIO"的宏。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_COLOR")// 取消名为"AMF_ASSIGN_PROPERTY_COLOR"的宏。
+#pragma pop_macro("AMFVariantEmpty")// 取消名为"AMFVariantEmpty"的宏。
+#pragma pop_macro("AMFVariantBool")// 取消名为"AMFVariantBool"的宏。
+#pragma pop_macro("AMFVariantInt64")// 取消名为"AMFVariantInt64"的宏。
+#pragma pop_macro("AMFVariantDouble")// 取消名为"AMFVariantDouble"的宏。
+#pragma pop_macro("AMFVariantRect")// 取消名为"AMFVariantRect"的宏。
+#pragma pop_macro("AMFVariantSize")// 取消名为"AMFVariantSize"的宏。
+#pragma pop_macro("AMFVariantPoint")// 取消名为"AMFVariantPoint"的宏。
+#pragma pop_macro("AMFVariantRate")// 取消名为"AMFVariantRate"的宏。
+#pragma pop_macro("AMFVariantRatio")// 取消名为"AMFVariantRatio"的宏。
 #pragma pop_macro("AMFVariantColor")
 #pragma pop_macro("AMFVariantString")
 #pragma pop_macro("AMFVariantWString")
@@ -156,14 +156,14 @@
 #pragma pop_macro("MEM_INIT")
 #pragma pop_macro("LZ4_STATIC_ASSERT")
 #pragma pop_macro("MIN")
-#pragma pop_macro("HASH_FUNCTION")
+#pragma pop_macro("HASH_FUNCTION"
 #pragma pop_macro("DELTANEXTMAXD")
 #pragma pop_macro("DELTANEXTU16")
 #pragma pop_macro("UPDATABLE")
 #pragma pop_macro("SUBSTRINGTEST")
 #pragma pop_macro("FP_TEXT_PASTE")
 // #pragma pop_macro("WTEXT")
-#pragma pop_macro("CASE")
+#pragma pop_macro("CASE"）
 #pragma pop_macro("LLM_TAG_NAME_ARRAY")
 #pragma pop_macro("LLM_TAG_STAT_ARRAY")
 #pragma pop_macro("LLM_TAG_STATGROUP_ARRAY")
@@ -241,7 +241,7 @@
 #pragma pop_macro("TestUnixEquivalent")
 #pragma pop_macro("TestYear")
 #pragma pop_macro("TestMonth")
-#pragma pop_macro("TestMonthOfYear")
+#pragma pop_macro("TestMonthOfYear"
 #pragma pop_macro("TestDay")
 #pragma pop_macro("TestHour")
 #pragma pop_macro("TestMinute")
