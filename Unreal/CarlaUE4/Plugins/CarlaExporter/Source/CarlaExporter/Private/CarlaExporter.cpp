@@ -206,10 +206,13 @@ void FCarlaExporterModule::PluginButtonClicked()
 // 写入对象几何体到文件
 int32 FCarlaExporterModule::WriteObjectGeom(std::ofstream &f, FString ObjectName, UBodySetup *body, FTransform &CompTransform, AreaType Area, int32 Offset)
 {
+  // 如果传入的 UBodySetup 指针为空，则直接返回 0，表示没有添加任何顶点
   if (!body) return 0;
 
+  // 定义常量 TO_METERS，用于将 Unreal Engine 的单位转换为米（Unreal Engine 默认使用厘米）
   constexpr float TO_METERS = 0.01f;
   FVector CompLocation = CompTransform.GetTranslation();
+  // 初始化计数器 TotalVerticesAdded 为 0，用于记录本次调用中添加的总顶点数
   int TotalVerticesAdded = 0;
   bool Written = false;
 
