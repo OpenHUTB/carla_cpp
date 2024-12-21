@@ -255,36 +255,74 @@ class CodeFormat:
         self.codeFormatterInstances = []
         return
 
+    import argparse
+import os
+import re
+# 假设cprint和SCRIPT_VERSION是从某个模块中导入的，这里不展示该模块的导入代码
+# from some_module import cprint, SCRIPT_VERSION
+
+class CodeFormatterManager:  # 假设这个类名是根据上下文推断的，因为您没有提供类定义
     def parseCommandLine(self):
+        # 创建一个ArgumentParser对象，用于解析命令行参数
         parser = argparse.ArgumentParser(
             description="Helper script for code formatting.")
+        
+        # 添加一个位置参数，用于指定要处理的文件或目录，允许多个值
         parser.add_argument("input", nargs="+",
                             help="files or directories to process")
+        
+        # 添加一个可选参数-v或--verify，如果指定，则不更改文件，只验证格式是否正确
         parser.add_argument("-v", "--verify", action="store_true",
                             help="do not change file, but only verify the format is correct")
+        
+        # 添加一个可选参数-d或--diff，如果指定，则显示差异，并隐含验证模式
         parser.add_argument("-d", "--diff", action="store_true",
                             help="show diff, implies verify mode")
+        
+        # 添加一个可选参数-e或--exclude，用于指定要从输入中排除的文件或目录名称中包含的单词列表
         parser.add_argument("-e", "--exclude", nargs="+", metavar="exclude",
                             help="exclude files or directories containing words from the exclude list in their names")
+        
+        # 添加一个可选参数-y或--yes，如果指定，则在格式化多个文件之前不询问确认
         parser.add_argument("-y", "--yes", action="store_true",
                             help="do not ask for confirmation before formatting more than one file")
+        
+        # 添加一个版本参数--version，显示脚本的版本信息
         parser.add_argument("--version", action="version", version="%(prog)s " + SCRIPT_VERSION)
+        
+        # 解析命令行参数，并将结果存储在self.args中
         self.args = parser.parse_args()
+        
+        # 如果指定了--diff参数，则自动将--verify参数设置为True
         if self.args.diff:
             self.args.verify = True
 
     def addCodeFormatter(self, codeFormatterInstance):
+        # 将一个代码格式化器实例添加到self.codeFormatterInstances列表中
         self.codeFormatterInstances.append(codeFormatterInstance)
 
     def scanForInputFiles(self):
+        # 遍历self.codeFormatterInstances列表中的每个代码格式化器实例
         for formatterInstance in self.codeFormatterInstances:
+            # 根据代码格式化器实例支持的文件后缀构建正则表达式模式
             filePattern = re.compile("^[^.].*\.(" + "|".join(formatterInstance.fileEndings) + ")$")
+            
+            # 初始化代码格式化器实例的inputFiles列表为空
             formatterInstance.inputFiles = []
+            
+            # 遍历命令行参数中指定的每个文件或目录
             for fileOrDirectory in self.args.input:
+                # 如果文件或目录存在
                 if os.path.exists(fileOrDirectory):
+                    # 调用scanFileOrDirectory方法（该方法未在代码片段中定义，可能是类的其他部分或外部函数）
+                    # 将匹配的文件添加到代码格式化器实例的inputFiles列表中
                     formatterInstance.inputFiles.extend(self.scanFileOrDirectory(fileOrDirectory, filePattern))
                 else:
+                    # 如果文件或目录不存在，则打印警告信息（cprint函数未在代码片段中定义，可能是从某个模块导入的）
                     cprint("[WARN] Cannot find '" + fileOrDirectory + "'", "yellow")
+
+# 注意：scanFileOrDirectory方法和cprint函数以及SCRIPT_VERSION常量在提供的代码片段中未定义，
+# 这里假设它们是类的其他部分或外部模块中定义的。
 
     def scanFileOrDirectory(self, fileOrDirectory, filePattern):
         fileList = []
