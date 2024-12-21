@@ -24,16 +24,16 @@ import copy
 
 # Global variables
 IMPORT_SETTING_FILENAME = "importsetting.json"
-SCRIPT_NAME = os.path.basename(__file__)
-SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+SCRIPT_NAME = os.path.basename(__file__)#获取当前脚本的名称。
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))#获取当前脚本所在的目录。
 # Go two directories above the current script
-CARLA_ROOT_PATH = os.path.normpath(SCRIPT_DIR + '/../..')
+CARLA_ROOT_PATH = os.path.normpath(SCRIPT_DIR + '/../..')#被设置为脚本目录的上两级目录，
 
 try:
     sys.path.append(glob.glob(os.path.join(CARLA_ROOT_PATH, "PythonAPI/carla/dist/carla-*%d.%d-%s.egg" % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64')))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64')))[0])#使用   sys.path.append   将CARLA的Python API模块添加到系统路径中。这里使用   glob.glob   来查找匹配特定模式的文件
 except IndexError:
     pass
 
@@ -41,16 +41,33 @@ import carla
 
 
 def get_packages_json_list(folder):
-    """Returns a list with the paths of each package's json
-    files that has been found recursively in the input folder.
     """
+    递归地在输入文件夹中查找每个包的json文件路径，并将这些路径作为列表返回。
+    
+    参数:
+    folder (str): 要搜索的文件夹路径。
+    
+    返回:
+    list: 包含找到的json文件路径（以[根目录, 文件名]形式）的列表，排除了"roadpainter_decals.json"文件。
+    """
+    # 初始化一个空列表，用于存储找到的json文件路径。
     json_files = []
 
+    # 使用os.walk函数递归地遍历输入文件夹及其所有子文件夹。
+    # os.walk返回一个三元组(root, dirs, files)，其中root是当前正在遍历的文件夹路径，
+    # dirs是当前文件夹下的子文件夹列表（此函数中未使用），files是当前文件夹下的文件列表。
     for root, _, filenames in os.walk(folder):
+        # 使用fnmatch.filter函数过滤出所有以".json"结尾的文件名。
+        # 这允许我们找到所有json格式的文件。
         for filename in fnmatch.filter(filenames, "*.json"):
+            # 排除名为"roadpainter_decals.json"的文件，因为它可能不包含我们感兴趣的数据。
             if filename != "roadpainter_decals.json":
+                # 将找到的json文件的路径（以[根目录, 文件名]形式）添加到列表中。
+                # 注意：这里只记录了文件的相对路径信息，没有包含完整的绝对路径。
+                # 如果需要绝对路径，可以使用os.path.join(root, filename)来获取。
                 json_files.append([root, filename])
 
+    # 返回包含所有找到的json文件路径的列表。
     return json_files
 
 def get_decals_json_file(folder):
@@ -67,7 +84,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
     """
     json_files = []
 
-    # search for all .fbx and .xodr pair of files
+    # 搜索所有 .fbx 和 .xodr 文件对
     maps = []
     for root, _, filenames in os.walk(folder):
         files = fnmatch.filter(filenames, "*.xodr")
@@ -82,9 +99,9 @@ def generate_json_package(folder, package_name, use_carla_materials):
                 if (len(tiles) > 0):
                     maps.append([os.path.relpath(root, folder), xodr, tiles])
 
-    # write the json
+    # 编写 JSON
     if (len(maps) > 0):
-        # build all the maps in .json format
+        # 以 .json 格式构建所有地图
         json_maps = []
         for map_name in maps:
             path = map_name[0].replace('\\', '/')
@@ -96,7 +113,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
                 'xodr':   '%s/%s.xodr' % (path, name),
                 'use_carla_materials': use_carla_materials
             }
-            # check for only one 'source' or map in 'tiles'
+            # 在 'tiles' 中只检查一个 'source' 或 map
             if (len(tiles) == 1):
                 map_dict['source'] = tiles[0]
             else:
@@ -105,7 +122,7 @@ def generate_json_package(folder, package_name, use_carla_materials):
 
             # write
             json_maps.append(map_dict)
-        # build and write the .json
+        # 构建和编写 .json
         f = open("%s/%s.json" % (folder, package_name), "w")
         my_json = {'maps': json_maps, 'props': []}
         serialized = json.dumps(my_json, sort_keys=False, indent=3)
@@ -325,20 +342,42 @@ def generate_package_file(package_name, props, maps):
         json.dump(output_json, fh, indent=4)
 
 
-def copy_roadpainter_config_files(package_name):
-    """Copies roadpainter configuration files into Unreal content folder"""
 
+# 假设 CARLA_ROOT_PATH 是一个全局变量或之前已经定义的变量，指向 Carla 项目的根目录
+
+def copy_roadpainter_config_files(package_name):
+    """
+    将 roadpainter 配置文件复制到 Unreal 内容文件夹中。
+
+    参数:
+    package_name (str): 目标包的名称，配置文件将被复制到此包下的 Config 目录中。
+    """
+
+    # 获取当前脚本文件上两级目录的路径（假设这是相对于 Carla 项目根目录的位置）
     two_directories_up = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    
+    # 构造最终要复制的配置文件的完整路径
     final_path = os.path.join(two_directories_up, "Import", "roadpainter_decals.json")
+    
+    # 检查配置文件是否存在
     if os.path.exists(final_path):
+        # 构造目标路径，即将配置文件复制到的位置
         package_config_path = os.path.join(CARLA_ROOT_PATH, "Unreal", "CarlaUE4", "Content", package_name, "Config")
+        
+        # 检查目标目录是否存在，如果不存在则创建它
         if not os.path.exists(package_config_path):
             try:
-                os.makedirs(package_config_path)
+                os.makedirs(package_config_path)  # 创建目标目录及其所有不存在的父目录
             except OSError as exc:
+                # 如果错误不是由于目录已存在（errno.EEXIST），则抛出异常
                 if exc.errno != errno.EEXIST:
                     raise
-        shutil.copy(final_path, package_config_path)
+        
+        # 将配置文件复制到目标目录
+        shutil.copy(final_path, package_config_path)  
+      
+
+
 
 
 def import_assets(package_name, json_dirname, props, maps, do_tiles, tile_size, batch_size):

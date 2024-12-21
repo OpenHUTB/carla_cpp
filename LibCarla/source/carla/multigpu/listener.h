@@ -65,9 +65,12 @@ namespace multigpu {
   private:
 
     void OpenSession(
-        time_duration timeout,
-        callback_function_type on_session_opened,
-        callback_function_type on_session_closed,
+        time_duration timeout,// time_duration 是一个表示时间长度的类型，可能是自定义的结构体或类
+// timeout 参数指定了某个操作（如打开或保持会话）的最大允许时间
+        callback_function_type on_session_opened,// callback_function_type 是一个函数类型别名，用于指定回调函数的签名
+// on_session_opened 是一个回调函数，当会话成功打开时被调用
+        callback_function_type on_session_closed,// on_session_closed 是一个回调函数，当会话关闭时被调用
+// 它允许开发者执行清理操作或处理会话结束后的逻辑
         callback_function_type_response on_response); // 私有成员函数，用于处理新会话的打开
 
     boost::asio::io_context         &_io_context; // 引用io_context

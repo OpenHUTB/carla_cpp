@@ -6,6 +6,7 @@ using UnrealBuildTool;
 
 public class CarlaTools : ModuleRules
 {
+// 定义一个布尔类型的成员变量bUsingOmniverseConnector，并初始化为false
   bool bUsingOmniverseConnector = false;
   private bool IsWindows(ReadOnlyTargetRules Target)
   {
@@ -40,14 +41,14 @@ public class CarlaTools : ModuleRules
 
 		PublicIncludePaths.AddRange(
 			new string[] {
-				// ... add public include paths required here ...
+				// ...在此处添加所需的公共包含路径...
 			}
 			);
 
 
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				// ... add other private include paths required here ...
+				//...在此处添加所需的其他私有包含路径...
 			}
 			);
 
@@ -60,7 +61,7 @@ public class CarlaTools : ModuleRules
         "MeshDescription",
         "RawMesh",
         "AssetTools"
-				// ... add other public dependencies that you statically link with here ...
+				// ...在此处添加您静态链接的其他公共依赖项...
 			}
 			);
 
@@ -93,7 +94,7 @@ public class CarlaTools : ModuleRules
         "MeshMergeUtilities",
         "StreetMapImporting",
         "StreetMapRuntime"
-				// ... add private dependencies that you statically link with here ...
+				// ...在此处添加您静态链接的私有依赖项 ...
 			}
 			);
     if(bUsingOmniverseConnector)
@@ -109,7 +110,7 @@ public class CarlaTools : ModuleRules
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{
-				// ... add any modules that your module loads dynamically here ...
+				// ...在此处添加您的模块动态加载的任何模块...
 			}
 			);
 		AddCarlaServerDependency(Target);
@@ -119,9 +120,7 @@ public class CarlaTools : ModuleRules
   {
     if (IsWindows(Target))
     {
-      // In Windows, Unreal uses the Release C++ Runtime (CRT) even in debug
-      // mode, so unless we recompile the engine we cannot link the debug
-      // libraries.
+      // 在 Windows 中，Unreal 即使在调试模式下也使用发布 C++ 运行时 （CRT），因此除非我们重新编译引擎，否则我们无法链接调试库。
       return false;
     }
     else
@@ -157,7 +156,7 @@ public class CarlaTools : ModuleRules
 			}
 		};
 
-    // Link dependencies.
+    // 链接依赖项。
     if (IsWindows(Target))
     {
       AddBoostLibs(Path.Combine(LibCarlaInstallPath, "lib"));
