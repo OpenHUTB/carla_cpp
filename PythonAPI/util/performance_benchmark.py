@@ -178,18 +178,28 @@ def define_maps(client):
       print("Warning!! The list of maps introduced is not valid. Using all available.")
 
   return maps
+
+#定义一个类，继承自object
 class CallBack(object):
+    #类的构造函数，在创建类的实例时会被调用
     def __init__(self):
+        #线程锁，通过threading.Lock()创建，用于在多线程环境下确保数据的一致性
         self._lock = threading.Lock()
+        #pygame的时钟对象，通过pygame.time.Clock()创建，用于跟踪时间
         self._pygame_clock = pygame.time.Clock()
+        #整数变量，初始化为 0，用于存储当前的帧率（Frames Per Second
         self._current_fps = 0
-
+    #使类的实例可以像函数一样被调用
     def __call__(self, data):
+        #更新时钟，并通过self._pygame_clock.get_fps()获取当前的帧率
         self._pygame_clock.tick()
+        #将其存储在self._current_fps中
         self._current_fps = self._pygame_clock.get_fps()
-
+    #用于获取当前的帧率
     def get_fps(self):
+        #确保在获取帧率时线程安全
         with self._lock:
+            #返回self._current_fps的值，即当前的帧率
             return self._current_fps
 
 
