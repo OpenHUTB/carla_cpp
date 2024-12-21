@@ -31,9 +31,11 @@ except ImportError:
     from Queue import Queue as Queue
     from Queue import Empty
 
+# 定义一个自定义异常 DeterminismError，用于处理场景中可能出现的确定性问题
 class DeterminismError(Exception):
     pass
 
+# 导入 Carla 模拟器中的命令，以便在场景中使用
 SpawnActor = carla.command.SpawnActor
 FutureActor = carla.command.FutureActor
 ApplyTargetVelocity = carla.command.ApplyTargetVelocity
@@ -55,6 +57,7 @@ class Scenario(object):
         self.active = True
         self.snapshots = []
 
+         # 重新加载世界设置，并可选择设置观众的位置
         self.reload_world(settings, spectator_tr)
 
         # Init timestamp
