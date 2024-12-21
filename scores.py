@@ -85,7 +85,9 @@ comment_counts = {}
 
 page = 1
 while True:
+    #构造API请求的URL，获取所有问题
     url = f'https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100&page={page}'
+    #发送GET请求获取响应
     response = requests.get(url, headers=headers)
 #处理API响应    
     if response.status_code != 200:
