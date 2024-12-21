@@ -20,23 +20,24 @@ import docker_utils  # 自定义模块，可能包含与Docker交互的辅助函
 import os  # 用于操作系统功能，如获取当前工作目录
  
  
+# 打印格式化的字典，便于查看参数和配置
 def print_formated_dict(dic):
     """打印格式化的字典"""
     for k, v in dic.items():
         print(' - "' + str(k) + '"' + ": " + str(v))
     print()  # 空行分隔
- 
- 
+
+# 将文本加粗，用于终端输出时强调文本
 def bold(text):
     """将文本加粗"""
     return ''.join([docker_utils.BOLD, text, docker_utils.ENDC])
- 
- 
+
+# 将文本加粗并加下划线，用于终端输出时强调文本
 def bold_underline(text):
     """将文本加粗并加下划线"""
-    return ''.join([docker_utils.UNDERLINE, bold(text), docker_utils.ENDC])  # 注意ENDC的添加位置
+    return ''.join([docker_utils.UNDERLINE, bold(text), docker_utils.ENDC]) # 注意ENDC的添加位置
 
-
+# 解析命令行参数，获取输入输出路径、包名、是否详细输出等信息
 def parse_args():
     """解析命令行参数"""
     argparser = argparse.ArgumentParser(
@@ -68,7 +69,7 @@ def parse_args():
 
     if not args.output:
         args.output = os.getcwd()  # 如果没有指定输出路径，则使用当前工作目录
- 
+
     if args.packages and args.packages.strip() and not args.input:
         # 如果指定了包但没有指定输入路径，则报错并退出
         print(
@@ -88,9 +89,8 @@ def parse_args():
 
     return args
 
-
+# 主函数，用于运行Docker容器并处理CARLA资产
 def main():
-
     args = parse_args()
     carla_image_name = args.image
     inbox_assets_path = '/home/carla/carla/Import'  # Docker容器内的输入资产路径
@@ -116,12 +116,11 @@ def main():
     print_formated_dict(container_args)
 
     try:
-
         print("Running Docker...")
         carla_container = client.containers.run(**container_args)
 
         if args.packages:
-            # If there is packages, import them first and package them
+            # 如果有指定包，首先导入然后打包
             docker_utils.exec_command(
                 carla_container,
                 'make import',
@@ -132,26 +131,25 @@ def main():
                 'make package ARGS="--packages=' + str(args.packages) + '"',
                 user='carla', verbose=args.verbose, ignore_error=False)
         else:
-            # Just create a package of the whole project
+            # 否则，只打包整个项目
             docker_utils.exec_command(
                 carla_container,
                 'make package',
                 user='carla', verbose=args.verbose, ignore_error=False)
 
-        # Get the files routes to export
+        # 获取要导出的文件路径
         files_to_copy = docker_utils.get_file_paths(
             carla_container,
             '/home/carla/carla/Dist/*.tar.gz',
             user='carla', verbose=args.verbose)
 
-        # Copy these files to the output folder
+        # 将这些文件复制到输出文件夹
         docker_utils.extract_files(carla_container, files_to_copy, args.output)
 
     finally:
         # 无论是否发生异常，都关闭容器
         print("Closing container " + carla_image_name)
         carla_container.stop()
-
 
 if __name__ == '__main__':
     main()
