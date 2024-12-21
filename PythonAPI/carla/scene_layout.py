@@ -245,15 +245,21 @@ def get_dynamic_objects(carla_world, carla_map):
             vehicles_dict[vehicle.id] = v_dict
         return vehicles_dict
 
+    #定义了一个用于接受hero_vehicle的函数并实现对其的操作
     def get_hero_vehicle(hero_vehicle):
         if hero_vehicle is None:
             return hero_vehicle
 
+        #获取与hero_vehicle所在位置相关的路点信息
         hero_waypoint = carla_map.get_waypoint(hero_vehicle.get_location())
+        #获取hero_vehicle的变换信息
         hero_transform = hero_vehicle.get_transform()
+        #将hero_vehicle的变换位置转换为地理位置信息（经纬度高度）
         location_gnss = carla_map.transform_to_geolocation(hero_transform.location)
 
+       #创建一个新字典 其中包含hero_vehicle的id信息
         hero_vehicle_dict = {
+            #使用之前转换获取的地理位置信息 并在字典中添加hero_waypoint的id信息
             "id": hero_vehicle.id,
             "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
             "road_id": hero_waypoint.road_id,
