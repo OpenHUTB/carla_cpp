@@ -16,12 +16,16 @@ jobs:
           #任务名称：设置Python环境
       - name: Set up Python
         # This is the version of the action for setting up Python, not the Python version.
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5#
         with:
           python-version: '3.x' # 指定python版本
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
-      - name: Install Python dependencies
-        run: python -m pip install --upgrade pip requests gitpython
+      - name: Install Python dependencies    # 运行命令来安装Python依赖项
+        run: python -m pip install --upgrade pip requests gitpython  
+        # python - m pip：使用Python模块运行模式调用pip
+    # --upgrade pip：先将pip本身升级到最新版本，新的pip版本可能包含更多功能和修复
+    # requests：通常用于进行HTTP请求的Python库
+    # gitpython：用于与Git仓库进行交互等操作的Python库
       - name: Display involvement degree
         run: python scores.py -t ${{ secrets.GITHUB_TOKEN }} # 执行
