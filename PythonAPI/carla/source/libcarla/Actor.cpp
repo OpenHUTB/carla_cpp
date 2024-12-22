@@ -33,7 +33,7 @@ std::ostream &operator<<(std::ostream &out, const Actor &actor) {
 template<class T>
 boost::python::list StdVectorToPyList(const std::vector<T> &vec) {
     boost::python::list l; // 创建一个新的Python列表
-    for (auto &e : vec) { // 遍历向量中的每个元素
+    for (auto &e : vec) { // 分别遍历向量元素
         l.append(e); // 将每个元素添加到Python列表中
     }
     return l; // 返回填充好的Python列表
