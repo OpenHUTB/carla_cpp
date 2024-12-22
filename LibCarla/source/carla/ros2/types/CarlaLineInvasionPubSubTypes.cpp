@@ -27,87 +27,101 @@
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
+// 定义carla_msgs命名空间，以下相关的类和函数都位于这个命名空间内
 namespace carla_msgs {
+    // 再定义msg子命名空间，用于存放消息相关的类型定义等内容
     namespace msg {
+        // LaneInvasionEventPubSubType类的构造函数，用于初始化该类型相关的属性
         LaneInvasionEventPubSubType::LaneInvasionEventPubSubType()
         {
+            // 设置类型名称，用于标识这个发布/订阅类型，这里具体名称为 "carla_msgs::msg::dds_::LaneInvasionEvent_"
             setName("carla_msgs::msg::dds_::LaneInvasionEvent_");
+            // 获取 LaneInvasionEvent 类型的最大CDR序列化大小，CDR（Common Data Representation）是一种数据序列化格式
             auto type_size = LaneInvasionEvent::getMaxCdrSerializedSize();
+            // 根据可能的子消息对齐要求（这里按4字节对齐），调整类型大小
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
+            // 计算最终的类型大小，加上4字节可能用于封装相关的开销
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
+            // 判断 LaneInvasionEvent 类型是否定义了获取键（Key）的操作，并记录下来
             m_isGetKeyDefined = LaneInvasionEvent::isKeyDefined();
-            size_t keyLength = LaneInvasionEvent::getKeyMaxCdrSerializedSize() > 16 ?
+            // 获取 LaneInvasionEvent 类型的最大键（Key）CDR序列化大小，如果大于16字节则取其本身大小，否则取16字节作为键缓冲区的长度
+            size_t keyLength = LaneInvasionEvent::getKeyMaxCdrSerializedSize() > 16?
                     LaneInvasionEvent::getKeyMaxCdrSerializedSize() : 16;
+            // 分配键缓冲区内存，用于后续存储键相关的数据
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+            // 将键缓冲区的内存初始化为0
             memset(m_keyBuffer, 0, keyLength);
         }
 
+        // LaneInvasionEventPubSubType类的析构函数，用于释放构造函数中分配的键缓冲区内存
         LaneInvasionEventPubSubType::~LaneInvasionEventPubSubType()
         {
-            if (m_keyBuffer != nullptr)
+            if (m_keyBuffer!= nullptr)
             {
                 free(m_keyBuffer);
             }
         }
 
+        // 函数用于将 LaneInvasionEvent 类型的数据进行序列化，将其转换为适合网络传输等操作的二进制格式，并填充到 SerializedPayload_t 结构中
         bool LaneInvasionEventPubSubType::serialize(
                   void* data,
                   SerializedPayload_t* payload)
         {
-            // 将输入的 void* 数据转换为 LaneInvasionEvent 类型的指针
+            // 将输入的 void* 类型的数据指针转换为 LaneInvasionEvent 类型的指针，方便后续操作
             LaneInvasionEvent* p_type = static_cast<LaneInvasionEvent*>(data);
 
-            // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理序列化过程中的原始缓冲区
+            // 创建一个 eprosima::fastcdr::FastBuffer 对象，它用于管理序列化过程中要使用的原始缓冲区，将 payload 中的数据指针转换为 char* 类型传递给它
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
 
-            // 创建一个 eprosima::fastcdr::Cdr 对象，用于执行实际的序列化操作
+            // 创建一个 eprosima::fastcdr::Cdr 对象，用于实际执行序列化的相关操作，传入前面创建的缓冲区对象以及默认的字节序、DDS相关的CDR格式等参数
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-            // 根据序列化器的字节序（大端或小端）设置封装格式
-            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
+            // 根据序列化器的字节序（大端或小端）来设置 payload 的封装格式，如果是大端序则设置为 CDR_BE，小端序设置为 CDR_LE
+            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
 
-            // 序列化封装头，封装头可能包含字节序和其他元数据
+            // 序列化封装头，封装头通常包含字节序等相关元数据信息，方便后续反序列化时进行解析
             ser.serialize_encapsulation();
 
             try
             {
-                // 序列化 LaneInvasionEvent 类型的对象
+                // 调用 LaneInvasionEvent 类型对象自身的 serialize 函数，通过传入的 ser 对象将其成员变量等数据序列化到缓冲区中
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
-                // 如果序列化过程中内存不足，则捕获异常并返回 false
+                // 如果在序列化过程中出现内存不足的情况（捕获相应的异常），则返回 false 表示序列化失败
                 return false;
             }
 
-            // 获取序列化后的数据长度，并存入 payload->length
+            // 获取序列化后的数据长度，并将其存入 payload->length 成员变量中，用于记录实际序列化后的数据大小
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
 
-            // 返回序列化成功
+            // 如果序列化过程顺利完成，返回 true 表示序列化成功
             return true;
         }
 
 
+        // 函数用于将接收到的二进制格式数据（SerializedPayload_t 结构中的数据）反序列化，转换为 LaneInvasionEvent 类型的数据对象
         bool LaneInvasionEventPubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
             try
             {
-                //Convert DATA to pointer of your type
+                // 将传入的 void* 类型的数据指针转换为 LaneInvasionEvent 类型的指针，方便后续操作
                 LaneInvasionEvent* p_type = static_cast<LaneInvasionEvent*>(data);
 
-                // Object that manages the raw buffer.
+                // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理包含要反序列化数据的原始缓冲区，传入 payload 中的数据指针及实际数据长度
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-                // Object that deserializes the data.
+                // 创建一个 eprosima::fastcdr::Cdr 对象，用于实际执行反序列化的相关操作，传入前面创建的缓冲区对象以及默认的字节序、DDS相关的CDR格式等参数
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-                // Deserialize encapsulation.
+                // 先反序列化封装信息，例如字节序等元数据，用于后续正确解析数据
                 deser.read_encapsulation();
-                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
+                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
 
-                // Deserialize the object.
+                // 调用 LaneInvasionEvent 类型对象自身的 deserialize 函数，通过传入的 deser 对象将缓冲区中的数据反序列化到对象的成员变量中
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
@@ -118,6 +132,7 @@ namespace carla_msgs {
             return true;
         }
 
+        // 函数返回一个可调用对象（lambda表达式），该可调用对象用于获取给定 LaneInvasionEvent 类型数据对象序列化后的大小（包含封装等额外开销）
         std::function<uint32_t()> LaneInvasionEventPubSubType::getSerializedSizeProvider(
                 void* data)
         {
@@ -128,17 +143,20 @@ namespace carla_msgs {
                    };
         }
 
+        // 函数用于创建一个 LaneInvasionEvent 类型的数据对象，并返回其 void* 类型的指针，用于后续的操作（例如序列化等）
         void* LaneInvasionEventPubSubType::createData()
         {
             return reinterpret_cast<void*>(new LaneInvasionEvent());
         }
 
+        // 函数用于释放之前通过 createData 函数创建的 LaneInvasionEvent 类型的数据对象所占用的内存空间
         void LaneInvasionEventPubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<LaneInvasionEvent*>(data));
         }
 
+        // 函数尝试获取给定 LaneInvasionEvent 类型数据对象的键（Key）信息，并将其填充到 InstanceHandle_t 结构中，用于标识对象等用途
         bool LaneInvasionEventPubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
@@ -151,11 +169,11 @@ namespace carla_msgs {
 
             LaneInvasionEvent* p_type = static_cast<LaneInvasionEvent*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理存储键数据的缓冲区，传入键缓冲区指针及 LaneInvasionEvent 类型的最大键CDR序列化大小
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     LaneInvasionEvent::getKeyMaxCdrSerializedSize());
 
-            // Object that serializes the data.
+            // 创建一个 eprosima::fastcdr::Cdr 对象，用于将数据对象的键相关信息序列化到缓冲区中，这里指定了大端序
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
             p_type->serializeKey(ser);
             if (force_md5 || LaneInvasionEvent::getKeyMaxCdrSerializedSize() > 16)

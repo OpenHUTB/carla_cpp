@@ -411,3 +411,8 @@ void FCarlaExporterModule::AddMenuExtension(FMenuBuilder& Builder)
 #undef LOCTEXT_NAMESPACE
 
 IMPLEMENT_MODULE(FCarlaExporterModule, CarlaExporter)
+// IMPLEMENT_MODULE 可能是一个宏（macro），用于实现某个模块相关的功能定义或者注册等操作。
+// 在这里，它接受两个参数，第一个参数 FCarlaExporterModule 很可能是代表模块的类名或者模块相关的类型名称，
+// 第二个参数 CarlaExporter 可能是具体模块的标识或者和模块功能实现相关联的一个名称（比如是模块类的实例名称、模块在系统中的特定代号等）。
+// 整体这行代码的作用大概率是借助 IMPLEMENT_MODULE 这个宏机制，将名为 FCarlaExporterModule 的模块相关内容进行实现、注册或者关联到整个系统中，
+// 使得该模块能够在对应的程序框架（比如可能是某个游戏引擎、仿真系统等使用了这种模块管理机制的环境里）下正常工作，发挥其特定的导出（Exporter）相关的功能。
