@@ -348,7 +348,7 @@ if (LIBCARLA_BUILD_RELEASE)
       "${RPCLIB_INCLUDE_PATH}"
       "${RECAST_INCLUDE_PATH}"
       "${LIBPNG_INCLUDE_PATH}")
-
+# 如果定义了BUILD_RSS_VARIANT这个构建选项
   if (BUILD_RSS_VARIANT)
     target_compile_definitions(carla_client${carla_target_postfix} PRIVATE RSS_ENABLED RSS_USE_TBB)
     target_link_libraries(carla_client${carla_target_postfix} ${ADRSS_LIBS} tbb)
@@ -357,10 +357,15 @@ if (LIBCARLA_BUILD_RELEASE)
   endif()
 
 #使用install命令来安装carla_client库
+# 这样在其他项目中就可以通过链接该库来使用它提供的功能
   install(TARGETS carla_client${carla_target_postfix} DESTINATION lib)
 
 #windows平台特定处理：使用set_target_postfix命令设置carla_client库的编译标准
+# @todo 修复在Windows上的PythonAPI构建漏洞，这里是待办事项注释，提示后续需要解决该问题
   if (WIN32) # @todo 修复在 Windows 上的 PythonAPI 构建漏洞。
+    # 设置carla_client${carla_target_postfix}目标的编译标志
+    # 将其编译标志设置为CMAKE_CXX_FLAGS_RELEASE，通常意味着在Windows平台下以发布版本的编译标准进行编译
+    # 例如会包含合适的优化等编译相关设置
     set_target_properties(carla_client${carla_target_postfix} PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
  # 链接Recast及其相关库的Windows版本静态库到carla_client${carla_target_postfix}目标。
     target_link_libraries(carla_client${carla_target_postfix} "${RECAST_LIB_PATH}/Recast.lib")

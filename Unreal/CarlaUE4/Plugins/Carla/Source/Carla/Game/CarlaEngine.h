@@ -4,137 +4,148 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once// [±àÒëÖ¸Áî] È·±£Í·ÎÄ¼şÖ»±»±àÒëÒ»´Î 
-// [°üº¬±ØÒªµÄÍ·ÎÄ¼ş] 
-#include "Carla/Recorder/CarlaRecorder.h"// °üº¬CarlaRecorderÀàµÄ¶¨Òå
-#include "Carla/Sensor/WorldObserver.h"// °üº¬WorldObserverÀàµÄ¶¨Òå
-#include "Carla/Server/CarlaServer.h"// °üº¬CarlaServerÀàµÄ¶¨Òå  
-#include "Carla/Settings/EpisodeSettings.h"// °üº¬EpisodeSettingsÏà¹Ø¶¨Òå
-#include "Carla/Util/NonCopyable.h"// °üº¬NonCopyableÀàµÄ¶¨Òå£¬ÓÃÓÚ½ûÖ¹¸´ÖÆ
-#include "Carla/Game/FrameData.h"// °üº¬FrameData½á¹¹ÌåµÄ¶¨Òå
+#pragma once// [ç¼–è¯‘æŒ‡ä»¤] ç¡®ä¿å¤´æ–‡ä»¶åªè¢«ç¼–è¯‘ä¸€æ¬¡ 
+// [åŒ…å«å¿…è¦çš„å¤´æ–‡ä»¶] 
+#include "Carla/Recorder/CarlaRecorder.h"// åŒ…å«CarlaRecorderç±»çš„å®šä¹‰
+#include "Carla/Sensor/WorldObserver.h"// åŒ…å«WorldObserverç±»çš„å®šä¹‰
+#include "Carla/Server/CarlaServer.h"// åŒ…å«CarlaServerç±»çš„å®šä¹‰  
+#include "Carla/Settings/EpisodeSettings.h"// åŒ…å«EpisodeSettingsç›¸å…³å®šä¹‰
+#include "Carla/Util/NonCopyable.h"// åŒ…å«NonCopyableç±»çš„å®šä¹‰ï¼Œç”¨äºç¦æ­¢å¤åˆ¶
+#include "Carla/Game/FrameData.h"// åŒ…å«FrameDataç»“æ„ä½“çš„å®šä¹‰
 
-#include "Misc/CoreDelegates.h" // °üº¬ºËĞÄÎ¯ÍĞµÄ¶¨Òå
-// [½ûÓÃ/ÆôÓÃUE4ºê]
-#include <compiler/disable-ue4-macros.h>// ½ûÓÃUnreal Engine 4µÄºê
-#include <carla/multigpu/router.h>// °üº¬¶àGPUºÍROS2Ïà¹ØµÄCarla¿âÍ·ÎÄ¼ş 
+#include "Misc/CoreDelegates.h" // åŒ…å«æ ¸å¿ƒå§”æ‰˜çš„å®šä¹‰
+// [ç¦ç”¨/å¯ç”¨UE4å®]
+#include <compiler/disable-ue4-macros.h>// ç¦ç”¨Unreal Engine 4çš„å®
+#include <carla/multigpu/router.h>// åŒ…å«å¤šGPUå’ŒROS2ç›¸å…³çš„Carlaåº“å¤´æ–‡ä»¶ 
 #include <carla/multigpu/primaryCommands.h>
 #include <carla/multigpu/secondary.h>
 #include <carla/multigpu/secondaryCommands.h>
 #include <carla/ros2/ROS2.h>
-#include <compiler/enable-ue4-macros.h>// ÖØĞÂÆôÓÃUnreal Engine 4µÄºê
+#include <compiler/enable-ue4-macros.h>// é‡æ–°å¯ç”¨Unreal Engine 4çš„å®
 
-#include <mutex>// °üº¬C++±ê×¼¿âµÄmutexÀà£¬ÓÃÓÚÏß³ÌÍ¬²½
-// [Ç°ÏòÉùÃ÷]
-class UCarlaSettings;// Ç°ÏòÉùÃ÷UCarlaSettingsÀà 
-struct FEpisodeSettings;// Ç°ÏòÉùÃ÷FEpisodeSettings½á¹¹Ìå
-// [FCarlaEngineÀà¶¨Òå]
-class FCarlaEngine : private NonCopyable// ¼Ì³Ğ×ÔNonCopyable£¬½ûÖ¹¸´ÖÆ
+#include <mutex>// åŒ…å«C++æ ‡å‡†åº“çš„mutexç±»ï¼Œç”¨äºçº¿ç¨‹åŒæ­¥
+// [å‰å‘å£°æ˜]
+class UCarlaSettings;// å‰å‘å£°æ˜UCarlaSettingsç±» 
+struct FEpisodeSettings;// å‰å‘å£°æ˜FEpisodeSettingsç»“æ„ä½“
+// [FCarlaEngineç±»å®šä¹‰]
+class FCarlaEngine : private NonCopyable// ç»§æ‰¿è‡ªNonCopyableï¼Œç¦æ­¢å¤åˆ¶
 {
 public:
-    // [¾²Ì¬³ÉÔ±±äÁ¿]
-  static uint64_t FrameCounter;// ¾²Ì¬³ÉÔ±±äÁ¿£¬ÓÃÓÚ¼ÇÂ¼Ö¡Êı
-  // [Îö¹¹º¯Êı]
+    // [é™æ€æˆå‘˜å˜é‡]
+  static uint64_t FrameCounter;// é™æ€æˆå‘˜å˜é‡ï¼Œç”¨äºè®°å½•å¸§æ•°
+  // [ææ„å‡½æ•°]
   ~FCarlaEngine();
-  // [Í¨Öªº¯Êı]
-  void NotifyInitGame(const UCarlaSettings &Settings);// Í¨Öª³õÊ¼»¯ÓÎÏ· 
+  // [é€šçŸ¥å‡½æ•°]
+  void NotifyInitGame(const UCarlaSettings &Settings);// é€šçŸ¥åˆå§‹åŒ–æ¸¸æˆ 
 
-  void NotifyBeginEpisode(UCarlaEpisode &Episode);// Í¨Öª¿ªÊ¼ĞÂµÄ¾çÇé 
+  void NotifyBeginEpisode(UCarlaEpisode &Episode);// é€šçŸ¥å¼€å§‹æ–°çš„å‰§æƒ… 
 
-  void NotifyEndEpisode();// Í¨Öª½áÊøµ±Ç°¾çÇé
-  // [»ñÈ¡·şÎñÆ÷]
-  const FCarlaServer &GetServer() const// »ñÈ¡³£Á¿ÒıÓÃĞÎÊ½µÄ·şÎñÆ÷
+  void NotifyEndEpisode();// é€šçŸ¥ç»“æŸå½“å‰å‰§æƒ…
+  // [è·å–æœåŠ¡å™¨]
+  const FCarlaServer &GetServer() const// è·å–å¸¸é‡å¼•ç”¨å½¢å¼çš„æœåŠ¡å™¨
   {
     return Server;
   }
 
-  FCarlaServer &GetServer()// »ñÈ¡·Ç³£Á¿ÒıÓÃĞÎÊ½µÄ·şÎñÆ÷
+  FCarlaServer &GetServer()// è·å–éå¸¸é‡å¼•ç”¨å½¢å¼çš„æœåŠ¡å™¨
   {
     return Server;
   }
-  // [»ñÈ¡µ±Ç°¾çÇé]
-  UCarlaEpisode *GetCurrentEpisode()
-  {
-    return CurrentEpisode;
-  }
-  // [ÉèÖÃÂ¼Ïñ»ú] 
-  void SetRecorder(ACarlaRecorder *InRecorder)
-  {
-    Recorder = InRecorder;
-  }
-  // [Ö¡¼ÆÊıÆ÷Ïà¹Øº¯Êı] 
-  static uint64_t GetFrameCounter()// »ñÈ¡µ±Ç°Ö¡Êı
-  {
-    return FCarlaEngine::FrameCounter;
-  }
-  
-  static uint64_t UpdateFrameCounter()// ¸üĞÂÖ¡Êı£¬²¢·µ»Ø¸üĞÂºóµÄÖ¡Êı
-  {
-    FCarlaEngine::FrameCounter += 1;
-    #if defined(WITH_ROS2)
-    auto ROS2 = carla::ros2::ROS2::GetInstance();
-    if (ROS2->IsEnabled())
-      ROS2->SetFrame(FCarlaEngine::FrameCounter);
-    #endif
-    return FCarlaEngine::FrameCounter;
-  }
+  // [è·å–å½“å‰å‰§æƒ…]
+ // è·å–å½“å‰çš„UCarlaEpisodeå®ä¾‹
+UCarlaEpisode *GetCurrentEpisode()
+{
+  return CurrentEpisode; // è¿”å›å½“å‰Episodeçš„æŒ‡é’ˆ
+}
 
-  static void ResetFrameCounter(uint64_t Value = 0)// ÖØÖÃÖ¡Êı  
-  {
-    FCarlaEngine::FrameCounter = Value;
-    #if defined(WITH_ROS2)
-    auto ROS2 = carla::ros2::ROS2::GetInstance();
-    if (ROS2->IsEnabled())
-      ROS2->SetFrame(FCarlaEngine::FrameCounter);
-    #endif
-  }
-  // [»ñÈ¡´Î¼¶·şÎñÆ÷]
-  std::shared_ptr<carla::multigpu::Router> GetSecondaryServer()// »ñÈ¡´Î¼¶·şÎñÆ÷µÄ¹²ÏíÖ¸Õë
-  {
-    return SecondaryServer;
-  }
+// è®¾ç½®å½•åƒæœºå®ä¾‹
+void SetRecorder(ACarlaRecorder *InRecorder)
+{
+  Recorder = InRecorder; // å°†ä¼ å…¥çš„å½•åƒæœºå®ä¾‹èµ‹å€¼ç»™æˆå‘˜å˜é‡Recorder
+}
+
+// è·å–å½“å‰å¸§æ•°çš„é™æ€å‡½æ•°
+static uint64_t GetFrameCounter() // è·å–å½“å‰å¸§æ•°
+{
+  return FCarlaEngine::FrameCounter; // è¿”å›ç”±FCarlaEngineç±»ç»´æŠ¤çš„å¸§è®¡æ•°å™¨
+}
+
+// æ›´æ–°å¸§æ•°ï¼Œå¹¶è¿”å›æ›´æ–°åçš„å¸§æ•°çš„é™æ€å‡½æ•°
+static uint64_t UpdateFrameCounter() // æ›´æ–°å¸§æ•°ï¼Œå¹¶è¿”å›æ›´æ–°åçš„å¸§æ•°
+{
+  FCarlaEngine::FrameCounter += 1; // å¸§è®¡æ•°å™¨åŠ 1
+  #if defined(WITH_ROS2) // å¦‚æœå®šä¹‰äº†WITH_ROS2å®ï¼Œè¡¨ç¤ºæ”¯æŒROS2é›†æˆ
+  auto ROS2 = carla::ros2::ROS2::GetInstance(); // è·å–ROS2å®ä¾‹
+  if (ROS2->IsEnabled()) // å¦‚æœROS2å®ä¾‹å·²å¯ç”¨
+    ROS2->SetFrame(FCarlaEngine::FrameCounter); // è®¾ç½®ROS2çš„å½“å‰å¸§æ•°
+  #endif
+  return FCarlaEngine::FrameCounter; // è¿”å›æ›´æ–°åçš„å¸§è®¡æ•°å™¨
+}
+
+// é‡ç½®å¸§æ•°çš„é™æ€å‡½æ•°
+static void ResetFrameCounter(uint64_t Value = 0) // é‡ç½®å¸§æ•°ï¼Œé»˜è®¤å€¼ä¸º0
+{
+  FCarlaEngine::FrameCounter = Value; // å°†å¸§è®¡æ•°å™¨è®¾ç½®ä¸ºä¼ å…¥çš„å€¼
+  #if defined(WITH_ROS2) // å¦‚æœå®šä¹‰äº†WITH_ROS2å®ï¼Œè¡¨ç¤ºæ”¯æŒROS2é›†æˆ
+  auto ROS2 = carla::ros2::ROS2::GetInstance(); // è·å–ROS2å®ä¾‹
+  if (ROS2->IsEnabled()) // å¦‚æœROS2å®ä¾‹å·²å¯ç”¨
+    ROS2->SetFrame(FCarlaEngine::FrameCounter); // è®¾ç½®ROS2çš„å½“å‰å¸§æ•°
+  #endif
+}
+
+// è·å–æ¬¡çº§æœåŠ¡å™¨çš„å…±äº«æŒ‡é’ˆ
+std::shared_ptr<carla::multigpu::Router> GetSecondaryServer() // è·å–æ¬¡çº§æœåŠ¡å™¨çš„å…±äº«æŒ‡é’ˆ
+{
+  return SecondaryServer; // è¿”å›æ¬¡çº§æœåŠ¡å™¨çš„å…±äº«æŒ‡é’ˆ
+}
 
 private:
 
-  void OnPreTick(UWorld *World, ELevelTick TickType, float DeltaSeconds);
+// åœ¨æ¯ä¸ªTickä¹‹å‰è°ƒç”¨çš„å‡½æ•°
+void OnPreTick(UWorld *World, ELevelTick TickType, float DeltaSeconds);
 
-  void OnPostTick(UWorld *World, ELevelTick TickType, float DeltaSeconds);
+// åœ¨æ¯ä¸ªTickä¹‹åè°ƒç”¨çš„å‡½æ•°
+void OnPostTick(UWorld *World, ELevelTick TickType, float DeltaSeconds);
 
-  void OnEpisodeSettingsChanged(const FEpisodeSettings &Settings);
+// å½“Episodeè®¾ç½®å‘ç”Ÿå˜åŒ–æ—¶è°ƒç”¨çš„å‡½æ•°
+void OnEpisodeSettingsChanged(const FEpisodeSettings &Settings);
 
-  void ResetSimulationState();
+// é‡ç½®ä»¿çœŸçŠ¶æ€çš„å‡½æ•°
+void ResetSimulationState();
 
-  bool bIsRunning = false;
+bool bIsRunning = false; // æ ‡è¯†ä»¿çœŸæ˜¯å¦æ­£åœ¨è¿è¡Œ
 
-  bool bSynchronousMode = false;
+bool bSynchronousMode = false; // æ ‡è¯†æ˜¯å¦å¤„äºåŒæ­¥æ¨¡å¼
 
-  bool bMapChanged = false;
+bool bMapChanged = false; // æ ‡è¯†åœ°å›¾æ˜¯å¦å·²æ›´æ”¹
 
-  FCarlaServer Server;
+FCarlaServer Server; // CARLAæœåŠ¡å™¨å®ä¾‹
 
-  FWorldObserver WorldObserver;
+FWorldObserver WorldObserver; // ä¸–ç•Œè§‚å¯Ÿè€…å®ä¾‹
 
-  UCarlaEpisode *CurrentEpisode = nullptr;
+UCarlaEpisode *CurrentEpisode = nullptr; // å½“å‰Episodeçš„æŒ‡é’ˆ
 
-  FEpisodeSettings CurrentSettings;
+FEpisodeSettings CurrentSettings; // å½“å‰Episodeè®¾ç½®
 
-  ACarlaRecorder *Recorder = nullptr;
+ACarlaRecorder *Recorder = nullptr; // å½•åƒæœºå®ä¾‹
 
-  FDelegateHandle OnPreTickHandle;
+FDelegateHandle OnPreTickHandle; // OnPreTickäº‹ä»¶çš„å§”æ‰˜å¥æŸ„
 
-  FDelegateHandle OnPostTickHandle;
+FDelegateHandle OnPostTickHandle; // OnPostTickäº‹ä»¶çš„å§”æ‰˜å¥æŸ„
 
-  FDelegateHandle OnEpisodeSettingsChangeHandle;
+FDelegateHandle OnEpisodeSettingsChangeHandle; // Episodeè®¾ç½®æ›´æ”¹äº‹ä»¶çš„å§”æ‰˜å¥æŸ„
 
-  bool bIsPrimaryServer = true;
-  bool bNewConnection = false;
+bool bIsPrimaryServer = true; // æ ‡è¯†æ˜¯å¦ä¸ºä¸»æœåŠ¡å™¨
 
-  std::unordered_map<uint32_t, uint32_t> MappedId;
+bool bNewConnection = false; // æ ‡è¯†æ˜¯å¦æœ‰æ–°çš„è¿æ¥
 
-  std::shared_ptr<carla::multigpu::Router>    SecondaryServer;
-  std::shared_ptr<carla::multigpu::Secondary> Secondary;
+std::unordered_map<uint32_t, uint32_t> MappedId; // ç”¨äºæ˜ å°„IDçš„å“ˆå¸Œè¡¨
 
-  std::vector<FFrameData> FramesToProcess;
-  std::mutex FrameToProcessMutex;
+std::shared_ptr<carla::multigpu::Router> SecondaryServer; // æ¬¡çº§æœåŠ¡å™¨çš„å…±äº«æŒ‡é’ˆ
+std::shared_ptr<carla::multigpu::Secondary> Secondary; // æ¬¡çº§å®ä¾‹çš„å…±äº«æŒ‡é’ˆ
+
+std::vector<FFrameData> FramesToProcess; // å¾…å¤„ç†å¸§æ•°æ®çš„å‘é‡
+std::mutex FrameToProcessMutex; // å¸§æ•°æ®å¤„ç†çš„äº’æ–¥é”
 };
 
 // Note: this has a circular dependency with FCarlaEngine; it must be included late.

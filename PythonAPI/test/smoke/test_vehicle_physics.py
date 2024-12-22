@@ -216,22 +216,22 @@ class TestApplyVehiclePhysics(SyncSmokeTest):
       # 销毁所有生成的车辆
         for i in range(0, num_veh):
             vehicles[i].destroy()
-
+   #测试单个车辆的物理控制
     def test_single_physics_control(self):
         print("TestApplyVehiclePhysics.test_single_physics_control")
 
         bp_vehicles = self.world.get_blueprint_library().filter("vehicle.*")
         bp_vehicles = self.filter_vehicles_for_old_towns(bp_vehicles)
-        for bp_veh in bp_vehicles:
+        for bp_veh in bp_vehicles:  # 对每个筛选后的车辆蓝图进行单车辆物理控制测试
             self.check_single_physics_control(bp_veh)
 
     def test_multiple_physics_control(self):
         print("TestApplyVehiclePhysics.test_multiple_physics_control")
 
         bp_vehicles = self.world.get_blueprint_library().filter("vehicle.*")
-        bp_vehicles = self.filter_vehicles_for_old_towns(bp_vehicles)
+        bp_vehicles = self.filter_vehicles_for_old_towns(bp_vehicles) # 获取并筛选适合旧城镇的车辆蓝图
         for idx in range(0, len(bp_vehicles)):
-            self.check_multiple_physics_control(bp_vehicles, idx)
+            self.check_multiple_physics_control(bp_vehicles, idx)# 对每个筛选后的车辆蓝图（基于索引）进行多车辆物理控制测试
 
         bp_vehicles = self.world.get_blueprint_library().filter("vehicle.*")
         bp_vehicles = self.filter_vehicles_for_old_towns(bp_vehicles)
@@ -240,47 +240,47 @@ class TestApplyVehiclePhysics(SyncSmokeTest):
 class TestVehicleFriction(SyncSmokeTest):
     def wait(self, frames=100):
         for _i in range(0, frames):
-            self.world.tick()
+            self.world.tick()#通过循环调用self.world.tick()来模拟时间的流逝
 
     def test_vehicle_zero_friction(self):
         print("TestVehicleFriction.test_vehicle_zero_friction")
         
-        self.client.load_world("Town05_Opt", False)
-        # workaround: give time to UE4 to clean memory after loading (old assets)
+        self.client.load_world("Town05_Opt", False)# 加载名为"Town05_Opt"的CARLA世界（地图），False表示不重启仿真器
+        # 等待5秒，以便UE4清理加载旧资源后的内存
         time.sleep(5)
 
         bp_vehicles = self.world.get_blueprint_library().filter("vehicle.*")
         bp_vehicles = self.filter_vehicles_for_old_towns(bp_vehicles)
-        for bp_veh in bp_vehicles:
-
+        for bp_veh in bp_vehicles:# 遍历每一个筛选后的车辆蓝图
+            # 定义两个车辆的初始位置和朝向
             veh_transf_00 = carla.Transform(carla.Location(33, -200, 0.2), carla.Rotation(yaw=90))
             veh_transf_01 = carla.Transform(carla.Location(29, -200, 0.7), carla.Rotation(yaw=90))
-
+            # 创建一个批量操作列表，用于同时生成两个车辆，并设置它们的初始速度和是否启用重力
             batch = [
-                    SpawnActor(bp_veh, veh_transf_00)
+                    SpawnActor(bp_veh, veh_transf_00)# 第一个车辆：在veh_transf_00位置生成，初始速度为零，启用重力
                     .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(0, 0, 0)))
                     .then(SetEnableGravity(FutureActor, True)),
-                    SpawnActor(bp_veh, veh_transf_01)
+                    SpawnActor(bp_veh, veh_transf_01) # 第二个车辆：在veh_transf_01位置生成，初始速度为零，不启用重力
                     .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(0, 0, 0)))
                     .then(SetEnableGravity(FutureActor, False))
                 ]
 
-            responses = self.client.apply_batch_sync(batch)
-
+            responses = self.client.apply_batch_sync(batch) # 同步执行批量操作，并获取响应
+            # 从响应中提取车辆ID和车辆引用（对象）
             veh_ids = [x.actor_id for x in responses]
             veh_refs = [self.world.get_actor(x) for x in veh_ids]
-
+            # 检查车辆是否成功生成
             if (0 in veh_ids) or (None in veh_refs):
                 self.fail("%s: The test cars could not be correctly spawned" % (bp_veh.id))
 
             self.wait(10)
-
+            # 应用不同的物理控制设置给两个车辆
             self.client.apply_batch_sync([
-                ApplyVehiclePhysicsControl(veh_refs[0], change_physics_control(veh_refs[0], tire_friction=0.0, drag=0.0)),
-                ApplyVehiclePhysicsControl(veh_refs[1], change_physics_control(veh_refs[1], drag=0.0))])
+                ApplyVehiclePhysicsControl(veh_refs[0], change_physics_control(veh_refs[0], tire_friction=0.0, drag=0.0)),  # 第一个车辆的轮胎摩擦力和拖拽力都设置为0
+                ApplyVehiclePhysicsControl(veh_refs[1], change_physics_control(veh_refs[1], drag=0.0))])# 第二个车辆仅拖拽力设置为0（
 
             self.wait(1)
-            vel_ref = 100.0 / 3.6
+            vel_ref = 100.0 / 3.6  # 设置目标速度给两个车辆
 
             self.client.apply_batch_sync([
                 ApplyTargetVelocity(veh_refs[0], carla.Vector3D(0, vel_ref, 0)),
@@ -288,10 +288,10 @@ class TestVehicleFriction(SyncSmokeTest):
             ])
 
             self.wait(1)
-
+            #获取两个车辆的当前速度，并检查是否接近目标速度
             vel_veh_00 = veh_refs[0].get_velocity().y
             vel_veh_01 = veh_refs[1].get_velocity().y
-
+            # 如果初始化后的速度不在容差范围内，则测试失败并销毁车辆
             if not list_equal_tol([vel_ref, vel_veh_00, vel_veh_01], 1e-3):
                 self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in veh_ids])
                 
@@ -299,16 +299,16 @@ class TestVehicleFriction(SyncSmokeTest):
                   % (bp_veh.id, vel_ref, vel_veh_00, vel_veh_01))
 
             self.wait(100)
-
+           # 再次获取两个车辆的当前速度，并检查是否仍然接近目标速度
             vel_veh_00 = veh_refs[0].get_velocity().y
             vel_veh_01 = veh_refs[1].get_velocity().y
-
+           # 如果初始化后的速度不在容差范围内，则测试失败并销毁车辆
             if not list_equal_tol([vel_ref, vel_veh_00, vel_veh_01], 1e-1):
                 self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in veh_ids])
 
                 self.fail("%s: Velocities are not equal after simulation. Ref: %.3f -> [%.3f, %.3f]"
                   % (bp_veh.id, vel_ref, vel_veh_00, vel_veh_01))
-
+           # 无论测试成功还是失败，都销毁这两个车辆
             self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in veh_ids])
 
     def test_vehicle_friction_volume(self):
