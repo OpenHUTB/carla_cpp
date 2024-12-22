@@ -4,26 +4,36 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+// 引入 Ackermann 转向控制的头文件，用于设置与 Ackermann 转向机制相关的车辆控制参数
 #include <carla/rpc/VehicleAckermannControl.h>
+// 引入基本的车辆控制头文件，用于设置车辆的加速度、刹车、转向等控制参数
 #include <carla/rpc/VehicleControl.h>
+// 引入车辆物理控制头文件，提供对车辆动力学行为的控制，如摩擦力、牵引力等
 #include <carla/rpc/VehiclePhysicsControl.h>
+// 引入车辆遥测数据头文件，用于获取车辆的实时状态数据，如速度、位置、油门、刹车等
 #include <carla/rpc/VehicleTelemetryData.h>
+// 引入与车辆轮胎物理控制相关的头文件，用于模拟轮胎的摩擦、悬挂等物理特性
 #include <carla/rpc/WheelPhysicsControl.h>
+// 引入车辆轮胎遥测数据头文件，用于获取车辆轮胎的状态信息，如轮胎转速、压力等
 #include <carla/rpc/WheelTelemetryData.h>
+// 引入人形机器人控制头文件，控制虚拟步态系统的参数，如步伐、速度等
 #include <carla/rpc/WalkerControl.h>
+// 引入人形机器人骨骼控制输入的头文件，用于设置虚拟机器人关节角度、步伐模式等控制输入
 #include <carla/rpc/WalkerBoneControlIn.h>
+// 引入人形机器人骨骼控制输出的头文件，用于获取机器人骨骼动作的反馈输出，如位置、姿态等
 #include <carla/rpc/WalkerBoneControlOut.h>
-
+// 引入标准输出流头文件，用于流式输出数据到标准输出
 #include <ostream>
-
+// 定义一个辅助函数 boolalpha，用于将 bool 值转换为 "True" 或 "False" 字符串
+// 这个函数返回 "True" 如果 b 为 true，否则返回 "False"
 namespace carla {
 namespace rpc {
-
+// 重载输出流运算符 <<，使得可以将 VehicleControl 类型的对象输出到 std::ostream 中
+// 该函数输出 VehicleControl 对象的各个成员变量的值，并格式化成易于理解的字符串形式
   static auto boolalpha(bool b) {
     return b ? "True" : "False";
   }
-
+// 输出 VehicleControl 对象的 throttle、steer、brake、hand_brake、reverse、manual_gear_shift 和 gear 等控制参数
   std::ostream &operator<<(std::ostream &out, const VehicleControl &control) {
     out << "VehicleControl(throttle=" << std::to_string(control.throttle)
         << ", steer=" << std::to_string(control.steer)
@@ -31,10 +41,10 @@ namespace rpc {
         << ", hand_brake=" << boolalpha(control.hand_brake)
         << ", reverse=" << boolalpha(control.reverse)
         << ", manual_gear_shift=" << boolalpha(control.manual_gear_shift)
-        << ", gear=" << std::to_string(control.gear) << ')';
-    return out;
+        << ", gear=" << std::to_string(control.gear) << ')';// 输出结束符号
+    return out;// 返回输出流对象，允许链式输出
   }
-  //������������Ļ���������Ϣ����������(throttle)��������ת��(steer)��ɲ��(brake)����ɲ(hand_brake)������(reverse)���Ƿ��ֶ�����(manual_gear_shift)�͵�ǰ��λ(gear)
+  //用于输出车辆的基本控制信息，包括油门(throttle)、方向盘转角(steer)、刹车(brake)、手刹(hand_brake)、倒车(reverse)、是否手动换挡(manual_gear_shift)和当前挡位(gear)
 
   std::ostream& operator<<(std::ostream& out, const VehicleAckermannControl& control) {
       out << "VehicleAckermannControl(steer=" << std::to_string(control.steer)
@@ -44,7 +54,7 @@ namespace rpc {
           << ", jerk=" << std::to_string(control.jerk) << ')';
       return out;
   }
-  //���Ackermannת��ģ�͵ĳ���������Ϣ������������ת��(steer)��ת���ٶ�(steer_speed)���ٶ�(speed)�����ٶ�(acceleration)�ͼӼ��ٶ�(jerk)
+  //输出Ackermann转向模型的车辆控制信息，包括方向盘转角(steer)、转向速度(steer_speed)、速度(speed)、加速度(acceleration)和加加速度(jerk)
 
   std::ostream& operator<<(std::ostream& out, const WalkerControl& control) {
       out << "WalkerControl(direction=" << control.direction
@@ -52,7 +62,7 @@ namespace rpc {
           << ", jump=" << boolalpha(control.jump) << ')';
       return out;
   }
-  //������˵Ŀ�����Ϣ����������(direction)���ٶ�(speed)���Ƿ���Ծ(jump)
+  //输出行人的控制信息，包括方向(direction)、速度(speed)和是否跳跃(jump)
 
   std::ostream& operator<<(std::ostream& out, const WalkerBoneControlIn& control) {
       out << "WalkerBoneControlIn(bone_transforms(";
@@ -63,13 +73,13 @@ namespace rpc {
       out << "))";
       return out;
   }
-  //��������˹������Ƶ�������Ϣ������һϵ�й����ı任(bone_transforms)��ÿ���任�����������ƺͱ任��Ϣ��
+  //输出对行人骨骼控制的输入信息，包括一系列骨骼的变换(bone_transforms)，每个变换包含骨骼名称和变换信息。
 
   std::ostream& operator<<(std::ostream& out, const BoneTransformDataOut& data) {
       out << "BoneTransformDataOut(name=" << data.bone_name << ", world=" << data.world << ", component=" << data.component << ", relative=" << data.relative << ')';
       return out;
   }
-  //�����λ�������Ƶ���Ϣ��������λ��(ratio)��������(down_ratio)��������(up_ratio)
+  //输出挡位物理控制的信息，包括挡位比(ratio)、降挡比(down_ratio)和升挡比(up_ratio)
 
   std::ostream& operator<<(std::ostream& out, const WalkerBoneControlOut& control) {
       out << "WalkerBoneControlOut(bone_transforms(";
@@ -80,7 +90,7 @@ namespace rpc {
       out << "))";
       return out;
   }
-  //��������������Ƶ���Ϣ��������̥Ħ����(tire_friction)��������(damping_rate)�����ת���(max_steer_angle)���뾶(radius)�����ɲ��Ť��(max_brake_torque)�������ɲŤ��(max_handbrake_torque)������ն����ֵ(lat_stiff_max_load)������ն�ֵ(lat_stiff_value)������ն�ֵ(long_stiff_value)�ͳ���λ��(position)
+  //输出车轮物理控制的信息，包括轮胎摩擦力(tire_friction)、阻尼率(damping_rate)、最大转向角(max_steer_angle)、半径(radius)、最大刹车扭矩(max_brake_torque)、最大手刹扭矩(max_handbrake_torque)、横向刚度最大值(lat_stiff_max_load)、横向刚度值(lat_stiff_value)、纵向刚度值(long_stiff_value)和车轮位置(position)
 
   std::ostream& operator<<(std::ostream& out, const GearPhysicsControl& control) {
       out << "GearPhysicsControl(ratio=" << std::to_string(control.ratio)
@@ -88,7 +98,7 @@ namespace rpc {
           << ", up_ratio=" << std::to_string(control.up_ratio) << ')';
       return out;
   }
-  //��������������Ƶ���Ϣ������Ť������(torque_curve)�����ת��(max_rpm)��ת������(moi)����ͬ����µ������ʡ��Ƿ�ʹ���Զ�����(use_gear_autobox)������ʱ��(gear_switch_time)�������ǿ��(clutch_strength)�����մ�����(final_ratio)��ǰ��������(forward_gears)������(mass)������ϵ��(drag_coefficient)������(center_of_mass)��ת������(steering_curve)��������Ϣ(wheels)���Ƿ�ʹ��ɨ�ӳ�����ײ(use_sweep_wheel_collision)
+  //输出车辆物理控制的信息，包括扭矩曲线(torque_curve)、最大转速(max_rpm)、转动惯量(moi)、不同情况下的阻尼率、是否使用自动换挡(use_gear_autobox)、换挡时间(gear_switch_time)、离合器强度(clutch_strength)、最终传动比(final_ratio)、前进挡数量(forward_gears)、质量(mass)、阻力系数(drag_coefficient)、质心(center_of_mass)、转向曲线(steering_curve)、车轮信息(wheels)和是否使用扫掠车轮碰撞(use_sweep_wheel_collision)
 
   std::ostream &operator<<(std::ostream &out, const WheelPhysicsControl &control) {
     out << "WheelPhysicsControl(tire_friction=" << std::to_string(control.tire_friction)
