@@ -164,15 +164,15 @@ unset BOOST_BASENAME
 # ==============================================================================
 # -- Get rpclib and compile it with libc++ and libstdc++ -----------------------
 # ==============================================================================
-
+# 设置rpclib的版本标签、基本名称
 RPCLIB_PATCH=v2.2.1_c5
 RPCLIB_BASENAME=rpclib-${RPCLIB_PATCH}-${CXX_TAG}
-
+# 设置rpclib的安装路径
 RPCLIB_LIBCXX_INCLUDE=${PWD}/${RPCLIB_BASENAME}-libcxx-install/include
 RPCLIB_LIBCXX_LIBPATH=${PWD}/${RPCLIB_BASENAME}-libcxx-install/lib
 RPCLIB_LIBSTDCXX_INCLUDE=${PWD}/${RPCLIB_BASENAME}-libstdcxx-install/include
 RPCLIB_LIBSTDCXX_LIBPATH=${PWD}/${RPCLIB_BASENAME}-libstdcxx-install/lib
-
+# 检查是否已经安装了rpclib，如果没有，则下载并编译rpclib
 if [[ -d "${RPCLIB_BASENAME}-libcxx-install" && -d "${RPCLIB_BASENAME}-libstdcxx-install" ]] ; then
   log "${RPCLIB_BASENAME} already installed."
 else
@@ -182,11 +182,11 @@ else
       ${RPCLIB_BASENAME}-libcxx-install ${RPCLIB_BASENAME}-libstdcxx-install
 
   log "Retrieving rpclib."
-
+# 下载rpclib源代码
   start_download_time=$(date +%s)
 
   git clone -b ${RPCLIB_PATCH} https://github.com/carla-simulator/rpclib.git ${RPCLIB_BASENAME}-source
-
+# 编译rpclib，使用libc++
   end_download_time=$(date +%s)
 
   echo "Elapsed Time downloading rpclib: $(($end_download_time-$start_download_time)) seconds"
@@ -210,7 +210,7 @@ else
   ninja install
 
   popd >/dev/null
-
+# 编译rpclib，使用libstdc++
   log "Building rpclib with libstdc++."
 
   mkdir -p ${RPCLIB_BASENAME}-libstdcxx-build
