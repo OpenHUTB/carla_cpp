@@ -136,15 +136,15 @@ namespace detail {
   // -- 访问当前场景 ------------------------------------------------------------
   // ===========================================================================
 
-  void Simulator::GetReadyCurrentEpisode() {
-    if (_episode == nullptr) {
-      ValidateVersions(_client);
-      _episode = std::make_shared<Episode>(_client, std::weak_ptr<Simulator>(shared_from_this()));
-      _episode->Listen();
-      if (!GetEpisodeSettings().synchronous_mode) {
-        WaitForTick(_client.GetTimeout());
+  void Simulator::GetReadyCurrentEpisode() {//在Simulator类中定义一个成员函数GetReadyCurrentEpisode
+    if (_episode == nullptr) {//检查当前是否已有一个_episode实例存在
+      ValidateVersions(_client);//如果没有，则首先验证客户端的版本兼容性
+      _episode = std::make_shared<Episode>(_client, std::weak_ptr<Simulator>(shared_from_this()));//创建一个新的_episode实例，使用智能指针管理内存
+      _episode->Listen();//开始监听_episode相关事件或状态变化
+      if (!GetEpisodeSettings().synchronous_mode) {//检查当前_episode的设置是否为非同步模式
+        WaitForTick(_client.GetTimeout());//使用客户端设置的超时时间作为等待时长
       }
-      _light_manager->SetEpisode(WeakEpisodeProxy{shared_from_this()});
+      _light_manager->SetEpisode(WeakEpisodeProxy{shared_from_this()});//将当前_episode的弱引用设置为灯光管理器
     }
   }
 EpisodeProxy Simulator::GetCurrentEpisode() {
