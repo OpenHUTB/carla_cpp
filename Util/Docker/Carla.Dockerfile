@@ -1,6 +1,6 @@
 FROM carla-prerequisites:latest#指定基础镜像
 
-ARG GIT_BRANCH
+ARG GIT_BRANCH#声明一个名为 GIT_BRANCH 的构建参数
 
 USER carla
 WORKDIR /home/carla#切换后续操作用户
