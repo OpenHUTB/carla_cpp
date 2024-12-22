@@ -82,7 +82,7 @@ except IndexError:
 
 import carla
 
-from carla import ColorConverter as cc
+from carla import ColorConverter as cc#从  carla  模块中单独导入  ColorConverter  类，并为其取了别名  cc 。
 
 import argparse
 import collections
