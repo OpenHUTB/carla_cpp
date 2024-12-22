@@ -1214,34 +1214,81 @@ def render(self, display):
         // 调用实例中的 `_notifications` 对象的 `render` 方法，将通知信息渲染到显示界面（`display`）上，显示之前通过 `notification` 等方法设置的各种提示、错误等通知内容。
         // 调用实例中的 `help` 对象（推测是与帮助信息显示相关的对象，其具体实现未完全展示）的 `render` 方法，将帮助信息也渲染到显示界面上，方便用户查看相关的操作帮助等内容，完善整个界面的信息展示效果。
 
+class HelpText(object):
+    """
+    Helper class to handle text output using pygame
 
-# ==============================================================================
-# -- FadingText ----------------------------------------------------------------
-# ==============================================================================
+    这个类是一个辅助类，主要用于借助 `pygame` 库来处理文本输出相关的操作，例如创建包含帮助信息文本的表面（Surface），
+    控制文本的显示与隐藏，并将文本内容渲染到指定的显示界面上，方便在程序中为用户展示操作帮助等相关文本信息。
+    """
+    def __init__(self, font, width, height):
+        """
+        类的构造函数（初始化方法），用于初始化 `HelpText` 类实例的各种属性，为后续处理和展示帮助文本做准备。
 
+        参数：
+        - `font`：一个 `pygame.font.Font` 类型的对象（推测，根据常见 `pygame` 文本渲染用法），代表了要用于渲染文本的字体样式，通过它可以将文本字符串渲染成可视化的图像表面，以便在界面上显示。
+        - `width`：表示显示界面的宽度（单位可能是像素，具体取决于使用场景和 `pygame` 的设置），用于确定帮助文本显示区域在水平方向上的位置等相关布局计算。
+        - `height`：表示显示界面的高度（单位同样可能是像素），用于确定帮助文本显示区域在垂直方向上的位置等相关布局计算。
+        """
+        lines = __doc__.split('\n')
+        // 将类的文档字符串（`__doc__`，即类定义上方的那个三引号包裹的描述性文本）按换行符 `\n` 进行分割，得到一个包含每一行文本的列表 `lines`，
+        // 这里可能是打算将类的文档字符串作为默认的帮助文本内容来使用（虽然实际应用中可能可以根据需求替换为更具体详细的帮助信息内容）。
 
-class FadingText(object):
-    def __init__(self, font, dim, pos):
         self.font = font
-        self.dim = dim
-        self.pos = pos
+        // 将传入的字体对象（`font`）赋值给实例属性 `self.font`，方便后续使用该字体来渲染文本。
+
+        self.line_space = 18
+        // 初始化实例属性 `self.line_space` 为 `18`，表示每行文本之间的垂直间距（单位可能是像素），用于控制帮助文本显示时的行间距，使文本排版更清晰美观。
+
+        self.dim = (780, len(lines) * self.line_space + 12)
+        // 初始化实例属性 `self.dim`，它是一个包含两个元素的元组，表示帮助文本显示区域的尺寸（宽度和高度）。宽度设置为 `780` 像素，高度根据帮助文本的行数（`len(lines)`）乘以每行的间距（`self.line_space`）再加上 `12` 像素来计算，
+        // 这个 `12` 像素可能是额外预留的一些边距等空间，以此确定整个帮助文本显示区域的大小。
+
+        self.pos = (0.5 * width - 0.5 * self.dim[0], 0.5 * height - 0.5 * self.dim[1])
+        // 初始化实例属性 `self.pos`，它是一个包含两个元素的元组，表示帮助文本显示区域在整个显示界面中的位置坐标（水平坐标和垂直坐标）。
+        // 通过将显示界面宽度（`width`）和高度（`height`）的一半分别减去帮助文本显示区域尺寸（`self.dim`）的一半，来将帮助文本显示区域定位在显示界面的中心位置，实现居中显示的效果。
+
         self.seconds_left = 0
-        self.surface = pygame.Surface(self.dim)
+        // 初始化实例属性 `self.seconds_left` 为 `0`，从变量名推测这个属性可能用于记录帮助文本还剩余显示的时间（单位为秒），不过在当前代码中未看到明显的基于时间控制显示时长的相关逻辑使用它，可能是预留的功能或者后续会完善的部分。
 
-    def set_text(self, text, color=(255, 255, 255), seconds=2.0):
-        text_texture = self.font.render(text, True, color)
         self.surface = pygame.Surface(self.dim)
-        self.seconds_left = seconds
+        // 创建一个新的 `pygame.Surface` 对象，它代表一个二维的图像表面，大小为之前确定的帮助文本显示区域尺寸（`self.dim`），这个表面将作为承载帮助文本内容的载体，后续会在这个表面上绘制文本等元素。
+
         self.surface.fill((0, 0, 0, 0))
-        self.surface.blit(text_texture, (10, 11))
+        // 使用黑色（`(0, 0, 0)`）且完全透明（透明度值为 `0`，即 `(0, 0, 0, 0)`）的颜色填充这个表面，这里先将表面清空或者设置为初始的透明状态，方便后续绘制文本等操作，使其初始状态符合预期的显示效果要求。
 
-    def tick(self, _, clock):
-        delta_seconds = 1e-3 * clock.get_time()
-        self.seconds_left = max(0.0, self.seconds_left - delta_seconds)
-        self.surface.set_alpha(500.0 * self.seconds_left)
+        for n, line in enumerate(lines):
+            text_texture = self.font.render(line, True, (255, 255, 255))
+            self.surface.blit(text_texture, (22, n * self.line_space))
+            self._render = False
+            // 遍历之前分割得到的帮助文本行列表（`lines`），对于每一行文本进行以下操作：
+            // - 使用实例中的字体对象（`self.font`）调用 `render` 方法，将当前行文本（`line`）渲染成一个图像表面（`text_texture`），设置文本颜色为白色（`(255, 255, 255)`），这样就得到了可视化的文本图像内容。
+            // - 使用 `self.surface`（即前面创建的用于承载文本的表面）的 `blit` 方法，将渲染好的文本图像表面（`text_texture`）绘制到 `self.surface` 上，位置在水平方向为 `22` 像素（可能是为了预留一定的左边距，使文本看起来更协调），垂直方向为当前行的索引值（`n`）乘以每行的间距（`self.line_space`），以此实现逐行将帮助文本绘制到指定的表面上。
+            // - 最后将实例属性 `_render` 设置为 `False`，从变量名和后续代码逻辑推测，这个属性用于控制帮助文本是否要渲染显示到最终的显示界面上，初始状态设为 `False` 表示默认不显示帮助文本。
+
+        self.surface.set_alpha(220)
+        // 设置帮助文本所在表面（`self.surface`）的透明度（`alpha` 值）为 `220`，使其呈现出一定的半透明效果，这样在显示帮助文本时，既可以让用户看到文本内容，又不会完全遮挡住后面的界面元素，达到较好的视觉显示效果。
+
+    def toggle(self):
+        """
+        函数功能：切换帮助文本的显示与隐藏状态，通过对 `_render` 属性取反来实现，方便用户通过操作（如按下特定按键）来控制帮助信息的显示与否。
+        """
+        self._render = not self._render
+        // 将实例属性 `_render` 的值进行取反操作，若原来为 `True`（表示显示帮助文本）则变为 `False`（隐藏帮助文本），反之亦然，以此来控制帮助文本在界面上的显示状态。
 
     def render(self, display):
-        display.blit(self.surface, self.pos)
+        """
+        函数功能：根据当前的显示状态（由 `_render` 属性决定），将帮助文本所在的表面（`self.surface`）渲染到给定的显示界面（`display`）上，
+        如果 `_render` 为 `True`，则进行绘制操作，实现帮助文本的显示；如果为 `False`，则不进行绘制，帮助文本保持隐藏状态。
+
+        参数说明：
+        - `self`：类的实例对象本身，通过它可以访问类的实例属性等信息，用于获取帮助文本所在的表面以及其显示位置等信息，以便进行渲染操作。
+        - `display`：一个 `pygame` 中的显示对象（推测，根据常见的 `pygame` 渲染相关代码结构），代表了整个要进行绘制显示的界面，所有的渲染操作都会作用到这个对象上，若帮助文本要显示，就会将其绘制到这个界面上呈现给用户。
+        """
+        if self._render:
+            display.blit(self.surface, self.pos)
+            // 如果当前 `_render` 属性为 `True`，表示需要显示帮助文本，则使用 `display`（显示界面对象）的 `blit` 方法，将帮助文本所在的表面（`self.surface`）绘制到显示界面上，
+            // 绘制的位置为之前初始化时确定的位置坐标（`self.pos`），从而将帮助文本显示在界面的相应位置上，供用户查看帮助信息内容。
 
 
 # ==============================================================================
