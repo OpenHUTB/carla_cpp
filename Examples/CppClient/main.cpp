@@ -141,7 +141,7 @@ int main(int argc, const char *argv[]) {
         transform.rotation.yaw += 180.0f;
         transform.rotation.pitch = -15.0f;
         spectator->SetTransform(transform);
-
+#操作场景中的观察者（  Spectator  ）对象，对其位置（  location  ）和旋转角度（  rotation  ）进行一系列的变换操作，最后将更新后的变换信息应用到观察者对象上，从而改变观察者在场景中的视角
         /*
         // Find a camera blueprint.
         // 查找一个相机蓝图，在蓝图库中查找代表语义分割相机的蓝图，如果找不到则会触发后续的断言异常，用于后续在车辆上挂载相机传感器
