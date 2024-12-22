@@ -4,8 +4,10 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+//使用UnrealBuildTool构建系统
 using UnrealBuildTool;
 
+//定义CarlaExporter类，继承自ModuleRules
 public class CarlaExporter : ModuleRules
 {
   // 构造函数，接收一个 ReadOnlyTargetRules 类型的参数 Target，并调用基类的构造函数
@@ -57,6 +59,7 @@ public class CarlaExporter : ModuleRules
         "SlateCore",
         "Physx",
         "EditorStyle",
+        //添加模块名称
         //... add private dependencies that you statically link with here...
         // 在这里添加其他需要静态链接的私有依赖模块
       }

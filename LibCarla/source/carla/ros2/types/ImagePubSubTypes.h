@@ -27,9 +27,10 @@
 
 #include "Image.h"
 
-#if !defined(GEN_API_VER) || (GEN_API_VER != 1)
+// 如果未定义GEN_API_VER或者GEN_API_VER不等于1
+#if!defined(GEN_API_VER) || (GEN_API_VER!= 1)
 #error \
-    Generated Image is not compatible with current installed Fast DDS. Please, regenerate it with fastddsgen.
+    生成的Image与当前安装的Fast DDS不兼容。请使用fastddsgen重新生成它。
 #endif  // GEN_API_VER
 
 namespace sensor_msgs
@@ -37,41 +38,51 @@ namespace sensor_msgs
     namespace msg
     {
         /*!
-         * @brief This class represents the TopicDataType of the type Image defined by the user in the IDL file.
+         * @brief 此类表示用户在IDL文件中定义的Image类型的主题数据类型。
          * @ingroup IMAGE
          */
         class ImagePubSubType : public eprosima::fastdds::dds::TopicDataType
         {
         public:
 
+            // 定义类型别名
             typedef Image type;
 
+            // 导出函数，用于构造ImagePubSubType对象
             eProsima_user_DllExport ImagePubSubType();
 
+            // 导出虚函数，用于析构ImagePubSubType对象
             eProsima_user_DllExport virtual ~ImagePubSubType() override;
 
+            // 导出虚函数，用于序列化数据
             eProsima_user_DllExport virtual bool serialize(
                     void* data,
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload) override;
 
+            // 导出虚函数，用于反序列化数据
             eProsima_user_DllExport virtual bool deserialize(
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload,
                     void* data) override;
 
+            // 导出虚函数，用于获取序列化大小提供者函数
             eProsima_user_DllExport virtual std::function<uint32_t()> getSerializedSizeProvider(
                     void* data) override;
 
+            // 导出虚函数，用于获取键
             eProsima_user_DllExport virtual bool getKey(
                     void* data,
                     eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
                     bool force_md5 = false) override;
 
+            // 导出虚函数，用于创建数据
             eProsima_user_DllExport virtual void* createData() override;
 
+            // 导出虚函数，用于删除数据
             eProsima_user_DllExport virtual void deleteData(
                     void* data) override;
 
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
+            // 导出内联函数，用于判断是否有界（如果定义了相关宏）
             eProsima_user_DllExport inline bool is_bounded() const override
             {
                 return false;
@@ -80,6 +91,7 @@ namespace sensor_msgs
         #endif  // TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
 
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_PLAIN
+            // 导出内联函数，用于判断是否为普通类型（如果定义了相关宏）
             eProsima_user_DllExport inline bool is_plain() const override
             {
                 return false;
@@ -88,6 +100,7 @@ namespace sensor_msgs
         #endif  // TOPIC_DATA_TYPE_API_HAS_IS_PLAIN
 
         #ifdef TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE
+            // 导出内联函数，用于构造样本（如果定义了相关宏）
             eProsima_user_DllExport inline bool construct_sample(
                     void* memory) const override
             {
@@ -96,7 +109,10 @@ namespace sensor_msgs
             }
 
         #endif  // TOPIC_DATA_TYPE_API_HAS_CONSTRUCT_SAMPLE
+
+            // MD5对象，用于计算MD5哈希值
             MD5 m_md5;
+            // 指向存储键的缓冲区的指针
             unsigned char* m_keyBuffer;
         };
     }

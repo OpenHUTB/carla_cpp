@@ -43,7 +43,7 @@ class ConstantVelocityAgent(BasicAgent):
         super().__init__(vehicle, target_speed, opt_dict=opt_dict, map_inst=map_inst, grp_inst=grp_inst)
 
         #在类的实例中设置一个属性_use_basic_behavior的值为Flase解释用途
-        self._use_basic_behavior = False  # Whether or not to use the BasicAgent behavior when the constant velocity is down
+        self._use_basic_behavior = False  # 是否在恒定速度降低时使用 BasicAgent 行为
         #值除以3.6
         self. _target_speed = target_speed / 3.6  # [m/s]
         #获取车辆的速度
@@ -53,7 +53,7 @@ class ConstantVelocityAgent(BasicAgent):
         #初始时还没有关联对象
         self._collision_sensor = None
 
-        self._restart_time = float('inf')  # Time after collision before the constant velocity behavior starts again
+        self._restart_time = float('inf')  # 碰撞后等速行为再次开始之前的时间
 
         # 检查选项字典中是否存在 'restart_time' 键，并将其值赋给 self._restart_time
         if 'restart_time' in opt_dict:
@@ -72,31 +72,31 @@ class ConstantVelocityAgent(BasicAgent):
         self._target_speed = speed / 3.6
         self._local_planner.set_speed(speed)
 
-    def stop_constant_velocity(self):
+    def stop_constant_velocity(self):#用于停止车辆的恒定速度行为。
         """Stops the constant velocity behavior"""
-        self.is_constant_velocity_active = False
-        self._vehicle.disable_constant_velocity()
-        self._constant_velocity_stop_time = self._world.get_snapshot().timestamp.elapsed_seconds
+        self.is_constant_velocity_active = False#这可能是用来标记恒定速度行为是否激活的布尔值。
+        self._vehicle.disable_constant_velocity()#这可能是一个用来停止车辆恒定速度的函数。
+        self._constant_velocity_stop_time = self._world.get_snapshot().timestamp.elapsed_seconds#获取当前时间戳，并将其赋值给self._constant_velocity_stop_time
 
-    def restart_constant_velocity(self):
+    def restart_constant_velocity(self):#方法用于重新启动车辆的恒定速度行为。
         """Public method to restart the constant velocity"""
         self.is_constant_velocity_active = True
-        self._set_constant_velocity(self._target_speed)
+        self._set_constant_velocity(self._target_speed)#这可能是一个用来设置车辆恒定速度的函数 
 
-    def _set_constant_velocity(self, speed):
+    def _set_constant_velocity(self, speed):#它接受一个参数 speed 用于设置车辆的恒定速度。
         """Forces the agent to drive at the specified speed"""
-        self._vehicle.enable_constant_velocity(carla.Vector3D(speed, 0, 0))
+        self._vehicle.enable_constant_velocity(carla.Vector3D(speed, 0, 0))#创建了一个三维向量，其中速度值用于x轴（前进方向），y轴和z轴（横向和垂直方向）的速度被设置为0。
 
-    def run_step(self):
+    def run_step(self):#这是导航过程中执行每一步的方法。
         """Execute one step of navigation."""
         if not self.is_constant_velocity_active:
-            if self._world.get_snapshot().timestamp.elapsed_seconds - self._constant_velocity_stop_time > self._restart_time:
+            if self._world.get_snapshot().timestamp.elapsed_seconds - self._constant_velocity_stop_time > self._restart_time:#获取当前世界的时间戳，并计算自   _constant_velocity_stop_time   以来经过的时间。
                 self.restart_constant_velocity()
-                self.is_constant_velocity_active = True
+                self.is_constant_velocity_active = True#表示恒定速度模式现在是激活状态。
             elif self._use_basic_behavior:
                 return super(ConstantVelocityAgent, self).run_step()
             else:
-                return carla.VehicleControl()
+                return carla.VehicleControl()#这通常是一个空的控制命令，意味着不改变车辆的当前状态。
 
         hazard_detected = False
         # 初始化危险检测标志为False，代表还未检测到危险情况
@@ -128,7 +128,7 @@ class ConstantVelocityAgent(BasicAgent):
             # 标记检测到危险情况
             hazard_detected = True
 
-        # Check if the vehicle is affected by a red traffic light
+        # 检查车辆是否受到红色交通灯的影响
         max_tlight_distance = self._base_tlight_threshold + 0.3 * vehicle_speed
         # 检测车辆是否受交通信号灯影响，返回是否受影响等信息
         affected_by_tlight, _ = self._affected_by_traffic_light(lights_list, max_tlight_distance)
@@ -138,8 +138,7 @@ class ConstantVelocityAgent(BasicAgent):
             # 标记检测到危险情况
             hazard_detected = True
 
-        # The longitudinal PID is overwritten by the constant velocity but it is
-        # still useful to apply it so that the vehicle isn't moving with static wheels
+        # 纵向 PID 被恒定速度覆盖，但应用它仍然很有用，这样车辆就不会在静止车轮下移动
         control = self._local_planner.run_step()
         if hazard_detected:
             self._set_constant_velocity(hazard_speed)

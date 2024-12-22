@@ -4,54 +4,68 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "Carla.h"
-#include "Carla/Game/CarlaEpisode.h"
-#include "Carla/Game/CarlaStatics.h"
+#include "Carla.h" // 包含主Carla头文件，提供Carla仿真框架的核心功能
+#include "Carla/Game/CarlaEpisode.h" // 包含Carla游戏环节的头文件，表示仿真会话
+#include "Carla/Game/CarlaStatics.h" // 包含Carla静态变量和函数的头文件，提供全局访问点
 
-#include <compiler/disable-ue4-macros.h>
-#include <carla/opendrive/OpenDriveParser.h>
-#include <carla/rpc/String.h>
-#include <compiler/enable-ue4-macros.h>
+#include <compiler/disable-ue4-macros.h> // 禁用Unreal Engine的宏，防止与Carla代码冲突
+#include <carla/opendrive/OpenDriveParser.h> // 包含Carla OpenDrive解析器的头文件，用于解析OpenDrive文件
+#include <carla/rpc/String.h> // 包含Carla RPC字符串类型的头文件，用于网络通信
+#include <compiler/enable-ue4-macros.h> // 启用Unreal Engine的宏
 
-#include "Carla/Sensor/Sensor.h"
-#include "Carla/Util/BoundingBoxCalculator.h"
-#include "Carla/Util/RandomEngine.h"
-#include "Carla/Vehicle/VehicleSpawnPoint.h"
-#include "Carla/Game/CarlaStatics.h"
-#include "Carla/Game/CarlaStaticDelegates.h"
-#include "Carla/MapGen/LargeMapManager.h"
+#include "Carla/Sensor/Sensor.h" // 包含Carla传感器的头文件，表示仿真中的传感器
+#include "Carla/Util/BoundingBoxCalculator.h" // 包含边界框计算器的头文件，用于计算Actor的边界框
+#include "Carla/Util/RandomEngine.h" // 包含随机引擎的头文件，提供随机数生成功能
+#include "Carla/Vehicle/VehicleSpawnPoint.h" // 包含车辆生成点的头文件，表示车辆在地图上的生成位置
+#include "Carla/Game/CarlaStatics.h" // 重复包含，可能是为了强调其重要性
+#include "Carla/Game/CarlaStaticDelegates.h" // 包含Carla静态委托的头文件，用于注册和管理事件
+#include "Carla/MapGen/LargeMapManager.h" // 包含大地图管理器的头文件，管理大型开放世界地图
 
-#include "Engine/StaticMeshActor.h"
-#include "EngineUtils.h"
-#include "GameFramework/SpectatorPawn.h"
-#include "GenericPlatform/GenericPlatformProcess.h"
-#include "Kismet/GameplayStatics.h"
-#include "Materials/MaterialParameterCollection.h"
-#include "Materials/MaterialParameterCollectionInstance.h"
-#include "Misc/FileHelper.h"
-#include "Misc/Paths.h"
+#include "Engine/StaticMeshActor.h" // 包含Unreal Engine静态网格Actor的头文件，表示3D模型
+#include "EngineUtils.h" // 包含Unreal Engine工具的头文件，提供通用工具函数
+#include "GameFramework/SpectatorPawn.h" // 包含观察者Pawn的头文件，表示玩家的观察角色
+#include "GenericPlatform/GenericPlatformProcess.h" // 包含通用平台进程的头文件，提供跨平台进程功能
+#include "Kismet/GameplayStatics.h" // 包含Kismet游戏逻辑静态函数的头文件，提供蓝图可用的静态函数
+#include "Materials/MaterialParameterCollection.h" // 包含材质参数集合的头文件，用于材质参数管理
+#include "Materials/MaterialParameterCollectionInstance.h" // 包含材质参数集合实例的头文件，用于材质参数的实例化
+#include "Misc/FileHelper.h" // 包含文件帮助函数的头文件，提供文件操作功能
+#include "Misc/Paths.h" // 包含路径管理的头文件，提供路径相关功能
 
+// 静态函数，根据交通标志状态返回对应的标识符
 static FString UCarlaEpisode_GetTrafficSignId(ETrafficSignState State)
 {
-  using TSS = ETrafficSignState;
-  switch (State)
+  using TSS = ETrafficSignState; // 使用别名TSS简化ETrafficSignState的调用
+  switch (State) // 根据交通标志状态进行switch判断
   {
-    case TSS::TrafficLightRed:
-    case TSS::TrafficLightYellow:
-    case TSS::TrafficLightGreen:  return TEXT("traffic.traffic_light");
-    case TSS::SpeedLimit_30:      return TEXT("traffic.speed_limit.30");
-    case TSS::SpeedLimit_40:      return TEXT("traffic.speed_limit.40");
-    case TSS::SpeedLimit_50:      return TEXT("traffic.speed_limit.50");
-    case TSS::SpeedLimit_60:      return TEXT("traffic.speed_limit.60");
-    case TSS::SpeedLimit_90:      return TEXT("traffic.speed_limit.90");
-    case TSS::SpeedLimit_100:     return TEXT("traffic.speed_limit.100");
-    case TSS::SpeedLimit_120:     return TEXT("traffic.speed_limit.120");
-    case TSS::SpeedLimit_130:     return TEXT("traffic.speed_limit.130");
-    case TSS::StopSign:           return TEXT("traffic.stop");
-    case TSS::YieldSign:          return TEXT("traffic.yield");
-    default:                      return TEXT("traffic.unknown");
+    case TSS::TrafficLightRed: // 红灯状态
+    case TSS::TrafficLightYellow: // 黄灯状态
+    case TSS::TrafficLightGreen: // 绿灯状态
+      return TEXT("traffic.traffic_light"); // 返回交通灯的标识符
+    case TSS::SpeedLimit_30: // 速度限制30标识
+      return TEXT("traffic.speed_limit.30");
+    case TSS::SpeedLimit_40: // 速度限制40标识
+      return TEXT("traffic.speed_limit.40");
+    case TSS::SpeedLimit_50: // 速度限制50标识
+      return TEXT("traffic.speed_limit.50");
+    case TSS::SpeedLimit_60: // 速度限制60标识
+      return TEXT("traffic.speed_limit.60");
+    case TSS::SpeedLimit_90: // 速度限制90标识
+      return TEXT("traffic.speed_limit.90");
+    case TSS::SpeedLimit_100: // 速度限制100标识
+      return TEXT("traffic.speed_limit.100");
+    case TSS::SpeedLimit_120: // 速度限制120标识
+      return TEXT("traffic.speed_limit.120");
+    case TSS::SpeedLimit_130: // 速度限制130标识
+      return TEXT("traffic.speed_limit.130");
+    case TSS::StopSign: // 停车标识
+      return TEXT("traffic.stop");
+    case TSS::YieldSign: // 让路标识
+      return TEXT("traffic.yield");
+    default: // 其他未知状态
+      return TEXT("traffic.unknown"); // 返回未知交通标志的标识符
   }
 }
+
 
 UCarlaEpisode::UCarlaEpisode(const FObjectInitializer &ObjectInitializer)
   : Super(ObjectInitializer),

@@ -135,7 +135,7 @@
     - var_name: name
       type: str
       doc: >
-        The name of the map. It corresponds to the .umap from Unreal Engine that is loaded from a CARLA server, which then references to the .xodr road description.
+        The name of the map. It corresponds to the .umap from Unreal Engine that is loaded from a CARLA server, which then references to the .xodr road description.# 地图名称，对应于从CARLA服务器加载的Unreal Engine中的 .umap 文件，随后引用到 .xodr 道路描述文件。
     # - METHODS ----------------------------
     methods:
     - def_name: __init__
@@ -143,14 +143,14 @@
       - param_name: name
         type: str
         doc: >
-          Name of the current map.
+          Name of the current map.# 当前地图的名称。
       - param_name: xodr_content
         type: str
         doc: >
           .xodr content in string format.
       return: list(carla.Transform)
       doc: >
-        Constructor for this class. Though a map is automatically generated when initializing the world, using this method in no-rendering mode facilitates working with an .xodr without any CARLA server running.
+        Constructor for this class. Though a map is automatically generated when initializing the world, using this method in no-rendering mode facilitates working with an .xodr without any CARLA server running.# 该类的构造函数。尽管在初始化世界时会自动生成地图，但在不渲染模式下使用此方法可以在没有CARLA服务器运行的情况下处理 .xodr 文件。
     # --------------------------------------
     - def_name: generate_waypoints
       params:
@@ -158,10 +158,10 @@
         type: float
         param_units: meters
         doc: >
-          Approximate distance between waypoints.
+          Approximate distance between waypoints.# 每个路点之间的大致距离。
       return: list(carla.Waypoint)
       doc: >
-        Returns a list of waypoints with a certain distance between them for every lane and centered inside of it. Waypoints are not listed in any particular order. Remember that waypoints closer than 2cm within the same road, section and lane will have the same identificator.
+        Returns a list of waypoints with a certain distance between them for every lane and centered inside of it. Waypoints are not listed in any particular order. Remember that waypoints closer than 2cm within the same road, section and lane will have the same identificator.# 返回一系列道路上各车道的路点，这些路点之间保持指定的距离，并位于车道的中心。路点的顺序没有特别要求。请注意，距离不到2cm的路点将在同一条道路、段落和车道内具有相同的标识符。
     # --------------------------------------
     - def_name: save_to_disk
       params:
@@ -182,12 +182,12 @@
         type: carla.Location
       return: carla.GeoLocation
       doc: >
-        Converts a given `location`, a point in the simulation, to a carla.GeoLocation, which represents world coordinates. The geographical location of the map is defined inside OpenDRIVE within the tag <b><georeference></b>.
+        Converts a given `location`, a point in the simulation, to a carla.GeoLocation, which represents world coordinates. The geographical location of the map is defined inside OpenDRIVE within the tag <b> # 将给定的 `location`（模拟中的某个点）转换为 carla.GeoLocation，表示世界坐标。地图的地理位置在 OpenDRIVE 文件中的 <b><georeference></b> 标签内定义。<georeference></b>.
     # --------------------------------------
     - def_name: get_all_landmarks
       doc: >
         Returns all the landmarks in the map. Landmarks retrieved using this method have a __null__ waypoint.
-      return: list(carla.Landmark)
+      return: list(carla.Landmark)# 返回地图中的所有地标。通过此方法检索到的地标具有 __null__ 路点。
     # --------------------------------------
     - def_name: get_all_landmarks_from_id
       doc: >
@@ -197,7 +197,7 @@
         type: string
         doc: >
           The OpenDRIVE ID of the landmarks.
-      return: list(carla.Landmark)
+      return: list(carla.Landmark)# 返回具有特定 OpenDRIVE ID 的地标。通过此方法检索到的地标具有 __null__ 路点。
     # --------------------------------------
     - def_name: get_all_landmarks_of_type
       doc: >
@@ -207,7 +207,7 @@
         type: string
         doc: >
           The type of the landmarks.
-      return: list(carla.Landmark)
+      return: list(carla.Landmark) # 返回特定类型的地标。通过此方法检索到的地标具有 __null__ 路点。
     # --------------------------------------
     - def_name: get_landmark_group
       doc: >
@@ -217,17 +217,17 @@
         type: carla.Landmark
         doc: >
           A landmark that belongs to the group.
-      return: list(carla.Landmark)
+      return: list(carla.Landmark)# 返回指定地标所在组中的所有地标（包括指定地标本身）。如果该地标不属于任何组，则返回空列表。
     # --------------------------------------
     - def_name: get_spawn_points
       return: list(carla.Transform)
       doc: >
-        Returns a list of recommendations made by the creators of the map to be used as spawning points for the vehicles. The list includes carla.Transform objects with certain location and orientation. Said locations are slightly on-air in order to avoid Z-collisions, so vehicles fall for a bit before starting their way.
+        Returns a list of recommendations made by the creators of the map to be used as spawning points for the vehicles. The list includes carla.Transform objects with certain location and orientation. Said locations are slightly on-air in order to avoid Z-collisions, so vehicles fall for a bit before starting their way.# 返回一组由地图创建者推荐的车辆生成点。这些点包含 carla.Transform 对象，具有特定的位置和朝向。位置稍微位于空中，以避免 Z 轴碰撞，因此车辆会先下落一段时间再开始行驶。
     # --------------------------------------
     - def_name: get_topology
       doc: >
         Returns a list of tuples describing a minimal graph of the topology of the OpenDRIVE file. The tuples contain pairs of waypoints located either at the point a road begins or ends. The first one is the origin and the second one represents another road end that can be reached. This graph can be loaded into [NetworkX](https://networkx.github.io/) to work with. Output could look like this: <b>[(w0, w1), (w0, w2), (w1, w3), (w2, w3), (w0, w4)]</b>.
-      return: list(tuple(carla.Waypoint, carla.Waypoint))
+      return: list(tuple(carla.Waypoint, carla.Waypoint)) # 返回描述 OpenDRIVE 文件拓扑结构的最小图的元组列表。每个元组包含两个 waypoints，分别表示一条道路的起点和终点。第一个是起点，第二个是可以到达的另一个路段终点。这个图可以加载到 [NetworkX](https://networkx.github.io/) 中进行处理。输出示例：<b>[(w0, w1), (w0, w2), (w1, w3), (w2, w3), (w0, w4)]</b>。
     # --------------------------------------
     - def_name: get_waypoint
       doc: >
@@ -249,7 +249,7 @@
         default: carla.LaneType.Driving
         doc: >
           Limits the search for nearest lane to one or various lane types that can be flagged.
-      return: carla.Waypoint
+      return: carla.Waypoint# 返回一个位于精确位置的 waypoint 或转换到最近车道中心的 waypoint。车道类型可以通过 `LaneType.Driving & LaneType.Shoulder` 等标志来定义。如果没有找到 waypoint，则返回 <b>None</b>，这种情况通常发生在请求获取精确位置的 waypoint 时。这样可以方便地检查某个点是否在某条道路上，否则它会返回相应的 waypoint。
     # --------------------------------------
     - def_name: get_waypoint_xodr
       doc: >
@@ -268,12 +268,12 @@
         param_units: meters
         doc: >
           Specify the length from the road start.
-      return: carla.Waypoint
+      return: carla.Waypoint# 如果所有传入参数正确，则返回一个 waypoint；否则返回 __None__。
     # --------------------------------------
     - def_name: get_crosswalks
       doc: >
         Returns a list of locations with all crosswalk zones in the form of closed polygons. The first point is repeated, symbolizing where the polygon begins and ends.
-      return: list(carla.Location)
+      return: list(carla.Location) # 返回一个包含所有人行横道区域的点列表，区域以闭合多边形形式表示。第一个点重复，表示多边形的起点和终点。
     # --------------------------------------
     - def_name: cook_in_memory_map
       params:
@@ -282,7 +282,7 @@
         doc: >
           Path to the intended location of the stored binary map file.
       doc: >
-        Generates a binary file from the CARLA map containing information used by the Traffic Manager. This method is only used during the import process for maps.
+        Generates a binary file from the CARLA map containing information used by the Traffic Manager. This method is only used during the import process for maps.# 生成一个二进制文件，该文件来自 CARLA 地图，包含 Traffic Manager 使用的信息。此方法仅在导入地图的过程中使用。
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
@@ -317,16 +317,17 @@
       Waypoints in CARLA are described as 3D directed points. They have a carla.Transform which locates the waypoint in a road and orientates it according to the lane. They also store the road information belonging to said point regarding its lane and lane markings.  
       <br><br>
       All the information regarding waypoints and the [waypoint API](../../core_map/#navigation-in-carla) is retrieved as provided by the OpenDRIVE file. Once the client asks for the map object to the server, no longer communication will be needed.
-    # - PROPERTIES -------------------------
+    # - PROPERTIES -------------------------# CARLA中的Waypoints描述为3D定向点。它们有一个carla.Transform，定位在道路中的Waypoints，并根据车道方向进行定位。它们还存储与此点相关的道路信息，包括车道和车道标线信息。
+      # 所有与Waypoints相关的信息及其[waypoint API](../../core_map/#navigation-in-carla)是根据OpenDRIVE文件提供的。一旦客户端向服务器请求地图对象，后续不再需要通信。
     instance_variables:
     - var_name: id
       type: int
       doc: >
-        The identifier is generated using a hash combination of the <b>road</b>, <b>section</b>, <b>lane</b> and <b>s</b> values that correspond to said point in the OpenDRIVE geometry. The <b>s</b> precision is set to 2 centimeters, so 2 waypoints closer than 2 centimeters in the same road, section and lane, will have the same identificator.
+        The identifier is generated using a hash combination of the <b>road</b>, <b>section</b>, <b>lane</b> and <b>s</b> values that correspond to said point in the OpenDRIVE geometry. The <b>s</b> precision is set to 2 centimeters, so 2 waypoints closer than 2 centimeters in the same road, section and lane, will have the same identificator.# 标识符是通过对OpenDRIVE几何体中的道路、段落、车道和s值进行哈希组合生成的。<b>s</b>的精度设置为2厘米，因此在相同的道路、段落和车道中，距离小于2厘米的两个Waypoints将具有相同的标识符。
     - var_name: transform
       type: carla.Transform
       doc: >
-        Position and orientation of the waypoint according to the current lane information. This data is computed the first time it is accessed. It is not created right away in order to ease computing costs when lots of waypoints are created but their specific transform is not needed.
+        Position and orientation of the waypoint according to the current lane information. This data is computed the first time it is accessed. It is not created right away in order to ease computing costs when lots of waypoints are created but their specific transform is not needed. # Waypoint的位置信息和方向信息，基于当前车道的信息。该数据会在首次访问时计算，而不是立即创建，以减少在创建大量Waypoints但不需要其具体变换时的计算成本。
     - var_name: road_id
       type: int
       doc: >
@@ -338,7 +339,7 @@
     - var_name: is_junction
       type: bool
       doc: >
-        <b>True</b> if the current Waypoint is on a junction as defined by OpenDRIVE.
+        <b>True</b> if the current Waypoint is on a junction as defined by OpenDRIVE. # 如果当前Waypoint位于OpenDRIVE定义的交叉口上，则为<b>True</b>。
     - var_name: junction_id
       type: int
       doc: >
@@ -346,7 +347,7 @@
     - var_name: lane_id
       type: int
       doc: >
-        OpenDRIVE lane's id, this value can be positive or negative which represents the direction of the current lane with respect to the road. For more information refer to OpenDRIVE [documentation](http://www.opendrive.org/docs/OpenDRIVEFormatSpecRev1.4H.pdf#page=20)
+        OpenDRIVE lane's id, this value can be positive or negative which represents the direction of the current lane with respect to the road. For more information refer to OpenDRIVE [documentation](http://www.opendrive.org/docs/OpenDRIVEFormatSpecRev1.4H.pdf#page=20) # OpenDRIVE车道的ID，这个值可以是正数或负数，表示当前车道相对于道路的方向。更多信息请参阅OpenDRIVE [文档](http://www.opendrive.org/docs/OpenDRIVEFormatSpecRev1.4H.pdf#page=20)
     - var_name: s
       type: float
       param_units: meters
@@ -356,11 +357,11 @@
       type: float
       param_units: meters
       doc: >
-        Horizontal size of the road at current <b>s</b>.
+        Horizontal size of the road at current <b>s</b>. # 当前<b>s</b>值对应的道路的横向尺寸（车道宽度）。
     - var_name: lane_change
       type: carla.LaneChange
       doc: >
-        Lane change definition of the current Waypoint's location, based on the traffic rules defined in the OpenDRIVE file. It states if a lane change can be done and in which direction.
+        Lane change definition of the current Waypoint's location, based on the traffic rules defined in the OpenDRIVE file. It states if a lane change can be done and in which direction.# 当前Waypoint所在位置的车道变换定义，基于OpenDRIVE文件中定义的交通规则。它指示是否可以进行车道变换，以及变换的方向。
     - var_name: lane_type
       type: carla.LaneType
       doc: >
@@ -381,12 +382,12 @@
         type: float
         param_units: meters
         doc: >
-          The approximate distance where to get the next waypoints.
+          The approximate distance where to get the next waypoints.# 获取下一个Waypoints的预估距离。
       return: list(carla.Waypoint)
       doc: >
         Returns a list of waypoints at a certain approximate `distance` from the current one. It takes into account the road and its possible deviations without performing any lane change and returns one waypoint per option.
 
-        The list may be empty if the lane is not connected to any other at the specified distance.
+        The list may be empty if the lane is not connected to any other at the specified distance.# 返回距离当前Waypoint某一预估距离的Waypoint列表。它考虑到道路及其可能的偏离情况，不进行任何车道变换，并为每个选项返回一个Waypoint。
     # --------------------------------------
     - def_name: next_until_lane_end
       params:
@@ -397,7 +398,7 @@
           The approximate distance between waypoints.
       return: list(carla.Waypoint)
       doc: >
-        Returns a list of waypoints from this to the end of the lane separated by a certain `distance`.
+        Returns a list of waypoints from this to the end of the lane separated by a certain `distance`. # 返回从当前Waypoint到车道尽头的一系列Waypoints，Waypoints之间的距离由`distance`指定。
     # --------------------------------------
     - def_name: previous
       params:

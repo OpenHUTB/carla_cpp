@@ -56,9 +56,13 @@ def commit_info():
 
     # 统计每个作者的增加行数
     author_stats = defaultdict(lambda: {'added': 0, 'deleted': 0})
+    #初始化当前作者为None
     current_author = None
+    #遍历日志的每一行
     for line in log_data.splitlines():
+        #如果行中不包括制表符（\t）或者行内容为空
         if '\t' not in line or line.isdigit():
+            #将当前作者设为该行内容（去除首尾空白字符）
             current_author = line.strip()
         elif '\t' in line:
             added, deleted, _ = line.split('\t')
@@ -91,13 +95,18 @@ while True:
     #将响应数据解析为JSON格式
     issues = response.json()
     if not issues:
+        #跳出循环
         break
 
+    #遍历所有问题
     for issue in issues:
         if 'pull_request' in issue:
+            #跳过当前循环，继续下一个问题的处理
             continue
 
+        #获取问题的用户登陆名
         user = issue['user']['login']
+        #更新用户提出问题的计数
         issue_counts[user] = issue_counts.get(user, 0) + 1
 
         comments_url = issue['comments_url']

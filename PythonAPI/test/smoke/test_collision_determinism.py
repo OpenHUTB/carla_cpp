@@ -192,20 +192,21 @@ class TwoCarsHighSpeedCollision(Scenario):  # 继承Scenario类，定义一个�
         self.wait(1)
 
 
-class ThreeCarsSlowSpeedCollision(Scenario):
+class ThreeCarsSlowSpeedCollision(Scenario):# 继承Scenario类，定义一个低速碰撞场景
+     # 初始化场景的方法
     def init_scene(self, prefix, settings = None, spectator_tr = None):
-        super(ThreeCarsSlowSpeedCollision, self).init_scene(prefix, settings, spectator_tr)
+        super(ThreeCarsSlowSpeedCollision, self).init_scene(prefix, settings, spectator_tr)  # 调用基类的初始化方法
 
-        blueprint_library = self.world.get_blueprint_library()
-
+        blueprint_library = self.world.get_blueprint_library()# 获取蓝图库
+        # 获取车辆蓝图
         vehicle00_bp = blueprint_library.filter("prius")[0]
         vehicle01_bp = blueprint_library.filter("a2")[0]
         vehicle02_bp = blueprint_library.filter("lincoln")[0]
-
+         # 设置车辆的初始位置和朝向
         vehicle00_tr = carla.Transform(carla.Location(110, -255, 0.05), carla.Rotation(yaw=180))
         vehicle01_tr = carla.Transform(carla.Location(53, -257, 0.00), carla.Rotation(yaw=0))
         vehicle02_tr = carla.Transform(carla.Location(85, -230, 0.04), carla.Rotation(yaw=-90))
-
+         # 创建一个批量请求，用于生成两个车辆并设置它们的目标速度
         batch = [
             SpawnActor(vehicle00_bp, vehicle00_tr)
             .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(-15, 0, 0))),

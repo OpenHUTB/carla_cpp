@@ -17,11 +17,11 @@
 // -- FDataStreamTmpl ----------------------------------------------------------
 // =============================================================================
 
-/// A streaming channel for sending sensor data to clients. Each sensor has its
-/// own FDataStream. Note however that this class does not provide a send
-/// function. In order to send data, a FAsyncDataStream needs to be created
-/// using "MakeAsyncDataStream" function. FAsyncDataStream allows sending data
-/// from any thread.
+/// 用于将传感器数据发送到客户端的流式处理通道。每个传感器
+/// 都有自己的 FDataStream。但请注意，此类不提供 send 函数。
+/// 为了发送数据，需要使用 “MakeAsyncDataStream” 函数
+/// 创建一个 FAsyncDataStream。
+/// FAsyncDataStream 允许从任何线程发送数据。
 template <typename T>
 class FDataStreamTmpl
 {
@@ -33,7 +33,7 @@ public:
 
   FDataStreamTmpl(StreamType InStream) : Stream(std::move(InStream)) {}
 
-  /// Create a FAsyncDataStream object.
+  /// 创建 FAsyncDataStream 对象。
   ///
   /// @pre This functions needs to be called in the game-thread.
   template <typename SensorT>
@@ -48,7 +48,7 @@ public:
     return Stream.has_value();
   }
 
-  /// Return the token that allows subscribing to this stream.
+  /// 返回允许订阅此流的令牌。
   auto GetToken() const
   {
     check(Stream.has_value());
