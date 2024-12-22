@@ -270,7 +270,9 @@
 #pragma pop_macro("LLM_PLATFORM_SCOPE_APPLE")
 // 恢复之前保存的宏"LLM_PLATFORM_SCOPE_APPLE"的定义状态
 #pragma pop_macro("APPLE_PLATFORM_OBJECT_ALLOC_OVERRIDES")
+// 恢复之前保存的宏"APPLE_PLATFORM_OBJECT_ALLOC_OVERRIDES"的定义状态
 #pragma pop_macro("checkThreadGraph")
+// 恢复之前保存的宏"checkThreadGraph"的定义状态
 #pragma pop_macro("CA_SUPPRESS")
 #pragma pop_macro("CA_ASSUME")
 #pragma pop_macro("CA_CONSTANT_IF")
