@@ -1,119 +1,119 @@
-# 设置项目标题
+# 设置项目的标题，这将出现在生成的文档中。
 PROJECT_NAME = CARLA
 
-# 设置文档输出目录
+# 指定输出文档的目录。
 OUTPUT_DIRECTORY = Doxygen
 
-# 设置文档输出语言
+# 设置输出文档的语言。这里设置为中文。
 OUTPUT_LANGUAGE = Chinese
 
-# 为每个类创建子目录
+# 为项目中的每个类创建一个子目录，在HTML输出中很有用。
 CREATE_SUBDIRS = YES
 
-# 不显示文件的完整路径
+# 在文档中不显示文件的完整路径，只显示相对路径或文件名。
 FULL_PATH_NAMES = NO
 
-# 使用JavaDoc风格注释作为描述
+# 使用JavaDoc风格的注释作为简短描述的默认格式。
 JAVADOC_AUTOBRIEF = YES
 
-# 设置缓存大小
+# 设置用于查找符号名称的缓存大小。增加此值可以加快大型项目的速度。
 LOOKUP_CACHE_SIZE = 3
 
-# 提取所有类和文件
+# 提取项目中的所有类和文件，即使它们没有被文档化。
 EXTRACT_ALL = YES
 
-# 提取私有成员
+# 提取并显示私有成员（变量、函数等）。
 EXTRACT_PRIVATE = YES
 
-# 提取静态成员
+# 提取并显示静态成员。
 EXTRACT_STATIC = YES
 
-# 类名和文件名大小写敏感
+# 在文档中对类名和文件名保持大小写敏感。
 CASE_SENSE_NAMES = YES
 
-# 按字母顺序排序描述
+# 对简短描述进行字母顺序排序。
 SORT_BRIEF_DOCS = YES
 
-# 不警告未记录的类或文件
+# 不对未文档化的类或文件发出警告。
 WARN_IF_UNDOCUMENTED = NO
 
-# 警告信息输出到日志文件
+# 将警告信息输出到指定的日志文件中。
 WARN_LOGFILE = Doxygen/warnings.log
 
-# 指定要扫描的文件路径
+# 指定Doxygen需要扫描的源代码文件路径。
 INPUT = Unreal/CarlaUE4/Source Unreal/CarlaUE4/Plugins/Carla/Source LibCarla/source
 
-# 指定要扫描的文件类型
+# 指定Doxygen应该查找哪些类型的文件。
 FILE_PATTERNS = *.cpp *.h *.hpp *.cc
 
-# 排除特定文件
+# 排除不需要扫描的特定文件。
 EXCLUDE = LibCarla/source/carla/Version.h
 
-# 递归扫描目录
+# 递归地扫描指定的目录。
 RECURSIVE = YES
 
-# 包含源代码浏览视图
+# 包含源代码浏览视图，允许用户查看源代码。
 SOURCE_BROWSER = YES
 
-# 保留源代码中的注释
+# 在生成的文档中保留源代码中的注释。
 STRIP_CODE_COMMENTS = NO
 
-# 显示函数的被引用关系
+# 显示函数被哪些其他函数或实体引用的关系。
 REFERENCED_BY_RELATION = YES
 
-# 显示函数的引用关系
+# 显示函数引用了哪些其他函数或实体的关系。
 REFERENCES_RELATION = YES
 
-# 不生成字母排序的索引
+# 不生成按字母顺序排列的索引页。
 ALPHABETICAL_INDEX = NO
 
-# 支持HTML文档动态显示和隐藏
+# 在HTML文档中启用动态显示和隐藏部分的功能。
 HTML_DYNAMIC_SECTIONS = YES
 
-# 不生成索引页
+# 不生成包含所有文档的主索引页。
 DISABLE_INDEX = YES
 
-# 不生成树状视图
+# 不生成树状视图导航。
 GENERATE_TREEVIEW = NO
 
-# 数学公式字体大小
+# 设置数学公式在文档中的字体大小。
 FORMULA_FONTSIZE = 12
 
-# 不生成LaTeX文档
+# 不生成LaTeX格式的文档。
 GENERATE_LATEX = NO
 
-# 预处理宏展开
+# 展开预处理宏。
 MACRO_EXPANSION = YES
 
-# 仅展开预定义的宏
+# 仅展开在Doxyfile中预定义的宏。
 EXPAND_ONLY_PREDEF = YES
 
-# 包含文件的搜索路径
+# 指定Doxygen在查找包含文件时应该搜索的路径。
 INCLUDE_PATH = Unreal/CarlaUE4/Source Unreal/CarlaUE4/Plugins/Carla/Source Unreal/CarlaUE4/Plugins/CarlaExporter/Source/CarlaExporter Unreal/CarlaUE4/Plugins/CarlaTools/Source/CarlaTools/Private Unreal/CarlaUE4/Plugins/CarlaTools/Source/CarlaTools/Public LibCarla/source
 
-# 仅包含指定类型的文件
+# 仅包含指定类型的文件，通常用于头文件。
 INCLUDE_FILE_PATTERNS = *.h *.hpp
 
-# 不隐藏未记录的关系
+# 不隐藏未文档化的关系，例如未文档化的函数之间的调用关系。
 HIDE_UNDOC_RELATIONS = NO
 
-# 启用dot工具生成图表
+# 启用dot工具来生成类图、调用图等图表。
 HAVE_DOT = YES
 
-# 生成类模板关系图
+# 生成类模板之间的关系图。
 TEMPLATE_RELATIONS = YES
 
-# 生成函数调用图
+# 生成函数调用图。
 CALL_GRAPH = YES
 
-# 生成函数调用者图
+# 生成函数调用者图，显示哪些函数调用了当前函数。
 CALLER_GRAPH = YES
 
-# 图像格式为SVG
+# 设置dot工具生成的图像格式为SVG。
 DOT_IMAGE_FORMAT = svg
 
-# 支持交互的SVG图像
+# 支持交互式的SVG图像，允许用户放大、缩小等。
 INTERACTIVE_SVG = YES
 
-# 允许dot工具生成多个图像目标
+# 允许dot工具为单个图表生成多个图像目标，这在处理大型图表时很有用。
 DOT_MULTI_TARGET = YES
