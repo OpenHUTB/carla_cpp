@@ -1756,7 +1756,7 @@ void UActorBlueprintFunctionLibrary::MakeV2XDefinition(
   StdDevVelX.Type = EActorAttributeType::Float;
   StdDevVelX.RecommendedValues = { TEXT("0.0") };
   StdDevVelX.bRestrictToRecommended = false;
-
+// 定义属性变更回调函数类型
   Definition.Variations.Append({
     NoiseSeed,
     TransmitPower,
