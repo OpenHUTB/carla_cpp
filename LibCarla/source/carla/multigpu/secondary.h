@@ -17,7 +17,7 @@
 #include "carla/ThreadPool.h"  // 引入线程池的头文件
 
 #include <boost/asio/deadline_timer.hpp>  // 引入 Boost ASIO 的定时器头文件
-#include <boost/asio/io_context.hpp>  // 引入 Boost ASIO 的 IO 上下文头文件
+#include <boost/asio/io_context.hpp>  // 引入Boost ASIO库中用于管理异步操作和回调函数的IO上下文（也称为事件循环）的头文件
 #include <boost/asio/ip/tcp.hpp>  // 引入 Boost ASIO 的 TCP 头文件
 #include <boost/asio/strand.hpp>  // 引入Boost ASIO库中用于保证异步操作顺序执行的Strand类的头文件
 
