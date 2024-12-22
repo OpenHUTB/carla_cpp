@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
 # Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
-# Barcelona (UAB).
-#
+# Barcelona (UAB)
+.# 这是版权声明部分，表明该代码的版权归属情况，这里指出代码版权归属于2019年巴塞罗那自治大学（UAB）的计算机视觉中心（CVC）。
+
+
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
+# 这两行说明了该代码所遵循的开源许可协议为MIT许可协议，并且提供了可以查看该许可协议详细内容的网址，方便使用者了解使用该代码的相关权利和限制等情况。
 
 """Blocks until the simulator is ready or the time-out is met."""
 
