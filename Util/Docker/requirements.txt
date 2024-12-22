@@ -1,1 +1,15 @@
 docker
+# 这是一个基础的Dockerfile示例，用于构建一个简单的Python应用镜像
+FROM python:3.9
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制当前目录下的所有文件到容器的/app目录下
+COPY. /app
+
+# 安装应用所需的依赖
+RUN pip install -r requirements.txt
+
+# 定义容器启动时要执行的命令
+CMD ["python", "app.py"]
