@@ -3,7 +3,7 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
+// 头文件
 #include "carla/client/World.h"  // 引入World类的定义
 
 #include "carla/Logging.h"  // 引入日志记录功能
@@ -17,14 +17,28 @@
 #include "carla/client/TrafficLight.h"  // 引入交通灯类的定义
 
 #include <exception>  // 引入异常处理
-
+// 命名空间
 namespace carla {
 namespace client {
 
   SharedPtr<Map> World::GetMap() const {  // 获取地图的方法
     return _episode.Lock()->GetCurrentMap();  // 返回当前地图
   }
-
+// 获取一个互斥锁，确保线程安全
+//调用返回当前的地图
+// 加载地图层的方法
+// map_layers参数指定要加载的地图层
+// _episode.Lock()->LoadLevelLayer(map_layers)调用实际执行加载操作
+// 调用实际执行卸载操作
+// 获取蓝图的操作
+// 返回当前的蓝图库
+// 获取车辆灯光状态列表的方法
+// 返回当前世界中所有车辆灯光状态列表
+// 获取随机导航位置的方法
+// 返回一个随机的导航位置
+// 获取观众的方法
+// 返回当前的观众
+// 调用返回观众对象
   void World::LoadLevelLayer(rpc::MapLayer map_layers) const {  // 加载地图层的方法
     _episode.Lock()->LoadLevelLayer(map_layers);  // 加载指定的地图层
   }
@@ -222,11 +236,12 @@ namespace client {
     }
     return nullptr; // 未找到时返回空指针
   }
-
+// 调用内部方法重置所有交通信号灯
+// 
   void World::ResetAllTrafficLights() { // 重置所有交通信号灯
     _episode.Lock()->ResetAllTrafficLights(); // 调用重置方法
   }
-
+// 根据布尔值
   SharedPtr<LightManager> World::GetLightManager() const { // 获取光照管理器
     return _episode.Lock()->GetLightManager(); // 返回光照管理器
   }
@@ -354,6 +369,7 @@ void World::ApplyTexturesToObject(
     const rpc::TextureFloatColor& ao_roughness_metallic_emissive_texture) // AO、粗糙度、金属度、自发光纹理
 {
   // 检查漫反射纹理的宽度和高度是否有效
+  // 满放射纹理
   if (diffuse_texture.GetWidth() && diffuse_texture.GetHeight()) {
     // 将漫反射纹理应用于指定对象
     ApplyColorTextureToObject(
@@ -364,6 +380,7 @@ void World::ApplyTexturesToObject(
   if (normal_texture.GetWidth() && normal_texture.GetHeight()) {
     // 将法线纹理应用于指定对象
     ApplyFloatColorTextureToObject(
+      // 包含需要应用纹理的对象的名称
         object_name, rpc::MaterialParameter::Tex_Normal, normal_texture);
   }
   
@@ -378,6 +395,9 @@ void World::ApplyTexturesToObject(
   }
   
   // 检查自发光纹理的宽度和高度是否有效
+  // 如果有效
+  // 调用函数将漫反射纹理应用到指定的多个对象
+  // 检查和应用纹理
   if (emissive_texture.GetWidth() && emissive_texture.GetHeight()) {
     // 将自发光纹理应用于指定对象
     ApplyFloatColorTextureToObject(
