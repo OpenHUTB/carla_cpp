@@ -4,22 +4,19 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/multigpu/incomingMessage.h" // 包含接收消息的头文件
-#include "carla/multigpu/secondary.h"       // 包含次要功能的头文件
-
-#include "carla/BufferPool.h"                // 包含缓冲池的头文件
-#include "carla/Debug.h"                     // 包含调试相关的头文件
-#include "carla/Exception.h"                 // 包含异常处理的头文件
-#include "carla/Logging.h"                   // 包含日志记录的头文件
-#include "carla/Time.h"                      // 包含时间处理的头文件
-
-#include <boost/asio/connect.hpp>            // 包含连接的Boost.Asio头文件
-#include <boost/asio/read.hpp>               // 包含读取的Boost.Asio头文件
-#include <boost/asio/write.hpp>              // 包含写入的Boost.Asio头文件
-#include <boost/asio/post.hpp>               // 包含异步操作的Boost.Asio头文件
-#include <boost/asio/bind_executor.hpp>      // 包含绑定执行器的Boost.Asio头文件
-
-#include <exception>                         // 包含标准异常处理头文件
+#include "carla/multigpu/incomingMessage.h" // 包含处理接收到的消息的相关类和函数的声明。这些可能包括解析消息、处理消息数据等功能的实现。
+#include "carla/multigpu/secondary.h"       // 包含次要功能的声明，这些功能可能涉及多GPU环境中的辅助任务、数据处理或与其他组件的交互。
+#include "carla/BufferPool.h"                // 包含缓冲池管理的类和函数的声明。缓冲池通常用于高效地分配和回收内存，特别是在需要频繁分配和释放小块内存的场景中。
+#include "carla/Debug.h"                     // 包含调试相关的类和函数的声明。这些可能包括调试信息的输出、断言、调试模式的设置等。
+#include "carla/Exception.h"                 // 包含异常处理相关的类和函数的声明。这些可能定义了自定义的异常类型，以及抛出和捕获这些异常的方法。
+#include "carla/Logging.h"                   // 包含日志记录相关的类和函数的声明。这些可能提供了不同级别的日志输出（如调试、信息、警告、错误等），以及日志的配置和管理功能。
+#include "carla/Time.h"                      // 包含时间处理相关的类和函数的声明。这些可能提供了时间测量、时间戳生成、时间间隔计算等功能。
+// 包含Boost.Asio库中的头文件，用于网络编程和异步操作
+#include <boost/asio/connect.hpp>            // 提供异步或同步连接到远程端点的功能。
+#include <boost/asio/read.hpp>               // 提供从网络套接字或其他可读源中异步或同步读取数据的功能。
+#include <boost/asio/write.hpp>              // 提供向网络套接字或其他可写目标中异步或同步写入数据的功能。
+#include <boost/asio/post.hpp>               // 提供在指定的执行器（如I/O上下文）上异步执行函数或lambda表达式的能力。
+#include <boost/asio/bind_executor.hpp>      // 提供将函数或可调用对象与特定执行器绑定的功能，以便可以异步地调用它们。
 
 namespace carla {
 namespace multigpu {
