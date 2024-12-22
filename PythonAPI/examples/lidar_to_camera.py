@@ -38,14 +38,14 @@ except ImportError:
 
 # 确保已安装PIL
 try:
+    # 尝试执行从Python的 `PIL`（Python Imaging Library）库中导入 `Image` 模块的操作。
+    # `PIL` 库用于图像的处理和操作，比如图像的加载、保存、格式转换、绘制等诸多功能，而 `Image` 模块是其中非常核心的部分，提供了大量与图像相关的类和函数。
+    # 在实际使用中，通常使用的是 `Pillow` 这个对 `PIL` 库的兼容实现（因为 `PIL` 本身已经很久未更新维护了），所以这里导入其实依赖于 `Pillow` 包是否安装。
     from PIL import Image
 except ImportError:
+    # 如果在执行上述 `from PIL import Image` 语句时出现导入错误，即 `ImportError` 异常被触发，这意味着很可能 `Pillow` 包没有安装或者安装出现了问题（比如版本不兼容等情况），导致无法正确导入 `Image` 模块。
+    # 当捕获到这个 `ImportError` 异常后，代码会主动抛出一个 `RuntimeError` 异常，并附带相应的提示信息“无法导入 `PIL`，确保 `Pillow` 包已经安装”，以此告知使用者需要安装 `Pillow` 包才能使后续涉及图像操作的代码正常运行，否则程序将会因为这个 `RuntimeError` 异常而中断执行。
     raise RuntimeError('cannot import PIL, make sure "Pillow" package is installed')
-
-# 用于lidar强度可视化的颜色映射
-VIRIDIS = np.array(cm.get_cmap('viridis').colors)
-VID_RANGE = np.linspace(0.0, 1.0, VIRIDIS.shape[0])
-
 def sensor_callback(data, queue):
     """
    传感器数据的回调函数。它将数据放入线程安全的队列中。
