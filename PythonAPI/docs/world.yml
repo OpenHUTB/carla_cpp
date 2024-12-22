@@ -5,12 +5,16 @@
   classes:
   - class_name: Timestamp
     # - DESCRIPTION ------------------------
+    # 以下是对 `Timestamp` 类的文档描述（doc），用于说明该类的总体用途和应用场景等信息。
     doc: >
       Class that contains time information for simulated data. This information is automatically retrieved as part of the carla.WorldSnapshot the client gets on every frame, but might also be used in many other situations such as a carla.Sensor retrieveing data. 
     # - PROPERTIES -------------------------
+    # 以下定义的是 `Timestamp` 类的实例变量部分，用于描述该类的对象所具有的属性特征。
     instance_variables:
     - var_name: frame
+      # 变量 `frame` 的类型被定义为整数（int），用于表示特定含义。
       type: int
+      # 以下是对 `frame` 变量的文档描述，说明它的具体作用。
       doc: >
         The number of frames elapsed since the simulator was launched.
     - var_name: elapsed_seconds
@@ -28,6 +32,10 @@
       var_units: seconds
       doc: >
         Time register of the frame at which this measurement was taken given by the OS in seconds. 
+    # 整体来看，这个 `Timestamp` 类旨在为模拟数据提供时间相关的信息记录。通过定义这几个实例变量，
+    # 可以分别从不同角度来刻画时间情况，比如 `frame` 记录自模拟器启动以来经过的帧数，`elapsed_seconds` 记录当前阶段开始后经过的模拟秒数，
+    # `delta_seconds` 体现与前一帧间隔的模拟秒数，`platform_timestamp` 则借助操作系统给出的时间来记录测量该帧时的时间戳（以秒为单位）。
+    # 这样在涉及模拟数据处理以及相关时间追踪的场景（如从 `carla.WorldSnapshot` 获取信息或者传感器获取数据等情况）中，就能方便地使用这些时间属性了。
     # - METHODS ----------------------------
     methods:
     - def_name: __init__
