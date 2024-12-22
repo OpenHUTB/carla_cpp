@@ -1082,89 +1082,144 @@ void RssCheck::CreateWorldModel(carla::client::Timestamp const &timestamp, carla
 }
 
 bool RssCheck::PerformCheck(CarlaRssState &carla_rss_state) const {
+	// 调用carla_rss_state中的rss_check对象的calculateProperResponse函数（具体功能依赖其实现），传入世界模型、情况快照、RSS 状态快照以及用于存储最终合适响应的对象等参数
+    // 执行相应的计算和判断，获取检查结果（布尔值，表示是否成功进行了合适响应的计算等）
   bool result = carla_rss_state.rss_check.calculateProperResponse(
       carla_rss_state.world_model, carla_rss_state.situation_snapshot, carla_rss_state.rss_state_snapshot,
       carla_rss_state.proper_response);
 
+// 如果检查结果为false，即计算合适响应失败，记录警告日志，提示calculateProperResponse失败的情况
   if (!result) {
     _logger->warn("calculateProperResponse failed!");
   }
+  // 如果检查结果为true，但是最终的合适响应表示当前路线不安全（isSafe为false）
   else if (!carla_rss_state.proper_response.isSafe) {
+  	// 记录信息日志，输出当前不安全的路线对应的响应信息，提示当前情况不安全
     _logger->info("Unsafe route: {}", carla_rss_state.proper_response);
   }
+  // 返回检查结果（布尔值），用于告知调用者此次 RSS 检查的执行情况
   return result;
 }
 
+// RssCheck类中的函数，用于分析 RSS 检查的结果，根据各种响应状态等信息判断不同的危险情况，并更新CarlaRssState对象中的相关危险状态标志等内容
 void RssCheck::AnalyseCheckResults(CarlaRssState &carla_rss_state) const {
+	// 初始将CarlaRssState对象中的表示整体危险状态的标志设为false，后续根据具体情况判断是否变为true
   carla_rss_state.dangerous_state = false;
+  // 初始将CarlaRssState对象中的表示有危险车辆的标志设为false，后续根据具体情况判断是否变为true
   carla_rss_state.dangerous_vehicle = false;
+  // 将CarlaRssState对象中表示存在相反方向危险情况的标志初始化为false，同样后续依据具体情况判断是否出现此类危险
   carla_rss_state.dangerous_opposite_state = false;
+  // 初始化一个标志变量，表示左侧道路边界是否处于危险状态，初始为false，后续在分析过程中更新
   bool left_border_is_dangerous = false;
+  // 初始化一个标志变量，表示右侧道路边界是否处于危险状态，初始为false，后续根据分析情况改变其值
   bool right_border_is_dangerous = false;
+  // 初始化一个标志变量，用于表示是否是车辆触发了左侧响应，初始为false，会根据具体的响应状态来确定
   bool vehicle_triggered_left_response = false;
+  // 初始化一个标志变量，用于表示是否是车辆触发了右侧响应，初始设为false，后续根据分析情况更新
   bool vehicle_triggered_right_response = false;
+  // 初始化一个标志变量，用于表示是否是车辆触发了纵向响应，初始为false，在遍历分析响应状态时会改变其值
   bool vehicle_triggered_longitudinal_response = false;
+  // 遍历CarlaRssState对象中RSS状态快照里的每个单独响应状态
   for (auto const state : carla_rss_state.rss_state_snapshot.individualResponses) {
+  	// 调用::ad::rss::state::isDangerous函数（其具体实现应该是判断给定的状态是否处于危险情况）来检查当前响应状态是否危险
     if (::ad::rss::state::isDangerous(state)) {
+    	// 如果当前响应状态是危险的，将CarlaRssState对象中的表示整体危险状态的标志设为true
       carla_rss_state.dangerous_state = true;
+      // 记录跟踪日志，输出当前处于危险的状态信息（可能用于调试、查看具体危险情况等目的）
       _logger->trace("DangerousState: {}", state);
+      // 在情况快照（situation_snapshot）中的所有情况里查找与当前危险状态对应的情况信息
+        // 使用std::find_if算法结合lambda表达式来查找，lambda表达式的逻辑是比较情况的ID与当前危险状态的情况ID是否相等
       auto dangerous_sitation_iter = std::find_if(carla_rss_state.situation_snapshot.situations.begin(),
                                                   carla_rss_state.situation_snapshot.situations.end(),
                                                   [&state](::ad::rss::situation::Situation const &situation) {
                                                     return situation.situationId == state.situationId;
                                                   });
-      if (dangerous_sitation_iter != carla_rss_state.situation_snapshot.situations.end()) {
+      // 如果找到了对应的情况信息（即迭代器不等于结束迭代器）
+	  if (dangerous_sitation_iter != carla_rss_state.situation_snapshot.situations.end()) {
+	  	// 记录跟踪日志，输出找到的对应情况信息（可能用于进一步查看相关情况细节）
         _logger->trace("Situation: {}", *dangerous_sitation_iter);
-        if (dangerous_sitation_iter->objectId == ::ad::rss::map::RssSceneCreator::getRightBorderObjectId()) {
+        // 如果该情况对应的对象ID与右侧道路边界对象的ID相等（通过::ad::rss::map::RssSceneCreator::getRightBorderObjectId获取右侧边界对象ID）
+		if (dangerous_sitation_iter->objectId == ::ad::rss::map::RssSceneCreator::getRightBorderObjectId()) {
+			// 则将右侧道路边界处于危险状态的标志设为true，表示右侧边界存在危险情况
           right_border_is_dangerous = true;
+          // 如果该情况对应的对象ID与左侧道路边界对象的ID相等（通过::ad::rss::map::RssSceneCreator::getLeftBorderObjectId获取左侧边界对象ID）
         } else if (dangerous_sitation_iter->objectId == ::ad::rss::map::RssSceneCreator::getLeftBorderObjectId()) {
-          left_border_is_dangerous = true;
+          // 则将左侧道路边界处于危险状态的标志设为true，意味着左侧边界有危险情况
+		  left_border_is_dangerous = true;
+		  // 如果情况对应的对象不是道路边界（即可能是其他交通参与者等情况）
         } else {
+        	// 将表示存在危险车辆的标志设为true，说明有车辆相关的危险情况存在
           carla_rss_state.dangerous_vehicle = true;
+          // 如果当前危险状态中的纵向状态响应不是无响应（::ad::rss::state::LongitudinalResponse::None表示无响应）
           if (state.longitudinalState.response != ::ad::rss::state::LongitudinalResponse::None) {
-            vehicle_triggered_longitudinal_response = true;
+            // 将表示车辆触发纵向响应的标志设为true，说明车辆的纵向运动情况触发了相应响应
+			vehicle_triggered_longitudinal_response = true;
           }
+          // 如果当前危险状态中的左侧横向状态响应不是无响应
           if (state.lateralStateLeft.response != ::ad::rss::state::LateralResponse::None) {
-            vehicle_triggered_left_response = true;
+            // 将表示车辆触发左侧响应的标志设为true，意味着车辆的左侧横向运动情况触发了响应
+			vehicle_triggered_left_response = true;
           }
+           // 如果当前危险状态中的右侧横向状态响应不是无响应
           if (state.lateralStateRight.response != ::ad::rss::state::LateralResponse::None) {
-            vehicle_triggered_right_response = true;
+            // 将表示车辆触发右侧响应的标志设为true，表明车辆的右侧横向运动情况触发了响应
+			vehicle_triggered_right_response = true;
           }
         }
+        // 如果该情况的类型是相反方向情况（::ad::rss::situation::SituationType::OppositeDirection表示相反方向情况类型）
         if (dangerous_sitation_iter->situationType == ::ad::rss::situation::SituationType::OppositeDirection) {
-          carla_rss_state.dangerous_opposite_state = true;
+          // 将表示存在相反方向危险情况的标志设为true，提示有来自相反方向的危险情况出现
+		  carla_rss_state.dangerous_opposite_state = true;
         }
       }
     }
   }
 
   // border are restricting potentially too much, fix this
+  // 如果不是车辆触发纵向响应（vehicle_triggered_longitudinal_response为false），并且最终合适响应中的纵向响应不是无响应（即有纵向响应限制）
   if (!vehicle_triggered_longitudinal_response &&
       (carla_rss_state.proper_response.longitudinalResponse != ::ad::rss::state::LongitudinalResponse::None)) {
-    _logger->debug("!! longitudinalResponse only triggered by borders: ignore !!");
-    carla_rss_state.proper_response.longitudinalResponse = ::ad::rss::state::LongitudinalResponse::None;
-    carla_rss_state.proper_response.accelerationRestrictions.longitudinalRange.maximum =
+    // 记录调试日志，提示纵向响应只是由边界触发的情况，这种情况需要忽略该纵向响应（可能因为不符合预期的合理触发条件等原因）
+	_logger->debug("!! longitudinalResponse only triggered by borders: ignore !!");
+    // 将最终合适响应中的纵向响应设为无响应，即去除不合理的纵向响应限制
+	carla_rss_state.proper_response.longitudinalResponse = ::ad::rss::state::LongitudinalResponse::None;
+    // 将最终合适响应中的纵向加速度限制范围的最大值设为默认自身车辆动力学参数中的纵向最大加速度值
+    // 这样就恢复到默认的纵向加速度可允许的最大值，避免了过度限制
+	carla_rss_state.proper_response.accelerationRestrictions.longitudinalRange.maximum =
         carla_rss_state.default_ego_vehicle_dynamics.alphaLon.accelMax;
   }
+  // 如果不是车辆触发左侧响应（vehicle_triggered_left_response为false），并且左侧边界不是处于危险状态（left_border_is_dangerous为false），同时最终合适响应中的左侧横向响应不是无响应（即有左侧横向响应限制）
   if (!vehicle_triggered_left_response && !left_border_is_dangerous &&
       (carla_rss_state.proper_response.lateralResponseLeft != ::ad::rss::state::LateralResponse::None)) {
-    _logger->debug("!! lateralResponseLeft only triggered by right border: ignore !!");
-    carla_rss_state.proper_response.lateralResponseLeft = ::ad::rss::state::LateralResponse::None;
-    carla_rss_state.proper_response.accelerationRestrictions.lateralLeftRange.maximum =
+    // 记录调试日志，提示左侧横向响应只是由右侧边界触发的情况，需要忽略该左侧横向响应（可能是不合理的触发导致的限制）
+	_logger->debug("!! lateralResponseLeft only triggered by right border: ignore !!");
+     // 将最终合适响应中的左侧横向响应设为无响应，去除该不合理的左侧横向响应限制
+	carla_rss_state.proper_response.lateralResponseLeft = ::ad::rss::state::LateralResponse::None;
+    // 将最终合适响应中的左侧横向加速度限制范围的最大值设为默认自身车辆动力学参数中的横向最大加速度值
+    // 恢复到默认的横向加速度可允许的最大值，避免因不合理触发导致的过度限制
+	carla_rss_state.proper_response.accelerationRestrictions.lateralLeftRange.maximum =
         carla_rss_state.default_ego_vehicle_dynamics.alphaLat.accelMax;
-    carla_rss_state.ego_dynamics_on_route.crossing_border = true;
+    // 将车辆在路线上的动力学参数中的跨越边界标志设为true，表示出现了可能跨越边界相关的不合理情况（具体含义需结合整体关于边界跨越的逻辑来看）
+	carla_rss_state.ego_dynamics_on_route.crossing_border = true;
   }
+  // 如果不是车辆触发右侧响应（vehicle_triggered_right_response为false），并且右侧边界不是处于危险状态（right_border_is_dangerous为false），同时最终合适响应中的右侧横向响应不是无响应（即有右侧横向响应限制）
   if (!vehicle_triggered_right_response && !right_border_is_dangerous &&
       (carla_rss_state.proper_response.lateralResponseRight != ::ad::rss::state::LateralResponse::None)) {
-    _logger->debug("!! lateralResponseRight only triggered by left border: ignore !!");
-    carla_rss_state.proper_response.lateralResponseRight = ::ad::rss::state::LateralResponse::None;
+    // 记录调试日志，提示右侧横向响应只是由左侧边界触发的情况，需要忽略该右侧横向响应（同样是因为可能是不合理触发导致的限制）
+	_logger->debug("!! lateralResponseRight only triggered by left border: ignore !!");
+    // 将最终合适响应中的右侧横向响应设为无响应，去除不合理的右侧横向响应限制
+	carla_rss_state.proper_response.lateralResponseRight = ::ad::rss::state::LateralResponse::None;
+	// 将最终合适响应中的右侧横向加速度限制范围的最大值设为默认自身车辆动力学参数中的横向最大加速度值
+    // 恢复到默认的横向加速度可允许的最大值，避免过度限制
     carla_rss_state.proper_response.accelerationRestrictions.lateralRightRange.maximum =
         carla_rss_state.default_ego_vehicle_dynamics.alphaLat.accelMax;
+        // 将车辆在路线上的动力学参数中的跨越边界标志设为true，意味着出现了可能跨越边界相关的不合理情况
     carla_rss_state.ego_dynamics_on_route.crossing_border = true;
   }
-
+// 记录跟踪日志，输出最终的路线响应信息（可能用于查看最终整体的响应情况，方便调试、分析等）
   _logger->trace("RouteResponse: {}", carla_rss_state.proper_response);
 }
+
 
 }  // namespace rss
 }  // namespace carla
