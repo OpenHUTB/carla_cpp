@@ -9,7 +9,7 @@
 #include "carla/rpc/ActorId.h"// 引入ActorId头文件，定义与CARLA中Actor相关的ID操作
 #include "carla/trafficmanager/TrafficManager.h"// 引入TrafficManager头文件，用于管理和控制交通
 
-#include <thread> // 引入thread头文件，用于多线程处理
+#include <thread> // 引入thread头文件，用于多线程处理开头的
 
 #include <boost/python/stl_iterator.hpp>// 引入boost::python::stl_iterator头文件，用于Python与C++ STL容器的交互
 
