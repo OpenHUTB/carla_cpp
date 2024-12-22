@@ -106,6 +106,7 @@ classes:
               return: carla.Vector3D  
               return_units: m/s  
               doc: > 
-                Returns the velocity vector registered for an actor in that tick.
+                Returns the velocity vector registered for an actor in that tick.# doc部分是对函数功能的详细描述，通过这段文档字符串可知，该函数的作用是返回在某一特定时刻（that tick，这里的'tick'通常表示模拟环境中的一个时间步长或者一个时间刻度，类似于时钟的一次“滴答”，代表了一个时间间隔内的状态记录），
+  # 为某个参与者（actor，在模拟场景中一般指具有一定行为能力的实体对象，比如车辆、行人等）所记录的速度向量，也就是获取这个参与者在特定时间点上的瞬时速度情况，用三维向量的形式返回其在空间各方向上的速度分量信息。
 
     # 以下可能还有其他类的定义，这里省略了未展示的部分内容
