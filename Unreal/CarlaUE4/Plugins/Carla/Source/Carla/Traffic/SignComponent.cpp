@@ -18,14 +18,14 @@ USignComponent::USignComponent()
   PrimaryComponentTick.bCanEverTick = false;
 }
 
-// Called when the game starts
+// 游戏开始时调用
 void USignComponent::BeginPlay()
 {
   Super::BeginPlay();
 
 }
 
-// Called every frame
+// 每帧调用
 void USignComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
   Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
@@ -54,14 +54,14 @@ TArray<std::pair<cr::RoadId, const cre::RoadInfoSignal*>>
   std::unordered_set<cr::RoadId> ExploredRoads;
   for (auto & waypoint : waypoints)
   {
-    // Check if we already explored this road
+    // 检查我们是否已经探索过这条路
     if (ExploredRoads.count(waypoint.road_id) > 0)
     {
       continue;
     }
     ExploredRoads.insert(waypoint.road_id);
 
-    // Multiple times for same road (performance impact, not in behavior)
+    // 同一条路探索多次（影响性能，不影响行为）
     auto SignalReferences = Map.GetLane(waypoint).
         GetRoad()->GetInfos<cre::RoadInfoSignal>();
     for (auto *SignalReference : SignalReferences)
@@ -76,6 +76,7 @@ TArray<std::pair<cr::RoadId, const cre::RoadInfoSignal*>>
   return Result;
 }
 
+// 根据信号 ID 从给定的地图中获取对应的信号对象。
 const cr::Signal* USignComponent::GetSignal(const cr::Map &Map) const
 {
   std::string std_signal_id = carla::rpc::FromFString(GetSignId());
@@ -86,6 +87,8 @@ const cr::Signal* USignComponent::GetSignal(const cr::Map &Map) const
   return nullptr;
 }
 
+// 创建并生成一个新的触发器盒子组件，并将其附加到父 Actor 上。
+// 设置触发器盒子的位置、大小和附加规则，并返回创建的 UBoxComponent 对象。
 UBoxComponent* USignComponent::GenerateTriggerBox(const FTransform &BoxTransform,
     float BoxSize)
 {

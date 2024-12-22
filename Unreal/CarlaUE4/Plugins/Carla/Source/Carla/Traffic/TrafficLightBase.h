@@ -77,7 +77,7 @@ public:
   UFUNCTION(Category = "Traffic Light", BlueprintCallable)
   void SetGroupTrafficLights(TArray<ATrafficLightBase *> InGroupTrafficLights);
 
-  // used from replayer
+  // 从重放器使用
   void SetElapsedTime(float InElapsedTime);
 
   UFUNCTION(Category = "Traffic Light", BlueprintPure)
@@ -85,7 +85,7 @@ public:
 
   const UTrafficLightComponent* GetTrafficLightComponent() const;
 
-  // Compatibility old traffic light system with traffic light components
+  // 兼容旧交通信号灯系统与交通信号灯组件
   void LightChangedCompatibility(ETrafficLightState NewLightState);
 
   void AddTimeToRecorder();

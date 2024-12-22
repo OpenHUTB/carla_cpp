@@ -72,16 +72,36 @@ sensor_msgs::msg::PointCloud2::~PointCloud2()
 sensor_msgs::msg::PointCloud2::PointCloud2(
         const PointCloud2& x)
 {
+    // 拷贝构造函数，将另一个 PointCloud2 对象 x 的成员变量复制到当前对象
+
+    // 将 x 的 m_header 成员复制到当前对象的 m_header
     m_header = x.m_header;
+
+    // 将 x 的 m_height 成员复制到当前对象的 m_height
     m_height = x.m_height;
+
+    // 将 x 的 m_width 成员复制到当前对象的 m_width
     m_width = x.m_width;
+
+    // 将 x 的 m_fields 成员复制到当前对象的 m_fields
     m_fields = x.m_fields;
+
+    // 将 x 的 m_is_bigendian 成员复制到当前对象的 m_is_bigendian
     m_is_bigendian = x.m_is_bigendian;
+
+    // 将 x 的 m_point_step 成员复制到当前对象的 m_point_step
     m_point_step = x.m_point_step;
+
+    // 将 x 的 m_row_step 成员复制到当前对象的 m_row_step
     m_row_step = x.m_row_step;
+
+    // 将 x 的 m_data 成员复制到当前对象的 m_data
     m_data = x.m_data;
+
+    // 将 x 的 m_is_dense 成员复制到当前对象的 m_is_dense
     m_is_dense = x.m_is_dense;
 }
+
 
 sensor_msgs::msg::PointCloud2::PointCloud2(
         PointCloud2&& x) noexcept
@@ -149,34 +169,60 @@ size_t sensor_msgs::msg::PointCloud2::getMaxCdrSerializedSize(
 }
 
 size_t sensor_msgs::msg::PointCloud2::getCdrSerializedSize(
-        const sensor_msgs::msg::PointCloud2& data,
-        size_t current_alignment)
+        const sensor_msgs::msg::PointCloud2& data,  // 传入PointCloud2数据对象
+        size_t current_alignment)  // 当前对齐方式，通常是0
 {
-    size_t initial_alignment = current_alignment;
+    size_t initial_alignment = current_alignment;  // 记录初始对齐值
+
+    // 获取消息头（Header）的序列化大小，并更新对齐值
     current_alignment += std_msgs::msg::Header::getCdrSerializedSize(data.header(), current_alignment);
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    // 添加4字节的字段，表示PointCloud2的字段数
+    // 同时确保数据按照4字节对齐
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
+    // 添加4字节的字段，表示数据的宽度（width）
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    // 添加4字节的字段，表示数据的高度（height）
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    // 遍历字段列表（PointCloud2中的PointField），累加每个字段的序列化大小
+    // 这些字段用于描述每个点的属性（例如位置、颜色等）
     for(size_t a = 0; a < data.fields().size(); ++a)
     {
+        // 获取每个PointField的序列化大小
         current_alignment += sensor_msgs::msg::PointField::getCdrSerializedSize(data.fields().at(a), current_alignment);
     }
 
+    // 添加1字节的字段，表示是否有总数标志
+    // 该字段为可选字段，因此需要计算对齐
     current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
-    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    // 添加4字节的字段，表示点云数据的序列化大小（data）
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
+    // 添加4字节的字段，表示数据的起始偏移量（point_step）
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    // 添加4字节的字段，表示每个点的字节数（row_step）
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    // 如果点云数据（data）不为空，计算数据部分的序列化大小
+    // 这里假设数据是一个字节数组，并计算对齐和大小
     if (data.data().size() > 0)
     {
+        // 计算data的序列化大小，考虑到可能的对齐
         current_alignment += (data.data().size() * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
     }
 
+    // 添加1字节的字段，表示是否有总数标志
     current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
+    // 返回当前对齐位置与初始对齐位置的差值，表示整个消息的序列化大小
     return current_alignment - initial_alignment;
 }
+
 
 void sensor_msgs::msg::PointCloud2::serialize(
         eprosima::fastcdr::Cdr& scdr) const

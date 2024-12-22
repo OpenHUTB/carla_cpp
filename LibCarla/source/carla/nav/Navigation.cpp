@@ -29,18 +29,18 @@ namespace nav {
   };
 
   // 这些设置与 RecastBuilder 中的设置相同，因此如果您更改代理的高度，则应该在 RecastBuilder 中执行相同的操作
-  static const int   MAX_POLYS = 256;
-  static const int   MAX_AGENTS = 500;
-  static const int   MAX_QUERY_SEARCH_NODES = 2048;
-  static const float AGENT_HEIGHT = 1.8f;
-  static const float AGENT_RADIUS = 0.3f;
+  static const int   MAX_POLYS = 256; // 定义最大多边形数量为256
+  static const int   MAX_AGENTS = 500; // 定义最大代理（Agent）数量为500
+  static const int   MAX_QUERY_SEARCH_NODES = 2048; // 定义最大查询搜索节点数量为2048
+  static const float AGENT_HEIGHT = 1.8f; // 定义代理的高度为1.8米
+  static const float AGENT_RADIUS = 0.3f; // 定义代理的半径为0.3米
 
-  static const float AGENT_UNBLOCK_DISTANCE = 0.5f;
-  static const float AGENT_UNBLOCK_DISTANCE_SQUARED = AGENT_UNBLOCK_DISTANCE * AGENT_UNBLOCK_DISTANCE;
-  static const float AGENT_UNBLOCK_TIME = 4.0f;
+  static const float AGENT_UNBLOCK_DISTANCE = 0.5f; // 定义代理解堵距离为0.5米，即代理在被阻挡后需要保持的距离
+  static const float AGENT_UNBLOCK_DISTANCE_SQUARED = AGENT_UNBLOCK_DISTANCE * AGENT_UNBLOCK_DISTANCE; // 定义代理解堵距离的平方，用于计算距离时避免开方操作，提高效率
+  static const float AGENT_UNBLOCK_TIME = 4.0f; // 定义代理解堵时间为4秒，即代理在被阻挡后等待的时间
 
-  static const float AREA_GRASS_COST =  1.0f;
-  static const float AREA_ROAD_COST  = 10.0f;
+  static const float AREA_GRASS_COST =  1.0f; // 定义草地区域的成本为1.0，用于路径规划时的权重计算
+  static const float AREA_ROAD_COST  = 10.0f; // 定义道路区域的成本为10.0，用于路径规划时的权重计算，通常道路的成本高于草地
 
   // 返回一个随机的浮点数 float
   static float frand() {
@@ -53,38 +53,44 @@ namespace nav {
   }
 
   Navigation::~Navigation() {
-    _ready = false;
-    _time_to_unblock = 0.0f;
-    _mapped_walkers_id.clear();
-    _mapped_vehicles_id.clear();
-    _mapped_by_index.clear();
-    _walkers_blocked_position.clear();
-    _yaw_walkers.clear();
-    _binary_mesh.clear();
-    dtFreeCrowd(_crowd);
-    dtFreeNavMeshQuery(_nav_query);
-    dtFreeNavMesh(_nav_mesh);
+    _ready = false; // 将_ready标志设置为false，表示导航系统不再就绪
+    _time_to_unblock = 0.0f; // 将_time_to_unblock重置为0.0f，表示没有等待解堵的时间
+    _mapped_walkers_id.clear(); // 清空_mapped_walkers_id列表，该列表存储了映射的步行者ID
+    _mapped_vehicles_id.clear(); // 清空_mapped_vehicles_id列表，该列表存储了映射的车辆ID
+    _mapped_by_index.clear(); // 清空_mapped_by_index列表，该列表可能存储了按索引映射的对象
+    _walkers_blocked_position.clear(); // 清空_walkers_blocked_position列表，该列表存储了被阻塞步行者的位置
+    _yaw_walkers.clear(); // 清空_yaw_walkers列表，该列表可能存储了步行者的朝向信息
+    _binary_mesh.clear(); // 清空_binary_mesh，该变量可能存储了二进制网格数据
+    dtFreeCrowd(_crowd); // 释放_crowd资源，_crowd是用于人群模拟的动态组件
+    dtFreeNavMeshQuery(_nav_query); // 释放_nav_query资源，_nav_query是用于路径查询的组件
+    dtFreeNavMesh(_nav_mesh); // 释放_nav_mesh资源，_nav_mesh是用于路径规划的导航网格
   }
 
   // 参考模拟器访问API函数
   void Navigation::SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator)
   {
+     // 将传入的模拟器对象的弱引用赋值给成员变量_simulator
+  // 使用弱引用可以避免循环引用问题，从而防止内存泄漏
     _simulator = simulator;
+     // 将模拟器的弱引用传递给步行者管理器，以便步行者管理器可以与模拟器进行交互
     _walker_manager.SetSimulator(simulator);
   }
 
   // 设置要使用的随机数种子
   void Navigation::SetSeed(unsigned int seed) {
+      // 使用传入的种子值初始化随机数生成器
     srand(seed);
   }
 
   // 加载导航数据
   bool Navigation::Load(const std::string &filename) {
-    std::ifstream f;
-    std::istream_iterator<uint8_t> start(f), end;
+    std::ifstream f; // 创建一个输入文件流对象
+    std::istream_iterator<uint8_t> start(f), end; // 创建两个迭代器，用于读取文件内容
 
     // 读取整个文件
+    // 以二进制模式打开文件
     f.open(filename, std::ios::binary);
+     // 如果文件打开失败，则返回false
     if (!f.is_open()) {
       return false;
     }
@@ -97,8 +103,10 @@ namespace nav {
 
   // 从内存中加载导航数据
   bool Navigation::Load(std::vector<uint8_t> content) {
+     // 定义导航网格集合的魔术数和版本号
     const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; // 'MSET';
     const int NAVMESHSET_VERSION = 1;
+     // 使用#pragma pack(push, 1)来取消结构体成员的对齐，确保结构体大小与二进制数据匹配
 #pragma pack(push, 1)
 
     // 导航网格集合头的结构体
@@ -106,13 +114,14 @@ namespace nav {
       int magic;       // 魔术
       int version;     // 版本
       int num_tiles;   // 瓦片数
-      dtNavMeshParams params;
+      dtNavMeshParams params; // 导航网格参数，定义了导航网格的一些属性
     } header;
     // 导航网格瓦片头的结构体
     struct NavMeshTileHeader {
-      dtTileRef tile_ref;
+      dtTileRef tile_ref;  // 瓦片引用，用于在导航网格中唯一标识一个瓦片
       int data_size;        // 数据大小
     };
+    // 恢复默认的结构体对齐方式
 #pragma pack(pop)
 
     // 检查 导航网格集合头的结构体大小
@@ -123,9 +132,9 @@ namespace nav {
     }
 
     // 读取文件的头
-    unsigned long pos = 0;
-    memcpy(&header, &content[pos], sizeof(header));
-    pos += sizeof(header);
+    unsigned long pos = 0;// 定义当前读取位置
+    memcpy(&header, &content[pos], sizeof(header)); // 使用memcpy复制头数据到结构体
+    pos += sizeof(header);// 更新读取位置
 
     // 检查文件的魔术和版本
     if (header.magic != NAVMESHSET_MAGIC || header.version != NAVMESHSET_VERSION) {

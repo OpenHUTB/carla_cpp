@@ -39,11 +39,15 @@ using namespace eprosima::fastcdr::exception;
 
 tf2_msgs::msg::TF2Error::TF2Error()
 {
-    // octet m_error
+    // 将 m_error 初始化为 0
+    // m_error 是一个字节类型（octet），用于表示错误的代码或状态
     m_error = 0;
-    // string m_error_string
-    m_error_string ="";
+
+    // 将 m_error_string 初始化为空字符串
+    // m_error_string 是一个字符串，用于描述错误的详细信息
+    m_error_string = "";
 }
+
 
 tf2_msgs::msg::TF2Error::~TF2Error()
 {
@@ -52,16 +56,25 @@ tf2_msgs::msg::TF2Error::~TF2Error()
 tf2_msgs::msg::TF2Error::TF2Error(
         const TF2Error& x)
 {
+    // 将输入对象 x 的 m_error 成员变量值赋给当前对象的 m_error
     m_error = x.m_error;
+
+    // 将输入对象 x 的 m_error_string 成员变量值赋给当前对象的 m_error_string
     m_error_string = x.m_error_string;
 }
+
 
 tf2_msgs::msg::TF2Error::TF2Error(
         TF2Error&& x) noexcept
 {
+    // 将输入对象 x 的 m_error 成员变量值赋给当前对象的 m_error
     m_error = x.m_error;
+
+    // 使用 std::move 将输入对象 x 的 m_error_string 移动到当前对象的 m_error_string
+    // 这里使用 std::move 表示将 x.m_error_string 的资源转移到当前对象，避免不必要的拷贝
     m_error_string = std::move(x.m_error_string);
 }
+
 
 tf2_msgs::msg::TF2Error& tf2_msgs::msg::TF2Error::operator =(
         const TF2Error& x)
@@ -114,9 +127,16 @@ size_t tf2_msgs::msg::TF2Error::getCdrSerializedSize(
 void tf2_msgs::msg::TF2Error::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
+    // 将 m_error 成员变量序列化到 CDR 流中
+    // scdr 是用于序列化的 Cdr 对象，"<<" 运算符表示将数据写入流中
     scdr << m_error;
+
+    // 将 m_error_string 的 C 字符串（即 m_error_string.c_str()）序列化到 CDR 流中
+    // 这里使用 c_str() 将 std::string 转换为 C 风格字符串（const char*），
+    // 因为 FastCDR 库需要 C 风格的字符串来进行序列化
     scdr << m_error_string.c_str();
 }
+
 
 void tf2_msgs::msg::TF2Error::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
@@ -195,9 +215,15 @@ std::string& tf2_msgs::msg::TF2Error::error_string()
 size_t tf2_msgs::msg::TF2Error::getKeyMaxCdrSerializedSize(
         size_t current_alignment)
 {
+    // 静态转换 current_alignment 为 void，表示这个参数当前没有被使用
+    // 该行代码的目的是消除未使用变量的编译警告
     static_cast<void>(current_alignment);
+
+    // 返回最大键的 CDR 序列化大小
+    // tf2_msgs_msg_TF2Error_max_key_cdr_typesize 是一个常量，表示 TF2Error 类型的键在 CDR 序列化格式中的最大大小
     return tf2_msgs_msg_TF2Error_max_key_cdr_typesize;
 }
+
 
 bool tf2_msgs::msg::TF2Error::isKeyDefined()
 {

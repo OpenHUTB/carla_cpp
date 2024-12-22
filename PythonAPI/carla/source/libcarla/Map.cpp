@@ -35,50 +35,77 @@ namespace client {
 
 } // namespace client
 } // namespace carla
-
+ 
+// 定义一个静态函数，用于将 OpenDRIVE 地图数据保存到磁盘
 static void SaveOpenDriveToDisk(const carla::client::Map &self, std::string path) {
+  // 释放全局解释器锁（GIL），以便在Python环境中进行多线程操作
   carla::PythonUtil::ReleaseGIL unlock;
-  if (path.empty()) {//检查传入的 path 字符串是否为空
-    path = self.GetName();//如果 path 为空,则将其设置为地图对象 self 的名称
+  // 检查传入的 path 字符串是否为空
+  if (path.empty()) {
+    // 如果 path 为空，则将其设置为地图对象 self 的名称
+    path = self.GetName();
   }
-  carla::FileSystem::ValidateFilePath(path, ".xodr");//使用 ValidateFilePath 函数验证文件路径,并确保文件扩展名为 .xodr
-  std::ofstream out(path);//打开指定文件
-  out << self.GetOpenDrive() << std::endl;//将地图对象 self 中的 OpenDRIVE 数据写入文件
+  // 使用 ValidateFilePath 函数验证文件路径，并确保文件扩展名为 .xodr
+  carla::FileSystem::ValidateFilePath(path, ".xodr");
+  // 打开指定文件
+  std::ofstream out(path);
+  // 将地图对象 self 中的 OpenDRIVE 数据写入文件
+  out << self.GetOpenDrive() << std::endl;
 }
-
+ 
+// 定义一个静态函数，用于获取地图的拓扑结构
 static auto GetTopology(const carla::client::Map &self) {
+  // 引入 boost::python 命名空间，用于与 Python 交互
   namespace py = boost::python;
+  // 获取地图的拓扑结构
   auto topology = self.GetTopology();
+  // 创建一个 Python 列表，用于存储结果
   py::list result;
+  // 遍历拓扑结构，并将每个键值对转换为 Python 元组后添加到结果列表中
   for (auto &&pair : topology) {
     result.append(py::make_tuple(pair.first, pair.second));
   }
+  // 返回结果列表
   return result;
 }
-
+ 
+// 定义一个静态函数，用于获取交叉路口的车道点
 static auto GetJunctionWaypoints(const carla::client::Junction &self, const carla::road::Lane::LaneType lane_type) {
+  // 引入 boost::python 命名空间，用于与 Python 交互
   namespace py = boost::python;
+  // 获取交叉路口的车道点
   auto topology = self.GetWaypoints(lane_type);
+  // 创建一个 Python 列表，用于存储结果
   py::list result;
+  // 遍历车道点，并将每个键值对转换为 Python 元组后添加到结果列表中
   for (auto &pair : topology) {
     result.append(py::make_tuple(pair.first, pair.second));
   }
+  // 返回结果列表
   return result;
 }
 
+// 定义一个静态函数，用于获取地标的车道有效性
 static auto GetLaneValidities(const carla::client::Landmark &self){
-  namespace py = boost::python;
+  // 引入 boost::python 命名空间，用于与 Python 交互
+  namespace py = boost::python;  
+  // 获取车道有效性信息
   auto &validities = self.GetValidities();
+  // 创建一个 Python 列表，用于存储结果
   py::list result;
+  // 遍历车道有效性信息，并将每个有效性信息转换为 Python 元组后添加到结果列表中
   for(auto &validity : validities) {
     result.append(py::make_tuple(validity._from_lane, validity._to_lane));
   }
+  // 返回结果列表
   return result;
 }
-
+ 
+// 定义一个静态函数，用于将位置转换为地理坐标
 static carla::geom::GeoLocation ToGeolocation(
     const carla::client::Map &self,
     const carla::geom::Location &location) {
+  // 使用地图的地理参考信息将位置转换为地理坐标
   return self.GetGeoReference().Transform(location);
 }
 

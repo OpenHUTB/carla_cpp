@@ -84,21 +84,27 @@ namespace road {
     }
     // 检查距离是否在几何范围内
     if(GetDistance() < geometry->GetDistance() ||
+       // 检查当前对象的起点是否在几何对象的起点之前
         GetDistance() + GetLength() >
+      // 检查当前对象的终点是否在几何对象的终点之后
         geometry->GetDistance() + geometry->GetGeometry().GetLength()) {
       return false; // 如果不在范围内，返回false
     }
     // 检查车道偏移信息
-    auto lane_offsets = GetInfos<element::RoadInfoLaneOffset>();
-    for (auto *lane_offset : lane_offsets) {
+    // 车道偏移信息通过多项式表示，其中C和D是多项式的系数。
+    // 如果C或D不为0，表示车道有偏移（不是直线）。
+    auto lane_offsets = GetInfos<element::RoadInfoLaneOffset>();// 获取车道偏移信息
+    for (auto *lane_offset : lane_offsets) {// 遍历每个车道偏移信息
       if (std::abs(lane_offset->GetPolynomial().GetC()) > 0 ||
           std::abs(lane_offset->GetPolynomial().GetD()) > 0) {
         return false; // 如果偏移量不为0，返回false
       }
     }
     // 检查道路高程信息
-    auto elevations = road->GetInfos<element::RoadInfoElevation>();
-    for (auto *elevation : elevations) {
+    // 道路高程信息也通过多项式表示，其中C和D是多项式的系数。
+    // 如果C或D不为0，表示道路有高程变化（不是平面）。
+    auto elevations = road->GetInfos<element::RoadInfoElevation>(); // 获取道路高程信息
+    for (auto *elevation : elevations) {  // 遍历每个道路高程信息
       if (std::abs(elevation->GetPolynomial().GetC()) > 0 ||
           std::abs(elevation->GetPolynomial().GetD()) > 0) {
         return false; // 如果高程不为0，返回false
@@ -108,11 +114,13 @@ namespace road {
   }
 
   /// 返回一对包含特定车道在给定s和车道迭代器下的宽度和切线
+// 这个模板函数计算并返回一个包含车道宽度和切线的pair。
+// 它接受一个容器（可能是道路、路径等），一个s值（沿路径的距离），以及一个车道ID。
   template <typename T>
   static std::pair<double, double> ComputeTotalLaneWidth(
-      const T container,
-      const double s,
-      const LaneId lane_id) {
+      const T container,// 容器，可能代表道路或路径的抽象
+      const double s, // s值，表示沿路径的特定位置
+      const LaneId lane_id) {// 车道ID，用于标识特定的车道
 
     // lane_id不能为0
   RELEASE_ASSERT(lane_id != 0);  // 断言 lane_id 不为 0
@@ -141,16 +149,16 @@ for (const auto &lane : container) {  // 遍历所有车道
 return std::make_pair(dist, tangent);  // 返回距离和切线的对
 
 geom::Transform Lane::ComputeTransform(const double s) const {  // 计算车道变换
-    const Road *road = GetRoad();  // 获取道路对象
+    const Road* road = GetRoad();  // 获取道路对象
     DEBUG_ASSERT(road != nullptr);  // 断言道路对象不为空
 
     // 确保 s 小于等于道路长度且大于等于 0
     RELEASE_ASSERT(s <= road->GetLength());
     RELEASE_ASSERT(s >= 0.0);
 
-    const auto *lane_section = GetLaneSection();  // 获取车道段
+    const auto* lane_section = GetLaneSection();  // 获取车道段
     DEBUG_ASSERT(lane_section != nullptr);  // 断言车道段不为空
-    const std::map<LaneId, Lane> &lanes = lane_section->GetLanes();  // 获取车道映射
+    const std::map<LaneId, Lane>& lanes = lane_section->GetLanes();  // 获取车道映射
 
     // 检查当前 s 上是否存在 lane_id
     RELEASE_ASSERT(!lanes.empty());
@@ -168,7 +176,8 @@ geom::Transform Lane::ComputeTransform(const double s) const {  // 计算车道�
             ComputeTotalLaneWidth(side_lanes, s, GetId());  // 计算总车道宽度
         lane_t_offset = static_cast<float>(computed_width.first);  // 设置车道横向偏移
         lane_tangent = static_cast<float>(computed_width.second);  // 设置车道方向
-    } else if (GetId() > 0) {  // 如果是左侧车道
+    }
+    else if (GetId() > 0) {  // 如果是左侧车道
         const auto side_lanes = MakeListView(lanes.lower_bound(1), lanes.end());  // 获取从 1 到当前车道的车道列表
         const auto computed_width =
             ComputeTotalLaneWidth(side_lanes, s, GetId());  // 计算总车道宽度
@@ -195,18 +204,19 @@ geom::Transform Lane::ComputeTransform(const double s) const {  // 计算车道�
 
     // Unreal 的 Y 轴转换
     dp.location.y *= -1;  // 反转 Y 轴
-    dp.tangent    *= -1;  // 反转切线
+    dp.tangent *= -1;  // 反转切线
 
     geom::Rotation rot(
         geom::Math::ToDegrees(static_cast<float>(dp.pitch)),  // 将俯仰角转换为度
         geom::Math::ToDegrees(static_cast<float>(dp.tangent)),  // 将切线角转换为度
         0.0f);  // Z 轴角度设为 0    // Fix the direction of the possitive lanes
     if (GetId() > 0) {  // 如果车道 ID 大于 0
-    rot.yaw += 180.0f;  // 将偏航角加上 180 度
-    rot.pitch = 360.0f - rot.pitch;  // 将俯仰角调整为 360 度减去当前俯仰角
-}
+        rot.yaw += 180.0f;  // 将偏航角加上 180 度
+        rot.pitch = 360.0f - rot.pitch;  // 将俯仰角调整为 360 度减去当前俯仰角
+    }
 
-return geom::Transform(dp.location, rot);  // 返回位置和旋转变换
+    return geom::Transform(dp.location, rot);  // 返回位置和旋转变换
+}
 
 std::pair<geom::Vector3D, geom::Vector3D> Lane::GetCornerPositions(  // 定义获取车道角落位置的方法
     const double s, const float extra_width) const {  // 接受参数 s 和额外的宽度

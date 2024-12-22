@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -15,7 +15,7 @@
 #include "carla/road/element/LaneMarking.h"
 // 包含CARLA道路（Lane）的头文件
 #include "carla/road/Lane.h"
-、// 包含CARLA地图（Map）的头文件
+// 包含CARLA地图（Map）的头文件
 #include "carla/road/Map.h"
 // 包含CARLA道路类型（RoadTypes）的头文件
 #include "carla/road/RoadTypes.h"

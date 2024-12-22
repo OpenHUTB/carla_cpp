@@ -28,8 +28,7 @@ private:
   void GenerateCheckBox(const FTransform BoxTransform,
       float BoxSize);
 
-  /// Try to give way to vehicles in the stop
-  /// checking the car count in the check boxes
+  /// 尽量给停车标志处的车辆让路，检查复选框中的车辆数量
   UFUNCTION(BlueprintCallable)
   void GiveWayIfPossible();
 

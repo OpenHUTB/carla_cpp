@@ -4,9 +4,9 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
  
-#pragma once
+#pragma once   // 防止头文件被重复包含
  
-#include <memory>
+#include <memory>    // 引入内存管理相关的头文件
  
 namespace carla {
 
@@ -34,7 +34,7 @@ namespace carla {
     void store(std::shared_ptr<T> ptr) noexcept {
       std::atomic_store_explicit(&_ptr, ptr, std::memory_order_release);
     }
- 	
+ 	// 存储新的指针到内部。
     void reset(std::shared_ptr<T> ptr = nullptr) noexcept {
       store(ptr);
     }
@@ -64,11 +64,11 @@ namespace carla {
       return *this;
     }
  
-    AtomicSharedPtr &operator=(AtomicSharedPtr &&) = delete;
+    AtomicSharedPtr &operator=(AtomicSharedPtr &&) = delete;     // 删除移动赋值运算符，不允许移动赋值
  
   private:
  
-    std::shared_ptr<T> _ptr;
+    std::shared_ptr<T> _ptr;    // 存储共享的智能指针
   };
  
 } // namespace carla

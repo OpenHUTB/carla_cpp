@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -38,7 +38,7 @@ namespace client {
 
     /// 停止监听特定的 gbuffer 流。
     void StopGBuffer(uint32_t GBufferId);
-
+    // 检查指定ID是否在监听缓冲区中。
     inline bool IsListeningGBuffer(uint32_t id) const {
       return listening_mask.test(id + 1);
     }

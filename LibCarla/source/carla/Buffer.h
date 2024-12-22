@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -34,7 +34,7 @@
 // 包含UE4的数组容器相关的头文件
 #include <compiler/disable-ue4-macros.h>
 // 包含禁用UE4宏的头文件
-#endif // LIBCARLA_INCLUDED_FROM_UE4
+#endif // 结束预处理器条件编译块
 
 namespace carla {
 

@@ -37,8 +37,8 @@ namespace ros2 { //定义了代码所属的命名空间
     private:
       bool InitImage(); //用于初始化图像
       bool InitInfo(); //用相机信息的发布。
-      bool PublishImage();用于发布图像信息。
-      bool PublishInfo();用于发布相机信息。
+      bool PublishImage(); // 用于发布图像信息。
+      bool PublishInfo();  // 用于发布相机信息。
 
       void SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify); //设置相机信息的感兴趣区域。
       void SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data); //设置数据，包括时间戳、高度、宽度和图像数据

@@ -60,28 +60,26 @@ void FCarlaModule::ShutdownModule()
 
 void FCarlaModule::RegisterSettings()
 {
-	// Registering some settings is just a matter of exposing the default UObject of
-	// your desired class, add here all those settings you want to expose
-	// to your LDs or artists.
+	// 注册一些设置只是公开所需类的默认 UObject 的问题
+	// 在此处添加所有要公开给 LD 或艺术家的设置。
 
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
 	{
-		// Create the new category
+		// 创建新类别
 		ISettingsContainerPtr SettingsContainer = SettingsModule->GetContainer("Project");
 
 		SettingsContainer->DescribeCategory("CARLASettings",
 			LOCTEXT("RuntimeWDCategoryName", "CARLA Settings"),
 			LOCTEXT("RuntimeWDCategoryDescription", "CARLA plugin settings"));
 
-		// Register the settings
+		// 注册设置
 		ISettingsSectionPtr SettingsSection = SettingsModule->RegisterSettings("Project", "CARLASettings", "General",
 			LOCTEXT("RuntimeGeneralSettingsName", "General"),
 			LOCTEXT("RuntimeGeneralSettingsDescription", "General configuration for the CARLA plugin"),
 			GetMutableDefault<UCarlaSettings>()
 		);
 
-		// Register the save handler to your settings, you might want to use it to
-		// validate those or just act to settings changes.
+		// 将 save 处理程序注册到您的设置中，您可能希望使用它来验证这些设置或仅对设置更改执行操作。
 		if (SettingsSection.IsValid())
 		{
 			SettingsSection->OnModified().BindRaw(this, &FCarlaModule::HandleSettingsSaved);
@@ -91,8 +89,7 @@ void FCarlaModule::RegisterSettings()
 
 void FCarlaModule::UnregisterSettings()
 {
-	// Ensure to unregister all of your registered settings here, hot-reload would
-	// otherwise yield unexpected results.
+	// 确保在此处取消注册所有已注册的设置，否则热重载将产生意外结果。
 
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
 	{
@@ -105,8 +102,7 @@ bool FCarlaModule::HandleSettingsSaved()
 	UCarlaSettings* Settings = GetMutableDefault<UCarlaSettings>();
 	bool ResaveSettings = false;
 
-	// Put any validation code in here and resave the settings in case an invalid
-	// value has been entered
+	// 在此处输入任何验证代码并重新保存设置，以防输入了无效值
 
 	if (ResaveSettings)
 	{

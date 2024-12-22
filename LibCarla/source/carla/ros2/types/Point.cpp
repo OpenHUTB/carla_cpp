@@ -80,12 +80,19 @@ geometry_msgs::msg::Point& geometry_msgs::msg::Point::operator =(
 geometry_msgs::msg::Point& geometry_msgs::msg::Point::operator =(
         Point&& x) noexcept
 {
+    // 将右值对象 x 的 m_x 成员的值赋给当前对象的 m_x 成员
     m_x = x.m_x;
+
+    // 将右值对象 x 的 m_y 成员的值赋给当前对象的 m_y 成员
     m_y = x.m_y;
+
+    // 将右值对象 x 的 m_z 成员的值赋给当前对象的 m_z 成员
     m_z = x.m_z;
 
+    // 将当前对象的引用返回，支持链式赋值操作
     return *this;
 }
+
 
 bool geometry_msgs::msg::Point::operator ==(
         const Point& x) const

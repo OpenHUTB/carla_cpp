@@ -9,10 +9,10 @@
 #include "TrafficLightGroup.h"
 
 
-// Sets default values
+// 设置默认值
 ATrafficLightGroup::ATrafficLightGroup()
 {
-  // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+  // 将此参与者设置为每帧调用 Tick()。如果不需要，可以关闭此功能以提高性能。
   PrimaryActorTick.bCanEverTick = true;
   SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
   RootComponent = SceneComponent;
@@ -39,13 +39,13 @@ void ATrafficLightGroup::ResetGroup()
   controller->StartCycle();
 }
 
-// Called every frame
+// 每帧调用
 void ATrafficLightGroup::Tick(float DeltaTime)
 {
   TRACE_CPUPROFILER_EVENT_SCOPE(ATrafficLightGroup::Tick);
   Super::Tick(DeltaTime);
 
-  // Do not update if the replayer is replaying
+  // 如果重播器正在重播，请勿更新
   auto* Episode = UCarlaStatics::GetCurrentEpisode(GetWorld());
   if (Episode)
   {

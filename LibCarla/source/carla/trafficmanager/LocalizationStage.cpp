@@ -6,6 +6,7 @@
 namespace carla {
 namespace traffic_manager {
 
+ // 引入常量定义，简化代码中的常量使用
 using namespace constants::PathBufferUpdate;
 using namespace constants::LaneChange;
 using namespace constants::WaypointSelection;
@@ -13,41 +14,47 @@ using namespace constants::SpeedThreshold;
 using namespace constants::Collision;
 using namespace constants::MotionPlan;
 
+// LocalizationStage类构造函数定义
 LocalizationStage::LocalizationStage(
-  const std::vector<ActorId> &vehicle_id_list,
-  BufferMap &buffer_map,
-  const SimulationState &simulation_state,
-  TrackTraffic &track_traffic,
-  const LocalMapPtr &local_map,
-  Parameters &parameters,
-  std::vector<ActorId>& marked_for_removal,
-  LocalizationFrame &output_array,
-  RandomGenerator &random_device)
-    : vehicle_id_list(vehicle_id_list),
-    buffer_map(buffer_map),
-    simulation_state(simulation_state),
-    track_traffic(track_traffic),
-    local_map(local_map),
-    parameters(parameters),
-    marked_for_removal(marked_for_removal),
-    output_array(output_array),
-    random_device(random_device){}
+  const std::vector<ActorId> &vehicle_id_list, // 车辆ID列表，用于标识哪些车辆将进行本地化操作
+  BufferMap &buffer_map,        // 缓冲区映射表，存储每辆车的路径点数据
+  const SimulationState &simulation_state,   // 模拟状态，提供车辆的位置信息、速度等
+  TrackTraffic &track_traffic,    // 交通管理器，用于管理道路上的交通信息
+  const LocalMapPtr &local_map,     // 本地地图指针，用于存储当前的道路与交通信息
+  Parameters &parameters,          // 参数配置，包含各种控制参数
+  std::vector<ActorId>& marked_for_removal, // 需要移除的车辆ID列表
+  LocalizationFrame &output_array,   // 输出数组，存储每次更新的本地化结果
+  RandomGenerator &random_device)     // 随机数生成器，用于某些随机操作
+    : vehicle_id_list(vehicle_id_list), // 初始化车辆ID列表
+    buffer_map(buffer_map),           // 初始化缓冲区映射表
+    simulation_state(simulation_state),// 初始化模拟状态
+    track_traffic(track_traffic),     // 初始化交通管理器
+    local_map(local_map),          // 初始化本地地图
+    parameters(parameters),             // 初始化参数配置
+    marked_for_removal(marked_for_removal),  // 初始化待移除的车辆列表
+    output_array(output_array),            // 初始化输出数组
+    random_device(random_device){}        // 初始化随机数生成器
 
+// 更新本地化信息
 void LocalizationStage::Update(const unsigned long index) {
 
+    // 获取当前车辆的ID和相关信息
   const ActorId actor_id = vehicle_id_list.at(index);
   const cg::Location vehicle_location = simulation_state.GetLocation(actor_id);
   const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id);
   const cg::Vector3D vehicle_velocity_vector = simulation_state.GetVelocity(actor_id);
   const float vehicle_speed = vehicle_velocity_vector.Length();
 
-  // Speed dependent waypoint horizon length.
+  // 速度相关的航点视野长度
   float horizon_length = std::max(vehicle_speed * HORIZON_RATE, MINIMUM_HORIZON_LENGTH);
+  // HORIZON_RATE是一个常量，用于根据车辆的速度计算视野长度
+   // 如果车辆的速度超过高速公路限速，则使用一个更大的视野范围
   if (vehicle_speed > HIGHWAY_SPEED) {
     horizon_length = std::max(vehicle_speed * HIGH_SPEED_HORIZON_RATE, MINIMUM_HORIZON_LENGTH);
   }
   const float horizon_square = SQUARE(horizon_length);
 
+  // 如果当前车辆ID在缓冲区映射表中没有记录，则插入一个新的缓冲区
   if (buffer_map.find(actor_id) == buffer_map.end()) {
     buffer_map.insert({actor_id, Buffer()});
   }
@@ -58,15 +65,16 @@ void LocalizationStage::Update(const unsigned long index) {
       cg::Math::DistanceSquared(waypoint_buffer.front()->GetLocation(),
                                 vehicle_location) > SQUARE(MAX_START_DISTANCE)) {
 
-    auto number_of_pops = waypoint_buffer.size();
+      // 如果第一个路径点距离过远，清除缓冲区中的所有路径点
+    auto number_of_pops = waypoint_buffer.size(); // 获取缓冲区中路径点的数量
     for (uint64_t j = 0u; j < number_of_pops; ++j) {
-      PopWaypoint(actor_id, track_traffic, waypoint_buffer);
+      PopWaypoint(actor_id, track_traffic, waypoint_buffer);   // 从缓冲区弹出路径点
     }
   }
 
   bool is_at_junction_entrance = false;
   if (!waypoint_buffer.empty()) {
-    // Purge passed waypoints.
+    // 清除已通过的航点
     float dot_product = DeviationDotProduct(vehicle_location, heading_vector, waypoint_buffer.front()->GetLocation());
     while (dot_product <= 0.0f && !waypoint_buffer.empty()) {
       PopWaypoint(actor_id, track_traffic, waypoint_buffer);
@@ -76,7 +84,7 @@ void LocalizationStage::Update(const unsigned long index) {
     }
 
     if (!waypoint_buffer.empty()) {
-      // Determine if the vehicle is at the entrance of a junction.
+      // 确定车辆是否在交叉路口入口处
       SimpleWaypointPtr look_ahead_point = GetTargetWaypoint(waypoint_buffer, JUNCTION_LOOK_AHEAD).first;
       SimpleWaypointPtr front_waypoint = waypoint_buffer.front();
       bool front_waypoint_junction = front_waypoint->CheckJunction();
@@ -88,14 +96,14 @@ void LocalizationStage::Update(const unsigned long index) {
         }
       }
       if (is_at_junction_entrance
-          // Exception for roundabout in Town03.
+          //Town03中的环岛例外情况
           && local_map->GetMapName() == "Carla/Maps/Town03"
           && vehicle_location.SquaredLength() < SQUARE(30)) {
         is_at_junction_entrance = false;
       }
     }
 
-    // Purge waypoints too far from the front of the buffer, but not if it has reached a junction.
+    // 清除缓冲区前端太远的航点，但如果已经到达一个路口，则不要清除
     while (!is_at_junction_entrance
            && !waypoint_buffer.empty()
            && waypoint_buffer.back()->DistanceSquared(waypoint_buffer.front()) > horizon_square + horizon_square
@@ -104,18 +112,18 @@ void LocalizationStage::Update(const unsigned long index) {
     }
   }
 
-  // Initializing buffer if it is empty.
+  // 如果缓冲区为空，则进行初始化
   if (waypoint_buffer.empty()) {
     SimpleWaypointPtr closest_waypoint = local_map->GetWaypoint(vehicle_location);
     PushWaypoint(actor_id, track_traffic, waypoint_buffer, closest_waypoint);
   }
 
-  // Assign a lane change.
+  // 分配变道
   const ChangeLaneInfo lane_change_info = parameters.GetForceLaneChange(actor_id);
   bool force_lane_change = lane_change_info.change_lane;
   bool lane_change_direction = lane_change_info.direction;
 
-  // Apply parameters for keep right rule and random lane changes.
+  //应用保持右侧规则和随机变道参数
   if (!force_lane_change && vehicle_speed > MIN_LANE_CHANGE_SPEED){
     const float perc_keep_right = parameters.GetKeepRightPercentage(actor_id);
     const float perc_random_leftlanechange = parameters.GetRandomLeftLaneChangePercentage(actor_id);
@@ -124,7 +132,7 @@ void LocalizationStage::Update(const unsigned long index) {
     const bool is_random_left_change = perc_random_leftlanechange >= random_device.next();
     const bool is_random_right_change = perc_random_rightlanechange >= random_device.next();
 
-    // Determine which of the parameters we should apply.
+    //确定应应用的参数
     if (is_keep_right || is_random_right_change) {
       force_lane_change = true;
       lane_change_direction = true;
@@ -134,7 +142,7 @@ void LocalizationStage::Update(const unsigned long index) {
         force_lane_change = true;
         lane_change_direction = false;
       } else {
-        // Both a left and right lane changes are forced. Choose between one of them.
+        // 左右车道变更都是强制性的。请在其中选择一个
         lane_change_direction = FIFTYPERC > random_device.next();
       }
     }
@@ -176,7 +184,7 @@ void LocalizationStage::Update(const unsigned long index) {
 
   Path imported_path = parameters.GetCustomPath(actor_id);
   Route imported_actions = parameters.GetImportedRoute(actor_id);
-  // We are effectively importing a path.
+  // 我们实际上是在导入一个路径
   if (!imported_path.empty()) {
 
     ImportPath(imported_path, waypoint_buffer, actor_id, horizon_square);
@@ -187,13 +195,13 @@ void LocalizationStage::Update(const unsigned long index) {
 
   }
 
-  // Populating the buffer through randomly chosen waypoints.
+  // 通过随机选择航点填充缓冲区
   else {
     while (waypoint_buffer.back()->DistanceSquared(waypoint_buffer.front()) <= horizon_square) {
       SimpleWaypointPtr furthest_waypoint = waypoint_buffer.back();
       std::vector<SimpleWaypointPtr> next_waypoints = furthest_waypoint->GetNextWaypoint();
       uint64_t selection_index = 0u;
-      // Pseudo-randomized path selection if found more than one choice.
+      // 伪随机路径选择，如果发现多个选择
       if (next_waypoints.size() > 1) {
         double r_sample = random_device.next();
         selection_index = static_cast<uint64_t>(r_sample*next_waypoints.size()*0.01);
@@ -207,14 +215,14 @@ void LocalizationStage::Update(const unsigned long index) {
       SimpleWaypointPtr next_wp_selection = next_waypoints.at(selection_index);
       PushWaypoint(actor_id, track_traffic, waypoint_buffer, next_wp_selection);
       if (next_wp_selection->GetId() == waypoint_buffer.front()->GetId()){
-        // Found a loop, stop. Don't use zero distance as there can be two waypoints at the same location
+        // 发现了一个环，停止。不要使用零距离，因为可能有两个航点在同一位置
         break;
       }
     }
   }
   ExtendAndFindSafeSpace(actor_id, is_at_junction_entrance, waypoint_buffer);
 
-  // Editing output array
+  // 编辑输出数组
   LocalizationData &output = output_array.at(index);
   output.is_at_junction_entrance = is_at_junction_entrance;
 
@@ -227,7 +235,7 @@ void LocalizationStage::Update(const unsigned long index) {
     output.safe_point = nullptr;
   }
 
-  // Updating geodesic grid position for actor.
+  // 更新参与者的测地线网格位置
   track_traffic.UpdateGridPosition(actor_id, waypoint_buffer);
 }
 
@@ -248,7 +256,7 @@ void LocalizationStage::ExtendAndFindSafeSpace(const ActorId actor_id,
     SimpleWaypointPtr junction_begin_point = nullptr;
     float safe_distance_squared = SQUARE(SAFE_DISTANCE_AFTER_JUNCTION);
 
-    // Scanning existing buffer points.
+    // 扫描现有缓冲点
     for (unsigned long i = 0u; i < waypoint_buffer.size() && !safe_point_found; ++i) {
       current_waypoint = waypoint_buffer.at(i);
       if (!entered_junction && current_waypoint->CheckJunction()) {
@@ -265,7 +273,7 @@ void LocalizationStage::ExtendAndFindSafeSpace(const ActorId actor_id,
       }
     }
 
-    // Extend buffer if safe point not found.
+    // 如果未找到安全点，则扩展缓冲区
     if (!safe_point_found) {
       bool abort = false;
 
@@ -334,24 +342,24 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
                                                       const float vehicle_speed,
                                                       bool force, bool direction) {
 
-  // Waypoint representing the new starting point for the waypoint buffer
-  // due to lane change. Remains nullptr if lane change not viable.
+  // 航点表示航点缓冲区的新起点
+  // 由于车道变更。如果车道变更不可行，则保持为空指针
   SimpleWaypointPtr change_over_point = nullptr;
 
-  // Retrieve waypoint buffer for current vehicle.
+  // 获取当前车辆的航点缓冲区
   const Buffer &waypoint_buffer = buffer_map.at(actor_id);
 
-  // Check buffer is not empty.
+  // 检查缓冲区是否不为空
   if (!waypoint_buffer.empty()) {
-    // Get the left and right waypoints for the current closest waypoint.
+    // 获取当前最近航点的左右航点
     const SimpleWaypointPtr &current_waypoint = waypoint_buffer.front();
     const SimpleWaypointPtr left_waypoint = current_waypoint->GetLeftWaypoint();
     const SimpleWaypointPtr right_waypoint = current_waypoint->GetRightWaypoint();
 
-    // Retrieve vehicles with overlapping waypoint buffers with current vehicle.
+    // 检索与当前车辆重叠路径点缓冲区的车辆
     const auto blocking_vehicles = track_traffic.GetOverlappingVehicles(actor_id);
 
-    // Find immediate in-lane obstacle and check if any are too close to initiate lane change.
+    // 查找车道内即时障碍物，并检查是否有障碍物距离过近，无法进行变道
     bool obstacle_too_close = false;
     float minimum_squared_distance = std::numeric_limits<float>::infinity();
     ActorId obstacle_actor_id = 0u;
@@ -359,7 +367,7 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
          i != blocking_vehicles.end() && !obstacle_too_close && !force;
          ++i) {
       const ActorId &other_actor_id = *i;
-      // Find vehicle in buffer map and check if it's buffer is not empty.
+      // 在缓冲区地图中查找车辆，并检查其缓冲区是否不为空
       if (buffer_map.find(other_actor_id) != buffer_map.end() && !buffer_map.at(other_actor_id).empty()) {
         const Buffer &other_buffer = buffer_map.at(other_actor_id);
         const SimpleWaypointPtr &other_current_waypoint = other_buffer.front();
@@ -371,9 +379,9 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
 
         WaypointPtr current_raw_waypoint = current_waypoint->GetWaypoint();
         WaypointPtr other_current_raw_waypoint = other_current_waypoint->GetWaypoint();
-        // Check both vehicles are not in junction,
-        // Check if the other vehicle is in front of the current vehicle,
-        // Check if the two vehicles have acceptable angular deviation between their headings.
+        // 检查两辆车是否都不在交叉路口
+        //检查另一辆车是否在当前车辆的前方
+        // 检查两辆车的航向之间是否存在可接受的角偏差
         if (!current_waypoint->CheckJunction()
             && !other_current_waypoint->CheckJunction()
             && other_current_raw_waypoint->GetRoadId() == current_raw_waypoint->GetRoadId()
@@ -381,9 +389,9 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
             && cg::Math::Dot(reference_heading, reference_to_other) > 0.0f
             && cg::Math::Dot(reference_heading, other_heading) > MAXIMUM_LANE_OBSTACLE_CURVATURE) {
           float squared_distance = cg::Math::DistanceSquared(vehicle_location, other_location);
-          // Abort if the obstacle is too close.
+          // 如果障碍物太近，则中止
           if (squared_distance > SQUARE(MINIMUM_LANE_CHANGE_DISTANCE)) {
-            // Remember if the new vehicle is closer.
+            // 如果新车辆更靠近就记住
             if (squared_distance < minimum_squared_distance && squared_distance < SQUARE(MAXIMUM_LANE_OBSTACLE_DISTANCE)) {
               minimum_squared_distance = squared_distance;
               obstacle_actor_id = other_actor_id;
@@ -395,18 +403,18 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
       }
     }
 
-    // If a valid immediate obstacle found.
+    // 如果发现有效的即时障碍
     if (!obstacle_too_close && obstacle_actor_id != 0u && !force) {
       const Buffer &other_buffer = buffer_map.at(obstacle_actor_id);
       const SimpleWaypointPtr &other_current_waypoint = other_buffer.front();
       const auto other_neighbouring_lanes = {other_current_waypoint->GetLeftWaypoint(),
                                              other_current_waypoint->GetRightWaypoint()};
 
-      // Flags reflecting whether adjacent lanes are free near the obstacle.
+      // 反映障碍物附近相邻车道是否畅通的标志
       bool distant_left_lane_free = false;
       bool distant_right_lane_free = false;
 
-      // Check if the neighbouring lanes near the obstructing vehicle are free of other vehicles.
+      // 检查阻碍车辆附近的相邻车道是否没有其他车辆
       bool left_right = true;
       for (auto &candidate_lane_wp : other_neighbouring_lanes) {
         if (candidate_lane_wp != nullptr &&
@@ -420,8 +428,8 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
         left_right = !left_right;
       }
 
-      // Based on what lanes are free near the obstacle,
-      // find the change over point with no vehicles passing through them.
+      //基于障碍物附近哪些车道是空闲的，
+      // 找到没有车辆通过的变更点
       if (distant_right_lane_free && right_waypoint != nullptr
           && track_traffic.GetPassingVehicles(right_waypoint->GetId()).size() == 0) {
         change_over_point = right_waypoint;
@@ -451,30 +459,30 @@ SimpleWaypointPtr LocalizationStage::AssignLaneChange(const ActorId actor_id,
 }
 
 void LocalizationStage::ImportPath(Path &imported_path, Buffer &waypoint_buffer, const ActorId actor_id, const float horizon_square) {
-    // Remove the waypoints already added to the path, except for the first.
+    // 移除已添加到路径中的航点，除了第一个
     if (parameters.GetUploadPath(actor_id)) {
       auto number_of_pops = waypoint_buffer.size();
       for (uint64_t j = 0u; j < number_of_pops - 1; ++j) {
         PopWaypoint(actor_id, track_traffic, waypoint_buffer, false);
       }
-      // We have successfully imported the path. Remove it from the list of paths to be imported.
+      // 我们已经成功导入了该路径。请将其从待导入路径列表中移除
       parameters.RemoveUploadPath(actor_id, false);
     }
 
-    // Get the latest imported waypoint. and find its closest waypoint in TM's InMemoryMap.
+    // 获取最新的导入航点，并在TM的InMemoryMap中找到与其最近的航点
     cg::Location latest_imported = imported_path.front();
     SimpleWaypointPtr imported = local_map->GetWaypoint(latest_imported);
 
-    // We need to generate a path compatible with TM's waypoints.
+    //我们需要生成一条与TM航点兼容的路径
     while (!imported_path.empty() && waypoint_buffer.back()->DistanceSquared(waypoint_buffer.front()) <= horizon_square) {
-      // Get the latest point we added to the list. If starting, this will be the one referred to the vehicle's location.
+      // 获取我们添加到列表中的最新点。如果从起点开始，这将是与车辆位置相关的点
       SimpleWaypointPtr latest_waypoint = waypoint_buffer.back();
 
-      // Try to link the latest_waypoint to the imported waypoint.
+      // 尝试将最新的航点与导入的航点进行关联
       std::vector<SimpleWaypointPtr> next_waypoints = latest_waypoint->GetNextWaypoint();
       uint64_t selection_index = 0u;
 
-      // Choose correct path.
+      // 选择正确的路径
       if (next_waypoints.size() > 1) {
         const float imported_road_id = imported->GetWaypoint()->GetRoadId();
         float min_distance = std::numeric_limits<float>::infinity();
@@ -509,12 +517,12 @@ void LocalizationStage::ImportPath(Path &imported_path, Buffer &waypoint_buffer,
       }
       SimpleWaypointPtr next_wp_selection = next_waypoints.at(selection_index);
 
-      // Remove the imported waypoint from the path if it's close to the last one.
+      // 如果导入的路点接近最后一个路点，则将其从路径中移除
       if (next_wp_selection->DistanceSquared(imported) < 30.0f) {
         imported_path.erase(imported_path.begin());
         std::vector<SimpleWaypointPtr> possible_waypoints = next_wp_selection->GetNextWaypoint();
         if (std::find(possible_waypoints.begin(), possible_waypoints.end(), imported) != possible_waypoints.end()) {
-          // If the lane is changing, only push the new waypoint
+          //如果正在变道，只需推送新的路径点
           PushWaypoint(actor_id, track_traffic, waypoint_buffer, next_wp_selection);
         }
         PushWaypoint(actor_id, track_traffic, waypoint_buffer, imported);
@@ -525,10 +533,10 @@ void LocalizationStage::ImportPath(Path &imported_path, Buffer &waypoint_buffer,
       }
     }
     if (imported_path.empty()) {
-      // Once we are done, check if we can clear the structure.
+      // 一旦完成，检查是否可以清除该结构
       parameters.RemoveUploadPath(actor_id, true);
     } else {
-      // Otherwise, update the structure with the waypoints that we still need to import.
+      // 否则，使用我们仍需导入的路点更新结构
       parameters.UpdateUploadPath(actor_id, imported_path);
     }
 }
@@ -540,16 +548,16 @@ void LocalizationStage::ImportRoute(Route &imported_actions, Buffer &waypoint_bu
       for (uint64_t j = 0u; j < number_of_pops - 1; ++j) {
         PopWaypoint(actor_id, track_traffic, waypoint_buffer, false);
       }
-      // We have successfully imported the route. Remove it from the list of routes to be imported.
+      //我们已成功导入该路由。请将其从待导入路由列表中移除
       parameters.RemoveImportedRoute(actor_id, false);
     }
 
     RoadOption next_road_option = static_cast<RoadOption>(imported_actions.front());
     while (!imported_actions.empty() && waypoint_buffer.back()->DistanceSquared(waypoint_buffer.front()) <= horizon_square) {
-      // Get the latest point we added to the list. If starting, this will be the one referred to the vehicle's location.
+      // 获取我们添加到列表中的最新点。如果是起点，这将是与车辆位置相关的点
       SimpleWaypointPtr latest_waypoint = waypoint_buffer.back();
       RoadOption latest_road_option = latest_waypoint->GetRoadOption();
-      // Try to link the latest_waypoint to the correct next RouteOption.
+      // 尝试将最新的航点与正确的下一个路线选项关联起来
       std::vector<SimpleWaypointPtr> next_waypoints = latest_waypoint->GetNextWaypoint();
       uint16_t selection_index = 0u;
       if (next_waypoints.size() > 1) {
@@ -574,17 +582,17 @@ void LocalizationStage::ImportRoute(Route &imported_actions, Buffer &waypoint_bu
       SimpleWaypointPtr next_wp_selection = next_waypoints.at(selection_index);
       PushWaypoint(actor_id, track_traffic, waypoint_buffer, next_wp_selection);
 
-      // If we are switching to a new RoadOption, it means the current one is already fully imported.
+      // 如果我们正在切换到新的道路选项，这意味着当前的道路选项已经完全导入
       if (latest_road_option != next_wp_selection->GetRoadOption() && next_road_option == next_wp_selection->GetRoadOption()) {
         imported_actions.erase(imported_actions.begin());
         next_road_option = static_cast<RoadOption>(imported_actions.front());
       }
     }
     if (imported_actions.empty()) {
-      // Once we are done, check if we can clear the structure.
+      // 一旦完成，检查我们是否可以清除该结构
       parameters.RemoveImportedRoute(actor_id, true);
     } else {
-      // Otherwise, update the structure with the waypoints that we still need to import.
+      // 否则，使用我们仍然需要导入的路点更新结构
       parameters.UpdateImportedRoute(actor_id, imported_actions);
     }
 }
@@ -594,7 +602,7 @@ Action LocalizationStage::ComputeNextAction(const ActorId& actor_id) {
   auto next_action = std::make_pair(RoadOption::LaneFollow, waypoint_buffer.back()->GetWaypoint());
   bool is_lane_change = false;
   if (last_lane_change_swpt.find(actor_id) != last_lane_change_swpt.end()) {
-    // A lane change is happening.
+    // 正在发生车道变更
     is_lane_change = true;
     const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id);
     const cg::Vector3D relative_vector = simulation_state.GetLocation(actor_id) - last_lane_change_swpt.at(actor_id)->GetLocation();
@@ -606,10 +614,10 @@ Action LocalizationStage::ComputeNextAction(const ActorId& actor_id) {
     RoadOption road_opt = swpt->GetRoadOption();
     if (road_opt != RoadOption::LaneFollow) {
       if (!is_lane_change) {
-        // No lane change in sight, we can assume this will be the next action.
+        // 没有看到变道的迹象，我们可以假设这将是下一个动作
         return std::make_pair(road_opt, swpt->GetWaypoint());
       } else {
-        // A lane change will happen as well as another action, we need to figure out which one will happen first.
+        // 变道和另一个动作都会发生，我们需要弄清楚哪一个会先发生
         cg::Location lane_change = last_lane_change_swpt.at(actor_id)->GetLocation();
         cg::Location actual_location = simulation_state.GetLocation(actor_id);
         auto distance_lane_change = cg::Math::DistanceSquared(actual_location, lane_change);
@@ -632,7 +640,7 @@ ActionBuffer LocalizationStage::ComputeActionBuffer(const ActorId& actor_id) {
   RoadOption last_road_opt = buffer_front->GetRoadOption();
   action_buffer.push_back(std::make_pair(last_road_opt, buffer_front->GetWaypoint()));
   if (last_lane_change_swpt.find(actor_id) != last_lane_change_swpt.end()) {
-    // A lane change is happening.
+    // 正在发生变道
     is_lane_change = true;
     const cg::Vector3D heading_vector = simulation_state.GetHeading(actor_id);
     const cg::Vector3D relative_vector = simulation_state.GetLocation(actor_id) - last_lane_change_swpt.at(actor_id)->GetLocation();
@@ -648,12 +656,12 @@ ActionBuffer LocalizationStage::ComputeActionBuffer(const ActorId& actor_id) {
     }
   }
   if (is_lane_change) {
-    // Insert the lane change action in the appropriate part of the action buffer.
+    // 在动作缓冲区的适当部分插入变道动作
     auto distance_lane_change = cg::Math::DistanceSquared(waypoint_buffer.front()->GetLocation(), lane_change.second->GetTransform().location);
     for (uint16_t i = 0; i < action_buffer.size(); ++i) {
       auto distance_action = cg::Math::DistanceSquared(waypoint_buffer.front()->GetLocation(), waypoint_buffer.at(i)->GetLocation());
-      // If the waypoint related to the next action is further away from the one of the lane change, insert lane change action here.
-      // If we reached the end of the buffer, place the action at the end.
+      // 如果与下一步行动相关的方式点距离变道的方式点更远，请在此处插入变道行动
+      // 如果我们到达了缓冲区的末尾，则将操作放在末尾
       if (i == action_buffer.size()-1) {
         action_buffer.push_back(lane_change);
         break;

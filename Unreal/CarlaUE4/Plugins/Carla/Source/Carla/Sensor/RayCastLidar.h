@@ -19,7 +19,7 @@
 
 #include "RayCastLidar.generated.h"
 
-/// A ray-cast based Lidar sensor.
+/// 一个基于光线投射的激光雷达传感器类。
 UCLASS()
 class CARLA_API ARayCastLidar : public ARayCastSemanticLidar
 {
@@ -38,7 +38,7 @@ public:
   virtual void PostPhysTick(UWorld *World, ELevelTick TickType, float DeltaTime);
 
 private:
-  /// Compute the received intensity of the point
+  /// 计算激光点的接收强度
   float ComputeIntensity(const FSemanticDetection& RawDetection) const;
   FDetection ComputeDetection(const FHitResult& HitInfo, const FTransform& SensorTransf) const;
 
@@ -49,13 +49,12 @@ private:
 
   FLidarData LidarData;
 
-  /// Enable/Disable general dropoff of lidar points
+  /// 启用/禁用激光雷达点的掉落效果
   bool DropOffGenActive;
 
-  /// Slope for the intensity dropoff of lidar points, it is calculated
-  /// throught the dropoff limit and the dropoff at zero intensity
-  /// The points is kept with a probality alpha*Intensity + beta where
-  /// alpha = (1 - dropoff_zero_intensity) / droppoff_limit
+  /// 激光点强度的衰减斜率，通过衰减限制和零强度衰减来计算
+  /// 点的强度保持概率为 alpha * 强度 + beta，其中
+  ///  alpha = (1 - dropoff_zero_intensity) / droppoff_limit
   /// beta = (1 - dropoff_zero_intensity)
   float DropOffAlpha;
   float DropOffBeta;

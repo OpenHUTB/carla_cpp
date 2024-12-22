@@ -20,19 +20,19 @@
 #include "Package.h"
 #include "UnrealMathUtility.h"
 
-// INI file sections.
+// 初始化设置文件（INI file）段
 #define S_CARLA_SERVER          TEXT("CARLA/Server")
 #define S_CARLA_QUALITYSETTINGS TEXT("CARLA/QualitySettings")
 
 // =============================================================================
-// -- Static variables & constants ---------------------------------------------
+// -- 静态变量 & 常量 -----------------------------------------------------------
 // =============================================================================
 
 const FName UCarlaSettings::CARLA_ROAD_TAG = FName("CARLA_ROAD");
 const FName UCarlaSettings::CARLA_SKY_TAG = FName("CARLA_SKY");
 
 // =============================================================================
-// -- Static methods -----------------------------------------------------------
+// -- 静态方法 ------------------------------------------------------------------
 // =============================================================================
 // 定义一个静态函数，用于将字符串转换为质量等级枚举值  
 // 参数：  
@@ -93,7 +93,7 @@ static void LoadSettingsFromConfig(
   }
   ConfigFile.GetBool(S_CARLA_SERVER, TEXT("SynchronousMode"), Settings.bSynchronousMode);
   ConfigFile.GetBool(S_CARLA_SERVER, TEXT("DisableRendering"), Settings.bDisableRendering);
-  // QualitySettings.
+  // 画质配置 QualitySettings.
   FString sQualityLevel;
   ConfigFile.GetString(S_CARLA_QUALITYSETTINGS, TEXT("QualityLevel"), sQualityLevel);
   Settings.SetQualityLevel(QualityLevelFromString(sQualityLevel));
@@ -119,9 +119,9 @@ static bool GetSettingsFilePathFromCommandLine(FString &Value)
 void UCarlaSettings::LoadSettings()
 {
   CurrentFileName = TEXT("");
-  // Load settings from project Config folder if present.
+  // 如果存在，则从项目配置文件夹加载设置。
   LoadSettingsFromFile(FPaths::Combine(FPaths::ProjectConfigDir(), TEXT("CarlaSettings.ini")), false);
-  // Load settings given by command-line arg if provided.
+  // 如果提供，则加载命令行参数给出的设置。
   {
     FString FilePath;
     if (GetSettingsFilePathFromCommandLine(FilePath))
@@ -129,7 +129,7 @@ void UCarlaSettings::LoadSettings()
       LoadSettingsFromFile(FilePath, true);
     }
   }
-  // Override settings from command-line.
+  // 从命令行覆盖设置。
   {
     uint32 Value;
     if (FParse::Value(FCommandLine::Get(), TEXT("-world-port="), Value) ||
@@ -137,6 +137,7 @@ void UCarlaSettings::LoadSettings()
         FParse::Value(FCommandLine::Get(), TEXT("-carla-rpc-port="), Value) ||
         FParse::Value(FCommandLine::Get(), TEXT("-carla-world-port="), Value))
     {
+      // 默认情况下，流媒体服务的端口是RPC端口+1，辅助服务器端口是RPC端口+2
       RPCPort = Value;
       StreamingPort = Value + 1u;
       SecondaryPort = Value + 2u;
@@ -174,18 +175,26 @@ void UCarlaSettings::LoadSettings()
   }
 }
 
+// 从字符串加载CARLA设置的函数
 void UCarlaSettings::LoadSettingsFromString(const FString &INIFileContents)
 {
+     // 记录日志：从字符串加载CARLA设置
   UE_LOG(LogCarla, Log, TEXT("Loading CARLA settings from string"));
+    // 创建配置文件对象
   FIniFile ConfigFile;
+    // 处理输入文件内容
   ConfigFile.ProcessInputFileContents(INIFileContents);
+    // 假设加载CARLAR服务器部分失败
   constexpr bool bLoadCarlaServerSection = false;
+    // 从配置文件加载CARLA服务器部分
   LoadSettingsFromConfig(ConfigFile, *this, bLoadCarlaServerSection);
+    // 当前文件名，这里使用了一个固定的字符串
   CurrentFileName = TEXT("<string-provided-by-client>");
 }
 
 void UCarlaSettings::LogSettings() const
 {
+     // 定义一个lambda表达式，根据布尔值返回"Enabled"或"Disabled"
   auto EnabledDisabled = [](bool bValue) { return (bValue ? TEXT("Enabled") : TEXT("Disabled")); };
   UE_LOG(LogCarla, Log,
       TEXT("== CARLA Settings =============================================================="));
@@ -209,14 +218,20 @@ void UCarlaSettings::LoadSettingsFromFile(const FString &FilePath, const bool bL
 {
   if (FPaths::FileExists(FilePath))
   {
+      // 记录日志：从文件路径加载CARLA设置
     UE_LOG(LogCarla, Log, TEXT("Loading CARLA settings from \"%s\""), *FilePath);
+      // 创建配置文件对象
     const FIniFile ConfigFile(FilePath);
+      // 设置加载CARLA服务器部分的标志为true
     constexpr bool bLoadCarlaServerSection = true;
+       // 从配置文件加载设置
     LoadSettingsFromConfig(ConfigFile, *this, bLoadCarlaServerSection);
+      // 设置当前文件名
     CurrentFileName = FilePath;
   }
   else if (bLogOnFailure)
   {
+      // 记录错误日志：无法找到设置文件
     UE_LOG(LogCarla, Error, TEXT("Unable to find settings file \"%s\""), *FilePath);
   }
 }

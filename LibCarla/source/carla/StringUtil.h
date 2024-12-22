@@ -52,7 +52,7 @@ namespace carla {
     static void ToUpper(WritableRangeT &str) {
       boost::algorithm::to_upper(str);
     }
- 
+ // 将传入的字符串序列转换为大写副本并返回
     template <typename SequenceT>
     static auto ToUpperCopy(const SequenceT &str) {
       return boost::algorithm::to_upper_copy(str);

@@ -9,7 +9,9 @@
 #include <carla/Time.h>
 
 #include <ostream>
-#include <type_traits>
+// 类型萃取，定义了一系列的类模板，用于获取类型
+// 可以用来在编译期判断类型的属性、对给定类型进行一些操作获得另一种特定类型、判断类型和类型之间的关系等
+#include <type_traits> 
 #include <vector>
 
 // 对于Python中的变量类型，Boost.Python都有相应的类对应，他们都是boost::python::object的子类。
@@ -22,6 +24,9 @@ static boost::python::object OptionalToPythonObject(OptionalT &optional) {
 
 // 方便地进行没有参数的请求。
 // carla::PythonUtil::ReleaseGIL 文档：https://carla.org/Doxygen/html/d1/d0a/classcarla_1_1PythonUtil_1_1ReleaseGIL.html
+// GIL的全称为Global Interpreter Lock，全局解释器锁
+// GIL(全局解释锁)不是Python的特性，而是解释器CPtyhton的特性。
+// GIL简言之是一个互斥锁，只允许一个线程控制 Python 解释器，也就是说，在任一时间点都只有一个线程处于执行状态。
 #define CALL_WITHOUT_GIL(cls, fn) +[](cls &self) { \
       carla::PythonUtil::ReleaseGIL unlock; \
       return self.fn(); \
@@ -66,6 +71,14 @@ static boost::python::object OptionalToPythonObject(OptionalT &optional) {
 #define CONST_CALL_WITHOUT_GIL_4(cls, fn, T1_, T2_, T3_, T4_) CALL_WITHOUT_GIL_4(const cls, fn, T1_, T2_, T3_, T4_)
 
 // 方便用于需要复制返回值的const请求。 
+// cls：类名class
+// fn: 函数名function name
+// 例如：CALL_RETURNING_COPY(cc::Actor, GetWorld)
+// decltype 类型说明符生成指定表达式的类型（用于进行编译时类型推导）
+// std::result_of_t 用于获取函数对象调用后的返回类型。
+// 它的用法是 std::result_of_t<F(Args...)>，其中 F是函数对象类型，Args...是函数参数类型列表。
+// std::decay_t 是一个类型转换工具，它可以帮助我们处理类型退化（decay）的情况
+// +[](const cls &self) -> std::decay_t<std::result_of_t<decltype(&cls::fn)(cls*)>> { return self.fn(); }
 #define CALL_RETURNING_COPY(cls, fn) +[](const cls &self) \
         -> std::decay_t<std::result_of_t<decltype(&cls::fn)(cls*)>> { \
       return self.fn(); \
@@ -219,6 +232,7 @@ static auto MakeCallback(boost::python::object callback) {
   };
 }
 
+// 17个模块的源代码文件+1个RSS模块
 #include "V2XData.cpp"
 #include "Geom.cpp"
 #include "Actor.cpp"
