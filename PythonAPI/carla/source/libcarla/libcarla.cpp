@@ -246,22 +246,24 @@ BOOST_PYTHON_MODULE(libcarla) {
 #if PY_MAJOR_VERSION < 3 || PY_MINOR_VERSION < 7
   PyEval_InitThreads();
 #endif
-  scope().attr("__path__") = "libcarla";
-  export_geom();
-  export_control();
-  export_blueprint();
-  export_actor();
-  export_sensor();
-  export_sensor_data();
-  export_snapshot();
-  export_weather();
-  export_world();
-  export_map();
-  export_client();
-  export_exception();
-  export_commands();
-  export_trafficmanager();
-  export_lightmanager();
+  // 设置 Python 模块的路径
+  scope().attr("__path__") = "libcarla";// 将 "libcarla" 作为 Python 模块的路径。这表示该模块的代码文件将位于 `libcarla` 目录中。
+  // 导出几种不同类型的数据和功能
+  export_geom();// 导出几何相关的功能，可能涉及 3D 模型、物体形状等几何数据的导出
+  export_control();// 导出控制相关的功能，可能涉及自动驾驶或仿真环境中的控制接口
+  export_blueprint(); // 导出蓝图功能，通常用于定义车辆、行人等对象的构建蓝图或模型
+  export_actor(); // 导出 Actor（演员）相关功能，Actor 通常指仿真世界中的动态实体，如车辆、行人等
+  export_sensor();// 导出传感器相关功能，用于处理与传感器（如摄像头、雷达、激光雷达等）相关的操作
+  export_sensor_data();// 导出传感器数据功能，可能用于获取和处理传感器采集到的数据
+  export_snapshot();// 导出快照功能，用于保存和恢复仿真状态或世界状态的快照
+  export_weather();// 导出天气相关功能，可能用于仿真中的天气控制（如晴天、雨天、雾霾等）
+  export_world(); // 导出世界（World）功能，通常涉及到整个仿真环境的管理和控制
+  export_map();// 导出地图功能，可能涉及获取地图数据或在仿真中加载和使用地图
+  export_client();// 导出客户端相关功能，通常用于客户端与仿真服务之间的通信
+  export_exception();// 导出异常处理功能，用于在程序运行过程中捕获并处理错误
+  export_commands();// 导出命令功能，可能用于执行仿真环境中的特定指令或操作
+  export_trafficmanager();// 导出交通管理器功能，用于控制和管理仿真中的交通流
+  export_lightmanager();// 导出光照管理器功能，可能涉及控制和调整仿真环境中的光照（如日夜变化）
   #ifdef LIBCARLA_RSS_ENABLED
   export_ad_rss();
   #endif
