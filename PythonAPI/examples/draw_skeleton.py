@@ -84,7 +84,7 @@ class CarlaSyncMode(object):
         for sensor in self.sensors:
             make_queue(sensor.listen)
         return self
-        
+    # 这段代码定义在一个类中（从  self  的使用可以推测出来）， __enter__  方法通常是用于实现上下文管理器协议的一部分，它会在进入  with  语句块时被调用，主要完成了一些针对特定世界（ world  ，可能是某个模拟环境相关的对象，比如游戏世界、仿真场景等）的设置操作，并为后续的事件监听做准备，最后返回类自身实例供  with  语句块内使用。   
     # 同步获取传感器数据的方法
     def tick(self, timeout):
         self.frame = self.world.tick()
