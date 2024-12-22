@@ -373,33 +373,33 @@ LIBPNG_VERSION=1.6.37
 LIBPNG_REPO=https://sourceforge.net/projects/libpng/files/libpng16/${LIBPNG_VERSION}/libpng-${LIBPNG_VERSION}.tar.xz
 LIBPNG_BASENAME=libpng-${LIBPNG_VERSION}
 LIBPNG_INSTALL=${LIBPNG_BASENAME}-install
-
+# 设置libpng的安装路径
 LIBPNG_INCLUDE=${PWD}/${LIBPNG_BASENAME}-install/include/
 LIBPNG_LIBPATH=${PWD}/${LIBPNG_BASENAME}-install/lib
-
+# 检查是否已经安装了libpng，如果没有，则下载并编译libpng
 if [[ -d ${LIBPNG_INSTALL} ]] ; then
   log "Libpng already installed."
 else
   log "Retrieving libpng."
-
+# 下载libpng源代码
   start=$(date +%s)
-  wget ${LIBPNG_REPO}
-  end=$(date +%s)
+  wget ${LIBPNG_REPO}# 记录下载结束时间
+  end=$(date +%s)# 计算并显示下载耗时
   echo "Elapsed Time downloading libpng: $(($end-$start)) seconds"
-
+# 解压libpng源代码
   start=$(date +%s)
   log "Extracting libpng."
   tar -xf libpng-${LIBPNG_VERSION}.tar.xz
   end=$(date +%s)
   echo "Elapsed Time Extracting libpng: $(($end-$start)) seconds"
-
+ # 重命名解压后的文件夹
   mv ${LIBPNG_BASENAME} ${LIBPNG_BASENAME}-source
-
+# 进入libpng源代码目录
   pushd ${LIBPNG_BASENAME}-source >/dev/null
-
+# 配置、编译并安装libpng
   ./configure --prefix=${CARLA_BUILD_FOLDER}/${LIBPNG_INSTALL}
   make install
-
+# 返回上级目录
   popd >/dev/null
 
   rm -Rf libpng-${LIBPNG_VERSION}.tar.xz
