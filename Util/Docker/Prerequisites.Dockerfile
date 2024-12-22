@@ -10,9 +10,10 @@ RUN apt-get update ; \#更新 apt 包索引
   add-apt-repository ppa:ubuntu-toolchain-r/test && \#添加 Ubuntu Toolchain 测试 PPA，用于安装新版本的编译工具。
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|apt-key add - && \#添加 LLVM 的 GPG 密钥。
   apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main" && \#添加 LLVM 的软件源。
-  apt-get update ; \
-  apt-get install -y build-essential \
-    clang-8 \
+  apt-get update ; \#更新软件包列表。
+  apt-get install -y build-essential \#安装构建必要的软件包。
+    clang-8 \#要安装的具体软件包
+
     lld-8 \
     g++-7 \
     cmake \
