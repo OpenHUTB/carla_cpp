@@ -121,22 +121,32 @@ void FCarlaExporterModule::PluginButtonClicked()
       FString ActorName = TempActor->GetName();
 
       // 通过命名规则检查类型
-      if (ActorName.Find("Road_Road") != -1 || ActorName.Find("Roads_Road") != -1)
-        areaType = AreaType::ROAD;
-      else if (ActorName.Find("Road_Marking") != -1 || ActorName.Find("Roads_Marking") != -1)
-        areaType = AreaType::ROAD;
-      else if (ActorName.Find("Road_Curb") != -1 || ActorName.Find("Roads_Curb") != -1)
-        areaType = AreaType::ROAD;
-      else if (ActorName.Find("Road_Gutter") != -1 || ActorName.Find("Roads_Gutter") != -1)
-        areaType = AreaType::ROAD;
-      else if (ActorName.Find("Road_Sidewalk") != -1 || ActorName.Find("Roads_Sidewalk") != -1)
-        areaType = AreaType::SIDEWALK;
-      else if (ActorName.Find("Road_Crosswalk") != -1 || ActorName.Find("Roads_Crosswalk") != -1)
-        areaType = AreaType::CROSSWALK;
-      else if (ActorName.Find("Road_Grass") != -1 || ActorName.Find("Roads_Grass") != -1)
-        areaType = AreaType::GRASS;
-      else
-        areaType = AreaType::BLOCK;
+      // 这段代码主要是根据给定的字符串 `ActorName` 的内容来确定 `areaType` 的值，通过一系列的字符串查找判断，将不同命名模式的 `ActorName` 归类到对应的 `AreaType` 枚举值中。
+
+// 首先判断 `ActorName` 中是否包含 "Road_Road" 或者 "Roads_Road" 字符串，如果包含其中任意一个，说明该 `Actor` 与道路相关，就将 `areaType` 设置为 `AreaType::ROAD`。
+if (ActorName.Find("Road_Road")!= -1 || ActorName.Find("Roads_Road")!= -1)
+    areaType = AreaType::ROAD;
+// 如果不包含上述字符串，接着判断是否包含 "Road_Marking" 或者 "Roads_Marking" 字符串，若包含，则同样认为该 `Actor` 与道路相关（比如道路标线等也算道路部分），将 `areaType` 也设置为 `AreaType::ROAD`。
+else if (ActorName.Find("Road_Marking")!= -1 || ActorName.Find("Roads_Marking")!= -1)
+    areaType = AreaType::ROAD;
+// 再判断 `ActorName` 是否包含 "Road_Curb" 或者 "Roads_Curb" 字符串，若包含，表示该 `Actor` 与道路边缘的路缘石相关，同样归为道路相关类别，将 `areaType` 设置为 `AreaType::ROAD`。
+else if (ActorName.Find("Road_Curb")!= -1 || ActorName.Find("Roads_Curb")!= -1)
+    areaType = AreaType::ROAD;
+// 继续判断 `ActorName` 中是否有 "Road_Gutter" 或者 "Roads_Gutter" 字符串，若存在，意味着该 `Actor` 与道路的排水沟等相关元素有关，也属于道路相关部分，所以 `areaType` 赋值为 `AreaType::ROAD`。
+else if (ActorName.Find("Road_Gutter")!= -1 || ActorName.Find("Roads_Gutter")!= -1)
+    areaType = AreaType::ROAD;
+// 然后判断 `ActorName` 是否包含 "Road_Sidewalk" 或者 "Roads_Sidewalk" 字符串，若包含，说明该 `Actor` 与人行道相关，此时将 `areaType` 设置为 `AreaType::SIDEWALK`，将其归类为人行道类别。
+else if (ActorName.Find("Road_Sidewalk")!= -1 || ActorName.Find("Roads_Sidewalk")!= -1)
+    areaType = AreaType::SIDEWALK;
+// 接着判断 `ActorName` 中是否存在 "Road_Crosswalk" 或者 "Roads_Crosswalk" 字符串，若有，则表明该 `Actor` 与人行横道相关，把 `areaType` 赋值为 `AreaType::CROSSWALK`，将其归到人行横道类别。
+else if (ActorName.Find("Road_Crosswalk")!= -1 || ActorName.Find("Roads_Crosswalk")!= -1)
+    areaType = AreaType::CROSSWALK;
+// 再判断 `ActorName` 是否包含 "Road_Grass" 或者 "Roads_Grass" 字符串，若包含，意味着该 `Actor` 与草地相关，将 `areaType` 设置为 `AreaType::GRASS`，将其归类到草地类别。
+else if (ActorName.Find("Road_Grass")!= -1 || ActorName.Find("Roads_Grass")!= -1)
+    areaType = AreaType::GRASS;
+// 如果以上所有包含特定字符串的条件都不满足，说明该 `Actor` 不属于前面所列举的明确分类情况，那么将 `areaType` 设置为 `AreaType::BLOCK`，可以理解为其他未分类的块状区域之类的默认类别。
+else
+    areaType = AreaType::BLOCK;
 
       // 检查是否在这一回合中导出
       if (rounds > 1)
