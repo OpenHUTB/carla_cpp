@@ -68,7 +68,7 @@ def main():
             pass
 
     print('Failed to connect to %s:%d.' % (args.host, args.port))
-    return 1
+    return 1 # 返回1表示连接失败，程序以非零状态码退出，通常可用于表示出现了错误情况
 
 
 if __name__ == '__main__':    
