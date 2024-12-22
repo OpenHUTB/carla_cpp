@@ -227,7 +227,10 @@ install(FILES ${libcarla_carla_road_signal_sources} DESTINATION include/carla/ro
 # 添加远程过程调用（LibCarla/source/carla/rpc/）相关代码
 file(GLOB libcarla_carla_rpc_sources
     "${libcarla_source_path}/carla/rpc/*.cpp"
-    "${libcarla_source_path}/carla/rpc/*.h")
+    "${libcarla_source_path}/carla/rpc/*.h")# 使用 CMake 中的 file(GLOB) 命令进行文件查找与收集操作。
+# 这里是收集符合特定模式的文件路径，并将这些路径存储到变量 libcarla_carla_rpc_sources 中。
+# 具体查找的是在 ${libcarla_source_path}/carla/rpc/ 目录下，所有以.cpp 为后缀的 C++ 源文件，以及同样目录下以.h 为后缀的头文件路径。
+# 这表明收集的是与 Carla 项目中 RPC（Remote Procedure Call，远程过程调用）相关的源文件和头文件，这些文件包含了实现 RPC 功能的代码，为后续项目构建等环节使用该功能模块做准备。
 set(libcarla_sources "${libcarla_sources};${libcarla_carla_rpc_sources}")
 install(FILES ${libcarla_carla_rpc_sources} DESTINATION include/carla/rpc)
 
