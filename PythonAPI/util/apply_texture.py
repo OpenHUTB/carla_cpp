@@ -1,63 +1,77 @@
 #!/usr/bin/env python
 """ TL info printer
 """
-# Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de
-# Barcelona (UAB).
-#
-# This work is licensed under the terms of the MIT license.
-# For a copy, see <https://opensource.org/licenses/MIT>.
-
-# ==============================================================================
+# 这是一个Python脚本的开头，用于指定解释器路径（通常是环境变量中的python解释器）和脚本的简短描述。
+ 
+# 版权和许可信息
+# 这个工作是根据MIT许可证授权的。
+# 许可证的副本可以在<https://opensource.org/licenses/MIT>找到。
+ 
 # -- imports -------------------------------------------------------------------
-# ==============================================================================
-
-import glob
-import os
-import sys
-import argparse
-import math
-import time
-import queue
-import imageio
-# 导入多个Python标准库模块，分别用于文件路径查找（glob）、操作系统相关操作（os）、系统相关功能（sys）、
-# 命令行参数解析（argparse）、数学运算（math）、时间处理（time）、队列操作（queue）以及图像读取（imageio）等功能。
-# ==============================================================================
+# 导入Python标准库和第三方库
+import glob  # 用于文件路径的模式匹配
+import os    # 用于操作系统功能，如路径操作和环境变量
+import sys   # 用于访问与Python解释器紧密相关的变量和函数
+import argparse  # 用于命令行参数解析
+import math  # 提供数学运算函数
+import time  # 提供时间相关的函数
+import queue  # 提供队列数据结构
+import imageio  # 用于图像文件的读写
+ 
 # -- find carla module ---------------------------------------------------------
-# ==============================================================================
-
-try:#尝试将特定的路径添加到系统路径sys.path中
-    # 尝试查找Carla模块所在的.egg文件路径，并将其添加到系统路径sys.path中，以便后续能正确导入carla模块。
-    # 根据Python版本信息（major表示主版本号，minor表示次版本号）以及操作系统类型（win-amd64表示Windows，
-    # linux-x86_64表示Linux）来构建通配符模式，查找对应的.egg文件。
+# 尝试导入CARLA模块
+try:
+    # 根据Python版本和操作系统类型动态构建CARLA .egg文件的路径，并将其添加到系统路径中
+    # 这样做是为了确保可以导入CARLA模块，即使它不在标准的库路径中
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
 except IndexError:
-    # 如果没有找到匹配的.egg文件（即glob.glob返回的列表为空，引发IndexError），则跳过添加路径操作，继续执行后续代码。
+    # 如果没有找到匹配的.egg文件，则忽略
     pass
-
-import carla
-# 导入Carla模块，用于与Carla模拟器进行交互，实现各种场景相关操作，如获取场景对象、更新纹理等功能。
+ 
+import carla  # 导入CARLA模块，用于与CARLA模拟器进行交互
+ 
+# -- 函数定义 ------------------------------------------------------------------
+ 
 def get_8bit_texture(image):
+    """
+    将8位RGBA图像转换为CARLA的TextureColor对象。
+    
+    参数:
+    image (list of list of tuples): 图像的像素数据，每个像素由(R, G, B, A)组成，值在0-255之间。
+    
+    返回:
+    carla.TextureColor: 转换后的纹理对象。
+    """
     if image is None:
-        return carla.TextureFloatColor(0,0)
+        return carla.TextureFloatColor(0,0)  # 注意：这里返回类型应该是carla.TextureColor的误写
     height = len(image)
     width = len(image[0])
     texture = carla.TextureColor(width,height)
-    # 遍历图像的每个像素点，获取其颜色信息（RGBA值），并将其设置到创建的纹理对象中。
-    # 注意这里y坐标的处理是height - y - 1，可能是因为Carla纹理坐标系统与常规图像坐标系统在y方向上有所不同。
     for x in range(0,width):
         for y in range(0,height):
+            # 获取像素颜色，并转换为CARLA的Color对象
             color = image[y][x]
             r = int(color[0])
             g = int(color[1])
             b = int(color[2])
             a = int(color[3])
+            # 注意：y坐标需要反转，因为图像坐标系统（0,0在左上角）与CARLA纹理坐标系统可能不同
             texture.set(x, height - y - 1, carla.Color(r,g,b,a))
     return texture
-# 定义一个函数，用于获取一个浮点纹理
+ 
 def get_float_texture(image):
+    """
+    将8位RGBA图像转换为CARLA的TextureFloatColor对象，颜色值被缩放到0-5的范围内。
+    
+    参数:
+    image (list of list of tuples): 图像的像素数据，每个像素由(R, G, B, A)组成，值在0-255之间。
+    
+    返回:
+    carla.TextureFloatColor: 转换后的浮点纹理对象。
+    """
     if image is None:
         return carla.TextureFloatColor(0,0)
     height = len(image)
@@ -65,11 +79,13 @@ def get_float_texture(image):
     texturefloat = carla.TextureFloatColor(width,height)
     for x in range(0,width):
         for y in range(0,height):
+            # 获取像素颜色，并将其R、G、B分量缩放到0-5的范围，A分量保持为1.0
             color = image[y][x]
             r = int(color[0])/255.0 * 5
             g = int(color[1])/255.0 * 5
             b = int(color[2])/255.0 * 5
             a = 1.0
+            # 注意：y坐标需要反转
             texturefloat.set(x, height - y - 1, carla.FloatColor(r,g,b,a))
     return texturefloat
 
