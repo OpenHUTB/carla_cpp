@@ -1,1 +1,3 @@
 smoke.test_client smoke.test_sync smoke.test_sensor_determinism smoke.test_collision_determinism smoke.test_vehicle_physics smoke.test_props_loading smoke.test_sensor_tick_time smoke.test_map smoke.test_snapshot smoke.test_lidar smoke.test_streamming smoke.test_spawnpoints smoke.test_blueprint smoke.test_collision_sensor smoke.test_world smoke.test_determinism
+# 以上是一系列可能用于测试某个系统（也许是和游戏、模拟环境等相关，比如基于CARLA之类的平台）的不同功能模块的测试用例名称。
+# 测试客户端相关功能的测试用例，可能检查客户端与服务器的连接、通信等方面是否正常工作。
