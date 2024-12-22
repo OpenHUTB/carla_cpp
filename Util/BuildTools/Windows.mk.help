@@ -59,3 +59,74 @@ for developers:
     setup:
 
         Run the setup step only.
+# 欢迎使用CARLA Simulator！
+# 这个Makefile文件旨在帮助你构建不同的CARLA实用工具。
+
+# 使用以下命令来执行相应操作：
+
+# help命令
+help:
+    # 功能：显示此帮助消息，方便使用者查看各个命令的具体用途和用法说明。
+    Display this help message.
+
+# launch命令
+launch:
+    # 功能：先编译CarlaUE4项目，然后在虚幻引擎（Unreal Engine）的编辑器中启动它，这是启动CARLA Simulator相关程序的关键步骤。
+    Compile CarlaUE4 project and launch it in Unreal Engine's Editor.
+
+# package命令
+package:
+    # 功能：制作CARLA的打包版本，使其能够准备好进行分发，便于将CARLA部署到其他环境中供他人使用。
+    Makes a packaged version of CARLA ready for distribution.
+
+# docs命令
+docs:
+    # 功能：构建CARLA的Doxygen文档，有助于开发者和使用者更好地理解CARLA的代码结构、接口等详细内容，方便后续开发以及查阅相关资料。
+    Build CARLA Doxygen documentation.
+
+# clean命令
+clean:
+    # 功能：移除中间的构建文件，在多次构建或者想要清理构建过程中产生的临时文件时很有用，能节省磁盘空间，并确保后续构建不受旧文件影响。
+    Remove intermediate build files.
+
+# rebuild命令
+rebuild:
+    # 功能：先移除中间构建文件，然后重新构建整个项目，相当于先执行clean操作，再完整地进行项目构建，适用于需要对项目进行全面更新重建的情况。
+    Remove intermediate build files and rebuild the whole project.
+
+# 以下是一些面向开发者的较低层级命令，用于构建单个模块，对开发过程很有帮助：
+
+# check命令
+check:
+    # 功能：运行针对LibCarla和PythonAPI的单元测试套件，有助于开发者验证这两个重要模块的功能正确性，能及时发现代码中的问题和缺陷。
+    Run unit test suites for LibCarla and PythonAPI.
+
+# benchmark命令
+benchmark:
+    # 功能：执行LibCarla的基准测试，可帮助开发者了解LibCarla模块在不同条件下的性能表现，便于进行性能优化等开发工作。
+    Run the benchmark tests for LibCarla.
+
+# PythonAPI命令
+PythonAPI:
+    # 功能：构建并打包适用于Python 2和Python 3的Python API模块，方便在Python环境下调用CARLA的相关接口进行开发工作。
+    Build and package the Python API module for Python 2 and Python 3.
+
+# Server命令
+Server:
+    # 功能：构建“Server”相关的LibCarla库配置，是针对CARLA服务端相关功能进行的库构建操作，为服务端相关功能提供支持。
+    Build the "Server" LibCarla library configuration.
+
+# Client命令
+Client:
+    # 功能：构建“Client”相关的LibCarla库配置，与服务端相对应，侧重于构建客户端相关的库配置，便于客户端与服务端进行交互等操作。
+    Build the "Client" LibCarla library configuration.
+
+# LibCarla命令
+LibCarla:
+    # 功能：构建LibCarla库，涵盖了“Server”和“Client”两种配置，是对整个LibCarla库进行构建的综合命令，用于完整地构建LibCarla库相关内容。
+    Build the LibCarla library, both "Server" and "Client" configurations.
+
+# setup命令
+setup:
+    # 功能：仅执行设置步骤，可能是为后续的构建等操作做一些初始化、环境配置之类的准备工作，确保后续步骤能顺利开展。
+    Run the setup step only.
