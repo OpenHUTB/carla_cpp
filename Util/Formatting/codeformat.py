@@ -255,9 +255,9 @@ class CodeFormat:
         self.codeFormatterInstances = []
         return
 
-    import argparse
-import os
-import re
+    import argparse#用于解析命令行参数
+import os#用于操作系统相关的功能
+import re#用于正则表达式操作
 # 假设cprint和SCRIPT_VERSION是从某个模块中导入的，这里不展示该模块的导入代码
 # from some_module import cprint, SCRIPT_VERSION
 
