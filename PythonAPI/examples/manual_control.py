@@ -84,7 +84,7 @@ import carla
 
 from carla import ColorConverter as cc
 
-import argparse
+import argparse#argparse  是Python内置的标准库模块，用于方便地解析命令行参数。
 import collections
 import datetime
 import logging
