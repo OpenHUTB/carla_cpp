@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-unit-tests)
 
 # 进行客户端的测试
+# 根据构建类型设置配置变量
 if (CMAKE_BUILD_TYPE STREQUAL "Client")
   set(carla_config client)
 # 进行服务端的测试
