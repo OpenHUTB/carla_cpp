@@ -19,7 +19,7 @@
 #include <boost/asio/deadline_timer.hpp>  // 引入 Boost ASIO 的定时器头文件
 #include <boost/asio/io_context.hpp>  // 引入 Boost ASIO 的 IO 上下文头文件
 #include <boost/asio/ip/tcp.hpp>  // 引入 Boost ASIO 的 TCP 头文件
-#include <boost/asio/strand.hpp>  // 引入 Boost ASIO 的 Strand 头文件
+#include <boost/asio/strand.hpp>  // 引入Boost ASIO库中用于保证异步操作顺序执行的Strand类的头文件
 
 #include <atomic>  // 引入原子类型支持
 #include <functional>  // 引入函数对象和绑定支持
