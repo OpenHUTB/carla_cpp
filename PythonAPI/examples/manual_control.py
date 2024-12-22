@@ -142,7 +142,7 @@ try:
     import numpy as np
 except ImportError:
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
-
+#这里使用  try  语句块来包裹  import numpy as np  这一导入操作， import numpy  是Python中常规的导入模块语句，而  as np  是给导入的  numpy  模块取了一个别名  np  ，这样在后续代码中就可以使用  np  来替代  numpy  进行调用相关的函数、类等
 
 # ==============================================================================
 # -- Global functions ----------------------------------------------------------
