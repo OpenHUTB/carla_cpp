@@ -21,163 +21,236 @@
 
 #include <fastcdr/FastBuffer.h>
 #include <fastcdr/Cdr.h>
-
 #include "ImuPubSubTypes.h"
 
+// 定义序列化负载类型和实例句柄类型，方便后续代码中使用相应类型，使代码结构更清晰、易读
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace sensor_msgs {
     namespace msg {
 
+        // ImuPubSubType 类的构造函数，用于初始化与 IMU 消息类型相关的各种属性和资源
         ImuPubSubType::ImuPubSubType()
         {
-            // 设置类型的名称为 "sensor_msgs::msg::dds_::Imu_"，这是 ROS 2 中的 IMU 消息类型
+            // 设置该类型的名称为 "sensor_msgs::msg::dds_::Imu_"，在 ROS 2 系统中，这用于明确标识当前这个 PubSubType 对应的是 IMU 消息类型，
+            // 方便在消息的发布、订阅以及其他相关处理流程中进行区分和识别
             setName("sensor_msgs::msg::dds_::Imu_");
 
-            // 计算 Imu 类型的最大序列化大小
+            // 计算 Imu 类型的最大 CDR（Common Data Representation，一种常用的数据序列化格式）序列化大小，
+            // 该大小取决于 Imu 类型自身包含的数据成员以及它们各自序列化后的长度总和等因素，
+            // 通过调用 Imu 类提供的静态函数 getMaxCdrSerializedSize() 来获取这个最大尺寸信息，为后续的内存分配等操作做准备
             auto type_size = Imu::getMaxCdrSerializedSize();
 
-            // 计算序列化数据的对齐（为了处理可能存在的子消息）
+            // 计算序列化数据的对齐（主要是为了处理可能存在的子消息，确保数据存储符合特定的对齐要求，提高数据处理效率和兼容性），
+            // 调用 eprosima::fastcdr::Cdr 类的 alignment 函数，将前面得到的类型大小 type_size 按照 4 字节对齐，
+            // 即调整 type_size 的值，使其成为 4 的倍数，满足可能的对齐规范
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4);
 
-            // 将类型大小加上 4 字节的封装大小（ROS 2 消息通常采用封装格式）
+            // 将调整后的类型大小加上 4 字节的封装大小（在 ROS 2 消息体系中，通常采用这样的封装格式，这 4 字节可能用于存放诸如消息头部、标识等额外信息），
+            // 最后将结果转换为 uint32_t 类型后赋值给 m_typeSize 成员变量，用于记录整个 Imu 消息类型序列化后的总体大小（包含封装部分），方便后续使用
             m_typeSize = static_cast<uint32_t>(type_size) + 4;  // encapsulation
 
-            // 检查 Imu 类型是否定义了键值（key），并保存其状态
+            // 检查 Imu 类型是否定义了键值（key），通过调用 Imu 类的静态函数 isKeyDefined() 来判断，
+            // 并将判断结果（布尔值）保存到 m_isGetKeyDefined 成员变量中，后续在获取键值等相关操作时，会依据这个变量的值来确定操作是否可行
             m_isGetKeyDefined = Imu::isKeyDefined();
 
-            // 计算 Imu 类型键的最大序列化大小，如果大于 16 字节，则选择较大的键长度，否则选择 16 字节
-            size_t keyLength = Imu::getKeyMaxCdrSerializedSize() > 16 ?
+            // 计算 Imu 类型键的最大序列化大小，判断其是否大于 16 字节，
+            // 如果大于 16 字节，则选择 Imu::getKeyMaxCdrSerializedSize() 返回的实际大小作为键缓冲区的长度，
+            // 否则选择 16 字节作为键缓冲区的长度，以此确定一个合适的键缓冲区大小，以适应不同情况下键数据的存储需求
+            size_t keyLength = Imu::getKeyMaxCdrSerializedSize() > 16?
                     Imu::getKeyMaxCdrSerializedSize() : 16;
 
-            // 为键值缓冲区分配内存，存储最大可能的键长度
+            // 为键值缓冲区分配内存，使用 malloc 函数分配指定长度（keyLength）的无符号字符类型（unsigned char*）内存空间，
+            // 这块内存区域后续将用于存储与键相关的数据，例如键的序列化表示等内容，确保有足够的空间来处理键信息
             m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
 
-            // 初始化缓冲区内容为零，确保没有未初始化的数据
+            // 初始化刚分配的键缓冲区内容为零，通过 memset 函数将键缓冲区的所有字节都设置为 0，
+            // 这样做是为了确保缓冲区初始状态是确定的，避免出现未初始化的数据，防止因不确定的初始值而导致后续操作出现错误或不可预期的结果
             memset(m_keyBuffer, 0, keyLength);
         }
 
-
+        // ImuPubSubType 类的析构函数，用于释放构造函数中分配的键缓冲区内存资源，避免内存泄漏
         ImuPubSubType::~ImuPubSubType()
         {
-            if (m_keyBuffer != nullptr)
+            // 检查键缓冲区指针 m_keyBuffer 是否为空，如果不为空，说明之前在构造函数中成功分配了内存，
+            // 此时需要调用 free 函数释放对应的内存空间，将其归还给操作系统，保证内存资源的正确管理
+            if (m_keyBuffer!= nullptr)
             {
                 free(m_keyBuffer);
             }
         }
 
+        // 序列化函数，将给定的 Imu 类型数据对象序列化为 SerializedPayload_t 格式，以便后续进行消息的传输、存储等操作
         bool ImuPubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
+            // 将传入的 void* 类型数据指针转换为 Imu* 类型指针，这样就能以 Imu 类型的方式正确访问和操作传入的数据对象，
+            // 确保可以调用 Imu 类中定义的与序列化相关的成员函数等，进行后续的序列化具体操作
             Imu* p_type = static_cast<Imu*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理原始缓冲区（raw buffer），
+            // 它通过 reinterpret_cast 将 payload->data（这是一个 char* 类型的指针，指向实际存储数据的内存区域）转换为合适的类型，
+            // 并结合 payload->max_size（表示缓冲区的最大可用空间大小）来初始化 FastBuffer 对象，
+            // 后续通过这个对象可以方便地对缓冲区进行读写操作，同时也限定了序列化数据可使用的最大空间范围
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
+
+            // 创建一个 eprosima::fastcdr::Cdr 对象，用于执行实际的序列化数据操作，
+            // 它关联了前面创建的 FastBuffer 对象 fastbuffer，同时指定了字节序（DEFAULT_ENDIAN，通常为系统默认字节序）
+            // 和遵循的 CDR 规范（DDS_CDR，特定于数据分发服务（Data Distribution Service，DDS）系统的 CDR 格式要求），
+            // 这个 Cdr 对象提供了一系列用于序列化不同数据类型的函数接口，方便按照相应规则对数据进行序列化处理
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
-            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+
+            // 根据 Cdr 对象当前的字节序（endianness）来设置 payload 的封装格式（encapsulation），
+            // 如果 ser 对象的字节序是大端序（BIG_ENDIANNESS），则将 payload 的封装格式设置为 CDR_BE，否则设置为 CDR_LE，
+            // 封装格式用于明确数据在传输或存储时字节的排列顺序，接收方在反序列化时需要按照相同的格式进行解析，以保证数据的正确还原
+            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
+
+            // 使用 Cdr 对象对封装进行序列化操作，这一步可能是在数据前面添加一些必要的封装头部等信息，
+            // 按照 CDR 规范为整个要序列化的数据构建合适的结构，使得序列化后的数据符合特定的格式要求，方便后续的传输和处理
             ser.serialize_encapsulation();
 
             try
             {
-                // Serialize the object.
+                // 调用 Imu 类型对象的 serialize 函数（假设 Imu 类中定义了这个函数用于序列化自身的数据成员），
+                // 通过传入前面创建的 Cdr 对象 ser，将 Imu 类型对象的数据按照 CDR 格式序列化到对应的缓冲区中，
+                // 如果在序列化过程中出现内存不足等异常情况，会抛出相应的异常并在 catch 块中进行处理
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果捕获到内存不足的异常，说明序列化操作无法正常完成，此时返回 false，表示序列化失败
                 return false;
             }
 
-            // Get the serialized length
+            // 获取经过序列化后的数据实际长度，通过调用 ser 对象的 getSerializedDataLength 函数获取已序列化数据的长度，
+            // 并将其赋值给 payload 的 length 成员变量，这样后续使用 payload 时可以知道实际有效数据的长度，便于进行后续处理，比如传输时知道要发送的数据量等
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+
+            // 表示序列化操作成功完成，返回 true
             return true;
         }
 
+        // 反序列化函数，将 SerializedPayload_t 格式的数据反序列化为 Imu 类型的数据对象，实现从存储或传输格式到实际可用数据对象的转换
         bool ImuPubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
             try
             {
-                // 将传入的 void* 类型数据指针转换为 Imu 类型指针
+                // 将传入的 void* 类型数据指针转换为 Imu* 类型指针，以便后续能以 Imu 类型的方式正确操作和填充数据，
+                // 使得反序列化得到的数据能够准确地赋值给对应的 Imu 类型对象的各个成员变量
                 Imu* p_type = static_cast<Imu*>(data);
 
-                // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理原始数据缓冲区
-                // 将 payload->data 指针作为缓冲区，并使用 payload->length 作为缓冲区的大小
+                // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理原始数据缓冲区，
+                // 它通过 reinterpret_cast 将 payload->data（指向实际存储数据的内存区域）转换为合适的类型，
+                // 并使用 payload->length（表示实际数据的长度）来限定缓冲区的有效范围，确保后续反序列化操作只处理有效数据部分
                 eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-                // 创建一个 eprosima::fastcdr::Cdr 对象，用于反序列化数据
-                // 使用默认字节序（系统字节序），并选择 DDS_CDR 格式进行反序列化
+                // 创建一个 eprosima::fastcdr::Cdr 对象，用于执行反序列化数据操作，
+                // 它关联了前面创建的 FastBuffer 对象 fastbuffer，同时指定了字节序（DEFAULT_ENDIAN，通常为系统默认字节序）
+                // 和遵循的 CDR 规范（DDS_CDR，符合特定的 DDS 系统要求的 CDR 格式），
+                // 这个 Cdr 对象提供了一系列用于反序列化不同数据类型的函数接口，以便按照相应规则从缓冲区中解析出数据并还原为 Imu 类型对象
                 eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-                // 反序列化封装头（处理序列化数据的结构和顺序）
+                // 反序列化封装头（处理序列化数据的结构和顺序），通过调用 Cdr 对象的 read_encapsulation 函数，
+                // 按照之前序列化时构建的封装格式，解析出相关的头部信息，例如字节序等信息，为后续正确反序列化数据做准备
                 deser.read_encapsulation();
 
-                // 根据反序列化的数据的字节序，设置封装格式（大端或小端）
-                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
+                // 根据反序列化得到的 Cdr 对象 deser 的字节序，设置 payload 的封装格式（encapsulation），
+                // 如果是大端序（BIG_ENDIANNESS）则设置为 CDR_BE，否则设置为 CDR_LE，保持与序列化时一致的封装格式标识，方便后续处理或验证
+                payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
 
-                // 反序列化具体的 Imu 对象数据
+                // 调用 Imu 类型对象的 deserialize 函数（假设 Imu 类中定义了这个函数用于从 CDR 格式数据反序列化自身的数据成员），
+                // 通过传入前面创建的 Cdr 对象 deser，将缓冲区中的数据按照 CDR 格式反序列化为 Imu 类型对象的数据，填充到对应的 Imu 类型对象的各个成员变量中
                 p_type->deserialize(deser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
-                // 如果内存不足，捕获异常并返回 false，表示反序列化失败
+                // 如果在反序列化过程中捕获到内存不足的异常，说明反序列化操作无法正常完成，此时返回 false，表示反序列化失败
                 return false;
             }
 
-            // 反序列化成功，返回 true
+            // 表示反序列化操作成功完成，返回 true，意味着成功将传入的序列化数据还原为了 Imu 类型的可用数据对象
             return true;
         }
 
-
+        // 返回一个函数对象（lambda 表达式），该函数对象用于获取给定 Imu 数据对象序列化后的大小（包含封装部分），
+        // 方便在需要知道特定 Imu 数据序列化后占据空间大小的场景中进行调用获取相应信息
         std::function<uint32_t()> ImuPubSubType::getSerializedSizeProvider(
                 void* data)
         {
             return [data]() -> uint32_t
                    {
+                       // 先获取 Imu 类型数据对象的 CDR 序列化大小，通过调用 type（这里可能是一个命名空间或者类型别名相关的标识，假设对应的 getCdrSerializedSize 函数存在且正确实现）
+                       // 的 getCdrSerializedSize 函数，并传入转换后的 Imu* 类型指针所指向的数据对象，获取其序列化大小，
+                       // 然后再加上 4 字节（用于考虑封装（encapsulation）所需的额外空间），最终返回总的序列化大小
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Imu*>(data))) +
                               4u /*encapsulation*/;
                    };
         }
 
+        // 创建一个新的 Imu 类型的数据对象，并将其指针转换为 void* 类型返回，
+        // 通常用于在需要动态分配对应类型数据空间的场景中，例如在接收消息前准备好存储消息数据的对象，方便后续进行数据填充等操作
         void* ImuPubSubType::createData()
         {
             return reinterpret_cast<void*>(new Imu());
         }
 
+        // 删除给定的 Imu 类型数据对象，通过将 void* 类型指针转换为 Imu* 类型指针，然后调用 delete 操作符来释放内存，
+        // 用于清理之前动态分配的 Imu 类型数据对象所占用的内存空间，避免内存泄漏，保证内存资源的有效管理
         void ImuPubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<Imu*>(data));
         }
 
+        // 获取给定 Imu 数据对象的键（Key）信息，并填充到 InstanceHandle_t 结构中，根据情况可能计算 MD5 值等操作，
+        // 键信息通常用于在消息分发、查找等场景中快速定位和区分不同的消息实例
         bool ImuPubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
+            // 首先检查是否定义了获取键的操作，通过判断 m_isGetKeyDefined 成员变量的值（该值在构造函数中根据 Imu 类型是否定义键来初始化），
+            // 如果没有定义获取键的操作（即 m_isGetKeyDefined 为 false），则直接返回 false，表示无法获取键信息
             if (!m_isGetKeyDefined)
             {
                 return false;
             }
 
+            // 将传入的 void* 类型数据指针转换为 Imu* 类型指针，以便后续操作对应的 Imu 类型对象，进行与键相关的序列化等操作
             Imu* p_type = static_cast<Imu*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理用于存储键数据的缓冲区，
+            // 它通过 reinterpret_cast 将 m_keyBuffer（之前在构造函数中分配的键缓冲区指针）转换为合适的类型，
+            // 并结合 Imu::getKeyMaxCdrSerializedSize()（获取 Imu 类型键的最大序列化大小）来限定缓冲区的范围，
+            // 这个缓冲区将用于后续的键数据序列化操作，确保有合适的空间来暂存键的序列化表示
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
                     Imu::getKeyMaxCdrSerializedSize());
-
-            // Object that serializes the data.
+// 创建一个 eprosima::fastcdr::Cdr 对象，用于序列化键数据，
+// 这里指定了字节序为大端序（BIG_ENDIANNESS），然后使用该对象对 Imu 对象的键进行序列化操作（调用 Imu 类的 serializeKey 函数，假设其存在且正确实现），
+// 将 Imu 类型对象中与键相关的数据按照指定字节序和 CDR 格式序列化到对应的缓冲区中，以便后续处理键数据
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
             p_type->serializeKey(ser);
+
+            // 判断是否需要强制计算MD5值或者Imu类型的键最大CDR序列化大小是否大于16字节，
+            // 如果满足这两个条件中的任意一个，就需要进行MD5计算及相关处理，通常用于生成唯一标识键的哈希值等用途
             if (force_md5 || Imu::getKeyMaxCdrSerializedSize() > 16)
             {
+                // 初始化MD5计算相关的对象（假设m_md5是一个用于MD5计算的合适对象且有对应的init等函数），
+                // 这一步准备好进行MD5计算所需的内部状态等信息，例如初始化相关的哈希算法参数等
                 m_md5.init();
+                // 使用MD5对象更新数据，传入键缓冲区（m_keyBuffer）和序列化后的键数据长度（通过ser.getSerializedDataLength()获取），
+                // 以便MD5计算对象依据这些数据来逐步计算哈希值，它会根据传入的数据内容按照MD5算法规则进行计算
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
+                // 完成MD5计算，生成最终的MD5摘要值，此步骤会根据前面更新的数据进行最后的哈希计算，得到一个固定长度（通常是16字节）的摘要信息，
+                // 用于唯一标识该键对应的Imu对象相关信息，便于后续的比较、查找等操作
                 m_md5.finalize();
+                // 将计算得到的MD5摘要值的每个字节依次复制到InstanceHandle_t结构的value数组中，
+                // InstanceHandle_t结构可能用于在消息系统中唯一标识某个消息实例等用途，通过将MD5值存入其中，
+                // 后续可以基于这个值来快速判断不同消息实例是否对应相同的Imu对象（基于键的角度）
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_md5.digest[i];
@@ -185,12 +258,17 @@ namespace sensor_msgs {
             }
             else
             {
+                // 如果不需要计算MD5值且键大小不大于16字节，则直接将键缓冲区（m_keyBuffer）中的数据复制到InstanceHandle_t结构的value数组中，
+                // 这种情况可能是键本身比较简单或者有其他特定的处理逻辑使得不需要进行MD5计算来生成唯一标识，直接使用原始键数据即可
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
                 }
             }
+
+            // 表示成功获取并处理了键信息，返回true，意味着已经按照相应规则将键相关的数据填充到了InstanceHandle_t结构中，
+            // 可以供外部进一步使用，比如在消息匹配、查找等操作中基于这个键信息进行相应的判断和处理
             return true;
         }
-    } //End of namespace msg
-} //End of namespace sensor_msgs
+    } 
+} 
