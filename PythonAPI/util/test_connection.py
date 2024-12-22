@@ -58,7 +58,7 @@ def main():
 
     t0 = time.time()
 
-    while args.timeout > (time.time() - t0):
+    while args.timeout > (time.time() - t0):# 进入一个循环，只要设定的超时时间（args.timeout）大于从起始时间（t0）到当前时间（time.time()）的时间差，就持续尝试连接
         try:
             client = carla.Client(args.host, args.port)# 获取CARLA服务器版本信息，并打印出连接成功的提示信息，包含服务器版本、连接的主机和端口
             client.set_timeout(0.1) # 为客户端设置超时时间为0.1秒，意味着如果在0.1秒内没有得到服务器响应，将会抛出异常
