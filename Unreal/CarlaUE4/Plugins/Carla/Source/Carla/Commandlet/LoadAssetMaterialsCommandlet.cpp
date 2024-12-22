@@ -122,58 +122,75 @@ ULoadAssetMaterialsCommandlet::ULoadAssetMaterialsCommandlet()
 
 #if WITH_EDITORONLY_DATA
 
+// ApplyRoadPainterMaterials函数用于将道路绘制器材料应用于指定的地图
 void ULoadAssetMaterialsCommandlet::ApplyRoadPainterMaterials(const FString &LoadedMapName, const FString &PackageName, bool IsInTiles)
 {
+  // 如果当前处于瓦片模式，则执行以下逻辑
   if (IsInTiles == true) {
 
+    // 如果尚未填充数据，则执行以下逻辑
     if (FilledData == false) {
 
-      // 由于 OpenDrive 文件与关卡同名，使用标签名称和游戏内容目录来构建 xodr 文件的路径
+      // 构建xodr文件的路径，OpenDrive文件与关卡同名，因此使用标签名称和游戏内容目录来构建路径
       FString MapName = LoadedMapName;
       if (IsInTiles)
       {
         int32 idx = MapName.Find("_Tile_");
         if(idx > -1)
         {
+          // 从地图名称中移除_Tile_及其后的索引，以获取基础地图名称
           MapName = MapName.Mid(0, idx);
         }
       }
+      // 加载xodr文件内容
       const FString XodrContent = UOpenDrive::LoadXODR(MapName);
+      // 使用carla::opendrive::OpenDriveParser加载OpenDrive数据
       XODRMap = carla::opendrive::OpenDriveParser::Load(carla::rpc::FromLongFString(XodrContent));
 
-      //获取TilesInfo.txt文件以存储瓦片数据（偏移量和大小）
+      // 获取TilesInfo.txt文件以存储瓦片数据（偏移量和大小）
       TArray<FString> FileList;
+      // 在指定目录下递归查找TilesInfo.txt文件
       IFileManager::Get().FindFilesRecursive(FileList, *(FPaths::ProjectContentDir() + "/" + PackageName + "/Maps/" + MapName), *(FString("TilesInfo.txt")), true, false, false);
 
       FString TxtFile;
+      // 如果成功加载TilesInfo.txt文件，则执行以下逻辑
       if (FFileHelper::LoadFileToString(TxtFile, *FileList[0]) == true) {
 
         TArray<FString> Out;
+        // 解析TilesInfo.txt文件内容，假设格式为"X,Y,Size"
         TxtFile.ParseIntoArray(Out, TEXT(","), true);
 
+        // 从解析的字符串数组中提取瓦片的中心X坐标、中心Y坐标和大小
         TileData.FirstTileCenterX = (float) FCString::Atoi(*Out[0]);
         TileData.FirstTileCenterY = (float) FCString::Atoi(*Out[1]);
         TileData.Size = (float) FCString::Atoi(*Out[2]);
       }
       else {
+        // 如果无法读取TilesInfo.txt文件，则记录警告日志并返回
         UE_LOG(LogTemp, Warning, TEXT("Could not read TilesInfo.txt file"));
         return;
       }
 
+      // 标记数据已填充
       FilledData = true;
     }
 
+    // 将加载的地图名称解析为字符串数组，以提取X和Y索引
     TArray<FString> StringArray = {};
     LoadedMapName.ParseIntoArray(StringArray, TEXT("_"), false);
-    // 从加载的地图名称（如 mymap_Tile_200_400）中获取 X 和 Y（Tile_200_400 -> X = 200, Y = 400）
+    // 从加载的地图名称（如 mymap_Tile_200_400）中获取X和Y（Tile_200_400 -> X = 200, Y = 400）
     int32 XIndex = FCString::Atoi(*StringArray[StringArray.Num() - 2]);
     int32 YIndex = FCString::Atoi(*StringArray[StringArray.Num() - 1]);
     FVector TilePosition;
-    // 这意味着它是初始的瓦片（mymap_Tile_0_0）
-    // 这是相对坐标
+    // 计算瓦片的位置，这是相对坐标
     TilePosition.X = TileData.FirstTileCenterX + (TileData.Size * (float)XIndex);
     TilePosition.Y = TileData.FirstTileCenterY - (TileData.Size * (float)YIndex);
-    TilePosition.Z = 0.0f;
+    TilePosition.Z = 0.0f; // 瓦片的Z坐标设置为0
+  }
+}
+
+#endif
+
 
     float HalfSize = TileData.Size / 2.0f;
 
