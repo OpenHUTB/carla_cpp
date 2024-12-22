@@ -11,11 +11,11 @@
 
 namespace carla {
 namespace client {
-  //这个函数返回Actor当前的位置。
+  //利用这个函数返回Actor现在的位置。
   geom::Location Actor::GetLocation() const {
     return GetEpisode().Lock()->GetActorLocation(*this);
   }
-  //返回Actor当前的变换（位置和方向）。
+  //返回Actor当前的变换（方向和位置）。
   //实现方式与GetLocation类似，通过GetEpisode().Lock()->GetActorTransform(*this)获取。
   geom::Transform Actor::GetTransform() const {
     return GetEpisode().Lock()->GetActorTransform(*this);
