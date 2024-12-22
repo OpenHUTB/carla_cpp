@@ -1388,14 +1388,26 @@ class CameraManager(object):
 
 
 def game_loop(args):
+    """
+    主游戏循环函数，负责初始化游戏相关环境（如 Pygame、Carla 客户端等），设置模拟世界的参数，创建游戏中的各种对象（如 HUD、世界对象、控制器等），
+    然后进入循环不断更新游戏状态、渲染画面，直到满足退出条件。最后在结束时进行资源清理和环境恢复操作。
+
+    参数说明：
+    - `args`：一个包含命令行参数的对象（推测，根据函数中对其属性的使用情况），用于传递诸如主机地址、端口号、是否同步模式、窗口宽度高度、是否开启自动驾驶等配置信息，控制游戏的运行模式和相关设置。
+    """
     pygame.init()
     pygame.font.init()
     world = None
     original_settings = None
+    // 初始化 Pygame 库，这是用于创建游戏界面、处理输入输出等操作的基础库，`pygame.init()` 会初始化 Pygame 的各个模块。
+    // 同时初始化 Pygame 的字体模块（`pygame.font.init()`），方便后续在游戏中进行文本渲染等操作。
+    // 初始化 `world` 变量为 `None`，用于后续存储代表游戏世界的对象，`original_settings` 变量也初始化为 `None`，用于保存模拟世界的原始设置信息，以便在游戏结束时恢复初始状态。
 
     try:
         client = carla.Client(args.host, args.port)
         client.set_timeout(2000.0)
+        // 创建一个 Carla 客户端对象，通过传入命令行参数中的主机地址（`args.host`）和端口号（`args.port`）来连接到 Carla 模拟器服务器，
+        // 并设置客户端的超时时间为 `2000.0` 毫秒，确保在与服务器通信时如果长时间没有响应能够及时抛出异常，避免程序阻塞。
 
         sim_world = client.get_world()
         if args.sync:
@@ -1405,52 +1417,84 @@ def game_loop(args):
                 settings.synchronous_mode = True
                 settings.fixed_delta_seconds = 0.05
             sim_world.apply_settings(settings)
+            // 获取客户端连接的模拟世界对象（`sim_world`），如果命令行参数指定了同步模式（`args.sync` 为 `True`），则进行以下操作：
+            // - 首先获取模拟世界当前的设置信息并保存到 `original_settings` 变量中，以便后续游戏结束时可以恢复这些原始设置。
+            // - 再获取一次设置信息到 `settings` 变量（这一步可能是为了后续方便修改设置），检查当前设置中是否没有开启同步模式（`synchronous_mode` 为 `False`），如果是，则将同步模式设置为 `True`，
+            // 同时设置固定的时间步长（`fixed_delta_seconds`）为 `0.05` 秒，这意味着在同步模式下，每次模拟世界更新的时间间隔固定为 `0.05` 秒，使模拟更加稳定和可预测。
+            // - 最后将修改后的设置应用到模拟世界（`sim_world.apply_settings(settings)`），使其生效。
 
             traffic_manager = client.get_trafficmanager()
             traffic_manager.set_synchronous_mode(True)
+            // 获取 Carla 客户端的交通管理器对象（`traffic_manager`），并将其同步模式也设置为 `True`，确保在同步模式下交通相关的模拟（如车辆行驶、交通信号灯等）也能与模拟世界的更新同步进行，保持整体模拟的一致性。
 
         if args.autopilot and not sim_world.get_settings().synchronous_mode:
             print("WARNING: You are currently in asynchronous mode and could "
                   "experience some issues with the traffic simulation")
+            // 如果命令行参数指定了开启自动驾驶（`args.autopilot` 为 `True`），但当前模拟世界的设置不是同步模式（`sim_world.get_settings().synchronous_mode` 为 `False`），
+            // 则打印一条警告信息，提示用户当前处于异步模式，可能会在交通模拟方面遇到一些问题，因为自动驾驶功能在异步模式下可能与交通模拟的协同效果不佳。
 
         display = pygame.display.set_mode(
             (args.width, args.height),
             pygame.HWSURFACE | pygame.DOUBLEBUF)
-        display.fill((0,0,0))
+        display.fill((0, 0, 0))
         pygame.display.flip()
+        // 使用 Pygame 创建游戏显示窗口，设置窗口的尺寸为命令行参数指定的宽度（`args.width`）和高度（`args.height`），
+        // 并使用 `pygame.HWSURFACE`（硬件加速表面，利用显卡硬件加速来提高渲染效率）和 `pygame.DOUBLEBUF`（双缓冲模式，避免画面闪烁）标志来优化显示效果。
+        // 然后用黑色（`(0, 0, 0)`）填充整个显示窗口，最后通过 `pygame.display.flip()` 方法更新显示窗口，使其显示填充后的黑色画面，完成显示窗口的初始化。
 
         hud = HUD(args.width, args.height)
         world = World(sim_world, hud, args)
         controller = KeyboardControl(world, args.autopilot)
+        // 创建抬头显示（HUD）对象（`hud`），传入窗口宽度和高度参数，用于在游戏界面上显示各种提示信息、状态信息等。
+        // 创建游戏世界对象（`world`），将前面获取的模拟世界对象（`sim_world`）、抬头显示对象（`hud`）以及命令行参数（`args`）传入构造函数，这个世界对象可能负责管理游戏世界中的各种实体、场景等内容。
+        // 创建键盘控制对象（`controller`），传入游戏世界对象（`world`）和自动驾驶相关参数（`args.autopilot`），用于处理用户通过键盘输入的操作以及控制自动驾驶相关功能（如果开启的话）。
 
         if args.sync:
             sim_world.tick()
         else:
             sim_world.wait_for_tick()
+        // 如果是同步模式（`args.sync` 为 `True`），则手动调用模拟世界的 `tick` 方法，使模拟世界进行一次更新，按照之前设置的固定时间步长推进模拟状态。
+        // 如果是异步模式，则调用 `wait_for_tick` 方法，让程序等待模拟世界进行一次更新，确保后续操作是基于最新的模拟世界状态进行的。
 
         clock = pygame.time.Clock()
         while True:
             if args.sync:
                 sim_world.tick()
             clock.tick_busy_loop(60)
+            // 创建一个 Pygame 的时钟对象（`clock`），用于控制游戏的帧率等时间相关操作。
+            // 进入无限循环，只要游戏运行就不断重复以下操作：
+            // - 如果是同步模式，再次调用模拟世界的 `tick` 方法，按照固定时间步长更新模拟世界的状态，使游戏世界中的各种实体、物理模拟等继续推进。
+            // - 调用时钟对象的 `tick_busy_loop` 方法，尝试将游戏帧率限制在每秒 `60` 帧左右（尽可能接近这个帧率），通过控制每次循环的时间间隔来实现帧率稳定，保证游戏运行的流畅性。
+
             if controller.parse_events(client, world, clock, args.sync):
                 return
+            // 调用键盘控制对象（`controller`）的 `parse_events` 方法，传入客户端对象（`client`）、游戏世界对象（`world`）、时钟对象（`clock`）以及同步模式参数（`args.sync`），
+            // 这个方法用于处理用户键盘输入事件、更新游戏状态等操作，如果在处理过程中满足了退出游戏的条件（例如用户按下了退出键等），则该方法返回 `True`，此时就会跳出游戏循环，结束游戏。
+
             world.tick(clock)
             world.render(display)
             pygame.display.flip()
+            // 调用游戏世界对象（`world`）的 `tick` 方法，传入时钟对象（`clock`），在游戏世界内部进行各种实体更新、逻辑处理等操作，使游戏世界的状态根据时间推进而更新。
+            // 调用游戏世界对象的 `render` 方法，传入显示窗口对象（`display`），将游戏世界中的场景、实体等内容渲染绘制到显示窗口上，实现游戏画面的展示。
+            // 最后调用 `pygame.display.flip()` 方法更新显示窗口，使渲染后的新画面显示出来，完成一帧画面的更新和显示，不断循环这个过程就实现了游戏的动态画面展示效果。
 
     finally:
-
         if original_settings:
             sim_world.apply_settings(original_settings)
+        // 在无论游戏正常结束还是出现异常结束的情况下（通过 `finally` 块确保执行），如果之前保存了模拟世界的原始设置信息（`original_settings` 不为 `None`），
+        // 则将原始设置重新应用到模拟世界（`sim_world.apply_settings(original_settings)`），恢复模拟世界的初始状态，避免对下次使用产生影响。
 
         if (world and world.recording_enabled):
             client.stop_recorder()
+        // 如果游戏世界对象（`world`）存在并且其记录功能（`recording_enabled` 属性为 `True`，推测是用于控制是否正在进行游戏过程记录的标识）是开启的，
+        // 则通过客户端对象（`client`）调用 `stop_recorder` 方法，停止游戏过程的记录操作（如果之前正在记录的话）。
 
         if world is not None:
             world.destroy()
+        // 如果游戏世界对象（`world`）不为 `None`，则调用其 `destroy` 方法，进行游戏世界相关资源的清理和销毁操作，释放内存等资源，避免内存泄漏等问题。
 
         pygame.quit()
+        // 最后调用 `pygame.quit()` 方法，关闭 Pygame 库，释放 Pygame 使用的相关资源，彻底结束游戏程序。
 
 
 # ==============================================================================
