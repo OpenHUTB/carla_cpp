@@ -89,7 +89,7 @@ import collections
 import datetime
 import logging
 import math
-import random
+import random#random  模块用于生成随机数以及对序列进行随机操作
 import re
 import weakref
 
