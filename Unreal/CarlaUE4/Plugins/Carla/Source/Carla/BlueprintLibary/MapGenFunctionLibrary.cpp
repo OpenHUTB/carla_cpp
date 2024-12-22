@@ -39,53 +39,67 @@ FMeshDescription UMapGenFunctionLibrary::BuildMeshDescriptionFromData(
   FStaticMeshAttributes AttributeGetter(MeshDescription);
   AttributeGetter.Register();
 
-  TPolygonGroupAttributesRef<FName> PolygonGroupNames = AttributeGetter.GetPolygonGroupMaterialSlotNames();
-  TVertexAttributesRef<FVector> VertexPositions = AttributeGetter.GetVertexPositions();
-  TVertexInstanceAttributesRef<FVector> Tangents = AttributeGetter.GetVertexInstanceTangents();
-  TVertexInstanceAttributesRef<float> BinormalSigns = AttributeGetter.GetVertexInstanceBinormalSigns();
-  TVertexInstanceAttributesRef<FVector> Normals = AttributeGetter.GetVertexInstanceNormals();
-  TVertexInstanceAttributesRef<FVector4> Colors = AttributeGetter.GetVertexInstanceColors();
-  TVertexInstanceAttributesRef<FVector2D> UVs = AttributeGetter.GetVertexInstanceUVs();
+// 获取多边形组名称的引用，这些名称与不同的材质插槽相关联
+TPolygonGroupAttributesRef<FName> PolygonGroupNames = AttributeGetter.GetPolygonGroupMaterialSlotNames();
+// 获取顶点位置的引用，包含了模型所有顶点的空间坐标
+TVertexAttributesRef<FVector> VertexPositions = AttributeGetter.GetVertexPositions();
+// 获取顶点实例切线的引用，用于确定顶点的切线方向，影响光照计算
+TVertexInstanceAttributesRef<FVector> Tangents = AttributeGetter.GetVertexInstanceTangents();
+// 获取顶点实例的双法线符号，用于确定顶点的双法线方向，影响法线贴图
+TVertexInstanceAttributesRef<float> BinormalSigns = AttributeGetter.GetVertexInstanceBinormalSigns();
+// 获取顶点实例法线的引用，用于确定顶点的法线方向，影响光照计算
+TVertexInstanceAttributesRef<FVector> Normals = AttributeGetter.GetVertexInstanceNormals();
+// 获取顶点实例颜色的引用，用于自定义顶点颜色，影响渲染效果
+TVertexInstanceAttributesRef<FVector4> Colors = AttributeGetter.GetVertexInstanceColors();
+// 获取顶点实例UV坐标的引用，用于将纹理映射到顶点
+TVertexInstanceAttributesRef<FVector2D> UVs = AttributeGetter.GetVertexInstanceUVs();
 
-  // 计算每个 ProcMesh 元素类型的总计
-  FPolygonGroupID PolygonGroupForSection;
-  MeshDescription.ReserveNewVertices(VertexCount);
-  MeshDescription.ReserveNewVertexInstances(VertexInstanceCount);
-  MeshDescription.ReserveNewPolygons(PolygonCount);
-  MeshDescription.ReserveNewEdges(PolygonCount * 2);
-  UVs.SetNumIndices(4);
+// 计算每个ProcMesh元素类型的总计，并为MeshDescription预留空间
+FPolygonGroupID PolygonGroupForSection;
+MeshDescription.ReserveNewVertices(VertexCount); // 为新顶点预留空间
+MeshDescription.ReserveNewVertexInstances(VertexInstanceCount); // 为新顶点实例预留空间
+MeshDescription.ReserveNewPolygons(PolygonCount); // 为新多边形预留空间
+MeshDescription.ReserveNewEdges(PolygonCount * 2); // 为新边预留空间，每个多边形有两条边
+UVs.SetNumIndices(4); // 设置UV坐标的索引数量，通常用于四边形
 
-  // 创建材质
-  TMap<UMaterialInterface*, FPolygonGroupID> UniqueMaterials;
-	const int32 NumSections = 1;
-	UniqueMaterials.Reserve(1);
-  FPolygonGroupID NewPolygonGroup = MeshDescription.CreatePolygonGroup();
+// 创建材质映射
+TMap<UMaterialInterface*, FPolygonGroupID> UniqueMaterials; // 存储唯一的材质和对应的多边形组ID
+const int32 NumSections = 1; // 材质段的数量，这里为1
+UniqueMaterials.Reserve(1); // 为材质映射预留空间
+FPolygonGroupID NewPolygonGroup = MeshDescription.CreatePolygonGroup(); // 创建新的多边形组
 
-  if( MaterialInstance != nullptr ){
-    UMaterialInterface *Material = MaterialInstance;
-    UniqueMaterials.Add(Material, NewPolygonGroup);
-    PolygonGroupNames[NewPolygonGroup] = Material->GetFName();
-  }else{
-    UE_LOG(LogCarla, Error, TEXT("MaterialInstance is nullptr"));
-  }
-  PolygonGroupForSection = NewPolygonGroup;
+// 根据MaterialInstance添加材质到UniqueMaterials映射中，并设置多边形组名称
+if( MaterialInstance != nullptr ){
+  UMaterialInterface *Material = MaterialInstance;
+  UniqueMaterials.Add(Material, NewPolygonGroup); // 将材质添加到映射中
+  PolygonGroupNames[NewPolygonGroup] = Material->GetFName(); // 设置多边形组名称为材质名称
+}else{
+  UE_LOG(LogCarla, Error, TEXT("MaterialInstance is nullptr")); // 如果MaterialInstance为空，记录错误日志
+}
+PolygonGroupForSection = NewPolygonGroup; // 将新创建的多边形组ID赋值给PolygonGroupForSection
 
+// 创建模型顶点
+int32 NumVertex = Data.Vertices.Num(); // 获取顶点数据的数量
+TMap<int32, FVertexID> VertexIndexToVertexID; // 存储顶点索引和顶点ID的映射
+VertexIndexToVertexID.Reserve(NumVertex); // 为顶点索引到顶点ID的映射预留空间
+for (int32 VertexIndex = 0; VertexIndex < NumVertex; ++VertexIndex) // 遍历所有顶点数据
+{
+  const FVector &Vert = Data.Vertices[VertexIndex]; // 获取顶点位置
+  const FVertexID VertexID = MeshDescription.CreateVertex(); // 在MeshDescription中创建新顶点
+  VertexPositions[VertexID] = Vert; // 设置顶点位置
+  VertexIndexToVertexID.Add(VertexIndex, VertexID); // 将顶点索引和顶点ID添加到映射中
+}
 
+// 创建VertexInstance，即模型中每个顶点的具体实例
+// "VertexInstance"是三维图形学和计算机图形学中的术语，它指的是模型中一个特定顶点的实例或具体实现
+int32 NumVertexInstances = Data.VertexInstances.Num(); // 获取顶点实例的数量
+TMap<FVertexID, FVertexInstanceID> VertexToInstanceID; // 存储顶点ID和顶点实例ID的映射
+VertexToInstanceID.Reserve(NumVertexInstances); // 为顶点到顶点实例的映射预留空间
+for (int32 VertexInstanceIndex = 0; VertexInstanceIndex < NumVertexInstances; ++VertexInstanceIndex) // 遍历所有顶点实例数据
+{
 
-  // 创建模型顶点
-  int32 NumVertex = Data.Vertices.Num();
-  TMap<int32, FVertexID> VertexIndexToVertexID;
-  VertexIndexToVertexID.Reserve(NumVertex);
-  for (int32 VertexIndex = 0; VertexIndex < NumVertex; ++VertexIndex)
-  {
-    const FVector &Vert = Data.Vertices[VertexIndex];
-    const FVertexID VertexID = MeshDescription.CreateVertex();
-    VertexPositions[VertexID] = Vert;
-    VertexIndexToVertexID.Add(VertexIndex, VertexID);
-  }
+}
 
-  // 创建 VertexInstance
-  //"VertexInstance" 是三维图形学和计算机图形学中的术语，它指的是模型中一个特定顶点的实例或具体实现。
   int32 NumIndices = Data.Triangles.Num();
   int32 NumTri = NumIndices / 3;
   TMap<int32, FVertexInstanceID> IndiceIndexToVertexInstanceID;
