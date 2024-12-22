@@ -247,3 +247,4 @@ git rm -rf .
 [Sword761](https://github.com/Sword761)
 [xiaochenop](https://github.com/xiaochenop)
 [chaojixiangshuijiao](https://github.com/chaojixiangshuijiao)
+[liiiiiking](https://github.com/liiiiiking/carla_cpp.git)
