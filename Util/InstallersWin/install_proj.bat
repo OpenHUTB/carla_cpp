@@ -143,6 +143,8 @@ rem ============================================================================
 
 :help
     echo %FILE_N% Download and install a PROJ.
+:: 使用 `echo` 命令输出一段提示信息，其中 `%FILE_N%` 是一个批处理脚本中的变量
+:: 这里提示用户该文件（或程序）的功能是下载并安装一个 `PROJ`
     echo "Usage: %FILE_N% [-h^|--help] [--build-dir] [--zlib-install-dir]"
     goto eof
 
