@@ -667,23 +667,23 @@ namespace nav {
     int index;
     {
       // 关键部分，强制单线程运行这里
-      std::lock_guard<std::mutex> lock(_mutex);
-      index = _crowd->addAgent(point_from, &params);
+      std::lock_guard<std::mutex> lock(_mutex); // 锁定互斥量，确保代码块在多线程环境下是安全的
+      index = _crowd->addAgent(point_from, &params);  // 向人群添加代理，并返回代理的索引
       if (index == -1) {
         logging::log("Vehicle agent not added to the crowd by some problem!");
         return false;
       }
 
       // 标记为有效
-      dtCrowdAgent *agent = _crowd->getEditableAgent(index);
+      dtCrowdAgent *agent = _crowd->getEditableAgent(index);  // 获取代理对象
       if (agent) {
-        agent->state = DT_CROWDAGENT_STATE_WALKING;
+        agent->state = DT_CROWDAGENT_STATE_WALKING;   // 将代理的状态设为“行走”
       }
     }
 
     // 保存 id
-    _mapped_vehicles_id[vehicle.id] = index;
-    _mapped_by_index[index] = vehicle.id;
+    _mapped_vehicles_id[vehicle.id] = index;  // 将车辆 ID 映射到代理的索引
+    _mapped_by_index[index] = vehicle.id; // 将代理索引映射到车辆 ID
 
     return true;
   }
@@ -696,18 +696,18 @@ namespace nav {
       return false;
     }
 
-    DEBUG_ASSERT(_crowd != nullptr);
+    DEBUG_ASSERT(_crowd != nullptr);  // 确保 _crowd 非空
 
     // 获取内部行人索引
-    auto it = _mapped_walkers_id.find(id);
+    auto it = _mapped_walkers_id.find(id);  // 在映射表中查找行人 ID
     if (it != _mapped_walkers_id.end()) {
       // 从人群中移除
       {
         // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
-        _crowd->removeAgent(it->second);
+        _crowd->removeAgent(it->second); // 从人群中移除对应的代理
       }
-      _walker_manager.RemoveWalker(id);
+      _walker_manager.RemoveWalker(id);  // 从其他管理系统中移除行人
       // remove from mapping
       _mapped_walkers_id.erase(it);
       _mapped_by_index.erase(it->second);
@@ -716,14 +716,14 @@ namespace nav {
     }
 
     // get the internal vehicle index
-    it = _mapped_vehicles_id.find(id);
+    it = _mapped_vehicles_id.find(id);  // 查找车辆 ID
     if (it != _mapped_vehicles_id.end()) {
       // 从人群中移除
       {
         // 关键部分，强制单线程运行这里
-        std::lock_guard<std::mutex> lock(_mutex);
-        _crowd->removeAgent(it->second);
-      }
+        std::lock_guard<std::mutex> lock(_mutex); // 锁定互斥量
+        _crowd->removeAgent(it->second);  // 从人群中移除对应的代理
+      }  
       // 从映射中移除
       _mapped_vehicles_id.erase(it);
       _mapped_by_index.erase(it->second);
@@ -740,7 +740,7 @@ namespace nav {
 
     // 添加所有当前已映射的车辆
     for (auto &&entry : _mapped_vehicles_id) {
-      updated.insert(entry.first);
+      updated.insert(entry.first); // 将已映射的车辆 ID 插入 updated 集合
     }
 
     // 添加所有车辆（如果已经存在，则仅更新）
@@ -779,10 +779,10 @@ namespace nav {
     // 获得智能体
     {
       // 关键部分，强制单线程运行这里
-      std::lock_guard<std::mutex> lock(_mutex);
-      dtCrowdAgent *agent = _crowd->getEditableAgent(it->second);
+      std::lock_guard<std::mutex> lock(_mutex); // 锁定互斥量，确保单线程安全
+      dtCrowdAgent *agent = _crowd->getEditableAgent(it->second); // 获取代理
       if (agent) {
-        agent->params.maxSpeed = max_speed;
+        agent->params.maxSpeed = max_speed;  // 设置最大速度
         return true;
       }
     }
