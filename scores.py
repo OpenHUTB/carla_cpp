@@ -108,17 +108,18 @@ while True:
         user = issue['user']['login']
         #更新用户提出问题的计数
         issue_counts[user] = issue_counts.get(user, 0) + 1
-
+#发送请求获取问题数据
         comments_url = issue['comments_url']
         comments_response = requests.get(comments_url, headers=headers)
+        #解析响应数据
         comments = comments_response.json()
-
+#更新用户提出问题的计数
         for comment in comments:
             commenter = comment['user']['login']
             comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
-
+#增加页码
     page += 1
-
+#对统计结果进行排序
 sorted_issue_counts = dict(sorted(issue_counts.items(), key=lambda item: item[1], reverse=True))
 sorted_comment_counts = dict(sorted(comment_counts.items(), key=lambda item: item[1], reverse=True))
 #将统计结果按照次数从高到低排序并打印出来
