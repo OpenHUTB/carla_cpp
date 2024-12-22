@@ -115,7 +115,7 @@ while True:
 
         for comment in comments:
             commenter = comment['user']['login']
-            comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
+            comment_counts[commenter] = comment_counts.get(commenter, 0) + 1#使用  comment_counts.get(commenter, 0)  尝试从  comment_counts  字典中获取  commenter
 
     page += 1
 
