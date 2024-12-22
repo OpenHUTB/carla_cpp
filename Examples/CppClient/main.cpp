@@ -1,31 +1,36 @@
-// 引入 C++ 标准库头文件
-#include <iostream>    // 提供输入输出流功能
-#include <random>      // 提供随机数生成器功能
-#include <sstream>     // 提供字符串流功能
-#include <stdexcept>   // 提供异常处理功能
-#include <string>      // 提供字符串类型功能
-#include <thread>      // 提供多线程功能
-#include <tuple>       // 提供元组类型和操作功能
+// 以下是代码的详细注释，解释每个部分的功能和用途：
 
-// 引入CARLA客户端库的头文件，用于与CARLA模拟器进行交互，包含获取蓝图、世界、传感器等相关功能的接口
-#include <carla/client/ActorBlueprint.h>       // 用于获取和操作CARLA模拟器中的角色蓝图 (Actor Blueprint)，可以用于生成或配置车辆、行人等模拟实体的属性。
-#include <carla/client/BlueprintLibrary.h>     // 提供访问CARLA模拟器中各种蓝图资源的功能，能够加载车辆、建筑、传感器等各种对象的蓝图。
-#include <carla/client/Client.h>               // 定义与CARLA模拟器客户端通信的接口，主要用于连接到模拟器服务器，管理会话，获取世界对象等。
-#include <carla/client/Map.h>                  // 提供对CARLA模拟器中的地图（包括地图的相关信息和操作）的访问，支持查询和操作地图。
-#include <carla/client/Sensor.h>               // 用于创建和配置各种传感器（如相机、激光雷达、GPS等），并处理传感器的输出数据。
-#include <carla/client/TimeoutException.h>     // 定义在CARLA模拟器客户端操作中可能遇到的超时异常，用于处理长时间未响应的情形。
-#include <carla/client/World.h>               // 定义模拟器中的世界对象，提供对世界中的所有实体（如车辆、行人、道路、传感器等）的访问和管理。
-#include <carla/geom/Transform.h>              // 定义转换（Transform）类，用于表示和操作位置、旋转、缩放等几何变换，常用于描述物体的位置和姿态。
-#include <carla/image/ImageIO.h>              // 提供对图像数据输入输出的功能，可以读取和写入图像文件，常用于处理传感器生成的图像数据。
-#include <carla/image/ImageView.h>            // 定义图像视图（ImageView）类，表示图像数据的访问和操作，通常用于访问传感器拍摄的图像内容。
-#include <carla/sensor/data/Image.h>          // 定义图像数据类，用于表示传感器（如相机）拍摄到的图像数据，支持多种图像格式。
+// 引入C++标准库头文件，提供基本的输入输出、随机数生成、字符串处理、异常处理、多线程、元组等功能
+#include <iostream>    // 提供基本的输入输出流功能，用于在控制台打印信息或读取用户输入
+#include <random>      // 提供随机数生成器功能，可以用于生成随机数值或随机序列
+#include <sstream>     // 提供字符串流功能，用于字符串与其他数据类型之间的转换
+#include <stdexcept>   // 提供标准异常处理功能，用于处理程序中的错误情况
+#include <string>      // 提供字符串类型和相关操作功能，用于处理文本数据
+#include <thread>      // 提供多线程功能，用于实现并行处理或异步操作
+#include <tuple>       // 提供元组类型和操作功能，元组可以存储固定数量和类型的值
 
-// 为CARLA命名空间创建别名，简化代码书写，后续使用cc、cg、csd来代表相应的carla命名空间，使代码更简洁易读
+// 引入CARLA客户端库的头文件，这些文件提供了与CARLA模拟器进行交互的接口
+#include <carla/client/ActorBlueprint.h>       // 定义了用于获取和操作CARLA模拟器中角色蓝图（如车辆、行人等）的类
+#include <carla/client/BlueprintLibrary.h>     // 提供了访问CARLA模拟器中各种蓝图资源的接口，可以加载不同的对象蓝图
+#include <carla/client/Client.h>               // 定义了与CARLA模拟器客户端通信的接口，用于连接服务器、管理会话和获取世界对象
+#include <carla/client/Map.h>                  // 提供了访问CARLA模拟器中地图的接口，可以查询地图信息和进行操作
+#include <carla/client/Sensor.h>               // 定义了创建和配置传感器的接口，以及处理传感器输出数据的方法
+#include <carla/client/TimeoutException.h>     // 定义了处理CARLA模拟器客户端操作中可能遇到的超时异常的类
+#include <carla/client/World.h>               // 定义了模拟器中的世界对象，提供了对世界实体的访问和管理接口
+#include <carla/geom/Transform.h>              // 定义了转换类，用于表示和操作位置、旋转、缩放等几何变换
+#include <carla/image/ImageIO.h>              // 提供了图像数据的输入输出功能，用于读写图像文件
+#include <carla/image/ImageView.h>            // 定义了图像视图类，用于访问和操作图像数据的内容
+#include <carla/sensor/data/Image.h>          // 定义了图像数据类，用于表示传感器（如相机）拍摄的图像数据
+
+// 为CARLA命名空间创建别名，简化代码书写
+// 使用cc、cg、csd来分别代表carla::client、carla::geom、carla::sensor::data命名空间，使代码更简洁易读
 namespace cc = carla::client;
 namespace cg = carla::geom;
 namespace csd = carla::sensor::data;
 
-// 使用std命名空间中的chrono和string字面量，方便在代码中直接使用时间字面量（如40s）以及更自然地进行字符串拼接操作
+// 使用std命名空间中的chrono和string字面量，方便在代码中直接使用时间字面量和进行字符串拼接操作
+// 使用std::chrono_literals命名空间，可以方便地使用时间字面量（如40s表示40秒）
+// 使用std::string_literals命名空间，可以更方便地进行字符串字面量的拼接操作
 using namespace std::chrono_literals;
 using namespace std::string_literals;
 
