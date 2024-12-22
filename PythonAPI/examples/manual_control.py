@@ -1069,28 +1069,61 @@ class CollisionSensor(object):
 
 class LaneInvasionSensor(object):
     def __init__(self, parent_actor, hud):
+        """
+        类的构造函数，用于初始化 `LaneInvasionSensor` 实例相关属性，并在满足条件（父级角色是车辆类型）时创建和配置车道入侵传感器，使其能够监听车道入侵事件。
+
+        参数说明：
+        - `parent_actor`：代表父级角色的对象，通常是车辆或者其他实体，车道入侵传感器会关联到这个对象上，用于检测该对象是否发生车道入侵行为。
+        - `hud`：与抬头显示（HUD）相关的对象，通过它可以向用户展示提示信息，例如在检测到车道入侵事件时，在界面上显示相应的通知内容。
+        """
         self.sensor = None
+        // 初始化 `self.sensor` 属性为 `None`，后续会根据具体情况在这里存储创建好的车道入侵传感器对象。
 
         # If the spawn object is not a vehicle, we cannot use the Lane Invasion Sensor
         if parent_actor.type_id.startswith("vehicle."):
+            // 判断传入的父级角色对象（`parent_actor`）的类型 ID 是否以 "vehicle." 开头，以此来确定该角色是否为车辆类型。
+            // 因为车道入侵传感器通常是针对车辆来检测其是否越过车道线等入侵行为的，所以只有当父级角色是车辆时，才进行后续的传感器创建及相关配置操作。
+
             self._parent = parent_actor
             self.hud = hud
+            // 如果父级角色是车辆，将其赋值给实例属性 `self._parent`，方便后续获取相关世界信息以及关联传感器到这个角色上；
+            // 同时将传入的抬头显示相关对象（`hud`）赋值给 `self.hud` 属性，用于后续在检测到车道入侵事件时进行信息提示等操作。
+
             world = self._parent.get_world()
             bp = world.get_blueprint_library().find('sensor.other.lane_invasion')
             self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent)
+            // 通过父级角色对象（`self._parent`）获取其所在的模拟世界对象（`get_world` 方法），然后在这个世界的蓝图库（`get_blueprint_library` 方法）中查找名为 `sensor.other.lane_invasion` 的传感器蓝图。
+            // 找到对应蓝图后，使用世界对象的 `spawn_actor` 方法在指定的变换位置（初始位置使用 `carla.Transform()` 表示默认位置，这里会关联到父级角色上）创建并生成实际的车道入侵传感器对象，将其赋值给 `self.sensor` 属性，这样就成功创建了一个车道入侵传感器并附着到了父级角色（车辆）上，使其能够检测该车辆的车道入侵情况。
+
             # We need to pass the lambda a weak reference to self to avoid circular
             # reference.
             weak_self = weakref.ref(self)
             self.sensor.listen(lambda event: LaneInvasionSensor._on_invasion(weak_self, event))
+            // 为了避免循环引用（在Python中，如果对象之间相互引用，可能会导致内存无法正确回收的问题），这里创建了一个对当前实例（`self`）的弱引用（`weakref.ref(self)`），并将其赋值给 `weak_self` 变量。
+            // 然后让创建好的车道入侵传感器（`self.sensor`）开始监听车道入侵事件，通过调用 `listen` 方法并传入一个匿名函数（`lambda` 表达式）作为回调函数。当车道入侵事件发生时，这个匿名函数会被调用，它会将弱引用（`weak_self`）和车道入侵事件对象（`event`）作为参数传递给类的静态方法 `_on_invasion`，由该静态方法来处理具体的车道入侵事件逻辑。
 
     @staticmethod
     def _on_invasion(weak_self, event):
+        """
+        静态方法功能：作为车道入侵事件的处理函数，当检测到车道入侵事件发生时被调用，用于在抬头显示上给出相应的提示信息，告知用户车辆越过了哪些类型的车道线。
+
+        参数说明：
+        - `weak_self`：一个对 `LaneInvasionSensor` 类实例的弱引用，通过它可以获取到实际的实例对象，同时避免了循环引用问题，在方法内部需要先将其解引用还原为实际的实例对象才能访问实例的属性和方法。
+        - `event`：一个包含车道入侵事件详细信息的对象，例如车辆越过的车道线标记类型等信息，用于提取相关数据来生成提示内容并展示给用户。
+        """
         self = weak_self()
         if not self:
             return
+        // 通过弱引用（`weak_self`）获取实际的 `LaneInvasionSensor` 类实例对象，如果获取失败（即 `weak_self` 所引用的对象已经被垃圾回收了，返回 `None`），则直接返回，不执行后续的车道入侵处理逻辑。
+
         lane_types = set(x.type for x in event.crossed_lane_markings)
+        // 从车道入侵事件对象（`event`）中提取车辆越过的所有车道线标记（`crossed_lane_markings`），并通过生成器表达式获取每个车道线标记的类型（`x.type`），然后使用 `set` 函数将这些类型去重，存储到 `lane_types` 集合中，这样就得到了车辆越过的不同类型车道线的集合。
+
         text = ['%r' % str(x).split()[-1] for x in lane_types]
+        // 对于 `lane_types` 集合中的每个车道线类型，先将其转换为字符串（`str(x)`），然后通过 `split` 方法以空格为分隔符进行分割，取最后一个元素（`split()[-1]`），再使用 `%r` 格式化将其包装成一个带引号的字符串表示形式，将这些字符串组成一个列表存储到 `text` 列表中，这样 `text` 列表中的每个元素就是一种车道线类型的格式化表示，方便后续用于生成提示信息文本。
+
         self.hud.notification('Crossed line %s' % ' and '.join(text))
+        // 使用抬头显示对象（`self.hud`）调用 `notification` 方法，在界面上显示一条提示信息，信息内容为告知用户车辆越过了哪些类型的车道线（通过 `' and '.join(text)` 将 `text` 列表中的车道线类型字符串用 " and " 连接起来，形成一个完整的提示文本），让用户及时了解车辆的车道入侵情况。
 
 
 # ==============================================================================
