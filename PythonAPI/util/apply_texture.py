@@ -170,4 +170,10 @@ def main():
     world.apply_textures_to_object(args.object_name, tex_diffuse, carla.TextureFloatColor(0,0), tex_normal, tex_ao_r_m_e)
 
 if __name__ == '__main__':
+    # 这是Python中用于判断当前模块是否作为主程序入口被运行的常见语句结构。
+    # 在Python中，当一个.py文件被直接运行时，其__name__属性的值会被设置为'__main__'；
+    # 而当该文件被作为模块导入到其他文件中时，__name__属性的值会是该模块的实际名称（比如模块文件名去掉.py后缀后的名字）。
     main()
+    # 如果当前模块是作为主程序入口被运行（即满足__name__ == '__main__'这个条件），
+    # 就会调用在前面定义的main()函数，从而启动整个程序的主要逻辑流程，通常main()函数中包含了程序的核心业务逻辑，
+    # 例如初始化操作、参数解析、主要功能模块的调用等等，具体取决于程序本身的设计。
