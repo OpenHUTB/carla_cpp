@@ -4,35 +4,56 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+// 检查是否已定义LIBCARLA_ENABLE_PROFILER宏，如果没有，则定义它
+// 这个宏用于控制是否启用Carla的性能分析器功能
 #ifndef LIBCARLA_ENABLE_PROFILER
-#  define LIBCARLA_ENABLE_PROFILER // 定义性能分析器宏
+#  define LIBCARLA_ENABLE_PROFILER
 #endif // LIBCARLA_ENABLE_PROFILER
 
-#include "carla/Logging.h" // 引入日志库
-#include "carla/Version.h" // 引入版本信息
-#include "carla/profiler/Profiler.h" // 引入性能分析器头文件
+// 引入Carla日志库的头文件，用于记录日志信息
+#include "carla/Logging.h"
 
-#include <fstream> // 引入文件流处理
-#include <iomanip> // 引入格式化输入输出
-#include <iostream> // 引入标准输入输出流
-#include <mutex> // 引入互斥锁
+// 引入Carla版本信息的头文件，可能包含版本号、构建日期等信息
+#include "carla/Version.h"
 
+// 引入Carla性能分析器的头文件，包含性能分析相关的类和函数定义
+#include "carla/profiler/Profiler.h"
+
+// 引入C++标准库中的文件流处理头文件，用于读写文件
+#include <fstream>
+
+// 引入C++标准库中的格式化输入输出头文件，用于设置输出格式
+#include <iomanip>
+
+// 引入C++标准库中的标准输入输出流头文件，用于控制台输入输出
+#include <iostream>
+
+// 引入C++标准库中的互斥锁头文件，用于实现线程同步
+#include <mutex>
+
+// 定义在carla::profiler::detail命名空间下的代码
 namespace carla {
 namespace profiler {
 namespace detail {
 
-// 将参数写入CSV流的辅助函数
+// 定义一个模板辅助函数，用于将参数写入CSV（逗号分隔值）格式的输出流中
+// 这个函数可以接受一个或多个参数，并将它们按照指定的格式输出到提供的输出流中
 template <typename Arg, typename ... Args>
 static void write_csv_to_stream(std::ostream &out, Arg &&arg, Args &&... args) {
-    out << std::boolalpha // 以布尔值形式输出
-        << std::left << std::setw(44) // 左对齐，宽度设置为44
-        << std::forward<Arg>(arg) // 转发第一个参数
-        << std::right // 右对齐
-        << std::fixed << std::setprecision(2); // 设置浮点数格式与精度
-    using expander = int[]; // 用于展开参数包
-    (void)expander{0, (void(out << ", " << std::setw(10) << std::forward<Args>(args)),0)...}; // 输出剩余参数
+    // 以布尔值形式输出（true/false而不是1/0）
+    // 设置左对齐，字段宽度为44个字符
+    // 转发第一个参数到输出流中（支持左值引用和右值引用）
+    out << std::boolalpha << std::left << std::setw(44) << std::forward<Arg>(arg);
+    
+    // 设置右对齐，并固定浮点数的小数点位数为2位
+    out << std::right << std::fixed << std::setprecision(2);
+    
+    // 定义一个用于参数包展开的数组类型（这里实际上不会创建数组，只是利用数组初始化语法来展开参数包）
+    // 展开参数包，对每个剩余参数执行输出操作，并在参数之间添加逗号和空格作为分隔符
+    // 使用逗号表达式来同时执行输出操作和数组初始化（这里数组初始化只是为了产生编译时的副作用，即展开参数包）
+    using expander = int[];
+    (void)expander{0, (void(out << ", " << std::setw(10) << std::forward<Args>(args)), 0)...};
 }
-
 // 静态性能分析器类
 class StaticProfiler {
 public:
