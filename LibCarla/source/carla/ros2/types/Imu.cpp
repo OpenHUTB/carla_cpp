@@ -23,6 +23,7 @@ char dummy;
 using namespace eprosima::fastcdr::exception;
 #include <utility>
 // 以下定义了各个相关消息类型的最大CDR序列化大小以及最大键CDR序列化大小，这些宏定义的值用于后续序列化相关的计算和操作
+// 宏定义
 #define geometry_msgs_msg_Vector3_max_cdr_typesize 24ULL;
 #define std_msgs_msg_Time_max_cdr_typesize 8ULL;
 
@@ -36,11 +37,13 @@ using namespace eprosima::fastcdr::exception;
 #define std_msgs_msg_Header_max_key_cdr_typesize 0ULL;
 #define sensor_msgs_msg_Imu_max_key_cdr_typesize 0ULL;
 // sensor_msgs::msg::Imu类的默认构造函数，用于初始化Imu对象的各个成员变量
+// 初始化imu对象的各个成员变量
 sensor_msgs::msg::Imu::Imu()
 {
     // std_msgs::msg::Header m_header
     // geometry_msgs::msg::Quaternion m_orientation
     // sensor_msgs::msg::sensor_msgs__Imu__double_array_9 m_orientation_covariance
+    // 初始化为0
     memset(&m_orientation_covariance, 0, (9) * 8);
     // geometry_msgs::msg::Vector3 m_angular_velocity
     // sensor_msgs::msg::sensor_msgs__Imu__double_array_9 m_angular_velocity_covariance
@@ -52,6 +55,7 @@ sensor_msgs::msg::Imu::Imu()
 sensor_msgs::msg::Imu::~Imu()
 {
 }
+// 拷贝构造函数
 sensor_msgs::msg::Imu::Imu(
         const Imu& x)
 {
@@ -120,7 +124,7 @@ size_t sensor_msgs::msg::Imu::getMaxCdrSerializedSize(
     static_cast<void>(current_alignment);
     return sensor_msgs_msg_Imu_max_cdr_typesize;
 }
-
+// 计算将Imu对象序列化到CDR格式所需的字节数
 size_t sensor_msgs::msg::Imu::getCdrSerializedSize(
         const sensor_msgs::msg::Imu& data,
         size_t current_alignment)
@@ -133,6 +137,7 @@ size_t sensor_msgs::msg::Imu::getCdrSerializedSize(
     current_alignment += ((9) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
     current_alignment += geometry_msgs::msg::Vector3::getCdrSerializedSize(data.linear_acceleration(), current_alignment);
     current_alignment += ((9) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    // 返回序列化后的总字节数与初始对齐式的差值
     return current_alignment - initial_alignment;
 }
 // 将Imu对象的各个成员变量序列化到给定的CDR对象中，按照成员变量定义的顺序依次进行序列化操作
