@@ -21,12 +21,12 @@ class CARLA_API UBoundingBoxCalculator : public UBlueprintFunctionLibrary
 
 public:
 
-  /// Compute the bounding box of the given Carla actor.
+  /// 计算给定 Carla actor 的边界框。
   ///
-  /// @warning If the actor type is not supported a default initialized bounding
-  /// box is returned.
+  /// @warning 如果不支持 actor 类型，则默认初始化边界
+  /// 返回box
   ///
-  /// @warning Traffic signs return its trigger box instead.
+  /// @warning 交通标志会返回其触发框。
   UFUNCTION(Category = "Carla Actor", BlueprintCallable)
   static FBoundingBox GetActorBoundingBox(
     const AActor *Actor,
@@ -84,10 +84,10 @@ public:
     const AActor* Actor,
     uint8 InTagQueried = 0xFF);
 
-  // Combines the BBs of an actor based on the distance and type of the BB
-  // The BBs not combined are included too (ie: TL BBs and pole)
-  // DistanceThreshold is the maximum distance between BBs to combine, if 0.0 the distance is ignored
-  // TagToCombine defines the type of the BBs to combine, if 0 the type is ignored
+  // 根据 BB 的距离和类型组合对象的 BB
+  // 未组合的 BB 也包括在内（即：TL BB 和极点）
+  // DistanceThreshold 为 BB 之间要组合的最大距离，如果为 0.0，则忽略该距离
+  // TagToCombine 定义要组合的 BB 的类型，如果为 0，则忽略该类型
   UFUNCTION(Category = "Carla Util", BlueprintCallable)
   static void CombineBBsOfActor(
     const AActor* Actor,
@@ -102,8 +102,8 @@ public:
   UFUNCTION(Category = "Carla Util", BlueprintCallable)
   static FBoundingBox CombineBoxes(const TArray<UBoxComponent *>& BBsToCombine);
 
-  // Returns Static Mesh Components that generate the InBB of the Actor
-  // ie: the SMComps that creates the BB of the TL light box
+  // 返回生成 Actor 的 InBB 的静态网格体组件
+  // 即：创建 TL 灯箱 BB 的 SMComps
   UFUNCTION(Category = "Carla Actor", BlueprintCallable)
   static void GetMeshCompsFromActorBoundingBox(
     const AActor* Actor,
