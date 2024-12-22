@@ -12,7 +12,7 @@ try:
         sys.version_info.major,
         sys.version_info.minor,
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])#sys.version_info.major  和  sys.version_info.minor  获取Python当前的主版本号和次版本号
-except IndexError:
+except IndexError:# 使用Python的异常处理机制，尝试捕获名为IndexError的异常。IndexError通常在尝试访问序列（如列表、元组等）中不存在的索引位置时会被抛出，
     pass
 
 import carla
