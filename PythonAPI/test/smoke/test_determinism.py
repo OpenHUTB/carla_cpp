@@ -161,3 +161,8 @@ class TestDeterminism(SmokeTest):
         time.sleep(5)
 
         self.compare_records(record_run1, record_run2)
+# 调用当前对象（self指代调用该方法的对象实例）的compare_records方法，传入两个参数record_run1和record_run2。
+# 从方法名“compare_records”推测，这个方法的主要功能大概率是用于比较两个记录（record）相关的数据结构。
+# record_run1和record_run2这两个参数应该分别代表了两次不同运行过程（也许是模拟实验、游戏过程等不同场景下的运行实例）所产生的记录信息，
+# 具体记录的内容可能包含各种数据，比如模拟过程中的状态信息、事件信息等，而compare_records方法内部会按照一定的规则去对比这两份记录，
+# 例如检查对应的数据项是否相等、差异程度如何等，然后根据比较的结果进行后续的操作，比如返回比较结果、根据差异判断是否符合预期等，不过具体行为还得看该方法内部的代码实现逻辑。

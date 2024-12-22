@@ -84,6 +84,8 @@ namespace geom {
 
   // 重载<<操作符，用于将GeoLocation对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const GeoLocation &geo_location) {
+       // 格式化输出 GeoLocation 对象的经度、纬度和高度，按指定格式输出为字符串
+
         out << "GeoLocation(latitude=" << std::to_string(geo_location.latitude)
         << ", longitude=" << std::to_string(geo_location.longitude)
         << ", altitude=" << std::to_string(geo_location.altitude) << ')';
@@ -176,16 +178,18 @@ void export_geom() {
     .def(double() / self)
     .def(self_ns::str(self_ns::self))
   ;
-
+// 定义了隐式类型转换
   implicitly_convertible<cg::Vector3D, cg::Location>();
   implicitly_convertible<cg::Location, cg::Vector3D>();
-
+// 类绑定
   class_<cg::Vector3D>("Vector3D")
-    .def(init<float, float, float>((arg("x")=0.0f, arg("y")=0.0f, arg("z")=0.0f)))
-    .def(init<const cg::Location &>((arg("rhs"))))
+    .def(init<float, float, float>((arg("x")=0.0f, arg("y")=0.0f, arg("z")=0.0f))) // 定义了Vector3D类的构造函数
+    .def(init<const cg::Location &>((arg("rhs")))) // 定义了另一个构造函数，允许使用一个cg::Location对象来初始化Vector3D对象
+   // 分别定义了x y z成员变量的读写属性
     .def_readwrite("x", &cg::Vector3D::x)
     .def_readwrite("y", &cg::Vector3D::y)
     .def_readwrite("z", &cg::Vector3D::z)
+   // 定义了Vector3D类的方法
     .def("length", &cg::Vector3D::Length)
     .def("squared_length", &cg::Vector3D::SquaredLength)
     .def("make_unit_vector", &cg::Vector3D::MakeUnitVector)
@@ -197,6 +201,7 @@ void export_geom() {
     .def("distance_squared", &DistanceSquared, (arg("vector")))
     .def("distance_squared_2d", &DistanceSquared2D, (arg("vector")))
     .def("get_vector_angle", &GetVectorAngle, (arg("vector")))
+   // 运算符重载
     .def("__eq__", &cg::Vector3D::operator==)
     .def("__ne__", &cg::Vector3D::operator!=)
     .def("__abs__", &cg::Vector3D::Abs)

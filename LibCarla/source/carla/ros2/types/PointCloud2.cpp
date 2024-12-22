@@ -102,69 +102,99 @@ sensor_msgs::msg::PointCloud2::PointCloud2(
     m_is_dense = x.m_is_dense;
 }
 
-
+// 定义PointCloud2的移动构造函数，用于通过移动语义从另一个PointCloud2对象构造当前对象，并且声明不会抛出异常
 sensor_msgs::msg::PointCloud2::PointCloud2(
         PointCloud2&& x) noexcept
 {
+// 使用std::move将传入对象x的头信息移动赋值给当前对象的头信息，实现资源所有权的转移
     m_header = std::move(x.m_header);
+// 将传入对象x的高度值直接赋值给当前对象的高度成员变量
     m_height = x.m_height;
+// 将传入对象x的宽度值直接赋值给当前对象的宽度成员变量
     m_width = x.m_width;
+ // 使用std::move将传入对象x的字段信息移动赋值给当前对象的字段信息，转移资源所有权
     m_fields = std::move(x.m_fields);
+// 将传入对象x的大端序标志直接赋值给当前对象的大端序标志成员变量
     m_is_bigendian = x.m_is_bigendian;
+// 将传入对象x的点步长值直接赋值给当前对象的点步长成员变量
     m_point_step = x.m_point_step;
+ // 将传入对象x的行步长值直接赋值给当前对象的行步长成员变量   
     m_row_step = x.m_row_step;
+ // 使用std::move将传入对象x的数据移动赋值给当前对象的数据，转移资源所有权
     m_data = std::move(x.m_data);
+// 将传入对象x的是否密集标志直接赋值给当前对象的是否密集标志成员变量
     m_is_dense = x.m_is_dense;
 }
-
+// 定义PointCloud2的拷贝赋值运算符，用于将另一个PointCloud2对象的内容拷贝赋值给当前对象
 sensor_msgs::msg::PointCloud2& sensor_msgs::msg::PointCloud2::operator =(
         const PointCloud2& x)
 {
+// 将传入对象x的头信息拷贝赋值给当前对象的头信息
     m_header = x.m_header;
+// 将传入对象x的高度值拷贝赋值给当前对象的高度成员变量
     m_height = x.m_height;
+// 将传入对象x的宽度值拷贝赋值给当前对象的宽度成员变量
     m_width = x.m_width;
+    // 将传入对象x的字段信息拷贝赋值给当前对象的字段信息
     m_fields = x.m_fields;
+// 将传入对象x的大端序标志拷贝赋值给当前对象的大端序标志成员变量
     m_is_bigendian = x.m_is_bigendian;
+ // 将传入对象x的点步长值拷贝赋值给当前对象的点步长成员变量
     m_point_step = x.m_point_step;
+// 将传入对象x的行步长值拷贝赋值给当前对象的行步长成员变量
     m_row_step = x.m_row_step;
+// 将传入对象x的数据拷贝赋值给当前对象的数据
     m_data = x.m_data;
+ // 将传入对象x的是否密集标志拷贝赋值给当前对象的是否密集标志成员变量
     m_is_dense = x.m_is_dense;
-
+ // 返回当前对象的引用，以支持连续赋值等操作
     return *this;
 }
-
+// 定义PointCloud2的移动赋值运算符，用于通过移动语义将另一个PointCloud2对象的内容移动赋值给当前对象，并且声明不会抛出异常
 sensor_msgs::msg::PointCloud2& sensor_msgs::msg::PointCloud2::operator =(
         PointCloud2&& x) noexcept
 {
+// 使用std::move将传入对象x的头信息移动赋值给当前对象的头信息，转移资源所有权
     m_header = std::move(x.m_header);
+ // 将传入对象x的高度值直接赋值给当前对象的高度成员变量
     m_height = x.m_height;
+// 将传入对象x的宽度值直接赋值给当前对象的宽度成员变量
     m_width = x.m_width;
+// 使用std::move将传入对象x的字段信息移动赋值给当前对象的字段信息，转移资源所有权
     m_fields = std::move(x.m_fields);
+// 将传入对象x的大端序标志直接赋值给当前对象的大端序标志成员变量
     m_is_bigendian = x.m_is_bigendian;
+// 将传入对象x的点步长值直接赋值给当前对象的点步长成员变量
     m_point_step = x.m_point_step;
+// 将传入对象x的行步长值直接赋值给当前对象的行步长成员变量
     m_row_step = x.m_row_step;
+// 使用std::move将传入对象x的数据移动赋值给当前对象的数据，转移资源所有权
     m_data = std::move(x.m_data);
+// 将传入对象x的是否密集标志直接赋值给当前对象的是否密集标志成员变量
     m_is_dense = x.m_is_dense;
-
+// 返回当前对象的引用，以支持连续赋值等操作
     return *this;
 }
-
+// 定义PointCloud2的相等比较运算符，用于比较当前对象和另一个PointCloud2对象是否相等
 bool sensor_msgs::msg::PointCloud2::operator ==(
         const PointCloud2& x) const
 {
+// 依次比较两个对象的各个成员变量是否相等，只有所有成员变量都相等时，才返回true，表示两个对象相等
     return (m_header == x.m_header && m_height == x.m_height && m_width == x.m_width && m_fields == x.m_fields && m_is_bigendian == x.m_is_bigendian && m_point_step == x.m_point_step && m_row_step == x.m_row_step && m_data == x.m_data && m_is_dense == x.m_is_dense);
 }
-
+// 定义PointCloud2的不等比较运算符，通过调用相等比较运算符取反的结果来判断两个对象是否不相等
 bool sensor_msgs::msg::PointCloud2::operator !=(
         const PointCloud2& x) const
 {
     return !(*this == x);
 }
-
+// 定义函数用于获取PointCloud2对象在CDR序列化时的最大尺寸，当前传入的current_alignment参数未被使用（可能在更完整的逻辑中有作用）
 size_t sensor_msgs::msg::PointCloud2::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
+// 将current_alignment参数进行强制类型转换为void类型，以避免编译器产生未使用参数的警告，实际在这里它未起到作用
     static_cast<void>(current_alignment);
+// 返回PointCloud2对象在CDR序列化时的最大尺寸值，该值通过sensor_msgs_msg_PointCloud2_max_cdr_typesize获取（应该是一个预定义的常量之类的）
     return sensor_msgs_msg_PointCloud2_max_cdr_typesize;
 }
 
@@ -223,32 +253,50 @@ size_t sensor_msgs::msg::PointCloud2::getCdrSerializedSize(
     return current_alignment - initial_alignment;
 }
 
-
+// 定义PointCloud2类的serialize函数，用于将PointCloud2对象的各个成员变量序列化到给定的eprosima::fastcdr::Cdr对象中，函数被声明为const，表示不会修改当前PointCloud2对象的状态
 void sensor_msgs::msg::PointCloud2::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
+// 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的头信息成员变量（m_header）序列化到scdr对象中，具体的序列化规则由eprosima::fastcdr::Cdr中对应类型的重载实现决定
     scdr << m_header;
+ // 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的高度成员变量（m_height）序列化到scdr对象中
     scdr << m_height;
+    // 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的宽度成员变量（m_width）序列化到scdr对象中
     scdr << m_width;
+// 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的字段信息成员变量（m_fields）序列化到scdr对象中
     scdr << m_fields;
+    // 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的大端序标志成员变量（m_is_bigendian）序列化到scdr对象中
     scdr << m_is_bigendian;
+// 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的点步长成员变量（m_point_step）序列化到scdr对象中
     scdr << m_point_step;
+// 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的行步长成员变量（m_row_step）序列化到scdr对象中
     scdr << m_row_step;
+// 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的数据成员变量（m_data）序列化到scdr对象中
     scdr << m_data;
+// 使用eprosima::fastcdr::Cdr的重载<<运算符，将当前PointCloud2对象的是否密集标志成员变量（m_is_dense）序列化到scdr对象中
     scdr << m_is_dense;
 }
-
+// 定义PointCloud2类的deserialize函数，用于从给定的eprosima::fastcdr::Cdr对象中反序列化数据，来填充当前PointCloud2对象的各个成员变量
 void sensor_msgs::msg::PointCloud2::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
 {
+// 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的头信息成员变量（m_header），具体的反序列化规则由eprosima::fastcdr::Cdr中对应类型的重载实现决定
     dcdr >> m_header;
+// 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的高度成员变量（m_height
     dcdr >> m_height;
+// 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的宽度成员变量（m_width）
     dcdr >> m_width;
+ // 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的字段信息成员变量（m_fields）
     dcdr >> m_fields;
+// 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的大端序标志成员变量（m_is_bigendian）
     dcdr >> m_is_bigendian;
+// 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的点步长成员变量（m_point_step）
     dcdr >> m_point_step;
+// 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的行步长成员变量（m_row_step）
     dcdr >> m_row_step;
+// 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的数据成员变量（m_data）
     dcdr >> m_data;
+// 使用eprosima::fastcdr::Cdr的重载>>运算符，从dcdr对象中反序列化数据来填充当前PointCloud2对象的是否密集标志成员变量（m_is_dense）
     dcdr >> m_is_dense;
 }
 
@@ -529,25 +577,33 @@ bool sensor_msgs::msg::PointCloud2::is_dense() const
  * @brief This function returns a reference to member is_dense
  * @return Reference to member is_dense
  */
+// 定义一个名为is_dense的成员函数，它返回一个对布尔类型的引用，用于获取PointCloud2对象中表示是否密集的成员变量m_is_dense的引用
+// 通过返回引用，外部代码可以直接修改这个成员变量的值
 bool& sensor_msgs::msg::PointCloud2::is_dense()
 {
     return m_is_dense;
 }
-
+// 定义一个名为getKeyMaxCdrSerializedSize的成员函数，用于获取PointCloud2对象在特定序列化（可能是与键相关的CDR序列化，具体取决于上下文）情况下的最大尺寸
+// 函数接收一个size_t类型的参数current_alignment，表示当前的对齐方式（不过在这里暂时没实际用到，只是进行了类型转换避免编译器警告）
 size_t sensor_msgs::msg::PointCloud2::getKeyMaxCdrSerializedSize(
         size_t current_alignment)
 {
+// 将传入的current_alignment参数强制转换为void类型，其目的是消除编译器关于未使用参数的警告提示，说明在当前函数实现中这个参数暂时没有实际参与计算等操作
     static_cast<void>(current_alignment);
+// 返回PointCloud2对象在相关键的CDR序列化时的最大尺寸，该尺寸的值来源于sensor_msgs_msg_PointCloud2_max_key_cdr_typesize（推测是一个预定义的表示尺寸大小的常量之类的量）
     return sensor_msgs_msg_PointCloud2_max_key_cdr_typesize;
 }
-
+// 定义一个名为isKeyDefined的成员函数，用于判断PointCloud2对象中与键相关的内容是否已经被定义
+// 这里直接返回false，表示默认情况下键相关内容未被定义，具体返回值的逻辑可能需要根据实际应用场景和更完整的类设计来进一步理解和调整
 bool sensor_msgs::msg::PointCloud2::isKeyDefined()
 {
     return false;
 }
-
+// 定义一个名为serializeKey的成员函数，用于将PointCloud2对象中与“键”相关的数据进行序列化操作，函数接收一个eprosima::fastcdr::Cdr类型的引用参数scdr，
+// 这个参数应该是用于承载序列化后的数据的对象，函数被声明为const，表示该函数不会修改调用它的PointCloud2对象本身的状态。
 void sensor_msgs::msg::PointCloud2::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
+
     (void) scdr;
 }

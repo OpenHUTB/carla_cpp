@@ -10,13 +10,13 @@
 
 void CarlaRecorderAnimWalker::Write(std::ostream &OutFile)
 {
-  // database id
+  // 数据库 ID
   WriteValue<uint32_t>(OutFile, this->DatabaseId);
   WriteValue<float>(OutFile, this->Speed);
 }
 void CarlaRecorderAnimWalker::Read(std::istream &InFile)
 {
-  // database id
+  // 数据库 ID
   ReadValue<uint32_t>(InFile, this->DatabaseId);
   ReadValue<float>(InFile, this->Speed);
 }
@@ -35,18 +35,18 @@ void CarlaRecorderAnimWalkers::Add(const CarlaRecorderAnimWalker &Walker)
 
 void CarlaRecorderAnimWalkers::Write(std::ostream &OutFile)
 {
-  // write the packet id
+  // 写入数据包 ID
   WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::AnimWalker));
 
-  // write the packet size
+  // 写入数据包大小
   uint32_t Total = 2 + Walkers.size() * sizeof(CarlaRecorderAnimWalker);
   WriteValue<uint32_t>(OutFile, Total);
 
-  // write total records
+  // 写入总记录数
   Total = Walkers.size();
   WriteValue<uint16_t>(OutFile, Total);
 
-  // write records
+  // 写入记录
   if (Total > 0)
   {
     OutFile.write(reinterpret_cast<const char *>(Walkers.data()),
@@ -59,7 +59,7 @@ void CarlaRecorderAnimWalkers::Read(std::istream &InFile)
   uint16_t i, Total;
   CarlaRecorderAnimWalker Walker;
 
-  // read Total walkers
+  // 读取 Total walkers
   ReadValue<uint16_t>(InFile, Total);
   for (i = 0; i < Total; ++i)
   {
