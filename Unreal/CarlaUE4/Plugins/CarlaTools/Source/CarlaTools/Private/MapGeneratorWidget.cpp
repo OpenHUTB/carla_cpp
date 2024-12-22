@@ -299,45 +299,46 @@ FString UMapGeneratorWidget::SanitizeDirectory(FString InDirectory)
   return InDirectory;
 }
 
-bool UMapGeneratorWidget::LoadMapInfoFromPath(FString InDirectory, int& OutMapSize, FString& OutFoundMapName)
+bool UMapGeneratorWidget::LoadMapInfoFromPath(FString InDirectory, int& OutMapSize, FString& OutFoundMapName)// 从给定路径加载地图信息，返回是否成功
 {
-  TArray<FAssetData> DirectoryAssets;
+  // 创建一个数组用于存储目录下的所有资产
+  TArray<FAssetData> DirectoryAssets;// 加载给定目录下的世界资产
   bool bLoaded = LoadWorlds(DirectoryAssets, InDirectory, false);
 
-  FString MainMapName;
-  FString MapNameInTiles;
+  FString MainMapName;// 主地图名称
+  FString MapNameInTiles; // 存储地图拼图的名称
 
-  if(bLoaded && DirectoryAssets.Num() > 0)
+  if(bLoaded && DirectoryAssets.Num() > 0)// 如果加载成功且目录中有资产
   {
-    for(FAssetData AssetData : DirectoryAssets) // Find name in tiles
+    for(FAssetData AssetData : DirectoryAssets) // 查找拼图中的名称
     {
       const FString AssetName = AssetData.AssetName.ToString();
       FString Name, Coordinates;
       if(AssetName.Split(TEXT("_Tile_"), &Name, &Coordinates))
       {
         MapNameInTiles = Name;
-        break;
+        break; // 找到第一个拼图名称后跳出循环
       }
     }
 
-    if(MapNameInTiles.IsEmpty()) // No tiles found
+    if(MapNameInTiles.IsEmpty()) // 没有找到拼图
     {
-      return false;
+      return false; // 返回失败
     }
 
-    for(FAssetData AssetData : DirectoryAssets)
+    for(FAssetData AssetData : DirectoryAssets)// 遍历所有资产，找到对应的主地图
     {
       const FString AssetName = AssetData.AssetName.ToString();
-      if(!AssetName.Contains("_Tile_") && AssetName == MapNameInTiles) // Find Main Map
+      if(!AssetName.Contains("_Tile_") && AssetName == MapNameInTiles) // 查找主地图
       {
         MainMapName = AssetName;
-        break;
+        break;// 找到主地图后跳出循环
       }
     }
 
-    if(MainMapName.IsEmpty()) // No main map found
+    if(MainMapName.IsEmpty()) // 没有找到主地图
     {
-      return false;
+      return false;// 返回失败
     }
 
     int NumberOfTiles = DirectoryAssets.Num() - 1;
