@@ -610,29 +610,53 @@
     When the next frame is computed, the server will tick and return a snapshot describing the new state of the world.
     # 进一步说明当服务器完成下一帧的计算后，会进行 “tick” 操作并且返回一个 `carla.WorldSnapshot` 类型的对象，这个对象描述了模拟世界经过这次更新后的新状态，而这个返回值正是 `wait_for_tick` 函数向外提供的，客户端可以基于这个返回的世界状态快照来进行后续的各种操作，比如获取世界中的实体信息、进行相关逻辑判断等。
     # --------------------------------------
-    - def_name: spawn_actor
-      return: carla.Actor
-      params:
-      - param_name: blueprint
-        type: carla.ActorBlueprint
-        doc: >
-          The reference from which the actor will be created. 
-      - param_name: transform
-        type: carla.Transform
-        doc: >
-          Contains the location and orientation the actor will be spawned with. 
-      - param_name: attach_to 
-        type: carla.Actor
-        default: None
-        doc: > 
-          The parent object that the spawned actor will follow around. 
-      - param_name: attachment 
-        type: carla.AttachmentType
-        default: Rigid
-        doc: > 
-          Determines how fixed and rigorous should be the changes in position according to its parent object. 
-      doc: >
-        The method will create, return and spawn an actor into the world. The actor will need an available blueprint to be created and a transform (location and rotation). It can also be attached to a parent with a certain attachment type. 
+    # --------------------------------------
+# `spawn_actor` 函数的定义说明部分
+# 下面是关于 `spawn_actor` 函数详细的文档信息，涵盖了函数的返回值类型、参数情况以及其整体功能描述等内容
+- def_name: spawn_actor
+  return: carla.Actor
+  params:
+  - param_name: blueprint
+    type: carla.ActorBlueprint
+    doc: >
+      The reference from which the actor will be created. 
+  # 对于 `blueprint` 参数的说明：
+  # 它是 `carla.ActorBlueprint` 类型，代表了创建角色（actor）的一个参考蓝本，也就是创建一个具体角色时所依据的模板或者蓝图。
+  # 这个蓝本定义了要创建的角色的各种属性、行为等基本特征，例如角色可能是一辆车、一个行人或者其他游戏世界中的实体，不同的蓝本对应不同类型和特性的角色，通过它才能创建出符合要求的具体角色实例。
+
+  - param_name: transform
+    type: carla.Transform
+    doc: >
+      Contains the location and orientation the actor will be spawned with. 
+  # 针对 `transform` 参数的解释：
+  # 它的类型为 `carla.Transform`，这个参数承载了要创建的角色在游戏世界中初始的位置（location）和朝向（orientation）信息。
+  # 位置信息决定了角色在世界坐标系中的具体坐标位置，而朝向信息则规定了角色面向的方向，通过这个参数就能确定角色最初出现在世界中的哪里以及面朝何方，是角色在世界中定位和姿态设定的关键依据。
+
+  - param_name: attach_to 
+    type: carla.Actor
+    default: None
+    doc: > 
+      The parent object that the spawned actor will follow around. 
+  # 关于 `attach_to` 参数的阐述：
+  # 它是 `carla.Actor` 类型，默认值为 `None`，代表着一个父级对象，也就是新创建出来的角色可以依附的对象。
+  # 如果指定了某个已存在的角色作为父级对象，那么新创建的这个角色将会跟随这个父级对象进行相应的移动、旋转等变化，就好像是附属在父级对象上一样，例如车辆上挂载的摄像头等设备就可以通过这种方式依附在车辆这个父级对象上，随车辆一同运动。
+
+  - param_name: attachment
+    type: carla.AttachmentType
+    default: Rigid
+    doc: > 
+      Determines how fixed and rigorous should be the changes in position according to its parent object. 
+  # 对 `attachment` 参数的详细说明：
+  # 其类型为 `carla.AttachmentType`，默认值是 `Rigid`（刚性的意思），这个参数用于确定新创建的角色相对于其父级对象在位置变化方面的特性。
+  # 不同的附着类型（`AttachmentType`）决定了角色跟随父级对象移动时，位置变化的严格程度或者说固定程度，比如刚性附着（`Rigid`）可能意味着角色与父级对象之间的相对位置关系非常固定，在父级对象移动、旋转等操作时，角色会严格按照某种固定规则跟随变化；而可能存在的其他附着类型会有不同的位置跟随方式，体现出不同的灵活性或约束性。
+
+  doc: >
+    The method will create, return and spawn an actor into the world. The actor will need an available blueprint to be created and a transform (location and rotation). It can also be attached to a parent with a certain attachment type. 
+  # 对 `spawn_actor` 函数整体功能的进一步描述：
+  # 这个函数的主要作用就是在游戏世界中创建、返回并实际生成（spawn）一个角色（actor）。
+  # 要成功创建一个角色，首先需要一个可用的蓝图（通过 `blueprint` 参数指定）来定义角色的基本属性和行为，同时需要通过 `transform` 参数来明确角色初始的位置和旋转信息，以此确定其在世界中的放置情况。
+  # 此外，还可以选择通过 `attach_to` 参数指定一个父级对象，并利用 `attachment` 参数设定附着的类型，使得新创建的角色能够以特定的方式依附到父级对象上，实现与其他对象之间在运动等方面的关联关系，满足游戏世界中各种复杂的实体布局和交互需求。
+# --------------------------------------
     # --------------------------------------
     - def_name: try_spawn_actor
       return: carla.Actor
