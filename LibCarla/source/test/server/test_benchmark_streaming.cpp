@@ -5,18 +5,18 @@
 // 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 #include "test.h"
-
+//包含名为test.h的自定义头文件，可能包含项目特定的定义、函数声明等。
 #include <carla/Buffer.h>
 #include <carla/BufferView.h>
 #include <carla/streaming/Client.h>
 #include <carla/streaming/Server.h>
-
+//包含名为test.h的自定义头文件，可能包含项目特定的定义、函数声明等。
 #include <boost/asio/post.hpp>
-
+//是包含boost库中的asio模块的post.hpp头文件，boost::asio常用于异步输入/输出操作，这里的post可能与将任务提交到执行队列相关。
 #include <algorithm>
-
-using namespace carla::streaming;
-using namespace std::chrono_literals;
+//包含了许多通用算法，如排序、查找等算法的模板函数声明。
+using namespace carla::streaming;//前者使得可以直接使用carla::streaming命名空间下的类型和函数而无需每次都写完整的命名空间前缀
+using namespace std::chrono_literals;//使得可以直接使用std::chrono库中的字面值（例如1s表示1秒的时间字面值等）。
 
 // 创建特定大小的消息
 static auto make_special_message(size_t size) { // 创建一个包含42的向量，大小为size
@@ -151,7 +151,7 @@ static void benchmark_image(
     const double success_ratio = 1.0) {
   constexpr auto number_of_messages = 100u;// 定义消息数量
   carla::logging::log("Benchmark:", number_of_streams, "streams at 90FPS.");// 输出基准测试信息
-  Benchmark benchmark(TESTING_PORT, 4u * dimensions, success_ratio);
+  Benchmark benchmark(TESTING_PORT, 4u * dimensions, success_ratio);//
   benchmark.AddStreams(number_of_streams);
   benchmark.Run(number_of_messages);
 }

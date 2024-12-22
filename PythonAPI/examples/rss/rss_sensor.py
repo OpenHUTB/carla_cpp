@@ -7,6 +7,10 @@ import glob
 import os
 import sys
 
+# 尝试将特定路径添加到系统路径中，目的是能够正确导入 `carla` 相关的模块。
+# 这里通过拼接一系列路径信息，根据当前 Python 版本（major 和 minor 版本号）以及操作系统类型（判断是 'win-amd64' 还是 'linux-x86_64'），
+# 来定位 `carla` 模块所在的 `.egg` 文件路径，并添加到 `sys.path` 中，使得后续可以顺利导入。
+# 如果通过 `glob.glob` 查找匹配路径的结果为空（IndexError 情况），则不做任何操作直接跳过（pass）。
 try:
     sys.path.append(glob.glob(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + '/carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -25,6 +29,9 @@ from rss_visualization import RssDebugVisualizer # pylint: disable=relative-impo
 # ==============================================================================
 # -- RssSensor -----------------------------------------------------------------
 # ==============================================================================
+# 以下这部分看起来像是一个自定义类或者模块相关功能的开始标记，通常在 Python 代码中使用这样的注释块来划分不同的功能区域或者类的定义范围。
+# 从名称 `RssSensor` 推测，可能是与某种传感器相关的类或者模块定义，后续大概率会在这里定义 `RssSensor` 相关的属性、方法等代码，
+# 用来实现特定的传感器相关功能，比如采集数据、处理传感器信号等，但具体功能还需要看后续具体编写的代码内容。
 
 
 class RssStateInfo(object):
