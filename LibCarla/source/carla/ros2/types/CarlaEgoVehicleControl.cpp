@@ -188,127 +188,129 @@ void carla_msgs::msg::CarlaEgoVehicleControl::serialize(
 
 // **反序列化函数**：从 CDR 流中读取数据到对象
 
-void carla_msgs::msg::CarlaEgoVehicleControl::deserialize(
-        eprosima::fastcdr::Cdr& dcdr)
-{
-    dcdr >> m_header;
-    dcdr >> m_throttle;
-    dcdr >> m_steer;
-    dcdr >> m_brake;
-    dcdr >> m_hand_brake;
-    dcdr >> m_reverse;
-    dcdr >> m_gear;
-    dcdr >> m_manual_gear_shift;
-}
+void carla_msgs::msg::CarlaEgoVehicleControl::deserialize(  
+        eprosima::fastcdr::Cdr& dcdr)  
+{  
+    // 反序列化，读取消息的各个字段值  
+    dcdr >> m_header;           // 读取头部  
+    dcdr >> m_throttle;        // 读取油门值  
+    dcdr >> m_steer;           // 读取转向值  
+    dcdr >> m_brake;           // 读取刹车值  
+    dcdr >> m_hand_brake;      // 读取手刹值  
+    dcdr >> m_reverse;         // 读取倒车状态  
+    dcdr >> m_gear;            // 读取档位  
+    dcdr >> m_manual_gear_shift; // 读取手动换挡状态  
+}  
 
-/*!
- * @brief This function copies the value in member header
- * @param _header New value to be copied in member header
- */
-// **设置 header 值**
-void carla_msgs::msg::CarlaEgoVehicleControl::header(
-        const std_msgs::msg::Header& _header)
-{
-    m_header = _header;
-}
+/*!  
+ * @brief This function copies the value in member header  
+ * @param _header New value to be copied in member header  
+ */  
+// **设置 header 值**  
+void carla_msgs::msg::CarlaEgoVehicleControl::header(  
+        const std_msgs::msg::Header& _header)  
+{  
+    m_header = _header; // 将新的头部值赋值给成员变量 m_header  
+}  
 
-/*!
- * @brief This function moves the value in member header
- * @param _header New value to be moved in member header
- */
-/*
- * @brief 通过移动语义设置header成员的值，减少拷贝，提高性能
- * @param _header 待移动的std_msgs::msg::Header对象
-*/
-void carla_msgs::msg::CarlaEgoVehicleControl::header(
-        std_msgs::msg::Header&& _header)
-{
-    m_header = std::move(_header);
-}
+/*!  
+ * @brief This function moves the value in member header  
+ * @param _header New value to be moved in member header  
+ */  
+/*  
+ * @brief 通过移动语义设置header成员的值，减少拷贝，提高性能  
+ * @param _header 待移动的std_msgs::msg::Header对象  
+*/  
+void carla_msgs::msg::CarlaEgoVehicleControl::header(  
+        std_msgs::msg::Header&& _header)  
+{  
+    m_header = std::move(_header); // 移动语义，大大提高性能  
+}  
 
-/*!
- * @brief This function returns a constant reference to member header（返回header成员的常量引用，用于只读访问）
- * @return Constant reference to member header（return header的常量引用）
- */
-const std_msgs::msg::Header& carla_msgs::msg::CarlaEgoVehicleControl::header() const
-{
-    return m_header;
-}
+/*!  
+ * @brief This function returns a constant reference to member header（返回header成员的常量引用，用于只读访问）  
+ * @return Constant reference to member header（return header的常量引用）  
+ */  
+const std_msgs::msg::Header& carla_msgs::msg::CarlaEgoVehicleControl::header() const  
+{  
+    return m_header; // 返回header成员的常量引用  
+}  
 
-/*!
- * @brief This function returns a reference to member header（返回header成员的引用，用于修改header的值）
- * @return Reference to member header（）
- */
-std_msgs::msg::Header& carla_msgs::msg::CarlaEgoVehicleControl::header()
-{
-    return m_header;
-}
-/*!
- * @brief This function sets a value in member throttle（设置throttle成员的值（油门））
- * @param _throttle New value for member throttle（param _throttle 新的油门值，范围通常在0.0到1.0之间）
- */
-void carla_msgs::msg::CarlaEgoVehicleControl::throttle(
-        float _throttle)
-{
-    m_throttle = _throttle;
-}
+/*!  
+ * @brief This function returns a reference to member header（返回header成员的引用，用于修改header的值）  
+ * @return Reference to member header（）  
+ */  
+std_msgs::msg::Header& carla_msgs::msg::CarlaEgoVehicleControl::header()  
+{  
+    return m_header; // 返回header成员的引用，便于修改  
+}  
 
-/*!
- * @brief This function returns the value of member throttle
- * @return Value of member throttle
- */
-//返回throttle的值
-float carla_msgs::msg::CarlaEgoVehicleControl::throttle() const
-{
-    return m_throttle;
-}
+/*!  
+ * @brief This function sets a value in member throttle（设置throttle成员的值（油门））  
+ * @param _throttle New value for member throttle（param _throttle 新的油门值，范围通常在0.0到1.0之间）  
+ */  
+void carla_msgs::msg::CarlaEgoVehicleControl::throttle(  
+        float _throttle)  
+{  
+    m_throttle = _throttle; // 设置油门值  
+}  
 
-/*!
- * @brief This function returns a reference to member throttle（用于修改油门值）
- * @return Reference to member throttle
- */
-float& carla_msgs::msg::CarlaEgoVehicleControl::throttle()
-{
-    return m_throttle;
-}
+/*!  
+ * @brief This function returns the value of member throttle  
+ * @return Value of member throttle  
+ */  
+//返回throttle的值  
+float carla_msgs::msg::CarlaEgoVehicleControl::throttle() const  
+{  
+    return m_throttle; // 返回当前油门值  
+}  
 
-/*!
- * @brief This function sets a value in member steer（设置转向角度）
- * @param _steer New value for member steer（新的转向值，范围通常在-1.0到1.0之间）
- */
-void carla_msgs::msg::CarlaEgoVehicleControl::steer(
-        float _steer)
-{
-    m_steer = _steer;
-}
+/*!  
+ * @brief This function returns a reference to member throttle（用于修改油门值）  
+ * @return Reference to member throttle  
+ */  
+float& carla_msgs::msg::CarlaEgoVehicleControl::throttle()  
+{  
+    return m_throttle; // 返回油门值的引用，便于修改  
+}  
 
-/*!
- * @brief This function returns the value of member steer（返回steer的值）
- * @return Value of member steer（当前转向的值）
- */
-float carla_msgs::msg::CarlaEgoVehicleControl::steer() const
-{
-    return m_steer;
-}
+/*!  
+ * @brief This function sets a value in member steer（设置转向角度）  
+ * @param _steer New value for member steer（新的转向值，范围通常在-1.0到1.0之间）  
+ */  
+void carla_msgs::msg::CarlaEgoVehicleControl::steer(  
+        float _steer)  
+{  
+    m_steer = _steer; // 设置转向值  
+}  
 
-/*!
- * @brief This function returns a reference to member steer（返回steer的引用，用于修改转向值）
- * @return Reference to member steer
- */
-float& carla_msgs::msg::CarlaEgoVehicleControl::steer()
-{
-    return m_steer;
-}
+/*!  
+ * @brief This function returns the value of member steer（返回steer的值）  
+ * @return Value of member steer（当前转向的值）  
+ */  
+float carla_msgs::msg::CarlaEgoVehicleControl::steer() const  
+{  
+    return m_steer; // 返回当前转向值  
+}  
 
-/*!
- * @brief This function sets a value in member brake（设置break成员的值，也就是刹车力度）
- * @param _brake New value for member brake（新的刹车值，范围在0到1之间）
- */
-void carla_msgs::msg::CarlaEgoVehicleControl::brake(
-        float _brake)
-{
-    m_brake = _brake;
-}
+/*!  
+ * @brief This function returns a reference to member steer（返回steer的引用，用于修改转向值）  
+ * @return Reference to member steer  
+ */  
+float& carla_msgs::msg::CarlaEgoVehicleControl::steer()  
+{  
+    return m_steer; // 返回转向值的引用，便于修改  
+}  
+
+/*!  
+ * @brief This function sets a value in member brake（设置break成员的值，也就是刹车力度）  
+ * @param _brake New value for member brake（新的刹车值，范围在0到1之间）  
+ */  
+void carla_msgs::msg::CarlaEgoVehicleControl::brake(  
+        float _brake)  
+{  
+    m_brake = _brake; // 设置刹车值  
+}  
 
 /*!
  * @brief This function returns the value of member brake（返回break的值）
