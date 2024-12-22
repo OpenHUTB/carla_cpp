@@ -1,5 +1,6 @@
 # LibCarla的单元测试
 cmake_minimum_required(VERSION 3.5.1)
+#定义项目名称
 project(libcarla-unit-tests)
 
 # 进行客户端的测试
