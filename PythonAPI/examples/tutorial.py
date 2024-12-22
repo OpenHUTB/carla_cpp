@@ -37,7 +37,7 @@ def main():
         # to the simulator. Here we'll assume the simulator is accepting
         # requests in the localhost at port 2000.
         client = carla.Client('localhost', 2000)
-        client.set_timeout(2.0)
+        client.set_timeout(2.0)  # 调用刚创建的客户端实例（client对象）的set_timeout方法，设置超时时间为2.0秒。
 
         # Once we have a client we can retrieve the world that is currently
         # running.
