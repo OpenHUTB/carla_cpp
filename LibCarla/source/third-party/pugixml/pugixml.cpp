@@ -768,16 +768,22 @@ PUGI__NS_BEGIN
 		void deallocate_string(char_t* string)
 		{
 			// this function casts pointers through void* to avoid 'cast increases required alignment of target type' warnings
+			 // 此函数通过将指针转换为 void* 类型来避免出现“cast increases required alignment of target type”这样的警告
 			// we're guaranteed the proper (pointer-sized) alignment on the input string if it was allocated via allocate_string
-
+                        // 前提是如果输入的字符串是通过 allocate_string 函数分配的，那么我们能保证输入字符串具有合适的（指针大小的）对齐方式
 			// get header
+			// 将传入的字符串指针先转换为 void* 类型，再将其转换回 xml_memory_string_header* 类型，并向前偏移一个单位（减1操作），目的是获取指向该字符串头部信息的指针。
+			// 这里假设内存布局中字符串头部信息就在字符串实际数据的前面，通过这样的指针运算来获取相关管理信息。
 			xml_memory_string_header* header = static_cast<xml_memory_string_header*>(static_cast<void*>(string)) - 1;
 			assert(header);
 
 			// deallocate
+			// 计算此字符串所在内存页内的偏移量。先加上 xml_memory_page 结构体的大小，再根据字符串头部记录的页内偏移量（乘以每个内存块的对齐大小）来确定其在内存页中的准确偏移位置。
+                        // 这样后续就能通过这个偏移量找到对应的内存页。
 			size_t page_offset = sizeof(xml_memory_page) + header->page_offset * xml_memory_block_alignment;
+			// 通过先将 header 指针转换为 char* 类型（方便进行字节级别的偏移计算），减去前面计算得到的页偏移量，再转换回 xml_memory_page* 类型，从而得到该字符串所在的内存页指针。
 			xml_memory_page* page = reinterpret_cast<xml_memory_page*>(static_cast<void*>(reinterpret_cast<char*>(header) - page_offset));
-
+			// 如果 full_size 等于 0，说明这个字符串占据了整个内存页，否则按照头部记录的实际大小（乘以内存块对齐大小，可能涉及到内存对齐相关的换算）来确定字符串实际占用的内存大小。
 			// if full_size == 0 then this string occupies the whole page
 			size_t full_size = header->full_size == 0 ? page->busy_size : header->full_size * xml_memory_block_alignment;
 
