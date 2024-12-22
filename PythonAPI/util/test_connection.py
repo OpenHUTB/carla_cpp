@@ -64,7 +64,7 @@ def main():
             client.set_timeout(0.1)
             print('CARLA %s connected at %s:%d.' % (client.get_server_version(), args.host, args.port))
             return 0
-        except RuntimeError:
+        except RuntimeError: # 如果在尝试连接过程中出现运行时错误（比如超时等情况），不做任何处理，直接进入下一次循环继续尝试连接
             pass
 
     print('Failed to connect to %s:%d.' % (args.host, args.port))# 如果循环结束后仍未成功连接（即超出了设定的超时时间），打印出连接失败的提示信息，包含尝试连接的主机和端口
