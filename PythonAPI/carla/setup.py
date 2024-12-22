@@ -1,53 +1,56 @@
-#!/usr/bin/env python
-
-# 版权所有 （c） 2019 巴塞罗那自治大学 （UAB） 计算机视觉中心 （CVC）。
-# 本作品根据 MIT 许可证的条款进行许可。
-# 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
-
-# 从setuptools库导入setup和Extension类，用于配置和构建Python扩展模块
+# 导入必要的模块
+# 从setuptools库导入setup和Extension类，这些类用于配置和构建Python扩展模块
 from setuptools import setup, Extension
  
-# 导入fnmatch模块，用于文件名匹配
+# 导入fnmatch模块，它提供了支持Unix shell风格通配符的文件名匹配功能
 import fnmatch
-# 导入os模块，用于与操作系统交互，如环境变量、文件路径等
+# 导入os模块，它提供了一种方便的使用操作系统功能的方式
 import os
-# 导入sys模块，用于访问与Python解释器紧密相关的变量和函数
-import sys
+# 导入sys模块，它提供了一些变量和函数，用以操纵Python运行时环境
+import sys  # 注意：虽然在此脚本中未直接使用sys，但它可能用于其他目的，如检查Python版本等
  
-# 定义一个函数，检查是否启用了RSS变体构建
+# 定义一个函数，用于检查是否启用了RSS变体构建
 def is_rss_variant_enabled():
     # 检查环境变量BUILD_RSS_VARIANT是否被设置为'true'
+    # 如果设置了，表示启用了RSS变体构建，函数返回True；否则返回False
     if 'BUILD_RSS_VARIANT' in os.environ and os.environ['BUILD_RSS_VARIANT'] == 'true':
         return True
     return False
  
 # 定义一个函数，用于获取libcarla扩展模块的配置信息
 def get_libcarla_extensions():
-    # 指定头文件搜索路径
+    # 指定头文件（.h或.hpp文件）的搜索路径
     include_dirs = ['dependencies/include']
     
-    # 指定库文件搜索路径
+    # 指定库文件（.so、.dylib或.dll文件，取决于操作系统）的搜索路径
     library_dirs = ['dependencies/lib']
-    # 初始化库名称列表（这里可能根据条件动态添加）
+    
+    # 初始化一个空列表，用于存储要链接的库名称（这些名称将在后续可能根据条件动态添加）
     libraries = []
- 
-    # 指定源代码文件
+    
+    # 指定libcarla扩展模块的源代码文件
     sources = ['source/libcarla/libcarla.cpp']
- 
-    # 定义一个生成器函数，用于遍历指定文件夹下的文件，支持文件过滤
+    
+    # 定义一个内部生成器函数，用于遍历指定文件夹下的文件，并支持文件过滤功能
     def walk(folder, file_filter='*'):
+        # 使用os.walk遍历指定文件夹及其子文件夹
         for root, _, filenames in os.walk(folder):
+            # 使用fnmatch.filter过滤出符合指定模式的文件名
             for filename in fnmatch.filter(filenames, file_filter):
+                # 生成并返回文件的完整路径
                 yield os.path.join(root, filename)
- 
+    
     # 检查当前操作系统是否为POSIX兼容系统（如Linux, macOS等）
     if os.name == "posix":
-        import distro  # 导入distro模块，用于获取Linux发行版信息
-        supported_dists = ["ubuntu", "debian", "deepin"]  # 支持的Linux发行版列表
+        # 导入distro模块，它提供了获取Linux发行版信息的函数
+        import distro
+        # 定义一个列表，包含支持的Linux发行版ID
+        supported_dists = ["ubuntu", "debian", "deepin"]
         
-        # 获取当前Linux发行版的ID并转换为小写
+        # 获取当前Linux发行版的ID，并将其转换为小写字母
         linux_distro = distro.id().lower()
-        # 如果当前发行版在支持的列表中
+        # 注意：此处代码被截断，原本可能根据linux_distro的值执行一些操作
+        # 例如，根据发行版的不同，动态添加库名称到libraries列表中
         if linux_distro in supported_dists:
             pwd = os.path.dirname(os.path.realpath(__file__))  # 获取当前脚本所在目录的绝对路径
             # 根据Python版本构建Boost Python库的名称
@@ -62,45 +65,75 @@ def get_libcarla_extensions():
                 extra_link_args = [ os.path.join(pwd, 'dependencies/lib/libcarla_client.a') ]
                 
             extra_link_args += [#构建列表参数
-                os.path.join(pwd, 'dependencies/lib/librpc.a'),#将路径的各个组成部分组合成完整的路径
-                os.path.join(pwd, 'dependencies/lib/libboost_filesystem.a'),
-                os.path.join(pwd, 'dependencies/lib/libRecast.a'),
-                os.path.join(pwd, 'dependencies/lib/libDetour.a'),
-                os.path.join(pwd, 'dependencies/lib/libDetourCrowd.a'),
-                os.path.join(pwd, 'dependencies/lib/libosm2odr.a'),
-                os.path.join(pwd, 'dependencies/lib/libxerces-c.a')]
-            extra_link_args += ['-lz']#编译参数列表
-            extra_compile_args = [
-                '-isystem', os.path.join(pwd, 'dependencies/include/system'), '-fPIC', '-std=c++14',#指定额外的系统文件搜索路径
-                '-Werror',#将警告当作错误处理
-                '-Wall', #开启大多数常见的警告
-                '-Wextra', #开启额外的警告
-                '-Wpedantic', #阐述更多关于不符合标志的警告
-                '-Wno-self-assign-overloaded',
-                '-Wdeprecated', '-Wno-shadow', '-Wuninitialized', '-Wunreachable-code',
-                '-Wpessimizing-move', '-Wold-style-cast', '-Wnull-dereference',
-                '-Wduplicate-enum', '-Wnon-virtual-dtor', '-Wheader-hygiene',
-                '-Wconversion', '-Wfloat-overflow-conversion',
-                '-DBOOST_ERROR_CODE_HEADER_ONLY', '-DLIBCARLA_WITH_PYTHON_SUPPORT',
-                '-stdlib=libstdc++'
-            ]
-            if is_rss_variant_enabled():
-                extra_compile_args += ['-DLIBCARLA_RSS_ENABLED']
-                extra_compile_args += ['-DLIBCARLA_PYTHON_MAJOR_' +  str(sys.version_info.major)]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_map_access_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_map_access.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_physics_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_physics.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_map_opendrive_reader.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libboost_program_options.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libodrSpiral.a')]
-                extra_link_args += [os.path.join(pwd, 'dependencies/lib/libspdlog.a')]
-                extra_link_args += ['-lrt']
-                extra_link_args += ['-ltbb']
+             # 定义一个列表，包含要链接的静态库文件的完整路径
+libraries = [
+    os.path.join(pwd, 'dependencies/lib/librpc.a'),  # 链接RPC库
+    os.path.join(pwd, 'dependencies/lib/libboost_filesystem.a'),  # 链接Boost文件系统库
+    os.path.join(pwd, 'dependencies/lib/libRecast.a'),  # 链接Recast导航网格生成库
+    os.path.join(pwd, 'dependencies/lib/libDetour.a'),  # 链接Detour路径查找库
+    os.path.join(pwd, 'dependencies/lib/libDetourCrowd.a'),  # 链接DetourCrowd群体路径查找库
+    os.path.join(pwd, 'dependencies/lib/libosm2odr.a'),  # 链接OSM到ODR转换器库
+    os.path.join(pwd, 'dependencies/lib/libxerces-c.a')  # 链接Xerces-C++ XML解析库
+]
+
+# 定义一个列表，包含额外的链接器参数
+extra_link_args = ['-lz']  # 链接zlib库
+
+# 定义一个列表，包含额外的编译器参数
+extra_compile_args = [
+    '-isystem', os.path.join(pwd, 'dependencies/include/system'),  # 指定额外的系统头文件搜索路径
+    '-fPIC',  # 生成与位置无关的代码
+    '-std=c++14',  # 使用C++14标准
+    '-Werror',  # 将所有警告视为错误
+    '-Wall',  # 启用所有常见的警告
+    '-Wextra',  # 启用额外的警告
+    '-Wpedantic',  # 启用更多关于不符合标准的警告
+    '-Wno-self-assign-overloaded',  # 禁用关于重载运算符自我赋值的警告
+    '-Wdeprecated',  # 启用关于使用已弃用特性的警告
+    '-Wno-shadow',  # 禁用关于局部变量隐藏其他变量或参数的警告
+    '-Wuninitialized',  # 启用关于使用未初始化变量的警告
+    '-Wunreachable-code',  # 启用关于不可达代码的警告
+    '-Wpessimizing-move',  # 启用关于可能导致性能下降的移动的警告
+    '-Wold-style-cast',  # 启用关于旧式C风格类型转换的警告
+    '-Wnull-dereference',  # 启用关于空指针解引用的警告
+    '-Wduplicate-enum',  # 启用关于枚举值重复的警告
+    '-Wnon-virtual-dtor',  # 启用关于基类析构函数未声明为虚函数的警告
+    '-Wheader-hygiene',  # 启用关于头文件包含问题的警告（非标准GCC警告）
+    '-Wconversion',  # 启用关于类型转换的警告
+    '-Wfloat-overflow-conversion',  # 启用关于浮点溢出转换的警告
+    '-DBOOST_ERROR_CODE_HEADER_ONLY',  # 定义BOOST_ERROR_CODE_HEADER_ONLY宏，用于Boost错误代码库的头文件方式
+    '-DLIBCARLA_WITH_PYTHON_SUPPORT',  # 定义LIBCARLA_WITH_PYTHON_SUPPORT宏，表示启用Python支持
+    '-stdlib=libstdc++'  # 指定使用libstdc++标准库
+]
+
+# 如果启用了RSS变体构建，则添加额外的编译和链接参数
+if is_rss_variant_enabled():
+    extra_compile_args += [
+        '-DLIBCARLA_RSS_ENABLED',  # 定义LIBCARLA_RSS_ENABLED宏，表示启用RSS支持
+        '-DLIBCARLA_PYTHON_MAJOR_' + str(sys.version_info.major)  # 定义LIBCARLA_PYTHON_MAJOR_x宏，表示Python主版本号
+    ]
+    
+    # 添加与Python版本相关的RSS和其他库的链接路径
+    extra_link_args += [
+        os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration_python' + str(sys.version_info.major) + str(sys.version_info.minor) + '.a'),
+        os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration.a'),
+        os.path.join(pwd, 'dependencies/lib/libad_map_access_python' + str(sys.version_info.major) + str(sys.version_info.minor) + '.a'),
+        os.path.join(pwd, 'dependencies/lib/libad_map_access.a'),
+        os.path.join(pwd, 'dependencies/lib/libad_rss_python' + str(sys.version_info.major) + str(sys.version_info.minor) + '.a'),
+        os.path.join(pwd, 'dependencies/lib/libad_rss.a'),
+        os.path.join(pwd, 'dependencies/lib/libad_physics_python' + str(sys.version_info.major) + str(sys.version_info.minor) + '.a'),
+        os.path.join(pwd, 'dependencies/lib/libad_physics.a'),
+        os.path.join(pwd, 'dependencies/lib/libad_map_opendrive_reader.a'),
+        os.path.join(pwd, 'dependencies/lib/libboost_program_options.a'),
+        os.path.join(pwd, 'dependencies/lib/libodrSpiral.a'),
+        os.path.join(pwd, 'dependencies/lib/libspdlog.a')
+    ]
+    
+    # 添加额外的链接器参数
+    extra_link_args += [
+        '-lrt',  # 链接实时库（Linux特定）
+        '-ltbb'  # 链接Intel Threading Building Blocks库
+    ]
 
             # rss_variant还需要 libproj、libsqlite 和 python 库，因此将它们放在rss_variant链接库之后
             extra_link_args += [os.path.join(pwd, 'dependencies/lib/libproj.a'),
