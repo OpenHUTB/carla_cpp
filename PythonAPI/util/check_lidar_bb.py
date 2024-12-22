@@ -200,7 +200,7 @@ def bb_callback(snapshot, world, sensor_queue, sensor_name):
     sensor_queue.put((snapshot.frame, sensor_name, data_array))
 
 def move_spectator(world, actor):
-    actor_tr = actor.get_transform()
+    actor_tr = actor.get_transform()#获取演员的位置和旋转信息
     spectator_transform = carla.Transform(actor_tr.location, actor_tr.rotation)
     spectator_transform.location -= actor_tr.get_forward_vector() * 5
     spectator_transform.location -= actor_tr.get_up_vector() * 3
@@ -208,13 +208,14 @@ def move_spectator(world, actor):
     spectator.set_transform(spectator_transform)
 
 def world_callback(snapshot, world, sensor_queue, sensor_name, actor):
-    move_spectator(world, actor)
-    bb_callback(snapshot, world, sensor_queue, sensor_name)
+    move_spectator(world, actor) #调用 move_spectator函数移动观察者
+    bb_callback(snapshot, world, sensor_queue, sensor_name) #调用bb_callback函数处理bb传感器数据
 
 def process_sensors(w_frame, sensor_queue, sensor_number):
+  #检查sensor_number是否为2，不是则打印错误信息并返回
     if sensor_number != 2:
         print("Error!!! Sensor number should be two")
-
+#初始化sl_data和bb_data为 None
     sl_data = None
     bb_data = None
 
@@ -294,14 +295,14 @@ CarPropList = [
     SpawnCar(carla.Location(x=243, y=+120,z=2),   carla.Rotation(yaw=-90),  filter= "wrangler_rubicon", autopilot=True),
     SpawnCar(carla.Location(x=243, y=+140,z=2),   carla.Rotation(yaw=-90),  filter= "c3", autopilot=True)
 ]
-
+#函数定义
 def spawn_prop_vehicles(world):
     for car in CarPropList:
-        car.spawn(world)
+        car.spawn(world) #生成车辆
 
 def destroy_prop_vehicles():
     for car in CarPropList:
-        car.destroy()
+        car.destroy() #销毁车辆
 
 
 def main():
@@ -327,7 +328,7 @@ def main():
         # We create the sensor queue in which we keep track of the information
         # already received. This structure is thread safe and can be
         # accessed by all the sensors callback concurrently without problem.
-        sensor_queue = Queue()
+        sensor_queue = Queue() #创建一个线性安全的队列sensor_queue 来存储传感器数据
 
         # Spawning ego vehicle
         actor_BP = world.get_blueprint_library().filter("vehicle.lincoln.mkz_2017")[0]
