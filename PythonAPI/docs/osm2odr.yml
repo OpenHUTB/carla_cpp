@@ -31,6 +31,7 @@
   # --------------------------------------
    # 定义了一个名为 Osm2OdrSettings 的辅助类，包含用于转换 OpenStreetMap 地图到 OpenDRIVE 格式的参数化设置。
   - class_name: Osm2OdrSettings
+  # Osm2OdrSettings  是一个辅助类，它用于承载  carla.Osm2Odr  在将 OpenStreetMap 地图转换为 OpenDRIVE 格式时所需的参数配置信息。
     # - DESCRIPTION ------------------------
     doc: >
       Helper class that contains the parameterization that will be used by carla.Osm2Odr to convert an OpenStreetMap map to OpenDRIVE format. Find out more about this feature in the [docs](tuto_G_openstreetmap.md).
