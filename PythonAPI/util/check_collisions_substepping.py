@@ -21,7 +21,8 @@ import filecmp
 import shutil
 
 import numpy as np
-
+# 尝试将CARLA相关的Python模块路径添加到系统路径中，根据Python版本和操作系统类型来确定具体的模块路径
+# 例如在Windows下是win-amd64格式的.egg文件，在Linux下是linux-x86_64格式的.egg文件
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -32,14 +33,14 @@ except IndexError:
 
 import carla
 
-
+# 定义一个基础的场景类，用于管理CARLA仿真场景中的各种元素和操作
 class Scenario():
-    def __init__(self, client, world, save_snapshots_mode=False):
+    def __init__(self, client, world, save_snapshots_mode=False):# 保存CARLA客户端对象，用于与CARLA服务器进行交互
         self.world = world
-        self.client = client
-        self.actor_list = []
-        self.init_timestamp = []
-        self.active = False
+        self.client = client  # 用于存储场景中的演员（如车辆、行人等）列表，每个元素是一个包含演员名称和演员对象的元组
+        self.actor_list = []  # 记录场景初始化的时间戳相关信息，字典形式，包含帧编号和经过的时间等
+        self.init_timestamp = []# 表示场景是否处于活动状态
+        self.active = False# 文件名前缀，用于生成保存相关数据的文件名
         self.prefix = ""
         self.save_snapshots_mode = save_snapshots_mode
         self.snapshots = []
