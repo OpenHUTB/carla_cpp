@@ -126,48 +126,73 @@ if(WIN32)
   install(FILES ${boostlibs} DESTINATION lib)
 endif()
 
-# carla_server 库。
-
+# 使用GLOB命令收集libcarla_server库所需的源文件和头文件
 file(GLOB libcarla_server_sources
-    "${libcarla_source_path}/carla/*.h" # 收集${libcarla_source_path}/carla/目录下名为Buffer.cpp的源文件路径
-    "${libcarla_source_path}/carla/Buffer.cpp" # 收集${libcarla_source_path}/carla/目录下名为Exception.cpp的源文件路径
-    "${libcarla_source_path}/carla/Exception.cpp"# 收集${libcarla_source_path}/carla/geom/目录下所有以.cpp为扩展名的源文件路径
-    "${libcarla_source_path}/carla/geom/*.cpp" # 收集${libcarla_source_path}/carla/geom/目录下所有以.h为扩展名的头文件路径
-    "${libcarla_source_path}/carla/geom/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.cpp为扩展名的源文件路径
-    "${libcarla_source_path}/carla/opendrive/*.cpp"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径
-    "${libcarla_source_path}/carla/opendrive/*.h"# 收集${libcarla_source_path}/carla/opendrive/目录下所有以.h为扩展名的头文件路径，把该目录下的头文件路径都整合进变量里，以满足后续代码对这些头文件的引用需求。
-    "${libcarla_source_path}/carla/opendrive/parser/*.cpp"#carla/opendrive/parser目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/opendrive/parser/*.h"#carla/opendrive/parser目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/road/*.cpp"# carla/road目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/road/*.h"#carla/road目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/road/element/*.cpp"#carla/road/element目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/road/element/*.h"#carla/road/element目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/road/general/*.cpp"#carla/road/general目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/road/general/*.h"#carla/road/general目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/road/object/*.cpp"#carla/road/object目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/road/object/*.h"#carla/road/object目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/road/signal/*.cpp"#carla/road/signal目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/road/signal/*.h"#carla/road/signal目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/rpc/*.cpp"# carla/rpc目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/rpc/*.h"#carla/rpc目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/sensor/*.h"#carla/sensor目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/sensor/s11n/*.h"#carla/sensor/s11n目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/sensor/s11n/SensorHeaderSerializer.cpp"#carla/sensor/s11n目录下的SensorHeaderSerializer.cpp文件路径
-    "${libcarla_source_path}/carla/streaming/*.h"# carla/streaming目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/streaming/detail/*.cpp"# carla/streaming/detail目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/streaming/detail/*.h"# carla/streaming/detail目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/streaming/detail/tcp/*.cpp"#carla/streaming/detail/tcp目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/streaming/low_level/*.h"#carla/streaming/low_level目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/multigpu/*.h"# carla/multigpu目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/multigpu/*.cpp"# carla/multigpu目录下的所有.cpp文件路径
-    "${libcarla_source_path}/carla/ros2/*.h"#carla/ros2目录下的所有.h文件路径
-    "${libcarla_source_path}/carla/ros2/*.cpp"# carla/ros2目录下的所有.cpp文件路径
-    "${libcarla_source_thirdparty_path}/odrSpiral/*.cpp"#第三方库odrSpiral目录下的所有.cpp文件路径
-    "${libcarla_source_thirdparty_path}/odrSpiral/*.h"#第三方库odrSpiral目录下的所有.h文件路径
-    "${libcarla_source_thirdparty_path}/moodycamel/*.cpp"# 第三方库moodycamel目录下的所有.cpp文件路径
-    "${libcarla_source_thirdparty_path}/moodycamel/*.h"#第三方库moodycamel目录下的所有.h文件路径
-    "${libcarla_source_thirdparty_path}/pugixml/*.cpp"# 第三方库pugixml目录下的所有.cpp文件路径
-    "${libcarla_source_thirdparty_path}/pugixml/*.hpp")# 第三方库pugixml目录下的所有.hpp文件路径
+    # 收集${libcarla_source_path}/carla/目录下的Buffer.cpp和Exception.cpp源文件
+    "${libcarla_source_path}/carla/Buffer.cpp"
+    "${libcarla_source_path}/carla/Exception.cpp"
+    
+    # 收集${libcarla_source_path}/carla/目录下所有的.h头文件
+    "${libcarla_source_path}/carla/*.h"
+    
+    # 收集${libcarla_source_path}/carla/geom/目录下所有的.cpp源文件和.h头文件
+    "${libcarla_source_path}/carla/geom/*.cpp"
+    "${libcarla_source_path}/carla/geom/*.h"
+    
+    # 收集${libcarla_source_path}/carla/opendrive/目录下所有的.cpp源文件和.h头文件
+    # 注意：您重复列出了.h文件路径，这里只列出一次
+    "${libcarla_source_path}/carla/opendrive/*.cpp"
+    "${libcarla_source_path}/carla/opendrive/*.h"
+    
+    # 收集${libcarla_source_path}/carla/opendrive/parser/目录下的所有.cpp源文件和.h头文件
+    "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
+    "${libcarla_source_path}/carla/opendrive/parser/*.h"
+    
+    # 收集${libcarla_source_path}/carla/road/及其子目录下的所有.cpp源文件和.h头文件
+    "${libcarla_source_path}/carla/road/*.cpp"
+    "${libcarla_source_path}/carla/road/*.h"
+    "${libcarla_source_path}/carla/road/element/*.cpp"
+    "${libcarla_source_path}/carla/road/element/*.h"
+    "${libcarla_source_path}/carla/road/general/*.cpp"
+    "${libcarla_source_path}/carla/road/general/*.h"
+    "${libcarla_source_path}/carla/road/object/*.cpp"
+    "${libcarla_source_path}/carla/road/object/*.h"
+    "${libcarla_source_path}/carla/road/signal/*.cpp"
+    "${libcarla_source_path}/carla/road/signal/*.h"
+    
+    # 收集${libcarla_source_path}/carla/rpc/目录下的所有.cpp源文件和.h头文件
+    "${libcarla_source_path}/carla/rpc/*.cpp"
+    "${libcarla_source_path}/carla/rpc/*.h"
+    
+    # 收集${libcarla_source_path}/carla/sensor/及其子目录下的所有.h头文件和指定的.cpp文件
+    "${libcarla_source_path}/carla/sensor/*.h"
+    "${libcarla_source_path}/carla/sensor/s11n/*.h"
+    "${libcarla_source_path}/carla/sensor/s11n/SensorHeaderSerializer.cpp"
+    
+    # 收集${libcarla_source_path}/carla/streaming/及其子目录下的所有.h头文件和.cpp源文件
+    "${libcarla_source_path}/carla/streaming/*.h"
+    "${libcarla_source_path}/carla/streaming/detail/*.cpp"
+    "${libcarla_source_path}/carla/streaming/detail/*.h"
+    "${libcarla_source_path}/carla/streaming/detail/tcp/*.cpp"
+    "${libcarla_source_path}/carla/streaming/low_level/*.h"
+    
+    # 收集${libcarla_source_path}/carla/multigpu/目录下的所有.h头文件和.cpp源文件
+    "${libcarla_source_path}/carla/multigpu/*.h"
+    "${libcarla_source_path}/carla/multigpu/*.cpp"
+    
+    # 收集${libcarla_source_path}/carla/ros2/目录下的所有.h头文件和.cpp源文件
+    "${libcarla_source_path}/carla/ros2/*.h"
+    "${libcarla_source_path}/carla/ros2/*.cpp"
+    
+    # 收集第三方库目录下的所有源文件和头文件
+    # 注意：这里假设第三方库位于一个单独的路径下
+    "${libcarla_source_thirdparty_path}/odrSpiral/*.cpp"
+    "${libcarla_source_thirdparty_path}/odrSpiral/*.h"
+    "${libcarla_source_thirdparty_path}/moodycamel/*.cpp"
+    "${libcarla_source_thirdparty_path}/moodycamel/*.h"
+    "${libcarla_source_thirdparty_path}/pugixml/*.cpp"
+    "${libcarla_source_thirdparty_path}/pugixml/*.hpp"
+)
 
 # ==============================================================================
 # 在同一构建类型中创建调试和发布的目标
@@ -178,33 +203,43 @@ if (LIBCARA_BUILD_RELEASE) #设置目标服务器属性，包括编译选项和�
 
   add_library(carla_server STATIC ${libcarla_server_sources})
 
-  target_include_directories(carla_server SYSTEM PRIVATE
-      "${BOOST_INCLUDE_PATH}"
-      "${RPCLIB_INCLUDE_PATH}")# 使用target_include_directories命令为名为carla_server的目标（这里就是前面创建的静态库）添加头文件包含目录。
-# SYSTEM关键字表示这些目录下的头文件被视为系统头文件（在一些编译器行为上可能会有区别对待，比如抑制警告等情况）。
-# PRIVATE表示这些包含目录仅对该目标（carla_server）本身可见，不会传递给依赖它的其他目标。
-# 后面跟着的是具体的头文件包含目录路径，这里分别添加了BOOST_INCLUDE_PATH和RPCLIB_INCLUDE_PATH这两个路径，
-# 以便在编译carla_server静态库时能正确找到对应的头文件。
+# 为名为carla_server的目标（即前面创建的静态库）添加头文件包含目录。
+# 使用target_include_directories命令。
+target_include_directories(carla_server SYSTEM PRIVATE
+    "${BOOST_INCLUDE_PATH}"  # 添加Boost库的头文件路径。
+    "${RPCLIB_INCLUDE_PATH}" # 添加rpclib库的头文件路径。
+)
+# SYSTEM关键字指示这些头文件被视为系统头文件，可能会影响编译器的警告行为。
+# PRIVATE表示这些包含目录仅对carla_server目标可见，不会传递给其依赖项。
 
-  install(TARGETS carla_server DESTINATION lib OPTIONAL)
+# 使用install命令将名为carla_server的目标（静态库）安装到目标路径下的lib目录中。
+# OPTIONAL关键字表示如果目标不存在，安装过程不会失败。
+install(TARGETS carla_server DESTINATION lib OPTIONAL)
 
-  set_target_properties(carla_server PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
+# 为carla_server目标设置编译属性，使用set_target_properties命令。
+# 这里设置编译标志为CMAKE_CXX_FLAGS_RELEASE，即用于发布版本的C++编译标志。
+set_target_properties(carla_server PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
 
-endif()
+# 判断是否定义了LIBCARLA_BUILD_DEBUG变量，这个变量通常用于标识是否构建调试版本。
+if (LIBCARLA_BUILD_DEBUG)
 
-if (LIBCARLA_BUILD_DEBUG)# 判断是否定义了LIBCARA_BUILD_RELEASE这个变量（通常用于标识构建发布版本），如果为真，则执行以下代码块。
+    # 如果定义了LIBCARLA_BUILD_DEBUG，则创建一个名为carla_server_debug的静态库。
+    add_library(carla_server_debug STATIC ${libcarla_server_sources})
 
-  add_library(carla_server_debug STATIC ${libcarla_server_sources})  # 使用add_library命令创建一个名为carla_server的静态库
+    # 为carla_server_debug目标添加头文件包含目录，与carla_server目标类似。
+    target_include_directories(carla_server_debug SYSTEM PRIVATE
+        "${BOOST_INCLUDE_PATH}"
+        "${RPCLIB_INCLUDE_PATH}"
+    )
 
-  target_include_directories(carla_server_debug SYSTEM PRIVATE
-      "${BOOST_INCLUDE_PATH}"
-      "${RPCLIB_INCLUDE_PATH}")
-# 使用install命令将生成的carla_server静态库安装到目标路径下的lib目录中
-  install(TARGETS carla_server_debug DESTINATION lib OPTIONAL)
+    # 将生成的carla_server_debug静态库安装到目标路径下的lib目录中。
+    install(TARGETS carla_server_debug DESTINATION lib OPTIONAL)
 
-#使用set_target_properties命令为carla_server——debug目标设置编译相关的属性
-  set_target_properties(carla_server_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
-  # 使用set_target_properties命令为carla_server这个静态库目标设置编译相关的属性
-  target_compile_definitions(carla_server_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
+    # 为carla_server_debug目标设置编译属性，使用CMAKE_CXX_FLAGS_DEBUG，即用于调试版本的C++编译标志。
+    set_target_properties(carla_server_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
 
-endif()# 判断是否定义了LIBCARA_BUILD_DEBUG这个变量
+    # 为carla_server_debug目标添加编译定义，使用target_compile_definitions命令。
+    # 这里添加了一个宏定义BOOST_ASIO_ENABLE_BUFFER_DEBUGGING，通常用于启用Boost.Asio的缓冲区调试功能。
+    target_compile_definitions(carla_server_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
+
+endif() # 结束对LIBCARLA_BUILD_DEBUG变量的判断。
