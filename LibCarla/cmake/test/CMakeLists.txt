@@ -1,4 +1,5 @@
 # LibCarla的单元测试
+# 设置最低cmake版本要求
 cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-unit-tests)
 
