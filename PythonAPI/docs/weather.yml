@@ -1,9 +1,13 @@
 ---
-- module_name: carla
+- module_name: carla # 首先指明模块名称为 carla，在 Python 等编程语言中，模块是组织代码的一种方式，它可以包含函数、类、变量等多种代码元素，这里聚焦的是名为 carla 的这个模块，后续会对其内部包含的类进行介绍。
 
-  # - CLASSES ------------------------------
+  # - CLASSES ------------------------------  # 这是一个注释标题，清晰地表明接下来要展示和介绍的是该模块（carla 模块）下所包含的各类，用于区分不同的代码结构部分，让阅读者能快速定位到类相关的信息展示区域。
   classes:
   - class_name: WeatherParameters
+  # classes 是一个列表（或类似可迭代结构），用于罗列该模块下所有要介绍的类相关信息，每个元素代表一个类的描述。
+    # 这里开始介绍其中一个类，class_name 表示类的名称，此处类名为 WeatherParameters，从名称推测，这个类大概率是用于设置、管理或者表示天气相关参数的，
+    # 比如可能包含像温度、湿度、风速、风向、天气状况（晴天、雨天、雪天等）等各种与天气相关的属性，在涉及模拟环境（比如车辆模拟场景中不同天气下的驾驶模拟，或者城市模拟场景中的天气效果模拟等）的项目中会起到关键作用，
+    # 后续可能还会有关于这个类的更多详细信息介绍，例如类的属性、方法等内容来进一步说明其具体功能和使用方式。
     # - DESCRIPTION ------------------------
     doc: >
       This class defines objects containing lighting and weather specifications that can later be applied in carla.World. So far, these conditions only intervene with [sensor.camera.rgb](ref_sensors.md#rgb-camera). They neither affect the actor's physics nor other sensors.        
