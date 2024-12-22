@@ -1,8 +1,8 @@
 // Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// This work is licensed under the terms of the MIT license.//说明版权所有权
+// For a copy, see <https://opensource.org/licenses/MIT>//文件来源地址
 
 // 确保头文件只被包含一次
 #pragma once
