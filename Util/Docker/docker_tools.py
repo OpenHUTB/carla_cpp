@@ -92,9 +92,8 @@ def parse_args():
             "if you are processing individual packages." + docker_utils.ENDC)
         exit(1)
 
-    print()
-
-    print(bold("- ") + bold_underline("Params:"))
+    print()#打印一些空行
+    print(bold("- ") + bold_underline("Params:"))#打印参数信息
     print(" - Output path: " + str(args.output))
     print(" - Packages:    " + str(args.packages))
     print(" - Input path:  " + str(args.input))
