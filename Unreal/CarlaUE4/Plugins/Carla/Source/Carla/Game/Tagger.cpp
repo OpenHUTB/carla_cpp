@@ -10,16 +10,17 @@
 #include "Engine/StaticMesh.h"
 #include "EngineUtils.h"
 #include "PhysicsEngine/PhysicsAsset.h"
-
+//为carla::rpc命名空间创建别名crp
 namespace crp = carla::rpc;
-
+//枚举类型转换模板函数
 template <typename T>
 static auto CastEnum(T label)
 {
   return static_cast<typename std::underlying_type<T>::type>(label);
 }
-
+//根据文件夹名称获取标签函数
 crp::CityObjectLabel ATagger::GetLabelByFolderName(const FString &String) {
+  //// 一系列条件判断，根据输入的文件夹名称返回对应的城市场景对象标签枚举值
   if      (String == "Building")     return crp::CityObjectLabel::Buildings;
   else if (String == "Fence")        return crp::CityObjectLabel::Fences;
   else if (String == "Pedestrian")   return crp::CityObjectLabel::Pedestrians;
@@ -50,7 +51,7 @@ crp::CityObjectLabel ATagger::GetLabelByFolderName(const FString &String) {
   else if (String == "Train")        return crp::CityObjectLabel::Train;
   else                               return crp::CityObjectLabel::None;
 }
-
+//设置模板值和渲染深度函数
 void ATagger::SetStencilValue(
     UPrimitiveComponent &Component,
     const crp::CityObjectLabel &Label,
@@ -60,7 +61,7 @@ void ATagger::SetStencilValue(
       bSetRenderCustomDepth &&
       (Label != crp::CityObjectLabel::None));
 }
-
+//判断是否为物体
 bool ATagger::IsThing(const crp::CityObjectLabel &Label)
 {
   return (Label == crp::CityObjectLabel::Pedestrians ||
@@ -81,6 +82,7 @@ bool ATagger::IsThing(const crp::CityObjectLabel &Label)
  * @param Label 
  * @return 
 */
+//获取参与者标签颜色函数
 FLinearColor ATagger::GetActorLabelColor(const AActor &Actor, const crp::CityObjectLabel &Label)
 {
   uint32 id = Actor.GetUniqueID();
@@ -98,7 +100,7 @@ FLinearColor ATagger::GetActorLabelColor(const AActor &Actor, const crp::CityObj
 
 
 // =============================================================================
-// -- static ATagger functions -------------------------------------------------
+// -- ATagger类的静态函数 -------------------------------------------------
 // =============================================================================
 
 void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
@@ -107,7 +109,8 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
   UE_LOG(LogCarla, Log, TEXT("Actor: %s"), *Actor.GetName());
 #endif // CARLA_TAGGER_EXTRA_LOG
 
-  // Iterate static meshes.
+  // 遍历静态网格.
+  //标记单个参与者函数
   TArray<UStaticMeshComponent *> StaticMeshComponents;
   Actor.GetComponents<UStaticMeshComponent>(StaticMeshComponents);
   for (UStaticMeshComponent *Component : StaticMeshComponents) {
@@ -117,6 +120,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
     {
       Label = crp::CityObjectLabel::Rider;
     }
+    // 设置组件的模板值和渲染深度
     SetStencilValue(*Component, Label, bTagForSemanticSegmentation);
 #ifdef CARLA_TAGGER_EXTRA_LOG
     UE_LOG(LogCarla, Log, TEXT("  + StaticMeshComponent: %s"), *Component->GetName());
@@ -126,10 +130,12 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
     if(!Component->IsVisible() || !Component->GetStaticMesh())
     {
       continue;
+       // 查找或创建附加到该组件的带标签的组件，并设置其颜色
     }
 
-    // Find a tagged component that is attached to this component
+    // 查找附加到此组件上的带标签的组件
     UTaggedComponent *TaggedComponent = NULL;
+     // 遍历骨骼网格组件，逻辑与静态网格组件类似
     TArray<USceneComponent *> AttachedComponents = Component->GetAttachChildren();
     for (USceneComponent *SceneComponent : AttachedComponents) {
       UTaggedComponent *TaggedSceneComponent = Cast<UTaggedComponent>(SceneComponent);
@@ -142,7 +148,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
       }
     }
 
-    // If not found, then create new tagged component and attach it to this component
+    // 如果没有找到，则创建一个新的带标签的组件，并将其附加到此组件上
     if (!TaggedComponent) {
       TaggedComponent = NewObject<UTaggedComponent>(Component);
       TaggedComponent->SetupAttachment(Component);
@@ -152,7 +158,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
 #endif // CARLA_TAGGER_EXTRA_LOG
     }
 
-    // Set tagged component color
+    // 设置带标签的组件颜色
     FLinearColor Color = GetActorLabelColor(Actor, Label);
 #ifdef CARLA_TAGGER_EXTRA_LOG
     UE_LOG(LogCarla, Log, TEXT("    - Color: %s"), *Color.ToString());
@@ -162,7 +168,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
     TaggedComponent->MarkRenderStateDirty();
   }
 
-  // Iterate skeletal meshes.
+  // 遍历骨骼网格
   TArray<USkeletalMeshComponent *> SkeletalMeshComponents;
   Actor.GetComponents<USkeletalMeshComponent>(SkeletalMeshComponents);
   for (USkeletalMeshComponent *Component : SkeletalMeshComponents) {
@@ -183,7 +189,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
       continue;
     }
 
-    // Find a tagged component that is attached to this component
+    // 查找附加到此组件上的带标签的组件
     UTaggedComponent *TaggedComponent = NULL;
     TArray<USceneComponent *> AttachedComponents = Component->GetAttachChildren();
     for (USceneComponent *SceneComponent : AttachedComponents) {
@@ -197,7 +203,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
       }
     }
 
-    // If not found, then create new tagged component and attach it to this component
+    // 如果没有找到，则创建一个新的带标签的组件，并将其附加到此组件
     if (!TaggedComponent) {
       TaggedComponent = NewObject<UTaggedComponent>(Component);
       TaggedComponent->SetupAttachment(Component);
@@ -207,7 +213,7 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
 #endif // CARLA_TAGGER_EXTRA_LOG
     }
 
-    // Set tagged component color
+    // 设置带标签组件的颜色
     FLinearColor Color = GetActorLabelColor(Actor, Label);
 #ifdef CARLA_TAGGER_EXTRA_LOG
     UE_LOG(LogCarla, Log, TEXT("    - Color: %s"), *Color.ToString());
@@ -219,21 +225,21 @@ void ATagger::TagActor(const AActor &Actor, bool bTagForSemanticSegmentation)
 
   }
 }
-
+//标记单个参与者函数
 void ATagger::TagActorsInLevel(UWorld &World, bool bTagForSemanticSegmentation)
 {
   for (TActorIterator<AActor> it(&World); it; ++it) {
     TagActor(**it, bTagForSemanticSegmentation);
   }
 }
-
+//标记世界中所有参与者函数
 void ATagger::TagActorsInLevel(ULevel &Level, bool bTagForSemanticSegmentation)
 {
   for (AActor * Actor : Level.Actors) {
     TagActor(*Actor, bTagForSemanticSegmentation);
   }
 }
-
+//获取标记参与者的标签函数
 void ATagger::GetTagsOfTaggedActor(const AActor &Actor, TSet<crp::CityObjectLabel> &Tags)
 {
   TArray<UPrimitiveComponent *> Components;
@@ -247,7 +253,7 @@ void ATagger::GetTagsOfTaggedActor(const AActor &Actor, TSet<crp::CityObjectLabe
     }
   }
 }
-
+//将标签转换为字符串函数
 FString ATagger::GetTagAsString(const crp::CityObjectLabel Label)
 {
   switch (Label) {
@@ -290,12 +296,12 @@ FString ATagger::GetTagAsString(const crp::CityObjectLabel Label)
 // =============================================================================
 // -- non-static ATagger functions ---------------------------------------------
 // =============================================================================
-
+//类的默认构造函数
 ATagger::ATagger()
 {
   PrimaryActorTick.bCanEverTick = false;
 }
-
+//编辑后属性更改处理函数
 #if WITH_EDITOR
 void ATagger::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
@@ -307,4 +313,4 @@ void ATagger::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent
   }
   bTriggerTagObjects = false;
 }
-#endif // WITH_EDITOR
+#endif // 与编辑器集成

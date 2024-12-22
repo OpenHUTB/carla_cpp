@@ -1,178 +1,281 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 
-#include "CarlaNormalsCameraPublisher.h"
+#include "CarlaNormalsCameraPublisher.h"// 包含CarlaNormalsCameraPublisher类的声明
 
-#include <string>
-
+#include <string>// 包含字符串类
+// 包含Carla ROS2类型定义
 #include "carla/ros2/types/ImagePubSubTypes.h"
 #include "carla/ros2/types/CameraInfoPubSubTypes.h"
-#include "carla/ros2/listeners/CarlaListener.h"
-
-#include <fastdds/dds/domain/DomainParticipant.hpp>
-#include <fastdds/dds/publisher/Publisher.hpp>
-#include <fastdds/dds/topic/Topic.hpp>
-#include <fastdds/dds/publisher/DataWriter.hpp>
-#include <fastdds/dds/topic/TypeSupport.hpp>
-
-#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>
-#include <fastdds/dds/domain/DomainParticipantFactory.hpp>
-#include <fastdds/dds/publisher/qos/PublisherQos.hpp>
-#include <fastdds/dds/topic/qos/TopicQos.hpp>
-
+#include "carla/ros2/listeners/CarlaListener.h"// 包含Carla监听器类
+// 包含Fast-DDS相关头文件
+#include <fastdds/dds/domain/DomainParticipant.hpp>// 域参与者类
+#include <fastdds/dds/publisher/Publisher.hpp> // 发布者类
+#include <fastdds/dds/topic/Topic.hpp>// 主题类
+#include <fastdds/dds/publisher/DataWriter.hpp>// 数据写入器类
+#include <fastdds/dds/topic/TypeSupport.hpp>// 类型支持类
+// 包含Fast-DDS QOS策略相关头文件
+#include <fastdds/dds/domain/qos/DomainParticipantQos.hpp>// 域参与者QOS策略
+#include <fastdds/dds/domain/DomainParticipantFactory.hpp>// 域参与者工厂类
+#include <fastdds/dds/publisher/qos/PublisherQos.hpp>// 发布者QOS策略
+#include <fastdds/dds/topic/qos/TopicQos.hpp>// 主题QOS策略
+// 包含RTPS属性与QOS策略的头文件
 #include <fastrtps/attributes/ParticipantAttributes.h>
 #include <fastrtps/qos/QosPolicies.h>
-#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>
-#include <fastdds/dds/publisher/DataWriterListener.hpp>
+#include <fastdds/dds/publisher/qos/DataWriterQos.hpp>// 数据写入器QOS策略
+#include <fastdds/dds/publisher/DataWriterListener.hpp>// 数据写入器监听器类
 
+/**
+ * @namespace carla::ros2
+ * @brief 命名空间，包含CARLA与ROS2集成的相关功能。
+ */
 
+ /**
+  * @brief 别名定义，简化eprosima::fastdds::dds命名空间的引用。
+  */
 namespace carla {
 namespace ros2 {
 
   namespace efd = eprosima::fastdds::dds;
+  /**
+ * @brief 类型别名，简化eprosima::fastrtps::types::ReturnCode_t的引用。
+ */
   using erc = eprosima::fastrtps::types::ReturnCode_t;
-
+  /**
+ * @struct CarlaNormalsCameraPublisherImpl
+ * @brief CarlaNormalsCameraPublisher的内部实现结构体。
+ */
   struct CarlaNormalsCameraPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+    * @brief DDS发布者指针。
+    */
     efd::Publisher* _publisher { nullptr };
+    /**
+     * @brief DDS主题指针。
+     */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于Image消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::ImagePubSubType() };
+    /**
+     * @brief CarlaListener实例，用于监听DDS事件。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 存储的Image消息。
+     */
     sensor_msgs::msg::Image _image {};
   };
-
+  /**
+ * @struct CarlaCameraInfoPublisherImpl
+ * @brief CarlaCameraInfoPublisher的内部实现结构体。
+ */
   struct CarlaCameraInfoPublisherImpl {
+      /**
+     * @brief DDS域参与者指针。
+     */
     efd::DomainParticipant* _participant { nullptr };
+    /**
+     * @brief DDS发布者指针。
+     */
     efd::Publisher* _publisher { nullptr };
+    /**
+    * @brief DDS主题指针。
+    */
     efd::Topic* _topic { nullptr };
+    /**
+     * @brief DDS数据写入器指针。
+     */
     efd::DataWriter* _datawriter { nullptr };
+    /**
+     * @brief DDS类型支持，用于CameraInfo消息。
+     */
     efd::TypeSupport _type { new sensor_msgs::msg::CameraInfoPubSubType() };
+    /**
+     * @brief CarlaListener实例，用于监听DDS事件。
+     */
     CarlaListener _listener {};
+    /**
+     * @brief 初始化标志。
+     */
     bool _init {false};
+    /**
+     * @brief 存储的CameraInfo消息。
+     */
     sensor_msgs::msg::CameraInfo _info {};
   };
-
+  /**
+ * @brief 检查CarlaNormalsCameraPublisher是否已初始化。
+ *
+ * @return true 如果已初始化，否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::HasBeenInitialized() const {
     return _impl_info->_init;
   }
-
+  /**
+ * @brief 初始化CameraInfo数据。
+ *
+ * @param x_offset X轴偏移量。
+ * @param y_offset Y轴偏移量。
+ * @param height 图像高度。
+ * @param width 图像宽度。
+ * @param fov 视野角度。
+ * @param do_rectify 是否进行校正。
+ */
   void CarlaNormalsCameraPublisher::InitInfoData(uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, float fov, bool do_rectify) {
     _impl_info->_info = std::move(sensor_msgs::msg::CameraInfo(height, width, fov));
     SetInfoRegionOfInterest(x_offset, y_offset, height, width, do_rectify);
     _impl_info->_init = true;
   }
-
+  /**
+ * @brief 初始化CarlaNormalsCameraPublisher。
+ *
+ * @return true 如果初始化成功，否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::Init() {
     return InitImage() && InitInfo();
   }
-
+  /**
+ * @brief 初始化图像发布者。
+ *
+ * @return true 如果初始化成功，否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::InitImage() {
+      // 检查类型支持是否有效
     if (_impl->_type == nullptr) {
-        std::cerr << "Invalid TypeSupport" << std::endl;
-        return false;
+        std::cerr << "Invalid TypeSupport" << std::endl;// 打印错误信息：无效的类型支持
+        return false;// 返回false表示初始化失败
     }
-
+    // 设置DomainParticipant的QoS策略，并创建DomainParticipant
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
-    pqos.name(_name);
+    pqos.name(_name);// 设置DomainParticipant的名称
     auto factory = efd::DomainParticipantFactory::get_instance();
-    _impl->_participant = factory->create_participant(0, pqos);
+    _impl->_participant = factory->create_participant(0, pqos);// 创建DomainParticipant
     if (_impl->_participant == nullptr) {
-        std::cerr << "Failed to create DomainParticipant" << std::endl;
-        return false;
+        std::cerr << "Failed to create DomainParticipant" << std::endl;// 打印错误信息：创建DomainParticipant失败
+        return false;// 返回false表示初始化失败
     }
-    _impl->_type.register_type(_impl->_participant);
-
+    _impl->_type.register_type(_impl->_participant);// 注册类型到DomainParticipant
+    // 设置Publisher的QoS策略，并创建Publisher
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
-    _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);
+    _impl->_publisher = _impl->_participant->create_publisher(pubqos, nullptr);// 创建Publisher
     if (_impl->_publisher == nullptr) {
-      std::cerr << "Failed to create Publisher" << std::endl;
-      return false;
+      std::cerr << "Failed to create Publisher" << std::endl;// 打印错误信息：创建Publisher失败
+      return false;// 返回false表示初始化失败
     }
-
+    // 设置Topic的QoS策略，并创建Topic
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
-    const std::string publisher_type {"/image"};
-    const std::string base { "rt/carla/" };
-    std::string topic_name = base;
-    if (!_parent.empty())
-      topic_name += _parent + "/";
-    topic_name += _name;
-    topic_name += publisher_type;
+    const std::string publisher_type {"/image"};// 定义Topic的类型后缀，表示这是一个图像发布者
+    const std::string base { "rt/carla/" };// 定义Topic的基础路径
+    std::string topic_name = base;// 初始化Topic名称
+    if (!_parent.empty())// 如果父路径不为空
+      topic_name += _parent + "/";// 添加父路径到Topic名称
+    topic_name += _name;// 添加名称到Topic名称
+    topic_name += publisher_type;// 添加类型后缀到Topic名称
     _impl->_topic = _impl->_participant->create_topic(topic_name, _impl->_type->getName(), tqos);
     if (_impl->_topic == nullptr) {
-        std::cerr << "Failed to create Topic" << std::endl;
-        return false;
+        std::cerr << "Failed to create Topic" << std::endl;// 打印错误信息：创建Topic失败
+        return false;// 返回false表示初始化失败
     }
-
+    // 设置DataWriter的QoS策略，并创建DataWriter
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
-    wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;
-    efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();
-    _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);
+    wqos.endpoint().history_memory_policy = eprosima::fastrtps::rtps::PREALLOCATED_WITH_REALLOC_MEMORY_MODE;// 设置历史内存策略为预分配并允许重新分配
+    efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl->_listener._impl.get();// 获取DataWriter监听器
+    _impl->_datawriter = _impl->_publisher->create_datawriter(_impl->_topic, wqos, listener);// 创建DataWriter
     if (_impl->_datawriter == nullptr) {
-        std::cerr << "Failed to create DataWriter" << std::endl;
-        return false;
+        std::cerr << "Failed to create DataWriter" << std::endl;// 打印错误信息：创建DataWriter失败
+        return false;// 返回false表示初始化失败
     }
+    // 设置帧ID为名称
     _frame_id = _name;
-    return true;
+    return true;// 返回true表示初始化成功
   }
-
+  /**
+ * @brief 初始化CameraInfo发布者。
+ *
+ * @return true 如果初始化成功，否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::InitInfo() {
+      // 检查类型支持是否有效
     if (_impl_info->_type == nullptr) {
-        std::cerr << "Invalid TypeSupport" << std::endl;
-        return false;
+        std::cerr << "Invalid TypeSupport" << std::endl;// 打印错误信息
+        return false;// 返回false表示初始化失败
     }
-
+    // 设置DomainParticipant的QoS策略，并创建DomainParticipant
     efd::DomainParticipantQos pqos = efd::PARTICIPANT_QOS_DEFAULT;
-    pqos.name(_name);
+    pqos.name(_name);// 设置DomainParticipant的名称
     auto factory = efd::DomainParticipantFactory::get_instance();
-    _impl_info->_participant = factory->create_participant(0, pqos);
+    _impl_info->_participant = factory->create_participant(0, pqos);// 创建DomainParticipant
     if (_impl_info->_participant == nullptr) {
-        std::cerr << "Failed to create DomainParticipant" << std::endl;
-        return false;
+        std::cerr << "Failed to create DomainParticipant" << std::endl;// 打印错误信息：创建DomainParticipant失败
+        return false;// 返回false表示初始化失败
     }
-    _impl_info->_type.register_type(_impl_info->_participant);
-
+    _impl_info->_type.register_type(_impl_info->_participant);// 注册类型到DomainParticipant
+    // 设置Publisher的QoS策略，并创建Publisher
     efd::PublisherQos pubqos = efd::PUBLISHER_QOS_DEFAULT;
-    _impl_info->_publisher = _impl_info->_participant->create_publisher(pubqos, nullptr);
+    _impl_info->_publisher = _impl_info->_participant->create_publisher(pubqos, nullptr);// 创建Publisher
     if (_impl_info->_publisher == nullptr) {
-      std::cerr << "Failed to create Publisher" << std::endl;
-      return false;
+      std::cerr << "Failed to create Publisher" << std::endl;// 打印错误信息：创建Publisher失败
+      return false;// 返回false表示初始化失败
     }
-
+    // 设置Topic的QoS策略，并创建Topic
     efd::TopicQos tqos = efd::TOPIC_QOS_DEFAULT;
-    const std::string publisher_type {"/camera_info"};
-    const std::string base { "rt/carla/" };
-    std::string topic_name = base;
-    if (!_parent.empty())
-      topic_name += _parent + "/";
-    topic_name += _name;
-    topic_name += publisher_type;
-    _impl_info->_topic = _impl_info->_participant->create_topic(topic_name, _impl_info->_type->getName(), tqos);
+    const std::string publisher_type {"/camera_info"};// 定义Topic类型后缀
+    const std::string base { "rt/carla/" };// 定义Topic的基础路径
+    std::string topic_name = base;// 初始化Topic名称
+    if (!_parent.empty())// 如果父路径不为空
+      topic_name += _parent + "/"; // 添加父路径到Topic名称
+    topic_name += _name;// 添加名称到Topic名称
+    topic_name += publisher_type;// 添加类型后缀到Topic名称
+    _impl_info->_topic = _impl_info->_participant->create_topic(topic_name, _impl_info->_type->getName(), tqos);// 创建Topic
     if (_impl_info->_topic == nullptr) {
-        std::cerr << "Failed to create Topic" << std::endl;
-        return false;
-    }
+        std::cerr << "Failed to create Topic" << std::endl;// 打印错误信息：创建Topic失败
+        return false;// 返回false表示初始化失败
+    }// 设置DataWriter的QoS策略，并创建DataWriter
     efd::DataWriterQos wqos = efd::DATAWRITER_QOS_DEFAULT;
-    efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl_info->_listener._impl.get();
-    _impl_info->_datawriter = _impl_info->_publisher->create_datawriter(_impl_info->_topic, wqos, listener);
+    efd::DataWriterListener* listener = (efd::DataWriterListener*)_impl_info->_listener._impl.get();// 获取DataWriter监听器
+    _impl_info->_datawriter = _impl_info->_publisher->create_datawriter(_impl_info->_topic, wqos, listener);// 创建DataWriter
     if (_impl_info->_datawriter == nullptr) {
-        std::cerr << "Failed to create DataWriter" << std::endl;
-        return false;
+        std::cerr << "Failed to create DataWriter" << std::endl;// 打印错误信息：创建DataWriter失败
+        return false;// 返回false表示初始化失败
     }
-
+    // 设置帧ID为名称
     _frame_id = _name;
-    return true;
+    return true;// 返回true表示初始化成功
   }
-
+  /**
+ * @brief 发布图像和相关信息
+ *
+ * 该函数负责发布图像数据以及相关的图像信息。它首先尝试发布图像数据，
+ * 然后尝试发布图像信息。如果两者都成功发布，则返回true；否则返回false。
+ *
+ * @return bool 如果图像和相关信息都成功发布，则返回true；否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::Publish() {
     return PublishImage() && PublishInfo();
   }
-
+  /**
+ * @brief 发布图像数据
+ *
+ * 该函数尝试通过Fast-RTPS发布图像数据。根据返回码（rcode）判断发布是否成功，
+ * 并输出相应的错误信息。如果发布成功，返回true；否则返回false。
+ *
+ * @return bool 如果图像数据成功发布，则返回true；否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::PublishImage() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_image, instance_handle);
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
-    }
+    }// 根据返回码判断发布结果，并输出相应的错误信息
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
@@ -228,13 +331,20 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 发布图像信息
+ *
+ * 该函数尝试通过Fast-RTPS发布图像信息。根据返回码（rcode）判断发布是否成功，
+ * 并输出相应的错误信息。如果发布成功，返回true；否则返回false。
+ *
+ * @return bool 如果图像信息成功发布，则返回true；否则返回false。
+ */
   bool CarlaNormalsCameraPublisher::PublishInfo() {
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl_info->_datawriter->write(&_impl_info->_info, instance_handle);
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
-    }
+    }// 根据返回码判断发布结果，并输出相应的错误信息
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
@@ -290,14 +400,34 @@ namespace ros2 {
     std::cerr << "UNKNOWN" << std::endl;
     return false;
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 将传入的图像数据复制到内部存储，并调用SetData方法设置图像数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 指向图像数据的指针
+ */
   void CarlaNormalsCameraPublisher::SetImageData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, const uint8_t* data) {    std::vector<uint8_t> vector_data;
     const size_t size = height * width * 4;
     vector_data.resize(size);
     std::memcpy(&vector_data[0], &data[0], size);
     SetData(seconds, nanoseconds,height, width, std::move(vector_data));
   }
-
+  /**
+ * @brief 设置感兴趣区域（Region of Interest, ROI）
+ *
+ * 设置图像的感兴趣区域，包括偏移量和尺寸，以及是否进行校正。
+ *
+ * @param x_offset ROI的X轴偏移量
+ * @param y_offset ROI的Y轴偏移量
+ * @param height ROI的高度
+ * @param width ROI的宽度
+ * @param do_rectify 是否对ROI进行校正
+ */
   void CarlaNormalsCameraPublisher::SetInfoRegionOfInterest( uint32_t x_offset, uint32_t y_offset, uint32_t height, uint32_t width, bool do_rectify) {
     sensor_msgs::msg::RegionOfInterest roi;
     roi.x_offset(x_offset);
@@ -307,7 +437,17 @@ namespace ros2 {
     roi.do_rectify(do_rectify);
     _impl_info->_info.roi(roi);
   }
-
+  /**
+ * @brief 设置图像数据
+ *
+ * 设置图像的时间戳、帧ID、尺寸、编码和数据。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ * @param height 图像的高度
+ * @param width 图像的宽度
+ * @param data 图像数据的vector
+ */
   void CarlaNormalsCameraPublisher::SetData(int32_t seconds, uint32_t nanoseconds, size_t height, size_t width, std::vector<uint8_t>&& data) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -325,7 +465,14 @@ namespace ros2 {
     _impl->_image.step(_impl->_image.width() * sizeof(uint8_t) * 4);
     _impl->_image.data(std::move(data)); //https://github.com/eProsima/Fast-DDS/issues/2330
   }
-
+  /**
+ * @brief 设置相机信息数据的时间戳
+ *
+ * 设置相机信息的时间戳和帧ID。
+ *
+ * @param seconds 时间戳的秒部分
+ * @param nanoseconds 时间戳的纳秒部分
+ */
   void CarlaNormalsCameraPublisher::SetCameraInfoData(int32_t seconds, uint32_t nanoseconds) {
     builtin_interfaces::msg::Time time;
     time.sec(seconds);
@@ -336,14 +483,25 @@ namespace ros2 {
     header.frame_id(_frame_id);
     _impl_info->_info.header(header);
   }
-
+  /**
+ * @brief CarlaNormalsCameraPublisher的构造函数
+ *
+ * 初始化CarlaNormalsCameraPublisher对象，包括内部实现对象和相机信息对象。
+ *
+ * @param ros_name ROS节点名称
+ * @param parent 父节点名称
+ */
   CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher(const char* ros_name, const char* parent) :
   _impl(std::make_shared<CarlaNormalsCameraPublisherImpl>()),
   _impl_info(std::make_shared<CarlaCameraInfoPublisherImpl>()) {
     _name = ros_name;
     _parent = parent;
   }
-
+  /**
+ * @brief CarlaNormalsCameraPublisher的析构函数
+ *
+ * 清理资源，包括删除数据写入器、发布者、主题和参与者。
+ */
   CarlaNormalsCameraPublisher::~CarlaNormalsCameraPublisher() {
       if (!_impl)
           return;
@@ -375,7 +533,13 @@ namespace ros2 {
       if (_impl_info->_participant)
           efd::DomainParticipantFactory::get_instance()->delete_participant(_impl_info->_participant);
   }
-
+  /**
+ * @brief CarlaNormalsCameraPublisher的拷贝构造函数
+ *
+ * 创建一个新的CarlaNormalsCameraPublisher对象，并复制另一个对象的数据。
+ *
+ * @param other 要复制的CarlaNormalsCameraPublisher对象
+ */
   CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher(const CarlaNormalsCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -383,7 +547,14 @@ namespace ros2 {
     _impl = other._impl;
     _impl_info = other._impl_info;
   }
-
+  /**
+ * @brief 赋值运算符重载
+ *
+ * 将另一个CarlaNormalsCameraPublisher对象的数据复制到当前对象。
+ *
+ * @param other 要复制的CarlaNormalsCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaNormalsCameraPublisher& CarlaNormalsCameraPublisher::operator=(const CarlaNormalsCameraPublisher& other) {
     _frame_id = other._frame_id;
     _name = other._name;
@@ -393,7 +564,13 @@ namespace ros2 {
 
     return *this;
   }
-
+  /**
+ * @brief CarlaNormalsCameraPublisher的移动构造函数
+ *
+ * 创建一个新的CarlaNormalsCameraPublisher对象，并移动另一个对象的数据。
+ *
+ * @param other 要移动的CarlaNormalsCameraPublisher对象
+ */
   CarlaNormalsCameraPublisher::CarlaNormalsCameraPublisher(CarlaNormalsCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
@@ -402,7 +579,14 @@ namespace ros2 {
     _impl_info = std::move(other._impl_info);
 
   }
-
+  /**
+ * @brief 移动赋值运算符重载
+ *
+ * 将另一个CarlaNormalsCameraPublisher对象的数据移动到当前对象。
+ *
+ * @param other 要移动的CarlaNormalsCameraPublisher对象
+ * @return 引用当前对象
+ */
   CarlaNormalsCameraPublisher& CarlaNormalsCameraPublisher::operator=(CarlaNormalsCameraPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);

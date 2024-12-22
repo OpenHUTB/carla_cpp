@@ -1,0 +1,319 @@
+{
+    // 定义项目的文件夹相关信息
+    "folders":[
+        {
+            // 文件夹的路径
+            "path":"..",
+            // 要排除的文件模式列表
+           "file_exclude_patterns":[
+    // 排除所有以".VC.db"结尾的文件，这类文件通常是 Visual C++ 相关项目生成的数据库文件，可能包含项目构建等过程中的一些临时数据，在很多情况下不需要纳入其他操作的关注范围。
+    "*.VC.db",
+    // 与".VC.db"类似，".VC.opendb"也是 Visual C++ 项目相关的数据库文件，同样予以排除，避免对其进行不必要的处理。
+    "*.VC.opendb",
+    // 排除所有以".gdb_history"结尾的文件，一般是 GNU 调试器（GDB）记录调试历史信息的文件，通常不需要参与常规的项目操作，比如编译、代码分析等。
+    "*.gdb_history",
+    // 排除所有以".kdev4"结尾的文件，可能是和 KDevelop 4 开发环境相关的特定文件，在其他通用场景下不需要考虑这些文件。
+    "*.kdev4",
+    // 排除所有以".pri"结尾的文件，这种文件扩展名常见于一些构建系统（比如 Qt 的项目构建相关文件格式中），在某些不涉及对应构建系统操作的场景下可排除。
+    "*.pri",
+    // 排除所有以".pro"结尾的文件，常为 Qt 项目的工程文件，在非 Qt 项目相关操作或者不需要处理该工程文件的情况下可排除在外。
+    "*.pro",
+    // 排除所有以".py[cod]"结尾的 Python 相关文件，".pyc"是 Python 字节码编译后的文件，".pyo"（这里用通配符涵盖了类似情况）是经过优化后的字节码文件，在很多时候不需要直接操作这些文件，比如查看源代码逻辑等场景。
+    "*.py[cod]",
+    // 排除所有以".sln"结尾的文件，这是 Visual Studio 解决方案文件，在不涉及 Visual Studio 项目管理操作的场景中可排除。
+    "*.sln",
+    // 排除所有以".stackdump"结尾的文件，这类文件一般是程序崩溃时生成的栈转储文件，对于常规的项目开发、文件处理等操作来说通常是不需要的。
+    "*.stackdump",
+    // 排除所有以".sublime-workspace"结尾的文件，这是 Sublime Text 编辑器创建的工作区文件，在其他编辑器或者非 Sublime Text 相关的操作场景下可排除。
+    "*.sublime-workspace",
+    // 排除所有以".uasset"结尾的文件，常出现在游戏开发（比如使用 Unreal Engine 时）中的资源文件，在非游戏资源相关操作场景下可排除。
+    "*.uasset",
+    // 排除所有以".umap"结尾的文件，同样在 Unreal Engine 游戏开发中是地图相关的文件，在不涉及该引擎地图操作场景下可排除。
+    "*.umap",
+    // 排除所有以".workspace"结尾的文件，是多种开发工具中用于表示工作区概念的文件，根据具体情况如果不需要处理这类工作区相关逻辑可排除。
+    "*.workspace",
+    // 排除所有名为"CodeCompletionFolders.txt"的文件，从文件名推测可能是和代码自动补全相关的文件夹配置文件，在不需要该功能相关配置的场景下可排除。
+    "*CodeCompletionFolders.txt",
+    // 排除所有名为"CodeLitePreProcessor.txt"的文件，推测是和 CodeLite 开发环境中预处理器相关的文件，在非 CodeLite 相关操作场景下可排除。
+    "*CodeLitePreProcessor.txt",
+    // 排除所有以".tags"开头的文件，这类文件可能在不同的编辑器或工具中用于代码标签、索引等相关功能，根据实际需求可排除。
+    ".tags*",
+    // 排除名为"core"的文件或文件夹（具体取决于使用场景，如果是文件搜索就是文件，如果是目录相关操作就是文件夹），不清楚具体用途的情况下按配置要求排除。
+    "core"
+]
+            ],
+            // 要排除的文件夹模式列表
+            "folder_exclude_patterns":[
+                "*.egg-info",
+                ".clang",
+                ".codelite",
+                ".kdev4",
+                ".vs",
+                ".vscode",
+                "Binaries",
+                "Build",
+                "DerivedDataCache",
+                "Dist",
+                "Doxygen",
+                "Examples/CppClient/*",
+                "Intermediate",
+                "PythonAPI/carla/build",
+                "PythonAPI/carla/dependencies",
+                "PythonAPI/carla/dist",
+                "Saved",
+                "Unreal/CarlaUE4/Content/Carla/*",
+                "Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies",
+                "__pycache__",
+                "_site"
+            ]
+        }
+    ],
+    // 项目的设置信息
+    "settings":{
+        // 保存时确保文件末尾有新行
+        "ensure_newline_at_eof_on_save":true,
+        // 制表符大小
+        "tab_size":2,
+        // 将制表符转换为空格
+        "translate_tabs_to_spaces":true,
+        // 保存时裁剪尾随的空格
+        "trim_trailing_white_space_on_save":true
+    },
+    // 构建系统信息
+    "build_systems":[
+        {
+            // 构建系统的名称
+            "name":"CARLA - make CarlaUE4Editor",
+            // 工作目录，使用变量表示项目路径的上级目录
+            "working_dir":"${project_path}/..",
+            // 文件正则表达式，用于匹配错误信息
+            "file_regex":"(Unreal\\/CarlaUE4\\/[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            // 语法
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 CarlaUE4Editor
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make CarlaUE4Editor"
+            }
+        },
+        {
+            "name":"CARLA - make LibCarla (All)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 LibCarla
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla"
+            }
+        },
+        {
+            "name":"CARLA - make LibCarla (Server All)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 LibCarla 的服务器端
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.server"
+            }
+        },
+        {
+            "name":"CARLA - make LibCarla (Server Debug)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 LibCarla 的服务器端的调试版本
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.server.debug"
+            }
+        },
+        {
+            "name":"CARLA - make LibCarla (Server Release)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 LibCarla 的服务器端的发布版本
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.server.release"
+            }
+        },
+        {
+            "name":"CARLA - make LibCarla (Client All)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 LibCarla 的客户端
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.client"
+            }
+        },
+        {
+            "name":"CARLA - make LibCarla (Client Debug)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 LibCarla 的客户端的调试版本
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.client.debug"
+            }
+        },
+        {
+            "name":"CARLA - make LibCarla (Client Release)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 LibCarla 的客户端的发布版本
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.client.release"
+            }
+        },
+        {
+            "name":"CARLA - make PythonAPI (All)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 PythonAPI
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make PythonAPI"
+            }
+        },
+        {
+            "name":"CARLA - make PythonAPI (Python 2)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 PythonAPI 的 Python 2 版本
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make PythonAPI.2"
+            }
+        },
+        {
+            "name":"CARLA - make PythonAPI (Python 3)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，构建 PythonAPI 的 Python 3 版本
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make PythonAPI.3"
+            }
+        },
+        {
+            "name":"CARLA - make check (All)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，进行全面检查
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check"
+            }
+        },
+        {
+            "name":"CARLA - make check (LibCarla All)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，对 LibCarla 进行全面检查
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.LibCarla"
+            }
+        },
+        {
+            "name":"CARLA - make check (LibCarla Debug)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，对 LibCarla 的调试版本进行检查
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.LibCarla.debug"
+            }
+        },
+        {
+            "name":"CARLA - make check (LibCarla Release)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，对 LibCarla 的发布版本进行检查
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.LibCarla.release"
+            }
+        },
+        {
+            "name":"CARLA - make check (LibCarla with GDB)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，使用 GDB 对 LibCarla 的调试版本进行检查
+                "shell_cmd":"gnome-terminal --maximize -e 'make check.LibCarla.debug ARGS=\"--gdb\"'"
+            }
+        },
+        {
+            "name":"CARLA - make check (PythonAPI All)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，对 PythonAPI 进行全面检查
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.PythonAPI"
+            }
+        },
+        {
+            "name":"CARLA - make check (PythonAPI for Python 2)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，对 PythonAPI 的 Python 2 版本进行检查
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.PythonAPI.2"
+            }
+        },
+        {
+            "name":"CARLA - make check (PythonAPI for Python 3)",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，对 PythonAPI 的 Python 3 版本进行检查
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.PythonAPI.3"
+            }
+        },
+        {
+            "name":"CARLA - make clean",
+            "working_dir":"${project_path}/..",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，执行清理操作
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make clean"
+            }
+        },
+        {
+            "name":"CARLA - Pylint all",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^([^\n:]*):(-?[0-9]+):?(-?[0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，使用 Pylint 对 PythonAPI 下的所有 Python 文件进行检查
+                "shell_cmd":"shopt -s globstar; pylint -rn --msg-template='{path}:{line}:{column}: {msg_id}: {msg}' --disable=R,C --rcfile=PythonAPI/.pylintrc PythonAPI/**/*.py"
+            }
+        },
+        {
+            "name":"CARLA - Pylint this file",
+            "selector":"source.python",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^([^\n:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，使用 Pylint 对当前文件进行检查
+                "shell_cmd":"pylint -rn --msg-template='{path}:{line}:{column}: {msg_id}: {msg}' --disable=R,C --rcfile=PythonAPI/.pylintrc ${file}"
+            }
+        },
+        {
+            "name":"CARLA - Prettify this file",
+            "working_dir":"${project_path}/..",
+            "file_regex":"^([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
+            "linux":{
+                // Linux 下的 shell 命令，美化当前文件
+                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make pretty ARGS=-f${file}"
+            }
+        }
+    ]
+}

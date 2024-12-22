@@ -4,86 +4,93 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "FrameData.h"
-#include "Carla/Game/CarlaEpisode.h"
-#include "Carla/Actor/CarlaActor.h"
-#include "Carla/Game/CarlaEngine.h"
-#include "Carla/Traffic/TrafficLightController.h"
-#include "Carla/Traffic/TrafficLightGroup.h"
-#include "Carla/MapGen/LargeMapManager.h"
-#include "Carla/Game/CarlaStatics.h"
-#include "Carla/Settings/CarlaSettings.h"
-#include "Carla/Lights/CarlaLightSubsystem.h"
+#include "FrameData.h" // 包含FFrameData类的头文件，定义了帧数据的结构和操作
+#include "Carla/Game/CarlaEpisode.h" // 包含Carla游戏环节的头文件，表示仿真会话
+#include "Carla/Actor/CarlaActor.h" // 包含Carla Actor的头文件，表示仿真中的Actor
+#include "Carla/Game/CarlaEngine.h" // 包含Carla游戏引擎的头文件，管理Carla仿真的核心组件
+#include "Carla/Traffic/TrafficLightController.h" // 包含交通灯控制器的头文件，管理交通灯的行为
+#include "Carla/Traffic/TrafficLightGroup.h" // 包含交通灯组的头文件，表示一组交通灯
+#include "Carla/MapGen/LargeMapManager.h" // 包含大地图管理器的头文件，管理大型开放世界地图
+#include "Carla/Game/CarlaStatics.h" // 包含Carla静态变量和函数的头文件，提供全局访问点
+#include "Carla/Settings/CarlaSettings.h" // 包含Carla设置的头文件，定义仿真的配置参数
+#include "Carla/Lights/CarlaLightSubsystem.h" // 包含Carla灯光子系统的头文件，管理游戏世界的灯光
 
-#include <compiler/disable-ue4-macros.h>
-#include "carla/rpc/VehicleLightState.h"
-#include <compiler/enable-ue4-macros.h>
+#include <compiler/disable-ue4-macros.h> // 禁用Unreal Engine的宏，防止与Carla代码冲突
+#include "carla/rpc/VehicleLightState.h" // 包含Carla RPC车辆灯光状态的头文件，定义车辆灯光状态的RPC结构
+#include <compiler/enable-ue4-macros.h> // 启用Unreal Engine的宏
 
-
+// FFrameData::GetFrameData函数，用于收集当前帧的数据
 void FFrameData::GetFrameData(UCarlaEpisode *ThisEpisode, bool bAdditionalData, bool bIncludeActorsAgain)
 {
-  Episode = ThisEpisode;
-  // PlatformTime.UpdateTime();
-  const FActorRegistry &Registry = Episode->GetActorRegistry();
+  Episode = ThisEpisode; // 将传入的游戏环节赋值给成员变量Episode
+  // PlatformTime.UpdateTime(); // 更新平台时间，此行代码被注释，可能用于性能监测
+  const FActorRegistry &Registry = Episode->GetActorRegistry(); // 获取游戏环节中的Actor注册表
 
-  if (bIncludeActorsAgain)
+  if (bIncludeActorsAgain) // 如果需要再次包括Actor
   {
-    AddExistingActors();
+    AddExistingActors(); // 添加已存在的Actor到帧数据中
   }
 
-  // through all actors in registry
+  // 遍历Actor注册表中的所有Actor
   for (auto It = Registry.begin(); It != Registry.end(); ++It)
   {
-    FCarlaActor* View = It.Value().Get();
+    FCarlaActor* View = It.Value().Get(); // 获取Actor的指针
 
+    // 根据Actor的类型进行不同的数据处理
     switch (View->GetActorType())
     {
-      // save the transform for props
+      // 对于其他类型和传感器Actor，保存其位置变换
       case FCarlaActor::ActorType::Other:
       case FCarlaActor::ActorType::Sensor:
-        AddActorPosition(View);
+        AddActorPosition(View); // 添加Actor的位置到帧数据
         break;
 
-      // save the transform of all vehicles
+      // 对于车辆Actor，保存其位置变换、动画、灯光和车轮动画
       case FCarlaActor::ActorType::Vehicle:
-        AddActorPosition(View);
-        AddVehicleAnimation(View);
-        AddVehicleLight(View);
-        AddVehicleWheelsAnimation(View);
-        if (bAdditionalData)
+        AddActorPosition(View); // 添加Actor的位置
+        AddVehicleAnimation(View); // 添加车辆动画
+        AddVehicleLight(View); // 添加车辆灯光状态
+        AddVehicleWheelsAnimation(View); // 添加车辆车轮动画
+        if (bAdditionalData) // 如果需要额外的数据
         {
-          AddActorKinematics(View);
+          AddActorKinematics(View); // 添加Actor的运动学数据
         }
         break;
 
-      // save the transform of all walkers
+      // 对于行人Actor，保存其位置变换和动画
       case FCarlaActor::ActorType::Walker:
-        AddActorPosition(View);
-        AddWalkerAnimation(View);
-        if (bAdditionalData)
+        AddActorPosition(View); // 添加Actor的位置
+        AddWalkerAnimation(View); // 添加行人动画
+        if (bAdditionalData) // 如果需要额外的数据
         {
-          AddActorKinematics(View);
+          AddActorKinematics(View); // 添加Actor的运动学数据
         }
         break;
 
-      // save the state of each traffic light
+      // 对于交通灯Actor，保存其状态
       case FCarlaActor::ActorType::TrafficLight:
-        AddTrafficLightState(View);
+        AddTrafficLightState(View); // 添加交通灯状态
         break;
     }
   }
-  GetFrameCounter();
+  GetFrameCounter(); // 获取当前帧计数器的值
 }
 
+// FFrameData::PlayFrameData函数，用于播放存储的帧数据
 void FFrameData::PlayFrameData(
     UCarlaEpisode *ThisEpisode,
     std::unordered_map<uint32_t, uint32_t>& MappedId)
 {
+  // 此函数的具体实现未提供，可能包含将帧数据应用到游戏环节的逻辑
+  // ThisEpisode参数可能用于访问游戏环节的状态和功能
+  // MappedId参数可能用于处理Actor ID的映射，以确保数据的正确应用
+}
+
 
   for(const CarlaRecorderEventAdd &EventAdd : EventsAdd.GetEvents())
   {
     uint32_t OldId = EventAdd.DatabaseId;
-    // Todo: check memory corruption of EventAdd.DatabaseId
+    // Todo: 检查 EventAdd.DatabaseId 的内存损坏
     auto Result = ProcessReplayerEventAdd(
         EventAdd.Location,
         EventAdd.Rotation,
@@ -94,21 +101,21 @@ void FFrameData::PlayFrameData(
         MappedId);
     switch (Result.first)
     {
-      // actor not created
+      //未创建角色
       case 0:
         UE_LOG(LogCarla, Log, TEXT("actor could not be created"));
         break;
 
-      // actor created but with different id
+      // 已创建 Actor 但具有不同的 ID
       case 1:
-        // mapping id (recorded Id is a new Id in replayer)
+        // mapping id （记录的 Id 是 replayer 中的新 Id）
         MappedId[OldId] = Result.second;
         UE_LOG(LogCarla, Log, TEXT("actor created"));
         break;
 
-      // actor reused from existing
+      // 从现有 actor 重用
       case 2:
-        // mapping id (say desired Id is mapped to what)
+        // 映射 ID（假设所需的 Id 映射到什么）
         MappedId[OldId] = Result.second;
         UE_LOG(LogCarla, Log, TEXT("actor reused"));
         break;
@@ -231,22 +238,22 @@ void FFrameData::Read(std::istream& InStream)
     ReadValue<uint32_t>(InStream, header.Size);
     switch (header.Id)
     {
-      // events add
+      // 事件添加
       case static_cast<char>(CarlaRecorderPacketId::EventAdd):
         EventsAdd.Read(InStream);
         break;
 
-      // events del
+      // 事件删除
       case static_cast<char>(CarlaRecorderPacketId::EventDel):
         EventsDel.Read(InStream);
         break;
 
-      // events parent
+      // 事件父级
       case static_cast<char>(CarlaRecorderPacketId::EventParent):
         EventsParent.Read(InStream);
         break;
 
-      // positions
+      // 位置
       case static_cast<char>(CarlaRecorderPacketId::Position):
         Positions.Read(InStream);
         break;
@@ -256,12 +263,12 @@ void FFrameData::Read(std::istream& InStream)
         States.Read(InStream);
         break;
 
-      // vehicle animation
+      // StatesVehicle 动画
       case static_cast<char>(CarlaRecorderPacketId::AnimVehicle):
         Vehicles.Read(InStream);
         break;
 
-      // walker animation
+      // walker动画
       case static_cast<char>(CarlaRecorderPacketId::AnimWalker):
         Walkers.Read(InStream);
         break;
@@ -271,17 +278,17 @@ void FFrameData::Read(std::istream& InStream)
         Wheels.Read(InStream);
         break;
 
-      // walker animation
+      // walker 动画
       case static_cast<char>(CarlaRecorderPacketId::AnimBiker):
         Bikers.Read(InStream);
         break;
 
-      // vehicle light animation
+      //Vehicle Light 动画
       case static_cast<char>(CarlaRecorderPacketId::VehicleLight):
         LightVehicles.Read(InStream);
         break;
 
-      // scene lights animation
+      // 场景灯光动画
       case static_cast<char>(CarlaRecorderPacketId::SceneLight):
         LightScenes.Read(InStream);
         break;
@@ -290,9 +297,9 @@ void FFrameData::Read(std::istream& InStream)
         FrameCounter.Read(InStream);
         break;
 
-      // unknown packet, just skip
+      // 未知数据包，只需跳过
       default:
-        // skip packet
+        // 跳过数据包
         InStream.seekg(header.Size, std::ios::cur);
         break;
 
@@ -311,7 +318,7 @@ void FFrameData::CreateRecorderEventAdd(
   Description.UId = ActorDescription.UId;
   Description.Id = ActorDescription.Id;
 
-  // attributes
+  //属性
   Description.Attributes.reserve(ActorDescription.Variations.Num());
   for (const auto &item : ActorDescription.Variations)
   {
@@ -319,14 +326,14 @@ void FFrameData::CreateRecorderEventAdd(
     Attr.Type = static_cast<uint8_t>(item.Value.Type);
     Attr.Id = item.Value.Id;
     Attr.Value = item.Value.Value;
-    // check for empty attributes
+    //检查空属性
     if (!Attr.Id.IsEmpty())
     {
       Description.Attributes.emplace_back(std::move(Attr));
     }
   }
 
-  // recorder event
+  // 记录器事件
   CarlaRecorderEventAdd RecEvent
   {
     DatabaseId,
@@ -342,14 +349,14 @@ void FFrameData::CreateRecorderEventAdd(
     return;
   }
 
-  // Other events related to spawning actors
+  // 与生成 Actor 相关的其他事件
   FCarlaActor* CarlaActor = Episode->FindCarlaActor(DatabaseId);
   if (!CarlaActor)
   {
     return;
   }
   
-  // check if it is a vehicle to get initial physics control
+  //检查它是否是获得初始物理控制的车辆
   ACarlaWheeledVehicle* Vehicle = Cast<ACarlaWheeledVehicle>(CarlaActor->GetActor());
   if (Vehicle)
   {
@@ -365,12 +372,12 @@ void FFrameData::CreateRecorderEventAdd(
   ATrafficSignBase* TrafficSign = Cast<ATrafficSignBase>(CarlaActor->GetActor());
   if (TrafficSign)
   {
-    // Trigger volume in global coordinates
+    // 在全局坐标中触发体积
     AddTriggerVolume(*TrafficSign);
   }
   else
   {
-    // Bounding box in local coordinates
+    // 本地坐标中的边界框
     AddActorBoundingBox(CarlaActor);
   }
 }
@@ -381,7 +388,7 @@ void FFrameData::AddActorPosition(FCarlaActor *CarlaActor)
   check(CarlaActor != nullptr);
 
   FTransform Transform = CarlaActor->GetActorGlobalTransform();
-  // get position of the vehicle
+  // 获取车辆的位置
   AddPosition(CarlaRecorderPosition
   {
     CarlaActor->GetActorId(),
@@ -716,34 +723,34 @@ std::pair<int, FCarlaActor*> FFrameData::CreateOrReuseActor(
 {
   check(Episode != nullptr);
 
-  // check type of actor we need
+  // 检查我们需要的 actor 类型
   if (ActorDesc.Id.StartsWith("traffic."))
   {
     FCarlaActor* CarlaActor = FindTrafficLightAt(Location);
     if (CarlaActor != nullptr)
     {
-      // reuse that actor
+      // 重用该 Actor
       UE_LOG(LogCarla, Log, TEXT("TrafficLight found"));
       return std::pair<int, FCarlaActor*>(2, CarlaActor);
     }
     else
     {
-      // actor not found
+      // 未找到执行组件
       UE_LOG(LogCarla, Log, TEXT("TrafficLight not found"));
       return std::pair<int, FCarlaActor*>(0, nullptr);
     }
   }
   else if (SpawnSensors || !ActorDesc.Id.StartsWith("sensor."))
   {
-    // check if an actor of that type already exist with same id
+    // 检查是否已经存在具有相同 ID 的该类型的 Actor
     if (Episode->GetActorRegistry().Contains(DesiredId))
     {
       auto* CarlaActor = Episode->FindCarlaActor(DesiredId);
       const FActorDescription *desc = &CarlaActor->GetActorInfo()->Description;
       if (desc->Id == ActorDesc.Id)
       {
-        // we don't need to create, actor of same type already exist
-        // relocate
+        // 我们不需要创建，相同类型的 Actor 已经存在
+        //搬迁
         FRotator Rot = FRotator::MakeFromEuler(Rotation);
         FTransform Trans2(Rot, Location, FVector(1, 1, 1));
         CarlaActor->SetActorGlobalTransform(Trans2);
@@ -756,23 +763,23 @@ std::pair<int, FCarlaActor*> FFrameData::CreateOrReuseActor(
       const FActorDescription *desc = &CarlaActor->GetActorInfo()->Description;
       if (desc->Id == ActorDesc.Id)
       {
-        // we don't need to create, actor of same type already exist
-        // relocate
+        // 我们不需要创建，相同类型的 Actor 已经存在
+        //搬迁
         FRotator Rot = FRotator::MakeFromEuler(Rotation);
         FTransform Trans2(Rot, Location, FVector(1, 1, 1));
         CarlaActor->SetActorGlobalTransform(Trans2);
         return std::pair<int, FCarlaActor*>(2, CarlaActor);
       }
     }
-    // create new actor
-    // create the transform
+    // 创建新角色
+    // 创建转换
     FRotator Rot = FRotator::MakeFromEuler(Rotation);
     FTransform Trans(Rot, FVector(0, 0, 100000), FVector(1, 1, 1));
-    // create as new actor
+    // 创建新角色
     TPair<EActorSpawnResultStatus, FCarlaActor*> Result = Episode->SpawnActorWithInfo(Trans, ActorDesc, DesiredId);
     if (Result.Key == EActorSpawnResultStatus::Success)
     {
-      // relocate
+      // 搬迁
       FTransform Trans2(Rot, Location, FVector(1, 1, 1));
       Result.Value->SetActorGlobalTransform(Trans2);
       ALargeMapManager * LargeMapManager = UCarlaStatics::GetLargeMapManager(Episode->GetWorld());
@@ -790,12 +797,12 @@ std::pair<int, FCarlaActor*> FFrameData::CreateOrReuseActor(
   }
   else
   {
-    // actor ignored
+    // Actor 已忽略
     return std::pair<int, FCarlaActor*>(0, nullptr);
   }
 }
 
-// replay event for creating actor
+// 用于创建 Actor 的 Replay 事件
 std::pair<int, uint32_t> FFrameData::ProcessReplayerEventAdd(
     FVector Location,
     FVector Rotation,
@@ -809,7 +816,7 @@ std::pair<int, uint32_t> FFrameData::ProcessReplayerEventAdd(
   FActorDescription ActorDesc;
   bool IsHero = false;
 
-  // prepare actor description
+  //准备角色描述
   ActorDesc.UId = Description.UId;
   ActorDesc.Id = Description.Id;
   for (const auto &Item : Description.Attributes)
@@ -834,7 +841,7 @@ std::pair<int, uint32_t> FFrameData::ProcessReplayerEventAdd(
 
   if (result.first != 0)
   {
-    // disable physics and autopilot on vehicles
+    //在车辆上禁用 Physics 和 Autopilot
     if (result.second->GetActorType() == FCarlaActor::ActorType::Vehicle)
     {
       // ignore hero ?
@@ -847,7 +854,7 @@ std::pair<int, uint32_t> FFrameData::ProcessReplayerEventAdd(
       }
       else
       {
-        // reenable physics just in case
+        // 重新启用物理学以防万一
         SetActorSimulatePhysics(result.second, true);
       }
     }
@@ -856,7 +863,7 @@ std::pair<int, uint32_t> FFrameData::ProcessReplayerEventAdd(
   return std::make_pair(result.first, 0);
 }
 
-// replay event for removing actor
+//用于删除 Actor 的 replay 事件
 bool FFrameData::ProcessReplayerEventDel(uint32_t DatabaseId)
 {
   check(Episode != nullptr);
@@ -870,7 +877,7 @@ bool FFrameData::ProcessReplayerEventDel(uint32_t DatabaseId)
   return true;
 }
 
-// replay event for parenting actors
+// Replay 事件
 bool FFrameData::ProcessReplayerEventParent(uint32_t ChildId, uint32_t ParentId)
 {
   check(Episode != nullptr);
@@ -1027,7 +1034,7 @@ void FFrameData::ProcessReplayerAnimVehicleWheels(CarlaRecorderAnimWheels Vehicl
   }
 }
 
-// set the lights for vehicles
+// 为车辆设置灯光
 void FFrameData::ProcessReplayerLightVehicle(CarlaRecorderLightVehicle LightVehicle)
 {
   check(Episode != nullptr);
@@ -1061,7 +1068,7 @@ void FFrameData::ProcessReplayerLightScene(CarlaRecorderLightScene LightScene)
   }
 }
 
-// set the animation for walkers
+// 设置行走者的动画
 void FFrameData::ProcessReplayerAnimWalker(CarlaRecorderAnimWalker Walker)
 {
   SetWalkerSpeed(Walker.DatabaseId, Walker.Speed);
@@ -1080,16 +1087,16 @@ void FFrameData::ProcessReplayerAnimBiker(CarlaRecorderAnimBiker Biker)
 }
 
 
-// replay finish
+//重播结束
 bool FFrameData::ProcessReplayerFinish(bool bApplyAutopilot, bool bIgnoreHero, std::unordered_map<uint32_t, bool> &IsHero)
 {
-  // set autopilot and physics to all AI vehicles
+  // 为所有 AI 车辆设置 Autopilot 和 Physics
   const FActorRegistry& Registry = Episode->GetActorRegistry();
   for (auto& It : Registry)
   {
     FCarlaActor* CarlaActor = It.Value.Get();
 
-    // enable physics only on vehicles
+    //仅在载具上启用物理
     switch (CarlaActor->GetActorType())
     {
 
@@ -1132,7 +1139,7 @@ void FFrameData::SetActorVelocity(FCarlaActor *CarlaActor, FVector Velocity)
   CarlaActor->SetActorTargetVelocity(Velocity);
 }
 
-// set the animation speed for walkers
+//设置行走者的动画速度
 void FFrameData::SetWalkerSpeed(uint32_t ActorId, float Speed)
 {
   check(Episode != nullptr);
@@ -1146,7 +1153,7 @@ void FFrameData::SetWalkerSpeed(uint32_t ActorId, float Speed)
   CarlaActor->ApplyControlToWalker(Control);
 }
 
-// enable / disable physics for an actor
+// 启用/禁用 Actor 的物理特性）
 bool FFrameData::SetActorSimulatePhysics(FCarlaActor* CarlaActor, bool bEnabled)
 {
   if (!CarlaActor)
@@ -1173,13 +1180,13 @@ FCarlaActor *FFrameData::FindTrafficLightAt(FVector Location)
   auto World = Episode->GetWorld();
   check(World != nullptr);
 
-  // get its position (truncated as int's)
+  // 获取其位置 （截断为 int）
   int x = static_cast<int>(Location.X);
   int y = static_cast<int>(Location.Y);
   int z = static_cast<int>(Location.Z);
 
   const FActorRegistry &Registry = Episode->GetActorRegistry();
-  // through all actors in registry
+  // 通过 Registry 中的所有参与者
   for (auto It = Registry.begin(); It != Registry.end(); ++It)
   {
     FCarlaActor* CarlaActor = It.Value().Get();
@@ -1191,25 +1198,25 @@ FCarlaActor *FFrameData::FindTrafficLightAt(FVector Location)
       int z2 = static_cast<int>(vec.Z);
       if ((x2 == x) && (y2 == y) && (z2 == z))
       {
-        // actor found
+        // 找到actor
         return CarlaActor;
       }
     }
   }
-  // actor not found
+  // 丢失actor
   return nullptr;
 }
 
 void FFrameData::AddExistingActors(void)
 {
-  // registring all existing actors in first frame
+  // reginstring 第一帧中的所有现有 Actor
   FActorRegistry Registry = Episode->GetActorRegistry();
   for (auto& It : Registry)
   {
     const FCarlaActor* CarlaActor = It.Value.Get();
     if (CarlaActor != nullptr)
     {
-      // create event
+      // 创建事件
       CreateRecorderEventAdd(
           CarlaActor->GetActorId(),
           static_cast<uint8_t>(CarlaActor->GetActorType()),

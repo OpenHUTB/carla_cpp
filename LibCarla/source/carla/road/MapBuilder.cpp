@@ -425,9 +425,8 @@ void MapBuilder::AddSignalPositionRoad(
         hdg,
         location);
 
-    _// 将新的道路几何信息添加到临时道路信息容器中
-_temp_road_info_container[road].emplace_back(std::unique_ptr<RoadInfo>(new RoadInfoGeometry(s,
-        std::move(line_geometry))));
+    // 将新的道路几何信息添加到临时道路信息容器中
+    _temp_road_info_container[road].emplace_back(std::move(elevation));
   }
 
 // 创建道路速度信息

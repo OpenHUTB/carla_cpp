@@ -9,12 +9,12 @@
 
 #if WITH_EDITORONLY_DATA
 
-// NOTE: Assets imported from a map FBX will be classified for semantic
-// segmentation as ROAD, ROADLINES AND TERRAIN based on the asset name
-// defined in RoadRunner. These tags will be used for moving the meshes
-// and for specifying the path to these meshes when spawning them in a world.
+// 注意：从地图 FBX 导入的资产将进行语义分类
+// 根据资产名称进行分割，分为道路（ROAD）、道路标线（ROADLINES）和地形（TERRAIN）
+// 在RoadRunner中定义。这些标签将用于移动网格
+// 并在在世界中生成这些网格时指定它们的路径
 namespace SSTags {
-  // Carla Semantic Segmentation Folder Tags
+  // carla语义分割文件夹标签
   static const FString ROAD       = TEXT("Road");
   static const FString ROADLINE   = TEXT("RoadLine");
   static const FString TERRAIN    = TEXT("Terrain");
@@ -23,13 +23,13 @@ namespace SSTags {
   static const FString CURB       = TEXT("SideWalk");
   static const FString GUTTER     = TEXT("SideWalk");
 
-  // RoadRunner Tags
+  //RoadRunner 标签
   //
-  // RoadRunner's mesh naming convention:
+  //RoadRunner 的网格命名约定：
   // mapName_meshType_meshSubtype_layerNumberNode
   //
-  // meshType is a larger geographical tag (e.g. "Road", "Terrain")
-  // meshSubType is a denomination of the tag (e.g. "Road", "Gutter", "Ground")
+  // meshType 是一个较大的地理标签（例如，“道路”、“地形”）
+  // meshSubType 是标签的一种名称（例如：“道路”、“排水沟”、“地面”）
   static const FString R_ROAD1     = TEXT("Road_Road");
   static const FString R_ROAD2     = TEXT("Roads_Road");
   static const FString R_GRASS1    = TEXT("Road_Grass");

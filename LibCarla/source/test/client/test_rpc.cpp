@@ -5,10 +5,12 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #include "test.h"
-
-#include <carla/MsgPackAdaptors.h>
-#include <carla/ThreadGroup.h>
-#include <carla/rpc/Actor.h>
+//包含一个自定义的头文件"test.h"。
+// 通常在"test.h"里会有当前源文件所需的函数声明、结构体定义、宏定义等内容，方便在本文件中调用相关功能。
+#include <carla/MsgPackAdaptors.h>//包含来自名为"carla"的项目（可能是库等）下的头文件。
+#include <carla/ThreadGroup.h>//同样是从"carla"项目中引入头文件，此头文件大概率是关于线程组（ThreadGroup）的相关定义。
+// 例如可能包含创建、管理线程组的类，或者操作线程组的函数等，方便在代码中进行多线程相关的编程操作。
+#include <carla/rpc/Actor.h>//
 #include <carla/rpc/Client.h>
 #include <carla/rpc/Response.h>
 #include <carla/rpc/Server.h>

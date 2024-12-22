@@ -37,27 +37,43 @@ using namespace eprosima::fastcdr::exception;
 #define std_msgs_msg_Float32_max_cdr_typesize 4ULL;
 #define std_msgs_msg_Float32_max_key_cdr_typesize 0ULL;
 
+// 定义std_msgs::msg::Float32类型的默认构造函数
+// 它会将成员变量m_data初始化为0.0
 std_msgs::msg::Float32::Float32()
 {
     m_data = 0.0;
 }
 
+// 定义std_msgs::msg::Float32类型的析构函数，这里析构函数体为空，
+// 通常如果类中没有动态分配的资源需要释放等操作，析构函数可以为空
 std_msgs::msg::Float32::~Float32()
 {
 }
 
+// 定义std_msgs::msg::Float32类型的拷贝构造函数
+// 它接受一个同类型的常量引用x作为参数，
+// 作用是用传入对象x的成员变量m_data的值来初始化当前正在构造的对象的m_data成员变量，
+// 实现将一个已有对象的数据复制到新创建的同类型对象中
 std_msgs::msg::Float32::Float32(
         const Float32& x)
 {
     m_data = x.m_data;
 }
 
+// 定义std_msgs::msg::Float32类型的移动构造函数
+// 它接受一个同类型的右值引用x作为参数，且声明为noexcept（表示不会抛出异常），
+// 作用也是将传入对象x的成员变量m_data的值赋给当前正在构造的对象的m_data成员变量，
+// 移动构造函数常用于优化对象资源的转移，比如当涉及到临时对象资源的高效获取时会用到
 std_msgs::msg::Float32::Float32(
         Float32&& x) noexcept
 {
     m_data = x.m_data;
 }
 
+// 定义std_msgs::msg::Float32类型的赋值运算符重载函数
+// 它接受一个同类型的常量引用x作为参数，
+// 作用是将当前对象的成员变量m_data赋值为传入对象x的m_data的值，
+// 然后返回当前对象的引用，以便支持连续赋值操作，例如 a = b = c这种形式
 std_msgs::msg::Float32& std_msgs::msg::Float32::operator =(
         const Float32& x)
 {
@@ -65,51 +81,71 @@ std_msgs::msg::Float32& std_msgs::msg::Float32::operator =(
     return *this;
 }
 
+//这是另一个赋值运算符重载函数，不过这里是针对右值引用的情况
+//定义了Float32类的一个右值引用的赋值运算符重载函数，函数返回Float32类的引用并且标记为noexcept，表示这个函数不会抛出异常
 std_msgs::msg::Float32& std_msgs::msg::Float32::operator =(
         Float32&& x) noexcept
 {
+    //将右值对象x的m_data成员的值赋给当前对象的m_data成员
     m_data = x.m_data;
+    //为了支持链式赋值操作
     return *this;
 }
 
+//这是一个相等比较运算符（==）的重载函数
+//定义了Float32类的相等比较运算符重载函数，函数接受一个const引用的Float32对象x，并且函数本身也是const的，表示不会修改当前对象的状态
 bool std_msgs::msg::Float32::operator ==(
         const Float32& x) const
 {
+    //比较当前对象的m_data成员和传入对象x的m_data成员是否相等，如果相等则返回true，否则返回false
     return (m_data == x.m_data);
 }
 
+//这是一个不等比较运算符（!=）的重载函数
 bool std_msgs::msg::Float32::operator !=(
         const Float32& x) const
 {
+    //通过调用前面定义的==运算符重载函数取反来实现!=运算符的功能，如果==返回true，则!=返回false，反之亦然
     return !(*this == x);
 }
 
+//函数接受一个size_t类型的参数current_alignment，函数的目的可能是获取最大的CDR序列化大小
 size_t std_msgs::msg::Float32::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
+    //将current_alignment转换为void类型，可能是为了在函数中表明虽然接收了这个参数，但在当前函数体中暂时不需要使用它
     static_cast<void>(current_alignment);
+    //返回一个名为std_msgs_msg_Float32_max_cdr_typesize的值，这个值应该是预先定义好的，表示Float32类的最大CDR序列化大小。
     return std_msgs_msg_Float32_max_cdr_typesize;
 }
 
+//接受一个const引用的Float32对象data和一个size_t类型的current_alignment参数，目的可能是获取给定Float32对象的CDR序列化大小
 size_t std_msgs::msg::Float32::getCdrSerializedSize(
         const std_msgs::msg::Float32& data,
+        //创建一个局部变量initial_alignment并初始化为current_alignment的值。
         size_t current_alignment)
 {
     (void)data;
+    //一个函数，用于计算与Cdr相关的对齐值
     size_t initial_alignment = current_alignment;
     current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    //返回计算后的current_alignment与初始initial_alignment的差值，这个差值可能就是Float32对象的CDR序列化大小
     return current_alignment - initial_alignment;
 }
 
+//接受一个eprosima::fastcdr::Cdr类型的引用_scdr，目的可能是将Float32类的对象序列化为Cdr格式
 void std_msgs::msg::Float32::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
+    //将m_data成员的值写入到_scdr对象中，实现序列化操作
     scdr << m_data;
 }
 
+//函数的目的是从eprosima::fastcdr::Cdr对象dcdr中反序列化数据到m_data成员变量
 void std_msgs::msg::Float32::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
 {
+    //从dcdr对象中读取数据并存储到m_data中 用于从Cdr对象中提取数据并赋给m_data
     dcdr >> m_data;
 }
 
@@ -117,9 +153,11 @@ void std_msgs::msg::Float32::deserialize(
  * @brief This function sets a value in member data
  * @param _data New value for member data
  */
+//这是一个设置m_data成员变量值的函数
 void std_msgs::msg::Float32::data(
         float _data)
 {
+    //将传入的参数_data的值赋给m_data成员变量。这个函数提供了一种修改m_data值的途径
     m_data = _data;
 }
 
@@ -127,8 +165,10 @@ void std_msgs::msg::Float32::data(
  * @brief This function returns the value of member data
  * @return Value of member data
  */
+// 这个函数的目的是获取m_data成员变量的值
 float std_msgs::msg::Float32::data() const
 {
+    //返回m_data的引用 返回引用可以用于在函数外部直接操作m_data，而不需要进行值的拷贝
     return m_data;
 }
 
@@ -136,25 +176,36 @@ float std_msgs::msg::Float32::data() const
  * @brief This function returns a reference to member data
  * @return Reference to member data
  */
+//函数的目的是返回类中的成员变量m_data的引用
 float& std_msgs::msg::Float32::data()
 {
     return m_data;
 }
 
+//函数接受一个size_t类型的参数current_alignment
 size_t std_msgs::msg::Float32::getKeyMaxCdrSerializedSize(
         size_t current_alignment)
 {
+    //将current_alignment的值转换为void类型
+    //这是一种抑制编译器警告的方式，表明在这个函数中虽然传入了这个参数，但实际上并没有使用它
     static_cast<void>(current_alignment);
+    //函数返回一个名为std_msgs_msg_Float32_max_key_cdr_typesize的值
+    //这个值表示Float32类型在特定序列化（可能是与eprosima::fastcdr相关的序列化）时的最大键（key）的CDR序列化大小
     return std_msgs_msg_Float32_max_key_cdr_typesize;
 }
 
+//表示函数将返回一个布尔值（true或者false）
 bool std_msgs::msg::Float32::isKeyDefined()
 {
     return false;
 }
-
+//void表示函数没有返回值
+//函数接受一个eprosima::fastcdr::Cdr&类型的参数scdr
+//这里&表示引用，意味着函数将直接操作传入的scdr对象，而不是创建它的副本。const关键字表示这个函数是一个常量成员函数，即这个函数不会修改类中的成员变量
 void std_msgs::msg::Float32::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
+    //将scdr转换为void类型
+    //目的是抑制编译器警告，表示虽然传入了scdr这个参数，但在这个函数中没有实际使用它
     (void) scdr;
 }

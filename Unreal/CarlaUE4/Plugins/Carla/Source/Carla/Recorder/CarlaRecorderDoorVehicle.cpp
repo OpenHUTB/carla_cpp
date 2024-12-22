@@ -11,11 +11,16 @@
 
 void CarlaRecorderDoorVehicle::Write(std::ostream &OutFile)
 {
-  // database id
-  WriteValue<uint32_t>(OutFile, this->DatabaseId);
-  WriteValue<VehicleDoorType>(OutFile, this->Doors);
-  WriteValue<bool>(OutFile, this->bIsOpen);
+    // 写入数据库 ID，类型为 uint32_t（无符号 32 位整数）
+    WriteValue<uint32_t>(OutFile, this->DatabaseId);
+
+    // 写入车辆门的类型，类型为 VehicleDoorType（自定义的枚举或类，表示车辆门的类型）
+    WriteValue<VehicleDoorType>(OutFile, this->Doors);
+
+    // 写入一个布尔值，表示门是否打开，类型为 bool（布尔值）
+    WriteValue<bool>(OutFile, this->bIsOpen);
 }
+
 void CarlaRecorderDoorVehicle::Read(std::istream &InFile)
 {
   // database id
