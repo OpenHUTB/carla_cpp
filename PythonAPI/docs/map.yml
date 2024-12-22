@@ -317,16 +317,17 @@
       Waypoints in CARLA are described as 3D directed points. They have a carla.Transform which locates the waypoint in a road and orientates it according to the lane. They also store the road information belonging to said point regarding its lane and lane markings.  
       <br><br>
       All the information regarding waypoints and the [waypoint API](../../core_map/#navigation-in-carla) is retrieved as provided by the OpenDRIVE file. Once the client asks for the map object to the server, no longer communication will be needed.
-    # - PROPERTIES -------------------------
+    # - PROPERTIES -------------------------# CARLA中的Waypoints描述为3D定向点。它们有一个carla.Transform，定位在道路中的Waypoints，并根据车道方向进行定位。它们还存储与此点相关的道路信息，包括车道和车道标线信息。
+      # 所有与Waypoints相关的信息及其[waypoint API](../../core_map/#navigation-in-carla)是根据OpenDRIVE文件提供的。一旦客户端向服务器请求地图对象，后续不再需要通信。
     instance_variables:
     - var_name: id
       type: int
       doc: >
-        The identifier is generated using a hash combination of the <b>road</b>, <b>section</b>, <b>lane</b> and <b>s</b> values that correspond to said point in the OpenDRIVE geometry. The <b>s</b> precision is set to 2 centimeters, so 2 waypoints closer than 2 centimeters in the same road, section and lane, will have the same identificator.
+        The identifier is generated using a hash combination of the <b>road</b>, <b>section</b>, <b>lane</b> and <b>s</b> values that correspond to said point in the OpenDRIVE geometry. The <b>s</b> precision is set to 2 centimeters, so 2 waypoints closer than 2 centimeters in the same road, section and lane, will have the same identificator.# 标识符是通过对OpenDRIVE几何体中的道路、段落、车道和s值进行哈希组合生成的。<b>s</b>的精度设置为2厘米，因此在相同的道路、段落和车道中，距离小于2厘米的两个Waypoints将具有相同的标识符。
     - var_name: transform
       type: carla.Transform
       doc: >
-        Position and orientation of the waypoint according to the current lane information. This data is computed the first time it is accessed. It is not created right away in order to ease computing costs when lots of waypoints are created but their specific transform is not needed.
+        Position and orientation of the waypoint according to the current lane information. This data is computed the first time it is accessed. It is not created right away in order to ease computing costs when lots of waypoints are created but their specific transform is not needed. # Waypoint的位置信息和方向信息，基于当前车道的信息。该数据会在首次访问时计算，而不是立即创建，以减少在创建大量Waypoints但不需要其具体变换时的计算成本。
     - var_name: road_id
       type: int
       doc: >
@@ -338,7 +339,7 @@
     - var_name: is_junction
       type: bool
       doc: >
-        <b>True</b> if the current Waypoint is on a junction as defined by OpenDRIVE.
+        <b>True</b> if the current Waypoint is on a junction as defined by OpenDRIVE. # 如果当前Waypoint位于OpenDRIVE定义的交叉口上，则为<b>True</b>。
     - var_name: junction_id
       type: int
       doc: >
@@ -346,7 +347,7 @@
     - var_name: lane_id
       type: int
       doc: >
-        OpenDRIVE lane's id, this value can be positive or negative which represents the direction of the current lane with respect to the road. For more information refer to OpenDRIVE [documentation](http://www.opendrive.org/docs/OpenDRIVEFormatSpecRev1.4H.pdf#page=20)
+        OpenDRIVE lane's id, this value can be positive or negative which represents the direction of the current lane with respect to the road. For more information refer to OpenDRIVE [documentation](http://www.opendrive.org/docs/OpenDRIVEFormatSpecRev1.4H.pdf#page=20) # OpenDRIVE车道的ID，这个值可以是正数或负数，表示当前车道相对于道路的方向。更多信息请参阅OpenDRIVE [文档](http://www.opendrive.org/docs/OpenDRIVEFormatSpecRev1.4H.pdf#page=20)
     - var_name: s
       type: float
       param_units: meters
@@ -356,11 +357,11 @@
       type: float
       param_units: meters
       doc: >
-        Horizontal size of the road at current <b>s</b>.
+        Horizontal size of the road at current <b>s</b>. # 当前<b>s</b>值对应的道路的横向尺寸（车道宽度）。
     - var_name: lane_change
       type: carla.LaneChange
       doc: >
-        Lane change definition of the current Waypoint's location, based on the traffic rules defined in the OpenDRIVE file. It states if a lane change can be done and in which direction.
+        Lane change definition of the current Waypoint's location, based on the traffic rules defined in the OpenDRIVE file. It states if a lane change can be done and in which direction.# 当前Waypoint所在位置的车道变换定义，基于OpenDRIVE文件中定义的交通规则。它指示是否可以进行车道变换，以及变换的方向。
     - var_name: lane_type
       type: carla.LaneType
       doc: >
@@ -381,12 +382,12 @@
         type: float
         param_units: meters
         doc: >
-          The approximate distance where to get the next waypoints.
+          The approximate distance where to get the next waypoints.# 获取下一个Waypoints的预估距离。
       return: list(carla.Waypoint)
       doc: >
         Returns a list of waypoints at a certain approximate `distance` from the current one. It takes into account the road and its possible deviations without performing any lane change and returns one waypoint per option.
 
-        The list may be empty if the lane is not connected to any other at the specified distance.
+        The list may be empty if the lane is not connected to any other at the specified distance.# 返回距离当前Waypoint某一预估距离的Waypoint列表。它考虑到道路及其可能的偏离情况，不进行任何车道变换，并为每个选项返回一个Waypoint。
     # --------------------------------------
     - def_name: next_until_lane_end
       params:
@@ -397,7 +398,7 @@
           The approximate distance between waypoints.
       return: list(carla.Waypoint)
       doc: >
-        Returns a list of waypoints from this to the end of the lane separated by a certain `distance`.
+        Returns a list of waypoints from this to the end of the lane separated by a certain `distance`. # 返回从当前Waypoint到车道尽头的一系列Waypoints，Waypoints之间的距离由`distance`指定。
     # --------------------------------------
     - def_name: previous
       params:
