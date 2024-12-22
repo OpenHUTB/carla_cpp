@@ -1,8 +1,10 @@
 # LibCarla的单元测试
+# CMake最低版本要求
 cmake_minimum_required(VERSION 3.5.1)
 project(libcarla-unit-tests)
 
 # 进行客户端的测试
+# 构建类型判断
 if (CMAKE_BUILD_TYPE STREQUAL "Client")
   set(carla_config client)
 # 进行服务端的测试
@@ -10,6 +12,7 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Server")
   set(carla_config server)
 endif ()
 # 是否构建责任敏感安全库
+# 如果BUILD_RSS_VARIANT的值为真，则在目标后缀中添加 "_rss"，否则不添加
 if (BUILD_RSS_VARIANT)
   set(carla_target_postfix "_rss")
 else()
@@ -24,6 +27,7 @@ link_directories(
 
 # GLOB 会产生一个由所有匹配表达式的文件组成的列表，并将其保存到libcarla_test_sources变量中
 # 包括 性能剖析器 和 测试模块（客户端/服务端）中的所有C++代码
+# 源文件收集
 file(GLOB libcarla_test_sources
 # 包含性能剖析器目录下的所有 C++ 源文件和头文件
     "${libcarla_source_path}/carla/profiler/*.cpp"
