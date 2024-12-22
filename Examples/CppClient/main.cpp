@@ -1,53 +1,52 @@
-// 引入 C++ 标准库头文件
-#include <iostream>    // 提供输入输出流功能
-#include <random>      // 提供随机数生成器功能
-#include <sstream>     // 提供字符串流功能
-#include <stdexcept>   // 提供异常处理功能
-#include <string>      // 提供字符串类型功能
-#include <thread>      // 提供多线程功能
-#include <tuple>       // 提供元组类型和操作功能
+// 引入必要的C++标准库头文件，这些头文件提供了输入输出流、随机数生成、字符串流、异常处理、字符串类型、多线程、元组等功能。
+#include <iostream>    // 输入输出流功能
+#include <random>      // 随机数生成器功能
+#include <sstream>     // 字符串流功能
+#include <stdexcept>   // 异常处理功能
+#include <string>      // 字符串类型功能
+#include <thread>      // 多线程功能
+#include <tuple>       // 元组类型和操作功能
 
-// 引入CARLA客户端库的头文件，用于与CARLA模拟器进行交互，包含获取蓝图、世界、传感器等相关功能的接口
-#include <carla/client/ActorBlueprint.h>       // 用于获取和操作CARLA模拟器中的角色蓝图 (Actor Blueprint)，可以用于生成或配置车辆、行人等模拟实体的属性。
-#include <carla/client/BlueprintLibrary.h>     // 提供访问CARLA模拟器中各种蓝图资源的功能，能够加载车辆、建筑、传感器等各种对象的蓝图。
-#include <carla/client/Client.h>               // 定义与CARLA模拟器客户端通信的接口，主要用于连接到模拟器服务器，管理会话，获取世界对象等。
-#include <carla/client/Map.h>                  // 提供对CARLA模拟器中的地图（包括地图的相关信息和操作）的访问，支持查询和操作地图。
-#include <carla/client/Sensor.h>               // 用于创建和配置各种传感器（如相机、激光雷达、GPS等），并处理传感器的输出数据。
-#include <carla/client/TimeoutException.h>     // 定义在CARLA模拟器客户端操作中可能遇到的超时异常，用于处理长时间未响应的情形。
-#include <carla/client/World.h>               // 定义模拟器中的世界对象，提供对世界中的所有实体（如车辆、行人、道路、传感器等）的访问和管理。
-#include <carla/geom/Transform.h>              // 定义转换（Transform）类，用于表示和操作位置、旋转、缩放等几何变换，常用于描述物体的位置和姿态。
-#include <carla/image/ImageIO.h>              // 提供对图像数据输入输出的功能，可以读取和写入图像文件，常用于处理传感器生成的图像数据。
-#include <carla/image/ImageView.h>            // 定义图像视图（ImageView）类，表示图像数据的访问和操作，通常用于访问传感器拍摄的图像内容。
-#include <carla/sensor/data/Image.h>          // 定义图像数据类，用于表示传感器（如相机）拍摄到的图像数据，支持多种图像格式。
+// 引入CARLA客户端库的头文件，这些头文件提供了与CARLA模拟器交互的功能，包括获取蓝图、世界、传感器等。
+#include <carla/client/ActorBlueprint.h>    // Actor蓝图类的定义，定义了可在CARLA世界中实例化的对象（如车辆、行人等）的模板。
+#include <carla/client/BlueprintLibrary.h>    // 蓝图库的类定义，提供了访问所有可用Actor蓝图的方法。
+#include <carla/client/Client.h>       // 客户端类的定义，是与CARLA服务器通信的主要接口。
+#include <carla/client/Map.h>                // 地图类的定义。
+#include <carla/client/Sensor.h>              // 传感器类的定义。
+#include <carla/client/TimeoutException.h>    // 超时异常的定义。
+#include <carla/client/World.h>               // 世界类的定义，表示CARLA模拟中的世界。
+#include <carla/geom/Transform.h>             // 几何变换类的定义，用于表示位置和旋转。
+#include <carla/image/ImageIO.h>            // 图像输入输出功能。
+#include <carla/image/ImageView.h>            // 图像视图类的定义。
+#include <carla/sensor/data/Image.h>         // 传感器数据中的图像类定义。
 
-// 为CARLA命名空间创建别名，简化代码书写，后续使用cc、cg、csd来代表相应的carla命名空间，使代码更简洁易读
-namespace cc = carla::client;
-namespace cg = carla::geom;
-namespace csd = carla::sensor::data;
+// 为CARLA命名空间创建别名，以简化代码书写。
+namespace cc = carla::client; // cc 代表 carla::client，用于简化对CARLA客户端相关功能的引用。
+namespace cg = carla::geom;   // cg 代表 carla::geom，用于简化对几何相关功能的引用。
+namespace csd = carla::sensor::data; // csd 代表 carla::sensor::data，用于简化对传感器数据类型的引用。
 
-// 使用std命名空间中的chrono和string字面量，方便在代码中直接使用时间字面量（如40s）以及更自然地进行字符串拼接操作
+// 使用标准库中的chrono和string字面量命名空间，以简化时间间隔和字符串字面量的书写。
 using namespace std::chrono_literals;
 using namespace std::string_literals;
 
-// 定义一个宏，用于断言表达式为真，否则抛出运行时错误。用于在代码逻辑中对一些关键条件进行检查，确保程序按预期执行
+// 定义一个宏，用于断言表达式为真，如果为假则抛出运行时错误。这用于确保程序中的关键条件满足预期。
 #define EXPECT_TRUE(pred) if (!(pred)) { throw std::runtime_error(#pred); }
 
 /// 从给定范围中随机选择一个元素
 /// 
-/// @tparam RangeT 表示可迭代范围的类型，例如数组、向量等容器类型，其元素可通过下标访问
-/// @tparam RNG 随机数生成器类型，用于生成随机的索引值来选取范围内的元素
-/// @param range 输入的可迭代范围，从中选择元素
-/// @param generator 随机数生成器实例，用于生成随机索引
-/// @return 返回在给定范围中随机选择的元素的引用，确保range不为空，否则会抛出异常
+/// @tparam RangeT 表示可迭代范围的类型，如数组、向量等，其元素可通过下标访问。
+/// @tparam RNG 随机数生成器类型，用于生成随机索引值以选择范围内的元素。
+/// @param range 输入的可迭代范围，从中选择元素。
+/// @param generator 随机数生成器实例，用于生成随机索引。
+/// @return 返回在给定范围中随机选择的元素的引用。如果range为空，则抛出异常。
 template <typename RangeT, typename RNG>
 static auto &RandomChoice(const RangeT &range, RNG &&generator) {
-    EXPECT_TRUE(range.size() > 0u);  // 断言值一定大于0，确保可迭代范围中有元素可供选择，否则就抛出异常
-    //定义一个均匀分布的随机整数生成器，范围从0到range.size()-1
+    EXPECT_TRUE(range.size() > 0u);  // 确保range不为空，有元素可供选择。
+    // 定义一个均匀分布的随机整数生成器，范围从0到range.size()-1。
     std::uniform_int_distribution<size_t> dist{0u, range.size() - 1u};
-    //返回范围内随机选择的元素
+    // 返回通过随机索引选择的元素的引用。
     return range[dist(std::forward<RNG>(generator))];
 }
-
 // 该函数的功能是将语义分割图像保存到磁盘，并将图像转换为CityScapes调色板格式。
 // 目前该函数被注释掉，尚未启用，可能是因为没有相应的图像处理库或保存功能暂时不需要。
 // 如果后续需要保存图像，可以取消注释并确保相关的依赖和功能已正确实现。
@@ -148,40 +147,54 @@ int main(int argc, const char *argv[]) {
         auto camera_bp = blueprint_library->Find("sensor.camera.semantic_segmentation");
         EXPECT_TRUE(camera_bp!= nullptr);
 
-        // Spawn a camera attached to the vehicle.
-        // 在车辆上生成一个相机传感器，根据指定的位置和旋转信息创建一个变换结构体，然后将相机传感器挂载到前面生成的车辆上，使得相机可以跟随车辆运动并采集数据
-        auto camera_transform = cg::Transform{
-                cg::Location{-5.5f, 0.0f, 2.8f},   // x, y, z.
-                cg::Rotation{-15.0f, 0.0f, 0.0f}}; // pitch, yaw, roll.
-        auto cam_actor = world.SpawnActor(*camera_bp, camera_transform, actor.get());
-        auto camera = boost::static_pointer_cast<cc::Sensor>(cam_actor);
+       // 在车辆上生成一个相机传感器
+// 根据指定的位置和旋转信息创建一个变换结构体（Transform），然后将相机传感器挂载到之前生成的车辆上。
+// 这样相机就可以跟随车辆运动并采集数据。
+auto camera_transform = cg::Transform{
+    cg::Location{-5.5f, 0.0f, 2.8f},   // 设置相机的位置，x, y, z 分别代表横向、纵向和高度。
+    cg::Rotation{-15.0f, 0.0f, 0.0f}}; // 设置相机的旋转，pitch, yaw, roll 分别代表俯仰角、偏航角和滚转角。
 
-        // Register a callback to save images to disk.
-        // 注册一个回调函数，用于当相机传感器采集到图像数据时进行处理，当前的处理逻辑是将接收到的图像数据转换为语义分割图像类型，然后调用保存图像到磁盘的函数（当前被注释掉未生效）
-        camera->Listen([](auto data) {
-            auto image = boost::static_pointer_cast<csd::Image>(data);
-            EXPECT_TRUE(image!= nullptr);
-            SaveSemSegImageToDisk(*image);
-        });
+// 使用相机蓝图（camera_bp，之前应该已经获取）和变换结构体（camera_transform）在指定车辆（actor，之前应该已经生成并获取了智能指针）上生成相机传感器。
+// cam_actor 是生成的相机传感器的智能指针。
+auto cam_actor = world.SpawnActor(*camera_bp, camera_transform, actor.get());
 
-        std::this_thread::sleep_for(10s);
+// 将相机传感器的智能指针转换为传感器类型的智能指针，以便后续操作。
+auto camera = boost::static_pointer_cast<cc::Sensor>(cam_actor);
 
-        // Remove actors from the simulation.
-        // 移除模拟环境中的相机传感器，释放相关资源，结束相机传感器的使用
-        camera->Destroy();
-        */
+// 注册一个回调函数，用于处理相机传感器采集到的图像数据。
+// 当相机采集到图像时，会调用这个回调函数。
+// 当前的处理逻辑是将接收到的图像数据转换为语义分割图像类型（这一步在代码中没有直接体现，可能是在SaveSemSegImageToDisk函数中实现的），
+// 然后调用保存图像到磁盘的函数（当前被注释掉了，所以不会生效）。
+camera->Listen([](auto data) {
+    auto image = boost::static_pointer_cast<csd::Image>(data); // 将接收到的数据转换为图像类型的智能指针。
+    EXPECT_TRUE(image != nullptr); // 断言图像不为空，确保接收到了有效的图像数据。
+    // SaveSemSegImageToDisk(*image); // 如果取消注释，这行代码会将语义分割图像保存到磁盘。
+});
 
-        // 销毁车辆，从模拟世界中移除生成的车辆实例，释放相关资源，完成本次模拟中车辆相关的操作
-        vehicle->Destroy();
-        std::cout << "Actors destroyed." << std::endl;
+// 让当前线程休眠10秒，以便相机有足够的时间采集图像数据。
+// 这里是为了演示，实际应用中可能需要根据具体需求调整休眠时间或者采用其他方式控制流程。
+std::this_thread::sleep_for(10s);
 
-    } catch (const cc::TimeoutException &e) {
-        // 捕获超时异常并打印异常信息，当连接CARLA服务器或者其他涉及超时的操作超过设置的时间限制时，会进入此异常处理分支，方便排查网络连接等相关问题
-        std::cout << '\n' << e.what() << std::endl;
-        return 1;
-    } catch (const std::exception &e) {
-        // 捕获其他异常并打印异常信息，用于处理除了超时异常之外的其他运行时异常情况，便于定位程序中其他可能出现的错误
-        std::cout << "\nException: " << e.what() << std::endl;
-        return 2;
-    }
+// （注释掉的代码）
+// 移除模拟环境中的相机传感器，释放相关资源，结束相机传感器的使用。
+// camera->Destroy();
+
+// 销毁车辆，从模拟世界中移除生成的车辆实例，释放相关资源。
+// 完成本次模拟中车辆相关的操作。
+vehicle->Destroy();
+std::cout << "Actors destroyed." << std::endl; // 打印信息，表示已经销毁了相关对象。
+
+// 异常处理部分
+} catch (const cc::TimeoutException &e) {
+    // 捕获超时异常并打印异常信息。
+    // 当连接CARLA服务器或者其他涉及超时的操作超过设置的时间限制时，会抛出超时异常。
+    // 进入此异常处理分支可以方便排查网络连接等相关问题。
+    std::cout << '\n' << e.what() << std::endl;
+    return 1; // 返回错误代码1，表示发生了超时异常。
+} catch (const std::exception &e) {
+    // 捕获其他异常并打印异常信息。
+    // 用于处理除了超时异常之外的其他运行时异常情况。
+    // 便于定位程序中其他可能出现的错误。
+    std::cout << "\nException: " << e.what() << std::endl;
+    return 2; // 返回错误代码2，表示发生了其他异常。
 }
