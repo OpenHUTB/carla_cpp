@@ -1,8 +1,10 @@
-
+# （这段注释说明了这段代码的目的：是要改变影响车辆的交通信号灯颜色，使其从红色变为绿色，实现方式是检测车辆角色是否处于交通信号灯处。）
 # This recipe changes from red to green the traffic light that affects the vehicle. 
 # This is done by detecting if the vehicle actor is at a traffic light.
 
 # ...
+# 获取游戏或模拟世界的实例，这里的 'client' 应该是与该世界进行交互的客户端对象，通过它可以获取到整个世界的相关信息，
+# 比如场景中的各种实体、地图信息等，后续操作都基于这个获取到的世界对象展开。
 world = client.get_world()
 spectator = world.get_spectator()
 
