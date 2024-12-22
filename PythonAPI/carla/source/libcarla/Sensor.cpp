@@ -38,7 +38,7 @@ void export_sensor() {
 
     // 定义一个名为 ServerSideSensor 的 Python 类，继承自 cc::Sensor，并设置为不可复制，使用智能指针管理
     class_<cc::ServerSideSensor, bases<cc::Sensor>, boost::noncopyable, boost::shared_ptr<cc::ServerSideSensor>>
-        ("ServerSideSensor", no_init)
+        ("ServerSideSensor", no_init)  // 定义类名 "ServerSideSensor"，并指定其基类为 cc::Sensor，且不允许通过 Python 创建实例
         .def("listen_to_gbuffer", &SubscribeToGBuffer, (arg("gbuffer_id"), arg("callback")))
         .def("is_listening_gbuffer", &cc::ServerSideSensor::IsListeningGBuffer, (arg("gbuffer_id")))
         .def("stop_gbuffer", &cc::ServerSideSensor::StopGBuffer, (arg("gbuffer_id")))
