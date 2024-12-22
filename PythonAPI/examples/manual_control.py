@@ -80,7 +80,7 @@ except IndexError:
 # ==============================================================================
 
 
-import carla
+import carla#导入  carla  模块
 
 from carla import ColorConverter as cc
 
