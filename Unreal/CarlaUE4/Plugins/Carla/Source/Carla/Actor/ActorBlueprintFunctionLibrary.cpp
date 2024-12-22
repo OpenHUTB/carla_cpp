@@ -1798,7 +1798,7 @@ FActorDefinition UActorBlueprintFunctionLibrary::MakeCustomV2XDefinition()
   check(Success);
   return Definition;
 }
-
+定义一个函数
 void UActorBlueprintFunctionLibrary::MakeCustomV2XDefinition(
     bool &Success,
     FActorDefinition &Definition)
@@ -1910,7 +1910,7 @@ FActorDefinition UActorBlueprintFunctionLibrary::MakeGnssDefinition()
   check(Success);
   return Definition;
 }
-
+定义新函数
 void UActorBlueprintFunctionLibrary::MakeGnssDefinition(
     bool &Success,
     FActorDefinition &Definition)
