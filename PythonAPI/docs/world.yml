@@ -1292,31 +1292,44 @@
         Draws a line in between `begin` and `end`.
     # --------------------------------------
     - def_name: draw_point
+      # `draw_point` 方法的主要作用是在模拟场景中绘制一个点，通过传入不同的参数来确定点的位置、外观以及存在时长等属性，以此在相应的模拟环境里呈现出符合需求的可视化效果。
       params: 
       - param_name: location
         type: carla.Location
         param_units: meters
         doc: >
           Spot in the coordinate system to center the object. 
+          # `location` 参数的类型为 `carla.Location`，单位是米（meters）。它用于指定在坐标系中该点所处的位置，也就是这个要绘制的点以何处为中心进行绘制，
+          # 通过传入符合 `carla.Location` 格式要求的坐标值（一般会包含空间中的三维坐标信息等，具体取决于 `carla.Location` 的详细定义），可以精准地确定点在模拟场景空间内的具体方位。
       - param_name: size
         type: float
         default: 0.1
         param_units: meters
         doc: >
           Density of the point.  
+          # `size` 参数是浮点数类型（float），单位为米（meters），默认值是 `0.1`。它用于表示点的大小或者说是密度相关的属性，
+          # 从描述来看，可能是决定了这个点在模拟场景中视觉呈现上的粗细、密集程度等外观特征，开发者可以根据实际可视化效果的期望来调整这个值，使其符合特定的展示需求。
       - param_name: color
         type: carla.Color
         default: (255,0,0)
         doc: >
           RGB code to color the object. Red by default. 
+          # `color` 参数的类型为 `carla.Color`，默认值是 `(255, 0, 0)`，即红色。该参数用于设定所绘制点的颜色，
+          # 通过传入符合 `carla.Color` 所定义的颜色编码（通常以 RGB 形式，三个数值分别对应红、绿、蓝三个颜色通道的值），能够自定义点在模拟场景中显示的颜色，
+          # 便于使其与整个模拟场景的色调相适配，或者突出显示该点以达到特定的视觉引导、区分等目的。
       - param_name: life_time
         type: float
         default: -1.0
         param_units: seconds
         doc: >
           Shape's lifespan. By default it only lasts one frame. Set this to <code>0</code> for permanent shapes. 
+          # `life_time` 参数属于浮点数类型（float），单位是秒（seconds），默认值为 `-1.0`。它用于定义所绘制点在模拟场景中的存活时长，
+          # 在默认情况下，该点只会在一帧画面中出现（存活时间很短）；若将其设置为 `0`，则意味着这个点会永久性地存在于模拟场景中，一直保持显示状态，
+          # 这样开发者就可以根据实际对该点展示时长的需求来灵活调整这个参数值，例如对于一些需要长期标记、重点提示的点可以设置为永久性显示。
       doc: >
         Draws a point `location`.
+        # 再次明确了 `draw_point` 方法的核心功能，即它会依据前面传入的各个参数，在指定的 `location`（由 `location` 参数确定的坐标位置）处绘制出一个点，
+        # 以此实现在模拟场景中可视化展示特定点的效果，满足诸如标记位置、辅助观察等各种在模拟过程中与可视化相关的应用需求。
     # --------------------------------------
     - def_name: draw_string
       params: 
