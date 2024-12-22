@@ -408,8 +408,9 @@ void export_world() {
       }, (arg("objects_name_list"), arg("diffuse_texture"), arg("emissive_texture"), arg("normal_texture"), arg("ao_roughness_metallic_emissive_texture")))
     .def(self_ns::str(self_ns::self))
   ;
-
+// 移除先前定义的宏 SPAWN_ACTOR_WITHOUT_GIL，避免可能的冲突
 #undef SPAWN_ACTOR_WITHOUT_GIL
+// 使用 Boost.Python 的 class_ 创建一个 Python 类绑定到 C++ 的 cc::DebugHelper 类
 
   class_<cc::DebugHelper>("DebugHelper", no_init)
     .def("draw_point", &cc::DebugHelper::DrawPoint,
