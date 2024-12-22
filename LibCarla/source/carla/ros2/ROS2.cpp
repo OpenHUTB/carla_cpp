@@ -143,7 +143,7 @@ std::string ROS2::GetActorRosName(void *actor) { // 获取操作者的ROS名称
     return std::string(""); // 返回空字符串
   }
 }
-
+// 获取操作者父节点名称
 std::string ROS2::GetActorParentRosName(void *actor) {
   auto it = _actor_parent_ros_name.find(actor);// 查找操作者的父节点ROS名称
   if (it != _actor_parent_ros_name.end())
@@ -811,7 +811,8 @@ void ROS2::ProcessDataFromObstacleDetection(
     void *actor) {  // 操作者
   log_info("Sensor ObstacleDetector to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "distance.", distance);// 记录日志：传感器障碍物检测到ROS数据
 }
-
+// 处理来自碰撞传感器的数据
+// 参数
 void ROS2::ProcessDataFromCollisionSensor(
     uint64_t sensor_type,// 传感器类型
     carla::streaming::detail::stream_id_type stream_id, // 流ID
@@ -819,13 +820,16 @@ void ROS2::ProcessDataFromCollisionSensor(
     uint32_t other_actor,// 其他操作者
     carla::geom::Vector3D impulse, // 冲击力
     void* actor) { // 操作者
+  // 获取或创建一个碰撞传感器
   auto sensors = GetOrCreateSensor(ESensors::CollisionSensor, stream_id, actor); // 获取或创建传感器
   if (sensors.first) {// 如果传感器存在
+    // 将其转换为CarlaCollisionPublisher类型
     std::shared_ptr<CarlaCollisionPublisher> publisher = std::dynamic_pointer_cast<CarlaCollisionPublisher>(sensors.first);// 动态转换到CarlaCollisionPublisher
     publisher->SetData(_seconds, _nanoseconds, other_actor, impulse.x, impulse.y, impulse.z);// 设置碰撞数据
     publisher->Publish();
   }
   if (sensors.second) {// 如果第二个传感器存在
+    // 将其转换为CarlaCollisionPublisher类型
     std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 动态转换到CarlaTransformPublisher
     publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
     publisher->Publish();// 发布变换数据
