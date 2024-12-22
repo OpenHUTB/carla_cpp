@@ -48,22 +48,22 @@
 
 #ifdef _MSC_VER
 #	pragma warning(push)
-#	pragma warning(disable: 4127) // 条件表达式是常量
+#	pragma warning(disable: 4127) // 常量是表达式
 #	pragma warning(disable: 4324) //这句话表示结构体（structure）由于使用了 __declspec(align()) 声明而进行了填充（padding）操作。
 #	pragma warning(disable: 4702) //不可达代码
-#	pragma warning(disable: 4996) // 这个函数或变量可能不安全
+#	pragma warning(disable: 4996) // 这个函数不安全
 #endif
 
 #if defined(_MSC_VER) && defined(__c2__)
 #	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wdeprecated" // 这个函数或变量可能不安全
+#	pragma clang diagnostic ignored "-Wdeprecated" // 这个变量可能不安全
 #endif
 
 #ifdef __INTEL_COMPILER
-#	pragma warning(disable: 177) // 函数已被声明，但从未被引用
+#	pragma warning(disable: 177) // 函数声明过后没有引用
 #	pragma warning(disable: 279) // 控制表达式是常量
 #	pragma warning(disable: 1478 1786) // 函数被声明为‘弃用
-#	pragma warning(disable: 1684) //从指针转换为同等大小的整型类型。
+#	pragma warning(disable: 1684) //将指针类型转换为整型。
 #endif
 
 #if defined(__BORLANDC__) && defined(PUGIXML_HEADER_ONLY)
