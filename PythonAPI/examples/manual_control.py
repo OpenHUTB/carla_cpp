@@ -808,72 +808,120 @@ class HUD(object):                       #定义了一个名为HUD的类，它�
         #将传入的时间戳中的elapsed_seconds属性赋值给self.simulation_time
 
     def tick(self, world, clock):
-        self._notifications.tick(world, clock)
-        if not self._show_info:
-            return
-        t = world.player.get_transform()
-        v = world.player.get_velocity()
-        c = world.player.get_control()
-        compass = world.imu_sensor.compass
-        heading = 'N' if compass > 270.5 or compass < 89.5 else ''
-        heading += 'S' if 90.5 < compass < 269.5 else ''
-        heading += 'E' if 0.5 < compass < 179.5 else ''
-        heading += 'W' if 180.5 < compass < 359.5 else ''
-        colhist = world.collision_sensor.get_collision_history()
-        collision = [colhist[x + self.frame - 200] for x in range(0, 200)]
-        max_col = max(1.0, max(collision))
-        collision = [x / max_col for x in collision]
-        vehicles = world.world.get_actors().filter('vehicle.*')
-        self._info_text = [
-            'Server:  % 16.0f FPS' % self.server_fps,
-            'Client:  % 16.0f FPS' % clock.get_fps(),
-            '',
-            'Vehicle: % 20s' % get_actor_display_name(world.player, truncate=20),
-            'Map:     % 20s' % world.map.name.split('/')[-1],
-            'Simulation time: % 12s' % datetime.timedelta(seconds=int(self.simulation_time)),
-            '',
-            'Speed:   % 15.0f km/h' % (3.6 * math.sqrt(v.x**2 + v.y**2 + v.z**2)),
-            u'Compass:% 17.0f\N{DEGREE SIGN} % 2s' % (compass, heading),
-            'Accelero: (%5.1f,%5.1f,%5.1f)' % (world.imu_sensor.accelerometer),
-            'Gyroscop: (%5.1f,%5.1f,%5.1f)' % (world.imu_sensor.gyroscope),
-            'Location:% 20s' % ('(% 5.1f, % 5.1f)' % (t.location.x, t.location.y)),
-            'GNSS:% 24s' % ('(% 2.6f, % 3.6f)' % (world.gnss_sensor.lat, world.gnss_sensor.lon)),
-            'Height:  % 18.0f m' % t.location.z,
-            '']
-        if isinstance(c, carla.VehicleControl):
-            self._info_text += [
-                ('Throttle:', c.throttle, 0.0, 1.0),
-                ('Steer:', c.steer, -1.0, 1.0),
-                ('Brake:', c.brake, 0.0, 1.0),
-                ('Reverse:', c.reverse),
-                ('Hand brake:', c.hand_brake),
-                ('Manual:', c.manual_gear_shift),
-                'Gear:        %s' % {-1: 'R', 0: 'N'}.get(c.gear, c.gear)]
-            if self._show_ackermann_info:
-                self._info_text += [
-                    '',
-                    'Ackermann Controller:',
-                    '  Target speed: % 8.0f km/h' % (3.6*self._ackermann_control.speed),
-                ]
-        elif isinstance(c, carla.WalkerControl):
-            self._info_text += [
-                ('Speed:', c.speed, 0.0, 5.556),
-                ('Jump:', c.jump)]
+    """
+    函数功能：在每一帧更新时执行相关操作，用于收集和整理模拟世界（`world`）中与角色（车辆或行人）相关的各种信息，并将这些信息整理成特定格式存储在 `_info_text` 属性中，
+    例如角色的位置、速度、传感器数据、控制参数以及周围车辆情况等信息，可能后续用于在界面上显示这些状态信息给用户查看。
+
+    参数说明：
+    - `self`：类的实例对象本身，通过它可以访问类的实例属性等信息，用于更新和操作实例中与信息展示相关的属性及数据结构。
+    - `world`：代表整个模拟世界的对象，包含了场景中的各种元素（车辆、行人、传感器等）以及相关的获取状态信息的方法，用于获取角色及世界的各种实时状态数据。
+    - `clock`：可能是用于记录时间相关信息的对象，例如获取当前帧率等，用于展示帧率相关信息以及一些基于时间的计算（虽然在本函数中未体现明显的时间计算依赖于 `clock`，但作为整体逻辑的一部分传入进来）。
+    """
+    self._notifications.tick(world, clock)
+    # 调用 `self._notifications` 对象的 `tick` 方法，传入模拟世界（`world`）和时间对象（`clock`），可能用于更新通知相关的状态信息（具体功能取决于 `_notifications` 对象的实现，此处未展示其代码细节），比如清除过期的通知等操作。
+
+    if not self._show_info:
+        return
+    # 如果 `_show_info` 属性为 `False`，表示不需要显示相关信息，直接返回，不执行后续的信息收集和整理操作，可能用于根据用户设置或者程序状态来决定是否展示详细信息。
+
+    t = world.player.get_transform()
+    # 获取模拟世界中当前主角（`world.player`，可能是车辆或者行人角色）的变换信息（`get_transform` 方法），包含了位置、旋转等信息，并存储到变量 `t` 中，后续会从中提取具体的位置等数据用于信息展示。
+
+    v = world.player.get_velocity()
+    # 获取模拟世界中当前主角的速度信息（`get_velocity` 方法），存储到变量 `v` 中，用于后续计算并展示主角的移动速度相关情况。
+
+    c = world.player.get_control()
+    # 获取模拟世界中当前主角的控制参数信息（`get_control` 方法），存储到变量 `c` 中，根据主角是车辆还是行人，其控制参数结构不同，后续会根据这个参数的类型来展示不同的控制相关信息（如油门、刹车、转向等对于车辆，速度、跳跃等对于行人）。
+
+    compass = world.imu_sensor.compass
+    # 从模拟世界的惯性测量单元（`imu_sensor`）中获取指南针方向数据（`compass`），该数据可能表示当前主角的朝向角度，用于后续判断并展示具体的方位信息（如东南西北方向）。
+
+    heading = 'N' if compass > 270.5 or compass < 89.5 else ''
+    heading += 'S' if 90.5 < compass < 269.5 else ''
+    heading += 'E' if 0.5 < compass < 179.5 else ''
+    heading += 'W' if 180.5 < compass < 359.5 else ''
+    // 根据获取到的指南针方向数据（`compass`）来确定并拼接方位字符串（`heading`），按照角度范围判断当前主角大致朝向哪个方向（北、南、东、西），例如角度大于 270.5 度或者小于 89.5 度则认为是朝北（添加 `N` 到 `heading` 字符串中），以此类推，最后 `heading` 字符串就表示了当前主角的方位信息。
+
+    colhist = world.collision_sensor.get_collision_history()
+    # 从模拟世界的碰撞传感器（`collision_sensor`）获取碰撞历史数据（`get_collision_history` 方法），这个数据可能是一个记录了过去一段时间内碰撞情况的序列，用于后续分析和展示碰撞相关信息。
+
+    collision = [colhist[x + self.frame - 200] for x in range(0, 200)]
+    // 通过列表推导式从碰撞历史数据（`colhist`）中提取最近 200 个时间步（此处 `self.frame` 可能与当前帧数相关，具体逻辑未完全展示，但大概是基于当前帧往前推 200 帧对应的碰撞数据）的碰撞信息，存储到 `collision` 列表中，方便后续对这段时间内的碰撞情况进行处理和展示。
+
+    max_col = max(1.0, max(collision))
+    collision = [x / max_col for x in collision]
+    // 先找出 `collision` 列表中的最大值（与 `1.0` 取较大值作为 `max_col`），然后将 `collision` 列表中的每个元素都除以 `max_col`，这样做可能是为了对碰撞数据进行归一化处理，使其数值范围更便于展示或者后续的比较分析等操作。
+
+    vehicles = world.world.get_actors().filter('vehicle.*')
+    // 通过模拟世界对象（`world.world`，这里可能是对整个世界场景中所有对象的一个顶层表示）的 `get_actors` 方法获取所有的演员（`actors`，在这个场景下可能主要是指车辆和行人等可移动对象），然后使用 `filter` 方法筛选出所有名称匹配 `vehicle.*` 模式的对象，也就是获取所有的车辆对象，存储到 `vehicles` 列表中，用于后续展示周围车辆相关信息。
+
+    self._info_text = [
+        'Server:  % 16.0f FPS' % self.server_fps,
+        'Client:  % 16.0f FPS' % clock.get_fps(),
+        '',
+        'Vehicle: % 20s' % get_actor_display_name(world.player, truncate=20),
+        'Map:     % 20s' % world.map.name.split('/')[-1],
+        'Simulation time: % 12s' % datetime.timedelta(seconds=int(self.simulation_time)),
+        '',
+        'Speed:   % 15.0f km/h' % (3.6 * math.sqrt(v.x**2 + v.y**2 + v.z**2)),
+        u'Compass:% 17.0f\N{DEGREE SIGN} % 2s' % (compass, heading),
+        'Accelero: (%5.1f,%5.1f,%5.1f)' % (world.imu_sensor.accelerometer),
+        'Gyroscop: (%5.1f,%5.1f,%5.1f)' % (world.imu_sensor.gyroscope),
+        'Location:% 20s' % ('(% 5.1f, % 5.1f)' % (t.location.x, t.location.y)),
+        'GNSS:% 24s' % ('(% 2.6f, % 3.6f)' % (world.gnss_sensor.lat, world.gnss_sensor.lon)),
+        'Height:  % 18.0f m' % t.location.z,
+        ''
+    ]
+    // 初始化 `self._info_text` 列表，用于存储要展示的各种信息文本内容，按照一定的格式进行组织，依次添加服务器帧率、客户端帧率、当前主角名称（车辆或行人，通过 `get_actor_display_name` 方法获取并截断显示长度为 20 个字符）、地图名称（取 `world.map.name` 分割后的最后一部分，可能是地图的具体名称或标识）、模拟时间（格式化为时间间隔形式）、主角速度（通过速度向量计算并转换为千米每小时单位）、指南针方向及方位信息、加速度计数据、陀螺仪数据、主角位置（提取 `x` 和 `y` 坐标展示）、全球导航卫星系统（`GNSS`）的经纬度信息、主角高度（`z` 坐标）等信息，每个信息占一行，方便后续整体展示。
+
+    if isinstance(c, carla.VehicleControl):
         self._info_text += [
-            '',
-            'Collision:',
-            collision,
-            '',
-            'Number of vehicles: % 8d' % len(vehicles)]
-        if len(vehicles) > 1:
-            self._info_text += ['Nearby vehicles:']
-            distance = lambda l: math.sqrt((l.x - t.location.x)**2 + (l.y - t.location.y)**2 + (l.z - t.location.z)**2)
-            vehicles = [(distance(x.get_location()), x) for x in vehicles if x.id != world.player.id]
-            for d, vehicle in sorted(vehicles, key=lambda vehicles: vehicles[0]):
-                if d > 200.0:
-                    break
-                vehicle_type = get_actor_display_name(vehicle, truncate=22)
-                self._info_text.append('% 4dm %s' % (d, vehicle_type))
+            ('Throttle:', c.throttle, 0.0, 1.0),
+            ('Steer:', c.steer, -1.0, 1.0),
+            ('Brake:', c.brake, 0.0, 1.0),
+            ('Reverse:', c.reverse),
+            ('Hand brake:', c.hand_brake),
+            ('Manual:', c.manual_gear_shift),
+            'Gear:        %s' % {-1: 'R', 0: 'N'}.get(c.gear, c.gear)
+        ]
+        if self._show_ackermann_info:
+            self._info_text += [
+                '',
+                'Ackermann Controller:',
+                '  Target speed: % 8.0f km/h' % (3.6*self._ackermann_control.speed)
+            ]
+        // 如果当前主角的控制参数（`c`）类型是 `carla.VehicleControl`，说明主角是车辆，则在 `_info_text` 列表中添加车辆特有的控制参数信息，包括油门（展示油门值，并标注取值范围是 0.0 到 1.0）、转向（展示转向值，并标注取值范围是 -1.0 到 1.0）、刹车（展示刹车值及取值范围）、是否倒车、是否手刹拉起、是否手动换挡以及当前挡位信息（通过字典映射将挡位值转换为对应的挡位表示，如 -1 表示倒车挡 `R`，0 表示空挡 `N` 等）。
+        // 如果 `_show_ackermann_info` 属性为 `True`，表示需要展示阿克曼控制器相关信息，则继续添加阿克曼控制器的目标速度信息（将速度值转换为千米每小时单位展示），用于给用户提供更详细的车辆控制相关状态。
+
+    elif isinstance(c, carla.WalkerControl):
+        self._info_text += [
+            ('Speed:', c.speed, 0.0, 5.556),
+            ('Jump:', c.jump)
+        ]
+        // 如果当前主角的控制参数（`c`）类型是 `carla.WalkerControl`，说明主角是行人，则在 `_info_text` 列表中添加行人特有的控制参数信息，包括行人的移动速度（展示速度值，并标注取值范围是 0.0 到 5.556，这里的取值范围应该是根据模拟环境中行人速度的合理范围设定的）以及是否跳跃（展示跳跃状态），方便用户了解行人的当前行为控制情况。
+
+    self._info_text += [
+        '',
+        'Collision:',
+        collision,
+        '',
+        'Number of vehicles: % 8d' % len(vehicles)
+    ]
+    // 在 `_info_text` 列表中继续添加碰撞信息相关内容，先是添加一个空行用于分隔，然后添加 `Collision:` 作为标识，接着添加之前处理好的归一化后的碰撞数据列表（`collision`），再添加一个空行，最后添加当前场景中车辆的数量信息（通过 `len(vehicles)` 获取车辆列表长度即车辆数量，并按照格式 `% 8d` 进行格式化展示），用于展示碰撞历史以及周围车辆的数量情况。
+
+    if len(vehicles) > 1:
+        self._info_text += ['Nearby vehicles:']
+        distance = lambda l: math.sqrt((l.x - t.location.x)**2 + (l.y - t.location.y)**2 + (l.z - t.location.z)**2)
+        vehicles = [(distance(x.get_location()), x) for x in vehicles if x.id!= world.player.id]
+        for d, vehicle in sorted(vehicles, key=lambda vehicles: vehicles[0]):
+            if d > 200.0:
+                break
+            vehicle_type = get_actor_display_name(vehicle, truncate=22)
+            self._info_text.append('% 4dm %s' % (d, vehicle_type))
+        // 如果场景中车辆数量大于 1（即除了主角车辆外还有其他车辆），则在 `_info_text` 列表中添加 `Nearby vehicles:` 作为标识，表示后续展示周围附近车辆的信息。
+        // 定义一个匿名函数（`lambda` 表达式） `distance`，用于计算给定位置（`l`）与主角位置（`t.location`）之间的距离，通过坐标差值的平方和开根号来计算欧几里得距离。
+        // 使用列表推导式遍历所有车辆（过滤掉主角车辆，通过 `x.id!= world.player.id` 判断），计算每辆车与主角的距离，并将距离和车辆对象组成元组，存储到新的 `vehicles` 列表中。
+        // 然后对这个新的 `vehicles` 列表按照距离（元组的第一个元素）进行排序（通过 `sorted` 函数和指定 `key` 参数为提取元组第一个元素的匿名函数），遍历排序后的列表，对于距离小于等于 200.0 米的车辆（超出这个距离则跳出循环，认为是较远不需要展示），获取车辆的显示名称（通过 `get_actor_display_name` 方法并截断长度为 22 个字符），并按照 `% 4dm %s` 的格式将距离（单位米）和车辆名称添加到 `_info_text` 列表中，用于展示主角周围附近车辆的距离及类型信息。
 
     def show_ackermann_info(self, enabled):
         self._show_ackermann_info = enabled
