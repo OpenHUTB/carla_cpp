@@ -698,44 +698,90 @@ class KeyboardControl(object):
                 world.player.apply_control(self._control)
 
     def _parse_vehicle_keys(self, keys, milliseconds):
-        if keys[K_UP] or keys[K_w]:
-            if not self._ackermann_enabled:
-                self._control.throttle = min(self._control.throttle + 0.1, 1.00)
-            else:
-                self._ackermann_control.speed += round(milliseconds * 0.005, 2) * self._ackermann_reverse
-        else:
-            if not self._ackermann_enabled:
-                self._control.throttle = 0.0
+    """
+    函数功能：根据传入的键盘按键状态（`keys`）以及时间间隔（`milliseconds`）信息，解析并更新车辆的控制参数，
+    针对是否启用阿克曼转向控制（`_ackermann_enabled`）有不同的计算和赋值逻辑，以实现对车辆油门、刹车、转向等操作的控制。
 
-        if keys[K_DOWN] or keys[K_s]:
-            if not self._ackermann_enabled:
-                self._control.brake = min(self._control.brake + 0.2, 1)
-            else:
-                self._ackermann_control.speed -= min(abs(self._ackermann_control.speed), round(milliseconds * 0.005, 2)) * self._ackermann_reverse
-                self._ackermann_control.speed = max(0, abs(self._ackermann_control.speed)) * self._ackermann_reverse
-        else:
-            if not self._ackermann_enabled:
-                self._control.brake = 0
-
-        steer_increment = 5e-4 * milliseconds
-        if keys[K_LEFT] or keys[K_a]:
-            if self._steer_cache > 0:
-                self._steer_cache = 0
-            else:
-                self._steer_cache -= steer_increment
-        elif keys[K_RIGHT] or keys[K_d]:
-            if self._steer_cache < 0:
-                self._steer_cache = 0
-            else:
-                self._steer_cache += steer_increment
-        else:
-            self._steer_cache = 0.0
-        self._steer_cache = min(0.7, max(-0.7, self._steer_cache))
+    参数说明：
+    - `self`：类的实例对象本身，通过它可以访问类的实例属性等信息，这里用于获取和更新实例中与车辆控制相关的属性。
+    - `keys`：一个表示键盘按键状态的对象（可能是 `pygame` 相关的数据结构），通过其元素（如 `keys[K_UP]` 等）可以判断各个特定按键是否被按下，用于确定用户的操作意图。
+    - `milliseconds`：表示时间间隔的数值，单位可能是毫秒，用于在一些控制参数的计算中，结合时间因素来实现更平滑、合理的控制效果，例如根据时间来调整速度变化量等。
+    """
+    if keys[K_UP] or keys[K_w]:
+        # 判断向上箭头键（`K_UP`）或者 `w` 键是否被按下，如果按下则执行以下操作，用于控制车辆加速（油门操作）。
         if not self._ackermann_enabled:
-            self._control.steer = round(self._steer_cache, 1)
-            self._control.hand_brake = keys[K_SPACE]
+            # 如果当前未启用阿克曼转向控制（车辆采用常规控制方式）。
+            self._control.throttle = min(self._control.throttle + 0.1, 1.00)
+            # 将车辆控制对象（`self._control`，类型为 `carla.VehicleControl`）中的油门（`throttle`）参数增加 `0.1`，
+            // 但同时通过 `min` 函数限制其最大值为 `1.00`，确保油门值在合理的范围 [0, 1] 内，避免超出正常的油门控制范围。
         else:
-            self._ackermann_control.steer = round(self._steer_cache, 1)
+            # 如果当前启用了阿克曼转向控制，则按照以下逻辑调整阿克曼控制相关的速度参数。
+            self._ackermann_control.speed += round(milliseconds * 0.005, 2) * self._ackermann_reverse
+            # 根据时间间隔（`milliseconds`）来计算速度的增加量，计算公式为 `milliseconds * 0.005` 并四舍五入保留两位小数，
+            // 然后再乘以 `_ackermann_reverse`（这个值可能与车辆行驶方向相关，比如倒车时取反速度变化方向等），最后将计算得到的速度变化量累加到阿克曼控制对象（`self._ackermann_control`）的 `speed` 属性上，实现速度的动态调整。
+    else:
+        if not self._ackermann_enabled:
+            self._control.throttle = 0.0
+            # 如果向上箭头键和 `w` 键都未被按下（即用户没有加速意图），且车辆采用常规控制方式，将油门参数设置为 `0.0`，表示车辆停止加速。
+
+    if keys[K_DOWN] or keys[K_s]:
+        # 判断向下箭头键（`K_DOWN`）或者 `s` 键是否被按下，如果按下则执行以下操作，用于控制车辆减速（刹车操作）。
+        if not self._ackermann_enabled:
+            # 如果当前未启用阿克曼转向控制（车辆采用常规控制方式）。
+            self._control.brake = min(self._control.brake + 0.2, 1)
+            # 将车辆控制对象（`self._control`）中的刹车（`brake`）参数增加 `0.2`，同时通过 `min` 函数限制其最大值为 `1`，
+            // 确保刹车值在合理的范围 [0, 1] 内，模拟刹车力度逐渐增加且不超过最大刹车强度的效果。
+        else:
+            # 如果当前启用了阿克曼转向控制，则按照以下逻辑调整阿克曼控制相关的速度参数，实现减速操作。
+            self._ackermann_control.speed -= min(abs(self._ackermann_control.speed), round(milliseconds * 0.005, 2)) * self._ackermann_reverse
+            # 首先计算本次刹车操作对应的速度减少量，取 `self._ackermann_control.speed` 的绝对值与 `milliseconds * 0.005` 四舍五入保留两位小数后的较小值，
+            // 再乘以 `_ackermann_reverse`（考虑行驶方向因素），从当前的 `_ackermann_control.speed` 中减去这个减少量，实现速度的降低。
+            self._ackermann_control.speed = max(0, abs(self._ackermann_control.speed)) * self._ackermann_reverse
+            # 然后确保速度值不小于 `0`，通过取 `0` 和当前速度绝对值的较大值再乘以 `_ackermann_reverse` 来更新速度，防止速度变为负数（符合实际物理情况）。
+    else:
+        if not self._ackermann_enabled:
+            self._control.brake = 0
+            # 如果向下箭头键和 `s` 键都未被按下（即用户没有刹车意图），且车辆采用常规控制方式，将刹车参数设置为 `0`，表示车辆不进行刹车操作。
+
+    steer_increment = 5e-4 * milliseconds
+    # 根据时间间隔（`milliseconds`）计算转向增量，计算公式为 `5e-4 * milliseconds`，意味着随着时间的增加，转向的调整幅度会相应增大，
+    // 这样可以使转向操作在不同的时间间隔下更加平滑、合理，避免瞬间转向幅度过大。
+
+    if keys[K_LEFT] or keys[K_a]:
+        # 判断向左箭头键（`K_LEFT`）或者 `a` 键是否被按下，如果按下则执行以下转向操作，用于控制车辆向左转向。
+        if self._steer_cache > 0:
+            self._steer_cache = 0
+            # 如果之前缓存的转向值（`_steer_cache`）大于 `0`（表示之前可能处于向右转向或者转向回正的状态），则将其重置为 `0`，
+            // 即优先响应新的向左转向操作，清除之前相反方向的转向缓存。
+        else:
+            self._steer_cache -= steer_increment
+            # 如果之前的转向缓存值小于等于 `0`，则按照计算得到的转向增量（`steer_increment`）减少 `_steer_cache` 的值，实现向左转向角度的累积增加，模拟逐渐向左打方向盘的操作。
+    elif keys[K_RIGHT] or keys[K_d]:
+        # 判断向右箭头键（`K_RIGHT`）或者 `d` 键是否被按下，如果按下则执行以下转向操作，用于控制车辆向右转向。
+        if self._steer_cache < 0:
+            self._steer_cache = 0
+            # 如果之前缓存的转向值（`_steer_cache`）小于 `0`（表示之前可能处于向左转向或者转向回正的状态），则将其重置为 `0`，
+            // 即优先响应新的向右转向操作，清除之前相反方向的转向缓存。
+        else:
+            self._steer_cache += steer_increment
+            # 如果之前的转向缓存值大于等于 `0`，则按照计算得到的转向增量（`steer_increment`）增加 `_steer_cache` 的值，实现向右转向角度的累积增加，模拟逐渐向右打方向盘的操作。
+    else:
+        self._steer_cache = 0.0
+        # 如果左右方向键都未被按下（即用户没有转向意图），则将转向缓存值重置为 `0.0`，表示车辆转向回正，停止转向操作。
+
+    self._steer_cache = min(0.7, max(-0.7, self._steer_cache))
+    # 对转向缓存值（`_steer_cache`）进行限制，确保其在合理的范围 [-0.7, 0.7] 内，避免转向角度过大导致不合理的车辆行驶状态，模拟实际车辆转向角度的合理限制。
+
+    if not self._ackermann_enabled:
+        self._control.steer = round(self._steer_cache, 1)
+        self._control.hand_brake = keys[K_SPACE]
+        # 如果当前未启用阿克曼转向控制（车辆采用常规控制方式）：
+        // - 将车辆控制对象（`self._control`）中的转向（`steer`）参数设置为经过四舍五入保留一位小数后的转向缓存值（`_steer_cache`），实现将计算好的转向角度应用到车辆控制上。
+        // - 根据空格键（`K_SPACE`）是否被按下，来设置车辆控制对象中的手刹（`hand_brake`）参数，若空格键被按下则手刹拉起（值为 `True`，此处虽未显式写布尔值转换，但根据 `keys` 的逻辑可推测如此），否则手刹松开（值为 `False`）。
+    else:
+        self._ackermann_control.steer = round(self._steer_cache, 1)
+        // 如果当前启用了阿克曼转向控制，则将阿克曼控制对象（`self._ackermann_control`）中的转向（`steer`）参数设置为经过四舍五入保留一位小数后的转向缓存值（`_steer_cache`），
+        // 按照阿克曼转向控制的逻辑来应用转向角度，实现对车辆转向的精确控制。
 
     def _parse_walker_keys(self, keys, milliseconds, world):
         self._control.speed = 0.0
