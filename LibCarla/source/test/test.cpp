@@ -22,7 +22,7 @@ namespace carla {
     // 记录一个严重级别的日志，包含异常的描述信息，帮助开发者了解发生了什么错误。
     log_critical("carla::throw_exception:", e.what());
     
-    // 记录另一个严重级别的日志，明确说明因为异常被禁用，程序将调用std::terminate来终止执行。
+    // 记录另一个严重级别的日志，说明禁用的2原因，程序将调用std::terminate来终止执行。
     // 这有助于开发者理解程序为何突然终止。
     log_critical("calling std::terminate because exceptions are disabled."); 
     
@@ -44,6 +44,6 @@ namespace util {
   // std::random_device是一个能够生成非确定性随机数的类，通常用于初始化随机数生成器的种子。
   thread_local std::mt19937_64 Random::_engine((std::random_device())());
 
-  // 注意：这里只定义了_engine变量，并没有展示Random类的其他部分（如成员函数等）。
+  // 注意：这里定义了engine变量但未展示成员函数
   // Random类可能提供了获取随机数的方法，这些方法内部会使用_engine来生成随机数。
 } // namespace util
