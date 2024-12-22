@@ -1199,36 +1199,58 @@
 
     # --------------------------------------
     - def_name: draw_hud_line
+      # `draw_hud_line` 方法的主要功能是在模拟场景的平视显示器（HUD，Head-Up Display）上绘制一条线段，通过接收多个参数来精确控制该线段在 HUD 上的起止位置、外观特点以及存在时长等属性，进而在 HUD 界面呈现出符合特定需求的可视化效果，同时要注意这条绘制出的线段只能在服务器端被看到。
+
       params:
       - param_name: begin
         type: carla.Location
         param_units: meters
         doc: >
           Point in the coordinate system where the line starts.
+          # `begin` 参数的类型为 `carla.Location`，单位是米（meters）。它用于明确线段在坐标系中的起始点位置，
+          # 也就是通过传入符合 `carla.Location` 要求的坐标信息（通常包含空间中的三维坐标等具体内容，取决于 `carla.Location` 的定义细节），来精准确定这条要绘制在 HUD 上的线段从哪里开始，界定其起始方位。
+
       - param_name: end
         type: carla.Location
         param_units: meters
         doc: >
           Spot in the coordinate system where the line ends.
+          # `end` 参数同样是 `carla.Location` 类型，单位为米（meters）。它的作用是指定线段在坐标系中的终止点位置，
+          # 与 `begin` 参数相配合，共同确定线段在模拟场景空间（对应到 HUD 所展示的空间范围）内的走向和长度，依据传入的坐标值准确界定线段的结束方位。
+
       - param_name: thickness
         type: float
         default: 0.1
         param_units: meters
         doc: >
           Density of the line.
+          # `thickness` 参数属于浮点数类型（float），单位是米（meters），默认值为 `0.1`。它用于表示线段的粗细程度，也就是决定了这条线段在 HUD 上视觉呈现时的线宽情况，
+          # 开发者可以根据实际期望达到的可视化效果，对该参数值进行适当调整，使线段以合适的粗细程度显示在 HUD 界面上，满足诸如突出显示、区分不同线段等特定的展示需求。
+
       - param_name: color
         type: carla.Color
         default: (255,0,0)
         doc: >
           RGB code to color the object. Red by default.
+          # `color` 参数的类型是 `carla.Color`，默认值为 `(255, 0, 0)`，即红色。该参数用于设定所绘制线段的颜色，
+          # 通过传入符合 `carla.Color` 定义的颜色编码（一般以 RGB 形式呈现，三个数值分别对应红、绿、蓝三个颜色通道的值），能够自定义线段在 HUD 上显示的颜色，
+          # 便于使其与整个模拟场景或者 HUD 界面的整体色调相适配，或者通过特定的颜色来突出显示该线段，以实现不同的视觉引导、区分等可视化目的。
+
       - param_name: life_time
         type: float
         default: -1.0
         param_units: seconds
         doc: >
           Shape's lifespan. By default it only lasts one frame. Set this to <code>0</code> for permanent shapes.
+          # `life_time` 参数为浮点数类型（float），单位是秒（seconds），默认值为 `-1.0`。它用于定义所绘制线段在 HUD 上的存活时长，
+          # 在默认情况下，线段只会在一帧画面中出现在 HUD 上（存活时间较短）；若将其设置为 `0`，则意味着这条线段会永久性地显示在 HUD 上，一直保持可见状态，
+          # 这样开发者就可以根据实际对线段在 HUD 上展示时长的需求，灵活调整这个参数值，例如对于一些需要长期作为参考、标记重要路径等的线段，可以将其设置为永久性显示。
+
       doc: >
         Draws a line on the HUD in between `begin` and `end`. The line can only be seen server-side.
+        # 再次强调了 `draw_hud_line` 方法的核心功能以及其显示特性，即它会依据传入的 `begin` 和 `end` 参数所确定的起止点位置，结合 `thickness`、`color`、`life_time` 等参数设定的外观和时长属性，
+        # 在 HUD 上绘制出一条线段，并且明确指出这条绘制出来的线段只能在服务器端被看到，意味着客户端（如果存在对应的客户端应用等情况）无法直接观察到该线段在 HUD 上的显示情况，
+        # 这一特性是整个模拟系统架构在数据处理、可视化展示等方面进行特定设计的体现，有着相应的应用场景和设计考量。
 
     # --------------------------------------
     - def_name: draw_hud_point
