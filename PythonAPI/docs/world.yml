@@ -146,7 +146,9 @@
 
   - class_name: WorldSettings
     # - DESCRIPTION ------------------------
-    doc: >
+    doc: > # 下面这段文档字符串（doc）用于对一个类（从上下文推测可能是和整个模拟系统配置相关的类）进行功能方面的阐述，旨在让阅读代码的人明白该类在整个模拟体系中的关键作用以及使用方式等情况。
+    # 首先说明模拟系统（这里应该是指整个软件所构建的模拟环境，比如可能是车辆模拟、城市模拟或者其他场景模拟等应用场景下的模拟平台）存在一些高级的配置选项，
+      # 这些配置选项被包含在当前所描述的这个类当中，意味着要对这些高级配置进行操作、管理，就需要通过这个类来进行，它充当了配置管理的一个载体或者说入口。
       The simulation has some advanced configuration options that are contained in this class and can be managed using carla.World and its methods. These allow the user to choose between client-server synchrony/asynchrony, activation of "no rendering mode" and either if the simulation should run with a fixed or variable time-step. Check [this](adv_synchrony_timestep.md) out if you want to learn about it. 
     # - PROPERTIES -------------------------
     instance_variables:
