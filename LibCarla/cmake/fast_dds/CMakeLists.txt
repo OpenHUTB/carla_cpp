@@ -70,5 +70,6 @@ if (LIBCARLA_BUILD_DEBUG)
 
   # 设置目标的编译选项，使用调试版本的编译标志
   set_target_properties(carla_fastdds_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG  # 定义编译时的预处理器宏，启用Boost库的ASIO调试模式
+ #定义编译目标
   target_compile_definitions(carla_fastdds_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
 endif()  # 结束调试版本构建的条件判断块
