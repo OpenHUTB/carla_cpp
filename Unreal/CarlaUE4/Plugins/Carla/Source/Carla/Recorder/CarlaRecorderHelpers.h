@@ -9,14 +9,14 @@
 #include <sstream>
 #include <vector>
 
-// get the final path + filename
+// 获取最终路径 + 文件名
 std::string GetRecorderFilename(std::string Filename);
 
 // ---------
-// recorder
+// 录音机
 // ---------
 
-// write binary data (using sizeof())
+// 写入二进制数据（使用 sizeOf（））
 template <typename T>
 void WriteValue(std::ostream &OutFile, const T &InObj)
 {
@@ -43,16 +43,16 @@ void WriteTArray(std::ostream &OutFile, const TArray<T> &InVec)
   }
 }
 
-// write binary data from FVector
+// 从 FVector 写入二进制数据
 void WriteFVector(std::ostream &OutFile, const FVector &InObj);
 
-// write binary data from FTransform
+// 从 FTransform 写入二进制数据
 void WriteFTransform(std::ofstream &OutFile, const FTransform &InObj);
 // write binary data from FString (length + text)
 void WriteFString(std::ostream &OutFile, const FString &InObj);
 
 // ---------
-// replayer
+// 回放
 // ---------
 
 // read binary data (using sizeof())
@@ -90,10 +90,10 @@ void ReadTArray(std::istream &InFile, TArray<T> &OutVec)
   }
 }
 
-// read binary data from FVector
+// 从 FVector 读取二进制数据
 void ReadFVector(std::istream &InFile, FVector &OutObj);
 
-// read binary data from FTransform
+// 从 FTransform 读取二进制数据
 void ReadTransform(std::ifstream &InFile, FTransform &OutObj);
-// read binary data from FString (length + text)
+// 从 FString 读取二进制数据（长度 + 文本）
 void ReadFString(std::istream &InFile, FString &OutObj);
