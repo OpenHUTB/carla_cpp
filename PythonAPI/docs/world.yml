@@ -184,54 +184,84 @@
     # - METHODS ----------------------------
     methods:
     - def_name: __init__
+      # `__init__` 方法作为Python类中的构造函数，在创建类的实例对象时会自动被调用，其核心任务就是对新创建的实例进行初始化操作，
+      # 依据传入的参数来为实例对象的各个属性赋予初始值，以此确定实例对象初始的状态和配置情况，使其符合预期的使用要求。
       params:
       - param_name: synchronous_mode
         type: bool
         default: False
         doc: >
           Set this to true to enable client-server synchrony. 
+          # `synchronous_mode` 参数是布尔类型（bool），默认值设定为 `False`。
+          # 它的作用在于控制客户端与服务器之间的同步特性。当把这个参数的值设置为 `True` 时，就会开启客户端和服务器之间的同步机制，
+          # 这在模拟场景中对于确保客户端操作与服务器响应能够精准、按顺序协同进行非常关键，比如在一些需要严格时间顺序交互的复杂模拟应用场景下会用到。
       - param_name: no_rendering_mode
         type: bool
         default: False
         doc: >
           Set this to true to completely disable rendering in the simulation.
+          # `no_rendering_mode` 参数同样为布尔类型，默认值是 `False`。
+          # 该参数用于决定是否要完全禁止模拟过程中的渲染操作。若将其设置为 `True`，整个模拟过程里的渲染相关功能都会被关闭，
+          # 这种情况适用于那些重点关注模拟数据本身的处理和逻辑运算，而不需要可视化输出的应用场景，例如大规模的数据模拟测试场景等，可有效节省渲染资源消耗。
       - param_name: fixed_delta_seconds
         type: float
         default: 0.0
         param_units: seconds
         doc: >
           Set a fixed time-step in between frames. <code>0.0</code> means variable time-step and it is the default mode. 
+          # `fixed_delta_seconds` 参数属于浮点数类型（float），单位为秒（seconds），默认值为 `0.0`。
+          # 它主要用于设定帧与帧之间的时间步长。当此参数取值为 `0.0` 时，表示采用可变时间步长模式，这也是系统默认的模式；
+          # 而如果赋予它一个大于 `0` 的具体数值，那么模拟过程中的帧间时间间隔就会被固定为该设定的数值，
+          # 这对于需要精确把控模拟节奏、确保物理模拟精度等情况的模拟应用场景来说十分重要，比如一些高精度物理模拟实验场景。
       - param_name: max_culling_distance
         type: float
         default: 0.0
         param_units: meters
         doc: >
           Configure the max draw distance for each mesh of the level. 
+          # `max_culling_distance` 参数为浮点数类型，单位是米（meters），默认值是 `0.0`。
+          # 其功能是用来配置场景中每个网格（mesh）的最大绘制距离。在模拟场景渲染时，凡是超过这个设定距离的网格都不会再被绘制展示出来，
+          # 通过合理调整该参数的值，可以有效优化渲染性能，避免在渲染大规模场景或者复杂场景时处理过多远处不必要的细节内容，节省渲染资源开销。
       - param_name: deterministic_ragdolls
         type: bool
         default: False
         doc: >
           Defines wether to use deterministic physics or ragdoll simulation for pedestrian deaths.
+          # `deterministic_ragdolls` 参数为布尔类型，默认值为 `False`。
+          # 这个参数专门用于定义在模拟中处理行人“死亡”情况（这里一般指行人进入特定的失去行动能力、倒地等相关模拟状态）时，
+          # 是采用确定性的物理模拟方式，还是采用布娃娃（ragdoll）模拟方式，方便根据具体的模拟需求来精准选择合适的物理模拟策略。
       - param_name: tile_stream_distance
         type: float
         default: 3000
         param_units: meters
         doc: >
           Used for large maps only. Configures the maximum distance from the hero vehicle to stream tiled maps.
+          # `tile_stream_distance` 参数是浮点数类型，单位为米（meters），默认值为 `3000`，并且明确限定了仅在大型地图场景中使用。
+          # 它的作用是配置从“主角车辆”（通常是模拟场景里重点关注、作为核心参照的车辆对象）到流式传输分块地图（tiled maps）的最大距离，
+          # 即在大型地图的模拟场景中，根据这个距离设定来控制地图分块数据的加载范围，避免一次性加载过多不必要的地图数据，实现对地图数据传输和加载策略的优化，提升整体性能。
       - param_name: actor_active_distance
         type: float
         default: 2000
         param_units: meters
         doc: >
           Used for large maps only. Configures the distance from the hero vehicle to convert actors to dormant.
+          # `actor_active_distance` 参数也是浮点数类型，单位是米（meters），默认值为 `2000`，同样仅适用于大型地图场景。
+          # 它用于设定从“主角车辆”到将其他角色（actors，例如模拟场景中的行人、其他车辆等实体对象）转换为休眠（dormant，意味着暂时降低活跃度，可能不参与部分模拟运算等情况）状态的距离，
+          # 在大型地图模拟过程中，通过合理调整这个距离，可以有效控制哪些角色处于活跃状态参与模拟，哪些角色暂时休眠，以此节省计算资源，提高模拟效率。
       - param_name: spectator_as_ego
         type: bool
         default: True
         doc: >
           Used for large maps only. Defines the influence of the spectator on tile loading in Large Maps. 
-        
+          # `spectator_as_ego` 参数为布尔类型，默认值为 `True`，且明确规定仅用于大型地图场景。
+          # 它的功能是定义在大型地图中“旁观者”（通常是指模拟场景里与观察视角相关的对象或角色）对分块地图（tiled maps）加载的影响情况，
+          # 根据这个参数的设置，来决定旁观者因素在地图分块加载过程中所起到的作用，例如是否会依据旁观者所在位置等来影响地图分块的加载顺序、范围等内容。
       doc: >
         Creates an object containing desired settings that could later be applied through carla.World and its method __<font color="#7fb800">apply_settings()</font>__.
+        # 这段文档字符串对 `__init__` 方法的整体功能做了进一步说明。即该构造函数会创建一个包含了各种期望设置的对象，
+        # 这些设置就是通过前面各个参数所传入和配置的值来确定的。而创建这个对象的目的在于，后续可以通过 `carla.World`（很可能是整个模拟场景相关的核心类或者对象，代表整个世界场景等概念）
+        # 以及它的 `apply_settings()` 方法，将这些预先配置好的设置应用到实际的模拟场景中去，实现对模拟场景相关参数和配置的统一管理与动态调整，
+        # 方便根据不同的模拟需求灵活地配置整个模拟世界的运行状态和展示效果等情况。
     # --------------------------------------
     - def_name: __eq__
       return: bool
