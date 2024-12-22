@@ -174,8 +174,11 @@ install(FILES ${libcarla_carla_opendrive_sources} DESTINATION include/carla/open
 file(GLOB libcarla_carla_opendrive_parser_sources
     "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
     "${libcarla_source_path}/carla/opendrive/parser/*.h")
-set(libcarla_sources "${libcarla_sources};${libcarla_carla_opendrive_parser_sources}")
-install(FILES ${libcarla_carla_opendrive_parser_sources} DESTINATION include/carla/opendrive/parser)
+set(libcarla_sources "${libcarla_sources};${libcarla_carla_opendrive_parser_sources}")# 使用 set 命令对变量 libcarla_sources 进行赋值操作，将原有的 libcarla_sources 变量内容（如果有的话）与新收集到的 OpenDrive 解析器相关文件路径（变量 libcarla_carla_opendrive_parser_sources 的值）进行拼接（通过分号分隔）后重新赋值给 libcarla_sources 变量。
+# 这样做的目的可能是将不同功能模块的源文件路径汇总到一起，方便后续统一处理，例如用于创建库或者可执行文件等操作，确保各个模块的代码都能参与到整体的项目构建中。
+install(FILES ${libcarla_carla_opendrive_parser_sources} DESTINATION include/carla/opendrive/parser)# 使用 install 命令进行文件安装操作，指定要安装的文件就是存储在变量 ${libcarla_carla_opendrive_parser_sources} 中的那些 OpenDrive 解析器相关的源文件和头文件（前面通过 file(GLOB) 收集到的）。
+# DESTINATION 参数指定了安装的目标目录为 include/carla/opendrive/parser，也就是在安装过程中，会把收集到的与 OpenDrive 解析器相关的文件复制到指定的 include/carla/opendrive/parser 目录下。
+# 这样做的好处是，当其他代码想要使用 Carla 项目中 OpenDrive 解析器相关的功能时，可以方便地在这个安装目录下找到对应的头文件进行包含，以顺利进行编译等操作，规范了项目接口文件的安装位置，便于项目的对外使用和分发。
 
 # 添加点云（LibCarla/source/carla/pointcloud/）相关代码
 file(GLOB libcarla_carla_pointcloud_sources
