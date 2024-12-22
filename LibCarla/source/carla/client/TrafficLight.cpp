@@ -3,8 +3,9 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
-#include "carla/client/TrafficLight.h"
+// 包含头文件
+#include "carla/client/TrafficLight.h" // TrafficLight类的定义文件
+// 提供了与模拟器交互和演员列表相关的功能
 #include "carla/client/detail/Simulator.h"
 #include "carla/client/ActorList.h"
 
@@ -14,15 +15,18 @@
 namespace carla {
 namespace client {
   // 设置交通信号灯的当前状态（如红灯、黄灯、绿灯）
+// 接收一个rpc::TrafficLightState 类型的参数，表示要设置的交通信号灯的状态
   void TrafficLight::SetState(rpc::TrafficLightState state) {
     GetEpisode().Lock()->SetTrafficLightState(*this, state);
   }
 
   //获取交通信号灯的当前状态
+
   rpc::TrafficLightState TrafficLight::GetState() const {
     return GetEpisode().Lock()->GetActorSnapshot(*this).state.traffic_light_data.state;
   }
   // 设置绿灯持续时间
+// 接收一个浮点数参数，表示绿灯持续时间
   void TrafficLight::SetGreenTime(float green_time) {
     GetEpisode().Lock()->SetTrafficLightGreenTime(*this, green_time);
   }

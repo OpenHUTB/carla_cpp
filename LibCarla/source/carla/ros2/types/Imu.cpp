@@ -23,6 +23,7 @@ char dummy;
 using namespace eprosima::fastcdr::exception;
 #include <utility>
 // 以下定义了各个相关消息类型的最大CDR序列化大小以及最大键CDR序列化大小，这些宏定义的值用于后续序列化相关的计算和操作
+// 宏定义
 #define geometry_msgs_msg_Vector3_max_cdr_typesize 24ULL;
 #define std_msgs_msg_Time_max_cdr_typesize 8ULL;
 
@@ -36,11 +37,13 @@ using namespace eprosima::fastcdr::exception;
 #define std_msgs_msg_Header_max_key_cdr_typesize 0ULL;
 #define sensor_msgs_msg_Imu_max_key_cdr_typesize 0ULL;
 // sensor_msgs::msg::Imu类的默认构造函数，用于初始化Imu对象的各个成员变量
+// 初始化imu对象的各个成员变量
 sensor_msgs::msg::Imu::Imu()
 {
     // std_msgs::msg::Header m_header
     // geometry_msgs::msg::Quaternion m_orientation
     // sensor_msgs::msg::sensor_msgs__Imu__double_array_9 m_orientation_covariance
+    // 初始化为0
     memset(&m_orientation_covariance, 0, (9) * 8);
     // geometry_msgs::msg::Vector3 m_angular_velocity
     // sensor_msgs::msg::sensor_msgs__Imu__double_array_9 m_angular_velocity_covariance
@@ -52,6 +55,7 @@ sensor_msgs::msg::Imu::Imu()
 sensor_msgs::msg::Imu::~Imu()
 {
 }
+// 拷贝构造函数
 sensor_msgs::msg::Imu::Imu(
         const Imu& x)
 {
@@ -120,7 +124,7 @@ size_t sensor_msgs::msg::Imu::getMaxCdrSerializedSize(
     static_cast<void>(current_alignment);
     return sensor_msgs_msg_Imu_max_cdr_typesize;
 }
-
+// 计算将Imu对象序列化到CDR格式所需的字节数
 size_t sensor_msgs::msg::Imu::getCdrSerializedSize(
         const sensor_msgs::msg::Imu& data,
         size_t current_alignment)
@@ -133,6 +137,7 @@ size_t sensor_msgs::msg::Imu::getCdrSerializedSize(
     current_alignment += ((9) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
     current_alignment += geometry_msgs::msg::Vector3::getCdrSerializedSize(data.linear_acceleration(), current_alignment);
     current_alignment += ((9) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    // 返回序列化后的总字节数与初始对齐式的差值
     return current_alignment - initial_alignment;
 }
 // 将Imu对象的各个成员变量序列化到给定的CDR对象中，按照成员变量定义的顺序依次进行序列化操作
@@ -148,103 +153,104 @@ void sensor_msgs::msg::Imu::serialize(
     scdr << m_linear_acceleration_covariance;
 }
 // 从给定的CDR对象中反序列化数据到Imu对象的各个成员变量中，按照与序列化相反的顺序依次读取数据进行赋值
-void sensor_msgs::msg::Imu::deserialize(
-        eprosima::fastcdr::Cdr& dcdr)
-{
-    dcdr >> m_header;
-    dcdr >> m_orientation;
-    dcdr >> m_orientation_covariance;
-    dcdr >> m_angular_velocity;
-    dcdr >> m_angular_velocity_covariance;
-    dcdr >> m_linear_acceleration;
-    dcdr >> m_linear_acceleration_covariance;
-}
+void sensor_msgs::msg::Imu::deserialize(  
+        eprosima::fastcdr::Cdr& dcdr)  
+{  
+    // 从 Cdr 数据流中反序列化成员变量  
+    dcdr >> m_header;                     // 反序列化头部信息  
+    dcdr >> m_orientation;                // 反序列化方向四元数  
+    dcdr >> m_orientation_covariance;     // 反序列化方向协方差  
+    dcdr >> m_angular_velocity;           // 反序列化角速度  
+    dcdr >> m_angular_velocity_covariance; // 反序列化角速度协方差  
+    dcdr >> m_linear_acceleration;        // 反序列化线性加速度  
+    dcdr >> m_linear_acceleration_covariance; // 反序列化线性加速度协方差  
+}  
 
-/*!
- * @brief This function copies the value in member header
- * @param _header New value to be copied in member header
- */
-void sensor_msgs::msg::Imu::header(
-        const std_msgs::msg::Header& _header)
-{
-    m_header = _header;
-}
+/*!  
+ * @brief 复制成员变量 header 的值  
+ * @param _header 新值，将被复制到成员变量 header  
+ */  
+void sensor_msgs::msg::Imu::header(  
+        const std_msgs::msg::Header& _header)  
+{  
+    m_header = _header; // 复制 header  
+}  
 
-/*!
- * @brief This function moves the value in member header
- * @param _header New value to be moved in member header
- */
-void sensor_msgs::msg::Imu::header(
-        std_msgs::msg::Header&& _header)
-{
-    m_header = std::move(_header);
-}
+/*!  
+ * @brief 移动成员变量 header 的值  
+ * @param _header 新值，将被移动到成员变量 header  
+ */  
+void sensor_msgs::msg::Imu::header(  
+        std_msgs::msg::Header&& _header)  
+{  
+    m_header = std::move(_header); // 移动 header  
+}  
 
-/*!
- * @brief This function returns a constant reference to member header
- * @return Constant reference to member header
- */
-const std_msgs::msg::Header& sensor_msgs::msg::Imu::header() const
-{
-    return m_header;
-}
+/*!  
+ * @brief 返回成员变量 header 的常量引用  
+ * @return 常量引用，指向成员变量 header  
+ */  
+const std_msgs::msg::Header& sensor_msgs::msg::Imu::header() const  
+{  
+    return m_header; // 返回 header 的常量引用  
+}  
 
-/*!
- * @brief This function returns a reference to member header
- * @return Reference to member header
- */
-std_msgs::msg::Header& sensor_msgs::msg::Imu::header()
-{
-    return m_header;
-}
+/*!  
+ * @brief 返回成员变量 header 的引用  
+ * @return 引用，指向成员变量 header  
+ */  
+std_msgs::msg::Header& sensor_msgs::msg::Imu::header()  
+{  
+    return m_header; // 返回 header 的可修改引用  
+}  
 
-/*!
- * @brief This function copies the value in member orientation
- * @param _orientation New value to be copied in member orientation
- */
-void sensor_msgs::msg::Imu::orientation(
-        const geometry_msgs::msg::Quaternion& _orientation)
-{
-    m_orientation = _orientation;
-}
+/*!  
+ * @brief 复制成员变量 orientation 的值  
+ * @param _orientation 新值，将被复制到成员变量 orientation  
+ */  
+void sensor_msgs::msg::Imu::orientation(  
+        const geometry_msgs::msg::Quaternion& _orientation)  
+{  
+    m_orientation = _orientation; // 复制方向  
+}  
 
-/*!
- * @brief This function moves the value in member orientation
- * @param _orientation New value to be moved in member orientation
- */
-void sensor_msgs::msg::Imu::orientation(
-        geometry_msgs::msg::Quaternion&& _orientation)
-{
-    m_orientation = std::move(_orientation);
-}
+/*!  
+ * @brief 移动成员变量 orientation 的值  
+ * @param _orientation 新值，将被移动到成员变量 orientation  
+ */  
+void sensor_msgs::msg::Imu::orientation(  
+        geometry_msgs::msg::Quaternion&& _orientation)  
+{  
+    m_orientation = std::move(_orientation); // 移动方向  
+}  
 
-/*!
- * @brief This function returns a constant reference to member orientation
- * @return Constant reference to member orientation
- */
-const geometry_msgs::msg::Quaternion& sensor_msgs::msg::Imu::orientation() const
-{
-    return m_orientation;
-}
+/*!  
+ * @brief 返回成员变量 orientation 的常量引用  
+ * @return 常量引用，指向成员变量 orientation  
+ */  
+const geometry_msgs::msg::Quaternion& sensor_msgs::msg::Imu::orientation() const  
+{  
+    return m_orientation; // 返回方向的常量引用  
+}  
 
-/*!
- * @brief This function returns a reference to member orientation
- * @return Reference to member orientation
- */
-geometry_msgs::msg::Quaternion& sensor_msgs::msg::Imu::orientation()
-{
-    return m_orientation;
-}
+/*!  
+ * @brief 返回成员变量 orientation 的引用  
+ * @return 引用，指向成员变量 orientation  
+ */  
+geometry_msgs::msg::Quaternion& sensor_msgs::msg::Imu::orientation()  
+{  
+    return m_orientation; // 返回方向的可修改引用  
+}  
 
-/*!
- * @brief This function copies the value in member orientation_covariance
- * @param _orientation_covariance New value to be copied in member orientation_covariance
- */
-void sensor_msgs::msg::Imu::orientation_covariance(
-        const sensor_msgs::msg::sensor_msgs__Imu__double_array_9& _orientation_covariance)
-{
-    m_orientation_covariance = _orientation_covariance;
-}
+/*!  
+ * @brief 复制成员变量 orientation_covariance 的值  
+ * @param _orientation_covariance 新值，将被复制到成员变量 orientation_covariance  
+ */  
+void sensor_msgs::msg::Imu::orientation_covariance(  
+        const sensor_msgs::msg::sensor_msgs__Imu__double_array_9& _orientation_covariance)  
+{  
+    m_orientation_covariance = _orientation_covariance; // 复制方向协方差  
+}  
 
 /*!
  * @brief This function moves the value in member orientation_covariance

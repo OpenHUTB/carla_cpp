@@ -142,8 +142,8 @@ git rm -rf .
 [ggiiatr](https://github.com/ggiiatr) 、
 [suki-mina](https://github.com/suki-mina) 、
 [qqggxx](https://github.com/qqggxx)、
-[leeyuu-z](http://github.com/leeyuu-z) 、
-[zi666zi](http://github.com/zi666zi) 、
+[leeyuu-z](https://github.com/leeyuu-z) 、
+[zi666zi](https://github.com/zi666zi) 、
 [dzq168](https://github.com/dzq168)、
 [riset77](https://github.com/riset77)、
 [ylyl551](https://github.com/yly551)、
@@ -248,3 +248,4 @@ git rm -rf .
 [xiaochenop](https://github.com/xiaochenop)
 [chaojixiangshuijiao](https://github.com/chaojixiangshuijiao)
 [liiiiiking](https://github.com/liiiiiking/carla_cpp.git)
+[Yygo100](https://github.com/Yygo100)
