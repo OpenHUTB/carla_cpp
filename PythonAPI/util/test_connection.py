@@ -67,7 +67,7 @@ def main():
         except RuntimeError:
             pass
 
-    print('Failed to connect to %s:%d.' % (args.host, args.port))
+    print('Failed to connect to %s:%d.' % (args.host, args.port))# 如果循环结束后仍未成功连接（即超出了设定的超时时间），打印出连接失败的提示信息，包含尝试连接的主机和端口
     return 1 # 返回1表示连接失败，程序以非零状态码退出，通常可用于表示出现了错误情况
 
 
