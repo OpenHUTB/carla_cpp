@@ -1260,36 +1260,51 @@
 
     # --------------------------------------
     - def_name: draw_line
+      # `draw_line` 方法的主要功能是在模拟场景中绘制一条线段，通过传入的多个参数来精确控制线段的起止位置、外观特征以及在场景中存在的时长等属性，以满足相应的可视化需求。
       params:
       - param_name: begin
         type: carla.Location
         param_units: meters
         doc: >
           Point in the coordinate system where the line starts. 
+          # `begin` 参数的类型为 `carla.Location`，单位是米（meters）。它用于指定线段在坐标系中的起始点位置，
+          # 即通过传入符合 `carla.Location` 要求的坐标信息（通常涵盖空间中的三维坐标等具体内容，取决于 `carla.Location` 的定义细节），准确地确定线段从哪里开始绘制，明确其起始方位。
       - param_name: end
         type: carla.Location
         param_units: meters
         doc: >
           Spot in the coordinate system where the line ends. 
+          # `end` 参数同样是 `carla.Location` 类型，单位为米（meters）。它的作用是定义线段在坐标系中的终止点位置，
+          # 与 `begin` 参数配合，共同确定线段在模拟场景空间内的走向和长度，按照传入的相应坐标值来界定线段的结束方位。
       - param_name: thickness
         type: float
         default: 0.1
         param_units: meters
         doc: >
           Density of the line.  
+          # `thickness` 参数为浮点数类型（float），单位是米（meters），默认值为 `0.1`。它用于表示线段的粗细程度或者说密度相关的属性，
+          # 也就是决定了这条线段在模拟场景中视觉呈现上的线宽情况，开发者可以依据实际想要达到的可视化效果，对这个值进行适当调整，使线段以期望的粗细程度显示出来。
       - param_name: color
         type: carla.Color
         default: (255,0,0)
         doc: >
           RGB code to color the object. Red by default.
+          # `color` 参数的类型是 `carla.Color`，默认值为 `(255, 0, 0)`，也就是红色。该参数用于设定所绘制线段的颜色，
+          # 通过传入符合 `carla.Color` 定义的颜色编码（一般以 RGB 形式呈现，三个数值分别对应红、绿、蓝三个颜色通道的值），能够自定义线段在模拟场景中显示的颜色，
+          # 便于使其与整个模拟场景的整体色调相匹配，或者突出显示该线段以满足特定的视觉引导、区分等可视化目的。
       - param_name: life_time
         type: float
         default: -1.0
         param_units: seconds
         doc: >
           Shape's lifespan. By default it only lasts one frame. Set this to <code>0</code> for permanent shapes. 
+          # `life_time` 参数属于浮点数类型（float），单位是秒（seconds），默认值为 `-1.0`。它用于定义所绘制线段在模拟场景中的存活时长，
+          # 在默认情况下，线段只会在一帧画面中出现（存活时间较短）；若将其设置为 `0`，则意味着这条线段会永久性地存在于模拟场景中，一直保持显示状态，
+          # 这样开发者就可以根据实际对线段展示时长的需求，灵活调整这个参数值，例如对于一些需要长期标记、作为重要参考线的情况，可以将其设置为永久性显示。
       doc: >
         Draws a line in between `begin` and `end`.
+        # 再次强调了 `draw_line` 方法的核心功能，即它会依据传入的 `begin` 和 `end` 参数所确定的起止点位置，以及其他参数（`thickness`、`color`、`life_time` 等）所设定的外观和时长属性，
+        # 在模拟场景中绘制出一条线段，从而实现如连接特定位置、表示路径、辅助空间划分等各种与可视化相关的应用需求，帮助在模拟过程中更好地观察和理解场景中的空间关系等信息。
     # --------------------------------------
     - def_name: draw_point
       params: 
