@@ -474,24 +474,59 @@ class World(object):
 
 class KeyboardControl(object):
     """Class that handles keyboard input."""
+    # 定义了一个名为 `KeyboardControl` 的类，它继承自 `object` 类（在Python 3中，默认继承自 `object`，可不显式写出，但这里明确写出了），从类的文档字符串可知，这个类的主要作用是处理键盘输入相关的操作，用于在程序中响应用户通过键盘进行的各种交互操作。
+
     def __init__(self, world, start_in_autopilot):
+        # 这是类的构造函数（初始化方法），在创建 `KeyboardControl` 类的实例时会被调用，用于初始化实例的各种属性。
+        # 参数 `world` 应该是代表整个模拟世界的相关对象，包含了场景中的各种元素（如车辆、角色等）以及相关的状态信息等，通过它可以访问和操作世界中的内容。
+        # 参数 `start_in_autopilot` 是一个布尔值，用于指示是否在一开始就启用自动驾驶模式。
+
         self._autopilot_enabled = start_in_autopilot
+        # 将传入的 `start_in_autopilot` 参数值赋给实例属性 `_autopilot_enabled`，用于记录当前是否启用了自动驾驶模式，以下划线开头的属性通常表示是类内部使用的“私有”属性（在Python中其实并没有真正的私有属性概念，只是一种约定俗成的标识）。
+
         self._ackermann_enabled = False
+        # 初始化实例属性 `_ackermann_enabled` 为 `False`，从变量名推测可能用于标记是否启用阿克曼转向相关的某种功能（阿克曼转向常用于车辆转向模型等场景），后续代码应该会根据这个属性的值来决定是否执行相应的阿克曼转向控制逻辑。
+
         self._ackermann_reverse = 1
+        # 初始化实例属性 `_ackermann_reverse` 为 `1`，同样结合名称推测可能与阿克曼转向在倒车等反向操作时的相关参数设置有关，具体作用需结合后续代码中对它的使用来确定。
+
         if isinstance(world.player, carla.Vehicle):
+            # 判断 `world.player` 是否是 `carla.Vehicle` 类型，即判断当前模拟世界中的主角（`player`）是否是车辆，如果是车辆，则进行以下相关的初始化操作。
             self._control = carla.VehicleControl()
+            # 创建一个 `carla.VehicleControl` 类的实例，用于后续控制车辆的各种行为（如油门、刹车、转向等操作），这个实例将保存车辆控制相关的参数设置。
+
             self._ackermann_control = carla.VehicleAckermannControl()
+            # 创建一个 `carla.VehicleAckermannControl` 类的实例，用于涉及阿克曼转向相关的更具体的车辆控制操作，可能在更精准的车辆操控场景下会使用到这个实例来设置控制参数。
+
             self._lights = carla.VehicleLightState.NONE
+            # 初始化车辆灯光状态为 `NONE`，也就是所有灯光都关闭的初始状态，后续代码可以根据用户的键盘操作来改变这个灯光状态，开启或关闭不同的车辆灯光。
+
             world.player.set_autopilot(self._autopilot_enabled)
+            # 通过 `world.player`（即模拟世界中的车辆对象）调用 `set_autopilot` 方法，将车辆的自动驾驶模式设置为之前初始化的 `_autopilot_enabled` 所表示的状态，即根据传入的参数决定车辆一开始是否启用自动驾驶。
+
             world.player.set_light_state(self._lights)
+            # 通过 `world.player` 调用 `set_light_state` 方法，将车辆的灯光状态设置为当前初始化的 `_lights` 所表示的状态，也就是一开始将车辆灯光全部关闭。
+
         elif isinstance(world.player, carla.Walker):
+            # 如果 `world.player` 不是车辆，而是 `carla.Walker` 类型（推测 `carla.Walker` 表示模拟世界中的行人等可移动角色），则进行以下针对行人角色的初始化操作。
             self._control = carla.WalkerControl()
+            # 创建一个 `carla.WalkerControl` 类的实例，用于控制行人角色的移动等行为，类似车辆的 `carla.VehicleControl`，这个实例会保存行人控制相关的参数。
+
             self._autopilot_enabled = False
+            # 对于行人角色，将自动驾驶模式设置为 `False`，因为通常行人不需要自动驾驶功能，这里明确将其禁用。
+
             self._rotation = world.player.get_transform().rotation
+            # 获取行人当前的旋转角度信息（通过 `get_transform` 方法获取变换信息，再从中获取旋转角度），并保存到实例属性 `_rotation` 中，可能在后续控制行人移动方向等操作时会用到这个初始的旋转角度信息。
+
         else:
             raise NotImplementedError("Actor type not supported")
+            # 如果 `world.player` 既不是车辆也不是行人角色，说明当前代码不支持这种类型的角色作为模拟世界的主角，那么就抛出 `NotImplementedError` 异常，并提示相应的错误信息，表示该角色类型不受支持。
+
         self._steer_cache = 0.0
+        # 初始化一个名为 `_steer_cache` 的实例属性为 `0.0`，从名称推测可能用于缓存车辆或角色转向相关的数据，也许是为了平滑转向操作或者记录上一次的转向状态等，具体作用要看后续代码对它的使用情况。
+
         world.hud.notification("Press 'H' or '?' for help.", seconds=4.0)
+        # 通过 `world.hud`（推测是模拟世界中的抬头显示相关对象）调用 `notification` 方法，在界面上显示一条提示信息，提示用户按下 `H` 或 `?` 键可以获取帮助信息，并且这个提示信息会显示 `4.0` 秒的时间。
 
     def parse_events(self, client, world, clock, sync_mode):
         if isinstance(self._control, carla.VehicleControl):

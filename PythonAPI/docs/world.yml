@@ -88,13 +88,29 @@
     doc: >
       A class that contains every actor present on the scene and provides access to them. The list is automatically created and updated by the server and it can be returned using carla.World. 
     # - METHODS ----------------------------
-    methods:
+   methods:
     - def_name: filter
+      # `filter` 方法通常用于根据特定的规则对一组数据进行筛选，在这里它属于某个类（具体需结合更完整的代码上下文判断所属类）中定义的方法，
+      # 其主要功能大概率是针对特定集合里的元素进行筛选操作，以获取满足特定条件的子集元素集合。
       return: list
+      # 此方法明确返回值类型为列表（list），意味着经过该方法内部执行的筛选逻辑后，最终会返回一个列表形式的数据结构。
+      # 这个列表中包含的元素应该是经过筛选后符合相应条件的那些元素，具体是什么元素需要依据整个代码的业务逻辑以及筛选的对象范围来确定，
+      # 从当前提供的参数等信息推测，大概率是与后续要匹配的 `Actors` 相关的元素集合（但这需要结合更多上下文进一步确认）。
       params:
       - param_name: wildcard_pattern
         type: str
+        # `wildcard_pattern` 参数的类型被设定为字符串（str），它在 `filter` 方法中起着关键的筛选条件设定作用。
+        # 这个字符串作为一种通配符模式，会被用于和特定的目标属性（从后续文档字符串描述来看，是与 `Actors` 的 `__type_id__` 属性进行匹配）进行比对，
+        # 通过这个比对过程来判断哪些元素符合筛选要求，从而决定最终返回列表中的元素构成情况。
       doc: >
+        # 以下文档字符串（docstring）用于详细描述 `filter` 方法的具体功能和筛选操作的细节逻辑等重要信息。
+        # 它说明了该方法会对一个 `Actors` 的列表进行筛选操作，筛选时会将传入的 `wildcard_pattern`（也就是前面提到的作为通配符模式的字符串），
+        # 与每个 `Actor` 的 `__type_id__` 变量进行匹配比较。这里的 `__type_id__` 变量有着重要意义，它用于标识创建该 `Actor` 时所采用的蓝图，
+        # 通过这个标识可以区分不同类型的 `Actor`，不同的蓝图意味着产生的 `Actor` 在功能、属性等方面可能存在差异，所以利用 `__type_id__` 来筛选可以精准地获取特定类型的 `Actor` 集合。
+        # 并且，这种匹配操作遵循的是 [fnmatch](https://docs.python.org/2/library/fnmatch.html) 模块所定义的标准，
+        # 该标准定义了通配符在字符串匹配中的使用规则，例如通配符“*”可以代表任意长度的字符序列，“?”代表单个任意字符等，
+        # 通过按照这样的规则去比对 `wildcard_pattern` 和 `__type_id__`，就能筛选出符合模式匹配要求的 `Actors`，并将它们整合到一个列表中返回，
+        # 以此实现基于特定类型标识（借助 `__type_id__` 变量）按照给定的通配符模式（`wildcard_pattern`）来筛选 `Actors` 的功能，方便后续对筛选后的 `Actors` 集合进行进一步的操作和处理。
         Filters a list of Actors matching `wildcard_pattern` against their variable __<font color="#f8805a">type_id</font>__ (which identifies the blueprint used to spawn them). Matching follows [fnmatch](https://docs.python.org/2/library/fnmatch.html) standard.  
     # --------------------------------------
     - def_name: find
