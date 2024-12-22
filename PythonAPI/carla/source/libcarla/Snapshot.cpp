@@ -41,10 +41,14 @@ void export_snapshot() {
   ;
   // 定义 Python 中的 WorldSnapshot 类
   class_<cc::WorldSnapshot>("WorldSnapshot", no_init)
+        // 为 Python 类添加只读属性 "id"，对应 C++ 类 cc::WorldSnapshot 的 GetId 方法
     .add_property("id", &cc::WorldSnapshot::GetId)
+        // 为 Python 类添加只读属性 "frame"，使用 Lambda 函数获取 C++ 类中的帧号 (frame)
     .add_property("frame", +[](const cc::WorldSnapshot &self) { return self.GetTimestamp().frame; })
+        // 为 Python 类添加只读属性 "timestamp"，调用 C++ 的 GetTimestamp 方法，返回值是拷贝类型
     .add_property("timestamp", CALL_RETURNING_COPY(cc::WorldSnapshot, GetTimestamp))
     /// Deprecated, use timestamp @{
+        // 为 Python 类添加只读属性 "frame_count"，等价于 "frame"，获取帧号信息
     .add_property("frame_count", +[](const cc::WorldSnapshot &self) { return self.GetTimestamp().frame; })
     .add_property("elapsed_seconds", +[](const cc::WorldSnapshot &self) { return self.GetTimestamp().elapsed_seconds; })
     .add_property("delta_seconds", +[](const cc::WorldSnapshot &self) { return self.GetTimestamp().delta_seconds; })
