@@ -15,6 +15,7 @@ class TestClient(unittest.TestCase):
     # 定义一个名为test_client_version的方法，按照unittest框架的命名规范，以'test_'开头的方法会被识别为测试用例方法，该方法主要用于测试客户端版本相关的功能是否符合预期
     def test_client_version(self):
         # 创建一个carla.Client实例，尝试连接到本地主机（'localhost'表示本地回环地址，也就是当前运行代码的这台计算机自身）的8080端口。
+
         # 在CARLA模拟器的常规配置中，模拟器通常会在本地的8080端口监听来自客户端的连接请求，通过这个客户端实例，后续就能向模拟器发送请求、调用模拟器提供的各种服务以及获取相关信息了
         c = carla.Client('localhost', 8080)
         # 调用刚创建的carla.Client实例的get_client_version方法，来获取客户端版本信息。
