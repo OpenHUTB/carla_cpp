@@ -18,7 +18,7 @@
 
 #include <boost/asio/deadline_timer.hpp>  // 引入 Boost ASIO 的定时器头文件
 #include <boost/asio/io_context.hpp>  // 引入 Boost ASIO 的 IO 上下文头文件
-#include <boost/asio/ip/tcp.hpp>  // 引入 Boost ASIO 的 TCP 头文件
+#include <boost/asio/ip/tcp.hpp>  // 引入Boost ASIO库中用于TCP网络通信的IP层TCP类和相关功能的头文件
 #include <boost/asio/strand.hpp>  // 引入 Boost ASIO 的 Strand 头文件
 
 #include <atomic>  // 引入原子类型支持
