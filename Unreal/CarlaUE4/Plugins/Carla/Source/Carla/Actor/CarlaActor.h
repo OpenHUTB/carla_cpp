@@ -4,190 +4,150 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once // 指示此头文件被包含一次，防止重复包含
 
-#include "Carla/Actor/ActorInfo.h"
-#include "Carla/Actor/ActorData.h"
-#include "Carla/Vehicle/CarlaWheeledVehicle.h"
-#include "Carla/Vehicle/VehicleTelemetryData.h"
-#include "Carla/Walker/WalkerController.h"
-#include "Carla/Traffic/TrafficLightState.h"
+#include "Carla/Actor/ActorInfo.h" // 包含CARLA中Actor信息的头文件
+#include "Carla/Actor/ActorData.h" // 包含CARLA中Actor数据的头文件
+#include "Carla/Vehicle/CarlaWheeledVehicle.h" // 包含CARLA中轮式车辆的头文件
+#include "Carla/Vehicle/VehicleTelemetryData.h" // 包含车辆遥测数据的头文件
+#include "Carla/Walker/WalkerController.h" // 包含行人控制器的头文件
+#include "Carla/Traffic/TrafficLightState.h" // 包含交通灯状态的头文件
+#include "carla/rpc/ActorState.h" // 包含RPC中Actor状态的头文件
+#include "carla/rpc/AttachmentType.h" // 包含RPC中附件类型的头文件
+#include "Carla/Server/CarlaServerResponse.h" // 包含CARLA服务器响应的头文件
 
-#include "carla/rpc/ActorState.h"
-#include "carla/rpc/AttachmentType.h"
-
-#include "Carla/Server/CarlaServerResponse.h"
-
-class AActor;
+class AActor; // 前向声明Unreal Engine中的Actor类
 
 /// 查看一个参与者和它的属性
 class FCarlaActor
 {
 public:
-
-  using IdType = uint32;
-
-  enum class ActorType : uint8
+  using IdType = uint32; // 定义Actor ID的类型为无符号32位整数
+  enum class ActorType : uint8 // 定义Actor类型的枚举
   {
-    Other,
-    Vehicle,
-    Walker,
-    TrafficLight,
-    TrafficSign,
-    Sensor,
-    INVALID
+    Other, // 其他类型
+    Vehicle, // 车辆类型
+    Walker, // 行人类型
+    TrafficLight, // 交通灯类型
+    TrafficSign, // 交通标志类型
+    Sensor, // 传感器类型
+    INVALID // 无效类型
   };
-
-  FCarlaActor() = default;
-  // FCarlaActor(const FCarlaActor &) = default;
-  // FCarlaActor(FCarlaActor &&) = default;
-
-  FCarlaActor(
+  FCarlaActor() = default; // 默认构造函数
+  // FCarlaActor(const FCarlaActor &) = default; // 复制构造函数（被注释）
+  // FCarlaActor(FCarlaActor &&) = default; // 移动构造函数（被注释）
+  FCarlaActor( // 构造函数
       IdType ActorId,
       AActor* Actor,
       TSharedPtr<const FActorInfo> Info,
       carla::rpc::ActorState InState,
       UWorld* World);
-
-  virtual ~FCarlaActor() {};
-
-
-  bool IsInValid() const
+  virtual ~FCarlaActor() {} // 虚析构函数
+  bool IsInValid() const // 检查Actor是否无效
   {
     return (carla::rpc::ActorState::Invalid == State);
   }
-
-  bool IsAlive() const
+  bool IsAlive() const // 检查Actor是否存活（非PendingKill和非Invalid）
   {
     return (carla::rpc::ActorState::PendingKill != State &&
             carla::rpc::ActorState::Invalid != State);
   }
-
-  bool IsActive() const
+  bool IsActive() const // 检查Actor是否处于活跃状态
   {
     return (carla::rpc::ActorState::Active == State);
   }
-
-  bool IsDormant() const
+  bool IsDormant() const // 检查Actor是否处于休眠状态
   {
     return (carla::rpc::ActorState::Dormant == State);
   }
-
-  bool IsPendingKill() const
+  bool IsPendingKill() const // 检查Actor是否待销毁
   {
     return (carla::rpc::ActorState::PendingKill == State);
   }
-
-  IdType GetActorId() const
+  IdType GetActorId() const // 获取Actor ID
   {
     return Id;
   }
-
-  ActorType GetActorType() const
+  ActorType GetActorType() const // 获取Actor类型
   {
     return Type;
   }
-
-  AActor *GetActor()
+  AActor *GetActor() // 获取Actor指针（非const版本）
   {
     return TheActor;
   }
-
-  const AActor *GetActor() const
+  const AActor *GetActor() const // 获取Actor指针（const版本）
   {
     return TheActor;
   }
-
-  const FActorInfo *GetActorInfo() const
+  const FActorInfo *GetActorInfo() const // 获取Actor信息指针
   {
     return Info.Get();
   }
-
-  carla::rpc::ActorState GetActorState() const
+  carla::rpc::ActorState GetActorState() const // 获取Actor状态
   {
     return State;
   }
-
-  void SetActorState(carla::rpc::ActorState InState)
+  void SetActorState(carla::rpc::ActorState InState) // 设置Actor状态
   {
     State = InState;
   }
-
-  void SetParent(IdType InParentId)
+  void SetParent(IdType InParentId) // 设置父Actor ID
   {
     ParentId = InParentId;
   }
-
-  IdType GetParent() const
+  IdType GetParent() const // 获取父Actor ID
   {
     return ParentId;
   }
+  void AddChildren(IdType ChildId) // 添加子Actor ID
 
-  void AddChildren(IdType ChildId)
   {
     Children.Add(ChildId);
   }
-
   void RemoveChildren(IdType ChildId)
   {
     Children.Remove(ChildId);
   }
-
   const TArray<IdType>& GetChildren() const
   {
     return Children;
   }
-
   void SetAttachmentType(carla::rpc::AttachmentType InAttachmentType)
   {
     Attachment = InAttachmentType;
   }
-
   carla::rpc::AttachmentType GetAttachmentType() const
   {
     return Attachment;
   }
-
   void BuildActorData();
-
   void PutActorToSleep(UCarlaEpisode* CarlaEpisode);
-
   void WakeActorUp(UCarlaEpisode* CarlaEpisode);
-
   FActorData* GetActorData()
   {
     return ActorData.Get();
   }
-
   const FActorData* GetActorData() const
   {
     return ActorData.Get();
   }
-
   template<typename T>
   T* GetActorData()
   {
     return dynamic_cast<T*>(ActorData.Get());
   }
-
   template<typename T>
   const T* GetActorData() const
   {
     return dynamic_cast<T*>(ActorData.Get());
   }
-
   // 参与者功能接口 ----------------------
-
   // 通用功能
-
   FTransform GetActorLocalTransform() const;
-
   FTransform GetActorGlobalTransform() const;
-
   FVector GetActorLocalLocation() const;
-
   FVector GetActorGlobalLocation() const;
-
   void SetActorLocalLocation(
       const FVector& Location,
       ETeleportType Teleport = ETeleportType::TeleportPhysics);

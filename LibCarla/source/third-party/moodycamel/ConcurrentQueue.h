@@ -18,16 +18,16 @@
 //包括但不限于采购替代商品或服务、使用、数据或利润的损失或业务中断，是否基于合同、严格责任或侵权（包括疏忽或其他）理论，即使已经被告知可能发生这样的损害。
 // 注意：这个文件为了被 CARLA 使用做了略微的修改。
 
-#pragma once
+#pragma once//程序预处理
 
 #if defined(__GNUC__)
 // 禁用 -Wconversion 警告（当 Traits::size_t 和 Traits::index_t 设置为小于 32 位时，整数提升可能引发这些警告
 // 在赋值计算值时会出现警告）
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic push//保存当前的编译器诊断设置。
+#pragma GCC diagnostic ignored "-Wconversion"//用于忽略特定的警告或错误。
 
 #ifdef MCDBGQ_USE_RELACY
-#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
+#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"//
 #endif
 #endif
 
@@ -2149,26 +2149,32 @@ private:
             this->tailBlock = startBlock == nullptr ? firstAllocatedBlock : startBlock;
             return false;
           }
-
+// 如果定义了MCDBGQ_TRACKMEM这个宏，则执行下面的代码，将新块的所有者设置为当前对象（this通常指代当前类的实例）
 #if MCDBGQ_TRACKMEM
           newBlock->owner = this;
 #endif
+// 调用ConcurrentQueue::Block的模板函数set_all_empty<explicit_context>()来设置新块所有相关内容为空（具体功能取决于该模板函数的实现）
           newBlock->ConcurrentQueue::Block::template set_all_empty<explicit_context>();
           if (this->tailBlock == nullptr) {
             newBlock->next = newBlock;
           }
+// 如果尾块不为空，将新块插入到尾块后面，更新链表指针关系
           else {
             newBlock->next = this->tailBlock->next;
             this->tailBlock->next = newBlock;
           }
+// 更新尾块指针，使其指向新插入的块
           this->tailBlock = newBlock;
           firstAllocatedBlock = firstAllocatedBlock == nullptr ? this->tailBlock : firstAllocatedBlock;
-
+// 已使用的块索引槽数量加1
           ++pr_blockIndexSlotsUsed;
 
           auto& entry = blockIndex.load(std::memory_order_relaxed)->entries[pr_blockIndexFront];
+// 设置该元素的起始索引（base）为当前尾索引（currentTailIndex）
           entry.base = currentTailIndex;
+// 设置该元素对应的块为当前尾块（this->tailBlock）
           entry.block = this->tailBlock;
+// 更新前面使用的块索引槽位置，通过循环计数的方式（按位与操作保证在一定范围内循环）
           pr_blockIndexFront = (pr_blockIndexFront + 1) & (pr_blockIndexSize - 1);
         }
 
@@ -2177,9 +2183,11 @@ private:
         auto block = firstAllocatedBlock;
         while (true) {
           block->ConcurrentQueue::Block::template reset_empty<explicit_context>();
+// 如果当前块就是尾块，说明遍历完所有需要处理的块了，跳出循环
           if (block == this->tailBlock) {
             break;
           }
+// 移动到下一个块继续处理
           block = block->next;
         }
 
@@ -2193,11 +2201,13 @@ private:
       currentTailIndex = startTailIndex;
       auto endBlock = this->tailBlock;
       this->tailBlock = startBlock;
+// 断言一些条件，比如起始尾索引按位与块大小减1的结果不为0或者第一个已分配块不为空或者入队数量为0，用于保证数据的合理性
       assert((startTailIndex & static_cast<index_t>(BLOCK_SIZE - 1)) != 0 || firstAllocatedBlock != nullptr || count == 0);
       if ((startTailIndex & static_cast<index_t>(BLOCK_SIZE - 1)) == 0 && firstAllocatedBlock != nullptr) {
         this->tailBlock = firstAllocatedBlock;
       }
       while (true) {
+// 计算当前块的结束索引（按位与操作结合块大小计算）
         auto stopIndex = (currentTailIndex & ~static_cast<index_t>(BLOCK_SIZE - 1)) + static_cast<index_t>(BLOCK_SIZE);
         if (details::circular_less_than<index_t>(newTailIndex, stopIndex)) {
           stopIndex = newTailIndex;

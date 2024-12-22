@@ -259,12 +259,14 @@ struct DoneGuard {
 };
 
 // 测试流是否可以在服务器停止后继续存在。
+// 这个测试用例主要用于验证流的生命周期相关特性，
+// 即在服务器停止的情况下，流是否依然能够维持一定的功能或者存在状态。
 TEST(streaming, stream_outlives_server) {
   using namespace carla::streaming;// 使用carla流命名空间。
-  using namespace util::buffer;
-  constexpr size_t iterations = 10u;
-  std::atomic_bool done{false};
-  const std::string message = "Hello client, how are you?";
+  using namespace util::buffer;// 引入util::buffer命名空间，应该是用于操作缓冲区相关的功能
+  constexpr size_t iterations = 10u;// 定义迭代次数的常量，这里设定为10次，用于控制循环执行的轮数等逻辑
+  std::atomic_bool done{false};// 定义一个原子布尔类型的变量，用于标记某个操作是否完成，初始化为false
+  const std::string message = "Hello client, how are you?";// 定义一个指向流对象的智能指针，用于后续对流的操作，初始时为空指针
   std::shared_ptr<Stream> stream;
 
   carla::ThreadGroup sender;

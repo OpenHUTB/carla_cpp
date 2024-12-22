@@ -143,36 +143,37 @@ private:
 // =============================================================================
 // -- 定义辅助宏 ----------------------------------------------------------------
 // =============================================================================
-
+// 检查当前是否在游戏线程中执行，仅在编辑器模式下有效
 #if WITH_EDITOR
-#  define CARLA_ENSURE_GAME_THREAD() check(IsInGameThread());
+#  define CARLA_ENSURE_GAME_THREAD() check(IsInGameThread());// 在编辑器中，确保代码在游戏线程中执行
 #else
-#  define CARLA_ENSURE_GAME_THREAD()
+#  define CARLA_ENSURE_GAME_THREAD()// 在非编辑器模式下，此宏不做任何事情
 #endif // WITH_EDITOR
-
+// 定义一个宏，用于记录错误消息并返回一个ResponseError对象
 #define RESPOND_ERROR(str) {                                              \
     UE_LOG(LogCarlaServer, Log, TEXT("Responding error: %s"), TEXT(str)); \
     return carla::rpc::ResponseError(str); }
 
+// 定义一个宏，用于记录由FString表示的错误消息并返回一个ResponseError对象
 #define RESPOND_ERROR_FSTRING(fstr) {                                 \
     UE_LOG(LogCarlaServer, Log, TEXT("Responding error: %s"), *fstr); \
     return carla::rpc::ResponseError(carla::rpc::FromFString(fstr)); }
-
+// 定义一个宏，用于确保有一个有效的CARLA Episode对象，并检查是否在游戏线程中
 #define REQUIRE_CARLA_EPISODE() \
     CARLA_ENSURE_GAME_THREAD();   \
     if (Episode == nullptr) { RESPOND_ERROR("episode not ready"); }
-
+// 定义一个函数，用于构造并返回一个包含函数名、错误消息和额外信息的ResponseError对象
 carla::rpc::ResponseError RespondError(
     const FString& FuncName,
     const FString& ErrorMessage,
     const FString& ExtraInfo = "")
 {
   FString TotalMessage = "Responding error from function " + FuncName + ": " +
-      ErrorMessage + ". " + ExtraInfo;
-  UE_LOG(LogCarlaServer, Log, TEXT("%s"), *TotalMessage);
-  return carla::rpc::ResponseError(carla::rpc::FromFString(TotalMessage));
+      ErrorMessage + ". " + ExtraInfo;// 拼接完整的错误消息
+  UE_LOG(LogCarlaServer, Log, TEXT("%s"), *TotalMessage);// 记录完整错误消息到日志
+  return carla::rpc::ResponseError(carla::rpc::FromFString(TotalMessage)); // 返回一个包含完整错误消息的ResponseError对象
 }
-
+// 定义一个重载函数，用于处理ECarlaServerResponse枚举值作为错误代码的情况
 carla::rpc::ResponseError RespondError(
     const FString& FuncName,
     const ECarlaServerResponse& Error,
@@ -285,14 +286,18 @@ void FCarlaServer::FPimpl::BindActions()
   };
 
   // ~~ 加载新章节 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+// 使用BIND_ASYNC宏来异步绑定一个函数，这里的函数是获取所有可用的地图名称
   BIND_ASYNC(get_available_maps) << [this]() -> R<std::vector<std::string>>
-  {
+  {// 通过UCarlaStatics类的静态方法GetAllMapNames获取所有地图名称的列表
     const auto MapNames = UCarlaStatics::GetAllMapNames();
+    // 创建一个std::vector来存储过滤后的地图名称
     std::vector<std::string> result;
+    // 为result预留足够的空间，以提高性能（避免多次内存分配）
+    // Num()是FString或类似容器的成员函数，返回容器中元素的数量
     result.reserve(MapNames.Num());
+    // 遍历所有地图名称
     for (const auto &MapName : MapNames)
-    {
+    {// 如果地图名称包含"/Sublevels/"，则跳过该地图（可能是子地图或层级地图）
       if (MapName.Contains("/Sublevels/"))
         continue;
       if (MapName.Contains("/BaseMap/"))
@@ -301,9 +306,11 @@ void FCarlaServer::FPimpl::BindActions()
         continue;
       if (MapName.Contains("_Tile_"))
         continue;
-
+// 如果地图名称通过了所有过滤条件，则将其添加到结果列表中
+// cr::FromFString是一个将FString转换为std::string的函数
       result.emplace_back(cr::FromFString(MapName));
     }
+    // 返回过滤后的地图名称列表
     return result;
   };
 
@@ -328,18 +335,22 @@ void FCarlaServer::FPimpl::BindActions()
 
     return R<void>::Success();
   };
-
+// 使用宏或模板函数绑定同步函数load_map_layer到下面的lambda表达式
   BIND_SYNC(load_map_layer) << [this](cr::MapLayer MapLayers) -> R<void>
   {
+// 检查当前是否有一个有效的CARLA模拟场景（episode）正在运行
     REQUIRE_CARLA_EPISODE();
-
+// 从当前运行的模拟世界中获取CARLA游戏模式（GameMode）的实例
+    // ACarlaGameModeBase是CARLA中定义的游戏模式基类
     ACarlaGameModeBase* GameMode = UCarlaStatics::GetGameMode(Episode->GetWorld());
     if (!GameMode)
     {
       RESPOND_ERROR("unable to find CARLA game mode");
     }
+     // 调用游戏模式的LoadMapLayer函数，加载指定的地图层
+   // 将枚举类型转换为整型，因为函数可能需要整型参数
     GameMode->LoadMapLayer(static_cast<int32>(MapLayers));
-
+  // 函数执行成功，返回成功状态的R<void>对象
     return R<void>::Success();
   };
 
@@ -360,6 +371,9 @@ void FCarlaServer::FPimpl::BindActions()
   BIND_SYNC(copy_opendrive_to_file) << [this](const std::string &opendrive, cr::OpendriveGenerationParameters Params) -> R<void>
   {
     REQUIRE_CARLA_EPISODE();
+    //使用提供的OpenDRIVE数据和参数加载一个新的模拟场景
+    // cr::ToLongFString(opendrive)将std::string转换为CARLA内部使用的FString类型
+    // Params是OpenDRIVE生成参数，用于自定义加载过程
     if (!Episode->LoadNewOpendriveEpisode(cr::ToLongFString(opendrive), Params))
     {
       RESPOND_ERROR("opendrive could not be correctly parsed");
@@ -368,17 +382,20 @@ void FCarlaServer::FPimpl::BindActions()
   };
 
   BIND_SYNC(apply_color_texture_to_objects) << [this](
-      const std::vector<std::string> &actors_name,
-      const cr::MaterialParameter& parameter,
-      const cr::TextureColor& Texture) -> R<void>
+      const std::vector<std::string> &actors_name,// 场景中要应用纹理的对象名称列表
+      const cr::MaterialParameter& parameter,// 材料参数，用于定义纹理的应用方式
+      const cr::TextureColor& Texture) -> R<void>// 纹理颜色参数
   {
-    REQUIRE_CARLA_EPISODE();
+ // 这是一个lambda函数或函数对象的定义，被设计为异步执行
+
+// 返回一个R<void>类型的对象，这通常表示一个异步操作的结果
+    REQUIRE_CARLA_EPISODE();// 检查当前是否有一个有效的CARLA模拟器会话正在运行
     ACarlaGameModeBase* GameMode = UCarlaStatics::GetGameMode(Episode->GetWorld());
     if (!GameMode)
     {
       RESPOND_ERROR("unable to find CARLA game mode");
     }
-    TArray<AActor*> ActorsToPaint;
+    TArray<AActor*> ActorsToPaint;// 创建一个数组来存储找到的actor指针
     for(const std::string& actor_name : actors_name)
     {
       AActor* ActorToPaint = GameMode->FindActorByName(cr::ToFString(actor_name));
@@ -704,10 +721,12 @@ void FCarlaServer::FPimpl::BindActions()
       const std::vector<FCarlaActor::IdType> &ids) -> R<std::vector<cr::Actor>>
   {
     REQUIRE_CARLA_EPISODE();
+   // 创建一个用于存储结果的向量，并预留足够的空间以优化性能
     std::vector<cr::Actor> Result;
     Result.reserve(ids.size());
+    // 遍历提供的ID列表
     for (auto &&Id : ids)
-    {
+    {// 使用ID在场景中查找对应的CARLA对象视图
       FCarlaActor* View = Episode->FindCarlaActor(Id);
       if (View)
       {
@@ -716,11 +735,12 @@ void FCarlaServer::FPimpl::BindActions()
     }
     return Result;
   };
-
+// 绑定同步函数spawn_actor到下面的lambda表达式
   BIND_SYNC(spawn_actor) << [this](
-      cr::ActorDescription Description,
-      const cr::Transform &Transform) -> R<cr::Actor>
+      cr::ActorDescription Description,// 对象描述，包含类型、属性等信息
+      const cr::Transform &Transform) -> R<cr::Actor>// 对象的位置和朝向
   {
+    // 检查当前是否有一个有效的CARLA模拟场景正在运行
     REQUIRE_CARLA_EPISODE();
 
     auto Result = Episode->SpawnActorWithInfo(Transform, std::move(Description));
@@ -748,8 +768,11 @@ void FCarlaServer::FPimpl::BindActions()
       const std::string& socket_name) -> R<cr::Actor>
   {
     REQUIRE_CARLA_EPISODE();
-
+   // 尝试在模拟场景中生成一个新的actor
+   // Transform包含了新actor的位置和朝向信息
+   // Description包含了新actor的类型、属性等描述信息
     auto Result = Episode->SpawnActorWithInfo(Transform, std::move(Description));
+   // 检查生成actor的结果 
     if (Result.Key != EActorSpawnResultStatus::Success)
     {
       RESPOND_ERROR_FSTRING(FActorSpawnResult::StatusToString(Result.Key));
@@ -1075,11 +1098,13 @@ BIND_SYNC(is_sensor_enabled_for_ros) << [this](carla::streaming::detail::stream_
     }
     return R<void>::Success();
   };
-
+// 使用BIND_SYNC宏绑定一个名为set_actor_target_velocity的同步操作
+// 该操作接受一个actor的ID（cr::ActorId）和一个三维向量（cr::Vector3D）作为参数
+// 并返回一个R<void>类型的响应对象，表示操作的结果
   BIND_SYNC(set_actor_target_velocity) << [this](
-      cr::ActorId ActorId,
-      cr::Vector3D vector) -> R<void>
-  {
+      cr::ActorId ActorId,// actor的唯一标识符
+      cr::Vector3D vector) -> R<void>// actor应达到的目标速度向量
+  {                                  
     REQUIRE_CARLA_EPISODE();
     FCarlaActor* CarlaActor = Episode->FindCarlaActor(ActorId);
     if (!CarlaActor)

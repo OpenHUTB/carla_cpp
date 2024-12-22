@@ -5,15 +5,15 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #include "PrepareAssetsForCookingCommandlet.h"
-
+//是一个用于准备资源用于“烹饪”（在游戏开发中，“烹饪”通常指将资源打包成最终可使用的格式）的命令类。
 #include "AssetRegistry/AssetRegistryModule.h"
-
+//与资产注册模块相关，用于管理项目中的资产。
 #include "SSTags.h"
-
+//与某些标签系统相关的头文件。
 #if WITH_EDITOR
-#include "FileHelpers.h"
+#include "FileHelpers.h"//是一个与文件操作相关的辅助类，并且只在编辑器环境下使用。
 #endif
-#include "Misc/FileHelper.h"
+#include "Misc/FileHelper.h"//是另一个与文件操作相关的辅助类。
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "HAL/PlatformFilemanager.h"

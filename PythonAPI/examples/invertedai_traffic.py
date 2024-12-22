@@ -10,15 +10,15 @@
 使用InvertedAI API生成交通的示例脚本
 """
 
-import os
-import time
-import carla
-import argparse
-import logging
-import math
-import random
-import invertedai as iai
-from invertedai.common import AgentProperties, AgentState, TrafficLightState
+import os  # 导入操作系统相关的功能模块
+import time  # 导入时间处理相关的功能模块
+import carla  # 导入CARLA模拟环境的API，用于车联网应用
+import argparse  # 导入命令行参数解析模块
+import logging  # 导入日志模块，用于记录日志信息
+import math  # 引入数学函数的模块
+import random  # 导入随机数生成模块
+import invertedai as iai  # 导入invertedai库，并为其取别名为iai
+from invertedai.common import AgentProperties, AgentState, TrafficLightState  # 从invertedai.common模块导入所需的类，用于智能体和交通灯状态管理
 
 SpawnActor = carla.command.SpawnActor
 

@@ -1,1 +1,21 @@
-pyyaml
+# `pyyaml` 是 Python 中用于处理 YAML（Yet Another Markup Language）格式数据的一个常用库。
+
+# YAML 是一种可读性高，用来表达数据序列化的格式，常用于配置文件、数据交换等场景，其语法简洁且易于人类阅读和编写。
+
+# `pyyaml` 库提供了方便的功能来加载（从 YAML 格式的文本解析出 Python 的数据结构，如字典、列表等）和转储（将 Python 数据结构转换为 YAML 格式的文本）操作。
+
+# 例如，使用 `yaml.load()` 函数（在较新的版本中，为了安全考虑，推荐使用 `yaml.safe_load()` 来避免潜在的安全风险，比如恶意构造的 YAML 数据执行任意代码的情况）可以读取一个包含 YAML 数据的文件或者字符串，并将其转换为对应的 Python 数据类型，示例如下：
+import yaml
+
+with open('config.yaml', 'r') as file:
+    data = yaml.safe_load(file)  # 安全地加载 YAML 文件中的数据到 Python 变量 `data` 中，这里假设 `config.yaml` 是符合 YAML 语法的配置文件
+    print(data)
+
+# 而 `yaml.dump()` 函数则可以将 Python 数据结构（比如一个字典或者列表）转换为 YAML 格式的文本，方便存储或者传输，示例：
+config_data = {'key': 'value', 'list': [1, 2, 3]}
+yaml_text = yaml.dump(config_data)  # 将 Python 字典 `config_data` 转换为 YAML 格式的文本存放在 `yaml_text` 变量中
+print(yaml_text)
+
+# 在实际项目中，常常用 `pyyaml` 来管理配置文件，相比于传统的 `.ini` 或者 `.cfg` 等格式，YAML 格式的配置文件使用 `pyyaml` 读写更方便，且能方便地表示复杂的嵌套数据结构，像多层级的字典等情况。
+
+# 此外，在与一些遵循 YAML 数据交换规范的外部系统进行对接时，`pyyaml` 也能帮助 Python 应用很好地解析和生成符合要求的数据格式，实现系统间的数据交互流畅进行。

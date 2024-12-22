@@ -87,8 +87,10 @@ def get_libcarla_extensions():
             if is_rss_variant_enabled():
                 extra_compile_args += ['-DLIBCARLA_RSS_ENABLED']
                 extra_compile_args += ['-DLIBCARLA_PYTHON_MAJOR_' +  str(sys.version_info.major)]
+               # 检查 libad_rss_map_integration_python 相关库文件是否存在
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration.a')]
+               # 检查 libad_rss_map_integration 库文件是否存在
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_map_access_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_map_access.a')]
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
@@ -119,16 +121,18 @@ def get_libcarla_extensions():
             # library_dirs += ['/usr/lib/gcc/x86_64-linux-gnu/7']
             # extra_link_args += ['/usr/lib/gcc/x86_64-linux-gnu/7/libstdc++.a']
             extra_link_args += ['-lstdc++']
-        else:
+        else: 
             raise NotImplementedError(linux_distro + " not in supported posix platforms: " + str(supported_dists))
     elif os.name == "nt":
         pwd = os.path.dirname(os.path.realpath(__file__))
         pylib = 'libboost_python%d%d' % (
             sys.version_info.major,
             sys.version_info.minor)
-
+        # 初始化额外的链接参数列表，添加一些在 Windows 下链接时需要的库名称，这些库都是 Windows 系统中常用的系统库或者项目依赖的相关库，
+        # 比如 shlwapi.lib 提供了一些 Windows Shell 相关的实用函数，Advapi32.lib 包含了很多高级 Windows API 函数等，后续链接阶段会根据这些名称去查找并链接对应的库文件。
         extra_link_args = ['shlwapi.lib', 'Advapi32.lib', 'ole32.lib', 'shell32.lib']
-
+          # 定义一个列表，记录了在 Windows 环境下项目需要链接的一些必要的库名称，包括前面构造的 Boost.Python 相关库、文件系统操作相关的库、
+          # 以及项目中其他自定义或者依赖的各种库（如 carla_client.lib、libpng.lib 等），这些库在后续链接阶段都是必须要正确链接上才能保证项目正常编译和运行的。
         required_libs = [
             pylib, 'libboost_filesystem',
             'rpc.lib', 'carla_client.lib',
