@@ -190,27 +190,36 @@ def lidar_callback(sensor_data, sensor_queue, sensor_name):
     sensor_transf = sensor_data.transform
     sensor_queue.put((sensor_data.frame, sensor_name, sensor_pc_local, sensor_transf))
 
+# 定义一个回调函数，用于处理车辆的边界框（bounding box）数据
 def bb_callback(snapshot, world, sensor_queue, sensor_name):
     data_array = []
 
+  # 获取所有车辆
     vehicles = world.get_actors().filter('vehicle.*')
     for actor in vehicles:
+      # 将车辆的id、类型、变换和边界框信息添加到数组中
         data_array.append((actor.id, actor.type_id, actor.get_transform(), actor.bounding_box))
 
+  # 将数据放入传感器队列中
     sensor_queue.put((snapshot.frame, sensor_name, data_array))
 
+# 定义一个函数，用于移动观察者的位置
 def move_spectator(world, actor):
     actor_tr = actor.get_transform()
     spectator_transform = carla.Transform(actor_tr.location, actor_tr.rotation)
+  # 将观察者的位置向后移动5个单位，向上移动3个单位
     spectator_transform.location -= actor_tr.get_forward_vector() * 5
     spectator_transform.location -= actor_tr.get_up_vector() * 3
     spectator = world.get_spectator()
     spectator.set_transform(spectator_transform)
 
+# 定义一个回调函数，用于处理世界信息和边界框数据
 def world_callback(snapshot, world, sensor_queue, sensor_name, actor):
+  # 移动观察者的位置
     move_spectator(world, actor)
     bb_callback(snapshot, world, sensor_queue, sensor_name)
 
+# 定义一个函数，用于处理传感器数据
 def process_sensors(w_frame, sensor_queue, sensor_number):
     if sensor_number != 2:
         print("Error!!! Sensor number should be two")
@@ -238,11 +247,13 @@ def process_sensors(w_frame, sensor_queue, sensor_number):
     if sl_data == None or bb_data == None:
         print("Error!!! Missmatch for sensor %s in the frame timestamp (w: %d, s: %d)" % (s_frame[1], w_frame, s_frame[0]))
 
+  # 处理边界框数据和激光雷达数据
     for actor_data in bb_data[2]:
         trace_vehicle = ActorTrace(actor_data, sl_data)
         trace_vehicle.process()
         trace_vehicle.check_lidar_data()
 
+# 定义一个类，用于生成车辆
 class SpawnCar(object):
     def __init__(self, location, rotation, filter="vehicle.*", autopilot = False, velocity = None):
         self._filter = filter
@@ -265,6 +276,7 @@ class SpawnCar(object):
             self._actor.destroy()
 
 
+# 定义一个车辆属性列表，用于生成多种类型的车辆
 CarPropList = [
     SpawnCar(carla.Location(x=83,  y= -40, z=5),  carla.Rotation(yaw=-90),  filter= "mkz_2017", autopilot=True),
     SpawnCar(carla.Location(x=83,  y= -30, z=3),  carla.Rotation(yaw=-90),  filter= "ambulance", autopilot=True),
@@ -295,22 +307,26 @@ CarPropList = [
     SpawnCar(carla.Location(x=243, y=+140,z=2),   carla.Rotation(yaw=-90),  filter= "c3", autopilot=True)
 ]
 
+# 定义一个函数，用于生成所有车辆
 def spawn_prop_vehicles(world):
     for car in CarPropList:
         car.spawn(world)
 
+# 定义一个函数，用于销毁所有车辆
 def destroy_prop_vehicles():
     for car in CarPropList:
         car.destroy()
 
 
 def main():
+  # 创建CARLA客户端
     # We start creating the client
     client = carla.Client('localhost', 2000)
     client.set_timeout(2.0)
     world = client.get_world()
 
     try:
+      # 保存原始设置以便恢复
         # We need to save the settings to be able to recover them at the end
         # of the script to leave the server in the same state that we found it.
         original_settings = world.get_settings()

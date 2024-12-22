@@ -1,42 +1,38 @@
-# Here we keep a list of the Google Drive id's of the Content files. The last id
-# in the list it's picked up by the Setup.sh script to download the last version
-# of the contents.
-# 这里保存着内容文件对应的谷歌云端硬盘（Google Drive）的ID列表。列表中的最后一个ID会被Setup.sh脚本获取，用于下载内容的最新版本。
-# 说明了这段文本中ID列表的用途，即与下载特定内容的最新版本相关，并且和某个名为Setup.sh的脚本存在关联。
-# You can download it directly from # 你可以直接从以下链接进行下载，提示下面给出的链接是用于下载相关内容的途径。
-#
-#     https://drive.google.com/open?id=PUT_FILE_ID_HERE
-# 这是一个谷歌云端硬盘文件的通用下载链接格式示例，实际使用时需要将PUT_FILE_ID_HERE替换为对应的真实文件ID，才能正确下载相应文件。
-0.5.4: 0B2HFV-VuKn3PYUFFanlmZ2VMTW8
-0.6.0: 1Gw8sw01hDEV4FtpHEZZwvS-6XN0jmaLT # 版本号0.6.0的内容文件对应的谷歌云端硬盘ID，用于定位和下载该特定版本的相关文件。
-0.7.0: 11PKC_lG7L80L1ZxiMlzV17utU45UcRnT # 对应版本0.7.0的内容文件在谷歌云端硬盘的ID标识，方便按版本获取对应文件。
-0.7.1: 1gf3YaFIjwr1EaK6qxq2V-a510Brt9Imq # 版本号为0.7.1的内容文件对应的谷歌云端硬盘ID记录。
-0.8.0: 1tA-WwKA0RNhBoENYunqF3-F_wg11dL86 # 指明版本0.8.0的内容文件在谷歌云端硬盘上的唯一ID，用于下载此版本相关内容。
-0.8.1: 1su5wQH7KJphAcirMA8VEDLndGigQ9tzq # 版本0.8.1的内容文件对应的谷歌云端硬盘ID，可据此获取该版本的具体文件。
-0.8.2: 1llrBkZDvJmxXYh4r3jz0wuwz8Q8jRQeZ # 记录了版本0.8.2的内容文件在谷歌云端硬盘中的ID，用于相关下载等操作。
-0.8.3: 1z2XKOk9LoKI-EhxcrpI31W5TeYo2-jjn # 表示对应版本0.8.3的内容文件在谷歌云端硬盘的ID，以便准确获取该版本文件。
-0.8.4: 1mFNS-w5atQ45yegiTepRIeKBYVm8N8He # 版本0.8.4的内容文件在谷歌云端硬盘的标识ID，用于下载对应版本的相关内容。
-0.9.0: 1FtC00CrDb7Kz5StBAwb6vqOGbzZtpROx # 此为版本0.9.0的内容文件对应的谷歌云端硬盘ID，用于定位和下载该版本相关文件。
-0.9.1: 1IZDzNQNVL67h8UlGyKuGegLH612Ifd7H # 记录版本0.9.1的内容文件在谷歌云端硬盘的ID，方便获取该版本的对应文件。
-0.9.2: 1RKRGB22U5t80q4zwYXBJvxQXhzNjaaDf # 对应版本0.9.2的内容文件在谷歌云端硬盘上的ID，用于下载该版本相关内容。
-0.9.3: 1jJlStNHpey62CrMkWVfmtQcJGO7PaD0R # 版本0.9.3的内容文件对应的谷歌云端硬盘ID，用于查找并下载此版本相关文件。
-0.9.4: 10Tc0DMXpfH7W28zwagXsVTjpkhGx3Klz # 表示版本0.9.4的内容文件在谷歌云端硬盘的ID，可通过它获取该版本的具体文件。
+# 该文件包含了 Google Drive 和 AWS 文件 ID 的列表，用于下载不同版本的内容。
+# 每个部分的最后一个 ID 将由 Setup.sh 脚本使用，用于下载最新版本。
 
-# Newer asset Content is stored in AWS.
-#
-# You can download it directly from
-# 同样提示可以直接从下面给出的链接进行下载，用于获取存储在AWS上的相关内容。
-#     http://carla-assets.s3.us-east-005.backblazeb2.com/PUT_FILE_ID_HERE.tar.gz
+# Google Drive 文件 ID 列表
+# 格式：版本号: Google Drive 文件 ID
+# 示例下载链接：https://drive.google.com/open?id=<FILE_ID>
+0.5.4: 0B2HFV-VuKn3PYUFFanlmZ2VMTW8  # 版本 0.5.4 的 Google Drive 文件 ID。
+0.6.0: 1Gw8sw01hDEV4FtpHEZZwvS-6XN0jmaLT  # 版本 0.6.0 的文件 ID。
+0.7.0: 11PKC_lG7L80L1ZxiMlzV17utU45UcRnT  # 版本 0.7.0 的文件 ID。
+0.7.1: 1gf3YaFIjwr1EaK6qxq2V-a510Brt9Imq  # 版本 0.7.1 的文件 ID。
+0.8.0: 1tA-WwKA0RNhBoENYunqF3-F_wg11dL86  # 版本 0.8.0 的文件 ID。
+0.8.1: 1su5wQH7KJphAcirMA8VEDLndGigQ9tzq  # 版本 0.8.1 的文件 ID。
+0.8.2: 1llrBkZDvJmxXYh4r3jz0wuwz8Q8jRQeZ  # 版本 0.8.2 的文件 ID。
+0.8.3: 1z2XKOk9LoKI-EhxcrpI31W5TeYo2-jjn  # 版本 0.8.3 的文件 ID。
+0.8.4: 1mFNS-w5atQ45yegiTepRIeKBYVm8N8He  # 版本 0.8.4 的文件 ID。
+0.9.0: 1FtC00CrDb7Kz5StBAwb6vqOGbzZtpROx  # 版本 0.9.0 的文件 ID。
+0.9.1: 1IZDzNQNVL67h8UlGyKuGegLH612Ifd7H  # 版本 0.9.1 的文件 ID。
+0.9.2: 1RKRGB22U5t80q4zwYXBJvxQXhzNjaaDf  # 版本 0.9.2 的文件 ID。
+0.9.3: 1jJlStNHpey62CrMkWVfmtQcJGO7PaD0R  # 版本 0.9.3 的文件 ID。
+0.9.4: 10Tc0DMXpfH7W28zwagXsVTjpkhGx3Klz  # 版本 0.9.4 的文件 ID。
 
-0.9.5: 20190404_c7b464a # 版本号0.9.5的内容文件对应的AWS上的文件ID，通过这个ID结合前面提到的AWS下载链接格式，可下载该版本相关内容（以.tar.gz压缩包形式）。
-0.9.6: 20190710_0097e66 # 对应版本0.9.6的内容文件在AWS上的标识ID，用于获取该版本的相关文件（以压缩包形式下载）。
-0.9.7: 20191221_c88604b # 版本0.9.7的内容文件在AWS上的ID，可据此从AWS下载该版本相关内容（以压缩包形式）。
-0.9.8: 20200306_06b6cb1 # 指明版本0.9.8的内容文件在AWS上的ID，用于下载此版本相关内容（以压缩包形式）。
-0.9.9: 20200422_ea5179a # 版本0.9.9的内容文件在AWS上的ID，方便按此ID从AWS获取该版本的对应文件（以压缩包形式）。
-0.9.10: 20200925_88f9ceb # 表示版本0.9.10的内容文件在AWS上的ID，用于下载对应版本的相关内容（以压缩包形式）。
-0.9.11: 20201222_232b876 # 版本0.9.11的内容文件在AWS上的ID，可通过它获取该版本的具体文件（以压缩包形式）。
-0.9.12: 20210730_564bcdc # 对应版本0.9.12的内容文件在AWS上的ID，用于下载该版本相关内容（以压缩包形式）。
-0.9.13: 20211112_d5cfa12 # 版本0.9.13的内容文件在AWS上的ID，方便获取该版本的对应文件（以压缩包形式）。
-0.9.14: 20221201_5ec9328 # 表示版本0.9.14的内容文件在AWS上的ID，用于下载该版本的相关内容（以压缩包形式）。
-0.9.15: 20231108_c5101a5 # 版本0.9.15的内容文件在AWS上的ID，可据此从AWS获取该版本的具体文件（以压缩包形式）。
-Latest: 20231108_c5101a5
+# AWS 文件 ID 列表
+# 格式：版本号: AWS 文件 ID
+# 示例下载链接：http://carla-assets.s3.us-east-005.backblazeb2.com/<FILE_ID>.tar.gz
+0.9.5: 20190404_c7b464a  # 版本 0.9.5 的 AWS 文件 ID。
+0.9.6: 20190710_0097e66  # 版本 0.9.6 的 AWS 文件 ID。
+0.9.7: 20191221_c88604b  # 版本 0.9.7 的 AWS 文件 ID。
+0.9.8: 20200306_06b6cb1  # 版本 0.9.8 的 AWS 文件 ID。
+0.9.9: 20200422_ea5179a  # 版本 0.9.9 的 AWS 文件 ID。
+0.9.10: 20200925_88f9ceb  # 版本 0.9.10 的 AWS 文件 ID。
+0.9.11: 20201222_232b876  # 版本 0.9.11 的 AWS 文件 ID。
+0.9.12: 20210730_564bcdc  # 版本 0.9.12 的 AWS 文件 ID。
+0.9.13: 20211112_d5cfa12  # 版本 0.9.13 的 AWS 文件 ID。
+0.9.14: 20221201_5ec9328  # 版本 0.9.14 的 AWS 文件 ID。
+0.9.15: 20231108_c5101a5  # 最新版本 0.9.15 的文件 ID。
+
+# 最新版本的文件 ID，用于默认下载。
+Latest: 20231108_c5101a5  # 最新版本的文件 ID。

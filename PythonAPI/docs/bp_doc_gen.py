@@ -147,7 +147,8 @@ def generate_pb_docs():
                 value = [bp_id, bp]
         if bp_type in bp_dict:
             bp_dict[bp_type].append(value)
-        else:
+        else: # 如果当前的蓝图类型（bp_type）不存在于bp_dict字典中，就创建一个新的键值对，
+              # 键为当前的bp_type，值为一个包含刚刚整理好的value列表的新列表，也就是为这个新类型初始化一个存储蓝图信息的列表结构。
             bp_dict[bp_type] = [value]
 
     # 生成Markdown文档
