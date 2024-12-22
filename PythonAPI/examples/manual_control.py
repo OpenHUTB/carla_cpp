@@ -1939,76 +1939,125 @@ def game_loop(args):
 
 
 def main():
+    """
+    整个程序的主函数，作为程序的入口点，主要负责解析命令行参数、配置日志级别、输出服务器连接相关信息、打印文档字符串（如果有的话），
+    并尝试启动游戏循环，同时处理用户通过键盘中断程序时的异常情况，以友好的方式结束程序。
+    """
     argparser = argparse.ArgumentParser(
         description='CARLA Manual Control Client')
+    // 创建一个 `argparse.ArgumentParser` 对象，用于解析命令行参数。传入 `description` 参数，为这个参数解析器设置一个描述性的文本，
+    // 说明这个程序是用于 `CARLA` 手动控制客户端相关功能的，方便用户在查看帮助信息时了解程序的大致用途。
+
     argparser.add_argument(
         '-v', '--verbose',
         action='store_true',
         dest='debug',
         help='print debug information')
+    // 向参数解析器添加一个命令行参数选项 `-v` 或 `--verbose`，当用户在命令行中使用这个选项时，其行为是将对应的值存储为 `True`，并将这个参数对应的变量名设置为 `debug`（通过 `dest` 参数指定），
+    // 它的作用是用于控制是否打印调试信息，若指定了该选项，则后续程序运行过程中会输出更多详细的调试相关内容，方便开发者排查问题。
+
     argparser.add_argument(
         '--host',
         metavar='H',
         default='127.0.0.1',
         help='IP of the host server (default: 127.0.0.1)')
+    // 添加 `--host` 命令行参数选项，通过 `metavar` 参数指定在帮助信息中显示的参数名称占位符为 `H`，设置默认值为 `127.0.0.1`，
+    // 该参数用于指定要连接的主机服务器的 `IP` 地址，用户可以通过命令行传入自定义的 `IP` 地址来连接不同的服务器，如果不传则使用默认的本地地址 `127.0.0.1`。
+
     argparser.add_argument(
         '-p', '--port',
         metavar='P',
         default=2000,
         type=int,
         help='TCP port to listen to (default: 2000)')
+    // 添加 `-p` 或 `--port` 命令行参数选项，`metavar` 设置参数名称占位符为 `P`，默认值为 `2000`，并且指定参数类型为整数（`type=int`），
+    // 这个参数用于指定要监听的 `TCP` 端口号，用户可以传入其他端口号来改变程序监听的端口，若不传则使用默认的 `2000` 端口与服务器通信。
+
     argparser.add_argument(
         '-a', '--autopilot',
         action='store_true',
         help='enable autopilot')
+    // 添加 `-a` 或 `--autopilot` 命令行参数选项，使用 `action='store_true'` 表示当用户指定该选项时，对应的值存储为 `True`，
+    // 其作用是用于控制是否开启自动驾驶功能，若在命令行中指定了这个选项，则程序在运行过程中会启用相关的自动驾驶逻辑（前提是程序具备相应功能实现）。
+
     argparser.add_argument(
         '--res',
         metavar='WIDTHxHEIGHT',
         default='1280x720',
         help='window resolution (default: 1280x720)')
+    // 添加 `--res` 命令行参数选项，`metavar` 指定参数在帮助信息中的占位符形式为 `WIDTHxHEIGHT`，默认值为 `1280x720`，
+    // 该参数用于设置程序窗口的分辨率，用户可以按照 `宽度x高度` 的格式传入自定义的分辨率值，若不传则使用默认的 `1280x720` 分辨率来显示窗口内容。
+
     argparser.add_argument(
         '--filter',
         metavar='PATTERN',
         default='vehicle.*',
         help='actor filter (default: "vehicle.*")')
+    // 添加 `--filter` 命令行参数选项，`metavar` 设置参数占位符为 `PATTERN`，默认值为 `vehicle.*`，
+    // 这个参数用于设置对游戏中角色（`actor`）的筛选模式，例如默认按照 `vehicle.*` 的模式会筛选出所有类型为车辆相关的角色，用户可以传入其他的正则表达式模式来改变筛选的角色类型，以满足不同的场景需求。
+
     argparser.add_argument(
         '--generation',
         metavar='G',
         default='2',
         help='restrict to certain actor generation (values: "1","2","All" - default: "2")')
+    // 添加 `--generation` 命令行参数选项，`metavar` 设置参数占位符为 `G`，默认值为 `2`，
+    // 该参数用于限制游戏中角色所属的特定代次，可选择的值有 `"1"`、`"2"`、`"All"`，用户可以通过传入相应的值来指定只使用特定代次的角色，若不传则默认使用第 `2` 代角色，不同代次的角色可能在模型、功能等方面有所不同。
+
     argparser.add_argument(
         '--rolename',
         metavar='NAME',
         default='hero',
         help='actor role name (default: "hero")')
+    // 添加 `--rolename` 命令行参数选项，`metavar` 设置参数占位符为 `NAME`，默认值为 `hero`，
+    // 这个参数用于指定游戏中角色的角色名，默认角色名设置为 `"hero"`，用户可以传入其他自定义的角色名来改变角色的标识，在一些需要区分不同角色的场景中会用到。
+
     argparser.add_argument(
         '--gamma',
         default=2.2,
         type=float,
         help='Gamma correction of the camera (default: 2.2)')
+    // 添加 `--gamma` 命令行参数选项，默认值为 `2.2`，指定参数类型为浮点数（`type=float`），
+    // 该参数用于设置相机的伽马校正值，伽马校正会影响相机拍摄图像的亮度、对比度等显示效果，用户可以传入其他浮点数来调整校正程度，若不传则使用默认的 `2.2` 值。
+
     argparser.add_argument(
         '--sync',
         action='store_true',
         help='Activate synchronous mode execution')
+    // 添加 `--sync` 命令行参数选项，使用 `action='store_true'` 表示指定该选项时对应的值存储为 `True`，
+    // 其作用是用于控制是否激活同步模式执行，在同步模式下，游戏世界的更新、渲染等操作会按照固定的时间步长等规则同步进行，若用户在命令行中指定该选项，则开启同步模式相关逻辑。
+
     args = argparser.parse_args()
+    // 调用 `argparser` 的 `parse_args` 方法，解析命令行传入的参数，并将解析后的参数值存储到 `args` 对象中，后续程序可以通过访问 `args` 对象的不同属性来获取相应的参数值，用于控制程序的各种行为和设置。
 
     args.width, args.height = [int(x) for x in args.res.split('x')]
+    // 从解析后的 `args` 对象中获取 `res` 属性（代表窗口分辨率的字符串，格式如 `1280x720`），通过 `split('x')` 方法将其按照 `x` 字符分割为宽度和高度的字符串列表，
+    // 然后使用列表推导式将每个字符串转换为整数类型，并分别赋值给 `args` 对象的 `width` 和 `height` 属性，这样就将窗口分辨率的字符串参数解析为了具体的宽度和高度数值，方便后续使用。
 
     log_level = logging.DEBUG if args.debug else logging.INFO
     logging.basicConfig(format='%(levelname)s: %(message)s', level=log_level)
+    // 根据 `args` 对象中的 `debug` 属性值来确定日志级别。如果 `debug` 属性为 `True`（即用户在命令行指定了 `-v` 或 `--verbose` 选项），则将日志级别设置为 `DEBUG`，
+    // 这样会输出更详细的调试信息；否则将日志级别设置为 `INFO`，只输出一般的程序运行信息。然后通过 `logging.basicConfig` 方法配置日志的基本格式（按照级别和消息内容的格式显示）以及设定的日志级别，
+    // 使得程序在运行过程中能够按照相应的级别输出日志信息，方便查看程序状态和排查问题。
 
     logging.info('listening to server %s:%s', args.host, args.port)
+    // 使用配置好的日志系统，按照 `INFO` 级别输出一条信息，告知用户程序正在监听的服务器地址和端口号，即显示当前程序准备连接的服务器相关信息，方便用户确认连接情况。
 
     print(__doc__)
+    // 打印当前模块（可能是整个程序所在的主模块）的文档字符串（`__doc__`），通常文档字符串包含了对程序功能、模块用途等方面的描述性内容，将其打印出来可以让用户更直观地了解程序的大致情况。
 
     try:
-
         game_loop(args)
+        // 尝试执行 `game_loop` 函数，并将解析好的命令行参数 `args` 传入，`game_loop` 函数应该是整个程序的核心游戏循环逻辑所在，在这里启动游戏的主要运行过程，
+        // 如果在 `game_loop` 函数执行过程中出现异常，则会被下面的 `except` 块捕获并进行相应处理。
 
     except KeyboardInterrupt:
         print('\nCancelled by user. Bye!')
+        // 捕获 `KeyboardInterrupt` 异常，这个异常通常在用户通过键盘（比如按下 `Ctrl+C`）中断程序运行时抛出。
+        // 当捕获到这个异常时，打印一条友好的提示信息告知用户程序是被其手动取消的，然后结束程序，以一种比较友好的方式处理用户主动中断程序的情况。
 
 
 if __name__ == '__main__':
-
     main()
+    // 这是 Python 程序中常见的入口点判断语句，当脚本直接运行（而不是被作为模块导入到其他程序中）时，`__name__` 的值会是 `"__main__"`，
+    // 此时就会执行 `main` 函数，启动整个程序的运行逻辑，实现程序从入口开始执行相应的功能。
