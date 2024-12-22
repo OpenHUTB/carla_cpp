@@ -1,1 +1,2 @@
 smoke.test_client smoke.test_sync smoke.test_sensor_determinism smoke.test_collision_determinism smoke.test_vehicle_physics smoke.test_props_loading smoke.test_sensor_tick_time smoke.test_map smoke.test_snapshot smoke.test_lidar smoke.test_streamming smoke.test_spawnpoints smoke.test_blueprint smoke.test_collision_sensor smoke.test_world smoke.test_determinism
+# smoke.test_client：主要用于检测客户端相关功能的基本可用性，比如客户端能否正常连接服务器、收发数据等基础操作是否顺畅，属于对客户端功能的初步验证测试。
