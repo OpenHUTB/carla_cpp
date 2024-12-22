@@ -4,53 +4,59 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "Carla.h"
-#include "Carla/Game/CarlaEngine.h"
+#include "Carla.h" // 包含CARLA的主头文件，提供CARLA基本功能和接口
+#include "Carla/Game/CarlaEngine.h" // 包含CARLA游戏引擎的头文件，管理游戏世界和仿真
 
-#include "Carla/Game/CarlaEpisode.h"
-#include "Carla/Game/CarlaStaticDelegates.h"
-#include "Carla/Game/CarlaStatics.h"
-#include "Carla/Lights/CarlaLightSubsystem.h"
-#include "Carla/Recorder/CarlaRecorder.h"
-#include "Carla/Settings/CarlaSettings.h"
-#include "Carla/Settings/EpisodeSettings.h"
+#include "Carla/Game/CarlaEpisode.h" // 包含CARLA游戏环节的头文件，代表一个仿真会话
+#include "Carla/Game/CarlaStaticDelegates.h" // 包含CARLA静态委托的头文件，用于注册和管理事件
+#include "Carla/Game/CarlaStatics.h" // 包含CARLA静态变量和函数的头文件，提供全局访问点
+#include "Carla/Lights/CarlaLightSubsystem.h" // 包含CARLA灯光子系统的头文件，管理游戏世界的灯光
+#include "Carla/Recorder/CarlaRecorder.h" // 包含CARLA录制器的头文件，用于记录和回放仿真
+#include "Carla/Settings/CarlaSettings.h" // 包含CARLA设置的头文件，定义仿真的配置参数
+#include "Carla/Settings/EpisodeSettings.h" // 包含CARLA游戏环节设置的头文件，定义环节特定的配置
 
-#include "Runtime/Core/Public/Misc/App.h"
-#include "PhysicsEngine/PhysicsSettings.h"
-#include "Carla/MapGen/LargeMapManager.h"
+#include "Runtime/Core/Public/Misc/App.h" // 包含Unreal Engine应用框架的头文件，提供应用程序接口
+#include "PhysicsEngine/PhysicsSettings.h" // 包含物理引擎设置的头文件，定义物理仿真参数
+#include "Carla/MapGen/LargeMapManager.h" // 包含CARLA大地图管理器的头文件，管理大型开放世界地图
 
-#include <compiler/disable-ue4-macros.h>
-#include <carla/Logging.h>
-#include <carla/multigpu/primaryCommands.h>
-#include <carla/multigpu/commands.h>
-#include <carla/multigpu/secondary.h>
-#include <carla/multigpu/secondaryCommands.h>
-#include <carla/ros2/ROS2.h>
-#include <carla/streaming/EndPoint.h>
-#include <carla/streaming/Server.h>
-#include <compiler/enable-ue4-macros.h>
+#include <compiler/disable-ue4-macros.h> // 禁用Unreal Engine的宏，防止与CARLA代码冲突
+#include <carla/Logging.h> // 包含CARLA日志系统的头文件，提供日志记录功能
+#include <carla/multigpu/primaryCommands.h> // 包含CARLA多GPU主命令的头文件，用于跨GPU通信
+#include <carla/multigpu/commands.h> // 包含CARLA多GPU命令的头文件，用于跨GPU通信
+#include <carla/multigpu/secondary.h> // 包含CARLA多GPU次要功能的头文件，用于跨GPU通信
+#include <carla/multigpu/secondaryCommands.h> // 包含CARLA多GPU次要命令的头文件，用于跨GPU通信
+#include <carla/ros2/ROS2.h> // 包含CARLA ROS 2接口的头文件，提供ROS 2集成功能
+#include <carla/streaming/EndPoint.h> // 包含CARLA流媒体端点的头文件，提供流媒体传输功能
+#include <carla/streaming/Server.h> // 包含CARLA流媒体服务器的头文件，提供流媒体传输服务
+#include <compiler/enable-ue4-macros.h> // 启用Unreal Engine的宏
 
-#include <thread>
+#include <thread> // 包含C++标准库线程的头文件，提供线程管理功能
 
 // =============================================================================
 // -- Static local methods -----------------------------------------------------
 // =============================================================================
 
-// 初始化静态变量
+// 初始化静态变量，用于计数帧数
 uint64_t FCarlaEngine::FrameCounter = 0;
 
+// 静态函数，用于获取RPC服务器的线程数
 static uint32 FCarlaEngine_GetNumberOfThreadsForRPCServer()
 {
+  // 返回硬件支持的线程数与4的最大值，然后减去2，确保有足够的线程处理其他任务
   return std::max(std::thread::hardware_concurrency(), 4u) - 2u;
 }
 
+// 静态函数，用于获取固定的仿真时间间隔
 static TOptional<double> FCarlaEngine_GetFixedDeltaSeconds()
 {
+  // 如果正在基准测试，则返回固定的仿真时间间隔，否则返回空值
   return FApp::IsBenchmarking() ? FApp::GetFixedDeltaTime() : TOptional<double>{};
 }
 
+// 静态函数，用于设置固定的仿真时间间隔
 static void FCarlaEngine_SetFixedDeltaSeconds(TOptional<double> FixedDeltaSeconds)
 {
+  // 如果提供了固定的时间间隔，则设置基准测试模式和固定的时间间隔，否则不进行设置
   FApp::SetBenchmarking(FixedDeltaSeconds.IsSet());
   FApp::SetFixedDeltaTime(FixedDeltaSeconds.Get(0.0));
 }
@@ -58,10 +64,14 @@ static void FCarlaEngine_SetFixedDeltaSeconds(TOptional<double> FixedDeltaSecond
 // =============================================================================
 // -- FCarlaEngine -------------------------------------------------------------
 // =============================================================================
-// FCarlaEngine类的析构函数
+
+// FCarlaEngine类的析构函数，负责清理资源和结束仿真
 FCarlaEngine::~FCarlaEngine()
 {
    // 检查成员变量bIsRunning是否为true，表示引擎是否正在运行
+   // 如果正在运行，则需要执行清理操作，例如结束仿真、释放资源等
+}
+
   if (bIsRunning)
   {
     // 如果定义了WITH_ROS2宏，表示项目配置了ROS2（Robot Operating System 2）支持

@@ -89,20 +89,25 @@
 #pragma pop_macro("NV_RESULT")// 取消名为"NV_RESULT"的宏。
 #pragma pop_macro("B")// 取消名为"B"的宏。
 #pragma pop_macro("AMF_DECLARE_IID")// 取消名为"AMF_DECLARE_ID"的宏。
-#pragma pop_macro("AMF_MACRO_STRING2")
-#pragma pop_macro("AMF_MACRO_STRING")
-#pragma pop_macro("AMF_TODO")
-#pragma pop_macro("AMF_ALIGN")
-#pragma pop_macro("amf_countof")
-#pragma pop_macro("AMF_MIN")
-#pragma pop_macro("AMF_MAX")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_DATA")
-#pragma pop_macro("AMF_QUERY_INTERFACE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_INTERFACE")
-#pragma pop_macro("AMF_GET_PROPERTY_INTERFACE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_TYPE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_INT64")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_DOUBLE")
+#pragma pop_macro("AMF_MACRO_STRING2")// 取消之前定义的名为 "AMF_MACRO_STRING2" 的宏定义。
+// 通常在之前可能使用了 #pragma push_macro 保存了该宏定义的状态，这里进行恢复（取消定义）操作。
+#pragma pop_macro("AMF_MACRO_STRING")// 取消之前定义的名为 "AMF_MACRO_STRING" 的宏定义，作用与上面类似，恢复该宏之前的状态。
+#pragma pop_macro("AMF_TODO")// 取消之前定义的名为 "AMF_TODO" 的宏定义，可能这个宏在代码开发过程中有特定用途，此处还原其初始情况
+#pragma pop_macro("AMF_ALIGN")// 取消之前定义的名为 "AMF_ALIGN" 的宏定义，一般用于处理数据对齐相关的操作，这里取消其定义使其恢复原样。
+#pragma pop_macro("amf_countof")// 取消之前定义的名为 "amf_countof" 的宏定义，"amf_countof" 通常可能用于计算某种元素数量之类的功能，现在将其恢复到之前的状态。
+#pragma pop_macro("AMF_MIN")// 取消之前定义的名为 "AMF_MIN" 的宏定义，该宏大概率是用于获取两个值中的最小值，这里取消定义进行还原操作。
+#pragma pop_macro("AMF_MAX")// 取消之前定义的名为 "AMF_MAX" 的宏定义，与 "AMF_MIN" 相对应，可能是用于获取两个值中的最大值，现在将其恢复初始状态。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_DATA")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_DATA" 的宏定义，从名字推测这个宏可能与给某个属性赋值数据相关，此处取消其定义。
+#pragma pop_macro("AMF_QUERY_INTERFACE")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_INTERFACE" 的宏定义，推测是用于给属性分配接口相关操作的宏，取消其定义恢复原状。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_INTERFACE")// 取消之前定义的名为 "AMF_GET_PROPERTY_INTERFACE" 的宏定义，可能用于获取属性的接口，这里将其定义取消掉。
+#pragma pop_macro("AMF_GET_PROPERTY_INTERFACE")// 取消之前定义的名为 "AMF_GET_PROPERTY_INTERFACE" 的宏定义。
+                                              // 通常意味着将该宏恢复到之前未被定义（或者之前定义被保存时的初始）状态，可能之前在某个特定代码区域内对其进行了自定义定义，现在结束该区域相关操作后进行还原。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_TYPE")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_TYPE" 的宏定义。
+                                             // 从名字推测这个宏可能在代码中用于给某个属性指定类型相关的操作，此处执行取消定义的操作，使其恢复到原始设定情况。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_INT64")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_INT64" 的宏定义。
+                                              // 大概率该宏之前是用于给相应的属性赋值 64 位整数类型的数据，现在取消这个宏定义，把相关宏状态还原回去。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_DOUBLE")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_DOUBLE" 的宏定义。
+                                               // 可能此前这个宏是为了方便在代码里给属性赋值双精度浮点数而定义的，现在将其定义取消，恢复之前的状态。
 #pragma pop_macro("AMF_ASSIGN_PROPERTY_BOOL")
 #pragma pop_macro("AMF_ASSIGN_PROPERTY_RECT")
 #pragma pop_macro("AMF_ASSIGN_PROPERTY_SIZE")

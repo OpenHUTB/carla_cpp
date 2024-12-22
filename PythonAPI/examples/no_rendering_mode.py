@@ -1568,8 +1568,10 @@ def exit_game():
 
 def main():
     """Parses the arguments received from commandline and runs the game loop"""
-
+    # 函数的主要功能是解析从命令行接收到的参数，并运行游戏循环。这个函数文档字符串简要描述了函数的作用。
+    
     # Define arguments that will be received and parsed
+    # 创建一个参数解析器对象，用于定义和解析命令行参数。description参数用于描述这个脚本的功能，这里表示是CARLA无渲染模式可视化工具。
     argparser = argparse.ArgumentParser(
         description='CARLA No Rendering Mode Visualizer')
     argparser.add_argument(

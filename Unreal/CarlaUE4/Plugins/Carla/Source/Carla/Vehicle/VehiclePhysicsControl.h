@@ -30,9 +30,9 @@ struct CARLA_API FVehiclePhysicsControl
 {
   GENERATED_BODY()
 
-  // MECHANICAL SETUP
+  // 机械设置
 
-  // Engine Setup
+  // 引擎设置
   FRichCurve TorqueCurve;
 
   UPROPERTY(Category = "Vehicle Engine Physics Control", EditAnywhere, BlueprintReadWrite)
@@ -50,7 +50,7 @@ struct CARLA_API FVehiclePhysicsControl
   UPROPERTY(Category = "Vehicle Engine Physics Control", EditAnywhere, BlueprintReadWrite)
   float DampingRateZeroThrottleClutchDisengaged = 0.0f;
 
-  // // Transmission Setup
+  // // 传输设置
   UPROPERTY(Category = "Vehicle Engine Physics Control", EditAnywhere, BlueprintReadWrite)
   bool bUseGearAutoBox = 0.0f;
 
@@ -66,21 +66,21 @@ struct CARLA_API FVehiclePhysicsControl
   UPROPERTY(Category = "Vehicle Engine Physics Control", EditAnywhere, BlueprintReadWrite)
   TArray<FGearPhysicsControl> ForwardGears;
 
-  // Vehicle Setup
+  // 车辆设置
   UPROPERTY(Category = "Vehicle Engine Physics Control", EditAnywhere, BlueprintReadWrite)
   float Mass = 0.0f;
 
   UPROPERTY(Category = "Vehicle Engine Physics Control", EditAnywhere, BlueprintReadWrite)
   float DragCoefficient = 0.0f;
 
-  // Steering Setup
+  // 转向设置
   FRichCurve SteeringCurve;
 
-  // Center Of Mass
+  // 质心
   UPROPERTY(Category = "Vehicle Center Of Mass", EditAnywhere, BlueprintReadWrite)
   FVector CenterOfMass;
 
-  // Wheels Setup
+  // 车轮设置
   TArray<FWheelPhysicsControl> Wheels;
 
   UPROPERTY(Category = "Vehicle Wheels Configuration", EditAnywhere, BlueprintReadWrite)
