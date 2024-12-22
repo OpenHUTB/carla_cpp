@@ -55,6 +55,13 @@ Use ARROWS or WASD keys for control.
 """
 
 from __future__ import print_function
+# 这是Python中的一个特殊导入语句，用于引入Python未来版本中的一些特性到当前版本中使用。
+# 在这里，它的作用是将Python 3中的 `print` 函数的行为引入到Python 2中（因为在Python 2中，`print` 最初是一个语句而不是函数）。
+
+# 具体来说，在Python 2中，如果没有这行导入，使用 `print` 时的语法是像这样：`print "Hello, world!"`（直接跟着要打印的内容，中间用空格隔开）。
+# 而引入了 `from __future__ import print_function` 后，就可以像在Python 3中那样把 `print` 当作函数来使用，语法变为：`print("Hello, world!")`，
+# 即需要用括号把要打印的内容括起来，这样使得代码在Python 2和Python 3环境下对于 `print` 的使用方式更加统一，方便代码在不同Python版本间进行迁移和兼容，
+# 同时也遵循了更现代、规范的函数调用式的语法风格，便于后续代码维护以及与其他遵循函数式 `print` 使用方式的模块进行交互等操作。
 
 
 # ==============================================================================
