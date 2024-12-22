@@ -143,36 +143,37 @@ private:
 // =============================================================================
 // -- 定义辅助宏 ----------------------------------------------------------------
 // =============================================================================
-
+// 检查当前是否在游戏线程中执行，仅在编辑器模式下有效
 #if WITH_EDITOR
-#  define CARLA_ENSURE_GAME_THREAD() check(IsInGameThread());
+#  define CARLA_ENSURE_GAME_THREAD() check(IsInGameThread());// 在编辑器中，确保代码在游戏线程中执行
 #else
-#  define CARLA_ENSURE_GAME_THREAD()
+#  define CARLA_ENSURE_GAME_THREAD()// 在非编辑器模式下，此宏不做任何事情
 #endif // WITH_EDITOR
-
+// 定义一个宏，用于记录错误消息并返回一个ResponseError对象
 #define RESPOND_ERROR(str) {                                              \
     UE_LOG(LogCarlaServer, Log, TEXT("Responding error: %s"), TEXT(str)); \
     return carla::rpc::ResponseError(str); }
 
+// 定义一个宏，用于记录由FString表示的错误消息并返回一个ResponseError对象
 #define RESPOND_ERROR_FSTRING(fstr) {                                 \
     UE_LOG(LogCarlaServer, Log, TEXT("Responding error: %s"), *fstr); \
     return carla::rpc::ResponseError(carla::rpc::FromFString(fstr)); }
-
+// 定义一个宏，用于确保有一个有效的CARLA Episode对象，并检查是否在游戏线程中
 #define REQUIRE_CARLA_EPISODE() \
     CARLA_ENSURE_GAME_THREAD();   \
     if (Episode == nullptr) { RESPOND_ERROR("episode not ready"); }
-
+// 定义一个函数，用于构造并返回一个包含函数名、错误消息和额外信息的ResponseError对象
 carla::rpc::ResponseError RespondError(
     const FString& FuncName,
     const FString& ErrorMessage,
     const FString& ExtraInfo = "")
 {
   FString TotalMessage = "Responding error from function " + FuncName + ": " +
-      ErrorMessage + ". " + ExtraInfo;
-  UE_LOG(LogCarlaServer, Log, TEXT("%s"), *TotalMessage);
-  return carla::rpc::ResponseError(carla::rpc::FromFString(TotalMessage));
+      ErrorMessage + ". " + ExtraInfo;// 拼接完整的错误消息
+  UE_LOG(LogCarlaServer, Log, TEXT("%s"), *TotalMessage);// 记录完整错误消息到日志
+  return carla::rpc::ResponseError(carla::rpc::FromFString(TotalMessage)); // 返回一个包含完整错误消息的ResponseError对象
 }
-
+// 定义一个重载函数，用于处理ECarlaServerResponse枚举值作为错误代码的情况
 carla::rpc::ResponseError RespondError(
     const FString& FuncName,
     const ECarlaServerResponse& Error,
@@ -285,14 +286,18 @@ void FCarlaServer::FPimpl::BindActions()
   };
 
   // ~~ 加载新章节 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+// 使用BIND_ASYNC宏来异步绑定一个函数，这里的函数是获取所有可用的地图名称
   BIND_ASYNC(get_available_maps) << [this]() -> R<std::vector<std::string>>
-  {
+  {// 通过UCarlaStatics类的静态方法GetAllMapNames获取所有地图名称的列表
     const auto MapNames = UCarlaStatics::GetAllMapNames();
+    // 创建一个std::vector来存储过滤后的地图名称
     std::vector<std::string> result;
+    // 为result预留足够的空间，以提高性能（避免多次内存分配）
+    // Num()是FString或类似容器的成员函数，返回容器中元素的数量
     result.reserve(MapNames.Num());
+    // 遍历所有地图名称
     for (const auto &MapName : MapNames)
-    {
+    {// 如果地图名称包含"/Sublevels/"，则跳过该地图（可能是子地图或层级地图）
       if (MapName.Contains("/Sublevels/"))
         continue;
       if (MapName.Contains("/BaseMap/"))
@@ -301,9 +306,11 @@ void FCarlaServer::FPimpl::BindActions()
         continue;
       if (MapName.Contains("_Tile_"))
         continue;
-
+// 如果地图名称通过了所有过滤条件，则将其添加到结果列表中
+// cr::FromFString是一个将FString转换为std::string的函数
       result.emplace_back(cr::FromFString(MapName));
     }
+    // 返回过滤后的地图名称列表
     return result;
   };
 
@@ -379,13 +386,16 @@ void FCarlaServer::FPimpl::BindActions()
       const cr::MaterialParameter& parameter,// 材料参数，用于定义纹理的应用方式
       const cr::TextureColor& Texture) -> R<void>// 纹理颜色参数
   {
-    REQUIRE_CARLA_EPISODE();
+ // 这是一个lambda函数或函数对象的定义，被设计为异步执行
+
+// 返回一个R<void>类型的对象，这通常表示一个异步操作的结果
+    REQUIRE_CARLA_EPISODE();// 检查当前是否有一个有效的CARLA模拟器会话正在运行
     ACarlaGameModeBase* GameMode = UCarlaStatics::GetGameMode(Episode->GetWorld());
     if (!GameMode)
     {
       RESPOND_ERROR("unable to find CARLA game mode");
     }
-    TArray<AActor*> ActorsToPaint;
+    TArray<AActor*> ActorsToPaint;// 创建一个数组来存储找到的actor指针
     for(const std::string& actor_name : actors_name)
     {
       AActor* ActorToPaint = GameMode->FindActorByName(cr::ToFString(actor_name));
