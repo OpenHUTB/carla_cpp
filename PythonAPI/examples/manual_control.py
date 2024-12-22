@@ -737,25 +737,70 @@ class KeyboardControl(object):
         else:
             self._ackermann_control.steer = round(self._steer_cache, 1)
 
-    def _parse_walker_keys(self, keys, milliseconds, world):
-        self._control.speed = 0.0
-        if keys[K_DOWN] or keys[K_s]:
-            self._control.speed = 0.0
-        if keys[K_LEFT] or keys[K_a]:
-            self._control.speed = .01
-            self._rotation.yaw -= 0.08 * milliseconds
-        if keys[K_RIGHT] or keys[K_d]:
-            self._control.speed = .01
-            self._rotation.yaw += 0.08 * milliseconds
-        if keys[K_UP] or keys[K_w]:
-            self._control.speed = world.player_max_speed_fast if pygame.key.get_mods() & KMOD_SHIFT else world.player_max_speed
-        self._control.jump = keys[K_SPACE]
-        self._rotation.yaw = round(self._rotation.yaw, 1)
-        self._control.direction = self._rotation.get_forward_vector()
+   def _parse_walker_keys(self, keys, milliseconds, world):
+    """
+    函数功能：根据传入的键盘按键状态（`keys`）、时间间隔（`milliseconds`）以及模拟世界（`world`）相关信息，解析并更新行人角色（`walker`）的控制参数，
+    包括行人的移动速度、旋转角度、跳跃状态以及移动方向等，以此来实现对行人在模拟世界中行为的控制。
 
-    @staticmethod
-    def _is_quit_shortcut(key):
-        return (key == K_ESCAPE) or (key == K_q and pygame.key.get_mods() & KMOD_CTRL)
+    参数说明：
+    - `self`：类的实例对象本身，通过它可以访问类的实例属性等信息，这里用于获取和更新实例中与行人控制相关的属性。
+    - `keys`：一个表示键盘按键状态的对象（可能是 `pygame` 相关的数据结构），通过其元素（如 `keys[K_UP]` 等）可以判断各个特定按键是否被按下，用于确定用户的操作意图。
+    - `milliseconds`：表示时间间隔的数值，单位可能是毫秒，用于在一些控制参数的计算中，结合时间因素来实现更平滑、合理的控制效果，例如根据时间来调整旋转角度变化量等。
+    - `world`：代表整个模拟世界的对象，这里主要用于获取行人的最大速度相关信息（`world.player_max_speed` 和 `world.player_max_speed_fast`），以根据用户操作来设置合适的行人移动速度。
+    """
+    self._control.speed = 0.0
+    # 首先将行人控制对象（`self._control`，类型为 `carla.WalkerControl`）中的速度（`speed`）参数初始化为 `0.0`，表示行人初始状态为静止。
+
+    if keys[K_DOWN] or keys[K_s]:
+        self._control.speed = 0.0
+        # 判断向下箭头键（`K_DOWN`）或者 `s` 键是否被按下，如果按下同样将行人速度设置为 `0.0`，即按下这两个键时行人保持静止，
+        // 可能意味着这两个键在当前设计中没有赋予实际的移动功能或者用于停止行人当前的移动操作等。
+
+    if keys[K_LEFT] or keys[K_a]:
+        self._control.speed =.01
+        self._rotation.yaw -= 0.08 * milliseconds
+        # 判断向左箭头键（`K_LEFT`）或者 `a` 键是否被按下，如果按下：
+        // - 将行人控制对象中的速度参数设置为 `0.01`，表示行人开始以一个相对较慢的固定速度向左移动（这里 `0.01` 应该是经过设定的合适的移动速度值，具体单位可能由模拟环境定义）。
+        // - 根据时间间隔（`milliseconds`）来减少行人的旋转角度（`yaw`），计算公式为 `0.08 * milliseconds`，意味着随着时间的推移，行人会逐渐向左转身，
+        // 转身的角度变化量与时间成正比，实现更平滑自然的转向效果，模拟行人向左行走时身体自然转向的动作。
+
+    if keys[K_RIGHT] or keys[K_d]:
+        self._control.speed =.01
+        self._rotation.yaw += 0.08 * milliseconds
+        # 判断向右箭头键（`K_RIGHT`）或者 `d` 键是否被按下，如果按下：
+        // - 将行人控制对象中的速度参数设置为 `0.01`，表示行人开始以一个相对较慢的固定速度向右移动（与向左移动时速度值相同，保持对称的操作逻辑）。
+        // - 根据时间间隔（`milliseconds`）来增加行人的旋转角度（`yaw`），计算公式为 `0.08 * milliseconds`，意味着随着时间的推移，行人会逐渐向右转身，
+        // 同样实现了更平滑自然的转向效果，模拟行人向右行走时身体自然转向的动作。
+
+    if keys[K_UP] or keys[K_w]:
+        self._control.speed = world.player_max_speed_fast if pygame.key.get_mods() & KMOD_SHIFT else world.player_max_speed
+        # 判断向上箭头键（`K_UP`）或者 `w` 键是否被按下，如果按下：
+        // - 通过判断是否同时按下了 `Shift` 键（`pygame.key.get_mods() & KMOD_SHIFT`）来决定行人的移动速度。
+        // 如果按下了 `Shift` 键，则将行人速度设置为 `world.player_max_speed_fast`（可能表示行人的快速移动速度，具体值由模拟世界对象 `world` 中的相关属性定义），
+        // 否则设置为 `world.player_max_speed`（可能表示行人的正常移动速度），以此实现通过不同按键组合来控制行人以不同速度向前移动的功能。
+
+    self._control.jump = keys[K_SPACE]
+    # 根据空格键（`K_SPACE`）是否被按下，来设置行人控制对象中的跳跃（`jump`）参数，若空格键被按下则 `jump` 参数为 `True`（此处虽未显式写布尔值转换，但根据逻辑可推测如此），表示行人执行跳跃动作，否则为 `False`，表示行人不跳跃。
+
+    self._rotation.yaw = round(self._rotation.yaw, 1)
+    # 对行人的旋转角度（`yaw`）进行四舍五入保留一位小数的操作，这样可以避免旋转角度出现过于精确或不必要的小数位，使角度值更加简洁合理，同时也可能符合模拟环境中对角度精度的实际要求。
+
+    self._control.direction = self._rotation.get_forward_vector()
+    # 将行人控制对象中的方向（`direction`）参数设置为通过行人当前旋转角度（`self._rotation`）获取到的前向向量，
+    // 以此确定行人实际的移动方向，使得行人按照其当前朝向所对应的前方方向进行移动，保证移动方向与旋转角度的一致性。
+
+@staticmethod
+def _is_quit_shortcut(key):
+    """
+    静态方法功能：判断传入的键盘按键（`key`）是否为定义的退出快捷键组合。
+
+    参数说明：
+    - `key`：表示一个键盘按键的代码（可能是 `pygame` 中定义的按键常量），用于判断是否符合退出快捷键的定义。
+    """
+    return (key == K_ESCAPE) or (key == K_q and pygame.key.get_mods() & KMOD_CTRL)
+    // 返回一个布尔值，表示传入的按键是否满足退出快捷键的条件。具体判断逻辑为：如果按键是 `K_ESCAPE`（通常对应 `Esc` 键）或者
+    // 按键是 `K_q` 并且同时按下了 `Ctrl` 键（通过 `pygame.key.get_mods() & KMOD_CTRL` 判断），则认为是退出快捷键，返回 `True`，否则返回 `False`。
+    // 这样在其他地方调用该方法时，可以方便地判断用户是否按下了特定的退出快捷键组合，以决定是否执行相应的退出程序等操作。
 
 
 # ==============================================================================
