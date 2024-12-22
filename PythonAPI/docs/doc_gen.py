@@ -150,7 +150,11 @@ class MarkdownFile:
 
 def italic(buf):
     return join(['_', buf, '_'])
-
+    """
+    将输入的字符串 `buf` 转换为斜体格式，即在字符串前后添加下划线（Markdown语法中用于表示斜体）。
+    :param buf: 要转换格式的字符串
+    :return: 转换为斜体格式后的字符串
+    """
 
 def bold(buf):
     return join(['**', buf, '**'])
