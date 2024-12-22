@@ -1,4 +1,4 @@
-C++ Client Example
+C++ Client Example # 这是一个使用CARLA的C++ API的示例目的是从C++连接和控制模拟器
 ==================
 
 This example creates an application using CARLA's C++ API to connect and control
