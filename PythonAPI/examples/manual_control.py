@@ -86,7 +86,7 @@ from carla import ColorConverter as cc
 
 import argparse
 import collections
-import datetime
+import datetime#datetime  模块用于处理日期和时间相关的操作，在Python中可以通过它来获取当前时间、创建特定日期时间的对象、进行日期时间的计算
 import logging
 import math
 import random
