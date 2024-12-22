@@ -3,7 +3,7 @@
 # Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB).
 #
-# This work is licensed under the terms of the MIT license.
+# 本作品依据麻省理工学院许可证的条款获得许可。
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
 import glob
