@@ -103,15 +103,17 @@ namespace learning {
     }
     return result;
   }
-
+// 该函数接收两个常量引用类型的at::Tensor参数，并返回一个WheelOutput 类型的结果
   WheelOutput GetWheelTensorOutputDynamic(
       const at::Tensor &particle_forces, 
       const at::Tensor &wheel_forces) {
     WheelOutput result;
     const float* wheel_forces_data = wheel_forces.data_ptr<float>();
+    // 从wheel_forces中提取轮子X Y Z方向的力
     result.wheel_forces_x = wheel_forces_data[0];
     result.wheel_forces_y = wheel_forces_data[1];
     result.wheel_forces_z = wheel_forces_data[2];
+    // 从 particle_forces中提取每个粒子的力
     const float* particle_forces_data = particle_forces.data_ptr<float>();
     int num_dimensions = 3;
     int num_particles = particle_forces.sizes()[0];
@@ -156,22 +158,22 @@ namespace learning {
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
-
+// 创建轮子位置张量
     at::Tensor wheel_positions_tensor = 
-        torch::from_blob(wheel.wheel_positions, 
-            {3}, torch::kFloat32);
-
+        torch::from_blob(wheel.wheel_positions, // 原始数据，表示轮子的位置
+            {3}, torch::kFloat32);// 张量的维度为3
+// 创建轮子方向张量
     at::Tensor wheel_oritentation_tensor = 
-        torch::from_blob(wheel.wheel_oritentation, 
-            {4}, torch::kFloat32);
-
+        torch::from_blob(wheel.wheel_oritentation, // 原始数据，表示轮子的方向
+            {4}, torch::kFloat32);// 表示张量维度为4
+// 创建轮子线性速度张量
     at::Tensor wheel_linear_velocity_tensor = 
-        torch::from_blob(wheel.wheel_linear_velocity, 
-            {3}, torch::kFloat32);
-
+        torch::from_blob(wheel.wheel_linear_velocity, // 原始数据，表示轮子的线性速度
+            {3}, torch::kFloat32);// 表示张量的维度为3
+// 创建轮子角速度张量
     at::Tensor wheel_angular_velocity_tensor = 
-        torch::from_blob(wheel.wheel_angular_velocity, 
-            {3}, torch::kFloat32);
+        torch::from_blob(wheel.wheel_angular_velocity, // 原始数据，表示轮子的角速度
+            {3}, torch::kFloat32);// 表示张量的维度为3
 // 将所有准备好的张量以及粒子数量（作为一个标量张量或直接作为整数）放入一个向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor.cuda(), particles_velocity_tensor.cuda(), wheel_positions_tensor.cuda(), 
@@ -263,7 +265,9 @@ namespace learning {
       TorchInputs.push_back(GetWheelTensorInputs(_input.wheel2));
       TorchInputs.push_back(GetWheelTensorInputs(_input.wheel3));
       auto drv_inputs = torch::tensor(
+       // 输入参数：转向、油门、刹车
           {_input.steering, _input.throttle, _input.braking}, torch::kFloat32); //steer, throtle, brake
+       // 数据类型为float32
       TorchInputs.push_back(drv_inputs);
       if (_input.terrain_type >= 0) {
         TorchInputs.push_back(_input.terrain_type);
@@ -272,18 +276,24 @@ namespace learning {
 
       torch::jit::IValue Output;
       try {
+         // 调用Model的forward函数，传入TorchInputs，结果存储在Output中
         Output = Model->module.forward(TorchInputs);
       } catch (const c10::Error& e) {
+        // 如果捕获到错误，打印错误信息
         std::cout << "Error running model: " << e.msg() << std::endl;
       }
 
       std::vector<torch::jit::IValue> Tensors =  Output.toTuple()->elements();
+      // 获取车轮0的输出动态张量
       _output.wheel0 = GetWheelTensorOutputDynamic(
           Tensors[0].toTensor().cpu(), Tensors[4].toTensor().cpu());
+      // 获取车轮1的输出动态张量
       _output.wheel1 = GetWheelTensorOutputDynamic(
           Tensors[1].toTensor().cpu(), Tensors[5].toTensor().cpu());
+      // 获取车轮2的输出动态张量
       _output.wheel2 = GetWheelTensorOutputDynamic(
           Tensors[2].toTensor().cpu(), Tensors[6].toTensor().cpu());
+      // 获取车轮3的输出动态张量
       _output.wheel3 = GetWheelTensorOutputDynamic(
           Tensors[3].toTensor().cpu(), Tensors[7].toTensor().cpu());
 

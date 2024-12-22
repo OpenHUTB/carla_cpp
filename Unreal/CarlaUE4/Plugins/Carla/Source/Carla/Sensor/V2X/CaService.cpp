@@ -90,17 +90,17 @@ void CaService::SetOwner(UWorld *world, AActor *Owner)
 void CaService::SetParams(const float GenCamMin, const float GenCamMax, const bool FixedRate)
 {
     UE_LOG(LogCarla, Warning, TEXT("CaService:SetParams function called"));
-    // Max and Min for generation rate
+    // 生成速率的最大值和最小值
 
-    mGenCamMin = GenCamMin; // in second
-    mGenCamMax = GenCamMax; // in second
+    mGenCamMin = GenCamMin; // 以秒为单位
+    mGenCamMax = GenCamMax; // 以秒为单位
     mGenCam = mGenCamMax;
-    // If we want set a fix interval make this as true
+    // 如果想设置一个固定的间隔，将此项设置为 true
     mFixedRate = FixedRate;
 }
 
 /*
- * Function to check trigger condition for RSU
+ * 检查RSU触发条件的函数
  */
 bool CaService::Trigger(float DeltaSeconds)
 {
@@ -124,7 +124,7 @@ bool CaService::Trigger(float DeltaSeconds)
 }
 
 /*
- * Function to provide CAM message to other objects if necessary
+ * 如果需要，向其他对象提供CAM消息的函数
  */
 CAM_t CaService::GetCamMessage()
 {
@@ -132,8 +132,7 @@ CAM_t CaService::GetCamMessage()
 }
 
 /*
- * Check the trigger condition in case of vehicles and if trigger is true request
- * to generate CAM message
+ * 检查车辆的触发条件，如果触发条件为真，则请求生成CAM消息
  */
 bool CaService::CheckTriggeringConditions(float DeltaSeconds)
 {

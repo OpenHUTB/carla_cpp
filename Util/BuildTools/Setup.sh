@@ -1,22 +1,23 @@
 #! /bin/bash
-
+# 指定脚本执行时使用的 shell
 # ==============================================================================
 # -- Parse arguments -----------------------------------------------------------
 # ==============================================================================
+# 说明文档字符串
 
 DOC_STRING="Download and install the required libraries for carla."
-
+# 使用方法字符串
 USAGE_STRING="Usage: $0 [--python-version=VERSION]"
-
+# 解析命令行参数
 OPTS=`getopt -o h --long help,chrono,ros2,pytorch,python-version: -n 'parse-options' -- "$@"`
 
 eval set -- "$OPTS"
-
+# 初始化变量
 PY_VERSION_LIST=3
 USE_CHRONO=false
 USE_PYTORCH=false
 USE_ROS2=false
-
+# 循环处理每个参数
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --python-version )
@@ -44,21 +45,22 @@ done
 # ==============================================================================
 # -- Set up environment --------------------------------------------------------
 # ==============================================================================
-
+# 导入环境变量
 source $(dirname "$0")/Environment.sh
-
+# 设置编译器路径
 export CC="$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v17_clang-10.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang"
 export CXX="$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v17_clang-10.0.1-centos7/x86_64-unknown-linux-gnu/bin/clang++"
 export PATH="$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v17_clang-10.0.1-centos7/x86_64-unknown-linux-gnu/bin:$PATH"
-
+# 定义 CXX_TAG 变量
 CXX_TAG=c10
 
 # Convert comma-separated string to array of unique elements.
 IFS="," read -r -a PY_VERSION_LIST <<< "${PY_VERSION_LIST}"
-
+# 将逗号分隔的字符串转换为数组
+# 创建 CARLA_BUILD_FOLDER 目录并进入
 mkdir -p ${CARLA_BUILD_FOLDER}
 pushd ${CARLA_BUILD_FOLDER} >/dev/null
-
+# 设置 LLVM 包含路径和库路径
 LLVM_INCLUDE="$UE4_ROOT/Engine/Source/ThirdParty/Linux/LibCxx/include/c++/v1"
 LLVM_LIBPATH="$UE4_ROOT/Engine/Source/ThirdParty/Linux/LibCxx/lib/Linux/x86_64-unknown-linux-gnu"
 UNREAL_HOSTED_CFLAGS="--sysroot=$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v17_clang-10.0.1-centos7/x86_64-unknown-linux-gnu/"
@@ -66,14 +68,14 @@ UNREAL_HOSTED_CFLAGS="--sysroot=$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/Hos
 # ==============================================================================
 # -- Get boost includes --------------------------------------------------------
 # ==============================================================================
-
+# 设置BOOST_VERSION和BOOST_BASENAME变量
 BOOST_VERSION=1.80.0
 BOOST_BASENAME="boost-${BOOST_VERSION}-${CXX_TAG}"
 BOOST_SHA256SUM="4b2136f98bdd1f5857f1c3dea9ac2018effe65286cf251534b6ae20cc45e1847"
-
+# 设置BOOST_INCLUDE和BOOST_LIBPATH变量
 BOOST_INCLUDE=${PWD}/${BOOST_BASENAME}-install/include
 BOOST_LIBPATH=${PWD}/${BOOST_BASENAME}-install/lib
-
+# 遍历Python版本列表，下载并安装Boost库
 for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
   SHOULD_BUILD_BOOST=true
   PYTHON_VERSION=$(/usr/bin/env python${PY_VERSION} -V 2>&1)
@@ -88,7 +90,7 @@ for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
 
   if { ${SHOULD_BUILD_BOOST} ; } ; then
     rm -Rf ${BOOST_BASENAME}-source
-
+# 下载并安装Boost库
     BOOST_PACKAGE_BASENAME=boost_${BOOST_VERSION//./_}
 
     log "Retrieving boost."
@@ -97,7 +99,7 @@ for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
     wget "https://archives.boost.io/release/${BOOST_VERSION}/source/${BOOST_PACKAGE_BASENAME}.tar.gz" -O ${BOOST_PACKAGE_BASENAME}.tar.gz || true
     end=$(date +%s)
     echo "Elapsed Time downloading from boost webpage: $(($end-$start)) seconds"
-
+# 尝试使用Jenkins中的备份Boost库
     # try to use the backup boost we have in Jenkins
     if [ ! -f "${BOOST_PACKAGE_BASENAME}.tar.gz" ] || [[ $(sha256sum "${BOOST_PACKAGE_BASENAME}.tar.gz" | cut -d " " -f 1 ) != "${BOOST_SHA256SUM}" ]] ; then
       log "Using boost backup"
@@ -162,10 +164,10 @@ unset BOOST_BASENAME
 # ==============================================================================
 # -- Get rpclib and compile it with libc++ and libstdc++ -----------------------
 # ==============================================================================
-
+# 设置RPCLIB_PATCH、RPCLIB_BASENAME变量
 RPCLIB_PATCH=v2.2.1_c5
 RPCLIB_BASENAME=rpclib-${RPCLIB_PATCH}-${CXX_TAG}
-
+# 设置RPCLIB_LIBCXX_INCLUDE、RPCLIB_LIBCXX_LIBPATH、
 RPCLIB_LIBCXX_INCLUDE=${PWD}/${RPCLIB_BASENAME}-libcxx-install/include
 RPCLIB_LIBCXX_LIBPATH=${PWD}/${RPCLIB_BASENAME}-libcxx-install/lib
 RPCLIB_LIBSTDCXX_INCLUDE=${PWD}/${RPCLIB_BASENAME}-libstdcxx-install/include
@@ -371,33 +373,33 @@ LIBPNG_VERSION=1.6.37
 LIBPNG_REPO=https://sourceforge.net/projects/libpng/files/libpng16/${LIBPNG_VERSION}/libpng-${LIBPNG_VERSION}.tar.xz
 LIBPNG_BASENAME=libpng-${LIBPNG_VERSION}
 LIBPNG_INSTALL=${LIBPNG_BASENAME}-install
-
+# 设置libpng的安装路径
 LIBPNG_INCLUDE=${PWD}/${LIBPNG_BASENAME}-install/include/
 LIBPNG_LIBPATH=${PWD}/${LIBPNG_BASENAME}-install/lib
-
+# 检查是否已经安装了libpng，如果没有，则下载并编译libpng
 if [[ -d ${LIBPNG_INSTALL} ]] ; then
   log "Libpng already installed."
 else
   log "Retrieving libpng."
-
+# 下载libpng源代码
   start=$(date +%s)
-  wget ${LIBPNG_REPO}
-  end=$(date +%s)
+  wget ${LIBPNG_REPO}# 记录下载结束时间
+  end=$(date +%s)# 计算并显示下载耗时
   echo "Elapsed Time downloading libpng: $(($end-$start)) seconds"
-
+# 解压libpng源代码
   start=$(date +%s)
   log "Extracting libpng."
   tar -xf libpng-${LIBPNG_VERSION}.tar.xz
   end=$(date +%s)
   echo "Elapsed Time Extracting libpng: $(($end-$start)) seconds"
-
+ # 重命名解压后的文件夹
   mv ${LIBPNG_BASENAME} ${LIBPNG_BASENAME}-source
-
+# 进入libpng源代码目录
   pushd ${LIBPNG_BASENAME}-source >/dev/null
-
+# 配置、编译并安装libpng
   ./configure --prefix=${CARLA_BUILD_FOLDER}/${LIBPNG_INSTALL}
   make install
-
+# 返回上级目录
   popd >/dev/null
 
   rm -Rf libpng-${LIBPNG_VERSION}.tar.xz
@@ -407,23 +409,23 @@ fi
 # ==============================================================================
 # -- Get and compile libxerces 3.2.3 ------------------------------
 # ==============================================================================
-
+# 设置libxerces的版本和基本名称
 XERCESC_VERSION=3.2.3
 XERCESC_BASENAME=xerces-c-${XERCESC_VERSION}
-
+# 设置libxerces的源代码和安装目录
 XERCESC_TEMP_FOLDER=${XERCESC_BASENAME}
 XERCESC_REPO=https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-${XERCESC_VERSION}.tar.gz
-
+# 设置libxerces的库文件路径
 XERCESC_SRC_DIR=${XERCESC_BASENAME}-source
 XERCESC_INSTALL_DIR=${XERCESC_BASENAME}-install
 XERCESC_INSTALL_SERVER_DIR=${XERCESC_BASENAME}-install-server
 XERCESC_LIB=${XERCESC_INSTALL_DIR}/lib/libxerces-c.a
 XERCESC_SERVER_LIB=${XERCESC_INSTALL_SERVER_DIR}/lib/libxerces-c.a
-
+# 检查是否已经安装了libxerces，如果没有，则下载并编译
 if [[ -d ${XERCESC_INSTALL_DIR} &&  -d ${XERCESC_INSTALL_SERVER_DIR} ]] ; then
   log "Xerces-c already installed."
 else
-  log "Retrieving xerces-c."
+  log "Retrieving xerces-c."# 下载xerces-c源代码
   start=$(date +%s)
   wget ${XERCESC_REPO}
   end=$(date +%s)
@@ -436,7 +438,7 @@ else
     end=$(date +%s)
     echo "Elapsed Time downloading from xerces backup: $(($end-$start)) seconds"
   fi
-
+# 尝试使用Jenkins中的备份xerces-c
   log "Extracting xerces-c."
 
   start=$(date +%s)

@@ -53,39 +53,39 @@ def get_scene_layout(carla_map):
             nxt = nxt[0].next(precision)  # 继续获取下一个路径点
         
         # 计算左右车道线的位置
-        left_marking = [_lateral_shift(w.transform, -w.lane_width * 0.5) for w in waypoints]
-        right_marking = [_lateral_shift(w.transform, w.lane_width * 0.5) for w in waypoints]
+        left_marking = [_lateral_shift(w.transform, -w.lane_width * 0.5) for w in waypoints]# 使用_lateral_shift函数，将每个路径点的transform（位置和朝向）沿横向移动半个车道宽度的距离
+        right_marking = [_lateral_shift(w.transform, w.lane_width * 0.5) for w in waypoints]# 同样使用_lateral_shift函数，将每个路径点的transform沿横向移动半个车道宽度的距离，但方向相反
         
         # 将路径点及其左右车道线信息添加到map_dict中
-        lane = {"waypoints": waypoints, "left_marking": left_marking, "right_marking": right_marking}
-        if map_dict.get(waypoint.road_id) is None:
-            map_dict[waypoint.road_id] = {}
-        map_dict[waypoint.road_id][waypoint.lane_id] = lane
+        lane = {"waypoints": waypoints, "left_marking": left_marking, "right_marking": right_marking}# 创建一个字典，包含路径点、左车道线和右车道线的信息
+        if map_dict.get(waypoint.road_id) is None:# 检查map_dict中是否存在当前路径点的道路ID
+            map_dict[waypoint.road_id] = {}# 如果不存在，初始化一个空字典
+        map_dict[waypoint.road_id][waypoint.lane_id] = lane# 将车道信息添加到对应道路ID的字典中
     
     # 生成路径点图
-    waypoints_graph = dict()
-    for road_key in map_dict:
-        for lane_key in map_dict[road_key]:
+    waypoints_graph = dict()# 初始化一个空字典，用于存储路径点图
+    for road_key in map_dict:# 遍历map_dict中的每个道路键（road_key）
+        for lane_key in map_dict[road_key]:# 遍历当前道路下的所有车道键（lane_key）
             lane = map_dict[road_key][lane_key]
             for i in range(len(lane["waypoints"])):
                 # 获取当前路径点的后续路径点ID
                 next_ids = [w.id for w in lane["waypoints"][i + 1:]]
                 
                 # 计算左右车道键
-                left_lane_key = lane_key - 1 if lane_key - 1 else lane_key - 2
-                right_lane_key = lane_key + 1 if lane_key + 1 else lane_key + 2
+                left_lane_key = lane_key - 1 if lane_key - 1 else lane_key - 2# 如果lane_key减1的结果是非零值，则left_lane_key为lane_key减1，否则为lane_key减2
+                right_lane_key = lane_key + 1 if lane_key + 1 else lane_key + 2# 如果lane_key加1的结果是非零值，则right_lane_key为lane_key加1，否则为lane_key加2
                 
                 # 获取左右车道路径点的ID（如果存在）
-                left_lane_waypoint_id = -1
-                if left_lane_key in map_dict[road_key]:
+                left_lane_waypoint_id = -1# 初始化左右车道的路径点ID为-1，表示默认不存在
+                if left_lane_key in map_dict[road_key]:# 如果左车道key存在于地图字典中，则获取左车道的路径点
                     left_lane_waypoints = map_dict[road_key][left_lane_key]["waypoints"]
-                    if i < len(left_lane_waypoints):
+                    if i < len(left_lane_waypoints):# 如果索引i小于左车道路径点列表的长度，则获取第i个路径点的ID
                         left_lane_waypoint_id = left_lane_waypoints[i].id
                 
-                right_lane_waypoint_id = -1
-                if right_lane_key in map_dict[road_key]:
+                right_lane_waypoint_id = -1# 初始化左右车道的路径点ID为-1，表示默认不存在
+                if right_lane_key in map_dict[road_key]:# 如果右车道key存在于地图字典中，则获取右车道的路径点
                     right_lane_waypoints = map_dict[road_key][right_lane_key]["waypoints"]
-                    if i < len(right_lane_waypoints):
+                    if i < len(right_lane_waypoints):# 如果索引i小于右车道路径点列表的长度，则获取第i个路径点的ID
                         right_lane_waypoint_id = right_lane_waypoints[i].id
                 
                 # 获取左右边界（车道线）和当前路径点的地理位置和朝向
@@ -195,43 +195,71 @@ def get_dynamic_objects(carla_world, carla_map):
         return stop_signals_dict
      #函数返回包含所有stop信号信息的字典 stop_signals_dict。
 
+    # 定义一个函数，用于获取交通灯信息
     def get_traffic_lights(traffic_lights):
+        # 初始化一个空字典，用于存储交通灯信息
         traffic_lights_dict = dict()
+        # 遍历传入的交通灯列表
         for traffic_light in traffic_lights:
+            # 获取当前交通灯的变换信息
             tl_transform = traffic_light.get_transform()
+             # 将交通灯的位置从游戏世界坐标转换为全球导航卫星系统坐标
             location_gnss = carla_map.transform_to_geolocation(tl_transform.location)
+            # 创建一个字典，用于存储当前交通灯的详细信息
             tl_dict = {
+                # 交通灯的ID
                 "id": traffic_light.id,
+                # 交通灯的状态，转换为整数
                 "state": int(traffic_light.state),
+                # 交通灯的位置信息，包括纬度、经度和高度
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+                # 交通灯触发区域的坐标列表，通过调用_get_trigger_volume函数获取
                 "trigger_volume": [[v.longitude, v.latitude, v.altitude] for v in _get_trigger_volume(traffic_light)]
             }
+            # 将当前交通灯的信息字典存储到交通灯字典中，以交通灯ID为键
             traffic_lights_dict[traffic_light.id] = tl_dict
+        # 返回包含所有交通灯信息的字典
         return traffic_lights_dict
 
+    # 定义一个函数，用于获取车辆信息
     def get_vehicles(vehicles):
+        # 初始化一个空字典，用于存储车辆信息
         vehicles_dict = dict()
+        # 遍历传入的车辆列表
         for vehicle in vehicles:
+            # 获取当前车辆的变换信息，包括位置和旋转
             v_transform = vehicle.get_transform()
+            # 将车辆的位置从游戏世界坐标转换为全球导航卫星系统坐标
             location_gnss = carla_map.transform_to_geolocation(v_transform.location)
+            # 创建一个字典，用于存储当前车辆的详细信息
             v_dict = {
                 "id": vehicle.id,
+                 # 车辆的位置信息，包括纬度、经度和高度
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+                # 车辆的朝向信息，包括横滚角、俯仰角和偏航角
                 "orientation": [v_transform.rotation.roll, v_transform.rotation.pitch, v_transform.rotation.yaw],
+                 # 车辆的包围盒信息，通过调用_get_bounding_box函数获取，包含四个角点的坐标
                 "bounding_box": [[v.longitude, v.latitude, v.altitude] for v in _get_bounding_box(vehicle)]
             }
+             # 将当前车辆的信息字典存储到车辆字典中，以车辆ID为键
             vehicles_dict[vehicle.id] = v_dict
         return vehicles_dict
 
+    #定义了一个用于接受hero_vehicle的函数并实现对其的操作
     def get_hero_vehicle(hero_vehicle):
         if hero_vehicle is None:
             return hero_vehicle
 
+        #获取与hero_vehicle所在位置相关的路点信息
         hero_waypoint = carla_map.get_waypoint(hero_vehicle.get_location())
+        #获取hero_vehicle的变换信息
         hero_transform = hero_vehicle.get_transform()
+        #将hero_vehicle的变换位置转换为地理位置信息（经纬度高度）
         location_gnss = carla_map.transform_to_geolocation(hero_transform.location)
 
+       #创建一个新字典 其中包含hero_vehicle的id信息
         hero_vehicle_dict = {
+            #使用之前转换获取的地理位置信息 并在字典中添加hero_waypoint的id信息
             "id": hero_vehicle.id,
             "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
             "road_id": hero_waypoint.road_id,
@@ -239,17 +267,26 @@ def get_dynamic_objects(carla_world, carla_map):
         }
         return hero_vehicle_dict
 
+    #定义了一个叫get_walkers的函数 用于获取与walkers相关的一些信息并进行处理
     def get_walkers(walkers):
+       #创建一个新字典 用于存储与每个walkers相关的信息
         walkers_dict = dict()
         for walker in walkers:
+           #调用获取walkers的变换信息
             w_transform = walker.get_transform()
+            #将walkers的位置信息转换为地理的地位信息形式
             location_gnss = carla_map.transform_to_geolocation(w_transform.location)
+           
             w_dict = {
                 "id": walker.id,
+                #在字典中添加名为position的键值对 其值为一个包含location_gnss的经纬度高度的列表 把walkers的位置信息以特定形式存储在字典中
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude],
+                #添加名为orientation的键值对 值为一个包含w_transform的旋转信息的列表 存储walkers的方向信息
                 "orientation": [w_transform.rotation.roll, w_transform.rotation.pitch, w_transform.rotation.yaw],
+                #添加名为bounding_box的键值对 构建walkers的包围盒信息
                 "bounding_box": [[v.longitude, v.latitude, v.altitude] for v in _get_bounding_box(walker)]
             }
+            #把w_dict字典添加到walkers_dict字典中 便以通过walkers的id来获取信息
             walkers_dict[walker.id] = w_dict
         return walkers_dict
 
@@ -265,7 +302,7 @@ def get_dynamic_objects(carla_world, carla_map):
             }
             speed_limits_dict[speed_limit.id] = sl_dict
         return speed_limits_dict
-
+#遍历静态障碍物列表，将每个障碍物的位置信息提取出来并存储在一个字典里
     def get_static_obstacles(static_obstacles):
         static_obstacles_dict = dict()
         for static_prop in static_obstacles:
@@ -277,14 +314,14 @@ def get_dynamic_objects(carla_world, carla_map):
             }
             static_obstacles_dict[static_prop.id] = sl_dict
         return static_obstacles_dict
-
+#从一个更大的actors列表中分离出不类型的actors
     actors = carla_world.get_actors()
     vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles = _split_actors(actors)
 
     hero_vehicles = [vehicle for vehicle in vehicles if
                      'vehicle' in vehicle.type_id and vehicle.attributes['role_name'] == 'hero']
     hero = None if len(hero_vehicles) == 0 else random.choice(hero_vehicles)
-
+#将信息整合到一个字典中，并返回
     return {
         'vehicles': get_vehicles(vehicles),
         'hero_vehicle': get_hero_vehicle(hero),

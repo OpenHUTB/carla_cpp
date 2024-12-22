@@ -1,13 +1,15 @@
----
+---# 定义模块名称
 - module_name: carla
 
   # - CLASSES ------------------------------
+  # 定义模块中的类
   classes:
+  # 定义一个类：ActorAttributeType
   - class_name: ActorAttributeType
-    # - DESCRIPTION ------------------------
+    #类的描述 ------------------------
     doc: >
       CARLA provides a library of blueprints for actors in carla.BlueprintLibrary with different attributes each. This class defines the types those at carla.ActorAttribute can be as a series of enum. All this information is managed internally and listed here for a better comprehension of how CARLA works.
-    # - PROPERTIES -------------------------
+    # 类的属性 -------------------------
     instance_variables:
     - var_name: Bool
     - var_name: Int
@@ -37,7 +39,7 @@
       type: int
       doc: >
         Alpha channel (0-255).
-    # - METHODS ----------------------------
+    # 类的方法 ----------------------------
     methods:
     - def_name: __init__
       params:
@@ -135,7 +137,7 @@
       type: float
       doc: >
         Optical flow in the y component.
-    # - METHODS ----------------------------
+    # 类的方法 ----------------------------
     methods:
     - def_name: __init__
       params:
@@ -163,10 +165,13 @@
 
   - class_name: ActorAttribute
     # - DESCRIPTION ------------------------
+    #描述
     doc: >
       CARLA provides a library of blueprints for actors that can be accessed as carla.BlueprintLibrary. Each of these blueprints has a series of attributes defined internally. Some of these are modifiable, others are not. A list of recommended values is provided for those that can be set.
     # - PROPERTIES -------------------------
+    #属性
     instance_variables:
+    变量名：id
     - var_name: id
       type: str
       doc: >
@@ -184,6 +189,7 @@
       doc: >
         The attribute's parameter type.
     # - METHODS ----------------------------
+    #方法
     methods:
     - def_name: as_bool
       doc: >
@@ -365,6 +371,9 @@
     # --------------------------------------
     - def_name: __str__
       return: string
+      # `doc` 字段是函数的文档字符串（docstring）内容，用于描述函数的功能。
+      # 这里使用 `>` 符号表示下面的内容是一个多行的文本描述，该函数的功能是解析每个蓝图（blueprint）的标识符，并将它们转换为字符串形式。
+      # 意味着这个 `__str__` 方法可能是针对包含蓝图相关信息的对象进行操作，把蓝图的各种标识符信息整理并以字符串形式呈现出来，方便展示、记录或者后续处理等。
       doc: >
         Parses the identifiers for every blueprint to string.
     # --------------------------------------

@@ -5,11 +5,11 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #include "test.h"
-
-#include <carla/RecurrentSharedFuture.h>
-#include <carla/ThreadGroup.h>
+//名为“test.h”的头文件。
+#include <carla/RecurrentSharedFuture.h>//这里是包含了名为“RecurrentSharedFuture.h”的头文件，这个头文件可能是来自名为“carla”的库或者模块。这个头文件中的内容可能包含与循环共享未来（Recurrent Shared Future，根据文件名推测）相关的类定义、函数声明等内容。
+#include <carla/ThreadGroup.h>//包含与线程组相关的定义，例如创建、管理线程组的类或者函数等内容。
 #include <atomic>
-
+//包含了<atomic>头文件。
 using namespace std::chrono_literals;
 // 测试 RecurrentSharedFuture 的用例
 TEST(recurrent_shared_future, use_case) {

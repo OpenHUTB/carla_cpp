@@ -8,10 +8,10 @@
 
 """Download big files from Google Drive."""
 
-import argparse
-import shutil
-import sys
-import requests
+import argparse  # 导入 argparse 库，用于解析命令行参数。
+import shutil    # 导入 shutil 库，提供对文件和文件集的高级操作，比如复制和移动文件。
+import sys       # 导入 sys 库，用于访问与 Python 解释器交互的一些变量和功能，比如处理脚本退出。
+import requests   # 导入 requests 库，方便进行 HTTP 请求，很适合用于文件下载等。
 
 
 # 将字节大小的数字转换为合适的带单位的格式化字符串表示（如KB、MB等）

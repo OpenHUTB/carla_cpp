@@ -34,25 +34,36 @@ using namespace util;/// 导入CARLA的实用工具命名空间，包含常用�
  */
 const std::string BASE_PATH = LIBCARLA_TEST_CONTENT_FOLDER "/OpenDrive/";
 
-
+// 静态函数，用于测试道路海拔相关情况，接收XML文档和地图（可选）引用
 static void test_road_elevation(const pugi::xml_document &xml, boost::optional<Map>& map) {
+  // 获取XML中"OpenDRIVE"节点
   pugi::xml_node open_drive_node = xml.child("OpenDRIVE");
 
+  // 遍历"OpenDRIVE"下的"road"节点
   for (pugi::xml_node road_node : open_drive_node.children("road")) {
+    // 获取道路id
     RoadId road_id = road_node.attribute("id").as_uint();
+    // 获取此道路下的"elevationProfile"节点们
     auto elevation_profile_nodes = road_node.children("elevationProfile");
 
+    // 遍历各"elevationProfile"节点
     for (pugi::xml_node elevation_profile_node : elevation_profile_nodes) {
+      // 统计有效海拔数量的计数器
       auto total_elevations = 0;
+      // 获取"elevation"节点们
       auto elevation_nodes = elevation_profile_node.children("elevation");
+      // 计算"elevation"节点总数
       auto total_elevation_parser = std::distance(elevation_nodes.begin(), elevation_nodes.end());
-
+      
+      // 遍历"elevation"节点
       for (pugi::xml_node elevation_node : elevation_nodes) {
+        // 获取节点中表示位置的属性值
         float s = elevation_node.attribute("s").as_float();
+        // 尝试获取地图中对应道路位置的海拔信息
         const auto elevation = map->GetMap().GetRoad(road_id).GetInfo<RoadInfoElevation>(s);
         if (elevation != nullptr)
           ++total_elevations;
-      }
+      }// 验证获取到的海拔数量与解析出的节点数量是否一致
       ASSERT_EQ(total_elevations, total_elevation_parser);
     }
   }
@@ -254,11 +265,13 @@ static void test_road_links(boost::optional<Map>& map) {
     }
   }
 }
-
+// 定义一个测试用例
 TEST(road, parse_files) {
+   // 使用 util::OpenDrive::Load 函数加载文件
   for (const auto &file : util::OpenDrive::GetAvailableFiles()) {
     // std::cerr << file << std::endl;
     auto map = OpenDriveParser::Load(util::OpenDrive::Load(file));
+   // 使用 ASSERT_TRUE 断言来确保 map 不是 nullptr
     ASSERT_TRUE(map);
     // print_roads(map, file);
   }
@@ -335,30 +348,42 @@ TEST(road, parse_geometry) {
 }
 
 TEST(road, iterate_waypoints) {
+  // 创建一个线程池
   carla::ThreadPool pool;
   pool.AsyncRun();
+  // 用于存储异步任务结果的向量
   std::vector<std::future<void>> results;
+  // 遍历所有可用的OpenDrive文件
   for (const auto& file : util::OpenDrive::GetAvailableFiles()) {
-    carla::logging::log("Parsing", file);
+    carla::logging::log("Parsing", file);// 日志记录开始解析的文件名
+     // 向线程池提交一个异步任务，任务内容是解析和验证地图
     results.push_back(pool.Post([file]() {
-      carla::StopWatch stop_watch;
-      auto m = OpenDriveParser::Load(util::OpenDrive::Load(file));
-      ASSERT_TRUE(m.has_value());
+      carla::StopWatch stop_watch;  // 创建一个计时器，用于测量解析和验证地图所需的时间
+      auto m = OpenDriveParser::Load(util::OpenDrive::Load(file)); // 加载OpenDrive文件并解析为地图
+      ASSERT_TRUE(m.has_value()); // 断言解析成功，m不为空
       auto &map = *m;
+      // 生成地图的拓扑结构，并断言拓扑不为空
       const auto topology = map.GenerateTopology();
       ASSERT_FALSE(topology.empty());
       auto count = 0u;
+      // 生成地图的轨迹点（waypoints），每个轨迹点间隔0.5米
       auto waypoints = map.GenerateWaypoints(0.5);
       ASSERT_FALSE(waypoints.empty());
+      // 随机打乱轨迹点顺序
       Random::Shuffle(waypoints);
+      // 确定要探索的轨迹点数量，最多2000个
       const auto number_of_waypoints_to_explore =
           std::min<size_t>(2000u, waypoints.size());
+       // 遍历选定的轨迹点进行探索
       for (auto i = 0u; i < number_of_waypoints_to_explore; ++i) {
         auto wp = waypoints[i];
+       // 计算轨迹点的变换
         map.ComputeTransform(wp);
+       // 对于非第一个轨迹点，断言它与第一个轨迹点不同
         if (i != 0u) {
           ASSERT_NE(wp, waypoints[0u]);
         }
+        // 遍历当前轨迹点的所有后继轨迹点
         for (auto &&successor : map.GetSuccessors(wp)) {
           ASSERT_TRUE(
               successor.road_id != wp.road_id ||
@@ -367,22 +392,29 @@ TEST(road, iterate_waypoints) {
               successor.s != wp.s);
         }
         auto origin = wp;
+        // 从当前轨迹点出发，探索最多200次后续轨迹点
         for (auto j = 0u; j < 200u; ++j) {
+          // 获取从当前轨迹点出发，在0.0001到150米范围内的后续轨迹点
           auto next_wps = map.GetNext(origin, Random::Uniform(0.0001, 150.0));
           if (next_wps.empty()) {
             break;
           }
+          // 确定要探索的后续轨迹点数量，最多10个
           const auto number_of_next_wps_to_explore =
               std::min<size_t>(10u, next_wps.size());
+          // 随机打乱后续轨迹点顺序
           Random::Shuffle(next_wps);
+          // 遍历选定的后续轨迹点进行探索
           for (auto k = 0u; k < number_of_next_wps_to_explore; ++k) {
             auto next = next_wps[k];
             ++count;
+            // 断言后续轨迹点与当前轨迹点至少有一个属性不同
             ASSERT_TRUE(
                 next.road_id != wp.road_id ||
                 next.section_id != wp.section_id ||
                 next.lane_id != wp.lane_id ||
                 next.s != wp.s);
+            // 获取当前后续轨迹点的右侧轨迹点
             auto right = map.GetRight(next);
             if (right.has_value()) {
               ASSERT_EQ(right->road_id, next.road_id);
@@ -390,43 +422,54 @@ TEST(road, iterate_waypoints) {
               ASSERT_NE(right->lane_id, next.lane_id);
               ASSERT_EQ(right->s, next.s);
             }
+             // 获取当前后续轨迹点的左侧轨迹点
             auto left = map.GetLeft(next);
             if (left.has_value()) {
+              // 断言左侧轨迹点与当前后续轨迹点在同一道路和路段，但车道不同
               ASSERT_EQ(left->road_id, next.road_id);
               ASSERT_EQ(left->section_id, next.section_id);
               ASSERT_NE(left->lane_id, next.lane_id);
               ASSERT_EQ(left->s, next.s);
             }
           }
-          origin = next_wps[0u];
+          origin = next_wps[0u];  // 将下一个探索的起点设置为当前探索的后续轨迹点中的第一个
         }
       }
-      ASSERT_GT(count, 0u);
-      float seconds = 1e-3f * stop_watch.GetElapsedTime();
+      ASSERT_GT(count, 0u);// 断言至少探索了一个轨迹点
+      float seconds = 1e-3f * stop_watch.GetElapsedTime();   // 获取解析和验证地图所需的时间，并记录日志
       carla::logging::log(file, "done in", seconds, "seconds.");
     }));
   }
+  // 等待所有异步任务完成
   for (auto &result : results) {
     result.get();
   }
 }
 
 TEST(road, get_waypoint) {
+  // 创建一个线程池
   carla::ThreadPool pool;
+  // 启动线程池中的异步任务执行
   pool.AsyncRun();
+  // 创建一个容器来存储异步任务的返回值
   std::vector<std::future<void>> results;
+  // 遍历所有可用的OpenDrive文件 
   for (const auto& file : util::OpenDrive::GetAvailableFiles()) {
     carla::logging::log("Parsing", file);
     results.push_back(pool.Post([file]() {
+      // 创建一个计时器，用于测量任务执行时间
       carla::StopWatch stop_watch;
+      // 使用OpenDriveParser加载OpenDrive文件
       auto m = OpenDriveParser::Load(util::OpenDrive::Load(file));
-      ASSERT_TRUE(m.has_value());
-      auto &map = *m;
+      ASSERT_TRUE(m.has_value());// 确保地图被成功加载
+      auto &map = *m;// 获取地图的引用
+      // 进行10000次随机位置测试
       for (auto i = 0u; i < 10'000u; ++i) {
-        const auto location = Random::Location(-500.0f, 500.0f);
-        auto owp = map.GetClosestWaypointOnRoad(location);
+        const auto location = Random::Location(-500.0f, 500.0f);  // 在指定的范围内生成一个随机位置
+        auto owp = map.GetClosestWaypointOnRoad(location); // 在地图上找到离该位置最近的道路点
         ASSERT_TRUE(owp.has_value());
-        auto &wp = *owp;
+        auto &wp = *owp;// 获取道路点的引用
+        // 获取当前道路点的下一个道路点
         for (auto &next : map.GetNext(wp, 0.5)) {
           ASSERT_TRUE(
               next.road_id != wp.road_id ||
@@ -434,6 +477,7 @@ TEST(road, get_waypoint) {
               next.lane_id != wp.lane_id ||
               next.s != wp.s);
         }
+        // 获取当前道路点的左侧相邻道路点
         auto left = map.GetLeft(wp);
         if (left.has_value()) {
           ASSERT_EQ(left->road_id, wp.road_id);
@@ -441,6 +485,7 @@ TEST(road, get_waypoint) {
           ASSERT_NE(left->lane_id, wp.lane_id);
           ASSERT_EQ(left->s, wp.s);
         }
+        // 获取当前道路点的右侧相邻道路点
         auto right = map.GetRight(wp);
         if (right.has_value()) {
           ASSERT_EQ(right->road_id, wp.road_id);
@@ -449,10 +494,12 @@ TEST(road, get_waypoint) {
           ASSERT_EQ(right->s, wp.s);
         }
       }
+      // 计算并记录任务执行时间
       float seconds = 1e-3f * stop_watch.GetElapsedTime();
       carla::logging::log(file, "done in", seconds, "seconds.");
     }));
   }
+    // 等待所有异步任务完成
   for (auto &result : results) {
     result.get();
   }

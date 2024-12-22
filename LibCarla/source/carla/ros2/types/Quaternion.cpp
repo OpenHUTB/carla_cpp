@@ -116,15 +116,28 @@ size_t geometry_msgs::msg::Quaternion::getCdrSerializedSize(
         const geometry_msgs::msg::Quaternion& data,
         size_t current_alignment)
 {
-    (void)data;
+    // (void)data;
+    // 此行代码用于消除未使用变量 'data' 的编译器警告，因为在此函数中并没有使用该参数。
+
+    // 记录当前对齐值
     size_t initial_alignment = current_alignment;
-    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
-    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
-    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+    // 为第一个 8 字节（例如 x 坐标）分配空间，并计算对齐要求
     current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
 
+    // 为第二个 8 字节（例如 y 坐标）分配空间，并计算对齐要求
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+    // 为第三个 8 字节（例如 z 坐标）分配空间，并计算对齐要求
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+    // 为第四个 8 字节（例如 w 坐标）分配空间，并计算对齐要求
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+    // 返回序列化后的总大小，减去初始的对齐值
     return current_alignment - initial_alignment;
 }
+
 
 void geometry_msgs::msg::Quaternion::serialize(
         eprosima::fastcdr::Cdr& scdr) const

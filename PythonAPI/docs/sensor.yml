@@ -1,7 +1,7 @@
----
+---# 定义了一个名为 carla 的模块，其中包含了 CARLA 模拟器中传感器相关的类。
 - module_name: carla
-  # - CLASSES ------------------------------
-  classes:
+ # 定义了模块中的类---------------------------
+  classes:# 定义了一个名为 Sensor 的基类，它是 carla.Actor 的子类，用于表示各种传感器。
   - class_name: Sensor
     parent: carla.Actor
     # - DESCRIPTION ------------------------
@@ -110,7 +110,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
+# 定义了名为 RssSensor 的类，它是 carla.Sensor 的子类，用于实现责任敏感安全（RSS）。
   - class_name: RssSensor
     parent: carla.Sensor
     # - DESCRIPTION ------------------------
@@ -183,7 +183,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
+# 定义了名为 RssRestrictor 的类，用于对 carla.VehicleControl 应用限制，是 CARLA 实现责任敏感安全（RSS）的一部分。
   - class_name: RssRestrictor
     parent:
     # - DESCRIPTION ------------------------
@@ -225,7 +225,7 @@
       doc: >
         Sets the log level.
     # --------------------------------------
-
+# 定义了名为 RssRoadBoundariesMode 的枚举类，用于在 carla.RssSensor 中启用或禁用“保持在路上”功能。
   - class_name: RssRoadBoundariesMode
     # - DESCRIPTION ------------------------
     doc: >
@@ -240,7 +240,7 @@
       doc: >
         Disables the _stay on road_ feature.
     # --------------------------------------
-
+# 定义了名为 RssLogLevel 的枚举类，用于在 carla.RssSensor 中设置日志级别。
   - class_name: RssLogLevel
     # - DESCRIPTION ------------------------
     doc: >

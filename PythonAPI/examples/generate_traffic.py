@@ -1,3 +1,11 @@
+#这段代码的主要功能是在CARLA仿真环境中生成交通流量。具体来说，它能够：根据用户提供的参数，生成指定数量的车辆（--number-of-vehicles 或 -n）和行人（--number-of-walkers 或 -w）。
+#允许用户指定车辆和行人的模型过滤器（--filterv 和 --filterw），以及它们的生成版本（--generationv 和 --generationw）。将生成的车辆设置为自动驾驶模式（使用CARLA的交通管理器），并可控制车辆的灯光状态（--car-lights-on）。
+#支持异步模式（--asynch）和混合模式（--hybrid）的交通管理，允许更灵活的交通仿真。
+#允许设置随机种子（--seed 和 --seedw），以便于结果的复现。
+#支持在大型地图上自动重新生成休眠的车辆（--respawn）。
+#支持无渲染模式（--no-rendering），可以提高仿真性能。
+#通过命令行参数接受用户的输入，并根据这些输入在仿真世界中生成相应的车辆和行人。
+#总的来说，这个脚本是一个用于在CARLA仿真环境中创建和管理交通流量的工具，可以用来测试和模拟各种交通场景。
 #!/usr/bin/env python
 
 # Copyright (c) 2021 Computer Vision Center (CVC) at the Universitat Autonoma de
@@ -7,13 +15,14 @@
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
 """Example script to generate traffic in the simulation"""
-
+# 导入必要的库
 import glob
 import os
 import sys
 import time
 
 try:
+     # 尝试添加CARLA模块到系统路径中
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
@@ -22,14 +31,15 @@ except IndexError:
     pass
 
 import carla
-
+//从Carla库中导入VehicleLightState并将其重命名为vls，可能用于后续控制车辆灯光状态相关操作
 from carla import VehicleLightState as vls
 
 import argparse
 import logging
 from numpy import random
-
+# 从世界场景的蓝图库中筛选出符合给定过滤器条件的蓝图列表
 def get_actor_blueprints(world, filter, generation):
+//从世界场景的蓝图库中筛选出符合给定过滤器条件的蓝图列表
     bps = world.get_blueprint_library().filter(filter)
 
     if generation.lower() == "all":
@@ -37,12 +47,14 @@ def get_actor_blueprints(world, filter, generation):
 
     # If the filter returns only one bp, we assume that this one needed
     # and therefore, we ignore the generation
+// 如果过滤器返回的蓝图只有一个，那么就认为这就是需要的那个，此时忽略生成版本的限制
     if len(bps) == 1:
         return bps
-
+//将传入的生成版本字符串转换为整数类型，以便后续进行数值比较判断
     try:
         int_generation = int(generation)
         # Check if generation is in available generations
+//检查转换后的生成版本数值是否在可用的版本列表中（这里限定为1、2、3）
         if int_generation in [1, 2, 3]:
             bps = [x for x in bps if int(x.get_attribute('generation')) == int_generation]
             return bps
@@ -52,10 +64,11 @@ def get_actor_blueprints(world, filter, generation):
     except:
         print("   Warning! Actor Generation is not valid. No actor will be spawned.")
         return []
-
+# 主函数
 def main():
     argparser = argparse.ArgumentParser(
         description=__doc__)
+//添加一个名为'--host'的命令行参数，用于指定主机服务器的IP地址，默认值为'127.0.0.1'
     argparser.add_argument(
         '--host',
         metavar='H',
@@ -66,6 +79,7 @@ def main():
         metavar='P',
         default=2000,
         type=int,
+// 添加一个名为'-p'（短格式）或'--port'（长格式）的命令行参数，用于指定要监听的TCP端口号，默认值为2000，类型为整数
         help='TCP port to listen to (default: 2000)')
     argparser.add_argument(
         '-n', '--number-of-vehicles',
@@ -73,6 +87,7 @@ def main():
         default=30,
         type=int,
         help='Number of vehicles (default: 30)')
+//添加一个名为'-w'（短格式）或'--number-of-walkers'（长格式）的命令行参数，用于指定要生成的行人数量，默认值为10，类型为整数
     argparser.add_argument(
         '-w', '--number-of-walkers',
         metavar='W',
@@ -83,6 +98,7 @@ def main():
         '--safe',
         action='store_true',
         help='Avoid spawning vehicles prone to accidents')
+// 添加一个名为'--seedw'的命令行参数，用于设置行人模块的种子，默认值为0，类型为整数
     argparser.add_argument(
         '--filterv',
         metavar='PATTERN',
@@ -138,6 +154,7 @@ def main():
         action='store_true',
         default=False,
         help='Set one of the vehicles as hero')
+//添加一个名为'--respawn'的命令行参数，当指定该参数时（action='store_true'），自动重新生成休眠的车辆（仅在大地图中有效），默认值为False
     argparser.add_argument(
         '--respawn',
         action='store_true',
@@ -152,15 +169,20 @@ def main():
     args = argparser.parse_args()
 
     logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
-
+//用于存储生成的车辆的ID列表，初始化为空列表
     vehicles_list = []
+// 用于存储生成的行人的相关信息（以字典形式，包含ID等）的列表，初始化为空列表
     walkers_list = []
+//用于存储所有相关角色（车辆、行人等）的ID的列表，初始化为空列表
     all_id = []
+// 创建一个Carla客户端对象，用于连接到Carla服务器，传入之前解析得到的主机IP地址和端口号参数
+    client = carla.Client(args.host, args.port)
+//设置客户端的超时时间为10.0秒，即如果在10秒内没有收到服务器响应，则认为操作超时
     client = carla.Client(args.host, args.port)
     client.set_timeout(10.0)
     synchronous_master = False
     random.seed(args.seed if args.seed is not None else int(time.time()))
-
+//通过客户端获取Carla世界场景对象，后续所有与世界场景相关的操作（如获取地图、获取角色等）都基于这个对象进行
     try:
         world = client.get_world()
 
@@ -176,7 +198,9 @@ def main():
 
         settings = world.get_settings()
         if not args.asynch:
+// 如果没有激活异步模式（即运行在同步模式下），则设置交通管理器为同步模式
             traffic_manager.set_synchronous_mode(True)
+//如果当前世界场景的设置中不是同步模式，则将同步主控制者标记为True，表示当前脚本将作为同步模式的控制者进行相关设置和操作，同时将世界场景的同步模式设置为True，并设置固定的时间步长为0.05秒（用于同步更新世界场景等操作）
             if not settings.synchronous_mode:
                 synchronous_master = True
                 settings.synchronous_mode = True
@@ -205,6 +229,7 @@ def main():
         blueprints = sorted(blueprints, key=lambda bp: bp.id)
 
         spawn_points = world.get_map().get_spawn_points()
+// 获取生成点的数量，用于后续判断要生成的角色数量是否超过了可用生成点数量等情况
         number_of_spawn_points = len(spawn_points)
 
         if args.number_of_vehicles < number_of_spawn_points:
@@ -371,9 +396,14 @@ def main():
 
         time.sleep(0.5)
 
-if __name__ == '__main__':
+if __name__ == '__main__':   
+    # 这是Python中用于判断当前模块是否作为主程序入口被运行的常用语句结构。
+    # 当一个Python脚本直接被执行时（例如在命令行中运行该.py文件），Python会自动将该模块的__name__属性设置为'__main__'，此时下面代码块中的代码将会被执行。
+    # 而如果该模块是被其他模块导入使用的话，__name__属性的值会是该模块自身的名称（即模块文件名去掉.py后缀后的名字），这段代码块则不会执行，这样可以避免在被导入时不必要的代码运行。
 
-    try:
+    try: 
+        # 尝试调用名为'main'的函数，通常'main'函数是整个程序的核心逻辑所在，里面可能包含了诸如初始化操作、参数解析、主要业务逻辑的执行等一系列操作。
+        # 如果'main'函数在执行过程中没有出现异常情况，程序就会按照'main'函数内部定义的逻辑顺序依次执行下去，直至该函数执行完毕或者遇到其他结束条件（比如函数内自己定义的循环结束、达到某个终止条件等）。
         main()
     except KeyboardInterrupt:
         pass

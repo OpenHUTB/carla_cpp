@@ -40,7 +40,7 @@ static FBoundingBox ApplyTransformToBB(
 
 FBoundingBox UBoundingBoxCalculator::GetActorBoundingBox(const AActor *Actor, uint8 InTagQueried)
 {
-  if (Actor != nullptr)
+  if (Actor != nullptr)// 如果Actor不为空
   {
     // Vehicle.
     auto Vehicle = Cast<ACarlaWheeledVehicle>(Actor);
@@ -59,7 +59,7 @@ FBoundingBox UBoundingBoxCalculator::GetActorBoundingBox(const AActor *Actor, ui
       {
         const auto Radius = Capsule->GetScaledCapsuleRadius();
         const auto HalfHeight = Capsule->GetScaledCapsuleHalfHeight();
-        // Characters have the pivot point centered.
+        // 角色的枢轴点在胶囊体的中心
         FVector Origin = {0.0f, 0.0f, 0.0f};
         FVector Extent = {Radius, Radius, HalfHeight};
         return {Origin, Extent};
@@ -69,7 +69,7 @@ FBoundingBox UBoundingBoxCalculator::GetActorBoundingBox(const AActor *Actor, ui
     auto TrafficSign = Cast<ATrafficSignBase>(Actor);
     if (TrafficSign != nullptr)
     {
-      // first return a merge of the generated trigger boxes, if any
+      // 首先返回合并的触发框（如果有的话）
       auto TriggerVolumes = TrafficSign->GetTriggerVolumes();
       if (TriggerVolumes.Num() > 0)
       {
@@ -79,7 +79,7 @@ FBoundingBox UBoundingBoxCalculator::GetActorBoundingBox(const AActor *Actor, ui
         Box.Rotation = Transform.InverseTransformRotation(Box.Rotation.Quaternion()).Rotator();
         return Box;
       }
-      // try to return the original bounding box
+      //尝试返回原始的边界框
       auto TriggerVolume = TrafficSign->GetTriggerVolume();
       if (TriggerVolume != nullptr)
       {
@@ -97,10 +97,10 @@ FBoundingBox UBoundingBoxCalculator::GetActorBoundingBox(const AActor *Actor, ui
         return {};
       }
     }
-    // Other, by default BB
+    // 其他情况，默认使用边界框
     TArray<FBoundingBox> BBs = GetBBsOfActor(Actor);
     FBoundingBox BB = CombineBBs(BBs);
-    // Conver to local space; GetBBsOfActor return BBs in world space
+    // 转换为局部空间；GetBBsOfActor返回的是世界空间的边界框
     FTransform Transform = Actor->GetActorTransform();
     BB.Origin = Transform.InverseTransformPosition(BB.Origin);
     BB.Rotation = Transform.InverseTransformRotation(BB.Rotation.Quaternion()).Rotator();
@@ -123,7 +123,7 @@ FBoundingBox UBoundingBoxCalculator::GetVehicleBoundingBox(
   UActorComponent *ActorComp = Vehicle->GetComponentByClass(USkeletalMeshComponent::StaticClass());
   USkeletalMeshComponent* ParentComp = Cast<USkeletalMeshComponent>(ActorComp);
 
-  // Filter by tag
+  //根据标签进行过滤
   crp::CityObjectLabel Tag = ATagger::GetTagOfTaggedComponent(*ParentComp);
   if(FilterByTagEnabled && Tag != TagQueried) return {};
 
@@ -136,7 +136,7 @@ FBoundingBox UBoundingBoxCalculator::GetVehicleBoundingBox(
     return {};
   }
 
-  // Two wheel vehicle have more than one SKM
+  //两轮车辆有多个SkeletalMesh
   TArray<USkeletalMeshComponent*> SkeletalMeshComps;
   Vehicle->GetComponents<USkeletalMeshComponent>(SkeletalMeshComps);
 
@@ -151,7 +151,7 @@ FBoundingBox UBoundingBoxCalculator::GetVehicleBoundingBox(
     {
       if(Comp == ParentComp) continue; // ignore vehicle skeleton
 
-      // Location of sockets are in world space
+      // 获取Socket的世界空间位置
       FVector HeadLocation = Comp->GetSocketLocation("crl_Head__C") - VehicleLocation;
       FVector KneeLocation = Comp->GetSocketLocation("crl_leg__L") - VehicleLocation;
 
@@ -172,7 +172,7 @@ FBoundingBox UBoundingBoxCalculator::GetVehicleBoundingBox(
       Min = Min.ComponentMin(Max);
       Max = Max.ComponentMin(Tmp);
 
-      MaxHeadLocation += 20.0f; // hack, the bone of the head is at he bottom
+      MaxHeadLocation += 20.0f; // 修改头部位置，假设头部骨骼位于底部
 
       Max.Y = (MaxKneeLocation > Max.Y) ? MaxKneeLocation : Max.Y;
       Min.Y = (-MaxKneeLocation < Min.Y) ? MaxKneeLocation : Min.Y;
@@ -183,7 +183,7 @@ FBoundingBox UBoundingBoxCalculator::GetVehicleBoundingBox(
     }
   }
 
-  // Component-to-world transform for this component
+  // 计算组件到世界空间的变换
   auto& CompToWorldTransform = ParentComp->GetComponentTransform();
   BB = ApplyTransformToBB(BB, CompToWorldTransform);
   return BB;
@@ -207,10 +207,10 @@ FBoundingBox UBoundingBoxCalculator::GetCharacterBoundingBox(
     const float Radius = Capsule->GetScaledCapsuleRadius();
     const float HalfHeight = Capsule->GetScaledCapsuleHalfHeight();
     FBoundingBox BoundingBox;
-    // Characters have the pivot point centered.
+    // 角色的枢轴点位于中心
     BoundingBox.Origin = {0.0f, 0.0f, 0.0f};
     BoundingBox.Extent = {Radius, Radius, HalfHeight};
-    // Component-to-world transform for this component
+    // 计算组件到世界空间的变换
     auto CompToWorldTransform = Capsule->GetComponentTransform();
     BoundingBox = ApplyTransformToBB(BoundingBox, CompToWorldTransform);
 
@@ -231,11 +231,11 @@ void UBoundingBoxCalculator::GetTrafficLightBoundingBox(
   TArray<FBoundingBox> BBsOfTL;
   TArray<uint8> TagsOfTL;
 
-  // This kind of a magic number relying that the lights of a TL are not bigger than 100.
-  // and we are gonna compare against a squared distance
+  // 这种“魔法数字”的使用是基于假设信号灯的数量不会超过 100。
+  // 这里通过平方距离来进行比较
   const float DistanceThreshold = 100.0f * 100.0f;
 
-  // The BBs of the TL are calculated per light, so we need to merge the full-box
+  //计算每个交通信号灯的边界框，因此需要合并成一个总的边界框
   uint8 TLTag = static_cast<uint8>(crp::CityObjectLabel::TrafficLight);
 
   CombineBBsOfActor(TrafficLight, BBsOfTL, TagsOfTL, DistanceThreshold, TLTag);
@@ -255,7 +255,7 @@ void UBoundingBoxCalculator::GetTrafficLightBoundingBox(
   }
 }
 
-// TODO: update to calculate current animation pose
+// TODO: 更新为计算当前动画姿势的边界框
 FBoundingBox UBoundingBoxCalculator::GetSkeletalMeshBoundingBox(const USkeletalMesh* SkeletalMesh)
 {
   if(!SkeletalMesh)
@@ -264,14 +264,14 @@ FBoundingBox UBoundingBoxCalculator::GetSkeletalMeshBoundingBox(const USkeletalM
     return {};
   }
 
-  // Get Vertex postion information from LOD 0 of the Skeletal Mesh
+  // 获取Skeletal Mesh的LOD 0（细节级别0）渲染数据中的顶点位置数据
   FSkeletalMeshRenderData* SkeletalMeshRenderData = SkeletalMesh->GetResourceForRendering();
   FSkeletalMeshLODRenderData& LODRenderData = SkeletalMeshRenderData->LODRenderData[0];
   FStaticMeshVertexBuffers& StaticMeshVertexBuffers = LODRenderData.StaticVertexBuffers;
   FPositionVertexBuffer& FPositionVertexBuffer = StaticMeshVertexBuffers.PositionVertexBuffer;
   uint32 NumVertices = FPositionVertexBuffer.GetNumVertices();
 
-  // Look for Skeletal Mesh bounds (vertex perfect)
+  //查找Skeletal Mesh的边界框（完美顶点）
   FVector Max(TNumericLimits<float>::Lowest());
   FVector Min(TNumericLimits<float>::Max());
 
@@ -348,13 +348,13 @@ void UBoundingBoxCalculator::GetBBsOfStaticMeshComponents(
 
     bool isCrosswalk = Comp->GetOwner()->GetName().Contains("crosswalk");
 
-    // Avoid duplication with SMComp and not visible meshes
+    // 避免与静态网格组件（SMComp）重复，并且排除不可见的网格
     if( (!Comp->IsVisible() && !isCrosswalk) || Cast<UInstancedStaticMeshComponent>(Comp))
     {
       continue;
     }
 
-    // Filter by tag
+    //根据标签进行过滤
     crp::CityObjectLabel Tag = ATagger::GetTagOfTaggedComponent(*Comp);
     if(FilterByTagEnabled && Tag != TagQueried) continue;
 
@@ -363,7 +363,7 @@ void UBoundingBoxCalculator::GetBBsOfStaticMeshComponents(
 
     if(StaticMesh)
     {
-      // Component-to-world transform for this component
+      // 获取该组件的世界坐标变换矩阵
       const FTransform& CompToWorldTransform = Comp->GetComponentTransform();
       BoundingBox = ApplyTransformToBB(BoundingBox, CompToWorldTransform);
       OutBB.Emplace(BoundingBox);
@@ -396,7 +396,7 @@ void UBoundingBoxCalculator::GetBBsOfSkeletalMeshComponents(
     }
     else
     {
-      // Component-to-world transform for this component
+      // 将该组件的局部变换应用到世界坐标系的变换
       const FTransform& CompToWorldTransform = Comp->GetComponentTransform();
       BoundingBox = ApplyTransformToBB(BoundingBox, CompToWorldTransform);
       OutBB.Emplace(BoundingBox);
@@ -430,13 +430,12 @@ TArray<FBoundingBox> UBoundingBoxCalculator::GetBBsOfActor(
 
   FString ClassName = Actor->GetClass()->GetName();
 
-  // Avoid the BP_Procedural_Building to avoid duplication with their child actors
-  // When improved the BP_Procedural_Building this maybe should be removed
-  // Note: We don't use casting here because the base class is a BP and is easier to do it this way,
-  //       than getting the UClass of the BP to cast the actor.
+  // 避免处理BP_Procedural_Building类的Actor，以避免与其子Actor重复
+  //当改进BP_Procedural_Building时，这个检查可能应该移除
+  //注意：这里没有使用类型转换，因为基类是蓝图（BP），这种方式更简单，不需要通过获取UClass来进行类型转换。
   if( ClassName.Contains("Procedural_Bulding") ) return Result;
 
-  // The vehicle's BP has a low-polystatic mesh for collisions, we should avoid it
+  // 车辆的蓝图使用了低多边形静态网格进行碰撞检测，我们应该避免处理它
   const ACarlaWheeledVehicle* Vehicle = Cast<ACarlaWheeledVehicle>(Actor);
   if (Vehicle)
   {
@@ -448,7 +447,7 @@ TArray<FBoundingBox> UBoundingBoxCalculator::GetBBsOfActor(
     return Result;;
   }
 
-  // Pedestrians, we just use the capsule component at the moment.
+  // 行人，我们目前仅使用胶囊组件
   const ACharacter* Character = Cast<ACharacter>(Actor);
   if (Character)
   {
@@ -460,7 +459,7 @@ TArray<FBoundingBox> UBoundingBoxCalculator::GetBBsOfActor(
     return Result;
   }
 
-  // TrafficLight, we need to join all the BB of the lights in one
+  // 对于交通信号灯，我们需要将所有信号灯的边界框合并为一个
   const ATrafficLightBase* TrafficLight = Cast<ATrafficLightBase>(Actor);
   if(TrafficLight)
   {
@@ -468,25 +467,25 @@ TArray<FBoundingBox> UBoundingBoxCalculator::GetBBsOfActor(
     return Result;
   }
 
-  // Calculate FBoundingBox of ISM
+  // 计算实例化静态网格组件（ISM）的边界框
   TArray<UInstancedStaticMeshComponent *> ISMComps;
   Actor->GetComponents<UInstancedStaticMeshComponent>(ISMComps);
   for(UInstancedStaticMeshComponent* Comp: ISMComps)
   {
-    // Filter by tag
+    // 通过标签过滤
     crp::CityObjectLabel Tag = ATagger::GetTagOfTaggedComponent(*Comp);
     if(FilterByTagEnabled && Tag != TagQueried) continue;
 
     GetISMBoundingBox(Comp, Result);
   }
 
-  // Calculate FBoundingBox of SM
+  // 计算静态网格组件（SM）的边界框
   TArray<UStaticMeshComponent*> StaticMeshComps;
   Tags.Reset();
   Actor->GetComponents<UStaticMeshComponent>(StaticMeshComps);
   GetBBsOfStaticMeshComponents(StaticMeshComps, Result, Tags, InTagQueried);
 
-  // Calculate FBoundingBox of SK_M
+  //计算骨骼网格组件（SK_M）的边界框
   TArray<USkeletalMeshComponent*> SkeletalMeshComps;
   Tags.Reset();
   Actor->GetComponents<USkeletalMeshComponent>(SkeletalMeshComps);
@@ -516,7 +515,7 @@ void UBoundingBoxCalculator::CombineBBsOfActor(
   TSet<int> IndicesDiscarded;
   for(int i = 0; i < BBsOfTL.Num(); i++)
   {
-    // Check if the index was used to merge a previous BB
+    //  检查该索引是否已用于合并之前的边界框
     if(IndicesDiscarded.Contains(i)) continue;
 
     TArray<FBoundingBox> BBsToCombine;
@@ -525,7 +524,7 @@ void UBoundingBoxCalculator::CombineBBsOfActor(
 
     for(int j = i + 1; j < BBsOfTL.Num(); j++)
     {
-      // Check if the index was used to merge a previous BB
+      // 检查该索引是否已用于合并之前的边界框
       if(IndicesDiscarded.Contains(j)) continue;
 
       FBoundingBox& BB2 = BBsOfTL[j];
@@ -533,7 +532,7 @@ void UBoundingBoxCalculator::CombineBBsOfActor(
 
       float Distance = FVector::DistSquared(BB1.Origin, BB2.Origin);
 
-      // If the BBs are close enough and are from the same type, we merge it
+      //如果两个边界框足够接近并且属于同一类型，则合并
       if( ((Distance <= DistanceThreshold) || IgnoreDistanceFilter) &&
           ((Tag1 == Tag2) || IgnoreTag) )
       {
@@ -552,10 +551,10 @@ void UBoundingBoxCalculator::CombineBBsOfActor(
     }
   }
 
-  // Add the BB of the meshes that didn't need to combine
+  // 添加不需要合并的网格的边界框
   for(int i = 0; i < BBsOfTL.Num(); i++)
   {
-    // Check if the index was used to merge a previous BB
+    //检查该索引是否已用于合并之前的边界框
     if(IndicesDiscarded.Contains(i)) continue;
     FBoundingBox& BB = BBsOfTL[i];
     OutBB.Emplace(BB);
