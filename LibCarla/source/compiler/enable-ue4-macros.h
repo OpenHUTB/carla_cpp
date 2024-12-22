@@ -89,7 +89,7 @@
 #pragma pop_macro("NV_RESULT")// 取消名为"NV_RESULT"的宏。
 #pragma pop_macro("B")// 取消名为"B"的宏。
 #pragma pop_macro("AMF_DECLARE_IID")// 取消名为"AMF_DECLARE_ID"的宏。
-#pragma pop_macro("AMF_MACRO_STRING2")
+#pragma pop_macro("AMF_MACRO_STRING2")// 取消名为"AMF_MACRO_STRING2"的宏。
 #pragma pop_macro("AMF_MACRO_STRING")
 #pragma pop_macro("AMF_TODO")
 #pragma pop_macro("AMF_ALIGN")
