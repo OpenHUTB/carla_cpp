@@ -103,15 +103,17 @@ namespace learning {
     }
     return result;
   }
-
+// 该函数接收两个常量引用类型的at::Tensor参数，并返回一个WheelOutput 类型的结果
   WheelOutput GetWheelTensorOutputDynamic(
       const at::Tensor &particle_forces, 
       const at::Tensor &wheel_forces) {
     WheelOutput result;
     const float* wheel_forces_data = wheel_forces.data_ptr<float>();
+    // 从wheel_forces中提取轮子X Y Z方向的力
     result.wheel_forces_x = wheel_forces_data[0];
     result.wheel_forces_y = wheel_forces_data[1];
     result.wheel_forces_z = wheel_forces_data[2];
+    // 从 particle_forces中提取每个粒子的力
     const float* particle_forces_data = particle_forces.data_ptr<float>();
     int num_dimensions = 3;
     int num_particles = particle_forces.sizes()[0];
@@ -156,22 +158,22 @@ namespace learning {
     at::Tensor particles_velocity_tensor = 
         torch::from_blob(wheel.particles_velocities, 
             {wheel.num_particles, 3}, torch::kFloat32);
-
+// 创建轮子位置张量
     at::Tensor wheel_positions_tensor = 
-        torch::from_blob(wheel.wheel_positions, 
-            {3}, torch::kFloat32);
-
+        torch::from_blob(wheel.wheel_positions, // 原始数据，表示轮子的位置
+            {3}, torch::kFloat32);// 张量的维度为3
+// 创建轮子方向张量
     at::Tensor wheel_oritentation_tensor = 
-        torch::from_blob(wheel.wheel_oritentation, 
-            {4}, torch::kFloat32);
-
+        torch::from_blob(wheel.wheel_oritentation, // 原始数据，表示轮子的方向
+            {4}, torch::kFloat32);// 表示张量维度为4
+// 创建轮子线性速度张量
     at::Tensor wheel_linear_velocity_tensor = 
-        torch::from_blob(wheel.wheel_linear_velocity, 
-            {3}, torch::kFloat32);
-
+        torch::from_blob(wheel.wheel_linear_velocity, // 原始数据，表示轮子的线性速度
+            {3}, torch::kFloat32);// 表示张量的维度为3
+// 创建轮子角速度张量
     at::Tensor wheel_angular_velocity_tensor = 
-        torch::from_blob(wheel.wheel_angular_velocity, 
-            {3}, torch::kFloat32);
+        torch::from_blob(wheel.wheel_angular_velocity, // 原始数据，表示轮子的角速度
+            {3}, torch::kFloat32);// 表示张量的维度为3
 // 将所有准备好的张量以及粒子数量（作为一个标量张量或直接作为整数）放入一个向量中
     std::vector<torch::jit::IValue> Tuple 
         {particles_position_tensor.cuda(), particles_velocity_tensor.cuda(), wheel_positions_tensor.cuda(), 
