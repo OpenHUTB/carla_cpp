@@ -44,6 +44,7 @@ file(GLOB libcarla_test_client_sources "")
 if (LIBCARLA_BUILD_DEBUG)
   list(APPEND build_targets libcarla_test_${carla_config}_debug)
 endif()
+#这段代码首先判断  LIBCARLA_BUILD_DEBUG  变量是否为真，如果是真（意味着要构建调试版本），就会把  libcarla_test_${carla_config}_debug  这个字符串添加到  build_targets  列表中，后续可以基于这个列表里的元素来进一步构建相关目标。
 
 # 如果LibCarla使用发布版本，则libcarla_test也是用发布版本
 if (LIBCARLA_BUILD_RELEASE)
