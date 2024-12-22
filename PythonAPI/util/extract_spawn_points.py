@@ -1,17 +1,17 @@
 """ CARLA map spawn points extractor """
 
-from __future__ import print_function
-import argparse
-import logging
-import glob
-import os
-import sys
+from __future__ import print_function#是Python中的一个特性导入语句
+import argparse#argparse  是Python内置的用于命令行参数解析的标准库模块。
+import logging#logging  同样是Python内置的标准库模块，用于记录程序运行过程中的日志信息。
+import glob#glob  模块提供了一种简单的方式来查找符合特定模式的文件路径。
+import os#os  模块是Python与操作系统进行交互的重要接口，它封装了很多操作系统相关的功能
+import sys#sys  是Python内置的处理系统相关功能的模块
 
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])#sys.version_info.major  和  sys.version_info.minor  获取Python当前的主版本号和次版本号
 except IndexError:
     pass
 
