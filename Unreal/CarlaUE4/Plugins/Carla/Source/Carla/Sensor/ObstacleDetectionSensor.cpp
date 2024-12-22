@@ -32,7 +32,7 @@ FActorDefinition AObstacleDetectionSensor::GetSensorDefinition()
 
 void AObstacleDetectionSensor::Set(const FActorDescription &Description)
 {
-  //Multiplying numbers for 100 in order to convert from meters to centimeters
+  //为了从米转换为厘米，我们需要将数值乘以100。
   Super::Set(Description);
   Distance = UActorBlueprintFunctionLibrary::RetrieveActorAttributeToFloat(
       "distance",
@@ -61,15 +61,14 @@ void AObstacleDetectionSensor::PostPhysTick(UWorld *World, ELevelTick TickType, 
   const FVector &End = Start + (GetActorForwardVector() * Distance);
   UWorld* CurrentWorld = GetWorld();
 
-  // Struct in which the result of the scan will be saved
+  // 用于保存扫描结果的结构体
   FHitResult HitOut = FHitResult();
 
-  // Initialization of Query Parameters
+  // 查询参数的初始化
   FCollisionQueryParams TraceParams(FName(TEXT("ObstacleDetection Trace")), true, this);
 
 #if !(UE_BUILD_SHIPPING || UE_BUILD_TEST)
-  // If debug mode enabled, we create a tag that will make the sweep be
-  // displayed.
+  // 如果启用了调试模式，我们将创建一个标签来显示扫描结果
   if (bDebugLineTrace)
   {
     const FName TraceTag("ObstacleDebugTrace");
@@ -78,26 +77,26 @@ void AObstacleDetectionSensor::PostPhysTick(UWorld *World, ELevelTick TickType, 
   }
 #endif
 
-  // Hit against complex meshes
+  // 与复杂网格的碰撞
   TraceParams.bTraceComplex = true;
 
-  // Ignore trigger boxes
+  // 忽略触发框
   TraceParams.bIgnoreTouches = true;
 
-  // Limit the returned information
+  // 限制返回的信息
   TraceParams.bReturnPhysicalMaterial = false;
 
-  // Ignore ourselves
+  // 忽略自身
   TraceParams.AddIgnoredActor(this);
   if(Super::GetOwner()!=nullptr)
     TraceParams.AddIgnoredActor(Super::GetOwner());
 
   bool isHitReturned;
-  // Choosing a type of sweep is a workaround until everything get properly
-  // organized under correct collision channels and object types.
+  // 选择一种扫描类型是一种权宜之计，直到所有事情都得到妥善处理
+  // 根据正确的碰撞通道和对象类型进行组织
   if (bOnlyDynamics)
   {
-    // If we go only for dynamics, we check the object type AllDynamicObjects
+    // 如果我们只考虑动态物体，我们会检查对象类型“AllDynamicObjects”
     FCollisionObjectQueryParams TraceChannel = FCollisionObjectQueryParams(
         FCollisionObjectQueryParams::AllDynamicObjects);
     isHitReturned = CurrentWorld->SweepSingleByObjectType(
@@ -111,8 +110,7 @@ void AObstacleDetectionSensor::PostPhysTick(UWorld *World, ELevelTick TickType, 
   }
   else
   {
-    // Else, if we go for everything, we get everything that interacts with a
-    // Pawn
+    //否则，如果我们考虑所有物体，我们会获取与Pawn交互的所有物体
     ECollisionChannel TraceChannel = ECC_WorldStatic;
     isHitReturned = CurrentWorld->SweepSingleByChannel(
         HitOut,

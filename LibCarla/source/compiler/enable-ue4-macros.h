@@ -253,7 +253,7 @@
 #pragma pop_macro("SCOPED_BOOT_TIMING")
 #pragma pop_macro("FOREACH_ENUM_EPIXELFORMAT")
 #pragma pop_macro("PLATFORM_CODE_SECTION")
-#pragma pop_macro("GCC_PACK")
+#pragma pop_macro("GCC_PACK")// 用于取消名为 "GCC_PACK" 的宏
 #pragma pop_macro("GCC_ALIGN")
 #pragma pop_macro("PLATFORM_BREAK")
 #pragma pop_macro("UE_DEBUG_BREAK_IMPL")

@@ -138,15 +138,18 @@ namespace nav {
 
     // 检查文件的魔术和版本
     if (header.magic != NAVMESHSET_MAGIC || header.version != NAVMESHSET_VERSION) {
+     // 如果文件的魔术数字或版本不匹配，则函数返回false
       return false;
     }
 
     // 分配导航网格对象的内存
     dtNavMesh *mesh = dtAllocNavMesh();
     if (!mesh) {
+      // 如果内存分配失败，则函数返回false
       return false;
     }
 
+    // 使用文件的头信息中的参数初始化导航网格
     // 设置瓦片的数目和原点
     dtStatus status = mesh->init(&header.params);
     if (dtStatusFailed(status)) {
@@ -161,18 +164,21 @@ namespace nav {
       memcpy(&tile_header, &content[pos], sizeof(tile_header));
       pos += sizeof(tile_header);
       if (pos >= content.size()) {
+          // 如果读取瓦片头后位置超出内容大小，释放网格并返回false
         dtFreeNavMesh(mesh);
         return false;
       }
 
       // 检查瓦片的有效性
       if (!tile_header.tile_ref || !tile_header.data_size) {
+         // 如果瓦片无效，跳出循环
         break;
       }
 
       // 分配缓冲区内存
       char *data = static_cast<char *>(dtAlloc(static_cast<size_t>(tile_header.data_size), DT_ALLOC_PERM));
       if (!data) {
+         // 如果内存分配失败，跳出循环
         break;
       }
 
@@ -180,6 +186,7 @@ namespace nav {
       memcpy(data, &content[pos], static_cast<size_t>(tile_header.data_size));
       pos += static_cast<unsigned long>(tile_header.data_size);
       if (pos > content.size()) {
+         // 如果读取瓦片数据后位置超出内容大小，释放数据和网格并返回false
         dtFree(data);
         dtFreeNavMesh(mesh);
         return false;
@@ -201,14 +208,15 @@ namespace nav {
 
     // 拷贝
     _binary_mesh = std::move(content);
-    _ready = true;
+    _ready = true; // 标记为准备就绪
 
     // 创建并初始化人群管理器
     CreateCrowd();
 
-    return true;
+    return true;// 表示成功加载和初始化导航网格
   }
 
+// 创建并初始化人群管理器
   void Navigation::CreateCrowd(void) {
 
     // 检查是否一切就绪
@@ -216,13 +224,14 @@ namespace nav {
       return;
     }
 
-    DEBUG_ASSERT(_crowd == nullptr);
+    DEBUG_ASSERT(_crowd == nullptr);// 断言_crowd成员变量为nullptr，确保未重复初始化
 
     // 创建并初始化
     _crowd = dtAllocCrowd();
     // 这些半径应该是车辆的最大尺寸 (CarlaCola for Carla)
     const float max_agent_radius = AGENT_RADIUS * 20;
     if (!_crowd->init(MAX_AGENTS, max_agent_radius, _nav_mesh)) {
+       // 如果初始化失败，记录日志并返回
       logging::log("Nav: failed to create crowd");
       return;
     }
