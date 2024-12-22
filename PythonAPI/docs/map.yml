@@ -643,6 +643,14 @@
 # 定义了一个名为 Landmark 的类，定义了影响道路的任何类型的交通里程碑或标志。
   - class_name: Landmark
     # - DESCRIPTION ------------------------
+    # 下面的这段文档字符串（doc）用于对一个类进行详细的描述说明，它会遵循特定的格式约定，方便后续通过文档生成工具等提取并展示出清晰的类文档信息。
+    doc: >
+  # 以下开始具体描述这个类的功能和作用，这里提到这个类是用于定义任何类型的交通地标或交通标志的，这些地标或标志会对道路产生影响。
+  # 例如马路上的限速标志、让行标志、车道指示标志等都可以归为此类交通地标或标志，它们在现实交通以及对应的模拟场景中都起着规范交通行为等重要作用。
+      Class that defines any type of traffic landmark or sign affecting a road. These class mediates between the [OpenDRIVE 1.4 standard](http://www.opendrive.org/docs/OpenDRIVEFormatSpecRev1.4H.pdf) definition of the landmarks and their representation in the simulation.
+      This class retrieves all the information defining a landmark in OpenDRIVE and facilitates information about which lanes does it affect and when.
+
+      Landmarks will be accessed by carla.Waypoint objects trying to retrieve the regulation of their lane. Therefore some attributes depend on the waypoint that is consulting the landmark and so, creating the object.
     doc: >
       Class that defines any type of traffic landmark or sign affecting a road. These class mediates between the [OpenDRIVE 1.4 standard](http://www.opendrive.org/docs/OpenDRIVEFormatSpecRev1.4H.pdf) definition of the landmarks and their representation in the simulation.
       This class retrieves all the information defining a landmark in OpenDRIVE and facilitates information about which lanes does it affect and when.
