@@ -1,27 +1,35 @@
 
 name: compute involvement degree
 
-on: [push]
-    
+on:
+  # 监听 push 事件，但限制为仅在特定分支（如 main 或 master）上触发
+  push:
+    branches:
+      - main # 或您希望监听的其他分支名
+
 jobs:
   work:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          # github action 默认签出只包含最后一次提交
-          # 解决方案参考：https://stackoverflow.com/questions/62334460/git-history-in-a-github-action
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
-          #任务名称：设置Python环境
+          # 若要处理 PR，请使用以下 ref（但注意，这应在 pull_request 事件中设置）
+          # ref: ${{ github.event.pull_request.head.sha }}
+          # 对于普通 push 事件，无需特别指定 ref，因为默认会签出触发事件的提交
+          fetch-depth: 0 # 获取完整的 Git 历史记录
+
       - name: Set up Python
-        # This is the version of the action for setting up Python, not the Python version.
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x' # 指定python版本
-          # Optional - x64 or x86 architecture, defaults to x64
+          python-version: '3.x'
           architecture: 'x64'
+
       - name: Install Python dependencies
         run: python -m pip install --upgrade pip requests gitpython
+
       - name: Display involvement degree
-        run: python scores.py -t ${{ secrets.GITHUB_TOKEN }} # 执行
+        # 注意：确保 scores.py 脚本能够正确处理 GITHUB_TOKEN，并了解其用途和安全性
+        # 如果脚本需要访问 GitHub API，GITHUB_TOKEN 将用于身份验证
+        run: python scores.py -t ${{ secrets.GITHUB_TOKEN }}
+        # 如果 scores.py 脚本并非用于访问 GitHub API，或您不希望在此处使用 GITHUB_TOKEN，
+        # 请从命令中移除 -t ${{ secrets.GITHUB_TOKEN }} 部分
