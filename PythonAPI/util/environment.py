@@ -367,7 +367,7 @@ def main():
 
     weather = world.get_weather()
 
-    # apply presets
+    # 应用预设参数
     apply_sun_presets(args, weather)
     apply_weather_presets(args, weather)
 
