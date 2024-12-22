@@ -10,7 +10,7 @@
 #include "carla/NonCopyable.h"  // 引入不可拷贝类的头文件
 #include "carla/TypeTraits.h"  // 引入类型特征相关头文件
 #include "carla/profiler/LifetimeProfiled.h"  // 引入生命周期分析相关头文件
-#include "carla/multigpu/secondaryCommands.h"  // 引入多 GPU 次级命令的头文件
+#include "carla/multigpu/secondaryCommands.h"  //引入Carla多GPU处理框架中用于管理和执行次级GPU命令的头文件
 #include "carla/streaming/detail/tcp/Message.h"  // 引入 TCP 消息的详细实现头文件
 #include "carla/streaming/detail/Token.h"  // 引入 Token 的详细实现头文件
 #include "carla/streaming/detail/Types.h"  // 引入流相关类型的头文件
