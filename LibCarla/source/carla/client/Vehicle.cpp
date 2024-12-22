@@ -153,7 +153,7 @@ namespace client {
   // 启用车辆模拟（CarSim）
   // 使用指定的模拟文件路径启用车辆模拟
   void Vehicle::EnableCarSim(std::string simfile_path) {
-    GetEpisode().Lock()->EnableCarSim(*this, simfile_path);
+    GetEpisode().Lock()->EnableCarSim(*this, simfile_path);// 启动车辆模拟功能
   }
   // 设置是否使用车辆模拟的道路
   // 根据 `enabled` 参数启用或禁用模拟的道路
@@ -162,6 +162,7 @@ namespace client {
   }
   // 启用 Chrono 物理引擎
   // 设置 Chrono 物理引擎的相关参数（如最大子步数、时间步长等）
+// 启用Chrono 物理引擎，并设置相关参数
   void Vehicle::EnableChronoPhysics(
       uint64_t MaxSubsteps,
       float MaxSubstepDeltaTime,

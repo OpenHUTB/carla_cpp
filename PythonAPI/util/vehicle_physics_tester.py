@@ -110,7 +110,9 @@ def change_physics_control(vehicle, tire_friction = None, drag = None, wheel_swe
     if len(physics_control.forward_gears) == 1:
         gear = carla.GearPhysicsControl(1.0, 0.00, 0.00)
         physics_control.forward_gears = [gear]
-
+# 设置车辆物理控制（physics_control）对象中的一个属性，即全油门时的阻尼率（damping_rate_full_throttle）为0.01。
+# 在车辆物理模拟中，阻尼率用于控制车辆在加速（这里特指全油门加速情况）过程中的阻力效果，影响车辆速度变化的平滑程度等物理表现
+# 通过设置这个值可以调整车辆在全油门状态下的动态行为特性，使其更符合实际的模拟需求。
     physics_control.damping_rate_full_throttle = 0.01
 
     front_left_wheel = physics_control.wheels[0]

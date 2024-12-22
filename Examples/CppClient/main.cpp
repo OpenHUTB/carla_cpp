@@ -87,7 +87,8 @@ static auto ParseArguments(int argc, const char *argv[]) {
 int main(int argc, const char *argv[]) {
     try {
         // 解析命令行参数
-        std::string host;
+        // 将命令行参数解析为主机名和端口号
+        std::string host; 
         uint16_t port;
         std::tie(host, port) = ParseArguments(argc, argv);
 
@@ -121,12 +122,15 @@ int main(int argc, const char *argv[]) {
         }
 
         // 随机选择一个推荐的出生点，从当前世界的地图中获取推荐的车辆出生点列表，再利用随机数生成器随机选取一个出生点，该出生点将用于后续生成车辆
+        
         auto map = world.GetMap();
         auto transform = RandomChoice(map->GetRecommendedSpawnPoints(), rng);
 
         // 在世界中生成车辆，根据前面选择的交通工具蓝图和出生点，在模拟世界中生成对应的车辆实例，并输出车辆的显示ID，方便后续识别和调试
+        // 指定位置生成一个车辆
         auto actor = world.SpawnActor(blueprint, transform);
         std::cout << "Spawned " << actor->GetDisplayId() << '\n';
+        // 将生成的演员转化为车辆类型
         auto vehicle = boost::static_pointer_cast<cc::Vehicle>(actor);
 
         // 应用控制到车辆上，例如设置油门，创建一个车辆控制结构体实例，并将油门值设置为1.0，表示全油门加速，然后将该控制应用到生成的车辆上，使其开始运动
@@ -146,6 +150,7 @@ int main(int argc, const char *argv[]) {
         // Find a camera blueprint.
         // 查找一个相机蓝图，在蓝图库中查找代表语义分割相机的蓝图，如果找不到则会触发后续的断言异常，用于后续在车辆上挂载相机传感器
         auto camera_bp = blueprint_library->Find("sensor.camera.semantic_segmentation");
+        // 查找并验证一个代表语义分割相机的蓝图是否存在
         EXPECT_TRUE(camera_bp!= nullptr);
 
         // Spawn a camera attached to the vehicle.

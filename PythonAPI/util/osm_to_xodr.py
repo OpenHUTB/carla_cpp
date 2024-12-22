@@ -17,7 +17,7 @@ import carla
 
 
 def convert(args):
-    # Read the .osm data
+    # 读取开放街道地图（OpenStreetMap，简称 OSM）数据。（.osm 是开放街道地图数据的文件格式后缀）
     with open(args.input_path, mode="r", encoding="utf-8") as osmFile:
         osm_data = osmFile.read()
 

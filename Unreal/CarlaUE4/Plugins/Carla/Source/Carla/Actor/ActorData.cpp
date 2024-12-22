@@ -210,13 +210,17 @@ AActor* FTrafficSignData::RespawnActor(UCarlaEpisode* CarlaEpisode, const FActor
         SpawnTransform,
         SpawnParams);
 }
-
+ // 记录交通标志的actor数据
 void FTrafficSignData::RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
-{
+{// 调用基类方法记录基本的actor数据
   FActorData::RecordActorData(CarlaActor, CarlaEpisode);
+  // 获取CARLA actor对应的Unreal Engine actor
   AActor* Actor = CarlaActor->GetActor();
+ // 记录交通标志的模型（类）
   Model = Actor->GetClass();
+ // 尝试将actor转换为交通标志基类
   ATrafficSignBase* TrafficSign = Cast<ATrafficSignBase>(Actor);
+ // 在交通标志中查找交通标志组件
   USignComponent* TrafficSignComponent =
         Cast<USignComponent>(TrafficSign->FindComponentByClass<USignComponent>());
   if (TrafficSignComponent)
@@ -225,20 +229,25 @@ void FTrafficSignData::RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* C
     SignId = TrafficSignComponent->GetSignId();
   }
 }
-
+// 恢复交通标志的actor数据
 void FTrafficSignData::RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
   AActor* Actor = CarlaActor->GetActor();
+ // 如果SignId不为空，说明有交通标志数据需要恢复
   if (SignId.Len())
-  {
+  {// 在actor上创建新的交通标志组件，使用之前记录的模型和ID
     USignComponent* SignComponent =
         NewObject<USignComponent>(Actor, SignModel);
     SignComponent->SetSignId(SignId);
+    // 注册组件，使其生效
     SignComponent->RegisterComponent();
+   // 将组件附加到actor的根组件上，保持相对变换
     SignComponent->AttachToComponent(
         Actor->GetRootComponent(),
         FAttachmentTransformRules::KeepRelativeTransform);
+    // 获取游戏模式，用于初始化交通标志
     ACarlaGameModeBase *GameMode = UCarlaStatics::GetGameMode(CarlaEpisode->GetWorld());
+   // 初始化交通标志，需要传入地图对象
     SignComponent->InitializeSign(GameMode->GetMap().get());
   }
 }
@@ -292,11 +301,12 @@ void FActorSensorData::RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* C
   ASensor* Sensor = Cast<ASensor>(Actor);
   Stream = Sensor->MoveDataStream();
 }
-
+ // 恢复传感器的actor数据
 void FActorSensorData::RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode)
 {
   FActorData::RestoreActorData(CarlaActor, CarlaEpisode);
   AActor* Actor = CarlaActor->GetActor();
+ // 获取传感器，并设置其数据流
   ASensor* Sensor = Cast<ASensor>(Actor);
   Sensor->SetDataStream(std::move(Stream));
 }
