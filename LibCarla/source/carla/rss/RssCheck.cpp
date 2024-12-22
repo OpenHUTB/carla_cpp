@@ -953,6 +953,7 @@ void RssCheck::UpdateDefaultRssDynamics(CarlaRssState &carla_rss_state) {
   return green_traffic_lights;
 }
 
+cpp
 RssCheck::RssObjectChecker::RssObjectChecker(RssCheck const &rss_check,
                                              ::ad::rss::map::RssSceneCreation &scene_creation,
                                              carla::client::Vehicle const &carla_ego_vehicle,
@@ -967,6 +968,12 @@ RssCheck::RssObjectChecker::RssObjectChecker(RssCheck const &rss_check,
 void RssCheck::RssObjectChecker::operator()(
     const carla::SharedPtr<carla::client::Actor> other_traffic_participant) const {
   try {
+    // 在获取匹配对象之前，先检查传入的交通参与者指针是否为空，若为空则直接返回，避免后续可能出现的空指针异常
+    if (!other_traffic_participant) {
+      _rss_check._logger->error("Null pointer passed as other traffic participant. Skipping processing.");
+      return;
+    }
+
     auto other_match_object = _rss_check.GetMatchObject(other_traffic_participant, ::ad::physics::Distance(2.0));
 
     _rss_check._logger->trace("OtherVehicleMapMatching: {} {}", other_traffic_participant->GetId(),
@@ -999,9 +1006,19 @@ void RssCheck::RssObjectChecker::operator()(
     other_object_data.steeringAngle = other_steering_angle;
     other_object_data.rssDynamics = actor_constellation_result.actor_dynamics;
 
+    // 在调用appendScenes之前，检查场景创建对象是否处于有效状态（这里简单假设可以通过某个函数来判断，比如有个 isValid 函数）
+    if (!_scene_creation.isValid()) {
+      _rss_check._logger->error("Scene creation object is not in a valid state. Cannot append scenes.");
+      return;
+    }
+
     _scene_creation.appendScenes(ego_object_data, _carla_rss_state.ego_route, other_object_data,
                                  actor_constellation_result.restrict_speed_limit_mode, _green_traffic_lights,
                                  actor_constellation_result.rss_calculation_mode);
+
+    // 新增代码：记录此次场景添加操作完成后的一些相关信息，比如当前参与场景创建的交通参与者数量等（假设可以通过相关函数获取）
+    _rss_check._logger->info("Successfully appended scenes for traffic participant {}. Current scene participants count: {}",
+                             other_traffic_participant->GetId(), _scene_creation.getParticipantsCount());
 
   } catch (...) {
     _rss_check._logger->error("Exception processing other traffic participant {} -> Ignoring it",
@@ -1087,74 +1104,118 @@ bool RssCheck::PerformCheck(CarlaRssState &carla_rss_state) const {
   return result;
 }
 
+// RssCheck类的成员函数AnalyseCheckResults，用于分析RSS检查结果，参数carla_rss_state是一个引用，会在函数内对其状态进行更新
 void RssCheck::AnalyseCheckResults(CarlaRssState &carla_rss_state) const {
-  carla_rss_state.dangerous_state = false;
-  carla_rss_state.dangerous_vehicle = false;
-  carla_rss_state.dangerous_opposite_state = false;
-  bool left_border_is_dangerous = false;
-  bool right_border_is_dangerous = false;
-  bool vehicle_triggered_left_response = false;
-  bool vehicle_triggered_right_response = false;
-  bool vehicle_triggered_longitudinal_response = false;
-  for (auto const state : carla_rss_state.rss_state_snapshot.individualResponses) {
-    if (::ad::rss::state::isDangerous(state)) {
-      carla_rss_state.dangerous_state = true;
-      _logger->trace("DangerousState: {}", state);
-      auto dangerous_sitation_iter = std::find_if(carla_rss_state.situation_snapshot.situations.begin(),
-                                                  carla_rss_state.situation_snapshot.situations.end(),
-                                                  [&state](::ad::rss::situation::Situation const &situation) {
-                                                    return situation.situationId == state.situationId;
-                                                  });
-      if (dangerous_sitation_iter != carla_rss_state.situation_snapshot.situations.end()) {
-        _logger->trace("Situation: {}", *dangerous_sitation_iter);
-        if (dangerous_sitation_iter->objectId == ::ad::rss::map::RssSceneCreator::getRightBorderObjectId()) {
-          right_border_is_dangerous = true;
-        } else if (dangerous_sitation_iter->objectId == ::ad::rss::map::RssSceneCreator::getLeftBorderObjectId()) {
-          left_border_is_dangerous = true;
-        } else {
-          carla_rss_state.dangerous_vehicle = true;
-          if (state.longitudinalState.response != ::ad::rss::state::LongitudinalResponse::None) {
-            vehicle_triggered_longitudinal_response = true;
-          }
-          if (state.lateralStateLeft.response != ::ad::rss::state::LateralResponse::None) {
-            vehicle_triggered_left_response = true;
-          }
-          if (state.lateralStateRight.response != ::ad::rss::state::LateralResponse::None) {
-            vehicle_triggered_right_response = true;
-          }
+    // 初始化表示危险状态的相关标志位为false，表明初始时认为没有处于危险状态、没有危险车辆以及没有危险的对向状态
+    carla_rss_state.dangerous_state = false;
+    carla_rss_state.dangerous_vehicle = false;
+    carla_rss_state.dangerous_opposite_state = false;
+    // 初始化表示左右边界是否危险的标志位为false，即初始认为左右边界都不危险
+    bool left_border_is_dangerous = false;
+    bool right_border_is_dangerous = false;
+    // 初始化表示车辆是否触发左右及纵向响应的标志位为false，即初始认为车辆没有触发这些响应
+    bool vehicle_triggered_left_response = false;
+    bool vehicle_triggered_right_response = false;
+    bool vehicle_triggered_longitudinal_response = false;
+
+    // 遍历carla_rss_state.rss_state_snapshot.individualResponses中的每个状态元素
+    for (auto const state : carla_rss_state.rss_state_snapshot.individualResponses) {
+        // 如果当前状态被判定为危险状态（通过ad::rss::state::isDangerous函数判断）
+        if (::ad::rss::state::isDangerous(state)) {
+            // 将表示整体处于危险状态的标志位设为true
+            carla_rss_state.dangerous_state = true;
+            // 使用日志记录器输出跟踪信息，记录当前的危险状态详情
+            _logger->trace("DangerousState: {}", state);
+
+            // 在carla_rss_state.situation_snapshot.situations中查找与当前危险状态对应的情境元素
+            auto dangerous_sitation_iter = std::find_if(carla_rss_state.situation_snapshot.situations.begin(),
+                                                        carla_rss_state.situation_snapshot.situations.end(),
+                                                        [&state](::ad::rss::situation::Situation const &situation) {
+                                                            return situation.situationId == state.situationId;
+                                                        });
+
+            // 如果找到了对应的情境元素
+            if (dangerous_sitation_iter!= carla_rss_state.situation_snapshot.situations.end()) {
+                // 使用日志记录器输出跟踪信息，记录找到的对应情境详情
+                _logger->trace("Situation: {}", *dangerous_sitation_iter);
+                // 如果该情境对应的对象ID与右侧边界对象ID一致，说明右侧边界处于危险状态，将相应标志位置为true
+                if (dangerous_sitation_iter->objectId == ::ad::rss::map::RssSceneCreator::getRightBorderObjectId()) {
+                    right_border_is_dangerous = true;
+                }
+                // 如果该情境对应的对象ID与左侧边界对象ID一致，说明左侧边界处于危险状态，将相应标志位置为true
+                else if (dangerous_sitation_iter->objectId == ::ad::rss::map::RssSceneCreator::getLeftBorderObjectId()) {
+                    left_border_is_dangerous = true;
+                }
+                // 如果不是边界对象处于危险状态，而是其他车辆相关的危险情况
+                else {
+                    carla_rss_state.dangerous_vehicle = true;
+                    // 如果当前危险状态中的纵向响应不为None（即有纵向响应），将表示车辆触发纵向响应的标志位置为true
+                    if (state.longitudinalState.response!= ::ad::rss::state::LongitudinalResponse::None) {
+                        vehicle_triggered_longitudinal_response = true;
+                    }
+                    // 如果当前危险状态中的左侧横向响应不为None（即有左侧横向响应），将表示车辆触发左侧横向响应的标志位置为true
+                    if (state.lateralStateLeft.response!= ::ad::rss::state::LateralResponse::None) {
+                        vehicle_triggered_left_response = true;
+                    }
+                    // 如果当前危险状态中的右侧横向响应不为None（即有右侧横向响应），将表示车辆触发右侧横向响应的标志位置为true
+                    if (state.lateralStateRight.response!= ::ad::rss::state::LateralResponse::None) {
+                        vehicle_triggered_right_response = true;
+                    }
+                }
+                // 如果当前情境的类型是对向行驶情境，将表示存在危险对向状态的标志位置为true
+                if (dangerous_sitation_iter->situationType == ::ad::rss::situation::SituationType::OppositeDirection) {
+                    carla_rss_state.dangerous_opposite_state = true;
+                }
+            }
         }
-        if (dangerous_sitation_iter->situationType == ::ad::rss::situation::SituationType::OppositeDirection) {
-          carla_rss_state.dangerous_opposite_state = true;
-        }
-      }
     }
-  }
+}
 
   // border are restricting potentially too much, fix this
-  if (!vehicle_triggered_longitudinal_response &&
-      (carla_rss_state.proper_response.longitudinalResponse != ::ad::rss::state::LongitudinalResponse::None)) {
-    _logger->debug("!! longitudinalResponse only triggered by borders: ignore !!");
+ // 检查纵向响应情况，如果车辆没有触发纵向响应，并且当前的纵向响应不是None（即有非空的纵向响应）
+// 则认为该纵向响应只是由边界触发的，需要进行相应处理并忽略该响应
+if (!vehicle_triggered_longitudinal_response &&
+      (carla_rss_state.proper_response.longitudinalResponse!= ::ad::rss::state::LongitudinalResponse::None)) {
+    // 输出调试信息，表示纵向响应仅由边界触发，需要忽略该响应
+    _logger->debug("!! longitudinalResponse only triggered by borders: ignore!!");
+    // 将纵向响应设置为None，表示忽略当前的纵向响应
     carla_rss_state.proper_response.longitudinalResponse = ::ad::rss::state::LongitudinalResponse::None;
+    // 设置纵向加速度限制的最大值为默认的车辆动力学参数中的最大纵向加速度
     carla_rss_state.proper_response.accelerationRestrictions.longitudinalRange.maximum =
         carla_rss_state.default_ego_vehicle_dynamics.alphaLon.accelMax;
   }
-  if (!vehicle_triggered_left_response && !left_border_is_dangerous &&
-      (carla_rss_state.proper_response.lateralResponseLeft != ::ad::rss::state::LateralResponse::None)) {
-    _logger->debug("!! lateralResponseLeft only triggered by right border: ignore !!");
+
+// 检查左侧响应情况，如果车辆没有触发左侧响应，并且左侧边界不危险，同时当前的左侧横向响应不是None（即有非空的左侧横向响应）
+// 则认为该左侧横向响应只是由右侧边界触发的，需要进行相应处理并忽略该响应
+if (!vehicle_triggered_left_response &&!left_border_is_dangerous &&
+      (carla_rss_state.proper_response.lateralResponseLeft!= ::ad::rss::state::LateralResponse::None)) {
+    // 输出调试信息，表示左侧横向响应仅由右侧边界触发，需要忽略该响应
+    _logger->debug("!! lateralResponseLeft only triggered by right border: ignore!!");
+    // 将左侧横向响应设置为None，表示忽略当前的左侧横向响应
     carla_rss_state.proper_response.lateralResponseLeft = ::ad::rss::state::LateralResponse::None;
+    // 设置左侧横向加速度限制的最大值为默认的车辆动力学参数中的最大横向加速度
     carla_rss_state.proper_response.accelerationRestrictions.lateralLeftRange.maximum =
         carla_rss_state.default_ego_vehicle_dynamics.alphaLat.accelMax;
-    carla_rss_state.ego_dynamics_on_route.crossing_border = true;
-  }
-  if (!vehicle_triggered_right_response && !right_border_is_dangerous &&
-      (carla_rss_state.proper_response.lateralResponseRight != ::ad::rss::state::LateralResponse::None)) {
-    _logger->debug("!! lateralResponseRight only triggered by left border: ignore !!");
-    carla_rss_state.proper_response.lateralResponseRight = ::ad::rss::state::LateralResponse::None;
-    carla_rss_state.proper_response.accelerationRestrictions.lateralRightRange.maximum =
-        carla_rss_state.default_ego_vehicle_dynamics.alphaLat.accelMax;
+    // 标记车辆在路线上正在跨越边界
     carla_rss_state.ego_dynamics_on_route.crossing_border = true;
   }
 
+// 检查右侧响应情况，如果车辆没有触发右侧响应，并且右侧边界不危险，同时当前的右侧横向响应不是None（即有非空的右侧横向响应）
+// 则认为该右侧横向响应只是由左侧边界触发的，需要进行相应处理并忽略该响应
+if (!vehicle_triggered_right_response &&!right_border_is_dangerous &&
+      (carla_rss_state.proper_response.lateralResponseRight!= ::ad::rss::state::LateralResponse::None)) {
+    // 输出调试信息，表示右侧横向响应仅由左侧边界触发，需要忽略该响应
+    _logger->debug("!! lateralResponseRight only triggered by left border: ignore!!");
+    // 将右侧横向响应设置为None，表示忽略当前的右侧横向响应
+    carla_rss_state.proper_response.lateralResponseRight = ::ad::rss::state::LateralResponse::None;
+    // 设置右侧横向加速度限制的最大值为默认的车辆动力学参数中的最大横向加速度
+    carla_rss_state.proper_response.accelerationRestrictions.lateralRightRange.maximum =
+        carla_rss_state.default_ego_vehicle_dynamics.alphaLat.accelMax;
+    // 标记车辆在路线上正在跨越边界
+    carla_rss_state.ego_dynamics_on_route.crossing_border = true;
+  }
+
+  // 使用日志记录器输出跟踪信息，记录当前的路线响应状态（carla_rss_state.proper_response的内容）
   _logger->trace("RouteResponse: {}", carla_rss_state.proper_response);
 }
 
