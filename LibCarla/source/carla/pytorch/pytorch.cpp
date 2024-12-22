@@ -333,6 +333,12 @@ namespace learning {
 // 将Output转换为包含多个元素的元组，并提取其中的张量数据
     std::vector<torch::jit::IValue> Tensors =  Output.toTuple()->elements();
     // 对每个轮子的输出数据，调用GetWheelTensorOutputDynamic函数进行处理（可能是提取特定的输出值或进行格式转换）
+    // 结果存储在 _output结构体的相应字段中
+    // 获取输出
+    // 定义成员函数
+    // 返回存储型输出结果的 _output变量
+    // 析构函数
+    // 定义一个空的析构函数，用于清理资源
     _output.wheel0 = GetWheelTensorOutput(
         Tensors[0].toTensor().cpu(), Tensors[4].toTensor().cpu() );
     _output.wheel1 = GetWheelTensorOutput(
