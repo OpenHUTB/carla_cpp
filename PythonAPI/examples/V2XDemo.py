@@ -6,7 +6,7 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-# Allows controlling a vehicle with a keyboard. For a simpler and more
+# Allows controlling a vehicle with a keyboard. For a simpler and more#允许使用键盘控制车辆。
 # documented example, please take a look at tutorial.py.
 
 """

@@ -1,7 +1,7 @@
-﻿#pragma once
-#include "DataStructs.h"
-#include "Cube.h"
-#include "Triangulation.h"
+﻿#pragma once//程序预处理
+#include "DataStructs.h"//这行代码包含了一个名为DataStructs.h的头文件。头文件通常包含函数声明、结构体定义和宏定义等内容。
+#include "Cube.h"//名为Cube.h的头文件
+#include "Triangulation.h"//存储某些信息。
 
 namespace MeshReconstruction// 命名空间 MeshReconstruction，用于网格重建相关的功能
 {

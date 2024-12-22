@@ -181,19 +181,31 @@ class SensorManager:#定义了一个名为  SensorManager  的类。
         return self.sensor
 
     def save_rgb_image(self, image):
+        # 记录处理图像前的时间
         t_start = self.timer.time()
 
+        # 将图像数据从CARLA特定的格式转换为原始数据格式
         image.convert(carla.ColorConverter.Raw)
+        # 从图像的原始数据缓冲区创建一个numpy数组，数据类型为无符号8位整数
         array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
+        # 将数组重塑为图像的高度、宽度和4个颜色通道（RGBA）的形状
         array = np.reshape(array, (image.height, image.width, 4))
+        # 由于我们只需要RGB格式，所以移除Alpha通道（透明度）
         array = array[:, :, :3]
+        # 将BGR格式转换为RGB格式，因为从CARLA得到的图像通常是BGR格式的
         array = array[:, :, ::-1]
 
+        # 如果显示管理器启用了渲染功能
         if self.display_man.render_enabled():
+            # 使用pygame的surfarray模块将numpy数组转换为pygame表面，用于显示
+            # 注意：这里交换了数组的行和列，因为pygame期望的格式是（宽度，高度）
             self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
 
+        # 记录处理图像后的时间
         t_end = self.timer.time()
+        # 累加处理图像所花费的总时间
         self.time_processing += (t_end-t_start)
+        # 累加处理图像的次数
         self.tics_processing += 1
 
     def save_lidar_image(self, image):

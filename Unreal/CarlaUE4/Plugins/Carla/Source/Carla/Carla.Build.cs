@@ -1,76 +1,81 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
-using System;
-using System.IO;
-using UnrealBuildTool;
+using System; // 引入System命名空间，提供基本的类和基础结构
+using System.IO; // 引入System.IO命名空间，用于文件和目录操作
+using UnrealBuildTool; // 引入UnrealBuildTool命名空间，用于Unreal Engine的构建过程
 
+// 定义一个名为Carla的类，继承自ModuleRules，用于定义模块构建规则
 public class Carla : ModuleRules
 {
+  // 定义布尔值变量，用于控制是否启用特定的模块
+  bool UsingCarSim = false; // 是否使用CarSim模块
+  bool UsingChrono = false; // 是否使用Chrono模块
+  bool UsingPytorch = false; // 是否使用Pytorch模块
+  bool UsingRos2 = false; // 是否使用ROS 2模块
 
-  // 控制是否启用不同模块的布尔值
-  bool UsingCarSim = false;
-  bool UsingChrono = false;
-  bool UsingPytorch = false;
-  bool UsingRos2 = false;
-
-  // 检查目标平台是否为 Windows
+  // 私有方法，用于判断目标平台是否为Windows平台
   private bool IsWindows(ReadOnlyTargetRules Target)
   {
+    // 检查目标平台是否为Win64或Win32，返回布尔值结果
     return (Target.Platform == UnrealTargetPlatform.Win64) || (Target.Platform == UnrealTargetPlatform.Win32);
   }
 
-  // 构造函数，接受一个只读目标规则参数
-  public Carla(ReadOnlyTargetRules Target) : base(Target)
+  // 构造函数，接收一个ReadOnlyTargetRules类型的参数
+  public Carla(ReadOnlyTargetRules Target) : base(Target) // 调用基类构造函数
   {
   
-    // 设置私有PCH（预编译头文件）
+    // 设置私有PCH（预编译头文件），提高编译速度
     PrivatePCHHeaderFile = "Carla.h";
 
     // 如果目标平台是Windows，启用异常处理
     if (IsWindows(Target))
     {
-      bEnableExceptions = true;
+      bEnableExceptions = true; // 启用C++异常处理
     }
 
-     // 读取配置文件，检查是否启用各种模块
-    string CarlaPluginPath = Path.GetFullPath( ModuleDirectory );
-    string ConfigDir =  Path.GetFullPath(Path.Combine(CarlaPluginPath, "../../../../Config/"));
+    // 获取Carla插件的完整路径
+    string CarlaPluginPath = Path.GetFullPath(ModuleDirectory);
+    // 获取配置目录的完整路径
+    string ConfigDir = Path.GetFullPath(Path.Combine(CarlaPluginPath, "../../../../Config/"));
+    // 获取可选模块配置文件的完整路径
     string OptionalModulesFile = Path.Combine(ConfigDir, "OptionalModules.ini");
 
-    // 读取配置文件中的每一行
+    // 读取OptionalModules.ini配置文件中的每一行
     string[] text = System.IO.File.ReadAllLines(OptionalModulesFile);
     foreach (string line in text)
     {
+      // 如果配置行包含"CarSim ON"，则启用CarSim模块
       if (line.Contains("CarSim ON"))
       {
-      
-      	// 检查是否启用 CarSim
-        Console.WriteLine("Enabling carsim");
-        UsingCarSim = true;
-        PublicDefinitions.Add("WITH_CARSIM");
-        PrivateDefinitions.Add("WITH_CARSIM");
+        Console.WriteLine("Enabling carsim"); // 控制台输出启用CarSim模块的信息
+        UsingCarSim = true; // 设置UsingCarSim为true
+        PublicDefinitions.Add("WITH_CARSIM"); // 添加公共定义，以便在编译时启用CarSim相关的代码
+        PrivateDefinitions.Add("WITH_CARSIM"); // 添加私有定义，以便在编译时启用CarSim相关的代码
       }
+      // 如果配置行包含"Chrono ON"，则启用Chrono模块
       if (line.Contains("Chrono ON"))
       {
-        Console.WriteLine("Enabling chrono");
-        UsingChrono = true;
-        PublicDefinitions.Add("WITH_CHRONO");
-        PrivateDefinitions.Add("WITH_CHRONO");
+        Console.WriteLine("Enabling chrono"); // 控制台输出启用Chrono模块的信息
+        UsingChrono = true; // 设置UsingChrono为true
+        PublicDefinitions.Add("WITH_CHRONO"); // 添加公共定义，以便在编译时启用Chrono相关的代码
+        PrivateDefinitions.Add("WITH_CHRONO"); // 添加私有定义，以便在编译时启用Chrono相关的代码
       }
+      // 如果配置行包含"Pytorch ON"，则启用Pytorch模块
       if (line.Contains("Pytorch ON"))
       {
-        Console.WriteLine("Enabling pytorch");
-        UsingPytorch = true;
-        PublicDefinitions.Add("WITH_PYTORCH");
-        PrivateDefinitions.Add("WITH_PYTORCH");
+        Console.WriteLine("Enabling pytorch"); // 控制台输出启用Pytorch模块的信息
+        UsingPytorch = true; // 设置UsingPytorch为true
+        PublicDefinitions.Add("WITH_PYTORCH"); // 添加公共定义，以便在编译时启用Pytorch相关的代码
+        PrivateDefinitions.Add("WITH_PYTORCH"); // 添加私有定义，以便在编译时启用Pytorch相关的代码
       }
 
+      // 如果配置行包含"Ros2 ON"，则启用ROS 2模块
       if (line.Contains("Ros2 ON"))
       {
-        Console.WriteLine("Enabling ros2");
-        UsingRos2 = true;
-        PublicDefinitions.Add("WITH_ROS2");
-        PrivateDefinitions.Add("WITH_ROS2");
+        Console.WriteLine("Enabling ros2"); // 控制台输出启用ROS 2模块的信息
+        UsingRos2 = true; // 设置UsingRos2为true
+        PublicDefinitions.Add("WITH_ROS2"); // 添加公共定义，以便在编译时启用ROS 2相关的代码
+        PrivateDefinitions.Add("WITH_ROS2"); // 添加私有定义，以便在编译时启用ROS 2相关的代码
       }
     }
 
