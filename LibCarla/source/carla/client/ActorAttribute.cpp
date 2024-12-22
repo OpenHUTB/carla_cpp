@@ -10,11 +10,11 @@
 #include "carla/Logging.h"
 #include "carla/StringUtil.h"
 
-// 使用命名空间，避免命名冲突。
+// 利用命名空间避免命名的冲突
 namespace carla {
 namespace client {
 
-// 定义一个宏，用于方便地抛出表示属性值无效的异常。
+// 定义一个宏用来检测异常。
 // 它会调用 throw_exception 函数（应该在相关异常处理模块定义）抛出 InvalidAttributeValue 类型的异常，
 // 异常信息包含属性的标识（通过 GetId() 获取）以及传入的具体错误提示消息。
 #define LIBCARLA_THROW_INVALID_VALUE(message) throw_exception(InvalidAttributeValue(GetId() + ": " + message));
