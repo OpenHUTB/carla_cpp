@@ -146,14 +146,21 @@ except ImportError:
 
 
 def find_weather_presets():
+    # 使用正则表达式分割字符串，匹配单词边界
     rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
+    # 使用正则表达式分割字符串，匹配单词边界
     name = lambda x: ' '.join(m.group(0) for m in rgx.finditer(x))
+    # 从carla.WeatherParameters中获取所有以大写字母开头的属性名
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
+    # 使用列表推导式，获取WeatherParameters中所有属性的值和它们的格式化名称
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
 
 
 def get_actor_display_name(actor, truncate=250):
+     # 将actor的type_id属性中的下划线替换为点，并将每个单词的首字母大写，然后分割成单词列表
     name = ' '.join(actor.type_id.replace('_', '.').title().split('.')[1:])
+     # 如果生成的名称长度超过truncate指定的长度，则截断名称，并在末尾添加省略号（Unicode字符'\u2026'）
+    # 否则，直接返回完整的名称
     return (name[:truncate - 1] + u'\u2026') if len(name) > truncate else name
 
 
@@ -163,19 +170,30 @@ def get_actor_display_name(actor, truncate=250):
 
 
 class World(object):
+    # 类构造函数，用于初始化World类的实例
     def __init__(self, carla_world, hud, args):
+        # 将carla_world对象保存为实例变量，用于后续操作
         self.world = carla_world
+        # 从args对象中获取角色名称，并保存为实例变量
         self.actor_role_name = args.rolename
+        # 尝试获取carla_world的地图信息，并保存为实例变量
         try:
             self.map = self.world.get_map()
         except RuntimeError as error:
+            # 如果发生RuntimeError异常，打印错误信息
             print('RuntimeError: {}'.format(error))
+            # 提示用户检查OpenDRIVE文件是否存在、命名是否正确
             print('  The server could not send the OpenDRIVE (.xodr) file:')
             print('  Make sure it exists, has the same name of your town, and is correct.')
+            # 退出程序
             sys.exit(1)
+        # 将hud对象保存为实例变量，hud用于显示游戏界面信息
         self.hud = hud
+        # 初始化player变量，表示玩家控制的角色，初始值为None
         self.player = None
+        # 初始化collision_sensor变量，表示碰撞传感器，初始值为None
         self.collision_sensor = None
+        # 初始化lane_invasion_sensor变量，表示车道入侵传感器，初始值为None
         self.lane_invasion_sensor = None
         self.gnss_sensor = None
         self.imu_sensor = None
@@ -206,20 +224,24 @@ class World(object):
         ]
 
     def restart(self):
+        # 设置玩家的最大速度和快速速度
         self.player_max_speed = 1.589
         self.player_max_speed_fast = 3.713
-        # Keep same camera config if the camera manager exists.
+        # Keep same camera config if the camera manager exists.如果相机管理器存在，则保持相同的相机配置
         cam_index = self.camera_manager.index if self.camera_manager is not None else 0
         cam_pos_index = self.camera_manager.transform_index if self.camera_manager is not None else 0
         # Get a random blueprint.
         blueprint = random.choice(self.world.get_blueprint_library().filter(self._actor_filter))
         blueprint.set_attribute('role_name', self.actor_role_name)
+        # 如果蓝图有颜色属性，则随机选择一个推荐的颜色值
         if blueprint.has_attribute('color'):
             color = random.choice(blueprint.get_attribute('color').recommended_values)
             blueprint.set_attribute('color', color)
+        # 如果蓝图有driver_id属性，则随机选择一个推荐值
         if blueprint.has_attribute('driver_id'):
             driver_id = random.choice(blueprint.get_attribute('driver_id').recommended_values)
             blueprint.set_attribute('driver_id', driver_id)
+        # 如果蓝图有is_invincible属性，则设置为不可破坏
         if blueprint.has_attribute('is_invincible'):
             blueprint.set_attribute('is_invincible', 'true')
         # set the max speed
@@ -236,6 +258,7 @@ class World(object):
             spawn_point.rotation.pitch = 0.0
             self.destroy()
             self.player = self.world.try_spawn_actor(blueprint, spawn_point)
+        # 如果玩家重生失败，则尝试从可用的重生点重生
         while self.player is None:
             if not self.map.get_spawn_points():
                 print('There are no spawn points available in your map/town.')
@@ -339,25 +362,35 @@ class KeyboardControl(object):
         world.hud.notification("Press 'H' or '?' for help.", seconds=4.0)
 
     def parse_events(self, client, world, clock):
+         # 检查当前控制是否为车辆控制类型
         if isinstance(self._control, carla.VehicleControl):
-            current_lights = self._lights
+            current_lights = self._lights# 获取当前的灯光状态
+        # 处理pygame事件
         for event in pygame.event.get():
+            # 如果事件类型为QUIT，返回True以退出程序
             if event.type == pygame.QUIT:
                 return True
+            # 如果事件类型为KEYUP（键抬起事件）
             elif event.type == pygame.KEYUP:
                 if self._is_quit_shortcut(event.key):
                     return True
+                  # 如果按下BACKSPACE键
                 elif event.key == K_BACKSPACE:
+                      # 如果自动驾驶已启用，先禁用自动驾驶，然后重启世界，再重新启用自动驾驶
                     if self._autopilot_enabled:
                         world.player.set_autopilot(False)
                         world.restart()
                         world.player.set_autopilot(True)
+                     # 如果自动驾驶未启用，直接重启世界
                     else:
                         world.restart()
+                 # 如果按下F1键，切换HUD信息的显示状态
                 elif event.key == K_F1:
                     world.hud.toggle_info()
+                # 如果按下V键并且按住Shift键，切换到下一个地图层（反向）
                 elif event.key == K_v and pygame.key.get_mods() & KMOD_SHIFT:
                     world.next_map_layer(reverse=True)
+                 # 如果按下V键，切换到下一个地图层
                 elif event.key == K_v:
                     world.next_map_layer()
                 elif event.key == K_b and pygame.key.get_mods() & KMOD_SHIFT:
@@ -725,51 +758,60 @@ class FadingText(object):
 # ==============================================================================
 
 
+# HelpText类用于处理pygame中的文本输出
 class HelpText(object):
     """Helper class to handle text output using pygame"""
-    def __init__(self, font, width, height):
+    def __init__(self, font, width, height): 
+        # 将文档字符串按行分割
         lines = __doc__.split('\n')
-        self.font = font
-        self.line_space = 18
-        self.dim = (780, len(lines) * self.line_space + 12)
-        self.pos = (0.5 * width - 0.5 * self.dim[0], 0.5 * height - 0.5 * self.dim[1])
-        self.seconds_left = 0
-        self.surface = pygame.Surface(self.dim)
-        self.surface.fill((0, 0, 0, 0))
+        self.font = font # 初始化字体
+        self.line_space = 18# 设置行间距
+        self.dim = (780, len(lines) * self.line_space + 12) # 计算文本框尺寸
+        self.pos = (0.5 * width - 0.5 * self.dim[0], 0.5 * height - 0.5 * self.dim[1]) 
+        # 计算文本框位置
+        self.seconds_left = 0# 剩余时间，初始为0
+        self.surface = pygame.Surface(self.dim)# 创建pygame表面对象
+        self.surface.fill((0, 0, 0, 0)) # 用透明填充表面
         for n, line in enumerate(lines):
+             # 渲染每行文本
             text_texture = self.font.render(line, True, (255, 255, 255))
-            self.surface.blit(text_texture, (22, n * self.line_space))
+            self.surface.blit(text_texture, (22, n * self.line_space)) # 将文本绘制到表面上
             self._render = False
         self.surface.set_alpha(220)
 
     def toggle(self):
+        # 切换帮助文本的显示状态
         self._render = not self._render
 
-    def render(self, display):
+    def render(self, display): 
+        # 将帮助文本绘制到显示屏幕上
         if self._render:
-            display.blit(self.surface, self.pos)
+            display.blit(self.surface, self.pos) # 如果渲染状态为True，则绘制表面
+
 
 
 # ==============================================================================
 # -- CollisionSensor -----------------------------------------------------------
 # ==============================================================================
 
-
+# CollisionSensor类用于处理碰撞传感器数据
 class CollisionSensor(object):
     def __init__(self, parent_actor, hud):
-        self.sensor = None
-        self.history = []
-        self._parent = parent_actor
-        self.hud = hud
+        self.sensor = None# 初始化传感器对象
+        self.history = []# 存储碰撞历史
+        self._parent = parent_actor# 存储父actor
+        self.hud = hud# 存储HUD对象
         world = self._parent.get_world()
-        bp = world.get_blueprint_library().find('sensor.other.collision')
-        self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent)
+        bp = world.get_blueprint_library().find('sensor.other.collision') # 获取碰撞传感器蓝图
+        self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent) # 创建碰撞传感器actor
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
+         # 监听碰撞事件，使用弱引用避免循环引用
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda event: CollisionSensor._on_collision(weak_self, event))
 
     def get_collision_history(self):
+        # 获取碰撞历史
         history = collections.defaultdict(int)
         for frame, intensity in self.history:
             history[frame] += intensity
@@ -777,15 +819,16 @@ class CollisionSensor(object):
 
     @staticmethod
     def _on_collision(weak_self, event):
+         # 处理碰撞事件
         self = weak_self()
         if not self:
             return
-        actor_type = get_actor_display_name(event.other_actor)
-        self.hud.notification('Collision with %r' % actor_type)
-        impulse = event.normal_impulse
-        intensity = math.sqrt(impulse.x**2 + impulse.y**2 + impulse.z**2)
-        self.history.append((event.frame, intensity))
-        if len(self.history) > 4000:
+        actor_type = get_actor_display_name(event.other_actor)# 获取碰撞actor类型
+        self.hud.notification('Collision with %r' % actor_type)# 显示碰撞通知
+        impulse = event.normal_impulse # 获取碰撞冲量
+        intensity = math.sqrt(impulse.x**2 + impulse.y**2 + impulse.z**2) # 计算碰撞强度
+        self.history.append((event.frame, intensity))# 记录碰撞历史
+        if len(self.history) > 4000:# 限制历史记录长度
             self.history.pop(0)
 
 
@@ -793,56 +836,59 @@ class CollisionSensor(object):
 # -- LaneInvasionSensor --------------------------------------------------------
 # ==============================================================================
 
-
+# LaneInvasionSensor类用于处理车道侵扰传感器数据
 class LaneInvasionSensor(object):
     def __init__(self, parent_actor, hud):
-        self.sensor = None
+        self.sensor = None # 初始化传感器对象
         self._parent = parent_actor
         self.hud = hud
         world = self._parent.get_world()
-        bp = world.get_blueprint_library().find('sensor.other.lane_invasion')
-        self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent)
+        bp = world.get_blueprint_library().find('sensor.other.lane_invasion')# 获取车道侵扰传感器蓝图
+        self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent)# 创建车道侵扰传感器actor
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
+        # 监听车道侵扰事件，使用弱引用避免循环引
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda event: LaneInvasionSensor._on_invasion(weak_self, event))
 
     @staticmethod
     def _on_invasion(weak_self, event):
+        # 处理车道侵扰事件
         self = weak_self()
         if not self:
             return
-        lane_types = set(x.type for x in event.crossed_lane_markings)
-        text = ['%r' % str(x).split()[-1] for x in lane_types]
-        self.hud.notification('Crossed line %s' % ' and '.join(text))
-
+        lane_types = set(x.type for x in event.crossed_lane_markings) # 获取侵扰的车道类型
+        text = ['%r' % str(x).split()[-1] for x in lane_types]# 格式化车道类型文本
+        self.hud.notification('Crossed line %s' % ' and '.join(text))# 显示侵扰通知
 
 # ==============================================================================
 # -- GnssSensor ----------------------------------------------------------------
 # ==============================================================================
 
-
+# GnssSensor类用于处理GPS传感器数据
 class GnssSensor(object):
     def __init__(self, parent_actor):
         self.sensor = None
         self._parent = parent_actor
-        self.lat = 0.0
-        self.lon = 0.0
-        world = self._parent.get_world()
-        bp = world.get_blueprint_library().find('sensor.other.gnss')
-        self.sensor = world.spawn_actor(bp, carla.Transform(carla.Location(x=1.0, z=2.8)), attach_to=self._parent)
+        self.lat = 0.0 # 存储纬度
+        self.lon = 0.0 # 存储经度
+        world = self._parent.get_world() # 获取世界对象
+        bp = world.get_blueprint_library().find('sensor.other.gnss') # 获取GPS传感器蓝图
+        self.sensor = world.spawn_actor(bp, carla.Transform(carla.Location(x=1.0, z=2.8)), attach_to=self._parent) # 创建GPS传感器actor
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
+         # 监听GPS事件，使用弱引用避免循环引用
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda event: GnssSensor._on_gnss_event(weak_self, event))
 
     @staticmethod
-    def _on_gnss_event(weak_self, event):
+    def _on_gnss_event(weak_self, event): 
+        # 处理GPS事件
         self = weak_self()
         if not self:
             return
-        self.lat = event.latitude
-        self.lon = event.longitude
+        self.lat = event.latitude # 更新纬度
+        self.lon = event.longitude # 更新经度
 
 
 # ==============================================================================

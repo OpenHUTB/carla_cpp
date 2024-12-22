@@ -55,48 +55,58 @@ class Scenario(object):
         self.init_timestamp = {'frame0' : snapshot.frame, 'time0' : snapshot.timestamp.elapsed_seconds}
 
     def add_actor(self, actor, actor_name="Actor"):
+        # 获取actor列表的长度，用于生成actor的索引
         actor_idx = len(self.actor_list)
 
+         # 构造actor的名字，格式为“索引_Actor”
         name = str(actor_idx) + "_" + actor_name
 
+        # 将actor及其名字添加到actor列表中
         self.actor_list.append((name, actor))
 
+        # 如果开启了保存快照模式，则为该actor初始化一个空的快照数组
         if self.save_snapshots_mode:
             self.snapshots.append(np.empty((0,11), float))
 
+    # 等待指定的帧数
     def wait(self, frames=100):
         for _i in range(0, frames):
-            self.world.tick()
-            if self.active:
-                for _s in self.sensor_list:
-                    self.sensor_queue.get(True, 15.0)
+            self.world.tick()# 仿真世界前进一帧
+            if self.active: # 如果场景处于活跃状态
+                for _s in self.sensor_list: # 遍历传感器列表
+                    self.sensor_queue.get(True, 15.0)  # 从传感器队列中获取数据，等待最多15秒
 
+    # 清理场景中的传感器和actor
     def clear_scene(self):
         for sensor in self.sensor_list:
-            sensor[1].destroy()
+            sensor[1].destroy()  # 销毁传感器
 
         for actor in self.actor_list:
-            actor[1].destroy()
+            actor[1].destroy() # 销毁actor
 
-        self.active = False
+        self.active = False # 将场景活跃状态设置为False
 
+    # 重新加载世界
     def reload_world(self, settings = None, spectator_tr = None):
-        if settings is not None:
+        if settings is not None:# 如果提供了设置，则应用这些设置
             self.world.apply_settings(settings)
-        if spectator_tr is not None:
+        if spectator_tr is not None: # 如果提供了观察者的位置，则重置观察者的位置
             self.reset_spectator(spectator_tr)
 
-        self.client.reload_world(False)
+        self.client.reload_world(False) # 重新加载世界，不等待
         # workaround: give time to UE4 to clean memory after loading (old assets)
         time.sleep(5)
 
+    # 重置观察者的位置
     def reset_spectator(self, spectator_tr):
-        spectator = self.world.get_spectator()
-        spectator.set_transform(spectator_tr)
+        spectator = self.world.get_spectator() # 获取观察者
+        spectator.set_transform(spectator_tr)# 设置观察者的位置
 
+    # 保存给定actor的快照
     def save_snapshot(self, actor):
-        snapshot = self.world.get_snapshot()
+        snapshot = self.world.get_snapshot()# 获取世界的快照
 
+        # 创建包含actor信息的快照数组
         actor_snapshot = np.array([
                 float(snapshot.frame - self.init_timestamp['frame0']), \
                 snapshot.timestamp.elapsed_seconds - self.init_timestamp['time0'], \
@@ -106,39 +116,54 @@ class Scenario(object):
         return actor_snapshot
 
     def save_snapshots(self):
+        # 如果不开启保存快照模式，则直接返回
         if not self.save_snapshots_mode:
             return
 
+        # 遍历所有actor，并更新每个actor的快照数组
         for i in range (0, len(self.actor_list)):
+            # 将新快照追加到已有快照数组中
             self.snapshots[i] = np.vstack((self.snapshots[i], self.save_snapshot(self.actor_list[i][1])))
 
     def save_snapshots_to_disk(self):
+        # 如果不开启保存快照模式，则直接返回
         if not self.save_snapshots_mode:
             return
 
+        # 遍历所有actor，并将它们的快照保存到磁盘
         for i, actor in enumerate(self.actor_list):
             np.savetxt(self.get_filename(actor[0]), self.snapshots[i])
 
     def get_filename_with_prefix(self, prefix, actor_id=None, frame=None):
+        # 如果提供了actor_id，则添加到文件名中
         add_id = "" if actor_id is None else "_" + actor_id
+        # 如果提供了frame，则添加到文件名中
         add_frame = "" if frame is None else ("_%04d") % frame
+        # 返回完整的文件名，包括前缀、actor_id和frame
         return prefix + add_id + add_frame + ".out"
 
     def get_filename(self, actor_id=None, frame=None):
+         # 使用默认前缀获取文件名
         return self.get_filename_with_prefix(self.prefix, actor_id, frame)
 
     def run_simulation(self, prefix, run_settings, spectator_tr, tics = 200):
+        # 获取原始设置，以便之后恢复
         original_settings = self.world.get_settings()
 
+        # 初始化场景
         self.init_scene(prefix, run_settings, spectator_tr)
 
+        # 运行指定帧数的仿真
         for _i in range(0, tics):
-            self.world.tick()
-            self.sensor_syncronization()
-            self.save_snapshots()
+            self.world.tick() # 仿真世界前进一帧
+            self.sensor_syncronization() # 同步传感器数据
+            self.save_snapshots() # 保存快照
 
+        # 恢复原始设置
         self.world.apply_settings(original_settings)
+        # 将快照保存到磁盘
         self.save_snapshots_to_disk()
+        # 清理场景
         self.clear_scene()
 
     def add_sensor(self, sensor, sensor_type):
@@ -156,16 +181,26 @@ class Scenario(object):
         self.sensor_list.append((name, sensor))
 
     def add_lidar_snapshot(self, lidar_data, name="LiDAR"):
+        # 如果传感器当前不处于活动状态，则直接返回
         if not self.active:
             return
-
+ 
+        # 从LiDAR数据的原始缓冲区中提取点云数据
+        # 假设原始数据是以32位浮点数（'f4'）的形式存储的，每个点包含4个值（x, y, z, intensity）
         points = np.frombuffer(lidar_data.raw_data, dtype=np.dtype('f4'))
+        # 将一维数组重塑为二维数组，其中每行代表一个点（x, y, z, intensity）
         points = np.reshape(points, (int(points.shape[0] / 4), 4))
-
+ 
+        # 计算当前帧与初始帧之间的差值
         frame = lidar_data.frame - self.init_timestamp['frame0']
+ 
+        # 使用计算出的帧号和提供的名称前缀生成文件名，并保存点云数据到该文件
+        # 假设get_filename是一个返回完整文件路径的方法
         np.savetxt(self.get_filename(name, frame), points)
+ 
+        # 将帧号和传感器名称放入队列中，可能用于后续处理或同步
         self.sensor_queue.put((lidar_data.frame, name))
-
+        
     def add_semlidar_snapshot(self, lidar_data, name="SemLiDAR"):
         if not self.active:
             return

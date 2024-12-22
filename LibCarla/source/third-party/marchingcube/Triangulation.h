@@ -276,36 +276,36 @@ namespace
 
 ///给定一个网格立方体和一个等值面，计算出在立方体中表示等值面的三角形（最多5个）。
 void MeshReconstruction::Triangulate(
-    IntersectInfo const &intersect,
-    Fun3v const &grad,
-    Mesh &mesh)
+    IntersectInfo const &intersect,// 相交信息，包含立方体顶点与表面的相交情况
+    Fun3v const &grad,// 梯度函数，用于计算顶点处的法向量
+    Mesh &mesh)// 要填充的网格对象
 {
   // Cube 完全在表面内/外。不生成三角形。
   if (intersect.signConfig == 0 || intersect.signConfig == 255)
     return;
-
+  //根据相交配置（signConfig）获取对应的三角形索引数组
   auto const &tri = signConfigToTriangles[intersect.signConfig];
-
+  // 遍历三角形索引数组，直到遇到-1
   for (auto i = 0; tri[i] != -1; i += 3)
   {
     auto const &v0 = intersect.edgeVertIndices[tri[i]];
     auto const &v1 = intersect.edgeVertIndices[tri[i + 1]];
     auto const &v2 = intersect.edgeVertIndices[tri[i + 2]];
-
+  // 获取当前三角形的三个顶点索引
     mesh.vertices.push_back(v0);
     mesh.vertices.push_back(v1);
     mesh.vertices.push_back(v2);
-
+ // 计算这三个顶点处的法向量
     auto normal0 = grad(v0).Normalized();
     auto normal1 = grad(v1).Normalized();
     auto normal2 = grad(v2).Normalized();
-
+ // 将这三个法向量添加到mesh的顶点法向量列表中
     mesh.vertexNormals.push_back(normal0);
     mesh.vertexNormals.push_back(normal1);
     mesh.vertexNormals.push_back(normal2);
-
+// 当前三角形的索引是最后三个顶点
     auto last = static_cast<int>(mesh.vertices.size() - 1);
-
+//last-2, last-1, last对应于最后添加的三个顶点
     mesh.triangles.push_back({last - 2, last - 1, last});
   }
 }

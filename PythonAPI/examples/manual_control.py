@@ -148,39 +148,51 @@ except ImportError:
 # -- Global functions ----------------------------------------------------------
 # ==============================================================================
 
-
+# 定义一个函数，用于查找天气预设
 def find_weather_presets():
+    # 编译一个正则表达式，用于分割命名的字符串
     rgx = re.compile('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)')
+    # 定义一个lambda函数，用于将字符串转换为带空格的标题格式
     name = lambda x: ' '.join(m.group(0) for m in rgx.finditer(x))
+    # 获取carla.WeatherParameters中所有以大写字母开头的属性名
     presets = [x for x in dir(carla.WeatherParameters) if re.match('[A-Z].+', x)]
+    # 返回一个列表，包含天气预设的值和它们的名称
     return [(getattr(carla.WeatherParameters, x), name(x)) for x in presets]
 
-
+# 定义一个函数，用于actor获取的显示名称
 def get_actor_display_name(actor, truncate=250):
+    # 将actor的type_id属性从下划线分隔转换为点分隔，并转换为标题格式
     name = ' '.join(actor.type_id.replace('_', '.').title().split('.')[1:])
+    # 如果名称长度超过截断值，则截断并添加省略号
     return (name[:truncate - 1] + u'\u2026') if len(name) > truncate else name
 
+# 定义一个函数，用于获取actor蓝图
 def get_actor_blueprints(world, filter, generation):
+    # 从word中获取蓝图库，并根据过滤器过滤蓝图
     bps = world.get_blueprint_library().filter(filter)
 
+    # 如果generation参数为"all"，则返回所有过滤后的蓝图
     if generation.lower() == "all":
         return bps
 
-    # If the filter returns only one bp, we assume that this one needed
+    # If the filter returns only one bp, we assume that this one needed 如果过滤后的蓝图只有一个，我们假设这是需要的蓝图，忽略generation参数
     # and therefore, we ignore the generation
     if len(bps) == 1:
         return bps
 #如果bps的长度等于1，就返回bps
     try:
         int_generation = int(generation)
-        # Check if generation is in available generations
+        # Check if generation is in available generations检查generation是否在可用的代数中
         if int_generation in [1, 2, 3]:
+            # 过滤出对应代数的蓝图
             bps = [x for x in bps if int(x.get_attribute('generation')) == int_generation]
             return bps
         else:
+            # 如果generation无效，打印警告信息并返回空列表
             print("   Warning! Actor Generation is not valid. No actor will be spawned.")
             return []
     except:
+        # 如果generation转换为整数失败，打印警告信息并返回空列表
         print("   Warning! Actor Generation is not valid. No actor will be spawned.")
         return []
 
@@ -190,17 +202,26 @@ def get_actor_blueprints(world, filter, generation):
 # ==============================================================================
 
 
+# 定义一个名为 World 的类，用于封装和操作CARLA仿真世界
 class World(object):
+    # 类的构造函数，初始化 World 类的实例
     def __init__(self, carla_world, hud, args):
+        # 将传入的 CARLA 世界对象保存为实例变量
         self.world = carla_world
+        # 从参数中获取同步模式设置，并保存为实例变量
         self.sync = args.sync
+        # 从参数中获取角色名称，并保存为实例变量
         self.actor_role_name = args.rolename
         try:
+            # 尝试从 CARLA 世界对象中获取地图对象，并保存为实例变量
             self.map = self.world.get_map()
         except RuntimeError as error:
+            # 如果在获取地图时发生运行时错误，打印错误信息
             print('RuntimeError: {}'.format(error))
+            # 提示用户检查 OpenDRIVE (.xodr) 文件是否存在、命名是否正确以及文件是否正确
             print('  The server could not send the OpenDRIVE (.xodr) file:')
             print('  Make sure it exists, has the same name of your town, and is correct.')
+            # 退出程序
             sys.exit(1)
         self.hud = hud
         self.player = None
@@ -453,24 +474,59 @@ class World(object):
 
 class KeyboardControl(object):
     """Class that handles keyboard input."""
+    # 定义了一个名为 `KeyboardControl` 的类，它继承自 `object` 类（在Python 3中，默认继承自 `object`，可不显式写出，但这里明确写出了），从类的文档字符串可知，这个类的主要作用是处理键盘输入相关的操作，用于在程序中响应用户通过键盘进行的各种交互操作。
+
     def __init__(self, world, start_in_autopilot):
+        # 这是类的构造函数（初始化方法），在创建 `KeyboardControl` 类的实例时会被调用，用于初始化实例的各种属性。
+        # 参数 `world` 应该是代表整个模拟世界的相关对象，包含了场景中的各种元素（如车辆、角色等）以及相关的状态信息等，通过它可以访问和操作世界中的内容。
+        # 参数 `start_in_autopilot` 是一个布尔值，用于指示是否在一开始就启用自动驾驶模式。
+
         self._autopilot_enabled = start_in_autopilot
+        # 将传入的 `start_in_autopilot` 参数值赋给实例属性 `_autopilot_enabled`，用于记录当前是否启用了自动驾驶模式，以下划线开头的属性通常表示是类内部使用的“私有”属性（在Python中其实并没有真正的私有属性概念，只是一种约定俗成的标识）。
+
         self._ackermann_enabled = False
+        # 初始化实例属性 `_ackermann_enabled` 为 `False`，从变量名推测可能用于标记是否启用阿克曼转向相关的某种功能（阿克曼转向常用于车辆转向模型等场景），后续代码应该会根据这个属性的值来决定是否执行相应的阿克曼转向控制逻辑。
+
         self._ackermann_reverse = 1
+        # 初始化实例属性 `_ackermann_reverse` 为 `1`，同样结合名称推测可能与阿克曼转向在倒车等反向操作时的相关参数设置有关，具体作用需结合后续代码中对它的使用来确定。
+
         if isinstance(world.player, carla.Vehicle):
+            # 判断 `world.player` 是否是 `carla.Vehicle` 类型，即判断当前模拟世界中的主角（`player`）是否是车辆，如果是车辆，则进行以下相关的初始化操作。
             self._control = carla.VehicleControl()
+            # 创建一个 `carla.VehicleControl` 类的实例，用于后续控制车辆的各种行为（如油门、刹车、转向等操作），这个实例将保存车辆控制相关的参数设置。
+
             self._ackermann_control = carla.VehicleAckermannControl()
+            # 创建一个 `carla.VehicleAckermannControl` 类的实例，用于涉及阿克曼转向相关的更具体的车辆控制操作，可能在更精准的车辆操控场景下会使用到这个实例来设置控制参数。
+
             self._lights = carla.VehicleLightState.NONE
+            # 初始化车辆灯光状态为 `NONE`，也就是所有灯光都关闭的初始状态，后续代码可以根据用户的键盘操作来改变这个灯光状态，开启或关闭不同的车辆灯光。
+
             world.player.set_autopilot(self._autopilot_enabled)
+            # 通过 `world.player`（即模拟世界中的车辆对象）调用 `set_autopilot` 方法，将车辆的自动驾驶模式设置为之前初始化的 `_autopilot_enabled` 所表示的状态，即根据传入的参数决定车辆一开始是否启用自动驾驶。
+
             world.player.set_light_state(self._lights)
+            # 通过 `world.player` 调用 `set_light_state` 方法，将车辆的灯光状态设置为当前初始化的 `_lights` 所表示的状态，也就是一开始将车辆灯光全部关闭。
+
         elif isinstance(world.player, carla.Walker):
+            # 如果 `world.player` 不是车辆，而是 `carla.Walker` 类型（推测 `carla.Walker` 表示模拟世界中的行人等可移动角色），则进行以下针对行人角色的初始化操作。
             self._control = carla.WalkerControl()
+            # 创建一个 `carla.WalkerControl` 类的实例，用于控制行人角色的移动等行为，类似车辆的 `carla.VehicleControl`，这个实例会保存行人控制相关的参数。
+
             self._autopilot_enabled = False
+            # 对于行人角色，将自动驾驶模式设置为 `False`，因为通常行人不需要自动驾驶功能，这里明确将其禁用。
+
             self._rotation = world.player.get_transform().rotation
+            # 获取行人当前的旋转角度信息（通过 `get_transform` 方法获取变换信息，再从中获取旋转角度），并保存到实例属性 `_rotation` 中，可能在后续控制行人移动方向等操作时会用到这个初始的旋转角度信息。
+
         else:
             raise NotImplementedError("Actor type not supported")
+            # 如果 `world.player` 既不是车辆也不是行人角色，说明当前代码不支持这种类型的角色作为模拟世界的主角，那么就抛出 `NotImplementedError` 异常，并提示相应的错误信息，表示该角色类型不受支持。
+
         self._steer_cache = 0.0
+        # 初始化一个名为 `_steer_cache` 的实例属性为 `0.0`，从名称推测可能用于缓存车辆或角色转向相关的数据，也许是为了平滑转向操作或者记录上一次的转向状态等，具体作用要看后续代码对它的使用情况。
+
         world.hud.notification("Press 'H' or '?' for help.", seconds=4.0)
+        # 通过 `world.hud`（推测是模拟世界中的抬头显示相关对象）调用 `notification` 方法，在界面上显示一条提示信息，提示用户按下 `H` 或 `?` 键可以获取帮助信息，并且这个提示信息会显示 `4.0` 秒的时间。
 
     def parse_events(self, client, world, clock, sync_mode):
         if isinstance(self._control, carla.VehicleControl):
@@ -742,33 +798,49 @@ class KeyboardControl(object):
 # ==============================================================================
 
 
-class HUD(object):
+class HUD(object):                       #定义了一个名为HUD的类，它继承自object类
     def __init__(self, width, height):
+    #构造函数，用于初始化对象的属性，接受width和height两个参数，分别表示显示区域的宽度和高度
         self.dim = (width, height)
+        #将传入的宽度和高度参数组合成一个元组，存储在self.dim属性中，用于表示显示区域的尺寸
         font = pygame.font.Font(pygame.font.get_default_font(), 20)
+        #使用pygame.font.Font()函数创建一个字体对象，该字体使用默认字体，字号为 20
         font_name = 'courier' if os.name == 'nt' else 'mono'
+        #根据操作系统类型选择字体名称
         fonts = [x for x in pygame.font.get_fonts() if font_name in x]
+        #从pygame可用的字体列表中筛选出包含所选字体名称的字体
         default_font = 'ubuntumono'
+        #设置默认字体为ubuntumono
         mono = default_font if default_font in fonts else fonts[0]
+        #如果该字体在筛选后的字体列表中，则使用它，否则使用列表中的第一个字体。
         mono = pygame.font.match_font(mono)
+        #通过pygame.font.match_font()函数查找与所选字体名称匹配的实际字体文件路径
         self._font_mono = pygame.font.Font(mono, 12 if os.name == 'nt' else 14)
+        #用该路径创建一个字号为 12（Windows 系统）或 14（其他系统）的字体对象，存储在self._font_mono属性中
         self._notifications = FadingText(font, (width, 40), (0, height - 40))
+        #创建一个FadingText类的实例，传入之前创建的默认字体、一个宽度为width、高度为 40 的尺寸元组以及一个位于显示区域底部左侧的位置元组作为参数
         self.help = HelpText(pygame.font.Font(mono, 16), width, height)
-        self.server_fps = 0
-        self.frame = 0
-        self.simulation_time = 0
-        self._show_info = True
-        self._info_text = []
+        #创建一个HelpText类的实例，传入字号为 16 的所选字体对象以及显示区域的宽度和高度
+
+        self.server_fps = 0        #用于存储服务器的帧率，初始化为 0
+        self.frame = 0             #用于记录当前帧的编号，初始化为 0
+        self.simulation_time = 0   #用于记录模拟时间，初始化为 0
+        self._show_info = True     #用于控制是否显示信息，初始化为True
+        self._info_text = []       #初始化为一个空列表，用于存储要显示的信息文本
         self._server_clock = pygame.time.Clock()
+        #创建一个pygame.time.Clock()对象，用于控制服务器端的时间，可用于控制帧率、计时等操作
 
-        self._show_ackermann_info = False
+        self._show_ackermann_info = False  #用于控制是否显示阿克曼转向信息，初始化为False
         self._ackermann_control = carla.VehicleAckermannControl()
+        #用于存储和控制车辆的阿克曼转向相关信息 
 
-    def on_world_tick(self, timestamp):
-        self._server_clock.tick()
+    def on_world_tick(self, timestamp):    #定义了一个名为on_world_tick的实例方法，用于获取当前世界的时间戳等信息
+        self._server_clock.tick()          #调用self._server_clock的tick方法
         self.server_fps = self._server_clock.get_fps()
-        self.frame = timestamp.frame
+        #通过self._server_clock的get_fps方法获取服务器的帧率，并将其赋值给self.server_fps属性
+        self.frame = timestamp.frame       #将传入的时间戳中的frame属性赋值给self.frame，用于更新当前的帧编号
         self.simulation_time = timestamp.elapsed_seconds
+        #将传入的时间戳中的elapsed_seconds属性赋值给self.simulation_time
 
     def tick(self, world, clock):
         self._notifications.tick(world, clock)

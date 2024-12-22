@@ -99,9 +99,14 @@ endforeach(target)
 # 构建调试版本
 if (LIBCARLA_BUILD_DEBUG)
   # Specific options for debug.
+  # 设置libcarla_test_${carla_config}_debug目标的编译标志为调试模式下的C++编译标志
+  # CMAKE_CXX_FLAGS_DEBUG通常包括禁用优化、启用调试信息等设置，以便于调试
   set_target_properties(libcarla_test_${carla_config}_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
+   # 将libcarla_test_${carla_config}_debug链接到carla_${carla_config}${carla_target_postfix}_debug库
   target_link_libraries(libcarla_test_${carla_config}_debug "carla_${carla_config}${carla_target_postfix}_debug")
+  # 向libcarla_test_${carla_config}_debug添加编译定义，以启用Boost.Asio库中的缓冲区调试特性
   target_compile_definitions(libcarla_test_${carla_config}_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
+  # 这个条件检查是为了确保只有在构建客户端时才链接这个库，可能是由于某些功能只在客户端中使用
   if (CMAKE_BUILD_TYPE STREQUAL "Client")
       target_link_libraries(libcarla_test_${carla_config}_debug "${BOOST_LIB_PATH}/libboost_filesystem.a")
   endif()

@@ -63,7 +63,7 @@ struct FShapeVisitor
   void operator()(const Shape::HUDPoint &Point) const
   {
     auto Hud = GetHUD();
-    if (!Hud) return; // Don't draw if HUD is not available.
+    if (!Hud) return; // 如果 HUD 不可用，则不绘制。
 
     FVector Location = FVector(Point.location);
     ALargeMapManager* LargeMap = UCarlaStatics::GetLargeMapManager(World);
@@ -95,7 +95,7 @@ struct FShapeVisitor
 
   void operator()(const Shape::HUDLine &Line) const {
     auto Hud = GetHUD();
-    if (!Hud) return; // Don't draw if HUD is not available.
+    if (!Hud) return; // 如果 HUD 不可用，则不绘制。
     FVector Begin = FVector(Line.begin);
     FVector End = FVector(Line.end);
     ALargeMapManager* LargeMap = UCarlaStatics::GetLargeMapManager(World);
@@ -121,7 +121,7 @@ struct FShapeVisitor
     const FRotator LookAt = FRotationMatrix::MakeFromX(Diff).Rotator();
     const FTransform Transform = {LookAt, Begin};
 
-    // Everything in centimeters
+    // 所有物品均以厘米为单位
     const auto Dist = Diff.Size();
     const auto ArrowSize = 1e2f * Arrow.arrow_size;
     const auto ArrowTipDist = Dist - ArrowSize;
@@ -146,7 +146,7 @@ struct FShapeVisitor
 
   void operator()(const Shape::HUDArrow &Arrow) const {
     auto Hud = GetHUD();
-    if (!Hud) return; // Don't draw if HUD is not available.
+    if (!Hud) return; // 如果 HUD 不可用，则不绘制。
     FVector Begin = FVector(Arrow.line.begin);
     FVector End = FVector(Arrow.line.end);
     ALargeMapManager* LargeMap = UCarlaStatics::GetLargeMapManager(World);
@@ -223,7 +223,7 @@ struct FShapeVisitor
 
   void operator()(const Shape::HUDBox &Box) const {
     auto Hud = GetHUD();
-    if (!Hud) return; // Don't draw if HUD is not available.
+    if (!Hud) return; // 如果 HUD 不可用，则不绘制。
     const FVector Extent = 1e2f * FVector{Box.box.extent.x, Box.box.extent.y, Box.box.extent.z};
     FTransform Transform = {FRotator(Box.rotation), Box.box.location};
     const auto Thickness = Box.thickness;
@@ -288,13 +288,13 @@ private:
 
   uint8 DepthPriority = SDPG_World;
 
-  // Debug lines are way more dark in the package, that's why this
-  // multiplier is needed.
+  // Debug 行在封装中要隐秘得多，这就是需要这个
+  // multiplier 的原因。
 #if UE_BUILD_SHIPPING
   static constexpr double BrightMultiplier = 1000.0;
 #else
   // @TODO: Use UKismetSystemLibrary::IsStandalone to support colors
-  // in Editor's standalone mode.
+  // 在编辑器的独立模式下
   static constexpr double BrightMultiplier = 1.0;
 #endif
 

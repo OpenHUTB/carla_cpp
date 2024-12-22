@@ -5,12 +5,16 @@
   classes:
   - class_name: Timestamp
     # - DESCRIPTION ------------------------
+    # 以下是对 `Timestamp` 类的文档描述（doc），用于说明该类的总体用途和应用场景等信息。
     doc: >
       Class that contains time information for simulated data. This information is automatically retrieved as part of the carla.WorldSnapshot the client gets on every frame, but might also be used in many other situations such as a carla.Sensor retrieveing data. 
     # - PROPERTIES -------------------------
+    # 以下定义的是 `Timestamp` 类的实例变量部分，用于描述该类的对象所具有的属性特征。
     instance_variables:
     - var_name: frame
+      # 变量 `frame` 的类型被定义为整数（int），用于表示特定含义。
       type: int
+      # 以下是对 `frame` 变量的文档描述，说明它的具体作用。
       doc: >
         The number of frames elapsed since the simulator was launched.
     - var_name: elapsed_seconds
@@ -28,6 +32,10 @@
       var_units: seconds
       doc: >
         Time register of the frame at which this measurement was taken given by the OS in seconds. 
+    # 整体来看，这个 `Timestamp` 类旨在为模拟数据提供时间相关的信息记录。通过定义这几个实例变量，
+    # 可以分别从不同角度来刻画时间情况，比如 `frame` 记录自模拟器启动以来经过的帧数，`elapsed_seconds` 记录当前阶段开始后经过的模拟秒数，
+    # `delta_seconds` 体现与前一帧间隔的模拟秒数，`platform_timestamp` 则借助操作系统给出的时间来记录测量该帧时的时间戳（以秒为单位）。
+    # 这样在涉及模拟数据处理以及相关时间追踪的场景（如从 `carla.WorldSnapshot` 获取信息或者传感器获取数据等情况）中，就能方便地使用这些时间属性了。
     # - METHODS ----------------------------
     methods:
     - def_name: __init__
@@ -45,16 +53,32 @@
         param_units: seconds
     # --------------------------------------
     - def_name: __eq__
+      # `__eq__` 方法是 Python 中的一个特殊方法（也常被称作魔法方法），它用于定义对象之间相等性的比较逻辑。
+      # 当使用 `==` 运算符来比较两个同类型的对象时，Python 会自动调用对应类中定义的 `__eq__` 方法来判断它们是否相等。
+      # 在当前这个情境下，它属于 `carla.Timestamp` 类相关的方法定义，意味着当我们要比较两个 `carla.Timestamp` 类的实例对象是否相等时，就会执行这里定义的逻辑。
       params:
       - param_name: other
         type: carla.Timestamp
         param_units: seconds
+        # `other` 参数是 `__eq__` 方法的唯一参数，其类型被指定为 `carla.Timestamp`，这表明它用于接收另一个要与之进行比较的 `carla.Timestamp` 类的实例对象。
+        # 单位标记为 `seconds`，从 `carla.Timestamp` 类整体围绕时间信息的特性来看，这里虽不一定意味着比较操作只单纯基于时间单位维度进行，
+        # 但可以推测在实际的比较逻辑中大概率会涉及该类实例对象所包含的诸如帧时间、累计时间、时间间隔等各类以秒为单位计量的时间相关属性，
+        # 通过比较这些属性的值来确定当前实例对象与传入的 `other` 实例对象是否相等，以此实现自定义的相等性判断规则，满足 `carla.Timestamp` 类在具体应用场景中对于对象相等与否判断的特定需求。
     # --------------------------------------
     - def_name: __ne__
+      # `__ne__` 方法是Python中的一个特殊方法（魔法方法），其主要作用是定义对象之间不相等性的比较逻辑。
+      # 当使用 `!=` 运算符来比较两个同类型的对象时，Python 会自动调用对应类中定义的 `__ne__` 方法，以此判断它们是否不相等。
+      # 在当前的代码情境下，它是针对 `carla.Timestamp` 类进行定义的，也就意味着当要判断两个 `carla.Timestamp` 类的实例对象是否不相等时，就会执行此处定义的具体逻辑。
       params:
       - param_name: other
         type: carla.Timestamp
         param_units: seconds
+        # `other` 参数是 `__ne__` 方法的唯一参数，其类型被明确指定为 `carla.Timestamp`。
+        # 这表明它的用途是接收另一个 `carla.Timestamp` 类的实例对象，用于和当前的对象进行不相等性比较操作。
+        # 单位标记为 `seconds`，结合 `carla.Timestamp` 类主要是用于承载时间信息这一特点来看，
+        # 虽然并不一定意味着比较过程仅仅围绕时间单位维度展开，但大概率会在实际的比较逻辑中涉及该类实例对象所包含的各类和时间相关、以秒为单位计量的属性，
+        # 通过比较这些属性的值来确定当前实例对象与传入的 `other` 实例对象是否不相等，从而实现符合 `carla.Timestamp` 类特定需求的自定义的不相等性判断规则，
+        # 方便在程序中准确地区分不同的 `carla.Timestamp` 类实例是否存在差异。
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
@@ -64,13 +88,29 @@
     doc: >
       A class that contains every actor present on the scene and provides access to them. The list is automatically created and updated by the server and it can be returned using carla.World. 
     # - METHODS ----------------------------
-    methods:
+   methods:
     - def_name: filter
+      # `filter` 方法通常用于根据特定的规则对一组数据进行筛选，在这里它属于某个类（具体需结合更完整的代码上下文判断所属类）中定义的方法，
+      # 其主要功能大概率是针对特定集合里的元素进行筛选操作，以获取满足特定条件的子集元素集合。
       return: list
+      # 此方法明确返回值类型为列表（list），意味着经过该方法内部执行的筛选逻辑后，最终会返回一个列表形式的数据结构。
+      # 这个列表中包含的元素应该是经过筛选后符合相应条件的那些元素，具体是什么元素需要依据整个代码的业务逻辑以及筛选的对象范围来确定，
+      # 从当前提供的参数等信息推测，大概率是与后续要匹配的 `Actors` 相关的元素集合（但这需要结合更多上下文进一步确认）。
       params:
       - param_name: wildcard_pattern
         type: str
+        # `wildcard_pattern` 参数的类型被设定为字符串（str），它在 `filter` 方法中起着关键的筛选条件设定作用。
+        # 这个字符串作为一种通配符模式，会被用于和特定的目标属性（从后续文档字符串描述来看，是与 `Actors` 的 `__type_id__` 属性进行匹配）进行比对，
+        # 通过这个比对过程来判断哪些元素符合筛选要求，从而决定最终返回列表中的元素构成情况。
       doc: >
+        # 以下文档字符串（docstring）用于详细描述 `filter` 方法的具体功能和筛选操作的细节逻辑等重要信息。
+        # 它说明了该方法会对一个 `Actors` 的列表进行筛选操作，筛选时会将传入的 `wildcard_pattern`（也就是前面提到的作为通配符模式的字符串），
+        # 与每个 `Actor` 的 `__type_id__` 变量进行匹配比较。这里的 `__type_id__` 变量有着重要意义，它用于标识创建该 `Actor` 时所采用的蓝图，
+        # 通过这个标识可以区分不同类型的 `Actor`，不同的蓝图意味着产生的 `Actor` 在功能、属性等方面可能存在差异，所以利用 `__type_id__` 来筛选可以精准地获取特定类型的 `Actor` 集合。
+        # 并且，这种匹配操作遵循的是 [fnmatch](https://docs.python.org/2/library/fnmatch.html) 模块所定义的标准，
+        # 该标准定义了通配符在字符串匹配中的使用规则，例如通配符“*”可以代表任意长度的字符序列，“?”代表单个任意字符等，
+        # 通过按照这样的规则去比对 `wildcard_pattern` 和 `__type_id__`，就能筛选出符合模式匹配要求的 `Actors`，并将它们整合到一个列表中返回，
+        # 以此实现基于特定类型标识（借助 `__type_id__` 变量）按照给定的通配符模式（`wildcard_pattern`）来筛选 `Actors` 的功能，方便后续对筛选后的 `Actors` 集合进行进一步的操作和处理。
         Filters a list of Actors matching `wildcard_pattern` against their variable __<font color="#f8805a">type_id</font>__ (which identifies the blueprint used to spawn them). Matching follows [fnmatch](https://docs.python.org/2/library/fnmatch.html) standard.  
     # --------------------------------------
     - def_name: find
