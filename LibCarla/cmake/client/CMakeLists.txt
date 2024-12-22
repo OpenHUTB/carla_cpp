@@ -186,8 +186,13 @@ install(FILES ${libcarla_carla_pointcloud_sources} DESTINATION include/carla/poi
 
 # 添加性能分析器（LibCarla/source/carla/profiler/）的头文件
 file(GLOB libcarla_carla_profiler_headers
-    "${libcarla_source_path}/carla/profiler/*.h")
-install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)
+    "${libcarla_source_path}/carla/profiler/*.h")# 使用 file(GLOB) 命令收集文件路径，将匹配的文件路径列表存储在变量 libcarla_carla_profiler_headers 中。
+# 具体是收集 ${libcarla_source_path}/carla/profiler/ 目录下所有以.h 为后缀的头文件路径，
+# 这意味着会把 carla 项目中与性能分析器（profiler）相关的头文件都找出来，方便后续进行其他操作，比如安装到指定目录等。
+file(GLOB libcarla_carla_profiler_headers
+install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)# 使用 install 命令进行文件安装操作，这里指定要安装的文件就是存储在变量 ${libcarla_carla_profiler_headers} 中的那些头文件（前面通过 file(GLOB) 收集到的）。
+# DESTINATION 参数指定了安装的目标目录为 include/carla/profiler，也就是在安装过程中，会把收集到的与 carla 性能分析器相关的头文件复制到指定的 include/carla/profiler 目录下，
+# 这样做的目的通常是为了让使用该项目的其他代码（比如其他模块或者外部项目想要调用 carla 相关功能时）能够方便地找到并包含这些头文件，以正确地进行编译链接等操作，使项目的接口头文件处于合理的安装位置便于被引用。
 
 # 添加道路（LibCarla/source/carla/road/）相关代码
 file(GLOB libcarla_carla_road_sources
