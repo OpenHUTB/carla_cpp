@@ -51,33 +51,42 @@ namespace carla_msgs {
         }
 
         bool LaneInvasionEventPubSubType::serialize(
-                void* data,
-                SerializedPayload_t* payload)
+                  void* data,
+                  SerializedPayload_t* payload)
         {
+            // 将输入的 void* 数据转换为 LaneInvasionEvent 类型的指针
             LaneInvasionEvent* p_type = static_cast<LaneInvasionEvent*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个 eprosima::fastcdr::FastBuffer 对象，用于管理序列化过程中的原始缓冲区
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
+
+            // 创建一个 eprosima::fastcdr::Cdr 对象，用于执行实际的序列化操作
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+
+            // 根据序列化器的字节序（大端或小端）设置封装格式
             payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+
+            // 序列化封装头，封装头可能包含字节序和其他元数据
             ser.serialize_encapsulation();
 
             try
             {
-                // Serialize the object.
+                // 序列化 LaneInvasionEvent 类型的对象
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+                // 如果序列化过程中内存不足，则捕获异常并返回 false
                 return false;
             }
 
-            // Get the serialized length
+            // 获取序列化后的数据长度，并存入 payload->length
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+
+            // 返回序列化成功
             return true;
         }
+
 
         bool LaneInvasionEventPubSubType::deserialize(
                 SerializedPayload_t* payload,

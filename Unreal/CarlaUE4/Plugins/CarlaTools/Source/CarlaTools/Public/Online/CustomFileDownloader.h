@@ -2,20 +2,20 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "Interfaces/IHttpRequest.h"
-#include "CustomFileDownloader.generated.h"
+#include "CoreMinimal.h"// 引入核心的头文件
+#include "Interfaces/IHttpRequest.h"// 引入HTTP请求的接口头文件
+#include "CustomFileDownloader.generated.h"// 引入生成的类头文件
 /**
  *
  */
 
-DECLARE_DELEGATE(FDownloadComplete)
+DECLARE_DELEGATE(FDownloadComplete)// 声明一个下载完成的委托类型
 
 
 struct FHttpDownloader
 {
 public:
-  FHttpDownloader();
+  FHttpDownloader();// 构造函数
 
   /**
    *
@@ -24,7 +24,7 @@ public:
    */
   FHttpDownloader( const FString& InVerb, const FString& InUrl, const FString& InFilename, FDownloadComplete& Delegate  );
 
-  // Kick off the Http request  and wait for delegate to be called
+  // 启动HTTP请求并等待委托被调用
   void Run(void);
 
   /**

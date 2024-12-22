@@ -5,6 +5,7 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #include "carla/opendrive/OpenDriveParser.h"
+ // 引入OpenDriveParser类的声明
 
 #include "carla/Logging.h"
 #include "carla/opendrive/parser/ControllerParser.h"
@@ -18,15 +19,29 @@
 #include "carla/opendrive/parser/SignalParser.h"
 #include "carla/opendrive/parser/TrafficGroupParser.h"
 #include "carla/road/MapBuilder.h"
-
+// 引入CARLA项目中其他相关头文件，这些文件提供了日志记录、OpenDrive解析的各个部分（如控制器、地理参考、几何形状等）以及地图构建的功能。
 #include <pugixml/pugixml.hpp>
+
+// 引入pugixml库的头文件，这是一个用于处理XML的轻量级C++库。
 
 namespace carla {
 namespace opendrive {
+// 声明CARLA的命名空间，以便在代码中使用简短的类名而不需要前缀。
 
   boost::optional<road::Map> OpenDriveParser::Load(const std::string &opendrive) {
+      // OpenDriveParser类的Load成员函数，用于加载并解析OpenDrive格式的地图数据。
     pugi::xml_document xml;
-    pugi::xml_parse_result parse_result = xml.load_string(opendrive.c_str());  // 使用 pugixml XML 处理工具加载OpenDrive文件
+     // 创建一个pugixml的xml_document对象，用于存储和解析XML数据。
+    pugi::xml_parse_result parse_result = xml.load_string(opendrive.c_str()); 
+    // 尝试从字符串加载XML数据，opendrive参数是包含OpenDrive XML数据的字符串。
+    // load_string函数返回一个xml_parse_result对象，用于检查加载是否成功。
+    // 使用 pugixml XML 处理工具加载OpenDrive文件
+    // 通常，您会检查parse_result的状态来确定是否成功加载了XML数据。
+    // 如果加载成功，您将继续解析XML并构建CARLA的road::Map对象。
+    // 如果加载失败，您可能会返回一个空的boost::optional对象或抛出一个异常
+    // ...（此处应添加解析XML和构建road::Map的逻辑）
+    // 假设解析和构建成功，您可能会返回构建的road::Map对象包装在boost::optional中。
+    // 如果发生错误，则返回boost::nullopt以表示没有有效的Map对象。
 
     if (parse_result == false) {
       log_error("unable to parse the OpenDRIVE XML string");

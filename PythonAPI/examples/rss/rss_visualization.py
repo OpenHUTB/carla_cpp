@@ -7,6 +7,8 @@ import glob
 import os
 import sys
 
+# 尝试将Carla相关的模块路径添加到系统路径中，以便能够正确导入Carla相关的库。
+# 这里根据不同的操作系统（Windows或Linux）以及Python版本信息来构建正确的模块路径格式。
 try:
     sys.path.append(glob.glob(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) + '/carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -24,30 +26,41 @@ import carla
 from carla import ad
 
 
+# RssStateVisualizer类用于可视化RSS状态信息，接收显示尺寸、字体、Carla世界对象等参数进行初始化，并提供更新可视化内容的方法
 class RssStateVisualizer(object):
 
     def __init__(self, display_dimensions, font, world):
+        # 初始化用于绘制的Surface对象为None，后续会根据实际情况创建和更新
         self._surface = None
+        # 保存传入的显示尺寸信息（如屏幕宽高），用于确定绘制区域大小等
         self._display_dimensions = display_dimensions
+        # 保存传入的字体对象，用于后续渲染文字
         self._font = font
+        # 保存传入的Carla世界对象，方便获取场景中的相关Actor等信息
         self._world = world
 
     def tick(self, individual_rss_states):
+        # 创建一个用于绘制RSS状态信息的Surface，设置背景色为透明（以黑色为透明色）
         state_surface = pygame.Surface((220, self._display_dimensions[1]))
         state_surface.set_colorkey(pygame.Color('black'))
         v_offset = 0
 
+        # 如果存在RSS状态信息则进行绘制相关操作
         if individual_rss_states:
+            # 使用传入的字体渲染"RSS States:"文字，颜色为白色，准备绘制到Surface上
             surface = self._font.render('RSS States:', True, (255, 255, 255))
             state_surface.blit(surface, (8, v_offset))
             v_offset += 26
+        # 遍历每个RSS状态信息进行详细绘制
         for state in individual_rss_states:
             object_name = "Obj"
+            # 根据对象ID判断是否是特定边界对象，并设置相应名称
             if state.rss_state.objectId == 18446744073709551614:
                 object_name = "Border Left"
             elif state.rss_state.objectId == 18446744073709551615:
                 object_name = "Border Right"
             else:
+                # 获取对应Actor对象（如果存在），并尝试从其类型ID提取出合适的名称用于展示
                 other_actor = state.get_actor(self._world)
                 if other_actor:
                     li = list(other_actor.type_id.split("."))
@@ -58,24 +71,30 @@ class RssStateVisualizer(object):
                     object_name = " ".join(li).strip()[:15]
 
             mode = "?"
+            # 根据计算模式设置对应的显示字符
             if state.actor_calculation_mode == ad.rss.map.RssMode.Structured:
                 mode = "S"
             elif state.actor_calculation_mode == ad.rss.map.RssMode.Unstructured:
                 mode = "U"
             elif state.actor_calculation_mode == ad.rss.map.RssMode.NotRelevant:
                 mode = "-"
+            # 格式化要显示的信息字符串，包含计算模式、距离、对象名称
             item = '%4s % 2dm %8s' % (mode, state.distance, object_name)
 
+            # 使用字体渲染要显示的信息字符串，颜色为白色，准备绘制到Surface上
             surface = self._font.render(item, True, (255, 255, 255))
             state_surface.blit(surface, (5, v_offset))
             color = (128, 128, 128)
+            # 根据计算模式和是否危险来设置显示颜色（危险为红色，非危险且相关为绿色，不相关为灰色）
             if state.actor_calculation_mode != ad.rss.map.RssMode.NotRelevant:
                 if state.is_dangerous:
                     color = (255, 0, 0)
                 else:
                     color = (0, 255, 0)
+            # 在Surface上绘制一个表示状态的圆形，位置和颜色根据上述条件确定，半径为5
             pygame.draw.circle(state_surface, color, (12, v_offset + 7), 5)
             xpos = 184
+            # 如果是结构化计算模式，根据不同的纵向、横向安全状态等条件绘制相应多边形图形来进一步展示状态细节
             if state.actor_calculation_mode == ad.rss.map.RssMode.Structured:
                 if not state.rss_state.longitudinalState.isSafe and ((state.rss_state.longitudinalState.rssStateInformation.evaluator == "LongitudinalDistanceSameDirectionOtherInFront") or (state.rss_state.longitudinalState.rssStateInformation.evaluator == "LongitudinalDistanceSameDirectionEgoFront")):
                     pygame.draw.polygon(
@@ -84,41 +103,55 @@ class RssStateVisualizer(object):
                                              (xpos + 7, v_offset + 1 + 4), (xpos + 7, v_offset + 1 + 12), (xpos + 5, v_offset + 1 + 12), (xpos + 5, v_offset + 1 + 4)))
                     xpos += 14
 
+                # 如果纵向状态不安全（即 isSafe 为 False），并且纵向状态信息的评估器是 "LongitudinalDistanceOppositeDirectionEgoCorrectLane"
+                # 或者 "LongitudinalDistanceOppositeDirection"，则执行以下绘制多边形操作
                 if not state.rss_state.longitudinalState.isSafe and ((state.rss_state.longitudinalState.rssStateInformation.evaluator == "LongitudinalDistanceOppositeDirectionEgoCorrectLane") or (state.rss_state.longitudinalState.rssStateInformation.evaluator == "LongitudinalDistanceOppositeDirection")):
+                   # 在 state_surface 表面上使用白色（RGB 值为 (255, 255, 255)）绘制一个多边形
+                   # 多边形的顶点坐标通过一系列 (x, y) 坐标对表示，这里的坐标值是基于给定的 xpos 和 v_offset 变量以及一些固定偏移量计算得出的
                     pygame.draw.polygon(
                         state_surface, (
                             255, 255, 255), ((xpos + 2, v_offset + 1 + 8), (xpos + 6, v_offset + 1 + 12), (xpos + 10, v_offset + 1 + 8),
                                              (xpos + 7, v_offset + 1 + 8), (xpos + 7, v_offset + 1 + 0), (xpos + 5, v_offset + 1 + 0), (xpos + 5, v_offset + 1 + 8)))
+                   # 在水平方向上增加偏移量，为下一次可能的绘制操作预留位置，偏移量值为 14
                     xpos += 14
 
+                # 如果右侧横向状态不安全（isSafe 为 False），并且右侧横向状态信息的评估器不是 "None"，则执行以下绘制多边形操作
                 if not state.rss_state.lateralStateRight.isSafe and not (state.rss_state.lateralStateRight.rssStateInformation.evaluator == "None"):
                     pygame.draw.polygon(
                         state_surface, (
                             255, 255, 255), ((xpos + 0, v_offset + 1 + 4), (xpos + 8, v_offset + 1 + 4), (xpos + 8, v_offset + 1 + 1),
                                              (xpos + 12, v_offset + 1 + 6), (xpos + 8, v_offset + 1 + 10), (xpos + 8, v_offset + 1 + 8), (xpos + 0, v_offset + 1 + 8)))
                     xpos += 14
+                # 如果左侧横向状态不安全（isSafe 为 False），并且左侧横向状态信息的评估器不是 "None"，则执行以下绘制多边形操作
                 if not state.rss_state.lateralStateLeft.isSafe and not (state.rss_state.lateralStateLeft.rssStateInformation.evaluator == "None"):
                     pygame.draw.polygon(
                         state_surface, (
                             255, 255, 255), ((xpos + 0, v_offset + 1 + 6), (xpos + 4, v_offset + 1 + 1), (xpos + 4, v_offset + 1 + 4),
                                              (xpos + 12, v_offset + 1 + 4), (xpos + 12, v_offset + 1 + 8), (xpos + 4, v_offset + 1 + 8), (xpos + 4, v_offset + 1 + 10)))
                     xpos += 14
+            # 如果 actor_calculation_mode 处于非结构化模式（Unstructured），则执行以下逻辑
             elif state.actor_calculation_mode == ad.rss.map.RssMode.Unstructured:
                 text = ""
+                # 根据非结构化场景状态的响应类型设置要显示的文本内容
                 if state.rss_state.unstructuredSceneState.response == ad.rss.state.UnstructuredSceneResponse.DriveAway:
                     text = "  D"
                 elif state.rss_state.unstructuredSceneState.response == ad.rss.state.UnstructuredSceneResponse.ContinueForward:
                     text = "  C"
                 elif state.rss_state.unstructuredSceneState.response == ad.rss.state.UnstructuredSceneResponse.Brake:
                     text = "  B"
+                # 使用指定字体（self._font）渲染文本内容，设置文本颜色为白色（RGB 值为 (255, 255, 255)）
                 surface = self._font.render(text, True, (255, 255, 255))
+                # 将渲染好的文本表面绘制到 state_surface 的指定位置（xpos, v_offset）上
                 state_surface.blit(surface, (xpos, v_offset))
 
+            # 在垂直方向上增加偏移量，为下一轮绘制相关内容预留空间，偏移量值为 14
             v_offset += 14
+            # 将更新后的 state_surface 赋值给实例的 _surface 属性，以便后续使用
             self._surface = state_surface
 
     def render(self, display, v_offset):
         if self._surface:
+            # 用于将自身维护的表面（_surface）绘制到给定的显示表面（display）上的方法，绘制位置基于传入的垂直偏移量（v_offset）
             display.blit(self._surface, (0, v_offset))
 
 
@@ -129,22 +162,34 @@ def get_matrix(transform):
 
     rotation = transform.rotation
     location = transform.location
+    # 计算偏航角（yaw）的余弦值
     c_y = np.cos(np.radians(rotation.yaw))
+    # 计算偏航角（yaw）的正弦值
     s_y = np.sin(np.radians(rotation.yaw))
+    # 计算翻滚角（roll）的余弦值
     c_r = np.cos(np.radians(rotation.roll))
+    # 计算翻滚角（roll）的正弦值
     s_r = np.sin(np.radians(rotation.roll))
+    # 计算俯仰角（pitch）的余弦值
     c_p = np.cos(np.radians(rotation.pitch))
+    # 计算俯仰角（pitch）的正弦值
     s_p = np.sin(np.radians(rotation.pitch))
     matrix = np.matrix(np.identity(4))
+    # 设置变换矩阵中的位置信息，将位置的 x 坐标赋值给矩阵的对应元素
     matrix[0, 3] = location.x
+    # 设置变换矩阵中的位置信息，将位置的 y 坐标赋值给矩阵的对应元素
     matrix[1, 3] = location.y
+    # 设置变换矩阵中的位置信息，将位置的 z 坐标赋值给矩阵的对应元素
     matrix[2, 3] = location.z
+    # 根据旋转角度的三角函数值设置变换矩阵中表示旋转的部分元素，用于在 x 轴方向上的旋转相关计算
     matrix[0, 0] = c_p * c_y
     matrix[0, 1] = c_y * s_p * s_r - s_y * c_r
     matrix[0, 2] = -c_y * s_p * c_r - s_y * s_r
+    # 根据旋转角度的三角函数值设置变换矩阵中表示旋转的部分元素，用于在 y 轴方向上的旋转相关计算
     matrix[1, 0] = s_y * c_p
     matrix[1, 1] = s_y * s_p * s_r + c_y * c_r
     matrix[1, 2] = -s_y * s_p * c_r + c_y * s_r
+    # 根据旋转角度的三角函数值设置变换矩阵中表示旋转的部分元素，用于在 z 轴方向上的旋转相关计算
     matrix[2, 0] = s_p
     matrix[2, 1] = -c_p * s_r
     matrix[2, 2] = c_p * c_r
@@ -155,77 +200,115 @@ def get_matrix(transform):
 # ==============================================================================
 
 
+# 定义一个枚举类，用于表示 RSS 非结构化场景可视化器的不同模式
 class RssUnstructuredSceneVisualizerMode(Enum):
     disabled = 1
     window = 2
     fullscreen = 3
 
 
+# RSS 非结构化场景可视化器类，用于处理相关场景的可视化展示等功能
 class RssUnstructuredSceneVisualizer(object):
 
     def __init__(self, parent_actor, world, display_dimensions):
+        # 记录上一次渲染的帧编号，初始值为 -1，表示尚未进行过渲染
         self._last_rendered_frame = -1
+        # 用于存储整体的可视化表面对象，初始为 None
         self._surface = None
+        # 用于存储当前 RSS 相关的可视化表面对象及对应的帧编号，初始为 None
         self._current_rss_surface = None
+        # 存储当前相机获取的表面对象及对应的帧编号，初始值为 (0, None)，表示帧编号为 0，表面对象为 None
         self.current_camera_surface = (0, None)
+        # 保存传入的 Carla 世界对象，用于后续与世界中的元素（如相机、演员等）进行交互
         self._world = world
+        # 保存传入的父级演员对象，可能用于关联可视化器与特定的场景元素等，具体取决于使用场景
         self._parent_actor = parent_actor
+        # 存储显示尺寸信息（可能是宽度和高度），用于后续设置相机、表面尺寸等相关操作
         self._display_dimensions = display_dimensions
+        # 相机对象，用于获取场景图像等信息，初始为 None
         self._camera = None
+         # 可视化器的当前模式，初始设置为 disabled（禁用状态）
         self._mode = RssUnstructuredSceneVisualizerMode.disabled
 
+         # 调用 restart 方法，根据默认或传入的模式进行初始化相关设置
         self.restart(RssUnstructuredSceneVisualizerMode.window)
 
+    # 用于销毁相机对象及相关资源的方法
     def destroy(self):
+        # 停止相机的数据获取（如果正在运行）
         if self._camera:
+            # 销毁相机对象，释放相关资源
             self._camera.stop()
+             # 将相机对象设置为 None，表示已销毁
             self._camera.destroy()
             self._camera = None
 
+    # 根据指定的模式重新启动可视化器，进行相应的初始化和资源设置
     def restart(self, mode):
-        # setup up top down camera
+        # 先调用 destroy 方法，清理之前可能存在的相机等相关资源
+       
         self.destroy()
         self._mode = mode
 
         spawn_sensor = False
+        # 如果模式设置为窗口模式（window）
         if mode == RssUnstructuredSceneVisualizerMode.window:
+            # 设置可视化表面的尺寸，这里将传入的显示尺寸分别除以 3 和 2，得到相对较小的尺寸（可能用于在窗口中合适显示）
             self._dim = (self._display_dimensions[0] / 3, self._display_dimensions[1] / 2)
+            # 设置需要生成相机传感器（即开启相机数据获取相关操作）
             spawn_sensor = True
         elif mode == RssUnstructuredSceneVisualizerMode.fullscreen:
             self._dim = (self._display_dimensions[0], self._display_dimensions[1])
             spawn_sensor = True
+        # 如果模式是禁用状态（disabled），则直接将可视化表面设置为 None，不进行相机相关操作
         else:
             self._surface = None
 
+         # 如果需要生成相机传感器（即处于窗口或全屏模式）
         if spawn_sensor:
+            # 创建一个 3x3 的单位矩阵，用于相机的校准，后续会修改其中元素来完成实际校准设置
             self._calibration = np.identity(3)
+            # 设置校准矩阵中对应图像宽度方向上的中心坐标，使得后续计算的坐标能正确对应图像中的位置（将图像宽度的一半赋值给对应元素）
             self._calibration[0, 2] = self._dim[0] / 2.0
+            # 设置校准矩阵中对应图像高度方向上的中心坐标，使得后续计算的坐标能正确对应图像中的位置（将图像高度的一半赋值给对应元素
             self._calibration[1, 2] = self._dim[1] / 2.0
+            # 根据默认的视野角度（90 度）计算图像宽度和高度方向上的缩放因子，以确保相机获取的图像在显示等操作中的坐标正确对应实际像素位置
             self._calibration[0, 0] = self._calibration[1, 1] = self._dim[0] / \
             (2.0 * np.tan(90.0 * np.pi / 360.0))  # fov default: 90.0
 
+            # 从世界的蓝图库中获取蓝图对象
             bp_library = self._world.get_blueprint_library()
+            # 查找名为'sensor.camera.rgb'的相机蓝图，用于创建相机实例
             bp = bp_library.find('sensor.camera.rgb')
+            # 设置相机图像的宽度属性，使用之前计算得到的 _dim[0] 值（即根据模式确定的宽度尺寸）
             bp.set_attribute('image_size_x', str(self._dim[0]))
+             # 设置相机图像的高度属性，使用之前计算得到的 _dim[1] 值（即根据模式确定的高度尺寸）
             bp.set_attribute('image_size_y', str(self._dim[1]))
 
+            # 在世界中生成相机演员实例，设置其位置（x 坐标为 7.5，z 坐标为 10）和姿态（俯仰角为 -90 度），并将其绑定到传入的父级演员（self._parent_actor）上
+            self._camera = self._world.spawn_actor(
             self._camera = self._world.spawn_actor(
                 bp,
                 carla.Transform(carla.Location(x=7.5, z=10), carla.Rotation(pitch=-90)),
                 attach_to=self._parent_actor)
-            # We need to pass the lambda a weak reference to self to avoid
-            # circular reference.
+            # 我们需要对lamda进行传递以避免循环
+            # 创建一个对当前实例（self）的弱引用，避免循环引用导致内存泄漏等问题，便于在相机的回调函数中访问当前实例的属性和方法
             weak_self = weakref.ref(self)
+            weak_self = weakref.ref(self)
+             # 为相机注册一个监听函数（回调函数），当相机获取到新的图像数据时会触发该函数，将图像数据传递给 _parse_image 方法进行处理
             self._camera.listen(lambda image: self._parse_image(weak_self, image))
 
+    # 根据相机帧和 RSS 帧的信息更新可视化表面，判断是否需要进行渲染以及进行相关绘制操作
     def update_surface(self, cam_frame, rss_frame):
         if self._mode == RssUnstructuredSceneVisualizerMode.disabled:
             return
         render = False
 
+        # 如果相机帧存在，并且当前 RSS 表面及其帧编号与相机帧匹配，则设置需要进行渲染
         if cam_frame and self._current_rss_surface and self._current_rss_surface[0] == cam_frame:
             render = True
 
+        # 如果 RSS 帧存在，并且当前相机表面及其帧编号与 RSS 帧匹配，则设置需要进行渲染
         if rss_frame and self.current_camera_surface and self.current_camera_surface[0] == rss_frame:
             render = True
 
@@ -242,6 +325,7 @@ class RssUnstructuredSceneVisualizer(object):
             pygame.draw.rect(surface, (0, 0, 0), rect, 0)
             self._surface = surface
 
+    # 用于切换可视化器模式的方法，例如从窗口模式切换到全屏模式，或从全屏模式切换到禁用模式等
     def toggle_camera(self):
         print("Toggle RssUnstructuredSceneVisualizer")
         if self._mode == RssUnstructuredSceneVisualizerMode.window:

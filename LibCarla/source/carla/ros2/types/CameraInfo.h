@@ -24,10 +24,10 @@
 
 #include "RegionOfInterest.h"
 #include "Header.h"
-
-#include <fastrtps/utils/fixed_size_string.hpp>
-
+// 头文件，用于定义感兴趣区域和消息头
+#include <fastrtps/utils/fixed_size_string.hpp>// 用于固定大小的字符串
 #include <stdint.h>
+// 包含必要的标准库头文件
 #include <array>
 #include <string>
 #include <vector>
@@ -36,7 +36,7 @@
 
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
-#define eProsima_user_DllExport __declspec( dllexport )
+#define eProsima_user_DllExport __declspec( dllexport )    // 导出宏
 #else
 #define eProsima_user_DllExport
 #endif  // EPROSIMA_USER_DLL_EXPORT
@@ -47,9 +47,9 @@
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
 #if defined(CAMERAINFO_SOURCE)
-#define CAMERAINFO_DllAPI __declspec( dllexport )
+#define CAMERAINFO_DllAPI __declspec( dllexport )    // 当定义源时，导出符号
 #else
-#define CAMERAINFO_DllAPI __declspec( dllimport )
+#define CAMERAINFO_DllAPI __declspec( dllimport )    // 当使用时，导入符号
 #endif // CAMERAINFO_SOURCE
 #else
 #define CAMERAINFO_DllAPI
@@ -58,235 +58,239 @@
 #define CAMERAINFO_DllAPI
 #endif // _WIN32
 
+// 命名空间定义
 namespace eprosima {
 namespace fastcdr {
-class Cdr;
+class Cdr;        // 前向声明，用于序列化与反序列化
 } // namespace fastcdr
 } // namespace eprosima
 
 namespace sensor_msgs {
     namespace msg {
         /*!
-         * @brief This class represents the structure CameraInfo defined by the user in the IDL file.
+         * @brief This class represents the structure CameraInfo defined by the user in the IDL file.（表示 IDL 文件中定义的 CameraInfo 结构）
          * @ingroup CameraInfo
          */
         class CameraInfo
         {
         public:
 
-            /*!
-             * @brief Default constructor.
+           /*!
+             * @brief 默认构造函数，初始化相机的基本参数。
+             * @param height 图像高度（默认为 0）
+             * @param width  图像宽度（默认为 0）
+             * @param fov    视场角（默认为 0.0）
              */
             eProsima_user_DllExport CameraInfo(uint32_t height = 0, uint32_t width = 0, double fov = 0.0);
 
             /*!
-             * @brief Default destructor.
+             * @brief Default destructor.（默认析构函数）
              */
             eProsima_user_DllExport ~CameraInfo();
 
             /*!
-             * @brief Copy constructor.
+             * @brief Copy constructor.（拷贝构造函数）
              * @param x Reference to the object sensor_msgs::msg::CameraInfo that will be copied.
              */
             eProsima_user_DllExport CameraInfo(
                     const CameraInfo& x);
 
             /*!
-             * @brief Move constructor.
-             * @param x Reference to the object sensor_msgs::msg::CameraInfo that will be copied.
+             * @brief Move constructor.（移动构造函数）
+             * @param x Reference to the object sensor_msgs::msg::CameraInfo that will be copied.（要移动的 CameraInfo 对象）
              */
             eProsima_user_DllExport CameraInfo(
                     CameraInfo&& x) noexcept;
 
             /*!
-             * @brief Copy assignment.
-             * @param x Reference to the object sensor_msgs::msg::CameraInfo that will be copied.
+             * @brief Copy assignment.（赋值运算符重载）
+             * @param x Reference to the object sensor_msgs::msg::CameraInfo that will be copied.（要赋值的 CameraInfo 对象）
              */
             eProsima_user_DllExport CameraInfo& operator =(
                     const CameraInfo& x);
 
             /*!
-             * @brief Move assignment.
-             * @param x Reference to the object sensor_msgs::msg::CameraInfo that will be copied.
+             * @brief Move assignment.（移动赋值运算符重载）
+             * @param x Reference to the object sensor_msgs::msg::CameraInfo that will be copied.（要移动赋值的 CameraInfo 对象）
              */
             eProsima_user_DllExport CameraInfo& operator =(
                     CameraInfo&& x) noexcept;
 
             /*!
-             * @brief Comparison operator.
-             * @param x sensor_msgs::msg::CameraInfo object to compare.
+             * @brief Comparison operator.（）（比较运算符重载：判断两个 CameraInfo 对象是否相等）
+             * @param x sensor_msgs::msg::CameraInfo object to compare.（要比较的 CameraInfo 对象）
              */
             eProsima_user_DllExport bool operator ==(
                     const CameraInfo& x) const;
 
             /*!
-             * @brief Comparison operator.
-             * @param x sensor_msgs::msg::CameraInfo object to compare.
+             * @brief Comparison operator.（比较运算符重载：判断两个 CameraInfo 对象是否不相等）
+             * @param x sensor_msgs::msg::CameraInfo object to compare.（）（要比较的 CameraInfo 对象）
              */
             eProsima_user_DllExport bool operator !=(
                     const CameraInfo& x) const;
 
             /*!
-             * @brief This function copies the value in member header
-             * @param _header New value to be copied in member header
+             * @brief This function copies the value in member header（）（设置 header 成员变量的值）
+             * @param _header New value to be copied in member header（新的 Header 对象）
              */
             eProsima_user_DllExport void header(
                     const std_msgs::msg::Header& _header);
 
             /*!
-             * @brief This function moves the value in member header
-             * @param _header New value to be moved in member header
+             * @brief This function moves the value in member header（移动赋值 header 成员变量）
+             * @param _header New value to be moved in member header（新的 Header 对象）
              */
             eProsima_user_DllExport void header(
                     std_msgs::msg::Header&& _header);
 
             /*!
-             * @brief This function returns a constant reference to member header
-             * @return Constant reference to member header
+             * @brief This function returns a constant reference to member header（获取 header 的常量引用）
+             * @return Constant reference to member header（Header 的常量引用）
              */
             eProsima_user_DllExport const std_msgs::msg::Header& header() const;
 
             /*!
-             * @brief This function returns a reference to member header
-             * @return Reference to member header
+             * @brief This function returns a reference to member header（获取 header 的引用）
+             * @return Reference to member header（Header 的引用）
              */
             eProsima_user_DllExport std_msgs::msg::Header& header();
             /*!
-             * @brief This function sets a value in member height
-             * @param _height New value for member height
+             * @brief This function sets a value in member height（设置图像高度（height））
+             * @param _height New value for member height（新的高度值）
              */
             eProsima_user_DllExport void height(
                     uint32_t _height);
 
             /*!
-             * @brief This function returns the value of member height
-             * @return Value of member height
+             * @brief This function returns the value of member height（获取图像高度的值）
+             * @return Value of member height（图像高度）
              */
             eProsima_user_DllExport uint32_t height() const;
 
             /*!
-             * @brief This function returns a reference to member height
-             * @return Reference to member height
+             * @brief This function returns a reference to member height（获取图像高度的引用）
+             * @return Reference to member height（）（图像高度的引用）
              */
             eProsima_user_DllExport uint32_t& height();
 
             /*!
-             * @brief This function sets a value in member width
-             * @param _width New value for member width
+             * @brief This function sets a value in member width（设置图像宽度（width））
+             * @param _width New value for member width（新的宽度值）
              */
             eProsima_user_DllExport void width(
                     uint32_t _width);
 
             /*!
-             * @brief This function returns the value of member width
-             * @return Value of member width
+             * @brief This function returns the value of member width（获取图像宽度的值）
+             * @return Value of member width（图像宽度）
              */
             eProsima_user_DllExport uint32_t width() const;
 
             /*!
-             * @brief This function returns a reference to member width
-             * @return Reference to member width
+             * @brief This function returns a reference to member width（ 获取图像宽度的引用）
+             * @return Reference to member width（图像宽度的引用）
              */
             eProsima_user_DllExport uint32_t& width();
 
             /*!
-             * @brief This function copies the value in member distortion_model
-             * @param _distortion_model New value to be copied in member distortion_model
+             * @brief This function copies the value in member distortion_model（设置畸变模型（distortion_model））
+             * @param _distortion_model New value to be copied in member distortion_model（新的畸变模型字符串）
              */
             eProsima_user_DllExport void distortion_model(
                     const std::string& _distortion_model);
 
             /*!
-             * @brief This function moves the value in member distortion_model
-             * @param _distortion_model New value to be moved in member distortion_model
+             * @brief This function moves the value in member distortion_model（移动赋值畸变模型）
+             * @param _distortion_model New value to be moved in member distortion_model（新的畸变模型字符串）
              */
             eProsima_user_DllExport void distortion_model(
                     std::string&& _distortion_model);
 
             /*!
-             * @brief This function returns a constant reference to member distortion_model
-             * @return Constant reference to member distortion_model
+             * @brief This function returns a constant reference to member distortion_model（获取畸变模型的常量引用）
+             * @return Constant reference to member distortion_model（畸变模型字符串的常量引用）
              */
             eProsima_user_DllExport const std::string& distortion_model() const;
 
             /*!
-             * @brief This function returns a reference to member distortion_model
-             * @return Reference to member distortion_model
+             * @brief This function returns a reference to member distortion_model（）（获取畸变模型的引用）
+             * @return Reference to member distortion_model（畸变模型字符串的引用）
              */
             eProsima_user_DllExport std::string& distortion_model();
             /*!
-             * @brief This function copies the value in member D
-             * @param _D New value to be copied in member D
+             * @brief This function copies the value in member D（设置畸变参数 D（Distortion Coefficients）
+             * @param _D New value to be copied in member D（新的畸变系数向量）
              */
             eProsima_user_DllExport void D(
                     const std::vector<double>& _D);
 
             /*!
-             * @brief This function moves the value in member D
-             * @param _D New value to be moved in member D
+             * @brief This function moves the value in member D（移动赋值畸变参数 D）
+             * @param _D New value to be moved in member D）（新的畸变系数向量）
              */
             eProsima_user_DllExport void D(
                     std::vector<double>&& _D);
 
             /*!
-             * @brief This function returns a constant reference to member D
-             * @return Constant reference to member D
+             * @brief This function returns a constant reference to member D（获取成员变量 D 的常量引用）
+             * @return Constant reference to member D（成员变量 D 的常量引用）
              */
             eProsima_user_DllExport const std::vector<double>& D() const;
 
             /*!
-             * @brief This function returns a reference to member D
-             * @return Reference to member D
+             * @brief This function returns a reference to member D（获取成员变量 D 的引用）
+             * @return Reference to member D（成员变量 D 的引用）
              */
             eProsima_user_DllExport std::vector<double>& D();
             /*!
-             * @brief This function copies the value in member K
-             * @param _K New value to be copied in member K
+             * @brief This function copies the value in member K（将新值拷贝到成员变量 K 中）
+             * @param _K New value to be copied in member K（要拷贝到成员变量 K 中的新值）
              */
             eProsima_user_DllExport void k(
                     const std::array<double, 9>& _k);
 
         /*!
-        * @brief This function moves the value in member k
-        * @param _k New value to be moved in member k
+        * @brief This function moves the value in member k（新值移动到成员变量 K 中）
+        * @param _k New value to be moved in member k（要移动到成员变量 K 中的新值）
         */
         eProsima_user_DllExport void k(
                 std::array<double, 9>&& _k);
 
         /*!
-        * @brief This function returns a constant reference to member k
-        * @return Constant reference to member k
+        * @brief This function returns a constant reference to member k（获取成员变量 K 的常量引用）
+        * @return Constant reference to member k（）（成员变量 K 的常量引用）
         */
         eProsima_user_DllExport const std::array<double, 9>& k() const;
 
         /*!
-        * @brief This function returns a reference to member k
-        * @return Reference to member k
+        * @brief This function returns a reference to member k（获取成员变量 K 的引用）
+        * @return Reference to member k（成员变量 K 的引用）
         */
         eProsima_user_DllExport std::array<double, 9>& k();
         /*!
-        * @brief This function copies the value in member r
-        * @param _r New value to be copied in member r
+        * @brief This function copies the value in member r（将新值拷贝到成员变量 R 中）
+        * @param _r New value to be copied in member r（要拷贝到成员变量 R 中的新值）
         */
         eProsima_user_DllExport void r(
                 const std::array<double, 9>& _r);
 
         /*!
-        * @brief This function moves the value in member r
-        * @param _r New value to be moved in member r
+        * @brief This function moves the value in member r（将新值移动到成员变量 R 中）
+        * @param _r New value to be moved in member r（要移动到成员变量 R 中的新值）
         */
         eProsima_user_DllExport void r(
                 std::array<double, 9>&& _r);
 
         /*!
-        * @brief This function returns a constant reference to member r
-        * @return Constant reference to member r
+        * @brief This function returns a constant reference to member r（获取成员变量 R 的常量引用）
+        * @return Constant reference to member r（成员变量 R 的常量引用）
         */
         eProsima_user_DllExport const std::array<double, 9>& r() const;
 
         /*!
-        * @brief This function returns a reference to member r
-        * @return Reference to member r
+        * @brief This function returns a reference to member r（获取成员变量 R 的引用）
+        * @return Reference to member r（ 成员变量 R 的引用）
         */
         eProsima_user_DllExport std::array<double, 9>& r();
         /*!
@@ -297,137 +301,138 @@ namespace sensor_msgs {
                 const std::array<double, 12>& _p);
 
         /*!
-        * @brief This function moves the value in member p
-        * @param _p New value to be moved in member p
+        * @brief This function moves the value in member p（将新值拷贝到成员变量 P 中）
+        * @param _p New value to be moved in member p（要拷贝到成员变量 P 中的新值）
         */
         eProsima_user_DllExport void p(
                 std::array<double, 12>&& _p);
 
         /*!
-        * @brief This function returns a constant reference to member p
-        * @return Constant reference to member p
+        * @brief This function returns a constant reference to member p（将新值移动到成员变量 P 中）
+        * @return Constant reference to member p（要移动到成员变量 P 中的新值）
         */
         eProsima_user_DllExport const std::array<double, 12>& p() const;
 
         /*!
-        * @brief This function returns a reference to member p
-        * @return Reference to member p
+        * @brief This function returns a reference to member p（获取成员变量 P 的常量引用）
+        * @return Reference to member p（成员变量 P 的常量引用）
         */
         eProsima_user_DllExport std::array<double, 12>& p();
         /*!
-        * @brief This function sets a value in member binning_x
-        * @param _binning_x New value for member binning_x
+        * @brief This function sets a value in member binning_x（获取成员变量 P 的引用）
+        * @param _binning_x New value for member binning_x（成员变量 P 的引用）
         */
         eProsima_user_DllExport void binning_x(
                 uint32_t _binning_x);
 
             /*!
-             * @brief This function returns the value of member binning_x
-             * @return Value of member binning_x
+             * @brief This function returns the value of member binning_x（设置成员变量 binning_x 的值）
+             * @return Value of member binning_x（新的 binning_x 值）
              */
             eProsima_user_DllExport uint32_t binning_x() const;
 
             /*!
-             * @brief This function returns a reference to member binning_x
-             * @return Reference to member binning_x
+             * @brief This function returns a reference to member binning_x（获取成员变量 binning_x 的值）
+             * @return Reference to member binning_x（成员变量 binning_x 的值）
              */
             eProsima_user_DllExport uint32_t& binning_x();
 
             /*!
-             * @brief This function sets a value in member binning_y
-             * @param _binning_y New value for member binning_y
+             * @brief This function sets a value in member binning_y（设置成员变量 binning_y 的值）
+             * @param _binning_y New value for member binning_y（新的 binning_y 值）
              */
             eProsima_user_DllExport void binning_y(
                     uint32_t _binning_y);
 
             /*!
-             * @brief This function returns the value of member binning_y
-             * @return Value of member binning_y
+             * @brief This function returns the value of member binning_y（获取成员变量 binning_y 的值）
+             * @return Value of member binning_y（成员变量 binning_y 的值）
              */
             eProsima_user_DllExport uint32_t binning_y() const;
 
             /*!
-             * @brief This function returns a reference to member binning_y
-             * @return Reference to member binning_y
+             * @brief This function returns a reference to member binning_y（获取成员变量 binning_y 的引用）
+             * @return Reference to member binning_y（成员变量 binning_y 的引用）
              */
             eProsima_user_DllExport uint32_t& binning_y();
 
             /*!
-             * @brief This function copies the value in member roi
-             * @param _roi New value to be copied in member roi
+             * @brief This function copies the value in member roi（将新值拷贝到成员变量 roi 中）
+             * @param _roi New value to be copied in member roi（要拷贝到成员变量 roi 中的新值）
              */
             eProsima_user_DllExport void roi(
                     const sensor_msgs::msg::RegionOfInterest& _roi);
 
             /*!
-             * @brief This function moves the value in member roi
-             * @param _roi New value to be moved in member roi
+             * @brief This function moves the value in member roi（将新值移动到成员变量 roi 中）
+             * @param _roi New value to be moved in member roi（要移动到成员变量 roi 中的新值）
              */
             eProsima_user_DllExport void roi(
                     sensor_msgs::msg::RegionOfInterest&& _roi);
 
             /*!
-             * @brief This function returns a constant reference to member roi
-             * @return Constant reference to member roi
+             * @brief This function returns a constant reference to member roi（获取成员变量 roi 的常量引用）
+             * @return Constant reference to member roi（成员变量 roi 的常量引用）
              */
             eProsima_user_DllExport const sensor_msgs::msg::RegionOfInterest& roi() const;
 
             /*!
-             * @brief This function returns a reference to member roi
-             * @return Reference to member roi
+             * @brief This function returns a reference to member roi（获取成员变量 roi 的引用）
+             * @return Reference to member roi（成员变量 roi 的引用）
              */
             eProsima_user_DllExport sensor_msgs::msg::RegionOfInterest& roi();
 
             /*!
-            * @brief This function returns the maximum serialized size of an object
+            * @brief This function returns the maximum serialized size of an object（获取对象在特定对齐下的最大序列化大小）
             * depending on the buffer alignment.
-            * @param current_alignment Buffer alignment.
-            * @return Maximum serialized size.
+            * @param current_alignment Buffer alignment.（当前对齐方式）
+            * @return Maximum serialized size.（最大序列化大小）
             */
             eProsima_user_DllExport static size_t getMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function returns the serialized size of a data depending on the buffer alignment.
-             * @param data Data which is calculated its serialized size.
-             * @param current_alignment Buffer alignment.
-             * @return Serialized size.
+             * @brief This function returns the serialized size of a data depending on the buffer alignment.（获取数据在特定对齐下的序列化大小）
+             * @param data Data which is calculated its serialized size.（要计算序列化大小的数据）
+             * @param current_alignment Buffer alignment.（当前对齐方式）
+             * @return Serialized size.（序列化大小）
              */
             eProsima_user_DllExport static size_t getCdrSerializedSize(
                     const sensor_msgs::msg::CameraInfo& data,
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function serializes an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief This function serializes an object using CDR serialization.（使用 CDR 序列化一个对象）
+             * @param cdr CDR serialization object.（序列化对象）
              */
             eProsima_user_DllExport void serialize(
                     eprosima::fastcdr::Cdr& cdr) const;
 
             /*!
-             * @brief This function deserializes an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief This function deserializes an object using CDR serialization.（反序列化一个对象）
+             * @param cdr CDR serialization object.（序列化对象）
              */
             eProsima_user_DllExport void deserialize(
                     eprosima::fastcdr::Cdr& cdr);
 
             /*!
-             * @brief This function returns the maximum serialized size of the Key of an object
+             * @brief This function returns the maximum serialized size of the Key of an object（在特定对齐下的最大序列化大小）
              * depending on the buffer alignment.
-             * @param current_alignment Buffer alignment.
-             * @return Maximum serialized size.
+             * @param current_alignment Buffer alignment.（当前对齐方式。）
+             * @return Maximum serialized size.（最大序列化大小）
              */
             eProsima_user_DllExport static size_t getKeyMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
-            /*!
-             * @brief This function tells you if the Key has been defined for this type
-             */
+           /*!
+             * @brief 判断是否为此类型定义了 Key。
+             * @return 如果定义了 Key，则返回 true；否则返回 false。
+            */
             eProsima_user_DllExport static bool isKeyDefined();
 
             /*!
-             * @brief This function serializes the key members of an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief This function serializes the key members of an object using CDR serialization.（使用 CDR 序列化对象的 Key 成员）
+             * @param cdr CDR serialization object.（序列化对象）
              */
             eProsima_user_DllExport void serializeKey(
                     eprosima::fastcdr::Cdr& cdr) const;

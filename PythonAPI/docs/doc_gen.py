@@ -12,12 +12,15 @@ import yaml
 import re
 import doc_gen_snipets
 
+# 定义用于表示不同类型元素在文档中显示颜色的常量，方便后续对相应元素进行样式设置
 COLOR_METHOD = '#7fb800'
 COLOR_PARAM = '#00a6ed'
 COLOR_INSTANCE_VAR = '#f8805a'
 COLOR_NOTE = '#8E8E8E'
 COLOR_WARNING = '#ED2F2F'
 
+# 编译一个正则表达式对象，用于匹配包含 "Carla" 开头且后面跟着点号以及其他字母、数字、下划线组合的字符串模式，
+# 目的可能是为了在文本中识别特定的与Carla相关的标识符
 QUERY = re.compile(r'([cC]arla(\.[a-zA-Z0-9_]+)+)')
 
 
@@ -28,43 +31,82 @@ def create_getter_setter_hyperlinks(text):
     return re.sub(QUERY, r'[\1](#\1)', text)
 
 def join(elem, separator=''):
+     """
+    将给定的可迭代元素（如列表）拼接成一个字符串，元素之间用指定的分隔符（默认为空字符串）分隔。
+    这是一个简单的字符串拼接辅助函数。
+    """
     return separator.join(elem)
 
 
+# 定义一个用于生成Markdown格式文件内容的类，通过一系列方法来逐步构建Markdown文档的结构和内容
 class MarkdownFile:
     def __init__(self):
-        self._data = ""
-        self._list_depth = 0
-        self.endl = '  \n'
+         """
+        类的构造函数，用于初始化MarkdownFile对象的一些基础属性。
+        """
+        self._data = "" # 用于存储Markdown文件的内容，初始为空字符串
+        self._list_depth = 0 # 用于记录列表的嵌套深度，初始为0
+        self.endl = '  \n' # 定义换行格式，这里使用两个空格加换行符，用于在添加文本内容时控制换行显示效果
 
     def data(self):
+        """
+        返回当前已经构建的Markdown文件内容字符串，可用于获取最终生成的文档内容。
+        """
         return self._data
 
     def list_push(self, buf=''):
+         """
+        用于在Markdown文档中添加列表项。
+        如果传入了buf参数（即要添加的列表项内容），则会先按照当前列表深度添加相应的缩进，再添加列表项前缀（'- '）以及内容。
+        之后会将列表深度加1，表示进入下一层列表嵌套（如果继续添加列表项，会更缩进一层）。
+        """
         if buf:
             self.text(join([
                 '    ' * self._list_depth if self._list_depth != 0 else '', '- ', buf]))
         self._list_depth = (self._list_depth + 1)
 
     def list_pushn(self, buf):
+         """
+        与list_push类似，也是用于添加列表项，但会在添加完列表项内容后自动添加一个换行符（通过调用join函数结合换行格式endl），
+        使得添加的列表项在文档中换行显示，更加清晰。
+        """
         self.list_push(join([buf, self.endl]))
 
     def list_pop(self):
+        """
+        用于减少列表的嵌套深度，即将列表深度减1，当完成一层列表项的添加，需要回到上一层列表时调用此方法，
+        会保证列表深度不小于0（通过取最大值操作）。
+        """
         self._list_depth = max(self._list_depth - 1, 0)
 
     def list_popn(self):
+        """
+        结合了list_pop和添加换行的操作，先减少列表深度，然后在文档内容字符串中添加一个换行符，
+        常用于完成一层列表的处理后，进行换行以准备后续内容的添加。
+        """
         self.list_pop()
         self._data = join([self._data, '\n'])
 
     def list_depth(self):
+        """
+        根据当前文档内容和列表深度情况，返回相应的缩进字符串。
+        如果文档内容末尾不是换行符或者列表深度为0，则返回空字符串；否则返回对应列表深度的缩进字符串（由四个空格重复相应次数组成），
+        可用于在添加文本内容时根据列表深度进行正确的缩进排版。
+        """
         if self._data.strip()[-1:] != '\n' or self._list_depth == 0:
             return ''
         return join(['    ' * self._list_depth])
 
     def separator(self):
+        """
+        在Markdown文档内容中添加一个水平分割线（通过添加"---"），常用于分隔不同的章节或内容块，使文档结构更清晰。
+        """
         self._data = join([self._data, '\n---\n'])
 
     def new_line(self):
+         """
+        在Markdown文档内容中添加一个换行符，按照预先定义的换行格式endl进行添加，用于简单的换行操作。
+        """
         self._data = join([self._data, self.endl])
 
     def text(self, buf):
@@ -108,11 +150,19 @@ class MarkdownFile:
 
 def italic(buf):
     return join(['_', buf, '_'])
-
+    """
+    将输入的字符串 `buf` 转换为斜体格式，即在字符串前后添加下划线（Markdown语法中用于表示斜体）。
+    :param buf: 要转换格式的字符串
+    :return: 转换为斜体格式后的字符串
+    """
 
 def bold(buf):
     return join(['**', buf, '**'])
-
+    """
+    将输入的字符串 `buf` 转换为粗体格式，即在字符串前后添加双星号（Markdown语法中用于表示粗体）。
+    :param buf: 要转换格式的字符串
+    :return: 转换为粗体格式后的字符串
+    """
 def snipet(name,class_key):
 
     return join(["<button class=\"SnipetButton\" id=\"",class_key,".",name,"-snipet_button\">", "snippet &rarr;", '</button>'])
@@ -153,56 +203,73 @@ def valid_dic_val(dic, value):
     return value in dic and dic[value]
 
 
+# YamlFile类，用于处理YAML文件相关操作
 class YamlFile:
     """Yaml file class"""
 
     def __init__(self, path):
         self._path = path
+        # 打开YAML文件并安全加载其内容到self.data属性中
         with open(path) as yaml_file:
             self.data = yaml.safe_load(yaml_file)
+        # 调用验证方法，对加载的数据进行合法性验证
         self.validate()
 
+    # 验证方法，用于检查加载的YAML数据是否符合特定要求
     def validate(self):
         # print('Validating ' + str(self._path.replace('\\', '/').split('/')[-1:][0]))
         if self.data is None:
             print('\n[ERROR] File: ' + self._path)
             print("This file has no data:")
             exit(0)
+        # 遍历数据中的每个模块（假设self.data是包含多个模块信息的结构，比如列表中包含字典形式的模块信息）
         for module in self.data:
+            # 如果模块中有'module_name'键且其值为None，输出错误信息并退出程序
             if 'module_name' in module and module['module_name'] is None:
                 print('\n[ERROR] File: ' + self._path)
                 print("'module_name' is empty in:")
                 exit(0)
+            # 如果模块中有'classes'键，说明包含类相关信息，进行进一步验证
             if 'classes' in module:
+                # 如果'classes'对应的列表为空，输出错误信息并退出程序
                 if not module['classes']:
                     print('\n[ERROR] File: ' + self._path)
                     print("'classes' is empty in:")
                     exit(0)
+                # 遍历'classes'列表中的每个类信息（假设是字典形式）
                 for cl in module['classes']:
+                    # 如果类信息中有'class_name'键且其值为None，输出错误信息并退出程序
                     if 'class_name' in cl and cl['class_name'] is None:
                         print('\n[ERROR] File: ' + self._path)
                         print("'class_name' is empty in:")
                         exit(0)
+                    # 如果类信息中有'instance_variables'键且其值不为空（即包含实例变量相关信息），进一步验证实例变量
                     if 'instance_variables' in cl and cl['instance_variables']:
                         for iv in cl['instance_variables']:
+                            # 如果实例变量字典中没有'var_name'键，输出错误信息并退出程序
                             if 'var_name' not in iv:
                                 print('\n[ERROR] File: ' + self._path)
                                 print("'var_name' not found inside 'instance_variables' of class: " + cl['class_name'])
                                 exit(0)
+                            # 如果实例变量字典中有'var_name'键但其值为None，输出错误信息并退出程序
                             if 'var_name' in iv and iv['var_name'] is None:
                                 print('\n[ERROR] File: ' + self._path)
                                 print("'var_name' is empty in:")
                                 exit(0)
+                    # 如果类信息中有'methods'键且其值不为空（即包含方法相关信息），进一步验证方法
                     if 'methods' in cl and cl['methods']:
                         for met in cl['methods']:
+                            # 如果方法字典中没有'def_name'键，输出错误信息并退出程序
                             if 'def_name' not in met:
                                 print('\n[ERROR] File: ' + self._path)
                                 print("'def_name' not found inside 'methods' of class: " + cl['class_name'])
                                 exit(0)
+                            # 如果方法字典中有'def_name'键但其值为None，输出错误信息并退出程序
                             if 'def_name' in met and met['def_name'] is None:
                                 print('\n[ERROR] File: ' + self._path)
                                 print("'def_name' is empty in:")
                                 exit(0)
+                            # 如果方法字典中有'params'键且其值不为空（即包含参数相关信息），进一步验证参数
                             if 'params' in met and met['params']:
                                 for param in met['params']:
                                     if 'param_name' not in param:

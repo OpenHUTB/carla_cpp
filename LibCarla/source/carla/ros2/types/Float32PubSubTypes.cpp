@@ -23,16 +23,24 @@
 #include <fastcdr/Cdr.h>
 
 #include "Float32PubSubTypes.h"
-
+// 为eprosima::fastrtps::rtps::SerializedPayload_t类型定义一个更简洁的别名SerializedPayload_t，
+// 方便后续代码中使用，SerializedPayload_t通常用于表示经过序列化后的消息负载相关的数据结构
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
+// 为eprosima::fastrtps::rtps::InstanceHandle_t类型定义别名InstanceHandle_t，
+// 该类型一般与实例的标识、操作句柄相关，在消息交互等场景中会用到
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace std_msgs {
     namespace msg {
+// Float32PubSubType类的构造函数定义，用于初始化该类的各个成员变量，完成相关的资源准备工作
         Float32PubSubType::Float32PubSubType()
-        {
+        {// 设置此类型的名称，这里将名称设置为 "std_msgs::msg::dds_::Float32_"，
+            // 该名称可能在整个消息发布/订阅系统中用于标识这个特定的消息类型
             setName("std_msgs::msg::dds_::Float32_");
             auto type_size = Float32::getMaxCdrSerializedSize();
+              // 根据给定的对齐要求（这里是按4字节对齐），对获取到的类型尺寸进行调整，
+            // 确保数据在存储或传输等过程中符合特定的对齐规范，有助于提高数据处理效率等，
+            // 例如某些硬件架构或者通信协议可能对数据的对齐有要求
             type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
             m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
             m_isGetKeyDefined = Float32::isKeyDefined();
@@ -44,38 +52,49 @@ namespace std_msgs {
 
         Float32PubSubType::~Float32PubSubType()
         {
+        	// 在析构函数中，检查键缓冲区指针是否为空，如果不为空，则释放之前为其分配的内存空间，避免内存泄漏
             if (m_keyBuffer != nullptr)
             {
                 free(m_keyBuffer);
             }
         }
-
+// 将传入的void*类型数据转换为Float32*类型指针，方便后续对具体的Float32类型数据进行操
         bool Float32PubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
             Float32* p_type = static_cast<Float32*>(data);
-
+// 创建一个FastBuffer对象，用于管理原始的缓冲区，它将关联到SerializedPayload_t结构体中的数据缓冲区，
+            // 方便后续在其上进行数据的读写操作，这里传入的是payload中的数据指针和最大尺寸信息
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
+            // 创建一个Cdr对象，用于进行数据的序列化操作，传入FastBuffer对象以及相关的字节序、CDR格式等参数，
+            // 这里使用默认字节序和DDS_CDR格式，Cdr对象将基于FastBuffer来实际处理数据的序列化逻辑
             // Object that serializes the data.
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+            // 根据Cdr对象当前的字节序设置SerializedPayload_t结构体中的封装字节序标识，
+            // 如果是大端序（BIG_ENDIANNESS）则设置为CDR_BE，否则设置为CDR_LE，方便后续解析时知晓数据的字节序情况
             payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
             // Serialize encapsulation
             ser.serialize_encapsulation();
 
             try
             {
+            	// 调用Float32类型对象的serialize函数，通过Cdr对象将Float32类型的数据进行序列化，
+                // 实际是将数据按照CDR格式写入到之前关联的FastBuffer中，若内存不足等情况会抛出异常
                 // Serialize the object.
                 p_type->serialize(ser);
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+            	// 如果在序列化过程中出现内存不足异常，则返回false表示序列化失败
                 return false;
             }
-
+// 获取序列化后的数据长度，并将其设置到SerializedPayload_t结构体中，
+            // 这样接收方可以根据这个长度准确地知道实际有效数据的范围，便于后续反序列化操作
             // Get the serialized length
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+             // 如果序列化过程没有出现异常且成功完成，返回true表示序列化成功
             return true;
         }
 
@@ -85,6 +104,7 @@ namespace std_msgs {
         {
             try
             {
+            	// 将传入的void*类型数据转换为Float32*类型指针，以便后续将反序列化后的数据填充到对应的Float32类型对象中
                 //Convert DATA to pointer of your type
                 Float32* p_type = static_cast<Float32*>(data);
 
@@ -103,9 +123,10 @@ namespace std_msgs {
             }
             catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
             {
+            	// 如果在反序列化过程中出现内存不足等异常，则返回false表示反序列化失败
                 return false;
             }
-
+// 如果反序列化过程没有出现异常且成功完成，返回true表示反序列化成功
             return true;
         }
 
@@ -114,6 +135,8 @@ namespace std_msgs {
         {
             return [data]() -> uint32_t
                    {
+                   	// 返回给定Float32类型数据序列化后的尺寸，包括实际数据的CDR序列化尺寸以及额外的4字节封装尺寸，
+                       // 这里通过调用Float32类型的相关函数获取数据的序列化尺寸，并加上封装尺寸后返回
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Float32*>(data))) +
                               4u /*encapsulation*/;
                    };
@@ -121,12 +144,16 @@ namespace std_msgs {
 
         void* Float32PubSubType::createData()
         {
+        	/ 创建一个新的Float32类型对象，并将其指针转换为void*类型返回，
+            // 通常用于在需要动态分配该类型数据空间的场景，比如在消息传递过程中创建新的数据实例
             return reinterpret_cast<void*>(new Float32());
         }
 
         void Float32PubSubType::deleteData(
                 void* data)
         {
+        	// 将传入的void*类型数据转换为Float32*类型指针，然后删除对应的Float32类型对象，
+            // 用于释放之前通过createData等方式动态分配的内存空间，避免内存泄漏
             delete(reinterpret_cast<Float32*>(data));
         }
 
@@ -135,6 +162,7 @@ namespace std_msgs {
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
+        	 // 如果之前判断出Float32类型没有定义获取键（Key）的相关操作，则直接返回false，表示无法获取键
             if (!m_isGetKeyDefined)
             {
                 return false;
@@ -161,11 +189,14 @@ namespace std_msgs {
             }
             else
             {
+            	// 如果不需要使用MD5计算且键的最大CDR序列化尺寸不大于16字节，则直接将键缓冲区中的数据（前16字节）
+                // 逐个字节复制到InstanceHandle_t结构体的value数组中，作为实例的标识信息
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
                 }
             }
+            // 如果成功获取并处理了键相关的数据，返回true表示获取键操作成功
             return true;
         }
     } //End of namespace msg
