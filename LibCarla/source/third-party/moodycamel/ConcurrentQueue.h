@@ -1,4 +1,4 @@
-﻿// 提供多生产者、多消费者无锁队列的 C++ 11实现。
+// 提供多生产者、多消费者无锁队列的 C++ 11实现。
 // 这里提供了一个概述，包括基准测试结果:
 //     http://moodycamel.com/blog/2014/a-fast-general-purpose-lock-free-queue-for-c++
 // 完整的设计也有详细的描述：
@@ -18,16 +18,16 @@
 //包括但不限于采购替代商品或服务、使用、数据或利润的损失或业务中断，是否基于合同、严格责任或侵权（包括疏忽或其他）理论，即使已经被告知可能发生这样的损害。
 // 注意：这个文件为了被 CARLA 使用做了略微的修改。
 
-#pragma once
+#pragma once//程序预处理
 
 #if defined(__GNUC__)
 // 禁用 -Wconversion 警告（当 Traits::size_t 和 Traits::index_t 设置为小于 32 位时，整数提升可能引发这些警告
 // 在赋值计算值时会出现警告）
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic push//保存当前的编译器诊断设置。
+#pragma GCC diagnostic ignored "-Wconversion"//用于忽略特定的警告或错误。
 
 #ifdef MCDBGQ_USE_RELACY
-#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
+#pragma GCC diagnostic ignored "-Wint-to-pointer-cast"//
 #endif
 #endif
 
@@ -1253,41 +1253,60 @@ public:
   size_t try_dequeue_bulk(consumer_token_t& token, It itemFirst, size_t max)
   {
     if (token.desiredProducer == nullptr || token.lastKnownGlobalOffset != globalExplicitConsumerOffset.load(std::memory_order_relaxed)) {
+// 如果期望的生产者为空，或者上次已知的全局偏移量与当前全局显式消费者偏移量（通过原子加载，内存序为宽松模型）不一致，
+        // 则需要更新当前生产者相关信息。
       if (!update_current_producer_after_rotation(token)) {
+// 如果更新当前生产者信息失败，直接返回0，表示无法进行出队操作。
         return 0;
       }
     }
 
     size_t count = static_cast<ProducerBase*>(token.currentProducer)->dequeue_bulk(itemFirst, max);
+// 通过将当前生产者指针转换为ProducerBase*类型，并调用其dequeue_bulk方法尝试批量出队元素，
+    // 返回实际出队的元素数量并赋值给count变量。
     if (count == max) {
+// 如果实际出队数量等于期望的最大出队数量max，说明当前生产者的队列中元素足够。
       if ((token.itemsConsumedFromCurrent += static_cast<std::uint32_t>(max)) >= EXPLICIT_CONSUMER_CONSUMPTION_QUOTA_BEFORE_ROTATE) {
+// 如果从当前生产者已消费的元素数量达到了轮转前的消费配额（通过累加并比较判断），
+            // 则原子地增加全局显式消费者偏移量（内存序为宽松模型），表示消费进度的推进。
         globalExplicitConsumerOffset.fetch_add(1, std::memory_order_relaxed);
       }
       return max;
     }
     token.itemsConsumedFromCurrent += static_cast<std::uint32_t>(count);
+// 将实际出队的元素数量累加到从当前生产者已消费的元素数量中。
     max -= count;
-
+// 更新剩余还期望出队的元素数量。
     auto tail = producerListTail.load(std::memory_order_acquire);
+// 原子地加载生产者列表的尾指针（内存序为获取模型，保证获取到的是最新写入的值）。
     auto ptr = static_cast<ProducerBase*>(token.currentProducer)->next_prod();
+// 获取当前生产者的下一个生产者指针。
     if (ptr == nullptr) {
       ptr = tail;
     }
+// 如果下一个生产者指针为空，则将其设置为生产者列表的尾指针，即回绕到列表末尾。
     while (ptr != static_cast<ProducerBase*>(token.currentProducer)) {
+// 循环遍历其他生产者，直到再次回到当前生产者（形成一个循环查找的逻辑）。
       auto dequeued = ptr->dequeue_bulk(itemFirst, max);
+// 尝试从当前遍历到的生产者队列中批量出队元素，返回实际出队数量并赋值给dequeued变量。
       count += dequeued;
+// 将本次出队数量累加到总的出队数量count中。
       if (dequeued != 0) {
         token.currentProducer = ptr;
         token.itemsConsumedFromCurrent = static_cast<std::uint32_t>(dequeued);
+// 如果本次有元素出队，更新当前生产者指针为当前遍历到的这个生产者，
+            // 并将从当前生产者已消费的元素数量更新为本次出队数量。
       }
       if (dequeued == max) {
         break;
       }
+// 如果本次出队数量刚好等于剩余期望出队数量，说明已经满足需求，直接跳出循环。
       max -= dequeued;
       ptr = ptr->next_prod();
       if (ptr == nullptr) {
         ptr = tail;
       }
+// 更新下一个要遍历的生产者指针，如果为空则回绕到生产者列表尾指针。
     }
     return count;
   }
@@ -1304,6 +1323,9 @@ public:
   inline bool try_dequeue_from_producer(producer_token_t const& producer, U& item)
   {
     return static_cast<ExplicitProducer*>(producer.producer)->dequeue(item);
+// 将传入的生产者指针转换为ExplicitProducer*类型，并调用其dequeue方法尝试出队一个元素，
+    // 返回出队操作的结果（成功为true，失败为false）。
+}
   }
 
   // Attempts to dequeue several elements from a specific producer's inner queue.
@@ -1317,6 +1339,8 @@ public:
   inline size_t try_dequeue_bulk_from_producer(producer_token_t const& producer, It itemFirst, size_t max)
   {
     return static_cast<ExplicitProducer*>(producer.producer)->dequeue_bulk(itemFirst, max);
+// 将传入的生产者指针转换为ExplicitProducer*类型，并调用其dequeue_bulk方法尝试批量出队元素，
+    // 返回实际出队的元素数量。
   }
 
 
@@ -1325,11 +1349,16 @@ public:
   // (i.e. all enqueue and dequeue operations have completed and their memory effects are
   // visible on the calling thread, and no further operations start while this method is
   // being called).
+// 返回当前队列中元素总数的一个估计值。只有在调用此方法之前队列已经完全稳定（即所有入队和出队操作都已完成，
+// 并且它们的内存影响在调用线程上可见，并且在调用此方法时没有进一步的操作开始）时，这个估计值才是准确的。
   // Thread-safe.
   size_t size_approx() const
   {
     size_t size = 0;
     for (auto ptr = producerListTail.load(std::memory_order_acquire); ptr != nullptr; ptr = ptr->next_prod()) {
+
+// 原子地加载生产者列表的尾指针（内存序为获取模型），然后通过循环遍历每个生产者，
+        // 只要当前生产者指针不为空，就获取下一个生产者指针继续循环。
       size += ptr->size_approx();
     }
     return size;
@@ -1348,6 +1377,8 @@ public:
       details::static_is_lock_free<index_t>::value == 2 &&
       details::static_is_lock_free<void*>::value == 2 &&
       details::static_is_lock_free<typename details::thread_id_converter<details::thread_id_t>::thread_id_numeric_size_t>::value == 2;
+// 通过检查一系列类型对应的底层静态无锁判断（通过details命名空间下的相关函数或类型进行判断，具体实现细节应该在相应的地方定义），
+    // 只有当所有这些类型对应的判断值都为2时（具体含义应该由相关实现定义，可能表示满足无锁条件等情况），才返回true，表示整个队列使用的原子变量是无锁的。
   }
 
 
@@ -1371,6 +1402,8 @@ private:
   inline bool inner_enqueue(producer_token_t const& token, U&& element)
   {
     return static_cast<ExplicitProducer*>(token.producer)->ConcurrentQueue::ExplicitProducer::template enqueue<canAlloc>(std::forward<U>(element));
+// 将传入的生产者令牌中的生产者指针转换为ExplicitProducer*类型，然后调用其内部的特定模板版本的enqueue方法（根据canAlloc参数决定是否可以分配内存的版本），
+        // 传入右值引用形式的元素，尝试将元素入队，返回入队操作的结果（成功为true，失败为false）。
   }
 
   template<AllocationMode canAlloc, typename U>
@@ -1415,6 +1448,8 @@ private:
           token.desiredProducer = tail;
         }
       }
+// 通过循环，根据计算出的偏移量逐步向前移动期望的生产者指针，每次获取当前期望生产者的下一个生产者指针，
+            // 如果遇到下一个生产者指针为空的情况，则回绕到生产者列表尾指针，直到移动了指定的偏移量次数。
     }
 
     std::uint32_t delta = globalOffset - token.lastKnownGlobalOffset;
@@ -1432,6 +1467,8 @@ private:
     token.currentProducer = token.desiredProducer;
     token.itemsConsumedFromCurrent = 0;
     return true;
+// 更新上次已知的全局偏移量为当前的全局偏移量，将当前生产者指针设置为期望的生产者指针，
+        // 并将从当前生产者已消费的元素数量重置为0，最后返回true，表示成功更新了当前生产者相关信息。
   }
 
 
@@ -2112,26 +2149,32 @@ private:
             this->tailBlock = startBlock == nullptr ? firstAllocatedBlock : startBlock;
             return false;
           }
-
+// 如果定义了MCDBGQ_TRACKMEM这个宏，则执行下面的代码，将新块的所有者设置为当前对象（this通常指代当前类的实例）
 #if MCDBGQ_TRACKMEM
           newBlock->owner = this;
 #endif
+// 调用ConcurrentQueue::Block的模板函数set_all_empty<explicit_context>()来设置新块所有相关内容为空（具体功能取决于该模板函数的实现）
           newBlock->ConcurrentQueue::Block::template set_all_empty<explicit_context>();
           if (this->tailBlock == nullptr) {
             newBlock->next = newBlock;
           }
+// 如果尾块不为空，将新块插入到尾块后面，更新链表指针关系
           else {
             newBlock->next = this->tailBlock->next;
             this->tailBlock->next = newBlock;
           }
+// 更新尾块指针，使其指向新插入的块
           this->tailBlock = newBlock;
           firstAllocatedBlock = firstAllocatedBlock == nullptr ? this->tailBlock : firstAllocatedBlock;
-
+// 已使用的块索引槽数量加1
           ++pr_blockIndexSlotsUsed;
 
           auto& entry = blockIndex.load(std::memory_order_relaxed)->entries[pr_blockIndexFront];
+// 设置该元素的起始索引（base）为当前尾索引（currentTailIndex）
           entry.base = currentTailIndex;
+// 设置该元素对应的块为当前尾块（this->tailBlock）
           entry.block = this->tailBlock;
+// 更新前面使用的块索引槽位置，通过循环计数的方式（按位与操作保证在一定范围内循环）
           pr_blockIndexFront = (pr_blockIndexFront + 1) & (pr_blockIndexSize - 1);
         }
 
@@ -2140,9 +2183,11 @@ private:
         auto block = firstAllocatedBlock;
         while (true) {
           block->ConcurrentQueue::Block::template reset_empty<explicit_context>();
+// 如果当前块就是尾块，说明遍历完所有需要处理的块了，跳出循环
           if (block == this->tailBlock) {
             break;
           }
+// 移动到下一个块继续处理
           block = block->next;
         }
 
@@ -2156,11 +2201,13 @@ private:
       currentTailIndex = startTailIndex;
       auto endBlock = this->tailBlock;
       this->tailBlock = startBlock;
+// 断言一些条件，比如起始尾索引按位与块大小减1的结果不为0或者第一个已分配块不为空或者入队数量为0，用于保证数据的合理性
       assert((startTailIndex & static_cast<index_t>(BLOCK_SIZE - 1)) != 0 || firstAllocatedBlock != nullptr || count == 0);
       if ((startTailIndex & static_cast<index_t>(BLOCK_SIZE - 1)) == 0 && firstAllocatedBlock != nullptr) {
         this->tailBlock = firstAllocatedBlock;
       }
       while (true) {
+// 计算当前块的结束索引（按位与操作结合块大小计算）
         auto stopIndex = (currentTailIndex & ~static_cast<index_t>(BLOCK_SIZE - 1)) + static_cast<index_t>(BLOCK_SIZE);
         if (details::circular_less_than<index_t>(newTailIndex, stopIndex)) {
           stopIndex = newTailIndex;

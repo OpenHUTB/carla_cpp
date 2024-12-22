@@ -53,35 +53,50 @@ set S3_PREFIX=s3://carla-releases/Windows
 set LATEST_DEPLOY_URI=!S3_PREFIX!/Dev/CARLA_Latest.zip
 set LATEST_DEPLOY_URI2=!S3_PREFIX!/Dev/AdditionalMaps_Latest.zip
 
-rem Check for TAG version
+rem 检查TAG版本是否符合数字加点的格式（通常是版本号）
 echo %REPOSITORY_TAG% | findstr /R /C:"^[0-9]*\.[0-9]*\.[0-9]*.$" 1>nul
+
+rem 如果上一条命令成功执行（即找到了匹配的TAG），则%errorlevel%为0
 if %errorlevel% == 0 (
-  echo Detected release version with tag %REPOSITORY_TAG%
-  set DEPLOY_NAME=CARLA_%REPOSITORY_TAG%.zip
-  set DEPLOY_NAME2=AdditionalMaps_%REPOSITORY_TAG%.zip
+    rem 打印出检测到发布版本的信息
+    echo Detected release version with tag %REPOSITORY_TAG%
+    
+    rem 设置发布包和附加地图包的名字
+    set DEPLOY_NAME=CARLA_%REPOSITORY_TAG%.zip
+    set DEPLOY_NAME2=AdditionalMaps_%REPOSITORY_TAG%.zip
 ) else (
-  echo Detected non-release version with tag %REPOSITORY_TAG%
-  set S3_PREFIX=!S3_PREFIX!/Dev
-  git log --pretty=format:%%cd_%%h --date=format:%%Y%%m%%d -n 1 > tempo1234
-  set /p DEPLOY_NAME= < tempo1234
-  del tempo1234
-  set DEPLOY_NAME=!DEPLOY_NAME!.zip
-  echo deploy name = !DEPLOY_NAME!
-  
-  git log --pretty=format:%%h -n 1 > tempo1234
-  set /p DEPLOY_NAME2= < tempo1234
-  del tempo1234
-  set DEPLOY_NAME2=AdditionalMaps_!DEPLOY_NAME2!.zip
-  echo deploy name2 = !DEPLOY_NAME2!
+    rem 如果没有找到匹配的TAG，则打印出检测到非发布版本的信息
+    echo Detected non-release version with tag %REPOSITORY_TAG%
+    
+    rem 设置S3前缀为开发版本路径
+    set S3_PREFIX=!S3_PREFIX!/Dev
+    
+    rem 获取最近的提交日期和哈希值，并设置部署包的名字
+    git log --pretty=format:%%cd_%%h --date=format:%%Y%%m%%d -n 1 > tempo1234
+    set /p DEPLOY_NAME= < tempo1234
+    del tempo1234
+    set DEPLOY_NAME=!DEPLOY_NAME!.zip
+    echo deploy name = !DEPLOY_NAME!
+    
+    rem 获取最近的提交哈希值，并设置附加地图包的名字
+    git log --pretty=format:%%h -n 1 > tempo1234
+    set /p DEPLOY_NAME2= < tempo1234
+    del tempo1234
+    set DEPLOY_NAME2=AdditionalMaps_!DEPLOY_NAME2!.zip
+    echo deploy name2 = !DEPLOY_NAME2!
 )
+
+rem 打印出检测到的版本标签
 echo Version detected: %REPOSITORY_TAG%
+
+rem 打印出将要使用的包名
 echo Using package %PACKAGE% as %DEPLOY_NAME%
 
+rem 检查包路径是否存在，如果不存在则跳转到错误处理标签（该标签在代码段外定义）
 if not exist "%PACKAGE_PATH%" (
-  echo Latest package not found, please run 'make package'
-  goto :bad_exit
+    echo Latest package not found, please run 'make package'
+    goto :bad_exit
 )
-
 rem ==============================================================================
 rem -- Upload --------------------------------------------------------------------
 rem ==============================================================================

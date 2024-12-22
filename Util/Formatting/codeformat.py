@@ -157,9 +157,9 @@ class CodeFormatterClang(CodeFormatter):#这是一个名为CodeFormatterClang的
         self.scriptPath = os.path.dirname(os.path.abspath(__file__))#
         self.checkedInClangFormatFile = os.path.join(self.scriptPath, CodeFormatterClang.CHECKED_IN_CLANG_FORMAT_FILE)
 
-    def verifyFormatterVersion(self):
-        CodeFormatter.verifyFormatterVersion(self)
-        self.verifyClangFormatFileExistsAndMatchesCheckedIn()
+    def verifyFormatterVersion(self):# 定义一个方法，用于验证格式化工具的版本
+        CodeFormatter.verifyFormatterVersion(self)# 调用父类或基类的 verifyFormatterVersion 方法
+        self.verifyClangFormatFileExistsAndMatchesCheckedIn()# 调用自身的另一个方法，用于验证 Clang 格式化文件是否存在并且与预期的一致
 
     def verifyCheckedInClangFormatFileExists(self):
         if os.path.exists(self.checkedInClangFormatFile):
@@ -518,24 +518,36 @@ class CodeFormatterManager:  # 假设这个类名是根据上下文推断的，�
         return False
 #尝试刷新Git索引，忽略子模块
     def gitUpdateIndexRefresh(self, gitRepo):
-        try:
-            gitProcess = subprocess.Popen(["git", "update-index", "-q", "--ignore-submodules", "--refresh"],
-                                          stdin=subprocess.PIPE,
-                                          stdout=subprocess.PIPE,
-                                          stderr=subprocess.PIPE,
-                                          cwd=gitRepo)
-            _, _ = gitProcess.communicate()
-            if gitProcess.returncode == 0:
-                return True
-        except OSError:
-            cprint("[ERROR] Failed to run 'git update-index -q --ignore-submodules --refresh' for " + gitRepo, "red")
-        return False
+    # 尝试执行 git update-index 命令来刷新索引
+    try:
+        # 在指定的 gitRepo 目录下执行 git update-index 命令
+        gitProcess = subprocess.Popen(
+            ["git", "update-index", "-q", "--ignore-submodules", "--refresh"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            cwd=gitRepo
+        )
+        # 等待进程完成并获取输出（此处忽略输出）
+        _, _ = gitProcess.communicate()
+        # 如果进程返回码为 0，表示成功
+        if gitProcess.returncode == 0:
+            return True
+    # 如果发生 OSError 异常（例如 Git 不可用）
+    except OSError:
+        # 打印错误信息
+        cprint("[ERROR] Failed to run 'git update-index -q --ignore-submodules --refresh' for " + gitRepo, "red")
+    # 如果以上步骤失败，返回 False
+    return False
 
-    def verifyFormatterVersion(self):
-        for formatterInstance in self.codeFormatterInstances:
-            if len(formatterInstance.inputFiles) > 0:
-                formatterInstance.verifyFormatterVersion()
-
+def verifyFormatterVersion(self):
+    # 遍历 codeFormatterInstances 列表
+    for formatterInstance in self.codeFormatterInstances:
+        # 如果 formatterInstance 的 inputFiles 列表不为空
+        if len(formatterInstance.inputFiles) > 0:
+            # 调用 formatterInstance 的 verifyFormatterVersion 方法
+            formatterInstance.verifyFormatterVersion()
+            
     def printMode(self):#这个函数的目的是根据self.args.verify的值来打印不同的模式。
         if self.args.verify:
             cprint("VERIFY MODE", attrs=["bold"])

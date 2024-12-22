@@ -95,13 +95,18 @@ while True:
     #将响应数据解析为JSON格式
     issues = response.json()
     if not issues:
+        #跳出循环
         break
 
+    #遍历所有问题
     for issue in issues:
         if 'pull_request' in issue:
+            #跳过当前循环，继续下一个问题的处理
             continue
 
+        #获取问题的用户登陆名
         user = issue['user']['login']
+        #更新用户提出问题的计数
         issue_counts[user] = issue_counts.get(user, 0) + 1
 
         comments_url = issue['comments_url']

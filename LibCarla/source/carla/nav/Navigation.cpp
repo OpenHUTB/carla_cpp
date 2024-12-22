@@ -69,22 +69,28 @@ namespace nav {
   // 参考模拟器访问API函数
   void Navigation::SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator)
   {
+     // 将传入的模拟器对象的弱引用赋值给成员变量_simulator
+  // 使用弱引用可以避免循环引用问题，从而防止内存泄漏
     _simulator = simulator;
+     // 将模拟器的弱引用传递给步行者管理器，以便步行者管理器可以与模拟器进行交互
     _walker_manager.SetSimulator(simulator);
   }
 
   // 设置要使用的随机数种子
   void Navigation::SetSeed(unsigned int seed) {
+      // 使用传入的种子值初始化随机数生成器
     srand(seed);
   }
 
   // 加载导航数据
   bool Navigation::Load(const std::string &filename) {
-    std::ifstream f;
-    std::istream_iterator<uint8_t> start(f), end;
+    std::ifstream f; // 创建一个输入文件流对象
+    std::istream_iterator<uint8_t> start(f), end; // 创建两个迭代器，用于读取文件内容
 
     // 读取整个文件
+    // 以二进制模式打开文件
     f.open(filename, std::ios::binary);
+     // 如果文件打开失败，则返回false
     if (!f.is_open()) {
       return false;
     }
@@ -97,8 +103,10 @@ namespace nav {
 
   // 从内存中加载导航数据
   bool Navigation::Load(std::vector<uint8_t> content) {
+     // 定义导航网格集合的魔术数和版本号
     const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; // 'MSET';
     const int NAVMESHSET_VERSION = 1;
+     // 使用#pragma pack(push, 1)来取消结构体成员的对齐，确保结构体大小与二进制数据匹配
 #pragma pack(push, 1)
 
     // 导航网格集合头的结构体
@@ -106,13 +114,14 @@ namespace nav {
       int magic;       // 魔术
       int version;     // 版本
       int num_tiles;   // 瓦片数
-      dtNavMeshParams params;
+      dtNavMeshParams params; // 导航网格参数，定义了导航网格的一些属性
     } header;
     // 导航网格瓦片头的结构体
     struct NavMeshTileHeader {
-      dtTileRef tile_ref;
+      dtTileRef tile_ref;  // 瓦片引用，用于在导航网格中唯一标识一个瓦片
       int data_size;        // 数据大小
     };
+    // 恢复默认的结构体对齐方式
 #pragma pack(pop)
 
     // 检查 导航网格集合头的结构体大小
@@ -123,21 +132,24 @@ namespace nav {
     }
 
     // 读取文件的头
-    unsigned long pos = 0;
-    memcpy(&header, &content[pos], sizeof(header));
-    pos += sizeof(header);
+    unsigned long pos = 0;// 定义当前读取位置
+    memcpy(&header, &content[pos], sizeof(header)); // 使用memcpy复制头数据到结构体
+    pos += sizeof(header);// 更新读取位置
 
     // 检查文件的魔术和版本
     if (header.magic != NAVMESHSET_MAGIC || header.version != NAVMESHSET_VERSION) {
+     // 如果文件的魔术数字或版本不匹配，则函数返回false
       return false;
     }
 
     // 分配导航网格对象的内存
     dtNavMesh *mesh = dtAllocNavMesh();
     if (!mesh) {
+      // 如果内存分配失败，则函数返回false
       return false;
     }
 
+    // 使用文件的头信息中的参数初始化导航网格
     // 设置瓦片的数目和原点
     dtStatus status = mesh->init(&header.params);
     if (dtStatusFailed(status)) {
@@ -152,18 +164,21 @@ namespace nav {
       memcpy(&tile_header, &content[pos], sizeof(tile_header));
       pos += sizeof(tile_header);
       if (pos >= content.size()) {
+          // 如果读取瓦片头后位置超出内容大小，释放网格并返回false
         dtFreeNavMesh(mesh);
         return false;
       }
 
       // 检查瓦片的有效性
       if (!tile_header.tile_ref || !tile_header.data_size) {
+         // 如果瓦片无效，跳出循环
         break;
       }
 
       // 分配缓冲区内存
       char *data = static_cast<char *>(dtAlloc(static_cast<size_t>(tile_header.data_size), DT_ALLOC_PERM));
       if (!data) {
+         // 如果内存分配失败，跳出循环
         break;
       }
 
@@ -171,6 +186,7 @@ namespace nav {
       memcpy(data, &content[pos], static_cast<size_t>(tile_header.data_size));
       pos += static_cast<unsigned long>(tile_header.data_size);
       if (pos > content.size()) {
+         // 如果读取瓦片数据后位置超出内容大小，释放数据和网格并返回false
         dtFree(data);
         dtFreeNavMesh(mesh);
         return false;
@@ -192,14 +208,15 @@ namespace nav {
 
     // 拷贝
     _binary_mesh = std::move(content);
-    _ready = true;
+    _ready = true; // 标记为准备就绪
 
     // 创建并初始化人群管理器
     CreateCrowd();
 
-    return true;
+    return true;// 表示成功加载和初始化导航网格
   }
 
+// 创建并初始化人群管理器
   void Navigation::CreateCrowd(void) {
 
     // 检查是否一切就绪
@@ -207,13 +224,14 @@ namespace nav {
       return;
     }
 
-    DEBUG_ASSERT(_crowd == nullptr);
+    DEBUG_ASSERT(_crowd == nullptr);// 断言_crowd成员变量为nullptr，确保未重复初始化
 
     // 创建并初始化
     _crowd = dtAllocCrowd();
     // 这些半径应该是车辆的最大尺寸 (CarlaCola for Carla)
     const float max_agent_radius = AGENT_RADIUS * 20;
     if (!_crowd->init(MAX_AGENTS, max_agent_radius, _nav_mesh)) {
+       // 如果初始化失败，记录日志并返回
       logging::log("Nav: failed to create crowd");
       return;
     }

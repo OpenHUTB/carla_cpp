@@ -3,45 +3,61 @@ Welcome to CARLA Simulator!
 
 This Makefile will help you building the different CARLA utilities.
 
+// 以下是对可以使用的各个命令的详细说明，每个命令对应着特定的功能，用于构建、操作或管理 CARLA 相关的项目内容。
+
 Use the following commands:
 
     help:
 
+        // 帮助命令，用于显示当前这段帮助消息，方便使用者了解各个命令的功能及用法。
         Display this help message.
 
     launch:
 
+        // 该命令会先编译 CarlaUE4 项目，然后在 Unreal Engine（虚幻引擎）的编辑器中启动它，涉及到完整的编译及启动流程。
         Compile CarlaUE4 project and launch it in Unreal Engine's Editor.
 
     launch-only:
 
+        // 此命令仅在 Unreal Engine 的编辑器中启动 CarlaUE4 项目，跳过编译构建这一步骤。
+        // 前提是假设该项目已经提前构建完成了，适用于项目已构建好只需启动查看的情况。
         Launch CarlaUE4 project in Unreal Engine's Editor, but skip building
         step (assume the project is already built).
 
     import:
 
+        // 用于将位于 "carla/Import" 目录下的地图和资源直接导入到 Unreal 引擎中，
+        // 导入后这些资源就可以准备进行导出等后续操作了，方便在项目中使用相关资源。
         Import maps and assets that are located in "carla/Import" directly to Unreal,
         so they will be ready to export.
 
     package:
 
+        // 生成一个可供分发的 CARLA 打包版本。
+        // 当配合参数 ARGS="--package=PackageNames" 使用时，会创建特定的资产包，可按需定制打包内容。
         Makes a packaged version of CARLA ready for distribution. Used with
         ARGS="--package=PackageNames" will create specific asset packages.
 
     docs:
 
+        // 用于构建 CARLA 的 Doxygen 文档，方便生成项目相关的文档资料，便于查阅和了解项目代码结构等信息。
         Build CARLA Doxygen documentation.
 
     clean:
 
+        // 清除中间构建文件，这些文件通常是在项目构建过程中生成的临时文件，清理后可以节省磁盘空间等。
         Remove intermediate build files.
 
     rebuild:
 
+        // 先移除中间构建文件，然后重新构建整个项目，相当于进行一次完整的“清理 + 重新构建”操作。
         Remove intermediate build files and rebuild the whole project.
 
     hard-clean:
 
+        // 移除中间构建文件，并强制重新编译 Unreal Engine 的预编译头文件。
+        // 这种操作在修复类似“version.h has been modified since the precompiled header”这类错误时很有用。
+        // 不过需要注意的是，重新编译预编译头文件可能会花费较长时间。
         Remove intermediate build files and force a recompilation of Unreal
         Engine's pre-compiled headers. Useful for fixing "version.h has been
         modified since the precompiled header" errors. Beware, recompilation
@@ -51,53 +67,68 @@ Use the following commands:
 There are also some lower level commands for building individual modules helpful
 for developers:
 
+    // 以下是一些更偏向底层的、用于构建单个模块的命令，对开发人员在特定模块开发和调试时比较有帮助。
+
     check:
 
+        // 运行 LibCarla 和 PythonAPI 的单元测试套件，用于对这两个重要模块进行测试，确保功能的正确性。
         Run unit test suites for LibCarla and PythonAPI.
 
     check.LibCarla(.debug|.release):
 
+        // 仅针对 LibCarla 运行单元测试套件，并且可以通过指定.debug 或.release 后缀来选择是在调试模式还是发布模式下进行测试。
         Run unit test suites for LibCarla only.
 
     check.PythonAPI(.2|.3):
 
+        // 只针对 PythonAPI 运行单元测试套件，同时可通过.2 或.3 后缀来指定是针对 Python 2 还是 Python 3 版本对应的 PythonAPI 进行测试。
         Run unit test suites for PythonAPI only.
 
     benchmark:
 
+        // 运行 LibCarla 的基准测试，用于评估 LibCarla 模块的性能表现等情况。
         Run the benchmark tests for LibCarla.
 
     (run-)examples:
 
+        // 构建（并运行，如果是 run-examples 的话）C++ 客户端的示例代码，方便开发者参考示例了解客户端相关功能实现和使用方式。
         Build (and run) the C++ client examples.
 
     CarlaUE4Editor:
 
+        // 构建 CarlaUE4 项目，但不会启动编辑器，只完成构建任务，适用于仅需更新项目构建而不需要立即查看运行效果的场景。
         Build CarlaUE4 project, but do not launch the editor.
 
     PythonAPI(.2|.3):
 
+        // 针对 Python 2 和/或 Python 3 构建并打包 Python API 模块，可根据需要选择对应的 Python 版本进行操作。
         Build and package the Python API module for Python 2 and/or 3.
 
     LibCarla(.server|.client)(.debug|.release):
 
+        // 构建 LibCarla 模块，并且可以通过.server、.client 后缀来指定是构建服务器端还是客户端配置，
+        // 还能通过.debug 或.release 后缀选择是在调试模式还是发布模式下进行构建。
         Build LibCarla, "Server" and/or "Client" configurations.
 
-    clean.(LibCarla|PythonAPI|CarlaUE4Editor)
+    clean.(LibCarla|PythonAPI|CarlaUE4Editor):
 
+        // 移除特定模块（LibCarla、PythonAPI 或 CarlaUE4Editor）的中间构建文件，实现对单个模块构建文件的清理操作。
         Remove intermediate build files for the specific module.
 
     setup:
 
+        // 仅运行项目的设置步骤，可能涉及到一些初始化配置、环境搭建等相关操作，具体取决于项目的设置脚本内容。
         Run the setup step only.
 
     deploy:
 
+        // 上传每日构建版本，可能用于将项目的特定构建版本发布到某个服务器等目标位置，便于共享或持续集成等用途。
         Upload nightly build.
 
     pretty:
 
+        // 对代码文件进行美化操作。
+        // 对于 C++ 文件会运行 uncrustify 工具进行美化，对于 Python 文件则使用 AutoPEP8 工具进行美化。
+        // 如果要美化单个文件，可以使用：make pretty ARGS=-f/path/to/file 这样的命令格式指定具体文件路径。
         Prettify code files. Run uncrustify on C++ files or AutoPEP8 on Python
         files. To prettify a single file, use: make pretty ARGS=-f/path/to/file.
-
-

@@ -10,15 +10,15 @@
 #include "UnrealString.h"
 #include "CarlaRecorderHelpers.h"
 
-// create a temporal buffer to convert from and to FString and bytes
+// 创建一个临时缓冲区，用于在 FString 和字节数组 (bytes) 之间转换
 static std::vector<uint8_t> CarlaRecorderHelperBuffer;
 
-// get the final path + filename
+// 获取最终的路径和文件名
 std::string GetRecorderFilename(std::string Filename)
 {
   std::string Filename2;
 
-  // check if a relative path was specified
+  // 检查是否指定了相对路径
   if (Filename.find("\\") != std::string::npos || Filename.find("/") != std::string::npos || Filename.find(":") != std::string::npos)
     Filename2 = Filename;
   else
@@ -34,7 +34,7 @@ std::string GetRecorderFilename(std::string Filename)
 // write
 // ------
 
-// write binary data from FVector
+// 将FVector中的二进制数据写出
 void WriteFVector(std::ostream &OutFile, const FVector &InObj)
 {
   WriteValue<float>(OutFile, InObj.X);
@@ -42,17 +42,17 @@ void WriteFVector(std::ostream &OutFile, const FVector &InObj)
   WriteValue<float>(OutFile, InObj.Z);
 }
 
-// write binary data from FTransform
+// 将FTransform中的二进制数据写出
 void WriteFTransform(std::ofstream &OutFile, const FTransform &InObj)
 {
   WriteFVector(OutFile, InObj.GetTranslation());
   WriteFVector(OutFile, InObj.GetRotation().Euler());
 }
 
-// write binary data from FString (length + text)
+// 将FString中的二进制数据写出（包括长度和文本内容）
 void WriteFString(std::ostream &OutFile, const FString &InObj)
 {
-  // encode the string to UTF8 to know the final length
+  // 将字符串编码为UTF-8以获知最终长度
   FTCHARToUTF8 EncodedString(*InObj);
   int16_t Length = EncodedString.Length();
   // write
@@ -64,7 +64,7 @@ void WriteFString(std::ostream &OutFile, const FString &InObj)
 // read
 // -----
 
-// read binary data to FVector
+// 从二进制数据中读取到 FVector
 void ReadFVector(std::istream &InFile, FVector &OutObj)
 {
   ReadValue<float>(InFile, OutObj.X);
@@ -72,7 +72,7 @@ void ReadFVector(std::istream &InFile, FVector &OutObj)
   ReadValue<float>(InFile, OutObj.Z);
 }
 
-// read binary data to FTransform
+// 从二进制数据中读取到 FVector
 void ReadFTransform(std::ifstream &InFile, FTransform &OutObj)
 {
   FVector Vec;
@@ -82,21 +82,21 @@ void ReadFTransform(std::ifstream &InFile, FTransform &OutObj)
   OutObj.GetRotation().MakeFromEuler(Vec);
 }
 
-// read binary data to FString (length + text)
+// 将FString中的二进制数据写出（包括长度和文本内容）
 void ReadFString(std::istream &InFile, FString &OutObj)
 {
   uint16_t Length;
   ReadValue<uint16_t>(InFile, Length);
-  // make room in vector buffer
+  // 在向量缓冲区中腾出空间
   if (CarlaRecorderHelperBuffer.capacity() < Length + 1)
   {
     CarlaRecorderHelperBuffer.reserve(Length + 1);
   }
   CarlaRecorderHelperBuffer.clear();
-  // initialize the vector space with 0
+  // 将向量空间初始化为0
   CarlaRecorderHelperBuffer.resize(Length + 1);
-  // read
+  // 读取
   InFile.read(reinterpret_cast<char *>(CarlaRecorderHelperBuffer.data()), Length);
-  // convert from UTF8 to FString
+  // 将UTF-8编码的字符串转换为FString
   OutObj = FString(UTF8_TO_TCHAR(CarlaRecorderHelperBuffer.data()));
 }
