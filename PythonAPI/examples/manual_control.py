@@ -142,7 +142,114 @@ try:
     import numpy as np
 except ImportError:
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
+# ==============================================================================
+# -- find carla module ---------------------------------------------------------
+# ==============================================================================
+# 这部分代码的功能注释开始，以下代码块主要用于查找CARLA模块，并将其添加到Python的系统路径中，以便后续能够正确导入和使用CARLA相关的功能。
 
+import glob
+import os
+import sys
+
+try:
+    # 尝试将CARLA模块所在的路径添加到系统路径 `sys.path` 中。
+    # 这里通过 `glob.glob` 函数查找符合特定格式的CARLA模块文件（以 `.egg` 格式结尾，文件名包含Python版本号和操作系统相关信息）。
+    # 根据当前Python版本（`sys.version_info.major` 和 `sys.version_info.minor` 分别表示主版本号和次版本号）以及操作系统类型（通过 `os.name` 判断，`nt` 表示Windows，`linux-x86_64` 表示Linux 64位系统）来构建文件名的匹配模式。
+    sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
+        sys.version_info.major,
+        sys.version_info.minor,
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+except IndexError:
+    # 如果没有找到匹配的CARLA模块文件（即 `glob.glob` 返回的列表为空，访问索引 `[0]` 会引发 `IndexError`），则忽略这个错误，继续执行后续代码（可能导致后续导入CARLA相关模块失败，但至少程序不会因为这个异常而直接崩溃）。
+    pass
+
+
+# ==============================================================================
+# -- imports -------------------------------------------------------------------
+# ==============================================================================
+# 这部分代码的功能注释开始，以下代码块主要进行各种模块的导入操作，导入的模块将在后续代码中用于实现不同的功能，比如与CARLA模拟环境交互、处理图形界面、进行数学计算以及数据处理等。
+
+import carla
+# 导入CARLA模块，这是整个代码与CARLA模拟器进行交互的基础，通过这个模块可以访问CARLA提供的各种类、函数等来操作模拟场景、车辆、传感器等对象。
+
+from carla import ColorConverter as cc
+# 从CARLA模块中单独导入 `ColorConverter` 并将其重命名为 `cc`，方便后续在代码中使用这个类来进行颜色相关的转换操作（比如在处理图像传感器数据时可能会用到）。
+
+import argparse
+# 导入 `argparse` 模块，用于方便地解析命令行参数，使得程序可以通过命令行传入不同的配置选项来改变其运行行为。
+
+import collections
+# 导入 `collections` 模块，它提供了一些额外的容器数据类型，例如 `namedtuple`、`deque` 等，可用于更灵活地组织和处理数据。
+
+import datetime
+# 导入 `datetime` 模块，用于处理日期和时间相关的操作，可能在记录日志、时间戳相关功能中会用到。
+
+import logging
+# 导入 `logging` 模块，用于实现日志记录功能，方便在程序运行过程中记录各种信息、警告以及错误等情况，便于调试和查看程序的运行状态。
+
+import math
+# 导入 `math` 模块，提供了各种数学函数和常量，在涉及到数学计算（比如车辆运动的角度、距离计算等）时会用到这些功能。
+
+import random
+# 导入 `random` 模块，用于生成随机数，可能在模拟随机行为（如车辆的随机初始位置、随机事件触发等）时会使用到。
+
+import re
+# 导入 `re` 模块，即正则表达式模块，用于处理文本的匹配、查找、替换等操作，在解析某些文本格式的数据或者进行字符串验证时可能会用到。
+
+import weakref
+# 导入 `weakref` 模块，用于创建弱引用，弱引用可以在不增加对象引用计数的情况下引用对象，避免出现循环引用导致内存无法释放的问题，常用于一些需要管理对象生命周期的场景。
+
+try:
+    import pygame
+    from pygame.locals import KMOD_CTRL
+    from pygame.locals import KMOD_SHIFT
+    from pygame.locals import K_0
+    from pygame.locals import K_9
+    from pygame.locals import K_BACKQUOTE
+    from pygame.locals import K_BACKSPACE
+    from pygame.locals import K_COMMA
+    from pygame.locals import K_DOWN
+    from pygame.locals import K_ESCAPE
+    from pygame.locals import K_F1
+    from pygame.locals import K_LEFT
+    from pygame.locals import K_PERIOD
+    from pygame.locals import K_RIGHT
+    from pygame.locals import K_SLASH
+    from pygame.locals import K_SPACE
+    from pygame.locals import K_TAB
+    from pygame.locals import K_UP
+    from pygame.locals import K_a
+    from pygame.locals import K_b
+    from pygame.locals import K_c
+    from pygame.locals import K_d
+    from pygame.locals import K_f
+    from pygame.locals import K_g
+    from pygame.locals import K_h
+    from pygame.locals import K_i
+    from pygame.locals import K_l
+    from pygame.locals import K_m
+    from pygame.locals import K_n
+    from pygame.locals import K_o
+    from pygame.locals import K_p
+    from pygame.locals import K_q
+    from pygame.locals import K_r
+    from pygame.locals import K_s
+    from pygame.locals import K_t
+    from pygame.locals import K_v
+    from pygame.locals import K_w
+    from pygame.locals import K_x
+    from pygame.locals import K_z
+    from pygame.locals import K_MINUS
+    from pygame.locals import K_EQUALS
+except ImportError:
+    # 如果无法导入 `pygame` 模块或者其相关的本地常量（这些常量用于处理键盘按键事件等操作），则抛出运行时错误，提示用户确保 `pygame` 包已经安装，因为后续代码可能依赖 `pygame` 来实现图形界面交互以及键盘控制等功能。
+    raise RuntimeError('cannot import pygame, make sure pygame package is installed')
+
+try:
+    import numpy as np
+except ImportError:
+    # 如果无法导入 `numpy` 模块，同样抛出运行时错误，提示用户确保 `numpy` 包已经安装，因为 `numpy` 在处理数值计算、数组操作等方面（比如处理传感器获取的图像数据、点云数据等可能会用到数组形式的数据）在代码中可能会起到重要作用。
+    raise RuntimeError('cannot import numpy, make sure numpy package is installed')
 
 # ==============================================================================
 # -- Global functions ----------------------------------------------------------
