@@ -10,12 +10,13 @@ elseif (CMAKE_BUILD_TYPE STREQUAL "Server")
   set(carla_config server)
 endif ()
 # 是否构建责任敏感安全库
+# 根据是否构建责任敏感全库设置后缀变量
 if (BUILD_RSS_VARIANT)
   set(carla_target_postfix "_rss")
 else()
   set(carla_target_postfix "")
 endif()
-
+这里根据  BUILD_RSS_VARIANT  变量来决定  carla_target_postfix  的值。如果  BUILD_RSS_VARIANT  为真（比如定义了该变量等情况）， carla_target_postfix  就设置为“_rss”，否则设为空字符串，这个后缀变量可能后续会用于生成目标文件等地方，比如给目标名称添加不同的后缀来区分不同构建情况。
 # 需要添加到链接库搜索路径的目录：
 # 远程过程调用(Remote Procedure Call, RPC)、Google Test 库
 link_directories(
