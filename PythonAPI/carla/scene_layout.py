@@ -313,7 +313,7 @@ def get_dynamic_objects(carla_world, carla_map):
                 "position": [location_gnss.latitude, location_gnss.longitude, location_gnss.altitude]
             }
             static_obstacles_dict[static_prop.id] = sl_dict
-        return static_obstacles_dict
+        return static_obstacles_dic
 #从一个更大的actors列表中分离出不类型的actors
     actors = carla_world.get_actors()
     vehicles, traffic_lights, speed_limits, walkers, stops, static_obstacles = _split_actors(actors)
