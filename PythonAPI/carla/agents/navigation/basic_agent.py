@@ -453,12 +453,13 @@ class BasicAgent:
 
         # Get the route bounding box
         route_polygon = get_route_polygon()
-
+#循环遍历车辆列表
         for target_vehicle in vehicle_list:
             if target_vehicle.id == self._vehicle.id:
                 continue
-
+#获取目标车辆的位置信息
             target_transform = target_vehicle.get_transform()
+            #距离检查
             if target_transform.location.distance(ego_location) > max_distance:
                 continue
 
