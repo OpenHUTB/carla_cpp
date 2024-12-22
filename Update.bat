@@ -116,3 +116,4 @@ goto success
     endlocal
     rem 以当前的错误返回码（errorlevel）退出批处理程序，表示程序执行出现错误
     exit /b %errorlevel%
+#结束当前批处理脚本（或命令块）的执行，并将当前的 %errorlevel% 的值作为退出码返回给调用它的父进程
