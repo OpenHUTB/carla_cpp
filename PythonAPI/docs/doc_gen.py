@@ -327,17 +327,17 @@ def append_code_snipets(md):
     snipets.close()
     os.remove(snipets_path)
 
-
+#该函数接受一个包含方法信息的字典
 def gen_stub_method_def(method):
     """Return python def as it should be written in stub files"""
-    param = ''
+    param = '' #初始化参数字符串param 
     method_name = method['def_name']
     for p in method['params']:
         p_type = join([': ', str(p['type'])]) if 'type' in p else ''
         default = join([' = ', str(p['default'])]) if 'default' in p else ''
         param = join([param, p['param_name'], p_type, default, ', '])
-    param = param[:-2]  # delete the last ', '
-    return_type = join([' -> ', method['return']]) if 'return' in method else ''
+    param = param[:-2]  # delete the last ', ' #删除param字符串末尾的逗号
+    return_type = join([' -> ', method['return']]) if 'return' in method else '' #如果方法有返回类型，则构建返回类型的字符串
     return join([method_name, parentheses(param), return_type])
 
 
@@ -345,8 +345,9 @@ def gen_doc_method_def(method, class_key, is_indx=False, with_self=True):
     """Return python def as it should be written in docs"""
     param = ''
     snipet_link = ''
-    method_name = method['def_name']
+    method_name = method['def_name'] #从method字典中提取方法名method_name
     full_method_name = method_name
+    #如果方法是静态的，则设置with_self为False
     if valid_dic_val(method, 'static'):
         with_self = False
 
