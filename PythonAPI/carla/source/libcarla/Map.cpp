@@ -124,6 +124,7 @@ void export_map() {
 // 每个枚举值对应不同的车道类型，例如None、Driving等
 // 在Python3中None是保留字，这里有相应的特殊处理
 enum_<cr::Lane::LaneType>("LaneType")
+  // 定义每个枚举值与其对应的名称
    .value("NONE", cr::Lane::LaneType::None) // None is reserved in Python3
    .value("Driving", cr::Lane::LaneType::Driving)
    .value("Stop", cr::Lane::LaneType::Stop)

@@ -20,8 +20,11 @@
 
 namespace carla {
 namespace rss {
+// 重载输出流运算符，用于打印 RssRestrictor 对象的信息
 
 std::ostream &operator<<(std::ostream &out, const RssRestrictor &) {
+    // 向输出流中写入表示 RssRestrictor 对象的字符串 "RssRestrictor()"
+
   out << "RssRestrictor()";
   return out;
 }

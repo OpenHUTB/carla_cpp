@@ -270,6 +270,8 @@ void export_commands() {
    .def("__init__", &command_impl::CustomInit<ActorPtr, bool, uint16_t>, (arg("actor"), arg("enabled"), arg("tm_port") = TM_DEFAULT_PORT ))
    .def(init<cr::ActorId, bool, uint16_t>((arg("actor_id"), arg("enabled"), arg("tm_port") = TM_DEFAULT_PORT )))
     // 定义可读写的成员变量
+    // 通过 Boost.Python 将 C++ 类成员暴露到 Python 中，使 Python 脚本能够直接访问和修改这些成员变量
+
    .def_readwrite("actor_id", &cr::Command::SetAutopilot::actor)
    .def_readwrite("tm_port", &cr::Command::SetAutopilot::tm_port)
    .def_readwrite("enabled", &cr::Command::SetAutopilot::enabled)
