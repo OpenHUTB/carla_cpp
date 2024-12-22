@@ -1473,25 +1473,51 @@ class LaneInvasionSensor(object):
 
 class GnssSensor(object):
     def __init__(self, parent_actor):
+        """
+        类的构造函数，用于初始化 `GnssSensor` 实例的相关属性，创建并配置全球导航卫星系统（GNSS）传感器，使其能够监听相关定位事件以获取经纬度信息。
+
+        参数说明：
+        - `parent_actor`：代表父级角色的对象，通常是车辆或者其他需要获取定位信息的实体，GNSS 传感器会附着在这个对象上，用于获取该对象所在位置的经纬度数据。
+        """
         self.sensor = None
         self._parent = parent_actor
         self.lat = 0.0
         self.lon = 0.0
+        // 初始化实例的几个属性：
+        // - `self.sensor` 初始化为 `None`，后续会在这里存储创建好的 GNSS 传感器对象。
+        // - `self._parent` 存储传入的父级角色对象，方便后续获取相关世界信息以及将传感器关联到这个角色上。
+        // - `self.lat` 和 `self.lon` 分别初始化为 `0.0`，用于后续存储通过 GNSS 传感器获取到的纬度和经度信息，它们将实时更新以反映当前位置的经纬度情况。
+
         world = self._parent.get_world()
         bp = world.get_blueprint_library().find('sensor.other.gnss')
         self.sensor = world.spawn_actor(bp, carla.Transform(carla.Location(x=1.0, z=2.8)), attach_to=self._parent)
+        // 通过父级角色对象（`self._parent`）获取其所在的模拟世界对象（`get_world` 方法），然后在这个世界的蓝图库（`get_blueprint_library` 方法）中查找名为 `sensor.other.gnss` 的传感器蓝图，这个蓝图定义了 GNSS 传感器的基本属性和行为。
+        // 找到对应的传感器蓝图后，使用世界对象的 `spawn_actor` 方法创建实际的 GNSS 传感器对象。创建时指定了传感器的初始变换位置（通过 `carla.Transform(carla.Location(x=1.0, z=2.8))` 设置其在 `x` 轴方向偏移 `1.0` 单位，`z` 轴方向（通常可理解为高度方向）偏移 `2.8` 单位的位置），并且将其附着到父级角色（`attach_to=self._parent`）上，使得传感器与对应的角色关联起来，能够获取该角色所在位置的相关信息，最后将创建好的传感器对象赋值给 `self.sensor` 属性。
+
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda event: GnssSensor._on_gnss_event(weak_self, event))
+        // 为了避免循环引用（在 Python 中，对象间相互引用可能导致内存无法正常回收的问题），创建一个对当前实例（`self`）的弱引用（`weakref.ref(self)`），并将其赋值给 `weak_self` 变量。
+        // 接着让创建好的 GNSS 传感器（`self.sensor`）开始监听 GNSS 相关事件，通过调用 `listen` 方法并传入一个匿名函数（`lambda` 表达式）作为回调函数。当 GNSS 定位等相关事件发生时，这个匿名函数会被调用，它会把弱引用（`weak_self`）和事件对象（`event`）作为参数传递给类的静态方法 `_on_gnss_event`，由该静态方法来处理具体的获取并更新经纬度信息的逻辑。
 
     @staticmethod
     def _on_gnss_event(weak_self, event):
+        """
+        静态方法功能：作为 GNSS 事件的处理函数，当 GNSS 相关事件发生时被调用，用于更新实例中存储的纬度（`lat`）和经度（`lon`）信息，使其反映最新的定位数据。
+
+        参数说明：
+        - `weak_self`：一个对 `GnssSensor` 类实例的弱引用，通过它可以获取到实际的实例对象，同时避免了循环引用问题，在方法内部需要先将其解引用还原为实际的实例对象才能访问实例的属性和方法。
+        - `event`：一个包含 GNSS 事件详细信息的对象，这里主要关注其中的纬度（`latitude`）和经度（`longitude`）信息，用于提取数据并更新实例中对应的属性值。
+        """
         self = weak_self()
         if not self:
             return
+        // 通过弱引用（`weak_self`）获取实际的 `GnssSensor` 类实例对象，如果获取失败（即 `weak_self` 所引用的对象已经被垃圾回收了，返回 `None`），则直接返回，不执行后续更新经纬度信息的逻辑。
+
         self.lat = event.latitude
         self.lon = event.longitude
+        // 将事件对象（`event`）中的纬度信息（`latitude`）赋值给实例的 `self.lat` 属性，将经度信息（`longitude`）赋值给 `self.lon` 属性，这样实例中存储的经纬度值就会随着 GNSS 传感器获取到的最新定位数据而实时更新，从而可以在其他地方使用这些最新的经纬度信息来实现如地图显示、位置追踪等相关功能。
 
 
 # ==============================================================================
