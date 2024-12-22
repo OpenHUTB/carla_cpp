@@ -44,8 +44,13 @@ from matplotlib import cm
 
 # 确保已安装numpy
 try:
+    # 尝试执行以下导入语句，目的是导入Python的第三方库numpy，并使用别名np来方便后续在代码中引用numpy相关的功能。
+    # numpy是一个功能强大的用于数值计算的库，在很多科学计算、数据分析、机器学习等场景中都会用到。
     import numpy as np
 except ImportError:
+    # 如果在执行 `import numpy as np` 时出现了导入错误（例如numpy库没有安装，或者安装的版本存在问题等情况导致无法正确导入），
+    # 就会触发 `ImportError` 异常。当捕获到这个异常后，代码会执行下面的语句，主动抛出一个 `RuntimeError` 异常，并附带相应的错误提示信息。
+    # 这里提示用户“无法导入numpy，确保numpy包已经安装”，告知用户需要安装numpy库才能使后续代码正常运行，否则程序将因这个 `RuntimeError` 异常而中断执行。
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
 
 # 确保已安装PIL
