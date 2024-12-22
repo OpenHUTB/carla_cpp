@@ -5,24 +5,42 @@
             // 文件夹的路径
             "path":"..",
             // 要排除的文件模式列表
-            "file_exclude_patterns":[
-                "*.VC.db",
-                "*.VC.opendb",
-                "*.gdb_history",
-                "*.kdev4",
-                "*.pri",
-                "*.pro",
-                "*.py[cod]",
-                "*.sln",
-                "*.stackdump",
-                "*.sublime-workspace",
-                "*.uasset",
-                "*.umap",
-                "*.workspace",
-                "*CodeCompletionFolders.txt",
-                "*CodeLitePreProcessor.txt",
-                ".tags*",
-                "core"
+           "file_exclude_patterns":[
+    // 排除所有以".VC.db"结尾的文件，这类文件通常是 Visual C++ 相关项目生成的数据库文件，可能包含项目构建等过程中的一些临时数据，在很多情况下不需要纳入其他操作的关注范围。
+    "*.VC.db",
+    // 与".VC.db"类似，".VC.opendb"也是 Visual C++ 项目相关的数据库文件，同样予以排除，避免对其进行不必要的处理。
+    "*.VC.opendb",
+    // 排除所有以".gdb_history"结尾的文件，一般是 GNU 调试器（GDB）记录调试历史信息的文件，通常不需要参与常规的项目操作，比如编译、代码分析等。
+    "*.gdb_history",
+    // 排除所有以".kdev4"结尾的文件，可能是和 KDevelop 4 开发环境相关的特定文件，在其他通用场景下不需要考虑这些文件。
+    "*.kdev4",
+    // 排除所有以".pri"结尾的文件，这种文件扩展名常见于一些构建系统（比如 Qt 的项目构建相关文件格式中），在某些不涉及对应构建系统操作的场景下可排除。
+    "*.pri",
+    // 排除所有以".pro"结尾的文件，常为 Qt 项目的工程文件，在非 Qt 项目相关操作或者不需要处理该工程文件的情况下可排除在外。
+    "*.pro",
+    // 排除所有以".py[cod]"结尾的 Python 相关文件，".pyc"是 Python 字节码编译后的文件，".pyo"（这里用通配符涵盖了类似情况）是经过优化后的字节码文件，在很多时候不需要直接操作这些文件，比如查看源代码逻辑等场景。
+    "*.py[cod]",
+    // 排除所有以".sln"结尾的文件，这是 Visual Studio 解决方案文件，在不涉及 Visual Studio 项目管理操作的场景中可排除。
+    "*.sln",
+    // 排除所有以".stackdump"结尾的文件，这类文件一般是程序崩溃时生成的栈转储文件，对于常规的项目开发、文件处理等操作来说通常是不需要的。
+    "*.stackdump",
+    // 排除所有以".sublime-workspace"结尾的文件，这是 Sublime Text 编辑器创建的工作区文件，在其他编辑器或者非 Sublime Text 相关的操作场景下可排除。
+    "*.sublime-workspace",
+    // 排除所有以".uasset"结尾的文件，常出现在游戏开发（比如使用 Unreal Engine 时）中的资源文件，在非游戏资源相关操作场景下可排除。
+    "*.uasset",
+    // 排除所有以".umap"结尾的文件，同样在 Unreal Engine 游戏开发中是地图相关的文件，在不涉及该引擎地图操作场景下可排除。
+    "*.umap",
+    // 排除所有以".workspace"结尾的文件，是多种开发工具中用于表示工作区概念的文件，根据具体情况如果不需要处理这类工作区相关逻辑可排除。
+    "*.workspace",
+    // 排除所有名为"CodeCompletionFolders.txt"的文件，从文件名推测可能是和代码自动补全相关的文件夹配置文件，在不需要该功能相关配置的场景下可排除。
+    "*CodeCompletionFolders.txt",
+    // 排除所有名为"CodeLitePreProcessor.txt"的文件，推测是和 CodeLite 开发环境中预处理器相关的文件，在非 CodeLite 相关操作场景下可排除。
+    "*CodeLitePreProcessor.txt",
+    // 排除所有以".tags"开头的文件，这类文件可能在不同的编辑器或工具中用于代码标签、索引等相关功能，根据实际需求可排除。
+    ".tags*",
+    // 排除名为"core"的文件或文件夹（具体取决于使用场景，如果是文件搜索就是文件，如果是目录相关操作就是文件夹），不清楚具体用途的情况下按配置要求排除。
+    "core"
+]
             ],
             // 要排除的文件夹模式列表
             "folder_exclude_patterns":[
