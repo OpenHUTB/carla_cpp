@@ -21,7 +21,7 @@
 namespace carla {
 namespace client {
 
-  // 重载输出流操作符 "<<" 以方便打印ActorList对象
+  // 重载输出流操作符 "<<" 便于打印ActorList对象
   // 该操作符将输出ActorList中的内容
   std::ostream &operator<<(std::ostream &out, const ActorList &actors) {
     // 调用PrintList来打印actor列表中的所有内容
@@ -72,18 +72,26 @@ namespace rpc {
 } // namespace rpc
 } // namespace carla
 
-
+// 静态函数，等待一定时间（以秒为单位）并返回世界的 Tick 状态
 static auto WaitForTick(const carla::client::World &world, double seconds) {
+  // 释放全局解释器锁（GIL），允许其他 Python 线程在此期间运行
   carla::PythonUtil::ReleaseGIL unlock;
+   // 调用 world 的 WaitForTick 函数，传入时间参数
+  // TimeDurationFromSeconds 函数将秒数转换为相应的时间持续时长
   return world.WaitForTick(TimeDurationFromSeconds(seconds));
 }
-
+// 静态函数，当 Tick 发生时调用指定的回调函数
 static size_t OnTick(carla::client::World &self, boost::python::object callback) {
+    // 使用 MakeCallback 将回调对象转换为可以传递给 OnTick 函数的合适形式
+  // 传递回调函数并返回一个大小类型值
   return self.OnTick(MakeCallback(std::move(callback)));
 }
-
+// 静态函数，执行一个 Tick 操作，等待指定时间（以秒为单位）并返回 Tick 的结果
 static auto Tick(carla::client::World &world, double seconds) {
+  // 释放全局解释器锁（GIL），允许其他 Python 线程在此期间运行
   carla::PythonUtil::ReleaseGIL unlock;
+    // 调用 world 的 Tick 函数，传入时间参数
+  // TimeDurationFromSeconds 函数将秒数转换为相应的时间持续时长
   return world.Tick(TimeDurationFromSeconds(seconds));
 }
 
