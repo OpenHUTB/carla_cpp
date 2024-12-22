@@ -34,8 +34,8 @@
     # - DESCRIPTION ------------------------
     doc: >
       Helper class that contains the parameterization that will be used by carla.Osm2Odr to convert an OpenStreetMap map to OpenDRIVE format. Find out more about this feature in the [docs](tuto_G_openstreetmap.md).
-    instance_variables:
-    - var_name: use_offsets
+    instance_variables:# 以下开始对第一个实例变量进行描述。每个实例变量的相关信息以特定的格式呈现，方便他人清晰地了解其具体情况。
+    - var_name: use_offsets      # 指定该实例变量的类型为布尔类型（bool），意味着它的值只能是True或者False，通常用于表示某种条件是否成立或者某个功能是否启用等逻辑判断场景
       type: bool
       doc: >
         Enables the use of offset for the conversion. The offset will move the origin position of the map. Default value is __False__.
