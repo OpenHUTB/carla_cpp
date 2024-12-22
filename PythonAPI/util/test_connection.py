@@ -61,7 +61,7 @@ def main():
     while args.timeout > (time.time() - t0):
         try:
             client = carla.Client(args.host, args.port)
-            client.set_timeout(0.1)
+            client.set_timeout(0.1) # 获取CARLA服务器版本信息，并打印出连接成功的提示信息，包含服务器版本、连接的主机和端口
             print('CARLA %s connected at %s:%d.' % (client.get_server_version(), args.host, args.port))  # 如果成功连接并执行到这里，返回0表示连接成功，函数正常结束
             return 0
         except RuntimeError: # 如果在尝试连接过程中出现运行时错误（比如超时等情况），不做任何处理，直接进入下一次循环继续尝试连接
