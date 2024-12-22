@@ -66,30 +66,31 @@
 
 #pragma push_macro("BT_VLOG")
 #undef BT_VLOG
-
+// 临时保存 BT_VLOG 宏的定义，并取消该宏的定义
 #pragma push_macro("BT_SEARCHLOG")
 #undef BT_SEARCHLOG
-
+// 临时保存 BT_SEARCHLOG 宏的定义，并取消该宏的定义
 #pragma push_macro("EQSHEADERLOG")
 #undef EQSHEADERLOG
-
+// 临时保存 MEM_STAT_UPDATE_WRAPPER 宏的定义，并取消该宏的定义
 #pragma push_macro("MEM_STAT_UPDATE_WRAPPER")
 #undef MEM_STAT_UPDATE_WRAPPER
-
+// 临时保存 MEM_STAT_UPDATE_WRAPPER 宏的定义，并取消该宏的定义
 #pragma push_macro("GET_STRUCT_NAME_CHECKED")
 #undef GET_STRUCT_NAME_CHECKED
 
 #pragma push_macro("PRINT_TABLE_ROW")
 #undef PRINT_TABLE_ROW
-
+// 临时保存 GET_STRUCT_NAME_CHECKED 宏的定义，并取消该宏的定义
 #pragma push_macro("SIGHT_LOG_SEGMENT")
 #undef SIGHT_LOG_SEGMENT
-
+// 临时保存 PRINT_TABLE_ROW 宏的定义，并取消该宏的定义
 #pragma push_macro("SIGHT_LOG_LOCATION")
 #undef SIGHT_LOG_LOCATION
-
+// 临时保存 SIGHT_LOG_LOCATION 宏的定义，并取消该宏的定义
 #pragma push_macro("ANALYTICS_FLUSH_TRACKING_BEGIN")
-#undef ANALYTICS_FLUSH_TRACKING_BEGIN
+#undef ANALYTICS_FLUSH_TRACKING_BEGIN  
+// 取消 SIGHT_LOG_LOCATION 宏的定义
 
 #pragma push_macro("ANALYTICS_FLUSH_TRACKING_END")
 #undef ANALYTICS_FLUSH_TRACKING_END
@@ -123,19 +124,19 @@
 
 #pragma push_macro("BORDER_BRUSH")
 #undef BORDER_BRUSH
-
+// 临时保存 MEM_STAT_UPDATE_WRAPPER 宏的定义，并取消该宏的定义
 #pragma push_macro("DEFAULT_FONT")
 #undef DEFAULT_FONT
-
+// 临时保存 MEM_STAT_UPDATE_WRAPPER 宏的定义，并取消该宏的定义
 #pragma push_macro("INTERNAL_DECORATOR")
 #undef INTERNAL_DECORATOR
-
+// 临时保存 MEM_STAT_UPDATE_WRAPPER 宏的定义，并取消该宏的定义
 #pragma push_macro("LLM_SCOPE_METAL")
 #undef LLM_SCOPE_METAL
-
+// 临时保存 MEM_STAT_UPDATE_WRAPPER 宏的定义，并取消该宏的定义
 #pragma push_macro("LLM_PLATFORM_SCOPE_METAL")
 #undef LLM_PLATFORM_SCOPE_METAL
-
+// 临时保存 MEM_STAT_UPDATE_WRAPPER 宏的定义，并取消该宏的定义
 #pragma push_macro("METAL_DEBUG_OPTION")
 #undef METAL_DEBUG_OPTION
 
