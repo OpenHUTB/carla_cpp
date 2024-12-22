@@ -235,7 +235,7 @@ class BasicAgent:
         """Execute one step of navigation."""
         hazard_detected = False#用于标记在导航过程中是否检测到危险。
 
-        # Retrieve all relevant actors
+        # Retrieve all relevant actors检索所有相关参与者。
         vehicle_list = self._world.get_actors().filter("*vehicle*")
 
         vehicle_speed = get_speed(self._vehicle) / 3.6#这行代码调用get_speed函数来获取当前车辆的速度
