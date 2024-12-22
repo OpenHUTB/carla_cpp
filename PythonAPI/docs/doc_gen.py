@@ -158,7 +158,11 @@ def italic(buf):
 
 def bold(buf):
     return join(['**', buf, '**'])
-
+    """
+    将输入的字符串 `buf` 转换为粗体格式，即在字符串前后添加双星号（Markdown语法中用于表示粗体）。
+    :param buf: 要转换格式的字符串
+    :return: 转换为粗体格式后的字符串
+    """
 def snipet(name,class_key):
 
     return join(["<button class=\"SnipetButton\" id=\"",class_key,".",name,"-snipet_button\">", "snippet &rarr;", '</button>'])
