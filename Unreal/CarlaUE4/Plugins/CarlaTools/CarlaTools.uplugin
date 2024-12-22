@@ -1,47 +1,46 @@
-//该插件的描述文件用于虚幻引擎插件系统，提供了关于CarlaTools插件的详细信息，包括版本、文档、支持、依赖插件等。它主要用于提供Carla仿真器的相关工具，并且包含了一些已启用的子插件来扩展功能。
 {
-	"FileVersion": 3,     // 文件版本号，此处值为3，用于标识该文件相关的版本情况
-	"Version": 1,         // 主版本号，这里是1，通常用于大版本的区分
-	"VersionName": "1.0",// 版本名称，显示为"1.0"，是对外展示的比较直观的版本标识形式
-	"FriendlyName": "CarlaTools",// 友好名称，便于用户识别该插件，这里叫"CarlaTools"
-	"Description": "This plugin provides engine tools for Carla",  // 对插件的描述信息，说明了这个插件是为Carla提供引擎工具的
-	"Category": "Other", // 插件所属的类别，这里归类为"Other"（其他）类别
-	"CreatedBy": "Carla Team",
-	"CreatedByURL": "http://carla.org",
-	"DocsURL": "http://carla.readthedocs.io",
-	"MarketplaceURL": "",
-	"SupportURL": "https://github.com/carla-simulator/carla/issues",
-	"CanContainContent": true,
-	"IsBetaVersion": false,
-	"IsExperimentalVersion": true,
-	"Installed": true,
-	"Modules": [
+	"FileVersion": 3,     // 文件版本号，标识该描述文件的格式版本，这里为3
+	"Version": 1,         // 主版本号，用于区分插件的不同大版本，这里为1
+	"VersionName": "1.0",// 版本名称，更直观的版本标识，便于用户理解，这里为"1.0"
+	"FriendlyName": "CarlaTools",// 插件的友好名称，便于用户识别，这里为"CarlaTools"
+	"Description": "This plugin provides engine tools for Carla",  // 插件的描述信息，简要说明插件的功能，这里是为Carla提供引擎工具
+	"Category": "Other", // 插件所属的类别，这里归类为"Other"（其他），表示不属于虚幻引擎的标准分类
+	"CreatedBy": "Carla Team", // 创建插件的团队或个人名称，这里是Carla团队
+	"CreatedByURL": "http://carla.org", // 创建者的网站或主页链接，这里是Carla的官方网站
+	"DocsURL": "http://carla.readthedocs.io", // 插件的文档链接，这里是Carla的文档页面
+	"MarketplaceURL": "", // 插件在虚幻引擎市场（或类似平台）的链接，这里为空
+	"SupportURL": "https://github.com/carla-simulator/carla/issues", // 插件的支持或问题反馈链接，这里是Carla的GitHub Issues页面
+	"CanContainContent": true, // 插件是否可以包含内容（如资源、资产等），这里为true
+	"IsBetaVersion": false, // 插件是否为Beta版本，这里为false
+	"IsExperimentalVersion": true, // 插件是否为实验性版本，这里为true，表示可能存在不稳定或未完成的特性
+	"Installed": true, // 插件是否已安装，这里为true，表示插件默认是安装的
+	"Modules": [ // 插件包含的模块列表
 		{
-			"Name": "CarlaTools",
-			"Type": "Editor",
-			"LoadingPhase": "Default"
+			"Name": "CarlaTools", // 模块名称，与插件名称相同
+			"Type": "Editor", // 模块类型，这里是"Editor"，表示这是一个编辑器模块
+			"LoadingPhase": "Default" // 模块的加载阶段，这里是"Default"，表示在默认阶段加载
 		}
 	],
-	"Plugins": [
+	"Plugins": [ // 插件依赖的其他插件列表
 		{
-			"Name": "Carla",
-			"Enabled": true
+			"Name": "Carla", // 依赖插件的名称，这里是Carla本身
+			"Enabled": true // 该依赖插件是否启用，这里为true
 		},
 		{
-			"Name": "EditorScriptingUtilities",
-			"Enabled": true
+			"Name": "EditorScriptingUtilities", // 另一个依赖插件的名称，这里是编辑器脚本工具
+			"Enabled": true // 该依赖插件是否启用，这里为true
 		},
 		{
-			"Name": "PhysXVehicles",
-			"Enabled": true
+			"Name": "PhysXVehicles", // 另一个依赖插件的名称，这里是PhysX车辆插件
+			"Enabled": true // 该依赖插件是否启用，这里为true
 		},
 		{
-			"Name": "ProceduralMeshComponent",
-			"Enabled": true
+			"Name": "ProceduralMeshComponent", // 另一个依赖插件的名称，这里是程序化网格组件
+			"Enabled": true // 该依赖插件是否启用，这里为true
 		},
-    {
-			"Name": "StreetMap",
-			"Enabled": true
+		{
+			"Name": "StreetMap", // 另一个依赖插件的名称，这里是街道地图插件
+			"Enabled": true // 该依赖插件是否启用，这里为true
 		}
 	]
 }
