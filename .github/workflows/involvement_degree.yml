@@ -1,12 +1,14 @@
-
+# 工作流的名称，这里叫做 "compute involvement degree"，
 name: compute involvement degree
 
 on: [push]
     
 jobs:
-  work:
+  work:# 指定该任务运行所基于的操作系统环境，这里选择最新版本的Ubuntu系统
     runs-on: ubuntu-latest
     steps:
+    # 使用名为 `actions/checkout@v4` 的 GitHub Action，
+    # 它的作用是将代码仓库签出到运行工作流的环境中，以便后续步骤使用代码
       - uses: actions/checkout@v4
         with:
           # github action 默认签出只包含最后一次提交
@@ -22,6 +24,6 @@ jobs:
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: 'x64'
       - name: Install Python dependencies
-        run: python -m pip install --upgrade pip requests gitpython
+        run: python -m pip install --upgrade pip requests gitpython #执行命令
       - name: Display involvement degree
         run: python scores.py -t ${{ secrets.GITHUB_TOKEN }} # 执行
