@@ -4,104 +4,110 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#if defined(_MSC_VER)
-#  pragma warning(pop)
+#if defined(_MSC_VER)//是一个条件编译指令
+#  pragma warning(pop)//用于恢复之前被保存的警告状态
 #  ifdef UpdateResource
 #    undef UpdateResource
+//#endif用于结束#ifdef块
 #  endif
 #endif
 
 #if defined(__clang__)
 #  pragma clang diagnostic pop
-#endif
+#endif//这是结束标志
 
 // #pragma push_macro 将指定的宏压入栈中，相当于暂时存储，以备以后使用；
 // #pragma pop_macro 将栈顶的宏出栈，弹出的宏将覆盖当前名称相同的宏
 #pragma pop_macro("GET_AI_CONFIG_VAR")//1
-#pragma pop_macro("BT_VLOG")
-#pragma pop_macro("BT_SEARCHLOG")
-#pragma pop_macro("EQSHEADERLOG")
-#pragma pop_macro("MEM_STAT_UPDATE_WRAPPER")
-#pragma pop_macro("GET_STRUCT_NAME_CHECKED")
-#pragma pop_macro("PRINT_TABLE_ROW")
-#pragma pop_macro("SIGHT_LOG_SEGMENT")
-#pragma pop_macro("SIGHT_LOG_LOCATION")
-#pragma pop_macro("ANALYTICS_FLUSH_TRACKING_BEGIN")
-#pragma pop_macro("ANALYTICS_FLUSH_TRACKING_END")
-#pragma pop_macro("OCULUS_DEVICE_LOOP")
-#pragma pop_macro("OPENSLES_RETURN_ON_FAIL")
-#pragma pop_macro("OPENSLES_CHECK_ON_FAIL")
-#pragma pop_macro("OPENSLES_LOG_ON_FAIL")
-#pragma pop_macro("CASE_ENUM_TO_TEXT")
-#pragma pop_macro("TRACE_BLENDSPACE_PLAYER")
-#pragma pop_macro("SEQUENCER_INSTANCE_PLAYER_TYPE")
-#pragma pop_macro("IMAGE_BRUSH")
-#pragma pop_macro("BOX_BRUSH")
-#pragma pop_macro("BORDER_BRUSH")
-#pragma pop_macro("DEFAULT_FONT")
-#pragma pop_macro("INTERNAL_DECORATOR")
-#pragma pop_macro("LLM_SCOPE_METAL")
-#pragma pop_macro("LLM_PLATFORM_SCOPE_METAL")
-#pragma pop_macro("METAL_DEBUG_OPTION")
-#pragma pop_macro("METAL_DEBUG_ONLY")
-#pragma pop_macro("METAL_DEBUG_LAYER")
-#pragma pop_macro("METAL_GPUPROFILE")
-#pragma pop_macro("UNREAL_TO_METAL_BUFFER_INDEX")
-#pragma pop_macro("METAL_TO_UNREAL_BUFFER_INDEX")
-#pragma pop_macro("METAL_FATAL_ERROR")
-#pragma pop_macro("METAL_FATAL_ASSERT")
-#pragma pop_macro("METAL_IGNORED")
-#pragma pop_macro("NOT_SUPPORTED")
-#pragma pop_macro("METAL_INC_DWORD_STAT_BY")
-#pragma pop_macro("CHECK_JNI_RESULT")
-#pragma pop_macro("SET_PRESSED")
-#pragma pop_macro("ADD_WINDOWS_MESSAGE_STRING")
-#pragma pop_macro("ADD_IMN_STRING")
-#pragma pop_macro("ADD_IMR_STRING")
-#pragma pop_macro("IsTouchEvent")
-#pragma pop_macro("ADDTOMAP")
-#pragma pop_macro("UE_PACKAGEREADER_CORRUPTPACKAGE_WARNING")
-#pragma pop_macro("MUTEX_INITIALIZE")
-#pragma pop_macro("MUTEX_DESTROY")
-#pragma pop_macro("MUTEX_LOCK")
-#pragma pop_macro("MUTEX_UNLOCK")
-#pragma pop_macro("SAFE_RELEASE")
-#pragma pop_macro("AUDIO_MIXER_DEBUG_LOG")
-#pragma pop_macro("AUDIO_PLATFORM_ERROR")
-#pragma pop_macro("AUDIO_MIXER_CHECK")
-#pragma pop_macro("AUDIO_MIXER_CHECK_GAME_THREAD")
-#pragma pop_macro("AUDIO_MIXER_CHECK_AUDIO_PLAT_THREAD")
-#pragma pop_macro("DEFINE_AR_COMPONENT_DEBUG_MODE")
-#pragma pop_macro("DEFINE_AR_COMPONENT_VIRTUALS")
-#pragma pop_macro("DEFINE_AR_SI_DELEGATE_FUNCS")
-#pragma pop_macro("DEFINE_AR_BPLIB_DELEGATE_FUNCS")
-#pragma pop_macro("DECLARE_AR_SI_DELEGATE_FUNCS")
-#pragma pop_macro("DEFINE_AR_DELEGATE_BASE")
-#pragma pop_macro("DEFINE_AR_DELEGATE_ONE_PARAM")
-#pragma pop_macro("CHECK_HR")
-#pragma pop_macro("CHECK_HR_DEFAULT")
-#pragma pop_macro("CHECK_HR_COM")
-#pragma pop_macro("CHECK_HR_VOID")
-#pragma pop_macro("CHECK_AMF_RET")
-#pragma pop_macro("CHECK_AMF_NORET")
-#pragma pop_macro("CHECK_NV_RES")
-#pragma pop_macro("NV_RESULT")
-#pragma pop_macro("B")
-#pragma pop_macro("AMF_DECLARE_IID")
-#pragma pop_macro("AMF_MACRO_STRING2")
-#pragma pop_macro("AMF_MACRO_STRING")
-#pragma pop_macro("AMF_TODO")
-#pragma pop_macro("AMF_ALIGN")
-#pragma pop_macro("amf_countof")
-#pragma pop_macro("AMF_MIN")
-#pragma pop_macro("AMF_MAX")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_DATA")
-#pragma pop_macro("AMF_QUERY_INTERFACE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_INTERFACE")
-#pragma pop_macro("AMF_GET_PROPERTY_INTERFACE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_TYPE")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_INT64")
-#pragma pop_macro("AMF_ASSIGN_PROPERTY_DOUBLE")
+#pragma pop_macro("BT_VLOG")// 取消名为"BT_VLOG"的宏。
+#pragma pop_macro("BT_SEARCHLOG")// 取消名为"BT_SEARCHLOG"的宏。
+#pragma pop_macro("EQSHEADERLOG")// 取消名为"EQSHEADERLOG"的宏。
+#pragma pop_macro("MEM_STAT_UPDATE_WRAPPER")// 取消名为"MEM_STAT_UPDATE_WRAPPER"的宏。
+#pragma pop_macro("GET_STRUCT_NAME_CHECKED")// 取消名为"GET_STRUCT_NAME_CHECKED"的宏。
+#pragma pop_macro("PRINT_TABLE_ROW")// 取消名为"PRINT_TABLE_ROW"的宏。
+#pragma pop_macro("SIGHT_LOG_SEGMENT")// 取消名为"SIGHT_LOG_SEGMENT"的宏。
+#pragma pop_macro("SIGHT_LOG_LOCATION")// 取消名为"SIGHT_LOG_LOCATION"的宏。
+#pragma pop_macro("ANALYTICS_FLUSH_TRACKING_BEGIN")// 取消名为"ANALYTICS_FLUSH_TRACKING_BEGIN"的宏。
+#pragma pop_macro("ANALYTICS_FLUSH_TRACKING_END")// 取消名为"ANALYTICS_FLUSH_TRACKING_END"的宏。
+#pragma pop_macro("OCULUS_DEVICE_LOOP")// 取消名为"OCULUS_DEVICE_LOOP"的宏。
+#pragma pop_macro("OPENSLES_RETURN_ON_FAIL")// 取消名为"OPENSLS_RETURN_ON_FAIL"的宏。
+#pragma pop_macro("OPENSLES_CHECK_ON_FAIL")// 取消名为"OPENSLS_CHECK_ON_FAIL"的宏。
+#pragma pop_macro("OPENSLES_LOG_ON_FAIL")// 取消名为"OPENSLS_LOG_ON_FAIL"的宏。
+#pragma pop_macro("CASE_ENUM_TO_TEXT")// 取消名为"CASE_ENUM_TO_TEXT"的宏。
+#pragma pop_macro("TRACE_BLENDSPACE_PLAYER")// 取消名为"TRACE_BLENDSPACE_PLAYER"的宏。
+#pragma pop_macro("SEQUENCER_INSTANCE_PLAYER_TYPE")// 取消名为"SEQUENCER_INSTANCE_PLAYER_TYPE"的宏。
+#pragma pop_macro("IMAGE_BRUSH")// 取消名为"IMAGE_BRUSH"的宏。
+#pragma pop_macro("BOX_BRUSH")// 取消名为"BOX_BRUSH"的宏。
+#pragma pop_macro("BORDER_BRUSH")// 取消名为"BORDER_BRUSH"的宏。
+#pragma pop_macro("DEFAULT_FONT")// 取消名为"DEFAULT_FONT"的宏。
+#pragma pop_macro("INTERNAL_DECORATOR")// 取消名为"INTERNAL_DECORATOR"的宏。
+#pragma pop_macro("LLM_SCOPE_METAL")// 取消名为"LLM_SCOPE_METAL"的宏。
+#pragma pop_macro("LLM_PLATFORM_SCOPE_METAL")// 取消名为"LLM_PLATFORM_SCOPE_METAL"的宏。
+#pragma pop_macro("METAL_DEBUG_OPTION")// 取消名为"METAL_DEBUG_OPTION"的宏。
+#pragma pop_macro("METAL_DEBUG_ONLY")//取消之前定义的名为"METAL_DEBUG_ONLY"的宏。
+#pragma pop_macro("METAL_DEBUG_LAYER")// 取消名为"METAL_DEBUG_LAYER"的宏。
+#pragma pop_macro("METAL_GPUPROFILE")// 取消名为"METAL_GPUPROFILE"的宏。
+#pragma pop_macro("UNREAL_TO_METAL_BUFFER_INDEX")// 取消名为"UNREAL_TO_METAL_BUFFER_INDEX"的宏。
+#pragma pop_macro("METAL_TO_UNREAL_BUFFER_INDEX")// 取消名为"METAL_TO_UNREAL_BUFFER_INDEX"的宏。
+#pragma pop_macro("METAL_FATAL_ERROR")// 取消名为"METAL_FATAL_ERROR"的宏。
+#pragma pop_macro("METAL_FATAL_ASSERT")// 取消名为"METAL_FATAL_ASSERT"的宏。
+#pragma pop_macro("METAL_IGNORED")// 取消名为"METAL_IGNORED"的宏。
+#pragma pop_macro("NOT_SUPPORTED")// 取消名为"NOT_SUPPORTED"的宏。
+#pragma pop_macro("METAL_INC_DWORD_STAT_BY")// 取消名为"METAL_INC_DWORD_STAT_BY"的宏。
+#pragma pop_macro("CHECK_JNI_RESULT")// 取消名为"CHECK_JNI_RESULT"的宏。
+#pragma pop_macro("SET_PRESSED")// 取消名为"SET_PRESSED"的宏。
+#pragma pop_macro("ADD_WINDOWS_MESSAGE_STRING")// 取消名为"ADD_WINDOWS_MESSAGE_STRING"的宏。
+#pragma pop_macro("ADD_IMN_STRING")// 取消名为"ADD_IMN_STRING"的宏。
+#pragma pop_macro("ADD_IMR_STRING")// 取消名为"ADD_IMR_STRING"的宏。
+#pragma pop_macro("IsTouchEvent")// 取消名为"IsTouchEvent"的宏。
+#pragma pop_macro("ADDTOMAP")// 取消名为"ADDTOMAP"的宏。
+#pragma pop_macro("UE_PACKAGEREADER_CORRUPTPACKAGE_WARNING")// 取消名为"UE_PACKAGEREADER_CORRUPT_PACKAGE_WARNING"的宏。
+#pragma pop_macro("MUTEX_INITIALIZE")// 取消名为"MUTEX_INITIALIZE"的宏。
+#pragma pop_macro("MUTEX_DESTROY")// 取消名为"MUTEX_DESTROY"的宏。
+#pragma pop_macro("MUTEX_LOCK")// 取消名为"MUTEX_LOCK"的宏。
+#pragma pop_macro("MUTEX_UNLOCK")// 取消名为"MUTEX_UNLOCK"的宏。
+#pragma pop_macro("SAFE_RELEASE")// 取消名为"SAFE_RELEASE"的宏。
+#pragma pop_macro("AUDIO_MIXER_DEBUG_LOG")// 这行代码用于取消之前定义的名为"AUDIO_MIXER_DEBUG_LOG"的宏。
+#pragma pop_macro("AUDIO_PLATFORM_ERROR")// 取消名为"AUDIO_PLATFORM_ERROR"的宏。
+#pragma pop_macro("AUDIO_MIXER_CHECK")// 取消名为"AUDIO_MIXER_CHECK"的宏。
+#pragma pop_macro("AUDIO_MIXER_CHECK_GAME_THREAD")// 取消名为"AUDIO_MIXER_CHECK_GAME_THREAD"的宏。
+#pragma pop_macro("AUDIO_MIXER_CHECK_AUDIO_PLAT_THREAD")// 取消名为"AUDIO_MIXER_CHECK_AUDIO_PLAT_THREAD"的宏。
+#pragma pop_macro("DEFINE_AR_COMPONENT_DEBUG_MODE")// 取消名为"DEFINE_AR_COMPONENT_DEBUG_MODE"的宏。
+#pragma pop_macro("DEFINE_AR_COMPONENT_VIRTUALS")// 取消名为"DEFINE_AR_COMPONENT_VIRTUALS"的宏。
+#pragma pop_macro("DEFINE_AR_SI_DELEGATE_FUNCS")// 取消名为"DEFINE_AR_SI_DELEGATE_FUNCS"的宏。
+#pragma pop_macro("DEFINE_AR_BPLIB_DELEGATE_FUNCS")// 取消名为"DEFINE_AR_BPLIB_DELEGATE_FUNCS"的宏。
+#pragma pop_macro("DECLARE_AR_SI_DELEGATE_FUNCS")// 取消名为"DECLARE_AR_SI_DELEGATE_FUNCS"的宏。
+#pragma pop_macro("DEFINE_AR_DELEGATE_BASE")// 取消名为"DEFINE_AR_DELEGATE_BASE"的宏。
+#pragma pop_macro("DEFINE_AR_DELEGATE_ONE_PARAM")// 取消名为"DEFINE_AR_DELEGATE_ONE_PARAM"的宏。
+#pragma pop_macro("CHECK_HR")// 取消名为"CHECK_HR"的宏。
+#pragma pop_macro("CHECK_HR_DEFAULT")// 取消名为"CHECK_HR_DEFAULT"的宏。
+#pragma pop_macro("CHECK_HR_COM")// 取消名为"CHECK_HR_COMM"的宏。
+#pragma pop_macro("CHECK_HR_VOID")// 取消名为"CHECK_HR_VOID"的宏。
+#pragma pop_macro("CHECK_AMF_RET")// 取消名为"CHECK_AMF_RET"的宏。
+#pragma pop_macro("CHECK_AMF_NORET")// 取消名为"CHECK_AMF_NOTRET"的宏。
+#pragma pop_macro("CHECK_NV_RES")// 取消名为"CHECK_NV_RES"的宏。
+#pragma pop_macro("NV_RESULT")// 取消名为"NV_RESULT"的宏。
+#pragma pop_macro("B")// 取消名为"B"的宏。
+#pragma pop_macro("AMF_DECLARE_IID")// 取消名为"AMF_DECLARE_ID"的宏。
+#pragma pop_macro("AMF_MACRO_STRING2")// 取消之前定义的名为 "AMF_MACRO_STRING2" 的宏定义。
+// 通常在之前可能使用了 #pragma push_macro 保存了该宏定义的状态，这里进行恢复（取消定义）操作。
+#pragma pop_macro("AMF_MACRO_STRING")// 取消之前定义的名为 "AMF_MACRO_STRING" 的宏定义，作用与上面类似，恢复该宏之前的状态。
+#pragma pop_macro("AMF_TODO")// 取消之前定义的名为 "AMF_TODO" 的宏定义，可能这个宏在代码开发过程中有特定用途，此处还原其初始情况
+#pragma pop_macro("AMF_ALIGN")// 取消之前定义的名为 "AMF_ALIGN" 的宏定义，一般用于处理数据对齐相关的操作，这里取消其定义使其恢复原样。
+#pragma pop_macro("amf_countof")// 取消之前定义的名为 "amf_countof" 的宏定义，"amf_countof" 通常可能用于计算某种元素数量之类的功能，现在将其恢复到之前的状态。
+#pragma pop_macro("AMF_MIN")// 取消之前定义的名为 "AMF_MIN" 的宏定义，该宏大概率是用于获取两个值中的最小值，这里取消定义进行还原操作。
+#pragma pop_macro("AMF_MAX")// 取消之前定义的名为 "AMF_MAX" 的宏定义，与 "AMF_MIN" 相对应，可能是用于获取两个值中的最大值，现在将其恢复初始状态。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_DATA")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_DATA" 的宏定义，从名字推测这个宏可能与给某个属性赋值数据相关，此处取消其定义。
+#pragma pop_macro("AMF_QUERY_INTERFACE")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_INTERFACE" 的宏定义，推测是用于给属性分配接口相关操作的宏，取消其定义恢复原状。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_INTERFACE")// 取消之前定义的名为 "AMF_GET_PROPERTY_INTERFACE" 的宏定义，可能用于获取属性的接口，这里将其定义取消掉。
+#pragma pop_macro("AMF_GET_PROPERTY_INTERFACE")// 取消之前定义的名为 "AMF_GET_PROPERTY_INTERFACE" 的宏定义。
+                                              // 通常意味着将该宏恢复到之前未被定义（或者之前定义被保存时的初始）状态，可能之前在某个特定代码区域内对其进行了自定义定义，现在结束该区域相关操作后进行还原。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_TYPE")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_TYPE" 的宏定义。
+                                             // 从名字推测这个宏可能在代码中用于给某个属性指定类型相关的操作，此处执行取消定义的操作，使其恢复到原始设定情况。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_INT64")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_INT64" 的宏定义。
+                                              // 大概率该宏之前是用于给相应的属性赋值 64 位整数类型的数据，现在取消这个宏定义，把相关宏状态还原回去。
+#pragma pop_macro("AMF_ASSIGN_PROPERTY_DOUBLE")// 取消之前定义的名为 "AMF_ASSIGN_PROPERTY_DOUBLE" 的宏定义。
+                                               // 可能此前这个宏是为了方便在代码里给属性赋值双精度浮点数而定义的，现在将其定义取消，恢复之前的状态。
 #pragma pop_macro("AMF_ASSIGN_PROPERTY_BOOL")
 #pragma pop_macro("AMF_ASSIGN_PROPERTY_RECT")
 #pragma pop_macro("AMF_ASSIGN_PROPERTY_SIZE")
@@ -252,7 +258,7 @@
 #pragma pop_macro("SCOPED_BOOT_TIMING")
 #pragma pop_macro("FOREACH_ENUM_EPIXELFORMAT")
 #pragma pop_macro("PLATFORM_CODE_SECTION")
-#pragma pop_macro("GCC_PACK")
+#pragma pop_macro("GCC_PACK")// 用于取消名为 "GCC_PACK" 的宏
 #pragma pop_macro("GCC_ALIGN")
 #pragma pop_macro("PLATFORM_BREAK")
 #pragma pop_macro("UE_DEBUG_BREAK_IMPL")

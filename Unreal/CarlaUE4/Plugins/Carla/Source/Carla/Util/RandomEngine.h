@@ -53,13 +53,13 @@ public:
   /// @{
 
   UFUNCTION(BlueprintCallable)
-  float GetUniformFloat()
+  float GetUniformFloat()  //返回一个在0到1之间（包括0但不包括1）均匀分布的随机浮点数
   {
     return std::uniform_real_distribution<float>()(Engine);
   }
 
   UFUNCTION(BlueprintCallable)
-  float GetUniformFloatInRange(float Minimum, float Maximum)
+  float GetUniformFloatInRange(float Minimum, float Maximum)//返回一个在指定的最小值和最大值之间均匀分布的随机浮点数
   {
     return std::uniform_real_distribution<float>(Minimum, Maximum)(Engine);
   }
@@ -139,14 +139,14 @@ public:
   /// @{
 
   template <typename T>
-  auto &PickOne(const TArray<T> &Array)
+  auto &PickOne(const TArray<T> &Array)//函数参数是 const TArray<T> &，这意味着数组本身在函数内部是不可修改的
   {
     check(Array.Num() > 0);
     return Array[GetUniformIntInRange(0, Array.Num() - 1)];
   }
 
   template <typename T>
-  void Shuffle(TArray<T> &Array)
+  void Shuffle(TArray<T> &Array)//std::shuffle 来打乱数组的顺序
   {
     std::shuffle(Array.GetData(), Array.GetData() + Array.Num(), Engine);
   }

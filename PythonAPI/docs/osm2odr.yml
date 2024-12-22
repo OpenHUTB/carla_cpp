@@ -1,8 +1,8 @@
----
+---# 定义了一个名为 carla 的模块，其中包含了将 OpenStreetMap 地图转换为 OpenDRIVE 格式的类。
 - module_name: carla
 
-  # - CLASSES ------------------------------
-  classes:
+  # 定义了模块中的类--------------------------
+  classes:# 定义了一个名为 Osm2Odr 的类，用于将 OpenStreetMap 地图转换为 OpenDRIVE 格式。
   - class_name: Osm2Odr
     # - DESCRIPTION ------------------------
     doc: >
@@ -29,7 +29,7 @@
       doc: >
         Takes the content of an <code>.osm</code> file (OpenStreetMap format) and returns the content of the <code>.xodr</code> (OpenDRIVE format) describing said map. Some parameterization is passed to do the conversion.
   # --------------------------------------
-  
+   # 定义了一个名为 Osm2OdrSettings 的辅助类，包含用于转换 OpenStreetMap 地图到 OpenDRIVE 格式的参数化设置。
   - class_name: Osm2OdrSettings
     # - DESCRIPTION ------------------------
     doc: >

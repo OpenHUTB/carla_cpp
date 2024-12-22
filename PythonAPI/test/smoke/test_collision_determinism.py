@@ -4,27 +4,38 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
+#从当前目录导入SmokeTest
 from . import SmokeTest
 
+#导入carla
 import carla
+#导入time
 import time
+#导入numpy并将其简称为np
 import numpy as np
+#导入filecmp
 import filecmp
+#导入shutil
 import shutil
+#导入os
 import os
 
 try:
     # python 3
-    from queue import Queue as Queue
+    #从queue模块导入Queue并将其命名为Queue
+    from  import Queue as Queue
     from queue import Empty
 except ImportError:
     # python 2
+    #从queue模块导入Queue并将其命名为Queue
     from Queue import Queue as Queue
     from Queue import Empty
 
+# 定义一个自定义异常 DeterminismError，用于处理场景中可能出现的确定性问题
 class DeterminismError(Exception):
     pass
 
+# 导入 Carla 模拟器中的命令，以便在场景中使用
 SpawnActor = carla.command.SpawnActor
 FutureActor = carla.command.FutureActor
 ApplyTargetVelocity = carla.command.ApplyTargetVelocity
@@ -46,6 +57,7 @@ class Scenario(object):
         self.active = True
         self.snapshots = []
 
+         # 重新加载世界设置，并可选择设置观众的位置
         self.reload_world(settings, spectator_tr)
 
         # Init timestamp
@@ -62,26 +74,28 @@ class Scenario(object):
         if self.save_snapshots_mode:
             self.snapshots.append(np.empty((0,11), float))
 
-    def wait(self, frames=100):
+    def wait(self, frames=100):              #函数用于等待一定帧数，此处为等待100帧
         for _i in range(0, frames):
             self.world.tick()
 
-    def clear_scene(self):
-        for actor in self.actor_list:
-            actor[1].destroy()
+    def clear_scene(self):                   #函数用于清楚场景中的某个元素
+        for actor in self.actor_list:        #遍历列表中的每个元素
+            actor[1].destroy()               #用于销毁一个游戏中的某个资源
+        self.active = False                  #将被销毁的资源标记为非活动状态
 
-        self.active = False
+   def reload_world(self, settings=None, spectator_tr=None):
+    # 检查是否提供了设置（settings）。如果提供了，就应用这些设置到世界（world）中。
+    if settings is not None:
+        self.world.apply_settings(settings)  # 应用新的世界设置
 
-    def reload_world(self, settings = None, spectator_tr = None):
-        if settings is not None:
-            self.world.apply_settings(settings)
-        self.wait(5)
+    self.wait(5)  # 调用实例方法wait，暂停5秒钟
 
-        self.client.reload_world(False)
-        # workaround: give time to UE4 to clean memory after loading (old assets)
-        time.sleep(5)
+    self.client.reload_world(False)  # 调用客户端的重新加载世界方法，参数False可能表示不重载资源
 
-        self.wait(5)
+    # 注释说明接下来的代码行是为了解决一个临时性问题：给UE4（虚幻引擎4）一些时间来清理加载后（旧资源）的内存。
+    time.sleep(5)  # 使程序暂停5秒，以便内存清理完成
+
+    self.wait(5)  # 再次调用实例方法wait，暂停5秒钟
 
     def reset_spectator(self, spectator_tr):
         spectator = self.world.get_spectator()
@@ -98,54 +112,65 @@ class Scenario(object):
                 actor.get_angular_velocity().x, actor.get_angular_velocity().y, actor.get_angular_velocity().z])
         return actor_snapshot
 
-    def save_snapshots(self):
-        if not self.save_snapshots_mode:
-            return
+    def save_snapshots(self):                      #函数用于保存snapshots（快照）
+        if not self.save_snapshots_mode:           #检查快照是否为真
+            return                                 #若不为真，则返回
 
-        for i in range (0, len(self.actor_list)):
-            self.snapshots[i] = np.vstack((self.snapshots[i], self.save_snapshot(self.actor_list[i][1])))
+        for i in range (0, len(self.actor_list)):  #若为真，则i将进行从0到self.actor_list长度的遍历
+            self.snapshots[i] = np.vstack((self.snapshots[i], self.save_snapshot(self.actor_list[i][1])))    #每次循环执行该函数
 
+    # 保存快照到磁盘的方法
     def save_snapshots_to_disk(self):
+        # 如果不开启保存快照模式，则直接返回
         if not self.save_snapshots_mode:
             return
 
+        # 遍历所有actor，并保存每个actor的快照
         for i, actor in enumerate(self.actor_list):
             np.savetxt(self.get_filename(actor[0]), self.snapshots[i])
 
+    # 获取带前缀的文件名的方法
     def get_filename_with_prefix(self, prefix, actor_id=None, frame=None):
-        add_id = "" if actor_id is None else "_" + actor_id
-        add_frame = "" if frame is None else ("_%04d") % frame
-        return prefix + add_id + add_frame + ".out"
+        add_id = "" if actor_id is None else "_" + actor_id # 如果actor_id为空，则不添加ID
+        add_frame = "" if frame is None else ("_%04d") % frame  # 如果frame为空，则不添加帧编号
+        return prefix + add_id + add_frame + ".out" # 返回完整的文件名
 
+     # 获取文件名的方法
     def get_filename(self, actor_id=None, frame=None):
-        return self.get_filename_with_prefix(self.prefix, actor_id, frame)
+        return self.get_filename_with_prefix(self.prefix, actor_id, frame)# 使用默认前缀
 
-    def run_simulation(self, prefix, run_settings, spectator_tr, tics = 200):
-        original_settings = self.world.get_settings()
+     # 运行仿真的方法
+    def run_simulation(self, prefix, run_settings, spectator_tr, tics = 200): 
+        original_settings = self.world.get_settings() # 获取原始设置
 
-        self.init_scene(prefix, run_settings, spectator_tr)
+        self.init_scene(prefix, run_settings, spectator_tr)# 初始化场景
 
+         # 运行仿真指定的帧数
         for _i in range(0, tics):
-            self.world.tick()
-            self.save_snapshots()
+            self.world.tick()# 仿真世界前进一帧
+            self.save_snapshots() # 保存快照
 
-        self.world.apply_settings(original_settings)
-        self.save_snapshots_to_disk()
-        self.clear_scene()
+        self.world.apply_settings(original_settings) # 恢复原始设置
+        self.save_snapshots_to_disk() # 保存快照到磁盘
+        self.clear_scene() # 清理场景
 
 
-class TwoCarsHighSpeedCollision(Scenario):
+class TwoCarsHighSpeedCollision(Scenario):  # 继承Scenario类，定义一个高速碰撞场景
+     # 初始化场景的方法
     def init_scene(self, prefix, settings = None, spectator_tr = None):
-        super(TwoCarsHighSpeedCollision, self).init_scene(prefix, settings, spectator_tr)
+        super(TwoCarsHighSpeedCollision, self).init_scene(prefix, settings, spectator_tr) # 调用基类的初始化方法
 
-        blueprint_library = self.world.get_blueprint_library()
+        blueprint_library = self.world.get_blueprint_library()# 获取蓝图库
 
+        # 获取车辆蓝图
         vehicle00_bp = blueprint_library.filter("tt")[0]
         vehicle01_bp = blueprint_library.filter("mkz_2017")[0]
 
+        # 设置车辆的初始位置和朝向
         vehicle00_tr = carla.Transform(carla.Location(140, -256, 0.015), carla.Rotation(yaw=180))
         vehicle01_tr = carla.Transform(carla.Location(40, -255, 0.04), carla.Rotation(yaw=0))
 
+        # 创建一个批量请求，用于生成两个车辆并设置它们的目标速度
         batch = [
             SpawnActor(vehicle00_bp, vehicle00_tr)
             .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(-50, 0, 0))),
@@ -167,20 +192,21 @@ class TwoCarsHighSpeedCollision(Scenario):
         self.wait(1)
 
 
-class ThreeCarsSlowSpeedCollision(Scenario):
+class ThreeCarsSlowSpeedCollision(Scenario):# 继承Scenario类，定义一个低速碰撞场景
+     # 初始化场景的方法
     def init_scene(self, prefix, settings = None, spectator_tr = None):
-        super(ThreeCarsSlowSpeedCollision, self).init_scene(prefix, settings, spectator_tr)
+        super(ThreeCarsSlowSpeedCollision, self).init_scene(prefix, settings, spectator_tr)  # 调用基类的初始化方法
 
-        blueprint_library = self.world.get_blueprint_library()
-
+        blueprint_library = self.world.get_blueprint_library()# 获取蓝图库
+        # 获取车辆蓝图
         vehicle00_bp = blueprint_library.filter("prius")[0]
         vehicle01_bp = blueprint_library.filter("a2")[0]
         vehicle02_bp = blueprint_library.filter("lincoln")[0]
-
+         # 设置车辆的初始位置和朝向
         vehicle00_tr = carla.Transform(carla.Location(110, -255, 0.05), carla.Rotation(yaw=180))
         vehicle01_tr = carla.Transform(carla.Location(53, -257, 0.00), carla.Rotation(yaw=0))
         vehicle02_tr = carla.Transform(carla.Location(85, -230, 0.04), carla.Rotation(yaw=-90))
-
+         # 创建一个批量请求，用于生成两个车辆并设置它们的目标速度
         batch = [
             SpawnActor(vehicle00_bp, vehicle00_tr)
             .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(-15, 0, 0))),
@@ -203,32 +229,36 @@ class ThreeCarsSlowSpeedCollision(Scenario):
 
 
 class CarBikeCollision(Scenario):
+    # 初始化场景的方法，接收前缀、设置和观察者变换矩阵作为参数
     def init_scene(self, prefix, settings = None, spectator_tr = None):
+        #调用父类的init_scene方法，传递相同的参数
         super(CarBikeCollision, self).init_scene(prefix, settings, spectator_tr)
-
+        #从世界环境中获取蓝图库，蓝图库包含了可以生成的所有物体的蓝图
         blueprint_library = self.world.get_blueprint_library()
-
+        # 从蓝图库中筛选出汽车的蓝图
         car_bp = blueprint_library.filter("mkz_2017")[0]
+         # 从蓝图库中筛选出自行车（gazelle）的蓝图
         bike_bp = blueprint_library.filter("gazelle")[0]
-
+        # 定义汽车的初始位置和朝向，位置为(50, -255, 0.04)，朝向为0度（
         car_tr = carla.Transform(carla.Location(50, -255, 0.04), carla.Rotation(yaw=0))
+        # 定义自行车的初始位置和朝向
         bike_tr = carla.Transform(carla.Location(85, -245, 0.04), carla.Rotation(yaw=-90))
 
         batch = [
             SpawnActor(car_bp, car_tr)
-            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(30, 0, 0))),
+            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(30, 0, 0))), # 生成汽车，并设置其目标速度为(30, 0, 0)
             SpawnActor(bike_bp, bike_tr)
-            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(0, -12, 0)))
+            .then(ApplyTargetVelocity(FutureActor, carla.Vector3D(0, -12, 0))) # 生成自行车，并设置其目标速度为(0, -12, 0)（即向左12米每秒）
         ]
 
         responses = self.client.apply_batch_sync(batch)
-
+      # 检查响应中的每个元素，确保加入组件被正确创建
         veh_ids = [x.actor_id for x in responses]
         veh_refs = [self.world.get_actor(x) for x in veh_ids]
 
         if (0 in veh_ids) or (None in veh_refs):
             self.fail("%s: The test cars could not be correctly spawned" % (bp_veh.id))
-
+        # 将组件添加到场景中
         self.add_actor(veh_refs[0], "Car")
         self.add_actor(veh_refs[1], "Bike")
 
@@ -256,7 +286,7 @@ class CarWalkerCollision(Scenario):
         ]
 
         responses = self.client.apply_batch_sync(batch)
-
+        # 检查响应中的每个元素，确保被正确创建
         veh_ids = [x.actor_id for x in responses]
         veh_refs = [self.world.get_actor(x) for x in veh_ids]
 

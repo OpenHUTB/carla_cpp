@@ -16,10 +16,10 @@
 
 #define CARLA_ENUM_FROM_RPC(e) static_cast<uint8>(carla::rpc::AttachmentType:: e)
 
-UENUM(BlueprintType)
+UENUM(BlueprintType)// 定义一个可用于蓝图的枚举类型
 enum class EAttachmentType : uint8
 {
-  Null = 0, // Workarround for UE4.24 issue with enums
+  Null = 0, // UE4.24中枚举的问题的解决方法
   Rigid           = CARLA_ENUM_FROM_RPC(Rigid)            UMETA(DisplayName = "Rigid"),
   SpringArm       = CARLA_ENUM_FROM_RPC(SpringArm)        UMETA(DisplayName = "SpringArm"),
   SpringArmGhost  = CARLA_ENUM_FROM_RPC(SpringArmGhost)   UMETA(DisplayName = "SpringArmGhost"),

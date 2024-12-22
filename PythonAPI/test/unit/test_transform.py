@@ -12,10 +12,13 @@ import unittest
 
 class TestLocation(unittest.TestCase):
     def test_default_values(self):
+        # 创建一个默认构造的carla.Location对象，此时预期其x、y、z属性都应为0.0
         location = carla.Location()
         # 验证默认构造的Location对象，其x、y、z属性是否都为0.0。
         self.assertEqual(location.x, 0.0)
+        # 同理，验证y属性是否为0.0
         self.assertEqual(location.y, 0.0)
+        # 验证z属性是否为0.0
         self.assertEqual(location.z, 0.0)
         location = carla.Location(1.0)
         # 验证使用一个参数构造Location对象时，x属性被赋值为传入参数，y和z属性为0.0。
@@ -173,13 +176,13 @@ class TestTransform(unittest.TestCase):
         self.assertTrue(abs(point.x - (-2.0)) <= error)
         self.assertTrue(abs(point.y - 0.0) <= error)
         self.assertTrue(abs(point.z - (-1.0)) <= error)
-
+    #定义一个测试函数，用于测试点列表的旋转和平移
     def test_list_rotation_and_translation_location(self):
         error = .001
-        t = carla.Transform(
+        t = carla.Transform(  
             carla.Location(x=0.0, y=0.0, z=-1.0),
             carla.Rotation(pitch=90.0, yaw=0.0, roll=0.0))
-
+        #定义一个点列表
         point_list = [carla.Location(x=0.0, y=0.0, z=2.0),
                       carla.Location(x=0.0, y=10.0, z=1.0),
                       carla.Location(x=0.0, y=18.0, z=2.0)
@@ -208,7 +211,7 @@ class TestTransform(unittest.TestCase):
                       carla.Vector3D(0.0, 18.0, 2.0)
                       ]
         t.transform(point_list)
-
+        #定义预期的变化后点列表
         solution_list = [carla.Vector3D(-2.0, 0.0, -1.0),
                          carla.Vector3D(-1.0, 10.0, -1.0),
                          carla.Vector3D(-2.0, 18.0, -1.0)

@@ -13,75 +13,75 @@
     - var_name: cloudiness
       type: float
       doc: >
-        Values range from 0 to 100, being 0 a clear sky and 100 one completely covered with clouds. 
+        Values range from 0 to 100, being 0 a clear sky and 100 one completely covered with clouds.  # 云层密度，值从 0 到 100，0 代表晴天，100 代表完全多云。
     # --------------------------------------
     - var_name: precipitation
       type: float
       doc: >
-        Rain intensity values range from 0 to 100, being 0 none at all and 100 a heavy rain. 
+        Rain intensity values range from 0 to 100, being 0 none at all and 100 a heavy rain.  # 降水强度，值从 0 到 100，0 代表没有降水，100 代表大雨。
     # --------------------------------------
     - var_name: precipitation_deposits
       type: float
       doc: >
-        Determines the creation of puddles. Values range from 0 to 100, being 0 none at all and 100 a road completely capped with water. Puddles are created with static noise, meaning that they will always appear at the same locations. 
+        Determines the creation of puddles. Values range from 0 to 100, being 0 none at all and 100 a road completely capped with water. Puddles are created with static noise, meaning that they will always appear at the same locations. # 决定水坑的形成，值从 0 到 100，0 代表没有水坑，100 代表道路完全被水覆盖。水坑是通过静态噪声生成的，因此它们会始终出现在相同的位置。
     # --------------------------------------
     - var_name: wind_intensity
       type: float
       doc: >
-        Controls the strenght of the wind with values from 0, no wind at all, to 100, a strong wind. The wind does affect rain direction and leaves from trees, so this value is restricted to avoid animation issues. 
+        Controls the strenght of the wind with values from 0, no wind at all, to 100, a strong wind. The wind does affect rain direction and leaves from trees, so this value is restricted to avoid animation issues.  # 风强度，值从 0 到 100，0 代表无风，100 代表强风。风会影响雨的方向和树叶，因此这个值会受到限制以避免动画问题。
     # --------------------------------------
     - var_name: sun_azimuth_angle
       type: float
       var_units: degrees
       doc: >
-        The azimuth angle of the sun. Values range from 0 to 360. Zero is an origin point in a sphere determined by Unreal Engine. 
+        The azimuth angle of the sun. Values range from 0 to 360. Zero is an origin point in a sphere determined by Unreal Engine.  # 太阳的方位角，值从 0 到 360，0 是由 Unreal Engine 确定的球体的原点。
     # --------------------------------------
     - var_name: sun_altitude_angle
       type: float
       var_units: degrees
       doc: >
-        Altitude angle of the sun. Values range from -90 to 90 corresponding to midnight and midday each.
+        Altitude angle of the sun. Values range from -90 to 90 corresponding to midnight and midday each. # 太阳的高度角，值从 -90 到 90，对应午夜和正午。
     # --------------------------------------
     - var_name: fog_density
       type: float
       doc: >
-        Fog concentration or thickness. It only affects the RGB camera sensor. Values range from 0 to 100.
+        Fog concentration or thickness. It only affects the RGB camera sensor. Values range from 0 to 100. # 雾的浓度或厚度，只影响 RGB 摄像头传感器。值从 0 到 100。
     # --------------------------------------
     - var_name: fog_distance
       type: float
       var_units: meters
       doc: >
-        Fog start distance. Values range from 0 to infinite.
+        Fog start distance. Values range from 0 to infinite. # 雾的起始距离，单位为米，值从 0 到无限。
     # --------------------------------------
     - var_name: wetness
       type: float
       doc: >
-        Wetness intensity. It only affects the RGB camera sensor. Values range from 0 to 100.
+        Wetness intensity. It only affects the RGB camera sensor. Values range from 0 to 100. # 湿度强度，只影响 RGB 摄像头传感器。值从 0 到 100。
     # --------------------------------------
     - var_name: fog_falloff
       type: float
       doc: >
-        Density of the fog (as in specific mass) from 0 to infinity. The bigger the value, the more dense and heavy it will be, and the fog will reach smaller heights. Corresponds to <a href="https://docs.unrealengine.com/en-US/Engine/Actors/FogEffects/HeightFog/index.html#:~:text=Using%20Exponential%20Height%20Fog%20Features,-The%20sections%20below&text=Add%20a%20second%20fog%20layer,height%20falloff%2C%20and%20height%20offset">Fog Height Falloff</a> in the UE docs. <br> If the value is 0, the fog will be lighter than air, and will cover the whole scene. <br> A value of 1 is approximately as dense as the air, and reaches normal-sized buildings. <br> For values greater than 5, the air will be so dense that it will be compressed on ground level. 
+        Density of the fog (as in specific mass) from 0 to infinity. The bigger the value, the more dense and heavy it will be, and the fog will reach smaller heights. Corresponds to <a href="https://docs.unrealengine.com/en-US/Engine/Actors/FogEffects/HeightFog/index.html#:~:text=Using%20Exponential%20Height%20Fog%20Features,-The%20sections%20below&text=Add%20a%20second%20fog%20layer,height%20falloff%2C%20and%20height%20offset">Fog Height Falloff</a> in the UE docs. <br> If the value is 0, the fog will be lighter than air, and will cover the whole scene. <br> A value of 1 is approximately as dense as the air, and reaches normal-sized buildings. <br> For values greater than 5, the air will be so dense that it will be compressed on ground level.  # 雾的密度（特定质量），从 0 到无限。值越大，雾越浓重，覆盖的高度越小。对应 Unreal Engine 中的 "Fog Height Falloff" 特性。如果值为 0，雾会比空气轻，覆盖整个场景。如果值为 1，雾的密度接近空气，覆盖正常大小的建筑物。值大于 5 时，雾会变得极为浓密，压缩到地面。
     # --------------------------------------
     - var_name: scattering_intensity
       type: float
       doc: >
-        Controls how much the light will contribute to volumetric fog. When set to 0, there is no contribution.
+        Controls how much the light will contribute to volumetric fog. When set to 0, there is no contribution. # 控制光线对体积雾的贡献程度，设置为 0 时没有任何贡献。
     # --------------------------------------
     - var_name: mie_scattering_scale
       type: float
       doc: >
-        Controls interaction of light with large particles like pollen or air pollution resulting in a hazy sky with halos around the light sources. When set to 0, there is no contribution.
+        Controls interaction of light with large particles like pollen or air pollution resulting in a hazy sky with halos around the light sources. When set to 0, there is no contribution. # 控制光与大颗粒（如花粉或空气污染物）的相互作用，导致天空模糊，光源周围有光环。设置为 0 时没有贡献。
     # --------------------------------------
     - var_name: rayleigh_scattering_scale
       type: float
       doc: >
-          Controls interaction of light with small particles like air molecules. Dependent on light wavelength, resulting in a blue sky in the day or red sky in the evening.
+          Controls interaction of light with small particles like air molecules. Dependent on light wavelength, resulting in a blue sky in the day or red sky in the evening. # 控制光与小颗粒（如空气分子）的相互作用，取决于光的波长，导致白天蓝天，傍晚红天。
     # --------------------------------------
     - var_name: dust_storm
       type: float
       doc: >
-          Determines the strength of the dust storm weather. Values range from 0 to 100.
+          Determines the strength of the dust storm weather. Values range from 0 to 100. # 沙尘暴强度，值从 0 到 100。
     # - METHODS ----------------------------
     methods:
     - def_name: __init__
@@ -90,88 +90,88 @@
         type: float
         default: 0.0
         doc: >
-          0 is a clear sky, 100 complete overcast. 
+          0 is a clear sky, 100 complete overcast.  # 0 代表晴天，100 代表完全多云。
       - param_name: precipitation
         type: float
         default: 0.0
         doc: >
-          0 is no rain at all, 100 a heavy rain. 
+          0 is no rain at all, 100 a heavy rain. # 0 代表没有降水，100 代表大雨。
       - param_name: precipitation_deposits
         type: float
         default: 0.0
         doc: >
-          0 means no puddles on the road, 100 means roads completely capped by rain. 
+          0 means no puddles on the road, 100 means roads completely capped by rain.  # 0 代表没有水坑，100 代表道路完全被水覆盖。
       - param_name: wind_intensity
         type: float
         default: 0.0
         doc: >
-          0 is calm, 100 a strong wind. 
+          0 is calm, 100 a strong wind.  # 0 代表无风，100 代表强风。
       - param_name: sun_azimuth_angle
         type: float
         default: 0.0
         param_units: degrees
         doc: >
-          0 is an arbitrary North, 180 its corresponding South.  
+          0 is an arbitrary North, 180 its corresponding South.  # 0 代表北方，180 代表南方。
       - param_name: sun_altitude_angle
         type: float
         default: 0.0
         param_units: degrees
         doc: >
-          90 is midday, -90 is midnight.  
+          90 is midday, -90 is midnight.   # 90 代表正午，-90 代表午夜。
       - param_name: fog_density
         type: float
         default: 0.0
         doc: >
-          Concentration or thickness of the fog, from 0 to 100.  
+          Concentration or thickness of the fog, from 0 to 100.   # 雾的浓度
       - param_name: fog_distance
         type: float
         default: 0.0
         param_units: meters
         doc: >
-          Distance where the fog starts in meters.  
+          Distance where the fog starts in meters.  # 雾霾开始的距离，单位为米。
       - param_name: wetness
         type: float
         default: 0.0
         doc: >
-          Humidity percentages of the road, from 0 to 100.  
+          Humidity percentages of the road, from 0 to 100.  # 道路湿度的百分比，范围从0到100
       - param_name: fog_falloff
         type: float
         default: 0.0
         doc: >
-          Density (specific mass) of the fog, from 0 to infinity.  
+          Density (specific mass) of the fog, from 0 to infinity.   # 雾霾的密度（比重），范围从0到无限大。
       - param_name: scattering_intensity
         type: float
         default: 0.0
         doc: >
-          Controls how much the light will contribute to volumetric fog. When set to 0, there is no contribution.
+          Controls how much the light will contribute to volumetric fog. When set to 0, there is no contribution. # 控制光源对体积雾霾的贡献程度。当值为0时，表示没有贡献。
       - param_name: mie_scattering_scale
         type: float
         default: 0.0
         doc: >
-          Controls interaction of light with large particles like pollen or air pollution resulting in a hazy sky with halos around the light sources. When set to 0, there is no contribution.
+          Controls interaction of light with large particles like pollen or air pollution resulting in a hazy sky with halos around the light sources. When set to 0, there is no contribution.# 控制光源与较大粒子（如花粉或空气污染物）相互作用，产生雾霾天空并在光源周围形成光晕。当值为0时，表示没有贡献。
       - param_name: rayleigh_scattering_scale
         type: float
         default: 0.0331
         doc: >
-          Controls interaction of light with small particles like air molecules. Dependent on light wavelength, resulting in a blue sky in the day or red sky in the evening.
+          Controls interaction of light with small particles like air molecules. Dependent on light wavelength, resulting in a blue sky in the day or red sky in the evening. # 控制光源与小粒子（如空气分子）相互作用，取决于光的波长，导致白天蓝色的天空或黄昏时红色的天空。
       note: >
-        ClearNoon, CloudyNoon, WetNoon, WetCloudyNoon, SoftRainNoon, MidRainyNoon, HardRainNoon, ClearSunset, CloudySunset, WetSunset, WetCloudySunset, SoftRainSunset, MidRainSunset, HardRainSunset. 
+        ClearNoon, CloudyNoon, WetNoon, WetCloudyNoon, SoftRainNoon, MidRainyNoon, HardRainNoon, ClearSunset, CloudySunset, WetSunset, WetCloudySunset, SoftRainSunset, MidRainSunset, HardRainSunset.  # 这些是不同的天气条件预设，分别对应晴朗正午、阴天正午、湿润正午等不同的情况。
       doc: >
-        Method to initialize an object defining weather conditions. This class has some presets for different noon and sunset conditions listed in a note below. 
+        Method to initialize an object defining weather conditions. This class has some presets for different noon and sunset conditions listed in a note below. # 初始化定义天气条件的对象的方法。此类有一些不同的预设，列出了不同的正午和日落天气条件。
     # --------------------------------------
     - def_name: __eq__
       params:
       - param_name: other
       return: bool
       doc: >
-        Returns <b>True</b> if both objects' variables are the same. 
+        Returns <b>True</b> if both objects' variables are the same.  # 如果两个对象的变量相同，返回<b>True</b>。
     # --------------------------------------
     - def_name: __ne__
       params:
       - param_name: other
       return: bool
       doc: >
-        Returns <b>True</b> if both objects' variables are different. 
+        Returns <b>True</b> if both objects' variables are different. # 如果两个对象的变量不同，返回<b>True</b>。
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------

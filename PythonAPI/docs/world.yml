@@ -5,12 +5,16 @@
   classes:
   - class_name: Timestamp
     # - DESCRIPTION ------------------------
+    # 以下是对 `Timestamp` 类的文档描述（doc），用于说明该类的总体用途和应用场景等信息。
     doc: >
       Class that contains time information for simulated data. This information is automatically retrieved as part of the carla.WorldSnapshot the client gets on every frame, but might also be used in many other situations such as a carla.Sensor retrieveing data. 
     # - PROPERTIES -------------------------
+    # 以下定义的是 `Timestamp` 类的实例变量部分，用于描述该类的对象所具有的属性特征。
     instance_variables:
     - var_name: frame
+      # 变量 `frame` 的类型被定义为整数（int），用于表示特定含义。
       type: int
+      # 以下是对 `frame` 变量的文档描述，说明它的具体作用。
       doc: >
         The number of frames elapsed since the simulator was launched.
     - var_name: elapsed_seconds
@@ -28,6 +32,10 @@
       var_units: seconds
       doc: >
         Time register of the frame at which this measurement was taken given by the OS in seconds. 
+    # 整体来看，这个 `Timestamp` 类旨在为模拟数据提供时间相关的信息记录。通过定义这几个实例变量，
+    # 可以分别从不同角度来刻画时间情况，比如 `frame` 记录自模拟器启动以来经过的帧数，`elapsed_seconds` 记录当前阶段开始后经过的模拟秒数，
+    # `delta_seconds` 体现与前一帧间隔的模拟秒数，`platform_timestamp` 则借助操作系统给出的时间来记录测量该帧时的时间戳（以秒为单位）。
+    # 这样在涉及模拟数据处理以及相关时间追踪的场景（如从 `carla.WorldSnapshot` 获取信息或者传感器获取数据等情况）中，就能方便地使用这些时间属性了。
     # - METHODS ----------------------------
     methods:
     - def_name: __init__
@@ -45,16 +53,32 @@
         param_units: seconds
     # --------------------------------------
     - def_name: __eq__
+      # `__eq__` 方法是 Python 中的一个特殊方法（也常被称作魔法方法），它用于定义对象之间相等性的比较逻辑。
+      # 当使用 `==` 运算符来比较两个同类型的对象时，Python 会自动调用对应类中定义的 `__eq__` 方法来判断它们是否相等。
+      # 在当前这个情境下，它属于 `carla.Timestamp` 类相关的方法定义，意味着当我们要比较两个 `carla.Timestamp` 类的实例对象是否相等时，就会执行这里定义的逻辑。
       params:
       - param_name: other
         type: carla.Timestamp
         param_units: seconds
+        # `other` 参数是 `__eq__` 方法的唯一参数，其类型被指定为 `carla.Timestamp`，这表明它用于接收另一个要与之进行比较的 `carla.Timestamp` 类的实例对象。
+        # 单位标记为 `seconds`，从 `carla.Timestamp` 类整体围绕时间信息的特性来看，这里虽不一定意味着比较操作只单纯基于时间单位维度进行，
+        # 但可以推测在实际的比较逻辑中大概率会涉及该类实例对象所包含的诸如帧时间、累计时间、时间间隔等各类以秒为单位计量的时间相关属性，
+        # 通过比较这些属性的值来确定当前实例对象与传入的 `other` 实例对象是否相等，以此实现自定义的相等性判断规则，满足 `carla.Timestamp` 类在具体应用场景中对于对象相等与否判断的特定需求。
     # --------------------------------------
     - def_name: __ne__
+      # `__ne__` 方法是Python中的一个特殊方法（魔法方法），其主要作用是定义对象之间不相等性的比较逻辑。
+      # 当使用 `!=` 运算符来比较两个同类型的对象时，Python 会自动调用对应类中定义的 `__ne__` 方法，以此判断它们是否不相等。
+      # 在当前的代码情境下，它是针对 `carla.Timestamp` 类进行定义的，也就意味着当要判断两个 `carla.Timestamp` 类的实例对象是否不相等时，就会执行此处定义的具体逻辑。
       params:
       - param_name: other
         type: carla.Timestamp
         param_units: seconds
+        # `other` 参数是 `__ne__` 方法的唯一参数，其类型被明确指定为 `carla.Timestamp`。
+        # 这表明它的用途是接收另一个 `carla.Timestamp` 类的实例对象，用于和当前的对象进行不相等性比较操作。
+        # 单位标记为 `seconds`，结合 `carla.Timestamp` 类主要是用于承载时间信息这一特点来看，
+        # 虽然并不一定意味着比较过程仅仅围绕时间单位维度展开，但大概率会在实际的比较逻辑中涉及该类实例对象所包含的各类和时间相关、以秒为单位计量的属性，
+        # 通过比较这些属性的值来确定当前实例对象与传入的 `other` 实例对象是否不相等，从而实现符合 `carla.Timestamp` 类特定需求的自定义的不相等性判断规则，
+        # 方便在程序中准确地区分不同的 `carla.Timestamp` 类实例是否存在差异。
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
@@ -64,13 +88,29 @@
     doc: >
       A class that contains every actor present on the scene and provides access to them. The list is automatically created and updated by the server and it can be returned using carla.World. 
     # - METHODS ----------------------------
-    methods:
+   methods:
     - def_name: filter
+      # `filter` 方法通常用于根据特定的规则对一组数据进行筛选，在这里它属于某个类（具体需结合更完整的代码上下文判断所属类）中定义的方法，
+      # 其主要功能大概率是针对特定集合里的元素进行筛选操作，以获取满足特定条件的子集元素集合。
       return: list
+      # 此方法明确返回值类型为列表（list），意味着经过该方法内部执行的筛选逻辑后，最终会返回一个列表形式的数据结构。
+      # 这个列表中包含的元素应该是经过筛选后符合相应条件的那些元素，具体是什么元素需要依据整个代码的业务逻辑以及筛选的对象范围来确定，
+      # 从当前提供的参数等信息推测，大概率是与后续要匹配的 `Actors` 相关的元素集合（但这需要结合更多上下文进一步确认）。
       params:
       - param_name: wildcard_pattern
         type: str
+        # `wildcard_pattern` 参数的类型被设定为字符串（str），它在 `filter` 方法中起着关键的筛选条件设定作用。
+        # 这个字符串作为一种通配符模式，会被用于和特定的目标属性（从后续文档字符串描述来看，是与 `Actors` 的 `__type_id__` 属性进行匹配）进行比对，
+        # 通过这个比对过程来判断哪些元素符合筛选要求，从而决定最终返回列表中的元素构成情况。
       doc: >
+        # 以下文档字符串（docstring）用于详细描述 `filter` 方法的具体功能和筛选操作的细节逻辑等重要信息。
+        # 它说明了该方法会对一个 `Actors` 的列表进行筛选操作，筛选时会将传入的 `wildcard_pattern`（也就是前面提到的作为通配符模式的字符串），
+        # 与每个 `Actor` 的 `__type_id__` 变量进行匹配比较。这里的 `__type_id__` 变量有着重要意义，它用于标识创建该 `Actor` 时所采用的蓝图，
+        # 通过这个标识可以区分不同类型的 `Actor`，不同的蓝图意味着产生的 `Actor` 在功能、属性等方面可能存在差异，所以利用 `__type_id__` 来筛选可以精准地获取特定类型的 `Actor` 集合。
+        # 并且，这种匹配操作遵循的是 [fnmatch](https://docs.python.org/2/library/fnmatch.html) 模块所定义的标准，
+        # 该标准定义了通配符在字符串匹配中的使用规则，例如通配符“*”可以代表任意长度的字符序列，“?”代表单个任意字符等，
+        # 通过按照这样的规则去比对 `wildcard_pattern` 和 `__type_id__`，就能筛选出符合模式匹配要求的 `Actors`，并将它们整合到一个列表中返回，
+        # 以此实现基于特定类型标识（借助 `__type_id__` 变量）按照给定的通配符模式（`wildcard_pattern`）来筛选 `Actors` 的功能，方便后续对筛选后的 `Actors` 集合进行进一步的操作和处理。
         Filters a list of Actors matching `wildcard_pattern` against their variable __<font color="#f8805a">type_id</font>__ (which identifies the blueprint used to spawn them). Matching follows [fnmatch](https://docs.python.org/2/library/fnmatch.html) standard.  
     # --------------------------------------
     - def_name: find
@@ -476,99 +516,190 @@
         This method applies settings contained in an object to the simulation running and returns the ID of the frame they were implemented. 
       warning: >
         If synchronous mode is enabled, and there is a Traffic Manager running, this must be set to sync mode too. Read [this](adv_traffic_manager.md#synchronous-mode) to learn how to do it. 
+   # --------------------------------------
+# `on_tick` 函数的定义说明部分
+# `on_tick` 函数相关的文档信息，用于描述函数功能、返回值、参数以及使用场景等关键内容
+- def_name: on_tick
+  return: int
+  params:
+  - param_name: callback
+    type: carla.WorldSnapshot
+    doc: > 
+      Function with a snapshot as compulsory parameter that will be called when the client receives a tick.  
+  doc: >
+    This method is used in [__asynchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/). 
+    # 说明 `on_tick` 函数是在异步模式下使用的，通过提供的链接可以进一步查看关于异步同步相关的详细文档内容，了解更多背景知识。
+
+    It starts callbacks from the client for the function defined as `callback`, and returns the ID of the callback.
+    # 该函数的主要功能之一是从客户端启动针对名为 `callback` 的函数的回调机制，并且会返回一个回调的 ID。这个回调 ID 后续可用于管理该回调，例如停止这个回调等操作。
+
+    The function will be called everytime the server ticks.
+    # 作为回调函数的 `callback`，它会在服务器每次进行 “tick”（可以理解为服务器的一次更新或时间步推进）操作时被调用，意味着只要服务器状态更新，就会触发与之关联的 `callback` 函数执行相应逻辑。
+
+    It requires a carla.WorldSnapshot as argument, which can be retrieved from __<font color="#7fb800">wait_for_tick()</font>__.
+    # 强调 `callback` 函数必须接收一个 `carla.WorldSnapshot` 类型的参数，而这个参数可以通过调用 `wait_for_tick()` 函数来获取，这里通过特定颜色标记的函数名（`<font color="#7fb800">wait_for_tick()</font>`）突出显示，方便用户在代码中快速定位相关函数。
+
+    Use __<font color="#7fb800">remove_on_tick()</font>__ to stop the callbacks.
+    # 提示如果想要停止通过 `on_tick` 函数启动的这些回调操作，可以调用 `remove_on_tick()` 函数来实现，同样以特定颜色标记突出显示对应的函数名，便于查找使用。
+# --------------------------------------
+# `remove_on_tick` 函数的定义说明部分
+# `remove_on_tick` 函数相关的文档信息，用于描述其功能、参数等关键内容
+- def_name: remove_on_tick
+  params:
+  - param_name: callback_id
+    type: callback
+    doc: > 
+      The callback to be removed. The ID is returned when creating the callback.  
+  doc: >
+    Stops the callback for `callback_id` started with __<font color="#7fb800">on_tick()</font>__.
+    # 说明 `remove_on_tick` 函数的功能就是停止与传入的 `callback_id` 相关联的回调操作，这个 `callback_id` 对应的回调是之前通过 `on_tick()` 函数创建启动的，通过这种方式实现对已启动回调的管理，能够灵活控制在异步模式下的回调机制的开启与停止。
     # --------------------------------------
-    - def_name: on_tick
-      return: int
-      params:
-      - param_name: callback
-        type: carla.WorldSnapshot
-        doc: > 
-          Function with a snapshot as compulsory parameter that will be called when the client receives a tick.  
-      doc: >
-        This method is used in [__asynchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/). It starts callbacks from the client for the function defined as `callback`, and returns the ID of the callback. The function will be called everytime the server ticks. It requires a carla.WorldSnapshot as argument, which can be retrieved from __<font color="#7fb800">wait_for_tick()</font>__. Use __<font color="#7fb800">remove_on_tick()</font>__ to stop the callbacks.
     # --------------------------------------
-    - def_name: remove_on_tick
-      params:
-      - param_name: callback_id
-        type: callback
-        doc: > 
-          The callback to be removed. The ID is returned when creating the callback.  
-      doc: >
-        Stops the callback for `callback_id` started with __<font color="#7fb800">on_tick()</font>__.
+# `tick` 函数的定义说明部分
+# 下面是关于 `tick` 函数详细的文档信息，涵盖了函数的返回值类型、参数情况以及其功能、使用场景和一些重要的备注说明等内容
+- def_name: tick
+  return: int
+  params:
+  - param_name: seconds
+    type: float
+    default: 10.0
+    param_units: seconds
+    doc: > 
+      Maximum time the server should wait for a tick. It is set to <code>10.0</code> by default.   
+  doc: >
+    This method is used in [__synchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/),
+    # 首先明确指出 `tick` 函数是用于同步模式下的操作，通过给出的链接（https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/），使用者可以进一步查阅关于同步模式更详细的文档资料，了解其背后的原理和更多相关细节。
+
+    when the server waits for a client tick before computing the next frame.
+    # 解释了在同步模式下的运行机制，即服务器在计算下一帧之前，会等待客户端发送一个 “tick”（可以理解为一个时间步的推进信号或者更新信号），这里说明了 `tick` 函数在这个过程中所起的作用，也就是由客户端来触发服务器进行下一步的帧计算操作。
+
+    This method will send the tick, and give way to the server.
+    # 具体说明 `tick` 函数的功能，它会向服务器发送这个 “tick” 信号，然后将控制权交给服务器，使得服务器能够基于这个信号去进行后续的帧计算以及相关的模拟世界状态更新等操作。
+
+    It returns the ID of the new frame computed by the server.
+    # 介绍了函数的返回值情况，`tick` 函数会返回服务器计算出的新帧的 ID，这个 ID 可以用于后续在同步模式下对帧相关操作的标识或者管理等用途，例如可能用于判断帧的顺序、关联特定的数据等。
+
+  note: > 
+    If no tick is received in synchronous mode, the simulation will freeze.
+    # 这里给出了一个重要的注意事项，在同步模式下，如果服务器没有接收到客户端发送的 “tick” 信号，那么整个模拟过程将会冻结，也就是模拟会停止运行，不再继续推进，强调了客户端发送 “tick” 信号对于同步模式下模拟正常运行的重要性。
+
+    Also, if many ticks are received from different clients, there may be synchronization issues.
+    # 另外一个需要注意的点是，如果有多个客户端向服务器发送了很多的 “tick” 信号，那么可能会出现同步方面的问题，因为服务器需要依据合理的规则来处理这些来自不同源头的更新信号，过多或不合理的信号可能会扰乱同步机制，影响模拟的准确性和稳定性。
+
+    Please read the docs about [synchronous mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/) to learn more.
+    # 再次提醒使用者可以去阅读关于同步模式的详细文档（https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/）来进一步深入了解这些情况以及如何更好地在同步模式下使用相关功能，避免出现上述提到的问题。
+# --------------------------------------
+# `wait_for_tick` 函数的定义说明部分
+# 以下是 `wait_for_tick` 函数的详细文档信息，包括返回值、参数含义以及其在异步模式下的功能描述等内容
+- def_name: wait_for_tick
+  return: carla.WorldSnapshot
+  params:
+  - param_name: seconds
+    type: float
+    default: 10.0
+    param_units: seconds
+    doc: > 
+      Maximum time the server should wait for a tick. It is set to <code>10.0</code> by default.   
+  doc: >
+    This method is used in [__asynchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/).
+    # 表明 `wait_for_tick` 函数是应用在异步模式下的，同样通过提供的链接（https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/）方便使用者进一步了解异步模式的详细内容和相关背景知识。
+
+    It makes the client wait for a server tick.
+    # 阐述了该函数的核心功能，就是让客户端去等待服务器的一个 “tick”（服务器的一次更新操作），在异步模式下，客户端不像在同步模式那样主动去触发服务器更新，而是等待服务器自身进行更新后再做相应操作。
+
+    When the next frame is computed, the server will tick and return a snapshot describing the new state of the world.
+    # 进一步说明当服务器完成下一帧的计算后，会进行 “tick” 操作并且返回一个 `carla.WorldSnapshot` 类型的对象，这个对象描述了模拟世界经过这次更新后的新状态，而这个返回值正是 `wait_for_tick` 函数向外提供的，客户端可以基于这个返回的世界状态快照来进行后续的各种操作，比如获取世界中的实体信息、进行相关逻辑判断等。
     # --------------------------------------
-    - def_name: tick
-      return: int
-      params:
-      - param_name: seconds
-        type: float
-        default: 10.0
-        param_units: seconds
-        doc: > 
-          Maximum time the server should wait for a tick. It is set to <code>10.0</code> by default.   
-      doc: >
-        This method is used in [__synchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/), when the server waits for a client tick before computing the next frame. This method will send the tick, and give way to the server. It returns the ID of the new frame computed by the server. 
-      note: > 
-        If no tick is received in synchronous mode, the simulation will freeze. Also, if many ticks are received from different clients, there may be synchronization issues. Please read the docs about [synchronous mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/) to learn more.  
     # --------------------------------------
-    - def_name: wait_for_tick
-      return: carla.WorldSnapshot
-      params:
-      - param_name: seconds
-        type: float
-        default: 10.0
-        param_units: seconds
-        doc: > 
-          Maximum time the server should wait for a tick. It is set to <code>10.0</code> by default.   
-      doc: >
-        This method is used in [__asynchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/). It makes the client wait for a server tick. When the next frame is computed, the server will tick and return a snapshot describing the new state of the world. 
+# `spawn_actor` 函数的定义说明部分
+# 下面是关于 `spawn_actor` 函数详细的文档信息，涵盖了函数的返回值类型、参数情况以及其整体功能描述等内容
+- def_name: spawn_actor
+  return: carla.Actor
+  params:
+  - param_name: blueprint
+    type: carla.ActorBlueprint
+    doc: >
+      The reference from which the actor will be created. 
+  # 对于 `blueprint` 参数的说明：
+  # 它是 `carla.ActorBlueprint` 类型，代表了创建角色（actor）的一个参考蓝本，也就是创建一个具体角色时所依据的模板或者蓝图。
+  # 这个蓝本定义了要创建的角色的各种属性、行为等基本特征，例如角色可能是一辆车、一个行人或者其他游戏世界中的实体，不同的蓝本对应不同类型和特性的角色，通过它才能创建出符合要求的具体角色实例。
+
+  - param_name: transform
+    type: carla.Transform
+    doc: >
+      Contains the location and orientation the actor will be spawned with. 
+  # 针对 `transform` 参数的解释：
+  # 它的类型为 `carla.Transform`，这个参数承载了要创建的角色在游戏世界中初始的位置（location）和朝向（orientation）信息。
+  # 位置信息决定了角色在世界坐标系中的具体坐标位置，而朝向信息则规定了角色面向的方向，通过这个参数就能确定角色最初出现在世界中的哪里以及面朝何方，是角色在世界中定位和姿态设定的关键依据。
+
+  - param_name: attach_to 
+    type: carla.Actor
+    default: None
+    doc: > 
+      The parent object that the spawned actor will follow around. 
+  # 关于 `attach_to` 参数的阐述：
+  # 它是 `carla.Actor` 类型，默认值为 `None`，代表着一个父级对象，也就是新创建出来的角色可以依附的对象。
+  # 如果指定了某个已存在的角色作为父级对象，那么新创建的这个角色将会跟随这个父级对象进行相应的移动、旋转等变化，就好像是附属在父级对象上一样，例如车辆上挂载的摄像头等设备就可以通过这种方式依附在车辆这个父级对象上，随车辆一同运动。
+
+  - param_name: attachment
+    type: carla.AttachmentType
+    default: Rigid
+    doc: > 
+      Determines how fixed and rigorous should be the changes in position according to its parent object. 
+  # 对 `attachment` 参数的详细说明：
+  # 其类型为 `carla.AttachmentType`，默认值是 `Rigid`（刚性的意思），这个参数用于确定新创建的角色相对于其父级对象在位置变化方面的特性。
+  # 不同的附着类型（`AttachmentType`）决定了角色跟随父级对象移动时，位置变化的严格程度或者说固定程度，比如刚性附着（`Rigid`）可能意味着角色与父级对象之间的相对位置关系非常固定，在父级对象移动、旋转等操作时，角色会严格按照某种固定规则跟随变化；而可能存在的其他附着类型会有不同的位置跟随方式，体现出不同的灵活性或约束性。
+
+  doc: >
+    The method will create, return and spawn an actor into the world. The actor will need an available blueprint to be created and a transform (location and rotation). It can also be attached to a parent with a certain attachment type. 
+  # 对 `spawn_actor` 函数整体功能的进一步描述：
+  # 这个函数的主要作用就是在游戏世界中创建、返回并实际生成（spawn）一个角色（actor）。
+  # 要成功创建一个角色，首先需要一个可用的蓝图（通过 `blueprint` 参数指定）来定义角色的基本属性和行为，同时需要通过 `transform` 参数来明确角色初始的位置和旋转信息，以此确定其在世界中的放置情况。
+  # 此外，还可以选择通过 `attach_to` 参数指定一个父级对象，并利用 `attachment` 参数设定附着的类型，使得新创建的角色能够以特定的方式依附到父级对象上，实现与其他对象之间在运动等方面的关联关系，满足游戏世界中各种复杂的实体布局和交互需求。
+# --------------------------------------
     # --------------------------------------
-    - def_name: spawn_actor
-      return: carla.Actor
-      params:
-      - param_name: blueprint
-        type: carla.ActorBlueprint
-        doc: >
-          The reference from which the actor will be created. 
-      - param_name: transform
-        type: carla.Transform
-        doc: >
-          Contains the location and orientation the actor will be spawned with. 
-      - param_name: attach_to 
-        type: carla.Actor
-        default: None
-        doc: > 
-          The parent object that the spawned actor will follow around. 
-      - param_name: attachment 
-        type: carla.AttachmentType
-        default: Rigid
-        doc: > 
-          Determines how fixed and rigorous should be the changes in position according to its parent object. 
-      doc: >
-        The method will create, return and spawn an actor into the world. The actor will need an available blueprint to be created and a transform (location and rotation). It can also be attached to a parent with a certain attachment type. 
     # --------------------------------------
-    - def_name: try_spawn_actor
-      return: carla.Actor
-      params:
-      - param_name: blueprint
-        type: carla.ActorBlueprint
-        doc: >
-          The reference from which the actor will be created. 
-      - param_name: transform
-        type: carla.Transform
-        doc: >
-          Contains the location and orientation the actor will be spawned with. 
-      - param_name: attach_to 
-        type: carla.Actor
-        default: None
-        doc: > 
-          The parent object that the spawned actor will follow around. 
-      - param_name: attachment 
-        type: carla.AttachmentType
-        default: Rigid
-        doc: > 
-          Determines how fixed and rigorous should be the changes in position according to its parent object. 
-      doc: >
-        Same as __<font color="#7fb800">spawn_actor()</font>__ but returns <b>None</b> on failure instead of throwing an exception.
+# `try_spawn_actor` 函数的定义说明部分
+# 以下是关于 `try_spawn_actor` 函数详细的文档信息，包括函数的返回值类型、参数情况以及其与 `spawn_actor` 函数对比的功能特点描述等内容
+- def_name: try_spawn_actor
+  return: carla.Actor
+  params:
+  - param_name: blueprint
+    type: carla.ActorBlueprint
+    doc: >
+      The reference from which the actor will be created. 
+  # 对 `blueprint` 参数的解释：
+  # 此参数类型为 `carla.ActorBlueprint`，和 `spawn_actor` 函数里对应的参数功能一致，它是创建角色（actor）所依据的参考蓝本，也就是规定了要生成的角色具体是什么样的一个模板，例如是何种类型的车辆、行人或者其他游戏世界中的实体等，依据它才能构建出相应特性的角色实例。
+
+  - param_name: transform
+    type: carla.Transform
+    doc: >
+      Contains the location and orientation the actor will be spawned with. 
+  # 针对 `transform` 参数的说明：
+  # 其类型为 `carla.Transform`，同样和 `spawn_actor` 函数里该参数作用相同，它包含了要创建的角色最初出现在游戏世界时的位置（location）和朝向（orientation）信息，确定了角色在世界坐标系中的具体坐标位置以及面向的方向，用于精准定位角色的初始状态。
+
+  - param_name: attach_to 
+    type: carla.Actor
+    default: None
+    doc: > 
+      The parent object that the spawned actor will follow around. 
+  # 关于 `attach_to` 参数的阐述：
+  # 该参数属于 `carla.Actor` 类型，默认值为 `None`，作用与 `spawn_actor` 函数里的对应参数一样，它表示新创建出来的角色可以依附的父级对象。若指定了某个已存在的角色作为父级对象，那么新创建的角色就会随着这个父级对象一同移动、旋转等，形成一种附属跟随的关系，比如在模拟场景中一些传感器依附在车辆上的情况就可以通过这个参数来设置。
+
+  - param_name: attachment
+    type: carla.AttachmentType
+    default: Rigid
+    doc: > 
+      Determines how fixed and rigorous should be the changes in position according to its parent object. 
+  # 对 `attachment` 参数的详细解释：
+  # 它的类型是 `carla.AttachmentType`，默认值为 `Rigid`，和 `spawn_actor` 函数里此参数的用途相同，用于决定新创建的角色相对于父级对象在位置变化方面的特性，不同的附着类型（`AttachmentType`）规定了角色跟随父级对象运动时，其位置变化的严格程度和固定程度，像刚性附着（`Rigid`）就意味着位置关系比较固定，会按照严格规则跟随父级对象变动，其他附着类型则有不同的跟随方式和约束情况。
+
+  doc: >
+    Same as __<font color="#7fb800">spawn_actor()</font>__ but returns <b>None</b> on failure instead of throwing an exception.
+  # 对 `try_spawn_actor` 函数整体功能特点的描述：
+  # 强调这个函数和 `spawn_actor` 函数（通过特定颜色标记的 `<font color="#7fb800">spawn_actor()</font>` 突出显示，方便对比查看）在功能上基本是相同的，都是用于在游戏世界中创建并生成一个角色（actor），并且都需要通过上述的几个参数来指定创建角色的蓝本、初始位置姿态以及是否依附父级对象和附着类型等信息。
+  # 但是二者有一个关键区别，当创建角色的过程中出现失败情况时，`try_spawn_actor` 函数不会像 `spawn_actor` 函数那样抛出异常（导致程序可能因异常中断执行），而是会返回 `None`，这样在使用 `try_spawn_actor` 函数时，开发者可以通过判断返回值是否为 `None` 来知晓创建角色是否成功，进而采取相应的后续处理逻辑，使得程序在面对可能的创建失败场景时能更优雅、稳定地处理，避免因异常而意外终止运行。
+# --------------------------------------
     # --------------------------------------
     - def_name: get_actor
       return: carla.Actor

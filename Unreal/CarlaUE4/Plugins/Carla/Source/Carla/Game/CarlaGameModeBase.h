@@ -30,7 +30,7 @@
 
 #include "CarlaGameModeBase.generated.h"
 
-/// Base class for the CARLA Game Mode.
+/// CARLA Game Mode 的基类。
 UCLASS(HideCategories=(ActorTick))
 class CARLA_API ACarlaGameModeBase : public AGameModeBase
 {
@@ -52,7 +52,7 @@ public:
 
   const FString GetFullMapPath() const;
 
-  // get path relative to Content folder
+  // 获取相对于 Content 文件夹的路径
   const FString GetRelativeMapPath() const;
 
   UFUNCTION(Exec, Category = "CARLA Game Mode")
@@ -112,7 +112,7 @@ public:
 
   TArray<FString> GetNamesOfAllActors();
 
-  // Gravitational acceleration. Default is earth one, which is approximately 9.81 m/s^2
+  // 引力加速度。默认值为接地一，约为 9.81 m/s^2
   UPROPERTY(BlueprintReadOnly, EditAnywhere, Category="Sensor Gravity")
   float IMUISensorGravity = 9.81f;
 
@@ -162,12 +162,12 @@ private:
   UPROPERTY()
   UObjectRegister* ObjectRegister = nullptr;
 
-  /// The class of Weather to spawn.
+  /// 要生成的 Weather 类。
   UPROPERTY(Category = "CARLA Game Mode", EditAnywhere)
   TSubclassOf<AWeather> WeatherClass;
 
-  /// List of actor spawners that will be used to define and spawn the actors
-  /// available in game.
+  /// 将用于定义和生成 actor 的 actor 生成器列表
+  ///在游戏中可用。
   UPROPERTY(Category = "CARLA Game Mode", EditAnywhere)
   TSet<TSubclassOf<ACarlaActorFactory>> ActorFactories;
 
@@ -192,8 +192,8 @@ private:
 
   bool ReadyToRegisterObjects = false;
 
-  // We keep a global uuid to allow the load/unload layer methods to be called
-  // in the same tick
+  // 我们保留一个全局 uuid 以允许调用 load/unload 层方法
+  ///在同一个即时报价中
   int32 LatentInfoUUID = 0;
 
 };

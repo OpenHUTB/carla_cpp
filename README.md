@@ -142,8 +142,8 @@ git rm -rf .
 [ggiiatr](https://github.com/ggiiatr) 、
 [suki-mina](https://github.com/suki-mina) 、
 [qqggxx](https://github.com/qqggxx)、
-[leeyuu-z](http://github.com/leeyuu-z) 、
-[zi666zi](http://github.com/zi666zi) 、
+[leeyuu-z](https://github.com/leeyuu-z) 、
+[zi666zi](https://github.com/zi666zi) 、
 [dzq168](https://github.com/dzq168)、
 [riset77](https://github.com/riset77)、
 [ylyl551](https://github.com/yly551)、
@@ -159,7 +159,7 @@ git rm -rf .
 [weidinghe](https://github.com/weidinghe)、
 [xinderruila](https://github.com/xinderruila)、
 [YJY336](https://github.com/YJY336)、
-[Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrilky](https://github.com/hyjrilky)、
+[Zeng-Qi37](https://github.com/Zeng-Qi37)、[hyjrikyh](https://github.com/hyjrilky)、
 [vv313](https://github.com/vv313)、
 [lwh0954](https://github.com/lwh0954)、
 [csgo3553](https://github.com/csgo3553) 、
@@ -218,3 +218,34 @@ git rm -rf .
 [ylsj666](https://github.com/ylsj666/carla_cpp.git)、
 [2209040022ll](https://github.com/2209040022ll/carla_cpp.git)、
 [moon884](https://github.com/moon884/carla_cpp.git)、
+[haoCui-hutb](https://github.com/haoCui-hutb)
+[caicaiyo](https://github.com/caicaiyo)
+[2899661520](https://github.com/2899661520)
+[ALKAID540](https://github.com/ALKAID540)
+[kifiliketomato](https://github.com/kifiliketomato)
+[Platycodon7](https://github.com/Platycodon7)
+[Yule-eeeeee](https://github.com/Yule-eeeeee)
+[lu-jiahui](https://github.com/lu-jiahui)
+[28996615201](https://github.com/28996615201)
+[maokeyi](https://github.com/maokeyi)
+[qingchucheng](https://github.com/qingchucheng)
+[tw-tw1215](https://github.com/tw-tw1215)
+[zkrspec](https://github.com/zkrspec)
+[tangruixin170](https://github.com/tangruixin170)
+[EvilBatman](https://github.com/EvilBatman)
+[Tcowl](https://github.com/Tcowl)
+[darkrose509](https://github.com/darkrose509)
+[susu0201](https://github.com/susu0201)
+[leejay2005](https://github.com/leejay2005)
+[xuweier](https://github.com/xuweier)
+[15773272552](https://github.com/15773272552)
+[ashudou](https://github.com/ashudou)
+[vllcf](https://github.com/vllcf)
+[wyy124](https://github.com/wyy124)
+[wenzheng236](https://github.com/wenzheng236)
+[qingyun-cmyk](https://github.com/qingyun-cmyk)
+[Sword761](https://github.com/Sword761)
+[xiaochenop](https://github.com/xiaochenop)
+[chaojixiangshuijiao](https://github.com/chaojixiangshuijiao)
+[liiiiiking](https://github.com/liiiiiking/carla_cpp.git)
+[Yygo100](https://github.com/Yygo100)

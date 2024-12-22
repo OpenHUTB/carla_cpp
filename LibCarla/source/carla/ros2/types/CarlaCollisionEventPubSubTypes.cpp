@@ -29,18 +29,39 @@ using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace carla_msgs {
     namespace msg {
-        CarlaCollisionEventPubSubType::CarlaCollisionEventPubSubType()
-        {
-            setName("carla_msgs::msg::dds_::CarlaCollisionEvent_");
-            auto type_size = CarlaCollisionEvent::getMaxCdrSerializedSize();
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/
-            m_isGetKeyDefined = CarlaCollisionEvent::isKeyDefined();
-            size_t keyLength = CarlaCollisionEvent::getKeyMaxCdrSerializedSize() > 16 ?
-                    CarlaCollisionEvent::getKeyMaxCdrSerializedSize() : 16;
-            m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
-            memset(m_keyBuffer, 0, keyLength);
-        }
+      CarlaCollisionEventPubSubType::CarlaCollisionEventPubSubType()
+{
+    // 设置数据类型（消息类型）的名称，用于序列化和反序列化
+    setName("carla_msgs::msg::dds_::CarlaCollisionEvent_");
+
+    // 获取 CarlaCollisionEvent 对象序列化所需的最大字节数
+    // 这包括消息的大小和任何附加的序列化数据
+    auto type_size = CarlaCollisionEvent::getMaxCdrSerializedSize();
+
+    // 调整可能的子消息对齐（例如，序列化时需要的填充）
+    // CDR（通用数据表示）标准可能需要对数据进行特定对齐
+    type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* 可能的子消息对齐 */
+
+    // 设置总类型大小，包括封装（4 字节）以符合 DDS 序列化格式
+    m_typeSize = static_cast<uint32_t>(type_size) + 4; /* 封装 */
+
+    // 检查 CarlaCollisionEvent 类型是否定义了键
+    // 在 DDS 中，某些消息可能会包含一个键，用于唯一标识数据
+    m_isGetKeyDefined = CarlaCollisionEvent::isKeyDefined();
+
+    // 计算最大键长度，这个键可能会参与序列化
+    // 键长度为最大键的序列化字节数，或者 16 字节（取较大者）
+    size_t keyLength = CarlaCollisionEvent::getKeyMaxCdrSerializedSize() > 16 ?
+                        CarlaCollisionEvent::getKeyMaxCdrSerializedSize() : 16;
+
+    // 为键缓冲区分配内存，用于存储序列化/反序列化时的键
+    // 确保分配足够的内存来存储键
+    m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength));
+
+    // 将键缓冲区初始化为零，以避免包含任何垃圾值
+    memset(m_keyBuffer, 0, keyLength);
+}
+
 
         CarlaCollisionEventPubSubType::~CarlaCollisionEventPubSubType()
         {
@@ -51,33 +72,46 @@ namespace carla_msgs {
         }
 
         bool CarlaCollisionEventPubSubType::serialize(
-                void* data,
-                SerializedPayload_t* payload)
-        {
-            CarlaCollisionEvent* p_type = static_cast<CarlaCollisionEvent*>(data);
+                  void* data,
+                  SerializedPayload_t* payload)
+      {
+          // 将 void* 类型的数据指针转换为 CarlaCollisionEvent* 类型，指向实际的数据对象
+          CarlaCollisionEvent* p_type = static_cast<CarlaCollisionEvent*>(data);
 
-            // Object that manages the raw buffer.
-            eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
-            // Object that serializes the data.
-            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
-            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
-            ser.serialize_encapsulation();
+          // 创建一个 FastBuffer 对象来管理原始数据缓冲区
+          // fastbuffer 将会操作 payload->data 中的数据，最大缓冲区大小由 payload->max_size 决定
+          eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
 
-            try
-            {
-                // Serialize the object.
-                p_type->serialize(ser);
-            }
-            catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
-            {
-                return false;
-            }
+          // 创建一个 Cdr 对象来进行序列化操作
+          // Cdr 对象是基于 fastbuffer 创建的，默认使用系统字节序，并且序列化采用 DDS CDR 格式
+          eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-            // Get the serialized length
-            payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
-            return true;
-        }
+          // 根据 Cdr 对象的字节序判断封装类型，设置 payload 的封装类型
+          // 如果使用大端字节序，使用 CDR_BE，否则使用 CDR_LE
+          payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
+
+          // 序列化封装部分
+          ser.serialize_encapsulation();
+
+          try
+          {
+              // 序列化数据对象（p_type 即 CarlaCollisionEvent 类型的对象）
+              // 调用 CarlaCollisionEvent 类的 serialize 方法将数据序列化到 Cdr 对象中
+              p_type->serialize(ser);
+          }
+          catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+          {
+              // 如果序列化过程中内存不足，捕获异常并返回 false
+              return false;
+          }
+
+          // 获取序列化后的数据长度，赋值给 payload->length
+          payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+
+          // 序列化成功，返回 true
+          return true;
+      }
+
 
         bool CarlaCollisionEventPubSubType::deserialize(
                 SerializedPayload_t* payload,

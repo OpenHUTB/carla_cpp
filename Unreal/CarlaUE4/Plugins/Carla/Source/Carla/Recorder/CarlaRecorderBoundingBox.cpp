@@ -47,18 +47,18 @@ void CarlaRecorderActorBoundingBoxes::Add(const CarlaRecorderActorBoundingBox &I
 
 void CarlaRecorderActorBoundingBoxes::Write(std::ostream &OutFile)
 {
-  // write the packet id
-  WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::BoundingBox));
+    // 写入数据包ID
+    WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::BoundingBox));
 
-  // write the packet size
+  // 写入数据包大小
   uint32_t Total = 2 + Boxes.size() * sizeof(CarlaRecorderActorBoundingBox);
   WriteValue<uint32_t>(OutFile, Total);
 
-  // write total records
+  // 写入全部记录
   Total = Boxes.size();
   WriteValue<uint16_t>(OutFile, Total);
 
-  // write records
+  // 写入记录
   for(auto& Box : Boxes)
   {
     Box.Write(OutFile);
@@ -81,18 +81,18 @@ void CarlaRecorderActorTriggerVolumes::Write(std::ostream &OutFile)
   {
     return;
   }
-  // write the packet id
+  // 写入数据包ID
   WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::TriggerVolume));
 
-  // write the packet size
+  // 写入数据包大小
   uint32_t Total = 2 + Boxes.size() * sizeof(CarlaRecorderActorBoundingBox);
   WriteValue<uint32_t>(OutFile, Total);
 
-  // write total records
+  // 写入全部记录
   Total = Boxes.size();
   WriteValue<uint16_t>(OutFile, Total);
 
-  // write records
+  // 写入记录
   for(auto& Box : Boxes)
   {
     Box.Write(OutFile);

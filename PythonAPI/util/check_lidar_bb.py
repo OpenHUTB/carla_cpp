@@ -69,38 +69,41 @@ class ActorTrace(object):
     def __init__(self, actor, lidar):
         self.set_lidar(lidar)
         self.set_actor(actor)
+# 初始化本地坐标系下的激光雷达点云数据为空数组
         self._lidar_pc_local = np.array([])
+# 初始化边界框顶点为空数组
         self._bb_vertices = np.array([])
-        self._bb_minlimits = [0, 0, 0]
-        self._bb_maxlimits = [0, 0, 0]
+# 初始化边界框的最小和最大坐标限制
+        self._bb_minlimits = [0, 0, 0] # 定义边界框的最小坐标，初始值为（0，0，0）
+        self._bb_maxlimits = [0, 0, 0] # 定义边界框的最大坐标，初始值为（0，0，0）
 
     def set_lidar(self, lidar):
-        self._frame = lidar[0]
-        self._lidar_data = lidar[2]
-        self._lidar_transf = lidar[3]
+        self._frame = lidar[0]                      # 帧信息
+        self._lidar_data = lidar[2]              # 点云数据
+        self._lidar_transf = lidar[3]            # 激光雷达的全局变换
 
     def set_actor(self, actor):
-        self._actor_id = actor[0]
-        self._actor_type = actor[1]
-        self._actor_transf = actor[2]
-        self._actor_bb = actor[3]
+        self._actor_id = actor[0]              # 行为者ID
+        self._actor_type = actor[1]             # 行为者类型
+        self._actor_transf = actor[2]            # 行为者的全局变换
+        self._actor_bb = actor[3]             # 行为者的边界框
 
     def process(self):
+ # 过滤出与当前行为者ID对应的激光雷达点云数据
         # Filter lidar points that correspond to my actor id
         data_actor = self._lidar_data[self._lidar_data['ObjIdx'] == self._actor_id]
-
+  # 将点云数据从传感器坐标系转换到世界坐标系，再转换到行为者本地坐标系
         # Take the xyz point cloud data and transform it to actor's frame
-        points = np.array([data_actor['x'], data_actor['y'], data_actor['z']]).T
+        points = np.array([data_actor['x'], data_actor['y'], data_actor['z']]).T                                    # 添加齐次坐标
         points = np.append(points, np.ones((points.shape[0], 1)), axis=1)
-        points = np.dot(self._lidar_transf.get_matrix(), points.T).T         # sensor -> world
-        points = np.dot(self._actor_transf.get_inverse_matrix(), points.T).T # world -> actor
-        points = points[:, :-1]
+        points = np.dot(self._lidar_transf.get_matrix(), points.T).T         # sensor -> world                 # 传感器 -> 世界
+        points = np.dot(self._actor_transf.get_inverse_matrix(), points.T).T # world -> actor                 
+        points = points[:, :-1]                      # 移除齐次坐标
 
-        # Saving the points in 'local' coordinates
+        # 保存转换后的点云数据到本地坐标系
         self._lidar_pc_local = points
 
-        # We compute the limits in the local frame of reference using the
-        # vertices of the bounding box
+        # 计算边界框在本地坐标系下的顶点
         vertices = self._actor_bb.get_local_vertices()
         ver_py = []
         for v in vertices:
@@ -109,6 +112,7 @@ class ActorTrace(object):
 
         self._bb_vertices = ver_np
 
+ # 计算边界框的最小和最大坐标限制（加减一个小数以避免浮点误差）
         self._bb_minlimits = ver_np.min(axis=0) - 0.001
         self._bb_maxlimits = ver_np.max(axis=0) + 0.001
 
@@ -117,33 +121,43 @@ class ActorTrace(object):
             np.savetxt("veh_data_%d_%s_%d.out" % (self._frame, self._actor_type, self._actor_id), self._lidar_pc_local)
             np.savetxt("bb_data_%d_%s_%d.out"  % (self._frame, self._actor_type, self._actor_id), self._bb_vertices)
 
-    def lidar_is_outside_bb(self, check_axis = [True, True, True]):
+    def lidar_is_outside_bb(self, check_axis=[True, True, True]):
+        """
+        检查激光雷达点云是否超出了边界框的范围。
+ 
+        参数:
+            check_axis (list of bool): 一个包含三个布尔值的列表，分别表示是否检查x、y、z轴。
+ 
+        返回:
+            bool: 如果点云在任一检查的轴上超出了边界框，则返回True；否则返回False。
+        """
+        # 获取本地激光雷达点云数据
         lidar_pc = self._lidar_pc_local
-
+ 
+        # 检查x轴
         if check_axis[0]:
-            xmin = self._bb_minlimits[0]
-            xmax = self._bb_maxlimits[0]
-            out = np.any((lidar_pc[:,0] > xmax) | (lidar_pc[:,0] < xmin))
-            if out:
+            # 获取边界框在x轴上的最小和最大限制
+            xmin, xmax = self._bb_minlimits[0], self._bb_maxlimits[0]
+            # 检查点云中是否有任何点在x轴上超出了边界框的范围
+            if np.any((lidar_pc[:, 0] > xmax) | (lidar_pc[:, 0] < xmin)):
                 print("Problem with x axis")
                 return True
-
+ 
+        # 检查y轴（逻辑与x轴相同）
         if check_axis[1]:
-            ymin = self._bb_minlimits[1]
-            ymax = self._bb_maxlimits[1]
-            out = np.any((lidar_pc[:, 1] > ymax) | (lidar_pc[:, 1] < ymin))
-            if out:
+            ymin, ymax = self._bb_minlimits[1], self._bb_maxlimits[1]
+            if np.any((lidar_pc[:, 1] > ymax) | (lidar_pc[:, 1] < ymin)):
                 print("Problem with y axis")
                 return True
-
+ 
+        # 检查z轴（逻辑与x轴和y轴相同）
         if check_axis[2]:
-            zmin = self._bb_minlimits[2]
-            zmax = self._bb_maxlimits[2]
-            out = np.any((lidar_pc[:, 2] > zmax) | (lidar_pc[:, 2] < zmin))
-            if out:
+            zmin, zmax = self._bb_minlimits[2], self._bb_maxlimits[2]
+            if np.any((lidar_pc[:, 2] > zmax) | (lidar_pc[:, 2] < zmin)):
                 print("Problem with z axis")
                 return True
-
+ 
+        # 如果点云在所有检查的轴上都没有超出边界框，则返回False
         return False
     
     def check_lidar_data(self):
@@ -176,27 +190,36 @@ def lidar_callback(sensor_data, sensor_queue, sensor_name):
     sensor_transf = sensor_data.transform
     sensor_queue.put((sensor_data.frame, sensor_name, sensor_pc_local, sensor_transf))
 
+# 定义一个回调函数，用于处理车辆的边界框（bounding box）数据
 def bb_callback(snapshot, world, sensor_queue, sensor_name):
     data_array = []
 
+  # 获取所有车辆
     vehicles = world.get_actors().filter('vehicle.*')
     for actor in vehicles:
+      # 将车辆的id、类型、变换和边界框信息添加到数组中
         data_array.append((actor.id, actor.type_id, actor.get_transform(), actor.bounding_box))
 
+  # 将数据放入传感器队列中
     sensor_queue.put((snapshot.frame, sensor_name, data_array))
 
+# 定义一个函数，用于移动观察者的位置
 def move_spectator(world, actor):
     actor_tr = actor.get_transform()
     spectator_transform = carla.Transform(actor_tr.location, actor_tr.rotation)
+  # 将观察者的位置向后移动5个单位，向上移动3个单位
     spectator_transform.location -= actor_tr.get_forward_vector() * 5
     spectator_transform.location -= actor_tr.get_up_vector() * 3
     spectator = world.get_spectator()
     spectator.set_transform(spectator_transform)
 
+# 定义一个回调函数，用于处理世界信息和边界框数据
 def world_callback(snapshot, world, sensor_queue, sensor_name, actor):
+  # 移动观察者的位置
     move_spectator(world, actor)
     bb_callback(snapshot, world, sensor_queue, sensor_name)
 
+# 定义一个函数，用于处理传感器数据
 def process_sensors(w_frame, sensor_queue, sensor_number):
     if sensor_number != 2:
         print("Error!!! Sensor number should be two")
@@ -224,11 +247,13 @@ def process_sensors(w_frame, sensor_queue, sensor_number):
     if sl_data == None or bb_data == None:
         print("Error!!! Missmatch for sensor %s in the frame timestamp (w: %d, s: %d)" % (s_frame[1], w_frame, s_frame[0]))
 
+  # 处理边界框数据和激光雷达数据
     for actor_data in bb_data[2]:
         trace_vehicle = ActorTrace(actor_data, sl_data)
         trace_vehicle.process()
         trace_vehicle.check_lidar_data()
 
+# 定义一个类，用于生成车辆
 class SpawnCar(object):
     def __init__(self, location, rotation, filter="vehicle.*", autopilot = False, velocity = None):
         self._filter = filter
@@ -251,6 +276,7 @@ class SpawnCar(object):
             self._actor.destroy()
 
 
+# 定义一个车辆属性列表，用于生成多种类型的车辆
 CarPropList = [
     SpawnCar(carla.Location(x=83,  y= -40, z=5),  carla.Rotation(yaw=-90),  filter= "mkz_2017", autopilot=True),
     SpawnCar(carla.Location(x=83,  y= -30, z=3),  carla.Rotation(yaw=-90),  filter= "ambulance", autopilot=True),
@@ -281,22 +307,26 @@ CarPropList = [
     SpawnCar(carla.Location(x=243, y=+140,z=2),   carla.Rotation(yaw=-90),  filter= "c3", autopilot=True)
 ]
 
+# 定义一个函数，用于生成所有车辆
 def spawn_prop_vehicles(world):
     for car in CarPropList:
         car.spawn(world)
 
+# 定义一个函数，用于销毁所有车辆
 def destroy_prop_vehicles():
     for car in CarPropList:
         car.destroy()
 
 
 def main():
+  # 创建CARLA客户端
     # We start creating the client
     client = carla.Client('localhost', 2000)
     client.set_timeout(2.0)
     world = client.get_world()
 
     try:
+      # 保存原始设置以便恢复
         # We need to save the settings to be able to recover them at the end
         # of the script to leave the server in the same state that we found it.
         original_settings = world.get_settings()

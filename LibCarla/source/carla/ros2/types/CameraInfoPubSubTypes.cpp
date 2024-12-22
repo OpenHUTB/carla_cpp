@@ -18,10 +18,10 @@
  * 该文本由工具fastcdrgen生成，主要用于处理与传感器消息中相机信息（CameraInfo）相关的发布/订阅类型的序列化、反序列化以及获取关键信息等操作，以便在数据分发服务（DDS）框架下正确传输和处理相机信息数据。
  */
 
-#include <fastcdr/FastBuffer.h>
-#include <fastcdr/Cdr.h>
+#include <fastcdr/FastBuffer.h>    // Fast CDR 序列化所需的缓冲区类
+#include <fastcdr/Cdr.h>           // Fast CDR 序列化和反序列化类
 
-#include "CameraInfoPubSubTypes.h"
+#include "CameraInfoPubSubTypes.h" // 引入 CameraInfoPubSubType 类和 CameraInfo 类型定义
 
 // 定义SerializedPayload_t类型别名，用于表示序列化后的有效载荷，在Fast DDS的RTPS（实时发布/订阅协议）中使用，包含了数据和相关的长度、封装等信息。
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
@@ -58,7 +58,7 @@ namespace sensor_msgs {
         {
             if (m_keyBuffer!= nullptr)
             {
-                free(m_keyBuffer);
+                free(m_keyBuffer); // 释放内存
             }
         }
 
@@ -141,22 +141,22 @@ namespace sensor_msgs {
 
         // 创建一个新的相机信息（CameraInfo）类型的数据对象，返回的是void*类型指针，调用者需要根据实际情况进行类型转换后使用，用于在需要创建新的数据实例时调用。
         void* CameraInfoPubSubType::createData()
-        {
+        {  // 使用 new 创建 CameraInfo 实例，并将其转换为 void* 类型返回
             return reinterpret_cast<void*>(new CameraInfo());
         }
 
         // 删除给定的相机信息（CameraInfo）类型的数据对象，释放其占用的内存空间，防止内存泄漏，需要传入通过createData创建的对应指针。
         void CameraInfoPubSubType::deleteData(
                 void* data)
-        {
+        {     // 将传入的void*类型的指针转换回 CameraInfo* 类型，然后删除该对象，释放内存
             delete(reinterpret_cast<CameraInfo*>(data));
         }
 
         // 获取相机信息对象的关键信息（Key），用于在一些需要唯一标识数据实例或者进行数据匹配等场景，例如在DDS的键值匹配查找中使用。
         bool CameraInfoPubSubType::getKey(
-                void* data,
-                InstanceHandle_t* handle,
-                bool force_md5)
+                void* data,    // 传入的CameraInfo数据对象
+                InstanceHandle_t* handle,  // 用于存储生成的关键信息的实例句柄
+                bool force_md5)    // 是否强制使用MD5算法，通常在关键信息序列化大于16字节时使用
         {
             if (!m_isGetKeyDefined)
             {
@@ -165,6 +165,7 @@ namespace sensor_msgs {
             }
 
             CameraInfo* p_type = static_cast<CameraInfo*>(data);
+             // 将传入的void*类型的指针转换为 CameraInfo* 类型
 
             // 创建一个FastBuffer对象，用于管理存储关键信息的缓冲区，将键缓冲区（m_keyBuffer）指针转换为char*类型，并指定最大可用大小为相机信息类型的Key最大CDR序列化大小，用于后续序列化关键信息到该缓冲区。
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
@@ -172,13 +173,16 @@ namespace sensor_msgs {
 
             // 创建一个Cdr对象，指定字节序为大端序（通常在获取关键信息等场景下使用固定字节序），用于序列化关键信息到缓冲区中。
             eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
+             // 调用相机信息类型的serializeKey方法，将关键信息序列化到Cdr对象中
             p_type->serializeKey(ser);
             if (force_md5 || CameraInfo::getKeyMaxCdrSerializedSize() > 16)
             {
                 // 如果强制使用MD5或者关键信息序列化后大小大于16字节，则使用MD5算法对关键信息进行处理，初始化MD5对象，更新数据并最终生成摘要。
-                m_md5.init();
-                m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
-                m_md5.finalize();
+                m_md5.init(); // 初始化MD5对象
+                m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength())); // 使用MD5更新数据（关键信息）
+                m_md5.finalize(); // 生成最终的MD5摘要
+
+                 // 将MD5计算得到的摘要（16字节）赋值给实例句柄的value数组
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_md5.digest[i];
@@ -192,7 +196,7 @@ namespace sensor_msgs {
                     handle->value[i] = m_keyBuffer[i];
                 }
             }
-            return true;
+            return true;// 返回true，表示成功获取了关键信息
         }
     } //End of namespace msg
 } //End of namespace sensor_msgs

@@ -3,6 +3,7 @@
 
 namespace MeshReconstruction
 {
+// 定义一个名为IntersectInfo的结构体，用于存储相交信息
   struct IntersectInfo
   {
     // 0 - 255
@@ -15,13 +16,14 @@ namespace MeshReconstruction
 //这段代码定义了一个名为 Cube 的类这段代码定义了一个名为 Cube 的类
   class Cube
   {
-    Vec3 pos[8];
+    Vec3 pos[8];// 存储立方体的8个顶点的位置。
     double sdf[8];
-
+// 线性插值计算顶点位置的私有函数，根据给定的等值面水平（isoLevel）和两个顶点索引i1、i2来计算插值后的顶点位置
     Vec3 LerpVertex(double isoLevel, int i1, int i2) const;
     int SignConfig(double isoLevel) const;
 
   public:
+// Cube类的构造函数，接受一个三维空间范围（Rect3类型）和一个三维标量函数（Fun3s类型）作为参数来初始化立方体相关属性
     Cube(Rect3 const &space, Fun3s const &sdf);
 
     // 找出曲面与立方体相交的顶点。
@@ -67,6 +69,7 @@ namespace MeshReconstruction
         0xf00, 0xe09, 0xd03, 0xc0a, 0xb06, 0xa0f, 0x905, 0x80c,
         0x70c, 0x605, 0x50f, 0x406, 0x30a, 0x203, 0x109, 0x0};
 
+        // 定义一个名为Edge的结构体，用于表示立方体的边相关信息
     struct Edge
     {
       int edgeFlag : 12; // flag: 1, 2, 4, ... 2048
@@ -90,15 +93,15 @@ namespace MeshReconstruction
             {2048, 3, 7} // edge 11
     };
   }
-
-  Vec3 Cube::LerpVertex(double isoLevel, int i1, int i2) const
+// 线性插值计算顶点位置的函数实现
+  Vec3 Cube::LerpVertex(double isoLevel, int i1, int i2) const 
   {
-    auto const Eps = 1e-5;
-    auto const v1 = sdf[i1];
+    auto const Eps = 1e-5; // 定义一个用于比较浮点数的精度阈值
+    auto const v1 = sdf[i1]; // 定义一个用于比较浮点数的精度阈值
     auto const v2 = sdf[i2];
-    auto const &p1 = pos[i1];
+    auto const &p1 = pos[i1]; // 定义一个用于比较浮点数的精度阈值
     auto const &p2 = pos[i2];
-
+    // 如果isoLevel与其中一个顶点的SDF值非常接近，则直接返回该顶点位置
     if (abs(isoLevel - v1) < Eps)
       return p1;
     if (abs(isoLevel - v2) < Eps)
@@ -106,11 +109,12 @@ namespace MeshReconstruction
     if (abs(v1 - v2) < Eps)
       return p1;
 
-    auto mu = (isoLevel - v1) / (v2 - v1);
-    return p1 + (p2 - p1) * mu;
+    auto mu = (isoLevel - v1) / (v2 - v1); // 计算线性插值参数
+    return p1 + (p2 - p1) * mu; // 返回插值后的位置
   }
-
+// Cube类的构造函数实现，用于初始化立方体的顶点位置和每个顶点对应的SDF值
   Cube::Cube(Rect3 const &space, Fun3s const &sdf)
+// 定义一个名为 Cube 的构造函数，接受两个参数：space 和 sdf
   {
     auto mx = space.min.x;
     auto my = space.min.y;
@@ -119,7 +123,7 @@ namespace MeshReconstruction
     auto sx = space.size.x;
     auto sy = space.size.y;
     auto sz = space.size.z;
-
+    // 初始化立方体的8个顶点位置
     pos[0] = space.min;
     pos[1] = {mx + sx, my, mz};
     pos[2] = {mx + sx, my, mz + sz};
@@ -128,16 +132,16 @@ namespace MeshReconstruction
     pos[5] = {mx + sx, my + sy, mz};
     pos[6] = {mx + sx, my + sy, mz + sz};
     pos[7] = {mx, my + sy, mz + sz};
-
+    // 计算每个顶点的SDF值
     for (auto i = 0; i < 8; ++i)
     {
       auto sd = sdf(pos[i]);
       if (sd == 0)
-        sd += 1e-6;
+        sd += 1e-6; // 避免除以零
       this->sdf[i] = sd;
     }
   }
-
+// 根据给定的等值面水平（isoLevel）计算符号配置的函数实现
   int Cube::SignConfig(double isoLevel) const
   {
     auto edgeIndex = 0;
@@ -146,13 +150,13 @@ namespace MeshReconstruction
     {
       if (sdf[i] < isoLevel)
       {
-        edgeIndex |= 1 << i;
+        edgeIndex |= 1 << i; // 将对应的顶点标记为穿过
       }
     }
 
     return edgeIndex;
   }
-
+// 找出曲面与立方体相交的顶点的函数实现，返回包含相交信息的IntersectInfo结构体
   IntersectInfo Cube::Intersect(double iso) const
   {
     // idea:

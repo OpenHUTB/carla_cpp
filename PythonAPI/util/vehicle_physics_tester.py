@@ -14,7 +14,7 @@ Uses:
     High-speed (100km/h) turn sceneario:
         python vehicle_physics_tester.py --filter vehicle_id --turn
 """
-
+#导入模块
 import glob
 import os
 import sys
@@ -22,6 +22,7 @@ import argparse
 import time
 import numpy as np
 
+#处理CARLA模块路径
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -32,10 +33,13 @@ except IndexError:
 
 import carla
 
+#使用Carla模拟器相关的操作
 class VehicleControlStop:
+    #类的构造函数
     def __init__(self, x_min = -100000, x_max = +100000, y_min = -100000, y_max = +100000,
             yaw_min = -500, yaw_max = +500, speed_min = -1, speed_max = +100000):
 
+        #将传入的函数赋值给类的实例属性        
         self.x_min = x_min
         self.x_max = x_max
         self.y_min = y_min
@@ -45,27 +49,35 @@ class VehicleControlStop:
         self.speed_min = speed_min
         self.speed_max = speed_max
 
+    #接受一个vehicle对象作为参数
     def stop_control(self, vehicle):
 
+        #获取车辆位置信息
         loc = vehicle.get_location()
+        #条件判断
         if loc.x > self.x_max :
             return True
         if loc.x < self.x_min:
             return True
 
+        #条件判断
         if loc.y > self.y_max :
             return True
         if loc.y < self.y_min:
             return True
 
+        #获取旋转信息rot
         rot = vehicle.get_transform().rotation
 
+        #判断朝向是否超出了允许的角度范围
         if rot.yaw > self.yaw_max :
             return True
         if rot.yaw < self.yaw_min:
             return True
 
+        #获取vehicle的速度speed
         speed = norm(vehicle.get_velocity())
+        #判断是否超过了最大允许速度
         if speed > self.speed_max :
             return True
         if speed < self.speed_min:
@@ -74,12 +86,15 @@ class VehicleControlStop:
         return False
 
 
+#定义change_physics_control函数
 def change_physics_control(vehicle, tire_friction = None, drag = None, wheel_sweep = None, 
     long_stiff = None, lat_stiff = None, lat_load = None,
     clutch_strength = None, max_rpm = None):
 
+    #获取车辆的物理控制对象    
     physics_control = vehicle.get_physics_control()
 
+    #针对传入的不同参数进行判断和修改相应的属性    
     if drag is not None:
         physics_control.drag_coefficient = drag
 
@@ -95,7 +110,9 @@ def change_physics_control(vehicle, tire_friction = None, drag = None, wheel_swe
     if len(physics_control.forward_gears) == 1:
         gear = carla.GearPhysicsControl(1.0, 0.00, 0.00)
         physics_control.forward_gears = [gear]
-
+# 设置车辆物理控制（physics_control）对象中的一个属性，即全油门时的阻尼率（damping_rate_full_throttle）为0.01。
+# 在车辆物理模拟中，阻尼率用于控制车辆在加速（这里特指全油门加速情况）过程中的阻力效果，影响车辆速度变化的平滑程度等物理表现
+# 通过设置这个值可以调整车辆在全油门状态下的动态行为特性，使其更符合实际的模拟需求。
     physics_control.damping_rate_full_throttle = 0.01
 
     front_left_wheel = physics_control.wheels[0]

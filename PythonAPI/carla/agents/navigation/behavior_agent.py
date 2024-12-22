@@ -16,6 +16,7 @@ from agents.navigation.behavior_types import Cautious, Aggressive, Normal
 
 from agents.tools.misc import get_speed, positive
 
+# 定义行为代理类，继承自BasicAgent，用于实现具有不同行为特性的车辆代理控制逻辑
 class BehaviorAgent(BasicAgent):
     """
   BehaviorAgent实现了一个代理，它能够在场景中导航以到达给定的目标目的地，通过计算到达目的地的最短可能路径。
@@ -33,18 +34,19 @@ class BehaviorAgent(BasicAgent):
             :param behavior: type of agent to apply
         """
 
+       # 调用父类（BasicAgent）的构造函数来初始化一些基础属性和功能
         super().__init__(vehicle, opt_dict=opt_dict, map_inst=map_inst, grp_inst=grp_inst)
         self._look_ahead_steps = 0
 
         # 车辆信息
-        self._speed = 0
-        self._speed_limit = 0
-        self._direction = None
-        self._incoming_direction = None
-        self._incoming_waypoint = None
-        self._min_speed = 5
-        self._behavior = None
-        self._sampling_resolution = 4.5
+        self._speed = 0  # 当前车辆速度
+        self._speed_limit = 0 # 当前道路的限速
+        self._direction = None  # 车辆行驶的目标道路选项（例如车道跟随、变道等）
+        self._incoming_direction = None  # 即将进入路段的行驶方向
+        self._incoming_waypoint = None  # 即将进入路段对应的路点
+        self._min_speed = 5 # 最小速度设定
+        self._behavior = None # 代理行为对象，具体类型根据传入的behavior参数确定
+        self._sampling_resolution = 4.5 # 采样分辨率，可能用于路径规划等采样相关操作
 
         # 代理行为参数
         if behavior == 'cautious':
@@ -60,15 +62,20 @@ class BehaviorAgent(BasicAgent):
         """
         这个方法更新了关于自车（ego vehicle）基于周围世界的信息。
         """
+        # 获取当前车辆的速度
         self._speed = get_speed(self._vehicle)
+        # 获取当前车辆所在道路的限速，并设置到局部规划器中
         self._speed_limit = self._vehicle.get_speed_limit()
         self._local_planner.set_speed(self._speed_limit)
+        # 获取车辆当前的目标道路选项，如果为None则默认为车道跟随
         self._direction = self._local_planner.target_road_option
         if self._direction is None:
             self._direction = RoadOption.LANEFOLLOW
 
+        # 根据限速计算前瞻的步数，这里简单地以限速除以10来估算（具体数值可能需要根据实际情况调整）
         self._look_ahead_steps = int((self._speed_limit) / 10)
-
+     
+        # 获取即将进入路段的路点和行驶方向
         self._incoming_waypoint, self._incoming_direction = self._local_planner.get_incoming_waypoint_and_direction(
             steps=self._look_ahead_steps)
         if self._incoming_direction is None:
@@ -93,35 +100,55 @@ class BehaviorAgent(BasicAgent):
             :param vehicle_list: list of all the nearby vehicles
         """
 
-        left_turn = waypoint.left_lane_marking.lane_change
-        right_turn = waypoint.right_lane_marking.lane_change
-
-        left_wpt = waypoint.get_left_lane()
-        right_wpt = waypoint.get_right_lane()
-
-        behind_vehicle_state, behind_vehicle, _ = self._vehicle_obstacle_detected(vehicle_list, max(
-            self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, low_angle_th=160)
-        if behind_vehicle_state and self._speed < get_speed(behind_vehicle):
-            if (right_turn == carla.LaneChange.Right or right_turn ==
-                    carla.LaneChange.Both) and waypoint.lane_id * right_wpt.lane_id > 0 and right_wpt.lane_type == carla.LaneType.Driving:
-                new_vehicle_state, _, _ = self._vehicle_obstacle_detected(vehicle_list, max(
-                    self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, lane_offset=1)
-                if not new_vehicle_state:
-                    print("Tailgating, moving to the right!")
-                    end_waypoint = self._local_planner.target_waypoint
-                    self._behavior.tailgate_counter = 200
-                    self.set_destination(end_waypoint.transform.location,
-                                         right_wpt.transform.location)
-            elif left_turn == carla.LaneChange.Left and waypoint.lane_id * left_wpt.lane_id > 0 and left_wpt.lane_type == carla.LaneType.Driving:
-                new_vehicle_state, _, _ = self._vehicle_obstacle_detected(vehicle_list, max(
-                    self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, lane_offset=-1)
-                if not new_vehicle_state:
-                    print("Tailgating, moving to the left!")
-                    end_waypoint = self._local_planner.target_waypoint
-                    self._behavior.tailgate_counter = 200
-                    self.set_destination(end_waypoint.transform.location,
-                                         left_wpt.transform.location)
-
+        # 获取当前路径点（waypoint）的左车道标记中的换道信息
+    left_turn = waypoint.left_lane_marking.lane_change
+    # 获取当前路径点的右车道标记中的换道信息
+    right_turn = waypoint.right_lane_marking.lane_change
+    # 获取当前路径点的左车道信息
+    left_wpt = waypoint.get_left_lane()
+    # 获取当前路径点的右车道信息
+    right_wpt = waypoint.get_right_lane()
+    # 检测当前车辆后方是否有其他车辆接近，并获取相关信息
+    # vehicle_list 是车辆列表，min_proximity_threshold 是最小接近阈值，self._speed_limit 是速度限制
+    # up_angle_th 和 low_angle_th 是检测角度的阈值
+    behind_vehicle_state, behind_vehicle, _ = self._vehicle_obstacle_detected(vehicle_list, max(
+        self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, low_angle_th=160)
+ 
+    # 如果检测到后方有车辆且当前车辆速度低于后方车辆速度，则执行换道逻辑
+    if behind_vehicle_state and self._speed < get_speed(behind_vehicle):
+    # 如果可以向右换道（右换道或双向换道）且右车道是有效的驾驶车道
+    if (right_turn == carla.LaneChange.Right or right_turn ==
+            carla.LaneChange.Both) and waypoint.lane_id * right_wpt.lane_id > 0 and right_wpt.lane_type == carla.LaneType.Driving:
+        # 在右车道上检测是否有新的障碍物
+        # lane_offset=1 表示在右侧车道进行检测
+        new_vehicle_state, _, _ = self._vehicle_obstacle_detected(vehicle_list, max(
+            self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, lane_offset=1)
+        # 如果没有新的障碍物，则执行向右换道的动作
+        if not new_vehicle_state:
+            print("尾随车辆，向右换道！")
+            # 获取目标路径点和右车道路径点的位置
+            end_waypoint = self._local_planner.target_waypoint
+            # 设置一个尾随计数器（可能用于后续的逻辑处理）
+            self._behavior.tailgate_counter = 200
+            # 设置新的目的地为右车道路径点的位置
+            self.set_destination(end_waypoint.transform.location,
+                                 right_wpt.transform.location)
+    # 如果可以向左换道且左车道是有效的驾驶车道
+    elif left_turn == carla.LaneChange.Left and waypoint.lane_id * left_wpt.lane_id > 0 and left_wpt.lane_type == carla.LaneType.Driving:
+        # 在左车道上检测是否有新的障碍物
+        # lane_offset=-1 表示在左侧车道进行检测
+        new_vehicle_state, _, _ = self._vehicle_obstacle_detected(vehicle_list, max(
+            self._behavior.min_proximity_threshold, self._speed_limit / 2), up_angle_th=180, lane_offset=-1)
+        # 如果没有新的障碍物，则执行向左换道的动作
+        if not new_vehicle_state:
+            print("尾随车辆，向左换道！")
+            # 获取目标路径点和左车道路径点的位置
+            end_waypoint = self._local_planner.target_waypoint
+            # 设置尾随计数器
+            self._behavior.tailgate_counter = 200
+            # 设置新的目的地为左车道路径点的位置
+            self.set_destination(end_waypoint.transform.location,
+                                 left_wpt.transform.location)
     def collision_and_car_avoid_manager(self, waypoint):
         """
         这个模块负责在发生碰撞的情况下发出警告，并管理可能的尾随机会。
@@ -150,7 +177,7 @@ class BehaviorAgent(BasicAgent):
                 vehicle_list, max(
                     self._behavior.min_proximity_threshold, self._speed_limit / 3), up_angle_th=30)
 
-            # Check for tailgating
+            # Check for tailgating检查跟车过近（的情况）。
             if not vehicle_state and self._direction == RoadOption.LANEFOLLOW \
                     and not waypoint.is_junction and self._speed > 10 \
                     and self._behavior.tailgate_counter == 0:
@@ -278,15 +305,20 @@ class BehaviorAgent(BasicAgent):
                 control = self.car_following_manager(vehicle, distance)
 
         # 3: Intersection behavior
+        #条件判断即将到达路口方向是左还是右
         elif self._incoming_waypoint.is_junction and (self._incoming_direction in [RoadOption.LEFT, RoadOption.RIGHT]):
+            #确定目标速度，获取较小值
             target_speed = min([
                 self._behavior.max_speed,
                 self._speed_limit - 5])
+            #计算得到的目标速度target_speed设置到self._local_planner中
             self._local_planner.set_speed(target_speed)
+            #计算出车辆的控制指令
             control = self._local_planner.run_step(debug=debug)
 
         # 4: Normal behavior
         else:
+            #目标速度取最小值
             target_speed = min([
                 self._behavior.max_speed,
                 self._speed_limit - self._behavior.speed_lim_dist])
@@ -295,6 +327,7 @@ class BehaviorAgent(BasicAgent):
 
         return control
 
+    #目的是对车辆控制进行修改，以实现紧急制动
     def emergency_stop(self):
         """
         Overwrites the throttle a brake values of a control to perform an emergency stop.
@@ -302,8 +335,13 @@ class BehaviorAgent(BasicAgent):
 
             :param speed (carl.VehicleControl): control to be modified
         """
+        #创建一个新的对象VehicleControl
         control = carla.VehicleControl()
+        #将油门值设置为0.0
         control.throttle = 0.0
+        #将刹车值设置为最大
         control.brake = self._max_brake
+        #将手刹设置为Flase
         control.hand_brake = False
+        #将修改后的车辆控制对象返回
         return control

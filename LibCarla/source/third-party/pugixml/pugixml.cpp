@@ -476,38 +476,46 @@ PUGI__NS_BEGIN
 		return true;
 	}
 
+// PUGI__NS_END 和 PUGI__NS_BEGIN 是命名空间结束和开始的宏，用于创建一个命名空间。
+// 这样可以避免全局命名冲突，并组织代码结构。
 PUGI__NS_END
 #endif
 
 PUGI__NS_BEGIN
 #ifdef PUGIXML_COMPACT
-	static const uintptr_t xml_memory_block_alignment = 4;
+    // 在紧凑模式下，内存块对齐的字节数为4。
+    static const uintptr_t xml_memory_block_alignment = 4;
 #else
-	static const uintptr_t xml_memory_block_alignment = sizeof(void*);
+    // 在非紧凑模式下，内存块对齐的字节数为指针大小，通常是4字节或8字节，取决于平台。
+    static const uintptr_t xml_memory_block_alignment = sizeof(void*);
 #endif
 
-	// extra metadata bits
-	static const uintptr_t xml_memory_page_contents_shared_mask = 64;
-	static const uintptr_t xml_memory_page_name_allocated_mask = 32;
-	static const uintptr_t xml_memory_page_value_allocated_mask = 16;
-	static const uintptr_t xml_memory_page_type_mask = 15;
+    // 以下是一些额外的元数据位掩码，用于标记XML页面的特定属性。
+    static const uintptr_t xml_memory_page_contents_shared_mask = 64;  // 内容是否共享
+    static const uintptr_t xml_memory_page_name_allocated_mask = 32;   // 名称是否已分配
+    static const uintptr_t xml_memory_page_value_allocated_mask = 16;   // 值是否已分配
+    static const uintptr_t xml_memory_page_type_mask = 15;             // 节点类型掩码
 
-	// combined masks for string uniqueness
-	static const uintptr_t xml_memory_page_name_allocated_or_shared_mask = xml_memory_page_name_allocated_mask | xml_memory_page_contents_shared_mask;
-	static const uintptr_t xml_memory_page_value_allocated_or_shared_mask = xml_memory_page_value_allocated_mask | xml_memory_page_contents_shared_mask;
+    // 组合掩码，用于字符串的唯一性检查。
+    static const uintptr_t xml_memory_page_name_allocated_or_shared_mask = xml_memory_page_name_allocated_mask | xml_memory_page_contents_shared_mask;
+    static const uintptr_t xml_memory_page_value_allocated_or_shared_mask = xml_memory_page_value_allocated_mask | xml_memory_page_contents_shared_mask;
 
 #ifdef PUGIXML_COMPACT
-	#define PUGI__GETHEADER_IMPL(object, page, flags) // unused
-	#define PUGI__GETPAGE_IMPL(header) (header).get_page()
+    #define PUGI__GETHEADER_IMPL(object, page, flags)// 在紧凑模式下，以下宏定义为空，因为它们不被使用。 
+    #define PUGI__GETPAGE_IMPL(header) (header).get_page()
 #else
-	#define PUGI__GETHEADER_IMPL(object, page, flags) (((reinterpret_cast<char*>(object) - reinterpret_cast<char*>(page)) << 8) | (flags))
-	// this macro casts pointers through void* to avoid 'cast increases required alignment of target type' warnings
-	#define PUGI__GETPAGE_IMPL(header) static_cast<impl::xml_memory_page*>(const_cast<void*>(static_cast<const void*>(reinterpret_cast<const char*>(&header) - (header >> 8))))
+    // 在非紧凑模式下，定义了如何从对象获取其头部信息和页面信息的宏。
+    // PUGI__GETHEADER_IMPL 宏用于计算对象头部信息，包括对象相对于页面的位置和标志。
+    #define PUGI__GETHEADER_IMPL(object, page, flags) (((reinterpret_cast<char*>(object) - reinterpret_cast<char*>(page)) << 8) | (flags))
+    // PUGI__GETPAGE_IMPL 宏用于从头部信息中获取页面指针。
+    // 这个宏通过void*类型转换指针，以避免增加目标类型的对齐要求的警告。
+    #define PUGI__GETPAGE_IMPL(header) static_cast<impl::xml_memory_page*>(const_cast<void*>(static_cast<const void*>(reinterpret_cast<const char*>(&header) - (header >> 8))))
 #endif
 
-	#define PUGI__GETPAGE(n) PUGI__GETPAGE_IMPL((n)->header)
-	#define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
-
+    // PUGI__GETPAGE 宏用于从节点中获取页面。
+    #define PUGI__GETPAGE(n) PUGI__GETPAGE_IMPL((n)->header)
+    // PUGI__NODETYPE 宏用于从节点中获取节点类型。
+    #define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
 	struct xml_allocator;
 	// 定义xml_memory_page结构体，用于管理内存页
 	struct xml_memory_page
@@ -628,36 +636,40 @@ PUGI__NS_BEGIN
 		}
 
 	#ifdef PUGIXML_COMPACT
-		void* allocate_object(size_t size, xml_memory_page*& out_page)
-		{
-			void* result = allocate_memory(size + sizeof(uint32_t), out_page);
-			if (!result) return 0;
+    // allocate_object 函数用于在紧凑模式下分配指定大小的对象，并返回指向分配的内存的指针。
+    // 同时，它还更新 out_page 参数以指向包含该内存的对象页。
+    void* allocate_object(size_t size, xml_memory_page*& out_page)
+    {
+        // 首先，调用 allocate_memory 函数分配比请求大小多出 uint32_t 大小的内存块。
+        // 额外的空间用于存储一个标记，用于跟踪内存页的元数据。
+        void* result = allocate_memory(size + sizeof(uint32_t), out_page);
+        if (!result) return 0; // 如果内存分配失败，则返回 nullptr。
 
-			// adjust for marker
-			ptrdiff_t offset = static_cast<char*>(result) - reinterpret_cast<char*>(out_page->compact_page_marker);
+        // 计算 result 指针与页标记之间的偏移量。
+        ptrdiff_t offset = static_cast<char*>(result) - reinterpret_cast<char*>(out_page->compact_page_marker);
 
-			if (PUGI__UNLIKELY(static_cast<uintptr_t>(offset) >= 256 * xml_memory_block_alignment))
-			{
-				// insert new marker
-				uint32_t* marker = static_cast<uint32_t*>(result);
+        // 如果偏移量超过了一个阈值（意味着 result 距离页标记足够远），则需要插入一个新的标记。
+        if (PUGI__UNLIKELY(static_cast<uintptr_t>(offset) >= 256 * xml_memory_block_alignment))
+        {
+            // 将 result 指针转换为 uint32_t 指针，并设置标记。
+            uint32_t* marker = static_cast<uint32_t*>(result);
+            *marker = static_cast<uint32_t>(reinterpret_cast<char*>(marker) - reinterpret_cast<char*>(out_page));
+            out_page->compact_page_marker = marker; // 更新页的标记指针。
 
-				*marker = static_cast<uint32_t>(reinterpret_cast<char*>(marker) - reinterpret_cast<char*>(out_page));
-				out_page->compact_page_marker = marker;
+            // 因为我们不会重用页空间直到重新分配它，所以我们可以将标记块视为已释放。
+            // 这将确保 deallocate_memory 正确地跟踪大小。
+            out_page->freed_size += sizeof(uint32_t); // 更新已释放的大小。
 
-				// since we don't reuse the page space until we reallocate it, we can just pretend that we freed the marker block
-				// this will make sure deallocate_memory correctly tracks the size
-				out_page->freed_size += sizeof(uint32_t);
+            return marker + 1; // 返回指向标记后的对象内存的指针。
+        }
+        else
+        {
+            // 如果不需要插入新标记，则回滚 uint32_t 的部分，并更新 busy_size。
+            _busy_size -= sizeof(uint32_t);
 
-				return marker + 1;
-			}
-			else
-			{
-				// roll back uint32_t part
-				_busy_size -= sizeof(uint32_t);
-
-				return result;
-			}
-		}
+            return result; // 返回原始的内存分配指针。
+        }
+    }
 	#else
 		// 定义一个函数，用于分配指定大小的内存对象，并返回指向该对象的指针。
 // 同时，通过out_page参数返回该对象所在的内存页。
@@ -718,13 +730,13 @@ PUGI__NS_BEGIN
 				}
 			}
 		}
-
+                // allocate_string函数用于分配一段内存空间
 		char_t* allocate_string(size_t length)
-		{
+		{        // 定义一个静态常量，表示最大编码偏移量。
 			static const size_t max_encoded_offset = (1 << 16) * xml_memory_block_alignment;
-
+                         // 这是一种在编译期间进行条件检查的方式，
 			PUGI__STATIC_ASSERT(xml_memory_page_size <= max_encoded_offset);
-
+                         // 计算为存储字符串以及相关头部信息（可能用于管理字符串内存块的一些元数据）所需分配的内存大小。
 			// allocate memory for string and header block
 			size_t size = sizeof(xml_memory_string_header) + length * sizeof(char_t);
 
@@ -756,16 +768,22 @@ PUGI__NS_BEGIN
 		void deallocate_string(char_t* string)
 		{
 			// this function casts pointers through void* to avoid 'cast increases required alignment of target type' warnings
+			 // 此函数通过将指针转换为 void* 类型来避免出现“cast increases required alignment of target type”这样的警告
 			// we're guaranteed the proper (pointer-sized) alignment on the input string if it was allocated via allocate_string
-
+                        // 前提是如果输入的字符串是通过 allocate_string 函数分配的，那么我们能保证输入字符串具有合适的（指针大小的）对齐方式
 			// get header
+			// 将传入的字符串指针先转换为 void* 类型，再将其转换回 xml_memory_string_header* 类型，并向前偏移一个单位（减1操作），目的是获取指向该字符串头部信息的指针。
+			// 这里假设内存布局中字符串头部信息就在字符串实际数据的前面，通过这样的指针运算来获取相关管理信息。
 			xml_memory_string_header* header = static_cast<xml_memory_string_header*>(static_cast<void*>(string)) - 1;
 			assert(header);
 
 			// deallocate
+			// 计算此字符串所在内存页内的偏移量。先加上 xml_memory_page 结构体的大小，再根据字符串头部记录的页内偏移量（乘以每个内存块的对齐大小）来确定其在内存页中的准确偏移位置。
+                        // 这样后续就能通过这个偏移量找到对应的内存页。
 			size_t page_offset = sizeof(xml_memory_page) + header->page_offset * xml_memory_block_alignment;
+			// 通过先将 header 指针转换为 char* 类型（方便进行字节级别的偏移计算），减去前面计算得到的页偏移量，再转换回 xml_memory_page* 类型，从而得到该字符串所在的内存页指针。
 			xml_memory_page* page = reinterpret_cast<xml_memory_page*>(static_cast<void*>(reinterpret_cast<char*>(header) - page_offset));
-
+			// 如果 full_size 等于 0，说明这个字符串占据了整个内存页，否则按照头部记录的实际大小（乘以内存块对齐大小，可能涉及到内存对齐相关的换算）来确定字符串实际占用的内存大小。
 			// if full_size == 0 then this string occupies the whole page
 			size_t full_size = header->full_size == 0 ? page->busy_size : header->full_size * xml_memory_block_alignment;
 
@@ -931,9 +949,13 @@ PUGI__NS_BEGIN
 			if (value)
 			{
 				// value is guaranteed to be compact-aligned; 'this' is not
+				// value变量是被确保按照紧凑对齐（compact-aligned）方式进行对齐的；而“this”指针所指向的对象却并非如此。
 				// our decoding is based on 'this' aligned to compact alignment downwards (see operator T*)
+				// 这里所说的紧凑对齐应该是一种特定的内存对齐要求，意味着value的内存地址满足相应的对齐规则，便于后续某些操作（比如数据的读取、处理等）更高效地进行，而“this”指向的对象不符合该对齐规则。
 				// so for negative offsets (e.g. -3) we need to adjust the diff by compact_alignment - 1 to
+				// 我们的解码操作是基于将“this”指针按照紧凑对齐方式向下对齐来进行的（可以参考 operator T* 相关部分，推测那里可能定义了具体的对齐操作或者转换逻辑）。
 				// compensate for arithmetic shift rounding for negative values
+				// 所以，当遇到负的偏移量（例如 -3）时，我们需要通过将偏移量的差值（diff）调整为 compact_alignment - 1。
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) - start;
 				// 如果计算出的偏移量（经过调整并转换为无符号后）小于等于253，
@@ -1173,132 +1195,144 @@ PUGI__NS_BEGIN
 	private:
 		unsigned char _data;
 	};
+// PUGI__NS_END 和 PUGI__NS_BEGIN 是命名空间结束和开始的宏，用于创建一个命名空间。
+// 这样可以避免全局命名冲突，并组织代码结构。
 PUGI__NS_END
 #endif
 
 #ifdef PUGIXML_COMPACT
 namespace pugi
 {
-	struct xml_attribute_struct
-	{
-		xml_attribute_struct(impl::xml_memory_page* page): header(page, 0), namevalue_base(0)
-		{
-			PUGI__STATIC_ASSERT(sizeof(xml_attribute_struct) == 8);
-		}
+    // xml_attribute_struct 结构体表示一个 XML 属性。
+    struct xml_attribute_struct
+    {
+        // 构造函数初始化属性结构。
+        xml_attribute_struct(impl::xml_memory_page* page): header(page, 0), namevalue_base(0)
+        {
+            PUGI__STATIC_ASSERT(sizeof(xml_attribute_struct) == 8);  // 确保结构体大小为 8 字节。
+        }
 
-		impl::compact_header header;
+        impl::compact_header header;  // 紧凑模式下的头部信息。
 
-		uint16_t namevalue_base;
+        uint16_t namevalue_base;  // 名称和值的基础偏移量。
 
-		impl::compact_string<4, 2> name;
-		impl::compact_string<5, 3> value;
+        impl::compact_string<4, 2> name;  // 紧凑字符串，用于存储属性名。
+        impl::compact_string<5, 3> value;  // 紧凑字符串，用于存储属性值。
 
-		impl::compact_pointer<xml_attribute_struct, 6> prev_attribute_c;
-		impl::compact_pointer<xml_attribute_struct, 7, 0> next_attribute;
-	};
+        impl::compact_pointer<xml_attribute_struct, 6> prev_attribute_c;  // 前一个属性的指针。
+        impl::compact_pointer<xml_attribute_struct, 7, 0> next_attribute;  // 下一个属性的指针。
+    };
 
-	struct xml_node_struct
-	{
-		xml_node_struct(impl::xml_memory_page* page, xml_node_type type): header(page, type), namevalue_base(0)
-		{
-			PUGI__STATIC_ASSERT(sizeof(xml_node_struct) == 12);
-		}
+    // xml_node_struct 结构体表示一个 XML 节点。
+    struct xml_node_struct
+    {
+        // 构造函数初始化节点结构。
+        xml_node_struct(impl::xml_memory_page* page, xml_node_type type): header(page, type), namevalue_base(0)
+        {
+            PUGI__STATIC_ASSERT(sizeof(xml_node_struct) == 12);  // 确保结构体大小为 12 字节。
+        }
 
-		impl::compact_header header;
+        impl::compact_header header;  // 紧凑模式下的头部信息。
 
-		uint16_t namevalue_base;
+        uint16_t namevalue_base;  // 名称和值的基础偏移量。
 
-		impl::compact_string<4, 2> name;
-		impl::compact_string<5, 3> value;
+        impl::compact_string<4, 2> name;  // 紧凑字符串，用于存储节点名。
+        impl::compact_string<5, 3> value;  // 紧凑字符串，用于存储节点值。
 
-		impl::compact_pointer_parent<xml_node_struct, 6> parent;
+        impl::compact_pointer_parent<xml_node_struct, 6> parent;  // 父节点的指针。
 
-		impl::compact_pointer<xml_node_struct, 8, 0> first_child;
+        impl::compact_pointer<xml_node_struct, 8, 0> first_child;  // 第一个子节点的指针。
 
-		impl::compact_pointer<xml_node_struct,  9>    prev_sibling_c;
-		impl::compact_pointer<xml_node_struct, 10, 0> next_sibling;
+        impl::compact_pointer<xml_node_struct, 9> prev_sibling_c;  // 前一个兄弟节点的指针。
+        impl::compact_pointer<xml_node_struct, 10, 0> next_sibling;  // 下一个兄弟节点的指针。
 
-		impl::compact_pointer<xml_attribute_struct, 11, 0> first_attribute;
-	};
+        impl::compact_pointer<xml_attribute_struct, 11, 0> first_attribute;  // 第一个属性的指针。
+    };
 }
 #else
 namespace pugi
 {
-	struct xml_attribute_struct
-	{
-		xml_attribute_struct(impl::xml_memory_page* page): name(0), value(0), prev_attribute_c(0), next_attribute(0)
-		{
-			header = PUGI__GETHEADER_IMPL(this, page, 0);
-		}
+    // 在非紧凑模式下，xml_attribute_struct 和 xml_node_struct 结构体的定义与紧凑模式略有不同。
+    // 它们使用常规指针和简单的成员变量，而不是紧凑模式下的紧凑指针和字符串。
+    struct xml_attribute_struct
+    {
+        xml_attribute_struct(impl::xml_memory_page* page): name(0), value(0), prev_attribute_c(0), next_attribute(0)
+        {
+            header = PUGI__GETHEADER_IMPL(this, page, 0);  // 初始化头部信息。
+        }
 
-		uintptr_t header;
+        uintptr_t header;  // 头部信息。
 
-		char_t*	name;
-		char_t*	value;
+        char_t* name;  // 属性名。
+        char_t* value;  // 属性值。
 
-		xml_attribute_struct* prev_attribute_c;
-		xml_attribute_struct* next_attribute;
-	};
+        xml_attribute_struct* prev_attribute_c;  // 前一个属性的指针。
+        xml_attribute_struct* next_attribute;  // 下一个属性的指针。
+    };
 
-	struct xml_node_struct
-	{
-		xml_node_struct(impl::xml_memory_page* page, xml_node_type type): name(0), value(0), parent(0), first_child(0), prev_sibling_c(0), next_sibling(0), first_attribute(0)
-		{
-			header = PUGI__GETHEADER_IMPL(this, page, type);
-		}
+    struct xml_node_struct
+    {
+        xml_node_struct(impl::xml_memory_page* page, xml_node_type type): name(0), value(0), parent(0), first_child(0), prev_sibling_c(0), next_sibling(0), first_attribute(0)
+        {
+            header = PUGI__GETHEADER_IMPL(this, page, type);  // 初始化头部信息。
+        }
 
-		uintptr_t header;
+        uintptr_t header;  // 头部信息。
 
-		char_t* name;
-		char_t* value;
+        char_t* name;  // 节点名。
+        char_t* value;  // 节点值。
 
-		xml_node_struct* parent;
+        xml_node_struct* parent;  // 父节点的指针。
 
-		xml_node_struct* first_child;
+        xml_node_struct* first_child;  // 第一个子节点的指针。
 
-		xml_node_struct* prev_sibling_c;
-		xml_node_struct* next_sibling;
+        xml_node_struct* prev_sibling_c;  // 前一个兄弟节点的指针。
+        xml_node_struct* next_sibling;  // 下一个兄弟节点的指针。
 
-		xml_attribute_struct* first_attribute;
-	};
+        xml_attribute_struct* first_attribute;  // 第一个属性的指针。
+    };
 }
 #endif
 
 PUGI__NS_BEGIN
-	struct xml_extra_buffer
-	{
-		char_t* buffer;
-		xml_extra_buffer* next;
-	};
+    // xml_extra_buffer 结构体表示一个额外的缓冲区，用于存储 XML 文档中的字符数据。
+    struct xml_extra_buffer
+    {
+        char_t* buffer;  // 缓冲区指针。
+        xml_extra_buffer* next;  // 下一个额外缓冲区的指针。
+    };
 
-	struct xml_document_struct: public xml_node_struct, public xml_allocator
-	{
-		xml_document_struct(xml_memory_page* page): xml_node_struct(page, node_document), xml_allocator(page), buffer(0), extra_buffers(0)
-		{
-		}
+    // xml_document_struct 结构体表示一个 XML 文档，继承自 xml_node_struct 和 xml_allocator。
+    struct xml_document_struct: public xml_node_struct, public xml_allocator
+    {
+        xml_document_struct(xml_memory_page* page): xml_node_struct(page, node_document), xml_allocator(page), buffer(0), extra_buffers(0)
+        {
+        }
 
-		const char_t* buffer;
+        const char_t* buffer;  // 文档缓冲区指针。
 
-		xml_extra_buffer* extra_buffers;
+        xml_extra_buffer* extra_buffers;  // 额外缓冲区指针。
 
-	#ifdef PUGIXML_COMPACT
-		compact_hash_table hash;
-	#endif
-	};
+    #ifdef PUGIXML_COMPACT
+        compact_hash_table hash;  // 紧凑模式下的哈希表。
+    #endif
+    };
 
-	template <typename Object> inline xml_allocator& get_allocator(const Object* object)
-	{
-		assert(object);
+    // get_allocator 模板函数返回给定对象的分配器。
+    template <typename Object> inline xml_allocator& get_allocator(const Object* object)
+    {
+        assert(object);  // 确保对象非空。
 
-		return *PUGI__GETPAGE(object)->allocator;
-	}
+        return *PUGI__GETPAGE(object)->allocator;  // 返回对象所在页面的分配器。
+    }
 
-	template <typename Object> inline xml_document_struct& get_document(const Object* object)
-	{
-		assert(object);
+    // get_document 模板函数返回给定对象所属的文档。
+    template <typename Object> inline xml_document_struct& get_document(const Object* object)
+    {
+        assert(object);  // 确保对象非空。
 
-		return *static_cast<xml_document_struct*>(PUGI__GETPAGE(object)->allocator);
-	}
+        return *static_cast<xml_document_struct*>(PUGI__GETPAGE(object)->allocator);  // 返回对象所在页面的文档。
+    }
 PUGI__NS_END
 
 // Low-level DOM operations

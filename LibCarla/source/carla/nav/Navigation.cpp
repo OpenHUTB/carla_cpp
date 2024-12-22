@@ -29,18 +29,18 @@ namespace nav {
   };
 
   // 这些设置与 RecastBuilder 中的设置相同，因此如果您更改代理的高度，则应该在 RecastBuilder 中执行相同的操作
-  static const int   MAX_POLYS = 256;
-  static const int   MAX_AGENTS = 500;
-  static const int   MAX_QUERY_SEARCH_NODES = 2048;
-  static const float AGENT_HEIGHT = 1.8f;
-  static const float AGENT_RADIUS = 0.3f;
+  static const int   MAX_POLYS = 256; // 定义最大多边形数量为256
+  static const int   MAX_AGENTS = 500; // 定义最大代理（Agent）数量为500
+  static const int   MAX_QUERY_SEARCH_NODES = 2048; // 定义最大查询搜索节点数量为2048
+  static const float AGENT_HEIGHT = 1.8f; // 定义代理的高度为1.8米
+  static const float AGENT_RADIUS = 0.3f; // 定义代理的半径为0.3米
 
-  static const float AGENT_UNBLOCK_DISTANCE = 0.5f;
-  static const float AGENT_UNBLOCK_DISTANCE_SQUARED = AGENT_UNBLOCK_DISTANCE * AGENT_UNBLOCK_DISTANCE;
-  static const float AGENT_UNBLOCK_TIME = 4.0f;
+  static const float AGENT_UNBLOCK_DISTANCE = 0.5f; // 定义代理解堵距离为0.5米，即代理在被阻挡后需要保持的距离
+  static const float AGENT_UNBLOCK_DISTANCE_SQUARED = AGENT_UNBLOCK_DISTANCE * AGENT_UNBLOCK_DISTANCE; // 定义代理解堵距离的平方，用于计算距离时避免开方操作，提高效率
+  static const float AGENT_UNBLOCK_TIME = 4.0f; // 定义代理解堵时间为4秒，即代理在被阻挡后等待的时间
 
-  static const float AREA_GRASS_COST =  1.0f;
-  static const float AREA_ROAD_COST  = 10.0f;
+  static const float AREA_GRASS_COST =  1.0f; // 定义草地区域的成本为1.0，用于路径规划时的权重计算
+  static const float AREA_ROAD_COST  = 10.0f; // 定义道路区域的成本为10.0，用于路径规划时的权重计算，通常道路的成本高于草地
 
   // 返回一个随机的浮点数 float
   static float frand() {
@@ -53,38 +53,44 @@ namespace nav {
   }
 
   Navigation::~Navigation() {
-    _ready = false;
-    _time_to_unblock = 0.0f;
-    _mapped_walkers_id.clear();
-    _mapped_vehicles_id.clear();
-    _mapped_by_index.clear();
-    _walkers_blocked_position.clear();
-    _yaw_walkers.clear();
-    _binary_mesh.clear();
-    dtFreeCrowd(_crowd);
-    dtFreeNavMeshQuery(_nav_query);
-    dtFreeNavMesh(_nav_mesh);
+    _ready = false; // 将_ready标志设置为false，表示导航系统不再就绪
+    _time_to_unblock = 0.0f; // 将_time_to_unblock重置为0.0f，表示没有等待解堵的时间
+    _mapped_walkers_id.clear(); // 清空_mapped_walkers_id列表，该列表存储了映射的步行者ID
+    _mapped_vehicles_id.clear(); // 清空_mapped_vehicles_id列表，该列表存储了映射的车辆ID
+    _mapped_by_index.clear(); // 清空_mapped_by_index列表，该列表可能存储了按索引映射的对象
+    _walkers_blocked_position.clear(); // 清空_walkers_blocked_position列表，该列表存储了被阻塞步行者的位置
+    _yaw_walkers.clear(); // 清空_yaw_walkers列表，该列表可能存储了步行者的朝向信息
+    _binary_mesh.clear(); // 清空_binary_mesh，该变量可能存储了二进制网格数据
+    dtFreeCrowd(_crowd); // 释放_crowd资源，_crowd是用于人群模拟的动态组件
+    dtFreeNavMeshQuery(_nav_query); // 释放_nav_query资源，_nav_query是用于路径查询的组件
+    dtFreeNavMesh(_nav_mesh); // 释放_nav_mesh资源，_nav_mesh是用于路径规划的导航网格
   }
 
   // 参考模拟器访问API函数
   void Navigation::SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator)
   {
+     // 将传入的模拟器对象的弱引用赋值给成员变量_simulator
+  // 使用弱引用可以避免循环引用问题，从而防止内存泄漏
     _simulator = simulator;
+     // 将模拟器的弱引用传递给步行者管理器，以便步行者管理器可以与模拟器进行交互
     _walker_manager.SetSimulator(simulator);
   }
 
   // 设置要使用的随机数种子
   void Navigation::SetSeed(unsigned int seed) {
+      // 使用传入的种子值初始化随机数生成器
     srand(seed);
   }
 
   // 加载导航数据
   bool Navigation::Load(const std::string &filename) {
-    std::ifstream f;
-    std::istream_iterator<uint8_t> start(f), end;
+    std::ifstream f; // 创建一个输入文件流对象
+    std::istream_iterator<uint8_t> start(f), end; // 创建两个迭代器，用于读取文件内容
 
     // 读取整个文件
+    // 以二进制模式打开文件
     f.open(filename, std::ios::binary);
+     // 如果文件打开失败，则返回false
     if (!f.is_open()) {
       return false;
     }
@@ -97,8 +103,10 @@ namespace nav {
 
   // 从内存中加载导航数据
   bool Navigation::Load(std::vector<uint8_t> content) {
+     // 定义导航网格集合的魔术数和版本号
     const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; // 'MSET';
     const int NAVMESHSET_VERSION = 1;
+     // 使用#pragma pack(push, 1)来取消结构体成员的对齐，确保结构体大小与二进制数据匹配
 #pragma pack(push, 1)
 
     // 导航网格集合头的结构体
@@ -106,13 +114,14 @@ namespace nav {
       int magic;       // 魔术
       int version;     // 版本
       int num_tiles;   // 瓦片数
-      dtNavMeshParams params;
+      dtNavMeshParams params; // 导航网格参数，定义了导航网格的一些属性
     } header;
     // 导航网格瓦片头的结构体
     struct NavMeshTileHeader {
-      dtTileRef tile_ref;
+      dtTileRef tile_ref;  // 瓦片引用，用于在导航网格中唯一标识一个瓦片
       int data_size;        // 数据大小
     };
+    // 恢复默认的结构体对齐方式
 #pragma pack(pop)
 
     // 检查 导航网格集合头的结构体大小
@@ -123,21 +132,24 @@ namespace nav {
     }
 
     // 读取文件的头
-    unsigned long pos = 0;
-    memcpy(&header, &content[pos], sizeof(header));
-    pos += sizeof(header);
+    unsigned long pos = 0;// 定义当前读取位置
+    memcpy(&header, &content[pos], sizeof(header)); // 使用memcpy复制头数据到结构体
+    pos += sizeof(header);// 更新读取位置
 
     // 检查文件的魔术和版本
     if (header.magic != NAVMESHSET_MAGIC || header.version != NAVMESHSET_VERSION) {
+     // 如果文件的魔术数字或版本不匹配，则函数返回false
       return false;
     }
 
     // 分配导航网格对象的内存
     dtNavMesh *mesh = dtAllocNavMesh();
     if (!mesh) {
+      // 如果内存分配失败，则函数返回false
       return false;
     }
 
+    // 使用文件的头信息中的参数初始化导航网格
     // 设置瓦片的数目和原点
     dtStatus status = mesh->init(&header.params);
     if (dtStatusFailed(status)) {
@@ -152,18 +164,21 @@ namespace nav {
       memcpy(&tile_header, &content[pos], sizeof(tile_header));
       pos += sizeof(tile_header);
       if (pos >= content.size()) {
+          // 如果读取瓦片头后位置超出内容大小，释放网格并返回false
         dtFreeNavMesh(mesh);
         return false;
       }
 
       // 检查瓦片的有效性
       if (!tile_header.tile_ref || !tile_header.data_size) {
+         // 如果瓦片无效，跳出循环
         break;
       }
 
       // 分配缓冲区内存
       char *data = static_cast<char *>(dtAlloc(static_cast<size_t>(tile_header.data_size), DT_ALLOC_PERM));
       if (!data) {
+         // 如果内存分配失败，跳出循环
         break;
       }
 
@@ -171,6 +186,7 @@ namespace nav {
       memcpy(data, &content[pos], static_cast<size_t>(tile_header.data_size));
       pos += static_cast<unsigned long>(tile_header.data_size);
       if (pos > content.size()) {
+         // 如果读取瓦片数据后位置超出内容大小，释放数据和网格并返回false
         dtFree(data);
         dtFreeNavMesh(mesh);
         return false;
@@ -192,14 +208,15 @@ namespace nav {
 
     // 拷贝
     _binary_mesh = std::move(content);
-    _ready = true;
+    _ready = true; // 标记为准备就绪
 
     // 创建并初始化人群管理器
     CreateCrowd();
 
-    return true;
+    return true;// 表示成功加载和初始化导航网格
   }
 
+// 创建并初始化人群管理器
   void Navigation::CreateCrowd(void) {
 
     // 检查是否一切就绪
@@ -207,13 +224,14 @@ namespace nav {
       return;
     }
 
-    DEBUG_ASSERT(_crowd == nullptr);
+    DEBUG_ASSERT(_crowd == nullptr);// 断言_crowd成员变量为nullptr，确保未重复初始化
 
     // 创建并初始化
     _crowd = dtAllocCrowd();
     // 这些半径应该是车辆的最大尺寸 (CarlaCola for Carla)
     const float max_agent_radius = AGENT_RADIUS * 20;
     if (!_crowd->init(MAX_AGENTS, max_agent_radius, _nav_mesh)) {
+       // 如果初始化失败，记录日志并返回
       logging::log("Nav: failed to create crowd");
       return;
     }
@@ -266,27 +284,28 @@ namespace nav {
   }
 
   // 返回从一个位置到另一个位置的路径点
-  bool Navigation::GetPath(carla::geom::Location from,
-                           carla::geom::Location to,
-                           dtQueryFilter * filter,
-                           std::vector<carla::geom::Location> &path,
-                           std::vector<unsigned char> &area) {
+  bool Navigation::GetPath(carla::geom::Location from, // 起始位置
+                           carla::geom::Location to,   // 目标位置
+                           dtQueryFilter * filter,    // 用于路径查询的过滤器，可以筛选路径通过的区域类型
+                           std::vector<carla::geom::Location> &path, // 用于存储计算出的路径点的向量
+                           std::vector<unsigned char> &area) {  // 用于存储路径点所属区域类型的向量
     // 找到路径
     float straight_path[MAX_POLYS * 3];
     unsigned char straight_path_flags[MAX_POLYS];
     dtPolyRef straight_path_polys[MAX_POLYS];
-    int num_straight_path;
-    int straight_path_options = DT_STRAIGHTPATH_AREA_CROSSINGS;
+    int num_straight_path;   // 直线路径中的点数量
+    int straight_path_options = DT_STRAIGHTPATH_AREA_CROSSINGS;  // 直线路径查询的选项
 
     // 路径中的多边形
     dtPolyRef polys[MAX_POLYS];
-    int num_polys;
+    int num_polys; // 路径中的多边形数量
 
     // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
+     // 确保导航查询对象不为空
     DEBUG_ASSERT(_nav_query != nullptr);
 
     // 点的延伸
@@ -298,17 +317,17 @@ namespace nav {
     // 筛选
     dtQueryFilter filter2;
     if (filter == nullptr) {
-      filter2.setAreaCost(CARLA_AREA_ROAD, AREA_ROAD_COST);
-      filter2.setAreaCost(CARLA_AREA_GRASS, AREA_GRASS_COST);
-      filter2.setIncludeFlags(CARLA_TYPE_WALKABLE);
-      filter2.setExcludeFlags(CARLA_TYPE_NONE);
-      filter = &filter2;
+      filter2.setAreaCost(CARLA_AREA_ROAD, AREA_ROAD_COST); // 设置道路区域的成本
+      filter2.setAreaCost(CARLA_AREA_GRASS, AREA_GRASS_COST); // 设置草地区域的成本
+      filter2.setIncludeFlags(CARLA_TYPE_WALKABLE);  // 设置包含的标志（可通行区域）
+      filter2.setExcludeFlags(CARLA_TYPE_NONE);    // 设置排除的标志（无不可通行区域）
+      filter = &filter2;   // 使用默认过滤器
     }
 
     // 设置点
     dtPolyRef start_ref = 0;
     dtPolyRef end_ref = 0;
-    float start_pos[3] = { from.x, from.z, from.y };
+    float start_pos[3] = { from.x, from.z, from.y };  // 转换为Detour库的坐标顺序（x, z, y）
     float end_pos[3] = { to.x, to.z, to.y };
     {
       // 关键部分，强制单线程运行这里
@@ -316,6 +335,7 @@ namespace nav {
       _nav_query->findNearestPoly(start_pos, poly_pick_ext, filter, &start_ref, 0);
       _nav_query->findNearestPoly(end_pos, poly_pick_ext, filter, &end_ref, 0);
     }
+    // 如果未找到起始或目标多边形，则返回失败
     if (!start_ref || !end_ref) {
       return false;
     }
@@ -362,12 +382,12 @@ namespace nav {
       {
         // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
-        _nav_mesh->getPolyArea(straight_path_polys[j], &area_type);
+        _nav_mesh->getPolyArea(straight_path_polys[j], &area_type);// 获取路径点所属的多边形的区域类型
       }
       area.emplace_back(area_type);
     }
 
-    return true;
+    return true;// 成功找到路径
   }
 
   bool Navigation::GetAgentRoute(ActorId id, carla::geom::Location from, carla::geom::Location to,
@@ -398,22 +418,28 @@ namespace nav {
     if (it == _mapped_walkers_id.end())
       return false;
 
+    
+// 定义一个指向查询过滤器的指针，用于后续的路径查询。
     const dtQueryFilter *filter;
     {
       // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
+       // 根据代理的参数获取对应的过滤器。
       filter = _crowd->getFilter(_crowd->getAgent(it->second)->params.queryFilterType);
     }
 
     // 设置点
     dtPolyRef start_ref = 0;
     dtPolyRef end_ref = 0;
+    // 定义起点和终点的位置数组，注意这里z和y的顺序被交换了，这取决于导航网格的坐标系
     float start_pos[3] = { from.x, from.z, from.y };
     float end_pos[3] = { to.x, to.z, to.y };
     {
       // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
+      // 查询离起点最近的多边形。
       _nav_query->findNearestPoly(start_pos, poly_pick_ext, filter, &start_ref, 0);
+       // 查询离终点最近的多边形。
       _nav_query->findNearestPoly(end_pos, poly_pick_ext, filter, &end_ref, 0);
     }
     if (!start_ref || !end_ref) {
@@ -424,6 +450,7 @@ namespace nav {
     {
       // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
+      // 使用导航查询对象查询路径。
       _nav_query->findPath(start_ref, end_ref, start_pos, end_pos, filter, polys, &num_polys, MAX_POLYS);
     }
 
@@ -434,17 +461,20 @@ namespace nav {
 
     // 如果是部分路径，请确保终点与最后一个多边形相接
     float end_pos2[3];
-    dtVcopy(end_pos2, end_pos);
+    dtVcopy(end_pos2, end_pos);  // 先复制终点位置
     if (polys[num_polys - 1] != end_ref) {
       // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
+      // 在最后一个多边形上找到最接近终点的点
       _nav_query->closestPointOnPoly(polys[num_polys - 1], end_pos, end_pos2, 0);
     }
 
     // 获取点
     {
       // 关键部分，强制单线程运行这里
+       // 锁定互斥锁，确保直线路径查询是单线程执行的。
       std::lock_guard<std::mutex> lock(_mutex);
+      // 使用导航查询对象获取直线路径。
       _nav_query->findStraightPath(start_pos, end_pos2, polys, num_polys,
       straight_path, straight_path_flags,
       straight_path_polys, &num_straight_path, MAX_POLYS, straight_path_options);
@@ -637,23 +667,23 @@ namespace nav {
     int index;
     {
       // 关键部分，强制单线程运行这里
-      std::lock_guard<std::mutex> lock(_mutex);
-      index = _crowd->addAgent(point_from, &params);
+      std::lock_guard<std::mutex> lock(_mutex); // 锁定互斥量，确保代码块在多线程环境下是安全的
+      index = _crowd->addAgent(point_from, &params);  // 向人群添加代理，并返回代理的索引
       if (index == -1) {
         logging::log("Vehicle agent not added to the crowd by some problem!");
         return false;
       }
 
       // 标记为有效
-      dtCrowdAgent *agent = _crowd->getEditableAgent(index);
+      dtCrowdAgent *agent = _crowd->getEditableAgent(index);  // 获取代理对象
       if (agent) {
-        agent->state = DT_CROWDAGENT_STATE_WALKING;
+        agent->state = DT_CROWDAGENT_STATE_WALKING;   // 将代理的状态设为“行走”
       }
     }
 
     // 保存 id
-    _mapped_vehicles_id[vehicle.id] = index;
-    _mapped_by_index[index] = vehicle.id;
+    _mapped_vehicles_id[vehicle.id] = index;  // 将车辆 ID 映射到代理的索引
+    _mapped_by_index[index] = vehicle.id; // 将代理索引映射到车辆 ID
 
     return true;
   }
@@ -666,18 +696,18 @@ namespace nav {
       return false;
     }
 
-    DEBUG_ASSERT(_crowd != nullptr);
+    DEBUG_ASSERT(_crowd != nullptr);  // 确保 _crowd 非空
 
     // 获取内部行人索引
-    auto it = _mapped_walkers_id.find(id);
+    auto it = _mapped_walkers_id.find(id);  // 在映射表中查找行人 ID
     if (it != _mapped_walkers_id.end()) {
       // 从人群中移除
       {
         // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
-        _crowd->removeAgent(it->second);
+        _crowd->removeAgent(it->second); // 从人群中移除对应的代理
       }
-      _walker_manager.RemoveWalker(id);
+      _walker_manager.RemoveWalker(id);  // 从其他管理系统中移除行人
       // remove from mapping
       _mapped_walkers_id.erase(it);
       _mapped_by_index.erase(it->second);
@@ -686,14 +716,14 @@ namespace nav {
     }
 
     // get the internal vehicle index
-    it = _mapped_vehicles_id.find(id);
+    it = _mapped_vehicles_id.find(id);  // 查找车辆 ID
     if (it != _mapped_vehicles_id.end()) {
       // 从人群中移除
       {
         // 关键部分，强制单线程运行这里
-        std::lock_guard<std::mutex> lock(_mutex);
-        _crowd->removeAgent(it->second);
-      }
+        std::lock_guard<std::mutex> lock(_mutex); // 锁定互斥量
+        _crowd->removeAgent(it->second);  // 从人群中移除对应的代理
+      }  
       // 从映射中移除
       _mapped_vehicles_id.erase(it);
       _mapped_by_index.erase(it->second);
@@ -710,7 +740,7 @@ namespace nav {
 
     // 添加所有当前已映射的车辆
     for (auto &&entry : _mapped_vehicles_id) {
-      updated.insert(entry.first);
+      updated.insert(entry.first); // 将已映射的车辆 ID 插入 updated 集合
     }
 
     // 添加所有车辆（如果已经存在，则仅更新）
@@ -749,10 +779,10 @@ namespace nav {
     // 获得智能体
     {
       // 关键部分，强制单线程运行这里
-      std::lock_guard<std::mutex> lock(_mutex);
-      dtCrowdAgent *agent = _crowd->getEditableAgent(it->second);
+      std::lock_guard<std::mutex> lock(_mutex); // 锁定互斥量，确保单线程安全
+      dtCrowdAgent *agent = _crowd->getEditableAgent(it->second); // 获取代理
       if (agent) {
-        agent->params.maxSpeed = max_speed;
+        agent->params.maxSpeed = max_speed;  // 设置最大速度
         return true;
       }
     }

@@ -14,23 +14,32 @@ echo %FILE_N% [Batch params]: %*
 rem ============================================================================
 rem -- Parse arguments ---------------------------------------------------------
 rem ============================================================================
-
+rem 设置一个变量DEL_SRC，初始值为false，表示默认情况下不删除源文件
 set DEL_SRC=false
 
 :arg-parse
+rem 判断传入的第一个命令行参数是否为空字符串，如果不为空则进入参数解析流程
 if not "%1"=="" (
-
+rem 判断第一个命令行参数是否等于"--build-dir"
     if "%1"=="--build-dir" (
+        rem 如果等于"--build-dir"，则将第二个参数（去掉文件名部分只保留路径，即%~dpn2的含义）的值赋给BUILD_DIR变量，用于指定构建目录相关的路径
         set BUILD_DIR=%~dpn2
     )
+rem 判断第一个命令行参数是否等于"--generator"
     if "%1"=="--generator" (
+        rem 如果等于"--generator"，则将第二个命令行参数的值赋给GENERATOR变量，用于指定生成器相关的配置
         set GENERATOR=%2
+        rem 使用shift命令移除第一个命令行参数，这样后续处理时 %1 就会指向原来的第二个参数，依次类推
         shift
     )
+   rem 判断第一个命令行参数是否等于"--delete-src"
     if "%1"=="--delete-src" (
+        rem :: 如果等于"--delete-src"，则设置DEL_SRC变量为true，可能用于标记是否要删除源文件之类的操作逻辑
         set DEL_SRC=true
     )
+    rem 使用shift命令移除第一个命令行参数，方便后续可能继续进行的参数解析等操作（比如再次循环判断新的第一个参数情况）
     shift  
+    rem 跳转到 :arg-parse 标签处继续执行代码逻辑，可能在那里还有其他针对参数解析后的处理代码
     goto :arg-parse
 )
 

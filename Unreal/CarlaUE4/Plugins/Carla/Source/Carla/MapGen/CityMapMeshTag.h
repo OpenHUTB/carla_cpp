@@ -6,10 +6,10 @@
 
 #pragma once
 
-/// Tag to identify the meshes used by the ProceduralMapGenerator.
+/// 用于标识ProceduralMapGenerator所使用的网格的标签
 ///
-/// It will work as long as we have less than 255 meshes, currently blueprint
-/// type enums support uint8 only.
+///只要我们拥有的网格数少于255个，它就能正常工作，目前是蓝图阶段
+/// 类型枚举仅支持 uint8
 UENUM(BlueprintType)
 enum class ECityMapMeshTag : uint8
 {
@@ -72,24 +72,24 @@ enum class ECityMapMeshTag : uint8
   INVALID                UMETA(Hidden)
 };
 
-/// Helper class for working with ECityMapMeshTag.
+///用于处理 ECityMapMeshTag 的辅助类
 class CityMapMeshTag
 {
 public:
 
-  /// Return the number of tags.
+  ///返回标签的数量
   static constexpr uint8 GetNumberOfTags() {
     return ToUInt(ECityMapMeshTag::NUMBER_OF_TAGS);
   }
 
-  /// Return the base mesh. The base mesh defines the unit tile for map scaling.
+  /// 返回基础网格。基础网格定义了地图缩放的单位图块
   static ECityMapMeshTag GetBaseMeshTag();
 
-  /// Get the size in tiles of a road intersection side. I.e., return N such NxN
-  /// is the size of a road intersection piece.
+  /// 获取道路交叉口一侧的图块大小。即，返回N，使得NxN
+  /// 大小相当于一个道路交叉口的部分
   static uint32 GetRoadIntersectionSize();
 
-  /// @name Tag conversions
+  /// @名称 标签转换
   /// @{
 
   /// Convert @a Tag to an unsigned integer type.
@@ -97,16 +97,16 @@ public:
     return static_cast<uint8>(Tag);
   }
 
-  /// Convert an unsigned integer to a ECityMapMeshTag.
+  /// 将@a标签转换为无符号整数类型
   static ECityMapMeshTag FromUInt(uint8 Value) {
     check(Value < GetNumberOfTags());
     return static_cast<ECityMapMeshTag>(Value);
   }
 
-  /// Get @a Tag name as FString.
+  /// 获取一个标签名称作为 FString
   static FString ToString(ECityMapMeshTag Tag);
 
-  /// Convert @a Value to ECityMapMeshTag and get its name as FString.
+  /// 将 @a Value 转换为 ECityMapMeshTag 并获取其名称作为 FString
   static FString ToString(uint8 Value) {
     return ToString(FromUInt(Value));
   }

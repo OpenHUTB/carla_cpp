@@ -1,9 +1,9 @@
----
+---# 定义了一个名为 carla 的模块，其中包含了 CARLA 模拟器中各种 actor 的定义和文档。
 - module_name: carla
   # - CLASSES ------------------------------
-  classes:
+  classes: # 定义了一个名为 Actor 的类，它是 CARLA 模拟器中所有对象的基类。
   - class_name: Actor
-    # - DESCRIPTION ------------------------
+    # 提供了 Actor 类的详细描述--
     doc: >
       CARLA defines actors as anything that plays a role in the simulation or can be moved around. That includes: pedestrians, vehicles, sensors and traffic signs (considering traffic lights as part of these). Actors are spawned in the simulation by carla.World and they need for a carla.ActorBlueprint to be created. These blueprints belong into a library provided by CARLA, find more about them [here](bp_library.md).
     # - PROPERTIES -------------------------
@@ -12,6 +12,9 @@
       type: dict
       doc: >
         A dictionary containing the attributes of the blueprint this actor was based on.
+  # 定义了 Actor 类的其他属性和方法，每个属性和方法都有详细的描述
+  # 定义了其他与 Actor 相关的类，例如 ActorState、VehicleLightState、Vehicle、Walker、WalkerAIController、TrafficSign、TrafficLightState、TrafficLight、VehicleWheelLocation、VehicleDoor、VehicleFailureState 等
+  # 每个类都有详细的描述和属性、方法定义
     - var_name: id
       type: int
       doc: >
@@ -35,6 +38,7 @@
     - var_name: parent
       type: carla.Actor
       doc: >
+      # 文档字符串开始
         Actors may be attached to a parent actor that they will follow around. This is said actor.
     - var_name: semantic_tags
       type: list(int)
@@ -54,8 +58,8 @@
     - def_name: add_angular_impulse
       params:
       - param_name: angular_impulse
-        type: carla.Vector3D
-        param_units: degrees*s
+        type: carla.Vector3D#表示一个三维向量，用于定义角冲量的方向和大小。
+        param_units: degrees*s#表示角冲量的单位是度乘以秒，这是一个不常见的单位，可能是文档中的一个错误，通常角冲量的单位是牛顿米（Nm）。
         doc: >
           Angular impulse vector in global coordinates. 
       doc: >
@@ -138,7 +142,7 @@
       return: carla.Transform
       doc: >
         Returns the actor's transform (location and rotation) the client recieved during last tick. The method does not call the simulator.
-    # --------------------------------------
+    #返回客户端在最后一个滴答声中接收到的演员变换（位置和旋转）。该方法不调用模拟器。 --------------------------------------
     - def_name: get_velocity
       return: carla.Vector3D
       return_units: m/s
@@ -250,10 +254,10 @@
 
   - class_name: Vehicle
     parent: carla.Actor
-    # - DESCRIPTION ------------------------
+    # Vehicle 类继承自 Actor 类，代表 CARLA 模拟器中各种类型的车辆。-------
     doc: >
       One of the most important groups of actors in CARLA. These include any type of vehicle from cars to trucks, motorbikes, vans, bycicles and also official vehicles such as police cars. A wide set of these actors is provided in carla.BlueprintLibrary to facilitate differente requirements. Vehicles can be either manually controlled or set to an autopilot mode that will be conducted client-side by the <b>traffic manager</b>. 
-    # - PROPERTIES -------------------------
+    # 定义了 Vehicle 类的属性和方法-----------------
     instance_variables:
     - var_name: bounding_box
       type: carla.BoundingBox
@@ -459,7 +463,7 @@
       doc: >
         Close the door `door_idx` if the vehicle has it. Use carla.VehicleDoor.All to close all available doors.
 
-
+# Walker 类继承自 Actor 类，代表 CARLA 模拟器中的行人。
   - class_name: Walker
     parent: carla.Actor
     # - DESCRIPTION ------------------------
@@ -561,7 +565,7 @@
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
-
+# 定义了 TrafficSign 类，它继承自 Actor 类，代表 CARLA 模拟器中的交通标志。
   - class_name: TrafficSign
     parent: carla.Actor
     # - DESCRIPTION ------------------------
@@ -573,7 +577,7 @@
       doc: >
         A carla.BoundingBox situated near a traffic sign where the carla.Actor who is inside can know about it.
     # --------------------------------------
-
+# 定义了 TrafficLightState 类，包含交通灯的所有可能状态。
   - class_name: TrafficLightState
     # - DESCRIPTION ------------------------
     doc: >
@@ -586,7 +590,7 @@
     - var_name: 'Off'
     - var_name: Unknown
     # --------------------------------------
-
+# 定义了 TrafficLight 类，它继承自 TrafficSign 类，代表 CARLA 模拟器中的交通灯。
   - class_name: TrafficLight
     parent: carla.TrafficSign
     # - DESCRIPTION ------------------------
@@ -715,7 +719,7 @@
     - def_name: __str__
     # --------------------------------------
 
-
+# 定义了 VehicleWheelLocation 枚举，代表车辆每个轮子的位置。
   - class_name: VehicleWheelLocation
     doc: >
       `enum` representing the position of each wheel on a vehicle. 
