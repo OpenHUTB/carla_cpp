@@ -1598,42 +1598,78 @@ class IMUSensor(object):
 
 class RadarSensor(object):
     def __init__(self, parent_actor):
+        """
+        类的构造函数，用于初始化 `RadarSensor` 实例的相关属性，创建并配置雷达传感器，包括设置其视野范围、安装位置等，同时让传感器开始监听数据事件，并指定数据处理的回调函数。
+
+        参数说明：
+        - `parent_actor`：代表父级角色的对象，通常是车辆或者其他需要使用雷达进行周边环境探测的实体，雷达传感器会附着在这个对象上，以便基于该角色的位置来探测周围目标的相关信息。
+        """
         self.sensor = None
         self._parent = parent_actor
+        // 初始化实例的两个属性：
+        // - `self.sensor` 初始化为 `None`，后续会在这里存储创建好的雷达传感器对象。
+        // - `self._parent` 存储传入的父级角色对象，方便后续获取相关世界信息、角色的边界信息以及将传感器关联到这个角色上。
+
         bound_x = 0.5 + self._parent.bounding_box.extent.x
         bound_y = 0.5 + self._parent.bounding_box.extent.y
         bound_z = 0.5 + self._parent.bounding_box.extent.z
+        // 计算雷达传感器在 `x`、`y`、`z` 方向上相对父级角色边界的安装位置偏移量。通过获取父级角色（`self._parent`）的包围盒（`bounding_box`）的范围（`extent`），并在各方向上加上 `0.5`，确定了雷达传感器在该角色周边大致的安装边界位置，
+        // 这样的设置可以使雷达传感器处于合适的位置来探测周围环境，避免因位置不合理导致探测范围受限或出现不准确的情况。
 
-        self.velocity_range = 7.5 # m/s
+        self.velocity_range = 7.5  # m/s
+        // 初始化实例属性 `self.velocity_range`，设定雷达传感器用于检测目标速度的范围为 `7.5 m/s`，这个范围值会在后续对目标速度的归一化处理以及可视化显示等相关操作中起到重要作用，用于将目标速度映射到特定的区间进行分析和展示。
+
         world = self._parent.get_world()
         self.debug = world.debug
         bp = world.get_blueprint_library().find('sensor.other.radar')
+        // 通过父级角色对象（`self._parent`）获取其所在的模拟世界对象（`get_world` 方法），并从世界对象中获取调试工具对象（`debug`）赋值给 `self.debug` 属性，这个调试工具对象后续可用于在模拟场景中绘制一些可视化的调试信息（如绘制雷达探测到的目标点等）。
+        // 在世界的蓝图库（`get_blueprint_library` 方法）中查找名为 `sensor.other.radar` 的雷达传感器蓝图，该蓝图定义了雷达传感器的基本属性和行为规范，后续将基于这个蓝图来创建实际的雷达传感器对象。
+
         bp.set_attribute('horizontal_fov', str(35))
         bp.set_attribute('vertical_fov', str(20))
+        // 设置雷达传感器蓝图（`bp`）的属性，分别将水平视野范围（`horizontal_fov`）设置为 `35` 度，垂直视野范围（`vertical_fov`）设置为 `20` 度，以此确定雷达传感器的探测角度范围，使其能够在设定的角度区域内对周围环境进行目标探测，符合具体的功能需求。
+
         self.sensor = world.spawn_actor(
             bp,
             carla.Transform(
-                carla.Location(x=bound_x + 0.05, z=bound_z+0.05),
+                carla.Location(x=bound_x + 0.05, z=bound_z + 0.05),
                 carla.Rotation(pitch=5)),
             attach_to=self._parent)
+        // 使用世界对象（`world`）的 `spawn_actor` 方法基于前面配置好的雷达传感器蓝图（`bp`）创建实际的雷达传感器对象，并设置其初始位置和姿态。
+        // 位置通过 `carla.Transform` 来指定，在 `x` 轴方向上相对于之前计算的边界位置（`bound_x`）再偏移 `0.05`，在 `z` 轴方向（通常是高度方向）相对于边界位置（`bound_z`）也偏移 `0.05`，同时设置其俯仰角（`pitch`）为 `5` 度，将传感器附着到父级角色（`attach_to=self._parent`）上，使传感器与对应的角色建立关联，以便基于角色的位置进行环境探测，最后将创建好的传感器对象赋值给 `self.sensor` 属性。
+
         # We need a weak reference to self to avoid circular reference.
         weak_self = weakref.ref(self)
         self.sensor.listen(
             lambda radar_data: RadarSensor._Radar_callback(weak_self, radar_data))
+        // 为了避免循环引用（在 Python 中，对象之间相互引用可能导致内存无法正常回收的问题），创建一个对当前实例（`self`）的弱引用（`weakref.ref(self)`），并将其赋值给 `weak_self` 变量。
+        // 接着让创建好的雷达传感器（`self.sensor`）开始监听传感器数据事件，通过调用 `listen` 方法并传入一个匿名函数（`lambda` 表达式）作为回调函数。当雷达传感器获取到新的数据时，这个匿名函数会被调用，它会把弱引用（`weak_self`）和包含雷达传感器数据的对象（`radar_data`）作为参数传递给类的静态方法 `_Radar_callback`，由该静态方法来处理具体的分析处理雷达数据以及可视化展示相关的逻辑。
 
     @staticmethod
     def _Radar_callback(weak_self, radar_data):
+        """
+        静态方法功能：作为雷达传感器数据事件的处理函数，当接收到雷达传感器数据时被调用，用于分析处理数据，包括对目标的方位、速度等信息进行转换和计算，然后根据这些信息在模拟场景中通过调试工具绘制出对应的可视化点，以展示雷达探测到的目标情况。
+
+        参数说明：
+        - `weak_self`：一个对 `RadarSensor` 类实例的弱引用，通过它可以获取到实际的实例对象，同时避免了循环引用问题，在方法内部需要先将其解引用还原为实际的实例对象才能访问实例的属性和方法。
+        - `radar_data`：一个包含雷达传感器最新测量数据的对象，其中包含了探测到的目标的各项信息，如方位角、仰角、速度、距离等，用于提取并处理这些数据，实现目标的可视化展示等功能。
+        """
         self = weak_self()
         if not self:
             return
+        // 通过弱引用（`weak_self`）获取实际的 `RadarSensor` 类实例对象，如果获取失败（即 `weak_self` 所引用的对象已经被垃圾回收了，返回 `None`），则直接返回，不执行后续处理雷达数据及绘制可视化信息的逻辑。
+
         # To get a numpy [[vel, altitude, azimuth, depth],...[,,,]]:
         # points = np.frombuffer(radar_data.raw_data, dtype=np.dtype('f4'))
         # points = np.reshape(points, (len(radar_data), 4))
+        // 这几行代码是注释掉的示例代码，展示了一种可以将雷达数据原始字节数据（`radar_data.raw_data`）转换为 `numpy` 数组的方式，先按照单精度浮点数（`np.dtype('f4')`）类型从字节数据中解析出数据点，然后将其重塑为二维数组，每一行代表一个目标的速度（`vel`）、高度（`altitude`）、方位角（`azimuth`）和距离（`depth`）信息，虽然当前代码未使用这种方式处理数据，但可以作为一种参考思路用于进一步的数据处理和分析。
 
         current_rot = radar_data.transform.rotation
         for detect in radar_data:
             azi = math.degrees(detect.azimuth)
             alt = math.degrees(detect.altitude)
+            // 对于雷达数据中的每个探测到的目标（通过遍历 `radar_data` 中的每个 `detect`），先将目标的方位角（`detect.azimuth`）和仰角（`detect.altitude`）从雷达传感器返回的弧度制转换为角度制，分别存储到变量 `azi` 和 `alt` 中，这样转换后的角度值更符合常规的角度表示和使用习惯，便于后续在空间坐标转换等操作中使用。
+
             # The 0.25 adjusts a bit the distance so the dots can
             # be properly seen
             fw_vec = carla.Vector3D(x=detect.depth - 0.25)
@@ -1643,20 +1679,27 @@ class RadarSensor(object):
                     pitch=current_rot.pitch + alt,
                     yaw=current_rot.yaw + azi,
                     roll=current_rot.roll)).transform(fw_vec)
+            // 创建一个 `carla.Vector3D` 类型的向量 `fw_vec`，其 `x` 轴方向的分量初始设置为目标的距离（`detect.depth`）减去 `0.25`，这里减去 `0.25` 可能是一种微调操作，目的是调整距离使得后续绘制出的表示目标的点在可视化展示时能够更合适、清晰地被看到。
+            // 然后基于当前雷达传感器的旋转姿态（`current_rot`）以及目标的方位角（`azi`）和仰角（`alt`）构建一个新的变换（`carla.Transform`），通过这个变换对向量 `fw_vec` 进行转换，将其从雷达传感器坐标系下转换到世界坐标系或者更合适的用于可视化展示的坐标系下，以便后续根据这个转换后的向量准确地在场景中定位并绘制目标点。
 
             def clamp(min_v, max_v, value):
                 return max(min_v, min(value, max_v))
-
-            norm_velocity = detect.velocity / self.velocity_range # range [-1, 1]
+            norm_velocity = detect.velocity / self.velocity_range  # range [-1, 1]
             r = int(clamp(0.0, 1.0, 1.0 - norm_velocity) * 255.0)
             g = int(clamp(0.0, 1.0, 1.0 - abs(norm_velocity)) * 255.0)
             b = int(abs(clamp(- 1.0, 0.0, - 1.0 - norm_velocity)) * 255.0)
+            // 定义一个内部函数 `clamp`，用于将一个值限制在给定的最小值（`min_v`）和最大值（`max_v`）之间，确保数值在合理的范围之内。
+            // 接着将目标的速度（`detect.velocity`）除以之前设定的速度范围（`self.velocity_range`），对速度进行归一化处理，使其映射到 `[-1, 1]` 的区间内，得到 `norm_velocity`，方便后续根据速度大小来确定绘制目标点的颜色。
+            // 根据归一化后的速度值计算用于表示颜色的红（`r`）、绿（`g`）、蓝（`b`）分量的值，通过 `clamp` 函数结合一些运算，将速度值对应的颜色分量限制在 `0` 到 `255` 的范围（适合 `RGB` 颜色表示的范围）内，例如对于红色分量，通过 `1.0 - norm_velocity` 这样的计算结合 `clamp` 函数和乘以 `255.0` 操作，使得速度越大，红色分量越小，颜色越偏向其他颜色，以此实现根据速度来动态改变颜色的效果，直观地展示目标的速度信息。
+
             self.debug.draw_point(
                 radar_data.transform.location + fw_vec,
                 size=0.075,
                 life_time=0.06,
                 persistent_lines=False,
                 color=carla.Color(r, g, b))
+            // 使用实例的调试工具对象（`self.debug`）调用 `draw_point` 方法，在模拟场景中绘制一个表示雷达探测到的目标的点。
+            // 绘制点的位置是雷达传感器的位置（`radar_data.transform.location`）加上前面转换后的向量（`fw_vec`），确定了目标在场景中的具体位置。设置点的大小为 `0.075`，生命周期（`life_time`）为 `0.06` 秒，表示这个点在场景中显示的时长，设置 `persistent_lines` 为 `False` 表示不是绘制连续的线条（只是单个点），并根据前面计算得到的颜色（`carla.Color(r, g, b)`）来设置点的颜色，通过这样的方式将雷达探测到的每个目标以可视化的彩色点展示在模拟场景中，方便直观地观察周围环境中目标的分布和速度等相关信息。
 
 # ==============================================================================
 # -- CameraManager -------------------------------------------------------------
