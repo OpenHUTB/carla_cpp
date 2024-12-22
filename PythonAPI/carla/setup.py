@@ -149,12 +149,13 @@ def get_libcarla_extensions():
             '/DBOOST_ALL_NO_LIB', '/DBOOST_PYTHON_STATIC_LIB',
             '/DBOOST_ERROR_CODE_HEADER_ONLY', '/D_WIN32_WINNT=0x0600', '/DHAVE_SNPRINTF',
             '/DLIBCARLA_WITH_PYTHON_SUPPORT', '-DLIBCARLA_IMAGE_WITH_PNG_SUPPORT=true', '/MD']
+     #这段代码定义了一个名为  extra_compile_args  的列表，里面存放的是一系列编译时的参数。
     else:
         raise NotImplementedError
 
     depends = [x for x in walk('source/libcarla')]
     depends += [x for x in walk('dependencies')]
-
+#依赖文件查找
     def make_extension(name, sources):
 
         return Extension(
