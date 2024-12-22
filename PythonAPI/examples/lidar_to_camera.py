@@ -16,11 +16,23 @@ import sys
 
 # 将CARLA PythonAPI模块的路径添加到系统路径
 try:
-    sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
+    # 尝试执行以下操作，目的是将特定路径添加到Python的模块搜索路径（sys.path）中。
+
+    # 使用 `glob.glob` 函数来查找符合特定模式的文件路径。
+    # 这里的模式是 `../carla/dist/carla-*%d.%d-%s.egg`，其中 `%d.%d-%s` 是格式化字符串占位符，会被替换为具体的值。
+    # `sys.version_info.major` 获取当前Python版本的主版本号（例如Python 3.8中的3），`sys.version_info.minor` 获取次版本号（例如Python 3.8中的8）。
+    # `'win-amd64' if os.name == 'nt' else 'linux-x86_64'` 根据操作系统类型进行判断，如果操作系统是Windows（`os.name == 'nt'`），则使用 `win-amd64`，否则使用 `linux-x86_64`，这是为了适配不同操作系统下对应的文件路径格式。
+    # 最终 `glob.glob` 会查找类似 `../carla/dist/carla-<版本号>-<操作系统架构>.egg` 这样格式的文件路径，返回的结果是一个列表（可能包含0个、1个或多个匹配的路径）。
+    paths = glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))
+    # 从查找到的路径列表中取第一个元素（索引为0的元素），并将其添加到 `sys.path` 中，这样Python解释器就能在这个路径下查找对应的模块了。
+    # 这里假设 `glob.glob` 返回的列表至少有一个元素，如果没有元素，下面的代码会抛出 `IndexError` 异常。
+    sys.path.append(paths[0])
 except IndexError:
+    # 如果在执行上述代码过程中抛出了 `IndexError` 异常（即 `glob.glob` 没有找到匹配的文件路径，返回的列表为空，尝试访问 `paths[0]` 就会触发该异常），
+    # 则使用 `pass` 语句跳过异常处理，也就是什么都不做。这意味着在找不到对应文件路径的情况下，代码不会因为异常而中断，只是不会成功添加路径到 `sys.path` 而已。
     pass
 
 import carla
@@ -32,8 +44,13 @@ from matplotlib import cm
 
 # 确保已安装numpy
 try:
+    # 尝试执行以下导入语句，目的是导入Python的第三方库numpy，并使用别名np来方便后续在代码中引用numpy相关的功能。
+    # numpy是一个功能强大的用于数值计算的库，在很多科学计算、数据分析、机器学习等场景中都会用到。
     import numpy as np
 except ImportError:
+    # 如果在执行 `import numpy as np` 时出现了导入错误（例如numpy库没有安装，或者安装的版本存在问题等情况导致无法正确导入），
+    # 就会触发 `ImportError` 异常。当捕获到这个异常后，代码会执行下面的语句，主动抛出一个 `RuntimeError` 异常，并附带相应的错误提示信息。
+    # 这里提示用户“无法导入numpy，确保numpy包已经安装”，告知用户需要安装numpy库才能使后续代码正常运行，否则程序将因这个 `RuntimeError` 异常而中断执行。
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
 
 # 确保已安装PIL
