@@ -286,6 +286,37 @@ if (LIBCARA_BUILD_RELEASE) // 判断是否定义了LIBCARA_BUILD_RELEASE这个�
         "${BOOST_INCLUDE_PATH}"
         "${RPCLIB_INCLUDE_PATH}")
 
-    // 使用install命令将生成的carla_server静态库安装到目标路径下的lib目录中，这样在项目安装后，其他模块或者外部项目如果需要使用
+    // 使用install命令将生成的carla_server静态库安装到目标路径下的lib目录中，这样在项目安装后，其他项目或者外部模块如果需要使用该库，就能在对应的lib目录下找到它，从而方便地进行链接使用，实现相应的功能扩展和交互。
+    install(TARGETS carla_server DESTINATION lib OPTIONAL)
+
+    // 使用set_target_properties命令为carla_server目标设置编译相关的属性，此处将编译标志设置为CMAKE_CXX_FLAGS_RELEASE，这意味着在构建发布版本时，会应用与发布相关的编译选项，比如优化级别、代码生成方式等，确保生成的库在性能、稳定性等方面符合发布要求，达到较好的运行效果。
+    set_target_properties(carla_server PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_RELEASE}")
+
+endif()
+
+if (LIBCARLA_BUILD_DEBUG) // 判断是否定义了LIBCARLA_BUILD_DEBUG这个变量，该变量通常用于标识当前是否处于构建调试版本的场景，如果为真，则执行以下代码块来针对调试版本进行相应的配置操作。
+
+    // 使用add_library命令创建一个名为carla_server_debug的静态库，同样以之前收集到的libcarla_server_sources变量中的所有源文件作为其组成部分，通过这些源文件里的代码逻辑构建出调试版本的静态库，方便在调试阶段进行问题排查和功能验证等操作。
+    add_library(carla_server_debug STATIC ${libcarla_server_sources})
+
+    // 使用target_include_directories命令为名为carla_server_debug的目标（即刚创建的调试版本静态库）添加头文件包含目录，作用和之前类似，确保在编译该调试库时能准确找到所需的头文件。
+    // SYSTEM关键字表示将这些目录下的头文件视为系统头文件，有着特定的编译器处理方式，比如减少一些不必要的警告显示，利于调试时专注于关键代码逻辑。
+    // PRIVATE表示这些包含目录仅对本目标（carla_server_debug）自身可见，不会传递给依赖它的其他目标，以此限定头文件作用范围，便于在调试阶段更精准地控制代码依赖和避免一些潜在的干扰因素。
+    // 这里添加的BOOST_INCLUDE_PATH和RPCLIB_INCLUDE_PATH路径对应的头文件对于调试版本静态库的正确编译也是不可或缺的。
+    target_include_directories(carla_server_debug SYSTEM PRIVATE
+        "${BOOST_INCLUDE_PATH}"
+        "${RPCLIB_INCLUDE_PATH}")
+
+    // 使用install命令将生成的carla_server_debug静态库安装到目标路径下的lib目录中，这样在调试版本的项目安装后，也能在相应的lib目录找到该调试库，便于在调试过程中进行替换、链接使用等操作，辅助开发人员查找和修复代码中的问题。
+    install(TARGETS carla_server_debug DESTINATION lib OPTIONAL)
+
+    // 使用set_target_properties命令为carla_server_debug目标设置编译相关的属性，首先将编译标志设置为CMAKE_CXX_FLAGS_DEBUG，意味着在构建调试版本时，会应用适合调试的编译选项，例如保留调试符号、开启一些有助于调试的优化级别等，方便开发人员在调试过程中进行代码追踪、变量查看等操作，更好地定位和解决问题。
+    set_target_properties(carla_server_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
+
+    // 使用set_target_properties命令为carla_server_debug这个静态库目标设置编译相关的属性，通过定义BOOST_ASIO_ENABLE_BUFFER_DEBUGGING宏，开启Boost.Asio库中与缓冲区相关的调试功能，在调试涉及网络通信等使用到该库的部分时，能够更细致地查看缓冲区的数据变化、错误情况等，有助于排查相关的潜在问题，进一步辅助调试工作的开展。
+    target_compile_definitions(carla_server_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
+
+endif() // 判断是否定义了LIBCARLA_BUILD_DEBUG这个变量结束标志，至此完成了针对不同构建类型（发布版本和调试版本）的相应配置操作，使得项目在不同阶段都能按照合适的构建方式生成对应的版本，满足开发、测试以及最终发布使用等各种需求。
+
 
 
