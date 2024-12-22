@@ -8,7 +8,8 @@ Compile and run
 ---------------
 
 Use the Makefile provided (Linux only), to compile and run the example. Note
-that it expects to have a simulator running at port 2000.
+that it expects to have a simulator running at port 2000.# 使用提供的Makefile（仅适用于Linux）进行编译和运行
+# 注意：它期望模拟器在端口2000上运行
 
 ```
 make run
