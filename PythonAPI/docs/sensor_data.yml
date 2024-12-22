@@ -59,8 +59,8 @@
     doc: >
       Enum declaration that contains the different tags available to filter the bounding boxes returned by carla.World.get_level_bbs(). These values correspond to the [semantic tag](ref_sensors.md#semantic-segmentation-camera) that the elements in the scene have.
 
-    # - PROPERTIES -------------------------
-    instance_variables:
+    # - PROPERTIES -------------------------# 这个标题表明接下来所列举的内容是关于某个类（或结构体等相关数据结构）的属性部分的相关信息，后续会详细展示各个属性对应的实例变量情况，方便开发者理解其所能表示的具体内容和作用范围。
+    instance_variables:    # 以下开始逐个列出实例变量的名称，虽然这里仅给出了名称，但一般它们会在所属的类或数据结构中承载相应的意义，用于表示不同类型的对象、元素或者分类等情况，具体含义通常会结合代码上下文及整体功能来进一步明确。
     - var_name: None
     - var_name: Buildings
     - var_name: Fences
