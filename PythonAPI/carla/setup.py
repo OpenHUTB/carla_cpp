@@ -107,7 +107,7 @@ def get_libcarla_extensions():
                                 os.path.join(pwd, 'dependencies/lib/libsqlite3.a'),
                                 os.path.join(pwd, 'dependencies/lib', pylib)]
 
-            if 'TRAVIS' in os.environ and os.environ['TRAVIS'] == 'true':
+            if 'TRAVIS' in os.environ and os.environ['TRAVIS'] == 'true':# 判断是否为  Travis CI  环境
                 print('Travis CI build detected: disabling PNG support.')
                 extra_link_args += ['-ljpeg', '-ltiff']
                 extra_compile_args += ['-DLIBCARLA_IMAGE_WITH_PNG_SUPPORT=false']
