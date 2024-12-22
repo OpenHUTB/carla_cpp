@@ -109,13 +109,14 @@ while True:
         #更新用户提出问题的计数
         issue_counts[user] = issue_counts.get(user, 0) + 1
 
-        comments_url = issue['comments_url']
-        comments_response = requests.get(comments_url, headers=headers)
-        comments = comments_response.json()
+        comments_url = issue['comments_url']#是从一个名为issue的字典（假设issue是一个字典类型的数据结构）中获取键为comments_url的值，并将这个值赋给变量comments_url。这样做的目的是为了得到与某个问题（issue）相关的评论的URL地址，以便后续获取评论数据。
+        comments_response = requests.get(comments_url, headers=headers)#这里使用requests库（假设已经正确导入）的get方法来发送一个HTTP GET请求到comments_url所指定的地址。headers是请求头信息，可能包含一些认证信息、用户代理等内容。这个操作的目的是获取包含评论信息的响应内容。
+        comments = comments_response.json()#由于从服务器获取的响应内容通常是JSON格式的数据（这是一种常见的用于数据交换的格式），所以使用json方法将响应内容解析为Python中的数据结构（如字典、列表等），并将解析后的结果赋给comments变量，这样就可以方便地在Python中操作这些评论数据了。
 
         for comment in comments:
             commenter = comment['user']['login']
-            comment_counts[commenter] = comment_counts.get(commenter, 0) + 1
+            comment_counts[commenter] = comment_counts.get(commenter, 0) + 1#这里假设comment_counts是一个字典。comment_counts.get(commenter, 0)这部分是尝试从comment_counts字典中获取键为commenter的值，如果键不存在，则返回默认值0。然后将这个值加1，并重新将结果赋给comment_counts字典中键为commenter的项。这个操作的目的是统计每个用户发表评论的数量。
+
 
     page += 1
 
