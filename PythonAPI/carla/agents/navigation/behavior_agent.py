@@ -177,7 +177,7 @@ class BehaviorAgent(BasicAgent):
                 vehicle_list, max(
                     self._behavior.min_proximity_threshold, self._speed_limit / 3), up_angle_th=30)
 
-            # Check for tailgating
+            # Check for tailgating检查跟车过近（的情况）。
             if not vehicle_state and self._direction == RoadOption.LANEFOLLOW \
                     and not waypoint.is_junction and self._speed > 10 \
                     and self._behavior.tailgate_counter == 0:
