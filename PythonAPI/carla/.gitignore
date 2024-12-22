@@ -2,3 +2,65 @@
 build
 dependencies
 dist
+from setuptools import setup, find_packages
+
+setup(
+    name='my_project',
+    version='1.0',
+    packages=find_packages(),
+    install_requires=[
+        # 原有的依赖
+        'pandas',
+        # 添加新的编译依赖，这里添加了numpy
+        'numpy',
+    ],
+    # 以下这行代码会在构建项目时生成对应的.egg-info 目录，并将依赖信息等写入其中
+    include_package_data=True,  
+)from setuptools import setup, Extension
+from setuptools.command.build_ext import build_ext
+
+# 定义扩展模块，这里假设扩展模块名为 my_extension，依赖了外部的 libz 库
+ext_modules = [
+    Extension(
+        'my_package.my_extension',
+        sources=['my_package/my_extension.c'],
+        libraries=['z'],  # 这里指定依赖的外部库，对应 libz
+    ),
+]
+
+class CustomBuildExt(build_ext):
+    """自定义构建扩展类，用于处理可能的依赖相关配置等特殊情况"""
+    def build_extensions(self):
+        # 可以在这里添加针对依赖库的额外配置，比如设置依赖库的搜索路径等
+        # 以下是示例代码，实际情况可能需要根据操作系统等因素调整
+        for ext in self.extensions:
+            ext.extra_link_args = ['-L/path/to/libz']  # 设置 libz 库的链接路径
+            ext.extra_compile_args = ['-I/path/to/libz/include']  # 设置 libz 库的头文件包含路径
+        super().build_extensions()
+
+setup(
+    name='my_package',
+    version='1.0',
+    ext_modules=ext_modules,
+    cmdclass={
+        'build_ext': CustomBuildExt,
+    },
+)dependencies/
+├── include/
+│   └── opencv/  # OpenCV的头文件目录
+│       └──...  # 众多头文件
+└── lib/
+    └── libopencv_world.so  # OpenCV的库文件（这里是示例，实际可能有多个库文件）cmake_minimum_required(VERSION 3.10)
+project(my_project)
+
+# 设置头文件搜索路径，让编译器能找到OpenCV的头文件
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/dependencies/include)
+
+# 添加库文件搜索路径，使得链接器能找到OpenCV的库文件
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/dependencies/lib)
+
+# 添加可执行文件目标，这里假设源文件是 main.cpp
+add_executable(my_app main.cpp)
+
+# 链接 OpenCV 库到可执行文件目标，这里假设库名是 opencv_world，实际根据具体情况调整
+target_link_libraries(my_app opencv_world)
