@@ -12,11 +12,14 @@ file(GLOB libcarla_carla_rpclib "${RPCLIB_LIB_PATH}/*.*")
 install(FILES ${libcarla_carla_rpclib} DESTINATION lib)
 
 # 安装头文件
-
+# 将整个compiler目录及其内容安装到 include 目录下
 install(DIRECTORY "${libcarla_source_path}/compiler" DESTINATION include)
-
+# 这一行将 libcarla_source_path 下的 "compiler" 文件夹及其内部文件安装到最终的安装路径中的 include 文件夹里。
+# 收集并安装 carla 目录下的所有头文件到 include/carla 目录
 file(GLOB libcarla_carla_headers "${libcarla_source_path}/carla/*.h")
 install(FILES ${libcarla_carla_headers} DESTINATION include/carla)
+# 通过 GLOB 命令将 carla 目录下的所有 .h 文件收集到 libcarla_carla_headers 变量中，
+# 然后使用 install 命令将这些头文件安装到 include/carla 目录下。
 
 file(GLOB libcarla_carla_geom_headers "${libcarla_source_path}/carla/geom/*.h")
 install(FILES ${libcarla_carla_geom_headers} DESTINATION include/carla/geom)
