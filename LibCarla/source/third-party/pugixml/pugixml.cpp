@@ -730,13 +730,13 @@ PUGI__NS_BEGIN
 				}
 			}
 		}
-
+                // allocate_string函数用于分配一段内存空间
 		char_t* allocate_string(size_t length)
-		{
+		{        // 定义一个静态常量，表示最大编码偏移量。
 			static const size_t max_encoded_offset = (1 << 16) * xml_memory_block_alignment;
-
+                         // 这是一种在编译期间进行条件检查的方式，
 			PUGI__STATIC_ASSERT(xml_memory_page_size <= max_encoded_offset);
-
+                         // 计算为存储字符串以及相关头部信息（可能用于管理字符串内存块的一些元数据）所需分配的内存大小。
 			// allocate memory for string and header block
 			size_t size = sizeof(xml_memory_string_header) + length * sizeof(char_t);
 
