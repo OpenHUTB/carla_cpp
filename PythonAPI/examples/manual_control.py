@@ -55,7 +55,68 @@ Use ARROWS or WASD keys for control.
 """
 
 from __future__ import print_function
+#!/usr/bin/env python
+# 这是Python脚本的shebang行，用于指定脚本的解释器，告诉操作系统使用环境变量中找到的Python解释器来执行这个脚本。
 
+# Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
+# Barcelona (UAB).
+#
+# This work is licensed under the terms of the MIT license.
+# For a copy, see <https://opensource.org/licenses/MIT>.
+# 以上是版权声明部分，说明这段代码的版权归属为巴塞罗那自治大学（UAB）的计算机视觉中心（CVC），并且该作品遵循MIT许可证进行授权，通过后面的链接可以查看MIT许可证的具体内容。
+
+# Allows controlling a vehicle with a keyboard. For a simpler and more
+# documented example, please take a look at tutorial.py.
+# 这是对脚本功能的一个简要描述，表明该脚本实现的主要功能是允许通过键盘来控制车辆，同时还推荐如果想要查看更简单且文档更详细的示例，可以去查看tutorial.py这个文件。
+
+"""
+Welcome to CARLA manual control.
+
+Use ARROWS or WASD keys for control.
+
+    W            : throttle
+    S            : brake
+    A/D          : steer steer left/right
+    Q            : toggle reverse
+    Space        : hand-brake
+    P            : toggle autopilot
+    M            : toggle manual transmission
+   ,/.          : gear up/down
+    CTRL + W     : toggle constant velocity mode at 60 km/h
+
+    L            : toggle next light type
+    SHIFT + L    : toggle high beam
+    Z/X          : toggle right/left blinker
+    I            : toggle interior light
+
+    TAB          : change sensor position
+    ` or N       : next sensor
+    [1-9]        : change to sensor [1-9]
+    G            : toggle radar visualization
+    C            : change weather (Shift+C reverse)
+    Backspace    : change vehicle
+
+    O            : open/close all doors of vehicle
+    T            : toggle vehicle's telemetry
+
+    V            : Select next map layer (Shift+V reverse)
+    B            : Load current selected map layer (Shift+B to unload)
+
+    R            : toggle recording images to disk
+
+    CTRL + R     : toggle recording of simulation (replacing any previous)
+    CTRL + P     : start replaying last recorded simulation
+    CTRL + +     : increments the start time of the replay by 1 second (+SHIFT = 10 seconds)
+    CTRL + -     : decrements the start time of the replay by 1 second (+SHIFT = 10 seconds)
+
+    F1           : toggle HUD
+    H/?          : toggle help
+    ESC          : quit
+"""
+# 这是一个文档字符串（docstring），用于对脚本的使用方式进行详细说明，它清晰地列出了各个键盘按键对应的车辆控制功能以及一些与模拟环境交互（如传感器切换、天气改变、录制回放等）的操作说明，方便使用者了解如何通过键盘操作来控制车辆以及与整个CARLA模拟环境进行交互。
+
+from __future__ import print_function
+# 这是Python的一个特性导入语句，用于导入Python 3中的 `print` 函数的行为到Python 2环境中（如果脚本运行在Python 2下），使得在Python 2中 `print` 语句也能像Python 3那样作为函数使用（即需要使用括号包裹参数，如 `print("hello")`），这样做有助于提高代码的兼容性，使其能更平滑地在不同Python版本下运行。
 
 # ==============================================================================
 # -- find carla module ---------------------------------------------------------
