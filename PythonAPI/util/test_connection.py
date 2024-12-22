@@ -66,7 +66,9 @@ def main():
             return 0
         except RuntimeError:
             pass
-
+# 如果循环结束了（意味着已经超过了设定的超时时间，但仍然没有成功连接到CARLA模拟器），则执行下面的代码，输出一条提示信息告知用户连接失败，
+# 并显示尝试连接的主机地址和端口号，方便用户排查问题所在。
+print('Failed to connect to %s:%d.' % (args.host, args.port))
     print('Failed to connect to %s:%d.' % (args.host, args.port))
     return 1
 
