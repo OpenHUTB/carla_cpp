@@ -122,7 +122,7 @@ def get_image_as_array(image):
     # make the array writeable doing a deep copy
     array2 = copy.deepcopy(array)
     return array2
-    
+# 这个函数的主要目的是将给定的图像数据（很可能是某种特定格式的图像对象，从参数  image  来看）转换为一个可操作的  numpy  数组形式，并且对图像数据进行了一些格式调整，比如去除通道、调整通道顺序等操作，最后通过深拷贝返回一个可写的数组，方便后续进一步处理图像数据。  
 # 在pygame表面上绘制图像的函数
 def draw_image(surface, array, blend=False):
     image_surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
