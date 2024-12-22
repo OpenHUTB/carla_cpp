@@ -135,7 +135,7 @@
     - var_name: name
       type: str
       doc: >
-        The name of the map. It corresponds to the .umap from Unreal Engine that is loaded from a CARLA server, which then references to the .xodr road description.
+        The name of the map. It corresponds to the .umap from Unreal Engine that is loaded from a CARLA server, which then references to the .xodr road description.# 地图名称，对应于从CARLA服务器加载的Unreal Engine中的 .umap 文件，随后引用到 .xodr 道路描述文件。
     # - METHODS ----------------------------
     methods:
     - def_name: __init__
@@ -143,14 +143,14 @@
       - param_name: name
         type: str
         doc: >
-          Name of the current map.
+          Name of the current map.# 当前地图的名称。
       - param_name: xodr_content
         type: str
         doc: >
           .xodr content in string format.
       return: list(carla.Transform)
       doc: >
-        Constructor for this class. Though a map is automatically generated when initializing the world, using this method in no-rendering mode facilitates working with an .xodr without any CARLA server running.
+        Constructor for this class. Though a map is automatically generated when initializing the world, using this method in no-rendering mode facilitates working with an .xodr without any CARLA server running.# 该类的构造函数。尽管在初始化世界时会自动生成地图，但在不渲染模式下使用此方法可以在没有CARLA服务器运行的情况下处理 .xodr 文件。
     # --------------------------------------
     - def_name: generate_waypoints
       params:
@@ -158,10 +158,10 @@
         type: float
         param_units: meters
         doc: >
-          Approximate distance between waypoints.
+          Approximate distance between waypoints.# 每个路点之间的大致距离。
       return: list(carla.Waypoint)
       doc: >
-        Returns a list of waypoints with a certain distance between them for every lane and centered inside of it. Waypoints are not listed in any particular order. Remember that waypoints closer than 2cm within the same road, section and lane will have the same identificator.
+        Returns a list of waypoints with a certain distance between them for every lane and centered inside of it. Waypoints are not listed in any particular order. Remember that waypoints closer than 2cm within the same road, section and lane will have the same identificator.# 返回一系列道路上各车道的路点，这些路点之间保持指定的距离，并位于车道的中心。路点的顺序没有特别要求。请注意，距离不到2cm的路点将在同一条道路、段落和车道内具有相同的标识符。
     # --------------------------------------
     - def_name: save_to_disk
       params:
@@ -182,12 +182,12 @@
         type: carla.Location
       return: carla.GeoLocation
       doc: >
-        Converts a given `location`, a point in the simulation, to a carla.GeoLocation, which represents world coordinates. The geographical location of the map is defined inside OpenDRIVE within the tag <b><georeference></b>.
+        Converts a given `location`, a point in the simulation, to a carla.GeoLocation, which represents world coordinates. The geographical location of the map is defined inside OpenDRIVE within the tag <b> # 将给定的 `location`（模拟中的某个点）转换为 carla.GeoLocation，表示世界坐标。地图的地理位置在 OpenDRIVE 文件中的 <b><georeference></b> 标签内定义。<georeference></b>.
     # --------------------------------------
     - def_name: get_all_landmarks
       doc: >
         Returns all the landmarks in the map. Landmarks retrieved using this method have a __null__ waypoint.
-      return: list(carla.Landmark)
+      return: list(carla.Landmark)# 返回地图中的所有地标。通过此方法检索到的地标具有 __null__ 路点。
     # --------------------------------------
     - def_name: get_all_landmarks_from_id
       doc: >
@@ -197,7 +197,7 @@
         type: string
         doc: >
           The OpenDRIVE ID of the landmarks.
-      return: list(carla.Landmark)
+      return: list(carla.Landmark)# 返回具有特定 OpenDRIVE ID 的地标。通过此方法检索到的地标具有 __null__ 路点。
     # --------------------------------------
     - def_name: get_all_landmarks_of_type
       doc: >
@@ -207,7 +207,7 @@
         type: string
         doc: >
           The type of the landmarks.
-      return: list(carla.Landmark)
+      return: list(carla.Landmark) # 返回特定类型的地标。通过此方法检索到的地标具有 __null__ 路点。
     # --------------------------------------
     - def_name: get_landmark_group
       doc: >
