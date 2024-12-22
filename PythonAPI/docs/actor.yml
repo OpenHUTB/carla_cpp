@@ -422,7 +422,7 @@
       warning: >
         Does not affect the physics of the vehicle.
     # --------------------------------------
-    - def_name: get_wheel_steer_angle
+    - def_name: get_wheel_steer_angle #定义变量名
       return: float
       params:
         - param_name: wheel_location
@@ -432,12 +432,12 @@
       note: >
         Returns the angle based on the physics of the wheel, not the visual angle.
     # --------------------------------------
-    - def_name: get_failure_state
+    - def_name: get_failure_state #定义变量名
       return: carla.VehicleFailureState
       doc: >
         Vehicle have failure states, to  indicate that it is incapable of continuing its route. This function returns the vehicle's specific failure state, or in other words, the cause that resulted in it.
     # --------------------------------------
-    - def_name: show_debug_telemetry
+    - def_name: show_debug_telemetry #定义变量名
       params:
       - param_name: enabled
         type: bool
