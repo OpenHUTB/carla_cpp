@@ -463,39 +463,144 @@
       doc: >
         Close the door `door_idx` if the vehicle has it. Use carla.VehicleDoor.All to close all available doors.
 
-# Walker 类继承自 Actor 类，代表 CARLA 模拟器中的行人。
-  - class_name: Walker
-    parent: carla.Actor
-    # - DESCRIPTION ------------------------
+---# 定义了一个名为 carla 的模块，其中包含了 CARLA 模拟器中各种 actor 的定义和文档。
+- module_name: carla
+  # - CLASSES ------------------------------
+  classes: # 定义了一个名为 Actor 的类，它是 CARLA 模拟器中所有对象的基类。
+  - class_name: Actor
+    # 提供了 Actor 类的详细描述--
     doc: >
-      This class inherits from the carla.Actor and defines pedestrians in the simulation. Walkers are a special type of actor that can be controlled either by an AI (carla.WalkerAIController) or manually via script, using a series of carla.WalkerControl to move these and their skeletons.  
+      CARLA defines actors as anything that plays a role in the simulation or can be moved around. That includes: pedestrians, vehicles, sensors and traffic signs (considering traffic lights as part of these). Actors are spawned in the simulation by carla.World and they need for a carla.ActorBlueprint to be created. These blueprints belong into a library provided by CARLA, find more about them [here](bp_library.md).
     # - PROPERTIES -------------------------
+    instance_variables:
+    - var_name: attributes
+      type: dict
+      doc: >
+        A dictionary containing the attributes of the blueprint this actor was based on.
+  # 定义了 Actor 类的其他属性和方法，每个属性和方法都有详细的描述
+  # 定义了其他与 Actor 相关的类，例如 ActorState、VehicleLightState、Vehicle、Walker、WalkerAIController、TrafficSign、TrafficLightState、TrafficLight、VehicleWheelLocation、VehicleDoor、VehicleFailureState 等
+  # 每个类都有详细的描述和属性、方法定义
+    - var_name: id
+      type: int
+      doc: >
+        Identifier for this actor. Unique during a given episode.
+    - var_name: type_id
+      type: str
+      doc: >
+        The identifier of the blueprint this actor was based on, e.g. `vehicle.ford.mustang`.
+    - var_name: is_alive
+      type: bool
+      doc: >
+        Returns whether this object was destroyed using this actor handle.
+    - var_name: is_active
+      type: bool
+      doc: >
+        Returns whether this actor is active (True) or not (False).
+    - var_name: is_dormant
+      type: bool
+      doc: >
+        Returns whether this actor is dormant (True) or not (False) - the opposite of is_active.
+    - var_name: parent
+      type: carla.Actor
+      doc: >
+      # 文档字符串开始
+        Actors may be attached to a parent actor that they will follow around. This is said actor.
+    - var_name: semantic_tags
+      type: list(int)
+      doc: >
+        A list of semantic tags provided by the blueprint listing components for this actor. E.g. a traffic light could be tagged with `Pole` and `TrafficLight`. These tags are used by the semantic segmentation sensor. Find more about this and other sensors [here](ref_sensors.md#semantic-segmentation-camera). 
+    - var_name: actor_state
+      type: carla.ActorState
+      doc: >
+        Returns the carla.ActorState, which can identify if the actor is Active, Dormant or Invalid.
+    - var_name: bounding_box
+      type: carla.BoundingBox
+      doc: >
+        Bounding box containing the geometry of the actor. Its location and rotation are relative to the actor it is attached to.
+
     # - METHODS ----------------------------
     methods:
-    - def_name: apply_control
+    - def_name: add_angular_impulse
       params:
-      - param_name: control
-        type: carla.WalkerControl
+      - param_name: angular_impulse
+        type: carla.Vector3D#表示一个三维向量，用于定义角冲量的方向和大小。
+        param_units: degrees*s#表示角冲量的单位是度乘以秒，这是一个不常见的单位，可能是文档中的一个错误，通常角冲量的单位是牛顿米（Nm）。
+        doc: >
+          Angular impulse vector in global coordinates. 
       doc: >
-        On the next tick, the control will move the walker in a certain direction with a certain speed. Jumps can be commanded too.   
+        Applies an angular impulse at the center of mass of the actor. This method should be used for instantaneous torques, usually applied once. Use __<font color="#7fb800">add_torque()</font>__ to apply rotation forces over a period of time.
     # --------------------------------------
-    - def_name: get_control
-      return: carla.WalkerControl
-      doc: >
-        The client returns the control applied to this walker during last tick. The method does not call the simulator.
-    # --------------------------------------
-    - def_name: get_bones
-      return: carla.WalkerBoneControlOut
-      doc: >
-        Return the structure with all the bone transformations from the actor. For each bone, we get the name and its transform in three different spaces:
-          - name: bone name
-          - world: transform in world coordinates
-          - component: transform based on the pivot of the actor
-          - relative: transform based on the bone parent
-    # --------------------------------------
-    - def_name: set_bones
+    - def_name: add_force
       params:
-      - param_name: bones
+      - param_name: force
+        type: carla.Vector3D
+        param_units: N
+        doc: >
+          Force vector in global coordinates. 
+      doc: >
+        Applies a force at the center of mass of the actor. This method should be used for forces that are applied over a certain period of time. Use __<font color="#7fb800">add_impulse()</font>__ to apply an impulse that only lasts an instant.  
+    # --------------------------------------
+    - def_name: add_impulse
+      params:
+      - param_name: impulse
+        type: carla.Vector3D
+        param_units: N*s
+        doc: >
+          Impulse vector in global coordinates. 
+      doc: >
+        Applies an impulse at the center of mass of the actor. This method should be used for instantaneous forces, usually applied once. Use __<font color="#7fb800">add_force()</font>__ to apply forces over a period of time.
+    # --------------------------------------
+    - def_name: add_torque
+      params:
+      - param_name: torque
+        type: carla.Vector3D
+        param_units: degrees
+        doc: >
+          Torque vector in global coordinates. 
+      doc: >
+        Applies a torque at the center of mass of the actor. This method should be used for torques that are applied over a certain period of time. Use __<font color="#7fb800">add_angular_impulse()</font>__ to apply a torque that only lasts an instant.  
+    # --------------------------------------
+    - def_name: destroy
+      return: bool
+      doc: >
+        Tells the simulator to destroy this actor and returns <b>True</b> if it was successful. It has no effect if it was already destroyed.
+      warning: >
+        This method blocks the script until the destruction is completed by the simulator.
+    # --------------------------------------
+    - def_name: disable_constant_velocity
+      doc: >
+        Disables any constant velocity previously set for a carla.Vehicle actor.  
+    # --------------------------------------
+    - def_name: enable_constant_velocity
+      params:
+      - param_name: velocity
+        type: carla.Vector3D
+        doc: >
+          Velocity vector in local space.  
+        param_units: m/s
+      doc: >
+        Sets a vehicle's velocity vector to a constant value over time. The resulting velocity will be approximately the `velocity` being set, as with __<font color="#7fb800">set_target_velocity()</font>__.  
+      note: >
+        Only carla.Vehicle actors can use this method.  
+      warning: >
+        Enabling a constant velocity for a vehicle managed by the [Traffic Manager](https://carla.readthedocs.io/en/latest/adv_traffic_manager/) may cause conflicts. This method overrides any changes in velocity by the TM.  
+    # --------------------------------------
+    - def_name: get_acceleration
+      return: carla.Vector3D
+      return_units: m/s<sup>2</sup>
+      doc: >
+        Returns the actor's 3D acceleration vector the client recieved during last tick. The method does not call the simulator.
+    # --------------------------------------
+    - def_name: get_angular_velocity
+      return: carla.Vector3D
+      return_units: deg/s
+      doc: >
+        Returns the actor's angular velocity vector the client recieved during last tick. The method does not call the simulator.
+    # --------------------------------------
+    - def_name: get_location
+      return: carla.Location
+      return_units: meters
+      doc: >
         type: carla.WalkerBoneControlIn
         param_units: list of pairs (bone_name, transform) for the bones that we want to set
       doc: >
