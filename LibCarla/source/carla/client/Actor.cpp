@@ -7,7 +7,7 @@
 #include "carla/client/Actor.h"// 引入Carla模拟器中参与者模块的头文件
 
 #include "carla/Logging.h"// 引入Carla日志模块的头文件
-#include "carla/client/detail/Simulator.h"// 引入Carla客户端模拟器实现的细节头文件
+#include "carla/client/detail/Simulator.h"// 引入Carla客户端库中模拟器实现的细节头文件，包含模拟器状态管理和控制的相关实现
 
 namespace carla {
 namespace client {
