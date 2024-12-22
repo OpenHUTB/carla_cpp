@@ -1030,36 +1030,78 @@ class HelpText(object):
 
 class CollisionSensor(object):
     def __init__(self, parent_actor, hud):
+        """
+        类的构造函数，用于初始化 `CollisionSensor` 实例的相关属性，并创建和配置碰撞传感器，使其能够监听碰撞事件。
+
+        参数说明：
+        - `parent_actor`：一个代表父级角色（通常是车辆或者其他可碰撞的实体对象）的对象，碰撞传感器会关联到这个父级角色上，用于检测该角色与其他对象之间的碰撞情况。
+        - `hud`：一个与抬头显示（HUD，Head-Up Display）相关的对象，通过它可以向用户展示一些提示信息，比如在发生碰撞时在界面上显示相应的通知内容。
+        """
         self.sensor = None
         self.history = []
         self._parent = parent_actor
         self.hud = hud
+        // 初始化实例的几个属性：
+        // - `self.sensor` 初始化为 `None`，后续会在这里存储创建好的碰撞传感器对象。
+        // - `self.history` 初始化为一个空列表，用于记录碰撞事件的历史信息，例如碰撞发生的帧序号以及碰撞的强度等数据。
+        // - `self._parent` 存储传入的父级角色对象，以便后续获取相关的世界信息以及关联传感器到这个角色上。
+        // - `self.hud` 存储传入的抬头显示相关对象，用于后续在发生碰撞时进行信息提示等操作。
+
         world = self._parent.get_world()
         bp = world.get_blueprint_library().find('sensor.other.collision')
         self.sensor = world.spawn_actor(bp, carla.Transform(), attach_to=self._parent)
+        // 通过父级角色对象（`self._parent`）获取其所在的模拟世界对象（`get_world` 方法），然后在这个世界的蓝图库（`get_blueprint_library` 方法）中查找名为 `sensor.other.collision` 的传感器蓝图。
+        // 找到蓝图后，使用世界对象的 `spawn_actor` 方法在指定的变换位置（初始位置使用 `carla.Transform()` 表示默认位置，这里会关联到父级角色上）创建并生成实际的碰撞传感器对象，将其赋值给 `self.sensor` 属性，这样就成功创建了一个碰撞传感器并附着到了父级角色上，使其能够检测该角色的碰撞情况。
+
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda event: CollisionSensor._on_collision(weak_self, event))
+        // 为了避免循环引用（在Python中，如果对象之间相互引用，可能会导致内存无法正确回收的问题），这里创建了一个对当前实例（`self`）的弱引用（`weakref.ref(self)`），并将其赋值给 `weak_self` 变量。
+        // 然后让创建好的碰撞传感器（`self.sensor`）开始监听碰撞事件，通过调用 `listen` 方法并传入一个匿名函数（`lambda` 表达式）作为回调函数。当碰撞事件发生时，这个匿名函数会被调用，它会将弱引用（`weak_self`）和碰撞事件对象（`event`）作为参数传递给类的静态方法 `_on_collision`，由该静态方法来处理具体的碰撞事件逻辑。
 
     def get_collision_history(self):
+        """
+        函数功能：获取并整理碰撞历史信息，将历史记录中每个帧对应的多次碰撞强度进行累加，返回一个按照帧序号统计碰撞强度总和的字典。
+
+        返回值：
+        - 返回一个 `collections.defaultdict(int)` 类型的字典，键为帧序号，值为该帧对应的碰撞强度总和，用于展示在不同帧上发生碰撞的总体强度情况，方便后续分析碰撞历史数据。
+        """
         history = collections.defaultdict(int)
         for frame, intensity in self.history:
             history[frame] += intensity
         return history
+        // 创建一个默认值为整数 `0` 的字典（`collections.defaultdict(int)`），用于统计每个帧序号对应的碰撞强度总和。
+        // 遍历存储碰撞历史信息的列表（`self.history`），其中每个元素是一个包含帧序号（`frame`）和碰撞强度（`intensity`）的元组。对于每个元组，将对应帧序号的碰撞强度累加到 `history` 字典中该帧序号对应的键值上（如果键不存在则初始化为 `0` 后再累加，这就是 `defaultdict` 的特性），这样最终 `history` 字典就记录了每个帧上的碰撞强度总和情况，最后返回这个整理好的碰撞历史字典。
 
     @staticmethod
     def _on_collision(weak_self, event):
+        """
+        静态方法功能：作为碰撞事件的处理函数，当碰撞发生时被调用，用于更新碰撞历史记录，并在抬头显示上给出碰撞提示信息。
+
+        参数说明：
+        - `weak_self`：一个对 `CollisionSensor` 类实例的弱引用，通过它可以获取到实际的实例对象，同时避免了循环引用问题，在方法内部需要先将其解引用还原为实际的实例对象才能访问实例的属性和方法。
+        - `event`：一个包含碰撞事件详细信息的对象，例如碰撞涉及的其他角色、碰撞的冲量等信息，用于提取相关数据来记录碰撞情况和进行提示等操作。
+        """
         self = weak_self()
         if not self:
             return
+        // 通过弱引用（`weak_self`）获取实际的 `CollisionSensor` 类实例对象，如果获取失败（即 `weak_self` 所引用的对象已经被垃圾回收了，返回 `None`），则直接返回，不执行后续的碰撞处理逻辑。
+
         actor_type = get_actor_display_name(event.other_actor)
         self.hud.notification('Collision with %r' % actor_type)
+        // 获取与当前父级角色发生碰撞的其他角色的显示名称（通过 `get_actor_display_name` 方法），然后使用抬头显示对象（`self.hud`）调用 `notification` 方法，在界面上显示一条提示信息，告知用户发生了与何种类型角色的碰撞，让用户及时了解碰撞情况。
+
         impulse = event.normal_impulse
         intensity = math.sqrt(impulse.x**2 + impulse.y**2 + impulse.z**2)
         self.history.append((event.frame, intensity))
+        // 从碰撞事件对象（`event`）中获取碰撞的法向冲量（`normal_impulse`）信息，存储到 `impulse` 变量中。
+        // 通过计算冲量在三个坐标轴方向上的分量的平方和的平方根（即向量的模长），得到碰撞的强度值（`intensity`），以此来衡量碰撞的剧烈程度。
+        // 将碰撞发生的帧序号（`event.frame`）和计算得到的碰撞强度（`intensity`）组成一个元组，添加到 `self.history` 列表中，用于记录这次碰撞的相关信息，方便后续查询和分析碰撞历史情况。
+
         if len(self.history) > 4000:
             self.history.pop(0)
+        // 判断碰撞历史记录列表（`self.history`）的长度是否超过了 `4000`，如果超过了，说明历史记录过多，为了避免占用过多内存或者保持历史记录的合理性，删除列表中的第一个元素（即最早记录的碰撞信息），实现一种简单的历史记录队列管理，只保留最近的一部分碰撞历史数据。
 
 
 # ==============================================================================
