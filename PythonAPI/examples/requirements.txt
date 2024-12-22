@@ -1,8 +1,17 @@
-future
-numpy; python_version < '3.0'
-numpy==1.18.4; python_version >= '3.0'
-pygame
-matplotlib
-open3d
-Pillow
-invertedai@git+https://github.com/inverted-ai/invertedai.git@develop
+from setuptools import setup, find_packages
+
+setup(
+    name='your_project_name',
+    version='1.0',
+    packages=find_packages(),
+    install_requires=[
+        "future",
+        "numpy; python_version < '3.0'",
+        "numpy==1.18.4; python_version >= '3.0'",
+        "pygame",
+        "matplotlib",
+        "open3d",
+        "Pillow",
+        "invertedai@git+https://github.com/inverted-ai/invertedai.git@develop",
+    ],
+)
