@@ -31,8 +31,13 @@
 USTRUCT(BlueprintType)// 定义一个可在蓝图中使用的结构体
 struct FSkeletonBone
 {
+// GENERATED_BODY()宏用于自动生成Unreal Engine需要的反射代码
+// 这使得结构体可以在Unreal Engine的序列化系统中被正确处理
   GENERATED_BODY()
-
+// 使用UPROPERTY宏定义一个属性
+// EditAnywhere表示该属性可以在属性窗口中编辑，无论是在C++代码中还是在蓝图编辑器中
+// BlueprintReadWrite表示该属性在蓝图编辑器中可读可写
+// Category参数为该属性指定了一个分类，便于在属性窗口中查找
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Skeleton Bone")
   float Mass = 1.f;
   UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Skeleton Bone")
@@ -88,13 +93,29 @@ struct FJointCollision// 关节碰撞结构体
 
 struct FJointProperties
 {
+ // 关节的质量，默认为0.0
+ // 质量是影响物体惯性和重力效应的物理量
   float Mass = 0.0;
+// 关节的惯性张量，初始化为零矩阵
+// 惯性张量描述了物体在旋转时的惯性，是质量分布和物体形状的函数
   Eigen::Matrix3d InertiaTensor = Eigen::Matrix3d::Zero();
+// 作用在关节上的力，初始化为零向量
+// 力是改变物体运动状态的原因，包括线性和旋转运动
   Eigen::Vector3d Force = Eigen::Vector3d::Zero();
+// 作用在关节上的力矩，初始化为零向量
+// 力矩是改变物体旋转状态的原因，与力和力臂的叉积有关
   Eigen::Vector3d Torque = Eigen::Vector3d::Zero();
+// 虚力矩，初始化为零向量
+// 虚力矩可能用于计算或校正，通常与刚体动力学中的某些特定问题相关
   Eigen::Vector3d FictitiousTorque = Eigen::Vector3d::Zero();
+// 关节的质心位置，初始化为零向量
+// 质心是物体质量分布的平均位置，对于计算物体的整体运动很重要
   Eigen::Vector3d CenterOfMass = Eigen::Vector3d::Zero();
+// 关节到全局坐标系的变换矩阵，初始化为零矩阵
+// 这个矩阵用于将关节的局部坐标转换为全局坐标
   Eigen::Matrix3d JointToGlobalMatrix = Eigen::Matrix3d::Zero();
+// 关节的角速度，初始化为零向量
+ // 角速度描述了物体旋转的快慢和方向
   Eigen::Vector3d AngularVelocity = Eigen::Vector3d::Zero();
   Eigen::Vector3d LinearVelocity = Eigen::Vector3d::Zero();
   Eigen::Vector3d AngularAcceleration = Eigen::Vector3d::Zero();

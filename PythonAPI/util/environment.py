@@ -161,18 +161,18 @@ def apply_lights_manager(args, light_manager):
     # filter by group
     lights = light_manager.get_all_lights(LIGHT_GROUP[light_group][0]) # light_group
 
-    i = 0
+    i = 0#初始化
     while (i < len(args.lights)):
         option = args.lights[i]
 
-        if option == "on":
+        if option == "on":# 如果选项是"on"，则调用light_manager的turn_on方法来打开灯光
             light_manager.turn_on(lights)
-        elif option == "off":
+        elif option == "off":# 如果选项是"off"，则调用light_manager的turn_off方法来关闭灯光
             light_manager.turn_off(lights)
-        elif option == "intensity":
-            light_manager.set_intensity(lights, int(args.lights[i + 1]))
-            i += 1
-        elif option == "color":
+        elif option == "intensity":# 如果选项是"intensity"，则设置灯光的强度
+            light_manager.set_intensity(lights, int(args.lights[i + 1]))# 将下一个列表元素转换为整数，并设置灯光的强度
+            i += 1# 移动到下一个选项，因为已经处理了强度值
+        elif option == "color:# 如果选项是"color"，则设置灯光的颜色
             r = int(args.lights[i + 1])
             g = int(args.lights[i + 2])
             b = int(args.lights[i + 3])
@@ -367,7 +367,7 @@ def main():
 
     weather = world.get_weather()
 
-    # apply presets
+    # 应用预设参数
     apply_sun_presets(args, weather)
     apply_weather_presets(args, weather)
 
@@ -382,7 +382,8 @@ def main():
     apply_lights_manager(args, world.get_lightmanager())
 
     world.wait_for_tick()
-
+# 调用 `world` 对象的 `wait_for_tick` 方法，使程序暂停，等待世界（可能是游戏世界、模拟世界等）进行一次更新（即一次“tick”）。
+# 在很多基于时间步长或者帧更新的模拟系统、游戏引擎中，世界的状态是按固定的时间间隔或者帧来更新的，这个方法就是等待下一次更新完成，确保前面关于灯光应用等操作能够在世界更新后生效，或者是等待世界更新到合适的状态后再继续执行后续的代码逻辑。
 
 if __name__ == '__main__':
     main()

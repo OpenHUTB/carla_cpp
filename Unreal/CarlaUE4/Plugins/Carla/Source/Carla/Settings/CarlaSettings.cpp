@@ -175,18 +175,26 @@ void UCarlaSettings::LoadSettings()
   }
 }
 
+// 从字符串加载CARLA设置的函数
 void UCarlaSettings::LoadSettingsFromString(const FString &INIFileContents)
 {
+     // 记录日志：从字符串加载CARLA设置
   UE_LOG(LogCarla, Log, TEXT("Loading CARLA settings from string"));
+    // 创建配置文件对象
   FIniFile ConfigFile;
+    // 处理输入文件内容
   ConfigFile.ProcessInputFileContents(INIFileContents);
+    // 假设加载CARLAR服务器部分失败
   constexpr bool bLoadCarlaServerSection = false;
+    // 从配置文件加载CARLA服务器部分
   LoadSettingsFromConfig(ConfigFile, *this, bLoadCarlaServerSection);
+    // 当前文件名，这里使用了一个固定的字符串
   CurrentFileName = TEXT("<string-provided-by-client>");
 }
 
 void UCarlaSettings::LogSettings() const
 {
+     // 定义一个lambda表达式，根据布尔值返回"Enabled"或"Disabled"
   auto EnabledDisabled = [](bool bValue) { return (bValue ? TEXT("Enabled") : TEXT("Disabled")); };
   UE_LOG(LogCarla, Log,
       TEXT("== CARLA Settings =============================================================="));
@@ -210,14 +218,20 @@ void UCarlaSettings::LoadSettingsFromFile(const FString &FilePath, const bool bL
 {
   if (FPaths::FileExists(FilePath))
   {
+      // 记录日志：从文件路径加载CARLA设置
     UE_LOG(LogCarla, Log, TEXT("Loading CARLA settings from \"%s\""), *FilePath);
+      // 创建配置文件对象
     const FIniFile ConfigFile(FilePath);
+      // 设置加载CARLA服务器部分的标志为true
     constexpr bool bLoadCarlaServerSection = true;
+       // 从配置文件加载设置
     LoadSettingsFromConfig(ConfigFile, *this, bLoadCarlaServerSection);
+      // 设置当前文件名
     CurrentFileName = FilePath;
   }
   else if (bLogOnFailure)
   {
+      // 记录错误日志：无法找到设置文件
     UE_LOG(LogCarla, Error, TEXT("Unable to find settings file \"%s\""), *FilePath);
   }
 }

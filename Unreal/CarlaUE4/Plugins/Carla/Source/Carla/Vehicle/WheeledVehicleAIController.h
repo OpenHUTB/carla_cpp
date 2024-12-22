@@ -19,14 +19,14 @@ class ACarlaWheeledVehicle;
 class URandomEngine;
 class URoadMap;
 
-/// Wheeled vehicle controller with optional AI.
+/// 带可选 AI 的轮式车辆控制器。
 UCLASS()
 class CARLA_API AWheeledVehicleAIController final : public AController
 {
   GENERATED_BODY()
 
   // ===========================================================================
-  /// @name Constructor and destructor
+  /// @name 构造函数和析构函数
   // ===========================================================================
   /// @{
 
@@ -38,7 +38,7 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Controller overrides
+  /// @name 控制器覆盖
   // ===========================================================================
   /// @{
 
@@ -52,7 +52,7 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Possessed vehicle
+  /// @name 持有的车辆
   // ===========================================================================
   /// @{
 
@@ -77,7 +77,7 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Control options
+  /// @name 控制选项
   // ===========================================================================
   /// @{
 
@@ -89,7 +89,7 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Road map
+  /// @name 路线图
   // ===========================================================================
   /// @{
 
@@ -108,7 +108,7 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Random engine
+  /// @name 随机引擎
   // ===========================================================================
   /// @{
 
@@ -123,7 +123,7 @@ public:
 
   /// @}
   // ===========================================================================
-  /// @name Autopilot
+  /// @name 自动驾驶仪
   // ===========================================================================
   /// @{
 
@@ -156,55 +156,55 @@ private:
 
   /// @}
   // ===========================================================================
-  /// @name Traffic
+  /// @name 交通
   // ===========================================================================
   /// @{
 
 public:
 
-  /// Get current speed limit in km/h.
+  /// 获取当前限速（以 km/h 为单位）。
   UFUNCTION(Category = "Wheeled Vehicle Controller", BlueprintCallable)
   float GetSpeedLimit() const
   {
     return SpeedLimit;
   }
 
-  /// Set vehicle's speed limit in km/h.
+  /// 以 km/h 为单位设置车辆的限速。
   UFUNCTION(Category = "Wheeled Vehicle Controller", BlueprintCallable)
   void SetSpeedLimit(float InSpeedLimit)
   {
     SpeedLimit = InSpeedLimit;
   }
 
-  /// Get traffic light state currently affecting this vehicle.
+  /// 获取当前影响此车辆的红绿灯状态。
   UFUNCTION(Category = "Wheeled Vehicle Controller", BlueprintCallable)
   ETrafficLightState GetTrafficLightState() const
   {
     return TrafficLightState;
   }
 
-  /// Set traffic light state currently affecting this vehicle.
+  /// 设置当前影响此车辆的红绿灯状态。
   UFUNCTION(Category = "Wheeled Vehicle Controller", BlueprintCallable)
   void SetTrafficLightState(ETrafficLightState InTrafficLightState)
   {
     TrafficLightState = InTrafficLightState;
   }
 
-  /// Get traffic light currently affecting this vehicle.
+  /// 获取当前影响此车辆的红绿灯状态。
   UFUNCTION(Category = "Wheeled Vehicle Controller", BlueprintCallable)
   ATrafficLightBase *GetTrafficLight() const
   {
     return TrafficLight;
   }
 
-  /// Set traffic light currently affecting this vehicle.
+  /// 设置当前影响此车辆的红绿灯状态。
   UFUNCTION(Category = "Wheeled Vehicle Controller", BlueprintCallable)
   void SetTrafficLight(ATrafficLightBase *InTrafficLight)
   {
     TrafficLight = InTrafficLight;
   }
 
-  /// Set a fixed route to follow if autopilot is enabled.
+  /// 设置启用 Autopilot 时要遵循的固定路线。
   UFUNCTION(Category = "Wheeled Vehicle Controller", BlueprintCallable)
   void SetFixedRoute(const TArray<FVector> &Locations, bool bOverwriteCurrent = true);
 

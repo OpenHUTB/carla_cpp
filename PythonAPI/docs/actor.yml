@@ -58,8 +58,8 @@
     - def_name: add_angular_impulse
       params:
       - param_name: angular_impulse
-        type: carla.Vector3D
-        param_units: degrees*s
+        type: carla.Vector3D#表示一个三维向量，用于定义角冲量的方向和大小。
+        param_units: degrees*s#表示角冲量的单位是度乘以秒，这是一个不常见的单位，可能是文档中的一个错误，通常角冲量的单位是牛顿米（Nm）。
         doc: >
           Angular impulse vector in global coordinates. 
       doc: >
@@ -142,7 +142,7 @@
       return: carla.Transform
       doc: >
         Returns the actor's transform (location and rotation) the client recieved during last tick. The method does not call the simulator.
-    # --------------------------------------
+    #返回客户端在最后一个滴答声中接收到的演员变换（位置和旋转）。该方法不调用模拟器。 --------------------------------------
     - def_name: get_velocity
       return: carla.Vector3D
       return_units: m/s

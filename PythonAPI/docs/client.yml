@@ -31,56 +31,61 @@
         default: 0
         doc: >
           Number of working threads used for background updates. If 0, use all
-          available concurrency.
+          available concurrency. # 背景更新所使用的工作线程数。如果为0，则使用所有可用的并发线程。
       doc: >
-        Client constructor
+        Client constructor # 客户端构造函数
     # --------------------------------------
     - def_name: apply_batch
       params:
       - param_name: commands
         type: list
         doc: >
-          A list of commands to execute in batch. Each command is different and has its own parameters. They appear listed at the bottom of this page.
+          A list of commands to execute in batch. Each command is different and has its own parameters. They appear listed at the bottom of this page. # 一组要批量执行的命令，每个命令有不同的参数，它们在页面底部列出。
       doc: >
         Executes a list of commands on a single simulation step and retrieves no information. If you need information about the response of each command, use the __<font color="#7fb800">apply_batch_sync()</font>__ method.
-        [Here](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py) is an example on how to delete the actors that appear in carla.ActorList all at once.
+        [Here](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py) is an example on how to delete the actors that appear in carla.ActorList all at once. # 在单次模拟步骤中执行一组命令，并且不获取任何信息。如果需要获取每个命令的响应信息，可以使用__<font color="#7fb800">apply_batch_sync()</font>__方法。
+        [这里](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py)是一个示例，展示如何一次性删除出现在carla.ActorList中的所有actor。
     # --------------------------------------
     - def_name: apply_batch_sync
       params:
       - param_name: commands
         type: list
         doc: >
-          A list of commands to execute in batch. The commands available are listed right above, in the method **<font color="#7fb800">apply_batch()</font>**.
+          A list of commands to execute in batch. The commands available are listed right above, in the method **<font color="#7fb800">apply_batch()</font>**.# 一组要批量执行的命令，可用命令列表请参考上面的方法**<font color="#7fb800">apply_batch()</font>**。
       - param_name: due_tick_cue
         type: bool
         default: false
         doc: >
-          A boolean parameter to specify whether or not to perform a carla.World.tick after applying the batch in _synchronous mode_. It is __False__ by default.
+          A boolean parameter to specify whether or not to perform a carla.World.tick after applying the batch in _synchronous mode_. It is __False__ by default. # 一个布尔值参数，指定在同步模式下应用批量命令后是否执行carla.World.tick。默认值为__False__。
       return: list(command.Response)
       doc: >
-        Executes a list of commands on a single simulation step, blocks until the commands are linked, and returns a list of <b>command.Response</b> that can be used to determine whether a single command succeeded or not. [Here](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py) is an example of it being used to spawn actors.
+        Executes a list of commands on a single simulation step, blocks until the commands are linked, and returns a list of <b>command.Response</b> that can be used to determine whether a single command succeeded or not. [Here](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py) is an example of it being used to spawn actors. # 在单次模拟步骤中执行一组命令，直到命令链接完成才返回，并返回一个<b>command.Response</b>列表，可以用于判断每个命令是否成功执行。
+        [这里](https://github.com/carla-simulator/carla/blob/master/PythonAPI/examples/generate_traffic.py)是一个示例，展示如何使用它来生成actor。
     # --------------------------------------
     - def_name: generate_opendrive_world
       params:
       - param_name: opendrive
         type: str
         doc: >
-          Content of an ASAM OpenDRIVE file as `string`, __not the path to the `.xodr`__.
+          Content of an ASAM OpenDRIVE file as `string`, __not the path to the `.xodr`__. # OpenDRIVE文件的内容作为字符串传递，__不是`.xodr`文件的路径__。
       - param_name: parameters
         type: carla.OpendriveGenerationParameters
         default: (2.0, 50.0, 1.0, 0.6, true, true)
         doc: >
-           Additional settings for the mesh generation. If none are provided, default values will be used.
+           Additional settings for the mesh generation. If none are provided, default values will be used. # 网格生成的额外设置。如果未提供，默认值将会被使用。
       - param_name: reset_settings
         type: bool
         default: true
         doc: >
           Option to reset the episode setting to default values, set to false to keep the current settings.
-          This is useful to keep sync mode when changing map and to keep deterministic scenarios.
+          This is useful to keep sync mode when changing map and to keep deterministic scenarios.# 选择是否重置设置为默认值，若设为false，则保持当前设置。这对在更换地图时保持同步模式和确定性场景非常有用。
       doc: >
         Loads a new world with a basic 3D topology generated from the content of an OpenDRIVE file. This content is passed as a `string` parameter.
         It is similar to `client.load_world(map_name)` but allows for custom OpenDRIVE maps in server side.
-        Cars can drive around the map, but there are no graphics besides the road and sidewalks.
+        Cars can drive around the map, but there are no graphics besides the road and sidewalks. # 加载一个新的世界，并基于OpenDRIVE文件的内容生成一个基本的3D拓扑结构。内容作为字符串参数传递。
+    # 它类似于`client.load_world(map_name)`，但允许在服务器端加载自定义的OpenDRIVE地图。
+    # 汽车可以在地图上行驶，但除了道路和人行道外，没有其他图形。
+
     # --------------------------------------
     - def_name: load_world
       params:
@@ -88,24 +93,24 @@
         type: str
         doc: >
           Name of the map to be used in this world. Accepts both full paths and map names, e.g.
-          '/Game/Carla/Maps/Town01' or 'Town01'. Remember that these paths are dynamic.
+          '/Game/Carla/Maps/Town01' or 'Town01'. Remember that these paths are dynamic. # 用于此世界的地图名称。接受完整路径和地图名称，例如 '/Game/Carla/Maps/Town01' 或 'Town01'。请记住，这些路径是动态的。
       - param_name: reset_settings
         type: bool
         default: true
         doc: >
           Option to reset the episode setting to default values, set to false to keep the current settings.
-          This is useful to keep sync mode when changing map and to keep deterministic scenarios.
+          This is useful to keep sync mode when changing map and to keep deterministic scenarios.# 选择是否重置设置为默认值，若设为false，则保持当前设置。这对在更换地图时保持同步模式和确定性场景非常有用。
       - param_name: map_layers
         type: carla.MapLayer
         default: carla.MapLayer.All
         doc: >
           Layers of the map that will be loaded. By default all layers are loaded.
-          This parameter works like a flag mask.
+          This parameter works like a flag mask. # 要加载的地图层。默认情况下，所有层都会加载。此参数类似于标志掩码。
       return: carla.World
       warning: >
-        `map_layers` are only available for "Opt" maps
+        `map_layers` are only available for "Opt" maps# `map_layers` 仅适用于“Opt”地图。
       doc: >
-        Creates a new world with default settings using `map_name` map. All actors in the current world will be destroyed.
+        Creates a new world with default settings using `map_name` map. All actors in the current world will be destroyed. # 使用`map_name`地图创建一个新的世界，并使用默认设置。当前世界中的所有演员将被销毁。
     # --------------------------------------
     - def_name: reload_world
       params:
@@ -281,13 +286,14 @@
       params:
       return: str
       doc: >
-        Returns the client libcarla version by consulting it in the "Version.h" file. Both client and server can use different libcarla versions but some issues may arise regarding unexpected incompatibilities.
+        Returns the client libcarla version by consulting it in the "Version.h" file. Both client and server can use different libcarla versions but some issues may arise regarding unexpected incompatibilities.# 返回客户端的 libcarla 版本，通过查阅 "Version.h" 文件。客户端和服务器可能使用不同版本的 libcarla，但可能会因为不兼容性问题产生意外错误。
+
     # --------------------------------------
     - def_name: get_server_version
       params:
       return: str
       doc: >
-        Returns the server libcarla version by consulting it in the "Version.h" file. Both client and server should use the same libcarla version.
+        Returns the server libcarla version by consulting it in the "Version.h" file. Both client and server should use the same libcarla version. # 返回服务器的 libcarla 版本，通过查阅 "Version.h" 文件。客户端和服务器应该使用相同版本的 libcarla。
     # --------------------------------------
     - def_name: get_trafficmanager
       params:
@@ -298,13 +304,13 @@
           Port that will be used by the traffic manager. Default is `8000`.
       return: carla.TrafficManager
       doc: >
-        Returns an instance of the traffic manager related to the specified port. If it does not exist, this will be created.
+        Returns an instance of the traffic manager related to the specified port. If it does not exist, this will be created. # 返回与指定端口关联的交通管理器实例。如果不存在，该实例将被创建。
     # --------------------------------------
     - def_name: get_world
       params:
       return: carla.World
       doc: >
-        Returns the world object currently active in the simulation. This world will be later used for example to load maps.
+        Returns the world object currently active in the simulation. This world will be later used for example to load maps. # 返回当前在仿真中活动的世界对象。该世界对象稍后将用于加载地图等操作。
     # --------------------------------------
     - def_name: set_replayer_time_factor
       params:
@@ -314,9 +320,9 @@
         doc: >
             1.0 means normal time speed. Greater than 1.0 means fast motion (2.0 would be double speed) and lesser means slow motion (0.5 would be half speed).
       doc: >
-        When used, the time speed of the reenacted simulation is modified at will. It can be used several times while a playback is in curse.
-    # --------------------------------------
-    - def_name: set_timeout
+        When used, the time speed of the reenacted simulation is modified at will. It can be used several times while a playback is in curse. # 设置回放仿真时的时间速度。1.0表示正常速度，大于1.0表示加速（例如，2.0为双倍速度），小于1.0表示慢速（例如，0.5为半速）。在回放过程中，可以多次调整时间速度。
+    # ------------------------------------- 
+   - def_name: set_timeout
       params:
       - param_name: seconds
         type: float
@@ -324,28 +330,28 @@
         doc: >
           New timeout value. Default is 5 seconds.
       doc: >
-        Sets the maximum time a network call is allowed before blocking it and raising a timeout exceeded error.
+        Sets the maximum time a network call is allowed before blocking it and raising a timeout exceeded error. # 设置网络调用的最大超时时间，超过这个时间会阻塞并抛出超时错误。默认值为5秒。
      # --------------------------------------
     - def_name: set_replayer_ignore_hero
       params:
       - param_name: ignore_hero
         type: bool
         doc: >
-          Enables or disables playback of the hero vehicle during a playback of a recorded simulation.
+          Enables or disables playback of the hero vehicle during a playback of a recorded simulation. # 设置是否在回放录制仿真时忽略英雄车辆的回放。传入True则忽略，False则播放。
     # --------------------------------------
     - def_name: set_replayer_ignore_spectator
       params:
       - param_name: ignore_spectator
         type: bool
         doc: >
-          Determines whether the recorded spectator movements will be replicated by the replayer.
+          Determines whether the recorded spectator movements will be replicated by the replayer. # 设置是否回放录制中的旁观者的运动。传入True则忽略旁观者，False则进行回放。
      # --------------------------------------
     - def_name: set_files_base_folder
       params:
       - param_name: path
         type: str
         doc: >
-           Specifies the base folder where the local cache for required files will be placed.
+           Specifies the base folder where the local cache for required files will be placed.# 设置本地缓存所需文件的基础文件夹路径。
      # --------------------------------------
     - def_name: get_required_files
       params:
@@ -359,7 +365,7 @@
         doc: >
           If True, downloads files that are not already in cache. The cache can be found at "HOME\carlaCache" or "USERPROFILE\carlaCache", depending on OS.
       doc: >
-         Asks the server which files are required by the client to use the current map. Option to download files automatically if they are not already in the cache.
+         Asks the server which files are required by the client to use the current map. Option to download files automatically if they are not already in the cache. # 查询服务器上当前地图所需的文件。可以选择自动下载缓存中没有的文件，默认情况下会下载缺失的文件，缓存文件会存储在 "HOME\carlaCache" 或 "USERPROFILE\carlaCache" 目录下。
      # --------------------------------------
     - def_name: request_file
       params:
@@ -368,14 +374,17 @@
         doc: >
           Name of the file you are requesting.
       doc: >
-        Requests one of the required files returned by carla.Client.get_required_files.
+        Requests one of the required files returned by carla.Client.get_required_files. # 请求由carla.Client.get_required_files返回的所需文件
 
   - class_name: TrafficManager
     # - DESCRIPTION ------------------------
     doc: >
       The traffic manager is a module built on top of the CARLA API in C++. It handles any group of vehicles set to autopilot mode to populate the simulation with realistic urban traffic conditions and give the chance to user to customize some behaviours. The architecture of the traffic manager is divided in five different goal-oriented stages and a PID controller where the information flows until eventually, a carla.VehicleControl is applied to every vehicle registered in a traffic manager.
 
-      In order to learn more, visit the [documentation](adv_traffic_manager.md) regarding this module.
+      In order to learn more, visit the [documentation](adv_traffic_manager.md) regarding this module.# 交通管理器是基于CARLA API的一个模块，使用C++开发。它负责管理设置为自动驾驶模式的车辆群体，从而在模拟中创造逼真的城市交通条件，并允许用户定制一些行为。交通管理器的架构分为五个不同的目标导向阶段和一个PID控制器，其中信息会流经这些阶段，最终将carla.VehicleControl应用于所有注册在交通管理器中的车辆。
+
+      # 若要了解更多信息，请访问[文档](adv_traffic_manager.md)了解更多关于此模块的细节。
+
     # - PROPERTIES -------------------------
     instance_variables:
     # - METHODS ----------------------------
@@ -385,57 +394,57 @@
       - param_name: actor
         type: carla.Actor
         doc: >
-          The vehicle whose settings are changed.
+          The vehicle whose settings are changed. # 设置被更改的车辆
       - param_name: enable
         type: bool
         doc: >
           __True__ is default and enables lane changes. __False__ will disable them.
       doc: >
-        Turns on or off lane changing behaviour for a vehicle.
+        Turns on or off lane changing behaviour for a vehicle.  # 打开或关闭车辆的车道变换行为
     # --------------------------------------
     - def_name: collision_detection
       params:
       - param_name: reference_actor
         type: carla.Actor
         doc: >
-          Vehicle that is going to ignore collisions.
+          Vehicle that is going to ignore collisions. # 将忽略碰撞的车辆
       - param_name: other_actor
         type: carla.Actor
         doc: >
-          The actor that `reference_actor` is going to ignore collisions with.
+          The actor that `reference_actor` is going to ignore collisions with.# `reference_actor` 将忽略与此演员的碰撞。
       - param_name: detect_collision
         type: bool
         doc: >
           __True__ is default and enables collisions. __False__ will disable them.
       doc: >
-        Tunes on/off collisions between a vehicle and another specific actor. In order to ignore all other vehicles, traffic lights or walkers, use the specific __ignore__ methods described in this same section.
+        Tunes on/off collisions between a vehicle and another specific actor. In order to ignore all other vehicles, traffic lights or walkers, use the specific __ignore__ methods described in this same section. # 开启或关闭车辆与特定演员之间的碰撞。如果要忽略所有其他车辆、交通信号灯或行人，可以使用本节中描述的特定__忽略__方法。
     # --------------------------------------
     - def_name: distance_to_leading_vehicle
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          Vehicle whose minimum distance is being changed.
+          Vehicle whose minimum distance is being changed. # 最小距离正在被更改的车辆
       - param_name: distance
         type: float
         param_units: meters
         doc: >
-          Meters between both vehicles.
+          Meters between both vehicles.# 两辆车之间的距离，单位为米。
       doc: >
-        Sets the minimum distance in meters that a vehicle has to keep with the others. The distance is in meters and will affect the minimum moving distance. It is computed from front to back of the vehicle objects.
+        Sets the minimum distance in meters that a vehicle has to keep with the others. The distance is in meters and will affect the minimum moving distance. It is computed from front to back of the vehicle objects. # 设置车辆必须保持的最小距离（单位：米）。该距离将影响最小的移动距离，计算方式是从车辆前端到后端的距离。
     # --------------------------------------
     - def_name: force_lane_change
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          Vehicle being forced to change lanes.
+          Vehicle being forced to change lanes.# 被迫变道的车辆。
       - param_name: direction
         type: bool
         doc: >
           Destination lane. __True__ is the one on the right and __False__ is the left one.
       doc: >
-        Forces a vehicle to change either to the lane on its left or right, if existing, as indicated in `direction`. This method applies the lane change no matter what, disregarding possible collisions.
+        Forces a vehicle to change either to the lane on its left or right, if existing, as indicated in `direction`. This method applies the lane change no matter what, disregarding possible collisions.# 强制车辆变更至其左侧或右侧的车道（如果存在），根据 `direction` 参数决定。此方法会强制变道，不考虑可能发生的碰撞。
     # --------------------------------------
     - def_name: global_percentage_speed_difference
       params:
@@ -444,123 +453,126 @@
         doc: >
           Percentage difference between intended speed and the current limit.
       doc: >
-        Sets the difference the vehicle's intended speed and its current speed limit. Speed limits can be exceeded by setting the `perc` to a negative value.
+        Sets the difference the vehicle's intended speed and its current speed limit. Speed limits can be exceeded by setting the `perc` to a negative value. # 设置车辆目标速度与当前限速之间的差异。通过将 `perc` 设置为负值可以超越限速。
 
-        Default is 30. Exceeding a speed limit can be done using negative percentages.
+        Default is 30. Exceeding a speed limit can be done using negative percentages.# 默认值为 30，超速可以通过设置负百分比来实现。
+
     # --------------------------------------
     - def_name: global_lane_offset
       params:
       - param_name: offset
         type: float
         doc: >
-          Lane offset displacement from the center line.
+          Lane offset displacement from the center line. # 从中心线偏移的车道位移。
       doc: >
-        Sets a global lane offset displacement from the center line. Positive values imply a right offset while negative ones mean a left one.
+        Sets a global lane offset displacement from the center line. Positive values imply a right offset while negative ones mean a left one.# 设置车道的全局偏移位移。正值表示向右偏移，负值表示向左偏移。
 
-        Default is 0. Numbers high enough to cause the vehicle to drive through other lanes might break the controller.
+        Default is 0. Numbers high enough to cause the vehicle to drive through other lanes might break the controller.# 默认值为 0，偏移值过大会导致车辆穿越其他车道，可能会破坏控制器。
     # --------------------------------------
     - def_name: ignore_lights_percentage
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The actor that is going to ignore traffic lights.
+          The actor that is going to ignore traffic lights. # 将忽略交通信号灯的角色（车辆）。
       - param_name: perc
         type: float
         doc: >
-          Between 0 and 100. Amount of times traffic lights will be ignored.
+          Between 0 and 100. Amount of times traffic lights will be ignored.# 0 到 100 之间，交通信号灯将被忽略的频率。
       doc: >
-        During the traffic light stage, which runs every frame, this method sets the percent chance that traffic lights will be ignored for a vehicle.
+        During the traffic light stage, which runs every frame, this method sets the percent chance that traffic lights will be ignored for a vehicle. # 在每一帧的交通信号灯阶段，设置车辆忽略交通信号灯的概率。
     # --------------------------------------
     - def_name: ignore_signs_percentage
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The actor that is going to ignore stop signs.
+          The actor that is going to ignore stop signs.# 将忽略停车标志的角色（车辆）。
       - param_name: perc
         type: float
         doc: >
-          Between 0 and 100. Amount of times stop signs will be ignored.
+          Between 0 and 100. Amount of times stop signs will be ignored.# 0 到 100 之间，停车标志将被忽略的频率。
       doc: >
-        During the traffic light stage, which runs every frame, this method sets the percent chance that stop signs will be ignored for a vehicle.
+        During the traffic light stage, which runs every frame, this method sets the percent chance that stop signs will be ignored for a vehicle. # 在每一帧的交通信号灯阶段，设置车辆忽略停车标志的概率。
     # --------------------------------------
     - def_name: ignore_vehicles_percentage
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The vehicle that is going to ignore other vehicles.
+          The vehicle that is going to ignore other vehicles.# 这个参数指定将忽略其他车辆的车辆。
       - param_name: perc
         type: float
         doc: >
-          Between 0 and 100. Amount of times collisions will be ignored.
+          Between 0 and 100. Amount of times collisions will be ignored. # 这个参数的值范围是0到100，表示车辆忽略其他车辆碰撞的概率百分比。
       doc: >
-        During the collision detection stage, which runs every frame, this method sets a percent chance that collisions with another vehicle will be ignored for a vehicle.
+        During the collision detection stage, which runs every frame, this method sets a percent chance that collisions with another vehicle will be ignored for a vehicle. # 在碰撞检测阶段（每一帧都会运行），该方法设置一个百分比的概率，表示车辆与其他车辆碰撞时会被忽略的几率。
     # --------------------------------------
     - def_name: ignore_walkers_percentage
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The vehicle that is going to ignore walkers on scene.
+          The vehicle that is going to ignore walkers on scene. # 这个参数指定将忽略场景中行人的车辆。
       - param_name: perc
         type: float
         doc: >
-          Between 0 and 100. Amount of times collisions will be ignored.
+          Between 0 and 100. Amount of times collisions will be ignored. # 这个参数的值范围是0到100，表示车辆忽略行人碰撞的概率百分比。
       doc: >
-        During the collision detection stage, which runs every frame, this method sets a percent chance that collisions with walkers will be ignored for a vehicle.
+        During the collision detection stage, which runs every frame, this method sets a percent chance that collisions with walkers will be ignored for a vehicle. # 在碰撞检测阶段（每一帧都会运行），该方法设置一个百分比的概率，表示车辆与行人碰撞时会被忽略的几率。
     # --------------------------------------
     - def_name: vehicle_percentage_speed_difference
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          Vehicle whose speed behaviour is being changed.
+          Vehicle whose speed behaviour is being changed. # 这个参数指定速度行为正在被修改的车辆。
       - param_name: percentage
         type: float
         doc: >
-          Percentage difference between intended speed and the current limit.
+          Percentage difference between intended speed and the current limit. # 这个参数表示预定速度和当前速度限制之间的百分比差异。
       doc: >
         Sets the difference the vehicle's intended speed and its current speed limit. Speed limits can be exceeded by setting the `perc` to a negative value.
 
-        Default is 30. Exceeding a speed limit can be done using negative percentages.
+        Default is 30. Exceeding a speed limit can be done using negative percentages. # 设置车辆预定速度和当前速度限制之间的差异。通过设置负值，可以超越速度限制。
+    # 默认值是30，负百分比可使车辆超速。
     # --------------------------------------
     - def_name: vehicle_lane_offset
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          Vehicle whose lane offset behaviour is being changed.
+          Vehicle whose lane offset behaviour is being changed.# 这个参数指定车道偏移行为正在被修改的车辆。
       - param_name: offset
         type: float
         doc: >
-          Lane offset displacement from the center line.
+          Lane offset displacement from the center line. # 这个参数表示车辆相对于车道中心线的偏移量。
       doc: >
         Sets a lane offset displacement from the center line. Positive values imply a right offset while negative ones mean a left one.
 
-        Default is 0. Numbers high enough to cause the vehicle to drive through other lanes might break the controller.
+        Default is 0. Numbers high enough to cause the vehicle to drive through other lanes might break the controller. # 设置车辆相对于车道中心线的偏移量。正值表示偏右，负值表示偏左。
+    # 默认值为0，过大的偏移量可能会导致车辆驶入其他车道，从而破坏控制器行为。
     # --------------------------------------
     - def_name: update_vehicle_lights
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          Vehicle whose lights status is being changed.
+          Vehicle whose lights status is being changed.# 这个参数指定灯光状态正在被修改的车辆。
       - param_name: do_update
         type: bool
         doc: >
-          If __True__ the traffic manager will manage the vehicle lights for the specified vehicle.
+          If __True__ the traffic manager will manage the vehicle lights for the specified vehicle.# 如果为True，交通管理器将会管理指定车辆的灯光状态。
       doc: >
         Sets if the Traffic Manager is responsible of updating the vehicle lights, or not.
 
-        Default is __False__. The traffic manager will not change the vehicle light status of a vehicle, unless its auto_update_status is st to __True__.
+        Default is __False__. The traffic manager will not change the vehicle light status of a vehicle, unless its auto_update_status is st to __True__. # 设置交通管理器是否负责更新车辆的灯光状态。默认值为False，只有当auto_update_status设置为True时，交通管理器才会更改车辆灯光状态。
     # --------------------------------------
     - def_name: get_port
       params:
       return: uint16
       doc: >
-        Returns the port where the Traffic Manager is connected. If the object is a TM-Client, it will return the port of its TM-Server. Read the [documentation](#adv_traffic_manager.md#multiclient-and-multitm-management) to learn the difference.
+        Returns the port where the Traffic Manager is connected. If the object is a TM-Client, it will return the port of its TM-Server. Read the [documentation](#adv_traffic_manager.md#multiclient-and-multitm-management) to learn the difference. # 返回交通管理器连接的端口。如果该对象是TM-Client，则返回其TM-Server的端口。请阅读[文档](#adv_traffic_manager.md#multiclient-and-multitm-management)了解详细区别。
     # --------------------------------------
     - def_name: set_global_distance_to_leading_vehicle
       params:
@@ -572,29 +584,36 @@
       doc: >
         Sets the minimum distance in meters that vehicles have to keep with the rest. The distance is in meters and will affect the minimum moving distance. It is computed from center to center of the vehicle objects.
     # --------------------------------------
+    # 函数：设置车辆的期望速度
+    # 参数：
+    # - actor：要改变速度的车辆对象，类型为carla.Actor，代表那个速度即将被改变的车辆
+    # - speed：期望车辆达到并移动的速度值，类型为float
     - def_name: set_desired_speed
       params:
       - param_name: actor
-        type: carla.Actor
+        type: carla.Actor # carla.Actor类型，对应的是要操作的车辆
         doc: >
           Vehicle whose speed is being changed.
-      - param_name: speed
+      - param_name: speed # float类型，指定的目标速度
         type: float
         doc: >
           Desired speed at which the vehicle will move.
       doc: >
         Sets the speed of a vehicle to the specified value.
     # --------------------------------------
+    # 函数：启用或禁用混合物理模式
+    # - enabled：布尔类型，默认值为False，取值为True时启用混合物理模式，False时禁用
     - def_name: set_hybrid_physics_mode
       params:
       - param_name: enabled
-        type: bool
+        type: bool # bool类型，控制混合物理模式的启用（True）或禁用（False），默认禁用
         default: False
         doc: >
           If __True__, enables the hybrid physics.
       doc: >
         Enables or disables the hybrid physics mode. In this mode, vehicle's farther than a certain radius from the ego vehicle will have their physics disabled. Computation cost will be reduced by not calculating vehicle dynamics. Vehicles will be teleported.
     # --------------------------------------
+    # 设置混合物理模式的半径值
     - def_name: set_hybrid_physics_radius
       params:
       - param_name: r
@@ -621,22 +640,23 @@
       - param_name: actor
         type: carla.Actor
         doc: >
-          Vehicle whose behaviour is being changed.
+          Vehicle whose behaviour is being changed.# 车辆对象，指定行为的改变对象。
+    - param_name: perc
       - param_name: perc
         type: float
         doc: >
-          Between 0 and 100. Amount of times the vehicle will follow the keep right rule.
+          Between 0 and 100. Amount of times the vehicle will follow the keep right rule. # 在0到100之间，车辆遵循“保持右侧”规则的概率。
       doc: >
-        During the localization stage, this method sets a percent chance that vehicle will follow the *keep right* rule, and stay in the right lane.
+        During the localization stage, this method sets a percent chance that vehicle will follow the *keep right* rule, and stay in the right lane.# 在本地化阶段，此方法设置车辆遵循“保持右侧”规则的概率，保持在右车道。
     # --------------------------------------
     - def_name: set_random_device_seed
       params:
       - param_name: value
         type: int
         doc: >
-          Seed value for the random number generation of the Traffic Manager.
+          Seed value for the random number generation of the Traffic Manager.# 用于交通管理器随机数生成的种子值。
       doc: >
-        Sets a specific random seed for the Traffic Manager, thereby setting it to be deterministic.
+        Sets a specific random seed for the Traffic Manager, thereby setting it to be deterministic.# 用于交通管理器随机数生成的种子值。
     # --------------------------------------
     - def_name: set_synchronous_mode
       params:
@@ -644,11 +664,11 @@
         type: bool
         default: true
         doc: >
-          If __True__, the TM synchronous mode is enabled.
+          If __True__, the TM synchronous mode is enabled. # 如果为True，则启用交通管理器的同步模式。
       doc: >
-        Sets the Traffic Manager to [synchronous mode](adv_traffic_manager.md#synchronous-mode). In a [multiclient situation](adv_traffic_manager.md#multiclient), only the TM-Server can tick. Similarly, in a [multiTM situation](adv_traffic_manager.md#multitm), only one TM-Server must tick. Use this method in the client that does the world tick, and right after setting the world to synchronous mode, to set which TM will be the master while in sync.
+        Sets the Traffic Manager to [synchronous mode](adv_traffic_manager.md#synchronous-mode). In a [multiclient situation](adv_traffic_manager.md#multiclient), only the TM-Server can tick. Similarly, in a [multiTM situation](adv_traffic_manager.md#multitm), only one TM-Server must tick. Use this method in the client that does the world tick, and right after setting the world to synchronous mode, to set which TM will be the master while in sync.# 将交通管理器设置为同步模式。在多客户端环境下，仅TM服务器可以进行Tick。类似地，在多个TM环境中，只有一个TM服务器必须进行Tick。在执行世界Tick时使用此方法，并在将世界设置为同步模式后，设置哪个TM将作为主控进行同步。
       warning: >
-        If the server is set to synchronous mode, the TM <b>must</b> be set to synchronous mode too in the same client that does the tick.
+        If the server is set to synchronous mode, the TM <b>must</b> be set to synchronous mode too in the same client that does the tick.# 如果服务器设置为同步模式，则交通管理器也必须在相同客户端中设置为同步模式。
     # --------------------------------------
     - def_name: set_respawn_dormant_vehicles
       params:
@@ -656,141 +676,141 @@
         type: bool
         default: false
       doc: >
-        If __True__, vehicles in large maps will respawn near the hero vehicle when they become dormant. Otherwise, they will stay dormant until they are within `actor_active_distance` of the hero vehicle again.
+        If __True__, vehicles in large maps will respawn near the hero vehicle when they become dormant. Otherwise, they will stay dormant until they are within `actor_active_distance` of the hero vehicle again.# 如果为True，较大地图中的车辆在变为休眠状态时将会重新生成在英雄车附近。否则，它们将在离英雄车的 `actor_active_distance` 范围内再次变为活动状态之前保持休眠状态。
     # --------------------------------------
     - def_name: set_boundaries_respawn_dormant_vehicles
-      params:
+       params:
       - param_name: lower_bound
         type: float
         default: 25.0
         doc: >
-          The minimum distance in meters from the hero vehicle that a dormant actor will be respawned.
+          The minimum distance in meters from the hero vehicle that a dormant actor will be respawned.# 休眠车辆从英雄车重新生成的最小距离（单位：米）。
       - param_name: upper_bound
         type: float
         default: actor_active_distance
         doc: >
-          The maximum distance in meters from the hero vehicle that a dormant actor will be respawned.
+          The maximum distance in meters from the hero vehicle that a dormant actor will be respawned.# 休眠车辆从英雄车重新生成的最大距离（单位：米）。
       doc: >
-        Sets the upper and lower boundaries for dormant actors to be respawned near the hero vehicle.
+        Sets the upper and lower boundaries for dormant actors to be respawned near the hero vehicle.# 设置休眠车辆重新生成的最小和最大距离范围，以便它们能靠近英雄车重新生成。
       warning: >
-        The `upper_bound` cannot be higher than the `actor_active_distance`. The `lower_bound` cannot be less than 25.
+        The `upper_bound` cannot be higher than the `actor_active_distance`. The `lower_bound` cannot be less than 25.# `upper_bound` 不能大于 `actor_active_distance`，`lower_bound` 不能小于 25
     # --------------------------------------
     - def_name: set_path
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The actor that must follow the given path
+          The actor that must follow the given path # 需要沿给定路径行驶的角色（演员）
       - param_name: path
         type: list
         doc: >
-          The list of carla.Locations for the actor to follow
+          The list of carla.Locations for the actor to follow# 角色要遵循的一系列位置（carla.Locations）
       doc: >
-        Sets a list of locations for a vehicle to follow while controlled by the Traffic Manager. 
+        Sets a list of locations for a vehicle to follow while controlled by the Traffic Manager. # 设置车辆在交通管理器控制下需要遵循的一系列位置
       warning: >
-        Ensure that the road topology doesn't impede the given path.
+        Ensure that the road topology doesn't impede the given path.# 确保道路拓扑不会阻碍给定的路径
     # --------------------------------------
     - def_name: set_route
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The actor that must follow the given route instructions
+          The actor that must follow the given route instructions# 需要遵循给定路线指令的角色
       - param_name: path
         type: list
         doc: >
-          The list of route instructions (string) for the vehicle to follow.
+          The list of route instructions (string) for the vehicle to follow. # 车辆需要遵循的路线指令列表（字符串形式）
       doc: >
-        Sets a list of route instructions for a vehicle to follow while controlled by the Traffic Manager. The possible route instructions are 'Left', 'Right', 'Straight'.
+        Sets a list of route instructions for a vehicle to follow while controlled by the Traffic Manager. The possible route instructions are 'Left', 'Right', 'Straight'.# 设置车辆在交通管理器控制下需要遵循的路线指令，可能的指令有'左转'、'右转'、'直行'
       warning: >
-        Ensure that the lane topology doesn't impede the given route.
+        Ensure that the lane topology doesn't impede the given route.# 确保车道拓扑不会阻碍给定的路线
     # --------------------------------------
     - def_name: get_next_action
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The actor that you wish to query. 
+          The actor that you wish to query. # 查询你想要查询的演员（即控制的车辆）
       return: list of two elements - [Road option (string e.g. 'Left', 'Right', 'Straight'), Next waypoint (carla.Waypoint)]
       doc: >
-        Returns the next known road option and waypoint that an actor controlled by the Traffic Manager will follow.  
+        Returns the next known road option and waypoint that an actor controlled by the Traffic Manager will follow.   # 返回交通管理器控制的演员（车辆）将要走的下一条路选项和路点
     # --------------------------------------
     - def_name: get_all_actions
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The actor that you wish to query. 
+          The actor that you wish to query.  # 查询你想要查询的演员（即控制的车辆）
       return: list of lists with each element as follows - [Road option (string e.g. 'Left', 'Right', 'Straight'), Next waypoint (carla.Waypoint)]
       doc: >
-        Returns all known actions (i.e. road options and waypoints) that an actor controlled by the Traffic Manager will perform in its next steps.  
+        Returns all known actions (i.e. road options and waypoints) that an actor controlled by the Traffic Manager will perform in its next steps.  # 返回交通管理器控制的演员（车辆）将在接下来的步骤中执行的所有已知动作（例如路选项和路点）
     # --------------------------------------
     - def_name: random_left_lanechange_percentage
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The actor that you wish to query. 
+          The actor that you wish to query.  # 查询你想要查询的演员（即控制的车辆）
       - param_name: percentage
         type: float
         doc: >
-          The probability of lane change in percentage units (between 0 and 100) 
+          The probability of lane change in percentage units (between 0 and 100)  # 左车道变换的概率，以百分比表示（范围：0 到 100）
       doc: >
-        Adjust probability that in each timestep the actor will perform a left lane change, dependent on lane change availability.
+        Adjust probability that in each timestep the actor will perform a left lane change, dependent on lane change availability.# 调整在每个时间步骤中演员（车辆）执行左车道变换的概率，具体取决于车道变换的可用性
     # --------------------------------------
     - def_name: random_right_lanechange_percentage
       params:
       - param_name: actor
         type: carla.Actor
         doc: >
-          The actor that you wish to query. 
+          The actor that you wish to query.  # 查询你想要查询的演员（即控制的车辆）
       - param_name: percentage
         type: float
         doc: >
-          The probability of lane change in percentage units (between 0 and 100)
+          The probability of lane change in percentage units (between 0 and 100)# 右车道变换的概率，以百分比表示（范围：0 到 100）
       doc: >
-        Adjust probability that in each timestep the actor will perform a right lane change, dependent on lane change availability.
+        Adjust probability that in each timestep the actor will perform a right lane change, dependent on lane change availability.# 调整在每个时间步骤中演员（车辆）执行右车道变换的概率，具体取决于车道变换的可用性
     # --------------------------------------
     - def_name: shut_down
       doc: >
-        Shuts down the traffic manager. 
+        Shuts down the traffic manager. # 关闭交通管理器
     # --------------------------------------
 
   - class_name: OpendriveGenerationParameters
     # - DESCRIPTION ------------------------
     doc: >
-      This class defines the parameters used when generating a world using an ASAM OpenDRIVE file.
+      This class defines the parameters used when generating a world using an ASAM OpenDRIVE file. # 该类定义了在使用 ASAM OpenDRIVE 文件生成世界时所用的参数
     # - PROPERTIES -------------------------
     instance_variables:
     - var_name: vertex_distance
       type: float
       param_units: meters
       doc: >
-        Distance between vertices of the mesh generated. __Default is `2.0`__.
+        Distance between vertices of the mesh generated. __Default is `2.0`__.# 生成的网格顶点之间的距离。默认值为 `2.0` 米
     - var_name: max_road_length
       type: float
       param_units: meters
       doc: >
-        Max road length for a single mesh portion. The mesh of the map is divided into portions, in order to avoid propagating issues. __Default is `50.0`__.
+        Max road length for a single mesh portion. The mesh of the map is divided into portions, in order to avoid propagating issues. __Default is `50.0`__.# 单个网格部分的最大道路长度。为了避免传播问题，地图的网格被划分为多个部分。默认值为 `50.0` 米
     - var_name: wall_height
       type: float
       param_units: meters
       doc: >
-        Height of walls created on the boundaries of the road. These prevent vehicles from falling off the road. __Default is `1.0`__.
+        Height of walls created on the boundaries of the road. These prevent vehicles from falling off the road. __Default is `1.0`__. # 在道路边界上创建的墙的高度，防止车辆掉出道路。默认值为 `1.0` 米
     - var_name: additional_width
       type: float
       param_units: meters
       doc: >
-        Additional with applied junction lanes. Complex situations tend to occur at junctions, and a little increase can prevent vehicles from falling off the road.  __Default is `0.6`__.
+        Additional with applied junction lanes. Complex situations tend to occur at junctions, and a little increase can prevent vehicles from falling off the road.  __Default is `0.6`__.# 在交叉口车道上增加的额外宽度。复杂情况通常发生在交叉口，增加一点宽度可以防止车辆掉出道路。默认值为 `0.6` 米
     - var_name: smooth_junctions
       type: bool
       doc: >
-        If __True__, the mesh at junctions will be smoothed to prevent issues where roads blocked other roads. __Default is `True`__.
-    - var_name: enable_mesh_visibility
-      type: bool
+        If __True__, the mesh at junctions will be smoothed to prevent issues where roads blocked other roads. __Default is `True`__.# 如果为 `True`，交叉口的网格将会被平滑处理，以防止道路阻塞其他道路。默认值为 `True`
+    - var_name: enable_mesh_visibilit
+       type: bool
       doc: >
-        If __True__, the road mesh will be rendered. Setting this to __False__ should reduce the rendering overhead.  __Default is `True`__.
+        If __True__, the road mesh will be rendered. Setting this to __False__ should reduce the rendering overhead.  __Default is `True`__. # 如果为 `True`，将渲染道路网格。将此设置为 `False` 将减少渲染开销。默认值为 `True`
     - var_name: enable_pedestrian_navigation
       type: bool
       doc: >
-        If __True__, Pedestrian navigation will be enabled using Recast tool. For very large maps it is recomended to disable this option. __Default is `True`__.
+        If __True__, Pedestrian navigation will be enabled using Recast tool. For very large maps it is recomended to disable this option. __Default is `True`__. # 如果为 `True`，将启用使用 Recast 工具的行人导航。对于非常大的地图，建议禁用此选项。默认值为 `True`

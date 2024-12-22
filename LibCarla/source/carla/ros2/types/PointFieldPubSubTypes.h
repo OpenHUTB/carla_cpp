@@ -40,34 +40,54 @@ namespace sensor_msgs
          * @brief This class represents the TopicDataType of the type PointField defined by the user in the IDL file.
          * @ingroup POINTFIELD
          */
+// 定义一个名为PointFieldPubSubType的类，它继承自eprosima::fastdds::dds::TopicDataType类，意味着它会继承TopicDataType类中的相关属性和行为，
+// 并且可能会重写一些虚函数来实现针对PointField类型在发布订阅场景下的特定逻辑
         class PointFieldPubSubType : public eprosima::fastdds::dds::TopicDataType
         {
         public:
-
+// 定义一个类型别名，将PointField类型定义为type，方便在类内部使用该类型时书写更简洁，通常用于增强代码可读性和一致性
             typedef PointField type;
-
+ // 以动态链接库导出（通过eProsima_user_DllExport宏，具体含义依赖对应库的定义）的方式声明PointFieldPubSubType类的构造函数，
+    // 用于创建该类型的对象，其内部可能会进行一些初始化操作，比如设置与PointField类型发布订阅相关的默认参数等
             eProsima_user_DllExport PointFieldPubSubType();
 
+    // 以动态链接库导出的方式声明虚析构函数，用于在对象销毁时进行必要的资源清理工作，
+    // override关键字表示这个析构函数重写了基类（即eprosima::fastdds::dds::TopicDataType类）中的虚析构函数，
+    // 这样能确保在多态销毁对象时执行正确的清理逻辑，符合继承体系下的内存管理要求
             eProsima_user_DllExport virtual ~PointFieldPubSubType() override;
-
+// 以动态链接库导出的方式声明序列化函数，它接收两个参数：
+    // void* data表示要进行序列化的数据指针，通常指向一个PointField类型的实际数据对象（不过以void*类型传递，使用时可能需要类型转换）；
+    // eprosima::fastrtps::rtps::SerializedPayload_t* payload是用于存储序列化后数据的结构体指针，序列化后的结果会存放在这里，
+    // override关键字表示此函数重写了基类中的相应虚函数，用于实现针对PointField类型数据的序列化逻辑
             eProsima_user_DllExport virtual bool serialize(
                     void* data,
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload) override;
-
+// 以动态链接库导出的方式声明反序列化函数，参数含义如下：
+    // eprosima::fastrtps::rtps::SerializedPayload_t* payload指向已经序列化的数据，也就是接收到的需要转换回原始数据形式的数据；
+    // void* data是用于存放反序列化后的数据的内存地址指针，最终会将反序列化得到的数据存放在这里，
+    // override表示重写了基类中对应的虚函数，用于实现针对PointField类型数据的反序列化逻辑
             eProsima_user_DllExport virtual bool deserialize(
                     eprosima::fastrtps::rtps::SerializedPayload_t* payload,
                     void* data) override;
-
+// 以动态链接库导出的方式声明一个函数，该函数返回一个std::function类型的对象，其内部封装了一个返回值为uint32_t类型的可调用函数，
+    // 这个可调用函数的作用是获取给定数据（通过void* data指向的PointField类型的数据）序列化后的大小，
+    // override表示重写了基类中对应的虚函数，用于提供针对PointField类型数据获取序列化大小的功能实现
             eProsima_user_DllExport virtual std::function<uint32_t()> getSerializedSizeProvider(
                     void* data) override;
-
+// 以动态链接库导出的方式声明获取键值的函数，参数含义如下：
+    // void* data指向需要获取键值的数据对象（这里是PointField类型的数据）；
+    // eprosima::fastrtps::rtps::InstanceHandle_t* ihandle是用于存储获取到的键值的结构体指针，这个键值通常用于在发布订阅系统中唯一标识一个数据实例；
+    // bool force_md5是一个可选参数，默认值为false，用于指定是否强制使用MD5相关机制来获取键值，
+    // override表示重写了基类中的虚函数，用于实现针对PointField类型数据获取键值的逻辑
             eProsima_user_DllExport virtual bool getKey(
                     void* data,
                     eprosima::fastrtps::rtps::InstanceHandle_t* ihandle,
                     bool force_md5 = false) override;
-
+// 以动态链接库导出的方式声明创建数据的函数，它用于创建一个PointField类型的数据对象，返回创建后的数据对象的指针（以void*类型返回，实际使用时可能需要进行类型转换），
+    // override表示重写了基类中对应的虚函数，用于实现针对PointField类型数据对象的创建功能
             eProsima_user_DllExport virtual void* createData() override;
-
+// 以动态链接库导出的方式声明删除数据的函数，其参数void* data指向要删除的数据对象（通常是之前通过createData函数创建的PointField类型的数据对象），
+    // 该函数负责释放相应数据对象所占用的内存资源，override表示重写了基类中对应的虚函数，用于实现针对PointField类型数据对象的删除功能
             eProsima_user_DllExport virtual void deleteData(
                     void* data) override;
 

@@ -102,14 +102,19 @@ bool LoadScene(
     {
         FbxString error = lImporter->GetStatus().GetErrorString();
         printf("Call to FbxImporter::Initialize() failed.");
+        //打印返回的错误信息
         printf("Error returned: %s", error.Buffer());
+        //如果导入器的状态码表示文件版本无效
         if (lImporter->GetStatus().GetCode() == FbxStatus::eInvalidFileVersion)
         {
+            //打印文件的FBX SDK版本号
             printf("FBX version number for this FBX SDK is %d.%d.%d",
                 lSDKMajor, lSDKMinor, lSDKRevision);
+            //打印文件的FBX版本号
             printf("FBX version number for file %s is %d.%d.%d",
                 pFilename, lFileMajor, lFileMinor, lFileRevision);
         }
+        //返回false，表示导入失败
         return false;
     }
     if (lImporter->IsFBX())
@@ -142,11 +147,11 @@ bool LoadScene(
 
 // 将场景导出到文件的函数
 bool SaveScene(
-               FbxManager* pSdkManager,
-               FbxScene* pScene,
-               const char* pFilename,
-               int pFileFormat,
-               bool pEmbedMedia
+               FbxManager* pSdkManager,//FBX管理器对象
+               FbxScene* pScene,//要保存的FBX场景
+               const char* pFilename,//保存文件的路径和文件名
+               int pFileFormat,//文件格式
+               bool pEmbedMedia//是否嵌入媒体资源
                )
 {
     bool lStatus = true;

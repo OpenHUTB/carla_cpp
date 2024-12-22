@@ -29,16 +29,16 @@ void CarlaRecorderPhysicsControl::Write(std::ostream &OutFile)
   WriteValue(OutFile, RPCPhysicsControl.drag_coefficient);
   WriteValue(OutFile, RPCPhysicsControl.center_of_mass);
 
-  // torque curve
+  // 扭矩曲线
   WriteStdVector(OutFile, RPCPhysicsControl.torque_curve);
 
-  // forward gears
+  // 前进档
   WriteStdVector(OutFile, RPCPhysicsControl.forward_gears);
 
-  // steering curve
+  // 转向曲线
   WriteStdVector(OutFile, RPCPhysicsControl.steering_curve);
 
-  // wheels
+  // 车轮
   WriteStdVector(OutFile, RPCPhysicsControl.wheels);
 }
 
@@ -58,16 +58,16 @@ void CarlaRecorderPhysicsControl::Read(std::istream &InFile)
   ReadValue(InFile, RPCPhysicsControl.drag_coefficient);
   ReadValue(InFile, RPCPhysicsControl.center_of_mass);
 
-  // torque curve
+  // 扭矩曲线
   ReadStdVector(InFile, RPCPhysicsControl.torque_curve);
 
-  // forward gears
+  // 前进档
   ReadStdVector(InFile, RPCPhysicsControl.forward_gears);
 
-  // steering curve
+  // 转向曲线
   ReadStdVector(InFile, RPCPhysicsControl.steering_curve);
 
-  // wheels
+  // 车轮
   ReadStdVector(InFile, RPCPhysicsControl.wheels);
 
   VehiclePhysicsControl = FVehiclePhysicsControl(RPCPhysicsControl);
@@ -91,25 +91,25 @@ void CarlaRecorderPhysicsControls::Write(std::ostream &OutFile)
   {
     return;
   }
-  // write the packet id
+  // 写入数据包 ID
   WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::PhysicsControl));
 
   std::streampos PosStart = OutFile.tellp();
-  // write dummy packet size
+  // 写入 Dummy 数据包大小
   uint32_t Total = 0;
   WriteValue<uint32_t>(OutFile, Total);
 
-  // write total records
+  // 写入总记录数
   Total = PhysicsControls.size();
   WriteValue<uint16_t>(OutFile, Total);
 
-  // write records
+  // 写入记录
   for (auto& PhysicsControl : PhysicsControls)
   {
     PhysicsControl.Write(OutFile);
   }
 
-  // write the real packet size
+  // 写入实际数据包大小
   std::streampos PosEnd = OutFile.tellp();
   Total = PosEnd - PosStart - sizeof(uint32_t);
   OutFile.seekp(PosStart, std::ios::beg);

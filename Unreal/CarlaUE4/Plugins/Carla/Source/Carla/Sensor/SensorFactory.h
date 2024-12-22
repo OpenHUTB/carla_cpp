@@ -11,16 +11,16 @@
 
 #include "SensorFactory.generated.h"
 
-/// Factory in charge of spawning sensors. This factory is able to spawn every
-/// sensor registered in carla::sensor::SensorRegistry.
+/// 工厂负责生成传感器。此工厂能够生成在
+/// carla：：sensor：：SensorRegistry 中注册的每个传感器。
 UCLASS()
 class CARLA_API ASensorFactory : public ACarlaActorFactory
 {
   GENERATED_BODY()
 
-  /// Retrieve the definitions of all the sensors registered in the
-  /// SensorRegistry. Sensors must implement a GetSensorDefinition() static
-  /// method.
+  /// 检索在 SensorRegistry 中注册的所有传感器的定义。
+  /// 传感器必须实现 GetSensorDefinition（） 
+  /// 静态方法。
   TArray<FActorDefinition> GetDefinitions() final;
 
   FActorSpawnResult SpawnActor(
