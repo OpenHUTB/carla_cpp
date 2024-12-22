@@ -3,14 +3,14 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
-#include <carla/Memory.h>
-#include <carla/PythonUtil.h>
-#include <carla/Time.h>
-
-#include <ostream>
-#include <type_traits>
-#include <vector>
+// 包含 CARLA 引擎相关的头文件
+#include <carla/Memory.h>// 提供内存管理相关的功能（例如内存分配、智能指针等）
+#include <carla/PythonUtil.h> // 提供与 Python 交互的工具和函数，通常用于在 C++ 和 Python 之间传递数据
+#include <carla/Time.h> // 提供时间相关的功能，通常用于处理模拟时间、时间戳等
+// 包含标准库相关的头文件
+#include <ostream>// 提供输出流功能，通常用于处理与输出相关的操作（例如 std::cout）
+#include <type_traits> // 提供类型特征（类型检查）功能，用于在编译时对类型进行推断或特性检查
+#include <vector> // 提供动态数组容器类 std::vector，用于存储一组数据并提供高效的访问与操作
 
 // 对于Python中的变量类型，Boost.Python都有相应的类对应，他们都是boost::python::object的子类。
 // boost::python::object 包装了PyObject *, 通过这种方式，C++可以平滑的操作python对象。
