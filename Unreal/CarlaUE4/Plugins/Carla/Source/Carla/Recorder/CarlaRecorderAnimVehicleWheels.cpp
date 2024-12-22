@@ -60,23 +60,23 @@ void CarlaRecorderAnimVehicleWheels::Add(const CarlaRecorderAnimWheels &Vehicle)
 
 void CarlaRecorderAnimVehicleWheels::Write(std::ostream &OutFile)
 {
-  // write the packet id
+  // 写入数据包 ID
   WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::AnimVehicleWheels));
 
   std::streampos PosStart = OutFile.tellp();
 
-  // write a dummy packet size
+  // 写入虚拟数据包大小
   uint32_t Total = 0;
   WriteValue<uint32_t>(OutFile, Total);
 
-  // write total records
+  // 写入总记录数
   Total = VehicleWheels.size();
   WriteValue<uint16_t>(OutFile, Total);
 
   for (uint16_t i=0; i<Total; ++i)
     VehicleWheels[i].Write(OutFile);
 
-  // write the real packet size
+  // 写入实际数据包大小
   std::streampos PosEnd = OutFile.tellp();
   Total = PosEnd - PosStart - sizeof(uint32_t);
   OutFile.seekp(PosStart, std::ios::beg);
@@ -89,7 +89,7 @@ void CarlaRecorderAnimVehicleWheels::Read(std::istream &InFile)
   uint16_t i, Total;
   CarlaRecorderAnimWheels Wheels;
 
-  // read Total Vehicles
+  // 记录车辆总数
   ReadValue<uint16_t>(InFile, Total);
   for (i = 0; i < Total; ++i)
   {

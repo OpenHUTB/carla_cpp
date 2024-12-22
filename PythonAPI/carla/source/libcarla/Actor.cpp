@@ -267,28 +267,50 @@ void export_actor() {
   ;
 
     // 定义TrafficLight类到Python的映射，继承自TrafficSign类，设置相关特性，定义多个交通信号灯相关操作的Python接口，如设置、获取状态等
-    class_<cc::TrafficLight, bases<cc::TrafficSign>, boost::noncopyable, boost::shared_ptr<cc::TrafficLight>>(
+   // 定义一个名为"TrafficLight"的类，它继承自"cc::TrafficSign"类
+// 该类不可复制（通过boost::noncopyable实现），并且使用boost::shared_ptr进行智能指针管理
+class_<cc::TrafficLight, bases<cc::TrafficSign>, boost::noncopyable, boost::shared_ptr<cc::TrafficLight>>(
       "TrafficLight",
       no_init)
-      .add_property("state", &cc::TrafficLight::GetState)
-      .def("set_state", &cc::TrafficLight::SetState, (arg("state")))
-      .def("get_state", &cc::TrafficLight::GetState)
-      .def("set_green_time", &cc::TrafficLight::SetGreenTime, (arg("green_time")))
-      .def("get_green_time", &cc::TrafficLight::GetGreenTime)
-      .def("set_yellow_time", &cc::TrafficLight::SetYellowTime, (arg("yellow_time")))
-      .def("get_yellow_time", &cc::TrafficLight::GetYellowTime)
-      .def("set_red_time", &cc::TrafficLight::SetRedTime, (arg("red_time")))
-      .def("get_red_time", &cc::TrafficLight::GetRedTime)
-      .def("get_elapsed_time", &cc::TrafficLight::GetElapsedTime)
-      .def("freeze", &cc::TrafficLight::Freeze, (arg("freeze")))
-      .def("is_frozen", &cc::TrafficLight::IsFrozen)
-      .def("get_pole_index", &cc::TrafficLight::GetPoleIndex)
-      .def("get_group_traffic_lights", &GetGroupTrafficLights)
-      .def("reset_group", &cc::TrafficLight::ResetGroup)
-      .def("get_affected_lane_waypoints", CALL_RETURNING_LIST(cc::TrafficLight, GetAffectedLaneWaypoints))
-      .def("get_light_boxes", &GetLightBoxes)
-      .def("get_opendrive_id", &cc::TrafficLight::GetOpenDRIVEID)
-      .def("get_stop_waypoints", CALL_RETURNING_LIST(cc::TrafficLight, GetStopWaypoints))
-      .def(self_ns::str(self_ns::self))
+      // 添加名为"state"的属性，通过调用cc::TrafficLight::GetState函数来获取交通信号灯的当前状态
+     .add_property("state", &cc::TrafficLight::GetState)
+      // 定义一个名为"set_state"的函数，用于设置交通信号灯的状态，参数"state"表示要设置的具体状态值
+     .def("set_state", &cc::TrafficLight::SetState, (arg("state")))
+      // 定义一个名为"get_state"的函数，用于获取交通信号灯的状态，实际上它与上面的"add_property"中获取状态的函数对应，可能是为了方便不同的调用方式而定义
+     .def("get_state", &cc::TrafficLight::GetState)
+      // 定义一个名为"set_green_time"的函数，用于设置交通信号灯绿灯亮起的时长，参数"green_time"表示要设置的绿灯时长值
+     .def("set_green_time", &cc::TrafficLight::SetGreenTime, (arg("green_time")))
+      // 定义一个名为"get_green_time"的函数，用于获取交通信号灯绿灯亮起的时长
+     .def("get_green_time", &cc::TrafficLight::GetGreenTime)
+      // 定义一个名为"set_yellow_time"的函数，用于设置交通信号灯黄灯亮起的时长，参数"yellow_time"表示要设置的黄灯时长值
+     .def("set_yellow_time", &cc::TrafficLight::SetYellowTime, (arg("yellow_time")))
+      // 定义一个名为"get_yellow_time"的函数，用于获取交通信号灯黄灯亮起的时长
+     .def("get_yellow_time", &cc::TrafficLight::GetYellowTime)
+      // 定义一个名为"set_red_time"的函数，用于设置交通信号灯红灯亮起的时长，参数"red_time"表示要设置的红灯时长值
+     .def("set_red_time", &cc::TrafficLight::SetRedTime, (arg("red_time")))
+      // 定义一个名为"get_red_time"的函数，用于获取交通信号灯红灯亮起的时长
+     .def("get_red_time", &cc::TrafficLight::GetRedTime)
+      // 定义一个名为"get_elapsed_time"的函数，用于获取交通信号灯从当前状态开始已经经过的时间
+     .def("get_elapsed_time", &cc::TrafficLight::GetElapsedTime)
+      // 定义一个名为"freeze"的函数，用于设置交通信号灯是否冻结（可能暂停状态切换等情况），参数"freeze"表示是否冻结的布尔值
+     .def("freeze", &cc::TrafficLight::Freeze, (arg("freeze")))
+      // 定义一个名为"is_frozen"的函数，用于判断交通信号灯当前是否处于冻结状态
+     .def("is_frozen", &cc::TrafficLight::IsFrozen)
+      // 定义一个名为"get_pole_index"的函数，用于获取交通信号灯所在灯杆的索引（可能用于标识不同位置的灯杆等用途）
+     .def("get_pole_index", &cc::TrafficLight::GetPoleIndex)
+      // 定义一个名为"get_group_traffic_lights"的函数，用于获取与当前交通信号灯同组的其他交通信号灯（可能用于协调控制等场景），具体实现函数在别处（GetGroupTrafficLights）
+     .def("get_group_traffic_lights", &GetGroupTrafficLights)
+      // 定义一个名为"reset_group"的函数，用于重置交通信号灯所在的组（可能将同组信号灯恢复到初始设置等操作），由cc::TrafficLight::ResetGroup函数实现
+     .def("reset_group", &cc::TrafficLight::ResetGroup)
+      // 定义一个名为"get_affected_lane_waypoints"的函数，用于获取受当前交通信号灯影响的车道上的路点列表，以列表形式返回，通过调用cc::TrafficLight::GetAffectedLaneWaypoints函数实现
+     .def("get_affected_lane_waypoints", CALL_RETURNING_LIST(cc::TrafficLight, GetAffectedLaneWaypoints))
+      // 定义一个名为"get_light_boxes"的函数，用于获取交通信号灯的灯箱相关信息（具体信息由GetLightBoxes函数定义）
+     .def("get_light_boxes", &GetLightBoxes)
+      // 定义一个名为"get_opendrive_id"的函数，用于获取交通信号灯对应的OpenDRIVE中的标识ID，由cc::TrafficLight::GetOpenDRIVEID函数实现
+     .def("get_opendrive_id", &cc::TrafficLight::GetOpenDRIVEID)
+      // 定义一个名为"get_stop_waypoints"的函数，用于获取需要在当前交通信号灯前停车的路点列表，以列表形式返回，通过调用cc::TrafficLight::GetStopWaypoints函数实现
+     .def("get_stop_waypoints", CALL_RETURNING_LIST(cc::TrafficLight, GetStopWaypoints))
+      // 定义一个用于将交通信号灯对象转换为字符串表示的函数，具体转换逻辑由对应的self_ns::str函数决定（可能用于输出调试等用途）
+     .def(self_ns::str(self_ns::self))
   ;
 }

@@ -360,55 +360,70 @@ private:
 //设置给定的 `CarlaActor` 的碰撞属性
   bool SetActorCollisions(FCarlaActor &CarlaActor, bool bEnabled);
 //更新游戏中的各种定时器相关信息
-  bool SetActorDead(FCarlaActor &CarlaActor);
+  // 声明一个函数，用于设置Actor的状态为死亡，具体实现未提供
+bool SetActorDead(FCarlaActor &CarlaActor);
 
-  void TickTimers(float DeltaSeconds)
-  {
-    ElapsedGameTime += DeltaSeconds;
-    SetVisualGameTime(VisualGameTime + DeltaSeconds);
-    #if defined(WITH_ROS2)
-    auto ROS2 = carla::ros2::ROS2::GetInstance();
-    if (ROS2->IsEnabled())
-      ROS2->SetTimestamp(GetElapsedGameTime());
-    #endif
+// 每个Tick调用的函数，用于更新计时器
+void TickTimers(float DeltaSeconds)
+{
+  // 累加游戏时间
+  ElapsedGameTime += DeltaSeconds;
+  // 更新视觉游戏时间，用于确保云和其他特效的确定性
+  SetVisualGameTime(VisualGameTime + DeltaSeconds);
+  #if defined(WITH_ROS2) // 如果定义了WITH_ROS2宏，表示支持ROS2集成
+  auto ROS2 = carla::ros2::ROS2::GetInstance(); // 获取ROS2实例
+  if (ROS2->IsEnabled()) // 如果ROS2实例已启用
+    ROS2->SetTimestamp(GetElapsedGameTime()); // 设置ROS2的时间戳
+  #endif
+}
 
-  }
+// 一个常量，用于标识ID，初始值设置为0
+const uint64 Id = 0u;
 
-  const uint64 Id = 0u;
+// 累积的游戏时间，用于跟踪仿真的总时间
+double ElapsedGameTime = 0.0;
 
-  // simulation time
-  double ElapsedGameTime = 0.0;
+// 视觉游戏时间，用于云和其他需要确定性效果的元素
+double VisualGameTime = 0.0;
 
-  // visual time (used by clounds and other FX that need to be deterministic)
-  double VisualGameTime = 0.0;
+// 可从任何地方访问的属性，存储当前地图的名称
+UPROPERTY(VisibleAnywhere)
+FString MapName;
 
-  UPROPERTY(VisibleAnywhere)
-  FString MapName;
+// 可从任何地方访问的属性，存储当前的Episode设置
+UPROPERTY(VisibleAnywhere)
+FEpisodeSettings EpisodeSettings;
 
-  UPROPERTY(VisibleAnywhere)
-  FEpisodeSettings EpisodeSettings;
+// 可从任何地方访问的属性，存储Actor调度器的指针
+UPROPERTY(VisibleAnywhere)
+UActorDispatcher *ActorDispatcher = nullptr;
 
-  UPROPERTY(VisibleAnywhere)
-  UActorDispatcher *ActorDispatcher = nullptr;
+// 可从任何地方访问的属性，存储观察者Pawn的指针
+UPROPERTY(VisibleAnywhere)
+APawn *Spectator = nullptr;
 
-  UPROPERTY(VisibleAnywhere)
-  APawn *Spectator = nullptr;
+// 可从任何地方访问的属性，存储天气控制器的指针
+UPROPERTY(VisibleAnywhere)
+AWeather *Weather = nullptr;
 
-  UPROPERTY(VisibleAnywhere)
-  AWeather *Weather = nullptr;
+// 可从任何地方访问的属性，存储材质参数集合实例的指针
+UPROPERTY(VisibleAnywhere)
+UMaterialParameterCollectionInstance *MaterialParameters = nullptr;
 
-  UPROPERTY(VisibleAnywhere)
-  UMaterialParameterCollectionInstance *MaterialParameters = nullptr;
+// 录像机的指针，用于记录和回放仿真
+ACarlaRecorder *Recorder = nullptr;
 
-  ACarlaRecorder *Recorder = nullptr;
+// 地图的地理参考信息
+carla::geom::GeoLocation MapGeoReference;
 
-  carla::geom::GeoLocation MapGeoReference;
+// 当前地图的原点位置
+FIntVector CurrentMapOrigin;
 
-  FIntVector CurrentMapOrigin;
+// 存储帧数据的结构
+FFrameData FrameData;
 
-  FFrameData FrameData;
+// 传感器管理器，用于管理仿真中的传感器
+FSensorManager SensorManager;
 
-  FSensorManager SensorManager;
-};
-
+// 将语义标签转换为字符串的函数，用于获取相关的标签描述
 FString CarlaGetRelevantTagAsString(const TSet<crp::CityObjectLabel> &SemanticTags);

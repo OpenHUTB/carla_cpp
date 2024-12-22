@@ -243,3 +243,8 @@ git rm -rf .
 [vllcf](https://github.com/vllcf)
 [wyy124](https://github.com/wyy124)
 [wenzheng236](https://github.com/wenzheng236)
+[qingyun-cmyk](https://github.com/qingyun-cmyk)
+[Sword761](https://github.com/Sword761)
+[xiaochenop](https://github.com/xiaochenop)
+[chaojixiangshuijiao](https://github.com/chaojixiangshuijiao)
+[liiiiiking](https://github.com/liiiiiking/carla_cpp.git)

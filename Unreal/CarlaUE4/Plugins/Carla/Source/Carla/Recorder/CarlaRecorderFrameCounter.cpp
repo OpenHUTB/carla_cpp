@@ -15,12 +15,16 @@ void CarlaRecorderFrameCounter::Read(std::istream &InFile)
 
 void CarlaRecorderFrameCounter::Write(std::ostream &OutFile)
 {
-  // write the packet id
-  WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::FrameCounter));
+    // 写入包 ID，类型为 char。静态转换为帧计数器的包类型
+    // `CarlaRecorderPacketId::FrameCounter` 应该是一个枚举值，表示这个数据包的类型是 "FrameCounter"
+    WriteValue<char>(OutFile, static_cast<char>(CarlaRecorderPacketId::FrameCounter));
 
-  // write packet size
-  uint32_t Total = sizeof(uint64_t);
-  WriteValue<uint32_t>(OutFile, Total);
+    // 写入包的大小，包的总大小为 uint64_t 类型的大小，即 8 字节
+    // `sizeof(uint64_t)` 返回的是 uint64_t 类型的字节大小，这里为 8
+    uint32_t Total = sizeof(uint64_t);
+    WriteValue<uint32_t>(OutFile, Total);
 
-  WriteValue<uint64_t>(OutFile, this->FrameCounter);
+    // 写入帧计数器的值，类型为 uint64_t（64 位无符号整数）
+    WriteValue<uint64_t>(OutFile, this->FrameCounter);
 }
+
