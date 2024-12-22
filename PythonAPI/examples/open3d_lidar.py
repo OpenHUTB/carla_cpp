@@ -26,7 +26,8 @@ try:
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
 except IndexError:
     pass
-
+   #  如果  glob.glob  函数没有找到任何符合条件的文件（返回的列表为空），那么当尝试取列表的第一个元素  [0]  时就会引发  IndexError  异常，此时代码通过  pass  语句直接跳过，不做其他额外的报错或者处理操作，继续执行后续的代码。
+# 这段代码主要的目的是尝试将特定路径下与当前Python版本和操作系统对应的  carla  模块相关的  egg  文件路径添加到  sys.path  中，以便Python能够正确找到并导入  carla  模块。
 import carla
 # 获取名为'plasma'的颜色映射表中的颜色数组，用于后续根据强度值映射颜色
 VIRIDIS = np.array(cm.get_cmap('plasma').colors)
