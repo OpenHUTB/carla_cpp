@@ -360,105 +360,81 @@ void sensor_msgs::msg::Image::encoding(
  * @brief This function returns a constant reference to member encoding
  * @return Constant reference to member encoding
  */
+// 返回成员变量m_encoding的常引用，该函数用于获取图像编码相关信息，不会修改成员变量的值
 const std::string& sensor_msgs::msg::Image::encoding() const
 {
     return m_encoding;
 }
 
-/*!
- * @brief This function returns a reference to member encoding
- * @return Reference to member encoding
- */
+// 此函数返回成员encoding的引用
 std::string& sensor_msgs::msg::Image::encoding()
 {
     return m_encoding;
 }
 
-/*!
- * @brief This function sets a value in member is_bigendian
- * @param _is_bigendian New value for member is_bigendian
- */
+// 此函数用于设置成员is_bigendian的值
 void sensor_msgs::msg::Image::is_bigendian(
         uint8_t _is_bigendian)
 {
     m_is_bigendian = _is_bigendian;
 }
 
-/*!
- * @brief This function returns the value of member is_bigendian
- * @return Value of member is_bigendian
- */
+// 此函数返回成员is_bigendian的值，用于获取字节序相关的设置情况
 uint8_t sensor_msgs::msg::Image::is_bigendian() const
 {
     return m_is_bigendian;
 }
 
-/*!
- * @brief This function returns a reference to member is_bigendian
- * @return Reference to member is_bigendian
- */
+// 此函数返回成员is_bigendian的引用，通过该引用可以对成员is_bigendian进行读写操作
 uint8_t& sensor_msgs::msg::Image::is_bigendian()
 {
     return m_is_bigendian;
 }
 
-/*!
- * @brief This function sets a value in member step
- * @param _step New value for member step
- */
+// 此函数用于设置成员step的值
 void sensor_msgs::msg::Image::step(
         uint32_t _step)
 {
     m_step = _step;
 }
 
-/*!
- * @brief This function returns the value of member step
- * @return Value of member step
- */
+// 此函数返回成员step的值，用于获取与图像相关的步长等对应的值
 uint32_t sensor_msgs::msg::Image::step() const
 {
     return m_step;
 }
 
-/*!
- * @brief This function returns a reference to member step
- * @return Reference to member step
- */
+// 此函数返回成员step的引用，通过该引用可以对成员step进行读写操作
 uint32_t& sensor_msgs::msg::Image::step()
 {
     return m_step;
 }
 
-/*!
- * @brief This function copies the value in member data
- * @param _data New value to be copied in member data
- */
+//此函数用于将传入的参数_data的值复制给成员data，实现对图像数据的赋值操作（通过复制方式）
+  要复制到成员data中的新值，是一个包含uint8_t类型元素的向量，代表图像数据
+
 void sensor_msgs::msg::Image::data(
         const std::vector<uint8_t>& _data)
 {
     m_data = _data;
 }
 
-/*!
- * @brief This function moves the value in member data
- * @param _data New value to be moved in member data
- */
+// 此函数用于将传入的参数_data的值移动给成员data，实现对图像数据的赋值操作（通过移动方式，相较于复制可能更高效地转移资源所有权）
+ 要移动到成员data中的新值，是一个包含uint8_t类型元素的向量，代表图像数据
+ 
 void sensor_msgs::msg::Image::data(
         std::vector<uint8_t>&& _data)
 {
     m_data = std::move(_data);
 }
 
-/*!
- * @brief This function returns a constant reference to member data
- * @return Constant reference to member data
- */
+//
+ 此函数返回成员data的常引用，用于获取图像数据，但不允许通过该引用修改成员data的值
+  成员data的常引用，指向存储图像数据的向量
 const std::vector<uint8_t>& sensor_msgs::msg::Image::data() const
 {
     return m_data;
 }
-
 /*!
  * @brief This function returns a reference to member data
  * @return Reference to member data
