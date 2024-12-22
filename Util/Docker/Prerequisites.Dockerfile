@@ -41,6 +41,8 @@ RUN apt-get update ; \#更新 apt 包索引
   update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-8/bin/clang++ 180 && \
   update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-8/bin/clang 180
 
+# 使用 `useradd` 命令在容器内创建一个名为 `carla` 的用户，`-m` 参数表示同时创建该用户的主目录（通常为 `/home/carla`），
+# 这样在后续操作中就可以基于这个用户来设置合适的文件权限以及进行与该用户相关的操作，比如以该用户身份运行某些应用程序等。
 RUN useradd -m carla
 COPY --chown=carla:carla . /home/carla
 USER carla
