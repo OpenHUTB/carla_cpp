@@ -75,16 +75,17 @@ void printRoute(std::string const &route_descr, ::ad::map::route::FullRoute cons
 
 // 度到弧度转换常数 PI / 180
 constexpr float to_radians = static_cast<float>(M_PI) / 180.0f;
-
+// 定义了一个名为EgoDynamicsOnRoute的类
+// 在构造函数中初始化了多个成员变量
 EgoDynamicsOnRoute::EgoDynamicsOnRoute()
   : time_since_epoch_check_start_ms(0.),
     time_since_epoch_check_end_ms(0.),
-    ego_speed(0.),
-    min_stopping_distance(0.),
-    ego_center({0., 0., 0.}),
-    ego_heading(0.),
-    ego_heading_change(0.),
-    ego_steering_angle(0.),
+    ego_speed(0.),// 速度
+    min_stopping_distance(0.),// 停止距离
+    ego_center({0., 0., 0.}),// 中心位置
+    ego_heading(0.),//航向
+    ego_heading_change(0.),// 航向变化
+    ego_steering_angle(0.),// 转向角度
     ego_center_within_route(false),
     crossing_border(false),
     route_heading(0.),
@@ -177,22 +178,29 @@ std::shared_ptr<spdlog::logger> getTimingLogger() {
   return default_pedestrian_dynamics;
 }
 
-RssCheck::RssCheck(float maximum_steering_angle)
+RssCheck::RssCheck(float maximum_steering_angle)// 设置允许的最大转向角度
+// 初始化成员变量
   : _maximum_steering_angle(maximum_steering_angle), _road_boundaries_mode(GetDefaultRoadBoundariesMode()) {
+   // 获取标准的日志记录器
   _logger = getLogger();
+   // 获取专门用于计时的日志记录器
   _timing_logger = getTimingLogger();
+   // 将计时日志记录器的级别设置为关闭
   _timing_logger->set_level(spdlog::level::off);
-
+// 设置全局和地图相关的日志级别为警告
   SetLogLevel(spdlog::level::warn);
   SetMapLogLevel(spdlog::level::warn);
-
+// 获取并设置行人的自我车辆动态回调
   _default_actor_constellation_callback_ego_vehicle_dynamics = GetDefaultVehicleDynamics();
+   //获取并设置其他车辆的默认动态回调
   _default_actor_constellation_callback_other_vehicle_dynamics = GetDefaultVehicleDynamics();
   // 将其他车辆的响应时间设置为 2 秒；其余保持不变
   _default_actor_constellation_callback_other_vehicle_dynamics.responseTime = ::ad::physics::Duration(2.0);
+   // 获取行人的默认动态回调
   _default_actor_constellation_callback_pedestrian_dynamics = GetDefaultPedestrianDynamics();
 
   //创建一个默认回调.
+   // 回调函数
   _actor_constellation_callback =
       [this](carla::SharedPtr<::carla::rss::ActorConstellationData> actor_constellation_data)
       -> ::carla::rss::ActorConstellationResult {
