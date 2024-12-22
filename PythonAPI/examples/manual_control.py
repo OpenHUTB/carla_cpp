@@ -1092,13 +1092,19 @@ class GnssSensor(object):
 
 
 class IMUSensor(object):
+    #接受一个参数parent_actor，代表父对象
     def __init__(self, parent_actor):
+        #初始化传感器为None
         self.sensor = None
+        #存储父对象到 self._parent 
         self._parent = parent_actor
+        #初始化加速度计、陀螺仪、和指南针的数据
         self.accelerometer = (0.0, 0.0, 0.0)
         self.gyroscope = (0.0, 0.0, 0.0)
         self.compass = 0.0
+        #获取父对象的世界环境world
         world = self._parent.get_world()
+        #从蓝图库中查找imu传感器的蓝图bp
         bp = world.get_blueprint_library().find('sensor.other.imu')
         self.sensor = world.spawn_actor(
             bp, carla.Transform(), attach_to=self._parent)
@@ -1109,8 +1115,11 @@ class IMUSensor(object):
             lambda sensor_data: IMUSensor._IMU_callback(weak_self, sensor_data))
 
     @staticmethod
+    #静态方法
     def _IMU_callback(weak_self, sensor_data):
+        #从弱引用中获取self实例
         self = weak_self()
+        #如果实例不存在则返回
         if not self:
             return
         limits = (-99.9, 99.9)
