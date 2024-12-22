@@ -1527,37 +1527,69 @@ class GnssSensor(object):
 
 class IMUSensor(object):
     def __init__(self, parent_actor):
+        """
+        类的构造函数，用于初始化 `IMUSensor` 实例的相关属性，创建并配置惯性测量单元（IMU）传感器，使其能够监听传感器数据事件以获取加速度、陀螺仪和指南针等相关信息。
+
+        参数说明：
+        - `parent_actor`：代表父级角色的对象，通常是车辆或者其他需要获取运动状态及方向信息的实体，IMU 传感器会附着在这个对象上，用于实时获取该对象对应的加速度、旋转角速度以及方向等数据。
+        """
         self.sensor = None
         self._parent = parent_actor
         self.accelerometer = (0.0, 0.0, 0.0)
         self.gyroscope = (0.0, 0.0, 0.0)
         self.compass = 0.0
+        // 初始化实例的几个属性：
+        // - `self.sensor` 初始化为 `None`，后续会在这里存储创建好的 IMU 传感器对象。
+        // - `self._parent` 存储传入的父级角色对象，方便后续获取相关世界信息以及将传感器关联到这个角色上。
+        // - `self.accelerometer` 初始化为一个包含三个 `0.0` 的元组，用于存储从 IMU 传感器获取到的加速度信息，分别对应 `x`、`y`、`z` 三个坐标轴方向上的加速度值，后续会根据传感器数据实时更新。
+        // - `self.gyroscope` 同样初始化为一个包含三个 `0.0` 的元组，用于存储陀螺仪数据，即物体绕 `x`、`y`、`z` 轴旋转的角速度信息，同样会依据传感器反馈的数据进行更新。
+        // - `self.compass` 初始化为 `0.0`，用于存储表示方向的指南针数据，也就是获取物体当前的朝向角度信息，会随着传感器的测量结果而改变。
+
         world = self._parent.get_world()
         bp = world.get_blueprint_library().find('sensor.other.imu')
         self.sensor = world.spawn_actor(
             bp, carla.Transform(), attach_to=self._parent)
+        // 通过父级角色对象（`self._parent`）获取其所在的模拟世界对象（`get_world` 方法），然后在这个世界的蓝图库（`get_blueprint_library` 方法）中查找名为 `sensor.other.imu` 的传感器蓝图，该蓝图定义了 IMU 传感器的基本属性与行为规范。
+        // 找到对应的传感器蓝图后，使用世界对象的 `spawn_actor` 方法创建实际的 IMU 传感器对象。创建时通过 `carla.Transform()` 指定传感器的初始变换位置为默认位置，并将其附着到父级角色（`attach_to=self._parent`）上，使传感器与对应的角色建立关联，以便获取该角色的运动状态等相关信息，最后把创建好的传感器对象赋值给 `self.sensor` 属性。
+
         # We need to pass the lambda a weak reference to self to avoid circular
         # reference.
         weak_self = weakref.ref(self)
         self.sensor.listen(
             lambda sensor_data: IMUSensor._IMU_callback(weak_self, sensor_data))
+        // 为了避免循环引用（在 Python 中，对象之间相互引用可能导致内存无法正常回收的问题），创建一个对当前实例（`self`）的弱引用（`weakref.ref(self)`），并将其赋值给 `weak_self` 变量。
+        // 接着让创建好的 IMU 传感器（`self.sensor`）开始监听传感器数据事件，通过调用 `listen` 方法并传入一个匿名函数（`lambda` 表达式）作为回调函数。当 IMU 传感器获取到新的数据时，这个匿名函数会被调用，它会把弱引用（`weak_self`）和包含传感器数据的对象（`sensor_data`）作为参数传递给类的静态方法 `_IMU_callback`，由该静态方法来处理具体的更新加速度、陀螺仪和指南针等信息的逻辑。
 
     @staticmethod
     def _IMU_callback(weak_self, sensor_data):
+        """
+        静态方法功能：作为 IMU 传感器数据事件的处理函数，当接收到传感器数据时被调用，用于更新实例中存储的加速度、陀螺仪和指南针信息，同时对数据进行一定范围的限制处理，确保数据的合理性。
+
+        参数说明：
+        - `weak_self`：一个对 `IMUSensor` 类实例的弱引用，通过它可以获取到实际的实例对象，同时避免了循环引用问题，在方法内部需要先将其解引用还原为实际的实例对象才能访问实例的属性和方法。
+        - `sensor_data`：一个包含 IMU 传感器最新测量数据的对象，其中包含了加速度、陀螺仪和指南针等相关数据信息，用于提取并处理这些数据，更新实例中对应的属性值。
+        """
         self = weak_self()
         if not self:
             return
+        // 通过弱引用（`weak_self`）获取实际的 `IMUSensor` 类实例对象，如果获取失败（即 `weak_self` 所引用的对象已经被垃圾回收了，返回 `None`），则直接返回，不执行后续更新传感器信息的逻辑。
+
         limits = (-99.9, 99.9)
         self.accelerometer = (
             max(limits[0], min(limits[1], sensor_data.accelerometer.x)),
             max(limits[0], min(limits[1], sensor_data.accelerometer.y)),
             max(limits[0], min(limits[1], sensor_data.accelerometer.z)))
+        // 定义一个数据范围限制的元组 `limits`，表示允许的传感器数据取值范围在 `-99.9` 到 `99.9` 之间（这里只是一种合理的数据范围限定，可根据实际需求和传感器特性调整）。
+        // 对于加速度信息，通过 `max` 和 `min` 函数组合，将 `sensor_data.accelerometer.x`（`x` 轴方向的加速度值）限制在 `limits` 所定义的范围内，即取 `limits[0]`（下限值）和 `limits[1]`（上限值）与该加速度值中合适的那个，以此确保加速度值不会超出合理区间，然后按照同样的方式处理 `y` 轴和 `z` 轴方向的加速度值，更新实例的 `self.accelerometer` 属性，使得存储的加速度数据始终在合理的范围之内。
+
         self.gyroscope = (
             max(limits[0], min(limits[1], math.degrees(sensor_data.gyroscope.x))),
             max(limits[0], min(limits[1], math.degrees(sensor_data.gyroscope.y))),
             max(limits[0], min(limits[1], math.degrees(sensor_data.gyroscope.z))))
-        self.compass = math.degrees(sensor_data.compass)
+        // 对于陀螺仪数据，由于传感器返回的可能是弧度制下的旋转角速度，先使用 `math.degrees` 函数将 `sensor_data.gyroscope.x`（`x` 轴方向的角速度值）转换为角度制，再通过 `max` 和 `min` 函数将其限制在 `limits` 所定义的合理角度范围内，按照同样的操作处理 `y` 轴和 `z` 轴方向的角速度值，更新实例的 `self.gyroscope` 属性，确保存储的陀螺仪数据是角度制且在合理范围之内，方便后续使用和展示。
 
+        self.compass = math.degrees(sensor_data.compass)
+        // 对于指南针数据（表示方向的角度信息），同样使用 `math.degrees` 函数将 `sensor_data.compass` 从传感器返回的可能的弧度制转换为角度制，然后更新实例的 `self.compass` 属性，使其存储的是角度制下的方向信息，符合常规的角度表示和使用习惯，便于在如导航、方位显示等相关功能中使用该数据。
 
 # ==============================================================================
 # -- RadarSensor ---------------------------------------------------------------
