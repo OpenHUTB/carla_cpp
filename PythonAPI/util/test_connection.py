@@ -71,6 +71,9 @@ def main():
     return 1
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':    
+    # 调用main函数，并使用sys.exit()来根据main函数的返回值退出整个程序，
+    # 如果main函数返回0则正常退出，返回其他值则以对应错误码退出程序
+    sys.exit(main())
 
     sys.exit(main())
