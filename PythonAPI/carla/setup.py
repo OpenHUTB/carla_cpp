@@ -111,7 +111,7 @@ def get_libcarla_extensions():
                 print('Travis CI build detected: disabling PNG support.')
                 extra_link_args += ['-ljpeg', '-ltiff']
                 extra_compile_args += ['-DLIBCARLA_IMAGE_WITH_PNG_SUPPORT=false']
-            else:
+            else:#当不处于  Travis CI  环境时，同样是对  extra_link_args  和  extra_compile_args  这两个列表进行操作。
                 extra_link_args += ['-lpng', '-ljpeg', '-ltiff']
                 extra_compile_args += ['-DLIBCARLA_IMAGE_WITH_PNG_SUPPORT=true']
             # @todo 我们为什么需要这个？
