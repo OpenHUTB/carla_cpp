@@ -1524,22 +1524,28 @@ namespace Simplify
         // 尝试通过 `sscanf` 函数按照 "v %lf %lf %lf" 的格式从该行提取三个浮点数（分别赋值给 `v` 对象的 `p`（`p` 应该是 `Vertex` 结构体中表示坐标的成员变量，类型可能是 `vec3f` 等）的 `x`、`y`、`z` 成员变量），
         // 如果成功提取到三个值（`sscanf` 返回 3），则将该 `v` 对象添加到 `vertices` 容器中，用于存储所有解析出的顶点坐标信息。
         int integers[9];
+// 判断读取的行首字符是否为'f'，通常用于识别某种特定格式的数据行（可能与三角形面相关，比如.obj文件中的面数据格式）
         if (line[0] == 'f')
         {
+// 创建一个Triangle类型的对象t，用于存储三角形相关信息（Triangle类型应该是自定义的结构体或类，具体成员表示三角形的顶点等信息）
           Triangle t;
+/ 用于标记三角形数据是否读取正确的布尔变量，初始化为false
           bool tri_ok = false;
+// 用于标记是否包含UV坐标信息的布尔变量，初始化为false
           bool has_uv = false;
-
+// 尝试按照"f %d %d %d"的格式从line中读取3个整数到integers数组中，若成功读取到3个整数（返回值为3），则表示三角形数据读取正确，将tri_ok置为true
           if (sscanf(line, "f %d %d %d",
                      &integers[0], &integers[1], &integers[2]) == 3)
           {
             tri_ok = true;
           }
+// 尝试按照"f %d// %d// %d//"的格式从line中读取3个整数到integers数组中，若成功读取到3个整数（返回值为3），则表示三角形数据读取正确，将tri_ok置为true
           else if (sscanf(line, "f %d// %d// %d//",
                           &integers[0], &integers[1], &integers[2]) == 3)
           {
             tri_ok = true;
           }
+// 尝试按照"f %d//%d %d//%d %d//%d"的格式从line中读取6个整数到integers数组中，若成功读取到6个整数（返回值为6），则表示三角形数据读取正确，将tri_ok置为true
           else if (sscanf(line, "f %d//%d %d//%d %d//%d",
                           &integers[0], &integers[3],
                           &integers[1], &integers[4],
@@ -1571,23 +1577,26 @@ namespace Simplify
               while (1)
                 ;
             }
+// 如果三角形数据读取正确（tri_ok为true），进行以下处理
           if (tri_ok)
           {
             t.v[0] = integers[0] - 1 - vertex_cnt;
             t.v[1] = integers[1] - 1 - vertex_cnt;
             t.v[2] = integers[2] - 1 - vertex_cnt;
             t.attr = 0;
-
+// 如果允许处理UV坐标（process_uv为true）且确实有UV坐标（has_uv为true），进行以下操作
             if (process_uv && has_uv)
             {
+// 创建一个整型的动态数组indices，用于存储UV坐标相关的索引信息
               std::vector<int> indices;
               indices.push_back(integers[6] - 1 - vertex_cnt);
               indices.push_back(integers[7] - 1 - vertex_cnt);
               indices.push_back(integers[8] - 1 - vertex_cnt);
+// 将indices数组添加到uvMap中，uvMap应该是一个存储UV坐标索引信息的容器
               uvMap.push_back(indices);
               t.attr |= TEXCOORD;
             }
-
+// 将当前使用的材质赋值给三角形对象t的material成员，material应该是表示材质相关信息的变量
             t.material = material;
             // geo.triangles.push_back ( tri );
             triangles.push_back(t);
@@ -1596,30 +1605,33 @@ namespace Simplify
           }
         }
       }
-
+// 如果允许处理UV坐标（process_uv为true）且uvs容器中有元素（表示有UV坐标数据）
       if (process_uv && uvs.size())
       {
         loopi(0, triangles.size())
         {
+// 内层循环遍历当前三角形的每个顶点（通常三角形有3个顶点），j表示当前顶点的索引
           loopj(0, 3)
               triangles[i]
                   .uvs[j] = uvs[uvMap[i][j]];
         }
       }
-
+// 关闭文件指针fn指向的文件，fn应该是之前打开的用于读取数据的文件指针
       fclose(fn);
 
       // printf("load_obj: vertices = %lu, triangles = %lu, uvs = %lu\n", vertices.size(), triangles.size(), uvs.size() );
     } // load_obj()
 
     // Optional : Store as OBJ
-
+// 将数据以OBJ文件格式进行存储的函数，filename为要存储的文件名
     void write_obj(const char *filename)
     {
+// 以写入模式打开指定文件名的文件，如果打开失败返回NULL，file为文件指针
       FILE *file = fopen(filename, "w");
+// 用于记录当前材质的索引，初始化为-1
       int cur_material = -1;
       bool has_uv = (triangles.size() && (triangles[0].attr & TEXCOORD) == TEXCOORD);
-
+// 如果文件打开失败，输出错误信息并退出程序
       if (!file)
       {
         printf("write_obj: can't write data file \"%s\".\n", filename);
