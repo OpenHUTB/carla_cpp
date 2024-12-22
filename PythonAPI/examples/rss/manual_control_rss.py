@@ -472,44 +472,71 @@ class World(object):
 # ==============================================================================
 
 class Camera(object):
+# 定义一个名为 `Camera` 的类，这个类大概率是用于模拟环境中相机相关的功能实现，比如相机图像的获取、处理以及显示等操作。
 
     def __init__(self, parent_actor, display_dimensions):
+    # 类的初始化方法，在创建 `Camera` 类的实例时会被调用，用于初始化相机相关的各种属性以及设置相机在模拟世界中的相关参数。
         self.surface = None
+        # 用于存储相机获取的图像数据渲染后的表面对象（在图形库中，表面 `surface` 通常是用于最终显示或者进一步处理图像的对象表示），初始化为 `None`，后续会在获取并处理图像后进行赋值。
         self._parent = parent_actor
+        # 将传入的 `parent_actor` 参数赋值给实例属性 `_parent`，从名称推测这个参数可能是相机所依附的父对象，比如在模拟世界中相机可能挂载在车辆等主体上，这个父对象就是对应的车辆等主体对象。
         self.current_frame = None
+        # 用于存储相机当前获取到的图像帧数据，初始化为 `None`，每当相机获取到新的一帧图像时会进行更新赋值。
         bp_library = self._parent.get_world().get_blueprint_library()
+        # 获取相机父对象（也就是 `_parent` 所代表的对象，如车辆）所在的模拟世界的蓝图库（蓝图库中包含了可以创建各种模拟元素的蓝图模板），通过先获取父对象所在的世界，再调用世界对象的 `get_blueprint_library` 方法来实现。
         bp = bp_library.find('sensor.camera.rgb')
+        # 从蓝图库中查找名为 `sensor.camera.rgb` 的蓝图，这个蓝图应该是用于创建一个能获取RGB彩色图像的相机传感器，后续会基于这个蓝图来创建实际的相机传感器对象。
         bp.set_attribute('image_size_x', str(display_dimensions[0]))
+        # 设置相机蓝图的 `image_size_x` 属性，将其值设置为传入的 `display_dimensions` 参数中表示宽度的元素（通过索引 `0` 获取宽度值，并转换为字符串类型，因为蓝图属性设置可能要求字符串格式的参数），用于指定相机获取图像的宽度尺寸。
         bp.set_attribute('image_size_y', str(display_dimensions[1]))
+        # 类似地，设置相机蓝图的 `image_size_y` 属性，将其值设置为 `display_dimensions` 参数中表示高度的元素（通过索引 `1` 获取高度值，并转换为字符串类型），用于指定相机获取图像的高度尺寸。
         self.sensor = self._parent.get_world().spawn_actor(bp, carla.Transform(carla.Location(
             x=-5.5, z=2.5), carla.Rotation(pitch=8.0)), attach_to=self._parent, attachment_type=carla.AttachmentType.SpringArmGhost)
+        # 在相机父对象所在的世界中，根据上述配置好的蓝图 `bp`，在指定的位置和姿态（通过 `carla.Transform` 来描述位置和旋转信息，这里位置在 `x = -5.5`，`z = 2.5` 处，旋转的 `pitch` 角度为 `8.0` 度）创建相机传感器对象，并将其附着在父对象 `_parent` 上，附着类型为 `carla.AttachmentType.SpringArmGhost`（一种特定的附着方式，可能实现类似弹簧臂的效果，使相机相对父对象有一定的位置和姿态调整灵活性），将创建好的相机传感器对象赋值给实例属性 `self.sensor`。
 
+        # 以下是为了避免循环引用问题的相关操作。在Python中，如果对象之间相互引用形成闭环，可能会导致内存无法正确回收等问题。
+        # 通过 `weakref.ref` 创建对当前 `Camera` 实例（也就是 `self`）的弱引用，弱引用不会增加对象的引用计数，使得对象可以在合适的时候被垃圾回收机制正常回收，将弱引用对象赋值给 `weak_self`。
         # We need to pass the lambda a weak reference to self to avoid
         # circular reference.
         weak_self = weakref.ref(self)
         self.sensor.listen(lambda image: Camera._parse_image(weak_self, image))
 
     def destroy(self):
+     # 定义一个方法用于销毁相机相关的资源，比如停止传感器监听、释放传感器对象等操作，通常在不需要相机或者程序结束等场景下调用。
         self.sensor.stop()
+        # 首先调用相机传感器的 `stop` 方法，停止传感器继续获取新的图像数据，避免后续不必要的数据处理以及可能的资源占用。
         self.sensor.destroy()
         self.sensor = None
+        # 接着调用相机传感器的 `destroy` 方法，释放与传感器相关的资源，例如内存等，将传感器对象设置为 `None`，表示该相机传感器已被销毁。
 
     def render(self, display):
+    # 定义一个方法用于将相机获取的图像渲染显示到指定的显示界面上，接收一个 `display` 参数，这个参数可能是代表图形显示界面的对象（例如在 `pygame` 等图形库中用于显示图像的对象）。
         if self.surface is not None:
             display.blit(self.surface, (0, 0))
+        # 判断 `self.surface`（相机图像渲染后的表面对象）是否不为 `None`，如果是，则将其绘制（ `blit` 操作在图形库中常用于将一个图像表面绘制到另一个表面上）到 `display`（显示界面）的 `(0, 0)` 坐标位置，实现图像的显示。
 
     @staticmethod
     def _parse_image(weak_self, image):
+    # 定义一个静态方法，用于解析处理相机获取到的图像数据，这个方法接收一个弱引用 `weak_self`（指向 `Camera` 类的实例）和图像数据 `image` 作为参数。
+    # 静态方法属于类本身，不需要实例化类就可以调用，通常用于处理与类相关但不依赖于具体实例状态的操作。
         self = weak_self()
         if not self:
             return
+        # 通过弱引用 `weak_self` 获取对应的 `Camera` 类的实例对象，如果弱引用对应的实例已经被垃圾回收（不存在了），则返回，不进行后续处理。
         self.current_frame = image.frame
+        # 将获取到的图像的当前帧编号赋值给实例的 `current_frame` 属性，用于记录当前是第几帧图像，方便后续可能的按帧处理或者显示顺序控制等操作。
         image.convert(cc.Raw)
+        # 将图像的数据格式转换为原始数据格式（ `cc.Raw` 应该是代表某种预定义的原始数据格式，通过 `convert` 方法进行转换），方便后续以字节流等形式进行处理。
         array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
+        # 使用 `numpy` 库（导入时简记为 `np`）的 `frombuffer` 方法，从图像的原始数据字节流（ `image.raw_data` ）中创建一个 `numpy` 数组，指定数据类型为无符号8位整数（ `dtype=np.dtype("uint8")` ），这样就可以像操作普通数组一样对图像数据进行处理了。
         array = np.reshape(array, (image.height, image.width, 4))
+        # 根据图像的高度、宽度以及通道数（这里从原始数据解析出来后可能是4通道，包含透明度等信息），使用 `reshape` 方法将数组重新调整形状，使其符合图像数据的维度结构，得到一个三维数组，分别表示图像的高度、宽度和通道维度。
         array = array[:, :, :3]
+        # 去除数组中表示透明度的通道（只取前三个通道，也就是RGB通道），得到一个只包含彩色信息的三维数组，用于后续转换为可显示的图像表面对象。
         array = array[:, :, ::-1]
+        # 对数组的通道顺序进行反转，将RGB顺序转换为BGR顺序（不同的图形库或者图像显示系统可能对颜色通道顺序有不同要求，这里可能是为了适配后续使用的图形显示相关的操作）。
         self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
+        # 使用 `pygame` 库的 `surfarray.make_surface` 方法，将处理后的 `numpy` 数组转换为 `pygame` 中的图像表面对象（ `surface` ），在转换前先交换数组的第一维和第二维（也就是图像的高度和宽度维度，通过 `swapaxes(0, 1)` 操作），以符合 `pygame` 对图像数据维度的要求，最后将生成的图像表面对象赋值给实例的 `self.surface` 属性，以便后续可以通过 `render` 方法将其显示出来。
 
 # ==============================================================================
 # -- VehicleControl -----------------------------------------------------------
@@ -517,27 +544,45 @@ class Camera(object):
 
 
 class VehicleControl(object):
+# 定义一个名为 `VehicleControl` 的类，从名称推测这个类主要用于处理模拟环境中车辆的控制相关操作，比如接收用户输入（键盘、鼠标等）来控制车辆的行驶、灯光等状态。
 
     MOUSE_STEERING_RANGE = 200
+    # 定义一个类属性，表示鼠标转向操作时的有效范围，这里设置为200，可能用于控制鼠标在屏幕上操作车辆转向时的灵敏度或者有效操作区域范围等，单位可能与屏幕坐标等相关（具体取决于整个模拟环境的坐标系设定）。
     signal_received = False
+    # 定义一个类属性，用于记录是否接收到特定的信号，初始化为 `False`，在后续的信号处理相关方法中会根据实际情况更新这个值，用于控制程序的一些行为，比如是否停止循环等。
 
     """Class that handles keyboard input."""
+    # 这是一个类的文档字符串，简要说明了这个类的作用是处理键盘输入，用于控制车辆相关操作（实际上从后续代码看也处理了鼠标等其他输入，但这里主要强调了键盘输入方面的功能）。
 
     def __init__(self, world, start_in_autopilot):
+    # 类的初始化方法，在创建 `VehicleControl` 类的实例时会被调用，用于初始化车辆控制相关的各种属性以及设置车辆的初始状态等操作。
         self._autopilot_enabled = start_in_autopilot
+        # 将传入的 `start_in_autopilot` 参数赋值给实例属性 `_autopilot_enabled`，用于标识车辆初始是否开启自动驾驶模式，传入的参数应该是一个布尔值， `True` 表示开启， `False` 表示关闭。
         self._world = world
+        # 将传入的 `world` 参数赋值给实例属性 `_world`，这个 `world` 参数应该是代表整个模拟世界的对象，通过它可以访问和操作世界中的各种元素，比如车辆、地图、传感器等，后续会用于获取车辆对象以及与世界相关的其他操作。
         self._control = carla.VehicleControl()
+        # 创建一个 `carla.VehicleControl` 类的实例，用于存储和管理车辆的控制指令（如油门、刹车、转向等操作指令），并赋值给实例属性 `_control`，初始状态下这些指令的值应该是默认值，后续会根据用户输入等情况进行更新调整。
         self._lights = carla.VehicleLightState.NONE
+        # 设置车辆的灯光状态初始化为 `carla.VehicleLightState.NONE`，表示所有灯光都关闭，后续会根据用户操作来切换不同的灯光状态，通过 `_lights` 属性来记录和管理车辆的灯光状态。
         world.player.set_autopilot(self._autopilot_enabled)
+        # 通过模拟世界对象 `_world` 获取其中的主要车辆对象（ `world.player` 可能表示模拟世界中的玩家控制车辆，也就是要进行控制操作的目标车辆），并调用其 `set_autopilot` 方法，根据 `_autopilot_enabled` 的值来设置车辆是否开启自动驾驶模式。
         self._restrictor = carla.RssRestrictor()
+        # 创建一个 `carla.RssRestrictor` 类的实例（从名称推测这个类可能与某种限制车辆操作的功能相关，也许是基于RSS，即可能是Responsive Safety System等车辆安全相关系统的限制机制），用于后续对车辆控制进行一些限制操作，将其赋值给实例属性 `_restrictor`。
         self._vehicle_physics = world.player.get_physics_control()
+        # 获取模拟世界中主要车辆（ `world.player` ）的物理控制相关属性对象（通过 `get_physics_control` 方法获取，这个对象包含了车辆物理特性相关的各种参数，如质量、摩擦力等，可能会影响车辆的行驶行为以及与其他物体的交互情况），并赋值给实例属性 `_vehicle_physics`，用于后续可能的基于车辆物理特性的控制操作。
         world.player.set_light_state(self._lights)
+        # 通过模拟世界中的主要车辆对象（ `world.player` ）调用 `set_light_state` 方法，将车辆灯光状态设置为之前初始化的 `_lights` 的值，也就是初始关闭所有灯光。
         self._steer_cache = 0.0
+        # 用于缓存车辆的转向值，初始化为0.0，在处理键盘或者鼠标输入的转向操作时，会先将转向值暂存到这个变量中，然后再更新到 `_control` 对象里的正式转向指令属性中，可能用于平滑转向操作或者处理一些特殊的转向逻辑等情况。
         self._mouse_steering_center = None
+        # 用于记录鼠标转向操作时的中心位置坐标，初始化为 `None`，当鼠标按下进行转向操作时会记录下鼠标的当前位置作为中心位置，鼠标松开时会重置为 `None`，用于后续根据鼠标移动相对于这个中心位置来计算转向等操作。
 
         self._surface = pygame.Surface((self.MOUSE_STEERING_RANGE * 2, self.MOUSE_STEERING_RANGE * 2))
+        # 创建一个 `pygame` 库中的 `Surface` 对象（表面对象，用于图形绘制、显示等操作），其大小由 `MOUSE_STEERING_RANGE` 属性决定，这里创建的表面大小是 `(MOUSE_STEERING_RANGE * 2, MOUSE_STEERING_RANGE * 2)`，可能用于后续在屏幕上显示与鼠标转向相关的提示信息或者可视化元素等操作，将其赋值给实例属性 `_surface`。
         self._surface.set_colorkey(pygame.Color('black'))
+        # 设置表面对象的透明颜色键（ `colorkey` ）为黑色（ `pygame.Color('black')` ），这意味着在显示这个表面时，所有黑色的像素点会被当作透明处理，方便实现一些特殊的图形显示效果，比如只显示特定颜色部分的图像等。
         self._surface.set_alpha(60)
+        # 设置表面对象的透明度为60（取值范围通常是0 - 255，表示从完全透明到完全不透明，这里设置为60表示半透明效果），使得这个表面在显示时呈现出一定的透明状态，可能用于叠加显示在其他图形元素之上，不遮挡太多背景内容等情况。
 
         line_width = 2
         pygame.draw.polygon(self._surface,
@@ -562,25 +607,43 @@ class VehicleControl(object):
                                 (self.MOUSE_STEERING_RANGE, 0),
                                 (self.MOUSE_STEERING_RANGE, self.MOUSE_STEERING_RANGE * 2)
                             ], line_width)
+        # 使用 `pygame` 库的 `draw.polygon` 方法在之前创建的表面对象 `_surface` 上绘制多边形，这里绘制的是一个蓝色（颜色值为 `(0, 0, 255)` ）的多边形，多边形的顶点坐标通过给定的列表来指定，并且设置多边形的线宽为2像素，这个多边形可能是用于在屏幕上显示与鼠标转向相关的操作提示或者区域范围等可视化信息。        
 
         world.hud.notification("Press 'H' or '?' for help.", seconds=4.0)
+        # 通过模拟世界对象的 `hud`（抬头显示相关对象，用于显示各种提示信息等）调用 `notification` 方法，向用户显示一条提示信息，告知用户可以按下 `H` 键或者 `?` 键获取帮助信息，并且设置这条提示信息显示的时长为4.0秒，之后会自动消失。
 
     def render(self, display):
+    # `render` 方法用于将与鼠标转向相关的可视化元素渲染显示到指定的显示界面上。
+    # 接收一个 `display` 参数，这个参数通常代表图形显示界面的对象（例如在 `pygame` 等图形库中用于显示图像的对象）。
         if self._mouse_steering_center:
+        # 判断 `self._mouse_steering_center` 是否存在（不为 `None`），它记录着鼠标转向操作时的中心位置坐标。
+        # 如果存在，则执行以下操作将之前创建的带有转向提示等可视化元素的表面对象（`self._surface`）绘制到显示界面上。
             display.blit(
                 self._surface, (self._mouse_steering_center[0] - self.MOUSE_STEERING_RANGE, self._mouse_steering_center[1] - self.MOUSE_STEERING_RANGE))
+            # 使用 `display` 对象的 `blit` 方法将 `self._surface` 绘制到显示界面上，绘制的位置根据 `self._mouse_steering_center` 坐标进行偏移，
+            # 通过减去 `MOUSE_STEERING_RANGE` 来确保可视化元素能以鼠标转向中心位置为参照，正确地显示在合适的区域，方便用户直观地看到与鼠标转向操作相关的提示信息。
 
     @staticmethod
     def signal_handler(signum, _):
+    # 这是一个静态方法，用于处理接收到的信号。静态方法属于类本身，不需要实例化类就可以调用，通常用于处理与类相关但不依赖于具体实例状态的操作。
+    # 接收信号编号 `signum` 参数以及一个未使用的占位参数（按照Python惯例，用下划线 `_` 表示不使用的参数）
         print('\nReceived signal {}. Trigger stopping...'.format(signum))
+        # 当接收到信号时，打印出接收到的信号编号以及提示信息，表示接收到信号并即将触发停止相关操作。
         VehicleControl.signal_received = True
+        # 将类属性 `signal_received` 设置为 `True`，这个类属性用于在其他地方（比如循环控制等逻辑中）判断是否接收到了信号，从而决定是否停止某些操作或者整个程序的运行等情况。
 
     def parse_events(self, world, clock, sync_mode):
+    # `parse_events` 方法用于解析处理各种输入事件（如键盘按键事件、鼠标点击事件等），并根据不同的事件类型执行相应的操作，以控制车辆的状态以及模拟世界中的相关显示等功能。
+    # 接收 `world`（模拟世界对象，通过它可以访问和操作世界中的各种元素）、`clock`（可能是用于记录时间相关信息的对象，用于控制更新节奏或者获取当前时间等信息）和 `sync_mode`（可能表示同步模式相关的参数，用于确定模拟世界是否以同步方式运行等情况）这几个参数
         if VehicleControl.signal_received:
+        # 首先判断类属性 `VehicleControl.signal_received` 是否为 `True`，即是否接收到了特定信号，如果是，则执行以下操作来停止相关循环或操作流程。
             print('\nAccepted signal. Stopping loop...')
             return True
+             # 打印提示信息表示接受了信号并即将停止循环，然后返回 `True`，这个返回值可能在调用该方法的外层循环等逻辑中用于判断是否跳出循环，终止后续操作。
         if isinstance(self._control, carla.VehicleControl):
+        # 判断 `self._control` 是否是 `carla.VehicleControl` 类型的对象（在初始化时创建了这个对象用于存储车辆的控制指令），如果是，则执行以下操作来获取当前的车辆灯光状态备份。
             current_lights = self._lights
+             # 将当前车辆的灯光状态（记录在 `self._lights` 属性中）赋值给 `current_lights` 变量，用于后续在处理事件过程中，根据车辆控制指令的变化来相应地更新车辆灯光状态时做对比和判断等操作。
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return True

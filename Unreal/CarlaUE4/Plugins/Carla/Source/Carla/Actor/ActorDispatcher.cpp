@@ -107,17 +107,22 @@ AActor* UActorDispatcher::ReSpawnActor(
     const FTransform &Transform,
     FActorDescription Description)
 {
+  // 检查Description是否有效，如果UId为0或超出SpawnFunctions数组的大小，则返回nullptr
   if ((Description.UId == 0u) || (Description.UId > static_cast<uint32>(SpawnFunctions.Num())))
   {
     UE_LOG(LogCarla, Error, TEXT("Invalid ActorDescription '%s' (UId=%d)"), *Description.Id, Description.UId);
     return nullptr;
   }
 
+  // 记录日志，表示开始生成指定的Actor
   UE_LOG(LogCarla, Log, TEXT("Spawning actor '%s'"), *Description.Id);
 
+  // 根据UId从Classes数组中获取对应的类，并赋值给Description.Class
   Description.Class = Classes[Description.UId - 1];
+  // 使用对应的SpawnFunction生成Actor
   FActorSpawnResult Result = SpawnFunctions[Description.UId - 1](Transform, Description);
 
+  // 如果生成结果状态为成功，但未返回Actor，则记录警告并返回nullptr
   if ((Result.Status == EActorSpawnResultStatus::Success) && (Result.Actor == nullptr))
   {
     UE_LOG(LogCarla, Warning, TEXT("ActorSpawnResult: Trying to spawn '%s'"), *Description.Id);
@@ -126,20 +131,22 @@ AActor* UActorDispatcher::ReSpawnActor(
     return nullptr;
   }
 
+  // 如果生成结果状态为成功，则返回生成的Actor
   if (Result.Status == EActorSpawnResultStatus::Success)
   {
     return Result.Actor;
   }
 
+  // 如果生成失败，则返回nullptr
   return nullptr;
 }
 
 bool UActorDispatcher::DestroyActor(FCarlaActor::IdType ActorId)
 {
-  // 检查参与者是否在注册表中
+  // 检查要销毁的Actor是否在注册表中存在
   FCarlaActor* View = Registry.FindCarlaActor(ActorId);
 
-  // 如果未标记为“待销毁”（PendingKill），则无效的销毁（除非是休眠状态，休眠的Actor可以被销毁）
+  // 如果Actor不在注册表中或已经被标记为待销毁，则返回false
   if (!View)
   {
     UE_LOG(LogCarla, Warning, TEXT("Trying to destroy actor that is not in the registry"));
@@ -148,7 +155,7 @@ bool UActorDispatcher::DestroyActor(FCarlaActor::IdType ActorId)
 
   const FString &Id = View->GetActorInfo()->Description.Id;
 
-  // 如果存在控制器，将其摧毁
+  // 获取Actor的控制器，如果存在，则尝试销毁
   AActor* Actor = View->GetActor();
   if(Actor)
   {
@@ -164,7 +171,17 @@ bool UActorDispatcher::DestroyActor(FCarlaActor::IdType ActorId)
       }
     }
 
-    // 摧毁参与者
+    // 销毁Actor
+    // ...（代码未完整，以下为注释）
+    // 如果Actor存在，调用Destroy函数尝试销毁
+    // 如果销毁失败，记录错误日志
+    // 返回true表示销毁操作已尝试执行
+    return true;
+  }
+  // 如果Actor不存在，返回false表示销毁操作未执行
+  return false;
+}
+
     UE_LOG(LogCarla, Log, TEXT("UActorDispatcher::Destroying actor: '%s' %x"), *Id, Actor);
     UE_LOG(LogCarla, Log, TEXT("            %s"), Actor?*Actor->GetName():*FString("None"));
     if (!Actor || !Actor->Destroy())

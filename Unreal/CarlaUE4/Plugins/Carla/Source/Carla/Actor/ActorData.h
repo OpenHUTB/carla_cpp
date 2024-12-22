@@ -4,63 +4,57 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once // 指示编译器此头文件被包含一次，防止重复包含
 
-#include "Actor/ActorInfo.h" // Actor 信息头文件
-#include "Math/DVector.h" // 数学向量库
-#include "Carla/Vehicle/AckermannControllerSettings.h" // Ackermann 控制器设置
-#include "Carla/Vehicle/VehicleAckermannControl.h" // Ackermann 控制
-#include "Carla/Vehicle/VehicleControl.h" // 车辆控制
-#include "Carla/Vehicle/VehicleLightState.h" // 车辆灯光状态
-#include "Vehicle/VehicleInputPriority.h" // 车辆输入优先级
-#include "Vehicle/VehiclePhysicsControl.h" // 车辆物理控制
-#include "Carla/Sensor/DataStream.h" // 数据流类
-#include "Carla/Traffic/TrafficLightState.h" // 交通信号灯状态
+#include "Actor/ActorInfo.h" // 包含Actor信息相关的声明和定义
+#include "Math/DVector.h" // 包含数学向量库，用于表示向量和相关操作
+#include "Carla/Vehicle/AckermannControllerSettings.h" // 包含Ackermann控制器设置的相关声明和定义
+#include "Carla/Vehicle/VehicleAckermannControl.h" // 包含Ackermann控制相关的声明和定义
+#include "Carla/Vehicle/VehicleControl.h" // 包含车辆控制相关的声明和定义
+#include "Carla/Vehicle/VehicleLightState.h" // 包含车辆灯光状态的相关声明和定义
+#include "Vehicle/VehicleInputPriority.h" // 包含车辆输入优先级的相关声明和定义
+#include "Vehicle/VehiclePhysicsControl.h" // 包含车辆物理控制相关的声明和定义
+#include "Carla/Sensor/DataStream.h" // 包含数据流类的相关声明和定义
+#include "Carla/Traffic/TrafficLightState.h" // 包含交通信号灯状态的相关声明和定义
 
-#include <compiler/disable-ue4-macros.h> // 关闭 UE4 宏的头文件
-#include <carla/rpc/WalkerControl.h> // 行人控制类
-#include <compiler/enable-ue4-macros.h> // 启用 UE4 宏的头文件
+#include <compiler/disable-ue4-macros.h> // 包含关闭UE4宏的头文件，防止宏冲突
+#include <carla/rpc/WalkerControl.h> // 包含行人控制类的相关声明和定义
+#include <compiler/enable-ue4-macros.h> // 包含启用UE4宏的头文件，恢复宏定义
 
-class UCarlaEpisode; // 声明 CARLA Episode 类
-class UTrafficLightController; // 声明交通灯控制器类
-class FCarlaActor; // 声明 CARLA Actor 类
+class UCarlaEpisode; // 前向声明CARLA Episode类，用于表示仿真会话
+class UTrafficLightController; // 前向声明交通灯控制器类，用于控制交通灯
+class FCarlaActor; // 前向声明CARLA Actor类，用于表示仿真中的Actor
 
 class FActorData
 {
 public:
+  FDVector Location; // 存储Actor的位置向量
 
-  FDVector Location; // 位置向量
+  FQuat Rotation; // 存储Actor的旋转四元数
 
-  FQuat Rotation; // 旋转四元数
+  FVector Scale; // 存储Actor的缩放向量
 
-  FVector Scale; // 缩放向量
+  FVector Velocity; // 存储Actor的速度向量
 
-  FVector Velocity; // 速度向量
+  FVector AngularVelocity = FVector(0,0,0); // 存储Actor的角速度，默认值为(0,0,0)
 
-  FVector AngularVelocity = FVector(0,0,0); // 角速度，默认为 (0,0,0)
+  bool bSimulatePhysics = false; // 指示是否模拟物理行为，默认为false
 
-  bool bSimulatePhysics = false; // 是否模拟物理，默认为 false
-
-  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode); // 记录 Actor 数据
-
-  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode); // 恢复 Actor 数据
-
-  virtual AActor* RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info); // 重新生成 Actor
-
-  FTransform GetLocalTransform(UCarlaEpisode* CarlaEpisode) const; // 获取局部变换
-
-  virtual ~FActorData(){}; // 虚析构函数
+  virtual void RecordActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode); // 虚函数，用于记录Actor数据
+  virtual void RestoreActorData(FCarlaActor* CarlaActor, UCarlaEpisode* CarlaEpisode); // 虚函数，用于恢复Actor数据
+  virtual AActor* RespawnActor(UCarlaEpisode* CarlaEpisode, const FActorInfo& Info); // 虚函数，用于重新生成Actor
+  FTransform GetLocalTransform(UCarlaEpisode* CarlaEpisode) const; // 函数，用于获取Actor的局部变换
+  virtual ~FActorData(){}; // 虚析构函数，确保派生类能正确析构
 };
 
 class FVehicleData : public FActorData
 {
 public:
+  FVehiclePhysicsControl PhysicsControl; // 存储车辆物理控制数据
+  FVehicleControl Control; // 存储车辆控制数据
+  FVehicleAckermannControl AckermannControl; // 存储Ackermann控制数据
+};
 
-  FVehiclePhysicsControl PhysicsControl; // 车辆物理控制数据
-
-  FVehicleControl Control; // 车辆控制数据
-
-  FVehicleAckermannControl AckermannControl; // Ackermann 控制数据
 
   bool bAckermannControlActive = false; // Ackermann 控制是否激活
 
