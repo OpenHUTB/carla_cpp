@@ -188,12 +188,12 @@ namespace pugi
 // Memory allocation
 // PUGI__NS_BEGIN 和 PUGI__NS_END 宏通常用于定义命名空间的开始和结束
 PUGI__NS_BEGIN
-// 定义一个函数，用于分配指定大小的内存。这个函数简单地调用了标准库的 malloc 函数
+// 定义一个函数，用于分配指定大小的内存。调用了malloc函数
 PUGI__FN void* default_allocate(size_t size)
 {
 	return malloc(size);
 }
-// 定义一个函数，用于释放之前分配的内存。这个函数简单地调用了标准库的 free 函数
+// 定义一个函数，用于释放之前分配的内存。调用了free函数
 PUGI__FN void default_deallocate(void* ptr)
 {
 	free(ptr);
@@ -227,7 +227,7 @@ PUGI__FN size_t strlength(const char_t* s)
 	assert(s);
 	// 根据是否定义了 PUGIXML_WCHAR_MODE 宏来选择使用 wcslen 还是 strlen 函数来获取字符串长度
 #ifdef PUGIXML_WCHAR_MODE
-	return wcslen(s);// 宽字符字符串长度
+	return wcslen(s);// 字符串长度
 #else
 	return strlen(s);// 单字节字符字符串长度
 #endif
@@ -242,7 +242,7 @@ PUGI__FN bool strequal(const char_t* src, const char_t* dst)
 #ifdef PUGIXML_WCHAR_MODE
 	return wcscmp(src, dst) == 0;// 宽字符字符串比较
 #else
-	return strcmp(src, dst) == 0;// 单字节字符字符串比较
+	return strcmp(src, dst) == 0;// 比较不同字节长度
 #endif
 	}
 
