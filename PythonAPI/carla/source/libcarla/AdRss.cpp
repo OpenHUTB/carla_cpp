@@ -1,7 +1,7 @@
-// Copyright (c) 2019-2020 Intel Corporation
+// Copyright (c) 2019-2020 Intel Corporation// 这段版权声明表明此代码的版权归属于英特尔公司，时间范围是从2019年到2020年。
 //
 // This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// For a copy, see <https://opensource.org/licenses/MIT>.// 提示如果想要查看MIT许可证的具体副本，可以通过这个网址去获取相应内容，该网址指向MIT许可证在开源组织网站上的具体页面。
 
 #include <carla/rss/RssRestrictor.h>// 引入 Carla RSS 限制器头文件
 #include <carla/rss/RssSensor.h> // 引入 Carla RSS 传感器头文件
@@ -33,9 +33,13 @@ std::ostream &operator<<(std::ostream &out, const RssRestrictor &) {
 
 namespace sensor {
 namespace data {
-
+// 重载输出流操作符<<，用于将RssResponse类型的对象以特定格式输出到流中。
+// 第一个参数out是输出流对象，通常可以是std::cout等，用于指定输出的目标流。
+// 第二个参数resp是要输出的RssResponse类型的常量引用，意味着不会对传入的对象进行修改，只是读取其内容用于输出格式化信息。
 std::ostream &operator<<(std::ostream &out, const RssResponse &resp) {
-  out << "RssResponse(frame=" << resp.GetFrame() << ", timestamp=" << resp.GetTimestamp()
+    // 向输出流out中依次输出RssResponse对象的各个成员信息，格式为：
+    // "RssResponse(frame=具体的帧值, timestamp=时间戳值, valid=响应有效性值, proper_response=是否为正确响应值, rss_state_snapshot=RSS状态快照值, situation_snapshot=情况快照值, world_model=世界模型值, ego_dynamics_on_route=本车动力学在路线上的值)"
+    out << "RssResponse(frame=" << resp.GetFrame() << ", timestamp=" << resp.GetTimestamp()
       << ", valid=" << resp.GetResponseValid() << ", proper_response=" << resp.GetProperResponse()
       << ", rss_state_snapshot=" << resp.GetRssStateSnapshot() << ", situation_snapshot=" << resp.GetSituationSnapshot()
       << ", world_model=" << resp.GetWorldModel() << ", ego_dynamics_on_route=" << resp.GetEgoDynamicsOnRoute() << ')';
