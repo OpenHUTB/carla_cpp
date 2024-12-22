@@ -98,7 +98,7 @@ static void LightManagerSetColor(
  
 // 为指定的交通灯设置不同的颜色
 static void LightManagerSetVectorColor(
-  cc::LightManager& self,
+  cc::LightManager& self,// LightManager 实例，用于执行灯光设置操作
   const boost::python::object& py_lights,
   const boost::python::object& py_colors) {
  

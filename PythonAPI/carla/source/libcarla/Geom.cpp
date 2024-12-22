@@ -84,6 +84,8 @@ namespace geom {
 
   // 重载<<操作符，用于将GeoLocation对象输出到ostream中。
   std::ostream &operator<<(std::ostream &out, const GeoLocation &geo_location) {
+       // 格式化输出 GeoLocation 对象的经度、纬度和高度，按指定格式输出为字符串
+
         out << "GeoLocation(latitude=" << std::to_string(geo_location.latitude)
         << ", longitude=" << std::to_string(geo_location.longitude)
         << ", altitude=" << std::to_string(geo_location.altitude) << ')';
