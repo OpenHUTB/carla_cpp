@@ -55,6 +55,7 @@ if [[ ! -d "${ADRSS_SRC_DIR}" ]]; then
   grep -rl "find_package(Boost" | xargs sed -i 's/find_package(Boost/find_package(Boost 1.80/g'
   popd
  # 创建 colcon.meta 文件，定义要构建的包和参数
+ #以下这段代码看起来像是一个配置文件，用于在构建多个 C++ 项目时，为每个项目指定 CMake 参数。这些参数控制了项目的构建方式，例如是否构建 Python 绑定、是否生成位置无关代码、是否构建共享库以及是否将警告视为错误等。每个项目还可能有自己的依赖项。
   cat >"${ADRSS_COLCON_WORKSPACE}/colcon.meta" <<EOL
 {
     "names": {
@@ -78,7 +79,7 @@ if [[ ! -d "${ADRSS_SRC_DIR}" ]]; then
             "cmake-args": ["-DCMAKE_POSITION_INDEPENDENT_CODE=ON", "-DBUILD_SHARED_LIBS=OFF"]
         }
     }
-}
+} 
 
 EOL
 fi

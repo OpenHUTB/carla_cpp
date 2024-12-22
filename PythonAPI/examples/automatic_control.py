@@ -10,17 +10,17 @@
 # 导入必要的库
 from __future__ import print_function
 
-import argparse
-import collections
-import datetime
-import glob
-import logging
-import math
-import os
-import numpy.random as random
-import re
-import sys
-import weakref
+import argparse       #用于解析命令行参数
+import collections    #提供了一些扩展了基础数据结构的高级容器类型
+import datetime       #用于处理日期和时间
+import glob           #用于查找符合特定规定的文件路径名
+import logging        #用于记录程序运行时的各种信息
+import math           #用于执行各种数学计算，满足不同的数学运算需求
+import os             #提供了与操作系统交互的功能
+import numpy.random as random    #从numpy库中导入random模块，用于生成随机数，提供了多种随机数生成函数
+import re             #用于处理文本中的模式匹配
+import sys            #提供了对 Python 解释器相关操作的访问，用于添加模块搜索路径
+import weakref        #用于创建弱引用，用于避免循环引用导致的内存泄漏问题，以及实现一些特殊的对象缓存和回调机制等
 # 导入pygame库，用于创建图形界面
 try:
     import pygame
@@ -643,44 +643,52 @@ class HelpText(object):
 # -- CollisionSensor -----------------------------------------------------------
 # ==============================================================================
 
-
+#定义了一个名为CollisionSensor的类，它继承自object类，用于表示碰撞传感器
 class CollisionSensor(object):
     """ Class for collision sensors"""
-
+#在构造函数中，初始化了一些实例属性
     def __init__(self, parent_actor, hud):
         """Constructor method"""
-        self.sensor = None
-        self.history = []
-        self._parent = parent_actor
-        self.hud = hud
-        world = self._parent.get_world()
+        self.sensor = None                        #self.sensor初始化为None，用于后续存储创建的碰撞传感器对象
+        self.history = []                         #self.history初始化为一个空列表，用于记录碰撞事件的历史信息
+        self._parent = parent_actor               #self._parent存储传入的父级参与者对象
+        self.hud = hud                            #self.hud存储传入的用于显示信息的对象
+        world = self._parent.get_world()          #获取父级参与者所在的世界对象
         blueprint = world.get_blueprint_library().find('sensor.other.collision')
+        #从世界对象的蓝图库中查找名为sensor.other.collision的碰撞传感器蓝图
         self.sensor = world.spawn_actor(blueprint, carla.Transform(), attach_to=self._parent)
+        #使用该蓝图在世界中创建一个碰撞传感器对象，并将其附加到父级参与者上，创建的传感器对象存储在self.sensor中
         # We need to pass the lambda a weak reference to
         # self to avoid circular reference.
-        weak_self = weakref.ref(self)
+        weak_self = weakref.ref(self)             #创建一个对当前对象的弱引用weak_self
         self.sensor.listen(lambda event: CollisionSensor._on_collision(weak_self, event))
+        #让传感器对象监听碰撞事件，当发生碰撞时，会调用CollisionSensor._on_collision静态方法，并传递弱引用和碰撞事件对象作为参数。
 
     def get_collision_history(self):
-        """Gets the history of collisions"""
-        history = collections.defaultdict(int)
-        for frame, intensity in self.history:
-            history[frame] += intensity
-        return history
+        """Gets the history of collisions"""      #定义了一个名为get_collision_history的实例方法
+        history = collections.defaultdict(int)    #创建一个默认值为整数0的defaultdict对象history
+        for frame, intensity in self.history:     #遍历self.history列表，其中每个元素包含帧号frame和碰撞强度intensity
+            history[frame] += intensity           #将对应帧号的碰撞强度累加到history中
+        return history                            #返回统计好的碰撞历史记录history
 
     @staticmethod
     def _on_collision(weak_self, event):
         """On collision method"""
-        self = weak_self()
-        if not self:
+        self = weak_self()                        #调用weak_self()对传入的弱引用进行解引用，得到实际的self对象
+        if not self:                              #解引用后self为None，则说明对应的对象可能已被回收，直接返回
             return
         actor_type = get_actor_display_name(event.other_actor)
+        #调用get_actor_display_name函数获取与当前对象发生碰撞的另一个参与者的显示名称，并将其存储在actor_type变量中
         self.hud.notification('Collision with %r' % actor_type)
+        #通过self.hud.notification在界面上显示一条通知，告知发生了碰撞以及碰撞对象的类型
         impulse = event.normal_impulse
+        #从碰撞事件对象event中获取碰撞的法向冲量normal_impulse，并将其存储在impulse变量中
         intensity = math.sqrt(impulse.x ** 2 + impulse.y ** 2 + impulse.z ** 2)
+        #使用数学公式计算碰撞强度intensity，通过对法向冲量在x、y、z方向上的分量的平方和开平方得到
         self.history.append((event.frame, intensity))
-        if len(self.history) > 4000:
-            self.history.pop(0)
+        #将当前碰撞事件的帧号event.frame和碰撞强度intensity作为一个元组添加到self.history列表中
+        if len(self.history) > 4000:              #判断self.history列表的长度是否大于 4000
+            self.history.pop(0)                   #如果是，则删除列表中的第一个元素
 
 # ==============================================================================
 # -- LaneInvasionSensor --------------------------------------------------------

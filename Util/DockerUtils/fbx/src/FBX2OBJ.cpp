@@ -147,11 +147,11 @@ bool LoadScene(
 
 // 将场景导出到文件的函数
 bool SaveScene(
-               FbxManager* pSdkManager,
-               FbxScene* pScene,
-               const char* pFilename,
-               int pFileFormat,
-               bool pEmbedMedia
+               FbxManager* pSdkManager,//FBX管理器对象
+               FbxScene* pScene,//要保存的FBX场景
+               const char* pFilename,//保存文件的路径和文件名
+               int pFileFormat,//文件格式
+               bool pEmbedMedia//是否嵌入媒体资源
                )
 {
     bool lStatus = true;

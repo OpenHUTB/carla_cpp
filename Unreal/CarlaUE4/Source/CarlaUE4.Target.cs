@@ -37,6 +37,7 @@ public class CarlaUE4Target : TargetRules
                 UnityOn = false;
             }
         }
+        //如果UnityOn为false，即OptionalModules.ini中指定了关闭Unity构建
 
         // 如果根据配置文件判断得出需要禁用Unity构建（UnityOn为false），则执行以下配置调整操作。
         if (!UnityOn)

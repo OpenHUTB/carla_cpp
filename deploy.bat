@@ -3,6 +3,7 @@
 xcopy Doxygen %TEMP%  /q /e /r /S /Y
 
 git checkout main
+::使用git checkout命令切换到名为main的分支
 
 :: 将%TEMP%文件夹中的html文件拷贝到当前目录中
 

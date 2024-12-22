@@ -95,28 +95,64 @@ geometry_msgs::msg::PoseWithCovariance& geometry_msgs::msg::PoseWithCovariance::
 }
 
 
-bool geometry_msgs::msg::PoseWithCovariance::operator ==(
-        const PoseWithCovariance& x) const
-{
-    return (m_pose == x.m_pose && m_covariance == x.m_covariance);
-}
+bool ImuPubSubType::getKey(  
+                void* data,  
+                InstanceHandle_t* handle,  
+                bool force_md5)  
+{  
+    // 检查是否定义了键，如果没有定义获取键的相关操作，就直接返回false
+    if (!m_isGetKeyDefined) // 检查是否定义了键  
+    {  
+        return false; // 如果没有定义，返回false  
+    }  
 
-bool geometry_msgs::msg::PoseWithCovariance::operator !=(
-        const PoseWithCovariance& x) const
-{
-    return !(*this == x);
-}
+    // 将传入的void*类型的数据指针转换为Imu类型指针，以便后续能正确操作Imu类型相关的数据
+    Imu* p_type = static_cast<Imu*>(data); // 将数据指针转换为Imu类型指针  
 
-size_t geometry_msgs::msg::PoseWithCovariance::getMaxCdrSerializedSize(
-        size_t current_alignment)
-{
-    static_cast<void>(current_alignment);
-    return geometry_msgs_msg_PoseWithCovariance_max_cdr_typesize;
-}
+    // 管理原始缓冲区的对象
+    // 使用m_keyBuffer（应该是类成员缓冲区相关变量）和键的最大序列化大小来初始化FastBuffer，
+    // 这里的FastBuffer可能用于后续存储序列化数据等操作，reinterpret_cast用于进行类型的重新解释转换
+    eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),  
+            Imu::getKeyMaxCdrSerializedSize()); // 使用m_keyBuffer和键的最大序列化大小初始化FastBuffer  
 
-size_t geometry_msgs::msg::PoseWithCovariance::getCdrSerializedSize(
-        const geometry_msgs::msg::PoseWithCovariance& data,
-        size_t current_alignment)
+    // 负责序列化数据的对象
+    // 创建Cdr对象，指定使用大端序列化方式（BIG_ENDIANNESS），传入前面初始化好的FastBuffer，
+    // 这个Cdr对象后续将用于执行实际的序列化操作
+    eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS); // 创建Cdr对象，使用大端序列化  
+
+    // 调用Imu类型对象的serializeKey方法，通过传入的Cdr对象ser来对键进行序列化操作，
+    // 具体的序列化逻辑应该在Imu类的serializeKey实现中定义
+    p_type->serializeKey(ser); // 序列化键  
+
+    // 如果强制生成MD5或者键的最大序列化大小大于16，就需要进行MD5相关计算
+    if (force_md5 || Imu::getKeyMaxCdrSerializedSize() > 16)  
+    {  
+        // 初始化MD5计算相关操作，应该是准备好进行MD5哈希值计算的初始状态
+        m_md5.init(); // 初始化MD5计算  
+        // 使用已经序列化好的数据（存储在m_keyBuffer中，长度通过ser.getSerializedDataLength获取）来更新MD5计算，
+        // 也就是逐步将数据纳入MD5的计算过程中
+        m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength())); // 更新MD5  
+        // 完成MD5计算，最终确定MD5的哈希值
+        m_md5.finalize(); // 完成MD5计算  
+        
+        // 将计算得到的MD5结果（存储在m_md5.digest中）逐个字节复制到实例句柄的value数组中，
+        // 以便后续通过实例句柄来标识这个特定的Imu相关的数据，这里只取前16个字节（可能是MD5结果固定长度相关要求）
+        for (uint8_t i = 0; i < 16; ++i) // 将MD5结果存储到实例句柄中  
+        {  
+            handle->value[i] = m_md5.digest[i];  
+        }  
+    }  
+    else  
+    {  
+        // 如果不需要MD5计算，也就是不满足前面MD5计算的条件时，
+        // 直接将序列化后存储在m_keyBuffer中的键数据（前面已经序列化过了）逐个字节复制到实例句柄的value数组中
+        for (uint8_t i = 0; i < 16; ++i)  
+        {  
+            handle->value[i] = m_keyBuffer[i];  
+        }  
+    }  
+    return true; // 成功获取键，返回true  
+} 
 {
     // 保存当前的对齐位置
     size_t initial_alignment = current_alignment;
@@ -224,20 +260,29 @@ geometry_msgs::msg::geometry_msgs__PoseWithCovariance__double_array_36& geometry
 }
 
 
+// 函数用于获取PoseWithCovariance类型在CDR（Common Data Representation）序列化时键的最大尺寸。
+// 这里的参数current_alignment可能与内存对齐等相关，但在函数内部目前只是做了类型转换，没实际使用它来参与计算。
+// 返回值是geometry_msgs_msg_PoseWithCovariance_max_key_cdr_typesize，应该是预定义好的表示最大序列化键尺寸的常量。
 size_t geometry_msgs::msg::PoseWithCovariance::getKeyMaxCdrSerializedSize(
         size_t current_alignment)
 {
+    // 将current_alignment参数进行类型转换，但不做实际操作，目的可能是为了消除编译器对于未使用参数的警告。
     static_cast<void>(current_alignment);
     return geometry_msgs_msg_PoseWithCovariance_max_key_cdr_typesize;
 }
 
+// 函数用于判断PoseWithCovariance类型是否定义了键，目前直接返回false，表示没有定义键。
 bool geometry_msgs::msg::PoseWithCovariance::isKeyDefined()
 {
     return false;
 }
 
+// 函数用于对PoseWithCovariance类型的键进行序列化操作，传入的参数scdr是一个Cdr对象，用于执行具体的序列化任务。
+// 不过在当前函数实现中，只是将传入的scdr参数做了类型转换（void转换），并没有实际进行有效的序列化逻辑，
+// 可能需要后续进一步完善该函数内部的实现来真正执行键的序列化工作。
 void geometry_msgs::msg::PoseWithCovariance::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
+    // 将传入的scdr参数进行类型转换（转换为void类型，相当于忽略它），这里可能是由于暂时还没编写具体序列化逻辑导致的。
     (void) scdr;
 }
