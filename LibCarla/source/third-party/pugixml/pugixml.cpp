@@ -730,13 +730,13 @@ PUGI__NS_BEGIN
 				}
 			}
 		}
-
+                // allocate_string函数用于分配一段内存空间
 		char_t* allocate_string(size_t length)
-		{
+		{        // 定义一个静态常量，表示最大编码偏移量。
 			static const size_t max_encoded_offset = (1 << 16) * xml_memory_block_alignment;
-
+                         // 这是一种在编译期间进行条件检查的方式，
 			PUGI__STATIC_ASSERT(xml_memory_page_size <= max_encoded_offset);
-
+                         // 计算为存储字符串以及相关头部信息（可能用于管理字符串内存块的一些元数据）所需分配的内存大小。
 			// allocate memory for string and header block
 			size_t size = sizeof(xml_memory_string_header) + length * sizeof(char_t);
 
@@ -768,16 +768,22 @@ PUGI__NS_BEGIN
 		void deallocate_string(char_t* string)
 		{
 			// this function casts pointers through void* to avoid 'cast increases required alignment of target type' warnings
+			 // 此函数通过将指针转换为 void* 类型来避免出现“cast increases required alignment of target type”这样的警告
 			// we're guaranteed the proper (pointer-sized) alignment on the input string if it was allocated via allocate_string
-
+                        // 前提是如果输入的字符串是通过 allocate_string 函数分配的，那么我们能保证输入字符串具有合适的（指针大小的）对齐方式
 			// get header
+			// 将传入的字符串指针先转换为 void* 类型，再将其转换回 xml_memory_string_header* 类型，并向前偏移一个单位（减1操作），目的是获取指向该字符串头部信息的指针。
+			// 这里假设内存布局中字符串头部信息就在字符串实际数据的前面，通过这样的指针运算来获取相关管理信息。
 			xml_memory_string_header* header = static_cast<xml_memory_string_header*>(static_cast<void*>(string)) - 1;
 			assert(header);
 
 			// deallocate
+			// 计算此字符串所在内存页内的偏移量。先加上 xml_memory_page 结构体的大小，再根据字符串头部记录的页内偏移量（乘以每个内存块的对齐大小）来确定其在内存页中的准确偏移位置。
+                        // 这样后续就能通过这个偏移量找到对应的内存页。
 			size_t page_offset = sizeof(xml_memory_page) + header->page_offset * xml_memory_block_alignment;
+			// 通过先将 header 指针转换为 char* 类型（方便进行字节级别的偏移计算），减去前面计算得到的页偏移量，再转换回 xml_memory_page* 类型，从而得到该字符串所在的内存页指针。
 			xml_memory_page* page = reinterpret_cast<xml_memory_page*>(static_cast<void*>(reinterpret_cast<char*>(header) - page_offset));
-
+			// 如果 full_size 等于 0，说明这个字符串占据了整个内存页，否则按照头部记录的实际大小（乘以内存块对齐大小，可能涉及到内存对齐相关的换算）来确定字符串实际占用的内存大小。
 			// if full_size == 0 then this string occupies the whole page
 			size_t full_size = header->full_size == 0 ? page->busy_size : header->full_size * xml_memory_block_alignment;
 
@@ -943,9 +949,13 @@ PUGI__NS_BEGIN
 			if (value)
 			{
 				// value is guaranteed to be compact-aligned; 'this' is not
+				// value变量是被确保按照紧凑对齐（compact-aligned）方式进行对齐的；而“this”指针所指向的对象却并非如此。
 				// our decoding is based on 'this' aligned to compact alignment downwards (see operator T*)
+				// 这里所说的紧凑对齐应该是一种特定的内存对齐要求，意味着value的内存地址满足相应的对齐规则，便于后续某些操作（比如数据的读取、处理等）更高效地进行，而“this”指向的对象不符合该对齐规则。
 				// so for negative offsets (e.g. -3) we need to adjust the diff by compact_alignment - 1 to
+				// 我们的解码操作是基于将“this”指针按照紧凑对齐方式向下对齐来进行的（可以参考 operator T* 相关部分，推测那里可能定义了具体的对齐操作或者转换逻辑）。
 				// compensate for arithmetic shift rounding for negative values
+				// 所以，当遇到负的偏移量（例如 -3）时，我们需要通过将偏移量的差值（diff）调整为 compact_alignment - 1。
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) - start;
 				// 如果计算出的偏移量（经过调整并转换为无符号后）小于等于253，

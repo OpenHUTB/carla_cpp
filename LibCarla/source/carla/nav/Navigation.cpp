@@ -284,27 +284,28 @@ namespace nav {
   }
 
   // 返回从一个位置到另一个位置的路径点
-  bool Navigation::GetPath(carla::geom::Location from,
-                           carla::geom::Location to,
-                           dtQueryFilter * filter,
-                           std::vector<carla::geom::Location> &path,
-                           std::vector<unsigned char> &area) {
+  bool Navigation::GetPath(carla::geom::Location from, // 起始位置
+                           carla::geom::Location to,   // 目标位置
+                           dtQueryFilter * filter,    // 用于路径查询的过滤器，可以筛选路径通过的区域类型
+                           std::vector<carla::geom::Location> &path, // 用于存储计算出的路径点的向量
+                           std::vector<unsigned char> &area) {  // 用于存储路径点所属区域类型的向量
     // 找到路径
     float straight_path[MAX_POLYS * 3];
     unsigned char straight_path_flags[MAX_POLYS];
     dtPolyRef straight_path_polys[MAX_POLYS];
-    int num_straight_path;
-    int straight_path_options = DT_STRAIGHTPATH_AREA_CROSSINGS;
+    int num_straight_path;   // 直线路径中的点数量
+    int straight_path_options = DT_STRAIGHTPATH_AREA_CROSSINGS;  // 直线路径查询的选项
 
     // 路径中的多边形
     dtPolyRef polys[MAX_POLYS];
-    int num_polys;
+    int num_polys; // 路径中的多边形数量
 
     // 检查是否一切就绪
     if (!_ready) {
       return false;
     }
 
+     // 确保导航查询对象不为空
     DEBUG_ASSERT(_nav_query != nullptr);
 
     // 点的延伸
@@ -316,17 +317,17 @@ namespace nav {
     // 筛选
     dtQueryFilter filter2;
     if (filter == nullptr) {
-      filter2.setAreaCost(CARLA_AREA_ROAD, AREA_ROAD_COST);
-      filter2.setAreaCost(CARLA_AREA_GRASS, AREA_GRASS_COST);
-      filter2.setIncludeFlags(CARLA_TYPE_WALKABLE);
-      filter2.setExcludeFlags(CARLA_TYPE_NONE);
-      filter = &filter2;
+      filter2.setAreaCost(CARLA_AREA_ROAD, AREA_ROAD_COST); // 设置道路区域的成本
+      filter2.setAreaCost(CARLA_AREA_GRASS, AREA_GRASS_COST); // 设置草地区域的成本
+      filter2.setIncludeFlags(CARLA_TYPE_WALKABLE);  // 设置包含的标志（可通行区域）
+      filter2.setExcludeFlags(CARLA_TYPE_NONE);    // 设置排除的标志（无不可通行区域）
+      filter = &filter2;   // 使用默认过滤器
     }
 
     // 设置点
     dtPolyRef start_ref = 0;
     dtPolyRef end_ref = 0;
-    float start_pos[3] = { from.x, from.z, from.y };
+    float start_pos[3] = { from.x, from.z, from.y };  // 转换为Detour库的坐标顺序（x, z, y）
     float end_pos[3] = { to.x, to.z, to.y };
     {
       // 关键部分，强制单线程运行这里
@@ -334,6 +335,7 @@ namespace nav {
       _nav_query->findNearestPoly(start_pos, poly_pick_ext, filter, &start_ref, 0);
       _nav_query->findNearestPoly(end_pos, poly_pick_ext, filter, &end_ref, 0);
     }
+    // 如果未找到起始或目标多边形，则返回失败
     if (!start_ref || !end_ref) {
       return false;
     }
@@ -380,12 +382,12 @@ namespace nav {
       {
         // 关键部分，强制单线程运行这里
         std::lock_guard<std::mutex> lock(_mutex);
-        _nav_mesh->getPolyArea(straight_path_polys[j], &area_type);
+        _nav_mesh->getPolyArea(straight_path_polys[j], &area_type);// 获取路径点所属的多边形的区域类型
       }
       area.emplace_back(area_type);
     }
 
-    return true;
+    return true;// 成功找到路径
   }
 
   bool Navigation::GetAgentRoute(ActorId id, carla::geom::Location from, carla::geom::Location to,
@@ -416,22 +418,28 @@ namespace nav {
     if (it == _mapped_walkers_id.end())
       return false;
 
+    
+// 定义一个指向查询过滤器的指针，用于后续的路径查询。
     const dtQueryFilter *filter;
     {
       // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
+       // 根据代理的参数获取对应的过滤器。
       filter = _crowd->getFilter(_crowd->getAgent(it->second)->params.queryFilterType);
     }
 
     // 设置点
     dtPolyRef start_ref = 0;
     dtPolyRef end_ref = 0;
+    // 定义起点和终点的位置数组，注意这里z和y的顺序被交换了，这取决于导航网格的坐标系
     float start_pos[3] = { from.x, from.z, from.y };
     float end_pos[3] = { to.x, to.z, to.y };
     {
       // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
+      // 查询离起点最近的多边形。
       _nav_query->findNearestPoly(start_pos, poly_pick_ext, filter, &start_ref, 0);
+       // 查询离终点最近的多边形。
       _nav_query->findNearestPoly(end_pos, poly_pick_ext, filter, &end_ref, 0);
     }
     if (!start_ref || !end_ref) {
@@ -442,6 +450,7 @@ namespace nav {
     {
       // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
+      // 使用导航查询对象查询路径。
       _nav_query->findPath(start_ref, end_ref, start_pos, end_pos, filter, polys, &num_polys, MAX_POLYS);
     }
 
@@ -452,17 +461,20 @@ namespace nav {
 
     // 如果是部分路径，请确保终点与最后一个多边形相接
     float end_pos2[3];
-    dtVcopy(end_pos2, end_pos);
+    dtVcopy(end_pos2, end_pos);  // 先复制终点位置
     if (polys[num_polys - 1] != end_ref) {
       // 关键部分，强制单线程运行这里
       std::lock_guard<std::mutex> lock(_mutex);
+      // 在最后一个多边形上找到最接近终点的点
       _nav_query->closestPointOnPoly(polys[num_polys - 1], end_pos, end_pos2, 0);
     }
 
     // 获取点
     {
       // 关键部分，强制单线程运行这里
+       // 锁定互斥锁，确保直线路径查询是单线程执行的。
       std::lock_guard<std::mutex> lock(_mutex);
+      // 使用导航查询对象获取直线路径。
       _nav_query->findStraightPath(start_pos, end_pos2, polys, num_polys,
       straight_path, straight_path_flags,
       straight_path_polys, &num_straight_path, MAX_POLYS, straight_path_options);
