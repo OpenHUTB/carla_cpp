@@ -133,13 +133,32 @@ def tutorial(args):
             attach_to=vehicle)
 
         # 构建K投影矩阵：
-        # K = [[Fx,  0, image_w/2],
-        #      [ 0, Fy, image_h/2],
-        #      [ 0,  0,         1]]
-        image_w = camera_bp.get_attribute("image_size_x").as_int()
-        image_h = camera_bp.get_attribute("image_size_y").as_int()
-        fov = camera_bp.get_attribute("fov").as_float()
-        focal = image_w / (2.0 * np.tan(fov * np.pi / 360.0))
+        # 这里定义了一个内参矩阵 K 的形式（虽然只是以注释形式展示了结构，实际可能后续需要根据变量值构建矩阵），内参矩阵在计算机视觉中用于将相机坐标系下的点投影到图像平面上，
+# 它包含了相机的焦距等信息，通常是一个 3x3 的矩阵。
+# 其中 Fx 和 Fy 一般表示相机在 x 和 y 方向上的焦距（这里暂时以变量形式表示，后续应该会被赋予具体的值），
+# image_w/2 和 image_h/2 分别对应图像中心点在 x 和 y 方向上的坐标，以像素为单位，用于将相机坐标系原点与图像平面中心对齐。
+# 第三行 [ 0,  0,         1] 是内参矩阵的固定形式部分，用于齐次坐标的计算等相关操作，保证投影计算的正确性。
+# K = [[Fx,  0, image_w/2],
+#      [ 0, Fy, image_h/2],
+#      [ 0,  0,         1]]
+
+# 获取相机蓝图（camera_bp）中图像宽度属性（"image_size_x"）的值，并将其转换为整数类型，赋值给 image_w 变量，
+# 这个值表示相机拍摄的图像在水平方向上包含的像素数量，后续可用于与相机参数相关的计算等操作。
+image_w = camera_bp.get_attribute("image_size_x").as_int()
+
+# 与获取图像宽度类似，获取相机蓝图中图像高度属性（"image_size_y"）的值，转换为整数类型后赋值给 image_h 变量，
+# 它代表相机拍摄图像在垂直方向上的像素数量，同样在相机相关参数计算等场景中会被用到。
+image_h = camera_bp.get_attribute("image_size_y").as_int()
+
+# 获取相机蓝图中视场角（"fov"）属性的值，并转换为浮点数类型，赋值给 fov 变量，
+# 视场角表示相机能够拍摄到的范围角度，是相机的一个重要参数，通常单位是度（°），在后续计算焦距等相关操作中会作为输入参数。
+fov = camera_bp.get_attribute("fov").as_float()
+
+# 根据相机的视场角（fov）以及已经获取到的图像宽度（image_w）来计算相机在水平方向上的焦距（focal）。
+# 计算公式基于三角函数关系推导而来，首先将视场角从度转换为弧度（乘以 np.pi / 360.0），然后利用正切函数关系，
+# 由于水平方向上焦距与图像宽度及视场角有这样的数学关系：focal * 2 * tan(fov/2) = image_w（这里的 fov 需为弧度制），
+# 经过变形就得到了此处的计算式，计算得到的 focal 值将用于相机内参相关的计算或者其他涉及相机投影等操作中，它表示相机镜头的焦距特性。
+focal = image_w / (2.0 * np.tan(fov * np.pi / 360.0))
 
         # 在这种情况下，Fx和Fy是相同的，因为像素宽高比是1
 
