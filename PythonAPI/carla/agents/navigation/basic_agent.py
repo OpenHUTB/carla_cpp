@@ -179,7 +179,7 @@ class BasicAgent:
         return self._global_planner
 
     def set_destination(self, end_location, start_location=None, clean_queue=True):
-        # type: (carla.Location, carla.Location | None, bool) -> None
+        # type: (carla.Location, carla.Location | None, bool) -> None：#这是一个类型提示，表明函数接受的参数类型和返回类型。这里carla.Location是一个位置对象， 
         """
         This method creates a list of waypoints between a starting and ending location,
         based on the route returned by the global router, and adds it to the local planner.
@@ -188,23 +188,21 @@ class BasicAgent:
         in front of the vehicle.
         If `clean_queue` is False the newly planned route will be appended to the current route.
 
-            :param end_location (carla.Location): final location of the route
-            :param start_location (carla.Location): starting location of the route
-            :param clean_queue (bool): Whether to clear or append to the currently planned route
+            :param end_location (carla.Location): final location of the route#说明它是一个 carla.Location类型，代表路线的终点。
+            :param start_location (carla.Location): starting location of the route#说明它是一个carla.Location类型，代表路线的起点
+            :param clean_queue (bool): Whether to clear or append to the currently planned route#说明它是一个布尔值，用于决定是清除当前规划的路线还是将新路线追加到现有路线。
         """
-        if not start_location:
+        if not start_location:#这行代码检查是否没有提供起点位置。
             if clean_queue and self._local_planner.target_waypoint:
-                # Plan from the waypoint in front of the vehicle onwards
-                start_location = self._local_planner.target_waypoint.transform.location
+                # Plan from the waypoint in front of the vehicle onwards#这是一条注释，说明接下来的代码将从车辆前方的路径点开始规划路线。
+                start_location = self._local_planner.target_waypoint.transform.location#这行代码将起点位置设置为路径点队列中最后一个路径点的位置。
             elif not clean_queue and self._local_planner._waypoints_queue:
                 # Append to the current plan
                 start_location = self._local_planner._waypoints_queue[-1][0].transform.location
             else:
-                # no target_waypoint or _waypoints_queue empty, use vehicle location
-                start_location = self._vehicle.get_location()
-        start_waypoint = self._map.get_waypoint(start_location)
-        end_waypoint = self._map.get_waypoint(end_location)
-
+                # no target_waypoint or _waypoints_queue empty, use vehicle location#这是一条注释，说明如果没有目标路径点或路径点队列为空，将使用车辆的当前位置作为起点
+                start_location = self._vehicle.get_location()#这行代码将起点位置设置为车辆的当前位置。
+        start_waypoint = self._map.get_waypoint(start_location)#这行代码获取起点位置对应的路径点（  waypoint  ），这通常用于自动驾驶模拟中，以便规划从起点到终点的路线。
         route_trace = self.trace_route(start_waypoint, end_waypoint)
         self._local_planner.set_global_plan(route_trace, clean_queue=clean_queue)
 
@@ -233,14 +231,14 @@ class BasicAgent:
         end_location = end_waypoint.transform.location
         return self._global_planner.trace_route(start_location, end_location)
 
-    def run_step(self):
+    def run_step(self):#run_step#方法的定义，它是一个实例方法，属于某个类。
         """Execute one step of navigation."""
-        hazard_detected = False
+        hazard_detected = False#用于标记在导航过程中是否检测到危险。
 
         # Retrieve all relevant actors
         vehicle_list = self._world.get_actors().filter("*vehicle*")
 
-        vehicle_speed = get_speed(self._vehicle) / 3.6
+        vehicle_speed = get_speed(self._vehicle) / 3.6#这行代码调用get_speed函数来获取当前车辆的速度
 
         # Check for possible vehicle obstacles
         max_vehicle_distance = self._base_vehicle_threshold + self._speed_ratio * vehicle_speed
@@ -455,12 +453,13 @@ class BasicAgent:
 
         # Get the route bounding box
         route_polygon = get_route_polygon()
-
+#循环遍历车辆列表
         for target_vehicle in vehicle_list:
             if target_vehicle.id == self._vehicle.id:
                 continue
-
+#获取目标车辆的位置信息
             target_transform = target_vehicle.get_transform()
+            #距离检查
             if target_transform.location.distance(ego_location) > max_distance:
                 continue
 

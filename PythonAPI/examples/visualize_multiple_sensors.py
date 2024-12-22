@@ -105,33 +105,33 @@ class DisplayManager:
     def render_enabled(self):
         return self.display != None # 如果display对象不为空，则渲染被允许
 
-class SensorManager:
-    def __init__(self, world, display_man, sensor_type, transform, attached, sensor_options, display_pos):
+class SensorManager:#定义了一个名为  SensorManager  的类。
+    def __init__(self, world, display_man, sensor_type, transform, attached, sensor_options, display_pos):#这是类的构造函数，用于初始化对象。它接受以下参数
         self.surface = None
-        self.world = world
-        self.display_man = display_man
+        self.world = world#仿真世界的对象。
+        self.display_man = display_man#管理显示的对象
         self.display_pos = display_pos
-        self.sensor = self.init_sensor(sensor_type, transform, attached, sensor_options)
+        self.sensor = self.init_sensor(sensor_type, transform, attached, sensor_options)#调用  init_sensor  方法初始化传感器，并将其赋值给实例变量。
         self.sensor_options = sensor_options
         self.timer = CustomTimer()
 
         self.time_processing = 0.0
         self.tics_processing = 0
 
-        self.display_man.add_sensor(self)
+        self.display_man.add_sensor(self)#将传感器添加到显示管理器中
 
-    def init_sensor(self, sensor_type, transform, attached, sensor_options):
+    def init_sensor(self, sensor_type, transform, attached, sensor_options):#这是  init_sensor  方法的定义，它接受传感器类型、变换（位置和方向）、附着对象和传感器选项作为参数。
         if sensor_type == 'RGBCamera':
-            camera_bp = self.world.get_blueprint_library().find('sensor.camera.rgb')
-            disp_size = self.display_man.get_display_size()
-            camera_bp.set_attribute('image_size_x', str(disp_size[0]))
-            camera_bp.set_attribute('image_size_y', str(disp_size[1]))
+            camera_bp = self.world.get_blueprint_library().find('sensor.camera.rgb')#如果传感器类型是  RGBCamera  ，这行代码从仿真世界的蓝图库中找到RGB相机的蓝图
+            disp_size = self.display_man.get_display_size()#获取显示管理器的显示大小，这通常用于设置相机捕获图像的分辨率。
+            camera_bp.set_attribute('image_size_x', str(disp_size[0]))#设置相机蓝图的  image_size_x  属性，即图像的宽度
+            camera_bp.set_attribute('image_size_y', str(disp_size[1]))#设置相机蓝图的  image_size_x  属性，即图像的宽度
 
             for key in sensor_options:
-                camera_bp.set_attribute(key, sensor_options[key])
+                camera_bp.set_attribute(key, sensor_options[key])#为相机蓝图设置额外的属性，这些属性由  sensor_options  字典提供。
 
-            camera = self.world.spawn_actor(camera_bp, transform, attach_to=attached)
-            camera.listen(self.save_rgb_image)
+            camera = self.world.spawn_actor(camera_bp, transform, attach_to=attached)#在仿真世界中生成（spawn）一个相机 actor，使用之前设置的蓝图、变换和附着对象。
+            camera.listen(self.save_rgb_image)#设置相机监听器，当相机捕获到图像时，会调用  self.save_rgb_image 方法来保存图像。
 
             return camera
 
@@ -181,19 +181,31 @@ class SensorManager:
         return self.sensor
 
     def save_rgb_image(self, image):
+        # 记录处理图像前的时间
         t_start = self.timer.time()
 
+        # 将图像数据从CARLA特定的格式转换为原始数据格式
         image.convert(carla.ColorConverter.Raw)
+        # 从图像的原始数据缓冲区创建一个numpy数组，数据类型为无符号8位整数
         array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
+        # 将数组重塑为图像的高度、宽度和4个颜色通道（RGBA）的形状
         array = np.reshape(array, (image.height, image.width, 4))
+        # 由于我们只需要RGB格式，所以移除Alpha通道（透明度）
         array = array[:, :, :3]
+        # 将BGR格式转换为RGB格式，因为从CARLA得到的图像通常是BGR格式的
         array = array[:, :, ::-1]
 
+        # 如果显示管理器启用了渲染功能
         if self.display_man.render_enabled():
+            # 使用pygame的surfarray模块将numpy数组转换为pygame表面，用于显示
+            # 注意：这里交换了数组的行和列，因为pygame期望的格式是（宽度，高度）
             self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
 
+        # 记录处理图像后的时间
         t_end = self.timer.time()
+        # 累加处理图像所花费的总时间
         self.time_processing += (t_end-t_start)
+        # 累加处理图像的次数
         self.tics_processing += 1
 
     def save_lidar_image(self, image):

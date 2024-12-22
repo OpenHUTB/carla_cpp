@@ -1,6 +1,25 @@
+//这个配置节标题可能表示对消息相关的控制设置，比如消息格式、长度等方面的限定，
+//以下配置项应该是针对消息控制的具体参数。
 [MESSAGES CONTROL]
-max-line-length=120
+
+//设置消息每行的最大长度为120个字符，可能用于规范输出消息或者输入消息的格式，
+//避免过长的单行消息影响可读性或者在某些处理流程中超出限制等情况。
+max-line-length=120 
+
+// 这个配置节标题 "MASTER" 可能表示主配置相关的部分，通常用于设定一些全局性的、主要的规则或者禁用项等。
 [MASTER]
+
+//这里指定要禁用的一些消息或检查项的编号（推测是代码检查工具等相关的报错、警告等消息编号），
+//比如 I0011、I0013 等可能是不同类型的提示信息（也许是信息级别消息，不影响功能但提供相关情况说明），
+//E1121、E1126 可能是错误类型的消息，通过设置 disable 来让对应工具在运行时不显示这些特定编号的消息，
+//可以根据实际需求来决定哪些消息不需要展示，以减少干扰或者聚焦于特定要关注的问题。
 disable=I0011,I0013,E1121,E1126
+
+//配置节标题 "TYPECHECK" 大概率与类型检查相关，可能是在代码分析、编译等过程中对类型检查功能进行配置。
 [TYPECHECK]
+
+//在类型检查时要忽略的模块列表，这里列举了很多模块名，像 "carla"、"carla.command" 等，
+//意味着在进行类型检查操作时，不会对这些模块内的代码进行严格的类型相关检查，
+//可能是因为这些模块存在一些特殊情况（比如是外部库、有复杂的动态类型使用情况等），
+//暂时跳过对它们的类型检查可以避免一些不必要的误报或者加快整体检查的速度等。
 ignored-modules=carla,carla.command,libcarla,pygame,numpy,configparser,ConfigParser,libad_rss_python2,libad_rss_python3,libad_map_access_python2,libad_map_access_python3,libad_rss_map_integration_python2,libad_rss_map_integration_python3

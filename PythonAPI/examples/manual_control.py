@@ -763,33 +763,49 @@ class KeyboardControl(object):
 # ==============================================================================
 
 
-class HUD(object):
+class HUD(object):                       #定义了一个名为HUD的类，它继承自object类
     def __init__(self, width, height):
+    #构造函数，用于初始化对象的属性，接受width和height两个参数，分别表示显示区域的宽度和高度
         self.dim = (width, height)
+        #将传入的宽度和高度参数组合成一个元组，存储在self.dim属性中，用于表示显示区域的尺寸
         font = pygame.font.Font(pygame.font.get_default_font(), 20)
+        #使用pygame.font.Font()函数创建一个字体对象，该字体使用默认字体，字号为 20
         font_name = 'courier' if os.name == 'nt' else 'mono'
+        #根据操作系统类型选择字体名称
         fonts = [x for x in pygame.font.get_fonts() if font_name in x]
+        #从pygame可用的字体列表中筛选出包含所选字体名称的字体
         default_font = 'ubuntumono'
+        #设置默认字体为ubuntumono
         mono = default_font if default_font in fonts else fonts[0]
+        #如果该字体在筛选后的字体列表中，则使用它，否则使用列表中的第一个字体。
         mono = pygame.font.match_font(mono)
+        #通过pygame.font.match_font()函数查找与所选字体名称匹配的实际字体文件路径
         self._font_mono = pygame.font.Font(mono, 12 if os.name == 'nt' else 14)
+        #用该路径创建一个字号为 12（Windows 系统）或 14（其他系统）的字体对象，存储在self._font_mono属性中
         self._notifications = FadingText(font, (width, 40), (0, height - 40))
+        #创建一个FadingText类的实例，传入之前创建的默认字体、一个宽度为width、高度为 40 的尺寸元组以及一个位于显示区域底部左侧的位置元组作为参数
         self.help = HelpText(pygame.font.Font(mono, 16), width, height)
-        self.server_fps = 0
-        self.frame = 0
-        self.simulation_time = 0
-        self._show_info = True
-        self._info_text = []
+        #创建一个HelpText类的实例，传入字号为 16 的所选字体对象以及显示区域的宽度和高度
+
+        self.server_fps = 0        #用于存储服务器的帧率，初始化为 0
+        self.frame = 0             #用于记录当前帧的编号，初始化为 0
+        self.simulation_time = 0   #用于记录模拟时间，初始化为 0
+        self._show_info = True     #用于控制是否显示信息，初始化为True
+        self._info_text = []       #初始化为一个空列表，用于存储要显示的信息文本
         self._server_clock = pygame.time.Clock()
+        #创建一个pygame.time.Clock()对象，用于控制服务器端的时间，可用于控制帧率、计时等操作
 
-        self._show_ackermann_info = False
+        self._show_ackermann_info = False  #用于控制是否显示阿克曼转向信息，初始化为False
         self._ackermann_control = carla.VehicleAckermannControl()
+        #用于存储和控制车辆的阿克曼转向相关信息 
 
-    def on_world_tick(self, timestamp):
-        self._server_clock.tick()
+    def on_world_tick(self, timestamp):    #定义了一个名为on_world_tick的实例方法，用于获取当前世界的时间戳等信息
+        self._server_clock.tick()          #调用self._server_clock的tick方法
         self.server_fps = self._server_clock.get_fps()
-        self.frame = timestamp.frame
+        #通过self._server_clock的get_fps方法获取服务器的帧率，并将其赋值给self.server_fps属性
+        self.frame = timestamp.frame       #将传入的时间戳中的frame属性赋值给self.frame，用于更新当前的帧编号
         self.simulation_time = timestamp.elapsed_seconds
+        #将传入的时间戳中的elapsed_seconds属性赋值给self.simulation_time
 
     def tick(self, world, clock):
         self._notifications.tick(world, clock)

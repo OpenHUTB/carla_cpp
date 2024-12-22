@@ -4,39 +4,37 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "CarlaActor.h"
+#include "CarlaActor.h" // 包含CARLA中Actor类的头文件
+#include "Carla/OpenDrive/OpenDrive.h" // 包含OpenDrive地图解析器的头文件
+#include "Carla/Util/NavigationMesh.h" // 包含导航网格的头文件
+#include "Carla/Vehicle/CarlaWheeledVehicle.h" // 包含CARLA中轮式车辆的头文件
+#include "Carla/Walker/WalkerController.h" // 包含行人控制器的头文件
+#include "Carla/Walker/WalkerBase.h" // 包含行人基础类的头文件
+#include "GameFramework/CharacterMovementComponent.h" // 包含角色移动组件的头文件
+#include "Carla/Game/Tagger.h" // 包含标签器的头文件
+#include "Carla/Vehicle/MovementComponents/CarSimManagerComponent.h" // 包含CarSim管理组件的头文件
+#include "Carla/Vehicle/MovementComponents/ChronoMovementComponent.h" // 包含Chrono物理组件的头文件
+#include "Carla/Traffic/TrafficLightBase.h" // 包含交通灯基础类的头文件
+#include "Carla/Game/CarlaStatics.h" // 包含CARLA静态数据的头文件
+#include "Components/CapsuleComponent.h" // 包含胶囊组件的头文件
 
-#include "Carla/OpenDrive/OpenDrive.h"
-#include "Carla/Util/NavigationMesh.h"
-#include "Carla/Vehicle/CarlaWheeledVehicle.h"
-#include "Carla/Walker/WalkerController.h"
-#include "Carla/Walker/WalkerBase.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "Carla/Game/Tagger.h"
-#include "Carla/Vehicle/MovementComponents/CarSimManagerComponent.h"
-#include "Carla/Vehicle/MovementComponents/ChronoMovementComponent.h"
-#include "Carla/Traffic/TrafficLightBase.h"
-#include "Carla/Game/CarlaStatics.h"
-#include "Components/CapsuleComponent.h"
-
-#include <compiler/disable-ue4-macros.h>
-#include <carla/rpc/AckermannControllerSettings.h>
-#include "carla/rpc/LabelledPoint.h"
-#include <carla/rpc/LightState.h>
-#include <carla/rpc/MapInfo.h>
-#include <carla/rpc/MapLayer.h>
-#include <carla/rpc/VehicleAckermannControl.h>
-#include <carla/rpc/VehicleControl.h>
-#include <carla/rpc/VehiclePhysicsControl.h>
-#include <carla/rpc/VehicleLightState.h>
-#include <carla/rpc/VehicleLightStateList.h>
-#include <carla/rpc/WalkerBoneControlIn.h>
-#include <carla/rpc/WalkerBoneControlOut.h>
-#include <carla/rpc/WalkerControl.h>
-#include <carla/rpc/VehicleWheels.h>
-#include <carla/rpc/WeatherParameters.h>
-#include <compiler/enable-ue4-macros.h>
-
+#include <compiler/disable-ue4-macros.h> // 禁用UE4宏，防止与carla库的宏冲突
+#include <carla/rpc/AckermannControllerSettings.h> // 包含Ackermann控制器设置的RPC结构
+#include "carla/rpc/LabelledPoint.h" // 包含标记点的RPC结构
+#include <carla/rpc/LightState.h> // 包含灯光状态的RPC结构
+#include <carla/rpc/MapInfo.h> // 包含地图信息的RPC结构
+#include <carla/rpc/MapLayer.h> // 包含地图层的RPC结构
+#include <carla/rpc/VehicleAckermannControl.h> // 包含Ackermann控制的RPC结构
+#include <carla/rpc/VehicleControl.h> // 包含车辆控制的RPC结构
+#include <carla/rpc/VehiclePhysicsControl.h> // 包含车辆物理控制的RPC结构
+#include <carla/rpc/VehicleLightState.h> // 包含车辆灯光状态的RPC结构
+#include <carla/rpc/VehicleLightStateList.h> // 包含车辆灯光状态列表的RPC结构
+#include <carla/rpc/WalkerBoneControlIn.h> // 包含行人骨骼控制输入的RPC结构
+#include <carla/rpc/WalkerBoneControlOut.h> // 包含行人骨骼控制输出的RPC结构
+#include <carla/rpc/WalkerControl.h> // 包含行人控制的RPC结构
+#include <carla/rpc/VehicleWheels.h> // 包含车辆轮子信息的RPC结构
+#include <carla/rpc/WeatherParameters.h> // 包含天气参数的RPC结构
+#include <compiler/enable-ue4-macros.h> // 启用UE4宏
 
 // FCarlaActor类的构造函数
 FCarlaActor::FCarlaActor(
@@ -53,6 +51,7 @@ FCarlaActor::FCarlaActor(
 {
     // 构造函数体内为空，初始化列表已经完成了所有成员变量的初始化
 }
+
 // FVehicleActor类的构造函数
 FVehicleActor::FVehicleActor(
     IdType ActorId,
@@ -65,10 +64,19 @@ FVehicleActor::FVehicleActor(
   Type = ActorType::Vehicle; // 设置Actor类型为车辆
   ActorData = MakeShared<FVehicleData>();  // 创建车辆数据的共享指针
 }
+
 // FSensorActor类的构造函数
 FSensorActor::FSensorActor(
     IdType ActorId,
     AActor* Actor,
+    TSharedPtr<const FActorInfo> Info,
+    carla::rpc::ActorState InState,
+    UWorld* World)
+    : FCarlaActor(ActorId, Actor, Info, InState, World) // 调用基类构造函数
+{
+  // FSensorActor构造函数实现
+}
+
     TSharedPtr<const FActorInfo> Info,
     carla::rpc::ActorState InState,
     UWorld* World)

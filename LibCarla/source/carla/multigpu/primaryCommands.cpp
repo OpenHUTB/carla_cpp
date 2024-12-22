@@ -134,18 +134,22 @@ void PrimaryCommands::SendDisableForROS(stream_id sensor_id) {
 // 如果没找到对应的服务器，记录错误日志，并返回false表示未找到该传感器对应的服务器，默认当作未启用
 bool PrimaryCommands::SendIsEnabledForROS(stream_id sensor_id) {
   // 搜索传感器是否已在任何辅助服务器中激活
-  auto it = _servers.find(sensor_id);
-  if (it!= _servers.end()) {
+  auto it = _servers.find(sensor_id);// 在_servers中查找传感器sensor_id对应的服务器
+  if (it!= _servers.end()) { // 如果找到了对应的服务器
+    //创建缓冲区并通过路由器向服务器发送命令
     carla::Buffer buf((carla::Buffer::value_type *) &sensor_id,
                       (size_t) sizeof(stream_id));
+    // 调用WriteToOne方法，发送IS_ENABLED_ROS命令到找到的服务器
     auto fut = _router->WriteToOne(it->second, MultiGPUCommand::IS_ENABLED_ROS, std::move(buf));
-
-    auto response = fut.get();
+    //  等待异步操作完成，获取服务器的响应
+    auto response = fut.get();// 等待命令执行完成并获取响应
+    // 解析响应数据，获取布尔值结果（是否启用ROS功能）
     bool res = (*reinterpret_cast<bool *>(response.buffer.data()));
-    return res;
+    return res; // 返回是否启用了ROS功能
   } else {
+     // 如果没有找到对应的服务器，记录错误日志并返回false
     log_error("is_enabled_for_ros for sensor", sensor_id, " not found on any server");
-    return false;
+    return false; // 默认认为该传感器没有启用ROS功能
   }
 }
 
@@ -162,16 +166,20 @@ token_type PrimaryCommands::GetToken(stream_id sensor_id) {
   if (it!= _tokens.end()) {
     // 返回已经激活的传感器令牌
     log_debug("Using token from already activated sensor: ", it->second.get_stream_id(), ", ", it->second.get_port());
-    return it->second;
+    return it->second; // 直接返回已找到的令牌
   }
   else {
     // 在一台辅助服务器上启用传感器
     auto server = _router->GetNextServer();
+     //  向该服务器请求获取令牌
     auto token = SendGetToken(sensor_id);
     // add to the maps
+    // 将获取到的令牌和服务器添加到令牌列表（_tokens）和服务器列表（_servers）中
     _tokens[sensor_id] = token;
     _servers[sensor_id] = server;
+    //记录日志，表示新激活传感器的令牌
     log_debug("Using token from new activated sensor: ", token.get_stream_id(), ", ", token.get_port());
+     // 返回新的令牌
     return token;
   }
 }
@@ -181,13 +189,13 @@ token_type PrimaryCommands::GetToken(stream_id sensor_id) {
 //   - 直接调用SendEnableForROS函数发送启用命令
 // 如果没找到对应的服务器，则先调用GetToken函数获取该传感器的令牌（这可能会激活传感器并记录相关信息），然后再次调用EnableForROS函数自身（递归调用）尝试启用
 void PrimaryCommands::EnableForROS(stream_id sensor_id) {
-  auto it = _servers.find(sensor_id);
-  if (it!= _servers.end()) {
-    SendEnableForROS(sensor_id);
+  auto it = _servers.find(sensor_id); // 查找传感器ID是否在服务器列表中
+  if (it!= _servers.end()) {  // 如果在服务器中找到了对应的传感器
+    SendEnableForROS(sensor_id);  // 直接调用SendEnableForROS启用该传感器
   } else {
     // 我们需要在任何服务器上激活传感器，然后重复
-    GetToken(sensor_id);
-    EnableForROS(sensor_id);
+    GetToken(sensor_id);    // 获取令牌，可能激活传感器并记录信息
+    EnableForROS(sensor_id);// 递归调用EnableForROS来重新启用传感器
   }
 }
 
@@ -195,9 +203,9 @@ void PrimaryCommands::EnableForROS(stream_id sensor_id) {
 // 参数sensor_id: 传感器的ID，在服务器列表（_servers）中查找该传感器是否已在某个辅助服务器中激活，如果找到：
 //   - 调用SendDisableForROS函数发送禁用命令
 void PrimaryCommands::DisableForROS(stream_id sensor_id) {
-  auto it = _servers.find(sensor_id);
-  if (it!= _servers.end()) {
-    SendDisableForROS(sensor_id);
+  auto it = _servers.find(sensor_id);     // 查找传感器ID是否在服务器列表中
+  if (it!= _servers.end()) {             // 如果在服务器中找到了对应的传感器
+    SendDisableForROS(sensor_id);       // 直接调用SendDisableForROS禁用该传感器
   }
 }
 
@@ -206,11 +214,12 @@ void PrimaryCommands::DisableForROS(stream_id sensor_id) {
 //   - 调用SendIsEnabledForROS函数发送查询命令，并返回查询结果
 // 如果没找到对应的服务器，直接返回false，表示未启用
 bool PrimaryCommands::IsEnabledForROS(stream_id sensor_id) {
-  auto it = _servers.find(sensor_id);
-  if (it!= _servers.end()) {
-    return SendIsEnabledForROS(sensor_id);
+  auto it = _servers.find(sensor_id); // 查找传感器ID是否在服务器列表中
+  if (it!= _servers.end()) {  // 如果在服务器中找到了对应的传感器
+    return SendIsEnabledForROS(sensor_id);  // 查询该传感器是否启用了ROS功能
   }
-  return false;
+  }
+  return false; // 如果没有找到传感器，则返回false，表示未启用
 }
 
 } // namespace multigpu

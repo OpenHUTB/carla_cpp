@@ -202,6 +202,7 @@ if (LIBCARLA_BUILD_DEBUG)# 判断是否定义了LIBCARA_BUILD_RELEASE这个变�
 # 使用install命令将生成的carla_server静态库安装到目标路径下的lib目录中
   install(TARGETS carla_server_debug DESTINATION lib OPTIONAL)
 
+#使用set_target_properties命令为carla_server——debug目标设置编译相关的属性
   set_target_properties(carla_server_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG}")
   # 使用set_target_properties命令为carla_server这个静态库目标设置编译相关的属性
   target_compile_definitions(carla_server_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)

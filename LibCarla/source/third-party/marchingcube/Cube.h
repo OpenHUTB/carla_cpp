@@ -3,6 +3,7 @@
 
 namespace MeshReconstruction
 {
+// 定义一个名为IntersectInfo的结构体，用于存储相交信息
   struct IntersectInfo
   {
     // 0 - 255
@@ -17,11 +18,12 @@ namespace MeshReconstruction
   {
     Vec3 pos[8];// 存储立方体的8个顶点的位置。
     double sdf[8];
-
+// 线性插值计算顶点位置的私有函数，根据给定的等值面水平（isoLevel）和两个顶点索引i1、i2来计算插值后的顶点位置
     Vec3 LerpVertex(double isoLevel, int i1, int i2) const;
     int SignConfig(double isoLevel) const;
 
   public:
+// Cube类的构造函数，接受一个三维空间范围（Rect3类型）和一个三维标量函数（Fun3s类型）作为参数来初始化立方体相关属性
     Cube(Rect3 const &space, Fun3s const &sdf);
 
     // 找出曲面与立方体相交的顶点。
@@ -67,6 +69,7 @@ namespace MeshReconstruction
         0xf00, 0xe09, 0xd03, 0xc0a, 0xb06, 0xa0f, 0x905, 0x80c,
         0x70c, 0x605, 0x50f, 0x406, 0x30a, 0x203, 0x109, 0x0};
 
+        // 定义一个名为Edge的结构体，用于表示立方体的边相关信息
     struct Edge
     {
       int edgeFlag : 12; // flag: 1, 2, 4, ... 2048
@@ -90,7 +93,7 @@ namespace MeshReconstruction
             {2048, 3, 7} // edge 11
     };
   }
-
+// 线性插值计算顶点位置的函数实现
   Vec3 Cube::LerpVertex(double isoLevel, int i1, int i2) const 
   {
     auto const Eps = 1e-5; // 定义一个用于比较浮点数的精度阈值
@@ -109,7 +112,7 @@ namespace MeshReconstruction
     auto mu = (isoLevel - v1) / (v2 - v1); // 计算线性插值参数
     return p1 + (p2 - p1) * mu; // 返回插值后的位置
   }
-
+// Cube类的构造函数实现，用于初始化立方体的顶点位置和每个顶点对应的SDF值
   Cube::Cube(Rect3 const &space, Fun3s const &sdf)
 // 定义一个名为 Cube 的构造函数，接受两个参数：space 和 sdf
   {
@@ -138,7 +141,7 @@ namespace MeshReconstruction
       this->sdf[i] = sd;
     }
   }
-
+// 根据给定的等值面水平（isoLevel）计算符号配置的函数实现
   int Cube::SignConfig(double isoLevel) const
   {
     auto edgeIndex = 0;
@@ -153,7 +156,7 @@ namespace MeshReconstruction
 
     return edgeIndex;
   }
-
+// 找出曲面与立方体相交的顶点的函数实现，返回包含相交信息的IntersectInfo结构体
   IntersectInfo Cube::Intersect(double iso) const
   {
     // idea:
