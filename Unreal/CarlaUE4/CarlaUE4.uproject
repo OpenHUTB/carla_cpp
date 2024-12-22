@@ -158,7 +158,9 @@
 		},
 		//毛发导入与渲染相关的插件已经启用
 		{
-			"Name": "AlembicHairImporter",
+			"Name": "AlembicHairImporter", 
+    // "Name" 键对应的字符串值为 "AlembicHairImporter"，从名称推测，它大概率是一个用于导入 Alembic 格式毛发数据的模块（或插件）的名称，
+    // Alembic 是一种常见的数据交换格式，常用于在不同的 3D 软件、动画制作工具等之间传递几何数据、动画数据等内容，这里专门针对毛发数据的导入功能进行配置说明。
 			"Enabled": true
 		},
 		{
