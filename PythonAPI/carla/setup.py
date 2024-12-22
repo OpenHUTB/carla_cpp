@@ -84,7 +84,7 @@ def get_libcarla_extensions():
                 '-DBOOST_ERROR_CODE_HEADER_ONLY', '-DLIBCARLA_WITH_PYTHON_SUPPORT',
                 '-stdlib=libstdc++'
             ]
-            if is_rss_variant_enabled():
+            if is_rss_variant_enabled():#- 当  is_rss_variant_enabled()  函数返回  True  时，首先向  extra_compile_args  列表添加  -DLIBCARLA_RSS_ENABLED  这个编译参数，它定义了一个宏（在编译过程中起作用的符号），用于在代码中通过条件编译等方式判断当前是否启用了  RSS  变体相关功能，方便根据这个条件执行不同的代码逻辑，比如包含或排除与  RSS  相关的特定代码块。
                 extra_compile_args += ['-DLIBCARLA_RSS_ENABLED']
                 extra_compile_args += ['-DLIBCARLA_PYTHON_MAJOR_' +  str(sys.version_info.major)]
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
