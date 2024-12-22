@@ -69,22 +69,28 @@ namespace nav {
   // 参考模拟器访问API函数
   void Navigation::SetSimulator(std::weak_ptr<carla::client::detail::Simulator> simulator)
   {
+     // 将传入的模拟器对象的弱引用赋值给成员变量_simulator
+  // 使用弱引用可以避免循环引用问题，从而防止内存泄漏
     _simulator = simulator;
+     // 将模拟器的弱引用传递给步行者管理器，以便步行者管理器可以与模拟器进行交互
     _walker_manager.SetSimulator(simulator);
   }
 
   // 设置要使用的随机数种子
   void Navigation::SetSeed(unsigned int seed) {
+      // 使用传入的种子值初始化随机数生成器
     srand(seed);
   }
 
   // 加载导航数据
   bool Navigation::Load(const std::string &filename) {
-    std::ifstream f;
-    std::istream_iterator<uint8_t> start(f), end;
+    std::ifstream f; // 创建一个输入文件流对象
+    std::istream_iterator<uint8_t> start(f), end; // 创建两个迭代器，用于读取文件内容
 
     // 读取整个文件
+    // 以二进制模式打开文件
     f.open(filename, std::ios::binary);
+     // 如果文件打开失败，则返回false
     if (!f.is_open()) {
       return false;
     }
@@ -97,8 +103,10 @@ namespace nav {
 
   // 从内存中加载导航数据
   bool Navigation::Load(std::vector<uint8_t> content) {
+     // 定义导航网格集合的魔术数和版本号
     const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; // 'MSET';
     const int NAVMESHSET_VERSION = 1;
+     // 使用#pragma pack(push, 1)来取消结构体成员的对齐，确保结构体大小与二进制数据匹配
 #pragma pack(push, 1)
 
     // 导航网格集合头的结构体
@@ -106,13 +114,14 @@ namespace nav {
       int magic;       // 魔术
       int version;     // 版本
       int num_tiles;   // 瓦片数
-      dtNavMeshParams params;
+      dtNavMeshParams params; // 导航网格参数，定义了导航网格的一些属性
     } header;
     // 导航网格瓦片头的结构体
     struct NavMeshTileHeader {
-      dtTileRef tile_ref;
+      dtTileRef tile_ref;  // 瓦片引用，用于在导航网格中唯一标识一个瓦片
       int data_size;        // 数据大小
     };
+    // 恢复默认的结构体对齐方式
 #pragma pack(pop)
 
     // 检查 导航网格集合头的结构体大小
@@ -123,9 +132,9 @@ namespace nav {
     }
 
     // 读取文件的头
-    unsigned long pos = 0;
-    memcpy(&header, &content[pos], sizeof(header));
-    pos += sizeof(header);
+    unsigned long pos = 0;// 定义当前读取位置
+    memcpy(&header, &content[pos], sizeof(header)); // 使用memcpy复制头数据到结构体
+    pos += sizeof(header);// 更新读取位置
 
     // 检查文件的魔术和版本
     if (header.magic != NAVMESHSET_MAGIC || header.version != NAVMESHSET_VERSION) {
