@@ -23,6 +23,7 @@ if [ $? != 0 ] ; then echo "$USAGE_STRING" ; exit 2; fi
 eval set -- "$OPTS"
 
 # 进入一个无限循环，用于逐个处理解析后的命令行参数，通过case语句来匹配不同的参数类型并执行相应操作
+#循环处理参数
 while true; do
   case "$1" in
     # 如果参数是--dir（长选项形式，表示指定输出目录）
@@ -46,8 +47,8 @@ while true; do
   esac
 done
 
-
+#遍历Import/目录下的所有.tar.gz文件
 for filepath in `find Import/ -type f -name "*.tar.gz"`; do
-  tar --keep-newer-files -xvf ${filepath}
+  tar --keep-newer-files -xvf ${filepath} # 使用tar命令压解每个找到的文件，并保存较新的文件
 done
 
