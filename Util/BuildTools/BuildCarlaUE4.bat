@@ -225,8 +225,9 @@ rem ============================================================================
 
 :help
     echo Build LibCarla.
-    echo "Usage: %FILE_N% [-h^|--help] [--build] [--launch] [--clean]"
+    echo "Usage: %FILE_N% [-h|--help] [--build] [--launch] [--clean]"
     goto good_exit
+; 这个部分打印脚本的用途，并跳转到正常退出标签
 
 :error_build
     echo.
@@ -234,19 +235,23 @@ rem ============================================================================
     echo %FILE_N%         Please go to "Carla\Unreal\CarlaUE4", right click on
     echo %FILE_N%         "CarlaUE4.uproject" and select:
     echo %FILE_N%         "Generate Visual Studio project files"
-    echo %FILE_N%         Open de generated "CarlaUE4.sln" and try to manually compile it
+    echo %FILE_N%         Open the generated "CarlaUE4.sln" and try to manually compile it
     echo %FILE_N%         and check what is causing the error.
     goto bad_exit
+; 这个部分处理构建CarlaUE4时出现的错误，并提供了一些手动编译的指示，然后跳转到错误退出标签
 
 :good_exit
     endlocal
     exit /b 0
+; 这个部分表示脚本的正常退出，它结束本地变量的作用域，并以退出码0退出脚本
 
 :bad_exit
     endlocal
     exit /b %errorlevel%
+; 这个部分表示脚本的错误退出，它也结束本地变量的作用域，但以当前的错误级别退出脚本
 
 :error_unreal_no_found
     echo.
     echo %FILE_N% [ERROR] Unreal Engine not detected
     goto bad_exit
+; 这个部分处理未检测到Unreal Engine的情况，并跳转到错误退出标签

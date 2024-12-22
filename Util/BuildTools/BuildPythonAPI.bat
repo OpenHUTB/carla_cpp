@@ -126,38 +126,49 @@ rem -- 消息和错误 ---------------------------------------------------------
 rem ============================================================================
 
 :success
-    echo.
-     if %BUILD_FOR_PYTHON3%==true echo %FILE_N% Carla lib for python has been successfully installed in "%PYTHON_LIB_PATH%dist"!
+    echo.  ; 打印一个空行
+    if %BUILD_FOR_PYTHON3%==true echo %FILE_N% Carla lib for python has been successfully installed in "%PYTHON_LIB_PATH%dist"!
+    ; 如果环境变量BUILD_FOR_PYTHON3为true，则打印安装成功的消息
     goto good_exit
+    ; 跳转到标签good_exit
 
 :already_installed （此标签对应的代码被注释掉了，不会执行）
-    echo.
-    echo %FILE_N% [ERROR] Already installed in "%PYTHON_LIB_PATH%dist"
-    goto good_exit
+    ; 此部分代码已被注释，不执行任何操作
+    ; 如果已安装，则打印错误消息并跳转到good_exit
 
 :py2_not_supported
-    echo.
-   echo %FILE_N% [ERROR] Python 2 is not currently suported in Windows.
+    echo.  ; 打印一个空行
+    echo %FILE_N% [ERROR] Python 2 is not currently supported in Windows.
+    ; 打印不支持Python 2的错误消息
     goto bad_exit
+    ; 跳转到标签bad_exit
 
 :error_py
-    echo.
-    echo %FILE_N% [ERROR] An error ocurred while executing the py.
+    echo.  ; 打印一个空行
+    echo %FILE_N% [ERROR] An error occurred while executing the py.
+    ; 打印执行py时发生错误的消息
     echo %FILE_N% [ERROR] Possible causes:
+    ; 打印可能原因的开始
     echo %FILE_N% [ERROR]  - Make sure "py" is installed.
+    ; 确保已安装py（Python启动器）
     echo %FILE_N% [ERROR]  - py = python launcher. This utility is bundled with Python installation but not installed by default.
+    ; py是Python启动器，随Python安装但不默认安装
     echo %FILE_N% [ERROR]  - Make sure it is available on your Windows "py".
+    ; 确保在Windows上可用
     goto bad_exit
+    ; 跳转到标签bad_exit
 
 :error_build_wheel
-     echo.
+    echo.  ; 打印一个空行
     echo %FILE_N% [ERROR] An error occurred while building the wheel file.
+    ; 打印构建wheel文件时发生错误的消息
     goto bad_exit
+    ; 跳转到标签bad_exit
 
 :good_exit
-    endlocal
-    exit /b 0
+    endlocal  ; 结束本地环境变量的更改
+    exit /b 0  ; 以状态码0退出，表示成功
 
 :bad_exit
-    endlocal
-    exit /b %errorlevel%
+    endlocal  ; 结束本地环境变量的更改
+    exit /b %errorlevel%  ; 以当前错误级别退出，表示失败
