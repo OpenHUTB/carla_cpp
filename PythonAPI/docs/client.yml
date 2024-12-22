@@ -741,76 +741,87 @@
         type: carla.Actor
         doc: >
           The actor that you wish to query.  # 查询你想要查询的演员（即控制的车辆）
-      return: list of lists with each element as follows - [Road option (string e.g. 'Left', 'Right', 'Straight'), Next waypoint (carla.Waypoint)]
-      doc: >
-        Returns all known actions (i.e. road options and waypoints) that an actor controlled by the Traffic Manager will perform in its next steps.  # 返回交通管理器控制的演员（车辆）将在接下来的步骤中执行的所有已知动作（例如路选项和路点）
-    # --------------------------------------
-    - def_name: random_left_lanechange_percentage
-      params:
-      - param_name: actor
-        type: carla.Actor
-        doc: >
-          The actor that you wish to query.  # 查询你想要查询的演员（即控制的车辆）
-      - param_name: percentage
-        type: float
-        doc: >
-          The probability of lane change in percentage units (between 0 and 100)  # 左车道变换的概率，以百分比表示（范围：0 到 100）
-      doc: >
-        Adjust probability that in each timestep the actor will perform a left lane change, dependent on lane change availability.# 调整在每个时间步骤中演员（车辆）执行左车道变换的概率，具体取决于车道变换的可用性
-    # --------------------------------------
-    - def_name: random_right_lanechange_percentage
-      params:
-      - param_name: actor
-        type: carla.Actor
-        doc: >
-          The actor that you wish to query.  # 查询你想要查询的演员（即控制的车辆）
-      - param_name: percentage
-        type: float
-        doc: >
-          The probability of lane change in percentage units (between 0 and 100)# 右车道变换的概率，以百分比表示（范围：0 到 100）
-      doc: >
-        Adjust probability that in each timestep the actor will perform a right lane change, dependent on lane change availability.# 调整在每个时间步骤中演员（车辆）执行右车道变换的概率，具体取决于车道变换的可用性
-    # --------------------------------------
-    - def_name: shut_down
-      doc: >
-        Shuts down the traffic manager. # 关闭交通管理器
-    # --------------------------------------
+      # --------------------------------------
+# 定义一个函数，用于返回交通管理器控制的演员（车辆）将在接下来的步骤中执行的所有已知动作
+def get_next_actions(actor):
+    """
+    返回交通管理器控制的演员（车辆）将在接下来的步骤中执行的所有已知动作（例如路选项和路点）。
+    
+    参数:
+    actor (carla.Actor): 查询你想要查询的演员（即控制的车辆）。
+    
+    返回:
+    list of lists: 每个元素为 [Road option (string e.g. 'Left', 'Right', 'Straight'), Next waypoint (carla.Waypoint)]
+    """
+    # 这里需要实现具体的逻辑，从交通管理器中获取下一个动作
+    # 例如，可以调用交通管理器的相关API来获取
+    # actions = traffic_manager.get_next_actions(actor)
+    # 由于这是一个示例，我们直接返回一个模拟的列表
+    actions = [['Left', carla.Waypoint()], ['Straight', carla.Waypoint()], ['Right', carla.Waypoint()]]
+    return actions
 
-  - class_name: OpendriveGenerationParameters
-    # - DESCRIPTION ------------------------
-    doc: >
-      This class defines the parameters used when generating a world using an ASAM OpenDRIVE file. # 该类定义了在使用 ASAM OpenDRIVE 文件生成世界时所用的参数
-    # - PROPERTIES -------------------------
-    instance_variables:
-    - var_name: vertex_distance
-      type: float
-      param_units: meters
-      doc: >
-        Distance between vertices of the mesh generated. __Default is `2.0`__.# 生成的网格顶点之间的距离。默认值为 `2.0` 米
-    - var_name: max_road_length
-      type: float
-      param_units: meters
-      doc: >
-        Max road length for a single mesh portion. The mesh of the map is divided into portions, in order to avoid propagating issues. __Default is `50.0`__.# 单个网格部分的最大道路长度。为了避免传播问题，地图的网格被划分为多个部分。默认值为 `50.0` 米
-    - var_name: wall_height
-      type: float
-      param_units: meters
-      doc: >
-        Height of walls created on the boundaries of the road. These prevent vehicles from falling off the road. __Default is `1.0`__. # 在道路边界上创建的墙的高度，防止车辆掉出道路。默认值为 `1.0` 米
-    - var_name: additional_width
-      type: float
-      param_units: meters
-      doc: >
-        Additional with applied junction lanes. Complex situations tend to occur at junctions, and a little increase can prevent vehicles from falling off the road.  __Default is `0.6`__.# 在交叉口车道上增加的额外宽度。复杂情况通常发生在交叉口，增加一点宽度可以防止车辆掉出道路。默认值为 `0.6` 米
-    - var_name: smooth_junctions
-      type: bool
-      doc: >
-        If __True__, the mesh at junctions will be smoothed to prevent issues where roads blocked other roads. __Default is `True`__.# 如果为 `True`，交叉口的网格将会被平滑处理，以防止道路阻塞其他道路。默认值为 `True`
-    - var_name: enable_mesh_visibilit
-       type: bool
-      doc: >
-        If __True__, the road mesh will be rendered. Setting this to __False__ should reduce the rendering overhead.  __Default is `True`__. # 如果为 `True`，将渲染道路网格。将此设置为 `False` 将减少渲染开销。默认值为 `True`
-    - var_name: enable_pedestrian_navigation
-      type: bool
-      doc: >
-        If __True__, Pedestrian navigation will be enabled using Recast tool. For very large maps it is recomended to disable this option. __Default is `True`__. # 如果为 `True`，将启用使用 Recast 工具的行人导航。对于非常大的地图，建议禁用此选项。默认值为 `True`
+# --------------------------------------
+# 调整在每个时间步骤中演员（车辆）执行左车道变换的概率
+def random_left_lanechange_percentage(actor, percentage):
+    """
+    调整在每个时间步骤中演员（车辆）执行左车道变换的概率，具体取决于车道变换的可用性。
+    
+    参数:
+    actor (carla.Actor): 查询你想要查询的演员（即控制的车辆）。
+    percentage (float): 左车道变换的概率，以百分比表示（范围：0 到 100）。
+    """
+    # 这里需要实现具体的逻辑，通过交通管理器调整左车道变换的概率
+    # 例如，可以调用交通管理器的相关API来设置
+    # traffic_manager.set_left_lanechange_probability(actor, percentage / 100.0)
+    pass
+
+# --------------------------------------
+# 调整在每个时间步骤中演员（车辆）执行右车道变换的概率
+def random_right_lanechange_percentage(actor, percentage):
+    """
+    调整在每个时间步骤中演员（车辆）执行右车道变换的概率，具体取决于车道变换的可用性。
+    
+    参数:
+    actor (carla.Actor): 查询你想要查询的演员（即控制的车辆）。
+    percentage (float): 右车道变换的概率，以百分比表示（范围：0 到 100）。
+    """
+    # 这里需要实现具体的逻辑，通过交通管理器调整右车道变换的概率
+    # 例如，可以调用交通管理器的相关API来设置
+    # traffic_manager.set_right_lanechange_probability(actor, percentage / 100.0)
+    pass
+
+# --------------------------------------
+# 关闭交通管理器
+def shut_down():
+    """
+    关闭交通管理器。
+    """
+    # 这里需要实现具体的逻辑，关闭交通管理器
+    # 例如，可以调用交通管理器的相关API来关闭
+    # traffic_manager.shutdown()
+    pass
+
+# --------------------------------------
+# 定义 OpendriveGenerationParameters 类，用于生成世界时的参数
+class OpendriveGenerationParameters:
+    """
+    该类定义了在使用 ASAM OpenDRIVE 文件生成世界时所用的参数。
+    """
+    def __init__(self,
+                 vertex_distance=2.0,
+                 max_road_length=50.0,
+                 wall_height=1.0,
+                 additional_width=0.6,
+                 smooth_junctions=True,
+                 enable_mesh_visibility=True,
+                 enable_pedestrian_navigation=True):
+        self.vertex_distance = vertex_distance  # 生成的网格顶点之间的距离，单位：米
+        self.max_road_length = max_road_length  # 单个网格部分的最大道路长度，单位：米
+        self.wall_height = wall_height  # 道路边界上创建的墙的高度，单位：米
+        self._additionalwidth = additional_width  # 在交叉口车道上增加的额外宽度，单位：米
+        self.smooth_junctions = smooth_junctions  # 是否平滑处理交叉口的网格
+        self.enable_mesh_visibility = enable_mesh_visibility  # 是否渲染道路网格
+        self.enable_pedestrian_navigation = enable_pedestrian_navigation  # 是否启用行人导航
+
+# 注释：
+# OpendriveGenerationParameters 类中的 enable_mesh_visibilit 变量名可能存在拼写错误，应为 enable_mesh_visibility。
