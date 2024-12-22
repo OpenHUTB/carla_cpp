@@ -4,81 +4,88 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "FrameData.h"
-#include "Carla/Game/CarlaEpisode.h"
-#include "Carla/Actor/CarlaActor.h"
-#include "Carla/Game/CarlaEngine.h"
-#include "Carla/Traffic/TrafficLightController.h"
-#include "Carla/Traffic/TrafficLightGroup.h"
-#include "Carla/MapGen/LargeMapManager.h"
-#include "Carla/Game/CarlaStatics.h"
-#include "Carla/Settings/CarlaSettings.h"
-#include "Carla/Lights/CarlaLightSubsystem.h"
+#include "FrameData.h" // 包含FFrameData类的头文件，定义了帧数据的结构和操作
+#include "Carla/Game/CarlaEpisode.h" // 包含Carla游戏环节的头文件，表示仿真会话
+#include "Carla/Actor/CarlaActor.h" // 包含Carla Actor的头文件，表示仿真中的Actor
+#include "Carla/Game/CarlaEngine.h" // 包含Carla游戏引擎的头文件，管理Carla仿真的核心组件
+#include "Carla/Traffic/TrafficLightController.h" // 包含交通灯控制器的头文件，管理交通灯的行为
+#include "Carla/Traffic/TrafficLightGroup.h" // 包含交通灯组的头文件，表示一组交通灯
+#include "Carla/MapGen/LargeMapManager.h" // 包含大地图管理器的头文件，管理大型开放世界地图
+#include "Carla/Game/CarlaStatics.h" // 包含Carla静态变量和函数的头文件，提供全局访问点
+#include "Carla/Settings/CarlaSettings.h" // 包含Carla设置的头文件，定义仿真的配置参数
+#include "Carla/Lights/CarlaLightSubsystem.h" // 包含Carla灯光子系统的头文件，管理游戏世界的灯光
 
-#include <compiler/disable-ue4-macros.h>
-#include "carla/rpc/VehicleLightState.h"
-#include <compiler/enable-ue4-macros.h>
+#include <compiler/disable-ue4-macros.h> // 禁用Unreal Engine的宏，防止与Carla代码冲突
+#include "carla/rpc/VehicleLightState.h" // 包含Carla RPC车辆灯光状态的头文件，定义车辆灯光状态的RPC结构
+#include <compiler/enable-ue4-macros.h> // 启用Unreal Engine的宏
 
-
+// FFrameData::GetFrameData函数，用于收集当前帧的数据
 void FFrameData::GetFrameData(UCarlaEpisode *ThisEpisode, bool bAdditionalData, bool bIncludeActorsAgain)
 {
-  Episode = ThisEpisode;
-  // PlatformTime.UpdateTime();
-  const FActorRegistry &Registry = Episode->GetActorRegistry();
+  Episode = ThisEpisode; // 将传入的游戏环节赋值给成员变量Episode
+  // PlatformTime.UpdateTime(); // 更新平台时间，此行代码被注释，可能用于性能监测
+  const FActorRegistry &Registry = Episode->GetActorRegistry(); // 获取游戏环节中的Actor注册表
 
-  if (bIncludeActorsAgain)
+  if (bIncludeActorsAgain) // 如果需要再次包括Actor
   {
-    AddExistingActors();
+    AddExistingActors(); // 添加已存在的Actor到帧数据中
   }
 
-  // 通过 Registry 中的所有参与者
+  // 遍历Actor注册表中的所有Actor
   for (auto It = Registry.begin(); It != Registry.end(); ++It)
   {
-    FCarlaActor* View = It.Value().Get();
+    FCarlaActor* View = It.Value().Get(); // 获取Actor的指针
 
+    // 根据Actor的类型进行不同的数据处理
     switch (View->GetActorType())
     {
-      // 保存 props 的变换
+      // 对于其他类型和传感器Actor，保存其位置变换
       case FCarlaActor::ActorType::Other:
       case FCarlaActor::ActorType::Sensor:
-        AddActorPosition(View);
+        AddActorPosition(View); // 添加Actor的位置到帧数据
         break;
 
-      // 保存所有车辆的变换
+      // 对于车辆Actor，保存其位置变换、动画、灯光和车轮动画
       case FCarlaActor::ActorType::Vehicle:
-        AddActorPosition(View);
-        AddVehicleAnimation(View);
-        AddVehicleLight(View);
-        AddVehicleWheelsAnimation(View);
-        if (bAdditionalData)
+        AddActorPosition(View); // 添加Actor的位置
+        AddVehicleAnimation(View); // 添加车辆动画
+        AddVehicleLight(View); // 添加车辆灯光状态
+        AddVehicleWheelsAnimation(View); // 添加车辆车轮动画
+        if (bAdditionalData) // 如果需要额外的数据
         {
-          AddActorKinematics(View);
+          AddActorKinematics(View); // 添加Actor的运动学数据
         }
         break;
 
-      // 保存所有 walkers 的变换
+      // 对于行人Actor，保存其位置变换和动画
       case FCarlaActor::ActorType::Walker:
-        AddActorPosition(View);
-        AddWalkerAnimation(View);
-        if (bAdditionalData)
+        AddActorPosition(View); // 添加Actor的位置
+        AddWalkerAnimation(View); // 添加行人动画
+        if (bAdditionalData) // 如果需要额外的数据
         {
-          AddActorKinematics(View);
+          AddActorKinematics(View); // 添加Actor的运动学数据
         }
         break;
 
-      // 保存每个红绿灯的状态
+      // 对于交通灯Actor，保存其状态
       case FCarlaActor::ActorType::TrafficLight:
-        AddTrafficLightState(View);
+        AddTrafficLightState(View); // 添加交通灯状态
         break;
     }
   }
-  GetFrameCounter();
+  GetFrameCounter(); // 获取当前帧计数器的值
 }
 
+// FFrameData::PlayFrameData函数，用于播放存储的帧数据
 void FFrameData::PlayFrameData(
     UCarlaEpisode *ThisEpisode,
     std::unordered_map<uint32_t, uint32_t>& MappedId)
 {
+  // 此函数的具体实现未提供，可能包含将帧数据应用到游戏环节的逻辑
+  // ThisEpisode参数可能用于访问游戏环节的状态和功能
+  // MappedId参数可能用于处理Actor ID的映射，以确保数据的正确应用
+}
+
 
   for(const CarlaRecorderEventAdd &EventAdd : EventsAdd.GetEvents())
   {
