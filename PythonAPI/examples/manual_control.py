@@ -1708,15 +1708,35 @@ class RadarSensor(object):
 
 class CameraManager(object):
     def __init__(self, parent_actor, hud, gamma_correction):
+        """
+        类的构造函数，用于初始化 `CameraManager` 实例的众多属性，例如传感器对象、显示表面、父级角色关联、抬头显示关联等，
+        同时根据父级角色类型（车辆或行人）设置不同的相机变换参数，定义多种传感器及其对应配置，为后续相机图像采集、传感器数据获取等功能做准备。
+
+        参数说明：
+        - `parent_actor`：代表父级角色的对象，通常是车辆或者行人等实体，相机和传感器会附着在这个对象上，以获取基于该角色视角的相关图像或数据信息。
+        - `hud`：与抬头显示（HUD）相关的对象，可能用于获取显示界面的尺寸等信息，以便对相机图像的显示尺寸等进行相应设置，也可能用于后续展示一些相关提示信息等操作。
+        - `gamma_correction`：一个数值，用于进行伽马校正的参数设置，会应用到相机传感器的相关属性配置中，以调整图像的亮度、对比度等显示效果。
+        """
         self.sensor = None
         self.surface = None
         self._parent = parent_actor
         self.hud = hud
         self.recording = False
+        // 初始化实例的几个属性：
+        // - `self.sensor` 初始化为 `None`，后续会在这里存储创建好的相机或其他传感器对象。
+        // - `self.surface` 初始化为 `None`，可能用于存储相机获取到的图像数据对应的显示表面（Surface），用于后续图像展示等操作。
+        // - `self._parent` 存储传入的父级角色对象，方便后续获取相关世界信息以及将相机、传感器关联到这个角色上。
+        // - `self.hud` 存储抬头显示相关对象，用于与抬头显示功能交互，比如获取显示尺寸信息、展示提示信息等。
+        // - `self.recording` 初始化为 `False`，从变量名推测可能用于控制是否正在进行图像或数据记录的状态标识，后续可根据需要进行设置来开启或关闭记录功能。
+
         bound_x = 0.5 + self._parent.bounding_box.extent.x
         bound_y = 0.5 + self._parent.bounding_box.extent.y
         bound_z = 0.5 + self._parent.bounding_box.extent.z
+        // 计算相机等传感器在 `x`、`y`、`z` 方向上相对父级角色边界的位置偏移量。通过获取父级角色（`self._parent`）的包围盒（`bounding_box`）的范围（`extent`），并在各方向上加上 `0.5`，确定了相机、传感器在该角色周边大致的安装边界位置，
+        // 这样可以根据角色的实际大小和形状来合理放置相机、传感器，以获取期望视角下的图像和数据，避免位置不合理导致拍摄或检测效果不佳的情况。
+
         Attachment = carla.AttachmentType
+        // 获取 `carla.AttachmentType` 枚举类型并赋值给 `Attachment` 变量，这个枚举类型通常用于指定相机等传感器附着到父级角色上的方式，例如是刚性连接（`Rigid`）还是弹性臂连接（`SpringArmGhost`）等，后续会在设置相机变换参数时用到。
 
         if not self._parent.type_id.startswith("walker.pedestrian"):
             self._camera_transforms = [
@@ -1725,6 +1745,10 @@ class CameraManager(object):
                 (carla.Transform(carla.Location(x=+1.9*bound_x, y=+1.0*bound_y, z=1.2*bound_z)), Attachment.SpringArmGhost),
                 (carla.Transform(carla.Location(x=-2.8*bound_x, y=+0.0*bound_y, z=4.6*bound_z), carla.Rotation(pitch=6.0)), Attachment.SpringArmGhost),
                 (carla.Transform(carla.Location(x=-1.0, y=-1.0*bound_y, z=0.4*bound_z)), Attachment.Rigid)]
+            // 判断父级角色的类型 ID 是否不以 "walker.pedestrian" 开头，即判断是否不是行人角色，如果是车辆等其他类型角色，则设置相机的变换参数列表（`_camera_transforms`）。
+            // 每个元素是一个包含 `carla.Transform`（代表相机的位置和旋转姿态）和 `Attachment`（附着方式）的元组，例如第一个元素中，通过 `carla.Transform` 设置相机在 `x` 轴方向上相对于边界位置偏移 `-2.0*bound_x`，`y` 轴方向偏移 `0.0*bound_y`，`z` 轴方向偏移 `2.0*bound_z`，同时设置俯仰角（`pitch`）为 `8.0` 度，附着方式为 `Attachment.SpringArmGhost`（弹性臂连接），以此定义了不同位置和姿态的相机设置，
+            // 这些不同的相机变换配置可以实现从多个角度、不同位置来拍摄获取图像，模拟多视角观察车辆周边环境的效果。
+
         else:
             self._camera_transforms = [
                 (carla.Transform(carla.Location(x=-2.5, z=0.0), carla.Rotation(pitch=-8.0)), Attachment.SpringArmGhost),
@@ -1732,8 +1756,12 @@ class CameraManager(object):
                 (carla.Transform(carla.Location(x=2.5, y=0.5, z=0.0), carla.Rotation(pitch=-8.0)), Attachment.SpringArmGhost),
                 (carla.Transform(carla.Location(x=-4.0, z=2.0), carla.Rotation(pitch=6.0)), Attachment.SpringArmGhost),
                 (carla.Transform(carla.Location(x=0, y=-2.5, z=-0.0), carla.Rotation(yaw=90.0)), Attachment.Rigid)]
+            // 如果父级角色是行人（类型 ID 以 "walker.pedestrian" 开头），则设置针对行人的相机变换参数列表。同样每个元素包含相机的位置、旋转姿态以及附着方式信息，
+            // 不过这里的位置、姿态数值是根据行人角色特点设定的，例如不同的 `x`、`y`、`z` 坐标以及俯仰角（`pitch`）、偏航角（`yaw`）等角度值，使得相机能够以合适的视角拍摄行人周边的情况，满足不同观察需求。
 
         self.transform_index = 1
+        // 初始化实例属性 `self.transform_index` 为 `1`，从变量名推测这个属性可能用于记录当前选择的相机变换参数的索引值，后续可以通过改变这个索引来切换不同视角的相机配置，默认初始化为 `1`，可能对应某个特定的初始视角相机设置。
+
         self.sensors = [
             ['sensor.camera.rgb', cc.Raw, 'Camera RGB', {}],
             ['sensor.camera.depth', cc.Raw, 'Camera Depth (Raw)', {}],
@@ -1753,6 +1781,9 @@ class CameraManager(object):
             ['sensor.camera.optical_flow', cc.Raw, 'Optical Flow', {}],
             ['sensor.camera.normals', cc.Raw, 'Camera Normals', {}],
         ]
+        // 初始化实例属性 `self.sensors`，它是一个包含多个子列表的列表，每个子列表定义了一种传感器的相关信息，包括传感器类型（如相机的不同模式、激光雷达等）、数据处理模式（如 `cc.Raw` 表示原始数据等）、传感器的名称描述以及一个用于设置传感器特定属性的字典（初始为空或包含部分默认属性设置）。
+        // 例如第一个子列表 `['sensor.camera.rgb', cc.Raw, 'Camera RGB', {}]` 表示一个普通的彩色相机（`sensor.camera.rgb`），采用原始数据模式（`cc.Raw`），名称为 `Camera RGB`，暂时没有额外的属性设置（属性字典为空），通过这样的列表结构定义了多种不同功能的相机和传感器及其相关配置信息，方便后续基于这些定义去创建和配置实际的传感器对象。
+
         world = self._parent.get_world()
         bp_library = world.get_blueprint_library()
         for item in self.sensors:
@@ -1764,97 +1795,28 @@ class CameraManager(object):
                     bp.set_attribute('gamma', str(gamma_correction))
                 for attr_name, attr_value in item[3].items():
                     bp.set_attribute(attr_name, attr_value)
+                // 通过父级角色对象（`self._parent`）获取其所在的模拟世界对象（`get_world` 方法），然后获取世界的蓝图库（`get_blueprint_library` 方法），用于查找各种传感器的蓝图定义。
+                // 遍历 `self.sensors` 列表中的每个传感器定义项（`item`），先在蓝图库中查找对应的传感器蓝图（`bp`），如果传感器类型是以 `sensor.camera` 开头（即表示是相机类型传感器），则进行以下属性设置：
+                // - 将相机蓝图的 `image_size_x` 属性设置为抬头显示对象（`hud`）的宽度（`dim[0]`），`image_size_y` 属性设置为抬头显示对象的高度（`dim[1]`），这样相机拍摄的图像尺寸会与显示界面尺寸相适配，便于后续图像展示等操作。
+                // - 如果相机蓝图有 `gamma` 属性（通过 `bp.has_attribute('gamma')` 判断），则将其设置为传入的伽马校正参数（`gamma_correction`），用于调整相机图像的亮度、对比度等显示效果。
+                // - 遍历传感器定义项中的属性字典（`item[3]`），将其中的每个属性名（`attr_name`）和对应的值（`attr_value`）设置到相机蓝图中，实现对相机的其他特定属性（如可能存在的镜头相关参数等）进行自定义设置。
+
             elif item[0].startswith('sensor.lidar'):
                 self.lidar_range = 50
-
                 for attr_name, attr_value in item[3].items():
                     bp.set_attribute(attr_name, attr_value)
                     if attr_name == 'range':
                         self.lidar_range = float(attr_value)
+                // 如果传感器类型是以 `sensor.lidar` 开头（即表示是激光雷达类型传感器），则进行以下操作：
+                // - 先初始化实例属性 `self.lidar_range` 为 `50`，作为激光雷达默认的探测范围值（单位可能根据模拟环境设定，比如米等）。
+                // - 然后遍历传感器定义项中的属性字典（`item[3]`），将其中的每个属性名（`attr_name`）和对应的值（`attr_value`）设置到激光雷达蓝图中，实现对激光雷达的特定属性进行配置。
+                // - 当属性名是 `range`（表示探测范围）时，将实例的 `self.lidar_range` 属性更新为该属性值对应的浮点数类型，这样可以确保 `self.lidar_range` 始终记录着当前激光雷达实际设置的探测范围数值，方便后续在相关功能（如根据范围进行目标检测、显示等）中使用这个准确的范围信息。
 
             item.append(bp)
+            // 将配置好的传感器蓝图（`bp`）添加到对应的传感器定义项（`item`）列表末尾，使得每个传感器定义项不仅包含了初始的类型、模式、名称和属性字典信息，还包含了配置好的蓝图对象，方便后续基于完整的定义去创建实际的传感器。
+
         self.index = None
-
-    def toggle_camera(self):
-        self.transform_index = (self.transform_index + 1) % len(self._camera_transforms)
-        self.set_sensor(self.index, notify=False, force_respawn=True)
-
-    def set_sensor(self, index, notify=True, force_respawn=False):
-        index = index % len(self.sensors)
-        needs_respawn = True if self.index is None else \
-            (force_respawn or (self.sensors[index][2] != self.sensors[self.index][2]))
-        if needs_respawn:
-            if self.sensor is not None:
-                self.sensor.destroy()
-                self.surface = None
-            self.sensor = self._parent.get_world().spawn_actor(
-                self.sensors[index][-1],
-                self._camera_transforms[self.transform_index][0],
-                attach_to=self._parent,
-                attachment_type=self._camera_transforms[self.transform_index][1])
-            # We need to pass the lambda a weak reference to self to avoid
-            # circular reference.
-            weak_self = weakref.ref(self)
-            self.sensor.listen(lambda image: CameraManager._parse_image(weak_self, image))
-        if notify:
-            self.hud.notification(self.sensors[index][2])
-        self.index = index
-
-    def next_sensor(self):
-        self.set_sensor(self.index + 1)
-
-    def toggle_recording(self):
-        self.recording = not self.recording
-        self.hud.notification('Recording %s' % ('On' if self.recording else 'Off'))
-
-    def render(self, display):
-        if self.surface is not None:
-            display.blit(self.surface, (0, 0))
-
-    @staticmethod
-    def _parse_image(weak_self, image):
-        self = weak_self()
-        if not self:
-            return
-        if self.sensors[self.index][0].startswith('sensor.lidar'):
-            points = np.frombuffer(image.raw_data, dtype=np.dtype('f4'))
-            points = np.reshape(points, (int(points.shape[0] / 4), 4))
-            lidar_data = np.array(points[:, :2])
-            lidar_data *= min(self.hud.dim) / (2.0 * self.lidar_range)
-            lidar_data += (0.5 * self.hud.dim[0], 0.5 * self.hud.dim[1])
-            lidar_data = np.fabs(lidar_data)  # pylint: disable=E1111
-            lidar_data = lidar_data.astype(np.int32)
-            lidar_data = np.reshape(lidar_data, (-1, 2))
-            lidar_img_size = (self.hud.dim[0], self.hud.dim[1], 3)
-            lidar_img = np.zeros((lidar_img_size), dtype=np.uint8)
-            lidar_img[tuple(lidar_data.T)] = (255, 255, 255)
-            self.surface = pygame.surfarray.make_surface(lidar_img)
-        elif self.sensors[self.index][0].startswith('sensor.camera.dvs'):
-            # Example of converting the raw_data from a carla.DVSEventArray
-            # sensor into a NumPy array and using it as an image
-            dvs_events = np.frombuffer(image.raw_data, dtype=np.dtype([
-                ('x', np.uint16), ('y', np.uint16), ('t', np.int64), ('pol', np.bool)]))
-            dvs_img = np.zeros((image.height, image.width, 3), dtype=np.uint8)
-            # Blue is positive, red is negative
-            dvs_img[dvs_events[:]['y'], dvs_events[:]['x'], dvs_events[:]['pol'] * 2] = 255
-            self.surface = pygame.surfarray.make_surface(dvs_img.swapaxes(0, 1))
-        elif self.sensors[self.index][0].startswith('sensor.camera.optical_flow'):
-            image = image.get_color_coded_flow()
-            array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
-            array = np.reshape(array, (image.height, image.width, 4))
-            array = array[:, :, :3]
-            array = array[:, :, ::-1]
-            self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
-        else:
-            image.convert(self.sensors[self.index][1])
-            array = np.frombuffer(image.raw_data, dtype=np.dtype("uint8"))
-            array = np.reshape(array, (image.height, image.width, 4))
-            array = array[:, :, :3]
-            array = array[:, :, ::-1]
-            self.surface = pygame.surfarray.make_surface(array.swapaxes(0, 1))
-        if self.recording:
-            image.save_to_disk('_out/%08d' % image.frame)
-
+        // 初始化实例属性 `self.index` 为 `None`，从变量名推测这个属性可能用于记录当前选择的传感器的索引值，后续可以通过改变这个索引来切换不同功能的传感器，不过目前初始化为 `None`，可能等待后续在具体使用场景中进行赋值和操作。
 
 # ==============================================================================
 # -- game_loop() ---------------------------------------------------------------
