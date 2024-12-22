@@ -516,51 +516,99 @@
         This method applies settings contained in an object to the simulation running and returns the ID of the frame they were implemented. 
       warning: >
         If synchronous mode is enabled, and there is a Traffic Manager running, this must be set to sync mode too. Read [this](adv_traffic_manager.md#synchronous-mode) to learn how to do it. 
+   # --------------------------------------
+# `on_tick` 函数的定义说明部分
+# `on_tick` 函数相关的文档信息，用于描述函数功能、返回值、参数以及使用场景等关键内容
+- def_name: on_tick
+  return: int
+  params:
+  - param_name: callback
+    type: carla.WorldSnapshot
+    doc: > 
+      Function with a snapshot as compulsory parameter that will be called when the client receives a tick.  
+  doc: >
+    This method is used in [__asynchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/). 
+    # 说明 `on_tick` 函数是在异步模式下使用的，通过提供的链接可以进一步查看关于异步同步相关的详细文档内容，了解更多背景知识。
+
+    It starts callbacks from the client for the function defined as `callback`, and returns the ID of the callback.
+    # 该函数的主要功能之一是从客户端启动针对名为 `callback` 的函数的回调机制，并且会返回一个回调的 ID。这个回调 ID 后续可用于管理该回调，例如停止这个回调等操作。
+
+    The function will be called everytime the server ticks.
+    # 作为回调函数的 `callback`，它会在服务器每次进行 “tick”（可以理解为服务器的一次更新或时间步推进）操作时被调用，意味着只要服务器状态更新，就会触发与之关联的 `callback` 函数执行相应逻辑。
+
+    It requires a carla.WorldSnapshot as argument, which can be retrieved from __<font color="#7fb800">wait_for_tick()</font>__.
+    # 强调 `callback` 函数必须接收一个 `carla.WorldSnapshot` 类型的参数，而这个参数可以通过调用 `wait_for_tick()` 函数来获取，这里通过特定颜色标记的函数名（`<font color="#7fb800">wait_for_tick()</font>`）突出显示，方便用户在代码中快速定位相关函数。
+
+    Use __<font color="#7fb800">remove_on_tick()</font>__ to stop the callbacks.
+    # 提示如果想要停止通过 `on_tick` 函数启动的这些回调操作，可以调用 `remove_on_tick()` 函数来实现，同样以特定颜色标记突出显示对应的函数名，便于查找使用。
+# --------------------------------------
+# `remove_on_tick` 函数的定义说明部分
+# `remove_on_tick` 函数相关的文档信息，用于描述其功能、参数等关键内容
+- def_name: remove_on_tick
+  params:
+  - param_name: callback_id
+    type: callback
+    doc: > 
+      The callback to be removed. The ID is returned when creating the callback.  
+  doc: >
+    Stops the callback for `callback_id` started with __<font color="#7fb800">on_tick()</font>__.
+    # 说明 `remove_on_tick` 函数的功能就是停止与传入的 `callback_id` 相关联的回调操作，这个 `callback_id` 对应的回调是之前通过 `on_tick()` 函数创建启动的，通过这种方式实现对已启动回调的管理，能够灵活控制在异步模式下的回调机制的开启与停止。
     # --------------------------------------
-    - def_name: on_tick
-      return: int
-      params:
-      - param_name: callback
-        type: carla.WorldSnapshot
-        doc: > 
-          Function with a snapshot as compulsory parameter that will be called when the client receives a tick.  
-      doc: >
-        This method is used in [__asynchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/). It starts callbacks from the client for the function defined as `callback`, and returns the ID of the callback. The function will be called everytime the server ticks. It requires a carla.WorldSnapshot as argument, which can be retrieved from __<font color="#7fb800">wait_for_tick()</font>__. Use __<font color="#7fb800">remove_on_tick()</font>__ to stop the callbacks.
     # --------------------------------------
-    - def_name: remove_on_tick
-      params:
-      - param_name: callback_id
-        type: callback
-        doc: > 
-          The callback to be removed. The ID is returned when creating the callback.  
-      doc: >
-        Stops the callback for `callback_id` started with __<font color="#7fb800">on_tick()</font>__.
-    # --------------------------------------
-    - def_name: tick
-      return: int
-      params:
-      - param_name: seconds
-        type: float
-        default: 10.0
-        param_units: seconds
-        doc: > 
-          Maximum time the server should wait for a tick. It is set to <code>10.0</code> by default.   
-      doc: >
-        This method is used in [__synchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/), when the server waits for a client tick before computing the next frame. This method will send the tick, and give way to the server. It returns the ID of the new frame computed by the server. 
-      note: > 
-        If no tick is received in synchronous mode, the simulation will freeze. Also, if many ticks are received from different clients, there may be synchronization issues. Please read the docs about [synchronous mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/) to learn more.  
-    # --------------------------------------
-    - def_name: wait_for_tick
-      return: carla.WorldSnapshot
-      params:
-      - param_name: seconds
-        type: float
-        default: 10.0
-        param_units: seconds
-        doc: > 
-          Maximum time the server should wait for a tick. It is set to <code>10.0</code> by default.   
-      doc: >
-        This method is used in [__asynchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/). It makes the client wait for a server tick. When the next frame is computed, the server will tick and return a snapshot describing the new state of the world. 
+# `tick` 函数的定义说明部分
+# 下面是关于 `tick` 函数详细的文档信息，涵盖了函数的返回值类型、参数情况以及其功能、使用场景和一些重要的备注说明等内容
+- def_name: tick
+  return: int
+  params:
+  - param_name: seconds
+    type: float
+    default: 10.0
+    param_units: seconds
+    doc: > 
+      Maximum time the server should wait for a tick. It is set to <code>10.0</code> by default.   
+  doc: >
+    This method is used in [__synchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/),
+    # 首先明确指出 `tick` 函数是用于同步模式下的操作，通过给出的链接（https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/），使用者可以进一步查阅关于同步模式更详细的文档资料，了解其背后的原理和更多相关细节。
+
+    when the server waits for a client tick before computing the next frame.
+    # 解释了在同步模式下的运行机制，即服务器在计算下一帧之前，会等待客户端发送一个 “tick”（可以理解为一个时间步的推进信号或者更新信号），这里说明了 `tick` 函数在这个过程中所起的作用，也就是由客户端来触发服务器进行下一步的帧计算操作。
+
+    This method will send the tick, and give way to the server.
+    # 具体说明 `tick` 函数的功能，它会向服务器发送这个 “tick” 信号，然后将控制权交给服务器，使得服务器能够基于这个信号去进行后续的帧计算以及相关的模拟世界状态更新等操作。
+
+    It returns the ID of the new frame computed by the server.
+    # 介绍了函数的返回值情况，`tick` 函数会返回服务器计算出的新帧的 ID，这个 ID 可以用于后续在同步模式下对帧相关操作的标识或者管理等用途，例如可能用于判断帧的顺序、关联特定的数据等。
+
+  note: > 
+    If no tick is received in synchronous mode, the simulation will freeze.
+    # 这里给出了一个重要的注意事项，在同步模式下，如果服务器没有接收到客户端发送的 “tick” 信号，那么整个模拟过程将会冻结，也就是模拟会停止运行，不再继续推进，强调了客户端发送 “tick” 信号对于同步模式下模拟正常运行的重要性。
+
+    Also, if many ticks are received from different clients, there may be synchronization issues.
+    # 另外一个需要注意的点是，如果有多个客户端向服务器发送了很多的 “tick” 信号，那么可能会出现同步方面的问题，因为服务器需要依据合理的规则来处理这些来自不同源头的更新信号，过多或不合理的信号可能会扰乱同步机制，影响模拟的准确性和稳定性。
+
+    Please read the docs about [synchronous mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/) to learn more.
+    # 再次提醒使用者可以去阅读关于同步模式的详细文档（https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/）来进一步深入了解这些情况以及如何更好地在同步模式下使用相关功能，避免出现上述提到的问题。
+# --------------------------------------
+# `wait_for_tick` 函数的定义说明部分
+# 以下是 `wait_for_tick` 函数的详细文档信息，包括返回值、参数含义以及其在异步模式下的功能描述等内容
+- def_name: wait_for_tick
+  return: carla.WorldSnapshot
+  params:
+  - param_name: seconds
+    type: float
+    default: 10.0
+    param_units: seconds
+    doc: > 
+      Maximum time the server should wait for a tick. It is set to <code>10.0</code> by default.   
+  doc: >
+    This method is used in [__asynchronous__ mode](https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/).
+    # 表明 `wait_for_tick` 函数是应用在异步模式下的，同样通过提供的链接（https://carla.readthedocs.io/en/latest/adv_synchrony_timestep/）方便使用者进一步了解异步模式的详细内容和相关背景知识。
+
+    It makes the client wait for a server tick.
+    # 阐述了该函数的核心功能，就是让客户端去等待服务器的一个 “tick”（服务器的一次更新操作），在异步模式下，客户端不像在同步模式那样主动去触发服务器更新，而是等待服务器自身进行更新后再做相应操作。
+
+    When the next frame is computed, the server will tick and return a snapshot describing the new state of the world.
+    # 进一步说明当服务器完成下一帧的计算后，会进行 “tick” 操作并且返回一个 `carla.WorldSnapshot` 类型的对象，这个对象描述了模拟世界经过这次更新后的新状态，而这个返回值正是 `wait_for_tick` 函数向外提供的，客户端可以基于这个返回的世界状态快照来进行后续的各种操作，比如获取世界中的实体信息、进行相关逻辑判断等。
     # --------------------------------------
     - def_name: spawn_actor
       return: carla.Actor
