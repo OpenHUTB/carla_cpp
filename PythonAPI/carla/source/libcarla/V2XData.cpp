@@ -3,12 +3,14 @@
 //
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
-
-#include <carla/sensor/data/V2XData.h>
-#include <carla/sensor/data/LibITS.h>
-#include <iostream>
-#include <ostream>
-#include <vector>
+// 包含 CARLA 仿真框架中用于 V2X (车联网) 数据处理的头文件
+#include <carla/sensor/data/V2XData.h>// V2XData 可能包含与车联网通信相关的数据结构和功能
+#include <carla/sensor/data/LibITS.h>// LibITS 可能包含与智能交通系统 (ITS) 相关的数据和功能
+// 输入输出流的标准库头文件
+#include <iostream>// 用于标准输入输出，通常用于调试和显示信息
+#include <ostream>// 用于输出流相关功能，通常用于自定义输出到流
+// 向量容器的标准库头文件
+#include <vector>// 提供动态数组的容器，用于存储多个元素
 
 /**********************************************************************************************/
 // 将车联网（V2X）传感器发出的协同感知消息（CAM message）转换为Python字典的函数。
