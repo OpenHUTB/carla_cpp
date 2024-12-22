@@ -142,7 +142,7 @@
       return: carla.Transform
       doc: >
         Returns the actor's transform (location and rotation) the client recieved during last tick. The method does not call the simulator.
-    # --------------------------------------
+    #返回客户端在最后一个滴答声中接收到的演员变换（位置和旋转）。该方法不调用模拟器。 --------------------------------------
     - def_name: get_velocity
       return: carla.Vector3D
       return_units: m/s

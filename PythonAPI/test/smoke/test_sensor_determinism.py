@@ -181,16 +181,26 @@ class Scenario(object):
         self.sensor_list.append((name, sensor))
 
     def add_lidar_snapshot(self, lidar_data, name="LiDAR"):
+        # 如果传感器当前不处于活动状态，则直接返回
         if not self.active:
             return
-
+ 
+        # 从LiDAR数据的原始缓冲区中提取点云数据
+        # 假设原始数据是以32位浮点数（'f4'）的形式存储的，每个点包含4个值（x, y, z, intensity）
         points = np.frombuffer(lidar_data.raw_data, dtype=np.dtype('f4'))
+        # 将一维数组重塑为二维数组，其中每行代表一个点（x, y, z, intensity）
         points = np.reshape(points, (int(points.shape[0] / 4), 4))
-
+ 
+        # 计算当前帧与初始帧之间的差值
         frame = lidar_data.frame - self.init_timestamp['frame0']
+ 
+        # 使用计算出的帧号和提供的名称前缀生成文件名，并保存点云数据到该文件
+        # 假设get_filename是一个返回完整文件路径的方法
         np.savetxt(self.get_filename(name, frame), points)
+ 
+        # 将帧号和传感器名称放入队列中，可能用于后续处理或同步
         self.sensor_queue.put((lidar_data.frame, name))
-
+        
     def add_semlidar_snapshot(self, lidar_data, name="SemLiDAR"):
         if not self.active:
             return
