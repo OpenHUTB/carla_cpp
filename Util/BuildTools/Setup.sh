@@ -68,14 +68,14 @@ UNREAL_HOSTED_CFLAGS="--sysroot=$UE4_ROOT/Engine/Extras/ThirdPartyNotUE/SDKs/Hos
 # ==============================================================================
 # -- Get boost includes --------------------------------------------------------
 # ==============================================================================
-
+# 设置BOOST_VERSION和BOOST_BASENAME变量
 BOOST_VERSION=1.80.0
 BOOST_BASENAME="boost-${BOOST_VERSION}-${CXX_TAG}"
 BOOST_SHA256SUM="4b2136f98bdd1f5857f1c3dea9ac2018effe65286cf251534b6ae20cc45e1847"
-
+# 设置BOOST_INCLUDE和BOOST_LIBPATH变量
 BOOST_INCLUDE=${PWD}/${BOOST_BASENAME}-install/include
 BOOST_LIBPATH=${PWD}/${BOOST_BASENAME}-install/lib
-
+# 遍历Python版本列表，下载并安装Boost库
 for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
   SHOULD_BUILD_BOOST=true
   PYTHON_VERSION=$(/usr/bin/env python${PY_VERSION} -V 2>&1)
@@ -90,7 +90,7 @@ for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
 
   if { ${SHOULD_BUILD_BOOST} ; } ; then
     rm -Rf ${BOOST_BASENAME}-source
-
+# 下载并安装Boost库
     BOOST_PACKAGE_BASENAME=boost_${BOOST_VERSION//./_}
 
     log "Retrieving boost."
@@ -99,7 +99,7 @@ for PY_VERSION in ${PY_VERSION_LIST[@]} ; do
     wget "https://archives.boost.io/release/${BOOST_VERSION}/source/${BOOST_PACKAGE_BASENAME}.tar.gz" -O ${BOOST_PACKAGE_BASENAME}.tar.gz || true
     end=$(date +%s)
     echo "Elapsed Time downloading from boost webpage: $(($end-$start)) seconds"
-
+# 尝试使用Jenkins中的备份Boost库
     # try to use the backup boost we have in Jenkins
     if [ ! -f "${BOOST_PACKAGE_BASENAME}.tar.gz" ] || [[ $(sha256sum "${BOOST_PACKAGE_BASENAME}.tar.gz" | cut -d " " -f 1 ) != "${BOOST_SHA256SUM}" ]] ; then
       log "Using boost backup"
@@ -164,10 +164,10 @@ unset BOOST_BASENAME
 # ==============================================================================
 # -- Get rpclib and compile it with libc++ and libstdc++ -----------------------
 # ==============================================================================
-
+# 设置RPCLIB_PATCH、RPCLIB_BASENAME变量
 RPCLIB_PATCH=v2.2.1_c5
 RPCLIB_BASENAME=rpclib-${RPCLIB_PATCH}-${CXX_TAG}
-
+# 设置RPCLIB_LIBCXX_INCLUDE、RPCLIB_LIBCXX_LIBPATH、
 RPCLIB_LIBCXX_INCLUDE=${PWD}/${RPCLIB_BASENAME}-libcxx-install/include
 RPCLIB_LIBCXX_LIBPATH=${PWD}/${RPCLIB_BASENAME}-libcxx-install/lib
 RPCLIB_LIBSTDCXX_INCLUDE=${PWD}/${RPCLIB_BASENAME}-libstdcxx-install/include
