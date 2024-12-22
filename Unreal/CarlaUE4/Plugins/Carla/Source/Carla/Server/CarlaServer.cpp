@@ -328,18 +328,22 @@ void FCarlaServer::FPimpl::BindActions()
 
     return R<void>::Success();
   };
-
+// 使用宏或模板函数绑定同步函数load_map_layer到下面的lambda表达式
   BIND_SYNC(load_map_layer) << [this](cr::MapLayer MapLayers) -> R<void>
   {
+// 检查当前是否有一个有效的CARLA模拟场景（episode）正在运行
     REQUIRE_CARLA_EPISODE();
-
+// 从当前运行的模拟世界中获取CARLA游戏模式（GameMode）的实例
+    // ACarlaGameModeBase是CARLA中定义的游戏模式基类
     ACarlaGameModeBase* GameMode = UCarlaStatics::GetGameMode(Episode->GetWorld());
     if (!GameMode)
     {
       RESPOND_ERROR("unable to find CARLA game mode");
     }
+     // 调用游戏模式的LoadMapLayer函数，加载指定的地图层
+   // 将枚举类型转换为整型，因为函数可能需要整型参数
     GameMode->LoadMapLayer(static_cast<int32>(MapLayers));
-
+  // 函数执行成功，返回成功状态的R<void>对象
     return R<void>::Success();
   };
 
@@ -360,6 +364,9 @@ void FCarlaServer::FPimpl::BindActions()
   BIND_SYNC(copy_opendrive_to_file) << [this](const std::string &opendrive, cr::OpendriveGenerationParameters Params) -> R<void>
   {
     REQUIRE_CARLA_EPISODE();
+    //使用提供的OpenDRIVE数据和参数加载一个新的模拟场景
+    // cr::ToLongFString(opendrive)将std::string转换为CARLA内部使用的FString类型
+    // Params是OpenDRIVE生成参数，用于自定义加载过程
     if (!Episode->LoadNewOpendriveEpisode(cr::ToLongFString(opendrive), Params))
     {
       RESPOND_ERROR("opendrive could not be correctly parsed");
@@ -368,9 +375,9 @@ void FCarlaServer::FPimpl::BindActions()
   };
 
   BIND_SYNC(apply_color_texture_to_objects) << [this](
-      const std::vector<std::string> &actors_name,
-      const cr::MaterialParameter& parameter,
-      const cr::TextureColor& Texture) -> R<void>
+      const std::vector<std::string> &actors_name,// 场景中要应用纹理的对象名称列表
+      const cr::MaterialParameter& parameter,// 材料参数，用于定义纹理的应用方式
+      const cr::TextureColor& Texture) -> R<void>// 纹理颜色参数
   {
     REQUIRE_CARLA_EPISODE();
     ACarlaGameModeBase* GameMode = UCarlaStatics::GetGameMode(Episode->GetWorld());
@@ -704,10 +711,12 @@ void FCarlaServer::FPimpl::BindActions()
       const std::vector<FCarlaActor::IdType> &ids) -> R<std::vector<cr::Actor>>
   {
     REQUIRE_CARLA_EPISODE();
+   // 创建一个用于存储结果的向量，并预留足够的空间以优化性能
     std::vector<cr::Actor> Result;
     Result.reserve(ids.size());
+    // 遍历提供的ID列表
     for (auto &&Id : ids)
-    {
+    {// 使用ID在场景中查找对应的CARLA对象视图
       FCarlaActor* View = Episode->FindCarlaActor(Id);
       if (View)
       {
@@ -716,11 +725,12 @@ void FCarlaServer::FPimpl::BindActions()
     }
     return Result;
   };
-
+// 绑定同步函数spawn_actor到下面的lambda表达式
   BIND_SYNC(spawn_actor) << [this](
-      cr::ActorDescription Description,
-      const cr::Transform &Transform) -> R<cr::Actor>
+      cr::ActorDescription Description,// 对象描述，包含类型、属性等信息
+      const cr::Transform &Transform) -> R<cr::Actor>// 对象的位置和朝向
   {
+    // 检查当前是否有一个有效的CARLA模拟场景正在运行
     REQUIRE_CARLA_EPISODE();
 
     auto Result = Episode->SpawnActorWithInfo(Transform, std::move(Description));
@@ -748,8 +758,11 @@ void FCarlaServer::FPimpl::BindActions()
       const std::string& socket_name) -> R<cr::Actor>
   {
     REQUIRE_CARLA_EPISODE();
-
+   // 尝试在模拟场景中生成一个新的actor
+   // Transform包含了新actor的位置和朝向信息
+   // Description包含了新actor的类型、属性等描述信息
     auto Result = Episode->SpawnActorWithInfo(Transform, std::move(Description));
+   // 检查生成actor的结果 
     if (Result.Key != EActorSpawnResultStatus::Success)
     {
       RESPOND_ERROR_FSTRING(FActorSpawnResult::StatusToString(Result.Key));
@@ -1075,11 +1088,13 @@ BIND_SYNC(is_sensor_enabled_for_ros) << [this](carla::streaming::detail::stream_
     }
     return R<void>::Success();
   };
-
+// 使用BIND_SYNC宏绑定一个名为set_actor_target_velocity的同步操作
+// 该操作接受一个actor的ID（cr::ActorId）和一个三维向量（cr::Vector3D）作为参数
+// 并返回一个R<void>类型的响应对象，表示操作的结果
   BIND_SYNC(set_actor_target_velocity) << [this](
-      cr::ActorId ActorId,
-      cr::Vector3D vector) -> R<void>
-  {
+      cr::ActorId ActorId,// actor的唯一标识符
+      cr::Vector3D vector) -> R<void>// actor应达到的目标速度向量
+  {                                  
     REQUIRE_CARLA_EPISODE();
     FCarlaActor* CarlaActor = Episode->FindCarlaActor(ActorId);
     if (!CarlaActor)
