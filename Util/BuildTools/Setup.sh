@@ -409,23 +409,23 @@ fi
 # ==============================================================================
 # -- Get and compile libxerces 3.2.3 ------------------------------
 # ==============================================================================
-
+# 设置libxerces的版本和基本名称
 XERCESC_VERSION=3.2.3
 XERCESC_BASENAME=xerces-c-${XERCESC_VERSION}
-
+# 设置libxerces的源代码和安装目录
 XERCESC_TEMP_FOLDER=${XERCESC_BASENAME}
 XERCESC_REPO=https://archive.apache.org/dist/xerces/c/3/sources/xerces-c-${XERCESC_VERSION}.tar.gz
-
+# 设置libxerces的库文件路径
 XERCESC_SRC_DIR=${XERCESC_BASENAME}-source
 XERCESC_INSTALL_DIR=${XERCESC_BASENAME}-install
 XERCESC_INSTALL_SERVER_DIR=${XERCESC_BASENAME}-install-server
 XERCESC_LIB=${XERCESC_INSTALL_DIR}/lib/libxerces-c.a
 XERCESC_SERVER_LIB=${XERCESC_INSTALL_SERVER_DIR}/lib/libxerces-c.a
-
+# 检查是否已经安装了libxerces，如果没有，则下载并编译
 if [[ -d ${XERCESC_INSTALL_DIR} &&  -d ${XERCESC_INSTALL_SERVER_DIR} ]] ; then
   log "Xerces-c already installed."
 else
-  log "Retrieving xerces-c."
+  log "Retrieving xerces-c."# 下载xerces-c源代码
   start=$(date +%s)
   wget ${XERCESC_REPO}
   end=$(date +%s)
@@ -438,7 +438,7 @@ else
     end=$(date +%s)
     echo "Elapsed Time downloading from xerces backup: $(($end-$start)) seconds"
   fi
-
+# 尝试使用Jenkins中的备份xerces-c
   log "Extracting xerces-c."
 
   start=$(date +%s)
