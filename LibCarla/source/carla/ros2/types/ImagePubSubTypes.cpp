@@ -21,134 +21,209 @@
 
 #include <fastcdr/FastBuffer.h>
 #include <fastcdr/Cdr.h>
-
 #include "ImagePubSubTypes.h"
-// 定义序列化负载类型和实例句柄类型
+
+// 定义序列化负载类型和实例句柄类型，方便后续代码中使用相应类型，提高代码可读性
 using SerializedPayload_t = eprosima::fastrtps::rtps::SerializedPayload_t;
 using InstanceHandle_t = eprosima::fastrtps::rtps::InstanceHandle_t;
 
 namespace sensor_msgs {
     namespace msg {
+
+        // ImagePubSubType类的构造函数，用于初始化该类型相关的属性
         ImagePubSubType::ImagePubSubType()
         {
+            // 设置该类型的名称，这里明确指定了名称为 "sensor_msgs::msg::dds_::Image_"，可能用于标识等用途
             setName("sensor_msgs::msg::dds_::Image_"); 
-            auto type_size = Image::getMaxCdrSerializedSize(); // 获取Image类型的最大CDR序列化大小
-            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); /* possible submessage alignment */ // 计算可能的子消息对齐
-            m_typeSize = static_cast<uint32_t>(type_size) + 4; /*encapsulation*/ // 设置类型大小（包括封装）
-            m_isGetKeyDefined = Image::isKeyDefined(); // 设置是否定义了键
-            size_t keyLength = Image::getKeyMaxCdrSerializedSize() > 16 ? // 计算键缓冲区长度
+
+            // 获取Image类型的最大CDR（Common Data Representation，一种数据序列化格式）序列化大小
+            auto type_size = Image::getMaxCdrSerializedSize(); 
+
+            // 考虑可能的子消息对齐情况，对类型大小进行调整，这里调用alignment函数来处理对齐，
+            // 注释中提到是针对可能的子消息对齐，确保数据存储符合一定的对齐规则
+            type_size += eprosima::fastcdr::Cdr::alignment(type_size, 4); 
+            /* possible submessage alignment */ 
+
+            // 计算最终的类型大小，在之前调整后的大小基础上加上4，注释表明这是考虑封装（encapsulation）所需的额外空间
+            m_typeSize = static_cast<uint32_t>(type_size) + 4; 
+            /*encapsulation*/ 
+
+            // 判断Image类型是否定义了键（Key），将结果存储在m_isGetKeyDefined成员变量中，
+            // 后续获取键等操作会依据这个变量来判断是否可行
+            m_isGetKeyDefined = Image::isKeyDefined(); 
+
+            // 根据Image类型的最大键CDR序列化大小来确定键缓冲区（keyBuffer）的长度，
+            // 如果最大键序列化大小大于16字节，就使用该最大大小作为缓冲区长度，否则使用16字节作为长度
+            size_t keyLength = Image::getKeyMaxCdrSerializedSize() > 16? 
                     Image::getKeyMaxCdrSerializedSize() : 16;
-            m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength)); // 分配键缓冲区
-            memset(m_keyBuffer, 0, keyLength); // 初始化键缓冲区
+
+            // 分配键缓冲区内存空间，使用malloc函数分配指定长度（keyLength）的无符号字符类型（unsigned char*）内存，
+            // 后续用于存储键相关的数据
+            m_keyBuffer = reinterpret_cast<unsigned char*>(malloc(keyLength)); 
+
+            // 对刚分配的键缓冲区进行初始化，将所有字节都设置为0，确保缓冲区初始状态的一致性和正确性
+            memset(m_keyBuffer, 0, keyLength); 
         }
 
-        ImagePubSubType::~ImagePubSubType() // ImagePubSubType析构函数
+        // ImagePubSubType类的析构函数，用于释放构造函数中分配的键缓冲区内存
+        ImagePubSubType::~ImagePubSubType() 
         {
-            if (m_keyBuffer != nullptr)
+            // 检查键缓冲区指针是否为空，如果不为空，表示之前成功分配了内存，就调用free函数释放对应的内存空间
+            if (m_keyBuffer!= nullptr)
             {
                 free(m_keyBuffer);
             }
         }
 
+        // 序列化函数，将给定的数据（Image类型）序列化为SerializedPayload_t格式，以便进行传输或存储等操作
         bool ImagePubSubType::serialize(
                 void* data,
                 SerializedPayload_t* payload)
         {
+            // 将传入的void*类型数据指针转换为Image*类型指针，方便后续对Image类型数据进行操作
             Image* p_type = static_cast<Image*>(data);
 
-            // Object that manages the raw buffer.
-            eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size); // 创建FastBuffer对象管理原始缓冲区
-            // Object that serializes the data.
-            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR); // 创建Cdr对象序列化数据
-            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-            // Serialize encapsulation
+            // 创建一个FastBuffer对象，用于管理原始缓冲区（raw buffer），
+            // 它关联了payload中的数据指针（payload->data）以及最大可用空间（payload->max_size），
+            // 这个对象提供了对缓冲区操作的便利方法
+            eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size); 
+
+            // 创建一个Cdr对象，用于执行实际的序列化数据操作，
+            // 它关联了前面创建的FastBuffer对象，同时指定了字节序（DEFAULT_ENDIAN）和遵循的CDR规范（DDS_CDR）
+            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR); 
+
+            // 根据Cdr对象当前的字节序（endianness）来设置payload的封装格式（encapsulation），
+            // 如果是大端序（BIG_ENDIANNESS）则设置为CDR_BE，否则设置为CDR_LE
+            payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
+
+            // 使用Cdr对象对封装进行序列化操作，这一步可能是在数据前面添加一些必要的封装头部等信息，遵循CDR规范
             ser.serialize_encapsulation();
+
+            // 调用Image对象的serialize函数（假设Image类有这个函数定义），通过Cdr对象将Image类型的数据进行序列化，
+            // 具体的序列化细节由Image类的实现来决定
             p_type->serialize(ser);
-            // Get the serialized length
+
+            // 获取经过序列化后的数据实际长度，并将其赋值给payload的length成员变量，
+            // 这样后续使用payload时可以知道实际有效数据的长度
             payload->length = static_cast<uint32_t>(ser.getSerializedDataLength());
+
+            // 表示序列化操作成功完成，返回true
             return true;
         }
 
+        // 反序列化函数，将SerializedPayload_t格式的数据反序列化为Image类型的数据对象
         bool ImagePubSubType::deserialize(
                 SerializedPayload_t* payload,
                 void* data)
         {
-            //Convert DATA to pointer of your type
-            Image* p_type = static_cast<Image*>(data); // 将void指针转换为Image指针
+            // 将传入的void*类型数据指针转换为Image*类型指针，以便后续能正确地将反序列化后的数据填充到对应的Image对象中
+            Image* p_type = static_cast<Image*>(data);
 
-            // Object that manages the raw buffer.
-            eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length); // 创建FastBuffer对象管理原始缓冲区
+            // 创建一个FastBuffer对象来管理原始缓冲区，这里关联了payload中的实际数据（payload->data）以及数据的实际长度（payload->length），
+            // 以此来限定缓冲区的有效范围，方便后续反序列化操作
+            eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
-            // Object that deserializes the data.
-            eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR); // 创建Cdr对象反序列化数据
+            // 创建一个Cdr对象用于执行反序列化操作，同样指定了字节序（DEFAULT_ENDIAN）和遵循的CDR规范（DDS_CDR），
+            // 它将基于前面创建的FastBuffer对象中的数据进行反序列化处理
+            eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
-            // Deserialize encapsulation.
-            deser.read_encapsulation(); // 反序列化封装
-            payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
+            // 使用Cdr对象对封装进行反序列化操作，读取之前序列化时添加的封装头部等信息，恢复相关的设置，例如字节序等
+            deser.read_encapsulation();
 
-            // Deserialize the object.
+            // 根据Cdr对象当前反序列化得到的字节序来设置payload的封装格式（encapsulation），
+            // 如果是大端序（BIG_ENDIANNESS）则设置为CDR_BE，否则设置为CDR_LE
+            payload->encapsulation = deser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS? CDR_BE : CDR_LE;
+
+            // 调用Image对象的deserialize函数（假设Image类有这个函数定义），通过Cdr对象将缓冲区中的数据反序列化为Image类型的数据，
+            // 填充到对应的Image对象中，具体的反序列化细节由Image类的实现来决定
             p_type->deserialize(deser);
+
+            // 表示反序列化操作成功完成，返回true
             return true;
         }
 
+        // 返回一个函数对象（lambda表达式），该函数对象用于获取给定Image数据对象序列化后的大小（包含封装部分）
         std::function<uint32_t()> ImagePubSubType::getSerializedSizeProvider(
                 void* data)
         {
             return [data]() -> uint32_t
                    {
+                       // 先获取Image类型数据对象的CDR序列化大小（调用对应的函数，假设type::getCdrSerializedSize函数存在且正确实现），
+                       // 然后再加上4字节，用于考虑封装（encapsulation）所需的额外空间，最终返回总的序列化大小
                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<Image*>(data))) +
                               4u /*encapsulation*/;
                    };
         }
 
+        // 创建一个新的Image类型的数据对象，并将其指针转换为void*类型返回，
+        // 通常用于在需要动态分配对应类型数据空间的场景中，例如在接收数据前准备好存储数据的对象
         void* ImagePubSubType::createData()
         {
             return reinterpret_cast<void*>(new Image());
         }
 
+        // 删除给定的Image类型数据对象，通过将void*类型指针转换为Image*类型指针，然后调用delete操作符来释放内存，
+        // 用于清理之前动态分配的Image类型数据对象所占用的内存空间
         void ImagePubSubType::deleteData(
                 void* data)
         {
             delete(reinterpret_cast<Image*>(data));
         }
 
+        // 获取给定Image数据对象的键（Key）信息，并填充到InstanceHandle_t结构中，根据情况可能计算MD5值等操作
         bool ImagePubSubType::getKey(
                 void* data,
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
-            if (!m_isGetKeyDefined) // 如果没有定义获取键，则返回false
+            // 首先检查是否定义了获取键的操作，如果没有定义（m_isGetKeyDefined为false），则直接返回false，
+            // 表示无法获取键信息
+            if (!m_isGetKeyDefined) 
             {
                 return false;
             }
 
+            // 将传入的void*类型数据指针转换为Image*类型指针，以便后续操作对应的Image对象
             Image* p_type = static_cast<Image*>(data);
 
-            // Object that manages the raw buffer.
+            // 创建一个FastBuffer对象来管理用于存储键数据的缓冲区，
+            // 关联了之前分配的键缓冲区（m_keyBuffer）以及Image类型的最大键CDR序列化大小，
+            // 这个缓冲区将用于后续的键数据序列化操作
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
-                    Image::getKeyMaxCdrSerializedSize()); // 将void指针转换为Image指针
+                    Image::getKeyMaxCdrSerializedSize());
 
-            // Object that serializes the data.
-            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS); // 创建Cdr对象序列化数据
-            p_type->serializeKey(ser); // 序列化Image对象的键
-            if (force_md5 || Image::getKeyMaxCdrSerializedSize() > 16) // 如果需要强制MD5或键大小大于16，则计算MD5
+            // 创建一个Cdr对象用于序列化键数据，这里指定了字节序为大端序（BIG_ENDIANNESS），
+            // 然后使用该对象对Image对象的键进行序列化操作（调用Image对象的serializeKey函数，假设其存在且正确实现）
+            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS);
+            p_type->serializeKey(ser);
+
+            // 判断是否需要强制计算MD5值或者Image类型的最大键CDR序列化大小是否大于16字节，
+            // 如果满足条件，则进行MD5计算及相关处理
+            if (force_md5 || Image::getKeyMaxCdrSerializedSize() > 16) 
             {
+                // 初始化MD5计算相关的对象（假设m_md5是一个用于MD5计算的合适对象且有对应的init等函数）
                 m_md5.init();
+                // 使用MD5对象更新数据，传入键缓冲区和序列化后的键数据长度，以便计算MD5值
                 m_md5.update(m_keyBuffer, static_cast<unsigned int>(ser.getSerializedDataLength()));
+                // 完成MD5计算，生成最终的MD5摘要值
                 m_md5.finalize();
+                // 将计算得到的MD5摘要值的每个字节依次复制到InstanceHandle_t结构的value数组中，
+                // 通常用于后续基于键进行数据匹配、查找等操作
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_md5.digest[i];
                 }
             }
-            else // 否则直接复制键缓冲区到句柄
+            else // 如果不需要计算MD5值且键大小不大于16字节，则直接将键缓冲区中的数据复制到InstanceHandle_t结构的value数组中
             {
                 for (uint8_t i = 0; i < 16; ++i)
                 {
                     handle->value[i] = m_keyBuffer[i];
                 }
             }
+
+            // 表示成功获取并处理了键信息，返回true
             return true;
         }
-    } //End of namespace msg
-} //End of namespace sensor_msgs
+    } 
+} 
