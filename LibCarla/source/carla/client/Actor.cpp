@@ -4,7 +4,7 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/client/Actor.h"// 引入Carla模拟器中参与者模块的头文件
+#include "carla/client/Actor.h"// 引入Carla模拟器客户端库中的Actor类头文件，用于操作模拟环境中的参与者（如车辆、行人等）
 
 #include "carla/Logging.h"// 引入Carla日志模块的头文件
 #include "carla/client/detail/Simulator.h"// 引入Carla客户端模拟器实现的细节头文件
