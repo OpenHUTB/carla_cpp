@@ -200,12 +200,14 @@ def get_actor_blueprints(world, filter, generation):
 # -- World ---------------------------------------------------------------------
 # ==============================================================================
 
-
+#类定义
 class World(object):
-    def __init__(self, carla_world, hud, args):
+    def __init__(self, carla_world, hud, args):  #初始化方法
+        #属性赋值
         self.world = carla_world
         self.sync = args.sync
         self.actor_role_name = args.rolename
+        #地图加载
         try:
             self.map = self.world.get_map()
         except RuntimeError as error:
@@ -213,6 +215,7 @@ class World(object):
             print('  The server could not send the OpenDRIVE (.xodr) file:')
             print('  Make sure it exists, has the same name of your town, and is correct.')
             sys.exit(1)
+            #其他属性初始化
         self.hud = hud
         self.player = None
         self.collision_sensor = None
@@ -222,13 +225,21 @@ class World(object):
         self.v2x_sensor = None
         self.radar_sensor = None
         self.camera_manager = None
+        #天气预设
         self._weather_presets = find_weather_presets()
+        #初始化天气索引为0
         self._weather_index = 0
+        #根据命令行参数设置演员过滤器
         self._actor_filter = args.filter
+        #根据命令行参数设置演员生成器
         self._actor_generation = args.generation
+        #设置伽马值
         self._gamma = args.gamma
+        #重启方法调用
         self.restart()
+        #tick回调
         self.world.on_tick(hud.on_world_tick)
+        #初始化录制功能为禁用状态
         self.recording_enabled = False
         self.recording_start = 0
         self.constant_velocity_enabled = False
