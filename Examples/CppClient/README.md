@@ -14,7 +14,8 @@ that it expects to have a simulator running at port 2000.
 make run
 ```
 
-How it works
+How it works# 工作原理部分
+# 解释如何将应用程序与LibCarla链接
 ------------
 
 In order to link our application against LibCarla, we need to compile LibCarla
