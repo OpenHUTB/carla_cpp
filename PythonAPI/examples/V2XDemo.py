@@ -84,14 +84,14 @@ import carla# 导入carla模块，CARLA模拟器的Python API
 
 from carla import ColorConverter as cc
 
-import argparse
-import collections
-import datetime
-import logging
-import math
-import random
-import re
-import weakref
+import argparse  # 处理命令行参数的模块，能够解析命令行输入并提供简单的接口。
+import collections  # 提供了一些额外的数据类型，如deque、Counter、OrderedDict等，提供更强大的 collection 操作能力。
+import datetime  # 处理日期和时间的模块，支持日期和时间的运算和格式转换。
+import logging  # 提供灵活的日志记录功能，能够控制不同级别的输出（如 info、warning、error 等）。
+import math  # 提供数学运算的函数，比如三角函数、对数、平方根等。
+import random  # 生成随机数和进行随机选择的模块，包括生成随机整数、浮点数等。
+import re  # 使用正则表达式进行字符串匹配、查找和替。
+import weakref  # 提供对对象的弱引用，允许更灵活的内存管理并避免循环引用的问题。
 
 try:
     import pygame
@@ -135,14 +135,17 @@ try:
     from pygame.locals import K_z
     from pygame.locals import K_MINUS
     from pygame.locals import K_EQUALS
+try:
+    import pygame
 except ImportError:
+    # 如果无法导入pygame模块，则引发RuntimeError
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
 
 try:
     import numpy as np
 except ImportError:
+    # 如果无法导入numpy模块，则引发RuntimeError
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
-
 
 # ==============================================================================
 # -- Global functions ----------------------------------------------------------
