@@ -24,19 +24,25 @@
 namespace carla {
 namespace multigpu {
 
-  Secondary::Secondary(                    // 构造函数，接受端点和回调函数
-    boost::asio::ip::tcp::endpoint ep,
-    SecondaryCommands::callback_type callback) :
-      _pool(),                              // 初始化缓冲池
-      _socket(_pool.io_context()),          // 初始化套接字
-      _endpoint(ep),                        // 设置端点
-      _strand(_pool.io_context()),          // 初始化strand以确保线程安全
-      _connection_timer(_pool.io_context()),// 初始化连接计时器
-      _buffer_pool(std::make_shared<BufferPool>()) { // 创建共享的缓冲池
-
-      _commander.set_callback(callback);    // 设置回调函数
-    }
-
+ Secondary::Secondary(
+    std::string ip,                         // 传入服务器的IP地址字符串
+    uint16_t port,                          // 传入服务器的端口号
+    SecondaryCommands::callback_type callback) // 传入回调函数，用于处理接收到的命令或消息
+    : _pool(),                              // 初始化_pool成员变量，它是一个可能包含I/O上下文和其他资源的结构或类
+      _socket(_pool.io_context()),          // 使用_pool中的I/O上下文初始化_socket成员变量，用于网络通信
+      _strand(_pool.io_context()),          // 使用相同的I/O上下文初始化_strand成员变量，以确保后续操作的线程安全
+      _connection_timer(_pool.io_context()),// 使用I/O上下文初始化_connection_timer成员变量，用于管理连接超时等
+      _buffer_pool(std::make_shared<BufferPool>()) // 创建一个BufferPool的共享实例，并赋值给_buffer_pool成员变量
+{
+    // 将传入的IP地址字符串转换为Boost.Asio可识别的IP地址对象
+    boost::asio::ip::address ip_address = boost::asio::ip::address::from_string(ip);
+    
+    // 使用转换后的IP地址和端口号创建一个TCP端点对象，并赋值给_endpoint成员变量
+    _endpoint = boost::asio::ip::tcp::endpoint(ip_address, port);
+    
+    // 设置回调函数，当接收到命令或消息时，将调用此回调函数进行处理
+    _commander.set_callback(callback);
+}
 
   Secondary::Secondary(                    // 另一个构造函数，接受IP和端口以及回调函数
     std::string ip,
