@@ -422,12 +422,13 @@
           The approximate distance between waypoints.
       return: list(carla.Waypoint)
       doc: >
-        Returns a list of waypoints from this to the start of the lane separated by a certain `distance`.
+        Returns a list of waypoints from this to the start of the lane separated by a certain `distance`. # 返回从当前位置到车道起点之间的多个点，每个点之间的间隔约为指定的`distance`距离。
     # --------------------------------------
     - def_name: get_junction
       return: carla.Junction
       doc: >
-        If the waypoint belongs to a junction this method returns the associated junction object. Otherwise returns null.
+        If the waypoint belongs to a junction this method returns the associated junction object. Otherwise returns null. # 如果当前的 waypoint 属于交叉口，则返回相关的交叉口对象；否则返回 null。
+
     # --------------------------------------
     - def_name: get_landmarks
       params:
@@ -443,7 +444,7 @@
           Enables or disables the landmark search through junctions.
       return: list(carla.Landmark)
       doc: >
-        Returns a list of landmarks in the road from the current waypoint until the specified distance.
+        Returns a list of landmarks in the road from the current waypoint until the specified distance.# 返回从当前 waypoint 开始到指定距离范围内的所有地标。
     # --------------------------------------
     - def_name: get_landmarks_of_type
       params:
@@ -463,21 +464,23 @@
           Enables or disables the landmark search through junctions.
       return: list(carla.Landmark)
       doc: >
-        Returns a list of landmarks in the road of a specified type from the current waypoint until the specified distance.
+        Returns a list of landmarks in the road of a specified type from the current waypoint until the specified distance.# 返回从当前 waypoint 开始到指定距离范围内的所有特定类型地标。
     # --------------------------------------
     - def_name: get_left_lane
       return: carla.Waypoint
       doc: >
         Generates a Waypoint at the center of the left lane based on the direction of the current Waypoint, taking into account if the lane change is allowed in this location.
 
-        Will return <b>None</b> if the lane does not exist
+        Will return <b>None</b> if the lane does not exist # 根据当前 Waypoint 的方向生成一个左车道的 Waypoint，并考虑当前位置是否允许变道。
+    # 如果该车道不存在，则返回 <b>None</b>。
     # --------------------------------------
     - def_name: get_right_lane
       return: carla.Waypoint
       doc: >
         Generates a waypoint at the center of the right lane based on the direction of the current waypoint, taking into account if the lane change is allowed in this location.
 
-        Will return <b>None</b> if the lane does not exist.
+        Will return <b>None</b> if the lane does not exist. # 根据当前 Waypoint 的方向生成一个右车道的 Waypoint，并考虑当前位置是否允许变道。
+    # 如果该车道不存在，则返回 <b>None</b>。
     # --------------------------------------
     - def_name: __str__
     # --------------------------------------
