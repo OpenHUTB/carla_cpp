@@ -4,67 +4,64 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "Carla.h"
-#include "CityMapGenerator.h"
+#include "Carla.h" // 包含Carla模块的主要头文件
+#include "CityMapGenerator.h" // 包含城市地图生成器的头文件
 
-#include "MapGen/GraphGenerator.h"
-#include "MapGen/RoadMap.h"
-#include "Game/Tagger.h"
+#include "MapGen/GraphGenerator.h" // 包含图生成器的头文件
+#include "MapGen/RoadMap.h" // 包含道路图的头文件
+#include "Game/Tagger.h" // 包含游戏中的标签器组件的头文件
 
-#include "Components/InstancedStaticMeshComponent.h"
-#include "Engine/World.h"
-#include "Paths.h"
+#include "Components/InstancedStaticMeshComponent.h" // 包含实例化静态网格组件的头文件
+#include "Engine/World.h" // 包含世界引擎的头文件
+#include "Paths.h" // 包含路径处理的头文件
 
-#include <algorithm>
-#include <unordered_set>
+#include <algorithm> // 包含标准算法库
+#include <unordered_set> // 包含无序集合库
 
-#ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG
-#include <sstream>
+#ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG // 如果定义了额外日志记录
+#include <sstream> // 包含字符串流库，用于日志记录
 #endif // CARLA_ROAD_GENERATOR_EXTRA_LOG
 
-namespace crp = carla::rpc;
+namespace crp = carla::rpc; // 使用carla::rpc命名空间的别名
 
 // =============================================================================
-// -- Private types ------------------------------------------------------------
+// -- 私有类型 ------------------------------------------------------------
 // =============================================================================
 
-class FHalfEdgeCounter {
+class FHalfEdgeCounter { // 定义一个用于计数半边的辅助类
 public:
+  using HalfEdge = MapGen::DoublyConnectedEdgeList::HalfEdge; // 使用图生成器中的HalfEdge类型
 
-  using HalfEdge = MapGen::DoublyConnectedEdgeList::HalfEdge;
-
-  bool Insert(const HalfEdge &InHalfEdge)
-  {
-    return Set.insert(&InHalfEdge).second &&
-           Set.insert(&MapGen::DoublyConnectedEdgeList::GetPair(InHalfEdge)).second;
+  bool Insert(const HalfEdge &InHalfEdge) { // 插入一个半边并返回是否成功
+    return Set.insert(&InHalfEdge).second && // 插入半边
+           Set.insert(&MapGen::DoublyConnectedEdgeList::GetPair(InHalfEdge)).second; // 插入配对的半边
   }
 
 private:
-
-  std::unordered_set<const HalfEdge *> Set;
+  std::unordered_set<const HalfEdge *> Set; // 存储半边指针的无序集合
 };
 
 // =============================================================================
-// -- Constructor and destructor -----------------------------------------------
+// -- 构造函数和析构函数-----------------------------------------------
 // =============================================================================
 
-ACityMapGenerator::ACityMapGenerator(const FObjectInitializer& ObjectInitializer)
-  : Super(ObjectInitializer)
+ACityMapGenerator::ACityMapGenerator(const FObjectInitializer& ObjectInitializer) // 城市地图生成器的构造函数
+  : Super(ObjectInitializer) // 调用父类的构造函数
 {
-  RoadMap = ObjectInitializer.CreateDefaultSubobject<URoadMap>(this, TEXT("RoadMap"));
+  RoadMap = ObjectInitializer.CreateDefaultSubobject<URoadMap>(this, TEXT("RoadMap")); // 创建默认的道路图子对象
 }
 
-ACityMapGenerator::~ACityMapGenerator() {}
+ACityMapGenerator::~ACityMapGenerator() {} // 城市地图生成器的析构函数
 
 // =============================================================================
-// -- Overriden from UObject ---------------------------------------------------
+// -- 从 UObject 覆盖 ---------------------------------------------------
 // =============================================================================
 
-void ACityMapGenerator::PreSave(const ITargetPlatform *TargetPlatform)
+void ACityMapGenerator::PreSave(const ITargetPlatform *TargetPlatform) // 覆盖UObject的PreSave函数，用于保存前的准备
 {
 #if WITH_EDITOR
   if (bGenerateRoadMapOnSave) {
-    // Generate road map only if we are not cooking.
+    //只有在我们不烹饪时才生成路线图。
     FCoreUObjectDelegates::OnObjectSaved.Broadcast(this);
     if (!GIsCookerLoadingPackage) {
       check(RoadMap != nullptr);
@@ -77,7 +74,7 @@ void ACityMapGenerator::PreSave(const ITargetPlatform *TargetPlatform)
 }
 
 // =============================================================================
-// -- Overriden from ACityMapMeshHolder ----------------------------------------
+// -- 从 ACityMapMeshHolder 覆盖----------------------------------------
 // =============================================================================
 
 void ACityMapGenerator::UpdateMap()
@@ -94,7 +91,7 @@ void ACityMapGenerator::UpdateMap()
 }
 
 // =============================================================================
-// -- Map construction and update related methods ------------------------------
+// -- 地图构建和更新相关方法 ------------------------------
 // =============================================================================
 
 void ACityMapGenerator::UpdateSeeds()
@@ -114,7 +111,7 @@ void ACityMapGenerator::GenerateGraph()
     UE_LOG(LogCarla, Warning, TEXT("Map size changed, was too small"));
   }
 #ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG
-  // Delete the dcel before the new one is created so indices are restored.
+  //在创建新 dcel 之前删除 dcel，以便恢复索引。
   Dcel.Reset(nullptr);
 #endif // CARLA_ROAD_GENERATOR_EXTRA_LOG
   Dcel = MapGen::GraphGenerator::Generate(MapSizeX, MapSizeY, Seed);
@@ -125,7 +122,7 @@ void ACityMapGenerator::GenerateGraph()
       Dcel->CountFaces());
   DcelParser = MakeUnique<MapGen::GraphParser>(*Dcel);
 #ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG
-  { // print the results of the parser.
+  { //打印解析器的结果。
     std::wstringstream sout;
     sout << "\nGenerated " << DcelParser->CityAreaCount() << " city areas: ";
     for (auto i = 0u; i < DcelParser->CityAreaCount(); ++i) {
@@ -160,14 +157,14 @@ void ACityMapGenerator::GenerateRoads()
 
   FHalfEdgeCounter HalfEdgeCounter;
 
-  // For each edge add road segment.
+  // 对于每条边，添加路段。
   for (auto &edge : graph.GetHalfEdges()) {
     if (HalfEdgeCounter.Insert(edge)) {
       auto source = Graph::GetSource(edge).GetPosition();
       auto target = Graph::GetTarget(edge).GetPosition();
 
       if (source.x == target.x) {
-        // vertical
+        // 垂直
         auto y = 1u + margin + std::min(source.y, target.y);
         auto end = std::max(source.y, target.y) - margin;
         for (; y < end; ++y) {
@@ -178,7 +175,7 @@ void ACityMapGenerator::GenerateRoads()
           AddInstance(ECityMapMeshTag::RoadTwoLanes_LaneMarkingBroken, source.x, y, HALF_PI);
         }
       } else if (source.y == target.y) {
-        // horizontal
+        // 水平
         auto x = 1u + margin + std::min(source.x, target.x);
         auto end = std::max(source.x, target.x) - margin;
         for (; x < end; ++x) {
@@ -211,7 +208,7 @@ void ACityMapGenerator::GenerateRoads()
     AddInstance(tag ##_Sidewalk3, x, y, angle); \
     AddInstance(tag ##_LaneMarking, x, y, angle);
 
-  // For each node add the intersection.
+  // 对于每个节点，添加交集。
   for (auto &node : graph.GetNodes()) {
     const auto coords = node.GetPosition();
     switch (node.IntersectionType) {
@@ -232,7 +229,7 @@ void ACityMapGenerator::GenerateRoads()
 #undef ADD_INTERSECTION
 }
 
-// Find first component of type road.
+//查找 road 类型的第一个组件。
 static bool LineTrace(
     UWorld *World,
     const FVector &Start,
@@ -290,7 +287,7 @@ void ACityMapGenerator::GenerateRoadMap()
       const FVector Start = ActorTransform.TransformPosition(FVector(X, Y, 50.0f));
       const FVector End = ActorTransform.TransformPosition(FVector(X, Y, -50.0f));
 
-      // Do the ray tracing.
+      //执行光线追踪。
       FHitResult Hit;
       if (LineTrace(World, Start, End, Hit)) {
         auto StaticMeshComponent = Cast<UStaticMeshComponent>(Hit.Component.Get());

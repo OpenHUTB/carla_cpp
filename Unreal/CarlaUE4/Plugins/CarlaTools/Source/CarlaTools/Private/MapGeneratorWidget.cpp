@@ -6,28 +6,28 @@
 
 #include "MapGeneratorWidget.h"
 
-#include "ActorFactories/ActorFactory.h"
-#include "AssetRegistryModule.h"
-#include "Carla/MapGen/LargeMapManager.h"
-#include "Carla/MapGen/SoilTypeManager.h"
-#include "Carla/Weather/Weather.h"
-#include "Carla/Vehicle/CustomTerrainPhysicsComponent.h"
-#include "Components/SplineComponent.h"
-#include "Editor/FoliageEdit/Public/FoliageEdMode.h"
-#include "EditorLevelLibrary.h"
-#include "FileHelpers.h"
-#include "GenericPlatform/GenericPlatformFile.h"
-#include "HAL/PlatformFilemanager.h"
-#include "Kismet/GameplayStatics.h"
-#include "Kismet/KismetMathLibrary.h"
-#include "Landscape.h"
-#include "LandscapeProxy.h"
-#include "Misc/FileHelper.h"
-#include "Misc/CString.h"
-#include "ProceduralFoliageComponent.h"
-#include "ProceduralFoliageVolume.h"
-#include "Runtime/Engine/Classes/Engine/ObjectLibrary.h"
-#include "Runtime/Engine/Public/DrawDebugHelpers.h"
+#include "ActorFactories/ActorFactory.h"// 引入Actor工厂头文件，用于生成和管理演员（对象）
+#include "AssetRegistryModule.h" // 引入资源注册模块，用于管理资源的注册和查询
+#include "Carla/MapGen/LargeMapManager.h"// 引入大型地图管理器，用于管理地图的生成
+#include "Carla/MapGen/SoilTypeManager.h"// 引入土壤类型管理器，用于管理地图的土壤类型
+#include "Carla/Weather/Weather.h"// 引入天气管理器，用于管理天气系统
+#include "Carla/Vehicle/CustomTerrainPhysicsComponent.h"// 引入自定义地形物理组件，用于管理地形物理
+#include "Components/SplineComponent.h" // 引入样条曲线组件，用于路径绘制或控制
+#include "Editor/FoliageEdit/Public/FoliageEdMode.h" // 引入植被编辑模式，用于编辑地图中的植被
+#include "EditorLevelLibrary.h"// 引入编辑器级别库，提供编辑器操作的帮助函数
+#include "FileHelpers.h" // 引入文件助手，用于处理文件操作
+#include "GenericPlatform/GenericPlatformFile.h" // 引入通用平台文件系统接口，用于跨平台的文件操作
+#include "HAL/PlatformFilemanager.h"// 引入平台文件管理器，提供文件系统的管理接口
+#include "Kismet/GameplayStatics.h"// 引入游戏玩法静态类，用于游戏运行时的静态帮助方法
+#include "Kismet/KismetMathLibrary.h" // 引入Kismet数学库，提供常见的数学运算功能
+#include "Landscape.h"// 引入地形类，表示地形对象
+#include "LandscapeProxy.h"// 引入地形代理类，表示地形的代理对象
+#include "Misc/FileHelper.h"// 引入杂项文件助手，提供一些额外的文件操作工具
+#include "Misc/CString.h"// 引入C字符串工具，用于处理C风格字符串
+#include "ProceduralFoliageComponent.h"// 引入程序化植被组件，用于生成程序化植被
+#include "ProceduralFoliageVolume.h"// 引入程序化植被体积类，用于定义植被生成区域
+#include "Runtime/Engine/Classes/Engine/ObjectLibrary.h" // 引入对象库，用于管理和访问引擎中的对象
+#include "Runtime/Engine/Public/DrawDebugHelpers.h"// 引入调试绘制帮助工具，用于调试和可视化绘制
 
 #include "EditorAssetLibrary.h"
 #include "EngineUtils.h"
@@ -213,13 +213,17 @@ void UMapGeneratorWidget::DeleteAllSpreadedActors(const FMapGeneratorMetaInfo& M
   }
 }
 
+// UnapGeneratorWidget类的CookVegetationToCurrentTile函数
 void UMapGeneratorWidget::CookVegetationToCurrentTile(const TArray<UProceduralFoliageSpawner*> FoliageSpawners)
 {
+	// 记录日志信息
   UE_LOG(LogCarlaToolsMapGenerator, Log, 
       TEXT("%s: Cooking vegetation to current tile. Vegetation type num: %d"), 
       *CUR_CLASS_FUNC_LINE, FoliageSpawners.Num());
 
+	// 调用CookVegetationToWorld函数，并将结果存储在result变量中
   bool result = CookVegetationToWorld(GEditor->GetEditorWorldContext().World(), FoliageSpawners);
+	// 如果结果为false，记录错误日志
   if(!result)
     UE_LOG(LogCarlaToolsMapGenerator, Error, TEXT("%s: Error Cooking vegetation for Current Tile"), 
         *CUR_CLASS_FUNC_LINE);
@@ -227,17 +231,23 @@ void UMapGeneratorWidget::CookVegetationToCurrentTile(const TArray<UProceduralFo
 
 bool UMapGeneratorWidget::RecalculateCollision()
 {
+	// 获取当前世界
   UWorld* World = GEditor->GetEditorWorldContext().World();
+	 // 如果世界为空，返回false
   if(World == nullptr)
     return false;
-    
+
+	// 获取世界中的地形
   ALandscape* Landscape = (ALandscape*) UGameplayStatics::GetActorOfClass(
       World, 
       ALandscape::StaticClass());
 
+	// 重新创建碰撞组件
   Landscape->RecreateCollisionComponents();
+	// 重新注册所有组件
   Landscape->ReregisterAllComponents();
 
+	// 保存世界
   SaveWorld(World);
 
   return true;

@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -34,7 +34,7 @@ void ACollisionSensor::SetOwner(AActor *NewOwner)
 {
   Super::SetOwner(NewOwner);
 
-  /// @todo Deregister previous owner if there was one.
+  /// @todo取消注册以前的所有者（如果有的话）。
   if (IsValid(NewOwner))
   {
     ACarlaWheeledVehicle* Vehicle = Cast<ACarlaWheeledVehicle>(NewOwner);
@@ -64,7 +64,7 @@ void ACollisionSensor::SetOwner(AActor *NewOwner)
 void ACollisionSensor::PrePhysTick(float DeltaSeconds) {
   Super::PrePhysTick(DeltaSeconds);
 
-  // remove all items from previous frames
+  // 删除前一帧中的所有项目
   uint64_t CurrentFrame = FCarlaEngine::GetFrameCounter();
   CollisionRegistry.erase(
       std::remove_if(
@@ -99,7 +99,7 @@ void ACollisionSensor::OnCollisionEvent(
 
   uint64_t CurrentFrame = FCarlaEngine::GetFrameCounter();
 
-  // check if this collision has been procesed already in this frame
+  // 检查此帧中是否已处理此碰撞
   for (auto& Collision: CollisionRegistry)
   {
     if (std::get<0>(Collision) == CurrentFrame &&
@@ -122,7 +122,7 @@ void ACollisionSensor::OnCollisionEvent(
           (float)NormalImpulse.Y,
           (float)NormalImpulse.Z));
 
-  // record the collision event
+  // 记录碰撞事件
   if (CurrentEpisode.GetRecorder()->IsEnabled()){
       CurrentEpisode.GetRecorder()->AddCollision(Actor, OtherActor);
   }

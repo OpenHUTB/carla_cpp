@@ -48,45 +48,45 @@
 
 #ifdef _MSC_VER
 #	pragma warning(push)
-#	pragma warning(disable: 4127) // conditional expression is constant
-#	pragma warning(disable: 4324) // structure was padded due to __declspec(align())
-#	pragma warning(disable: 4702) // unreachable code
-#	pragma warning(disable: 4996) // this function or variable may be unsafe
+#	pragma warning(disable: 4127) // 条件表达式是常量
+#	pragma warning(disable: 4324) //这句话表示结构体（structure）由于使用了 __declspec(align()) 声明而进行了填充（padding）操作。
+#	pragma warning(disable: 4702) //不可达代码
+#	pragma warning(disable: 4996) // 这个函数或变量可能不安全
 #endif
 
 #if defined(_MSC_VER) && defined(__c2__)
 #	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wdeprecated" // this function or variable may be unsafe
+#	pragma clang diagnostic ignored "-Wdeprecated" // 这个函数或变量可能不安全
 #endif
 
 #ifdef __INTEL_COMPILER
-#	pragma warning(disable: 177) // function was declared but never referenced
-#	pragma warning(disable: 279) // controlling expression is constant
-#	pragma warning(disable: 1478 1786) // function was declared "deprecated"
-#	pragma warning(disable: 1684) // conversion from pointer to same-sized integral type
+#	pragma warning(disable: 177) // 函数已被声明，但从未被引用
+#	pragma warning(disable: 279) // 控制表达式是常量
+#	pragma warning(disable: 1478 1786) // 函数被声明为‘弃用
+#	pragma warning(disable: 1684) //从指针转换为同等大小的整型类型。
 #endif
 
 #if defined(__BORLANDC__) && defined(PUGIXML_HEADER_ONLY)
-#	pragma warn -8080 // symbol is declared but never used; disabling this inside push/pop bracket does not make the warning go away
+#	pragma warn -8080 //符号已被声明但从未被使用；即便在入栈 / 出栈括号内禁用（相关设置），该警告也不会消失
 #endif
 
 #ifdef __BORLANDC__
 #	pragma option push
-#	pragma warn -8008 // condition is always false
-#	pragma warn -8066 // unreachable code
+#	pragma warn -8008 //条件始终为假
+#	pragma warn -8066 //不可达代码
 #endif
 
 #ifdef __SNC__
-// Using diag_push/diag_pop does not disable the warnings inside templates due to a compiler bug
-#	pragma diag_suppress=178 // function was declared but never referenced
-#	pragma diag_suppress=237 // controlling expression is constant
+// 由于编译器的一个漏洞，使用 diag_push 和 diag_pop 无法禁用模板内部的警告。
+#	pragma diag_suppress=178 // 函数已声明但从未被引用
+#	pragma diag_suppress=237 // 控制表达式是常量
 #endif
 
 #ifdef __TI_COMPILER_VERSION__
-#	pragma diag_suppress 179 // function was declared but never referenced
+#	pragma diag_suppress 179 // 函数已被声明，但从未被引用
 #endif
 
-// Inlining controls
+//内联控制
 #if defined(_MSC_VER) && _MSC_VER >= 1300
 #	define PUGI__NO_INLINE __declspec(noinline)
 #elif defined(__GNUC__)
@@ -95,14 +95,14 @@
 #	define PUGI__NO_INLINE
 #endif
 
-// Branch weight controls
+//分支权重控制
 #if defined(__GNUC__) && !defined(__c2__)
 #	define PUGI__UNLIKELY(cond) __builtin_expect(cond, 0)
 #else
 #	define PUGI__UNLIKELY(cond) (cond)
 #endif
 
-// Simple static assertion
+//简单静态断言
 #define PUGI__STATIC_ASSERT(cond) { static const char condition_failed[(cond) ? 1 : -1] = {0}; (void)condition_failed[0]; }
 
 // Digital Mars C++ bug workaround for passing char loaded from memory via stack
@@ -312,204 +312,245 @@ PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
 PUGI__NS_BEGIN
+	// 定义了一个名为 compact_hash_table 的类，用于实现紧凑的哈希表
 	class compact_hash_table
 	{
 	public:
+		// 类的构造函数，初始化哈希表的项指针为0，容量和计数也为0
 		compact_hash_table(): _items(0), _capacity(0), _count(0)
 		{
 		}
-
+		// 清除哈希表的方法。释放已分配的内存，并将容量和计数重置为0
 		void clear()
 		{
+			// 如果已分配了内存给哈希表的项
 			if (_items)
 			{
+				// 使用 xml_memory::deallocate 方法释放内存
 				xml_memory::deallocate(_items);
+				// 将项指针、容量和计数重置为0
 				_items = 0;
 				_capacity = 0;
 				_count = 0;
 			}
 		}
-
+		// 根据给定的键查找值的方法
 		void* find(const void* key)
 		{
+			// 如果哈希表的容量为0，表示哈希表为空，直接返回0（表示未找到
 			if (_capacity == 0) return 0;
-
+			// 调用 get_item 方法根据键获取对应的项（这个方法在给出的代码中没有定义，可能是类的私有方法）
 			item_t* item = get_item(key);
+			// 使用 assert 断言确保获取的项不为空，且项的键要么与给定的键相等，要么是一个空项（键和值都为0）
 			assert(item);
 			assert(item->key == key || (item->key == 0 && item->value == 0));
-
+			// 返回找到的项的值
 			return item->value;
 		}
-
+		// 插入一个键值对到哈希表中
 		void insert(const void* key, void* value)
 		{
+			// 断言哈希表的容量不为0，并且当前存储的项的数量小于容量的3/4（为了保持哈希表的负载因子在一个合理的范围内）
 			assert(_capacity != 0 && _count < _capacity - _capacity / 4);
-
+			// 调用get_item方法根据键获取哈希表中的项（这个方法在给出的代码中没有定义，可能是类的私有方法）
 			item_t* item = get_item(key);
+			// 断言确保获取的项不为空
 			assert(item);
-
+			// 如果找到的项的键为空，表示这是一个空槽，可以插入新的键值对
 			if (item->key == 0)
 			{
+				// 增加哈希表中当前存储的项的数量
 				_count++;
+				// 将键设置为给定的键
 				item->key = key;
 			}
-
+			// 无论是否是新插入的项，都将值设置为给定的值（如果键已经存在，则更新值）
 			item->value = value;
 		}
-
+		// 为哈希表预留额外的空间（默认是16个单位）
 		bool reserve(size_t extra = 16)
 		{
+			// 如果加上额外空间后的项的数量大于等于当前容量的3/4，则需要重新哈希以扩展容量
 			if (_count + extra >= _capacity - _capacity / 4)
+				// 调用rehash方法重新分配内存并重新插入所有项（这个方法在给出的代码中没有定义，可能是类的私有方法）
+				// 如果rehash方法返回true，表示重新哈希成功；否则，表示失败（尽管在这个实现中它总是返回true或false，但具体取决于rehash的实现）
 				return rehash(_count + extra);
-
+				return rehash(_count + extra);
+			// 如果不需要重新哈希，则直接返回true
 			return true;
 		}
-
+	// 私有成员定义开始
 	private:
+		// 定义一个结构体item_t，用于存储哈希表中的项
 		struct item_t
 		{
-			const void* key;
-			void* value;
+			const void* key;// 指向键的指针，使用void*表示可以是任意类型的键
+			void* value; // 指向值的指针，使用void*表示可以是任意类型的值
 		};
-
+		// 指向item_t数组的指针，用于存储哈希表中的所有项
 		item_t* _items;
+		// 哈希表的容量，即_items数组可以存储的项的最大数量
 		size_t _capacity;
-
+		// 当前哈希表中存储的项的数量
 		size_t _count;
-
+		// 一个成员函数，用于在需要时重新调整哈希表的大小
 		bool rehash(size_t count);
-
+		// 一个成员函数，用于根据给定的键查找对应的项
 		item_t* get_item(const void* key)
 		{
+			// 确保传入的键不为空
 			assert(key);
+			// 确保哈希表的容量大于0
 			assert(_capacity > 0);
-
+			// 计算哈希表容量的掩码，用于将哈希值限制在哈希表的范围内
 			size_t hashmod = _capacity - 1;
+			// 计算给定键的初始桶（bucket）位置
 			size_t bucket = hash(key) & hashmod;
-
+			// 使用二次探测法解决哈希冲突
 			for (size_t probe = 0; probe <= hashmod; ++probe)
 			{
+				// 引用当前桶中的项
 				item_t& probe_item = _items[bucket];
-
+				// 如果找到了键匹配的项，或者该位置为空（表示哈希表中没有更多的项），则返回该项的指针
 				if (probe_item.key == key || probe_item.key == 0)
 					return &probe_item;
 
 				// hash collision, quadratic probing
+				// 计算下一个探测的位置，使用二次探测法
 				bucket = (bucket + probe + 1) & hashmod;
 			}
-
+			// 断言失败，表示哈希表已满（理论上应该不可达，因为哈希表在满之前会进行扩容）
 			assert(false && "Hash table is full"); // unreachable
+			// 如果上面的断言失败，则返回0（实际上由于断言的存在，这行代码不会被执行）
 			return 0;
 		}
-
+		// 定义一个静态函数，用于计算给定键的哈希值，并处理可能的无符号整数溢出
 		static PUGI__UNSIGNED_OVERFLOW unsigned int hash(const void* key)
 		{
+			// 将指针转换为无符号整数类型（uintptr_t），然后转换为unsigned int。
+			// 这里的转换是为了获取一个可以用于哈希计算的数值。
 			unsigned int h = static_cast<unsigned int>(reinterpret_cast<uintptr_t>(key));
 
 			// MurmurHash3 32-bit finalizer
-			h ^= h >> 16;
-			h *= 0x85ebca6bu;
-			h ^= h >> 13;
-			h *= 0xc2b2ae35u;
-			h ^= h >> 16;
+			h ^= h >> 16;		// 将h右移16位后与自身异或
+			h *= 0x85ebca6bu;	// 乘以一个魔术数字（常数）
+			h ^= h >> 13;		// 再次右移13位后与自身异或
+			h *= 0xc2b2ae35u;	// 再次乘以另一个魔术数字
+			h ^= h >> 16;		// 最后，再次右移16位后与自身异或
 
 			return h;
 		}
 	};
-
+	// 定义一个函数，用于根据当前存储的元素数量重新调整哈希表的容量
 	PUGI__FN_NO_INLINE bool compact_hash_table::rehash(size_t count)
 	{
+		// 初始化容量为32
 		size_t capacity = 32;
+		// 当当前元素数量大于等于当前容量的3/4时，将容量翻倍，直到满足条件
 		while (count >= capacity - capacity / 4)
 			capacity *= 2;
-
+		// 创建一个新的哈希表实例
 		compact_hash_table rt;
+		// 设置新哈希表的容量为计算得到的新容量
 		rt._capacity = capacity;
+		// 为新哈希表分配内存空间
 		rt._items = static_cast<item_t*>(xml_memory::allocate(sizeof(item_t) * capacity));
-
+		// 如果内存分配失败，则返回false
 		if (!rt._items)
 			return false;
-
+		// 将新分配的内存空间初始化为0
 		memset(rt._items, 0, sizeof(item_t) * capacity);
-
+		// 遍历旧哈希表的每一项，如果键不为空，则将其插入到新哈希表中
 		for (size_t i = 0; i < _capacity; ++i)
 			if (_items[i].key)
 				rt.insert(_items[i].key, _items[i].value);
-
+		// 如果旧哈希表有已分配的内存，则释放它
 		if (_items)
 			xml_memory::deallocate(_items);
-
+		// 更新旧哈希表的容量为新的容量，并设置其项指针为新分配的内存
 		_capacity = capacity;
 		_items = rt._items;
-
+		// 断言确保重新哈希后元素数量未变。
 		assert(_count == rt._count);
-
+		// 返回true，表示重新哈希成功
 		return true;
 	}
 
+// PUGI__NS_END 和 PUGI__NS_BEGIN 是命名空间结束和开始的宏，用于创建一个命名空间。
+// 这样可以避免全局命名冲突，并组织代码结构。
 PUGI__NS_END
 #endif
 
 PUGI__NS_BEGIN
 #ifdef PUGIXML_COMPACT
-	static const uintptr_t xml_memory_block_alignment = 4;
+    // 在紧凑模式下，内存块对齐的字节数为4。
+    static const uintptr_t xml_memory_block_alignment = 4;
 #else
-	static const uintptr_t xml_memory_block_alignment = sizeof(void*);
+    // 在非紧凑模式下，内存块对齐的字节数为指针大小，通常是4字节或8字节，取决于平台。
+    static const uintptr_t xml_memory_block_alignment = sizeof(void*);
 #endif
 
-	// extra metadata bits
-	static const uintptr_t xml_memory_page_contents_shared_mask = 64;
-	static const uintptr_t xml_memory_page_name_allocated_mask = 32;
-	static const uintptr_t xml_memory_page_value_allocated_mask = 16;
-	static const uintptr_t xml_memory_page_type_mask = 15;
+    // 以下是一些额外的元数据位掩码，用于标记XML页面的特定属性。
+    static const uintptr_t xml_memory_page_contents_shared_mask = 64;  // 内容是否共享
+    static const uintptr_t xml_memory_page_name_allocated_mask = 32;   // 名称是否已分配
+    static const uintptr_t xml_memory_page_value_allocated_mask = 16;   // 值是否已分配
+    static const uintptr_t xml_memory_page_type_mask = 15;             // 节点类型掩码
 
-	// combined masks for string uniqueness
-	static const uintptr_t xml_memory_page_name_allocated_or_shared_mask = xml_memory_page_name_allocated_mask | xml_memory_page_contents_shared_mask;
-	static const uintptr_t xml_memory_page_value_allocated_or_shared_mask = xml_memory_page_value_allocated_mask | xml_memory_page_contents_shared_mask;
+    // 组合掩码，用于字符串的唯一性检查。
+    static const uintptr_t xml_memory_page_name_allocated_or_shared_mask = xml_memory_page_name_allocated_mask | xml_memory_page_contents_shared_mask;
+    static const uintptr_t xml_memory_page_value_allocated_or_shared_mask = xml_memory_page_value_allocated_mask | xml_memory_page_contents_shared_mask;
 
 #ifdef PUGIXML_COMPACT
-	#define PUGI__GETHEADER_IMPL(object, page, flags) // unused
-	#define PUGI__GETPAGE_IMPL(header) (header).get_page()
+    #define PUGI__GETHEADER_IMPL(object, page, flags)// 在紧凑模式下，以下宏定义为空，因为它们不被使用。 
+    #define PUGI__GETPAGE_IMPL(header) (header).get_page()
 #else
-	#define PUGI__GETHEADER_IMPL(object, page, flags) (((reinterpret_cast<char*>(object) - reinterpret_cast<char*>(page)) << 8) | (flags))
-	// this macro casts pointers through void* to avoid 'cast increases required alignment of target type' warnings
-	#define PUGI__GETPAGE_IMPL(header) static_cast<impl::xml_memory_page*>(const_cast<void*>(static_cast<const void*>(reinterpret_cast<const char*>(&header) - (header >> 8))))
+    // 在非紧凑模式下，定义了如何从对象获取其头部信息和页面信息的宏。
+    // PUGI__GETHEADER_IMPL 宏用于计算对象头部信息，包括对象相对于页面的位置和标志。
+    #define PUGI__GETHEADER_IMPL(object, page, flags) (((reinterpret_cast<char*>(object) - reinterpret_cast<char*>(page)) << 8) | (flags))
+    // PUGI__GETPAGE_IMPL 宏用于从头部信息中获取页面指针。
+    // 这个宏通过void*类型转换指针，以避免增加目标类型的对齐要求的警告。
+    #define PUGI__GETPAGE_IMPL(header) static_cast<impl::xml_memory_page*>(const_cast<void*>(static_cast<const void*>(reinterpret_cast<const char*>(&header) - (header >> 8))))
 #endif
 
-	#define PUGI__GETPAGE(n) PUGI__GETPAGE_IMPL((n)->header)
-	#define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
-
+    // PUGI__GETPAGE 宏用于从节点中获取页面。
+    #define PUGI__GETPAGE(n) PUGI__GETPAGE_IMPL((n)->header)
+    // PUGI__NODETYPE 宏用于从节点中获取节点类型。
+    #define PUGI__NODETYPE(n) static_cast<xml_node_type>((n)->header & impl::xml_memory_page_type_mask)
 	struct xml_allocator;
-
+	// 定义xml_memory_page结构体，用于管理内存页
 	struct xml_memory_page
 	{
+		// 静态成员函数，用于在给定内存块上构造xml_memory_page对象
+		// 这个函数不分配新的内存，而是将传入的void*内存块转换为xml_memory_page*并初始化它
 		static xml_memory_page* construct(void* memory)
 		{
+			// 将传入的void*内存块转换为xml_memory_page*类型
 			xml_memory_page* result = static_cast<xml_memory_page*>(memory);
-
-			result->allocator = 0;
-			result->prev = 0;
-			result->next = 0;
-			result->busy_size = 0;
-			result->freed_size = 0;
-
+			// 初始化成员变量
+			result->allocator = 0;	// 指向xml_allocator的指针，初始化为0（空指针）
+			result->prev = 0;		// 指向前一个内存页的指针，初始化为0（空指针）
+			result->next = 0;		// 指向下一个内存页的指针，初始化为0（空指针）
+			result->busy_size = 0;	// 当前页中已分配（忙碌）的内存大小，初始化为0
+			result->freed_size = 0;	// 当前页中已释放（空闲）的内存大小，初始化为0
+			// 如果定义了PUGIXML_COMPACT宏，则初始化与紧凑模式相关的成员变量
 		#ifdef PUGIXML_COMPACT
 			result->compact_string_base = 0;
 			result->compact_shared_parent = 0;
 			result->compact_page_marker = 0;
 		#endif
-
+			// 返回构造并初始化后的xml_memory_page对象的指针
 			return result;
 		}
-
+		// 成员变量
 		xml_allocator* allocator;
-
+		// 内存页之间的双向链表链接
 		xml_memory_page* prev;
 		xml_memory_page* next;
-
+		// 内存使用情况统计
 		size_t busy_size;
 		size_t freed_size;
-
+		// 注意：如果定义了PUGIXML_COMPACT宏，则还会存在以下成员变量
+		// 这些变量在紧凑模式下用于优化内存使用和访问速度
 	#ifdef PUGIXML_COMPACT
 		char_t* compact_string_base;
 		void* compact_shared_parent;
@@ -524,148 +565,178 @@ PUGI__NS_BEGIN
 		32768
 	#endif
 		- sizeof(xml_memory_page);
-
+	// 定义xml_memory_string_header结构体，用于描述字符串在内存页中的位置和大小
 	struct xml_memory_string_header
 	{
+		// 从内存页数据起始位置到字符串起始位置的偏移量
 		uint16_t page_offset; // offset from page->data
+		// 如果字符串占据整个内存页，则为0；否则为字符串的实际大小
 		uint16_t full_size; // 0 if string occupies whole page
 	};
-
+	// 定义xml_allocator结构体，用于管理内存页的分配
 	struct xml_allocator
 	{
+		// 构造函数，接受一个指向根内存页的指针，并初始化成员变量
 		xml_allocator(xml_memory_page* root): _root(root), _busy_size(root->busy_size)
 		{
 		#ifdef PUGIXML_COMPACT
-			_hash = 0;
+			_hash = 0;// 如果定义了PUGIXML_COMPACT宏，则初始化_hash为0
 		#endif
 		}
-
+		// 成员函数：分配一个新的内存页
+		// 接受一个数据大小参数，用于确定除了结构体本身外还需要多少额外空间
 		xml_memory_page* allocate_page(size_t data_size)
 		{
+			// 计算总大小：内存页结构体的大小加上额外数据的大小
 			size_t size = sizeof(xml_memory_page) + data_size;
 
 			// allocate block with some alignment, leaving memory for worst-case padding
 			void* memory = xml_memory::allocate(size);
-			if (!memory) return 0;
+			if (!memory) return 0;// 如果分配失败，则返回0（空指针）
 
 			// prepare page structure
+			// 在分配的内存块上构造xml_memory_page对象
 			xml_memory_page* page = xml_memory_page::construct(memory);
-			assert(page);
-
+			assert(page);// 确保构造成功
+			// 设置新页面的分配器为根页面的分配器（可能是为了保持一致性或实现某种内存管理策略）
 			page->allocator = _root->allocator;
-
+			// 返回新分配的页面
 			return page;
 		}
-
+		// 定义deallocate_page函数，用于释放一个内存页
+		// 接受一个指向xml_memory_page对象的指针作为参数
 		static void deallocate_page(xml_memory_page* page)
 		{
+			// 调用xml_memory类的静态成员函数deallocate来释放内存页
+			// 假设xml_memory是一个管理内存分配的类，类似于标准库中的allocator
 			xml_memory::deallocate(page);
 		}
-
+		// 它用于在内存不足时分配内存，可能是通过分配一个新的内存页或其他机制
 		void* allocate_memory_oob(size_t size, xml_memory_page*& out_page);
-
+		// 定义allocate_memory函数，尝试在当前根内存页中分配指定大小的内存
+		// 如果内存不足，则调用allocate_memory_oob函数
 		void* allocate_memory(size_t size, xml_memory_page*& out_page)
 		{
+			// 使用PUGI__UNLIKELY宏来提示编译器这个条件可能不常发生
+			// 这有助于优化生成的代码（尽管这取决于编译器的实现）
 			if (PUGI__UNLIKELY(_busy_size + size > xml_memory_page_size))
+				// 如果当前根内存页中的已分配大小加上请求的大小超过了内存页的总大小
+				// 则调用allocate_memory_oob函数来分配内存，并传递请求的大小和out_page引用
 				return allocate_memory_oob(size, out_page);
-
+			// 计算分配内存的起始地址
+			// _root是指向当前根内存页的指针，sizeof(xml_memory_page)是内存页结构体的大小
+			// _busy_size是当前已分配（忙碌）的内存大小
 			void* buf = reinterpret_cast<char*>(_root) + sizeof(xml_memory_page) + _busy_size;
-
+			// 更新已分配（忙碌）的内存大小
 			_busy_size += size;
-
+			// 将out_page引用设置为指向当前根内存页的指针
 			out_page = _root;
-
+			// 返回分配的内存的起始地址
 			return buf;
 		}
 
 	#ifdef PUGIXML_COMPACT
-		void* allocate_object(size_t size, xml_memory_page*& out_page)
-		{
-			void* result = allocate_memory(size + sizeof(uint32_t), out_page);
-			if (!result) return 0;
+    // allocate_object 函数用于在紧凑模式下分配指定大小的对象，并返回指向分配的内存的指针。
+    // 同时，它还更新 out_page 参数以指向包含该内存的对象页。
+    void* allocate_object(size_t size, xml_memory_page*& out_page)
+    {
+        // 首先，调用 allocate_memory 函数分配比请求大小多出 uint32_t 大小的内存块。
+        // 额外的空间用于存储一个标记，用于跟踪内存页的元数据。
+        void* result = allocate_memory(size + sizeof(uint32_t), out_page);
+        if (!result) return 0; // 如果内存分配失败，则返回 nullptr。
 
-			// adjust for marker
-			ptrdiff_t offset = static_cast<char*>(result) - reinterpret_cast<char*>(out_page->compact_page_marker);
+        // 计算 result 指针与页标记之间的偏移量。
+        ptrdiff_t offset = static_cast<char*>(result) - reinterpret_cast<char*>(out_page->compact_page_marker);
 
-			if (PUGI__UNLIKELY(static_cast<uintptr_t>(offset) >= 256 * xml_memory_block_alignment))
-			{
-				// insert new marker
-				uint32_t* marker = static_cast<uint32_t*>(result);
+        // 如果偏移量超过了一个阈值（意味着 result 距离页标记足够远），则需要插入一个新的标记。
+        if (PUGI__UNLIKELY(static_cast<uintptr_t>(offset) >= 256 * xml_memory_block_alignment))
+        {
+            // 将 result 指针转换为 uint32_t 指针，并设置标记。
+            uint32_t* marker = static_cast<uint32_t*>(result);
+            *marker = static_cast<uint32_t>(reinterpret_cast<char*>(marker) - reinterpret_cast<char*>(out_page));
+            out_page->compact_page_marker = marker; // 更新页的标记指针。
 
-				*marker = static_cast<uint32_t>(reinterpret_cast<char*>(marker) - reinterpret_cast<char*>(out_page));
-				out_page->compact_page_marker = marker;
+            // 因为我们不会重用页空间直到重新分配它，所以我们可以将标记块视为已释放。
+            // 这将确保 deallocate_memory 正确地跟踪大小。
+            out_page->freed_size += sizeof(uint32_t); // 更新已释放的大小。
 
-				// since we don't reuse the page space until we reallocate it, we can just pretend that we freed the marker block
-				// this will make sure deallocate_memory correctly tracks the size
-				out_page->freed_size += sizeof(uint32_t);
+            return marker + 1; // 返回指向标记后的对象内存的指针。
+        }
+        else
+        {
+            // 如果不需要插入新标记，则回滚 uint32_t 的部分，并更新 busy_size。
+            _busy_size -= sizeof(uint32_t);
 
-				return marker + 1;
-			}
-			else
-			{
-				// roll back uint32_t part
-				_busy_size -= sizeof(uint32_t);
-
-				return result;
-			}
-		}
+            return result; // 返回原始的内存分配指针。
+        }
+    }
 	#else
+		// 定义一个函数，用于分配指定大小的内存对象，并返回指向该对象的指针。
+// 同时，通过out_page参数返回该对象所在的内存页。
 		void* allocate_object(size_t size, xml_memory_page*& out_page)
 		{
+			// 调用另一个函数allocate_memory来实际进行内存分配，并返回分配的指针。
 			return allocate_memory(size, out_page);
 		}
-	#endif
-
+#endif
+		// 定义一个函数，用于释放之前分配的内存
 		void deallocate_memory(void* ptr, size_t size, xml_memory_page* page)
 		{
+			// 如果当前释放的内存页是根页（_root），则更新根页的忙碌大小（_busy_size）。
 			if (page == _root) page->busy_size = _busy_size;
-
+			// 断言检查，确保指针ptr指向的内存确实位于page所管理的内存范围内
 			assert(ptr >= reinterpret_cast<char*>(page) + sizeof(xml_memory_page) && ptr < reinterpret_cast<char*>(page) + sizeof(xml_memory_page) + page->busy_size);
 			(void)!ptr;
-
+			// 更新页面已释放内存的大小
 			page->freed_size += size;
+			// 断言检查，确保已释放的内存大小不会超过该页面的忙碌大小
 			assert(page->freed_size <= page->busy_size);
-
+			// 如果整个页面的内存都已释放，则进行清理操作
 			if (page->freed_size == page->busy_size)
 			{
+				// 如果这是最后一个页面（即没有下一个页面），
 				if (page->next == 0)
 				{
+					// 断言检查，确保这是根页面。
 					assert(_root == page);
 
+					// 如果是顶部页面被释放，则重置其大小。
 					// top page freed, just reset sizes
 					page->busy_size = 0;
 					page->freed_size = 0;
 
-				#ifdef PUGIXML_COMPACT
+#ifdef PUGIXML_COMPACT
 					// reset compact state to maximize efficiency
 					page->compact_string_base = 0;
 					page->compact_shared_parent = 0;
 					page->compact_page_marker = 0;
-				#endif
-
+#endif
+					// 重置全局忙碌大小。
 					_busy_size = 0;
 				}
 				else
 				{
+					// 断言检查，确保这不是根页面，并且它有前一个页面。
 					assert(_root != page);
 					assert(page->prev);
-
+					// 从页面中移除该页面（假设页面存储在一个双向链表中）
 					// remove from the list
 					page->prev->next = page->next;
 					page->next->prev = page->prev;
 
+					// 释放该页面。
 					// deallocate
 					deallocate_page(page);
 				}
 			}
 		}
-
+                // allocate_string函数用于分配一段内存空间
 		char_t* allocate_string(size_t length)
-		{
+		{        // 定义一个静态常量，表示最大编码偏移量。
 			static const size_t max_encoded_offset = (1 << 16) * xml_memory_block_alignment;
-
+                         // 这是一种在编译期间进行条件检查的方式，
 			PUGI__STATIC_ASSERT(xml_memory_page_size <= max_encoded_offset);
-
+                         // 计算为存储字符串以及相关头部信息（可能用于管理字符串内存块的一些元数据）所需分配的内存大小。
 			// allocate memory for string and header block
 			size_t size = sizeof(xml_memory_string_header) + length * sizeof(char_t);
 
@@ -697,16 +768,22 @@ PUGI__NS_BEGIN
 		void deallocate_string(char_t* string)
 		{
 			// this function casts pointers through void* to avoid 'cast increases required alignment of target type' warnings
+			 // 此函数通过将指针转换为 void* 类型来避免出现“cast increases required alignment of target type”这样的警告
 			// we're guaranteed the proper (pointer-sized) alignment on the input string if it was allocated via allocate_string
-
+                        // 前提是如果输入的字符串是通过 allocate_string 函数分配的，那么我们能保证输入字符串具有合适的（指针大小的）对齐方式
 			// get header
+			// 将传入的字符串指针先转换为 void* 类型，再将其转换回 xml_memory_string_header* 类型，并向前偏移一个单位（减1操作），目的是获取指向该字符串头部信息的指针。
+			// 这里假设内存布局中字符串头部信息就在字符串实际数据的前面，通过这样的指针运算来获取相关管理信息。
 			xml_memory_string_header* header = static_cast<xml_memory_string_header*>(static_cast<void*>(string)) - 1;
 			assert(header);
 
 			// deallocate
+			// 计算此字符串所在内存页内的偏移量。先加上 xml_memory_page 结构体的大小，再根据字符串头部记录的页内偏移量（乘以每个内存块的对齐大小）来确定其在内存页中的准确偏移位置。
+                        // 这样后续就能通过这个偏移量找到对应的内存页。
 			size_t page_offset = sizeof(xml_memory_page) + header->page_offset * xml_memory_block_alignment;
+			// 通过先将 header 指针转换为 char* 类型（方便进行字节级别的偏移计算），减去前面计算得到的页偏移量，再转换回 xml_memory_page* 类型，从而得到该字符串所在的内存页指针。
 			xml_memory_page* page = reinterpret_cast<xml_memory_page*>(static_cast<void*>(reinterpret_cast<char*>(header) - page_offset));
-
+			// 如果 full_size 等于 0，说明这个字符串占据了整个内存页，否则按照头部记录的实际大小（乘以内存块对齐大小，可能涉及到内存对齐相关的换算）来确定字符串实际占用的内存大小。
 			// if full_size == 0 then this string occupies the whole page
 			size_t full_size = header->full_size == 0 ? page->busy_size : header->full_size * xml_memory_block_alignment;
 
@@ -729,185 +806,218 @@ PUGI__NS_BEGIN
 		compact_hash_table* _hash;
 	#endif
 	};
-
+	// 该函数用于在内存不足（out of bounds，简称OOB）的情况下分配内存。
+	// 参数size指定了要分配的内存大小，out_page通过引用返回分配的内存所在的页面。
 	PUGI__FN_NO_INLINE void* xml_allocator::allocate_memory_oob(size_t size, xml_memory_page*& out_page)
 	{
+		// 定义一个阈值，用于区分“大”分配和“小”分配。
+		// 这里，大分配是指超过页面大小四分之一的分配。
 		const size_t large_allocation_threshold = xml_memory_page_size / 4;
-
+		// 根据分配大小分配一个页面。如果分配大小超过阈值，则分配一个足够大的页面
 		xml_memory_page* page = allocate_page(size <= large_allocation_threshold ? xml_memory_page_size : size);
+		// 通过引用参数返回分配的页面
 		out_page = page;
-
+		// 如果页面分配失败（即page为nullptr），则返回nullptr表示分配失败。
 		if (!page) return 0;
-
+		// 如果分配大小小于或等于阈值，则执行以下操作
 		if (size <= large_allocation_threshold)
 		{
+			// 更新根页面的忙碌大小为全局忙碌大小
 			_root->busy_size = _busy_size;
 
 			// insert page at the end of linked list
 			page->prev = _root;
 			_root->next = page;
+			// 更新_root指针，使其指向新插入的页面。
 			_root = page;
-
+			// 更新全局忙碌大小为当前分配的大小。
 			_busy_size = size;
 		}
 		else
 		{
 			// insert page before the end of linked list, so that it is deleted as soon as possible
 			// the last page is not deleted even if it's empty (see deallocate_memory)
+			// 对于大分配，将页面插入到链表末尾之前的位置。
 			assert(_root->prev);
-
+			// 插入新页面到链表中。
 			page->prev = _root->prev;
 			page->next = _root;
 
 			_root->prev->next = page;
 			_root->prev = page;
-
+			// 设置新页面的忙碌大小为当前分配的大小
 			page->busy_size = size;
 		}
-
+		// 返回指向页面内部数据的指针（跳过页面头部）。
 		return reinterpret_cast<char*>(page) + sizeof(xml_memory_page);
 	}
 PUGI__NS_END
 
 #ifdef PUGIXML_COMPACT
+// 开始命名空间（假设PUGI__NS_BEGIN是一个宏，用于定义或进入特定的命名空间）
 PUGI__NS_BEGIN
+	// 定义紧凑对齐的log2值，这里为2，意味着对齐是2的2次方，即4字节对齐
 	static const uintptr_t compact_alignment_log2 = 2;
+	// 根据log2值计算紧凑对齐的实际值，这里是1 << 2 = 4
 	static const uintptr_t compact_alignment = 1 << compact_alignment_log2;
-
+	// 定义一个紧凑头部类，用于管理紧凑内存页的头部信息
 	class compact_header
 	{
 	public:
+		// 构造函数，接收一个指向xml_memory_page的指针和一个标志位
 		compact_header(xml_memory_page* page, unsigned int flags)
 		{
+			// 静态断言，确保xml_memory_block_alignment与compact_alignment相等
 			PUGI__STATIC_ASSERT(xml_memory_block_alignment == compact_alignment);
-
+			// 计算当前对象相对于page->compact_page_marker的偏移量
 			ptrdiff_t offset = (reinterpret_cast<char*>(this) - reinterpret_cast<char*>(page->compact_page_marker));
+			// 断言偏移量是对齐的，并且小于256个对齐单位
 			assert(offset % compact_alignment == 0 && static_cast<uintptr_t>(offset) < 256 * compact_alignment);
-
+			// 计算并存储页面索引
 			_page = static_cast<unsigned char>(offset >> compact_alignment_log2);
+			// 存储标志位
 			_flags = static_cast<unsigned char>(flags);
 		}
-
+		// 位与赋值操作符，用于修改标志位
 		void operator&=(uintptr_t mod)
 		{
 			_flags &= static_cast<unsigned char>(mod);
 		}
-
+		// 位或赋值操作符，用于修改标志位
 		void operator|=(uintptr_t mod)
 		{
 			_flags |= static_cast<unsigned char>(mod);
 		}
-
+		// 位与操作符，用于获取标志位与给定值的交集
 		uintptr_t operator&(uintptr_t mod) const
 		{
 			return _flags & mod;
 		}
-
+		// 获取关联的xml_memory_page对象
 		xml_memory_page* get_page() const
 		{
 			// round-trip through void* to silence 'cast increases required alignment of target type' warnings
 			const char* page_marker = reinterpret_cast<const char*>(this) - (_page << compact_alignment_log2);
 			const char* page = page_marker - *reinterpret_cast<const uint32_t*>(static_cast<const void*>(page_marker));
-
+			// 返回指向xml_memory_page的指针
 			return const_cast<xml_memory_page*>(reinterpret_cast<const xml_memory_page*>(static_cast<const void*>(page)));
 		}
-
+	// 紧凑头部类的私有成员变量定义
 	private:
+		// 存储页面索引的变量，用于标识当前对象所在的内存页
 		unsigned char _page;
+		// 存储标志位的变量，用于记录一些额外的信息或状态
 		unsigned char _flags;
 	};
-
+	// 一个函数，用于根据给定的对象和头部偏移量获取对应的xml_memory_page
+	//   指向xml_memory_page的指针，该页面包含了object
 	PUGI__FN xml_memory_page* compact_get_page(const void* object, int header_offset)
 	{
+		// 将object指针向前移动header_offset，得到compact_header的指针
 		const compact_header* header = reinterpret_cast<const compact_header*>(static_cast<const char*>(object) - header_offset);
-
+		// 调用compact_header的get_page方法获取xml_memory_page指针
 		return header->get_page();
 	}
-
+	// 一个模板函数，用于根据给定的对象和头部偏移量获取对应的值
+	//   指向T类型的指针，该值通过哈希表查找得到
 	template <int header_offset, typename T> PUGI__FN_NO_INLINE T* compact_get_value(const void* object)
-	{
+	{// 首先获取包含object的xml_memory_page,然后通过页面的allocator和_hash成员查找object对应的值
 		return static_cast<T*>(compact_get_page(object, header_offset)->allocator->_hash->find(object));
 	}
-
+	// 一个模板函数，用于根据给定的对象和头部偏移量设置对应的值
 	template <int header_offset, typename T> PUGI__FN_NO_INLINE void compact_set_value(const void* object, T* value)
 	{
+		// 首先获取包含object的xml_memory_page,然后通过页面的allocator和_hash成员插入object和value的对应关系
 		compact_get_page(object, header_offset)->allocator->_hash->insert(object, value);
 	}
-
+	// 一个模板类，用于管理紧凑指针，这些指针通过哈希表进行存储和查找
 	template <typename T, int header_offset, int start = -126> class compact_pointer
 	{
 	public:
+		// compact_pointer的默认构造函数，初始化_data成员为0
 		compact_pointer(): _data(0)
 		{
 		}
-
+		// 重载赋值运算符，用于将一个compact_pointer对象赋值给另一个
 		void operator=(const compact_pointer& rhs)
 		{
 			*this = rhs + 0;
 		}
-
+		// 重载赋值运算符，用于将一个原生指针赋值给compact_pointer对象
 		void operator=(T* value)
 		{
 			if (value)
 			{
 				// value is guaranteed to be compact-aligned; 'this' is not
+				// value变量是被确保按照紧凑对齐（compact-aligned）方式进行对齐的；而“this”指针所指向的对象却并非如此。
 				// our decoding is based on 'this' aligned to compact alignment downwards (see operator T*)
+				// 这里所说的紧凑对齐应该是一种特定的内存对齐要求，意味着value的内存地址满足相应的对齐规则，便于后续某些操作（比如数据的读取、处理等）更高效地进行，而“this”指向的对象不符合该对齐规则。
 				// so for negative offsets (e.g. -3) we need to adjust the diff by compact_alignment - 1 to
+				// 我们的解码操作是基于将“this”指针按照紧凑对齐方式向下对齐来进行的（可以参考 operator T* 相关部分，推测那里可能定义了具体的对齐操作或者转换逻辑）。
 				// compensate for arithmetic shift rounding for negative values
+				// 所以，当遇到负的偏移量（例如 -3）时，我们需要通过将偏移量的差值（diff）调整为 compact_alignment - 1。
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) - start;
-
+				// 如果计算出的偏移量（经过调整并转换为无符号后）小于等于253，
+				// 则将其加1后存储到_data中（因为0被保留用于空指针）
 				if (static_cast<uintptr_t>(offset) <= 253)
 					_data = static_cast<unsigned char>(offset + 1);
 				else
 				{
+					// compact_set_value是一个模板函数，header_offset是一个占位符，表示可能的头部偏移量
 					compact_set_value<header_offset>(this, value);
 
-					_data = 255;
+					_data = 255;// 设置_data为255，表示指针值存储在外部
 				}
 			}
 			else
+				// 如果赋值为nullptr，则将_data设置为0
 				_data = 0;
 		}
-
+		// 定义一个类型转换运算符，将compact_pointer转换为T*
 		operator T*() const
 		{
-			if (_data)
+			if (_data)// 如果_data不为0
 			{
-				if (_data < 255)
+				if (_data < 255)// 如果_data的值小于255，表示指针值直接存储在_data中（经过编码）
 				{
+					// 计算基地址：将this指针向下对齐到compact_alignment的倍数
 					uintptr_t base = reinterpret_cast<uintptr_t>(this) & ~(compact_alignment - 1);
-
+					// 根据_data计算偏移量，并加上start（可能是一个调整值），然后乘以compact_alignment得到实际地址
+					// 最后，将基地址与计算出的偏移量相加，得到目标指针的地址，并转换为T*类型
 					return reinterpret_cast<T*>(base + (_data - 1 + start) * compact_alignment);
 				}
-				else
+				else  // 如果_data的值等于255，表示指针值存储在外部
+					 // 调用compact_get_value函数来获取存储在外部的指针值
 					return compact_get_value<header_offset, T>(this);
 			}
-			else
-				return 0;
+			else// 如果_data为0，表示空指针
+				return 0;// 返回nullptr
 		}
-
+		// 定义一个成员访问运算符，允许通过compact_pointer对象直接访问目标对象的成员
 		T* operator->() const
 		{
 			return *this;
 		}
-
+	// compact_pointer类的私有成员定义结束
 	private:
+		// 用于存储编码后的指针值或标记指针值是否存储在外部
 		unsigned char _data;
 	};
-
+	// 定义一个模板类compact_pointer_parent，它可能是compact_pointer的基类或用于提供某些共享功能
 	template <typename T, int header_offset> class compact_pointer_parent
 	{
+	// 类的构造函数，初始化成员变量_data为0
 	public:
 		compact_pointer_parent(): _data(0)
 		{
 		}
-
+		// 拷贝赋值操作符
 		void operator=(const compact_pointer_parent& rhs)
 		{
 			*this = rhs + 0;
 		}
-
+		// 赋值操作符重载，接受一个T*类型的参数
 		void operator=(T* value)
 		{
 			if (value)
@@ -916,26 +1026,30 @@ PUGI__NS_BEGIN
 				// our decoding is based on 'this' aligned to compact alignment downwards (see operator T*)
 				// so for negative offsets (e.g. -3) we need to adjust the diff by compact_alignment - 1 to
 				// compensate for arithmetic shift behavior for negative values
+				// 将value和this指针转换为char*，然后计算它们之间的差值diff
 				ptrdiff_t diff = reinterpret_cast<char*>(value) - reinterpret_cast<char*>(this);
 				ptrdiff_t offset = ((diff + int(compact_alignment - 1)) >> compact_alignment_log2) + 65533;
-
+				// 如果计算出的offset在可存储范围内（即小于或等于65533），则直接存储为_data的值（加1是为了留出0表示null的特殊情况）
 				if (static_cast<uintptr_t>(offset) <= 65533)
 				{
 					_data = static_cast<unsigned short>(offset + 1);
 				}
 				else
 				{
+					// 如果offset超出范围，则需要使用更复杂的内存管理机制
+					// 首先，获取与this相关的内存页
 					xml_memory_page* page = compact_get_page(this, header_offset);
-
+					// 如果该页还没有共享父指针，则设置它
 					if (PUGI__UNLIKELY(page->compact_shared_parent == 0))
 						page->compact_shared_parent = value;
-
+					// 如果共享父指针已经是value，则使用特殊值65534表示
 					if (page->compact_shared_parent == value)
 					{
 						_data = 65534;
 					}
 					else
-					{
+					{\
+						// 否则，使用某种机制将value存储到内存页中，并将_data设置为特殊值65535
 						compact_set_value<header_offset>(this, value);
 
 						_data = 65535;
@@ -944,31 +1058,38 @@ PUGI__NS_BEGIN
 			}
 			else
 			{
+				// 如果value为nullptr，则将_data设置为0，表示null指针
 				_data = 0;
 			}
 		}
 
 		operator T*() const
 		{
-			if (_data)
+			if (_data)// 如果_data非零
 			{
-				if (_data < 65534)
+				if (_data < 65534)// 如果_data的值小于65534
 				{
+					// 调整当前对象的地址，使其符合compact_alignment对齐要求
 					uintptr_t base = reinterpret_cast<uintptr_t>(this) & ~(compact_alignment - 1);
-
+					// 根据_data的值计算实际存储T类型数据的地址，并返回该地址
+					// 这里假设了一个特殊的存储策略，其中65533作为偏移量的基准点
 					return reinterpret_cast<T*>(base + (_data - 1 - 65533) * compact_alignment);
 				}
-				else if (_data == 65534)
+				else if (_data == 65534)// 如果_data的值等于65534
+					// 调用compact_get_page函数获取一个特定的页面，并返回该页面中compact_shared_parent指向的T类型数据的地址
 					return static_cast<T*>(compact_get_page(this, header_offset)->compact_shared_parent);
-				else
+				else// 如果_data的值大于65534
+					// 调用compact_get_value函数，根据_data的值和header_offset获取并返回T类型数据的地址
 					return compact_get_value<header_offset, T>(this);
 			}
-			else
+			else// 如果_data为零
+				// 返回空指针，表示没有有效的T类型数据
 				return 0;
 		}
 
 		T* operator->() const
 		{
+			// 返回当前对象转换为T*的结果，允许通过->操作符访问T类型对象的成员
 			return *this;
 		}
 
@@ -992,48 +1113,56 @@ PUGI__NS_BEGIN
 		{
 			if (value)
 			{
+				// 获取与当前对象关联的内存页面
 				xml_memory_page* page = compact_get_page(this, header_offset);
-
+				// 如果compact_string_base为0（即尚未初始化或没有存储任何字符串），则将其设置为value
 				if (PUGI__UNLIKELY(page->compact_string_base == 0))
 					page->compact_string_base = value;
-
+				// 计算value相对于compact_string_base的偏移量
 				ptrdiff_t offset = value - page->compact_string_base;
-
+				// 如果偏移量小于65535 * 128（即小于16位带符号整数能表示的最大正偏移量，但这里实际上只使用了15位加上一个标志位）
 				if (static_cast<uintptr_t>(offset) < (65535 << 7))
 				{
 					// round-trip through void* to silence 'cast increases required alignment of target type' warnings
 					uint16_t* base = reinterpret_cast<uint16_t*>(static_cast<void*>(reinterpret_cast<char*>(this) - base_offset));
-
+					// 如果base指向的值为0（即尚未存储任何偏移量）
 					if (*base == 0)
 					{
+						// 存储偏移量（右移7位以适应15位的存储，并加1作为标志）到base指向的位置
+						// 同时，将偏移量的低7位（加1作为标志）存储到_data中
 						*base = static_cast<uint16_t>((offset >> 7) + 1);
 						_data = static_cast<unsigned char>((offset & 127) + 1);
 					}
 					else
 					{
+						// 如果已经存储了一个偏移量，则计算新的偏移量是否仍然可以用当前的方式存储
 						ptrdiff_t remainder = offset - ((*base - 1) << 7);
-
+						// 如果新的偏移量的低7位（加1后）小于等于253（即实际偏移量小于等于252，因为加1作为标志）
 						if (static_cast<uintptr_t>(remainder) <= 253)
 						{
+							// 更新_data以存储新的低7位偏移量（加1作为标志）
 							_data = static_cast<unsigned char>(remainder + 1);
 						}
 						else
 						{
+							// 如果新的偏移量太大，无法用当前的方式存储，则使用另一种存储方法（可能是动态分配）
 							compact_set_value<header_offset>(this, value);
-
+							// 设置_data为255，作为使用特殊存储方法的标志
 							_data = 255;
 						}
 					}
 				}
 				else
 				{
+					// 如果偏移量太大，无法用当前的方式存储，则同样使用另一种存储方法
 					compact_set_value<header_offset>(this, value);
-
+					// 设置_data为255，作为使用特殊存储方法的标志
 					_data = 255;
 				}
 			}
 			else
 			{
+				// 如果提供的值为空，则将_data设置为0，表示没有存储任何值
 				_data = 0;
 			}
 		}
@@ -1066,407 +1195,419 @@ PUGI__NS_BEGIN
 	private:
 		unsigned char _data;
 	};
+// PUGI__NS_END 和 PUGI__NS_BEGIN 是命名空间结束和开始的宏，用于创建一个命名空间。
+// 这样可以避免全局命名冲突，并组织代码结构。
 PUGI__NS_END
 #endif
 
 #ifdef PUGIXML_COMPACT
 namespace pugi
 {
-	struct xml_attribute_struct
-	{
-		xml_attribute_struct(impl::xml_memory_page* page): header(page, 0), namevalue_base(0)
-		{
-			PUGI__STATIC_ASSERT(sizeof(xml_attribute_struct) == 8);
-		}
+    // xml_attribute_struct 结构体表示一个 XML 属性。
+    struct xml_attribute_struct
+    {
+        // 构造函数初始化属性结构。
+        xml_attribute_struct(impl::xml_memory_page* page): header(page, 0), namevalue_base(0)
+        {
+            PUGI__STATIC_ASSERT(sizeof(xml_attribute_struct) == 8);  // 确保结构体大小为 8 字节。
+        }
 
-		impl::compact_header header;
+        impl::compact_header header;  // 紧凑模式下的头部信息。
 
-		uint16_t namevalue_base;
+        uint16_t namevalue_base;  // 名称和值的基础偏移量。
 
-		impl::compact_string<4, 2> name;
-		impl::compact_string<5, 3> value;
+        impl::compact_string<4, 2> name;  // 紧凑字符串，用于存储属性名。
+        impl::compact_string<5, 3> value;  // 紧凑字符串，用于存储属性值。
 
-		impl::compact_pointer<xml_attribute_struct, 6> prev_attribute_c;
-		impl::compact_pointer<xml_attribute_struct, 7, 0> next_attribute;
-	};
+        impl::compact_pointer<xml_attribute_struct, 6> prev_attribute_c;  // 前一个属性的指针。
+        impl::compact_pointer<xml_attribute_struct, 7, 0> next_attribute;  // 下一个属性的指针。
+    };
 
-	struct xml_node_struct
-	{
-		xml_node_struct(impl::xml_memory_page* page, xml_node_type type): header(page, type), namevalue_base(0)
-		{
-			PUGI__STATIC_ASSERT(sizeof(xml_node_struct) == 12);
-		}
+    // xml_node_struct 结构体表示一个 XML 节点。
+    struct xml_node_struct
+    {
+        // 构造函数初始化节点结构。
+        xml_node_struct(impl::xml_memory_page* page, xml_node_type type): header(page, type), namevalue_base(0)
+        {
+            PUGI__STATIC_ASSERT(sizeof(xml_node_struct) == 12);  // 确保结构体大小为 12 字节。
+        }
 
-		impl::compact_header header;
+        impl::compact_header header;  // 紧凑模式下的头部信息。
 
-		uint16_t namevalue_base;
+        uint16_t namevalue_base;  // 名称和值的基础偏移量。
 
-		impl::compact_string<4, 2> name;
-		impl::compact_string<5, 3> value;
+        impl::compact_string<4, 2> name;  // 紧凑字符串，用于存储节点名。
+        impl::compact_string<5, 3> value;  // 紧凑字符串，用于存储节点值。
 
-		impl::compact_pointer_parent<xml_node_struct, 6> parent;
+        impl::compact_pointer_parent<xml_node_struct, 6> parent;  // 父节点的指针。
 
-		impl::compact_pointer<xml_node_struct, 8, 0> first_child;
+        impl::compact_pointer<xml_node_struct, 8, 0> first_child;  // 第一个子节点的指针。
 
-		impl::compact_pointer<xml_node_struct,  9>    prev_sibling_c;
-		impl::compact_pointer<xml_node_struct, 10, 0> next_sibling;
+        impl::compact_pointer<xml_node_struct, 9> prev_sibling_c;  // 前一个兄弟节点的指针。
+        impl::compact_pointer<xml_node_struct, 10, 0> next_sibling;  // 下一个兄弟节点的指针。
 
-		impl::compact_pointer<xml_attribute_struct, 11, 0> first_attribute;
-	};
+        impl::compact_pointer<xml_attribute_struct, 11, 0> first_attribute;  // 第一个属性的指针。
+    };
 }
 #else
 namespace pugi
 {
-	struct xml_attribute_struct
-	{
-		xml_attribute_struct(impl::xml_memory_page* page): name(0), value(0), prev_attribute_c(0), next_attribute(0)
-		{
-			header = PUGI__GETHEADER_IMPL(this, page, 0);
-		}
+    // 在非紧凑模式下，xml_attribute_struct 和 xml_node_struct 结构体的定义与紧凑模式略有不同。
+    // 它们使用常规指针和简单的成员变量，而不是紧凑模式下的紧凑指针和字符串。
+    struct xml_attribute_struct
+    {
+        xml_attribute_struct(impl::xml_memory_page* page): name(0), value(0), prev_attribute_c(0), next_attribute(0)
+        {
+            header = PUGI__GETHEADER_IMPL(this, page, 0);  // 初始化头部信息。
+        }
 
-		uintptr_t header;
+        uintptr_t header;  // 头部信息。
 
-		char_t*	name;
-		char_t*	value;
+        char_t* name;  // 属性名。
+        char_t* value;  // 属性值。
 
-		xml_attribute_struct* prev_attribute_c;
-		xml_attribute_struct* next_attribute;
-	};
+        xml_attribute_struct* prev_attribute_c;  // 前一个属性的指针。
+        xml_attribute_struct* next_attribute;  // 下一个属性的指针。
+    };
 
-	struct xml_node_struct
-	{
-		xml_node_struct(impl::xml_memory_page* page, xml_node_type type): name(0), value(0), parent(0), first_child(0), prev_sibling_c(0), next_sibling(0), first_attribute(0)
-		{
-			header = PUGI__GETHEADER_IMPL(this, page, type);
-		}
+    struct xml_node_struct
+    {
+        xml_node_struct(impl::xml_memory_page* page, xml_node_type type): name(0), value(0), parent(0), first_child(0), prev_sibling_c(0), next_sibling(0), first_attribute(0)
+        {
+            header = PUGI__GETHEADER_IMPL(this, page, type);  // 初始化头部信息。
+        }
 
-		uintptr_t header;
+        uintptr_t header;  // 头部信息。
 
-		char_t* name;
-		char_t* value;
+        char_t* name;  // 节点名。
+        char_t* value;  // 节点值。
 
-		xml_node_struct* parent;
+        xml_node_struct* parent;  // 父节点的指针。
 
-		xml_node_struct* first_child;
+        xml_node_struct* first_child;  // 第一个子节点的指针。
 
-		xml_node_struct* prev_sibling_c;
-		xml_node_struct* next_sibling;
+        xml_node_struct* prev_sibling_c;  // 前一个兄弟节点的指针。
+        xml_node_struct* next_sibling;  // 下一个兄弟节点的指针。
 
-		xml_attribute_struct* first_attribute;
-	};
+        xml_attribute_struct* first_attribute;  // 第一个属性的指针。
+    };
 }
 #endif
 
 PUGI__NS_BEGIN
-	struct xml_extra_buffer
-	{
-		char_t* buffer;
-		xml_extra_buffer* next;
-	};
+    // xml_extra_buffer 结构体表示一个额外的缓冲区，用于存储 XML 文档中的字符数据。
+    struct xml_extra_buffer
+    {
+        char_t* buffer;  // 缓冲区指针。
+        xml_extra_buffer* next;  // 下一个额外缓冲区的指针。
+    };
 
-	struct xml_document_struct: public xml_node_struct, public xml_allocator
-	{
-		xml_document_struct(xml_memory_page* page): xml_node_struct(page, node_document), xml_allocator(page), buffer(0), extra_buffers(0)
-		{
-		}
+    // xml_document_struct 结构体表示一个 XML 文档，继承自 xml_node_struct 和 xml_allocator。
+    struct xml_document_struct: public xml_node_struct, public xml_allocator
+    {
+        xml_document_struct(xml_memory_page* page): xml_node_struct(page, node_document), xml_allocator(page), buffer(0), extra_buffers(0)
+        {
+        }
 
-		const char_t* buffer;
+        const char_t* buffer;  // 文档缓冲区指针。
 
-		xml_extra_buffer* extra_buffers;
+        xml_extra_buffer* extra_buffers;  // 额外缓冲区指针。
 
-	#ifdef PUGIXML_COMPACT
-		compact_hash_table hash;
-	#endif
-	};
+    #ifdef PUGIXML_COMPACT
+        compact_hash_table hash;  // 紧凑模式下的哈希表。
+    #endif
+    };
 
-	template <typename Object> inline xml_allocator& get_allocator(const Object* object)
-	{
-		assert(object);
+    // get_allocator 模板函数返回给定对象的分配器。
+    template <typename Object> inline xml_allocator& get_allocator(const Object* object)
+    {
+        assert(object);  // 确保对象非空。
 
-		return *PUGI__GETPAGE(object)->allocator;
-	}
+        return *PUGI__GETPAGE(object)->allocator;  // 返回对象所在页面的分配器。
+    }
 
-	template <typename Object> inline xml_document_struct& get_document(const Object* object)
-	{
-		assert(object);
+    // get_document 模板函数返回给定对象所属的文档。
+    template <typename Object> inline xml_document_struct& get_document(const Object* object)
+    {
+        assert(object);  // 确保对象非空。
 
-		return *static_cast<xml_document_struct*>(PUGI__GETPAGE(object)->allocator);
-	}
+        return *static_cast<xml_document_struct*>(PUGI__GETPAGE(object)->allocator);  // 返回对象所在页面的文档。
+    }
 PUGI__NS_END
 
 // Low-level DOM operations
 PUGI__NS_BEGIN
-	inline xml_attribute_struct* allocate_attribute(xml_allocator& alloc)
+	inline xml_attribute_struct* allocate_attribute(xml_allocator& alloc)// 分配一个属性节点
 	{
-		xml_memory_page* page;
-		void* memory = alloc.allocate_object(sizeof(xml_attribute_struct), page);
-		if (!memory) return 0;
+		xml_memory_page* page; // 声明内存页指针
+		void* memory = alloc.allocate_object(sizeof(xml_attribute_struct), page);// 分配属性节点所需的内存
+		if (!memory) return 0;// 如果内存分配失败，返回空指针
 
-		return new (memory) xml_attribute_struct(page);
+		return new (memory) xml_attribute_struct(page); // 在分配的内存上构造属性节点对象，并返回指针
 	}
 
-	inline xml_node_struct* allocate_node(xml_allocator& alloc, xml_node_type type)
+	inline xml_node_struct* allocate_node(xml_allocator& alloc, xml_node_type type)// 分配一个节点
 	{
-		xml_memory_page* page;
-		void* memory = alloc.allocate_object(sizeof(xml_node_struct), page);
-		if (!memory) return 0;
+		xml_memory_page* page; // 声明内存页指针
+		void* memory = alloc.allocate_object(sizeof(xml_node_struct), page);// 分配节点所需的内存
+		if (!memory) return 0;// 如果内存分配失败，返回空指针
 
-		return new (memory) xml_node_struct(page, type);
+		return new (memory) xml_node_struct(page, type);// 在分配的内存上构造节点对象，并返回指针
 	}
 
-	inline void destroy_attribute(xml_attribute_struct* a, xml_allocator& alloc)
+	inline void destroy_attribute(xml_attribute_struct* a, xml_allocator& alloc)// 销毁属性节点
 	{
-		if (a->header & impl::xml_memory_page_name_allocated_mask)
-			alloc.deallocate_string(a->name);
+		if (a->header & impl::xml_memory_page_name_allocated_mask) // 检查属性名是否需要释放
+			alloc.deallocate_string(a->name); // 释放属性名所占的内存
 
-		if (a->header & impl::xml_memory_page_value_allocated_mask)
-			alloc.deallocate_string(a->value);
+		if (a->header & impl::xml_memory_page_value_allocated_mask)// 检查属性值是否需要释放
+			alloc.deallocate_string(a->value);// 释放属性值所占的内存
 
-		alloc.deallocate_memory(a, sizeof(xml_attribute_struct), PUGI__GETPAGE(a));
+		alloc.deallocate_memory(a, sizeof(xml_attribute_struct), PUGI__GETPAGE(a)); // 释放属性节点本身所占的内存
 	}
 
-	inline void destroy_node(xml_node_struct* n, xml_allocator& alloc)
+	inline void destroy_node(xml_node_struct* n, xml_allocator& alloc) // 销毁节点
 	{
-		if (n->header & impl::xml_memory_page_name_allocated_mask)
-			alloc.deallocate_string(n->name);
+		if (n->header & impl::xml_memory_page_name_allocated_mask) // 检查节点名称是否需要释放
+			alloc.deallocate_string(n->name); // 释放节点名称所占的内存
 
-		if (n->header & impl::xml_memory_page_value_allocated_mask)
-			alloc.deallocate_string(n->value);
+		if (n->header & impl::xml_memory_page_value_allocated_mask)// 检查节点值是否需要释放
+			alloc.deallocate_string(n->value);// 释放节点值所占的内存
 
-		for (xml_attribute_struct* attr = n->first_attribute; attr; )
+		for (xml_attribute_struct* attr = n->first_attribute; attr; )// 遍历节点的所有属性
 		{
-			xml_attribute_struct* next = attr->next_attribute;
+			xml_attribute_struct* next = attr->next_attribute;// 保存下一个属性的指针
 
-			destroy_attribute(attr, alloc);
+			destroy_attribute(attr, alloc); // 销毁当前属性
 
-			attr = next;
+			attr = next;// 移动到下一个属性
 		}
 
-		for (xml_node_struct* child = n->first_child; child; )
+		for (xml_node_struct* child = n->first_child; child; ) // 遍历节点的所有子节点
 		{
-			xml_node_struct* next = child->next_sibling;
+			xml_node_struct* next = child->next_sibling;// 保存下一个子节点的指针
 
-			destroy_node(child, alloc);
+			destroy_node(child, alloc);// 销毁当前子节点
 
-			child = next;
+			child = next;// 移动到下一个子节点
 		}
 
-		alloc.deallocate_memory(n, sizeof(xml_node_struct), PUGI__GETPAGE(n));
+		alloc.deallocate_memory(n, sizeof(xml_node_struct), PUGI__GETPAGE(n));// 释放当前节点本身所占的内存
 	}
 
-	inline void append_node(xml_node_struct* child, xml_node_struct* node)
+	inline void append_node(xml_node_struct* child, xml_node_struct* node) // 将子节点添加到父节点的子节点列表末尾
 	{
-		child->parent = node;
+		child->parent = node;// 设置子节点的父节点指针为当前节点
 
-		xml_node_struct* head = node->first_child;
+		xml_node_struct* head = node->first_child; // 获取当前节点的第一个子节点
 
-		if (head)
+		if (head)// 如果当前节点已经有子节点
 		{
-			xml_node_struct* tail = head->prev_sibling_c;
+			xml_node_struct* tail = head->prev_sibling_c;// 获取当前子节点列表的最后一个节点
 
-			tail->next_sibling = child;
-			child->prev_sibling_c = tail;
-			head->prev_sibling_c = child;
+			tail->next_sibling = child;// 将当前子节点列表的最后一个节点的下一个指针指向新的子节点
+			child->prev_sibling_c = tail;// 将新的子节点的前一个指针指向当前子节点列表的最后一个节点
+			head->prev_sibling_c = child;// 更新子节点列表的第一个节点的前一个指针为新的子节点
 		}
-		else
+		else// 如果当前节点没有子节点
 		{
-			node->first_child = child;
-			child->prev_sibling_c = child;
-		}
-	}
-
-	inline void prepend_node(xml_node_struct* child, xml_node_struct* node)
-	{
-		child->parent = node;
-
-		xml_node_struct* head = node->first_child;
-
-		if (head)
-		{
-			child->prev_sibling_c = head->prev_sibling_c;
-			head->prev_sibling_c = child;
-		}
-		else
-			child->prev_sibling_c = child;
-
-		child->next_sibling = head;
-		node->first_child = child;
-	}
-
-	inline void insert_node_after(xml_node_struct* child, xml_node_struct* node)
-	{
-		xml_node_struct* parent = node->parent;
-
-		child->parent = parent;
-
-		if (node->next_sibling)
-			node->next_sibling->prev_sibling_c = child;
-		else
-			parent->first_child->prev_sibling_c = child;
-
-		child->next_sibling = node->next_sibling;
-		child->prev_sibling_c = node;
-
-		node->next_sibling = child;
-	}
-
-	inline void insert_node_before(xml_node_struct* child, xml_node_struct* node)
-	{
-		xml_node_struct* parent = node->parent;
-
-		child->parent = parent;
-
-		if (node->prev_sibling_c->next_sibling)
-			node->prev_sibling_c->next_sibling = child;
-		else
-			parent->first_child = child;
-
-		child->prev_sibling_c = node->prev_sibling_c;
-		child->next_sibling = node;
-
-		node->prev_sibling_c = child;
-	}
-
-	inline void remove_node(xml_node_struct* node)
-	{
-		xml_node_struct* parent = node->parent;
-
-		if (node->next_sibling)
-			node->next_sibling->prev_sibling_c = node->prev_sibling_c;
-		else
-			parent->first_child->prev_sibling_c = node->prev_sibling_c;
-
-		if (node->prev_sibling_c->next_sibling)
-			node->prev_sibling_c->next_sibling = node->next_sibling;
-		else
-			parent->first_child = node->next_sibling;
-
-		node->parent = 0;
-		node->prev_sibling_c = 0;
-		node->next_sibling = 0;
-	}
-
-	inline void append_attribute(xml_attribute_struct* attr, xml_node_struct* node)
-	{
-		xml_attribute_struct* head = node->first_attribute;
-
-		if (head)
-		{
-			xml_attribute_struct* tail = head->prev_attribute_c;
-
-			tail->next_attribute = attr;
-			attr->prev_attribute_c = tail;
-			head->prev_attribute_c = attr;
-		}
-		else
-		{
-			node->first_attribute = attr;
-			attr->prev_attribute_c = attr;
+			node->first_child = child;// 将新的子节点设置为第一个子节点
+			child->prev_sibling_c = child;// 子节点的前一个指针指向自身（形成循环链表）
 		}
 	}
 
-	inline void prepend_attribute(xml_attribute_struct* attr, xml_node_struct* node)
+	inline void prepend_node(xml_node_struct* child, xml_node_struct* node)// 将子节点添加到父节点的子节点列表开头
 	{
-		xml_attribute_struct* head = node->first_attribute;
+		child->parent = node; // 设置子节点的父节点指针为当前节点
 
-		if (head)
+		xml_node_struct* head = node->first_child;// 获取当前节点的第一个子节点
+
+		if (head)// 如果当前节点已经有子节点
 		{
-			attr->prev_attribute_c = head->prev_attribute_c;
-			head->prev_attribute_c = attr;
+			child->prev_sibling_c = head->prev_sibling_c;// 将新子节点的前一个指针设置为当前子节点列表的最后一个节点
+			head->prev_sibling_c = child; // 更新子节点列表的第一个节点的前一个指针为新的子节点
 		}
-		else
-			attr->prev_attribute_c = attr;
+		else// 如果当前节点没有子节点
+			child->prev_sibling_c = child;// 新子节点的前一个指针指向自身（形成循环链表）
 
-		attr->next_attribute = head;
-		node->first_attribute = attr;
+		child->next_sibling = head; // 将新子节点的下一个指针设置为当前的第一个子节点
+		node->first_child = child;// 更新父节点的第一个子节点为新的子节点
 	}
 
-	inline void insert_attribute_after(xml_attribute_struct* attr, xml_attribute_struct* place, xml_node_struct* node)
+	inline void insert_node_after(xml_node_struct* child, xml_node_struct* node)// 在指定节点之后插入一个子节点
 	{
-		if (place->next_attribute)
-			place->next_attribute->prev_attribute_c = attr;
-		else
-			node->first_attribute->prev_attribute_c = attr;
+		xml_node_struct* parent = node->parent;// 获取指定节点的父节点
 
-		attr->next_attribute = place->next_attribute;
-		attr->prev_attribute_c = place;
-		place->next_attribute = attr;
+		child->parent = parent;// 设置新节点的父节点指针为当前父节点
+
+		if (node->next_sibling)// 如果指定节点有下一个兄弟节点
+			node->next_sibling->prev_sibling_c = child;// 更新下一个兄弟节点的前一个指针为新节点
+		else// 如果指定节点是最后一个节点
+			parent->first_child->prev_sibling_c = child;// 更新父节点子节点列表的最后一个节点的前一个指针为新节点
+
+		child->next_sibling = node->next_sibling;// 设置新节点的下一个指针为指定节点的下一个节点
+		child->prev_sibling_c = node;// 设置新节点的前一个指针为指定节点
+
+		node->next_sibling = child;// 更新指定节点的下一个指针为新节点
 	}
 
-	inline void insert_attribute_before(xml_attribute_struct* attr, xml_attribute_struct* place, xml_node_struct* node)
+	inline void insert_node_before(xml_node_struct* child, xml_node_struct* node)// 在指定节点之前插入一个子节点
 	{
-		if (place->prev_attribute_c->next_attribute)
-			place->prev_attribute_c->next_attribute = attr;
-		else
-			node->first_attribute = attr;
+		xml_node_struct* parent = node->parent;// 获取指定节点的父节点
 
-		attr->prev_attribute_c = place->prev_attribute_c;
-		attr->next_attribute = place;
-		place->prev_attribute_c = attr;
+		child->parent = parent;// 设置新节点的父节点指针为当前父节点
+
+		if (node->prev_sibling_c->next_sibling) // 如果指定节点的前一个节点存在并有下一个指针
+			node->prev_sibling_c->next_sibling = child; // 更新前一个节点的下一个指针为新节点
+		else// 如果指定节点是第一个节点
+			parent->first_child = child; // 更新父节点的第一个子节点为新节点
+
+		child->prev_sibling_c = node->prev_sibling_c;// 设置新节点的前一个指针为指定节点的前一个节点
+		child->next_sibling = node;// 设置新节点的下一个指针为指定节点
+
+		node->prev_sibling_c = child;// 更新指定节点的前一个指针为新节点
 	}
 
-	inline void remove_attribute(xml_attribute_struct* attr, xml_node_struct* node)
+	inline void remove_node(xml_node_struct* node)// 从父节点的子节点列表中移除指定节点
 	{
-		if (attr->next_attribute)
-			attr->next_attribute->prev_attribute_c = attr->prev_attribute_c;
-		else
-			node->first_attribute->prev_attribute_c = attr->prev_attribute_c;
+		xml_node_struct* parent = node->parent;// 获取当前节点的父节点
 
-		if (attr->prev_attribute_c->next_attribute)
-			attr->prev_attribute_c->next_attribute = attr->next_attribute;
-		else
-			node->first_attribute = attr->next_attribute;
+		if (node->next_sibling) // 如果当前节点有下一个兄弟节点
+			node->next_sibling->prev_sibling_c = node->prev_sibling_c;// 更新下一个兄弟节点的前一个指针为当前节点的前一个兄弟节点
+		else// 如果当前节点是最后一个节点
+			parent->first_child->prev_sibling_c = node->prev_sibling_c;// 更新父节点子节点列表的最后一个节点为当前节点的前一个兄弟节点
 
-		attr->prev_attribute_c = 0;
-		attr->next_attribute = 0;
+		if (node->prev_sibling_c->next_sibling) // 如果当前节点有前一个兄弟节点
+			node->prev_sibling_c->next_sibling = node->next_sibling;// 更新前一个兄弟节点的下一个指针为当前节点的下一个兄弟节点
+		else// 如果当前节点是第一个节点
+			parent->first_child = node->next_sibling;// 更新父节点的第一个子节点为当前节点的下一个兄弟节点
+
+		node->parent = 0; // 将当前节点的父节点指针清空
+		node->prev_sibling_c = 0;// 将当前节点的前一个兄弟节点指针清空
+		node->next_sibling = 0;// 将当前节点的下一个兄弟节点指针清空
 	}
 
-	PUGI__FN_NO_INLINE xml_node_struct* append_new_node(xml_node_struct* node, xml_allocator& alloc, xml_node_type type = node_element)
+	inline void append_attribute(xml_attribute_struct* attr, xml_node_struct* node)// 将属性添加到节点的属性列表末尾
 	{
-		if (!alloc.reserve()) return 0;
+		xml_attribute_struct* head = node->first_attribute;// 获取节点的第一个属性
 
-		xml_node_struct* child = allocate_node(alloc, type);
-		if (!child) return 0;
+		if (head)// 如果节点已经有属性
+		{
+			xml_attribute_struct* tail = head->prev_attribute_c;// 获取属性列表的最后一个属性
 
-		append_node(child, node);
-
-		return child;
+			tail->next_attribute = attr;// 将最后一个属性的下一个指针指向新属性
+			attr->prev_attribute_c = tail;// 将新属性的前一个指针指向最后一个属性
+			head->prev_attribute_c = attr;// 更新属性列表的第一个属性的前一个指针为新属性
+		}
+		else// 如果节点没有属性
+		{
+			node->first_attribute = attr;// 将新属性设置为第一个属性
+			attr->prev_attribute_c = attr;// 新属性的前一个指针指向自身（形成循环链表）
+		}
 	}
 
-	PUGI__FN_NO_INLINE xml_attribute_struct* append_new_attribute(xml_node_struct* node, xml_allocator& alloc)
+	inline void prepend_attribute(xml_attribute_struct* attr, xml_node_struct* node)// 将属性添加到节点的属性列表开头
 	{
-		if (!alloc.reserve()) return 0;
+		xml_attribute_struct* head = node->first_attribute;// 获取节点的第一个属性
 
-		xml_attribute_struct* attr = allocate_attribute(alloc);
-		if (!attr) return 0;
+		if (head)// 如果节点已经有属性
+		{
+			attr->prev_attribute_c = head->prev_attribute_c;// 将新属性的前一个指针设置为属性列表的最后一个属性
+			head->prev_attribute_c = attr;// 更新属性列表第一个属性的前一个指针为新属性
+		}
+		else// 如果节点没有属性
+			attr->prev_attribute_c = attr;// 新属性的前一个指针指向自身（形成循环链表）
 
-		append_attribute(attr, node);
+		attr->next_attribute = head;// 将新属性的下一个指针指向原来的第一个属性
+		node->first_attribute = attr;// 更新节点的第一个属性为新属性
+	}
 
-		return attr;
+	inline void insert_attribute_after(xml_attribute_struct* attr, xml_attribute_struct* place, xml_node_struct* node)// 在指定属性之后插入新属性
+	{
+		if (place->next_attribute)// 如果指定属性有下一个属性
+			place->next_attribute->prev_attribute_c = attr; // 更新下一个属性的前一个指针为新属性
+		else// 如果指定属性是最后一个属性
+			node->first_attribute->prev_attribute_c = attr;// 更新属性列表最后一个属性的前一个指针为新属性
+
+		attr->next_attribute = place->next_attribute;// 设置新属性的下一个指针为指定属性的下一个属性
+		attr->prev_attribute_c = place; // 设置新属性的前一个指针为指定属性
+		place->next_attribute = attr;// 更新指定属性的下一个指针为新属性
+	}
+
+	inline void insert_attribute_before(xml_attribute_struct* attr, xml_attribute_struct* place, xml_node_struct* node)// 在指定属性之前插入新属性
+	{
+		if (place->prev_attribute_c->next_attribute)// 如果指定属性的前一个属性有下一个指针
+			place->prev_attribute_c->next_attribute = attr;// 更新前一个属性的下一个指针为新属性
+		else// 如果指定属性是第一个属性
+			node->first_attribute = attr;// 更新节点的第一个属性为新属性
+
+		attr->prev_attribute_c = place->prev_attribute_c;// 设置新属性的前一个指针为指定属性的前一个属性
+		attr->next_attribute = place;// 设置新属性的下一个指针为指定属性
+		place->prev_attribute_c = attr;// 更新指定属性的前一个指针为新属性
+	}
+
+	inline void remove_attribute(xml_attribute_struct* attr, xml_node_struct* node)// 从节点的属性列表中移除指定属性
+	{
+		if (attr->next_attribute)// 如果指定属性有下一个属性
+			attr->next_attribute->prev_attribute_c = attr->prev_attribute_c;// 更新下一个属性的前一个指针为指定属性的前一个属性
+		else// 如果指定属性是最后一个属性
+			node->first_attribute->prev_attribute_c = attr->prev_attribute_c;// 更新属性列表最后一个属性为指定属性的前一个属性
+
+		if (attr->prev_attribute_c->next_attribute)// 如果指定属性有前一个属性
+			attr->prev_attribute_c->next_attribute = attr->next_attribute;// 更新前一个属性的下一个指针为指定属性的下一个属性
+		else// 如果指定属性是第一个属性
+			node->first_attribute = attr->next_attribute;// 更新节点的第一个属性为指定属性的下一个属性
+
+		attr->prev_attribute_c = 0;// 将指定属性的前一个指针清空
+		attr->next_attribute = 0;// 将指定属性的下一个指针清空
+	}
+
+	PUGI__FN_NO_INLINE xml_node_struct* append_new_node(xml_node_struct* node, xml_allocator& alloc, xml_node_type type = node_element)// 在节点末尾添加一个新节点
+	{
+		if (!alloc.reserve()) return 0;// 检查内存分配器是否有足够的空间，若没有返回空指针
+
+		xml_node_struct* child = allocate_node(alloc, type);// 分配一个新的节点
+		if (!child) return 0; // 如果分配失败，返回空指针
+
+		append_node(child, node);// 将新节点添加到指定节点的子节点列表末尾
+
+		return child;// 返回新创建的节点
+	}
+
+	PUGI__FN_NO_INLINE xml_attribute_struct* append_new_attribute(xml_node_struct* node, xml_allocator& alloc)// 在节点末尾添加一个新属性
+	{
+		if (!alloc.reserve()) return 0; // 检查内存分配器是否有足够的空间，若没有返回空指针
+
+		xml_attribute_struct* attr = allocate_attribute(alloc);// 分配一个新的属性
+		if (!attr) return 0;// 如果分配失败，返回空指针
+
+		append_attribute(attr, node); // 将新属性添加到指定节点的属性列表末尾
+
+		return attr;// 返回新创建的属性
 	}
 PUGI__NS_END
 
 // Helper classes for code generation
 PUGI__NS_BEGIN
-	struct opt_false
+	struct opt_false // 定义一个表示逻辑假值的结构体
 	{
-		enum { value = 0 };
+		enum { value = 0 };// 静态成员变量，值为0
 	};
 
-	struct opt_true
+	struct opt_true// 定义一个表示逻辑真值的结构体
 	{
-		enum { value = 1 };
+		enum { value = 1 };// 静态成员变量，值为1
 	};
 PUGI__NS_END
 
 // Unicode utilities
 PUGI__NS_BEGIN
-	inline uint16_t endian_swap(uint16_t value)
+	inline uint16_t endian_swap(uint16_t value)// 交换16位整数的字节顺序（大小端转换）
 	{
-		return static_cast<uint16_t>(((value & 0xff) << 8) | (value >> 8));
+		return static_cast<uint16_t>(((value & 0xff) << 8) | (value >> 8));// 将低8位移到高8位，将高8位移到低8位
 	}
 
-	inline uint32_t endian_swap(uint32_t value)
+	inline uint32_t endian_swap(uint32_t value)// 交换32位整数的字节顺序（大小端转换）
 	{
 		return ((value & 0xff) << 24) | ((value & 0xff00) << 8) | ((value & 0xff0000) >> 8) | (value >> 24);
 	}
@@ -1537,315 +1678,321 @@ PUGI__NS_BEGIN
 		}
 	};
 
-	struct utf16_counter
+	struct utf16_counter// 用于计数 UTF-16 编码的结构体
 	{
-		typedef size_t value_type;
+		typedef size_t value_type;// 定义 value_type 为 size_t 类型
 
-		static value_type low(value_type result, uint32_t)
+		static value_type low(value_type result, uint32_t)// 处理低位字符时增加计数
 		{
-			return result + 1;
+			return result + 1;// 返回当前计数加 1
 		}
 
-		static value_type high(value_type result, uint32_t)
+		static value_type high(value_type result, uint32_t)// 处理高位字符时增加计数
 		{
-			return result + 2;
+			return result + 2; // 返回当前计数加 2，因为高位字符占用 2 个字节
 		}
 	};
 
-	struct utf16_writer
+	struct utf16_writer// 用于将字符写入 UTF-16 编码的结构体
 	{
-		typedef uint16_t* value_type;
+		typedef uint16_t* value_type;// 定义 value_type 为 uint16_t 指针类型
 
-		static value_type low(value_type result, uint32_t ch)
+		static value_type low(value_type result, uint32_t ch)// 写入低位字符
 		{
-			*result = static_cast<uint16_t>(ch);
+			*result = static_cast<uint16_t>(ch);// 将字符 ch 转换为 uint16_t 并写入 result
 
-			return result + 1;
+			return result + 1;// 返回指向下一个位置的指针
 		}
 
-		static value_type high(value_type result, uint32_t ch)
+		static value_type high(value_type result, uint32_t ch)// 写入高位字符
 		{
-			uint32_t msh = static_cast<uint32_t>(ch - 0x10000) >> 10;
-			uint32_t lsh = static_cast<uint32_t>(ch - 0x10000) & 0x3ff;
+			uint32_t msh = static_cast<uint32_t>(ch - 0x10000) >> 10;// 获取高 10 位
+			uint32_t lsh = static_cast<uint32_t>(ch - 0x10000) & 0x3ff;// 获取低 10 位
 
-			result[0] = static_cast<uint16_t>(0xD800 + msh);
-			result[1] = static_cast<uint16_t>(0xDC00 + lsh);
+			result[0] = static_cast<uint16_t>(0xD800 + msh);// 计算并写入高位字符
+			result[1] = static_cast<uint16_t>(0xDC00 + lsh);// 计算并写入低位字符
 
-			return result + 2;
+			return result + 2;// 返回指向下一个位置的指针，已经写入两个字节
 		}
 
-		static value_type any(value_type result, uint32_t ch)
+		static value_type any(value_type result, uint32_t ch)// 根据字符 ch 判断是写入低位字符还是高位字符
 		{
-			return (ch < 0x10000) ? low(result, ch) : high(result, ch);
+			return (ch < 0x10000) ? low(result, ch) : high(result, ch);// 如果字符小于 0x10000，调用 low，否则调用 high
 		}
 	};
 
-	struct utf32_counter
+	struct utf32_counter// 用于计数 UTF-32 编码的结构体
 	{
-		typedef size_t value_type;
+		typedef size_t value_type;// 定义 value_type 为 size_t 类型
 
-		static value_type low(value_type result, uint32_t)
+		static value_type low(value_type result, uint32_t)// 处理低位字符时增加计数
 		{
-			return result + 1;
+			return result + 1;// 返回当前计数加 1
 		}
 
-		static value_type high(value_type result, uint32_t)
+		static value_type high(value_type result, uint32_t)// 处理高位字符时增加计数
 		{
-			return result + 1;
+			return result + 1;// 返回当前计数加 1，UTF-32 中每个字符都是 1 个单位
 		}
 	};
 
-	struct utf32_writer
+	struct utf32_writer// 用于将字符写入 UTF-32 编码的结构体
 	{
-		typedef uint32_t* value_type;
+		typedef uint32_t* value_type;// 定义 value_type 为 uint32_t 指针类型
 
-		static value_type low(value_type result, uint32_t ch)
+		static value_type low(value_type result, uint32_t ch)// 写入低位字符
 		{
-			*result = ch;
+			*result = ch;// 将字符 ch 直接赋值给 result
 
-			return result + 1;
+			return result + 1;// 返回指向下一个位置的指针
 		}
 
-		static value_type high(value_type result, uint32_t ch)
+		static value_type high(value_type result, uint32_t ch)// 写入高位字符
 		{
-			*result = ch;
+			*result = ch;// 将字符 ch 直接赋值给 result
 
-			return result + 1;
+			return result + 1;// 返回指向下一个位置的指针
 		}
 
-		static value_type any(value_type result, uint32_t ch)
+		static value_type any(value_type result, uint32_t ch)// 写入任何字符
 		{
-			*result = ch;
+			*result = ch; // 将字符 ch 直接赋值给 result
 
-			return result + 1;
+			return result + 1;// 返回指向下一个位置的指针
 		}
 	};
 
-	struct latin1_writer
+	struct latin1_writer// 用于将字符写入 Latin-1 编码的结构体
 	{
-		typedef uint8_t* value_type;
+		typedef uint8_t* value_type; // 定义 value_type 为 uint8_t 指针类型
 
-		static value_type low(value_type result, uint32_t ch)
+		static value_type low(value_type result, uint32_t ch)// 写入低位字符
 		{
-			*result = static_cast<uint8_t>(ch > 255 ? '?' : ch);
+			*result = static_cast<uint8_t>(ch > 255 ? '?' : ch);// 如果字符值大于 255，则写入 '?'，否则写入字符本身（转换为 uint8_t）
 
-			return result + 1;
+			return result + 1;// 返回指向下一个位置的指针
 		}
 
-		static value_type high(value_type result, uint32_t ch)
+		static value_type high(value_type result, uint32_t ch)// 写入高位字符
 		{
-			(void)ch;
+			(void)ch;// 忽略传入的 ch 参数，因为 Latin-1 只能处理单字节字符
 
-			*result = '?';
+			*result = '?';// 始终写入 '?' 作为占位符
 
-			return result + 1;
+			return result + 1;// 返回指向下一个位置的指针
 		}
 	};
 
-	struct utf8_decoder
+	struct utf8_decoder// 用于解码 UTF-8 的结构体
 	{
-		typedef uint8_t type;
+		typedef uint8_t type;// 定义 type 为 uint8_t 类型
 
-		template <typename Traits> static inline typename Traits::value_type process(const uint8_t* data, size_t size, typename Traits::value_type result, Traits)
+		template <typename Traits> static inline typename Traits::value_type process(const uint8_t* data, size_t size, typename Traits::value_type result, Traits)// 解码过程函数
 		{
-			const uint8_t utf8_byte_mask = 0x3f;
+			const uint8_t utf8_byte_mask = 0x3f;// 定义用于提取有效位的掩码
 
-			while (size)
+			while (size)// 遍历输入数据
 			{
-				uint8_t lead = *data;
+				uint8_t lead = *data;// 获取当前字节作为首字节
+
 
 				// 0xxxxxxx -> U+0000..U+007F
-				if (lead < 0x80)
+				if (lead < 0x80)// 单字节 ASCII 字符处理
 				{
-					result = Traits::low(result, lead);
-					data += 1;
-					size -= 1;
+					result = Traits::low(result, lead);// 通过 Traits 处理单字节字符
+					data += 1;// 移动到下一个字节
+					size -= 1;// 减少字节计数
 
 					// process aligned single-byte (ascii) blocks
-					if ((reinterpret_cast<uintptr_t>(data) & 3) == 0)
+					if ((reinterpret_cast<uintptr_t>(data) & 3) == 0)// 检查数据是否对齐到 4 字节边界
 					{
 						// round-trip through void* to silence 'cast increases required alignment of target type' warnings
-						while (size >= 4 && (*static_cast<const uint32_t*>(static_cast<const void*>(data)) & 0x80808080) == 0)
+						while (size >= 4 && (*static_cast<const uint32_t*>(static_cast<const void*>(data)) & 0x80808080) == 0)// 快速处理连续的 ASCII 字符块
 						{
-							result = Traits::low(result, data[0]);
-							result = Traits::low(result, data[1]);
-							result = Traits::low(result, data[2]);
-							result = Traits::low(result, data[3]);
-							data += 4;
-							size -= 4;
+							result = Traits::low(result, data[0]);// 处理第一个字节
+							result = Traits::low(result, data[1]);// 处理第二个字节
+							result = Traits::low(result, data[2]);// 处理第三个字节
+							result = Traits::low(result, data[3]);// 处理第四个字节
+							data += 4;// 移动到下一个 4 字节块
+							size -= 4;// 减少字节计数
 						}
 					}
 				}
 				// 110xxxxx -> U+0080..U+07FF
-				else if (static_cast<unsigned int>(lead - 0xC0) < 0x20 && size >= 2 && (data[1] & 0xc0) == 0x80)
+				else if (static_cast<unsigned int>(lead - 0xC0) < 0x20 && size >= 2 && (data[1] & 0xc0) == 0x80)// 两字节 UTF-8 字符处理
 				{
-					result = Traits::low(result, ((lead & ~0xC0) << 6) | (data[1] & utf8_byte_mask));
-					data += 2;
-					size -= 2;
+					result = Traits::low(result, ((lead & ~0xC0) << 6) | (data[1] & utf8_byte_mask));// 解码并处理两字节字符
+					data += 2;// 移动到下一个字节
+					size -= 2;// 减少字节计数
 				}
 				// 1110xxxx -> U+0800-U+FFFF
-				else if (static_cast<unsigned int>(lead - 0xE0) < 0x10 && size >= 3 && (data[1] & 0xc0) == 0x80 && (data[2] & 0xc0) == 0x80)
+				else if (static_cast<unsigned int>(lead - 0xE0) < 0x10 && size >= 3 && (data[1] & 0xc0) == 0x80 && (data[2] & 0xc0) == 0x80)// 三字节 UTF-8 字符处理
 				{
-					result = Traits::low(result, ((lead & ~0xE0) << 12) | ((data[1] & utf8_byte_mask) << 6) | (data[2] & utf8_byte_mask));
-					data += 3;
-					size -= 3;
+					result = Traits::low(result, ((lead & ~0xE0) << 12) | ((data[1] & utf8_byte_mask) << 6) | (data[2] & utf8_byte_mask));// 解码并处理三字节字符
+					data += 3;// 移动到下一个字节
+					size -= 3;// 减少字节计数
 				}
 				// 11110xxx -> U+10000..U+10FFFF
-				else if (static_cast<unsigned int>(lead - 0xF0) < 0x08 && size >= 4 && (data[1] & 0xc0) == 0x80 && (data[2] & 0xc0) == 0x80 && (data[3] & 0xc0) == 0x80)
+				else if (static_cast<unsigned int>(lead - 0xF0) < 0x08 && size >= 4 && (data[1] & 0xc0) == 0x80 && (data[2] & 0xc0) == 0x80 && (data[3] & 0xc0) == 0x80)// 四字节 UTF-8 字符处理
 				{
-					result = Traits::high(result, ((lead & ~0xF0) << 18) | ((data[1] & utf8_byte_mask) << 12) | ((data[2] & utf8_byte_mask) << 6) | (data[3] & utf8_byte_mask));
-					data += 4;
-					size -= 4;
+					result = Traits::high(result, ((lead & ~0xF0) << 18) | ((data[1] & utf8_byte_mask) << 12) | ((data[2] & utf8_byte_mask) << 6) | (data[3] & utf8_byte_mask));// 解码并处理四字节字符
+					data += 4; // 移动到下一个字节
+					size -= 4; // 减少字节计数
 				}
 				// 10xxxxxx or 11111xxx -> invalid
-				else
+				else// 非法字节处理
 				{
-					data += 1;
-					size -= 1;
+					data += 1;// 跳过非法字节
+					size -= 1;// 减少字节计数
 				}
 			}
 
-			return result;
+			return result;// 返回处理结果
 		}
 	};
 
 	template <typename opt_swap> struct utf16_decoder
 	{
-		typedef uint16_t type;
-
+		typedef uint16_t type; // 定义解码器处理的数据类型为uint16_t
+// 定义一个模板函数process，用于处理UTF-16编码的数据
 		template <typename Traits> static inline typename Traits::value_type process(const uint16_t* data, size_t size, typename Traits::value_type result, Traits)
 		{
-			while (size)
+			while (size)// 当还有数据需要处理时
 			{
-				uint16_t lead = opt_swap::value ? endian_swap(*data) : *data;
+				uint16_t lead = opt_swap::value ? endian_swap(*data) : *data;// 根据opt_swap决定是否需要字节顺序交换
 
 				// U+0000..U+D7FF
 				if (lead < 0xD800)
 				{
-					result = Traits::low(result, lead);
-					data += 1;
-					size -= 1;
+					result = Traits::low(result, lead); // 处理非代理项高位字符
+					data += 1;// 移动到下一个数据
+					size -= 1;// 数据大小减一
 				}
 				// U+E000..U+FFFF
 				else if (static_cast<unsigned int>(lead - 0xE000) < 0x2000)
 				{
-					result = Traits::low(result, lead);
-					data += 1;
-					size -= 1;
+					result = Traits::low(result, lead);// 处理直接映射的单个字符
+					data += 1;// 移动到下一个数据
+					size -= 1;// 数据大小减一
 				}
 				// surrogate pair lead
 				else if (static_cast<unsigned int>(lead - 0xD800) < 0x400 && size >= 2)
 				{
-					uint16_t next = opt_swap::value ? endian_swap(data[1]) : data[1];
-
+					uint16_t next = opt_swap::value ? endian_swap(data[1]) : data[1];// 根据opt_swap决定是否需要字节顺序交换下一个数据
+// 检查是否是一个有效的代理项对低位（U+DC00到U+DFFF）
 					if (static_cast<unsigned int>(next - 0xDC00) < 0x400)
-					{
+					{// 合并代理项对高位和低位为一个Unicode码点（U+10000到U+10FFFF）
 						result = Traits::high(result, 0x10000 + ((lead & 0x3ff) << 10) + (next & 0x3ff));
-						data += 2;
-						size -= 2;
+						data += 2;// 移动到下一个数据对之后
+						size -= 2;// 数据大小减二
 					}
 					else
 					{
-						data += 1;
-						size -= 1;
+						data += 1;// 如果不是有效的代理项对低位，只移动到一个数据之后
+						size -= 1;// 数据大小减一
 					}
 				}
 				else
 				{
-					data += 1;
-					size -= 1;
+					data += 1;// 对于不符合上述条件的字符，只移动到一个数据之后
+					size -= 1;// 数据大小减一
 				}
 			}
 
-			return result;
+			return result;// 返回处理后的结果
 		}
 	};
 
 	template <typename opt_swap> struct utf32_decoder
-	{
-		typedef uint32_t type;
-
+	{// 定义一个类型别名 type，表示 UTF-32 编码的基本单元，即 uint32_t 类型。
+		typedef uint32_t type;// type 是 uint32_t 的别名
+// 定义一个静态模板方法 process，用于处理 UTF-32 编码的数据。
 		template <typename Traits> static inline typename Traits::value_type process(const uint32_t* data, size_t size, typename Traits::value_type result, Traits)
 		{
 			while (size)
-			{
-				uint32_t lead = opt_swap::value ? endian_swap(*data) : *data;
+			{ 
+				// 根据 opt_swap::value 的值决定是否对当前数据进行字节序交换
+				// 如果 opt_swap::value 为 true，则调用 endian_swap 函数交换字节序
+				// 否则，直接使用原始数据
+				uint32_t lead = opt_swap::value ? endian_swap(*data) : *data;// 获取当前 UTF-32 字符，可能已进行字节序交换
 
 				// U+0000..U+FFFF
 				if (lead < 0x10000)
 				{
-					result = Traits::low(result, lead);
-					data += 1;
-					size -= 1;
+					// 使用 Traits 的 low 方法处理低代理对或单独的 BMP 字符
+                // low 方法应返回更新后的结果值
+					result = Traits::low(result, lead); // 处理低代理对或 BMP 字符，并更新结果
+					data += 1;// 指针后移，指向下一个 UTF-32 字符
+					size -= 1;// 数据大小减一
 				}
 				// U+10000..U+10FFFF
 				else
 				{
-					result = Traits::high(result, lead);
-					data += 1;
-					size -= 1;
+					result = Traits::high(result, lead);// 处理高代理对，并更新结果
+					data += 1;// 指针后移，指向下一个 UTF-32 字符
+					size -= 1;// 数据大小减一
 				}
 			}
 
-			return result;
+			return result;// 返回最终结果
 		}
 	};
 
 	struct latin1_decoder
 	{
-		typedef uint8_t type;
+		typedef uint8_t type;// 定义一个类型别名 `type`，等价于 `uint8_t`。
 
 		template <typename Traits> static inline typename Traits::value_type process(const uint8_t* data, size_t size, typename Traits::value_type result, Traits)
 		{
-			while (size)
+			while (size)// 当 `size` 不为 0 时循环。
 			{
-				result = Traits::low(result, *data);
-				data += 1;
-				size -= 1;
+				result = Traits::low(result, *data);// 调用 `Traits` 的 `low` 函数处理数据并更新 
+				data += 1;// 指针向后移动一个字节。
+				size -= 1;// 数据大小减 1。
 			}
 
-			return result;
+			return result;// 返回最终的 `result`。
 		}
 	};
 
-	template <size_t size> struct wchar_selector;
+	template <size_t size> struct wchar_selector;// 根据模板参数 `size` 定义 `wchar_selector` 的特化结构。
 
 	template <> struct wchar_selector<2>
 	{
-		typedef uint16_t type;
-		typedef utf16_counter counter;
-		typedef utf16_writer writer;
-		typedef utf16_decoder<opt_false> decoder;
+		typedef uint16_t type; // 定义类型别名 `type`，等价于 `uint16_t`。
+		typedef utf16_counter counter; // 定义类型别名 `counter`，等价于 `utf16_counter`。
+		typedef utf16_writer writer;// 定义类型别名 `writer`，等价于 `utf16_writer`。
+		typedef utf16_decoder<opt_false> decoder; // 定义类型别名 `decoder`，等价于 `utf16_decoder<opt_false>`。
 	};
 
 	template <> struct wchar_selector<4>
 	{
-		typedef uint32_t type;
-		typedef utf32_counter counter;
-		typedef utf32_writer writer;
-		typedef utf32_decoder<opt_false> decoder;
+		typedef uint32_t type; // 定义类型别名 `type`，等价于 `uint32_t`。
+		typedef utf32_counter counter;// 定义类型别名 `counter`，等价于 `utf32_counter`。
+		typedef utf32_writer writer;// 定义类型别名 `writer`，等价于 `utf32_writer`。
+		typedef utf32_decoder<opt_false> decoder;// 定义类型别名 `decoder`，等价于 `utf32_decoder<opt_false>`。
 	};
 
-	typedef wchar_selector<sizeof(wchar_t)>::counter wchar_counter;
-	typedef wchar_selector<sizeof(wchar_t)>::writer wchar_writer;
+	typedef wchar_selector<sizeof(wchar_t)>::counter wchar_counter;// 定义类型别名 `wchar_counter`，等价于根据 `wchar_t` 大小选择的 `counter` 类型。
+	typedef wchar_selector<sizeof(wchar_t)>::writer wchar_writer; // 定义类型别名 `wchar_writer`，等价于根据 `wchar_t` 大小选择的 `writer` 类型。
 
 	struct wchar_decoder
 	{
-		typedef wchar_t type;
+		typedef wchar_t type;// 定义类型别名 `type`，等价于 `wchar_t`。
 
 		template <typename Traits> static inline typename Traits::value_type process(const wchar_t* data, size_t size, typename Traits::value_type result, Traits traits)
 		{
-			typedef wchar_selector<sizeof(wchar_t)>::decoder decoder;
+			typedef wchar_selector<sizeof(wchar_t)>::decoder decoder;// 定义类型别名 `decoder`，根据 `wchar_t` 大小选择合适的解码器。
 
-			return decoder::process(reinterpret_cast<const typename decoder::type*>(data), size, result, traits);
+			return decoder::process(reinterpret_cast<const typename decoder::type*>(data), size, result, traits);// 调用 `decoder` 的 `process` 函数，将 `data` 转换为解码器的类型进行处理，并返回处理结果。
 		}
 	};
 
-#ifdef PUGIXML_WCHAR_MODE
+#ifdef PUGIXML_WCHAR_MODE// 如果定义了 `PUGIXML_WCHAR_MODE` 宏。
 	PUGI__FN void convert_wchar_endian_swap(wchar_t* result, const wchar_t* data, size_t length)
 	{
-		for (size_t i = 0; i < length; ++i)
-			result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::type>(data[i])));
+		for (size_t i = 0; i < length; ++i)// 遍历输入数据。
+			result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::type>(data[i])));// 将输入数据的每个元素转换为选择器类型，进行字节序交换后再转换为 `wchar_t` 存储到结果数组中。
 	}
 #endif
 PUGI__NS_END
@@ -1926,38 +2073,38 @@ PUGI__NS_BEGIN
 
 	PUGI__FN bool is_little_endian()
 	{
-		unsigned int ui = 1;
+		unsigned int ui = 1;// 定义一个无符号整型变量 `ui`，并将其设置为 1。
 
-		return *reinterpret_cast<unsigned char*>(&ui) == 1;
+		return *reinterpret_cast<unsigned char*>(&ui) == 1;  // 检查 `ui` 的最低字节是否为 1，如果是，则当前系统是小端序（little-endian）。
 	}
 
 	PUGI__FN xml_encoding get_wchar_encoding()
 	{
-		PUGI__STATIC_ASSERT(sizeof(wchar_t) == 2 || sizeof(wchar_t) == 4);
+		PUGI__STATIC_ASSERT(sizeof(wchar_t) == 2 || sizeof(wchar_t) == 4);// 静态断言，确保 `wchar_t` 的大小为 2 或 4 字节。
 
-		if (sizeof(wchar_t) == 2)
-			return is_little_endian() ? encoding_utf16_le : encoding_utf16_be;
-		else
-			return is_little_endian() ? encoding_utf32_le : encoding_utf32_be;
+		if (sizeof(wchar_t) == 2)// 如果 `wchar_t` 的大小为 2 字节。
+			return is_little_endian() ? encoding_utf16_le : encoding_utf16_be;// 根据是否为小端序，返回对应的 UTF-16 编码格式。
+		else// 如果 `wchar_t` 的大小为 4 字节。
+			return is_little_endian() ? encoding_utf32_le : encoding_utf32_be;// 根据是否为小端序，返回对应的 UTF-32 编码格式。
 	}
 
 	PUGI__FN bool parse_declaration_encoding(const uint8_t* data, size_t size, const uint8_t*& out_encoding, size_t& out_length)
 	{
-	#define PUGI__SCANCHAR(ch) { if (offset >= size || data[offset] != ch) return false; offset++; }
-	#define PUGI__SCANCHARTYPE(ct) { while (offset < size && PUGI__IS_CHARTYPE(data[offset], ct)) offset++; }
+	#define PUGI__SCANCHAR(ch) { if (offset >= size || data[offset] != ch) return false; offset++; }// 定义一个宏，用于检查当前位置的字符是否等于指定字符 `ch`，如果不匹配则返回 false。
+	#define PUGI__SCANCHARTYPE(ct) { while (offset < size && PUGI__IS_CHARTYPE(data[offset], ct)) offset++;// 定义一个宏，用于跳过所有匹配特定字符类型 `ct` 的字符。 }
 
 		// check if we have a non-empty XML declaration
 		if (size < 6 || !((data[0] == '<') & (data[1] == '?') & (data[2] == 'x') & (data[3] == 'm') & (data[4] == 'l') && PUGI__IS_CHARTYPE(data[5], ct_space)))
-			return false;
+			return false;// 如果数据长度小于 6 或者数据前 6 个字符不是合法的 XML 声明格式，返回 false。
 
 		// scan XML declaration until the encoding field
-		for (size_t i = 6; i + 1 < size; ++i)
+		for (size_t i = 6; i + 1 < size; ++i)// 声明中不允许在引号内包含 `?` 字符。
 		{
 			// declaration can not contain ? in quoted values
 			if (data[i] == '?')
 				return false;
 
-			if (data[i] == 'e' && data[i + 1] == 'n')
+			if (data[i] == 'e' && data[i + 1] == 'n')// 找到可能的 `encoding` 字段开头。
 			{
 				size_t offset = i;
 
@@ -1975,53 +2122,53 @@ PUGI__NS_BEGIN
 
 				PUGI__SCANCHAR(delimiter);
 
-				size_t start = offset;
+				size_t start = offset;// 记录编码字段的起始位置。
 
-				out_encoding = data + offset;
+				out_encoding = data + offset;// 设置输出编码字段的起始位置。
 
-				PUGI__SCANCHARTYPE(ct_symbol);
+				PUGI__SCANCHARTYPE(ct_symbol);// 跳过所有符号字符
 
-				out_length = offset - start;
+				out_length = offset - start;// 计算编码字段的长度。
 
-				PUGI__SCANCHAR(delimiter);
+				PUGI__SCANCHAR(delimiter);// 检查结束分隔符。
 
-				return true;
+				return true;// 成功找到并解析编码字段，返回 true。
 			}
 		}
 
-		return false;
+		return false;// 如果未找到 `encoding` 字段，返回 false。
 
 	#undef PUGI__SCANCHAR
 	#undef PUGI__SCANCHARTYPE
 	}
 
 	PUGI__FN xml_encoding guess_buffer_encoding(const uint8_t* data, size_t size)
-	{
+	{// 如果输入缓冲区太小，无法进行编码自动检测，默认为 UTF-8。
 		// skip encoding autodetection if input buffer is too small
 		if (size < 4) return encoding_utf8;
 
-		uint8_t d0 = data[0], d1 = data[1], d2 = data[2], d3 = data[3];
+		uint8_t d0 = data[0], d1 = data[1], d2 = data[2], d3 = data[3];// 读取缓冲区前四个字节。
 
 		// look for BOM in first few bytes
-		if (d0 == 0 && d1 == 0 && d2 == 0xfe && d3 == 0xff) return encoding_utf32_be;
-		if (d0 == 0xff && d1 == 0xfe && d2 == 0 && d3 == 0) return encoding_utf32_le;
-		if (d0 == 0xfe && d1 == 0xff) return encoding_utf16_be;
-		if (d0 == 0xff && d1 == 0xfe) return encoding_utf16_le;
+		if (d0 == 0 && d1 == 0 && d2 == 0xfe && d3 == 0xff) return encoding_utf32_be;// UTF-32 大端序。
+		if (d0 == 0xff && d1 == 0xfe && d2 == 0 && d3 == 0) return encoding_utf32_le;// UTF-32 小端序。
+		if (d0 == 0xfe && d1 == 0xff) return encoding_utf16_be;// UTF-16 大端序。
+		if (d0 == 0xff && d1 == 0xfe) return encoding_utf16_le;// UTF-16 小端序。
 		if (d0 == 0xef && d1 == 0xbb && d2 == 0xbf) return encoding_utf8;
 
 		// look for <, <? or <?xm in various encodings
-		if (d0 == 0 && d1 == 0 && d2 == 0 && d3 == 0x3c) return encoding_utf32_be;
-		if (d0 == 0x3c && d1 == 0 && d2 == 0 && d3 == 0) return encoding_utf32_le;
-		if (d0 == 0 && d1 == 0x3c && d2 == 0 && d3 == 0x3f) return encoding_utf16_be;
-		if (d0 == 0x3c && d1 == 0 && d2 == 0x3f && d3 == 0) return encoding_utf16_le;
+		if (d0 == 0 && d1 == 0 && d2 == 0 && d3 == 0x3c) return encoding_utf32_be;// UTF-32 大端序中的 `<`。
+		if (d0 == 0x3c && d1 == 0 && d2 == 0 && d3 == 0) return encoding_utf32_le;// UTF-32 小端序中的 `<`。
+		if (d0 == 0 && d1 == 0x3c && d2 == 0 && d3 == 0x3f) return encoding_utf16_be; // UTF-16 大端序中的 `<?`。
+		if (d0 == 0x3c && d1 == 0 && d2 == 0x3f && d3 == 0) return encoding_utf16_le;// UTF-16 小端序中的 `<?`。
 
 		// look for utf16 < followed by node name (this may fail, but is better than utf8 since it's zero terminated so early)
-		if (d0 == 0 && d1 == 0x3c) return encoding_utf16_be;
-		if (d0 == 0x3c && d1 == 0) return encoding_utf16_le;
+		if (d0 == 0 && d1 == 0x3c) return encoding_utf16_be;// UTF-16 大端序中的 `<`。
+		if (d0 == 0x3c && d1 == 0) return encoding_utf16_le;// UTF-16 小端序中的 `<`。
 
 		// no known BOM detected; parse declaration
-		const uint8_t* enc = 0;
-		size_t enc_length = 0;
+		const uint8_t* enc = 0;// 用于存储编码字段的起始位置。
+		size_t enc_length = 0;// 用于存储编码字段的长度。
 
 		if (d0 == 0x3c && d1 == 0x3f && d2 == 0x78 && d3 == 0x6d && parse_declaration_encoding(data, size, enc, enc_length))
 		{
@@ -2038,7 +2185,7 @@ PUGI__NS_BEGIN
 				&& (enc[3] | ' ') == 'i' && (enc[4] | ' ') == 'n'
 				&& enc[5] == '1')
 				return encoding_latin1;
-		}
+		}// 如果未匹配到任何已知编码，默认为 UTF-8。
 
 		return encoding_utf8;
 	}
@@ -2066,29 +2213,29 @@ PUGI__NS_BEGIN
 	PUGI__FN bool get_mutable_buffer(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable)
 	{
 		size_t length = size / sizeof(char_t);
-
+// 计算缓冲区内容的字符长度，字节数除以每个字符的大小。
 		if (is_mutable)
-		{
-			out_buffer = static_cast<char_t*>(const_cast<void*>(contents));
-			out_length = length;
+		{// 如果缓冲区是可变的，直接使用输入的内容。
+			out_buffer = static_cast<char_t*>(const_cast<void*>(contents)); // 将输入的内容指针转换为可修改的 `char_t` 类型指针。
+			out_length = length;// 设置输出缓冲区的长度。
 		}
 		else
 		{
-			char_t* buffer = static_cast<char_t*>(xml_memory::allocate((length + 1) * sizeof(char_t)));
-			if (!buffer) return false;
+			char_t* buffer = static_cast<char_t*>(xml_memory::allocate((length + 1) * sizeof(char_t))); // 为缓冲区分配内存，多分配一个字符用于添加终止符。
+			if (!buffer) return false;// 如果内存分配失败，返回 false。
 
 			if (contents)
-				memcpy(buffer, contents, length * sizeof(char_t));
+				memcpy(buffer, contents, length * sizeof(char_t));// 如果内容不为空，将输入的内容复制到新分配的缓冲区中。
 			else
 				assert(length == 0);
-
+// 如果内容为空，断言长度为 0，确保数据一致性。
 			buffer[length] = 0;
-
-			out_buffer = buffer;
-			out_length = length + 1;
+// 在缓冲区的末尾添加终止符。
+			out_buffer = buffer; // 将新分配的缓冲区地址赋值给输出指针。
+			out_length = length + 1;// 设置输出缓冲区的长度，包含终止符。
 		}
 
-		return true;
+		return true; // 返回 true，表示操作成功。
 	}
 
 #ifdef PUGIXML_WCHAR_MODE
@@ -2096,35 +2243,35 @@ PUGI__NS_BEGIN
 	{
 		return (le == encoding_utf16_be && re == encoding_utf16_le) || (le == encoding_utf16_le && re == encoding_utf16_be) ||
 			   (le == encoding_utf32_be && re == encoding_utf32_le) || (le == encoding_utf32_le && re == encoding_utf32_be);
-	}
+	// 判断是否需要进行字节序转换。当源编码和目标编码的字节序不一致时（大端序与小端序互换），需要转换。}
 
 	PUGI__FN bool convert_buffer_endian_swap(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable)
 	{
-		const char_t* data = static_cast<const char_t*>(contents);
-		size_t length = size / sizeof(char_t);
+		const char_t* data = static_cast<const char_t*>(contents);  // 将输入内容指针转换为 `const char_t*` 类型。
+		size_t length = size / sizeof(char_t);// 计算缓冲区的字符长度。
 
 		if (is_mutable)
 		{
-			char_t* buffer = const_cast<char_t*>(data);
+			char_t* buffer = const_cast<char_t*>(data); // 将只读指针转换为可修改的指针。
 
-			convert_wchar_endian_swap(buffer, data, length);
+			convert_wchar_endian_swap(buffer, data, length);// 对缓冲区进行字节序转换。
 
-			out_buffer = buffer;
-			out_length = length;
+			out_buffer = buffer;  // 设置输出缓冲区指针。
+			out_length = length; // 设置输出缓冲区的长度。
 		}
 		else
-		{
-			char_t* buffer = static_cast<char_t*>(xml_memory::allocate((length + 1) * sizeof(char_t)));
-			if (!buffer) return false;
+		{// 如果缓冲区不可变，需要分配新的缓冲区进行字节序转换。
+			char_t* buffer = static_cast<char_t*>(xml_memory::allocate((length + 1) * sizeof(char_t))); // 分配内存，多分配一个字符用于添加终止符。
+			if (!buffer) return false; // 如果内存分配失败，返回 false。
 
-			convert_wchar_endian_swap(buffer, data, length);
-			buffer[length] = 0;
+			convert_wchar_endian_swap(buffer, data, length);// 对新分配的缓冲区进行字节序转换。
+			buffer[length] = 0;// 在缓冲区末尾添加终止符。
 
-			out_buffer = buffer;
-			out_length = length + 1;
+			out_buffer = buffer;// 设置输出缓冲区指针。
+			out_length = length + 1; // 设置输出缓冲区的长度，包括终止符。
 		}
 
-		return true;
+		return true; // 返回 true，表示转换成功。
 	}
 
 	template <typename D> PUGI__FN bool convert_buffer_generic(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, D)

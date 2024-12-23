@@ -142,10 +142,11 @@ namespace detail {
     }
     _cv.notify_all();  // 通知所有线程
   }
-
+ // 设置一个异常，并通知所有等待的线程
   template <typename T>
   template <typename ExceptionT>
   void RecurrentSharedFuture<T>::SetException(ExceptionT &&e) {
+  // 将异常封装为一个共享指针，并将其设置为当前值
     SetValue(SharedException(std::make_shared<ExceptionT>(std::forward<ExceptionT>(e))));
   }
 

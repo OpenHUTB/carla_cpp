@@ -49,26 +49,34 @@ using namespace eprosima::fastcdr::exception;
 #define geometry_msgs_msg_Quaternion_max_key_cdr_typesize 0ULL;
 #define std_msgs_msg_Header_max_key_cdr_typesize 0ULL;
 
+// 默认构造函数，用于创建一个TFMessage类的实例，函数体为空，可能在对象初始化时做一些默认的设置（此处无具体操作）
 tf2_msgs::msg::TFMessage::TFMessage()
 {
 }
 
+// 析构函数，用于在对象销毁时执行清理相关的操作，函数体为空，可能此对象销毁时无需额外手动释放资源（此处无具体操作）
 tf2_msgs::msg::TFMessage::~TFMessage()
 {
 }
 
+// 拷贝构造函数，接受一个同类型的常量引用x，用于根据已有的TFMessage对象x来创建一个新的TFMessage对象，
+// 实现了将x对象中的m_transforms成员变量的值复制到新创建对象的对应成员变量中
 tf2_msgs::msg::TFMessage::TFMessage(
         const TFMessage& x)
 {
     m_transforms = x.m_transforms;
 }
 
+// 移动构造函数，接受一个同类型的右值引用x，用于通过“窃取”x对象的资源（这里是m_transforms）的方式来高效地创建新对象，
+// 使用std::move将x对象的m_transforms成员转移到新对象中，避免不必要的拷贝开销
 tf2_msgs::msg::TFMessage::TFMessage(
         TFMessage&& x) noexcept
 {
     m_transforms = std::move(x.m_transforms);
 }
 
+// 拷贝赋值运算符重载，接受一个同类型的常量引用x，用于将x对象的状态复制到当前对象，
+// 即将x对象的m_transforms成员变量的值赋给当前对象的对应成员变量，并返回当前对象的引用，以支持连续赋值操作
 tf2_msgs::msg::TFMessage& tf2_msgs::msg::TFMessage::operator =(
         const TFMessage& x)
 {
@@ -77,6 +85,8 @@ tf2_msgs::msg::TFMessage& tf2_msgs::msg::TFMessage::operator =(
     return *this;
 }
 
+// 移动赋值运算符重载，接受一个同类型的右值引用x，用于将x对象的资源（这里是m_transforms）转移到当前对象，
+// 避免不必要的拷贝开销，然后返回当前对象的引用，以支持连续赋值操作
 tf2_msgs::msg::TFMessage& tf2_msgs::msg::TFMessage::operator =(
         TFMessage&& x) noexcept
 {
@@ -85,18 +95,22 @@ tf2_msgs::msg::TFMessage& tf2_msgs::msg::TFMessage::operator =(
     return *this;
 }
 
+// 相等运算符重载，接受一个同类型的常量引用x，用于比较当前对象和x对象是否相等，
+// 通过比较它们的m_transforms成员变量是否相等来判断整个对象是否相等，返回比较结果（true或false）
 bool tf2_msgs::msg::TFMessage::operator ==(
         const TFMessage& x) const
 {
     return (m_transforms == x.m_transforms);
 }
-
+// 不等运算符重载，通过调用相等运算符（!(*this == x)）取反的方式来判断当前对象和x对象是否不相等，返回相应的布尔值
 bool tf2_msgs::msg::TFMessage::operator !=(
         const TFMessage& x) const
 {
     return !(*this == x);
 }
 
+// 获取最大的CDR序列化尺寸，current_alignment参数表示当前的对齐情况，
+// 这里将current_alignment参数强制转换为void（说明此函数可能没实际用到这个参数），直接返回一个预定义的最大CDR类型尺寸
 size_t tf2_msgs::msg::TFMessage::getMaxCdrSerializedSize(
         size_t current_alignment)
 {
@@ -104,6 +118,9 @@ size_t tf2_msgs::msg::TFMessage::getMaxCdrSerializedSize(
     return tf2_msgs_msg_TFMessage_max_cdr_typesize;
 }
 
+// 获取给定TFMessage对象的CDR序列化尺寸，data参数是要获取序列化尺寸的对象，current_alignment是当前的对齐情况
+// 首先记录初始的对齐情况，然后进行一些与对齐和计算每个TransformStamped对象序列化尺寸相关的操作，
+// 最后返回计算得到的序列化尺寸（当前对齐减去初始对齐得到实际的尺寸增量）
 size_t tf2_msgs::msg::TFMessage::getCdrSerializedSize(
         const tf2_msgs::msg::TFMessage& data,
         size_t current_alignment)
@@ -119,12 +136,14 @@ size_t tf2_msgs::msg::TFMessage::getCdrSerializedSize(
     return current_alignment - initial_alignment;
 }
 
+// 将对象序列化到给定的eprosima::fastcdr::Cdr对象scdr中，通过将成员变量m_transforms序列化到scdr里来实现整个对象的序列化操作
 void tf2_msgs::msg::TFMessage::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
     scdr << m_transforms;
 }
 
+// 从给定的eprosima::fastcdr::Cdr对象dcdr中反序列化数据到当前对象，通过从dcdr中读取数据来填充成员变量m_transforms，从而实现对象的重建
 void tf2_msgs::msg::TFMessage::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
 {

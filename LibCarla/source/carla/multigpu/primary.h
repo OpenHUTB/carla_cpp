@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -12,7 +12,7 @@
 #include "carla/profiler/LifetimeProfiled.h"  // 引入生命周期分析的定义
 #include "carla/streaming/detail/Types.h"  // 引入流相关的类型定义
 #include "carla/streaming/detail/tcp/Message.h"  // 引入 TCP 消息的定义
-#include "carla/multigpu/listener.h"  // 引入监听器的定义
+#include "carla/multigpu/listener.h"  //引入Carla多GPU处理框架中用于监听GPU事件和状态的Listener类的定义
 
 #include <boost/asio/deadline_timer.hpp>  // 引入 Boost.Asio 的截止时间定时器
 #include <boost/asio/io_context.hpp>  // 引入 Boost.Asio 的 IO 上下文

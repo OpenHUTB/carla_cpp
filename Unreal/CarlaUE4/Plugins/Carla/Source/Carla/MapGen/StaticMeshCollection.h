@@ -11,7 +11,7 @@
 
 class UInstancedStaticMeshComponent;
 
-/// Holds static mesh instatiators.
+/// 保存静态网格实例化器。
 UCLASS(Abstract)
 class CARLA_API AStaticMeshCollection : public AActor
 {
@@ -36,8 +36,8 @@ protected:
 
   void ClearInstances();
 
-  /// Clear the instances too.
-  void ClearInstantiators();
+/// 同时清除实例。
+void ClearInstantiators();
 
 private:
 

@@ -117,24 +117,23 @@ public:
       DisplayName = "Road Materials List for Low Quality")
   TArray<FStaticMaterial> LowRoadMaterials;
 
-  /// Distance at which the light function should be completely faded to
-  /// DisabledBrightness. This is useful for hiding aliasing from light
-  /// functions applied in the distance.
+  /// 光照函数应完全淡化为 禁用亮度（DisabledBrightness）的距离。
+  /// 这对于隐藏在远处应用的光照函数的混叠很有用。
   UPROPERTY(Category = "Quality Settings/Low", BlueprintReadOnly, EditAnywhere, config)
   float LowLightFadeDistance  = 1000.0f;
 
-  /// Default low distance for all primitive components.
+  /// 所有原始组件的默认 low 距离。 
   UPROPERTY(Category = "Quality Settings/Low", BlueprintReadOnly, EditAnywhere, config,
       meta = (ClampMin = "5000.0", ClampMax = "20000.0", UIMin = "5000.0", UIMax = "20000.0"))
   float LowStaticMeshMaxDrawDistance = 10000.0f;
 
-  /// Default low distance for roads meshes.
+  /// 道路网格的默认 low 距离。
   UPROPERTY(Category = "Quality Settings/Low", BlueprintReadOnly, EditAnywhere, config,
       meta = (ClampMin = "5000.0", ClampMax = "20000.0", UIMin = "5000.0", UIMax = "20000.0"))
   float LowRoadPieceMeshMaxDrawDistance = 15000.0f;
 
-  /// EPIC quality Road Materials. Uses slots name to set material for each part
-  /// of the road for Epic quality.
+  /// 史诗级质量道路材料。
+  /// 使用插槽名称为道路的每个部分设置质量的材料。
   UPROPERTY(Category = "Quality Settings/Epic",
       BlueprintReadOnly,
       EditAnywhere,

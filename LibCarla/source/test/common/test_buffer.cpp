@@ -45,6 +45,7 @@ TEST(buffer, copy_buffer_sequence) {
   std::string message;
   std::array<Buffer, number_of_buffers> buffers;
   std::array<boost::asio::const_buffer, number_of_buffers> sequence;
+// 循环遍历每一个缓冲区
   for (auto i = 0u; i < number_of_buffers; ++i) {
     message += str;
     buffers[i].copy_from(str);
@@ -136,6 +137,6 @@ TEST(buffer, buffer_pool) {
   ASSERT_EQ(as_string(buff1), str);
   auto buff2 = pool->Pop();
   ASSERT_NE(as_string(buff2), str);
-  // Now delete the pool to test the weak reference inside the buffers.
+  // 现在清空缓存池来测试缓存里面的弱引用
   pool.reset();
 }

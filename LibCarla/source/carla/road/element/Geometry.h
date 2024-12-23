@@ -335,21 +335,25 @@ namespace element {
     class GeometryParamPoly3 final : public Geometry {
     public:
         // 构造函数，用于初始化带参数的三次多项式曲线几何形状的属性，包括多项式系数等
+// 定义名为GeometryParamPoly3的函数（从代码结构看很可能是一个构造函数，用于初始化对应类的对象），它接收一系列参数来构建特定的几何对象相关信息
         GeometryParamPoly3(
-            double start_offset,
-            double length,
-            double heading,
-            const geom::Location &start_pos,
-            double aU,
-            double bU,
-            double cU,
-            double dU,
-            double aV,
-            double bV,
-            double cV,
-            double dV,
+            double start_offset,// 起始偏移量，可能表示几何形状在某个参考方向上的起始位置的偏移数值，具体含义取决于使用场景
+            double length,// 几何形状的长度，比如可以是一段曲线、线段等几何元素沿着某个方向延伸的长度值
+            double heading,// 朝向角度，通常用于表示几何形状的方向，例如在平面坐标系中与某个基准坐标轴所成的角度
+            const geom::Location &start_pos,// 起始位置，通过geom::Location类型传入，包含了具体的坐标等位置信息，代表几何形状起始的地点
+            double aU,// 多项式U（可能是用于描述几何形状在U方向上特征的多项式系数，具体取决于所在几何模型的定义）的三次项系数
+            double bU,// 多项式U的二次项系数
+            double cU,// 多项式U一次项系数
+            double dU,// 多项式U的常数项系数
+            double aV,// 多项式V（同理，可能用于描述几何形状在V方向上特征）的三次项系数
+            double bV, // 多项式V的二次项系数
+            double cV, // 多项式V的一次项系数
+            double dV, // 多项式V的常数项系数
             bool arcLength)
+// 一个布尔值，用于指示是否基于弧长进行相关计算（比如在涉及曲线的几何处理中，弧长相关设置会影响计算方式等）
+            // 通过初始化列表初始化基类Geometry，调用基类的构造函数，传入几何类型（这里是GeometryType::POLY3PARAM表示是特定的多项式参数定义的几何类型）、起始偏移量、长度、朝向以及起始位置等参数
             : Geometry(GeometryType::POLY3PARAM, start_offset, length, heading, start_pos),
+// 初始化成员变量_aU，将传入的参数aU的值赋给它，以下同理，分别初始化各个对应的成员变量
             _aU(aU),
             _bU(bU),
             _cU(cU),
@@ -359,8 +363,11 @@ namespace element {
             _cV(cV),
             _dV(dV),
             _arcLength(arcLength) {
-            _polyU.Set(aU, bU, cU, dU);
+ // 使用传入的系数来设置_polyU这个多项式对象（应该是类内封装用于处理U方向相关几何计算的多项式表示），调用其Set方法传入相应系数
+            _polyU.Set(aU, bU, cU, dU); 
+// 同理，使用传入的系数设置_polyV这个多项式对象，用于V方向的相关几何计算
             _polyV.Set(aV, bV, cV, dV);
+// 调用PreComputeSpline函数（应该是用于预先计算样条相关的数据或者进行一些初始化计算，为后续几何处理做准备，具体功能要看其函数实现）
             PreComputeSpline();
         }
 

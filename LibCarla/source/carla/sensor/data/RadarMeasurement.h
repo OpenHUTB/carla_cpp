@@ -15,8 +15,8 @@ namespace carla {
 namespace sensor {
 namespace data {
 
-  /// Measurement produced by a Radar. Consists of an array of RadarDetection.
-  /// A RadarDetection contains 4 floats: velocity, azimuth, altitude and depth
+  //由雷达探测出来的雷达测量结果类。由一个RadarDetection数组的数据组成
+  ///一个RadarDetection包含四个浮点变量: 速度、朝向方位角、 海拔以及深度
   class RadarMeasurement : public Array<data::RadarDetection> {
     using Super = Array<data::RadarDetection>;
   protected:

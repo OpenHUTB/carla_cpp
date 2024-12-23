@@ -96,7 +96,7 @@ std::pair<bool, FHitResult>
 {
   const double MaxDistance = 1000000;
   FVector StartLocation = Location;
-  FVector EndLocation = Location + FVector(0,0,-1)*MaxDistance; // search downwards
+  FVector EndLocation = Location + FVector(0,0,-1)*MaxDistance; // 向下搜索
   FHitResult Hit;
   FCollisionQueryParams CollisionQueryParams;
   CollisionQueryParams.AddIgnoredActor(CarlaVehicle);
@@ -104,7 +104,7 @@ std::pair<bool, FHitResult>
       Hit,
       StartLocation,
       EndLocation,
-      ECC_GameTraceChannel2, // camera (any collision)
+      ECC_GameTraceChannel2, // 摄像机（任意碰撞）
       CollisionQueryParams,
       FCollisionResponseParams()
   );
@@ -113,7 +113,7 @@ std::pair<bool, FHitResult>
 
 double UERayCastTerrain::GetHeight(const ChVector<>& loc) const
 {
-  FVector Location = ChronoToUE4Location(loc + ChVector<>(0,0,0.5)); // small offset to detect the ground properly
+  FVector Location = ChronoToUE4Location(loc + ChVector<>(0,0,0.5)); // 一个小偏移量，用于正确检测地面
   auto point_pair = GetTerrainProperties(Location);
   if (point_pair.first)
   {
@@ -153,7 +153,7 @@ void UChronoMovementComponent::BeginPlay()
 
   InitializeChronoVehicle();
 
-  // Create the terrain
+  // 创建地形
   Terrain = chrono_types::make_shared<UERayCastTerrain>(CarlaVehicle, Vehicle.get());
 
   CarlaVehicle->OnActorHit.AddDynamic(
@@ -166,20 +166,19 @@ void UChronoMovementComponent::BeginPlay()
 
 void UChronoMovementComponent::InitializeChronoVehicle()
 {
-  // Initial location with small offset to prevent falling through the ground
+  // 初始位置设有小偏移量，以防穿透地面
   FVector VehicleLocation = CarlaVehicle->GetActorLocation() + FVector(0,0,25);
   FQuat VehicleRotation = CarlaVehicle->GetActorRotation().Quaternion();
   auto ChronoLocation = UE4LocationToChrono(VehicleLocation);
   auto ChronoRotation = UE4QuatToChrono(VehicleRotation);
 
-  // Set base path for vehicle JSON files
+  // 为车辆JSON文件设置基本路径
   vehicle::SetDataPath(carla::rpc::FromFString(BaseJSONPath));
 
   std::string BasePath_string = carla::rpc::FromFString(BaseJSONPath);
 
-  // Create full path for json files
-  // Do NOT use vehicle::GetDataFile() as strings from chrono lib
-  // messes with unreal's std lib
+  // 为json文件创建完整路径
+  //不要使用vehicle::GetDataFile()，因为chrono库中的字符串会与unreal的std库发生冲突
   std::string VehicleJSON_string = carla::rpc::FromFString(VehicleJSON);
   std::string VehiclePath_string = BasePath_string + VehicleJSON_string;
   FString VehicleJSONPath = carla::rpc::ToFString(VehiclePath_string);
@@ -196,17 +195,17 @@ void UChronoMovementComponent::InitializeChronoVehicle()
       *VehicleJSONPath,
       *PowerTrainJSONPath,
       *TireJSONPath);
-  // Create JSON vehicle
+  // 创建JSON车辆文件
   Vehicle = chrono_types::make_shared<WheeledVehicle>(
       &Sys,
       VehiclePath_string);
   Vehicle->Initialize(ChCoordsys<>(ChronoLocation, ChronoRotation));
   Vehicle->GetChassis()->SetFixed(false);
-  // Create and initialize the powertrain System
+  // 创建并初始化传动系统
   auto powertrain = ReadPowertrainJSON(
       PowerTrain_string);
   Vehicle->InitializePowertrain(powertrain);
-  // Create and initialize the tires
+  // 创建并初始化轮胎
   for (auto& axle : Vehicle->GetAxles()) {
       for (auto& wheel : axle->GetWheels()) {
           auto tire = ReadTireJSON(Tire_string);
@@ -283,7 +282,7 @@ void UChronoMovementComponent::TickComponent(float DeltaTime,
   }
   CarlaVehicle->SetActorLocation(NewLocation);
   FRotator NewRotator = NewRotation.Rotator();
-  // adding small rotation to compensate chrono offset
+  // 添加小幅旋转以补偿chrono偏移量
   const float ChronoPitchOffset = 2.5f;
   NewRotator.Add(ChronoPitchOffset, 0.f, 0.f); 
   CarlaVehicle->SetActorRotation(NewRotator);
@@ -293,7 +292,7 @@ void UChronoMovementComponent::AdvanceChronoSimulation(float StepSize)
 {
   double Time = Vehicle->GetSystem()->GetChTime();
   double Throttle = VehicleControl.Throttle;
-  double Steering = -VehicleControl.Steer; // RHF to LHF
+  double Steering = -VehicleControl.Steer; // 右舵改为左舵
   double Brake = VehicleControl.Brake + VehicleControl.bHandBrake;
   Vehicle->Synchronize(Time, {Steering, Throttle, Brake}, *Terrain.get());
   Vehicle->Advance(StepSize);
@@ -338,7 +337,7 @@ void UChronoMovementComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
   {
     return;
   }
-  // reset callbacks to react to collisions
+  // 重置回调函数以响应碰撞
   CarlaVehicle->OnActorHit.RemoveDynamic(
       this, &UChronoMovementComponent::OnVehicleHit);
   CarlaVehicle->GetMesh()->OnComponentBeginOverlap.RemoveDynamic(
@@ -374,8 +373,8 @@ void UChronoMovementComponent::OnVehicleHit(AActor *Actor,
   DisableChronoPhysics();
 }
 
-// On car mesh overlap, only works when carsim is enabled
-// (this event triggers when overlapping with static environment)
+// 在车辆网格重叠时，仅当启用了carsim时才有效
+// （此事件在与静态环境重叠时触发）
 void UChronoMovementComponent::OnVehicleOverlap(
     UPrimitiveComponent* OverlappedComponent,
     AActor* OtherActor,

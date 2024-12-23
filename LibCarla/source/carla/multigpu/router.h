@@ -1,4 +1,4 @@
-// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
+﻿// Copyright (c) 2022 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -9,7 +9,7 @@
 // #include "carla/Logging.h" // 这行代码被注释掉，为了避免重复包含或依赖
 #include "carla/streaming/detail/tcp/Message.h" // 包含用于TCP消息的头文件
 #include "carla/ThreadPool.h" // 包含用于线程池的头文件
-#include "carla/multigpu/primary.h" // 包含用于多GPU处理的主要组件的头文件
+#include "carla/multigpu/primary.h" // 包含Carla模拟器中用于多GPU并行处理的主要组件和接口的头文件
 #include "carla/multigpu/primaryCommands.h" 
 #include "carla/multigpu/commands.h"
 

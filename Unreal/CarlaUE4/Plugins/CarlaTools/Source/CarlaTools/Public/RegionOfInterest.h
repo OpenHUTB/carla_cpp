@@ -15,7 +15,8 @@
 
 #include "RegionOfInterest.generated.h"
 
-
+// 定义一个可以用于蓝图系统的枚举类型 ERegionOfInterestType
+// 用来表示不同类型的感兴趣区域（Region of Interest, ROI）
 UENUM(BlueprintType)
 enum ERegionOfInterestType
 {
@@ -27,7 +28,8 @@ enum ERegionOfInterestType
   MISC_SPECIFIC_LOCATION_ACTORS_REGION,
   SOIL_TYPE_REGION
 };
-
+// 定义一个可以用于蓝图系统的枚举类型 ESpreadedActorsDensity
+// 用来表示区域内分散演员（spreaded actors）的密度级别
 UENUM(BlueprintType)
 enum ESpreadedActorsDensity
 {
@@ -47,19 +49,22 @@ struct CARLATOOLS_API FRoiTile
   int Y;
 
 public:
+// 默认构造函数，初始化 X 和 Y 为 -1，表示无效或未指定的瓦片
   FRoiTile() : X(-1), Y(-1)
   {};
-
+  // 构造函数，接受两个整数参数 X 和 Y，用来初始化瓦片的具体位置
   FRoiTile(int X, int Y)
   {
-    this->X = X;
+    this->X = X;// 使用 this 指针来区分成员变量和参数名称
     this->Y = Y;
   };
-
+  // 拷贝构造函数，使用另一个 FRoiTile 对象的 X 和 Y 来初始化新的对象
+  // 这里调用了带参数的构造函数来进行初始化
   FRoiTile(const FRoiTile& Other)
     : FRoiTile(Other.X, Other.Y)
   {}
-
+  // 重载等号运算符 (==)，允许直接比较两个 FRoiTile 对象
+  // 它通过调用 Equals 方法来进行比较，并返回比较结果
   bool operator==(const FRoiTile& Other) const
   {
     return Equals(Other);
@@ -184,19 +189,23 @@ struct CARLATOOLS_API FCarlaRegionOfInterest
 
 };
 
+// 定义了一个用于表示植被感兴趣区域（Region of Interest, ROI）的结构体，继承自FCarlaRegionOfInterest。
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FVegetationROI : public FCarlaRegionOfInterest
 {
   GENERATED_BODY()
 
+// 一个数组，用于存储指向植被生成器的指针。
   UPROPERTY(BlueprintReadWrite)
   TArray<UProceduralFoliageSpawner*> FoliageSpawners;
 
+  // FVegetationROI的构造函数，初始化FoliageSpawners为空。
   FVegetationROI() : FCarlaRegionOfInterest()
   {
     this->FoliageSpawners.Empty();
   }
 
+// 一个函数，用于将一个植被生成器添加到FoliageSpawners数组中。
   void AddFoliageSpawner(UProceduralFoliageSpawner* Spawner)
   {
     FoliageSpawners.Add(Spawner);
@@ -211,12 +220,14 @@ void AddFoliageSpawners(TArray<UProceduralFoliageSpawner*> Spawners)
     }
   }
 
+// 一个函数，用于获取FoliageSpawners数组。
   TArray<UProceduralFoliageSpawner*> GetFoliageSpawners()
   {
     return this->FoliageSpawners;
   }
 };
 
+// 定义了一个用于表示地形感兴趣区域（ROI）的结构体，继承自FCarlaRegionOfInterest。
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FTerrainROI : public FCarlaRegionOfInterest
 {
@@ -230,6 +241,7 @@ UPROPERTY(BlueprintReadWrite)
  UPROPERTY(BlueprintReadWrite)
   UTextureRenderTarget2D* RoiHeightmapRenderTarget;
 
+// FTerrainROI的构造函数，初始化RoiMaterialInstance和RoiHeightmapRenderTarget。
   FTerrainROI() : FCarlaRegionOfInterest(), RoiMaterialInstance(), RoiHeightmapRenderTarget()
   {}
 
@@ -245,6 +257,7 @@ UPROPERTY(BlueprintReadWrite)
  *
  * return true if the tile is in a boundary
  */
+ // 一个静态函数，用于检查一个瓦片是否在ROI的边界上。
   template <typename R>
   static bool IsTileInRoiBoundary(FRoiTile RoiTile, TMap<FRoiTile, R> RoisMap, bool& OutUp, bool& OutRight, bool& OutDown, bool& OutLeft)
   {
@@ -258,17 +271,21 @@ UPROPERTY(BlueprintReadWrite)
   }
 };
 
+// 定义了一个用于表示散布演员感兴趣区域（ROI）的结构体，继承自FCarlaRegionOfInterest。
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FMiscSpreadedActorsROI : public FCarlaRegionOfInterest
 {
   GENERATED_BODY()
 
+// 一个指向演员类的指针，表示在ROI中生成的演员类型。
   UPROPERTY(BlueprintReadWrite)
   TSubclassOf<AActor> ActorClass;
 
+// 一个浮点数，表示在ROI中生成演员的概率。
   UPROPERTY(BlueprintReadWrite)
   float Probability;
-
+ 
+// 一个枚举值，表示在ROI中散布演员的密度。
   UPROPERTY(BlueprintReadWrite)
   TEnumAsByte<ESpreadedActorsDensity> ActorsDensity;
 
@@ -282,12 +299,15 @@ struct CARLATOOLS_API FMiscSpecificLocationActorsROI : public FCarlaRegionOfInte
 {
   GENERATED_BODY()
 
+// 一个指向演员类的指针，表示在特定位置生成的演员类型。
   UPROPERTY(BlueprintReadWrite)
   TSubclassOf<AActor> ActorClass;
 
+// 一个向量，表示演员在世界中的生成位置。
   UPROPERTY(BlueprintReadWrite)
   FVector ActorLocation;
 
+// 一个浮点数，表示演员最小旋转范围。
   UPROPERTY(BlueprintReadWrite)
   float MinRotationRange;
 
@@ -302,26 +322,35 @@ struct CARLATOOLS_API FMiscSpecificLocationActorsROI : public FCarlaRegionOfInte
   {}
 };
 
+// 定义了一个用于表示土壤类型感兴趣区域（ROI）的结构体，继承自FCarlaRegionOfInterest。
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FSoilTypeROI : public FCarlaRegionOfInterest
 {
   GENERATED_BODY()
 
+// 一个土壤类型属性结构体，包含土壤的物理属性。
   UPROPERTY(BlueprintReadWrite)
   FSoilTerramechanicsProperties SoilProperties;
 
+// FSoilTypeROI的构造函数，初始化SoilProperties。
   FSoilTypeROI() : SoilProperties()
   {}
 };
 
+// 使用 USTRUCT 宏定义一个可以用于蓝图系统的结构体 FMiscWidgetState
+// CARLATOOLS_API 是一个宏，通常用于导出类或结构体以便在其他模块中使用
 USTRUCT(BlueprintType)
 struct CARLATOOLS_API FMiscWidgetState
 {
   GENERATED_USTRUCT_BODY()
-
+	
+// IsPersistentState 是一个布尔值属性，表示小部件状态是否持久化
+// 可以在编辑器中编辑，并且可以在蓝图中读取和修改
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary|Misc")
   bool IsPersistentState;
-
+	
+// InTileCoordinates 是一个 FIntPoint 类型的属性，表示小部件在瓦片坐标系中的位置
+  // FIntPoint 是一个包含两个整数坐标的结构体，通常用于表示二维平面上的点
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MapGenerator|JsonLibrary|Misc")
   FIntPoint InTileCoordinates;
 };

@@ -28,7 +28,7 @@ namespace element
 namespace cr = carla::road;
 namespace cre = carla::road::element;
 
-/// Class representing an OpenDRIVE Signal
+/// 表示 OpenDRIVE 标志的类
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CARLA_API USignComponent : public USceneComponent
 {
@@ -43,7 +43,7 @@ public:
   UFUNCTION(Category = "Traffic Sign", BlueprintCallable)
   void SetSignId(const FString &Id);
 
-  // Initialize sign (e.g. generate trigger boxes)
+  // 初始化标志（例如生成触发框）
   virtual void InitializeSign(const cr::Map &Map);
 
   void AddEffectTriggerVolume(UBoxComponent* TriggerVolume);
@@ -51,10 +51,10 @@ public:
   const TArray<UBoxComponent*> GetEffectTriggerVolume() const;
 
 protected:
-  // Called when the game starts
+  // 游戏开始时调用
   virtual void BeginPlay() override;
 
-  // Called every frame
+  // 每帧调用
   virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
   TArray<std::pair<cr::RoadId, const cre::RoadInfoSignal*>>
@@ -62,8 +62,8 @@ protected:
 
   const cr::Signal* GetSignal(const cr::Map &Map) const;
 
-  /// Generates a trigger box component in the parent actor
-  /// BoxSize should be in Unreal units
+  /// 在父级参与者中生成触发框组件
+  /// BoxSize 应采用虚幻单位
   UBoxComponent* GenerateTriggerBox(const FTransform &BoxTransform,
       float BoxSize);
 

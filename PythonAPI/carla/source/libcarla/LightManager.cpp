@@ -4,136 +4,128 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include <chrono>
-#include <memory>
-
-#include "carla/PythonUtil.h"
-#include "boost/python/suite/indexing/vector_indexing_suite.hpp"
-
-#include "carla/client/LightManager.h"
-
+#include <chrono> // 用于时间相关的功能
+#include <memory> // 用于内存管理和智能指针
+ 
+#include "carla/PythonUtil.h" // CARLA项目中用于Python集成的工具
+#include "boost/python/suite/indexing/vector_indexing_suite.hpp" // Boost.Python库，用于向Python暴露STL容器
+ 
+#include "carla/client/LightManager.h" // 包含CARLA客户端的交通灯管理器的定义
+ 
+// 定义命名空间别名，方便代码编写
 namespace cc = carla::client;
 namespace cr = carla::rpc;
 namespace csd = carla::sensor::data;
-
-/****** 交通灯管理激活 ******/
-
-// 打开交通灯管理器
+ 
+/**
+ ******* 交通灯管理激活 *******
+ * 以下函数用于管理交通灯的激活状态
+ */
+ 
+// 打开指定的交通灯
 static void LightManagerTurnOn(
-  cc::LightManager& self,
-  const boost::python::object& py_lights) {
-
+  cc::LightManager& self, // 引用交通灯管理器实例
+  const boost::python::object& py_lights) { // 从Python接收的交通灯列表
+ 
+  // 将Python列表转换为C++的std::vector<cc::Light>
   std::vector<cc::Light> lights {
     boost::python::stl_input_iterator<cc::Light>(py_lights),
     boost::python::stl_input_iterator<cc::Light>()
   };
-
+ 
+  // 调用交通灯管理器的TurnOn方法
   self.TurnOn(lights);
 }
-
-// 关闭交通灯管理器
+ 
+// 关闭指定的交通灯
 static void LightManagerTurnOff(
   cc::LightManager& self,
   const boost::python::object& py_lights) {
-
-  std::vector<cc::Light> lights {
-    boost::python::stl_input_iterator<cc::Light>(py_lights),
-    boost::python::stl_input_iterator<cc::Light>()
-  };
-
+ 
+  // 转换并关闭交通灯
+  std::vector<cc::Light> lights { ... }; // 同上
   self.TurnOff(lights);
 }
-
+ 
+// 设置指定交通灯的活动状态
 static void LightManagerSetActive(
   cc::LightManager& self,
   const boost::python::object& py_lights,
   const boost::python::object& py_active) {
-
-  std::vector<cc::Light> lights {
-    boost::python::stl_input_iterator<cc::Light>(py_lights),
-    boost::python::stl_input_iterator<cc::Light>()
-  };
-
-  std::vector<bool> active {
-    boost::python::stl_input_iterator<bool>(py_active),
-    boost::python::stl_input_iterator<bool>()
-  };
-
+ 
+  // 转换交通灯和活动状态列表
+  std::vector<cc::Light> lights { ... }; // 同上
+  std::vector<bool> active { ... }; // 同上，但转换为bool类型
+ 
+  // 设置活动状态
   self.SetActive(lights, active);
 }
-
+ 
+// 检查指定交通灯是否活动
 static boost::python::list LightManagerIsActive(
     cc::LightManager& self,
     const boost::python::object& py_lights) {
-
+ 
+  // 转换并查询交通灯的活动状态
+  std::vector<cc::Light> lights { ... }; // 同上
   boost::python::list result;
-
-  std::vector<cc::Light> lights {
-    boost::python::stl_input_iterator<cc::Light>(py_lights),
-    boost::python::stl_input_iterator<cc::Light>()
-  };
-
+ 
   for (auto &&item : self.IsActive(lights)) {
-    // Avoiding bit_ref conversion
+    // 将结果转换为Python列表，避免位引用转换
     result.append(static_cast<bool>(item));
   }
-
+ 
   return result;
 }
-
+ 
 /*******************/
-
-/****** 交通灯颜色管理器 ******/
-
+ 
+/**
+ ******* 交通灯颜色管理器 *******
+ * 以下函数用于管理交通灯的颜色
+ */
+ 
+// 为指定的交通灯设置单一颜色
 static void LightManagerSetColor(
   cc::LightManager& self,
   const boost::python::object& py_lights,
   const csd::Color color) {
-
-  std::vector<cc::Light> lights {
-    boost::python::stl_input_iterator<cc::Light>(py_lights),
-    boost::python::stl_input_iterator<cc::Light>()
-  };
-
+ 
+  // 转换交通灯列表并设置颜色
+  std::vector<cc::Light> lights { ... }; // 同上
   self.SetColor(lights, color);
 }
-
+ 
+// 为指定的交通灯设置不同的颜色
 static void LightManagerSetVectorColor(
-  cc::LightManager& self,
+  cc::LightManager& self,// LightManager 实例，用于执行灯光设置操作
   const boost::python::object& py_lights,
   const boost::python::object& py_colors) {
-
-  std::vector<cc::Light> lights {
-    boost::python::stl_input_iterator<cc::Light>(py_lights),
-    boost::python::stl_input_iterator<cc::Light>()
-  };
-
-  std::vector<csd::Color> colors {
-    boost::python::stl_input_iterator<csd::Color>(py_colors),
-    boost::python::stl_input_iterator<csd::Color>()
-  };
-
+ 
+  // 转换交通灯和颜色列表
+  std::vector<cc::Light> lights { ... }; // 同上
+  std::vector<csd::Color> colors { ... }; // 同上，但转换为Color类型
+ 
+  // 设置颜色
   self.SetColor(lights, colors);
 }
-
+ 
+// 获取指定交通灯的颜色
 static boost::python::list LightManagerGetColor(
     cc::LightManager& self,
     const boost::python::object& py_lights) {
-
+ 
+  // 转换并查询交通灯的颜色
+  std::vector<cc::Light> lights { ... }; // 同上
   boost::python::list result;
-
-  std::vector<cc::Light> lights {
-    boost::python::stl_input_iterator<cc::Light>(py_lights),
-    boost::python::stl_input_iterator<cc::Light>()
-  };
-
+ 
   for (auto &&item : self.GetColor(lights)) {
+    // 将结果转换为Python列表
     result.append(item);
   }
-
+ 
   return result;
 }
-
 /*******************/
 
 /****** 交通灯亮度管理器 ******/
@@ -151,8 +143,17 @@ static void LightManagerSetIntensity(
 }
 
 static void LightManagerSetVectorIntensity(
+    // 第一个参数 `self`，是 `cc::LightManager` 类型的引用，代表灯光管理器对象，
+    // 这个对象应该包含了对灯光进行各种管理操作（如设置强度、控制开关等）的相关方法和属性，
+    // 通过传入这个对象，函数可以调用其内部的方法来实现具体的灯光强度设置功能。
   cc::LightManager& self,
+    // 第二个参数 `py_lights`，是 `boost::python::object` 类型的对象，
+    // 从命名和上下文推测，它可能是在 Python 与 C++ 交互的环境中，用于传递一组灯光相关的数据（可能是灯光的标识、实例等信息），
+    // 后续代码会将其转换为 `std::vector<cc::Light>` 类型以便在 C++ 中进行处理。
   const boost::python::object& py_lights,
+    // 第三个参数 `py_intensities`，同样是 `boost::python::object` 类型的对象，
+    // 推测它用于传递与灯光强度相关的数据，也是来自 Python 端的交互数据，
+    // 后续会将其转换为 `std::vector<float>` 类型，用于和灯光信息对应，以设置相应灯光的强度值。
   const boost::python::object& py_intensities) {
 
   std::vector<cc::Light> lights {
@@ -172,6 +173,7 @@ static boost::python::list LightManagerGetIntensity(
     cc::LightManager& self,
     const boost::python::object& py_lights) {
 
+ // 创建一个空的 Python 列表，用于存储结果
   boost::python::list result;
 
   std::vector<cc::Light> lights {

@@ -17,7 +17,7 @@
 namespace MapGen {
 
   // ===========================================================================
-  // -- Local static methods ---------------------------------------------------
+  // --局部静态方法 ---------------------------------------------------
   // ===========================================================================
 
 #ifdef CARLA_ROAD_GENERATOR_EXTRA_LOG
@@ -30,19 +30,16 @@ namespace MapGen {
 
 #endif // CARLA_ROAD_GENERATOR_EXTRA_LOG
 
-  /// Return the pair {prev, next}, where prev/next is the previous/next edge
-  /// counterclockwise around edge's source node. I.e., edge's position is in
-  /// between prev and next.
+  /// 返回一对 {prev, next}，其中 prev/next 是围绕边的源节点逆时针方向的前一条/后一条边。即，边的位置介于 prev 和 next 之间
   ///
-  /// Note: Always returns the half-edge pointing out from node.
+  /// 注意：始终返回从节点指向外的半边
   ///
-  /// The time complexity is O(n*log(n)) where n is the number of edges of
-  /// edge's source.
+  /// 时间复杂度为 O(n*log(n))，其中 n 是边的源节点的边数
   static std::pair<DoublyConnectedEdgeList::HalfEdge *, DoublyConnectedEdgeList::HalfEdge *>
   FindPositionInNode(DoublyConnectedEdgeList::HalfEdge &halfEdge)
   {
     using Dcel = DoublyConnectedEdgeList;
-    // from [-pi, pi] to [0, 1].
+    // 从 [-π, π] 到 [0, 1]
     auto normalize = [](auto a) {
       constexpr float twoPi = 2.0 * 3.14159265359;
       a /= twoPi;
@@ -52,7 +49,7 @@ namespace MapGen {
     };
     auto angle = Dcel::GetAngle(halfEdge);
     std::map<decltype(angle), Dcel::HalfEdge *> edgeMap;
-    // Iterate every half-edge in the source node.
+    //遍历源节点中的每一条半边
     auto &firstHalfEdge = Dcel::GetLeavingHalfEdge(Dcel::GetSource(halfEdge));
     auto *edge = &firstHalfEdge;
     do {
@@ -68,7 +65,7 @@ namespace MapGen {
   }
 
   // ===========================================================================
-  // -- Constructors and destructor --------------------------------------------
+  // -- 构造函数和析构函数 --------------------------------------------
   // ===========================================================================
 
   DoublyConnectedEdgeList::DoublyConnectedEdgeList(
@@ -107,7 +104,7 @@ namespace MapGen {
   }
 
   // ===========================================================================
-  // -- Adding elements to the graph -------------------------------------------
+  // -- 将元素添加到图中 -------------------------------------------
   // ===========================================================================
 
   DoublyConnectedEdgeList::Node &DoublyConnectedEdgeList::AddNode(
@@ -159,32 +156,32 @@ namespace MapGen {
 
     auto &node0 = *edge.Source;
 
-    // Opposite direction of edge.
+    //边缘的相反方向
     edge0.Source = &newNode;
     edge0.Target = &node0;
     edge0.Pair = &edge1;
     edge0.Face = edge.Pair->Face;
 
-    // Same direction as edge.
+    // 与边缘方向相同
     edge1.Source = &node0;
     edge1.Target = &newNode;
     edge1.Pair = &edge0;
     edge1.Next = &edge;
     edge1.Face = edge.Face;
 
-    // Fix connections to node0.
+    // 修复与节点0的连接
     HalfEdge *prev;
     HalfEdge *next;
     std::tie(prev, next) = FindPositionInNode(edge);
     edge0.Next = next;
     prev->Pair->Next = &edge1;
 
-    // Fix the pair that was split.
+    // 修复被拆分的那一对
     edge.Source = &newNode;
     edge.Pair->Target = &newNode;
     edge.Pair->Next = &edge0;
 
-    // Fix the node's edges.
+    // 修复节点的边
     node0.LeavingHalfEdge = &edge1;
     newNode.LeavingHalfEdge = &edge0;
 
@@ -209,26 +206,26 @@ namespace MapGen {
     edge1.Target = &Node0;
     edge1.Pair = &edge0;
 
-    // Connect edges to node0.
+    //将边连接到节点0
     HalfEdge *prev0;
     HalfEdge *next0;
     std::tie(prev0, next0) = FindPositionInNode(edge0);
     edge1.Next = next0;
     prev0->Pair->Next = &edge0;
 
-    // Connect edges to node1.
+    //将边连接到节点1
     HalfEdge *prev1;
     HalfEdge *next1;
     std::tie(prev1, next1) = FindPositionInNode(edge1);
     edge0.Next = next1;
     prev1->Pair->Next = &edge1;
 
-    // Attach faces to the newly created edges.
+    //将面附加到新创建的边上
     auto &oldFace = *next1->Face;
     oldFace.HalfEdge = &edge0;
     newFace.HalfEdge = &edge1;
 
-    // Iterate over the edges of each face and correct pointers.
+    // 遍历每个面的边并修正指针
     auto fixFace = [](Face &face) {
       auto &firstEdge = GetHalfEdge(face);
       auto *edge = &firstEdge;
@@ -244,7 +241,7 @@ namespace MapGen {
   }
 
   // ===========================================================================
-  // -- Other member functions -------------------------------------------------
+  // --其他成员函数 -------------------------------------------------
   // ===========================================================================
 
   float DoublyConnectedEdgeList::GetAngle(const HalfEdge &halfEdge) {
