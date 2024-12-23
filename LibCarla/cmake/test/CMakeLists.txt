@@ -152,7 +152,9 @@ if (LIBCARLA_BUILD_RELEASE)
       "carla_${carla_config}${carla_target_postfix}")
   
   # 客户端特定库链接
-  if (CMAKE_BUILD_TYPE STREQUAL "Client")
+  # 检查CMAKE_BUILD_TYPE是否等于"Client"
+  if (CMAKE_BUILD_TYPE STREQUAL "Client")# 如果等于"Client"，则将libboost_filesystem.a库链接到libcarla_test_${carla_config}_release目标上
+    # 这里的${BOOST_LIB_PATH}应该是指向Boost库文件所在路径的变量
       target_link_libraries(libcarla_test_${carla_config}_release 
           "${BOOST_LIB_PATH}/libboost_filesystem.a")
   endif()
