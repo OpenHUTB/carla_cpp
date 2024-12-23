@@ -547,9 +547,9 @@ class TestVehicleTireConfig(SyncSmokeTest):
             vel_veh_00 = veh_refs[0].get_velocity().y
             vel_veh_01 = veh_refs[1].get_velocity().y
 
-            if not list_equal_tol([vel_veh_00, vel_veh_01], 0.5):
-                self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in veh_ids])
-                self.fail("%s: Velocities are not equal after simulation. [%.3f, %.3f]"
+            if not list_equal_tol([vel_veh_00, vel_veh_01], 0.5):# 检查列表[vel_veh_00, vel_veh_01]中的元素差值是否在容差0.5范围内（假设list_equal_tol是自定义的比较函数），如果不相等
+                self.client.apply_batch_sync([carla.command.DestroyActor(x) for x in veh_ids])# 通过客户端批量同步地执行销毁操作，销毁veh_ids列表中每个元素对应的Actor（这里推测veh_ids是车辆相关Actor的ID列表）
+                self.fail("%s: Velocities are not equal after simulation. [%.3f, %.3f]"# 如果速度不相等，记录测试失败信息，输出相关车辆蓝图的ID以及两个速度值
                   % (bp_veh.id, vel_veh_00, vel_veh_01))
 
             if not list_equal_tol([loc_veh_00, loc_veh_01], 0.5):
