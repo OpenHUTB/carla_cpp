@@ -1,8 +1,7 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2017 计算机视觉中心（CVC）位于巴塞罗那自治大学（UAB）。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本作品根据MIT许可证的条款授权。
+// 要获取副本，请参见 <https://opensource.org/licenses/MIT>。
 
 #include <carla/rpc/WeatherParameters.h>
 
@@ -10,9 +9,10 @@
 
 namespace carla {
 
-//rpc命名空间，通常用于存放与远程过程调用（RPC）相关的功能和数据类型相关的代码
+// rpc命名空间，通常用于存放与远程过程调用（RPC）相关的功能和数据类型相关的代码
 namespace rpc {
 
+  // 定义一个输出流操作符重载函数，用于将WeatherParameters对象的内容以字符串形式输出到流中
   std::ostream &operator<<(std::ostream &out, const WeatherParameters &weather) {
     out << "WeatherParameters(cloudiness=" << std::to_string(weather.cloudiness)
         << ", precipitation=" << std::to_string(weather.precipitation)
@@ -28,13 +28,14 @@ namespace rpc {
         << ", mie_scattering_scale=" << std::to_string(weather.mie_scattering_scale)
         << ", rayleigh_scattering_scale=" << std::to_string(weather.rayleigh_scattering_scale)
         << ", dust_storm=" << std::to_string(weather.dust_storm) << ')';
-    return out;//返回输出流对象
+    return out; // 返回输出流对象
   }
 
 } // namespace rpc
 } // namespace carla
 
-void export_weather() {//将WeatherParameters相关的类型、类等信息导出到Python环境中
+// 将WeatherParameters相关的类型、类等信息导出到Python环境中
+void export_weather() {
   using namespace boost::python;
   namespace cr = carla::rpc;
 
@@ -76,6 +77,7 @@ void export_weather() {//将WeatherParameters相关的类型、类等信息导�
     .def(self_ns::str(self_ns::self))
   ;
 
+  // 将WeatherParameters类的一些预定义常量属性导出到Python环境中
   cls.attr("Default") = cr::WeatherParameters::Default;
   cls.attr("ClearNoon") = cr::WeatherParameters::ClearNoon;
   cls.attr("CloudyNoon") = cr::WeatherParameters::CloudyNoon;
