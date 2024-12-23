@@ -1,8 +1,15 @@
 // Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
+// 这一行是版权声明，表明这段代码（或者相关的软件作品、文档等，具体取决于其所在的完整内容主体）的版权归属方。
+// 这里指出版权归属于巴塞罗那自治大学（Universitat Autonoma de Barcelona，简称 UAB）的计算机视觉中心（Computer Vision Center，简称 CVC），
+// 时间限定为 2017 年，意味着该版权从 2017 年开始受到相应的法律保护，未经授权不得随意使用、复制、修改等。
 //
 // This work is licensed under the terms of the MIT license.
+// 此句说明这份代码（或相关作品）所采用的授权许可协议类型，即遵循 MIT 许可证（MIT license）的条款来进行授权使用。
+// MIT 许可证是一种比较宽松的开源许可证，允许使用者在满足一定条件（如保留版权声明、包含许可证副本等）的基础上，自由地使用、修改、分发相关的代码或作品。
 // For a copy, see <https://opensource.org/licenses/MIT>.
+// 这一行提供了获取 MIT 许可证副本的具体途径，通过给出的网址（https://opensource.org/licenses/MIT），
+// 使用者可以访问该网址查看 MIT 许可证详细的条款内容，便于使用者准确了解在使用这份受 MIT 许可证授权的代码（或作品）时，需要遵循哪些具体的规则和要求。
 
 #include <rpc/config.h> // 包含RPC配置的头文件，可能包含一些预处理器定义或配置选项。
 #include <rpc/rpc_error.h> // 包含RPC错误处理相关的类和函数的头文件。
