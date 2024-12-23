@@ -450,16 +450,17 @@ namespace pugi
 #endif
 
 	//一个用于操作 DOM（文档对象模型）树中节点的轻量级句柄
-	class PUGIXML_CLASS xml_node
+	class PUGIXML_CLASS xml_node// 定义名为xml_node的类，可能处于PUGIXML_CLASS相关的作用域下（具体取决于完整代码，可能是命名空间或类嵌套等情况）
 	{
-		friend class xml_attribute_iterator;
-		friend class xml_node_iterator;
-		friend class xml_named_node_iterator;
+		friend class xml_attribute_iterator;// 声明xml_attribute_iterator类为xml_node类的友元类，意味着它可以访问xml_node类的私有和保护成员
+		friend class xml_node_iterator;// 声明xml_node_iterator类为xml_node类的友元类
+		friend class xml_named_node_iterator;// 声明xml_named_node_iterator类为xml_node类的友元类
 
 	protected:
-		xml_node_struct* _root;
+		xml_node_struct* _root;// 定义一个指向xml_node_struct类型的指针，xml_node_struct大概率是在别处定义的、与XML节点表示相关的结构体
 
-		typedef void (*unspecified_bool_type)(xml_node***);
+		typedef void (*unspecified_bool_type)(xml_node***);// 定义一个函数指针类型unspecified_bool_type，它指向的函数接收一个指向xml_node类型的三级指针作为参数，且函数无返回值
+    // 具体用途可能和xml_node类相关的布尔判断、回调等机制有关，需结合更多代码上下文才能明确其确切作用
 
 	public:
 		// 默认构造函数。构造一个空节点。
