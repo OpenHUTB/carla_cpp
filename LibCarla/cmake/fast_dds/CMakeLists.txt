@@ -13,7 +13,7 @@ file(GLOB libcarla_carla_fastdds_headers
 install(FILES ${libcarla_carla_fastdds_headers DESTINATION include/carla/ros2)
 
 # 查找Fast DDS动态库的文件，并将其存储在fast_dds_dependencies变量中
-file(GLOB fast_dds_dependencies "${FASTDDS_LIB_PATH/*.so*")  # 匹配所有以.so开头的文件
+file(GLOB fast_dds_dependencies "${FASTDDS_LIB_PATH/*.so*")  #   这个是匹配所有以.so开头的文件
 
 # 将找到的动态库文件安装到lib目录
 install(FILES ${fast_dds_dependencies DESTINATION lib)
