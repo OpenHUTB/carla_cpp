@@ -386,9 +386,12 @@ namespace pugi
 		const char_t* as_string(const char_t* def = PUGIXML_TEXT("")) const;
 
 		//将属性值作为数字获取，如果转换不成功或者属性为空则返回默认值
-		int as_int(int def = 0) const;
-		unsigned int as_uint(unsigned int def = 0) const;
-		double as_double(double def = 0) const;
+		int as_int(int def = 0) const;// 该函数用于将对象所代表的数据转换为unsigned int类型并返回
+// 参数def是默认值，默认值为0，调用函数时若没有传入参数则使用该默认值，函数声明为常成员函数，不会改变对象状态
+		unsigned int as_uint(unsigned int def = 0) const;// 该函数用于将对象所代表的数据转换为double类型并返回
+// 参数def是默认值，默认值为0，调用函数时若没有传入参数则使用该默认值，同样是常成员函数，不会对对象本身做修改
+		double as_double(double def = 0) const;// 该函数用于将对象所代表的数据转换为float类型并返回
+// 参数def是默认值，默认值为0，也是常成员函数，调用时若不传参就使用默认值，保证不改变对象的状态
 		float as_float(float def = 0) const;
 
 	#ifdef PUGIXML_HAS_LONG_LONG
