@@ -361,9 +361,9 @@ if (LIBCARLA_BUILD_RELEASE)
       "${RECAST_INCLUDE_PATH}"
       "${LIBPNG_INCLUDE_PATH}")
 # 如果定义了BUILD_RSS_VARIANT这个构建选项
-  if (BUILD_RSS_VARIANT)
-    target_compile_definitions(carla_client${carla_target_postfix} PRIVATE RSS_ENABLED RSS_USE_TBB)
-    target_link_libraries(carla_client${carla_target_postfix} ${ADRSS_LIBS} tbb)
+  if (BUILD_RSS_VARIANT)# 为carla_client（带上carla_target_postfix后缀）目标添加编译定义，启用RSS相关功能（RSS_ENABLED和RSS_USE_TBB）
+    target_compile_definitions(carla_client${carla_target_postfix} PRIVATE RSS_ENABLED RSS_USE_TBB)# 将ADRSS_LIBS里的库以及tbb库链接到carla_client（带上carla_target_postfix后缀）目标上
+    target_link_libraries(carla_client${carla_target_postfix} ${ADRSS_LIBS} tbb)# 将ADRSS_INCLUDE_DIRS里的目录作为系统头文件包含目录添加到carla_client（带上carla_target_postfix后缀）目标中
     target_include_directories(carla_client${carla_target_postfix} SYSTEM PRIVATE
       ${ADRSS_INCLUDE_DIRS})
   endif()
