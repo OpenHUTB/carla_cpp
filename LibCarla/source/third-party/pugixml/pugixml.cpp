@@ -46,24 +46,52 @@
 # pragma clang diagnostic ignored "-Wdouble-promotion"
 #endif
 
+// 如果代码是在Microsoft Visual C++编译器下编译的
 #ifdef _MSC_VER
-#	pragma warning(push)
-#	pragma warning(disable: 4127) // 条件表达式是常量
-#	pragma warning(disable: 4324) //这句话表示结构体（structure）由于使用了 __declspec(align()) 声明而进行了填充（padding）操作。
-#	pragma warning(disable: 4702) //不可达代码
-#	pragma warning(disable: 4996) // 这个函数或变量可能不安全
+    // 保存当前的警告状态，以便稍后恢复
+    #pragma warning(push)
+    
+    // 禁用警告4127：条件表达式是常量。这通常发生在if语句的条件始终为真或始终为假时。
+    #pragma warning(disable: 4127)
+    
+    // 禁用警告4324：结构体由于使用了__declspec(align())进行了填充。这通常是为了满足特定的对齐要求。
+    #pragma warning(disable: 4324)
+    
+    // 禁用警告4702：不可达代码。这通常发生在代码路径在逻辑上不可能被执行到。
+    #pragma warning(disable: 4702)
+    
+    // 禁用警告4996：这个函数或变量可能不安全。这通常用于标记那些被认为不安全的函数，如strcpy()等。
+    #pragma warning(disable: 4996)
 #endif
 
-#if defined(_MSC_VER) && defined(__c2__)
-#	pragma clang diagnostic push
-#	pragma clang diagnostic ignored "-Wdeprecated" // 这个函数或变量可能不安全
+// 如果代码是在Microsoft Visual C++编译器下编译，并且同时使用了Clang编译器前端（如Clang-Cl）
+#if defined(_MSC_VER) && defined(__clang__)
+    // 保存当前的Clang诊断状态，以便稍后恢复
+    #pragma clang diagnostic push
+    
+    // 忽略警告-Wdeprecated：这个函数或变量可能不安全。这与4996警告类似，但由Clang发出。
+    #pragma clang diagnostic ignored "-Wdeprecated"
 #endif
 
+// 如果代码是在Intel C++编译器下编译的
 #ifdef __INTEL_COMPILER
-#	pragma warning(disable: 177) // 函数已被声明，但从未被引用
-#	pragma warning(disable: 279) // 控制表达式是常量
-#	pragma warning(disable: 1478 1786) // 函数被声明为‘弃用
-#	pragma warning(disable: 1684) //从指针转换为同等大小的整型类型。
+    // 禁用警告177：函数已被声明，但从未被引用。
+    #pragma warning(disable: 177)
+    
+    // 禁用警告279：控制表达式是常量。这与4127警告类似。
+    #pragma warning(disable: 279)
+    
+    // 禁用警告1478和1786：函数被声明为‘弃用’。这表示函数或变量在未来的版本中可能会被移除。
+    #pragma warning(disable: 1478 1786)
+    
+    // 禁用警告1684：从指针转换为同等大小的整型类型。这通常发生在指针和整型大小相同但类型不同的转换中。
+    #pragma warning(disable: 1684)
+#endif
+
+// 如果代码是在Borland C++编译器下编译，并且定义了PUGIXML_HEADER_ONLY宏
+#if defined(__BORLANDC__) && defined(PUGIXML_HEADER_ONLY)
+    // 禁用警告8080：符号已被声明但从未被使用。这通常发生在定义了但未使用的变量或函数上。
+    #pragma warn -8080
 #endif
 
 #if defined(__BORLANDC__) && defined(PUGIXML_HEADER_ONLY)
