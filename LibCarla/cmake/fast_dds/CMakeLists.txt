@@ -61,7 +61,8 @@ endif()  # 结束之前的条件判断块（LIBCARLA_BUILD_RELEASE）
 if (LIBCARLA_BUILD_DEBUG)
   # 添加一个静态库目标，命名为carla_fastdds_debug，使用之前定义的源文件
   add_library(carla_fastdds_debug STATIC ${libcarla_fastdds_sources  # 设置包含目录，标记为SYSTEM以减少编译警告
-  target_include_directories(carla_fastdds_debug SYSTEM PRIVATE
+  target_include_directories(carla_fastdds_debug SYSTEM PRIVATE# SYSTEM 关键字在这里有特殊含义，当指定了这个关键字后，告诉 CMake 和编译器将添加的这些包含目录视为系统头文件所在的目录。
+  # 这样做的好处在于，编译器可能会对来自这些“系统头文件目录”的头文件在处理警告等方面采用不同的策略。
       "${BOOST_INCLUDE_PATH         # 引入Boost库的包含目录
       "${RPCLIB_INCLUDE_PATH       # 引入RPC库的包含目录
 
