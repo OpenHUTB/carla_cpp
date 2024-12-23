@@ -70,5 +70,7 @@ if (LIBCARLA_BUILD_DEBUG)
 
   # 设置目标的编译选项，使用调试版本的编译标志
   set_target_properties(carla_fastdds_debug PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS_DEBUG  # 定义编译时的预处理器宏，启用Boost库的ASIO调试模式
-  target_compile_definitions(carla_fastdds_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)
+  target_compile_definitions(carla_fastdds_debug PUBLIC -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING)# 这里定义了 -DBOOST_ASIO_ENABLE_BUFFER_DEBUGGING 宏，它是针对 Boost 库中的 ASIO 模块（常用于网络编程等异步 I/O 操作场景）的，
+  # 当定义了这个宏后，在编译时会开启 ASIO 模块中与缓冲区相关的调试功能，比如可能会输出更多关于缓冲区操作的日志、进行额外的错误检查等，
+  # 方便在调试涉及到 ASIO 模块使用的代码时，更清晰地了解缓冲区层面的运行情况以及排查可能出现的问题。
 endif()  # 结束调试版本构建的条件判断块
