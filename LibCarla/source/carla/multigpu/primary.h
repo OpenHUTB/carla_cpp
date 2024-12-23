@@ -4,18 +4,43 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once  // 防止头文件被重复包含
+#pragma once  // 这是一个预处理指令，用于确保当前头文件在每个编译单元中只被包含（include）一次，防止重复包含导致的编译错误。
 
-#include "carla/NonCopyable.h"  // 引入不可复制类的定义
-#include "carla/Time.h"  // 引入时间相关的定义
-#include "carla/TypeTraits.h"  // 引入类型特征的定义
-#include "carla/profiler/LifetimeProfiled.h"  // 引入生命周期分析的定义
-#include "carla/streaming/detail/Types.h"  // 引入流相关的类型定义
-#include "carla/streaming/detail/tcp/Message.h"  // 引入 TCP 消息的定义
-#include "carla/multigpu/listener.h"  //引入Carla多GPU处理框架中用于监听GPU事件和状态的Listener类的定义
+// 引入Carla库中定义的不可复制类的头文件
+#include "carla/NonCopyable.h"  
+// 这个类通常用于实现禁止对象被复制的功能，通过删除拷贝构造函数和赋值运算符来实现。
 
-#include <boost/asio/deadline_timer.hpp>  // 引入 Boost.Asio 的截止时间定时器
-#include <boost/asio/io_context.hpp>  // 引入 Boost.Asio 的 IO 上下文
+// 引入Carla库中与时间相关的定义的头文件
+#include "carla/Time.h"  
+// 这个头文件可能包含了时间类型、时间戳、时间间隔等与时间相关的定义和函数。
+
+// 引入Carla库中类型特征的定义的头文件
+#include "carla/TypeTraits.h"  
+// 类型特征（Type Traits）是C++中用于查询类型属性的一组模板类和函数，这个头文件可能包含了这些模板类和函数的定义。
+
+// 引入Carla库中生命周期分析的定义的头文件
+#include "carla/profiler/LifetimeProfiled.h"  
+// 这个头文件可能包含了用于分析对象生命周期的类、函数或宏定义，帮助开发者了解对象的创建和销毁情况。
+
+// 引入Carla流处理框架中流相关的类型定义的头文件
+#include "carla/streaming/detail/Types.h"  
+// 这个头文件可能包含了流处理框架中使用的各种类型定义，如数据类型、错误码等。
+
+// 引入Carla流处理框架中TCP消息的定义的头文件
+#include "carla/streaming/detail/tcp/Message.h"  
+// 这个头文件可能包含了TCP消息的结构定义、序列化/反序列化函数等。
+
+// 引入Carla多GPU处理框架中用于监听GPU事件和状态的Listener类的定义的头文件
+#include "carla/multigpu/listener.h"  
+// 这个头文件包含了Listener类的定义，该类可能用于监听GPU的事件（如任务完成、错误等）和状态（如温度、利用率等）。
+
+// 引入Boost.Asio库中截止时间定时器的头文件
+#include <boost/asio/deadline_timer.hpp>  
+// 截止时间定时器（deadline_timer）是Boost.Asio库中用于在指定时间点触发操作的类。
+
+// 引入Boost.Asio库中IO上下文的头文件
+#include <boost/asio/io_context.hpp>  
+// IO上下文（io_context）是Boost.Asio库中的核心组件之一，它管理异步操作的执行和调度。
 #include <boost/asio/ip/tcp.hpp>  // 引入 Boost.Asio 的 TCP IP 协议
 #include <boost/asio/strand.hpp>  // 引入 Boost.Asio 的 Strand 用于同步
 

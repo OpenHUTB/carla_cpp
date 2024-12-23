@@ -54,6 +54,8 @@ from queue import Queue
 from queue import Empty
 
 try:
+    # 使用 `sys.path.append()` 函数尝试将一个路径添加到Python的模块搜索路径列表 `sys.path` 中。Python在导入模块时，会按照 `sys.path` 中列出的路径顺序去查找对应的模块文件，
+    # 通过添加新的路径，可以让Python找到位于该路径下的自定义模块或者第三方库模块等，以便在代码中正常导入和使用它们。
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
