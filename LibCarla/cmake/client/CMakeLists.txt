@@ -263,7 +263,8 @@ install(FILES ${libcarla_carla_sensor_data_sources} DESTINATION include/carla/se
 # 添加传感器序列化（LibCarla/source/carla/sensor/s11n/）相关代码
 file(GLOB libcarla_carla_sensor_s11n_sources
     "${libcarla_source_path}/carla/sensor/s11n/*.cpp"
-    "${libcarla_source_path}/carla/sensor/s11n/*.h")
+    "${libcarla_source_path}/carla/sensor/s11n/*.h")# 这里具体的匹配模式是查找在 ${libcarla_source_path}/carla/sensor/s11n/ 目录下的所有以.cpp 为后缀的 C++ 源文件，以及同样目录下以.h 为后缀的头文件。
+# 也就是说，该命令会遍历指定目录（${libcarla_source_path}/carla/sensor/s11n/），把其中所有的 C++ 源文件和头文件的路径都找出来
 # 将找到的源文件添加到libcarla_sources变量中
 set(libcarla_sources "${libcarla_sources};${libcarla_carla_sensor_s11n_sources}")
 install(FILES ${libcarla_carla_sensor_s11n_sources} DESTINATION include/carla/sensor/s11n)
