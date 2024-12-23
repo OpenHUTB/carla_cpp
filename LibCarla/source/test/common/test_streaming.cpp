@@ -293,13 +293,15 @@ TEST(streaming, stream_outlives_server) {
       std::atomic_store_explicit(&stream, s, std::memory_order_relaxed);
     }
     std::atomic_size_t messages_received{0u};
-    {
+    {// 创建一个Client实例
       Client c;
+        // 以异步方式启动客户端，参数2u同样可能涉及相关运行配置（和服务器端类似，取决于Client类实现）
       c.AsyncRun(2u);
+        // 客户端进行订阅操作，传入从stream智能指针获取的token（标识）以及一个lambda表达式作为回调函数
       c.Subscribe(stream->token(), [&](auto buffer) {
-        const std::string result = as_string(buffer);
-        ASSERT_EQ(result, message);
-        ++messages_received;
+        const std::string result = as_string(buffer);// 将接收到的buffer转换为字符串类型，as_string函数应该是自定义的转换函数
+        ASSERT_EQ(result, message);// 使用断言验证转换后的结果是否和期望的message相等，message应该是外部定义的期望消息内容
+        ++messages_received;// 如果消息验证通过，将统计接收消息数量的变量messages_received自增1
       });
       std::this_thread::sleep_for(20ms);
     } // client dies here.
