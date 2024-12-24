@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2019 Intel Labs.
+# 版权所有（c）2019 英特尔实验室。
 # authors: German Ros (german.ros@intel.com)
 #
 # This work is licensed under the terms of the MIT license.

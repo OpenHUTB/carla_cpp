@@ -94,27 +94,38 @@ class BasicAgent:
         self._offset = 0
 
         # Change parameters according to the dictionary
-        opt_dict['target_speed'] = target_speed
+        opt_dict['target_speed'] = target_speed# 将目标速度（target_speed）赋值给字典（opt_dict）中的'target_speed'键对应的元素。
+# 这里假设target_speed是在前面代码中已经定义好的变量，它的值会被存储到opt_dict字典中相应的位置。
         if 'ignore_traffic_lights' in opt_dict:
-            self._ignore_traffic_lights = opt_dict['ignore_traffic_lights']
+            self._ignore_traffic_lights = opt_dict['ignore_traffic_lights']# 检查字典opt_dict中是否存在键'ignore_traffic_lights'，如果存在，则将对应的值赋给实例变量_self._ignore_traffic_lights。
+# 通常这样做是为了配置某个对象（通过self表示，可能是类的实例）是否忽略交通信号灯，从配置字典中读取相关设置
         if 'ignore_stop_signs' in opt_dict:
-            self._ignore_stop_signs = opt_dict['ignore_stop_signs']
+            self._ignore_stop_signs = opt_dict['ignore_stop_signs']# 检查字典opt_dict中是否存在键'ignore_stop_signs'，如果存在，则将对应的值赋给实例变量self._ignore_stop_signs。
+# 这一步类似上面关于交通信号灯的操作，目的是从配置信息中获取是否忽略停车标志的设置并应用到对象属性上。
         if 'ignore_vehicles' in opt_dict:
-            self._ignore_vehicles = opt_dict['ignore_vehicles']
+            self._ignore_vehicles = opt_dict['ignore_vehicles']# 检查字典opt_dict中是否存在键'ignore_vehicles'，如果存在，则将对应的值赋给实例变量self._ignore_vehicles。
+# 很可能是用于配置在某种场景下是否忽略其他车辆，根据配置字典中的设置来更新对象的对应属性。
         if 'use_bbs_detection' in opt_dict:
-            self._use_bbs_detection = opt_dict['use_bbs_detection']
+            self._use_bbs_detection = opt_dict['use_bbs_detection']# 检查字典opt_dict中是否存在键'use_bbs_detection'，如果存在，则将对应的值赋给实例变量self._use_bbs_detection。
+# 推测是用于设置是否启用基于边界框（bbs可能是Bounding Boxes的缩写）检测的相关功能，从配置里获取相应设置。
         if 'sampling_resolution' in opt_dict:
-            self._sampling_resolution = opt_dict['sampling_resolution']
+            self._sampling_resolution = opt_dict['sampling_resolution']# 检查字典opt_dict中是否存在键'sampling_resolution'，如果存在，则将对应的值赋给实例变量self._sampling_resolution。
+# 可能涉及到数据采样方面的配置，比如传感器数据采样等的分辨率设置，按照配置字典来进行赋值操作。
         if 'base_tlight_threshold' in opt_dict:
-            self._base_tlight_threshold = opt_dict['base_tlight_threshold']
+            self._base_tlight_threshold = opt_dict['base_tlight_threshold']# 检查字典opt_dict中是否存在键'base_tlight_threshold'，如果存在，则将对应的值赋给实例变量self._base_tlight_threshold。
+# 也许是和交通信号灯检测相关的阈值设置，从配置中读取该阈值并赋给对应的对象属性，用于后续判断等操作。
         if 'base_vehicle_threshold' in opt_dict:
-            self._base_vehicle_threshold = opt_dict['base_vehicle_threshold']
+            self._base_vehicle_threshold = opt_dict['base_vehicle_threshold']# 检查字典opt_dict中是否存在键'base_vehicle_threshold'，如果存在，则将对应的值赋给实例变量self._base_vehicle_threshold。
+# 与上面类似，大概率是和车辆相关检测（比如识别、距离判断等）的一个基础阈值设置，根据配置
         if 'detection_speed_ratio' in opt_dict:
-            self._speed_ratio = opt_dict['detection_speed_ratio']
+            self._speed_ratio = opt_dict['detection_speed_ratio']# 检查字典opt_dict中是否存在键'detection_speed_ratio'，如果存在，则将对应的值赋给实例变量self._speed_ratio。
+# 推测是和检测速度相关的一个比例值设置，用于协调不同速度下检测相关功能的表现，从配置字典获取相应值。
         if 'max_brake' in opt_dict:
-            self._max_brake = opt_dict['max_brake']
+            self._max_brake = opt_dict['max_brake']# 检查字典opt_dict中是否存在键'max_brake'，如果存在，则将对应的值赋给实例变量self._max_brake。
+# 可能是关于刹车力度等相关的最大限制设置，按照配置里的设定来更新对象对应的属性值。
         if 'offset' in opt_dict:
-            self._offset = opt_dict['offset']
+            self._offset = opt_dict['offset']# 检查字典opt_dict中是否存在键'offset'，如果存在，则将对应的值赋给实例变量self._offset。
+# 具体含义取决于上下文，可能是位置偏移、时间偏移等相关的设置，从配置字典获取相应值并赋给对象属性。
 
         # Initialize the planners
         self._local_planner = LocalPlanner(self._vehicle, opt_dict=opt_dict, map_inst=self._map)
@@ -453,12 +464,13 @@ class BasicAgent:
 
         # Get the route bounding box
         route_polygon = get_route_polygon()
-
+#循环遍历车辆列表
         for target_vehicle in vehicle_list:
             if target_vehicle.id == self._vehicle.id:
                 continue
-
+#获取目标车辆的位置信息
             target_transform = target_vehicle.get_transform()
+            #距离检查
             if target_transform.location.distance(ego_location) > max_distance:
                 continue
 

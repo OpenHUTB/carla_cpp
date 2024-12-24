@@ -166,10 +166,17 @@ class Scenario(object):
         # 清理场景
         self.clear_scene()
 
-    def add_sensor(self, sensor, sensor_type):
+    def add_sensor(self, sensor, sensor_type):"""
+    用于添加传感器的函数，根据传感器类型设置不同的监听回调，并将传感器相关信息添加到传感器列表中。
+
+    参数:
+    - sensor: 要添加的传感器对象。
+    - sensor_type: 传感器类型，如 "LiDAR"、"SemLiDAR"、"Radar" 等。
+    """
+    # 获取当前传感器列表的长度，以此作为新添加传感器的索引
         sen_idx = len(self.sensor_list)
-        if sensor_type == "LiDAR":
-            name = str(sen_idx) + "_LiDAR"
+        if sensor_type == "LiDAR":# 根据索引生成对应的LiDAR传感器名称
+            name = str(sen_idx) + "_LiDAR"# 为LiDAR传感器设置监听回调函数，当有数据时调用self.add_lidar_snapshot方法处理数据，并传入对应名称
             sensor.listen(lambda data : self.add_lidar_snapshot(data, name))
         elif sensor_type == "SemLiDAR":
             name = str(sen_idx) + "_SemLiDAR"
@@ -181,16 +188,26 @@ class Scenario(object):
         self.sensor_list.append((name, sensor))
 
     def add_lidar_snapshot(self, lidar_data, name="LiDAR"):
+        # 如果传感器当前不处于活动状态，则直接返回
         if not self.active:
             return
-
+ 
+        # 从LiDAR数据的原始缓冲区中提取点云数据
+        # 假设原始数据是以32位浮点数（'f4'）的形式存储的，每个点包含4个值（x, y, z, intensity）
         points = np.frombuffer(lidar_data.raw_data, dtype=np.dtype('f4'))
+        # 将一维数组重塑为二维数组，其中每行代表一个点（x, y, z, intensity）
         points = np.reshape(points, (int(points.shape[0] / 4), 4))
-
+ 
+        # 计算当前帧与初始帧之间的差值
         frame = lidar_data.frame - self.init_timestamp['frame0']
+ 
+        # 使用计算出的帧号和提供的名称前缀生成文件名，并保存点云数据到该文件
+        # 假设get_filename是一个返回完整文件路径的方法
         np.savetxt(self.get_filename(name, frame), points)
+ 
+        # 将帧号和传感器名称放入队列中，可能用于后续处理或同步
         self.sensor_queue.put((lidar_data.frame, name))
-
+        
     def add_semlidar_snapshot(self, lidar_data, name="SemLiDAR"):
         if not self.active:
             return

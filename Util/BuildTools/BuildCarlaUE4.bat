@@ -137,38 +137,51 @@ if %REMOVE_INTERMEDIATE% == true (
 rem 构建Carla编辑器
 rem
 
-set OMNIVERSE_PATCH_FOLDER=%ROOT_PATH%Util\Patches\omniverse_4.26\
-set OMNIVERSE_PLUGIN_FOLDER=%UE4_ROOT%Engine\Plugins\Marketplace\NVIDIA\Omniverse\
+set OMNIVERSE_PATCH_FOLDER=%ROOT_PATH%Util\Patches\omniverse_4.26\  ; 设置Omniverse补丁文件夹路径
+set OMNIVERSE_PLUGIN_FOLDER=%UE4_ROOT%Engine\Plugins\Marketplace\NVIDIA\Omniverse\  ; 设置Omniverse插件文件夹路径
+
+; 检查Omniverse插件文件夹是否存在
 if exist %OMNIVERSE_PLUGIN_FOLDER% (
-    set OMNIVERSE_PLUGIN_INSTALLED="Omniverse ON"
+    set OMNIVERSE_PLUGIN_INSTALLED="Omniverse ON"  ; 如果存在，设置Omniverse为已安装
+    ; 复制USDCARLAInterface.h到OmniverseUSD的Public文件夹
     xcopy /Y /S /I "%OMNIVERSE_PATCH_FOLDER%USDCARLAInterface.h" "%OMNIVERSE_PLUGIN_FOLDER%Source\OmniverseUSD\Public\" > NUL
+    ; 复制USDCARLAInterface.cpp到OmniverseUSD的Private文件夹
     xcopy /Y /S /I "%OMNIVERSE_PATCH_FOLDER%USDCARLAInterface.cpp" "%OMNIVERSE_PLUGIN_FOLDER%Source\OmniverseUSD\Private\" > NUL
 ) else (
-    set OMNIVERSE_PLUGIN_INSTALLED="Omniverse OFF"
+    set OMNIVERSE_PLUGIN_INSTALLED="Omniverse OFF"  ; 如果不存在，设置Omniverse为未安装
 )
 
+; 根据USE_CARSIM环境变量的值启用或禁用CarSim
 if %USE_CARSIM% == true (
-    python %ROOT_PATH%Util/BuildTools/enable_carsim_to_uproject.py -f="%ROOT_PATH%Unreal/CarlaUE4/CarlaUE4.uproject" -e
-    set CARSIM_STATE="CarSim ON"
+    python %ROOT_PATH%Util/BuildTools/enable_carsim_to_uproject.py -f="%ROOT_PATH%Unreal/CarlaUE4/CarlaUE4.uproject" -e  ; 启用CarSim
+    set CARSIM_STATE="CarSim ON"  ; 设置CarSim状态为已启用
 ) else (
-    python %ROOT_PATH%Util/BuildTools/enable_carsim_to_uproject.py -f="%ROOT_PATH%Unreal/CarlaUE4/CarlaUE4.uproject"
-    set CARSIM_STATE="CarSim OFF"
+    python %ROOT_PATH%Util/BuildTools/enable_carsim_to_uproject.py -f="%ROOT_PATH%Unreal/CarlaUE4/CarlaUE4.uproject"  ; 禁用CarSim（不添加-e参数）
+    set CARSIM_STATE="CarSim OFF"  ; 设置CarSim状态为未启用
 )
+
+; 根据USE_CHRONO环境变量的值设置Chrono状态
 if %USE_CHRONO% == true (
-    set CHRONO_STATE="Chrono ON"
+    set CHRONO_STATE="Chrono ON"  ; 如果为true，设置Chrono为已启用
 ) else (
-    set CHRONO_STATE="Chrono OFF"
+    set CHRONO_STATE="Chrono OFF"  ; 如果为false，设置Chrono为未启用
 )
+
+; 根据USE_ROS2环境变量的值设置ROS2状态
 if %USE_ROS2% == true (
-    set ROS2_STATE="Ros2 ON"
+    set ROS2_STATE="Ros2 ON"  ; 如果为true，设置ROS2为已启用
 ) else (
-    set ROS2_STATE="Ros2 OFF"
+    set ROS2_STATE="Ros2 OFF"  ; 如果为false，设置ROS2为未启用
 )
+
+; 根据USE_UNITY环境变量的值设置Unity状态
 if %USE_UNITY% == true (
-    set UNITY_STATE="Unity ON"
+    set UNITY_STATE="Unity ON"  ; 如果为true，设置Unity为已启用
 ) else (
-    set UNITY_STATE="Unity OFF"
+    set UNITY_STATE="Unity OFF"  ; 如果为false，设置Unity为未启用
 )
+
+; 设置OptionalModules.ini文件的内容，并写入该文件
 set OPTIONAL_MODULES_TEXT=%CARSIM_STATE% %CHRONO_STATE% %ROS2_STATE% %OMNIVERSE_PLUGIN_INSTALLED% %UNITY_STATE%
 echo %OPTIONAL_MODULES_TEXT% > "%ROOT_PATH%Unreal/CarlaUE4/Config/OptionalModules.ini"
 
@@ -212,8 +225,9 @@ rem ============================================================================
 
 :help
     echo Build LibCarla.
-    echo "Usage: %FILE_N% [-h^|--help] [--build] [--launch] [--clean]"
+    echo "Usage: %FILE_N% [-h|--help] [--build] [--launch] [--clean]"
     goto good_exit
+; 这个部分打印脚本的用途，并跳转到正常退出标签
 
 :error_build
     echo.
@@ -221,19 +235,23 @@ rem ============================================================================
     echo %FILE_N%         Please go to "Carla\Unreal\CarlaUE4", right click on
     echo %FILE_N%         "CarlaUE4.uproject" and select:
     echo %FILE_N%         "Generate Visual Studio project files"
-    echo %FILE_N%         Open de generated "CarlaUE4.sln" and try to manually compile it
+    echo %FILE_N%         Open the generated "CarlaUE4.sln" and try to manually compile it
     echo %FILE_N%         and check what is causing the error.
     goto bad_exit
+; 这个部分处理构建CarlaUE4时出现的错误，并提供了一些手动编译的指示，然后跳转到错误退出标签
 
 :good_exit
     endlocal
     exit /b 0
+; 这个部分表示脚本的正常退出，它结束本地变量的作用域，并以退出码0退出脚本
 
 :bad_exit
     endlocal
     exit /b %errorlevel%
+; 这个部分表示脚本的错误退出，它也结束本地变量的作用域，但以当前的错误级别退出脚本
 
 :error_unreal_no_found
     echo.
     echo %FILE_N% [ERROR] Unreal Engine not detected
     goto bad_exit
+; 这个部分处理未检测到Unreal Engine的情况，并跳转到错误退出标签

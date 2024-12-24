@@ -6,7 +6,7 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-# Allows controlling a vehicle with a keyboard. For a simpler and more
+# Allows controlling a vehicle with a keyboard. For a simpler and more#允许使用键盘控制车辆。
 # documented example, please take a look at tutorial.py.
 
 """
@@ -55,6 +55,13 @@ Use ARROWS or WASD keys for control.
 """
 
 from __future__ import print_function
+# 这是Python中的一个特殊导入语句，用于引入Python未来版本中的一些特性到当前版本中使用。
+# 在这里，它的作用是将Python 3中的 `print` 函数的行为引入到Python 2中（因为在Python 2中，`print` 最初是一个语句而不是函数）。
+
+# 具体来说，在Python 2中，如果没有这行导入，使用 `print` 时的语法是像这样：`print "Hello, world!"`（直接跟着要打印的内容，中间用空格隔开）。
+# 而引入了 `from __future__ import print_function` 后，就可以像在Python 3中那样把 `print` 当作函数来使用，语法变为：`print("Hello, world!")`，
+# 即需要用括号把要打印的内容括起来，这样使得代码在Python 2和Python 3环境下对于 `print` 的使用方式更加统一，方便代码在不同Python版本间进行迁移和兼容，
+# 同时也遵循了更现代、规范的函数调用式的语法风格，便于后续代码维护以及与其他遵循函数式 `print` 使用方式的模块进行交互等操作。
 
 
 # ==============================================================================
@@ -84,14 +91,14 @@ import carla# 导入carla模块，CARLA模拟器的Python API
 
 from carla import ColorConverter as cc
 
-import argparse
-import collections
-import datetime
-import logging
-import math
-import random
-import re
-import weakref
+import argparse  # 处理命令行参数的模块，能够解析命令行输入并提供简单的接口。
+import collections  # 提供了一些额外的数据类型，如deque、Counter、OrderedDict等，提供更强大的 collection 操作能力。
+import datetime  # 处理日期和时间的模块，支持日期和时间的运算和格式转换。
+import logging  # 提供灵活的日志记录功能，能够控制不同级别的输出（如 info、warning、error 等）。
+import math  # 提供数学运算的函数，比如三角函数、对数、平方根等。
+import random  # 生成随机数和进行随机选择的模块，包括生成随机整数、浮点数等。
+import re  # 使用正则表达式进行字符串匹配、查找和替。
+import weakref  # 提供对对象的弱引用，允许更灵活的内存管理并避免循环引用的问题。
 
 try:
     import pygame
@@ -135,14 +142,17 @@ try:
     from pygame.locals import K_z
     from pygame.locals import K_MINUS
     from pygame.locals import K_EQUALS
+try:
+    import pygame
 except ImportError:
+    # 如果无法导入pygame模块，则引发RuntimeError
     raise RuntimeError('cannot import pygame, make sure pygame package is installed')
 
 try:
     import numpy as np
 except ImportError:
+    # 如果无法导入numpy模块，则引发RuntimeError
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
-
 
 # ==============================================================================
 # -- Global functions ----------------------------------------------------------

@@ -6,11 +6,11 @@
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-import glob
-import os
-import sys
-import argparse
-import json
+import glob#用于文件路径名的模式匹配。
+import os#用于与操作系统交互，如文件和目录操作。
+import sys#用于处理Python运行时环境的变量和函数。
+import argparse#用于解析命令行参数。
+import json#用于处理JSON数据。
 
 def main():
     """

@@ -75,7 +75,7 @@ struct CARLA_API FActorVariation
 
 // 标记这个结构体可以在Unreal Engine的蓝图系统中使用
 USTRUCT(BlueprintType)
-struct CARLA_API FActorAttribute
+struct CARLA_API FActorAttribute//FActorAttribute用于表示或者管理模拟器中actor的某个属性。
 {
   GENERATED_BODY()  // 自动生成反射代码
  

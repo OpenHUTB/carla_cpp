@@ -270,6 +270,8 @@ void export_commands() {
    .def("__init__", &command_impl::CustomInit<ActorPtr, bool, uint16_t>, (arg("actor"), arg("enabled"), arg("tm_port") = TM_DEFAULT_PORT ))
    .def(init<cr::ActorId, bool, uint16_t>((arg("actor_id"), arg("enabled"), arg("tm_port") = TM_DEFAULT_PORT )))
     // 定义可读写的成员变量
+    // 通过 Boost.Python 将 C++ 类成员暴露到 Python 中，使 Python 脚本能够直接访问和修改这些成员变量
+
    .def_readwrite("actor_id", &cr::Command::SetAutopilot::actor)
    .def_readwrite("tm_port", &cr::Command::SetAutopilot::tm_port)
    .def_readwrite("enabled", &cr::Command::SetAutopilot::enabled)
@@ -296,8 +298,18 @@ void export_commands() {
   ;
 
   // 定义不同命令类到 carla::rpc::Command 的隐式转换
+  // 声明 `cr::Command::SpawnActor` 类型可隐式转换为 `cr::Command` 类型。
+// 在实际应用场景中，例如当有一个函数接受 `cr::Command` 类型的参数，用于执行不同类型命令的处理逻辑时，
+// 就可以直接传入 `SpawnActor` 类型的对象，编译器会自动进行隐式转换，让代码看起来更加简洁自然，
+// 便于将生成角色相关的具体命令融入到整体的命令处理体系中。
   implicitly_convertible<cr::Command::SpawnActor, cr::Command>();
+  // 声明 `cr::Command::DestroyActor` 类型可隐式转换为 `cr::Command` 类型。
+// 类似地，在涉及到销毁角色相关的操作时，比如有一个命令队列存储着各种待执行的命令（队列元素类型为 `cr::Command`），
+// 可以直接将 `DestroyActor` 类型的命令对象放入队列，利用隐式转换使其符合队列元素的类型要求，方便统一管理和按顺序执行这些命令。
   implicitly_convertible<cr::Command::DestroyActor, cr::Command>();
+  // 声明 `cr::Command::ApplyVehicleControl` 类型可隐式转换为 `cr::Command` 类型。
+// 对于车辆控制相关的具体命令，在代码的命令分发、执行模块中，能够直接将这种类型的命令当作通用的 `cr::Command` 进行传递和处理，
+// 比如传递给负责执行车辆控制逻辑的函数，使得函数可以通过统一的 `cr::Command` 参数接口来处理多种不同的车辆控制情况，提高代码的复用性和可维护性。
   implicitly_convertible<cr::Command::ApplyVehicleControl, cr::Command>();
   implicitly_convertible<cr::Command::ApplyVehicleAckermannControl, cr::Command>();
   implicitly_convertible<cr::Command::ApplyWalkerControl, cr::Command>();

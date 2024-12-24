@@ -8,18 +8,22 @@
 
 #include "carla/client/detail/Simulator.h" // 引入Simulator的细节实现
 #include "carla/rpc/DebugShape.h" // 引入DebugShape的RPC接口
-
+// 命名空间和别名
 namespace carla {
 namespace client {
-
+// 使用rpc::DebugShape作为Shape的别名，简化代码书写
   using Shape = rpc::DebugShape; // 使用rpc::DebugShape作为Shape的别名
 
   // 绘制形状的模板函数
+// 绘制不同类型的形状
   template <typename T>
   static void DrawShape(
       detail::EpisodeProxy &episode, // 细节：当前剧集代理
+// 用于锁定和绘制形状
       const T &primitive, // 形状的基本元素
+//表示形状的颜色
       rpc::Color color, // 颜色
+// 表示形状的生存时间
       float life_time, // 生存时间
       bool persistent_lines) { // 是否为持久线
     const Shape shape{primitive, color, life_time, persistent_lines}; // 创建形状对象
@@ -33,7 +37,9 @@ namespace client {
       sensor::data::Color color, // 点的颜色
       float life_time, // 生存时间
       bool persistent_lines) { // 是否为持久线
+    // 创造一个点的对象
     Shape::Point point{location, size}; // 创建点形状
+    //调用模版函数
     DrawShape(_episode, point, color, life_time, persistent_lines); // 调用绘制形状
   }
 
@@ -101,6 +107,7 @@ namespace client {
   }
 
   // 绘制框
+// 函数定义
   void DebugHelper::DrawBox(
       const geom::BoundingBox &box, // 边界框
       const geom::Rotation &rotation, // 旋转信息
@@ -108,7 +115,9 @@ namespace client {
       sensor::data::Color color, // 边框的颜色
       float life_time, // 生存时间
       bool persistent_lines) { // 是否为持久线
+    // 创建一个HUD边界框形状对象
     Shape::Box the_box{box, rotation, thickness}; // 创建框形状
+    // 将创建的形状对象绘制到场景中
     DrawShape(_episode, the_box, color, life_time, persistent_lines); // 调用绘制形状
   }
 

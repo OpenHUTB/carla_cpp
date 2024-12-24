@@ -39,7 +39,7 @@ void UCarSimManagerComponent::BeginPlay()
     return;
   }
 
-  // workarround to compensate carsim coordinate origin offset
+  // 补偿 CarSim 坐标原点偏移
   FActorSpawnParameters SpawnParams;
   SpawnParams.SpawnCollisionHandlingOverride =
       ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
@@ -58,26 +58,26 @@ void UCarSimManagerComponent::BeginPlay()
   CarSimMovementComponent->RegisterComponent();
 
   CarSimMovementComponent->ResetVsVehicle(false);
-  // set carsim position to actor's
+  // 将 CarSim 的位置设置为实体的位置
   CarSimMovementComponent->SyncVsVehicleLocOri();
   CarSimMovementComponent->SetComponentTickEnabled(true);
-  // set kinematic mode for root component and bones
+  // 为根组件和骨骼设置运动模式
   CarlaVehicle->GetMesh()->PhysicsTransformUpdateMode = EPhysicsTransformUpdateMode::ComponentTransformIsKinematic;
   auto * Bone = CarlaVehicle->GetMesh()->GetBodyInstance(NAME_None);
   if (Bone)
   {
     Bone->SetInstanceSimulatePhysics(false);
   }
-  // set callbacks to react to collisions
+  // 设置回调以响应碰撞事件
   CarlaVehicle->OnActorHit.AddDynamic(this, &UCarSimManagerComponent::OnCarSimHit);
   CarlaVehicle->GetMesh()->OnComponentBeginOverlap.AddDynamic(this, &UCarSimManagerComponent::OnCarSimOverlap);
   CarlaVehicle->GetMesh()->OnComponentEndOverlap.AddDynamic(this, &UCarSimManagerComponent::OnCarSimEndOverlap);
   CarlaVehicle->GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldStatic, ECollisionResponse::ECR_Overlap);
 
-  // workaround to prevent carsim from interacting with its own car
+  // 解决方法：防止 CarSim 与其自身车辆发生交互
   CarlaVehicle->GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Overlap);
 
-  // attach to actor with an offset
+  // 以偏移量附加到实体
   CarlaVehicle->AttachToActor(OffsetActor, FAttachmentTransformRules::KeepWorldTransform);
   #else
   UE_LOG(LogCarla, Warning, TEXT("Error: CarSim plugin is not enabled") );
@@ -106,7 +106,7 @@ void UCarSimManagerComponent::ProcessControl(FVehicleControl &Control)
 void UCarSimManagerComponent::DisableCarSimPhysics()
 {
   #ifdef WITH_CARSIM
-  // finish Carsim simulation
+  // 结束 CarSim 仿真
   UDefaultMovementComponent::CreateDefaultMovementComponent(CarlaVehicle);
   CarlaVehicle->GetMesh()->SetPhysicsLinearVelocity(FVector(0,0,0), false, "Vehicle_Base");
   CarlaVehicle->GetVehicleMovementComponent()->SetComponentTickEnabled(true);
@@ -187,7 +187,7 @@ void UCarSimManagerComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
     return;
   }
 
-  // reset callbacks to react to collisions
+  // 重置回调以响应碰撞事件
   CarlaVehicle->OnActorHit.RemoveDynamic(this, &UCarSimManagerComponent::OnCarSimHit);
   CarlaVehicle->GetMesh()->OnComponentBeginOverlap.RemoveDynamic(this, &UCarSimManagerComponent::OnCarSimOverlap);
   CarlaVehicle->GetMesh()->OnComponentEndOverlap.RemoveDynamic(this, &UCarSimManagerComponent::OnCarSimEndOverlap);

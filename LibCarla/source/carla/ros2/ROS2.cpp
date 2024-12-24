@@ -69,14 +69,24 @@ enum ESensors { // 定义传感器枚举
   CameraGBufferUint8, // 相机G缓冲区（8位无符号整数）
   CameraGBufferFloat // 相机G缓冲区（浮点数）
 };
-
+// 启动或禁用ROS2系统
+// enabled是一个布尔值，表示是否启用ROS2
+// 设置_enabled 成员变量为传入的enable值
+// 记录启用状态到日志中
+// 创建一个名为clock的时钟发布者，并初始化它
 void ROS2::Enable(bool enable) { // 启用或禁用ROS2
   _enabled = enable; // 设置启用状态
   log_info("ROS2 enabled: ", _enabled); // 记录启用状态
   _clock_publisher = std::make_shared<CarlaClockPublisher>("clock", ""); // 创建时钟发布者
   _clock_publisher->Init(); // 初始化时钟发布者
 }
-
+// 设置当前帧，调用相应的回调函数
+// Frame是一个无符号64位整数，表示新的帧号
+// 更新_frame成员变量为传入的frame值
+// 如果控制器存在且仍然存活，并且有新消息
+// 获取当前操作者
+// 查找对应的回调函数
+// 获取控制信息并调用回调函数
 void ROS2::SetFrame(uint64_t frame) { // 设置帧
   _frame = frame; // 更新帧
    //log_info("ROS2 new frame: ", _frame); // 记录新帧信息
@@ -143,7 +153,7 @@ std::string ROS2::GetActorRosName(void *actor) { // 获取操作者的ROS名称
     return std::string(""); // 返回空字符串
   }
 }
-
+// 获取操作者父节点名称
 std::string ROS2::GetActorParentRosName(void *actor) {
   auto it = _actor_parent_ros_name.find(actor);// 查找操作者的父节点ROS名称
   if (it != _actor_parent_ros_name.end())
@@ -811,7 +821,8 @@ void ROS2::ProcessDataFromObstacleDetection(
     void *actor) {  // 操作者
   log_info("Sensor ObstacleDetector to ROS data: frame.", _frame, "sensor.", sensor_type, "stream.", stream_id, "distance.", distance);// 记录日志：传感器障碍物检测到ROS数据
 }
-
+// 处理来自碰撞传感器的数据
+// 参数
 void ROS2::ProcessDataFromCollisionSensor(
     uint64_t sensor_type,// 传感器类型
     carla::streaming::detail::stream_id_type stream_id, // 流ID
@@ -819,19 +830,26 @@ void ROS2::ProcessDataFromCollisionSensor(
     uint32_t other_actor,// 其他操作者
     carla::geom::Vector3D impulse, // 冲击力
     void* actor) { // 操作者
+  // 获取或创建一个碰撞传感器
   auto sensors = GetOrCreateSensor(ESensors::CollisionSensor, stream_id, actor); // 获取或创建传感器
   if (sensors.first) {// 如果传感器存在
+    // 将其转换为CarlaCollisionPublisher类型
     std::shared_ptr<CarlaCollisionPublisher> publisher = std::dynamic_pointer_cast<CarlaCollisionPublisher>(sensors.first);// 动态转换到CarlaCollisionPublisher
     publisher->SetData(_seconds, _nanoseconds, other_actor, impulse.x, impulse.y, impulse.z);// 设置碰撞数据
     publisher->Publish();
   }
   if (sensors.second) {// 如果第二个传感器存在
+    // 将其转换为CarlaCollisionPublisher类型
     std::shared_ptr<CarlaTransformPublisher> publisher = std::dynamic_pointer_cast<CarlaTransformPublisher>(sensors.second);// 动态转换到CarlaTransformPublisher
     publisher->SetData(_seconds, _nanoseconds, (const float*)&sensor_transform.location, (const float*)&sensor_transform.rotation);// 设置变换数据
     publisher->Publish();// 发布变换数据
   }
 }
-
+// 该函数用于关闭系统
+// 遍历所有发布者和变换对象
+// 重置
+// 重置时钟发布者和控制器
+// 将_enabled设置为false
 void ROS2::Shutdown() {// 关闭
   for (auto& element : _publishers) {// 遍历发布者
     element.second.reset();// 重置发布者

@@ -6,7 +6,7 @@
 
 
 from . import SmokeTest
-
+#是一个导入语句，用于从当前包（由 . 表示）中导入名为 SmokeTest 的模块、类、函数或者其他可导入的对象（具体取决于实际定义情况）。
 
 class TestClient(SmokeTest):  # 定义一个名为TestClient的类，它继承自SmokeTest类。
     def test_version(self):  # 定义一个名为test_version的测试方法。

@@ -98,7 +98,7 @@ static void LightManagerSetColor(
  
 // 为指定的交通灯设置不同的颜色
 static void LightManagerSetVectorColor(
-  cc::LightManager& self,
+  cc::LightManager& self,// LightManager 实例，用于执行灯光设置操作
   const boost::python::object& py_lights,
   const boost::python::object& py_colors) {
  
@@ -143,8 +143,17 @@ static void LightManagerSetIntensity(
 }
 
 static void LightManagerSetVectorIntensity(
+    // 第一个参数 `self`，是 `cc::LightManager` 类型的引用，代表灯光管理器对象，
+    // 这个对象应该包含了对灯光进行各种管理操作（如设置强度、控制开关等）的相关方法和属性，
+    // 通过传入这个对象，函数可以调用其内部的方法来实现具体的灯光强度设置功能。
   cc::LightManager& self,
+    // 第二个参数 `py_lights`，是 `boost::python::object` 类型的对象，
+    // 从命名和上下文推测，它可能是在 Python 与 C++ 交互的环境中，用于传递一组灯光相关的数据（可能是灯光的标识、实例等信息），
+    // 后续代码会将其转换为 `std::vector<cc::Light>` 类型以便在 C++ 中进行处理。
   const boost::python::object& py_lights,
+    // 第三个参数 `py_intensities`，同样是 `boost::python::object` 类型的对象，
+    // 推测它用于传递与灯光强度相关的数据，也是来自 Python 端的交互数据，
+    // 后续会将其转换为 `std::vector<float>` 类型，用于和灯光信息对应，以设置相应灯光的强度值。
   const boost::python::object& py_intensities) {
 
   std::vector<cc::Light> lights {

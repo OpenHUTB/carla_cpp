@@ -187,18 +187,20 @@ namespace geom {
   // 参数 a 和 b 表示范围的起始和结束值，根据 a 和 b 的大小关系，通过循环将范围内的整数依次添加到 result 向量中。
   // 如果 a < b，就从 a 开始递增到 b，将每个整数 push_back 到 result 向量；如果 a >= b，则从 a 开始递减到 b，同样将每个整数添加到 result 向量。
   // 最后返回包含指定整数范围的 std::vector<int> 类型的向量 result。
-  std::vector<int> Math::GenerateRange(int a, int b) {
-    std::vector<int> result;
+// 函数定义
+  std::vector<int> Math::GenerateRange(int a, int b) { // 接收两个整数参数a和b
+    std::vector<int> result; // 创建结果向量
+// 判断顺序并填充向量
     if (a < b) {
-      for(int i = a; i <= b; ++i) {
-        result.push_back(i);
+      for(int i = a; i <= b; ++i) { // 从a遍历到b
+        result.push_back(i); //将每个整数添加到result向量中
       }
-    } else {
-      for(int i = a; i >= b; --i) {
-        result.push_back(i);
+    } else { // 否则
+      for(int i = a; i >= b; --i) { // 从a遍历到b
+        result.push_back(i); // 将每个整数添加到result向量中
       }
     }
-    return result;
+    return result; // 返回结果向量
   }
 
 } // namespace geom
