@@ -47,28 +47,54 @@ namespace geom {
   // | / | / | / |
   // #---#---#---#
   // 2   4   6   8
-  void Mesh::AddTriangleStrip(const std::vector<Mesh::vertex_type> &vertices) {
+  // Mesh类中的AddTriangleStrip函数，作用是向Mesh对象添加三角形条带（Triangle Strip）数据
+// 参数vertices是一个包含Mesh顶点类型（Mesh::vertex_type）的向量引用，代表了构成三角形条带的顶点集合
+void Mesh::AddTriangleStrip(const std::vector<Mesh::vertex_type> &vertices) {
+    // 如果传入的顶点向量大小为0，说明没有顶点数据可用于构建三角形条带，直接返回，不做后续操作
     if (vertices.size() == 0) {
       return;
     }
+    // 使用DEBUG_ASSERT进行调试断言，确保传入的顶点数量至少为3个
+    // 因为三角形条带至少需要3个顶点才能构成最基本的图形结构，否则不符合逻辑
     DEBUG_ASSERT(vertices.size() >= 3);
+
+    // 获取当前Mesh对象已有的顶点数量，然后在此基础上加2，用于后续构建三角形条带索引时的起始位置计算
+    // 这个起始位置的计算方式是基于Mesh对象内部存储顶点和索引的机制来确定的
     size_t i = GetVerticesNum() + 2;
+
+    // 调用AddVertices函数（应该是Mesh类内部的另一个函数）将传入的顶点数据添加到Mesh对象中
+    // 这样Mesh对象就包含了构建三角形条带所需的顶点信息
     AddVertices(vertices);
+
+    // 初始化一个布尔变量，表示索引的添加顺序是否为顺时针方向，初始化为true，即先按顺时针方向添加索引
     bool index_clockwise = true;
+
+    // 开始循环构建三角形条带的索引，只要当前索引位置（i）小于Mesh对象的总顶点数量，就继续循环
     while (i < GetVerticesNum()) {
-      index_clockwise = !index_clockwise;
-      if (index_clockwise) {
-        AddIndex(i + 1);
-        AddIndex(i);
-        AddIndex(i - 1);
-      } else {
-        AddIndex(i - 1);
-        AddIndex(i);
-        AddIndex(i + 1);
-      }
-      ++i;
+        // 每次循环切换索引的添加顺序，即本次循环如果是顺时针，下次就是逆时针，反之亦然
+        // 这样交替的顺序可以正确地构建出连续的三角形条带
+        index_clockwise =!index_clockwise;
+        if (index_clockwise) {
+            // 如果当前是顺时针方向，按照顺时针顺序添加索引
+            // 先添加当前顶点的下一个顶点索引（i + 1）
+            AddIndex(i + 1);
+            // 再添加当前顶点索引（i）
+            AddIndex(i);
+            // 最后添加当前顶点的上一个顶点索引（i - 1）
+            AddIndex(i - 1);
+        } else {
+            // 如果当前是逆时针方向，按照逆时针顺序添加索引
+            // 先添加当前顶点的上一个顶点索引（i - 1）
+            AddIndex(i - 1);
+            // 再添加当前顶点索引（i）
+            AddIndex(i);
+            // 最后添加当前顶点的下一个顶点索引（i + 1）
+            AddIndex(i + 1);
+        }
+        // 将索引位置向后移动一位，准备构建下一组三角形的索引
+        ++i;
     }
-  }
+}
 
   // 添加 三角形扇(triangle fan)
   // 三角形扇是第一个点是中心，其他的点都围绕着它，第2个点和最后一个点是一样的就可以围成一个圈了
