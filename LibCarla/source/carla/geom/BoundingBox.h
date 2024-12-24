@@ -5,7 +5,7 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #pragma once
-
+// 包含必要的CARLA头文件
 #include "carla/Debug.h"
 #include "carla/MsgPack.h"
 #include "carla/geom/Transform.h"
@@ -13,7 +13,7 @@
 #include "carla/geom/Vector3D.h"
 
 #include <array>
-
+// 如果从UE4中包含CARLA库，则包含UE4的相关宏
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
 #include <compiler/enable-ue4-macros.h>
 #include "Carla/Util/BoundingBox.h"
@@ -22,10 +22,10 @@
 
 namespace carla {
 namespace geom {
-
+ // 定义一个边界框类，用于表示三维空间中的边界框。
   class BoundingBox { // 定义一个边界框类。
   public:
-
+ // 默认构造函数，使用默认初始化。
     BoundingBox() = default;
 
     // =========================================================================
@@ -33,19 +33,22 @@ namespace geom {
     // =========================================================================
 
     explicit BoundingBox(const Location &in_location, const Vector3D &in_extent, const Rotation &in_rotation)
-      : location(in_location), // 构造一个边界框，指定其位置、大小和旋转。
-        extent(in_extent),
-        rotation(in_rotation) {}
+      : location(in_location), // 边界框的中心位置
+        extent(in_extent),     // 边界框的半大小
+        rotation(in_rotation)  // 边界框的旋转
+    {}
 
     explicit BoundingBox(const Location &in_location, const Vector3D &in_extent) // 构造一个边界框，只指定位置和大小。
-      : location(in_location), 
-        extent(in_extent),
-        rotation() {}
+      : location(in_location),  // 边界框的中心位置
+        extent(in_extent),      // 边界框的半大小
+        rotation()              // 默认旋转
+    {}
 
     explicit BoundingBox(const Vector3D &in_extent) // 仅指定大小的构造函数。
-      : location(),
-        extent(in_extent),
-        rotation() {}
+      : location(),            // 默认位置
+        extent(in_extent),     // 边界框的半大小
+        rotation()             // 默认旋转
+    {}
 
     // 成员变量定义了边界框的中心位置、半大小和旋转。
     Location location;  ///< 本地空间中边界框的中心
