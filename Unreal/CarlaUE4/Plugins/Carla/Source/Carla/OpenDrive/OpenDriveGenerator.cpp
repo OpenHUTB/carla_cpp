@@ -18,11 +18,17 @@
 #include "Engine/Classes/Interfaces/Interface_CollisionDataProvider.h"
 #include "PhysicsCore/Public/BodySetupEnums.h"
 
+// 构造函数AProceduralMeshActor，用于初始化ProceduralMeshActor
 AProceduralMeshActor::AProceduralMeshActor()
 {
-  PrimaryActorTick.bCanEverTick = false;
-  MeshComponent = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("RootComponent"));
-  RootComponent = MeshComponent;
+    // 设置PrimaryActorTick标志，表明这个Actor不需要每帧进行Tick
+    PrimaryActorTick.bCanEverTick = false;
+
+    // 创建一个默认的子对象UProceduralMeshComponent，并命名为"RootComponent"
+    MeshComponent = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("RootComponent"));
+
+    // 将这个MeshComponent设置为Actor的根组件
+    RootComponent = MeshComponent;
 }
 
 AOpenDriveGenerator::AOpenDriveGenerator(const FObjectInitializer &ObjectInitializer)
