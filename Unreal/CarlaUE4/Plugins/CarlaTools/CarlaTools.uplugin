@@ -1,11 +1,11 @@
 //该插件的描述文件用于虚幻引擎插件系统，提供了关于CarlaTools插件的详细信息，包括版本、文档、支持、依赖插件等。它主要用于提供Carla仿真器的相关工具，并且包含了一些已启用的子插件来扩展功能。
 {
-	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0",
-	"FriendlyName": "CarlaTools",
-	"Description": "This plugin provides engine tools for Carla",
-	"Category": "Other",
+	"FileVersion": 3,     // 文件版本号，此处值为3，用于标识该文件相关的版本情况
+	"Version": 1,         // 主版本号，这里是1，通常用于大版本的区分
+	"VersionName": "1.0",// 版本名称，显示为"1.0"，是对外展示的比较直观的版本标识形式
+	"FriendlyName": "CarlaTools",// 友好名称，便于用户识别该插件，这里叫"CarlaTools"
+	"Description": "This plugin provides engine tools for Carla",  // 对插件的描述信息，说明了这个插件是为Carla提供引擎工具的
+	"Category": "Other", // 插件所属的类别，这里归类为"Other"（其他）类别
 	"CreatedBy": "Carla Team",
 	"CreatedByURL": "http://carla.org",
 	"DocsURL": "http://carla.readthedocs.io",

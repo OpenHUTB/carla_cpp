@@ -1,7 +1,7 @@
-// Copyright (c) 2019-2020 Intel Corporation
+// Copyright (c) 2019-2020 Intel Corporation// 这段版权声明表明此代码的版权归属于英特尔公司，时间范围是从2019年到2020年。
 //
 // This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// For a copy, see <https://opensource.org/licenses/MIT>.// 提示如果想要查看MIT许可证的具体副本，可以通过这个网址去获取相应内容，该网址指向MIT许可证在开源组织网站上的具体页面。
 
 #include <carla/rss/RssRestrictor.h>// 引入 Carla RSS 限制器头文件
 #include <carla/rss/RssSensor.h> // 引入 Carla RSS 传感器头文件
@@ -20,8 +20,11 @@
 
 namespace carla {
 namespace rss {
+// 重载输出流运算符，用于打印 RssRestrictor 对象的信息
 
 std::ostream &operator<<(std::ostream &out, const RssRestrictor &) {
+    // 向输出流中写入表示 RssRestrictor 对象的字符串 "RssRestrictor()"
+
   out << "RssRestrictor()";
   return out;
 }
@@ -30,9 +33,13 @@ std::ostream &operator<<(std::ostream &out, const RssRestrictor &) {
 
 namespace sensor {
 namespace data {
-
+// 重载输出流操作符<<，用于将RssResponse类型的对象以特定格式输出到流中。
+// 第一个参数out是输出流对象，通常可以是std::cout等，用于指定输出的目标流。
+// 第二个参数resp是要输出的RssResponse类型的常量引用，意味着不会对传入的对象进行修改，只是读取其内容用于输出格式化信息。
 std::ostream &operator<<(std::ostream &out, const RssResponse &resp) {
-  out << "RssResponse(frame=" << resp.GetFrame() << ", timestamp=" << resp.GetTimestamp()
+    // 向输出流out中依次输出RssResponse对象的各个成员信息，格式为：
+    // "RssResponse(frame=具体的帧值, timestamp=时间戳值, valid=响应有效性值, proper_response=是否为正确响应值, rss_state_snapshot=RSS状态快照值, situation_snapshot=情况快照值, world_model=世界模型值, ego_dynamics_on_route=本车动力学在路线上的值)"
+    out << "RssResponse(frame=" << resp.GetFrame() << ", timestamp=" << resp.GetTimestamp()
       << ", valid=" << resp.GetResponseValid() << ", proper_response=" << resp.GetProperResponse()
       << ", rss_state_snapshot=" << resp.GetRssStateSnapshot() << ", situation_snapshot=" << resp.GetSituationSnapshot()
       << ", world_model=" << resp.GetWorldModel() << ", ego_dynamics_on_route=" << resp.GetEgoDynamicsOnRoute() << ')';
@@ -146,9 +153,9 @@ void export_ad_rss() {
   namespace csd = carla::sensor::data;
 // 使用Boost.Python的class_模板定义一个Python可访问的类，对应C++ 中的carla::rss::EgoDynamicsOnRoute类，在Python中这个类将被命名为"RssEgoDynamicsOnRoute"，并且通过一系列的.def_readwrite操作定义了Python中可以直接读写的属性，这些属性对应C++ 类中的成员变量，使得Python代码能够方便地访问和修改这些成员变量的值
   class_<carla::rss::EgoDynamicsOnRoute>("RssEgoDynamicsOnRoute")
-      .def_readwrite("timestamp", &carla::rss::EgoDynamicsOnRoute::timestamp)
+      .def_readwrite("timestamp", &carla::rss::EgoDynamicsOnRoute::timestamp)// 定义了一个名为rssEgoDynamicsOnRoute的可访问类
       .def_readwrite("time_since_epoch_check_start_ms",
-                     &carla::rss::EgoDynamicsOnRoute::time_since_epoch_check_start_ms)
+                     &carla::rss::EgoDynamicsOnRoute::time_since_epoch_check_start_ms)// 从c++类的成员映射而来
       .def_readwrite("time_since_epoch_check_end_ms", &carla::rss::EgoDynamicsOnRoute::time_since_epoch_check_end_ms)
       .def_readwrite("ego_speed", &carla::rss::EgoDynamicsOnRoute::ego_speed)
       .def_readwrite("min_stopping_distance", &carla::rss::EgoDynamicsOnRoute::min_stopping_distance)
@@ -174,7 +181,7 @@ void export_ad_rss() {
       .def_readwrite("actor_object_type", &carla::rss::ActorConstellationResult::actor_object_type)
       .def_readwrite("actor_dynamics", &carla::rss::ActorConstellationResult::actor_dynamics)
       .def(self_ns::str(self_ns::self));
-
+// 类定义
   class_<carla::rss::ActorConstellationData, boost::noncopyable, boost::shared_ptr<carla::rss::ActorConstellationData>>(
       "RssActorConstellationData", no_init)
       .def_readonly("ego_match_object", &carla::rss::ActorConstellationData::ego_match_object)
@@ -183,7 +190,7 @@ void export_ad_rss() {
       .def_readonly("other_match_object", &carla::rss::ActorConstellationData::other_match_object)
       .def_readonly("other_actor", &carla::rss::ActorConstellationData::other_actor)
       .def(self_ns::str(self_ns::self));
-
+// 枚举类型定义
   enum_<spdlog::level::level_enum>("RssLogLevel")
       .value("trace", spdlog::level::trace)
       .value("debug", spdlog::level::debug)
@@ -196,6 +203,7 @@ void export_ad_rss() {
   enum_<carla::rss::RoadBoundariesMode>("RssRoadBoundariesMode")
       .value("Off", carla::rss::RoadBoundariesMode::Off)
       .value("On", carla::rss::RoadBoundariesMode::On);
+    // RssRoadBoundariesMode枚举类型定义了道路边界模式，包括off和on
 // 使用Boost.Python的class_模板定义一个Python可访问的类，对应C++ 中的csd::RssResponse类，在Python中这个类将被命名为"RssResponse"，通过.add_property操作定义了Python中可以访问的属性，这些属性对应的获取和设置操作通过调用C++ 类中的相应成员函数来实现（有的是直接返回值，有的是返回拷贝等情况通过CALL_RETURNING_COPY等方式指定），同时也定义了将对象转换为字符串表示的方法（.def(self_ns::str(self_ns::self))）
   class_<csd::RssResponse, bases<cs::SensorData>, boost::noncopyable, boost::shared_ptr<csd::RssResponse>>(
       "RssResponse", no_init)
@@ -206,19 +214,31 @@ void export_ad_rss() {
       .add_property("world_model", CALL_RETURNING_COPY(csd::RssResponse, GetWorldModel))
       .add_property("ego_dynamics_on_route", CALL_RETURNING_COPY(csd::RssResponse, GetEgoDynamicsOnRoute))
       .def(self_ns::str(self_ns::self));
-
+// 定义了一个名为RssSensor的Python类
   class_<cc::RssSensor, bases<cc::Sensor>, boost::noncopyable, boost::shared_ptr<cc::RssSensor>>("RssSensor", no_init)
+    // 本车动力学
       .add_property("ego_vehicle_dynamics", &GetEgoVehicleDynamics, &cc::RssSensor::SetEgoVehicleDynamics)
+    // 其他车辆动力学
       .add_property("other_vehicle_dynamics", &GetOtherVehicleDynamics, &cc::RssSensor::SetOtherVehicleDynamics)
+    // 行人动力学
       .add_property("pedestrian_dynamics", &GetPedestrianDynamics, &cc::RssSensor::SetPedestrianDynamics)
+    // 道路边界模式
       .add_property("road_boundaries_mode", &GetRoadBoundariesMode, &cc::RssSensor::SetRoadBoundariesMode)
+    // 路由目标
       .add_property("routing_targets", &GetRoutingTargets)
+    // 定义函数
       .def("stop", &Stop)
+    // 注册演员星座回调
       .def("register_actor_constellation_callback", &RegisterActorConstellationCallback, (arg("callback")))
+    // 追加路由目标
       .def("append_routing_target", &cc::RssSensor::AppendRoutingTarget, (arg("routing_target")))
+    // 重置路由目标
       .def("reset_routing_targets", &cc::RssSensor::ResetRoutingTargets)
+    // 丢弃路线
       .def("drop_route", &cc::RssSensor::DropRoute)
+    // 设置日志级别
       .def("set_log_level", &cc::RssSensor::SetLogLevel, (arg("log_level")))
+    // 设置地图日志级别
       .def("set_map_log_level", &cc::RssSensor::SetMapLogLevel, (arg("map_log_level")))
       .def(self_ns::str(self_ns::self));
 // 使用Boost.Python的class_模板定义一个Python可访问的类，对应C++ 中的carla::rss::RssRestrictor类，在Python中这个类将被命名为"RssRestrictor"，定义了默认构造函数（.def(init<>())）以及其他可供Python调用的成员函数，用于实现特定的功能操作，同时也定义了将对象转换为字符串表示的方法

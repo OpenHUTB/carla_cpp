@@ -1,16 +1,20 @@
-#pragma once
-#include "Cube.h"
-#include "DataStructs.h"
+#pragma once//程序预处理
+#include "Cube.h"// 包含名为Cube.h的头文件，可能包含与立方体相关的定义，
+// 例如立方体的数据结构或操作立方体的函数。
+#include "DataStructs.h"// 包含名为DataStructs.h的头文件，可能包含数据结构相关的定义。
 
-namespace MeshReconstruction
+namespace MeshReconstruction// 定义一个名为MeshReconstruction的命名空间，
+// 命名空间用于避免不同模块中的名称冲突，
+// 在此命名空间内定义的所有标识符都与其他命名空间中的同名标识符隔离。
 {
-  void Triangulate(
-      IntersectInfo const &intersect,
-      Fun3v const &grad,
-      Mesh &mesh);
+  void Triangulate(// Triangulate函数接受相交信息、某个三维函数或向量相关信息（可能是梯度），用于对Mesh进行操作，无返回值
+      IntersectInfo const &intersect, // 相交信息，以常量引用方式传入，函数不会修改它
+      Fun3v const &grad, // 可能是与三维函数或向量相关的信息，以常量引用传入
+      Mesh &mesh);// 要进行操作（可能是三角剖分）的Mesh对象，以引用方式传入
 }
 
-namespace
+namespace// 在这个未命名的命名空间内部，可以定义一些只在当前源文件中使用的函数、变量或者类型
+// 这样做有助于避免全局命名冲突，因为其中的标识符具有内部链接性
 {
   // 顶点缓冲区中的索引（0 - 11）。
   //连续的三个条目组成一个三角形。

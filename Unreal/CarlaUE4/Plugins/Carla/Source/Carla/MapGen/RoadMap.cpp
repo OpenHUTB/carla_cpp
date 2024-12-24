@@ -328,22 +328,31 @@ FRoadMapIntersectionResult URoadMap::Intersect(
   return Result;
 }
 
+// 声明一个函数，用于将道路地图数据保存为PNG图片和元数据文件。
 bool URoadMap::SaveAsPNG(const FString &Folder, const FString &MapName) const
 {
+  // 如果道路地图数据无效，则记录错误日志并返回false
   if (!IsValid()) {
     UE_LOG(LogCarla, Error, TEXT("Cannot save invalid road map to disk"));
     return false;
   }
 
+  // 构造PNG图片文件的完整路径。
   const FString ImagePath = FPaths::Combine(Folder, MapName + TEXT(".png"));
+  // 构造元数据文件的完整路径。
   const FString MetadataPath = FPaths::Combine(Folder, MapName + TEXT(".txt"));
-
+  
+  // 设置目标图像的尺寸。
   const FIntPoint DestSize(Width, Height);
-  TUniquePtr<TImagePixelData<FColor>> PixelData = MakeUnique<TImagePixelData<FColor>>(DestSize);
+  // 创建一个指向TImagePixelData<FColor>的智能指针，用于存储像素数据。
+  TUniquePtr<TImagePixelData<FColor>> PixelData = MakeUnique<TImagePixelData<FColor>>(DestSize);  
+  // 为像素数据预留空间。
   PixelData->Pixels.Reserve(RoadMapData.Num());
+  // 遍历道路地图数据，将每个数据点转换为颜色，并添加到像素数据中。
   for (auto Value : RoadMapData) {
     PixelData->Pixels.Emplace(FRoadMapPixelData(Value).EncodeAsColor());
   }
+  // 将像素数据保存到磁盘上的PNG文件。
   FPixelReader::SavePixelsToDisk(std::move(PixelData), ImagePath);
 
   // 保存元数据
@@ -354,6 +363,8 @@ bool URoadMap::SaveAsPNG(const FString &Folder, const FString &MapName) const
   Args.Add("CmPerPixel", 1.0f / PixelsPerCentimeter);
   Args.Add("Transform", FText::FromString(WorldToMap.ToString()));
   Args.Add("Offset", FText::FromString(MapOffset.ToString()));
+   
+  // 使用格式化参数对象和格式化字符串来创建元数据内容。
   const auto Contents = FText::Format(
       LOCTEXT("RoadMapMetadata",
           "Map name = {MapName}\n"
@@ -361,22 +372,27 @@ bool URoadMap::SaveAsPNG(const FString &Folder, const FString &MapName) const
           "Density = {CmPerPixel} cm/pixel\n"
           "World-To-Map Transform (T|R|S) = ({Transform})\n"
           "Map Offset = ({Offset})\n"),
-      Args);
+      Args); 
+  // 将元数据内容保存到文本文件，如果失败则记录错误日志。
   if (!FFileHelper::SaveStringToFile(Contents.ToString(), *MetadataPath)) {
     UE_LOG(LogCarla, Error, TEXT("Failed to save map metadata"));
   }
-
+ 
+  // 记录日志，表示道路地图已保存。
   UE_LOG(LogCarla, Log, TEXT("Saved road map to \"%s\""), *ImagePath);
   return true;
 }
 
 #if WITH_EDITOR
 
+// 一个成员函数，用于在编辑器中记录道路地图的相关信息。
 void URoadMap::Log() const
 {
+  // 计算地图数据的大小（以MB为单位）。
   const float MapSizeInMB = // Only map data, not the class itself.
       static_cast<float>(sizeof(decltype(RoadMapData)::ElementType) * RoadMapData.Num()) /
       (1024.0f * 1024.0f);
+  // 记录地图的尺寸、大小和比例尺信息。
   UE_LOG(
       LogCarla,
       Log,
@@ -386,22 +402,32 @@ void URoadMap::Log() const
       MapSizeInMB,
       1.0f / PixelsPerCentimeter);
 
+  // 如果道路地图数据无效，则记录错误日志并返回。
   if (!IsValid()) {
     UE_LOG(LogCarla, Error, TEXT("Error generating road map"));
     return;
   }
 }
 
+// 一个成员函数，用于在编辑器中绘制调试像素。
 void URoadMap::DrawDebugPixelsToLevel(UWorld *World, const bool bJustFlushDoNotDraw) const
-{
+{ 
+  // 定义Z轴偏移量。
   const FVector ZOffset(0.0f, 0.0f, 50.0f);
-  FlushPersistentDebugLines(World);
+  // 清除持久的调试线条。
+  FlushPersistentDebugLines(World); 
+  // 如果不只刷新而不绘制，则直接返回。
   if (!bJustFlushDoNotDraw) {
+    // 遍历地图的每个像素点。
     for (auto X = 0u; X < Width; ++X) {
-      for (auto Y = 0u; Y < Height; ++Y) {
-        auto Location = GetWorldLocation(X, Y) + ZOffset;
+      for (auto Y = 0u; Y < Height; ++Y) { 
+        // 获取当前像素点的世界位置，并添加Z轴偏移量。
+        auto Location = GetWorldLocation(X, Y) + ZOffset; 
+        // 获取当前像素点的数据。
         const auto &Data = GetDataAt(X, Y);
+        // 获取当前像素点的颜色。
         auto Color = Data.EncodeAsColor();
+        // 如果数据包含方向信息，则绘制方向箭头，否则绘制点。
         if (Data.HasDirection()) {
           const FVector ArrowEnd = Location + 50.0f * Data.GetDirection();
           DrawDebugDirectionalArrow(World, Location, ArrowEnd, 60.0f, Color, true);

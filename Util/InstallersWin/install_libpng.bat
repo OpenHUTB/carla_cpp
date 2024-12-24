@@ -47,6 +47,7 @@ if not "%1"=="" (
     goto :arg-parse
 )
 
+:: 这里判断环境变量%ZLIB_INST_DIR%是否为空字符串，如果为空，则进入下面的代码块执行相应操作。
 if "%ZLIB_INST_DIR%" == "" (
     echo %FILE_N% You must specify a zlib install directory using [--zlib-install-dir]
     goto bad_exit

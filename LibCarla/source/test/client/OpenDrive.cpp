@@ -11,10 +11,10 @@
 #  error Please define LIBCARLA_TEST_CONTENT_FOLDER.
 #endif
 
-#include <carla/FileSystem.h>
+#include <carla/FileSystem.h>//包含一个名为FileSystem.h的头文件。这个头文件可能是carla库中与文件系统操作相关的定义文件。
 
-#include <fstream>
-#include <streambuf>
+#include <fstream>//包含C++标准库中的<fstream>头文件。
+#include <streambuf>//包含C++标准库中的<streambuf>头文件。
 
 namespace util {
 

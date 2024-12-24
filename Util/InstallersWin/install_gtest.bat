@@ -48,7 +48,7 @@ if not "%1"=="" (  :: 检查第一个参数（%1）是否不为空。
     :: 使用goto命令跳转到标签:arg-parse的位置，以继续循环解析剩余的参数。
     goto :arg-parse
 )
-
+:: 判断环境变量GENERATOR是否为空字符串，如果为空，则将其设置为指定的值"Visual Studio 16 2019"
 if %GENERATOR% == "" set GENERATOR="Visual Studio 16 2019"
 
 rem If not set set the build dir to the current dir

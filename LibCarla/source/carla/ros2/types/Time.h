@@ -22,202 +22,224 @@
 #ifndef _FAST_DDS_GENERATED_BUILTIN_INTERFACES_MSG_TIME_H_
 #define _FAST_DDS_GENERATED_BUILTIN_INTERFACES_MSG_TIME_H_
 
-
+// 包含用于处理固定大小字符串的头文件
 #include <fastrtps/utils/fixed_size_string.hpp>
 
+// 包含C/C++标准整数类型头文件
 #include <stdint.h>
+// 包含数组头文件
 #include <array>
+// 包含字符串头文件
 #include <string>
+// 包含向量头文件
 #include <vector>
+// 包含映射头文件
 #include <map>
+// 包含位集头文件
 #include <bitset>
 
+// 如果定义了_WIN32平台
 #if defined(_WIN32)
-#if defined(EPROSIMA_USER_DLL_EXPORT)
-#define eProsima_user_DllExport __declspec( dllexport )
+    // 如果定义了EPROSIMA_USER_DLL_EXPORT
+    #if defined(EPROSIMA_USER_DLL_EXPORT)
+        // 定义eProsima_user_DllExport为导出函数或类的声明修饰符
+        #define eProsima_user_DllExport __declspec( dllexport )
+    #else
+        // 否则定义为空，可能用于导入函数或类
+        #define eProsima_user_DllExport
+    #endif  // EPROSIMA_USER_DLL_EXPORT
 #else
-#define eProsima_user_DllExport
-#endif  // EPROSIMA_USER_DLL_EXPORT
-#else
-#define eProsima_user_DllExport
+    // 如果不是_WIN32平台，也定义为空
+    #define eProsima_user_DllExport
 #endif  // _WIN32
 
+// 如果定义了_WIN32平台
 #if defined(_WIN32)
-#if defined(EPROSIMA_USER_DLL_EXPORT)
-#if defined(Time_SOURCE)
-#define Time_DllAPI __declspec( dllexport )
+    // 如果定义了EPROSIMA_USER_DLL_EXPORT
+    #if defined(EPROSIMA_USER_DLL_EXPORT)
+        // 如果定义了Time_SOURCE
+        #if defined(Time_SOURCE)
+            // 定义Time_DllAPI为导出函数或类的声明修饰符
+            #define Time_DllAPI __declspec( dllexport )
+        #else
+            // 否则定义为导入函数或类的声明修饰符
+            #define Time_DllAPI __declspec( dllimport )
+        #endif // Time_SOURCE
+    #else
+        // 如果没有定义EPROSIMA_USER_DLL_EXPORT，定义为空
+        #define Time_DllAPI
+    #endif  // EPROSIMA_USER_DLL_EXPORT
 #else
-#define Time_DllAPI __declspec( dllimport )
-#endif // Time_SOURCE
-#else
-#define Time_DllAPI
-#endif  // EPROSIMA_USER_DLL_EXPORT
-#else
-#define Time_DllAPI
+    // 如果不是_WIN32平台，定义为空
+    #define Time_DllAPI
 #endif // _WIN32
 
+// 定义eprosima命名空间
 namespace eprosima {
-namespace fastcdr {
-class Cdr;
-} // namespace fastcdr
+    // 定义fastcdr命名空间
+    namespace fastcdr {
+        // 前向声明Cdr类，可能用于序列化和反序列化操作
+        class Cdr;
+    } // namespace fastcdr
 } // namespace eprosima
 
+// 定义builtin_interfaces命名空间
 namespace builtin_interfaces {
+    // 定义msg命名空间
     namespace msg {
         /*!
-         * @brief This class represents the structure Time defined by the user in the IDL file.
+         * @brief 此类表示用户在IDL文件中定义的Time结构。
          * @ingroup TIME
          */
         class Time
         {
         public:
-
             /*!
-             * @brief Default constructor.
+             * @brief 默认构造函数。
              */
             eProsima_user_DllExport Time();
 
             /*!
-             * @brief Default destructor.
+             * @brief 默认析构函数。
              */
             eProsima_user_DllExport ~Time();
 
             /*!
-             * @brief Copy constructor.
-             * @param x Reference to the object builtin_interfaces::msg::Time that will be copied.
+             * @brief 拷贝构造函数。
+             * @param x 将要被拷贝的builtin_interfaces::msg::Time对象的引用。
              */
             eProsima_user_DllExport Time(
                     const Time& x);
 
             /*!
-             * @brief Move constructor.
-             * @param x Reference to the object builtin_interfaces::msg::Time that will be copied.
+             * @brief 移动构造函数。
+             * @param x 将要被移动的builtin_interfaces::msg::Time对象的引用。
              */
             eProsima_user_DllExport Time(
                     Time&& x) noexcept;
 
             /*!
-             * @brief Copy assignment.
-             * @param x Reference to the object builtin_interfaces::msg::Time that will be copied.
+             * @brief 拷贝赋值运算符。
+             * @param x 将要被拷贝的builtin_interfaces::msg::Time对象的引用。
              */
             eProsima_user_DllExport Time& operator =(
                     const Time& x);
 
             /*!
-             * @brief Move assignment.
-             * @param x Reference to the object builtin_interfaces::msg::Time that will be copied.
+             * @brief 移动赋值运算符。
+             * @param x 将要被移动的builtin_interfaces::msg::Time对象的引用。
              */
             eProsima_user_DllExport Time& operator =(
                     Time&& x) noexcept;
 
             /*!
-             * @brief Comparison operator.
-             * @param x builtin_interfaces::msg::Time object to compare.
+             * @brief 相等比较运算符。
+             * @param x 要比较的builtin_interfaces::msg::Time对象。
              */
             eProsima_user_DllExport bool operator ==(
                     const Time& x) const;
 
             /*!
-             * @brief Comparison operator.
-             * @param x builtin_interfaces::msg::Time object to compare.
+             * @brief 不相等比较运算符。
+             * @param x 要比较的builtin_interfaces::msg::Time对象。
              */
-            eProsima_user_DllExport bool operator !=(
+            eProsima_user_DllExport bool operator!=(
                     const Time& x) const;
 
             /*!
-             * @brief This function sets a value in member sec
-             * @param _sec New value for member sec
+             * @brief 此函数设置成员sec的值。
+             * @param _sec 成员sec的新值。
              */
             eProsima_user_DllExport void sec(
                     int32_t _sec);
 
             /*!
-             * @brief This function returns the value of member sec
-             * @return Value of member sec
+             * @brief 此函数返回成员sec的值。
+             * @return 成员sec的值。
              */
             eProsima_user_DllExport int32_t sec() const;
 
             /*!
-             * @brief This function returns a reference to member sec
-             * @return Reference to member sec
+             * @brief 此函数返回成员sec的引用。
+             * @return 成员sec的引用。
              */
             eProsima_user_DllExport int32_t& sec();
 
             /*!
-             * @brief This function sets a value in member nanosec
-             * @param _nanosec New value for member nanosec
+             * @brief 此函数设置成员nanosec的值。
+             * @param _nanosec 成员nanosec的新值。
              */
             eProsima_user_DllExport void nanosec(
                     uint32_t _nanosec);
 
             /*!
-             * @brief This function returns the value of member nanosec
-             * @return Value of member nanosec
+             * @brief 此函数返回成员nanosec的值。
+             * @return 成员nanosec的值。
              */
             eProsima_user_DllExport uint32_t nanosec() const;
 
             /*!
-             * @brief This function returns a reference to member nanosec
-             * @return Reference to member nanosec
+             * @brief 此函数返回成员nanosec的引用。
+             * @return 成员nanosec的引用。
              */
             eProsima_user_DllExport uint32_t& nanosec();
 
             /*!
-            * @brief This function returns the maximum serialized size of an object
-            * depending on the buffer alignment.
-            * @param current_alignment Buffer alignment.
-            * @return Maximum serialized size.
+            * @brief 此函数根据缓冲区对齐方式返回对象的最大序列化大小。
+            * @param current_alignment 缓冲区对齐方式。
+            * @return 最大序列化大小。
             */
             eProsima_user_DllExport static size_t getMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function returns the serialized size of a data depending on the buffer alignment.
-             * @param data Data which is calculated its serialized size.
-             * @param current_alignment Buffer alignment.
-             * @return Serialized size.
+             * @brief 此函数根据缓冲区对齐方式返回数据的序列化大小。
+             * @param data 要计算其序列化大小的数据。
+             * @param current_alignment 缓冲区对齐方式。
+             * @return 序列化大小。
              */
             eProsima_user_DllExport static size_t getCdrSerializedSize(
                     const builtin_interfaces::msg::Time& data,
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function serializes an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief 此函数使用CDR序列化方式序列化对象。
+             * @param cdr CDR序列化对象。
              */
             eProsima_user_DllExport void serialize(
                     eprosima::fastcdr::Cdr& cdr) const;
 
             /*!
-             * @brief This function deserializes an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief 此函数使用CDR序列化方式反序列化对象。
+             * @param cdr CDR序列化对象。
              */
             eProsima_user_DllExport void deserialize(
                     eprosima::fastcdr::Cdr& cdr);
 
             /*!
-             * @brief This function returns the maximum serialized size of the Key of an object
-             * depending on the buffer alignment.
-             * @param current_alignment Buffer alignment.
-             * @return Maximum serialized size.
+             * @brief 此函数根据缓冲区对齐方式返回对象键的最大序列化大小。
+             * @param current_alignment 缓冲区对齐方式。
+             * @return 最大序列化大小。
              */
             eProsima_user_DllExport static size_t getKeyMaxCdrSerializedSize(
                     size_t current_alignment = 0);
 
             /*!
-             * @brief This function tells you if the Key has been defined for this type
+             * @brief 此函数告知是否为此类型定义了键。
              */
             eProsima_user_DllExport static bool isKeyDefined();
 
             /*!
-             * @brief This function serializes the key members of an object using CDR serialization.
-             * @param cdr CDR serialization object.
+             * @brief 此函数使用CDR序列化方式序列化对象的键成员。
+             * @param cdr CDR序列化对象。
              */
             eProsima_user_DllExport void serializeKey(
                     eprosima::fastcdr::Cdr& cdr) const;
 
         private:
+            // 秒数成员变量
             int32_t m_sec;
+            // 纳秒数成员变量
             uint32_t m_nanosec;
         };
     } // namespace msg

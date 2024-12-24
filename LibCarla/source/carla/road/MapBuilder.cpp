@@ -465,6 +465,7 @@ void MapBuilder::AddRoadGeometryArc(
       const double curvature) {
     DEBUG_ASSERT(road != nullptr); // 确保道路指针不为nullptr
     // 创建位置对象
+  //创建一个位置对象，表示弧形的起始点
     const geom::Location location(static_cast<float>(x), static_cast<float>(y), 0.0f);
     // 创建弧形几何对象
     auto arc_geometry = std::make_unique<GeometryArc>(
@@ -976,19 +977,21 @@ void MapBuilder::CreateController(
       }
     }
 }
-
+// 计算交叉口的道路冲突
 void MapBuilder::ComputeJunctionRoadConflicts(Map &map) {
     // 遍历地图中的所有交叉口
     for (auto &junctionpair : map._data.GetJunctions()) {
       auto& junction = junctionpair.second; // 获取交叉口对象
+      // 储存在交叉口对象的_road_conflicts 属性中
       junction._road_conflicts = (map.ComputeJunctionConflicts(junction.GetId())); // 计算交叉口的道路冲突
     }
 }
-
+// 为信号参考生成默认的有效性
 void MapBuilder::GenerateDefaultValiditiesForSignalReferences() {
     // 遍历临时信号引用容器
     for (auto * signal_reference : _temp_signal_reference_container) {
-      if (signal_reference->_validities.size() == 0) { // 如果信号引用没有有效性
+      if (signal_reference->_validities.size() == 0) { //检查信号参考是否有有效性
+        // 如果信号引用没有有效性
         Road* road = GetRoad(signal_reference->GetRoadId()); // 获取信号引用所在的道路
         auto lanes = road->GetLanesByDistance(signal_reference->GetS()); // 根据距离获取车道
         switch (signal_reference->GetOrientation()) { // 根据信号的朝向进行处理

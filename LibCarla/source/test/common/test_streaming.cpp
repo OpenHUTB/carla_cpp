@@ -259,12 +259,14 @@ struct DoneGuard {
 };
 
 // 测试流是否可以在服务器停止后继续存在。
+// 这个测试用例主要用于验证流的生命周期相关特性，
+// 即在服务器停止的情况下，流是否依然能够维持一定的功能或者存在状态。
 TEST(streaming, stream_outlives_server) {
   using namespace carla::streaming;// 使用carla流命名空间。
-  using namespace util::buffer;
-  constexpr size_t iterations = 10u;
-  std::atomic_bool done{false};
-  const std::string message = "Hello client, how are you?";
+  using namespace util::buffer;// 引入util::buffer命名空间，应该是用于操作缓冲区相关的功能
+  constexpr size_t iterations = 10u;// 定义迭代次数的常量，这里设定为10次，用于控制循环执行的轮数等逻辑
+  std::atomic_bool done{false};// 定义一个原子布尔类型的变量，用于标记某个操作是否完成，初始化为false
+  const std::string message = "Hello client, how are you?";// 定义一个指向流对象的智能指针，用于后续对流的操作，初始时为空指针
   std::shared_ptr<Stream> stream;
 
   carla::ThreadGroup sender;
@@ -284,20 +286,22 @@ TEST(streaming, stream_outlives_server) {
   });
 
   for (auto i = 0u; i < iterations; ++i) {
-    Server srv(TESTING_PORT);
-    srv.AsyncRun(2u);
+    Server srv(TESTING_PORT);// 创建一个Server实例，使用TESTING_PORT作为端口号，具体端口值应该在别处定义
+    srv.AsyncRun(2u);// 以异步方式启动服务器，参数2u可能用于配置相关运行参数，比如线程数量等（取决于Server类具体实现）
     {
-      auto s = std::make_shared<Stream>(srv.MakeStream());
-      std::atomic_store_explicit(&stream, s, std::memory_order_relaxed);
+      auto s = std::make_shared<Stream>(srv.MakeStream());// 通过服务器对象srv创建一个Stream智能指针s，这里的MakeStream函数应该是用于创建Stream实例
+      std::atomic_store_explicit(&stream, s, std::memory_order_relaxed);// 使用原子操作将创建的Stream智能指针s存储到外部定义的stream变量中，采用宽松内存顺序
     }
     std::atomic_size_t messages_received{0u};
-    {
+    {// 创建一个Client实例
       Client c;
+        // 以异步方式启动客户端，参数2u同样可能涉及相关运行配置（和服务器端类似，取决于Client类实现）
       c.AsyncRun(2u);
+        // 客户端进行订阅操作，传入从stream智能指针获取的token（标识）以及一个lambda表达式作为回调函数
       c.Subscribe(stream->token(), [&](auto buffer) {
-        const std::string result = as_string(buffer);
-        ASSERT_EQ(result, message);
-        ++messages_received;
+        const std::string result = as_string(buffer);// 将接收到的buffer转换为字符串类型，as_string函数应该是自定义的转换函数
+        ASSERT_EQ(result, message);// 使用断言验证转换后的结果是否和期望的message相等，message应该是外部定义的期望消息内容
+        ++messages_received;// 如果消息验证通过，将统计接收消息数量的变量messages_received自增1
       });
       std::this_thread::sleep_for(20ms);
     } // client dies here.

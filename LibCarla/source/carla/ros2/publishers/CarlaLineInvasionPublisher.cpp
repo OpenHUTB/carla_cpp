@@ -26,18 +26,22 @@
 // 定义命名空间 carla，可能用于对相关类、函数等进行分类和组织，避免命名冲突
 namespace carla {
 namespace ros2 {
+	// 使用 efd 作为 eprosima::fastdds::dds 命名空间的别名，方便后续代码书写
   namespace efd = eprosima::fastdds::dds;
   using erc = eprosima::fastrtps::types::ReturnCode_t;
  // 定义一个结构体 CarlaLineInvasionPublisherImpl，用于存储与 CarlaLineInvasionPublisher 相关的实现细节和内部状态
   struct CarlaLineInvasionPublisherImpl {
   	// 指向领域参与者对象的指针，领域参与者是 DDS 架构中的核心实体，负责协调和管理发布/订阅等操作，初始化为 nullptr
         efd::DomainParticipant* _participant { nullptr };
+          // 重复定义了，可能是代码冗余，应该删除其中一个
     efd::DomainParticipant* _participant { nullptr };
     efd::Publisher* _publisher { nullptr };
     efd::Topic* _topic { nullptr };
     efd::DataWriter* _datawriter { nullptr };
     efd::TypeSupport _type { new carla_msgs::msg::LaneInvasionEventPubSubType() };
+    // CarlaListener 对象，可能用于监听相关事件，具体功能依赖其实现
     CarlaListener _listener {};
+    // 用于存储要发布的 LaneInvasionEvent 类型的消息对象，初始化为默认状态
     carla_msgs::msg::LaneInvasionEvent _event {};
   };
 // CarlaLineInvasionPublisher 类的 Init 函数定义，用于初始化相关的 DDS 实体和配置，返回 true 表示初始化成功，false 表示失败
@@ -98,59 +102,75 @@ namespace ros2 {
   }
 // CarlaLineInvasionPublisher 类的 Publish 函数定义，用于将设置好的消息发布出去，返回 true 表示发布成功，false 表示失败
   bool CarlaLineInvasionPublisher::Publish() {
+  	// 定义一个实例句柄对象，可能用于标识要写入的消息实例，具体作用依赖 DDS 系统内部机制
     eprosima::fastrtps::rtps::InstanceHandle_t instance_handle;
+    // 调用数据写入器的 write 方法尝试写入消息，传入要发布的消息对象和实例句柄对象，获取返回的状态码
     eprosima::fastrtps::types::ReturnCode_t rcode = _impl->_datawriter->write(&_impl->_event, instance_handle);
+    // 根据返回码判断写入操作是否成功，如果返回码是 RETCODE_OK，表示写入成功，返回 true
     if (rcode == erc::ReturnCodeValue::RETCODE_OK) {
         return true;
     }
+    // 如果返回码是 RETCODE_ERROR，表示出现错误，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_ERROR) {
         std::cerr << "RETCODE_ERROR" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_UNSUPPORTED，表示操作不被支持，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_UNSUPPORTED) {
         std::cerr << "RETCODE_UNSUPPORTED" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_BAD_PARAMETER，表示参数错误，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_BAD_PARAMETER) {
         std::cerr << "RETCODE_BAD_PARAMETER" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_PRECONDITION_NOT_MET，表示前置条件未满足，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_PRECONDITION_NOT_MET) {
         std::cerr << "RETCODE_PRECONDITION_NOT_MET" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_OUT_OF_RESOURCES，表示资源不足，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_OUT_OF_RESOURCES) {
         std::cerr << "RETCODE_OUT_OF_RESOURCES" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_NOT_ENABLED，表示功能未启用，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ENABLED) {
         std::cerr << "RETCODE_NOT_ENABLED" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_IMMUTABLE_POLICY，表示策略不可变，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_IMMUTABLE_POLICY) {
         std::cerr << "RETCODE_IMMUTABLE_POLICY" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_INCONSISTENT_POLICY，表示策略不一致，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_INCONSISTENT_POLICY) {
         std::cerr << "RETCODE_INCONSISTENT_POLICY" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_ALREADY_DELETED，表示对象已被删除，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_ALREADY_DELETED) {
         std::cerr << "RETCODE_ALREADY_DELETED" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_TIMEOUT，表示操作超时，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_TIMEOUT) {
         std::cerr << "RETCODE_TIMEOUT" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_NO_DATA，表示没有数据，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_NO_DATA) {
         std::cerr << "RETCODE_NO_DATA" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_ILLEGAL_OPERATION，表示非法操作，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_ILLEGAL_OPERATION) {
         std::cerr << "RETCODE_ILLEGAL_OPERATION" << std::endl;
         return false;
     }
+    // 如果返回码是 RETCODE_NOT_ALLOWED_BY_SECURITY，表示操作不被安全策略允许，输出错误信息并返回 false
     if (rcode == erc::ReturnCodeValue::RETCODE_NOT_ALLOWED_BY_SECURITY) {
         std::cerr << "RETCODE_NOT_ALLOWED_BY_SECURITY" << std::endl;
         return false;
@@ -218,7 +238,7 @@ namespace ros2 {
     _parent = std::move(other._parent);
     _impl = std::move(other._impl);
   }
-
+// CarlaLineInvasionPublisher 类的析构函数定义，用于释放对象在生命周期内创建的各种资源，如 DDS 相关实体对象等
   CarlaLineInvasionPublisher& CarlaLineInvasionPublisher::operator=(CarlaLineInvasionPublisher&& other) {
     _frame_id = std::move(other._frame_id);
     _name = std::move(other._name);
