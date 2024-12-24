@@ -174,8 +174,11 @@ install(FILES ${libcarla_carla_opendrive_sources} DESTINATION include/carla/open
 file(GLOB libcarla_carla_opendrive_parser_sources
     "${libcarla_source_path}/carla/opendrive/parser/*.cpp"
     "${libcarla_source_path}/carla/opendrive/parser/*.h")
-set(libcarla_sources "${libcarla_sources};${libcarla_carla_opendrive_parser_sources}")
-install(FILES ${libcarla_carla_opendrive_parser_sources} DESTINATION include/carla/opendrive/parser)
+set(libcarla_sources "${libcarla_sources};${libcarla_carla_opendrive_parser_sources}")# 使用 set 命令对变量 libcarla_sources 进行赋值操作，将原有的 libcarla_sources 变量内容（如果有的话）与新收集到的 OpenDrive 解析器相关文件路径（变量 libcarla_carla_opendrive_parser_sources 的值）进行拼接（通过分号分隔）后重新赋值给 libcarla_sources 变量。
+# 这样做的目的可能是将不同功能模块的源文件路径汇总到一起，方便后续统一处理，例如用于创建库或者可执行文件等操作，确保各个模块的代码都能参与到整体的项目构建中。
+install(FILES ${libcarla_carla_opendrive_parser_sources} DESTINATION include/carla/opendrive/parser)# 使用 install 命令进行文件安装操作，指定要安装的文件就是存储在变量 ${libcarla_carla_opendrive_parser_sources} 中的那些 OpenDrive 解析器相关的源文件和头文件（前面通过 file(GLOB) 收集到的）。
+# DESTINATION 参数指定了安装的目标目录为 include/carla/opendrive/parser，也就是在安装过程中，会把收集到的与 OpenDrive 解析器相关的文件复制到指定的 include/carla/opendrive/parser 目录下。
+# 这样做的好处是，当其他代码想要使用 Carla 项目中 OpenDrive 解析器相关的功能时，可以方便地在这个安装目录下找到对应的头文件进行包含，以顺利进行编译等操作，规范了项目接口文件的安装位置，便于项目的对外使用和分发。
 
 # 添加点云（LibCarla/source/carla/pointcloud/）相关代码
 file(GLOB libcarla_carla_pointcloud_sources
@@ -186,8 +189,13 @@ install(FILES ${libcarla_carla_pointcloud_sources} DESTINATION include/carla/poi
 
 # 添加性能分析器（LibCarla/source/carla/profiler/）的头文件
 file(GLOB libcarla_carla_profiler_headers
-    "${libcarla_source_path}/carla/profiler/*.h")
-install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)
+    "${libcarla_source_path}/carla/profiler/*.h")# 使用 file(GLOB) 命令收集文件路径，将匹配的文件路径列表存储在变量 libcarla_carla_profiler_headers 中。
+# 具体是收集 ${libcarla_source_path}/carla/profiler/ 目录下所有以.h 为后缀的头文件路径，
+# 这意味着会把 carla 项目中与性能分析器（profiler）相关的头文件都找出来，方便后续进行其他操作，比如安装到指定目录等。
+file(GLOB libcarla_carla_profiler_headers
+install(FILES ${libcarla_carla_profiler_headers} DESTINATION include/carla/profiler)# 使用 install 命令进行文件安装操作，这里指定要安装的文件就是存储在变量 ${libcarla_carla_profiler_headers} 中的那些头文件（前面通过 file(GLOB) 收集到的）。
+# DESTINATION 参数指定了安装的目标目录为 include/carla/profiler，也就是在安装过程中，会把收集到的与 carla 性能分析器相关的头文件复制到指定的 include/carla/profiler 目录下，
+# 这样做的目的通常是为了让使用该项目的其他代码（比如其他模块或者外部项目想要调用 carla 相关功能时）能够方便地找到并包含这些头文件，以正确地进行编译链接等操作，使项目的接口头文件处于合理的安装位置便于被引用。
 
 # 添加道路（LibCarla/source/carla/road/）相关代码
 file(GLOB libcarla_carla_road_sources
@@ -227,7 +235,10 @@ install(FILES ${libcarla_carla_road_signal_sources} DESTINATION include/carla/ro
 # 添加远程过程调用（LibCarla/source/carla/rpc/）相关代码
 file(GLOB libcarla_carla_rpc_sources
     "${libcarla_source_path}/carla/rpc/*.cpp"
-    "${libcarla_source_path}/carla/rpc/*.h")
+    "${libcarla_source_path}/carla/rpc/*.h")# 使用 CMake 中的 file(GLOB) 命令进行文件查找与收集操作。
+# 这里是收集符合特定模式的文件路径，并将这些路径存储到变量 libcarla_carla_rpc_sources 中。
+# 具体查找的是在 ${libcarla_source_path}/carla/rpc/ 目录下，所有以.cpp 为后缀的 C++ 源文件，以及同样目录下以.h 为后缀的头文件路径。
+# 这表明收集的是与 Carla 项目中 RPC（Remote Procedure Call，远程过程调用）相关的源文件和头文件，这些文件包含了实现 RPC 功能的代码，为后续项目构建等环节使用该功能模块做准备。
 set(libcarla_sources "${libcarla_sources};${libcarla_carla_rpc_sources}")
 install(FILES ${libcarla_carla_rpc_sources} DESTINATION include/carla/rpc)
 
@@ -258,7 +269,8 @@ install(FILES ${libcarla_carla_sensor_data_sources} DESTINATION include/carla/se
 # 添加传感器序列化（LibCarla/source/carla/sensor/s11n/）相关代码
 file(GLOB libcarla_carla_sensor_s11n_sources
     "${libcarla_source_path}/carla/sensor/s11n/*.cpp"
-    "${libcarla_source_path}/carla/sensor/s11n/*.h")
+    "${libcarla_source_path}/carla/sensor/s11n/*.h")# 这里具体的匹配模式是查找在 ${libcarla_source_path}/carla/sensor/s11n/ 目录下的所有以.cpp 为后缀的 C++ 源文件，以及同样目录下以.h 为后缀的头文件。
+# 也就是说，该命令会遍历指定目录（${libcarla_source_path}/carla/sensor/s11n/），把其中所有的 C++ 源文件和头文件的路径都找出来
 # 将找到的源文件添加到libcarla_sources变量中
 set(libcarla_sources "${libcarla_sources};${libcarla_carla_sensor_s11n_sources}")
 install(FILES ${libcarla_carla_sensor_s11n_sources} DESTINATION include/carla/sensor/s11n)
@@ -349,9 +361,9 @@ if (LIBCARLA_BUILD_RELEASE)
       "${RECAST_INCLUDE_PATH}"
       "${LIBPNG_INCLUDE_PATH}")
 # 如果定义了BUILD_RSS_VARIANT这个构建选项
-  if (BUILD_RSS_VARIANT)
-    target_compile_definitions(carla_client${carla_target_postfix} PRIVATE RSS_ENABLED RSS_USE_TBB)
-    target_link_libraries(carla_client${carla_target_postfix} ${ADRSS_LIBS} tbb)
+  if (BUILD_RSS_VARIANT)# 为carla_client（带上carla_target_postfix后缀）目标添加编译定义，启用RSS相关功能（RSS_ENABLED和RSS_USE_TBB）
+    target_compile_definitions(carla_client${carla_target_postfix} PRIVATE RSS_ENABLED RSS_USE_TBB)# 将ADRSS_LIBS里的库以及tbb库链接到carla_client（带上carla_target_postfix后缀）目标上
+    target_link_libraries(carla_client${carla_target_postfix} ${ADRSS_LIBS} tbb)# 将ADRSS_INCLUDE_DIRS里的目录作为系统头文件包含目录添加到carla_client（带上carla_target_postfix后缀）目标中
     target_include_directories(carla_client${carla_target_postfix} SYSTEM PRIVATE
       ${ADRSS_INCLUDE_DIRS})
   endif()

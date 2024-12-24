@@ -10,16 +10,16 @@
 #include "carla/NonCopyable.h"  // 引入不可拷贝类的头文件
 #include "carla/TypeTraits.h"  // 引入类型特征相关头文件
 #include "carla/profiler/LifetimeProfiled.h"  // 引入生命周期分析相关头文件
-#include "carla/multigpu/secondaryCommands.h"  // 引入多 GPU 次级命令的头文件
+#include "carla/multigpu/secondaryCommands.h"  //引入Carla多GPU处理框架中用于管理和执行次级GPU命令的头文件
 #include "carla/streaming/detail/tcp/Message.h"  // 引入 TCP 消息的详细实现头文件
 #include "carla/streaming/detail/Token.h"  // 引入 Token 的详细实现头文件
 #include "carla/streaming/detail/Types.h"  // 引入流相关类型的头文件
 #include "carla/ThreadPool.h"  // 引入线程池的头文件
 
 #include <boost/asio/deadline_timer.hpp>  // 引入 Boost ASIO 的定时器头文件
-#include <boost/asio/io_context.hpp>  // 引入 Boost ASIO 的 IO 上下文头文件
+#include <boost/asio/io_context.hpp>  // 引入Boost ASIO库中用于管理异步操作和回调函数的IO上下文（也称为事件循环）的头文件
 #include <boost/asio/ip/tcp.hpp>  // 引入 Boost ASIO 的 TCP 头文件
-#include <boost/asio/strand.hpp>  // 引入 Boost ASIO 的 Strand 头文件
+#include <boost/asio/strand.hpp>  // 引入Boost ASIO库中用于保证异步操作顺序执行的Strand类的头文件
 
 #include <atomic>  // 引入原子类型支持
 #include <functional>  // 引入函数对象和绑定支持

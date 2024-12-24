@@ -213,22 +213,26 @@ FCarlaActor* UActorDispatcher::RegisterActor(
     {
       // 参与者 ros_name
       std::string RosName;
+      // 遍历actor的描述中的所有变体（属性）
       for (auto &&Attr : Description.Variations)
-      {
+      {// 如果找到一个键为"ros_name"的属性
         if (Attr.Key == "ros_name")
-        {
+        {// 将该属性的值（假设是TCHAR类型）转换为UTF-8编码的std::string
           RosName = std::string(TCHAR_TO_UTF8(*Attr.Value.Value));
         }
       }
+      // 将actor的ID也转换为UTF-8编码的std::string
       const std::string id = std::string(TCHAR_TO_UTF8(*Description.Id));
+      // 检查ROS名称是否与actor的ID相同
       if (RosName == id) {
         if(RosName.find("vehicle") != std::string::npos)
-        {
+        {// 构造一个新的车辆名称，包含"vehicle"和actor的ID（通过View->GetActorId()
           std::string VehicleName = "vehicle" + std::to_string(View->GetActorId());
+          // 将这个新的车辆名称添加到ROS 2系统中，与actor关联
           ROS2->AddActorRosName(static_cast<void*>(&Actor), VehicleName);
         }
         else
-        {
+        { // 如果ROS名称不包含"vehicle"，则查找最后一个'.'字符的位置
           size_t pos = RosName.find_last_of('.');
           if (pos != std::string::npos) {
             std::string lastToken = RosName.substr(pos + 1) + "__";
@@ -241,7 +245,7 @@ FCarlaActor* UActorDispatcher::RegisterActor(
 
       // 英雄载具控制器
       for (auto &&Attr : Description.Variations)
-      {
+      { // 如果找到一个键为"role_name"且值为"hero"或"ego"的属性
         if (Attr.Key == "role_name" && (Attr.Value.Value == "hero" || Attr.Value.Value == "ego"))
         {
           ROS2->AddActorCallback(static_cast<void*>(&Actor), RosName, [RosName](void *Actor, carla::ros2::ROS2CallbackData Data) -> void
@@ -257,20 +261,21 @@ FCarlaActor* UActorDispatcher::RegisterActor(
   }
   return View;
 }
-
+// UActorDispatcher 类是一个用于管理CARLA模拟器中actor（如车辆、行人等）的调度器。
+// 它提供了将actor置于休眠状态、唤醒actor以及处理actor销毁事件的方法
 void UActorDispatcher::PutActorToSleep(FCarlaActor::IdType Id, UCarlaEpisode* CarlaEpisode)
 {
   Registry.PutActorToSleep(Id, CarlaEpisode);
 }
-
+// 唤醒指定的actor
 void UActorDispatcher::WakeActorUp(FCarlaActor::IdType Id, UCarlaEpisode* CarlaEpisode)
-{
+{// 调用Registry的WakeActorUp方法，唤醒指定的actor
   Registry.WakeActorUp(Id, CarlaEpisode);
 }
 
 void UActorDispatcher::OnActorDestroyed(AActor *Actor)
 {
-  FCarlaActor* CarlaActor = Registry.FindCarlaActor(Actor);
+  FCarlaActor* CarlaActor = Registry.FindCarlaActor(Actor);// 尝试在Registry中找到与该Unreal Engine actor对应的CARLA actor
   if (CarlaActor)
   {
     if (CarlaActor->IsActive())
@@ -278,7 +283,7 @@ void UActorDispatcher::OnActorDestroyed(AActor *Actor)
       Registry.Deregister(CarlaActor->GetActorId());
     }
   }
-
+// 如果定义了WITH_ROS2宏，表示项目集成了ROS 2
   #if defined(WITH_ROS2)
   auto ROS2 = carla::ros2::ROS2::GetInstance();
   if (ROS2->IsEnabled())

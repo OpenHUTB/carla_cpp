@@ -7,7 +7,7 @@
 #pragma once
 // 包含非复制类的定义，可能用于限制类对象不能被复制，以确保某些特定的语义和资源管理逻辑
 #include "carla/NonCopyable.h"
-#include "carla/NonCopyable.h" // 包含非复制类的定义
+#include "carla/NonCopyable.h" // 包含禁止拷贝操作的NonCopyable基类定义，用于防止派生类被意外复制
 #include "carla/Time.h" // 包含时间相关的类定义
 #include "carla/Buffer.h" // 包含缓冲区类的定义
 // 引入Boost库中asio模块的io_context类，用于管理异步I/O操作的上下文环境

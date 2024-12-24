@@ -249,3 +249,6 @@ git rm -rf .
 [chaojixiangshuijiao](https://github.com/chaojixiangshuijiao)
 [liiiiiking](https://github.com/liiiiiking/carla_cpp.git)
 [Yygo100](https://github.com/Yygo100)
+[1351964418hml](https://github.com/1351964418hml)
+[xiejinkun0625](https://github.com/xiejinkun0625)
+[676sdaw](https://github.com/676sdaw)

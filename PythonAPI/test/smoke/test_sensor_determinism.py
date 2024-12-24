@@ -166,10 +166,17 @@ class Scenario(object):
         # 清理场景
         self.clear_scene()
 
-    def add_sensor(self, sensor, sensor_type):
+    def add_sensor(self, sensor, sensor_type):"""
+    用于添加传感器的函数，根据传感器类型设置不同的监听回调，并将传感器相关信息添加到传感器列表中。
+
+    参数:
+    - sensor: 要添加的传感器对象。
+    - sensor_type: 传感器类型，如 "LiDAR"、"SemLiDAR"、"Radar" 等。
+    """
+    # 获取当前传感器列表的长度，以此作为新添加传感器的索引
         sen_idx = len(self.sensor_list)
-        if sensor_type == "LiDAR":
-            name = str(sen_idx) + "_LiDAR"
+        if sensor_type == "LiDAR":# 根据索引生成对应的LiDAR传感器名称
+            name = str(sen_idx) + "_LiDAR"# 为LiDAR传感器设置监听回调函数，当有数据时调用self.add_lidar_snapshot方法处理数据，并传入对应名称
             sensor.listen(lambda data : self.add_lidar_snapshot(data, name))
         elif sensor_type == "SemLiDAR":
             name = str(sen_idx) + "_SemLiDAR"

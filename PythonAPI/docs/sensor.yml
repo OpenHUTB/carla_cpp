@@ -24,8 +24,8 @@
         - [Lane invasion detector](ref_sensors.md#lane-invasion-detector)<br>
         - [Obstacle detector](ref_sensors.md#obstacle-detector)<br>
         - [V2X sensor](ref_sensors.md#v2x-sensor)
-    # - PROPERTIES -------------------------
-    instance_variables:
+    # - PROPERTIES -------------------------# 这部分标题表明接下来要介绍的是相关类（或结构体等）的属性信息，通常会详细列出各个属性（以实例变量的形式体现）的具体细节，帮助开发者理解这些属性的作用、类型等关键内容。
+    instance_variables:    # 以下开始具体描述其中一个实例变量的相关信息，每个实例变量都以特定格式来呈现其关键要素，方便清晰地知晓该变量的具体情况。
     - var_name: is_listening
       type: boolean
       doc: >
