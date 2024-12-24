@@ -286,11 +286,11 @@ TEST(streaming, stream_outlives_server) {
   });
 
   for (auto i = 0u; i < iterations; ++i) {
-    Server srv(TESTING_PORT);
-    srv.AsyncRun(2u);
+    Server srv(TESTING_PORT);// 创建一个Server实例，使用TESTING_PORT作为端口号，具体端口值应该在别处定义
+    srv.AsyncRun(2u);// 以异步方式启动服务器，参数2u可能用于配置相关运行参数，比如线程数量等（取决于Server类具体实现）
     {
-      auto s = std::make_shared<Stream>(srv.MakeStream());
-      std::atomic_store_explicit(&stream, s, std::memory_order_relaxed);
+      auto s = std::make_shared<Stream>(srv.MakeStream());// 通过服务器对象srv创建一个Stream智能指针s，这里的MakeStream函数应该是用于创建Stream实例
+      std::atomic_store_explicit(&stream, s, std::memory_order_relaxed);// 使用原子操作将创建的Stream智能指针s存储到外部定义的stream变量中，采用宽松内存顺序
     }
     std::atomic_size_t messages_received{0u};
     {// 创建一个Client实例
