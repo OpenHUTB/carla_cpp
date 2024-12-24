@@ -213,10 +213,26 @@ namespace client {
         const rpc::MaterialParameter& parameter, // 材质参数，可能包含影响纹理显示的其他设置
         const rpc::TextureColor& Texture); // 要应用的颜色纹理
 
+// ApplyColorTextureToObjects函数声明，该函数的主要作用可能是将特定的颜色纹理应用到一系列指定的对象上。
+// 常用于涉及图形渲染、3D建模、游戏开发等领域，用于改变对象表面的视觉呈现效果，使其具有期望的颜色纹理外观。
+// 参数列表如下：
+// @param objects_names：这是一个常量引用类型的参数，其类型为std::vector<std::string>，也就是包含字符串的向量引用。
+// 该向量中的每个字符串代表了一个对象的名称，这些名称用于明确指出哪些对象需要应用颜色纹理。
+// 例如在一个复杂的3D场景中，这个向量里可能包含像"car_model_1"、"building_01"之类的对象名称，通过指定这些名称来筛选出要操作的具体对象。
+// @param parameter：此参数为rpc::MaterialParameter类型的常量引用。
+// 它通常用于传递与材质相关的各种参数信息，这些参数会和即将应用的颜色纹理相互配合，共同影响对象最终呈现出来的外观效果。
+// 例如，它可能包含材质的粗糙度、光泽度、透明度、折射指数等属性设置，不同的材质参数会使相同的颜色纹理在对象表面呈现出不同的视觉特性。
+// @param Texture：参数类型是rpc::TextureColor的常量引用，它表示要应用到对象上的具体颜色纹理信息。
+// 这个结构体（或类）中可能包含了纹理的颜色构成（比如RGB各通道的值、是否包含透明度通道等）、纹理的分辨率、纹理的映射方式等关键信息，
+// 决定了对象表面最终显示出来的颜色纹理的具体样式和细节表现。
     void ApplyColorTextureToObjects(
-        const std::vector<std::string> &objects_names,
-        const rpc::MaterialParameter& parameter,
-        const rpc::TextureColor& Texture);
+            const std::vector<std::string> &objects_names,
+            const rpc::MaterialParameter& parameter,
+            const rpc::TextureColor& Texture)
+    {
+        // 此处函数体内容缺失，函数具体实现应在对应的源文件中，其内部逻辑大致会遍历objects_names中的对象名称，
+        // 根据parameter中的材质参数以及Texture里的颜色纹理信息，通过相应的图形渲染或材质设置机制，将颜色纹理应用到对应的对象上。
+    }
 
     void ApplyFloatColorTextureToObject(
         const std::string &actor_name,
