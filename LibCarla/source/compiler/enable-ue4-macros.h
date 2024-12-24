@@ -89,7 +89,7 @@
 #pragma pop_macro("NV_RESULT")// 取消名为"NV_RESULT"的宏。
 #pragma pop_macro("B")// 取消名为"B"的宏。
 #pragma pop_macro("AMF_DECLARE_IID")// 取消名为"AMF_DECLARE_ID"的宏。
-#pragma pop_macro("AMF_MACRO_STRING2")// 取消之前定义的名为 "AMF_MACRO_STRING2" 的宏定义。// 通常在之前可能使用了 #pragma push_macro 保存了该宏定义的状态，这里进行恢复（取消定义）操作。
+#pragma pop_macro("AMF_MACRO_STRING2")// 取消之前定义的名为 "AMF_MACRO_STRING2" 的宏定义。
 #pragma pop_macro("AMF_MACRO_STRING")// 取消之前定义的名为 "AMF_MACRO_STRING" 的宏定义，作用与上面类似，恢复该宏之前的状态。
 #pragma pop_macro("AMF_TODO")// 取消之前定义的名为 "AMF_TODO" 的宏定义，可能这个宏在代码开发过程中有特定用途，此处还原其初始情况
 #pragma pop_macro("AMF_ALIGN")// 取消之前定义的名为 "AMF_ALIGN" 的宏定义，一般用于处理数据对齐相关的操作，这里取消其定义使其恢复原样。
