@@ -1,9 +1,9 @@
 #include <fbxsdk.h>
 
-// declare global
+// 声明全局的 FBX 管理器指针并初始化为 NULL
 FbxManager*   gSdkManager = NULL;
 
-// materials
+// 各种材质的指针声明
 FbxSurfacePhong* gMatRoad;
 FbxSurfacePhong* gMatSidewalk;
 FbxSurfacePhong* gMatCross;
@@ -15,15 +15,14 @@ FbxSurfacePhong* gMatBlock;
     #define IOS_REF (*(gSdkManager->GetIOSettings()))
 #endif
 
-// Create a material that will be applied to a polygon
+// 创建一个将应用于多边形的材质
 FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
 {
-    // Create material
     // 使用 FbxSurfacePhong 类的静态方法 Create 为指定场景创建一个名为 name 的材质
     FbxSurfacePhong* lMaterial = FbxSurfacePhong::Create(pScene, name);
     return lMaterial;
 }
-
+// 查找函数，判断 str 是否是 name 的子串
 bool Find(const char *name, const char *str)
 {
     // 获取输入字符串 name 和 str 的长度
@@ -36,7 +35,7 @@ bool Find(const char *name, const char *str)
     // 在 strName 中查找 strSub，如果找到返回 true，否则返回 false
     return (strName.find(strSub)!= std::string::npos);
 }
-
+// 为节点设置材质的函数
 void SetMaterials(FbxNode* pNode)
 {
     if (!pNode) return;
@@ -79,10 +78,11 @@ void SetMaterials(FbxNode* pNode)
 
 // Creates an importer object, and uses it to
 // import a file into a scene.
+// 创建一个导入器对象，并使用它将文件导入到场景中
 bool LoadScene(
-               FbxManager* pSdkManager,  // Use this memory manager...
-               FbxScene* pScene,            // to import into this scene
-               const char* pFilename         // the data from this file.
+               FbxManager* pSdkManager,  // 使用此内存管理器...
+               FbxScene* pScene,            // 导入到这个场景中
+               const char* pFilename         // 从这个文件中导入数据
                )
 {
     int lFileMajor, lFileMinor, lFileRevision;
@@ -96,7 +96,7 @@ bool LoadScene(
     const bool lImportStatus = lImporter->Initialize(pFilename, -1, pSdkManager->GetIOSettings() );
     // 获取要导入的 FBX 文件的版本号
     lImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
-    if(!lImportStatus )  // Problem with the file to be imported
+    if(!lImportStatus )  // 导入文件时出现问题
     {
         FbxString error = lImporter->GetStatus().GetErrorString();
         printf("Call to FbxImporter::Initialize() failed.");
@@ -128,7 +128,7 @@ bool LoadScene(
     return lStatus;
 }
 
-// Exports a scene to a file
+// 将场景导出到文件
 bool SaveScene(
                FbxManager* pSdkManager,
                FbxScene* pScene,
