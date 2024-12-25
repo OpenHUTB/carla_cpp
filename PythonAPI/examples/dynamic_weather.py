@@ -12,12 +12,13 @@ CARLA Dynamic Weather:
 Connect to a CARLA Simulator instance and control the weather. Change Sun
 position smoothly with time and generate storms occasionally.
 """
-
+# 导入必要的库
 import glob
 import os
 import sys
 
 try:
+    # 尝试添加CARLA模块到系统路径中
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
@@ -30,18 +31,19 @@ import carla
 import argparse
 import math
 
-
+# 定义一个函数，用于限制值的范围
 def clamp(value, minimum=0.0, maximum=100.0):
     return max(minimum, min(value, maximum))
 
-
+# 定义一个类，用于模拟太阳的运动
 class Sun(object):
     def __init__(self, azimuth, altitude):
-        self.azimuth = azimuth
-        self.altitude = altitude
+        self.azimuth = azimuth# 太阳方位角
+        self.altitude = altitude# 太阳高度角
         self._t = 0.0
 
     def tick(self, delta_seconds):
+        # 根据时间更新太阳的位置
         self._t += 0.008 * delta_seconds
         self._t %= 2.0 * math.pi
         self.azimuth += 0.25 * delta_seconds
@@ -51,7 +53,7 @@ class Sun(object):
     def __str__(self):
         return 'Sun(alt: %.2f, azm: %.2f)' % (self.altitude, self.azimuth)
 
-
+# 定义一个类，用于模拟风暴的变化
 class Storm(object):
     def __init__(self, precipitation):
         self._t = precipitation if precipitation > 0.0 else -50.0
@@ -64,6 +66,7 @@ class Storm(object):
         self.fog = 0.0
 
     def tick(self, delta_seconds):
+        # 根据时间更新风暴的参数
         delta = (1.3 if self._increasing else -1.3) * delta_seconds
         self._t = clamp(delta + self._t, -250.0, 100.0)
         self.clouds = clamp(self._t + 40.0, 0.0, 90.0)
@@ -81,7 +84,7 @@ class Storm(object):
     def __str__(self):
         return 'Storm(clouds=%d%%, rain=%d%%, wind=%d%%)' % (self.clouds, self.rain, self.wind)
 
-
+# 定义一个类，用于控制天气变化
 class Weather(object):
     def __init__(self, weather):
         self.weather = weather
@@ -89,6 +92,7 @@ class Weather(object):
         self._storm = Storm(weather.precipitation)
 
     def tick(self, delta_seconds):
+        # 更新太阳和风暴的状态
         self._sun.tick(delta_seconds)
         self._storm.tick(delta_seconds)
         self.weather.cloudiness = self._storm.clouds
@@ -103,7 +107,7 @@ class Weather(object):
     def __str__(self):
         return '%s %s' % (self._sun, self._storm)
 
-
+# 主函数
 def main():
     argparser = argparse.ArgumentParser(
         description=__doc__)

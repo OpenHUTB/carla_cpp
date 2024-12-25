@@ -37,7 +37,7 @@ def main():
         # to the simulator. Here we'll assume the simulator is accepting
         # requests in the localhost at port 2000.
         client = carla.Client('localhost', 2000)
-        client.set_timeout(2.0)
+        client.set_timeout(2.0)  # 调用刚创建的客户端实例（client对象）的set_timeout方法，设置超时时间为2.0秒。
 
         # Once we have a client we can retrieve the world that is currently
         # running.
@@ -54,10 +54,18 @@ def main():
         # A blueprint contains the list of attributes that define a vehicle's
         # instance, we can read them and modify some of them. For instance,
         # let's randomize its color.
+        # 首先判断蓝图（bp，这里应该是某个特定对象，可能代表如游戏场景、模拟环境等中的元素蓝图，具体取决于上下文）是否具有名为'color'的属性。
+        # has_attribute 方法应该是蓝图对象自带的用于检查属性是否存在的方法，返回值为布尔类型（True 或者 False）。
         if bp.has_attribute('color'):
-            color = random.choice(bp.get_attribute('color').recommended_values)
-            bp.set_attribute('color', color)
-
+        # 如果蓝图对象 bp 存在'color'属性，那么执行下面的代码块。
+        # 通过 bp.get_attribute('color') 获取蓝图对象中'color'属性对应的属性对象（这个属性对象可能包含了该属性的各种相关信息，比如推荐值等），
+        # 然后再调用其 recommended_values 属性获取这个属性的推荐值列表（这里假设 recommended_values 是一个列表，存放了多个可供选择的颜色相关的值）。
+        # 接着使用 random.choice 函数从推荐值列表中随机选择一个值，并将其赋值给 color 变量，这样就获取到了一个随机的颜色值（具体是什么形式的颜色表示要根据实际情况确定）。
+        color = random.choice(bp.get_attribute('color').recommended_values)
+        # 最后调用蓝图对象 bp 的 set_attribute 方法，将'color'属性的值设置为刚才随机选取的 color 值，
+        # 从而实现对蓝图对象中'color'属性的更新，使其具有了新的、随机选取的颜色设定，可能会影响到后续基于该蓝图创建的实际对象的外观等方面的呈现。
+        bp.set_attribute('color', color)
+            
         # Now we need to give an initial transform to the vehicle. We choose a
         # random transform from the list of recommended spawn points of the map.
         transform = random.choice(world.get_map().get_spawn_points())

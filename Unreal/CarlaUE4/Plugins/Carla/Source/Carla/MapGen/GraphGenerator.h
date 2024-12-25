@@ -7,7 +7,7 @@
 #pragma once
 
 #include "DoublyConnectedEdgeList.h"
-
+//定义了一个用于生成随机双连通边链表（DoublyConnectedEdgeList）的类
 namespace MapGen {
 
   /// 随机双连通边链表 DoublyConnectedEdgeList 生成器。

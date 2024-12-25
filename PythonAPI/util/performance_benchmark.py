@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2019 Intel Labs.
+# 版权所有（c）2019 英特尔实验室。
 # authors: German Ros (german.ros@intel.com)
 #
 # This work is licensed under the terms of the MIT license.
@@ -21,9 +21,10 @@ Please, make sure you install the following dependencies:
 
 # @todo Include this file in the Pylint checks.
 # pylint: skip-file
-
+#导入了sys模块，然后检查 Python 的主版本号
 import sys
-
+#如果小于 3，说明脚本是在 Python 2 环境下运行，脚本会输出一条提示信息
+#告知用户该脚本只能在 Python 3 下运行，然后通过sys.exit(1)退出脚本
 if sys.version_info[0] < 3:
     print('This script is only available for Python 3')
     sys.exit(1)
@@ -42,31 +43,37 @@ import GPUtil
 import threading
 import time
 import logging
-
+#尝试将carla模块的路径添加到sys.path中
 try:
+    #使用glob.glob来查找符合特定模式的carla模块的.egg文件路径，并将其添加到sys.path中
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
         'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+#如果在查找过程中出现IndexError
 except IndexError:
+    #捕获异常并pass
     pass
-
+#添加carla模块的路径以便能够导入carla模块
 import carla
 
 # ======================================================================================================================
 # -- Global variables. So sorry... -------------------------------------------------------------------------------------
 # ======================================================================================================================
 sensors_callback = []
-
+#定义一个函数，目的是定义一个天气列表
 def define_weather():
+  #初始化了一个空列表list_weather
   list_weather = []
-
+  #如果args.tm为True
   if args.tm:
+    #只将ClearNoon天气添加到list_weather中
     weather00 = { 'parameter' : carla.WeatherParameters.ClearNoon, 'name': 'ClearNoon'}
-
+     
     list_weather.append(weather00)
-
+  #如果args.tm为False
   else:
+    #ClearNoon、CloudyNoon和SoftRainSunset三种天气添加到list_weather中
     weather00 = { 'parameter' : carla.WeatherParameters.ClearNoon, 'name' : 'ClearNoon'}
     weather01 = { 'parameter' : carla.WeatherParameters.CloudyNoon, 'name' : 'CloudyNoon'}
     weather02 = { 'parameter' : carla.WeatherParameters.SoftRainSunset, 'name' : 'SoftRainSunset'}
@@ -74,14 +81,17 @@ def define_weather():
     list_weather.append(weather00)
     list_weather.append(weather01)
     list_weather.append(weather02)
-
+    #如果args.weather不为None
     if args.weather is not None:
+      #尝试根据args.weather中的索引来筛选list_weather中的天气
       try:
         new_list = [list_weather[int(i)] for i in args.weather]
         list_weather = new_list
+      #如果在索引过程中出现IndexError
       except IndexError as error:
+        #打印一条警告信息，并使用原始的list_weather
         print("Warning!! The list of types of weather introduced is not valid. Using all available.")
-
+  #函数返回list_weather列表
   return list_weather
 
 
@@ -144,52 +154,69 @@ def define_sensors():
         print("Warning!! The list of sensors introduced is not valid. Using all available.")
 
   return list_sensor_specs
-
+#定义一个函数，目的是创建一个空列表list_env_specs，用于存储环境规格
 def define_environments():
   list_env_specs = []
-
+  #如果args.tm为True
   if args.tm:
+    #定义四种不同的环境规格
     env00 = {'vehicles': 10, 'walkers': 0}
     env01 = {'vehicles': 50, 'walkers': 50}
     env02 = {'vehicles': 250, 'walkers': 0}
     env03 = {'vehicles': 150, 'walkers': 50}
-
+    #将这四种环境规格依次添加到list_env_specs列表中
     list_env_specs.append(env00)
     list_env_specs.append(env01)
     list_env_specs.append(env02)
     list_env_specs.append(env03)
-
+  #如果args.tm为False
   else:
+    #只定义一种环境规格env00，有 1 辆车，0 个行人，并将其添加到list_env_specs列表中
     env00 = {'vehicles': 1, 'walkers': 0}
 
     list_env_specs.append(env00)
-
+  #函数返回list_env_specs列表
   return list_env_specs
-
+#定义一个函数，主要功能是处理地图列表
 def define_maps(client):
+  #获取可用地图的完整路径列表，然后使用列表推导式将每个路径中的/Game/Carla/Maps/替换为空字符串
   maps = [m.replace('/Game/Carla/Maps/', '') for m in client.get_available_maps()]
+  #对处理后的地图名称列表进行排序
   maps = sorted(maps)
-
+  #如果args.maps不为None
   if args.maps is not None:
+    #检查args.maps中的所有元素是否都在maps列表中
     all_good = all(elem in maps for elem in args.maps)
+    #如果是，则将maps列表设置为args.maps并进行排序
     if all_good:
       maps = sorted(args.maps)
+    #如果不是，则打印警告信息，表示传入的地图列表无效，将继续使用所有可用地图
     else:
       print("Warning!! The list of maps introduced is not valid. Using all available.")
-
+  #函数返回处理后的地图列表
   return maps
+
+#定义一个类，继承自object
 class CallBack(object):
+    #类的构造函数，在创建类的实例时会被调用
     def __init__(self):
+        #线程锁，通过threading.Lock()创建，用于在多线程环境下确保数据的一致性
         self._lock = threading.Lock()
+        #pygame的时钟对象，通过pygame.time.Clock()创建，用于跟踪时间
         self._pygame_clock = pygame.time.Clock()
+        #整数变量，初始化为 0，用于存储当前的帧率（Frames Per Second
         self._current_fps = 0
-
+    #使类的实例可以像函数一样被调用
     def __call__(self, data):
+        #更新时钟，并通过self._pygame_clock.get_fps()获取当前的帧率
         self._pygame_clock.tick()
+        #将其存储在self._current_fps中
         self._current_fps = self._pygame_clock.get_fps()
-
+    #用于获取当前的帧率
     def get_fps(self):
+        #确保在获取帧率时线程安全
         with self._lock:
+            #返回self._current_fps的值，即当前的帧率
             return self._current_fps
 
 

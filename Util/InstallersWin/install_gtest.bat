@@ -17,24 +17,38 @@ rem ============================================================================
 
 set DEL_SRC=false
 
-:arg-parse
-if not "%1"=="" (
+:arg-parse  :: 这是一个标签，用于goto命令跳转，以循环解析命令行参数。
+
+if not "%1"=="" (  :: 检查第一个参数（%1）是否不为空。
+    :: 如果第一个参数是"--build-dir"，则执行以下操作：
     if "%1"=="--build-dir" (
-        set BUILD_DIR=%~dpn2
-        shift
+        :: 注意：这里有一个潜在的问题。%~dpn2 实际上是引用第二个参数（%2）的盘符、路径和文件名（不包括扩展名）。
+        :: 如果"--build-dir"后面没有参数，这将不会按预期工作。正确的做法可能是检查%2是否存在并有效。
+        set BUILD_DIR=%~dpn2  :: 设置BUILD_DIR环境变量为紧随"--build-dir"之后的参数的路径（去除扩展名）。
+        shift  :: 将参数列表左移一位，即原来的第二个参数现在成为新的第一个参数。
     )
+    
+    :: 如果第一个参数是"--generator"，则执行以下操作：
     if "%1"=="--generator" (
+        :: 设置GENERATOR环境变量为紧随"--generator"之后的参数。
+        :: 注意：这里假设"--generator"后面确实跟着一个有效的参数（%2）。
         set GENERATOR=%2
-        shift
+        shift  :: 将参数列表再次左移一位。
     )
+    
+    :: 如果第一个参数是"--delete-src"，则执行以下操作：
     if "%1"=="--delete-src" (
+        :: 设置DEL_SRC环境变量为true，表示需要删除源文件。
         set DEL_SRC=true
     )
     
+    :: 无论是否处理了当前参数，都再次使用shift命令将参数列表左移一位。
     shift
+    
+    :: 使用goto命令跳转到标签:arg-parse的位置，以继续循环解析剩余的参数。
     goto :arg-parse
 )
-
+:: 判断环境变量GENERATOR是否为空字符串，如果为空，则将其设置为指定的值"Visual Studio 16 2019"
 if %GENERATOR% == "" set GENERATOR="Visual Studio 16 2019"
 
 rem If not set set the build dir to the current dir
@@ -65,7 +79,7 @@ if not exist "%GT_BUILD_DIR%" (
     echo %FILE_N% Creating "%GT_BUILD_DIR%"
     mkdir "%GT_BUILD_DIR%"
 )
-
+rem 进入构建目录
 cd "%GT_BUILD_DIR%"
 echo %FILE_N% Generating build...
 

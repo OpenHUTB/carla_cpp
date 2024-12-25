@@ -75,38 +75,46 @@ class TestDeterminism(SmokeTest):
                 world.tick()
         return simulation_record
 
-    def test_determ(self):
-        print("TestDeterminism.test_determ")
-        number_of_vehicles = 100
-        tm_seed = 1
+    def test_determ(self):                      #函数用于测试确定性相关的功能
+        print("TestDeterminism.test_determ")    #打印当前正在执行的测试方法名称
+        number_of_vehicles = 100                #定义变量number_of_vehicles并赋值为100
+        tm_seed = 1                             #定义变量tm_seed并赋值为1
 
-        self.client.load_world("Town03")
+        self.client.load_world("Town03")        #通过客户端对象（self.client）加载名为"Town03"的世界场景
         # workaround: give time to UE4 to clean memory after loading (old assets)
-        time.sleep(5)
+        time.sleep(5)            
+        #暂停程序执行5秒钟，清理加载场景后可能残留的旧资源内存，以确保后续操作的稳定性
 
         # set setting for round 1
         world = self.client.get_world()
+        #获取当前客户端所连接的世界对象
         old_settings = world.get_settings()
+        #获取当前世界的设置信息，并存储在old_settings中
         new_settings = world.get_settings()
+        #再次获取当前世界的设置信息，并存储在new_settings中
         new_settings.synchronous_mode = True
+        #将世界的同步模式设置为True
         new_settings.fixed_delta_seconds = 0.05
+        #设置世界的固定时间步长为0.05秒
         world.apply_settings(new_settings)
-
+        #将修改后的设置应用到世界中，使新的设置生效
         blueprints = world.get_blueprint_library().filter('vehicle.*')
+        #从世界的蓝图库中筛选出所有以"vehicle."开头的蓝图，筛选结果存储在blueprints中。
         spawn_points = world.get_map().get_spawn_points()
+        #获取当前世界地图中的所有生成点，存储在spawn_points中
 
         # --------------
         # Spawn vehicles
         # --------------
-        blueprint_transform_list = []
-        hero = True
-        for n, transform in enumerate(spawn_points):
-            if n >= number_of_vehicles:
+        blueprint_transform_list = []                       #创建一个列表
+        hero = True                                         #设置一个布尔变量，用于区分不同的蓝图
+        for n, transform in enumerate(spawn_points):        #用for循环和enumerate函数遍历spawm_points
+            if n >= number_of_vehicles:                     #如果n大于等于车辆的数量，则停止循环
                 break
-            blueprint = random.choice(blueprints)
-            if blueprint.has_attribute('color'):
-                color = random.choice(blueprint.get_attribute('color').recommended_values)
-                blueprint.set_attribute('color', color)
+            blueprint = random.choice(blueprints)           #从blueprints中随机选择一个蓝图
+            if blueprint.has_attribute('color'):            #检查蓝图是否有color属性
+                color = random.choice(blueprint.get_attribute('color').recommended_values)  
+                blueprint.set_attribute('color', color)     #如果有color属性，就从color属性中随机选择一个，并设置给blueprint（蓝图）
             if blueprint.has_attribute('driver_id'):
                 driver_id = random.choice(blueprint.get_attribute('driver_id').recommended_values)
                 blueprint.set_attribute('driver_id', driver_id)
@@ -153,3 +161,8 @@ class TestDeterminism(SmokeTest):
         time.sleep(5)
 
         self.compare_records(record_run1, record_run2)
+# 调用当前对象（self指代调用该方法的对象实例）的compare_records方法，传入两个参数record_run1和record_run2。
+# 从方法名“compare_records”推测，这个方法的主要功能大概率是用于比较两个记录（record）相关的数据结构。
+# record_run1和record_run2这两个参数应该分别代表了两次不同运行过程（也许是模拟实验、游戏过程等不同场景下的运行实例）所产生的记录信息，
+# 具体记录的内容可能包含各种数据，比如模拟过程中的状态信息、事件信息等，而compare_records方法内部会按照一定的规则去对比这两份记录，
+# 例如检查对应的数据项是否相等、差异程度如何等，然后根据比较的结果进行后续的操作，比如返回比较结果、根据差异判断是否符合预期等，不过具体行为还得看该方法内部的代码实现逻辑。

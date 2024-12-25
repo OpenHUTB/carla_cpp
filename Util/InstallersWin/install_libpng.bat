@@ -17,24 +17,37 @@ rem ============================================================================
 
 :arg-parse
 if not "%1"=="" (
+    rem 判断第一个参数是否为 --build-dir
     if "%1"=="--build-dir" (
+        rem 如果是 --build-dir，设置 BUILD_DIR 变量为第二个参数代表的路径相关内容（含盘符、路径、文件名）
         set BUILD_DIR=%~dpn2
+        rem 将命令行参数向左移动一位，为处理后续参数做准备
         shift
     )
+    rem 判断第一个参数是否为 --zlib-install-dir
     if "%1"=="--zlib-install-dir" (
+        rem 如果是 --zlib-install-dir，设置 ZLIB_INST_DIR 变量为第二个参数代表的路径相关内容（含盘符、路径、文件名）
         set ZLIB_INST_DIR=%~dpn2
+        rem 将命令行参数向左移动一位，为处理后续参数做准备
         shift
     )
+    rem 判断第一个参数是否为 -h（短格式帮助参数）
     if "%1"=="-h" (
+        rem 如果是 -h，跳转到 help 标签处显示帮助信息
         goto help
     )
+    rem 判断第一个参数是否为 --help（长格式帮助参数）
     if "%1"=="--help" (
+        rem 如果是 --help，跳转到 help 标签处显示帮助信息
         goto help
     )
+    rem 将命令行参数向左移动一位，为处理后续参数做准备
     shift
+    rem 跳转到 :arg-parse 标签处，继续解析下一组参数
     goto :arg-parse
 )
 
+:: 这里判断环境变量%ZLIB_INST_DIR%是否为空字符串，如果为空，则进入下面的代码块执行相应操作。
 if "%ZLIB_INST_DIR%" == "" (
     echo %FILE_N% You must specify a zlib install directory using [--zlib-install-dir]
     goto bad_exit
@@ -104,33 +117,45 @@ rem ============================================================================
 rem -- Compile libpng ----------------------------------------------------------
 rem ============================================================================
 
+#设置一个环境变量LIBPNG_SOURCE_DIR
 set LIBPNG_SOURCE_DIR=%LIBPNG_SRC_DIR%libpng\%LIBPNG_VERSION%\libpng-%LIBPNG_VERSION%-src\
 
+#条件判断语句，检查指定的路径是否不存在
 if not exist "%LIBPNG_SRC_DIR%build" (
     echo %FILE_N% Creating "%LIBPNG_SRC_DIR%build"
     mkdir "%LIBPNG_SRC_DIR%build"
 )
 
+#切换到%LIBPNG_SRC_DIR%build这个目录
 cd "%LIBPNG_SRC_DIR%build"
 
+#构建脚本
 cl /nologo /c /O2 /MD /Z7 /EHsc /MP /W2 /TP /GR /Gm-^
+ #在Windows平台下进行条件编译
  -DWIN32 -DNDEBUG -D_CRT_SECURE_NO_WARNINGS -DPNG_NO_MMX_CODE^
+ #头文件的搜索路径
  /I"%ZLIB_INST_DIR%include"^
+ #指定要编译的源文件路径
  "%LIBPNG_SOURCE_DIR%*.c"
 
+#用于检查%LIBPNG_INSTALL_DIR%lib这个目录是否存在
 if not exist "%LIBPNG_INSTALL_DIR%lib" (
     echo %FILE_N% Creating "%LIBPNG_INSTALL_DIR%lib"
     mkdir "%LIBPNG_INSTALL_DIR%lib"
 )
 
+#如果不存在
 if not exist "%LIBPNG_INSTALL_DIR%include" (
     echo %FILE_N% Creating "%LIBPNG_INSTALL_DIR%include"
     mkdir "%LIBPNG_INSTALL_DIR%include"
 )
 
+#一个预定义的环境变量，表示libpng的安装目录
 lib /nologo /MACHINE:X64 /LTCG /OUT:"%LIBPNG_INSTALL_DIR%lib\libpng.lib"^
+#指定搜索库文件的路径
  /LIBPATH:"%ZLIB_INST_DIR%lib" "*.obj" "zlibstatic.lib"
 
+#文件复制操作
 copy "%LIBPNG_SOURCE_DIR%png.h" "%LIBPNG_INSTALL_DIR%include\png.h"
 copy "%LIBPNG_SOURCE_DIR%pngconf.h" "%LIBPNG_INSTALL_DIR%include\pngconf.h"
 

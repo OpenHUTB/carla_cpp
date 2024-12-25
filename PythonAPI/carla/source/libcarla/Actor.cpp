@@ -81,21 +81,23 @@ static auto GetLightBoxes(const carla::client::TrafficLight &self) {
 // 将参与者的函数暴露出去
 void export_actor() {
   using namespace boost::python;
-  namespace cc = carla::client;
-  namespace cr = carla::rpc;
-  namespace ctm = carla::traffic_manager;
+  namespace cc = carla::client; // carla客户端相关的命名空间
+  namespace cr = carla::rpc;// carla远程过程调用相关的命名空间
+  namespace ctm = carla::traffic_manager;// carla交通管理相关的命名空间
 
-  enum_<cr::ActorState>("ActorState")
+   // 定义ActorState枚举类型到Python的映射，将C++中的枚举值暴露给Python
+    enum_<cr::ActorState>("ActorState")
     .value("Invalid", cr::ActorState::Invalid)
     .value("Active", cr::ActorState::Active)
     .value("Dormant", cr::ActorState::Dormant)
   ;
 
-  class_<std::vector<int>>("vector_of_ints")
+    // 为std::vector<int>类型定义Python类，使其在Python中能像普通类一样使用，支持索引和转换为字符串等操作
+    class_<std::vector<int>>("vector_of_ints")
       .def(vector_indexing_suite<std::vector<int>>())
       .def(self_ns::str(self_ns::self))
   ;
-
+  // 定义Actor类到Python的映射，继承相关特性，设置不可拷贝，通过智能指针管理，定义多个属性和方法的Python接口
   class_<cc::Actor, boost::noncopyable, boost::shared_ptr<cc::Actor>>("Actor", no_init)
   // 变通方法，强制返回副本以解决Actor而不是ActorState
       .add_property("id", CALL_RETURNING_COPY(cc::Actor, GetId))
@@ -151,6 +153,7 @@ void export_actor() {
       .def(self_ns::str(self_ns::self))
   ;
 
+  // 定义VehicleLightState中的LightState枚举类型到Python的映射，将不同灯光状态枚举值暴露给Python
   enum_<cr::VehicleLightState::LightState>("VehicleLightState")
     .value("NONE", cr::VehicleLightState::LightState::None) // None is reserved in Python3
     .value("Position", cr::VehicleLightState::LightState::Position)
@@ -167,6 +170,7 @@ void export_actor() {
     .value("All", cr::VehicleLightState::LightState::All)
   ;
 
+  // 定义VehicleWheelLocation枚举类型到Python的映射，将车辆车轮位置的枚举值暴露给Python
   enum_<cr::VehicleWheelLocation>("VehicleWheelLocation")
     .value("FL_Wheel", cr::VehicleWheelLocation::FL_Wheel)
     .value("FR_Wheel", cr::VehicleWheelLocation::FR_Wheel)
@@ -176,7 +180,8 @@ void export_actor() {
     .value("Back_Wheel", cr::VehicleWheelLocation::Back_Wheel)
   ;
 
-  enum_<cr::VehicleDoor>("VehicleDoor")
+    // 定义VehicleDoor枚举类型到Python的映射，将车辆车门相关的枚举值暴露给Python
+    enum_<cr::VehicleDoor>("VehicleDoor")
     .value("FL", cr::VehicleDoor::FL)
     .value("FR", cr::VehicleDoor::FR)
     .value("RL", cr::VehicleDoor::RL)
@@ -184,6 +189,7 @@ void export_actor() {
     .value("All", cr::VehicleDoor::All)
   ;
 
+  // 定义VehicleFailureState枚举类型到Python的映射，将车辆故障状态的枚举值暴露给Python
   enum_<cr::VehicleFailureState>("VehicleFailureState")
     .value("NONE", cr::VehicleFailureState::None)
     .value("Rollover", cr::VehicleFailureState::Rollover)
@@ -191,6 +197,7 @@ void export_actor() {
     .value("TirePuncture", cr::VehicleFailureState::TirePuncture)
   ;
 
+  // 定义Vehicle类到Python的映射，继承自Actor类，设置相关特性，定义多个Vehicle类特有的方法和属性的Python接口
   class_<cc::Vehicle, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::Vehicle>>("Vehicle",
       no_init)
       .def("apply_control", &cc::Vehicle::ApplyControl, (arg("control")))
@@ -221,7 +228,8 @@ void export_actor() {
       .def(self_ns::str(self_ns::self))
   ;
 
-  class_<cc::Walker, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::Walker>>("Walker", no_init)
+    //定义Walker类到Python的映射，继承自Actor类，设置相关特性，定义多个Walker类特有的方法的Python接口
+    class_<cc::Walker, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::Walker>>("Walker", no_init)
       .def("apply_control", &ApplyControl<cr::WalkerControl>, (arg("control")))
       .def("get_control", &cc::Walker::GetWalkerControl)
       .def("get_bones", &cc::Walker::GetBonesTransform)
@@ -233,7 +241,8 @@ void export_actor() {
       .def(self_ns::str(self_ns::self))
   ;
 
-  class_<cc::WalkerAIController, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::WalkerAIController>>("WalkerAIController", no_init)
+    // 定义WalkerAIController类到Python的映射，继承自Actor类，设置相关特性，定义多个该类特有的方法的Python接口
+    class_<cc::WalkerAIController, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::WalkerAIController>>("WalkerAIController", no_init)
     .def("start", &cc::WalkerAIController::Start)
     .def("stop", &cc::WalkerAIController::Stop)
     .def("go_to_location", &cc::WalkerAIController::GoToLocation, (arg("destination")))
@@ -241,13 +250,15 @@ void export_actor() {
     .def(self_ns::str(self_ns::self))
   ;
 
-  class_<cc::TrafficSign, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::TrafficSign>>(
+    // 定义TrafficSign类到Python的映射，继承自Actor类，设置相关特性，添加获取触发体积属性的Python接口
+    class_<cc::TrafficSign, bases<cc::Actor>, boost::noncopyable, boost::shared_ptr<cc::TrafficSign>>(
       "TrafficSign",
       no_init)
       .add_property("trigger_volume", CALL_RETURNING_COPY(cc::TrafficSign, GetTriggerVolume))
   ;
 
-  enum_<cr::TrafficLightState>("TrafficLightState")
+    // 定义TrafficLightState枚举类型到Python的映射，将交通信号灯状态的枚举值暴露给Python
+    enum_<cr::TrafficLightState>("TrafficLightState")
       .value("Red", cr::TrafficLightState::Red)
       .value("Yellow", cr::TrafficLightState::Yellow)
       .value("Green", cr::TrafficLightState::Green)
@@ -255,28 +266,51 @@ void export_actor() {
       .value("Unknown", cr::TrafficLightState::Unknown)
   ;
 
-  class_<cc::TrafficLight, bases<cc::TrafficSign>, boost::noncopyable, boost::shared_ptr<cc::TrafficLight>>(
+    // 定义TrafficLight类到Python的映射，继承自TrafficSign类，设置相关特性，定义多个交通信号灯相关操作的Python接口，如设置、获取状态等
+   // 定义一个名为"TrafficLight"的类，它继承自"cc::TrafficSign"类
+// 该类不可复制（通过boost::noncopyable实现），并且使用boost::shared_ptr进行智能指针管理
+class_<cc::TrafficLight, bases<cc::TrafficSign>, boost::noncopyable, boost::shared_ptr<cc::TrafficLight>>(
       "TrafficLight",
       no_init)
-      .add_property("state", &cc::TrafficLight::GetState)
-      .def("set_state", &cc::TrafficLight::SetState, (arg("state")))
-      .def("get_state", &cc::TrafficLight::GetState)
-      .def("set_green_time", &cc::TrafficLight::SetGreenTime, (arg("green_time")))
-      .def("get_green_time", &cc::TrafficLight::GetGreenTime)
-      .def("set_yellow_time", &cc::TrafficLight::SetYellowTime, (arg("yellow_time")))
-      .def("get_yellow_time", &cc::TrafficLight::GetYellowTime)
-      .def("set_red_time", &cc::TrafficLight::SetRedTime, (arg("red_time")))
-      .def("get_red_time", &cc::TrafficLight::GetRedTime)
-      .def("get_elapsed_time", &cc::TrafficLight::GetElapsedTime)
-      .def("freeze", &cc::TrafficLight::Freeze, (arg("freeze")))
-      .def("is_frozen", &cc::TrafficLight::IsFrozen)
-      .def("get_pole_index", &cc::TrafficLight::GetPoleIndex)
-      .def("get_group_traffic_lights", &GetGroupTrafficLights)
-      .def("reset_group", &cc::TrafficLight::ResetGroup)
-      .def("get_affected_lane_waypoints", CALL_RETURNING_LIST(cc::TrafficLight, GetAffectedLaneWaypoints))
-      .def("get_light_boxes", &GetLightBoxes)
-      .def("get_opendrive_id", &cc::TrafficLight::GetOpenDRIVEID)
-      .def("get_stop_waypoints", CALL_RETURNING_LIST(cc::TrafficLight, GetStopWaypoints))
-      .def(self_ns::str(self_ns::self))
+      // 添加名为"state"的属性，通过调用cc::TrafficLight::GetState函数来获取交通信号灯的当前状态
+     .add_property("state", &cc::TrafficLight::GetState)
+      // 定义一个名为"set_state"的函数，用于设置交通信号灯的状态，参数"state"表示要设置的具体状态值
+     .def("set_state", &cc::TrafficLight::SetState, (arg("state")))
+      // 定义一个名为"get_state"的函数，用于获取交通信号灯的状态，实际上它与上面的"add_property"中获取状态的函数对应，可能是为了方便不同的调用方式而定义
+     .def("get_state", &cc::TrafficLight::GetState)
+      // 定义一个名为"set_green_time"的函数，用于设置交通信号灯绿灯亮起的时长，参数"green_time"表示要设置的绿灯时长值
+     .def("set_green_time", &cc::TrafficLight::SetGreenTime, (arg("green_time")))
+      // 定义一个名为"get_green_time"的函数，用于获取交通信号灯绿灯亮起的时长
+     .def("get_green_time", &cc::TrafficLight::GetGreenTime)
+      // 定义一个名为"set_yellow_time"的函数，用于设置交通信号灯黄灯亮起的时长，参数"yellow_time"表示要设置的黄灯时长值
+     .def("set_yellow_time", &cc::TrafficLight::SetYellowTime, (arg("yellow_time")))
+      // 定义一个名为"get_yellow_time"的函数，用于获取交通信号灯黄灯亮起的时长
+     .def("get_yellow_time", &cc::TrafficLight::GetYellowTime)
+      // 定义一个名为"set_red_time"的函数，用于设置交通信号灯红灯亮起的时长，参数"red_time"表示要设置的红灯时长值
+     .def("set_red_time", &cc::TrafficLight::SetRedTime, (arg("red_time")))
+      // 定义一个名为"get_red_time"的函数，用于获取交通信号灯红灯亮起的时长
+     .def("get_red_time", &cc::TrafficLight::GetRedTime)
+      // 定义一个名为"get_elapsed_time"的函数，用于获取交通信号灯从当前状态开始已经经过的时间
+     .def("get_elapsed_time", &cc::TrafficLight::GetElapsedTime)
+      // 定义一个名为"freeze"的函数，用于设置交通信号灯是否冻结（可能暂停状态切换等情况），参数"freeze"表示是否冻结的布尔值
+     .def("freeze", &cc::TrafficLight::Freeze, (arg("freeze")))
+      // 定义一个名为"is_frozen"的函数，用于判断交通信号灯当前是否处于冻结状态
+     .def("is_frozen", &cc::TrafficLight::IsFrozen)
+      // 定义一个名为"get_pole_index"的函数，用于获取交通信号灯所在灯杆的索引（可能用于标识不同位置的灯杆等用途）
+     .def("get_pole_index", &cc::TrafficLight::GetPoleIndex)
+      // 定义一个名为"get_group_traffic_lights"的函数，用于获取与当前交通信号灯同组的其他交通信号灯（可能用于协调控制等场景），具体实现函数在别处（GetGroupTrafficLights）
+     .def("get_group_traffic_lights", &GetGroupTrafficLights)
+      // 定义一个名为"reset_group"的函数，用于重置交通信号灯所在的组（可能将同组信号灯恢复到初始设置等操作），由cc::TrafficLight::ResetGroup函数实现
+     .def("reset_group", &cc::TrafficLight::ResetGroup)
+      // 定义一个名为"get_affected_lane_waypoints"的函数，用于获取受当前交通信号灯影响的车道上的路点列表，以列表形式返回，通过调用cc::TrafficLight::GetAffectedLaneWaypoints函数实现
+     .def("get_affected_lane_waypoints", CALL_RETURNING_LIST(cc::TrafficLight, GetAffectedLaneWaypoints))
+      // 定义一个名为"get_light_boxes"的函数，用于获取交通信号灯的灯箱相关信息（具体信息由GetLightBoxes函数定义）
+     .def("get_light_boxes", &GetLightBoxes)
+      // 定义一个名为"get_opendrive_id"的函数，用于获取交通信号灯对应的OpenDRIVE中的标识ID，由cc::TrafficLight::GetOpenDRIVEID函数实现
+     .def("get_opendrive_id", &cc::TrafficLight::GetOpenDRIVEID)
+      // 定义一个名为"get_stop_waypoints"的函数，用于获取需要在当前交通信号灯前停车的路点列表，以列表形式返回，通过调用cc::TrafficLight::GetStopWaypoints函数实现
+     .def("get_stop_waypoints", CALL_RETURNING_LIST(cc::TrafficLight, GetStopWaypoints))
+      // 定义一个用于将交通信号灯对象转换为字符串表示的函数，具体转换逻辑由对应的self_ns::str函数决定（可能用于输出调试等用途）
+     .def(self_ns::str(self_ns::self))
   ;
 }

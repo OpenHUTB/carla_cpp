@@ -4,19 +4,20 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#pragma once
+#pragma once// 确保此头文件只被包含一次
 
-#include "carla/Buffer.h"
-#include "carla/Debug.h"
-#include "carla/Exception.h"
-#include "carla/Logging.h"
 
-#include <boost/asio/buffer.hpp>
+#include "carla/Buffer.h"// 包含 Carla 项目中定义的 Buffer 类或相关功能的头文件
+#include "carla/Debug.h"// 包含 Carla 项目中用于调试目的的工具或宏的头文件
+#include "carla/Exception.h"//包含 Carla 项目中自定义异常类的头文件
+#include "carla/Logging.h"// 包含 Carla 项目中日志记录功能的头文件
 
-#include <cstdint>
-#include <limits>
-#include <memory>
-#include <type_traits>
+#include <boost/asio/buffer.hpp>//包含 Boost.Asio 库中关于缓冲区操作的头文件
+
+#include <cstdint>//包含标准库中定义的固定宽度整数类型
+#include <limits>//包含标准库中定义的数值极限相关的模板类
+#include <memory>//包含标准库中定义的智能指针类
+#include <type_traits>//包含标准库中定义的类型特征模板
 
 #ifdef LIBCARLA_INCLUDED_FROM_UE4
 #include <compiler/enable-ue4-macros.h>

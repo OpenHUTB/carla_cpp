@@ -9,7 +9,7 @@
 import glob
 import os
 import sys
-
+# 尝试添加CARLA的Python接口路径到系统路径中，以便可以导入carla模块
 try:
     sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
@@ -27,6 +27,7 @@ import logging
 
 
 def main():
+    # 设置命令行参数解析
     argparser = argparse.ArgumentParser(
         description=__doc__)
     argparser.add_argument(
@@ -73,7 +74,7 @@ def main():
     logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.INFO)
 
     try:
-
+# 创建CARLA客户端连接
         client = carla.Client(args.host, args.port)
         client.set_timeout(2.0)
         world = client.get_world()
@@ -87,7 +88,7 @@ def main():
         count = args.number_of_vehicles
 
         print("Recording on file: %s" % client.start_recorder(args.recorder_filename))
-
+# 过滤掉容易引发事故的车辆类型
         if args.safe:
             blueprints = [x for x in blueprints if int(x.get_attribute('number_of_wheels')) == 4]
             blueprints = [x for x in blueprints if not x.id.endswith('microlino')]
@@ -108,7 +109,7 @@ def main():
             logging.warning(msg, count, number_of_spawn_points)
             count = number_of_spawn_points
 
-        # @todo cannot import these directly.
+        # 导入必要的carla命令
         SpawnActor = carla.command.SpawnActor
         SetAutopilot = carla.command.SetAutopilot
         FutureActor = carla.command.FutureActor
@@ -123,7 +124,7 @@ def main():
                 blueprint.set_attribute('color', color)
             blueprint.set_attribute('role_name', 'autopilot')
             batch.append(SpawnActor(blueprint, transform).then(SetAutopilot(FutureActor, True)))
-
+# 批量生成车辆并设置自动导航
         for response in client.apply_batch_sync(batch):
             if response.error:
                 logging.error(response.error)
@@ -131,7 +132,7 @@ def main():
                 actor_list.append(response.actor_id)
 
         print('spawned %d vehicles, press Ctrl+C to exit.' % len(actor_list))
-
+# 如果设置了录制时间，则在指定时间后停止录制，否则持续录制直到用户中断
         if (args.recorder_time > 0):
             time.sleep(args.recorder_time)
         else:
@@ -140,7 +141,7 @@ def main():
                 # time.sleep(0.1)
 
     finally:
-
+ # 销毁所有生成的演员并停止录制
         print('\ndestroying %d actors' % len(actor_list))
         client.apply_batch_sync([carla.command.DestroyActor(x) for x in actor_list])
 

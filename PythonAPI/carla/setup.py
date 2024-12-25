@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2019 Computer Vision Center (CVC) at the Universitat Autonoma de
-# Barcelona (UAB).
-#
-# This work is licensed under the terms of the MIT license.
-# For a copy, see <https://opensource.org/licenses/MIT>.
+# 版权所有 （c） 2019 巴塞罗那自治大学 （UAB） 计算机视觉中心 （CVC）。
+# 本作品根据 MIT 许可证的条款进行许可。
+# 有关副本，请参阅 <https://opensource.org/licenses/MIT>。
 
 # 从setuptools库导入setup和Extension类，用于配置和构建Python扩展模块
 from setuptools import setup, Extension
@@ -63,18 +61,22 @@ def get_libcarla_extensions():
                 # 否则，添加普通的Carla客户端库文件到链接参数中
                 extra_link_args = [ os.path.join(pwd, 'dependencies/lib/libcarla_client.a') ]
                 
-            extra_link_args += [
-                os.path.join(pwd, 'dependencies/lib/librpc.a'),
+            extra_link_args += [#构建列表参数
+                os.path.join(pwd, 'dependencies/lib/librpc.a'),#将路径的各个组成部分组合成完整的路径
                 os.path.join(pwd, 'dependencies/lib/libboost_filesystem.a'),
                 os.path.join(pwd, 'dependencies/lib/libRecast.a'),
                 os.path.join(pwd, 'dependencies/lib/libDetour.a'),
                 os.path.join(pwd, 'dependencies/lib/libDetourCrowd.a'),
                 os.path.join(pwd, 'dependencies/lib/libosm2odr.a'),
                 os.path.join(pwd, 'dependencies/lib/libxerces-c.a')]
-            extra_link_args += ['-lz']
+            extra_link_args += ['-lz']#编译参数列表
             extra_compile_args = [
-                '-isystem', os.path.join(pwd, 'dependencies/include/system'), '-fPIC', '-std=c++14',
-                '-Werror', '-Wall', '-Wextra', '-Wpedantic', '-Wno-self-assign-overloaded',
+                '-isystem', os.path.join(pwd, 'dependencies/include/system'), '-fPIC', '-std=c++14',#指定额外的系统文件搜索路径
+                '-Werror',#将警告当作错误处理
+                '-Wall', #开启大多数常见的警告
+                '-Wextra', #开启额外的警告
+                '-Wpedantic', #阐述更多关于不符合标志的警告
+                '-Wno-self-assign-overloaded',
                 '-Wdeprecated', '-Wno-shadow', '-Wuninitialized', '-Wunreachable-code',
                 '-Wpessimizing-move', '-Wold-style-cast', '-Wnull-dereference',
                 '-Wduplicate-enum', '-Wnon-virtual-dtor', '-Wheader-hygiene',
@@ -85,8 +87,10 @@ def get_libcarla_extensions():
             if is_rss_variant_enabled():
                 extra_compile_args += ['-DLIBCARLA_RSS_ENABLED']
                 extra_compile_args += ['-DLIBCARLA_PYTHON_MAJOR_' +  str(sys.version_info.major)]
+               # 检查 libad_rss_map_integration_python 相关库文件是否存在
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_map_integration.a')]
+               # 检查 libad_rss_map_integration 库文件是否存在
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_map_access_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_map_access.a')]
                 extra_link_args += [os.path.join(pwd, 'dependencies/lib/libad_rss_python' +  str(sys.version_info.major) + str(sys.version_info.minor) + '.a')]
@@ -100,8 +104,7 @@ def get_libcarla_extensions():
                 extra_link_args += ['-lrt']
                 extra_link_args += ['-ltbb']
 
-            # libproj, libsqlite and python libs are also required for rss_variant, therefore
-            # place them after the rss_variant linked libraries
+            # rss_variant还需要 libproj、libsqlite 和 python 库，因此将它们放在rss_variant链接库之后
             extra_link_args += [os.path.join(pwd, 'dependencies/lib/libproj.a'),
                                 os.path.join(pwd, 'dependencies/lib/libsqlite3.a'),
                                 os.path.join(pwd, 'dependencies/lib', pylib)]
@@ -113,21 +116,23 @@ def get_libcarla_extensions():
             else:
                 extra_link_args += ['-lpng', '-ljpeg', '-ltiff']
                 extra_compile_args += ['-DLIBCARLA_IMAGE_WITH_PNG_SUPPORT=true']
-            # @todo Why would we need this?
+            # @todo 我们为什么需要这个？
             # include_dirs += ['/usr/lib/gcc/x86_64-linux-gnu/7/include']
             # library_dirs += ['/usr/lib/gcc/x86_64-linux-gnu/7']
             # extra_link_args += ['/usr/lib/gcc/x86_64-linux-gnu/7/libstdc++.a']
             extra_link_args += ['-lstdc++']
-        else:
+        else: 
             raise NotImplementedError(linux_distro + " not in supported posix platforms: " + str(supported_dists))
     elif os.name == "nt":
         pwd = os.path.dirname(os.path.realpath(__file__))
         pylib = 'libboost_python%d%d' % (
             sys.version_info.major,
             sys.version_info.minor)
-
+        # 初始化额外的链接参数列表，添加一些在 Windows 下链接时需要的库名称，这些库都是 Windows 系统中常用的系统库或者项目依赖的相关库，
+        # 比如 shlwapi.lib 提供了一些 Windows Shell 相关的实用函数，Advapi32.lib 包含了很多高级 Windows API 函数等，后续链接阶段会根据这些名称去查找并链接对应的库文件。
         extra_link_args = ['shlwapi.lib', 'Advapi32.lib', 'ole32.lib', 'shell32.lib']
-
+          # 定义一个列表，记录了在 Windows 环境下项目需要链接的一些必要的库名称，包括前面构造的 Boost.Python 相关库、文件系统操作相关的库、
+          # 以及项目中其他自定义或者依赖的各种库（如 carla_client.lib、libpng.lib 等），这些库在后续链接阶段都是必须要正确链接上才能保证项目正常编译和运行的。
         required_libs = [
             pylib, 'libboost_filesystem',
             'rpc.lib', 'carla_client.lib',
@@ -136,8 +141,7 @@ def get_libcarla_extensions():
             'xerces-c_3.lib', 'sqlite3.lib',
             'proj.lib', 'osm2odr.lib']
 
-        # Search for files in 'PythonAPI\carla\dependencies\lib' that contains
-        # the names listed in required_libs in it's file name
+        # 在 'PythonAPIcarladependencieslib' 中搜索文件名中包含 required_libs 中列出的名称的文件
         libs = [x for x in os.listdir('dependencies/lib') if any(d in x for d in required_libs)]
 
         for lib in libs:
@@ -170,27 +174,31 @@ def get_libcarla_extensions():
 
     print('compiling:\n  - %s' % '\n  - '.join(sources))
 
+ # 返回一个列表，列表元素是由'make_extension'函数处理'carla.libcarla'和'sources'参数得到的结果
     return [make_extension('carla.libcarla', sources)]
 
+# 定义获取许可证的函数
 def get_license():
     if is_rss_variant_enabled():
         return 'LGPL-v2.1-only License'
     return 'MIT License'
 
 with open("README.md") as f:
+ # 读取文件内容并赋值给long_description
     long_description = f.read()
 
+# 调用setup函数进行项目配置
 setup(
-    name='carla',
-    version='0.9.15',
-    package_dir={'': 'source'},
-    packages=['carla'],
-    ext_modules=get_libcarla_extensions(),
-    license=get_license(),
-    description='Python API for communicating with the CARLA server.',
-    long_description=long_description,
-    long_description_content_type='text/markdown',
-    url='https://github.com/carla-simulator/carla',
-    author='The CARLA team',
-    author_email='carla.simulator@gmail.com',
-    include_package_data=True)
+    name='carla', # 项目名称
+    version='0.9.15', # 项目版本
+    package_dir={'': 'source'}, # 包目录，这里设置为项目根目录下的'source'文件夹
+    packages=['carla'], # 要包含的包名列表
+    ext_modules=get_libcarla_extensions(), # 获取扩展模块
+    license=get_license(), # 获取许可证
+    description='Python API for communicating with the CARLA server.', # 项目简短描述
+    long_description=long_description,  # 项目详细描述，与之前读取的README.md内容相同
+    long_description_content_type='text/markdown', # 详细描述的内容类型为markdown文本
+    url='https://github.com/carla-simulator/carla', # 项目的URL
+    author='The CARLA team',   # 项目作者
+    author_email='carla.simulator@gmail.com', # 作者邮箱
+    include_package_data=True) # 是否包含包数据，这里设置为True

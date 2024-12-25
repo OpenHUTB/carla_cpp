@@ -89,12 +89,20 @@ static boost::python::object OptionalToPythonObject(OptionalT &optional) {
         -> std::decay_t<std::result_of_t<decltype(&cls::fn)(cls*, T1_)>> { \
       return self.fn(std::forward<T1_>(t1)); \
     }
-
+// 将 Python 的列表类型 (boost::python::list) 转换为 C++ 的 std::vector 类型
 template<typename T>
+  // 定义一个 C++ 的 std::vector 容器，用于存储转换后的数据
+
 std::vector<T> PythonLitstToVector(boost::python::list &input) {
   std::vector<T> result;
+    // 获取 Python 列表的长度（元素个数）
+
   boost::python::ssize_t list_size = boost::python::len(input);
+    // 遍历 Python 列表的每个元素
+
   for (boost::python::ssize_t i = 0; i < list_size; ++i) {
+        // 从 Python 列表中提取对应索引的元素，转换为模板类型 T 并添加到 std::vector 中
+
     result.emplace_back(boost::python::extract<T>(input[i]));
   }
   return result;

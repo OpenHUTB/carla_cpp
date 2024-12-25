@@ -25,6 +25,7 @@ namespace {
 char dummy;
 }  // namespace
 #endif  // _WIN32
+// 这段代码针对Windows平台（_WIN32宏定义表示Windows环境），定义了一个匿名命名空间及一个未使用的字符变量dummy，目的是消除Visual Studio中的链接器警告LNK4221。
 
 #include "Time.h"
 #include <fastcdr/Cdr.h>
@@ -33,9 +34,15 @@ char dummy;
 using namespace eprosima::fastcdr::exception;
 
 #include <utility>
+// 包含必要的头文件：
+// "Time.h"应该是与当前类定义相关的头文件，可能包含类的前置声明等内容。
+// <fastcdr/Cdr.h> 用于支持CDR（Common Data Representation）相关的序列化和反序列化操作。
+// <fastcdr/exceptions/BadParamException.h> 引入了可能在处理参数异常情况时用到的异常类定义，并且通过using声明将其所在的命名空间引入，方便使用。
+// <utility> 头文件提供了一些实用的模板和工具函数等，虽然这里具体使用情况未明确体现，但可能在代码其他部分或者相关依赖的地方有潜在作用。
 
 #define builtin_interfaces_msg_Time_max_cdr_typesize 8ULL;
 #define builtin_interfaces_msg_Time_max_key_cdr_typesize 0ULL;
+// 定义了两个宏，分别表示Time类型的最大CDR序列化大小（8字节）以及最大键的CDR序列化大小（0字节），用于后续序列化相关操作中对数据大小的判断和控制。
 
 builtin_interfaces::msg::Time::Time()
 {
@@ -44,10 +51,12 @@ builtin_interfaces::msg::Time::Time()
     // unsigned long m_nanosec
     m_nanosec = 0;
 }
+// Time类的默认构造函数，将成员变量m_sec（表示秒数，类型为int32_t）和m_nanosec（表示纳秒数，类型为uint32_t）初始化为0。
 
 builtin_interfaces::msg::Time::~Time()
 {
 }
+// Time类的析构函数，这里目前为空，可能在类对象销毁时不需要进行额外的资源释放等特殊操作，如果后续有相关需求可以在里面添加代码。
 
 builtin_interfaces::msg::Time::Time(
         const Time& x)
@@ -55,6 +64,7 @@ builtin_interfaces::msg::Time::Time(
     m_sec = x.m_sec;
     m_nanosec = x.m_nanosec;
 }
+// 拷贝构造函数，接受一个同类型的常量引用参数x，用于创建一个新的Time对象，并将其成员变量m_sec和m_nanosec初始化为参数x对应的成员变量的值，实现对象的拷贝初始化。
 
 builtin_interfaces::msg::Time::Time(
         Time&& x) noexcept
@@ -62,6 +72,7 @@ builtin_interfaces::msg::Time::Time(
     m_sec = x.m_sec;
     m_nanosec = x.m_nanosec;
 }
+// 移动构造函数，接受一个同类型的右值引用参数x，用于将参数x中的资源（这里就是成员变量的值）“移动”到新创建的Time对象中，通过noexcept关键字声明该函数不会抛出异常，提高性能（例如在某些容器操作中涉及对象转移时会有优化）。
 
 builtin_interfaces::msg::Time& builtin_interfaces::msg::Time::operator =(
         const Time& x)
@@ -71,6 +82,7 @@ builtin_interfaces::msg::Time& builtin_interfaces::msg::Time::operator =(
 
     return *this;
 }
+// 重载赋值运算符（拷贝赋值运算符），将等号右边同类型对象x的成员变量值赋给当前对象的对应成员变量，然后返回当前对象的引用，以支持连续赋值操作（例如 a = b = c这种形式）。
 
 builtin_interfaces::msg::Time& builtin_interfaces::msg::Time::operator =(
         Time&& x) noexcept
@@ -80,18 +92,21 @@ builtin_interfaces::msg::Time& builtin_interfaces::msg::Time::operator =(
 
     return *this;
 }
+// 重载移动赋值运算符，实现将右值引用对象x的资源“移动”到当前对象中，与移动构造函数类似，同样不会抛出异常，方便高效地进行对象资源转移赋值操作。
 
 bool builtin_interfaces::msg::Time::operator ==(
         const Time& x) const
 {
     return (m_sec == x.m_sec && m_nanosec == x.m_nanosec);
 }
+// 重载相等运算符（==），用于比较两个Time对象是否相等，判断依据是其成员变量m_sec和m_nanosec分别相等。
 
-bool builtin_interfaces::msg::Time::operator !=(
+bool builtin_interfaces::msg::Time::operator!=(
         const Time& x) const
 {
-    return !(*this == x);
+    return!(*this == x);
 }
+// 重载不等运算符（!=），通过对相等运算符取反来实现，逻辑清晰简洁，判断两个Time对象是否不相等。
 
 size_t builtin_interfaces::msg::Time::getMaxCdrSerializedSize(
         size_t current_alignment)
@@ -99,6 +114,7 @@ size_t builtin_interfaces::msg::Time::getMaxCdrSerializedSize(
     static_cast<void>(current_alignment);
     return builtin_interfaces_msg_Time_max_cdr_typesize;
 }
+// 函数用于获取Time对象的最大CDR序列化大小，忽略传入的当前对齐参数（通过将其转换为void类型来避免未使用参数的警告），直接返回之前定义的宏表示的最大CDR序列化大小（8字节）。
 
 size_t builtin_interfaces::msg::Time::getCdrSerializedSize(
         const builtin_interfaces::msg::Time& data,
@@ -111,6 +127,7 @@ size_t builtin_interfaces::msg::Time::getCdrSerializedSize(
 
     return current_alignment - initial_alignment;
 }
+// 计算给定Time对象data的实际CDR序列化大小，先将传入的data参数忽略（通过转换为void类型，可能在当前代码逻辑中不需要使用它，也可能是后续会完善此处逻辑），然后根据一定的对齐规则（通过Cdr::alignment函数来处理对齐情况）逐步计算序列化后的大小，最后返回相对于初始对齐位置的大小差值，也就是实际序列化后的大小。
 
 void builtin_interfaces::msg::Time::serialize(
         eprosima::fastcdr::Cdr& scdr) const
@@ -118,6 +135,7 @@ void builtin_interfaces::msg::Time::serialize(
     scdr << m_sec;
     scdr << m_nanosec;
 }
+// 将Time对象的成员变量按照CDR格式序列化到给定的Cdr对象scdr中，先序列化m_sec，再序列化m_nanosec，这里的 << 运算符应该是在<fastcdr/Cdr.h>中针对相关类型重载了的，用于执行具体的序列化操作。
 
 void builtin_interfaces::msg::Time::deserialize(
         eprosima::fastcdr::Cdr& dcdr)
@@ -125,6 +143,7 @@ void builtin_interfaces::msg::Time::deserialize(
     dcdr >> m_sec;
     dcdr >> m_nanosec;
 }
+// 从给定的Cdr对象dcdr中按照CDR格式反序列化数据到当前Time对象的成员变量中，通过 >> 运算符（同样应该是在相关头文件中针对类型重载的）来实现，先读取秒数到m_sec，再读取纳秒数到m_nanosec。
 
 /*!
  * @brief This function sets a value in member sec
@@ -135,6 +154,7 @@ void builtin_interfaces::msg::Time::sec(
 {
     m_sec = _sec;
 }
+// 设置成员变量m_sec的值的函数，接受一个新的int32_t类型的值作为参数，将其赋给m_sec成员变量。
 
 /*!
  * @brief This function returns the value of member sec
@@ -144,6 +164,7 @@ int32_t builtin_interfaces::msg::Time::sec() const
 {
     return m_sec;
 }
+// 获取成员变量m_sec的常量版本的函数，返回当前对象中m_sec成员变量的值，由于函数被声明为const，说明调用该函数不会修改对象的状态。
 
 /*!
  * @brief This function returns a reference to member sec
@@ -153,6 +174,7 @@ int32_t& builtin_interfaces::msg::Time::sec()
 {
     return m_sec;
 }
+// 获取成员变量m_sec的引用的函数，返回对当前对象中m_sec成员变量的引用，这样可以通过返回的引用直接修改该成员变量的值，例如可以像这样使用：obj.sec() = 10;
 
 /*!
  * @brief This function sets a value in member nanosec
@@ -163,6 +185,7 @@ void builtin_interfaces::msg::Time::nanosec(
 {
     m_nanosec = _nanosec;
 }
+// 设置成员变量m_nanosec的值的函数，接受一个新的uint32_t类型的值作为参数，将其赋给m_nanosec成员变量。
 
 /*!
  * @brief This function returns the value of member nanosec
@@ -172,6 +195,7 @@ uint32_t builtin_interfaces::msg::Time::nanosec() const
 {
     return m_nanosec;
 }
+// 获取成员变量m_nanosec的常量版本的函数，返回当前对象中m_nanosec成员变量的值，且不会修改对象状态，因为函数是const的。
 
 /*!
  * @brief This function returns a reference to member nanosec
@@ -181,6 +205,7 @@ uint32_t& builtin_interfaces::msg::Time::nanosec()
 {
     return m_nanosec;
 }
+// 获取成员变量m_nanosec的引用的函数，返回对当前对象中m_nanosec成员变量的引用，便于直接修改其值。
 
 size_t builtin_interfaces::msg::Time::getKeyMaxCdrSerializedSize(
         size_t current_alignment)
@@ -188,14 +213,17 @@ size_t builtin_interfaces::msg::Time::getKeyMaxCdrSerializedSize(
     static_cast<void>(current_alignment);
     return builtin_interfaces_msg_Time_max_key_cdr_typesize;
 }
+// 获取Time对象的键（如果有的话）的最大CDR序列化大小，这里同样忽略传入的当前对齐参数，直接返回之前定义的表示键最大序列化大小的宏值（0字节），说明可能该对象没有键或者键的序列化大小固定为0。
 
 bool builtin_interfaces::msg::Time::isKeyDefined()
 {
     return false;
 }
+// 判断Time对象的键是否被定义的函数，目前直接返回false，意味着在当前的实现中该对象的键是未定义的情况。
 
 void builtin_interfaces::msg::Time::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
     (void) scdr;
 }
+// 用于将Time对象的键（如果有）按照CDR格式序列化到给定的Cdr对象scdr中，当前代码只是将scdr参数忽略了（通过转换为void类型），可能后续会根据实际需求完善此处逻辑来实现真正的键序列化操作。

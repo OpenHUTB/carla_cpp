@@ -8,19 +8,34 @@ DOC_STRING="Makes a packaged version of CARLA and other content packages ready f
 
 USAGE_STRING="Usage: $0 [-h|--help] [--config={Debug,Development,Shipping}] [--no-zip] [--clean-intermediate] [--packages=Name1,Name2,...] [--target-archive=] [--archive-sufix=]"
 
+# 定义一个变量PACKAGES，并将其值设置为"Carla"。
 PACKAGES="Carla"
-DO_TARBALL=true
-DO_CLEAN_INTERMEDIATE=false
-PROPS_MAP_NAME=PropsMap
-PACKAGE_CONFIG=Shipping
-USE_CARSIM=false
-SINGLE_PACKAGE=false
-ARCHIVE_SUFIX=""
 
+# 定义一个变量DO_TARBALL，并将其值设置为true。
+DO_TARBALL=true
+
+# 定义一个变量DO_CLEAN_INTERMEDIATE，并将其值设置为false。
+DO_CLEAN_INTERMEDIATE=false
+
+# 定义一个变量PROPS_MAP_NAME，并将其值设置为"PropsMap"。
+PROPS_MAP_NAME=PropsMap
+
+# 定义一个变量PACKAGE_CONFIG，并将其值设置为"Shipping"。
+PACKAGE_CONFIG=Shipping
+
+# 定义一个变量USE_CARSIM，并将其值设置为false。
+USE_CARSIM=false
+
+# 定义一个变量SINGLE_PACKAGE，并将其值设置为false。
+SINGLE_PACKAGE=false
+
+# 定义一个变量ARCHIVE_SUFIX，并将其值设置为空字符串。
+ARCHIVE_SUFIX=""
+# 使用 getopt 解析命令行参数
 OPTS=`getopt -o h --long help,config:,no-zip,clean-intermediate,carsim,packages:,python-version,target-archive:,archive-sufix:, -n 'parse-options' -- "$@"`
 
 eval set -- "$OPTS"
-
+# 循环处理每个参数
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --config )
@@ -58,45 +73,46 @@ done
 # ==============================================================================
 # -- Prepare environment -------------------------------------------------------
 # ==============================================================================
+# 导入环境设置脚本
 source $(dirname "$0")/Environment.sh
-
+# 检查 UE4_ROOT 环境变量是否设置并指向存在的目录
 if [ ! -d "${UE4_ROOT}" ]; then
   fatal_error "UE4_ROOT is not defined, or points to a non-existent directory, please set this environment variable."
 fi
-
+# 如果 PACKAGES 变量为空，则报错退出
 if [ ! -n "${PACKAGES}" ] ; then
   fatal_error "Nothing to be done."
 fi
 
-# Convert comma-separated string to array of unique elements.
+# 将逗号分隔的字符串转换为数组
 PACKAGES="$(echo "${PACKAGES}" | tr ',' '\n' | sort -u | tr '\n' ',')"
 IFS=',' read -r -a PACKAGES <<< "${PACKAGES}"
 
-# If contains an element called "Carla".
+# 如果数组包含 "Carla" 元素，则设置 DO_CARLA_RELEASE 为 true
 if [[ "${PACKAGES[@]}" =~ "Carla" ]] ; then
   DO_CARLA_RELEASE=true
 else
   DO_CARLA_RELEASE=false
 fi
-
+# 获取 git 仓库版本号
 REPOSITORY_TAG=$(get_git_repository_version)
-
+# 获取 git 仓库版本号
 if [[ ${ARCHIVE_SUFIX} != "" ]] ; then
   RELEASE_BUILD_FOLDER=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}_${ARCHIVE_SUFIX}
 else
   RELEASE_BUILD_FOLDER=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}
 fi
-
+# 根据 PACKAGE_CONFIG 变量设置发布包路径
 if [[ ${PACKAGE_CONFIG} == "Shipping" ]] ; then
   RELEASE_PACKAGE_PATH=${CARLA_DIST_FOLDER}/CARLA_${REPOSITORY_TAG}
 else
   RELEASE_PACKAGE_PATH=${CARLA_DIST_FOLDER}/CARLA_${PACKAGE_CONFIG}_${REPOSITORY_TAG}
 fi
-
+# 如果设置了 ARCHIVE_SUFIX，则添加到发布包路径
 if [[ ${ARCHIVE_SUFIX} != "" ]] ; then
   RELEASE_PACKAGE_PATH=${RELEASE_PACKAGE_PATH}_${ARCHIVE_SUFIX}
 fi
-
+# 设置发布包路径的文件名
 RELEASE_PACKAGE_PATH=${RELEASE_PACKAGE_PATH}.tar.gz
 
 log "Packaging version '${REPOSITORY_TAG}' (${PACKAGE_CONFIG})."
@@ -104,11 +120,11 @@ log "Packaging version '${REPOSITORY_TAG}' (${PACKAGE_CONFIG})."
 # ==============================================================================
 # -- Cook CARLA project --------------------------------------------------------
 # ==============================================================================
-
+# 如果设置了 DO_CARLA_RELEASE，则执行 CARLA 项目的构建
 if ${DO_CARLA_RELEASE} ; then
 
   pushd "${CARLAUE4_ROOT_FOLDER}" >/dev/null
-
+# 如果设置了 USE_CARSIM，则启用 CarSim
   if ${USE_CARSIM} ; then
     python ${PWD}/../../Util/BuildTools/enable_carsim_to_uproject.py -f="CarlaUE4.uproject" -e
     echo "CarSim ON" > ${PWD}/Config/CarSimConfig.ini
@@ -118,10 +134,10 @@ if ${DO_CARLA_RELEASE} ; then
   fi
 
   log "Cooking CARLA project."
-
+# 删除旧的发布构建文件夹并创建新的
   rm -Rf ${RELEASE_BUILD_FOLDER}
   mkdir -p ${RELEASE_BUILD_FOLDER}
-
+# 使用 Unreal Engine 4 的 UAT 工具构建项目
   ${UE4_ROOT}/Engine/Build/BatchFiles/RunUAT.sh BuildCookRun \
       -project="${PWD}/CarlaUE4.uproject" \
       -nocompileeditor -nop4 -cook -stage -archive -package -iterate \
@@ -130,7 +146,7 @@ if ${DO_CARLA_RELEASE} ; then
       -archivedirectory="${RELEASE_BUILD_FOLDER}"
 
   popd >/dev/null
-
+# 如果构建失败，则报错退出
   if [[ ! -d ${RELEASE_BUILD_FOLDER}/LinuxNoEditor ]] ; then
     fatal_error "Failed to cook the project!"
   fi
@@ -140,7 +156,7 @@ fi
 # ==============================================================================
 # -- Copy files (Python API, README, etc) --------------------------------------
 # ==============================================================================
-
+# 如果设置了 DO_CARLA_RELEASE，则执行额外文件的复制
 if ${DO_CARLA_RELEASE} ; then
 
   DESTINATION=${RELEASE_BUILD_FOLDER}/LinuxNoEditor
@@ -148,11 +164,11 @@ if ${DO_CARLA_RELEASE} ; then
   log "Adding extra files to CARLA package."
 
   pushd ${CARLA_ROOT_FOLDER} >/dev/null
-
+# 创建Import文件夹并复制版本号
   mkdir -p "${DESTINATION}/Import"
 
   echo "${REPOSITORY_TAG}" > ${DESTINATION}/VERSION
-
+# 复制文件到发布构建文件夹
   copy_if_changed "./LICENSE" "${DESTINATION}/LICENSE"
   copy_if_changed "./CHANGELOG.md" "${DESTINATION}/CHANGELOG"
   copy_if_changed "./Docs/release_readme.md" "${DESTINATION}/README"
@@ -160,31 +176,31 @@ if ${DO_CARLA_RELEASE} ; then
   copy_if_changed "./Util/Docker/Release.Dockerfile" "${DESTINATION}/Dockerfile"
   copy_if_changed "./Util/ImportAssets.sh" "${DESTINATION}/ImportAssets.sh"
   copy_if_changed "./Util/DockerUtils/dist/RecastBuilder" "${DESTINATION}/Tools/"
-
+ # 复制Python API文件
   copy_if_changed "./PythonAPI/carla/dist/*.egg" "${DESTINATION}/PythonAPI/carla/dist/"
   copy_if_changed "./PythonAPI/carla/dist/*.whl" "${DESTINATION}/PythonAPI/carla/dist/"
   copy_if_changed "./PythonAPI/carla/agents/" "${DESTINATION}/PythonAPI/carla/agents"
   copy_if_changed "./PythonAPI/carla/scene_layout.py" "${DESTINATION}/PythonAPI/carla/"
   copy_if_changed "./PythonAPI/carla/requirements.txt" "${DESTINATION}/PythonAPI/carla/"
-
+# 复制Python API示例文件
   copy_if_changed "./PythonAPI/examples/*.py" "${DESTINATION}/PythonAPI/examples/"
   copy_if_changed "./PythonAPI/examples/rss/*.py" "${DESTINATION}/PythonAPI/examples/rss/"
   copy_if_changed "./PythonAPI/examples/requirements.txt" "${DESTINATION}/PythonAPI/examples/"
-
+ # 复制Python API工具文件
   copy_if_changed "./PythonAPI/util/*.py" "${DESTINATION}/PythonAPI/util/"
   copy_if_changed "./PythonAPI/util/opendrive/" "${DESTINATION}/PythonAPI/util/opendrive/"
   copy_if_changed "./PythonAPI/util/requirements.txt" "${DESTINATION}/PythonAPI/util/"
-
+# 复制Co-Simulation文件夹
   copy_if_changed "./Co-Simulation/" "${DESTINATION}/Co-Simulation/"
-
+# 复制插件文件夹
   if [ -d "./Plugins/" ] ; then
     copy_if_changed "./Plugins/" "${DESTINATION}/Plugins/"
   fi
-
+# 复制Carla依赖库
   if [ -d "./Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies/lib" ] ; then
     cp -r "./Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies/lib" "${DESTINATION}/CarlaUE4/Plugins/Carla/CarlaDependencies"
   fi
-
+# 复制HDMaps文件夹
   copy_if_changed "./Unreal/CarlaUE4/Content/Carla/HDMaps/*.pcd" "${DESTINATION}/HDMaps/"
   copy_if_changed "./Unreal/CarlaUE4/Content/Carla/HDMaps/Readme.md" "${DESTINATION}/HDMaps/README"
 
@@ -196,22 +212,28 @@ fi
 # -- Zip the project -----------------------------------------------------------
 # ==============================================================================
 
+#确定源文件的位置和目标文件的存放路径
 if ${DO_CARLA_RELEASE} && ${DO_TARBALL} ; then
 
   DESTINATION=${RELEASE_PACKAGE_PATH}
   SOURCE=${RELEASE_BUILD_FOLDER}/LinuxNoEditor
 
+  #将当前目录切换到指定的目录
   pushd "${SOURCE}" >/dev/null
 
+  #记录正在进行的CARLA版本的打包操作
   log "Packaging CARLA release."
 
+  #进行了一系列的文件删除操作
   rm -f ./Manifest_NonUFSFiles_Linux.txt
   rm -f ./Manifest_UFSFiles_Linux.txt
   rm -Rf ./CarlaUE4/Saved
   rm -Rf ./Engine/Saved
 
+  #用于打包和压缩文件
   tar -czf ${DESTINATION} *
 
+  #从目录栈中弹出一个目录，并将当前目录切换到弹出的目录
   popd >/dev/null
 
 fi
@@ -220,10 +242,13 @@ fi
 # -- Remove intermediate files -------------------------------------------------
 # ==============================================================================
 
+#条件判断
 if ${DO_CARLA_RELEASE} && ${DO_CLEAN_INTERMEDIATE} ; then
 
+  #记录一条日志信息
   log "Removing intermediate build."
 
+  #删除与RELEASE_BUILD_FOLDER变量所指定路段相关的中间构建文件或目录
   rm -Rf ${RELEASE_BUILD_FOLDER}
 
 fi

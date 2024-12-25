@@ -1,21 +1,33 @@
-Doxygen/*
+# 忽略 Doxygen 生成的文档
+/*
+# 忽略构建目录
 Build
+# 忽略分发目录
 Dist
 
+# 忽略已弃用的 Python 客户端的分发目录
 Deprecated/PythonClient/dist
+# 忽略 TrafficManager 的构建目录
 TrafficManager/build
+# 忽略 Util 的构建目录
 Util/Build
+# 忽略安装目录
 Install
+# 忽略插件目录
+#告诉Git忽略名为Plugins的目录，这个目录可能包含了各种可选的插件或扩展
 Plugins
-!Unreal/CarlaUE4/Plugins
-Unreal/CarlaUE4/Plugins/Streetmap
-Unreal/CarlaUE4/Plugins/HoudiniEngine
+# 排除 Unreal/CarlaUE4/Plugins 目录下的特定插件，以便不忽略它们
+#两个子问题不应该被忽略
+!Unreal/CarlaUE4/Plugins/Streetmap
+!Unreal/CarlaUE4/Plugins/HoudiniEngine
 
-
+# 忽略导出的地图目录
 /ExportedMaps
+# 忽略导入目录下的所有文件和文件夹，但排除 README.md 文件
 /Import/*
 !/Import/README.md
 
+# 忽略各种编译和构建过程中生成的文件
 *.VC.db
 *.VC.opendb
 *.a
@@ -34,16 +46,18 @@ Unreal/CarlaUE4/Plugins/HoudiniEngine
 *.stackdump
 *.sublime-workspace
 *.workspace
-*CodeCompletionFolders.txt
-*CodeLitePreProcessor.txt
-.aria2c.input
-.codelite
+#忽略特定的用户配置文件和缓存
+*CodeCompletionFolders.txt#这个文件可能用于配置代码自动完成功能，列出了代码编辑器应该搜索代码补全建议的文件夹。
+*CodeLitePreProcessor.txt#这个文件可能用于CodeLite IDE的预处理器配置，定义了预处理器指令。
+.aria2c.input#这是aria2（一个命令行下载管理器）的输入文件，包含了下载任务的列表。
+.codelite#这个文件夹可能包含CodeLite IDE的项目配置文件。
 .gdb_history
 .gtest
 .idea
 .tags*
 .vs
 .vscode
+#忽略特定的临时目录和文件
 __pycache__
 _benchmarks_results
 _images*

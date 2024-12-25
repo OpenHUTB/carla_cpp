@@ -8,7 +8,7 @@
 #include "CarlaRecorderEventParent.h"
 #include "CarlaRecorderHelpers.h"
 
-
+// 从输入流 InFile 中读取数据，并将其存储在类的成员变量中
 void CarlaRecorderEventParent::Read(std::istream &InFile)
 {
     // database id

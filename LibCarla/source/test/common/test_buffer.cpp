@@ -50,8 +50,6 @@ TEST(buffer, copy_buffer_sequence) {
   std::string message;
   std::array<Buffer, number_of_buffers> buffers;
   std::array<boost::asio::const_buffer, number_of_buffers> sequence;
-  // 循环构建多个缓冲区，每个缓冲区都复制相同的字符串，并将这些缓冲区对应的const_buffer添加到序列中
-  // 同时拼接字符串用于后续验证
   for (auto i = 0u; i < number_of_buffers; ++i) {
     message += str;
     buffers[i].copy_from(str);

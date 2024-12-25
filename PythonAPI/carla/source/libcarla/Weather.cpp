@@ -31,11 +31,15 @@ namespace rpc {
     return out;//返回输出流对象
   }
 
-} // namespace rpc
+} // namespace rpc//结束rcp命名空间
 } // namespace carla
 
 void export_weather() {//将WeatherParameters相关的类型、类等信息导出到Python环境中
+    // 引入 Boost.Python 的命名空间以简化代码
+
   using namespace boost::python;
+    // 创建一个别名，用于引用 carla::rpc 命名空间
+
   namespace cr = carla::rpc;
 
   // 使用class_模板在Python环境中定义一个名为WeatherParameters的类，对应于C++中的carla::rpc::WeatherParameters类
@@ -57,6 +61,7 @@ void export_weather() {//将WeatherParameters相关的类型、类等信息导�
          arg("mie_scattering_scale")=0.0f,
          arg("rayleigh_scattering_scale")=0.0331f,
          arg("dust_storm")=0.0f)))
+     #定义一系列宏，用于将变量的值写入到对应的结构体中
     .def_readwrite("cloudiness", &cr::WeatherParameters::cloudiness)
     .def_readwrite("precipitation", &cr::WeatherParameters::precipitation)
     .def_readwrite("precipitation_deposits", &cr::WeatherParameters::precipitation_deposits)

@@ -4,18 +4,24 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
+//确保头文件只被包含一次
 #pragma once
 
+//包含Carla文件系统头文件
 #include "carla/FileSystem.h"
 
+//包含fstream头文件，用于文件流操作
 #include <fstream>
+//包含iterator头文件，用于迭代器操作
 #include <iterator>
+//包含iostream头文件，用于输入输出操作
 #include <iomanip>
 
 namespace carla {// 定义命名空间carla，用于组织相关的代码和数据
 namespace pointcloud {// 定义命名空间pointcloud，进一步组织特定于点云处理的代码
 // 定义PointCloudIO类，用于处理点云数据的输入输出
   class PointCloudIO {
+//类的具体实现代码
 
   public:
   // 模板函数Dump，用于将点云数据写入到输出流中，PointIt是点迭代器类型，用于遍历点云数据，out是输出流对象，begin和end分别是点云数据的起始和结束迭代器

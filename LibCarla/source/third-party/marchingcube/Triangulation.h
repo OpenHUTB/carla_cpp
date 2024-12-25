@@ -1,20 +1,24 @@
-#pragma once
-#include "Cube.h"
-#include "DataStructs.h"
+#pragma once//程序预处理
+#include "Cube.h"// 包含名为Cube.h的头文件，可能包含与立方体相关的定义，
+// 例如立方体的数据结构或操作立方体的函数。
+#include "DataStructs.h"// 包含名为DataStructs.h的头文件，可能包含数据结构相关的定义。
 
-namespace MeshReconstruction
+namespace MeshReconstruction// 定义一个名为MeshReconstruction的命名空间，
+// 命名空间用于避免不同模块中的名称冲突，
+// 在此命名空间内定义的所有标识符都与其他命名空间中的同名标识符隔离。
 {
-  void Triangulate(
-      IntersectInfo const &intersect,
-      Fun3v const &grad,
-      Mesh &mesh);
+  void Triangulate(// Triangulate函数接受相交信息、某个三维函数或向量相关信息（可能是梯度），用于对Mesh进行操作，无返回值
+      IntersectInfo const &intersect, // 相交信息，以常量引用方式传入，函数不会修改它
+      Fun3v const &grad, // 可能是与三维函数或向量相关的信息，以常量引用传入
+      Mesh &mesh);// 要进行操作（可能是三角剖分）的Mesh对象，以引用方式传入
 }
 
-namespace
+namespace// 在这个未命名的命名空间内部，可以定义一些只在当前源文件中使用的函数、变量或者类型
+// 这样做有助于避免全局命名冲突，因为其中的标识符具有内部链接性
 {
-  // Indices into vertex buffer (0 - 11).
-  // Three successive entries make up one triangle.
-  // -1 means unused.
+  // 顶点缓冲区中的索引（0 - 11）。
+  //连续的三个条目组成一个三角形。
+  // -1 表示未使用。
   const int signConfigToTriangles[256][16] =
       {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
        {0, 8, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
@@ -274,39 +278,38 @@ namespace
        {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
 }
 
-/// Given a grid cube and an isolevel the triangles (5 max)
-/// required to represent the isosurface in the cube are computed.
+///给定一个网格立方体和一个等值面，计算出在立方体中表示等值面的三角形（最多5个）。
 void MeshReconstruction::Triangulate(
-    IntersectInfo const &intersect,
-    Fun3v const &grad,
-    Mesh &mesh)
+    IntersectInfo const &intersect,// 相交信息，包含立方体顶点与表面的相交情况
+    Fun3v const &grad,// 梯度函数，用于计算顶点处的法向量
+    Mesh &mesh)// 要填充的网格对象
 {
-  // Cube is entirely in/out of the surface. Generate no triangles.
+  // Cube 完全在表面内/外。不生成三角形。
   if (intersect.signConfig == 0 || intersect.signConfig == 255)
     return;
-
+  //根据相交配置（signConfig）获取对应的三角形索引数组
   auto const &tri = signConfigToTriangles[intersect.signConfig];
-
+  // 遍历三角形索引数组，直到遇到-1
   for (auto i = 0; tri[i] != -1; i += 3)
   {
     auto const &v0 = intersect.edgeVertIndices[tri[i]];
     auto const &v1 = intersect.edgeVertIndices[tri[i + 1]];
     auto const &v2 = intersect.edgeVertIndices[tri[i + 2]];
-
+  // 获取当前三角形的三个顶点索引
     mesh.vertices.push_back(v0);
     mesh.vertices.push_back(v1);
     mesh.vertices.push_back(v2);
-
+ // 计算这三个顶点处的法向量
     auto normal0 = grad(v0).Normalized();
     auto normal1 = grad(v1).Normalized();
     auto normal2 = grad(v2).Normalized();
-
+ // 将这三个法向量添加到mesh的顶点法向量列表中
     mesh.vertexNormals.push_back(normal0);
     mesh.vertexNormals.push_back(normal1);
     mesh.vertexNormals.push_back(normal2);
-
+// 当前三角形的索引是最后三个顶点
     auto last = static_cast<int>(mesh.vertices.size() - 1);
-
+//last-2, last-1, last对应于最后添加的三个顶点
     mesh.triangles.push_back({last - 2, last - 1, last});
   }
 }

@@ -39,11 +39,15 @@ using namespace eprosima::fastcdr::exception;
 
 tf2_msgs::msg::TF2Error::TF2Error()
 {
-    // octet m_error
+    // 将 m_error 初始化为 0
+    // m_error 是一个字节类型（octet），用于表示错误的代码或状态
     m_error = 0;
-    // string m_error_string
-    m_error_string ="";
+
+    // 将 m_error_string 初始化为空字符串
+    // m_error_string 是一个字符串，用于描述错误的详细信息
+    m_error_string = "";
 }
+
 
 tf2_msgs::msg::TF2Error::~TF2Error()
 {
@@ -52,16 +56,25 @@ tf2_msgs::msg::TF2Error::~TF2Error()
 tf2_msgs::msg::TF2Error::TF2Error(
         const TF2Error& x)
 {
+    // 将输入对象 x 的 m_error 成员变量值赋给当前对象的 m_error
     m_error = x.m_error;
+
+    // 将输入对象 x 的 m_error_string 成员变量值赋给当前对象的 m_error_string
     m_error_string = x.m_error_string;
 }
+
 
 tf2_msgs::msg::TF2Error::TF2Error(
         TF2Error&& x) noexcept
 {
+    // 将输入对象 x 的 m_error 成员变量值赋给当前对象的 m_error
     m_error = x.m_error;
+
+    // 使用 std::move 将输入对象 x 的 m_error_string 移动到当前对象的 m_error_string
+    // 这里使用 std::move 表示将 x.m_error_string 的资源转移到当前对象，避免不必要的拷贝
     m_error_string = std::move(x.m_error_string);
 }
+
 
 tf2_msgs::msg::TF2Error& tf2_msgs::msg::TF2Error::operator =(
         const TF2Error& x)
@@ -114,90 +127,104 @@ size_t tf2_msgs::msg::TF2Error::getCdrSerializedSize(
 void tf2_msgs::msg::TF2Error::serialize(
         eprosima::fastcdr::Cdr& scdr) const
 {
+    // 将 m_error 成员变量序列化到 CDR 流中
+    // scdr 是用于序列化的 Cdr 对象，"<<" 运算符表示将数据写入流中
     scdr << m_error;
+
+    // 将 m_error_string 的 C 字符串（即 m_error_string.c_str()）序列化到 CDR 流中
+    // 这里使用 c_str() 将 std::string 转换为 C 风格字符串（const char*），
+    // 因为 FastCDR 库需要 C 风格的字符串来进行序列化
     scdr << m_error_string.c_str();
 }
 
-void tf2_msgs::msg::TF2Error::deserialize(
-        eprosima::fastcdr::Cdr& dcdr)
-{
-    dcdr >> m_error;
-    dcdr >> m_error_string;
-}
 
-/*!
- * @brief This function sets a value in member error
- * @param _error New value for member error
- */
-void tf2_msgs::msg::TF2Error::error(
-        uint8_t _error)
-{
-    m_error = _error;
-}
+void tf2_msgs::msg::TF2Error::deserialize(  
+        eprosima::fastcdr::Cdr& dcdr)  
+{  
+    // 从数据流中反序列化成员变量 m_error 和 m_error_string  
+    dcdr >> m_error;            // 反序列化错误码  
+    dcdr >> m_error_string;     // 反序列化错误信息字符串  
+}  
 
-/*!
- * @brief This function returns the value of member error
- * @return Value of member error
- */
-uint8_t tf2_msgs::msg::TF2Error::error() const
-{
-    return m_error;
-}
+/*!  
+ * @brief 设置成员 error 的新值  
+ * @param _error 新的错误码值  
+ */  
+void tf2_msgs::msg::TF2Error::error(  
+        uint8_t _error)  
+{  
+    m_error = _error;           // 更新成员变量 m_error 的值  
+}  
 
-/*!
- * @brief This function returns a reference to member error
- * @return Reference to member error
- */
-uint8_t& tf2_msgs::msg::TF2Error::error()
-{
-    return m_error;
-}
+/*!  
+ * @brief 返回成员 error 的值  
+ * @return 成员 error 的值  
+ */  
+uint8_t tf2_msgs::msg::TF2Error::error() const  
+{  
+    return m_error;             // 返回当前错误码的值  
+}  
 
-/*!
- * @brief This function copies the value in member error_string
- * @param _error_string New value to be copied in member error_string
- */
-void tf2_msgs::msg::TF2Error::error_string(
-        const std::string& _error_string)
-{
-    m_error_string = _error_string;
-}
+/*!  
+ * @brief 返回成员 error 的引用  
+ * @return 成员 error 的引用  
+ */  
+uint8_t& tf2_msgs::msg::TF2Error::error()  
+{  
+    return m_error;             // 返回 m_error 的引用，以供修改  
+}  
 
-/*!
- * @brief This function moves the value in member error_string
- * @param _error_string New value to be moved in member error_string
- */
-void tf2_msgs::msg::TF2Error::error_string(
-        std::string&& _error_string)
-{
-    m_error_string = std::move(_error_string);
-}
+/*!  
+ * @brief 复制新值到成员 error_string  
+ * @param _error_string 新的错误信息字符串  
+ */  
+void tf2_msgs::msg::TF2Error::error_string(  
+        const std::string& _error_string)  
+{  
+    m_error_string = _error_string; // 将新的错误字符串复制给成员变量 m_error_string  
+}  
 
-/*!
- * @brief This function returns a constant reference to member error_string
- * @return Constant reference to member error_string
- */
-const std::string& tf2_msgs::msg::TF2Error::error_string() const
-{
-    return m_error_string;
-}
+/*!  
+ * @brief 移动新值到成员 error_string  
+ * @param _error_string 新的错误信息字符串  
+ */  
+void tf2_msgs::msg::TF2Error::error_string(  
+        std::string&& _error_string)  
+{  
+    m_error_string = std::move(_error_string); // 直接移动错误字符串到成员变量 m_error_string  
+}  
 
-/*!
- * @brief This function returns a reference to member error_string
- * @return Reference to member error_string
- */
-std::string& tf2_msgs::msg::TF2Error::error_string()
-{
-    return m_error_string;
-}
+/*!  
+ * @brief 返回成员 error_string 的常量引用  
+ * @return error_string 的常量引用  
+ */  
+const std::string& tf2_msgs::msg::TF2Error::error_string() const  
+{  
+    return m_error_string;     // 返回 m_error_string 的常量引用，不允许修改  
+}  
+
+/*!  
+ * @brief 返回成员 error_string 的引用  
+ * @return member error_string 的引用  
+ */  
+std::string& tf2_msgs::msg::TF2Error::error_string()  
+{  
+    return m_error_string;     // 返回 m_error_string 的引用，以供修改  
+}  
 
 
 size_t tf2_msgs::msg::TF2Error::getKeyMaxCdrSerializedSize(
         size_t current_alignment)
 {
+    // 静态转换 current_alignment 为 void，表示这个参数当前没有被使用
+    // 该行代码的目的是消除未使用变量的编译警告
     static_cast<void>(current_alignment);
+
+    // 返回最大键的 CDR 序列化大小
+    // tf2_msgs_msg_TF2Error_max_key_cdr_typesize 是一个常量，表示 TF2Error 类型的键在 CDR 序列化格式中的最大大小
     return tf2_msgs_msg_TF2Error_max_key_cdr_typesize;
 }
+
 
 bool tf2_msgs::msg::TF2Error::isKeyDefined()
 {

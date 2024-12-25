@@ -4,23 +4,44 @@
 // This work is licensed under the terms of the MIT license.
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
-#include "carla/multigpu/incomingMessage.h" // 包含接收消息的头文件
-#include "carla/multigpu/secondary.h"       // 包含次要功能的头文件
+#include "carla/multigpu/incomingMessage.h" // 引入CARLA多GPU通信模块中负责处理接收消息的头文件
+// 此头文件可能定义了incomingMessage类或其他相关结构，用于处理从其他GPU或节点接收的数据包。
 
-#include "carla/BufferPool.h"                // 包含缓冲池的头文件
-#include "carla/Debug.h"                     // 包含调试相关的头文件
-#include "carla/Exception.h"                 // 包含异常处理的头文件
-#include "carla/Logging.h"                   // 包含日志记录的头文件
-#include "carla/Time.h"                      // 包含时间处理的头文件
+#include "carla/multigpu/secondary.h"       // 引入CARLA多GPU框架中提供次要或辅助功能的头文件
+// 此头文件可能包含了执行次要计算任务、数据预处理或后处理等功能的类和方法。
 
-#include <boost/asio/connect.hpp>            // 包含连接的Boost.Asio头文件
-#include <boost/asio/read.hpp>               // 包含读取的Boost.Asio头文件
-#include <boost/asio/write.hpp>              // 包含写入的Boost.Asio头文件
-#include <boost/asio/post.hpp>               // 包含异步操作的Boost.Asio头文件
-#include <boost/asio/bind_executor.hpp>      // 包含绑定执行器的Boost.Asio头文件
+#include "carla/BufferPool.h"                // 引入CARLA框架中管理内存缓冲区的头文件
+// BufferPool类可能提供了缓冲区的分配、释放和重用功能，以优化内存使用和性能。
 
-#include <exception>                         // 包含标准异常处理头文件
+#include "carla/Debug.h"                     // 引入CARLA框架中用于调试功能的头文件
+// 此头文件可能定义了调试宏、函数或类，用于在开发过程中输出调试信息、检查断言等。
 
+#include "carla/Exception.h"                 // 引入CARLA框架中处理异常的头文件
+// Exception类及其相关可能定义了自定义异常类型，用于在框架中处理错误情况。
+
+#include "carla/Logging.h"                   // 引入CARLA框架中负责日志记录的头文件
+// Logging类和相关可能提供了灵活的日志记录功能，包括不同级别的日志信息（如调试、信息、警告、错误等）。
+
+#include "carla/Time.h"                      // 引入CARLA框架中处理时间和计时功能的头文件
+// Time类及相关可能提供了时间戳获取、时间间隔测量、定时器等功能。
+
+#include <boost/asio/connect.hpp>            // 引入Boost.Asio库中负责建立连接的头文件
+// connect函数模板用于启动到远程端点的异步或同步连接。
+
+#include <boost/asio/read.hpp>               // 引入Boost.Asio库中负责读取数据的头文件
+// read和async_read函数模板用于从异步操作关联的流对象中读取数据。
+
+#include <boost/asio/write.hpp>              // 引入Boost.Asio库中负责写入数据的头文件
+// write和async_write函数模板用于向异步操作关联的流对象中写入数据。
+
+#include <boost/asio/post.hpp>               // 引入Boost.Asio库中用于异步任务调度的头文件
+// post函数模板用于将任务（函数对象、lambda表达式等）排队到指定的I/O执行器上，以便稍后异步执行。
+
+#include <boost/asio/bind_executor.hpp>      // 引入Boost.Asio库中用于绑定执行器的头文件
+// bind_executor函数模板用于创建一个与指定执行器关联的可调用对象，确保任务在正确的执行器上执行。
+
+#include <exception>                         // 引入C++标准库中的异常处理头文件
+// 此头文件定义了std::exception类及其相关功能，用于在程序中处理异常和错误情况。
 namespace carla {
 namespace multigpu {
 

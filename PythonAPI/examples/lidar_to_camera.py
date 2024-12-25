@@ -16,11 +16,23 @@ import sys
 
 # 将CARLA PythonAPI模块的路径添加到系统路径
 try:
-    sys.path.append(glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
+    # 尝试执行以下操作，目的是将特定路径添加到Python的模块搜索路径（sys.path）中。
+
+    # 使用 `glob.glob` 函数来查找符合特定模式的文件路径。
+    # 这里的模式是 `../carla/dist/carla-*%d.%d-%s.egg`，其中 `%d.%d-%s` 是格式化字符串占位符，会被替换为具体的值。
+    # `sys.version_info.major` 获取当前Python版本的主版本号（例如Python 3.8中的3），`sys.version_info.minor` 获取次版本号（例如Python 3.8中的8）。
+    # `'win-amd64' if os.name == 'nt' else 'linux-x86_64'` 根据操作系统类型进行判断，如果操作系统是Windows（`os.name == 'nt'`），则使用 `win-amd64`，否则使用 `linux-x86_64`，这是为了适配不同操作系统下对应的文件路径格式。
+    # 最终 `glob.glob` 会查找类似 `../carla/dist/carla-<版本号>-<操作系统架构>.egg` 这样格式的文件路径，返回的结果是一个列表（可能包含0个、1个或多个匹配的路径）。
+    paths = glob.glob('../carla/dist/carla-*%d.%d-%s.egg' % (
         sys.version_info.major,
         sys.version_info.minor,
-        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))[0])
+        'win-amd64' if os.name == 'nt' else 'linux-x86_64'))
+    # 从查找到的路径列表中取第一个元素（索引为0的元素），并将其添加到 `sys.path` 中，这样Python解释器就能在这个路径下查找对应的模块了。
+    # 这里假设 `glob.glob` 返回的列表至少有一个元素，如果没有元素，下面的代码会抛出 `IndexError` 异常。
+    sys.path.append(paths[0])
 except IndexError:
+    # 如果在执行上述代码过程中抛出了 `IndexError` 异常（即 `glob.glob` 没有找到匹配的文件路径，返回的列表为空，尝试访问 `paths[0]` 就会触发该异常），
+    # 则使用 `pass` 语句跳过异常处理，也就是什么都不做。这意味着在找不到对应文件路径的情况下，代码不会因为异常而中断，只是不会成功添加路径到 `sys.path` 而已。
     pass
 
 import carla
@@ -32,8 +44,13 @@ from matplotlib import cm
 
 # 确保已安装numpy
 try:
+    # 尝试执行以下导入语句，目的是导入Python的第三方库numpy，并使用别名np来方便后续在代码中引用numpy相关的功能。
+    # numpy是一个功能强大的用于数值计算的库，在很多科学计算、数据分析、机器学习等场景中都会用到。
     import numpy as np
 except ImportError:
+    # 如果在执行 `import numpy as np` 时出现了导入错误（例如numpy库没有安装，或者安装的版本存在问题等情况导致无法正确导入），
+    # 就会触发 `ImportError` 异常。当捕获到这个异常后，代码会执行下面的语句，主动抛出一个 `RuntimeError` 异常，并附带相应的错误提示信息。
+    # 这里提示用户“无法导入numpy，确保numpy包已经安装”，告知用户需要安装numpy库才能使后续代码正常运行，否则程序将因这个 `RuntimeError` 异常而中断执行。
     raise RuntimeError('cannot import numpy, make sure numpy package is installed')
 
 # 确保已安装PIL
@@ -60,12 +77,15 @@ def tutorial(args):
     # 连接到服务器
     client = carla.Client(args.host, args.port)
     client.set_timeout(2.0)
+     # 获取当前世界的引用以及蓝图库（用于创建actor）
     world = client.get_world()
     bp_lib = world.get_blueprint_library()
 
+    # 获取交通管理器并配置为同步模式
     traffic_manager = client.get_trafficmanager(8000)
     traffic_manager.set_synchronous_mode(True)
 
+     # 保存原始世界设置并配置新的同步模式设置
     original_settings = world.get_settings()
     settings = world.get_settings()
     settings.synchronous_mode = True
@@ -113,13 +133,32 @@ def tutorial(args):
             attach_to=vehicle)
 
         # 构建K投影矩阵：
-        # K = [[Fx,  0, image_w/2],
-        #      [ 0, Fy, image_h/2],
-        #      [ 0,  0,         1]]
-        image_w = camera_bp.get_attribute("image_size_x").as_int()
-        image_h = camera_bp.get_attribute("image_size_y").as_int()
-        fov = camera_bp.get_attribute("fov").as_float()
-        focal = image_w / (2.0 * np.tan(fov * np.pi / 360.0))
+        # 这里定义了一个内参矩阵 K 的形式（虽然只是以注释形式展示了结构，实际可能后续需要根据变量值构建矩阵），内参矩阵在计算机视觉中用于将相机坐标系下的点投影到图像平面上，
+# 它包含了相机的焦距等信息，通常是一个 3x3 的矩阵。
+# 其中 Fx 和 Fy 一般表示相机在 x 和 y 方向上的焦距（这里暂时以变量形式表示，后续应该会被赋予具体的值），
+# image_w/2 和 image_h/2 分别对应图像中心点在 x 和 y 方向上的坐标，以像素为单位，用于将相机坐标系原点与图像平面中心对齐。
+# 第三行 [ 0,  0,         1] 是内参矩阵的固定形式部分，用于齐次坐标的计算等相关操作，保证投影计算的正确性。
+# K = [[Fx,  0, image_w/2],
+#      [ 0, Fy, image_h/2],
+#      [ 0,  0,         1]]
+
+# 获取相机蓝图（camera_bp）中图像宽度属性（"image_size_x"）的值，并将其转换为整数类型，赋值给 image_w 变量，
+# 这个值表示相机拍摄的图像在水平方向上包含的像素数量，后续可用于与相机参数相关的计算等操作。
+image_w = camera_bp.get_attribute("image_size_x").as_int()
+
+# 与获取图像宽度类似，获取相机蓝图中图像高度属性（"image_size_y"）的值，转换为整数类型后赋值给 image_h 变量，
+# 它代表相机拍摄图像在垂直方向上的像素数量，同样在相机相关参数计算等场景中会被用到。
+image_h = camera_bp.get_attribute("image_size_y").as_int()
+
+# 获取相机蓝图中视场角（"fov"）属性的值，并转换为浮点数类型，赋值给 fov 变量，
+# 视场角表示相机能够拍摄到的范围角度，是相机的一个重要参数，通常单位是度（°），在后续计算焦距等相关操作中会作为输入参数。
+fov = camera_bp.get_attribute("fov").as_float()
+
+# 根据相机的视场角（fov）以及已经获取到的图像宽度（image_w）来计算相机在水平方向上的焦距（focal）。
+# 计算公式基于三角函数关系推导而来，首先将视场角从度转换为弧度（乘以 np.pi / 360.0），然后利用正切函数关系，
+# 由于水平方向上焦距与图像宽度及视场角有这样的数学关系：focal * 2 * tan(fov/2) = image_w（这里的 fov 需为弧度制），
+# 经过变形就得到了此处的计算式，计算得到的 focal 值将用于相机内参相关的计算或者其他涉及相机投影等操作中，它表示相机镜头的焦距特性。
+focal = image_w / (2.0 * np.tan(fov * np.pi / 360.0))
 
         # 在这种情况下，Fx和Fy是相同的，因为像素宽高比是1
 
@@ -135,7 +174,7 @@ def tutorial(args):
         camera.listen(lambda data: sensor_callback(data, image_queue))
         lidar.listen(lambda data: sensor_callback(data, lidar_queue))
 
-        for frame in range(args.frames):
+        for frame in range(args.frames):#frame从0到arg.frames-1执行循环
             world.tick()
             world_frame = world.get_snapshot().frame
 
@@ -271,79 +310,99 @@ def tutorial(args):
 
 
 def main():
-    """主函数"""
+        """
+    主函数，用于解析命令行参数并启动相关教程（tutorial）操作。
+    它通过argparse模块来定义和解析一系列的命令行参数，然后调用tutorial函数执行具体任务，
+    同时对可能出现的用户中断操作（通过键盘中断）进行了异常处理。
+    """
+    # 创建一个参数解析器对象，用于定义和解析命令行参数
     argparser = argparse.ArgumentParser(
         description='CARLA Sensor sync and projection tutorial')
+# 添加'--host'参数，指定主机服务器的IP地址，默认值为'127.0.0.1'，用于连接对应的服务器
     argparser.add_argument(
         '--host',
         metavar='H',
         default='127.0.0.1',
         help='IP of the host server (default: 127.0.0.1)')
+# 添加'-p'或'--port'参数，指定要监听的TCP端口号，类型为整数，默认值为2000
     argparser.add_argument(
         '-p', '--port',
         metavar='P',
         default=2000,
         type=int,
         help='TCP port to listen to (default: 2000)')
+# 添加'--res'参数，指定窗口分辨率，格式为'WIDTHxHEIGHT'，默认值为'1280x720'
     argparser.add_argument(
         '--res',
         metavar='WIDTHxHEIGHT',
         default='680x420',
         help='window resolution (default: 1280x720)')
+# 添加'-f'或'--frames'参数，指定要记录的帧数，类型为整数，默认值为500
     argparser.add_argument(
         '-f', '--frames',
         metavar='N',
         default=500,
         type=int,
         help='number of frames to record (default: 500)')
+# 添加'-d'或'--dot-extent'参数，指定可视化点的范围（以像素为单位），类型为整数，默认值为2，推荐范围是[1-4]
     argparser.add_argument(
         '-d', '--dot-extent',
         metavar='SIZE',
         default=2,
         type=int,
         help='visualization dot extent in pixels (Recomended [1-4]) (default: 2)')
+# 添加'--no-noise'参数，这是一个布尔型参数（action='store_true'表示如果命令行中指定了该参数，则其值为True），用于移除普通（非语义）激光雷达的衰减和噪声
     argparser.add_argument(
         '--no-noise',
         action='store_true',
         help='remove the drop off and noise from the normal (non-semantic) lidar')
+# 添加'--upper-fov'参数，指定激光雷达的上视野角度（以度为单位），类型为浮点数，默认值为30.0
     argparser.add_argument(
         '--upper-fov',
         metavar='F',
         default=30.0,
         type=float,
         help='lidar\'s upper field of view in degrees (default: 15.0)')
+# 添加'--lower-fov'参数，指定激光雷达的下视野角度（以度为单位），类型为浮点数，默认值为-25.0
     argparser.add_argument(
         '--lower-fov',
         metavar='F',
         default=-25.0,
         type=float,
         help='lidar\'s lower field of view in degrees (default: -25.0)')
+# 添加'-c'或'--channels'参数，指定激光雷达的通道数，类型为浮点数，默认值为64.0
     argparser.add_argument(
         '-c', '--channels',
         metavar='C',
         default=64.0,
         type=float,
         help='lidar\'s channel count (default: 64)')
+# 添加'-r'或'--range'参数，指定激光雷达的最大探测范围（以米为单位），类型为浮点数，默认值为100.0
     argparser.add_argument(
         '-r', '--range',
         metavar='R',
         default=100.0,
         type=float,
         help='lidar\'s maximum range in meters (default: 100.0)')
+# 添加'--points-per-second'参数，指定激光雷达每秒的点数，类型为整数，默认值为100000
     argparser.add_argument(
         '--points-per-second',
         metavar='N',
         default='100000',
         type=int,
         help='lidar points per second (default: 100000)')
+# 解析命令行参数，得到包含所有参数值的命名空间对象args
     args = argparser.parse_args()
+# 将分辨率参数（字符串形式如'WIDTHxHEIGHT'）拆分成宽度和高度两个整数，并分别赋值给args的width和height属性
     args.width, args.height = [int(x) for x in args.res.split('x')]
+# 将可视化点的范围参数减1（具体作用可能和后续可视化相关逻辑有关）
     args.dot_extent -= 1
 
     try:
         tutorial(args)
-
+ # 调用tutorial函数，并传入解析好的参数args，执行具体的教程相关操作（此处假设tutorial函数在别处定义且实现了相关功能）
     except KeyboardInterrupt:
+        # 如果用户通过键盘中断（比如按下Ctrl+C）操作中断程序执行，捕获该异常并打印相应提示信息
         print('\nCancelled by user. Bye!')
 
 

@@ -7,6 +7,7 @@
     # - DESCRIPTION ------------------------
     doc: >
       Manages the basic movement of a vehicle using typical driving controls.
+      #使用典型的驾驶控制来管理车辆的基本运动。
     # - PROPERTIES -------------------------
     instance_variables:
     - var_name: throttle
