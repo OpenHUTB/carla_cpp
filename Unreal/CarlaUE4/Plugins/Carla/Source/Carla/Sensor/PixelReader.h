@@ -28,56 +28,54 @@
 // -- FPixelReader -------------------------------------------------------------
 // =============================================================================
 
-/// Utils for reading pixels from UTextureRenderTarget2D.
+/// 用于从 UTextureRenderTarget2D 读取像素的实用工具。
 ///
-/// @todo This class only supports PF_R8G8B8A8 format.
+/// @todo 当前该类仅支持 PF_R8G8B8A8 格式。
 class FPixelReader
 {
 public:
 
   using Payload = std::function<void(void *, uint32, uint32, uint32)>;
 
-  /// Copy the pixels in @a RenderTarget into @a BitMap.
+  /// 将 @a RenderTarget 中的像素复制到 @a BitMap 中。
   ///
-  /// @pre To be called from game-thread.
+  /// @pre 必须从游戏线程调用。
   static bool WritePixelsToArray(
       UTextureRenderTarget2D &RenderTarget,
       TArray<FColor> &BitMap);
 
-  /// Dump the pixels in @a RenderTarget.
+  /// 转储 @a RenderTarget 中的像素。
   ///
-  /// @pre To be called from game-thread.
+  /// @pre 必须从游戏线程调用。
   static TUniquePtr<TImagePixelData<FColor>> DumpPixels(
       UTextureRenderTarget2D &RenderTarget);
 
-  /// Asynchronously save the pixels in @a RenderTarget to disk.
+  /// 异步保存 @a RenderTarget 中的像素到磁盘。
   ///
-  /// @pre To be called from game-thread.
+  /// @pre 必须从游戏线程调用。
   static TFuture<bool> SavePixelsToDisk(
       UTextureRenderTarget2D &RenderTarget,
       const FString &FilePath);
 
-  /// Asynchronously save the pixels in @a PixelData to disk.
+  /// 异步保存 @a PixelData 中的像素到磁盘。
   ///
-  /// @pre To be called from game-thread.
+  /// @pre 必须从游戏线程调用。
   static TFuture<bool> SavePixelsToDisk(
       TUniquePtr<TImagePixelData<FColor>> PixelData,
       const FString &FilePath);
 
-  /// Convenience function to enqueue a render command that sends the pixels
-  /// down the @a Sensor's data stream. It expects a sensor derived from
-  /// ASceneCaptureSensor or compatible.
+  /// 方便函数，将渲染命令加入队列以通过 @a Sensor 的数据流发送像素。
+  /// 它需要一个继承自 ASceneCaptureSensor 或兼容的传感器。
   ///
-  /// Note that the serializer needs to define a "header_offset" that it's
-  /// allocated in front of the buffer.
+  /// 注意：序列化器需要定义一个 "header_offset"，分配在缓冲区前部。
   ///
-  /// @pre To be called from game-thread.
+  /// @pre 必须从游戏线程调用。
   template <typename TSensor, typename TPixel>
   static void SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat = false, std::function<TArray<TPixel>(void *, uint32)> Conversor = {});
 
-  /// Copy the pixels in @a RenderTarget into @a Buffer.
+  /// 将 @a RenderTarget 中的像素复制到 @a Buffer。
   ///
-  /// @pre To be called from render-thread.
+  /// @pre 必须从渲染线程调用。
   static void WritePixelsToBuffer(
       const UTextureRenderTarget2D &RenderTarget,
       uint32 Offset,
@@ -101,19 +99,17 @@ void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat
     return;
   }
 
-  /// Blocks until the render thread has finished all it's tasks.
+  /// 阻塞，直到渲染线程完成所有任务。
   Sensor.EnqueueRenderSceneImmediate();
 
-  // Enqueue a command in the render-thread that will write the image buffer to
-  // the data stream. The stream is created in the capture thus executed in the
-  // game-thread.
+  // 在渲染线程中加入命令，将图像缓冲区写入数据流。
   ENQUEUE_RENDER_COMMAND(FWritePixels_SendPixelsInRenderThread)
   (
     [&Sensor, use16BitFormat, Conversor = std::move(Conversor)](auto &InRHICmdList) mutable
     {
       TRACE_CPUPROFILER_EVENT_SCOPE_STR("FWritePixels_SendPixelsInRenderThread");
 
-      /// @todo Can we make sure the sensor is not going to be destroyed?
+      /// @todo 确保传感器不会被销毁？
       if (!Sensor.IsPendingKill())
       {
         FPixelReader::Payload FuncForSending =
@@ -123,7 +119,7 @@ void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat
 
             TArray<TPixel> Converted;
 
-            // optional conversion of data
+            // 可选的数据转换
             if (Conversor)
             {
               TRACE_CPUPROFILER_EVENT_SCOPE_STR("Data conversion");
@@ -139,8 +135,7 @@ void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat
             uint32 CurrentRowBytes = ExpectedRowBytes;
 
 #ifdef _WIN32
-            // DirectX uses additional bytes to align each row to 256 boundry,
-            // so we need to remove that extra data
+            // DirectX 为了对齐每行到 256 字节边界而增加了额外字节，需要移除这些数据。
             if (IsD3DPlatform(GMaxRHIShaderPlatform, false))
             {
               CurrentRowBytes = Align(ExpectedRowBytes, D3D12_TEXTURE_DATA_PITCH_ALIGNMENT);
@@ -170,15 +165,15 @@ void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat
             }
 
             {
-              // send
+              // 发送数据
               TRACE_CPUPROFILER_EVENT_SCOPE_STR("Sending buffer");
               if(Buffer.data())
               {
-                // serialize data
+                // 序列化数据
                 carla::Buffer BufferReady(std::move(carla::sensor::SensorRegistry::Serialize(Sensor, std::move(Buffer))));
                 carla::SharedBufferView BufView = carla::BufferView::CreateFrom(std::move(BufferReady));
 
-                // ROS2
+                // ROS2 支持
                 #if defined(WITH_ROS2)
                 auto ROS2 = carla::ros2::ROS2::GetInstance();
                 if (ROS2->IsEnabled())
@@ -187,7 +182,7 @@ void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat
                   auto StreamId = carla::streaming::detail::token_type(Sensor.GetToken()).get_stream_id();
                   auto Res = std::async(std::launch::async, [&Sensor, ROS2, &Stream, StreamId, BufView]()
                   {
-                    // get resolution of camera
+                    // 获取相机分辨率
                     int W = -1, H = -1;
                     float Fov = -1.0f;
                     auto WidthOpt = Sensor.GetAttribute("image_size_x");
@@ -199,7 +194,7 @@ void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat
                     auto FovOpt = Sensor.GetAttribute("fov");
                     if (FovOpt.has_value())
                       Fov = FCString::Atof(*FovOpt->Value);
-                    // send data to ROS2
+                    // 将数据发送到 ROS2
                     AActor* ParentActor = Sensor.GetAttachParentActor();
                     if (ParentActor)
                     {
@@ -214,7 +209,7 @@ void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat
                 }
                 #endif
 
-                // network
+                // 网络传输
                 SCOPE_CYCLE_COUNTER(STAT_CarlaSensorStreamSend);
                 TRACE_CPUPROFILER_EVENT_SCOPE_STR("Stream Send");
                 Stream.Send(Sensor, BufView);
@@ -231,6 +226,7 @@ void FPixelReader::SendPixelsInRenderThread(TSensor &Sensor, bool use16BitFormat
       }
     );
 
-  // Blocks until the render thread has finished all it's tasks
+  // 阻塞，直到渲染线程完成所有任务。
   Sensor.WaitForRenderThreadToFinish();
 }
+
