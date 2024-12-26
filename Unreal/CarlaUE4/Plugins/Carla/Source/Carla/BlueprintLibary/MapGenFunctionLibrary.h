@@ -7,14 +7,14 @@
 // 这是一个头文件保护指令，确保该头文件内容在一个编译单元中只被包含一次
 #pragma once  
 
-// Engine headers
+// 发动机接头
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "MeshDescription.h"
 #include "ProceduralMeshComponent.h"
 // Carla C++ headers
 
-// Carla plugin headers
+// Carla 插件头文件
 #include "Carla/Util/ProceduralCustomMesh.h"
 
 #include "MapGenFunctionLibrary.generated.h"
