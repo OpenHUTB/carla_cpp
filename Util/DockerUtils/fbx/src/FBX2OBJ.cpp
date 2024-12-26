@@ -1,5 +1,9 @@
 #include <fbxsdk.h>
 
+// 声明全局的 FBX 管理器指针并初始化为 NULL
+FbxManager*   gSdkManager = NULL;
+
+// 各种材质的指针声明
 // 声明一个全局的 FbxManager 指针，初始化为 NULL，FbxManager 是 FBX SDK 中的核心管理类，
 // 用于管理整个 FBX 相关的资源、场景等操作，这里先声明，后续应该会在合适地方进行初始化
 // declare global
@@ -18,14 +22,15 @@ FbxSurfacePhong* gMatBlock;
     #define IOS_REF (*(gSdkManager->GetIOSettings()))// 定义IOS_REF为gSdkManager的IO设置
 #endif
 
+// 创建一个将应用于多边形的材质
 // 创建一个材质并返回该材质
 FbxSurfacePhong* CreateMaterial(FbxScene* pScene, char *name)
 {
-    // Create material
     // 使用 FbxSurfacePhong 类的静态方法 Create 为指定场景创建一个名为 name 的材质
     FbxSurfacePhong* lMaterial = FbxSurfacePhong::Create(pScene, name);
     return lMaterial;// 返回创建的材质
 }
+// 查找函数，判断 str 是否是 name 的子串
 // 查找字符串函数，检查name是否包含str
 bool Find(const char *name, const char *str)
 {
@@ -39,6 +44,7 @@ bool Find(const char *name, const char *str)
     // 在 strName 中查找 strSub，如果找到返回 true，否则返回 false
     return (strName.find(strSub)!= std::string::npos);
 }
+// 为节点设置材质的函数
 // 设置节点材质的函数
 void SetMaterials(FbxNode* pNode)
 {
@@ -79,12 +85,14 @@ void SetMaterials(FbxNode* pNode)
         SetMaterials(pNode->GetChild(i));
     }
 }
-
+// Creates an importer object, and uses it to
+// import a file into a scene.
+// 创建一个导入器对象，并使用它将文件导入到场景中
 // 从文件加载场景的函数
 bool LoadScene(
-               FbxManager* pSdkManager,  // Use this memory manager...
-               FbxScene* pScene,            // to import into this scene
-               const char* pFilename         // the data from this file.
+               FbxManager* pSdkManager,  // 使用此内存管理器...
+               FbxScene* pScene,            // 导入到这个场景中
+               const char* pFilename         // 从这个文件中导入数据
                )
 {
     int lFileMajor, lFileMinor, lFileRevision;
@@ -98,7 +106,7 @@ bool LoadScene(
     const bool lImportStatus = lImporter->Initialize(pFilename, -1, pSdkManager->GetIOSettings() );
     // 获取要导入的 FBX 文件的版本号
     lImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
-    if(!lImportStatus )  // Problem with the file to be imported
+    if(!lImportStatus )  // 导入文件时出现问题
     {
         FbxString error = lImporter->GetStatus().GetErrorString();
         printf("Call to FbxImporter::Initialize() failed.");
@@ -134,7 +142,7 @@ bool LoadScene(
     lImporter->Destroy();
     return lStatus;
 }
-
+// 将场景导出到文件
 // Exports a scene to a file
 // SaveScene函数用于将给定的FBX场景保存为指定格式的文件
 // 它接受一系列参数来控制保存的相关设置，并根据操作结果返回成功（true）或失败（false）
@@ -144,7 +152,6 @@ bool LoadScene(
 // pFilename：以字符串形式指定了要保存的文件路径及文件名，例如可以是"example.fbx"这样的形式，用于明确保存的目标位置和文件名称。
 // pFileFormat：指定了保存文件时所采用的文件格式，不同的整数值对应不同的FBX支持的格式选项，通过这个参数可以控制生成的文件格式符合特定的需求。
 // pEmbedMedia：布尔类型的参数，用于决定是否将相关的媒体资源（比如纹理图片等）嵌入到保存的FBX文件中，如果为true则嵌入，为false则不嵌入，具体取决于使用场景的需求。
-
 // 将场景导出到文件的函数
 bool SaveScene(
                FbxManager* pSdkManager,//FBX管理器对象
