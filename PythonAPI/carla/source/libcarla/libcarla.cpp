@@ -19,6 +19,7 @@
 // Boost.Python的主要目标既保持Python的编程风格同时又提供C++和Python的双向映射。
 template <typename OptionalT>
 static boost::python::object OptionalToPythonObject(OptionalT &optional) {
+  // 如果 optional 有值，将其转换为 boost::python::object，否则返回一个空的 boost::python::object
   return optional.has_value() ? boost::python::object(*optional) : boost::python::object();
 }
 
@@ -170,14 +171,17 @@ std::vector<T> PythonLitstToVector(boost::python::list &input) {
 
 template <typename T>
 static void PrintListItem_(std::ostream &out, const T &item) {
+  // 将元素输出到输出流
   out << item;
 }
 
 template <typename T>
 static void PrintListItem_(std::ostream &out, const carla::SharedPtr<T> &item) {
+  // 如果指针为空，输出 nullptr
   if (item == nullptr) {
     out << "nullptr";
   } else {
+    // 否则输出指针所指向的内容
     out << *item;
   }
 }
@@ -201,11 +205,13 @@ namespace std {
 
   template <typename T>
   std::ostream &operator<<(std::ostream &out, const std::vector<T> &vector_of_stuff) {
+    // 重载输出流操作符，将 vector 元素输出为列表形式
     return PrintList(out, vector_of_stuff);
   }
 
   template <typename T, typename H>
   std::ostream &operator<<(std::ostream &out, const std::pair<T,H> &data) {
+    // 重载输出流操作符，将 pair 元素输出为 (first,second) 形式
     out << "(" << data.first << "," << data.second << ")";
     return out;
   }
@@ -214,6 +220,7 @@ namespace std {
 
 static carla::time_duration TimeDurationFromSeconds(double seconds) {
   size_t ms = static_cast<size_t>(1e3 * seconds);
+  // 将秒转换为毫秒，并创建时间持续时间对象
   return carla::time_duration::milliseconds(ms);
 }
 
@@ -288,4 +295,15 @@ BOOST_PYTHON_MODULE(libcarla) {
   export_ad_rss();
   #endif
   export_osm2odr();
+  // 这里的 export_xxx 函数应该是将相应模块中的类、函数等内容导出到 Python 中，使得它们可以在 Python 中使用。
+  // 对于不同的模块，会根据其功能导出不同的接口，例如几何模块可能导出一些几何计算相关的函数，Actor 模块可能导出和角色相关的类和函数等。
+  // 例如：export_actor 可能会导出与角色创建、角色属性操作、角色行为控制等相关的功能。
+  // 而 export_control 可能会导出一些控制相关的功能，比如车辆的控制、物体的控制等。
+  // 同时，通过这些 export 函数，C++ 代码可以通过 Boost.Python 库和 Python 代码进行交互。
+  // 例如将 C++ 中的类和函数包装为 Python 对象，让 Python 代码可以调用。
+  // 同时，通过上面的一些宏和模板函数，处理了参数传递、返回值处理、GIL 的获取和释放等问题，以确保在 C++ 和 Python 交互过程中的线程安全和数据类型转换。
+  // 如 CALL_WITHOUT_GIL 等宏方便了在释放 GIL 的情况下调用函数，避免 GIL 带来的性能问题。
+  // PythonLitstToVector 函数用于将 Python 列表转换为 C++ 的 vector 容器，方便 C++ 代码处理列表数据。
+  // OptionalToPythonObject 函数用于将 C++ 中的可选类型转换为 Python 对象，处理可选值的情况。
+  // MakeCallback 函数用于创建一个安全的回调函数，它会检查回调是否可调用，将回调存储在智能指针中，并在调用时处理异常和 GIL 的获取。
 }
