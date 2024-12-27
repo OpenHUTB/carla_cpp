@@ -1,8 +1,7 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2017 Computer Vision Center (CVC)，巴塞罗那自治大学 (UAB)。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 此作品基于 MIT 许可证授权。
+// 如需获取许可证副本，请访问 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 
@@ -10,28 +9,27 @@
 
 #include "ActorDescription.generated.h"
 
-/// A description of a Carla Actor with all its variation.
+/// Carla角色的描述，包含其所有变体。
 USTRUCT(BlueprintType)
 struct FActorDescription
 {
   GENERATED_BODY()
 
-  /// UId of the definition in which this description was based.
+  /// 基于此描述的定义的UId。
   uint32 UId = 0u;
 
-  /// Display ID that identifies the actor.
+  /// 用于标识角色的显示ID。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString Id;
 
-  /// Class of the actor to be spawned.
+  /// 要生成的角色的类。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TSubclassOf<AActor> Class;
 
-  /// User selected variations of the actor. Note that at this point are
-  /// represented by non-modifiable attributes.
+  /// 用户选择的角色变体。请注意，在此阶段，这些变体由不可修改的属性表示。
   ///
-  ///   Key: Id of the attribute.
-  ///   Value: The attribute.
+  ///   Key: 属性的ID。
+  ///   Value: 属性。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TMap<FString, FActorAttribute> Variations;
 };
