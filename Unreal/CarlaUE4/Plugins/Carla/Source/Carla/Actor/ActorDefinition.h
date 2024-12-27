@@ -1,8 +1,7 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
-// de Barcelona (UAB).
+// 版权所有 (c) 2017 Computer Vision Center (CVC)，巴塞罗那自治大学 (UAB)。
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 此作品基于 MIT 许可证授权。
+// 如需获取许可证副本，请访问 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 
@@ -12,56 +11,53 @@
 
 #include "ActorDefinition.generated.h"
 
-/// A definition of a Carla Actor with all the variation and attributes.
+/// 一个 Carla 角色的定义，包含所有变体和属性。
 USTRUCT(BlueprintType)
 struct FActorDefinition
 {
   GENERATED_BODY()
 
-  /// Uniquely identifies the definition (no need to fill it).
+  /// 唯一标识该定义的 ID（无需手动填充）。
   uint32 UId = 0u;
 
-  /// Display ID that identifies the actor.
+  /// 用于标识角色的显示 ID。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString Id;
 
-  /// Class of the actor to be spawned (Optional).
+  /// 要生成的角色的类（可选）。
   ///
-  /// Note that this parameter is not exposed on the client-side, only used by
-  /// the spawner itself.
+  /// 注意，此参数在客户端不可见，仅由生成器使用。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TSubclassOf<AActor> Class;
 
-  /// A list of comma-separated tags.
+  /// 逗号分隔的标签列表。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString Tags;
 
-  /// Variations represent variables the user can modify to generate variations
-  /// of the actor.
+  /// 变体表示用户可以修改的变量，用于生成角色的不同变体。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<FActorVariation> Variations;
 
-  /// Attributes represent non-modifiable properties of the actor that might
-  /// help the user identifying and filtering actors.
+  /// 属性表示角色的不可修改属性，这些属性可能有助于用户识别和过滤角色。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<FActorAttribute> Attributes;
 };
 
-/// A definition of a Vehicle Actor with all the variation and attributes.
+/// 一个车辆角色的定义，包含所有变体和属性。
 USTRUCT(BlueprintType)
 struct FVehicleActorDefinition
 {
   GENERATED_BODY()
 
-  /// A list of comma-separated tags.
+  /// 逗号分隔的标签列表。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   FString Tags;
 
-  /// Assign a static mesh into the actor.
+  /// 将静态网格分配给角色。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   UStaticMesh* mesh;
 
-  /// Colors represent the avaliable colors for each actor
+  /// 颜色表示每个角色可用的颜色列表。
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<FColor> colors;
 };
