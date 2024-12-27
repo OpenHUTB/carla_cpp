@@ -1,8 +1,8 @@
-// Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
+// 版权所有 (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma
 // de Barcelona (UAB).
 //
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
+// 本工作根据 MIT 许可证授权。
+// 许可证副本请参见 <https://opensource.org/licenses/MIT>。
 
 #pragma once
 
@@ -18,8 +18,7 @@
 
 class ACarlaActorFactory;
 
-/// Object in charge of binding ActorDefinitions to spawn functions, as well as
-/// keeping the registry of all the actors spawned.
+/// 负责将 ActorDefinition 绑定到 spawn 函数，并维护所有已生成的 Actor 的注册表。
 UCLASS()
 class CARLA_API UActorDispatcher : public UObject
 {
@@ -29,66 +28,61 @@ public:
 
   using SpawnFunctionType = TFunction<FActorSpawnResult(const FTransform &, const FActorDescription &)>;
 
-  /// Bind a definition to a spawn function. When SpawnActor is called with a
-  /// matching description @a Functor is called.
+  /// 将一个 ActorDefinition 绑定到一个 spawn 函数。当使用匹配的描述调用 SpawnActor 时，@a Functor 将被调用。
   ///
-  /// @warning Invalid definitions are ignored.
+  /// @警告 无效的定义将被忽略。
   void Bind(FActorDefinition Definition, SpawnFunctionType SpawnFunction);
 
-  /// Bind all the definitions of @a ActorFactory to its spawn function.
+  /// 将 @a ActorFactory 的所有定义绑定到其 spawn 函数。
   ///
-  /// @warning Invalid definitions are ignored.
+  /// @警告 无效的定义将被忽略。
   void Bind(ACarlaActorFactory &ActorFactory);
 
-  /// Spawns an actor based on @a ActorDescription at @a Transform. To properly
-  /// despawn an actor created with this function call DestroyActor.
+  /// 根据 @a ActorDescription 在 @a Transform 位置生成一个 Actor。要正确销毁通过此函数创建的 Actor，请调用 DestroyActor。
   ///
-  /// @return A pair containing the result of the spawn function and a view over
-  /// the actor and its properties. If the status is different of Success the
-  /// view is invalid.
+  /// @return 一个包含 spawn 函数结果和 Actor 及其属性的视图的 pair。如果状态不是 Success，则视图无效。
   TPair<EActorSpawnResultStatus, FCarlaActor*> SpawnActor(
       const FTransform &Transform,
       FActorDescription ActorDescription,
       FCarlaActor::IdType DesiredId = 0);
 
-  /// ReSpawns an actor based on @a ActorDescription at @a Transform. To properly
-  /// despawn an actor created with this function call DestroyActor.
-  /// Used to respawn dormant actors.
+  /// 根据 @a ActorDescription 在 @a Transform 位置重新生成一个 Actor。用于重新生成休眠的 Actor。
   ///
-  /// @return The actor to be respawned
+  /// @return 将要重新生成的 Actor
   AActor* ReSpawnActor(
       const FTransform &Transform,
       FActorDescription ActorDescription);
 
+  /// 使指定 ID 的 Actor 进入休眠状态
   void PutActorToSleep(FCarlaActor::IdType Id, UCarlaEpisode* CarlaEpisode);
 
+  /// 唤醒指定 ID 的 Actor
   void WakeActorUp(FCarlaActor::IdType Id, UCarlaEpisode* CarlaEpisode);
 
-  /// Destroys an actor, properly removing it from the registry.
+  /// 销毁一个 Actor，并从注册表中正确移除它。
   ///
-  /// Return true if the @a Actor is destroyed or already marked for
-  /// destruction, false if indestructible or nullptr.
-  //bool DestroyActor(AActor *Actor);
-
+  /// 如果 @a Actor 被销毁或已经标记为销毁，则返回 true，如果不可销毁或为 nullptr，则返回 false。
   bool DestroyActor(FCarlaActor::IdType ActorId);
 
-  /// Register an actor that was not created using "SpawnActor" function but
-  /// that should be kept in the registry.
+  /// 注册一个不是使用 "SpawnActor" 函数创建的 Actor，但它应该保留在注册表中。
   FCarlaActor* RegisterActor(
       AActor &Actor,
       FActorDescription ActorDescription,
       FActorRegistry::IdType DesiredId = 0);
 
+  /// 获取所有的 ActorDefinition 列表
   const TArray<FActorDefinition> &GetActorDefinitions() const
   {
     return Definitions;
   }
 
+  /// 获取 Actor 注册表的只读视图
   const FActorRegistry &GetActorRegistry() const
   {
     return Registry;
   }
 
+  /// 获取可修改的 Actor 注册表
   FActorRegistry &GetActorRegistry()
   {
     return Registry;
@@ -99,12 +93,16 @@ private:
   UFUNCTION()
   void OnActorDestroyed(AActor *Actor);
 
+  /// 存储所有 ActorDefinition 的数组
   TArray<FActorDefinition> Definitions;
 
+  /// 存储所有 spawn 函数的数组
   TArray<SpawnFunctionType> SpawnFunctions;
 
+  /// 存储所有 Actor 类的数组
   TArray<TSubclassOf<AActor>> Classes;
 
+  /// Actor 注册表
   FActorRegistry Registry;
 
 };
