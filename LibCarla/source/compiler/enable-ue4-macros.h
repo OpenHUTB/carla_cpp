@@ -89,7 +89,7 @@
 #pragma pop_macro("NV_RESULT")// 取消名为"NV_RESULT"的宏。
 #pragma pop_macro("B")// 取消名为"B"的宏。
 #pragma pop_macro("AMF_DECLARE_IID")// 取消名为"AMF_DECLARE_ID"的宏。
-#pragma pop_macro("AMF_MACRO_STRING2")// 取消之前定义的名为 "AMF_MACRO_STRING2" 的宏定义。// 通常在之前可能使用了 #pragma push_macro 保存了该宏定义的状态，这里进行恢复（取消定义）操作。
+#pragma pop_macro("AMF_MACRO_STRING2")// 取消之前定义的名为 "AMF_MACRO_STRING2" 的宏定义。
 #pragma pop_macro("AMF_MACRO_STRING")// 取消之前定义的名为 "AMF_MACRO_STRING" 的宏定义，作用与上面类似，恢复该宏之前的状态。
 #pragma pop_macro("AMF_TODO")// 取消之前定义的名为 "AMF_TODO" 的宏定义，可能这个宏在代码开发过程中有特定用途，此处还原其初始情况
 #pragma pop_macro("AMF_ALIGN")// 取消之前定义的名为 "AMF_ALIGN" 的宏定义，一般用于处理数据对齐相关的操作，这里取消其定义使其恢复原样。
@@ -270,15 +270,24 @@
 #pragma pop_macro("LLM_PLATFORM_SCOPE_APPLE")
 // 恢复之前保存的宏"LLM_PLATFORM_SCOPE_APPLE"的定义状态
 #pragma pop_macro("APPLE_PLATFORM_OBJECT_ALLOC_OVERRIDES")
+// 恢复之前保存的宏"APPLE_PLATFORM_OBJECT_ALLOC_OVERRIDES"的定义状态
 #pragma pop_macro("checkThreadGraph")
+// 恢复之前保存的宏"checkThreadGraph"的定义状态
 #pragma pop_macro("CA_SUPPRESS")
+// 恢复之前保存的宏"CA_SUPPRESS"的定义状态，可能用于抑制编译器警告或错误
 #pragma pop_macro("CA_ASSUME")
+// 恢复之前保存的宏"CA_ASSUME"的定义状态，可能用于向编译器提供关于代码行为的假设
 #pragma pop_macro("CA_CONSTANT_IF")
+// 恢复之前保存的宏"CA_CONSTANT_IF"的定义状态，可能用于在if语句中标记常量表达式
 #pragma pop_macro("TSAN_BEFORE")
+// 恢复之前保存的宏"TSAN_BEFORE"和"TSAN_AFTER"的定义状态，可能用于线程安全分析
 #pragma pop_macro("TSAN_AFTER")
 #pragma pop_macro("TSAN_ATOMIC")
+// 恢复之前保存的宏"TSAN_ATOMIC"的定义状态，可能用于标记原子操作
 #pragma pop_macro("DEPRECATED")
+// 恢复之前保存的宏"DEPRECATED"的定义状态，用于标记已弃用的函数、类型或变量
 #pragma pop_macro("EMIT_CUSTOM_WARNING_AT_LINE")
+// 恢复之前保存的宏"EMIT_CUSTOM_WARNING_AT_LINE"的定义状态，可能用于在特定行发出自定义警告
 #pragma pop_macro("LZ4_QUOTE")
 #pragma pop_macro("LZ4_EXPAND_AND_QUOTE")
 #pragma pop_macro("LZ4_COMPRESSBOUND")
@@ -288,6 +297,17 @@
 #pragma pop_macro("LZ4_COMPRESS_INPLACE_BUFFER_SIZE")
 #pragma pop_macro("checkLockFreePointerList")
 #pragma pop_macro("ExchangeB")
+// 以下是与LZ4压缩算法相关的宏定义恢复
+// 恢复LZ4的QUOTE宏定义
+// 恢复LZ4的EXPAND_AND_QUOTE宏定义
+// 恢复LZ4的压缩边界宏定义
+// 恢复LZ4解码器环形缓冲区大小宏定义
+// 恢复LZ4就地解压的边距宏定义
+// 恢复LZ4就地解压的缓冲区大小宏定义
+// 恢复之前保存的宏"checkLockFreePointerList"的定义状态，可能用于检查无锁指针列表的特定条件
+// 注意：这里的"ExchangeB"并未跟随#pragma pop_macro指令，可能是个注释错误或者遗漏了实际的#pragma push_macro和pop_macro指令对。
+// 如果"ExchangeB"确实是一个需要被push和pop的宏，那么应该有一个对应的#pragma push_macro("ExchangeB")在某个位置。
+ 
 // #pragma pop_macro("TCHAR_TO_ANSI")
 // #pragma pop_macro("ANSI_TO_TCHAR")
 // #pragma pop_macro("TCHAR_TO_UTF8")
