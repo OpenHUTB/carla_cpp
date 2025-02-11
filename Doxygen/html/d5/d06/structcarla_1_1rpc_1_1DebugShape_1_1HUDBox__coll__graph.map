@@ -1,0 +1,17 @@
+<map id="carla::rpc::DebugShape::HUDBox" name="carla::rpc::DebugShape::HUDBox">
+<area shape="rect" id="Node000001" title=" " alt="" coords="172,407,329,449"/>
+<area shape="rect" id="Node000002" href="$d8/d68/classcarla_1_1geom_1_1BoundingBox.html" title=" " alt="" coords="164,316,338,343"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="253,358,253,406,248,406,248,358"/>
+<area shape="rect" id="Node000003" href="$de/d23/classcarla_1_1geom_1_1Location.html" title=" " alt="" coords="178,225,324,252"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="253,267,253,315,248,315,248,267"/>
+<area shape="rect" id="Node000004" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html" title=" " alt="" coords="63,139,214,165"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="129,180,121,215,122,234,128,251,144,272,165,289,211,313,209,318,162,294,140,276,123,253,117,235,116,215,124,179"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="168,172,236,223,232,227,165,177"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="116,5,161,32"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="104,39,72,57,41,83,17,114,10,132,8,151,8,330,12,343,23,354,63,376,116,394,172,409,171,414,114,400,60,381,20,358,7,345,3,331,3,150,5,130,13,111,37,79,69,53,101,34"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="141,47,141,138,136,138,136,47"/>
+<area shape="rect" id="Node000006" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html" title=" " alt="" coords="347,225,493,252"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="168,39,405,223,402,227,165,44"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="411,267,397,293,370,328,339,360,281,408,278,404,335,356,366,325,392,291,407,265"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="382,262,349,278,275,318,272,313,346,274,380,257"/>
+</map>

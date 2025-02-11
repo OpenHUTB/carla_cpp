@@ -1,0 +1,33 @@
+<map id="carla::rpc::Command::SpawnActor" name="carla::rpc::Command::SpawnActor">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1137,200,1279,243"/>
+<area shape="rect" id="Node000002" href="$d0/d4c/structcarla_1_1rpc_1_1Command_1_1CommandBase.html" title=" " alt="" coords="776,5,988,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1004,27,1061,41,1089,52,1115,67,1147,97,1172,133,1190,169,1202,199,1197,201,1185,171,1167,135,1143,100,1111,71,1086,57,1059,46,1002,33"/>
+<area shape="rect" id="Node000003" href="$d0/d4c/structcarla_1_1rpc_1_1Command_1_1CommandBase.html" title=" " alt="" coords="478,5,627,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="642,24,775,24,775,29,642,29"/>
+<area shape="rect" id="Node000004" href="$d6/d11/classcarla_1_1rpc_1_1ActorDescription.html" title=" " alt="" coords="792,157,972,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="987,180,1113,199,1137,203,1136,208,1113,204,986,185"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="519,145,586,172"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="601,162,654,167,792,170,792,175,654,172,601,167"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="526,84,579,111"/>
+<area shape="poly" id="edge15_Node000001_Node000006" title=" " alt="" coords="594,93,688,94,819,102,967,123,1042,140,1114,163,1148,179,1178,197,1176,202,1146,183,1112,168,1041,145,966,128,819,107,688,99,594,99"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="594,105,654,120,811,154,810,159,653,125,593,110"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="475,196,630,239"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="644,206,751,192,810,182,811,187,752,197,645,211"/>
+<area shape="rect" id="Node000008" href="$de/da4/classcarla_1_1geom_1_1Transform.html" title=" " alt="" coords="805,208,959,235"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="974,219,1137,219,1137,224,974,224"/>
+<area shape="rect" id="Node000009" href="$de/d23/classcarla_1_1geom_1_1Location.html" title=" " alt="" coords="479,327,626,353"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="640,345,698,337,725,327,750,311,760,297,761,280,763,262,774,245,803,228,806,232,778,249,768,264,767,281,765,298,754,315,728,331,699,342,641,350"/>
+<area shape="rect" id="Node000010" href="$d9/dfe/classcarla_1_1geom_1_1Vector3D.html" title=" " alt="" coords="131,339,282,365"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="297,346,479,340,479,345,297,352"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="5,301,51,328"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="53,336,76,350,102,356,130,358,130,363,102,361,74,354,50,340"/>
+<area shape="rect" id="Node000012" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html" title=" " alt="" coords="306,264,451,291"/>
+<area shape="poly" id="edge12_Node000012_Node000011" title=" " alt="" coords="64,303,74,301,196,286,305,278,306,283,197,292,75,307,65,308"/>
+<area shape="poly" id="edge11_Node000008_Node000012" title=" " alt="" coords="466,274,546,271,629,264,728,250,816,233,817,238,729,255,630,269,546,276,466,279"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="816,259,948,285"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="961,261,1113,240,1136,235,1137,241,1113,245,962,267"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="824,309,940,336"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="955,314,1032,301,1112,278,1146,261,1177,241,1180,245,1149,265,1114,282,1033,306,955,319"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="821,360,943,403"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="957,374,1035,359,1074,345,1112,327,1137,308,1159,286,1192,242,1196,245,1163,289,1140,312,1114,332,1076,350,1036,364,958,379"/>
+</map>

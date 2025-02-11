@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Factory in charge of spawning sensors.">
+<g id="a_Node000001"><a xlink:title="工厂负责生成传感器。此工厂能够生成在 carla：：sensor：：SensorRegistry 中注册的每个传感器。">
 <polygon fill="#999999" stroke="#666666" points="94,-20 7.5,-20 7.5,0 94,0 94,-20"/>
 <text text-anchor="middle" x="50.75" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">ASensorFactory</text>
 </a>
@@ -30,7 +30,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../d8/d84/classACarlaActorFactory.html" target="_top" xlink:title="Base class for Carla actor factories.">
+<g id="a_Node000002"><a xlink:href="../../d8/d84/classACarlaActorFactory.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="101.5,-76 0,-76 0,-56 101.5,-56 101.5,-76"/>
 <text text-anchor="middle" x="50.75" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">ACarlaActorFactory</text>
 </a>

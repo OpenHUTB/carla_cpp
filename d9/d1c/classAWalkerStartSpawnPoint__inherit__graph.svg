@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Used to set spawner locations for walkers in the level.">
+<g id="a_Node000001"><a xlink:title="用于设置关卡中行人的生成器位置。这些位置将仅用于在游戏开始时生成行人。">
 <polygon fill="#999999" stroke="#666666" points="127,-20 0.75,-20 0.75,0 127,0 127,-20"/>
 <text text-anchor="middle" x="63.88" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">AWalkerStartSpawnPoint</text>
 </a>

@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="../../d4/d8b/classcarla_1_1NonCopyable.html" target="_top" xlink:title="Inherit (privately) to suppress copy/move construction and assignment.">
+<g id="a_Node000002"><a xlink:href="../../d4/d8b/classcarla_1_1NonCopyable.html" target="_top" xlink:title="这个类用于禁止拷贝和移动构造函数及赋值操作">
 <polygon fill="white" stroke="#666666" points="100.75,-88 0,-88 0,-68 100.75,-68 100.75,-88"/>
 <text text-anchor="middle" x="50.38" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::NonCopyable</text>
 </a>

@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Compile&#45;time map for mapping sensor objects to serializers.">
+<g id="a_Node000001"><a xlink:title="编译时映射表，用于将传感器对象映射到序列化器。">
 <polygon fill="#999999" stroke="#666666" points="129.62,-32 4.88,-32 4.88,0 129.62,0 129.62,-32"/>
 <text text-anchor="start" x="12.88" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::sensor::Composite</text>
 <text text-anchor="middle" x="67.25" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">Serializer&lt; Items &gt;</text>
@@ -50,7 +50,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="../../d4/dd4/structcarla_1_1sensor_1_1CompileTimeTypeMap.html" target="_top" xlink:title="A compile time structure for mapping two types.">
+<g id="a_Node000003"><a xlink:href="../../d4/dd4/structcarla_1_1sensor_1_1CompileTimeTypeMap.html" target="_top" xlink:title="一个编译时结构，用于映射两种类型。可以通过键或索引查找元素。">
 <polygon fill="white" stroke="#666666" points="134.5,-181 0,-181 0,-149 134.5,-149 134.5,-181"/>
 <text text-anchor="start" x="8" y="-167.5" font-family="Helvetica,sans-Serif" font-size="10.00">carla::sensor::CompileTime</text>
 <text text-anchor="middle" x="67.25" y="-155.5" font-family="Helvetica,sans-Serif" font-size="10.00">TypeMap&lt; Items &gt;</text>

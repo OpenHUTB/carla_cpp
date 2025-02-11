@@ -1,0 +1,889 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: Router类 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="../../d1/dae/classRouter-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">Router类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="../../da/db7/router_8h_source.html">router.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> 类 Router 继承关系图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d1/dc1/classRouter__inherit__graph.svg" width="155" height="128"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> Router 的协作图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/deb/classRouter__coll__graph.svg" width="388" height="558"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a124222606a0f49f924d88b7c208d2b54" id="r_a124222606a0f49f924d88b7c208d2b54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a124222606a0f49f924d88b7c208d2b54">AsyncRun</a> (<a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a> worker_threads)</td></tr>
+<tr class="separator:a124222606a0f49f924d88b7c208d2b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e24296d33fb38d882f5f9af1f4e74b" id="r_ac5e24296d33fb38d882f5f9af1f4e74b"><td class="memItemLeft" align="right" valign="top">PrimaryCommands &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5e24296d33fb38d882f5f9af1f4e74b">GetCommander</a> ()</td></tr>
+<tr class="separator:ac5e24296d33fb38d882f5f9af1f4e74b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34e4875ffa3f02931a37e5ba0fcf8018" id="r_a34e4875ffa3f02931a37e5ba0fcf8018"><td class="memItemLeft" align="right" valign="top">boost::asio::ip::tcp::endpoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34e4875ffa3f02931a37e5ba0fcf8018">GetLocalEndpoint</a> () const</td></tr>
+<tr class="separator:a34e4875ffa3f02931a37e5ba0fcf8018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff0b77a01a573b9849e777c289068d3c" id="r_aff0b77a01a573b9849e777c289068d3c"><td class="memItemLeft" align="right" valign="top">std::weak_ptr&lt; Primary &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff0b77a01a573b9849e777c289068d3c">GetNextServer</a> ()</td></tr>
+<tr class="separator:aff0b77a01a573b9849e777c289068d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d5a6d12cb59c3c3897aa9b2d38edd94" id="r_a2d5a6d12cb59c3c3897aa9b2d38edd94"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d5a6d12cb59c3c3897aa9b2d38edd94">HasClientsConnected</a> ()</td></tr>
+<tr class="separator:a2d5a6d12cb59c3c3897aa9b2d38edd94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae50a6ceb950e0898f896d47b8dc4427f" id="r_ae50a6ceb950e0898f896d47b8dc4427f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae50a6ceb950e0898f896d47b8dc4427f">Router</a> (uint16_t port)</td></tr>
+<tr class="separator:ae50a6ceb950e0898f896d47b8dc4427f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75af7abda765371955b99f66abe7985d" id="r_a75af7abda765371955b99f66abe7985d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75af7abda765371955b99f66abe7985d">Router</a> (void)</td></tr>
+<tr class="separator:a75af7abda765371955b99f66abe7985d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275f1436530cd07dcaeac148bcd4a9ea" id="r_a275f1436530cd07dcaeac148bcd4a9ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a275f1436530cd07dcaeac148bcd4a9ea">SetCallbacks</a> ()</td></tr>
+<tr class="separator:a275f1436530cd07dcaeac148bcd4a9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb72c5b299fbca82500bb1992a2273ec" id="r_afb72c5b299fbca82500bb1992a2273ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb72c5b299fbca82500bb1992a2273ec">SetNewConnectionCallback</a> (std::function&lt; void(void)&gt;)</td></tr>
+<tr class="separator:afb72c5b299fbca82500bb1992a2273ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab71353ee88608f83ec09290b84244ae5" id="r_ab71353ee88608f83ec09290b84244ae5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab71353ee88608f83ec09290b84244ae5">Stop</a> ()</td></tr>
+<tr class="separator:ab71353ee88608f83ec09290b84244ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09b9294ffeee5c99cc75b1393065f4ed" id="r_a09b9294ffeee5c99cc75b1393065f4ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09b9294ffeee5c99cc75b1393065f4ed">Write</a> (MultiGPUCommand id, Buffer &amp;&amp;buffer)</td></tr>
+<tr class="separator:a09b9294ffeee5c99cc75b1393065f4ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8c18391c984be29b51981e94ef9b70e" id="r_af8c18391c984be29b51981e94ef9b70e"><td class="memItemLeft" align="right" valign="top">std::future&lt; <a class="el" href="../../de/d9b/structSessionInfo.html">SessionInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8c18391c984be29b51981e94ef9b70e">WriteToNext</a> (MultiGPUCommand id, Buffer &amp;&amp;buffer)</td></tr>
+<tr class="separator:af8c18391c984be29b51981e94ef9b70e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d60c31597f00b9d3c9335a3ad2c6dc" id="r_a54d60c31597f00b9d3c9335a3ad2c6dc"><td class="memItemLeft" align="right" valign="top">std::future&lt; <a class="el" href="../../de/d9b/structSessionInfo.html">SessionInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54d60c31597f00b9d3c9335a3ad2c6dc">WriteToOne</a> (std::weak_ptr&lt; Primary &gt; server, MultiGPUCommand id, Buffer &amp;&amp;buffer)</td></tr>
+<tr class="separator:a54d60c31597f00b9d3c9335a3ad2c6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26d13a6259937e330488653e8e16f921" id="r_a26d13a6259937e330488653e8e16f921"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26d13a6259937e330488653e8e16f921">~Router</a> ()</td></tr>
+<tr class="separator:a26d13a6259937e330488653e8e16f921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:aae65dd60f28b634f4068d9df05d97fa0" id="r_aae65dd60f28b634f4068d9df05d97fa0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae65dd60f28b634f4068d9df05d97fa0">ClearSessions</a> ()</td></tr>
+<tr class="separator:aae65dd60f28b634f4068d9df05d97fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba94e76708e58599aa15f2ee24ddd2c5" id="r_aba94e76708e58599aa15f2ee24ddd2c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba94e76708e58599aa15f2ee24ddd2c5">ConnectSession</a> (std::shared_ptr&lt; Primary &gt; session)</td></tr>
+<tr class="separator:aba94e76708e58599aa15f2ee24ddd2c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53f33ecbcda2dc9cbcc124621ab84b52" id="r_a53f33ecbcda2dc9cbcc124621ab84b52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53f33ecbcda2dc9cbcc124621ab84b52">DisconnectSession</a> (std::shared_ptr&lt; Primary &gt; session)</td></tr>
+<tr class="separator:a53f33ecbcda2dc9cbcc124621ab84b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a4864490058b07ca383cd9779f7925995" id="r_a4864490058b07ca383cd9779f7925995"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(void)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4864490058b07ca383cd9779f7925995">_callback</a></td></tr>
+<tr class="separator:a4864490058b07ca383cd9779f7925995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a400b8dfd2c9167de3f71e912cd14e5bb" id="r_a400b8dfd2c9167de3f71e912cd14e5bb"><td class="memItemLeft" align="right" valign="top">PrimaryCommands&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a400b8dfd2c9167de3f71e912cd14e5bb">_commander</a></td></tr>
+<tr class="separator:a400b8dfd2c9167de3f71e912cd14e5bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2922efd970e53bca17592625bc8b9030" id="r_a2922efd970e53bca17592625bc8b9030"><td class="memItemLeft" align="right" valign="top">boost::asio::ip::tcp::endpoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2922efd970e53bca17592625bc8b9030">_endpoint</a></td></tr>
+<tr class="separator:a2922efd970e53bca17592625bc8b9030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e788e6d94ce61fd1cea439a2d48ab9" id="r_ab9e788e6d94ce61fd1cea439a2d48ab9"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; Listener &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9e788e6d94ce61fd1cea439a2d48ab9">_listener</a></td></tr>
+<tr class="separator:ab9e788e6d94ce61fd1cea439a2d48ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa782af2e5e3dc1542601cd755cb0c901" id="r_aa782af2e5e3dc1542601cd755cb0c901"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa782af2e5e3dc1542601cd755cb0c901">_mutex</a></td></tr>
+<tr class="separator:aa782af2e5e3dc1542601cd755cb0c901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaf5163ccfa7e3138c4e28ed9be4e848" id="r_adaf5163ccfa7e3138c4e28ed9be4e848"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaf5163ccfa7e3138c4e28ed9be4e848">_next</a></td></tr>
+<tr class="separator:adaf5163ccfa7e3138c4e28ed9be4e848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19dedf2e9328d1f069b747092a9f68a8" id="r_a19dedf2e9328d1f069b747092a9f68a8"><td class="memItemLeft" align="right" valign="top">ThreadPool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19dedf2e9328d1f069b747092a9f68a8">_pool</a></td></tr>
+<tr class="separator:a19dedf2e9328d1f069b747092a9f68a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0785e7e8debd1473149b62056b8e53c4" id="r_a0785e7e8debd1473149b62056b8e53c4"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; Primary *, std::shared_ptr&lt; std::promise&lt; <a class="el" href="../../de/d9b/structSessionInfo.html">SessionInfo</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0785e7e8debd1473149b62056b8e53c4">_promises</a></td></tr>
+<tr class="separator:a0785e7e8debd1473149b62056b8e53c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf8dbd588e07f9639d27d11e33ed76bd" id="r_abf8dbd588e07f9639d27d11e33ed76bd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; Primary &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf8dbd588e07f9639d27d11e33ed76bd">_sessions</a></td></tr>
+<tr class="separator:abf8dbd588e07f9639d27d11e33ed76bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock">
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00049">49</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a75af7abda765371955b99f66abe7985d" name="a75af7abda765371955b99f66abe7985d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75af7abda765371955b99f66abe7985d">&#9670;&#160;</a></span>Router() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Router::Router </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae50a6ceb950e0898f896d47b8dc4427f" name="ae50a6ceb950e0898f896d47b8dc4427f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae50a6ceb950e0898f896d47b8dc4427f">&#9670;&#160;</a></span>Router() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Router::Router </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>port</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00040">40</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00086">_endpoint</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00088">_listener</a> , 以及 <a class="el" href="../../da/db7/router_8h_source.html#l00085">_pool</a>.</p>
+
+</div>
+</div>
+<a id="a26d13a6259937e330488653e8e16f921" name="a26d13a6259937e330488653e8e16f921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26d13a6259937e330488653e8e16f921">&#9670;&#160;</a></span>~Router()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Router::~Router </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00020">20</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00029">Stop()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/d67/classRouter_a26d13a6259937e330488653e8e16f921_cgraph.svg" width="466" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a124222606a0f49f924d88b7c208d2b54" name="a124222606a0f49f924d88b7c208d2b54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a124222606a0f49f924d88b7c208d2b54">&#9670;&#160;</a></span>AsyncRun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Router::AsyncRun </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/dad/ConcurrentQueue_8h.html#abc08b7e2a4e588862664de9fc43fc61b">size_t</a></td>          <td class="paramname"><span class="paramname"><em>worker_threads</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00104">104</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00085">_pool</a>.</p>
+
+</div>
+</div>
+<a id="aae65dd60f28b634f4068d9df05d97fa0" name="aae65dd60f28b634f4068d9df05d97fa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae65dd60f28b634f4068d9df05d97fa0">&#9670;&#160;</a></span>ClearSessions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Router::ClearSessions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00145">145</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00084">_mutex</a> , 以及 <a class="el" href="../../da/db7/router_8h_source.html#l00087">_sessions</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00029">Stop()</a>.</p>
+<div id="dynsection-3" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/d67/classRouter_aae65dd60f28b634f4068d9df05d97fa0_icgraph.svg" width="466" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="aba94e76708e58599aa15f2ee24ddd2c5" name="aba94e76708e58599aa15f2ee24ddd2c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba94e76708e58599aa15f2ee24ddd2c5">&#9670;&#160;</a></span>ConnectSession()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Router::ConnectSession </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; Primary &gt;</td>          <td class="paramname"><span class="paramname"><em>session</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00118">118</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00092">_callback</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00084">_mutex</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00087">_sessions</a> , 以及 <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>.</p>
+
+</div>
+</div>
+<a id="a53f33ecbcda2dc9cbcc124621ab84b52" name="a53f33ecbcda2dc9cbcc124621ab84b52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53f33ecbcda2dc9cbcc124621ab84b52">&#9670;&#160;</a></span>DisconnectSession()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Router::DisconnectSession </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; Primary &gt;</td>          <td class="paramname"><span class="paramname"><em>session</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00133">133</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00084">_mutex</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00087">_sessions</a> , 以及 <a class="el" href="../../d4/deb/Debug_8h_source.html#l00068">DEBUG_ASSERT</a>.</p>
+
+</div>
+</div>
+<a id="ac5e24296d33fb38d882f5f9af1f4e74b" name="ac5e24296d33fb38d882f5f9af1f4e74b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5e24296d33fb38d882f5f9af1f4e74b">&#9670;&#160;</a></span>GetCommander()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PrimaryCommands &amp; Router::GetCommander </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00072">72</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00091">_commander</a>.</p>
+
+</div>
+</div>
+<a id="a34e4875ffa3f02931a37e5ba0fcf8018" name="a34e4875ffa3f02931a37e5ba0fcf8018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34e4875ffa3f02931a37e5ba0fcf8018">&#9670;&#160;</a></span>GetLocalEndpoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::ip::tcp::endpoint Router::GetLocalEndpoint </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00109">109</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00086">_endpoint</a>.</p>
+
+</div>
+</div>
+<a id="aff0b77a01a573b9849e777c289068d3c" name="aff0b77a01a573b9849e777c289068d3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff0b77a01a573b9849e777c289068d3c">&#9670;&#160;</a></span>GetNextServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::weak_ptr&lt; Primary &gt; Router::GetNextServer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00264">264</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00084">_mutex</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00089">_next</a> , 以及 <a class="el" href="../../da/db7/router_8h_source.html#l00087">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="a2d5a6d12cb59c3c3897aa9b2d38edd94" name="a2d5a6d12cb59c3c3897aa9b2d38edd94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d5a6d12cb59c3c3897aa9b2d38edd94">&#9670;&#160;</a></span>HasClientsConnected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Router::HasClientsConnected </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00068">68</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00087">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="a275f1436530cd07dcaeac148bcd4a9ea" name="a275f1436530cd07dcaeac148bcd4a9ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a275f1436530cd07dcaeac148bcd4a9ea">&#9670;&#160;</a></span>SetCallbacks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Router::SetCallbacks </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00058">58</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00091">_commander</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00086">_endpoint</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00088">_listener</a> , 以及 <a class="el" href="../../da/db7/router_8h_source.html#l00090">_promises</a>.</p>
+
+</div>
+</div>
+<a id="afb72c5b299fbca82500bb1992a2273ec" name="afb72c5b299fbca82500bb1992a2273ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb72c5b299fbca82500bb1992a2273ec">&#9670;&#160;</a></span>SetNewConnectionCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Router::SetNewConnectionCallback </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void(void)&gt;</td>          <td class="paramname"><span class="paramname"><em>func</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00092">_callback</a>.</p>
+
+</div>
+</div>
+<a id="ab71353ee88608f83ec09290b84244ae5" name="ab71353ee88608f83ec09290b84244ae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab71353ee88608f83ec09290b84244ae5">&#9670;&#160;</a></span>Stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Router::Stop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00029">29</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00088">_listener</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00085">_pool</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00145">ClearSessions()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00020">~Router()</a>.</p>
+<div id="dynsection-4" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/d67/classRouter_ab71353ee88608f83ec09290b84244ae5_cgraph.svg" width="304" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-5" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d6/d67/classRouter_ab71353ee88608f83ec09290b84244ae5_icgraph.svg" width="267" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a09b9294ffeee5c99cc75b1393065f4ed" name="a09b9294ffeee5c99cc75b1393065f4ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09b9294ffeee5c99cc75b1393065f4ed">&#9670;&#160;</a></span>Write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Router::Write </td>
+          <td>(</td>
+          <td class="paramtype">MultiGPUCommand</td>          <td class="paramname"><span class="paramname"><em>id</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Buffer &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00161">161</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00084">_mutex</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00087">_sessions</a> , 以及 <a class="el" href="../../d8/dee/BufferView_8h_source.html#l00060">carla::BufferView::CreateFrom()</a>.</p>
+<div id="dynsection-6" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/d67/classRouter_a09b9294ffeee5c99cc75b1393065f4ed_cgraph.svg" width="100%" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="af8c18391c984be29b51981e94ef9b70e" name="af8c18391c984be29b51981e94ef9b70e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8c18391c984be29b51981e94ef9b70e">&#9670;&#160;</a></span>WriteToNext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::future&lt; <a class="el" href="../../de/d9b/structSessionInfo.html">SessionInfo</a> &gt; Router::WriteToNext </td>
+          <td>(</td>
+          <td class="paramtype">MultiGPUCommand</td>          <td class="paramname"><span class="paramname"><em>id</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Buffer &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00193">193</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00084">_mutex</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00089">_next</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00090">_promises</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00087">_sessions</a> , 以及 <a class="el" href="../../d8/dee/BufferView_8h_source.html#l00060">carla::BufferView::CreateFrom()</a>.</p>
+<div id="dynsection-7" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/d67/classRouter_af8c18391c984be29b51981e94ef9b70e_cgraph.svg" width="100%" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a54d60c31597f00b9d3c9335a3ad2c6dc" name="a54d60c31597f00b9d3c9335a3ad2c6dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d60c31597f00b9d3c9335a3ad2c6dc">&#9670;&#160;</a></span>WriteToOne()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::future&lt; <a class="el" href="../../de/d9b/structSessionInfo.html">SessionInfo</a> &gt; Router::WriteToOne </td>
+          <td>(</td>
+          <td class="paramtype">std::weak_ptr&lt; Primary &gt;</td>          <td class="paramname"><span class="paramname"><em>server</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MultiGPUCommand</td>          <td class="paramname"><span class="paramname"><em>id</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Buffer &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a> 第 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00235">235</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../da/db7/router_8h_source.html#l00084">_mutex</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00090">_promises</a> , 以及 <a class="el" href="../../d8/dee/BufferView_8h_source.html#l00060">carla::BufferView::CreateFrom()</a>.</p>
+<div id="dynsection-8" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="../../d6/d67/classRouter_a54d60c31597f00b9d3c9335a3ad2c6dc_cgraph.svg" width="100%" height="403"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a4864490058b07ca383cd9779f7925995" name="a4864490058b07ca383cd9779f7925995"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4864490058b07ca383cd9779f7925995">&#9670;&#160;</a></span>_callback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void(void)&gt; Router::_callback</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00118">ConnectSession()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00097">SetNewConnectionCallback()</a>.</p>
+
+</div>
+</div>
+<a id="a400b8dfd2c9167de3f71e912cd14e5bb" name="a400b8dfd2c9167de3f71e912cd14e5bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a400b8dfd2c9167de3f71e912cd14e5bb">&#9670;&#160;</a></span>_commander</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">PrimaryCommands Router::_commander</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00091">91</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../da/db7/router_8h_source.html#l00072">GetCommander()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00058">SetCallbacks()</a>.</p>
+
+</div>
+</div>
+<a id="a2922efd970e53bca17592625bc8b9030" name="a2922efd970e53bca17592625bc8b9030"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2922efd970e53bca17592625bc8b9030">&#9670;&#160;</a></span>_endpoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::ip::tcp::endpoint Router::_endpoint</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00109">GetLocalEndpoint()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00040">Router()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00058">SetCallbacks()</a>.</p>
+
+</div>
+</div>
+<a id="ab9e788e6d94ce61fd1cea439a2d48ab9" name="ab9e788e6d94ce61fd1cea439a2d48ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9e788e6d94ce61fd1cea439a2d48ab9">&#9670;&#160;</a></span>_listener</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;Listener&gt; Router::_listener</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00088">88</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00040">Router()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00058">SetCallbacks()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00029">Stop()</a>.</p>
+
+</div>
+</div>
+<a id="aa782af2e5e3dc1542601cd755cb0c901" name="aa782af2e5e3dc1542601cd755cb0c901"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa782af2e5e3dc1542601cd755cb0c901">&#9670;&#160;</a></span>_mutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex Router::_mutex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00084">84</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00145">ClearSessions()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00118">ConnectSession()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00133">DisconnectSession()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00264">GetNextServer()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00161">Write()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00193">WriteToNext()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00235">WriteToOne()</a>.</p>
+
+</div>
+</div>
+<a id="adaf5163ccfa7e3138c4e28ed9be4e848" name="adaf5163ccfa7e3138c4e28ed9be4e848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaf5163ccfa7e3138c4e28ed9be4e848">&#9670;&#160;</a></span>_next</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Router::_next</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00089">89</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00264">GetNextServer()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00193">WriteToNext()</a>.</p>
+
+</div>
+</div>
+<a id="a19dedf2e9328d1f069b747092a9f68a8" name="a19dedf2e9328d1f069b747092a9f68a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19dedf2e9328d1f069b747092a9f68a8">&#9670;&#160;</a></span>_pool</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ThreadPool Router::_pool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00085">85</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00104">AsyncRun()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00040">Router()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00029">Stop()</a>.</p>
+
+</div>
+</div>
+<a id="a0785e7e8debd1473149b62056b8e53c4" name="a0785e7e8debd1473149b62056b8e53c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0785e7e8debd1473149b62056b8e53c4">&#9670;&#160;</a></span>_promises</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt;Primary *, std::shared_ptr&lt;std::promise&lt;<a class="el" href="../../de/d9b/structSessionInfo.html">SessionInfo</a>&gt; &gt; &gt; Router::_promises</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00090">90</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00058">SetCallbacks()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00193">WriteToNext()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00235">WriteToOne()</a>.</p>
+
+</div>
+</div>
+<a id="abf8dbd588e07f9639d27d11e33ed76bd" name="abf8dbd588e07f9639d27d11e33ed76bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf8dbd588e07f9639d27d11e33ed76bd">&#9670;&#160;</a></span>_sessions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::shared_ptr&lt;Primary&gt; &gt; Router::_sessions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../da/db7/router_8h_source.html">router.h</a> 第 <a class="el" href="../../da/db7/router_8h_source.html#l00087">87</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00145">ClearSessions()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00118">ConnectSession()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00133">DisconnectSession()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00264">GetNextServer()</a>, <a class="el" href="../../da/db7/router_8h_source.html#l00068">HasClientsConnected()</a>, <a class="el" href="../../d9/da3/router_8cpp_source.html#l00161">Write()</a> , 以及 <a class="el" href="../../d9/da3/router_8cpp_source.html#l00193">WriteToNext()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li><a class="el" href="../../da/db7/router_8h_source.html">router.h</a></li>
+<li><a class="el" href="../../d9/da3/router_8cpp_source.html">router.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

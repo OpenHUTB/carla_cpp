@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CARLA: moodycamel::FreeList&lt; N &gt; 模板结构体 参考</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<script type="text/javascript" src="../../clipboard.js"></script>
+<script type="text/javascript" src="../../cookie.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CARLA
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "../../search/",'.html');
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../db/dc8/namespacemoodycamel.html">moodycamel</a></li><li class="navelem"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a> &#124;
+<a href="#pri-static-attribs">静态 Private 属性</a> &#124;
+<a href="../../d4/dd6/structmoodycamel_1_1FreeList-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">moodycamel::FreeList&lt; N &gt; 模板结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div id="dynsection-0" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="../../closed.png" alt="+"/> moodycamel::FreeList&lt; N &gt; 的协作图:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../da/d6c/structmoodycamel_1_1FreeList__coll__graph.svg" width="328" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="../../graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a898ebeb94ad749cdffe6328f89dc1b0a" id="r_a898ebeb94ad749cdffe6328f89dc1b0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a898ebeb94ad749cdffe6328f89dc1b0a">add</a> (N *node)</td></tr>
+<tr class="separator:a898ebeb94ad749cdffe6328f89dc1b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ce8906844c222874f60e308ceb8cc6" id="r_ae1ce8906844c222874f60e308ceb8cc6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae1ce8906844c222874f60e308ceb8cc6">FreeList</a> ()</td></tr>
+<tr class="separator:ae1ce8906844c222874f60e308ceb8cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29666e3c6e25d7c6eebacf84a3f1201e" id="r_a29666e3c6e25d7c6eebacf84a3f1201e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29666e3c6e25d7c6eebacf84a3f1201e">FreeList</a> (<a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a> &amp;&amp;other)</td></tr>
+<tr class="separator:a29666e3c6e25d7c6eebacf84a3f1201e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ffc22e5bb84cc60672481ff6a0d8b7" id="r_ac5ffc22e5bb84cc60672481ff6a0d8b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5ffc22e5bb84cc60672481ff6a0d8b7">FreeList</a> (<a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a> const &amp;) <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a967f46a809b842ffccc5058223140ca0">MOODYCAMEL_DELETE_FUNCTION</a></td></tr>
+<tr class="separator:ac5ffc22e5bb84cc60672481ff6a0d8b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc8ca00e9ea719b3a27ecfae8da0f9a8" id="r_acc8ca00e9ea719b3a27ecfae8da0f9a8"><td class="memItemLeft" align="right" valign="top">N *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc8ca00e9ea719b3a27ecfae8da0f9a8">head_unsafe</a> () const</td></tr>
+<tr class="separator:acc8ca00e9ea719b3a27ecfae8da0f9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac59d15bdb318c426609b7acc3072f832" id="r_ac59d15bdb318c426609b7acc3072f832"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac59d15bdb318c426609b7acc3072f832">operator=</a> (<a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a> const &amp;) <a class="el" href="../../de/dad/ConcurrentQueue_8h.html#a967f46a809b842ffccc5058223140ca0">MOODYCAMEL_DELETE_FUNCTION</a></td></tr>
+<tr class="separator:ac59d15bdb318c426609b7acc3072f832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316f6750e412d49445934851bce43809" id="r_a316f6750e412d49445934851bce43809"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a316f6750e412d49445934851bce43809">swap</a> (<a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a> &amp;other)</td></tr>
+<tr class="separator:a316f6750e412d49445934851bce43809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1689e3680fd52b72639dbef28031ce76" id="r_a1689e3680fd52b72639dbef28031ce76"><td class="memItemLeft" align="right" valign="top">N *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1689e3680fd52b72639dbef28031ce76">try_get</a> ()</td></tr>
+<tr class="separator:a1689e3680fd52b72639dbef28031ce76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:a1747c8d70a59e8dca1500768170ce509" id="r_a1747c8d70a59e8dca1500768170ce509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1747c8d70a59e8dca1500768170ce509">add_knowing_refcount_is_zero</a> (N *node)</td></tr>
+<tr class="separator:a1747c8d70a59e8dca1500768170ce509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a5a8632bc08a24950f2b59b3b5fac1e93" id="r_a5a8632bc08a24950f2b59b3b5fac1e93"><td class="memItemLeft" align="right" valign="top">std::atomic&lt; N * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a8632bc08a24950f2b59b3b5fac1e93">freeListHead</a></td></tr>
+<tr class="separator:a5a8632bc08a24950f2b59b3b5fac1e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+静态 Private 属性</h2></td></tr>
+<tr class="memitem:ad7ba5d3d08f86fefd59ed03042f50857" id="r_ad7ba5d3d08f86fefd59ed03042f50857"><td class="memItemLeft" align="right" valign="top">static const std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7ba5d3d08f86fefd59ed03042f50857">REFS_MASK</a> = 0x7FFFFFFF</td></tr>
+<tr class="separator:ad7ba5d3d08f86fefd59ed03042f50857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dd1374b5c88caa135fe58a5de59cc85" id="r_a6dd1374b5c88caa135fe58a5de59cc85"><td class="memItemLeft" align="right" valign="top">static const std::uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dd1374b5c88caa135fe58a5de59cc85">SHOULD_BE_ON_FREELIST</a> = 0x80000000</td></tr>
+<tr class="separator:a6dd1374b5c88caa135fe58a5de59cc85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename N&gt;<br />
+struct moodycamel::FreeList&lt; N &gt;</div>
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01492">1492</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="ae1ce8906844c222874f60e308ceb8cc6" name="ae1ce8906844c222874f60e308ceb8cc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1ce8906844c222874f60e308ceb8cc6">&#9670;&#160;</a></span>FreeList() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::FreeList </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01494">1494</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a29666e3c6e25d7c6eebacf84a3f1201e" name="a29666e3c6e25d7c6eebacf84a3f1201e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29666e3c6e25d7c6eebacf84a3f1201e">&#9670;&#160;</a></span>FreeList() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::FreeList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a>&lt; N &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01495">1495</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac5ffc22e5bb84cc60672481ff6a0d8b7" name="ac5ffc22e5bb84cc60672481ff6a0d8b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ffc22e5bb84cc60672481ff6a0d8b7">&#9670;&#160;</a></span>FreeList() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::FreeList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a>&lt; N &gt; const &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a898ebeb94ad749cdffe6328f89dc1b0a" name="a898ebeb94ad749cdffe6328f89dc1b0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a898ebeb94ad749cdffe6328f89dc1b0a">&#9670;&#160;</a></span>add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::add </td>
+          <td>(</td>
+          <td class="paramtype">N *</td>          <td class="paramname"><span class="paramname"><em>node</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01501">1501</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1747c8d70a59e8dca1500768170ce509" name="a1747c8d70a59e8dca1500768170ce509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1747c8d70a59e8dca1500768170ce509">&#9670;&#160;</a></span>add_knowing_refcount_is_zero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::add_knowing_refcount_is_zero </td>
+          <td>(</td>
+          <td class="paramtype">N *</td>          <td class="paramname"><span class="paramname"><em>node</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01556">1556</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01543">operator=()</a>.</p>
+<div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="../../closed.png" alt="+"/> 这是这个函数的调用关系图:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d05/structmoodycamel_1_1FreeList_a1747c8d70a59e8dca1500768170ce509_icgraph.svg" width="292" height="70"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="acc8ca00e9ea719b3a27ecfae8da0f9a8" name="acc8ca00e9ea719b3a27ecfae8da0f9a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc8ca00e9ea719b3a27ecfae8da0f9a8">&#9670;&#160;</a></span>head_unsafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">N * <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::head_unsafe </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01553">1553</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01581">moodycamel::FreeList&lt; N &gt;::freeListHead</a>.</p>
+
+</div>
+</div>
+<a id="ac59d15bdb318c426609b7acc3072f832" name="ac59d15bdb318c426609b7acc3072f832"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac59d15bdb318c426609b7acc3072f832">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a> &amp; <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a>&lt; N &gt; const &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a316f6750e412d49445934851bce43809" name="a316f6750e412d49445934851bce43809"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a316f6750e412d49445934851bce43809">&#9670;&#160;</a></span>swap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::swap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">FreeList</a>&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01496">1496</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01581">moodycamel::FreeList&lt; N &gt;::freeListHead</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l00475">moodycamel::details::swap_relaxed()</a>.</p>
+<div id="dynsection-2" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="../../closed.png" alt="+"/> 函数调用图:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../de/d05/structmoodycamel_1_1FreeList_a316f6750e412d49445934851bce43809_cgraph.svg" width="351" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a1689e3680fd52b72639dbef28031ce76" name="a1689e3680fd52b72639dbef28031ce76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1689e3680fd52b72639dbef28031ce76">&#9670;&#160;</a></span>try_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">N * <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::try_get </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01515">1515</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01581">moodycamel::FreeList&lt; N &gt;::freeListHead</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01583">moodycamel::FreeList&lt; N &gt;::REFS_MASK</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01584">moodycamel::FreeList&lt; N &gt;::SHOULD_BE_ON_FREELIST</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a5a8632bc08a24950f2b59b3b5fac1e93" name="a5a8632bc08a24950f2b59b3b5fac1e93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a8632bc08a24950f2b59b3b5fac1e93">&#9670;&#160;</a></span>freeListHead</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::atomic&lt;N*&gt; <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::freeListHead</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01581">1581</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01553">moodycamel::FreeList&lt; N &gt;::head_unsafe()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01496">moodycamel::FreeList&lt; N &gt;::swap()</a>, <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01559">swap_internal()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01515">moodycamel::FreeList&lt; N &gt;::try_get()</a>.</p>
+
+</div>
+</div>
+<a id="ad7ba5d3d08f86fefd59ed03042f50857" name="ad7ba5d3d08f86fefd59ed03042f50857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ba5d3d08f86fefd59ed03042f50857">&#9670;&#160;</a></span>REFS_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::uint32_t <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::REFS_MASK = 0x7FFFFFFF</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01583">1583</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01515">moodycamel::FreeList&lt; N &gt;::try_get()</a>.</p>
+
+</div>
+</div>
+<a id="a6dd1374b5c88caa135fe58a5de59cc85" name="a6dd1374b5c88caa135fe58a5de59cc85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dd1374b5c88caa135fe58a5de59cc85">&#9670;&#160;</a></span>SHOULD_BE_ON_FREELIST</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename N &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::uint32_t <a class="el" href="../../de/d05/structmoodycamel_1_1FreeList.html">moodycamel::FreeList</a>&lt; N &gt;::SHOULD_BE_ON_FREELIST = 0x80000000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a> 第 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01584">1584</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01559">swap_internal()</a> , 以及 <a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html#l01515">moodycamel::FreeList&lt; N &gt;::try_get()</a>.</p>
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li><a class="el" href="../../de/dad/ConcurrentQueue_8h_source.html">ConcurrentQueue.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

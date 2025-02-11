@@ -1,0 +1,134 @@
+<map id="SemanticLidarData.h" name="SemanticLidarData.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="233,5,375,32"/>
+<area shape="rect" id="Node000002" href="$de/df5/LidarData_8h.html" title=" " alt="" coords="120,80,208,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,42,190,82,187,77,265,37"/>
+<area shape="rect" id="Node000092" href="$de/dc6/RayCastSemanticLidar_8h.html" title=" " alt="" coords="165,827,331,853"/>
+<area shape="poly" id="edge77_Node000001_Node000092" title=" " alt="" coords="307,47,307,181,302,361,299,540,299,692,294,732,283,770,257,827,252,825,278,768,289,731,293,692,293,540,297,361,301,181,301,47"/>
+<area shape="rect" id="Node000127" href="$dd/d14/ROS2_8cpp.html" title=" " alt="" coords="211,155,293,181"/>
+<area shape="poly" id="edge76_Node000001_Node000127" title=" " alt="" coords="297,47,259,155,254,153,292,45"/>
+<area shape="rect" id="Node000128" href="$dd/d23/SemanticLidarSerializer_8h.html" title=" " alt="" coords="857,80,1026,107"/>
+<area shape="poly" id="edge78_Node000001_Node000128" title=" " alt="" coords="390,27,857,80,856,85,389,32"/>
+<area shape="rect" id="Node000003" href="$d1/de3/LidarSerializer_8h.html" title=" " alt="" coords="73,155,188,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="154,121,139,155,134,153,150,119"/>
+<area shape="rect" id="Node000090" href="$d1/d53/RayCastLidar_8h.html" title=" " alt="" coords="22,901,132,928"/>
+<area shape="poly" id="edge75_Node000002_Node000090" title=" " alt="" coords="117,116,88,133,63,156,49,177,42,195,39,241,39,767,42,805,52,843,74,900,69,902,47,844,37,806,33,767,33,241,37,194,44,175,59,153,85,129,114,111"/>
+<area shape="poly" id="edge74_Node000002_Node000127" title=" " alt="" coords="192,114,238,152,235,156,189,118"/>
+<area shape="rect" id="Node000004" href="$d4/dbb/LidarMeasurement_8h.html" title=" " alt="" coords="132,229,271,256"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="155,190,191,227,187,231,151,194"/>
+<area shape="rect" id="Node000005" href="$db/d0f/LidarSerializer_8cpp.html" title=" " alt="" coords="105,304,233,331"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="124,196,119,225,122,255,137,281,156,302,152,305,133,284,117,257,113,225,119,195"/>
+<area shape="rect" id="Node000006" href="$d4/d03/SensorRegistry_8h.html" title=" " alt="" coords="858,229,979,256"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="203,179,394,200,578,217,858,235,857,241,578,222,393,206,203,184"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="192,271,177,305,172,303,187,269"/>
+<area shape="rect" id="Node000007" href="$d9/d4d/AsyncDataStream_8h.html" title=" " alt="" coords="1000,304,1138,331"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="959,260,1044,301,1042,306,957,265"/>
+<area shape="rect" id="Node000036" href="$d0/dde/SensorFactory_8cpp.html" title=" " alt="" coords="922,901,1054,928"/>
+<area shape="poly" id="edge72_Node000006_Node000036" title=" " alt="" coords="994,254,1092,274,1196,304,1241,322,1279,342,1304,365,1311,377,1313,390,1313,767,1305,790,1283,811,1251,831,1211,849,1123,881,1042,903,1041,898,1121,876,1209,844,1248,826,1280,807,1300,787,1308,766,1308,391,1306,379,1299,368,1275,347,1239,327,1194,309,1091,279,993,259"/>
+<area shape="rect" id="Node000050" href="$df/d2e/PixelReader_8h.html" title=" " alt="" coords="1815,752,1918,779"/>
+<area shape="poly" id="edge71_Node000006_Node000050" title=" " alt="" coords="994,253,995,253,1061,259,1150,263,1356,276,1455,289,1537,311,1569,325,1594,343,1610,365,1616,390,1616,617,1621,648,1636,675,1659,697,1688,715,1753,741,1816,755,1815,760,1752,746,1685,720,1656,701,1632,678,1616,650,1611,618,1611,391,1605,367,1590,347,1567,330,1535,316,1454,294,1356,281,1150,269,1061,265,994,259,993,258"/>
+<area shape="rect" id="Node000102" href="$d9/de7/WorldObserver_8cpp.html" title=" " alt="" coords="721,752,852,779"/>
+<area shape="poly" id="edge73_Node000006_Node000102" title=" " alt="" coords="889,267,869,285,851,305,831,346,827,391,827,617,823,657,814,695,794,753,789,751,809,694,818,656,821,617,821,391,826,344,847,303,865,281,885,263"/>
+<area shape="rect" id="Node000126" href="$d0/d1a/Deserializer_8cpp.html" title=" " alt="" coords="861,304,976,331"/>
+<area shape="poly" id="edge70_Node000006_Node000126" title=" " alt="" coords="921,271,921,304,916,304,916,271"/>
+<area shape="rect" id="Node000008" href="$d0/d17/AsyncDataStreamImpl_8h.html" title=" " alt="" coords="1003,603,1165,629"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1073,345,1086,602,1081,602,1068,345"/>
+<area shape="rect" id="Node000103" href="$da/dd9/DataStream_8h.html" title=" " alt="" coords="685,379,787,405"/>
+<area shape="poly" id="edge54_Node000007_Node000103" title=" " alt="" coords="997,337,788,382,787,377,996,332"/>
+<area shape="rect" id="Node000009" href="$d0/d11/CarlaEngine_8h.html" title=" " alt="" coords="979,677,1082,704"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="1060,642,1035,678,1031,675,1056,639"/>
+<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="1054,665,1079,628,1084,631,1058,668"/>
+<area shape="rect" id="Node000010" href="$d2/d56/CarSimManagerComponent_8cpp.html" title=" " alt="" coords="1068,752,1273,779"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="1069,709,1147,749,1145,754,1067,714"/>
+<area shape="rect" id="Node000011" href="$d6/da1/CarlaEngine_8cpp.html" title=" " alt="" coords="876,752,993,779"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="1004,715,953,754,949,749,1001,711"/>
+<area shape="rect" id="Node000012" href="$d2/dba/CarlaGameInstance_8h.html" title=" " alt="" coords="915,827,1061,853"/>
+<area shape="poly" id="edge13_Node000009_Node000012" title=" " alt="" coords="1025,719,994,827,989,825,1020,718"/>
+<area shape="rect" id="Node000046" href="$da/df0/CollisionSensor_8cpp.html" title=" " alt="" coords="1089,976,1225,1003"/>
+<area shape="poly" id="edge19_Node000009_Node000046" title=" " alt="" coords="1097,696,1208,715,1256,730,1275,739,1287,750,1311,769,1321,778,1326,790,1324,808,1312,835,1251,930,1222,958,1189,978,1186,973,1219,954,1247,926,1308,832,1319,806,1321,790,1317,781,1307,773,1283,754,1272,744,1254,735,1207,720,1096,701"/>
+<area shape="rect" id="Node000028" href="$df/d8a/FrameData_8cpp.html" title=" " alt="" coords="586,752,696,779"/>
+<area shape="poly" id="edge20_Node000009_Node000028" title=" " alt="" coords="965,707,697,756,696,751,964,702"/>
+<area shape="poly" id="edge21_Node000009_Node000050" title=" " alt="" coords="1097,695,1815,757,1815,762,1096,700"/>
+<area shape="rect" id="Node000058" href="$d1/dec/SceneCaptureCamera_8cpp.html" title=" " alt="" coords="2361,1051,2535,1077"/>
+<area shape="poly" id="edge42_Node000009_Node000058" title=" " alt="" coords="1096,691,1518,704,2122,732,2416,752,2664,776,2761,789,2835,804,2883,820,2896,828,2901,838,2901,916,2898,931,2890,945,2862,969,2819,990,2766,1008,2647,1037,2535,1055,2534,1050,2646,1031,2765,1003,2817,985,2859,964,2886,941,2893,929,2896,916,2896,839,2892,832,2881,824,2834,809,2760,794,2663,781,2416,757,2122,737,1518,710,1096,696"/>
+<area shape="rect" id="Node000076" href="$d7/d7d/Unreal_2CarlaUE4_2Plugins_2Carla_2Source_2Carla_2Sensor_2Sensor_8h.html" title=" " alt="" coords="387,752,461,779"/>
+<area shape="poly" id="edge43_Node000009_Node000076" title=" " alt="" coords="965,702,461,762,461,757,964,697"/>
+<area shape="poly" id="edge53_Node000009_Node000102" title=" " alt="" coords="975,711,830,754,829,749,974,706"/>
+<area shape="rect" id="Node000014" href="$d3/d49/CarlaGameModeBase_8h.html" title=" " alt="" coords="1078,901,1237,928"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="1032,857,1128,898,1126,903,1029,862"/>
+<area shape="poly" id="edge17_Node000012_Node000046" title=" " alt="" coords="951,863,931,877,915,894,907,910,908,918,913,926,923,936,939,944,984,959,1089,978,1088,983,983,964,937,949,920,940,908,930,903,920,902,909,910,890,928,873,948,859"/>
+<area shape="poly" id="edge18_Node000012_Node000036" title=" " alt="" coords="991,868,991,901,985,901,985,868"/>
+<area shape="rect" id="Node000015" href="$da/d7f/ActorData_8cpp.html" title=" " alt="" coords="346,976,451,1003"/>
+<area shape="poly" id="edge15_Node000014_Node000015" title=" " alt="" coords="1063,931,710,965,452,987,451,981,709,960,1062,926"/>
+<area shape="poly" id="edge16_Node000014_Node000046" title=" " alt="" coords="1160,943,1160,976,1155,976,1155,943"/>
+<area shape="rect" id="Node000051" href="$d7/d0e/DepthCamera_8cpp.html" title=" " alt="" coords="2004,827,2129,853"/>
+<area shape="poly" id="edge22_Node000050_Node000051" title=" " alt="" coords="1916,782,2032,824,2030,829,1914,787"/>
+<area shape="rect" id="Node000052" href="$d6/dcd/InstanceSegmentationCamera_8cpp.html" title=" " alt="" coords="2154,827,2374,853"/>
+<area shape="poly" id="edge23_Node000050_Node000052" title=" " alt="" coords="1933,776,2194,823,2194,829,1932,781"/>
+<area shape="rect" id="Node000053" href="$d6/d81/NormalsCamera_8cpp.html" title=" " alt="" coords="2398,827,2538,853"/>
+<area shape="poly" id="edge24_Node000050_Node000053" title=" " alt="" coords="1933,771,2387,824,2398,826,2397,831,2386,829,1932,776"/>
+<area shape="rect" id="Node000054" href="$d0/d58/OpticalFlowCamera_8cpp.html" title=" " alt="" coords="2562,827,2721,853"/>
+<area shape="poly" id="edge25_Node000050_Node000054" title=" " alt="" coords="1933,769,2202,791,2549,824,2561,825,2561,831,2549,829,2202,796,1932,774"/>
+<area shape="rect" id="Node000055" href="$dc/db0/PixelReader_8cpp.html" title=" " alt="" coords="2744,827,2861,853"/>
+<area shape="poly" id="edge26_Node000050_Node000055" title=" " alt="" coords="1933,766,2276,784,2503,801,2733,824,2744,825,2744,831,2733,829,2503,806,2276,789,1932,772"/>
+<area shape="rect" id="Node000056" href="$d2/de5/RoadMap_8cpp.html" title=" " alt="" coords="1628,827,1729,853"/>
+<area shape="poly" id="edge27_Node000050_Node000056" title=" " alt="" coords="1821,787,1712,829,1711,824,1819,782"/>
+<area shape="rect" id="Node000057" href="$dc/d56/SceneCaptureCamera_8h.html" title=" " alt="" coords="1760,976,1920,1003"/>
+<area shape="poly" id="edge28_Node000050_Node000057" title=" " alt="" coords="1801,776,1692,795,1646,810,1629,819,1618,828,1613,840,1618,852,1634,868,1651,877,1669,881,1688,881,1729,882,1751,887,1773,899,1794,917,1812,937,1836,974,1831,977,1807,940,1790,920,1770,904,1749,892,1728,887,1688,886,1668,886,1649,882,1631,873,1614,855,1608,840,1614,825,1626,814,1644,805,1691,790,1800,771"/>
+<area shape="rect" id="Node000060" href="$d8/d95/SceneCaptureSensor_8h.html" title=" " alt="" coords="1398,827,1554,853"/>
+<area shape="poly" id="edge31_Node000050_Node000060" title=" " alt="" coords="1801,781,1545,829,1544,823,1800,776"/>
+<area shape="rect" id="Node000074" href="$d9/d38/SemanticSegmentationCamera_8cpp.html" title=" " alt="" coords="1753,827,1980,853"/>
+<area shape="poly" id="edge41_Node000050_Node000074" title=" " alt="" coords="1869,794,1869,826,1864,826,1864,794"/>
+<area shape="poly" id="edge29_Node000057_Node000058" title=" " alt="" coords="1935,999,2361,1050,2360,1055,1934,1005"/>
+<area shape="rect" id="Node000059" href="$d2/d0f/Weather_8cpp.html" title=" " alt="" coords="1792,1051,1888,1077"/>
+<area shape="poly" id="edge30_Node000057_Node000059" title=" " alt="" coords="1843,1018,1843,1050,1837,1050,1837,1018"/>
+<area shape="poly" id="edge33_Node000060_Node000014" title=" " alt="" coords="1406,860,1214,903,1212,898,1405,855"/>
+<area shape="poly" id="edge36_Node000060_Node000036" title=" " alt="" coords="1384,857,1066,904,1054,906,1054,900,1065,899,1383,852"/>
+<area shape="rect" id="Node000061" href="$dd/d08/ActorBlueprintFunctionLibrary_8cpp.html" title=" " alt="" coords="1390,976,1607,1003"/>
+<area shape="poly" id="edge32_Node000060_Node000061" title=" " alt="" coords="1488,867,1497,901,1501,942,1502,976,1496,976,1496,942,1492,902,1483,868"/>
+<area shape="rect" id="Node000062" href="$d6/db9/DVSCamera_8h.html" title=" " alt="" coords="1632,976,1736,1003"/>
+<area shape="poly" id="edge34_Node000060_Node000062" title=" " alt="" coords="1506,860,1597,926,1667,973,1664,978,1594,930,1503,864"/>
+<area shape="rect" id="Node000034" href="$db/d2d/SceneCaptureSensor_8cpp.html" title=" " alt="" coords="1313,901,1482,928"/>
+<area shape="poly" id="edge35_Node000060_Node000034" title=" " alt="" coords="1453,865,1413,903,1409,899,1450,861"/>
+<area shape="rect" id="Node000064" href="$da/d69/ShaderBasedSensor_8h.html" title=" " alt="" coords="1608,901,1760,928"/>
+<area shape="poly" id="edge37_Node000060_Node000064" title=" " alt="" coords="1527,856,1648,898,1646,903,1525,861"/>
+<area shape="poly" id="edge40_Node000064_Node000057" title=" " alt="" coords="1725,932,1814,973,1811,978,1723,937"/>
+<area shape="poly" id="edge38_Node000064_Node000061" title=" " alt="" coords="1639,936,1532,978,1530,973,1637,931"/>
+<area shape="poly" id="edge39_Node000064_Node000062" title=" " alt="" coords="1687,943,1687,976,1681,976,1681,943"/>
+<area shape="poly" id="edge44_Node000076_Node000015" title=" " alt="" coords="423,794,403,976,397,975,418,793"/>
+<area shape="poly" id="edge52_Node000076_Node000036" title=" " alt="" coords="440,790,466,823,482,838,501,851,535,864,580,875,694,892,817,903,922,908,921,914,817,908,694,897,579,880,533,869,499,856,479,843,462,826,436,793"/>
+<area shape="poly" id="edge51_Node000076_Node000060" title=" " alt="" coords="476,768,575,776,1398,831,1398,836,574,781,475,774"/>
+<area shape="rect" id="Node000077" href="$d3/df3/ActorRegistry_8cpp.html" title=" " alt="" coords="512,827,637,853"/>
+<area shape="poly" id="edge45_Node000076_Node000077" title=" " alt="" coords="464,783,549,824,547,828,462,788"/>
+<area shape="poly" id="edge46_Node000076_Node000090" title=" " alt="" coords="372,771,324,776,268,787,209,804,155,829,132,846,113,865,86,903,82,900,109,862,129,842,152,824,207,799,266,781,323,771,372,766"/>
+<area shape="poly" id="edge48_Node000076_Node000092" title=" " alt="" coords="381,787,280,828,278,824,379,782"/>
+<area shape="rect" id="Node000089" href="$df/dec/RayCastLidar_8cpp.html" title=" " alt="" coords="15,976,139,1003"/>
+<area shape="poly" id="edge47_Node000090_Node000089" title=" " alt="" coords="80,943,80,976,75,976,75,943"/>
+<area shape="poly" id="edge49_Node000092_Node000090" title=" " alt="" coords="206,862,108,903,106,898,204,857"/>
+<area shape="rect" id="Node000091" href="$d8/ddc/RayCastSemanticLidar_8cpp.html" title=" " alt="" coords="157,901,336,928"/>
+<area shape="poly" id="edge50_Node000092_Node000091" title=" " alt="" coords="250,868,249,901,244,901,245,868"/>
+<area shape="poly" id="edge66_Node000103_Node000076" title=" " alt="" coords="671,399,634,405,596,415,559,432,527,455,497,491,474,531,457,574,444,618,430,698,427,752,421,752,425,697,439,617,452,573,469,529,493,487,523,451,556,427,594,410,633,400,670,394"/>
+<area shape="rect" id="Node000104" href="$de/d7d/ActorData_8h.html" title=" " alt="" coords="537,453,628,480"/>
+<area shape="poly" id="edge55_Node000103_Node000104" title=" " alt="" coords="697,414,611,455,608,450,695,410"/>
+<area shape="rect" id="Node000114" href="$d0/d35/CarlaServer_8h.html" title=" " alt="" coords="688,603,786,629"/>
+<area shape="poly" id="edge65_Node000103_Node000114" title=" " alt="" coords="739,420,740,602,734,602,733,420"/>
+<area shape="rect" id="Node000125" href="$d8/deb/WorldObserver_8h.html" title=" " alt="" coords="861,603,979,629"/>
+<area shape="poly" id="edge67_Node000103_Node000125" title=" " alt="" coords="758,415,912,601,907,604,753,419"/>
+<area shape="poly" id="edge56_Node000104_Node000015" title=" " alt="" coords="537,488,422,541,350,580,274,628,198,684,126,749,63,822,36,861,13,902,8,915,13,926,35,942,68,956,159,973,259,982,346,985,346,991,259,988,158,979,67,961,32,947,8,930,3,915,8,900,32,858,59,818,122,745,194,680,271,624,347,576,420,536,535,484"/>
+<area shape="poly" id="edge57_Node000104_Node000077" title=" " alt="" coords="558,492,541,509,526,529,506,570,501,615,501,692,508,732,525,769,546,801,565,824,561,828,541,804,520,772,503,734,496,692,496,615,501,569,522,527,537,506,554,488"/>
+<area shape="poly" id="edge64_Node000104_Node000102" title=" " alt="" coords="611,488,643,527,656,554,662,578,667,601,678,628,702,665,729,699,775,750,772,753,725,702,697,668,673,631,662,602,657,579,651,556,639,529,607,492"/>
+<area shape="rect" id="Node000105" href="$de/d36/CarlaActor_8h.html" title=" " alt="" coords="536,528,629,555"/>
+<area shape="poly" id="edge58_Node000104_Node000105" title=" " alt="" coords="585,495,585,528,580,528,580,495"/>
+<area shape="poly" id="edge59_Node000105_Node000015" title=" " alt="" coords="551,565,508,596,459,639,412,692,393,722,377,753,368,784,364,816,369,880,382,936,396,975,391,977,377,937,363,881,359,816,363,783,372,751,388,719,408,689,455,635,505,592,548,561"/>
+<area shape="poly" id="edge63_Node000105_Node000028" title=" " alt="" coords="592,569,640,751,635,752,587,570"/>
+<area shape="poly" id="edge60_Node000105_Node000114" title=" " alt="" coords="624,559,711,600,709,604,621,564"/>
+<area shape="poly" id="edge61_Node000114_Node000009" title=" " alt="" coords="802,630,980,674,978,679,800,636"/>
+<area shape="poly" id="edge62_Node000114_Node000012" title=" " alt="" coords="695,638,643,665,594,699,577,718,567,738,566,757,577,777,598,793,632,806,673,817,721,824,822,833,914,836,914,842,822,839,720,830,672,822,630,811,596,798,572,780,561,759,562,737,572,715,591,695,640,660,692,633"/>
+<area shape="poly" id="edge68_Node000125_Node000009" title=" " alt="" coords="952,635,1013,674,1010,679,950,640"/>
+<area shape="poly" id="edge69_Node000125_Node000102" title=" " alt="" coords="901,642,844,706,800,753,796,750,841,702,897,639"/>
+<area shape="poly" id="edge82_Node000128_Node000006" title=" " alt="" coords="940,122,923,229,918,228,934,121"/>
+<area shape="rect" id="Node000129" href="$dd/d07/SemanticLidarMeasurement_8h.html" title=" " alt="" coords="1004,155,1198,181"/>
+<area shape="poly" id="edge79_Node000128_Node000129" title=" " alt="" coords="983,111,1074,152,1072,156,981,116"/>
+<area shape="rect" id="Node000130" href="$db/dad/SemanticLidarSerializer_8cpp.html" title=" " alt="" coords="1007,229,1190,256"/>
+<area shape="poly" id="edge81_Node000128_Node000130" title=" " alt="" coords="954,119,971,150,994,179,1030,207,1068,226,1065,231,1027,211,990,183,966,153,950,122"/>
+<area shape="poly" id="edge80_Node000129_Node000130" title=" " alt="" coords="1103,196,1102,229,1096,229,1098,196"/>
+</map>

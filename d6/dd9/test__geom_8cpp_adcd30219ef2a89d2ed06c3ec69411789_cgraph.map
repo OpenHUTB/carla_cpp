@@ -1,6 +1,6 @@
 <map id="TEST" name="TEST">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,13,59,40"/>
-<area shape="rect" id="Node000002" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a3cc49b5e9c8293dec0c89a1cac2ceae8" title="Applies this transformation to in_point (first translation then rotation)." alt="" coords="107,5,261,48"/>
+<area shape="rect" id="Node000002" href="$de/da4/classcarla_1_1geom_1_1Transform.html#a3cc49b5e9c8293dec0c89a1cac2ceae8" title="将此变换应用于 in_point（先平移然后旋转）。 具体操作是先根据当前的旋转信息对输入点进行旋转操作，然后再根据当前的位置信息进行平移操作，最终将结果赋值回输入点" alt="" coords="107,5,261,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,24,92,24,92,29,59,29"/>
 <area shape="rect" id="Node000003" href="$d8/dba/classcarla_1_1geom_1_1Rotation.html#ae5c4c69bc07cfb7fb46758ed2c8cb56e" title=" " alt="" coords="309,5,454,48"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="261,24,294,24,294,29,261,29"/>

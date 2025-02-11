@@ -1,0 +1,41 @@
+<map id="ASensor::GetDataStream" name="ASensor::GetDataStream">
+<area shape="rect" id="Node000001" title="Return the FDataStream associated with this sensor." alt="" coords="774,428,944,455"/>
+<area shape="rect" id="Node000002" href="$d8/de9/classACollisionSensor.html#ab4fa46f2abc1fbc290f967bb18e7e13e" title=" " alt="" coords="515,72,709,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="850,414,837,358,813,285,776,208,752,172,725,141,690,117,693,113,728,137,757,169,781,205,818,283,842,356,856,413"/>
+<area shape="rect" id="Node000006" href="$d3/d93/classAObstacleDetectionSensor.html#a86daabb07d1a82d74be5ec006b1c20f4" title=" " alt="" coords="520,151,705,193"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="847,415,832,369,806,313,771,256,749,230,725,207,704,195,707,190,728,203,753,226,775,253,811,311,836,367,852,413"/>
+<area shape="rect" id="Node000008" href="$d0/dc3/classAGnssSensor.html#a319d23bd045d2c1451f03bfacf666758" title=" " alt="" coords="517,241,708,268"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="842,417,796,348,763,312,725,282,701,271,704,266,728,278,767,308,800,345,846,414"/>
+<area shape="rect" id="Node000009" href="$d5/de4/classARayCastLidar.html#abfd04fd0fb58051afae805f0b94f5923" title=" " alt="" coords="514,316,711,343"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="828,421,781,388,725,357,691,346,693,341,727,352,784,383,831,416"/>
+<area shape="rect" id="Node000010" href="$de/d1f/classACustomV2XSensor.html#ab7792a4f25d71f82e3bebb3828fab743" title=" " alt="" coords="498,391,726,417"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="759,429,705,421,705,415,760,424"/>
+<area shape="rect" id="Node000011" href="$d2/daf/classADVSCamera.html#af5bed25bbeaa4669ea0576fdff9ea5e3" title=" " alt="" coords="517,465,708,492"/>
+<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="760,459,705,467,705,462,759,454"/>
+<area shape="rect" id="Node000012" href="$d5/de0/classAInertialMeasurementUnit.html#aa86507b1b877834ae72c1034486b7d90" title=" " alt="" coords="527,540,697,583"/>
+<area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="818,464,659,542,657,537,816,459"/>
+<area shape="rect" id="Node000013" href="$d9/d27/classARadar.html#a74d20d2ceebe97b11e8fc12aa8d20d0b" title=" " alt="" coords="536,631,689,657"/>
+<area shape="poly" id="edge19_Node000001_Node000013" title=" " alt="" coords="843,468,796,531,764,566,728,597,693,617,658,633,656,628,691,613,725,593,760,562,792,528,839,465"/>
+<area shape="rect" id="Node000014" href="$d8/d15/classARayCastSemanticLidar.html#a74775c31724f8cf3467765ae3583be5b" title=" " alt="" coords="531,705,694,748"/>
+<area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="851,469,833,512,806,565,771,621,728,671,702,691,673,707,671,702,699,687,725,667,767,618,802,563,828,510,846,467"/>
+<area shape="rect" id="Node000015" href="$d3/dd4/classAV2XSensor.html#ab14344142856578bb4cc69b597318a9c" title=" " alt="" coords="521,796,704,823"/>
+<area shape="poly" id="edge23_Node000001_Node000015" title=" " alt="" coords="856,470,843,529,820,606,782,689,757,727,728,762,700,783,668,798,666,793,697,779,724,758,753,724,777,686,815,605,838,528,851,469"/>
+<area shape="rect" id="Node000003" href="$d8/de9/classACollisionSensor.html#af104d12b73c8fcefbc54027162b6463c" title=" " alt="" coords="256,5,433,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="509,71,432,51,434,46,510,65"/>
+<area shape="rect" id="Node000005" href="$d8/de9/classACollisionSensor.html#ad65100bbaf7d2c09ec3e5970c10be88b" title=" " alt="" coords="239,72,450,115"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="500,96,451,96,451,91,500,91"/>
+<area shape="rect" id="Node000004" href="$d8/de9/classACollisionSensor.html#a182d28935eb0b680bf28bf2a85e21355" title=" " alt="" coords="5,47,191,73"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="242,43,191,50,191,45,241,38"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="223,80,191,75,191,70,224,74"/>
+<area shape="rect" id="Node000007" href="$d3/d93/classAObstacleDetectionSensor.html#ab978d30f92a01a9f29c8d54947380f25" title=" " alt="" coords="255,163,434,205"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="505,179,434,183,434,177,504,174"/>
+<area shape="poly" id="edge8_Node000007_Node000007" title=" " alt="" coords="385,150,370,144,344,141,321,143,307,148,301,154,303,162,298,163,296,153,304,144,320,138,344,136,372,139,388,145"/>
+<area shape="poly" id="edge10_Node000008_Node000008" title=" " alt="" coords="656,230,642,223,612,220,586,222,572,227,569,232,575,239,571,243,563,233,568,223,585,217,612,215,643,218,658,225"/>
+<area shape="poly" id="edge12_Node000009_Node000009" title=" " alt="" coords="656,304,642,297,612,295,586,297,572,301,569,307,575,314,571,317,563,307,568,297,585,291,612,289,643,292,658,300"/>
+<area shape="poly" id="edge14_Node000010_Node000010" title=" " alt="" coords="656,379,642,372,612,369,586,371,572,376,569,381,575,389,571,392,563,382,568,372,585,366,612,364,643,367,658,374"/>
+<area shape="poly" id="edge16_Node000011_Node000011" title=" " alt="" coords="656,454,642,447,612,444,586,446,572,451,569,456,575,463,571,467,563,457,568,447,585,441,612,439,643,442,658,449"/>
+<area shape="poly" id="edge18_Node000012_Node000012" title=" " alt="" coords="653,528,638,521,612,519,589,521,574,525,569,531,571,539,565,540,564,530,571,521,588,515,612,513,640,516,655,523"/>
+<area shape="poly" id="edge20_Node000013_Node000013" title=" " alt="" coords="656,619,642,612,612,609,586,611,572,616,569,621,575,629,571,632,563,622,568,612,585,606,612,604,643,607,658,614"/>
+<area shape="poly" id="edge22_Node000014_Node000014" title=" " alt="" coords="653,693,638,686,612,684,589,686,574,691,569,697,571,704,565,705,564,695,571,686,588,681,612,679,640,681,655,688"/>
+<area shape="poly" id="edge24_Node000015_Node000015" title=" " alt="" coords="656,784,642,777,612,775,586,777,572,781,569,787,575,794,571,797,563,787,568,777,585,771,612,769,643,772,658,780"/>
+</map>

@@ -1,0 +1,27 @@
+<map id="carla::road::Lane::GetType" name="carla::road::Lane::GetType">
+<area shape="rect" id="Node000001" title=" " alt="" coords="724,139,851,181"/>
+<area shape="rect" id="Node000002" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a1e3c826505f82d1ddffd9f40c39cfa2a" title="从给定的s起始和结束生成车道的网格" alt="" coords="503,5,676,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="755,130,718,95,675,62,653,51,656,46,678,58,722,91,759,126"/>
+<area shape="rect" id="Node000003" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a202f9750d3be15d0af4b42b3a90f3662" title="在车道的左侧生成一个墙状网格" alt="" coords="503,72,676,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="709,137,655,118,656,113,711,132"/>
+<area shape="rect" id="Node000006" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a11c673db2f69ad3c21ebba4d068b8c6c" title="在车道的右侧生成一个墙状网格" alt="" coords="503,139,676,181"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="710,163,677,163,677,157,710,157"/>
+<area shape="rect" id="Node000007" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a307f715a3e409fd5db0ce50f45c40478" title="从给定的s起始和结束生成车道的人行道网格" alt="" coords="503,205,676,248"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="711,188,656,207,655,202,709,183"/>
+<area shape="rect" id="Node000008" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ae26205cfd730254bb1a35302386b497f" title="用更高的细分生成从给定的s起始和结束的车道网格" alt="" coords="503,272,676,315"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="759,194,722,229,678,262,656,274,653,269,675,258,718,225,755,190"/>
+<area shape="rect" id="Node000004" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#aec242ce8214cea646ba254c0cfc0176a" title="生成一个网格，表示道路角落的墙，以避免车辆掉下去" alt="" coords="268,88,442,131"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="488,103,442,106,442,101,488,98"/>
+<area shape="rect" id="Node000005" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a5588f2f98ea42ade1082db0ef1c8ce7b" title="生成一个定义车道段安全墙的网格列表，限制最大长度" alt="" coords="12,88,200,131"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="488,82,455,79,355,73,255,79,190,90,189,85,254,73,355,67,455,73,488,76"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="253,112,201,112,201,107,253,107"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="488,141,441,131,443,125,489,136"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="488,162,376,157,254,145,192,134,193,129,255,140,376,152,488,157"/>
+<area shape="rect" id="Node000009" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#ab98f3e86a2e1abf508c132708c48e414" title="生成按顺序排列的车道段网格" alt="" coords="255,213,455,256"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="488,271,443,259,444,254,489,266"/>
+<area shape="rect" id="Node000010" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#acce620f6e7432999236d4dd2c7900e24" title="生成一个定义车道段的按顺序排列的网格列表，限制最大长度" alt="" coords="5,243,207,285"/>
+<area shape="poly" id="edge13_Node000008_Node000010" title=" " alt="" coords="488,290,207,273,207,267,488,285"/>
+<area shape="rect" id="Node000011" href="$d6/d3d/classcarla_1_1geom_1_1MeshFactory.html#a27fb4c904ccf5679a3888a511609495b" title="生成定义整个车道的网格，使用更高的细分" alt="" coords="268,331,442,373"/>
+<area shape="poly" id="edge14_Node000008_Node000011" title=" " alt="" coords="489,321,443,333,441,328,488,316"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="240,251,207,255,207,249,240,246"/>
+</map>
