@@ -44,15 +44,16 @@ package: PythonAPI
     @"${CARLA_BUILD_TOOLS_FOLDER}/Package.bat" --ue-version 4.26 $(ARGS)
 
 # 声明 docs 为伪目标，docs 目标的规则先执行 doxygen 命令（可能用于生成文档相关操作），然后输出提示信息，告知文档索引所在的路径
+# 前面不能是4个空格，必须是Tab键（Makefile是符号，即空格敏感的）
 .PHONY: docs
 docs:
-    @doxygen
-    @echo "Documentation index at./Doxygen/html/index.html"
+	@doxygen
+	@echo "Documentation index at./Doxygen/html/index.html"
 
 # PythonAPI.docs 目标，先执行 PythonAPI/docs/doc_gen.py 脚本（可能用于生成 PythonAPI 相关文档），然后切换到 PythonAPI/docs 目录下执行 bp_doc_gen.py 脚本，具体功能取决于这两个脚本的实现内容
 PythonAPI.docs:
-    python PythonAPI/docs/doc_gen.py
-    cd PythonAPI/docs && python bp_doc_gen.py
+	python PythonAPI/docs/doc_gen.py
+	cd PythonAPI/docs && python bp_doc_gen.py
 
 # clean 目标，用于清理相关的构建产物等内容，依次执行多个.bat 脚本，并传入对应的清理相关参数，对不同的项目组件（如 Package、CarlaUE4Editor、PythonAPI、LibCarla、OSM2ODR 等）进行清理操作
 clean:
@@ -72,11 +73,11 @@ rebuild: setup
 
 # check 目标依赖于 PythonAPI 目标，执行顺序上先执行 PythonAPI 对应的规则，不过目前规则中的命令只是输出提示信息，表示该功能尚未实现
 check: PythonAPI
-    @echo "Not implemented!"
+	@echo "Not implemented!"
 
 # benchmark 目标依赖于 LibCarla 目标，执行顺序上先执行 LibCarla 对应的规则，同样目前规则中的命令只是输出提示信息，表示该功能尚未实现
 benchmark: LibCarla
-    @echo "Not implemented!"
+	@echo "Not implemented!"
 
 # 声明 PythonAPI 为伪目标，PythonAPI 目标依赖于 LibCarla 和 osm2odr 目标，执行顺序上先执行这两个依赖目标对应的规则
 # 然后执行 "${CARLA_BUILD_TOOLS_FOLDER}/BuildPythonAPI.bat" 脚本，并传入 --py3 参数，可能用于构建 PythonAPI 相关内容，并且指定了 Python 版本相关的一些配置（这里可能表示 Python 3）
