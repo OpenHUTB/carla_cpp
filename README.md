@@ -1,5 +1,5 @@
 ﻿# Carla 的 C++ 文档
-注释Carla的 [LibCarla](https://github.com/OpenHUTB/carla_cpp/tree/dev/LibCarla/source/carla) 、[CarlaUE4](https://github.com/OpenHUTB/carla_cpp/tree/dev/Unreal/CarlaUE4/Plugins/Carla/Source/Carla) 模块，包括实现方式、实现原理、流程图等。做出贡献之前请查看 [指南](https://github.com/OpenHUTB/PFC/blob/main/CONTRIBUTING.md) 。
+注释Carla的 [LibCarla](https://github.com/OpenHUTB/carla_cpp/tree/dev/LibCarla/source/carla) 、[CarlaUE4](https://github.com/OpenHUTB/carla_cpp/tree/dev/Unreal/CarlaUE4/Plugins/Carla/Source/Carla) 模块，包括实现方式、实现原理、流程图等。做出贡献之前请查看 [指南](https://github.com/OpenHUTB/.github/blob/master/CONTRIBUTING.md) 。
 
 ## 生成文档
 1.打开 [github](https://github.com/) 注册并登录，然后下载安装[git](https://git-scm.com/downloads)  、[doxygen](https://www.doxygen.nl/download.html) ，可选软件：[GitTortoiseGit](https://tortoisegit.org/download/) 、[VS2019社区版](https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/) 、[Watt Toolkit免费加速器](https://steampp.net/)；
@@ -60,6 +60,7 @@ git rm -rf .
 
 ## 参考
 
+- [C++ 技术文档实践指南](https://zhuanlan.zhihu.com/p/664799185)
 - [Carla中文文档](https://openhutb.github.io/carla_doc/)
 - [从源代码构建 Carla](https://openhutb.github.io/carla_doc/build_carla/)
 - [在 Windows 上进行 Carla 的调试](https://openhutb.github.io/carla_doc/tuto_D_windows_debug/#cpp_client_debug)
