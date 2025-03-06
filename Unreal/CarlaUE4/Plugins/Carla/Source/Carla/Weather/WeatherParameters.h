@@ -7,18 +7,23 @@
 // 头文件保护指令，确保该头文件内容在一个编译单元中只被包含一次
 #pragma once  
 
+// 虚幻引擎将生成所有反射数据并将放入此文件（在处理反射数据时进行的），需要放在所有引入的头文件后面
+// 当头文件中包含#include "xxx.generated.h"时，这意味着该头文件加入了反射系统。
+// 允许引擎进行垃圾回收（GC）、蓝图与C++代码之间的通信等功能‌。
 #include "WeatherParameters.generated.h"
 
-// 使用USTRUCT宏定义了一个名为FWeatherParameters的结构体，并且标记为BlueprintType，意味着这个结构体可以在蓝图中使用
+// 使用 USTRUCT 宏定义了一个名为 FWeatherParameters 的结构体，并且标记为蓝图类 BlueprintType，意味着这个结构体可以在蓝图中使用
+// 前缀：模板T,UObject类的派生类U,AActor类的派生类A(包括子类的子类等),SWidget类的派生类S,抽象接口类I, 枚举类型E, 布尔类型变量的变量名必须加上前缀b
 USTRUCT(BlueprintType)
-struct CARLA_API FWeatherParameters
+struct CARLA_API FWeatherParameters  // 绝大多数其它的类，类型名前会有前缀F
 {
+    // 会触发虚幻引擎的头文件生成工具（Unreal Header Tool, UHT），自动生成必要的代码，如反射信息、序列化函数等。
     GENERATED_BODY()
 
-    // 使用UPROPERTY宏声明一个公有成员变量Cloudiness（云量），具有以下属性：
-    // EditAnywhere表示可以在编辑器的任何地方进行编辑（比如蓝图编辑器或者C++代码中对应的属性面板等）。
-    // BlueprintReadWrite表示在蓝图中既可以读取该属性的值，也可以对其进行修改。
-    // meta=(ClampMin = "0.0", ClampMax = "100.0", UIMin = "0.0", UIMax = "100.0") 表示对该属性值进行范围限制，
+    // 使用 UPROPERTY 宏声明一个公有成员变量Cloudiness（云量），具有以下属性：
+    // EditAnywhere 表示可以在编辑器的任何地方进行编辑（比如蓝图编辑器或者 C++ 代码中对应的属性面板等）。
+    // BlueprintReadWrite 表示在蓝图中既可以读取该属性的值，也可以对其进行修改。
+    // meta=(ClampMin = "0.0", ClampMax = "100.0", UIMin = "0.0", UIMax = "100.0") 表示对该属性值进行范围限制(clamp表示夹住)，
     // 其最小值为0.0，最大值为100.0，在UI界面上显示的最小值和最大值也分别是0.0和100.0，这里表示云量占比的取值范围是0%到100%，默认值设为0.0f（即0%）。
     UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ClampMin = "0.0", ClampMax = "100.0", UIMin = "0.0", UIMax = "100.0"))
     float Cloudiness = 0.0f;

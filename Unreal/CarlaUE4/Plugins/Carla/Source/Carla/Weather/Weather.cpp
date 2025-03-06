@@ -6,7 +6,7 @@
 
 #include "Carla.h"
 #include "Carla/Weather/Weather.h"
-#include "Carla/Sensor/SceneCaptureCamera.h"
+#include "Carla/Sensor/SceneCaptureCamera.h"  // 表示天气只会影响RGB相机
 #include "Components/SceneCaptureComponent2D.h"
 #include "Kismet/GameplayStatics.h"
 #include "ConstructorHelpers.h"
@@ -52,12 +52,12 @@ void AWeather::CheckWeatherPostProcessEffects()
 
     // 创建一个数组用于存储场景中所有的传感器Actor
     TArray<AActor*> SensorActors;
-    // 使用UGameplayStatics的GetAllActorsOfClass函数获取场景中所有ASceneCaptureCamera类的Actor，并存储到SensorActors数组中
+    // 取场景中所有 ASceneCaptureCamera 类的参与者，并存储到SensorActors数组中
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASceneCaptureCamera::StaticClass(), SensorActors);
     // 遍历传感器Actor数组
     for (AActor* SensorActor : SensorActors)
     {
-        // 将当前遍历到的Actor转换为ASceneCaptureCamera类型的指针
+        // 将当前遍历到的参与者转换为 ASceneCaptureCamera 类型的指针
         ASceneCaptureCamera* Sensor = Cast<ASceneCaptureCamera>(SensorActor);
         // 遍历ActiveBlendables列表中的每个元素（即每个后处理材质和强度的元组）
         for (auto& ActiveBlendable : ActiveBlendables)
@@ -77,7 +77,7 @@ void AWeather::ApplyWeather(const FWeatherParameters& InWeather)
 #ifdef CARLA_WEATHER_EXTRA_LOG
     // 如果定义了CARLA_WEATHER_EXTRA_LOG宏，则输出以下日志信息，记录当前天气参数的各项值
     UE_LOG(LogCarla, Log, TEXT("Changing weather:"));
-    UE_LOG(LogCarla, Log, TEXT("  - Cloudiness = %.2f"), Weather.Cloudiness);
+    UE_LOG(LogCarla, Log, TEXT("  - Cloudiness = %.2f"), Weather.Cloudiness);  // 由于引入了WeatherParameters.h中的
     UE_LOG(LogCarla, Log, TEXT("  - Precipitation = %.2f"), Weather.Precipitation);
     UE_LOG(LogCarla, Log, TEXT("  - PrecipitationDeposits = %.2f"), Weather.PrecipitationDeposits);
     UE_LOG(LogCarla, Log, TEXT("  - WindIntensity = %.2f"), Weather.WindIntensity);

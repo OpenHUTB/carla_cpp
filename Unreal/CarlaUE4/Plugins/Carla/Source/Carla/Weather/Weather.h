@@ -9,6 +9,7 @@
 #include "GameFramework/Actor.h"
 #include "Carla/Weather/WeatherParameters.h"
 
+// 该头文件加入了反射系统
 #include "Weather.generated.h"
 
 class ASensor;
@@ -54,33 +55,33 @@ public:
 protected:
 
   UFUNCTION(BlueprintImplementableEvent)
-// 这是一个在蓝图中可实现的事件
-// 刷新天气参数
+  // 这是一个在蓝图中可实现的事件
+  // 刷新天气参数
   void RefreshWeather(const FWeatherParameters &WeatherParameters);
 
 private:
 
-// 检查天气后处理效果
+  // 检查天气后处理效果
   void CheckWeatherPostProcessEffects();
 
-// 这是一个在任何地方都可见的属性
-// 天气参数
+  // 这是一个在任何地方都可见的属性(Weather.cpp中使用了)
+  // 天气参数
   UPROPERTY(VisibleAnywhere)
   FWeatherParameters Weather;
 
-// 材质指针，用于降水后处理
+  // 材质指针，用于降水后处理
   UMaterial* PrecipitationPostProcessMaterial;
 
-// 材质指针，用于沙尘暴后处理
+  // 材质指针，用于沙尘暴后处理
   UMaterial* DustStormPostProcessMaterial;
 
 
-// 映射，键是材质指针，值是浮点数
-// 活动混合
+  // 映射，键是材质指针，值是浮点数
+  // 活动混合
   TMap<UMaterial*, float> ActiveBlendables;
 
   UPROPERTY(EditAnywhere, Category = "Weather")
-// 这是一个在任何地方都可编辑的属性，分类为"Weather"
-// 日夜循环是否启用
+  // 这是一个在任何地方都可编辑的属性，分类为"Weather"
+  // 日夜循环是否启用
   bool DayNightCycle = true;
 };
