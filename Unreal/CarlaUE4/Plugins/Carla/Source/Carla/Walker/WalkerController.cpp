@@ -5,7 +5,7 @@
 // For a copy, see <https://opensource.org/licenses/MIT>.
 
 #include "Carla.h"
-// 包含CARLA模拟框架中Walker控制器的头文件
+// 包含 CARLA 模拟框架中Walker控制器的头文件
 // Walker控制器负责控制行人的移动和动画
 #include "Carla/Walker/WalkerController.h"
 // 包含CARLA模拟框架中Walker动画的头文件
@@ -26,17 +26,21 @@
 // Pawn是一个更通用的基类，用于表示游戏世界中的可控制实体
 // Character是Pawn的一个子类，专门用于表示具有移动能力的角色
 #include "GameFramework/Pawn.h"
+
 // AWalkerController类的构造函数
 // FObjectInitializer参数用于初始化对象属性
 AWalkerController::AWalkerController(const FObjectInitializer &ObjectInitializer)
   : Super(ObjectInitializer)
-{ // 设置PrimaryActorTick.bCanEverTick为true，表示这个Actor（行人控制器）可以在每一帧都被更新
+{ 
+  // 设置PrimaryActorTick.bCanEverTick为true，表示这个Actor（行人控制器）可以在每一帧都被更新
   PrimaryActorTick.bCanEverTick = true;
 }
+
 // 当AWalkerController“占有”一个APawn时，会调用此函数
 // InPawn参数指向被占有的Pawn
 void AWalkerController::OnPossess(APawn *InPawn)
-{// 调用父类的OnPossess函数
+{
+  // 调用父类的OnPossess函数
   Super::OnPossess(InPawn);
 
   auto *Character = Cast<ACharacter>(InPawn);
@@ -52,7 +56,7 @@ void AWalkerController::OnPossess(APawn *InPawn)
     UE_LOG(LogCarla, Error, TEXT("Walker missing character movement component!"));
     return;
   }
-// 设置角色的最大行走速度
+  // 设置角色的最大行走速度
   MovementComponent->MaxWalkSpeed = GetMaximumWalkSpeed();
   // 设置角色的跳跃垂直速度
   MovementComponent->JumpZVelocity = 500.0f;// 一个硬编码的跳跃速度值
