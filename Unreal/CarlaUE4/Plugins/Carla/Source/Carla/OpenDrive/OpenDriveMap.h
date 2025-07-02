@@ -32,7 +32,7 @@ struct CARLA_API FWaypointConnection
   FWaypoint End;
 };
 
-/// 将 CARLA OpenDrive API 公开给蓝图的辅助类。
+/// 用于向蓝图公开的辅助类。
 UCLASS(BlueprintType, Blueprintable)
 class CARLA_API UOpenDriveMap : public UObject
 {
