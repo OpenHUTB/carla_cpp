@@ -14,8 +14,15 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           #任务名称：设置Python环境
-      - name: Set up Python
+      - name: Build doc
         # This is the version of the action for setting up Python, not the Python version.
         uses: mattnotmitt/doxygen-action@v1.9.5
         with:
-            enable-latex: true
+          working-directory: 'submodule/'
+          enable-latex: true
+      
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./submodule
